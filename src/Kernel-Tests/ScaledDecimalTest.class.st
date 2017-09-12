@@ -4,15 +4,11 @@ I provide a test suite for ScaledDecimal values. Examine my tests to see how Sma
 Class {
 	#name : #ScaledDecimalTest,
 	#superclass : #ClassTestCase,
-	#category : #Kernel-Tests-Numbers,
-	#timestamp : '<historical>'
+	#category : #Kernel-Tests-Numbers
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testAsNumber [
+{ #category : #tests }
+ScaledDecimalTest >> testAsNumber [
 	"Ensure no loss of precision"
 
 	| sd |
@@ -23,11 +19,8 @@ ScaledDecimalTest>>testAsNumber [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testAsNumberNegatedWithoutDecimalPoint [
+{ #category : #tests }
+ScaledDecimalTest >> testAsNumberNegatedWithoutDecimalPoint [
 
 	| sd |
 	sd := '-123s0' asNumber.
@@ -37,11 +30,8 @@ ScaledDecimalTest>>testAsNumberNegatedWithoutDecimalPoint [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testAsNumberNegatedWithoutDecimalPoint2 [
+{ #category : #tests }
+ScaledDecimalTest >> testAsNumberNegatedWithoutDecimalPoint2 [
 
 	| sd |
 	sd := '-123s2' asNumber.
@@ -51,11 +41,8 @@ ScaledDecimalTest>>testAsNumberNegatedWithoutDecimalPoint2 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testAsNumberWithExtendedScale [
+{ #category : #tests }
+ScaledDecimalTest >> testAsNumberWithExtendedScale [
 
 	| sd |
 	sd := '123s2' asNumber.
@@ -65,11 +52,8 @@ ScaledDecimalTest>>testAsNumberWithExtendedScale [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testAsNumberWithRadix [
+{ #category : #tests }
+ScaledDecimalTest >> testAsNumberWithRadix [
 
 	| sd |
 	sd := '10r-22.2s5' asNumber.
@@ -79,11 +63,8 @@ ScaledDecimalTest>>testAsNumberWithRadix [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testAsNumberWithSuperfluousDecimalPoint [
+{ #category : #tests }
+ScaledDecimalTest >> testAsNumberWithSuperfluousDecimalPoint [
 
 	| sd |
 	sd := '123.s2' asNumber.
@@ -92,11 +73,8 @@ ScaledDecimalTest>>testAsNumberWithSuperfluousDecimalPoint [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testAsNumberWithoutDecimalPoint [
+{ #category : #tests }
+ScaledDecimalTest >> testAsNumberWithoutDecimalPoint [
 
 	| sd |
 	sd := '123s0' asNumber.
@@ -106,11 +84,8 @@ ScaledDecimalTest>>testAsNumberWithoutDecimalPoint [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testAsNumberWithoutDecimalPoint2 [
+{ #category : #tests }
+ScaledDecimalTest >> testAsNumberWithoutDecimalPoint2 [
 
 	| sd |
 	sd := '123s2' asNumber.
@@ -120,11 +95,8 @@ ScaledDecimalTest>>testAsNumberWithoutDecimalPoint2 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testCoercion [
+{ #category : #tests }
+ScaledDecimalTest >> testCoercion [
 	#( #* #+ #- #/) do: [:op |
 		self assert: (1.0s1 perform: op with: 2) class = ScaledDecimal.
 		self assert: (1.0s1 perform: op with: 1/2) class = ScaledDecimal.
@@ -135,11 +107,8 @@ ScaledDecimalTest>>testCoercion [
 		self deny: (1.0 perform: op with: 1.0s1) class = ScaledDecimal]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testConvertFromDecimalFraction [
+{ #category : #tests }
+ScaledDecimalTest >> testConvertFromDecimalFraction [
 	"Converting a Fraction with asScaledDecimal use strictly necessary number of decimal places when possible."
 	0 to: 11 do: [:pow2 |
 		0 to: 11 do: [:pow5 |
@@ -151,11 +120,8 @@ ScaledDecimalTest>>testConvertFromDecimalFraction [
 			self assert: sd = sd2]].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testConvertFromFloat [
+{ #category : #tests }
+ScaledDecimalTest >> testConvertFromFloat [
 
 	| aFloat sd f2 diff |
 	aFloat := 11/13 asFloat.
@@ -169,11 +135,8 @@ ScaledDecimalTest>>testConvertFromFloat [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testConvertFromFraction [
+{ #category : #tests }
+ScaledDecimalTest >> testConvertFromFraction [
 
 	| sd |
 	sd := (13 / 11) asScaledDecimal: 6.
@@ -187,11 +150,8 @@ ScaledDecimalTest>>testConvertFromFraction [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testConvertFromInteger [
+{ #category : #tests }
+ScaledDecimalTest >> testConvertFromInteger [
 	"Converting an Integer with asScaledDecimal use strictly necessary number of decimal places: 0."
 
 	| sd |
@@ -210,11 +170,8 @@ ScaledDecimalTest>>testConvertFromInteger [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testConvertFromIntegerWithScale [
+{ #category : #tests }
+ScaledDecimalTest >> testConvertFromIntegerWithScale [
 	"Converting an Integer with asScaledDecimal: does now honour the scale passed as message argument."
 
 	| sd |
@@ -233,11 +190,8 @@ ScaledDecimalTest>>testConvertFromIntegerWithScale [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testConvertFromNonDecimalFraction [
+{ #category : #tests }
+ScaledDecimalTest >> testConvertFromNonDecimalFraction [
 	"Converting a Fraction with asScaledDecimal use default number of decimals when the serie of decimals is infinite."
 	| defaultNumberOfDecimals |
 	defaultNumberOfDecimals := (1/3) asScaledDecimal scale.
@@ -250,11 +204,8 @@ ScaledDecimalTest>>testConvertFromNonDecimalFraction [
 		] 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testExactNthRoot [
+{ #category : #tests }
+ScaledDecimalTest >> testExactNthRoot [
 	| eight thousandth tenth two |
 	eight := 8.0s1.
 	two := eight raisedTo: 1/3.
@@ -266,11 +217,8 @@ ScaledDecimalTest>>testExactNthRoot [
 	self assert: (tenth class = thousandth class and: [tenth scale = thousandth scale]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testExactSqrt [
+{ #category : #tests }
+ScaledDecimalTest >> testExactSqrt [
 	| four hundredth tenth two |
 	four := 4.0s1.
 	two := four sqrt.
@@ -282,11 +230,8 @@ ScaledDecimalTest>>testExactSqrt [
 	self assert: (tenth class = hundredth class and: [tenth scale = hundredth scale]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testInexactNthRoot [
+{ #category : #tests }
+ScaledDecimalTest >> testInexactNthRoot [
 	| tenth cubicRoot3 fifthRootTenth three |
 	three := 3.0s1.
 	cubicRoot3 := three raisedTo: 1/3.
@@ -298,11 +243,8 @@ ScaledDecimalTest>>testInexactNthRoot [
 	self deny: fifthRootTenth squared = tenth.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testInexactSqrt [
+{ #category : #tests }
+ScaledDecimalTest >> testInexactSqrt [
 	| tenth sqrt3 sqrtTenth three |
 	three := 3.0s1.
 	sqrt3 := three sqrt.
@@ -314,11 +256,8 @@ ScaledDecimalTest>>testInexactSqrt [
 	self deny: sqrtTenth squared = tenth.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testIsLiteral [
+{ #category : #tests }
+ScaledDecimalTest >> testIsLiteral [
 	"This test is related to http://bugs.squeak.org/view.php?id=6796"
 	
 	self assert: 1.00s2 isLiteral description: 'every literal obviously isLiteral'.
@@ -331,11 +270,8 @@ ScaledDecimalTest>>testIsLiteral [
 	self deny: (1/3.00s2) isLiteral description: 'this number cannot represent itself as a literal'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testLiteral [
+{ #category : #tests }
+ScaledDecimalTest >> testLiteral [
 
 	| sd |
 	sd := 1.40s2.
@@ -344,11 +280,8 @@ ScaledDecimalTest>>testLiteral [
 	self assert: '1.40s2' = sd printString
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testOneRaisedToInteger [
+{ #category : #tests }
+ScaledDecimalTest >> testOneRaisedToInteger [
 	"One might be handled specially"
 	
 	self assert: (1.0s1 raisedToInteger: -1) scale = 1.
@@ -361,11 +294,8 @@ ScaledDecimalTest>>testOneRaisedToInteger [
 	self assert: (1.0s1 raisedToInteger: 2) = 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testPrintString [
+{ #category : #tests }
+ScaledDecimalTest >> testPrintString [
 	"The printed representation of a ScaledDecimal is rounded.
 	Note that old implementation was truncated."
 
@@ -379,11 +309,8 @@ ScaledDecimalTest>>testPrintString [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testRaisedToInteger [
+{ #category : #tests }
+ScaledDecimalTest >> testRaisedToInteger [
 	"Raising to integer should preserve class and scale"
 	
 	self assert: (3.0s1 raisedToInteger: -1) scale = 1.
@@ -396,11 +323,8 @@ ScaledDecimalTest>>testRaisedToInteger [
 	self assert: (3.0s1 raisedToInteger: 2) = 9.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testReadFrom [
+{ #category : #tests }
+ScaledDecimalTest >> testReadFrom [
 	"This is related to http://bugs.squeak.org/view.php?id=6779"
 	
 	self should: [(ScaledDecimal readFrom: '5.3') isKindOf: ScaledDecimal]
@@ -409,20 +333,14 @@ ScaledDecimalTest>>testReadFrom [
 		description: 'ScaledDecimal readFrom: should not use Float intermediate because it would introduce round off errors'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testRounded [
+{ #category : #tests }
+ScaledDecimalTest >> testRounded [
 	self assert: (1999/1000s2) printString = '2.00s2'.
 	self assert: (-1999/1000s2) printString = '-2.00s2'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testScaleExtension [
+{ #category : #tests }
+ScaledDecimalTest >> testScaleExtension [
 	"The scale is extended to the larger one in case of arithmetic operation"
 	
 	#( #* #+ #- #/) do: [:op |
@@ -430,11 +348,8 @@ ScaledDecimalTest>>testScaleExtension [
 		self assert: (3.5000s4 perform: op with: 1.0s1) scale = 4.]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testStoreOn [
+{ #category : #tests }
+ScaledDecimalTest >> testStoreOn [
 	"this is http://bugs.squeak.org/view.php?id=4378"
 	
 	"Both results should be 1.
@@ -458,11 +373,8 @@ ScaledDecimalTest>>testStoreOn [
     		0.25s2 storeString = '0.25s2'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScaledDecimalTest>>testZeroRaisedToInteger [
+{ #category : #tests }
+ScaledDecimalTest >> testZeroRaisedToInteger [
 	"Zero might be handle specially"
 	
 	self should: [0.0s1 raisedToInteger: -1] raise: Error.

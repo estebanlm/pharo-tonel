@@ -12,39 +12,26 @@ Class {
 		'host',
 		'port'
 	],
-	#category : #Network-Kernel,
-	#timestamp : 'mir 5/12/2003 18:14'
+	#category : #Network-Kernel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ConnectionRefused class>>host: addressOrHostName port: portNumber [
+{ #category : #'instance creation' }
+ConnectionRefused class >> host: addressOrHostName port: portNumber [
 	^ self new host: addressOrHostName port: portNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ConnectionRefused>>host [
+{ #category : #accessing }
+ConnectionRefused >> host [
 	^ host
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ConnectionRefused>>host: addressOrHostName port: portNumber [
+{ #category : #accessing }
+ConnectionRefused >> host: addressOrHostName port: portNumber [
 	host := addressOrHostName.
 	port := portNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ConnectionRefused>>port [
+{ #category : #accessing }
+ConnectionRefused >> port [
 	^ port
 ]

@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #MetacelloAbstractConstructor,
 	#superclass : #Object,
-	#category : #Metacello-Core-Constructors,
-	#timestamp : ''
+	#category : #Metacello-Core-Constructors
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractConstructor>>configurationClass [
+{ #category : #accessing }
+MetacelloAbstractConstructor >> configurationClass [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'pragma extraction',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractConstructor>>extractAllVersionPragmas [
+{ #category : #'pragma extraction' }
+MetacelloAbstractConstructor >> extractAllVersionPragmas [
 
 	| aDict |
 	aDict := Dictionary new.
@@ -30,11 +20,8 @@ MetacelloAbstractConstructor>>extractAllVersionPragmas [
 	^aDict
 ]
 
-{
-	#category : #'pragma extraction',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractConstructor>>extractCommonDefaultSymbolicVersionPragmas [
+{ #category : #'pragma extraction' }
+MetacelloAbstractConstructor >> extractCommonDefaultSymbolicVersionPragmas [
 
 	| aDict |
 	aDict := Dictionary new.
@@ -42,11 +29,8 @@ MetacelloAbstractConstructor>>extractCommonDefaultSymbolicVersionPragmas [
 	^aDict
 ]
 
-{
-	#category : #'pragma extraction',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractConstructor>>extractDefaultSymbolicVersionPragmas [
+{ #category : #'pragma extraction' }
+MetacelloAbstractConstructor >> extractDefaultSymbolicVersionPragmas [
 
 	| aDict |
 	aDict := Dictionary new.
@@ -54,11 +38,8 @@ MetacelloAbstractConstructor>>extractDefaultSymbolicVersionPragmas [
 	^aDict
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractConstructor>>extractPragmas: pragmaKeyword for: aClass into: versionDict [
+{ #category : #private }
+MetacelloAbstractConstructor >> extractPragmas: pragmaKeyword for: aClass into: versionDict [
 
 	| versionString  pragmas |
 	(Pragma 
@@ -74,20 +55,14 @@ MetacelloAbstractConstructor>>extractPragmas: pragmaKeyword for: aClass into: ve
 			pragmas add: pragma ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractConstructor>>extractPragmas: pragmaKeyword into: versionDict [
+{ #category : #private }
+MetacelloAbstractConstructor >> extractPragmas: pragmaKeyword into: versionDict [
 
 	^self extractPragmas: pragmaKeyword for: self configurationClass into: versionDict
 ]
 
-{
-	#category : #'pragma extraction',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractConstructor>>extractSymbolicVersionPragmas [
+{ #category : #'pragma extraction' }
+MetacelloAbstractConstructor >> extractSymbolicVersionPragmas [
 
 	| aDict |
 	aDict := Dictionary new.
@@ -95,11 +70,8 @@ MetacelloAbstractConstructor>>extractSymbolicVersionPragmas [
 	^aDict
 ]
 
-{
-	#category : #'pragma extraction',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractConstructor>>extractVersionImportPragmas [
+{ #category : #'pragma extraction' }
+MetacelloAbstractConstructor >> extractVersionImportPragmas [
 
 	| aDict |
 	aDict := Dictionary new.
@@ -107,11 +79,8 @@ MetacelloAbstractConstructor>>extractVersionImportPragmas [
 	^aDict
 ]
 
-{
-	#category : #'pragma extraction',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAbstractConstructor>>extractVersionPragmas [
+{ #category : #'pragma extraction' }
+MetacelloAbstractConstructor >> extractVersionPragmas [
 
 	| aDict |
 	aDict := Dictionary new.

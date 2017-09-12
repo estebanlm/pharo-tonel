@@ -1,61 +1,38 @@
-Extension {
-	#name : #CompiledMethod
-}
+Extension { #name : #CompiledMethod }
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>assignmentNodes [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> assignmentNodes [
 	^self ast assignmentNodes
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>blockNodes [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> blockNodes [
 	^self ast blockNodes
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>compiledMethod [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> compiledMethod [
 	^self
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>createTwin [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> createTwin [
 	self reflectiveMethod: (ReflectiveMethod on: self)
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>destroyTwin [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> destroyTwin [
 	self reflectiveMethod: nil
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>hasLinks [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> hasLinks [
 	self reflectiveMethod ifNil: [ ^false ].
 	^self reflectiveMethod hasLinks. 
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>installLink: aMetaLink [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> installLink: aMetaLink [
 	self reflectiveMethod ifNil: [ self createTwin ].
 	self reflectiveMethod increaseLinkCount.
 	(aMetaLink optionCompileOnLinkInstallation or: [ self isRealPrimitive ])
@@ -65,27 +42,18 @@ CompiledMethod>>installLink: aMetaLink [
 	
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>instanceVariableReadNodes [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> instanceVariableReadNodes [
 	^self ast instanceVariableReadNodes
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>instanceVariableWriteNodes [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> instanceVariableWriteNodes [
 	^self ast instanceVariableWriteNodes
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>invalidate [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> invalidate [
 	| reflectiveMethod |
 	self reflectivityDisabled ifTrue: [ ^self ].
 	
@@ -97,11 +65,8 @@ CompiledMethod>>invalidate [
 	
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>metaLinkOptions [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> metaLinkOptions [
 	^{
 	#penultimateLiteral -> #( + optionCompileOnLinkInstallation).
 	#selector -> #( + optionCompileOnLinkInstallation).
@@ -113,67 +78,43 @@ CompiledMethod>>metaLinkOptions [
 	}
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>reflectiveMethod [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> reflectiveMethod [
 	^self propertyAt: #reflectiveMethod ifAbsent: nil
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>reflectiveMethod: aReflectiveMethod [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> reflectiveMethod: aReflectiveMethod [
 	self propertyAt: #reflectiveMethod put: aReflectiveMethod
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>reflectivityDisabled [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> reflectivityDisabled [
 	^self hasPragmaNamed: #disableReflectivity
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>removeLink: aLink [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> removeLink: aLink [
 
 	self reflectiveMethod ifNotNil: [:rm | rm removeLink: aLink].
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>sendNodes [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> sendNodes [
 	^self ast sendNodes
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>variableNodes [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> variableNodes [
 	^self ast variableNodes
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>variableReadNodes [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> variableReadNodes [
 	^self ast variableReadNodes
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-CompiledMethod>>variableWriteNodes [
+{ #category : #'*Reflectivity' }
+CompiledMethod >> variableWriteNodes [
 	^self ast variableWriteNodes
 ]

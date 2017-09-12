@@ -11,24 +11,17 @@ I provide shortcuts for the most common methods to avoid the use of the DoesNotU
 Class {
 	#name : #LabelledInputTextDropList,
 	#superclass : #LabelledContainer,
-	#category : #Spec-PolyWidgets-Labelled,
-	#timestamp : 'Spirita 7/25/2016 17:03'
+	#category : #Spec-PolyWidgets-Labelled
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList class>>defaultSpec [
+{ #category : #specs }
+LabelledInputTextDropList class >> defaultSpec [
 	<spec: #default>
 	^ super labelLeft 
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList class>>example [
+{ #category : #example }
+LabelledInputTextDropList class >> example [
 	| example |
 	example := self abstractExample.
 	example
@@ -40,174 +33,111 @@ LabelledInputTextDropList class>>example [
 	^ example
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>acceptOnCR: aBoolean [
+{ #category : #api-shortcuts }
+LabelledInputTextDropList >> acceptOnCR: aBoolean [
 	^ self input acceptOnCR: aBoolean
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>beEncrypted [
+{ #category : #api-shortcuts }
+LabelledInputTextDropList >> beEncrypted [
 	^ self input beEncrypted
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>displayBlock: aBlock [
+{ #category : #api-shortcuts }
+LabelledInputTextDropList >> displayBlock: aBlock [
 	^ self dropList displayBlock: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>dropList [
+{ #category : #accessing }
+LabelledInputTextDropList >> dropList [
 	^  self inputTextDropList dropList
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>emptyList [
+{ #category : #api-shortcuts }
+LabelledInputTextDropList >> emptyList [
 	^ self dropList emptyList
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>encrypted: aBoolean [
+{ #category : #api-shortcuts }
+LabelledInputTextDropList >> encrypted: aBoolean [
 	^ self input encrypted: aBoolean
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>entryCompletion: anEntryCompletion [
+{ #category : #api-shortcuts }
+LabelledInputTextDropList >> entryCompletion: anEntryCompletion [
 	^ self input entryCompletion: anEntryCompletion
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>ghostText: aText [
+{ #category : #api-shortcuts }
+LabelledInputTextDropList >> ghostText: aText [
 	^ self input ghostText: aText
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>initializeWidgets [
+{ #category : #initialization }
+LabelledInputTextDropList >> initializeWidgets [
 super initializeWidgets.
 	self content: InputTextDropList.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>input [
+{ #category : #accessing }
+LabelledInputTextDropList >> input [
 	^ self inputTextDropList input
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>inputTextDropList [
+{ #category : #accessing }
+LabelledInputTextDropList >> inputTextDropList [
 	^ subwidget
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>items: aList [
+{ #category : #api-shortcuts }
+LabelledInputTextDropList >> items: aList [
 ^ 	self dropList items: aList
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>listSize [
+{ #category : #api-shortcuts }
+LabelledInputTextDropList >> listSize [
 	^ self dropList listSize
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>resetSelection [
+{ #category : #api-shortcuts }
+LabelledInputTextDropList >> resetSelection [
 	^ self dropList resetSelection
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>selectedItem [
+{ #category : #api-shortcuts }
+LabelledInputTextDropList >> selectedItem [
 	^ self dropList selectedItem
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>setIndex: anIndex [
+{ #category : #api-shortcuts }
+LabelledInputTextDropList >> setIndex: anIndex [
 ^ 	self dropList setIndex: anIndex
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>text [
+{ #category : #api-shortcuts }
+LabelledInputTextDropList >> text [
 	^ self input text
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>text: aText [
+{ #category : #api-shortcuts }
+LabelledInputTextDropList >> text: aText [
 	^ self input text: aText
 ]
 
-{
-	#category : #events-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>whenSelectedItemChanged: aBlock [
+{ #category : #events-shortcuts }
+LabelledInputTextDropList >> whenSelectedItemChanged: aBlock [
 	self dropList
 		whenSelectedItemChanged: aBlock
 ]
 
-{
-	#category : #events-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>whenSelectionChanged: aBlock [
+{ #category : #events-shortcuts }
+LabelledInputTextDropList >> whenSelectionChanged: aBlock [
 	self dropList
 		whenSelectionChanged: aBlock
 ]
 
-{
-	#category : #events-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledInputTextDropList>>whenSelectionIndexChanged: aBlock [
+{ #category : #events-shortcuts }
+LabelledInputTextDropList >> whenSelectionIndexChanged: aBlock [
 	self dropList
 		whenSelectionIndexChanged: aBlock
 ]

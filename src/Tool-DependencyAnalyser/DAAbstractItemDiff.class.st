@@ -11,130 +11,84 @@ Class {
 		'diff',
 		'removed'
 	],
-	#category : #Tool-DependencyAnalyser-Diff,
-	#timestamp : 'BaptisteQuide 8/7/2014 12:08'
+	#category : #Tool-DependencyAnalyser-Diff
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAbstractItemDiff class>>newWith: aContent [
+{ #category : #'instance creation' }
+DAAbstractItemDiff class >> newWith: aContent [
 	^ (self new)
 		content: aContent;
 		yourself
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAbstractItemDiff>>beNew [
+{ #category : #actions }
+DAAbstractItemDiff >> beNew [
 	new := true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAbstractItemDiff>>beRemoved [
+{ #category : #actions }
+DAAbstractItemDiff >> beRemoved [
 	removed := true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAbstractItemDiff>>beUnderteminate [
+{ #category : #testing }
+DAAbstractItemDiff >> beUnderteminate [
 	underteminate := true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAbstractItemDiff>>canBeDisplay [
+{ #category : #testing }
+DAAbstractItemDiff >> canBeDisplay [
 	^ (self isNew or: [ self isRemoved ]) or: [ self hasChanged ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAbstractItemDiff>>content [
+{ #category : #accessing }
+DAAbstractItemDiff >> content [
 	 ^ content
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAbstractItemDiff>>content: aContent [
+{ #category : #accessing }
+DAAbstractItemDiff >> content: aContent [
 	content := aContent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAbstractItemDiff>>diff [
+{ #category : #accessing }
+DAAbstractItemDiff >> diff [
 	^ diff
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAbstractItemDiff>>diff: anObject [
+{ #category : #accessing }
+DAAbstractItemDiff >> diff: anObject [
 	diff := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAbstractItemDiff>>hasChanged [
+{ #category : #testing }
+DAAbstractItemDiff >> hasChanged [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAbstractItemDiff>>initialize [
+{ #category : #initialization }
+DAAbstractItemDiff >> initialize [
 	new := false.
 	removed := false.
 	underteminate := false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAbstractItemDiff>>isNew [
+{ #category : #testing }
+DAAbstractItemDiff >> isNew [
 	^ new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAbstractItemDiff>>isRemoved [
+{ #category : #testing }
+DAAbstractItemDiff >> isRemoved [
 	^ removed
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAbstractItemDiff>>isUnderteminate [
+{ #category : #testing }
+DAAbstractItemDiff >> isUnderteminate [
 	 ^ underteminate 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAbstractItemDiff>>printOn: aStream [
+{ #category : #printing }
+DAAbstractItemDiff >> printOn: aStream [
 	self subclassResponsibility 
 ]

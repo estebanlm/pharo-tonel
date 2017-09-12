@@ -4,22 +4,15 @@ I represent self
 Class {
 	#name : #NECSelfEntry,
 	#superclass : #NECEntry,
-	#category : #NECompletion-Model,
-	#timestamp : '<historical>'
+	#category : #NECompletion-Model
 }
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSelfEntry>>guessTypeWith: anECContext  [
+{ #category : #operations }
+NECSelfEntry >> guessTypeWith: anECContext [ 
 	^ anECContext theClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSelfEntry>>label [
+{ #category : #accessing }
+NECSelfEntry >> label [
 	^ 'self'
 ]

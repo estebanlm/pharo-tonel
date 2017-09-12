@@ -18,52 +18,36 @@ Class {
 		'selector',
 		'arguments'
 	],
-	#category : #Refactoring-Core-Support,
-	#timestamp : 'NicolaiHess 5/22/2016 11:56'
+	#category : #Refactoring-Core-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethodName class>>selector: aSymbol arguments: stringCollection  [
+{ #category : #'instance creation' }
+RBMethodName class >> selector: aSymbol arguments: stringCollection [ 
 	^(self new)
 		selector: aSymbol;
 		arguments: stringCollection;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethodName>>arguments [
+{ #category : #accessing }
+RBMethodName >> arguments [
 	^arguments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethodName>>arguments: nameCollection  [
+{ #category : #accessing }
+RBMethodName >> arguments: nameCollection [ 
 	arguments := nameCollection.
 	self changed: #arguments
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethodName>>isValid [
+{ #category : #testing }
+RBMethodName >> isValid [
 	^ (RBCondition checkMethodName: self selector in: self class) 
 		and: [ self selector numArgs = self arguments size ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethodName>>printOn: aStream [
+{ #category : #printing }
+RBMethodName >> printOn: aStream [
 	| argumentStream |
 	self isValid
 		ifFalse: [ ^ aStream nextPutAll: '(invalid)' ].
@@ -76,19 +60,13 @@ RBMethodName>>printOn: aStream [
 		aStream space; nextPutAll: argumentStream next ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethodName>>selector [
+{ #category : #accessing }
+RBMethodName >> selector [
 	^selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethodName>>selector: aSymbol  [
+{ #category : #accessing }
+RBMethodName >> selector: aSymbol [ 
 	selector := aSymbol asSymbol.
 	self changed: #selector
 ]

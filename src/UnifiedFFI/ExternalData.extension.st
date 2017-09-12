@@ -1,12 +1,7 @@
-Extension {
-	#name : #ExternalData
-}
+Extension { #name : #ExternalData }
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalData>>+ offset  [
+{ #category : #'*UnifiedFFI' }
+ExternalData >> + offset [ 
 	"Pointer aritmetic, it allows to move the pointer as in C.
 	 But obviously, it only applies to actual external addresses."
 	self getHandle isExternalAddress 
@@ -16,45 +11,30 @@ ExternalData>>+ offset  [
 		type: type
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalData>>asInteger [
+{ #category : #'*UnifiedFFI' }
+ExternalData >> asInteger [
 	^ self getHandle asInteger
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalData>>copyFrom: start to: stop [
+{ #category : #'*UnifiedFFI' }
+ExternalData >> copyFrom: start to: stop [
 	^ self getHandle copyFrom: start to: stop
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalData>>printOn: stream  [
+{ #category : #'*UnifiedFFI' }
+ExternalData >> printOn: stream [ 
 	stream << $( << type asString << $). 
 	self getHandle printOn: stream.
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalData>>readString [
+{ #category : #'*UnifiedFFI' }
+ExternalData >> readString [
 	self isNull ifTrue: [ ^ nil ].
 	^ self fromCString
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalData>>readStringUTF8 [
+{ #category : #'*UnifiedFFI' }
+ExternalData >> readStringUTF8 [
 	"Assume that the receiver represents a C string containing UTF8 characters and convert 
 	 it to a Smalltalk string."
 	| stream index char |
@@ -70,10 +50,7 @@ ExternalData>>readStringUTF8 [
 	^ ZnCharacterEncoder utf8 decodeBytes: stream contents
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalData>>value [
+{ #category : #'*UnifiedFFI' }
+ExternalData >> value [
 	^ self asInteger
 ]

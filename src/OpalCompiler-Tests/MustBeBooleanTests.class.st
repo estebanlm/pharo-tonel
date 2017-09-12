@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #MustBeBooleanTests,
 	#superclass : #TestCase,
-	#category : #OpalCompiler-Tests-Misc,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-Misc
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MustBeBooleanTests>>testAnd [
+{ #category : #tests }
+MustBeBooleanTests >> testAnd [
 	| myBooleanObject |
 	
 	myBooleanObject := MyBooleanObject new.
 	self deny: (myBooleanObject and: [true])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MustBeBooleanTests>>testDNU [
+{ #category : #tests }
+MustBeBooleanTests >> testDNU [
 	| code |
 	code := [ (true ifFalse:[]) ifTrue:[] ].
 	self should: code raise: MessageNotUnderstood .
@@ -31,11 +21,8 @@ MustBeBooleanTests>>testDNU [
 			self assert: error message selector equals: #ifTrue:]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MustBeBooleanTests>>testIfTrueEffect [
+{ #category : #tests }
+MustBeBooleanTests >> testIfTrueEffect [
 	| temp fakeBool |
 	
 	fakeBool := MyBooleanObject new.
@@ -47,11 +34,8 @@ MustBeBooleanTests>>testIfTrueEffect [
 	"fakeBool ifTrue: [ 1+ 2. [ :a | a ] value: 5. 7 ]."
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MustBeBooleanTests>>testIfTrueValue [
+{ #category : #tests }
+MustBeBooleanTests >> testIfTrueValue [
 	| myBooleanObject |
 	
 	self assert: (MyBooleanObject new ifTrue: [ 1 + 2 ]) equals: '3 sent from my boolean object'.
@@ -59,11 +43,8 @@ MustBeBooleanTests>>testIfTrueValue [
 	self assert: (myBooleanObject ifTrue: [ 1 + 2 ]) equals: '3 sent from my boolean object'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MustBeBooleanTests>>testIfTrueWithClosureAfterJump [
+{ #category : #tests }
+MustBeBooleanTests >> testIfTrueWithClosureAfterJump [
 	"A closure is a multibyte instruction, that should not be
 	1) confused for an ending jump in ifTrue/ifFalse structure
 	2) set as jumptarget, or have PC manually set to, none but its first byte."
@@ -75,22 +56,16 @@ MustBeBooleanTests>>testIfTrueWithClosureAfterJump [
 	self assert: 'a ' , string equals: 'a 5' ] value: '5'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MustBeBooleanTests>>testOr [
+{ #category : #tests }
+MustBeBooleanTests >> testOr [
 	| myBooleanObject |
 	
 	myBooleanObject := MyBooleanObject new.
 	self assert: (myBooleanObject or: [true])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MustBeBooleanTests>>testWhile [
+{ #category : #tests }
+MustBeBooleanTests >> testWhile [
 	| myFlag |
 	self should: [[ nil ] whileFalse: [myFlag := true ]] raise: MessageNotUnderstood.
 ]

@@ -7,50 +7,34 @@ Class {
 	#instVars : [
 		'button'
 	],
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'IgorStasenko 7/30/2014 17:22'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSMouseButtonEvent>>button [
+{ #category : #accessing }
+OSMouseButtonEvent >> button [
 	
 	^ button
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSMouseButtonEvent>>button: anObject [
+{ #category : #accessing }
+OSMouseButtonEvent >> button: anObject [
 	
 	button := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSMouseButtonEvent>>isWheel [
+{ #category : #testing }
+OSMouseButtonEvent >> isWheel [
 	^ self button > 3
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSMouseButtonEvent>>printOn: stream [
+{ #category : #printing }
+OSMouseButtonEvent >> printOn: stream [
 	super printOn: stream.
 	stream space; nextPutAll: button asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSMouseButtonEvent>>wheelDirection [
+{ #category : #accessing }
+OSMouseButtonEvent >> wheelDirection [
 	"If button is wheel button (>3), answer direction (#up/#down)"
 	^ self button = 4 
 		ifTrue: [ #up ] 

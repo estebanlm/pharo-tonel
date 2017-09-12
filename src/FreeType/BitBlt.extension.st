@@ -1,22 +1,14 @@
-Extension {
-	#name : #BitBlt
-}
+Extension { #name : #BitBlt }
 
-{
-	#category : #'*FreeType-Addition',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-BitBlt>>combinationRule [
+{ #category : #'*FreeType-Addition' }
+BitBlt >> combinationRule [
 	"Answer the receiver's combinationRule"
 	
 	^combinationRule
 ]
 
-{
-	#category : #'*FreeType-Addition',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-BitBlt>>copyBitsColor: argbColorSmallInteger alpha: argbAlphaSmallInteger gammaTable: gammaByteArray ungammaTable: ungammaByteArray [
+{ #category : #'*FreeType-Addition' }
+BitBlt >> copyBitsColor: argbColorSmallInteger alpha: argbAlphaSmallInteger gammaTable: gammaByteArray ungammaTable: ungammaByteArray [
 	"This entry point to BitBlt supplies an extra argument to specify the fore color
 	argb value for operation 41. This is split into an alpha value and an rgb value,
 	so that both can be passed as smallIntegers to the primitive.  
@@ -36,11 +28,8 @@ BitBlt>>copyBitsColor: argbColorSmallInteger alpha: argbAlphaSmallInteger gammaT
 	self primitiveFailed  "Later do nicer error recovery -- share copyBits recovery"
 ]
 
-{
-	#category : #'*FreeType-Addition',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-BitBlt>>installFreeTypeFont: aFreeTypeFont foregroundColor: foregroundColor backgroundColor: backgroundColor [
+{ #category : #'*FreeType-Addition' }
+BitBlt >> installFreeTypeFont: aFreeTypeFont foregroundColor: foregroundColor backgroundColor: backgroundColor [
 	"Set up the parameters.  Since the glyphs in a TTCFont is 32bit depth form, it tries to use rule=34 to get better AA result if possible."
 
 	(FreeTypeSettings current useSubPixelAntiAliasing and: [destForm depth >= 8])
@@ -65,10 +54,7 @@ BitBlt>>installFreeTypeFont: aFreeTypeFont foregroundColor: foregroundColor back
 
 ]
 
-{
-	#category : #'*FreeType-Addition',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-BitBlt>>lastFontForegroundColor [
+{ #category : #'*FreeType-Addition' }
+BitBlt >> lastFontForegroundColor [
 	^ nil 
 ]

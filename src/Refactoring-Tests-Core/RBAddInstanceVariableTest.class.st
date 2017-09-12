@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #RBAddInstanceVariableTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddInstanceVariableTest>>setUp [
+{ #category : #'set up' }
+RBAddInstanceVariableTest >> setUp [
 	super setUp.
 	model := self abstractVariableTestData.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddInstanceVariableTest>>testAddInstanceVariable [
+{ #category : #tests }
+RBAddInstanceVariableTest >> testAddInstanceVariable [
 	| refactoring |
 	refactoring := RBAddInstanceVariableRefactoring 
 		variable: 'asdf'
@@ -30,11 +20,8 @@ RBAddInstanceVariableTest>>testAddInstanceVariable [
 	self assert: ((refactoring model classNamed: #RBTransformationRuleTest) directlyDefinesInstanceVariable: 'asdf')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddInstanceVariableTest>>testAddToModel [
+{ #category : #tests }
+RBAddInstanceVariableTest >> testAddToModel [
 	| refactoring |
 	model := RBClassModelFactory rbNamespace new.
 	model name: 'Add instance variable'.
@@ -53,11 +40,8 @@ RBAddInstanceVariableTest>>testAddToModel [
 				directlyDefinesInstanceVariable: 'asdf')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddInstanceVariableTest>>testAlreadyExistingName [
+{ #category : #'failure tests' }
+RBAddInstanceVariableTest >> testAlreadyExistingName [
 	self
 		shouldFail: (RBAddInstanceVariableRefactoring 
 				variable: 'class'
@@ -67,11 +51,8 @@ RBAddInstanceVariableTest>>testAlreadyExistingName [
 				class: RBTransformationRuleTest)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddInstanceVariableTest>>testModelAlreadyExistingName [
+{ #category : #'failure tests' }
+RBAddInstanceVariableTest >> testModelAlreadyExistingName [
 	| refactoring |
 	refactoring := RBAddInstanceVariableRefactoring 
 				model: model
@@ -80,11 +61,8 @@ RBAddInstanceVariableTest>>testModelAlreadyExistingName [
 	self shouldFail: refactoring
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddInstanceVariableTest>>testModelMetaclassAlreadyExistingName [
+{ #category : #'failure tests' }
+RBAddInstanceVariableTest >> testModelMetaclassAlreadyExistingName [
 	| refactoring |
 	(model metaclassNamed: #Foo) addInstanceVariable: 'instVarName1'.
 	refactoring := RBAddInstanceVariableRefactoring 
@@ -94,11 +72,8 @@ RBAddInstanceVariableTest>>testModelMetaclassAlreadyExistingName [
 	self shouldFail: refactoring
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddInstanceVariableTest>>testNewExistingName [
+{ #category : #'failure tests' }
+RBAddInstanceVariableTest >> testNewExistingName [
 	| refactoring |
 	model := RBClassModelFactory rbNamespace new.
 	model name: 'Add instance variable'.
@@ -115,11 +90,8 @@ RBAddInstanceVariableTest>>testNewExistingName [
 	self shouldFail: refactoring
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddInstanceVariableTest>>testNewHierarchyExistingName [
+{ #category : #'failure tests' }
+RBAddInstanceVariableTest >> testNewHierarchyExistingName [
 	| refactoring |
 	model := RBClassModelFactory rbNamespace new.
 	model name: 'Add instance variable'.

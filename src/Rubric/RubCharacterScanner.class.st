@@ -35,15 +35,11 @@ Class {
 	#pools : [
 		'TextConstants'
 	],
-	#category : #Rubric-TextScanning,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:48'
+	#category : #Rubric-TextScanning
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner class>>initialize [
+{ #category : #'class initialization' }
+RubCharacterScanner class >> initialize [
 "
 	RubCharacterScanner initialize
 "
@@ -65,37 +61,25 @@ RubCharacterScanner class>>initialize [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>addEmphasis: code [
+{ #category : #private }
+RubCharacterScanner >> addEmphasis: code [
 	"Set the bold-ital-under-strike emphasis."
 	emphasisCode := emphasisCode bitOr: code
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>addKern: kernDelta [
+{ #category : #private }
+RubCharacterScanner >> addKern: kernDelta [
 	"Set the current kern amount."
 	kern := kern + kernDelta
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>backgroundColor: ignored [
+{ #category : #private }
+RubCharacterScanner >> backgroundColor: ignored [
 	"Overridden in DisplayScanner"
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>basicScanCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX stopConditions: stops kern: kernDelta [
+{ #category : #scanning }
+RubCharacterScanner >> basicScanCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX stopConditions: stops kern: kernDelta [
 	"Primitive. This is the inner loop of text display--but see 
 	scanCharactersFrom: to:rightX: which would get the string, 
 	stopConditions and displaying from the instance. March through source 
@@ -151,20 +135,14 @@ RubCharacterScanner>>basicScanCharactersFrom: startIndex to: stopIndex in: sourc
 	^ stops endOfRun
 ]
 
-{
-	#category : #'scanner methods',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>combinableChar: char for: prevEntity [
+{ #category : #'scanner methods' }
+RubCharacterScanner >> combinableChar: char for: prevEntity [
 
 
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>embeddedObject [
+{ #category : #scanning }
+RubCharacterScanner >> embeddedObject [
 	| savedIndex |
 	savedIndex := lastIndex.
 	text
@@ -181,76 +159,52 @@ RubCharacterScanner>>embeddedObject [
 	^ false
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>handleIndentation [
+{ #category : #scanning }
+RubCharacterScanner >> handleIndentation [
 	self indentationLevel timesRepeat: [
 		self plainTab]
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>indentationLevel [
+{ #category : #scanning }
+RubCharacterScanner >> indentationLevel [
 	"return the number of tabs that are currently being placed at the beginning of each line"
 	^indentationLevel ifNil:[0]
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>indentationLevel: anInteger [
+{ #category : #scanning }
+RubCharacterScanner >> indentationLevel: anInteger [
 	"set the number of tabs to put at the beginning of each line"
 	indentationLevel := anInteger
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>initialize [
+{ #category : #initialize }
+RubCharacterScanner >> initialize [
 	super initialize.
 	destX := destY := leftMargin := 0.
 ]
 
-{
-	#category : #'scanner methods',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>isBreakableAt: index in: sourceString in: encodingClass [
+{ #category : #'scanner methods' }
+RubCharacterScanner >> isBreakableAt: index [ in: sourceString in: encodingClass
 
 	^ encodingClass isBreakableAt: index in: sourceString.
 
 ]
 
-{
-	#category : #'text constants',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>justified [
+{ #category : #'text constants' }
+RubCharacterScanner >> justified [
 	^ 3
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>leadingTab [
+{ #category : #scanning }
+RubCharacterScanner >> leadingTab [
 	"return true if only tabs lie to the left"
 	line first to: lastIndex do:
 		[:i | (text at: i) == Character tab ifFalse: [^ false]].
 	^ true
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>measureString: aString inFont: aFont from: startIndex to: stopIndex [
+{ #category : #scanning }
+RubCharacterScanner >> measureString: aString inFont: aFont from: startIndex to: stopIndex [
 	"WARNING: In order to use this method the receiver has to be set up using #initializeStringMeasurer"
 	destX := destY := lastIndex := 0.
 	baselineY := aFont ascent.
@@ -260,11 +214,8 @@ RubCharacterScanner>>measureString: aString inFont: aFont from: startIndex to: s
 	^destX
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>nextTabXFrom: anX [
+{ #category : #scanning }
+RubCharacterScanner >> nextTabXFrom: anX [
 	"Tab stops are distances from the left margin. Set the distance into the 
 	argument, anX, normalized for the paragraph's left margin."
 
@@ -278,11 +229,8 @@ RubCharacterScanner>>nextTabXFrom: anX [
 		ifFalse: [ rightMargin ] 
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>placeEmbeddedObject: anchoredMorph [
+{ #category : #scanning }
+RubCharacterScanner >> placeEmbeddedObject: anchoredMorph [
 	"Place the anchoredMorph or return false if it cannot be placed.
 	In any event, advance destX by its width."
 	| w |
@@ -297,11 +245,8 @@ RubCharacterScanner>>placeEmbeddedObject: anchoredMorph [
 	^ true
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>plainTab [
+{ #category : #scanning }
+RubCharacterScanner >> plainTab [
 
 	"This is the basic method of adjusting destX for a tab."
 	destX := (alignment = self justified and: [self leadingTab not])
@@ -313,11 +258,8 @@ RubCharacterScanner>>plainTab [
 	firstDestX  := destX.
 ]
 
-{
-	#category : #'multilingual scanning',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>registerBreakableIndex [
+{ #category : #'multilingual scanning' }
+RubCharacterScanner >> registerBreakableIndex [
 
 	"Record left x and character index of the line-wrappable point. 
 	The default implementation here does nothing."
@@ -326,11 +268,8 @@ RubCharacterScanner>>registerBreakableIndex [
 
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>scanCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX stopConditions: stops kern: kernDelta [
+{ #category : #scanning }
+RubCharacterScanner >> scanCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX stopConditions: stops kern: kernDelta [
 	| startEncoding selector |
 	
 	sourceString isByteString
@@ -366,11 +305,8 @@ RubCharacterScanner>>scanCharactersFrom: startIndex to: stopIndex in: sourceStri
 
 ]
 
-{
-	#category : #'scanner methods',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>scanJapaneseCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX stopConditions: stops kern: kernDelta [
+{ #category : #'scanner methods' }
+RubCharacterScanner >> scanJapaneseCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX stopConditions: stops kern: kernDelta [
 
 	| ascii encoding f nextDestX maxAscii startEncoding |
 	lastIndex := startIndex.
@@ -407,11 +343,8 @@ RubCharacterScanner>>scanJapaneseCharactersFrom: startIndex to: stopIndex in: so
 	^ stops endOfRun
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>scanMultiCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX stopConditions: stops kern: kernDelta [
+{ #category : #scanning }
+RubCharacterScanner >> scanMultiCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX stopConditions: stops kern: kernDelta [
 
 	| ascii encoding f nextDestX maxAscii startEncoding floatDestX widthAndKernedWidth nextChar atEndOfRun |
 	lastIndex := startIndex.
@@ -466,30 +399,21 @@ RubCharacterScanner>>scanMultiCharactersFrom: startIndex to: stopIndex in: sourc
 	^ stops endOfRun
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>setActualFont: aFont [
+{ #category : #private }
+RubCharacterScanner >> setActualFont: aFont [
 	"Set the basal font to an isolated font reference."
 
 	font := aFont
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>setAlignment: style [
+{ #category : #private }
+RubCharacterScanner >> setAlignment: style [
 	alignment := style.
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>setConditionArray: aSymbol [
+{ #category : #private }
+RubCharacterScanner >> setConditionArray: aSymbol [
 
 	aSymbol == #paddedSpace ifTrue: [^stopConditions := PaddedSpaceCondition "copy"].
 	"aSymbol == #space ifTrue: [^stopConditions := SpaceCondition copy]."
@@ -498,11 +422,8 @@ RubCharacterScanner>>setConditionArray: aSymbol [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>setFont [
+{ #category : #private }
+RubCharacterScanner >> setFont [
 	| priorFont |
 	"Set the font and other emphasis."
 	priorFont := font.
@@ -534,46 +455,31 @@ RubCharacterScanner>>setFont [
 	stopConditions := DefaultStopConditions
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>setFont: fontNumber [
+{ #category : #private }
+RubCharacterScanner >> setFont: fontNumber [
 	"Set the font by number from the textStyle."
 
 	self setActualFont: (textStyle fontAt: fontNumber)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>tabWidth [
+{ #category : #accessing }
+RubCharacterScanner >> tabWidth [
 	^ textStyle rubTabWidth
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>text: t textStyle: ts  [
+{ #category : #private }
+RubCharacterScanner >> text: t textStyle: ts [ 
 	text := t.
 	textStyle := ts
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>textColor: ignored [
+{ #category : #private }
+RubCharacterScanner >> textColor: ignored [
 	"Overridden in DisplayScanner"
 ]
 
-{
-	#category : #'multilingual scanning',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterScanner>>widthOf: char inFont: aFont [
+{ #category : #'multilingual scanning' }
+RubCharacterScanner >> widthOf: char inFont: aFont [
 
 	(char isMemberOf: CombinedChar) ifTrue: [
 		^ aFont widthOf: char base.

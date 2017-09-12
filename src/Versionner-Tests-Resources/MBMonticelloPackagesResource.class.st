@@ -7,43 +7,30 @@ Class {
 	#instVars : [
 		'monticelloRepository'
 	],
-	#category : #Versionner-Tests-Resources,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:16'
+	#category : #Versionner-Tests-Resources
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource class>>isMetacelloConfig [
+{ #category : #accessing }
+MBMonticelloPackagesResource class >> isMetacelloConfig [
 	"Answer true and the Metacello tools will operate on you"
 	
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource class>>project [
+{ #category : #accessing }
+MBMonticelloPackagesResource class >> project [
 
 	^self new project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource class>>projectAttributes [
+{ #category : #accessing }
+MBMonticelloPackagesResource class >> projectAttributes [
 
 	^#()
 ]
 
-{
-	#category : #ConfigurationOfMBFooTest,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>baseline10MBFooTest: spec  [
+{ #category : #ConfigurationOfMBFooTest }
+MBMonticelloPackagesResource >> baseline10MBFooTest: spec [ 
 	"self reset"
 	<version: '1.0-baseline'>
 	
@@ -56,11 +43,8 @@ MBMonticelloPackagesResource>>baseline10MBFooTest: spec  [
 
 ]
 
-{
-	#category : #'command tests',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>baseline20MBFooTest: spec  [
+{ #category : #'command tests' }
+MBMonticelloPackagesResource >> baseline20MBFooTest: spec [ 
 	"self reset"
 	<version: '2.0-baseline'>
 	
@@ -73,11 +57,8 @@ MBMonticelloPackagesResource>>baseline20MBFooTest: spec  [
 
 ]
 
-{
-	#category : #'command tests',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>baseline30MBFooTest: spec  [
+{ #category : #'command tests' }
+MBMonticelloPackagesResource >> baseline30MBFooTest: spec [ 
 	"self reset"
 	<version: '3.0-baseline'>
 	
@@ -90,19 +71,13 @@ MBMonticelloPackagesResource>>baseline30MBFooTest: spec  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>monticelloRepository [
+{ #category : #accessing }
+MBMonticelloPackagesResource >> monticelloRepository [
 	^ monticelloRepository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>project [
+{ #category : #accessing }
+MBMonticelloPackagesResource >> project [
 	"self reset"
 
 	| constructor project |
@@ -120,11 +95,8 @@ MBMonticelloPackagesResource>>project [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUp [
+{ #category : #running }
+MBMonticelloPackagesResource >> setUp [
 	"self reset"
 
 	super setUp.
@@ -137,11 +109,8 @@ MBMonticelloPackagesResource>>setUp [
 		setUpConfigurationOfMBBranchTest
 ]
 
-{
-	#category : #ConfigurationOfMBBranchTest,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUpConfigurationOfMBBranchTest [
+{ #category : #ConfigurationOfMBBranchTest }
+MBMonticelloPackagesResource >> setUpConfigurationOfMBBranchTest [
 	"self reset"  
 	| versionInfo |
 	versionInfo := self setUpConfigurationOfMBBranchTest1.
@@ -149,11 +118,8 @@ MBMonticelloPackagesResource>>setUpConfigurationOfMBBranchTest [
 
 ]
 
-{
-	#category : #ConfigurationOfMBBranchTest,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUpConfigurationOfMBBranchTest1 [
+{ #category : #ConfigurationOfMBBranchTest }
+MBMonticelloPackagesResource >> setUpConfigurationOfMBBranchTest1 [
 	"self reset"
 	| reference className definitionArray versionInfo  |
 	reference := GoferVersionReference name: 'ConfigurationOfMBBranchTests-dkh.1'.
@@ -221,11 +187,8 @@ MBMonticelloPackagesResource>>setUpConfigurationOfMBBranchTest1 [
 	^versionInfo
 ]
 
-{
-	#category : #ConfigurationOfMBBranchTest,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUpConfigurationOfMBBranchTest2: ancestors [
+{ #category : #ConfigurationOfMBBranchTest }
+MBMonticelloPackagesResource >> setUpConfigurationOfMBBranchTest2: ancestors [
 	"self reset"
 	| reference className definitionArray versionInfo  |
 	reference := GoferVersionReference name: 'ConfigurationOfMBBranchTests.branch-dkh.2'.
@@ -299,11 +262,8 @@ MBMonticelloPackagesResource>>setUpConfigurationOfMBBranchTest2: ancestors [
 	^versionInfo
 ]
 
-{
-	#category : #'command tests',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUpConfigurationOfMBFooIssue117 [
+{ #category : #'command tests' }
+MBMonticelloPackagesResource >> setUpConfigurationOfMBFooIssue117 [
 
 	"self reset"  
 	| versionInfo |
@@ -313,11 +273,8 @@ MBMonticelloPackagesResource>>setUpConfigurationOfMBFooIssue117 [
 
 ]
 
-{
-	#category : #'command tests',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUpConfigurationOfMBFooIssue117dkh1: ancestors [
+{ #category : #'command tests' }
+MBMonticelloPackagesResource >> setUpConfigurationOfMBFooIssue117dkh1: ancestors [
 	"self reset"
 	| reference className definitionArray versionInfo  |
 	reference := GoferVersionReference name: 'ConfigurationOfMBFooIssue117-dkh.1'.
@@ -397,11 +354,8 @@ MBMonticelloPackagesResource>>setUpConfigurationOfMBFooIssue117dkh1: ancestors [
 	^versionInfo
 ]
 
-{
-	#category : #'command tests',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUpConfigurationOfMBFooIssue117dkh2: ancestors [
+{ #category : #'command tests' }
+MBMonticelloPackagesResource >> setUpConfigurationOfMBFooIssue117dkh2: ancestors [
 	"self reset"
 	| reference className definitionArray versionInfo  |
 	reference := GoferVersionReference name: 'ConfigurationOfMBFooIssue117-dkh.2'.
@@ -487,11 +441,8 @@ MBMonticelloPackagesResource>>setUpConfigurationOfMBFooIssue117dkh2: ancestors [
 	^versionInfo
 ]
 
-{
-	#category : #'command tests',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUpConfigurationOfMBFooIssue117dkh3: ancestors [
+{ #category : #'command tests' }
+MBMonticelloPackagesResource >> setUpConfigurationOfMBFooIssue117dkh3: ancestors [
 	"self reset"
 	| reference className definitionArray versionInfo  |
 	reference := GoferVersionReference name: 'ConfigurationOfMBFooIssue117-dkh.3'.
@@ -589,11 +540,8 @@ MBMonticelloPackagesResource>>setUpConfigurationOfMBFooIssue117dkh3: ancestors [
 	^versionInfo
 ]
 
-{
-	#category : #ConfigurationOfMBFooTest,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUpConfigurationOfMBFooTest [
+{ #category : #ConfigurationOfMBFooTest }
+MBMonticelloPackagesResource >> setUpConfigurationOfMBFooTest [
 	"self reset"  
 	| versionInfo |
 	versionInfo := self setUpConfigurationOfMBFooTest1.
@@ -602,11 +550,8 @@ MBMonticelloPackagesResource>>setUpConfigurationOfMBFooTest [
 
 ]
 
-{
-	#category : #ConfigurationOfMBFooTest,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUpConfigurationOfMBFooTest1 [
+{ #category : #ConfigurationOfMBFooTest }
+MBMonticelloPackagesResource >> setUpConfigurationOfMBFooTest1 [
 	"self reset"
 	| reference className definitionArray versionInfo  |
 	reference := GoferVersionReference name: 'ConfigurationOfMBFooTests-dkh.1'.
@@ -674,11 +619,8 @@ MBMonticelloPackagesResource>>setUpConfigurationOfMBFooTest1 [
 	^versionInfo
 ]
 
-{
-	#category : #ConfigurationOfMBFooTest,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUpConfigurationOfMBFooTest2: ancestors [
+{ #category : #ConfigurationOfMBFooTest }
+MBMonticelloPackagesResource >> setUpConfigurationOfMBFooTest2: ancestors [
 	"self reset"
 	| reference className definitionArray versionInfo  |
 	reference := GoferVersionReference name: 'ConfigurationOfMBFooTests-dkh.2'.
@@ -752,11 +694,8 @@ MBMonticelloPackagesResource>>setUpConfigurationOfMBFooTest2: ancestors [
 	^versionInfo
 ]
 
-{
-	#category : #ConfigurationOfMBFooTest,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUpConfigurationOfMBFooTest3: ancestors [
+{ #category : #ConfigurationOfMBFooTest }
+MBMonticelloPackagesResource >> setUpConfigurationOfMBFooTest3: ancestors [
 	"self reset"
 	| reference className definitionArray versionInfo  |
 	reference := GoferVersionReference name: 'ConfigurationOfMBFooTests-dkh.3'.
@@ -836,11 +775,8 @@ MBMonticelloPackagesResource>>setUpConfigurationOfMBFooTest3: ancestors [
 	^versionInfo
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUpMonticelloRepository [
+{ #category : #running }
+MBMonticelloPackagesResource >> setUpMonticelloRepository [
 	"This method builds a fake repository with the version references from #buildReferences."
 	"self reset"
 
@@ -848,11 +784,8 @@ MBMonticelloPackagesResource>>setUpMonticelloRepository [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUpPackageClassDefs: classDefArray methodDefs: methodDefArray named: packageName ancestors: ancestors [
+{ #category : #running }
+MBMonticelloPackagesResource >> setUpPackageClassDefs: classDefArray methodDefs: methodDefArray named: packageName ancestors: ancestors [
 	"self reset"
 	
 	| definitions superclassName className ivNames cvNames civNames versionInfo methodSelector methodSource basePackageName authorName |
@@ -957,22 +890,16 @@ MBMonticelloPackagesResource>>setUpPackageClassDefs: classDefArray methodDefs: m
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUpPackageClassDefs: classDefArray named: pName ancestors: ancestors [
+{ #category : #running }
+MBMonticelloPackagesResource >> setUpPackageClassDefs: classDefArray named: pName ancestors: ancestors [
 	"self reset"
 	
 	^self setUpPackageClassDefs: classDefArray methodDefs: #() named: pName ancestors: ancestors
 
 ]
 
-{
-	#category : #'command tests',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUpPackagesMBCommandFooTests [
+{ #category : #'command tests' }
+MBMonticelloPackagesResource >> setUpPackagesMBCommandFooTests [
 	"self reset"
 	
 	self
@@ -988,11 +915,8 @@ MBMonticelloPackagesResource>>setUpPackagesMBCommandFooTests [
 
 ]
 
-{
-	#category : #ConfigurationOfMBFooTest,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>setUpPackagesMBFooTests [
+{ #category : #ConfigurationOfMBFooTest }
+MBMonticelloPackagesResource >> setUpPackagesMBFooTests [
 	"self reset"
 	
 	| versionInfo |
@@ -1019,66 +943,48 @@ MBMonticelloPackagesResource>>setUpPackagesMBFooTests [
 
 ]
 
-{
-	#category : #'command tests',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>symbolicVersionBleedingEdge20baselineMBFooTest: spec [
+{ #category : #'command tests' }
+MBMonticelloPackagesResource >> symbolicVersionBleedingEdge20baselineMBFooTest: spec [
 	"self reset"
 	<symbolicVersion: #'bleedingEdge'>
 
 	spec for: #'common' version: '2.0-baseline'.
 ]
 
-{
-	#category : #'command tests',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>symbolicVersionDevelopment10MBFooTest: spec [
+{ #category : #'command tests' }
+MBMonticelloPackagesResource >> symbolicVersionDevelopment10MBFooTest: spec [
 	"self reset"
 	<symbolicVersion: #'development'>
 
 	spec for: #'common' version: '1.0'.
 ]
 
-{
-	#category : #ConfigurationOfMBFooTest,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>symbolicVersionDevelopmentNotDefinedMBFooTest: spec [
+{ #category : #ConfigurationOfMBFooTest }
+MBMonticelloPackagesResource >> symbolicVersionDevelopmentNotDefinedMBFooTest: spec [
 	"self reset"
 	<symbolicVersion: #'development'>
 
 	spec for: #'common' version: #'notDefined'.
 ]
 
-{
-	#category : #ConfigurationOfMBFooTest,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>symbolicVersionStable10MBFooTest: spec [
+{ #category : #ConfigurationOfMBFooTest }
+MBMonticelloPackagesResource >> symbolicVersionStable10MBFooTest: spec [
 	"self reset"
 	<symbolicVersion: #'stable'>
 
 	spec for: #'common' version: '1.0'.
 ]
 
-{
-	#category : #ConfigurationOfMBFooTest,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>symbolicVersionStable11MBFooTest: spec [
+{ #category : #ConfigurationOfMBFooTest }
+MBMonticelloPackagesResource >> symbolicVersionStable11MBFooTest: spec [
 	"self reset"
 	<symbolicVersion: #'stable'>
 
 	spec for: #'common' version: '1.1'.
 ]
 
-{
-	#category : #ConfigurationOfMBFooTest,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>version10MBFooTest: spec [
+{ #category : #ConfigurationOfMBFooTest }
+MBMonticelloPackagesResource >> version10MBFooTest: spec [
 	"self reset"
 	<version: '1.0' imports: #('1.0-baseline')>
 
@@ -1089,11 +995,8 @@ MBMonticelloPackagesResource>>version10MBFooTest: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfMBFooTest,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>version11MBFooTest: spec [
+{ #category : #ConfigurationOfMBFooTest }
+MBMonticelloPackagesResource >> version11MBFooTest: spec [
 	"self reset"
 	<version: '1.1' imports: #('1.0-baseline')>
 
@@ -1104,11 +1007,8 @@ MBMonticelloPackagesResource>>version11MBFooTest: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfMBFooTest,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBMonticelloPackagesResource>>version12MBFooTest: spec [
+{ #category : #ConfigurationOfMBFooTest }
+MBMonticelloPackagesResource >> version12MBFooTest: spec [
 	"self reset"
 	<version: '1.2' imports: #('1.0-baseline')>
 

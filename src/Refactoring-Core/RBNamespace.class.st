@@ -47,25 +47,18 @@ Class {
 		'implementorsCache',
 		'sendersCache'
 	],
-	#category : #Refactoring-Core-Model,
-	#timestamp : 'NicolaiHess 5/18/2016 22:58'
+	#category : #Refactoring-Core-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace class>>onEnvironment: aBrowserEnvironment  [
+{ #category : #'instance creation' }
+RBNamespace class >> onEnvironment: aBrowserEnvironment [ 
 	^(self new)
 		environment: aBrowserEnvironment;
 		yourself
 ]
 
-{
-	#category : #private-changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>addChangeToClass: aRBClass  [
+{ #category : #private-changes }
+RBNamespace >> addChangeToClass: aRBClass [ 
 	^ changedClasses 
 		at: aRBClass name
 		put: (Array 
@@ -73,35 +66,23 @@ RBNamespace>>addChangeToClass: aRBClass  [
 				with: aRBClass theMetaClass)
 ]
 
-{
-	#category : #private-changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>addClassVariable: aString to: aRBClass  [
+{ #category : #private-changes }
+RBNamespace >> addClassVariable: aString to: aRBClass [ 
 	^changes addClassVariable: aString to: aRBClass
 ]
 
-{
-	#category : #private-changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>addInstanceVariable: aString to: aRBClass  [
+{ #category : #private-changes }
+RBNamespace >> addInstanceVariable: aString to: aRBClass [ 
 	^changes addInstanceVariable: aString to: aRBClass
 ]
 
-{
-	#category : #private-changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>addPool: aString to: aRBClass  [
+{ #category : #private-changes }
+RBNamespace >> addPool: aString to: aRBClass [ 
 	^changes addPool: aString to: aRBClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>allBehaviorsDo: aBlock [
+{ #category : #accessing }
+RBNamespace >> allBehaviorsDo: aBlock [
 	| seen evalBlock |
 	seen := Set new.
 	evalBlock := [ :each | 
@@ -123,11 +104,8 @@ RBNamespace>>allBehaviorsDo: aBlock [
 						value: class theMetaClass ] ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>allClassesDo: aBlock [
+{ #category : #accessing }
+RBNamespace >> allClassesDo: aBlock [
 	| seen evalBlock |
 	seen := Set new.
 	evalBlock := [ :each | 
@@ -148,43 +126,28 @@ RBNamespace>>allClassesDo: aBlock [
 						    value: class theMetaClass ] ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>allImplementorsOf: aSelector  [
+{ #category : #accessing }
+RBNamespace >> allImplementorsOf: aSelector [ 
 	^ implementorsCache at: aSelector ifAbsentPut: [ self privateImplementorsOf: aSelector ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>allImplementorsOf: aSelector do: aBlock [
+{ #category : #accessing }
+RBNamespace >> allImplementorsOf: aSelector do: aBlock [
 	(self allImplementorsOf: aSelector) do: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>allReferencesTo: aSymbol [
+{ #category : #accessing }
+RBNamespace >> allReferencesTo: aSymbol [
 	^ sendersCache at: aSymbol ifAbsentPut: [ self privateReferencesTo: aSymbol ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>allReferencesTo: aSymbol do: aBlock [
+{ #category : #accessing }
+RBNamespace >> allReferencesTo: aSymbol do: aBlock [
 	(self allReferencesTo: aSymbol) do: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>allReferencesToClass: aRBClass do: aBlock  [
+{ #category : #accessing }
+RBNamespace >> allReferencesToClass: aRBClass do: aBlock [ 
 	self allClassesDo: 
 			[:each |
 			(each whichSelectorsReferToClass: aRBClass) 
@@ -193,11 +156,8 @@ RBNamespace>>allReferencesToClass: aRBClass do: aBlock  [
 				do: [:sel | aBlock value: (each theMetaClass methodFor: sel)]]
 ]
 
-{
-	#category : #private-changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>changeClass: aRBClass  [
+{ #category : #private-changes }
+RBNamespace >> changeClass: aRBClass [ 
 	changedClasses 
 		at: aRBClass name
 		put: (Array 
@@ -206,19 +166,13 @@ RBNamespace>>changeClass: aRBClass  [
 	self flushCaches
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>changes [
+{ #category : #accessing }
+RBNamespace >> changes [
 	^changes
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>classFor: aBehavior  [
+{ #category : #accessing-classes }
+RBNamespace >> classFor: aBehavior [ 
 	aBehavior isNil 
 		ifTrue: [ ^ nil ].
 	^ aBehavior isMeta 
@@ -226,19 +180,13 @@ RBNamespace>>classFor: aBehavior  [
 		ifFalse: [ self classNamed: aBehavior theNonMetaClass name ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>classNameFor: aBehavior  [
+{ #category : #private }
+RBNamespace >> classNameFor: aBehavior [ 
 	^ aBehavior theNonMetaClass name
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>classNamed: aSymbol  [
+{ #category : #accessing-classes }
+RBNamespace >> classNamed: aSymbol [ 
 	| class classes index |
 	aSymbol isNil ifTrue: [ ^ nil ].
 	(self hasRemoved: aSymbol) ifTrue: [ ^ nil ].
@@ -264,19 +212,13 @@ RBNamespace>>classNamed: aSymbol  [
 		ifFalse: [ class theMetaClass ]
 ]
 
-{
-	#category : #changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>comment: aString in: aClass [
+{ #category : #changes }
+RBNamespace >> comment: aString [ in: aClass
 	^ changes comment: aString in: aClass
 ]
 
-{
-	#category : #private-changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>compile: aString in: aRBClass classified: aSymbol  [
+{ #category : #private-changes }
+RBNamespace >> compile: aString in: aRBClass classified: aSymbol [ 
 	| change |
 	change := changes 
 				compile: aString
@@ -286,11 +228,8 @@ RBNamespace>>compile: aString in: aRBClass classified: aSymbol  [
 	^change
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>createNewClassFor: aBehavior  [
+{ #category : #accessing-classes }
+RBNamespace >> createNewClassFor: aBehavior [ 
 	| nonMeta meta className |
 	className := aBehavior theNonMetaClass name.
 	nonMeta := (RBClassModelFactory rbClass existingNamed: className)
@@ -302,11 +241,8 @@ RBNamespace>>createNewClassFor: aBehavior  [
 	^changedClasses at: className put: (Array with: nonMeta with: meta)
 ]
 
-{
-	#category : #changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>defineClass: aString [
+{ #category : #changes }
+RBNamespace >> defineClass: aString [
 	| change newClass newClassName |
 	change := changes defineClass: aString.
 	newClassName := change changeClassName.
@@ -334,90 +270,60 @@ RBNamespace>>defineClass: aString [
 	^ change
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>description [
+{ #category : #accessing }
+RBNamespace >> description [
 	^ self changes name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>description: aString [
+{ #category : #accessing }
+RBNamespace >> description: aString [
 	self changes name: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>environment [
+{ #category : #accessing }
+RBNamespace >> environment [
 	^environment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>environment: aBrowserEnvironment  [
+{ #category : #accessing }
+RBNamespace >> environment: aBrowserEnvironment [ 
 	environment := aBrowserEnvironment
 ]
 
-{
-	#category : #private-changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>flushCaches [
+{ #category : #private-changes }
+RBNamespace >> flushCaches [
 	implementorsCache := IdentityDictionary new.
 	sendersCache := IdentityDictionary new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>hasCreatedClassFor: aBehavior  [
+{ #category : #private }
+RBNamespace >> hasCreatedClassFor: aBehavior [ 
 	| className |
 	className := self classNameFor: aBehavior.
 	^(newClasses includesKey: className) 
 		or: [changedClasses includesKey: className]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>hasRemoved: aSymbol  [
+{ #category : #testing }
+RBNamespace >> hasRemoved: aSymbol [ 
 	^removedClasses includes: aSymbol
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>includesClassNamed: aSymbol  [
+{ #category : #testing }
+RBNamespace >> includesClassNamed: aSymbol [ 
 	^(self classNamed: aSymbol) notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>includesGlobal: aSymbol  [
+{ #category : #testing }
+RBNamespace >> includesGlobal: aSymbol [ 
 	(self hasRemoved: aSymbol) ifTrue: [^false].
 	(self includesClassNamed: aSymbol) ifTrue: [^true].
 	environment at: aSymbol ifAbsent: [^false].
 	^true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>initialize [
+{ #category : #initialization }
+RBNamespace >> initialize [
 	changes := RBRefactoryChangeManager changeFactory compositeRefactoryChange.
 	environment := RBBrowserEnvironment new.
 	newClasses := IdentityDictionary new.
@@ -427,22 +333,16 @@ RBNamespace>>initialize [
 	sendersCache := IdentityDictionary new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>markAsRemoved: aClassName [
+{ #category : #private }
+RBNamespace >> markAsRemoved: aClassName [
 
 	removedClasses
 		add: aClassName;
 		add: aClassName, ' class'
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>metaclassNamed: aSymbol  [
+{ #category : #accessing-classes }
+RBNamespace >> metaclassNamed: aSymbol [ 
 	| class |
 	aSymbol isNil ifTrue: [^nil].
 	(self hasRemoved: aSymbol) ifTrue: [^nil].
@@ -457,27 +357,18 @@ RBNamespace>>metaclassNamed: aSymbol  [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>name [
+{ #category : #accessing }
+RBNamespace >> name [
 	^changes name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>name: aString [
+{ #category : #accessing }
+RBNamespace >> name: aString [
 	^changes name: aString
 ]
 
-{
-	#category : #private-changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>performChange: aCompositeRefactoryChange around: aBlock  [
+{ #category : #private-changes }
+RBNamespace >> performChange: aCompositeRefactoryChange around: aBlock [ 
 	| oldChanges |
 	changes addChange: aCompositeRefactoryChange.
 	oldChanges := changes.
@@ -486,11 +377,8 @@ RBNamespace>>performChange: aCompositeRefactoryChange around: aBlock  [
 	^aCompositeRefactoryChange
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>privateImplementorsOf: aSelector  [
+{ #category : #private }
+RBNamespace >> privateImplementorsOf: aSelector [ 
 	| classes |
 	classes := Set new.
 	self allClassesDo: [ :class |
@@ -501,11 +389,8 @@ RBNamespace>>privateImplementorsOf: aSelector  [
 	^ classes
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>privateReferencesTo: aSelector  [
+{ #category : #private }
+RBNamespace >> privateReferencesTo: aSelector [ 
 	| methods |
 	methods := OrderedCollection new.
 	self allBehaviorsDo: [ :class |
@@ -515,11 +400,8 @@ RBNamespace>>privateReferencesTo: aSelector  [
 	^ methods
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>privateRootClasses [
+{ #category : #private }
+RBNamespace >> privateRootClasses [
 	| classes |
 	classes := OrderedCollection new.
 	Class rootsOfTheWorld do: [ :each | 
@@ -530,19 +412,13 @@ RBNamespace>>privateRootClasses [
 	^ classes
 ]
 
-{
-	#category : #changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>removeClass: aRBClass  [
+{ #category : #changes }
+RBNamespace >> removeClass: aRBClass [ 
 	self removeClassNamed: aRBClass name
 ]
 
-{
-	#category : #changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>removeClassNamed: aSymbol  [
+{ #category : #changes }
+RBNamespace >> removeClassNamed: aSymbol [ 
 	(self classNamed: aSymbol) subclasses 
 		do: [:each | self removeClassNamed: each name].
 	removedClasses
@@ -554,36 +430,24 @@ RBNamespace>>removeClassNamed: aSymbol  [
 	^changes removeClassNamed: aSymbol
 ]
 
-{
-	#category : #private-changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>removeClassVariable: aString from: aRBClass  [
+{ #category : #private-changes }
+RBNamespace >> removeClassVariable: aString from: aRBClass [ 
 	^changes removeClassVariable: aString from: aRBClass
 ]
 
-{
-	#category : #private-changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>removeInstanceVariable: aString from: aRBClass  [
+{ #category : #private-changes }
+RBNamespace >> removeInstanceVariable: aString from: aRBClass [ 
 	^changes removeInstanceVariable: aString from: aRBClass
 ]
 
-{
-	#category : #private-changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>removeMethod: aSelector from: aRBClass  [
+{ #category : #private-changes }
+RBNamespace >> removeMethod: aSelector from: aRBClass [ 
 	self flushCaches.
 	^changes removeMethod: aSelector from: aRBClass
 ]
 
-{
-	#category : #changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>renameClass: aRBClass to: aSymbol around: aBlock [
+{ #category : #changes }
+RBNamespace >> renameClass: aRBClass to: aSymbol around: aBlock [
 	| change value dict |
 	change := RBRefactoryChangeManager changeFactory renameClass: aRBClass to: aSymbol.
 	self performChange: change around: aBlock.
@@ -603,11 +467,8 @@ RBNamespace>>renameClass: aRBClass to: aSymbol around: aBlock [
 	^ change
 ]
 
-{
-	#category : #private-changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>renameClassVariable: oldName to: newName in: aRBClass around: aBlock  [
+{ #category : #private-changes }
+RBNamespace >> renameClassVariable: oldName to: newName in: aRBClass around: aBlock [ 
 	^self performChange: (RBRefactoryChangeManager changeFactory  
 				renameClassVariable: oldName
 				to: newName
@@ -615,11 +476,8 @@ RBNamespace>>renameClassVariable: oldName to: newName in: aRBClass around: aBloc
 		around: aBlock
 ]
 
-{
-	#category : #private-changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>renameInstanceVariable: oldName to: newName in: aRBClass around: aBlock  [
+{ #category : #private-changes }
+RBNamespace >> renameInstanceVariable: oldName to: newName in: aRBClass around: aBlock [ 
 	^self performChange: (RBRefactoryChangeManager changeFactory 
 				renameInstanceVariable: oldName
 				to: newName
@@ -627,50 +485,35 @@ RBNamespace>>renameInstanceVariable: oldName to: newName in: aRBClass around: aB
 		around: aBlock
 ]
 
-{
-	#category : #changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>reparentClasses: aRBClassCollection to: newClass  [
+{ #category : #changes }
+RBNamespace >> reparentClasses: aRBClassCollection to: newClass [ 
 	aRBClassCollection do: 
 			[:aClass | 
 			self defineClass: (self replaceClassNameIn: aClass definitionString
 						to: newClass name)]
 ]
 
-{
-	#category : #private-changes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>replaceClassNameIn: definitionString to: aSymbol  [
+{ #category : #private-changes }
+RBNamespace >> replaceClassNameIn: definitionString to: aSymbol [ 
 	| parseTree |
 	parseTree := RBParser parseExpression: definitionString.
 	parseTree receiver: (RBVariableNode named: aSymbol).
 	^parseTree formattedCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>rootClasses [
+{ #category : #accessing }
+RBNamespace >> rootClasses [
 	^ rootClasses ifNil: [ rootClasses := self privateRootClasses]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>unmarkAsRemoved: newClassName [
+{ #category : #private }
+RBNamespace >> unmarkAsRemoved: newClassName [
 	removedClasses
 		remove: newClassName ifAbsent: [  ];
 		remove: newClassName , ' class' ifAbsent: [  ]
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBNamespace>>whichCategoryIncludes: aSymbol [
+{ #category : #accessing-classes }
+RBNamespace >> whichCategoryIncludes: aSymbol [
 	^self environment whichCategoryIncludes: aSymbol
 ]

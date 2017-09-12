@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMBrickBounds,
 	#superclass : #Object,
@@ -19,158 +16,109 @@ Class {
 		'Right',
 		'Top'
 	],
-	#category : #Glamour-Morphic-Brick-Utils,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Utils
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds class>>initialize	 [
+{ #category : #'class initialization' }
+GLMBrickBounds class >> initialize [	
 	Top := 1.
 	Right := 2.
 	Bottom := 3.
 	Left := 4
 ]
 
-{
-	#category : #'accessing - bounds',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>bounds [
+{ #category : #'accessing - bounds' }
+GLMBrickBounds >> bounds [
 
 	^ self brickBounds
 ]
 
-{
-	#category : #'accessing - bounds',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>bounds: aRectangle [
+{ #category : #'accessing - bounds' }
+GLMBrickBounds >> bounds: aRectangle [
 	"changes bounds and marks width or height as dirty if it changes"
 	self updateState: aRectangle.
 	self brickBounds: aRectangle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>brickBounds [
+{ #category : #private }
+GLMBrickBounds >> brickBounds [
 	"brickBounds give direct access to the bounds Rectangle"
 	^ bounds ifNil: [ bounds := 0@0 corner: 50@50 ]
 
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>brickBounds: aRectangle [
+{ #category : #private }
+GLMBrickBounds >> brickBounds: aRectangle [
 	"brickBounds give direct access to the bounds Rectangle"
 	bounds := aRectangle ceiling.
 	self updateCache
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>extent [
+{ #category : #geometry }
+GLMBrickBounds >> extent [
 
 	^ self brickBounds extent
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>height: anInteger [
+{ #category : #geometry }
+GLMBrickBounds >> height: anInteger [
 
 	self brickBounds: (self brickBounds withHeight: anInteger)
 ]
 
-{
-	#category : #'accessing - bounds',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>heightState [
+{ #category : #'accessing - bounds' }
+GLMBrickBounds >> heightState [
 
 	^ heightState ifNil: [ heightState := #dirty ]
 ]
 
-{
-	#category : #'accessing - bounds',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>heightState: aSymbol [
+{ #category : #'accessing - bounds' }
+GLMBrickBounds >> heightState: aSymbol [
 
 	heightState := aSymbol
 ]
 
-{
-	#category : #'accessing - bounds',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>innerBounds [
+{ #category : #'accessing - bounds' }
+GLMBrickBounds >> innerBounds [
 
 	^ innerBounds ifNil: [ self updateCache. innerBounds ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>isHeightClean [
+{ #category : #testing }
+GLMBrickBounds >> isHeightClean [
 
 	^ self heightState = #clean
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>isHeightDirty [
+{ #category : #testing }
+GLMBrickBounds >> isHeightDirty [
 
 	^ self heightState = #dirty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>isWidthClean [
+{ #category : #testing }
+GLMBrickBounds >> isWidthClean [
 
 	^ self widthState = #clean
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>isWidthDirty [
+{ #category : #testing }
+GLMBrickBounds >> isWidthDirty [
 
 	^ self widthState = #dirty
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>margin [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> margin [
 
 	"top right bottom left"
 	^ margin ifNil: [ margin := Array braceWith: 0 with: 0 with: 0 with: 0 ]
 
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>margin: margins [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> margin: margins [
 	"The margins property can have from one to four values:
 	
 	margin: #(25 50 75 100)
@@ -216,174 +164,120 @@ GLMBrickBounds>>margin: margins [
 	self updateCache
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>marginBottom [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> marginBottom [
 
 	^ self margin at: Bottom
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>marginBottom: anInteger [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> marginBottom: anInteger [
 
 	self translateY: self marginBottom - anInteger.
 	self margin at: Bottom put: anInteger.
 	self updateCache
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>marginLeft [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> marginLeft [
 
 	^ self margin at: Left
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>marginLeft: anInteger [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> marginLeft: anInteger [
 
 	self translateX: anInteger - self marginLeft.
 	self margin at: Left put: anInteger.
 	self updateCache
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>marginRight [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> marginRight [
 
 	^ self margin at: Right
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>marginRight: anInteger [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> marginRight: anInteger [
 
 	self translateX: self marginRight - anInteger.
 	self margin at: Right put: anInteger.
 	self updateCache
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>marginTop [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> marginTop [
 
 	^ self margin at: Top
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>marginTop: anInteger [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> marginTop: anInteger [
 
 	self translateY: anInteger - self marginTop.
 	self margin at: Top put: anInteger.
 	self updateCache
 ]
 
-{
-	#category : #marking,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>markHeightClean [
+{ #category : #marking }
+GLMBrickBounds >> markHeightClean [
 
 	self heightState: #clean
 ]
 
-{
-	#category : #marking,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>markHeightDirty [
+{ #category : #marking }
+GLMBrickBounds >> markHeightDirty [
 
 	self heightState: #dirty
 ]
 
-{
-	#category : #marking,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>markWidthClean [
+{ #category : #marking }
+GLMBrickBounds >> markWidthClean [
 
 	self widthState: #clean
 ]
 
-{
-	#category : #marking,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>markWidthDirty [
+{ #category : #marking }
+GLMBrickBounds >> markWidthDirty [
 
 	self widthState: #dirty
 ]
 
-{
-	#category : #'accessing - bounds',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>outerBounds [
+{ #category : #'accessing - bounds' }
+GLMBrickBounds >> outerBounds [
 
 	^ outerBounds ifNil: [ self updateCache. outerBounds ]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>outerHeight: anInteger [
+{ #category : #geometry }
+GLMBrickBounds >> outerHeight: anInteger [
 
 	self brickBounds: (self brickBounds withHeight: (anInteger - self marginTop - self marginBottom))
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>outerOrigin: aPoint [
+{ #category : #geometry }
+GLMBrickBounds >> outerOrigin: aPoint [
 	
 	self brickBounds: (aPoint + (self marginLeft @ self marginTop) extent: self extent )
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>outerWidth: anInteger [
+{ #category : #geometry }
+GLMBrickBounds >> outerWidth: anInteger [
 
 	self brickBounds: (self brickBounds withWidth: (anInteger - self marginLeft - self marginRight))
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>padding [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> padding [
 
 	"top right bottom left"
 	^ padding ifNil: [ padding := Array braceWith: 0 with: 0 with: 0 with: 0 ]
 
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>padding: paddings [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> padding: paddings [
 	"The paddings property can have from one to four values:
 	
 	padding: #(25 50 75 100)
@@ -428,114 +322,78 @@ GLMBrickBounds>>padding: paddings [
 	self updateCache
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>paddingBottom [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> paddingBottom [
 
 	^ self padding at: Bottom
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>paddingBottom: anInteger [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> paddingBottom: anInteger [
 
 	self padding at: Bottom put: anInteger.
 	self updateCache
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>paddingLeft [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> paddingLeft [
 
 	^ self padding at: Left
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>paddingLeft: anInteger [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> paddingLeft: anInteger [
 
 	self padding at: Left put: anInteger.
 	self updateCache
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>paddingRight [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> paddingRight [
 
 	^ self padding at: Right
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>paddingRight: anInteger [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> paddingRight: anInteger [
 
 	self padding at: Right put: anInteger.
 	self updateCache
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>paddingTop [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> paddingTop [
 
 	^ self padding at: Top
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>paddingTop: anInteger [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> paddingTop: anInteger [
 
 	self padding at: Top put: anInteger.
 	self updateCache
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>translateBy: aPoint [
+{ #category : #transformations }
+GLMBrickBounds >> translateBy: aPoint [
 
 	self brickBounds: (self brickBounds translateBy: aPoint)
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>translateX: anInteger [
+{ #category : #transformations }
+GLMBrickBounds >> translateX: anInteger [
 
 	self translateBy: anInteger@0
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>translateY: anInteger [
+{ #category : #transformations }
+GLMBrickBounds >> translateY: anInteger [
 
 	self translateBy: 0@anInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>updateCache [
+{ #category : #private }
+GLMBrickBounds >> updateCache [
 	|left top right bottom |
 	
 	left := self brickBounds origin x.
@@ -547,39 +405,27 @@ GLMBrickBounds>>updateCache [
 	outerBounds := ((left - self marginLeft)@(top - self marginTop)) corner: ((right + self marginRight)@(bottom + self marginBottom)).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>updateState: aRectangle [
+{ #category : #private }
+GLMBrickBounds >> updateState: aRectangle [
 
 	self brickBounds width = aRectangle width ifFalse: [ self markWidthDirty ].
 	self brickBounds height = aRectangle height ifFalse: [ self markHeightDirty ]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>width: anInteger [
+{ #category : #geometry }
+GLMBrickBounds >> width: anInteger [
 
 	self brickBounds: (self brickBounds withWidth: anInteger)
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>widthState [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> widthState [
 
 	^ widthState ifNil: [ widthState := #dirty ]
 ]
 
-{
-	#category : #'accessing - margin/padding',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickBounds>>widthState: aSymbol [
+{ #category : #'accessing - margin/padding' }
+GLMBrickBounds >> widthState: aSymbol [
 
 	widthState := aSymbol
 ]

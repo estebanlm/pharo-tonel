@@ -1,104 +1,70 @@
-"
-
-"
 Class {
 	#name : #GLMPhlowListBrick,
 	#superclass : #GLMPhlowBrick,
 	#instVars : [
 		'scrollList'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-Phlow,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Widgets-Phlow
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowListBrick class>>example [
+{ #category : #examples }
+GLMPhlowListBrick class >> example [
 	
 	^ GLMCompositeBrick gtExampleList
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowListBrick class>>example2 [
+{ #category : #examples }
+GLMPhlowListBrick class >> example2 [
 	
 	^ GLMCompositeBrick gtExampleListWithCustomItems
 ]
 
-{
-	#category : #phlow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowListBrick>>display: anObject [
+{ #category : #phlow }
+GLMPhlowListBrick >> display: anObject [
 
 	self setProperty: #phlowDisplay toValue: anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowListBrick>>displayLogic [
+{ #category : #'as yet unclassified' }
+GLMPhlowListBrick >> displayLogic [
 
 	^ self valueOfProperty: #phlowDisplay ifAbsent: [ #yourself ]
 ]
 
-{
-	#category : #phlow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowListBrick>>entity: anObject [
+{ #category : #phlow }
+GLMPhlowListBrick >> entity: anObject [
 
 	super entity: anObject.
 	self setAdaptor
 ]
 
-{
-	#category : #phlow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowListBrick>>format: anObject [
+{ #category : #phlow }
+GLMPhlowListBrick >> format: anObject [
 
 	self setProperty: #phlowFormat toValue: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowListBrick>>formatLogic [
+{ #category : #accessing }
+GLMPhlowListBrick >> formatLogic [
 
 	^ self valueOfProperty: #phlowFormat ifAbsent: [ #yourself ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowListBrick>>initialize [
+{ #category : #initialization }
+GLMPhlowListBrick >> initialize [
 	super initialize.
 		
 	self listBrick: self newScrollList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowListBrick>>listBrick [
+{ #category : #accessing }
+GLMPhlowListBrick >> listBrick [
 
 	^ scrollList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowListBrick>>listBrick: aBrick [
+{ #category : #accessing }
+GLMPhlowListBrick >> listBrick: aBrick [
 
 	scrollList := aBrick.
 	self listBrick
@@ -108,20 +74,14 @@ GLMPhlowListBrick>>listBrick: aBrick [
 	self addBrickBack: self listBrick
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowListBrick>>newScrollList [
+{ #category : #'instance creation' }
+GLMPhlowListBrick >> newScrollList [
 
 	^ GLMFallbackScrollListBrick"GLMScrollListBrick" new
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowListBrick>>setAdaptor [
+{ #category : #'as yet unclassified' }
+GLMPhlowListBrick >> setAdaptor [
 	| adaptor |
 	adaptor := (GLMBrickListModel on: self entity)
 		morphAtLogic: [ :index :morph |
@@ -130,20 +90,14 @@ GLMPhlowListBrick>>setAdaptor [
 	self listBrick model: adaptor
 ]
 
-{
-	#category : #phlow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowListBrick>>styled: anObject [
+{ #category : #phlow }
+GLMPhlowListBrick >> styled: anObject [
 	
 	self setProperty: #phlowStyled toValue: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowListBrick>>styledLogic [
+{ #category : #accessing }
+GLMPhlowListBrick >> styledLogic [
 	
 	^ self valueOfProperty: #phlowStyled ifAbsent: [ #yourself ]
 ]

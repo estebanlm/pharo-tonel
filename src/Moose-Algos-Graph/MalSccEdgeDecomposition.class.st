@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MalSccEdgeDecomposition,
 	#superclass : #MalSccExtractor,
@@ -9,52 +6,36 @@ Class {
 	#instVars : [
 		'bfsp'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSccEdgeDecomposition>>bfsPathFrom: startNode to: endNode [
+{ #category : #running }
+MalSccEdgeDecomposition >> bfsPathFrom: startNode to: endNode [
 	^ bfsp
 		start: startNode;
 		end: endNode;
 		run
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSccEdgeDecomposition>>edgeClass [
+{ #category : #accessing }
+MalSccEdgeDecomposition >> edgeClass [
 	^ MalGraphEdge 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSccEdgeDecomposition>>initialize  [
+{ #category : #accessing }
+MalSccEdgeDecomposition >> initialize [ 
 	super initialize.
 	bfsp := MalBreadthFirstSearchPath new.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSccEdgeDecomposition>>nodeClass [
+{ #category : #accessing }
+MalSccEdgeDecomposition >> nodeClass [
 	^ MalBfsNode 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSccEdgeDecomposition>>run [
+{ #category : #running }
+MalSccEdgeDecomposition >> run [
 	bfsp 
 		privateNodes: self nodes;
 		privateEdges: self edges.

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloMonticelloResource,
 	#superclass : #TestResource,
@@ -8,34 +5,24 @@ Class {
 		'versionReferences',
 		'monticelloRepository'
 	],
-	#category : #Metacello-TestsMCResources,
-	#timestamp : ''
+	#category : #Metacello-TestsMCResources
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMonticelloResource>>monticelloRepository [
+{ #category : #accessing }
+MetacelloMonticelloResource >> monticelloRepository [
 	^ monticelloRepository
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMonticelloResource>>setUp [
+{ #category : #running }
+MetacelloMonticelloResource >> setUp [
 	super setUp.
 	self
 		setUpVersionReferences;
 		setUpMonticelloRepository
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMonticelloResource>>setUpMonticelloRepository [
+{ #category : #running }
+MetacelloMonticelloResource >> setUpMonticelloRepository [
 	"This method builds a fake repository with the version references from #buildReferences."
 
 	monticelloRepository := MCDictionaryRepository new.
@@ -56,11 +43,8 @@ MetacelloMonticelloResource>>setUpMonticelloRepository [
 			dependencies: #()) ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMonticelloResource>>setUpVersionReferences [
+{ #category : #running }
+MetacelloMonticelloResource >> setUpVersionReferences [
   "self reset"
 
   versionReferences := OrderedCollection new.
@@ -105,10 +89,7 @@ MetacelloMonticelloResource>>setUpVersionReferences [
     yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMonticelloResource>>versionReferences [
+{ #category : #accessing }
+MetacelloMonticelloResource >> versionReferences [
 	^ versionReferences
 ]

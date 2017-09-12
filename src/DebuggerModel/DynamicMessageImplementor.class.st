@@ -10,24 +10,17 @@ Class {
 		'argumentNames',
 		'stream'
 	],
-	#category : #DebuggerModel,
-	#timestamp : '<historical>'
+	#category : #DebuggerModel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor class>>for: aMessage in: aClass [
+{ #category : #'instance creation' }
+DynamicMessageImplementor class >> for: aMessage in: aClass [
 
 	^ self new initializeFor: aMessage in: aClass
 ]
 
-{
-	#category : #evaluating-private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>argumentNameAt: anIndex [
+{ #category : #evaluating-private }
+DynamicMessageImplementor >> argumentNameAt: anIndex [
 
 	| argumentName argument |
 	
@@ -40,57 +33,39 @@ DynamicMessageImplementor>>argumentNameAt: anIndex [
 	^ argumentName
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>hasParameter: aKeyword [
+{ #category : #testing }
+DynamicMessageImplementor >> hasParameter: aKeyword [
 
 	^ aKeyword last = $: or: [ message selector isInfix ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>initializeFor: aMessage in: aClass [
+{ #category : #initialization }
+DynamicMessageImplementor >> initializeFor: aMessage [ in: aClass
 
 	message := aMessage.
 	class := aClass
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>isMessageAGetter [
+{ #category : #testing }
+DynamicMessageImplementor >> isMessageAGetter [
 	
 	^ message numArgs = 0 and: [ class instVarNames includes: message selector ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>isMessageASetter [
+{ #category : #testing }
+DynamicMessageImplementor >> isMessageASetter [
 	
 	^ message numArgs = 1 and: [ class instVarNames includes: message selector allButLast ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>messageShouldBeImplemented [
+{ #category : #testing }
+DynamicMessageImplementor >> messageShouldBeImplemented [
 	
 	^ (self isMessageAGetter | self isMessageASetter) not
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>value [
+{ #category : #evaluating }
+DynamicMessageImplementor >> value [
 
 	argumentNames := Set new.
 	stream := WriteStream on: String new.
@@ -99,21 +74,15 @@ DynamicMessageImplementor>>value [
 	^ stream contents
 ]
 
-{
-	#category : #evaluating-private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>write: aKeyword of: anIndex [
+{ #category : #evaluating-private }
+DynamicMessageImplementor >> write: aKeyword of: anIndex [
 
 	stream nextPutAll: aKeyword.
 	self writeArgumentNameIfNecessaryOf: aKeyword at: anIndex
 ]
 
-{
-	#category : #evaluating-private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>writeArgumentNameAt: anIndex [
+{ #category : #evaluating-private }
+DynamicMessageImplementor >> writeArgumentNameAt: anIndex [
 
 	| argumentName |
 	
@@ -124,20 +93,14 @@ DynamicMessageImplementor>>writeArgumentNameAt: anIndex [
 		space
 ]
 
-{
-	#category : #evaluating-private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>writeArgumentNameIfNecessaryOf: aKeyword at: anIndex [
+{ #category : #evaluating-private }
+DynamicMessageImplementor >> writeArgumentNameIfNecessaryOf: aKeyword at: anIndex [
 
 	(self hasParameter: aKeyword) ifTrue: [ self writeArgumentNameAt: anIndex ]
 ]
 
-{
-	#category : #evaluating-private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>writeGetterSourceCode [
+{ #category : #evaluating-private }
+DynamicMessageImplementor >> writeGetterSourceCode [
 
 	stream 
 		cr;
@@ -146,29 +109,20 @@ DynamicMessageImplementor>>writeGetterSourceCode [
 		nextPutAll: message selector 
 ]
 
-{
-	#category : #evaluating-private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>writeGetterSourceCodeIfNecessary [
+{ #category : #evaluating-private }
+DynamicMessageImplementor >> writeGetterSourceCodeIfNecessary [
 
 	self isMessageAGetter ifTrue: [ self writeGetterSourceCode ]
 ]
 
-{
-	#category : #evaluating-private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>writeMethodName [
+{ #category : #evaluating-private }
+DynamicMessageImplementor >> writeMethodName [
 
 	message selector keywords doWithIndex: [ :aKeyword :anIndex | self write: aKeyword of: anIndex ]
 ]
 
-{
-	#category : #evaluating-private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>writeSetterSourceCode [
+{ #category : #evaluating-private }
+DynamicMessageImplementor >> writeSetterSourceCode [
 
 	stream 
 		cr;
@@ -178,20 +132,14 @@ DynamicMessageImplementor>>writeSetterSourceCode [
 		nextPutAll: argumentNames anyOne 
 ]
 
-{
-	#category : #evaluating-private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>writeSetterSourceCodeIfNecessary [
+{ #category : #evaluating-private }
+DynamicMessageImplementor >> writeSetterSourceCodeIfNecessary [
 
 	self isMessageASetter ifTrue: [ self writeSetterSourceCode ]
 ]
 
-{
-	#category : #evaluating-private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>writeShouldBeImplemented [
+{ #category : #evaluating-private }
+DynamicMessageImplementor >> writeShouldBeImplemented [
 
 	stream
 		cr;
@@ -201,20 +149,14 @@ DynamicMessageImplementor>>writeShouldBeImplemented [
 		nextPut: $.
 ]
 
-{
-	#category : #evaluating-private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>writeShouldBeImplementedIfNecessary [
+{ #category : #evaluating-private }
+DynamicMessageImplementor >> writeShouldBeImplementedIfNecessary [
 
 	self messageShouldBeImplemented ifTrue: [ self writeShouldBeImplemented ]
 ]
 
-{
-	#category : #evaluating-private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DynamicMessageImplementor>>writeSourceCode [
+{ #category : #evaluating-private }
+DynamicMessageImplementor >> writeSourceCode [
 
 	self writeMethodName.
 	self writeShouldBeImplementedIfNecessary.

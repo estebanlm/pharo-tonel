@@ -22,103 +22,69 @@ Class {
 		'PrimarySelection',
 		'SecondarySelection'
 	],
-	#category : #Text-Edition,
-	#timestamp : 'AlainPlantec 2/15/2011 21:42'
+	#category : #Text-Edition
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextSelectionColor class>>cleanUp [
+{ #category : #'as yet unclassified' }
+TextSelectionColor class >> cleanUp [
 	PrimarySelection := nil.
 ]
 
-{
-	#category : #'default accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextSelectionColor class>>findReplaceSelection [
+{ #category : #'default accessing' }
+TextSelectionColor class >> findReplaceSelection [
 	^ FindReplaceSelection
 		ifNil: [FindReplaceSelection := self new
 						colorBlock: [self theme currentSettings findReplaceSelectionTextColor]]
 ]
 
-{
-	#category : #'default accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextSelectionColor class>>primarySelection [
+{ #category : #'default accessing' }
+TextSelectionColor class >> primarySelection [
 	^ PrimarySelection
 		ifNil: [PrimarySelection := self new colorBlock: [ self theme currentSettings selectionTextColor]]
 ]
 
-{
-	#category : #'default accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextSelectionColor class>>secondarySelection [
+{ #category : #'default accessing' }
+TextSelectionColor class >> secondarySelection [
 	^ SecondarySelection
 		ifNil: [SecondarySelection := self new
 						colorBlock: [self theme currentSettings secondarySelectionTextColor]] 
 ]
 
-{
-	#category : #'default accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextSelectionColor class>>theme [
+{ #category : #'default accessing' }
+TextSelectionColor class >> theme [
 	^ Smalltalk ui theme
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextSelectionColor>>colorBlock [
+{ #category : #accessing }
+TextSelectionColor >> colorBlock [
 
 	^ colorBlock ifNil: [colorBlock := [self theme currentSettings selectionTextColor]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextSelectionColor>>colorBlock: aBlock [
+{ #category : #accessing }
+TextSelectionColor >> colorBlock: aBlock [
 	"aBlock value gives the text color"
 	colorBlock := aBlock
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextSelectionColor>>dominates: other [
+{ #category : #'as yet unclassified' }
+TextSelectionColor >> dominates: other [
 	"There can be only one..."
 	^self class == other class
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextSelectionColor>>emphasizeScanner: scanner  [
+{ #category : #'as yet unclassified' }
+TextSelectionColor >> emphasizeScanner: scanner [ 
 	"Set the emphasis for text display"
 	scanner textColor: self textColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextSelectionColor>>textColor [
+{ #category : #accessing }
+TextSelectionColor >> textColor [
 	^ self colorBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextSelectionColor>>theme [
+{ #category : #accessing }
+TextSelectionColor >> theme [
 	^ Smalltalk ui theme
 ]

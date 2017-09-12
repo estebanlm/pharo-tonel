@@ -10,15 +10,11 @@ Class {
 	#instVars : [
 		'oldProtocol'
 	],
-	#category : #System-Announcements-System-Methods,
-	#timestamp : 'cyrilledelaunay 1/18/2011 15:03'
+	#category : #System-Announcements-System-Methods
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRecategorized class>>method: aCompiledMethod oldProtocol: anOldProtocol [
+{ #category : #'instance creation' }
+MethodRecategorized class >> method: aCompiledMethod oldProtocol: anOldProtocol [
 
 	^self new
 		method: aCompiledMethod;
@@ -26,46 +22,31 @@ MethodRecategorized class>>method: aCompiledMethod oldProtocol: anOldProtocol [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRecategorized>>methodRecategorized [
+{ #category : #accessing }
+MethodRecategorized >> methodRecategorized [
 	
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRecategorized>>newProtocol [
+{ #category : #accessing }
+MethodRecategorized >> newProtocol [
 	
 	^ self protocol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRecategorized>>oldProtocol [
+{ #category : #accessing }
+MethodRecategorized >> oldProtocol [
 	
 	^ oldProtocol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRecategorized>>oldProtocol: anObject [
+{ #category : #accessing }
+MethodRecategorized >> oldProtocol: anObject [
 	
 	oldProtocol := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRecategorized>>protocolsAffected [
+{ #category : #accessing }
+MethodRecategorized >> protocolsAffected [
 	^{self newProtocol. self oldProtocol}
 ]

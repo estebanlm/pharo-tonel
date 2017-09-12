@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #GLMActionBrickDarkThemer,
 	#superclass : #GLMBrickDarkThemer,
-	#category : #Glamour-Morphic-Brick-Theme,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Theme
 }
 
-{
-	#category : #brick-scrollbar,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionBrickDarkThemer>>scrollbarWidth [
+{ #category : #brick-scrollbar }
+GLMActionBrickDarkThemer >> scrollbarWidth [
 
 	^ 2
 ]
 
-{
-	#category : #brick-scrollpane,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionBrickDarkThemer>>scrollpaneBackgroundColor [
+{ #category : #brick-scrollpane }
+GLMActionBrickDarkThemer >> scrollpaneBackgroundColor [
 
 	^ Color transparent
 ]

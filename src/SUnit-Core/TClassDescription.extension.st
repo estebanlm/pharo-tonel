@@ -1,11 +1,6 @@
-Extension {
-	#name : #TClassDescription
-}
+Extension { #name : #TClassDescription }
 
-{
-	#category : #'*SUnit-Core',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TClassDescription>>isTestCase [
+{ #category : #'*SUnit-Core' }
+TClassDescription >> isTestCase [
 	^false
 ]

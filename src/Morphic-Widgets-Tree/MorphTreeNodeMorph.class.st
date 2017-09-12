@@ -17,25 +17,18 @@ Class {
 		'lineColor',
 		'selected'
 	],
-	#category : #Morphic-Widgets-Tree,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Tree
 }
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>acceptDroppingMorph: toDrop event: evt [
+{ #category : #'drag and drop' }
+MorphTreeNodeMorph >> acceptDroppingMorph: toDrop event: evt [
 	complexContents acceptDroppingObject: toDrop complexContents.
 	toDrop delete.
 	self highlightForDrop: false.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>addChildrenForList: hostList addingTo: morphList withExpandedItems: expandedItems [
+{ #category : #updating }
+MorphTreeNodeMorph >> addChildrenForList: hostList addingTo: morphList withExpandedItems: expandedItems [
 	firstChild 
 		ifNotNil: [
 			firstChild withSiblingsDo: [ :aNode | aNode delete].
@@ -49,50 +42,34 @@ MorphTreeNodeMorph>>addChildrenForList: hostList addingTo: morphList withExpande
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>adoptPaneColor: aColor [
-
+{ #category : #updating }
+MorphTreeNodeMorph >> adoptPaneColor: aColor [
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>announceDeleted [
+{ #category : #announcements }
+MorphTreeNodeMorph >> announceDeleted [
 
 	complexContents ifNotNil: [ complexContents removeDependent: self ].
 	
 	super announceDeleted.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>balloonText [
+{ #category : #accessing }
+MorphTreeNodeMorph >> balloonText [
 
 	^complexContents balloonText ifNil: [super balloonText]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>boundsForBalloon [
+{ #category : #accessing }
+MorphTreeNodeMorph >> boundsForBalloon [
 
 	"some morphs have bounds that are way too big"
 	container ifNil: [^super boundsForBalloon].
 	^self boundsInWorld intersect: container boundsInWorld ifNone: [ self boundsInWorld ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>buildRowMorph [
+{ #category : #initialization }
+MorphTreeNodeMorph >> buildRowMorph [
 	| rowControls colAndControls |
 	controls := OrderedCollection new.
 	colAndControls := container columns 
@@ -119,32 +96,23 @@ MorphTreeNodeMorph>>buildRowMorph [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>canExpand [
+{ #category : #testing }
+MorphTreeNodeMorph >> canExpand [
 	^complexContents 
 		ifNotNil: [ complexContents hasContents ]
 		ifNil: [ false ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>changed [
+{ #category : #updating }
+MorphTreeNodeMorph >> changed [
 	"Need to invalidate the selection frame."
 	container
 		ifNil: [super changed] 
 		ifNotNil: [container invalidRect: self selectionFrame]
 ]
 
-{
-	#category : #'mouse events',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>checkClickableZone [
+{ #category : #'mouse events' }
+MorphTreeNodeMorph >> checkClickableZone [
 	| topLeft icon |
 	
 	topLeft := self computeCheckTopLeft.
@@ -153,19 +121,13 @@ MorphTreeNodeMorph>>checkClickableZone [
 	^ topLeft corner: icon extent + topLeft
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>checkGap [
+{ #category : #accessing }
+MorphTreeNodeMorph >> checkGap [
 	^ 2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>checkRectangle [
+{ #category : #accessing }
+MorphTreeNodeMorph >> checkRectangle [
 	| tr |
 	tr := self toggleRectangle translateBy: (3 @ 0).
 	^ self mustTakeIntoAccountToggleSpace 
@@ -174,41 +136,29 @@ MorphTreeNodeMorph>>checkRectangle [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>checkWidth [
+{ #category : #accessing }
+MorphTreeNodeMorph >> checkWidth [
 	^ 10
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>children [
+{ #category : #accessing }
+MorphTreeNodeMorph >> children [
 	| children |
 	children := OrderedCollection new.
 	self childrenDo: [:each | children add: each].
 	^children
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>childrenDo: aBlock [
+{ #category : #updating }
+MorphTreeNodeMorph >> childrenDo: aBlock [
 
 	firstChild ifNotNil: [
 		firstChild withSiblingsDo: [ :aNode | aBlock value: aNode].
 	]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>closeItemPath: anArray [
+{ #category : #updating }
+MorphTreeNodeMorph >> closeItemPath: anArray [
 	"Close a path based on wrapper item equivalence."
 	
 	| found |
@@ -232,11 +182,8 @@ MorphTreeNodeMorph>>closeItemPath: anArray [
 	^container setSelectedMorph: nil
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>collapseNodePath: anArray [
+{ #category : #expanding-collapsing }
+MorphTreeNodeMorph >> collapseNodePath: anArray [
 	"Close a path based on node."
 	
 	| found |
@@ -260,36 +207,24 @@ MorphTreeNodeMorph>>collapseNodePath: anArray [
 	^container setSelectedMorph: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>color [
+{ #category : #accessing }
+MorphTreeNodeMorph >> color [
 	^ complexContents color ifNil: [self index ifNotNil: [container rowColors at: ((self index \\ 2) + 1)]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>columnMorphAt: anIndex [
+{ #category : #accessing }
+MorphTreeNodeMorph >> columnMorphAt: anIndex [
 	^ controls at: anIndex 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>complexContents [
+{ #category : #accessing }
+MorphTreeNodeMorph >> complexContents [
 
 	^complexContents
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>computeCheckTopLeft [
+{ #category : #private }
+MorphTreeNodeMorph >> computeCheckTopLeft [
 	| center offset |
 	
 	center := self checkRectangle center.
@@ -297,19 +232,13 @@ MorphTreeNodeMorph>>computeCheckTopLeft [
 	^ (center x - offset) @ (center y - offset - 1)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>controls [
+{ #category : #accessing }
+MorphTreeNodeMorph >> controls [
 	^ controls
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>delete [
+{ #category : #updating }
+MorphTreeNodeMorph >> delete [
 
 	parent := nil.
 	complexContents := nil.
@@ -321,11 +250,8 @@ MorphTreeNodeMorph>>delete [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>drawCheckOn: aCanvas [
+{ #category : #drawing }
+MorphTreeNodeMorph >> drawCheckOn: aCanvas [
 	| topLeft icon |
 	
 	topLeft := self computeCheckTopLeft.
@@ -336,11 +262,8 @@ MorphTreeNodeMorph>>drawCheckOn: aCanvas [
 		at: topLeft
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>drawLineToggleToTextOn: aCanvas hasToggle: hasToggle [
+{ #category : #drawing }
+MorphTreeNodeMorph >> drawLineToggleToTextOn: aCanvas hasToggle: hasToggle [
 	"If I am not the only item in my container, draw the line between:
 		- my toggle (if any) or my left edge (if no toggle)
 		- and my text left edge.
@@ -363,11 +286,8 @@ MorphTreeNodeMorph>>drawLineToggleToTextOn: aCanvas hasToggle: hasToggle [
 		dashes: self treeLineDashes
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>drawLinesOn: aCanvas  [
+{ #category : #drawing }
+MorphTreeNodeMorph >> drawLinesOn: aCanvas [ 
 	| hasToggle |
 	hasToggle := self hasToggle.
 	"Draw line from toggle to text"
@@ -381,11 +301,8 @@ MorphTreeNodeMorph>>drawLinesOn: aCanvas  [
 		ifTrue: [ self drawLinesToFirstChildOn: aCanvas]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>drawLinesToFirstChildOn: aCanvas [
+{ #category : #drawing }
+MorphTreeNodeMorph >> drawLinesToFirstChildOn: aCanvas [
 	"Draw line from me to first child.
 	Don't bother if the first child has a toggle.."
 
@@ -407,11 +324,8 @@ MorphTreeNodeMorph>>drawLinesToFirstChildOn: aCanvas [
 		dashes: self treeLineDashes
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>drawLinesToNextSiblingOn: aCanvas hasToggle: hasToggle [
+{ #category : #drawing }
+MorphTreeNodeMorph >> drawLinesToNextSiblingOn: aCanvas hasToggle: hasToggle [
 	"Draw line from me to next sibling"
 	
 	| myBounds nextSibBounds vLineX myCenter vLineTop vLineBottom myTheme ldelta gap |
@@ -432,11 +346,8 @@ MorphTreeNodeMorph>>drawLinesToNextSiblingOn: aCanvas hasToggle: hasToggle [
 		dashes: self treeLineDashes
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>drawMouseDownHighlightOn: aCanvas [
+{ #category : #drawing }
+MorphTreeNodeMorph >> drawMouseDownHighlightOn: aCanvas [
 	"Draw with a dotted border."
 	
 	self highlightedForMouseDown 
@@ -449,11 +360,8 @@ MorphTreeNodeMorph>>drawMouseDownHighlightOn: aCanvas [
 				dashes: #(1 1)]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+MorphTreeNodeMorph >> drawOn: aCanvas [
 	"Note that selection is rendered from the container transformMorph (see MorphTreeTransformMorph)" 
 	
 	container withHLines 
@@ -480,11 +388,8 @@ MorphTreeNodeMorph>>drawOn: aCanvas [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>drawToggleOn: aCanvas in: aRectangle [
+{ #category : #drawing }
+MorphTreeNodeMorph >> drawToggleOn: aCanvas in: aRectangle [
 
 	| aForm centeringOffset |
 	aForm := self toggleImageForm.
@@ -495,11 +400,8 @@ MorphTreeNodeMorph>>drawToggleOn: aCanvas in: aRectangle [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>expand [
+{ #category : #updating }
+MorphTreeNodeMorph >> expand [
 	| c newChildren  |
 	isExpanded := true.
 	(c := complexContents contents) isEmpty ifTrue: [^self changed].
@@ -511,11 +413,8 @@ MorphTreeNodeMorph>>expand [
 
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>expandItemPath: anArray [
+{ #category : #expanding-collapsing }
+MorphTreeNodeMorph >> expandItemPath: anArray [
 	"Open a path."
 	
 	| found |
@@ -539,11 +438,8 @@ MorphTreeNodeMorph>>expandItemPath: anArray [
 	^container setSelectedMorph: nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>expandPath: anAssociation [
+{ #category : #testing }
+MorphTreeNodeMorph >> expandPath: anAssociation [
 
 	anAssociation ifNil: [ ^ false ].
 	^ anAssociation head = self complexContents withoutListWrapper
@@ -556,20 +452,14 @@ MorphTreeNodeMorph>>expandPath: anAssociation [
 			self children anySatisfy: [:child | child expandPath: anAssociation tail ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>firstChild [
+{ #category : #accessing }
+MorphTreeNodeMorph >> firstChild [
 
 	^firstChild
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>fullBounds [
+{ #category : #layout }
+MorphTreeNodeMorph >> fullBounds [
 	fullBounds ifNotNil: [^ fullBounds].
 	^ submorphs 
 		ifEmpty: [bounds]
@@ -578,48 +468,33 @@ MorphTreeNodeMorph>>fullBounds [
 			fullBounds]
 ]
 
-{
-	#category : #'mouse events',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>handleMouseUp: anEvent  [
+{ #category : #'mouse events' }
+MorphTreeNodeMorph >> handleMouseUp: anEvent [ 
 	container enabled ifFalse: [ ^ false ].
 	(container commandOrCrontrolKeyPressed: anEvent) 
 		ifTrue: [^ container listManager mouseUp: anEvent on: self].
 	^ super handleMouseUp: anEvent
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>hasContentToShow [
+{ #category : #testing }
+MorphTreeNodeMorph >> hasContentToShow [
 
 	^ self complexContents hasContentToShow
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>hasIcon [
+{ #category : #testing }
+MorphTreeNodeMorph >> hasIcon [
 	"Answer whether the receiver has an icon."
 	^ container hasIconBlock or: [self complexContents icon notNil]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>hasToggle [
+{ #category : #testing }
+MorphTreeNodeMorph >> hasToggle [
 	^ self canExpand
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>highlight [
+{ #category : #updating }
+MorphTreeNodeMorph >> highlight [
 	self
 		allMorphsDo: [:m | (m isKindOf: StringMorph)
 				ifTrue: [m setProperty: #originalColor toValue: m color.
@@ -630,85 +505,58 @@ MorphTreeNodeMorph>>highlight [
 			self color: c]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>highlightForMouseDown: aBoolean [
+{ #category : #updating }
+MorphTreeNodeMorph >> highlightForMouseDown: aBoolean [
 	aBoolean 
 		ifTrue: [self setProperty: #highlightedForMouseDown toValue: aBoolean]
 		ifFalse: [self removeProperty: #highlightedForMouseDown].
 	self changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>icon [
+{ #category : #accessing }
+MorphTreeNodeMorph >> icon [
 	"answer the receiver's icon"
 	
 	^ container iconBlock value: self complexContents.
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>inToggleArea: aPoint [
+{ #category : #testing }
+MorphTreeNodeMorph >> inToggleArea: aPoint [
 
 	^self sensitiveToggleRectangle containsPoint: aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>indentGap [
+{ #category : #accessing }
+MorphTreeNodeMorph >> indentGap [
 	^ container indentGap * indentLevel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>indentLevel [
+{ #category : #accessing }
+MorphTreeNodeMorph >> indentLevel [
 
 	^indentLevel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>index [
+{ #category : #accessing }
+MorphTreeNodeMorph >> index [
 	^ index 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>index: anInteger [
+{ #category : #accessing }
+MorphTreeNodeMorph >> index: anInteger [
 	index := anInteger
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>initRow [
+{ #category : #initialization }
+MorphTreeNodeMorph >> initRow [
 	self buildRowMorph.
 	self layoutChanged
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>initWithContents: anObject prior: priorMorph forList: hostList indentLevel: newLevel [
+{ #category : #initialization }
+MorphTreeNodeMorph >> initWithContents: anObject prior: priorMorph forList: hostList indentLevel: newLevel [
 	"Make sure we properly register the delete event on the model."
 
 	container := hostList.
@@ -727,11 +575,8 @@ MorphTreeNodeMorph>>initWithContents: anObject prior: priorMorph forList: hostLi
 		ifTrue: [ self selectedWithoutNotifyingComplexContents: true ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>initialize [
+{ #category : #initialization }
+MorphTreeNodeMorph >> initialize [
 	"initialize the state of the receiver"
 	super initialize.
 	self
@@ -747,72 +592,48 @@ MorphTreeNodeMorph>>initialize [
 
 ]
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>invalidRect: aRectangle [
+{ #category : #'change reporting' }
+MorphTreeNodeMorph >> invalidRect: aRectangle [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>isExpanded [
+{ #category : #testing }
+MorphTreeNodeMorph >> isExpanded [
 
 	^isExpanded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>isExpanded: aBoolean [
+{ #category : #accessing }
+MorphTreeNodeMorph >> isExpanded: aBoolean [
 
 	isExpanded := aBoolean.
 	self complexContents isExpanded: aBoolean
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>isFirstItem [
+{ #category : #testing }
+MorphTreeNodeMorph >> isFirstItem [
 	^owner submorphs first == self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>isPartialMatch [
+{ #category : #testing }
+MorphTreeNodeMorph >> isPartialMatch [
 	
 	^ self complexContents isPartialMatch
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>isSelected [
+{ #category : #testing }
+MorphTreeNodeMorph >> isSelected [
 	"^ container selectedMorphList includes: self"
 	^ self selected
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>isSoleItem [
+{ #category : #testing }
+MorphTreeNodeMorph >> isSoleItem [
 	^self isFirstItem and: [ owner submorphs size = 1 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>lastChild [
+{ #category : #accessing }
+MorphTreeNodeMorph >> lastChild [
 	"Answer the last child."
 
 	|c|
@@ -821,11 +642,8 @@ MorphTreeNodeMorph>>lastChild [
 	^c
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>layoutBounds [
+{ #category : #layout }
+MorphTreeNodeMorph >> layoutBounds [
 	"Return the bounds for laying out children of the receiver"
 
 	| lb left right |
@@ -839,11 +657,8 @@ MorphTreeNodeMorph>>layoutBounds [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>lineColor [
+{ #category : #accessing }
+MorphTreeNodeMorph >> lineColor [
 	"Answer a good color to use for drawing the lines that connect members of the hierarchy view.
 	Used the cached color, or derive it if necessary by finding the receiver or 
 	the first owner (up to my root) that is not transparent, then picking a contrasting color.
@@ -855,11 +670,8 @@ MorphTreeNodeMorph>>lineColor [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>matchPath: anAssociation [
+{ #category : #testing }
+MorphTreeNodeMorph >> matchPath: anAssociation [
 
 	anAssociation ifNil: [ ^ nil ].
 	^ anAssociation head = self complexContents withoutListWrapper
@@ -870,11 +682,8 @@ MorphTreeNodeMorph>>matchPath: anAssociation [
 			^ matchingChildren select: [ :e | e notNil ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>minWidth [
+{ #category : #accessing }
+MorphTreeNodeMorph >> minWidth [
 	"Fixed to work such that guessed width is unnecessary in
 	#adjustSubmorphPositions."
 	| gap |
@@ -883,54 +692,36 @@ MorphTreeNodeMorph>>minWidth [
 	^ gap  max: super minWidth
 ]
 
-{
-	#category : #'mouse events',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>mouseDown: event [
+{ #category : #'mouse events' }
+MorphTreeNodeMorph >> mouseDown: event [
 	container enabled ifFalse: [ ^self ].
 	complexContents mouseDown: event
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>mustTakeIntoAccountCheckSpace [
+{ #category : #testing }
+MorphTreeNodeMorph >> mustTakeIntoAccountCheckSpace [
 	^container listManager isCheckList
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>mustTakeIntoAccountToggleSpace [
+{ #category : #testing }
+MorphTreeNodeMorph >> mustTakeIntoAccountToggleSpace [
 	^ indentLevel > 0 or: [	container hasToggleAtRoot]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>nextSibling [
+{ #category : #accessing }
+MorphTreeNodeMorph >> nextSibling [
 
 	^nextSibling
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>nextSibling: anotherMorph [
+{ #category : #accessing }
+MorphTreeNodeMorph >> nextSibling: anotherMorph [
 
 	nextSibling := anotherMorph
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>openItemPath: anArray [
+{ #category : #updating }
+MorphTreeNodeMorph >> openItemPath: anArray [
 	"Open a path based on wrapper item equivalence. Generally more specific
 	than #openPath: (string based)."
 	
@@ -955,11 +746,8 @@ MorphTreeNodeMorph>>openItemPath: anArray [
 	^self
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>openNodePath: anArray  [
+{ #category : #expanding-collapsing }
+MorphTreeNodeMorph >> openNodePath: anArray [ 
 	| found |
 	anArray isEmpty
 		ifTrue: [^ container listManager setSelectedMorph: nil].
@@ -982,11 +770,8 @@ MorphTreeNodeMorph>>openNodePath: anArray  [
 	^ container setSelectedMorph: nil
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>openPath: anArray  [
+{ #category : #updating }
+MorphTreeNodeMorph >> openPath: anArray [ 
 	| found |
 	anArray isEmpty
 		ifTrue: [^ container listManager setSelectedMorph: nil].
@@ -1015,57 +800,39 @@ MorphTreeNodeMorph>>openPath: anArray  [
 	^ container setSelectedMorph: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>outerBounds [
+{ #category : #accessing }
+MorphTreeNodeMorph >> outerBounds [
 	"Return the 'outer' bounds of the receiver, e.g., the bounds that need to be invalidated when the receiver changes."
 	
 	^ self bounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>parent [
+{ #category : #accessing }
+MorphTreeNodeMorph >> parent [
 	^ parent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>parent: aNodeMorph [
+{ #category : #accessing }
+MorphTreeNodeMorph >> parent: aNodeMorph [
 	parent := aNodeMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>path [
+{ #category : #accessing }
+MorphTreeNodeMorph >> path [
 	^ parent 
 		ifNil: [OrderedCollection with: self]
 		ifNotNil: [(parent path) add: self; yourself]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>printOn: aStream [
+{ #category : #printing }
+MorphTreeNodeMorph >> printOn: aStream [
 	aStream nextPutAll: 'NodeMorph('.
 	complexContents printOn: aStream.
 	aStream nextPut: $)
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>recursiveAddTo: aCollection [
+{ #category : #updating }
+MorphTreeNodeMorph >> recursiveAddTo: aCollection [
 
 	firstChild ifNotNil: [firstChild withSiblingsDo: [ :aNode | aNode recursiveAddTo: aCollection]].
 	aCollection add: self.
@@ -1073,11 +840,8 @@ MorphTreeNodeMorph>>recursiveAddTo: aCollection [
 	
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>recursiveDelete [
+{ #category : #updating }
+MorphTreeNodeMorph >> recursiveDelete [
 
 	firstChild ifNotNil: [
 		firstChild withSiblingsDo: [ :aNode | aNode recursiveDelete].
@@ -1086,11 +850,8 @@ MorphTreeNodeMorph>>recursiveDelete [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>retrieveCheckIcon [
+{ #category : #private }
+MorphTreeNodeMorph >> retrieveCheckIcon [
 	^ self selected
 		ifTrue: [ self iconNamed: #checkedBoxIcon ]
 		ifFalse: [ self isPartialMatch
@@ -1098,19 +859,13 @@ MorphTreeNodeMorph>>retrieveCheckIcon [
 				ifFalse: [ self iconNamed: #uncheckedBoxIcon ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>rowMorphAt: anIndex [
+{ #category : #accessing }
+MorphTreeNodeMorph >> rowMorphAt: anIndex [
 	^ self submorphs seconds submorphs at: anIndex
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>selectNodePath: anArray [
+{ #category : #updating }
+MorphTreeNodeMorph >> selectNodePath: anArray [
 	"select a node from a path based on wrapper node equivalence"
 	
 	| found |
@@ -1130,19 +885,13 @@ MorphTreeNodeMorph>>selectNodePath: anArray [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>selected [
+{ #category : #accessing }
+MorphTreeNodeMorph >> selected [
 	^ selected ifNil: [selected := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>selected: aBoolean [
+{ #category : #accessing }
+MorphTreeNodeMorph >> selected: aBoolean [
 	selected = aBoolean
 		ifTrue: [^ self].
 	aBoolean
@@ -1154,11 +903,8 @@ MorphTreeNodeMorph>>selected: aBoolean [
 	self complexContents selected: aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>selectedWithoutNotifyingComplexContents: aBoolean [
+{ #category : #private }
+MorphTreeNodeMorph >> selectedWithoutNotifyingComplexContents: aBoolean [
 	"Only called at creation"
 	
 	aBoolean ifFalse: [ ^ self ].
@@ -1167,39 +913,27 @@ MorphTreeNodeMorph>>selectedWithoutNotifyingComplexContents: aBoolean [
 	selected := aBoolean.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>selectionFrame [
+{ #category : #accessing }
+MorphTreeNodeMorph >> selectionFrame [
 	"Answer the selection frame rectangle."
 
 	^ self bounds: self bounds in: container
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>sensitiveToggleRectangle [
+{ #category : #accessing }
+MorphTreeNodeMorph >> sensitiveToggleRectangle [
 	^(bounds left + self indentGap) @ bounds top extent: (container toggleImageWidth + container gapAfterToggle) @ bounds height
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>setSelectedSilently: aBoolean [
+{ #category : #accessing }
+MorphTreeNodeMorph >> setSelectedSilently: aBoolean [
 	
 	selected := aBoolean.
 	self complexContents selected: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>spacerWidth [
+{ #category : #accessing }
+MorphTreeNodeMorph >> spacerWidth [
 	"Such a morph composed of, left to right, some space according to the level in the tree, an expand toggle (if any), a check box (if any),  and the item morphs (icon + text often). Compute here the width of the space, including the toggle (and the check box) if there is one."
 
 	| baseRect |
@@ -1211,21 +945,15 @@ MorphTreeNodeMorph>>spacerWidth [
 		ifFalse: [ baseRect left - bounds left ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>takeHighlight [
+{ #category : #private }
+MorphTreeNodeMorph >> takeHighlight [
 
 	container listManager lastClickedMorph: self.
 	container selectionChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>theme [
+{ #category : #accessing }
+MorphTreeNodeMorph >> theme [
 	"Answer the ui theme that provides controls.
 	Done directly here to avoid performance hit of
 	looking up in window."
@@ -1233,22 +961,16 @@ MorphTreeNodeMorph>>theme [
 	^ Smalltalk ui theme
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>themeChanged [
+{ #category : #updating }
+MorphTreeNodeMorph >> themeChanged [
  
 	self allMorphsDo: [ :m | (m isKindOf: StringMorph) ifTrue: [ m color: self theme textColor ] ].
 	
 	super themeChanged
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>toggleExpandedState [
+{ #category : #updating }
+MorphTreeNodeMorph >> toggleExpandedState [
 	| toDelete |
 	self isExpanded: self isExpanded not.
 	toDelete := OrderedCollection new.
@@ -1259,11 +981,8 @@ MorphTreeNodeMorph>>toggleExpandedState [
 	self expand
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>toggleImageForm [
+{ #category : #accessing }
+MorphTreeNodeMorph >> toggleImageForm [
 	^ isExpanded 
 			ifTrue: [container expandedFormForMorph: self]
 			ifFalse: [container notExpandedFormForMorph: self] 
@@ -1272,27 +991,18 @@ MorphTreeNodeMorph>>toggleImageForm [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>toggleRectangle [
+{ #category : #accessing }
+MorphTreeNodeMorph >> toggleRectangle [
 	^(bounds left + self indentGap) @ bounds top extent: (container toggleImageWidth) @ bounds height
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>treeLineDashes [
+{ #category : #accessing }
+MorphTreeNodeMorph >> treeLineDashes [
 	^ container treeLineDashes
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>unhighlight [
+{ #category : #updating }
+MorphTreeNodeMorph >> unhighlight [
 	complexContents highlightingColor
 		ifNotNil: [
 			(self valueOfProperty: #originalColor ifAbsent: [Color black])
@@ -1306,11 +1016,8 @@ MorphTreeNodeMorph>>unhighlight [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>update: aSymbol [
+{ #category : #updating }
+MorphTreeNodeMorph >> update: aSymbol [
 
 	aSymbol = #select
 		ifTrue: [ ^ self selected: true ].
@@ -1324,21 +1031,15 @@ MorphTreeNodeMorph>>update: aSymbol [
 	super update: aSymbol
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>updateChildren [
+{ #category : #updating }
+MorphTreeNodeMorph >> updateChildren [
 	self childrenDo: [:child | child parent: self]
 	
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>updateChildrenRecursively [
+{ #category : #updating }
+MorphTreeNodeMorph >> updateChildrenRecursively [
 	self childrenDo: [:child | 
 		child parent: self. 
 		child updateChildrenRecursively]
@@ -1346,11 +1047,8 @@ MorphTreeNodeMorph>>updateChildrenRecursively [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>updateColumnMorphsWidthWith: aListOfWidths [
+{ #category : #updating }
+MorphTreeNodeMorph >> updateColumnMorphsWidthWith: aListOfWidths [
 	| sw |
 	(container columns isEmpty or: [self hasSubmorphs not]) ifTrue: [^ self].
 	sw := self spacerWidth.
@@ -1361,11 +1059,8 @@ MorphTreeNodeMorph>>updateColumnMorphsWidthWith: aListOfWidths [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>withSiblingsDo: aBlock [
+{ #category : #updating }
+MorphTreeNodeMorph >> withSiblingsDo: aBlock [
 
 	| node |
 	node := self.
@@ -1375,11 +1070,8 @@ MorphTreeNodeMorph>>withSiblingsDo: aBlock [
 			node := node nextSibling].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeMorph>>withoutListWrapper [
+{ #category : #accessing }
+MorphTreeNodeMorph >> withoutListWrapper [
 
 	^complexContents withoutListWrapper
 ]

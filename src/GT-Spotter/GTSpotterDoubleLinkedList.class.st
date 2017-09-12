@@ -1,36 +1,23 @@
-"
-
-"
 Class {
 	#name : #GTSpotterDoubleLinkedList,
 	#superclass : #DoubleLinkedList,
-	#category : #GT-Spotter-Utils,
-	#timestamp : ''
+	#category : #GT-Spotter-Utils
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDoubleLinkedList>>head [
+{ #category : #accessing }
+GTSpotterDoubleLinkedList >> head [
 
 	^ head
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDoubleLinkedList>>head: aDoubleLink [
+{ #category : #accessing }
+GTSpotterDoubleLinkedList >> head: aDoubleLink [
 
 	head := aDoubleLink
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDoubleLinkedList>>linksDo: aBlock [
+{ #category : #enumerating }
+GTSpotterDoubleLinkedList >> linksDo: aBlock [
 	| current |
 	current := head.
 	[ current isNil ] 
@@ -39,11 +26,8 @@ GTSpotterDoubleLinkedList>>linksDo: aBlock [
 			current := current nextLink ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDoubleLinkedList>>removeCycledLink: link [
+{ #category : #'as yet unclassified' }
+GTSpotterDoubleLinkedList >> removeCycledLink: link [
 	| predecessor successor |
 	predecessor := link previousLink.
 	successor := link nextLink.
@@ -64,20 +48,14 @@ GTSpotterDoubleLinkedList>>removeCycledLink: link [
 	^ link
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDoubleLinkedList>>tail [
+{ #category : #accessing }
+GTSpotterDoubleLinkedList >> tail [
 
 	^ tail
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDoubleLinkedList>>tail: aDoubleLink [
+{ #category : #accessing }
+GTSpotterDoubleLinkedList >> tail: aDoubleLink [
 
 	tail := aDoubleLink
 ]

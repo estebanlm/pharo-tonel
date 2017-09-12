@@ -4,75 +4,50 @@ This smell arises when a class has no comment. Classes should have comments to e
 Class {
 	#name : #RBNoClassCommentRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 20:50'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBNoClassCommentRule class>>checksClass [
+{ #category : #testing }
+RBNoClassCommentRule class >> checksClass [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBNoClassCommentRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBNoClassCommentRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'NoClassCommentRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBNoClassCommentRule>>basicCheck: aClass [
+{ #category : #running }
+RBNoClassCommentRule >> basicCheck: aClass [
 	(aClass isMeta or: [ aClass isTestCase ])
 		ifTrue: [ ^ false ].
 	^ aClass hasComment not
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBNoClassCommentRule>>checkClass: aClass [
+{ #category : #running }
+RBNoClassCommentRule >> checkClass: aClass [
 	(self basicCheck: aClass)
 		ifTrue: [ result addClassAndMetaClassFor: aClass ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBNoClassCommentRule>>group [
+{ #category : #accessing }
+RBNoClassCommentRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBNoClassCommentRule>>name [
+{ #category : #accessing }
+RBNoClassCommentRule >> name [
 	^ 'No class comment'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBNoClassCommentRule>>rationale [
+{ #category : #accessing }
+RBNoClassCommentRule >> rationale [
 	^ 'Classes should have comments to explain their purpose, collaborations with other classes, and optionally provide examples of use.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBNoClassCommentRule>>resultClass [
+{ #category : #accessing }
+RBNoClassCommentRule >> resultClass [
 	^ RBClassEnvironment
 ]

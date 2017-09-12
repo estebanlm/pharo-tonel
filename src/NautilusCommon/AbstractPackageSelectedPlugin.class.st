@@ -4,24 +4,17 @@ AbstractKeyPressedPlugin is an abstraction of plugin which react when a package 
 Class {
 	#name : #AbstractPackageSelectedPlugin,
 	#superclass : #AbstractNautilusPlugin,
-	#category : #NautilusCommon-Plugin,
-	#timestamp : '<historical>'
+	#category : #NautilusCommon-Plugin
 }
 
-{
-	#category : #announcement,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractPackageSelectedPlugin>>packageSelected: anAnnouncement [
+{ #category : #announcement }
+AbstractPackageSelectedPlugin >> packageSelected: anAnnouncement [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractPackageSelectedPlugin>>registerTo: aModel [
+{ #category : #registration }
+AbstractPackageSelectedPlugin >> registerTo: aModel [
 	aModel announcer
 		when: NautilusPackageSelected send: #packageSelected: to: self
 ]

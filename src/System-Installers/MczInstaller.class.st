@@ -13,31 +13,21 @@ Class {
 	#classVars : [
 		'Versions'
 	],
-	#category : #System-Installers,
-	#timestamp : 'TorstenBergmann 1/31/2014 10:14'
+	#category : #System-Installers
 }
 
-{
-	#category : #versioninfo,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller class>>clearVersionInfo [
+{ #category : #versioninfo }
+MczInstaller class >> clearVersionInfo [
 	Versions := Dictionary new
 ]
 
-{
-	#category : #System-FileRegistry,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller class>>extension [
+{ #category : #System-FileRegistry }
+MczInstaller class >> extension [
 	^ 'mcz'
 ]
 
-{
-	#category : #System-FileRegistry,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller class>>fileReaderServicesForFile: fileName suffix: suffix [
+{ #category : #System-FileRegistry }
+MczInstaller class >> fileReaderServicesForFile: fileName suffix: suffix [
 	<fileService>
 	^({ self extension. '*' } includes: suffix)
 		ifTrue: [ self services ]
@@ -45,52 +35,34 @@ MczInstaller class>>fileReaderServicesForFile: fileName suffix: suffix [
 
 ]
 
-{
-	#category : #System-FileRegistry,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller class>>initialize [
+{ #category : #System-FileRegistry }
+MczInstaller class >> initialize [
 	self clearVersionInfo
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller class>>installFileNamed: aFileName [
+{ #category : #installing }
+MczInstaller class >> installFileNamed: aFileName [
 	self installStream: (FileStream readOnlyFileNamed: aFileName)
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller class>>installStream: aStream [
+{ #category : #installing }
+MczInstaller class >> installStream: aStream [
 	(self on: aStream) install
 ]
 
-{
-	#category : #System-FileRegistry,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller class>>loadVersionFile: fileName [
+{ #category : #System-FileRegistry }
+MczInstaller class >> loadVersionFile: fileName [
 	self installFileNamed: fileName
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller class>>on: aStream [
+{ #category : #'instance creation' }
+MczInstaller class >> on: aStream [
 	^ self new stream: aStream
 ]
 
-{
-	#category : #System-FileRegistry,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller class>>serviceLoadVersion [
+{ #category : #System-FileRegistry }
+MczInstaller class >> serviceLoadVersion [
 	^ SimpleServiceEntry
 		provider: self
 		label: 'Load'
@@ -98,37 +70,25 @@ MczInstaller class>>serviceLoadVersion [
 		description: 'Load a package version'
 ]
 
-{
-	#category : #System-FileRegistry,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller class>>services [
+{ #category : #System-FileRegistry }
+MczInstaller class >> services [
 	^ Array with: self serviceLoadVersion
 ]
 
-{
-	#category : #versioninfo,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller class>>storeVersionInfo: aVersion [
+{ #category : #versioninfo }
+MczInstaller class >> storeVersionInfo: aVersion [
 	Versions 
 		at: aVersion package name
 		put: aVersion info asDictionary
 ]
 
-{
-	#category : #versioninfo,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller class>>versionInfo [
+{ #category : #versioninfo }
+MczInstaller class >> versionInfo [
 	^ Versions
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller>>associate: tokens [
+{ #category : #utilities }
+MczInstaller >> associate: tokens [
 	| result |
 	result := Dictionary new.
 	tokens pairsDo: [:key :value | 
@@ -140,11 +100,8 @@ MczInstaller>>associate: tokens [
 	^ result
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller>>checkDependencies [
+{ #category : #utilities }
+MczInstaller >> checkDependencies [
 	| dependencies unmet |
 	dependencies := (zip membersMatching: 'dependencies/*') 
 			collect: [:member | self extractInfoFrom: (self parseMember: member)].
@@ -157,11 +114,8 @@ MczInstaller>>checkDependencies [
 			s nextPutAll: 'Do you still want to install this package?'])]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller>>contentStreamForMember: member [
+{ #category : #private }
+MczInstaller >> contentStreamForMember: member [
 	^[(member contentStreamFromEncoding: 'utf8') text] on: ZnInvalidUTF8
 		do: [:exc | 
 			"Case of legacy encoding, presumably it is latin-1 and we do not need to do anything
@@ -173,11 +127,8 @@ MczInstaller>>contentStreamForMember: member [
 			exc return: str]
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller>>contentsForMember: member [
+{ #category : #parsing }
+MczInstaller >> contentsForMember: member [
 	^[(member contentStreamFromEncoding: 'utf8') text contents] on: ZnInvalidUTF8
 		do: [:exc | 
 			"Case of legacy encoding, presumably it is latin-1.
@@ -189,11 +140,8 @@ MczInstaller>>contentsForMember: member [
 				ifFalse: [str contents])]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller>>extractInfoFrom: dict [
+{ #category : #utilities }
+MczInstaller >> extractInfoFrom: dict [
 	dict at: #id put: (UUID fromString: (dict at: #id)).
 	dict at: #date ifPresent: [:d | d isEmpty ifFalse: [dict at: #date put: (Date fromString: d)]].
 	dict at: #time ifPresent: [:t | t isEmpty ifFalse: [dict at: #time put: (Time readFrom: t readStream)]].
@@ -201,28 +149,19 @@ MczInstaller>>extractInfoFrom: dict [
 	^ dict
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller>>extractPackageName [
+{ #category : #accessing }
+MczInstaller >> extractPackageName [
 	^ (self parseMember: 'package') at: #name.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller>>extractVersionInfo [
+{ #category : #accessing }
+MczInstaller >> extractVersionInfo [
 	^ self extractInfoFrom: (self parseMember: 'version')
 ]
 
-{
-	#category : #installation,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller>>install [
+{ #category : #installation }
+MczInstaller >> install [
 	| sources |
 	zip := ZipArchive new.
 	zip readFrom: stream.
@@ -233,51 +172,36 @@ MczInstaller>>install [
 	sources do: [:src | self installMember: src].
 ]
 
-{
-	#category : #installation,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller>>installMember: member [
+{ #category : #installation }
+MczInstaller >> installMember: member [
 	 
 	self useNewChangeSetDuring:
 		[ CodeImporter evaluateReadStream: (self contentsForMember: member) readStream.
 		]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller>>parseMember: memberOrName [
+{ #category : #utilities }
+MczInstaller >> parseMember: memberOrName [
 	| member tokens |
 	member := self zip member: memberOrName.
 	tokens := (self contentsForMember: member) parseLiterals first.
 	^ self associate: tokens
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller>>recordVersionInfo [
+{ #category : #accessing }
+MczInstaller >> recordVersionInfo [
 	Versions 
 		at: self extractPackageName 
 		put: self extractVersionInfo
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller>>stream: aStream [
+{ #category : #accessing }
+MczInstaller >> stream: aStream [
 	stream := aStream
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller>>useNewChangeSetDuring: aBlock [
+{ #category : #utilities }
+MczInstaller >> useNewChangeSetDuring: aBlock [
 	| changeHolder oldChanges newChanges |
 	changeHolder := (ChangeSet respondsTo: #newChanges:)
 						ifTrue: [ChangeSet]
@@ -291,20 +215,14 @@ MczInstaller>>useNewChangeSetDuring: aBlock [
 	[aBlock value] ensure: [changeHolder newChanges: oldChanges].
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller>>versions: aVersionList anySatisfy: aDependencyID [
+{ #category : #utilities }
+MczInstaller >> versions: aVersionList anySatisfy: aDependencyID [
 	^ aVersionList anySatisfy: [:version | 
 			aDependencyID = (version at: #id)
 				or: [self versions: (version at: #ancestors) anySatisfy: aDependencyID]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MczInstaller>>zip [
+{ #category : #accessing }
+MczInstaller >> zip [
 	^zip
 ]

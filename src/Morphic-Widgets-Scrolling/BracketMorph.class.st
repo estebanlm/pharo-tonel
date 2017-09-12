@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'orientation'
 	],
-	#category : #Morphic-Widgets-Scrolling,
-	#timestamp : 'gvc 5/18/2007 13:48'
+	#category : #Morphic-Widgets-Scrolling
 }
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+BracketMorph >> drawOn: aCanvas [
 	"Draw triangles at the edges."
 	
 	|r|
@@ -33,31 +29,22 @@ BracketMorph>>drawOn: aCanvas [
 		fillStyle: self fillStyle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketMorph>>horizontal [
+{ #category : #accessing }
+BracketMorph >> horizontal [
 	"Answer whether horizontal or vertical."
 	
 	^self orientation == #horizontal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketMorph>>horizontal: aBoolean [
+{ #category : #accessing }
+BracketMorph >> horizontal: aBoolean [
 	"Set whether horizontal or vertical."
 	
 	^self orientation: (aBoolean ifTrue: [#horizontal] ifFalse: [#vertical])
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketMorph>>initialize [
+{ #category : #initialization }
+BracketMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -65,11 +52,8 @@ BracketMorph>>initialize [
 		orientation: #horizontal
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketMorph>>leftOrTopVertices: r [
+{ #category : #geometry }
+BracketMorph >> leftOrTopVertices: r [
 	"Answer the vertices for a left or top bracket in the given rectangle."
 	
 	^self orientation == #vertical
@@ -79,32 +63,23 @@ BracketMorph>>leftOrTopVertices: r [
 				r center x@(r top + (r width // 2 + (r width \\ 2))). r topRight}]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketMorph>>orientation [
+{ #category : #accessing }
+BracketMorph >> orientation [
 	"Answer the value of orientation"
 
 	^ orientation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketMorph>>orientation: anObject [
+{ #category : #accessing }
+BracketMorph >> orientation: anObject [
 	"Set the value of orientation"
 
 	orientation := anObject.
 	self changed
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketMorph>>rightOrBottomVertices: r [
+{ #category : #geometry }
+BracketMorph >> rightOrBottomVertices: r [
 	"Answer the vertices for a right or bottom bracket in the given rectangle."
 	
 	^self orientation == #vertical

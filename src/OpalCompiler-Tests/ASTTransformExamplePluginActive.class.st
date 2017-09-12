@@ -6,23 +6,16 @@ This class changes the default compiler used to compile itself to include the AS
 Class {
 	#name : #ASTTransformExamplePluginActive,
 	#superclass : #Object,
-	#category : #OpalCompiler-Tests-Plugins,
-	#timestamp : 'MarcusDenker 2/28/2015 16:02'
+	#category : #OpalCompiler-Tests-Plugins
 }
 
-{
-	#category : #compiler,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ASTTransformExamplePluginActive class>>compiler [
+{ #category : #compiler }
+ASTTransformExamplePluginActive class >> compiler [
 	"the example plugin is active for this class"
 	^super compiler addPlugin: ASTPluginMeaningOfLife.
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ASTTransformExamplePluginActive>>example42 [
+{ #category : #example }
+ASTTransformExamplePluginActive >> example42 [
 	^42
 ]

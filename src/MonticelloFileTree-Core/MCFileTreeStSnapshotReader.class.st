@@ -4,23 +4,16 @@ Snapshot reader
 Class {
 	#name : #MCFileTreeStSnapshotReader,
 	#superclass : #MCFileTreeAbstractReader,
-	#category : #MonticelloFileTree-Core,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:55'
+	#category : #MonticelloFileTree-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStSnapshotReader class>>extension [
+{ #category : #accessing }
+MCFileTreeStSnapshotReader class >> extension [
     ^ 'pkg'
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStSnapshotReader>>addClassAndMethodDefinitionsFromDirectory: aDirectory [
+{ #category : #utilities }
+MCFileTreeStSnapshotReader >> addClassAndMethodDefinitionsFromDirectory: aDirectory [
     | snapshot classes entries extensions |
     snapshot := self fileUtils directoryFromPath: 'snapshot' relativeTo: aDirectory.
     classes := self fileUtils directoryFromPath: 'classes' relativeTo: snapshot.

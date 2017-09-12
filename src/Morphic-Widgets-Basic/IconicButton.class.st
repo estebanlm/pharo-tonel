@@ -13,74 +13,49 @@ Class {
 	#classVars : [
 		'DefaultGraphics'
 	],
-	#category : #Morphic-Widgets-Basic-Buttons,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Basic-Buttons
 }
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton class>>defaultGraphics [
+{ #category : #initialize }
+IconicButton class >> defaultGraphics [
 
 	^ DefaultGraphics ifNil: [ DefaultGraphics := (Form extent: 20 @ 1 depth: 8)].
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton class>>initialize [
+{ #category : #initialize }
+IconicButton class >> initialize [
 	"self initialize"
 	
 	DefaultGraphics := self defaultGraphics
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>addLabelItemsTo: aCustomMenu hand: aHandMorph [
+{ #category : #menu }
+IconicButton >> addLabelItemsTo: aCustomMenu hand: aHandMorph [
 	"don't do the inherited behavior, since there is no textual label in this case"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>borderInset [
+{ #category : #accessing }
+IconicButton >> borderInset [
 	self borderStyle: (BorderStyle inset width: 2).
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>borderNormal [
+{ #category : #initialization }
+IconicButton >> borderNormal [
 	self borderStyle: (BorderStyle width: 2 color: Color transparent).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>borderRaised [
+{ #category : #accessing }
+IconicButton >> borderRaised [
 	self borderStyle: (BorderStyle raised width: 2).
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>borderThick [
+{ #category : #initialization }
+IconicButton >> borderThick [
 	self borderStyle: (BorderStyle width: 2 color: self raisedColor twiceDarker).
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>buttonSetup [
+{ #category : #initialization }
+IconicButton >> buttonSetup [
 	self actWhen: #buttonUp.
 	self cornerStyle: #rounded.
 	self borderNormal.
@@ -91,107 +66,74 @@ IconicButton>>buttonSetup [
 	self on: #mouseUp send: #borderRaised to: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>defaultGraphics [
+{ #category : #accessing }
+IconicButton >> defaultGraphics [
 
 	^  DefaultGraphics 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>extent: newExtent [
+{ #category : #geometry }
+IconicButton >> extent: newExtent [
 	"Update the graphic position to keep centered."
 	
 	super extent: newExtent.
 	graphicalMorph ifNotNil: [graphicalMorph position: self center - (graphicalMorph extent // 2)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>extraBorder [
+{ #category : #accessing }
+IconicButton >> extraBorder [
 
 	^ 6
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>graphicalMorph [
+{ #category : #accessing }
+IconicButton >> graphicalMorph [
 
 	^ graphicalMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>graphicalMorph: aMorph [
+{ #category : #accessing }
+IconicButton >> graphicalMorph: aMorph [
 	self addMorph: aMorph.
 	aMorph lock.
 ]
 
-{
-	#category : #'mouse events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>handlesMouseOver: anEvent [
+{ #category : #'mouse events' }
+IconicButton >> handlesMouseOver: anEvent [
 	"Answer true, otherwise what is all that
 	#mouseEnter:/#mouseLeave: stuff about?"
 
 	^true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>initialize [
+{ #category : #initialization }
+IconicButton >> initialize [
 	super initialize.
 	self useSquareCorners
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>interactSelector [
+{ #category : #updating }
+IconicButton >> interactSelector [
 
 	 ^ #interact
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>labelFromString: aString [
+{ #category : #accessing }
+IconicButton >> labelFromString: aString [
 	"Make an iconic label from aString"
 
 	self labelGraphic: (StringMorph contents: aString) imageForm
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>labelGraphic [
+{ #category : #accessing }
+IconicButton >> labelGraphic [
 
 	^ graphicalMorph form
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>labelGraphic: aForm [
+{ #category : #accessing }
+IconicButton >> labelGraphic: aForm [
 	"Changed to look for any image morph rather than just a sketch."
 	
 	graphicalMorph ifNotNil: [graphicalMorph delete].
@@ -202,11 +144,8 @@ IconicButton>>labelGraphic: aForm [
 	graphicalMorph lock
 ]
 
-{
-	#category : #'mouse events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>mouseDown: evt [
+{ #category : #'mouse events' }
+IconicButton >> mouseDown: evt [
 	"Partial workaraound for broken MouseOverHandler.
 	Remove the border on mouse down if mouse focus has changed."
 
@@ -215,22 +154,16 @@ IconicButton>>mouseDown: evt [
 		ifTrue: [ self mouseLeave: evt ]
 ]
 
-{
-	#category : #'mouse events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>mouseEnter: evt [
+{ #category : #'mouse events' }
+IconicButton >> mouseEnter: evt [
 	"Remember the old border style."
 	
 	oldBorderStyle:= self borderStyle.
 	self borderStyle: self mouseOverBorderStyle
 ]
 
-{
-	#category : #'mouse events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>mouseLeave: evt [
+{ #category : #'mouse events' }
+IconicButton >> mouseLeave: evt [
 	"Reinstate the old border style."
 
 	oldBorderStyle ifNil: [^self borderNormal].
@@ -239,49 +172,34 @@ IconicButton>>mouseLeave: evt [
 		
 ]
 
-{
-	#category : #'mouse events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>mouseOverBorderStyle [
+{ #category : #'mouse events' }
+IconicButton >> mouseOverBorderStyle [
 	"Answer the border style to use whilst the mouse
 	is over the receiver."
 
 	^mouseOverBorderStyle ifNil: [BorderStyle thinGray]
 ]
 
-{
-	#category : #'mouse events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>mouseOverBorderStyle: aBorderStyle [
+{ #category : #'mouse events' }
+IconicButton >> mouseOverBorderStyle: aBorderStyle [
 	"Set the border style to use whilst the mouse
 	is over the receiver."
 
 	mouseOverBorderStyle := aBorderStyle.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>setDefaultLabel [
+{ #category : #initialization }
+IconicButton >> setDefaultLabel [
 	self labelGraphic: self class defaultGraphics
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>shedSelvedge [
+{ #category : #accessing }
+IconicButton >> shedSelvedge [
 	self extent: (self extent - (6@6))
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>stationarySetup [
+{ #category : #initialization }
+IconicButton >> stationarySetup [
 
 	self actWhen: #startDrag.
 	self cornerStyle: #rounded.
@@ -293,20 +211,14 @@ IconicButton>>stationarySetup [
 	self on: #mouseUp send: #borderThick to: self.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>themeChanged [
+{ #category : #updating }
+IconicButton >> themeChanged [
 
 	"do nothing for now"
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicButton>>update: aSelector [
+{ #category : #updating }
+IconicButton >> update: aSelector [
 	
 	aSelector = self interactSelector
 		ifTrue: [ ^ self doButtonAction ].

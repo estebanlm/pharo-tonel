@@ -4,6 +4,5 @@ A NautilusShowHierarchyChanged is raised when the value of howHierarchy is switc
 Class {
 	#name : #NautilusShowHierarchyChanged,
 	#superclass : #NautilusBooleanAnnouncement,
-	#category : #NautilusCommon-Announcements,
-	#timestamp : '<historical>'
+	#category : #NautilusCommon-Announcements
 }

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #BitBltClipBugsTest,
 	#superclass : #TestCase,
-	#category : #Graphics-Tests-Primitives,
-	#timestamp : ''
+	#category : #Graphics-Tests-Primitives
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BitBltClipBugsTest>>testDrawingWayOutside [
+{ #category : #accessing }
+BitBltClipBugsTest >> testDrawingWayOutside [
 	| f1 bb f2 |
 	f1 := Form extent: 100 @ 100 depth: 1.
 	f2 := Form extent: 100 @ 100 depth: 1.
@@ -26,11 +19,8 @@ BitBltClipBugsTest>>testDrawingWayOutside [
 	bb copyBits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BitBltClipBugsTest>>testDrawingWayOutside2 [
+{ #category : #accessing }
+BitBltClipBugsTest >> testDrawingWayOutside2 [
 	| f1 bb f2 |
 	f1 := Form extent: 100 @ 100 depth: 1.
 	f2 := Form extent: 100 @ 100 depth: 1.
@@ -44,11 +34,8 @@ BitBltClipBugsTest>>testDrawingWayOutside2 [
 	bb copyBits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BitBltClipBugsTest>>testDrawingWayOutside3 [
+{ #category : #accessing }
+BitBltClipBugsTest >> testDrawingWayOutside3 [
 	| f1 bb f2 |
 	f1 := Form extent: 100 @ 100 depth: 1.
 	f2 := Form extent: 100 @ 100 depth: 1.
@@ -62,11 +49,8 @@ BitBltClipBugsTest>>testDrawingWayOutside3 [
 	bb copyBits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BitBltClipBugsTest>>testDrawingWayOutside4 [
+{ #category : #accessing }
+BitBltClipBugsTest >> testDrawingWayOutside4 [
 	| f1 bb f2 |
 	f1 := Form extent: 100 @ 100 depth: 1.
 	f2 := Form extent: 100 @ 100 depth: 1.
@@ -81,11 +65,8 @@ BitBltClipBugsTest>>testDrawingWayOutside4 [
 	bb copyBits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BitBltClipBugsTest>>testDrawingWayOutside5 [
+{ #category : #accessing }
+BitBltClipBugsTest >> testDrawingWayOutside5 [
 	| f1 bb f2 |
 	f1 := Form extent: 100 @ 100 depth: 1.
 	f2 := Form extent: 100 @ 100 depth: 1.
@@ -100,11 +81,8 @@ BitBltClipBugsTest>>testDrawingWayOutside5 [
 	bb copyBits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BitBltClipBugsTest>>testDrawingWayOutside6 [
+{ #category : #accessing }
+BitBltClipBugsTest >> testDrawingWayOutside6 [
 	| f1 bb f2 |
 	f1 := Form extent: 100 @ 100 depth: 1.
 	f2 := Form extent: 100 @ 100 depth: 1.
@@ -119,11 +97,8 @@ BitBltClipBugsTest>>testDrawingWayOutside6 [
 	bb copyBits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BitBltClipBugsTest>>testFillingWayOutside [
+{ #category : #accessing }
+BitBltClipBugsTest >> testFillingWayOutside [
 	| f1 bb |
 	f1 := Form extent: 100 @ 100 depth: 1.
 	bb := BitBlt toForm: f1.
@@ -136,11 +111,8 @@ BitBltClipBugsTest>>testFillingWayOutside [
 	bb copyBits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BitBltClipBugsTest>>testFillingWayOutside2 [
+{ #category : #accessing }
+BitBltClipBugsTest >> testFillingWayOutside2 [
 	| f1 bb |
 	f1 := Form extent: 100 @ 100 depth: 1.
 	bb := BitBlt toForm: f1.
@@ -153,11 +125,8 @@ BitBltClipBugsTest>>testFillingWayOutside2 [
 	bb copyBits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BitBltClipBugsTest>>testFillingWayOutside3 [
+{ #category : #accessing }
+BitBltClipBugsTest >> testFillingWayOutside3 [
 	| f1 bb |
 	f1 := Form extent: 100 @ 100 depth: 1.
 	bb := BitBlt toForm: f1.

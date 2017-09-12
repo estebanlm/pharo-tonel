@@ -11,15 +11,11 @@ Class {
 		'passwordLabel',
 		'showPassword'
 	],
-	#category : #Komitter-Support,
-	#timestamp : '<historical>'
+	#category : #Komitter-Support
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CredentialEditor class>>defaultSpec [
+{ #category : #specs }
+CredentialEditor class >> defaultSpec [
 	<spec: #default>
 	
 	^ SpecLayout composed
@@ -33,60 +29,42 @@ CredentialEditor class>>defaultSpec [
 	yourself
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CredentialEditor>>getPassword [
+{ #category : #api }
+CredentialEditor >> getPassword [
 
 	^ password text
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CredentialEditor>>getUsername [
+{ #category : #api }
+CredentialEditor >> getUsername [
 	
 	^ username text
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CredentialEditor>>initialExtent [
+{ #category : #api }
+CredentialEditor >> initialExtent [
 
 	^ 400@180
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CredentialEditor>>initializeDialogWindow: aWindow [
+{ #category : #initialize-release }
+CredentialEditor >> initializeDialogWindow: aWindow [
 
 	self 
 		bindKeyCombination: $m meta 
 		toAction: [ aWindow triggerOkAction ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CredentialEditor>>initializePresenter [
+{ #category : #initialize-release }
+CredentialEditor >> initializePresenter [
 
 	showPassword 
 		whenActivatedDo: [ password beDecrypted ];
 		whenDeactivatedDo: [ password beEncrypted ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CredentialEditor>>initializeWidgets [
+{ #category : #initialize-release }
+CredentialEditor >> initializeWidgets [
 
 	username := self newTextInput.
 	usernameLabel := self newLabel.
@@ -117,69 +95,45 @@ CredentialEditor>>initializeWidgets [
 		add: showPassword.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CredentialEditor>>password [
+{ #category : #accessing }
+CredentialEditor >> password [
 	^ password
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CredentialEditor>>passwordLabel [
+{ #category : #accessing }
+CredentialEditor >> passwordLabel [
 	^ passwordLabel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CredentialEditor>>setPassword: aPassword [
+{ #category : #api }
+CredentialEditor >> setPassword: aPassword [
 
 	password text: aPassword
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CredentialEditor>>setUsername: aName [
+{ #category : #api }
+CredentialEditor >> setUsername: aName [
 
 	username text: aName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CredentialEditor>>showPasswordWidget [
+{ #category : #accessing }
+CredentialEditor >> showPasswordWidget [
 	^ showPassword
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CredentialEditor>>title [
+{ #category : #api }
+CredentialEditor >> title [
 
 	^ 'Edit credentials'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CredentialEditor>>username [
+{ #category : #accessing }
+CredentialEditor >> username [
 	^ username
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CredentialEditor>>usernameLabel [
+{ #category : #accessing }
+CredentialEditor >> usernameLabel [
 	^ usernameLabel
 ]

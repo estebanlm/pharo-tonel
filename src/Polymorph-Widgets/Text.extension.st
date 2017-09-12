@@ -1,21 +1,13 @@
-Extension {
-	#name : #Text
-}
+Extension { #name : #Text }
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Text>>heightToDisplayInTree: aTree [
+{ #category : #'*Polymorph-Widgets' }
+Text >> heightToDisplayInTree: aTree [
 
 	^ aTree fontToUse height
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Text>>treeRenderOn: aCanvas bounds: drawBounds color: drawColor font: aFont from: aMorph [
+{ #category : #'*Polymorph-Widgets' }
+Text >> treeRenderOn: aCanvas bounds: drawBounds color: drawColor font: aFont from: aMorph [
 
 	"Method extracted from LazyListMorph"
 	| attrs useDefaultFont f itemBounds |
@@ -47,11 +39,8 @@ Text>>treeRenderOn: aCanvas bounds: drawBounds color: drawColor font: aFont from
 		strikethroughColor: drawColor 
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Text>>widthToDisplayInTree: aTree [
+{ #category : #'*Polymorph-Widgets' }
+Text >> widthToDisplayInTree: aTree [
 
 	^ aTree fontToUse widthOfStringOrText: self contents
 ]

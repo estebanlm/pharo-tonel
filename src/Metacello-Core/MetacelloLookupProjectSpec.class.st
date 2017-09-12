@@ -4,14 +4,10 @@
 Class {
 	#name : #MetacelloLookupProjectSpec,
 	#superclass : #MetacelloScriptProjectSpecNotification,
-	#category : #Metacello-Core-Scripts,
-	#timestamp : 'dkh 6/1/2012 10:02'
+	#category : #Metacello-Core-Scripts
 }
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloLookupProjectSpec>>handleResolutionFor: aScriptEngine [
+{ #category : #handlers }
+MetacelloLookupProjectSpec >> handleResolutionFor: aScriptEngine [
     ^ aScriptEngine handleLookupProjectSpec: self
 ]

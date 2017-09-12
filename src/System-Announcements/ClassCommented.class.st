@@ -11,15 +11,11 @@ Class {
 		'oldComment',
 		'oldStamp'
 	],
-	#category : #System-Announcements-System-Classes,
-	#timestamp : '<historical>'
+	#category : #System-Announcements-System-Classes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassCommented class>>class: aClass oldComment: oldComment newComment: newComment oldStamp: oldStamp newStamp: newStamp [
+{ #category : #'instance creation' }
+ClassCommented class >> class: aClass oldComment: oldComment newComment: newComment oldStamp: oldStamp newStamp: newStamp [
 	^self new
 			classCommented: aClass;
 			oldComment: oldComment;
@@ -29,99 +25,63 @@ ClassCommented class>>class: aClass oldComment: oldComment newComment: newCommen
 			yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassCommented class>>classCommented: aClass [
+{ #category : #'instance creation' }
+ClassCommented class >> classCommented: aClass [
 	self flag: #fixMePlease. "nils? no way! "
 	^self class: aClass oldComment: nil newComment: nil oldStamp: nil newStamp: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassCommented>>classAffected [
+{ #category : #accessing }
+ClassCommented >> classAffected [
 	^self classCommented
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassCommented>>classCommented [
+{ #category : #accessing }
+ClassCommented >> classCommented [
 	^classCommented
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassCommented>>classCommented: aClass [
+{ #category : #accessing }
+ClassCommented >> classCommented: aClass [
 	classCommented := aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassCommented>>newComment [
+{ #category : #accessing }
+ClassCommented >> newComment [
 	^newComment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassCommented>>newComment: aNewComment [
+{ #category : #accessing }
+ClassCommented >> newComment: aNewComment [
 	newComment := aNewComment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassCommented>>newStamp [
+{ #category : #accessing }
+ClassCommented >> newStamp [
 	^newStamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassCommented>>newStamp: aNewStamp [
+{ #category : #accessing }
+ClassCommented >> newStamp: aNewStamp [
 	newStamp := aNewStamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassCommented>>oldComment [
+{ #category : #accessing }
+ClassCommented >> oldComment [
 	^ oldComment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassCommented>>oldComment: andOldComment [
+{ #category : #accessing }
+ClassCommented >> oldComment: andOldComment [
 	oldComment := andOldComment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassCommented>>oldStamp [
+{ #category : #accessing }
+ClassCommented >> oldStamp [
 	^ oldStamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassCommented>>oldStamp: anOldStamp [
+{ #category : #accessing }
+ClassCommented >> oldStamp: anOldStamp [
 	oldStamp := anOldStamp
 ]

@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #OCClosureTests,
 	#superclass : #TestCase,
 	#instVars : [
 		'collection'
 	],
-	#category : #OpalCompiler-Tests-FromOld,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-FromOld
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>assertValues: anArray [
+{ #category : #utilities }
+OCClosureTests >> assertValues: anArray [
 	| values |
 	values := collection collect: [ :each | each value ].
 	self 
@@ -24,29 +17,20 @@ OCClosureTests>>assertValues: anArray [
 			', but got ' , values asArray printString]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>methodArgument: anObject [
+{ #category : #testing }
+OCClosureTests >> methodArgument: anObject [
 	^ [ anObject ]
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>setUp [
+{ #category : #running }
+OCClosureTests >> setUp [
 	super setUp.
 	collection := OrderedCollection new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testBlockArgument [
+{ #category : #testing }
+OCClosureTests >> testBlockArgument [
 	| block block1 block2 |
 	block := [ :arg | | temp | temp := arg. [ temp ] ].
 	block1 := block value: 1.
@@ -55,11 +39,8 @@ OCClosureTests>>testBlockArgument [
 	self assert: block2 value = 2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testBlockTemp [
+{ #category : #testing }
+OCClosureTests >> testBlockTemp [
 	| block block1 block2 |
 	block := [ :arg | [ arg ] ].
 	block1 := block value: 1.
@@ -68,11 +49,8 @@ OCClosureTests>>testBlockTemp [
 	self assert: block2 value = 2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testBlockTemps [
+{ #category : #testing }
+OCClosureTests >> testBlockTemps [
 	
 	| block block1 block2 |
 	"Regression test: Bytecode offset of IR was to last byte of IR node, which for blocks include temp initialization bytes. This caused scan for block creation bytecode to fail when there were many block temps, and no source node to be found."
@@ -85,11 +63,8 @@ OCClosureTests>>testBlockTemps [
 	self assert: block2 value = 2
 ]
 
-{
-	#category : #testing-empty,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testEmptyBlockOneArgument [
+{ #category : #testing-empty }
+OCClosureTests >> testEmptyBlockOneArgument [
 	self
 		assert: (self class compiler evaluate: '[ :a ] value: 1') isNil
 		description: 'Empty blocks in ST-80 should return nil'.
@@ -101,11 +76,8 @@ OCClosureTests>>testEmptyBlockOneArgument [
 		description: 'Empty blocks in ST-80 should return nil'
 ]
 
-{
-	#category : #testing-empty,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testEmptyBlockTwoArguments [
+{ #category : #testing-empty }
+OCClosureTests >> testEmptyBlockTwoArguments [
 	self
 		assert: (self class compiler evaluate: '[ :a :b ] value: 1 value: 2') isNil
 		description: 'Empty blocks in ST-80 should return nil'.
@@ -117,11 +89,8 @@ OCClosureTests>>testEmptyBlockTwoArguments [
 		description: 'Empty blocks in ST-80 should return nil'
 ]
 
-{
-	#category : #testing-empty,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testEmptyBlockZeroArguments [
+{ #category : #testing-empty }
+OCClosureTests >> testEmptyBlockZeroArguments [
 	self
 		assert: (self class compiler evaluate: '[ ] value') isNil
 		description: 'Empty blocks in ST-80 should return nil'.
@@ -130,11 +99,8 @@ OCClosureTests>>testEmptyBlockZeroArguments [
 		description: 'Empty blocks in ST-80 should return nil'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testIsClean [
+{ #category : #testing }
+OCClosureTests >> testIsClean [
 	 | local |
 	 local := #testIsClean.
 	self assert: [] isClean. "closes over nothing at all"
@@ -146,11 +112,8 @@ OCClosureTests>>testIsClean [
 	self deny: [local] isClean. "closes over local variable of outer context"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testMethodArgument [
+{ #category : #testing }
+OCClosureTests >> testMethodArgument [
 	| temp block |
 	temp := 0.
 	block := [ [ temp ] ].
@@ -160,11 +123,8 @@ OCClosureTests>>testMethodArgument [
 	self assert: block value = 2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testMethodTemp [
+{ #category : #testing }
+OCClosureTests >> testMethodTemp [
 	| block1 block2 |
 	block1 := self methodArgument: 1.
 	block2 := self methodArgument: 2.
@@ -172,21 +132,15 @@ OCClosureTests>>testMethodTemp [
 	self assert: block2 value = 2
 ]
 
-{
-	#category : #testing-todo,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testToDoArgument [
+{ #category : #testing-todo }
+OCClosureTests >> testToDoArgument [
 	1 to: 5 do: [ :index |
 		collection add: [ index ] ].
 	self assertValues: #(1 2 3 4 5)
 ]
 
-{
-	#category : #testing-todo,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testToDoArgumentNotInlined [
+{ #category : #testing-todo }
+OCClosureTests >> testToDoArgumentNotInlined [
 	| block |
 	block := [ :index |
 		collection add: [ index ] ].
@@ -194,11 +148,8 @@ OCClosureTests>>testToDoArgumentNotInlined [
 	self assertValues: #(1 2 3 4 5)
 ]
 
-{
-	#category : #testing-todo,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testToDoInsideTemp [
+{ #category : #testing-todo }
+OCClosureTests >> testToDoInsideTemp [
 	1 to: 5 do: [ :index | 
 		| temp | 
 		temp := index. 
@@ -206,11 +157,8 @@ OCClosureTests>>testToDoInsideTemp [
 	self assertValues: #(1 2 3 4 5)
 ]
 
-{
-	#category : #testing-todo,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testToDoInsideTempNotInlined [
+{ #category : #testing-todo }
+OCClosureTests >> testToDoInsideTempNotInlined [
 	| block |
 	block := [ :index | 
 		| temp | 
@@ -220,11 +168,8 @@ OCClosureTests>>testToDoInsideTempNotInlined [
 	self assertValues: #(1 2 3 4 5)
 ]
 
-{
-	#category : #testing-todo,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testToDoOutsideTemp [
+{ #category : #testing-todo }
+OCClosureTests >> testToDoOutsideTemp [
 	| temp |
 	1 to: 5 do: [ :index | 
 		temp := index. 
@@ -232,11 +177,8 @@ OCClosureTests>>testToDoOutsideTemp [
 	self assertValues: #(5 5 5 5 5)
 ]
 
-{
-	#category : #testing-todo,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testToDoOutsideTempNotInlined [
+{ #category : #testing-todo }
+OCClosureTests >> testToDoOutsideTempNotInlined [
 	| block temp |
 	block := [ :index | 
 		temp := index. 
@@ -245,11 +187,8 @@ OCClosureTests>>testToDoOutsideTempNotInlined [
 	self assertValues: #(5 5 5 5 5)
 ]
 
-{
-	#category : #testing-while,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testWhileModificationAfter [
+{ #category : #testing-while }
+OCClosureTests >> testWhileModificationAfter [
 	| index |
 	index := 0.
 	[ index < 5 ] whileTrue: [
@@ -258,11 +197,8 @@ OCClosureTests>>testWhileModificationAfter [
 	self assertValues: #(5 5 5 5 5)
 ]
 
-{
-	#category : #testing-while,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testWhileModificationAfterNotInlined [
+{ #category : #testing-while }
+OCClosureTests >> testWhileModificationAfterNotInlined [
 	| index block |
 	index := 0.
 	block := [ 
@@ -272,11 +208,8 @@ OCClosureTests>>testWhileModificationAfterNotInlined [
 	self assertValues: #(5 5 5 5 5)
 ]
 
-{
-	#category : #testing-while,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testWhileModificationBefore [
+{ #category : #testing-while }
+OCClosureTests >> testWhileModificationBefore [
 	| index |
 	index := 0.
 	[ index < 5 ] whileTrue: [ 
@@ -285,11 +218,8 @@ OCClosureTests>>testWhileModificationBefore [
 	self assertValues: #(5 5 5 5 5)
 ]
 
-{
-	#category : #testing-while,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testWhileModificationBeforeNotInlined [
+{ #category : #testing-while }
+OCClosureTests >> testWhileModificationBeforeNotInlined [
 	| index block |
 	index := 0.
 	block := [ 
@@ -299,11 +229,8 @@ OCClosureTests>>testWhileModificationBeforeNotInlined [
 	self assertValues: #(5 5 5 5 5)
 ]
 
-{
-	#category : #testing-while,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testWhileWithTemp [
+{ #category : #testing-while }
+OCClosureTests >> testWhileWithTemp [
 	| index |
 	index := 0.
 	[ index < 5 ] whileTrue: [
@@ -313,11 +240,8 @@ OCClosureTests>>testWhileWithTemp [
 	self assertValues: #(1 2 3 4 5)
 ]
 
-{
-	#category : #testing-while,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testWhileWithTempIsNil [
+{ #category : #testing-while }
+OCClosureTests >> testWhileWithTempIsNil [
 	"self debug: #testWhileWithTempIsNil"
 	| index |
 	index := 0.
@@ -329,11 +253,8 @@ OCClosureTests>>testWhileWithTempIsNil [
 	self assertValues: #(nil 1 nil 2 nil 3 nil 4 nil 5)
 ]
 
-{
-	#category : #testing-while,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCClosureTests>>testWhileWithTempNotInlined [
+{ #category : #testing-while }
+OCClosureTests >> testWhileWithTempNotInlined [
 	| index block |
 	index := 0.
 	block := [

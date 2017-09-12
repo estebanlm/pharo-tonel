@@ -1,37 +1,24 @@
-"
-
-"
 Class {
 	#name : #TabModelTest,
 	#superclass : #SpecTestCase,
 	#instVars : [
 		'manager'
 	],
-	#category : #Spec-Tests-Core-Widgets,
-	#timestamp : ''
+	#category : #Spec-Tests-Core-Widgets
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabModelTest>>classToTest [
+{ #category : #running }
+TabModelTest >> classToTest [
 	^ TabModel
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabModelTest>>initializeTestedInstance [
+{ #category : #running }
+TabModelTest >> initializeTestedInstance [
 	manager := TabManagerModel new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabModelTest>>redMorphTab [
+{ #category : #'instance creation' }
+TabModelTest >> redMorphTab [
 	testedInstance
 		label: 'Red Morph';
 		icon: (testedInstance iconNamed: #smallBackIcon);
@@ -41,11 +28,8 @@ TabModelTest>>redMorphTab [
 				yourself).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabModelTest>>testChangeLabel [
+{ #category : #tests }
+TabModelTest >> testChangeLabel [
 	"issue 14885"
 
 	self redMorphTab.
@@ -58,11 +42,8 @@ TabModelTest>>testChangeLabel [
 	self assert: testedInstance label = 'Change After Opening'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabModelTest>>testSetOwner [
+{ #category : #tests }
+TabModelTest >> testSetOwner [
 	"issue 16553"
 
 	| button |

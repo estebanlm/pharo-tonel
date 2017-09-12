@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #OCNewCompilerWithChangesFunctionalTests,
 	#superclass : #TestCase,
-	#category : #OpalCompiler-Tests-Misc,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-Misc
 }
 
-{
-	#category : #'test - block returning',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testBlockReturning [
+{ #category : #'test - block returning' }
+OCNewCompilerWithChangesFunctionalTests >> testBlockReturning [
 	
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new
@@ -40,11 +33,8 @@ OCNewCompilerWithChangesFunctionalTests>>testBlockReturning [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testBlockTemp [
+{ #category : #tests }
+OCNewCompilerWithChangesFunctionalTests >> testBlockTemp [
 	
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new
@@ -95,11 +85,8 @@ self assert: (bytecode at: (index := index + 1)) = '52 <78> returnSelf'.
 
 ]
 
-{
-	#category : #other-tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testDifferentBlocksWithSameArgumentName [
+{ #category : #other-tests }
+OCNewCompilerWithChangesFunctionalTests >> testDifferentBlocksWithSameArgumentName [
 	
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new
@@ -145,11 +132,8 @@ OCNewCompilerWithChangesFunctionalTests>>testDifferentBlocksWithSameArgumentName
 	self assert: (bytecode at: (index := index + 1)) = '51 <7C> returnTop'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testMethodArgument [
+{ #category : #tests }
+OCNewCompilerWithChangesFunctionalTests >> testMethodArgument [
 	
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new 
@@ -199,11 +183,8 @@ OCNewCompilerWithChangesFunctionalTests>>testMethodArgument [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testMethodTemp [
+{ #category : #tests }
+OCNewCompilerWithChangesFunctionalTests >> testMethodTemp [
 	
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new
@@ -246,11 +227,8 @@ OCNewCompilerWithChangesFunctionalTests>>testMethodTemp [
 
 ]
 
-{
-	#category : #other-tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testModulePrimitive [
+{ #category : #other-tests }
+OCNewCompilerWithChangesFunctionalTests >> testModulePrimitive [
 	
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new 
@@ -276,11 +254,8 @@ OCNewCompilerWithChangesFunctionalTests>>testModulePrimitive [
 	
 ]
 
-{
-	#category : #'test - array compilation',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testMultiElementArray [
+{ #category : #'test - array compilation' }
+OCNewCompilerWithChangesFunctionalTests >> testMultiElementArray [
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new 
 									encoderClass:  OpalEncoderForV3PlusClosures; 
@@ -301,11 +276,8 @@ OCNewCompilerWithChangesFunctionalTests>>testMultiElementArray [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testOneFloat [
+{ #category : #tests }
+OCNewCompilerWithChangesFunctionalTests >> testOneFloat [
 	
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new 
@@ -324,11 +296,8 @@ OCNewCompilerWithChangesFunctionalTests>>testOneFloat [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testPragma [
+{ #category : #tests }
+OCNewCompilerWithChangesFunctionalTests >> testPragma [
 	
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new 
@@ -345,11 +314,8 @@ OCNewCompilerWithChangesFunctionalTests>>testPragma [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testReturnBlockInMethod [
+{ #category : #tests }
+OCNewCompilerWithChangesFunctionalTests >> testReturnBlockInMethod [
 	
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new
@@ -371,11 +337,8 @@ OCNewCompilerWithChangesFunctionalTests>>testReturnBlockInMethod [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testSetUp [
+{ #category : #tests }
+OCNewCompilerWithChangesFunctionalTests >> testSetUp [
 	
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new
@@ -398,11 +361,8 @@ OCNewCompilerWithChangesFunctionalTests>>testSetUp [
 
 ]
 
-{
-	#category : #'test - array compilation',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testSimpleArray [
+{ #category : #'test - array compilation' }
+OCNewCompilerWithChangesFunctionalTests >> testSimpleArray [
 	
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new
@@ -420,11 +380,8 @@ OCNewCompilerWithChangesFunctionalTests>>testSimpleArray [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testSteamContentsLimitedToSequenceableCollectionClass [
+{ #category : #tests }
+OCNewCompilerWithChangesFunctionalTests >> testSteamContentsLimitedToSequenceableCollectionClass [
 	| aCompiledMethod bytecode index |
 	
 	aCompiledMethod := OpalCompiler new
@@ -467,11 +424,8 @@ OCNewCompilerWithChangesFunctionalTests>>testSteamContentsLimitedToSequenceableC
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testToDoArgumentNotInlined [
+{ #category : #tests }
+OCNewCompilerWithChangesFunctionalTests >> testToDoArgumentNotInlined [
 	
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new
@@ -508,11 +462,8 @@ OCNewCompilerWithChangesFunctionalTests>>testToDoArgumentNotInlined [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testToDoInsideTempNotInlined [
+{ #category : #tests }
+OCNewCompilerWithChangesFunctionalTests >> testToDoInsideTempNotInlined [
 	"Some instructions are the same but we have a different number at he begining, and the storeTemp and popIntoTemp issue"
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new
@@ -558,11 +509,8 @@ OCNewCompilerWithChangesFunctionalTests>>testToDoInsideTempNotInlined [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testToDoOutsideTempNotInlined [
+{ #category : #tests }
+OCNewCompilerWithChangesFunctionalTests >> testToDoOutsideTempNotInlined [
 	"there seems to be a better indexzation of the temps we have one more"
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new
@@ -609,11 +557,8 @@ OCNewCompilerWithChangesFunctionalTests>>testToDoOutsideTempNotInlined [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testWhileModificationAfterNotInlined [
+{ #category : #tests }
+OCNewCompilerWithChangesFunctionalTests >> testWhileModificationAfterNotInlined [
 	"The bytecodes integers are different in some cases."
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new
@@ -671,11 +616,8 @@ OCNewCompilerWithChangesFunctionalTests>>testWhileModificationAfterNotInlined [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testWhileModificationBeforeNotInlined [
+{ #category : #tests }
+OCNewCompilerWithChangesFunctionalTests >> testWhileModificationBeforeNotInlined [
 	"The bytecodes integers are different in some cases."
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new
@@ -732,11 +674,8 @@ OCNewCompilerWithChangesFunctionalTests>>testWhileModificationBeforeNotInlined [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCNewCompilerWithChangesFunctionalTests>>testWhileWithTempNotInlined [
+{ #category : #tests }
+OCNewCompilerWithChangesFunctionalTests >> testWhileWithTempNotInlined [
 	"The bytecodes integers are different in some cases."
 	| aCompiledMethod bytecode index |
 	aCompiledMethod := OpalCompiler new

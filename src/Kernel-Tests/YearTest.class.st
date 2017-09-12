@@ -4,24 +4,17 @@ SUnit tests for year handling
 Class {
 	#name : #YearTest,
 	#superclass : #ClassTestCase,
-	#category : #Kernel-Tests-Chronology,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:48'
+	#category : #Kernel-Tests-Chronology
 }
 
-{
-	#category : #coverage,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-YearTest>>classToBeTested [
+{ #category : #coverage }
+YearTest >> classToBeTested [
 
 	^ Year
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-YearTest>>testPreviousInLeapYear [
+{ #category : #tests }
+YearTest >> testPreviousInLeapYear [
 	"self debug: #testPreviousInLeapYear"
 	
 	| leap |
@@ -30,11 +23,8 @@ YearTest>>testPreviousInLeapYear [
 	self assert: (Year year: (leap year - 1)) = leap previous 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-YearTest>>testStart [
+{ #category : #tests }
+YearTest >> testStart [
 	"self debug: #testStart"
 	
 	| yyyy |

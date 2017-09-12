@@ -17,33 +17,23 @@ Class {
 		'package',
 		'doIts'
 	],
-	#category : #RingChunkImporter,
-	#timestamp : 'GuillermoPolito 6/1/2015 10:23'
+	#category : #RingChunkImporter
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter class>>fromFileNamed: fileName [
+{ #category : #'instance creation' }
+RingChunkImporter class >> fromFileNamed: fileName [
 
 	^ self new fromFileNamed: fileName; yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter class>>fromStream: aStream [
+{ #category : #'instance creation' }
+RingChunkImporter class >> fromStream: aStream [
 
 	^ self new fileInFrom: aStream; yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>classDefinition: aString with: chgRec [
+{ #category : #private }
+RingChunkImporter >> classDefinition: aString with: chgRec [
 	| tokens theClass |
 	
 	tokens := self scannedSource: aString.
@@ -64,30 +54,21 @@ RingChunkImporter>>classDefinition: aString with: chgRec [
 				 sharedPools: ((tokens at: 11) findTokens: ' ') ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>classNamed: className [
+{ #category : #private }
+RingChunkImporter >> classNamed: className [
 
 	(package includesClassNamed: className) 
 		ifTrue:[ ^ package classNamed: className ].
 	^ self createClassNamed: className
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>classes [
+{ #category : #accessing }
+RingChunkImporter >> classes [
 	^ package classes values
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>createClassNamed: className [
+{ #category : #private }
+RingChunkImporter >> createClassNamed: className [
 	| rgClass |
 	rgClass := RGClassDefinition named: className.
 	rgClass withMetaclass.
@@ -95,11 +76,8 @@ RingChunkImporter>>createClassNamed: className [
 	^ rgClass.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>createTraitNamed: traitName [
+{ #category : #private }
+RingChunkImporter >> createTraitNamed: traitName [
 
 	| trait |
 	trait := RGTraitDefinition named: traitName.
@@ -108,50 +86,35 @@ RingChunkImporter>>createTraitNamed: traitName [
 	^ trait.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>doIts [
+{ #category : #accessing }
+RingChunkImporter >> doIts [
 	^ doIts
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>fileInFrom: aStream [
+{ #category : #reading }
+RingChunkImporter >> fileInFrom: aStream [
 
 	| changes |
 	changes := (CodeImporter readStream: aStream) parseChunks.
 	changes do: [ :change | change accept: self ].
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>fromFileNamed: aName [
+{ #category : #reading }
+RingChunkImporter >> fromFileNamed: aName [
 	
 	package := RGPackage named: aName.
 	self fileInFrom: aName asFileReference readStream.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>initialize [
+{ #category : #initialize }
+RingChunkImporter >> initialize [
 	super initialize.
 	package := RGPackage named: 'ChangeSet'.
 	doIts := Set new.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>metaClassDefinition: string with: chgRec [
+{ #category : #private }
+RingChunkImporter >> metaClassDefinition: string with: chgRec [
 	| tokens theClass |
 	
 	tokens := self scannedSource: string.
@@ -161,11 +124,8 @@ RingChunkImporter>>metaClassDefinition: string with: chgRec [
 			  instanceVariables: (tokens fourth findTokens: ' ')
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>metaTraitDefinition: string with: chgRec [
+{ #category : #private }
+RingChunkImporter >> metaTraitDefinition: string with: chgRec [
 	| tokens trait |
 	
 	tokens := self scannedSource: string.
@@ -177,11 +137,8 @@ RingChunkImporter>>metaTraitDefinition: string with: chgRec [
 	trait theMetaClass definitionSource: string
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>msgClassComment: string with: chgRec [
+{ #category : #private }
+RingChunkImporter >> msgClassComment: string with: chgRec [
 
 	| tokens theClass |
 	tokens := self scannedSource: string.
@@ -195,20 +152,14 @@ RingChunkImporter>>msgClassComment: string with: chgRec [
 		ifFalse:[ theClass ]) comment: tokens last asString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>packages [
+{ #category : #accessing }
+RingChunkImporter >> packages [
 	
 	^ { package }
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>removedMethod: string with: aChunk [
+{ #category : #private }
+RingChunkImporter >> removedMethod: string with: aChunk [
 	
 	| orClass tokens |
 	tokens := self scannedSource: string.
@@ -220,20 +171,14 @@ RingChunkImporter>>removedMethod: string with: aChunk [
 	doIts add: aChunk
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>scannedSource: aString [
+{ #category : #private }
+RingChunkImporter >> scannedSource: aString [
 
 	^ Smalltalk compiler parseLiterals: aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>traitDefinition: aString with: chgRec [
+{ #category : #private }
+RingChunkImporter >> traitDefinition: aString with: chgRec [
 
 	| tokens trait |
 	tokens := self scannedSource: aString.
@@ -245,31 +190,22 @@ RingChunkImporter>>traitDefinition: aString with: chgRec [
 			 category: tokens last
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>visitClassCommentChunk: aChunk [
+{ #category : #visitor }
+RingChunkImporter >> visitClassCommentChunk: aChunk [
 
 	(self classNamed: aChunk behaviorName)
 		comment: aChunk contents;
 		stamp: aChunk stamp.
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>visitClassOrganizationChunk: aChunk [
+{ #category : #visitor }
+RingChunkImporter >> visitClassOrganizationChunk: aChunk [
 
 	"Do nothing with class organizations for the moment"
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>visitDoItChunk: aChunk [
+{ #category : #visitor }
+RingChunkImporter >> visitDoItChunk: aChunk [
 
 	| contents |
 	contents := aChunk contents.
@@ -290,11 +226,8 @@ RingChunkImporter>>visitDoItChunk: aChunk [
 	doIts add: aChunk.
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>visitMethodChunk: aChunk [
+{ #category : #visitor }
+RingChunkImporter >> visitMethodChunk: aChunk [
 
 	| theClass theMethod |
 	theClass:= self classNamed: aChunk behaviorName.
@@ -311,11 +244,8 @@ RingChunkImporter>>visitMethodChunk: aChunk [
 		ifFalse:[ theClass addMethod: theMethod ]
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RingChunkImporter>>visitStyleChunk: aChunk [
+{ #category : #visitor }
+RingChunkImporter >> visitStyleChunk: aChunk [
 
 	"Do nothing with styles"
 ]

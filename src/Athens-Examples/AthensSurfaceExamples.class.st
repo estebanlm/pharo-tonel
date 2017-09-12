@@ -10,15 +10,11 @@ Class {
 	#instVars : [
 		'renderBlock'
 	],
-	#category : #Athens-Examples,
-	#timestamp : 'IgorStasenko 1/17/2012 16:42'
+	#category : #Athens-Examples
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>draw2Strings [
+{ #category : #examples }
+AthensSurfaceExamples class >> draw2Strings [
 "
 self subclasses anyOne exampleDrawText
 "
@@ -59,11 +55,8 @@ self subclasses anyOne exampleDrawText
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>drawFontMetrics [
+{ #category : #examples }
+AthensSurfaceExamples class >> drawFontMetrics [
 "
 self  drawFontMetrics
 "
@@ -114,11 +107,8 @@ self  drawFontMetrics
  
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>example1 [
+{ #category : #examples }
+AthensSurfaceExamples class >> example1 [
 
 "
 self  example1
@@ -137,11 +127,8 @@ self  example1
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>example10  [
+{ #category : #examples }
+AthensSurfaceExamples class >> example10 [ 
 " draw a rounded rectangle, using the arc segments
 
 AthensCairoSurfaceExamples example10.
@@ -181,11 +168,8 @@ AthensCairoSurfaceExamples example10.
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>example2 [
+{ #category : #examples }
+AthensSurfaceExamples class >> example2 [
 "
 Draw a path on surface.
 
@@ -209,11 +193,8 @@ self example2.
  
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>example3 [
+{ #category : #examples }
+AthensSurfaceExamples class >> example3 [
 " 
 Draw simple filled path, changing the transformation and colors to get some animated effects.
 
@@ -255,11 +236,8 @@ Draw simple filled path, changing the transformation and colors to get some anim
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>example3stroke [
+{ #category : #examples }
+AthensSurfaceExamples class >> example3stroke [
 " 
 Draw simple stroke  path, changing the transformation and colors to get some animated effects.
 
@@ -299,11 +277,8 @@ Draw simple stroke  path, changing the transformation and colors to get some ani
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>example4 [
+{ #category : #examples }
+AthensSurfaceExamples class >> example4 [
 	" 
 	This example demostrates that same path could be reused multiple times when drawing.
 	First, we creating a path, and later we can use it in #drawShape: command.
@@ -330,11 +305,8 @@ AthensSurfaceExamples class>>example4 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>example5 [
+{ #category : #examples }
+AthensSurfaceExamples class >> example5 [
 " draw a hollow rectangle (frame) using lineTo/moveTo commands,
  with path, consisting of two contours: outer and inner one.
 
@@ -371,11 +343,8 @@ self example5
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>example6 [
+{ #category : #examples }
+AthensSurfaceExamples class >> example6 [
 "Draw two rectangles, filled by linear gradient. 
 
 Note that it should produce same rectangles with exact same fills, because gradient paint 
@@ -410,11 +379,8 @@ self example6
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>example6point1 [
+{ #category : #examples }
+AthensSurfaceExamples class >> example6point1 [
 "Draw two rectangles, filled by linear gradient. 
 
 Note that it should produce same rectangles with exact same fills, because gradient paint 
@@ -445,11 +411,8 @@ self example6point1
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>example6stroke [
+{ #category : #examples }
+AthensSurfaceExamples class >> example6stroke [
 "
 self example6stroke
 
@@ -485,11 +448,8 @@ coordinates are affected by pathTransform matrix.
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>example7 [
+{ #category : #examples }
+AthensSurfaceExamples class >> example7 [
 "Draw two rectangles, filled by linear gradient. 
 Rotate the gradient in a loop.
 
@@ -530,11 +490,8 @@ self example7
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>example8 [
+{ #category : #examples }
+AthensSurfaceExamples class >> example8 [
 "Draw a rectangle filled by radial gradient. 
 self example8
 "
@@ -562,11 +519,8 @@ self example8
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>example9 [
+{ #category : #examples }
+AthensSurfaceExamples class >> example9 [
 "
 Fill the rectangle using image paint.
 self example9
@@ -596,11 +550,8 @@ self example9
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>exampleClip [
+{ #category : #examples }
+AthensSurfaceExamples class >> exampleClip [
 
 "
 self exampleClip
@@ -626,11 +577,8 @@ self exampleClip
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>exampleDrawForm [
+{ #category : #examples }
+AthensSurfaceExamples class >> exampleDrawForm [
 "self exampleDrawForm"
 	| surf surf2   |
 
@@ -661,11 +609,8 @@ AthensSurfaceExamples class>>exampleDrawForm [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>exampleDrawForm2 [
+{ #category : #examples }
+AthensSurfaceExamples class >> exampleDrawForm2 [
 "self exampleDrawForm2"
 	| surf  |
 		
@@ -688,11 +633,8 @@ AthensSurfaceExamples class>>exampleDrawForm2 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>exampleDrawText [
+{ #category : #examples }
+AthensSurfaceExamples class >> exampleDrawText [
 "
 self subclasses anyOne exampleDrawText
 "
@@ -719,11 +661,8 @@ self subclasses anyOne exampleDrawText
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>exampleStrokeRect [
+{ #category : #examples }
+AthensSurfaceExamples class >> exampleStrokeRect [
 " 
 Draw a frame rectangle, rotate & transform it in a loop
 
@@ -753,11 +692,8 @@ Draw a frame rectangle, rotate & transform it in a loop
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>exampleUseForm [
+{ #category : #examples }
+AthensSurfaceExamples class >> exampleUseForm [
 " self exampleUseForm"
 	| surf  form |
 	
@@ -771,74 +707,50 @@ AthensSurfaceExamples class>>exampleUseForm [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>newAsSceneFrom: aBlock [
+{ #category : #'instance creation' }
+AthensSurfaceExamples class >> newAsSceneFrom: aBlock [
 	^ self new renderBlock: aBlock; yourself
 ]
 
-{
-	#category : #'instance initialization',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>newSurface:  extent [
+{ #category : #'instance initialization' }
+AthensSurfaceExamples class >> newSurface:  extent [
 	^ AthensCairoSurfaceExamples newSurface: extent
 ]
 
-{
-	#category : #'opening view',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples class>>openViewOn: aBlock [
+{ #category : #'opening view' }
+AthensSurfaceExamples class >> openViewOn: aBlock [
 
 	^ AthensSceneView new
 		scene: (self newAsSceneFrom:aBlock);
 		openInWindow 
 ]
 
-{
-	#category : #'surface management',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples>>createSurface: anExtent [
+{ #category : #'surface management' }
+AthensSurfaceExamples >> createSurface: anExtent [
 	^ self class newSurface: anExtent
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples>>initialize [
+{ #category : #initialize }
+AthensSurfaceExamples >> initialize [
 
 	super initialize.
 
 	renderBlock := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples>>renderBlock [
+{ #category : #accessing }
+AthensSurfaceExamples >> renderBlock [
 	
 	^ renderBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples>>renderBlock: anObject [
+{ #category : #accessing }
+AthensSurfaceExamples >> renderBlock: anObject [
 	
 	renderBlock := anObject
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSurfaceExamples>>renderOn: aCanvas [
+{ #category : #drawing }
+AthensSurfaceExamples >> renderOn: aCanvas [
 	renderBlock value: aCanvas
 ]

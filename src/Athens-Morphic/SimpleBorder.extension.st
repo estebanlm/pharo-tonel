@@ -1,22 +1,14 @@
-Extension {
-	#name : #SimpleBorder
-}
+Extension { #name : #SimpleBorder }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SimpleBorder>>asAthensPaintOn: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+SimpleBorder >> asAthensPaintOn: anAthensCanvas [
 	^ self topLeftColor = self bottomRightColor
 		ifTrue: [ super asAthensPaintOn: anAthensCanvas ]
 		ifFalse: [ self asTwoColorStrokePaintOn: anAthensCanvas ]
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SimpleBorder>>asTwoColorStrokePaintOn: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+SimpleBorder >> asTwoColorStrokePaintOn: anAthensCanvas [
 	^ AthensBorderStrokePaint
 		topLeftColor: self topLeftColor
 		bottomRightColor: self bottomRightColor

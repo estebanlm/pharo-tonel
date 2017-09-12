@@ -7,46 +7,30 @@ Class {
 	#instVars : [
 		'touchExample'
 	],
-	#category : #OSWindow-SDL2-Examples-Touch,
-	#timestamp : 'MerwanOuddane 8/24/2015 17:49'
+	#category : #OSWindow-SDL2-Examples-Touch
 }
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowTouchEventHandler>>touchExample:	renderer [
+{ #category : #api }
+OSWindowTouchEventHandler >> touchExample:	renderer [
 		touchExample := renderer
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowTouchEventHandler>>visitTouchPointerDownEvent: anEvent [
+{ #category : #visiting }
+OSWindowTouchEventHandler >> visitTouchPointerDownEvent: anEvent [
 	touchExample beginMove: anEvent fingerId at: anEvent position.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowTouchEventHandler>>visitTouchPointerMoveEvent: anEvent [
+{ #category : #visiting }
+OSWindowTouchEventHandler >> visitTouchPointerMoveEvent: anEvent [
 	touchExample move: anEvent fingerId at: anEvent position
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowTouchEventHandler>>visitTouchPointerUpEvent: anEvent [
+{ #category : #visiting }
+OSWindowTouchEventHandler >> visitTouchPointerUpEvent: anEvent [
 	touchExample endMove: anEvent fingerId at: anEvent position
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowTouchEventHandler>>visitWindowCloseEvent: anEvent [
+{ #category : #visiting }
+OSWindowTouchEventHandler >> visitWindowCloseEvent: anEvent [
 	touchExample destroy
 ]

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloMemberListSpec,
 	#superclass : #MetacelloSpec,
@@ -8,72 +5,50 @@ Class {
 		'list',
 		'memberMap'
 	],
-	#category : #Metacello-Core-Members,
-	#timestamp : ''
+	#category : #Metacello-Core-Members
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>add: aSpec [
+{ #category : #actions }
+MetacelloMemberListSpec >> add: aSpec [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>addMember: aMember [
+{ #category : #adding }
+MetacelloMemberListSpec >> addMember: aMember [
 
 	self list add: aMember.
 	self clearMemberMap
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>clearMemberMap [
+{ #category : #private }
+MetacelloMemberListSpec >> clearMemberMap [
 
 	memberMap := nil.
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>collect: aBlock  [
+{ #category : #enumeration }
+MetacelloMemberListSpec >> collect: aBlock [ 
 	| newCollection |
 	newCollection :=OrderedCollection new.
 	self do: [:each | newCollection add: (aBlock value: each)].
 	^ newCollection
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>copy: aMemberSpec [
+{ #category : #actions }
+MetacelloMemberListSpec >> copy: aMemberSpec [
 
 	self addMember: aMemberSpec
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>copy: specNamed to: aSpec [
+{ #category : #actions }
+MetacelloMemberListSpec >> copy: specNamed to: aSpec [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #'toolbox support',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>deleteSpec: aSpec [
+{ #category : #'toolbox support' }
+MetacelloMemberListSpec >> deleteSpec: aSpec [
     "remove the spec from list"
 
     | member |
@@ -81,22 +56,16 @@ MetacelloMemberListSpec>>deleteSpec: aSpec [
     self list remove: member
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>detect: aBlock [
+{ #category : #enumeration }
+MetacelloMemberListSpec >> detect: aBlock [
 	"Evaluate aBlock with each of the receiver's elements as the argument. 
 	Answer the first element for which aBlock evaluates to true."
 
 	^ self detect: aBlock ifNone: [ self error: 'Object is not in the collection.' ]
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>detect: aBlock ifNone: exceptionBlock [
+{ #category : #enumeration }
+MetacelloMemberListSpec >> detect: aBlock ifNone: exceptionBlock [
 	"Evaluate aBlock with each of the receiver's elements as the argument.  
 	Answer the first element for which aBlock evaluates to true. If none  
 	evaluate to true, then evaluate the argument, exceptionBlock."
@@ -108,49 +77,34 @@ MetacelloMemberListSpec>>detect: aBlock ifNone: exceptionBlock [
 	^ exceptionBlock value
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>do: aBlock [
+{ #category : #enumeration }
+MetacelloMemberListSpec >> do: aBlock [
 
 	self map values do: aBlock
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>isEmpty [
+{ #category : #testing }
+MetacelloMemberListSpec >> isEmpty [
 
 	^self list isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>list [
+{ #category : #accessing }
+MetacelloMemberListSpec >> list [
 
 	list == nil ifTrue: [ list := OrderedCollection new ].
 	^list
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>list: aCollection [
+{ #category : #accessing }
+MetacelloMemberListSpec >> list: aCollection [
 
 	list := aCollection.
 	self clearMemberMap
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>map [
+{ #category : #accessing }
+MetacelloMemberListSpec >> map [
 	
 	| map |
 	memberMap ~~ nil ifTrue: [ ^memberMap ].
@@ -165,20 +119,14 @@ MetacelloMemberListSpec>>map [
 	^memberMap
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>mapAdd: aMemberSpec into: map [
+{ #category : #private }
+MetacelloMemberListSpec >> mapAdd: aMemberSpec into: map [
 	
 	map at: aMemberSpec name put: aMemberSpec spec
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>mapCopy: aMemberSpec into: map [
+{ #category : #private }
+MetacelloMemberListSpec >> mapCopy: aMemberSpec into: map [
     | spec |
     spec := map at: aMemberSpec sourceName ifAbsent: [  ].
     spec == nil
@@ -188,11 +136,8 @@ MetacelloMemberListSpec>>mapCopy: aMemberSpec into: map [
             map at: aMemberSpec name put: (spec copy mergeSpec: aMemberSpec spec copy) ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>mapMerge: aMemberSpec into: map [
+{ #category : #private }
+MetacelloMemberListSpec >> mapMerge: aMemberSpec into: map [
 	| spec |
 	spec :=  map at: aMemberSpec name ifAbsent: [].
 	spec == nil
@@ -200,29 +145,20 @@ MetacelloMemberListSpec>>mapMerge: aMemberSpec into: map [
 		ifFalse: [ map at: aMemberSpec name put: (spec mergeSpec: aMemberSpec spec)]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>mapRemove: aMemberSpec into: map [
+{ #category : #private }
+MetacelloMemberListSpec >> mapRemove: aMemberSpec into: map [
 	
 	map removeKey: aMemberSpec name ifAbsent: []
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>merge: aSpec [
+{ #category : #actions }
+MetacelloMemberListSpec >> merge: aSpec [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>mergeSpec: anotherSpec [
+{ #category : #merging }
+MetacelloMemberListSpec >> mergeSpec: anotherSpec [
 
 	| newSpec val |
 	newSpec := super mergeSpec: anotherSpec.
@@ -231,62 +167,44 @@ MetacelloMemberListSpec>>mergeSpec: anotherSpec [
 	^newSpec
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>notEmpty [
+{ #category : #testing }
+MetacelloMemberListSpec >> notEmpty [
 
 	^self list notEmpty
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>postCopy [
+{ #category : #copying }
+MetacelloMemberListSpec >> postCopy [
 
 	super postCopy.
 	list := list copy.
 	self clearMemberMap
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>remove: aSpec [
+{ #category : #actions }
+MetacelloMemberListSpec >> remove: aSpec [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>select: aBlock  [
+{ #category : #enumeration }
+MetacelloMemberListSpec >> select: aBlock [ 
 	| newCollection |
 	newCollection := OrderedCollection new.
 	self do: [:each | (aBlock value: each) ifTrue: [newCollection add: each]].
 	^newCollection
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>specListDetect: aBlock [
+{ #category : #enumeration }
+MetacelloMemberListSpec >> specListDetect: aBlock [
 	"Evaluate aBlock with each of the receiver's elements as the argument. 
 	Answer the first element for which aBlock evaluates to true."
 
 	^ self specListDetect: aBlock ifNone: [ self error: 'Object is not in the collection.' ]
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>specListDetect: aBlock ifNone: exceptionBlock [
+{ #category : #enumeration }
+MetacelloMemberListSpec >> specListDetect: aBlock ifNone: exceptionBlock [
 	"Evaluate aBlock with each of the receiver's elements as the argument.  
 	Answer the first element for which aBlock evaluates to true. If none  
 	evaluate to true, then evaluate the argument, exceptionBlock."
@@ -298,20 +216,14 @@ MetacelloMemberListSpec>>specListDetect: aBlock ifNone: exceptionBlock [
 	^ exceptionBlock value
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>specListDo: aBlock [
+{ #category : #enumeration }
+MetacelloMemberListSpec >> specListDo: aBlock [
 
 	self list do: [:member |  aBlock value: member spec ]
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberListSpec>>specListSelect: aBlock  [
+{ #category : #enumeration }
+MetacelloMemberListSpec >> specListSelect: aBlock [ 
 	| newCollection |
 	newCollection := OrderedCollection new.
 	self specListDo: [:each | (aBlock value: each) ifTrue: [newCollection add: each]].

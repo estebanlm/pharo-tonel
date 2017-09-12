@@ -68,15 +68,11 @@ reference](MetacelloScriptingAPI.md). There more information on [working with Gi
 Class {
 	#name : #BaselineOf,
 	#superclass : #ConfigurationOf,
-	#category : #Metacello-Base,
-	#timestamp : 'dkh 5/30/2012 16:30'
+	#category : #Metacello-Base
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-BaselineOf class>>validate [
+{ #category : #accessing }
+BaselineOf class >> validate [
   "Check the configuration for Errors, Critical Warnings, and Warnings (see class comment for MetacelloMCVersionValidator for more information). 
 	Errors identify specification issues that will result in unexpected behaviour when you load the configuration. 
 	Critical Warnings identify specification issues that may result in unexpected behavior when you load the configuration.
@@ -92,18 +88,12 @@ BaselineOf class>>validate [
     recurse: false) explore
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-BaselineOf>>projectClass [
+{ #category : #accessing }
+BaselineOf >> projectClass [
     ^ MetacelloMCBaselineProject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-BaselineOf>>versionNumberClass [
+{ #category : #accessing }
+BaselineOf >> versionNumberClass [
     ^ MetacelloVersionNumber
 ]

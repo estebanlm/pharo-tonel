@@ -12,26 +12,19 @@ Class {
 	#instVars : [
 		'isList'
 	],
-	#category : #AST-Core-Pattern,
-	#timestamp : 'md 8/9/2005 14:59'
+	#category : #AST-Core-Pattern
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMethodNode class>>selector: aSelector keywordsPositions: positionList arguments: valueNodes [
+{ #category : #'instance creation' }
+RBPatternMethodNode class >> selector: aSelector keywordsPositions: positionList arguments: valueNodes [
 	^(aSelector isPatternVariable) 
 		ifTrue: [super selector: aSelector keywordsPositions: positionList arguments: valueNodes]
 		ifFalse: 
 			[RBMethodNode selector: aSelector keywordsPositions: positionList arguments: valueNodes]
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMethodNode>>copyInContext: aDictionary  [
+{ #category : #matching }
+RBPatternMethodNode >> copyInContext: aDictionary [ 
 	| keywordSelector |
 	keywordSelector := self isSelectorList 
 		ifTrue: [ aDictionary at: self selectorParts first ]
@@ -47,27 +40,18 @@ RBPatternMethodNode>>copyInContext: aDictionary  [
 		yourself
 ]
 
-{
-	#category : #testing-matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMethodNode>>isPatternNode [
+{ #category : #testing-matching }
+RBPatternMethodNode >> isPatternNode [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMethodNode>>isSelectorList [
+{ #category : #testing }
+RBPatternMethodNode >> isSelectorList [
 	^isList
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMethodNode>>match: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBPatternMethodNode >> match: aNode inContext: aDictionary [ 
 	aNode class = self matchingClass 
 		ifFalse: [ ^ false ].
 	aDictionary at: '-source-' put: aNode source.
@@ -81,11 +65,8 @@ RBPatternMethodNode>>match: aNode inContext: aDictionary  [
 		and: [ body match: aNode body inContext: aDictionary ] ]
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMethodNode>>matchArgumentsAgainst: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBPatternMethodNode >> matchArgumentsAgainst: aNode inContext: aDictionary [ 
 	self arguments size = aNode arguments size
 		ifFalse: [ ^ false ].
 	(self matchSelectorAgainst: aNode inContext: aDictionary) 
@@ -96,11 +77,8 @@ RBPatternMethodNode>>matchArgumentsAgainst: aNode inContext: aDictionary  [
 	^ true
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMethodNode>>matchSelectorAgainst: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBPatternMethodNode >> matchSelectorAgainst: aNode inContext: aDictionary [ 
 	self selectorParts with: aNode selectorParts do: [ :first :second |
 		| keyword |
 		keyword := aDictionary
@@ -114,19 +92,13 @@ RBPatternMethodNode>>matchSelectorAgainst: aNode inContext: aDictionary  [
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMethodNode>>matchingClass [
+{ #category : #private }
+RBPatternMethodNode >> matchingClass [
 	^RBMethodNode
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMethodNode>>selector: aSymbol keywordsPositions: positionList arguments: valueNodes  [
+{ #category : #initialize-release }
+RBPatternMethodNode >> selector: aSymbol keywordsPositions: positionList arguments: valueNodes [ 
 	super selector: aSymbol keywordsPositions: positionList arguments: valueNodes.
 	isList := (aSymbol keywords first value at: 2) == self listCharacter
 ]

@@ -45,33 +45,23 @@ Class {
 		'stepCondition',
 		'wantsAutomaticRefresh'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'DamienCassou 7/19/2011 21:14'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>acceptsSelection [
+{ #category : #accessing }
+GLMPresentation >> acceptsSelection [
 	"this flag is used to specify whether the presentation
 	is allowed to populate the selection port or not"
 	^ acceptsSelection ifNil: [acceptsSelection := true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>acceptsSelection: aBoolean [
+{ #category : #accessing }
+GLMPresentation >> acceptsSelection: aBoolean [
 	acceptsSelection := aBoolean
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>act: aBlock entitled: aString  [
+{ #category : #'scripting actions' }
+GLMPresentation >> act: aBlock entitled: aString [ 
 	 
 	self 
 		addAction: 
@@ -81,11 +71,8 @@ GLMPresentation>>act: aBlock entitled: aString  [
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>act: aBlock entitled: aString categorized: anotherString [
+{ #category : #'scripting actions' }
+GLMPresentation >> act: aBlock entitled: aString categorized: anotherString [
 	 
 	self 
 		addAction: 
@@ -96,11 +83,8 @@ GLMPresentation>>act: aBlock entitled: aString categorized: anotherString [
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>act: aBlock icon: anIcon entitled: aString [
+{ #category : #'scripting actions' }
+GLMPresentation >> act: aBlock icon: anIcon entitled: aString [
 	self 
 		addAction: 
 			((GLMGenericAction new) 
@@ -110,11 +94,8 @@ GLMPresentation>>act: aBlock icon: anIcon entitled: aString [
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>act: aBlock icon: anIcon on: aCharacter entitled: aString [
+{ #category : #'scripting actions' }
+GLMPresentation >> act: aBlock icon: anIcon on: aCharacter entitled: aString [
 	self 
 		addAction: 
 			((GLMGenericAction new) 
@@ -125,27 +106,18 @@ GLMPresentation>>act: aBlock icon: anIcon on: aCharacter entitled: aString [
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>act: aBlock iconName: aSymbol entitled: aString [
+{ #category : #'scripting actions' }
+GLMPresentation >> act: aBlock iconName: aSymbol entitled: aString [
 	self act: aBlock icon: (self iconNamed: aSymbol) entitled: aString
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>act: aBlock iconName: aSymbol on: aCharacter entitled: aString [
+{ #category : #'scripting actions' }
+GLMPresentation >> act: aBlock iconName: aSymbol on: aCharacter entitled: aString [
 	self act: aBlock icon: (self iconNamed: aSymbol) on: aCharacter entitled: aString
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>act: aBlock on: aCharacter  [
+{ #category : #'scripting actions' }
+GLMPresentation >> act: aBlock on: aCharacter [ 
 	 
 	self 
 		addAction: 
@@ -155,11 +127,8 @@ GLMPresentation>>act: aBlock on: aCharacter  [
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>act: aBlock on: aCharacter entitled: aString  [
+{ #category : #'scripting actions' }
+GLMPresentation >> act: aBlock on: aCharacter entitled: aString [ 
 	 
 	self 
 		addAction: 
@@ -170,11 +139,8 @@ GLMPresentation>>act: aBlock on: aCharacter entitled: aString  [
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>act: aBlock on: aCharacter entitled: aString categorized: anotherString  [
+{ #category : #'scripting actions' }
+GLMPresentation >> act: aBlock on: aCharacter entitled: aString categorized: anotherString [ 
 	 
 	self 
 		addAction: 
@@ -186,39 +152,27 @@ GLMPresentation>>act: aBlock on: aCharacter entitled: aString categorized: anoth
 				yourself)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>actions [
+{ #category : #accessing }
+GLMPresentation >> actions [
 	"These are actions that make sense for the entire presentation."
 	actions ifNil: [actions := OrderedCollection new].
 	^ actions
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>actions: aBlock  [
+{ #category : #'scripting actions' }
+GLMPresentation >> actions: aBlock [ 
 	self deprecated: 'use dynamicActionsOnSelection: for contextual actions, and dynamicActions for presentation-wide actions'.
 	^ self dynamicActionsOnSelection: aBlock 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>addAction: anAction  [
+{ #category : #accessing }
+GLMPresentation >> addAction: anAction [ 
 	 
 	self actions addLast: anAction
 ]
 
-{
-	#category : #statusbar,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>addDefaultStatusbarTransmissionFrom: aPane [
+{ #category : #statusbar }
+GLMPresentation >> addDefaultStatusbarTransmissionFrom: aPane [
 	| defaultTransmission |
 	defaultTransmission := GLMTransmission new
 		ensureReplacePresentationsStrategy;
@@ -229,11 +183,8 @@ GLMPresentation>>addDefaultStatusbarTransmissionFrom: aPane [
 	self addTransmission: defaultTransmission.
 ]
 
-{
-	#category : #transmitting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>addRawSelectionTransmissionTo: aPortSymbol [
+{ #category : #transmitting }
+GLMPresentation >> addRawSelectionTransmissionTo: aPortSymbol [
 	^ rawSelectionTransmissions
 		add:
 			((GLMTransmission new)
@@ -249,86 +200,56 @@ GLMPresentation>>addRawSelectionTransmissionTo: aPortSymbol [
 								yourself))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>addSelectionAction: anAction [
+{ #category : #accessing }
+GLMPresentation >> addSelectionAction: anAction [
 	self selectionActions add: anAction
 ]
 
-{
-	#category : #statusbar,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>addStatusbar [
+{ #category : #statusbar }
+GLMPresentation >> addStatusbar [
 	self hasStatusbar: true
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>allActions  [
+{ #category : #accessing }
+GLMPresentation >> allActions [ 
 	^ (self actions, self dynamicActions) 
 			select: [ :each | each isAvailableOn: self ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>allActionsWithShortcuts  [
+{ #category : #accessing }
+GLMPresentation >> allActionsWithShortcuts [ 
 	^ (self allActions, self allSelectionActions) select: [ :action | action hasShortcut ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>allSelectionActions  [
+{ #category : #accessing }
+GLMPresentation >> allSelectionActions [ 
 	^ (self selectionActions, self dynamicActionsOnSelection)
 			select: [ :each | each isAvailableOn: self ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>allowAllNil [
+{ #category : #scripting }
+GLMPresentation >> allowAllNil [
 	^ self useExplicitAllNil
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>allowNil [
+{ #category : #scripting }
+GLMPresentation >> allowNil [
 	^ self useExplicitNotNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>color [
+{ #category : #accessing }
+GLMPresentation >> color [
 	^ color
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>color: aSymbolOrColor [
+{ #category : #accessing }
+GLMPresentation >> color: aSymbolOrColor [
 	color := aSymbolOrColor
 ]
 
-{
-	#category : #'accessing values',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>colorValue [
+{ #category : #'accessing values' }
+GLMPresentation >> colorValue [
 	^ self color notNil
 		ifTrue: [ self color glamourValue: self entity ]
 		ifFalse: [ self color ]
@@ -339,29 +260,20 @@ GLMPresentation>>colorValue [
 		ifFalse: [ self color ]"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>condition  [
+{ #category : #accessing }
+GLMPresentation >> condition [ 
 	 
 	^condition ifNil: [condition := [true]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>condition: anObject  [
+{ #category : #accessing }
+GLMPresentation >> condition: anObject [ 
 	 
 	condition := anObject
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>copy [
+{ #category : #copying }
+GLMPresentation >> copy [
 	"we are overriding the copy method simply to retain the tree of all prototype presentations. 
 	this is useful for debugging."
 
@@ -372,55 +284,37 @@ GLMPresentation>>copy [
 	^ copy
 ]
 
-{
-	#category : #'accessing validation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>customValidation [
+{ #category : #'accessing validation' }
+GLMPresentation >> customValidation [
 	^ customValidation
 ]
 
-{
-	#category : #'accessing validation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>customValidation: aBlock [
+{ #category : #'accessing validation' }
+GLMPresentation >> customValidation: aBlock [
 	customValidation := aBlock.
 	shouldValidate := true.
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>defaultValidate: anObject on: aPort  [
+{ #category : #validation }
+GLMPresentation >> defaultValidate: anObject on: aPort [ 
 	"by default any object is allowed in any port"
 	"override this method in subclasses to specify stronger constraints"
 	^ true
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>display: aBlock  [
+{ #category : #scripting }
+GLMPresentation >> display: aBlock [ 
 	 
 	self transformation: aBlock
 ]
 
-{
-	#category : #'accessing values',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>displayValue [
+{ #category : #'accessing values' }
+GLMPresentation >> displayValue [
 	^ cachedDisplayedValue := self transformation glamourValue: self entity
 ]
 
-{
-	#category : #'accessing values',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>displayedValue [
+{ #category : #'accessing values' }
+GLMPresentation >> displayedValue [
 	"This returns the cached displayed value.
 	
 	This is particularly useful when we need to work with the
@@ -428,11 +322,8 @@ GLMPresentation>>displayedValue [
 	^ cachedDisplayedValue
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>doValidate: anObject on: aPort  [
+{ #category : #validation }
+GLMPresentation >> doValidate: anObject on: aPort [ 
 	^ self customValidation isNil ifFalse: [ 
 		self customValidation glamourValue: (
 			anObject asGlamorousMultiValue,
@@ -441,30 +332,21 @@ GLMPresentation>>doValidate: anObject on: aPort  [
 	ifTrue: [ self defaultValidate: anObject on: aPort ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>dynamicActions [
+{ #category : #accessing }
+GLMPresentation >> dynamicActions [
 	"These are actions that make sense for the entire presentation.
 	They are dynamic in the sense that they will be evaluated lazily by the renderer"
 	dynamicActionsBlock isNil ifTrue: [ ^ OrderedCollection new ].
 	^ dynamicActionsBlock glamourValue: self
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>dynamicActions: aBlock  [
+{ #category : #'scripting actions' }
+GLMPresentation >> dynamicActions: aBlock [ 
 	dynamicActionsBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>dynamicActionsOnSelection [
+{ #category : #accessing }
+GLMPresentation >> dynamicActionsOnSelection [
 	"These are actions that make sense only in the context of values held in the selection port.
 	They are dynamic in the sense that they will be evaluated lazily by the renderer"
 	(selectionDynamicActionsBlock isNil or: [ 
@@ -473,35 +355,23 @@ GLMPresentation>>dynamicActionsOnSelection [
 	^ selectionDynamicActionsBlock glamourValue: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>dynamicActionsOnSelection: aBlock [
+{ #category : #accessing }
+GLMPresentation >> dynamicActionsOnSelection: aBlock [
 	selectionDynamicActionsBlock := aBlock
 ]
 
-{
-	#category : #'accessing ports',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>entity [
+{ #category : #'accessing ports' }
+GLMPresentation >> entity [
 	^ (self pane port: #entity) value
 ]
 
-{
-	#category : #'accessing ports',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>entity: anObject [
+{ #category : #'accessing ports' }
+GLMPresentation >> entity: anObject [
 	(self pane port: #entity) value: anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>gtActionsIn: composite [
+{ #category : #'as yet unclassified' }
+GLMPresentation >> gtActionsIn: composite [
 	<gtInspectorPresentationOrder: 50>
 	composite list 
 		title: 'Actions';
@@ -509,61 +379,40 @@ GLMPresentation>>gtActionsIn: composite [
 		format: [ :each | each gtDisplayString ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>hasActions [
+{ #category : #testing }
+GLMPresentation >> hasActions [
 	^ self allActions notEmpty
 ]
 
-{
-	#category : #statusbar,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>hasStatusbar [
+{ #category : #statusbar }
+GLMPresentation >> hasStatusbar [
 	^ statusPane notNil
 ]
 
-{
-	#category : #statusbar,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>hasStatusbar: aBoolean [
+{ #category : #statusbar }
+GLMPresentation >> hasStatusbar: aBoolean [
 	aBoolean ifTrue: [
 		statusPane := self addPane: (GLMPane new name: self class defaultStatusbarPane) ]
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>hasTitle [
+{ #category : #testing }
+GLMPresentation >> hasTitle [
 	^ title notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>hasTitleIcon [
+{ #category : #testing }
+GLMPresentation >> hasTitleIcon [
 	^ self titleIcon notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>hasTransformation [
+{ #category : #testing }
+GLMPresentation >> hasTransformation [
 	^ transformation isNotNil and: [ transformation ~= #yourself ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>initialize [
+{ #category : #initialize-release }
+GLMPresentation >> initialize [
 	super initialize.
 	updateActions := OrderedCollection new.
 	portChangeActions := OrderedCollection new.
@@ -571,39 +420,27 @@ GLMPresentation>>initialize [
 	self addRawSelectionTransmissionTo: #selection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>initialize: aBlock [
+{ #category : #accessing }
+GLMPresentation >> initialize: aBlock [
 	"aBlock is called when the presentation is placed on a pane as a result
 	of a transmission. It can be used to initialize  multiple ports."
 
 	initializationBlock := aBlock
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>initializePresentation [
+{ #category : #initialize-release }
+GLMPresentation >> initializePresentation [
 	initializationBlock ifNotNil: [ initializationBlock value: self ]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>innerPortEvent: aPortEvent  [
+{ #category : #events }
+GLMPresentation >> innerPortEvent: aPortEvent [ 
 	 "Regular presentations do not have inner ports,
 	  so the default behaviour is to do nothing"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>matches  [
+{ #category : #testing }
+GLMPresentation >> matches [ 
 	<debuggingStone: #presentationCondition label: 'Presentation condition'>
 	"answer true iff the presentation matches the current context so that it can be displayed"
 	^ (self usesImplicitAllNil
@@ -615,56 +452,38 @@ GLMPresentation>>matches  [
 			(self condition glamourValue: self entity) = true]
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>noActions [
+{ #category : #'scripting actions' }
+GLMPresentation >> noActions [
 	actions := nil.
 	dynamicActionsBlock := nil.
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>noSelection [
+{ #category : #scripting }
+GLMPresentation >> noSelection [
 	self acceptsSelection: false
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>noTitle [
+{ #category : #scripting }
+GLMPresentation >> noTitle [
 	title := nil.
 	titleIcon := nil
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>noTitleIcon [
+{ #category : #scripting }
+GLMPresentation >> noTitleIcon [
 	titleIcon := nil
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>onChangeOfPort: aPortName act: aBlock [
+{ #category : #'scripting actions' }
+GLMPresentation >> onChangeOfPort: aPortName act: aBlock [
 	self portChangeActions add: (
 		GLMPortChangeAction new 
 			portName: aPortName;
 			action: aBlock)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>open: aBlock on: aCharacter entitled: aString  [
+{ #category : #scripting }
+GLMPresentation >> open: aBlock on: aCharacter entitled: aString [ 
 	 
 	self 
 		addAction: 
@@ -675,11 +494,8 @@ GLMPresentation>>open: aBlock on: aCharacter entitled: aString  [
 				yourself)
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>outerPortEvent: aPortEvent [
+{ #category : #events }
+GLMPresentation >> outerPortEvent: aPortEvent [
 	self announce: (GLMContextChanged new
 				presentation: self; 
 				property: aPortEvent portName; 
@@ -691,49 +507,34 @@ GLMPresentation>>outerPortEvent: aPortEvent [
 			each actOn: self ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>pane [
+{ #category : #accessing }
+GLMPresentation >> pane [
 	^ pane ifNil: [
 		pane := (GLMPane named: 'root' in: GLMNoBrowser new) 
 				addPresentationSilently: self; 
 				yourself]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>pane: aPane  [
+{ #category : #accessing }
+GLMPresentation >> pane: aPane [ 
 	 
 	pane := aPane
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>parentPrototype [
+{ #category : #copying }
+GLMPresentation >> parentPrototype [
 	^ parentPrototype
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>parentPrototype: aPresentation [
+{ #category : #copying }
+GLMPresentation >> parentPrototype: aPresentation [
 	"used to keep track of the (prototype) presentation from which
 	the current one was copied"
 	parentPrototype := aPresentation
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>populate: aPortSymbol icon: anIcon entitled: aString with: aBlock  [
+{ #category : #'scripting actions' }
+GLMPresentation >> populate: aPortSymbol icon: anIcon entitled: aString with: aBlock [ 
 	 
 	self 
 		addAction: 
@@ -748,11 +549,8 @@ GLMPresentation>>populate: aPortSymbol icon: anIcon entitled: aString with: aBlo
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>populate: aPortSymbol icon: anIcon on: aCharacter entitled: aString with: aBlock  [
+{ #category : #'scripting actions' }
+GLMPresentation >> populate: aPortSymbol icon: anIcon on: aCharacter entitled: aString with: aBlock [ 
 	 
 	self 
 		addAction: 
@@ -768,29 +566,20 @@ GLMPresentation>>populate: aPortSymbol icon: anIcon on: aCharacter entitled: aSt
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>populate: aPortSymbol iconName: aSymbol entitled: aString with: aBlock  [
+{ #category : #'scripting actions' }
+GLMPresentation >> populate: aPortSymbol iconName: aSymbol entitled: aString with: aBlock [ 
 	 
 	self populate: aPortSymbol icon: (self iconNamed: aSymbol) entitled: aString with: aBlock 
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>populate: aPortSymbol iconName: aSymbol on: aCharacter entitled: aString with: aBlock  [
+{ #category : #'scripting actions' }
+GLMPresentation >> populate: aPortSymbol iconName: aSymbol on: aCharacter entitled: aString with: aBlock [ 
 	 
 	self populate: aPortSymbol icon: (self iconNamed: aSymbol) on: aCharacter entitled: aString with: aBlock 
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>populate: aPortSymbol on: aCharacter entitled: aString with: aBlock  [
+{ #category : #'scripting actions' }
+GLMPresentation >> populate: aPortSymbol on: aCharacter entitled: aString with: aBlock [ 
 	 
 	self 
 		addAction: 
@@ -805,11 +594,8 @@ GLMPresentation>>populate: aPortSymbol on: aCharacter entitled: aString with: aB
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>populate: aPortSymbol on: aCharacter with: aBlock [
+{ #category : #'scripting actions' }
+GLMPresentation >> populate: aPortSymbol on: aCharacter with: aBlock [
 	self addAction: 
 			((GLMGenericAction new) 
 				action: ((GLMPortUpdater new) 
@@ -820,27 +606,18 @@ GLMPresentation>>populate: aPortSymbol on: aCharacter with: aBlock [
 				yourself)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>portChangeActions [
+{ #category : #accessing }
+GLMPresentation >> portChangeActions [
 	^ portChangeActions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>portChangeActions: anObject [
+{ #category : #accessing }
+GLMPresentation >> portChangeActions: anObject [
 	portChangeActions := anObject
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>postCopy [
+{ #category : #copying }
+GLMPresentation >> postCopy [
 	super postCopy.
 	pane := nil.
 	self flag: 'self unregisterFromAllAnnouncements.'.
@@ -854,11 +631,8 @@ GLMPresentation>>postCopy [
 	rawSelectionTransmissions do: [:transmission | transmission destination presentation: self]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>printOn: aStream [
+{ #category : #printing }
+GLMPresentation >> printOn: aStream [
 	super printOn: aStream.
 	aStream
 		nextPutAll: '(id=';
@@ -870,56 +644,38 @@ GLMPresentation>>printOn: aStream [
 		nextPutAll: ')'
 ]
 
-{
-	#category : #'accessing ports',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>rawSelection [
+{ #category : #'accessing ports' }
+GLMPresentation >> rawSelection [
 	^ (self pane port: #rawSelection) value
 ]
 
-{
-	#category : #transmitting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>rawSelectionTransmissionFor: aPortSymbol ifNone: ifNoneBlock [
+{ #category : #transmitting }
+GLMPresentation >> rawSelectionTransmissionFor: aPortSymbol ifNone: ifNoneBlock [
 	^ rawSelectionTransmissions
 		detect: [ :transmission | transmission destination port name = aPortSymbol ]
 		ifNone: ifNoneBlock
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>registerAnnouncements [
+{ #category : #updating }
+GLMPresentation >> registerAnnouncements [
 	"this method is called from the rendering code"
 	self flag: 'The announcements should potentially be interested in any ports, not just in entity'.
 	updateActions do: [:each | each registerInPresentation ].
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>registeredAnnouncers [
+{ #category : #updating }
+GLMPresentation >> registeredAnnouncers [
 	^ registeredAnnouncers ifNil: [registeredAnnouncers := OrderedCollection new]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMPresentation >> renderGlamorouslyOn: aRenderer [ 
 	self registerAnnouncements.
 	^aRenderer renderPresentation: self
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>requestRefresh [
+{ #category : #updating }
+GLMPresentation >> requestRefresh [
 	"I send the presentation a request to update that the presentation can ignore depending
 	on it's state. For example the presentation can ingnore this if it is not visible on screen.
 	Use #update to force a refresh."
@@ -928,41 +684,29 @@ GLMPresentation>>requestRefresh [
 	self announce: (GLMPresentationRefreshRequest new presentation: self)
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>rootPrototype [
+{ #category : #copying }
+GLMPresentation >> rootPrototype [
 	^ self parentPrototype isNil 
 		ifTrue: [ self ] 
 		ifFalse: [ self parentPrototype rootPrototype ]
 
 ]
 
-{
-	#category : #'accessing ports',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selection [
+{ #category : #'accessing ports' }
+GLMPresentation >> selection [
 	^ (self pane port: #selection) value
 ]
 
-{
-	#category : #'accessing ports',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selection: anObject [
+{ #category : #'accessing ports' }
+GLMPresentation >> selection: anObject [
 	"Tell the pane about the new selection. This method is called when the user changes a view's selection' (e.g., he clicks on an element in a list morph)." 
 	(self pane port: #rawSelection) value: anObject.
 	self acceptsSelection ifFalse: [^ self].
 	rawSelectionTransmissions do: #transmit
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionAct: aBlock entitled: aString  [
+{ #category : #'scripting actions' }
+GLMPresentation >> selectionAct: aBlock entitled: aString [ 
 	 
 	self 
 		addSelectionAction: 
@@ -972,11 +716,8 @@ GLMPresentation>>selectionAct: aBlock entitled: aString  [
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionAct: aBlock entitled: aString categorized: anotherString [
+{ #category : #'scripting actions' }
+GLMPresentation >> selectionAct: aBlock entitled: aString categorized: anotherString [
 	 
 	self 
 		addSelectionAction: 
@@ -987,11 +728,8 @@ GLMPresentation>>selectionAct: aBlock entitled: aString categorized: anotherStri
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionAct: aBlock entitled: aString condition: conditionBlock [
+{ #category : #'scripting actions' }
+GLMPresentation >> selectionAct: aBlock entitled: aString condition: conditionBlock [
 	 
 	self 
 		addSelectionAction: 
@@ -1002,11 +740,8 @@ GLMPresentation>>selectionAct: aBlock entitled: aString condition: conditionBloc
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionAct: aBlock entitled: aString enabledWhen: conditionBlock [
+{ #category : #'scripting actions' }
+GLMPresentation >> selectionAct: aBlock entitled: aString enabledWhen: conditionBlock [
 	 
 	self 
 		addSelectionAction: 
@@ -1017,11 +752,8 @@ GLMPresentation>>selectionAct: aBlock entitled: aString enabledWhen: conditionBl
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionAct: aBlock icon: anIcon entitled: aString [
+{ #category : #'scripting actions' }
+GLMPresentation >> selectionAct: aBlock icon: anIcon entitled: aString [
 	self 
 		addSelectionAction: 
 			((GLMGenericAction new) 
@@ -1031,11 +763,8 @@ GLMPresentation>>selectionAct: aBlock icon: anIcon entitled: aString [
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionAct: aBlock icon: anIcon on: aCharacter entitled: aString  [
+{ #category : #'scripting actions' }
+GLMPresentation >> selectionAct: aBlock icon: anIcon on: aCharacter entitled: aString [ 
 	 
 	self 
 		addSelectionAction: 
@@ -1047,28 +776,19 @@ GLMPresentation>>selectionAct: aBlock icon: anIcon on: aCharacter entitled: aStr
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionAct: aBlock iconName: aSymbol entitled: aString [
+{ #category : #'scripting actions' }
+GLMPresentation >> selectionAct: aBlock iconName: aSymbol entitled: aString [
 	self selectionAct: aBlock icon: (self iconNamed: aSymbol) entitled: aString
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionAct: aBlock iconName: aSymbol on: aCharacter entitled: aString  [
+{ #category : #'scripting actions' }
+GLMPresentation >> selectionAct: aBlock iconName: aSymbol on: aCharacter entitled: aString [ 
 	 
 	self selectionAct: aBlock icon: (self iconNamed: aSymbol) on: aCharacter entitled: aString
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionAct: aBlock on: aCharacter  [
+{ #category : #'scripting actions' }
+GLMPresentation >> selectionAct: aBlock [ on: aCharacter 
 	 
 	self 
 		addSelectionAction: 
@@ -1078,11 +798,8 @@ GLMPresentation>>selectionAct: aBlock on: aCharacter  [
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionAct: aBlock on: aCharacter entitled: aString  [
+{ #category : #'scripting actions' }
+GLMPresentation >> selectionAct: aBlock on: aCharacter entitled: aString [ 
 	 
 	self 
 		addSelectionAction: 
@@ -1093,28 +810,19 @@ GLMPresentation>>selectionAct: aBlock on: aCharacter entitled: aString  [
 				yourself)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionActions [
+{ #category : #accessing }
+GLMPresentation >> selectionActions [
 	"These are actions that make sense only in the context of values held in the selection port."
 	^ selectionActions ifNil: [ selectionActions := OrderedCollection new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionActions: anObject [
+{ #category : #accessing }
+GLMPresentation >> selectionActions: anObject [
 	selectionActions := anObject
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionPopulate: aPortSymbol entitled: aString with: aBlock  [
+{ #category : #'scripting actions' }
+GLMPresentation >> selectionPopulate: aPortSymbol entitled: aString with: aBlock [ 
 	 
 	self 
 		addSelectionAction: 
@@ -1128,11 +836,8 @@ GLMPresentation>>selectionPopulate: aPortSymbol entitled: aString with: aBlock  
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionPopulate: aPortSymbol on: aCharacter entitled: aString with: aBlock  [
+{ #category : #'scripting actions' }
+GLMPresentation >> selectionPopulate: aPortSymbol on: aCharacter entitled: aString with: aBlock [ 
 	 
 	self 
 		addSelectionAction: 
@@ -1147,11 +852,8 @@ GLMPresentation>>selectionPopulate: aPortSymbol on: aCharacter entitled: aString
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionSpawn: aBlock entitled: aString  [
+{ #category : #'scripting actions' }
+GLMPresentation >> selectionSpawn: aBlock entitled: aString [ 
 	 
 	"These are actions that return a glamour browser to open at the end."
 	self 
@@ -1162,71 +864,47 @@ GLMPresentation>>selectionSpawn: aBlock entitled: aString  [
 				yourself)
 ]
 
-{
-	#category : #transmitting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionTransformation [
+{ #category : #transmitting }
+GLMPresentation >> selectionTransformation [
 	"this is used for transforming the object before updating the selection"
 	^ self selectionTransmission transformation ifNil: [#yourself]
 ]
 
-{
-	#category : #transmitting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionTransformation: anObject  [
+{ #category : #transmitting }
+GLMPresentation >> selectionTransformation: anObject [ 
 	self selectionTransmission 	transformation: anObject 
 ]
 
-{
-	#category : #transmitting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>selectionTransmission [
+{ #category : #transmitting }
+GLMPresentation >> selectionTransmission [
 	^ self rawSelectionTransmissionFor: #selection ifNone: [nil]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>send: aBlock  [
+{ #category : #scripting }
+GLMPresentation >> send: aBlock [ 
 	self selectionTransformation: aBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>send: aBlock as: aPortSymbol [
+{ #category : #scripting }
+GLMPresentation >> send: aBlock as: aPortSymbol [
 	(self
 			rawSelectionTransmissionFor: aPortSymbol
 			ifNone: [ self addRawSelectionTransmissionTo: aPortSymbol ])
 		transformation: aBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>sendOneOrMultiple [
+{ #category : #scripting }
+GLMPresentation >> sendOneOrMultiple [
 	self sendOneOrMultipleAs: Array
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>sendOneOrMultipleAs: aCollectionClass [
+{ #category : #scripting }
+GLMPresentation >> sendOneOrMultipleAs: aCollectionClass [
 	self sendOneOrMultipleAs: aCollectionClass updatedBy: [ :aCollection | aCollection ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>sendOneOrMultipleAs: aCollectionClass updatedBy: oneArgBlock [
+{ #category : #scripting }
+GLMPresentation >> sendOneOrMultipleAs: aCollectionClass updatedBy: oneArgBlock [
 	"It returns one selected item or a collection of aCollectionClass updated by oneArgBlock.
 	oneArgBlock can add additional information to the collection or transform the collection."
 	self send: [ :linkedListOrNil |
@@ -1239,43 +917,28 @@ GLMPresentation>>sendOneOrMultipleAs: aCollectionClass updatedBy: oneArgBlock [
 		 ]
 ]
 
-{
-	#category : #'accessing validation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>shouldValidate [
+{ #category : #'accessing validation' }
+GLMPresentation >> shouldValidate [
 	^ shouldValidate ifNil: [shouldValidate := false]
 ]
 
-{
-	#category : #'accessing validation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>shouldValidate: aBoolean [
+{ #category : #'accessing validation' }
+GLMPresentation >> shouldValidate: aBoolean [
 	shouldValidate := aBoolean 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>sourceContext [
+{ #category : #accessing }
+GLMPresentation >> sourceContext [
 	^ sourceLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>sourceContext: aContext [
+{ #category : #accessing }
+GLMPresentation >> sourceContext: aContext [
 	sourceLink := aContext
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>spawn: aBlock entitled: aString  [
+{ #category : #'scripting actions' }
+GLMPresentation >> spawn: aBlock entitled: aString [ 
 	"These are actions that return a glamour browser to open at the end."
 	self 
 		addAction: 
@@ -1285,11 +948,8 @@ GLMPresentation>>spawn: aBlock entitled: aString  [
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>spawn: aBlock icon: anIcon entitled: aString [
+{ #category : #'scripting actions' }
+GLMPresentation >> spawn: aBlock icon: anIcon entitled: aString [
 	self 
 		addAction: 
 			((GLMSpawnBrowserAction new) 
@@ -1299,131 +959,86 @@ GLMPresentation>>spawn: aBlock icon: anIcon entitled: aString [
 				yourself)
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>spawn: aBlock iconName: aSymbol entitled: aString [
+{ #category : #'scripting actions' }
+GLMPresentation >> spawn: aBlock iconName: aSymbol entitled: aString [
 	self spawn: aBlock icon: (self iconNamed: aSymbol) entitled: aString
 	
 ]
 
-{
-	#category : #'accessing ports',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>status: anObject  [
+{ #category : #'accessing ports' }
+GLMPresentation >> status: anObject [ 
 	self flag: 'what kind of transformation should we want here?'.
 	(self pane port: #status) value: (self selectionTransformation glamourValue: anObject)
 ]
 
-{
-	#category : #statusbar,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>statusbarPane [
+{ #category : #statusbar }
+GLMPresentation >> statusbarPane [
 	^ statusPane
 ]
 
-{
-	#category : #statusbar,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>statusbarPresentation [
+{ #category : #statusbar }
+GLMPresentation >> statusbarPresentation [
 	^ GLMLabelPresentation new
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>step [
+{ #category : #stepping }
+GLMPresentation >> step [
 	"Be default no action is performed. Custom presentations that enable 
 	stepping should specify a concrete behaviour."
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>stepCondition [
+{ #category : #stepping }
+GLMPresentation >> stepCondition [
 
 	^ stepCondition ifNil: [ [ false ] ]
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>stepCondition: aBlock [
+{ #category : #stepping }
+GLMPresentation >> stepCondition: aBlock [
 
 	stepCondition := aBlock
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>stepTime [
+{ #category : #stepping }
+GLMPresentation >> stepTime [
 
 	^ stepTime ifNil: [ super stepTime ]
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>stepTime: anInteger [
+{ #category : #stepping }
+GLMPresentation >> stepTime: anInteger [
 
 	stepTime := anInteger
 ]
 
-{
-	#category : #'accessing ports',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>strongSelection [
+{ #category : #'accessing ports' }
+GLMPresentation >> strongSelection [
 	^ (self pane port: #strongSelection) value
 ]
 
-{
-	#category : #'accessing ports',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>strongSelection: anObject [
+{ #category : #'accessing ports' }
+GLMPresentation >> strongSelection: anObject [
 	(self pane port: #strongSelection) value: (self selectionTransformation glamourValue: anObject)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>taskbarIcon  [
+{ #category : #accessing }
+GLMPresentation >> taskbarIcon [ 
 	^ self titleIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>title [
+{ #category : #accessing }
+GLMPresentation >> title [
 	^ title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>title: aStringOrBlock  [
+{ #category : #accessing }
+GLMPresentation >> title: aStringOrBlock [ 
 	 
 	title := aStringOrBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>titleAction [
+{ #category : #accessing }
+GLMPresentation >> titleAction [
 
 	^ self titleActionBlock 
 		ifNil: [ nil ]
@@ -1431,100 +1046,67 @@ GLMPresentation>>titleAction [
 			aBlock glamourValue: self ]
 ]
 
-{
-	#category : #'scripting actions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>titleAction: aBlock  [
+{ #category : #'scripting actions' }
+GLMPresentation >> titleAction: aBlock [ 
 
 	labelActionBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>titleActionBlock [
+{ #category : #accessing }
+GLMPresentation >> titleActionBlock [
 
 	^ labelActionBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>titleIcon [
+{ #category : #accessing }
+GLMPresentation >> titleIcon [
 	^ titleIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>titleIcon: anObject [
+{ #category : #accessing }
+GLMPresentation >> titleIcon: anObject [
 	titleIcon := anObject
 ]
 
-{
-	#category : #'accessing values',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>titleIconValue [
+{ #category : #'accessing values' }
+GLMPresentation >> titleIconValue [
 	^ self titleIcon notNil
 		ifTrue: [ self titleIcon glamourValue: self entity ]
 		ifFalse: [ self titleIcon ]
 ]
 
-{
-	#category : #'accessing values',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>titleValue [
+{ #category : #'accessing values' }
+GLMPresentation >> titleValue [
 	^ self title glamourValue: self entity
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>transformation  [
+{ #category : #accessing }
+GLMPresentation >> transformation [ 
 	 
 	^transformation ifNil: [transformation := [:x | x ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>transformation: aBlock  [
+{ #category : #accessing }
+GLMPresentation >> transformation: aBlock [ 
 	 
 	transformation := aBlock
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>unregisterFromAllAnnouncements [
+{ #category : #updating }
+GLMPresentation >> unregisterFromAllAnnouncements [
 	"this method should be called every time the presentation is not needed"
 	updateActions do: [ :each | each unregisterFromAllAnnouncements ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>update [
+{ #category : #updating }
+GLMPresentation >> update [
 	self pane ports do: [:each |
 		(self validate: each value on: each) ifFalse: [each resetValue] ].
 	self announce: (GLMPresentationUpdated new presentation: self)
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>updateOn: anAnnouncement from: aBlockOrSymbol  [
+{ #category : #updating }
+GLMPresentation >> updateOn: anAnnouncement from: aBlockOrSymbol [ 
 	updateActions add: (GLMSingleUpdateAction new 
 		presentation: self;
 		announcement: anAnnouncement; 
@@ -1532,11 +1114,8 @@ GLMPresentation>>updateOn: anAnnouncement from: aBlockOrSymbol  [
 		yourself)
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>updateOn: anAnnouncement from: aBlockOrSymbol when: aConditionBlock [
+{ #category : #updating }
+GLMPresentation >> updateOn: anAnnouncement from: aBlockOrSymbol when: aConditionBlock [
 	updateActions add: (GLMSingleUpdateAction new
 		presentation: self; 
 		announcement: anAnnouncement; 
@@ -1545,11 +1124,8 @@ GLMPresentation>>updateOn: anAnnouncement from: aBlockOrSymbol when: aConditionB
 		yourself)
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>updateOn: anAnnouncement fromAll: aBlockOrSymbol  [
+{ #category : #updating }
+GLMPresentation >> updateOn: anAnnouncement fromAll: aBlockOrSymbol [ 
 	updateActions add: (GLMMultipleUpdateAction new
 		presentation: self; 
 		announcement: anAnnouncement; 
@@ -1557,94 +1133,64 @@ GLMPresentation>>updateOn: anAnnouncement fromAll: aBlockOrSymbol  [
 		yourself)
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>updateToolbar [
+{ #category : #updating }
+GLMPresentation >> updateToolbar [
 
 	self announce: (GLMPresentationToolbarUpdated new presentation: self)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>useExplicitAllNil  [
+{ #category : #accessing }
+GLMPresentation >> useExplicitAllNil [ 
 	 
 	implicitAllNil := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>useExplicitNotNil  [
+{ #category : #accessing }
+GLMPresentation >> useExplicitNotNil [ 
 	 
 	implicitNotNil := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>useImplicitAllNil  [
+{ #category : #accessing }
+GLMPresentation >> useImplicitAllNil [ 
 	 
 	implicitAllNil := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>useImplicitNotNil  [
+{ #category : #accessing }
+GLMPresentation >> useImplicitNotNil [ 
 	 
 	implicitNotNil := true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>usesExplicitNotNil  [
+{ #category : #testing }
+GLMPresentation >> usesExplicitNotNil [ 
 	 
 	^self usesImplicitNotNil not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>usesImplicitAllNil [
+{ #category : #testing }
+GLMPresentation >> usesImplicitAllNil [
 	 
 	^implicitAllNil ifNil: [implicitAllNil := false ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>usesImplicitNotNil  [
+{ #category : #testing }
+GLMPresentation >> usesImplicitNotNil [ 
 	 
 	^implicitNotNil ifNil: [implicitNotNil := true]
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>validate: anObject on: aPort  [
+{ #category : #validation }
+GLMPresentation >> validate: anObject on: aPort [ 
 	"This gets triggered when aPort wants to be changed.
 	The presentation has a chance to veto the value."
 	self shouldValidate ifFalse: [ ^ true ].
 	^ self doValidate: anObject on: aPort.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>wantsAutomaticRefresh [
+{ #category : #accessing }
+GLMPresentation >> wantsAutomaticRefresh [
 	"Answer whether this presentations supports automatic refresh. Unlike stepping
 	the refresh rate is not controlled by the presentation but by the browser containing
 	the presentation. If a presentation wants to control its refresh rate it should
@@ -1652,92 +1198,62 @@ GLMPresentation>>wantsAutomaticRefresh [
 	^ wantsAutomaticRefresh ifNil: [ false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>wantsAutomaticRefresh: aBoolean [
+{ #category : #accessing }
+GLMPresentation >> wantsAutomaticRefresh: aBoolean [
 	wantsAutomaticRefresh := aBoolean
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>wantsSteps [
+{ #category : #stepping }
+GLMPresentation >> wantsSteps [
 	"Answer whether this presentation wants stepping. Stepping is controlled by the morph
 	and sends to the presentation the message #step at intervals controlled by #stepTime."
 	^ wantsSteps ifNil: [ false ]
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>wantsSteps: aBoolean [
+{ #category : #stepping }
+GLMPresentation >> wantsSteps: aBoolean [
 
 	wantsSteps := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>watcherPane [
+{ #category : #accessing }
+GLMPresentation >> watcherPane [
 	^ nil
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>when: aBlock  [
+{ #category : #scripting }
+GLMPresentation >> when: aBlock [ 
 	 
 	self condition: aBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>whenKindOf: aClass  [
+{ #category : #scripting }
+GLMPresentation >> whenKindOf: aClass [ 
 	 
 	self when: [:each | each isKindOf: aClass]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>window [
+{ #category : #accessing }
+GLMPresentation >> window [
 	self announce: (GLMWindowRequest new
 		action: [ :aWindow | ^ aWindow ]).
 	^ nil
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>windowIsClosing  [
+{ #category : #events }
+GLMPresentation >> windowIsClosing [ 
 	| event |
 	event := GLMBrowserClosing new presentation: self.
 	self withAllPresentations do: [ :each | each announce: event ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>with: aBlock [
+{ #category : #scripting }
+GLMPresentation >> with: aBlock [
 	aBlock value: self
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>withAllPanes [
+{ #category : #enumerating }
+GLMPresentation >> withAllPanes [
 	| result |
 	result := OrderedCollection new.
 	self withAllPanesAndPresentationsDo: [:each |
@@ -1745,19 +1261,13 @@ GLMPresentation>>withAllPanes [
 	^ result
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>withAllPanesAndPresentationsDo: aBlock [
+{ #category : #enumerating }
+GLMPresentation >> withAllPanesAndPresentationsDo: aBlock [
 	^ aBlock value: self
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentation>>withAllPresentations [
+{ #category : #enumerating }
+GLMPresentation >> withAllPresentations [
 	| result |
 	result := OrderedCollection new.
 	self withAllPanesAndPresentationsDo: [:each |

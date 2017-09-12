@@ -9,34 +9,24 @@ Class {
 		'requestor',
 		'workflow'
 	],
-	#category : #Versionner-Core-Commands,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCommand class>>target: target for: requestor [
+{ #category : #'instance creation' }
+VSCommand class >> target: target for: requestor [
 	^ self new
 		target: target;
 		requestor: requestor;
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCommand>>canBeApplied [
+{ #category : #testing }
+VSCommand >> canBeApplied [
 	^ true
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCommand>>chooseRepositoryFromList: repositories [
+{ #category : #repositories }
+VSCommand >> chooseRepositoryFromList: repositories [
 	repositories size > 1
 		ifTrue: [ 
 			^ UIManager default
@@ -46,36 +36,24 @@ VSCommand>>chooseRepositoryFromList: repositories [
 	^ repositories first
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCommand>>execute [
+{ #category : #execute }
+VSCommand >> execute [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCommand>>executeWithDevWorkflow: devWorkflow [
+{ #category : #execute }
+VSCommand >> executeWithDevWorkflow: devWorkflow [
 	workflow := devWorkflow.
 	self execute
 ]
 
-{
-	#category : #ordering,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCommand>>order [
+{ #category : #ordering }
+VSCommand >> order [
 	^ self title
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCommand>>repositoryOfPackageNamed: packageName [
+{ #category : #repositories }
+VSCommand >> repositoryOfPackageNamed: packageName [
 	"Return the repository of the package given as parameter. Create one (using UI) if necessary"
 
 	| mcPackage workingCopy repositories repository repositoryIndex |
@@ -96,43 +74,28 @@ VSCommand>>repositoryOfPackageNamed: packageName [
 	^ repository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCommand>>requestor [
+{ #category : #accessing }
+VSCommand >> requestor [
 	^ requestor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCommand>>requestor: anObject [
+{ #category : #accessing }
+VSCommand >> requestor: anObject [
 	requestor := anObject
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCommand>>showExecuteWhile: aBlock [
+{ #category : #ui }
+VSCommand >> showExecuteWhile: aBlock [
 
 	^Cursor execute showWhile:  aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCommand>>target [
+{ #category : #accessing }
+VSCommand >> target [
 	^ target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCommand>>target: aConfigurationClass [
+{ #category : #accessing }
+VSCommand >> target: aConfigurationClass [
 	target := aConfigurationClass
 ]

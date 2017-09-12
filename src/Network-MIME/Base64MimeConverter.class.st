@@ -34,15 +34,11 @@ Class {
 		'FromCharTable',
 		'ToCharTable'
 	],
-	#category : #Network-MIME,
-	#timestamp : '<historical>'
+	#category : #Network-MIME
 }
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-Base64MimeConverter class>>decodeInteger: mimeString  [
+{ #category : #encoding }
+Base64MimeConverter class >> decodeInteger: mimeString [ 
 	"Decode the MIME string into an integer of any length"
 	| bytes sum |
 	bytes := (self class mimeDecodeToBytes: mimeString readStream) contents.
@@ -51,11 +47,8 @@ Base64MimeConverter class>>decodeInteger: mimeString  [
 	^ sum
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-Base64MimeConverter class>>encodeInteger: int [
+{ #category : #encoding }
+Base64MimeConverter class >> encodeInteger: int [
 	| strm |
 	"Encode an integer of any length and return the MIME string"
 
@@ -65,11 +58,8 @@ Base64MimeConverter class>>encodeInteger: int [
 	^ ((self mimeEncode: strm) contents) copyUpTo: $=	"remove padding"
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-Base64MimeConverter class>>initialize [
+{ #category : #'class initialization' }
+Base64MimeConverter class >> initialize [
 
 	FromCharTable := Array new: 256.	"nils"
 	ToCharTable := Array new: 64.
@@ -89,11 +79,8 @@ Base64MimeConverter class>>initialize [
 	
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-Base64MimeConverter class>>mimeDecodeToBytes: aStream  [
+{ #category : #encoding }
+Base64MimeConverter class >> mimeDecodeToBytes: aStream [ 
 	"Return a RWBinaryOrTextStream of the original ByteArray.  aStream has only 65 innocuous character values.  aStream is not binary.  (See class comment). 4 bytes in aStream goes to 3 bytes in output."
 
 	| me |
@@ -105,11 +92,8 @@ Base64MimeConverter class>>mimeDecodeToBytes: aStream  [
 	^ me dataStream
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-Base64MimeConverter class>>mimeDecodeToChars: aStream  [
+{ #category : #encoding }
+Base64MimeConverter class >> mimeDecodeToChars: aStream [ 
 	"Return a ReadWriteStream of the original String.  aStream has only 65 innocuous character values.  It is not binary.  (See class comment). 4 bytes in aStream goes to 3 bytes in output."
 
 	| me |
@@ -121,21 +105,15 @@ Base64MimeConverter class>>mimeDecodeToChars: aStream  [
 	^ me dataStream
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-Base64MimeConverter class>>mimeEncode: aStream [
+{ #category : #encoding }
+Base64MimeConverter class >> mimeEncode: aStream [
 	"Return a ReadWriteStream of characters.  The data of aStream is encoded as 65 innocuous characters.  (See class comment). 3 bytes in aStream goes to 4 bytes in output."
 
 	^self mimeEncode: aStream multiLine: true
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-Base64MimeConverter class>>mimeEncode: aStream multiLine: aBool [
+{ #category : #encoding }
+Base64MimeConverter class >> mimeEncode: aStream multiLine: aBool [
 	"Return a ReadWriteStream of characters.  The data of aStream is encoded as 65 innocuous characters.  (See class comment). 3 bytes in aStream goes to 4 bytes in output."
 
 	| me |
@@ -147,21 +125,15 @@ Base64MimeConverter class>>mimeEncode: aStream multiLine: aBool [
 	^ me mimeStream
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-Base64MimeConverter>>initialize  [
+{ #category : #initialization }
+Base64MimeConverter >> initialize [ 
 	super initialize.
 		
 	multiLine := true.
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-Base64MimeConverter>>mimeDecode [
+{ #category : #conversion }
+Base64MimeConverter >> mimeDecode [
 	"Convert a stream in base 64 with only a-z,A-Z,0-9,+,/ to a full byte stream of characters.  Reutrn a whole stream for the user to read."
 
 	| nibA nibB nibC nibD |
@@ -179,11 +151,8 @@ Base64MimeConverter>>mimeDecode [
 	^ dataStream
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-Base64MimeConverter>>mimeDecodeToByteArray [
+{ #category : #conversion }
+Base64MimeConverter >> mimeDecodeToByteArray [
 	"Convert a stream in base 64 with only a-z,A-Z,0-9,+,/ to a full ByteArray of 0-255 values.  Reutrn a whole stream for the user to read."
 
 	| nibA nibB nibC nibD |
@@ -201,11 +170,8 @@ Base64MimeConverter>>mimeDecodeToByteArray [
 	^ dataStream
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-Base64MimeConverter>>mimeEncode [
+{ #category : #conversion }
+Base64MimeConverter >> mimeEncode [
 	"Convert from data to 6 bit characters."
 
 	| phase1 phase2 raw nib lineLength data |
@@ -236,27 +202,18 @@ Base64MimeConverter>>mimeEncode [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-Base64MimeConverter>>multiLine [
+{ #category : #accessing }
+Base64MimeConverter >> multiLine [
 	^ multiLine
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-Base64MimeConverter>>multiLine: anObject [
+{ #category : #accessing }
+Base64MimeConverter >> multiLine: anObject [
 	multiLine := anObject
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-Base64MimeConverter>>nextValue [
+{ #category : #conversion }
+Base64MimeConverter >> nextValue [
 	"The next six bits of data char from the mimeStream, or nil.  Skip all other chars"
 	| raw num |
 	[raw := mimeStream next.

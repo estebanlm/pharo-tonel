@@ -10,40 +10,27 @@ Class {
 	#instVars : [
 		'value'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'TudorGirba 2/4/2011 20:29'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSimplePort>>receive: aTransmission in: aContext [
+{ #category : #accessing }
+GLMSimplePort >> receive: aTransmission in: aContext [
 	self value: aTransmission value in: aContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSimplePort>>silentValue: anObject [
+{ #category : #accessing }
+GLMSimplePort >> silentValue: anObject [
 	value := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSimplePort>>value  [
+{ #category : #accessing }
+GLMSimplePort >> value [ 
 	 
 	^value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSimplePort>>value: anObject in: aContext [
+{ #category : #accessing }
+GLMSimplePort >> value: anObject in: aContext [
 	aContext addPort: self.
 	self silentValue: anObject  
 ]

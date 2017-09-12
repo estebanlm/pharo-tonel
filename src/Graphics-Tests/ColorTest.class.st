@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ColorTest,
 	#superclass : #ClassTestCase,
-	#category : #Graphics-Tests-Primitives,
-	#timestamp : ''
+	#category : #Graphics-Tests-Primitives
 }
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-ColorTest>>assertColorrefFor: aColor equals: anInteger [
+{ #category : #asserting }
+ColorTest >> assertColorrefFor: aColor equals: anInteger [
 	| colorref |
 	colorref := aColor asColorref.
 	self
@@ -21,41 +14,29 @@ ColorTest>>assertColorrefFor: aColor equals: anInteger [
 			('(<1p>) asColorref was <2s>; should have been <3s>' expandMacrosWith: aColor with: colorref hex with: anInteger hex)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-ColorTest>>test32BitOpaqueBlackIsTotallyBlack [
+{ #category : #testing }
+ColorTest >> test32BitOpaqueBlackIsTotallyBlack [
 	"The pixel value of a black at depth32 should really be black..."
 	"At the time of this test, it returned 16rFF000001 ...."
 	self assert: 16rFF000000 equals: (Color black pixelValueForDepth: 32)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-ColorTest>>test32BitTranslucentPixelValueKeepsRGB [
+{ #category : #testing }
+ColorTest >> test32BitTranslucentPixelValueKeepsRGB [
 	"The pixel value of a translucent color at depth32 should keep the RGB component irrespective of alpha.
 	At the time of this test, setting an alpha of zero made the entire pixel 0 irrespective of depth..."
 	self assert: 16rFFFFFF equals: ((Color white alpha: 0) pixelValueForDepth: 32)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-ColorTest>>test32BlackColorTranformation [
+{ #category : #tests }
+ColorTest >> test32BlackColorTranformation [
 	"Solve bug: https://pharo.fogbugz.com/f/cases/14619/Strange-behavior-of-TestRunner-Icon"
 
 	self assert: ((Color black pixelWordForDepth: 32) asColorOfDepth: 32) equals: Color black
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-ColorTest>>testAsColorrefPrimaryColors [
+{ #category : #testing }
+ColorTest >> testAsColorrefPrimaryColors [
 "issue 13784 Color>>#asColorref ignores blue"
 	self assertColorrefFor: Color black equals: 16r000000;
 	assertColorrefFor: Color red equals: 16r0000FF;
@@ -67,11 +48,8 @@ ColorTest>>testAsColorrefPrimaryColors [
 	assertColorrefFor: Color white equals: 16rFFFFFF
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-ColorTest>>testAsHexString [
+{ #category : #testing }
+ColorTest >> testAsHexString [
 
 	| table aColorString |
 	
@@ -98,11 +76,8 @@ ColorTest>>testAsHexString [
 		self assert: ((Color fromHexString: aColorString) asHexString sameAs: aColorString)].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-ColorTest>>testColorFrom [
+{ #category : #testing }
+ColorTest >> testColorFrom [
 	self assert: ((Color colorFrom: #white) asHexString sameAs: 'ffffff').
 	self assert: ((Color colorFrom: #(1.0 0.5 0.0)) asHexString sameAs: 'ff8000').
 	self assert: ((Color colorFrom: (Color white)) asHexString sameAs: 'ffffff').
@@ -110,11 +85,8 @@ ColorTest>>testColorFrom [
 	self assert: ((Color colorFrom: '#222222') asHexString sameAs: '222222').
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-ColorTest>>testFromString [
+{ #category : #testing }
+ColorTest >> testFromString [
 	self assert: ((Color fromString: '#FF8800') asHexString sameAs: 'ff8800');
 		assert: ((Color fromString: 'FF8800') asHexString sameAs: 'ff8800');
 		assert: ((Color fromString: 'white') asHexString sameAs: 'ffffff');
@@ -129,11 +101,8 @@ ColorTest>>testFromString [
 		assert: (Color fromString: '#blue') = Color blue description: 'Color can be specified with a leading literal sharp'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-ColorTest>>testMultiplyByArray [
+{ #category : #testing }
+ColorTest >> testMultiplyByArray [
 	| newColor oldColor tolerance |
 	tolerance := 0.001.
 
@@ -145,11 +114,8 @@ ColorTest>>testMultiplyByArray [
 	self assert: (0.75 - newColor blue) abs < tolerance.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-ColorTest>>testMultiplyByArrayIdentityTransform [
+{ #category : #testing }
+ColorTest >> testMultiplyByArrayIdentityTransform [
 	| newColor oldColor tolerance |
 	tolerance := 0.001.
 
@@ -161,11 +127,8 @@ ColorTest>>testMultiplyByArrayIdentityTransform [
 	self assert: (0.5 - newColor blue) abs < tolerance.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-ColorTest>>testMultiplyByNumber [
+{ #category : #testing }
+ColorTest >> testMultiplyByNumber [
 	| newColor oldColor tolerance |
 	tolerance := 0.001.
 

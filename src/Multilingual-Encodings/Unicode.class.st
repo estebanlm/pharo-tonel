@@ -42,15 +42,11 @@ Class {
 		'Zp',
 		'Zs'
 	],
-	#category : #Multilingual-Encodings,
-	#timestamp : 'yo 10/19/2004 20:44'
+	#category : #Multilingual-Encodings
 }
 
-{
-	#category : #comments,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>blocks320Comment [
+{ #category : #comments }
+Unicode class >> blocks320Comment [
 
 "# Blocks-3.2.0.txt
 # Correlated with Unicode 3.2
@@ -170,11 +166,8 @@ F0000..FFFFF; Supplementary Private Use Area-A
 "
 ]
 
-{
-	#category : #comments,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>blocks320Comment2 [
+{ #category : #comments }
+Unicode class >> blocks320Comment2 [
 
 "# Blocks-3.2.0.txt
 # Correlated with Unicode 3.2
@@ -383,41 +376,29 @@ F0000..FFFFF; Supplementary Private Use Area-A
 "
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>charFromUnicode: uniCode [
+{ #category : #'instance creation' }
+Unicode class >> charFromUnicode: uniCode [
 
 	^ Character value: uniCode
 
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>compoundTextFinalChar [
+{ #category : #'class methods' }
+Unicode class >> compoundTextFinalChar [
 
 	self shouldNotImplement.
 
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>compoundTextSequence [
+{ #category : #'class methods' }
+Unicode class >> compoundTextSequence [
 
 	self subclassResponsibility.
 
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>digitValueOf: char [
+{ #category : #'class methods' }
+Unicode class >> digitValueOf: char [
 	"Answer 0-9 if the receiver is $0-$9, 10-35 if it is $A-$Z, and < 0
 	otherwise. This is used to parse literal numbers of radix 2-36."
 	
@@ -435,22 +416,16 @@ Unicode class>>digitValueOf: char [
 
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>generalCategory [
+{ #category : #'class methods' }
+Unicode class >> generalCategory [
 
 	^ GeneralCategory.
 
 
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>generalCategoryComment [
+{ #category : #'class methods' }
+Unicode class >> generalCategoryComment [
 "
 Lu Letter, Uppercase 
 Ll Letter, Lowercase 
@@ -485,11 +460,8 @@ Cn Other, Not Assigned (no characters in the file have this property)
 "
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>initialize [
+{ #category : #'class initialization' }
+Unicode class >> initialize [
 	"This class should be initialized using the textual unicode definitions that can be found in
 	http://www.unicode.org/Public/UNIDATA/UnicodeData.txt
 	http://www.unicode.org/Public/UNIDATA/CaseFolding.txt
@@ -525,11 +497,8 @@ Unicode class>>initialize [
 
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>initializeTagConstants [
+{ #category : #'class initialization' }
+Unicode class >> initializeTagConstants [
 	" Unicode initializeTagConstants "
 	(self classPool keys
 		select: [:sym | sym size = 2 
@@ -540,21 +509,15 @@ Unicode class>>initializeTagConstants [
 				ifFalse: [self classPool at: sym put: index. index + 1]]
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>isCharset [
+{ #category : #'class methods' }
+Unicode class >> isCharset [
 
 	^ false.
 
 ]
 
-{
-	#category : #'character classification',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>isDigit: char  [
+{ #category : #'character classification' }
+Unicode class >> isDigit: char [ 
 	| value |
 	value := char charCode.
 	value > (GeneralCategory size - 1)
@@ -563,11 +526,8 @@ Unicode class>>isDigit: char  [
 		= Nd
 ]
 
-{
-	#category : #'character classification',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>isLetter: char  [
+{ #category : #'character classification' }
+Unicode class >> isLetter: char [ 
 	| value codeCat |
 	value := char charCode.
 	value > (GeneralCategory size - 1)
@@ -576,11 +536,8 @@ Unicode class>>isLetter: char  [
 		and: [codeCat <= Lu]
 ]
 
-{
-	#category : #'character classification',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>isLowercase: char  [
+{ #category : #'character classification' }
+Unicode class >> isLowercase: char [ 
 	| value |
 	value := char charCode.
 	value > (GeneralCategory size - 1)
@@ -589,11 +546,8 @@ Unicode class>>isLowercase: char  [
 		= Ll
 ]
 
-{
-	#category : #'character classification',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>isUppercase: char  [
+{ #category : #'character classification' }
+Unicode class >> isUppercase: char [ 
 	| value |
 	value := char charCode.
 	value > (GeneralCategory size - 1)
@@ -602,19 +556,13 @@ Unicode class>>isUppercase: char  [
 		= Lu
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>leadingChar [
+{ #category : #'class methods' }
+Unicode class >> leadingChar [
 	^ 0
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>parseCaseMappingFrom: stream [
+{ #category : #'class initialization' }
+Unicode class >> parseCaseMappingFrom: stream [
 	"Parse the Unicode casing mappings from the given stream.
 	Handle only the simple mappings"
 
@@ -647,11 +595,8 @@ Unicode class>>parseCaseMappingFrom: stream [
 						ifFound: [ :up | ToUpper at: k ifAbsentPut: up ] ] ]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>parseUnicodeDataFrom: stream [
+{ #category : #'class initialization' }
+Unicode class >> parseUnicodeDataFrom: stream [
 	| line fieldEnd point fieldStart toNumber generalCategory decimalProperty loValue |
 
 	toNumber := [:quad | ('16r', quad) asNumber].
@@ -691,11 +636,8 @@ Unicode class>>parseUnicodeDataFrom: stream [
 
 ]
 
-{
-	#category : #casing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>toCasefold: aWideString [
+{ #category : #casing }
+Unicode class >> toCasefold: aWideString [
 	"Transform a Wide String into fold case.
 	This is to enable case insensitive conversion."
 	
@@ -705,11 +647,8 @@ Unicode class>>toCasefold: aWideString [
 			ifNotNil: [:low | self value: low]]
 ]
 
-{
-	#category : #casing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>toLowercase: aCharacter [
+{ #category : #casing }
+Unicode class >> toLowercase: aCharacter [
 	"Transform a Wide String into lowercase.
 	This does not handle special cases where number of characters could change.
 	The algorithm would work for ByteString, however it's far from the most efficient."
@@ -718,11 +657,8 @@ Unicode class>>toLowercase: aCharacter [
 			ifNotNil: [:low | ^ self value: low ]
 ]
 
-{
-	#category : #casing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>toLowercaseString: aWideString [
+{ #category : #casing }
+Unicode class >> toLowercaseString: aWideString [
 	"Transform a Wide String into lowercase.
 	This does not handle special cases where number of characters could change.
 	The algorithm would work for ByteString, however it's far from the most efficient."
@@ -733,11 +669,8 @@ Unicode class>>toLowercaseString: aWideString [
 			ifNotNil: [:low | self value: low]]
 ]
 
-{
-	#category : #casing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>toUppercase: aCharacter [
+{ #category : #casing }
+Unicode class >> toUppercase: aCharacter [
 	"Transform a Wide String into uppercase.
 	This does not handle special cases where number of characters could change.
 	The algorithm would work for ByteString, however it's far from the most efficient."
@@ -746,11 +679,8 @@ Unicode class>>toUppercase: aCharacter [
 			ifNotNil: [:up | ^ self value: up]
 ]
 
-{
-	#category : #casing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>toUppercaseString: aWideString [
+{ #category : #casing }
+Unicode class >> toUppercaseString: aWideString [
 	"Transform a Wide String into uppercase.
 	This does not handle special cases where number of characters could change.
 	The algorithm would work for ByteString, however it's far from the most efficient."
@@ -761,19 +691,13 @@ Unicode class>>toUppercaseString: aWideString [
 			ifNotNil: [:up | self value: up]]
 ]
 
-{
-	#category : #'character classification',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>ucsTable [
+{ #category : #'character classification' }
+Unicode class >> ucsTable [
 	^ Latin1 ucsTable 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Unicode class>>value: code [
+{ #category : #'instance creation' }
+Unicode class >> value: code [
 
 	code < 256 ifTrue: [^ Character value: code].
 	"Old code. LeadingChar should from now on be always 0, so we can remove it afterwards"

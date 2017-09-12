@@ -25,15 +25,11 @@ Class {
 		'subclassesAsSeparateTopic',
 		'addMethodsWithoutComment'
 	],
-	#category : #HelpSystem-Core-Builders,
-	#timestamp : 'tbn 4/30/2010 15:37'
+	#category : #HelpSystem-Core-Builders
 }
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ClassAPIHelpBuilder class>>buildHierarchicalHelpTopicFrom: aClass withSubclasses: aBoolean withMethods: anotherBoolean [
+{ #category : #building }
+ClassAPIHelpBuilder class >> buildHierarchicalHelpTopicFrom: aClass withSubclasses: aBoolean withMethods: anotherBoolean [
 	"Start building from the given class"
 	
 	^(self new)
@@ -44,59 +40,38 @@ ClassAPIHelpBuilder class>>buildHierarchicalHelpTopicFrom: aClass withSubclasses
 		topicToBuild 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ClassAPIHelpBuilder>>addMethods [
+{ #category : #accessing }
+ClassAPIHelpBuilder >> addMethods [
 	^ addMethods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ClassAPIHelpBuilder>>addMethods: anObject [
+{ #category : #accessing }
+ClassAPIHelpBuilder >> addMethods: anObject [
 	addMethods := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ClassAPIHelpBuilder>>addMethodsWithoutComment [
+{ #category : #accessing }
+ClassAPIHelpBuilder >> addMethodsWithoutComment [
 	^ addMethodsWithoutComment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ClassAPIHelpBuilder>>addMethodsWithoutComment: anObject [
+{ #category : #accessing }
+ClassAPIHelpBuilder >> addMethodsWithoutComment: anObject [
 	addMethodsWithoutComment := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ClassAPIHelpBuilder>>addSubclasses [
+{ #category : #accessing }
+ClassAPIHelpBuilder >> addSubclasses [
 	^ addSubclasses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ClassAPIHelpBuilder>>addSubclasses: anObject [
+{ #category : #accessing }
+ClassAPIHelpBuilder >> addSubclasses: anObject [
 	addSubclasses := anObject
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ClassAPIHelpBuilder>>build [
+{ #category : #building }
+ClassAPIHelpBuilder >> build [
 	topicToBuild := HelpTopic named: rootToBuildFrom name.
 	topicToBuild iconName: #pageIcon.
 	topicToBuild contents: rootToBuildFrom comment.
@@ -106,11 +81,8 @@ ClassAPIHelpBuilder>>build [
 		ifTrue: [ self buildSubnodesForSubclasses ]
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ClassAPIHelpBuilder>>buildMethodTopicsOn: topic for: aClass [
+{ #category : #'private building' }
+ClassAPIHelpBuilder >> buildMethodTopicsOn: topic for: aClass [
 	|stream methodComment|
 	stream := String new writeStream.
 	aClass selectors asSortedCollection do: [:selector | 
@@ -130,11 +102,8 @@ ClassAPIHelpBuilder>>buildMethodTopicsOn: topic for: aClass [
 	
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ClassAPIHelpBuilder>>buildSubclassTopicFor: aSubclass [
+{ #category : #'private building' }
+ClassAPIHelpBuilder >> buildSubclassTopicFor: aSubclass [
 	 
 	^(self class new) 
 			rootToBuildFrom: aSubclass;
@@ -146,11 +115,8 @@ ClassAPIHelpBuilder>>buildSubclassTopicFor: aSubclass [
 	 
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ClassAPIHelpBuilder>>buildSubnodesForMethods [
+{ #category : #'private building' }
+ClassAPIHelpBuilder >> buildSubnodesForMethods [
 	| instanceSide classSide |
 	instanceSide := HelpTopic named: 'Instance side'.
 	classSide := HelpTopic named: 'Class side'.
@@ -162,11 +128,8 @@ ClassAPIHelpBuilder>>buildSubnodesForMethods [
 	self buildMethodTopicsOn: classSide for: rootToBuildFrom class
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ClassAPIHelpBuilder>>buildSubnodesForSubclasses [
+{ #category : #'private building' }
+ClassAPIHelpBuilder >> buildSubnodesForSubclasses [
 	| topic |
 	rootToBuildFrom subclasses isEmpty
 		ifTrue: [ ^ self ].
@@ -180,11 +143,8 @@ ClassAPIHelpBuilder>>buildSubnodesForSubclasses [
 	topic sortSubtopicsByTitle
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ClassAPIHelpBuilder>>initialize [
+{ #category : #initialization }
+ClassAPIHelpBuilder >> initialize [
 	"Initializes the receiver"
 	
 	super initialize.
@@ -194,18 +154,12 @@ ClassAPIHelpBuilder>>initialize [
 	addMethodsWithoutComment := true.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ClassAPIHelpBuilder>>subclassesAsSeparateTopic [
+{ #category : #accessing }
+ClassAPIHelpBuilder >> subclassesAsSeparateTopic [
 	^ subclassesAsSeparateTopic
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ClassAPIHelpBuilder>>subclassesAsSeparateTopic: anObject [
+{ #category : #accessing }
+ClassAPIHelpBuilder >> subclassesAsSeparateTopic: anObject [
 	subclassesAsSeparateTopic := anObject
 ]

@@ -1,22 +1,14 @@
-Extension {
-	#name : #MCDataStream
-}
+Extension { #name : #MCDataStream }
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>readBitmap [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> readBitmap [
 	"PRIVATE -- Read the contents of a Bitmap."
 	^ Bitmap newFromStream: byteStream
 	"Note that the reader knows that the size is in long words, but the data is in bytes."
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>readByteArray [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> readByteArray [
 	"PRIVATE -- Read the contents of a ByteArray."
 
 	| count |
@@ -25,19 +17,13 @@ MCDataStream>>readByteArray [
 
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>readClass [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> readClass [
 	^ self error: 'Classes cannot be materialized with DataStream'
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>readFloat [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> readFloat [
 	"PRIVATE -- Read the contents of a Float.
 	 This is the fast way to read a Float.
 	 We support 8-byte Floats here.  Non-IEEE"
@@ -49,11 +35,8 @@ MCDataStream>>readFloat [
 	^ new
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>readMethod [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> readMethod [
 	"PRIVATE -- Read the contents of an arbitrary instance.
 	 ASSUMES: readDataFrom:size: sends me beginReference: after it
 	   instantiates the new object but before reading nested objects.
@@ -79,11 +62,8 @@ MCDataStream>>readMethod [
 	^ newMethod
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>readRectangle [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> readRectangle [
     "Read a compact Rectangle.  Rectangles with values outside +/- 2047 were stored as normal objects (type=9).  They will not come here.  17:22 tk"
 
 	"Encoding is four 12-bit signed numbers.  48 bits in next 6 bytes.  17:24 tk"
@@ -104,11 +84,8 @@ MCDataStream>>readRectangle [
 
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>readReference [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> readReference [
 	"Read the contents of an object reference. (Cf. outputReference:)  File is not now positioned at this object."
 	| referencePosition |
 	^ (referencePosition := (byteStream nextNumber: 4)) = self vacantRef	"relative"
@@ -116,11 +93,8 @@ MCDataStream>>readReference [
 		ifFalse: [self objectAt: referencePosition]		"relative pos"
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>readShortInst [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> readShortInst [
 	"Read the contents of an arbitrary instance that has a short header.
 	 ASSUMES: readDataFrom:size: sends me beginReference: after it
 	   instantiates the new object but before reading nested objects.
@@ -142,50 +116,35 @@ MCDataStream>>readShortInst [
 	^ anObject
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>readShortRef [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> readShortRef [
 	"Read an object reference from two bytes only.  Original object must be in first 65536 bytes of the file.  Relative to start of data.  vacantRef not a possibility."
 
 	^ self objectAt: (byteStream nextNumber: 2)
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>readStringOld [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> readStringOld [
 
    ^ byteStream nextStringOld
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>readUser [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> readUser [
 	"Reconstruct both the private class and the instance.  Still used??"
 	^ self readInstance.		"Will create new unique class"
 
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>readWordArray [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> readWordArray [
 	"PRIVATE -- Read the contents of a WordArray."
 	^ WordArray newFromStream: byteStream
 	"Size is number of long words."
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>readWordLike [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> readWordLike [
 	| refPosn aSymbol newClass anObject |
 	"Can be used by any class that is bits and not bytes (WordArray, Bitmap, SoundBuffer, etc)."
 	refPosn := self getCurrentReference.
@@ -196,22 +155,16 @@ MCDataStream>>readWordLike [
 	^ anObject
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>writeBitmap: aBitmap [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> writeBitmap: aBitmap [
 	"PRIVATE -- Write the contents of a Bitmap."
 
 	aBitmap writeOn: byteStream
 	"Note that this calls (byteStream nextPutAll: aBitmap) which knows enough to put 4-byte quantities on the stream!  Reader must know that size is in long words."
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>writeByteArray: aByteArray [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> writeByteArray: aByteArray [
 	"PRIVATE -- Write the contents of a ByteArray."
 
 	byteStream nextNumber: 4 put: aByteArray size.
@@ -219,19 +172,13 @@ MCDataStream>>writeByteArray: aByteArray [
 	byteStream nextPutAll: aByteArray.
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>writeClass: aClass [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> writeClass: aClass [
     ^ self error: 'Classes cannot be serialized with DataStream'
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>writeFloat: aFloat [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> writeFloat: aFloat [
 	"PRIVATE -- Write the contents of a Float.
 	  We support 8-byte Floats here."
 
@@ -240,11 +187,8 @@ MCDataStream>>writeFloat: aFloat [
 
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>writeRectangle: anObject [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> writeRectangle: anObject [
     "Write the contents of a Rectangle.  See if it can be a compact Rectangle (type=15).  Rectangles with values outside +/- 2047 were stored as normal objects (type=9).  17:22 tk"
 
 	| ok right bottom top left acc |
@@ -269,11 +213,8 @@ MCDataStream>>writeRectangle: anObject [
 	byteStream nextNumber: 3 put: acc.
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>writeStringOld: aString [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> writeStringOld: aString [
 	"PRIVATE -- Write the contents of a String."
 
 	| length |
@@ -288,22 +229,16 @@ MCDataStream>>writeStringOld: aString [
 		ifFalse: [self writeByteArray: aString].	"takes more space"
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>writeUser: anObject [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> writeUser: anObject [
     "Write the contents of an arbitrary User instance (and its devoted class)."
 
 	"If anObject is an instance of a unique user class, will lie and say it has a generic class"
     ^ anObject storeDataOn: self
 ]
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCDataStream>>writeWordLike: aWordArray [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+MCDataStream >> writeWordLike: aWordArray [
 	"Note that we put the class name before the size."
 
 	self nextPut: aWordArray class name.

@@ -15,33 +15,23 @@ Class {
 		'textEditor',
 		'showPassword'
 	],
-	#category : #Polymorph-Widgets-Windows,
-	#timestamp : 'LaurentLaffont 4/15/2011 20:17'
+	#category : #Polymorph-Widgets-Windows
 }
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasswordDialogWindow>>beDecrypted [
+{ #category : #protocol }
+PasswordDialogWindow >> beDecrypted [
 
 	textEditor font: self theme textFont
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasswordDialogWindow>>beEncrypted [
+{ #category : #protocol }
+PasswordDialogWindow >> beEncrypted [
 
 	textEditor font: (StrikeFont passwordFontSize: self theme textFont pointSize)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasswordDialogWindow>>newContentMorph [
+{ #category : #actions }
+PasswordDialogWindow >> newContentMorph [
 	"Answer a new content morph."
 
 	self iconMorph: self newIconMorph.
@@ -54,11 +44,8 @@ PasswordDialogWindow>>newContentMorph [
 		self showPasswordButton}
 ]
 
-{
-	#category : #creation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasswordDialogWindow>>newTextEditorMorph [
+{ #category : #creation }
+PasswordDialogWindow >> newTextEditorMorph [
 	"Answer a new morph for the text entry using a password font."
 
 	textEditor := super newTextEditorMorph.
@@ -66,20 +53,14 @@ PasswordDialogWindow>>newTextEditorMorph [
 	^ textEditor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasswordDialogWindow>>showPassword [
+{ #category : #private }
+PasswordDialogWindow >> showPassword [
 	
 	^ showPassword ifNil: [ showPassword := false ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasswordDialogWindow>>showPassword: aBoolean [
+{ #category : #private }
+PasswordDialogWindow >> showPassword: aBoolean [
 
 	(showPassword := aBoolean)
 		ifTrue: [ self beDecrypted ]
@@ -87,11 +68,8 @@ PasswordDialogWindow>>showPassword: aBoolean [
 	self changed: #showPassword
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasswordDialogWindow>>showPasswordButton [
+{ #category : #private }
+PasswordDialogWindow >> showPasswordButton [
 
 	^ (CheckboxMorph 
 			on: self 

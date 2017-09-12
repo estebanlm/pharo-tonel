@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'searchString'
 	],
-	#category : #Renraku-SourceAnchors,
-	#timestamp : 'YuriyTymchuk 7/10/2016 13:00'
+	#category : #Renraku-SourceAnchors
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSearchStringSourceAnchor class>>entity: anEntity string: aString  [
+{ #category : #'instance creation' }
+ReSearchStringSourceAnchor class >> entity: anEntity string: aString [ 
 	
 	^ self basicNew 
 		initializeEnitity: anEntity
@@ -23,32 +19,23 @@ ReSearchStringSourceAnchor class>>entity: anEntity string: aString  [
 		yourself
 ]
 
-{
-	#category : #gt-inspector-extension,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSearchStringSourceAnchor>>gtInspectorAnchorIn: composite [
+{ #category : #gt-inspector-extension }
+ReSearchStringSourceAnchor >> gtInspectorAnchorIn: composite [
 	<gtInspectorPresentationOrder: 0>
 
 	(super gtInspectorAnchorIn: composite)
 		initialize: [ :p | p selectionInterval: self interval ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSearchStringSourceAnchor>>initializeEnitity: anEntiy searchString: aString  [
+{ #category : #initialization }
+ReSearchStringSourceAnchor >> initializeEnitity: anEntiy searchString: aString [ 
 	
 	self initializeEnitity: anEntiy.
 	searchString := aString 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSearchStringSourceAnchor>>interval [
+{ #category : #accessing }
+ReSearchStringSourceAnchor >> interval [
 	| start tweekedSubstring |
 	
 	tweekedSubstring := self searchString isSymbol
@@ -60,19 +47,13 @@ ReSearchStringSourceAnchor>>interval [
 	^ start to: start + tweekedSubstring size - 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSearchStringSourceAnchor>>providesInterval [
+{ #category : #testing }
+ReSearchStringSourceAnchor >> providesInterval [
 
 	^ searchString notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSearchStringSourceAnchor>>searchString [
+{ #category : #accessing }
+ReSearchStringSourceAnchor >> searchString [
 	^ searchString
 ]

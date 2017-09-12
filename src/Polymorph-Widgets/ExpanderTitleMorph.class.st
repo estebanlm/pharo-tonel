@@ -9,15 +9,11 @@ Class {
 		'buttonMorph',
 		'expanded'
 	],
-	#category : #Polymorph-Widgets,
-	#timestamp : 'gvc 5/18/2007 13:12'
+	#category : #Polymorph-Widgets
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+ExpanderTitleMorph >> adoptPaneColor: paneColor [
 	"Update the fill styles, corner styles, label colour
 	and expansion button indicator."
 	
@@ -30,52 +26,37 @@ ExpanderTitleMorph>>adoptPaneColor: paneColor [
 	self changed: #expandLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>buttonMorph [
+{ #category : #accessing }
+ExpanderTitleMorph >> buttonMorph [
 	"Answer the value of buttonMorph"
 
 	^ buttonMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>buttonMorph: anObject [
+{ #category : #accessing }
+ExpanderTitleMorph >> buttonMorph: anObject [
 	"Set the value of buttonMorph"
 
 	buttonMorph := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>buttonWidth [
+{ #category : #private }
+ExpanderTitleMorph >> buttonWidth [
 	"Answer based on scrollbar size."
 	
 	^(self theme scrollbarThickness + 3)
 		max: self theme expanderTitleControlButtonWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>defaultBorderStyle [
+{ #category : #accessing }
+ExpanderTitleMorph >> defaultBorderStyle [
 	"Answer the default border style for the receiver."
 
 	^BorderStyle raised width: 1
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>expandLabel [
+{ #category : #operations }
+ExpanderTitleMorph >> expandLabel [
 	"Answer the label for the expand button."
 
 	^AlphaImageMorph new image: (
@@ -85,21 +66,15 @@ ExpanderTitleMorph>>expandLabel [
 			color: self paneColor darker)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>expanded [
+{ #category : #accessing }
+ExpanderTitleMorph >> expanded [
 	"Answer the value of expanded"
 
 	^ expanded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>expanded: aBoolean [
+{ #category : #accessing }
+ExpanderTitleMorph >> expanded: aBoolean [
 	"Set the value of expanded"
 
 	expanded := aBoolean.
@@ -108,11 +83,8 @@ ExpanderTitleMorph>>expanded: aBoolean [
 		changed: #expandLabel
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>extent: aPoint  [
+{ #category : #geometry }
+ExpanderTitleMorph >> extent: aPoint [ 
 	"Set the receiver's extent to value provided.
 	Update the gradient fills."
 
@@ -124,33 +96,24 @@ ExpanderTitleMorph>>extent: aPoint  [
 	^answer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>font [
+{ #category : #accessing }
+ExpanderTitleMorph >> font [
 	"Answer the label font"
 
 	^((self labelMorph isKindOf: StringMorph) or: [self labelMorph isTextMorph])
 		ifTrue: [self labelMorph font]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>font: aFont [
+{ #category : #accessing }
+ExpanderTitleMorph >> font: aFont [
 	"Set the label font"
 
 	((self labelMorph isKindOf: StringMorph) or: [self labelMorph isTextMorph])
 		ifTrue: [self labelMorph font: aFont]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>initialize [
+{ #category : #initialization }
+ExpanderTitleMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -168,21 +131,15 @@ ExpanderTitleMorph>>initialize [
 		on: #mouseUp send: #toggleExpanded to: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>labelMorph [
+{ #category : #accessing }
+ExpanderTitleMorph >> labelMorph [
 	"Answer the value of labelMorph"
 
 	^ labelMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>labelMorph: anObject [
+{ #category : #accessing }
+ExpanderTitleMorph >> labelMorph: anObject [
 	"Set the value of labelMorph.
 	need to wrap to provide clipping!"
 
@@ -201,11 +158,8 @@ ExpanderTitleMorph>>labelMorph: anObject [
 			addMorph: labelMorph)]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>newExpandButtonMorph [
+{ #category : #'instance creation' }
+ExpanderTitleMorph >> newExpandButtonMorph [
 	"Answer a new expand button."
 
 	^(ControlButtonMorph
@@ -219,11 +173,8 @@ ExpanderTitleMorph>>newExpandButtonMorph [
 		extent: self buttonWidth asPoint
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>newLabelMorph [
+{ #category : #'instance creation' }
+ExpanderTitleMorph >> newLabelMorph [
 	"Answer a new label morph for the receiver."
 
 	^LabelMorph new
@@ -231,21 +182,15 @@ ExpanderTitleMorph>>newLabelMorph [
 		vResizing: #shrinkWrap
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>normalFillStyle [
+{ #category : #style }
+ExpanderTitleMorph >> normalFillStyle [
 	"Return the normal fillStyle of the receiver."
 	
 	^self theme expanderTitleNormalFillStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>themeChanged [
+{ #category : #style }
+ExpanderTitleMorph >> themeChanged [
 	"Update the button corner style from default
 	to match the receiver."
 	
@@ -253,11 +198,8 @@ ExpanderTitleMorph>>themeChanged [
 	self buttonMorph cornerStyle: self cornerStyle
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>titleText [
+{ #category : #protocol }
+ExpanderTitleMorph >> titleText [
 	"Answer the text if the title morph is capable."
 
 	^((self labelMorph isKindOf: StringMorph) or: [self labelMorph isTextMorph])
@@ -265,22 +207,16 @@ ExpanderTitleMorph>>titleText [
 		ifFalse: ['']
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>titleText: aStringOrText [
+{ #category : #operations }
+ExpanderTitleMorph >> titleText: aStringOrText [
 	"Set the text if the title morph is capable."
 
 	((self labelMorph isKindOf: StringMorph) or: [self labelMorph isTextMorph])
 		ifTrue: [self labelMorph contents: aStringOrText]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderTitleMorph>>toggleExpanded [
+{ #category : #operations }
+ExpanderTitleMorph >> toggleExpanded [
 	"Toggle the expanded state."
 
 	self expanded: self expanded not

@@ -10,75 +10,50 @@ Class {
 	#classVars : [
 		'ActOnClickBlock'
 	],
-	#category : #Text-Core,
-	#timestamp : 'TorstenBergmann 1/31/2014 12:15'
+	#category : #Text-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAction class>>actOnClickBlock [
+{ #category : #accessing }
+TextAction class >> actOnClickBlock [
 	^ ActOnClickBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAction class>>actOnClickBlock: aBlock [
+{ #category : #accessing }
+TextAction class >> actOnClickBlock: aBlock [
 	ActOnClickBlock := aBlock
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAction class>>initialize [
+{ #category : #'class initialization' }
+TextAction class >> initialize [
 	ActOnClickBlock := [ ]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAction>>actOnClick: anEvent for: anObject in: paragraph editor: editor [
+{ #category : #evaluating }
+TextAction >> actOnClick: anEvent for: anObject in: paragraph editor: editor [
 	"sent when a user clicks on a piece of text to which I am applied in an editor"
 
 	"may be self is included in the event or an Object. "
 	^ actOnClickBlock valueWithEnoughArguments: (Array with: self with: anEvent with: anObject with: paragraph with: editor)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAction>>actOnClickBlock [
+{ #category : #accessing }
+TextAction >> actOnClickBlock [
 	^ actOnClickBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAction>>actOnClickBlock: aBlock [
+{ #category : #accessing }
+TextAction >> actOnClickBlock: aBlock [
 	actOnClickBlock := aBlock
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAction>>actOnMove: anEvent for: target in: aParagraph editor: anEditor [
+{ #category : #'event handling' }
+TextAction >> actOnMove: anEvent for: target in: aParagraph editor: anEditor [
 	"override in subclasses"
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAction>>analyze: aString [
+{ #category : #testing }
+TextAction >> analyze: aString [
 	"Analyze the selected text to find both the parameter to store and the text to emphesize (may be different from original selection).  Does not return self!.  May be of the form:
 3+4
 <3+4>
@@ -115,46 +90,31 @@ Click Here<3+4>
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAction>>dominatedByCmd0 [
+{ #category : #testing }
+TextAction >> dominatedByCmd0 [
 	"Cmd-0 should turn off active text"
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAction>>info [
+{ #category : #accessing }
+TextAction >> info [
 	^ 'no hidden info'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAction>>initialize [
+{ #category : #initialization }
+TextAction >> initialize [
 	super initialize.
 	actOnClickBlock := ActOnClickBlock.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAction>>mayActOnEvent: anEvent [
+{ #category : #testing }
+TextAction >> mayActOnEvent: anEvent [
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAction>>validate: aString [
+{ #category : #testing }
+TextAction >> validate: aString [
 	"any format is OK with me"
 	^ aString
 ]

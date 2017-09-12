@@ -34,33 +34,23 @@ Class {
 	#classInstVars : [
 		'representationType'
 	],
-	#category : #UnifiedFFI-Objects,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Objects
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration class>>asExternalTypeOn: generator [
+{ #category : #converting }
+FFIExternalEnumeration class >> asExternalTypeOn: generator [
 	^ FFIExternalEnumerationType 
 		objectClass: self 
 		representationType: self representationType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration class>>at: anItem [
+{ #category : #accessing }
+FFIExternalEnumeration class >> at: anItem [
 	^ self classPool at: anItem ifAbsent: [ nil ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration class>>defineEnumAccesorFor: enumName [
+{ #category : #private }
+FFIExternalEnumeration class >> defineEnumAccesorFor: enumName [
 	"Define accessors as class methods"
 	| code |
 	
@@ -73,19 +63,13 @@ FFIExternalEnumeration class>>defineEnumAccesorFor: enumName [
 		classified: self generatedEnumProtocolName.
 ]
 
-{
-	#category : #'enum declaration',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration class>>enumDecl [
+{ #category : #'enum declaration' }
+FFIExternalEnumeration class >> enumDecl [
 	^ #()
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration class>>enumerationDictionary [
+{ #category : #private }
+FFIExternalEnumeration class >> enumerationDictionary [
 	| decl |
 	decl := self enumDecl.
 	decl isDictionary
@@ -94,46 +78,31 @@ FFIExternalEnumeration class>>enumerationDictionary [
 	^ decl
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration class>>fromInteger: anIntegerValue [
+{ #category : #accessing }
+FFIExternalEnumeration class >> fromInteger: anIntegerValue [
 	| theItem |
 	theItem := self itemAt: anIntegerValue.
 	theItem ifNil: [ self error: 'Invalid value for ' , self name , ' enumeration' ].
 	^ self at: theItem
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration class>>generatedEnumProtocolName [
+{ #category : #private }
+FFIExternalEnumeration class >> generatedEnumProtocolName [
 	^ 'accessing enum'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration class>>includes: aSymbol [
+{ #category : #testing }
+FFIExternalEnumeration class >> includes: aSymbol [
 	^ self classPool includesKey: aSymbol
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration class>>initialize [
+{ #category : #'class initialization' }
+FFIExternalEnumeration class >> initialize [
 	self initializeEnumeration
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration class>>initializeEnumeration [
+{ #category : #'class initialization' }
+FFIExternalEnumeration class >> initializeEnumeration [
 	| unsigned |
 	
 	unsigned := true.
@@ -157,19 +126,13 @@ FFIExternalEnumeration class>>initializeEnumeration [
 		ifFalse: [ FFIInt32 new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration class>>itemAt: aValue [
+{ #category : #accessing }
+FFIExternalEnumeration class >> itemAt: aValue [
 	^ self itemAt: aValue ifAbsent: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration class>>itemAt: aValue ifAbsent: exceptionBlock [
+{ #category : #accessing }
+FFIExternalEnumeration class >> itemAt: aValue ifAbsent: exceptionBlock [
 	self classPool
 		associationsDo: [ :assoc | 
 			aValue = assoc value value
@@ -177,71 +140,47 @@ FFIExternalEnumeration class>>itemAt: aValue ifAbsent: exceptionBlock [
 	^ exceptionBlock value
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration class>>new [
+{ #category : #'instance creation' }
+FFIExternalEnumeration class >> new [
 	^ self shouldNotImplement
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration class>>rebuildEnumAccessors [
+{ #category : #private }
+FFIExternalEnumeration class >> rebuildEnumAccessors [
 	self enumerationDictionary keysDo: [ :each | 
 		self defineEnumAccesorFor: each ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration class>>representationType [
+{ #category : #accessing }
+FFIExternalEnumeration class >> representationType [
 	^ representationType
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration>>= anEnumInst [
+{ #category : #comparing }
+FFIExternalEnumeration >> = anEnumInst [
 	^ self class == anEnumInst class 
 		and: [ self value = anEnumInst value ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration>>item [
+{ #category : #accessing }
+FFIExternalEnumeration >> item [
 	^ self class itemAt: value
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration>>printOn: stream [
+{ #category : #printing }
+FFIExternalEnumeration >> printOn: stream [
 	super printOn: stream.
 	stream nextPut: $(;
 		 nextPutAll: self item printString;
 		 nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration>>value [
+{ #category : #accessing }
+FFIExternalEnumeration >> value [
 	^ value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumeration>>value: anObject [
+{ #category : #accessing }
+FFIExternalEnumeration >> value: anObject [
 	value := anObject 
 ]

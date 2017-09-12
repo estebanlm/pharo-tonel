@@ -33,35 +33,25 @@ Class {
 		'SelectorTable',
 		'SymbolTable'
 	],
-	#category : #Collections-Strings,
-	#timestamp : 'MarcusDenker 7/7/2016 16:05'
+	#category : #Collections-Strings
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>allSymbolTablesDo: aBlock [
+{ #category : #initialization }
+Symbol class >> allSymbolTablesDo: aBlock [
 
 	NewSymbols do: aBlock.
 	SymbolTable do: aBlock.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>allSymbolTablesDo: aBlock after: aSymbol [
+{ #category : #initialization }
+Symbol class >> allSymbolTablesDo: aBlock after: aSymbol [
 
 	NewSymbols do: aBlock after: aSymbol.
 	SymbolTable do: aBlock after: aSymbol.
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>allSymbols [
+{ #category : #access }
+Symbol class >> allSymbols [
 	"Answer all interned symbols"
 	^Array streamContents:[:s|
 		s nextPutAll: NewSymbols.
@@ -71,22 +61,16 @@ Symbol class>>allSymbols [
 
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>cleanUp [
+{ #category : #cleanup }
+Symbol class >> cleanUp [
 	"Flush caches"
 
 	self compactSymbolTable.
 	self rebuildSelectorTable
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>compactSymbolTable [
+{ #category : #initialization }
+Symbol class >> compactSymbolTable [
 	"Reduce the size of the symbol table so that it holds all existing symbols + 25% (changed from 1000 since sets like to have 25% free and the extra space would grow back in a hurry)"
 
 	| oldSize |
@@ -97,21 +81,15 @@ Symbol class>>compactSymbolTable [
 	^oldSize printString,'  ',(oldSize - SymbolTable array size) printString, ' slot(s) reclaimed'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>findInterned: aString [
+{ #category : #'instance creation' }
+Symbol class >> findInterned: aString [
 
 	self hasInterned:aString ifTrue:[:symbol| ^symbol].
 	^nil.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>findInternedSelector: aString [
+{ #category : #'instance creation' }
+Symbol class >> findInternedSelector: aString [
 	| symbol |
 	symbol := self findInterned: aString.
 	"if it isn't found or not a SelectorSymbol - return nil"
@@ -121,11 +99,8 @@ Symbol class>>findInternedSelector: aString [
 	^ symbol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>hasInterned: aString ifTrue: symBlock [
+{ #category : #private }
+Symbol class >> hasInterned: aString ifTrue: symBlock [
 	"Answer with false if aString hasnt been interned (into a Symbol),  
 	otherwise supply the symbol to symBlock and return true."
 
@@ -136,19 +111,13 @@ Symbol class>>hasInterned: aString ifTrue: symBlock [
 			true ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>initSelectorTable [
+{ #category : #private }
+Symbol class >> initSelectorTable [
 	^ SelectorTable := WeakSet new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>initialize [
+{ #category : #initialization }
+Symbol class >> initialize [
 	Symbol rehash.
 	OneCharacterSymbols := nil.
 	OneCharacterSymbols := (1 to: 256) collect: [ :i | (i - 1) asCharacter asSymbol].
@@ -157,11 +126,8 @@ Symbol class>>initialize [
 		registerSystemClassNamed: #Symbol
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>intern: aStringOrSymbol  [
+{ #category : #'instance creation' }
+Symbol class >> intern: aStringOrSymbol [ 
 
 	^(self lookup: aStringOrSymbol) ifNil:[
 		| aClass aSymbol |
@@ -176,61 +142,43 @@ Symbol class>>intern: aStringOrSymbol  [
 		aSymbol].
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>internCharacter: aCharacter [
+{ #category : #'instance creation' }
+Symbol class >> internCharacter: aCharacter [
 	aCharacter asciiValue > 256 ifTrue:[^self intern: aCharacter asString].
 	OneCharacterSymbols ifNil: [^self intern: aCharacter asString].
 	^OneCharacterSymbols at: aCharacter asciiValue + 1
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>internSelector: aStringOrSymbol [
+{ #category : #'instance creation' }
+Symbol class >> internSelector: aStringOrSymbol [
 	| selector |
 	selector := (self selectorTable like: aStringOrSymbol)
 		ifNil: [ self selectorTable add: aStringOrSymbol asSymbol ].
 	^ selector
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>lookup: aStringOrSymbol [
+{ #category : #'instance creation' }
+Symbol class >> lookup: aStringOrSymbol [
 
 	^(SymbolTable like: aStringOrSymbol) ifNil: [
 		NewSymbols like: aStringOrSymbol
 	]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>new: aSize [
+{ #category : #'instance creation' }
+Symbol class >> new: aSize [
 
 	self shouldNotImplement .
 ]
 
-{
-	#category : #'stream creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>new: size streamContents: aBlock [
+{ #category : #'stream creation' }
+Symbol class >> new: size streamContents: aBlock [
 	^ (super new: size streamContents: aBlock) asSymbol
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>newFrom: aCollection  [
+{ #category : #'instance creation' }
+Symbol class >> newFrom: aCollection [ 
 	"Answer an instance of me containing the same elements as aCollection."
 
 	^ (aCollection as: String) asSymbol
@@ -240,11 +188,8 @@ Symbol class>>newFrom: aCollection  [
 "
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>possibleSelectorsFor: misspelled  [
+{ #category : #private }
+Symbol class >> possibleSelectorsFor: misspelled [ 
 	"Answer an ordered collection of possible corrections
 	for the misspelled selector in order of likelyhood"
 
@@ -272,11 +217,8 @@ Symbol class>>possibleSelectorsFor: misspelled  [
 	^ best
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>readFrom: strm   [
+{ #category : #'instance creation' }
+Symbol class >> readFrom: strm [  
 	"Symbol readFromString: '#abc'"
 
 	strm peek = $# ifFalse: [self error: 'Symbols must be introduced by #'].
@@ -284,11 +226,8 @@ Symbol class>>readFrom: strm   [
  
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>rebuildSelectorTable [
+{ #category : #cleanup }
+Symbol class >> rebuildSelectorTable [
 	self initSelectorTable.
 	CompiledMethod
 		allInstancesDo: [ :method | 
@@ -297,11 +236,8 @@ Symbol class>>rebuildSelectorTable [
 			selector ifNotNil: [ SelectorTable add: selector ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>rehash [
+{ #category : #private }
+Symbol class >> rehash [
    "Symbol rehash"
 	"Rebuild the hash table, reclaiming unreferenced Symbols."
 
@@ -310,19 +246,13 @@ Symbol class>>rehash [
 	self rebuildSelectorTable.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>selectorTable [
+{ #category : #private }
+Symbol class >> selectorTable [
 	^SelectorTable ifNil: [self initSelectorTable]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>selectorThatStartsCaseSensitive: leadingCharacters skipping: skipSym [
+{ #category : #accessing }
+Symbol class >> selectorThatStartsCaseSensitive: leadingCharacters skipping: skipSym [
 	"Same as thatStartsCaseSensitive:skipping: but on the SelectorTable only"
 	| size firstMatch key |
 
@@ -344,11 +274,8 @@ Symbol class>>selectorThatStartsCaseSensitive: leadingCharacters skipping: skipS
 
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>selectorsContaining: aString [
+{ #category : #access }
+Symbol class >> selectorsContaining: aString [
 	"Answer a list of selectors that contain aString within them. Case-insensitive.  Does return symbols that begin with a capital letter."
 
 	| size selectorList ascii |
@@ -384,30 +311,21 @@ Symbol class>>selectorsContaining: aString [
 "Symbol selectorsContaining: 'scon'"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>shutDown: aboutToQuit [
+{ #category : #private }
+Symbol class >> shutDown: aboutToQuit [
 
 	SymbolTable addAll: NewSymbols.
 	NewSymbols := WeakSet new.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>streamSpecies [
+{ #category : #accessing }
+Symbol class >> streamSpecies [
 	^ String
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>thatStarts: leadingCharacters skipping: skipSym [
+{ #category : #access }
+Symbol class >> thatStarts: leadingCharacters skipping: skipSym [
 	"Answer a selector symbol that starts with leadingCharacters.
 	Symbols beginning with a lower-case letter handled directly here.
 	Ignore case after first char.
@@ -441,11 +359,8 @@ Symbol class>>thatStarts: leadingCharacters skipping: skipSym [
 
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>thatStartsCaseSensitive: leadingCharacters skipping: skipSym [
+{ #category : #access }
+Symbol class >> thatStartsCaseSensitive: leadingCharacters skipping: skipSym [
 	"Same as thatStarts:skipping: but caseSensitive"
 	| size firstMatch key |
 
@@ -467,27 +382,18 @@ Symbol class>>thatStartsCaseSensitive: leadingCharacters skipping: skipSym [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>with: aCharacter [
+{ #category : #'instance creation' }
+Symbol class >> with: aCharacter [
 	^self newFrom: aCharacter asOrderedCollection
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol class>>withAll: aCollection [
+{ #category : #'instance creation' }
+Symbol class >> withAll: aCollection [
 	^ self newFrom: aCollection
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>, otherSymbolOrString [
+{ #category : #copying }
+Symbol >> , otherSymbolOrString [
 	"Concatenate the receiver with otherSymbolOrString and return the result.
 	Overwritten to always return Symbol results,
 	whether the argument is a Symbol or a String"
@@ -495,11 +401,8 @@ Symbol>>, otherSymbolOrString [
 	^ (super , otherSymbolOrString) asSymbol
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>= aSymbol [
+{ #category : #comparing }
+Symbol >> = aSymbol [
 	"Compare the receiver and aSymbol." 
 	self == aSymbol ifTrue: [^ true].
 	self class == aSymbol class ifTrue: [^ false].
@@ -507,20 +410,14 @@ Symbol>>= aSymbol [
 	^ super = aSymbol
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>asAnnouncement [
+{ #category : #converting }
+Symbol >> asAnnouncement [
 
 	^ self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>asMutator [
+{ #category : #converting }
+Symbol >> asMutator [
 	"Return a setter message from a getter message. For example,
 	#name asMutator returns #name:
 	return self if it is already a setter"
@@ -528,11 +425,8 @@ Symbol>>asMutator [
 	^ (self copyWith: $:) asSymbol
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>asString  [
+{ #category : #converting }
+Symbol >> asString [ 
 	"Refer to the comment in String|asString."
 	| newString |
 	newString := self species new: self size.
@@ -540,73 +434,49 @@ Symbol>>asString  [
 	^newString
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>asSymbol  [
+{ #category : #converting }
+Symbol >> asSymbol [ 
 	"Refer to the comment in String|asSymbol."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>at: anInteger put: anObject  [
+{ #category : #accessing }
+Symbol >> at: anInteger put: anObject [ 
 	"You cannot modify the receiver."
 
 	self errorNoModification
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>capitalized [
+{ #category : #converting }
+Symbol >> capitalized [
 	^ self asString capitalized asSymbol
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>copy [
+{ #category : #copying }
+Symbol >> copy [
 	"Answer with the receiver, because Symbols are unique."
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>cull: anObject  [
+{ #category : #evaluating }
+Symbol >> cull: anObject [ 
 	^anObject perform: self.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>errorNoModification [
+{ #category : #private }
+Symbol >> errorNoModification [
 
 	self error: 'symbols can not be modified.'
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>flushCache [
+{ #category : #'system primitives' }
+Symbol >> flushCache [
 	"Tell the virtual machine to remove all entries with this symbol as a selector from its method lookup caches, if it has any.  This 	must be done whenever a method is added, redefined or removed, so that message lookups reflect the revised organization.  c.f. 	Behavior>>flushCache & CompiledMethod>>flushCache.  Essential. See MethodDictionary class comment."
 
 	<primitive: 119>
 
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>handlesAnnouncement: anAnnouncement  [
+{ #category : #announcements }
+Symbol >> handlesAnnouncement: anAnnouncement [ 
 	"Anything else than the announcement identifier (in the case of symbol i.e. #foo for ... on: #foo send: #bar to: nil) will not 
 	be handled."
 	
@@ -617,94 +487,64 @@ Symbol>>handlesAnnouncement: anAnnouncement  [
 	^ anAnnouncement == self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>includesKey: sym [
+{ #category : #testing }
+Symbol >> includesKey: sym [
 	^self == sym.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>isBinary [
+{ #category : #testing }
+Symbol >> isBinary [
 	"Answer whether the receiver is a binary message selector."
 
 	^ self precedence = 2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>isDoIt [
+{ #category : #testing }
+Symbol >> isDoIt [
 
 	^ (self == #DoIt) or: [self == #DoItIn:].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>isInfix [
+{ #category : #testing }
+Symbol >> isInfix [
 	"Answer whether the receiver is an infix message selector."
 
 	^ self precedence = 2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>isKeyword [
+{ #category : #testing }
+Symbol >> isKeyword [
 	"Answer whether the receiver is a message keyword."
 
 	^ self precedence = 3
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>isOrientedFill [
+{ #category : #printing }
+Symbol >> isOrientedFill [
 	"Needs to be implemented here because symbols can occupy 'color' slots of morphs."
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>isSelectorSymbol [
+{ #category : #testing }
+Symbol >> isSelectorSymbol [
 	^ (self class selectorTable like: self) notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>isSymbol [
+{ #category : #testing }
+Symbol >> isSymbol [
 	^ true 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>isUnary [
+{ #category : #testing }
+Symbol >> isUnary [
 	"Answer whether the receiver is an unary message selector."
 
 	^ self precedence = 1
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>numArgs: n [
+{ #category : #'system primitives' }
+Symbol >> numArgs: n [
 	"Answer a string that can be used as a selector with n arguments.
 	 TODO: need to be extended to support shrinking and for selectors like #+ " 
 
@@ -725,11 +565,8 @@ Symbol>>numArgs: n [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>precedence [
+{ #category : #accessing }
+Symbol >> precedence [
 	"Answer the receiver's precedence, assuming it is a valid Smalltalk
 	message selector or 0 otherwise.  The numbers are 1 for unary,
 	2 for binary and 3 for keyword selectors."
@@ -740,28 +577,19 @@ Symbol>>precedence [
 	^ 1
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>prepareForDelivery [
+{ #category : #announcements }
+Symbol >> prepareForDelivery [
 	"somehow symbol can be announcemnt"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>replaceFrom: start to: stop with: replacement startingAt: repStart [
+{ #category : #accessing }
+Symbol >> replaceFrom: start to: stop with: replacement startingAt: repStart [
 
 	self errorNoModification
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>separateKeywords [
+{ #category : #converting }
+Symbol >> separateKeywords [
 	"#'foo:zork:' separateKeywords -> 'foo:  zork:'"
 
 	self isKeyword
@@ -775,29 +603,20 @@ Symbol>>separateKeywords [
 				separatedBy: [ stream nextPutAll: '  ' ] ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>shallowCopy [
+{ #category : #copying }
+Symbol >> shallowCopy [
 	"Answer with the receiver, because Symbols are unique."
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>sorted: aSortBlockOrNil [
+{ #category : #sorting }
+Symbol >> sorted: aSortBlockOrNil [
 	"Return a new sequenceable collection which contains the same elements as self but its elements are sorted by aSortBlockOrNil. The block should take two arguments and return true if the first element should preceed the second one. If aSortBlock is nil then <= is used for comparison. We convert the symbol to an array because symbols can't be changed."
 	
 	^self asArray sort: aSortBlockOrNil
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>storeOn: aStream  [
+{ #category : #printing }
+Symbol >> storeOn: aStream [ 
 
 	aStream nextPut: $#.
 	(self isLiteralSymbol)
@@ -805,38 +624,26 @@ Symbol>>storeOn: aStream  [
 		ifFalse: [super storeOn: aStream]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>string: aString [
+{ #category : #private }
+Symbol >> string: aString [
 
 	1 to: aString size do: [:j | super at: j put: (aString at: j)].
 	^self  
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>uncapitalized [
+{ #category : #converting }
+Symbol >> uncapitalized [
 	"Answer an object like the receiver but with first character downshifted if necessary"
 
 	^ self asString uncapitalized asSymbol
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>value: anObject  [
+{ #category : #evaluating }
+Symbol >> value: anObject [ 
 	^anObject perform: self.
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-Symbol>>veryDeepCopyWith: deepCopier [
+{ #category : #copying }
+Symbol >> veryDeepCopyWith: deepCopier [
 	"Return self.  I am immutable in the Morphic world.  Do not record me."
 ]

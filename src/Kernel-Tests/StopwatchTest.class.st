@@ -8,34 +8,24 @@ Class {
 		'aStopwatch',
 		'aDelay'
 	],
-	#category : #Kernel-Tests-Chronology,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:45'
+	#category : #Kernel-Tests-Chronology
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-StopwatchTest class>>isUnitTest [
+{ #category : #testing }
+StopwatchTest class >> isUnitTest [
 	^false
 ]
 
-{
-	#category : #coverage,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-StopwatchTest>>classToBeTested [
+{ #category : #coverage }
+StopwatchTest >> classToBeTested [
 
 	^ Stopwatch
 
 
 ]
 
-{
-	#category : #coverage,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-StopwatchTest>>selectorsToBeIgnored [
+{ #category : #coverage }
+StopwatchTest >> selectorsToBeIgnored [
 
 	| private | 
 	private := #( #printOn: #state: ).
@@ -44,20 +34,14 @@ StopwatchTest>>selectorsToBeIgnored [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-StopwatchTest>>setUp [
+{ #category : #running }
+StopwatchTest >> setUp [
 	aStopwatch := Stopwatch new.
 	aDelay := Delay forMilliseconds: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-StopwatchTest>>testChangingStatus [
+{ #category : #tests }
+StopwatchTest >> testChangingStatus [
 	aStopwatch activate.
 	self assert: aStopwatch isActive.
 	self assert: aStopwatch timespans size = 1.
@@ -73,21 +57,15 @@ StopwatchTest>>testChangingStatus [
 	self assert: aStopwatch timespans size = 0.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-StopwatchTest>>testInitialStatus [
+{ #category : #tests }
+StopwatchTest >> testInitialStatus [
 	self assert: aStopwatch isSuspended.
 	self deny: aStopwatch isActive.
 	self assert: aStopwatch duration = 0 seconds
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-StopwatchTest>>testMultipleTimings [
+{ #category : #tests }
+StopwatchTest >> testMultipleTimings [
 	aStopwatch activate.
 	aDelay wait.
 	aStopwatch suspend.
@@ -100,11 +78,8 @@ StopwatchTest>>testMultipleTimings [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-StopwatchTest>>testNew [
+{ #category : #tests }
+StopwatchTest >> testNew [
 
 	| sw |
 	sw := Stopwatch new.
@@ -118,19 +93,13 @@ StopwatchTest>>testNew [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-StopwatchTest>>testPrintOn [
+{ #category : #tests }
+StopwatchTest >> testPrintOn [
 	self assert: (String streamContents: [ :str | aStopwatch printOn: str ]) equals: 'a Stopwatch(suspended:0:00:00:00)'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-StopwatchTest>>testReActivate [
+{ #category : #tests }
+StopwatchTest >> testReActivate [
 
 	| sw |
 	sw := Stopwatch new.
@@ -144,11 +113,8 @@ StopwatchTest>>testReActivate [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-StopwatchTest>>testReset [
+{ #category : #tests }
+StopwatchTest >> testReset [
 
 	| sw |
 	sw := Stopwatch new.
@@ -161,11 +127,8 @@ StopwatchTest>>testReset [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-StopwatchTest>>testSingleTiming [
+{ #category : #tests }
+StopwatchTest >> testSingleTiming [
 	| timeBefore |
 	timeBefore := DateAndTime now.
 	aStopwatch activate.
@@ -177,11 +140,8 @@ StopwatchTest>>testSingleTiming [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-StopwatchTest>>testStartStop [
+{ #category : #tests }
+StopwatchTest >> testStartStop [
 
 	| sw t1 t2 t3 t4 |
 	sw := Stopwatch new.

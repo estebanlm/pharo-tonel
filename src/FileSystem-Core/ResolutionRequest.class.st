@@ -7,35 +7,25 @@ Class {
 	#instVars : [
 		'origin'
 	],
-	#category : #FileSystem-Core-Implementation,
-	#timestamp : 'cwp 11/18/2009 11:38'
+	#category : #FileSystem-Core-Implementation
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-ResolutionRequest class>>for: origin [
+{ #category : #'instance creation' }
+ResolutionRequest class >> for: origin [
 	^ self new
 		origin: origin;
 		signal
 ]
 
-{
-	#category : #exceptionDescription,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-ResolutionRequest>>defaultAction [
+{ #category : #exceptionDescription }
+ResolutionRequest >> defaultAction [
 	| filedir ref |
 	filedir := UIManager default chooseDirectory: 'Where is ', origin asString, '?'.
 	ref := filedir ifNotNil: [FileSystem disk referenceTo: filedir fullName].
 	self resume: ref
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-ResolutionRequest>>origin: aSymbol [
+{ #category : #accessing }
+ResolutionRequest >> origin: aSymbol [
 	origin := aSymbol
 ]

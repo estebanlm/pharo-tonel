@@ -7,40 +7,27 @@ Class {
 	#instVars : [
 		'builder'
 	],
-	#category : #HelpSystem-Tests-Builders,
-	#timestamp : 'TorstenBergmann 2/4/2014 21:19'
+	#category : #HelpSystem-Tests-Builders
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-WikiStyleHelpBuilderTest>>defaultTestClass [
+{ #category : #accessing }
+WikiStyleHelpBuilderTest >> defaultTestClass [
 	^WikiStyleHelpBuilder
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-WikiStyleHelpBuilderTest>>setUp [
+{ #category : #running }
+WikiStyleHelpBuilderTest >> setUp [
 	super setUp.
 	builder := self defaultTestClass new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-WikiStyleHelpBuilderTest>>testDefaultSyntaxAlwaysPier [
+{ #category : #testing }
+WikiStyleHelpBuilderTest >> testDefaultSyntaxAlwaysPier [
 	self assert: builder defaultSyntax == #pier
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-WikiStyleHelpBuilderTest>>testExtractHelpContentsFromMarkedString [
+{ #category : #testing }
+WikiStyleHelpBuilderTest >> testExtractHelpContentsFromMarkedString [
 	|content|
 	content := builder extractHelpContentFromString: 'outer<help>inner</help>outer'.
 	self assert: content = 'inner'.

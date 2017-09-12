@@ -14,15 +14,11 @@ Class {
 		'repositories',
 		'symbolicVersionString'
 	],
-	#category : #Versionner-Core-DependenciesModel,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-DependenciesModel
 }
 
-{
-	#category : #instantiation,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProject class>>newWithWorkingCopy: anMBConfigurationInfo [
+{ #category : #instantiation }
+MTDependantProject class >> newWithWorkingCopy: anMBConfigurationInfo [
 	"Create a new dependent project with the given project."
 	| requiredProject  version |
 	
@@ -39,11 +35,8 @@ MTDependantProject class>>newWithWorkingCopy: anMBConfigurationInfo [
 	^ requiredProject
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProject>>= other [
+{ #category : #comparing }
+MTDependantProject >> = other [
 	(super = other) ifFalse: [ ^false ].
 	(self configurationClass = other configurationClass) ifFalse: [ ^false ].
 	(self displayName = other displayName) ifFalse: [ ^false ].
@@ -51,51 +44,33 @@ MTDependantProject>>= other [
 	^ true
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProject>>acceptVisitor: anMTProjectVisitor [
+{ #category : #visiting }
+MTDependantProject >> acceptVisitor: anMTProjectVisitor [
 	anMTProjectVisitor visitDependantProject: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProject>>configurationClass [
+{ #category : #accessing }
+MTDependantProject >> configurationClass [
 	^ configurationClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProject>>configurationClass: anObject [
+{ #category : #accessing }
+MTDependantProject >> configurationClass: anObject [
 	configurationClass := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProject>>displayName [
+{ #category : #accessing }
+MTDependantProject >> displayName [
 	^ displayName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProject>>displayName: anObject [
+{ #category : #accessing }
+MTDependantProject >> displayName: anObject [
 	displayName := anObject
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProject>>displayString [
+{ #category : #displaying }
+MTDependantProject >> displayString [
 	^ version 
 		ifNil: [ displayName ]
 		ifNotNil: [ version name 
@@ -103,44 +78,29 @@ MTDependantProject>>displayString [
 					ifNotNil: [displayName, ' (', version name, ')' ] ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProject>>initialize  [
+{ #category : #initialize-release }
+MTDependantProject >> initialize [ 
 	repositories  := OrderedCollection new.
 	dependencies := OrderedCollection new.
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProject>>repositories [
+{ #category : #displaying }
+MTDependantProject >> repositories [
 	^ repositories
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProject>>repositories: aRepositoryList [
+{ #category : #displaying }
+MTDependantProject >> repositories: aRepositoryList [
 	"Set a list of repository URLs for this project."
 	repositories := aRepositoryList asOrderedCollection.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProject>>symbolicVersionString [
+{ #category : #accessing }
+MTDependantProject >> symbolicVersionString [
 	^ symbolicVersionString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProject>>symbolicVersionString: anObject [
+{ #category : #accessing }
+MTDependantProject >> symbolicVersionString: anObject [
 	symbolicVersionString := anObject
 ]

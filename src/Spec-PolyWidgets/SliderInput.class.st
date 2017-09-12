@@ -17,15 +17,11 @@ Class {
 		'slider',
 		'input'
 	],
-	#category : #Spec-PolyWidgets-Elementary,
-	#timestamp : 'Spirita 7/21/2016 18:06'
+	#category : #Spec-PolyWidgets-Elementary
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput class>>example [
+{ #category : #example }
+SliderInput class >> example [
 	| example |
 	example := self new
 		min: 0;
@@ -38,11 +34,8 @@ SliderInput class>>example [
 	^ example
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput class>>sliderBottom [
+{ #category : #specs }
+SliderInput class >> sliderBottom [
 	<spec>
 	^ SpecLayout composed
 		newColumn: [ :column | 
@@ -52,11 +45,8 @@ SliderInput class>>sliderBottom [
 		yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput class>>sliderLeft [
+{ #category : #specs }
+SliderInput class >> sliderLeft [
 	<spec: #default>
 	^ SpecLayout composed
 		newRow: [ :row | 
@@ -66,11 +56,8 @@ SliderInput class>>sliderLeft [
 		yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput class>>sliderRight [
+{ #category : #specs }
+SliderInput class >> sliderRight [
 	<spec>
 	^ SpecLayout composed
 		newRow: [ :row | 
@@ -80,11 +67,8 @@ SliderInput class>>sliderRight [
 		yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput class>>sliderTop [
+{ #category : #specs }
+SliderInput class >> sliderTop [
 	<spec>
 	^ SpecLayout composed
 		newColumn: [ :column | 
@@ -94,28 +78,19 @@ SliderInput class>>sliderTop [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput>>autoAccept [
+{ #category : #accessing }
+SliderInput >> autoAccept [
 	^ input autoAccept
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput>>autoAccept: aBoolean [
+{ #category : #accessing }
+SliderInput >> autoAccept: aBoolean [
 	
 	input autoAccept: aBoolean
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput>>initializePresenter [
+{ #category : #initialization }
+SliderInput >> initializePresenter [
 	slider
 		whenValueChangedDo: [ :sliderValue | 
 			| inputValue |
@@ -130,85 +105,55 @@ SliderInput>>initializePresenter [
 				ifFalse: [ slider value: inputValue ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput>>initializeWidgets [
+{ #category : #initialization }
+SliderInput >> initializeWidgets [
 	slider := self instantiate: SliderModel.
 	input := self instantiate: TextInputFieldModel.
 	self focusOrder add: input
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput>>input [
+{ #category : #accessing }
+SliderInput >> input [
 	^ input
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput>>label [
+{ #category : #accessing }
+SliderInput >> label [
 	^ slider label
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput>>label: aString [
+{ #category : #accessing }
+SliderInput >> label: aString [
 	slider label: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput>>max: aNumber [
+{ #category : #accessing }
+SliderInput >> max: aNumber [
 	slider max: aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput>>min: aNumber [
+{ #category : #accessing }
+SliderInput >> min: aNumber [
 	slider min: aNumber.
 	input text: aNumber asString 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput>>slider [
+{ #category : #accessing }
+SliderInput >> slider [
 	^ slider
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput>>value [
+{ #category : #accessing }
+SliderInput >> value [
 	^ slider value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput>>value: aNumber [
+{ #category : #accessing }
+SliderInput >> value: aNumber [
 	slider value: aNumber 
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SliderInput>>whenValueChangedDo: aBlock [
+{ #category : #api-events }
+SliderInput >> whenValueChangedDo: aBlock [
 	slider whenValueChangedDo: aBlock
 ]

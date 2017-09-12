@@ -15,35 +15,25 @@ I am propably too primitive to be used directly, see ZdcSecureSocketStream for a
 Class {
 	#name : #ZdcAbstractSSLSession,
 	#superclass : #Object,
-	#category : #Zodiac-Core,
-	#timestamp : 'SvenVanCaekenberghe 5/18/2011 10:05'
+	#category : #Zodiac-Core
 }
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSSLSession>>accept: srcBuf from: start to: stop into: dstBuf [
+{ #category : #operations }
+ZdcAbstractSSLSession >> accept: srcBuf from: start to: stop into: dstBuf [
 	"Start or continue the server handshake using the given input token"
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSSLSession>>certificateName [
+{ #category : #accessing }
+ZdcAbstractSSLSession >> certificateName [
 	"The name of the local certificate to provide to the remote peer"
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSSLSession>>certificateName: aString [
+{ #category : #accessing }
+ZdcAbstractSSLSession >> certificateName: aString [
 	"Sets the name of the local certificate to provide to the remote peer.
 	OpenSSL: The name is the full path to a .pem file.
 	WinSSL: The name is matched against the 'subject' of a certificate in the cert store"
@@ -51,11 +41,8 @@ ZdcAbstractSSLSession>>certificateName: aString [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSSLSession>>certificateVerificationState [
+{ #category : #accessing }
+ZdcAbstractSSLSession >> certificateVerificationState [
 	"Returns the certificate verification bits. The returned value indicates
 	whether the certificate is valid. The two standard values are:
 		0   - The certificate is valid
@@ -71,82 +58,58 @@ ZdcAbstractSSLSession>>certificateVerificationState [
 	self subclassResponsibility
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSSLSession>>connect: srcBuf from: start to: stop into: dstBuf [
+{ #category : #operations }
+ZdcAbstractSSLSession >> connect: srcBuf from: start to: stop into: dstBuf [
 	"Start or continue the client handshake using the given input token"
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSSLSession>>decrypt: srcBuf from: start to: stop into: dstBuf [
+{ #category : #operations }
+ZdcAbstractSSLSession >> decrypt: srcBuf from: start to: stop into: dstBuf [
 	"Decrypt the input in srcBuf from start to stop into dstBuf."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSSLSession>>destroy [
+{ #category : #initialize }
+ZdcAbstractSSLSession >> destroy [
 	"Do any necessary cleanup when I am no longer needed"
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSSLSession>>encrypt: srcBuf from: start to: stop into: dstBuf [
+{ #category : #operations }
+ZdcAbstractSSLSession >> encrypt: srcBuf from: start to: stop into: dstBuf [
 	"Encrypt the input in srcBuf from start to stop into dstBuf."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSSLSession>>isConnected [
+{ #category : #testing }
+ZdcAbstractSSLSession >> isConnected [
 	"Returns true if the SSL handshake has been completed"
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSSLSession>>peerCertificateName [
+{ #category : #accessing }
+ZdcAbstractSSLSession >> peerCertificateName [
 	"Returns the certificate name of the remote peer.
 	The method only returns a name if the certificate has been verified"
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSSLSession>>serverName [
+{ #category : #accessing }
+ZdcAbstractSSLSession >> serverName [
 	"Get the Server Name Indication (SNI) property"
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSSLSession>>serverName: serverName [
+{ #category : #accessing }
+ZdcAbstractSSLSession >> serverName: serverName [
 	"Set the Server Name Indication (SNI) to serverName, 
 	the fully qualified domain name of the host to connect to.
 	This should be set by a client before #connect is attempted."
@@ -154,11 +117,8 @@ ZdcAbstractSSLSession>>serverName: serverName [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSSLSession>>sslState [
+{ #category : #accessing }
+ZdcAbstractSSLSession >> sslState [
 	"Returns the current state of the SSL connection:
 		0 - Unused
 		1 - In accept handshake

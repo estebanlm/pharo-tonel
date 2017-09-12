@@ -4,23 +4,16 @@ Command to load project from archive in versionner
 Class {
 	#name : #MBLoadProjectFromArchiveCommand,
 	#superclass : #MBConfigurationInfoCommand,
-	#category : #Versionner-Core-Commands,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:08'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBLoadProjectFromArchiveCommand>>documentation  [
+{ #category : #documentation }
+MBLoadProjectFromArchiveCommand >> documentation [ 
 	^ 'Load project from an archive.'
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBLoadProjectFromArchiveCommand>>execute [
+{ #category : #execute }
+MBLoadProjectFromArchiveCommand >> execute [
 	| archiveRepository configRef configurationInfo versionInfos versionInfo version configRefMap configNames configName |
 	archiveRepository := self pickRepositoryFrom: self repositories title: 'Choose the archive repository'.
 	archiveRepository ifNil: [ ^ self ].
@@ -54,19 +47,13 @@ MBLoadProjectFromArchiveCommand>>execute [
 	version load: version defaultPackageNamesToLoad
 ]
 
-{
-	#category : #ordering,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBLoadProjectFromArchiveCommand>>order [
+{ #category : #ordering }
+MBLoadProjectFromArchiveCommand >> order [
 
 	^'01'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBLoadProjectFromArchiveCommand>>title [
+{ #category : #accessing }
+MBLoadProjectFromArchiveCommand >> title [
 	^ 'load archive version'
 ]

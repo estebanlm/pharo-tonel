@@ -4,36 +4,26 @@ A FLSimpleCollectionCluster is a special optional cluster that rather than using
 Class {
 	#name : #FLSimpleCollectionCluster,
 	#superclass : #FLAbstractCollectionCluster,
-	#category : #Fuel-Clusters-Optionals,
-	#timestamp : '<historical>'
+	#category : #Fuel-Clusters-Optionals
 }
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSimpleCollectionCluster>>materializeReferencesOf: anObject with: aDecoder [
+{ #category : #serialize/materialize }
+FLSimpleCollectionCluster >> materializeReferencesOf: anObject with: aDecoder [
 	aDecoder nextEncodedPositiveInteger "anObject size"
 		 timesRepeat: 
 			[ anObject add: aDecoder nextEncodedReference ]
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSimpleCollectionCluster>>referencesOf: anObject do: aBlock [
+{ #category : #analyzing }
+FLSimpleCollectionCluster >> referencesOf: anObject do: aBlock [
 	aBlock value: anObject size.
 	anObject
 		do: [ :each | aBlock value: each ]
 
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSimpleCollectionCluster>>serializeReferencesOf: anObject with: anEncoder [
+{ #category : #serialize/materialize }
+FLSimpleCollectionCluster >> serializeReferencesOf: anObject with: anEncoder [
 	| refs |
 	refs := self references at: anObject ifAbsent: [ ^ self ].
 	anEncoder encodePositiveInteger: refs first.

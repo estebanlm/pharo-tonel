@@ -21,42 +21,29 @@ Class {
 	#instVars : [
 		'sourceFiles'
 	],
-	#category : #CodeImportCommandLineHandlers,
-	#timestamp : '<historical>'
+	#category : #CodeImportCommandLineHandlers
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-STCommandLineHandler class>>commandName [
+{ #category : #accessing }
+STCommandLineHandler class >> commandName [
 	^ 'st'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-STCommandLineHandler class>>description [
+{ #category : #accessing }
+STCommandLineHandler class >> description [
 	^ 'Loads and executes .st source files'
 ]
 
-{
-	#category : #'handler selection',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-STCommandLineHandler class>>isResponsibleFor: aCommandLine [
+{ #category : #'handler selection' }
+STCommandLineHandler class >> isResponsibleFor: aCommandLine [
 	"This handler is reponsible only for .st files"
 	(aCommandLine hasFileWithExtension: '.st')
 		ifTrue: [ ^ true ].
 	^ super isResponsibleFor: aCommandLine
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-STCommandLineHandler class>>printCompilerWarning: aSyntaxErrorNotification [
+{ #category : #printing }
+STCommandLineHandler class >> printCompilerWarning: aSyntaxErrorNotification [
 	| stderr position contents errorLine errorMessage maxLineNumberSize lineNumber |
 	
 	"format the error"
@@ -97,11 +84,8 @@ STCommandLineHandler class>>printCompilerWarning: aSyntaxErrorNotification [
 	]
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-STCommandLineHandler>>activate [
+{ #category : #activation }
+STCommandLineHandler >> activate [
 	self activateHelp
 		ifTrue: [  ^ self ].
 	
@@ -111,11 +95,8 @@ STCommandLineHandler>>activate [
 	self end
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-STCommandLineHandler>>end [
+{ #category : #private }
+STCommandLineHandler >> end [
 	| quit  |
 	
 	quit := self commandLine hasOption: 'quit'.
@@ -127,11 +108,8 @@ STCommandLineHandler>>end [
 		ifTrue: [ self exitSuccess ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-STCommandLineHandler>>handleError: error	 [
+{ #category : #private }
+STCommandLineHandler >> handleError: error [	
 	
 	"for syntax errors we can used the default action"	"otherwise resignal it"
 	(error isKindOf: SyntaxErrorNotification)
@@ -139,11 +117,8 @@ STCommandLineHandler>>handleError: error	 [
 		ifFalse: [ error pass ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-STCommandLineHandler>>handleError: error reference: aReference [
+{ #category : #private }
+STCommandLineHandler >> handleError: error reference: aReference [
 	"Print a header before failing on an errro / syntax notification from the the script loaded by the given request"
 	
 	"We ignore warnings for now"
@@ -167,21 +142,15 @@ STCommandLineHandler>>handleError: error reference: aReference [
 	error pass.
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-STCommandLineHandler>>handleErrorsDuring: aBlock reference: aReference [
+{ #category : #installing }
+STCommandLineHandler >> handleErrorsDuring: aBlock reference: aReference [
 	aBlock
 		on: Error, OCSemanticWarning, OCSemanticError
 		do: [ :e | self handleError: e reference: aReference ]
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-STCommandLineHandler>>installSourceFile: aReference [
+{ #category : #installing }
+STCommandLineHandler >> installSourceFile: aReference [
 	"Install the source file given by aFileReference"
 	| codeImporter |
 
@@ -202,11 +171,8 @@ STCommandLineHandler>>installSourceFile: aReference [
 		reference: aReference.
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-STCommandLineHandler>>installSourceFiles [
+{ #category : #installing }
+STCommandLineHandler >> installSourceFiles [
 	"Install the previously loaded source files"
 
 	sourceFiles ifNil: [ ^ self ].
@@ -216,30 +182,21 @@ STCommandLineHandler>>installSourceFiles [
 	
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-STCommandLineHandler>>loadSourceFiles: anArray [
+{ #category : #loading }
+STCommandLineHandler >> loadSourceFiles: anArray [
 	"Load all the source files in the given array."
 
 	sourceFiles := anArray collect: [ :each | File named: each ].
 
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-STCommandLineHandler>>selectSourceFiles [
+{ #category : #activation }
+STCommandLineHandler >> selectSourceFiles [
 	self loadSourceFiles: (self commandLine allFilesWithExtension: '.st').
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-STCommandLineHandler>>skipShebangFrom: readStream [
+{ #category : #installing }
+STCommandLineHandler >> skipShebangFrom: readStream [
 	"Skip the shebang sequnce #! at the beginning of a bash file"
 	
 	readStream wrappedStream position = 0

@@ -8,33 +8,23 @@ Class {
 	#instVars : [
 		'result'
 	],
-	#category : #Kernel-Exceptions,
-	#timestamp : 'MarcusDenker 5/30/2016 11:13'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CannotReturn>>isResumable [
+{ #category : #testing }
+CannotReturn >> isResumable [
 
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CannotReturn>>result [
+{ #category : #accessing }
+CannotReturn >> result [
 
 	^result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CannotReturn>>result: r [
+{ #category : #accessing }
+CannotReturn >> result: r [
 
 	result := r
 ]

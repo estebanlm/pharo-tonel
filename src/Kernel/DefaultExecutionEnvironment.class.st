@@ -12,40 +12,26 @@ Class {
 	#classInstVars : [
 		'instance'
 	],
-	#category : #Kernel-Processes,
-	#timestamp : 'DenisKudryashov 8/29/2016 15:57'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DefaultExecutionEnvironment class>>beActive [
+{ #category : #controlling }
+DefaultExecutionEnvironment class >> beActive [
 
 	CurrentExecutionEnvironment restoreDefault 
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DefaultExecutionEnvironment class>>beActiveDuring: aBlock [
+{ #category : #controlling }
+DefaultExecutionEnvironment class >> beActiveDuring: aBlock [
 
 	^self instance beActiveDuring: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DefaultExecutionEnvironment class>>instance [
+{ #category : #accessing }
+DefaultExecutionEnvironment class >> instance [
 	^instance ifNil: [ instance := self new ]
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DefaultExecutionEnvironment>>prepareForNewProcess: aProcess [
-
+{ #category : #controlling }
+DefaultExecutionEnvironment >> prepareForNewProcess: aProcess [
 ]

@@ -8,39 +8,26 @@ Class {
 	#instVars : [
 		'postponedEvents'
 	],
-	#category : #GT-Spotter-EventRecorder-Base,
-	#timestamp : 'JurajKubelka 11/15/2015 18:42'
+	#category : #GT-Spotter-EventRecorder-Base
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterEventCollector>>bundle [
+{ #category : #accessing }
+GTSpotterEventCollector >> bundle [
 	^ self postpone: (self bundle: (postponedEvents ifNil: [ OrderedCollection new ]))
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterEventCollector>>defaultCategory [
+{ #category : #configuration }
+GTSpotterEventCollector >> defaultCategory [
 	^ #spotter
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterEventCollector>>linkToSpotter: aSpotterModel [
+{ #category : #initialization }
+GTSpotterEventCollector >> linkToSpotter: aSpotterModel [
 	aSpotterModel announcer when: Announcement send: #recordAnnouncement: to: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterEventCollector>>postpone: aCollectionOfEvents [
+{ #category : #accessing }
+GTSpotterEventCollector >> postpone: aCollectionOfEvents [
 	| lastExitIndex |
 	lastExitIndex := aCollectionOfEvents findLast: [ :each | each isCloseSpotter ].
 	lastExitIndex = aCollectionOfEvents size ifTrue: [ 
@@ -50,31 +37,22 @@ GTSpotterEventCollector>>postpone: aCollectionOfEvents [
 	^ aCollectionOfEvents first: lastExitIndex.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterEventCollector>>postponedEvents [
+{ #category : #accessing }
+GTSpotterEventCollector >> postponedEvents [
 	"For testing/debugging purpose."
 	^ postponedEvents
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterEventCollector>>recordAnnouncement: anAnnouncement [
+{ #category : #events }
+GTSpotterEventCollector >> recordAnnouncement: anAnnouncement [
 	Privacy sendDiagnosticsAndUsageData ifFalse: [ ^ self ].	
 	(anAnnouncement respondsTo: #asRecorderEvent) ifTrue: [	
 		self add: anAnnouncement asRecorderEvent ]
 
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterEventCollector>>recordSpotterOpenEvent [
+{ #category : #events }
+GTSpotterEventCollector >> recordSpotterOpenEvent [
 	Privacy sendDiagnosticsAndUsageData ifFalse: [ ^ self ].	
 	self add: GTSpotterRecorderOpenEvent new
 ]

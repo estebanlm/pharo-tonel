@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MTDevelopmentWorkfowTest,
 	#superclass : #TestCase,
@@ -10,15 +7,11 @@ Class {
 		'class',
 		'visitor'
 	],
-	#category : #Versionner-Tests-Core-DependenciesModel,
-	#timestamp : ''
+	#category : #Versionner-Tests-Core-DependenciesModel
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfowTest>>testCreateInitialDevelopment [
+{ #category : #tests }
+MTDevelopmentWorkfowTest >> testCreateInitialDevelopment [
 	|  version configuration |
 
 	project := MTProject newNamed: 'Z' withInitialVersion: '0.1'  inRepository: 'http://smalltalkhub.com/mc/demarey/Versionner/main'.
@@ -35,11 +28,8 @@ MTDevelopmentWorkfowTest>>testCreateInitialDevelopment [
 	"configuration removeFromSystem."
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfowTest>>testNewProjectWithInitialVersionInRepository [
+{ #category : #tests }
+MTDevelopmentWorkfowTest >> testNewProjectWithInitialVersionInRepository [
 	|  projectName configClass |
 
 	projectName := 'VersionnerTest'.
@@ -55,11 +45,8 @@ MTDevelopmentWorkfowTest>>testNewProjectWithInitialVersionInRepository [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfowTest>>testNextDevelopmentVersionString [
+{ #category : #tests }
+MTDevelopmentWorkfowTest >> testNextDevelopmentVersionString [
 	| workflow |
 	
 	workflow := MTDevelopmentWorkfow new.
@@ -68,11 +55,8 @@ MTDevelopmentWorkfowTest>>testNextDevelopmentVersionString [
 	self assert: (workflow nextDevelopmentVersionString: 'baseline-0.9') equals: '0.10-baseline'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfowTest>>testStandardizeDevVersionString [
+{ #category : #tests }
+MTDevelopmentWorkfowTest >> testStandardizeDevVersionString [
 	| workflow |
 	
 	workflow := MTDevelopmentWorkfow new.

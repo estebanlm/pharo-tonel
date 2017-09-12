@@ -7,31 +7,21 @@ Class {
 	#instVars : [
 		'description'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 15:15'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerStoppedEvent>>description [
+{ #category : #accessing }
+ZnServerStoppedEvent >> description [
 	^ description
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerStoppedEvent>>description: anObject [
+{ #category : #accessing }
+ZnServerStoppedEvent >> description: anObject [
 	description := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerStoppedEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnServerStoppedEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream << ' Stopped '; << description
 ]

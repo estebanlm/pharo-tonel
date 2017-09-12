@@ -19,134 +19,88 @@ Class {
 		'columnToSortBy',
 		'stopStepping'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : 'alain.plantec 9/8/2009 15:22'
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>acceptDroppingMorph: transferMorph event: evt inMorph: listMorph  [
+{ #category : #'drag and drop' }
+GLMTreeMorphModel >> acceptDroppingMorph: transferMorph event: evt inMorph: listMorph [ 
 	| targetItem |
 	targetItem := (listMorph scrollerSubMorphFromPoint: evt position) complexContents item.	
 	^ self glamourPresentation accept: transferMorph passenger droppedOnItem: targetItem
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>allKeystrokeActions [
+{ #category : #accessing }
+GLMTreeMorphModel >> allKeystrokeActions [
 	^ (self glamourPresentation allActions, self glamourPresentation allSelectionActions) select: [ :action | 
 		action hasShortcut ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>allMenuActions [
+{ #category : #accessing }
+GLMTreeMorphModel >> allMenuActions [
 	^ (self glamourPresentation allSelectionActions select: [:action | action hasTitle ]) 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>amountToFilterBy [
+{ #category : #accessing }
+GLMTreeMorphModel >> amountToFilterBy [
 	^ nil "amountToFilterBy ifNil: [self glamourPresentation amountToShow]"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>amountToFilterBy: aNumber  [
+{ #category : #accessing }
+GLMTreeMorphModel >> amountToFilterBy: aNumber [ 
 	amountToFilterBy := aNumber
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>announce: anAnnouncement [
+{ #category : #announcements }
+GLMTreeMorphModel >> announce: anAnnouncement [
 	self announcer announce: anAnnouncement 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>announcer [
+{ #category : #accessing }
+GLMTreeMorphModel >> announcer [
 	^glmAnnouncer ifNil: [ glmAnnouncer := GLMAnnouncer new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>childrenBlock [
+{ #category : #accessing }
+GLMTreeMorphModel >> childrenBlock [
 	^ childrenBlock ifNil: [ childrenBlock := self glamourPresentation children isNil 
 		ifFalse: [self glamourPresentation children] ifTrue: [OrderedCollection new] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>childrenBlock: aBlock [
+{ #category : #accessing }
+GLMTreeMorphModel >> childrenBlock: aBlock [
 	childrenBlock := aBlock 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>defaultPageSize [
+{ #category : #accessing }
+GLMTreeMorphModel >> defaultPageSize [
 	^ defaultPageSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>defaultPageSize: anInteger [
+{ #category : #accessing }
+GLMTreeMorphModel >> defaultPageSize: anInteger [
 	defaultPageSize := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>displayFormat [
+{ #category : #accessing }
+GLMTreeMorphModel >> displayFormat [
 	^ displayFormat ifNil: [displayFormat := self glamourPresentation format]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>displayFormat: aBlock  [
+{ #category : #accessing }
+GLMTreeMorphModel >> displayFormat: aBlock [ 
 	displayFormat := aBlock 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>displayValue [
+{ #category : #accessing }
+GLMTreeMorphModel >> displayValue [
 	
 	^ columnToSortBy 
 		ifNil: [self glamourPresentation displayValue]
 		ifNotNil: [self glamourPresentation displayValue sorted: self sortBlock]
 ]
 
-{
-	#category : #'search and filtering',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>doSearchOrFilter [
+{ #category : #'search and filtering' }
+GLMTreeMorphModel >> doSearchOrFilter [
 	inputText isEmptyOrNil
 		ifTrue: [ self resetInput ]
 		ifFalse:[ 
@@ -156,59 +110,38 @@ GLMTreeMorphModel>>doSearchOrFilter [
 
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>dragEnabled [
+{ #category : #'drag and drop' }
+GLMTreeMorphModel >> dragEnabled [
 	^ self glamourPresentation allowsItemDrag
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>dragPassengerFor: item inMorph: listMorph [
+{ #category : #'drag and drop' }
+GLMTreeMorphModel >> dragPassengerFor: item inMorph: listMorph [
 	^ self glamourPresentation transformedDraggedItem: item complexContents item 
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>dragTransferType [
+{ #category : #'drag and drop' }
+GLMTreeMorphModel >> dragTransferType [
 	^ #Glamour
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>dragTransferTypeForMorph: listMorph [
+{ #category : #'drag and drop' }
+GLMTreeMorphModel >> dragTransferTypeForMorph: listMorph [
 	^ self dragTransferType
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>dropEnabled [
+{ #category : #'drag and drop' }
+GLMTreeMorphModel >> dropEnabled [
 	^ self glamourPresentation isDropTarget
 ]
 
-{
-	#category : #'search and filtering',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>executeFilter [
+{ #category : #'search and filtering' }
+GLMTreeMorphModel >> executeFilter [
 	self updateRoots
 ]
 
-{
-	#category : #'search and filtering',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>executeSearch [
+{ #category : #'search and filtering' }
+GLMTreeMorphModel >> executeSearch [
 	| newSelection check |
 	newSelection := OrderedCollection new.
 	roots do: [ :each | 
@@ -219,22 +152,16 @@ GLMTreeMorphModel>>executeSearch [
 		ifTrue: [self selection: nil]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>explicitSelection: anObject  [
+{ #category : #callbacks }
+GLMTreeMorphModel >> explicitSelection: anObject [ 
 	"anObject is a domain object, not a Glamour related object"
 	self glamourPresentation isMultiple 
 		ifTrue: [ self explicitlySelectMultipleItems: anObject ]
 		ifFalse: [ self explicitlySelectItem: anObject ]
 ]
 
-{
-	#category : #'private selecting',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>explicitlySelectItem: anObject  [
+{ #category : #'private selecting' }
+GLMTreeMorphModel >> explicitlySelectItem: anObject [ 
 	(self selectedItem notNil and: [self selectedItem = anObject]) ifTrue: [ ^ self ].
 	(self selectedItem isNil and: [ anObject isNil ]) ifTrue: [ ^ self ].
 	anObject isNil ifTrue: [
@@ -249,11 +176,8 @@ GLMTreeMorphModel>>explicitlySelectItem: anObject  [
 				^ self]]]
 ]
 
-{
-	#category : #'private selecting',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>explicitlySelectMultipleItems: aCollection  [
+{ #category : #'private selecting' }
+GLMTreeMorphModel >> explicitlySelectMultipleItems: aCollection [ 
 	| newSelection collection|
 	aCollection isNil ifTrue: [^ self].
 	collection := aCollection isCollection ifTrue: [aCollection] ifFalse: [aCollection asOrderedCollection ].
@@ -267,151 +191,100 @@ GLMTreeMorphModel>>explicitlySelectMultipleItems: aCollection  [
 	self selectAllNodePaths: newSelection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>filteredRoots [
+{ #category : #accessing }
+GLMTreeMorphModel >> filteredRoots [
 	| filtered |
 	roots ifNil: [ self roots: self displayValue ].
 	filtered := roots select: [ :each | each shouldBeDisplayed ].
 	^ filtered
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>forceStopStepping [
+{ #category : #stepping }
+GLMTreeMorphModel >> forceStopStepping [
 	stopStepping := true.
 	self changed.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>glamourPresentation [
+{ #category : #accessing }
+GLMTreeMorphModel >> glamourPresentation [
 	^ glamourPresentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>glamourPresentation: anObject [
+{ #category : #accessing }
+GLMTreeMorphModel >> glamourPresentation: anObject [
 	glamourPresentation := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>inputText [
+{ #category : #accessing }
+GLMTreeMorphModel >> inputText [
 	^ inputText ifNil: [inputText := '']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>inputText: anObject [
+{ #category : #accessing }
+GLMTreeMorphModel >> inputText: anObject [
 	inputText := anObject.
 	self doSearchOrFilter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>inputTextEnabled [
+{ #category : #accessing }
+GLMTreeMorphModel >> inputTextEnabled [
 	^ true
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>keyStroke: aKeyboardEvent from: aTreeMorph  [
+{ #category : #callbacks }
+GLMTreeMorphModel >> keyStroke: aKeyboardEvent from: aTreeMorph [ 
 	| action |
 	action := self allKeystrokeActions detect: [:a | a shortcut = aKeyboardEvent keyCharacter] ifNone: [nil].
 	action ifNotNil: [ self announce: (GLMKeyStroke action: action) ]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>menu: menu shifted: b  [
+{ #category : #callbacks }
+GLMTreeMorphModel >> menu: menu shifted: b [ 
 	"Set up the menu to apply to the receiver's, honoring the #shifted boolean"
 	self selectedNode ifNotNil: [:current | current menu: menu shifted: b].
 	^ menu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>nodeModelFor: anObject [
+{ #category : #accessing }
+GLMTreeMorphModel >> nodeModelFor: anObject [
 	^ (GLMTreeMorphNodeModel with: anObject) containerTree: self; yourself
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>onDoubleClick [
+{ #category : #callbacks }
+GLMTreeMorphModel >> onDoubleClick [
 	self announcer announce: (GLMTreeMorphStrongSelectionChanged new strongSelectionValue: 
 		(self selection ifNotNil: [self selection selectedItemOrItemsOrNil]))
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>resetChildrenContents  [
+{ #category : #actions }
+GLMTreeMorphModel >> resetChildrenContents [ 
 	self roots do: [:each | each resetContentsRecursively]
 ]
 
-{
-	#category : #'search and filtering',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>resetInput [
+{ #category : #'search and filtering' }
+GLMTreeMorphModel >> resetInput [
 	self updateRoots
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>resetStopStepping [
+{ #category : #stepping }
+GLMTreeMorphModel >> resetStopStepping [
 	stopStepping := false.
 	self changed.
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>resetTagsToFilterBy [
+{ #category : #callbacks }
+GLMTreeMorphModel >> resetTagsToFilterBy [
 	tagsToFilterBy := OrderedCollection new.
 	self changed: #rootNodes.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>rootNodes [
+{ #category : #accessing }
+GLMTreeMorphModel >> rootNodes [
 	^self roots
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>roots [
+{ #category : #accessing }
+GLMTreeMorphModel >> roots [
 	| filtered |
 	roots ifNil: [ self roots: self displayValue ].
 	filtered := roots select: [ :each | each shouldBeDisplayed ].
@@ -422,20 +295,14 @@ GLMTreeMorphModel>>roots [
 	^ filtered
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>roots: anObjectOrCollection [
+{ #category : #accessing }
+GLMTreeMorphModel >> roots: anObjectOrCollection [
 	roots := anObjectOrCollection asOrderedCollection 
 				collect: [:each | self nodeModelFor: each ]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>selection: aSelection  [
+{ #category : #callbacks }
+GLMTreeMorphModel >> selection: aSelection [ 
 	self selection = aSelection ifTrue: [ ^ self ].
 	super selection: aSelection.
 	self announcer announce: (
@@ -445,60 +312,39 @@ GLMTreeMorphModel>>selection: aSelection  [
 				yourself)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>selectionPathItems [
+{ #category : #accessing }
+GLMTreeMorphModel >> selectionPathItems [
 	^ self selectedNodePath isNil ifTrue: [nil] ifFalse: [self selectedNodePath collect: [:each | each item]]
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>shouldDoStep [
+{ #category : #stepping }
+GLMTreeMorphModel >> shouldDoStep [
 	^ self glamourPresentation stepCondition cull: self
 ]
 
-{
-	#category : #'search and filtering',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>shouldFilterByAmount [
+{ #category : #'search and filtering' }
+GLMTreeMorphModel >> shouldFilterByAmount [
 	^ self amountToFilterBy notNil and: [self amountToFilterBy isZero not]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>shouldFilterByTag: aTag [
+{ #category : #callbacks }
+GLMTreeMorphModel >> shouldFilterByTag: aTag [
 	^ self tagsToFilterBy includes: aTag 
 ]
 
-{
-	#category : #'search and filtering',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>shouldFilterByTextInput [
+{ #category : #'search and filtering' }
+GLMTreeMorphModel >> shouldFilterByTextInput [
 	^ self glamourPresentation allowsFilter and: [ self inputText notEmpty ]
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>shouldStopStepping [
+{ #category : #stepping }
+GLMTreeMorphModel >> shouldStopStepping [
 
 	^ stopStepping ifNil: [ false ]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>sortBlock [
+{ #category : #callbacks }
+GLMTreeMorphModel >> sortBlock [
 
 	^ columnToSortBy sortBlock 
 		ifNotNil: [ :aBlock | aBlock ]
@@ -506,11 +352,8 @@ GLMTreeMorphModel>>sortBlock [
 			columnToSortBy defaultSortBlockForPresentation: self glamourPresentation ]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>sortByColumn: aGlamourColumn [
+{ #category : #callbacks }
+GLMTreeMorphModel >> sortByColumn: aGlamourColumn [
 
 	columnToSortBy := (columnToSortBy == aGlamourColumn 
 		ifTrue: [ nil ]
@@ -518,27 +361,18 @@ GLMTreeMorphModel>>sortByColumn: aGlamourColumn [
 	self updateRoots
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>stepTime [
+{ #category : #stepping }
+GLMTreeMorphModel >> stepTime [
 	^ self glamourPresentation stepTime
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>tagsToFilterBy [
+{ #category : #callbacks }
+GLMTreeMorphModel >> tagsToFilterBy [
 	^ tagsToFilterBy ifNil: [ tagsToFilterBy := OrderedCollection new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>toggleAmountToFilterBy [
+{ #category : #accessing }
+GLMTreeMorphModel >> toggleAmountToFilterBy [
 	self amountToFilterBy notNil ifTrue: 
 		[ self amountToFilterBy isZero 
 			ifTrue: [ amountToFilterBy := self glamourPresentation amountToShow ]
@@ -546,11 +380,8 @@ GLMTreeMorphModel>>toggleAmountToFilterBy [
 		self changed: #rootNodes ]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>toggleFilteringByTag: aTag  [
+{ #category : #callbacks }
+GLMTreeMorphModel >> toggleFilteringByTag: aTag [ 
 	(self shouldFilterByTag: aTag) 
 		ifTrue: [self tagsToFilterBy remove: aTag ]
 		ifFalse: [self tagsToFilterBy add: aTag].
@@ -558,20 +389,14 @@ GLMTreeMorphModel>>toggleFilteringByTag: aTag  [
 	self changed: #rootNodes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>updateRoots [
+{ #category : #accessing }
+GLMTreeMorphModel >> updateRoots [
 	roots := nil.
 	self changed: #rootNodes
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>wantsDroppedMorph: transferMorph event: evt inMorph: listMorph  [
+{ #category : #'drag and drop' }
+GLMTreeMorphModel >> wantsDroppedMorph: transferMorph event: evt inMorph: listMorph [ 
 	| targetItem targetItemMorph |
 	(transferMorph isKindOf: TransferMorph) ifFalse: [ ^ false ].
 	transferMorph dragTransferType = self dragTransferType ifFalse: [ ^ false ].
@@ -584,19 +409,13 @@ GLMTreeMorphModel>>wantsDroppedMorph: transferMorph event: evt inMorph: listMorp
 	^ false
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>wantsSteps [
+{ #category : #stepping }
+GLMTreeMorphModel >> wantsSteps [
 	^ self shouldStopStepping not and: [
 		self glamourPresentation wantsSteps ]
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphModel>>when: anAnnouncement do: aBlock [
+{ #category : #announcements }
+GLMTreeMorphModel >> when: anAnnouncement do: aBlock [
 	self announcer when: anAnnouncement do: aBlock 
 ]

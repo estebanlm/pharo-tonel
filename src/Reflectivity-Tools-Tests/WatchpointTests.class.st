@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #WatchpointTests,
 	#superclass : #TestCase,
-	#category : #Reflectivity-Tools-Tests,
-	#timestamp : ''
+	#category : #Reflectivity-Tools-Tests
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-WatchpointTests>>testAddSameWatchpointSameNode [
+{ #category : #adding }
+WatchpointTests >> testAddSameWatchpointSameNode [
 	|node watchpoint watchpoint2|
 	
 	node := (WPDummy>>#exampleAssignment) ast body children first.
@@ -27,11 +20,8 @@ WatchpointTests>>testAddSameWatchpointSameNode [
 	
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-WatchpointTests>>testAddWatchpoint [
+{ #category : #adding }
+WatchpointTests >> testAddWatchpoint [
 	|node watchpoint|
 	
 	node := (WPDummy>>#exampleAssignment) ast body children first.
@@ -46,11 +36,8 @@ WatchpointTests>>testAddWatchpoint [
 	
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-WatchpointTests>>testAddWatchpointsSameNode [
+{ #category : #adding }
+WatchpointTests >> testAddWatchpointsSameNode [
 	|node watchpoint watchpoint2|
 	
 	node := (WPDummy>>#exampleAssignment) ast body children first.
@@ -65,11 +52,8 @@ WatchpointTests>>testAddWatchpointsSameNode [
 	
 ]
 
-{
-	#category : #'deleting history',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-WatchpointTests>>testDeleteAllHistory [
+{ #category : #'deleting history' }
+WatchpointTests >> testDeleteAllHistory [
 	|node1 node2 watchpoint1 watchpoint2|
 	
 	node1 := (WPDummy>>#exampleAssignment:) ast body children first.
@@ -93,11 +77,8 @@ WatchpointTests>>testDeleteAllHistory [
 	
 ]
 
-{
-	#category : #'deleting history',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-WatchpointTests>>testDeleteHistory [
+{ #category : #'deleting history' }
+WatchpointTests >> testDeleteHistory [
 	|node watchpoint|
 	
 	node := (WPDummy>>#exampleAssignment:) ast body children first.
@@ -115,11 +96,8 @@ WatchpointTests>>testDeleteHistory [
 	
 ]
 
-{
-	#category : #'deleting history',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-WatchpointTests>>testDeleteHistoryFromNode [
+{ #category : #'deleting history' }
+WatchpointTests >> testDeleteHistoryFromNode [
 	|node watchpoint|
 	
 	node := (WPDummy>>#exampleAssignment:) ast body children first.
@@ -137,11 +115,8 @@ WatchpointTests>>testDeleteHistoryFromNode [
 	
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-WatchpointTests>>testSaveOneValue [
+{ #category : #values }
+WatchpointTests >> testSaveOneValue [
 	|node watchpoint|
 	
 	node := (WPDummy>>#exampleAssignment) ast body children first.
@@ -154,11 +129,8 @@ WatchpointTests>>testSaveOneValue [
 	
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-WatchpointTests>>testSaveValues [
+{ #category : #values }
+WatchpointTests >> testSaveValues [
 	|node watchpoint|
 	
 	node := (WPDummy>>#exampleAssignment:) ast body children first.
@@ -173,11 +145,8 @@ WatchpointTests>>testSaveValues [
 	
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-WatchpointTests>>testSendMessage [
+{ #category : #values }
+WatchpointTests >> testSendMessage [
 	|node watchpoint|
 	
 	node := (WPDummy>>#exampleMessageSend) ast body children first.
@@ -190,11 +159,8 @@ WatchpointTests>>testSendMessage [
 	
 ]
 
-{
-	#category : #recording,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-WatchpointTests>>testStopRecording [
+{ #category : #recording }
+WatchpointTests >> testStopRecording [
 	|node watchpoint dummy|
 	
 	node := (WPDummy>>#exampleAssignment:) ast body children first.
@@ -221,11 +187,8 @@ WatchpointTests>>testStopRecording [
 	
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-WatchpointTests>>testTimestamp [
+{ #category : #values }
+WatchpointTests >> testTimestamp [
 	|node watchpoint|
 	
 	node := (WPDummy>>#exampleAssignment:) ast body children first.
@@ -243,11 +206,8 @@ WatchpointTests>>testTimestamp [
 	
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-WatchpointTests>>testWatchpointTwice [
+{ #category : #adding }
+WatchpointTests >> testWatchpointTwice [
 	|node watchpoint|
 	
 	node := (WPDummy>>#exampleAssignment) ast body children first.

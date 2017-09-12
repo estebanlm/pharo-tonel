@@ -7,46 +7,30 @@ Class {
 	#instVars : [
 		'a'
 	],
-	#category : #GT-SUnitDebugger,
-	#timestamp : 'TudorGirba 2/19/2016 21:37'
+	#category : #GT-SUnitDebugger
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleWithSetUpAndTearDownTest class>>isAbstract [
+{ #category : #testing }
+GTSUnitExampleWithSetUpAndTearDownTest class >> isAbstract [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleWithSetUpAndTearDownTest class>>isUnitTest [
+{ #category : #testing }
+GTSUnitExampleWithSetUpAndTearDownTest class >> isUnitTest [
 	^ false
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleWithSetUpAndTearDownTest>>setUp [
+{ #category : #setup }
+GTSUnitExampleWithSetUpAndTearDownTest >> setUp [
 	a := 42.
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleWithSetUpAndTearDownTest>>tearDown [
+{ #category : #setup }
+GTSUnitExampleWithSetUpAndTearDownTest >> tearDown [
 	a := nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleWithSetUpAndTearDownTest>>testWithErrorInSetup [
+{ #category : #testing }
+GTSUnitExampleWithSetUpAndTearDownTest >> testWithErrorInSetup [
 	self assert: a equals: 41
 ]

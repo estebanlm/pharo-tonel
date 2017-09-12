@@ -1,12 +1,7 @@
-Extension {
-	#name : #RGMethodDefinition
-}
+Extension { #name : #RGMethodDefinition }
 
-{
-	#category : #'*Manifest-Core',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-RGMethodDefinition>>arrayStringForManifest [
+{ #category : #'*Manifest-Core' }
+RGMethodDefinition >> arrayStringForManifest [
 	| array |
 	array := Array new:2.
 	array at: 1 put:  (self class asString asSymbol).
@@ -15,11 +10,8 @@ RGMethodDefinition>>arrayStringForManifest [
 	 
 ]
 
-{
-	#category : #'*manifest-core',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-RGMethodDefinition class>>manifestReadOn: aArray [
+{ #category : #'*manifest-core' }
+RGMethodDefinition class >> manifestReadOn: aArray [
 
  	^ self className:  (aArray at: 1) 
 		selector: (aArray at: 2)
@@ -27,11 +19,8 @@ RGMethodDefinition class>>manifestReadOn: aArray [
 		
 ]
 
-{
-	#category : #'*Manifest-Core',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-RGMethodDefinition>>storeOn: aStream [
+{ #category : #'*Manifest-Core' }
+RGMethodDefinition >> storeOn: aStream [
 	aStream nextPut: $(.
 	aStream nextPutAll: self class asString.
 	aStream nextPutAll: ' className: '''.

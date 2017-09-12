@@ -4,23 +4,16 @@ I am the displayer of line numbers in the text area
 Class {
 	#name : #RubLineNumberDisplayer,
 	#superclass : #RubScrolledTextSideRuler,
-	#category : #Rubric-Editing-Widgets,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:37'
+	#category : #Rubric-Editing-Widgets
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer class>>key [
+{ #category : #querying }
+RubLineNumberDisplayer class >> key [
 	^ #lineNumbers
 ]
 
-{
-	#category : #'menu declaration',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer class>>menuOn: aBuilder [
+{ #category : #'menu declaration' }
+RubLineNumberDisplayer class >> menuOn: aBuilder [
 	"Specify the menu used when writing text. Try it with:
 	(PragmaMenuBuilder 
 		pragmaKeyword: 'RubLineNumberMenu'
@@ -35,28 +28,19 @@ RubLineNumberDisplayer class>>menuOn: aBuilder [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>backgroundColor [
+{ #category : #accessing }
+RubLineNumberDisplayer >> backgroundColor [
 	^ self paragraphProvider lineNumbersBackgroundColor 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>computedWidthFrom: aRectangle [
+{ #category : #geometry }
+RubLineNumberDisplayer >> computedWidthFrom: aRectangle [
 	^ (((self fontToUse widthOfString: self paragraph numberOfPhysicalLines asString) + self horizontalGapBefore
 		+ self horizontalGapAfter + self verticalSeparatorWidth) max: self minimumWidth) truncated
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>drawOn: aCanvas [
+{ #category : #drawing }
+RubLineNumberDisplayer >> drawOn: aCanvas [
 	| prev right font lines visibleRectangle tcolor left |
 	super drawOn: aCanvas.
 	self paragraph selectionStart ifNil: [ ^ self ].
@@ -103,11 +87,8 @@ RubLineNumberDisplayer>>drawOn: aCanvas [
 						prev := line lineNumber ] ] ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>drawOnAthensCanvas: aCanvas [
+{ #category : #drawing }
+RubLineNumberDisplayer >> drawOnAthensCanvas: aCanvas [
 	| prev right font lines visibleRectangle tcolor left |
 	super drawOnAthensCanvas: aCanvas.
 	self paragraph selectionStart ifNil: [ ^ self ].
@@ -154,89 +135,59 @@ RubLineNumberDisplayer>>drawOnAthensCanvas: aCanvas [
 						prev := line lineNumber ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>fontToUse [
+{ #category : #accessing }
+RubLineNumberDisplayer >> fontToUse [
 	^ RubAbstractTextArea lineNumbersFont 
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>getMenu: shiftState [
+{ #category : #menus }
+RubLineNumberDisplayer >> getMenu: shiftState [
 	"Answer the menu to be presented when the yellow button is pressed while the shift key is down"
 
 	^ nil "self menu"
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>handlesMouseDown: evt [
+{ #category : #'event handling' }
+RubLineNumberDisplayer >> handlesMouseDown: evt [
 	^ true
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>horizontalGapAfter [
+{ #category : #geometry }
+RubLineNumberDisplayer >> horizontalGapAfter [
 	^ 3
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>horizontalGapBefore [
+{ #category : #geometry }
+RubLineNumberDisplayer >> horizontalGapBefore [
 	^ 3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>level [
+{ #category : #accessing }
+RubLineNumberDisplayer >> level [
 	^ 2
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>menu [
+{ #category : #menus }
+RubLineNumberDisplayer >> menu [
 	"Answer the menu to be presented when the yellow button is pressed while the shift key is down"
 
 	^ (PragmaMenuBuilder pragmaKeyword: self menuKeyword  model: self) menu
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>menuKeyword  [
+{ #category : #menus }
+RubLineNumberDisplayer >> menuKeyword [ 
 	^ #RubLineNumberMenu
 	
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>minimumWidth [
+{ #category : #geometry }
+RubLineNumberDisplayer >> minimumWidth [
 	^ (self fontToUse widthOfString: 'MM') + self horizontalGapAfter + self horizontalGapBefore + self  verticalSeparatorWidth 
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>mouseDown: anEvent [
+{ #category : #'event handling' }
+RubLineNumberDisplayer >> mouseDown: anEvent [
 	| lineIndex line |
 	(anEvent yellowButtonPressed and: [ anEvent commandKeyPressed not ]) "First check for option (menu) click"
 		ifTrue: [ ^ (self yellowButtonActivity: anEvent shiftPressed) ].
@@ -247,11 +198,8 @@ RubLineNumberDisplayer>>mouseDown: anEvent [
 	self textArea mouseDown: anEvent
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>mouseMove: anEvent [
+{ #category : #'event handling' }
+RubLineNumberDisplayer >> mouseMove: anEvent [
 	| lineIndex line |
 	lineIndex := self lineIndexForPoint: anEvent position.
 	line := self lines at: lineIndex.
@@ -260,11 +208,8 @@ RubLineNumberDisplayer>>mouseMove: anEvent [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>mouseUp: anEvent [
+{ #category : #'event handling' }
+RubLineNumberDisplayer >> mouseUp: anEvent [
 	| lineIndex line |
 	lineIndex := self lineIndexForPoint: anEvent position.
 	line := self lines at: lineIndex.
@@ -273,28 +218,19 @@ RubLineNumberDisplayer>>mouseUp: anEvent [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>selectionColorToUse [
+{ #category : #accessing }
+RubLineNumberDisplayer >> selectionColorToUse [
 	^ self primarySelectionColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>textColor [
+{ #category : #accessing }
+RubLineNumberDisplayer >> textColor [
 	^ self textArea lineNumbersTextColor 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>verticalSeparatorBounds [
+{ #category : #accessing }
+RubLineNumberDisplayer >> verticalSeparatorBounds [
 	| bnds  |
 	bnds := self bounds.
 	^ self side = #left
@@ -302,27 +238,18 @@ RubLineNumberDisplayer>>verticalSeparatorBounds [
 		ifFalse: [ (bnds topLeft corner: bnds bottomLeft + (self verticalSeparatorWidth @ 0)) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>verticalSeparatorColor [
+{ #category : #accessing }
+RubLineNumberDisplayer >> verticalSeparatorColor [
 	^ (self textArea backgroundColor contrastingColor ) alpha: 0.3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>verticalSeparatorWidth [
+{ #category : #accessing }
+RubLineNumberDisplayer >> verticalSeparatorWidth [
 	^ 1
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLineNumberDisplayer>>yellowButtonActivity: shiftKeyState  [
+{ #category : #'event handling' }
+RubLineNumberDisplayer >> yellowButtonActivity: shiftKeyState [ 
 	"Invoke the text-editing menu.
 	Check if required first!"
 	(self getMenu: shiftKeyState)

@@ -1,124 +1,84 @@
-"
-
-"
 Class {
 	#name : #MetacelloVersionLoadDirective,
 	#superclass : #MetacelloDirective,
 	#instVars : [
 		'loadDirectives'
 	],
-	#category : #Metacello-MC-Directives,
-	#timestamp : ''
+	#category : #Metacello-MC-Directives
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>add: aDirective [
+{ #category : #actions }
+MetacelloVersionLoadDirective >> add: aDirective [
 
 	self loadDirectives add: aDirective
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>directivesDo: aBlock [
+{ #category : #enumerating }
+MetacelloVersionLoadDirective >> directivesDo: aBlock [
 
 	aBlock value: self.
 	self loadDirectives do: [:directive | directive directivesDo: aBlock ].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>finalizeLoad: aGofer [
+{ #category : #actions }
+MetacelloVersionLoadDirective >> finalizeLoad: aGofer [
 	"nothing special for linear loads"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>isExplicit [
+{ #category : #testing }
+MetacelloVersionLoadDirective >> isExplicit [
 
 	^false
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>label [
+{ #category : #printing }
+MetacelloVersionLoadDirective >> label [
 
 	self spec == nil ifTrue: [ ^'' ].
 	^self spec label
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>loadAtomicLoadDirective: aLoaderDirective gofer: aGofer [
+{ #category : #actions }
+MetacelloVersionLoadDirective >> loadAtomicLoadDirective: aLoaderDirective gofer: aGofer [
 
 	aLoaderDirective loadDirectives do: [:directive | directive loadUsing: aLoaderDirective gofer: aGofer ].
 	aLoaderDirective finalizeLoad: aGofer.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>loadDirectives [
+{ #category : #accessing }
+MetacelloVersionLoadDirective >> loadDirectives [
 
 	loadDirectives == nil ifTrue: [ loadDirectives := OrderedCollection new ].
 	^ loadDirectives
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>loadDirectives: anObject [
+{ #category : #accessing }
+MetacelloVersionLoadDirective >> loadDirectives: anObject [
 	loadDirectives := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>loadExplicitLoadDirective: aLoaderDirective gofer: aGofer [
+{ #category : #actions }
+MetacelloVersionLoadDirective >> loadExplicitLoadDirective: aLoaderDirective gofer: aGofer [
 	"load has already been performed, no need to load again"
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>loadLinearLoadDirective: aLoaderDirective gofer: aGofer [
+{ #category : #actions }
+MetacelloVersionLoadDirective >> loadLinearLoadDirective: aLoaderDirective gofer: aGofer [
 
 	aLoaderDirective loadDirectives do: [:directive | directive loadUsing: aLoaderDirective gofer: aGofer ].
 	aLoaderDirective finalizeLoad: aGofer.
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>loadPackageDirective: aPackageLoadDirective gofer: aGofer [
+{ #category : #loading }
+MetacelloVersionLoadDirective >> loadPackageDirective: aPackageLoadDirective gofer: aGofer [
 
 	aPackageLoadDirective loader loadingSpecLoader 
 		loadPackageDirective: aPackageLoadDirective 
 		gofer: aGofer
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>loadPostloadDirective: aPostloadDirective  [
+{ #category : #loading }
+MetacelloVersionLoadDirective >> loadPostloadDirective: aPostloadDirective [ 
 
 	| block |
 	(block :=  aPostloadDirective spec postLoadDoItBlock) ~~ nil
@@ -130,11 +90,8 @@ MetacelloVersionLoadDirective>>loadPostloadDirective: aPostloadDirective  [
 			Transcript cr; show: 'Evaluated -> ', aPostloadDirective spec label, ' >> ', aPostloadDirective spec postLoadDoIt value asString]
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>loadPreloadDirective: aPreloadDirective  [
+{ #category : #loading }
+MetacelloVersionLoadDirective >> loadPreloadDirective: aPreloadDirective [ 
 
 	| block |
 	(block :=  aPreloadDirective spec preLoadDoItBlock) ~~ nil
@@ -146,11 +103,8 @@ MetacelloVersionLoadDirective>>loadPreloadDirective: aPreloadDirective  [
 			Transcript cr; show: 'Evaluated -> ', aPreloadDirective spec label, ' >> ', aPreloadDirective spec preLoadDoIt value asString]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>loadWithPolicy: aLoadPolicy [
+{ #category : #actions }
+MetacelloVersionLoadDirective >> loadWithPolicy: aLoadPolicy [
 
 	| gofer |
 	gofer := MetacelloGofer new.
@@ -159,68 +113,47 @@ MetacelloVersionLoadDirective>>loadWithPolicy: aLoadPolicy [
 	self loadUsing: self gofer: gofer
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>packageDirectivesDo: aBlock [
+{ #category : #enumerating }
+MetacelloVersionLoadDirective >> packageDirectivesDo: aBlock [
 
 	self loadDirectives do: [:directive | directive packageDirectivesDo: aBlock ].
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>packagesDo: aBlock [
+{ #category : #enumerating }
+MetacelloVersionLoadDirective >> packagesDo: aBlock [
 
 	self loadDirectives do: [:directive | directive packageDo: aBlock ].
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>prepostLoadDirectivesDo: aBlock [
+{ #category : #enumerating }
+MetacelloVersionLoadDirective >> prepostLoadDirectivesDo: aBlock [
 
 	self loadDirectives do: [:directive | directive prepostLoadDirectivesDo: aBlock ].
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>prepostLoadsDo: aBlock [
+{ #category : #enumerating }
+MetacelloVersionLoadDirective >> prepostLoadsDo: aBlock [
 
 	self loadDirectives do: [:directive | directive prepostLoadDo: aBlock ].
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>printLoadDirectivesOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloVersionLoadDirective >> printLoadDirectivesOn: aStream indent: indent [
 
 	self loadDirectives do: [:each |
 		aStream cr. 
 		each printOn: aStream indent: indent + 1 ].
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>printOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloVersionLoadDirective >> printOn: aStream indent: indent [
 
 	super printOn: aStream indent: indent.
 	self printLoadDirectivesOn: aStream indent: indent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>spec [
+{ #category : #accessing }
+MetacelloVersionLoadDirective >> spec [
 	"Expected to be a MetacelloVersionSpec"
 	
 	(spec == nil  and: [  self loader ~~ nil ]) 
@@ -231,40 +164,28 @@ MetacelloVersionLoadDirective>>spec [
 	^spec
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>versionDirectivesDepthFirstDo: aBlock [
+{ #category : #enumerating }
+MetacelloVersionLoadDirective >> versionDirectivesDepthFirstDo: aBlock [
 
 	self loadDirectives do: [:directive | directive versionDirectivesDepthFirstDo: aBlock ].
 	aBlock value: self.
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>versionDirectivesDo: aBlock [
+{ #category : #enumerating }
+MetacelloVersionLoadDirective >> versionDirectivesDo: aBlock [
 
 	aBlock value: self.
 	self loadDirectives do: [:directive | directive versionDirectivesDo: aBlock ].
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>versionDo: aBlock [
+{ #category : #enumerating }
+MetacelloVersionLoadDirective >> versionDo: aBlock [
 
 	aBlock value: self.
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVersionLoadDirective>>versionsDo: aBlock [
+{ #category : #enumerating }
+MetacelloVersionLoadDirective >> versionsDo: aBlock [
 
 	self loadDirectives do: [:directive | directive versionDo: aBlock ].
 ]

@@ -17,67 +17,45 @@ Class {
 	#pools : [
 		'SDL2Constants'
 	],
-	#category : #OSWindow-SDL2,
-	#timestamp : 'IgorStasenko 7/30/2014 18:21'
+	#category : #OSWindow-SDL2
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver class>>hasPlugin [
+{ #category : #testing }
+OSSDL2Driver class >> hasPlugin [
 	<primitive: #primitiveHasDisplayPlugin module: #SDL2DisplayPlugin>
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver class>>isSuitable [
+{ #category : #testing }
+OSSDL2Driver class >> isSuitable [
 	^ self isSupported
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver class>>isSupported  [
+{ #category : #testing }
+OSSDL2Driver class >> isSupported [ 
 	^ SDL2 isAvailable
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver class>>isVMDisplayUsingSDL2 [
+{ #category : #testing }
+OSSDL2Driver class >> isVMDisplayUsingSDL2 [
 	<primitive: #primitiveIsVMDisplayUsingSDL2>
 	^ false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>closeRemovedController: index [
+{ #category : #private }
+OSSDL2Driver >> closeRemovedController: index [
 	"TODO: What should I do here?"
 	Transcript show: 'Game controller '; show: index; show: 'removed'; cr.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>closeRemovedJoystick: index [
+{ #category : #private }
+OSSDL2Driver >> closeRemovedJoystick: index [
 	"TODO: What should I do here?"
 	Transcript show: 'Joystick '; show: index; show: 'removed'; cr.
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>convertEvent: sdlEvent [
+{ #category : #events-processing }
+OSSDL2Driver >> convertEvent: sdlEvent [
 	| mappedEvent window |
 	
 	mappedEvent := sdlEvent mapped ifNil: [ ^ nil ].
@@ -89,11 +67,8 @@ OSSDL2Driver>>convertEvent: sdlEvent [
 	
 ]
 
-{
-	#category : #'window creation and deletion',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>createWindowWithAttributes: attributes osWindow: osWindow [
+{ #category : #'window creation and deletion' }
+OSSDL2Driver >> createWindowWithAttributes: attributes osWindow: osWindow [
 	| flags handle window glAttributes x y |
 	
 	flags := attributes visible ifTrue: [ SDL_WINDOW_SHOWN ] ifFalse: [ SDL_WINDOW_HIDDEN ].
@@ -138,11 +113,8 @@ OSSDL2Driver>>createWindowWithAttributes: attributes osWindow: osWindow [
 	^ window
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>eventLoopProcessWithPlugin [
+{ #category : #events-processing }
+OSSDL2Driver >> eventLoopProcessWithPlugin [
 	| event session semaIndex |
 	event := SDL_Event new.
 	session := Smalltalk session.
@@ -158,11 +130,8 @@ OSSDL2Driver>>eventLoopProcessWithPlugin [
 	] ensure:  [ Smalltalk unregisterExternalObject: inputSemaphore ]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>eventLoopProcessWithVMWindow [
+{ #category : #events-processing }
+OSSDL2Driver >> eventLoopProcessWithVMWindow [
 	| event session semaIndex eventBuffer |
 	event := SDL_Event new.
 	eventBuffer := event getHandle. 
@@ -179,11 +148,8 @@ OSSDL2Driver>>eventLoopProcessWithVMWindow [
 	] ensure:  [ Smalltalk unregisterExternalObject: inputSemaphore ]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>eventLoopProcessWithoutPlugin [
+{ #category : #events-processing }
+OSSDL2Driver >> eventLoopProcessWithoutPlugin [
 	| event session |
 	event := SDL_Event new.
 	session := Smalltalk session.
@@ -196,11 +162,8 @@ OSSDL2Driver>>eventLoopProcessWithoutPlugin [
 		(Delay forMilliseconds: 5) wait ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>initialize [
+{ #category : #initialization }
+OSSDL2Driver >> initialize [
 	inputSemaphore := Semaphore new.
 	eventQueue := AtomicSharedQueue new.
 	globalListeners := WeakSet new.
@@ -214,90 +177,63 @@ OSSDL2Driver>>initialize [
 	self setupEventLoop.
 ]
 
-{
-	#category : #'window creation and deletion',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>initializeJoystickMap [
+{ #category : #'window creation and deletion' }
+OSSDL2Driver >> initializeJoystickMap [
 
 	JoystickMap ifNil: [ 
 		JoystickMap := Dictionary new. 
 	].
 ]
 
-{
-	#category : #'window creation and deletion',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>initializeWindowMap [
+{ #category : #'window creation and deletion' }
+OSSDL2Driver >> initializeWindowMap [
 
 	WindowMap ifNil: [ 
 		WindowMap := WeakValueDictionary new. 
 	].
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>isGameController: joystickIndex [
+{ #category : #'global events' }
+OSSDL2Driver >> isGameController: joystickIndex [
 	^ (JoystickMap at: joystickIndex ifAbsent: [ ^ false ]) isGameController
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>openAddedController: index [
+{ #category : #private }
+OSSDL2Driver >> openAddedController: index [
 	| controller |
 	controller := SDL2 gameControllerOpen: index.
 	JoystickMap at: index put: controller.
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>openAddedJoystick: index [
+{ #category : #private }
+OSSDL2Driver >> openAddedJoystick: index [
 	| joystick |
 	joystick := SDL2 joystickOpen: index.
 	JoystickMap at: index put: joystick.
 
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>primSetupInputSemaphore: semaIndex [
+{ #category : #events-processing }
+OSSDL2Driver >> primSetupInputSemaphore: semaIndex [
 	<primitive: #primitiveSetSDL2Input module: #SDL2DisplayPlugin>
 	^ nil
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>primitivePollVMSDL2Event: eventBuffer size: size [
+{ #category : #events-processing }
+OSSDL2Driver >> primitivePollVMSDL2Event: eventBuffer size: size [
 	<primitive: #primitivePollVMSDL2Event>
 	^ false
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>primitiveSetVMSDL2Input: semaIndex [
+{ #category : #events-processing }
+OSSDL2Driver >> primitiveSetVMSDL2Input: semaIndex [
 	<primitive: #primitiveSetVMSDL2Input>
 	^ nil
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>processEvent: sdlEvent [
+{ #category : #events-processing }
+OSSDL2Driver >> processEvent: sdlEvent [
 	| event |
 	[  
 		event := self convertEvent: sdlEvent.
@@ -310,11 +246,8 @@ OSSDL2Driver>>processEvent: sdlEvent [
 	 ]
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>registerGlobalListener: globalListener [
+{ #category : #'global events' }
+OSSDL2Driver >> registerGlobalListener: globalListener [
 	"This method registers a global event listener.
 	Global event listeners are used to handle events that are not generate for a specific window.
 	Joysticks use this kind of events.
@@ -322,19 +255,13 @@ OSSDL2Driver>>registerGlobalListener: globalListener [
 	globalListeners add: globalListener
 ]
 
-{
-	#category : #'window creation and deletion',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>registerWindow: window [
+{ #category : #'window creation and deletion' }
+OSSDL2Driver >> registerWindow: window [
 	WindowMap at: window handle windowID put: window
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>sendEventWithoutWindow: event [
+{ #category : #'global events' }
+OSSDL2Driver >> sendEventWithoutWindow: event [
 	| converted |
 	converted := event accept: self.
 	converted ifNil: [ ^ self ].
@@ -342,11 +269,8 @@ OSSDL2Driver>>sendEventWithoutWindow: event [
 	WindowMap valuesDo: [ :window | window deliverGlobalEvent: converted ].
 ]
 
-{
-	#category : #'window creation and deletion',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>setGLAttributes: glAttributes [
+{ #category : #'window creation and deletion' }
+OSSDL2Driver >> setGLAttributes: glAttributes [
 "	SDL2 glSetAttribute: SDL_GL_CONTEXT_MAJOR_VERSION value: glAttributes majorVersion.
 	SDL2 glSetAttribute: SDL_GL_CONTEXT_MINOR_VERSION value: glAttributes minorVersion.
 	SDL2 glSetAttribute: SDL_GL_CONTEXT_PROFILE_MASK value: glAttributes profileType.
@@ -364,11 +288,8 @@ OSSDL2Driver>>setGLAttributes: glAttributes [
 	
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>setupEventLoop [
+{ #category : #events-processing }
+OSSDL2Driver >> setupEventLoop [
 	EventLoopProcess ifNotNil: [ EventLoopProcess terminate ].
 	EventLoopProcess := self class isVMDisplayUsingSDL2 ifTrue: [ 
 		[ self eventLoopProcessWithVMWindow ] 
@@ -387,11 +308,8 @@ OSSDL2Driver>>setupEventLoop [
 		resume
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>unregisterGlobalListener: globalListener [
+{ #category : #'global events' }
+OSSDL2Driver >> unregisterGlobalListener: globalListener [
 	"This method registers a global event listener.
 	Global event listeners are used to handle events that are not generate for a specific window.
 	Joysticks use this kind of events.
@@ -399,11 +317,8 @@ OSSDL2Driver>>unregisterGlobalListener: globalListener [
 	globalListeners remove: globalListener
 ]
 
-{
-	#category : #'window creation and deletion',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>unregisterWindowWithId: windowId [
+{ #category : #'window creation and deletion' }
+OSSDL2Driver >> unregisterWindowWithId: windowId [
 
 	WindowMap removeKey: windowId.
 	
@@ -414,19 +329,13 @@ OSSDL2Driver>>unregisterWindowWithId: windowId [
 	]."
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitCommonEvent: event [
+{ #category : #'global events' }
+OSSDL2Driver >> visitCommonEvent: event [
 	^ nil
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitControllerAxisEvent: joyEvent [
+{ #category : #'global events' }
+OSSDL2Driver >> visitControllerAxisEvent: joyEvent [
 	^ OSJoyAxisEvent new
 		which: joyEvent which;
 		axis: joyEvent axis;
@@ -435,11 +344,8 @@ OSSDL2Driver>>visitControllerAxisEvent: joyEvent [
 		value: joyEvent value
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitControllerButtonDownEvent: joyEvent [
+{ #category : #'global events' }
+OSSDL2Driver >> visitControllerButtonDownEvent: joyEvent [
 	^ OSJoyButtonDownEvent new
 		which: joyEvent which;
 		button: joyEvent button;
@@ -448,11 +354,8 @@ OSSDL2Driver>>visitControllerButtonDownEvent: joyEvent [
 		pressed: true
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitControllerButtonUpEvent: joyEvent [
+{ #category : #'global events' }
+OSSDL2Driver >> visitControllerButtonUpEvent: joyEvent [
 	^ OSJoyButtonUpEvent new
 		which: joyEvent which;
 		button: joyEvent button;
@@ -461,11 +364,8 @@ OSSDL2Driver>>visitControllerButtonUpEvent: joyEvent [
 		pressed: false
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitControllerDeviceAddedEvent: controllerEvent [
+{ #category : #'global events' }
+OSSDL2Driver >> visitControllerDeviceAddedEvent: controllerEvent [
 	self openAddedController: controllerEvent which.
 	^ OSJoyDeviceAddedEvent new
 		which: controllerEvent which;
@@ -473,22 +373,16 @@ OSSDL2Driver>>visitControllerDeviceAddedEvent: controllerEvent [
 		hasMapping: true
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitControllerDeviceRemappedEvent: controllerEvent [
+{ #category : #'global events' }
+OSSDL2Driver >> visitControllerDeviceRemappedEvent: controllerEvent [
 	^ OSJoyDeviceRemappedEvent new
 		which: controllerEvent which;
 		mapped: true;
 		hasMapping: true
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitControllerDeviceRemovedEvent: controllerEvent [
+{ #category : #'global events' }
+OSSDL2Driver >> visitControllerDeviceRemovedEvent: controllerEvent [
 	self closeRemovedController: controllerEvent which.
 	^ OSJoyDeviceRemovedEvent new
 		which: controllerEvent which;
@@ -496,21 +390,15 @@ OSSDL2Driver>>visitControllerDeviceRemovedEvent: controllerEvent [
 		hasMapping: true
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitDropEvent: dropEvent [
+{ #category : #'global events' }
+OSSDL2Driver >> visitDropEvent: dropEvent [
 	^ OSWindowDropEvent new
 		timestamp: dropEvent timestamp;
 		filePath: dropEvent file readString
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitFingerDownEvent: event [
+{ #category : #events-processing }
+OSSDL2Driver >> visitFingerDownEvent: event [
 	^OSTouchActionPointerDownEvent new
 			timestamp: event timestamp;
 			deviceId: event touchId;
@@ -522,11 +410,8 @@ OSSDL2Driver>>visitFingerDownEvent: event [
 	
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitFingerMotionEvent: event [
+{ #category : #events-processing }
+OSSDL2Driver >> visitFingerMotionEvent: event [
 	^OSTouchActionPointerMoveEvent new
 			timestamp: event timestamp;
 			deviceId: event touchId;
@@ -538,11 +423,8 @@ OSSDL2Driver>>visitFingerMotionEvent: event [
 	
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitFingerUpEvent: event [
+{ #category : #events-processing }
+OSSDL2Driver >> visitFingerUpEvent: event [
 	^OSTouchActionPointerUpEvent new
 			timestamp: event timestamp;
 			deviceId: event touchId;
@@ -554,11 +436,8 @@ OSSDL2Driver>>visitFingerUpEvent: event [
 	
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitJoyAxisEvent: joyEvent [
+{ #category : #'global events' }
+OSSDL2Driver >> visitJoyAxisEvent: joyEvent [
 	^ OSJoyAxisEvent new
 		which: joyEvent which;
 		axis: joyEvent axis;
@@ -567,11 +446,8 @@ OSSDL2Driver>>visitJoyAxisEvent: joyEvent [
 		value: joyEvent value
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitJoyButtonDownEvent: joyEvent [
+{ #category : #'global events' }
+OSSDL2Driver >> visitJoyButtonDownEvent: joyEvent [
 	^ OSJoyButtonDownEvent new
 		which: joyEvent which;
 		button: joyEvent button;
@@ -580,11 +456,8 @@ OSSDL2Driver>>visitJoyButtonDownEvent: joyEvent [
 		pressed: true
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitJoyButtonUpEvent: joyEvent [
+{ #category : #'global events' }
+OSSDL2Driver >> visitJoyButtonUpEvent: joyEvent [
 	^ OSJoyButtonUpEvent new
 		which: joyEvent which;
 		button: joyEvent button;
@@ -593,11 +466,8 @@ OSSDL2Driver>>visitJoyButtonUpEvent: joyEvent [
 		pressed: false
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitJoyDeviceAddedEvent: joyEvent [
+{ #category : #'global events' }
+OSSDL2Driver >> visitJoyDeviceAddedEvent: joyEvent [
 	(SDL2 isGameController: joyEvent which) ifFalse: [ self openAddedJoystick: joyEvent which ].
 	^ OSJoyDeviceAddedEvent new
 		which: joyEvent which;
@@ -605,11 +475,8 @@ OSSDL2Driver>>visitJoyDeviceAddedEvent: joyEvent [
 		mapped: false
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitJoyDeviceRemovedEvent: joyEvent [
+{ #category : #'global events' }
+OSSDL2Driver >> visitJoyDeviceRemovedEvent: joyEvent [
 	(SDL2 isGameController: joyEvent which) ifFalse: [ self closeRemovedJoystick: joyEvent which ].
 	^ OSJoyDeviceRemovedEvent new
 		which: joyEvent which;
@@ -617,10 +484,7 @@ OSSDL2Driver>>visitJoyDeviceRemovedEvent: joyEvent [
 		mapped: false
 ]
 
-{
-	#category : #'global events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2Driver>>visitQuitEvent: quitEvent [
+{ #category : #'global events' }
+OSSDL2Driver >> visitQuitEvent: quitEvent [
 	^ nil
 ]

@@ -9,15 +9,11 @@ Class {
 		'done',
 		'extra'
 	],
-	#category : #UIManager-Support,
-	#timestamp : '<historical>'
+	#category : #UIManager-Support
 }
 
-{
-	#category : #exceptioninstantiator,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-ProgressNotification class>>signal: signalerText extra: extraParam [
+{ #category : #exceptioninstantiator }
+ProgressNotification class >> signal: signalerText extra: extraParam [
 	"TFEI - Signal the occurrence of an exceptional condition with a specified textual description."
 
 	| ex |
@@ -26,50 +22,32 @@ ProgressNotification class>>signal: signalerText extra: extraParam [
 	^ex signal: signalerText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-ProgressNotification>>amount [
+{ #category : #accessing }
+ProgressNotification >> amount [
 	^amount
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-ProgressNotification>>amount: aNumber [
+{ #category : #accessing }
+ProgressNotification >> amount: aNumber [
 	amount := aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-ProgressNotification>>done [
+{ #category : #accessing }
+ProgressNotification >> done [
 	^done
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-ProgressNotification>>done: aNumber [
+{ #category : #accessing }
+ProgressNotification >> done: aNumber [
 	done := aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-ProgressNotification>>extraParam [
+{ #category : #accessing }
+ProgressNotification >> extraParam [
 	^extra
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-ProgressNotification>>extraParam: anObject [
+{ #category : #accessing }
+ProgressNotification >> extraParam: anObject [
 	extra := anObject
 ]

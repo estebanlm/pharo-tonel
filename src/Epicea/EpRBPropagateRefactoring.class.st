@@ -9,57 +9,38 @@ Class {
 	#instVars : [
 		'targetRefactoring'
 	],
-	#category : #Epicea-Support,
-	#timestamp : '<historical>'
+	#category : #Epicea-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRBPropagateRefactoring class>>target: aRefactoring  [
+{ #category : #'instance creation' }
+EpRBPropagateRefactoring class >> target: aRefactoring [ 
 	^ self basicNew 
 		initializeWith: aRefactoring;
 		yourself
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRBPropagateRefactoring>>asEpiceaEvent [
+{ #category : #converting }
+EpRBPropagateRefactoring >> asEpiceaEvent [
 	^ EpPropagateRefactoring target: targetRefactoring asEpiceaEvent
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRBPropagateRefactoring>>initializeWith: aRefactoring  [
+{ #category : #initialize-release }
+EpRBPropagateRefactoring >> initializeWith: aRefactoring [ 
 	self initialize.
 	targetRefactoring := aRefactoring 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRBPropagateRefactoring>>primitiveExecute [
+{ #category : #private }
+EpRBPropagateRefactoring >> primitiveExecute [
 	targetRefactoring propagateTransformation.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRBPropagateRefactoring>>setOption: aString toUse: aBlockClosure  [
+{ #category : #accessing }
+EpRBPropagateRefactoring >> setOption: aString toUse: aBlockClosure [ 
 	targetRefactoring setOption: aString toUse: aBlockClosure 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRBPropagateRefactoring>>whatToDisplayIn: aNautilusChangesBrowser  [
+{ #category : #accessing }
+EpRBPropagateRefactoring >> whatToDisplayIn: aNautilusChangesBrowser [ 
 	^ targetRefactoring whatToDisplayIn: aNautilusChangesBrowser
 ]

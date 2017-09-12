@@ -17,79 +17,54 @@ Class {
 		'icon',
 		'description'
 	],
-	#category : #Renraku-Critiques,
-	#timestamp : 'YuriyTymchuk 1/14/2016 15:04'
+	#category : #Renraku-Critiques
 }
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RePropertyAction>>actOnCritic: aCritic ofEntity: anEntity [
+{ #category : #evaluating }
+RePropertyAction >> actOnCritic: aCritic ofEntity: anEntity [
 
 	action cull: aCritic cull: anEntity 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RePropertyAction>>action [
+{ #category : #accessing }
+RePropertyAction >> action [
 	^ action
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RePropertyAction>>action: anObject [
+{ #category : #accessing }
+RePropertyAction >> action: anObject [
 	action := anObject
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RePropertyAction>>description [
+{ #category : #accessing }
+RePropertyAction >> description [
 	^ description
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RePropertyAction>>description: anObject [
+{ #category : #accessing }
+RePropertyAction >> description: anObject [
 	description := anObject
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RePropertyAction>>icon  [
+{ #category : #accessing }
+RePropertyAction >> icon [ 
 	^ icon
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RePropertyAction>>icon: anObject [
+{ #category : #accessing }
+RePropertyAction >> icon: anObject [
 	icon := anObject
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RePropertyAction>>initialize  [
+{ #category : #initialization }
+RePropertyAction >> initialize [ 
 	
 	icon := (Form extent: 16@16 depth: 32) fillColor: Color green.
 	description := ''.

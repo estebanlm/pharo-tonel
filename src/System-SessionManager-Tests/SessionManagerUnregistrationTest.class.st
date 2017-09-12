@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #SessionManagerUnregistrationTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'sessionManager'
 	],
-	#category : #System-SessionManager-Tests,
-	#timestamp : ''
+	#category : #System-SessionManager-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerUnregistrationTest>>setUp [
+{ #category : #running }
+SessionManagerUnregistrationTest >> setUp [
 	sessionManager := SessionManager new
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerUnregistrationTest>>testCanUnregisterClass [
+{ #category : #tests }
+SessionManagerUnregistrationTest >> testCanUnregisterClass [
 	sessionManager registerSystemClassNamed: #Foo.
 	sessionManager registerSystemClassNamed: #Bar.
 
@@ -34,11 +24,8 @@ SessionManagerUnregistrationTest>>testCanUnregisterClass [
 		equals: #( Bar ).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerUnregistrationTest>>testUnregisterUnknownClassDoesNotFail [
+{ #category : #tests }
+SessionManagerUnregistrationTest >> testUnregisterUnknownClassDoesNotFail [
 	sessionManager registerSystemClassNamed: #Foo.
 
 	sessionManager unregisterClassNamed: #Bar.

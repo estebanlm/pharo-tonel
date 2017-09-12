@@ -9,25 +9,18 @@ Class {
 	#instVars : [
 		'items'
 	],
-	#category : #MonticelloGUI,
-	#timestamp : 'nk 11/10/2003 22:00'
+	#category : #MonticelloGUI
 }
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCCodeTool>>browseMessages [
+{ #category : #menus }
+MCCodeTool >> browseMessages [
 	"Present a menu of the currently selected message, as well as all messages sent by it.  Open a message set browser of all implementors of the selector chosen."
 
 	self systemNavigation browseAllImplementorsOf: (self selectedMessageName ifNil: [ ^nil ])
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCCodeTool>>browseMethodFull [
+{ #category : #menus }
+MCCodeTool >> browseMethodFull [
 	"Create and schedule a full Browser and then select the current class and message."
 
 	| myClass |
@@ -35,21 +28,15 @@ MCCodeTool>>browseMethodFull [
 		[Smalltalk tools browser openOnClass: myClass selector: self selectedMessageName]
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCCodeTool>>browseSendersOfMessages [
+{ #category : #menus }
+MCCodeTool >> browseSendersOfMessages [
 	"Present a menu of the currently selected message, as well as all messages sent by it.  Open a message set browser of all senders of the selector chosen."
 
 	self systemNavigation browseAllSendersOf: (self selectedMessageName ifNil: [ ^nil ])
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCCodeTool>>browseVersions [
+{ #category : #menus }
+MCCodeTool >> browseVersions [
 	"Create and schedule a message set browser on all versions of the 
 	currently selected message selector."
 	
@@ -59,11 +46,8 @@ MCCodeTool>>browseVersions [
 		
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCCodeTool>>classHierarchy [
+{ #category : #menus }
+MCCodeTool >> classHierarchy [
 	"Create and schedule a class list browser on the receiver's hierarchy."
 
 	self systemNavigation 
@@ -71,11 +55,8 @@ MCCodeTool>>classHierarchy [
 		selector: self selectedMessageName	"OK if nil"
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCCodeTool>>classListMenu: aMenu  [
+{ #category : #menus }
+MCCodeTool >> classListMenu: aMenu [ 
 
 	^aMenu addList: #(
 		-
@@ -85,11 +66,8 @@ MCCodeTool>>classListMenu: aMenu  [
 		('Show hierarchy'			methodHierarchy))
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCCodeTool>>copySelector [
+{ #category : #menus }
+MCCodeTool >> copySelector [
 	"Copy the selected selector to the clipboard"
 
 	| selector |
@@ -97,11 +75,8 @@ MCCodeTool>>copySelector [
 		[Clipboard clipboardText: selector asString]
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCCodeTool>>fileOutMessage [
+{ #category : #menus }
+MCCodeTool >> fileOutMessage [
 	"Put a description of the selected message on a file"
 
 	| fileName |
@@ -140,22 +115,16 @@ MCCodeTool>>fileOutMessage [
 		FileStream writeSourceCodeFrom: internalStream baseName: fileName isSt: true]
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCCodeTool>>methodHierarchy [
+{ #category : #menus }
+MCCodeTool >> methodHierarchy [
 	"Create and schedule a method browser on the hierarchy of implementors."
 
 	self systemNavigation methodHierarchyBrowserForClass: self selectedClassOrMetaClass
 		selector: self selectedMessageName
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCCodeTool>>methodListKey: aKeystroke from: aListMorph  [
+{ #category : #menus }
+MCCodeTool >> methodListKey: aKeystroke from: aListMorph [ 
 	aKeystroke caseOf: {
 		[$b] -> [self browseMethodFull].
 		[$h] -> [self classHierarchy].
@@ -168,11 +137,8 @@ MCCodeTool>>methodListKey: aKeystroke from: aListMorph  [
 		 otherwise: []
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCCodeTool>>methodListMenu: aMenu [
+{ #category : #menus }
+MCCodeTool >> methodListMenu: aMenu [
 	"Build the menu for the selected method, if any."
 	
 	self selectedMessageName 
@@ -194,38 +160,26 @@ MCCodeTool>>methodListMenu: aMenu [
 
 ]
 
-{
-	#category : #subclassresponsibility,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCCodeTool>>selectedClass [
+{ #category : #subclassresponsibility }
+MCCodeTool >> selectedClass [
 	"Answer the class that is selected, or nil"
 	self subclassResponsibility
 ]
 
-{
-	#category : #subclassresponsibility,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCCodeTool>>selectedClassOrMetaClass [
+{ #category : #subclassresponsibility }
+MCCodeTool >> selectedClassOrMetaClass [
 	"Answer the class that is selected, or nil"
 	self subclassResponsibility
 ]
 
-{
-	#category : #subclassresponsibility,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCCodeTool>>selectedMessageCategoryName [
+{ #category : #subclassresponsibility }
+MCCodeTool >> selectedMessageCategoryName [
 	"Answer the method category of the method that is selected, or nil"
 	self subclassResponsibility
 ]
 
-{
-	#category : #subclassresponsibility,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCCodeTool>>selectedMessageName [
+{ #category : #subclassresponsibility }
+MCCodeTool >> selectedMessageName [
 	"Answer the name of the selected message"
 	self subclassResponsibility
 ]

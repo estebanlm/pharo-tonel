@@ -37,15 +37,11 @@ Class {
 		'RaiseWarning',
 		'ShowWarning'
 	],
-	#category : #Kernel-Exceptions,
-	#timestamp : 'md 8/11/2016 16:28'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation class>>deprecationsWhile: aBlock [
+{ #category : #logging }
+Deprecation class >> deprecationsWhile: aBlock [
 	"returns a log of all deprecated methods seen while executing aBlock"
 	| oldLog result |
 	oldLog := Log.
@@ -57,53 +53,35 @@ Deprecation class>>deprecationsWhile: aBlock [
 	^result
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation class>>initialize [
+{ #category : #'class initialization' }
+Deprecation class >> initialize [
 	Log := nil "#deprecationsWhile: logs all deprecations here"
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation class>>raiseWarning [
+{ #category : #settings }
+Deprecation class >> raiseWarning [
 	"If true, then a dialog is popup for each deprecated method invocation"
 	^ RaiseWarning ifNil: [RaiseWarning := true]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation class>>raiseWarning: aBoolean [
+{ #category : #settings }
+Deprecation class >> raiseWarning: aBoolean [
 	RaiseWarning := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation class>>showWarning [
+{ #category : #settings }
+Deprecation class >> showWarning [
 	"If true, then a message is send to the Transcript for each deprecated method invocation"
 	^ ShowWarning ifNil: [ShowWarning := true]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation class>>showWarning: aBoolean [
+{ #category : #settings }
+Deprecation class >> showWarning: aBoolean [
 	ShowWarning := aBoolean
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>= anObject [
+{ #category : #comparing }
+Deprecation >> = anObject [
 	^self class == anObject class
 	  and: [context = anObject context
 	  and: [context
@@ -111,43 +89,28 @@ Deprecation>>= anObject [
 			ifNotNil: [true]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>context: aContext [
+{ #category : #accessing }
+Deprecation >> context: aContext [
 	context := aContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>contextOfDeprecatedMethod [
+{ #category : #accessing }
+Deprecation >> contextOfDeprecatedMethod [
 	^context
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>contextOfSender [
+{ #category : #accessing }
+Deprecation >> contextOfSender [
 	^context sender
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>date: aDate [
+{ #category : #accessing }
+Deprecation >> date: aDate [
 	deprecationDate := aDate
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>defaultAction [
+{ #category : #handling }
+Deprecation >> defaultAction [
 	Log 
 		ifNotNil: [:log | log add: self].
 	self logTranscript.
@@ -155,113 +118,74 @@ Deprecation>>defaultAction [
 		ifTrue: [super defaultAction]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>deprecatedMethodName [
+{ #category : #private }
+Deprecation >> deprecatedMethodName [
 	^self contextOfDeprecatedMethod method printString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>deprecationDate [
+{ #category : #accessing }
+Deprecation >> deprecationDate [
 
 	^ deprecationDate ifNil: [ 'unknown' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>explanation: aString [
+{ #category : #accessing }
+Deprecation >> explanation: aString [
 	explanationString := aString 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>explanationString [
+{ #category : #accessing }
+Deprecation >> explanationString [
 
 	^ explanationString
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>hash [
+{ #category : #comparing }
+Deprecation >> hash [
 	^(context ifNil: [explanationString]) hash
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>logTranscript [
+{ #category : #handling }
+Deprecation >> logTranscript [
 	self showWarning 
 		ifTrue: [Transcript nextPutAll: self messageText; cr; flush].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>messageText [
+{ #category : #accessing }
+Deprecation >> messageText [
 	"Return an exception's message text."
 
 	^ 'The method ', self deprecatedMethodName, ' called from ', self sendingMethodName ,' has been deprecated.
 ', explanationString
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>raiseWarning [
+{ #category : #settings }
+Deprecation >> raiseWarning [
 	^ self class raiseWarning
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>rewriterClass [
+{ #category : #private }
+Deprecation >> rewriterClass [
 	^ self class environment at: #RBParseTreeRewriter ifAbsent: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>rule: aRule [
+{ #category : #accessing }
+Deprecation >> rule: aRule [
 	rule := aRule
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>sendingMethodName [
+{ #category : #private }
+Deprecation >> sendingMethodName [
 	^self contextOfSender method printString
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>showWarning [
+{ #category : #settings }
+Deprecation >> showWarning [
 	^ self class showWarning
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>transform [
+{ #category : #handling }
+Deprecation >> transform [
 	| node rewriteRule aMethod |
 	self raiseWarning ifFalse: [ ^ self ]. "when desprecations are disables, we do not want to transform, either"
 	self rewriterClass ifNil:[ ^ self signal ].
@@ -281,19 +205,13 @@ Deprecation>>transform [
 	self logTranscript
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>version: aString [
+{ #category : #accessing }
+Deprecation >> version: aString [
 	versionString := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Deprecation>>versionString [
+{ #category : #accessing }
+Deprecation >> versionString [
 
 	^ versionString ifNil: [ 'unknown' ]
 ]

@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'versions'
 	],
-	#category : #Monticello-Loading,
-	#timestamp : '<historical>'
+	#category : #Monticello-Loading
 }
 
-{
-	#category : #signalling,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMergeOrLoadWarning class>>signalFor: aVersionCollection [
+{ #category : #signalling }
+MCMergeOrLoadWarning class >> signalFor: aVersionCollection [
 	^ self new
 		versions: aVersionCollection;
 		signal
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMergeOrLoadWarning>>cancel [
+{ #category : #actions }
+MCMergeOrLoadWarning >> cancel [
 	^ self resume: nil
 ]
 
-{
-	#category : #exceptionDescription,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMergeOrLoadWarning>>defaultAction [
+{ #category : #exceptionDescription }
+MCMergeOrLoadWarning >> defaultAction [
 	^ ( UIManager default
 		confirm: self messageText
 		trueChoice: 'Load' translated
@@ -42,27 +32,18 @@ MCMergeOrLoadWarning>>defaultAction [
 		default: nil ).
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMergeOrLoadWarning>>load [
+{ #category : #actions }
+MCMergeOrLoadWarning >> load [
 	^ self resume: true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMergeOrLoadWarning>>merge [
+{ #category : #actions }
+MCMergeOrLoadWarning >> merge [
 	^ self resume: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMergeOrLoadWarning>>messageText [
+{ #category : #accessing }
+MCMergeOrLoadWarning >> messageText [
 	| packageNames |
 	
 	packageNames := versions collect: [ :ea|  ea package name ].
@@ -78,10 +59,7 @@ MCMergeOrLoadWarning>>messageText [
 			nextPutAll: 'If you continue, you will lose these changes:']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMergeOrLoadWarning>>versions: aCollection [
+{ #category : #accessing }
+MCMergeOrLoadWarning >> versions: aCollection [
 	versions := aCollection
 ]

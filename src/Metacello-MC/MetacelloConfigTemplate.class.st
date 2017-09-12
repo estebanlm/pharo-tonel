@@ -35,25 +35,18 @@ Class {
 	#classVars : [
 		'LastVersionLoad'
 	],
-	#category : #Metacello-MC-Model,
-	#timestamp : '<historical>'
+	#category : #Metacello-MC-Model
 }
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplate class>>DevelopmentSupport [
+{ #category : #'development support' }
+MetacelloConfigTemplate class >> DevelopmentSupport [
 
 "See the methods in the 'development support' category on the class-side of MetacelloBaseConfiguration. Decide what development support methods you would like to use and copy them the the class-side of your configuration."
 	<apiDocumentation>
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplate class>>baseConfigurationClassIfAbsent: aBlock [
+{ #category : #private }
+MetacelloConfigTemplate class >> baseConfigurationClassIfAbsent: aBlock [
 
 	^Smalltalk
 		at: #'ConfigurationOf'
@@ -62,20 +55,14 @@ MetacelloConfigTemplate class>>baseConfigurationClassIfAbsent: aBlock [
 			Smalltalk at: #'ConfigurationOf' ifAbsent: aBlock ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplate class>>ensureMetacello [
+{ #category : #private }
+MetacelloConfigTemplate class >> ensureMetacello [
 
 	(self baseConfigurationClassIfAbsent: []) ensureMetacello
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplate class>>ensureMetacelloBaseConfiguration [
+{ #category : #private }
+MetacelloConfigTemplate class >> ensureMetacelloBaseConfiguration [
   Smalltalk
     at: #'ConfigurationOf'
     ifAbsent: [ 
@@ -92,21 +79,15 @@ MetacelloConfigTemplate class>>ensureMetacelloBaseConfiguration [
           version workingCopy repositoryGroup addRepository: repository ] ]
 ]
 
-{
-	#category : #'metacello tool support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplate class>>isMetacelloConfig [
+{ #category : #'metacello tool support' }
+MetacelloConfigTemplate class >> isMetacelloConfig [
 	"Answer true and the Metacello tools will operate on you"
 	
 	^true
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplate class>>load [
+{ #category : #loading }
+MetacelloConfigTemplate class >> load [
 	"Load the #stable version defined for this platform. The #stable version is the version that is recommended to be used on this platform."
 
 	"self load"
@@ -115,11 +96,8 @@ MetacelloConfigTemplate class>>load [
 	^(self project version: #stable) load
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplate class>>loadBleedingEdge [
+{ #category : #loading }
+MetacelloConfigTemplate class >> loadBleedingEdge [
 	"Load the latest versions of the mcz files defined for this project. It is not likely that the #bleedingEdge has been tested."
 
 	"self loadBleedingEdge"
@@ -128,11 +106,8 @@ MetacelloConfigTemplate class>>loadBleedingEdge [
 	^(self project version: #bleedingEdge) load
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplate class>>loadDevelopment [
+{ #category : #loading }
+MetacelloConfigTemplate class >> loadDevelopment [
 	"Load the #development version defined for this platform. The #development version will change over time and is not expected to be stable."
 
 	"self loadDevelopment"
@@ -141,20 +116,14 @@ MetacelloConfigTemplate class>>loadDevelopment [
 	^(self project version: #development) load
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplate class>>project [
+{ #category : #accessing }
+MetacelloConfigTemplate class >> project [
 
 	^self new project
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplate class>>validate [
+{ #category : #'development support' }
+MetacelloConfigTemplate class >> validate [
 	"Check the configuration for Errors, Critical Warnings, and Warnings (see class comment for MetacelloMCVersionValidator for more information). 
 	Errors identify specification issues that will result in unexpected behaviour when you load the configuration. 
 	Critical Warnings identify specification issues that may result in unexpected behavior when you load the configuration.
@@ -167,22 +136,16 @@ MetacelloConfigTemplate class>>validate [
 	^ ((Smalltalk at: #MetacelloToolBox) validateConfiguration: self debug: #() recurse: false) explore
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplate>>customProjectAttributes [
+{ #category : #accessing }
+MetacelloConfigTemplate >> customProjectAttributes [
     "Edit to return a collection of any custom attributes e.g. for conditional loading: Array with: #'Condition1' with: #'Condition2.
 	For more information see: http://code.google.com/p/metacello/wiki/CustomProjectAttrributes "
 
     ^ #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplate>>project [
+{ #category : #accessing }
+MetacelloConfigTemplate >> project [
     ^ project
         ifNil: [ 
             "Bootstrap Metacello if it is not already loaded"

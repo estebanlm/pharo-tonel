@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RelationSlotTest,
 	#superclass : #TestCase,
-	#category : #Slot-Tests-Associations,
-	#timestamp : ''
+	#category : #Slot-Tests-Associations
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RelationSlotTest>>testDefinition [
+{ #category : #tests }
+RelationSlotTest >> testDefinition [
 
 	| s1 s2 |
 	
@@ -24,11 +17,8 @@ RelationSlotTest>>testDefinition [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RelationSlotTest>>testDefinitionWithClass [
+{ #category : #tests }
+RelationSlotTest >> testDefinitionWithClass [
 
 	| s1 s2 |
 	
@@ -40,11 +30,8 @@ RelationSlotTest>>testDefinitionWithClass [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RelationSlotTest>>testDefinitionWithoutInverse [
+{ #category : #tests }
+RelationSlotTest >> testDefinitionWithoutInverse [
 
 	| slot |
 	
@@ -52,11 +39,8 @@ RelationSlotTest>>testDefinitionWithoutInverse [
 	self deny: slot hasInverse
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RelationSlotTest>>testEquals [
+{ #category : #tests }
+RelationSlotTest >> testEquals [
 
 	| s1 s2 |
 	
@@ -67,11 +51,8 @@ RelationSlotTest>>testEquals [
 	self assert: s1 hash = s2 hash.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RelationSlotTest>>testNotEquals [
+{ #category : #tests }
+RelationSlotTest >> testNotEquals [
 
 	| s1 s2 |
 	

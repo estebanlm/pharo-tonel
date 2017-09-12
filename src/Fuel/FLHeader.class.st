@@ -13,105 +13,71 @@ Class {
 		'postMaterializationActions',
 		'materialization'
 	],
-	#category : #Fuel-Core,
-	#timestamp : '<historical>'
+	#category : #Fuel-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLHeader>>addPostMaterializationAction: aCleanBlockClosure [
+{ #category : #accessing }
+FLHeader >> addPostMaterializationAction: aCleanBlockClosure [
 	"The closure may (or not) have one parameter and it will be the materialization."
 	aCleanBlockClosure isClean ifFalse: [ self error: 'Post materializaton actions have to be clean closures. For more details see method BlocKClosure >> #isClean' ].
 	postMaterializationActions add: aCleanBlockClosure 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLHeader>>addPreMaterializationAction: aCleanBlockClosure [
+{ #category : #accessing }
+FLHeader >> addPreMaterializationAction: aCleanBlockClosure [
 	aCleanBlockClosure isClean ifFalse: [ self error: 'Pre materializaton actions have to be clean closures. For more details see method BlocKClosure >> #isClean' ].
 	preMaterializationActions add: aCleanBlockClosure 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLHeader>>additionalObjectAt: key [
+{ #category : #accessing }
+FLHeader >> additionalObjectAt: key [
 	^ additionalObjects at: key
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLHeader>>at: key putAdditionalObject: anObject  [
+{ #category : #accessing }
+FLHeader >> at: key putAdditionalObject: anObject [ 
 	"This is useful if we want to attach objects to a package that will also be serialized. The way they are stored is key-value."
 	additionalObjects at: key put: anObject
 ]
 
-{
-	#category : #executing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLHeader>>executePostMaterializationActions [
+{ #category : #executing }
+FLHeader >> executePostMaterializationActions [
 	postMaterializationActions do: [:each | each cull: materialization]
 ]
 
-{
-	#category : #executing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLHeader>>executePreMaterializationActions [
+{ #category : #executing }
+FLHeader >> executePreMaterializationActions [
 	preMaterializationActions do: [:each | each value]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLHeader>>initialize [
+{ #category : #initialization }
+FLHeader >> initialize [
 	additionalObjects := IdentityDictionary new.
 	preMaterializationActions := OrderedCollection new.
 	postMaterializationActions := OrderedCollection new.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLHeader>>isEmpty [
+{ #category : #testing }
+FLHeader >> isEmpty [
 	^ preMaterializationActions isEmpty 
 		and: [ postMaterializationActions isEmpty
 		and: [ additionalObjects isEmpty ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLHeader>>materialization: aMaterialization [
+{ #category : #accessing }
+FLHeader >> materialization: aMaterialization [
 	"This is just set once the materialization had happened"
 	materialization := aMaterialization 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLHeader>>postMaterializationActions: listOfPostMaterializationActions [
+{ #category : #accessing }
+FLHeader >> postMaterializationActions: listOfPostMaterializationActions [
 	postMaterializationActions := listOfPostMaterializationActions.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLHeader>>preMaterializationActions: listOfPreMaterializationActions [
+{ #category : #accessing }
+FLHeader >> preMaterializationActions: listOfPreMaterializationActions [
 	preMaterializationActions := listOfPreMaterializationActions.
 	
 ]

@@ -162,169 +162,111 @@ S y n t a x
 Class {
 	#name : #STON,
 	#superclass : #Object,
-	#category : #STON-Core,
-	#timestamp : 'SvenVanCaekenberghe 3/15/2016 14:23'
+	#category : #STON-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>associationClass [
+{ #category : #accessing }
+STON class >> associationClass [
 	^ Association
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>classNameKey [
+{ #category : #accessing }
+STON class >> classNameKey [
 	^ #className
 ]
 
-{
-	#category : #convencience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>fromStream: readStream [
+{ #category : #convencience }
+STON class >> fromStream: readStream [
 	^ (self reader on: readStream) next
 ]
 
-{
-	#category : #convencience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>fromStreamWithComments: readStream [
+{ #category : #convencience }
+STON class >> fromStreamWithComments: readStream [
 	^ (self reader on: (STONCStyleCommentsSkipStream on: readStream)) next
 ]
 
-{
-	#category : #convencience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>fromString: string [
+{ #category : #convencience }
+STON class >> fromString: string [
 	^ self fromStream: string readStream
 ]
 
-{
-	#category : #convencience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>fromStringWithComments: string [
+{ #category : #convencience }
+STON class >> fromStringWithComments: string [
 	^ self fromStreamWithComments: string readStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>jsonWriter [
+{ #category : #accessing }
+STON class >> jsonWriter [
 	^ STONWriter new
 			jsonMode: true;
 			referencePolicy: #error;
 			yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>listClass [
+{ #category : #accessing }
+STON class >> listClass [
 	^ Array
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>mapClass [
+{ #category : #accessing }
+STON class >> mapClass [
 	^ Dictionary
 ]
 
-{
-	#category : #convencience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>put: object asJsonOnStream: stream [
+{ #category : #convencience }
+STON class >> put: object asJsonOnStream: stream [
 	(self jsonWriter on: stream) nextPut: object
 ]
 
-{
-	#category : #convencience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>put: object asJsonOnStreamPretty: stream [
+{ #category : #convencience }
+STON class >> put: object asJsonOnStreamPretty: stream [
 	(self jsonWriter on: stream)
 		prettyPrint: true; 
 		nextPut: object
 ]
 
-{
-	#category : #convencience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>put: object onStream: stream [
+{ #category : #convencience }
+STON class >> put: object onStream: stream [
 	(self writer on: stream) nextPut: object
 ]
 
-{
-	#category : #convencience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>put: object onStreamPretty: stream [
+{ #category : #convencience }
+STON class >> put: object onStreamPretty: stream [
 	(self writer on: stream)
 		prettyPrint: true; 
 		nextPut: object
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>reader [
+{ #category : #accessing }
+STON class >> reader [
 	^ STONReader new
 ]
 
-{
-	#category : #convencience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>toJsonString: object [
+{ #category : #convencience }
+STON class >> toJsonString: object [
 	^ String streamContents: [ :stream |
 		self put: object asJsonOnStream: stream ]
 ]
 
-{
-	#category : #convencience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>toJsonStringPretty: object [
+{ #category : #convencience }
+STON class >> toJsonStringPretty: object [
 	^ String streamContents: [ :stream |
 		self put: object asJsonOnStreamPretty: stream ]
 ]
 
-{
-	#category : #convencience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>toString: object [
+{ #category : #convencience }
+STON class >> toString: object [
 	^ String streamContents: [ :stream |
 		self put: object onStream: stream ]
 ]
 
-{
-	#category : #convencience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>toStringPretty: object [
+{ #category : #convencience }
+STON class >> toStringPretty: object [
 	^ String streamContents: [ :stream |
 		self put: object onStreamPretty: stream ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STON class>>writer [
+{ #category : #accessing }
+STON class >> writer [
 	^ STONWriter new
 ]

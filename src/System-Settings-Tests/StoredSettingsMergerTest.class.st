@@ -7,32 +7,22 @@ Class {
 	#instVars : [
 		'merger'
 	],
-	#category : #System-Settings-Tests,
-	#timestamp : '<historical>'
+	#category : #System-Settings-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-StoredSettingsMergerTest>>setUp [
+{ #category : #running }
+StoredSettingsMergerTest >> setUp [
 	super setUp.
 	merger := StoredSettingsMerger new.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-StoredSettingsMergerTest>>testEmpty [
+{ #category : #tests }
+StoredSettingsMergerTest >> testEmpty [
 	self assert: merger storedSettings isEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-StoredSettingsMergerTest>>testStoredSettings [
+{ #category : #tests }
+StoredSettingsMergerTest >> testStoredSettings [
 	| numberOfNodeSettings |
 	numberOfNodeSettings := MockSettings nodeSettings size.
 	merger addStoredSettings: MockSettings storedSettings.

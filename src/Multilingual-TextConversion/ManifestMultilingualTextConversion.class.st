@@ -4,14 +4,10 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestMultilingualTextConversion,
 	#superclass : #PackageManifest,
-	#category : #Multilingual-TextConversion,
-	#timestamp : '<historical>'
+	#category : #Multilingual-TextConversion
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ManifestMultilingualTextConversion class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestMultilingualTextConversion class >> manuallyResolvedDependencies [
 	^ #(#Traits #'Collections-Abstract' #'Collections-Streams')
 ]

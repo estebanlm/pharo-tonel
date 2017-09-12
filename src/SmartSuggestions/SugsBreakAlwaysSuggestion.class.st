@@ -4,15 +4,11 @@ This class defines AST node menus for breakpoints
 Class {
 	#name : #SugsBreakAlwaysSuggestion,
 	#superclass : #SugsBreakpointSuggestion,
-	#category : #SmartSuggestions-Suggestion,
-	#timestamp : 'MarcusDenker 11/17/2015 15:51'
+	#category : #SmartSuggestions-Suggestion
 }
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsBreakAlwaysSuggestion>>execute [
+{ #category : #execution }
+SugsBreakAlwaysSuggestion >> execute [
 	context hasUnacceptedEdits ifTrue: [ ^context sourceTextArea acceptEdits].
 	
 	self selectedNodeHasBreakpoint 
@@ -20,11 +16,8 @@ SugsBreakAlwaysSuggestion>>execute [
 		ifTrue: [ Breakpoint removeFrom: context selectedNode]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsBreakAlwaysSuggestion>>label [
+{ #category : #accessing }
+SugsBreakAlwaysSuggestion >> label [
 	self hasUnacceptedEdits ifTrue: [ ^'Accept to enable breakpoints' ].
 
 	^self selectedNodeHasBreakpoint

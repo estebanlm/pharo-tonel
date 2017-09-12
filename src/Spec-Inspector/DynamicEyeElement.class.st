@@ -10,111 +10,74 @@ Class {
 		'labelBlock',
 		'valueBlock'
 	],
-	#category : #Spec-Inspector-Element,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector-Element
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicEyeElement class>>host: anObject label: aLabel description: aBlock value: aValue  [
+{ #category : #'instance creation' }
+DynamicEyeElement class >> host: anObject label: aLabel description: aBlock value: aValue [ 
 	^ (self host: anObject label: aLabel value: aValue)
 		description: aBlock;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicEyeElement class>>host: anObject label: aLabel value: aValue [
+{ #category : #'instance creation' }
+DynamicEyeElement class >> host: anObject label: aLabel value: aValue [
 	^ (self host: anObject)
 		label: aLabel;
 		value: aValue;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicEyeElement class>>host: anObject value: aValue [
+{ #category : #'instance creation' }
+DynamicEyeElement class >> host: anObject value: aValue [
 	^ (self host: anObject)
 		value: aValue;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicEyeElement>>accessorCode [
+{ #category : #accessing }
+DynamicEyeElement >> accessorCode [
 	^ self description
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicEyeElement>>description [
+{ #category : #accessing }
+DynamicEyeElement >> description [
 	"For big value to print, overwrite description block"
 	descriptionBlock ifNil: [ ^ self value asString ].
 	^ descriptionBlock cull: self value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicEyeElement>>description: aBlock [
+{ #category : #accessing }
+DynamicEyeElement >> description: aBlock [
 	descriptionBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicEyeElement>>label [
+{ #category : #accessing }
+DynamicEyeElement >> label [
 	^ labelBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicEyeElement>>label: anObject [
+{ #category : #accessing }
+DynamicEyeElement >> label: anObject [
 	labelBlock := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicEyeElement>>save: aValue [
+{ #category : #accessing }
+DynamicEyeElement >> save: aValue [
 	saveBlock value: aValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicEyeElement>>saveBlock: anObject [
+{ #category : #accessing }
+DynamicEyeElement >> saveBlock: anObject [
 	saveBlock := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicEyeElement>>value [
+{ #category : #accessing }
+DynamicEyeElement >> value [
 	^ valueBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicEyeElement>>value: anObject [
+{ #category : #accessing }
+DynamicEyeElement >> value: anObject [
 	valueBlock := anObject
 ]

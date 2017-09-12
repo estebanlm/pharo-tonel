@@ -20,41 +20,28 @@ Examples:
 Class {
 	#name : #TestCommandLineHandler,
 	#superclass : #CommandLineHandler,
-	#category : #JenkinsTools-Core,
-	#timestamp : 'EstebanLorenzano 3/20/2016 11:45'
+	#category : #JenkinsTools-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-TestCommandLineHandler class>>commandName [
+{ #category : #accessing }
+TestCommandLineHandler class >> commandName [
 	^ 'test'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-TestCommandLineHandler class>>description [
+{ #category : #accessing }
+TestCommandLineHandler class >> description [
 	^ 'A command line test runner'
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-TestCommandLineHandler>>activate [
+{ #category : #activation }
+TestCommandLineHandler >> activate [
 	self activateHelp
 		ifTrue: [  ^ self ].
 	self runPackages.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-TestCommandLineHandler>>addPackagesMatching: aString to: aSet [
+{ #category : #accessing }
+TestCommandLineHandler >> addPackagesMatching: aString to: aSet [
 	| regex |
 	
 	[ regex := aString asRegex ] 
@@ -71,41 +58,29 @@ TestCommandLineHandler>>addPackagesMatching: aString to: aSet [
 		ifTrue: [ aSet add: aString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-TestCommandLineHandler>>addPackagesMatchingGlob: aGlobString to: aSet [
+{ #category : #accessing }
+TestCommandLineHandler >> addPackagesMatchingGlob: aGlobString to: aSet [
 	RPackage organizer packageNames do: [ :packageName|
 		(aGlobString match: packageName)
 			ifTrue: [ aSet add: packageName ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-TestCommandLineHandler>>addPackagesMatchingRegex: aRegex to: aSet [
+{ #category : #accessing }
+TestCommandLineHandler >> addPackagesMatchingRegex: aRegex to: aSet [
 	RPackage organizer packageNames do: [ :packageName|
 		(aRegex matches: packageName)
 			ifTrue: [ aSet add: packageName ]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-TestCommandLineHandler>>inform: aString [
+{ #category : #private }
+TestCommandLineHandler >> inform: aString [
 	self stdout 
 		<< aString
 		<< OSPlatform current lineEnding
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-TestCommandLineHandler>>informResults: results [
+{ #category : #private }
+TestCommandLineHandler >> informResults: results [
 	self stdout 
 		<< ('{1} run, {2} passes, {3} failures, {4} errors.'
 			format: {
@@ -116,11 +91,8 @@ TestCommandLineHandler>>informResults: results [
 		<< OSPlatform current lineEnding
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-TestCommandLineHandler>>packages [
+{ #category : #accessing }
+TestCommandLineHandler >> packages [
 	| packages |
 	packages := Set new.
 	self arguments 
@@ -129,11 +101,8 @@ TestCommandLineHandler>>packages [
 	^ packages
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-TestCommandLineHandler>>runPackages [
+{ #category : #private }
+TestCommandLineHandler >> runPackages [
 	| packages results |
 	
 	packages := self packages.
@@ -152,11 +121,8 @@ TestCommandLineHandler>>runPackages [
 	Smalltalk snapshot: false andQuit: true.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-TestCommandLineHandler>>testRunner [
+{ #category : #private }
+TestCommandLineHandler >> testRunner [
 	(self hasOption: 'junit-xml-output') ifTrue: [ ^ HDTestReport ].
 	
 	self class environment at: #CommandLineTestRunner ifPresent: [ :commandLineTestRunner |

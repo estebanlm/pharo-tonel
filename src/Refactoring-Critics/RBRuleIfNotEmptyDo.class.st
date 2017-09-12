@@ -4,32 +4,22 @@ ifNotEmptyDo: should not be used as ifNotEmpty: works for blocks with arguments,
 Class {
 	#name : #RBRuleIfNotEmptyDo,
 	#superclass : #RBTransformationRule,
-	#category : #Refactoring-Critics-TransformationRules,
-	#timestamp : 'MarcusDenker 8/15/2015 15:34'
+	#category : #Refactoring-Critics-TransformationRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRuleIfNotEmptyDo class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBRuleIfNotEmptyDo class >> uniqueIdentifierName [
 
 	^ 'RuleIfNotEmptyDo'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRuleIfNotEmptyDo>>group [
+{ #category : #accessing }
+RBRuleIfNotEmptyDo >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRuleIfNotEmptyDo>>initialize [
+{ #category : #initialization }
+RBRuleIfNotEmptyDo >> initialize [
 	super initialize.
 	self rewriteRule
 		replace: '`@receiver ifNotEmptyDo: `@statements'
@@ -41,10 +31,7 @@ RBRuleIfNotEmptyDo>>initialize [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRuleIfNotEmptyDo>>name [
+{ #category : #accessing }
+RBRuleIfNotEmptyDo >> name [
 	^ 'Use "ifNotEmpty:" not "ifNotEmptyDo:"'
 ]

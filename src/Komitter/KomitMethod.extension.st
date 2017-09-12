@@ -1,29 +1,18 @@
-Extension {
-	#name : #KomitMethod
-}
+Extension { #name : #KomitMethod }
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitMethod>>koDestinationText [
+{ #category : #'*Komitter-UI' }
+KomitMethod >> koDestinationText [
 	^ operation koDestinationText
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitMethod>>koSourceText [
+{ #category : #'*Komitter-UI' }
+KomitMethod >> koSourceText [
 	
 	^ self operation koSourceText
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitMethod>>printOn: aStream [
+{ #category : #'*Komitter-UI' }
+KomitMethod >> printOn: aStream [
 
 	super printOn: aStream.
 	aStream << '[ '.

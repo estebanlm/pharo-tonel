@@ -33,15 +33,11 @@ Class {
 		'StdTypers',
 		'ThenFlag'
 	],
-	#category : #Compiler-ParseNodes,
-	#timestamp : '<historical>'
+	#category : #Compiler-ParseNodes
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode class>>initialize [
+{ #category : #'class initialization' }
+MessageNode class >> initialize [
 	"MessageNode initialize"
 	MacroSelectors := 
 		#(	ifTrue: ifFalse: ifTrue:ifFalse: ifFalse:ifTrue:
@@ -88,19 +84,13 @@ MessageNode class>>initialize [
 			printRepeatOn:indent:)
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>accept: aVisitor [
+{ #category : #visiting }
+MessageNode >> accept: aVisitor [
 	^aVisitor visitMessageNode: self
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools "<Dictionary>" [
+{ #category : #'code generation (closures)' }
+MessageNode >> analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools [ "<Dictionary>"
 	"Assignments within optimized loops are tricky.  Because a loop repeats a
 	 write to a temporary in an optimized loop effectively occurs after the loop.
 	 To handle this collect the set of temps assigned to in optimized loops and
@@ -138,27 +128,18 @@ MessageNode>>analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<M
 				blockNode ifHasRemoteTempNodeEnsureInitializationStatementExists: rootNode]]]
 ]
 
-{
-	#category : #'equation translation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>arguments [
+{ #category : #'equation translation' }
+MessageNode >> arguments [
 	^arguments
 ]
 
-{
-	#category : #'equation translation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>arguments: list [
+{ #category : #'equation translation' }
+MessageNode >> arguments: list [
 	arguments := list
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>argumentsInEvaluationOrder [
+{ #category : #visiting }
+MessageNode >> argumentsInEvaluationOrder [
 	"Answer the receivers arguments in evaluation order.
 	 If the receiver is a transformed to:do: node this will undo the misordering done by the transformation."
 	^(special > 0
@@ -182,20 +163,14 @@ MessageNode>>argumentsInEvaluationOrder [
 			[arguments]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>canCascade [
+{ #category : #testing }
+MessageNode >> canCascade [
 
 	^receiver ~~ NodeSuper
 ]
 
-{
-	#category : #cascading,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>cascadeReceiver [
+{ #category : #cascading }
+MessageNode >> cascadeReceiver [
 	"Nil out rcvr (to indicate cascade) and return what it had been."
 
 	| rcvr |
@@ -204,20 +179,14 @@ MessageNode>>cascadeReceiver [
 	^rcvr
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>checkBlock: node as: nodeName from: encoder [
+{ #category : #private }
+MessageNode >> checkBlock: node as: nodeName from: encoder [
 
 	^self checkBlock: node as: nodeName from: encoder maxArgs: 0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>checkBlock: node as: nodeName from: encoder maxArgs: maxArgs [
+{ #category : #private }
+MessageNode >> checkBlock: node as: nodeName from: encoder maxArgs: maxArgs [
 	"Answer true if node is a BlockNode with at most maxArgs arguments.
 	This check is required in order to inline some special messages.
 	Notify some undue usage of these special messages."
@@ -227,11 +196,8 @@ MessageNode>>checkBlock: node as: nodeName from: encoder maxArgs: maxArgs [
 	^encoder notify: '<- ', nodeName , ' of ' , (MacroSelectors at: special) , ' has too many arguments'
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>emitCodeForCase: stack encoder: encoder value: forValue [
+{ #category : #'code generation' }
+MessageNode >> emitCodeForCase: stack encoder: encoder value: forValue [
 
 	| braceNode sizeStream allReturn |
 	forValue ifFalse:
@@ -266,11 +232,8 @@ MessageNode>>emitCodeForCase: stack encoder: encoder value: forValue [
 			caseErrorNode emitCode: stack args: 0 encoder: encoder]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>emitCodeForEffect: stack encoder: encoder [
+{ #category : #'code generation' }
+MessageNode >> emitCodeForEffect: stack encoder: encoder [
 	"For #ifTrue:ifFalse: and #whileTrue: / #whileFalse: style messages, the pc is set to the jump instruction, so that mustBeBoolean exceptions can be shown correctly."
 	special > 0
 		ifTrue: 
@@ -280,11 +243,8 @@ MessageNode>>emitCodeForEffect: stack encoder: encoder [
 			[super emitCodeForEffect: stack encoder: encoder]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>emitCodeForIf: stack encoder: encoder value: forValue [
+{ #category : #'code generation' }
+MessageNode >> emitCodeForIf: stack encoder: encoder value: forValue [
 	| thenExpr thenSize elseExpr elseSize |
 	thenSize := sizes at: 1.
 	elseSize := sizes at: 2.
@@ -317,11 +277,8 @@ MessageNode>>emitCodeForIf: stack encoder: encoder value: forValue [
 					elseExpr emitCodeForEvaluatedEffect: stack encoder: encoder]]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>emitCodeForIfNil: stack encoder: encoder value: forValue [
+{ #category : #'code generation' }
+MessageNode >> emitCodeForIfNil: stack encoder: encoder value: forValue [
 
 	| theNode theSize ifNotNilSelector |
 	theNode := arguments first.
@@ -344,11 +301,8 @@ MessageNode>>emitCodeForIfNil: stack encoder: encoder value: forValue [
 		ifFalse: [theNode emitCodeForEvaluatedEffect: stack encoder: encoder]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>emitCodeForRepeat: stack encoder: encoder value: forValue  [
+{ #category : #'code generation' }
+MessageNode >> emitCodeForRepeat: stack encoder: encoder value: forValue [ 
 	" L1: ... Jmp(L1)"
 	| loopSize |
 	loopSize := sizes at: 1.
@@ -357,11 +311,8 @@ MessageNode>>emitCodeForRepeat: stack encoder: encoder value: forValue  [
 	forValue ifTrue: [encoder genPushSpecialLiteral: nil. stack push: 1]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>emitCodeForToDo: stack encoder: encoder value: forValue  [
+{ #category : #'code generation' }
+MessageNode >> emitCodeForToDo: stack encoder: encoder value: forValue [ 
 	" var := rcvr. L1: [var <= arg1] Bfp(L2) [block body. var := var + inc] Jmp(L1) L2: "
 	| loopSize initStmt limitInit test block incStmt blockSize |
 	initStmt := arguments at: 4.
@@ -386,11 +337,8 @@ MessageNode>>emitCodeForToDo: stack encoder: encoder value: forValue  [
 	self emitCodeForJump: 0 - loopSize encoder: encoder.
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>emitCodeForValue: stack encoder: encoder [
+{ #category : #'code generation' }
+MessageNode >> emitCodeForValue: stack encoder: encoder [
 	"For #ifTrue:ifFalse: and #whileTrue: / #whileFalse: style messages, the pc is set to the jump instruction, so that mustBeBoolean exceptions can be shown correctly."
 	special > 0
 		ifTrue: 
@@ -407,11 +355,8 @@ MessageNode>>emitCodeForValue: stack encoder: encoder [
 				super: receiver == NodeSuper]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>emitCodeForWhile: stack encoder: encoder value: forValue [
+{ #category : #'code generation' }
+MessageNode >> emitCodeForWhile: stack encoder: encoder value: forValue [
         "L1: ... Bfp(L2)|Btp(L2) ... Jmp(L1) L2: "
         | cond theArguments stmt stmtSize loopSize |
         cond := receiver.
@@ -428,11 +373,8 @@ MessageNode>>emitCodeForWhile: stack encoder: encoder value: forValue [
         forValue ifTrue: [encoder genPushSpecialLiteral: nil. stack push: 1]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>ensureCanCascade: encoder [
+{ #category : #testing }
+MessageNode >> ensureCanCascade: encoder [
 
 	special > 0 ifTrue:
 		[special := 0.
@@ -445,37 +387,25 @@ MessageNode>>ensureCanCascade: encoder [
 				[each deoptimize]]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>ifNilReceiver [
+{ #category : #private }
+MessageNode >> ifNilReceiver [
 
 	^receiver
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>isComplex [
+{ #category : #testing }
+MessageNode >> isComplex [
 	
 	^(special between: 1 and: 10) or: [arguments size > 2 or: [receiver isComplex]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>isMessage [
+{ #category : #testing }
+MessageNode >> isMessage [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>isMessage: selSymbol receiver: rcvrPred arguments: argsPred [
+{ #category : #testing }
+MessageNode >> isMessage: selSymbol receiver: rcvrPred arguments: argsPred [
 	"Answer whether selector is selSymbol, and the predicates rcvrPred and argsPred
 	 evaluate to true with respect to receiver and the list of arguments.  If selSymbol or
 	 either predicate is nil, it means 'don't care'.  Note that argsPred takes numArgs
@@ -486,89 +416,62 @@ MessageNode>>isMessage: selSymbol receiver: rcvrPred arguments: argsPred [
 			[(argsPred isNil or: [argsPred valueWithArguments: arguments])]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>isMessageNode [
+{ #category : #testing }
+MessageNode >> isMessageNode [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>isNilIf [
+{ #category : #testing }
+MessageNode >> isNilIf [
 
 	^(special between: 3 and: 4)
 	   and: [(arguments first returns or: [arguments first isJust: NodeNil])
 	   and: [(arguments last returns or: [arguments last isJust: NodeNil])]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>isOptimized [
+{ #category : #testing }
+MessageNode >> isOptimized [
 	^special > 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>isOptimizedLoop [
+{ #category : #testing }
+MessageNode >> isOptimizedLoop [
 	^special > 0
 	   and: [#(transformWhile: transformToDo:) includes: (MacroTransformers at: special)]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>isReturningIf [
+{ #category : #testing }
+MessageNode >> isReturningIf [
 
 	^((special between: 3 and: 4) "ifTrue:ifFalse:/ifFalse:ifTrue:"
 	    or: [special between: 17 and: 18]) "ifNil:ifNotNil:/ifNotNil:ifNil:"
 		and: [arguments first returns and: [arguments last returns]]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>macroPrinter [
+{ #category : #printing }
+MessageNode >> macroPrinter [
 
 	special > 0 ifTrue: [^MacroPrinters at: special].
 	^nil
 
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>noteSpecialSelector: selectorSymbol [
+{ #category : #'macro transformations' }
+MessageNode >> noteSpecialSelector: selectorSymbol [
 	"special > 0 denotes specially treated (potentially inlined) messages. "
 
 	special := MacroSelectors indexOf: selectorSymbol.
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>precedence [
+{ #category : #printing }
+MessageNode >> precedence [
 
 	^precedence
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>printCaseOn: aStream indent: level  [
+{ #category : #printing }
+MessageNode >> printCaseOn: aStream indent: level [ 
 	"receiver caseOf: {[key]->[value]. ...} otherwise: [otherwise]"
 	| braceNode otherwise extra |
 	braceNode := arguments first.
@@ -607,11 +510,8 @@ MessageNode>>printCaseOn: aStream indent: level  [
 		 otherwise printOn: aStream indent: level + 1 + extra]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>printIfNil: aStream indent: level [
+{ #category : #printing }
+MessageNode >> printIfNil: aStream indent: level [
 
 	self printReceiver: receiver on: aStream indent: level.
 
@@ -620,11 +520,8 @@ MessageNode>>printIfNil: aStream indent: level [
 		on: aStream indent: level
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>printIfNilNotNil: aStream indent: level [
+{ #category : #printing }
+MessageNode >> printIfNilNotNil: aStream indent: level [
 
 	self printReceiver: receiver ifNilReceiver on: aStream indent: level.
 
@@ -641,11 +538,8 @@ MessageNode>>printIfNilNotNil: aStream indent: level [
 			on: aStream indent: level
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>printIfOn: aStream indent: level [
+{ #category : #printing }
+MessageNode >> printIfOn: aStream indent: level [
 
 	receiver ifNotNil:
 		[receiver printOn: aStream indent: level + 1 precedence: precedence].
@@ -665,11 +559,8 @@ MessageNode>>printIfOn: aStream indent: level [
 					on: aStream indent: level
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>printKeywords: key arguments: args on: aStream indent: level [
+{ #category : #printing }
+MessageNode >> printKeywords: key arguments: args on: aStream indent: level [
 	| keywords indent arg kwd doCrTab |
 	args size = 0 ifTrue:
 		[aStream space; nextPutAll: key.
@@ -694,11 +585,8 @@ MessageNode>>printKeywords: key arguments: args on: aStream indent: level [
 			precedence: (precedence = 2 ifTrue: [1] ifFalse: [precedence])]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>printOn: aStream indent: level [
+{ #category : #printing }
+MessageNode >> printOn: aStream indent: level [
 	"may not need this check anymore - may be fixed by the #receiver: change"
 	special ifNil: [^aStream nextPutAll: '** MessageNode with nil special **'].
 
@@ -720,11 +608,8 @@ MessageNode>>printOn: aStream indent: level [
 				 indent: level]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>printOn: strm indent: level precedence: outerPrecedence [
+{ #category : #printing }
+MessageNode >> printOn: strm indent: level precedence: outerPrecedence [
 
 	| parenthesize |
 	parenthesize := precedence > outerPrecedence
@@ -736,11 +621,8 @@ MessageNode>>printOn: strm indent: level precedence: outerPrecedence [
 		ifFalse: [self printOn: strm indent: level]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>printParenReceiver: rcvr on: aStream indent: level [
+{ #category : #printing }
+MessageNode >> printParenReceiver: rcvr on: aStream indent: level [
 					
 	rcvr isBlockNode ifTrue:
 		[^rcvr printOn: aStream indent: level].
@@ -750,11 +632,8 @@ MessageNode>>printParenReceiver: rcvr on: aStream indent: level [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>printReceiver: rcvr on: aStream indent: level [
+{ #category : #printing }
+MessageNode >> printReceiver: rcvr on: aStream indent: level [
 					
 	rcvr ifNil: [^ self].
 
@@ -762,11 +641,8 @@ MessageNode>>printReceiver: rcvr on: aStream indent: level [
 	rcvr printOn: aStream indent: level precedence: precedence
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>printRepeatOn: aStream indent: level [
+{ #category : #printing }
+MessageNode >> printRepeatOn: aStream indent: level [
 
 	self printReceiver: receiver on: aStream indent: level.
 
@@ -775,11 +651,8 @@ MessageNode>>printRepeatOn: aStream indent: level [
 		on: aStream indent: level
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>printToDoOn: aStream indent: level [
+{ #category : #printing }
+MessageNode >> printToDoOn: aStream indent: level [
 
 	| limitNode |
 	self printReceiver: receiver on: aStream indent: level.
@@ -798,11 +671,8 @@ MessageNode>>printToDoOn: aStream indent: level [
 					on: aStream indent: level]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>printWhileOn: aStream indent: level [
+{ #category : #printing }
+MessageNode >> printWhileOn: aStream indent: level [
 
 	self printReceiver: receiver on: aStream indent: level.
 	(arguments isEmpty not
@@ -818,29 +688,20 @@ MessageNode>>printWhileOn: aStream indent: level [
 		on: aStream indent: level
 ]
 
-{
-	#category : #'equation translation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>receiver [
+{ #category : #'equation translation' }
+MessageNode >> receiver [
 	^receiver
 ]
 
-{
-	#category : #'equation translation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>receiver: val [
+{ #category : #'equation translation' }
+MessageNode >> receiver: val [
 	"14 feb 2001 - removed return arrow"
 
 	receiver := val
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>receiver: rcvr arguments: args precedence: p [
+{ #category : #private }
+MessageNode >> receiver: rcvr arguments: args precedence: p [
 
 	receiver := rcvr.
 	arguments := args.
@@ -849,11 +710,8 @@ MessageNode>>receiver: rcvr arguments: args precedence: p [
 	precedence := p
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>receiver: rcvr selector: selNode arguments: args precedence: p  [
+{ #category : #initialize-release }
+MessageNode >> receiver: rcvr selector: selNode arguments: args precedence: p [ 
 	"Decompile."
 
 	self receiver: rcvr
@@ -868,11 +726,8 @@ MessageNode>>receiver: rcvr selector: selNode arguments: args precedence: p  [
 	"We could test code being decompiled, but the compiler should've checked already. And where to send the complaint?"
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>receiver: rcvr selector: aSelector arguments: args precedence: p from: encoder  [
+{ #category : #initialize-release }
+MessageNode >> receiver: rcvr selector: aSelector arguments: args precedence: p from: encoder [ 
 	"Compile."
 
 	self receiver: rcvr
@@ -893,11 +748,8 @@ MessageNode>>receiver: rcvr selector: aSelector arguments: args precedence: p fr
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>receiver: rcvr selector: selName arguments: args precedence: p from: encoder sourceRange: range [
+{ #category : #initialize-release }
+MessageNode >> receiver: rcvr selector: selName arguments: args precedence: p from: encoder sourceRange: range [
 	"Compile."
 	encoder noteSourceRange: range forNode: self.
 	^self
@@ -908,27 +760,18 @@ MessageNode>>receiver: rcvr selector: selName arguments: args precedence: p from
 		from: encoder
 ]
 
-{
-	#category : #'equation translation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>selector [
+{ #category : #'equation translation' }
+MessageNode >> selector [
 	^selector
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>selector: sel [
+{ #category : #initialize-release }
+MessageNode >> selector: sel [
 	selector := sel
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>sizeCodeForCase: encoder value: forValue [
+{ #category : #'code generation' }
+MessageNode >> sizeCodeForCase: encoder value: forValue [
 
 	| braceNode sizeIndex elseSize allReturn |
 	forValue not ifTrue:
@@ -968,11 +811,8 @@ MessageNode>>sizeCodeForCase: encoder value: forValue [
 	^(receiver sizeCodeForValue: encoder) + elseSize
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>sizeCodeForEffect: encoder [
+{ #category : #'code generation' }
+MessageNode >> sizeCodeForEffect: encoder [
 
 	special > 0 
 		ifTrue:
@@ -981,11 +821,8 @@ MessageNode>>sizeCodeForEffect: encoder [
 	^super sizeCodeForEffect: encoder
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>sizeCodeForIf: encoder value: forValue [
+{ #category : #'code generation' }
+MessageNode >> sizeCodeForIf: encoder value: forValue [
 	| thenExpr elseExpr branchSize thenSize elseSize |
 	thenExpr := arguments at: 1.
 	elseExpr := arguments at: 2.
@@ -1018,11 +855,8 @@ MessageNode>>sizeCodeForIf: encoder value: forValue [
 	+ branchSize + thenSize + elseSize
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>sizeCodeForIfNil: encoder value: forValue [
+{ #category : #'code generation' }
+MessageNode >> sizeCodeForIfNil: encoder value: forValue [
 
 	| theNode theSize theSelector |
 	equalNode := encoder encodeSelector: #==.
@@ -1052,11 +886,8 @@ MessageNode>>sizeCodeForIfNil: encoder value: forValue [
 				+ theSize]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>sizeCodeForRepeat: encoder value: forValue  [
+{ #category : #'code generation' }
+MessageNode >> sizeCodeForRepeat: encoder value: forValue [ 
 	"L1: ... Jmp(L1) nil (nil for value only);"
 	| loopSize |
 	loopSize := (receiver sizeCodeForEvaluatedEffect: encoder) + (encoder sizeJumpLong: 1).
@@ -1064,11 +895,8 @@ MessageNode>>sizeCodeForRepeat: encoder value: forValue  [
 	^loopSize + (forValue ifTrue: [encoder sizePushSpecialLiteral: nil] ifFalse: [0])
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>sizeCodeForToDo: encoder value: forValue  [
+{ #category : #'code generation' }
+MessageNode >> sizeCodeForToDo: encoder value: forValue [ 
 	" var := rcvr. L1: [var <= arg1] Bfp(L2) [block body. var := var + inc] Jmp(L1) L2: "
 	| loopSize initStmt test block incStmt blockSize initSize limitInit |
 	block := arguments at: 3.
@@ -1092,11 +920,8 @@ MessageNode>>sizeCodeForToDo: encoder value: forValue  [
 	+ loopSize
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>sizeCodeForValue: encoder [
+{ #category : #'code generation' }
+MessageNode >> sizeCodeForValue: encoder [
 	| total |
 	special > 0 
 		ifTrue: 
@@ -1115,11 +940,8 @@ MessageNode>>sizeCodeForValue: encoder [
 	^total
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>sizeCodeForWhile: encoder value: forValue [
+{ #category : #'code generation' }
+MessageNode >> sizeCodeForWhile: encoder value: forValue [
         "L1: ... Bfp(L2) ... Jmp(L1) L2: nil (nil for value only);
         justStmt, wholeLoop, justJump."
         | cond theArguments stmt stmtSize loopSize branchSize |
@@ -1136,11 +958,8 @@ MessageNode>>sizeCodeForWhile: encoder value: forValue [
         ^loopSize + (forValue ifTrue: [encoder sizePushSpecialLiteral: nil] ifFalse: [0])
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>toDoFromWhileWithInit: initStmt [
+{ #category : #'macro transformations' }
+MessageNode >> toDoFromWhileWithInit: initStmt [
 	"Return nil, or a to:do: expression equivalent to this whileTrue:"
 	| variable increment limit toDoBlock body test |
 	(selector key == #whileTrue:
@@ -1173,11 +992,8 @@ MessageNode>>toDoFromWhileWithInit: initStmt [
 		precedence: precedence
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>toDoIncrement: variable [
+{ #category : #testing }
+MessageNode >> toDoIncrement: variable [
 	(receiver = variable and: [selector key = #+]) 
 		ifFalse: [^ nil].
 	arguments first isConstantNumber
@@ -1185,21 +1001,15 @@ MessageNode>>toDoIncrement: variable [
 		ifFalse: [^ nil]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>toDoLimit: variable [
+{ #category : #testing }
+MessageNode >> toDoLimit: variable [
 	(receiver = variable and: [selector key = #<= or: [selector key = #>=]]) 
 		ifTrue: [^ arguments first]
 		ifFalse: [^ nil]
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>transform: encoder [
+{ #category : #'macro transformations' }
+MessageNode >> transform: encoder [
 	special = 0 ifTrue: [^false].
 	(self perform: (MacroTransformers at: special) with: encoder)
 		ifTrue: 
@@ -1208,11 +1018,8 @@ MessageNode>>transform: encoder [
 			[special := 0. ^false]
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>transformAnd: encoder [
+{ #category : #'macro transformations' }
+MessageNode >> transformAnd: encoder [
 	(self transformBoolean: encoder)
 		ifTrue: 
 			[arguments := 
@@ -1224,22 +1031,16 @@ MessageNode>>transformAnd: encoder [
 			[^false]
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>transformBoolean: encoder [
+{ #category : #'macro transformations' }
+MessageNode >> transformBoolean: encoder [
 	^self
 		checkBlock: (arguments at: 1)
 		as: 'argument'
 		from: encoder
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>transformCase: encoder [
+{ #category : #'macro transformations' }
+MessageNode >> transformCase: encoder [
 
 	| caseNode |
 	caseNode := arguments first.
@@ -1255,11 +1056,8 @@ MessageNode>>transformCase: encoder [
 	 ^true
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>transformIfFalse: encoder [
+{ #category : #'macro transformations' }
+MessageNode >> transformIfFalse: encoder [
 	(self transformBoolean: encoder)
 		ifTrue: 
 			[arguments := 
@@ -1271,11 +1069,8 @@ MessageNode>>transformIfFalse: encoder [
 			[^false]
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>transformIfFalseIfTrue: encoder [
+{ #category : #'macro transformations' }
+MessageNode >> transformIfFalseIfTrue: encoder [
 	^(self checkBlock: (arguments at: 1) as: 'False arg' from: encoder)
 	   and: [(self checkBlock: (arguments at: 2) as: 'True arg' from: encoder)
 	   and: [selector := SelectorNode new key: #ifTrue:ifFalse: code: #macro.
@@ -1284,11 +1079,8 @@ MessageNode>>transformIfFalseIfTrue: encoder [
 			true]]
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>transformIfNil: encoder [
+{ #category : #'macro transformations' }
+MessageNode >> transformIfNil: encoder [
 
 	"vb: Removed the original transformBoolean: which amounds to a test we perform in each of the branches below."
 	(MacroSelectors at: special) = #ifNotNil: ifTrue:
@@ -1311,11 +1103,8 @@ MessageNode>>transformIfNil: encoder [
 	^true
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>transformIfNilIfNotNil: encoder [
+{ #category : #'macro transformations' }
+MessageNode >> transformIfNilIfNotNil: encoder [
 	"vb: Changed to support one-argument ifNotNil: branch. In the 1-arg case we
 	 transform the receiver to
 		(var := receiver)
@@ -1345,11 +1134,8 @@ MessageNode>>transformIfNilIfNotNil: encoder [
 	^true
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>transformIfNotNilIfNil: encoder [
+{ #category : #'macro transformations' }
+MessageNode >> transformIfNotNilIfNil: encoder [
 	"vb: Changed to support one-argument ifNotNil: branch. In the 1-arg case we
 	 transform the receiver to
 		(var := receiver)
@@ -1380,11 +1166,8 @@ MessageNode>>transformIfNotNilIfNil: encoder [
 	^true
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>transformIfTrue: encoder [
+{ #category : #'macro transformations' }
+MessageNode >> transformIfTrue: encoder [
 	(self transformBoolean: encoder)
 		ifTrue: 
 			[arguments := 
@@ -1396,22 +1179,16 @@ MessageNode>>transformIfTrue: encoder [
 			[^false]
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>transformIfTrueIfFalse: encoder [
+{ #category : #'macro transformations' }
+MessageNode >> transformIfTrueIfFalse: encoder [
 	^(self checkBlock: (arguments at: 1) as: 'True arg' from: encoder)
 	   and: [(self checkBlock: (arguments at: 2) as: 'False arg' from: encoder)
 	   and: [arguments do: [:arg| arg noteOptimizedIn: self].
 			true]]
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>transformOr: encoder [
+{ #category : #'macro transformations' }
+MessageNode >> transformOr: encoder [
 	(self transformBoolean: encoder)
 		ifTrue: 
 			[arguments := 
@@ -1423,11 +1200,8 @@ MessageNode>>transformOr: encoder [
 			[^false]
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>transformRepeat: encoder [
+{ #category : #'macro transformations' }
+MessageNode >> transformRepeat: encoder [
 	"answer true if this #repeat message can be optimized"
 	
 	^(self checkBlock: receiver as: 'receiver' from: encoder)
@@ -1435,11 +1209,8 @@ MessageNode>>transformRepeat: encoder [
 			true]
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>transformToDo: encoder [
+{ #category : #'macro transformations' }
+MessageNode >> transformToDo: encoder [
 	" var := rcvr. L1: [var <= arg1] Bfp(L2) [block body. var := var + inc] 
 Jmp(L1) L2: "
 	| limit increment block initStmt test incStmt limitInit blockVar myRange blockRange limitIsAssignedTo |
@@ -1499,11 +1270,8 @@ Jmp(L1) L2: "
 	^true
 ]
 
-{
-	#category : #'macro transformations',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageNode>>transformWhile: encoder [
+{ #category : #'macro transformations' }
+MessageNode >> transformWhile: encoder [
 	(self checkBlock: receiver as: 'receiver' from: encoder) ifFalse:
 		[^false].
 	arguments size = 0 ifTrue:  "transform bodyless form to body form"

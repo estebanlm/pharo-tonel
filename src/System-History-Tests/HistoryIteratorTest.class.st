@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #HistoryIteratorTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'historyList'
 	],
-	#category : #System-History-Tests,
-	#timestamp : ''
+	#category : #System-History-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-HistoryIteratorTest>>setUp [
+{ #category : #running }
+HistoryIteratorTest >> setUp [
 	historyList := HistoryIterator new.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-HistoryIteratorTest>>testGroupedUndo1 [
+{ #category : #testing }
+HistoryIteratorTest >> testGroupedUndo1 [
 	"test of grouping history entries afterwards by #groupFrom:to:"
 	| aCollection |
 	aCollection := OrderedCollection newFrom: {1. 2. 3}.
@@ -44,11 +34,8 @@ HistoryIteratorTest>>testGroupedUndo1 [
 	self assert: ((aCollection last = 3) and: [aCollection second = 2]).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-HistoryIteratorTest>>testGroupedUndo2 [
+{ #category : #testing }
+HistoryIteratorTest >> testGroupedUndo2 [
 	"test of grouping history entries by #openGroup and #closeGroup"
 	| aCollection |
 	aCollection := OrderedCollection newFrom: {1. 2. 3}.
@@ -73,11 +60,8 @@ HistoryIteratorTest>>testGroupedUndo2 [
 	self assert: ((aCollection last = 3) and: [aCollection second = 2]).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-HistoryIteratorTest>>testGrouping [
+{ #category : #testing }
+HistoryIteratorTest >> testGrouping [
 	| aCollection |
 	aCollection := OrderedCollection new.
 
@@ -105,11 +89,8 @@ HistoryIteratorTest>>testGrouping [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-HistoryIteratorTest>>testMaxSize [
+{ #category : #testing }
+HistoryIteratorTest >> testMaxSize [
 
 	| aCollection |
 	aCollection := OrderedCollection newFrom: {1. 2. 3}.
@@ -125,11 +106,8 @@ HistoryIteratorTest>>testMaxSize [
 	self assert: historyList size = 5.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-HistoryIteratorTest>>testUndo1 [
+{ #category : #testing }
+HistoryIteratorTest >> testUndo1 [
 
 	| aCollection |
 	aCollection := OrderedCollection new.
@@ -144,11 +122,8 @@ HistoryIteratorTest>>testUndo1 [
 	self assert: aCollection size = 0.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-HistoryIteratorTest>>testUndo2 [
+{ #category : #testing }
+HistoryIteratorTest >> testUndo2 [
 
 	| aCollection |
 	aCollection := OrderedCollection newFrom: {1. 2. 3}.

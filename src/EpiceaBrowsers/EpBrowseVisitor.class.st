@@ -6,26 +6,19 @@ Class {
 	#superclass : #EpLogBrowserOperationVisitor,
 	#traits : 'EpTCodeChangeVisitor',
 	#classTraits : 'EpTCodeChangeVisitor classTrait',
-	#category : #EpiceaBrowsers-Visitors,
-	#timestamp : 'MartinDias 10/27/2014 18:03'
+	#category : #EpiceaBrowsers-Visitors
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBrowseVisitor>>visitBehaviorChange: aChange [
+{ #category : #visitor }
+EpBrowseVisitor >> visitBehaviorChange: aChange [
 
 	self 
 		behaviorNamed: aChange behaviorAffectedName 
 		ifPresent: #browse
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBrowseVisitor>>visitCategoryChange: aChange [
+{ #category : #visitor }
+EpBrowseVisitor >> visitCategoryChange: aChange [
 
 	| package |
 	package := RPackageOrganizer default packageNamed: aChange affectedPackageName.
@@ -37,19 +30,13 @@ EpBrowseVisitor>>visitCategoryChange: aChange [
 		ifNone: [ self inform: 'Category ' , aChange categoryName , ' not found.' ].
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBrowseVisitor>>visitCodeChange: aChange [
+{ #category : #visitor }
+EpBrowseVisitor >> visitCodeChange: aChange [
 	^ self error: 'Should not be reached'.
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBrowseVisitor>>visitMethodChange: aChange [
+{ #category : #visitor }
+EpBrowseVisitor >> visitMethodChange: aChange [
 
 	self 
 		behaviorNamed: aChange behaviorAffectedName

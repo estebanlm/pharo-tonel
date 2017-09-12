@@ -7,66 +7,44 @@ Class {
 	#instVars : [
 		'multiBundles'
 	],
-	#category : #GT-EventRecorder-Support,
-	#timestamp : 'JurajKubelka 11/15/2015 18:03'
+	#category : #GT-EventRecorder-Support
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventMultiBundleFactory class>>default [
+{ #category : #accessing }
+GTEventMultiBundleFactory class >> default [
 	^ self new
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventMultiBundleFactory class>>fromBundles: aCollection  [
+{ #category : #public }
+GTEventMultiBundleFactory class >> fromBundles: aCollection [ 
 	^ self default fromBundles: aCollection
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventMultiBundleFactory>>fromBundles: aCollection  [
+{ #category : #public }
+GTEventMultiBundleFactory >> fromBundles: aCollection [ 
 	multiBundles := OrderedDictionary new.
 	aCollection do: [ :aSingleOrMultiBundle | self synthetize: aSingleOrMultiBundle.].
 	^ self multiBundles
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventMultiBundleFactory>>multiBundles [
+{ #category : #accessing }
+GTEventMultiBundleFactory >> multiBundles [
 	^ multiBundles asOrderedCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventMultiBundleFactory>>synthetize: aSingleOrMultiBundle [
+{ #category : #private }
+GTEventMultiBundleFactory >> synthetize: aSingleOrMultiBundle [
 	aSingleOrMultiBundle accept: self
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventMultiBundleFactory>>visitMultiBundle: aMultiBundle [
+{ #category : #visitor }
+GTEventMultiBundleFactory >> visitMultiBundle: aMultiBundle [
 	aMultiBundle bundles do: [ :eachSingleBundle |
 		self visitSingleBundle: eachSingleBundle ]
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventMultiBundleFactory>>visitSingleBundle: aSingleBundle [
+{ #category : #visitor }
+GTEventMultiBundleFactory >> visitSingleBundle: aSingleBundle [
 	| multiBundle |
 	multiBundle := multiBundles 
 							at: aSingleBundle url 

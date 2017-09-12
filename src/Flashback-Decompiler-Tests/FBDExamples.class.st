@@ -11,15 +11,11 @@ Class {
 	#classVars : [
 		'CVar'
 	],
-	#category : #Flashback-Decompiler-Tests,
-	#timestamp : 'ClementBera 2/6/2015 13:39'
+	#category : #Flashback-Decompiler-Tests
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>doubleRemoteAnidatedBlocks [
+{ #category : #examples }
+FBDExamples >> doubleRemoteAnidatedBlocks [
 	| val last |	
 	val := 0. 
 	1 to: 10 do: [ :i |
@@ -35,32 +31,23 @@ FBDExamples>>doubleRemoteAnidatedBlocks [
 
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>example2Loops [
+{ #category : #'examples - loops' }
+FBDExamples >> example2Loops [
 	| t |
 	t := 1.
 	[ t < 5 ] whileTrue: [ t := t + 1. ].
 	[ t > 10 ] whileFalse: [ t := t * 2 ].
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>example2Loops2 [
+{ #category : #'examples - loops' }
+FBDExamples >> example2Loops2 [
 	| t |
 	t := 1.
 	[ t < 5 ] whileTrue: [ [ t > 10 ] whileFalse: [ t := t * 2 ]. t := t + 1. ].
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleAnd [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleAnd [
 	| tmp1 tmp2 |
 	tmp1 := true.
 	tmp2 := false.
@@ -68,32 +55,23 @@ FBDExamples>>exampleAnd [
 	^ tmp2 and: tmp1
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleAnd2 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleAnd2 [
 	| tmp1 |
 	tmp1 := true.
 	tmp1 and: [ tmp1 not ]
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleAndOr [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleAndOr [
 	| t1 t2 |
 	t1 := true.
 	t2 := false.
 	t1 and: [ t2. '1' logCr ]. "effect"   
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleAndOr2 [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleAndOr2 [
 	| tmp1 tmp2 |
 	tmp1 := true.
 	tmp2 := false.
@@ -103,22 +81,16 @@ FBDExamples>>exampleAndOr2 [
 	^ self
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleAndOr3 [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleAndOr3 [
 	| t1 t2 |
 	t1 := true.
 	t2 := false.  
 	^ t1 and: [ t2 ] "value" 
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleAndOr4 [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleAndOr4 [
 	| tmp1 tmp2 |
 	tmp1 := true.
 	tmp2 := false.
@@ -127,33 +99,24 @@ FBDExamples>>exampleAndOr4 [
 		ifFalse: [ tmp1 ]
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleAndOr5 [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleAndOr5 [
 	| t1 t2 |
 	t1 := true.
 	t2 := false.  
 	^ t2 or: [ t1 and: [ t2 ] ]
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleAndOr6 [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleAndOr6 [
 	| t1 t2 |
 	t1 := true.
 	t2 := false.  
 	^ t1 and: [ t2 or: [ t1 ] ]
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleBlockArgument [
+{ #category : #examples-blocks }
+FBDExamples >> exampleBlockArgument [
 	| block block1 block2 |
 	block := [ :arg | | temp | temp := arg. [ temp ] ].
 	block1 := block value: 1.
@@ -163,60 +126,42 @@ FBDExamples>>exampleBlockArgument [
 	^block1 value + block2 value.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleBlockExternal [
+{ #category : #examples-blocks }
+FBDExamples >> exampleBlockExternal [
 	| t |
 	t := 1.
 	^[t] value.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleBlockExternal2 [
+{ #category : #examples-blocks }
+FBDExamples >> exampleBlockExternal2 [
 	| t1 t2 |
 	t1 :=  t2 := 1.
 	^[t1 + t2] value.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleBlockExternalArg [
+{ #category : #examples-blocks }
+FBDExamples >> exampleBlockExternalArg [
 	| t  |
 	t := 1.
 	^[:a | t + a] value: 1.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleBlockExternalNested [
+{ #category : #examples-blocks }
+FBDExamples >> exampleBlockExternalNested [
 	| t s |
 	t := s := 1.
 	^[[s] value +   t   ] value.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleBlockInternal [
+{ #category : #examples-blocks }
+FBDExamples >> exampleBlockInternal [
 	
 	^[ | t | t := 1. t] value
 ]
 
-{
-	#category : #'examples - blocks',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleBlockIntoCascade [
+{ #category : #'examples - blocks' }
+FBDExamples >> exampleBlockIntoCascade [
 	| t |
 	t := {true.
 	true.
@@ -230,50 +175,35 @@ FBDExamples>>exampleBlockIntoCascade [
 		yourself
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleBlockMethodArgument: arg [
+{ #category : #examples-blocks }
+FBDExamples >> exampleBlockMethodArgument: arg [
 	|  block |
 	block := [ :blockarg | blockarg + arg].
 	self assert: ((block value: 2) = (arg + 2)).
 	^block value: 2
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleBlockNested [
+{ #category : #examples-blocks }
+FBDExamples >> exampleBlockNested [
 	
 	^[ [1] value] value
 ]
 
-{
-	#category : #'examples - blocks',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleBlockNumCopied [
+{ #category : #'examples - blocks' }
+FBDExamples >> exampleBlockNumCopied [
 	| t1 |
 	t1 := OrderedCollection new.
 	iVar := {(1 -> 2.3 -> 4.5 -> 6)}.
 	^ iVar keysAndValuesDo: [ :key :value | t1 add: (value -> key) ]
 ]
 
-{
-	#category : #'examples - blocks',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleBlockWithArg [
+{ #category : #'examples - blocks' }
+FBDExamples >> exampleBlockWithArg [
 	^ {1.2.3} collect: [ :aNumber | aNumber + 1 ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCascade [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleCascade [
 	^ 1 
 		+ 2;
 		- 4;
@@ -281,31 +211,22 @@ FBDExamples>>exampleCascade [
 		yourself
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCascade2 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleCascade2 [
 	^ true
 		ifTrue: [ 1 + 2 ];
 		and: [ false ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCascade3 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleCascade3 [
 	^ true
 		asBit;
 		xor: false
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCascade4 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleCascade4 [
 	| t1 |
 	t1 := true
 		asBit;
@@ -313,11 +234,8 @@ FBDExamples>>exampleCascade4 [
 	^ t1
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCascadeIfFalse [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleCascadeIfFalse [
 	| tmp1 |
 	tmp1 := true value
 		not;
@@ -327,22 +245,16 @@ FBDExamples>>exampleCascadeIfFalse [
 		ifFalse: [ ^ false ]
 ]
 
-{
-	#category : #'examples - cascades',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCascadeIfNil [
+{ #category : #'examples - cascades' }
+FBDExamples >> exampleCascadeIfNil [
 	^ {true} asOrderedCollection
 		size;
 		add: (true ifNil: [ false ]);
 		yourself
 ]
 
-{
-	#category : #'examples - cascades',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCascadeIfTrueIfFalse [
+{ #category : #'examples - cascades' }
+FBDExamples >> exampleCascadeIfTrueIfFalse [
 	^ true 
 		not;
 		ifTrue: [ 'A' ];
@@ -350,11 +262,8 @@ FBDExamples>>exampleCascadeIfTrueIfFalse [
 		yourself
 ]
 
-{
-	#category : #'examples - cascades',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCascadeIfTrueIfFalse2 [
+{ #category : #'examples - cascades' }
+FBDExamples >> exampleCascadeIfTrueIfFalse2 [
 	^ {true} asOrderedCollection
 		size;
 		add:
@@ -363,11 +272,8 @@ FBDExamples>>exampleCascadeIfTrueIfFalse2 [
 						ifFalse: [ 'B' ])
 ]
 
-{
-	#category : #'examples - cascades',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCascadeIntoBlockIntoCascade [
+{ #category : #'examples - cascades' }
+FBDExamples >> exampleCascadeIntoBlockIntoCascade [
 	| t |
 	t := {true.
 	true.
@@ -377,11 +283,8 @@ FBDExamples>>exampleCascadeIntoBlockIntoCascade [
 		collect: [ :aBoolean | aBoolean not;value ]
 ]
 
-{
-	#category : #'examples - cascades',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCascadeIntoBlockWithTempIfTrueIfFalse [
+{ #category : #'examples - cascades' }
+FBDExamples >> exampleCascadeIntoBlockWithTempIfTrueIfFalse [
 	| t |
 	t := OrderedCollection new.
 	t yourself
@@ -402,11 +305,8 @@ FBDExamples>>exampleCascadeIntoBlockWithTempIfTrueIfFalse [
 										ifFalse: [ 0 ] ] ]
 ]
 
-{
-	#category : #'examples - cascades',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCascadeIntoBlockWithTempIntoCascade [
+{ #category : #'examples - cascades' }
+FBDExamples >> exampleCascadeIntoBlockWithTempIntoCascade [
 	| t |
 	t := {{true}.
 	{true}.
@@ -427,11 +327,8 @@ FBDExamples>>exampleCascadeIntoBlockWithTempIntoCascade [
 										value ] ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCascadeNested [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleCascadeNested [
 	^ 1 
 		+ (#(1 2 3) at: 2 put: 5; size);
 		- 4;
@@ -439,11 +336,8 @@ FBDExamples>>exampleCascadeNested [
 		yourself
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCaseOf [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleCaseOf [
 	^ 5
 		caseOf:
 			{([ 1 ] -> [ #CAIRO_FONT_SLANT_NORMAL ]).
@@ -451,19 +345,13 @@ FBDExamples>>exampleCaseOf [
 			([ 5 ] -> [ #CAIRO_FONT_SLANT_OBLIQUE ])}
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCaseOf2 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleCaseOf2 [
 	^ 5 caseOf: {([ 5 ] -> [ #CAIRO_FONT_SLANT_OBLIQUE ])}
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCaseOf3 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleCaseOf3 [
 	| t1 |
 	5
 		caseOf:
@@ -473,11 +361,8 @@ FBDExamples>>exampleCaseOf3 [
 	^ t1
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCaseOf4 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleCaseOf4 [
 	| t1 |
 	5
 		caseOf:
@@ -488,11 +373,8 @@ FBDExamples>>exampleCaseOf4 [
 	^ t1
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCaseOf5 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleCaseOf5 [
 	| t1 |
 	5
 		caseOf:
@@ -503,11 +385,8 @@ FBDExamples>>exampleCaseOf5 [
 	^ t1
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCaseOf6 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleCaseOf6 [
 	| t1 |
 	5
 		caseOf:
@@ -518,11 +397,8 @@ FBDExamples>>exampleCaseOf6 [
 	^ t1
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCaseOf7 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleCaseOf7 [
 	| t1 |
 	5
 		caseOf:
@@ -536,11 +412,8 @@ FBDExamples>>exampleCaseOf7 [
 	^ t1
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCaseOf8 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleCaseOf8 [
 	9
 		caseOf:
 			{([ 0 ] -> [ 0 @ 0 ]).
@@ -549,11 +422,8 @@ FBDExamples>>exampleCaseOf8 [
 	^ true
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCaseOfOtherwise [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleCaseOfOtherwise [
 	^ 5
 		caseOf:
 			{([ 1 ] -> [ #CAIRO_FONT_SLANT_NORMAL ]).
@@ -562,285 +432,191 @@ FBDExamples>>exampleCaseOfOtherwise [
 		otherwise: [ #NULL ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleClassVar [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleClassVar [
 	CVar := 1.
 	^ CVar
 ]
 
-{
-	#category : #'examples - blocks',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleCopyingBlock [
+{ #category : #'examples - blocks' }
+FBDExamples >> exampleCopyingBlock [
 	| t |
 	t := true.
 	^ [ t ifTrue: [ 5 + t asBit ]. t ].
 ]
 
-{
-	#category : #examples-pragmas,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleDoublePrimitive [
+{ #category : #examples-pragmas }
+FBDExamples >> exampleDoublePrimitive [
 	<primitive: 1>
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleEffectValues [
+{ #category : #examples-blocks }
+FBDExamples >> exampleEffectValues [
 	#getMe.
 	#( got that ? ).
 	Class.
 	
 ]
 
-{
-	#category : #examples-simple,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleEmptyMethod [
-
+{ #category : #examples-simple }
+FBDExamples >> exampleEmptyMethod [
 ]
 
-{
-	#category : #'examples - blocks',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleFullBlock [
+{ #category : #'examples - blocks' }
+FBDExamples >> exampleFullBlock [
 	| t |
 	t := true.
 	^ [ t := false ].
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIV [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIV [
 	iVar := 5.
 	^ iVar
 	
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfFalse [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleIfFalse [
 	true
 		ifTrue: [  ]
 		ifFalse: [ ^ 1 ].
 	^ 2
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfFalse2 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfFalse2 [
 	^ true ifFalse: [ ^ 'result' ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfFalse3 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfFalse3 [
 	1 < 2 ifFalse: [ ^ 'result' ].
 	1+2.
 	^ nil
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfFalseIfTrue [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleIfFalseIfTrue [
 	true ifFalse: [^1] ifTrue: [^2].
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfFalseIfTrue2 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfFalseIfTrue2 [
 	| a |
 	a := true.
 	a ifFalse: [ a := 1 + 2 ] ifTrue: [ a := 2 + 3 ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfFalseIfTrue3 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfFalseIfTrue3 [
 	| a |
 	a := true.
 	a ifFalse: [ a := false  ] ifTrue: [ ^1 ].
 	^ 2
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfFalseIfTrue4 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfFalseIfTrue4 [
 	| a |
 	a := true.
 	a ifFalse: [ 1 + 2 ] ifTrue: [ ^1 ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfFalseIfTrue5 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfFalseIfTrue5 [
 	| a |
 	a := true.
 	a ifFalse: [ ^1 ] ifTrue: [ 1 + 2 ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfFalseIfTrue6 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfFalseIfTrue6 [
 	| a |
 	a := true.
 	^ a ifFalse: [ ] ifTrue: [ ^1 ].
 	
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfNil [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfNil [
 	true ifNil: [ ^ 5 ]. ^ 6 
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfNilClosure [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfNilClosure [
 	^ iVar ifNil: [ 1 + ({1.2} at: 2 ifAbsent: [ ^ nil ]) ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfNilDup [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfNilDup [
 	^ true ifNil: [ 1+2. 5 ]   
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfNilIfNotNil [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfNilIfNotNil [
 	true ifNil: [ ^ 5 ] ifNotNil: [ ^ 6 ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfNilIfNotNil2 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfNilIfNotNil2 [
 	^ true ifNil: [  5 ] ifNotNil: [ 6 ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfNilIfNotNil3 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfNilIfNotNil3 [
 	| tmp1 |
 	tmp1:= true.
 	^ tmp1 ifNil: [  5 ] ifNotNil: [ 6 ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfNilNested [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfNilNested [
 	^ true ifNil: [ (false ifNil: [ ^ true ]) not ]
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfNotNilArg [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleIfNotNilArg [
 	^1 even ifNotNil: [ :arg | arg not ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfNotNilDup [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfNotNilDup [
 	^ true ifNotNil: [ 5 ]     
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfNotNilReturnNil [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleIfNotNilReturnNil [
 	^nil ifNotNil: [ :arg | arg not ]
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfTrue [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleIfTrue [
 	[ 1 < 2
 		ifTrue: [ ^ 'result' ]] value
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfTrue2 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfTrue2 [
 	^ 1 < 2 ifTrue: [ ^ 'result' ]
 	  
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfTrue3 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfTrue3 [
 	1 < 2 ifTrue: [ ^ 'result' ].
 	^ nil
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfTrueAssign [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleIfTrueAssign [
 	| a |
 	a := 1 <2 ifTrue: [1] ifFalse: [2].
 	^a 
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfTrueForEffectNested [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfTrueForEffectNested [
 	| tmp1 |
 	true
 		ifTrue: [ 
@@ -851,67 +627,46 @@ FBDExamples>>exampleIfTrueForEffectNested [
 					^ tmp1 ] ]
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfTrueIfFalse [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleIfTrueIfFalse [
 	 1 <2 ifTrue: [^'result'] ifFalse: [2].
 	
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfTrueIfFalse2 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfTrueIfFalse2 [
 	| a |
 	a := true.
 	a ifTrue: [ a:= 1 + 2 ] ifFalse: [ a := 2 + 3 ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfTrueIfFalse3 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfTrueIfFalse3 [
 	| a |
 	a := true.
 	a ifTrue: [ ^ 1 ] ifFalse: [ a := false ].
 	^ 2
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfTrueIfFalseLikeAnd [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfTrueIfFalseLikeAnd [
 		| t1 |
 	t1 := true.
 	^ t1 ifTrue: [ t1 not ] ifFalse: [ false ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfTrueIfFalseNested [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfTrueIfFalseNested [
 	^ true ifTrue: [ false ifFalse: [ ^ 4 ] ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfTrueIfFalseNested2 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfTrueIfFalseNested2 [
 	true ifFalse: [ false ifTrue: [ ^ false ]. ^ true ]. ^ nil
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfTrueIfFalseNested3 [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfTrueIfFalseNested3 [
 	^ {1.2.3.4}
 		collect: [ :aNumber | 
 			aNumber isNumber
@@ -922,42 +677,30 @@ FBDExamples>>exampleIfTrueIfFalseNested3 [
 				ifFalse: [ 0 ] ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfTrueNested [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfTrueNested [
 	true ifTrue: [ 
 		false ifTrue: [ ^ false ].
 		^ true ].
 	^ nil
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfTrueWithNilAssertion [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfTrueWithNilAssertion [
 	| tmp1 |
 	tmp1 := 1.
 	tmp1 > 2
 		ifTrue: [ tmp1 := nil ]
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleIfTrueWithOr [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleIfTrueWithOr [
 	false | true
 		ifTrue: [ ^ true ]
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleInlineBlockCollectionLR3 [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleInlineBlockCollectionLR3 [
 	| col |
 	col := OrderedCollection new.
 	1 to: 11 do: [ :each | | i | i := each. col add: [ i ]. i := i + 1 ].
@@ -965,11 +708,8 @@ FBDExamples>>exampleInlineBlockCollectionLR3 [
 
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleMethodTempInNestedBlock [
+{ #category : #examples-blocks }
+FBDExamples >> exampleMethodTempInNestedBlock [
 	| temp block |
 	temp := 0.
 	block := [ [ temp ] ].
@@ -980,11 +720,8 @@ FBDExamples>>exampleMethodTempInNestedBlock [
 	^block value.
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleMethodWithOptimizedBlocksA [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleMethodWithOptimizedBlocksA [
 	| s c |
 	s := self isNil
 			ifTrue: [| a | a := 'isNil'. a]
@@ -995,11 +732,8 @@ FBDExamples>>exampleMethodWithOptimizedBlocksA [
 	^c. "notNil"
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleNestedBlockScoping [
+{ #category : #examples-blocks }
+FBDExamples >> exampleNestedBlockScoping [
 
 	| b c z |
 	b := [:a | 
@@ -1010,11 +744,8 @@ FBDExamples>>exampleNestedBlockScoping [
 	^ (b value: 2) + (c value: 1)
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleNestedIfNilIfNotNil [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleNestedIfNilIfNotNil [
 	^ true
 		ifNotNil: [ 1 ]
 		ifNil: [ false 
@@ -1022,11 +753,8 @@ FBDExamples>>exampleNestedIfNilIfNotNil [
 			ifNil: [ ^ true ] ]
 ]
 
-{
-	#category : #examples-simple,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleNewArray [
+{ #category : #examples-simple }
+FBDExamples >> exampleNewArray [
 
 	| temp |
 	
@@ -1034,21 +762,15 @@ FBDExamples>>exampleNewArray [
 	^temp
 ]
 
-{
-	#category : #'examples - branches',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleOr [
+{ #category : #'examples - branches' }
+FBDExamples >> exampleOr [
 	| t1 |
 	t1 := false.
 	^ t1 or: [ t1 not ]
 ]
 
-{
-	#category : #examples-pragmas,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>examplePrimitiveErrorCode [
+{ #category : #examples-pragmas }
+FBDExamples >> examplePrimitiveErrorCode [
 	
 	<primitive: 60 error: code >
 	
@@ -1057,11 +779,8 @@ FBDExamples>>examplePrimitiveErrorCode [
 
 ]
 
-{
-	#category : #examples-pragmas,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>examplePrimitiveErrorCodeModule [
+{ #category : #examples-pragmas }
+FBDExamples >> examplePrimitiveErrorCodeModule [
 	"Primitive. Attempt to load a module of the given name.
 	Fail if module cannot be found, or cannot be loaded,
 	or failed to initialize"
@@ -1070,11 +789,8 @@ FBDExamples>>examplePrimitiveErrorCodeModule [
 	^ self primitiveFailed
 ]
 
-{
-	#category : #'examples - pragmas',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>examplePrimitiveErrorCodeModule2 [
+{ #category : #'examples - pragmas' }
+FBDExamples >> examplePrimitiveErrorCodeModule2 [
 	"Primitive. Attempt to load a module of the given name.
 	Fail if module cannot be found, or cannot be loaded,
 	or failed to initialize"
@@ -1083,33 +799,24 @@ FBDExamples>>examplePrimitiveErrorCodeModule2 [
 	^ self primitiveFailed
 ]
 
-{
-	#category : #examples-misc,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>examplePushArray [
+{ #category : #examples-misc }
+FBDExamples >> examplePushArray [
 	| t |
 
 	{1 .t:=1}.
 	^t
 ]
 
-{
-	#category : #examples-misc,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>examplePushBigArray [
+{ #category : #examples-misc }
+FBDExamples >> examplePushBigArray [
 	"This array should have a size more than 127 elements"
 	self flag: 'needs a fix'.
 	{ 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 .  255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 . 255 }.
 	^ 1
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleRepeatEffect [
+{ #category : #'examples - loops' }
+FBDExamples >> exampleRepeatEffect [
 	<compilerOptions: #(#+ #optionInlineRepeat)>
 	| i |
 	i := 1.
@@ -1119,11 +826,8 @@ FBDExamples>>exampleRepeatEffect [
 		ifTrue: [ ^ true ] ] repeat
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleRepeatValue [
+{ #category : #'examples - loops' }
+FBDExamples >> exampleRepeatValue [
 	<compilerOptions: #(#+ #optionInlineRepeat)>
 	| i |
 	i := 1.
@@ -1133,151 +837,97 @@ FBDExamples>>exampleRepeatValue [
 		ifTrue: [ ^ true ] ] repeat 
 ]
 
-{
-	#category : #examples-simple,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleReturn1 [
+{ #category : #examples-simple }
+FBDExamples >> exampleReturn1 [
 	^1
 ]
 
-{
-	#category : #examples-simple,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleReturn1plus2 [
+{ #category : #examples-simple }
+FBDExamples >> exampleReturn1plus2 [
 	^1+2
 ]
 
-{
-	#category : #examples-simple,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleReturn42 [
+{ #category : #examples-simple }
+FBDExamples >> exampleReturn42 [
 	^42
 ]
 
-{
-	#category : #examples-variables,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSelf [
+{ #category : #examples-variables }
+FBDExamples >> exampleSelf [
 	| t |
 	t := self.
 	^self.
 ]
 
-{
-	#category : #'examples - simple',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSend [
+{ #category : #'examples - simple' }
+FBDExamples >> exampleSend [
 	self basicSize 
 ]
 
-{
-	#category : #'examples - simple',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSend2Args [
+{ #category : #'examples - simple' }
+FBDExamples >> exampleSend2Args [
 	self instVarAt: 1 put: #banana
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSimpleBlock [
+{ #category : #examples-blocks }
+FBDExamples >> exampleSimpleBlock [
 	^[1].
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSimpleBlockArgument1 [
+{ #category : #examples-blocks }
+FBDExamples >> exampleSimpleBlockArgument1 [
 	^[:a | a ] value: 1.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSimpleBlockArgument2 [
+{ #category : #examples-blocks }
+FBDExamples >> exampleSimpleBlockArgument2 [
 	^[:a :b | a + b ] value: 1 value: 1.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSimpleBlockArgument3 [
+{ #category : #examples-blocks }
+FBDExamples >> exampleSimpleBlockArgument3 [
 	^[:a :b :c | a + b + c ] value: 1 value: 1 value: 1.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSimpleBlockArgument4 [
+{ #category : #examples-blocks }
+FBDExamples >> exampleSimpleBlockArgument4 [
 	^[:a :b :c :d | a + b + c  + d] value: 1 value: 1 value: 1 value: 1. 
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSimpleBlockArgument5 [
+{ #category : #examples-blocks }
+FBDExamples >> exampleSimpleBlockArgument5 [
 	^[:a :b :c :d :e| a + b + c  + d + e] valueWithArguments: #(1 1 1 1 1). 
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSimpleBlockEmpty [
+{ #category : #examples-blocks }
+FBDExamples >> exampleSimpleBlockEmpty [
 	^[] value.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSimpleBlockLocal [
+{ #category : #examples-blocks }
+FBDExamples >> exampleSimpleBlockLocal [
 	^[ :each | | t |  t:= each. t   ] value: 5.
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSimpleBlockLocalIf [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleSimpleBlockLocalIf [
 	^true ifTrue: [ | hallo |  hallo := 1 . hallo].
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSimpleBlockLocalIfNested [
+{ #category : #examples-blocks }
+FBDExamples >> exampleSimpleBlockLocalIfNested [
 	^true ifTrue: [| hallo |  [  hallo := 1 . hallo] value] .
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSimpleBlockLocalWhile [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleSimpleBlockLocalWhile [
 	|a|
 	a := true.
 	^[: b | [a] whileTrue: [ | hallo |  a := false. hallo := 1 . hallo]]value: 1.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSimpleBlockNested [
+{ #category : #examples-blocks }
+FBDExamples >> exampleSimpleBlockNested [
 	| a match dict | 
 
 	a  := #(a b c d).
@@ -1291,88 +941,61 @@ FBDExamples>>exampleSimpleBlockNested [
 	^ dict.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSimpleBlockReturn [
+{ #category : #examples-blocks }
+FBDExamples >> exampleSimpleBlockReturn [
 	[^1] value.
 ]
 
-{
-	#category : #examples-blocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSimpleBlockiVar [
+{ #category : #examples-blocks }
+FBDExamples >> exampleSimpleBlockiVar [
 	^[iVar] value.
 ]
 
-{
-	#category : #examples-variables,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleSuper [
+{ #category : #examples-variables }
+FBDExamples >> exampleSuper [
 	| t |
 	t := super.
 	^super.
 ]
 
-{
-	#category : #examples-variables,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleThisContext [
+{ #category : #examples-variables }
+FBDExamples >> exampleThisContext [
 	| t |
 	t := thisContext.
 	^thisContext.
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleTimesRepeatEffect [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleTimesRepeatEffect [
 	| foo |
 	foo := 1.
 	5 timesRepeat: [ foo := foo + 3 ] . 
 	^ foo
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleTimesRepeatValue [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleTimesRepeatValue [
 	^ 5 timesRepeat: [ 1 + 2 ]   
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToByDo [
+{ #category : #'examples - loops' }
+FBDExamples >> exampleToByDo [
 	| tmp1 |
 	tmp1 := {true.	true.	true}.
 	1 to: 9 by: 3 do: [ :index | tmp1 at: index / 3  put: false ].
 	^ tmp1
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToByDoNegativeLoop [
+{ #category : #'examples - loops' }
+FBDExamples >> exampleToByDoNegativeLoop [
 	| tmp1 |
 	tmp1 := {true.	true.	true}.
 	tmp1 size to: 10-9 by: -1 do: [ :index | tmp1 at: index put: false ].
 	^ tmp1
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDo [
+{ #category : #'examples - loops' }
+FBDExamples >> exampleToDo [
 	| tmp1 tmp2 tmp3 |
 	tmp1 := {true.
 	true.
@@ -1386,33 +1009,24 @@ FBDExamples>>exampleToDo [
 	^ 1
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDo2 [
+{ #category : #'examples - loops' }
+FBDExamples >> exampleToDo2 [
 	| t |
 	t := {true.true.true}.
 	1 to: t size do: [ :index | t at: index put: false ].
 	^ t
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDo3 [
+{ #category : #'examples - loops' }
+FBDExamples >> exampleToDo3 [
 	| t |
 	t := Array new:3.
 	1 to: 3 do: [ :index | t at: index put: false ].
 	^ t
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDo4 [
+{ #category : #'examples - loops' }
+FBDExamples >> exampleToDo4 [
 	| tmp1 tmp2 |
 	tmp1 := {true . true . true }.
 	tmp2 := tmp1 size.
@@ -1421,11 +1035,8 @@ FBDExamples>>exampleToDo4 [
 	^ tmp1
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDo5 [
+{ #category : #'examples - loops' }
+FBDExamples >> exampleToDo5 [
 	| tmp1 |
 	tmp1 := {true.
 	true.
@@ -1434,11 +1045,8 @@ FBDExamples>>exampleToDo5 [
 	^ tmp1
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDoArgument [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleToDoArgument [
 	collection := OrderedCollection new.
 	1 to: 5 do: [ :index |
 		collection add:  [index]  ].
@@ -1446,11 +1054,8 @@ FBDExamples>>exampleToDoArgument [
 	"#(1 2 3 4 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDoArgumentLimitIsExpression [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleToDoArgumentLimitIsExpression [
 	| count sum |
 	count := 10.
 	sum := 0.
@@ -1458,11 +1063,8 @@ FBDExamples>>exampleToDoArgumentLimitIsExpression [
 	^sum
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDoArgumentNotInlined [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleToDoArgumentNotInlined [
 	| block |
 	block := [ :index |
 		collection add: [ index ] ].
@@ -1470,22 +1072,16 @@ FBDExamples>>exampleToDoArgumentNotInlined [
 	^collection "#(1 2 3 4 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDoInsideBlock [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleToDoInsideBlock [
 	| tmp1 block |
 	tmp1 := {1.2.
 	3.4} asOrderedCollection.
 	block := [ (tmp1 at: 1) to: (tmp1 at: 4) do: [ :arg1 | Transcript show: arg1 ] ]
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDoInsideTemp [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleToDoInsideTemp [
 	1 to: 5 do: [ :index | 
 		| temp | 
 		temp := index. 
@@ -1493,11 +1089,8 @@ FBDExamples>>exampleToDoInsideTemp [
 	^collection "#(1 2 3 4 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDoInsideTempNotInlined [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleToDoInsideTempNotInlined [
 	| block |
 	block := [ :index | 
 		| temp | 
@@ -1507,11 +1100,8 @@ FBDExamples>>exampleToDoInsideTempNotInlined [
 	^collection "#(1 2 3 4 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDoOutsideTemp [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleToDoOutsideTemp [
 	| temp |
 	1 to: 5 do: [ :index | 
 		temp := index. 
@@ -1519,11 +1109,8 @@ FBDExamples>>exampleToDoOutsideTemp [
 	^collection "#(5 5 5 5 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDoOutsideTempNotInlined [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleToDoOutsideTempNotInlined [
 	| block temp |
 	block := [ :index | 
 		temp := index. 
@@ -1532,43 +1119,31 @@ FBDExamples>>exampleToDoOutsideTempNotInlined [
 	^collection "#(5 5 5 5 5)"
 ]
 
-{
-	#category : #examples-misc,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDoValue [
+{ #category : #examples-misc }
+FBDExamples >> exampleToDoValue [
 
 	^ 1 to: 2 do: [:each | each]
 	
 
 ]
 
-{
-	#category : #examples-misc,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDoValueLimitExpression [
+{ #category : #examples-misc }
+FBDExamples >> exampleToDoValueLimitExpression [
 
 	^ 2 to: 3+4 do: [:each | each]
 	
 
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDoWithMessage [
+{ #category : #'examples - loops' }
+FBDExamples >> exampleToDoWithMessage [
 	| t |
 	t := {true.true.true}.
 	^ 1 yourself to: t size do: [ :index | t at: index put: false ]
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleToDoWithMessage2 [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleToDoWithMessage2 [
 	| t t1 t2 |
 	t := {true.true.true}.
 	t1 := 1.
@@ -1576,31 +1151,22 @@ FBDExamples>>exampleToDoWithMessage2 [
 	t1 to: t2 do: [ :index | t at: index put: false ]
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleWhileFalse [
+{ #category : #'examples - loops' }
+FBDExamples >> exampleWhileFalse [
 	| t |
 	t := 1.
 	[ t > 10 ] whileFalse: [ t := t + 1. 1 + 2 ]
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleWhileFalse2 [
+{ #category : #'examples - loops' }
+FBDExamples >> exampleWhileFalse2 [
 	| t |
 	t := 1.
 	[ t := t + 1. 1 + 2. t > 10 ] whileFalse
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleWhileModificationAfterNotInlined [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleWhileModificationAfterNotInlined [
 	| index block |
 	index := 0.
 	block := [ 
@@ -1610,11 +1176,8 @@ FBDExamples>>exampleWhileModificationAfterNotInlined [
 	^collection "#(5 5 5 5 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleWhileModificationBefore [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleWhileModificationBefore [
 	| index |
 	collection := OrderedCollection new.
 	index := 0.
@@ -1625,11 +1188,8 @@ FBDExamples>>exampleWhileModificationBefore [
 	"#(5 5 5 5 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleWhileModificationBeforeNotInlined [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleWhileModificationBeforeNotInlined [
 	| index block |
 	index := 0.
 	block := [ 
@@ -1640,11 +1200,8 @@ FBDExamples>>exampleWhileModificationBeforeNotInlined [
 	"#(5 5 5 5 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleWhileNoModification [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleWhileNoModification [
 	"tempvars aren't modified in the loop, therefore they don't need to be in a indirection vector.
 	  number of temps = declared temps "
 
@@ -1659,11 +1216,8 @@ FBDExamples>>exampleWhileNoModification [
 			  c class ]	"<- block in optimized loop" ]
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleWhileTrue [
+{ #category : #'examples - loops' }
+FBDExamples >> exampleWhileTrue [
 	| array t |
 	array := {true.	true.true}.
 	t := 1.
@@ -1673,11 +1227,8 @@ FBDExamples>>exampleWhileTrue [
 			t := t + 1 ]
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleWhileTrue2 [
+{ #category : #'examples - loops' }
+FBDExamples >> exampleWhileTrue2 [
 	| t |
 	t := 1.
 	[ 
@@ -1686,11 +1237,8 @@ FBDExamples>>exampleWhileTrue2 [
 	t < 10 ] whileTrue
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleWhileTrue3 [
+{ #category : #'examples - loops' }
+FBDExamples >> exampleWhileTrue3 [
 	| t1 t2 |
 	t2 := 5.
 	t1 := 1.
@@ -1701,11 +1249,8 @@ FBDExamples>>exampleWhileTrue3 [
 			t1 := t1 + 1 ]
 ]
 
-{
-	#category : #'examples - loops',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleWhileTrue4 [
+{ #category : #'examples - loops' }
+FBDExamples >> exampleWhileTrue4 [
 	| tmp1 tmp2 |
 	tmp1 := 1.
 	[ tmp1 <= 5 ]
@@ -1719,11 +1264,8 @@ FBDExamples>>exampleWhileTrue4 [
 			tmp2 := tmp2 + 1 ]
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleWhileTrueSameJumpTarget [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleWhileTrueSameJumpTarget [
 	| tmp1 tmp2 |
 	tmp1 := 1.
 	tmp2 := 10.
@@ -1735,11 +1277,8 @@ FBDExamples>>exampleWhileTrueSameJumpTarget [
 	tmp2 > 0 ] whileTrue
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleWhileTrueSameJumpTarget2 [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleWhileTrueSameJumpTarget2 [
 	| tmp1 tmp2 tmp3 tmp4 tmp5 tmp6 |
 	"need body + triple nested loop with same start"
 	tmp1 := 1.
@@ -1768,11 +1307,8 @@ FBDExamples>>exampleWhileTrueSameJumpTarget2 [
 	tmp1 < 10 ] whileTrue
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleWhileWithTemp [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleWhileWithTemp [
 	| index |
 	index := 0.
 	[ index < 5 ] whileTrue: [
@@ -1782,11 +1318,8 @@ FBDExamples>>exampleWhileWithTemp [
 	^collection "#(1 2 3 4 5)"
 ]
 
-{
-	#category : #examples-blocks-optimized,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleWhileWithTempNotInlined [
+{ #category : #examples-blocks-optimized }
+FBDExamples >> exampleWhileWithTempNotInlined [
 	| index block |
 	index := 0.
 	block := [
@@ -1797,63 +1330,42 @@ FBDExamples>>exampleWhileWithTempNotInlined [
 	^collection "#(1 2 3 4 5)"
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleWithArgs: arg1 and: arg2 [
+{ #category : #examples }
+FBDExamples >> exampleWithArgs: arg1 and: arg2 [
 	^ arg1
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleWithArgsAndTemps: arg1 and: arg2 [
+{ #category : #examples }
+FBDExamples >> exampleWithArgsAndTemps: arg1 and: arg2 [
 	| tmp1 tmp2 |
 	tmp1 := 1.
 	tmp2 := tmp1 + arg1.
 	^ { tmp2 . arg2 }
 ]
 
-{
-	#category : #examples-variables,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>exampleiVar [
+{ #category : #examples-variables }
+FBDExamples >> exampleiVar [
 	iVar := 1.
 	^iVar.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>iVar [
+{ #category : #accessing }
+FBDExamples >> iVar [
 	^ iVar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>iVar: anObject [
+{ #category : #accessing }
+FBDExamples >> iVar: anObject [
 	iVar := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>initialize [
+{ #category : #initialization }
+FBDExamples >> initialize [
 	collection := OrderedCollection new
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>nestedBlocksRemoteInBlockCase1 [
+{ #category : #examples }
+FBDExamples >> nestedBlocksRemoteInBlockCase1 [
 	| block |
 	self flag: 'Not well decompiled'.
 	block := [ | a b |
@@ -1861,11 +1373,8 @@ FBDExamples>>nestedBlocksRemoteInBlockCase1 [
 		[ b := a ] ]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>nestedBlocksRemoteInBlockCase2 [
+{ #category : #examples }
+FBDExamples >> nestedBlocksRemoteInBlockCase2 [
 	| block |
 	self flag: 'Not well decompiled'.
 	block := [ 
@@ -1873,11 +1382,8 @@ FBDExamples>>nestedBlocksRemoteInBlockCase2 [
 		[ |b| [ b := 2] ] ]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>nestedBlocksRemoteInBlockCase3 [
+{ #category : #examples }
+FBDExamples >> nestedBlocksRemoteInBlockCase3 [
 	| block |
 	self flag: 'Not well decompiled'.
 	block := [ 
@@ -1885,11 +1391,8 @@ FBDExamples>>nestedBlocksRemoteInBlockCase3 [
 		[ |b| block := [ b := 2] ] ].
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>noRemoteBlockArgument [
+{ #category : #examples }
+FBDExamples >> noRemoteBlockArgument [
 	| block block1 block2 |
 	block := [ :arg | | temp | temp := arg. [ temp ] ].
 	block1 := block value: 1.
@@ -1898,11 +1401,8 @@ FBDExamples>>noRemoteBlockArgument [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>noRemoteBlockTemp [
+{ #category : #examples }
+FBDExamples >> noRemoteBlockTemp [
 	| block block1 block2 |
 	block := [ :arg | [ arg ] ].
 	block1 := block value: 1.
@@ -1912,11 +1412,8 @@ FBDExamples>>noRemoteBlockTemp [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>noRemoteReadInBlock [
+{ #category : #examples }
+FBDExamples >> noRemoteReadInBlock [
 	| a |
 	a := 1.
 	[ a ]
@@ -1924,81 +1421,57 @@ FBDExamples>>noRemoteReadInBlock [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>noRemoteReadNestedBlocks    [
+{ #category : #examples }
+FBDExamples >> noRemoteReadNestedBlocks [   
 	 [ |a| a := 1.
        [ a ]]
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>optimizedBlockWriteInBlock [
+{ #category : #examples }
+FBDExamples >> optimizedBlockWriteInBlock [
 	| t1 |
 	[ t1 < 5 ] whileTrue: [ t1 := 1 ].
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>optimizedBlockWriteInNestedBlock [
+{ #category : #examples }
+FBDExamples >> optimizedBlockWriteInNestedBlock [
 	| t1 |
 	^[ [ t1 < 5 ] whileTrue: [ t1 := 1 ] ]
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>optimizedBlockWriteInNestedBlockCase2 [
+{ #category : #examples }
+FBDExamples >> optimizedBlockWriteInNestedBlockCase2 [
 	| t1 |
 	(true) ifTrue: [ [ t1 < 5 ] whileTrue: [ t1 := 1 ] ]
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>optimizedBlockWriteInNestedBlockCase3 [
+{ #category : #examples }
+FBDExamples >> optimizedBlockWriteInNestedBlockCase3 [
 	| t1 |
 	[(true) ifTrue: [ [ t1 < 5 ] whileTrue: [ t1 := 1 ] ] ]
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>optimizedBlockWriteInNestedBlockCase4 [
+{ #category : #examples }
+FBDExamples >> optimizedBlockWriteInNestedBlockCase4 [
 	| t1 |
 	[(true) whileTrue: [ [ t1 < 5 ] whileTrue: [ t1 := 1 ] ] ]
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>optimizedBlockWriteReadInBlock [
+{ #category : #examples }
+FBDExamples >> optimizedBlockWriteReadInBlock [
 	| t1 |
 	[ t1 < 5 ] whileTrue: [ t1 := 1. [ t1 ] ].
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>optimizedBlockWrittenAfterClosedOverCase1 [
+{ #category : #examples }
+FBDExamples >> optimizedBlockWrittenAfterClosedOverCase1 [
 	| index |
 	index := 0.
 	[ index < 5 ] whileTrue: [
@@ -2009,11 +1482,8 @@ FBDExamples>>optimizedBlockWrittenAfterClosedOverCase1 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>optimizedBlockWrittenAfterClosedOverCase2 [
+{ #category : #examples }
+FBDExamples >> optimizedBlockWrittenAfterClosedOverCase2 [
 	| index |
 	index := 0.
 	[ index < 5 ] whileTrue: [
@@ -2023,11 +1493,8 @@ FBDExamples>>optimizedBlockWrittenAfterClosedOverCase2 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>singleRemoteDifferentBlocksSameArgumentName [
+{ #category : #examples }
+FBDExamples >> singleRemoteDifferentBlocksSameArgumentName [
 	| b c z |
 	b := [:a | 
 		z := 2.
@@ -2039,11 +1506,8 @@ FBDExamples>>singleRemoteDifferentBlocksSameArgumentName [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>singleRemoteMethodArgument [
+{ #category : #examples }
+FBDExamples >> singleRemoteMethodArgument [
 	| temp block |
 	temp := 0.
 	block := [ [ temp ] ].
@@ -2053,22 +1517,16 @@ FBDExamples>>singleRemoteMethodArgument [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>singleRemoteReadNestedBlocks    [
+{ #category : #examples }
+FBDExamples >> singleRemoteReadNestedBlocks [   
 	|a| 
 	[  a := 1.
        [ a ]]
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>singleRemoteTempVar [
+{ #category : #examples }
+FBDExamples >> singleRemoteTempVar [
 	| index block theCollection |
 	index := 0.
 	block := [ 
@@ -2078,11 +1536,8 @@ FBDExamples>>singleRemoteTempVar [
 	self assertValues: #(5 5 5 5 5)
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>singleRemoteTempVarWrittenAfterClosedOver [
+{ #category : #examples }
+FBDExamples >> singleRemoteTempVarWrittenAfterClosedOver [
 	| index block |
 	index := 0.
 	block := [ index ].
@@ -2090,11 +1545,8 @@ FBDExamples>>singleRemoteTempVarWrittenAfterClosedOver [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDExamples>>writtenAfterClosedOver [
+{ #category : #examples }
+FBDExamples >> writtenAfterClosedOver [
 	| a |      
 	[ a ].
 	a := 1

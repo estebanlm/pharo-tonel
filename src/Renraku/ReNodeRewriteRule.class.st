@@ -21,24 +21,17 @@ Class {
 	#instVars : [
 		'matches'
 	],
-	#category : #Renraku-Rules-Rewrite,
-	#timestamp : 'YuriyTymchuk 7/9/2016 13:31'
+	#category : #Renraku-Rules-Rewrite
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeRewriteRule class>>isVisible [
+{ #category : #testing }
+ReNodeRewriteRule class >> isVisible [
 	
 	^ self name ~=  #ReNodeRewriteRule
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeRewriteRule>>addMatchingExpression: aString rewriteTo: aRewriteString [
+{ #category : #adding }
+ReNodeRewriteRule >> addMatchingExpression: aString rewriteTo: aRewriteString [
 	"add a 'from->to' pair of strings that represent a rewrite expression string to match and a rewrite expression to replace the matched node."
 
 	matches
@@ -47,11 +40,8 @@ ReNodeRewriteRule>>addMatchingExpression: aString rewriteTo: aRewriteString [
 			RBParser parseRewriteExpression: aRewriteString))
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeRewriteRule>>addMatchingExpression: aString rewriteWith: aBlock [
+{ #category : #adding }
+ReNodeRewriteRule >> addMatchingExpression: aString rewriteWith: aBlock [
 	"add 	a 'from->to' pair, first element of which is a rewrite expression in a form of a string that is used to match nodes. The second parameter is a block that has to return a node which should replace the matched one. The block may accept 2 atguments: the matched node, and a dictionary of wildcard variables mapping"
 
 	matches
@@ -59,11 +49,8 @@ ReNodeRewriteRule>>addMatchingExpression: aString rewriteWith: aBlock [
 		put: (ReRewriteBlockWrapper on: aBlock)
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeRewriteRule>>addMatchingMethod: aString rewriteTo: aRewriteString [
+{ #category : #adding }
+ReNodeRewriteRule >> addMatchingMethod: aString rewriteTo: aRewriteString [
 	"add a 'from->to' pair of strings that represent a match method string to match and a rewrite method to replace the matched mathod"
 
 	matches
@@ -72,11 +59,8 @@ ReNodeRewriteRule>>addMatchingMethod: aString rewriteTo: aRewriteString [
 			RBParser parseRewriteMethod: aRewriteString))
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeRewriteRule>>addMatchingMethod: aString rewriteWith: aBlock [
+{ #category : #adding }
+ReNodeRewriteRule >> addMatchingMethod: aString rewriteWith: aBlock [
 	"add 	a 'from->to' pair, first element of which is a rewrite method code in a form of a string that is used to match methods. The second parameter is a block that has to return a method ast which should replace the matched one. The block may accept 2 atguments: the matched ast, and a dictionary of wildcard variables mapping"
 
 	matches
@@ -84,11 +68,8 @@ ReNodeRewriteRule>>addMatchingMethod: aString rewriteWith: aBlock [
 		put: (ReRewriteBlockWrapper on: aBlock)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeRewriteRule>>check: aNode forCritiquesDo: aCriticBlock [
+{ #category : #running }
+ReNodeRewriteRule >> check: aNode forCritiquesDo: aCriticBlock [
 
 	matches keysAndValuesDo: [ :matcher :rewriter |
 		matcher
@@ -106,11 +87,8 @@ ReNodeRewriteRule>>check: aNode forCritiquesDo: aCriticBlock [
 			onFailure: [  ] ]
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeRewriteRule>>critiqueFor: aNode by: rewriter withMappings: map [
+{ #category : #helpers }
+ReNodeRewriteRule >> critiqueFor: aNode by: rewriter withMappings: map [
 
 
 	^ ReReplaceNodeCritique
@@ -120,20 +98,14 @@ ReNodeRewriteRule>>critiqueFor: aNode by: rewriter withMappings: map [
 		newNode: (rewriter rewriten: aNode with: map)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeRewriteRule>>initialize [
+{ #category : #initialization }
+ReNodeRewriteRule >> initialize [
 	super initialize.
 	matches := Dictionary new.
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeRewriteRule>>replace: aString by: aBlock [
+{ #category : #deprecated }
+ReNodeRewriteRule >> replace: aString by: aBlock [
 	
 	self
 		deprecated: 'Use #replace:byEvaluating: for better understandability'
@@ -143,31 +115,22 @@ ReNodeRewriteRule>>replace: aString by: aBlock [
 	self replace: aString byEvaluating: aBlock
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeRewriteRule>>replace: aString byEvaluating: aBlock [
+{ #category : #adding }
+ReNodeRewriteRule >> replace: aString byEvaluating: aBlock [
 	"add 	a 'from->to' pair, first element of which is a rewrite expression in a form of a string that is used to match nodes. The second parameter is a block that has to return a node which should replace the matched one. The block may accept 2 atguments: the matched node, and a dictionary of wildcard variables mapping"
 
 	self addMatchingExpression: aString rewriteWith: aBlock
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeRewriteRule>>replace: aString with: aRewriteString [
+{ #category : #adding }
+ReNodeRewriteRule >> replace: aString with: aRewriteString [
 	"add a 'from->to' pair of strings that represent a match expression string to match and a rewrite expression to replace the matched node"
 
 	self addMatchingExpression: aString rewriteTo: aRewriteString
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeRewriteRule>>replaceMethod: aString with: aRewriteString [
+{ #category : #adding }
+ReNodeRewriteRule >> replaceMethod: aString with: aRewriteString [
 	"add a 'from->to' pair of strings that represent a match method string to match and a rewrite method to replace the matched code"
 
 	self addMatchingMethod: aString rewriteTo: aRewriteString

@@ -6,14 +6,10 @@ This error was born when testing the materialization of a BlockClosure defined i
 Class {
 	#name : #FLMethodChanged,
 	#superclass : #FLMaterializationError,
-	#category : #Fuel-Errors,
-	#timestamp : '<historical>'
+	#category : #Fuel-Errors
 }
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMethodChanged class>>signalWith: aGlobalName and: aSelector [
+{ #category : #signaling }
+FLMethodChanged class >> signalWith: aGlobalName and: aSelector [
 	^ self signal: 'Method ', aGlobalName, '>>#', aSelector, ' changed its bytecodes.'
 ]

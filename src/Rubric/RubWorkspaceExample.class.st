@@ -10,24 +10,17 @@ Class {
 		'bindings',
 		'mustDeclareVariables'
 	],
-	#category : #Rubric-Editing-Widgets-Examples,
-	#timestamp : '<historical>'
+	#category : #Rubric-Editing-Widgets-Examples
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample class>>exampleWindowWithScrolledText [
+{ #category : #examples }
+RubWorkspaceExample class >> exampleWindowWithScrolledText [
 
 	^self open
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample class>>exampleWithCustomShortcut [
+{ #category : #examples }
+RubWorkspaceExample class >> exampleWithCustomShortcut [
 
 	 |  window text |
     text := RubScrolledTextMorph new.
@@ -45,38 +38,26 @@ RubWorkspaceExample class>>exampleWithCustomShortcut [
     window openInWorld.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample class>>open [
+{ #category : #'instance creation' }
+RubWorkspaceExample class >> open [
 	<script>
 	(self windowWithScrolledText: (self new newScrolledText)) openInWorld
 
 ]
 
-{
-	#category : #'private - accessing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample class>>spyAnnouncer [
+{ #category : #'private - accessing' }
+RubWorkspaceExample class >> spyAnnouncer [
 	"Set it to true if you want to observe textsurface announcements"
 	^ false
 ]
 
-{
-	#category : #'private - accessing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample class>>title [
+{ #category : #'private - accessing' }
+RubWorkspaceExample class >> title [
 	^ 'Rubric workspace example'
 ]
 
-{
-	#category : #'private - utilities',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample class>>windowWithScrolledText: aScrolledText  [
+{ #category : #'private - utilities' }
+RubWorkspaceExample class >> windowWithScrolledText: aScrolledText [ 
 	| w |
 	w := StandardWindow new.
 	w title: self title.
@@ -85,28 +66,19 @@ RubWorkspaceExample class>>windowWithScrolledText: aScrolledText  [
 	^w
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample>>acceptString: aString [
+{ #category : #accessing }
+RubWorkspaceExample >> acceptString: aString [
 	textModel setText: aString asText.
 	 ^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample>>announcer [
+{ #category : #accessing }
+RubWorkspaceExample >> announcer [
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample>>bindingOf: aString  [
+{ #category : #shout }
+RubWorkspaceExample >> bindingOf: aString [ 
 	
 	mustDeclareVariables ifTrue: [^ nil].
 	"I want to have workspace that force the user to declare  
@@ -118,30 +90,21 @@ RubWorkspaceExample>>bindingOf: aString  [
 	^ bindings associationAt: aString
 ]
 
-{
-	#category : #'code pane menu',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample>>codePaneMenu: aMenu shifted: shifted  [
+{ #category : #'code pane menu' }
+RubWorkspaceExample >> codePaneMenu: aMenu shifted: shifted [ 
 	"Note that unless we override perform:orSendTo:, 
 	PluggableTextController will respond to all menu items in a 
 	text pane"
 	"Not tested"
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample>>getText [
+{ #category : #'user interface' }
+RubWorkspaceExample >> getText [
 	^ textModel getText
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample>>guessTypeForName: aString [
+{ #category : #shout }
+RubWorkspaceExample >> guessTypeForName: aString [
 	| binding |
 	
 	bindings isNil ifFalse: [ 
@@ -154,27 +117,18 @@ RubWorkspaceExample>>guessTypeForName: aString [
 	^ nil
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample>>hasBindingOf: aString [
+{ #category : #shout }
+RubWorkspaceExample >> hasBindingOf: aString [
 	^(self guessTypeForName: aString) notNil
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample>>hasBindingThatBeginsWith: aString [
+{ #category : #shout }
+RubWorkspaceExample >> hasBindingThatBeginsWith: aString [
 	^false
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample>>initialize [
+{ #category : #shout }
+RubWorkspaceExample >> initialize [
 	super initialize.
 	textModel := RubScrolledTextModel new
 		interactionModel: self;
@@ -182,20 +136,14 @@ RubWorkspaceExample>>initialize [
 	mustDeclareVariables := false
 ]
 
-{
-	#category : #completion,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample>>isCodeCompletionAllowed [
+{ #category : #completion }
+RubWorkspaceExample >> isCodeCompletionAllowed [
 
 	^ true.
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample>>newScrolledText [
+{ #category : #'user interface' }
+RubWorkspaceExample >> newScrolledText [
 	| st |
 	st := textModel newScrolledText 
 		beWrapped;
@@ -208,18 +156,12 @@ RubWorkspaceExample>>newScrolledText [
 	^st
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample>>setText: aText from: aView  [
+{ #category : #'user interface' }
+RubWorkspaceExample >> setText: aText from: aView [ 
 	^ self acceptString: aText string
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubWorkspaceExample>>shoutAboutToStyle: ATextView [
+{ #category : #shout }
+RubWorkspaceExample >> shoutAboutToStyle: ATextView [
 	^ true
 ]

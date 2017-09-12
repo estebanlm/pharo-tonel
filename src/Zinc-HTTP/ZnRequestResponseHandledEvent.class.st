@@ -9,63 +9,41 @@ Class {
 		'response',
 		'duration'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 15:09'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnRequestResponseHandledEvent>>duration [
+{ #category : #accessing }
+ZnRequestResponseHandledEvent >> duration [
 	^ duration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnRequestResponseHandledEvent>>duration: anObject [
+{ #category : #accessing }
+ZnRequestResponseHandledEvent >> duration: anObject [
 	duration := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnRequestResponseHandledEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnRequestResponseHandledEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream << ' Request Handled '; print: request; space; print: duration; << 'ms'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnRequestResponseHandledEvent>>request [
+{ #category : #accessing }
+ZnRequestResponseHandledEvent >> request [
 	^ request
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnRequestResponseHandledEvent>>request: anObject [
+{ #category : #accessing }
+ZnRequestResponseHandledEvent >> request: anObject [
 	request := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnRequestResponseHandledEvent>>response [
+{ #category : #accessing }
+ZnRequestResponseHandledEvent >> response [
 	^ response
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnRequestResponseHandledEvent>>response: anObject [
+{ #category : #accessing }
+ZnRequestResponseHandledEvent >> response: anObject [
 	response := anObject
 ]

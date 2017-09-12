@@ -8,43 +8,30 @@ symbols
 Class {
 	#name : #ChunkWriteStream,
 	#superclass : #DecoratorStream,
-	#category : #CodeExport,
-	#timestamp : 'GuillermoPolito 6/12/2015 10:04'
+	#category : #CodeExport
 }
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ChunkWriteStream>>bang [
+{ #category : #writing }
+ChunkWriteStream >> bang [
 	
 	decoratedStream nextPut: self terminatorMark
 ]
 
-{
-	#category : #'reflective operations',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ChunkWriteStream>>doesNotUnderstand: aMessage [
+{ #category : #'reflective operations' }
+ChunkWriteStream >> doesNotUnderstand: aMessage [
 	"Forward message to decoree"
 
 	^ aMessage sendTo: decoratedStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ChunkWriteStream>>nextChunkPut: aString [
+{ #category : #accessing }
+ChunkWriteStream >> nextChunkPut: aString [
 
 	^ self nextPut: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ChunkWriteStream>>nextPut: aString [
+{ #category : #accessing }
+ChunkWriteStream >> nextPut: aString [
     "Append the argument, aString, to the receiver, doubling embedded terminators."
  
     | i remainder terminator | 
@@ -64,10 +51,7 @@ ChunkWriteStream>>nextPut: aString [
     decoratedStream flush.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ChunkWriteStream>>terminatorMark [
+{ #category : #accessing }
+ChunkWriteStream >> terminatorMark [
 	^$!
 ]

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #HistoryNodeTest,
 	#superclass : #TestCase,
-	#category : #System-History-Tests,
-	#timestamp : ''
+	#category : #System-History-Tests
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-HistoryNodeTest>>testClose [
+{ #category : #'as yet unclassified' }
+HistoryNodeTest >> testClose [
 	| h i |
 	h := HistoryNode new.
 	h close.
@@ -22,22 +15,16 @@ HistoryNodeTest>>testClose [
 	self assert: h current = i
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-HistoryNodeTest>>testEmptyHistory [
+{ #category : #'as yet unclassified' }
+HistoryNodeTest >> testEmptyHistory [
 	| h |
 	h := HistoryNode new.
 	self assert: h size = 0.
 	self assert: h current isNil
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-HistoryNodeTest>>testGroup [
+{ #category : #'as yet unclassified' }
+HistoryNodeTest >> testGroup [
 	| h i |
 	h := HistoryNode new.
 	h addItem: (i := HistoryLeaf new).
@@ -50,11 +37,8 @@ HistoryNodeTest>>testGroup [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-HistoryNodeTest>>testOneGroup [
+{ #category : #'as yet unclassified' }
+HistoryNodeTest >> testOneGroup [
 	| h i c i2 i3 i4 | 
 	h := HistoryNode new.
 	h addItem: (i := HistoryLeaf new).
@@ -83,11 +67,8 @@ HistoryNodeTest>>testOneGroup [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-HistoryNodeTest>>testOneItem [
+{ #category : #'as yet unclassified' }
+HistoryNodeTest >> testOneItem [
 	| h i |
 	h := HistoryNode new.
 	h addItem: (i := HistoryLeaf new).
@@ -95,11 +76,8 @@ HistoryNodeTest>>testOneItem [
 	self assert: h current = i
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-HistoryNodeTest>>testReset [
+{ #category : #'as yet unclassified' }
+HistoryNodeTest >> testReset [
 	| h i |
 	h := HistoryNode new.
 	h addItem: (i := HistoryLeaf new).
@@ -109,11 +87,8 @@ HistoryNodeTest>>testReset [
 	self assert: h size = 0.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-HistoryNodeTest>>testTwoConsecutiveCloseGroup [
+{ #category : #'as yet unclassified' }
+HistoryNodeTest >> testTwoConsecutiveCloseGroup [
 	| h i grp1 grp2  i2 i3 i4 | 
 	h := HistoryNode new.
 	h addItem: (i := HistoryLeaf new).
@@ -139,11 +114,8 @@ HistoryNodeTest>>testTwoConsecutiveCloseGroup [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-HistoryNodeTest>>testTwoGroups [
+{ #category : #'as yet unclassified' }
+HistoryNodeTest >> testTwoGroups [
 	| h i grp1 grp2  i2 i3 i4 | 
 	h := HistoryNode new.
 	h addItem: (i := HistoryLeaf new).

@@ -1,37 +1,24 @@
-"
-
-"
 Class {
 	#name : #MetacelloAllowLockedProjectChange,
 	#superclass : #MetacelloResolveProjectUpgrade,
 	#instVars : [
 		'operationString'
 	],
-	#category : #Metacello-Core-Scripts,
-	#timestamp : ''
+	#category : #Metacello-Core-Scripts
 }
 
-{
-	#category : #'exception handling',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAllowLockedProjectChange>>break [
+{ #category : #'exception handling' }
+MetacelloAllowLockedProjectChange >> break [
   ^ self allow
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAllowLockedProjectChange>>checkAllowed [
+{ #category : #private }
+MetacelloAllowLockedProjectChange >> checkAllowed [
   "noop ... if user decided to allow lock to be broken, then so be it"
 ]
 
-{
-	#category : #'exception handling',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAllowLockedProjectChange>>defaultAction [
+{ #category : #'exception handling' }
+MetacelloAllowLockedProjectChange >> defaultAction [
   Warning
     signal:
       'LOCK ENFORCED: Attempt to ' , self operationString printString
@@ -42,34 +29,22 @@ MetacelloAllowLockedProjectChange>>defaultAction [
   ^ self disallow
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAllowLockedProjectChange>>handleResolutionFor: aScriptEngine [
+{ #category : #handlers }
+MetacelloAllowLockedProjectChange >> handleResolutionFor: aScriptEngine [
   ^ aScriptEngine handleLock: self
 ]
 
-{
-	#category : #'exception handling',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAllowLockedProjectChange>>honor [
+{ #category : #'exception handling' }
+MetacelloAllowLockedProjectChange >> honor [
   ^ self disallow
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAllowLockedProjectChange>>operationString [
+{ #category : #accessing }
+MetacelloAllowLockedProjectChange >> operationString [
   ^ operationString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloAllowLockedProjectChange>>operationString: aString [
+{ #category : #accessing }
+MetacelloAllowLockedProjectChange >> operationString: aString [
   operationString := aString
 ]

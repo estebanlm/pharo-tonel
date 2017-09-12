@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMPager,
 	#superclass : #GLMFinder,
@@ -8,67 +5,45 @@ Class {
 		'scrollButtonIconRenderBlock',
 		'minimumPageNumberForScrollbar'
 	],
-	#category : #Glamour-Morphic-Pager-Glamour,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Pager-Glamour
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPager class>>extensionsPragma [
+{ #category : #accessing }
+GLMPager class >> extensionsPragma [
 	^ #gtInspectorPresentationOrder:
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPager>>minimumPageNumberForScrollbar [
+{ #category : #accessing }
+GLMPager >> minimumPageNumberForScrollbar [
 
 	^ minimumPageNumberForScrollbar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPager>>minimumPageNumberForScrollbar: aNumber [
+{ #category : #accessing }
+GLMPager >> minimumPageNumberForScrollbar: aNumber [
 
 	minimumPageNumberForScrollbar := aNumber
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPager>>renderGlamorouslyOn: aRenderer [
+{ #category : #rendering }
+GLMPager >> renderGlamorouslyOn: aRenderer [
 
 	^ aRenderer renderPager: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPager>>scrollButtonIconRenderBlock [
+{ #category : #accessing }
+GLMPager >> scrollButtonIconRenderBlock [
 
 	^ scrollButtonIconRenderBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPager>>scrollButtonIconRenderBlock: aBlock [
+{ #category : #accessing }
+GLMPager >> scrollButtonIconRenderBlock: aBlock [
 
 	scrollButtonIconRenderBlock := aBlock
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPager>>shouldDisplayPresentationCreatedBy: aCollection  [
+{ #category : #testing }
+GLMPager >> shouldDisplayPresentationCreatedBy: aCollection [ 
 	^ true
 ]

@@ -11,176 +11,118 @@ Class {
 		'selectedPackage',
 		'selectedVersion'
 	],
-	#category : #MonticelloGUI,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:53'
+	#category : #MonticelloGUI
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector class>>repository: aFileBasedRepository workingCopy: aWorkingCopy [
+{ #category : #'as yet unclassified' }
+MCRepositoryInspector class >> repository: aFileBasedRepository workingCopy: aWorkingCopy [
 	^self new
 		setRepository: aFileBasedRepository workingCopy: aWorkingCopy;
 		yourself
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>buttonSpecs [
+{ #category : #'morphic ui' }
+MCRepositoryInspector >> buttonSpecs [
 	^#(('Refresh' refresh 'refresh the version-list')) , super buttonSpecs
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>defaultLabel [
+{ #category : #'morphic ui' }
+MCRepositoryInspector >> defaultLabel [
 	^'Repository: ' , repository description
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>hasVersion [
+{ #category : #testing }
+MCRepositoryInspector >> hasVersion [
 	^ selectedVersion notNil
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>initialExtent [
+{ #category : #'morphic ui' }
+MCRepositoryInspector >> initialExtent [
 	^450@300
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>load [
+{ #category : #actions }
+MCRepositoryInspector >> load [
 	self hasVersion
 		ifFalse: [ ^ self ].
 	super load.
 	self version workingCopy repositoryGroup addRepository: repository
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>packageList [
+{ #category : #'morphic ui' }
+MCRepositoryInspector >> packageList [
 	^ packages collect: [:ea | ea name]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>packageListMenu: aMenu [
+{ #category : #'morphic ui' }
+MCRepositoryInspector >> packageListMenu: aMenu [
 	^aMenu
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>packageSelection [
+{ #category : #'morphic ui' }
+MCRepositoryInspector >> packageSelection [
 	^ packages indexOf: selectedPackage
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>packageSelection: aNumber [
+{ #category : #'morphic ui' }
+MCRepositoryInspector >> packageSelection: aNumber [
 	selectedPackage := aNumber isZero ifFalse: [ packages at: aNumber ].
 	versions := repository versionsAvailableForPackage: selectedPackage.
 	self changed: #packageSelection; changed: #versionList
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>refresh [
+{ #category : #actions }
+MCRepositoryInspector >> refresh [
 	packages := repository packages.
 	self changed: #packageList.
 	self packageSelection: self packageSelection.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>setRepository: aRepository workingCopy: aWorkingCopy [
+{ #category : #accessing }
+MCRepositoryInspector >> setRepository: aRepository workingCopy: aWorkingCopy [
 	repository := aRepository.
 	aWorkingCopy ifNotNil: [ selectedPackage := aWorkingCopy package].
 	self refresh
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>sortedVersions [
+{ #category : #'morphic ui' }
+MCRepositoryInspector >> sortedVersions [
 	| sorter |
 	sorter := MCVersionSorter new.
 	sorter addAllVersionInfos: versions.
 	^ sorter sortedVersionInfos select: [:ea | versions includes: ea]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>summary [
+{ #category : #accessing }
+MCRepositoryInspector >> summary [
 	^ selectedVersion
 		ifNotNil: [selectedVersion summary]
 		ifNil: ['']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>version [
+{ #category : #accessing }
+MCRepositoryInspector >> version [
 	^ version ifNil: [version := repository versionWithInfo: selectedVersion]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>versionList [
+{ #category : #'morphic ui' }
+MCRepositoryInspector >> versionList [
 	^ self sortedVersions collect: [:ea | ea name]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>versionListMenu: aMenu [
+{ #category : #'morphic ui' }
+MCRepositoryInspector >> versionListMenu: aMenu [
 	^aMenu
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>versionSelection [
+{ #category : #'morphic ui' }
+MCRepositoryInspector >> versionSelection [
 	^ versions indexOf: selectedVersion
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>versionSelection: aNumber [
+{ #category : #'morphic ui' }
+MCRepositoryInspector >> versionSelection: aNumber [
 	selectedVersion := aNumber isZero
 		ifTrue: [ nil ]
 		ifFalse: [ versions at: aNumber ].
@@ -189,11 +131,8 @@ MCRepositoryInspector>>versionSelection: aNumber [
 		changed: #summary
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepositoryInspector>>widgetSpecs [
+{ #category : #'morphic ui' }
+MCRepositoryInspector >> widgetSpecs [
 	^#(	((buttonRow) (0 0 1 0) (0 0 0 30))
 		((listMorph: package) (0 0 0.5 0.6) (0 30 0 0))
 		((listMorph: version) (0.5 0 1 0.6) (0 30 0 0))

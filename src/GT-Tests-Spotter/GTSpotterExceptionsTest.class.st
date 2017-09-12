@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterExceptionsTest,
 	#superclass : #TestCase,
@@ -11,68 +8,46 @@ Class {
 		'exceptions',
 		'fatals'
 	],
-	#category : #GT-Tests-Spotter-Exceptions,
-	#timestamp : ''
+	#category : #GT-Tests-Spotter-Exceptions
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest class>>exceptions [
+{ #category : #accessing }
+GTSpotterExceptionsTest class >> exceptions [
 	^ exceptions ifNil: [ exceptions := OrderedCollection new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest class>>fatals [
+{ #category : #accessing }
+GTSpotterExceptionsTest class >> fatals [
 	^ fatals ifNil: [ fatals := OrderedCollection new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest class>>reset [
+{ #category : #accessing }
+GTSpotterExceptionsTest class >> reset [
 	exceptions := nil.
 	fatals := nil.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>assertException: anErrorClass [
+{ #category : #private }
+GTSpotterExceptionsTest >> assertException: anErrorClass [
 	self deny: self class exceptions isEmpty.
 	self assert: (self class exceptions anySatisfy: [ :e | e class == anErrorClass ]).
 	self assert: self class fatals isEmpty.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>assertNoExceptions [
+{ #category : #private }
+GTSpotterExceptionsTest >> assertNoExceptions [
 	self assert: self class exceptions isEmpty.
 	self assert: self class fatals isEmpty.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>assertResetExceptions [
+{ #category : #private }
+GTSpotterExceptionsTest >> assertResetExceptions [
 	self class reset.
 	self assertNoExceptions.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>exceptionHandler: anExceptionHandler do: aBlock [
+{ #category : #private }
+GTSpotterExceptionsTest >> exceptionHandler: anExceptionHandler do: aBlock [
 	self assertResetExceptions.
 	self shouldnt: [ 
 		anExceptionHandler handleExceptionsDuring: aBlock ] raise: Error.
@@ -85,11 +60,8 @@ GTSpotterExceptionsTest>>exceptionHandler: anExceptionHandler do: aBlock [
 	self assertNoExceptions.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>process: aString origin: anOrigin [
+{ #category : #private }
+GTSpotterExceptionsTest >> process: aString origin: anOrigin [
 	| step |
 	((step := GTSpotterStep new)
 		spotter: spotter;
@@ -97,46 +69,31 @@ GTSpotterExceptionsTest>>process: aString origin: anOrigin [
 		yourself) processContext: (step newContextForQuery: aString)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>setUp [
+{ #category : #running }
+GTSpotterExceptionsTest >> setUp [
 	super setUp.
 	
 	spotter := GTSpotter new.
 	self class reset.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>shouldRaise: anError process: aString origin: anOrigin [
+{ #category : #private }
+GTSpotterExceptionsTest >> shouldRaise: anError process: aString origin: anOrigin [
 	self shouldRaise: anError process: aString origin: anOrigin do: [ :exception | ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>shouldRaise: anError process: aString origin: anOrigin do: aBlock [
+{ #category : #private }
+GTSpotterExceptionsTest >> shouldRaise: anError process: aString origin: anOrigin do: aBlock [
 	self shouldRaise: anError process: aString origin: anOrigin during: GTSpotterDebuggingExceptionHandlerMock new do: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>shouldRaise: anErrorClass process: aString origin: anOrigin during: exceptionHandler [
+{ #category : #private }
+GTSpotterExceptionsTest >> shouldRaise: anErrorClass process: aString origin: anOrigin during: exceptionHandler [
 	self shouldRaise: anErrorClass process: aString origin: anOrigin during: exceptionHandler do: [ :e | ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>shouldRaise: anErrorClass process: aString origin: anOrigin during: exceptionHandler do: aBlock [
+{ #category : #private }
+GTSpotterExceptionsTest >> shouldRaise: anErrorClass process: aString origin: anOrigin during: exceptionHandler do: aBlock [
 	self assertResetExceptions.
 
 	spotter exceptionHandler: exceptionHandler.
@@ -153,19 +110,13 @@ GTSpotterExceptionsTest>>shouldRaise: anErrorClass process: aString origin: anOr
 	self assertException: anErrorClass
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>shouldntRaise: anError process: aString origin: anOrigin [
+{ #category : #private }
+GTSpotterExceptionsTest >> shouldntRaise: anError process: aString origin: anOrigin [
 	self shouldntRaise: anError process: aString origin: anOrigin during: GTSpotterDeploymentExceptionHandlerMock new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>shouldntRaise: anError process: aString origin: anOrigin during: exceptionHandler [
+{ #category : #private }
+GTSpotterExceptionsTest >> shouldntRaise: anError process: aString origin: anOrigin during: exceptionHandler [
 	spotter exceptionHandler: exceptionHandler.
 	self assert: spotter exceptionHandler == exceptionHandler.
 	
@@ -174,11 +125,8 @@ GTSpotterExceptionsTest>>shouldntRaise: anError process: aString origin: anOrigi
 	self assert: spotter exceptionHandler == exceptionHandler.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>testDebuggingExceptionHandlerDuring [
+{ #category : #tests }
+GTSpotterExceptionsTest >> testDebuggingExceptionHandlerDuring [
 	| exceptionHandler |
 	
 	self exceptionHandler: (exceptionHandler := GTSpotterDebuggingExceptionHandlerMock new) do: [ 
@@ -187,61 +135,43 @@ GTSpotterExceptionsTest>>testDebuggingExceptionHandlerDuring [
 		self assert: GTCurrentSpotterExceptionHandler value == exceptionHandler ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>testDebuggingExceptionHandlerMock1 [
+{ #category : #tests }
+GTSpotterExceptionsTest >> testDebuggingExceptionHandlerMock1 [
 	
 	self shouldRaise: AssertionFailure process: 'abc' origin: GTSpotterExceptionMock1 new do: [:e | 
 		self assert: e messageText = GTSpotterExceptionMock1 name ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>testDebuggingExceptionHandlerMock2 [
+{ #category : #tests }
+GTSpotterExceptionsTest >> testDebuggingExceptionHandlerMock2 [
 
 	self shouldRaise: MessageNotUnderstood process: 'abc' origin: GTSpotterExceptionMock2 new.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>testDebuggingExceptionHandlerMock3 [
+{ #category : #tests }
+GTSpotterExceptionsTest >> testDebuggingExceptionHandlerMock3 [
 
 	self shouldRaise: ZeroDivide process: 'abc' origin: GTSpotterExceptionMock3 new.
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>testDebuggingExceptionHandlerMock4 [
+{ #category : #tests }
+GTSpotterExceptionsTest >> testDebuggingExceptionHandlerMock4 [
 
 	self shouldRaise: ArithmeticError process: 'abc' origin: GTSpotterExceptionMock4 new do: [:e | 
 		self assert: e messageText = 'Error while filtering' ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>testDebuggingExceptionHandlerMock5 [
+{ #category : #tests }
+GTSpotterExceptionsTest >> testDebuggingExceptionHandlerMock5 [
 	
 	self assertResetExceptions.
 	self shouldntRaise: AssertionFailure process: 'abc' origin: GTSpotterExceptionMock5 new during: GTSpotterDebuggingExceptionHandlerMock new.
 	self assertNoExceptions.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>testDeploymentExceptionHandlerDuring [
+{ #category : #tests }
+GTSpotterExceptionsTest >> testDeploymentExceptionHandlerDuring [
 	| exceptionHandler |
 	
 	self exceptionHandler: (exceptionHandler := GTSpotterDeploymentExceptionHandlerMock new) do: [ 
@@ -250,11 +180,8 @@ GTSpotterExceptionsTest>>testDeploymentExceptionHandlerDuring [
 		self assert: GTCurrentSpotterExceptionHandler value == exceptionHandler ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>testDeploymentExceptionHandlerMock1 [
+{ #category : #tests }
+GTSpotterExceptionsTest >> testDeploymentExceptionHandlerMock1 [
 	
 	self assertResetExceptions.
 	self shouldntRaise: AssertionFailure process: 'abc' origin: GTSpotterExceptionMock1 new.
@@ -265,11 +192,8 @@ GTSpotterExceptionsTest>>testDeploymentExceptionHandlerMock1 [
 	self assertException: AssertionFailure.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>testDeploymentExceptionHandlerMock2 [
+{ #category : #tests }
+GTSpotterExceptionsTest >> testDeploymentExceptionHandlerMock2 [
 	
 	self assertResetExceptions.	
 	self shouldntRaise: MessageNotUnderstood process: 'abc' origin: GTSpotterExceptionMock2 new.
@@ -280,11 +204,8 @@ GTSpotterExceptionsTest>>testDeploymentExceptionHandlerMock2 [
 	self assertException: MessageNotUnderstood.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>testDeploymentExceptionHandlerMock3 [
+{ #category : #tests }
+GTSpotterExceptionsTest >> testDeploymentExceptionHandlerMock3 [
 	
 	self assertResetExceptions.
 	self shouldntRaise: ZeroDivide process: 'abc' origin: GTSpotterExceptionMock3 new.
@@ -295,11 +216,8 @@ GTSpotterExceptionsTest>>testDeploymentExceptionHandlerMock3 [
 	self assertException: ZeroDivide.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>testDeploymentExceptionHandlerMock4 [
+{ #category : #tests }
+GTSpotterExceptionsTest >> testDeploymentExceptionHandlerMock4 [
 	
 	self assertResetExceptions.
 	self shouldntRaise: ArithmeticError process: 'abc' origin: GTSpotterExceptionMock4 new.
@@ -310,22 +228,16 @@ GTSpotterExceptionsTest>>testDeploymentExceptionHandlerMock4 [
 	self assertException: ArithmeticError.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>testDeploymentExceptionHandlerMock5 [
+{ #category : #tests }
+GTSpotterExceptionsTest >> testDeploymentExceptionHandlerMock5 [
 	
 	self assertResetExceptions.
 	self shouldntRaise: AssertionFailure process: 'abc' origin: GTSpotterExceptionMock5 new during: GTSpotterDeploymentExceptionHandlerMock new.
 	self assertNoExceptions.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>testDeploymentHandleException [
+{ #category : #tests }
+GTSpotterExceptionsTest >> testDeploymentHandleException [
 
 	self assertResetExceptions.
 	self shouldnt: [ 
@@ -334,11 +246,8 @@ GTSpotterExceptionsTest>>testDeploymentHandleException [
 	self assertException: ZeroDivide.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>testDeploymentHandleExceptionMock5 [
+{ #category : #tests }
+GTSpotterExceptionsTest >> testDeploymentHandleExceptionMock5 [
 	
 	self assertResetExceptions.
 	self shouldnt: [ 
@@ -349,11 +258,8 @@ GTSpotterExceptionsTest>>testDeploymentHandleExceptionMock5 [
 	self assertException: ZeroDivide
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>testDevelopmentHandleException [
+{ #category : #tests }
+GTSpotterExceptionsTest >> testDevelopmentHandleException [
 
 	self assertResetExceptions.
 	self should: [
@@ -362,11 +268,8 @@ GTSpotterExceptionsTest>>testDevelopmentHandleException [
 	self assertException: ZeroDivide.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionsTest>>testDevelopmentHandleExceptionMock5 [
+{ #category : #tests }
+GTSpotterExceptionsTest >> testDevelopmentHandleExceptionMock5 [
 
 	self assertResetExceptions.
 	self should: [ 

@@ -4,15 +4,11 @@ Utility class to check packages
 Class {
 	#name : #PackageChecker,
 	#superclass : #Object,
-	#category : #RPackage-Tests,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:57'
+	#category : #RPackage-Tests
 }
 
-{
-	#category : #check,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-PackageChecker>>check [
+{ #category : #check }
+PackageChecker >> check [
 	"self new check"
 	
 	"only work for top level package overlapping.

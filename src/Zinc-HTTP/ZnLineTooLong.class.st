@@ -9,32 +9,22 @@ Class {
 	#instVars : [
 		'limit'
 	],
-	#category : #Zinc-HTTP-Exceptions,
-	#timestamp : 'SvenVanCaekenberghe 2/28/2011 14:15'
+	#category : #Zinc-HTTP-Exceptions
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLineTooLong class>>limit: limit [
+{ #category : #'instance creation' }
+ZnLineTooLong class >> limit: limit [
 	^ self new 
 		limit: limit; 
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLineTooLong>>limit [
+{ #category : #accessing }
+ZnLineTooLong >> limit [
 	^ limit
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLineTooLong>>limit: anObject [
+{ #category : #accessing }
+ZnLineTooLong >> limit: anObject [
 	limit := anObject
 ]

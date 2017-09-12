@@ -4,15 +4,11 @@ Test class for MTProject
 Class {
 	#name : #MTProjectTest,
 	#superclass : #TestCase,
-	#category : #Versionner-Tests-Core-DependenciesModel,
-	#timestamp : '<historical>'
+	#category : #Versionner-Tests-Core-DependenciesModel
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProjectTest>>testEquals [
+{ #category : #tests }
+MTProjectTest >> testEquals [
 	| projectA projectB |
 	
 	projectA := MTProjectExampleBuilder projectA.

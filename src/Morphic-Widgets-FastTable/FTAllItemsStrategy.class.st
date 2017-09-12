@@ -45,15 +45,11 @@ Class {
 		'index',
 		'result'
 	],
-	#category : #Morphic-Widgets-FastTable-Tree,
-	#timestamp : 'CyrilFerlicot 11/2/2015 11:27'
+	#category : #Morphic-Widgets-FastTable-Tree
 }
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTAllItemsStrategy>>filter [
+{ #category : #action }
+FTAllItemsStrategy >> filter [
 	| items |
 	items := OrderedCollection new.
 	dataSource rootsItems do: [ :item | (self matchingFilter: item) ifNotNil: [ :itemNew | items add: itemNew ] ] displayingProgress: [ :each | 'Looking inside ' , each name ].
@@ -66,20 +62,14 @@ FTAllItemsStrategy>>filter [
 		children: dataSource childrenBlock
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTAllItemsStrategy>>initializeNewSearch [
+{ #category : #action }
+FTAllItemsStrategy >> initializeNewSearch [
 	result := OrderedCollection new.
 	index := 1
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTAllItemsStrategy>>matchingFilter: anItem [
+{ #category : #action }
+FTAllItemsStrategy >> matchingFilter: anItem [
 	((anItem children collect: [ :it | self matchingFilter: it ]) reject: #isNil)
 		ifNotEmpty:
 			[ :coll | 
@@ -91,11 +81,8 @@ FTAllItemsStrategy>>matchingFilter: anItem [
 	^ (pattern matchesIn: (self dataSource toString: anItem)) ifEmpty: [ nil ] ifNotEmpty: [ self newStaticItemFrom: anItem ]
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTAllItemsStrategy>>newStaticItemFrom: anItem [
+{ #category : #action }
+FTAllItemsStrategy >> newStaticItemFrom: anItem [
 	^ FTStaticBasicItem new
 		data: anItem data;
 		depth: anItem depth;
@@ -103,32 +90,23 @@ FTAllItemsStrategy>>newStaticItemFrom: anItem [
 		yourself
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTAllItemsStrategy>>optionalOperations [
+{ #category : #action }
+FTAllItemsStrategy >> optionalOperations [
 	pattern isEmptyOrNil
 		ifTrue: [ self unexpandAllChildOf: dataSource rootItem.
 			^ #() ]
 		ifFalse: [ ^ nil ]
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTAllItemsStrategy>>realSearch [
+{ #category : #action }
+FTAllItemsStrategy >> realSearch [
 	self initializeNewSearch.
 	dataSource rootsItems do: [ :item | self searchIn: item ] displayingProgress: [ :each | 'Looking inside ' , each name ].
 	^ result asArray
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTAllItemsStrategy>>searchIn: item [
+{ #category : #action }
+FTAllItemsStrategy >> searchIn: item [
 	| selfOrChildMatch |
 	selfOrChildMatch := false.
 	(self isMatching: item)
@@ -147,11 +125,8 @@ FTAllItemsStrategy>>searchIn: item [
 	^ selfOrChildMatch
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTAllItemsStrategy>>unexpandAllChildOf: anItem [
+{ #category : #action }
+FTAllItemsStrategy >> unexpandAllChildOf: anItem [
 	anItem children
 		do: [ :item | 
 			item isExpanded

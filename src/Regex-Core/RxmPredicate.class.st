@@ -12,24 +12,17 @@ Class {
 	#instVars : [
 		'predicate'
 	],
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:14'
+	#category : #Regex-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmPredicate class>>with: unaryBlock [
+{ #category : #'instance creation' }
+RxmPredicate class >> with: unaryBlock [
 
 	^self new predicate: unaryBlock
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmPredicate>>bePerform: aSelector [
+{ #category : #initialize-release }
+RxmPredicate >> bePerform: aSelector [
 	"Match any single character that answers true  to this message."
 
 	self predicate: 
@@ -37,11 +30,8 @@ RxmPredicate>>bePerform: aSelector [
 		RxParser doHandlingMessageNotUnderstood: [char perform: aSelector]]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmPredicate>>bePerformNot: aSelector [
+{ #category : #initialize-release }
+RxmPredicate >> bePerformNot: aSelector [
 	"Match any single character that answers false to this message."
 
 	self predicate: 
@@ -49,11 +39,8 @@ RxmPredicate>>bePerformNot: aSelector [
 		RxParser doHandlingMessageNotUnderstood: [(char perform: aSelector) not]]
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmPredicate>>matchAgainst: aMatcher [
+{ #category : #matching }
+RxmPredicate >> matchAgainst: aMatcher [
 	"Match if the predicate block evaluates to true when given the
 	current stream character as the argument."
 
@@ -68,11 +55,8 @@ RxmPredicate>>matchAgainst: aMatcher [
 			^false]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmPredicate>>predicate: aBlock [
+{ #category : #initialize-release }
+RxmPredicate >> predicate: aBlock [
 	"This link will match any single character for which <aBlock>
 	evaluates to true."
 

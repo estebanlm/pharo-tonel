@@ -5,64 +5,42 @@ I am a an object representing a Mac OS (pre OSX) platform. Use myself to access 
 Class {
 	#name : #MacOSPlatform,
 	#superclass : #OSPlatform,
-	#category : #System-Platforms,
-	#timestamp : '<historical>'
+	#category : #System-Platforms
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MacOSPlatform class>>isActivePlatform [
+{ #category : #testing }
+MacOSPlatform class >> isActivePlatform [
 	^ self isMacOS and: [ self currentVersion asNumber < 1000 ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MacOSPlatform class>>isMacOS [
+{ #category : #testing }
+MacOSPlatform class >> isMacOS [
 
 	^ self currentPlatformName = 'Mac OS'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MacOSPlatform>>family [
+{ #category : #accessing }
+MacOSPlatform >> family [
 	^#MacOS
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MacOSPlatform>>isMacOS [
+{ #category : #testing }
+MacOSPlatform >> isMacOS [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MacOSPlatform>>keyForValue: aKeyValue [
+{ #category : #accessing }
+MacOSPlatform >> keyForValue: aKeyValue [
 	^Key valueForMacOSXPlatform: aKeyValue.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MacOSPlatform>>lineEnding [
+{ #category : #accessing }
+MacOSPlatform >> lineEnding [
 
 	^ String lf
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MacOSPlatform>>menuShortcutString [
+{ #category : #accessing }
+MacOSPlatform >> menuShortcutString [
 	^ 'cmd'
 ]

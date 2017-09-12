@@ -10,57 +10,38 @@ Class {
 		'newClassDefinition',
 		'oldClassDefinition'
 	],
-	#category : #System-Announcements-System-Classes,
-	#timestamp : 'MartinDias 1/31/2014 16:31'
+	#category : #System-Announcements-System-Classes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassModifiedClassDefinition class>>classDefinitionChangedFrom: oldClass to: newClass [
+{ #category : #'instance creation' }
+ClassModifiedClassDefinition class >> classDefinitionChangedFrom: oldClass to: newClass [
 	^self new
 			oldClassDefinition: oldClass;
 			newClassDefinition: newClass;
 			yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassModifiedClassDefinition>>classAffected [
+{ #category : #accessing }
+ClassModifiedClassDefinition >> classAffected [
 	^self newClassDefinition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassModifiedClassDefinition>>newClassDefinition [
+{ #category : #accessing }
+ClassModifiedClassDefinition >> newClassDefinition [
 	^newClassDefinition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassModifiedClassDefinition>>newClassDefinition: aClass [
+{ #category : #accessing }
+ClassModifiedClassDefinition >> newClassDefinition: aClass [
 	newClassDefinition := aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassModifiedClassDefinition>>oldClassDefinition [
+{ #category : #accessing }
+ClassModifiedClassDefinition >> oldClassDefinition [
 	^oldClassDefinition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassModifiedClassDefinition>>oldClassDefinition: aClass [
+{ #category : #accessing }
+ClassModifiedClassDefinition >> oldClassDefinition: aClass [
 	oldClassDefinition := aClass
 ]

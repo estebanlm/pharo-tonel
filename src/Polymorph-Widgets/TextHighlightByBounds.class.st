@@ -13,125 +13,88 @@ Class {
 		'borderSides',
 		'fillWidth'
 	],
-	#category : #Polymorph-Widgets,
-	#timestamp : 'gvc 5/18/2007 11:15'
+	#category : #Polymorph-Widgets
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>borderColor [
+{ #category : #accessing }
+TextHighlightByBounds >> borderColor [
 	"Answer the value of borderColor"
 
 	^ borderColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>borderColor: anObject [
+{ #category : #accessing }
+TextHighlightByBounds >> borderColor: anObject [
 	"Set the value of borderColor"
 
 	borderColor := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>borderSides [
+{ #category : #accessing }
+TextHighlightByBounds >> borderSides [
 	"Answer the value of borderSides"
 
 	^ borderSides
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>borderSides: anObject [
+{ #category : #accessing }
+TextHighlightByBounds >> borderSides: anObject [
 	"Set the value of borderSides"
 
 	borderSides := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>borderWidth [
+{ #category : #accessing }
+TextHighlightByBounds >> borderWidth [
 	"Answer the value of borderWidth"
 
 	^ borderWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>borderWidth: anObject [
+{ #category : #accessing }
+TextHighlightByBounds >> borderWidth: anObject [
 	"Set the value of borderWidth"
 
 	borderWidth := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>bounds [
+{ #category : #accessing }
+TextHighlightByBounds >> bounds [
 	"Answer the value of bounds"
 
 	^ bounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>bounds: anObject [
+{ #category : #accessing }
+TextHighlightByBounds >> bounds: anObject [
 	"Set the value of bounds"
 
 	bounds := anObject
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>clicked: evt [
+{ #category : #drawing }
+TextHighlightByBounds >> clicked: evt [
 	"The receiver has had a mouse down."
 
 	self triggerEvent: #clicked
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>color [
+{ #category : #accessing }
+TextHighlightByBounds >> color [
 	"Answer the value of color"
 
 	^ color
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>color: anObject [
+{ #category : #accessing }
+TextHighlightByBounds >> color: anObject [
 	"Set the value of color"
 
 	color := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>containsPoint: aPoint in: rect [
+{ #category : #testing }
+TextHighlightByBounds >> containsPoint: aPoint [ in: rect
 	"Answer whther the bounds contain the given (local coordinate) point."
 
 	|r|
@@ -142,11 +105,8 @@ TextHighlightByBounds>>containsPoint: aPoint in: rect [
 	^r containsPoint: aPoint
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>drawOn: aCanvas in: rect offset: o [
+{ #category : #drawing }
+TextHighlightByBounds >> drawOn: aCanvas in: rect offset: o [
 	"Draw the highlight on the given canvas for the given rectangle."
 
 	| r |
@@ -172,31 +132,22 @@ TextHighlightByBounds>>drawOn: aCanvas in: rect offset: o [
 				ifTrue: [ aCanvas fillRectangle: (r withWidth: self borderWidth) color: self borderColor ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>fillWidth [
+{ #category : #accessing }
+TextHighlightByBounds >> fillWidth [
 	"Answer the value of fillWidth"
 
 	^ fillWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>fillWidth: anObject [
+{ #category : #accessing }
+TextHighlightByBounds >> fillWidth: anObject [
 	"Set the value of fillWidth"
 
 	fillWidth := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>initialize [
+{ #category : #initialization }
+TextHighlightByBounds >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -209,51 +160,36 @@ TextHighlightByBounds>>initialize [
 		fillWidth: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>lineNumber [
+{ #category : #accessing }
+TextHighlightByBounds >> lineNumber [
 	"Answer the first in the line range."
 
 	^self lineRange first
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>lineRange [
+{ #category : #accessing }
+TextHighlightByBounds >> lineRange [
 	"Answer the value of lineRange"
 
 	^ lineRange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>lineRange: anObject [
+{ #category : #accessing }
+TextHighlightByBounds >> lineRange: anObject [
 	"Set the value of lineRange"
 
 	lineRange := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>position [
+{ #category : #accessing }
+TextHighlightByBounds >> position [
 	"Answer the bounds top left."
 	
 	^self bounds topLeft
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextHighlightByBounds>>position: aPoint [
+{ #category : #accessing }
+TextHighlightByBounds >> position: aPoint [
 	"Set the bounds top left."
 	
 	self bounds: (aPoint extent: self bounds extent)

@@ -22,112 +22,75 @@ See RunArray class scanFrom: where decoding is done.
 Class {
 	#name : #TextAttribute,
 	#superclass : #Object,
-	#category : #Text-Core,
-	#timestamp : 'tk 7/22/2002 18:33'
+	#category : #Text-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAttribute>>anchoredMorph [
+{ #category : #accessing }
+TextAttribute >> anchoredMorph [
 	"If one hides here, return it"
 	^nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAttribute>>dominatedByCmd0 [
+{ #category : #testing }
+TextAttribute >> dominatedByCmd0 [
 	"Subclasses may override if cmd-0 should turn them off"
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAttribute>>dominates: another [
+{ #category : #accessing }
+TextAttribute >> dominates: another [
 	"Subclasses may override condense multiple attributes"
 	^ false
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAttribute>>emphasisCode [
+{ #category : #styling }
+TextAttribute >> emphasisCode [
 	"Subclasses may override to add bold, italic, etc"
 	^ 0
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAttribute>>forFontInStyle: aTextStyle do: aBlock [
+{ #category : #styling }
+TextAttribute >> forFontInStyle: aTextStyle do: aBlock [
 	"No action is the default.  Overridden by font specs"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAttribute>>isKern [
+{ #category : #testing }
+TextAttribute >> isKern [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAttribute>>mayActOnEvent: anEvent [
+{ #category : #testing }
+TextAttribute >> mayActOnEvent: anEvent [
 	"Subclasses may override to provide, eg, hot-spot actions"
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAttribute>>mayBeExtended [
+{ #category : #testing }
+TextAttribute >> mayBeExtended [
 	"A quality that may be overridden by subclasses, such as TextAnchors, that really only apply to a single character"
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAttribute>>mayHaveExternalReferences [
+{ #category : #testing }
+TextAttribute >> mayHaveExternalReferences [
 	"Answer if this attribute can have references to some external objects like AST nodes"
 	^ false
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAttribute>>oldEmphasisCode: default [
+{ #category : #styling }
+TextAttribute >> oldEmphasisCode: default [
 	"Allows running thorugh possibly multiple attributes
 	and getting the emphasis out of any that has an emphasis (font number)"
 	^ default
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAttribute>>reset [
+{ #category : #accessing }
+TextAttribute >> reset [
 	"Allow subclasses to prepare themselves for merging attributes"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextAttribute>>set [
+{ #category : #accessing }
+TextAttribute >> set [
 	"Respond true to include this attribute (as opposed to, eg, a bold
 	emphasizer that is clearing the property"
 	^ true

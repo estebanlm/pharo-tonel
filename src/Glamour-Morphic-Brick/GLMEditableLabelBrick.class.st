@@ -22,24 +22,17 @@ Class {
 		'cancelOnEscape',
 		'cancelOnFocusLost'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-UI,
-	#timestamp : 'AliakseiSyrel 3/19/2015 15:22'
+	#category : #Glamour-Morphic-Brick-Widgets-UI
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick class>>exampleOpen [
+{ #category : #examples }
+GLMEditableLabelBrick class >> exampleOpen [
 
 	self gtExample openCenteredInBrickWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick class>>gtExample [
+{ #category : #examples }
+GLMEditableLabelBrick class >> gtExample [
 	<gtExample>
 	<label: 'Editable label simple example'>
 	
@@ -48,22 +41,16 @@ GLMEditableLabelBrick class>>gtExample [
 		yourself
 ]
 
-{
-	#category : #label-brick-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>accept [
+{ #category : #label-brick-actions }
+GLMEditableLabelBrick >> accept [
 
 	self text: self editBrick text.
 	self borderColor: self themer color emerald.
 	self beNormal
 ]
 
-{
-	#category : #label-animation,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>animateToEditFocused [
+{ #category : #label-animation }
+GLMEditableLabelBrick >> animateToEditFocused [
 
 	self borderAnimation
 		from: self borderColor first;
@@ -71,11 +58,8 @@ GLMEditableLabelBrick>>animateToEditFocused [
 		animate: self
 ]
 
-{
-	#category : #label-animation,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>animateToEditNotFocused [
+{ #category : #label-animation }
+GLMEditableLabelBrick >> animateToEditNotFocused [
 
 	self borderAnimation
 		from: self borderColor first;
@@ -83,11 +67,8 @@ GLMEditableLabelBrick>>animateToEditNotFocused [
 		animate: self
 ]
 
-{
-	#category : #label-animation,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>animateToNormal [
+{ #category : #label-animation }
+GLMEditableLabelBrick >> animateToNormal [
 
 	self borderAnimation
 		from: self borderColor first;
@@ -95,31 +76,22 @@ GLMEditableLabelBrick>>animateToNormal [
 		animate: self
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>approximateHeight [
+{ #category : #geometry }
+GLMEditableLabelBrick >> approximateHeight [
 	
 	^ self labelBrick approximateHeight + self vMargin + self vPadding
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>approximateWidth [
+{ #category : #geometry }
+GLMEditableLabelBrick >> approximateWidth [
 	
 	^ self hMargin + self hPadding + (self isReadMode
 		ifTrue: [ self labelBrick approximateWidth ]
 		ifFalse: [ self editBrick width + self editBrick hPadding + self editBrick hMargin])
 ]
 
-{
-	#category : #label-brick-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>beEdit [
+{ #category : #label-brick-actions }
+GLMEditableLabelBrick >> beEdit [
 
 	self isEditMode ifTrue: [ ^ self ].
 	self editBrick updateTextWith: self labelBrick text.
@@ -132,11 +104,8 @@ GLMEditableLabelBrick>>beEdit [
 	self announce: #onEditMode
 ]
 
-{
-	#category : #label-brick-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>beNormal [
+{ #category : #label-brick-actions }
+GLMEditableLabelBrick >> beNormal [
 	
 	self isReadMode ifTrue: [ ^ self ].
 	self animateToNormal.
@@ -146,67 +115,46 @@ GLMEditableLabelBrick>>beNormal [
 	self announce: #onReadMode
 ]
 
-{
-	#category : #label-brick-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>borderAnimation [
+{ #category : #label-brick-accessing }
+GLMEditableLabelBrick >> borderAnimation [
 
 	^ borderAnimation ifNil: [ borderAnimation := GLMAnimation borderColor duration: 200 ]
 ]
 
-{
-	#category : #label-brick-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>cancel [
+{ #category : #label-brick-actions }
+GLMEditableLabelBrick >> cancel [
 
 	self borderColor: self themer color alizarin.
 	self beNormal
 ]
 
-{
-	#category : #label-brick-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>cancelOnEscape [
+{ #category : #label-brick-actions }
+GLMEditableLabelBrick >> cancelOnEscape [
 
 	cancelOnEscape := true
 ]
 
-{
-	#category : #label-brick-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>cancelOnFocusLost [
+{ #category : #label-brick-actions }
+GLMEditableLabelBrick >> cancelOnFocusLost [
 
 	cancelOnFocusLost := true
 ]
 
-{
-	#category : #'reflective operations',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>doesNotUnderstand: aMessage [
+{ #category : #'reflective operations' }
+GLMEditableLabelBrick >> doesNotUnderstand: aMessage [
 	^ self labelBrick
 		perform: aMessage selector
 		withArguments: aMessage arguments
 ]
 
-{
-	#category : #label-brick-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>editBrick [
+{ #category : #label-brick-accessing }
+GLMEditableLabelBrick >> editBrick [
 
 	^ editBrick
 ]
 
-{
-	#category : #label-brick-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>editBrick: aBrick [
+{ #category : #label-brick-accessing }
+GLMEditableLabelBrick >> editBrick: aBrick [
 
 	editBrick := aBrick.
 	
@@ -229,33 +177,24 @@ GLMEditableLabelBrick>>editBrick: aBrick [
 	self editBrick rubric announcer when: RubTextAcceptRequest send: #onTextChanged: to: self
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>hShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMEditableLabelBrick >> hShrinkWrap [
 	super hShrinkWrap.
 	
 	self labelBrick hShrinkWrap.
 	self editBrick hShrinkWrap
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>hSpaceFill: anInteger [
+{ #category : #brick-layout-properties }
+GLMEditableLabelBrick >> hSpaceFill: anInteger [
 	super hSpaceFill: anInteger.
 	
 	self labelBrick hSpaceFill.
 	self editBrick hSpaceFill
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>initialize [
+{ #category : #initialization }
+GLMEditableLabelBrick >> initialize [
 	super initialize.
 	
 	self labelBrick: self newLabelBrick.
@@ -272,56 +211,38 @@ GLMEditableLabelBrick>>initialize [
 		bindKeyCombination: Character escape toAction: [ self onEscapePressed ]
 ]
 
-{
-	#category : #label-brick-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>isCancelOnEscape [
+{ #category : #label-brick-testing }
+GLMEditableLabelBrick >> isCancelOnEscape [
 
 	^ cancelOnEscape ifNil: [ cancelOnEscape := false ]
 ]
 
-{
-	#category : #label-brick-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>isCancelOnFocusLost [
+{ #category : #label-brick-testing }
+GLMEditableLabelBrick >> isCancelOnFocusLost [
 
 	^ cancelOnFocusLost ifNil: [ cancelOnFocusLost := false ]
 ]
 
-{
-	#category : #label-brick-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>isEditMode [
+{ #category : #label-brick-testing }
+GLMEditableLabelBrick >> isEditMode [
 
 	^ self hasSubbrick: self editBrick
 ]
 
-{
-	#category : #label-brick-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>isReadMode [
+{ #category : #label-brick-testing }
+GLMEditableLabelBrick >> isReadMode [
 
 	^ self isEditMode not
 ]
 
-{
-	#category : #label-brick-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>labelBrick [
+{ #category : #label-brick-accessing }
+GLMEditableLabelBrick >> labelBrick [
 
 	^ labelBrick
 ]
 
-{
-	#category : #label-brick-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>labelBrick: aBrick [
+{ #category : #label-brick-accessing }
+GLMEditableLabelBrick >> labelBrick: aBrick [
 
 	labelBrick := aBrick.
 	
@@ -332,47 +253,32 @@ GLMEditableLabelBrick>>labelBrick: aBrick [
 	
 ]
 
-{
-	#category : #label-brick-creation,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>newEditBrick [
+{ #category : #label-brick-creation }
+GLMEditableLabelBrick >> newEditBrick [
 
 	^ GLMRubTextFieldBrick new
 ]
 
-{
-	#category : #label-brick-creation,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>newLabelBrick [
+{ #category : #label-brick-creation }
+GLMEditableLabelBrick >> newLabelBrick [
 
 	^ GLMLabelBrick new
 ]
 
-{
-	#category : #label-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>onEscapePressed [
+{ #category : #label-events }
+GLMEditableLabelBrick >> onEscapePressed [
 
 	self isCancelOnEscape ifTrue: [ self cancel ]
 ]
 
-{
-	#category : #label-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>onGotFocus: ann [
+{ #category : #label-events }
+GLMEditableLabelBrick >> onGotFocus: ann [
 
 	self animateToEditFocused
 ]
 
-{
-	#category : #label-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>onLostFocus [
+{ #category : #label-events }
+GLMEditableLabelBrick >> onLostFocus [
 	
 	self isCancelOnFocusLost & self isEditMode
 		ifTrue: [ self cancel ].
@@ -382,11 +288,8 @@ GLMEditableLabelBrick>>onLostFocus [
 		ifFalse: [ self animateToNormal ]
 ]
 
-{
-	#category : #label-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>onTextAccepted: ann [
+{ #category : #label-events }
+GLMEditableLabelBrick >> onTextAccepted: ann [
 	|isChanged|
 	
 	isChanged := (self text asString = ann morph text asString) not.
@@ -396,31 +299,22 @@ GLMEditableLabelBrick>>onTextAccepted: ann [
 	isChanged ifTrue: [ self announce: #onAccepted ]
 ]
 
-{
-	#category : #label-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>onTextChanged: ann [
+{ #category : #label-events }
+GLMEditableLabelBrick >> onTextChanged: ann [
 
 	self onTextAccepted: ann
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>vShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMEditableLabelBrick >> vShrinkWrap [
 	super vShrinkWrap.
 	
 	self labelBrick vShrinkWrap.
 	self editBrick vShrinkWrap
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditableLabelBrick>>vSpaceFill: anInteger [
+{ #category : #brick-layout-properties }
+GLMEditableLabelBrick >> vSpaceFill: anInteger [
 	super vSpaceFill: anInteger.
 	
 	self labelBrick vSpaceFill.

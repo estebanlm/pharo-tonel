@@ -82,25 +82,18 @@ Class {
 	#pools : [
 		'EventSensorConstants'
 	],
-	#category : #System-VMEvents,
-	#timestamp : 'michael.rueger 4/22/2009 11:59'
+	#category : #System-VMEvents
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher class>>default [
+{ #category : #accessing }
+InputEventFetcher class >> default [
 	"InputEventFetcher default"
 
 	^Default ifNil: [Default := InputEventFetcher new]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher class>>deinstall [
+{ #category : #'class initialization' }
+InputEventFetcher class >> deinstall [
 	"InputEventFetcher deinstall"
 
 	Default
@@ -112,11 +105,8 @@ InputEventFetcher class>>deinstall [
 	SessionManager default unregisterClassNamed: self name
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher class>>install [
+{ #category : #'class initialization' }
+InputEventFetcher class >> install [
 	"InputEventFetcher install"
 	Default := self new.
 	Default startUp.
@@ -127,39 +117,27 @@ InputEventFetcher class>>install [
 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher class>>shutDown [
+{ #category : #'system startup' }
+InputEventFetcher class >> shutDown [
 	"InputEventFetcher shutDown"
 	
 	self default shutDown
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher class>>startUp [
+{ #category : #'system startup' }
+InputEventFetcher class >> startUp [
 	"InputEventFetcher startUp"
 	
 	self default startUp
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher>>eventHandlers [
+{ #category : #private }
+InputEventFetcher >> eventHandlers [
 	^eventHandlers ifNil: [eventHandlers := OrderedCollection new]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher>>eventLoop [
+{ #category : #events }
+InputEventFetcher >> eventLoop [
 	"Fetch pending raw events from the VM.
 	 This method is run at high priority."
 	| eventBuffer |
@@ -183,19 +161,13 @@ InputEventFetcher>>eventLoop [
 				self signalEvent: eventBuffer]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher>>fetcherProcess  [
+{ #category : #accessing }
+InputEventFetcher >> fetcherProcess [ 
 	^ fetcherProcess 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher>>installEventLoop [
+{ #category : #initialize-release }
+InputEventFetcher >> installEventLoop [
 	"Initialize the event loop process. Terminate the old process if any."
 	"InputEventFetcher default installEventLoop"
 
@@ -204,11 +176,8 @@ InputEventFetcher>>installEventLoop [
 	fetcherProcess name: 'Input Event Fetcher Process'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher>>primGetNextEvent: array [
+{ #category : #private }
+InputEventFetcher >> primGetNextEvent: array [
 	"Store the next OS event available into the provided array.
 	Essential."
 	<primitive: 94>
@@ -217,11 +186,8 @@ InputEventFetcher>>primGetNextEvent: array [
 	
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher>>primInterruptSemaphore: aSemaphore  [
+{ #category : #'private events' }
+InputEventFetcher >> primInterruptSemaphore: aSemaphore [ 
 	"Primitive. Install the argument as the semaphore to be signalled whenever the user presses the interrupt key. The semaphore will be signaled once each time the interrupt key is pressed."
 
 	<primitive: 134>
@@ -229,38 +195,26 @@ InputEventFetcher>>primInterruptSemaphore: aSemaphore  [
 "Note: This primitive was marked obsolete but is still used and actually quite useful. It could bre replace with a check in the event loop though, without a need for the now obsolete event tickler as event fetching isn't bound to the Morphic loop."
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher>>primSetInputSemaphore: semaIndex [
+{ #category : #'private events' }
+InputEventFetcher >> primSetInputSemaphore: semaIndex [
 	"Set the input semaphore the VM should use for asynchronously signaling the availability of events. Primitive. Optional."
 	<primitive: 93>
 	^nil
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher>>registerHandler: handler [
+{ #category : #handlers }
+InputEventFetcher >> registerHandler: handler [
 	self eventHandlers add: handler
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher>>shutDown [
+{ #category : #initialize-release }
+InputEventFetcher >> shutDown [
 	self terminateEventLoop.
 	inputSemaphore ifNotNil: [Smalltalk unregisterExternalObject: inputSemaphore]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher>>signalEvent: eventBuffer [
+{ #category : #events }
+InputEventFetcher >> signalEvent: eventBuffer [
 	"Signal the event buffer to all registered event handlers.
 	Handlers need make sure to copy the buffer or extract the data otherwise, as the buffer will be reused."
 
@@ -268,22 +222,16 @@ InputEventFetcher>>signalEvent: eventBuffer [
 		handler handleEvent: eventBuffer]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher>>startUp [
+{ #category : #initialize-release }
+InputEventFetcher >> startUp [
 	inputSemaphore := Semaphore new.
 	self primSetInputSemaphore: (Smalltalk registerExternalObject: inputSemaphore).
 	inputSemaphore consumeAllSignals.
 	self installEventLoop
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher>>terminateEventLoop [
+{ #category : #initialize-release }
+InputEventFetcher >> terminateEventLoop [
 	"Terminate the event loop process. Terminate the old process if any."
 	"InputEventFetcher default terminateEventLoop"
 
@@ -292,18 +240,12 @@ InputEventFetcher>>terminateEventLoop [
 		fetcherProcess := nil	]
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher>>unregisterHandler: handler [
+{ #category : #handlers }
+InputEventFetcher >> unregisterHandler: handler [
 	self eventHandlers remove: handler ifAbsent: []
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventFetcher>>waitForInput [
+{ #category : #events }
+InputEventFetcher >> waitForInput [
 	inputSemaphore wait.
 ]

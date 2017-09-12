@@ -5,15 +5,11 @@ I do the same as my parent but for this specific algorithm
 Class {
 	#name : #NOCContext,
 	#superclass : #NECContext,
-	#category : #NECompletion-OCompletion,
-	#timestamp : '<historical>'
+	#category : #NECompletion-OCompletion
 }
 
-{
-	#category : #'model creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCContext>>createModel [
+{ #category : #'model creation' }
+NOCContext >> createModel [
 	| aModel |
 	
 	aModel := NOCModel
@@ -28,11 +24,8 @@ NOCContext>>createModel [
 	^ aModel 
 ]
 
-{
-	#category : #'model creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCContext>>nextModel  [
+{ #category : #'model creation' }
+NOCContext >> nextModel [ 
 	"Provide a next lookup model. 
 	 It is defining a chain of responsibility, translating the model to eCompletion, to ensure having results"
 	^ super createModel

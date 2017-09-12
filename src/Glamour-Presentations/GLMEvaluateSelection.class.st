@@ -8,47 +8,31 @@ Class {
 		'action',
 		'isSyncronous'
 	],
-	#category : #Glamour-Presentations-Announcements,
-	#timestamp : 'AndreiChis 5/6/2014 17:55'
+	#category : #Glamour-Presentations-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMEvaluateSelection>>action [
+{ #category : #accessing }
+GLMEvaluateSelection >> action [
 	^ action
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMEvaluateSelection>>action: anObject [
+{ #category : #accessing }
+GLMEvaluateSelection >> action: anObject [
 	action := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMEvaluateSelection>>initialize [
+{ #category : #accessing }
+GLMEvaluateSelection >> initialize [
 	super initialize.
 	isSyncronous := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMEvaluateSelection>>isSyncronous [
+{ #category : #accessing }
+GLMEvaluateSelection >> isSyncronous [
 	^ isSyncronous
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMEvaluateSelection>>makeSyncronous [
+{ #category : #accessing }
+GLMEvaluateSelection >> makeSyncronous [
 	isSyncronous := true
 ]

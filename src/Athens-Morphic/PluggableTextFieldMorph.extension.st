@@ -1,12 +1,7 @@
-Extension {
-	#name : #PluggableTextFieldMorph
-}
+Extension { #name : #PluggableTextFieldMorph }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PluggableTextFieldMorph>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+PluggableTextFieldMorph >> drawOnAthensCanvas: anAthensCanvas [
 	"Eventually draw the helpText"
 	super drawOnAthensCanvas: anAthensCanvas.
 	self ghostText

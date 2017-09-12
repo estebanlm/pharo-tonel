@@ -8,60 +8,41 @@ selected
 Class {
 	#name : #TickSelectionListNode,
 	#superclass : #MorphTreeNodeModel,
-	#category : #Morphic-Widgets-TickList,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-TickList
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionListNode>>name [
+{ #category : #private }
+TickSelectionListNode >> name [
 
 	^ self item itemName asString
 ]
 
-{
-	#category : #morph,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionListNode>>nameMorph [
+{ #category : #morph }
+TickSelectionListNode >> nameMorph [
 
 	^ LabelMorph new contents: self name; enabled: false; hResizing: #spaceFill;yourself
 ]
 
-{
-	#category : #event,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionListNode>>pressed: anIndex [
+{ #category : #event }
+TickSelectionListNode >> pressed: anIndex [
 
 	self model pressed: anIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionListNode>>selected [
+{ #category : #accessing }
+TickSelectionListNode >> selected [
 
 	^ self item selected
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionListNode>>selected: aBoolean [
+{ #category : #accessing }
+TickSelectionListNode >> selected: aBoolean [
 
 	self item selected: aBoolean
 ]
 
-{
-	#category : #morph,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionListNode>>selectedMorph [
+{ #category : #morph }
+TickSelectionListNode >> selectedMorph [
 	^ (TickSelectionCheckboxMorph basicNew index: (self model rootItems indexOf: self item);
 		initialize;	
 		model: self item;
@@ -76,11 +57,8 @@ TickSelectionListNode>>selectedMorph [
 		setBalloonText: nil) color: Color transparent; yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionListNode>>toogleSelectionValue [
+{ #category : #private }
+TickSelectionListNode >> toogleSelectionValue [
 	
 	self item toogleSelectionValue
 ]

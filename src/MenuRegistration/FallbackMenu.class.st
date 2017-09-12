@@ -13,15 +13,11 @@ Class {
 		'builder',
 		'client'
 	],
-	#category : #MenuRegistration-Core,
-	#timestamp : '<historical>'
+	#category : #MenuRegistration-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FallbackMenu class>>when: aPragmaMenuBuilder fails: anObject [
+{ #category : #'instance creation' }
+FallbackMenu class >> when: aPragmaMenuBuilder fails: anObject [
 	
 	^ self new
 			builder: aPragmaMenuBuilder;
@@ -29,39 +25,27 @@ FallbackMenu class>>when: aPragmaMenuBuilder fails: anObject [
 			menu.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FallbackMenu>>builder: aPragmaMenuBuilder [
+{ #category : #private }
+FallbackMenu >> builder: aPragmaMenuBuilder [
 
 	builder := aPragmaMenuBuilder.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FallbackMenu>>client: anObject [
+{ #category : #private }
+FallbackMenu >> client: anObject [
 
 	client := anObject.
 ]
 
-{
-	#category : #'menu actions',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FallbackMenu>>debug [
+{ #category : #'menu actions' }
+FallbackMenu >> debug [
 
 	"If we don't reset the builder after debugging, the fallback menu does not appear anymore"
 	[ builder menuSpec asMenuMorph ] ensure: [ builder reset ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FallbackMenu>>fallbackMenuExplanations [
+{ #category : #private }
+FallbackMenu >> fallbackMenuExplanations [
 
 	| workspace wsBindings |
 	wsBindings := Dictionary newFrom: { #menu-> self }.
@@ -74,11 +58,8 @@ menu debug'.
 		setBindings: wsBindings.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FallbackMenu>>menu [
+{ #category : #private }
+FallbackMenu >> menu [
 	"Build the menu that is put up if something is going wrong with the menubuilder"
 
 	| menu |

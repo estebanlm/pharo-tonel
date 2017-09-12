@@ -20,44 +20,31 @@ Class {
 		'checkBrick',
 		'id'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-Basic,
-	#timestamp : 'AliakseiSyrel 3/18/2015 17:11'
+	#category : #Glamour-Morphic-Brick-Widgets-Basic
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick class>>exampleOpen [
+{ #category : #examples }
+GLMCheckboxBrick class >> exampleOpen [
 
 	self gtExample openCenteredInBrickWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick class>>exampleWithLabelOpen [
+{ #category : #examples }
+GLMCheckboxBrick class >> exampleWithLabelOpen [
 
 	self gtExampleWithLabel openCenteredInBrickWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick class>>gtExample [
+{ #category : #examples }
+GLMCheckboxBrick class >> gtExample [
 	<gtExample>
 	<label: 'Checkbox without label'>
 	
 	^ self new
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick class>>gtExampleWithLabel [
+{ #category : #examples }
+GLMCheckboxBrick class >> gtExampleWithLabel [
 	<gtExample>
 	<label: 'Checkbox with label'>
 	
@@ -67,11 +54,8 @@ GLMCheckboxBrick class>>gtExampleWithLabel [
 		yourself
 ]
 
-{
-	#category : #checkbox-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>action: aBlockClosure  [
+{ #category : #checkbox-accessing }
+GLMCheckboxBrick >> action: aBlockClosure [ 
 	"aBlockClosure can receive as the first argument aBoolean, as the second argument this object."
 	self 
 		when: #onChecked 
@@ -82,39 +66,27 @@ GLMCheckboxBrick>>action: aBlockClosure  [
 					aBlockClosure cull: false cull: self cull: anAnnouncement cull: anAnnouncer ]
 ]
 
-{
-	#category : #brick-structure-converting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>asFormValue [
+{ #category : #brick-structure-converting }
+GLMCheckboxBrick >> asFormValue [
 
 	^ self id -> self isChecked
 ]
 
-{
-	#category : #checkbox-brick-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>box [
+{ #category : #checkbox-brick-accessing }
+GLMCheckboxBrick >> box [
 
 	^ checkBrick
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>check [
+{ #category : #brick-interactable-actions }
+GLMCheckboxBrick >> check [
 	self box check.
 	self label check.
 	super check
 ]
 
-{
-	#category : #checkbox-brick-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>checkBrick: anObject [
+{ #category : #checkbox-brick-accessing }
+GLMCheckboxBrick >> checkBrick: anObject [
 	checkBrick := anObject.
 	self box
 		borderColor: self themer checkboxBorderColor;
@@ -127,69 +99,48 @@ GLMCheckboxBrick>>checkBrick: anObject [
 	self addBrickFirst: self box
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>click: evt [
+{ #category : #brick-interactable-actions }
+GLMCheckboxBrick >> click: evt [
 
 	self toggle.
 	^ true
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>deselect: anEvent [
+{ #category : #brick-interactable-actions }
+GLMCheckboxBrick >> deselect: anEvent [
 	super deselect: anEvent.
 	self box deselect: anEvent.
 	self label deselect: anEvent
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>hShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMCheckboxBrick >> hShrinkWrap [
 	super hShrinkWrap.
 	
 	self label hShrinkWrap
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>hSpaceFill: anInteger [
+{ #category : #brick-layout-properties }
+GLMCheckboxBrick >> hSpaceFill: anInteger [
 	super hSpaceFill: anInteger.
 	
 	self label hSpaceFill
 ]
 
-{
-	#category : #checkbox-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>id [
+{ #category : #checkbox-accessing }
+GLMCheckboxBrick >> id [
 
 	^ id ifNil: [ self ]
 ]
 
-{
-	#category : #checkbox-scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>id: anObejct [
+{ #category : #checkbox-scripting }
+GLMCheckboxBrick >> id: anObejct [
 
 	id := anObejct
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>initialize [
+{ #category : #initialization }
+GLMCheckboxBrick >> initialize [
 	super initialize.
 	
 	self
@@ -201,20 +152,14 @@ GLMCheckboxBrick>>initialize [
 		enable
 ]
 
-{
-	#category : #checkbox-brick-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>label [
+{ #category : #checkbox-brick-accessing }
+GLMCheckboxBrick >> label [
 
 	^ labelBrick
 ]
 
-{
-	#category : #checkbox-brick-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>labelBrick: anObject [
+{ #category : #checkbox-brick-accessing }
+GLMCheckboxBrick >> labelBrick: anObject [
 	labelBrick := anObject.
 	
 	labelBrick
@@ -223,39 +168,27 @@ GLMCheckboxBrick>>labelBrick: anObject [
 		textPosition: #leftCenter.
 ]
 
-{
-	#category : #checkbox-brick-creation,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>newCheckboxBrick [
+{ #category : #checkbox-brick-creation }
+GLMCheckboxBrick >> newCheckboxBrick [
 
 	^ GLMInteractableBrick new
 ]
 
-{
-	#category : #checkbox-brick-creation,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>newLabelBrick [
+{ #category : #checkbox-brick-creation }
+GLMCheckboxBrick >> newLabelBrick [
 
 	^ GLMLabelBrick new
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>select: anEvent [
+{ #category : #brick-interactable-actions }
+GLMCheckboxBrick >> select: anEvent [
 	super select: anEvent.
 	self box select: anEvent.
 	self label select: anEvent
 ]
 
-{
-	#category : #checkbox-scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>text: aString [
+{ #category : #checkbox-scripting }
+GLMCheckboxBrick >> text: aString [
 
 	self label text: aString.
 	self label text isEmpty
@@ -265,42 +198,30 @@ GLMCheckboxBrick>>text: aString [
 	self doLayoutForce
 ]
 
-{
-	#category : #checkbox-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>toggle [
+{ #category : #checkbox-actions }
+GLMCheckboxBrick >> toggle [
 
 	self isChecked
 		ifTrue: [ self uncheck ]
 		ifFalse: [ self check ]
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>uncheck [
+{ #category : #brick-interactable-actions }
+GLMCheckboxBrick >> uncheck [
 	self box uncheck.
 	self label uncheck.
 	super uncheck
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>vShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMCheckboxBrick >> vShrinkWrap [
 	super vShrinkWrap.
 	
 	self label vShrinkWrap
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCheckboxBrick>>vSpaceFill: anInteger [
+{ #category : #brick-layout-properties }
+GLMCheckboxBrick >> vSpaceFill: anInteger [
 	super vSpaceFill: anInteger.
 	
 	self label vSpaceFill.

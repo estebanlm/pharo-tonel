@@ -13,44 +13,31 @@ Class {
 		'Instance',
 		'UseArrowsShortcuts'
 	],
-	#category : #NodeNavigation-Core,
-	#timestamp : '<historical>'
+	#category : #NodeNavigation-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavNavigation class>>new [
+{ #category : #'instance creation' }
+NNavNavigation class >> new [
 	"yes I'm a singleton"
 	Instance ifNil: [Instance := super new].
 	^Instance. 
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavNavigation class>>useArrowsShortcuts [
+{ #category : #configuration }
+NNavNavigation class >> useArrowsShortcuts [
 	^UseArrowsShortcuts ifNil: [ false ]
 
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavNavigation class>>useArrowsShortcuts: enable [
+{ #category : #configuration }
+NNavNavigation class >> useArrowsShortcuts: enable [
 	UseArrowsShortcuts := enable.
 	KMRepository reset.
 
 ]
 
-{
-	#category : #current-context,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavNavigation>>bestNodeForSelection [
+{ #category : #current-context }
+NNavNavigation >> bestNodeForSelection [
 	| root |
 	
 	currentEditor isWorkspace 
@@ -59,27 +46,18 @@ NNavNavigation>>bestNodeForSelection [
 	^ root bestNodeFor: self textSelection .	
 ]
 
-{
-	#category : #current-context,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavNavigation>>currentText [
+{ #category : #current-context }
+NNavNavigation >> currentText [
 	^ self textArea text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavNavigation>>lastSelection [
+{ #category : #accessing }
+NNavNavigation >> lastSelection [
 	^ lastSelection
 ]
 
-{
-	#category : #navigation,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavNavigation>>navigate: editor direction: direction [
+{ #category : #navigation }
+NNavNavigation >> navigate: editor direction: direction [
 	| newSelection |
 
 	currentEditor  := editor.
@@ -91,27 +69,18 @@ NNavNavigation>>navigate: editor direction: direction [
 
 ]
 
-{
-	#category : #current-context,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavNavigation>>textArea [
+{ #category : #current-context }
+NNavNavigation >> textArea [
 	^ currentEditor sourceTextArea 
 ]
 
-{
-	#category : #current-context,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavNavigation>>textSelection  [
+{ #category : #current-context }
+NNavNavigation >> textSelection [ 
 	^ self textArea selectionInterval
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavNavigation>>updateState: newSelection [
+{ #category : #private }
+NNavNavigation >> updateState: newSelection [
 
 	newSelection = currentSelection ifFalse: [ lastSelection := currentSelection].
 	currentSelection := newSelection.

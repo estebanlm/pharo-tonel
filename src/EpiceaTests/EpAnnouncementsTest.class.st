@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #EpAnnouncementsTest,
 	#superclass : #EpMonitorIntegrationTest,
-	#category : #EpiceaTests-Integration,
-	#timestamp : ''
+	#category : #EpiceaTests-Integration
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpAnnouncementsTest>>assertMonitorAnnouncesUpdateWhen: aBlock [
+{ #category : #tests }
+EpAnnouncementsTest >> assertMonitorAnnouncesUpdateWhen: aBlock [
 
 	| wasAnnounced |
 	wasAnnounced := false.
@@ -28,41 +21,29 @@ EpAnnouncementsTest>>assertMonitorAnnouncesUpdateWhen: aBlock [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpAnnouncementsTest>>testMonitorAnnouncesUpdateWhenDisabled [
+{ #category : #tests }
+EpAnnouncementsTest >> testMonitorAnnouncesUpdateWhenDisabled [
 
 	self assertMonitorAnnouncesUpdateWhen: [ monitor disable ].
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpAnnouncementsTest>>testMonitorAnnouncesUpdateWhenEnabled [
+{ #category : #tests }
+EpAnnouncementsTest >> testMonitorAnnouncesUpdateWhenEnabled [
 
 	self assertMonitorAnnouncesUpdateWhen: [ monitor enable ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpAnnouncementsTest>>testMonitorAnnouncesUpdateWhenRedundantlyDisabled [
+{ #category : #tests }
+EpAnnouncementsTest >> testMonitorAnnouncesUpdateWhenRedundantlyDisabled [
 
 	monitor disable.
 	self assertMonitorAnnouncesUpdateWhen: [ monitor disable ].
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpAnnouncementsTest>>testMonitorAnnouncesUpdateWhenRedundantlyEnabled [
+{ #category : #tests }
+EpAnnouncementsTest >> testMonitorAnnouncesUpdateWhenRedundantlyEnabled [
 
 	monitor enable.
 	self assertMonitorAnnouncesUpdateWhen: [ monitor enable ].

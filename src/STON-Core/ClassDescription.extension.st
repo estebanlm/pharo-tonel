@@ -1,11 +1,6 @@
-Extension {
-	#name : #ClassDescription
-}
+Extension { #name : #ClassDescription }
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-ClassDescription>>stonContainSubObjects [
+{ #category : #'*ston-core' }
+ClassDescription >> stonContainSubObjects [
 	^ false
 ]

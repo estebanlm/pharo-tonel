@@ -4,25 +4,18 @@ Command to add a configuration in Versionner
 Class {
 	#name : #MBAddConfigurationCommand,
 	#superclass : #MBDevCycleCommands,
-	#category : #Versionner-Core-Commands,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:09'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAddConfigurationCommand>>askForClassName [
+{ #category : #execute }
+MBAddConfigurationCommand >> askForClassName [
 	^ self uiManager
 		request: 'Name of the new Metacello configuration (e.g., ConfigurationOfYourSoftware)' translated
 		initialAnswer: 'ConfigurationOf'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAddConfigurationCommand>>collectPackages: addedPackages andProjects: addedConfigurations pattern: patternString repository: repository [
+{ #category : #private }
+MBAddConfigurationCommand >> collectPackages: addedPackages andProjects: addedConfigurations pattern: patternString repository: repository [
 	| packagePattern package |
 	packagePattern := self  uiManager
 		request: 'Please enter a pattern to filter package names that will be candidates to add to configuration'
@@ -62,19 +55,13 @@ MBAddConfigurationCommand>>collectPackages: addedPackages andProjects: addedConf
 		ifTrue: [ self uiManager inform: 'No package or configuration added. No baseline has been created' ]
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAddConfigurationCommand>>documentation [
+{ #category : #documentation }
+MBAddConfigurationCommand >> documentation [
 	^ 'Create a new configuration. Prompt for packages and dependent projects. Create a baseline version and an initial development version'
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAddConfigurationCommand>>execute [
+{ #category : #execute }
+MBAddConfigurationCommand >> execute [
 	| configurationClassName versionNumber addedPackages addedConfigurations repository projectName mcPackage workingCopy configInfo|
 	configurationClassName := self askForClassName.
 	configurationClassName ifNil: [ ^ self ].
@@ -116,11 +103,8 @@ MBAddConfigurationCommand>>execute [
 	
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAddConfigurationCommand>>executeAddBaselineForConfigurationNamed: aConfigurationClassName repositoryDescription: repositoryDescription versionString: versionString packages: packageNames configurations: configurationNames [
+{ #category : #execute }
+MBAddConfigurationCommand >> executeAddBaselineForConfigurationNamed: aConfigurationClassName repositoryDescription: repositoryDescription versionString: versionString packages: packageNames configurations: configurationNames [
 	| baselineVersionString |
 	baselineVersionString := versionString , '-baseline'.
 	MetacelloToolBox
@@ -138,11 +122,8 @@ MBAddConfigurationCommand>>executeAddBaselineForConfigurationNamed: aConfigurati
 			description: ''
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAddConfigurationCommand>>executeAddBaselineForConfigurationNamed: aConfigurationClassName repositoryDescription: repositoryDescription versionString: versionString packages: packageNames configurations: configurationNames repositories: repositories [
+{ #category : #execute }
+MBAddConfigurationCommand >> executeAddBaselineForConfigurationNamed: aConfigurationClassName repositoryDescription: repositoryDescription versionString: versionString packages: packageNames configurations: configurationNames repositories: repositories [
 	| baselineVersionString |
 	baselineVersionString := versionString , '-baseline'.
 	MetacelloToolBox
@@ -160,20 +141,14 @@ MBAddConfigurationCommand>>executeAddBaselineForConfigurationNamed: aConfigurati
 			description: ''
 ]
 
-{
-	#category : #ordering,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAddConfigurationCommand>>order [
+{ #category : #ordering }
+MBAddConfigurationCommand >> order [
 
 	^'20'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAddConfigurationCommand>>repositoryFor: projectName [
+{ #category : #private }
+MBAddConfigurationCommand >> repositoryFor: projectName [
 	| repositories repository |
 	repositories := self repositories
 		select: [ :repo | (repo description beginsWith: 'http:') and: [ repo description endsWith: projectName ] ].
@@ -190,18 +165,12 @@ MBAddConfigurationCommand>>repositoryFor: projectName [
 	^ repository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAddConfigurationCommand>>title [
+{ #category : #accessing }
+MBAddConfigurationCommand >> title [
 	^ 'add configuration'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAddConfigurationCommand>>workingCopies [
+{ #category : #private }
+MBAddConfigurationCommand >> workingCopies [
 	^ MCWorkingCopy allManagers asSortedCollection: [ :a :b | a name <= b name]
 ]

@@ -12,102 +12,71 @@ Class {
 	#instVars : [
 		'packages'
 	],
-	#category : #Refactoring-Environment,
-	#timestamp : 'ChristopheDemarey 9/23/2015 10:55'
+	#category : #Refactoring-Environment
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment class>>onEnvironment: anEnvironment packageNames: aCollection [
+{ #category : #'instance creation' }
+RBPackageEnvironment class >> onEnvironment: anEnvironment packageNames: aCollection [
 	^ self 
 		onEnvironment: anEnvironment
 		packages: (aCollection collect: [ :each | 
 			RPackageOrganizer default packageNamed: each ])
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment class>>onEnvironment: anEnvironment packages: aCollection [
+{ #category : #'instance creation' }
+RBPackageEnvironment class >> onEnvironment: anEnvironment packages: aCollection [
 	^ (self onEnvironment: anEnvironment)
 		packages: aCollection;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment class>>package: aPackage [
+{ #category : #'instance creation' }
+RBPackageEnvironment class >> package: aPackage [
 	^ self packages: { aPackage }
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment class>>packageName: aName [
+{ #category : #'instance creation' }
+RBPackageEnvironment class >> packageName: aName [
 	^ self packageNames: { aName }
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment class>>packageNames: aCollection [
+{ #category : #'instance creation' }
+RBPackageEnvironment class >> packageNames: aCollection [
 	^ self 
 		onEnvironment: self default
 		packageNames: aCollection
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment class>>packages: aCollection [
+{ #category : #'instance creation' }
+RBPackageEnvironment class >> packages: aCollection [
 	^ self 
 		onEnvironment: self default
 		packages: aCollection
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment>>addPackage: aSymbol [
+{ #category : #adding }
+RBPackageEnvironment >> addPackage: aSymbol [
 	packages add: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment>>asSelectorEnvironment [
+{ #category : #accessing }
+RBPackageEnvironment >> asSelectorEnvironment [
 	| result |
 	result := RBSelectorEnvironment onEnvironment: environment.
 	self classesAndSelectorsDo: [ :class :selector | result addClass: class selector: selector ].
 	^ result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment>>classesAndSelectorsDo: aBlock [
+{ #category : #accessing }
+RBPackageEnvironment >> classesAndSelectorsDo: aBlock [
 	packages do: [ :package |
 		package methods do: [ :method |
 			(environment includesSelector: method selector in: method methodClass)
 				ifTrue: [ aBlock value: method methodClass value: method selector ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment>>classesDo: aBlock [
+{ #category : #accessing }
+RBPackageEnvironment >> classesDo: aBlock [
 	| enumerated enumerator |
 	enumerated := IdentitySet new.
 	enumerator := [ :each |
@@ -122,108 +91,72 @@ RBPackageEnvironment>>classesDo: aBlock [
 		package extensionClasses do: enumerator ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment>>definesClass: aClass [
+{ #category : #testing }
+RBPackageEnvironment >> definesClass: aClass [
 	^ (super definesClass: aClass) and: [ self packages anySatisfy: [ :package | package includesClass: aClass ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment>>includesCategory: aCategory [
+{ #category : #testing }
+RBPackageEnvironment >> includesCategory: aCategory [
 	^ (super includesCategory: aCategory) and: [ 
 		self packages anySatisfy: [ :package | 
 			package includesSystemCategory: aCategory ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment>>includesClass: aClass [
+{ #category : #testing }
+RBPackageEnvironment >> includesClass: aClass [
 	^ (super includesClass: aClass) and: [ 
 		self packages anySatisfy: [ :package | 
 			(package includesClass: aClass) or: [ 
 			(package extensionCategoriesForClass: aClass) notEmpty ]]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment>>includesProtocol: aProtocol in: aClass [
+{ #category : #testing }
+RBPackageEnvironment >> includesProtocol: aProtocol [ in: aClass
 	^ (environment includesProtocol: aProtocol in: aClass) and: [ self packages anySatisfy: [ :package | package includesMethodCategory: aProtocol ofClass: aClass ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment>>includesSelector: aSelector in: aClass [
+{ #category : #testing }
+RBPackageEnvironment >> includesSelector: aSelector [ in: aClass
 	^ (environment includesSelector: aSelector in: aClass) 
 		and: [ self packages anySatisfy: [ :package | 
 				package includesSelector: aSelector ofClass: aClass ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment>>initialize [
+{ #category : #initialization }
+RBPackageEnvironment >> initialize [
 	super initialize.
 	packages := Set new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment>>packageNames [
+{ #category : #accessing }
+RBPackageEnvironment >> packageNames [
 	^ packages collect: [ :each | each packageName ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment>>packages [
+{ #category : #accessing }
+RBPackageEnvironment >> packages [
 	^ packages
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment>>packages: aCollection [
+{ #category : #initialize-release }
+RBPackageEnvironment >> packages: aCollection [
 	packages addAll: aCollection
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment>>postCopy [
+{ #category : #copying }
+RBPackageEnvironment >> postCopy [
 	super postCopy.
 	packages := packages copy
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment>>printOn: aStream  [
+{ #category : #printing }
+RBPackageEnvironment >> printOn: aStream [ 
 	self storeOn: aStream
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPackageEnvironment>>storeOn: aStream  [
+{ #category : #printing }
+RBPackageEnvironment >> storeOn: aStream [ 
 	aStream nextPut: $(; nextPutAll: self class name; nextPutAll: ' onEnvironment: '.
 	environment storeOn: aStream.
 	aStream nextPutAll: ' packageNames: '.

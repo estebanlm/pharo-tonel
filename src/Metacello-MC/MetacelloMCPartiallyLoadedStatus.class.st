@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloMCPartiallyLoadedStatus,
 	#superclass : #Object,
@@ -20,191 +17,121 @@ Class {
 		'vrsnStatus',
 		'abort'
 	],
-	#category : #Metacello-MC-Specs,
-	#timestamp : ''
+	#category : #Metacello-MC-Specs
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus class>>new [
+{ #category : #'instance creation' }
+MetacelloMCPartiallyLoadedStatus class >> new [
 	^ self basicNew initialize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aLoadedPackageIsCurrent [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aLoadedPackageIsCurrent [
 	^ aLoadedPackageIsCurrent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aLoadedPackageIsCurrent: aBoolean [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aLoadedPackageIsCurrent: aBoolean [
 	aLoadedPackageIsCurrent := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aLoadedPackageIsExact [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aLoadedPackageIsExact [
 	^ aLoadedPackageIsExact
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aLoadedPackageIsExact: aBoolean [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aLoadedPackageIsExact: aBoolean [
 	aLoadedPackageIsExact := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aLoadedPackageIsNotCurrent [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aLoadedPackageIsNotCurrent [
 	^ aLoadedPackageIsNotCurrent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aLoadedPackageIsNotCurrent: aBoolean [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aLoadedPackageIsNotCurrent: aBoolean [
 	aLoadedPackageIsNotCurrent := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aLoadedProjectIsCurrent: aBoolean [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aLoadedProjectIsCurrent: aBoolean [
 	aLoadedProjectIsCurrent := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aLoadedProjectIsExact [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aLoadedProjectIsExact [
 	^ aLoadedProjectIsExact
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aLoadedProjectIsExact: aBoolean [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aLoadedProjectIsExact: aBoolean [
 	aLoadedProjectIsExact := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aLoadedProjectIsNotCurrent [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aLoadedProjectIsNotCurrent [
 	^ aLoadedProjectIsNotCurrent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aLoadedProjectIsNotCurrent: aBoolean [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aLoadedProjectIsNotCurrent: aBoolean [
 	aLoadedProjectIsNotCurrent := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aPackageIsLoaded [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aPackageIsLoaded [
 	^aPackageIsLoaded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aPackageIsLoaded: aBoolean [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aPackageIsLoaded: aBoolean [
 	aPackageIsLoaded := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aPackageNotLoaded [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aPackageNotLoaded [
 	^aPackageNotLoaded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aPackageNotLoaded: aBoolean [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aPackageNotLoaded: aBoolean [
 	aPackageNotLoaded := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aProjectIsLoaded [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aProjectIsLoaded [
 	^aProjectIsLoaded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aProjectIsLoaded: aBoolean [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aProjectIsLoaded: aBoolean [
 	aProjectIsLoaded := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aProjectNotLoaded [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aProjectNotLoaded [
 	^aProjectNotLoaded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>aProjectNotLoaded: aBoolean [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> aProjectNotLoaded: aBoolean [
 	aProjectNotLoaded := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>abort [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> abort [
 	^ abort
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>abort: aBoolean [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> abort: aBoolean [
 	abort := aBoolean
 ]
 
-{
-	#category : #evaulation,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>evaluateStatus: validStatusList [
+{ #category : #evaulation }
+MetacelloMCPartiallyLoadedStatus >> evaluateStatus: validStatusList [
 	^self abort
 		ifTrue: [ false ]
 		ifFalse: [ 
@@ -220,43 +147,28 @@ MetacelloMCPartiallyLoadedStatus>>evaluateStatus: validStatusList [
 					valid ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>hasNoPackage [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> hasNoPackage [
 	^ hasNoPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>hasNoPackage: aBoolean [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> hasNoPackage: aBoolean [
 	hasNoPackage := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>hasNoProject [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> hasNoProject [
 	^ hasNoProject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>hasNoProject: aBoolean [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> hasNoProject: aBoolean [
 	hasNoProject := aBoolean
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>initialize [
+{ #category : #initialization }
+MetacelloMCPartiallyLoadedStatus >> initialize [
 	super initialize.
 	hasNoPackage := hasNoProject := true.
 	aProjectIsLoaded := aPackageIsLoaded := false.
@@ -268,11 +180,8 @@ MetacelloMCPartiallyLoadedStatus>>initialize [
 	abort := false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>isAllLoadedToSpec: matchBlock [
+{ #category : #testing }
+MetacelloMCPartiallyLoadedStatus >> isAllLoadedToSpec: matchBlock [
         "all projects and packages are loaded and match specification"
 
 	(self evaluateStatus: #(#allLoadedToSpec))
@@ -289,11 +198,8 @@ MetacelloMCPartiallyLoadedStatus>>isAllLoadedToSpec: matchBlock [
 				ifTrue: [ matchBlock value: #allLoadedToSpec ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>isLoadedMatchConstraints: matchBlock [
+{ #category : #testing }
+MetacelloMCPartiallyLoadedStatus >> isLoadedMatchConstraints: matchBlock [
 	"all loaded projects and packages match constraints (at least one package loaded)"
 
 	| matchStatus |
@@ -315,11 +221,8 @@ MetacelloMCPartiallyLoadedStatus>>isLoadedMatchConstraints: matchBlock [
 								ifTrue: [ matchBlock value: matchStatus ] ] ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>isLoadedToSpec: matchBlock [
+{ #category : #testing }
+MetacelloMCPartiallyLoadedStatus >> isLoadedToSpec: matchBlock [
 	"all loaded projects and packages match specifications (at least one package loaded)"
 
 	| matchStatus |
@@ -341,11 +244,8 @@ MetacelloMCPartiallyLoadedStatus>>isLoadedToSpec: matchBlock [
 								ifTrue: [ matchBlock value: matchStatus ] ] ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>isSomethingLoaded: somethingLoadedBlock [
+{ #category : #testing }
+MetacelloMCPartiallyLoadedStatus >> isSomethingLoaded: somethingLoadedBlock [
 	"at least one package loaded"
 
 	(self evaluateStatus: #(#allLoadedToSpec #loadedToSpec #loadedMatchConstraints #somethingLoaded))
@@ -354,10 +254,7 @@ MetacelloMCPartiallyLoadedStatus>>isSomethingLoaded: somethingLoadedBlock [
 				ifTrue: [ somethingLoadedBlock value: #somethingLoaded ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCPartiallyLoadedStatus>>vrsnStatus [
+{ #category : #accessing }
+MetacelloMCPartiallyLoadedStatus >> vrsnStatus [
 	^vrsnStatus
 ]

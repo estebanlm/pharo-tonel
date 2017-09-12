@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMPopupAction,
 	#superclass : #GLMAction,
-	#category : #Glamour-Core,
-	#timestamp : ''
+	#category : #Glamour-Core
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPopupAction>>popupActOn: aPresentation from: aButton [
+{ #category : #actions }
+GLMPopupAction >> popupActOn: aPresentation from: aButton [
 
 	GLMPopupActionBrick new
 		closer: (GLMPopupBrickCloser predicate: GLMPopupBrickOutisideClickPredicate new);
@@ -23,10 +16,7 @@ GLMPopupAction>>popupActOn: aPresentation from: aButton [
 		beRightToLeftWithOffset: 0
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPopupAction>>renderGlamorouslyOn: aRenderer [
+{ #category : #rendering }
+GLMPopupAction >> renderGlamorouslyOn: aRenderer [
 	^aRenderer renderPopupAction: self
 ]

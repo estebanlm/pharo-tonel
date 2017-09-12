@@ -8,15 +8,11 @@ Note that Adler32 is not a CRC, strictly speaking.
 Class {
 	#name : #Adler32,
 	#superclass : #Checksum,
-	#category : #System-Hashing-Checksums,
-	#timestamp : '<historical>'
+	#category : #System-Hashing-Checksums
 }
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-Adler32 class>>update: adler from: start to: stop in: aCollection [
+{ #category : #primitives }
+Adler32 class >> update: adler from: start to: stop in: aCollection [
 	"Update crc using the Adler32 checksum technique from RFC1950"
 "
         unsigned long s1 = adler & 0xffff;

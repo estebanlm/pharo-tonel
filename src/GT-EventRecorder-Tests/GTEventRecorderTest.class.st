@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTEventRecorderTest,
 	#superclass : #TestCase,
@@ -18,49 +15,33 @@ Class {
 		'event3',
 		'event4'
 	],
-	#category : #GT-EventRecorder-Tests-Core,
-	#timestamp : ''
+	#category : #GT-EventRecorder-Tests-Core
 }
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>assertReceiverSemaphore [
+{ #category : #asserting }
+GTEventRecorderTest >> assertReceiverSemaphore [
 	self deny: (receiverSemaphore waitTimeoutMSecs: 200)
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>assertSemaphore [
+{ #category : #asserting }
+GTEventRecorderTest >> assertSemaphore [
 	self deny: (semaphore waitTimeoutMSecs: 200)
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>denyReceiverSemaphore [
+{ #category : #asserting }
+GTEventRecorderTest >> denyReceiverSemaphore [
 	self assert: (receiverSemaphore waitTimeoutMSecs: 200)
 ]
 
-{
-	#category : #'server handling',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>handleRequest: request response: response [
+{ #category : #'server handling' }
+GTEventRecorderTest >> handleRequest: request response: response [
 	receivedContents nextPut: request contents.
 	receiverSemaphore signal.
 	^ response
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>setUp [
+{ #category : #running }
+GTEventRecorderTest >> setUp [
 	super setUp.
 	self setUpServer.
 	semaphore := Semaphore new.
@@ -77,11 +58,8 @@ GTEventRecorderTest>>setUp [
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>setUpServer [
+{ #category : #running }
+GTEventRecorderTest >> setUpServer [
 	receivedContents := WaitfreeQueue new.
 	receiverSemaphore := Semaphore new.
 	delegate := ZnDispatcherDelegate new.
@@ -92,40 +70,28 @@ GTEventRecorderTest>>setUpServer [
 	server initializeUsingDelegate: delegate semaphore: receiverSemaphore.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>tearDown [
+{ #category : #running }
+GTEventRecorderTest >> tearDown [
 	super tearDown.
 	recorder deactivateDelivery.
 	server stop.
 	server unsubscribeAll.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testAddCollector [
+{ #category : #tests }
+GTEventRecorderTest >> testAddCollector [
 	recorder addCollector: GTEventCollector new.
 	self assert: recorder numberOfCollectors equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testAddCollector2 [
+{ #category : #tests }
+GTEventRecorderTest >> testAddCollector2 [
 	recorder addCollector: GTEventCollector new.
 	self assert: recorder isDeliveryActive.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testAddCollector3 [
+{ #category : #tests }
+GTEventRecorderTest >> testAddCollector3 [
 	recorder addCollector: collector1.
 	collector1 add: event1.
 	collector1 add: event2.
@@ -137,11 +103,8 @@ GTEventRecorderTest>>testAddCollector3 [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testAddCollector4 [
+{ #category : #tests }
+GTEventRecorderTest >> testAddCollector4 [
 	recorder addCollector: collector1.
 	collector1 add: event1.
 	collector1 add: event2.
@@ -151,31 +114,22 @@ GTEventRecorderTest>>testAddCollector4 [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testAddCollector5 [
+{ #category : #tests }
+GTEventRecorderTest >> testAddCollector5 [
 	recorder addCollector: GTEventCollector new.
 	recorder addCollector: GTEventCollector new.
 	self assert: recorder numberOfCollectors equals: 2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testAddCollector6 [
+{ #category : #tests }
+GTEventRecorderTest >> testAddCollector6 [
 	recorder addCollector: collector1.
 	recorder addCollector: collector1.
 	self assert: recorder numberOfCollectors equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testDeliverAllInOneHttpRequest [
+{ #category : #tests }
+GTEventRecorderTest >> testDeliverAllInOneHttpRequest [
 	collector1 category: #category1.
 	collector2 category: #category2.
 	collector1 add: event1; add: event2.
@@ -192,20 +146,14 @@ GTEventRecorderTest>>testDeliverAllInOneHttpRequest [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testDeliverNow [
+{ #category : #tests }
+GTEventRecorderTest >> testDeliverNow [
 	"Just test that we can ask for delivering."
 	recorder deliverNow
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testDeliverNow2 [
+{ #category : #tests }
+GTEventRecorderTest >> testDeliverNow2 [
 	"Ensure that liberated collector is removed."
 	recorder deliveryPreSuspendingAction: [ semaphore signal ].
 	collector1 add: 42.
@@ -217,11 +165,8 @@ GTEventRecorderTest>>testDeliverNow2 [
 	self assert: recorder numberOfCollectors equals: 0.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testDeliverNow3 [
+{ #category : #tests }
+GTEventRecorderTest >> testDeliverNow3 [
 	"Ensure that collector with registerd holder is not removed."
 	recorder deliveryPreSuspendingAction: [ semaphore signal ].
 	collector1 add: 42.
@@ -234,19 +179,13 @@ GTEventRecorderTest>>testDeliverNow3 [
 	self assert: recorder numberOfCollectors equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testIsDeliveryActive [
+{ #category : #tests }
+GTEventRecorderTest >> testIsDeliveryActive [
 	self deny: recorder isDeliveryActive.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testNotDeliveredDataShouldBeResent [
+{ #category : #tests }
+GTEventRecorderTest >> testNotDeliveredDataShouldBeResent [
 	"If the data are not received, we will resent them."
 	collector1 category: #category1.
 	collector1 add: event1; add: event2.
@@ -270,11 +209,8 @@ GTEventRecorderTest>>testNotDeliveredDataShouldBeResent [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testPack [
+{ #category : #tests }
+GTEventRecorderTest >> testPack [
 	"Ensure that delivery pack is prepared and collector empty."
 	recorder addCollector: collector1.
 	collector1 add: event1.
@@ -284,11 +220,8 @@ GTEventRecorderTest>>testPack [
 	self assert: recorder delivery size equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testPack2 [
+{ #category : #tests }
+GTEventRecorderTest >> testPack2 [
 	"Ensure that there is only one delivery pack when collectors are of the same URL and category."
 	recorder addCollector: collector1.
 	collector1 add: event1.
@@ -302,11 +235,8 @@ GTEventRecorderTest>>testPack2 [
 	self assert: recorder delivery size equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testPack3 [
+{ #category : #tests }
+GTEventRecorderTest >> testPack3 [
 	"Ensure that empty collector is not delivered."
 	recorder addCollector: collector1.
 	self assert: collector1 size equals: 0.
@@ -315,11 +245,8 @@ GTEventRecorderTest>>testPack3 [
 	self assert: recorder delivery size equals: 0.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testPrivacyChanged [
+{ #category : #'as yet unclassified' }
+GTEventRecorderTest >> testPrivacyChanged [
 	"Ensure that delivery is turn off when privacy is disabled."
 	self assert: recorder canSendDiagnosticsAndUsageData.
 	self assert: recorder delivery hasPermission.
@@ -332,11 +259,8 @@ GTEventRecorderTest>>testPrivacyChanged [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testPrivacyChanged2 [
+{ #category : #'as yet unclassified' }
+GTEventRecorderTest >> testPrivacyChanged2 [
 	"Ensure that delivery is turn off when privacy is available, but there is no any collector."
 	self testPrivacyChanged.
 	recorder offerPrivacy.
@@ -348,11 +272,8 @@ GTEventRecorderTest>>testPrivacyChanged2 [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testPrivacyChanged3 [
+{ #category : #'as yet unclassified' }
+GTEventRecorderTest >> testPrivacyChanged3 [
 	"Ensure that delivery is turn on when privacy is available and there is a collector."
 	self testPrivacyChanged.
 	recorder addCollector: collector1.
@@ -367,11 +288,8 @@ GTEventRecorderTest>>testPrivacyChanged3 [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testPrivacyChanged4 [
+{ #category : #'as yet unclassified' }
+GTEventRecorderTest >> testPrivacyChanged4 [
 	"Ensure that delivery is turn on when privacy is available and there is a collector."
 	self testPrivacyChanged.
 	recorder offerPrivacy.
@@ -386,31 +304,22 @@ GTEventRecorderTest>>testPrivacyChanged4 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testRemoveCollector [
+{ #category : #tests }
+GTEventRecorderTest >> testRemoveCollector [
 	recorder removeCollector: GTEventCollector new.
 	self assert: recorder numberOfCollectors equals: 0.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testRemoveCollector2 [
+{ #category : #tests }
+GTEventRecorderTest >> testRemoveCollector2 [
 	recorder addCollector: collector1.
 	self assert: recorder isDeliveryActive.
 	recorder removeCollector: collector1.
 	self deny: recorder isDeliveryActive.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>testTwiceDeliveredDataSholdBeDetected [
+{ #category : #tests }
+GTEventRecorderTest >> testTwiceDeliveredDataSholdBeDetected [
 	"It happens regularly that the server receives the same data several times.
 	We need to be sure that we can detect it easily."
 	| bundles data |
@@ -445,11 +354,8 @@ GTEventRecorderTest>>testTwiceDeliveredDataSholdBeDetected [
 	self assert: data first second contents equals: data second second contents.
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTest>>waitForDelivery [
+{ #category : #asserting }
+GTEventRecorderTest >> waitForDelivery [
 	recorder deliverNow.
 	self assertReceiverSemaphore.
 ]

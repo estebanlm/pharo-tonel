@@ -44,15 +44,11 @@ Class {
 		'textPosition',
 		'highlightedString'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-Core,
-	#timestamp : 'AliakseiSyrel 10/17/2014 10:06'
+	#category : #Glamour-Morphic-Brick-Widgets-Core
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick class>>example [
+{ #category : #'as yet unclassified' }
+GLMStringBrick class >> example [
 
 	| brick brick1 brick2 brick3|
 	brick := GLMBrick new
@@ -91,49 +87,34 @@ GLMStringBrick class>>example [
 		openInWindow
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>approximateHeight [
+{ #category : #geometry }
+GLMStringBrick >> approximateHeight [
 
 	^ self font height + self vMargin + self vPadding
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>approximateWidth [
+{ #category : #geometry }
+GLMStringBrick >> approximateWidth [
 
 	^ self textSize x + self hMargin + self hPadding
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>beBold [
+{ #category : #accessing }
+GLMStringBrick >> beBold [
 
 	self font forceBold
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>beRegular [
+{ #category : #accessing }
+GLMStringBrick >> beRegular [
 
 	self font
 		forceNotBold;
 		forceNotItalic
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>calculateHighlightingBounds [
+{ #category : #accessing }
+GLMStringBrick >> calculateHighlightingBounds [
 	|textBounds highlightBounds last|
 	
 	highlightBounds := OrderedCollection new.
@@ -152,11 +133,8 @@ GLMStringBrick>>calculateHighlightingBounds [
 	^ highlightBounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>calculateTextPosition [
+{ #category : #accessing }
+GLMStringBrick >> calculateTextPosition [
 
 	self textPosition = #leftCenter ifTrue: [ 
 		^ (self brickBounds origin + self textPositionVerticalCenter) truncated
@@ -177,11 +155,8 @@ GLMStringBrick>>calculateTextPosition [
 	^ self brickBounds origin
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>customFont [
+{ #category : #private }
+GLMStringBrick >> customFont [
 
 	font := LogicalFont new
 				familyName: self familyName; 
@@ -193,37 +168,25 @@ GLMStringBrick>>customFont [
 				yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>familyName [
+{ #category : #accessing }
+GLMStringBrick >> familyName [
 	^ familyName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>familyName: aString [
+{ #category : #accessing }
+GLMStringBrick >> familyName: aString [
 	familyName := aString.
 	self updateFont.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>font [
+{ #category : #accessing }
+GLMStringBrick >> font [
 
 	^ font
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>font: aFont [
+{ #category : #accessing }
+GLMStringBrick >> font: aFont [
 
 	font := aFont.
 	
@@ -233,57 +196,39 @@ GLMStringBrick>>font: aFont [
 	fontSize := font pointSize.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>fontSize [
+{ #category : #accessing }
+GLMStringBrick >> fontSize [
 	^ fontSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>fontSize: aNumber [
+{ #category : #accessing }
+GLMStringBrick >> fontSize: aNumber [
 	fontSize := aNumber.
 	self updateFont.
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>hShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMStringBrick >> hShrinkWrap [
 	
 	self hResizing: #rigid.
 	self width: #approximateWidth
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>highlight: aString [
+{ #category : #public }
+GLMStringBrick >> highlight: aString [
 
 	highlightedString := aString.
 	self changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>highlightedText [
+{ #category : #accessing }
+GLMStringBrick >> highlightedText [
 	
 	^ highlightedString ifNil: [ highlightedString := '' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>highlightingLogic [
+{ #category : #accessing }
+GLMStringBrick >> highlightingLogic [
 	"[ :aCanvas :aRectangle ]"
 	
 	^ self valueOfProperty: #brickHighlightingLogic ifAbsentPut: [
@@ -293,21 +238,15 @@ GLMStringBrick>>highlightingLogic [
 			aCanvas line: rectangle bottomLeft to: rectangle bottomRight width: 1 color: self textColor ] ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>highlightingLogic: aBlockWithTwoParameters [
+{ #category : #accessing }
+GLMStringBrick >> highlightingLogic: aBlockWithTwoParameters [
 	"[ :aCanvas :aRectangle ]"
 	
 	self setProperty: #brickHighlightingLogic toValue: aBlockWithTwoParameters
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>initialize [
+{ #category : #initialization }
+GLMStringBrick >> initialize [
 	super initialize.
 	
 	fontSize := self themer textFontSize.
@@ -323,22 +262,16 @@ GLMStringBrick>>initialize [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>isFitsInParent [
+{ #category : #testing }
+GLMStringBrick >> isFitsInParent [
 
 	^ self owner
 		ifNil: [ self brickBounds containsRect: (self outerBounds origin extent: self textSize) ]
 		ifNotNil: [ self owner brickBounds width >= self textSize x ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>onDraw: aCanvas [
+{ #category : #drawing }
+GLMStringBrick >> onDraw: aCanvas [
 
 	super onDraw: aCanvas.
 	
@@ -355,11 +288,8 @@ GLMStringBrick>>onDraw: aCanvas [
 		color: self textColor
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>onDrawAthensCanvas: aCanvas [
+{ #category : #drawing }
+GLMStringBrick >> onDrawAthensCanvas: aCanvas [
 	|wrappedCanvas|
 	
 	super onDrawAthensCanvas: aCanvas.
@@ -387,77 +317,53 @@ GLMStringBrick>>onDrawAthensCanvas: aCanvas [
 		color: self textColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>privateSetText: aString [
+{ #category : #private }
+GLMStringBrick >> privateSetText: aString [
 
 	text := aString asString.
 	textSize := nil.
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>sizeOf: aString [
+{ #category : #public }
+GLMStringBrick >> sizeOf: aString [
 
 	^ (self font widthOfString: aString) @ self font height
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>text [
+{ #category : #accessing }
+GLMStringBrick >> text [
 
 	^ text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>text: aString [
+{ #category : #accessing }
+GLMStringBrick >> text: aString [
 
 	self privateSetText: aString.
 	self wrappedBounds markWidthDirty.
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>textColor [
+{ #category : #brick-properties }
+GLMStringBrick >> textColor [
 
 	^ self valueOfProperty: #brickTextColor ifAbsent: [ self themer textColor ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>textColor: aColor [
+{ #category : #brick-properties }
+GLMStringBrick >> textColor: aColor [
 
 	self setProperty: #brickTextColor toValue: aColor.
 	self updateFont.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>textPosition [
+{ #category : #accessing }
+GLMStringBrick >> textPosition [
 
 	^ textPosition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>textPosition: aSymbol [
+{ #category : #accessing }
+GLMStringBrick >> textPosition: aSymbol [
 	"supported:
 	#leftCenter
 	#center
@@ -466,47 +372,32 @@ GLMStringBrick>>textPosition: aSymbol [
 	textPosition := aSymbol.
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>textPositionHorizontalCenter [
+{ #category : #geometry }
+GLMStringBrick >> textPositionHorizontalCenter [
 
 	^ (((self brickBounds width - self textSize x) max: 0) /2)@0
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>textPositionVerticalCenter [
+{ #category : #geometry }
+GLMStringBrick >> textPositionVerticalCenter [
 
 		^ (0@(self brickBounds height / 2.0)) - (0@(self font height/2.0)) truncated
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>textSize [
+{ #category : #accessing }
+GLMStringBrick >> textSize [
 
 	^ textSize ifNil: [ textSize := self sizeOf: self text ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>updateFont [
+{ #category : #private }
+GLMStringBrick >> updateFont [
 	font := LogicalFont familyName: self familyName pointSize: self fontSize
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStringBrick>>vShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMStringBrick >> vShrinkWrap [
 	
 	self vResizing: #rigid.
 	self height: #approximateHeight

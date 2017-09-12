@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloMCVersionSpec,
 	#superclass : #MetacelloVersionSpec,
@@ -8,23 +5,16 @@ Class {
 		'repositories',
 		'packages'
 	],
-	#category : #Metacello-MC-Specs,
-	#timestamp : ''
+	#category : #Metacello-MC-Specs
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>computeVersionStatus: matchBlock [
+{ #category : #accessing }
+MetacelloMCVersionSpec >> computeVersionStatus: matchBlock [
 	self computeVersionStatus: (self expandToLoadableSpecNames: #('ALL')) matchBlock: matchBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>computeVersionStatus: resolvedPackageAndProjectNames matchBlock: matchBlock [
+{ #category : #accessing }
+MetacelloMCVersionSpec >> computeVersionStatus: resolvedPackageAndProjectNames matchBlock: matchBlock [
 	| status |
 	status := resolvedPackageAndProjectNames isNil
 		ifTrue: [ self isPartiallyCurrent ]
@@ -35,11 +25,8 @@ MetacelloMCVersionSpec>>computeVersionStatus: resolvedPackageAndProjectNames mat
 	status isSomethingLoaded: matchBlock
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>configMethodOn: aStream last: last indent: indent [
+{ #category : #printing }
+MetacelloMCVersionSpec >> configMethodOn: aStream last: last indent: indent [
     | spec hasRepositories hasPackageSpecs hasImport |
     hasRepositories := (spec := self repositoriesSpec) ~~ nil and: [ spec list isEmpty not ].
     hasImport := self import ~~ nil.
@@ -87,21 +74,15 @@ MetacelloMCVersionSpec>>configMethodOn: aStream last: last indent: indent [
         ifFalse: [ aStream cr ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>configSpawnMethodOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloMCVersionSpec >> configSpawnMethodOn: aStream indent: indent [
 
 	super configSpawnMethodOn: aStream indent: indent.
 	self configPackagesSpecMethodOn: aStream indent: indent.
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>currentlyLoadedClassesInVersion [
+{ #category : #querying }
+MetacelloMCVersionSpec >> currentlyLoadedClassesInVersion [
   | classes |
   classes := Set new.
   self
@@ -117,11 +98,8 @@ MetacelloMCVersionSpec>>currentlyLoadedClassesInVersion [
   ^ classes
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>currentlyLoadedExtensionClassesInVersion [
+{ #category : #querying }
+MetacelloMCVersionSpec >> currentlyLoadedExtensionClassesInVersion [
   | classes |
   classes := Dictionary new.
   self
@@ -141,11 +119,8 @@ MetacelloMCVersionSpec>>currentlyLoadedExtensionClassesInVersion [
   ^ classes
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>difference: otherVersionSpec [
+{ #category : #querying }
+MetacelloMCVersionSpec >> difference: otherVersionSpec [
     "Return a dictionary of additions, removals and modifications"
 
     | report myProjectSpecs myPackageSpecs otherProjectSpecs otherPackageSpecs |
@@ -221,11 +196,8 @@ MetacelloMCVersionSpec>>difference: otherVersionSpec [
     ^ report
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>forceUpdatedPackageSpecs [
+{ #category : #'development support' }
+MetacelloMCVersionSpec >> forceUpdatedPackageSpecs [
 
 	| updatedSpecs mcLoader |
 	updatedSpecs := Dictionary new.
@@ -234,86 +206,62 @@ MetacelloMCVersionSpec>>forceUpdatedPackageSpecs [
 	^updatedSpecs
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>isAllLoadedToSpec [
+{ #category : #testing }
+MetacelloMCVersionSpec >> isAllLoadedToSpec [
 	"all projects and packages are loaded and match specification"
 
 	self isPartiallyCurrent isAllLoadedToSpec: [ :ignored | ^ true ].
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>isAllLoadedToSpecAgainst: resolvedPackageAndProjectNames [
+{ #category : #testing }
+MetacelloMCVersionSpec >> isAllLoadedToSpecAgainst: resolvedPackageAndProjectNames [
 	"all projects and packages are loaded and match specification"
 
 	(self isPartiallyCurrentAgainst: resolvedPackageAndProjectNames) isAllLoadedToSpec: [ :ignored | ^ true ].
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>isLoadedMatchConstraints [
+{ #category : #testing }
+MetacelloMCVersionSpec >> isLoadedMatchConstraints [
 	"all loaded projects and packages match constraints (at least one package loaded)"
 	
 	self isPartiallyCurrent isLoadedMatchConstraints: [ :ignored | ^ true ].
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>isLoadedMatchConstraintsAgainst: resolvedPackageAndProjectNames [
+{ #category : #testing }
+MetacelloMCVersionSpec >> isLoadedMatchConstraintsAgainst: resolvedPackageAndProjectNames [
 	"all loaded projects and packages match constraints (at least one package loaded)"
 
 	(self isPartiallyCurrentAgainst: resolvedPackageAndProjectNames) isLoadedMatchConstraints: [ :ignored | ^ true ].
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>isLoadedToSpec [
+{ #category : #testing }
+MetacelloMCVersionSpec >> isLoadedToSpec [
 	"all loaded projects and packages match specifications (at least one package loaded)"
 	
 	self isPartiallyCurrent isLoadedToSpec: [ :ignored | ^ true ].
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>isLoadedToSpecAgainst: resolvedPackageAndProjectNames [
+{ #category : #testing }
+MetacelloMCVersionSpec >> isLoadedToSpecAgainst: resolvedPackageAndProjectNames [
 	"all loaded projects and packages match specifications (at least one package loaded)"
 
 	(self isPartiallyCurrentAgainst: resolvedPackageAndProjectNames) isLoadedToSpec: [ :ignored | ^ true ].
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>isPartiallyCurrent [
+{ #category : #testing }
+MetacelloMCVersionSpec >> isPartiallyCurrent [
 
 	^self isPartiallyCurrentAgainst: (self expandToLoadableSpecNames: #('ALL'))
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>isPartiallyCurrentAgainst: resolvedPackageAndProjectNames [
+{ #category : #testing }
+MetacelloMCVersionSpec >> isPartiallyCurrentAgainst: resolvedPackageAndProjectNames [
 	| mcLoader status |
 	status := MetacelloMCPartiallyLoadedStatus new.
 	mcLoader := self loader.
@@ -376,11 +324,8 @@ MetacelloMCVersionSpec>>isPartiallyCurrentAgainst: resolvedPackageAndProjectName
 	^ status
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>isPossibleBaseline [
+{ #category : #testing }
+MetacelloMCVersionSpec >> isPossibleBaseline [
 
 	self 
 		projectDo: [:prj | prj isPossibleBaseline ifFalse: [ ^false ]] 
@@ -389,44 +334,32 @@ MetacelloMCVersionSpec>>isPossibleBaseline [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>isSomethingLoaded [
+{ #category : #testing }
+MetacelloMCVersionSpec >> isSomethingLoaded [
 	"at least one package loaded"
 	
 	self isPartiallyCurrent isSomethingLoaded: [ :ignored | ^ true ].
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>isSomethingLoadedAgainst: resolvedPackageAndProjectNames [
+{ #category : #testing }
+MetacelloMCVersionSpec >> isSomethingLoadedAgainst: resolvedPackageAndProjectNames [
 	"at least one package loaded"
 
 	(self isPartiallyCurrentAgainst: resolvedPackageAndProjectNames) isSomethingLoaded: [ :ignored | ^ true ].
 	^ false
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>mergeMap [
+{ #category : #merging }
+MetacelloMCVersionSpec >> mergeMap [
     | map |
     map := super mergeMap.
     map at: #'repositories' put: self repositories.
     ^ map
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>mergeSpec: anotherSpec [
+{ #category : #merging }
+MetacelloMCVersionSpec >> mergeSpec: anotherSpec [
     | newSpec map anotherRepositories |
     newSpec := super mergeSpec: anotherSpec.
     map := anotherSpec mergeMap.
@@ -440,43 +373,28 @@ MetacelloMCVersionSpec>>mergeSpec: anotherSpec [
     ^ newSpec
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>nonOverridable [
+{ #category : #merging }
+MetacelloMCVersionSpec >> nonOverridable [
     ^ super nonOverridable , #(#'repositories')
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>package: aString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloMCVersionSpec >> package: aString constructor: aVersionConstructor [
     aVersionConstructor packageForVersion: aString
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>package: aString overrides: aBlock constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloMCVersionSpec >> package: aString overrides: aBlock constructor: aVersionConstructor [
     aVersionConstructor packageForVersion: aString overrides: aBlock
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>package: packageName with: aBlockOrString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloMCVersionSpec >> package: packageName with: aBlockOrString constructor: aVersionConstructor [
     aVersionConstructor packageForVersion: packageName with: aBlockOrString
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>packageNames [
+{ #category : #querying }
+MetacelloMCVersionSpec >> packageNames [
     "leave reference to packages for upgrade purposes"
 
     packages == nil
@@ -484,11 +402,8 @@ MetacelloMCVersionSpec>>packageNames [
     ^ self packages map keys asSet
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>packageSpecsInLoadOrderForMap: packageMap [
+{ #category : #querying }
+MetacelloMCVersionSpec >> packageSpecsInLoadOrderForMap: packageMap [
   | loadOrder pkgs packageNames importNames importSpec importProjectSpecs importProjectNameMap |
   loadOrder := self packageSpecsInLoadOrder.
   importNames := (packageNames := (packageMap values
@@ -542,11 +457,8 @@ MetacelloMCVersionSpec>>packageSpecsInLoadOrderForMap: packageMap [
   ^ pkgs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>packages [
+{ #category : #accessing }
+MetacelloMCVersionSpec >> packages [
     "leave reference to packages for upgrade purposes"
 
     packages == nil
@@ -554,99 +466,66 @@ MetacelloMCVersionSpec>>packages [
     ^ packages
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>packagesNeedSavingVisited: visitedProjects into: aCollection [
+{ #category : #'development support' }
+MetacelloMCVersionSpec >> packagesNeedSavingVisited: visitedProjects into: aCollection [
 
 	self packages map valuesDo: [:pkg | pkg packagesNeedSavingVisited: visitedProjects using: self repositories map values into: aCollection ].
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>postCopy [
+{ #category : #copying }
+MetacelloMCVersionSpec >> postCopy [
     super postCopy.
     repositories := repositories copy.
     packages := packages copy	"leave reference to packages for upgrade purposes"
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>removePackage: aString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloMCVersionSpec >> removePackage: aString constructor: aVersionConstructor [
     aVersionConstructor removePackageForVersion: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>repositories [
+{ #category : #accessing }
+MetacelloMCVersionSpec >> repositories [
 	repositories == nil ifTrue: [ repositories := self project repositoriesSpec ].
 	^ repositories
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>repositories: anObject [
+{ #category : #accessing }
+MetacelloMCVersionSpec >> repositories: anObject [
 	repositories := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>repositoriesSpec [
+{ #category : #accessing }
+MetacelloMCVersionSpec >> repositoriesSpec [
 
 	^self repositories
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>repository: aString [
+{ #category : #accessing }
+MetacelloMCVersionSpec >> repository: aString [
 	self repositoriesSpec add: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>repository: aString username: username password: password [
+{ #category : #accessing }
+MetacelloMCVersionSpec >> repository: aString username: username password: password [
 	self repositoriesSpec repository: aString username: username password: password
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>repositorySpecs [
+{ #category : #loading }
+MetacelloMCVersionSpec >> repositorySpecs [
 
 	^self repositories map values
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>specListProjectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
+{ #category : #enumerating }
+MetacelloMCVersionSpec >> specListProjectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
 
 	self packages specListDo: [:pkgSpec |
 		pkgSpec projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>specsNamed: packageAndProjectNames projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
+{ #category : #enumerating }
+MetacelloMCVersionSpec >> specsNamed: packageAndProjectNames projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
 
 	| map |
 	map := self packages map.
@@ -655,21 +534,15 @@ MetacelloMCVersionSpec>>specsNamed: packageAndProjectNames projectDo: projectBlo
 			ifTrue: [ pkgSpec projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock ]]
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>updateForSpawnMethod: sourceSpec [
+{ #category : #'development support' }
+MetacelloMCVersionSpec >> updateForSpawnMethod: sourceSpec [
 	"This means that this spec was used in a baseline and will be used in a version .... drop all information that isn't useful"
 	
 	repositories := preLoadDoIt := postLoadDoIt := nil.
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>updatedPackageSpecs [
+{ #category : #'development support' }
+MetacelloMCVersionSpec >> updatedPackageSpecs [
 
 	| updatedSpecs mcLoader |
 	updatedSpecs := Dictionary new.
@@ -678,11 +551,8 @@ MetacelloMCVersionSpec>>updatedPackageSpecs [
 	^updatedSpecs
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpec>>versionClass [
+{ #category : #private }
+MetacelloMCVersionSpec >> versionClass [
 
 	^MetacelloMCVersion
 ]

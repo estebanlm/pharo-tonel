@@ -1,31 +1,21 @@
-"
-
-"
 Class {
 	#name : #MD5Test,
 	#superclass : #ClassTestCase,
 	#instVars : [
 		'hash'
 	],
-	#category : #Tests-System-Hashing,
-	#timestamp : ''
+	#category : #Tests-System-Hashing
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MD5Test>>testEmpty [
+{ #category : #testing }
+MD5Test >> testEmpty [
 	self 
 		assert: (MD5 hashMessage: '') hex 
 		equals: 'd41d8cd98f00b204e9800998ecf8427e'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MD5Test>>testLargeCharacterStream [
+{ #category : #testing }
+MD5Test >> testLargeCharacterStream [
 	"Regression test"
 
 	| string |
@@ -34,21 +24,15 @@ MD5Test>>testLargeCharacterStream [
 	self assert: hash hex equals: '4e6405697346169610a3a39991c48321'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MD5Test>>testWikipedia1 [
+{ #category : #testing }
+MD5Test >> testWikipedia1 [
 	self 
 		assert: (MD5 hashMessage: 'The quick brown fox jumps over the lazy dog') hex 
 		equals: '9e107d9d372bb6826bd81d3542a419d6'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MD5Test>>testWikipedia2 [
+{ #category : #testing }
+MD5Test >> testWikipedia2 [
 	self 
 		assert: (MD5 hashMessage: 'The quick brown fox jumps over the lazy dog.') hex 
 		equals: 'e4d909c290d0fb1ca068ffaddf22cbd0'

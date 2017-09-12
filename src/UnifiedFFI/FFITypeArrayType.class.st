@@ -4,15 +4,11 @@ I define the type for FFITypeArray objects.
 Class {
 	#name : #FFITypeArrayType,
 	#superclass : #FFIExternalArrayType,
-	#category : #UnifiedFFI-Types,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Types
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArrayType>>annonymousClassCreator [
+{ #category : #private }
+FFITypeArrayType >> annonymousClassCreator [
 	^ String streamContents: [ :stream |
 		stream 
 			nextPutAll: '(FFITypeArray ofType: #';
@@ -22,37 +18,25 @@ FFITypeArrayType>>annonymousClassCreator [
 			nextPutAll: ')' ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArrayType>>arrayClassName [
+{ #category : #private }
+FFITypeArrayType >> arrayClassName [
 	^ self objectClass isAnonymous 
 			ifTrue: [ self annonymousClassCreator ]
 			ifFalse: [ self objectClass name ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArrayType>>externalTypeAlignment [
+{ #category : #private }
+FFITypeArrayType >> externalTypeAlignment [
 	^ self objectClass type typeAlignment
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArrayType>>externalTypeSize [
+{ #category : #private }
+FFITypeArrayType >> externalTypeSize [
 	^ self objectClass type typeSize * self objectClass numberOfElements
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArrayType>>offsetReadArrayAt: offsetVariableName [
+{ #category : #'emitting code' }
+FFITypeArrayType >> offsetReadArrayAt: offsetVariableName [
 	self flag: #todo. "This is not working in all cases for 32/64 bits (
 	externalTypeSize could be different)"
 	^ String streamContents:[ :stream|
@@ -67,21 +51,15 @@ FFITypeArrayType>>offsetReadArrayAt: offsetVariableName [
 
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArrayType>>offsetReadFieldAt: offsetVariableName [
+{ #category : #'emitting code' }
+FFITypeArrayType >> offsetReadFieldAt: offsetVariableName [
 	"Return a string defining the accessor to an entity of the receiver type starting at the given byte offset. "
 	self isPointer ifTrue: [ ^ super offsetReadFieldAt: offsetVariableName ].
 	^ self offsetReadArrayAt: offsetVariableName
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArrayType>>offsetWriteFieldAt: offsetVariableName with: valueName [
+{ #category : #'emitting code' }
+FFITypeArrayType >> offsetWriteFieldAt: offsetVariableName with: valueName [
 	self flag: #todo. "This is not working in all cases for 32/64 bits (
 	externalTypeSize could be different)"
 	^ String streamContents:[ :stream|
@@ -93,11 +71,8 @@ FFITypeArrayType>>offsetWriteFieldAt: offsetVariableName with: valueName [
 			nextPutAll: ' with: anObject getHandle startingAt: 1' ].
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArrayType>>readArrayAt: byteOffset [
+{ #category : #'emitting code' }
+FFITypeArrayType >> readArrayAt: byteOffset [
 	^ String streamContents:[ :stream|
 		stream 
 			nextPutAll:'^'. 
@@ -111,21 +86,15 @@ FFITypeArrayType>>readArrayAt: byteOffset [
 
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArrayType>>readFieldAt: byteOffset [
+{ #category : #'emitting code' }
+FFITypeArrayType >> readFieldAt: byteOffset [
 	"Return a string defining the accessor to an entity of the receiver type starting at the given byte offset. "
 	self isPointer ifTrue: [ ^ super readFieldAt: byteOffset ].
 	^ self readArrayAt: byteOffset
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArrayType>>writeFieldAt: byteOffset with: valueName [
+{ #category : #'emitting code' }
+FFITypeArrayType >> writeFieldAt: byteOffset with: valueName [
 	^ String streamContents:[ :stream|
 		stream 
 			nextPutAll:'handle replaceFrom: ';

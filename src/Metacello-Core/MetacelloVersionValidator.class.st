@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloVersionValidator,
 	#superclass : #MetacelloAbstractConstructor,
@@ -15,23 +12,16 @@ Class {
 	#classInstVars : [
 		'reasonCodeDescriptions'
 	],
-	#category : #Metacello-Core-Validation,
-	#timestamp : ''
+	#category : #Metacello-Core-Validation
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator class>>descriptionForReasonCode: reasonCode [
+{ #category : #accessing }
+MetacelloVersionValidator class >> descriptionForReasonCode: reasonCode [
 	^ self reasonCodeDescriptions at: reasonCode ifAbsent: [ self error: 'Unknown reasonCode: ' , reasonCode printString ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator class>>populateReasonCodeDescriptions [
+{ #category : #private }
+MetacelloVersionValidator class >> populateReasonCodeDescriptions [
     "update MetacelloMCVersionValidator class comment to include any changes to descriptions"
 
     | dict |
@@ -65,29 +55,20 @@ MetacelloVersionValidator class>>populateReasonCodeDescriptions [
     ^ dict
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator class>>reasonCodeDescriptions [
+{ #category : #accessing }
+MetacelloVersionValidator class >> reasonCodeDescriptions [
 
 	reasonCodeDescriptions ifNil: [ reasonCodeDescriptions := self populateReasonCodeDescriptions ].
 	^reasonCodeDescriptions
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator class>>validateBaseline: baselineClass [
+{ #category : #'instance creation' }
+MetacelloVersionValidator class >> validateBaseline: baselineClass [
   ^ self validateBaseline: baselineClass debug: #() recurse: false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator class>>validateBaseline: baselineClass debug: debugList recurse: aBool [
+{ #category : #'instance creation' }
+MetacelloVersionValidator class >> validateBaseline: baselineClass debug: debugList recurse: aBool [
   ^ (self new
     configurationClass: baselineClass;
     debug: debugList;
@@ -95,28 +76,19 @@ MetacelloVersionValidator class>>validateBaseline: baselineClass debug: debugLis
     yourself) validateBaselineOf
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator class>>validateBaseline: baselineClass recurse: aBool [
+{ #category : #'instance creation' }
+MetacelloVersionValidator class >> validateBaseline: baselineClass recurse: aBool [
   ^ self validateBaseline: baselineClass debug: #() recurse: aBool
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator class>>validateConfiguration: configurationClass [
+{ #category : #'instance creation' }
+MetacelloVersionValidator class >> validateConfiguration: configurationClass [
 
 	^self validateConfiguration: configurationClass debug: #() recurse: false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator class>>validateConfiguration: configurationClass debug: debugList recurse: aBool [
+{ #category : #'instance creation' }
+MetacelloVersionValidator class >> validateConfiguration: configurationClass debug: debugList recurse: aBool [
 	^ ((self new)
 		configurationClass: configurationClass;
 		debug: debugList;
@@ -124,29 +96,20 @@ MetacelloVersionValidator class>>validateConfiguration: configurationClass debug
 		yourself) validate
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator class>>validateConfiguration: configurationClass recurse: aBool [
+{ #category : #'instance creation' }
+MetacelloVersionValidator class >> validateConfiguration: configurationClass recurse: aBool [
 
 	^self validateConfiguration: configurationClass debug: #() recurse: aBool
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator class>>validateProject: aMetacelloProject [
+{ #category : #'instance creation' }
+MetacelloVersionValidator class >> validateProject: aMetacelloProject [
 
 	^self validateProject: aMetacelloProject debug: #() recurse: false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator class>>validateProject: aMetacelloProject debug: debugList recurse: aBool [
+{ #category : #'instance creation' }
+MetacelloVersionValidator class >> validateProject: aMetacelloProject debug: debugList recurse: aBool [
 	^ ((self new)
 		recurse: aBool;
 		debug: debugList;
@@ -154,38 +117,26 @@ MetacelloVersionValidator class>>validateProject: aMetacelloProject debug: debug
 		yourself) validateProject: aMetacelloProject
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator class>>validateProject: aMetacelloProject recurse: aBool [
+{ #category : #'instance creation' }
+MetacelloVersionValidator class >> validateProject: aMetacelloProject recurse: aBool [
 
 	^self validateProject: aMetacelloProject debug: #() recurse: aBool
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator class>>validateProject: aMetacelloProject version: versionString [
+{ #category : #'instance creation' }
+MetacelloVersionValidator class >> validateProject: aMetacelloProject version: versionString [
 
 	^self validateProject: aMetacelloProject version: versionString debug: #() recurse: false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator class>>validateProject: aMetacelloProject version: versionString debug: debugList [
+{ #category : #'instance creation' }
+MetacelloVersionValidator class >> validateProject: aMetacelloProject version: versionString debug: debugList [
 
 	^self validateProject: aMetacelloProject version: versionString debug: debugList recurse: false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator class>>validateProject: aMetacelloProject version: versionString debug: debugList recurse: aBool [
+{ #category : #'instance creation' }
+MetacelloVersionValidator class >> validateProject: aMetacelloProject version: versionString debug: debugList recurse: aBool [
 
 	^ ((self new)
 		configurationClass: aMetacelloProject configuration class;
@@ -194,11 +145,8 @@ MetacelloVersionValidator class>>validateProject: aMetacelloProject version: ver
 		yourself) validateProject: aMetacelloProject version: versionString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator class>>validateProject: aMetacelloProject version: versionString debug: debugList recurse: aBool visited: visitied [
+{ #category : #'instance creation' }
+MetacelloVersionValidator class >> validateProject: aMetacelloProject version: versionString debug: debugList recurse: aBool visited: visitied [
 
 	^(self new
 		configurationClass: aMetacelloProject configuration class;
@@ -208,73 +156,49 @@ MetacelloVersionValidator class>>validateProject: aMetacelloProject version: ver
 		yourself) validateProject: aMetacelloProject version: versionString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>configurationClass [
+{ #category : #accessing }
+MetacelloVersionValidator >> configurationClass [
 	^ configurationClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>configurationClass: anObject [
+{ #category : #accessing }
+MetacelloVersionValidator >> configurationClass: anObject [
 	configurationClass := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>criticalWarningReasonCodes [
+{ #category : #private }
+MetacelloVersionValidator >> criticalWarningReasonCodes [
     ^ #(#'packageNameMismatch' #'projectClassNameFileMismatch' #'duplicateVersionDefinitions')
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>debug [
+{ #category : #accessing }
+MetacelloVersionValidator >> debug [
 
 	debug == nil ifTrue: [ debug := #() ].
 	^ debug
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>debug: aCollection [
+{ #category : #accessing }
+MetacelloVersionValidator >> debug: aCollection [
 	"Any combination of: #error, #criticalWarning, #warning"
 
 	debug := aCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>errorReasonCodes [
+{ #category : #private }
+MetacelloVersionValidator >> errorReasonCodes [
     ^ #(#'duplicateNames' #'shadowedNames' #'invalidDoItSelector' #'invalidVersionString' #'missingVersionImport' #'projectCreationError' #'noVersionsDefined' #'cannotResolveVersion' #'incompleteProjectSpec' #'incorrectVersionString' #'versionCompositionError' #'versionCreationError')
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>exludededValidations [
+{ #category : #accessing }
+MetacelloVersionValidator >> exludededValidations [
 
 	exludededValidations == nil ifTrue: [ exludededValidations := self extractExcludedValidations ].
 	^exludededValidations
 ]
 
-{
-	#category : #'pragma extraction',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>extractExcludedValidations [
+{ #category : #'pragma extraction' }
+MetacelloVersionValidator >> extractExcludedValidations [
 
 	| exclusionDict |
 	exclusionDict := Dictionary new.
@@ -289,20 +213,14 @@ MetacelloVersionValidator>>extractExcludedValidations [
 	^exclusionDict
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>recordValidationCriticalWarning: aString callSite: callSite reasonCode: aSymbol [
+{ #category : #accessing }
+MetacelloVersionValidator >> recordValidationCriticalWarning: aString callSite: callSite reasonCode: aSymbol [
 
 	^self recordValidationCriticalWarning: aString versionString: nil callSite: callSite reasonCode: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>recordValidationCriticalWarning: aString versionString: versionString callSite: callSite reasonCode: aSymbol [
+{ #category : #accessing }
+MetacelloVersionValidator >> recordValidationCriticalWarning: aString versionString: versionString callSite: callSite reasonCode: aSymbol [
 	"reasonCodes:
 		#packageNameMismatch
 		#projectClassNameFileMismatch
@@ -327,20 +245,14 @@ MetacelloVersionValidator>>recordValidationCriticalWarning: aString versionStrin
 				explanation: aString)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>recordValidationError: aString callSite: callSite reasonCode: aSymbol [
+{ #category : #accessing }
+MetacelloVersionValidator >> recordValidationError: aString callSite: callSite reasonCode: aSymbol [
 
 	^self recordValidationError: aString versionString: nil callSite: callSite reasonCode: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>recordValidationError: aString versionString: versionString callSite: callSite reasonCode: aSymbol [
+{ #category : #accessing }
+MetacelloVersionValidator >> recordValidationError: aString versionString: versionString callSite: callSite reasonCode: aSymbol [
 	"reasonCodes:
 		#noVersionForSymbolicVersion
 		#duplicateNames
@@ -372,21 +284,15 @@ MetacelloVersionValidator>>recordValidationError: aString versionString: version
 				explanation: aString)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>recordValidationWarning: aString callSite: callSite reasonCode: aSymbol [
+{ #category : #accessing }
+MetacelloVersionValidator >> recordValidationWarning: aString callSite: callSite reasonCode: aSymbol [
 
 				
 	^self recordValidationWarning: aString versionString: nil callSite: callSite reasonCode: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>recordValidationWarning: aString versionString: versionString callSite: callSite reasonCode: aSymbol [
+{ #category : #accessing }
+MetacelloVersionValidator >> recordValidationWarning: aString versionString: versionString callSite: callSite reasonCode: aSymbol [
 	"reasonCodes:
 		#onlyBaselineVersion
 		#noVersionSpecified
@@ -409,28 +315,19 @@ MetacelloVersionValidator>>recordValidationWarning: aString versionString: versi
 				explanation: aString)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>recurse [
+{ #category : #accessing }
+MetacelloVersionValidator >> recurse [
 	recurse == nil ifTrue: [ recurse := false ].
 	^ recurse
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>recurse: anObject [
+{ #category : #accessing }
+MetacelloVersionValidator >> recurse: anObject [
 	recurse := anObject
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>validate [
+{ #category : #validation }
+MetacelloVersionValidator >> validate [
 	"Issue 5: 
 		[]no shadowing of names across project/package/group boundaries
 	 Issue 6: 
@@ -448,20 +345,14 @@ MetacelloVersionValidator>>validate [
 	^self validateProject
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>validateBaselineOf [
+{ #category : #validation }
+MetacelloVersionValidator >> validateBaselineOf [
   self validatePragmas.
   ^ self validateBaselineProject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>validateBaselineProject [
+{ #category : #private }
+MetacelloVersionValidator >> validateBaselineProject [
   | project |
   project := self
     validateProjectCreationFrom: self configurationClass
@@ -477,11 +368,8 @@ MetacelloVersionValidator>>validateBaselineProject [
   ^ self validateBaselineProject: project
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>validateBaselineProject: project [
+{ #category : #validation }
+MetacelloVersionValidator >> validateBaselineProject: project [
   | version spec |
   (self visited includes: project configuration class)
     ifTrue: [ ^ self validationReport ].
@@ -501,20 +389,14 @@ MetacelloVersionValidator>>validateBaselineProject: project [
   ^ self validationReport
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>validateBaselineVersionSpec: versionSpec [
+{ #category : #private }
+MetacelloVersionValidator >> validateBaselineVersionSpec: versionSpec [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>validateDoIts: aSpec versionString: versionString errorMessage: errorMessage [
+{ #category : #private }
+MetacelloVersionValidator >> validateDoIts: aSpec versionString: versionString errorMessage: errorMessage [
 	| ar |
 	ar := {
 		#preLoadDoIt.	'preLoadDoIt selector for '.
@@ -534,11 +416,8 @@ MetacelloVersionValidator>>validateDoIts: aSpec versionString: versionString err
 							reasonCode: #invalidDoItSelector ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>validatePragmas [
+{ #category : #private }
+MetacelloVersionValidator >> validatePragmas [
     "Ensure that versions are Strings and symbolic versions are symbols.
 	 Ensure that imported versions are defined"
 
@@ -624,11 +503,8 @@ MetacelloVersionValidator>>validatePragmas [
                                         reasonCode: #'missingVersionImport' ] ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>validateProject [
+{ #category : #private }
+MetacelloVersionValidator >> validateProject [
 	| project |
 	project := self
 		validateProjectCreationFrom: self configurationClass
@@ -643,11 +519,8 @@ MetacelloVersionValidator>>validateProject [
 	^ self validateProject: project
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>validateProject: project [
+{ #category : #validation }
+MetacelloVersionValidator >> validateProject: project [
 	| hasNoBaseline hasNoVersion |
 	(self visited includes: project configuration class)
 		ifTrue: [ ^ self validationReport ].
@@ -705,11 +578,8 @@ MetacelloVersionValidator>>validateProject: project [
 	^ self validationReport
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>validateProject: project version: versionString [
+{ #category : #validation }
+MetacelloVersionValidator >> validateProject: project version: versionString [
 	| version spec |
 	(self visited includes: project configuration class)
 		ifTrue: [ ^ self validationReport ].
@@ -738,11 +608,8 @@ MetacelloVersionValidator>>validateProject: project version: versionString [
 	^ self validationReport
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>validateProjectCreationFrom: aConfigurationClass onError: aBlock [
+{ #category : #private }
+MetacelloVersionValidator >> validateProjectCreationFrom: aConfigurationClass onError: aBlock [
     [ ^ aConfigurationClass project ]
         on: Error , MetacelloValidationNotification , MetacelloErrorInProjectConstructionNotification
         do: [ :ex | 
@@ -764,11 +631,8 @@ MetacelloVersionValidator>>validateProjectCreationFrom: aConfigurationClass onEr
             ^ aBlock value: ex ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>validateProjectVersion: versionString [
+{ #category : #private }
+MetacelloVersionValidator >> validateProjectVersion: versionString [
 	| project |
 	project := self
 		validateProjectCreationFrom: self configurationClass
@@ -783,65 +647,44 @@ MetacelloVersionValidator>>validateProjectVersion: versionString [
 	^ self validateProject: project version: versionString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>validateVersionSpec: versionSpec [
+{ #category : #private }
+MetacelloVersionValidator >> validateVersionSpec: versionSpec [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>validateVersionSpecForSymbolicVersion: versionSpec symbolicVersion: symbolicVersionString [
+{ #category : #private }
+MetacelloVersionValidator >> validateVersionSpecForSymbolicVersion: versionSpec symbolicVersion: symbolicVersionString [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>validationReport [
+{ #category : #accessing }
+MetacelloVersionValidator >> validationReport [
 	
 	validationReport == nil ifTrue: [ validationReport := OrderedCollection new ].
 	^ validationReport
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>validationReport: anObject [
+{ #category : #accessing }
+MetacelloVersionValidator >> validationReport: anObject [
 	validationReport := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>visited [
+{ #category : #accessing }
+MetacelloVersionValidator >> visited [
 
 	visited == nil ifTrue: [ visited := IdentitySet new ].
 	^visited
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>visited: anIdentitySet [
+{ #category : #accessing }
+MetacelloVersionValidator >> visited: anIdentitySet [
 
 	visited := anIdentitySet
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionValidator>>warningReasonCodes [
+{ #category : #private }
+MetacelloVersionValidator >> warningReasonCodes [
 	^ #(#onlyBaselineVersion )
 ]

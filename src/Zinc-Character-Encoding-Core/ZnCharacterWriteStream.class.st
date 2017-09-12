@@ -7,39 +7,26 @@ Part of Zinc HTTP Components.
 Class {
 	#name : #ZnCharacterWriteStream,
 	#superclass : #ZnEncodedWriteStream,
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : '<historical>'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterWriteStream>>cr [
+{ #category : #accessing }
+ZnCharacterWriteStream >> cr [
 	self nextPut: Character cr
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterWriteStream>>crlf [
+{ #category : #accessing }
+ZnCharacterWriteStream >> crlf [
 	self cr; lf
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterWriteStream>>lf [
+{ #category : #accessing }
+ZnCharacterWriteStream >> lf [
 	self nextPut: Character lf
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterWriteStream>>next: count putAll: collection startingAt: offset [
+{ #category : #accessing }
+ZnCharacterWriteStream >> next: count putAll: collection startingAt: offset [
 	"Write count characters from collection starting at offset."
 	
 	self encoder 
@@ -49,37 +36,25 @@ ZnCharacterWriteStream>>next: count putAll: collection startingAt: offset [
 		toStream: stream 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterWriteStream>>nextPut: object [
+{ #category : #accessing }
+ZnCharacterWriteStream >> nextPut: object [
 	self encoder 
 		nextPut: object 
 		toStream: stream.
 	^ object
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterWriteStream>>print: object [
+{ #category : #accessing }
+ZnCharacterWriteStream >> print: object [
 	object printOn: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterWriteStream>>space [
+{ #category : #accessing }
+ZnCharacterWriteStream >> space [
 	self nextPut: Character space
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterWriteStream>>tab [
+{ #category : #accessing }
+ZnCharacterWriteStream >> tab [
 	self nextPut: Character tab
 ]

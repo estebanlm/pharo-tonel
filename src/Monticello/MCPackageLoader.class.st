@@ -25,53 +25,37 @@ Class {
 		'provisions',
 		'methodAdditions'
 	],
-	#category : #Monticello-Loading,
-	#timestamp : '<historical>'
+	#category : #Monticello-Loading
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader class>>installSnapshot: aSnapshot [
+{ #category : #public }
+MCPackageLoader class >> installSnapshot: aSnapshot [
 	self new
 		installSnapshot: aSnapshot;
 		load
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader class>>unloadPackage: aPackage [
+{ #category : #public }
+MCPackageLoader class >> unloadPackage: aPackage [
 	self new
 		unloadPackage: aPackage;
 		loadWithNameLike: aPackage name, '-unload'
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader class>>updatePackage: aPackage withSnapshot: aSnapshot [
+{ #category : #public }
+MCPackageLoader class >> updatePackage: aPackage withSnapshot: aSnapshot [
 	self new
 		updatePackage: aPackage withSnapshot: aSnapshot;
 		load
 ]
 
-{
-	#category : #'patch ops',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>addDefinition: aDefinition [
+{ #category : #'patch ops' }
+MCPackageLoader >> addDefinition: aDefinition [
 	additions add: aDefinition
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>analyze [
+{ #category : #private }
+MCPackageLoader >> analyze [
 	| sorter |
 	sorter := self sorterForItems: additions.
 	additions := sorter orderedItems.
@@ -82,20 +66,14 @@ MCPackageLoader>>analyze [
 	removals := sorter orderedItems reversed.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>basicLoad [
+{ #category : #private }
+MCPackageLoader >> basicLoad [
     errorDefinitions := OrderedCollection new.
     SourceFiles deferFlushDuring: [self basicLoadDefinitions].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>basicLoadDefinitions [
+{ #category : #private }
+MCPackageLoader >> basicLoadDefinitions [
 
 	"FIXME. Do a separate pass on loading class definitions as the very first thing.
 	This is a workaround for a problem with the so-called 'atomic' loading (you wish!)
@@ -120,11 +98,8 @@ MCPackageLoader>>basicLoadDefinitions [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>dependencyWarning [
+{ #category : #private }
+MCPackageLoader >> dependencyWarning [
 	^ String streamContents:
 		[:s |
 		s nextPutAll: 'This package depends on the following classes:'; cr.
@@ -133,22 +108,16 @@ MCPackageLoader>>dependencyWarning [
 		unloadableDefinitions do: [:ea | s space; space; nextPutAll: ea summary; cr]] 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>errorDefinitionWarning [
+{ #category : #private }
+MCPackageLoader >> errorDefinitionWarning [
 	^ String streamContents:
 		[:s |
 		s nextPutAll: 'The following definitions had errors while loading.  Press Proceed to try to load them again (they may work on a second pass):'; cr.
 		errorDefinitions do: [:ea | s space; space; nextPutAll: ea summary; cr]] 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>initialize [
+{ #category : #initialization }
+MCPackageLoader >> initialize [
 	super initialize.
 	additions := OrderedCollection new.
 	removals := OrderedCollection new.
@@ -157,32 +126,23 @@ MCPackageLoader>>initialize [
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>installSnapshot: aSnapshot [
+{ #category : #public }
+MCPackageLoader >> installSnapshot: aSnapshot [
 	| patch |
 	patch := aSnapshot patchRelativeToBase: MCSnapshot empty.
 	patch applyTo: self.
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>load [
+{ #category : #public }
+MCPackageLoader >> load [
 	self validate.
 	self useNewChangeSetDuring: [self basicLoad].
 	MCMethodDefinition cachedDefinitions finalizeValues.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>loadClassDefinition: aDefinition [
+{ #category : #private }
+MCPackageLoader >> loadClassDefinition: aDefinition [
 
 	[ aDefinition isClassDefinition 
 		ifTrue: [ aDefinition load ]
@@ -190,114 +150,75 @@ MCPackageLoader>>loadClassDefinition: aDefinition [
 		errorDefinitions add: aDefinition ].
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>loadWithName: baseName [
+{ #category : #public }
+MCPackageLoader >> loadWithName: baseName [
 	self validate.
 	self useChangeSetNamed: baseName during: [self basicLoad]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>loadWithNameLike: baseName [
+{ #category : #public }
+MCPackageLoader >> loadWithNameLike: baseName [
 	self validate.
 	self useNewChangeSetNamedLike: baseName during: [self basicLoad]
 ]
 
-{
-	#category : #'patch ops',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>modifyDefinition: old to: new [
+{ #category : #'patch ops' }
+MCPackageLoader >> modifyDefinition: old to: new [
 	self addDefinition: new.
 	obsoletions at: new put: old.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>obsoletionFor: aDefinition [
+{ #category : #private }
+MCPackageLoader >> obsoletionFor: aDefinition [
 	^ obsoletions at: aDefinition ifAbsent: [nil]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>orderDefinitionsForLoading: aCollection [
+{ #category : #private }
+MCPackageLoader >> orderDefinitionsForLoading: aCollection [
 	^ (self sorterForItems: aCollection) orderedItems
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>orderedAdditions [
+{ #category : #private }
+MCPackageLoader >> orderedAdditions [
 	^ additions
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>provisions [
+{ #category : #private }
+MCPackageLoader >> provisions [
 	^ provisions ifNil: [provisions := Set withAll: Smalltalk globals keys]
 ]
 
-{
-	#category : #'patch ops',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>removeDefinition: aDefinition [
+{ #category : #'patch ops' }
+MCPackageLoader >> removeDefinition: aDefinition [
 	removals add: aDefinition
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>shouldWarnAboutErrors [
+{ #category : #private }
+MCPackageLoader >> shouldWarnAboutErrors [
 	^ errorDefinitions isEmpty not and: [false "should make this a setting ?"]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>sorterForItems: aCollection [
+{ #category : #private }
+MCPackageLoader >> sorterForItems: aCollection [
 	| sorter |
 	sorter := MCDependencySorter items: aCollection.
 	sorter addExternalProvisions: self provisions.
 	^ sorter
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>tryToLoad: aDefinition [
+{ #category : #private }
+MCPackageLoader >> tryToLoad: aDefinition [
 	[aDefinition addMethodAdditionTo: methodAdditions] on: Error do: [errorDefinitions add: aDefinition].
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>unloadPackage: aPackage [
+{ #category : #public }
+MCPackageLoader >> unloadPackage: aPackage [
 	self updatePackage: aPackage withSnapshot: MCSnapshot empty.
 	MCMethodDefinition cachedDefinitions finalizeValues.
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>updatePackage: aPackage withSnapshot: aSnapshot [
+{ #category : #public }
+MCPackageLoader >> updatePackage: aPackage withSnapshot: aSnapshot [
 	|  patch packageSnap |
 	packageSnap := aPackage snapshot.
 	patch := aSnapshot patchRelativeToBase: packageSnap.
@@ -306,11 +227,8 @@ MCPackageLoader>>updatePackage: aPackage withSnapshot: aSnapshot [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>useChangeSetNamed: baseName during: aBlock [
+{ #category : #private }
+MCPackageLoader >> useChangeSetNamed: baseName during: aBlock [
 	"Use the named change set, or create one with the given name."
 	| oldChanges newChanges |
 	oldChanges := ChangeSet current.
@@ -320,44 +238,29 @@ MCPackageLoader>>useChangeSetNamed: baseName during: aBlock [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>useNewChangeSetDuring: aBlock [
+{ #category : #private }
+MCPackageLoader >> useNewChangeSetDuring: aBlock [
 	^self useNewChangeSetNamedLike: 'MC' during: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>useNewChangeSetNamedLike: baseName during: aBlock [
+{ #category : #private }
+MCPackageLoader >> useNewChangeSetNamedLike: baseName during: aBlock [
 	^self useChangeSetNamed: (ChangeSet uniqueNameLike: baseName) during: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>validate [
+{ #category : #private }
+MCPackageLoader >> validate [
 	self analyze.
 	unloadableDefinitions isEmpty ifFalse: [self warnAboutDependencies].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>warnAboutDependencies  [
+{ #category : #private }
+MCPackageLoader >> warnAboutDependencies [ 
 	self notify: self dependencyWarning
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageLoader>>warnAboutErrors [
+{ #category : #private }
+MCPackageLoader >> warnAboutErrors [
 	self notify: self errorDefinitionWarning.
 
 ]

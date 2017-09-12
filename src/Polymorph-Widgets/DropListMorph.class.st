@@ -21,15 +21,11 @@ Class {
 		'wrapSelector',
 		'defaultContents'
 	],
-	#category : #Polymorph-Widgets,
-	#timestamp : 'gvc 5/23/2007 14:12'
+	#category : #Polymorph-Widgets
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph class>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel [
+{ #category : #'as yet unclassified' }
+DropListMorph class >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel [
 	"Answer a new instance of the receiver on the given model using
 	the given selectors as the interface."
 
@@ -40,11 +36,8 @@ DropListMorph class>>on: anObject list: getListSel selected: getSelectionSel cha
 		changeSelected: setSelectionSel
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph class>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel useIndex: useIndex [
+{ #category : #'as yet unclassified' }
+DropListMorph class >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel useIndex: useIndex [
 	"Answer a new instance of the receiver on the given model using
 	the given selectors as the interface."
 
@@ -56,11 +49,8 @@ DropListMorph class>>on: anObject list: getListSel selected: getSelectionSel cha
 		changeSelected: setSelectionSel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+DropListMorph >> adoptPaneColor: paneColor [
 	"Pass on to the list morph and border too."
 	
 	super adoptPaneColor: paneColor.
@@ -74,31 +64,22 @@ DropListMorph>>adoptPaneColor: paneColor [
 	self changed: #buttonLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>allowKeyboardFocus [
+{ #category : #accessing }
+DropListMorph >> allowKeyboardFocus [
 	"Answer whether or not keyboard focus will be allowed."
 
 	^self valueOfProperty: #allowKeyboardFocus ifAbsent: [true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>allowKeyboardFocus: aBoolean [
+{ #category : #accessing }
+DropListMorph >> allowKeyboardFocus: aBoolean [
 	"Set whether or not keyboard focus will be allowed."
 
 	self setProperty: #allowKeyboardFocus toValue: aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>borderStyleToUse [
+{ #category : #private }
+DropListMorph >> borderStyleToUse [
 	"Answer the borderStyle that should be used for the receiver."
 	
 	^self enabled
@@ -106,92 +87,65 @@ DropListMorph>>borderStyleToUse [
 		ifFalse: [self theme dropListDisabledBorderStyleFor: self]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>buttonExtent [
+{ #category : #private }
+DropListMorph >> buttonExtent [
 	"Answer based on theme and preferences."
 	
 	^self buttonWidth @ self buttonHeight
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>buttonHeight [
+{ #category : #private }
+DropListMorph >> buttonHeight [
 	"Answer based on theme."
 	
 	^self theme buttonMinHeight
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>buttonLabel [
+{ #category : #private }
+DropListMorph >> buttonLabel [
 	"Answer the label for the button."
 
 	^self theme dropListButtonLabelFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>buttonMorph [
+{ #category : #accessing }
+DropListMorph >> buttonMorph [
 	"Answer the value of buttonMorph"
 
 	^ buttonMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>buttonMorph: anObject [
+{ #category : #accessing }
+DropListMorph >> buttonMorph: anObject [
 	"Set the value of buttonMorph"
 
 	buttonMorph := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>buttonWidth [
+{ #category : #private }
+DropListMorph >> buttonWidth [
 	"Answer based on scrollbar size."
 	
 	^ (self theme scrollbarThickness + 3)
 		max: self theme dropListControlButtonWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>contentMorph [
+{ #category : #accessing }
+DropListMorph >> contentMorph [
 	"Answer the value of contentMorph"
 
 	^ contentMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>contentMorph: anObject [
+{ #category : #accessing }
+DropListMorph >> contentMorph: anObject [
 	"Set the value of contentMorph"
 
 	contentMorph := anObject
 ]
 
-{
-	#category : #rounding,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>cornerStyle: aSymbol [
+{ #category : #rounding }
+DropListMorph >> cornerStyle: aSymbol [
 	"Update the layout inset too."
 
 	super cornerStyle: aSymbol.
@@ -200,50 +154,35 @@ DropListMorph>>cornerStyle: aSymbol [
 	self fillStyle: self fillStyleToUse
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>defaultColor [
+{ #category : #initialization }
+DropListMorph >> defaultColor [
 	"Answer the default color of the receiver."
 
 	^ self theme backgroundColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>defaultContents [
+{ #category : #private }
+DropListMorph >> defaultContents [
 	
 	^ defaultContents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>defaultContents: anObject [
+{ #category : #accessing }
+DropListMorph >> defaultContents: anObject [
 	"Set the value of defaultContents"
 
 	defaultContents := anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>disable [
+{ #category : #protocol }
+DropListMorph >> disable [
 	"Disable the receiver."
 	
 	self enabled: false
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>drawSubmorphsOn: aCanvas  [
+{ #category : #drawing }
+DropListMorph >> drawSubmorphsOn: aCanvas [ 
 	"Display submorphs back to front.
 	Draw the focus here since we are using inset bounds
 	for the focus rectangle."
@@ -253,31 +192,22 @@ DropListMorph>>drawSubmorphsOn: aCanvas  [
 		self drawKeyboardFocusOn: aCanvas]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>enable [
+{ #category : #protocol }
+DropListMorph >> enable [
 	"Enable the receiver."
 	
 	self enabled: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>enabled [
+{ #category : #accessing }
+DropListMorph >> enabled [
 	"Answer the value of enabled"
 
 	^ enabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>enabled: anObject [
+{ #category : #accessing }
+DropListMorph >> enabled: anObject [
 	"Set the value of enabled"
 
 	enabled = anObject ifTrue: [^self].
@@ -289,11 +219,8 @@ DropListMorph>>enabled: anObject [
 		changed
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>extent: newExtent [
+{ #category : #geometry }
+DropListMorph >> extent: newExtent [
 	"Update the gradient."
 	
 	super extent: newExtent.
@@ -301,11 +228,8 @@ DropListMorph>>extent: newExtent [
 		ifTrue: [self fillStyle: self fillStyleToUse]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>fillStyleToUse [
+{ #category : #private }
+DropListMorph >> fillStyleToUse [
 	"Answer the fillStyle that should be used for the receiver."
 	
 	^self enabled
@@ -313,52 +237,37 @@ DropListMorph>>fillStyleToUse [
 		ifFalse: [self theme dropListDisabledFillStyleFor: self]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>focusBounds [
+{ #category : #accessing }
+DropListMorph >> focusBounds [
 	"Answer the bounds for drawing the focus indication."
 
 	^self theme dropListFocusBoundsFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>focusIndicatorCornerRadius [
+{ #category : #accessing }
+DropListMorph >> focusIndicatorCornerRadius [
 	"Answer the corner radius preferred for the focus indicator
 	for the receiver for themes that support this."
 
 	^self theme dropListFocusIndicatorCornerRadiusFor: self 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>font [
+{ #category : #accessing }
+DropListMorph >> font [
 	"Answer the content font"
 
 	^self contentMorph font
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>font: aFont [
+{ #category : #accessing }
+DropListMorph >> font: aFont [
 	"Set the content font"
 
 	self contentMorph beAllFont: aFont
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>getCurrentSelection [
+{ #category : #protocol }
+DropListMorph >> getCurrentSelection [
 	"Answer the current selection from the model."
 
 	^(self model notNil and: [self getIndexSelector notNil])
@@ -368,83 +277,59 @@ DropListMorph>>getCurrentSelection [
 				ifTrue: [mySelection]]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>getCurrentSelectionIndex [
+{ #category : #protocol }
+DropListMorph >> getCurrentSelectionIndex [
 	"Answer the index of the current selection."
 
 	self getIndexSelector ifNil: [^0].
 	^self model perform: self getIndexSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>getEnabledSelector [
+{ #category : #accessing }
+DropListMorph >> getEnabledSelector [
 	"Answer the value of getEnabledSelector"
 
 	^ getEnabledSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>getEnabledSelector: anObject [
+{ #category : #accessing }
+DropListMorph >> getEnabledSelector: anObject [
 	"Set the value of getEnabledSelector"
 
 	getEnabledSelector := anObject.
 	self updateEnabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>getIndexSelector [
+{ #category : #accessing }
+DropListMorph >> getIndexSelector [
 	"Answer the value of getIndexSelector"
 
 	^ getIndexSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>getIndexSelector: anObject [
+{ #category : #accessing }
+DropListMorph >> getIndexSelector: anObject [
 	"Set the value of getIndexSelector"
 
 	getIndexSelector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>getListSelector [
+{ #category : #accessing }
+DropListMorph >> getListSelector [
 	"Answer the value of getListSelector"
 
 	^ getListSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>getListSelector: anObject [
+{ #category : #accessing }
+DropListMorph >> getListSelector: anObject [
 	"Set the value of getListSelector"
 
 	getListSelector := anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>ghostText: aStringOrText [
+{ #category : #protocol }
+DropListMorph >> ghostText: aStringOrText [
 	| text |
 	
 	text := aStringOrText asText asMorph.
@@ -456,21 +341,15 @@ DropListMorph>>ghostText: aStringOrText [
 	self defaultContents: text.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>handlesKeyboard: evt [
+{ #category : #'event handling' }
+DropListMorph >> handlesKeyboard: evt [
 	"Return true if the receiver wishes to handle the given keyboard event."
 	
 	^true
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>hideList [
+{ #category : #protocol }
+DropListMorph >> hideList [
 	"Hide the list."
 
 	self listMorph ifNil: [^self].
@@ -483,11 +362,8 @@ DropListMorph>>hideList [
 		ifTrue: [self takeKeyboardFocus]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>initialize [
+{ #category : #initialization }
+DropListMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -516,11 +392,8 @@ DropListMorph>>initialize [
 	self listMorph fillStyle: (self theme dropListNormalListFillStyleFor: self)
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>keyStroke: event [
+{ #category : #'event handling' }
+DropListMorph >> keyStroke: event [
 	"Pass on to the list."
 	| indexToSelect |
 	
@@ -541,92 +414,65 @@ DropListMorph>>keyStroke: event [
 	self listSelectionIndex: indexToSelect
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>keyboardFocusChange: aBoolean [
+{ #category : #'event handling' }
+DropListMorph >> keyboardFocusChange: aBoolean [
 	"The message is sent to a morph when its keyboard focus changes.
 	Update for focus feedback."
 	super keyboardFocusChange: aBoolean.
 	self focusChanged
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>layoutInsetToUse [
+{ #category : #private }
+DropListMorph >> layoutInsetToUse [
 	"Answer the layout inset that should be used."
 
 	^self theme dropListInsetFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>list [
+{ #category : #accessing }
+DropListMorph >> list [
 	"Answer the list contents."
 	^list
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>list: aCollection [
+{ #category : #accessing }
+DropListMorph >> list: aCollection [
 	"Set the list contents."
 
 	list := aCollection.
 	self changed: #list
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>listFont [
+{ #category : #'font accessing' }
+DropListMorph >> listFont [
 	"Answer the list font"
 
 	^self listMorph font
 ]
 
-{
-	#category : #'font creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>listFont: aFont [
+{ #category : #'font creation' }
+DropListMorph >> listFont: aFont [
 	"Set the list font"
 
 	self listMorph font: aFont
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>listHeight [
+{ #category : #private }
+DropListMorph >> listHeight [
 	"Answer the height for the list."
 
 	^(self listMorph listMorph height + 6 max: 38) min: (15 * self listFont height)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>listMorph [
+{ #category : #accessing }
+DropListMorph >> listMorph [
 	"Answer the value of listMorph"
 
 	^ listMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>listMorph: anObject [
+{ #category : #accessing }
+DropListMorph >> listMorph: anObject [
 	"Set the value of listMorph"
 
 	listMorph := anObject.
@@ -636,21 +482,15 @@ DropListMorph>>listMorph: anObject [
 			to: self.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>listMorphClass [
+{ #category : #private }
+DropListMorph >> listMorphClass [
 	"Answer the class for a new list morph"
 
 	^PluggableListMorph
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>listMouseDown: evt [
+{ #category : #'event handling' }
+DropListMorph >> listMouseDown: evt [
 	"Click outside the list."
 
 	(self listMorph fullContainsPoint: evt position)
@@ -659,11 +499,8 @@ DropListMorph>>listMouseDown: evt [
 	self hideList
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>listPaneColor: paneColor [
+{ #category : #drawing }
+DropListMorph >> listPaneColor: paneColor [
 	"Set the pane color for the list."
 	
 	self listMorph ifNil: [^self].
@@ -673,21 +510,15 @@ DropListMorph>>listPaneColor: paneColor [
 		borderStyle: (self theme dropListNormalListBorderStyleFor: self)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>listSelectionIndex [
+{ #category : #accessing }
+DropListMorph >> listSelectionIndex [
 	"Answer the list selection."
 
 	^listSelectionIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>listSelectionIndex: anInteger [
+{ #category : #accessing }
+DropListMorph >> listSelectionIndex: anInteger [
 	"Set the list selection."
 
 	self hideList.
@@ -704,31 +535,22 @@ DropListMorph>>listSelectionIndex: anInteger [
 				ifFalse: [m perform: s with: self selectedItem]]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>listVisible [
+{ #category : #private }
+DropListMorph >> listVisible [
 	"Answer whether the list is visible."
 
 	^self listMorph owner notNil
 ]
 
-{
-	#category : #'wiw support',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>morphicLayerNumber [
+{ #category : #'wiw support' }
+DropListMorph >> morphicLayerNumber [
 	"Answer the layer number."
 
 	^self listVisible ifTrue: [10] ifFalse: [super morphicLayerNumber]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>newButtonMorph [
+{ #category : #drawing }
+DropListMorph >> newButtonMorph [
 	"Answer a new button morph"
 
 	^(ControlButtonMorph
@@ -746,11 +568,8 @@ DropListMorph>>newButtonMorph [
 			cornerStyle: self cornerStyle.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>newContentMorph [
+{ #category : #drawing }
+DropListMorph >> newContentMorph [
 	"Answer a new content morph"
 
 	^TextMorphForFieldView new
@@ -763,11 +582,8 @@ DropListMorph>>newContentMorph [
 		lock.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>newListMorph [
+{ #category : #drawing }
+DropListMorph >> newListMorph [
 	"Answer a new list morph"
 
 	|m|
@@ -788,11 +604,8 @@ DropListMorph>>newListMorph [
 	^m
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel [
+{ #category : #protocol }
+DropListMorph >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel [
 	"Set the receiver to the given model parameterized by the given message selectors."
 
 	getListSel isSymbol
@@ -807,22 +620,16 @@ DropListMorph>>on: anObject list: getListSel selected: getSelectionSel changeSel
 		updateContents
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>outOfWorld: aWorld [
+{ #category : #initialize }
+DropListMorph >> outOfWorld: aWorld [
 	"Get rid of the list if visible."
 
 	self hideList.
 	^super outOfWorld: aWorld
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>popList [
+{ #category : #protocol }
+DropListMorph >> popList [
 	"Hide / show the list."
 
 	self enabled ifFalse: [^self].
@@ -831,11 +638,8 @@ DropListMorph>>popList [
 		ifFalse: [self hideList]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>positionList [
+{ #category : #private }
+DropListMorph >> positionList [
 	"Position the list morph to fit on the display."
 
 	|height topSpace bottomSpace pos|
@@ -860,11 +664,8 @@ DropListMorph>>positionList [
 					bounds: (self boundsInWorld bottomLeft extent: self width @ height)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>roundedCorners: anArray [
+{ #category : #accessing }
+DropListMorph >> roundedCorners: anArray [
 	"Set the corners to round."
 
 	super roundedCorners: anArray.
@@ -872,62 +673,44 @@ DropListMorph>>roundedCorners: anArray [
 		b roundedCorners: (anArray copyWithoutAll: #(1 2))]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>selectedItem [
+{ #category : #protocol }
+DropListMorph >> selectedItem [
 	"Answer the selected list item."
 
 	^(self listSelectionIndex between: 1 and: self list size) ifTrue: [
 		self list at: self listSelectionIndex]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>selectionColor [
+{ #category : #accessing }
+DropListMorph >> selectionColor [
 	"Answer the selection color for the receiver."
 
 	^self listMorph selectionColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>selectionColor: aColor [
+{ #category : #accessing }
+DropListMorph >> selectionColor: aColor [
 	"Set the selection color for the receiver."
 
 	self listMorph selectionColor: aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>setIndexSelector [
+{ #category : #accessing }
+DropListMorph >> setIndexSelector [
 	"Answer the value of setIndexSelector"
 
 	^ setIndexSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>setIndexSelector: anObject [
+{ #category : #accessing }
+DropListMorph >> setIndexSelector: anObject [
 	"Set the value of setIndexSelector"
 
 	setIndexSelector := anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>showList [
+{ #category : #protocol }
+DropListMorph >> showList [
 	"Show the list."
 
 	self listMorph owner isNil
@@ -943,11 +726,8 @@ DropListMorph>>showList [
 					newMouseFocus: self listMorph]
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>step [
+{ #category : #'stepping and presenter' }
+DropListMorph >> step [
 	"Reset mouse focus to the list if it is showing."
 
 	self listVisible ifTrue: [
@@ -957,31 +737,22 @@ DropListMorph>>step [
 			self activeHand newMouseFocus: self listMorph]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>stepTime [
+{ #category : #testing }
+DropListMorph >> stepTime [
 	"Answer the desired time between steps in milliseconds."
 
 	^100
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>takesKeyboardFocus [
+{ #category : #protocol }
+DropListMorph >> takesKeyboardFocus [
 	"Answer whether the receiver can normally take keyboard focus."
 
 	^true
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>themeChanged [
+{ #category : #updating }
+DropListMorph >> themeChanged [
 	"Update the selection colour."
 	
 	self color: self defaultColor.
@@ -997,11 +768,8 @@ DropListMorph>>themeChanged [
 	
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>update: aSymbol  [
+{ #category : #updating }
+DropListMorph >> update: aSymbol [ 
 	"Refer to the comment in View|update:."
 
 	aSymbol == getListSelector ifTrue: 
@@ -1016,11 +784,8 @@ DropListMorph>>update: aSymbol  [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>updateContentColor: paneColor [
+{ #category : #updating }
+DropListMorph >> updateContentColor: paneColor [
 	"Change the content text color."
 	
 	self enabled
@@ -1028,20 +793,14 @@ DropListMorph>>updateContentColor: paneColor [
 		ifFalse: [self contentMorph textColor: self theme disabledColor ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>updateContentMorphWith: aString [
+{ #category : #private }
+DropListMorph >> updateContentMorphWith: aString [
 
 	self contentMorph contents: aString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>updateContents [
+{ #category : #testing }
+DropListMorph >> updateContents [
 	"Update the contents."
 
 	self updateContentMorphWith:
@@ -1050,11 +809,8 @@ DropListMorph>>updateContents [
 			ifFalse: [ self defaultContents ]) 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>updateEnabled [
+{ #category : #updating }
+DropListMorph >> updateEnabled [
 	"Update the enablement state."
 
 	self model ifNotNil: [
@@ -1062,11 +818,8 @@ DropListMorph>>updateEnabled [
 			self enabled: (self model perform: self getEnabledSelector)]]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>updateList [
+{ #category : #updating }
+DropListMorph >> updateList [
 	"Refresh the list."
 
 	self getListSelector isSymbol ifTrue: [
@@ -1074,11 +827,8 @@ DropListMorph>>updateList [
 		listSelectionIndex := 0]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>updateListSelectionIndex [
+{ #category : #updating }
+DropListMorph >> updateListSelectionIndex [
 	"Update the list selection."
 
 	|i|
@@ -1096,51 +846,36 @@ DropListMorph>>updateListSelectionIndex [
 		triggerEvent: #selectionIndex with: i
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>useIndex [
+{ #category : #protocol }
+DropListMorph >> useIndex [
 	"Use the model as returning the selected index rather than item."
 
 	self useSelectionIndex: true
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>useSelection [
+{ #category : #protocol }
+DropListMorph >> useSelection [
 	"Use the model as returning the selected item rather than index."
 
 	self useSelectionIndex: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>useSelectionIndex [
+{ #category : #accessing }
+DropListMorph >> useSelectionIndex [
 	"Answer the value of useSelectionIndex"
 
 	^ useSelectionIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>useSelectionIndex: anObject [
+{ #category : #accessing }
+DropListMorph >> useSelectionIndex: anObject [
 	"Set the value of useSelectionIndex"
 
 	useSelectionIndex := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>wantsKeyboardFocus [
+{ #category : #testing }
+DropListMorph >> wantsKeyboardFocus [
 	"Answer whether the receiver would like keyboard focus
 	in the general case (mouse action normally)."
 
@@ -1148,11 +883,8 @@ DropListMorph>>wantsKeyboardFocus [
 		self allowKeyboardFocus]
 ]
 
-{
-	#category : #wrapping,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>wrapItem: anItem index: index [
+{ #category : #wrapping }
+DropListMorph >> wrapItem: anItem index: index [
 
 	^ wrapSelector
 		ifNil: [ anItem asString ]
@@ -1164,20 +896,14 @@ DropListMorph>>wrapItem: anItem index: index [
 								withEnoughArguments: {anItem. index. self.} ]]
 ]
 
-{
-	#category : #wrapping,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>wrapSelector [
+{ #category : #wrapping }
+DropListMorph >> wrapSelector [
 	
 	^ wrapSelector
 ]
 
-{
-	#category : #wrapping,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DropListMorph>>wrapSelector: aSymbol [
+{ #category : #wrapping }
+DropListMorph >> wrapSelector: aSymbol [
 	
 	wrapSelector := aSymbol.
 

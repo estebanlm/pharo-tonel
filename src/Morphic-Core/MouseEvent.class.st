@@ -4,47 +4,31 @@ Superclass for mouse events
 Class {
 	#name : #MouseEvent,
 	#superclass : #UserInputEvent,
-	#category : #Morphic-Core-Events,
-	#timestamp : 'TorstenBergmann 2/20/2014 18:29'
+	#category : #Morphic-Core-Events
 }
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent class>>anyButton [
+{ #category : #constants }
+MouseEvent class >> anyButton [
 	^ 7
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent class>>blueButton [
+{ #category : #constants }
+MouseEvent class >> blueButton [
 	^ 1
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent class>>redButton [
+{ #category : #constants }
+MouseEvent class >> redButton [
 	^ 4
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent class>>yellowButton [
+{ #category : #constants }
+MouseEvent class >> yellowButton [
 	^ 2
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>= aMorphicEvent [
+{ #category : #comparing }
+MouseEvent >> = aMorphicEvent [
 	super = aMorphicEvent ifFalse:[^false].
 	position = aMorphicEvent position ifFalse: [^ false].
 	buttons = aMorphicEvent buttons ifFalse: [^ false].
@@ -52,46 +36,31 @@ MouseEvent>>= aMorphicEvent [
 
 ]
 
-{
-	#category : #'button state',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>anyButtonPressed [
+{ #category : #'button state' }
+MouseEvent >> anyButtonPressed [
 	"Answer true if any mouse button is being pressed."
 
 	^ buttons anyMask: self class anyButton
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>asMouseEnter [
+{ #category : #converting }
+MouseEvent >> asMouseEnter [
 	^self shallowCopy setType: #mouseEnter
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>asMouseLeave [
+{ #category : #converting }
+MouseEvent >> asMouseLeave [
 	^self shallowCopy setType: #mouseLeave
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>asMouseMove [
+{ #category : #converting }
+MouseEvent >> asMouseMove [
 	"Convert the receiver into a mouse move"
 	^MouseMoveEvent basicNew setType: #mouseMove startPoint: position endPoint: position trail: {position. position} buttons: buttons hand: source stamp: self timeStamp
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>asMouseOver [
+{ #category : #converting }
+MouseEvent >> asMouseOver [
 	"Convert the receiver into a mouse over event"
 
 	^ MouseEvent basicNew
@@ -102,108 +71,72 @@ MouseEvent>>asMouseOver [
 		setTimeStamp: self timeStamp
 ]
 
-{
-	#category : #'button state',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>blueButtonPressed [
+{ #category : #'button state' }
+MouseEvent >> blueButtonPressed [
 	"Answer true if the blue mouse button is being pressed. This is the third mouse button or cmd+click on the Mac."
 
 	^ buttons anyMask: self class blueButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>cursorPoint [
+{ #category : #accessing }
+MouseEvent >> cursorPoint [
 	"Answer the location of the cursor's hotspot when this event occured."
 
 	^ position
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>hash [
+{ #category : #comparing }
+MouseEvent >> hash [
 	^ position hash + buttons hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>isDraggingEvent [
+{ #category : #testing }
+MouseEvent >> isDraggingEvent [
 	source ifNil:[^false].
 	source hasSubmorphs ifTrue:[^true].
 	self anyButtonPressed ifTrue:[^true].
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>isMouse [
+{ #category : #testing }
+MouseEvent >> isMouse [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>isMouseDown [
+{ #category : #testing }
+MouseEvent >> isMouseDown [
 	^self type == #mouseDown
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>isMouseEnter [
+{ #category : #testing }
+MouseEvent >> isMouseEnter [
 	^self type == #mouseEnter
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>isMouseLeave [
+{ #category : #testing }
+MouseEvent >> isMouseLeave [
 	^self type == #mouseLeave
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>isMouseMove [
+{ #category : #testing }
+MouseEvent >> isMouseMove [
 	^self type == #mouseMove
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>isMouseUp [
+{ #category : #testing }
+MouseEvent >> isMouseUp [
 	^self type == #mouseUp
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>isMouseWheel [
+{ #category : #testing }
+MouseEvent >> isMouseWheel [
 	"Answer whether the receiver is a mouse wheel event."
 	
 	^false
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>printOn: aStream [
+{ #category : #printing }
+MouseEvent >> printOn: aStream [
 
 	aStream nextPut: $[.
 	aStream nextPutAll: self cursorPoint printString; space.
@@ -215,21 +148,15 @@ MouseEvent>>printOn: aStream [
 	aStream nextPut: $].
 ]
 
-{
-	#category : #'button state',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>redButtonPressed [
+{ #category : #'button state' }
+MouseEvent >> redButtonPressed [
 	"Answer true if the red mouse button is being pressed. This is the first mouse button."
 
 	^ buttons anyMask: self class redButton
 ]
 
-{
-	#category : #dispatching,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>sentTo: anObject [
+{ #category : #dispatching }
+MouseEvent >> sentTo: anObject [
 	"Dispatch the receiver into anObject"
 	type == #mouseOver ifTrue:[^anObject handleMouseOver: self].
 	type == #mouseEnter ifTrue:[^anObject handleMouseEnter: self].
@@ -237,20 +164,14 @@ MouseEvent>>sentTo: anObject [
 	^super sentTo: anObject.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>setType: aSymbol [
+{ #category : #private }
+MouseEvent >> setType: aSymbol [
 	"For quick conversion between event types"
 	type := aSymbol.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>setType: evtType position: evtPos buttons: evtButtons hand: evtHand [
+{ #category : #private }
+MouseEvent >> setType: evtType position: evtPos buttons: evtButtons hand: evtHand [
 	type := evtType.
 	position := evtPos.
 	buttons := evtButtons.
@@ -258,11 +179,8 @@ MouseEvent>>setType: evtType position: evtPos buttons: evtButtons hand: evtHand 
 	wasHandled := false.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>storeOn: aStream [
+{ #category : #printing }
+MouseEvent >> storeOn: aStream [
 
 	aStream nextPutAll: type.
 	aStream space.
@@ -275,22 +193,16 @@ MouseEvent>>storeOn: aStream [
 	buttons storeOn: aStream.
 ]
 
-{
-	#category : #'button state',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>targetPoint [
+{ #category : #'button state' }
+MouseEvent >> targetPoint [
 	"Answer the location of the cursor's hotspot, adjusted by the offset
 	of the last mouseDown relative to the recipient morph."
 
 	^ position - source targetOffset
 ]
 
-{
-	#category : #'button state',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseEvent>>yellowButtonPressed [
+{ #category : #'button state' }
+MouseEvent >> yellowButtonPressed [
 	"Answer true if the yellow mouse button is being pressed. This is the second mouse button or option+click on the Mac."
 
 	^ buttons anyMask: self class yellowButton

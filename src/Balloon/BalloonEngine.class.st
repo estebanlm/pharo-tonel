@@ -29,15 +29,11 @@ Class {
 	#pools : [
 		'BalloonEngineConstants'
 	],
-	#category : #Balloon-Engine,
-	#timestamp : '<historical>'
+	#category : #Balloon-Engine
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine class>>allocateOrRecycleBuffer: initialSize [
+{ #category : #private }
+BalloonEngine class >> allocateOrRecycleBuffer: initialSize [
 	"Try to recycly a buffer. If this is not possibly, create a new one."
 	| buffer |
 	CacheProtect critical:[
@@ -47,21 +43,15 @@ BalloonEngine class>>allocateOrRecycleBuffer: initialSize [
 	^buffer ifNil:[BalloonBuffer new: initialSize]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine class>>debug: aBoolean [
+{ #category : #accessing }
+BalloonEngine class >> debug: aBoolean [
 	"BalloonEngine debug: true"
 	"BalloonEngine debug: false"
 	Debug := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine class>>doProfileStats: aBool [
+{ #category : #accessing }
+BalloonEngine class >> doProfileStats: aBool [
 	"Note: On Macintosh systems turning on profiling can significantly
 	degrade the performance of Balloon since we're using the high
 	accuracy timer for measuring."
@@ -71,11 +61,8 @@ BalloonEngine class>>doProfileStats: aBool [
 	^false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine class>>initialize [
+{ #category : #initialization }
+BalloonEngine class >> initialize [
 	"BalloonEngine initialize"
 	BufferCache := WeakArray new: 1.
 	Smalltalk garbageCollect. "Make the cache old"
@@ -86,20 +73,14 @@ BalloonEngine class>>initialize [
 	Debug ifNil:[Debug := false].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine class>>primitiveSetBitBltPlugin: pluginName [
+{ #category : #private }
+BalloonEngine class >> primitiveSetBitBltPlugin: pluginName [
 	<primitive: 'primitiveSetBitBltPlugin' module: 'B2DPlugin'>
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine class>>printBezierStats [
+{ #category : #accessing }
+BalloonEngine class >> printBezierStats [
 	"BalloonEngine printBezierStats"
 	"BalloonEngine resetBezierStats"
 	Transcript 
@@ -111,11 +92,8 @@ BalloonEngine class>>printBezierStats [
 	endEntry.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine class>>printStat: time count: n string: aString [
+{ #category : #accessing }
+BalloonEngine class >> printStat: time count: n string: aString [
 	Transcript
 		cr;
 		print: time; tab;
@@ -127,11 +105,8 @@ BalloonEngine class>>printStat: time count: n string: aString [
 		nextPutAll: aString.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine class>>printStats [
+{ #category : #accessing }
+BalloonEngine class >> printStats [
 	"BalloonEngine doProfileStats: true"
 	"BalloonEngine printStats"
 	"BalloonEngine resetStats"
@@ -150,11 +125,8 @@ BalloonEngine class>>printStats [
 	Transcript endEntry.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine class>>recycleBuffer: balloonBuffer [
+{ #category : #private }
+BalloonEngine class >> recycleBuffer: balloonBuffer [
 	"Try to keep the buffer for later drawing operations."
 
 	CacheProtect critical:[ | buffer |
@@ -164,44 +136,29 @@ BalloonEngine class>>recycleBuffer: balloonBuffer [
 	].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine class>>resetBezierStats [
+{ #category : #accessing }
+BalloonEngine class >> resetBezierStats [
 	BezierStats := WordArray new: 4.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine class>>resetStats [
+{ #category : #accessing }
+BalloonEngine class >> resetStats [
 	Times := WordArray new: 10.
 	Counts := WordArray new: 10.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>aaLevel [
+{ #category : #accessing }
+BalloonEngine >> aaLevel [
 	^aaLevel ifNil:[1]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>aaLevel: anInteger [
+{ #category : #accessing }
+BalloonEngine >> aaLevel: anInteger [
 	aaLevel := (anInteger min: 4) max: 1.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>aaTransform [
+{ #category : #accessing }
+BalloonEngine >> aaTransform [
 	"Return a transformation for the current anti-aliasing level"
 	| matrix |
 	matrix := MatrixTransform2x3 withScale: (self aaLevel) asFloat asPoint.
@@ -209,19 +166,13 @@ BalloonEngine>>aaTransform [
 	^matrix composedWith:(MatrixTransform2x3 withOffset: destOffset asFloatPoint)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>bitBlt [
+{ #category : #accessing }
+BalloonEngine >> bitBlt [
 	^bitBlt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>bitBlt: aBitBlt [
+{ #category : #accessing }
+BalloonEngine >> bitBlt: aBitBlt [
 	bitBlt := aBitBlt.
 	bitBlt ifNil: [^self].
 	self class primitiveSetBitBltPlugin: bitBlt getPluginName.
@@ -233,11 +184,8 @@ BalloonEngine>>bitBlt: aBitBlt [
 		combinationRule: (bitBlt destForm depth >= 8 ifTrue:[34] ifFalse:[Form paint]).
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>canProceedAfter: failureReason [
+{ #category : #copying }
+BalloonEngine >> canProceedAfter: failureReason [
 	"Check if we can proceed after the failureReason indicated."
 	| newBuffer |
 	failureReason = GErrorNeedFlush ifTrue:[
@@ -255,52 +203,34 @@ BalloonEngine>>canProceedAfter: failureReason [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>clipRect [
+{ #category : #accessing }
+BalloonEngine >> clipRect [
 	^clipRect
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>clipRect: aRect [
+{ #category : #accessing }
+BalloonEngine >> clipRect: aRect [
 	clipRect := aRect truncated
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>colorTransform [
+{ #category : #accessing }
+BalloonEngine >> colorTransform [
 	^colorTransform
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>colorTransform: aColorTransform [
+{ #category : #accessing }
+BalloonEngine >> colorTransform: aColorTransform [
 	colorTransform := aColorTransform
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>copyBits [
+{ #category : #copying }
+BalloonEngine >> copyBits [
 	(bitBlt notNil and:[bitBlt destForm notNil]) ifTrue:[bitBlt destForm unhibernate].
 	self copyLoopFaster.
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>copyLoop [
+{ #category : #copying }
+BalloonEngine >> copyLoop [
 	"This is the basic rendering loop using as little primitive support as possible."
 	| finished edge fill |
 	edge := BalloonEdgeData new.
@@ -339,11 +269,8 @@ BalloonEngine>>copyLoop [
 	self primGetBezierStats: BezierStats.
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>copyLoopFaster [
+{ #category : #copying }
+BalloonEngine >> copyLoopFaster [
 	"This is a copy loop drawing one scan line at a time"
 	| edge fill reason |
 	edge := BalloonEdgeData new.
@@ -360,11 +287,8 @@ BalloonEngine>>copyLoopFaster [
 	self primGetBezierStats: BezierStats.
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>copyLoopFastest [
+{ #category : #copying }
+BalloonEngine >> copyLoopFastest [
 	"This is a copy loop drawing the entire image"
 	| edge fill reason |
 	edge := BalloonEdgeData new.
@@ -381,44 +305,29 @@ BalloonEngine>>copyLoopFastest [
 	self primGetBezierStats: BezierStats.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>deferred [
+{ #category : #accessing }
+BalloonEngine >> deferred [
 	^deferred
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>deferred: aBoolean [
+{ #category : #accessing }
+BalloonEngine >> deferred: aBoolean [
 	deferred := aBoolean.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>destOffset [
+{ #category : #accessing }
+BalloonEngine >> destOffset [
 	^destOffset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>destOffset: aPoint [
+{ #category : #accessing }
+BalloonEngine >> destOffset: aPoint [
 	destOffset := aPoint asIntegerPoint.
 	bitBlt destX: aPoint x; destY: aPoint y.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>drawBezierShape: points fill: fillStyle borderWidth: borderWidth borderColor: borderFill transform: aTransform [
+{ #category : #drawing }
+BalloonEngine >> drawBezierShape: points fill: fillStyle borderWidth: borderWidth borderColor: borderFill transform: aTransform [
 	| fills |
 	self edgeTransform: aTransform.
 	self resetIfNeeded.
@@ -431,11 +340,8 @@ BalloonEngine>>drawBezierShape: points fill: fillStyle borderWidth: borderWidth 
 	self postFlushIfNeeded.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>drawCompressedShape: shape transform: aTransform [
+{ #category : #drawing }
+BalloonEngine >> drawCompressedShape: shape transform: aTransform [
 	| fillIndexList |
 	self edgeTransform: aTransform.
 	self resetIfNeeded.
@@ -452,11 +358,8 @@ BalloonEngine>>drawCompressedShape: shape transform: aTransform [
 	self postFlushIfNeeded.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>drawGeneralBezierShape: contours fill: fillStyle borderWidth: borderWidth borderColor: borderFill transform: aTransform [
+{ #category : #drawing }
+BalloonEngine >> drawGeneralBezierShape: contours fill: fillStyle borderWidth: borderWidth borderColor: borderFill transform: aTransform [
 
 	| fills |
 	self edgeTransform: aTransform.
@@ -477,11 +380,8 @@ BalloonEngine>>drawGeneralBezierShape: contours fill: fillStyle borderWidth: bor
 	self postFlushIfNeeded.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>drawGeneralPolygon: contours fill: fillStyle borderWidth: borderWidth borderColor: borderFill transform: aTransform [
+{ #category : #drawing }
+BalloonEngine >> drawGeneralPolygon: contours fill: fillStyle borderWidth: borderWidth borderColor: borderFill transform: aTransform [
 
 	| fills |
 	self edgeTransform: aTransform.
@@ -502,11 +402,8 @@ BalloonEngine>>drawGeneralPolygon: contours fill: fillStyle borderWidth: borderW
 	self postFlushIfNeeded.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>drawOval: rect fill: fillStyle borderWidth: borderWidth borderColor: borderColor transform: aMatrix [
+{ #category : #drawing }
+BalloonEngine >> drawOval: rect fill: fillStyle borderWidth: borderWidth borderColor: borderColor transform: aMatrix [
 
 	| fills |
 	self edgeTransform: aMatrix.
@@ -520,11 +417,8 @@ BalloonEngine>>drawOval: rect fill: fillStyle borderWidth: borderWidth borderCol
 	self postFlushIfNeeded.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>drawPolygon: points fill: fillStyle borderWidth: borderWidth borderColor: borderFill transform: aTransform [
+{ #category : #drawing }
+BalloonEngine >> drawPolygon: points fill: fillStyle borderWidth: borderWidth borderColor: borderFill transform: aTransform [
 
 	| fills |
 	self edgeTransform: aTransform.
@@ -538,11 +432,8 @@ BalloonEngine>>drawPolygon: points fill: fillStyle borderWidth: borderWidth bord
 	self postFlushIfNeeded.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>drawRectangle: rect fill: fillStyle borderWidth: borderWidth borderColor: borderColor transform: aMatrix [
+{ #category : #drawing }
+BalloonEngine >> drawRectangle: rect fill: fillStyle borderWidth: borderWidth borderColor: borderColor transform: aMatrix [
 
 	| fills |
 	self edgeTransform: aMatrix.
@@ -556,49 +447,34 @@ BalloonEngine>>drawRectangle: rect fill: fillStyle borderWidth: borderWidth bord
 	self postFlushIfNeeded.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>edgeTransform [
+{ #category : #accessing }
+BalloonEngine >> edgeTransform [
 	^edgeTransform
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>edgeTransform: aTransform [
+{ #category : #accessing }
+BalloonEngine >> edgeTransform: aTransform [
 	edgeTransform := aTransform.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>flush [
+{ #category : #initialize }
+BalloonEngine >> flush [
 	"Force all pending primitives onscreen"
 	workBuffer ifNil:[^self].
 	self copyBits.
 	self release.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>fullTransformFrom: aMatrix [
+{ #category : #accessing }
+BalloonEngine >> fullTransformFrom: aMatrix [
 	| m |
 	m := self aaTransform composedWith: aMatrix.
 	"m offset: m offset + destOffset."
 	^m
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>initialize [
+{ #category : #initialization }
+BalloonEngine >> initialize [
 	| w |
 	super initialize.
 	w := Display width > 2048 ifTrue: [ 4096 ] ifFalse: [ 2048 ].
@@ -610,11 +486,8 @@ BalloonEngine>>initialize [
 	deferred := false.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>postFlushIfNeeded [
+{ #category : #initialize }
+BalloonEngine >> postFlushIfNeeded [
 	"Force all pending primitives onscreen"
 	workBuffer ifNil:[^self].
 	(deferred not or:[postFlushNeeded]) ifTrue:[
@@ -622,11 +495,8 @@ BalloonEngine>>postFlushIfNeeded [
 		self release].
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>preFlushIfNeeded [
+{ #category : #initialize }
+BalloonEngine >> preFlushIfNeeded [
 	"Force all pending primitives onscreen"
 	workBuffer ifNil:[^self].
 	self primFlushNeeded ifTrue:[
@@ -634,11 +504,8 @@ BalloonEngine>>preFlushIfNeeded [
 		self reset].
 ]
 
-{
-	#category : #primitives-incremental,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primAddActiveEdgeTableEntryFrom: edgeEntry [
+{ #category : #primitives-incremental }
+BalloonEngine >> primAddActiveEdgeTableEntryFrom: edgeEntry [
 	"Add edge entry to the AET."
 	<primitive: 'primitiveAddActiveEdgeEntry' module: 'B2DPlugin'>
 	(self canProceedAfter: self primGetFailureReason) ifTrue:[
@@ -647,11 +514,8 @@ BalloonEngine>>primAddActiveEdgeTableEntryFrom: edgeEntry [
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primAddBezierFrom: start to: end via: via leftFillIndex: leftFillIndex rightFillIndex: rightFillIndex [
+{ #category : #primitives-adding }
+BalloonEngine >> primAddBezierFrom: start to: end via: via leftFillIndex: leftFillIndex rightFillIndex: rightFillIndex [
 	<primitive: 'primitiveAddBezier' module: 'B2DPlugin'>
 	(self canProceedAfter: self primGetFailureReason) ifTrue:[
 		^self primAddBezierFrom: start to: end via: via leftFillIndex: leftFillIndex rightFillIndex: rightFillIndex
@@ -659,11 +523,8 @@ BalloonEngine>>primAddBezierFrom: start to: end via: via leftFillIndex: leftFill
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primAddBezierShape: points segments: nSegments fill: fillStyle lineWidth: lineWidth lineFill: lineFill [
+{ #category : #primitives-adding }
+BalloonEngine >> primAddBezierShape: points segments: nSegments fill: fillStyle lineWidth: lineWidth lineFill: lineFill [
 	<primitive: 'primitiveAddBezierShape' module: 'B2DPlugin'>
 	(self canProceedAfter: self primGetFailureReason) ifTrue:[
 		^self primAddBezierShape: points segments: nSegments fill: fillStyle lineWidth: lineWidth lineFill: lineFill
@@ -671,11 +532,8 @@ BalloonEngine>>primAddBezierShape: points segments: nSegments fill: fillStyle li
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primAddBitmapFill: form colormap: cmap tile: tileFlag from: origin along: direction normal: normal xIndex: xIndex [
+{ #category : #primitives-adding }
+BalloonEngine >> primAddBitmapFill: form colormap: cmap tile: tileFlag from: origin along: direction normal: normal xIndex: xIndex [
 	<primitive: 'primitiveAddBitmapFill' module: 'B2DPlugin'>
 	(self canProceedAfter: self primGetFailureReason) ifTrue:[
 		^self primAddBitmapFill: form colormap: cmap tile: tileFlag from: origin along: direction normal: normal xIndex: xIndex
@@ -683,11 +541,8 @@ BalloonEngine>>primAddBitmapFill: form colormap: cmap tile: tileFlag from: origi
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primAddCompressedShape: points segments: nSegments leftFills: leftFills rightFills: rightFills lineWidths: lineWidths lineFills: lineFills fillIndexList: fillIndexList [
+{ #category : #primitives-adding }
+BalloonEngine >> primAddCompressedShape: points segments: nSegments leftFills: leftFills rightFills: rightFills lineWidths: lineWidths lineFills: lineFills fillIndexList: fillIndexList [
 	<primitive: 'primitiveAddCompressedShape' module: 'B2DPlugin'>
 	(self canProceedAfter: self primGetFailureReason) ifTrue:[
 		^self primAddCompressedShape: points segments: nSegments leftFills: leftFills rightFills: rightFills lineWidths: lineWidths lineFills: lineFills fillIndexList: fillIndexList
@@ -695,11 +550,8 @@ BalloonEngine>>primAddCompressedShape: points segments: nSegments leftFills: lef
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primAddExternalEdge: index initialX: initialX initialY: initialY initialZ: initialZ leftFillIndex: leftFillIndex rightFillIndex: rightFillIndex [
+{ #category : #primitives-adding }
+BalloonEngine >> primAddExternalEdge: index initialX: initialX initialY: initialY initialZ: initialZ leftFillIndex: leftFillIndex rightFillIndex: rightFillIndex [
 	<primitive: 'primitiveRegisterExternalEdge' module: 'B2DPlugin'>
 	(self canProceedAfter: self primGetFailureReason) ifTrue:[
 		^self primAddExternalEdge: index initialX: initialX initialY: initialY initialZ: initialZ leftFillIndex: leftFillIndex rightFillIndex: rightFillIndex
@@ -707,11 +559,8 @@ BalloonEngine>>primAddExternalEdge: index initialX: initialX initialY: initialY 
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primAddExternalFill: index [
+{ #category : #primitives-adding }
+BalloonEngine >> primAddExternalFill: index [
 	<primitive: 'primitiveRegisterExternalFill' module: 'B2DPlugin'>
 	(self canProceedAfter: self primGetFailureReason) ifTrue:[
 		^self primAddExternalFill: index
@@ -719,11 +568,8 @@ BalloonEngine>>primAddExternalFill: index [
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primAddGradientFill: colorRamp from: origin along: direction normal: normal radial: isRadial [
+{ #category : #primitives-adding }
+BalloonEngine >> primAddGradientFill: colorRamp from: origin along: direction normal: normal radial: isRadial [
 	<primitive: 'primitiveAddGradientFill' module: 'B2DPlugin'>
 	(self canProceedAfter: self primGetFailureReason) ifTrue:[
 		^self primAddGradientFill: colorRamp 
@@ -735,11 +581,8 @@ BalloonEngine>>primAddGradientFill: colorRamp from: origin along: direction norm
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primAddLineFrom: start to: end leftFillIndex: leftFillIndex rightFillIndex: rightFillIndex [
+{ #category : #primitives-adding }
+BalloonEngine >> primAddLineFrom: start to: end leftFillIndex: leftFillIndex rightFillIndex: rightFillIndex [
 	<primitive: 'primitiveAddLine' module: 'B2DPlugin'>
 	(self canProceedAfter: self primGetFailureReason) ifTrue:[
 		^self primAddLineFrom: start to: end leftFillIndex: leftFillIndex rightFillIndex: rightFillIndex
@@ -747,11 +590,8 @@ BalloonEngine>>primAddLineFrom: start to: end leftFillIndex: leftFillIndex right
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primAddOvalFrom: start to: end fillIndex: fillIndex borderWidth: width borderColor: pixelValue32 [
+{ #category : #primitives-adding }
+BalloonEngine >> primAddOvalFrom: start to: end fillIndex: fillIndex borderWidth: width borderColor: pixelValue32 [
 	<primitive: 'primitiveAddOval' module: 'B2DPlugin'>
 	(self canProceedAfter: self primGetFailureReason) ifTrue:[
 		^self primAddOvalFrom: start to: end fillIndex: fillIndex borderWidth: width borderColor: pixelValue32
@@ -759,11 +599,8 @@ BalloonEngine>>primAddOvalFrom: start to: end fillIndex: fillIndex borderWidth: 
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primAddPolygon: points segments: nSegments fill: fillStyle lineWidth: lineWidth lineFill: lineFill [
+{ #category : #primitives-adding }
+BalloonEngine >> primAddPolygon: points segments: nSegments fill: fillStyle lineWidth: lineWidth lineFill: lineFill [
 	<primitive: 'primitiveAddPolygon' module: 'B2DPlugin'>
 	(self canProceedAfter: self primGetFailureReason) ifTrue:[
 		^self primAddPolygon: points segments: nSegments fill: fillStyle lineWidth: lineWidth lineFill: lineFill
@@ -771,11 +608,8 @@ BalloonEngine>>primAddPolygon: points segments: nSegments fill: fillStyle lineWi
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primAddRectFrom: start to: end fillIndex: fillIndex borderWidth: width borderColor: pixelValue32 [
+{ #category : #primitives-adding }
+BalloonEngine >> primAddRectFrom: start to: end fillIndex: fillIndex borderWidth: width borderColor: pixelValue32 [
 	<primitive: 'primitiveAddRect' module: 'B2DPlugin'>
 	(self canProceedAfter: self primGetFailureReason) ifTrue:[
 		^self primAddRectFrom: start to: end fillIndex: fillIndex borderWidth: width borderColor: pixelValue32
@@ -783,289 +617,199 @@ BalloonEngine>>primAddRectFrom: start to: end fillIndex: fillIndex borderWidth: 
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-incremental,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primChangeActiveEdgeTableEntryFrom: edgeEntry [
+{ #category : #primitives-incremental }
+BalloonEngine >> primChangeActiveEdgeTableEntryFrom: edgeEntry [
 	"Change the entry in the active edge table from edgeEntry"
 	<primitive: 'primitiveChangedActiveEdgeEntry' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primClipRectInto: rect [
+{ #category : #primitives-access }
+BalloonEngine >> primClipRectInto: rect [
 	<primitive: 'primitiveGetClipRect' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-misc,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primCopyBufferFrom: oldBuffer to: newBuffer [
+{ #category : #primitives-misc }
+BalloonEngine >> primCopyBufferFrom: oldBuffer to: newBuffer [
 	"Copy the contents of oldBuffer into the (larger) newBuffer"
 	<primitive: 'primitiveCopyBuffer' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-incremental,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primDisplaySpanBuffer [
+{ #category : #primitives-incremental }
+BalloonEngine >> primDisplaySpanBuffer [
 	"Display the current scan line if necessary"
 	<primitive: 'primitiveDisplaySpanBuffer' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-incremental,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primFinishedProcessing [
+{ #category : #primitives-incremental }
+BalloonEngine >> primFinishedProcessing [
 	"Return true if there are no more entries in AET and GET and the last scan line has been displayed"
 	<primitive: 'primitiveFinishedProcessing' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primFlushNeeded [
+{ #category : #primitives-access }
+BalloonEngine >> primFlushNeeded [
 	<primitive: 'primitiveNeedsFlush' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primFlushNeeded: aBoolean [
+{ #category : #primitives-access }
+BalloonEngine >> primFlushNeeded: aBoolean [
 	<primitive: 'primitiveNeedsFlushPut' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primGetAALevel [
+{ #category : #primitives-access }
+BalloonEngine >> primGetAALevel [
 	"Set the AA level"
 	<primitive: 'primitiveGetAALevel' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primGetBezierStats: statsArray [
+{ #category : #primitives-access }
+BalloonEngine >> primGetBezierStats: statsArray [
 	<primitive: 'primitiveGetBezierStats' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primGetClipRect: rect [
+{ #category : #primitives-access }
+BalloonEngine >> primGetClipRect: rect [
 	<primitive: 'primitiveGetClipRect' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primGetCounts: statsArray [
+{ #category : #primitives-access }
+BalloonEngine >> primGetCounts: statsArray [
 	<primitive: 'primitiveGetCounts' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primGetDepth [
+{ #category : #primitives-access }
+BalloonEngine >> primGetDepth [
 	<primitive: 'primitiveGetDepth' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primGetFailureReason [
+{ #category : #primitives-access }
+BalloonEngine >> primGetFailureReason [
 	<primitive: 'primitiveGetFailureReason' module: 'B2DPlugin'>
 	^0
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primGetOffset [
+{ #category : #primitives-access }
+BalloonEngine >> primGetOffset [
 	<primitive: 'primitiveGetOffset' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primGetTimes: statsArray [
+{ #category : #primitives-access }
+BalloonEngine >> primGetTimes: statsArray [
 	<primitive: 'primitiveGetTimes' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-misc,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primInitializeBuffer: buffer [
+{ #category : #primitives-misc }
+BalloonEngine >> primInitializeBuffer: buffer [
 	<primitive: 'primitiveInitializeBuffer' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-incremental,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primInitializeProcessing [
+{ #category : #primitives-incremental }
+BalloonEngine >> primInitializeProcessing [
 	"Initialize processing in the GE.
 	Create the active edge table and sort it."
 	<primitive: 'primitiveInitializeProcessing' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-incremental,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primMergeFill: fillBitmap from: fill [
+{ #category : #primitives-incremental }
+BalloonEngine >> primMergeFill: fillBitmap from: fill [
 	"Merge the filled bitmap into the current output buffer."
 	<primitive: 'primitiveMergeFillFrom' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-incremental,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primNextActiveEdgeEntryInto: edgeEntry [
+{ #category : #primitives-incremental }
+BalloonEngine >> primNextActiveEdgeEntryInto: edgeEntry [
 	"Store the next entry of the AET at the current y-value in edgeEntry.
 	Return false if there is no entry, true otherwise."
 	<primitive: 'primitiveNextActiveEdgeEntry' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-incremental,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primNextFillEntryInto: fillEntry [
+{ #category : #primitives-incremental }
+BalloonEngine >> primNextFillEntryInto: fillEntry [
 	"Store the next fill entry of the active edge table in fillEntry.
 	Return false if there is no such entry, true otherwise"
 	<primitive: 'primitiveNextFillEntry' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-incremental,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primNextGlobalEdgeEntryInto: edgeEntry [
+{ #category : #primitives-incremental }
+BalloonEngine >> primNextGlobalEdgeEntryInto: edgeEntry [
 	"Store the next entry of the GET at the current y-value in edgeEntry.
 	Return false if there is no entry, true otherwise."
 	<primitive: 'primitiveNextGlobalEdgeEntry' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-incremental,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primRenderImage: edge with: fill [
+{ #category : #primitives-incremental }
+BalloonEngine >> primRenderImage: edge with: fill [
 	"Start/Proceed rendering the current scan line"
 	<primitive: 'primitiveRenderImage' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-incremental,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primRenderScanline: edge with: fill [
+{ #category : #primitives-incremental }
+BalloonEngine >> primRenderScanline: edge with: fill [
 	"Start/Proceed rendering the current scan line"
 	<primitive: 'primitiveRenderScanline' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primSetAALevel: level [
+{ #category : #primitives-access }
+BalloonEngine >> primSetAALevel: level [
 	"Set the AA level"
 	<primitive: 'primitiveSetAALevel' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primSetClipRect: rect [
+{ #category : #primitives-access }
+BalloonEngine >> primSetClipRect: rect [
 	<primitive: 'primitiveSetClipRect' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primSetColorTransform: transform [
+{ #category : #primitives-access }
+BalloonEngine >> primSetColorTransform: transform [
 	<primitive: 'primitiveSetColorTransform' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primSetDepth: depth [
+{ #category : #primitives-access }
+BalloonEngine >> primSetDepth: depth [
 	<primitive: 'primitiveSetDepth' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primSetEdgeTransform: transform [
+{ #category : #primitives-access }
+BalloonEngine >> primSetEdgeTransform: transform [
 	<primitive: 'primitiveSetEdgeTransform' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-access,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>primSetOffset: point [
+{ #category : #primitives-access }
+BalloonEngine >> primSetOffset: point [
 	<primitive: 'primitiveSetOffset' module: 'B2DPlugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>processStopReason: reason edge: edge fill: fill [
+{ #category : #copying }
+BalloonEngine >> processStopReason: reason edge: edge fill: fill [
 	"The engine has stopped because of some reason.
 	Try to figure out how to respond and do the necessary actions."
 	"Note: The order of operations below can affect the speed"
@@ -1097,11 +841,8 @@ BalloonEngine>>processStopReason: reason edge: edge fill: fill [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>registerFill: aFillStyle [
+{ #category : #drawing }
+BalloonEngine >> registerFill: aFillStyle [
 	"Register the given fill style."
 	| theForm |
 	aFillStyle ifNil:[^0].
@@ -1129,19 +870,13 @@ BalloonEngine>>registerFill: aFillStyle [
 	^0
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>registerFill: fill1 and: fill2 [
+{ #category : #drawing }
+BalloonEngine >> registerFill: fill1 and: fill2 [
 	^self registerFills: (Array with: fill1 with: fill2)
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>registerFills: fills [
+{ #category : #drawing }
+BalloonEngine >> registerFills: fills [
 
 	| fillIndexList index fillIndex |
 	((colorTransform notNil and:[colorTransform isAlphaTransform]) or:[
@@ -1161,22 +896,16 @@ BalloonEngine>>registerFills: fills [
 	^fillIndexList
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>release [
+{ #category : #initialize }
+BalloonEngine >> release [
 	self class recycleBuffer: workBuffer.
 	workBuffer := nil.
 	self releaseActionMap. "we are not sure if we need it"
 	super release.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>reset [
+{ #category : #initialize }
+BalloonEngine >> reset [
 	workBuffer ifNil:[workBuffer := self class allocateOrRecycleBuffer: 10000].
 	self primInitializeBuffer: workBuffer.
 	self primSetAALevel: self aaLevel.
@@ -1187,11 +916,8 @@ BalloonEngine>>reset [
 	forms := #().
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngine>>resetIfNeeded [
+{ #category : #initialize }
+BalloonEngine >> resetIfNeeded [
 	workBuffer ifNil:[self reset].
 	self primSetEdgeTransform: edgeTransform.
 	self primSetColorTransform: colorTransform.

@@ -4,25 +4,18 @@ A DiffMorphChangeRecordConverter is a converter used to show the diff between tw
 Class {
 	#name : #DiffMorphChangeRecordConverter,
 	#superclass : #AbstractMethodReferenceConverter,
-	#category : #Spec-Tools-VersionBrowser,
-	#timestamp : 'NicolaiHess 1/19/2014 23:41'
+	#category : #Spec-Tools-VersionBrowser
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DiffMorphChangeRecordConverter>>internalGetText [
+{ #category : #private }
+DiffMorphChangeRecordConverter >> internalGetText [
 	| priorSource |
 	priorSource := (self priorVersionOfAMethod: method) ifNotNil: [ :m | m sourceCode ] ifNil: [ '' ].
 	^ Array with: priorSource with: method sourceCode
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DiffMorphChangeRecordConverter>>priorVersionOfAMethod: aChangeRecord [
+{ #category : #private }
+DiffMorphChangeRecordConverter >> priorVersionOfAMethod: aChangeRecord [
 	| index |
 	index := referencesList identityIndexOf: aChangeRecord .
 	^ referencesList at: index+1 ifAbsent: [ nil ]

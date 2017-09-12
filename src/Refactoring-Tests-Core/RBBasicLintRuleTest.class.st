@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RBBasicLintRuleTest,
 	#superclass : #RBLintRuleTest,
@@ -10,15 +7,11 @@ Class {
 		'classBlock',
 		'anInstVar'
 	],
-	#category : #Refactoring-Tests-Core-Data,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core-Data
 }
 
-{
-	#category : #'possible bugs',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>abstractClass [
+{ #category : #'possible bugs' }
+RBBasicLintRuleTest class >> abstractClass [
 	| detector subclassResponsibilitySymbol |
 	detector := self new.
 	detector name: 'References an abstract class'.
@@ -32,11 +25,8 @@ RBBasicLintRuleTest class>>abstractClass [
 	^detector
 ]
 
-{
-	#category : #'possible bugs',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>addRemoveDependents [
+{ #category : #'possible bugs' }
+RBBasicLintRuleTest class >> addRemoveDependents [
 	| detector |
 	detector := self new.
 	detector resultClass: RBClassEnvironment.
@@ -58,11 +48,8 @@ RBBasicLintRuleTest class>>addRemoveDependents [
 	^detector
 ]
 
-{
-	#category : #miscellaneous,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>assignmentInBlock [
+{ #category : #miscellaneous }
+RBBasicLintRuleTest class >> assignmentInBlock [
 	^self createParseTreeRule: #(
 			'`@cursor showWhile: [| `@temps | `@.Statements1. `var := `@object]' 
 			'`@cursor showWhile: [| `@temps | `@.Statements1. ^`@object]' 
@@ -73,11 +60,8 @@ RBBasicLintRuleTest class>>assignmentInBlock [
 		name: 'Unnecessary assignment or return in block'
 ]
 
-{
-	#category : #'intention revealing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>assignmentInIfTrue [
+{ #category : #'intention revealing' }
+RBBasicLintRuleTest class >> assignmentInIfTrue [
 	^self createParseTreeRule: 
 			#('`@boolean 
 					ifTrue: [| `@temps1 | `@.Statements1. `var := `@object1] 
@@ -88,11 +72,8 @@ RBBasicLintRuleTest class>>assignmentInIfTrue [
 		name: 'Assignment to same variable and end of ifTrue:ifFalse: blocks'
 ]
 
-{
-	#category : #'intention revealing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>atIfAbsent [
+{ #category : #'intention revealing' }
+RBBasicLintRuleTest class >> atIfAbsent [
 	^self createParseTreeRule: 
 				#('`@object 
 						at: `@atArg 
@@ -107,11 +88,8 @@ RBBasicLintRuleTest class>>atIfAbsent [
 		name: 'Uses at:ifAbsent: instead of at:ifAbsentPut:'
 ]
 
-{
-	#category : #bugs,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>booleanPrecedence [
+{ #category : #bugs }
+RBBasicLintRuleTest class >> booleanPrecedence [
 	^self createParseTreeRule: 
 			#('`@object1 | `@object2 = `@object3'
 			'`@object1 | `@object2 == `@object3'
@@ -124,11 +102,8 @@ RBBasicLintRuleTest class>>booleanPrecedence [
 		name: 'Uses A | B = C instead of A | (B = C)'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>canCall: aSelector in: aClass from: anApplication [
+{ #category : #private }
+RBBasicLintRuleTest class >> canCall: aSelector in: aClass from: anApplication [
 	"This method contains on purpose not implemented messages, such as rootApplication "
 	| methodApp root |
 	(aClass canUnderstand: aSelector) ifFalse: [^false].
@@ -138,11 +113,8 @@ RBBasicLintRuleTest class>>canCall: aSelector in: aClass from: anApplication [
 	^methodApp == root or: [root isBasedOn: methodApp]
 ]
 
-{
-	#category : #miscellaneous,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>classNameInSelector [
+{ #category : #miscellaneous }
+RBBasicLintRuleTest class >> classNameInSelector [
 	| detector |
 	detector := self new.
 	detector name: 'Redundant class name in selector'.
@@ -156,11 +128,8 @@ RBBasicLintRuleTest class>>classNameInSelector [
 	^detector
 ]
 
-{
-	#category : #'unnecessary code',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>classNotReferenced [
+{ #category : #'unnecessary code' }
+RBBasicLintRuleTest class >> classNotReferenced [
 	| detector |
 	detector := self new.
 	detector name: 'Class not referenced'.
@@ -177,19 +146,13 @@ RBBasicLintRuleTest class>>classNotReferenced [
 	^detector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>classShouldNotOverride [
+{ #category : #private }
+RBBasicLintRuleTest class >> classShouldNotOverride [
 	^#(#== #class)
 ]
 
-{
-	#category : #'possible bugs',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>collectionCopyEmpty [
+{ #category : #'possible bugs' }
+RBBasicLintRuleTest class >> collectionCopyEmpty [
 	| detector |
 	detector := self new.
 	detector
@@ -205,11 +168,8 @@ RBBasicLintRuleTest class>>collectionCopyEmpty [
 	^detector
 ]
 
-{
-	#category : #'intention revealing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>collectionMessagesToExternalObject [
+{ #category : #'intention revealing' }
+RBBasicLintRuleTest class >> collectionMessagesToExternalObject [
 	| detector matcher |
 	detector := self new.
 	detector name: 'Sends add:/remove: to external collection'.
@@ -234,11 +194,8 @@ RBBasicLintRuleTest class>>collectionMessagesToExternalObject [
 	^detector
 ]
 
-{
-	#category : #'intention revealing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>collectionProtocol [
+{ #category : #'intention revealing' }
+RBBasicLintRuleTest class >> collectionProtocol [
 	^self createParseTreeRule: 
 			#('`@collection do: [:`each | | `@temps | `@.Statements1. `@object add: `@arg. `@.Statements2]' 
 			'`@collection do: [:`each | | `@temps | 
@@ -258,11 +215,8 @@ RBBasicLintRuleTest class>>collectionProtocol [
 		name: 'Uses do: instead of collect: or select:''s'
 ]
 
-{
-	#category : #'intention revealing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>consistencyCheck [
+{ #category : #'intention revealing' }
+RBBasicLintRuleTest class >> consistencyCheck [
 	^self createParseTreeRule: 
 				#('`@object size == 0' 
 				'`@object size = 0' 
@@ -273,11 +227,8 @@ RBBasicLintRuleTest class>>consistencyCheck [
 		name: 'Uses "size = 0" or "= nil" instead of "isEmpty" or "isNil"'
 ]
 
-{
-	#category : #'intention revealing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>contains [
+{ #category : #'intention revealing' }
+RBBasicLintRuleTest class >> contains [
 	^self createParseTreeRule: 
 			#('(`@object detect: [:`each | | `@temps| `@.Statements] ifNone: [nil]) isNil' 
 			'(`@object detect: [:`each | | `@temps| `@.Statements] ifNone: [nil]) notNil' 
@@ -289,11 +240,8 @@ RBBasicLintRuleTest class>>contains [
 		name: 'Uses detect:ifNone: instead of contains:'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>createMatcherFor: codeStrings method: aBoolean  [
+{ #category : #private }
+RBBasicLintRuleTest class >> createMatcherFor: codeStrings method: aBoolean [ 
 	| matcher |
 	matcher := RBParseTreeSearcher new.
 	aBoolean
@@ -302,11 +250,8 @@ RBBasicLintRuleTest class>>createMatcherFor: codeStrings method: aBoolean  [
 	^matcher
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>createParseTreeRule: codeStrings method: aBoolean name: aName  [
+{ #category : #'instance creation' }
+RBBasicLintRuleTest class >> createParseTreeRule: codeStrings method: aBoolean name: aName [ 
 	| detector matcher |
 	detector := self new.
 	detector name: aName.
@@ -318,21 +263,15 @@ RBBasicLintRuleTest class>>createParseTreeRule: codeStrings method: aBoolean nam
 	^detector
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>createParseTreeRule: codeStrings name: aName  [
+{ #category : #'instance creation' }
+RBBasicLintRuleTest class >> createParseTreeRule: codeStrings name: aName [ 
 	^self createParseTreeRule: codeStrings
 		method: false
 		name: aName
 ]
 
-{
-	#category : #'possible bugs',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>definesEqualNotHash [
+{ #category : #'possible bugs' }
+RBBasicLintRuleTest class >> definesEqualNotHash [
 	| detector |
 	detector := self new.
 	detector name: 'Defines = but not hash'.
@@ -345,11 +284,8 @@ RBBasicLintRuleTest class>>definesEqualNotHash [
 	^detector
 ]
 
-{
-	#category : #'intention revealing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>detectContains [
+{ #category : #'intention revealing' }
+RBBasicLintRuleTest class >> detectContains [
 	^self createParseTreeRule: 
 			#('`@collection do: [:`each | | `@temps | 
 					`@.Statements1. 
@@ -378,11 +314,8 @@ RBBasicLintRuleTest class>>detectContains [
 		name: 'Uses do: instead of contains: or detect:''s'
 ]
 
-{
-	#category : #'unnecessary code',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>endTrueFalse [
+{ #category : #'unnecessary code' }
+RBBasicLintRuleTest class >> endTrueFalse [
 	| detector matcher |
 	detector := self new.
 	detector name: 'Check for same statements at end of ifTrue:ifFalse: blocks'.
@@ -409,11 +342,8 @@ RBBasicLintRuleTest class>>endTrueFalse [
 	^detector
 ]
 
-{
-	#category : #'unnecessary code',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>equalsTrue [
+{ #category : #'unnecessary code' }
+RBBasicLintRuleTest class >> equalsTrue [
 	| detector matcher |
 	detector := self new.
 	detector name: 'Unnecessary "= true"'.
@@ -430,11 +360,8 @@ RBBasicLintRuleTest class>>equalsTrue [
 	^detector
 ]
 
-{
-	#category : #'unnecessary code',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>equivalentSuperclassMethods [
+{ #category : #'unnecessary code' }
+RBBasicLintRuleTest class >> equivalentSuperclassMethods [
 	| detector |
 	detector := self new.
 	detector name: 'Methods equivalently defined in superclass'.
@@ -451,22 +378,16 @@ RBBasicLintRuleTest class>>equivalentSuperclassMethods [
 	^detector
 ]
 
-{
-	#category : #'unnecessary code',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>extraBlock [
+{ #category : #'unnecessary code' }
+RBBasicLintRuleTest class >> extraBlock [
 	^self
 		createParseTreeRule: (#('value' 'value: `@value' 'value: `@value1 value: `@value2' 'value: `@value1 value: `value2 value: `@value3' 'valueWithArguments: `@values')
 				collect: [:each | '[:`@params | | `@temps | `@.statements] ' , each])
 		name: 'Block immediately evaluated'
 ]
 
-{
-	#category : #'possible bugs',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>fileBlocks [
+{ #category : #'possible bugs' }
+RBBasicLintRuleTest class >> fileBlocks [
 	^self createParseTreeRule: 
 				#('[| `@temps | 
 					`var := `@object.  
@@ -481,11 +402,8 @@ RBBasicLintRuleTest class>>fileBlocks [
 		name: 'Assignment inside unwind blocks should be outside.'
 ]
 
-{
-	#category : #miscellaneous,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>fullBlocks [
+{ #category : #miscellaneous }
+RBBasicLintRuleTest class >> fullBlocks [
 
 "skip this test in squeak."
 
@@ -501,11 +419,8 @@ RBBasicLintRuleTest class>>fullBlocks [
 	^detector"
 ]
 
-{
-	#category : #'intention revealing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>guardingClause [
+{ #category : #'intention revealing' }
+RBBasicLintRuleTest class >> guardingClause [
 	^self
 		createParseTreeRule: 
 				#('`@MethodName: `@args 
@@ -520,11 +435,8 @@ RBBasicLintRuleTest class>>guardingClause [
 		name: 'Guarding clauses'
 ]
 
-{
-	#category : #miscellaneous,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>ifTrueBlocks [
+{ #category : #miscellaneous }
+RBBasicLintRuleTest class >> ifTrueBlocks [
 	| detector matcher |
 	detector := self new.
 	detector name: 'Non-blocks in ifTrue:/ifFalse: messages'.
@@ -542,11 +454,8 @@ RBBasicLintRuleTest class>>ifTrueBlocks [
 	^detector
 ]
 
-{
-	#category : #'intention revealing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>ifTrueReturns [
+{ #category : #'intention revealing' }
+RBBasicLintRuleTest class >> ifTrueReturns [
 	| detector matcher |
 	detector := self new.
 	detector name: 'ifTrue:/ifFalse: returns instead of and:/or:''s'.
@@ -567,11 +476,8 @@ RBBasicLintRuleTest class>>ifTrueReturns [
 	^detector
 ]
 
-{
-	#category : #'unnecessary code',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>implementedNotSent [
+{ #category : #'unnecessary code' }
+RBBasicLintRuleTest class >> implementedNotSent [
 	| detector |
 	detector := self new.
 	detector name: 'Methods implemented but not sent'.
@@ -582,11 +488,8 @@ RBBasicLintRuleTest class>>implementedNotSent [
 	^detector
 ]
 
-{
-	#category : #miscellaneous,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>instVarInSubclasses [
+{ #category : #miscellaneous }
+RBBasicLintRuleTest class >> instVarInSubclasses [
 	| detector |
 	detector := self new.
 	detector name: 'Instance variables defined in all subclasses'.
@@ -606,11 +509,8 @@ RBBasicLintRuleTest class>>instVarInSubclasses [
 	^detector
 ]
 
-{
-	#category : #'unnecessary code',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>justSendsSuper [
+{ #category : #'unnecessary code' }
+RBBasicLintRuleTest class >> justSendsSuper [
 	| detector matcher |
 	detector := self new.
 	detector name: 'Method just sends super message'.
@@ -623,19 +523,13 @@ RBBasicLintRuleTest class>>justSendsSuper [
 	^detector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>longMethodSize [
+{ #category : #private }
+RBBasicLintRuleTest class >> longMethodSize [
 	^10
 ]
 
-{
-	#category : #miscellaneous,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>longMethods [
+{ #category : #miscellaneous }
+RBBasicLintRuleTest class >> longMethods [
 	| detector matcher |
 	detector := self new.
 	detector name: 'Long methods'.
@@ -653,19 +547,13 @@ RBBasicLintRuleTest class>>longMethods [
 	^detector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>metaclassShouldNotOverride [
+{ #category : #private }
+RBBasicLintRuleTest class >> metaclassShouldNotOverride [
 	^#(#name #comment)
 ]
 
-{
-	#category : #'intention revealing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>minMax [
+{ #category : #'intention revealing' }
+RBBasicLintRuleTest class >> minMax [
 	| detector matcher |
 	detector := self new.
 	detector name: 'Uses ifTrue:/ifFalse: instead of min: or max:'.
@@ -685,11 +573,8 @@ RBBasicLintRuleTest class>>minMax [
 	^detector
 ]
 
-{
-	#category : #'intention revealing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>missingSubclassResponsibility [
+{ #category : #'intention revealing' }
+RBBasicLintRuleTest class >> missingSubclassResponsibility [
 	| detector |
 	detector := self new.
 	detector name: 'Method defined in all subclasses, but not in superclass'.
@@ -716,11 +601,8 @@ RBBasicLintRuleTest class>>missingSubclassResponsibility [
 	^detector
 ]
 
-{
-	#category : #'possible bugs',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>missingYourself [
+{ #category : #'possible bugs' }
+RBBasicLintRuleTest class >> missingYourself [
 	| detector matcher |
 	detector := self new.
 	detector name: 'Possible missing "; yourself"'.
@@ -738,11 +620,8 @@ RBBasicLintRuleTest class>>missingYourself [
 	^detector
 ]
 
-{
-	#category : #'possible bugs',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>modifiesCollection [
+{ #category : #'possible bugs' }
+RBBasicLintRuleTest class >> modifiesCollection [
 	| detector addSearcher |
 	detector := self new.
 	detector name: 'Modifies collection while iterating over it'.
@@ -755,19 +634,13 @@ RBBasicLintRuleTest class>>modifiesCollection [
 	^detector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>new [
+{ #category : #private }
+RBBasicLintRuleTest class >> new [
 	^super new
 ]
 
-{
-	#category : #'unnecessary code',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>onlyReadOrWritten [
+{ #category : #'unnecessary code' }
+RBBasicLintRuleTest class >> onlyReadOrWritten [
 	| detector |
 	detector := self new.
 	detector name: 'Instance variables not read AND written'.
@@ -790,11 +663,8 @@ RBBasicLintRuleTest class>>onlyReadOrWritten [
 	^detector
 ]
 
-{
-	#category : #bugs,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>overridesSpecialMessage [
+{ #category : #bugs }
+RBBasicLintRuleTest class >> overridesSpecialMessage [
 	| detector |
 	detector := self new.
 	detector name: 'Overrides a "special" message'.
@@ -812,11 +682,8 @@ RBBasicLintRuleTest class>>overridesSpecialMessage [
 	^detector
 ]
 
-{
-	#category : #miscellaneous,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>precedence [
+{ #category : #miscellaneous }
+RBBasicLintRuleTest class >> precedence [
 	| detector matcher |
 	detector := self new.
 	detector name: 'Inspect instances of "A + B * C" might be "A + (B * C)"'.
@@ -830,19 +697,13 @@ RBBasicLintRuleTest class>>precedence [
 	^detector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>protocolsToCheck [
+{ #category : #accessing }
+RBBasicLintRuleTest class >> protocolsToCheck [
 	^#('bugs' 'possible bugs' 'unnecessary code' 'intention revealing' 'miscellaneous')
 ]
 
-{
-	#category : #miscellaneous,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>refersToClass [
+{ #category : #miscellaneous }
+RBBasicLintRuleTest class >> refersToClass [
 	| detector |
 	detector := self new.
 	detector name: 'Refers to class name instead of "self class"'.
@@ -858,11 +719,8 @@ RBBasicLintRuleTest class>>refersToClass [
 	^detector
 ]
 
-{
-	#category : #'possible bugs',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>returnsBooleanAndOther [
+{ #category : #'possible bugs' }
+RBBasicLintRuleTest class >> returnsBooleanAndOther [
 	| detector matcher |
 	detector := self new.
 	detector name: 'Returns a boolean and non boolean'.
@@ -889,22 +747,16 @@ RBBasicLintRuleTest class>>returnsBooleanAndOther [
 	^detector
 ]
 
-{
-	#category : #'possible bugs',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>returnsIfTrue [
+{ #category : #'possible bugs' }
+RBBasicLintRuleTest class >> returnsIfTrue [
 	^self createParseTreeRule: 
 				#('^`@condition ifTrue: [| `@temps | `@.statements]' 
 				'^`@condition ifFalse: [| `@temps | `@.statements]') 
 		name: 'Returns value of ifTrue:/ifFalse: without ifFalse:/ifTrue: block'
 ]
 
-{
-	#category : #'possible bugs',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>sendsDifferentSuper [
+{ #category : #'possible bugs' }
+RBBasicLintRuleTest class >> sendsDifferentSuper [
 	| detector |
 	detector := self new.
 	detector name: 'Sends different super message'.
@@ -918,11 +770,8 @@ RBBasicLintRuleTest class>>sendsDifferentSuper [
 	^detector
 ]
 
-{
-	#category : #bugs,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>sentNotImplemented [
+{ #category : #bugs }
+RBBasicLintRuleTest class >> sentNotImplemented [
 	| detector |
 	detector := self new.
 	detector name: 'Messages sent but not implemented'.
@@ -947,11 +796,8 @@ RBBasicLintRuleTest class>>sentNotImplemented [
 	^detector
 ]
 
-{
-	#category : #'possible bugs',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>sentNotImplementedInApplication [
+{ #category : #'possible bugs' }
+RBBasicLintRuleTest class >> sentNotImplementedInApplication [
 	| detector |
 	detector := self new.
 	detector name: 'Messages sent but not implemented in application'.
@@ -982,11 +828,8 @@ RBBasicLintRuleTest class>>sentNotImplementedInApplication [
 	^detector
 ]
 
-{
-	#category : #'intention revealing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>sizeCheck [
+{ #category : #'intention revealing' }
+RBBasicLintRuleTest class >> sizeCheck [
 	^self createParseTreeRule: (#(#do: #collect: #reject: #select:) collect: 
 					[:each | 
 					'`@object size > 0 ifTrue: [`@object ' , each
@@ -998,11 +841,8 @@ RBBasicLintRuleTest class>>sizeCheck [
 		name: 'Unnecessary size check'
 ]
 
-{
-	#category : #miscellaneous,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>stringConcatenation [
+{ #category : #miscellaneous }
+RBBasicLintRuleTest class >> stringConcatenation [
 	| detector matcher concatenationMatcher |
 	detector := self new.
 	detector name: 'String concatenation instead of streams'.
@@ -1027,11 +867,8 @@ RBBasicLintRuleTest class>>stringConcatenation [
 	^detector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>subclassOf: aClass overrides: aSelector  [
+{ #category : #private }
+RBBasicLintRuleTest class >> subclassOf: aClass overrides: aSelector [ 
 	| subs |
 	subs := aClass subclasses.
 	1 to: subs size
@@ -1044,11 +881,8 @@ RBBasicLintRuleTest class>>subclassOf: aClass overrides: aSelector  [
 	^false
 ]
 
-{
-	#category : #bugs,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>subclassResponsibilityNotDefined [
+{ #category : #bugs }
+RBBasicLintRuleTest class >> subclassResponsibilityNotDefined [
 	| detector subclassResponsibilitySymbol |
 	detector := self new.
 	subclassResponsibilitySymbol := 'subclassResponsibility' asSymbol.
@@ -1067,19 +901,13 @@ RBBasicLintRuleTest class>>subclassResponsibilityNotDefined [
 	^detector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>superMessages [
+{ #category : #private }
+RBBasicLintRuleTest class >> superMessages [
 	^#(#release #postCopy #postBuildWith: #preBuildWith: #postOpenWith: #noticeOfWindowClose: #initialize)
 ]
 
-{
-	#category : #'possible bugs',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>superSends [
+{ #category : #'possible bugs' }
+RBBasicLintRuleTest class >> superSends [
 	| detector |
 	detector := self new.
 	detector name: 'Missing super sends'.
@@ -1095,11 +923,8 @@ RBBasicLintRuleTest class>>superSends [
 	^detector
 ]
 
-{
-	#category : #'possible bugs',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>tempVarOverridesInstVar [
+{ #category : #'possible bugs' }
+RBBasicLintRuleTest class >> tempVarOverridesInstVar [
 	| detector matcher vars varName |
 	detector := self new.
 	detector name: 'Instance variable overridden by temporary variable'.
@@ -1118,11 +943,8 @@ RBBasicLintRuleTest class>>tempVarOverridesInstVar [
 	^detector
 ]
 
-{
-	#category : #'possible bugs',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>tempsReadBeforeWritten [
+{ #category : #'possible bugs' }
+RBBasicLintRuleTest class >> tempsReadBeforeWritten [
 	| detector |
 	detector := self new.
 	detector name: 'Temporaries read before written'.
@@ -1140,11 +962,8 @@ RBBasicLintRuleTest class>>tempsReadBeforeWritten [
 	^detector
 ]
 
-{
-	#category : #'possible bugs',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>threeElementPoint [
+{ #category : #'possible bugs' }
+RBBasicLintRuleTest class >> threeElementPoint [
 	| detector matcher |
 	detector := self new.
 	detector name: 'Possible three element point (e.g., x @ y + q @ r)'.
@@ -1167,11 +986,8 @@ RBBasicLintRuleTest class>>threeElementPoint [
 	^detector
 ]
 
-{
-	#category : #'intention revealing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>toDo [
+{ #category : #'intention revealing' }
+RBBasicLintRuleTest class >> toDo [
 	| detector matcher |
 	detector := self new.
 	detector name: 'Uses to:do: instead of do:, with:do: or timesRepeat:'.
@@ -1193,11 +1009,8 @@ RBBasicLintRuleTest class>>toDo [
 	^detector
 ]
 
-{
-	#category : #'unnecessary code',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>unreferencedVariables [
+{ #category : #'unnecessary code' }
+RBBasicLintRuleTest class >> unreferencedVariables [
 	| detector |
 	detector := self new.
 	detector name: 'Variables not referenced'.
@@ -1218,11 +1031,8 @@ RBBasicLintRuleTest class>>unreferencedVariables [
 	^detector
 ]
 
-{
-	#category : #'possible bugs',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>usesAdd [
+{ #category : #'possible bugs' }
+RBBasicLintRuleTest class >> usesAdd [
 	| detector addSearcher |
 	detector := self new.
 	detector name: 'Uses the result of an add: message'.
@@ -1234,11 +1044,8 @@ RBBasicLintRuleTest class>>usesAdd [
 	^detector
 ]
 
-{
-	#category : #bugs,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>usesTrue [
+{ #category : #bugs }
+RBBasicLintRuleTest class >> usesTrue [
 	| detector trueBinding falseBinding |
 	detector := self new.
 	trueBinding := Smalltalk associationAt: #True.
@@ -1255,11 +1062,8 @@ RBBasicLintRuleTest class>>usesTrue [
 	^detector
 ]
 
-{
-	#category : #miscellaneous,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>utilityMethods [
+{ #category : #miscellaneous }
+RBBasicLintRuleTest class >> utilityMethods [
 	| detector |
 	detector := self new.
 	detector name: 'Utility methods'.
@@ -1283,21 +1087,15 @@ RBBasicLintRuleTest class>>utilityMethods [
 	^detector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>utilityProtocols [
+{ #category : #private }
+RBBasicLintRuleTest class >> utilityProtocols [
 	"If a method is defined in one of these protocols, then don't check if its a utility method."
 
 	^#('*utilit*')
 ]
 
-{
-	#category : #miscellaneous,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>variableAssignedLiteral [
+{ #category : #miscellaneous }
+RBBasicLintRuleTest class >> variableAssignedLiteral [
 	| detector |
 	detector := self new.
 	detector name: 'Variable is only assigned a single literal value'.
@@ -1330,11 +1128,8 @@ RBBasicLintRuleTest class>>variableAssignedLiteral [
 	^detector
 ]
 
-{
-	#category : #'unnecessary code',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>variableReferencedOnce [
+{ #category : #'unnecessary code' }
+RBBasicLintRuleTest class >> variableReferencedOnce [
 	| detector |
 	detector := self new.
 	detector 
@@ -1370,11 +1165,8 @@ RBBasicLintRuleTest class>>variableReferencedOnce [
 	^detector
 ]
 
-{
-	#category : #'intention revealing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>whileTrue [
+{ #category : #'intention revealing' }
+RBBasicLintRuleTest class >> whileTrue [
 	^self createParseTreeRule: 
 			#('| `@temps | 
 				`@.Statements1. 
@@ -1411,11 +1203,8 @@ RBBasicLintRuleTest class>>whileTrue [
 		name: 'Uses whileTrue: instead of to:do:'
 ]
 
-{
-	#category : #miscellaneous,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest class>>yourselfNotUsed [
+{ #category : #miscellaneous }
+RBBasicLintRuleTest class >> yourselfNotUsed [
 	| detector addSearcher |
 	detector := self new.
 	detector name: 'Doesn''t use the result of a yourself message'.
@@ -1429,68 +1218,44 @@ RBBasicLintRuleTest class>>yourselfNotUsed [
 	^detector
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>anInstVar [
+{ #category : #initialize-release }
+RBBasicLintRuleTest >> anInstVar [
 	^ anInstVar
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>anInstVar: anObject [
+{ #category : #initialize-release }
+RBBasicLintRuleTest >> anInstVar: anObject [
 	anInstVar := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>checkClass: aSmalllintContext  [
+{ #category : #accessing }
+RBBasicLintRuleTest >> checkClass: aSmalllintContext [ 
 	^classBlock value: aSmalllintContext value: result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>checkMethod: aSmalllintContext  [
+{ #category : #accessing }
+RBBasicLintRuleTest >> checkMethod: aSmalllintContext [ 
 	^methodBlock value: aSmalllintContext value: result
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>classBlock [
+{ #category : #initialize-release }
+RBBasicLintRuleTest >> classBlock [
 	^ self anInstVar + 5
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>classBlock: aBlock [
+{ #category : #initialize-release }
+RBBasicLintRuleTest >> classBlock: aBlock [
 	classBlock := aBlock testMethod1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>foobar [
+{ #category : #accessing }
+RBBasicLintRuleTest >> foobar [
 
 	^#( true false )
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>initialize [
+{ #category : #initialization }
+RBBasicLintRuleTest >> initialize [
 	super initialize.
 	self anInstVar: 1.
 	classBlock := [:context :aResult | ].
@@ -1498,92 +1263,59 @@ RBBasicLintRuleTest>>initialize [
 	self resultClass: RBSelectorEnvironment
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>isEmpty [
+{ #category : #testing }
+RBBasicLintRuleTest >> isEmpty [
 	^result isEmpty
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>method: anObject1 with: anObject2 lots: anObject3 of: anObject4 arguments: anObject5 [
+{ #category : #private }
+RBBasicLintRuleTest >> method: anObject1 with: anObject2 lots: anObject3 of: anObject4 arguments: anObject5 [
 	^ anObject5 + anObject1 > (anObject4 - anObject2 + anObject3)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>methodBlock: aBlock [
+{ #category : #initialize-release }
+RBBasicLintRuleTest >> methodBlock: aBlock [
 	methodBlock := aBlock
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>newResultClass: aClass  [
+{ #category : #initialize-release }
+RBBasicLintRuleTest >> newResultClass: aClass [ 
 "New one:)"
 	result := aClass new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>problemCount [
+{ #category : #accessing }
+RBBasicLintRuleTest >> problemCount [
 	^result problemCount
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>resetResult [
+{ #category : #initialize-release }
+RBBasicLintRuleTest >> resetResult [
 	result := result copyEmpty.
 	result label: name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>result [
+{ #category : #accessing }
+RBBasicLintRuleTest >> result [
 	^result
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>result: aResult  [
+{ #category : #initialize-release }
+RBBasicLintRuleTest >> result: aResult [ 
 	result := aResult copyEmpty
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>resultClass: aClass  [
+{ #category : #initialize-release }
+RBBasicLintRuleTest >> resultClass: aClass [ 
 	result := aClass new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>someDemoMethod [
+{ #category : #accessing }
+RBBasicLintRuleTest >> someDemoMethod [
 	^ self junk
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBBasicLintRuleTest>>viewResults [
+{ #category : #private }
+RBBasicLintRuleTest >> viewResults [
 	result openEditor
 ]

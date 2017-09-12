@@ -10,115 +10,75 @@ Class {
 		'DefaultMaximumEntitySize',
 		'HTTPStatusCodes'
 	],
-	#category : #Zinc-HTTP-Support,
-	#timestamp : 'SvenVanCaekenberghe 1/18/2011 11:01'
+	#category : #Zinc-HTTP-Support
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>defaultHTTPVersion [
+{ #category : #accessing }
+ZnConstants class >> defaultHTTPVersion [
 	^ 'HTTP/1.1'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>defaultServerString [
+{ #category : #accessing }
+ZnConstants class >> defaultServerString [ 
 	^ self frameworkNameAndVersion , ' (' , self systemVersion , ')'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>defaultUserAgent [
+{ #category : #accessing }
+ZnConstants class >> defaultUserAgent [
 	^ self frameworkNameAndVersion , ' (' , self systemVersion , ')'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>faviconBytes [
+{ #category : #accessing }
+ZnConstants class >> faviconBytes [
 	^ #(0 0 1 0 1 0 16 16 16 0 0 0 0 0 40 1 0 0 22 0 0 0 40 0 0 0 16 0 0 0 32 0 0 0 1 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255 255 255 0 0 189 255 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 17 17 17 1 16 1 16 1 17 17 17 1 16 1 16 1 16 0 0 1 16 1 16 0 17 0 0 1 16 1 16 0 1 16 0 1 16 1 16 0 0 17 0 1 17 17 16 0 0 1 16 1 1 17 0 0 0 0 17 0 0 0 0 1 17 17 17 0 0 0 0 1 17 17 17 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0) asByteArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>frameworkLicense [
+{ #category : #accessing }
+ZnConstants class >> frameworkLicense [
 	"http://en.wikipedia.org/wiki/MIT_License"
 	
 	^ 'MIT License'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>frameworkMCVersion [
+{ #category : #accessing }
+ZnConstants class >> frameworkMCVersion [
 	MCWorkingCopy managersForClass: self class do: [ :each | ^ each ancestors first name ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>frameworkName [
+{ #category : #accessing }
+ZnConstants class >> frameworkName [
 	^ 'Zinc HTTP Components'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>frameworkNameAndVersion [
+{ #category : #accessing }
+ZnConstants class >> frameworkNameAndVersion [
 	^ self frameworkName, ' ', self frameworkVersion 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>frameworkVersion [
+{ #category : #accessing }
+ZnConstants class >> frameworkVersion [
 	^ '1.0'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>httpStatusCodes [
+{ #category : #accessing }
+ZnConstants class >> httpStatusCodes [
 	^ HTTPStatusCodes 
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>initialize [
+{ #category : #'class initialization' }
+ZnConstants class >> initialize [
 	"Forced source code change for automatic initialization: 20170510"
 	
 	self initializeHTTPStatusCodes
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>initializeHTTPStatusCodes [
+{ #category : #private }
+ZnConstants class >> initializeHTTPStatusCodes [ 
 	HTTPStatusCodes := Dictionary newFromPairs: self officialHTTPStatusCodesSpec 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>knownHTTPMethods [
+{ #category : #accessing }
+ZnConstants class >> knownHTTPMethods [
 	^ #(
 		"Standard HTTP 1.1 Verbs"
 		GET PUT POST DELETE HEAD 
@@ -127,19 +87,13 @@ ZnConstants class>>knownHTTPMethods [
 		PROPFIND PROPPATCH MKCOL COPY MOVE LOCK UNLOCK)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>knownHTTPVersions [
+{ #category : #accessing }
+ZnConstants class >> knownHTTPVersions [
 	^ #('HTTP/1.1' 'HTTP/1.0')
 ]
 
-{
-	#category : #'resource limits',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>maximumLineLength [
+{ #category : #'resource limits' }
+ZnConstants class >> maximumLineLength [
 	"Return the maximum line length to accept.
 	Used by ZnLineReader and thus for reading request/status lines as well as headers.
 	This helps to protect us from malicious content."
@@ -147,11 +101,8 @@ ZnConstants class>>maximumLineLength [
 	^ 4096
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>officialHTTPStatusCodesSpec [
+{ #category : #accessing }
+ZnConstants class >> officialHTTPStatusCodesSpec [ 
 	"This is the official list from http://www.iana.org/assignments/http-status-codes (version 2017-04-14)"
 
 	^ #(
@@ -221,18 +172,12 @@ ZnConstants class>>officialHTTPStatusCodesSpec [
 	)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>remoteAddressHeader [
+{ #category : #accessing }
+ZnConstants class >> remoteAddressHeader [
 	^ 'X-Zinc-Remote-Address'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConstants class>>systemVersion [
+{ #category : #accessing }
+ZnConstants class >> systemVersion [
 	^ SystemVersion current type , '/' , SystemVersion current dottedMajorMinor 
 ]

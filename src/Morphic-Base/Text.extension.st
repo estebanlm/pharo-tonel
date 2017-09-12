@@ -1,48 +1,31 @@
-Extension {
-	#name : #Text
-}
+Extension { #name : #Text }
 
-{
-	#category : #'*Morphic-Base-Converting',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Text>>asMorph [
+{ #category : #'*Morphic-Base-Converting' }
+Text >> asMorph [
 	^ self asTextMorph
 ]
 
-{
-	#category : #'*Morphic-Base-Converting',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Text>>asStringMorph [
+{ #category : #'*Morphic-Base-Converting' }
+Text >> asStringMorph [
 	^ StringMorph
 		contents: self string
 		font: (self fontAt: 1 withStyle: TextStyle default)
 		emphasis: (self emphasisAt: 1)
 ]
 
-{
-	#category : #'*Morphic-Base-Converting',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Text>>asTextMorph [
+{ #category : #'*Morphic-Base-Converting' }
+Text >> asTextMorph [
 	^ TextMorph new contentsAsIs: self
 ]
 
-{
-	#category : #'*Morphic-Base-Pluggable Widgets',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Text>>beginsWith: aString fromList: aMorph [
+{ #category : #'*Morphic-Base-Pluggable Widgets' }
+Text >> beginsWith: aString fromList: aMorph [
 
 	^ self asString beginsWith: aString fromList: aMorph
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Text>>embeddedMorphs [
+{ #category : #'*Morphic-Base' }
+Text >> embeddedMorphs [
 	"return the list of morphs embedded in me"
 
 	| morphs |
@@ -54,11 +37,8 @@ Text>>embeddedMorphs [
 	^morphs select: [:m | m isMorph]
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Text>>embeddedMorphsFrom: start to: stop  [
+{ #category : #'*Morphic-Base' }
+Text >> embeddedMorphsFrom: start to: stop [ 
 	"return the list of morphs embedded in me"
 
 	| morphs |
@@ -73,20 +53,14 @@ Text>>embeddedMorphsFrom: start to: stop  [
 	^morphs select: [:m | m isMorph]
 ]
 
-{
-	#category : #'*Morphic-Base-Widgets',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Text>>heightToDisplayInList: aList [
+{ #category : #'*Morphic-Base-Widgets' }
+Text >> heightToDisplayInList: aList [
 
 	^ aList font height
 ]
 
-{
-	#category : #'*Morphic-Base-Widgets',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Text>>listRenderOn: aCanvas atRow: aRow bounds: bounds color: color backgroundColor: backgroundColor from: aMorph [
+{ #category : #'*Morphic-Base-Widgets' }
+Text >> listRenderOn: aCanvas atRow: aRow bounds: bounds color: color backgroundColor: backgroundColor from: aMorph [
 	"Method extracted from LazyListMorph"
 	| attrs useDefaultFont f itemBounds |
 	
@@ -117,11 +91,8 @@ Text>>listRenderOn: aCanvas atRow: aRow bounds: bounds color: color backgroundCo
 		strikethroughColor: color
 ]
 
-{
-	#category : #'*Morphic-Base-Widgets',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Text>>widthToDisplayInList: aList [
+{ #category : #'*Morphic-Base-Widgets' }
+Text >> widthToDisplayInList: aList [
 
 	^ aList font widthOfStringOrText: self contents
 ]

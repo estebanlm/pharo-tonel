@@ -10,24 +10,17 @@ Class {
 		'root',
 		'rows'
 	],
-	#category : #Athens-Examples,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:16'
+	#category : #Athens-Examples
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTreeView class>>example1 [
+{ #category : #examples }
+AthensTreeView class >> example1 [
 
 	AthensTreeView openOn: Collection extentBlock: [ :each | (5 + each instVarNames size)@(5 + each methodDict size)  ] childsBlock: [:el | el subclasses ] 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTreeView class>>openOn: root extentBlock: extBlock childsBlock: childsBlock [
+{ #category : #'instance creation' }
+AthensTreeView class >> openOn: root extentBlock: extBlock childsBlock: childsBlock [
 
 	| scene |
 	
@@ -39,11 +32,8 @@ AthensTreeView class>>openOn: root extentBlock: extBlock childsBlock: childsBloc
 		openInWindow.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTreeView>>buildSubtreeFor: aNodeObject level: aLevel [
+{ #category : #'as yet unclassified' }
+AthensTreeView >> buildSubtreeFor: aNodeObject level: aLevel [
 	| node childs |
 	
 	node := AthensSimpleTreeNode new.
@@ -60,11 +50,8 @@ AthensTreeView>>buildSubtreeFor: aNodeObject level: aLevel [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTreeView>>layOutGeometry [
+{ #category : #'as yet unclassified' }
+AthensTreeView >> layOutGeometry [
 
 	"first do a vertical layout"
 	
@@ -92,31 +79,22 @@ AthensTreeView>>layOutGeometry [
 	root layoutHorizontally: 0.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTreeView>>renderOn: aCanvas [
+{ #category : #'as yet unclassified' }
+AthensTreeView >> renderOn: aCanvas [
 	aCanvas surface clear: Color white.
 	root renderOn: aCanvas
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTreeView>>root: aRootObject [
+{ #category : #'as yet unclassified' }
+AthensTreeView >> root: aRootObject [
 
 	root := self buildSubtreeFor: aRootObject level: 1.
 	
 	self layOutGeometry
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTreeView>>root: aRootObject extentBlock: extBlock childsBlock: childsBlock [
+{ #category : #'as yet unclassified' }
+AthensTreeView >> root: aRootObject extentBlock: extBlock childsBlock: childsBlock [
 
 	nodeExtentBlock := extBlock.
 	nodeChildsBlock := childsBlock.
@@ -126,11 +104,8 @@ AthensTreeView>>root: aRootObject extentBlock: extBlock childsBlock: childsBlock
 	self layOutGeometry
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTreeView>>rowAt: aLevel [
+{ #category : #'as yet unclassified' }
+AthensTreeView >> rowAt: aLevel [
 	rows ifNil: [  rows := OrderedCollection new ].
 	
 	[ aLevel > rows size ] whileTrue: [  rows add: OrderedCollection new ].
@@ -138,10 +113,7 @@ AthensTreeView>>rowAt: aLevel [
 	^ rows at: aLevel
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTreeView>>spacingBetweenRows [
+{ #category : #'as yet unclassified' }
+AthensTreeView >> spacingBetweenRows [
 	^ 30
 ]

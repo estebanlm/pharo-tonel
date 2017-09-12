@@ -11,15 +11,11 @@ Class {
 		'nodes',
 		'links'
 	],
-	#category : #Hiedra-Rendering,
-	#timestamp : '<historical>'
+	#category : #Hiedra-Rendering
 }
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRuler>>build [
+{ #category : #building }
+HiRuler >> build [
 	freeColumnIndexByRow := Array new: values size withAll: 1. 
 	nodes := OrderedCollection new.
 	links := OrderedCollection new.
@@ -31,71 +27,47 @@ HiRuler>>build [
 		doWithLinks: [ :link | self processLink: link ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRuler>>freeColumnIndexAt: rowIndex [
+{ #category : #accessing }
+HiRuler >> freeColumnIndexAt: rowIndex [
 	^ freeColumnIndexByRow at: rowIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRuler>>indentAt: rowIndex [
+{ #category : #accessing }
+HiRuler >> indentAt: rowIndex [
 	freeColumnIndexByRow 
 		at: rowIndex 
 		put: (freeColumnIndexByRow at: rowIndex) + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRuler>>linkBuilders [
+{ #category : #accessing }
+HiRuler >> linkBuilders [
 	^ linkBuilders
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRuler>>linkBuilders: aCollection [
+{ #category : #accessing }
+HiRuler >> linkBuilders: aCollection [
 	linkBuilders := aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRuler>>links [
+{ #category : #accessing }
+HiRuler >> links [
 	^ links
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRuler>>nodes [
+{ #category : #accessing }
+HiRuler >> nodes [
 	^ nodes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRuler>>numberOfColumns [
+{ #category : #accessing }
+HiRuler >> numberOfColumns [
 	^ freeColumnIndexByRow 
 		ifEmpty: [ 0 ]
 		ifNotEmpty: [ freeColumnIndexByRow max ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRuler>>processLink: aLink [
+{ #category : #private }
+HiRuler >> processLink: aLink [
 	| checkpoints |
 	links add: aLink.
 	
@@ -117,11 +89,8 @@ HiRuler>>processLink: aLink [
 	 aLink checkpoints: checkpoints
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRuler>>processNode: node [
+{ #category : #private }
+HiRuler >> processNode: node [
 	
 	nodes add: node.
 	node columnIndex: (freeColumnIndexByRow at: node rowIndex).
@@ -129,10 +98,7 @@ HiRuler>>processNode: node [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRuler>>values: aCollection  [
+{ #category : #accessing }
+HiRuler >> values: aCollection [ 
 	values := aCollection
 ]

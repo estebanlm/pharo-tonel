@@ -1,76 +1,48 @@
-"
-
-"
 Class {
 	#name : #DAClassToDependencyNode,
 	#superclass : #DAClassNode,
 	#instVars : [
 		'package'
 	],
-	#category : #Tool-DependencyAnalyser-UI-Nodes,
-	#timestamp : ''
+	#category : #Tool-DependencyAnalyser-UI-Nodes
 }
 
-{
-	#category : #browse-nautilus,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAClassToDependencyNode>>browseInOtherNautilus [
+{ #category : #browse-nautilus }
+DAClassToDependencyNode >> browseInOtherNautilus [
 	self browseClass: self content browse
 ]
 
-{
-	#category : #procotol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAClassToDependencyNode>>childNodeClassFor: anItem [
+{ #category : #procotol }
+DAClassToDependencyNode >> childNodeClassFor: anItem [
 	 ^ anItem nodeClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAClassToDependencyNode>>children [
+{ #category : #accessing }
+DAClassToDependencyNode >> children [
 	^ self dependencies
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAClassToDependencyNode>>dependencies [
+{ #category : #accessing }
+DAClassToDependencyNode >> dependencies [
 	^ self package dependenciesFrom: self content
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAClassToDependencyNode>>hasChildren [
+{ #category : #accessing }
+DAClassToDependencyNode >> hasChildren [
 	^ self dependencies isNotEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAClassToDependencyNode>>icon [
+{ #category : #accessing }
+DAClassToDependencyNode >> icon [
 	^ self iconNamed: #confirmIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAClassToDependencyNode>>package [
+{ #category : #accessing }
+DAClassToDependencyNode >> package [
 	^ package
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAClassToDependencyNode>>package: anObject [
+{ #category : #accessing }
+DAClassToDependencyNode >> package: anObject [
 	package := anObject
 ]

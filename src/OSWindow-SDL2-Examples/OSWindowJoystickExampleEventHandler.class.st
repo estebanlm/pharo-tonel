@@ -4,47 +4,31 @@ I am the event handler linked to OSWindowJoystickExample.
 Class {
 	#name : #OSWindowJoystickExampleEventHandler,
 	#superclass : #OSWindowGenericRendererExampleEventHandler,
-	#category : #OSWindow-SDL2-Examples-Joystick,
-	#timestamp : 'RonieSalgado 4/10/2016 03:27'
+	#category : #OSWindow-SDL2-Examples-Joystick
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowJoystickExampleEventHandler class>>axisDeadZoneThreshold [
+{ #category : #settings }
+OSWindowJoystickExampleEventHandler class >> axisDeadZoneThreshold [
 	^ 0.20
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowJoystickExampleEventHandler class>>axisMaxValue [
+{ #category : #settings }
+OSWindowJoystickExampleEventHandler class >> axisMaxValue [
 	^ 32767
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowJoystickExampleEventHandler>>axisDeadZoneThreshold [
+{ #category : #'as yet unclassified' }
+OSWindowJoystickExampleEventHandler >> axisDeadZoneThreshold [
 	^ self class axisDeadZoneThreshold
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowJoystickExampleEventHandler>>axisMaxValue [
+{ #category : #settings }
+OSWindowJoystickExampleEventHandler >> axisMaxValue [
 	^ self class axisMaxValue
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowJoystickExampleEventHandler>>normalizeAxisValue: value [
+{ #category : #visiting }
+OSWindowJoystickExampleEventHandler >> normalizeAxisValue: value [
 	| result deadZone |
 	result := value asFloat / self axisMaxValue.
 	deadZone := self axisDeadZoneThreshold.
@@ -62,11 +46,8 @@ OSWindowJoystickExampleEventHandler>>normalizeAxisValue: value [
 	^ result min: 1.0 max: -1.0
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowJoystickExampleEventHandler>>visitJoyAxisEvent: axisEvent [
+{ #category : #visiting }
+OSWindowJoystickExampleEventHandler >> visitJoyAxisEvent: axisEvent [
 	| axisValue velocity |
 	axisEvent isPreferredEvent ifFalse: [ ^ self ].
 	
@@ -85,11 +66,8 @@ OSWindowJoystickExampleEventHandler>>visitJoyAxisEvent: axisEvent [
 	example characterVelocity: velocity
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowJoystickExampleEventHandler>>visitJoyButtonDownEvent: buttonEvent [
+{ #category : #visiting }
+OSWindowJoystickExampleEventHandler >> visitJoyButtonDownEvent: buttonEvent [
 	buttonEvent isPreferredEvent ifFalse: [ ^ self ].
 	
 	buttonEvent isButtonX ifTrue: [ 
@@ -102,11 +80,8 @@ OSWindowJoystickExampleEventHandler>>visitJoyButtonDownEvent: buttonEvent [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowJoystickExampleEventHandler>>visitJoyButtonUpEvent: buttonUpEvent [
+{ #category : #visiting }
+OSWindowJoystickExampleEventHandler >> visitJoyButtonUpEvent: buttonUpEvent [
 	buttonUpEvent isPreferredEvent ifFalse: [ ^ self ].
 	"TODO: Handle button up event."
 ]

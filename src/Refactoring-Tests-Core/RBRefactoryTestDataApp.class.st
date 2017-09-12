@@ -1,37 +1,24 @@
-"
-
-"
 Class {
 	#name : #RBRefactoryTestDataApp,
 	#superclass : #Object,
 	#instVars : [
 		'temporaryVariable'
 	],
-	#category : #Refactoring-Tests-Core-Data,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core-Data
 }
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>asOrderedCollectionNotNeeded [
+{ #category : #lint }
+RBRefactoryTestDataApp >> asOrderedCollectionNotNeeded [
 	self foo addAll: (1 to: 10) asOrderedCollection
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>assignmentInBlock [
+{ #category : #lint }
+RBRefactoryTestDataApp >> assignmentInBlock [
 	[^self printString] ensure: [self close]
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>assignmentInIfTrue [
+{ #category : #lint }
+RBRefactoryTestDataApp >> assignmentInIfTrue [
 	| variable |
 	self isVariable 
 		ifTrue: [variable := self]
@@ -39,11 +26,8 @@ RBRefactoryTestDataApp>>assignmentInIfTrue [
 	^variable
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>atIfAbsent [
+{ #category : #lint }
+RBRefactoryTestDataApp >> atIfAbsent [
 	^ Smalltalk at: #MyTest
 		ifAbsent: 
 			[| collection |
@@ -51,43 +35,28 @@ RBRefactoryTestDataApp>>atIfAbsent [
 			Smalltalk at: #MyTest put: collection]
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>badMessage [
+{ #category : #lint }
+RBRefactoryTestDataApp >> badMessage [
 	self become: String new
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>booleanPrecedence [
+{ #category : #lint }
+RBRefactoryTestDataApp >> booleanPrecedence [
 	^true & 4 = 45
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>callFoo [
+{ #category : #test }
+RBRefactoryTestDataApp >> callFoo [
 	^self testFoo: 5
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>callMethod [
+{ #category : #test }
+RBRefactoryTestDataApp >> callMethod [
 	^self renameThisMethod: 5
 ]
 
-{
-	#category : #inline,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>called: anObject on1: aBlock  [
+{ #category : #inline }
+RBRefactoryTestDataApp >> called: anObject on1: aBlock [ 
 	| each |
 	each := anObject printString.
 	Transcript
@@ -96,22 +65,16 @@ RBRefactoryTestDataApp>>called: anObject on1: aBlock  [
 	aBlock value: each
 ]
 
-{
-	#category : #inline,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>called: anObject on: aBlock  [
+{ #category : #inline }
+RBRefactoryTestDataApp >> called: anObject on: aBlock [ 
 	Transcript
 		show: anObject printString;
 		cr.
 	aBlock value
 ]
 
-{
-	#category : #inline,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>caller [
+{ #category : #inline }
+RBRefactoryTestDataApp >> caller [
 	| anObject |
 	anObject := 5.
 	self 
@@ -119,11 +82,8 @@ RBRefactoryTestDataApp>>caller [
 		on: [^anObject]
 ]
 
-{
-	#category : #inline,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>caller1 [
+{ #category : #inline }
+RBRefactoryTestDataApp >> caller1 [
 	| anObject |
 	anObject := 5.
 	self called: anObject + 1
@@ -133,35 +93,23 @@ RBRefactoryTestDataApp>>caller1 [
 			^anObject]
 ]
 
-{
-	#category : #inline,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>caller2 [
+{ #category : #inline }
+RBRefactoryTestDataApp >> caller2 [
 	^(1 to: 10) inject: 1 into: [:sum :each | sum * (self foo: each)]
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>collectSelectNotUsed [
+{ #category : #lint }
+RBRefactoryTestDataApp >> collectSelectNotUsed [
 	(1 to: 10) select: [:each | each = 4]
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>collectionMessagesToExternalObject [
+{ #category : #lint }
+RBRefactoryTestDataApp >> collectionMessagesToExternalObject [
 	self someObject collection remove: 10
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>collectionProtocol [
+{ #category : #lint }
+RBRefactoryTestDataApp >> collectionProtocol [
 	| newCollection |
 	newCollection := OrderedCollection new.
 	(1 to: 10) asOrderedCollection do: 
@@ -172,43 +120,28 @@ RBRefactoryTestDataApp>>collectionProtocol [
 	^newCollection
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>consistencyCheck [
+{ #category : #lint }
+RBRefactoryTestDataApp >> consistencyCheck [
 	^(1 to: 10) size > 0
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>contains [
+{ #category : #lint }
+RBRefactoryTestDataApp >> contains [
 	^((1 to: 10) detect: [:each | each > 2] ifNone: [nil]) isNil
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>cruft [
+{ #category : #lint }
+RBRefactoryTestDataApp >> cruft [
 	self halt
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>demoExampleCall [
+{ #category : #test }
+RBRefactoryTestDataApp >> demoExampleCall [
 	^ self demoRenameMethod: 1 PermuteArgs: 2
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>demoMethodWithDuplicates [
+{ #category : #test }
+RBRefactoryTestDataApp >> demoMethodWithDuplicates [
 	| a b result1 result2 answer |
 	a := 3.
 	b := a + 5.
@@ -218,29 +151,20 @@ RBRefactoryTestDataApp>>demoMethodWithDuplicates [
 	^ answer
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>demoRenameMethod: arg1 PermuteArgs: arg2 [
+{ #category : #'as yet unclassified' }
+RBRefactoryTestDataApp >> demoRenameMethod: arg1 PermuteArgs: arg2 [
 	self do: arg1. 
 	self do: arg2.
 	^ arg1 > arg2
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>detectContains [
+{ #category : #lint }
+RBRefactoryTestDataApp >> detectContains [
 	^(1 to: 10) do: [:each | each > 2 ifTrue: [^each]]
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>endTrueFalse [
+{ #category : #lint }
+RBRefactoryTestDataApp >> endTrueFalse [
 	self isVariable 
 		ifTrue: 
 			[self printString.
@@ -250,93 +174,63 @@ RBRefactoryTestDataApp>>endTrueFalse [
 			^4]
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>equalNotUsed [
+{ #category : #lint }
+RBRefactoryTestDataApp >> equalNotUsed [
 	| string |
 	string = '' yourself.
 	(1 to: 10) do: [:i | string := i printString].
 	^string
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>equalsTrue [
+{ #category : #lint }
+RBRefactoryTestDataApp >> equalsTrue [
 	^true == self
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>exampleCall [
+{ #category : #test }
+RBRefactoryTestDataApp >> exampleCall [
 	^self rename: 1 two: 2
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>extraBlock [
+{ #category : #lint }
+RBRefactoryTestDataApp >> extraBlock [
 	^[:arg | arg + 43] value: 45
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>fileBlocks [
+{ #category : #lint }
+RBRefactoryTestDataApp >> fileBlocks [
 	| file |
 	^
 	[file := 'asdf' asFileReference readStream.
 	file contents] ensure: [file close]
 ]
 
-{
-	#category : #inline,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>foo: aValue [
+{ #category : #inline }
+RBRefactoryTestDataApp >> foo: aValue [
 	^(1 to: 10) inject: aValue into: [:sum :each | sum + each]
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>fullBlocks [
+{ #category : #lint }
+RBRefactoryTestDataApp >> fullBlocks [
 	^[thisContext]
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>guardingClause [
+{ #category : #lint }
+RBRefactoryTestDataApp >> guardingClause [
 	self isSymbol 
 		ifFalse: 
 			[self printString.
 			self isSymbol printString]
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>ifTrueReturns [
+{ #category : #lint }
+RBRefactoryTestDataApp >> ifTrueReturns [
 	self isSymbol ifFalse: [^true].
 	^false
 ]
 
-{
-	#category : #inline,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>inlineComponent [
+{ #category : #inline }
+RBRefactoryTestDataApp >> inlineComponent [
 	| a |
 	a := 5.
 	^a class
@@ -345,11 +239,8 @@ RBRefactoryTestDataApp>>inlineComponent [
 		yourself
 ]
 
-{
-	#category : #inline,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>inlineFailed [
+{ #category : #inline }
+RBRefactoryTestDataApp >> inlineFailed [
 	| x y q |
 	x := 5.
 	y := 10.
@@ -357,11 +248,8 @@ RBRefactoryTestDataApp>>inlineFailed [
 	^q
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>inlineFoo: aBlock  [
+{ #category : #test }
+RBRefactoryTestDataApp >> inlineFoo: aBlock [ 
 	| bar baz asdf |
 	bar := aBlock value: self.
 	baz := bar + bar.
@@ -369,11 +257,8 @@ RBRefactoryTestDataApp>>inlineFoo: aBlock  [
 	^asdf
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>inlineJunk [
+{ #category : #test }
+RBRefactoryTestDataApp >> inlineJunk [
 	| asdf |
 	asdf := self inlineFoo: 
 					[:each | 
@@ -387,19 +272,13 @@ RBRefactoryTestDataApp>>inlineJunk [
 			baz * baz]
 ]
 
-{
-	#category : #inline,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>inlineLast [
+{ #category : #inline }
+RBRefactoryTestDataApp >> inlineLast [
 	5 = 3 ifTrue: [^self caller] ifFalse: [^self caller2]
 ]
 
-{
-	#category : #inline,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>inlineMax [
+{ #category : #inline }
+RBRefactoryTestDataApp >> inlineMax [
 	| x y q |
 	x := 5.
 	y := 10.
@@ -407,11 +286,8 @@ RBRefactoryTestDataApp>>inlineMax [
 	^q
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>inlineMethod [
+{ #category : #test }
+RBRefactoryTestDataApp >> inlineMethod [
 	| temp |
 	temp := self
 				foo;
@@ -420,45 +296,30 @@ RBRefactoryTestDataApp>>inlineMethod [
 	^temp
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>inlineParameterMethod: aSymbol [
+{ #category : #test }
+RBRefactoryTestDataApp >> inlineParameterMethod: aSymbol [
 	^aSymbol isSymbol
 ]
 
-{
-	#category : #inline,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>inlineTemporary [
+{ #category : #inline }
+RBRefactoryTestDataApp >> inlineTemporary [
 	| temp |
 	self isNil ifTrue: [temp := 4].
 	^temp
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>justSendsSuper [
+{ #category : #lint }
+RBRefactoryTestDataApp >> justSendsSuper [
 	super justSendsSuper
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>literalArrayCharacters [
+{ #category : #lint }
+RBRefactoryTestDataApp >> literalArrayCharacters [
 	^#($a $b $c) includes: $a
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>literalArrayWithTrueFalseOrNil [
+{ #category : #lint }
+RBRefactoryTestDataApp >> literalArrayWithTrueFalseOrNil [
 	| a b c |
 	a := #(true false nil).
 	b := #(#true #false #nil).
@@ -466,22 +327,16 @@ RBRefactoryTestDataApp>>literalArrayWithTrueFalseOrNil [
 	^{a. b. c}
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>literalArrayWithTrueFalseOrNil2 [
+{ #category : #lint }
+RBRefactoryTestDataApp >> literalArrayWithTrueFalseOrNil2 [
 	| b c |
 	b := #(#true #false #nil).
 	c := #(#true (#true #false #nil) #false #nil).
 ^b
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>longMethods [
+{ #category : #lint }
+RBRefactoryTestDataApp >> longMethods [
 	self printString.
 	self printString.
 	self isVariable ifTrue: [self printString].
@@ -490,11 +345,8 @@ RBRefactoryTestDataApp>>longMethods [
 	self isVariable ifTrue: [self printString]
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>minMax [
+{ #category : #lint }
+RBRefactoryTestDataApp >> minMax [
 	"Bug in 3<5 ifTrue: [3]  ifFalse: [5]"
 
 ^3<5 ifTrue: [3]  ifFalse: [5]
@@ -504,33 +356,24 @@ RBRefactoryTestDataApp>>minMax [
 	^var"
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>missingYourself [
+{ #category : #lint }
+RBRefactoryTestDataApp >> missingYourself [
 	^(OrderedCollection new)
 		add: 1;
 		add: 2;
 		removeFirst
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>modifiesCollection [
+{ #category : #lint }
+RBRefactoryTestDataApp >> modifiesCollection [
 	| collection |
 	collection := (1 to: 10) asOrderedCollection.
 	collection do: [:each | each > 5 ifTrue: [collection remove: each]].
 	^collection
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>moveDefinition [
+{ #category : #test }
+RBRefactoryTestDataApp >> moveDefinition [
 	| temp |
 	^(self collect: 
 			[:each | 
@@ -542,20 +385,14 @@ RBRefactoryTestDataApp>>moveDefinition [
 			temp odd]
 ]
 
-{
-	#category : #inline,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>multipleCalls [
+{ #category : #inline }
+RBRefactoryTestDataApp >> multipleCalls [
 	self caller2.
 	self caller2
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>noMoveDefinition [
+{ #category : #test }
+RBRefactoryTestDataApp >> noMoveDefinition [
 	| temp |
 	^(self collect: 
 			[:each | 
@@ -564,19 +401,13 @@ RBRefactoryTestDataApp>>noMoveDefinition [
 		select: [:each | temp := each size + temp]
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>precedence [
+{ #category : #lint }
+RBRefactoryTestDataApp >> precedence [
 	^self isArray ifFalse: [self block + 5 * 34] ifTrue: [self printString = 10]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>referencesConditionFor: aClass  [
+{ #category : #accessing }
+RBRefactoryTestDataApp >> referencesConditionFor: aClass [ 
 	| environment association |
 	^(RBCondition withBlock: 
 			[association := Smalltalk associationAt: aClass name
@@ -589,100 +420,64 @@ RBRefactoryTestDataApp>>referencesConditionFor: aClass  [
 		yourself
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>refersToClass [
+{ #category : #lint }
+RBRefactoryTestDataApp >> refersToClass [
 	^ RBRefactoryTestDataApp
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>release [
+{ #category : #lint }
+RBRefactoryTestDataApp >> release [
 	self printString
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>rename: this two: argumentMethod [
+{ #category : #test }
+RBRefactoryTestDataApp >> rename: this two: argumentMethod [
 	^self printString , this , argumentMethod
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>renameThisMethod: anArg [
+{ #category : #test }
+RBRefactoryTestDataApp >> renameThisMethod: anArg [
 	^self
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>returnInEnsure [
+{ #category : #lint }
+RBRefactoryTestDataApp >> returnInEnsure [
 	[self error: 'asdf'] ensure: [^4]
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>returnsBooleanAndOther [
+{ #category : #lint }
+RBRefactoryTestDataApp >> returnsBooleanAndOther [
 	self isVariable ifTrue: [^false].
 	self printString
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>returnsIfTrue [
+{ #category : #lint }
+RBRefactoryTestDataApp >> returnsIfTrue [
 	^self isNil ifTrue: [4]
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>searchingLiteral [
+{ #category : #lint }
+RBRefactoryTestDataApp >> searchingLiteral [
 	^self printString = #a or: [#() = self printString | ( #() == self printString)]
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>selectorNotReferenced [
+{ #category : #test }
+RBRefactoryTestDataApp >> selectorNotReferenced [
 	^self selectorNotReferenced + 4
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>sendInlineParameterMethod [
+{ #category : #test }
+RBRefactoryTestDataApp >> sendInlineParameterMethod [
 	^self inlineParameterMethod: #(#asdf)
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>sendsDifferentSuper [
+{ #category : #lint }
+RBRefactoryTestDataApp >> sendsDifferentSuper [
 	super printString
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>sizeCheck [
+{ #category : #lint }
+RBRefactoryTestDataApp >> sizeCheck [
 	self isEmpty
 		ifFalse: [self do: 
 					[:each | 
@@ -691,102 +486,69 @@ RBRefactoryTestDataApp>>sizeCheck [
 						cr]]
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>stringConcatenation [
+{ #category : #lint }
+RBRefactoryTestDataApp >> stringConcatenation [
 	| string |
 	string := '' yourself.
 	(1 to: 10) do: [:i | string := string , i printString].
 	^string
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>symbolReference [
+{ #category : #test }
+RBRefactoryTestDataApp >> symbolReference [
 	^#(#renameThisMethod: #(4 #renameThisMethod:))
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>tempVarOverridesInstVar [
+{ #category : #lint }
+RBRefactoryTestDataApp >> tempVarOverridesInstVar [
 	| temporaryVariable |
 	temporaryVariable := 4.
 	^temporaryVariable
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>tempsReadBeforeWritten [
+{ #category : #lint }
+RBRefactoryTestDataApp >> tempsReadBeforeWritten [
 	| temp |
 	self isVariable ifTrue: [temp := 4].
 	^temp
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>testFoo: anObject [
+{ #category : #test }
+RBRefactoryTestDataApp >> testFoo: anObject [
 	^self class + anObject
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>testMethod [
+{ #category : #test }
+RBRefactoryTestDataApp >> testMethod [
 	^self class
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>testMethod1 [
+{ #category : #test }
+RBRefactoryTestDataApp >> testMethod1 [
 	^self testMethod1 
 		, ([:each | each testMethod1] value: #(#(#testMethod1) 2 #testMethod1))
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>threeElementPoint [
+{ #category : #lint }
+RBRefactoryTestDataApp >> threeElementPoint [
 	^5 @ 5 + 6 @ 6
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>toDo [
+{ #category : #lint }
+RBRefactoryTestDataApp >> toDo [
 	1 to: self size do: [:i | (self at: i) printString]
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>toDoCollect [
+{ #category : #lint }
+RBRefactoryTestDataApp >> toDoCollect [
 	| array |
 	array := Array new: 10.
 	1 to: 10 do: [:i | array at: i put: i * i].
 	^array
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>toDoWithIncrement [
+{ #category : #lint }
+RBRefactoryTestDataApp >> toDoWithIncrement [
 	| counter |
 	counter := 0.
 	1 to: 10
@@ -795,27 +557,18 @@ RBRefactoryTestDataApp>>toDoWithIncrement [
 	^counter
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>usesAdd [
+{ #category : #lint }
+RBRefactoryTestDataApp >> usesAdd [
 	^(1 to: 10) asOrderedCollection addAll: (11 to: 20)
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>variableAssignedLiteral [
+{ #category : #lint }
+RBRefactoryTestDataApp >> variableAssignedLiteral [
 	temporaryVariable := #() 
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>whileTrue [
+{ #category : #lint }
+RBRefactoryTestDataApp >> whileTrue [
 	| i |
 	i := 1.
 	[i < self size] whileTrue: 
@@ -823,11 +576,8 @@ RBRefactoryTestDataApp>>whileTrue [
 			i := i + 1]
 ]
 
-{
-	#category : #lint,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoryTestDataApp>>yourselfNotUsed [
+{ #category : #lint }
+RBRefactoryTestDataApp >> yourselfNotUsed [
 	self
 		printString;
 		printString;

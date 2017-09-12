@@ -9,44 +9,31 @@ Class {
 		'start',
 		'duration'
 	],
-	#category : #Kernel-Chronology,
-	#timestamp : 'brp 5/13/2003 08:07'
+	#category : #Kernel-Chronology
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan class>>current [
+{ #category : #'instance creation' }
+Timespan class >> current [ 
 
 	^ self starting: DateAndTime now 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan class>>new [
+{ #category : #'instance creation' }
+Timespan class >> new [
 	"Answer a Timespan starting on the Squeak epoch: 1 January 1901"
 
 	^ self starting: DateAndTime new
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan class>>starting: aDateAndTime [
+{ #category : #'instance creation' }
+Timespan class >> starting: aDateAndTime [ 
 
 	^ self starting: aDateAndTime duration: Duration zero 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan class>>starting: aDateAndTime duration: aDuration [
+{ #category : #'instance creation' }
+Timespan class >> starting: aDateAndTime duration: aDuration [
 
 	^ self basicNew
   		start: aDateAndTime asDateAndTime;
@@ -54,33 +41,24 @@ Timespan class>>starting: aDateAndTime duration: aDuration [
 		yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan class>>starting: startDateAndTime ending: endDateAndTime [
+{ #category : #'instance creation' }
+Timespan class >> starting: startDateAndTime ending: endDateAndTime [
 
 	^ self 
 		starting: startDateAndTime 
 		duration: (endDateAndTime asDateAndTime - startDateAndTime). 
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>+ operand [
+{ #category : #arithmetic }
+Timespan >> + operand [
 	"operand conforms to protocol Duration" 	
 
 	^ self class starting: (self start + operand) duration: self duration
 
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>- operand [
+{ #category : #arithmetic }
+Timespan >> - operand [
 	"operand conforms to protocol DateAndTime or protocol Duration"
 
 	^ (operand respondsTo: #asDateAndTime) 
@@ -88,113 +66,77 @@ Timespan>>- operand [
 	 	ifFalse: [ self + (operand negated) ]. 
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>< comparand [
+{ #category : #arithmetic }
+Timespan >> < comparand [
 
 	^ self start < comparand	 
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>= comparand [
+{ #category : #arithmetic }
+Timespan >> = comparand [
 	^ self species = comparand species 
 		and: [ self start = comparand start 
 				and: [ self duration = comparand duration ]]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>asDate [
+{ #category : #accessing }
+Timespan >> asDate [ 
 
 	^ start asDate 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>asDateAndTime [
+{ #category : #accessing }
+Timespan >> asDateAndTime [
 
 	^ start 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>asDosTimestamp [
+{ #category : #conversion }
+Timespan >> asDosTimestamp [ 
 
 	^ start asDosTimestamp 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>asDuration [
+{ #category : #conversion }
+Timespan >> asDuration [
 
 	^ self duration
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>asMonth [
+{ #category : #conversion }
+Timespan >> asMonth [ 
 
 	^ start asMonth 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>asSeconds [
+{ #category : #conversion }
+Timespan >> asSeconds [
  	"Answer the seconds since the Squeak epoch: 1 January 1901"
  
  	^ start asSeconds
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>asTime [
+{ #category : #conversion }
+Timespan >> asTime [
 
 	^ start asTime
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>asWeek [
+{ #category : #conversion }
+Timespan >> asWeek [
 
 	^ start asWeek 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>asYear [
+{ #category : #conversion }
+Timespan >> asYear [ 
 
 	^ start asYear
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>dates [
+{ #category : #enumerating }
+Timespan >> dates [
 
 
 	| dates |
@@ -204,105 +146,72 @@ Timespan>>dates [
 	^ dates asArray.
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>datesDo: aBlock [
+{ #category : #enumerating }
+Timespan >> datesDo: aBlock [ 
 
 	self do: aBlock with: start asDate. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>day [
+{ #category : #accessing }
+Timespan >> day [
 	"Answer the day of the year represented by the receiver."
 	^ self dayOfYear
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>dayOfMonth [
+{ #category : #accessing }
+Timespan >> dayOfMonth [
 	"Answer the day of the month represented by the receiver."
 
 	^ start dayOfMonth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>dayOfWeek [
+{ #category : #accessing }
+Timespan >> dayOfWeek [
 	"Answer the day of the week represented by the receiver."
 
 	^ start dayOfWeek
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>dayOfWeekName [
+{ #category : #accessing }
+Timespan >> dayOfWeekName [
 	"Answer the day of the week represented by the receiver."
 
 	^ start dayOfWeekName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>dayOfYear [
+{ #category : #accessing }
+Timespan >> dayOfYear [
 	"Answer the day of the year represented by the receiver."
 
 	^ start dayOfYear
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>daysInMonth [
+{ #category : #accessing }
+Timespan >> daysInMonth [ 
 
 	^ start daysInMonth 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>daysInYear [
+{ #category : #accessing }
+Timespan >> daysInYear [
  	"Answer the number of days in the month represented by the receiver."
 
 	^ start daysInYear 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>daysLeftInYear [
+{ #category : #accessing }
+Timespan >> daysLeftInYear [
 	^ start daysLeftInYear
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>do: aBlock with: aFirstElement [
+{ #category : #private }
+Timespan >> do: aBlock with: aFirstElement [
 
  	self do: aBlock with: aFirstElement when: [ :t | true ]. 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>do: aBlock with: aFirstElement when: aConditionBlock [
+{ #category : #private }
+Timespan >> do: aBlock with: aFirstElement when: aConditionBlock [
 
 	| element end |
 	element := aFirstElement.
@@ -314,43 +223,31 @@ Timespan>>do: aBlock with: aFirstElement when: aConditionBlock [
 		element := element next. ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>duration [
+{ #category : #accessing }
+Timespan >> duration [
  	"Answer the Duration of this timespan"
 
 	^ duration 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>duration: aDuration [
+{ #category : #private }
+Timespan >> duration: aDuration [
 	"Set the Duration of this timespan"
 
 	duration := aDuration
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>end [
+{ #category : #accessing }
+Timespan >> end [ 
 
 	^ self duration asNanoSeconds = 0
 		ifTrue: [ self start ]
 		ifFalse: [ self next start - DateAndTime clockPrecision ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>every: aDuration do: aBlock [
+{ #category : #enumerating }
+Timespan >> every: aDuration do: aBlock [
 
 	| element end |
 	element := self start.
@@ -362,29 +259,20 @@ Timespan>>every: aDuration do: aBlock [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>firstDayOfMonth [
+{ #category : #accessing }
+Timespan >> firstDayOfMonth [
 
 	^ start firstDayOfMonth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>hash [
+{ #category : #accessing }
+Timespan >> hash [
 
 	^ start hash + duration hash 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>includes: aDateAndTime [
+{ #category : #testing }
+Timespan >> includes: aDateAndTime [ 
 
 	^ (aDateAndTime isKindOf: Timespan)
 			ifTrue: [ 
@@ -394,21 +282,15 @@ Timespan>>includes: aDateAndTime [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>includesAll: aCollection [
+{ #category : #testing }
+Timespan >> includesAll: aCollection [
 	"Answer whether all the elements of aCollection are in the receiver."
 
 	^ aCollection allSatisfy: [ :elem | self includes: elem ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>includesAllOf: aCollection [
+{ #category : #testing }
+Timespan >> includesAllOf: aCollection [ 
 
 	self
 		deprecated: 'Please use #includesAll: instead'
@@ -418,32 +300,23 @@ Timespan>>includesAllOf: aCollection [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>includesAny: aCollection [
+{ #category : #testing }
+Timespan >> includesAny: aCollection [
 	"Answer whether any element of aCollection is included in the receiver"
 
 	^ aCollection anySatisfy: [ :elem | self includes: elem ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>includesAnyOf: aCollection [
+{ #category : #testing }
+Timespan >> includesAnyOf: aCollection [ 
 	
 	self flag: 'use includesAny: instead'.
 	
 	^ self includesAny: aCollection
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>intersection: aTimespan [
+{ #category : #enumerating }
+Timespan >> intersection: aTimespan [
 
 	 "Return the Timespan both have in common, or nil"
 
@@ -456,73 +329,49 @@ Timespan>>intersection: aTimespan [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>isLeapYear [
+{ #category : #accessing }
+Timespan >> isLeapYear [
 
 	^ start isLeapYear 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>julianDayNumber [
+{ #category : #accessing }
+Timespan >> julianDayNumber [ 
 
 	^ start julianDayNumber 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>julianDayNumberUTC [
+{ #category : #accessing }
+Timespan >> julianDayNumberUTC [
 	^ start julianDayNumberUTC
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>month [
+{ #category : #accessing }
+Timespan >> month [
 
 	^ start month 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>monthAbbreviation [
+{ #category : #accessing }
+Timespan >> monthAbbreviation [ 
 
 	^ start monthAbbreviation 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>monthIndex [
+{ #category : #accessing }
+Timespan >> monthIndex [
 
 	^ self month 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>monthName [
+{ #category : #accessing }
+Timespan >> monthName [ 
 
 	^ start monthName 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>months [
+{ #category : #enumerating }
+Timespan >> months [
 
 	| months |
 	months := OrderedCollection new: 12.
@@ -530,37 +379,25 @@ Timespan>>months [
 	^ months asArray.
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>monthsDo: aBlock [
+{ #category : #enumerating }
+Timespan >> monthsDo: aBlock [
 
  	self do: aBlock with: start asMonth.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>next [
+{ #category : #accessing }
+Timespan >> next [
 
 	^ self class starting: (start + duration) duration: duration 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>offset [
+{ #category : #accessing }
+Timespan >> offset [
 	^ start offset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>offset: anOffset [
+{ #category : #accessing }
+Timespan >> offset: anOffset [
 	"Answer a <Timespan> equivalent to the receiver but with its local time 
 	being offset from UTC by offset.
 	Unlike #translateTo: this will NOT change the absolute in UTC "
@@ -570,20 +407,14 @@ Timespan>>offset: anOffset [
 		duration: self duration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>previous [
+{ #category : #accessing }
+Timespan >> previous [ 
 
 	^ self class starting: (start - duration) duration: duration 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>printOn: aStream [
+{ #category : #printing }
+Timespan >> printOn: aStream [ 
 
 	super printOn: aStream.
 	aStream 
@@ -595,32 +426,23 @@ Timespan>>printOn: aStream [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>start [
+{ #category : #accessing }
+Timespan >> start [
  	"Answer the start DateAndTime of this timespan"
 
 	^ start 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>start: aDateAndTime [
+{ #category : #accessing }
+Timespan >> start: aDateAndTime [
 	"Store the start DateAndTime of this timespan"
 
 	start := aDateAndTime asDateAndTime
 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>to: anEnd [
+{ #category : #conversion }
+Timespan >> to: anEnd [
 	"Answer an Timespan. anEnd must be aDateAndTime or a Timespan" 
 	| end |
 	end := (anEnd isKindOf: Timespan)
@@ -629,11 +451,8 @@ Timespan>>to: anEnd [
 	^ Timespan starting: (self start) ending: end. 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>translateTo: aTimeZone [
+{ #category : #conversion }
+Timespan >> translateTo: aTimeZone [
 	"Keep myself's representation and move it to another timezone offset.
 	Note that unlike #offset: this WILL change the absolute time in UTC"
 	
@@ -641,20 +460,14 @@ Timespan>>translateTo: aTimeZone [
 		starting: (start translateTo: aTimeZone)
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>translateToUTC [
+{ #category : #conversion }
+Timespan >> translateToUTC [ 
 	" Move this represenation to UTC"
 	^ self translateTo: 0
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>union: aTimespan [
+{ #category : #enumerating }
+Timespan >> union: aTimespan [
 	 "Return the Timespan spanned by both"
 
 	| aBegin anEnd |
@@ -665,11 +478,8 @@ Timespan>>union: aTimespan [
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>weeks [
+{ #category : #enumerating }
+Timespan >> weeks [
 
 
 	| weeks |
@@ -678,39 +488,27 @@ Timespan>>weeks [
 	^ weeks asArray.
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>weeksDo: aBlock [
+{ #category : #enumerating }
+Timespan >> weeksDo: aBlock [
 
 	self do: aBlock with: self asWeek.
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>workDatesDo: aBlock [
+{ #category : #enumerating }
+Timespan >> workDatesDo: aBlock [
  	"Exclude Saturday and Sunday"
 
 	self do: aBlock with: start asDate when: [ :d | d dayOfWeek < 6 ]. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>year [
+{ #category : #accessing }
+Timespan >> year [ 
 
 	^ start year 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>years [
+{ #category : #enumerating }
+Timespan >> years [
 
 
 	| years |
@@ -719,11 +517,8 @@ Timespan>>years [
 	^ years asArray.
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Timespan>>yearsDo: aBlock [
+{ #category : #enumerating }
+Timespan >> yearsDo: aBlock [
 
 	self do: aBlock with: start asYear.
 ]

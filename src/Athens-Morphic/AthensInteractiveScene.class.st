@@ -17,25 +17,18 @@ Note that if scene view enters zooming or panning state, no events will be passe
 Class {
 	#name : #AthensInteractiveScene,
 	#superclass : #AthensSceneView,
-	#category : #Athens-Morphic,
-	#timestamp : '<historical>'
+	#category : #Athens-Morphic
 }
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensInteractiveScene>>eventHandledByScene: evt [
+{ #category : #'event handling' }
+AthensInteractiveScene >> eventHandledByScene: evt [
 
 	^  true == (scene handleEvent: evt in: self at: (self eventPositionInScene:evt))
 	
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensInteractiveScene>>eventPositionInScene: evt [
+{ #category : #'event handling' }
+AthensInteractiveScene >> eventPositionInScene: evt [
 	| pt | 
 	
 	pt := evt position - self topLeft.
@@ -43,11 +36,8 @@ AthensInteractiveScene>>eventPositionInScene: evt [
 	^ transform transform: pt
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensInteractiveScene>>mouseDown: evt [
+{ #category : #'event handling' }
+AthensInteractiveScene >> mouseDown: evt [
 
 	((self inState: #panning) or: [ self inState:#zooming ]) 
 		ifFalse: [
@@ -57,11 +47,8 @@ AthensInteractiveScene>>mouseDown: evt [
 	^ super mouseDown: evt
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensInteractiveScene>>mouseMove: evt [
+{ #category : #'event handling' }
+AthensInteractiveScene >> mouseMove: evt [
 
 	((self inState: #panning) or: [ self inState:#zooming ]) 
 		ifFalse: [
@@ -70,11 +57,8 @@ AthensInteractiveScene>>mouseMove: evt [
 	^ super mouseMove: evt
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensInteractiveScene>>mouseUp: evt [
+{ #category : #'event handling' }
+AthensInteractiveScene >> mouseUp: evt [
 
 	((self inState: #panning) or: [ self inState:#zooming ]) 
 		ifFalse: [

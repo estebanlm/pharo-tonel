@@ -1,12 +1,7 @@
-Extension {
-	#name : #FileStream
-}
+Extension { #name : #FileStream }
 
-{
-	#category : #'*zinc-resource-meta-core',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-FileStream>>asZnUrl [
+{ #category : #'*zinc-resource-meta-core' }
+FileStream >> asZnUrl [
 	"Convert the receiver in a file:// ZnUrl"
 
 	| fileUrl |

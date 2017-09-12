@@ -38,15 +38,11 @@ Class {
 		'StandardColors',
 		'StandardSwizzleMaps'
 	],
-	#category : #Graphics-Files,
-	#timestamp : '<historical>'
+	#category : #Graphics-Files
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter class>>computeSwizzleMapForDepth: depth [
+{ #category : #utilities }
+PNGReadWriter class >> computeSwizzleMapForDepth: depth [
 	"Answer a map that maps pixels in a word to their opposite location. Used for 'middle-endian' forms where the byte-order is different from the bit order (good joke, eh?)."
 	| map swizzled |
 	map := Bitmap new: 256.
@@ -90,11 +86,8 @@ PNGReadWriter class>>computeSwizzleMapForDepth: depth [
 	self error: 'Unrecognized depth'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter class>>createAFormFrom: data  [
+{ #category : #'instance creation' }
+PNGReadWriter class >> createAFormFrom: data [ 
 	| error f |
 	error := ''.
 	f := [ self formFromStream: (RWBinaryOrTextStream with: data) ] ifError: 
@@ -106,19 +99,13 @@ PNGReadWriter class>>createAFormFrom: data  [
 	^ {  f. error  }
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter class>>debugging: aBoolean  [
+{ #category : #initialize }
+PNGReadWriter class >> debugging: aBoolean [ 
 	Debugging := aBoolean
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter class>>initialize [
+{ #category : #initialize }
+PNGReadWriter class >> initialize [
 	"
 	PNGReadWriter initialize
 	"
@@ -148,20 +135,14 @@ PNGReadWriter class>>initialize [
 			put: (self computeSwizzleMapForDepth: i) ]
 ]
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter class>>typicalFileExtensions [
+{ #category : #'image reading/writing' }
+PNGReadWriter class >> typicalFileExtensions [
 	"Answer a collection of file extensions (lowercase) which files that I can read might commonly have"
 	^#('png')
 ]
 
-{
-	#category : #'pixel copies',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>copyPixels: y  [
+{ #category : #'pixel copies' }
+PNGReadWriter >> copyPixels: y [ 
 	"Handle non-interlaced pixels of supported colorTypes"
 	| s |
 	s := #(
@@ -178,11 +159,8 @@ PNGReadWriter>>copyPixels: y  [
 		with: y
 ]
 
-{
-	#category : #'pixel copies',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>copyPixels: y at: startX by: incX  [
+{ #category : #'pixel copies' }
+PNGReadWriter >> copyPixels: y at: startX by: incX [ 
 	"Handle interlaced pixels of supported colorTypes"
 	| s |
 	s := #(
@@ -201,11 +179,8 @@ PNGReadWriter>>copyPixels: y at: startX by: incX  [
 		with: incX
 ]
 
-{
-	#category : #'pixel copies',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>copyPixelsGray: y  [
+{ #category : #'pixel copies' }
+PNGReadWriter >> copyPixelsGray: y [ 
 	"Handle non-interlaced grayscale color mode (colorType = 0)"
 
 	| base bits bytesLeft word |
@@ -280,11 +255,8 @@ PNGReadWriter>>copyPixelsGray: y  [
 	byteHack displayOn: myHack at:  0@i"
 ]
 
-{
-	#category : #'pixel copies',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>copyPixelsGray: y at: startX by: incX [
+{ #category : #'pixel copies' }
+PNGReadWriter >> copyPixelsGray: y at: startX by: incX [
 	"Handle interlaced grayscale color mode (colorType = 0)"
 
 	| offset bits blitter pixPerByte shifts b pixel mask pixelNumber |
@@ -340,11 +312,8 @@ PNGReadWriter>>copyPixelsGray: y at: startX by: incX [
 
 ]
 
-{
-	#category : #'pixel copies',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>copyPixelsGrayAlpha: y  [
+{ #category : #'pixel copies' }
+PNGReadWriter >> copyPixelsGrayAlpha: y [ 
 	"Handle non-interlaced grayscale with alpha color mode (colorType = 4)"
 	| i pixel gray b |
 	b := BitBlt bitPokerToForm: form.
@@ -373,11 +342,8 @@ PNGReadWriter>>copyPixelsGrayAlpha: y  [
 						put: pixel ] ]
 ]
 
-{
-	#category : #'pixel copies',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>copyPixelsGrayAlpha: y at: startX by: incX  [
+{ #category : #'pixel copies' }
+PNGReadWriter >> copyPixelsGrayAlpha: y at: startX by: incX [ 
 	"Handle interlaced grayscale with alpha color mode (colorType = 4)"
 	| i pixel gray b |
 	b := BitBlt bitPokerToForm: form.
@@ -408,11 +374,8 @@ PNGReadWriter>>copyPixelsGrayAlpha: y at: startX by: incX  [
 						put: pixel ] ]
 ]
 
-{
-	#category : #'pixel copies',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>copyPixelsIndexed: y [
+{ #category : #'pixel copies' }
+PNGReadWriter >> copyPixelsIndexed: y [
 	"Handle non-interlaced indexed color mode (colorType = 3)"
 	| hack hackBlt swizzleHack swizzleBlt scanline hackDepth |
 	scanline := ByteArray new: bytesPerScanline + 3 // 4 * 4.
@@ -437,11 +400,8 @@ PNGReadWriter>>copyPixelsIndexed: y [
 	hackBlt copyBits.
 ]
 
-{
-	#category : #'pixel copies',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>copyPixelsIndexed: y at: startX by: incX  [
+{ #category : #'pixel copies' }
+PNGReadWriter >> copyPixelsIndexed: y at: startX by: incX [ 
 	"Handle interlaced indexed color mode (colorType = 3)"
 	| offset bits pixPerByte shifts blitter pixel mask pixelNumber |
 	offset := y * rowSize + 1.
@@ -487,11 +447,8 @@ PNGReadWriter>>copyPixelsIndexed: y at: startX by: incX  [
 			pixelNumber := pixelNumber + 1 ]
 ]
 
-{
-	#category : #'pixel copies',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>copyPixelsRGB: y [
+{ #category : #'pixel copies' }
+PNGReadWriter >> copyPixelsRGB: y [
 	"Handle non-interlaced RGB color mode (colorType = 2)"
 
 	| i pixel tempForm tempBits |
@@ -554,11 +511,8 @@ PNGReadWriter>>copyPixelsRGB: y [
 
 ]
 
-{
-	#category : #'pixel copies',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>copyPixelsRGB: y at: startX by: incX [
+{ #category : #'pixel copies' }
+PNGReadWriter >> copyPixelsRGB: y at: startX by: incX [
 	"Handle interlaced RGB color mode (colorType = 2)"
 
 	| i pixel tempForm tempBits xx loopsToDo |
@@ -606,11 +560,8 @@ PNGReadWriter>>copyPixelsRGB: y at: startX by: incX [
 
 ]
 
-{
-	#category : #'pixel copies',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>copyPixelsRGBA: y [
+{ #category : #'pixel copies' }
+PNGReadWriter >> copyPixelsRGBA: y [
 	"Handle non-interlaced RGBA color modes (colorType = 6)"
 
 	| i pixel tempForm tempBits ff |
@@ -642,11 +593,8 @@ PNGReadWriter>>copyPixelsRGBA: y [
 
 ]
 
-{
-	#category : #'pixel copies',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>copyPixelsRGBA: y at: startX by: incX [
+{ #category : #'pixel copies' }
+PNGReadWriter >> copyPixelsRGBA: y at: startX by: incX [
 	"Handle interlaced RGBA color modes (colorType = 6)"
 
 	| i pixel tempForm tempBits |
@@ -680,20 +628,14 @@ PNGReadWriter>>copyPixelsRGBA: y at: startX by: incX [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>debugging [
+{ #category : #accessing }
+PNGReadWriter >> debugging [
 
 	^Debugging == true
 ]
 
-{
-	#category : #miscellaneous,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>doPass: pass [
+{ #category : #miscellaneous }
+PNGReadWriter >> doPass: pass [
 	"Certain interlace passes are skipped with certain small image
 dimensions"
 
@@ -709,11 +651,8 @@ dimensions"
 
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>filterAverage: count  [
+{ #category : #filtering }
+PNGReadWriter >> filterAverage: count [ 
 	"Use the average of the pixel to the left and the pixel above as a predictor"
 	| delta |
 	delta := bitsPerPixel // 8 max: 1.
@@ -733,11 +672,8 @@ PNGReadWriter>>filterAverage: count  [
 				put: ((thisScanline at: i) + (((prevScanline at: i) + (thisScanline at: i - delta)) // 2) bitAnd: 255) ]
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>filterHorizontal: count  [
+{ #category : #filtering }
+PNGReadWriter >> filterHorizontal: count [ 
 	"Use the pixel to the left as a predictor"
 	| delta |
 	delta := bitsPerPixel // 8 max: 1.
@@ -750,19 +686,13 @@ PNGReadWriter>>filterHorizontal: count  [
 				put: ((thisScanline at: i) + (thisScanline at: i - delta) bitAnd: 255) ]
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>filterNone: count [
+{ #category : #filtering }
+PNGReadWriter >> filterNone: count [
 
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>filterPaeth: count  [
+{ #category : #filtering }
+PNGReadWriter >> filterPaeth: count [ 
 	"Select one of (the pixel to the left, the pixel above and the pixel to above left) to
 	predict the value of this pixel"
 	| delta |
@@ -786,11 +716,8 @@ PNGReadWriter>>filterPaeth: count  [
 						aboveLeft: (prevScanline at: i - delta)) bitAnd: 255) ]
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>filterScanline: filterType count: count [
+{ #category : #filtering }
+PNGReadWriter >> filterScanline: filterType count: count [
 
 	self
 		perform: (
@@ -801,11 +728,8 @@ PNGReadWriter>>filterScanline: filterType count: count [
 
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>filterVertical: count [
+{ #category : #filtering }
+PNGReadWriter >> filterVertical: count [
 	"Use the pixel above as a predictor"
 
 	1 to: count do: [ :i |
@@ -815,11 +739,8 @@ PNGReadWriter>>filterVertical: count [
 
 ]
 
-{
-	#category : #miscellaneous,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>grayColorsFor: d [
+{ #category : #miscellaneous }
+PNGReadWriter >> grayColorsFor: d [
 	"return a color table for a gray image"
 
 	palette := Array new: 1<<d.
@@ -848,11 +769,8 @@ PNGReadWriter>>grayColorsFor: d [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>nextImage [
+{ #category : #accessing }
+PNGReadWriter >> nextImage [
 	bigEndian := EndianDetector isBigEndian.
 	filtersSeen := Bag new.
 	idatChunkStream := nil.
@@ -897,20 +815,14 @@ PNGReadWriter>>nextImage [
 	^form
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>nextPutImage: aForm [
+{ #category : #writing }
+PNGReadWriter >> nextPutImage: aForm [
 	"Write out the given form. We're keeping it simple here, no interlacing, no filters."
 	^self nextPutImage: aForm interlace: 0 filter: 0. "no filtering"
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>nextPutImage: aForm interlace: aMethod filter: aFilterType  [
+{ #category : #writing }
+PNGReadWriter >> nextPutImage: aForm interlace: aMethod filter: aFilterType [ 
 	"Note: For now we keep it simple - interlace and filtering are simply ignored"
 
 	| crcStream |
@@ -955,11 +867,8 @@ PNGReadWriter>>nextPutImage: aForm interlace: aMethod filter: aFilterType  [
 	self writeChunk: crcStream
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>paethPredictLeft: a above: b aboveLeft: c  [
+{ #category : #filtering }
+PNGReadWriter >> paethPredictLeft: a above: b aboveLeft: c [ 
 	"Predicts the value of a pixel based on nearby pixels, based on
 Paeth (GG II, 1991)"
 	| pa pb pc |
@@ -976,11 +885,8 @@ Paeth (GG II, 1991)"
 	^ c
 ]
 
-{
-	#category : #chunks,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>processBackgroundChunk [
+{ #category : #chunks }
+PNGReadWriter >> processBackgroundChunk [
 	"Transcript show: '  BACKGROUND: ',chunk printString."
 	| val red green blue max |
 	colorType = 3 ifTrue: 
@@ -1040,11 +946,8 @@ When present, the bKGD chunk must precede the first IDAT chunk, and must follow 
 ==="
 ]
 
-{
-	#category : #chunks,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>processIDATChunk [
+{ #category : #chunks }
+PNGReadWriter >> processIDATChunk [
 
 	interlaceMethod = 0
 		ifTrue: [ self processNonInterlaced ]
@@ -1052,11 +955,8 @@ PNGReadWriter>>processIDATChunk [
 
 ]
 
-{
-	#category : #chunks,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>processIHDRChunk [
+{ #category : #chunks }
+PNGReadWriter >> processIHDRChunk [
 	width := chunk 
 		longAt: 1
 		bigEndian: true.
@@ -1079,11 +979,8 @@ PNGReadWriter>>processIHDRChunk [
 	rowSize := width * depth + 31 >> 5
 ]
 
-{
-	#category : #chunks,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>processInterlaced [
+{ #category : #chunks }
+PNGReadWriter >> processInterlaced [
 	| z filter bytesPerPass startingCol colIncrement rowIncrement startingRow cx sc temp |
 	startingCol := #(0 4 0 2 0 1 0 ).
 	colIncrement := #(8 8 4 4 2 2 1 ).
@@ -1130,11 +1027,8 @@ PNGReadWriter>>processInterlaced [
 	z atEnd ifFalse: [ self error: 'Unexpected data' ]
 ]
 
-{
-	#category : #chunks,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>processNextChunk [
+{ #category : #chunks }
+PNGReadWriter >> processNextChunk [
 	| length chunkType crc chunkCrc |
 	length := self nextLong.
 	chunkType := (self next: 4) asString.
@@ -1174,11 +1068,8 @@ PNGReadWriter>>processNextChunk [
 	unknownChunks add: chunkType
 ]
 
-{
-	#category : #chunks,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>processNonInterlaced [
+{ #category : #chunks }
+PNGReadWriter >> processNonInterlaced [
 	| z filter temp copyMethod debug |
 	debug := self debugging.
 	copyMethod := #(
@@ -1228,11 +1119,8 @@ PNGReadWriter>>processNonInterlaced [
 			print: z position ]
 ]
 
-{
-	#category : #chunks,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>processPLTEChunk [
+{ #category : #chunks }
+PNGReadWriter >> processPLTEChunk [
 	| colorCount i |
 	colorCount := chunk size // 3.	"TODO - validate colorCount against depth"
 	palette := Array new: colorCount.
@@ -1249,21 +1137,15 @@ PNGReadWriter>>processPLTEChunk [
 						b: (chunk at: i + 2) / 255.0) ]
 ]
 
-{
-	#category : #chunks,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>processPhysicalPixelChunk [
+{ #category : #chunks }
+PNGReadWriter >> processPhysicalPixelChunk [
 
 	"Transcript show: '  PHYSICAL: ',chunk printString."
 
 ]
 
-{
-	#category : #chunks,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>processSBITChunk [
+{ #category : #chunks }
+PNGReadWriter >> processSBITChunk [
 	| rBits gBits bBits aBits |
 	colorType = 6 ifFalse:[^self].
 	rBits := chunk at: 1.
@@ -1275,11 +1157,8 @@ PNGReadWriter>>processSBITChunk [
 	].
 ]
 
-{
-	#category : #chunks,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>processTransparencyChunk [
+{ #category : #chunks }
+PNGReadWriter >> processTransparencyChunk [
 
 	"Transcript show: '  TRANSPARENCY ',chunk printString."
 	colorType = 0
@@ -1307,11 +1186,8 @@ PNGReadWriter>>processTransparencyChunk [
 
 ]
 
-{
-	#category : #'pixel copies',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>rgbaDecoderMapForDepth: decoderDepth [
+{ #category : #'pixel copies' }
+PNGReadWriter >> rgbaDecoderMapForDepth: decoderDepth [
 	bigEndian ifTrue:[
 		depth = 16 ifTrue:[
 			"Big endian, 32 -> 16 color mapping."
@@ -1338,30 +1214,21 @@ PNGReadWriter>>rgbaDecoderMapForDepth: decoderDepth [
 	].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>understandsImageFormat [
+{ #category : #accessing }
+PNGReadWriter >> understandsImageFormat [
 	#(137 80 78 71 13 10 26 10) do: [ :byte |
 		stream next = byte ifFalse: [^ false]].
 	^ true
 
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>updateCrc: oldCrc from: start to: stop in: aCollection [
+{ #category : #writing }
+PNGReadWriter >> updateCrc: oldCrc from: start to: stop in: aCollection [
 	^ZipWriteStream updateCrc: oldCrc from: start to: stop in: aCollection
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>writeChunk: crcStream  [
+{ #category : #writing }
+PNGReadWriter >> writeChunk: crcStream [ 
 	| bytes length crc debug |
 	debug := self debugging.
 	bytes := crcStream originalContents.
@@ -1401,19 +1268,13 @@ PNGReadWriter>>writeChunk: crcStream  [
 	crcStream resetToStart
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>writeFileSignature [
+{ #category : #writing }
+PNGReadWriter >> writeFileSignature [
 	stream nextPutAll: #[16r89 16r50 16r4E  16r47 16r0D 16r0A 16r1A 16r0A]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>writeIDATChunkOn: aStream  [
+{ #category : #writing }
+PNGReadWriter >> writeIDATChunkOn: aStream [ 
 	"Write the IDAT chunk"
 	| z |
 	aStream nextPutAll: 'IDAT' asByteArray.
@@ -1430,20 +1291,14 @@ PNGReadWriter>>writeIDATChunkOn: aStream  [
 			print: z position ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>writeIENDChunkOn: aStream [
+{ #category : #writing }
+PNGReadWriter >> writeIENDChunkOn: aStream [
 	"Write the IEND chunk"
 	aStream nextPutAll: 'IEND' asByteArray.
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>writeIHDRChunkOn: aStream [
+{ #category : #writing }
+PNGReadWriter >> writeIHDRChunkOn: aStream [
 	"Write the IHDR chunk"
 	aStream nextPutAll: 'IHDR' asByteArray.
 	aStream nextInt32Put: width.
@@ -1456,11 +1311,8 @@ PNGReadWriter>>writeIHDRChunkOn: aStream [
 
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>writePLTEChunkOn: aStream [
+{ #category : #writing }
+PNGReadWriter >> writePLTEChunkOn: aStream [
 	"Write the PLTE chunk"
 	| colors |
 	aStream nextPutAll: 'PLTE' asByteArray.
@@ -1475,11 +1327,8 @@ PNGReadWriter>>writePLTEChunkOn: aStream [
 	].
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>writeSBITChunkOn: aStream [
+{ #category : #writing }
+PNGReadWriter >> writeSBITChunkOn: aStream [
 	"Write the IDAT chunk"
 	aStream nextPutAll: 'sBIT' asByteArray.
 	form depth = 16 ifFalse:[self error: 'Unimplemented feature'].
@@ -1489,11 +1338,8 @@ PNGReadWriter>>writeSBITChunkOn: aStream [
 	aStream nextPut: 1.
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>writeTRNSChunkOn: aStream [
+{ #category : #writing }
+PNGReadWriter >> writeTRNSChunkOn: aStream [
 	"Write out tRNS chunk"
 	aStream nextPutAll: 'tRNS' asByteArray.
 	form colors do:[:aColor|
@@ -1501,11 +1347,8 @@ PNGReadWriter>>writeTRNSChunkOn: aStream [
 	].
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>writeType3DataOn: zStream [
+{ #category : #writing }
+PNGReadWriter >> writeType3DataOn: zStream [
 	"Write color indexed data."
 	| scanline hack hackBlt swizzleBlt swizzleHack hackDepth |
 	scanline := ByteArray new: bytesPerScanline + 3 // 4 * 4.
@@ -1532,11 +1375,8 @@ PNGReadWriter>>writeType3DataOn: zStream [
 	zStream close.
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PNGReadWriter>>writeType6DataOn: zStream [
+{ #category : #writing }
+PNGReadWriter >> writeType6DataOn: zStream [
 	"Write RGBA data."
 	| scanline hack hackBlt cm miscBlt |
 	scanline := ByteArray new: bytesPerScanline.

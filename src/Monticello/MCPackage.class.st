@@ -11,91 +11,60 @@ Class {
 	#instVars : [
 		'name'
 	],
-	#category : #Monticello-Base,
-	#timestamp : '<historical>'
+	#category : #Monticello-Base
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackage class>>named: aString [
+{ #category : #'instance creation' }
+MCPackage class >> named: aString [
 	^ self new name: aString
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackage>>= other [
+{ #category : #comparing }
+MCPackage >> = other [
 	^ other species = self species and: [other name sameAs: name]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackage>>correspondingRPackage [
+{ #category : #accessing }
+MCPackage >> correspondingRPackage [
 
 	^ RPackageOrganizer default packageNamed: self name asSymbol ifAbsent: [ nil ]
 ]
 
-{
-	#category : #'working copies',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackage>>hasWorkingCopy [
+{ #category : #'working copies' }
+MCPackage >> hasWorkingCopy [
 	^ MCWorkingCopy registry includesKey: self
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackage>>hash [
+{ #category : #comparing }
+MCPackage >> hash [
 	^ name asLowercase hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackage>>isDirty [
+{ #category : #testing }
+MCPackage >> isDirty [
 	
 	^ self workingCopy
 		ifNil: [ false ]
 		ifNotNil: [ :wc | wc modified ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackage>>name [
+{ #category : #accessing }
+MCPackage >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackage>>name: aString [
+{ #category : #accessing }
+MCPackage >> name: aString [
 	name := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackage>>packageSet [
+{ #category : #accessing }
+MCPackage >> packageSet [
 	^ RPackageSet named: name
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackage>>printOn: aStream [
+{ #category : #printing }
+MCPackage >> printOn: aStream [
 	super printOn: aStream.
 	aStream
 		nextPut: $(;
@@ -103,11 +72,8 @@ MCPackage>>printOn: aStream [
 		nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackage>>snapshot [
+{ #category : #accessing }
+MCPackage >> snapshot [
 	| rPackageSet definitions categories |
 	rPackageSet := self packageSet.
 	definitions := OrderedCollection new.
@@ -132,28 +98,19 @@ MCPackage>>snapshot [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackage>>storeOn: aStream [
+{ #category : #printing }
+MCPackage >> storeOn: aStream [
 	aStream
 		nextPutAll: 'MCPackage';
 		space; nextPutAll: 'named: '; store: name.
 ]
 
-{
-	#category : #'working copies',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackage>>unload [
+{ #category : #'working copies' }
+MCPackage >> unload [
 	^ self workingCopy unload
 ]
 
-{
-	#category : #'working copies',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackage>>workingCopy [
+{ #category : #'working copies' }
+MCPackage >> workingCopy [
 	^ MCWorkingCopy forPackage: self.
 ]

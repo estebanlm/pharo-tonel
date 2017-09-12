@@ -7,15 +7,11 @@ as output.
 Class {
 	#name : #AthensCairoPDFSurface,
 	#superclass : #AthensCairoSurface,
-	#category : #Athens-Cairo,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPDFSurface class>>createPDF: fileName width: width_in_points height: height_in_points [
+{ #category : #private }
+AthensCairoPDFSurface class >> createPDF: fileName width: width_in_points height: height_in_points [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
@@ -25,46 +21,31 @@ AthensCairoPDFSurface class>>createPDF: fileName width: width_in_points height: 
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPDFSurface class>>extent: anExtent fileName: fileName [
+{ #category : #'instance creation' }
+AthensCairoPDFSurface class >> extent: anExtent fileName: fileName [
 
 	^ (self createPDF: fileName width: anExtent x height: anExtent y) initialize
 ]
 
-{
-	#category : #'finalize resources',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPDFSurface class>>finalizeResourceData: handle [
+{ #category : #'finalize resources' }
+AthensCairoPDFSurface class >> finalizeResourceData: handle [
 
 	self destroySurfaceHandle: handle.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPDFSurface class>>registerSurface: surface [
+{ #category : #private }
+AthensCairoPDFSurface class >> registerSurface: surface [
 	"do not register my instances with SurfacePlugin"
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPDFSurface>>resourceData [
+{ #category : #initialize-release }
+AthensCairoPDFSurface >> resourceData [
 	^ handle value 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPDFSurface>>showPage [
+{ #category : #private }
+AthensCairoPDFSurface >> showPage [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	

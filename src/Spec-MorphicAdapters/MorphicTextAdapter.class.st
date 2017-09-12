@@ -6,95 +6,64 @@ Class {
 	#superclass : #AbstractMorphicAdapter,
 	#traits : 'TViewModel',
 	#classTraits : 'TViewModel classTrait',
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>accept [
+{ #category : #'spec protocol' }
+MorphicTextAdapter >> accept [
 	"We use RubScrolledTextMorph>>#acceptContents but we keep accept as method name for compatibility"
 	self widgetDo: [ :w | w acceptContents ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>accept: aText notifying: aNotifyier [
+{ #category : #'widget API' }
+MorphicTextAdapter >> accept: aText notifying: aNotifyier [
 
 	self model accept: aText notifying: aNotifyier
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>acceptAllowed [
+{ #category : #accessing }
+MorphicTextAdapter >> acceptAllowed [
 	^self widget editingMode acceptAllowed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>announcer [
+{ #category : #accessing }
+MorphicTextAdapter >> announcer [
 	^ self model announcer
 
 	
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>askBeforeDiscardingEdits [
+{ #category : #'widget API' }
+MorphicTextAdapter >> askBeforeDiscardingEdits [
 
 	^ self model askBeforeDiscardingEdits
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>askBeforeDiscardingEdits: aBoolean [
+{ #category : #'spec protocol' }
+MorphicTextAdapter >> askBeforeDiscardingEdits: aBoolean [
 	self widget askBeforeDiscardingEdits: aBoolean
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>autoAccept [
+{ #category : #'widget API' }
+MorphicTextAdapter >> autoAccept [
 
 	^ self model autoAccept
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>autoAccept: aBoolean [
+{ #category : #'widget API' }
+MorphicTextAdapter >> autoAccept: aBoolean [
 
 	^ self model autoAccept: aBoolean
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>behavior [
+{ #category : #'widget API' }
+MorphicTextAdapter >> behavior [
 
 	^ self model behavior
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>buildWidget [
+{ #category : #factory }
+MorphicTextAdapter >> buildWidget [
 	| newWidget |
 	newWidget := RubPluggableTextMorph new
 		on: self
@@ -118,241 +87,160 @@ MorphicTextAdapter>>buildWidget [
 	^ newWidget
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>canChangeText [
+{ #category : #'spec protocol' }
+MorphicTextAdapter >> canChangeText [
 	^ self widget textArea canChangeText
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>classOrMetaClass: aClass [
+{ #category : #'spec protocol' }
+MorphicTextAdapter >> classOrMetaClass: aClass [
 	self setEditingModeFor: self widget withBehavior: aClass
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>clearUserEditFlag [
+{ #category : #'widget API' }
+MorphicTextAdapter >> clearUserEditFlag [
 
 	self model text: self getText.
 	self changed: #clearUserEdits
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>codePaneMenu: aMenu shifted: shifted  [
+{ #category : #'widget API' }
+MorphicTextAdapter >> codePaneMenu: aMenu shifted: shifted [ 
 
 	^ self model codePaneMenu: aMenu shifted: shifted 
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>doItContext [
+{ #category : #'widget API' }
+MorphicTextAdapter >> doItContext [
 
 	^ self model doItContext
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>doItReceiver [
+{ #category : #'widget API' }
+MorphicTextAdapter >> doItReceiver [
 
 	^ self model doItReceiver
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>font: aFont [
+{ #category : #'widget API' }
+MorphicTextAdapter >> font: aFont [
 	self widgetDo: [ :w | w font: aFont ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>getText [
+{ #category : #'widget API' }
+MorphicTextAdapter >> getText [
 
 	^ self model text
 ]
 
-{
-	#category : #NOCompletion,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>guessTypeForName: aString [
+{ #category : #NOCompletion }
+MorphicTextAdapter >> guessTypeForName: aString [
 
 	^nil
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>hasEditingConflicts: aBoolean [
+{ #category : #'spec protocol' }
+MorphicTextAdapter >> hasEditingConflicts: aBoolean [
  
 	self widgetDo: [ :w | w hasEditingConflicts: aBoolean ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>hasUnacceptedEdits: aBoolean [
+{ #category : #'spec protocol' }
+MorphicTextAdapter >> hasUnacceptedEdits: aBoolean [
 
 	self model hasUnacceptedEdits: aBoolean
 ]
 
-{
-	#category : #protocol-shout,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>isAboutToStyle [
+{ #category : #protocol-shout }
+MorphicTextAdapter >> isAboutToStyle [
 
 	^ self model isAboutToStyle
 ]
 
-{
-	#category : #NOCompletion,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>isCodeCompletionAllowed [
+{ #category : #NOCompletion }
+MorphicTextAdapter >> isCodeCompletionAllowed [
 
 	^ self model isCodeCompletionAllowed
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>isForSmalltalkCode [
+{ #category : #'spec protocol' }
+MorphicTextAdapter >> isForSmalltalkCode [
 	^ self model isForSmalltalkCode
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>notify: errorMessage at: position in: sourceCode [
+{ #category : #'spec protocol' }
+MorphicTextAdapter >> notify: errorMessage at: position in: sourceCode [
 
 	self widgetDo: [ :w | w notify: errorMessage at: position in: sourceCode ]
 ]
 
-{
-	#category : #private-shout,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>okToStyle [
+{ #category : #private-shout }
+MorphicTextAdapter >> okToStyle [
 
 	^ true
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>pendingText [
+{ #category : #'spec protocol' }
+MorphicTextAdapter >> pendingText [
 
 	^ self widgetDo: [ :w | w text ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>pendingText: aText [
+{ #category : #'spec protocol' }
+MorphicTextAdapter >> pendingText: aText [
 
 	self widgetDo: [ :w | 
 		w setText: aText.
 		w hasUnacceptedEdits: true ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>readSelection [
+{ #category : #'widget API' }
+MorphicTextAdapter >> readSelection [
 
 	^ self model readSelection
 ]
 
-{
-	#category : #NOCompletion,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>receiverClass [
+{ #category : #NOCompletion }
+MorphicTextAdapter >> receiverClass [
 
 	^ self behavior
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>scrollValueChanged: aValue [
+{ #category : #'widget API' }
+MorphicTextAdapter >> scrollValueChanged: aValue [
 
 	self model scrollValue: aValue step
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>selectAll [
+{ #category : #'spec protocol' }
+MorphicTextAdapter >> selectAll [
 	self widgetDo: [ :w | w selectAll ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>selectFrom: nodeStart to: nodeStop [
+{ #category : #'spec protocol' }
+MorphicTextAdapter >> selectFrom: nodeStart to: nodeStop [
 	self widget selectFrom: nodeStart to: nodeStop
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>selectedBehavior [
+{ #category : #'widget API' }
+MorphicTextAdapter >> selectedBehavior [
 
 	^ self model selectedBehavior
 ]
 
-{
-	#category : #NOCompletion,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>selectedClassOrMetaClass [
+{ #category : #NOCompletion }
+MorphicTextAdapter >> selectedClassOrMetaClass [
 
 	^ self behavior
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>selectionInterval [
+{ #category : #'spec protocol' }
+MorphicTextAdapter >> selectionInterval [
 	^ self widget selectionInterval 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>setEditingModeFor: textArea withBehavior: behavior [
+{ #category : #private }
+MorphicTextAdapter >> setEditingModeFor: textArea withBehavior: behavior [
 	behavior
 		ifNil:
 			[
@@ -364,20 +252,14 @@ MorphicTextAdapter>>setEditingModeFor: textArea withBehavior: behavior [
 				beForSmalltalkCodeInClass: class ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>setHasUnacceptedEdits: aBoolean [
+{ #category : #'spec protocol' }
+MorphicTextAdapter >> setHasUnacceptedEdits: aBoolean [
 
 	self widgetDo: [ :w | w basicHasUnacceptedEdits: aBoolean ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>setScrollValue: aValue [
+{ #category : #'widget API' }
+MorphicTextAdapter >> setScrollValue: aValue [
 	self
 		widgetDo: [ :w | 
 			w scrollPane
@@ -386,38 +268,26 @@ MorphicTextAdapter>>setScrollValue: aValue [
 				updateScrollbars ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>setSelection: interval [
+{ #category : #'widget API' }
+MorphicTextAdapter >> setSelection: interval [
 
 	self model setSelectionInterval: interval
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>setSelectionFromModel: aSelection [
+{ #category : #'spec protocol' }
+MorphicTextAdapter >> setSelectionFromModel: aSelection [
 
 	self widget ifNotNil: [:w | w setSelection: aSelection ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>shoutAboutToStyle: aMorph [
+{ #category : #'widget API' }
+MorphicTextAdapter >> shoutAboutToStyle: aMorph [
 	
 	^ self model isAboutToStyle
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextAdapter>>wantsVisualFeedback [
+{ #category : #'widget API' }
+MorphicTextAdapter >> wantsVisualFeedback [
 
 	^ self model wantsVisualFeedback
 ]

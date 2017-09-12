@@ -4,15 +4,11 @@ SUnit tests for RPackage classes synchronisation
 Class {
 	#name : #RPackageClassesSynchronisationTest,
 	#superclass : #RPackageMCSynchronisationTest,
-	#category : #RPackage-Tests,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:59'
+	#category : #RPackage-Tests
 }
 
-{
-	#category : #'tests - adding classes',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testAddClassAddItIntoPackageBestMatchName [
+{ #category : #'tests - adding classes' }
+RPackageClassesSynchronisationTest >> testAddClassAddItIntoPackageBestMatchName [
 	"self debug: #testAddCategoryCreatesPackage"
 
 	|tmpPackage class|
@@ -26,11 +22,8 @@ RPackageClassesSynchronisationTest>>testAddClassAddItIntoPackageBestMatchName [
 	self assert: class package equals: tmpPackage
 ]
 
-{
-	#category : #'tests - adding classes',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testAddClassAddItIntoPackageExactName [
+{ #category : #'tests - adding classes' }
+RPackageClassesSynchronisationTest >> testAddClassAddItIntoPackageExactName [
 	"self debug: #testAddCategoryCreatesPackage"
 
 	|tmpPackage class|
@@ -44,11 +37,8 @@ RPackageClassesSynchronisationTest>>testAddClassAddItIntoPackageExactName [
 	self assert: class package equals: tmpPackage
 ]
 
-{
-	#category : #'tests - adding classes',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testAddClassUpdateTheOrganizerMappings [
+{ #category : #'tests - adding classes' }
+RPackageClassesSynchronisationTest >> testAddClassUpdateTheOrganizerMappings [
 	"test that when we add a class, the organizer 'classPackageMapping' dictionary is updated, so that the class is linked to its package and so that we can access its owning package"
 	"self debug: #testAddClassUpdateTheOrganizer"
 	|tmpPackage class|
@@ -60,11 +50,8 @@ RPackageClassesSynchronisationTest>>testAddClassUpdateTheOrganizerMappings [
 	self assert: class package equals: tmpPackage
 ]
 
-{
-	#category : #'tests - recategorizing class',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRecategorizeClassRaisesClassRepackagedEvent [
+{ #category : #'tests - recategorizing class' }
+RPackageClassesSynchronisationTest >> testRecategorizeClassRaisesClassRepackagedEvent [
 	"test that when we recategorize a class, the organizer is updated so that the class name point the the new RPackage"
 	
 	| XPackage YPackage class ann |
@@ -88,11 +75,8 @@ RPackageClassesSynchronisationTest>>testRecategorizeClassRaisesClassRepackagedEv
 	self assert: ann newPackage equals: YPackage.
 ]
 
-{
-	#category : #'tests - recategorizing class',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRecategorizeClassRegisterTheClassInTheBestMatchPackage [
+{ #category : #'tests - recategorizing class' }
+RPackageClassesSynchronisationTest >> testRecategorizeClassRegisterTheClassInTheBestMatchPackage [
 	"test that when we recategorize a class, the new package in which it is defined include it"
 	
 	|XPackage  YPackage class|
@@ -111,11 +95,8 @@ RPackageClassesSynchronisationTest>>testRecategorizeClassRegisterTheClassInTheBe
 
 ]
 
-{
-	#category : #'tests - recategorizing class',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRecategorizeClassRegisterTheClassInTheExactMatchPackage [
+{ #category : #'tests - recategorizing class' }
+RPackageClassesSynchronisationTest >> testRecategorizeClassRegisterTheClassInTheExactMatchPackage [
 	"test that when we recategorize a class, the new package in which it is defined include it"
 	
 	|XPackage YPackage class|
@@ -132,11 +113,8 @@ RPackageClassesSynchronisationTest>>testRecategorizeClassRegisterTheClassInTheEx
 	self deny: (self organizer packageOf: class) = YPackage.		
 ]
 
-{
-	#category : #'tests - recategorizing class',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRecategorizeClassRegisterTheClassInTheMatchingPackage [
+{ #category : #'tests - recategorizing class' }
+RPackageClassesSynchronisationTest >> testRecategorizeClassRegisterTheClassInTheMatchingPackage [
 	"test that when we recategorize a class, the new package in which it is defined include it"
 	
 	|XPackage YPackage class|
@@ -153,11 +131,8 @@ RPackageClassesSynchronisationTest>>testRecategorizeClassRegisterTheClassInTheMa
 	self assert: (self organizer packageOf: class) = XPackage.
 ]
 
-{
-	#category : #'tests - recategorizing class',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRecategorizeClassRegisterTheClassMethodsInTheNewPackage [
+{ #category : #'tests - recategorizing class' }
+RPackageClassesSynchronisationTest >> testRecategorizeClassRegisterTheClassMethodsInTheNewPackage [
 
 	"test that when we recategorize a class, the new package in which it is defined include all the methods defined in this class (not extensions)"
 	
@@ -190,11 +165,8 @@ RPackageClassesSynchronisationTest>>testRecategorizeClassRegisterTheClassMethods
 
 ]
 
-{
-	#category : #'tests - recategorizing class',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRecategorizeClassUnregisterTheClassFromTheOldPackage [
+{ #category : #'tests - recategorizing class' }
+RPackageClassesSynchronisationTest >> testRecategorizeClassUnregisterTheClassFromTheOldPackage [
 	"test that when we recategorize a class, the old package in which it was defined don't include it anymore"
 	
 
@@ -210,11 +182,8 @@ RPackageClassesSynchronisationTest>>testRecategorizeClassUnregisterTheClassFromT
 	self deny: (XPackage includesClass: class).
 ]
 
-{
-	#category : #'tests - recategorizing class',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRecategorizeClassUnregisterTheClassMethodsFromTheOldPackage [
+{ #category : #'tests - recategorizing class' }
+RPackageClassesSynchronisationTest >> testRecategorizeClassUnregisterTheClassMethodsFromTheOldPackage [
 	"test that when we recategorize a class, the old package in which it was defined don't include its defined methods (not extensions) anymore"
 	"self debug: #testRecategorizeClassUnregisterTheClassMethodsFromTheOldPackage"
 		
@@ -237,11 +206,8 @@ RPackageClassesSynchronisationTest>>testRecategorizeClassUnregisterTheClassMetho
 	self deny: (XPackage includesSelector: #method3 ofClass: class ).
 ]
 
-{
-	#category : #'tests - recategorizing class',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRecategorizeClassUpdateTheOrganizerMappings [
+{ #category : #'tests - recategorizing class' }
+RPackageClassesSynchronisationTest >> testRecategorizeClassUpdateTheOrganizerMappings [
 	"test that when we recategorize a class, the organizer is updated so that the class name point the the new RPackage"
 	
 	|XPackage YPackage class|
@@ -254,11 +220,8 @@ RPackageClassesSynchronisationTest>>testRecategorizeClassUpdateTheOrganizerMappi
 	self assert: (self organizer packageOf: class) equals: YPackage		
 ]
 
-{
-	#category : #'tests - recategorizing class',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRecategorizeClassWithMetaClassMethodsRegisterAllClassMethodsInTheNewPackage [
+{ #category : #'tests - recategorizing class' }
+RPackageClassesSynchronisationTest >> testRecategorizeClassWithMetaClassMethodsRegisterAllClassMethodsInTheNewPackage [
 
 	"test that when we recategorize a class (having methods defined in both instance and class side), the new package in which it is defined include all the methods (from instance and class side) defined in this class (not extensions)"
 	
@@ -286,11 +249,8 @@ RPackageClassesSynchronisationTest>>testRecategorizeClassWithMetaClassMethodsReg
 	self assert: (ZPackage includesExtensionSelector: #method3 ofMetaclassName: class name ).
 ]
 
-{
-	#category : #'tests - recategorizing class',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRecategorizeClassWithUnexistingPackageNameRegisterTheClassInANewPackage [
+{ #category : #'tests - recategorizing class' }
+RPackageClassesSynchronisationTest >> testRecategorizeClassWithUnexistingPackageNameRegisterTheClassInANewPackage [
 	"test that when we recategorize a class in category not yet registered in RPackage, a new rPackage is created with the class inside"
 	
 	|XPackage YPackage class|
@@ -307,11 +267,8 @@ RPackageClassesSynchronisationTest>>testRecategorizeClassWithUnexistingPackageNa
 	self deny: (self organizer packageOf: class) = XPackage.
 ]
 
-{
-	#category : #'tests - removing classes',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRemoveClassUnregisterTheClassDefinedMethodsFromItsPackage [
+{ #category : #'tests - removing classes' }
+RPackageClassesSynchronisationTest >> testRemoveClassUnregisterTheClassDefinedMethodsFromItsPackage [
 	"test that when we remove a class, the class methods defined in the parent package (not extensions) are all removed  from its parent Package"
 	
 	|XPackage  class|
@@ -324,11 +281,8 @@ RPackageClassesSynchronisationTest>>testRemoveClassUnregisterTheClassDefinedMeth
 	self deny: (XPackage includesSelector: #stubMethod ofClass: class). 
 ]
 
-{
-	#category : #'tests - removing classes',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRemoveClassUnregisterTheClassExtensionMethodsFromTheCorrespondingPackage [
+{ #category : #'tests - removing classes' }
+RPackageClassesSynchronisationTest >> testRemoveClassUnregisterTheClassExtensionMethodsFromTheCorrespondingPackage [
 	"test that when we remove a class, the class extension methods are all removed  from theire corresponding parent Package"
 	
 	|XPackage YPackage class|
@@ -342,11 +296,8 @@ RPackageClassesSynchronisationTest>>testRemoveClassUnregisterTheClassExtensionMe
 	self deny: (YPackage includesSelector: #stubMethod ofClass: class). 
 ]
 
-{
-	#category : #'tests - removing classes',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRemoveClassUnregisterTheClassFromItsPackage [
+{ #category : #'tests - removing classes' }
+RPackageClassesSynchronisationTest >> testRemoveClassUnregisterTheClassFromItsPackage [
 	"test that when we remove a class, the class is removed from its parent Package"	
 
 	|XPackage  class|
@@ -358,11 +309,8 @@ RPackageClassesSynchronisationTest>>testRemoveClassUnregisterTheClassFromItsPack
 	self deny: (XPackage includesClass: class)
 ]
 
-{
-	#category : #'tests - removing classes',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRemoveClassUpdateTheOrganizerMappings [
+{ #category : #'tests - removing classes' }
+RPackageClassesSynchronisationTest >> testRemoveClassUpdateTheOrganizerMappings [
 	"test that when we remove a class, the organizer is updated so that the class is no longer present in the  'classPackageDictionary' dictionary"
 	
 	|XPackage  class|
@@ -374,11 +322,8 @@ RPackageClassesSynchronisationTest>>testRemoveClassUpdateTheOrganizerMappings [
 	self deny: (self organizer includesPackageBackPointerForClass: class)
 ]
 
-{
-	#category : #'tests - operations on classes',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRenameClassUpdateClassDefinedInTheParentPackage [
+{ #category : #'tests - operations on classes' }
+RPackageClassesSynchronisationTest >> testRenameClassUpdateClassDefinedInTheParentPackage [
 	"test that when we rename a class, the classes Defined in the parent package includes the new name"
 	"self debug: #testRenameClassUpdateClassDefinedInTheParentPackage"
 	
@@ -393,11 +338,8 @@ RPackageClassesSynchronisationTest>>testRenameClassUpdateClassDefinedInTheParent
 	self deny: (XPackage includesClassNamed: 'RPackageOldStubClass').
 ]
 
-{
-	#category : #'tests - operations on classes',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRenameClassUpdateClassDefinedSelectorsInTheParentPackage [
+{ #category : #'tests - operations on classes' }
+RPackageClassesSynchronisationTest >> testRenameClassUpdateClassDefinedSelectorsInTheParentPackage [
 	"test that when we rename a class, the  'classDefinedSelectors' dictionary of the parent package is updated with the new name. There fore we test that we can correctly access the selector from the package by specifying the right name (the new name)"
 	
 	|XPackage  class refactoring|
@@ -412,11 +354,8 @@ RPackageClassesSynchronisationTest>>testRenameClassUpdateClassDefinedSelectorsIn
 	self deny: (XPackage includesDefinedSelector: #stubMethod ofClassName: 'RPackageOldStubClass' asSymbol ).
 ]
 
-{
-	#category : #'tests - operations on classes',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRenameClassUpdateClassExtensionSelectorsInTheExtendingPackages [
+{ #category : #'tests - operations on classes' }
+RPackageClassesSynchronisationTest >> testRenameClassUpdateClassExtensionSelectorsInTheExtendingPackages [
 	"test that when we rename a class, the  'classExtensionSelectors' dictionaries of the extending packages  are updated with the new name. Therfore we test that we can correctly access the selectors from the package by specifying the right name (the new name)"
 
 	|XPackage YPackage class refactoring|
@@ -432,11 +371,8 @@ RPackageClassesSynchronisationTest>>testRenameClassUpdateClassExtensionSelectors
 	self deny: (YPackage includesExtensionSelector: #stubMethod ofClassName: 'RPackageOldStubClass' asSymbol ).
 ]
 
-{
-	#category : #'tests - operations on classes',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRenameClassUpdateMetaclassDefinedSelectorsInTheParentPackage [
+{ #category : #'tests - operations on classes' }
+RPackageClassesSynchronisationTest >> testRenameClassUpdateMetaclassDefinedSelectorsInTheParentPackage [
 	"test that when we rename a class, the  'metaclassDefinedSelectors' dictionary of the parent package is updated with the new name. Ther fore we test that we can correctly access the selector from the package by specifying the right name (the new name)"
 	
 	|XPackage  class refactoring|
@@ -451,11 +387,8 @@ RPackageClassesSynchronisationTest>>testRenameClassUpdateMetaclassDefinedSelecto
 	self deny: (XPackage  includesDefinedSelector: #stubMethod ofMetaclassName: 'RPackageOldStubClass' asSymbol ).
 ]
 
-{
-	#category : #'tests - operations on classes',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRenameClassUpdateMetaclassExtensionSelectorsInTheExtendingPackages [
+{ #category : #'tests - operations on classes' }
+RPackageClassesSynchronisationTest >> testRenameClassUpdateMetaclassExtensionSelectorsInTheExtendingPackages [
 	"test that when we rename a class, the  'metaclassExtensionSelectors' dictionaries of the extending packages  are updated with the new name. Ther fore we test that we can correctly access the selectors from the package by specifying the right name (the new name)"
 	
 	|XPackage YPackage class refactoring|
@@ -471,11 +404,8 @@ RPackageClassesSynchronisationTest>>testRenameClassUpdateMetaclassExtensionSelec
 	self deny: (YPackage includesExtensionSelector: #stubMethod ofMetaclassName: 'RPackageOldStubClass' asSymbol ).
 ]
 
-{
-	#category : #'tests - operations on classes',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRenameClassUpdateOrganizerClassExtendingPackagesMapping [
+{ #category : #'tests - operations on classes' }
+RPackageClassesSynchronisationTest >> testRenameClassUpdateOrganizerClassExtendingPackagesMapping [
 	"test that when we rename a class, the classExtendingPackages dictionary of the organizer is updated with the new name, so that we can access the packages when specifying the new name"
 	
 	|XPackage YPackage class refactoring|
@@ -491,11 +421,8 @@ RPackageClassesSynchronisationTest>>testRenameClassUpdateOrganizerClassExtending
 	self deny: ((self organizer extendingPackagesOfClassNamed: 'RPackageOldStubClass' asSymbol) includes: YPackage).
 ]
 
-{
-	#category : #'tests - operations on classes',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testRenameClassUpdateOrganizerClassPackageMapping [
+{ #category : #'tests - operations on classes' }
+RPackageClassesSynchronisationTest >> testRenameClassUpdateOrganizerClassPackageMapping [
 	"test that when we rename a class, the classPackage dictionary of the organizer is updated with the new name, so that we can access the package when specifying the new name"
 	
 	|XPackage class refactoring|
@@ -509,11 +436,8 @@ RPackageClassesSynchronisationTest>>testRenameClassUpdateOrganizerClassPackageMa
 	self assert: ((self organizer packageOfClassNamed: 'RPackageOldStubClass' asSymbol) = nil).
 ]
 
-{
-	#category : #'tests - operations on protocols',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testReorganizeClassByAddingExtensionProtocol [
+{ #category : #'tests - operations on protocols' }
+RPackageClassesSynchronisationTest >> testReorganizeClassByAddingExtensionProtocol [
 	"test that when we reoganized a class by adding a category, nothing change from  RPackage point of vue."
 	
 	|XPackage YPackage class| 
@@ -527,11 +451,8 @@ RPackageClassesSynchronisationTest>>testReorganizeClassByAddingExtensionProtocol
 	self assert: (self organizer includesPackageNamed: #Yyyyy).
 ]
 
-{
-	#category : #'tests - operations on protocols',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testReorganizeClassByAddingNewProtocolDoesNothing [
+{ #category : #'tests - operations on protocols' }
+RPackageClassesSynchronisationTest >> testReorganizeClassByAddingNewProtocolDoesNothing [
 	"test that when we reoganized a class by adding a category, nothing change from  RPackage point of vue."
 	
 	|XPackage YPackage class| 
@@ -546,11 +467,8 @@ RPackageClassesSynchronisationTest>>testReorganizeClassByAddingNewProtocolDoesNo
 	self assert: (XPackage extensionMethods size = 0).
 ]
 
-{
-	#category : #'tests - operations on protocols',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testReorganizeClassByRemovingClassicCategoryRemoveMethodsFromTheParentPackage [
+{ #category : #'tests - operations on protocols' }
+RPackageClassesSynchronisationTest >> testReorganizeClassByRemovingClassicCategoryRemoveMethodsFromTheParentPackage [
 	"test that when we reoganized a class by removing a classic category (a category not beginning with '*'), the methods from this category are removed from the parent RPackage of the class"
 	
 	|XPackage  class| 
@@ -563,11 +481,8 @@ RPackageClassesSynchronisationTest>>testReorganizeClassByRemovingClassicCategory
 	self deny: (XPackage includesDefinedSelector: #stubMethod ofClass: class).
 ]
 
-{
-	#category : #'tests - operations on protocols',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testReorganizeClassByRemovingExtensionCategoryRemoveMethodsFromTheExtendingPackage [
+{ #category : #'tests - operations on protocols' }
+RPackageClassesSynchronisationTest >> testReorganizeClassByRemovingExtensionCategoryRemoveMethodsFromTheExtendingPackage [
 	"test that when we reoganized a class by removing an extension category (a category beginning with '*'), all the methods that were inside are removed from the extending package"
 	 
 	|XPackage YPackage class| 
@@ -584,11 +499,8 @@ RPackageClassesSynchronisationTest>>testReorganizeClassByRemovingExtensionCatego
 	self deny: (XPackage includesDefinedSelector: #stubMethod ofClass: class).
 ]
 
-{
-	#category : #'tests - operations on protocols',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testReorganizeClassByRenamingClassicCategoryToExtensionCategoryMoveAllMethodsFromParentPackageToExtendingPackage [
+{ #category : #'tests - operations on protocols' }
+RPackageClassesSynchronisationTest >> testReorganizeClassByRenamingClassicCategoryToExtensionCategoryMoveAllMethodsFromParentPackageToExtendingPackage [
 	"self debug:#testReoganizeClassByRenamingClassicCategoryToExtensionCategoryMoveAllMethodsFromParentPackageToExtendingPackage"
 	"test that when we reoganized a class by renaming a  classic category (a category not beginning with '*') to an extension category, all the methods are moved from the  parent package of the class to the extending package"
 	|XPackage YPackage class| 
@@ -608,11 +520,8 @@ RPackageClassesSynchronisationTest>>testReorganizeClassByRenamingClassicCategory
 	self deny: (XPackage includesDefinedSelector: #stubMethod2 ofClass: class).
 ]
 
-{
-	#category : #'tests - operations on protocols',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testReorganizeClassByRenamingClassicCategoryToExtensionCategoryMoveMethodsFromParentPackageToExtendingPackage [
+{ #category : #'tests - operations on protocols' }
+RPackageClassesSynchronisationTest >> testReorganizeClassByRenamingClassicCategoryToExtensionCategoryMoveMethodsFromParentPackageToExtendingPackage [
 	"test that when we reoganized a class by renaming a  classic category (a category not beginning with '*') to an extension category, all the methods are moved from the  parent package of the class to the extending package"
 
 	|XPackage YPackage class| 
@@ -626,11 +535,8 @@ RPackageClassesSynchronisationTest>>testReorganizeClassByRenamingClassicCategory
 	self deny: (XPackage includesDefinedSelector: #stubMethod ofClass: class)
 ]
 
-{
-	#category : #'tests - operations on protocols',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testReorganizeClassByRenamingExtensionCategoryToAnotherExtensionCategoryAddMethodsToTheNewPackage [
+{ #category : #'tests - operations on protocols' }
+RPackageClassesSynchronisationTest >> testReorganizeClassByRenamingExtensionCategoryToAnotherExtensionCategoryAddMethodsToTheNewPackage [
 	"test that when we reoganized a class by renaming an extension category (a category beginning with '*') to another extension category, all the methods are moved to the new extendingPackage"
 	
 	|XPackage YPackage ZPackage class| 
@@ -646,11 +552,8 @@ RPackageClassesSynchronisationTest>>testReorganizeClassByRenamingExtensionCatego
 	self deny: (XPackage includesDefinedSelector: #stubMethod ofClass: class)
 ]
 
-{
-	#category : #'tests - operations on protocols',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testReorganizeClassByRenamingExtensionCategoryToClassicCategoryMoveAllMethodsFromExtendingPackageToParentPackage [
+{ #category : #'tests - operations on protocols' }
+RPackageClassesSynchronisationTest >> testReorganizeClassByRenamingExtensionCategoryToClassicCategoryMoveAllMethodsFromExtendingPackageToParentPackage [
 	"test that when we reoganized a class by renaming an extension category (a category beginning with '*') to a classic category, all the methods are moved from the  extendingPackage to the parent package of the class"
 	"self debug: #testReoganizeClassByRenamingExtensionCategoryToClassicCategoryMoveAllMethodsFromExtendingPackageToParentPackage"
 	
@@ -671,11 +574,8 @@ RPackageClassesSynchronisationTest>>testReorganizeClassByRenamingExtensionCatego
 	self assert: (XPackage includesDefinedSelector: #stubMethod2 ofClass: class).
 ]
 
-{
-	#category : #'tests - operations on protocols',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageClassesSynchronisationTest>>testReorganizeClassByRenamingExtensionCategoryToClassicCategoryMoveMethodsFromExtendingPackageToParentPackage [
+{ #category : #'tests - operations on protocols' }
+RPackageClassesSynchronisationTest >> testReorganizeClassByRenamingExtensionCategoryToClassicCategoryMoveMethodsFromExtendingPackageToParentPackage [
 	"test that when we reoganized a class by renaming an extension category (a category beginning with '*') to a classic category, all the methods are moved from the  extendingPackage to the parent package of the class"
 	
 	|XPackage YPackage class| 

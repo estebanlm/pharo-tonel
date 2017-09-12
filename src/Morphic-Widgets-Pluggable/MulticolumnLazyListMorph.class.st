@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'columnWidths'
 	],
-	#category : #Morphic-Widgets-Pluggable,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Pluggable
 }
 
-{
-	#category : #'row management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-MulticolumnLazyListMorph>>display: items atRow: row on: canvas [
+{ #category : #'row management' }
+MulticolumnLazyListMorph >> display: items atRow: row on: canvas [
 	"display the specified item, which is on the specified row; for Multicolumn 
 	lists, items will be a list of strings"
 
@@ -42,11 +38,8 @@ MulticolumnLazyListMorph>>display: items atRow: row on: canvas [
 				from: self ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-MulticolumnLazyListMorph>>drawBoundsForRow: row [
+{ #category : #'as yet unclassified' }
+MulticolumnLazyListMorph >> drawBoundsForRow: row [
 	"calculate the bounds that row should be drawn at.  This might be outside our bounds!"
 	| topLeft drawBounds item width height |
 	
@@ -59,11 +52,8 @@ MulticolumnLazyListMorph>>drawBoundsForRow: row [
 	^drawBounds
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-MulticolumnLazyListMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+MulticolumnLazyListMorph >> drawOn: aCanvas [
 	self getListSize = 0 ifTrue:[ ^self ].
 
 	self setColumnWidthsFor: aCanvas.
@@ -72,19 +62,13 @@ MulticolumnLazyListMorph>>drawOn: aCanvas [
 	super drawOn: aCanvas
 ]
 
-{
-	#category : #'list access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-MulticolumnLazyListMorph>>getListItem: index [
+{ #category : #'list access' }
+MulticolumnLazyListMorph >> getListItem: index [
 	^listSource getListRow: index
 ]
 
-{
-	#category : #'scroll range',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-MulticolumnLazyListMorph>>hUnadjustedScrollRange [
+{ #category : #'scroll range' }
+MulticolumnLazyListMorph >> hUnadjustedScrollRange [
 "bvr - Introduce here the old version of the super method just waiting for this class to be deleted"
 
 	| itemsToCheck item index |
@@ -111,11 +95,8 @@ MulticolumnLazyListMorph>>hUnadjustedScrollRange [
 
 ]
 
-{
-	#category : #'list access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-MulticolumnLazyListMorph>>item: index [
+{ #category : #'list access' }
+MulticolumnLazyListMorph >> item: index [
 	"return the index-th item, using the 'listItems' cache"
 	| newItem itemWidth |
 	(index between: 1 and: listItems size)
@@ -133,20 +114,14 @@ MulticolumnLazyListMorph>>item: index [
 	^listItems at: index
 ]
 
-{
-	#category : #'row management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-MulticolumnLazyListMorph>>listChanged [
+{ #category : #'row management' }
+MulticolumnLazyListMorph >> listChanged [
 	columnWidths := nil.
 	super listChanged
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-MulticolumnLazyListMorph>>setColumnWidthsFor: aCanvas [
+{ #category : #drawing }
+MulticolumnLazyListMorph >> setColumnWidthsFor: aCanvas [
         | row topRow bottomRow |
         "set columnWidths for drawing on the specified canvas"
 		columnWidths ifNil: [
@@ -164,11 +139,8 @@ MulticolumnLazyListMorph>>setColumnWidthsFor: aCanvas [
 					ifFalse: [ currentWidth ] ] ]
 ]
 
-{
-	#category : #'scroll range',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-MulticolumnLazyListMorph>>widthToDisplayItem: item [
+{ #category : #'scroll range' }
+MulticolumnLazyListMorph >> widthToDisplayItem: item [
 	"This class will be removed soon, so this method will disappear"
 	| widths |
 	

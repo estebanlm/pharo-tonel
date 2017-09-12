@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloPackagesSpecTestCase,
 	#superclass : #MetacelloSpecTestCase,
-	#category : #Metacello-TestsCore-Specs,
-	#timestamp : ''
+	#category : #Metacello-TestsCore-Specs
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloPackagesSpecTestCase>>testAddGroupA [
+{ #category : #tests }
+MetacelloPackagesSpecTestCase >> testAddGroupA [
     "used by MetacelloAbstractVersionConstructor>>group:overrides:"
 
     | packages group |
@@ -34,11 +27,8 @@ MetacelloPackagesSpecTestCase>>testAddGroupA [
     self assert: (group includes includes: 'Tests')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloPackagesSpecTestCase>>testAddGroupB [
+{ #category : #tests }
+MetacelloPackagesSpecTestCase >> testAddGroupB [
     "used by MetacelloAbstractVersionConstructor>>group:overrides:"
 
     | packages group |
@@ -58,11 +48,8 @@ MetacelloPackagesSpecTestCase>>testAddGroupB [
     self assert: (group includes includes: 'Tests')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloPackagesSpecTestCase>>testAddProjectA [
+{ #category : #tests }
+MetacelloPackagesSpecTestCase >> testAddProjectA [
     "used by MetacelloAbstractVersionConstructor>>project:overrides:"
 
     | packages project projectReferenceSpec |
@@ -112,11 +99,8 @@ MetacelloPackagesSpecTestCase>>testAddProjectA [
         groupDo: [ :ignored | self assert: false ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloPackagesSpecTestCase>>testAddProjectB [
+{ #category : #tests }
+MetacelloPackagesSpecTestCase >> testAddProjectB [
     "used by MetacelloAbstractVersionConstructor>>project:overrides:"
 
     | packages project projectReferenceSpec |
@@ -164,11 +148,8 @@ MetacelloPackagesSpecTestCase>>testAddProjectB [
         groupDo: [ :ignored | self assert: false ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloPackagesSpecTestCase>>testCopyToGroup [
+{ #category : #tests }
+MetacelloPackagesSpecTestCase >> testCopyToGroup [
     "not currently used by MetacelloAbstractVersionConstructor"
 
     | packages group |
@@ -199,11 +180,8 @@ MetacelloPackagesSpecTestCase>>testCopyToGroup [
     self assert: (group includes includes: 'Tests')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloPackagesSpecTestCase>>testCopyToProject [
+{ #category : #tests }
+MetacelloPackagesSpecTestCase >> testCopyToProject [
     "used by MetacelloAbstractVersionConstructor>>project:copyFrom:with:"
 
     | packages project referenceSpec |
@@ -236,11 +214,8 @@ MetacelloPackagesSpecTestCase>>testCopyToProject [
     self assert: project postLoadDoIt value == #'postLoadDoItB'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloPackagesSpecTestCase>>testMergeGroupA [
+{ #category : #tests }
+MetacelloPackagesSpecTestCase >> testMergeGroupA [
     "used by MetacelloAbstractVersionConstructor>>group:with:"
 
     | packages group |
@@ -262,11 +237,8 @@ MetacelloPackagesSpecTestCase>>testMergeGroupA [
     self assert: (group includes includes: 'Tests')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloPackagesSpecTestCase>>testMergeGroupB [
+{ #category : #tests }
+MetacelloPackagesSpecTestCase >> testMergeGroupB [
     "used by MetacelloAbstractVersionConstructor>>group:with:"
 
     | packages group |
@@ -288,11 +260,8 @@ MetacelloPackagesSpecTestCase>>testMergeGroupB [
     self assert: (group includes includes: 'Tests')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloPackagesSpecTestCase>>testMergeProjectA [
+{ #category : #tests }
+MetacelloPackagesSpecTestCase >> testMergeProjectA [
     "used by MetacelloAbstractVersionConstructor>>project:with:"
 
     | packages project projectReferenceSpec referenceSpec |
@@ -339,11 +308,8 @@ MetacelloPackagesSpecTestCase>>testMergeProjectA [
         groupDo: [ :ignored | self assert: false ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloPackagesSpecTestCase>>testMergeProjectB [
+{ #category : #tests }
+MetacelloPackagesSpecTestCase >> testMergeProjectB [
     "used by MetacelloAbstractVersionConstructor>>project:with:"
 
     | packages project projectReferenceSpec referenceSpec |
@@ -390,11 +356,8 @@ MetacelloPackagesSpecTestCase>>testMergeProjectB [
         groupDo: [ :ignored | self assert: false ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloPackagesSpecTestCase>>testRemoveGroupA [
+{ #category : #tests }
+MetacelloPackagesSpecTestCase >> testRemoveGroupA [
     "used by MetacelloAbstractVersionConstructor>>removeGroup:"
 
     | packages group removed |
@@ -425,11 +388,8 @@ MetacelloPackagesSpecTestCase>>testRemoveGroupA [
     self assert: removed
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloPackagesSpecTestCase>>testRemoveGroupB [
+{ #category : #tests }
+MetacelloPackagesSpecTestCase >> testRemoveGroupB [
     "used by MetacelloAbstractVersionConstructor>>removeGroup:"
 
     | packages group removed |
@@ -464,11 +424,8 @@ MetacelloPackagesSpecTestCase>>testRemoveGroupB [
     self assert: removed
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloPackagesSpecTestCase>>testRemoveGroupC [
+{ #category : #tests }
+MetacelloPackagesSpecTestCase >> testRemoveGroupC [
     "used by MetacelloAbstractVersionConstructor>>removeGroup:"
 
     | packages group removed |
@@ -498,11 +455,8 @@ MetacelloPackagesSpecTestCase>>testRemoveGroupC [
     self assert: removed
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloPackagesSpecTestCase>>testRemoveProjectA [
+{ #category : #tests }
+MetacelloPackagesSpecTestCase >> testRemoveProjectA [
     "used by MetacelloAbstractVersionConstructor>>removeProject:"
 
     | packages project projectReferenceSpec removed |
@@ -537,11 +491,8 @@ MetacelloPackagesSpecTestCase>>testRemoveProjectA [
     self assert: removed
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloPackagesSpecTestCase>>testRemoveProjectB [
+{ #category : #tests }
+MetacelloPackagesSpecTestCase >> testRemoveProjectB [
     "used by MetacelloAbstractVersionConstructor>>removeProject:"
 
     | packages project projectReferenceSpec removed |

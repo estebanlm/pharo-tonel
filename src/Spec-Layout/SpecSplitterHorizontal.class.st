@@ -7,44 +7,31 @@ Class {
 	#instVars : [
 		'commands'
 	],
-	#category : #Spec-Layout,
-	#timestamp : '<historical>'
+	#category : #Spec-Layout
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecSplitterHorizontal class>>commands: commands [
+{ #category : #'instance creation' }
+SpecSplitterHorizontal class >> commands: commands [
 
 	^ self new
 		commands: commands;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecSplitterHorizontal>>commands [
+{ #category : #accessing }
+SpecSplitterHorizontal >> commands [
 	
 	^ commands
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecSplitterHorizontal>>commands: anObject [
+{ #category : #accessing }
+SpecSplitterHorizontal >> commands: anObject [
 	
 	commands := anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecSplitterHorizontal>>generateArguments [
+{ #category : #protocol }
+SpecSplitterHorizontal >> generateArguments [
 	| index |
 
 	index := self commands identityIndexOf: self.
@@ -52,11 +39,8 @@ SpecSplitterHorizontal>>generateArguments [
 	self arguments: { index }
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecSplitterHorizontal>>initialize [
+{ #category : #initialization }
+SpecSplitterHorizontal >> initialize [
 
 	super initialize.
 
@@ -66,11 +50,8 @@ SpecSplitterHorizontal>>initialize [
 	commands := nil.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecSplitterHorizontal>>isSplitter [
+{ #category : #testing }
+SpecSplitterHorizontal >> isSplitter [
 
 	^ true
 ]

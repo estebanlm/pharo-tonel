@@ -9,42 +9,29 @@ Class {
 		'position',
 		'length'
 	],
-	#category : #OpalCompiler-Core-Bytecode,
-	#timestamp : 'ajh 3/25/2003 00:34'
+	#category : #OpalCompiler-Core-Bytecode
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStackCount class>>new [
+{ #category : #'instance creation' }
+IRStackCount class >> new [
 
 	^ super new startAt: 0
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStackCount class>>newOn: stack [
+{ #category : #'instance creation' }
+IRStackCount class >> newOn: stack [
 
 	^ self startAt: stack position
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStackCount class>>startAt: pos [
+{ #category : #'instance creation' }
+IRStackCount class >> startAt: pos [
 
 	^ self new startAt: pos
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStackCount>>= other [
+{ #category : #comparing }
+IRStackCount >> = other [
 
 	^ self class == other class 
 	  and: [start = other start
@@ -52,29 +39,20 @@ IRStackCount>>= other [
 	  and: [length = other size]]]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStackCount>>hash [
+{ #category : #comparing }
+IRStackCount >> hash [
 
 	^ position hash bitXor: (length hash bitXor: start hash)
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStackCount>>length [
+{ #category : #results }
+IRStackCount >> length [
 
 	^length
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStackCount>>linkTo: stackOrNil [
+{ #category : #results }
+IRStackCount >> linkTo: stackOrNil [
 
 	stackOrNil ifNil: [^  self class newOn: self].
 	^ self position = stackOrNil start
@@ -82,39 +60,27 @@ IRStackCount>>linkTo: stackOrNil [
 		ifFalse: [self error: 'stack out of sync in bytecode generator']
 ]
 
-{
-	#category : #affecting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStackCount>>pop [
+{ #category : #affecting }
+IRStackCount >> pop [
 
 	^ self pop: 1
 ]
 
-{
-	#category : #affecting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStackCount>>pop: n [
+{ #category : #affecting }
+IRStackCount >> pop: n [
 
 	(position := position - n) < 0 
 		ifTrue: [self error: 'stack underflow in bytecode generator']
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStackCount>>position [
+{ #category : #results }
+IRStackCount >> position [
 
 	^position
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStackCount>>printOn: aStream [
+{ #category : #printing }
+IRStackCount >> printOn: aStream [
 	
 	super printOn: aStream.
 	aStream
@@ -124,46 +90,31 @@ IRStackCount>>printOn: aStream [
 
 ]
 
-{
-	#category : #affecting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStackCount>>push [
+{ #category : #affecting }
+IRStackCount >> push [
 	^ self push: 1
 ]
 
-{
-	#category : #affecting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStackCount>>push: n [
+{ #category : #affecting }
+IRStackCount >> push: n [
 	(position := position + n) > length 
 		ifTrue: [length := position]
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStackCount>>size [
+{ #category : #results }
+IRStackCount >> size [
 
 	^length
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStackCount>>start [
+{ #category : #results }
+IRStackCount >> start [
 
 	^ start
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStackCount>>startAt: pos [
+{ #category : #initialize }
+IRStackCount >> startAt: pos [
 
 	start := position := length := pos
 ]

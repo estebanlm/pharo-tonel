@@ -4,15 +4,11 @@ Help file on how to contribute to catalog
 Class {
 	#name : #ContributingToTheCatalogHelp,
 	#superclass : #CustomHelp,
-	#category : #ContributingToTheCatalogHelp,
-	#timestamp : 'TorstenBergmann 9/21/2015 20:28'
+	#category : #ContributingToTheCatalogHelp
 }
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ContributingToTheCatalogHelp class>>addingYourProject [
+{ #category : #pages }
+ContributingToTheCatalogHelp class >> addingYourProject [
 	"This method was automatically generated."
 	<script: 'self edit: #addingYourProject'>
 	^HelpTopic
@@ -43,19 +39,13 @@ The catalog list is refreshed each 24h - so by the next day latest your project 
 	!' readStream nextChunkText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ContributingToTheCatalogHelp class>>bookName [
+{ #category : #accessing }
+ContributingToTheCatalogHelp class >> bookName [
 	^'Your app listed in the catalog'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ContributingToTheCatalogHelp class>>introduction [
+{ #category : #pages }
+ContributingToTheCatalogHelp class >> introduction [
 	"This method was automatically generated."
 	<script: 'self edit: #introduction'>
 	^HelpTopic
@@ -75,10 +65,7 @@ There is a machine readable JSON version available at:
     http://catalog.pharo.org/catalog/json	!' readStream nextChunkText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ContributingToTheCatalogHelp class>>pages [
+{ #category : #accessing }
+ContributingToTheCatalogHelp class >> pages [
 	^#(introduction addingYourProject)
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #HandMorph
-}
+Extension { #name : #HandMorph }
 
-{
-	#category : #'*SUnit-UITesting',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-HandMorph>>simulateKeyStroke: aCharacterOrShortcut [
+{ #category : #'*SUnit-UITesting' }
+HandMorph >> simulateKeyStroke: aCharacterOrShortcut [
 
 	| shortcut |
 	shortcut := aCharacterOrShortcut asKeyCombination.

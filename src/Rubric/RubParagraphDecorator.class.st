@@ -7,39 +7,26 @@ Class {
 	#instVars : [
 		'next'
 	],
-	#category : #Rubric-Editing-Core,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:03'
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator class>>classOfDecoratorNamed: aKey  [
+{ #category : #querying }
+RubParagraphDecorator class >> classOfDecoratorNamed: aKey [ 
 	^ self allSubclasses detect: [ :cls | cls key = aKey ] ifNone: [  ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator class>>key [
+{ #category : #querying }
+RubParagraphDecorator class >> key [
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator class>>next: aDecoratorOrAParagraph [
+{ #category : #'instance creation' }
+RubParagraphDecorator class >> next: aDecoratorOrAParagraph [
 	^ self new next: aDecoratorOrAParagraph 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>canDrawDecoratorsOn: aCanvas [
+{ #category : #drawing }
+RubParagraphDecorator >> canDrawDecoratorsOn: aCanvas [
 
 	^self drawingEnabled and: [ 
 		self selectionStart isNotNil and: [ 
@@ -49,39 +36,27 @@ RubParagraphDecorator>>canDrawDecoratorsOn: aCanvas [
 	
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>decoratorNamed: aKey [
+{ #category : #querying }
+RubParagraphDecorator >> decoratorNamed: aKey [
 	^ self key = aKey
 		ifTrue: [ self ]
 		ifFalse: [ next decoratorNamed: aKey ]
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>doesNotUnderstand: aMessage [
+{ #category : #'error handling' }
+RubParagraphDecorator >> doesNotUnderstand: aMessage [
 	^ [ aMessage sendTo: next ]
 		on: MessageNotUnderstood
 		do: [ super doesNotUnderstand: aMessage ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>drawOn: aCanvas  [
+{ #category : #drawing }
+RubParagraphDecorator >> drawOn: aCanvas [ 
 	"do nothing"
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>drawOn: aCanvas using: aDisplayScanner at: aPosition [
+{ #category : #drawing }
+RubParagraphDecorator >> drawOn: aCanvas using: aDisplayScanner at: aPosition [
 
 	(self canDrawDecoratorsOn: aCanvas) ifFalse: [ ^self ].
 	
@@ -89,19 +64,13 @@ RubParagraphDecorator>>drawOn: aCanvas using: aDisplayScanner at: aPosition [
 	next drawOn: aCanvas using: aDisplayScanner at: aPosition
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #drawing }
+RubParagraphDecorator >> drawOnAthensCanvas: anAthensCanvas [
 	"do nothing by default"
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>drawOnAthensCanvas: aCanvas bounds: aRectangle color: aColor [
+{ #category : #drawing }
+RubParagraphDecorator >> drawOnAthensCanvas: aCanvas bounds: aRectangle color: aColor [
 
    (self canDrawDecoratorsOn: aCanvas) ifFalse: [ ^self ].
 
@@ -109,51 +78,33 @@ RubParagraphDecorator>>drawOnAthensCanvas: aCanvas bounds: aRectangle color: aCo
 	next drawOnAthensCanvas: aCanvas bounds: aRectangle color: aColor
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>hasDecorator: aDecorator [
+{ #category : #querying }
+RubParagraphDecorator >> hasDecorator: aDecorator [
 	^ self = aDecorator or: [ next hasDecorator: aDecorator ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>hasDecoratorNamed: aKey [
+{ #category : #querying }
+RubParagraphDecorator >> hasDecoratorNamed: aKey [
 	^ self key = aKey or: [ next hasDecoratorNamed: aKey ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>key [
+{ #category : #querying }
+RubParagraphDecorator >> key [
 	^self class key
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>next [
+{ #category : #accessing }
+RubParagraphDecorator >> next [
 	^ next
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>next: anObject [
+{ #category : #accessing }
+RubParagraphDecorator >> next: anObject [
 	next := anObject
 ]
 
-{
-	#category : #'instead of DNU',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>paragraph [
+{ #category : #'instead of DNU' }
+RubParagraphDecorator >> paragraph [
 	"this method is here to find the paragraph in the chain, instead of relying on implementing #doesNotUnderstand: !!!"
 
 	| p |
@@ -169,20 +120,14 @@ RubParagraphDecorator>>paragraph [
 	
 ]
 
-{
-	#category : #'instead of DNU',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>text  [
+{ #category : #'instead of DNU' }
+RubParagraphDecorator >> text [ 
 
 	^self paragraph text
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>unplug [
+{ #category : #initialize-release }
+RubParagraphDecorator >> unplug [
 	next
 		ifNotNil: [ 
 			next unplug.
@@ -190,11 +135,8 @@ RubParagraphDecorator>>unplug [
 	super unplug
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>visibleStringFrom: topLeft to: bottomRight [
+{ #category : #accessing }
+RubParagraphDecorator >> visibleStringFrom: topLeft [ to: bottomRight
 	| topLeftBlk bottomRightBlk startIdx stopIdx string  |
 	topLeftBlk := self characterBlockAtPoint: topLeft.
 	bottomRightBlk := self characterBlockAtPoint: bottomRight.
@@ -205,11 +147,8 @@ RubParagraphDecorator>>visibleStringFrom: topLeft to: bottomRight [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraphDecorator>>withoutDecorator [
+{ #category : #accessing }
+RubParagraphDecorator >> withoutDecorator [
 
 	"for compatibility with the RubParagraph API"
 

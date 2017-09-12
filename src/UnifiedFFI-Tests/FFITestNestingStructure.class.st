@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #FFITestNestingStructure,
 	#superclass : #FFIExternalStructure,
@@ -9,15 +6,11 @@ Class {
 		'OFFSET_ONE',
 		'OFFSET_TWO'
 	],
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestNestingStructure class>>fieldsDesc [
+{ #category : #'field definition' }
+FFITestNestingStructure class >> fieldsDesc [
 " self rebuildFieldAccessors "
 	^ #(
 		byte one;
@@ -26,64 +19,43 @@ FFITestNestingStructure class>>fieldsDesc [
 		)
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestNestingStructure class>>initialize [
+{ #category : #'class initialization' }
+FFITestNestingStructure class >> initialize [
 	"self rebuildFieldAccessors"
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestNestingStructure>>nested [
+{ #category : #'accessing structure variables' }
+FFITestNestingStructure >> nested [
 	"This method was automatically generated"
 	^FFITestStructure fromHandle: (handle referenceStructAt: OFFSET_NESTED length: 28)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestNestingStructure>>nested: anObject [
+{ #category : #'accessing structure variables' }
+FFITestNestingStructure >> nested: anObject [
 	"This method was automatically generated"
 	handle structAt: OFFSET_NESTED put: anObject getHandle length: 28.
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestNestingStructure>>one [
+{ #category : #'accessing structure variables' }
+FFITestNestingStructure >> one [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_ONE
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestNestingStructure>>one: anObject [
+{ #category : #'accessing structure variables' }
+FFITestNestingStructure >> one: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_ONE put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestNestingStructure>>two [
+{ #category : #'accessing structure variables' }
+FFITestNestingStructure >> two [
 	"This method was automatically generated"
 	^handle platformLongAt: OFFSET_TWO
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestNestingStructure>>two: anObject [
+{ #category : #'accessing structure variables' }
+FFITestNestingStructure >> two: anObject [
 	"This method was automatically generated"
 	^handle platformLongAt: OFFSET_TWO put: anObject
 ]

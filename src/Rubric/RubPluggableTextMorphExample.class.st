@@ -16,24 +16,17 @@ Class {
 		'selectedMethodName',
 		'enabled'
 	],
-	#category : #Rubric-Editing-Widgets-Examples,
-	#timestamp : 'AlainPlantec 5/13/2015 16:18'
+	#category : #Rubric-Editing-Widgets-Examples
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample class>>example [
+{ #category : #example }
+RubPluggableTextMorphExample class >> example [
 	<example>
 	RubPluggableTextMorphExample new open
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>accept: source notifying: aController [
+{ #category : #'source code area' }
+RubPluggableTextMorphExample >> accept: source notifying: aController [
 	| p result |
 	self selectedClass ifNil: [ ^self ].
 	p := self selectedClass organization protocolOrganizer protocolsOfSelector: self selector.
@@ -43,45 +36,30 @@ RubPluggableTextMorphExample>>accept: source notifying: aController [
 	^ result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>announcer [
+{ #category : #accessing }
+RubPluggableTextMorphExample >> announcer [
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{
-	#category : #edits,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>askBeforeDiscardingEdits [
+{ #category : #edits }
+RubPluggableTextMorphExample >> askBeforeDiscardingEdits [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>autoAccept [
+{ #category : #accessing }
+RubPluggableTextMorphExample >> autoAccept [
 	"Answer whether the editor accepts its contents on each change."
 
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>behavior [
+{ #category : #accessing }
+RubPluggableTextMorphExample >> behavior [
 	^ self selectedClass 
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>checkClassName [
+{ #category : #'events handling' }
+RubPluggableTextMorphExample >> checkClassName [
 	| conf |
 	conf := RubConfigurationChange new.
 	self selectedClass
@@ -90,11 +68,8 @@ RubPluggableTextMorphExample>>checkClassName [
 	self selectedClassName announce: conf
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>checkMethodName [
+{ #category : #'events handling' }
+RubPluggableTextMorphExample >> checkMethodName [
 	| conf |
 	conf := RubConfigurationChange new.
 	self selectedClass
@@ -108,29 +83,20 @@ RubPluggableTextMorphExample>>checkMethodName [
 	self selectedMethodName announce: conf
 ]
 
-{
-	#category : #'view creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>classIsMeta [
+{ #category : #'view creation' }
+RubPluggableTextMorphExample >> classIsMeta [
 	^ classIsMeta ifNil: [ classIsMeta := false ]
 ]
 
-{
-	#category : #'view creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>classIsMeta: aBoolean [
+{ #category : #'view creation' }
+RubPluggableTextMorphExample >> classIsMeta: aBoolean [
 	classIsMeta := aBoolean.
 	self changed: #classIsMeta
 
 ]
 
-{
-	#category : #'view creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>classSelectorMorph [
+{ #category : #'view creation' }
+RubPluggableTextMorphExample >> classSelectorMorph [
 	^ self selectedClassName newTextField
 		withGhostText: 'Class name';
 		autoAccept: true;
@@ -138,11 +104,8 @@ RubPluggableTextMorphExample>>classSelectorMorph [
 		yourself
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>codePaneMenu: aMenu shifted: shifted [
+{ #category : #menu }
+RubPluggableTextMorphExample >> codePaneMenu: aMenu shifted: shifted [
 	"Note that unless we override perform:orSendTo:, 
 	PluggableTextController will respond to all menu items in a 
 	text pane"
@@ -155,35 +118,22 @@ RubPluggableTextMorphExample>>codePaneMenu: aMenu shifted: shifted [
 	^ aMenu addAllFrom: donorMenu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>dragEnabled [
+{ #category : #accessing }
+RubPluggableTextMorphExample >> dragEnabled [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>dropEnabled [
+{ #category : #accessing }
+RubPluggableTextMorphExample >> dropEnabled [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>dropEnabled: aBoolean [
-
+{ #category : #accessing }
+RubPluggableTextMorphExample >> dropEnabled: aBoolean [
 ]
 
-{
-	#category : #'view creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>editButtonMorph [
+{ #category : #'view creation' }
+RubPluggableTextMorphExample >> editButtonMorph [
 	^ UIManager default
 		newButtonFor: self
 		action: #editSourceCode
@@ -192,53 +142,35 @@ RubPluggableTextMorphExample>>editButtonMorph [
 		help: nil
 ]
 
-{
-	#category : #'view creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>editSourceCode [
+{ #category : #'view creation' }
+RubPluggableTextMorphExample >> editSourceCode [
 	self changed: #getText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>enabled [
+{ #category : #accessing }
+RubPluggableTextMorphExample >> enabled [
 	^ enabled ifNil: [ enabled := true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>enabled: aBoolean [
+{ #category : #accessing }
+RubPluggableTextMorphExample >> enabled: aBoolean [
 	enabled = aBoolean ifTrue: [ ^self ].
 	enabled := aBoolean.
 	self changed: #enabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>getText [
+{ #category : #accessing }
+RubPluggableTextMorphExample >> getText [
 	^ self method ifNil: [''] ifNotNil: [:m | m sourceCode]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>help [
+{ #category : #accessing }
+RubPluggableTextMorphExample >> help [
 	^ nil
 ]
 
-{
-	#category : #'view creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>metaSwitchMorph [
+{ #category : #'view creation' }
+RubPluggableTextMorphExample >> metaSwitchMorph [
 	^ UIManager default
 		newCheckboxFor: self
 		getSelected: #classIsMeta
@@ -247,19 +179,13 @@ RubPluggableTextMorphExample>>metaSwitchMorph [
 		help: 'Class side is used if checked' 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>method [
+{ #category : #accessing }
+RubPluggableTextMorphExample >> method [
 	^ [ self selectedClass >> (self selectedMethodName getString ifEmpty: [ ^nil ]) asSymbol ] on: Error do: [  ]
 ]
 
-{
-	#category : #'view creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>methodSelectorMorph [
+{ #category : #'view creation' }
+RubPluggableTextMorphExample >> methodSelectorMorph [
 	^ self selectedMethodName newTextField
 		withGhostText: 'Method name';
 		autoAccept: true;
@@ -267,11 +193,8 @@ RubPluggableTextMorphExample>>methodSelectorMorph [
 		yourself
 ]
 
-{
-	#category : #'view creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>newScrolledTextMorph [
+{ #category : #'view creation' }
+RubPluggableTextMorphExample >> newScrolledTextMorph [
 	| st |
 	st := RubPluggableTextMorph new
 		on: self
@@ -298,21 +221,15 @@ RubPluggableTextMorphExample>>newScrolledTextMorph [
 	^ st
 ]
 
-{
-	#category : #edits,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>okToChange [
+{ #category : #edits }
+RubPluggableTextMorphExample >> okToChange [
 	self canDiscardEdits
 		ifTrue: [ ^ true ].
 	^ self promptForCancel 
 ]
 
-{
-	#category : #'view creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>open [
+{ #category : #'view creation' }
+RubPluggableTextMorphExample >> open [
 	| window editor clsMorph mthMorph |
 	window := (StandardWindow labelled: 'Method editor with shout') model: self.
 	editor := self newScrolledTextMorph.
@@ -338,11 +255,8 @@ RubPluggableTextMorphExample>>open [
 	^ window openInWorld
 ]
 
-{
-	#category : #edits,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>promptForCancel [
+{ #category : #edits }
+RubPluggableTextMorphExample >> promptForCancel [
 	"Ask for the appropriate action to take when unaccepted contents
 	would be overwritten."
 
@@ -363,35 +277,23 @@ RubPluggableTextMorphExample>>promptForCancel [
 	^ self canDiscardEdits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>readSelection [
+{ #category : #accessing }
+RubPluggableTextMorphExample >> readSelection [
 	^ selection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>scrollValue: aPoint [
+{ #category : #accessing }
+RubPluggableTextMorphExample >> scrollValue: aPoint [
 	scrollValue := aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>scrollValueChanged: anAnnouncement  [
+{ #category : #accessing }
+RubPluggableTextMorphExample >> scrollValueChanged: anAnnouncement [ 
 	scrollValue := anAnnouncement step 
 ]
 
-{
-	#category : #'view creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>selectedClass [
+{ #category : #'view creation' }
+RubPluggableTextMorphExample >> selectedClass [
 	| cls |
 	cls := (Smalltalk at: (self selectedClassName getString ifEmpty: [ ^ nil ]) asSymbol ifAbsent: [ ^ nil ])
 		theNonMetaClass.
@@ -400,61 +302,40 @@ RubPluggableTextMorphExample>>selectedClass [
 		ifFalse: [ cls ]
 ]
 
-{
-	#category : #'view creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>selectedClassName [
+{ #category : #'view creation' }
+RubPluggableTextMorphExample >> selectedClassName [
 	^ selectedClassName ifNil: [ selectedClassName := RubScrolledTextModel new ]
 ]
 
-{
-	#category : #'view creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>selectedMethodName [
+{ #category : #'view creation' }
+RubPluggableTextMorphExample >> selectedMethodName [
 	^ selectedMethodName ifNil: [ selectedMethodName := RubScrolledTextModel new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>selector [
+{ #category : #accessing }
+RubPluggableTextMorphExample >> selector [
 	^ self selectedMethodName getString asSymbol 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>setSelection: anInterval [
+{ #category : #accessing }
+RubPluggableTextMorphExample >> setSelection: anInterval [
 	selection := anInterval.
 	self changed: #readSelection
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>shoutAboutToStyle: ARubricMode [
+{ #category : #shout }
+RubPluggableTextMorphExample >> shoutAboutToStyle: ARubricMode [
 	ARubricMode classOrMetaClass: self selectedClass.
 	^ true
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>whenClassNameChanged: anAnnouncement [
+{ #category : #'events handling' }
+RubPluggableTextMorphExample >> whenClassNameChanged: anAnnouncement [
 	self checkMethodName.
 	self checkClassName 
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorphExample>>whenMethodNameChanged: anAnnouncement [
+{ #category : #'events handling' }
+RubPluggableTextMorphExample >> whenMethodNameChanged: anAnnouncement [
 	self checkMethodName
 ]

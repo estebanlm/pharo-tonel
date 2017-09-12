@@ -18,15 +18,11 @@ Class {
 		'limitingBlock',
 		'position'
 	],
-	#category : #Deprecated70,
-	#timestamp : '<historical>'
+	#category : #Deprecated70
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper class>>example1 [
+{ #category : #examples }
+LimitingLineStreamWrapper class >> example1 [
 	"LimitingLineStreamWrapper example1"
 	"Separate chunks of text delimited by a special string"
 	| inStream msgStream messages |
@@ -40,11 +36,8 @@ LimitingLineStreamWrapper class>>example1 [
 			
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper class>>example2 [
+{ #category : #examples }
+LimitingLineStreamWrapper class >> example2 [
 	"LimitingLineStreamWrapper example2"
 	"Demo nesting wrappers - get header lines from some messages"
 	| inStream msgStream headers headerStream |
@@ -61,11 +54,8 @@ LimitingLineStreamWrapper class>>example2 [
 			
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper class>>exampleStream [
+{ #category : #examples }
+LimitingLineStreamWrapper class >> exampleStream [
 	^ 'From me@somewhere
 From: me
 To: you
@@ -82,38 +72,26 @@ okay
 ' readStream
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper class>>on: aStream delimiter: aString [
+{ #category : #'instance creation' }
+LimitingLineStreamWrapper class >> on: aStream delimiter: aString [
 
 	^self new setStream: aStream delimiter: aString
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper>>atEnd [
+{ #category : #testing }
+LimitingLineStreamWrapper >> atEnd [
 
 	^line isNil or: [limitingBlock value: line]
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper>>close [
+{ #category : #'stream protocol' }
+LimitingLineStreamWrapper >> close [
 	^stream close
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper>>delimiter: aString [
+{ #category : #accessing }
+LimitingLineStreamWrapper >> delimiter: aString [
 	"Set limitBlock to check for a delimiting string. Be unlimiting if nil"
 
 	self limitingBlock: (aString caseOf: {
@@ -123,32 +101,23 @@ LimitingLineStreamWrapper>>delimiter: aString [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper>>lastLineRead [
+{ #category : #accessing }
+LimitingLineStreamWrapper >> lastLineRead [
 	"Return line last read. At stream end, this is the boundary line or nil"
 
 	^ line
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper>>limitingBlock: aBlock [
+{ #category : #accessing }
+LimitingLineStreamWrapper >> limitingBlock: aBlock [
 	"The limitingBlock is evaluated with a line to check if this line terminates the stream"
 
 	limitingBlock := aBlock.
 	self updatePosition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper>>linesUpToEnd [
+{ #category : #accessing }
+LimitingLineStreamWrapper >> linesUpToEnd [
 
 	| elements ln |
 	elements := OrderedCollection new.
@@ -157,11 +126,8 @@ LimitingLineStreamWrapper>>linesUpToEnd [
 	^elements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper>>next [
+{ #category : #accessing }
+LimitingLineStreamWrapper >> next [
 	"Provide character-based access"
 
 	position ifNil: [^nil].
@@ -171,11 +137,8 @@ LimitingLineStreamWrapper>>next [
 	^ Character cr
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper>>nextLine [
+{ #category : #accessing }
+LimitingLineStreamWrapper >> nextLine [
 
 	| thisLine |
 	self atEnd ifTrue: [^nil].
@@ -185,32 +148,23 @@ LimitingLineStreamWrapper>>nextLine [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper>>peekLine [
+{ #category : #accessing }
+LimitingLineStreamWrapper >> peekLine [
 
 	self atEnd ifTrue: [^nil].
 	^ line
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper>>printOn: aStream [
+{ #category : #printing }
+LimitingLineStreamWrapper >> printOn: aStream [
 
 	super printOn: aStream.
 	aStream nextPutAll: ' on '.
 	stream printOn: aStream
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper>>setStream: aStream delimiter: aString [
+{ #category : #private }
+LimitingLineStreamWrapper >> setStream: aStream delimiter: aString [
 
 	stream := aStream.
 	line := stream nextLine.
@@ -218,22 +172,16 @@ LimitingLineStreamWrapper>>setStream: aStream delimiter: aString [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper>>skipThisLine [
+{ #category : #accessing }
+LimitingLineStreamWrapper >> skipThisLine [
 
 	line := stream nextLine.
 	self updatePosition.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper>>upToEnd [
+{ #category : #accessing }
+LimitingLineStreamWrapper >> upToEnd [
 
 	
 	^String streamContents: [:strm | | ln |
@@ -241,11 +189,8 @@ LimitingLineStreamWrapper>>upToEnd [
 			strm nextPutAll: ln; cr]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-LimitingLineStreamWrapper>>updatePosition [
+{ #category : #accessing }
+LimitingLineStreamWrapper >> updatePosition [
 	"Call this before doing character-based access"
 
 	position := self atEnd ifFalse: [0]

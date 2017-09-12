@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #MenuModelTest,
 	#superclass : #SpecTestCase,
-	#category : #Spec-Tests-Core-Widgets,
-	#timestamp : ''
+	#category : #Spec-Tests-Core-Widgets
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-MenuModelTest>>classToTest [
+{ #category : #running }
+MenuModelTest >> classToTest [
 	^ MenuModel
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-MenuModelTest>>testFromSpecSingle [
+{ #category : #tests }
+MenuModelTest >> testFromSpecSingle [
 	| menuDescription |
 	menuDescription := PluggableMenuSpec withModel: nil.
 	menuDescription add: 'item'.
@@ -31,11 +21,8 @@ MenuModelTest>>testFromSpecSingle [
 	self openInstance
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-MenuModelTest>>testFromSpecSubMenu [
+{ #category : #tests }
+MenuModelTest >> testFromSpecSubMenu [
 	| root subMenuRoot parent child subMenu |
 	root := PluggableMenuSpec withModel: nil.
 	parent := root add: 'parent'.

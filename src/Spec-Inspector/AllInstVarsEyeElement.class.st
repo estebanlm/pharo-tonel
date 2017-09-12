@@ -4,22 +4,15 @@ I am an eye element for all inst vars, printing a description of all the instanc
 Class {
 	#name : #AllInstVarsEyeElement,
 	#superclass : #SelfEyeElement,
-	#category : #Spec-Inspector-Element,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector-Element
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AllInstVarsEyeElement>>description [
+{ #category : #accessing }
+AllInstVarsEyeElement >> description [
 	^ self host longPrintStringLimitedTo: 2000
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AllInstVarsEyeElement>>label [
+{ #category : #accessing }
+AllInstVarsEyeElement >> label [
 	^ 'all inst vars'
 ]

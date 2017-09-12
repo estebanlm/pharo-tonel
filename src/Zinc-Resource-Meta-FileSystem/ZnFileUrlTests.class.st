@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnFileUrlTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Resource-Meta-FileSystem,
-	#timestamp : ''
+	#category : #Zinc-Resource-Meta-FileSystem
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnFileUrlTests>>testAsFileReference [
+{ #category : #testing }
+ZnFileUrlTests >> testAsFileReference [
 	| fileUrl fileReference |
 	fileUrl := 'file:///foo/bar/test.txt' asZnUrl.
 	fileReference := fileUrl asFileReference.
@@ -21,11 +14,8 @@ ZnFileUrlTests>>testAsFileReference [
 	self assert: fileReference isAbsolute 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnFileUrlTests>>testAsZnUrl [
+{ #category : #testing }
+ZnFileUrlTests >> testAsZnUrl [
 	| fileReference fileUrl |
 	fileReference := FileLocator root / 'foo' / 'bar' / 'test.txt'.
 	fileUrl := fileReference asZnUrl.
@@ -41,19 +31,13 @@ ZnFileUrlTests>>testAsZnUrl [
 	self deny: fileUrl hasFragment
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnFileUrlTests>>testImage [
+{ #category : #testing }
+ZnFileUrlTests >> testImage [
 	self assert: ZnUrl image asFileReference exists
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnFileUrlTests>>testRelative [
+{ #category : #testing }
+ZnFileUrlTests >> testRelative [
 	| fileReference fileUrl |
 	fileReference := 'foo/bar/test.txt' asFileReference.
 	self assert: fileReference isRelative.
@@ -63,11 +47,8 @@ ZnFileUrlTests>>testRelative [
 	self assert: (fileUrl pathSegments asArray endsWith: fileReference pathSegments asArray)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnFileUrlTests>>testRetrieveContents [
+{ #category : #testing }
+ZnFileUrlTests >> testRetrieveContents [
 	| fileReference contents url |
 	SystemVersion current major < 3 ifTrue: [ self skip ].
 	fileReference := ('file-{1}.txt' format: {(1000 atRandom)}) asFileReference.
@@ -80,11 +61,8 @@ ZnFileUrlTests>>testRetrieveContents [
 	fileReference ensureDelete
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnFileUrlTests>>testRoot [
+{ #category : #testing }
+ZnFileUrlTests >> testRoot [
 	| fileUrl fileReference |
 	fileReference := FileLocator root.
 	self assert: fileReference isRoot.
@@ -93,11 +71,8 @@ ZnFileUrlTests>>testRoot [
 	self assert: fileUrl isSlash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnFileUrlTests>>testSlash [
+{ #category : #testing }
+ZnFileUrlTests >> testSlash [
 	| fileUrl fileReference |
 	fileUrl := 'file:///' asZnUrl.
 	self assert: fileUrl isSlash.
@@ -106,11 +81,8 @@ ZnFileUrlTests>>testSlash [
 	self assert: fileReference isRoot
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnFileUrlTests>>testSpaces [
+{ #category : #testing }
+ZnFileUrlTests >> testSpaces [
 	self 
 		assert: 'file:///foo%20bar/test.st' asZnUrl asFileReference 
 		equals: FileLocator root / 'foo bar' / 'test.st'.
@@ -119,11 +91,8 @@ ZnFileUrlTests>>testSpaces [
 		equals: 'file:///foo%20bar/test.st' asZnUrl
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnFileUrlTests>>testTrailingSlash [
+{ #category : #testing }
+ZnFileUrlTests >> testTrailingSlash [
 	| fileReference1 fileReference2 fileUrl1 fileUrl2 |
 	
 	fileReference1 := '/foo/bar' asFileReference.
@@ -137,11 +106,8 @@ ZnFileUrlTests>>testTrailingSlash [
 	self assert: fileUrl1 asFileReference equals: fileUrl2 asFileReference
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnFileUrlTests>>testWindowsDriveNamesInFileUrl [
+{ #category : #testing }
+ZnFileUrlTests >> testWindowsDriveNamesInFileUrl [
 	"Note the 3 slashes: 2 are from the scheme, file://, 1 is from the empty host and starts the absolute path"
 	
 	SystemVersion current major < 3 ifTrue: [ self skip ].
@@ -153,10 +119,7 @@ ZnFileUrlTests>>testWindowsDriveNamesInFileUrl [
 		equals: FileLocator C
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnFileUrlTests>>testWrongScheme [
+{ #category : #testing }
+ZnFileUrlTests >> testWrongScheme [
 	self should: [ 'http://zn.stfx.eu/zn/small.html' asZnUrl asFileReference ] raise: AssertionFailure
 ]

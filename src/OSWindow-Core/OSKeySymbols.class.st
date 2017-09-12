@@ -242,15 +242,11 @@ Class {
 		'OSK_y',
 		'OSK_z'
 	],
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'RonieSalgado 5/15/2014 23:22'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeySymbols class>>initialize [
+{ #category : #'as yet unclassified' }
+OSKeySymbols class >> initialize [
 	"
 	self initialize
 	"
@@ -259,11 +255,8 @@ OSKeySymbols class>>initialize [
 	self initializeKeycodes3.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeySymbols class>>initializeKeycodes [
+{ #category : #'as yet unclassified' }
+OSKeySymbols class >> initializeKeycodes [
 	OSK_UNKNOWN	:= 16r0000.
 	OSK_RETURN	:= 16r000D.
 	OSK_ESCAPE	:= 16r001B.
@@ -336,11 +329,8 @@ OSKeySymbols class>>initializeKeycodes [
 	OSK_z	:= 16r007A.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeySymbols class>>initializeKeycodes2 [
+{ #category : #'as yet unclassified' }
+OSKeySymbols class >> initializeKeycodes2 [
 	OSK_CAPSLOCK	:= 16r40000039.
 	OSK_F1	:= 16r4000003A.
 	OSK_F2	:= 16r4000003B.
@@ -417,11 +407,8 @@ OSKeySymbols class>>initializeKeycodes2 [
 	OSK_KP_EQUALSAS400	:= 16r40000086.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSKeySymbols class>>initializeKeycodes3 [
+{ #category : #'as yet unclassified' }
+OSKeySymbols class >> initializeKeycodes3 [
 	OSK_ALTERASE	:= 16r40000099.
 	OSK_SYSREQ	:= 16r4000009A.
 	OSK_CANCEL	:= 16r4000009B.

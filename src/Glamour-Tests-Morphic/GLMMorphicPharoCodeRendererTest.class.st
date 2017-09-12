@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicPharoCodeRendererTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoCodeRendererTest>>testCodeExecutionWithBindings [
+{ #category : #tests }
+GLMMorphicPharoCodeRendererTest >> testCodeExecutionWithBindings [
 	| composite textMorph result |
 	composite := GLMCompositePresentation new.
 	composite pharoScript.

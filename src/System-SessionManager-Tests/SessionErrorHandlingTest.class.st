@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #SessionErrorHandlingTest,
 	#superclass : #TestCase,
@@ -8,35 +5,25 @@ Class {
 		'manager',
 		'session'
 	],
-	#category : #System-SessionManager-Tests,
-	#timestamp : ''
+	#category : #System-SessionManager-Tests
 }
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionErrorHandlingTest>>newTestSessionfor: aManager [
+{ #category : #utility }
+SessionErrorHandlingTest >> newTestSessionfor: aManager [
 	^ TestWorkingSession new
 		manager: aManager;
 		yourself
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionErrorHandlingTest>>setUp [
+{ #category : #tests }
+SessionErrorHandlingTest >> setUp [
 	manager := SessionManager new.
 	session := self newTestSessionfor: manager.
 	manager installSession: session.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionErrorHandlingTest>>testErrorCaughtAndDefferedIfExceptionSignaledAtStartupWhenStartupUiManagerActive [
+{ #category : #tests }
+SessionErrorHandlingTest >> testErrorCaughtAndDefferedIfExceptionSignaledAtStartupWhenStartupUiManagerActive [
 	manager register: (TestSessionHandler onStartup: [ Halt now ]).	
 	session errorHandler: 
 		(TestStartupUIManager new
@@ -51,11 +38,8 @@ SessionErrorHandlingTest>>testErrorCaughtAndDefferedIfExceptionSignaledAtStartup
 		equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionErrorHandlingTest>>testErrorCaughtIfExceptionSignaledAtShutdownWhenDefaultUiManagerActive [
+{ #category : #tests }
+SessionErrorHandlingTest >> testErrorCaughtIfExceptionSignaledAtShutdownWhenDefaultUiManagerActive [
 	"session errorHandler will be TestWorkingSession that will register caught errors"
 	manager register: (TestSessionHandler onShutdown: [ Halt now ]).
 
@@ -72,11 +56,8 @@ SessionErrorHandlingTest>>testErrorCaughtIfExceptionSignaledAtShutdownWhenDefaul
 		(session instVarNamed: 'deferredStartupActions') isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionErrorHandlingTest>>testErrorHandledIfExceptionSignaledAtShutdownWhenStartupUiManagerActive [
+{ #category : #tests }
+SessionErrorHandlingTest >> testErrorHandledIfExceptionSignaledAtShutdownWhenStartupUiManagerActive [
 	manager register: (TestSessionHandler onShutdown: [ Halt now ]).	
 	session errorHandler: 
 		(TestStartupUIManager new
@@ -91,11 +72,8 @@ SessionErrorHandlingTest>>testErrorHandledIfExceptionSignaledAtShutdownWhenStart
 		equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionErrorHandlingTest>>testErrorHandledIfExceptionSignaledAtStartupWhenDefaultUiManagerActive [
+{ #category : #tests }
+SessionErrorHandlingTest >> testErrorHandledIfExceptionSignaledAtStartupWhenDefaultUiManagerActive [
 	"session errorHandler will be TestWorkingSession that will register caught errors"
 	manager register: (TestSessionHandler onStartup: [ Halt now ]).
 

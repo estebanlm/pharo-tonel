@@ -34,26 +34,19 @@ Class {
 		'dataSource',
 		'children'
 	],
-	#category : #Morphic-Widgets-FastTable-Tree,
-	#timestamp : 'CyrilFerlicot 10/30/2015 17:43'
+	#category : #Morphic-Widgets-FastTable-Tree
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem class>>data: aData from: aDataSource [
+{ #category : #instance-creation }
+FTTreeItem class >> data: aData from: aDataSource [
 	^ self new
 		dataSource: aDataSource;
 		data: aData;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem>>childAt: anIndex [
+{ #category : #accessing }
+FTTreeItem >> childAt: anIndex [
 	| tmpIndex |
 	tmpIndex := anIndex.
 	self children
@@ -67,114 +60,75 @@ FTTreeItem>>childAt: anIndex [
 	self errorSubscriptBounds: anIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem>>children [
+{ #category : #accessing }
+FTTreeItem >> children [
 	self subclassResponsibility
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem>>collapseAll [
+{ #category : #expanding-collapsing }
+FTTreeItem >> collapseAll [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem>>data: aData [
+{ #category : #accessing }
+FTTreeItem >> data: aData [
 	self subclassResponsibility 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem>>dataSource [
+{ #category : #accessing }
+FTTreeItem >> dataSource [
 	^ dataSource
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem>>dataSource: anObject [
+{ #category : #accessing }
+FTTreeItem >> dataSource: anObject [
 	dataSource := anObject
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem>>expandAll [
+{ #category : #expanding-collapsing }
+FTTreeItem >> expandAll [
 	self subclassResponsibility
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem>>expandAllTo: aDepth [
+{ #category : #expanding-collapsing }
+FTTreeItem >> expandAllTo: aDepth [
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem>>hasChildren [
+{ #category : #testing }
+FTTreeItem >> hasChildren [
 	^ self children size ~= 0
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem>>isExpanded [
+{ #category : #updating }
+FTTreeItem >> isExpanded [
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem>>numberOfChildren [
+{ #category : #accessing }
+FTTreeItem >> numberOfChildren [
 	^ self children
 		ifEmpty: [ 0 ]
 		ifNotEmpty: [ :children2 | children2 size + (children2 collect: [ :item | item numberOfChildren ]) sum ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem>>numberOfVisibleChildren [
+{ #category : #accessing }
+FTTreeItem >> numberOfVisibleChildren [
 	^ (self isExpanded and: [ self children isNotEmpty ])
 		ifTrue: [ self children size + (self children collect: [ :item | item numberOfVisibleChildren ]) sum ]
 		ifFalse: [ 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem>>recentlyChanged [
+{ #category : #accessing }
+FTTreeItem >> recentlyChanged [
 	"I return true if the item was recently collapsed. I am use to update the selection when we collapse an item."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem>>selectedRowsIndexesFrom: anInteger [
+{ #category : #updating }
+FTTreeItem >> selectedRowsIndexesFrom: anInteger [
 	| index selfSelection |
 	index := anInteger.
 	self recentlyChanged
@@ -193,20 +147,14 @@ FTTreeItem>>selectedRowsIndexesFrom: anInteger [
 			result ]) , selfSelection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem>>selfOrChildAt: anIndex [
+{ #category : #accessing }
+FTTreeItem >> selfOrChildAt: anIndex [
 	^ anIndex = 1
 		ifTrue: [ self ]
 		ifFalse: [ self childAt: anIndex - 1 ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeItem>>updateData [
+{ #category : #updating }
+FTTreeItem >> updateData [
 	self subclassResponsibility
 ]

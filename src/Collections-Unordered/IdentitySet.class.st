@@ -32,23 +32,16 @@ An IdentitySet will include multiple equal objects if they are not identical:
 Class {
 	#name : #IdentitySet,
 	#superclass : #Set,
-	#category : #Collections-Unordered,
-	#timestamp : 'sw 1/14/2003 22:35'
+	#category : #Collections-Unordered
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-IdentitySet>>asIdentitySet [
+{ #category : #converting }
+IdentitySet >> asIdentitySet [
 	^self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-IdentitySet>>scanFor: anObject [
+{ #category : #private }
+IdentitySet >> scanFor: anObject [
 	"Scan the key array for the first slot containing either a nil (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or zero if no slot is found. This method will be overridden in various subclasses that have different interpretations for matching elements."
 
 	| index start hash |
@@ -62,11 +55,8 @@ IdentitySet>>scanFor: anObject [
 	self errorNoFreeSpace
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-IdentitySet>>scanForEmptySlotFor: aKey [
+{ #category : #private }
+IdentitySet >> scanForEmptySlotFor: aKey [
 	"Scan the key array for the first slot containing an empty slot (indicated by a nil). Answer the index of that slot. This method will be overridden in various subclasses that have different interpretations for matching elements."
 	
 	| index start |

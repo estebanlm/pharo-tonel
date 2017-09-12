@@ -1,12 +1,7 @@
-Extension {
-	#name : #MetacelloProjectReferenceSpec
-}
+Extension { #name : #MetacelloProjectReferenceSpec }
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloProjectReferenceSpec>>loadUsing: aLoader gofer: ignored [
+{ #category : #'*metacello-mc' }
+MetacelloProjectReferenceSpec >> loadUsing: aLoader gofer: ignored [
 
 	| required |
 	required := self resolveToLoadableSpec.
@@ -14,11 +9,8 @@ MetacelloProjectReferenceSpec>>loadUsing: aLoader gofer: ignored [
 	^required load
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloProjectReferenceSpec>>packagesNeedSavingVisited: visitedProjects using: repos into: aCollection [
+{ #category : #'*metacello-mc' }
+MetacelloProjectReferenceSpec >> packagesNeedSavingVisited: visitedProjects using: repos into: aCollection [
 	
 	| prjct clsName vrsn |
 	prjct := self resolveToLoadableSpec.
@@ -30,66 +22,45 @@ MetacelloProjectReferenceSpec>>packagesNeedSavingVisited: visitedProjects using:
 		into: aCollection
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloProjectReferenceSpec>>repository: aStringOrMetacelloRepositorySpec [
+{ #category : #'*metacello-mc' }
+MetacelloProjectReferenceSpec >> repository: aStringOrMetacelloRepositorySpec [
     ^ self projectReference repository: aStringOrMetacelloRepositorySpec
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloProjectReferenceSpec>>resolveProjectSpec [
+{ #category : #'*metacello-mc' }
+MetacelloProjectReferenceSpec >> resolveProjectSpec [
 
 	^self projectReference
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloProjectReferenceSpec>>resolveToAllPackagesIn: aVersionSpec into: packages visited: visited [
+{ #category : #'*metacello-mc' }
+MetacelloProjectReferenceSpec >> resolveToAllPackagesIn: aVersionSpec into: packages visited: visited [
 
 	(self resolveProjectSpec resolveToAllPackagesIn: aVersionSpec visited: visited) do: [:pkg |
 		packages at: pkg put: pkg ]
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloProjectReferenceSpec>>resolveToLoadableSpec [
+{ #category : #'*metacello-mc' }
+MetacelloProjectReferenceSpec >> resolveToLoadableSpec [
 
 	^self resolveProjectSpec resolveToLoadableSpec
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloProjectReferenceSpec>>resolveToPackagesIn: aVersionSpec andProjects: andProjectsBool visited: visited [
+{ #category : #'*metacello-mc' }
+MetacelloProjectReferenceSpec >> resolveToPackagesIn: aVersionSpec andProjects: andProjectsBool visited: visited [
   ^ andProjectsBool
     ifTrue: [ {self} ]
     ifFalse: [ self resolveToPackagesIn: aVersionSpec visited: visited ]
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloProjectReferenceSpec>>resolveToPackagesIn: aVersionSpec visited: visited [
+{ #category : #'*metacello-mc' }
+MetacelloProjectReferenceSpec >> resolveToPackagesIn: aVersionSpec visited: visited [
 
 	^#()
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloProjectReferenceSpec>>updateForSpawnMethod: sourceSpec [
+{ #category : #'*metacello-mc' }
+MetacelloProjectReferenceSpec >> updateForSpawnMethod: sourceSpec [
 	"This means that this spec was used in a baseline and will be used in a version .... drop all information that isn't useful"
 
 	| nm |
@@ -99,22 +70,16 @@ MetacelloProjectReferenceSpec>>updateForSpawnMethod: sourceSpec [
 	name := nm.
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloProjectReferenceSpec>>updatePackageSpec: updatedSpecs using: anMCLoader [
+{ #category : #'*metacello-mc' }
+MetacelloProjectReferenceSpec >> updatePackageSpec: updatedSpecs using: anMCLoader [
 	"Add project copy to updatedSpecs if the current version of the project 
 	 is different from the receiver's version"
 	
 	self projectReference updatePackageSpec: updatedSpecs
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloProjectReferenceSpec>>versionString [
+{ #category : #'*metacello-mc' }
+MetacelloProjectReferenceSpec >> versionString [
 
 	^self projectReference versionString
 ]

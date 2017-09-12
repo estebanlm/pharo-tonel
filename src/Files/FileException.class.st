@@ -7,49 +7,33 @@ Class {
 	#instVars : [
 		'fileName'
 	],
-	#category : #Files-Core,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:36'
+	#category : #Files-Core
 }
 
-{
-	#category : #exceptioninstantiator,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-FileException class>>fileName: aFileName [
+{ #category : #exceptioninstantiator }
+FileException class >> fileName: aFileName [
 	^self new fileName: aFileName
 ]
 
-{
-	#category : #exceptiondescription,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-FileException>>fileName [
+{ #category : #exceptiondescription }
+FileException >> fileName [
 	^fileName
 ]
 
-{
-	#category : #exceptionbuilder,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-FileException>>fileName: aFileName [
+{ #category : #exceptionbuilder }
+FileException >> fileName: aFileName [
 	fileName := aFileName
 ]
 
-{
-	#category : #exceptiondescription,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-FileException>>isResumable [
+{ #category : #exceptiondescription }
+FileException >> isResumable [
 	"Determine whether an exception is resumable."
 
 	^true
 ]
 
-{
-	#category : #exceptiondescription,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-FileException>>messageText [
+{ #category : #exceptiondescription }
+FileException >> messageText [
 	"Return an exception's message text."
 
 	^ messageText isNil

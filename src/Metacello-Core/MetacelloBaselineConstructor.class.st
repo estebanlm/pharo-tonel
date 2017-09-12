@@ -11,35 +11,25 @@ MetacelloBaselineConstructor on: BaselineOfExample
 Class {
 	#name : #MetacelloBaselineConstructor,
 	#superclass : #MetacelloAbstractVersionConstructor,
-	#category : #Metacello-Core-Constructors,
-	#timestamp : 'dkh 5/4/2012 17:05'
+	#category : #Metacello-Core-Constructors
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloBaselineConstructor class>>on: aConfig [
+{ #category : #'instance creation' }
+MetacelloBaselineConstructor class >> on: aConfig [
     ^ self new
         on: aConfig;
         yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloBaselineConstructor class>>on: aConfig project: aProject [
+{ #category : #'instance creation' }
+MetacelloBaselineConstructor class >> on: aConfig project: aProject [
     ^ self new
         on: aConfig project: aProject;
         yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloBaselineConstructor>>calculate: aConfig project: aProject [
+{ #category : #private }
+MetacelloBaselineConstructor >> calculate: aConfig project: aProject [
     | pragma versionMap versionSpec |
     self configuration: aConfig.
     pragma := self extractBaselinePragmaFor: aConfig class.
@@ -65,11 +55,8 @@ MetacelloBaselineConstructor>>calculate: aConfig project: aProject [
     self project configuration: aConfig
 ]
 
-{
-	#category : #'pragma extraction',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloBaselineConstructor>>extractBaselinePragmaFor: aClass [
+{ #category : #'pragma extraction' }
+MetacelloBaselineConstructor >> extractBaselinePragmaFor: aClass [
     | pragmas |
     pragmas := Pragma allNamed: #'baseline' in: aClass.
     pragmas isEmpty
@@ -77,18 +64,12 @@ MetacelloBaselineConstructor>>extractBaselinePragmaFor: aClass [
     ^ pragmas first
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloBaselineConstructor>>on: aConfig [
+{ #category : #initialization }
+MetacelloBaselineConstructor >> on: aConfig [
     self calculate: aConfig project: nil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloBaselineConstructor>>on: aConfig project: aProject [
+{ #category : #initialization }
+MetacelloBaselineConstructor >> on: aConfig project: aProject [
     self calculate: aConfig project: aProject
 ]

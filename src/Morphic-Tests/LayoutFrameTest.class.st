@@ -4,15 +4,11 @@ SUnit tests for class LayoutFrame
 Class {
 	#name : #LayoutFrameTest,
 	#superclass : #TestCase,
-	#category : #Morphic-Tests-Layouts,
-	#timestamp : 'TorstenBergmann 9/5/2014 17:07'
+	#category : #Morphic-Tests-Layouts
 }
 
-{
-	#category : #'tests - conversion',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-LayoutFrameTest>>testAsLayoutFrame [
+{ #category : #'tests - conversion' }
+LayoutFrameTest >> testAsLayoutFrame [
 	| frame |
 	
 	frame := #(0.66 0.5 1 0.77 1 2 3 25) asLayoutFrame.
@@ -27,19 +23,13 @@ LayoutFrameTest>>testAsLayoutFrame [
 	self assert: frame bottomOffset equals: 25.
 ]
 
-{
-	#category : #'tests - conversion',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-LayoutFrameTest>>testIdentity [
+{ #category : #'tests - conversion' }
+LayoutFrameTest >> testIdentity [
 	self assert: (LayoutFrame fractions: (0 @ 0 corner: 1 @ 1)) = LayoutFrame identity
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-LayoutFrameTest>>testInset [
+{ #category : #tests }
+LayoutFrameTest >> testInset [
 	| lf rectangle |
 	lf := LayoutFrame new
 			leftOffset: 10;
@@ -51,11 +41,8 @@ LayoutFrameTest>>testInset [
 	self assert: (60@20 corner: 140@60) = rectangle
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-LayoutFrameTest>>testLeftTopAligned [
+{ #category : #tests }
+LayoutFrameTest >> testLeftTopAligned [
 	| lf rectangle |
 	lf := LayoutFrame new
 		leftOffset: 10;
@@ -67,11 +54,8 @@ LayoutFrameTest>>testLeftTopAligned [
 	self assert: (60@20 corner: 110@35) = rectangle
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-LayoutFrameTest>>testRightBottomQuadrant [
+{ #category : #tests }
+LayoutFrameTest >> testRightBottomQuadrant [
 	| lf rectangle |
 	lf := LayoutFrame new
 			leftFraction: 1/2 offset: 1;
@@ -83,22 +67,16 @@ LayoutFrameTest>>testRightBottomQuadrant [
 	self assert: (101@41 corner: 148@68) = rectangle
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-LayoutFrameTest>>testSpaceFill [
+{ #category : #tests }
+LayoutFrameTest >> testSpaceFill [
 	| lf rectangle |
 	lf := LayoutFrame identity.
 	rectangle := lf layout: nil in: (50@10 corner: 150@70).
 	self assert: (50@10 corner: 150@70) = rectangle
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-LayoutFrameTest>>testTransform [
+{ #category : #tests }
+LayoutFrameTest >> testTransform [
 	"the transform: operation is transforming a layoutFrame relatively to the reference rectangle: basically you transform to obtain a subrectangle area inside the reference rectangle"
 
 	| lf rectangle |
@@ -112,11 +90,8 @@ LayoutFrameTest>>testTransform [
 	self assert: (60@20 corner: 140@60) = rectangle
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-LayoutFrameTest>>testTransformReturnASubArea [
+{ #category : #tests }
+LayoutFrameTest >> testTransformReturnASubArea [
 	"the transform: operation is transforming a layoutFrame relatively to the reference rectangle: basically you transform to obtain a subrectangle area inside the reference rectangle"
 
 	| lf rectangle refRectangle |
@@ -132,11 +107,8 @@ LayoutFrameTest>>testTransformReturnASubArea [
 	self assert: rectangle height = 180.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-LayoutFrameTest>>testTransformReturnEmptyRectangleWhenNotPossibleToPlace [
+{ #category : #tests }
+LayoutFrameTest >> testTransformReturnEmptyRectangleWhenNotPossibleToPlace [
 	"the transform: operation is transforming a layoutFrame relatively to the reference rectangle: basically you transform to obtain a subrectangle area inside the reference rectangle"
 
 	| lf rectangle refRectangle |

@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #FFIFunctionParserTests,
 	#superclass : #TestCase,
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParserTests>>newParser [
+{ #category : #factory }
+FFIFunctionParserTests >> newParser [
 	^ FFIFunctionParser new
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParserTests>>testParseAnonymousFunction [
+{ #category : #tests }
+FFIFunctionParserTests >> testParseAnonymousFunction [
 	 | parser args |
 	
 	#((int * * ( 0, nil, -10, FOO_BAR , int a, int* _b, char** c, void* * * d_))
@@ -45,11 +35,8 @@ FFIFunctionParserTests>>testParseAnonymousFunction [
 		self assert: (args at: 8) = #('d_' nil 'void' 3 ) ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParserTests>>testParseAnonymousFunctionNoArguments [
+{ #category : #tests }
+FFIFunctionParserTests >> testParseAnonymousFunctionNoArguments [
 	| parser args |
 	
 	#((int * * ( void ) )
@@ -65,11 +52,8 @@ FFIFunctionParserTests>>testParseAnonymousFunctionNoArguments [
 		self assert: args size = 0 ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParserTests>>testParseFunction [
+{ #category : #tests }
+FFIFunctionParserTests >> testParseFunction [
 	 | parser args |
 	
 	#((int * * #'function_n$a$m$e' ( 0, nil, -10, FOO_BAR , int a, int* _b, char** c, void* * * d_))
@@ -95,11 +79,8 @@ FFIFunctionParserTests>>testParseFunction [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParserTests>>testParseFunctionNoArguments [
+{ #category : #tests }
+FFIFunctionParserTests >> testParseFunctionNoArguments [
 	| parser args |
 	
 	#((int * * function_name ( void ) )

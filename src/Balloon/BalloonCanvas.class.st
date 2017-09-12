@@ -11,23 +11,16 @@ Class {
 		'aaLevel',
 		'deferred'
 	],
-	#category : #Balloon-Canvas,
-	#timestamp : '<historical>'
+	#category : #Balloon-Canvas
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>aaLevel [
+{ #category : #accessing }
+BalloonCanvas >> aaLevel [
 	^aaLevel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>aaLevel: newLevel [
+{ #category : #accessing }
+BalloonCanvas >> aaLevel: newLevel [
 	"Only allow changes to aaLevel if we're working on >= 8 bit forms"
 	form depth >= 8 ifFalse:[^self].
 	aaLevel = newLevel ifTrue:[^self].
@@ -36,58 +29,41 @@ BalloonCanvas>>aaLevel: newLevel [
 	engine ifNotNil:[engine aaLevel: aaLevel].
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>asBalloonCanvas [
+{ #category : #converting }
+BalloonCanvas >> asBalloonCanvas [
 	^self
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>colorTransformBy: aColorTransform [
+{ #category : #transforming }
+BalloonCanvas >> colorTransformBy: aColorTransform [
 	aColorTransform ifNil:[^self].
 	colorTransform 
 		ifNil:[colorTransform := aColorTransform]
 		ifNotNil:[colorTransform := colorTransform composedWithLocal: aColorTransform]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>deferred [
+{ #category : #accessing }
+BalloonCanvas >> deferred [
 	^deferred
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>deferred: aBoolean [
+{ #category : #accessing }
+BalloonCanvas >> deferred: aBoolean [
 	deferred == aBoolean ifTrue:[^self].
 	self flush. "Force pending prims on screen"
 	deferred := aBoolean.
 	engine ifNotNil:[engine deferred: aBoolean].
 ]
 
-{
-	#category : #'balloon drawing',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>drawBezier3Shape: vertices color: c borderWidth: borderWidth borderColor: borderColor [
+{ #category : #'balloon drawing' }
+BalloonCanvas >> drawBezier3Shape: vertices color: c borderWidth: borderWidth borderColor:
+borderColor [
 	self drawBezierShape: (Bezier3Segment convertBezier3ToBezier2:
 vertices) color: c borderWidth: borderWidth borderColor: borderColor
 ]
 
-{
-	#category : #'balloon drawing',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>drawBezierShape: vertices color: c borderWidth: borderWidth borderColor: borderColor [
+{ #category : #'balloon drawing' }
+BalloonCanvas >> drawBezierShape: vertices color: c borderWidth: borderWidth borderColor: borderColor [
 	"Draw a boundary shape that is defined by a list of vertices.
 	Each three subsequent vertices define a quadratic bezier segment.
 	For lines, the control point should be set to either the start or the end
@@ -101,22 +77,16 @@ BalloonCanvas>>drawBezierShape: vertices color: c borderWidth: borderWidth borde
 		transform: transform.
 ]
 
-{
-	#category : #'balloon drawing',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>drawCompressedShape: compressedShape [
+{ #category : #'balloon drawing' }
+BalloonCanvas >> drawCompressedShape: compressedShape [
 	"Draw a compressed shape"
 	self ensuredEngine
 		drawCompressedShape: compressedShape
 		transform: transform.
 ]
 
-{
-	#category : #'balloon drawing',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>drawGeneralBezier3Shape: contours color: c borderWidth: borderWidth
+{ #category : #'balloon drawing' }
+BalloonCanvas >> drawGeneralBezier3Shape: contours color: c borderWidth: borderWidth
 borderColor: borderColor [
 	| b2 |
 	b2 := contours collect: [:b3 | Bezier3Segment
@@ -125,11 +95,8 @@ convertBezier3ToBezier2: b3 ].
 borderColor: borderColor
 ]
 
-{
-	#category : #'balloon drawing',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>drawGeneralBezierShape: contours color: c borderWidth: borderWidth borderColor: borderColor [
+{ #category : #'balloon drawing' }
+BalloonCanvas >> drawGeneralBezierShape: contours color: c borderWidth: borderWidth borderColor: borderColor [
 	"Draw a general boundary shape (e.g., possibly containing holes)"
 
 	self ensuredEngine
@@ -140,11 +107,8 @@ BalloonCanvas>>drawGeneralBezierShape: contours color: c borderWidth: borderWidt
 		transform: transform.
 ]
 
-{
-	#category : #'balloon drawing',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>drawGeneralPolygon: contours color: c borderWidth: borderWidth borderColor: borderColor [
+{ #category : #'balloon drawing' }
+BalloonCanvas >> drawGeneralPolygon: contours color: c borderWidth: borderWidth borderColor: borderColor [
 	"Draw a general polygon (e.g., a polygon that can contain holes)"
 
 	self ensuredEngine
@@ -155,11 +119,8 @@ BalloonCanvas>>drawGeneralPolygon: contours color: c borderWidth: borderWidth bo
 		transform: transform.
 ]
 
-{
-	#category : #'balloon drawing',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>drawOval: r color: c borderWidth: borderWidth borderColor: borderColor [
+{ #category : #'balloon drawing' }
+BalloonCanvas >> drawOval: r color: c borderWidth: borderWidth borderColor: borderColor [
 	"Draw the oval defined by the given rectangle"
 
 	self ensuredEngine
@@ -170,20 +131,14 @@ BalloonCanvas>>drawOval: r color: c borderWidth: borderWidth borderColor: border
 		transform: transform.
 ]
 
-{
-	#category : #drawing-polygons,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>drawPolygon: vertices fillStyle: aFillStyle [
+{ #category : #drawing-polygons }
+BalloonCanvas >> drawPolygon: vertices fillStyle: aFillStyle [
 	"Fill the given polygon."
 	self drawPolygon: vertices fillStyle: aFillStyle borderWidth: 0 borderColor: nil
 ]
 
-{
-	#category : #drawing-polygons,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>drawPolygon: vertices fillStyle: aFillStyle borderWidth: borderWidth borderColor: borderColor [
+{ #category : #drawing-polygons }
+BalloonCanvas >> drawPolygon: vertices fillStyle: aFillStyle borderWidth: borderWidth borderColor: borderColor [
 	"Draw a simple polygon defined by the list of vertices."
 
 	self ensuredEngine
@@ -194,11 +149,8 @@ BalloonCanvas>>drawPolygon: vertices fillStyle: aFillStyle borderWidth: borderWi
 		transform: transform.
 ]
 
-{
-	#category : #'balloon drawing',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>drawRectangle: r color: c borderWidth: borderWidth borderColor: borderColor [
+{ #category : #'balloon drawing' }
+BalloonCanvas >> drawRectangle: r color: c borderWidth: borderWidth borderColor: borderColor [
 	"Draw a rectangle"
 
 	self ensuredEngine
@@ -209,29 +161,20 @@ BalloonCanvas>>drawRectangle: r color: c borderWidth: borderWidth borderColor: b
 		transform: transform.
 ]
 
-{
-	#category : #todo,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>drawString: s from: firstIndex to: lastIndex in: boundsRect font: fontOrNil color: c [
+{ #category : #todo }
+BalloonCanvas >> drawString: s from: firstIndex to: lastIndex in: boundsRect font: fontOrNil color: c [
 	(self ifNoTransformWithIn: boundsRect)
 		ifTrue:[^super drawString: s from: firstIndex to: lastIndex in: boundsRect font: fontOrNil color: c]
 ]
 
-{
-	#category : #todo,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>drawString: s from: firstIndex to: lastIndex in: boundsRect font: fontOrNil color: c underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc [
+{ #category : #todo }
+BalloonCanvas >> drawString: s from: firstIndex to: lastIndex in: boundsRect font: fontOrNil color: c underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc [
 	(self ifNoTransformWithIn: boundsRect)
 		ifTrue:[^super drawString: s from: firstIndex to: lastIndex in: boundsRect font: fontOrNil color: c underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>ensuredEngine [
+{ #category : #accessing }
+BalloonCanvas >> ensuredEngine [
 	engine ifNil:[
 		engine := BalloonEngine new.
 		"engine := BalloonDebugEngine new"
@@ -246,11 +189,8 @@ BalloonCanvas>>ensuredEngine [
 	^engine
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>fillColor: c [
+{ #category : #drawing }
+BalloonCanvas >> fillColor: c [
 	"Note: This always fills, even if the color is transparent."
 	"Note2: To achieve the above we must make sure that c is NOT transparent"
 	self frameAndFillRectangle: form boundingBox 
@@ -259,11 +199,8 @@ BalloonCanvas>>fillColor: c [
 		borderColor: nil
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>fillOval: r color: c borderWidth: borderWidth borderColor: borderColor [
+{ #category : #drawing }
+BalloonCanvas >> fillOval: r color: c borderWidth: borderWidth borderColor: borderColor [
 	"Draw a filled and outlined oval"
 	"Note: The optimization test below should actually read:
 		self ifNoTransformWithIn: (r insetBy: borderWidth // 2)
@@ -278,11 +215,8 @@ BalloonCanvas>>fillOval: r color: c borderWidth: borderWidth borderColor: border
 			borderColor: borderColor
 ]
 
-{
-	#category : #drawing-ovals,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>fillOval: aRectangle fillStyle: aFillStyle borderWidth: bw borderColor: bc [
+{ #category : #drawing-ovals }
+BalloonCanvas >> fillOval: aRectangle fillStyle: aFillStyle borderWidth: bw borderColor: bc [
 	"Fill the given rectangle."
 	^self drawOval: (aRectangle insetBy: bw // 2)
 			color: aFillStyle 
@@ -291,11 +225,8 @@ BalloonCanvas>>fillOval: aRectangle fillStyle: aFillStyle borderWidth: bw border
 
 ]
 
-{
-	#category : #'balloon drawing',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>fillRectangle: aRectangle basicFillStyle: aFillStyle [
+{ #category : #'balloon drawing' }
+BalloonCanvas >> fillRectangle: aRectangle basicFillStyle: aFillStyle [
 	"Fill the given rectangle with the given, non-composite, fill style."
 	
 	^self drawRectangle: aRectangle
@@ -305,11 +236,8 @@ BalloonCanvas>>fillRectangle: aRectangle basicFillStyle: aFillStyle [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>fillRectangle: r color: c [
+{ #category : #drawing }
+BalloonCanvas >> fillRectangle: r color: c [
 	"Fill the rectangle with the given color"
 	^self frameAndFillRectangle: r
 			fillColor: c
@@ -317,20 +245,14 @@ BalloonCanvas>>fillRectangle: r color: c [
 			borderColor: nil
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>flush [
+{ #category : #initialize }
+BalloonCanvas >> flush [
 	"Force all pending primitives onscreen"
 	engine ifNotNil:[engine flush].
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>frameAndFillRectangle: r fillColor: c borderWidth: borderWidth borderColor: borderColor [
+{ #category : #drawing }
+BalloonCanvas >> frameAndFillRectangle: r fillColor: c borderWidth: borderWidth borderColor: borderColor [
 	"Draw a filled and outlined rectangle"
 	"Note: The optimization test below should actually read:
 		self ifNoTransformWithIn: (r insetBy: borderWidth // 2)
@@ -345,11 +267,8 @@ BalloonCanvas>>frameAndFillRectangle: r fillColor: c borderWidth: borderWidth bo
 			borderColor: borderColor
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth topLeftColor: topLeftColor bottomRightColor: bottomRightColor [
+{ #category : #drawing }
+BalloonCanvas >> frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth topLeftColor: topLeftColor bottomRightColor: bottomRightColor [
 	"Draw a beveled or raised rectangle"
 	| bw |
 
@@ -375,11 +294,8 @@ BalloonCanvas>>frameAndFillRectangle: r fillColor: fillColor borderWidth: border
 		borderColor: bottomRightColor.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>ifNoTransformWithIn: box [
+{ #category : #private }
+BalloonCanvas >> ifNoTransformWithIn: box [
 	"Return true if the current transformation does not affect the given bounding box"
 	| delta |
 	transform ifNil: [^true].
@@ -387,11 +303,8 @@ BalloonCanvas>>ifNoTransformWithIn: box [
 	^(transform localPointToGlobal: box corner) - box corner = delta
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>image: aForm at: aPoint sourceRect: sourceRect rule: rule [
+{ #category : #private }
+BalloonCanvas >> image: aForm at: aPoint sourceRect: sourceRect rule: rule [
 	| warp dstRect srcQuad dstOffset |
 	(self ifNoTransformWithIn: sourceRect) & false
 		ifTrue:[^super image: aForm at: aPoint sourceRect: sourceRect rule: rule].
@@ -411,39 +324,27 @@ BalloonCanvas>>image: aForm at: aPoint sourceRect: sourceRect rule: rule [
 	"... TODO ... create a bitmap fill style from the form and use it for a simple rectangle."
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>initialize [
+{ #category : #initialization }
+BalloonCanvas >> initialize [
 	super initialize.
 	aaLevel := 1.
 	deferred := false.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>isBalloonCanvas [
+{ #category : #testing }
+BalloonCanvas >> isBalloonCanvas [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>isVisible: aRectangle [
+{ #category : #testing }
+BalloonCanvas >> isVisible: aRectangle [
 	^transform 
 		ifNil:[super isVisible: aRectangle]
 		ifNotNil:[super isVisible: (transform localBoundsToGlobal: aRectangle)]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>line: pt1 to: pt2 width: w color: c [
+{ #category : #drawing }
+BalloonCanvas >> line: pt1 to: pt2 width: w color: c [
 	"Draw a line from pt1 to: pt2"
 
 	(aaLevel = 1 and: [self ifNoTransformWithIn:(pt1 rectangle: pt2)])
@@ -454,30 +355,21 @@ BalloonCanvas>>line: pt1 to: pt2 width: w color: c [
 		borderColor: c
 ]
 
-{
-	#category : #todo,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>paragraph: para bounds: bounds color: c [
+{ #category : #todo }
+BalloonCanvas >> paragraph: para bounds: bounds color: c [
 	(self ifNoTransformWithIn: bounds)
 		ifTrue:[^super paragraph: para bounds: bounds color: c].
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>postCopy [
+{ #category : #copying }
+BalloonCanvas >> postCopy [
 	self flush.
 	super postCopy.
 	self resetEngine
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>preserveStateDuring: aBlock [
+{ #category : #transforming }
+BalloonCanvas >> preserveStateDuring: aBlock [
 	| state result |
 	state := BalloonState new.
 	state transform: transform.
@@ -490,30 +382,21 @@ BalloonCanvas>>preserveStateDuring: aBlock [
 	^result
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>resetEngine [
+{ #category : #initialize }
+BalloonCanvas >> resetEngine [
 	engine := nil.
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>transformBy: aTransform [
+{ #category : #transforming }
+BalloonCanvas >> transformBy: aTransform [
 	aTransform ifNil:[^self].
 	transform 
 		ifNil:[transform := aTransform]
 		ifNotNil:[transform := transform composedWithLocal: aTransform]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonCanvas>>transformBy: aDisplayTransform during: aBlock [
+{ #category : #transforming }
+BalloonCanvas >> transformBy: aDisplayTransform during: aBlock [
 	| myTransform result |
 	myTransform := transform.
 	self transformBy: aDisplayTransform.

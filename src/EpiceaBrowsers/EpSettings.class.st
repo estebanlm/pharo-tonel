@@ -4,15 +4,11 @@ My class-side protocol initializes System Settings' stuff.
 Class {
 	#name : #EpSettings,
 	#superclass : #Object,
-	#category : #EpiceaBrowsers-Integration,
-	#timestamp : 'MartinDias 2/1/2016 02:46'
+	#category : #EpiceaBrowsers-Integration
 }
 
-{
-	#category : #'system settings',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSettings class>>groupSettingsOn: aBuilder [
+{ #category : #'system settings' }
+EpSettings class >> groupSettingsOn: aBuilder [
 
 	<systemsettings>
 	(aBuilder group: #epicea)
@@ -21,29 +17,20 @@ EpSettings class>>groupSettingsOn: aBuilder [
 		parent: #tools.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSettings class>>lostEventsDetectorEnabled [
+{ #category : #accessing }
+EpSettings class >> lostEventsDetectorEnabled [
 
 	^ EpLostChangesDetector isEnabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSettings class>>lostEventsDetectorEnabled: aBoolean [
+{ #category : #accessing }
+EpSettings class >> lostEventsDetectorEnabled: aBoolean [
 
 	EpLostChangesDetector enabled: aBoolean
 ]
 
-{
-	#category : #'system settings',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSettings class>>lostEventsDetectorEnabledSettingOn: aBuilder [
+{ #category : #'system settings' }
+EpSettings class >> lostEventsDetectorEnabledSettingOn: aBuilder [
 
 	<systemsettings>
 	(aBuilder setting: #lostEventsDetectorEnabled)
@@ -53,29 +40,20 @@ EpSettings class>>lostEventsDetectorEnabledSettingOn: aBuilder [
 		target: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSettings class>>monitorEnabled [
+{ #category : #accessing }
+EpSettings class >> monitorEnabled [
 
 	^ EpMonitor current isEnabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSettings class>>monitorEnabled: aBoolean [
+{ #category : #accessing }
+EpSettings class >> monitorEnabled: aBoolean [
 
 	EpMonitor current enabled: aBoolean
 ]
 
-{
-	#category : #'system settings',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSettings class>>monitorEnabledSettingOn: aBuilder [
+{ #category : #'system settings' }
+EpSettings class >> monitorEnabledSettingOn: aBuilder [
 
 	<systemsettings>
 	(aBuilder setting: #monitorEnabled)
@@ -85,29 +63,20 @@ EpSettings class>>monitorEnabledSettingOn: aBuilder [
 		target: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSettings class>>storeNameStrategyClass [
+{ #category : #accessing }
+EpSettings class >> storeNameStrategyClass [
 
 	^ OmSessionStore storeNameStrategy class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSettings class>>storeNameStrategyClass: aStrategyClass [
+{ #category : #accessing }
+EpSettings class >> storeNameStrategyClass: aStrategyClass [
 
 	OmSessionStore storeNameStrategy: aStrategyClass new
 ]
 
-{
-	#category : #'system settings',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSettings class>>storeNameStrategySettingsOn: aBuilder [
+{ #category : #'system settings' }
+EpSettings class >> storeNameStrategySettingsOn: aBuilder [
 
 	<systemsettings>
 	(aBuilder pickOne: #storeNameStrategyClass)
@@ -120,29 +89,20 @@ EpSettings class>>storeNameStrategySettingsOn: aBuilder [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSettings class>>writingDeferDuration [
+{ #category : #accessing }
+EpSettings class >> writingDeferDuration [
 
 	^ EpMonitor current writingDeferDuration asMilliSeconds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSettings class>>writingDeferDuration: aSmallInteger [
+{ #category : #accessing }
+EpSettings class >> writingDeferDuration: aSmallInteger [
 
 	^ EpMonitor current writingDeferDuration: aSmallInteger milliSeconds
 ]
 
-{
-	#category : #'system settings',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSettings class>>writingDeferDurationSettingOn: aBuilder [
+{ #category : #'system settings' }
+EpSettings class >> writingDeferDurationSettingOn: aBuilder [
 
 	<systemsettings>
 	(aBuilder setting: #writingDeferDuration)

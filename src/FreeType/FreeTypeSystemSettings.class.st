@@ -7,15 +7,11 @@ Class {
 	#classVars : [
 		'LoadFT2Library'
 	],
-	#category : #FreeType-Settings,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:27'
+	#category : #FreeType-Settings
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSystemSettings class>>freeTypeSettingsOn: aBuilder [
+{ #category : #settings }
+FreeTypeSystemSettings class >> freeTypeSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #noFt2Library)
 		target: self;
@@ -95,11 +91,8 @@ o NONE: use the original glyph shapes without snapping their features to pixel b
 						range: (0 to: 100 by: 10) ] ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSystemSettings class>>ft2LibraryVersion [
+{ #category : #settings }
+FreeTypeSystemSettings class >> ft2LibraryVersion [
 	^ Smalltalk ui theme 
 		newLabelIn: World 
 		for: self 
@@ -107,20 +100,14 @@ FreeTypeSystemSettings class>>ft2LibraryVersion [
 		getEnabled: nil.
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSystemSettings class>>loadFt2Library [
+{ #category : #settings }
+FreeTypeSystemSettings class >> loadFt2Library [
 	^ LoadFT2Library ifNil: [LoadFT2Library := false]
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSystemSettings class>>loadFt2Library: aBoolean [
+{ #category : #settings }
+FreeTypeSystemSettings class >> loadFt2Library: aBoolean [
 	(LoadFT2Library = aBoolean) 
 		ifTrue: [^ self].
 	LoadFT2Library := aBoolean.
@@ -131,19 +118,13 @@ FreeTypeSystemSettings class>>loadFt2Library: aBoolean [
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSystemSettings class>>noFt2Library [
+{ #category : #settings }
+FreeTypeSystemSettings class >> noFt2Library [
 	^ 'Free type fonts are not available'
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSystemSettings class>>noFt2Library: aBoolean  [
+{ #category : #settings }
+FreeTypeSystemSettings class >> noFt2Library: aBoolean [ 
 
 	"ignore it for now"
 

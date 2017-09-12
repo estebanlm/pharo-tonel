@@ -5,23 +5,16 @@ I am NeoLRUCacheTests.
 Class {
 	#name : #LRUCacheTests,
 	#superclass : #TestCase,
-	#category : #System-CachingTests,
-	#timestamp : '<historical>'
+	#category : #System-CachingTests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>newCache [
+{ #category : #accessing }
+LRUCacheTests >> newCache [
 	^ LRUCache new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>test5kClasses [
+{ #category : #testing }
+LRUCacheTests >> test5kClasses [
 	| cache data |
 	(cache := self newCache)
 		maximumWeight: 1024.
@@ -41,11 +34,8 @@ LRUCacheTests>>test5kClasses [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>test6k [
+{ #category : #testing }
+LRUCacheTests >> test6k [
 	| cache |
 	(cache := self newCache)
 		maximumWeight: 600.
@@ -57,11 +47,8 @@ LRUCacheTests>>test6k [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testAdditionInIfAbsentPut [
+{ #category : #testing }
+LRUCacheTests >> testAdditionInIfAbsentPut [
 	| cache |
 	cache := self newCache.
 	cache at: #foo ifAbsentPut: [ 100 ].
@@ -72,11 +59,8 @@ LRUCacheTests>>testAdditionInIfAbsentPut [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testAt [
+{ #category : #testing }
+LRUCacheTests >> testAt [
 	| cache |
 	cache := self newCache.
 	self should: [ cache at: #foo ] raise: KeyNotFound.
@@ -86,11 +70,8 @@ LRUCacheTests>>testAt [
 	self should: [ cache at: #foo ] raise: KeyNotFound
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testCustomWeight [
+{ #category : #testing }
+LRUCacheTests >> testCustomWeight [
 	| cache |
 	(cache := self newCache)
 		computeWeight: #sizeInMemory;
@@ -107,11 +88,8 @@ LRUCacheTests>>testCustomWeight [
 	self deny: (cache includesKey: 1)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testEmpty [
+{ #category : #testing }
+LRUCacheTests >> testEmpty [
 	| emptyCache |
 	emptyCache := self newCache.
 	self assert: emptyCache isEmpty.
@@ -124,11 +102,8 @@ LRUCacheTests>>testEmpty [
 	emptyCache keysAndValuesDo: [ :key :value | self fail ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testEnumeration [
+{ #category : #testing }
+LRUCacheTests >> testEnumeration [
 	| cache data keys values |
 	cache := self newCache.
 	data := Dictionary new.
@@ -146,11 +121,8 @@ LRUCacheTests>>testEnumeration [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testEviction [
+{ #category : #testing }
+LRUCacheTests >> testEviction [
 	| cache |
 	cache := self newCache.
 	cache maximumWeight: 16.
@@ -166,11 +138,8 @@ LRUCacheTests>>testEviction [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testFactory [
+{ #category : #testing }
+LRUCacheTests >> testFactory [
 	| cache |
 	cache := self newCache.
 	cache maximumWeight: 5.
@@ -182,11 +151,8 @@ LRUCacheTests>>testFactory [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testFactoryStyle [
+{ #category : #testing }
+LRUCacheTests >> testFactoryStyle [
 	| cache factory |
 	cache := self newCache.
 	cache maximumWeight: 5.
@@ -198,11 +164,8 @@ LRUCacheTests>>testFactoryStyle [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testFibonacci [
+{ #category : #testing }
+LRUCacheTests >> testFibonacci [
 	"After an idea by Jan Vrany.
 	Recursively enter the cache and its access protection"
 	
@@ -218,11 +181,8 @@ LRUCacheTests>>testFibonacci [
 	self assert: (fibCache at: 40) equals: 102334155
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testFixedAccess [
+{ #category : #testing }
+LRUCacheTests >> testFixedAccess [
 	| cache data keys |
 	(cache := self newCache)
 		maximumWeight: 4.
@@ -241,11 +201,8 @@ LRUCacheTests>>testFixedAccess [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testOne [
+{ #category : #testing }
+LRUCacheTests >> testOne [
 	| cache |
 	cache := self newCache.
 	cache at: #foo ifAbsentPut: [ 100 ].
@@ -260,11 +217,8 @@ LRUCacheTests>>testOne [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testOneHit [
+{ #category : #testing }
+LRUCacheTests >> testOneHit [
 	| cache value |
 	cache := self newCache.
 	cache at: #foo ifAbsentPut: [ 100 ].
@@ -279,11 +233,8 @@ LRUCacheTests>>testOneHit [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testOneHitTwice [
+{ #category : #testing }
+LRUCacheTests >> testOneHitTwice [
 	| cache value |
 	cache := self newCache.
 	cache at: #foo ifAbsentPut: [ 100 ].
@@ -295,11 +246,8 @@ LRUCacheTests>>testOneHitTwice [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testPopulate [
+{ #category : #testing }
+LRUCacheTests >> testPopulate [
 	| cache data |
 	cache := self newCache.
 	cache at: #foo put: 1.
@@ -320,11 +268,8 @@ LRUCacheTests>>testPopulate [
 		self assert: (cache at: key) equals: value ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testPrimeFactors [
+{ #category : #testing }
+LRUCacheTests >> testPrimeFactors [
 	"[ self run: #testPrimeFactors ] bench."
 	
 	| cache data |
@@ -342,11 +287,8 @@ LRUCacheTests>>testPrimeFactors [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testRandomAccess [
+{ #category : #testing }
+LRUCacheTests >> testRandomAccess [
 	| cache data random keys |
 	(cache := self newCache)
 		maximumWeight: 4.
@@ -366,11 +308,8 @@ LRUCacheTests>>testRandomAccess [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testRemoveAll [
+{ #category : #testing }
+LRUCacheTests >> testRemoveAll [
 	| cache |
 	cache := self newCache.
 	1 to: 10 do: [ :each | 
@@ -386,11 +325,8 @@ LRUCacheTests>>testRemoveAll [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testRemoveOne [
+{ #category : #testing }
+LRUCacheTests >> testRemoveOne [
 	| cache |
 	cache := self newCache.
 	cache at: #foo ifAbsentPut: [ 100 ].
@@ -402,11 +338,8 @@ LRUCacheTests>>testRemoveOne [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testRemoveOneOfThree [
+{ #category : #testing }
+LRUCacheTests >> testRemoveOneOfThree [
 	| cache |
 	cache := self newCache.
 	cache at: #x ifAbsentPut: [ 100 ].
@@ -421,11 +354,8 @@ LRUCacheTests>>testRemoveOneOfThree [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testTen [
+{ #category : #testing }
+LRUCacheTests >> testTen [
 	| cache |
 	cache := self newCache.
 	1 to: 10 do: [ :each |
@@ -441,11 +371,8 @@ LRUCacheTests>>testTen [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testTenThreadSafe [
+{ #category : #testing }
+LRUCacheTests >> testTenThreadSafe [
 	| cache |
 	cache := self newCache.
 	cache beThreadSafe.
@@ -460,11 +387,8 @@ LRUCacheTests>>testTenThreadSafe [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testThree [
+{ #category : #testing }
+LRUCacheTests >> testThree [
 	| cache |
 	cache := self newCache.
 	cache at: #x ifAbsentPut: [ 100 ].
@@ -481,11 +405,8 @@ LRUCacheTests>>testThree [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testThreeHitSameOne [
+{ #category : #testing }
+LRUCacheTests >> testThreeHitSameOne [
 	| cache |
 	cache := self newCache.
 	cache at: #x ifAbsentPut: [ 100 ].
@@ -500,11 +421,8 @@ LRUCacheTests>>testThreeHitSameOne [
 	cache validateInvariantWith: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCacheTests>>testTwo [
+{ #category : #testing }
+LRUCacheTests >> testTwo [
 	| cache |
 	cache := self newCache.
 	cache at: #foo ifAbsentPut: [ 100 ].

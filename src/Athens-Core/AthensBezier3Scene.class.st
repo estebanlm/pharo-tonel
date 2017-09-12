@@ -10,25 +10,18 @@ Class {
 		'pt3',
 		'pt4'
 	],
-	#category : #Athens-Core-PathsGeometry,
-	#timestamp : '<historical>'
+	#category : #Athens-Core-PathsGeometry
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensBezier3Scene class>>on: anControlPointArray [
+{ #category : #'instance creation' }
+AthensBezier3Scene class >> on: anControlPointArray [
 
 	^ self basicNew
 		initFromArray: anControlPointArray
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensBezier3Scene>>curvePathBlock [
+{ #category : #'as yet unclassified' }
+AthensBezier3Scene >> curvePathBlock [
 	^ [ :builder |
 		builder 
 			absolute;
@@ -38,11 +31,8 @@ AthensBezier3Scene>>curvePathBlock [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensBezier3Scene>>initFromArray: aControlPointsArray [
+{ #category : #'as yet unclassified' }
+AthensBezier3Scene >> initFromArray: aControlPointsArray [
 	
 		pt1 := aControlPointsArray at: 1.
 		pt2 := aControlPointsArray at: 2.
@@ -51,11 +41,8 @@ AthensBezier3Scene>>initFromArray: aControlPointsArray [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensBezier3Scene>>renderOn: canvas [
+{ #category : #'as yet unclassified' }
+AthensBezier3Scene >> renderOn: canvas [
 
 	| path pathBlock polygonizedPath |
 	

@@ -4,24 +4,17 @@ MetacelloValidationWarning indicates that there is a logical inconsistency that 
 Class {
 	#name : #MetacelloValidationWarning,
 	#superclass : #MetacelloValidationIssue,
-	#category : #Metacello-Core-Validation,
-	#timestamp : '<historical>'
+	#category : #Metacello-Core-Validation
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationWarning>>isWarning [
+{ #category : #testing }
+MetacelloValidationWarning >> isWarning [
 
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationWarning>>label [
+{ #category : #accessing }
+MetacelloValidationWarning >> label [
 
 	^'Warning'
 ]

@@ -4,31 +4,21 @@ store literal variable
 Class {
 	#name : #IRStoreLiteralVariable,
 	#superclass : #IRLiteralVariableAccess,
-	#category : #OpalCompiler-Core-IR-Nodes,
-	#timestamp : 'ClementBer 10/14/2014 14:48'
+	#category : #OpalCompiler-Core-IR-Nodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStoreLiteralVariable>>accept: aVisitor [
+{ #category : #visiting }
+IRStoreLiteralVariable >> accept: aVisitor [
 	^ aVisitor visitStoreLiteralVariable: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStoreLiteralVariable>>isStore [
+{ #category : #testing }
+IRStoreLiteralVariable >> isStore [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRStoreLiteralVariable>>popIntoNode [
+{ #category : #accessing }
+IRStoreLiteralVariable >> popIntoNode [
 	^ IRPopIntoLiteralVariable new
 		association: association;
 		yourself

@@ -7,39 +7,26 @@ Class {
 	#instVars : [
 		'data'
 	],
-	#category : #GT-EventRecorder-Tests-Support,
-	#timestamp : 'JurajKubelka 11/15/2015 17:53'
+	#category : #GT-EventRecorder-Tests-Support
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTDummyEvent>>= aDummyEvent [
+{ #category : #comparing }
+GTDummyEvent >> = aDummyEvent [
 	^ self class = aDummyEvent class and: [ 
 		self data = aDummyEvent data ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTDummyEvent>>data [
+{ #category : #accessing }
+GTDummyEvent >> data [
 	^ data
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTDummyEvent>>data: anObject [
+{ #category : #accessing }
+GTDummyEvent >> data: anObject [
 	data := anObject
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTDummyEvent>>hash [
+{ #category : #comparing }
+GTDummyEvent >> hash [
 	^ self class hash bitXor: self data
 ]

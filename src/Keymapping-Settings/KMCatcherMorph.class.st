@@ -12,25 +12,18 @@ Class {
 		'initialShortcut',
 		'edited'
 	],
-	#category : #Keymapping-Settings,
-	#timestamp : '<historical>'
+	#category : #Keymapping-Settings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph class>>for: aModel [
+{ #category : #'instance creation' }
+KMCatcherMorph class >> for: aModel [
 	^ (self new)
 		keymapSetting: aModel;
 		yourself
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>accept [
+{ #category : #api }
+KMCatcherMorph >> accept [
 	| shortcut |
 	shortcut := self shortcut.
 	keymapSetting accept: shortcut.
@@ -38,27 +31,18 @@ KMCatcherMorph>>accept [
 	edited := false.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>allowsKeymapping [
+{ #category : #'event handling' }
+KMCatcherMorph >> allowsKeymapping [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>balloonText [
+{ #category : #accessing }
+KMCatcherMorph >> balloonText [
 	^ 'Click to edit shortcut.  Right click to open context menu.'
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>cancel [
+{ #category : #api }
+KMCatcherMorph >> cancel [
 	edited
 		ifFalse: [ ^ self ].
 	self keystrokes: OrderedCollection new.
@@ -66,20 +50,14 @@ KMCatcherMorph>>cancel [
 	self initializeKeystrokes
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>clear [
+{ #category : #'event handling' }
+KMCatcherMorph >> clear [
 	self keystrokes removeAll.
 	self showKeystrokes.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+KMCatcherMorph >> drawOn: aCanvas [
 	"Indicate unaccepted edits, conflicts etc."
 
 	super drawOn: aCanvas. 
@@ -87,37 +65,25 @@ KMCatcherMorph>>drawOn: aCanvas [
 		Smalltalk ui theme drawTextAdornmentFor: self color: Color orange on: aCanvas]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>handlesKeyboard: event [
+{ #category : #'event handling' }
+KMCatcherMorph >> handlesKeyboard: event [
 	^ focused
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>handlesMouseDown: event [
+{ #category : #'event handling' }
+KMCatcherMorph >> handlesMouseDown: event [
 	^ true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>initialShortcut: aShortcut [
+{ #category : #initialization }
+KMCatcherMorph >> initialShortcut: aShortcut [
 	initialShortcut := aShortcut.
 	self showInitialShortcut.
 	self initializeKeystrokes.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>initialize [
+{ #category : #initialization }
+KMCatcherMorph >> initialize [
 	super initialize.
 	self layoutPolicy: TableLayout new.
 	self listCentering: #center.
@@ -135,29 +101,20 @@ KMCatcherMorph>>initialize [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>initializeKeystrokes [
+{ #category : #initialization }
+KMCatcherMorph >> initializeKeystrokes [
 	keystrokes := OrderedCollection new.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>keyStroke: aKeyStroke  [
+{ #category : #'event handling' }
+KMCatcherMorph >> keyStroke: aKeyStroke [ 
 	edited := true.
 	self keystrokes add: aKeyStroke.
 	self showKeystrokes.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>keyboardFocusChange: aBoolean [
+{ #category : #'event handling' }
+KMCatcherMorph >> keyboardFocusChange: aBoolean [
 	super keyboardFocusChange: aBoolean.
 	focused := aBoolean.
 	focused
@@ -166,56 +123,38 @@ KMCatcherMorph>>keyboardFocusChange: aBoolean [
 	^ true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>keymapSetting: aSetting [
+{ #category : #'event handling' }
+KMCatcherMorph >> keymapSetting: aSetting [
 	keymapSetting := aSetting.
 	self initialShortcut: keymapSetting shortcut.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>keystrokes [
+{ #category : #api }
+KMCatcherMorph >> keystrokes [
 	^ keystrokes
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>keystrokes: someKeystrokes [
+{ #category : #api }
+KMCatcherMorph >> keystrokes: someKeystrokes [
 	keystrokes := someKeystrokes.
 	self showKeystrokes.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>mouseDown: event  [
+{ #category : #'event handling' }
+KMCatcherMorph >> mouseDown: event [ 
 	super mouseDown: event.
 	event yellowButtonPressed 
 		ifTrue: [ self showContextMenu ]
 		ifFalse: [ World activeHand newKeyboardFocus: self ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>setMessage: aMessage  [
+{ #category : #accessing }
+KMCatcherMorph >> setMessage: aMessage [ 
 	labelMorph contents: aMessage
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>shortcut [
+{ #category : #api }
+KMCatcherMorph >> shortcut [
 	| theKeystrokes |
 	theKeystrokes := self keystrokes.
 	theKeystrokes 
@@ -227,11 +166,8 @@ KMCatcherMorph>>shortcut [
 			acum , each asKeyCombination ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>shortcutString [
+{ #category : #api }
+KMCatcherMorph >> shortcutString [
 	| shortcut |
 	self keystrokes 
 		ifEmpty: [ ^ '' ].
@@ -239,11 +175,8 @@ KMCatcherMorph>>shortcutString [
 	^ shortcut asString
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>showContextMenu [
+{ #category : #'event handling' }
+KMCatcherMorph >> showContextMenu [
 	| menu |
 	menu := MenuMorph new defaultTarget: self.
 	
@@ -257,26 +190,17 @@ KMCatcherMorph>>showContextMenu [
 	menu popUpInWorld
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>showInitialShortcut [
+{ #category : #initialization }
+KMCatcherMorph >> showInitialShortcut [
 	self setMessage: initialShortcut asString.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>showKeystrokes [
+{ #category : #private }
+KMCatcherMorph >> showKeystrokes [
 	self setMessage: self shortcutString.
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCatcherMorph>>wantsBalloon [
+{ #category : #'halos and balloon help' }
+KMCatcherMorph >> wantsBalloon [
 	^ true
 ]

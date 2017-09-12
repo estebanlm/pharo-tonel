@@ -11,23 +11,16 @@ Class {
 		'lineNumbersDisplayMorph',
 		'formatAsYouReadMorph'
 	],
-	#category : #Nautilus-Widgets,
-	#timestamp : 'FranckWarlouzet 6/3/2015 12:59'
+	#category : #Nautilus-Widgets
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer class>>key [
+{ #category : #querying }
+NautilusAnnotationDisplayer class >> key [
 	^ #SourceCodeAnnotation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>backgroundColor [
+{ #category : #accessing }
+NautilusAnnotationDisplayer >> backgroundColor [
 	
 	| clr |
 	
@@ -38,11 +31,8 @@ NautilusAnnotationDisplayer>>backgroundColor [
 		ifFalse: [ clr lighter]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>changeLineNumbersDisplay [
+{ #category : #submorphs-accessing }
+NautilusAnnotationDisplayer >> changeLineNumbersDisplay [
 	self paragraphProvider lineNumbersRuler 
 		ifNil: [ self paragraphProvider withLineNumbers ]
 		ifNotNil: [ self paragraphProvider withoutLineNumbers ].
@@ -50,11 +40,8 @@ NautilusAnnotationDisplayer>>changeLineNumbersDisplay [
 	self updateContents
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>changeWrappingPolicy [
+{ #category : #submorphs-accessing }
+NautilusAnnotationDisplayer >> changeWrappingPolicy [
 	self paragraphProvider wrapped 
 		ifTrue: [ self paragraphProvider beNotWrapped  ]
 		ifFalse: [ self paragraphProvider beWrapped ].
@@ -62,44 +49,29 @@ NautilusAnnotationDisplayer>>changeWrappingPolicy [
 	self paragraphProvider changed
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>computedHeightFrom: aRectangle [
+{ #category : #geometry }
+NautilusAnnotationDisplayer >> computedHeightFrom: aRectangle [
 	^ row ifNil: [0] ifNotNil: [row height]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>fontToUse [
+{ #category : #accessing }
+NautilusAnnotationDisplayer >> fontToUse [
 	^ self theme textFont
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>formatAsYouRead [
+{ #category : #submorphs-accessing }
+NautilusAnnotationDisplayer >> formatAsYouRead [
 	 
 	^ RBProgramNode formatterClass formatAsYouReadPolicy
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>formatAsYouReadLabel [
+{ #category : #submorphs-accessing }
+NautilusAnnotationDisplayer >> formatAsYouReadLabel [
 	^ 'Format as you read'
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>formatAsYouReadMorph [
+{ #category : #submorphs-accessing }
+NautilusAnnotationDisplayer >> formatAsYouReadMorph [
 	^ (CheckboxMorph on: self selected: #formatAsYouRead changeSelected: #toggleFormatAsYouRead)
 		getLabelSelector: #formatAsYouReadLabel;
 		labelClickable: true;
@@ -110,28 +82,19 @@ NautilusAnnotationDisplayer>>formatAsYouReadMorph [
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>initialize [
+{ #category : #initialize-release }
+NautilusAnnotationDisplayer >> initialize [
 	super initialize.
 	self side: #bottom
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>level [
+{ #category : #accessing }
+NautilusAnnotationDisplayer >> level [
 	^ 1
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>lineAnnotationMorph [
+{ #category : #submorphs-accessing }
+NautilusAnnotationDisplayer >> lineAnnotationMorph [
 	^ (RubTextFieldArea new
 		withoutAnyDecorator;
 		backgroundColor: Color transparent;
@@ -142,50 +105,35 @@ NautilusAnnotationDisplayer>>lineAnnotationMorph [
 		yourself
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>lineNumbersDisplayLabel [
+{ #category : #submorphs-accessing }
+NautilusAnnotationDisplayer >> lineNumbersDisplayLabel [
 	^ self paragraphProvider lineNumbersRuler  
 		ifNil: [ '+L' ]
 		ifNotNil: [ 'L' ]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>lineNumbersDisplayLabelMorph [
+{ #category : #submorphs-accessing }
+NautilusAnnotationDisplayer >> lineNumbersDisplayLabelMorph [
 	^ (StringMorph contents: self lineNumbersDisplayLabel font: self fontToUse)
 		setBalloonText: 'Let you decide if the code pane should show the line numbers at the left of the code pane or not. +L: Click to add the lines number/L: Click to hide them.';
 		yourself
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>manageLayoutInBounds: aRectangle [
+{ #category : #geometry }
+NautilusAnnotationDisplayer >> manageLayoutInBounds: aRectangle [
 	| ret |
 	ret := super manageLayoutInBounds: aRectangle.
 	self updateContents.
 	^ ret
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>nautilusUI [
+{ #category : #submorphs-accessing }
+NautilusAnnotationDisplayer >> nautilusUI [
 	^ self owner model interactionModel
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>noteNewOwner: aMorph [
+{ #category : #submorphs-accessing }
+NautilusAnnotationDisplayer >> noteNewOwner: aMorph [
 	super noteNewOwner: aMorph.
 	self color: self backgroundColor.
 	self paragraphProvider announcer when: MorphGotFocus send: #updateContents to: self.
@@ -213,20 +161,14 @@ NautilusAnnotationDisplayer>>noteNewOwner: aMorph [
 	self addMorph: row
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>selectionChanged [
+{ #category : #'event handling' }
+NautilusAnnotationDisplayer >> selectionChanged [
 	self updateContents.
 	super selectionChanged
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>spacer: anInteger [
+{ #category : #submorphs-accessing }
+NautilusAnnotationDisplayer >> spacer: anInteger [
 	^ Morph new
 		borderWidth: 0;
 		color: Color transparent;
@@ -234,20 +176,14 @@ NautilusAnnotationDisplayer>>spacer: anInteger [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>textColor [
+{ #category : #accessing }
+NautilusAnnotationDisplayer >> textColor [
 	^ self theme textColor
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>textOfCharBlock: aCharacterBlock [
+{ #category : #'event handling' }
+NautilusAnnotationDisplayer >> textOfCharBlock: aCharacterBlock [
 	| t l c |
 	l := aCharacterBlock textLine.
 	c := aCharacterBlock stringIndex - l first + 1.
@@ -262,11 +198,8 @@ NautilusAnnotationDisplayer>>textOfCharBlock: aCharacterBlock [
 	^ t
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>themeChanged [
+{ #category : #'event handling' }
+NautilusAnnotationDisplayer >> themeChanged [
 
 	self color: self backgroundColor .
 	
@@ -279,11 +212,8 @@ NautilusAnnotationDisplayer>>themeChanged [
 	super themeChanged
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>toggleFormatAsYouRead [
+{ #category : #submorphs-accessing }
+NautilusAnnotationDisplayer >> toggleFormatAsYouRead [
 	| formatter |
 	formatter := RBProgramNode formatterClass new.
 	formatter class formatAsYouReadPolicy
@@ -300,11 +230,8 @@ NautilusAnnotationDisplayer>>toggleFormatAsYouRead [
 	self paragraphProvider changed
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>updateContents [
+{ #category : #'event handling' }
+NautilusAnnotationDisplayer >> updateContents [
 	| t |
 	row ifNil: [ ^ self ].
 	self textArea selectionStart ifNil: [ ^ self ].
@@ -323,21 +250,15 @@ NautilusAnnotationDisplayer>>updateContents [
 	row width: self innerBounds width
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>wrappingPolicyLabel [
+{ #category : #submorphs-accessing }
+NautilusAnnotationDisplayer >> wrappingPolicyLabel [
 	^ self paragraphProvider wrapped
 				ifTrue: [ 'W' ]
 				ifFalse: [ 'NW' ]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusAnnotationDisplayer>>wrappingPolicyLabelMorph [
+{ #category : #submorphs-accessing }
+NautilusAnnotationDisplayer >> wrappingPolicyLabelMorph [
 	^ (StringMorph contents: self wrappingPolicyLabel font: self fontToUse)
 		setBalloonText:
 			'Let you decide if the code pane should automaticaly wrap lines if a line reach the end of the line. W: Wrap / NW: Add a scrollbar.';

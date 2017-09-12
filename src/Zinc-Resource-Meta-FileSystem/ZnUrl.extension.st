@@ -1,12 +1,7 @@
-Extension {
-	#name : #ZnUrl
-}
+Extension { #name : #ZnUrl }
 
-{
-	#category : #'*zinc-resource-meta-filesystem',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUrl>>asFileReference [
+{ #category : #'*zinc-resource-meta-filesystem' }
+ZnUrl >> asFileReference [
 	"Convert the receiver into a new FileReference object.
 	Note that for a FileReference a trailing slash is not relevant"
 

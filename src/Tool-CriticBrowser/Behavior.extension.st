@@ -1,12 +1,7 @@
-Extension {
-	#name : #Behavior
-}
+Extension { #name : #Behavior }
 
-{
-	#category : #'*Tool-CriticBrowser',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-Behavior>>populateCBMenu: aMenu [
+{ #category : #'*Tool-CriticBrowser' }
+Behavior >> populateCBMenu: aMenu [
 	
 	super populateCBMenu: aMenu.
 	aMenu

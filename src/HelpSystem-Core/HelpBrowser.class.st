@@ -34,35 +34,25 @@ Class {
 	#classVars : [
 		'DefaultHelpBrowser'
 	],
-	#category : #HelpSystem-Core-UI,
-	#timestamp : 'tbn 3/8/2010 09:33'
+	#category : #HelpSystem-Core-UI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser class>>defaultHelpBrowser [
+{ #category : #accessing }
+HelpBrowser class >> defaultHelpBrowser [
 	^ DefaultHelpBrowser ifNil: [DefaultHelpBrowser := self]
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser class>>defaultHelpBrowser: aClass [
+{ #category : #accessing }
+HelpBrowser class >> defaultHelpBrowser: aClass [
 	"Use a new help browser implementation"
 	
 	DefaultHelpBrowser := aClass
 	
 ]
 
-{
-	#category : #'world menu',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser class>>menuCommandOn: aBuilder [
+{ #category : #'world menu' }
+HelpBrowser class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'Help Browser')
 		parent: #Help;
@@ -72,11 +62,8 @@ HelpBrowser class>>menuCommandOn: aBuilder [
 		withSeparatorAfter 
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser class>>menuOn: aBuilder [
+{ #category : #ui }
+HelpBrowser class >> menuOn: aBuilder [
 	<HelpBrowserContextMenu>
 	
 	(aBuilder item: #'Do it' translated)
@@ -97,19 +84,13 @@ HelpBrowser class>>menuOn: aBuilder [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser class>>open [
+{ #category : #'instance creation' }
+HelpBrowser class >> open [
 	^self openOn: SystemHelp
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser class>>openOn: aHelpTopic [
+{ #category : #'instance creation' }
+HelpBrowser class >> openOn: aHelpTopic [
 	"Open the receiver on the given help topic or any other object that can be transformed into
 	 a help topic by sending #asHelpTopic."
 	
@@ -119,61 +100,40 @@ HelpBrowser class>>openOn: aHelpTopic [
 		yourself
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser class>>taskbarIconName [
+{ #category : #icons }
+HelpBrowser class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^ #bookIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser class>>theme [
+{ #category : #accessing }
+HelpBrowser class >> theme [
 	^ Smalltalk ui theme 
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>close [
+{ #category : #ui }
+HelpBrowser >> close [
 	window notNil ifTrue: [window delete]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>doItContext [
+{ #category : #accessing }
+HelpBrowser >> doItContext [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>doItReceiver [
+{ #category : #accessing }
+HelpBrowser >> doItReceiver [
 	^ nil
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>helpTopic [
+{ #category : #actions }
+HelpBrowser >> helpTopic [
 	^ helpTopicCache ifNil: [ helpTopicCache := rootTopic asHelpTopic ]
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>initWindow [
+{ #category : #ui }
+HelpBrowser >> initWindow [
 	| toolbar dock contentMorph |
 	window := StandardWindow new.
 	window model: self.
@@ -210,47 +170,32 @@ HelpBrowser>>initWindow [
 		fullFrame: ((0.3 @ 0 corner: 1 @ 1) asLayoutFrame topOffset: dock minExtent y)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>initialize  [
+{ #category : #initialization }
+HelpBrowser >> initialize [ 
 	super initialize. 
 	self initWindow.
  
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>menu [
+{ #category : #ui }
+HelpBrowser >> menu [
 	^ (PragmaMenuBuilder pragmaKeyword: #HelpBrowserContextMenu model: self) menu.
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>next [
+{ #category : #actions }
+HelpBrowser >> next [
 	treeMorph setSelectionIndex: treeMorph getSelectionIndex + 1
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>onItemClicked: anItem [
+{ #category : #events }
+HelpBrowser >> onItemClicked: anItem [
 	anItem ifNil: [ ^ self sourceTextModel setText: rootTopic asHelpTopic contents ].
 	self sourceTextModel setText: anItem contents
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>open	 [
+{ #category : #ui }
+HelpBrowser >> open [	
  	"Open the receivers window" 
 
 	self refresh.	
@@ -258,19 +203,13 @@ HelpBrowser>>open	 [
 	 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>previous [
+{ #category : #actions }
+HelpBrowser >> previous [
 	treeMorph setSelectionIndex: (treeMorph getSelectionIndex - 1 max: 1)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>refresh [
+{ #category : #actions }
+HelpBrowser >> refresh [
 	| helpTopic items |
 	helpTopic := self helpTopic.
 	window setLabel: helpTopic title.
@@ -279,29 +218,20 @@ HelpBrowser>>refresh [
 	self sourceTextModel setText: helpTopic contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>rootTopic [
+{ #category : #accessing }
+HelpBrowser >> rootTopic [
 	^rootTopic
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>rootTopic: aHelpTopic [
+{ #category : #accessing }
+HelpBrowser >> rootTopic: aHelpTopic [
 
 	rootTopic := aHelpTopic. 
 	self refresh 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>selectARootTopic: aHelpClass [
+{ #category : #actions }
+HelpBrowser >> selectARootTopic: aHelpClass [
 	"Used to unfold a particular topic"
 	
 	| item |
@@ -310,11 +240,8 @@ HelpBrowser>>selectARootTopic: aHelpClass [
    treeMorph selection: item
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>selectTopicSatisfying: aBlock [
+{ #category : #actions }
+HelpBrowser >> selectTopicSatisfying: aBlock [
 	"I select the first topic that satisfies the given block.
 	If the topic has subtopics it is expanded. If the topic is not visible 
 	the entire path to that topic is expanded."
@@ -325,35 +252,23 @@ HelpBrowser>>selectTopicSatisfying: aBlock [
 			in: (treeMorph scroller submorphs at: 1 ifAbsent: [^treeMorph]) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>selectedClassOrMetaClass [
+{ #category : #accessing }
+HelpBrowser >> selectedClassOrMetaClass [
 	^ nil
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>shoutMorphFillMenu: aMenu [
+{ #category : #ui }
+HelpBrowser >> shoutMorphFillMenu: aMenu [
 	^ aMenu addAllFrom: self menu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>sourceTextModel [
+{ #category : #accessing }
+HelpBrowser >> sourceTextModel [
 	^ sourceTextModel ifNil: [ sourceTextModel := RubScrolledTextModel new interactionModel: self ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpBrowser>>window [
+{ #category : #accessing }
+HelpBrowser >> window [
 
 	^ window
 ]

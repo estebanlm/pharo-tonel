@@ -1,12 +1,7 @@
-Extension {
-	#name : #TextLine
-}
+Extension { #name : #TextLine }
 
-{
-	#category : #'*FreeType-addition',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-TextLine>>justifiedPadFor: spaceIndex font: aFont [
+{ #category : #'*FreeType-addition' }
+TextLine >> justifiedPadFor: spaceIndex font: aFont [
 	"Compute the width of pad for a given space in a line of justified text."
 
 	| pad |

@@ -24,59 +24,40 @@ Class {
 		'allowedToNotePresentationsChanged',
 		'cachedMatchingPresentations'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'TudorGirba 2/15/2011 11:03'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane class>>in: aBrowser  [
+{ #category : #'instance creation' }
+GLMPane class >> in: aBrowser [ 
 	
 	^self new initializeIn: aBrowser
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane class>>named: aString  [
+{ #category : #'instance creation' }
+GLMPane class >> named: aString [ 
 	^self new initializeNamed: aString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane class>>named: aString in: aBrowser [
+{ #category : #'instance creation' }
+GLMPane class >> named: aString [ in: aBrowser
 
 	^self new initializeNamed: aString in: aBrowser 
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane class>>portClass  [
+{ #category : #private }
+GLMPane class >> portClass [ 
 	 
 	^GLMPanePort
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>addPresentation: aPresentation [
+{ #category : #accessing }
+GLMPane >> addPresentation: aPresentation [
 	self addPresentations: (OrderedCollection with: aPresentation)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>addPresentationSilently: each [
+{ #category : #accessing }
+GLMPane >> addPresentationSilently: each [
 	^ presentations
 		add:
 			(each
@@ -84,187 +65,124 @@ GLMPane>>addPresentationSilently: each [
 				yourself)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>addPresentations: aCollection [
+{ #category : #accessing }
+GLMPane >> addPresentations: aCollection [
 	self notingPresentationChangeDo: [ 
 		aCollection do: [ :each | self addPresentationSilently: each ] ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>asGlamorousPane  [
+{ #category : #converting }
+GLMPane >> asGlamorousPane [ 
 	 
 	^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>browser  [
+{ #category : #accessing }
+GLMPane >> browser [ 
 	 
 	^browser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>browser: aBrowser [
+{ #category : #accessing }
+GLMPane >> browser: aBrowser [
 	browser := aBrowser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>cachedMatchingPresentations [
+{ #category : #accessing }
+GLMPane >> cachedMatchingPresentations [
 	^ cachedMatchingPresentations ifNil: [ cachedMatchingPresentations := self matchingPresentations ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>cachedMatchingPresentations: anObject [
+{ #category : #accessing }
+GLMPane >> cachedMatchingPresentations: anObject [
 	^ cachedMatchingPresentations := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>clearIn: aContext  [
+{ #category : #accessing }
+GLMPane >> clearIn: aContext [ 
 	self notingPresentationChangeDo: [
 		self presentations clear.
 		self ports do: [:each | each value: nil in: aContext copy ]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>defaultName [
+{ #category : #initialization }
+GLMPane >> defaultName [
 
 	^'undefined'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>hasBrowser  [
+{ #category : #testing }
+GLMPane >> hasBrowser [ 
 	 
 	^self browser isNil not
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>initialize [
+{ #category : #initialization }
+GLMPane >> initialize [
 	super initialize.
 	ports := OrderedCollection new.
 	presentations := GLMCompositePresentation new pane: self; yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>initializeIn: aBrowser  [
+{ #category : #initialization }
+GLMPane >> initializeIn: aBrowser [ 
 	
 	self initializeNamed: self defaultName in: aBrowser
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>initializeNamed: aString  [
+{ #category : #initialization }
+GLMPane >> initializeNamed: aString [ 
 	self initializeNamed: aString in: GLMNoBrowser new  
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>initializeNamed: aString in: aBrowser  [
+{ #category : #initialization }
+GLMPane >> initializeNamed: aString [ in: aBrowser 
 	self initialize.
 	name := aString ifNil: [ self defaultName ].
 	browser := aBrowser
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>isAllowedToNotePresentationsChanged [
+{ #category : #private }
+GLMPane >> isAllowedToNotePresentationsChanged [
 	^ allowedToNotePresentationsChanged ifNil: [allowedToNotePresentationsChanged := true ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>isLastActivePresentation: aPresentation [
+{ #category : #testing }
+GLMPane >> isLastActivePresentation: aPresentation [
 	^ self lastActivePresentation notNil and: [ 
 		aPresentation title = self lastActivePresentation title ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>lastActivePresentation [
+{ #category : #accessing }
+GLMPane >> lastActivePresentation [
 	^ lastActivePresentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>lastActivePresentation: aPresentation [
+{ #category : #accessing }
+GLMPane >> lastActivePresentation: aPresentation [
 	(self port: #activePresentation) value: aPresentation.
 	lastActivePresentation := aPresentation.
 	self browser lastActivePresentation: aPresentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>matchingPresentations [
+{ #category : #accessing }
+GLMPane >> matchingPresentations [
 	^ cachedMatchingPresentations := presentations matchingPresentations
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>name  [
+{ #category : #accessing }
+GLMPane >> name [ 
 	 
 	^name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>name: aString [
+{ #category : #accessing }
+GLMPane >> name: aString [
 	name := aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>notingPresentationChangeDo: aBlock [
+{ #category : #private }
+GLMPane >> notingPresentationChangeDo: aBlock [
 	"Executes aBlock. If during the execution of the block one of my presentations change, I will emit announces. I also take care of not entering an infinite loop."
 	| oldPresentations oldMatchingPresentations | 
 	self isAllowedToNotePresentationsChanged ifFalse: [
@@ -291,11 +209,8 @@ GLMPane>>notingPresentationChangeDo: aBlock [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>port: aSymbol [
+{ #category : #accessing }
+GLMPane >> port: aSymbol [
 	"returns the port with the given name"
 	^ ports detect: [ :each | each name = aSymbol ] ifNone: [
 		ports addLast: (
@@ -305,11 +220,8 @@ GLMPane>>port: aSymbol [
 						yourself) ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>portEvent: aPortEvent [
+{ #category : #private }
+GLMPane >> portEvent: aPortEvent [
 
 	"we unregister all presentations from announcements because they will get replaced anyway"
 	aPortEvent portName = #entity ifTrue: [ self unregisterFromAllAnnouncements ].
@@ -317,19 +229,13 @@ GLMPane>>portEvent: aPortEvent [
 	self presentations outerPortEvent: aPortEvent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>ports [
+{ #category : #accessing }
+GLMPane >> ports [
 	^ ports
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>postCopy [
+{ #category : #copying }
+GLMPane >> postCopy [
 	| newPort |
 	super postCopy.
 	self flag: 'self unregisterFromAllAnnouncements ?'.
@@ -341,19 +247,13 @@ GLMPane>>postCopy [
 		newPort ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>presentations [
+{ #category : #accessing }
+GLMPane >> presentations [
 	^ presentations
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>presentations: aCompositePresentation [
+{ #category : #accessing }
+GLMPane >> presentations: aCompositePresentation [
 	self notingPresentationChangeDo: [
 		presentations pane: nil.
 		presentations resetAnnouncer.
@@ -362,11 +262,8 @@ GLMPane>>presentations: aCompositePresentation [
 		presentations initializePresentation ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>printOn: aStream [
+{ #category : #printing }
+GLMPane >> printOn: aStream [
 	super printOn: aStream.
 	aStream
 		nextPut: $(;
@@ -376,57 +273,39 @@ GLMPane>>printOn: aStream [
 		nextPut: $)
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMPane >> renderGlamorouslyOn: aRenderer [ 
 	 
 	^aRenderer renderPane: self
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>resetAnnouncer [
+{ #category : #announcements }
+GLMPane >> resetAnnouncer [
 	super resetAnnouncer.
 	self presentations do: [ :each | each resetAnnouncer ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>unregisterFromAllAnnouncements [
+{ #category : #updating }
+GLMPane >> unregisterFromAllAnnouncements [
 	self presentations unregisterFromAllAnnouncements
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>update  [
+{ #category : #updating }
+GLMPane >> update [ 
 	self notingPresentationChangeDo: [
 		"nothing in particular. 
 		just make sure that matching presentations are recomputed"].
 	self presentations do: [ :each | each update ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>updateToolbar [
+{ #category : #updating }
+GLMPane >> updateToolbar [
 
 	self announce: (GLMPresentationToolbarUpdated new presentation: self presentations)
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>withAllPanes [
+{ #category : #enumerating }
+GLMPane >> withAllPanes [
 	| result |
 	result := OrderedCollection new.
 	self withAllPanesAndPresentationsDo: [:each |
@@ -434,20 +313,14 @@ GLMPane>>withAllPanes [
 	^ result
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>withAllPanesAndPresentationsDo: aBlock [
+{ #category : #enumerating }
+GLMPane >> withAllPanesAndPresentationsDo: aBlock [
 	aBlock value: self.
 	self presentations withAllPanesAndPresentationsDo: aBlock
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPane>>withAllPresentations [
+{ #category : #enumerating }
+GLMPane >> withAllPresentations [
 	| result |
 	result := OrderedCollection new.
 	self withAllPanesAndPresentationsDo: [:each |

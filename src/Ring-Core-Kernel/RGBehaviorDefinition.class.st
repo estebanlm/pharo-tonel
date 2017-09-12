@@ -14,105 +14,71 @@ Class {
 		'methods',
 		'protocols'
 	],
-	#category : #Ring-Core-Kernel,
-	#timestamp : 'VeronicaUquillas 5/9/2011 14:30'
+	#category : #Ring-Core-Kernel
 }
 
-{
-	#category : #class-annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition class>>allSubclassesKey [
+{ #category : #class-annotations }
+RGBehaviorDefinition class >> allSubclassesKey [
 
 	^#allSubclasses
 ]
 
-{
-	#category : #class-annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition class>>allSuperclassesKey [
+{ #category : #class-annotations }
+RGBehaviorDefinition class >> allSuperclassesKey [
 
 	^#allSuperclasses
 ]
 
-{
-	#category : #class-annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition class>>definitionSourceKey [
+{ #category : #class-annotations }
+RGBehaviorDefinition class >> definitionSourceKey [
 
 	^#definitionSource
 ]
 
-{
-	#category : #class-annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition class>>isPoolKey [
+{ #category : #class-annotations }
+RGBehaviorDefinition class >> isPoolKey [
 
 	^#isPool
 ]
 
-{
-	#category : #class-annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition class>>subclassesKey [
+{ #category : #class-annotations }
+RGBehaviorDefinition class >> subclassesKey [
 
 	^#subclasses
 ]
 
-{
-	#category : #class-annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition class>>superclassNameKey [
+{ #category : #class-annotations }
+RGBehaviorDefinition class >> superclassNameKey [
 	
 	^#superclassName
 ]
 
-{
-	#category : #class-annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition class>>superclassesKey [
+{ #category : #class-annotations }
+RGBehaviorDefinition class >> superclassesKey [
 
 	^#superclasses
 ]
 
-{
-	#category : #class-annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition class>>traitCompositionSourceKey [
+{ #category : #class-annotations }
+RGBehaviorDefinition class >> traitCompositionSourceKey [
 
 	^#traitCompositionSource
 ]
 
-{
-	#category : #class-annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition class>>usersKey [
+{ #category : #class-annotations }
+RGBehaviorDefinition class >> usersKey [
 
 	^#users
 ]
 
-{
-	#category : #'managing container',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>addInContainer: aRGContainer [
+{ #category : #'managing container' }
+RGBehaviorDefinition >> addInContainer: aRGContainer [
 
 	aRGContainer addClass: self
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>addMethod: aRGMethodDefinition [
+{ #category : #'adding/removing methods' }
+RGBehaviorDefinition >> addMethod: aRGMethodDefinition [
 	"Adds aRGMethodDefinition in the methods dictionary.
 	 Adds the protocol of such method too"
 
@@ -120,11 +86,8 @@ RGBehaviorDefinition>>addMethod: aRGMethodDefinition [
 	self addProtocol: aRGMethodDefinition protocol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>addMethod: aRGMethodDefinition in: aCollection [
+{ #category : #private }
+RGBehaviorDefinition >> addMethod: aRGMethodDefinition [ in: aCollection
 	"Adds aRGMethodDefinition in the collection received"
 
 	aRGMethodDefinition parent ifNil:[ aRGMethodDefinition parent: self ].
@@ -132,11 +95,8 @@ RGBehaviorDefinition>>addMethod: aRGMethodDefinition in: aCollection [
 		put: aRGMethodDefinition
 ]
 
-{
-	#category : #'adding/removing protocols',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>addProtocol: anObject [
+{ #category : #'adding/removing protocols' }
+RGBehaviorDefinition >> addProtocol: anObject [
 	"Adds a protocol named anObject.
 	Protocols are not repeated"
 	
@@ -144,11 +104,8 @@ RGBehaviorDefinition>>addProtocol: anObject [
 	protocols add: anObject
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>addSelector: selectorName classified: protocolName sourced: source [
+{ #category : #'adding/removing methods' }
+RGBehaviorDefinition >> addSelector: selectorName classified: protocolName sourced: source [
 
 	self addMethod: ((RGMethodDefinition named: selectorName) 
 							parent: self;
@@ -157,22 +114,16 @@ RGBehaviorDefinition>>addSelector: selectorName classified: protocolName sourced
 							yourself)
 ]
 
-{
-	#category : #subclassing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>addSubclass: aRGBehaviorDefinition [
+{ #category : #subclassing }
+RGBehaviorDefinition >> addSubclass: aRGBehaviorDefinition [
 	"Adds a direct subclass of the receiver"
 
 	(self subclasses includes: aRGBehaviorDefinition)
 		ifFalse:[ self subclasses add: aRGBehaviorDefinition ]
 ]
 
-{
-	#category : #'accessing methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>allSelectors [
+{ #category : #'accessing methods' }
+RGBehaviorDefinition >> allSelectors [
 	"Retrieves all the selectos of the receiver in the chain hierarchy"
 	| class selectors |
 	
@@ -184,11 +135,8 @@ RGBehaviorDefinition>>allSelectors [
 	^selectors
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>allSubclasses [
+{ #category : #'accessing class hierarchy' }
+RGBehaviorDefinition >> allSubclasses [
 	"Retrieves all the subclasses of the receiver in the chan hiearchy - value is kept as an annotation"
 	"is a good idea storing this?"
 	
@@ -202,22 +150,16 @@ RGBehaviorDefinition>>allSubclasses [
 			collection ]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>allSubclasses: aCollection [
+{ #category : #'accessing class hierarchy' }
+RGBehaviorDefinition >> allSubclasses: aCollection [
 	"Stores all the subclasses (direct and indirect) as an annotation"
 	
 	self annotationNamed: self class allSubclassesKey
 		ifAbsentPut:[ aCollection ]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>allSuperclasses [
+{ #category : #'accessing class hierarchy' }
+RGBehaviorDefinition >> allSuperclasses [
 	"Answer an OrderedCollection of the receiver's and the receiver's  
 	ancestor's superclasses"
 	"Is implementation of Behavior more efficient?"
@@ -232,22 +174,16 @@ RGBehaviorDefinition>>allSuperclasses [
 			supers ]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>allSuperclasses: aCollection [
+{ #category : #'accessing class hierarchy' }
+RGBehaviorDefinition >> allSuperclasses: aCollection [
 	"Stores all the superclasses (direct and indirect) as an annotation"
 	
 	self annotationNamed: self class allSuperclassesKey
 		ifAbsentPut:[ aCollection ]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>allSuperclassesDo: aBlock [
+{ #category : #'accessing class hierarchy' }
+RGBehaviorDefinition >> allSuperclassesDo: aBlock [
 	"Evaluate the argument, aBlock, for each of the receiver's superclasses."
 
 	self superclass isNil
@@ -256,11 +192,8 @@ RGBehaviorDefinition>>allSuperclassesDo: aBlock [
 	superclass allSuperclassesDo: aBlock
 ]
 
-{
-	#category : #'accessing methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>compiledMethodNamed: selector [
+{ #category : #'accessing methods' }
+RGBehaviorDefinition >> compiledMethodNamed: selector [
 	"Retrieves the compiled method from aRGMethodDefinition"
 	| method |
 
@@ -269,31 +202,22 @@ RGBehaviorDefinition>>compiledMethodNamed: selector [
 	ifFalse:[ nil ]
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>definition [
+{ #category : #filein/out }
+RGBehaviorDefinition >> definition [
 
 	^ self definitionSource
 ]
 
-{
-	#category : #annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>definitionSource [
+{ #category : #annotations }
+RGBehaviorDefinition >> definitionSource [
 	"Retrieves the definition template of the receiver -> aString.
 	This value is kept as an annotation"
 	
 	^self annotationNamed: self class definitionSourceKey
 ]
 
-{
-	#category : #annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>definitionSource: aString [
+{ #category : #annotations }
+RGBehaviorDefinition >> definitionSource: aString [
 	"Sets the definition template of the receiver -> aString.
 	It's stored as an annotation"
 	
@@ -301,338 +225,233 @@ RGBehaviorDefinition>>definitionSource: aString [
 		put: aString
 ]
 
-{
-	#category : #'accessing methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>extensionMethods [
+{ #category : #'accessing methods' }
+RGBehaviorDefinition >> extensionMethods [
 
 	^self methods select:[ :each | each isExtension ]
 ]
 
-{
-	#category : #annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>hasDefinitionSource [
+{ #category : #annotations }
+RGBehaviorDefinition >> hasDefinitionSource [
 	"Tests whether the receiver has a source definition."
 	
 	^ self definitionSource notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>hasMetaclass [
+{ #category : #testing }
+RGBehaviorDefinition >> hasMetaclass [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>hasMethods [
+{ #category : #testing }
+RGBehaviorDefinition >> hasMethods [
 	"validates the existance of methods"
 
 	^methods notEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>hasProtocols [
+{ #category : #testing }
+RGBehaviorDefinition >> hasProtocols [
 	"Validates the existance of protocols"
 
 	^protocols notEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>hasSuperclass [
+{ #category : #testing }
+RGBehaviorDefinition >> hasSuperclass [
 
 	^superclass notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>hasTraitComposition [
+{ #category : #testing }
+RGBehaviorDefinition >> hasTraitComposition [
 
 	^self traitCompositionSource ~= '{}'
 ]
 
-{
-	#category : #'testing class hierarchy',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>includesBehavior: aClass [
+{ #category : #'testing class hierarchy' }
+RGBehaviorDefinition >> includesBehavior: aClass [
 	^self == aClass or: [self inheritsFrom: aClass]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>includesProtocol: aString [
+{ #category : #testing }
+RGBehaviorDefinition >> includesProtocol: aString [
 	    "Looks for a protocols named = aString"
     
 	    ^protocols includes: aString
 ]
 
-{
-	#category : #'accessing methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>includesSelector: selector [
+{ #category : #'accessing methods' }
+RGBehaviorDefinition >> includesSelector: selector [
 	"Looks if selector is a key in the methods dictionary"
 	
 	^methods includesKey: selector asSymbol
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>initialize [
+{ #category : #initialization }
+RGBehaviorDefinition >> initialize [
 
 	super initialize.
 	methods:= IdentityDictionary new.
 	protocols:= Set new.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>isDefined [
+{ #category : #testing }
+RGBehaviorDefinition >> isDefined [
 	"If the class exists in the environment"
 	
 	^self realClass notNil
 	
 ]
 
-{
-	#category : #'managing container',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>isIncludedInContainer: aRGContainer [
+{ #category : #'managing container' }
+RGBehaviorDefinition >> isIncludedInContainer: aRGContainer [
 
 	^aRGContainer includesClass: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>isMeta [
+{ #category : #testing }
+RGBehaviorDefinition >> isMeta [
 	"By default is considered a non-meta class"
 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>isSameRevisionAs: aRGBehaviorDefinition [
+{ #category : #testing }
+RGBehaviorDefinition >> isSameRevisionAs: aRGBehaviorDefinition [
 	"This method look for equality of the properties of the receiver"
 
 	^self class = aRGBehaviorDefinition class
 		and:[ self name == aRGBehaviorDefinition name ]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>methodDict [
+{ #category : #'accessing class hierarchy' }
+RGBehaviorDefinition >> methodDict [
 	^ methods
 ]
 
-{
-	#category : #'accessing methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>methodNamed: selector [
+{ #category : #'accessing methods' }
+RGBehaviorDefinition >> methodNamed: selector [
 	"Retrieves aRGMethodDefinition that matches the selector given as argument"
 	"RB defines methodFor:"
 
 	^methods at: selector asSymbol ifAbsent:[ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>methods [
+{ #category : #accessing }
+RGBehaviorDefinition >> methods [
 
 	^methods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>methods: aDictionary [
+{ #category : #accessing }
+RGBehaviorDefinition >> methods: aDictionary [
 
 	methods:= aDictionary
 ]
 
-{
-	#category : #'accessing methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>methodsInProtocol: aString [
+{ #category : #'accessing methods' }
+RGBehaviorDefinition >> methodsInProtocol: aString [
 	"Retrieves the methods classified in protocol named aString"
 
 	^methods select: [ :each | each protocol = aString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>package [
+{ #category : #accessing }
+RGBehaviorDefinition >> package [
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>printOn: aStream  [
+{ #category : #printing }
+RGBehaviorDefinition >> printOn: aStream [ 
 	aStream nextPutAll: self name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>protocols [
+{ #category : #accessing }
+RGBehaviorDefinition >> protocols [
 	"retrieves the protocols of the class"
 
 	^protocols
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>protocols: aCollection [
+{ #category : #accessing }
+RGBehaviorDefinition >> protocols: aCollection [
 	"set the protocols of the class"
 
 	protocols:= aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>realClass [
+{ #category : #accessing }
+RGBehaviorDefinition >> realClass [
 	"Retrieves the current class existing in the runtime environment"
 
 	^self rootEnvironment classNamed: self name 
 ]
 
-{
-	#category : #'managing container',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>removeFromContainer: aRGContainer [
+{ #category : #'managing container' }
+RGBehaviorDefinition >> removeFromContainer: aRGContainer [
 
 	aRGContainer removeClass: self
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>removeMethod: aRGMethodDefinition [
+{ #category : #'adding/removing methods' }
+RGBehaviorDefinition >> removeMethod: aRGMethodDefinition [
 	"Removes aRGMethodDefinition from the methods dictionary"
 
 	self removeMethod: aRGMethodDefinition from: methods
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>removeMethod: aRGMethodDefinition from: aCollection [
+{ #category : #private }
+RGBehaviorDefinition >> removeMethod: aRGMethodDefinition from: aCollection [
 	"Removes aRGMethodDefinition from the collection received"
 
 	aCollection removeKey: aRGMethodDefinition selector ifAbsent:[]
 ]
 
-{
-	#category : #'adding/removing protocols',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>removeProtocol: aString [
+{ #category : #'adding/removing protocols' }
+RGBehaviorDefinition >> removeProtocol: aString [
 	"Removes a protocol named aString (if exists)"
 
 	protocols remove: aString ifAbsent:[]
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>removeSelector: selector [
+{ #category : #'adding/removing methods' }
+RGBehaviorDefinition >> removeSelector: selector [
 	"Removes a method named as selector"
 
 	methods removeKey: selector ifAbsent:[]
 ]
 
-{
-	#category : #subclassing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>removeSubclass: aRGBehaviorDefinition  [
+{ #category : #subclassing }
+RGBehaviorDefinition >> removeSubclass: aRGBehaviorDefinition [ 
 	"Removes aRGAbstractClassDefinition from the direct subclasses - without failing if does not exist"
 	
 	self subclasses remove: aRGBehaviorDefinition ifAbsent: []
 ]
 
-{
-	#category : #'accessing methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>selectors [
+{ #category : #'accessing methods' }
+RGBehaviorDefinition >> selectors [
 	"Retrieves the method selectors"
 
 	^methods keys
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>soleInstance [
+{ #category : #compatibility }
+RGBehaviorDefinition >> soleInstance [
 	"to be depracated in the future"
 	
 	^self theNonMetaClass
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>storeOn: aStream  [
+{ #category : #printing }
+RGBehaviorDefinition >> storeOn: aStream [ 
 	self name storeOn: aStream
 ]
 
-{
-	#category : #annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>subclasses [
+{ #category : #annotations }
+RGBehaviorDefinition >> subclasses [
 	"Retrieves the direct subclasses of the receiver.
 	This value is kept as an annotation"
 
@@ -640,31 +459,22 @@ RGBehaviorDefinition>>subclasses [
 		ifAbsentPut:[ OrderedCollection new ]
 ]
 
-{
-	#category : #annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>subclasses: aCollection [
+{ #category : #annotations }
+RGBehaviorDefinition >> subclasses: aCollection [
 	"Stores direct subclasses of the receiver as an annotation"
 
 	self annotationNamed: self class subclassesKey
 		ifAbsentPut:[ aCollection ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>superclass [
+{ #category : #accessing }
+RGBehaviorDefinition >> superclass [
 
 	^superclass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>superclass: aRGBehaviorDefinition [
+{ #category : #accessing }
+RGBehaviorDefinition >> superclass: aRGBehaviorDefinition [
 	"The superclass is assigned.
 	If aRGBehaviorDefinition is not nil the receiver is added as a subclass and the superclass assignment also happens for theMetaClass"
 
@@ -677,71 +487,50 @@ RGBehaviorDefinition>>superclass: aRGBehaviorDefinition [
 		ifTrue: [ self theMetaClass superclass: aRGBehaviorDefinition theMetaClass ]
 ]
 
-{
-	#category : #annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>superclassName [
+{ #category : #annotations }
+RGBehaviorDefinition >> superclassName [
 	"Retrieves the name of the superclass if exists"
 
 	^self annotationNamed: self class superclassNameKey
 ]
 
-{
-	#category : #annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>superclassName: aSymbol [
+{ #category : #annotations }
+RGBehaviorDefinition >> superclassName: aSymbol [
 
 	self annotationNamed: self class superclassNameKey 
 		put: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>theMetaClass [
+{ #category : #accessing }
+RGBehaviorDefinition >> theMetaClass [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>theNonMetaClass [
+{ #category : #accessing }
+RGBehaviorDefinition >> theNonMetaClass [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>traitCompositionSource [
+{ #category : #annotations }
+RGBehaviorDefinition >> traitCompositionSource [
 	"Retrieves aString representing the used traits"
 
 	^self annotationNamed: self class traitCompositionSourceKey
 		ifAbsentPut:[  '{}'  ]
 ]
 
-{
-	#category : #annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>traitCompositionSource: anString [
+{ #category : #annotations }
+RGBehaviorDefinition >> traitCompositionSource: anString [
 	"Stores aString representing the traits used by the receiver "
 
 	self annotationNamed: self class traitCompositionSourceKey
 		put: anString 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>traitNames [
+{ #category : #accessing }
+RGBehaviorDefinition >> traitNames [
 	"Assuming that traits in a composition can be identified by
 	testing for the first character being an uppercase character
 	(and thus not a special character such as {, # etc.)"
@@ -751,11 +540,8 @@ RGBehaviorDefinition>>traitNames [
 	^tokens select: [:each | each first isUppercase].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>traits [
+{ #category : #accessing }
+RGBehaviorDefinition >> traits [
 	"Retrieves ring traits based on the names in the traitComposition and from the environment if it is a ring object"
 	
 	^ self environment isRingObject 	
@@ -763,21 +549,15 @@ RGBehaviorDefinition>>traits [
 		ifFalse:[ #() ]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>withAllSubclasses [
+{ #category : #'accessing class hierarchy' }
+RGBehaviorDefinition >> withAllSubclasses [
 	"if allSubclasses is stored should not affect the collection"
 
 	^self allSubclasses, {self}
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGBehaviorDefinition>>withAllSuperclasses [
+{ #category : #'accessing class hierarchy' }
+RGBehaviorDefinition >> withAllSuperclasses [
 	"if allSuperclasses is stored should not affect the collection"
 
 	^self allSuperclasses, {self}

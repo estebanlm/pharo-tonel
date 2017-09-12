@@ -9,33 +9,23 @@ Class {
 		'writer',
 		'first'
 	],
-	#category : #STON-Core,
-	#timestamp : '<historical>'
+	#category : #STON-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONStreamWriter class>>on: stonWriter [
+{ #category : #'instance creation' }
+STONStreamWriter class >> on: stonWriter [
 	^ self new
 		on: stonWriter;
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONStreamWriter>>initialize [
+{ #category : #initialize-release }
+STONStreamWriter >> initialize [
 	super initialize.
 	first := true
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONStreamWriter>>on: stonWriter [
+{ #category : #initialize-release }
+STONStreamWriter >> on: stonWriter [
 	writer := stonWriter
 ]

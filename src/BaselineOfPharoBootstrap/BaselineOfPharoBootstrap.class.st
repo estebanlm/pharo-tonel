@@ -8,78 +8,53 @@ This baseline includes several utility methods required to prepare data for the 
 Class {
 	#name : #BaselineOfPharoBootstrap,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfPharoBootstrap,
-	#timestamp : 'PavelKrivanek 11/7/2016 15:56'
+	#category : #BaselineOfPharoBootstrap
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-BaselineOfPharoBootstrap class>>allPackageNames [
+{ #category : #accessing }
+BaselineOfPharoBootstrap class >> allPackageNames [
 	
 	^ self version packages collect: #name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-BaselineOfPharoBootstrap class>>compilerPackageNames [
+{ #category : #accessing }
+BaselineOfPharoBootstrap class >> compilerPackageNames [
 
 	^ self packagesOfGroupNamed: #CompilerGroup
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-BaselineOfPharoBootstrap class>>fileSystemPackageNames [
+{ #category : #accessing }
+BaselineOfPharoBootstrap class >> fileSystemPackageNames [
 
 	^ self packagesOfGroupNamed: #FileSystemGroup
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-BaselineOfPharoBootstrap class>>kernelPackageNames [
+{ #category : #accessing }
+BaselineOfPharoBootstrap class >> kernelPackageNames [
 
 	^ self packagesOfGroupNamed: #KernelGroup
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-BaselineOfPharoBootstrap class>>packagesOfGroupNamed: aName [
+{ #category : #accessing }
+BaselineOfPharoBootstrap class >> packagesOfGroupNamed: aName [
 
 	^ (self version groups detect: [ :g | g name = aName ]) includes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-BaselineOfPharoBootstrap class>>sUnitPackageNames [
+{ #category : #accessing }
+BaselineOfPharoBootstrap class >> sUnitPackageNames [
 
 	^ self packagesOfGroupNamed: #SUnitGroup
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-BaselineOfPharoBootstrap class>>version [
+{ #category : #accessing }
+BaselineOfPharoBootstrap class >> version [
 	
 	^ self project version
 ]
 
-{
-	#category : #baseline,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-BaselineOfPharoBootstrap>>baseline: spec [
+{ #category : #baseline }
+BaselineOfPharoBootstrap >> baseline: spec [
 	<baseline>
 
 	spec for: #common do: [

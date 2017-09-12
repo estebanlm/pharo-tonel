@@ -7,78 +7,50 @@ Class {
 	#instVars : [
 		'index'
 	],
-	#category : #Spec-Inspector-Element,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector-Element
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-BasicIndexedEyeElement class>>host: anObject index: index [
+{ #category : #'instance creation' }
+BasicIndexedEyeElement class >> host: anObject index: index [
 	^ (self host: anObject) index: index
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-BasicIndexedEyeElement>>= anObject [
+{ #category : #comparing }
+BasicIndexedEyeElement >> = anObject [
 	^ super = anObject and: [ index = anObject index ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-BasicIndexedEyeElement>>accessorCode [
+{ #category : #accessing }
+BasicIndexedEyeElement >> accessorCode [
 	^ '(self basicAt: ', self index asString, ')'
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-BasicIndexedEyeElement>>hash [
+{ #category : #comparing }
+BasicIndexedEyeElement >> hash [
 	^ index hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-BasicIndexedEyeElement>>index [
+{ #category : #accessing }
+BasicIndexedEyeElement >> index [
 	^ index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-BasicIndexedEyeElement>>index: anObject [
+{ #category : #accessing }
+BasicIndexedEyeElement >> index: anObject [
 	index := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-BasicIndexedEyeElement>>label [
+{ #category : #accessing }
+BasicIndexedEyeElement >> label [
 	^ self index printString
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-BasicIndexedEyeElement>>save: aValue [
+{ #category : #action }
+BasicIndexedEyeElement >> save: aValue [
 	self host basicAt: self index put: aValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-BasicIndexedEyeElement>>value [
+{ #category : #accessing }
+BasicIndexedEyeElement >> value [
 	^ self host basicAt: self index
 ]

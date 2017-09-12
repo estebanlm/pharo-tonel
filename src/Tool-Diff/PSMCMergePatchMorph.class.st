@@ -1,28 +1,18 @@
-"
-
-"
 Class {
 	#name : #PSMCMergePatchMorph,
 	#superclass : #PSMCPatchMorph,
-	#category : #Tool-Diff,
-	#timestamp : ''
+	#category : #Tool-Diff
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>allConflicts [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> allConflicts [
 	"Answer all conflicts in the model."
 
 	^self model select: [:op | op isConflict]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>allConflictsMenu [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> allConflictsMenu [
 	"Answer the all conflicts menu."
 
 	| menu |
@@ -60,11 +50,8 @@ PSMCMergePatchMorph>>allConflictsMenu [
 	^ menu
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>changeTreeKey: aCharacter [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> changeTreeKey: aCharacter [
 	"Handle change tree key strokes."
 
 	super changeTreeKey: aCharacter.
@@ -88,11 +75,8 @@ PSMCMergePatchMorph>>changeTreeKey: aCharacter [
 		^self markAllAsConflict]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>changesMenu: m [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> changesMenu: m [
 	"Answer the changes menu."
 
 	| menu |
@@ -157,64 +141,46 @@ PSMCMergePatchMorph>>changesMenu: m [
 	^ menu
 ]
 
-{
-	#category : #hooks,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>diffMorphClass [
+{ #category : #hooks }
+PSMCMergePatchMorph >> diffMorphClass [
 	"Answer a the class to use for a new diff morph."
 
 	^MergeDiffMorph
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>hasAnyNonConflictConflicts [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> hasAnyNonConflictConflicts [
 	"Answer whether there are any conflicts not marked as a conflict."
 
 	^self allConflicts anySatisfy: [:conflict |
 		conflict isResolved]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>hasAnyNonIncomingConflicts [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> hasAnyNonIncomingConflicts [
 	"Answer whether there are any conflicts not marked as incoming."
 
 	^self allConflicts anySatisfy: [:conflict |
 		conflict isResolved not or: [conflict localChosen]]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>hasAnyNonKeptConflicts [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> hasAnyNonKeptConflicts [
 	"Answer whether there are any conflicts not marked as keep."
 
 	^self allConflicts anySatisfy: [:conflict |
 		conflict isResolved not or: [conflict remoteChosen]]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>hasConflicts [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> hasConflicts [
 	"Answer whether there are any conflicts."
 
 	^self allConflicts notEmpty
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>keepAllCurrentVersion [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> keepAllCurrentVersion [
 	"Mark all conflicts as local."
 	
 	self allConflicts do: [:c | c chooseLocal].
@@ -222,11 +188,8 @@ PSMCMergePatchMorph>>keepAllCurrentVersion [
 	self updateSource
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>keepCurrentVersion [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> keepCurrentVersion [
 	"Mark the conflict as local."
 	
 	self selectedChangeWrapper chooseLocal.
@@ -234,11 +197,8 @@ PSMCMergePatchMorph>>keepCurrentVersion [
 	self updateSource
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>markAllAsConflict [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> markAllAsConflict [
 	"Mark all conflicts as unresolved."
 	
 	self allConflicts do: [:c | c clearChoice].
@@ -246,11 +206,8 @@ PSMCMergePatchMorph>>markAllAsConflict [
 	self updateSource
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>markAsConflict [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> markAsConflict [
 	"Mark the operation as unresolved conflict."
 	
 	self selectedChangeWrapper operation beConflict.
@@ -258,11 +215,8 @@ PSMCMergePatchMorph>>markAsConflict [
 	self updateSource.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>nextConflict [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> nextConflict [
 	"Answer the next (unresolved) conflict or, nil if none."
 
 	|coll current index|
@@ -277,21 +231,15 @@ PSMCMergePatchMorph>>nextConflict [
 	^coll detect: [:item | item isConflict and: [item isResolved not]] ifNone: [nil]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>notAllConflictsResolved [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> notAllConflictsResolved [
 	"Answer whether any conflicts are unresolved."
 	
 	^self model anySatisfy: [:item | item isConflict and: [item isResolved not]]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>selectNextConflict [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> selectNextConflict [
 	"Select the next conflict after the current selection, if any."
 
 	|next op def path|
@@ -304,29 +252,20 @@ PSMCMergePatchMorph>>selectNextConflict [
 	self changed: path
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>selectionIsNotNil [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> selectionIsNotNil [
 
 	^ self selectedChange notNil
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>selectionIsRemoteChosen [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> selectionIsRemoteChosen [
 	self selectedChange ifNil: [ ^ false].
 	^ self selectedChange remoteChosen
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>toggleApplySelectedChange [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> toggleApplySelectedChange [
 
 	self selectedChange remoteChosen 
 		ifTrue: [ self selectedChange chooseLocal ]
@@ -335,11 +274,8 @@ PSMCMergePatchMorph>>toggleApplySelectedChange [
 	self updateSource
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>updateSource [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> updateSource [
 	"Update the source difference morph."
 
 	|sel|
@@ -353,11 +289,8 @@ PSMCMergePatchMorph>>updateSource [
 		ifFalse: [self diffMorph indicateDst]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>useAllIncomingVersion [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> useAllIncomingVersion [
 	"Mark all conflicts as remote."
 	
 	self allConflicts do: [:c | c chooseRemote].
@@ -365,11 +298,8 @@ PSMCMergePatchMorph>>useAllIncomingVersion [
 	self updateSource
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergePatchMorph>>useIncomingVersion [
+{ #category : #'as yet unclassified' }
+PSMCMergePatchMorph >> useIncomingVersion [
 	"Mark the conflict as remote."
 	
 	self selectedChangeWrapper chooseRemote.

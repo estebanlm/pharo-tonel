@@ -4,49 +4,31 @@ Test of basic functions in Collections that are in the protocol enumerating
 "
 Trait {
 	#name : #TEnumeratingTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : '<historical>'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TEnumeratingTest>>collectionOfCollectionsOfInts [
+{ #category : #requirements }
+TEnumeratingTest >> collectionOfCollectionsOfInts [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TEnumeratingTest>>collectionOfCollectionsOfStrings [
+{ #category : #requirements }
+TEnumeratingTest >> collectionOfCollectionsOfStrings [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TEnumeratingTest>>collectionWithCharacters [
+{ #category : #requirements }
+TEnumeratingTest >> collectionWithCharacters [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TEnumeratingTest>>simpleCollection [
+{ #category : #requirements }
+TEnumeratingTest >> simpleCollection [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'tests - enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TEnumeratingTest>>testFlatCollect [
+{ #category : #'tests - enumerating' }
+TEnumeratingTest >> testFlatCollect [
 
 	self assert: (self simpleCollection flatCollect: [ :x | { x } ]) equals: self simpleCollection.
 	self assert: (self simpleCollection flatCollect: [ :x | { x } ]) species = self simpleCollection species.
@@ -62,44 +44,32 @@ TEnumeratingTest>>testFlatCollect [
 		equals: self collectionOfCollectionsOfStrings
 ]
 
-{
-	#category : #'tests - enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TEnumeratingTest>>testFlatCollectAs [
+{ #category : #'tests - enumerating' }
+TEnumeratingTest >> testFlatCollectAs [
 
 	self 
 		assert: (self simpleCollection flatCollect: [ :x | { x }, { x } ] as: IdentitySet) 
 		equals: self simpleCollection asIdentitySet
 ]
 
-{
-	#category : #'tests - enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TEnumeratingTest>>testFlatCollectAsSet [
+{ #category : #'tests - enumerating' }
+TEnumeratingTest >> testFlatCollectAsSet [
 
 	self 
 		assert: (self simpleCollection flatCollectAsSet: [ :x | { x }, { x } ]) 
 		equals: self simpleCollection asSet
 ]
 
-{
-	#category : #'tests - enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TEnumeratingTest>>testFlatCollectAsWithEmptyCollection [
+{ #category : #'tests - enumerating' }
+TEnumeratingTest >> testFlatCollectAsWithEmptyCollection [
 
 	self 
 		assert: (self empty flatCollect: [ :x | { x }, { x } ] as: IdentitySet) 
 		equals: self empty asIdentitySet
 ]
 
-{
-	#category : #'tests - enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TEnumeratingTest>>testFlattened [
+{ #category : #'tests - enumerating' }
+TEnumeratingTest >> testFlattened [
 
 	self assert: self simpleCollection flattened equals: #(1 8 3).
 	self assert: self collectionOfCollectionsOfInts flattened equals: #( 1 2 3 4 5 6 ).

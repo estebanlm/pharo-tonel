@@ -4,26 +4,19 @@ A BeepingSoundSystem is a simple sound system just doing beep and niling everyth
 Class {
 	#name : #DummySoundSystem,
 	#superclass : #SoundSystem,
-	#category : #System-Sound,
-	#timestamp : '<historical>'
+	#category : #System-Sound
 }
 
-{
-	#category : #beep,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DummySoundSystem>>beep [
+{ #category : #beep }
+DummySoundSystem >> beep [
 	"Make a primitive beep if possible."
 
 	self soundEnabled 
 		ifTrue: [ self beepPrimitive ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DummySoundSystem>>beepPrimitive [
+{ #category : #private }
+DummySoundSystem >> beepPrimitive [
 	"Make a primitive beep. Not to be called directly.
 	It is much better to use SoundSystem current beep
 	since this method does not if sound is enabled"
@@ -32,46 +25,31 @@ DummySoundSystem>>beepPrimitive [
 	self primitiveFailed
 ]
 
-{
-	#category : #playing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DummySoundSystem>>playSampledSound: samples rate: rate [
+{ #category : #playing }
+DummySoundSystem >> playSampledSound: samples rate: rate [
 	"Do nothing."
 	
 ]
 
-{
-	#category : #playing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DummySoundSystem>>playSoundNamed: soundName [
+{ #category : #playing }
+DummySoundSystem >> playSoundNamed: soundName [
 	"Do nothing."
 ]
 
-{
-	#category : #playing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DummySoundSystem>>playSoundNamed: soundName ifAbsentReadFrom: aifFileName [
+{ #category : #playing }
+DummySoundSystem >> playSoundNamed: soundName ifAbsentReadFrom: aifFileName [
 	"Do nothing."
 ]
 
-{
-	#category : #playing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DummySoundSystem>>playSoundNamedOrBeep: soundName  [
+{ #category : #playing }
+DummySoundSystem >> playSoundNamedOrBeep: soundName [ 
 	"There is no sound support, so we make the beep."
 
 	self beep
 ]
 
-{
-	#category : #misc,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DummySoundSystem>>randomBitsFromSoundInput: bitCount [
+{ #category : #misc }
+DummySoundSystem >> randomBitsFromSoundInput: bitCount [
  	"I'm not sure what the right thing to do here is."
 
  	self error: 'Can not provide random data.'
@@ -79,21 +57,15 @@ DummySoundSystem>>randomBitsFromSoundInput: bitCount [
 	for the DummySoundSystem."
 ]
 
-{
-	#category : #misc,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DummySoundSystem>>sampledSoundChoices [
+{ #category : #misc }
+DummySoundSystem >> sampledSoundChoices [
 	"No choices other than this."
 
 	^ #('silence')
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DummySoundSystem>>soundNamed: soundName [
+{ #category : #query }
+DummySoundSystem >> soundNamed: soundName [
 	"There are no sounds to look up."
 
 	^ nil

@@ -28,402 +28,269 @@ Class {
 		'shortcutName',
 		'keyText'
 	],
-	#category : #MenuRegistration-Core,
-	#timestamp : '<historical>'
+	#category : #MenuRegistration-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>action [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> action [
 	
 	^ action
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>action: aBlock [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistrationItem >> action: aBlock [
 
 	action := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>arguments [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> arguments [
 	
 	^ arguments
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>arguments: anArray [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistrationItem >> arguments: anArray [
 
 	arguments := anArray
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>category [
+{ #category : #protocol }
+PragmaMenuAndShortcutRegistrationItem >> category [
 
 	^ category
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>category: aByteSymbol  [
+{ #category : #protocol }
+PragmaMenuAndShortcutRegistrationItem >> category: aByteSymbol [ 
 	
 	category := aByteSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>default [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> default [
 
 	^ default
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>default: aKMModifiedShortcut  [
+{ #category : #protocol }
+PragmaMenuAndShortcutRegistrationItem >> default: aKMModifiedShortcut [ 
 
 	default := aKMModifiedShortcut 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>enabled [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> enabled [
 
 	^ enabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>enabled: aBoolean [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> enabled: aBoolean [
 
 	enabled := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>enabledBlock [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> enabledBlock [
 	
 	^ enabledBlock
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>enabledBlock: aBlock [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistrationItem >> enabledBlock: aBlock [
 
 	enabledBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>group [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> group [
 	
 	^ group
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>group: aSymbol [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistrationItem >> group: aSymbol [
 
 	group := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>help [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> help [
 
 	^ help
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>help: aString  [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistrationItem >> help: aString [ 
 	
 	help := aString 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>icon [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> icon [
 
 	^ icon
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>icon: anIcon [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistrationItem >> icon: anIcon [
 	
 	icon := anIcon
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>initialize [
+{ #category : #initialization }
+PragmaMenuAndShortcutRegistrationItem >> initialize [
 
 	super initialize.
 
 	withSeparatorAfter := false.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>isWithSeparatorAfter [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> isWithSeparatorAfter [
 	
 	^ withSeparatorAfter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>item [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> item [
 
 	^ item
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>item: aSymbol  [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistrationItem >> item: aSymbol [ 
 	
 	item := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>keyText [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> keyText [
 	^keyText
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>keyText: aString [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistrationItem >> keyText: aString [
 	keyText := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>label [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> label [
 
 	^ label
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>label: aString [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistrationItem >> label: aString [
 	
 	label := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>order [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> order [
 
 	^ order
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>order: anInteger  [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistrationItem >> order: anInteger [ 
 
 	order := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>parent [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> parent [
 
 	^ parent
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>parent: aSymbol  [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistrationItem >> parent: aSymbol [ 
 	
 	parent := aSymbol 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>platform [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> platform [
 
 	^ platform
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>platform: aSymbol  [
+{ #category : #protocol }
+PragmaMenuAndShortcutRegistrationItem >> platform: aSymbol [ 
 
 	platform := aSymbol
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>precondition: aBlock [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistrationItem >> precondition: aBlock [
 	
 	precondition := aBlock 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>selector [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> selector [
 
 	^ selector
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>selector: aSymbol  [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistrationItem >> selector: aSymbol [ 
 	
 	selector := aSymbol 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>shortcut [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> shortcut [
 	
 	^ shortcut
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>shortcut: aSymbol  [
+{ #category : #protocol }
+PragmaMenuAndShortcutRegistrationItem >> shortcut: aSymbol [ 
 	
 	shortcut := aSymbol
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>shortcutName [
+{ #category : #protocol }
+PragmaMenuAndShortcutRegistrationItem >> shortcutName [
 	
 	^shortcutName
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>shortcutName: aSymbol  [
+{ #category : #protocol }
+PragmaMenuAndShortcutRegistrationItem >> shortcutName: aSymbol [ 
 	
 	shortcutName := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>target [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> target [
 
 	^ target
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>target: aSymbol  [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistrationItem >> target: aSymbol [ 
 	
 	target := aSymbol 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>with [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistrationItem >> with [
 
 	^ with
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>with: aBlock [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistrationItem >> with: aBlock [
  
 	with := aBlock
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistrationItem>>withSeparatorAfter [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistrationItem >> withSeparatorAfter [
 
 	withSeparatorAfter := true
 ]

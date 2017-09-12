@@ -1,40 +1,27 @@
-"
-
-"
 Class {
 	#name : #ZnLimitedReadStreamTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnLimitedReadStreamTests>>testBinary [
+{ #category : #testing }
+ZnLimitedReadStreamTests >> testBinary [
 	| data limitedReadStream |
 	data := #(0 1 2 3 4 5 6 7 8 9) asByteArray.
 	limitedReadStream := ZnLimitedReadStream on: data readStream limit: 5.
 	self assert: limitedReadStream upToEnd = #(0 1 2 3 4) asByteArray
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnLimitedReadStreamTests>>testBinaryAll [
+{ #category : #testing }
+ZnLimitedReadStreamTests >> testBinaryAll [
 	| data limitedReadStream |
 	data := #(0 1 2 3 4 5 6 7 8 9) asByteArray.
 	limitedReadStream := ZnLimitedReadStream on: data readStream limit: data size.
 	self assert: limitedReadStream upToEnd = data
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnLimitedReadStreamTests>>testMatch [
+{ #category : #testing }
+ZnLimitedReadStreamTests >> testMatch [
 	| stream |
 	stream := ZnLimitedReadStream on: 'ababcabc' readStream limit: 8.
 	self assert: (stream match: 'ab').
@@ -50,11 +37,8 @@ ZnLimitedReadStreamTests>>testMatch [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnLimitedReadStreamTests>>testNext [
+{ #category : #testing }
+ZnLimitedReadStreamTests >> testNext [
 	| limitedReadStream |
 	limitedReadStream := ZnLimitedReadStream on: String new readStream limit: 10.
 	self assert: limitedReadStream atEnd.
@@ -70,22 +54,16 @@ ZnLimitedReadStreamTests>>testNext [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnLimitedReadStreamTests>>testNextCount [
+{ #category : #testing }
+ZnLimitedReadStreamTests >> testNextCount [
 	| data stream |
 	data := '0123456789'.
 	stream := ZnLimitedReadStream on: data readStream limit: 8.
 	self assert: (stream next: 4) = '0123'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnLimitedReadStreamTests>>testNextCountInto [
+{ #category : #testing }
+ZnLimitedReadStreamTests >> testNextCountInto [
 	| data stream buffer |
 	data := '0123456789'.
 	stream := ZnLimitedReadStream on: data readStream limit: 8.
@@ -94,11 +72,8 @@ ZnLimitedReadStreamTests>>testNextCountInto [
 	self assert: buffer = '0123'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnLimitedReadStreamTests>>testNextCountIntoShort [
+{ #category : #testing }
+ZnLimitedReadStreamTests >> testNextCountIntoShort [
 	| data stream buffer |
 	data := '0123456789'.
 	stream := ZnLimitedReadStream on: data readStream limit: 5.
@@ -107,33 +82,24 @@ ZnLimitedReadStreamTests>>testNextCountIntoShort [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnLimitedReadStreamTests>>testNextCountShort [
+{ #category : #testing }
+ZnLimitedReadStreamTests >> testNextCountShort [
 	| data stream |
 	data := '0123456789'.
 	stream := ZnLimitedReadStream on: data readStream limit: 5.
 	self assert: (stream next: 6) = '01234'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnLimitedReadStreamTests>>testSimple [
+{ #category : #testing }
+ZnLimitedReadStreamTests >> testSimple [
 	| data limitedReadStream |
 	data := '0123456789'.
 	limitedReadStream := ZnLimitedReadStream on: data readStream limit: 5.
 	self assert: limitedReadStream upToEnd = '01234'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnLimitedReadStreamTests>>testSimpleEof [
+{ #category : #testing }
+ZnLimitedReadStreamTests >> testSimpleEof [
 	| data limitedReadStream |
 	data := '0123456789'.
 	limitedReadStream := ZnLimitedReadStream on: data readStream limit: 15.

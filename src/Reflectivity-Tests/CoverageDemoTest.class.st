@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #CoverageDemoTest,
 	#superclass : #TestCase,
@@ -8,24 +5,17 @@ Class {
 		'link',
 		'selector'
 	],
-	#category : #Reflectivity-Tests,
-	#timestamp : ''
+	#category : #Reflectivity-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-CoverageDemoTest>>tearDown [
+{ #category : #running }
+CoverageDemoTest >> tearDown [
 	link ifNotNil: [link uninstall].
 	ReflectivityExamples recompile: selector.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-CoverageDemoTest>>testCoverageAST [
+{ #category : #tests }
+CoverageDemoTest >> testCoverageAST [
 	selector := #exampleMethod.
 	
 	link := MetaLink new
@@ -40,11 +30,8 @@ CoverageDemoTest>>testCoverageAST [
 	self assert: (ReflectivityExamples>>#exampleMethod) sendNodes first hasBeenExecuted.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-CoverageDemoTest>>testCoverageControlFlow [
+{ #category : #tests }
+CoverageDemoTest >> testCoverageControlFlow [
 	selector := #exampleIfTrueIfFalse.
 
 	link := MetaLink new
@@ -62,11 +49,8 @@ CoverageDemoTest>>testCoverageControlFlow [
 	self assert: (ReflectivityExamples >> #exampleIfTrueIfFalse) ast hasBeenExecuted.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-CoverageDemoTest>>testCoverageMethod [
+{ #category : #tests }
+CoverageDemoTest >> testCoverageMethod [
 	selector := #exampleMethod.
 	link := MetaLink new
 		metaObject: #node;

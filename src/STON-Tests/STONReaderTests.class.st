@@ -5,25 +5,18 @@ STONReaderTests test materialization.
 Class {
 	#name : #STONReaderTests,
 	#superclass : #TestCase,
-	#category : #STON-Tests,
-	#timestamp : 'SvenVanCaekenberghe 1/22/2012 20:14'
+	#category : #STON-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>materialize: string [
+{ #category : #private }
+STONReaderTests >> materialize: string [
 	^ STON reader 
 		on: string readStream;
 		next
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testAssociation [
+{ #category : #tests }
+STONReaderTests >> testAssociation [
 	self assert: (self materialize: '''foo'':1') = ('foo' -> 1).
 	self assert: (self materialize: '#bar:2') = (#bar -> 2).
 	self assert: (self materialize: '''foo bar'':#ok') = ('foo bar' -> #ok).
@@ -38,45 +31,30 @@ STONReaderTests>>testAssociation [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testBoolean [
+{ #category : #tests }
+STONReaderTests >> testBoolean [
 	self assert: (self materialize: 'true') equals: true.
 	self assert: (self materialize: 'false') equals: false
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testByteArray [
+{ #category : #tests }
+STONReaderTests >> testByteArray [
 	self assert: (self materialize: 'ByteArray[''010203'']') = #(1 2 3) asByteArray
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testCharacter [
+{ #category : #tests }
+STONReaderTests >> testCharacter [
 	self assert: (self materialize: 'Character[''A'']') == $A.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testClass [
+{ #category : #tests }
+STONReaderTests >> testClass [
 	self assert: (self materialize: 'Class[#Point]') equals: Point
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testClassWithUnderscore [
+{ #category : #tests }
+STONReaderTests >> testClassWithUnderscore [
 
 	| cls data reader |
 
@@ -93,11 +71,8 @@ STONReaderTests>>testClassWithUnderscore [
 	self assert: reader next class equals: cls
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testConvertingNewLines [
+{ #category : #tests }
+STONReaderTests >> testConvertingNewLines [
 	| input result output |
 	input := '''line ending with CR', String cr, 
 		'line ending with LF', String lf, 
@@ -114,31 +89,22 @@ STONReaderTests>>testConvertingNewLines [
 	self assert: result equals: output
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testDate [
+{ #category : #tests }
+STONReaderTests >> testDate [
 	| date |
 	date := Date year: 2012 month: 1 day: 1.
 	self assert: (self materialize: 'Date[''2012-01-01'']') = date
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testDateAndTime [
+{ #category : #tests }
+STONReaderTests >> testDateAndTime [
 	| dateAndTime |
 	dateAndTime := DateAndTime year: 2012 month: 1 day: 1 hour: 6 minute: 30 second: 15 offset: 1 hour.
 	self assert: (self materialize: 'DateAndTime[''2012-01-01T06:30:15+01:00'']') = dateAndTime
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testDeepStructure [
+{ #category : #tests }
+STONReaderTests >> testDeepStructure [
 	| holder deepest structure writer ston reader result |
 	"Create a deep nested structure so that the deepest element is a reference back to a top level holder."
 	holder := Array with: 42.
@@ -154,11 +120,8 @@ STONReaderTests>>testDeepStructure [
 	self assert: result equals: structure
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testDictionary [
+{ #category : #tests }
+STONReaderTests >> testDictionary [
 	| collection |
 	collection := STON mapClass new at: 1 put: 1; at: 2 put: 2; yourself.
 	self assert: (self materialize: '{1:1,2:2}') = collection.
@@ -166,11 +129,8 @@ STONReaderTests>>testDictionary [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testDictionaryWithComplexKeys [
+{ #category : #tests }
+STONReaderTests >> testDictionaryWithComplexKeys [
 	| collection reader |
 	collection := STON mapClass new at: true put: 1; at: #(foo) put: 2; yourself.
 	"allowing complex map keys used to be optional, now it is always the default"
@@ -178,11 +138,8 @@ STONReaderTests>>testDictionaryWithComplexKeys [
 	self assert: reader next = collection
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testDictionaryWithIndirectReferenceKeys [
+{ #category : #tests }
+STONReaderTests >> testDictionaryWithIndirectReferenceKeys [
 	| keysCollection dictionary ston object |
 	keysCollection := OrderedCollection streamContents: [ :out |
 		10 timesRepeat: [ out nextPut: UUID new ] ].
@@ -197,11 +154,8 @@ STONReaderTests>>testDictionaryWithIndirectReferenceKeys [
 	self assert: object second isHealthy 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testDictionaryWithReferenceKeys [
+{ #category : #tests }
+STONReaderTests >> testDictionaryWithReferenceKeys [
 	| keysCollection dictionary ston object |
 	keysCollection := OrderedCollection streamContents: [ :out |
 		10 timesRepeat: [ out nextPut: UUID new ] ].
@@ -216,11 +170,8 @@ STONReaderTests>>testDictionaryWithReferenceKeys [
 	self assert: object second isHealthy 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testError [
+{ #category : #tests }
+STONReaderTests >> testError [
 	#( 'foo' '{foo:}' '{foo,}' '[1,]' '+1' ']' '#' '' '  ' '	' 'nul' 'tru' 'fals' ) do: [ :each |
 		self 
 			should: [ self materialize: each ] 
@@ -228,11 +179,8 @@ STONReaderTests>>testError [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testFloat [
+{ #category : #tests }
+STONReaderTests >> testFloat [
 	self assert: ((self materialize: '1.5') closeTo: 1.5).
 	self assert: ((self materialize: '-1.5') closeTo: -1.5).
 	self assert: (self materialize: '0.0') isZero.
@@ -243,11 +191,8 @@ STONReaderTests>>testFloat [
 	self assert: ((self materialize: '-1.0e-100') closeTo: (10 raisedTo: -100) negated)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testIdentityDictionary [
+{ #category : #tests }
+STONReaderTests >> testIdentityDictionary [
 	| collection |
 	collection := IdentityDictionary new at: 1 put: 1; at: 2 put: 2; yourself.
 	self assert: (self materialize: 'IdentityDictionary{1:1,2:2}') = collection.
@@ -255,11 +200,8 @@ STONReaderTests>>testIdentityDictionary [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testIllegalCharacterEscapes [
+{ #category : #tests }
+STONReaderTests >> testIllegalCharacterEscapes [
 	self should: [ STON fromString: '''\a''' ] raise: STONReaderError.
 	self should: [ STON fromString: '''\u''' ] raise: STONReaderError.
 	self should: [ STON fromString: '''\u00''' ] raise: STONReaderError.
@@ -267,11 +209,8 @@ STONReaderTests>>testIllegalCharacterEscapes [
 	self should: [ STON fromString: '''\*''' ] raise: STONReaderError
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testInteger [
+{ #category : #tests }
+STONReaderTests >> testInteger [
 	self assert: (self materialize: '1') = 1.
 	self assert: (self materialize: '-1') = -1.
 	self assert: (self materialize: '0') = 0.
@@ -279,11 +218,8 @@ STONReaderTests>>testInteger [
 	self assert: (self materialize: '-1234567890') = -1234567890
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testJsonString [
+{ #category : #tests }
+STONReaderTests >> testJsonString [
 	"Allow double quotes for backwards JSON compatibility"
 	
 	| string |
@@ -296,38 +232,26 @@ STONReaderTests>>testJsonString [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testList [
+{ #category : #tests }
+STONReaderTests >> testList [
 	self assert: STON listClass = Array.
 	self assert: (self materialize: '[1,2,3]') = (STON listClass with: 1 with: 2 with: 3).
 	self assert: (self materialize: '[]') = STON listClass new
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testMap [
+{ #category : #tests }
+STONReaderTests >> testMap [
 	self assert: (self materialize: '{#foo:1}') = (STON mapClass new at: #foo put: 1; yourself).
 	self assert: (self materialize: '{}') = STON mapClass new
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testMetaclass [
+{ #category : #tests }
+STONReaderTests >> testMetaclass [
 	self assert: (self materialize: 'Metaclass[#Point]') equals: Point class
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testMultiple [
+{ #category : #tests }
+STONReaderTests >> testMultiple [
 	| reader |
 	reader := STON reader 
 		on: '123 -123 nil #foo true [ 0 ] false { #one : 1 }' readStream.
@@ -344,11 +268,8 @@ STONReaderTests>>testMultiple [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testNewSymbol [
+{ #category : #tests }
+STONReaderTests >> testNewSymbol [
 	| n notASymbol shouldBeSymbol |
 	
 	"Find a name that has not yet been interned"
@@ -361,19 +282,13 @@ STONReaderTests>>testNewSymbol [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testNil [
+{ #category : #tests }
+STONReaderTests >> testNil [
 	self assert: (self materialize: 'nil') isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testNonBMPCharacterDecoding [
+{ #category : #tests }
+STONReaderTests >> testNonBMPCharacterDecoding [
 	"Characters not in the Basic Multilingual Plane are encoded as a UTF-16 surrogate pair"
 
 	| string object |
@@ -382,47 +297,32 @@ STONReaderTests>>testNonBMPCharacterDecoding [
 	self assert: object equals: string
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testNull [
+{ #category : #tests }
+STONReaderTests >> testNull [
 	self assert: (self materialize: 'null') isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testObject [
+{ #category : #tests }
+STONReaderTests >> testObject [
 	self assert: (self materialize: 'Point[1,2]') = (1@2).
 	self assert: (self materialize: 'Point[1.5,-0.5]') = (1.5 @ -0.5).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testOrderedCollection [
+{ #category : #tests }
+STONReaderTests >> testOrderedCollection [
 	| collection |
 	collection := OrderedCollection with: 1 with: 2 with: 3.
 	self assert: (self materialize: 'OrderedCollection[1,2,3]') = collection.
 	self assert: (self materialize: 'OrderedCollection[]') = OrderedCollection new.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testPoint [
+{ #category : #tests }
+STONReaderTests >> testPoint [
 	self assert: (self materialize: 'Point[1,2]') = (1@2)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testReferenceCycle [
+{ #category : #tests }
+STONReaderTests >> testReferenceCycle [
 	| array |
 	array := (self materialize: '[1,@1]').
 	self assert: array class = STON listClass.
@@ -431,11 +331,8 @@ STONReaderTests>>testReferenceCycle [
 	self assert: array second == array
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testReferenceSharing [
+{ #category : #tests }
+STONReaderTests >> testReferenceSharing [
 	| one array |
 	one := { #one }.
 	array := (self materialize: '[[#one],@2,@2]').
@@ -444,11 +341,8 @@ STONReaderTests>>testReferenceSharing [
 	self assert: array first == array third
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testSetWithIndirectReferenceElements [
+{ #category : #tests }
+STONReaderTests >> testSetWithIndirectReferenceElements [
 	| elementsCollection set ston object |
 	elementsCollection := OrderedCollection streamContents: [ :out |
 		10 timesRepeat: [ out nextPut: UUID new ] ].
@@ -461,11 +355,8 @@ STONReaderTests>>testSetWithIndirectReferenceElements [
 	self assert: object second isHealthy 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testSetWithReferenceElements [
+{ #category : #tests }
+STONReaderTests >> testSetWithReferenceElements [
 	| elementsCollection set ston object |
 	elementsCollection := OrderedCollection streamContents: [ :out |
 		10 timesRepeat: [ out nextPut: UUID new ] ].
@@ -478,11 +369,8 @@ STONReaderTests>>testSetWithReferenceElements [
 	self assert: object second isHealthy 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testStreaming [
+{ #category : #tests }
+STONReaderTests >> testStreaming [
 	| reader |
 	reader := STON reader 
 		on: '1 2 3 4 5 6 7 8 9 10' readStream.
@@ -493,11 +381,8 @@ STONReaderTests>>testStreaming [
 		equals: #(1 2 3 4 5 6 7 8 9 10) sum
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testString [
+{ #category : #tests }
+STONReaderTests >> testString [
 	| string |
 	self assert: (self materialize: '''foo''') = 'foo'.
 	self assert: (self materialize: '''FOO''') = 'FOO'.
@@ -508,20 +393,14 @@ STONReaderTests>>testString [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testSymbol [
+{ #category : #tests }
+STONReaderTests >> testSymbol [
 	self assert: (self materialize: '#''foo''') = #foo.
 	self assert: (self materialize: '#foo') = #foo
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testTime [
+{ #category : #tests }
+STONReaderTests >> testTime [
 	| time |
 	time := Time hour: 6 minute: 30 second: 15.
 	self assert: (self materialize: 'Time[''06:30:15'']') equals: time.
@@ -530,11 +409,8 @@ STONReaderTests>>testTime [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testUnknownClasses [
+{ #category : #tests }
+STONReaderTests >> testUnknownClasses [
 	| input object |
 	input := 'FooBar { #foo : 1, #bar : true }'.
 	self should: [ self materialize: input ] raise: STONReaderError.
@@ -548,11 +424,8 @@ STONReaderTests>>testUnknownClasses [
 	self assert: (object at: STON classNameKey) equals: #FooBar
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testUser [
+{ #category : #tests }
+STONReaderTests >> testUser [
 	| user |
 	(user := STONTestUser new)
 		username: 'john@foo.com';
@@ -560,11 +433,8 @@ STONReaderTests>>testUser [
 	self assert: (self materialize: 'STONTestUser{#username:''john@foo.com'',#password:''secret1'',#enabled:true}') = user
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testUser2 [
+{ #category : #tests }
+STONReaderTests >> testUser2 [
 	| user |
 	(user := STONTestUser2 new)
 		username: 'john@foo.com';
@@ -572,22 +442,16 @@ STONReaderTests>>testUser2 [
 	self assert: (self materialize: 'STONTestUser2{#username:''john@foo.com'',#password:''secret1'',#enabled:true}') = user
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testWhitespace [
+{ #category : #tests }
+STONReaderTests >> testWhitespace [
 	| whitespace |
 	whitespace := { Character space. Character tab. Character cr. Character lf }.
 	self assert: (self materialize: whitespace, '123') = 123
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONReaderTests>>testWideSymbol [
+{ #category : #tests }
+STONReaderTests >> testWideSymbol [
 	self assert: (self materialize: '#''яблоко''') = #яблоко.
 	self assert: (self materialize: '#яблоко') = #яблоко
 ]

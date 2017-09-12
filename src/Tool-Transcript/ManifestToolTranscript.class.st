@@ -4,14 +4,10 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestToolTranscript,
 	#superclass : #PackageManifest,
-	#category : #Tool-Transcript,
-	#timestamp : '<historical>'
+	#category : #Tool-Transcript
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ManifestToolTranscript class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestToolTranscript class >> manuallyResolvedDependencies [
 	^ #(#'System-Support')
 ]

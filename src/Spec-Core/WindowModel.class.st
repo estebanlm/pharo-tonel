@@ -11,35 +11,25 @@ Class {
 		'isClosedHolder',
 		'isResizeable'
 	],
-	#category : #Spec-Core-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Support
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel class>>adapterName [
+{ #category : #specs }
+WindowModel class >> adapterName [
 
 	^ #WindowAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel class>>defaultSpec [
+{ #category : #specs }
+WindowModel class >> defaultSpec [
 	<spec>
 	
 	^ #(WindowAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>aboutText [
+{ #category : #api }
+WindowModel >> aboutText [
 	"if my aboutText has not been set the fallback is:
 	  - if I do have a model, use its' about text
 	  - else use the behavior defined in super
@@ -52,11 +42,8 @@ WindowModel>>aboutText [
 		ifNotNil: [ aboutText value ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>aboutTitle [
+{ #category : #api }
+WindowModel >> aboutTitle [
 	"Answer the title of my About window"
 
 	(self model respondsTo: #aboutTitle)
@@ -67,60 +54,42 @@ WindowModel>>aboutTitle [
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>addMenuItemsToWindowMenu: aMenu [
+{ #category : #menu }
+WindowModel >> addMenuItemsToWindowMenu: aMenu [
 
 	self model addMenuItemsToWindowMenu: aMenu
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>addModelIn: widget withSpec: aSpec [
+{ #category : #private }
+WindowModel >> addModelIn: widget withSpec: aSpec [
 
 	self model ifNil: [ ^ self ].
 	
 	self changed: #addModelIn:withSpec: with: { widget . aSpec }
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>addModelIn: widget withSpecLayout: aSpec [
+{ #category : #private }
+WindowModel >> addModelIn: widget withSpecLayout: aSpec [
 
 	self model ifNil: [ ^ self ].
 	
 	self changed: #addModelIn:withSpecLayout: with: { widget . aSpec }
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>addModelItemsToWindowMenu: aMenu [
+{ #category : #menu }
+WindowModel >> addModelItemsToWindowMenu: aMenu [
 
 	self model addModelItemsToWindowMenu: aMenu
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>askOkToClose [
+{ #category : #api }
+WindowModel >> askOkToClose [
 
 	^ self model askOkToClose
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>buildWithSpecLayout: aSpec [
+{ #category : #private }
+WindowModel >> buildWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument"
 	| adapter widget |
 	
@@ -136,74 +105,50 @@ WindowModel>>buildWithSpecLayout: aSpec [
 	^ widget
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>cancelled [
+{ #category : #api }
+WindowModel >> cancelled [
 
 	^ false
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>centered [
+{ #category : #api }
+WindowModel >> centered [
 
 	self changed: #centered with: #()
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>centeredRelativeTo: aModel [
+{ #category : #api }
+WindowModel >> centeredRelativeTo: aModel [
 
 	self changed: #centeredRelativeTo: with: { aModel }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>close [
+{ #category : #api }
+WindowModel >> close [
 
 	self changed: #close with: #()
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>defaultInitialExtent [
+{ #category : #private }
+WindowModel >> defaultInitialExtent [
 	
 	^ 400@300
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>giveFocusToNextFrom: aModel  [
+{ #category : #focus }
+WindowModel >> giveFocusToNextFrom: aModel [ 
 
 	^ self model giveFocusToNextFrom: aModel
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>giveFocusToPreviousFrom: aModel  [
+{ #category : #focus }
+WindowModel >> giveFocusToPreviousFrom: aModel [ 
 
 	^ self model giveFocusToPreviousFrom: aModel 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>initialExtent [
+{ #category : #api }
+WindowModel >> initialExtent [
 
 	^ initialExtent value
 		ifNil: [ self model 
@@ -213,11 +158,8 @@ WindowModel>>initialExtent [
 					ifNil: [ self defaultInitialExtent ] ] ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>initialize [
+{ #category : #initialization }
+WindowModel >> initialize [
 
 	super initialize.
 
@@ -230,138 +172,93 @@ WindowModel>>initialize [
 	model whenChangedDo: [:m | self updateTitle ].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>isClosed [
+{ #category : #testing }
+WindowModel >> isClosed [
 	^ isClosedHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>isDisplayed [
+{ #category : #api }
+WindowModel >> isDisplayed [
 
 	^ self window ifNil: [ false ] ifNotNil: [ :theWindow | theWindow isDisplayed ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>isResizeable [
+{ #category : #api }
+WindowModel >> isResizeable [
 
 	^ isResizeable value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>isResizeable: aBoolean [
+{ #category : #api }
+WindowModel >> isResizeable: aBoolean [
 
 	isResizeable value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>maximize [
+{ #category : #api }
+WindowModel >> maximize [
 
 	self changed: #maximize with: #()
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>minimize [
+{ #category : #api }
+WindowModel >> minimize [
 
 	self changed: #minimize with: #()
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>modalRelativeTo: aWindow [
+{ #category : #api }
+WindowModel >> modalRelativeTo: aWindow [
 
 	self changed: #modalRelativeTo: with: { aWindow }
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>model [
+{ #category : #accessing }
+WindowModel >> model [
 	
 	^ model value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>model: aModel [
+{ #category : #api }
+WindowModel >> model: aModel [
 
 	model value: aModel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>okToChange [
+{ #category : #private }
+WindowModel >> okToChange [
 
 	^ self model okToChange
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>openModal: aWindow  [
+{ #category : #api }
+WindowModel >> openModal: aWindow [ 
 
 	self changed: #openModal: with: { aWindow }
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>openWithSpecLayout: aSpec [
+{ #category : #private }
+WindowModel >> openWithSpecLayout: aSpec [
 
 	window value: (self buildWithSpecLayout: aSpec).
 	self changed: #open with: #().
 	self updateTitle.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>rebuildWithSpec: aSpec [
+{ #category : #private }
+WindowModel >> rebuildWithSpec: aSpec [
 
 	self changed: #rebuildWithSpec: with: { aSpec }.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>rebuildWithSpecLayout: aSpec [
+{ #category : #private }
+WindowModel >> rebuildWithSpecLayout: aSpec [
 
 	self changed: #rebuildWithSpecLayout: with: { aSpec }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>taskbarIcon [
+{ #category : #api }
+WindowModel >> taskbarIcon [
 
 	^ model value 
 		ifNil: [ super taskbarIcon ]
@@ -370,67 +267,46 @@ WindowModel>>taskbarIcon [
 				ifNil: [ m taskbarIcon ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>title [
+{ #category : #private }
+WindowModel >> title [
 
 	^ self model
 		ifNil: [ super title ]
 		ifNotNil: [:m | m title ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>title: aString [
+{ #category : #private }
+WindowModel >> title: aString [
 
 	self changed: #title: with: { aString }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>triggerCancelAction [
+{ #category : #api }
+WindowModel >> triggerCancelAction [
 	"do nothing (ensure polymorphism with DialogWindow)"
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>triggerOkAction [
+{ #category : #api }
+WindowModel >> triggerOkAction [
 	"do nothing (ensure polymorphism with DialogWindow)"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>updateTitle [
+{ #category : #private }
+WindowModel >> updateTitle [
 	"Update the window title"
 
 	self title: self title
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>whenClosedDo: aBlock [
+{ #category : #api-events }
+WindowModel >> whenClosedDo: aBlock [
 
 	isClosedHolder whenChangedDo: [:value |
 		value ifTrue: [ aBlock value ] ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WindowModel>>windowIsClosing [
+{ #category : #updating }
+WindowModel >> windowIsClosing [
 
 	isClosedHolder value: true.
 	

@@ -5,23 +5,16 @@ Since paths and names can be tricky in different versions, I have methods to sol
 Class {
 	#name : #CairoLibrary,
 	#superclass : #FFILibrary,
-	#category : #Athens-Cairo,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo
 }
 
-{
-	#category : #'accessing platform',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoLibrary>>macModuleName [
+{ #category : #'accessing platform' }
+CairoLibrary >> macModuleName [
 	^ 'libcairo.2.dylib'
 ]
 
-{
-	#category : #'accessing platform',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoLibrary>>unix32ModuleName [
+{ #category : #'accessing platform' }
+CairoLibrary >> unix32ModuleName [
 	"On different flavors of linux the path to library may differ
 	depending on OS distro or whether system is 32 or 64 bit.
 	Packages such as snapcraft can also change the path.
@@ -37,11 +30,8 @@ CairoLibrary>>unix32ModuleName [
 	self error: 'Cannot locate cairo library. Please check if it installed on your system'
 ]
 
-{
-	#category : #'accessing platform',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoLibrary>>unix64ModuleName [
+{ #category : #'accessing platform' }
+CairoLibrary >> unix64ModuleName [
 	"On different flavors of linux the path to library may differ
 	depending on OS distro or whether system is 32 or 64 bit.
 	Packages such as snapcraft can also change the path.
@@ -57,20 +47,14 @@ CairoLibrary>>unix64ModuleName [
 	self error: 'Cannot locate cairo library. Please check if it installed on your system'
 ]
 
-{
-	#category : #'accessing platform',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoLibrary>>unixModuleName [
+{ #category : #'accessing platform' }
+CairoLibrary >> unixModuleName [
 	"Backward compatibility"
 	^ self unix32ModuleName
 		
 ]
 
-{
-	#category : #'accessing platform',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoLibrary>>win32ModuleName  [
+{ #category : #'accessing platform' }
+CairoLibrary >> win32ModuleName [ 
 	^ 'libcairo-2.dll'
 ]

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #SlotExampleTest,
 	#superclass : #SlotSilentTest,
-	#category : #Slot-Tests-Examples,
-	#timestamp : ''
+	#category : #Slot-Tests-Examples
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleTest>>testAccessorInstanceVariableSlot [
+{ #category : #tests }
+SlotExampleTest >> testAccessorInstanceVariableSlot [
 	| slot object |
 	
 	aClass := self make: [ :builder |
@@ -38,11 +31,8 @@ SlotExampleTest>>testAccessorInstanceVariableSlot [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleTest>>testExampleClassSide [
+{ #category : #tests }
+SlotExampleTest >> testExampleClassSide [
 	" can we install a slot on the class side?"
 	aClass := self make: [ :builder |
 		builder 
@@ -53,11 +43,8 @@ SlotExampleTest>>testExampleClassSide [
 	self assert: aClass class slotDefinitionString =  '{ #slot1 => ExampleSlotWithState }'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleTest>>testExampleSlotWithDefaultValue [
+{ #category : #tests }
+SlotExampleTest >> testExampleSlotWithDefaultValue [
 	| slot object|
 	
 	aClass := self make: [ :builder |
@@ -81,11 +68,8 @@ SlotExampleTest>>testExampleSlotWithDefaultValue [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleTest>>testExampleSlotWithState [
+{ #category : #tests }
+SlotExampleTest >> testExampleSlotWithState [
 	| slot reader writer |
 	
 	aClass := self make: [ :builder |
@@ -128,11 +112,8 @@ SlotExampleTest>>testExampleSlotWithState [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleTest>>testExampleTwoSlotWithState [
+{ #category : #tests }
+SlotExampleTest >> testExampleTwoSlotWithState [
 	" add two, remove one"
 	aClass := self make: [ :builder |
 		builder 
@@ -150,11 +131,8 @@ SlotExampleTest>>testExampleTwoSlotWithState [
 	self assert: (aClass hasSlotNamed: #slot2).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleTest>>testPharoClassInstallerExample [
+{ #category : #tests }
+SlotExampleTest >> testPharoClassInstallerExample [
 	| newClass |
 	[ 
 		newClass := PharoClassInstaller example.

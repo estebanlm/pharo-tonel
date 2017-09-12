@@ -19,15 +19,11 @@ Class {
 		'string',
 		'announcer'
 	],
-	#category : #Rubric-Editing-Widgets-Examples,
-	#timestamp : '<historical>'
+	#category : #Rubric-Editing-Widgets-Examples
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample class>>open [
+{ #category : #examples }
+RubTextFieldExample class >> open [
 	| st |
 	st := self new newScrolledText.
 	self spyAnnouncer ifTrue: [st textArea announcer open].
@@ -35,11 +31,8 @@ RubTextFieldExample class>>open [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample class>>openAutoAccept [
+{ #category : #examples }
+RubTextFieldExample class >> openAutoAccept [
 	| st model |
 	model := self new.
 	st := model newScrolledTextAutoAccept.
@@ -49,11 +42,8 @@ RubTextFieldExample class>>openAutoAccept [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample class>>openWithBorderOfWidth: anInteger [
+{ #category : #examples }
+RubTextFieldExample class >> openWithBorderOfWidth: anInteger [
 	| st |
 	st := self new newScrolledTextWithBorderOfWidth: anInteger.
 	self spyAnnouncer ifTrue: [st textArea announcer open].
@@ -61,11 +51,8 @@ RubTextFieldExample class>>openWithBorderOfWidth: anInteger [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample class>>openWithScrollbar [
+{ #category : #examples }
+RubTextFieldExample class >> openWithScrollbar [
 	| st |
 	st := self new newScrolledTextWithScrollbar.
 	self spyAnnouncer ifTrue: [st textArea announcer open].
@@ -73,11 +60,8 @@ RubTextFieldExample class>>openWithScrollbar [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample class>>openWithScrollbarAndBorderOfWidth: anInteger [
+{ #category : #examples }
+RubTextFieldExample class >> openWithScrollbarAndBorderOfWidth: anInteger [
 	| st |
 	st := self new newScrolledTextWithScrollbarAndBorderOfWidth: anInteger.
 	self spyAnnouncer ifTrue: [st textArea announcer open].
@@ -85,53 +69,35 @@ RubTextFieldExample class>>openWithScrollbarAndBorderOfWidth: anInteger [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample class>>spyAnnouncer [
+{ #category : #examples }
+RubTextFieldExample class >> spyAnnouncer [
 	"Set it to true if you want to observe text area announcements"
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample>>acceptString: aString [
+{ #category : #accessing }
+RubTextFieldExample >> acceptString: aString [
 	self string: aString.
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample>>announcer [
+{ #category : #accessing }
+RubTextFieldExample >> announcer [
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample>>getText [
+{ #category : #'user interface' }
+RubTextFieldExample >> getText [
 	^ self string asText
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample>>menu [
+{ #category : #menu }
+RubTextFieldExample >> menu [
 	^ nil
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample>>newScrolledText [
+{ #category : #'user interface' }
+RubTextFieldExample >> newScrolledText [
 	| st |
 	st := (RubTextFieldMorph on: self)
 		withAdornment;
@@ -142,11 +108,8 @@ RubTextFieldExample>>newScrolledText [
 	^ st
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample>>newScrolledTextAutoAccept [
+{ #category : #'user interface' }
+RubTextFieldExample >> newScrolledTextAutoAccept [
 	| st |
 	st := (RubTextFieldMorph
 		on: self)
@@ -158,50 +121,32 @@ RubTextFieldExample>>newScrolledTextAutoAccept [
 	^st
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample>>newScrolledTextWithBorderOfWidth: anInteger [
+{ #category : #'user interface' }
+RubTextFieldExample >> newScrolledTextWithBorderOfWidth: anInteger [
 	^ self newScrolledText borderWidth: anInteger.
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample>>newScrolledTextWithScrollbar [
+{ #category : #'user interface' }
+RubTextFieldExample >> newScrolledTextWithScrollbar [
 	^ self newScrolledText hScrollbarShowAlways
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample>>newScrolledTextWithScrollbarAndBorderOfWidth: anInteger [
+{ #category : #'user interface' }
+RubTextFieldExample >> newScrolledTextWithScrollbarAndBorderOfWidth: anInteger [
 	^ self newScrolledText hScrollbarShowAlways; borderWidth: anInteger
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample>>setText: aText from: aView  [
+{ #category : #'user interface' }
+RubTextFieldExample >> setText: aText from: aView [ 
 	^ self acceptString: aText string
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample>>string [
+{ #category : #accessing }
+RubTextFieldExample >> string [
 	^ string ifNil: [ string := '' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldExample>>string: aString [
+{ #category : #accessing }
+RubTextFieldExample >> string: aString [
 	string := aString
 ]

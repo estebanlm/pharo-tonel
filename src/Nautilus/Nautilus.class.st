@@ -53,24 +53,17 @@ Class {
 		'showSourceCodeAnnotation',
 		'inlineCritiques'
 	],
-	#category : #Nautilus,
-	#timestamp : 'StephaneDucasse 9/5/2015 22:00'
+	#category : #Nautilus
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>browsedEnvironment: anEnvironment [
+{ #category : #'instance creation' }
+Nautilus class >> browsedEnvironment: anEnvironment [
 
 	^ self new browsedEnvironment: anEnvironment
 ]
 
-{
-	#category : #groups,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>buildGroupManager [
+{ #category : #groups }
+Nautilus class >> buildGroupManager [
 	| holder |
 	holder := GroupHolder new.
 	(holder addAPackageGroupSilentlyNamed: 'Work' packages: OrderedCollection new)
@@ -82,11 +75,8 @@ Nautilus class>>buildGroupManager [
 	^ holder
 ]
 
-{
-	#category : #groups,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>buildMethodGroupManager [
+{ #category : #groups }
+Nautilus class >> buildMethodGroupManager [
 	| holder |
 	holder := GroupHolder new.
 	(holder addAMethodGroupSilentlyNamed: self lastModifiedMethodsGroupName methods: self lastModifiedMethods)
@@ -94,122 +84,80 @@ Nautilus class>>buildMethodGroupManager [
 	^ holder
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>cleanUp [
+{ #category : #cleanup }
+Nautilus class >> cleanUp [
 	AbstractNautilusUI resetIconCaches.
 	self resetGroups.
 
 ]
 
-{
-	#category : #groups,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>configurationPackages [
+{ #category : #groups }
+Nautilus class >> configurationPackages [
 	^ (RPackageOrganizer default packages
 		select: [ :package | (package name beginsWith: 'ConfigurationOf') or: [ package name beginsWith: 'BaselineOf' ] ]) asOrderedCollection
 ]
 
-{
-	#category : #groups,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>configurationsGroupName [
+{ #category : #groups }
+Nautilus class >> configurationsGroupName [
 	^ 'Configurations'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>defaultBrowsedEnvironment [
+{ #category : #private }
+Nautilus class >> defaultBrowsedEnvironment [
 
 	^ RBBrowserEnvironment new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>defaultMaxSize [
+{ #category : #private }
+Nautilus class >> defaultMaxSize [
 
 	^ NavigationHistory defaultMaxSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>groupsManager [
+{ #category : #accessing }
+Nautilus class >> groupsManager [
 	^ groups ifNil: [ groups := self buildGroupManager ]
 ]
 
-{
-	#category : #icon,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>icon  [
+{ #category : #icon }
+Nautilus class >> icon [ 
 
 	^ AbstractNautilusUI icon
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>initialize [
+{ #category : #initialize-release }
+Nautilus class >> initialize [
 	SessionManager default registerToolClassNamed: self name
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>inlineCritiques [
+{ #category : #settings }
+Nautilus class >> inlineCritiques [
 	^ inlineCritiques ifNil: [ inlineCritiques := false ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>inlineCritiques: aBoolean [
+{ #category : #settings }
+Nautilus class >> inlineCritiques: aBoolean [
 	inlineCritiques := aBoolean
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>isNoCategoryAndNoMethodSelected [
+{ #category : #testing }
+Nautilus class >> isNoCategoryAndNoMethodSelected [
 	
 	^ self selectedCategory isNil and: [ self selectedMethod isNil ]
 ]
 
-{
-	#category : #groups,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>lastModifiedMethods [
+{ #category : #groups }
+Nautilus class >> lastModifiedMethods [
 	^ RecentMessageList uniqueInstance methodReferenceList asSet asOrderedCollection
 ]
 
-{
-	#category : #groups,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>lastModifiedMethodsGroupName [
+{ #category : #groups }
+Nautilus class >> lastModifiedMethodsGroupName [
 	^ 'Last Modified Methods'
 ]
 
-{
-	#category : #'world menu',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>menuCommandOn: aBuilder [
+{ #category : #'world menu' }
+Nautilus class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'System Browser')
 		parent: #MostUsedTools;
@@ -219,37 +167,25 @@ Nautilus class>>menuCommandOn: aBuilder [
 		icon: Smalltalk tools browser taskbarIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>methodClassifierClass [
+{ #category : #accessing }
+Nautilus class >> methodClassifierClass [
 
 	^ MethodClassifierClass ifNil: [ MethodClassifierClass := MethodClassifier ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>methodClassifierClass: aClass [
+{ #category : #accessing }
+Nautilus class >> methodClassifierClass: aClass [
 
 	 MethodClassifierClass := aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>methodGroupManager [
+{ #category : #accessing }
+Nautilus class >> methodGroupManager [
 	^ methodGroup ifNil: [ methodGroup := self buildMethodGroupManager ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>nautilusSettingsOn: aBuilder [
+{ #category : #settings }
+Nautilus class >> nautilusSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #codeBrowsing)
 		label: 'Code Browsing';
@@ -277,19 +213,13 @@ Nautilus class>>nautilusSettingsOn: aBuilder [
 						description: 'When turned on the quality critiques will be displayed inline in the code area' ] ]
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>open [
+{ #category : #opening }
+Nautilus class >> open [
 	^ self openInEnvironment: self defaultBrowsedEnvironment
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openInEnvironment: anEnvironment [
+{ #category : #opening }
+Nautilus class >> openInEnvironment: anEnvironment [
 
 	| instance |
 	instance := self new.
@@ -302,20 +232,14 @@ Nautilus class>>openInEnvironment: anEnvironment [
 	^ instance
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnCategory: aCategory ofClass: aClass [
+{ #category : #opening }
+Nautilus class >> openOnCategory: aCategory ofClass: aClass [
 
 	^ self openOnCategory: aCategory ofClass: aClass inEnvironment: self defaultBrowsedEnvironment
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnCategory: aCategory ofClass: aClass inEnvironment: anEnvironment [
+{ #category : #opening }
+Nautilus class >> openOnCategory: aCategory ofClass: aClass inEnvironment: anEnvironment [
 	| instance |
 	instance := self new.
 	instance browsedEnvironment: anEnvironment.
@@ -328,20 +252,14 @@ Nautilus class>>openOnCategory: aCategory ofClass: aClass inEnvironment: anEnvir
 	^ instance
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnClass: aClass [
+{ #category : #opening }
+Nautilus class >> openOnClass: aClass [
 
 	^ self openOnClass: aClass inEnvironment: self defaultBrowsedEnvironment
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnClass: aClass inEnvironment: anEnvironment [
+{ #category : #opening }
+Nautilus class >> openOnClass: aClass inEnvironment: anEnvironment [
 	| instance |
 	instance := self new.
 	instance
@@ -357,20 +275,14 @@ Nautilus class>>openOnClass: aClass inEnvironment: anEnvironment [
 	^ instance
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnClass: aClass onGroup: aGroup [
+{ #category : #opening }
+Nautilus class >> openOnClass: aClass onGroup: aGroup [
 	
 	^ self openOnClass: aClass onGroup: aGroup inEnvironment: self defaultBrowsedEnvironment.
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnClass: aClass onGroup: aGroup inEnvironment: anEnvironment [
+{ #category : #opening }
+Nautilus class >> openOnClass: aClass onGroup: aGroup inEnvironment: anEnvironment [
 	| instance |
 	instance := self new.
 	instance browsedEnvironment: anEnvironment.
@@ -383,11 +295,8 @@ Nautilus class>>openOnClass: aClass onGroup: aGroup inEnvironment: anEnvironment
 	^ instance
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnClass: aClass onProtocol: aProtocol [
+{ #category : #opening }
+Nautilus class >> openOnClass: aClass onProtocol: aProtocol [
 
 	^ self 
 		openOnClass: aClass 
@@ -395,11 +304,8 @@ Nautilus class>>openOnClass: aClass onProtocol: aProtocol [
 		inEnvironment: self defaultBrowsedEnvironment
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnClass: aClass onProtocol: aProtocol inEnvironment: anEnvironment [
+{ #category : #opening }
+Nautilus class >> openOnClass: aClass onProtocol: aProtocol inEnvironment: anEnvironment [
 
 	| instance |
 	instance := self new.
@@ -418,11 +324,8 @@ Nautilus class>>openOnClass: aClass onProtocol: aProtocol inEnvironment: anEnvir
 	^ instance
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnClass: aClass selector: aSelector  [
+{ #category : #opening }
+Nautilus class >> openOnClass: aClass selector: aSelector [ 
 
 	^ aSelector
 		ifNil: [ self openOnClass: aClass ]
@@ -431,31 +334,22 @@ Nautilus class>>openOnClass: aClass selector: aSelector  [
 			method ifNotNil: [ self openOnMethod: method ]]
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnClass: class selector: selector highlight: autoSelectString [
+{ #category : #opening }
+Nautilus class >> openOnClass: class selector: selector highlight: autoSelectString [
 	| nautilus |
 
 	nautilus := self openOnClass: class selector: selector.
 	autoSelectString ifNotNil: [ nautilus ui highlight: autoSelectString ]
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnGroup: aGroup [
+{ #category : #opening }
+Nautilus class >> openOnGroup: aGroup [
 
 	^ self openOnGroup: aGroup inEnvironment: self defaultBrowsedEnvironment
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnGroup: aGroup inEnvironment: anEnvironment [
+{ #category : #opening }
+Nautilus class >> openOnGroup: aGroup inEnvironment: anEnvironment [
 	| instance |
 	instance := self new.
 	instance browsedEnvironment: anEnvironment.
@@ -464,20 +358,14 @@ Nautilus class>>openOnGroup: aGroup inEnvironment: anEnvironment [
 	^ instance
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnMethod: aMethod [
+{ #category : #opening }
+Nautilus class >> openOnMethod: aMethod [
 	
 	^ self openOnMethod: aMethod inEnvironment: self defaultBrowsedEnvironment
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnMethod: aMethod inEnvironment: anEnvironment [
+{ #category : #opening }
+Nautilus class >> openOnMethod: aMethod inEnvironment: anEnvironment [
 	| instance class |
 	class := aMethod methodClass.
 	instance := self new.
@@ -496,20 +384,14 @@ Nautilus class>>openOnMethod: aMethod inEnvironment: anEnvironment [
 	^ instance
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnPackage: aPackage [
+{ #category : #opening }
+Nautilus class >> openOnPackage: aPackage [
 
 	^ self openOnPackage: aPackage inEnvironment: self defaultBrowsedEnvironment
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnPackage: selectedPackage class: selectedClass category: selectedCategory method: selectedMethod group: selectedGroup sortHierarchically: sortHierarchically showHierarchy: showHierarchy showComment: showComment showInstance: showInstance showCategories: showCategories [
+{ #category : #opening }
+Nautilus class >> openOnPackage: selectedPackage class: selectedClass category: selectedCategory method: selectedMethod group: selectedGroup sortHierarchically: sortHierarchically showHierarchy: showHierarchy showComment: showComment showInstance: showInstance showCategories: showCategories [
 	^ self
 		openOnPackage: selectedPackage
 		class: selectedClass
@@ -524,11 +406,8 @@ Nautilus class>>openOnPackage: selectedPackage class: selectedClass category: se
 		inEnvironment: self defaultBrowsedEnvironment
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnPackage: selectedPackage class: selectedClass category: selectedCategory method: selectedMethod group: selectedGroup sortHierarchically: sortHierarchically showHierarchy: showHierarchy showComment: showComment showInstance: showInstance showCategories: showCategories inEnvironment: anEnvironment [
+{ #category : #opening }
+Nautilus class >> openOnPackage: selectedPackage class: selectedClass category: selectedCategory method: selectedMethod group: selectedGroup sortHierarchically: sortHierarchically showHierarchy: showHierarchy showComment: showComment showInstance: showInstance showCategories: showCategories inEnvironment: anEnvironment [
 	| instance |
 	instance := self new.
 	instance browsedEnvironment: anEnvironment.
@@ -551,11 +430,8 @@ Nautilus class>>openOnPackage: selectedPackage class: selectedClass category: se
 	^ instance
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>openOnPackage: aPackage inEnvironment: anEnvironment [
+{ #category : #opening }
+Nautilus class >> openOnPackage: aPackage inEnvironment: anEnvironment [
 
 	| instance |
 	instance := self new.
@@ -566,11 +442,8 @@ Nautilus class>>openOnPackage: aPackage inEnvironment: anEnvironment [
 	^ instance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>parentOfClass: aClass [
+{ #category : #accessing }
+Nautilus class >> parentOfClass: aClass [
 	"I can answer an RPackage or an RPackageTag, depending on the presence of Tags in package. 
 	 This is an UI optimization to not show a tree RPackage->RPackageTag when there is just 
 	 one tag in package, named in the same way as his parent"	
@@ -586,124 +459,82 @@ Nautilus class>>parentOfClass: aClass [
 		asNautilusSelection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>pluginClasses [
+{ #category : #accessing }
+Nautilus class >> pluginClasses [
 
 	^ PluginClasses ifNil: [ PluginClasses := OrderedCollection new ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>pluginClasses: aCollection [
+{ #category : #accessing }
+Nautilus class >> pluginClasses: aCollection [
 
 	PluginClasses := aCollection
 ]
 
-{
-	#category : #'tool - registration',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>registerToolsOn: registry [
+{ #category : #'tool - registration' }
+Nautilus class >> registerToolsOn: registry [
 	"Add ourselves to registry. See [Smalltalk tools]" 
 	registry register: self as: #browser
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>resetGroups [
+{ #category : #accessing }
+Nautilus class >> resetGroups [
 	<script>
 	groups := nil
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>showSourceCodeAnnotation [
+{ #category : #settings }
+Nautilus class >> showSourceCodeAnnotation [
 	^showSourceCodeAnnotation ifNil: [ showSourceCodeAnnotation := true ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>showSourceCodeAnnotation: aBoolean [
+{ #category : #settings }
+Nautilus class >> showSourceCodeAnnotation: aBoolean [
 	showSourceCodeAnnotation := aBoolean
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>shutDown [
+{ #category : #'system startup' }
+Nautilus class >> shutDown [
 	self cleanUp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>sortHierarchically [
+{ #category : #accessing }
+Nautilus class >> sortHierarchically [
 
 	^ SortHierarchically ifNil: [ SortHierarchically := true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>sortHierarchically: aBoolean [
+{ #category : #accessing }
+Nautilus class >> sortHierarchically: aBoolean [
 
 	SortHierarchically := aBoolean
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>stopNotifications [
+{ #category : #events }
+Nautilus class >> stopNotifications [
 	" self stopNotifications "
 	SystemAnnouncer uniqueInstance unsubscribe: self
 ]
 
-{
-	#category : #icon,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>taskbarIconName [
+{ #category : #icon }
+Nautilus class >> taskbarIconName [
 
 	^#nautilusIcon
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>useOldStyleKeys [
+{ #category : #settings }
+Nautilus class >> useOldStyleKeys [
 	^useOldStyleKeys ifNil: [ useOldStyleKeys := false ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus class>>useOldStyleKeys: aBoolean [
+{ #category : #settings }
+Nautilus class >> useOldStyleKeys: aBoolean [
 	useOldStyleKeys := aBoolean
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>= aNautilus [
+{ #category : #comparing }
+Nautilus >> = aNautilus [
 
 	self class = aNautilus class ifFalse: [ ^ false ].
 	1 to: self class instVarNames size do: [:index |
@@ -712,173 +543,116 @@ Nautilus>>= aNautilus [
 	^ true
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>adopt: anAssociation [
+{ #category : #history }
+Nautilus >> adopt: anAssociation [
 
 	self browsingHistory pauseDuring: [
 		anAssociation key applyTo: self ]
 ]
 
-{
-	#category : #announcement,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>announce: anAnnouncement [
+{ #category : #announcement }
+Nautilus >> announce: anAnnouncement [
 
 	self announcer announce: anAnnouncement
 
 ]
 
-{
-	#category : #announcement,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>announcer [
+{ #category : #announcement }
+Nautilus >> announcer [
 
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>browsedEnvironment [
+{ #category : #accessing }
+Nautilus >> browsedEnvironment [
 
 	^ browsedEnvironment ifNil: [ browsedEnvironment := RBBrowserEnvironment new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>browsedEnvironment: anEnvironment [
+{ #category : #accessing }
+Nautilus >> browsedEnvironment: anEnvironment [
 
 	browsedEnvironment := anEnvironment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>browsingHistory [
+{ #category : #accessing }
+Nautilus >> browsingHistory [
 
 	^ browsingHistory ifNil: [ browsingHistory := NavigationHistory new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>classes [
+{ #category : #accessing }
+Nautilus >> classes [
 	
 	^ self browsedEnvironment classes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>classifier [
+{ #category : #accessing }
+Nautilus >> classifier [
 	^ methodClassifier ifNil: [ methodClassifier := self class methodClassifierClass new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>classifier: aMethodClassifier [
+{ #category : #accessing }
+Nautilus >> classifier: aMethodClassifier [
 	methodClassifier := aMethodClassifier
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>close [
+{ #category : #displaying }
+Nautilus >> close [
 
 	ui close
 ]
 
-{
-	#category : #'browser compatibility',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>codeTextMorph [
+{ #category : #'browser compatibility' }
+Nautilus >> codeTextMorph [
 
 	^ self ui codeTextMorph
 ]
 
-{
-	#category : #'browser compatibility',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>contents: aText [
+{ #category : #'browser compatibility' }
+Nautilus >> contents: aText [
 	self ui sourceCode: aText
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>foundExtentionsIn: aClass [
+{ #category : #private }
+Nautilus >> foundExtentionsIn: aClass [
 
 	^ aClass extendingPackages.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>groupsManager [
+{ #category : #accessing }
+Nautilus >> groupsManager [
 	
 	^ self class groupsManager
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>hasNext [
+{ #category : #history }
+Nautilus >> hasNext [
 	
 	^self browsingHistory hasNext
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>hasPrevious [
+{ #category : #history }
+Nautilus >> hasPrevious [
 	
 	^self browsingHistory hasPrevious
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>historyChanged [
+{ #category : #history }
+Nautilus >> historyChanged [
 
 	ui ifNotNil: [ ui historyChanged ]
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>historyEntries [
+{ #category : #history }
+Nautilus >> historyEntries [
 
 	^ self browsingHistory entries
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>initialize [
+{ #category : #initialization }
+Nautilus >> initialize [
 	super initialize.
 
 	plugins := OrderedCollection new.
@@ -888,38 +662,26 @@ Nautilus>>initialize [
 		plugins add: ((class model: self) position: position; yourself)]
 ]
 
-{
-	#category : #'browser compatibility',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>labelString [
+{ #category : #'browser compatibility' }
+Nautilus >> labelString [
 	^ self ui ifNil: [ 'Nautilus - System Browser' ] ifNotNil: [ :theui | theui title ]
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>next [
+{ #category : #history }
+Nautilus >> next [
 	self browsingHistory pauseDuring: [
 		self adopt: self browsingHistory next.
 		self historyChanged ].
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>open [
+{ #category : #displaying }
+Nautilus >> open [
 	ui := (NautilusUI on: self) open.
 	self announce: (WindowOpened new window: ui window)
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>package: aPackage [
+{ #category : #history }
+Nautilus >> package: aPackage [
 
 	self selectedPackage: aPackage.
 	
@@ -927,11 +689,8 @@ Nautilus>>package: aPackage [
 	self ui ifNotNil: [ self ui sourceTextModel announce: NautilusPackageSelected ]
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>package: aPackage class: aClass [
+{ #category : #history }
+Nautilus >> package: aPackage class: aClass [
 
 	self 
 		selectedPackage: aPackage;
@@ -943,11 +702,8 @@ Nautilus>>package: aPackage class: aClass [
 	self registerHistoryNewEntry
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>package: aPackage class: aClass protocol: aProtocol [
+{ #category : #history }
+Nautilus >> package: aPackage class: aClass protocol: aProtocol [
 
 	self 
 		selectedPackage: aPackage;
@@ -963,11 +719,8 @@ Nautilus>>package: aPackage class: aClass protocol: aProtocol [
 	self registerHistoryNewEntry
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>package: aPackage class: aClass protocol: aProtocol method: aMethod [
+{ #category : #history }
+Nautilus >> package: aPackage class: aClass protocol: aProtocol method: aMethod [
 
 	self 
 		selectedPackage: aPackage;
@@ -986,64 +739,43 @@ Nautilus>>package: aPackage class: aClass protocol: aProtocol method: aMethod [
 	self registerHistoryNewEntry
 ]
 
-{
-	#category : #'package filter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>packagePatternString: aString  [
+{ #category : #'package filter' }
+Nautilus >> packagePatternString: aString [ 
 	
 	self ui packagePatternString: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>packages [
+{ #category : #accessing }
+Nautilus >> packages [
 
 	^ self browsedEnvironment packages asArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>packagesWithoutExtensions [
+{ #category : #accessing }
+Nautilus >> packagesWithoutExtensions [
 	^ self browsedEnvironment packages asArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>parentOfClass: aClass  [
+{ #category : #accessing }
+Nautilus >> parentOfClass: aClass [ 
 	^ self class parentOfClass: aClass 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>plugins [
+{ #category : #accessing }
+Nautilus >> plugins [
 
 	^ plugins ifNil: [ plugins := OrderedCollection new ]
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>previous [
+{ #category : #history }
+Nautilus >> previous [
 	self browsingHistory pauseDuring: [
 		self adopt: self browsingHistory previous.
 		self historyChanged ]
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>registerHistoryNewEntry [
+{ #category : #history }
+Nautilus >> registerHistoryNewEntry [
 	| lastEntry wrapper |
 	
 	self browsingHistory isPaused ifTrue: [ ^ self ].
@@ -1060,65 +792,44 @@ Nautilus>>registerHistoryNewEntry [
 	self historyChanged.
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>removeFromHistory: aNautilusHistoryEntry [
+{ #category : #history }
+Nautilus >> removeFromHistory: aNautilusHistoryEntry [
 
 	self browsingHistory removeEntry: aNautilusHistoryEntry.
 	self historyChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>selectedCategory [
+{ #category : #accessing }
+Nautilus >> selectedCategory [
 
 	^ selectedCategory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>selectedCategory: anObject [
+{ #category : #accessing }
+Nautilus >> selectedCategory: anObject [
 	selectedCategory := anObject.
 	self selectedMethod: nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>selectedClass [
+{ #category : #accessing }
+Nautilus >> selectedClass [
 	^ selectedClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>selectedClass: aClass [
+{ #category : #accessing }
+Nautilus >> selectedClass: aClass [
 	selectedClass := aClass.
 	self selectedCategory: nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>selectedGroup [
+{ #category : #accessing }
+Nautilus >> selectedGroup [
 
 	^ selectedGroup
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>selectedGroup: anObject [
+{ #category : #accessing }
+Nautilus >> selectedGroup: anObject [
 	selectedGroup := anObject.
 	anObject
 		ifNotNil: [ 
@@ -1126,46 +837,31 @@ Nautilus>>selectedGroup: anObject [
 			self ui ifNotNil: [ self ui sourceTextModel announce: NautilusGroupSelected ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>selectedMethod [
+{ #category : #accessing }
+Nautilus >> selectedMethod [
 
 	^ selectedMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>selectedMethod: anObject [
+{ #category : #accessing }
+Nautilus >> selectedMethod: anObject [
 	selectedMethod := anObject.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>selectedPackage [
+{ #category : #accessing }
+Nautilus >> selectedPackage [
 
 	^ selectedPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>selectedPackage: anObject [
+{ #category : #accessing }
+Nautilus >> selectedPackage: anObject [
 	selectedPackage := anObject asNautilusSelection.
 	self selectedClass: nil
 ]
 
-{
-	#category : #'browser compatibility',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>setClass: aClass selector: aSelector [
+{ #category : #'browser compatibility' }
+Nautilus >> setClass: aClass selector: aSelector [
 	| method protocol |
 	method := aClass methodDict at: aSelector ifAbsent: [ nil ].
 	protocol := method ifNil: [ nil ] ifNotNil: [ method protocol ].
@@ -1177,126 +873,87 @@ Nautilus>>setClass: aClass selector: aSelector [
 		selectedMethod: method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>showCategories [
+{ #category : #accessing }
+Nautilus >> showCategories [
 
 	^ showCategories ifNil: [ showCategories := true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>showCategories: aBoolean [
+{ #category : #accessing }
+Nautilus >> showCategories: aBoolean [
 
 	showCategories := aBoolean.
 	self announcer announce: ( NautilusShowCategoriesChanged boolean: aBoolean )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>showComment [
+{ #category : #accessing }
+Nautilus >> showComment [
 
 	^ showComment ifNil: [ showComment := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>showComment: aBoolean [
+{ #category : #accessing }
+Nautilus >> showComment: aBoolean [
 
 	showComment := aBoolean.
 	self announcer announce: ( NautilusShowCommentChanged boolean: aBoolean )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>showHierarchy [
+{ #category : #accessing }
+Nautilus >> showHierarchy [
 
 	^ showHierarchy ifNil: [ showHierarchy := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>showHierarchy: aBoolean [
+{ #category : #accessing }
+Nautilus >> showHierarchy: aBoolean [
 
 	showHierarchy := aBoolean.
 	self announcer announce: ( NautilusShowPackagesChanged boolean: aBoolean not )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>showInstance [
+{ #category : #accessing }
+Nautilus >> showInstance [
 
 	^ showInstance ifNil: [ showInstance := true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>showInstance: aBoolean [
+{ #category : #accessing }
+Nautilus >> showInstance: aBoolean [
 
 	showInstance := aBoolean.
 	self announcer announce: ( NautilusShowInstanceChanged boolean: aBoolean )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>sortHierarchically [
+{ #category : #accessing }
+Nautilus >> sortHierarchically [
 
 	^ sortHierarchically ifNil: [ sortHierarchically := self class sortHierarchically ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>sortHierarchically: aBoolean [
+{ #category : #accessing }
+Nautilus >> sortHierarchically: aBoolean [
 
 	sortHierarchically := aBoolean.
 	self announcer announce: ( NautilusShowHierarchyChanged boolean: aBoolean )
 ]
 
-{
-	#category : #'browser compatibility',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>spawnHierarchy [
+{ #category : #'browser compatibility' }
+Nautilus >> spawnHierarchy [
 	self
 		sortHierarchically: true;
 		open.
 	self ui showHierarchy: true
 ]
 
-{
-	#category : #'browser compatibility',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>spawnHierarchyForClass: aClass selector: aSelector [
+{ #category : #'browser compatibility' }
+Nautilus >> spawnHierarchyForClass: aClass selector: aSelector [
 	self setClass: aClass selector: aSelector.
 	self spawnHierarchy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Nautilus>>ui [
+{ #category : #accessing }
+Nautilus >> ui [
 
 	^ ui
 ]

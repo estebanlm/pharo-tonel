@@ -8,24 +8,17 @@ Class {
 	#instVars : [
 		'month'
 	],
-	#category : #Kernel-Tests-Chronology,
-	#timestamp : 'brp 7/26/2003 22:44'
+	#category : #Kernel-Tests-Chronology
 }
 
-{
-	#category : #coverage,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MonthTest>>classToBeTested [
+{ #category : #coverage }
+MonthTest >> classToBeTested [
 
 	^ Month
 ]
 
-{
-	#category : #coverage,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MonthTest>>selectorsToBeIgnored [
+{ #category : #coverage }
+MonthTest >> selectorsToBeIgnored [
 
 	| deprecated private special |
 	deprecated := #().
@@ -35,40 +28,28 @@ MonthTest>>selectorsToBeIgnored [
 	^ super selectorsToBeIgnored, deprecated, private, special.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MonthTest>>setUp [
+{ #category : #running }
+MonthTest >> setUp [
 
 	super setUp.
 	month := Month year: 1998 month: 7.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MonthTest>>tearDown [
+{ #category : #running }
+MonthTest >> tearDown [
 
 	super tearDown.
 	month := nil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MonthTest>>testConverting [
+{ #category : #tests }
+MonthTest >> testConverting [
 
 	self assert: month asDate = '1 July 1998' asDate
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MonthTest>>testEnumerating [
+{ #category : #tests }
+MonthTest >> testEnumerating [
 	| weeks |
 	weeks := OrderedCollection new.
 	month weeksDo: [ :w | weeks add: w start ].
@@ -76,11 +57,8 @@ MonthTest>>testEnumerating [
 	self assert: weeks isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MonthTest>>testIndexOfMonth [
+{ #category : #tests }
+MonthTest >> testIndexOfMonth [
 	"self debug: #testIndexOfMonth"
        | m |
        m := #(#January #February #March #April #May #June #July #August
@@ -96,11 +74,8 @@ item) = index].
  self defaultTestError.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MonthTest>>testInquiries [
+{ #category : #tests }
+MonthTest >> testInquiries [
 
 	self 
 		assert: month index = 7;
@@ -109,11 +84,8 @@ MonthTest>>testInquiries [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MonthTest>>testInstanceCreation [
+{ #category : #tests }
+MonthTest >> testInstanceCreation [
 	| m1 m2 |
 	m1 := Month starting:  '4 July 1998' asDate.
 	m2 := Month year: 1998 month: #July .
@@ -122,11 +94,8 @@ MonthTest>>testInstanceCreation [
 		assert: month = m2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MonthTest>>testNameOfMonth [
+{ #category : #tests }
+MonthTest >> testNameOfMonth [
 
        | m |
        m := #(#January #February #March #April #May #June #July #August
@@ -140,11 +109,8 @@ index) = item].
        self should: [Month nameOfMonth: #January] raise: self defaultTestError.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MonthTest>>testPreviousNext [
+{ #category : #tests }
+MonthTest >> testPreviousNext [
 	| n p |
 	n := month next.
 	p := month previous.
@@ -158,22 +124,16 @@ MonthTest>>testPreviousNext [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MonthTest>>testPrinting [
+{ #category : #tests }
+MonthTest >> testPrinting [
 
 	self 
 		assert: month printString = 'July 1998'.
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MonthTest>>testReadFrom [
+{ #category : #tests }
+MonthTest >> testReadFrom [
 
 	| m |
 	m := Month readFrom: 'July 1998' readStream.

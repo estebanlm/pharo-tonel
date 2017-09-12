@@ -1,12 +1,7 @@
-Extension {
-	#name : #WeakArray
-}
+Extension { #name : #WeakArray }
 
-{
-	#category : #'*System-Finalization',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakArray class>>doOldFinalization [
+{ #category : #'*System-Finalization' }
+WeakArray class >> doOldFinalization [
 	"Process the weak registries, in the old finalization style.  Hopefully this will
 	 eventually go away when all clients have adopted the new finalization scheme."
 	FinalizationLock critical: [
@@ -15,11 +10,8 @@ WeakArray class>>doOldFinalization [
 					[ weakDependent finalizeValues ] on: Exception fork: [:ex | ex pass ] ]]].
 ]
 
-{
-	#category : #'*System-Finalization',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakArray class>>finalizationProcess [
+{ #category : #'*System-Finalization' }
+WeakArray class >> finalizationProcess [
 	"The finalization process arranges to send mourn to each element of the VM's finalization queue,
 	 which is accessed via primitiveFetchMourner.  The VM signals FinalizationSemaphore whenever
 	 the queue is non-empty.  This process loops, waiting on the semaphore, fetches the first element
@@ -41,11 +33,8 @@ WeakArray class>>finalizationProcess [
 		 throttle wait]]
 ]
 
-{
-	#category : #'*System-Finalization',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakArray class>>mournLoopWith: firstMourner [
+{ #category : #'*System-Finalization' }
+WeakArray class >> mournLoopWith: firstMourner [
 	"Send mourn to all the objects available in the mourn queue, starting
 	 with firstMourner which the sender has already extraced for us.  If
 	 an error occurs here, it will break this loop but the sender will spawn
@@ -57,11 +46,8 @@ WeakArray class>>mournLoopWith: firstMourner [
 	 (mourner := self primitiveFetchMourner) notNil] whileTrue
 ]
 
-{
-	#category : #'*System-Finalization',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakArray class>>primitiveFetchMourner [
+{ #category : #'*System-Finalization' }
+WeakArray class >> primitiveFetchMourner [
 	"Answer the next mourner in the VM's queue of objects to be finalized.
 	 The queue contains weak arrays and ephemerons.  If the primitive is
 	 not implemented, raise an error telling people to upgrade the VM.  If
@@ -73,11 +59,8 @@ WeakArray class>>primitiveFetchMourner [
 	^nil
 ]
 
-{
-	#category : #'*System-Finalization',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakArray class>>restartFinalizationProcess [
+{ #category : #'*System-Finalization' }
+WeakArray class >> restartFinalizationProcess [
 	"kill any old process, just in case"
 	FinalizationProcess
 		ifNotNil: [FinalizationProcess terminate.
@@ -92,11 +75,8 @@ WeakArray class>>restartFinalizationProcess [
 	FinalizationProcess name: 'WeakArray Finalization Process'.
 ]
 
-{
-	#category : #'*System-Finalization',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakArray class>>startUp: resuming [
+{ #category : #'*System-Finalization' }
+WeakArray class >> startUp: resuming [
 	resuming ifFalse: [ ^self ].
 	self restartFinalizationProcess.
 ]

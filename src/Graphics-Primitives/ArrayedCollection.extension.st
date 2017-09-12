@@ -1,12 +1,7 @@
-Extension {
-	#name : #ArrayedCollection
-}
+Extension { #name : #ArrayedCollection }
 
-{
-	#category : #'*Graphics-Primitives',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ArrayedCollection>>restoreEndianness [
+{ #category : #'*Graphics-Primitives' }
+ArrayedCollection >> restoreEndianness [
  	"This word object was just read in from a stream.  It was stored in Big Endian (Mac) format.  Reverse the byte order if the current machine is Little Endian.
  	We only intend this for non-pointer arrays.  Do nothing if I contain pointers."
  
@@ -19,11 +14,8 @@ ArrayedCollection>>restoreEndianness [
  				to: self basicSize]
 ]
 
-{
-	#category : #'*Graphics-Primitives',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ArrayedCollection>>swapHalves [
+{ #category : #'*Graphics-Primitives' }
+ArrayedCollection >> swapHalves [
  		"A normal switch in endianness (byte order in words) reverses the order of 4 bytes.  That is not correct for SoundBuffers, which use 2-bytes units.  If a normal switch has be done, this method corrects it further by swapping the two halves of the long word.
  	This method is only used for 16-bit quanities in SoundBuffer, ShortIntegerArray, etc."
  

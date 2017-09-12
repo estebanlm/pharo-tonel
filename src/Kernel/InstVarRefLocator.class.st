@@ -11,44 +11,31 @@ Class {
 	#instVars : [
 		'bingo'
 	],
-	#category : #Kernel-Methods,
-	#timestamp : 'md 4/8/2003 12:50'
+	#category : #Kernel-Methods
 }
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstVarRefLocator>>interpretNextInstructionUsing: aScanner [
+{ #category : #initialize-release }
+InstVarRefLocator >> interpretNextInstructionUsing: aScanner [ 
 	
 	bingo := false.
 	aScanner interpretNextInstructionFor: self.
 	^bingo
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstVarRefLocator>>popIntoReceiverVariable: offset [
+{ #category : #'instruction decoding' }
+InstVarRefLocator >> popIntoReceiverVariable: offset [ 
 
 	bingo := true
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstVarRefLocator>>pushReceiverVariable: offset [
+{ #category : #'instruction decoding' }
+InstVarRefLocator >> pushReceiverVariable: offset [
 
 	bingo := true
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstVarRefLocator>>storeIntoReceiverVariable: offset [
+{ #category : #'instruction decoding' }
+InstVarRefLocator >> storeIntoReceiverVariable: offset [ 
 
 	bingo := true
 ]

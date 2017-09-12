@@ -1,12 +1,7 @@
-Extension {
-	#name : #EllipseMorph
-}
+Extension { #name : #EllipseMorph }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-EllipseMorph>>asAthensShapeOn: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+EllipseMorph >> asAthensShapeOn: anAthensCanvas [
 	| halfWidth halfHeight |
 	self bounds area > 0
 		ifFalse: [ ^ self ].
@@ -29,11 +24,8 @@ EllipseMorph>>asAthensShapeOn: anAthensCanvas [
 					to: halfWidth negated @ halfHeight negated ]
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-EllipseMorph>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+EllipseMorph >> drawOnAthensCanvas: anAthensCanvas [
 	| border ellipse |
 	self bounds area > 0
 		ifFalse: [ ^ self ].

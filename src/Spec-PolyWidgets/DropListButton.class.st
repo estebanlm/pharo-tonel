@@ -12,15 +12,11 @@ Class {
 		'dropList',
 		'button'
 	],
-	#category : #Spec-PolyWidgets-Elementary,
-	#timestamp : 'Spirita 7/22/2016 16:24'
+	#category : #Spec-PolyWidgets-Elementary
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton class>>defaultSpec [
+{ #category : #specs }
+DropListButton class >> defaultSpec [
 	<spec: #default>
 	^ SpecLayout composed
 		newRow: [ :row | 
@@ -30,11 +26,8 @@ DropListButton class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton class>>example [
+{ #category : #example }
+DropListButton class >> example [
 	| example |
 	example := self new.
 	example
@@ -47,59 +40,38 @@ DropListButton class>>example [
 	^ example
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>action: aBlock [
+{ #category : #api-shortcuts }
+DropListButton >> action: aBlock [
 	self button action: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>button [
+{ #category : #accessing }
+DropListButton >> button [
 	^ button
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>displayBlock: aBlock [
+{ #category : #api-shortcuts }
+DropListButton >> displayBlock: aBlock [
 	self dropList displayBlock: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>dropList [
+{ #category : #accessing }
+DropListButton >> dropList [
 	^ dropList
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>emptyList [
+{ #category : #api-shortcuts }
+DropListButton >> emptyList [
 	self dropList emptyList
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>icon: anIcon [
+{ #category : #api-shortcuts }
+DropListButton >> icon: anIcon [
 	self button icon: anIcon
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>initializeWidgets [
+{ #category : #initialization }
+DropListButton >> initializeWidgets [
 	dropList := self instantiate: DropListModel.
 	button := self instantiate: ButtonModel.
 	self focusOrder
@@ -107,85 +79,55 @@ DropListButton>>initializeWidgets [
 		add: button
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>items: aList [
+{ #category : #api-shortcuts }
+DropListButton >> items: aList [
 	self dropList items: aList
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>label [
+{ #category : #api-shortcuts }
+DropListButton >> label [
 	self button label
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>label: aStringOrImageMorph [
+{ #category : #api-shortcuts }
+DropListButton >> label: aStringOrImageMorph [
 	self button label: aStringOrImageMorph
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>listSize [
+{ #category : #api-shortcuts }
+DropListButton >> listSize [
 	self dropList listSize
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>resetSelection [
+{ #category : #api-shortcuts }
+DropListButton >> resetSelection [
 	self dropList resetSelection
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>selectedItem [
+{ #category : #api-shortcuts }
+DropListButton >> selectedItem [
 	self dropList selectedItem
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>setIndex: anIndex [
+{ #category : #api-shortcuts }
+DropListButton >> setIndex: anIndex [
 	self dropList setIndex: anIndex
 ]
 
-{
-	#category : #events-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>whenSelectedItemChanged: aBlock [
+{ #category : #events-shortcuts }
+DropListButton >> whenSelectedItemChanged: aBlock [
 	self dropList
 		whenSelectedItemChanged: aBlock
 ]
 
-{
-	#category : #events-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>whenSelectionChanged: aBlock [
+{ #category : #events-shortcuts }
+DropListButton >> whenSelectionChanged: aBlock [
 	self dropList
 		whenSelectionChanged: aBlock
 ]
 
-{
-	#category : #events-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DropListButton>>whenSelectionIndexChanged: aBlock [
+{ #category : #events-shortcuts }
+DropListButton >> whenSelectionIndexChanged: aBlock [
 	self dropList
 		whenSelectionIndexChanged: aBlock
 ]

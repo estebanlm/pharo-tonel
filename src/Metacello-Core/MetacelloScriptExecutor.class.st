@@ -17,82 +17,54 @@ Class {
 		'versionArg',
 		'repositoryArg'
 	],
-	#category : #Metacello-Core-Scripts,
-	#timestamp : 'dkh 7/12/2012 14:49'
+	#category : #Metacello-Core-Scripts
 }
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>applyArgsToProjectSpec: aProjectSpec [
+{ #category : #execution }
+MetacelloScriptExecutor >> applyArgsToProjectSpec: aProjectSpec [
     classNameArg ifNotNil: [ aProjectSpec className: classNameArg ].
     versionArg ifNotNil: [ aProjectSpec versionString: versionArg ].
     repositoryArg ifNotNil: [ aProjectSpec repository: repositoryArg ].
     ^ aProjectSpec
 ]
 
-{
-	#category : #args,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>baselineArg [
+{ #category : #args }
+MetacelloScriptExecutor >> baselineArg [
 	^ baselineArg
 ]
 
-{
-	#category : #args,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>baselineArg: anObject [
+{ #category : #args }
+MetacelloScriptExecutor >> baselineArg: anObject [
 	baselineArg := anObject
 ]
 
-{
-	#category : #'options api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>cacheRepository: aRepositoryDescription [
+{ #category : #'options api' }
+MetacelloScriptExecutor >> cacheRepository: aRepositoryDescription [
     self options at: #'cacheRepository' put: aRepositoryDescription
 ]
 
-{
-	#category : #args,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>classNameArg [
+{ #category : #args }
+MetacelloScriptExecutor >> classNameArg [
     ^ classNameArg
 ]
 
-{
-	#category : #args,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>classNameArg: anObject [
+{ #category : #args }
+MetacelloScriptExecutor >> classNameArg: anObject [
     classNameArg := anObject
 ]
 
-{
-	#category : #args,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>configurationArg [
+{ #category : #args }
+MetacelloScriptExecutor >> configurationArg [
     ^ configurationArg
 ]
 
-{
-	#category : #args,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>configurationArg: anObject [
+{ #category : #args }
+MetacelloScriptExecutor >> configurationArg: anObject [
     configurationArg := anObject
 ]
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>execute: statements [
+{ #category : #execution }
+MetacelloScriptExecutor >> execute: statements [
   statements
     do: [ :assoc | 
       assoc value
@@ -114,156 +86,102 @@ MetacelloScriptExecutor>>execute: statements [
     ifFalse: [ self roots ]
 ]
 
-{
-	#category : #'execution callback',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>executeBlock: selectBlock do: projectSpecBlock [
+{ #category : #'execution callback' }
+MetacelloScriptExecutor >> executeBlock: selectBlock do: projectSpecBlock [
     ((projectSpecGenerator projectSpecListBlock value select: selectBlock) select: self projectSpecSelectBlock)
         do: [ :projectSpec | projectSpecBlock value: (self applyArgsToProjectSpec: projectSpec copy) ]
 ]
 
-{
-	#category : #'execution callback',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>executeCollection: aCollection do: projectSpecBlock [
+{ #category : #'execution callback' }
+MetacelloScriptExecutor >> executeCollection: aCollection do: projectSpecBlock [
     aCollection
         do: [ :projectName | 
             ((projectSpecGenerator projectSpecLookupBlock value: projectName) select: self projectSpecSelectBlock)
                 do: [ :projectSpec | projectSpecBlock value: (self applyArgsToProjectSpec: projectSpec copy) ] ]
 ]
 
-{
-	#category : #'execution callback',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>executeString: aString do: projectSpecBlock [
+{ #category : #'execution callback' }
+MetacelloScriptExecutor >> executeString: aString do: projectSpecBlock [
   singleRoot ifNil: [ self singleRoot: true ].
   ((projectSpecGenerator projectSpecLookupBlock value: aString)
     select: self projectSpecSelectBlock)
     do: [ :projectSpec | projectSpecBlock value: (self applyArgsToProjectSpec: projectSpec copy) ]
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>fetch: required [
+{ #category : #'actions api' }
+MetacelloScriptExecutor >> fetch: required [
     actionArg := #'fetch:' -> {required}
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>get [
+{ #category : #'actions api' }
+MetacelloScriptExecutor >> get [
     actionArg := #'get' -> #()
 ]
 
-{
-	#category : #'options api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>ignoreImage: aBool [
+{ #category : #'options api' }
+MetacelloScriptExecutor >> ignoreImage: aBool [
     self options at: #'ignoreImage' put: aBool
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>list [
+{ #category : #'actions api' }
+MetacelloScriptExecutor >> list [
   actionArg := #'list' -> #().
   self singleRoot: false
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>load: required [
+{ #category : #'actions api' }
+MetacelloScriptExecutor >> load: required [
     actionArg := #'load:' -> {required}
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>lock [
+{ #category : #'actions api' }
+MetacelloScriptExecutor >> lock [
     actionArg := #'lock' -> #()
 ]
 
-{
-	#category : #'options api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>onConflict: aBlock [
+{ #category : #'options api' }
+MetacelloScriptExecutor >> onConflict: aBlock [
     self options at: #'onConflict' put: aBlock
 ]
 
-{
-	#category : #'options api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>onDowngrade: aBlock [
+{ #category : #'options api' }
+MetacelloScriptExecutor >> onDowngrade: aBlock [
     self options at: #'onDowngrade' put: aBlock
 ]
 
-{
-	#category : #'options api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>onLock: aBlock [
+{ #category : #'options api' }
+MetacelloScriptExecutor >> onLock: aBlock [
   self options at: #'onLock' put: aBlock
 ]
 
-{
-	#category : #'options api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>onUpgrade: aBlock [
+{ #category : #'options api' }
+MetacelloScriptExecutor >> onUpgrade: aBlock [
     self options at: #'onUpgrade' put: aBlock
 ]
 
-{
-	#category : #'options api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>onWarning: aBlock [
+{ #category : #'options api' }
+MetacelloScriptExecutor >> onWarning: aBlock [
   self options at: #'onWarning' put: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>options [
+{ #category : #accessing }
+MetacelloScriptExecutor >> options [
     options ifNil: [ options := Dictionary new ].
     ^ options
 ]
 
-{
-	#category : #args,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>projectArg [
+{ #category : #args }
+MetacelloScriptExecutor >> projectArg [
     ^ projectArg
 ]
 
-{
-	#category : #args,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>projectArg: anObject [
+{ #category : #args }
+MetacelloScriptExecutor >> projectArg: anObject [
     projectArg := anObject
 ]
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>projectSpecGenerator [
+{ #category : #execution }
+MetacelloScriptExecutor >> projectSpecGenerator [
     baselineArg
         ifNotNil: [ 
             configurationArg ifNotNil: [ self error: ' baseline: and configuration: are both be specified' ].
@@ -288,126 +206,81 @@ MetacelloScriptExecutor>>projectSpecGenerator [
     self error: 'project, baseline, or configuration not specified'
 ]
 
-{
-	#category : #'execution callback',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>projectSpecSelectBlock [
+{ #category : #'execution callback' }
+MetacelloScriptExecutor >> projectSpecSelectBlock [
     ^ [ :projectSpec | true ]
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>record: required [
+{ #category : #'actions api' }
+MetacelloScriptExecutor >> record: required [
     actionArg := #'record:' -> {required}
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>register [
+{ #category : #'actions api' }
+MetacelloScriptExecutor >> register [
   actionArg := #'register' -> #()
 ]
 
-{
-	#category : #args,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>repositoryArg [
+{ #category : #args }
+MetacelloScriptExecutor >> repositoryArg [
     ^ repositoryArg
 ]
 
-{
-	#category : #args,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>repositoryArg: anObject [
+{ #category : #args }
+MetacelloScriptExecutor >> repositoryArg: anObject [
     repositoryArg := anObject
 ]
 
-{
-	#category : #'options api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>repositoryOverrides: aRepositoryDescriptionList [
+{ #category : #'options api' }
+MetacelloScriptExecutor >> repositoryOverrides: aRepositoryDescriptionList [
     self options at: #'repositoryOverrides' put: aRepositoryDescriptionList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>roots [
+{ #category : #accessing }
+MetacelloScriptExecutor >> roots [
     roots ifNil: [ roots := OrderedCollection new ].
     ^ roots
 ]
 
-{
-	#category : #'options api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>silently: aBool [
+{ #category : #'options api' }
+MetacelloScriptExecutor >> silently: aBool [
     self options at: #'silently' put: aBool
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>singleRoot [
+{ #category : #accessing }
+MetacelloScriptExecutor >> singleRoot [
   singleRoot ifNil: [ singleRoot := false ].
   ^ singleRoot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>singleRoot: aBool [
+{ #category : #accessing }
+MetacelloScriptExecutor >> singleRoot: aBool [
   singleRoot := aBool
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>unlock [
+{ #category : #'actions api' }
+MetacelloScriptExecutor >> unlock [
     actionArg := #'unlock' -> #()
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>unregister [
+{ #category : #'actions api' }
+MetacelloScriptExecutor >> unregister [
   actionArg := #'unregister' -> #()
 ]
 
-{
-	#category : #'options api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>useCurrentVersion: aBool [
+{ #category : #'options api' }
+MetacelloScriptExecutor >> useCurrentVersion: aBool [
     "private option used to implement the classic mode"
 
     self options at: #'useCurrentVersion' put: aBool
 ]
 
-{
-	#category : #args,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>versionArg [
+{ #category : #args }
+MetacelloScriptExecutor >> versionArg [
     ^ versionArg
 ]
 
-{
-	#category : #args,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptExecutor>>versionArg: anObject [
+{ #category : #args }
+MetacelloScriptExecutor >> versionArg: anObject [
     versionArg := anObject
 ]

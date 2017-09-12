@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'expr'
 	],
-	#category : #Compiler-ParseNodes,
-	#timestamp : '<historical>'
+	#category : #Compiler-ParseNodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ReturnNode>>accept: aVisitor [
+{ #category : #visiting }
+ReturnNode >> accept: aVisitor [
 	^aVisitor visitReturnNode: self
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ReturnNode>>analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools "<Dictionary>" [
+{ #category : #'code generation (closures)' }
+ReturnNode >> analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools [ "<Dictionary>"
 	"Note we could do this:
 		scopeBlock ~~ rootNode block ifTrue:
 			[scopeBlock noteNonLocalReturn].
@@ -34,132 +27,89 @@ ReturnNode>>analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<Me
 	expr analyseTempsWithin: scopeBlock rootNode: rootNode assignmentPools: assignmentPools
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ReturnNode>>asReturnNode [
-
+{ #category : #converting }
+ReturnNode >> asReturnNode [
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ReturnNode>>code [
+{ #category : #'code generation' }
+ReturnNode >> code [
 
 	^expr code
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ReturnNode>>emitCodeForReturn: stack encoder: encoder [
+{ #category : #'code generation' }
+ReturnNode >> emitCodeForReturn: stack encoder: encoder [
 
 	expr emitCodeForReturn: stack encoder: encoder.
 	pc := encoder methodStreamPosition
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ReturnNode>>emitCodeForValue: stack encoder: encoder [
+{ #category : #'code generation' }
+ReturnNode >> emitCodeForValue: stack encoder: encoder [
 
 	expr emitCodeForReturn: stack encoder: encoder.
 	pc := encoder methodStreamPosition
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ReturnNode>>expr [
+{ #category : #printing }
+ReturnNode >> expr [
 
 	^ expr.
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ReturnNode>>expr: e [
+{ #category : #initialize-release }
+ReturnNode >> expr: e [
 
 	expr := e
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ReturnNode>>expr: e encoder: encoder sourceRange: range [
+{ #category : #initialize-release }
+ReturnNode >> expr: e encoder: encoder sourceRange: range [
 
 	expr := e.
 	encoder noteSourceRange: range forNode: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ReturnNode>>isReturn [
+{ #category : #testing }
+ReturnNode >> isReturn [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ReturnNode>>isReturnSelf [
+{ #category : #testing }
+ReturnNode >> isReturnSelf [
 
 	^expr == NodeSelf
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ReturnNode>>isSpecialConstant [
+{ #category : #testing }
+ReturnNode >> isSpecialConstant [
 
 	^expr isSpecialConstant
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ReturnNode>>isVariableReference [
+{ #category : #testing }
+ReturnNode >> isVariableReference [
 
 	^expr isVariableReference
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ReturnNode>>printOn: aStream indent: level [
+{ #category : #printing }
+ReturnNode >> printOn: aStream indent: level [
 
 	aStream nextPutAll: '^ '. 
 	expr printOn: aStream indent: level.
 	expr printCommentOn: aStream indent: level
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ReturnNode>>sizeCodeForReturn: encoder [
+{ #category : #'code generation' }
+ReturnNode >> sizeCodeForReturn: encoder [
 
 	^expr sizeCodeForReturn: encoder
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ReturnNode>>sizeCodeForValue: encoder [
+{ #category : #'code generation' }
+ReturnNode >> sizeCodeForValue: encoder [
 
 	^expr sizeCodeForReturn: encoder
 ]

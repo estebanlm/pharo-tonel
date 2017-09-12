@@ -16,259 +16,165 @@ Class {
 	#instVars : [
 		'window'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : 'tg 4/1/2010 07:11'
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>open: aRenderable [
+{ #category : #opening }
+GLMMorphicRenderer >> open: aRenderable [
 	window := GLMMorphicWindowRenderer render: aRenderable from: self.
 	^ window openInWorld 
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderAccordionCompositePresentation: aCompositePresentation [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderAccordionCompositePresentation: aCompositePresentation [
 	^ GLMMorphicAccordionRenderer render: aCompositePresentation from: self
 ]
 
-{
-	#category : #'rendering browsers',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderAccumulator: aBrowser  [
+{ #category : #'rendering browsers' }
+GLMMorphicRenderer >> renderAccumulator: aBrowser [ 
 	^ GLMMorphicAccumulatorRenderer render: aBrowser from: self
 ]
 
-{
-	#category : #'rendering actions',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderAction: anAction [
+{ #category : #'rendering actions' }
+GLMMorphicRenderer >> renderAction: anAction [
 	^ GLMMorphicActionRenderer render: anAction from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderActionListPresentation: anActionListPresentation  [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderActionListPresentation: anActionListPresentation [ 
 	^GLMMorphicActionListRenderer render: anActionListPresentation from: self
 ]
 
-{
-	#category : #'rendering browsers',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderDashboard: aBrowser  [
+{ #category : #'rendering browsers' }
+GLMMorphicRenderer >> renderDashboard: aBrowser [ 
 	^ GLMMorphicDashboardRenderer render: aBrowser from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderDiffPresentation: aPresentation [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderDiffPresentation: aPresentation [
 	^ GLMMorphicDiffRenderer render: aPresentation from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderDropDownListPresentation: aDropListPresentation [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderDropDownListPresentation: aDropListPresentation [
 	^ GLMMorphicDropDownRenderer render: aDropListPresentation from: self	
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderDynamicPresentation: aPresentation [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderDynamicPresentation: aPresentation [
 	^ GLMMorphicDynamicRenderer render: aPresentation from: self
 ]
 
-{
-	#category : #'rendering browsers',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderExpander: aBrowser  [
+{ #category : #'rendering browsers' }
+GLMMorphicRenderer >> renderExpander: aBrowser [ 
 	^ GLMMorphicExpanderRenderer render: aBrowser from: self
 ]
 
-{
-	#category : #'rendering browsers',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderFinder: aBrowser  [
+{ #category : #'rendering browsers' }
+GLMMorphicRenderer >> renderFinder: aBrowser [ 
 	^ aBrowser hasFixedSizePanes 
 		ifTrue: [GLMMorphicFixedPanesFinderRenderer render: aBrowser from: self]
 		ifFalse: [GLMMorphicVariablePanesFinderRenderer render: aBrowser from: self]
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderLabelPresentation: aLabelPresentation  [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderLabelPresentation: aLabelPresentation [ 
 	^ GLMMorphicLabelRenderer render: aLabelPresentation from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderListPresentation: aListPresentation  [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderListPresentation: aListPresentation [ 
 	^ GLMMorphicListRenderer render: aListPresentation from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderListingPresentation: aPresentation  [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderListingPresentation: aPresentation [ 
 	^ GLMMorphicListingRenderer render: aPresentation from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderMorphPresentation: aMorphPresentation  [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderMorphPresentation: aMorphPresentation [ 
 	^ GLMMorphicMorphRenderer render: aMorphPresentation from: self
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderPane: aPane  [
+{ #category : #rendering }
+GLMMorphicRenderer >> renderPane: aPane [ 
 	^ GLMMorphicPaneRenderer render: aPane from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderPharoMethodPresentation: aSmalltalkMethodPresentation  [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderPharoMethodPresentation: aSmalltalkMethodPresentation [ 
 	^ GLMMorphicPharoMethodRenderer render: aSmalltalkMethodPresentation from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderPharoScriptPresentation: aPharoScriptPresentation  [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderPharoScriptPresentation: aPharoScriptPresentation [ 
 	^ GLMMorphicPharoScriptRenderer render: aPharoScriptPresentation from: self
 ]
 
-{
-	#category : #'rendering actions',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderPopupAction: anAction [
+{ #category : #'rendering actions' }
+GLMMorphicRenderer >> renderPopupAction: anAction [
 	^ GLMMorphicPopupActionRenderer render: anAction from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderRubricHighlightedTextPresentation: aPresentation [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderRubricHighlightedTextPresentation: aPresentation [
 
 	^ GLMMorphicRubricHighlightedTextRenderer render: aPresentation from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderRubricTextPresentation: aPresentation [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderRubricTextPresentation: aPresentation [
 	^ GLMMorphicRubricTextRenderer render: aPresentation from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderSmalltalkCodePresentation: aSmalltalkCodePresentation  [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderSmalltalkCodePresentation: aSmalltalkCodePresentation [ 
 	^ GLMMorphicSmalltalkCodeRenderer render: aSmalltalkCodePresentation from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderSpecPresentation: aPresentation  [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderSpecPresentation: aPresentation [ 
 	^ GLMMorphicSpecRenderer render: aPresentation from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderStackedVerticallyCompositePresentation: aCompositePresentation [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderStackedVerticallyCompositePresentation: aCompositePresentation [
 	^ GLMMorphicVerticallyStackedRenderer render: aCompositePresentation from: self
 ]
 
-{
-	#category : #'rendering browsers',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderStacker: aBrowser  [
+{ #category : #'rendering browsers' }
+GLMMorphicRenderer >> renderStacker: aBrowser [ 
 	^ GLMMorphicStackerRenderer render: aBrowser from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderTabbedCompositePresentation: aCompositePresentation [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderTabbedCompositePresentation: aCompositePresentation [
 	^ GLMMorphicTabbedRenderer render: aCompositePresentation from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderTablePresentation: aPresentation  [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderTablePresentation: aPresentation [ 
 	^ GLMMorphicTableRenderer render: aPresentation from: self
 ]
 
-{
-	#category : #'rendering browsers',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderTabulator: aBrowser  [
+{ #category : #'rendering browsers' }
+GLMMorphicRenderer >> renderTabulator: aBrowser [ 
 	^ GLMMorphicTabulatorRenderer render: aBrowser from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderTextPresentation: aTextPresentation  [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderTextPresentation: aTextPresentation [ 
 	^ GLMMorphicTextRenderer render: aTextPresentation from: self
 ]
 
-{
-	#category : #'rendering presentations',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderTreePresentation: aPresentation  [
+{ #category : #'rendering presentations' }
+GLMMorphicRenderer >> renderTreePresentation: aPresentation [ 
 	^ GLMMorphicTreeRenderer render: aPresentation from: self
 ]
 
-{
-	#category : #'rendering browsers',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderValidator: aBrowser  [
+{ #category : #'rendering browsers' }
+GLMMorphicRenderer >> renderValidator: aBrowser [ 
 
 	| tmpValidatorRenderer |
 	tmpValidatorRenderer :=  GLMMorphicValidatorRenderer new.
@@ -276,11 +182,8 @@ GLMMorphicRenderer>>renderValidator: aBrowser  [
 	^ tmpValidatorRenderer render: aBrowser from: self
 ]
 
-{
-	#category : #'rendering browsers',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderWizard: aGLMWizard [
+{ #category : #'rendering browsers' }
+GLMMorphicRenderer >> renderWizard: aGLMWizard [
 
 	|tmpRenderer|
 	tmpRenderer :=  GLMMorphicWizardRenderer new.
@@ -288,26 +191,17 @@ GLMMorphicRenderer>>renderWizard: aGLMWizard [
 	^ (tmpRenderer renderer: self) render: aGLMWizard
 ]
 
-{
-	#category : #'rendering browsers',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>renderWrapper: aBrowser  [
+{ #category : #'rendering browsers' }
+GLMMorphicRenderer >> renderWrapper: aBrowser [ 
 	^ GLMMorphicWrapperRenderer render: aBrowser from: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>window [
+{ #category : #accessing }
+GLMMorphicRenderer >> window [
 	^ window
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRenderer>>window: anObject [
+{ #category : #accessing }
+GLMMorphicRenderer >> window: anObject [
 	window := anObject
 ]

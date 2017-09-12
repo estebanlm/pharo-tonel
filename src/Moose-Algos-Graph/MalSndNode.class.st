@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MalSndNode,
 	#superclass : #MalNodeWithPreviousAndNext,
@@ -8,38 +5,25 @@ Class {
 		'visited',
 		'bfsAncestor'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSndNode>>bfsAncestor [
+{ #category : #accessing }
+MalSndNode >> bfsAncestor [
 	^ bfsAncestor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSndNode>>bfsAncestor: anObject [
+{ #category : #accessing }
+MalSndNode >> bfsAncestor: anObject [
 	bfsAncestor := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSndNode>>visited [
+{ #category : #accessing }
+MalSndNode >> visited [
 	^ visited
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSndNode>>visited: anObject [
+{ #category : #accessing }
+MalSndNode >> visited: anObject [
 	visited := anObject
 ]

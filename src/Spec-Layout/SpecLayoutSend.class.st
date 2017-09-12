@@ -4,15 +4,11 @@ A SpecLayoutSend is a spec layout action used when a selector is sent to the lay
 Class {
 	#name : #SpecLayoutSend,
 	#superclass : #AbstractSpecLayoutAction,
-	#category : #Spec-Layout,
-	#timestamp : '<historical>'
+	#category : #Spec-Layout
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend class>>selector: selector arguments: arguments [
+{ #category : #'instance creation' }
+SpecLayoutSend class >> selector: selector arguments: arguments [
 
 	^ self new
 		arguments: arguments;
@@ -20,164 +16,110 @@ SpecLayoutSend class>>selector: selector arguments: arguments [
 		yourself
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>asSpecElements [
+{ #category : #protocol }
+SpecLayoutSend >> asSpecElements [
 
 	^ {self selector.}, self arguments
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>bottomFraction [
+{ #category : #protocol }
+SpecLayoutSend >> bottomFraction [
 
 	^ 0
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>bottomFraction: aNumber [
+{ #category : #protocol }
+SpecLayoutSend >> bottomFraction: aNumber [
 
 	^ 0
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>bottomOffset [
+{ #category : #protocol }
+SpecLayoutSend >> bottomOffset [
 
 	^ 0
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>bottomOffset: aNumber [
+{ #category : #protocol }
+SpecLayoutSend >> bottomOffset: aNumber [
 
 	^ 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>isSplitter [
+{ #category : #testing }
+SpecLayoutSend >> isSplitter [
 
 	^ false
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>leftFraction [
+{ #category : #protocol }
+SpecLayoutSend >> leftFraction [
 
 	^ 0
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>leftFraction: aNumber [
+{ #category : #protocol }
+SpecLayoutSend >> leftFraction: aNumber [
 
 	^ 0
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>leftOffset [
+{ #category : #protocol }
+SpecLayoutSend >> leftOffset [
 
 	^ 0
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>leftOffset: aNumber [
+{ #category : #protocol }
+SpecLayoutSend >> leftOffset: aNumber [
 
 	^ 0
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>rightFraction [
+{ #category : #protocol }
+SpecLayoutSend >> rightFraction [
 
 	^ 0
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>rightFraction: aNumber [
+{ #category : #protocol }
+SpecLayoutSend >> rightFraction: aNumber [
 
 	^ 0
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>rightOffset [
+{ #category : #protocol }
+SpecLayoutSend >> rightOffset [
 
 	^ 0
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>rightOffset: aNumber [
+{ #category : #protocol }
+SpecLayoutSend >> rightOffset: aNumber [
 
 	^ 0
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>topFraction [
+{ #category : #protocol }
+SpecLayoutSend >> topFraction [
 
 	^ 0
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>topFraction: aNumber [
+{ #category : #protocol }
+SpecLayoutSend >> topFraction: aNumber [
 
 	^ 0
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>topOffset [
+{ #category : #protocol }
+SpecLayoutSend >> topOffset [
 
 	^ 0
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutSend>>topOffset: aNumber [
+{ #category : #protocol }
+SpecLayoutSend >> topOffset: aNumber [
 
 	^ 0
 ]

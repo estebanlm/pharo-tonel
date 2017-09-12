@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'container'
 	],
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #spec,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeMorphViewer class>>inspectorSpec [
+{ #category : #spec }
+EyeMorphViewer class >> inspectorSpec [
 	<spec>
 	
 	^ SpecLayout composed
@@ -25,19 +21,13 @@ EyeMorphViewer class>>inspectorSpec [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeMorphViewer class>>label [
+{ #category : #accessing }
+EyeMorphViewer class >> label [
 	^ 'Morph Viewer'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeMorphViewer>>container [
+{ #category : #accessing }
+EyeMorphViewer >> container [
 	^ container ifNil: [ container := (PanelMorph new 
 		changeProportionalLayout)
 		asSpecAdapter
@@ -45,20 +35,14 @@ EyeMorphViewer>>container [
 		hSpaceFill]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeMorphViewer>>initializePresenter [
+{ #category : #initialization }
+EyeMorphViewer >> initializePresenter [
 
 	self whenWindowChanged: [ self objectChanged ]
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeMorphViewer>>objectChanged [
+{ #category : #event-handling }
+EyeMorphViewer >> objectChanged [
 
 	self text doItReceiver: self object. 
 	self container morph removeAllMorphs.
@@ -67,26 +51,17 @@ EyeMorphViewer>>objectChanged [
 		fullFrame: LayoutFrame identity
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeMorphViewer>>step [
+{ #category : #initialization }
+EyeMorphViewer >> step [
 	self objectChanged
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeMorphViewer>>thumbnailMorph [
+{ #category : #event-handling }
+EyeMorphViewer >> thumbnailMorph [
 	^self object taskThumbnailOfSize: self thumbnailSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeMorphViewer>>thumbnailSize [
+{ #category : #accessing }
+EyeMorphViewer >> thumbnailSize [
 	^ self container extent
 ]

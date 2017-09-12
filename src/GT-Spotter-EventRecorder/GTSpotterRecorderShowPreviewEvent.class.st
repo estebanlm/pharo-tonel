@@ -5,22 +5,15 @@ A GTSpotterRecorderShowPreviewEvent models the action of explicitly closing the 
 Class {
 	#name : #GTSpotterRecorderShowPreviewEvent,
 	#superclass : #GTSpotterRecorderEvent,
-	#category : #GT-Spotter-EventRecorder-Events,
-	#timestamp : 'AndreiChis 2/27/2015 14:39'
+	#category : #GT-Spotter-EventRecorder-Events
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderShowPreviewEvent>>accept: aVisitor [
+{ #category : #visitor }
+GTSpotterRecorderShowPreviewEvent >> accept: aVisitor [
 	^ aVisitor visitShowPreviewEvent: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderShowPreviewEvent>>isShowPreview [
+{ #category : #testing }
+GTSpotterRecorderShowPreviewEvent >> isShowPreview [
 	^ true
 ]

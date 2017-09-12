@@ -10,23 +10,16 @@ Class {
 	#instVars : [
 		'message'
 	],
-	#category : #Network-Tests-Kernel,
-	#timestamp : '<historical>'
+	#category : #Network-Tests-Kernel
 }
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-Base64MimeConverterTest>>setUp [
+{ #category : #setup }
+Base64MimeConverterTest >> setUp [
 	message := 'Hi There!' readStream.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-Base64MimeConverterTest>>testBase64Encoded [
+{ #category : #tests }
+Base64MimeConverterTest >> testBase64Encoded [
 	"self run: #testBase64Encoded"
 	
 	| encoded |
@@ -35,11 +28,8 @@ Base64MimeConverterTest>>testBase64Encoded [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-Base64MimeConverterTest>>testDecodeMimeHeader [
+{ #category : #tests }
+Base64MimeConverterTest >> testDecodeMimeHeader [
         "Test MIME decoding from single-byte encoding to Unicode"
         "self run: #testDecodeMimeHeader"
         | mimeHeader expected multiStream characters|
@@ -51,11 +41,8 @@ Base64MimeConverterTest>>testDecodeMimeHeader [
         self assert: mimeHeader = expected
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-Base64MimeConverterTest>>testMimeEncodeDecode [
+{ #category : #tests }
+Base64MimeConverterTest >> testMimeEncodeDecode [
 	"self run: #testMimeEncodeDecode"
 	
 	| encoded |
@@ -70,11 +57,8 @@ Base64MimeConverterTest>>testMimeEncodeDecode [
 	self assert: (encoded contents = 'IFRoZXJlIQ==').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-Base64MimeConverterTest>>testOnByteArray [
+{ #category : #tests }
+Base64MimeConverterTest >> testOnByteArray [
 	"self run: #testOnByteArray"
 	
 	self assert: ('Hi There!' base64Encoded = 'Hi There!' asByteArray base64Encoded)

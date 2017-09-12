@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'workingCopies'
 	],
-	#category : #Gofer-Core,
-	#timestamp : 'TorstenBergmann 2/5/2014 09:34'
+	#category : #Gofer-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferWorking>>addReference: aReference [
+{ #category : #private }
+GoferWorking >> addReference: aReference [
 	| workingCopy |
 	workingCopy := aReference workingCopyIfAbsent: [ ^ self ].
 	(self workingCopies includes: workingCopy)
@@ -26,30 +22,21 @@ GoferWorking>>addReference: aReference [
 			name: package name) ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferWorking>>initialize [
+{ #category : #initialization }
+GoferWorking >> initialize [
 	super initialize.
 	workingCopies := OrderedCollection new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferWorking>>initializeOn: aGofer [
+{ #category : #initialization }
+GoferWorking >> initializeOn: aGofer [
 	super initializeOn: aGofer.
 	aGofer references 
 		do: [ :each | self addReference: each ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferWorking>>workingCopies [
+{ #category : #accessing }
+GoferWorking >> workingCopies [
 	"Answer the working copies to be operated on."
 
 	^ workingCopies

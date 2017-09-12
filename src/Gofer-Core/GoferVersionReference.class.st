@@ -10,62 +10,43 @@ Class {
 		'branch',
 		'versionNumber'
 	],
-	#category : #Gofer-Core,
-	#timestamp : 'lr 12/9/2009 22:50'
+	#category : #Gofer-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferVersionReference>>author [
+{ #category : #accessing }
+GoferVersionReference >> author [
 	"Answer the author of the receiver."
 	
 	^ author
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferVersionReference>>branch [
+{ #category : #accessing }
+GoferVersionReference >> branch [
 	"Answer the branch of the receiver."
 	
 	^ branch
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferVersionReference>>initializeName: aString [
+{ #category : #initialization }
+GoferVersionReference >> initializeName: aString [
 	super initializeName: aString.
 	self parseName: aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferVersionReference>>matches: aResolvedReference [
+{ #category : #private }
+GoferVersionReference >> matches: aResolvedReference [
 	^ self name = aResolvedReference name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferVersionReference>>packageName [
+{ #category : #accessing }
+GoferVersionReference >> packageName [
 	"Answer the package of the receiver."
 
 	^ package
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferVersionReference>>parseName: aString [
+{ #category : #initialization }
+GoferVersionReference >> parseName: aString [
 	| basicName |
 	basicName := aString last isDigit
 		ifTrue: [ aString ]
@@ -83,11 +64,8 @@ GoferVersionReference>>parseName: aString [
 		ifFalse: [ versionNumber := 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferVersionReference>>versionNumber [
+{ #category : #accessing }
+GoferVersionReference >> versionNumber [
 	"Answer the version of the receiver."
 
 	^ versionNumber

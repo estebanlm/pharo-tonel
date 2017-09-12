@@ -1,66 +1,41 @@
-"
-
-"
 Class {
 	#name : #MetacelloSpecTestCase,
 	#superclass : #TestCase,
-	#category : #Metacello-TestsCore-Specs,
-	#timestamp : ''
+	#category : #Metacello-TestsCore-Specs
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloSpecTestCase>>groupSpec [
+{ #category : #specs }
+MetacelloSpecTestCase >> groupSpec [
     ^ self project groupSpec
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloSpecTestCase>>packagesSpec [
+{ #category : #specs }
+MetacelloSpecTestCase >> packagesSpec [
     ^ self project packagesSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloSpecTestCase>>project [
+{ #category : #accessing }
+MetacelloSpecTestCase >> project [
     ^ self projectWith: #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloSpecTestCase>>projectClass [
+{ #category : #accessing }
+MetacelloSpecTestCase >> projectClass [
     ^ MetacelloProject
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloSpecTestCase>>projectReferenceSpec [
+{ #category : #specs }
+MetacelloSpecTestCase >> projectReferenceSpec [
     ^ self project projectReferenceSpec
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloSpecTestCase>>projectSpec [
+{ #category : #specs }
+MetacelloSpecTestCase >> projectSpec [
     ^ self project projectSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloSpecTestCase>>projectWith: projectAttributes [
+{ #category : #accessing }
+MetacelloSpecTestCase >> projectWith: projectAttributes [
     | project |
     "Construct Metacello project"
     project := self projectClass new.
@@ -70,18 +45,12 @@ MetacelloSpecTestCase>>projectWith: projectAttributes [
     ^ project
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloSpecTestCase>>valueHolderSpec [
+{ #category : #specs }
+MetacelloSpecTestCase >> valueHolderSpec [
     ^ self project valueHolderSpec
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloSpecTestCase>>versionSpec [
+{ #category : #specs }
+MetacelloSpecTestCase >> versionSpec [
     ^ self project versionSpec
 ]

@@ -1,21 +1,13 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*compression',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-String>>convertToSystemString [
+{ #category : #'*compression' }
+String >> convertToSystemString [
 
 	^LanguageEnvironment defaultSystemConverter convertToSystemString: self
 ]
 
-{
-	#category : #'*compression',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-String>>lastIndexOfPKSignature: aSignature [
+{ #category : #'*compression' }
+String >> lastIndexOfPKSignature: aSignature [
 	"Answer the last index in me where aSignature (4 bytes long) occurs, or 0 if not found"
 	| a b c d |
 	a := aSignature first.
@@ -32,11 +24,8 @@ String>>lastIndexOfPKSignature: aSignature [
 	^0
 ]
 
-{
-	#category : #'*compression',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-String>>unzipped [
+{ #category : #'*compression' }
+String >> unzipped [
 	| magic1 magic2 |
 	magic1 := (self at: 1) asInteger.
 	magic2 := (self at: 2) asInteger.
@@ -44,11 +33,8 @@ String>>unzipped [
 	^(GZipReadStream on: self) upToEnd
 ]
 
-{
-	#category : #'*compression',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-String>>zipped [
+{ #category : #'*compression' }
+String >> zipped [
 	| stream gzstream |
 
 	stream := RWBinaryOrTextStream on: String new.

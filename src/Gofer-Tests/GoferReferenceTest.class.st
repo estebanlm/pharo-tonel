@@ -4,24 +4,17 @@ SUnit tests for GoferReference and subclasses
 Class {
 	#name : #GoferReferenceTest,
 	#superclass : #GoferTest,
-	#category : #Gofer-Tests,
-	#timestamp : 'TorstenBergmann 2/5/2014 09:37'
+	#category : #Gofer-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferReferenceTest>>setUp [
+{ #category : #running }
+GoferReferenceTest >> setUp [
 	super setUp.
 	gofer repository: self monticelloRepository
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferReferenceTest>>testBranchAfterAuthorIsNotABranch [
+{ #category : #testing }
+GoferReferenceTest >> testBranchAfterAuthorIsNotABranch [
 	| queryReference |
 	queryReference := GoferVersionReference name: 'Seaside-Core-jf.configcleanup.3'.
 	self assert: queryReference packageName = 'Seaside-Core'.
@@ -43,11 +36,8 @@ GoferReferenceTest>>testBranchAfterAuthorIsNotABranch [
 
 ]
 
-{
-	#category : #testing-reference,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferReferenceTest>>testContraintShouldFindLatestVersion [
+{ #category : #testing-reference }
+GoferReferenceTest >> testContraintShouldFindLatestVersion [
 	| constraintReference reference |
 	constraintReference := GoferConstraintReference 
 		name: 'GoferBar'
@@ -89,11 +79,8 @@ GoferReferenceTest>>testContraintShouldFindLatestVersion [
 	self should: [ constraintReference resolveWith: gofer ] raise: Error.
 ]
 
-{
-	#category : #testing-working,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferReferenceTest>>testContraintShouldFindWorkingCopy [
+{ #category : #testing-working }
+GoferReferenceTest >> testContraintShouldFindWorkingCopy [
 	| constraintReference workingCopy |
 	constraintReference := GoferConstraintReference 
 		name: 'Gofer-Core'
@@ -102,11 +89,8 @@ GoferReferenceTest>>testContraintShouldFindWorkingCopy [
 	self assert: workingCopy packageName = 'Gofer-Core'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferReferenceTest>>testLoadableShouldSortCorrectly [
+{ #category : #testing }
+GoferReferenceTest >> testLoadableShouldSortCorrectly [
 	| sorted |
 	sorted := self versionReferences
 		collect: [ :each | each resolveWith: gofer ].
@@ -118,11 +102,8 @@ GoferReferenceTest>>testLoadableShouldSortCorrectly [
 				ifTrue: [ self assert: second <= first ] ] ]
 ]
 
-{
-	#category : #testing-reference,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferReferenceTest>>testPackageShouldFindLatestVersion [
+{ #category : #testing-reference }
+GoferReferenceTest >> testPackageShouldFindLatestVersion [
 	| packageReference reference |
 	packageReference := GoferPackageReference name: 'GoferFoo'.
 	reference := packageReference resolveWith: gofer.
@@ -133,22 +114,16 @@ GoferReferenceTest>>testPackageShouldFindLatestVersion [
 	self assert: reference repository = self monticelloRepository
 ]
 
-{
-	#category : #testing-working,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferReferenceTest>>testPackageShouldFindWorkingCopy [
+{ #category : #testing-working }
+GoferReferenceTest >> testPackageShouldFindWorkingCopy [
 	| packageReference workingCopy |
 	packageReference := GoferPackageReference name: 'Gofer-Core'.
 	workingCopy := packageReference workingCopy.
 	self assert: workingCopy packageName = 'Gofer-Core'
 ]
 
-{
-	#category : #testing-reference,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferReferenceTest>>testResolvedShouldFindLatestVersion [
+{ #category : #testing-reference }
+GoferReferenceTest >> testResolvedShouldFindLatestVersion [
 	| versionReference reference |
 	versionReference := GoferResolvedReference name: 'GoferFoo-lr.2' repository: self monticelloRepository.
 	reference := versionReference resolveWith: gofer.
@@ -159,22 +134,16 @@ GoferReferenceTest>>testResolvedShouldFindLatestVersion [
 	self assert: reference repository = self monticelloRepository
 ]
 
-{
-	#category : #testing-working,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferReferenceTest>>testResolvedShouldFindWorkingCopy [
+{ #category : #testing-working }
+GoferReferenceTest >> testResolvedShouldFindWorkingCopy [
 	| versionReference workingCopy |
 	versionReference := GoferResolvedReference name: 'Gofer-Core-lr.18' repository: self monticelloRepository.
 	workingCopy := versionReference workingCopy.
 	self assert: workingCopy packageName = 'Gofer-Core'
 ]
 
-{
-	#category : #testing-reference,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferReferenceTest>>testVersionShouldFindLatestVersion [
+{ #category : #testing-reference }
+GoferReferenceTest >> testVersionShouldFindLatestVersion [
 	| versionReference reference |
 	versionReference := GoferVersionReference name: 'GoferFoo-lr.2'.
 	reference := versionReference resolveWith: gofer.
@@ -188,22 +157,16 @@ GoferReferenceTest>>testVersionShouldFindLatestVersion [
 	self should: [ versionReference resolveWith: gofer ] raise: Error
 ]
 
-{
-	#category : #testing-working,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferReferenceTest>>testVersionShouldFindWorkingCopy [
+{ #category : #testing-working }
+GoferReferenceTest >> testVersionShouldFindWorkingCopy [
 	| versionReference workingCopy |
 	versionReference := GoferVersionReference name: 'Gofer-Core-lr.18'.
 	workingCopy := versionReference workingCopy.
 	self assert: workingCopy packageName = 'Gofer-Core'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferReferenceTest>>testVersionShouldParseComplexName [
+{ #category : #testing }
+GoferReferenceTest >> testVersionShouldParseComplexName [
 	| queryReference |
 	queryReference := GoferVersionReference name: 'Seaside2.8b5'.
 	self assert: queryReference packageName = 'Seaside2'.

@@ -16,25 +16,18 @@ Class {
 		'delays',
 		'comments'
 	],
-	#category : #Graphics-Files,
-	#timestamp : 'LaurentLaffont 5/4/2011 21:27'
+	#category : #Graphics-Files
 }
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AnimatedGIFReadWriter class>>formsFromFileNamed: fileName  [
+{ #category : #'image reading/writing' }
+AnimatedGIFReadWriter class >> formsFromFileNamed: fileName [ 
 	| stream |
 	stream := FileStream readOnlyFileNamed: fileName.
 	^ self formsFromStream: stream
 ]
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AnimatedGIFReadWriter class>>formsFromStream: stream  [
+{ #category : #'image reading/writing' }
+AnimatedGIFReadWriter class >> formsFromStream: stream [ 
 	| reader |
 	reader := self new on: stream reset.
 	Cursor read showWhile: 
@@ -43,28 +36,19 @@ AnimatedGIFReadWriter class>>formsFromStream: stream  [
 	^ reader
 ]
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AnimatedGIFReadWriter class>>typicalFileExtensions [
+{ #category : #'image reading/writing' }
+AnimatedGIFReadWriter class >> typicalFileExtensions [
 	"Answer a collection of file extensions (lowercase) which files that I can read might commonly have"
 	^#('gif')
 ]
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AnimatedGIFReadWriter class>>wantsToHandleGIFs [
+{ #category : #'image reading/writing' }
+AnimatedGIFReadWriter class >> wantsToHandleGIFs [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AnimatedGIFReadWriter>>allImages [
+{ #category : #accessing }
+AnimatedGIFReadWriter >> allImages [
 	| body colorTable |
 	stream class == ReadWriteStream ifFalse: 
 		[ stream binary.
@@ -90,35 +74,23 @@ AnimatedGIFReadWriter>>allImages [
 	^ forms
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AnimatedGIFReadWriter>>comment: aString [
+{ #category : #private }
+AnimatedGIFReadWriter >> comment: aString [
 	comments add: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AnimatedGIFReadWriter>>delays [
+{ #category : #accessing }
+AnimatedGIFReadWriter >> delays [
 	^ delays
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AnimatedGIFReadWriter>>forms [
+{ #category : #accessing }
+AnimatedGIFReadWriter >> forms [
 	^ forms
 ]
 
-{
-	#category : #private-decoding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AnimatedGIFReadWriter>>readBitData [
+{ #category : #private-decoding }
+AnimatedGIFReadWriter >> readBitData [
 	| form |
 	form := super readBitData.
 	form offset: offset.

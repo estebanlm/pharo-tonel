@@ -14,42 +14,29 @@ Usage:
 Class {
 	#name : #ImageCleanerCommandLineHandler,
 	#superclass : #CommandLineHandler,
-	#category : #Tool-ImageCleaner,
-	#timestamp : 'MarcusDenker 1/25/2014 13:04'
+	#category : #Tool-ImageCleaner
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-ImageCleanerCommandLineHandler class>>commandName [
+{ #category : #accessing }
+ImageCleanerCommandLineHandler class >> commandName [
 	^ 'clean'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-ImageCleanerCommandLineHandler class>>description [
+{ #category : #accessing }
+ImageCleanerCommandLineHandler class >> description [
 	^ 'Run image cleanup'
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-ImageCleanerCommandLineHandler>>activate [
+{ #category : #activation }
+ImageCleanerCommandLineHandler >> activate [
 	self activateHelp
 		ifTrue: [  ^ self ].
 	self cleanUpImage.
 	Smalltalk snapshot: true andQuit: true.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-ImageCleanerCommandLineHandler>>cleanUpImage [
+{ #category : #actions }
+ImageCleanerCommandLineHandler >> cleanUpImage [
 	(self hasOption: 'release')
 		ifTrue: [^ImageCleaner cleanUpForRelease].
 	(self hasOption: 'production')	

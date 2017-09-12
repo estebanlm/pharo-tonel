@@ -7,43 +7,30 @@ Class {
 	#instVars : [
 		'collectors'
 	],
-	#category : #GT-EventRecorder-Tests-Support,
-	#timestamp : '<historical>'
+	#category : #GT-EventRecorder-Tests-Support
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventCollectorsTest>>setUp [
+{ #category : #running }
+GTEventCollectorsTest >> setUp [
 	super setUp.
 	collectors := GTEventCollectors new.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventCollectorsTest>>testAdd [
+{ #category : #tests }
+GTEventCollectorsTest >> testAdd [
 	collectors add: GTEventCollector new.
 	self assert: collectors size equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventCollectorsTest>>testAdd2 [
+{ #category : #tests }
+GTEventCollectorsTest >> testAdd2 [
 	collectors add: GTEventCollector new.
 	collectors add: GTEventCollector new.
 	self assert: collectors size equals: 2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventCollectorsTest>>testAdd3 [
+{ #category : #tests }
+GTEventCollectorsTest >> testAdd3 [
 	| collector |
 	collector := GTEventCollector new.
 	collectors add: collector.
@@ -51,19 +38,13 @@ GTEventCollectorsTest>>testAdd3 [
 	self assert: collectors size equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventCollectorsTest>>testDefault [
+{ #category : #tests }
+GTEventCollectorsTest >> testDefault [
 	self assert: collectors size equals: 0.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventCollectorsTest>>testDo [
+{ #category : #tests }
+GTEventCollectorsTest >> testDo [
 	"Ensure that collectors are iterated in the same order as they are added."
 	| collector1 collector2 interatedCollectors |
 	collector1 := GTEventCollector new.
@@ -78,11 +59,8 @@ GTEventCollectorsTest>>testDo [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventCollectorsTest>>testDo2 [
+{ #category : #tests }
+GTEventCollectorsTest >> testDo2 [
 	"Ensure that collectors are iterated in the same order as they are added."
 	| collector1 collector2 interatedCollectors |
 	collector1 := GTEventCollector new.
@@ -97,10 +75,7 @@ GTEventCollectorsTest>>testDo2 [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventCollectorsTest>>testPrintOn [
+{ #category : #tests }
+GTEventCollectorsTest >> testPrintOn [
 	self assert: (String streamContents: [ :stream | collectors printOn: stream ]) notEmpty.
 ]

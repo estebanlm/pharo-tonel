@@ -13,15 +13,11 @@ Class {
 		'parentOldName',
 		'parentNewName'
 	],
-	#category : #System-Announcements-System-Classes,
-	#timestamp : 'NicolaiHess 11/20/2015 20:47'
+	#category : #System-Announcements-System-Classes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassParentRenamed class>>classParentOf: aClass renamedFrom: oldName to: newName [
+{ #category : #'instance creation' }
+ClassParentRenamed class >> classParentOf: aClass renamedFrom: oldName to: newName [
 	^ self new
 		parentOldName: oldName;
 		parentNewName: newName;
@@ -29,50 +25,32 @@ ClassParentRenamed class>>classParentOf: aClass renamedFrom: oldName to: newName
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassParentRenamed>>classAffected [
+{ #category : #accessing }
+ClassParentRenamed >> classAffected [
 	^ classAffected
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassParentRenamed>>classAffected: anObject [
+{ #category : #accessing }
+ClassParentRenamed >> classAffected: anObject [
 	classAffected := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassParentRenamed>>parentNewName [
+{ #category : #accessing }
+ClassParentRenamed >> parentNewName [
 	^ parentNewName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassParentRenamed>>parentNewName: anObject [
+{ #category : #accessing }
+ClassParentRenamed >> parentNewName: anObject [
 	parentNewName := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassParentRenamed>>parentOldName [
+{ #category : #accessing }
+ClassParentRenamed >> parentOldName [
 	^ parentOldName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassParentRenamed>>parentOldName: anObject [
+{ #category : #accessing }
+ClassParentRenamed >> parentOldName: anObject [
 	parentOldName := anObject
 ]

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #EpCommentTest,
 	#superclass : #EpLogBrowserOperationFactoryTest,
-	#category : #EpiceaBrowsersTests-Integration,
-	#timestamp : ''
+	#category : #EpiceaBrowsersTests-Integration
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCommentTest>>testComment [
+{ #category : #tests }
+EpCommentTest >> testComment [
 
 	| presentComment |
 	classFactory newClass.

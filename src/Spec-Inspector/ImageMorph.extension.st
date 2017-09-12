@@ -1,12 +1,7 @@
-Extension {
-	#name : #ImageMorph
-}
+Extension { #name : #ImageMorph }
 
-{
-	#category : #'*Spec-Inspector',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ImageMorph>>resize: newSize [
+{ #category : #'*Spec-Inspector' }
+ImageMorph >> resize: newSize [
 
 	self form: (image scaledToSize: newSize)
 ]

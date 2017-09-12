@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicWizardRenderer,
 	#superclass : #GLMMorphicBrowserRenderer,
@@ -9,43 +6,29 @@ Class {
 		'container',
 		'parentRenderer'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWizardRenderer>>actOnPaneAdded: ann [
+{ #category : #rendering }
+GLMMorphicWizardRenderer >> actOnPaneAdded: ann [
 	container removeMorph: container submorphs last.
 	self addMorphFromObject: ann pane toContainer: container.
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWizardRenderer>>actOnPaneRemoved: ann [
-
+{ #category : #rendering }
+GLMMorphicWizardRenderer >> actOnPaneRemoved: ann [
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWizardRenderer>>actOnPaneReplaced: ann [
+{ #category : #rendering }
+GLMMorphicWizardRenderer >> actOnPaneReplaced: ann [
 
 	container removeMorph: container submorphs last.
 	self addMorphFromObject: ann newPane toContainer: container.
 	"scrollPane hScrollbar glmAnimateValue: 1.0 duration: 200"
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWizardRenderer>>addMorphFromObject: anObject toContainer: aContainerMorph [
+{ #category : #rendering }
+GLMMorphicWizardRenderer >> addMorphFromObject: anObject toContainer: aContainerMorph [
 
 	| renderedMorph |
 	renderedMorph := (self renderObject: anObject).
@@ -57,40 +40,28 @@ GLMMorphicWizardRenderer>>addMorphFromObject: anObject toContainer: aContainerMo
 	aContainerMorph addMorphBack: renderedMorph.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWizardRenderer>>parentRenderer [
+{ #category : #accessing }
+GLMMorphicWizardRenderer >> parentRenderer [
 
 	^ parentRenderer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWizardRenderer>>parentRenderer: aGLMMorphicRenderer [
+{ #category : #accessing }
+GLMMorphicWizardRenderer >> parentRenderer: aGLMMorphicRenderer [
 
 	parentRenderer := aGLMMorphicRenderer
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWizardRenderer>>registerAnnouncementsFor: aBrowser [
+{ #category : #rendering }
+GLMMorphicWizardRenderer >> registerAnnouncementsFor: aBrowser [
 	aBrowser when: GLMPaneRemoved send: #actOnPaneRemoved: to: self.
 	aBrowser when: GLMPaneAdded send: #actOnPaneAdded: to: self.
 	aBrowser when: GLMPaneReplaced send: #actOnPaneReplaced: to: self.
 	aBrowser when: GLMBrowserClosed send: #actOnBrowserClosed: to: self
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWizardRenderer>>render: aBrowser [
+{ #category : #rendering }
+GLMMorphicWizardRenderer >> render: aBrowser [
 	container := GLMMorphic containerMorph.
 	container
 		changeTableLayout;

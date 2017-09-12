@@ -10,15 +10,11 @@ Class {
 		'relationGraph',
 		'packageLabel'
 	],
-	#category : #Tool-DependencyAnalyser-UI-Core,
-	#timestamp : 'BaptisteQuide 8/4/2014 10:47'
+	#category : #Tool-DependencyAnalyser-UI-Core
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerReverseTreeModel class>>defaultSpec [
+{ #category : #specs }
+DAPackageAnalyzerReverseTreeModel class >> defaultSpec [
 	<spec: #default>
 	^ SpecLayout composed
 		newColumn:
@@ -32,21 +28,15 @@ DAPackageAnalyzerReverseTreeModel class>>defaultSpec [
 				add: #tree ] yourself
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerReverseTreeModel class>>onRelationGraph: aRelationGraph [
+{ #category : #instance-creation }
+DAPackageAnalyzerReverseTreeModel class >> onRelationGraph: aRelationGraph [
 	^ self new
 		initializeWithRelationGraph: aRelationGraph;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerReverseTreeModel>>buildRoots [
+{ #category : #private }
+DAPackageAnalyzerReverseTreeModel >> buildRoots [
 	| collectionOfWrapper |
 	collectionOfWrapper := relationGraph allDependentPackagesFromSeenPackages
 		collect: [ :package | package asDependentPackageWrapperOn: relationGraph ].
@@ -55,11 +45,8 @@ DAPackageAnalyzerReverseTreeModel>>buildRoots [
 	self updatePackageLabel.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerReverseTreeModel>>initializePresenter [
+{ #category : #initialization }
+DAPackageAnalyzerReverseTreeModel >> initializePresenter [
 	super initializePresenter.
 	
 	tree
@@ -70,30 +57,21 @@ DAPackageAnalyzerReverseTreeModel>>initializePresenter [
 					tree menu: [ :aMenu | self loadMenuFor: item in: aMenu ] ] ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerReverseTreeModel>>initializeWidgets [
+{ #category : #initialization }
+DAPackageAnalyzerReverseTreeModel >> initializeWidgets [
 	super initializeWidgets.
 	
 	packageLabel := self newLabel label: 'Analysis of packages'.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerReverseTreeModel>>initializeWithRelationGraph: aRelationGraph [
+{ #category : #initialization }
+DAPackageAnalyzerReverseTreeModel >> initializeWithRelationGraph: aRelationGraph [
 	relationGraph := aRelationGraph.
 	self buildRoots.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerReverseTreeModel>>nodesFor: anItemList [
+{ #category : #private }
+DAPackageAnalyzerReverseTreeModel >> nodesFor: anItemList [
 	^ anItemList collect: 
 		[ :each | 
 		DAReversePackageNode new
@@ -105,44 +83,29 @@ DAPackageAnalyzerReverseTreeModel>>nodesFor: anItemList [
 						yourself ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerReverseTreeModel>>packageLabel [
+{ #category : #accessing }
+DAPackageAnalyzerReverseTreeModel >> packageLabel [
 	^ packageLabel
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerReverseTreeModel>>refresh [
+{ #category : #actions }
+DAPackageAnalyzerReverseTreeModel >> refresh [
 		self isOpen ifTrue: [  
 			self relationGraph refreshGraph.
 			self buildRoots].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerReverseTreeModel>>relationGraph [
+{ #category : #accessing }
+DAPackageAnalyzerReverseTreeModel >> relationGraph [
 	^ relationGraph
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerReverseTreeModel>>title [
+{ #category : #api }
+DAPackageAnalyzerReverseTreeModel >> title [
 	^ 'Package Dependencies Reverse Analysis'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerReverseTreeModel>>updatePackageLabel [
+{ #category : #private }
+DAPackageAnalyzerReverseTreeModel >> updatePackageLabel [
 	self packageLabel label: 'Analysis of ' , self tree roots size asString , ' package(s)'
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #HandMorph
-}
+Extension { #name : #HandMorph }
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HandMorph>>generateDropFilesEvent: evtBuf  [
+{ #category : #'*Morphic-Base' }
+HandMorph >> generateDropFilesEvent: evtBuf [ 
 	"Generate the appropriate mouse event for the given raw event buffer"
 
 	"Note: This is still in an experimental phase and will need more work"
@@ -50,11 +45,8 @@ HandMorph>>generateDropFilesEvent: evtBuf  [
 	^nil
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HandMorph>>waitForClicksOrDrag: aMorph event: evt selectors: clickAndDragSelectors threshold: threshold [
+{ #category : #'*Morphic-Base' }
+HandMorph >> waitForClicksOrDrag: aMorph event: evt selectors: clickAndDragSelectors threshold: threshold [
 
 	"Wait for mouse button and movement events, informing aMorph about events interesting to it via callbacks.
 	This message is typically sent to the Hand by aMorph when it first receives a mouse-down event.

@@ -6,34 +6,24 @@ It duplicates NumberParsingTest, with few more tests.
 Class {
 	#name : #NumberParserTest,
 	#superclass : #ClassTestCase,
-	#category : #AST-Tests-Core,
-	#timestamp : 'nice 5/7/2006 17:54'
+	#category : #AST-Tests-Core
 }
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>areLowercaseDigitsAllowed [
+{ #category : #utility }
+NumberParserTest >> areLowercaseDigitsAllowed [
 	"Answer true if lowercase letter are allowed digits."
 	
 	^(NumberParser parse: '16re' onError: [-1]) = 16rE
 ]
 
-{
-	#category : #'tests - fail',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testFail [
+{ #category : #'tests - fail' }
+NumberParserTest >> testFail [
 	"Verify that the value of a failblock is returned."
 	self assert: (NumberParser parse: 'blablabla' onError: [42]) equals: 42
 ]
 
-{
-	#category : #'tests - Float',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testFloatFromStreamAsNumber [
+{ #category : #'tests - Float' }
+NumberParserTest >> testFloatFromStreamAsNumber [
 	"This covers parsing in Number>>readFrom:"
 
 	| rs aFloat |
@@ -79,11 +69,8 @@ NumberParserTest>>testFloatFromStreamAsNumber [
 
 ]
 
-{
-	#category : #'tests - Float',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testFloatFromStreamWithExponent [
+{ #category : #'tests - Float' }
+NumberParserTest >> testFloatFromStreamWithExponent [
 	"This covers parsing in Number>>readFrom:"
 
 	| rs aFloat |
@@ -118,11 +105,8 @@ NumberParserTest>>testFloatFromStreamWithExponent [
 	self assert: rs upToEnd = 'e'.
 ]
 
-{
-	#category : #'tests - Float',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testFloatGradualUnderflow [
+{ #category : #'tests - Float' }
+NumberParserTest >> testFloatGradualUnderflow [
 	"Gradual underflow are tricky.
 	This is a non regression test for http://bugs.squeak.org/view.php?id=6976"
 
@@ -145,11 +129,8 @@ NumberParserTest>>testFloatGradualUnderflow [
 	self assert: (NumberParser parse: str contents) = float. 
 ]
 
-{
-	#category : #'tests - Float',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testFloatMaxAndMin [
+{ #category : #'tests - Float' }
+NumberParserTest >> testFloatMaxAndMin [
 	"This covers parsing in Number>>readFrom:"
 
 	| rs aFloat |
@@ -170,11 +151,8 @@ NumberParserTest>>testFloatMaxAndMin [
 	self assert: rs atEnd
 ]
 
-{
-	#category : #'tests - Float',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testFloatPrintString [
+{ #category : #'tests - Float' }
+NumberParserTest >> testFloatPrintString [
 	"self debug: #testFloatPrintString"
 	
 	| f r bases |
@@ -218,11 +196,8 @@ NumberParserTest>>testFloatPrintString [
 						self assert: (NumberParser parse: str contents) = f]].
 ]
 
-{
-	#category : #'tests - Float',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testFloatReadError [
+{ #category : #'tests - Float' }
+NumberParserTest >> testFloatReadError [
 	"This covers parsing in Number>>readFrom:"
 
 	| rs num |
@@ -261,11 +236,8 @@ NumberParserTest>>testFloatReadError [
 	self should: [NumberParser parse: rs] raise: Error.
 ]
 
-{
-	#category : #'tests - Float',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testFloatReadWithRadix [
+{ #category : #'tests - Float' }
+NumberParserTest >> testFloatReadWithRadix [
 	"This covers parsing in Number>>readFrom:
 	Note: In most Smalltalk dialects, the radix notation is not used for numbers
 	with exponents. In Squeak, a string with radix and exponent can be parsed,
@@ -279,11 +251,8 @@ NumberParserTest>>testFloatReadWithRadix [
 	self assert: rs upToEnd = 'e9'
 ]
 
-{
-	#category : #'tests - Float',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testFloatmin [
+{ #category : #'tests - Float' }
+NumberParserTest >> testFloatmin [
 	"Note that these are originally tests cases for former bugs of libc dtoa from netlib.
 	ref http://www.exploringbinary.com/gays-strtod-returns-zero-for-inputs-just-above-2-1075/
 	ref http://gcc.gnu.org/viewcvs/gcc/trunk/gcc/testsuite/gcc.dg/float-exact-1.c?view=markup&pathrev=205119
@@ -296,11 +265,8 @@ NumberParserTest>>testFloatmin [
 	self assert: moreThanHalfmin = Float fmin description: 'nearest Float of a Fraction > 0.5*Float fmin is Float fmin'.
 ]
 
-{
-	#category : #'tests - Integer',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testIntegerReadFrom [
+{ #category : #'tests - Integer' }
+NumberParserTest >> testIntegerReadFrom [
 	"Ensure remaining characters in a stream are not lost when parsing an integer."
 	| rs i s |
 	rs := '123s could be confused with a ScaledDecimal' readStream.
@@ -315,11 +281,8 @@ NumberParserTest>>testIntegerReadFrom [
 	self assert: '.s could be confused with a ScaledDecimal' = s
 ]
 
-{
-	#category : #'tests - Integer',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testIntegerReadWithRadix [
+{ #category : #'tests - Integer' }
+NumberParserTest >> testIntegerReadWithRadix [
 	"This covers parsing in Number>>readFrom:
 	Note: In most Smalltalk dialects, the radix notation is not used for numbers
 	with exponents. In Squeak, a string with radix and exponent can be parsed,
@@ -335,11 +298,8 @@ NumberParserTest>>testIntegerReadWithRadix [
 
 ]
 
-{
-	#category : #'tests - Float',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testIntegerWithNegExponentIsAFloat [
+{ #category : #'tests - Float' }
+NumberParserTest >> testIntegerWithNegExponentIsAFloat [
 	"Make sure a float literal like 1e(some possible neg exponent)
 	isn't evaluated to the non-literal Fraction"
 
@@ -355,11 +315,8 @@ NumberParserTest>>testIntegerWithNegExponentIsAFloat [
 
 ]
 
-{
-	#category : #'tests - Float',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testIsNumber [
+{ #category : #'tests - Float' }
+NumberParserTest >> testIsNumber [
 
 	self assert: (NumberParser isNumber: '-1.2') equals: true.
 	self assert: (NumberParser isNumber: '2e-2') equals: true.
@@ -371,11 +328,8 @@ NumberParserTest>>testIsNumber [
 	self assert: (NumberParser isNumber: '1..2') equals: false.
 ]
 
-{
-	#category : #'tests - ScaledDecimal',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testScaledDecimalWithTrailingZeroes [
+{ #category : #'tests - ScaledDecimal' }
+NumberParserTest >> testScaledDecimalWithTrailingZeroes [
 	"This is a non regression tests for http://bugs.squeak.org/view.php?id=7169"
 	
 	self assert: (NumberParser parse: '0.50s2') = (1/2).
@@ -383,20 +337,14 @@ NumberParserTest>>testScaledDecimalWithTrailingZeroes [
 	self assert: (NumberParser parse: '0.050s3') = (1/20).
 ]
 
-{
-	#category : #'tests - ScaledDecimal',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testScaledDecimalWithoutScaleSpecification [
+{ #category : #'tests - ScaledDecimal' }
+NumberParserTest >> testScaledDecimalWithoutScaleSpecification [
 	self assert: (NumberParser parse: '0.050s') = (1/20).
 	self assert: (NumberParser parse: '0.050s') scale= 3.
 ]
 
-{
-	#category : #'tests - squeezing',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testSqueezingOutNumbers [
+{ #category : #'tests - squeezing' }
+NumberParserTest >> testSqueezingOutNumbers [
 	"test that SqNumberParser squeezeNumberOutOfString finds numbers."
 	
 	self assert: '123blabla' squeezeOutNumber equals: 123.
@@ -408,11 +356,8 @@ NumberParserTest>>testSqueezingOutNumbers [
 	self assert: 'blabla1230' squeezeOutNumber equals: 1230.
 ]
 
-{
-	#category : #'tests - Integer',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-NumberParserTest>>testcheckForCoverage [
+{ #category : #'tests - Integer' }
+NumberParserTest >> testcheckForCoverage [
 	"self debug: #testcheckForCoverage"
 	"Tests for old semantics of Number>>readFrom:"
 	

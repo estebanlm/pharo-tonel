@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloToolBoxConstructor,
 	#superclass : #MetacelloAbstractVersionConstructor,
@@ -8,15 +5,11 @@ Class {
 		'currentSection',
 		'methodSections'
 	],
-	#category : #Metacello-Core-Constructors,
-	#timestamp : ''
+	#category : #Metacello-Core-Constructors
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloToolBoxConstructor>>evaluateMethodSection: methodSection version: sourceVersionString [
+{ #category : #private }
+MetacelloToolBoxConstructor >> evaluateMethodSection: methodSection version: sourceVersionString [
 	| versionSpec |
 	versionSpec := self project versionSpec.
 	versionSpec versionString: sourceVersionString.
@@ -26,11 +19,8 @@ MetacelloToolBoxConstructor>>evaluateMethodSection: methodSection version: sourc
 	methodSection methodSections do: [ :ms | self evaluateMethodSection: ms version: sourceVersionString ]
 ]
 
-{
-	#category : #extraction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloToolBoxConstructor>>extractMethodSectionsFor: sourceVersionString [
+{ #category : #extraction }
+MetacelloToolBoxConstructor >> extractMethodSectionsFor: sourceVersionString [
 	| coll pragma |
 	coll := self extractAllVersionPragmas at: sourceVersionString ifAbsent: [ ^ #() ].
 	coll size > 1
@@ -40,11 +30,8 @@ MetacelloToolBoxConstructor>>extractMethodSectionsFor: sourceVersionString [
 	self methodSections do: [ :methodSection | self evaluateMethodSection: methodSection version: sourceVersionString ].
 ]
 
-{
-	#category : #extraction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloToolBoxConstructor>>extractSymbolicVersionSpecsFor: sourceVersionSymbol [
+{ #category : #extraction }
+MetacelloToolBoxConstructor >> extractSymbolicVersionSpecsFor: sourceVersionSymbol [
 	| coll versionSpec pragma |
 	coll := self extractSymbolicVersionPragmas at: sourceVersionSymbol ifAbsent: [ ^ #() ].
 	coll size > 1
@@ -54,21 +41,15 @@ MetacelloToolBoxConstructor>>extractSymbolicVersionSpecsFor: sourceVersionSymbol
 	^ self methodSections
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloToolBoxConstructor>>methodSection: methodSection do: aBlock [
+{ #category : #private }
+MetacelloToolBoxConstructor >> methodSection: methodSection do: aBlock [
 
 	methodSection methodSections do: aBlock.
 	methodSection methodSections do: [ :ms | self methodSection: ms do: aBlock ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloToolBoxConstructor>>methodSection: methodSection inEvaluationOrder: attributes do: aBlock [
+{ #category : #private }
+MetacelloToolBoxConstructor >> methodSection: methodSection inEvaluationOrder: attributes do: aBlock [
     | selected |
     selected := IdentitySet new.
     attributes
@@ -84,41 +65,29 @@ MetacelloToolBoxConstructor>>methodSection: methodSection inEvaluationOrder: att
         do: [ :ms | self methodSection: ms inEvaluationOrder: (attributes copyFrom: 2 to: attributes size) do: aBlock ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloToolBoxConstructor>>methodSectionAttributes [
+{ #category : #accessing }
+MetacelloToolBoxConstructor >> methodSectionAttributes [
     | attributes |
     attributes := Set new.
     self methodSectionsDo: [ :methodSection | attributes addAll: methodSection attributes ].
     ^ attributes
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloToolBoxConstructor>>methodSections [
+{ #category : #private }
+MetacelloToolBoxConstructor >> methodSections [
 
 	methodSections == nil ifTrue: [ methodSections := OrderedCollection new ].
 	^methodSections
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloToolBoxConstructor>>methodSectionsDo: aBlock [
+{ #category : #enumeration }
+MetacelloToolBoxConstructor >> methodSectionsDo: aBlock [
 
 	self methodSection: self do: aBlock
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloToolBoxConstructor>>methodSectionsInEvaluationOrder: attributes do: aBlock [
+{ #category : #enumeration }
+MetacelloToolBoxConstructor >> methodSectionsInEvaluationOrder: attributes do: aBlock [
     "breadth first traversal ... to collect selected sections, then evaluate individual sections in attribute order"
 
     | selected processed |
@@ -140,20 +109,14 @@ MetacelloToolBoxConstructor>>methodSectionsInEvaluationOrder: attributes do: aBl
             list do: aBlock ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloToolBoxConstructor>>reset [
+{ #category : #initialization }
+MetacelloToolBoxConstructor >> reset [
 	super reset.	"not needed, but included for completeness"
 	methodSections := nil
 ]
 
-{
-	#category : #'api callbacks',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloToolBoxConstructor>>setFor: attributeList do: aBlock [
+{ #category : #'api callbacks' }
+MetacelloToolBoxConstructor >> setFor: attributeList do: aBlock [
     "conditional version support"
 
     | methodSection |
@@ -166,11 +129,8 @@ MetacelloToolBoxConstructor>>setFor: attributeList do: aBlock [
         ifFalse: [ self methodSections add: methodSection ]
 ]
 
-{
-	#category : #'api callbacks',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloToolBoxConstructor>>setFor: attributeList version: aString [
+{ #category : #'api callbacks' }
+MetacelloToolBoxConstructor >> setFor: attributeList version: aString [
     "conditional symbolicVersion support"
 
     self methodSections

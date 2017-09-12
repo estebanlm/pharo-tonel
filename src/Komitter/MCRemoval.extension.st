@@ -1,21 +1,13 @@
-Extension {
-	#name : #MCRemoval
-}
+Extension { #name : #MCRemoval }
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCRemoval>>isMethodPatch [
+{ #category : #'*Komitter-UI' }
+MCRemoval >> isMethodPatch [
 
 	^ definition isMethodDefinition
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCRemoval>>koClass [
+{ #category : #'*Komitter-UI' }
+MCRemoval >> koClass [
 	| klass |
 	klass := definition koClass.
 	klass ifNil: [ ^ nil ].
@@ -25,11 +17,8 @@ MCRemoval>>koClass [
 	^ klass
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCRemoval>>koDefinition [
+{ #category : #'*Komitter-UI' }
+MCRemoval >> koDefinition [
 	
 	^  (KomitDefinition definition: self definition)
 		operation: self;
@@ -37,20 +26,14 @@ MCRemoval>>koDefinition [
 		yourself
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCRemoval>>koDestinationText [
+{ #category : #'*Komitter-UI' }
+MCRemoval >> koDestinationText [
 
 	^ ''
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCRemoval>>koMethod [
+{ #category : #'*Komitter-UI' }
+MCRemoval >> koMethod [
 	
 	^ (KomitMethod method: self definition)
 		operation: self;
@@ -58,19 +41,13 @@ MCRemoval>>koMethod [
 		yourself
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCRemoval>>koSourceText [
+{ #category : #'*Komitter-UI' }
+MCRemoval >> koSourceText [
 	^ definition koSourceText 
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCRemoval>>selector [
+{ #category : #'*Komitter-UI' }
+MCRemoval >> selector [
 
 	^ definition selector
 ]

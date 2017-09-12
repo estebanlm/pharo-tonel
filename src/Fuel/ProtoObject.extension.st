@@ -1,12 +1,7 @@
-Extension {
-	#name : #ProtoObject
-}
+Extension { #name : #ProtoObject }
 
-{
-	#category : #'*Fuel-Collections',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-ProtoObject>>fuelPointsTo: anObject [
+{ #category : #'*Fuel-Collections' }
+ProtoObject >> fuelPointsTo: anObject [
 	"This method returns true if self contains a pointer to anObject,
 		and returns false otherwise"
 	<primitive: 132>
@@ -19,11 +14,8 @@ ProtoObject>>fuelPointsTo: anObject [
 
 ]
 
-{
-	#category : #'*Fuel-Collections',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-ProtoObject>>largeIdentityHash [
+{ #category : #'*Fuel-Collections' }
+ProtoObject >> largeIdentityHash [
 
 	^ self basicIdentityHash 
 ]

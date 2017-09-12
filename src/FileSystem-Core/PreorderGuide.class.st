@@ -14,32 +14,22 @@ I use my work instance variable as a stack. I push nodes to be visited and visit
 Class {
 	#name : #PreorderGuide,
 	#superclass : #FileSystemGuide,
-	#category : #FileSystem-Core-Implementation,
-	#timestamp : 'cwp 11/18/2009 12:18'
+	#category : #FileSystem-Core-Implementation
 }
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PreorderGuide>>pushAll: aCollection  [
+{ #category : #showing }
+PreorderGuide >> pushAll: aCollection [ 
 	aCollection reverseDo: [ :each | work add: each ]
 ]
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PreorderGuide>>show: aReference [
+{ #category : #showing }
+PreorderGuide >> show: aReference [
 	self push: aReference entry.
 	self whileNotDoneDo: [ self visitNextEntry: self pop ]
 ]
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PreorderGuide>>visitNextEntry: entry [
+{ #category : #showing }
+PreorderGuide >> visitNextEntry: entry [
 	
 	entry isFile
 		ifTrue: [ visitor visitFile: entry ]

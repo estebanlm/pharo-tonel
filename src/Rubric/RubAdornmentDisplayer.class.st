@@ -4,58 +4,39 @@ RubAdornmentDisplayer adds a simple adornment for text area
 Class {
 	#name : #RubAdornmentDisplayer,
 	#superclass : #RubScrolledTextExtraSurface,
-	#category : #Rubric-Editing-Widgets,
-	#timestamp : 'FranckWarlouzet 7/29/2015 15:52'
+	#category : #Rubric-Editing-Widgets
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAdornmentDisplayer class>>key [
+{ #category : #querying }
+RubAdornmentDisplayer class >> key [
 	^ #adornment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAdornmentDisplayer>>computedHeightFrom: aRectangle [
+{ #category : #accessing }
+RubAdornmentDisplayer >> computedHeightFrom: aRectangle [
 
 	^ aRectangle height min: self computedSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAdornmentDisplayer>>computedPositionFrom: aRectangle [
+{ #category : #accessing }
+RubAdornmentDisplayer >> computedPositionFrom: aRectangle [
 	^  ((aRectangle right min: self scrollBounds right) - (self computedWidthFrom: aRectangle)) @ aRectangle top
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAdornmentDisplayer>>computedSize [
+{ #category : #accessing }
+RubAdornmentDisplayer >> computedSize [
 	^  25
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAdornmentDisplayer>>computedWidthFrom: aRectangle [
+{ #category : #accessing }
+RubAdornmentDisplayer >> computedWidthFrom: aRectangle [
 	^  (super computedWidthFrom: aRectangle) min: self computedSize
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAdornmentDisplayer>>drawOn: aCanvas [
+{ #category : #drawing }
+RubAdornmentDisplayer >> drawOn: aCanvas [
 	| bnds adorncolor size fillStyle |
 	super drawOn: aCanvas.
 	self paragraphProvider isReadOnly ifTrue: [ ^self ].
@@ -75,11 +56,8 @@ RubAdornmentDisplayer>>drawOn: aCanvas [
 		fillStyle: fillStyle
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAdornmentDisplayer>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #drawing }
+RubAdornmentDisplayer >> drawOnAthensCanvas: anAthensCanvas [
 	| bnds adorncolor size fillStyle vertices polygonPath |
 	super drawOnAthensCanvas: anAthensCanvas.
 	self paragraphProvider hasUnacceptedEdits
@@ -110,10 +88,7 @@ RubAdornmentDisplayer>>drawOnAthensCanvas: anAthensCanvas [
 	anAthensCanvas draw
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAdornmentDisplayer>>level [
+{ #category : #accessing }
+RubAdornmentDisplayer >> level [
 	^ SmallInteger maxVal 
 ]

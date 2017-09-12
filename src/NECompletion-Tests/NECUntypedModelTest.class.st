@@ -1,38 +1,25 @@
-"
-
-"
 Class {
 	#name : #NECUntypedModelTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'prefValueCase'
 	],
-	#category : #NECompletion-Tests,
-	#timestamp : ''
+	#category : #NECompletion-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECUntypedModelTest>>setUp [
+{ #category : #tests }
+NECUntypedModelTest >> setUp [
 	prefValueCase := NECPreferences caseSensitive.
 	NECPreferences caseSensitive: true
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECUntypedModelTest>>tearDown [
+{ #category : #tests }
+NECUntypedModelTest >> tearDown [
 	NECPreferences caseSensitive: prefValueCase
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECUntypedModelTest>>testAdditionalLocals [
+{ #category : #tests }
+NECUntypedModelTest >> testAdditionalLocals [
 	| model locals |
 	model := NECUntypedModel 
 		class: NECTestClass
@@ -53,11 +40,8 @@ NECUntypedModelTest>>testAdditionalLocals [
 	self assert: (locals includes: 'veryImp')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECUntypedModelTest>>testCaseSensitive [
+{ #category : #tests }
+NECUntypedModelTest >> testCaseSensitive [
 	| model locals |
 	self assert: NECPreferences caseSensitive.
 	model := NECUntypedModel 
@@ -73,11 +57,8 @@ NECUntypedModelTest>>testCaseSensitive [
 	model narrowWith: 'fo'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECUntypedModelTest>>testCaseSensitivity [
+{ #category : #tests }
+NECUntypedModelTest >> testCaseSensitivity [
 	| model instances |
 	self assert: NECPreferences caseSensitive.
 	model := NECUntypedModel 
@@ -99,11 +80,8 @@ NECUntypedModelTest>>testCaseSensitivity [
 	self assert: ((model entriesOfType: #selector) includes: 'Dictionary')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECUntypedModelTest>>testEmpty [
+{ #category : #tests }
+NECUntypedModelTest >> testEmpty [
 	| model |
 	model := NECUntypedModel new.
 	self assert: model isEmpty.
@@ -111,11 +89,8 @@ NECUntypedModelTest>>testEmpty [
 	self assert: model entryCount == 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECUntypedModelTest>>testForClassInstVars [
+{ #category : #tests }
+NECUntypedModelTest >> testForClassInstVars [
 	| model locals |
 	model := NECUntypedModel 
 		class: NECTestClass
@@ -137,11 +112,8 @@ NECUntypedModelTest>>testForClassInstVars [
 	self assert: (locals includes: 'fourth')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECUntypedModelTest>>testForClassLocals [
+{ #category : #tests }
+NECUntypedModelTest >> testForClassLocals [
 	| model locals temps |
 	temps := #('loc1' 'x2' 'bar' 'var' ) collect: 
 		[ :each | 
@@ -164,11 +136,8 @@ NECUntypedModelTest>>testForClassLocals [
 	self assert: (locals includes: 'loc1')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECUntypedModelTest>>testForClassVars [
+{ #category : #tests }
+NECUntypedModelTest >> testForClassVars [
 	| model classVars |
 	model := NECUntypedModel 
 		class: NECTestClass
@@ -180,11 +149,8 @@ NECUntypedModelTest>>testForClassVars [
 	self assert: (classVars includes: 'ClassVar')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECUntypedModelTest>>testMessage [
+{ #category : #tests }
+NECUntypedModelTest >> testMessage [
 	| model |
 	model := NECUntypedModel 
 		class: NECTestClass
@@ -206,11 +172,8 @@ NECUntypedModelTest>>testMessage [
 	self assert: model message = 'press key for selectors'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECUntypedModelTest>>testNarrowWith [
+{ #category : #tests }
+NECUntypedModelTest >> testNarrowWith [
 	| count model |
 	model := NECUntypedModel new.
 	model listLimit: Float infinity.
@@ -238,11 +201,8 @@ NECUntypedModelTest>>testNarrowWith [
 	self assert: model isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECUntypedModelTest>>testNoEntriesWithSpace [
+{ #category : #tests }
+NECUntypedModelTest >> testNoEntriesWithSpace [
 	| model separatorEntry |
 	model := NECUntypedModel new.
 	self assert: model isEmpty.
@@ -254,11 +214,8 @@ NECUntypedModelTest>>testNoEntriesWithSpace [
 	self assert: separatorEntry isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECUntypedModelTest>>testTitle [
+{ #category : #tests }
+NECUntypedModelTest >> testTitle [
 	| model |
 	model := NECUntypedModel
 				class: NECTestClass

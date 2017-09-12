@@ -4,23 +4,16 @@ I am the decorator for highliting opposite character in a text area (like parent
 Class {
 	#name : #RubOpeningClosingDelimiterDecorator,
 	#superclass : #RubParagraphDecorator,
-	#category : #Rubric-Editing-Core,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:07'
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubOpeningClosingDelimiterDecorator class>>key [
+{ #category : #querying }
+RubOpeningClosingDelimiterDecorator class >> key [
 	^ #openingClosingDelimitersHighlight
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubOpeningClosingDelimiterDecorator>>drawOn: aCanvas [
+{ #category : #drawing }
+RubOpeningClosingDelimiterDecorator >> drawOn: aCanvas [
 	"Send all visible lines to the displayScanner for display"
 
 	| cursorPosition delimiter oppositePos rect previousOppositeBlock |
@@ -42,11 +35,8 @@ RubOpeningClosingDelimiterDecorator>>drawOn: aCanvas [
 	aCanvas frameRectangle: rect color: RubTextSelectionColor oppositeDelimiterSelection textColor
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubOpeningClosingDelimiterDecorator>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #drawing }
+RubOpeningClosingDelimiterDecorator >> drawOnAthensCanvas: anAthensCanvas [
 	"Send all visible lines to the displayScanner for display"
 
 	| cursorPosition delimiter oppositePos rect previousOppositeBlock |
@@ -75,11 +65,8 @@ RubOpeningClosingDelimiterDecorator>>drawOnAthensCanvas: anAthensCanvas [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubOpeningClosingDelimiterDecorator>>positionOfOppositeDelimiter: aDelimiter startingAt: aPosition in: aRectangle [
+{ #category : #drawing }
+RubOpeningClosingDelimiterDecorator >> positionOfOppositeDelimiter: aDelimiter startingAt: aPosition [ in: aRectangle
 	| string topLineIndex bottomLineIndex topLineFirst bottomLinelast oppositeDelimiter level here hereChar incr |
 	string := self string.
 	topLineIndex := self lineIndexForPoint: aRectangle topLeft.

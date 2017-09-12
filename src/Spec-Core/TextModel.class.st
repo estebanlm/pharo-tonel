@@ -69,35 +69,25 @@ Class {
 		'askBeforeDiscardingEdits',
 		'isForSmalltalkCodeHolder'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 6/29/2016 14:30'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel class>>adapterName [
+{ #category : #specs }
+TextModel class >> adapterName [
 
 	^ #TextAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel class>>defaultSpec [
+{ #category : #specs }
+TextModel class >> defaultSpec [
 	<spec: #default>
 	
 	^ #(TextAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel class>>example [
+{ #category : #example }
+TextModel class >> example [
 	^ self new
 	 openWithSpec;
 		text:
@@ -106,41 +96,29 @@ If this had been an actual emergency...'
 
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel class>>title [
+{ #category : #specs }
+TextModel class >> title [
 
 	^ 'Text'
 ]
 
-{
-	#category : #api-shout,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>aboutToStyle: aBoolean	 [
+{ #category : #api-shout }
+TextModel >> aboutToStyle: aBoolean [	
 	"<api: #boolean getter: #isAboutToStyle registration: #whenAboutToStyleChanged:>"
 	"Set if the text zone must be styled"
 	
 	aboutToStyleHolder value: [ aBoolean ]
 ]
 
-{
-	#category : #api-shout,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>aboutToStyleBlock [
+{ #category : #api-shout }
+TextModel >> aboutToStyleBlock [
 	"Return the block used to know if the text must be styled"	
 	"<api:#inspect>"
 	^ aboutToStyleHolder value
 ]
 
-{
-	#category : #api-shout,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>aboutToStyleBlock: aBlockReturningABoolean [
+{ #category : #api-shout }
+TextModel >> aboutToStyleBlock: aBlockReturningABoolean [
 	"<api: #block getter: #aboutToStyleBlock registration: #whenAboutToStyleBlockChanged:>"
 	"Set the block used to know if the text must be styled.
 	The block must return a boolean"
@@ -148,11 +126,8 @@ TextModel>>aboutToStyleBlock: aBlockReturningABoolean [
 	aboutToStyleHolder value: aBlockReturningABoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>accept [
+{ #category : #api }
+TextModel >> accept [
 	"<api: #do>"
 	"Accep the current pendingtext"
 	
@@ -162,11 +137,8 @@ TextModel>>accept [
 	actionPerformedHolder value: self text.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>accept: aText notifying: aNotifyier [
+{ #category : #api }
+TextModel >> accept: aText notifying: aNotifyier [
 	| accept newText |
 	
 	accept := actionToPerformHolder value cull: aText cull: aNotifyier.
@@ -182,11 +154,8 @@ TextModel>>accept: aText notifying: aNotifyier [
 	^ true
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>acceptBlock [
+{ #category : #api }
+TextModel >> acceptBlock [
 	"<api: #inspect>"
 	"Return the block to perform when the text is accepted.
 	The block must have one argument, which will be the accepted text"
@@ -194,11 +163,8 @@ TextModel>>acceptBlock [
 	^ actionToPerformHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>acceptBlock: aBlockWithOneArgument [
+{ #category : #api }
+TextModel >> acceptBlock: aBlockWithOneArgument [
 	"<api: #block getter: #acceptBlock registration: #whenAcceptBlockChanged:>"
 	"Set the block to perform when the text is accepted.
 	The block must have one argument, which will be the accepted text.
@@ -207,105 +173,75 @@ TextModel>>acceptBlock: aBlockWithOneArgument [
 	actionToPerformHolder value: aBlockWithOneArgument
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>askBeforeDiscardingEdits [
+{ #category : #api }
+TextModel >> askBeforeDiscardingEdits [
 
 	^ askBeforeDiscardingEdits value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>askBeforeDiscardingEdits: aBoolean [
+{ #category : #api }
+TextModel >> askBeforeDiscardingEdits: aBoolean [
 
 	askBeforeDiscardingEdits value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>autoAccept  [
+{ #category : #api }
+TextModel >> autoAccept [ 
 	"Return true if the text is accepted after ech keystroke"
 	"<api:#inspect>"
 	^ autoAccept value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>autoAccept: aBoolean [
+{ #category : #api }
+TextModel >> autoAccept: aBoolean [
 	"<api: #boolean getter: #autoAccept registration: #whenAutoAcceptChanged:>"
 	"Set if the text is accepted after each keystroke or not"
 
 	autoAccept value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>beForCode [
+{ #category : #api }
+TextModel >> beForCode [
 	self
 		isCodeCompletionAllowed: true;
 		menuHolder: [ self getMenu ];
 		isForSmalltalkCode: true
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>beForText [
+{ #category : #api }
+TextModel >> beForText [
 	self
 		isCodeCompletionAllowed: false;
 		menuHolder: [ self getMenu ];
 		isForSmalltalkCode: false
 ]
 
-{
-	#category : #api-shout,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>behavior [
+{ #category : #api-shout }
+TextModel >> behavior [
 	"<api: #inspect>"
 	"Return the class corresponding to the method class of the source code you are editing"
 	
 	^ behaviorHolder value
 ]
 
-{
-	#category : #api-shout,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>behavior: aClass [
+{ #category : #api-shout }
+TextModel >> behavior: aClass [
 	"< api: #st getter: #behavior registration: #whenBehaviorChanged:>"
 	"Set the class corresponding to the method class of the source code you are editing"
 
 	behaviorHolder value: aClass
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>clearSelection [
+{ #category : #api }
+TextModel >> clearSelection [
 "	<api: #do>"
    "Remove selection from the text model"
 
 	self setSelection: (0 to: 0)
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>codePaneMenu: aMenu shifted: shifted  [
+{ #category : #api }
+TextModel >> codePaneMenu: aMenu shifted: shifted [ 
 	"Note that unless we override perform:orSendTo:, 
 	PluggableTextController will respond to all menu items in a 
 	text pane"
@@ -313,29 +249,20 @@ TextModel>>codePaneMenu: aMenu shifted: shifted  [
 	^ menuHolder value cull: aMenu cull: shifted
 ]
 
-{
-	#category : #api-doIt,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>doItContext [
+{ #category : #api-doIt }
+TextModel >> doItContext [
 
 	^ doItContext value
 ]
 
-{
-	#category : #api-doIt,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>doItContext: anObject [
+{ #category : #api-doIt }
+TextModel >> doItContext: anObject [
 
 	doItContext value: anObject
 ]
 
-{
-	#category : #api-doIt,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>doItReceiver [
+{ #category : #api-doIt }
+TextModel >> doItReceiver [
 	| receiver |
 	
 	receiver := doItReceiver value.
@@ -343,49 +270,34 @@ TextModel>>doItReceiver [
 	^receiver
 ]
 
-{
-	#category : #api-doIt,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>doItReceiver: anObject [
+{ #category : #api-doIt }
+TextModel >> doItReceiver: anObject [
 
 	doItReceiver value: anObject
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>eventKeyStrokesForNextFocus [
+{ #category : #focus }
+TextModel >> eventKeyStrokesForNextFocus [
 	"String describing the keystroke to perform to jump to the next widget"
 	^ { Character arrowRight command ctrl asKeyCombination }
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>eventKeyStrokesForPreviousFocus [
+{ #category : #focus }
+TextModel >> eventKeyStrokesForPreviousFocus [
 	"String describing the keystroke to perform to jump to the previous widget"
 
 	^ { Character arrowLeft command ctrl asKeyCombination }
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>getMenu [
+{ #category : #private }
+TextModel >> getMenu [
 	^ (PragmaMenuBuilder
 		pragmaKeyword: self textArea editingModeClass menuKeyword
 		model: self widget) menu
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>getSelection [
+{ #category : #api }
+TextModel >> getSelection [
 	"<api:#inspect>"
 	"Get the text selection"
 
@@ -393,20 +305,14 @@ TextModel>>getSelection [
 	^ selection value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>getText [
+{ #category : #api }
+TextModel >> getText [
 	"<api: #inspect>"
 	^ textHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>hasEditingConflicts [
+{ #category : #api }
+TextModel >> hasEditingConflicts [
 	"<api:#inspect>"
 	"Return if the text zone has editing conflicts"
 
@@ -415,22 +321,16 @@ TextModel>>hasEditingConflicts [
 		ifNotNil: [:w | w hasEditingConflicts ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>hasEditingConflicts: aBoolean [
+{ #category : #api }
+TextModel >> hasEditingConflicts: aBoolean [
 	"Set if the text zone has editing conflicts"
 	"<api:#boolean getter: #hasEditingConflicts>"
 	
 	^ self changed: #hasEditingConflicts: with: { aBoolean }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>hasUnacceptedEdits [
+{ #category : #api }
+TextModel >> hasUnacceptedEdits [
 	"<api:#inspect>"
 	"Return if the text zone has unaccepted edits (orange corner)"
 
@@ -438,21 +338,15 @@ TextModel>>hasUnacceptedEdits [
 	^ hasUnacceptedEdits value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>hasUnacceptedEdits: aBoolean [
+{ #category : #api }
+TextModel >> hasUnacceptedEdits: aBoolean [
 	"Return if the text zone has unaccepted edits (orange corner)"
 	"<api:#boolean getter: #hasUnacceptedEdits>"
 	hasUnacceptedEdits value: aBoolean
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>initialize [
+{ #category : #initialization }
+TextModel >> initialize [
 	super initialize.
 	textHolder := '' asValueHolder.
 	behaviorHolder := nil asValueHolder.
@@ -476,122 +370,86 @@ TextModel>>initialize [
 	self registerEventsForShout
 ]
 
-{
-	#category : #api-shout,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>isAboutToStyle [
+{ #category : #api-shout }
+TextModel >> isAboutToStyle [
 	"<api: #inspect>"
 	"Return if the text zone is shouted or not"
 
 	^ self aboutToStyleBlock value
 ]
 
-{
-	#category : #NOCompletion,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>isCodeCompletionAllowed [
+{ #category : #NOCompletion }
+TextModel >> isCodeCompletionAllowed [
 	"<api:#inspect>"
 	"Return if code completion is allowed"
 	
 	^ isCodeCompletionAllowedHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>isCodeCompletionAllowed: aBoolean [
+{ #category : #api }
+TextModel >> isCodeCompletionAllowed: aBoolean [
 	"<api: #boolean getter: #isCodeCompletionAllowed registration: #whenCodeCompletionAllowedChanged:>"
 	"Set if code completion is allowed"
 	
 	isCodeCompletionAllowedHolder value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>isForSmalltalkCode [
+{ #category : #api }
+TextModel >> isForSmalltalkCode [
 	^ isForSmalltalkCodeHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>isForSmalltalkCode: aBoolean [
+{ #category : #api }
+TextModel >> isForSmalltalkCode: aBoolean [
 	isForSmalltalkCodeHolder value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>menuHolder [
+{ #category : #api }
+TextModel >> menuHolder [
 	"<api: #inspect>"
 	"Return the block used to calculate the text selection"
 
 	^ menuHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>menuHolder: aBlock [
+{ #category : #api }
+TextModel >> menuHolder: aBlock [
 	"<api: #block getter: #menuHolder registration: #whenMenuHolderChanged:>"
 	"Set the block used to compute the menu"
 
 	^ menuHolder value:  aBlock
 ]
 
-{
-	#category : #api-errors,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>notify: errorMessage at: position in: sourceCode [
+{ #category : #api-errors }
+TextModel >> notify: errorMessage at: position in: sourceCode [
 
 	self changed: #notify:at:in: with: { errorMessage . position . sourceCode }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>readSelection [
+{ #category : #api }
+TextModel >> readSelection [
 	"<api: #inspect>"
 	^ readSelectionHolder value cull: self text cull: self
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>readSelectionBlock [
+{ #category : #api }
+TextModel >> readSelectionBlock [
 	"<api: #inspect>"
 	"Return the block used to calculate the text selection"
 
 	^ readSelectionHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>readSelectionBlock: aBlock [
+{ #category : #api }
+TextModel >> readSelectionBlock: aBlock [
 	"<api: #block getter: #readSelectionBlock registration: #whenReadSelectionIsChanged:>"
 	"Set the block used to calculate the text selection"
 
 	^ readSelectionHolder value: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>registerEvents [
+{ #category : #initialization }
+TextModel >> registerEvents [
 
 	textHolder whenChangedDo: [ self changed: #getText ].
 	readSelectionHolder whenChangedDo: [ self changed: #readSelection ].
@@ -603,11 +461,8 @@ TextModel>>registerEvents [
 	askBeforeDiscardingEdits whenChangedDo: [ :bool | self changed: #askBeforeDiscardingEdits: with: { bool } ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>registerEventsForShout [
+{ #category : #initialization }
+TextModel >> registerEventsForShout [
 
 	aboutToStyleHolder whenChangedDo: [ self changed: #getText ].
 	behaviorHolder
@@ -616,135 +471,93 @@ TextModel>>registerEventsForShout [
 			self changed: #getText ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>scrollValue [
+{ #category : #api }
+TextModel >> scrollValue [
 	"<api: #inspect>"
 	"Return the current scroll position"
 
 	^ scrollValue value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>scrollValue: aPoint [
+{ #category : #api }
+TextModel >> scrollValue: aPoint [
 	"<api: #point getter: #scrollValue registration: #whenScrollValuehanged:>"
 	"Set the scroll position"
 
 	^ scrollValue value: aPoint
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>selectAll [
+{ #category : #api }
+TextModel >> selectAll [
 	
 	self changed: #selectAll with: #()
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>selectedBehavior [
+{ #category : #api }
+TextModel >> selectedBehavior [
 
 	^ behaviorHolder value
 ]
 
-{
-	#category : #NOCompletion,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>selectedClassOrMetaClass [
+{ #category : #NOCompletion }
+TextModel >> selectedClassOrMetaClass [
 
 	^ self behavior
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>setSelection: anInterval [
+{ #category : #api }
+TextModel >> setSelection: anInterval [
 	"Set the text selection without changing the readSelectionBlock"
 	"<api: #st getter: #getSelection>"
 
 	selection ifNotNil: [: holder | holder value: anInterval ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>setSelectionInterval: anInterval [
+{ #category : #api }
+TextModel >> setSelectionInterval: anInterval [
 	selection rawValue: anInterval
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>text [
+{ #category : #api }
+TextModel >> text [
 
 	^ self getText
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>text: aText [
+{ #category : #api }
+TextModel >> text: aText [
 	"<api: #string getter: #getText registration: #whenTextChanged:>"
 	"Set the text of the text zone"
 	
 	textHolder value: aText
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>textArea [
+{ #category : #private }
+TextModel >> textArea [
 	^ self widget widget 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>wantsVisualFeedback [
+{ #category : #api }
+TextModel >> wantsVisualFeedback [
 
 	^ wantsVisualFeedback value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>wantsVisualFeedback: aBoolean [
+{ #category : #api }
+TextModel >> wantsVisualFeedback: aBoolean [
 
 	wantsVisualFeedback value: aBoolean
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>whenAboutToStyleBlockChanged: aBlock [
+{ #category : #api-events }
+TextModel >> whenAboutToStyleBlockChanged: aBlock [
 	"Set a block to perform when the about to style block changed"
 	
 	aboutToStyleHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>whenAboutToStyleChanged: aBlock [
+{ #category : #api-events }
+TextModel >> whenAboutToStyleChanged: aBlock [
 	"<api: #event>"
 	"Set a block to perform when the about to style block changed"
 	
@@ -752,91 +565,64 @@ TextModel>>whenAboutToStyleChanged: aBlock [
 		aBlock cull: (block value) cull: old cull: announcement cull: anAnnouncer ]
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>whenAcceptBlockChanged: aBlock [
+{ #category : #api-events }
+TextModel >> whenAcceptBlockChanged: aBlock [
 	"Set a block to perform when the accept block changed"
 	
 	actionToPerformHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>whenAutoAcceptChanged: aBlock [
+{ #category : #api-events }
+TextModel >> whenAutoAcceptChanged: aBlock [
 	"aBlock will be performed when autoAccept changed"
 	
 	autoAccept whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>whenBehaviorChanged: aBlock [
+{ #category : #api-events }
+TextModel >> whenBehaviorChanged: aBlock [
 	"Set a block to perform when the behavior class changed"
 	
 	behaviorHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>whenCodeCompletionAllowedChanged: aBlock [
+{ #category : #api-events }
+TextModel >> whenCodeCompletionAllowedChanged: aBlock [
 	"Set a block to perform when the code completion value changed"
 	
 	actionPerformedHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>whenMenuHolderChanged: aBlock [
+{ #category : #api-events }
+TextModel >> whenMenuHolderChanged: aBlock [
 	"Set a block to perform when the block use to build menu changed"
 	
 	menuHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>whenReadSelectionIsChanged: aBlock [
+{ #category : #api-events }
+TextModel >> whenReadSelectionIsChanged: aBlock [
 	"Set a block to perform when the read selection block changed"
 	
 	readSelectionHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>whenScrollValueChanged: aBlock [
+{ #category : #api-events }
+TextModel >> whenScrollValueChanged: aBlock [
 	"Set a block to perform when the scroll value changed"
 	
 	scrollValue whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>whenTextChanged: aBlock [
+{ #category : #api-events }
+TextModel >> whenTextChanged: aBlock [
 	"Set a block to perform when the text changed"
 	
 	textHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextModel>>whenTextIsAccepted: aBlock [
+{ #category : #api-events }
+TextModel >> whenTextIsAccepted: aBlock [
 	"Set a block to perform when the text is accepted"
 	
 	actionPerformedHolder whenChangedDo: aBlock

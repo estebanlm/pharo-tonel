@@ -21,15 +21,11 @@ Warnings:
 Class {
 	#name : #MCLazyVersionInfo,
 	#superclass : #MCVersionInfo,
-	#category : #Monticello-Versioning,
-	#timestamp : '<historical>'
+	#category : #Monticello-Versioning
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCLazyVersionInfo class>>from: aVersionInfo [
+{ #category : #instance-creation }
+MCLazyVersionInfo class >> from: aVersionInfo [
 	^ self new
 		initializeWithName: aVersionInfo name
 		id: aVersionInfo id
@@ -41,19 +37,13 @@ MCLazyVersionInfo class>>from: aVersionInfo [
 		stepChildren: aVersionInfo stepChildren
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCLazyVersionInfo class>>initialize [
+{ #category : #'class initialization' }
+MCLazyVersionInfo class >> initialize [
 	self install
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCLazyVersionInfo class>>install [
+{ #category : #'class initialization' }
+MCLazyVersionInfo class >> install [
 	"Install the lazy mc versions on..."
 
 	"self install"
@@ -64,11 +54,8 @@ MCLazyVersionInfo class>>install [
 	Smalltalk garbageCollect
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCLazyVersionInfo>>ancestors [
+{ #category : #accessing }
+MCLazyVersionInfo >> ancestors [
 	"Ensure we load ancestors as appropriate if necessary. Failure to load force us to return an empty set to avoid errors, but we'll keep track of the fact that this failure may be transient and that we can continue."
 
 	(ancestors anySatisfy: #isNil)
@@ -78,21 +65,15 @@ MCLazyVersionInfo>>ancestors [
 	^ ancestors
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCLazyVersionInfo>>initialize [
+{ #category : #initialization }
+MCLazyVersionInfo >> initialize [
 	super initialize.
 	ancestors := WeakArray new.
 	stepChildren := WeakArray new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCLazyVersionInfo>>initializeWithName: vName id: aUUID message: aString date: aDate time: aTime author: initials ancestors: aCollection stepChildren: stepCollection [
+{ #category : #initialization }
+MCLazyVersionInfo >> initializeWithName: vName id: aUUID message: aString date: aDate time: aTime author: initials ancestors: aCollection stepChildren: stepCollection [
 	name := vName.
 	id := aUUID.
 	message := aString.
@@ -103,19 +84,13 @@ MCLazyVersionInfo>>initializeWithName: vName id: aUUID message: aString date: aD
 	stepChildren := WeakArray withAll: stepCollection
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCLazyVersionInfo>>lazy [
+{ #category : #initialization }
+MCLazyVersionInfo >> lazy [
 	^ self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCLazyVersionInfo>>setAncestors: someAncestors [
+{ #category : #private }
+MCLazyVersionInfo >> setAncestors: someAncestors [
 	"Unused in MCVersionInfo"
 
 	"It is there to allow a certain customisation with lazy stuff without kernel dependencies on LRUCache"
@@ -123,11 +98,8 @@ MCLazyVersionInfo>>setAncestors: someAncestors [
 	ancestors := WeakArray withAll: someAncestors
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCLazyVersionInfo>>setStepChildren: someStepChildren [
+{ #category : #private }
+MCLazyVersionInfo >> setStepChildren: someStepChildren [
 	"Unused in MCVersionInfo"
 
 	"It is there to allow a certain customisation with lazy stuff without kernel dependencies on LRUCache"
@@ -135,21 +107,15 @@ MCLazyVersionInfo>>setStepChildren: someStepChildren [
 	stepChildren := WeakArray withAll: someStepChildren
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCLazyVersionInfo>>species [
+{ #category : #comparing }
+MCLazyVersionInfo >> species [
 	"Make this class equivalent to a MCVersionInfo in all regards."
 
 	^ self class superclass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCLazyVersionInfo>>stepChildren [
+{ #category : #accessing }
+MCLazyVersionInfo >> stepChildren [
 	"Ensure we load step children as appropriate if necessary."
 
 	(stepChildren anySatisfy: #isNil)

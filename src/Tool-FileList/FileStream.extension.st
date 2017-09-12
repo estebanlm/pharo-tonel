@@ -1,23 +1,15 @@
-Extension {
-	#name : #FileStream
-}
+Extension { #name : #FileStream }
 
-{
-	#category : #'*Tool-FileList',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileStream>>edit [
+{ #category : #'*Tool-FileList' }
+FileStream >> edit [
 	"Create and schedule an editor on this file."
 
 	Smalltalk tools fileList openEditorOn: self editString: nil.
 
 ]
 
-{
-	#category : #'*Tool-FileList',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileStream class>>fileReaderServicesForFile: fullName suffix: suffix [
+{ #category : #'*Tool-FileList' }
+FileStream class >> fileReaderServicesForFile: fullName suffix: suffix [
 	<fileService>
 	"Answer services for the given file"
 
@@ -29,11 +21,8 @@ FileStream class>>fileReaderServicesForFile: fullName suffix: suffix [
 			[#()]
 ]
 
-{
-	#category : #'*Tool-FileList',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileStream class>>serviceFileIn [
+{ #category : #'*Tool-FileList' }
+FileStream class >> serviceFileIn [
 	"Answer a service for filing in an entire file"
 
 	^ SimpleServiceEntry 
@@ -44,11 +33,8 @@ FileStream class>>serviceFileIn [
 		buttonLabel: 'Filein'
 ]
 
-{
-	#category : #'*Tool-FileList',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileStream class>>serviceRemoveLineFeeds [
+{ #category : #'*Tool-FileList' }
+FileStream class >> serviceRemoveLineFeeds [
 	"Answer a service for removing linefeeds from a file"
 
 	^ FileModifyingSimpleServiceEntry
@@ -59,11 +45,8 @@ FileStream class>>serviceRemoveLineFeeds [
 		buttonLabel: 'Remove lfs'
 ]
 
-{
-	#category : #'*Tool-FileList',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileStream class>>services [
+{ #category : #'*Tool-FileList' }
+FileStream class >> services [
 
 	^ Array 
 			with: self serviceRemoveLineFeeds

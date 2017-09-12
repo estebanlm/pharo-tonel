@@ -14,23 +14,16 @@ Class {
 	#instVars : [
 		'preDebugWindow'
 	],
-	#category : #DebuggerActions,
-	#timestamp : '<historical>'
+	#category : #DebuggerActions
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugDoesNotUnderstandAction class>>actionType [
+{ #category : #registration }
+PreDebugDoesNotUnderstandAction class >> actionType [
 	<preDebuggingAction>
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugDoesNotUnderstandAction>>executeAction [
+{ #category : #actions }
+PreDebugDoesNotUnderstandAction >> executeAction [
 
 	"The create method from the session will trigger #contextChanged, which will
 	make the debgger update the stack. Sof it safe to just open the debugger."
@@ -38,40 +31,28 @@ PreDebugDoesNotUnderstandAction>>executeAction [
 	self preDebugWindow openFullDebugger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugDoesNotUnderstandAction>>id [
+{ #category : #accessing }
+PreDebugDoesNotUnderstandAction >> id [
 
 	^ #preDebugDoesNotUnderstand
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugDoesNotUnderstandAction>>initialize [
+{ #category : #initialization }
+PreDebugDoesNotUnderstandAction >> initialize [
 	
 	super initialize.
 	self needsUpdate: false.
 	self needsValidation: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugDoesNotUnderstandAction>>preDebugWindow [
+{ #category : #accessing }
+PreDebugDoesNotUnderstandAction >> preDebugWindow [
 	
 	^ preDebugWindow
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugDoesNotUnderstandAction>>preDebugWindow: anObject [
+{ #category : #accessing }
+PreDebugDoesNotUnderstandAction >> preDebugWindow: anObject [
 	
 	preDebugWindow := anObject
 ]

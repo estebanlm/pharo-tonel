@@ -6,15 +6,11 @@ Sending me the message #import makes me install the class organization I carry i
 Class {
 	#name : #ClassOrganizationChunk,
 	#superclass : #BehaviorOwnedChunk,
-	#category : #CodeImport,
-	#timestamp : '<historical>'
+	#category : #CodeImport
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ClassOrganizationChunk class>>contents: someContents behaviorName: behaviorName isMeta: aBoolean [
+{ #category : #'instance creation' }
+ClassOrganizationChunk class >> contents: someContents behaviorName: behaviorName isMeta: aBoolean [
 	^self new
 		contents: someContents;
 		behaviorName: behaviorName;
@@ -22,51 +18,36 @@ ClassOrganizationChunk class>>contents: someContents behaviorName: behaviorName 
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ClassOrganizationChunk class>>contents: someContents organizer: aClassOrganizer  [
+{ #category : #'instance creation' }
+ClassOrganizationChunk class >> contents: someContents organizer: aClassOrganizer [ 
 	^self new
 			contents: someContents;
 			organizer: aClassOrganizer;
 			yourself
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ClassOrganizationChunk>>accept: aVisitor [
+{ #category : #visiting }
+ClassOrganizationChunk >> accept: aVisitor [
 
 	^ aVisitor visitClassOrganizationChunk: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ClassOrganizationChunk>>description [
+{ #category : #accessing }
+ClassOrganizationChunk >> description [
 
 	^ 'Organization (', behaviorName, ')'
 ]
 
-{
-	#category : #importing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ClassOrganizationChunk>>importFor: aRequestor logSource: logSource [
+{ #category : #importing }
+ClassOrganizationChunk >> importFor: aRequestor logSource: logSource [
 	(self existsBehavior)
 		ifFalse: [ self error: ('Cannot change organization of unexistent behavior {1}' format: { behaviorName asString } ) ]. 
 		
 	self targetClass organization changeFromString: contents
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ClassOrganizationChunk>>isClassOrganizationDeclaration [
+{ #category : #testing }
+ClassOrganizationChunk >> isClassOrganizationDeclaration [
 
 	^ true
 ]

@@ -14,39 +14,26 @@ Class {
 	#classVars : [
 		'MinTextSizeForStylingInBackground'
 	],
-	#category : #Rubric-Styling,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:11'
+	#category : #Rubric-Styling
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator class>>key [
+{ #category : #querying }
+RubShoutStylerDecorator class >> key [
 	^ #shoutStyler
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator class>>minTextSizeForStylingInBackground [
+{ #category : #settings }
+RubShoutStylerDecorator class >> minTextSizeForStylingInBackground [
 	^ MinTextSizeForStylingInBackground ifNil: [ MinTextSizeForStylingInBackground := 4000 ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator class>>minTextSizeForStylingInBackground: anInteger [
+{ #category : #settings }
+RubShoutStylerDecorator class >> minTextSizeForStylingInBackground: anInteger [
 	MinTextSizeForStylingInBackground := anInteger.
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator class>>rubricSettingsOn: aBuilder [
+{ #category : #settings }
+RubShoutStylerDecorator class >> rubricSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #minTextSizeForStylingInBackground)
 		target: self;
@@ -55,56 +42,38 @@ RubShoutStylerDecorator class>>rubricSettingsOn: aBuilder [
 		label: 'Min text size for background styling'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>aboutToBeUnplugged [
+{ #category : #private }
+RubShoutStylerDecorator >> aboutToBeUnplugged [
 
 	self paragraph ifNotNil: [ :paragraph |
 		paragraph textArea announcer unsubscribe: self 
 	]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>beForSmalltalkScripting [
+{ #category : #accessing }
+RubShoutStylerDecorator >> beForSmalltalkScripting [
 	self styler workspace: self model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>classOrMetaClass: aBehavior [
+{ #category : #accessing }
+RubShoutStylerDecorator >> classOrMetaClass: aBehavior [
 	"set the classOrMetaClass in the receiver's styler to aBehavior"
 		
 	self styler classOrMetaClass: aBehavior
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>defaultStyler [
+{ #category : #accessing }
+RubShoutStylerDecorator >> defaultStyler [
 	^RubSHTextStylerST80 new view: self; yourself
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>minTextSizeForStylingInBackground [
+{ #category : #shout }
+RubShoutStylerDecorator >> minTextSizeForStylingInBackground [
 	^ self class minTextSizeForStylingInBackground
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>next: aDecorator [
+{ #category : #accessing }
+RubShoutStylerDecorator >> next: aDecorator [
 	super next: aDecorator.
 	aDecorator ifNotNil: [ 
 		self paragraph textArea announcer
@@ -114,30 +83,21 @@ RubShoutStylerDecorator>>next: aDecorator [
 	]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>okToStyle [
+{ #category : #accessing }
+RubShoutStylerDecorator >> okToStyle [
 	^ self shoutEnabled and: [ self shoutAboutToStyle: self ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>refreshStyling [
+{ #category : #'event handling' }
+RubShoutStylerDecorator >> refreshStyling [
 
 	" shout for the whole text "
 	(next notNil and: [self okToStyle])
 		ifTrue: [ self text: self text ]
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>replaceFrom: start to: stop with: aText [
+{ #category : #editing }
+RubShoutStylerDecorator >> replaceFrom: start to: stop with: aText [
 	self okToStyle
 		ifFalse: [ ^ next replaceFrom: start to: stop with: aText ].
 		
@@ -160,27 +120,18 @@ RubShoutStylerDecorator>>replaceFrom: start to: stop with: aText [
 	]
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>shoutAboutToStyle: myself  [
+{ #category : #shout }
+RubShoutStylerDecorator >> shoutAboutToStyle: myself [ 
 	^ self paragraph textArea shoutAboutToStyle: myself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>shoutEnabled [
+{ #category : #private }
+RubShoutStylerDecorator >> shoutEnabled [
 	^ SHPreferences enabled
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>style: aText [
+{ #category : #editing }
+RubShoutStylerDecorator >> style: aText [
 	"we can do background styling with (self styler styleInBackgroundProcess: aText), but it is not safe"
 
 	"on error just do nothing. Raising an error during styling may lead to an inconsistent
@@ -193,30 +144,21 @@ RubShoutStylerDecorator>>style: aText [
 			^ aText ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>styler [
+{ #category : #accessing }
+RubShoutStylerDecorator >> styler [
 	"The styler responsible for highlighting text in the receiver"
 	^ styler ifNil: [styler := self defaultStyler]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>styler: aTextStyler [
+{ #category : #accessing }
+RubShoutStylerDecorator >> styler: aTextStyler [
 
 	styler := aTextStyler.
 	styler view: self.	
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>stylerStyled: styledCopyOfText [
+{ #category : #editing }
+RubShoutStylerDecorator >> stylerStyled: styledCopyOfText [
 	next ifNil: [ ^ self ].
 	(text notNil and:[text string = styledCopyOfText string])
 		ifFalse: [ ^ self ].
@@ -234,29 +176,20 @@ RubShoutStylerDecorator>>stylerStyled: styledCopyOfText [
 	self updateTextArea
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>stylerStyledInBackground: styledCopyOfText [
+{ #category : #editing }
+RubShoutStylerDecorator >> stylerStyledInBackground: styledCopyOfText [
 	text ifNil: [ ^self ].
 	self stylerStyled: styledCopyOfText.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>text [
+{ #category : #accessing }
+RubShoutStylerDecorator >> text [
 	^ next text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>text: aText [
+{ #category : #accessing }
+RubShoutStylerDecorator >> text: aText [
 	self okToStyle
 		ifFalse: [ ^ next text: aText ].
 	self
@@ -268,11 +201,8 @@ RubShoutStylerDecorator>>text: aText [
 			self style: text]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>updateTextArea [
+{ #category : #private }
+RubShoutStylerDecorator >> updateTextArea [
 
 	| textArea |
 	
@@ -284,11 +214,8 @@ RubShoutStylerDecorator>>updateTextArea [
 	(textArea scrollPane ifNil: [ textArea ]) changed
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubShoutStylerDecorator>>whenTextAcceptRequest: anAnnouncement [
+{ #category : #'event handling' }
+RubShoutStylerDecorator >> whenTextAcceptRequest: anAnnouncement [
 
 	self refreshStyling
 ]

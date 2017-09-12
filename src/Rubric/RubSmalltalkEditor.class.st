@@ -8,15 +8,11 @@ Class {
 		'selectorChooser',
 		'notificationStrategy'
 	],
-	#category : #Rubric-Editing-Code,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:22'
+	#category : #Rubric-Editing-Code
 }
 
-{
-	#category : #keymapping,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor class>>buildPatchShortcutsForDoItInWindowsOn: aBuilder [
+{ #category : #keymapping }
+RubSmalltalkEditor class >> buildPatchShortcutsForDoItInWindowsOn: aBuilder [
 	"this is because for some reason Ctrl+d means Ctrl+end on Windows"
 	<keymap>
 	(aBuilder shortcut: #doItPatchForWindows) 
@@ -32,11 +28,8 @@ RubSmalltalkEditor class>>buildPatchShortcutsForDoItInWindowsOn: aBuilder [
 		description: 'Debug it'
 ]
 
-{
-	#category : #keymapping,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor class>>buildShortcutsOn: aBuilder [
+{ #category : #keymapping }
+RubSmalltalkEditor class >> buildShortcutsOn: aBuilder [
 	"We are defining the bindings twice because we want to support 
 	both Cmd and meta for Windows and Linux. This should happen at least as long as in the development environment
 	both of these are supported.
@@ -117,21 +110,15 @@ RubSmalltalkEditor class>>buildShortcutsOn: aBuilder [
 		do: [ :target | target formatMethodCode ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor class>>compilerFor: aClass [
+{ #category : #accessing }
+RubSmalltalkEditor class >> compilerFor: aClass [
 	^ (aClass respondsTo: #compiler) 
 		ifTrue: [aClass compiler]
 		ifFalse: [ aClass class evaluatorClass new ]
 ]
 
-{
-	#category : #NOcompletion,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>atCompletionPosition [
+{ #category : #NOcompletion }
+RubSmalltalkEditor >> atCompletionPosition [
 	"Return true if the cursor is at a possible completion position"
 	| cursorPosition |
 	cursorPosition := self startIndex.
@@ -139,27 +126,18 @@ RubSmalltalkEditor>>atCompletionPosition [
 	^ (self text at: cursorPosition - 1) isCompletionCharacter
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>basicInspectIt [
+{ #category : #do-its }
+RubSmalltalkEditor >> basicInspectIt [
 	self evaluateSelectionAndDo: [:result | result basicInspect]
 ]
 
-{
-	#category : #binding,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>bindingOf: aString [
+{ #category : #binding }
+RubSmalltalkEditor >> bindingOf: aString [
 	^ self textArea bindingOf: aString
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>browseClassFrom: aClassString [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> browseClassFrom: aClassString [
 	"Launch a hierarchy browser for the class indicated by the current selection.  If multiple classes matching the selection exist, let the user choose among them."
 
 	| selectedClass |
@@ -172,53 +150,38 @@ RubSmalltalkEditor>>browseClassFrom: aClassString [
 	Smalltalk tools browser openOnClass: selectedClass
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>browseClassFromIt [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> browseClassFromIt [
 	"Launch a hierarchy browser for the class indicated by the current selection.  If multiple classes matching the selection exist, let the user choose among them."
 	
 	self lineSelectAndEmptyCheck: [^ self].
 	self browseClassFrom: (self selection string copyWithoutAll: CharacterSet crlf)
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>browseIt [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> browseIt [
 	"Launch a browser for the current selection, if appropriate"
 	^ self browseClassFromIt
 
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>browseIt: t1  [
+{ #category : #'editing keys' }
+RubSmalltalkEditor >> browseIt: t1 [ 
 
 	self browseIt.
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>classCommentsContainingIt [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> classCommentsContainingIt [
 	"Open a browser class comments which contain the current selection somewhere in them."
 
 	self lineSelectAndEmptyCheck: [^ self].
 	self model systemNavigation  browseClassCommentsWithString: self selection string matchCase: false. 
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>classNamesContainingIt [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> classNamesContainingIt [
 	"Open a browser on classes whose names contain the selected string"
 
 	self lineSelectAndEmptyCheck: [^self].
@@ -227,21 +190,15 @@ RubSmalltalkEditor>>classNamesContainingIt [
 		caseSensitive: Sensor shiftPressed
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>click: anEvent 	 [
+{ #category : #events }
+RubSmalltalkEditor >> click: anEvent [ 	
 	self selectorChooserClose.
 	^ super click: anEvent 
 
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>compile: aStream for: anObject in: evalContext [
+{ #category : #do-its }
+RubSmalltalkEditor >> compile: aStream for: anObject in: evalContext [
 	| methodNode methodClass |
 	methodClass := evalContext
 		ifNil: [ anObject class ]
@@ -257,29 +214,20 @@ RubSmalltalkEditor>>compile: aStream for: anObject in: evalContext [
 	^ methodNode generateWithSource
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>compileSelectionFor: anObject in: evalContext [
+{ #category : #do-its }
+RubSmalltalkEditor >> compileSelectionFor: anObject in: evalContext [
 	
 	^ self compile: self selectionAsStream for: anObject in: evalContext
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>completionAround:  aBlock  keyStroke: anEvent [
+{ #category : #private }
+RubSmalltalkEditor >> completionAround:  aBlock  keyStroke: anEvent [
 	"I'm a editor for Smalltalk, so, ok do completion around"
 	Smalltalk tools codeCompletionAround: aBlock textMorph: textArea keyStroke: anEvent
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>computeSelectionIntervalForCurrentLine [
+{ #category : #'new selection' }
+RubSmalltalkEditor >> computeSelectionIntervalForCurrentLine [
 	| i left right s quoteCounter|
 	s := self string.
 	i := s encompassParagraph: self selectionInterval.
@@ -304,19 +252,13 @@ RubSmalltalkEditor>>computeSelectionIntervalForCurrentLine [
 	^ left to: right
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>computeSelectionIntervalFromCodeIn: aString at: anInterval [
+{ #category : #private }
+RubSmalltalkEditor >> computeSelectionIntervalFromCodeIn: aString at: anInterval [
 	^ (RBParser parseExpression: (aString copyFrom: anInterval first to: anInterval last)) sourceInterval
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>computeSelectionIntervalFromCommentIn: aString at: anInterval [
+{ #category : #private }
+RubSmalltalkEditor >> computeSelectionIntervalFromCommentIn: aString at: anInterval [
 	| comment commentInterval |
 	comment := (RBScanner on: (aString copyFrom: anInterval first to: anInterval last) readStream) getComments.
 	comment ifNil: [ ^ 0 to: -1 ].
@@ -324,11 +266,8 @@ RubSmalltalkEditor>>computeSelectionIntervalFromCommentIn: aString at: anInterva
 	^ commentInterval first + 1 to: commentInterval last - 1
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>debug: aStream [
+{ #category : #do-its }
+RubSmalltalkEditor >> debug: aStream [
 
 	| method receiver context |
 	(self model respondsTo: #doItReceiver) 
@@ -346,11 +285,8 @@ RubSmalltalkEditor>>debug: aStream [
 	
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>debug: aCompiledMethod receiver: anObject in: evalContext [
+{ #category : #do-its }
+RubSmalltalkEditor >> debug: aCompiledMethod receiver: anObject in: evalContext [
 	| guineaPig context debugSession |
 	guineaPig := [ aCompiledMethod
 		valueWithReceiver: anObject
@@ -366,53 +302,38 @@ RubSmalltalkEditor>>debug: aCompiledMethod receiver: anObject in: evalContext [
 	
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>debugHighlight [
+{ #category : #do-its }
+RubSmalltalkEditor >> debugHighlight [
 	"Treat the current highlight as an expression; evaluate and debugg it in a new debugger."
 
 	self highlightAndEmptyCheck: [ ^ self ].
 	self debug: self highlightedTextAsStream
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>debugIt [
+{ #category : #do-its }
+RubSmalltalkEditor >> debugIt [
 
 	^ self debugSelection
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>debugIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubSmalltalkEditor >> debugIt: aKeyboardEvent [
 	"Evaluate the current selection in the Debugger."
 
 	self debugIt.
 	^ true
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>debugSelection [
+{ #category : #do-its }
+RubSmalltalkEditor >> debugSelection [
 	"Treat the current selection as an expression; evaluate and debugg it in a new debugger."
 	
 	self lineSelectAndEmptyCheck: [^self].
 	self debug: self selectionAsStream
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>displayIfFalse: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+RubSmalltalkEditor >> displayIfFalse: aKeyboardEvent [
 	"Replace the current text selection with the text 'ifFalse:'--initiated by 
 	ctrl-f."
 
@@ -420,11 +341,8 @@ RubSmalltalkEditor>>displayIfFalse: aKeyboardEvent [
 	^false
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>displayIfTrue: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+RubSmalltalkEditor >> displayIfTrue: aKeyboardEvent [
 	"Replace the current text selection with the text 'ifTrue:'--initiated by 
 	ctrl-t."
 
@@ -432,20 +350,14 @@ RubSmalltalkEditor>>displayIfTrue: aKeyboardEvent [
 	^false
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>doIt [
+{ #category : #do-its }
+RubSmalltalkEditor >> doIt [
 	"Set the context to include pool vars of the model.  Then evaluate."
 	^ self evaluateSelection
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>doIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubSmalltalkEditor >> doIt: aKeyboardEvent [
 	"Called when user hits cmd-d.  Select the current line, if relevant, then evaluate and execute.  2/1/96 sw.
 	2/29/96 sw: don't call selectLine; it's done by doIt now"
 	
@@ -453,11 +365,8 @@ RubSmalltalkEditor>>doIt: aKeyboardEvent [
 	^ true
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>evaluate: aStream andDo: aBlock [
+{ #category : #do-its }
+RubSmalltalkEditor >> evaluate: aStream andDo: aBlock [
 	"Treat the current selection as an expression; evaluate it and invoke aBlock with the result."
 	| result rcvr ctxt |
 	(self model respondsTo: #doItReceiver) 
@@ -475,21 +384,15 @@ RubSmalltalkEditor>>evaluate: aStream andDo: aBlock [
 	^ aBlock value: result
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>evaluateSelection [
+{ #category : #do-its }
+RubSmalltalkEditor >> evaluateSelection [
 	"Treat the current selection as an expression; evaluate it and return the result"
 	
 	^self evaluateSelectionAndDo: [:result | result]
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>evaluateSelectionAndDo: aBlock [
+{ #category : #do-its }
+RubSmalltalkEditor >> evaluateSelectionAndDo: aBlock [
 	"Treat the current selection as an expression; evaluate it and invoke aBlock with the result.
 	If no selection is present select the current line."
 
@@ -499,47 +402,32 @@ RubSmalltalkEditor>>evaluateSelectionAndDo: aBlock [
 		andDo: aBlock
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>exploreIt [
+{ #category : #do-its }
+RubSmalltalkEditor >> exploreIt [
 	self evaluateSelectionAndDo: [:result | result explore]
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>exploreIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubSmalltalkEditor >> exploreIt: aKeyboardEvent [
 	"Explore the selection -- invoked via cmd-shift-I.  If there is no current selection, use the current line."
 	
 	self exploreIt.
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>focusChanged [
+{ #category : #private }
+RubSmalltalkEditor >> focusChanged [
 	super focusChanged.
 	self selectorChooserFocusChange 
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>format [
+{ #category : #do-its }
+RubSmalltalkEditor >> format [
 	self model formatSourceCodeInView
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>highlightEvaluateAndDo: aBlock [
+{ #category : #do-its }
+RubSmalltalkEditor >> highlightEvaluateAndDo: aBlock [
 	"Treat the current selection as an expression; evaluate it and invoke aBlock with the result."
 	
 	self highlightAndEmptyCheck: [ ^ '' ].
@@ -548,11 +436,8 @@ RubSmalltalkEditor>>highlightEvaluateAndDo: aBlock [
 		andDo: [:result | aBlock value: result]
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>implementorsOf: aSelector [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> implementorsOf: aSelector [
 	"Open an implementors browser on the given selector"
 
 	(self model systemNavigation allImplementorsOf: aSelector) isEmpty
@@ -560,11 +445,8 @@ RubSmalltalkEditor>>implementorsOf: aSelector [
 		ifFalse: [ self model interactionModel systemNavigation browseAllImplementorsOf: aSelector ]
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>implementorsOfIt [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> implementorsOfIt [
 	"Open an implementors browser on the selected selector"
 
 	| aSelector |
@@ -573,48 +455,33 @@ RubSmalltalkEditor>>implementorsOfIt [
 	self implementorsOf: aSelector
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>implementorsOfIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubSmalltalkEditor >> implementorsOfIt: aKeyboardEvent [
 	"Triggered by Cmd-m; browse implementors of the selector represented by the current selection, if plausible. 2/1/96 sw"
 
 	self implementorsOfIt.
 	^ true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>initialize [
+{ #category : #initialization }
+RubSmalltalkEditor >> initialize [
 	super initialize.
 	notificationStrategy := RubTextInsertionStrategy new editor: self
 ]
 
-{
-	#category : #keymapping,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>initializeShortcuts: aKMDispatcher [
+{ #category : #keymapping }
+RubSmalltalkEditor >> initializeShortcuts: aKMDispatcher [
 	super initializeShortcuts: aKMDispatcher.
 	aKMDispatcher attachCategory: RubSmalltalkEditor name
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>inspectIt [
+{ #category : #do-its }
+RubSmalltalkEditor >> inspectIt [
 	self evaluateSelectionAndDo: [:result | result inspect]
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>inspectIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubSmalltalkEditor >> inspectIt: aKeyboardEvent [
 	"Inspect the selection -- invoked via cmd-i.  If there is no current selection, use the current line.  1/17/96 sw
 	 2/29/96 sw: don't call selectLine; it's done by inspectIt now"
 
@@ -622,11 +489,8 @@ RubSmalltalkEditor>>inspectIt: aKeyboardEvent [
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>internalCallToBrowse: aSelector [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> internalCallToBrowse: aSelector [
 	"Launch a browser for the class indicated by the given selector. 
 	If multiple classes matching the selection exist, let the user choose among them."
 	| aClass |
@@ -637,11 +501,8 @@ RubSmalltalkEditor>>internalCallToBrowse: aSelector [
 	Smalltalk tools browser openOnClass: aClass
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>internalCallToBrowseIt [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> internalCallToBrowseIt [
 	"Launch a browser for the class indicated by the current selection. 
 	If multiple classes matching the selection exist, let the user choose among them."
 	| aClass |
@@ -649,11 +510,8 @@ RubSmalltalkEditor>>internalCallToBrowseIt [
 	self internalCallToBrowse: (self selection string copyWithoutAll: CharacterSet crlf)
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>internalCallToImplementorsOf: aSelector [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> internalCallToImplementorsOf: aSelector [
 	"Open an implementors browser on the given selector"
 	
 	 (self model systemNavigation allImplementorsOf: aSelector) isEmpty
@@ -662,11 +520,8 @@ RubSmalltalkEditor>>internalCallToImplementorsOf: aSelector [
 	
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>internalCallToImplementorsOfIt [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> internalCallToImplementorsOfIt [
 	"Open an implementors browser on the selected selector"
 
 	| aSelector |
@@ -677,19 +532,13 @@ RubSmalltalkEditor>>internalCallToImplementorsOfIt [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>isSmalltalkEditor [
+{ #category : #testing }
+RubSmalltalkEditor >> isSmalltalkEditor [
 	^ true 
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>keystroke: aKeyboardEvent [
+{ #category : #'typing support' }
+RubSmalltalkEditor >> keystroke: aKeyboardEvent [
 	self
 		completionAround: [ 
 			(self selectorChooserHandlesKeyboard: aKeyboardEvent)
@@ -698,11 +547,8 @@ RubSmalltalkEditor>>keystroke: aKeyboardEvent [
 		keyStroke: aKeyboardEvent
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>methodCaseSensitiveStringsContainingit [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> methodCaseSensitiveStringsContainingit [
 	"Open a browser on methods which contain the current selection as part of a string constant."
 
 	self lineSelectAndEmptyCheck: [^ self].
@@ -710,66 +556,48 @@ RubSmalltalkEditor>>methodCaseSensitiveStringsContainingit [
 	self model systemNavigation  browseMethodsWithString: self selection string matchCase: true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>methodNamesContainingIt [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> methodNamesContainingIt [
 	"Open a browser on methods names containing the selected string"
 
 	self lineSelectAndEmptyCheck: [ ^ self ].
 	Cursor wait showWhile: [ self model interactionModel systemNavigation browseMethodsWhoseNamesContain: self selection string trimBoth ]
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>methodNamesContainingIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubSmalltalkEditor >> methodNamesContainingIt: aKeyboardEvent [
 	"Browse methods whose selectors containing the selection in their names"
 
 	self methodNamesContainingIt.
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>methodSourceContainingIt [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> methodSourceContainingIt [
 	"Open a browser on methods which contain the current selection in their source (case-sensitive full-text search of source).   EXTREMELY slow!"
 
 	self lineSelectAndEmptyCheck: [ ^ self ].
 	self model interactionModel systemNavigation browseMethodsWithSourceString: self selection string matchCase: false
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>methodStringsContainingIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubSmalltalkEditor >> methodStringsContainingIt: aKeyboardEvent [
 	"Invoked from cmd-E -- open a browser on all methods holding string constants containing it."
 
 	self methodStringsContainingit.
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>methodStringsContainingit [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> methodStringsContainingit [
 	"Open a browser on methods which contain the current selection as part of a string constant."
 
 	self lineSelectAndEmptyCheck: [ ^ self ].
 	self model interactionModel systemNavigation browseMethodsWithString: self selection string matchCase: false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>modelCurrentSelectedClass [
+{ #category : #private }
+RubSmalltalkEditor >> modelCurrentSelectedClass [
 	" ugly dispatch, but current Browser protocol names aren't really cool "
 	" for Nautilus ( and other tools), selectedClass sounds better, but I think it shouldn't be hardcoded "
 	" IT'S A TEMP SOLUTION -- BenjaminVanRyseghem 14/04/11"
@@ -788,11 +616,8 @@ RubSmalltalkEditor>>modelCurrentSelectedClass [
 	^ nil
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>nextTokenFrom: start direction: dir [
+{ #category : #'new selection' }
+RubSmalltalkEditor >> nextTokenFrom: start direction: dir [
 	"simple token-finder for compiler automated corrections"
 	| loc str |
 	loc := start + dir.
@@ -802,28 +627,19 @@ RubSmalltalkEditor>>nextTokenFrom: start direction: dir [
 	^ loc
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>notificationStrategy [
+{ #category : #accessing }
+RubSmalltalkEditor >> notificationStrategy [
 	^ notificationStrategy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>notificationStrategy: aStrategy [
+{ #category : #accessing }
+RubSmalltalkEditor >> notificationStrategy: aStrategy [
 	notificationStrategy := aStrategy.
 	aStrategy editor: self
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>notify: aString at: anInteger in: aStream  [
+{ #category : #'new selection' }
+RubSmalltalkEditor >> notify: aString at: anInteger [ in: aStream 
 	^ self notificationStrategy 
 		notify: aString 
 		at: anInteger 
@@ -831,11 +647,8 @@ RubSmalltalkEditor>>notify: aString at: anInteger in: aStream  [
 
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>pasteInitials: aKeyboardEvent  [
+{ #category : #'editing keys' }
+RubSmalltalkEditor >> pasteInitials: aKeyboardEvent [ 
 	"Replace the current text selection by an authorship name/date stamp; invoked by cmd-shift-v, easy way to put an authorship stamp in the comments of an editor."
 
 	self closeTypeIn.
@@ -843,11 +656,8 @@ RubSmalltalkEditor>>pasteInitials: aKeyboardEvent  [
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>prettyPrint [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> prettyPrint [
 	"Reformat the contents of the receiver's view (a Browser)."
 
 	| selectedClass newText |
@@ -863,11 +673,8 @@ RubSmalltalkEditor>>prettyPrint [
 		self selectAt: 1]
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>printIt [
+{ #category : #do-its }
+RubSmalltalkEditor >> printIt [
 	"Treat the current text selection as an expression; evaluate it. Insert the 
 	description of the result of evaluation after the selection and then make 
 	this description the new text selection."
@@ -881,30 +688,21 @@ RubSmalltalkEditor>>printIt [
 			self afterSelectionInsertAndSelect: printString ]
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>printIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubSmalltalkEditor >> printIt: aKeyboardEvent [
 	"Print the results of evaluting the selection -- invoked via cmd-p.  If there is no current selection, use the current line.  1/17/96 sw
 	 2/29/96 sw: don't call selectLine now, since it's called by doIt"
 	self printIt.
 	^ true
 ]
 
-{
-	#category : #basic-completion,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>querySymbol [
+{ #category : #basic-completion }
+RubSmalltalkEditor >> querySymbol [
 	self selectorChooseQuerySymbol 
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>querySymbol: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+RubSmalltalkEditor >> querySymbol: aKeyboardEvent [
 	"Invoked by Ctrl-q to query the Symbol table and display alternate symbols.
 	 See comment in completeSymbol:lastOffering: for details."
 
@@ -914,11 +712,8 @@ RubSmalltalkEditor>>querySymbol: aKeyboardEvent [
 	^true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>referencesTo: aVariableOrClassName [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> referencesTo: aVariableOrClassName [
 	"Open a references browser on the given symbol"
 	| env ref |
 
@@ -934,11 +729,8 @@ RubSmalltalkEditor>>referencesTo: aVariableOrClassName [
 	self systemNavigation browseAllSendersOf: ref
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>referencesToIt [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> referencesToIt [
 	"Open a references browser on the selected symbol"
 
 	| aSymbol env ref |
@@ -949,22 +741,16 @@ RubSmalltalkEditor>>referencesToIt [
 	self referencesTo: aSymbol
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>referencesToIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubSmalltalkEditor >> referencesToIt: aKeyboardEvent [
 	"Triggered by Cmd-N; browse references to the current selection"
 
 	self referencesToIt.
 	^ true
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>save: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubSmalltalkEditor >> save: aKeyboardEvent [
 	"Submit the current text.  Equivalent to 'accept' 1/18/96 sw"
 
 	self closeTypeIn.
@@ -972,11 +758,8 @@ RubSmalltalkEditor>>save: aKeyboardEvent [
 	^ true
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>selectPrecedingIdentifier [
+{ #category : #'new selection' }
+RubSmalltalkEditor >> selectPrecedingIdentifier [
 	"Invisibly select the identifier that ends at the end of the selection, if any."
 
 	| string sep stop tok |
@@ -989,11 +772,8 @@ RubSmalltalkEditor>>selectPrecedingIdentifier [
 	tok ifTrue: [self selectInvisiblyFrom: sep + 1 to: stop]
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>selectedSelector [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> selectedSelector [
 	"Try to make a selector out of the current text selection"
 
 	| node |
@@ -1010,11 +790,8 @@ RubSmalltalkEditor>>selectedSelector [
 	^ self selection string asSymbol
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>selectedSymbol [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> selectedSymbol [
 	"Return the currently selected symbol, or nil if none.  Spaces, tabs and returns are ignored"
 
 	| aString |
@@ -1027,11 +804,8 @@ RubSmalltalkEditor>>selectedSymbol [
 	^ nil
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>selectionForDoitAsStream [
+{ #category : #do-its }
+RubSmalltalkEditor >> selectionForDoitAsStream [
 	"Answer a ReadStream on the text in the paragraph that is currently
 	selected. "
 	^ ReadWriteStream
@@ -1040,11 +814,8 @@ RubSmalltalkEditor>>selectionForDoitAsStream [
 		to: self stopIndex - 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>selectionPosition: aString [
+{ #category : #accessing }
+RubSmalltalkEditor >> selectionPosition: aString [
 
 	| startIndex |
 	startIndex := self startIndex.
@@ -1058,11 +829,8 @@ RubSmalltalkEditor>>selectionPosition: aString [
 			ensure: [ self selectInvisiblyFrom: startIndex to: startIndex - 1 ]
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>selectionString [
+{ #category : #do-its }
+RubSmalltalkEditor >> selectionString [
 	"remove the initial and final quote marks, if present"
 	"'''h''' withoutWrappingDoubleQuotes"
 	| quote selection  |
@@ -1074,11 +842,8 @@ RubSmalltalkEditor>>selectionString [
 		ifFalse: [ selection ].
 ]
 
-{
-	#category : #basic-completion,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>selectorChooseQuerySymbol [
+{ #category : #basic-completion }
+RubSmalltalkEditor >> selectorChooseQuerySymbol [
 	| pref |
 	self hasSelection
 		ifFalse: [ self selectPrecedingIdentifier ].
@@ -1091,20 +856,14 @@ RubSmalltalkEditor>>selectorChooseQuerySymbol [
 	selectorChooser := RubSelectorChooserMorph popUpPrefix: pref from: textArea
 ]
 
-{
-	#category : #basic-completion,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>selectorChooser [
+{ #category : #basic-completion }
+RubSmalltalkEditor >> selectorChooser [
 	^ selectorChooser
 
 ]
 
-{
-	#category : #basic-completion,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>selectorChooserChosenSelector: aSelector [
+{ #category : #basic-completion }
+RubSmalltalkEditor >> selectorChooserChosenSelector: aSelector [
 	| newStart replacement caret prevSelection |
 	self selectorChooserClose.
 	aSelector ifNil: [ ^ self ].
@@ -1131,39 +890,27 @@ RubSmalltalkEditor>>selectorChooserChosenSelector: aSelector [
 			self selectFrom: caret to: caret - 1 ]
 ]
 
-{
-	#category : #basic-completion,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>selectorChooserClose [
+{ #category : #basic-completion }
+RubSmalltalkEditor >> selectorChooserClose [
 	selectorChooser 
 		ifNotNil: [ [selectorChooser delete] ensure: [selectorChooser := nil] ]
 ]
 
-{
-	#category : #basic-completion,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>selectorChooserFocusChange [
+{ #category : #basic-completion }
+RubSmalltalkEditor >> selectorChooserFocusChange [
 	textArea hasFocus
 		ifTrue: [ selectorChooser ifNotNil: [ selectorChooser comeToFront ] ]
 ]
 
-{
-	#category : #basic-completion,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>selectorChooserHandlesKeyboard: aKeyboardEvent [
+{ #category : #basic-completion }
+RubSmalltalkEditor >> selectorChooserHandlesKeyboard: aKeyboardEvent [
 	"Return true or false on whether the code editor can handle keyboard event"
 	^ (selectorChooser notNil and: [ selectorChooser handlesKeyboard: aKeyboardEvent ])
 
 ]
 
-{
-	#category : #basic-completion,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>selectorChooserKeystroke: aKeyboardEvent [
+{ #category : #basic-completion }
+RubSmalltalkEditor >> selectorChooserKeystroke: aKeyboardEvent [
 	| asciiValue |
 	selectorChooser 
 		ifNotNil: [(selectorChooser handlesKeyStroke: aKeyboardEvent) 
@@ -1183,30 +930,21 @@ RubSmalltalkEditor>>selectorChooserKeystroke: aKeyboardEvent [
 	^ false
 ]
 
-{
-	#category : #basic-completion,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>selectorChooserUpdate [
+{ #category : #basic-completion }
+RubSmalltalkEditor >> selectorChooserUpdate [
 	selectorChooser ifNil: [^ self].
 	self selectorChooserClose.
 	self selectorChooseQuerySymbol 
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>sendersOf: selectedSelector [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> sendersOf: selectedSelector [
 	" opens a Browser on the given selector"
 	self model systemNavigation browseAllSendersOf: selectedSelector
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>sendersOfIt [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> sendersOfIt [
 	"Open a senders browser on the selected selector"
 
 	| selectedSelector syst |
@@ -1218,22 +956,16 @@ RubSmalltalkEditor>>sendersOfIt [
 	syst browseAllSendersOrUsersOf: selectedSelector
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>sendersOfIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubSmalltalkEditor >> sendersOfIt: aKeyboardEvent [
 	"Triggered by Cmd-n; browse implementors of the selector represented by the current selection, if plausible. 2/1/96 sw"
 
 	self sendersOfIt.
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>spawn [
+{ #category : #'menu messages' }
+RubSmalltalkEditor >> spawn [
 	"Create and schedule a message browser for the code of the model's 
 	selected message. Retain any edits that have not yet been accepted."
 	| code |
@@ -1242,22 +974,16 @@ RubSmalltalkEditor>>spawn [
 	self model spawn: code.
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>spawnIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubSmalltalkEditor >> spawnIt: aKeyboardEvent [
 	"Triggered by Cmd-o; spawn a new code window, if it makes sense."
 
 	self spawn.
 	^ true
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>tally: aStream [
+{ #category : #do-its }
+RubSmalltalkEditor >> tally: aStream [
 	"Treat the current selection as an expression; evaluate and tally it."
 	| receiver context v compiledMethod profiler |
 	(self model respondsTo: #doItReceiver) 
@@ -1274,11 +1000,8 @@ RubSmalltalkEditor>>tally: aStream [
 
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>tallyHighlight [
+{ #category : #do-its }
+RubSmalltalkEditor >> tallyHighlight [
 	"Treat the current highlight as an expression; evaluate and tally it."
 	
 	self highlightAndEmptyCheck: [ ^ self ].
@@ -1287,20 +1010,14 @@ RubSmalltalkEditor>>tallyHighlight [
 
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>tallyIt [
+{ #category : #do-its }
+RubSmalltalkEditor >> tallyIt [
 
 	^ self tallySelection
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkEditor>>tallySelection [
+{ #category : #do-its }
+RubSmalltalkEditor >> tallySelection [
 	"Treat the current selection as an expression; evaluate and tally it."
 
 	self lineSelectAndEmptyCheck: [ ^ self ].

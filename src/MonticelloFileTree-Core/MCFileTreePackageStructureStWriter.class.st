@@ -4,15 +4,11 @@ Writer for a package structure
 Class {
 	#name : #MCFileTreePackageStructureStWriter,
 	#superclass : #MCStWriter,
-	#category : #MonticelloFileTree-Core,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:59'
+	#category : #MonticelloFileTree-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreePackageStructureStWriter class>>useCypressWriter [
+{ #category : #accessing }
+MCFileTreePackageStructureStWriter class >> useCypressWriter [
     "MCFileTreeRepository defaultPackageExtension:'.package'"
 
     "MCFileTreeRepository defaultPackageExtension:'.pkg'"
@@ -20,62 +16,41 @@ MCFileTreePackageStructureStWriter class>>useCypressWriter [
     ^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreePackageStructureStWriter class>>useSnapShotWriter [
+{ #category : #accessing }
+MCFileTreePackageStructureStWriter class >> useSnapShotWriter [
     ^ MCFileTreeRepository defaultPackageExtension = '.pkg'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreePackageStructureStWriter>>absentInitializers [
+{ #category : #accessing }
+MCFileTreePackageStructureStWriter >> absentInitializers [
 	^ initializers reject: [ :each | Smalltalk hasClassNamed: each key ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreePackageStructureStWriter>>acceptVisitor: aVisitor forDefinitions: aCollection [
+{ #category : #visiting }
+MCFileTreePackageStructureStWriter >> acceptVisitor: aVisitor forDefinitions: aCollection [
 	(MCDependencySorter sortItems: aCollection)
 		do: [ :ea | ea accept: aVisitor ]
 		displayingProgress: 'Writing definitions...'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreePackageStructureStWriter>>initializers: aCollection [
+{ #category : #accessing }
+MCFileTreePackageStructureStWriter >> initializers: aCollection [
 	initializers := aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreePackageStructureStWriter>>presentInitializers [
+{ #category : #accessing }
+MCFileTreePackageStructureStWriter >> presentInitializers [
 	^ initializers select: [ :each | Smalltalk hasClassNamed: each key ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreePackageStructureStWriter>>writeAbsentInitializers [
+{ #category : #writing }
+MCFileTreePackageStructureStWriter >> writeAbsentInitializers [
 	(self absentInitializers asSortedCollection: [ :a :b | a key <= b key ])
 		do: [ :association | stream nextPutAll: association value contents ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreePackageStructureStWriter>>writeDefinitions: aCollection [
+{ #category : #writing }
+MCFileTreePackageStructureStWriter >> writeDefinitions: aCollection [
 	"the correct initialization order is unknown if some classes are missing in the image"
 
 	initializers := Set new.
@@ -85,11 +60,8 @@ MCFileTreePackageStructureStWriter>>writeDefinitions: aCollection [
 		writeAbsentInitializers
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreePackageStructureStWriter>>writeMethodPreamble: definition [
+{ #category : #writing }
+MCFileTreePackageStructureStWriter >> writeMethodPreamble: definition [
     stream
         cr;
         nextPut: $!;
@@ -100,11 +72,8 @@ MCFileTreePackageStructureStWriter>>writeMethodPreamble: definition [
         cr
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreePackageStructureStWriter>>writePresentInitializers [
+{ #category : #writing }
+MCFileTreePackageStructureStWriter >> writePresentInitializers [
 	| orderedClasses presentInitializers |
 	presentInitializers := self presentInitializers.
 	orderedClasses := (Class
@@ -114,11 +83,8 @@ MCFileTreePackageStructureStWriter>>writePresentInitializers [
 		do: [ :className | stream nextPutAll: (presentInitializers detect: [ :each | each key = className ]) value contents ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreePackageStructureStWriter>>writeProperties [
+{ #category : #writing }
+MCFileTreePackageStructureStWriter >> writeProperties [
     stream
         nextPut: ${;
         cr;

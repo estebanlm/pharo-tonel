@@ -24,104 +24,73 @@ Class {
 	#instVars : [
 		'canDeselectByClick'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 6/29/2016 11:29'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonModel class>>adapterName [
+{ #category : #specs }
+RadioButtonModel class >> adapterName [
 
 	^ #RadioButtonAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonModel class>>defaultSpec [
+{ #category : #specs }
+RadioButtonModel class >> defaultSpec [
 	<spec: #default>
 	
 	^ #(RadioButtonAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonModel class>>title [
+{ #category : #specs }
+RadioButtonModel class >> title [
 
 	^ 'Radio Button'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonModel>>actionWhenActivatedHolder [
+{ #category : #accessing }
+RadioButtonModel >> actionWhenActivatedHolder [
 	
 	^ actionWhenActivatedHolder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonModel>>actionWhenDeactivatedHolder [
+{ #category : #accessing }
+RadioButtonModel >> actionWhenDeactivatedHolder [
 	
 	^ actionWhenDeactivatedHolder
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonModel>>canDeselectByClick [
+{ #category : #protocol }
+RadioButtonModel >> canDeselectByClick [
 	<api: #inspect>
 	"Return true clicking on a selected radio button deselects it"
 
 	^ canDeselectByClick value
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonModel>>canDeselectByClick: aBoolean [
+{ #category : #protocol }
+RadioButtonModel >> canDeselectByClick: aBoolean [
 	<api: #boolean getter: #canDeselectByClick registration: #whenCanDeselectByClickChanged>
 	"Set if clicking on a selected radio button can deselect it"
 	
 	canDeselectByClick value: aBoolean
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonModel>>initialize [
+{ #category : #initialization }
+RadioButtonModel >> initialize [
 	super initialize.
 	canDeselectByClick := false asValueHolder.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonModel>>privateSetState: aBoolean [
+{ #category : #private }
+RadioButtonModel >> privateSetState: aBoolean [
 	"Should only be used by RadioButtonGroup"
 	
 	stateHolder value: aBoolean.
 	self changed: #state
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonModel>>state: aBoolean [
+{ #category : #protocol }
+RadioButtonModel >> state: aBoolean [
 	"Set if the radio is activated or not"
 
 	<api: #boolean getter: #state>
@@ -131,20 +100,14 @@ RadioButtonModel>>state: aBoolean [
 				ifFalse: [ stateHolder value: aBoolean ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonModel>>stateHolder [
+{ #category : #accessing }
+RadioButtonModel >> stateHolder [
 	
 	^ stateHolder
 ]
 
-{
-	#category : #protocol-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonModel>>whenCanDeselectByClickChanged: aBlock [
+{ #category : #protocol-events }
+RadioButtonModel >> whenCanDeselectByClickChanged: aBlock [
 	"This method is triggered when `canDeselectByClick` changes"
 	
 	canDeselectByClick whenChangedDo: aBlock

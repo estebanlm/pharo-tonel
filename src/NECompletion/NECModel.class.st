@@ -10,26 +10,19 @@ Class {
 		'narrowString',
 		'entries'
 	],
-	#category : #NECompletion-Model,
-	#timestamp : '<historical>'
+	#category : #NECompletion-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel class>>class: aClass  [
+{ #category : #'instance creation' }
+NECModel class >> class: aClass [ 
 	| newInstance |
 	newInstance := self basicNew initialize.
 	newInstance setClass: aClass.
 	^ newInstance
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>addToEntries: aCollection  [
+{ #category : #private }
+NECModel >> addToEntries: aCollection [ 
 	| temp caseSensitive |
 	caseSensitive := NECPreferences caseSensitive.
 	temp := aCollection select: [ :each | 
@@ -39,19 +32,13 @@ NECModel>>addToEntries: aCollection  [
 	entries addAll: temp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>at: aNumber  [
+{ #category : #accessing }
+NECModel >> at: aNumber [ 
 	^ entries at: aNumber 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>commonPrefix [
+{ #category : #accessing }
+NECModel >> commonPrefix [
 	"Longest match among the typed text and all menu entries"
 
 	| seed matchLengths prefixLength |
@@ -65,11 +52,8 @@ NECModel>>commonPrefix [
 	^ seed first: prefixLength.
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>completionAt: aNumber [
+{ #category : #action }
+NECModel >> completionAt: aNumber [
 	| entry |
 	
 	entry := (self at: aNumber) completion separateKeywords.
@@ -80,129 +64,84 @@ NECModel>>completionAt: aNumber [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>entries [
+{ #category : #accessing }
+NECModel >> entries [
 	^entries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>entriesOfType: aSymbol  [
+{ #category : #accessing }
+NECModel >> entriesOfType: aSymbol [ 
 	| collection |
 	collection := entries select: [ :each | each type == aSymbol ].
 	^ collection collect: [ :each | each contents ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>entryCount [
+{ #category : #accessing }
+NECModel >> entryCount [
 	^entries size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>hasMessage [
+{ #category : #accessing }
+NECModel >> hasMessage [
 	^ self message notNil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>initialize [
+{ #category : #initialization }
+NECModel >> initialize [
 	self reset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>initializeSelectors  [
+{ #category : #accessing }
+NECModel >> initializeSelectors [ 
 	self subclassResponsibility 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>isEmpty [
+{ #category : #testing }
+NECModel >> isEmpty [
 	^ entries isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>message [
+{ #category : #accessing }
+NECModel >> message [
 	^self isEmpty 
 		ifTrue: ['no completions found'] 
 		ifFalse: [nil]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>narrowString [
+{ #category : #accessing }
+NECModel >> narrowString [
 	^ narrowString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>narrowString: aString  [
+{ #category : #private }
+NECModel >> narrowString: aString [ 
 	narrowString := aString
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>narrowWith: aString [
+{ #category : #action }
+NECModel >> narrowWith: aString [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>notEmpty  [
+{ #category : #testing }
+NECModel >> notEmpty [ 
 	^self isEmpty not
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>reset [
+{ #category : #private }
+NECModel >> reset [
 	self resetSelectors.
 	self resetEntries.
 	narrowString := String new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>resetEntries [
+{ #category : #private }
+NECModel >> resetEntries [
 	entries := OrderedCollection new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>resetSelectors [
+{ #category : #private }
+NECModel >> resetSelectors [
 	selectors := (SortedCollection new: 500) sortBlock: 
 		[ :a :b | 
 		| scoreA scoreB |
@@ -219,36 +158,24 @@ NECModel>>resetSelectors [
 		scoreA < scoreB ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>setClass: aClass  [
+{ #category : #initialize-release }
+NECModel >> setClass: aClass [ 
 	clazz := aClass.
 	self initializeSelectors.
 	self narrowWith: String new
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>theClass [
+{ #category : #action }
+NECModel >> theClass [
 	^nil
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>title [
+{ #category : #action }
+NECModel >> title [
 	^nil
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECModel>>toggleExpand [
+{ #category : #initialize-release }
+NECModel >> toggleExpand [
 	
 ]

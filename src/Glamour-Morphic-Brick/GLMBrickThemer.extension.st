@@ -1,22 +1,14 @@
-Extension {
-	#name : #GLMBrickThemer
-}
+Extension { #name : #GLMBrickThemer }
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>color [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickThemer >> color [
 
 	^ self
 		registerModule: GLMBrickColorThemer new
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>popupEditorBorderThemer [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickThemer >> popupEditorBorderThemer [
 
 	^ self
 		registerModule: GLMBrickPopupEditBorderThemer new
@@ -24,11 +16,8 @@ GLMBrickThemer>>popupEditorBorderThemer [
 		named: #popupThemer
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>popupEditorShadowThemer [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickThemer >> popupEditorShadowThemer [
 
 	^ self
 		registerModule: [ GLMBrickPopupEditShadowThemer new ]
@@ -36,11 +25,8 @@ GLMBrickThemer>>popupEditorShadowThemer [
 		named: #popupThemer
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>popupErrorThemer [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickThemer >> popupErrorThemer [
 
 	^ self
 		registerModule: GLMBrickPopupErrorThemer new
@@ -48,11 +34,8 @@ GLMBrickThemer>>popupErrorThemer [
 		named: #popupThemer
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>popupHelpThemer [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickThemer >> popupHelpThemer [
 
 	^ self
 		registerModule: GLMBrickPopupHelpThemer new
@@ -60,11 +43,8 @@ GLMBrickThemer>>popupHelpThemer [
 		named: #popupThemer
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>popupSuccessThemer [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickThemer >> popupSuccessThemer [
 
 	^ self
 		registerModule: GLMBrickPopupSuccessThemer new
@@ -72,21 +52,15 @@ GLMBrickThemer>>popupSuccessThemer [
 		named: #popupThemer
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>popupThemer [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickThemer >> popupThemer [
 
 	^ self
 		registerModule: GLMBrickPopupThemer new
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>tabLabelThemer [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickThemer >> tabLabelThemer [
 
 	^ self
 		registerModule: GLMBrickTabLabelThemer new

@@ -19,25 +19,18 @@ Class {
 		'transformation',
 		'condition'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'DamienCassou 7/19/2011 16:53'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>activeOrigins  [
+{ #category : #accessing }
+GLMTransmission >> activeOrigins [ 
 	 
 	^(self originReferences select: [:each | each isActive]) 
 		collect: [:each | each port]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>addActiveOrigin: aPort  [
+{ #category : #accessing }
+GLMTransmission >> addActiveOrigin: aPort [ 
 	^ self originReferences 
 		add: 
 			((GLMOriginPortReference new) 
@@ -46,11 +39,8 @@ GLMTransmission>>addActiveOrigin: aPort  [
 				yourself)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>addPassiveOrigin: aPort [
+{ #category : #accessing }
+GLMTransmission >> addPassiveOrigin: aPort [
 	^ self originReferences 
 		add: 
 			((GLMOriginPortReference new) 
@@ -59,27 +49,18 @@ GLMTransmission>>addPassiveOrigin: aPort [
 				yourself)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>addPresentation: aPresentation [
+{ #category : #accessing }
+GLMTransmission >> addPresentation: aPresentation [
 	self transmissionStrategy addPresentation: aPresentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>addPresentations: aCollection [
+{ #category : #accessing }
+GLMTransmission >> addPresentations: aCollection [
 	self transmissionStrategy addPresentations: aCollection
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>andShow: aBlock [
+{ #category : #scripting }
+GLMTransmission >> andShow: aBlock [
 	"This method accepts a block with one argument.
 	The block will be evaluated with an instance of GLMCompositePresentation.
 	
@@ -96,11 +77,8 @@ GLMTransmission>>andShow: aBlock [
 		ifTrue: [ self from: #outer port: #entity ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>andShowIfNone: aBlock [
+{ #category : #scripting }
+GLMTransmission >> andShowIfNone: aBlock [
 	"This method accepts a block with one argument. 
 	The block will be evaluated with an instance of GLMCompositePresentation.
 	
@@ -120,38 +98,26 @@ GLMTransmission>>andShowIfNone: aBlock [
 		ifTrue: [ self from: #outer port: #entity ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>browser [
+{ #category : #accessing }
+GLMTransmission >> browser [
 	^ browser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>browser: anObject [
+{ #category : #accessing }
+GLMTransmission >> browser: anObject [
 	browser := anObject
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>changePortsAccordingToPaneMapping: newPanesMapping [
+{ #category : #copying }
+GLMTransmission >> changePortsAccordingToPaneMapping: newPanesMapping [
 	"newPanesMapping is a dictionary with 
 	keys given by old panes and values by new panes"
 	self destination: ((newPanesMapping at: self destination pane) port: self destination name).
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>changePortsAccordingToPaneMapping: newPanesMapping fromOldBrowser: aBrowser toNewBrowser: anotherBrowser [
+{ #category : #copying }
+GLMTransmission >> changePortsAccordingToPaneMapping: newPanesMapping fromOldBrowser: aBrowser toNewBrowser: anotherBrowser [
 	| newPort |
 	"newPanesMapping is a dictionary with 
 	keys given by old panes and values by new panes"
@@ -161,80 +127,53 @@ GLMTransmission>>changePortsAccordingToPaneMapping: newPanesMapping fromOldBrows
 		each port: newPort ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>condition [
+{ #category : #accessing }
+GLMTransmission >> condition [
 	^ condition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>condition: anObject [
+{ #category : #accessing }
+GLMTransmission >> condition: anObject [
 	condition := anObject
 ]
 
-{
-	#category : #transmitting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>context [
+{ #category : #transmitting }
+GLMTransmission >> context [
 	 context ifNil: [context := OrderedCollection new].
 	^context
 ]
 
-{
-	#category : #transmitting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>context: aContext [
+{ #category : #transmitting }
+GLMTransmission >> context: aContext [
 	 context := aContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>destination  [
+{ #category : #accessing }
+GLMTransmission >> destination [ 
 	 
 	^destination
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>destination: aPort  [
+{ #category : #accessing }
+GLMTransmission >> destination: aPort [ 
 	 
 	destination := aPort
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>ensurePresentIfNoneStrategy [
+{ #category : #accessing }
+GLMTransmission >> ensurePresentIfNoneStrategy [
 	self transmissionStrategy class = GLMPresentIfNoneStrategy ifFalse: [
 		self transmissionStrategy: (GLMPresentIfNoneStrategy of: self) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>ensureReplacePresentationsStrategy [
+{ #category : #accessing }
+GLMTransmission >> ensureReplacePresentationsStrategy [
 	self transmissionStrategy class = GLMReplacePresentationsStrategy ifFalse: [
 		self transmissionStrategy: (GLMReplacePresentationsStrategy of: self) ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>from: aPort [
+{ #category : #scripting }
+GLMTransmission >> from: aPort [
 	"Ideally this method would be implemented as
 	^ self from: aPaneSymbol port: #selection.
 	
@@ -243,86 +182,56 @@ GLMTransmission>>from: aPort [
 	^ self addActiveOrigin: (self browser resolveOriginPort: aPort)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>from: aPaneSymbol port: aPortSymbol [
+{ #category : #scripting }
+GLMTransmission >> from: aPaneSymbol port: aPortSymbol [
 	^ self from: (GLMPortIdentifier pane: aPaneSymbol port: aPortSymbol)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>from: aPaneSymbol port: aPortSymbol transformed: aBlock [
+{ #category : #scripting }
+GLMTransmission >> from: aPaneSymbol port: aPortSymbol transformed: aBlock [
 	^ (self from: (GLMPortIdentifier pane: aPaneSymbol port: aPortSymbol)) transformation: aBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>from: aPort transformed: aBlock [
+{ #category : #scripting }
+GLMTransmission >> from: aPort transformed: aBlock [
 	^ (self addActiveOrigin: (self browser resolveOriginPort: aPort)) transformation: aBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>fromOutside: aPortSymbol [
+{ #category : #scripting }
+GLMTransmission >> fromOutside: aPortSymbol [
 	self deprecated: 'Use fromOutsidePort: instead'.
 	^ self fromOutsidePort: aPortSymbol
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>fromOutsideEntityPort [
+{ #category : #scripting }
+GLMTransmission >> fromOutsideEntityPort [
 	^ self fromOutsidePort: #entity
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>fromOutsideEntityPortTransformed: aBlock [
+{ #category : #scripting }
+GLMTransmission >> fromOutsideEntityPortTransformed: aBlock [
 	^ self fromOutsidePort: #entity transformed: aBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>fromOutsidePort: aPortSymbol [
+{ #category : #scripting }
+GLMTransmission >> fromOutsidePort: aPortSymbol [
 	^ self from: #outer port: aPortSymbol
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>fromOutsidePort: aPortSymbol transformed: aBlock [
+{ #category : #scripting }
+GLMTransmission >> fromOutsidePort: aPortSymbol transformed: aBlock [
 	^ self from: #outer port: aPortSymbol transformed: aBlock
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>initialize [
+{ #category : #initialize-release }
+GLMTransmission >> initialize [
 	super initialize.
 	transmissionStrategy := GLMNoStrategy new.
 	condition := true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>meetsCondition [
+{ #category : #testing }
+GLMTransmission >> meetsCondition [
 	<debuggingStone: #transmissionCondition label: 'Transmission condition'>
 	| originValues |
 	originValues := self originReferences size = 1 
@@ -331,89 +240,59 @@ GLMTransmission>>meetsCondition [
 	^ self condition glamourValue: originValues
 ]
 
-{
-	#category : #'private accessing',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>originReferences [
+{ #category : #'private accessing' }
+GLMTransmission >> originReferences [
 	"Returns the set of ports (instances of PortReference) the transmission receives its data from"
 	^ origins ifNil: [origins := OrderedCollection new]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>originatesAt: aPort [
+{ #category : #testing }
+GLMTransmission >> originatesAt: aPort [
 	^ (self activeOrigins includes: aPort) and: [self meetsCondition]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>origins [
+{ #category : #accessing }
+GLMTransmission >> origins [
 	^ self originReferences collect: [:each | each port]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>passiveOrigins  [
+{ #category : #accessing }
+GLMTransmission >> passiveOrigins [ 
 	 
 	^(self originReferences select: [:each | each isPassive]) 
 		collect: [:each | each port]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>passivelyFrom: aPort [
+{ #category : #scripting }
+GLMTransmission >> passivelyFrom: aPort [
 	^ self addPassiveOrigin: (self browser resolveOriginPort: aPort)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>passivelyFrom: aPaneSymbol port: aPortSymbol [
+{ #category : #scripting }
+GLMTransmission >> passivelyFrom: aPaneSymbol port: aPortSymbol [
 	^ self passivelyFrom: (GLMPortIdentifier pane: aPaneSymbol port: aPortSymbol)
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>postCopy [
+{ #category : #copying }
+GLMTransmission >> postCopy [
 	origins := self originReferences collect: [:each | each copy ].
 	destination := destination copy.
 	transmissionStrategy := transmissionStrategy copy.
 	transmissionStrategy transmission: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>presentations [
+{ #category : #accessing }
+GLMTransmission >> presentations [
 	^ self transmissionStrategy presentations
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>presentations: aCompositePresentation [
+{ #category : #accessing }
+GLMTransmission >> presentations: aCompositePresentation [
 	self transmissionStrategy presentations: aCompositePresentation
 ]
 
-{
-	#category : #transmitting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>printOn: aStream  [
+{ #category : #transmitting }
+GLMTransmission >> printOn: aStream [ 
 	 
 	aStream 
 		nextPutAll: self class name;
@@ -426,11 +305,8 @@ GLMTransmission>>printOn: aStream  [
 	
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>to: aPort [
+{ #category : #scripting }
+GLMTransmission >> to: aPort [
 	"Ideally this method would be implemented as
 	^ self to: aPaneSymbol port: #entiity.
 	
@@ -439,94 +315,61 @@ GLMTransmission>>to: aPort [
 	^ self destination: (self browser resolveDestinationPort: aPort)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>to: aPaneSymbol port: aPortSymbol [
+{ #category : #scripting }
+GLMTransmission >> to: aPaneSymbol port: aPortSymbol [
 	^ self to: (GLMPortIdentifier pane: aPaneSymbol port: aPortSymbol)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>toOutside: aPortSymbol [
+{ #category : #scripting }
+GLMTransmission >> toOutside: aPortSymbol [
 	self deprecated: 'Use toOutsidePort: instead'.
 	^ self toOutsidePort: aPortSymbol
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>toOutsidePort: aPortSymbol [
+{ #category : #scripting }
+GLMTransmission >> toOutsidePort: aPortSymbol [
 	^ self to: #outer->aPortSymbol
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>toWatcher [
+{ #category : #scripting }
+GLMTransmission >> toWatcher [
 	""
 	^ self destination: (self browser watcherPane port: #entity)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>transformation [
+{ #category : #accessing }
+GLMTransmission >> transformation [
 	^ transformation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>transformation: anObject  [
+{ #category : #accessing }
+GLMTransmission >> transformation: anObject [ 
 	 
 	transformation := anObject
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>transformed: aBlock [
+{ #category : #scripting }
+GLMTransmission >> transformed: aBlock [
 	self transformation: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>transmissionStrategy [
+{ #category : #accessing }
+GLMTransmission >> transmissionStrategy [
 	^ transmissionStrategy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>transmissionStrategy: anObject [
+{ #category : #accessing }
+GLMTransmission >> transmissionStrategy: anObject [
 	transmissionStrategy := anObject
 ]
 
-{
-	#category : #transmitting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>transmit [
+{ #category : #transmitting }
+GLMTransmission >> transmit [
 	self transmitIn: GLMTransmissionContext new
 ]
 
-{
-	#category : #transmitting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>transmitIn: aContext [
+{ #category : #transmitting }
+GLMTransmission >> transmitIn: aContext [
 	self flag: 'The transmitIt: and receive:in: both end up calling notingPresentationChangeDo:. So they should be handled by a surrounding notingPresentationChangeDo:. However, by doing that it seems that we break the morphic updating. No idea why'.
 	self destination notingPresentationChangeDo: [
 		self transmissionStrategy transmitIn: aContext.
@@ -535,11 +378,8 @@ GLMTransmission>>transmitIn: aContext [
 		self browser announce: GLMTransmissionTriggered new ]
 ]
 
-{
-	#category : #transmitting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>value [
+{ #category : #transmitting }
+GLMTransmission >> value [
 	<debuggingStone: #transmissionTransformation label: 'Transmission transformation'>
 	| originalValue |
 	originalValue := self originReferences size = 1 
@@ -552,19 +392,13 @@ GLMTransmission>>value [
 			self origins asGlamorousMultiValue) ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>when: aBlock [
+{ #category : #scripting }
+GLMTransmission >> when: aBlock [
 	self condition: aBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmission>>whenKindOf: aClass  [
+{ #category : #scripting }
+GLMTransmission >> whenKindOf: aClass [ 
 	 
 	self when: [:each | each isKindOf: aClass]
 ]

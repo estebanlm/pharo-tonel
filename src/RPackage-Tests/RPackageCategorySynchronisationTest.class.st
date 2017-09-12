@@ -4,15 +4,11 @@ SUnit tests for RPackage category synchronization
 Class {
 	#name : #RPackageCategorySynchronisationTest,
 	#superclass : #RPackageMCSynchronisationTest,
-	#category : #RPackage-Tests,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:59'
+	#category : #RPackage-Tests
 }
 
-{
-	#category : #'tests - operations on categories',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageCategorySynchronisationTest>>testAddCategoryCreatesPackage [
+{ #category : #'tests - operations on categories' }
+RPackageCategorySynchronisationTest >> testAddCategoryCreatesPackage [
 	"test that when we add a category that does not yet correspond to an existing package, a new package is created"
 	"self debug: #testAddCategoryCreatesPackage"
 	
@@ -22,11 +18,8 @@ RPackageCategorySynchronisationTest>>testAddCategoryCreatesPackage [
 	self assert: (self organizer includesPackageNamed: #XXXXX)
 ]
 
-{
-	#category : #'tests - operations on categories',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageCategorySynchronisationTest>>testAddCategoryIsAlreadyAPackageDoesNotCreatePackage [
+{ #category : #'tests - operations on categories' }
+RPackageCategorySynchronisationTest >> testAddCategoryIsAlreadyAPackageDoesNotCreatePackage [
 	"test that when we add a category corresponding to an existing package, we do not create a second package"
 	"self debug: #testAddCategoryIsAlreadyAPackageDoesNotCreatePackage"
 	
@@ -41,11 +34,8 @@ RPackageCategorySynchronisationTest>>testAddCategoryIsAlreadyAPackageDoesNotCrea
 		
 ]
 
-{
-	#category : #'tests - operations on categories',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageCategorySynchronisationTest>>testRenameCategoryAlsoRenameAllExtensionProtocols [
+{ #category : #'tests - operations on categories' }
+RPackageCategorySynchronisationTest >> testRenameCategoryAlsoRenameAllExtensionProtocols [
 	"test that when we rename a category, all corresponding extension protocols in the system are renamed"
 	"self debug: #testRenameCategoryAlsoRenameAllExtensionProtocols"
 	
@@ -72,11 +62,8 @@ RPackageCategorySynchronisationTest>>testRenameCategoryAlsoRenameAllExtensionPro
 	self assert: (classInZ >> #extensionFromXInClassInZ) category = '*NewCategoryName'.
 ]
 
-{
-	#category : #'tests - operations on categories',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageCategorySynchronisationTest>>testRenameCategoryChangeTheNameOfThePackage [
+{ #category : #'tests - operations on categories' }
+RPackageCategorySynchronisationTest >> testRenameCategoryChangeTheNameOfThePackage [
 	"test that when we rename a category, the RPackage corresponding is updated with this new name"
 	
 	|XPackage| 
@@ -87,11 +74,8 @@ RPackageCategorySynchronisationTest>>testRenameCategoryChangeTheNameOfThePackage
 	self assert: (XPackage name = 'YYYYY').
 ]
 
-{
-	#category : #'tests - operations on categories',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageCategorySynchronisationTest>>testRenameCategoryUpdateTheOrganizer [
+{ #category : #'tests - operations on categories' }
+RPackageCategorySynchronisationTest >> testRenameCategoryUpdateTheOrganizer [
 	"test that when we rename a category, the organizer dictionary is update with this new name, so that we can access the package with this new name as key"
 
 	|XPackage| 
@@ -105,11 +89,8 @@ RPackageCategorySynchronisationTest>>testRenameCategoryUpdateTheOrganizer [
 	self deny: (self organizer includesPackageNamed: #XXXXX).
 ]
 
-{
-	#category : #'tests - operations on categories',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageCategorySynchronisationTest>>testRenameUnknownCategoryCreatesNewRPackage [
+{ #category : #'tests - operations on categories' }
+RPackageCategorySynchronisationTest >> testRenameUnknownCategoryCreatesNewRPackage [
 	"test that when we rename a category that is not registered in RPackage , it does not raise errors and simply create a new package. We need this behaviour as for now, create a new category with the class browser does not emit the corrects events, and therefore RPackage can not be directly updated"
 	
 	SystemAnnouncer uniqueInstance suspendAllWhile: [

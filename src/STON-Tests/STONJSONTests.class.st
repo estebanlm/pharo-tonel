@@ -4,26 +4,19 @@ STONJSONTests contains unit tests for the JSON functionality available in STON.
 Class {
 	#name : #STONJSONTests,
 	#superclass : #TestCase,
-	#category : #STON-Tests,
-	#timestamp : 'SvenVanCaekenberghe 3/15/2016 14:42'
+	#category : #STON-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONJSONTests>>testBooleans [
+{ #category : #tests }
+STONJSONTests >> testBooleans [
 	self assert: (STONJSON toString: true) equals: 'true'.
 	self assert: (STONJSON toString: false) equals: 'false'.
 	self assert: (STONJSON fromString: 'true') equals: true.
 	self assert: (STONJSON fromString: 'false') equals: false.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONJSONTests>>testCircular [
+{ #category : #tests }
+STONJSONTests >> testCircular [
 	"Circular datastructures cannot be encoded using JSON"
 	self
 		should: [ | foo |
@@ -33,11 +26,8 @@ STONJSONTests>>testCircular [
 		raise: STONWriterError
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONJSONTests>>testFloats [
+{ #category : #tests }
+STONJSONTests >> testFloats [
 	self assert: (STONJSON toString: 1.0) equals: '1.0'.
 	self assert: (STONJSON toString: 0.0) equals: '0.0'.
 	self assert: (STONJSON toString: -1.0) equals: '-1.0'.
@@ -48,11 +38,8 @@ STONJSONTests>>testFloats [
 	self assert: ((STONJSON fromString: '-1.23456e-6') closeTo: -1.23456e-6).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONJSONTests>>testIntegers [
+{ #category : #tests }
+STONJSONTests >> testIntegers [
 	self assert: (STONJSON toString: 1) equals: '1'.
 	self assert: (STONJSON toString: 0) equals: '0'.
 	self assert: (STONJSON toString: -1) equals: '-1'.
@@ -63,11 +50,8 @@ STONJSONTests>>testIntegers [
 	self assert: (STONJSON fromString: '1234567890') equals: 1234567890.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONJSONTests>>testLists [
+{ #category : #tests }
+STONJSONTests >> testLists [
 	self assert: (STONJSON toString: #(1 2 3)) equals: '[1,2,3]'.
 	self assert: (STONJSON toString: #(1 -2 true 3 nil)) equals: '[1,-2,true,3,null]'.
 	self assert: (STONJSON toString: #(1 (2) 3)) equals: '[1,[2],3]'.
@@ -78,31 +62,22 @@ STONJSONTests>>testLists [
 	self assert: (STONJSON fromString: '[1,[2],3]') equals: #(1 (2) 3).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONJSONTests>>testMaps [
+{ #category : #tests }
+STONJSONTests >> testMaps [
 	self assert: (STONJSON toString: { 'temperature'->37 } asDictionary) equals: '{"temperature":37}'.
 	self assert: (STONJSON toString: Dictionary new) equals: '{}'.
 	self assert: (STONJSON fromString: '{"temperature":37}') equals: { 'temperature'->37 } asDictionary.
 	self assert: (STONJSON fromString: '{}') equals: Dictionary new.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONJSONTests>>testNull [
+{ #category : #tests }
+STONJSONTests >> testNull [
 	self assert: (STONJSON toString: nil) equals: 'null'.
 	self assert: (STONJSON fromString: 'null') equals: nil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONJSONTests>>testShared [
+{ #category : #tests }
+STONJSONTests >> testShared [
 	"Structure sharing cannot be encoded using JSON"
 	self
 		should: [ | foo |
@@ -111,11 +86,8 @@ STONJSONTests>>testShared [
 		raise: STONWriterError
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONJSONTests>>testStrings [
+{ #category : #tests }
+STONJSONTests >> testStrings [
 	self assert: (STONJSON toString: 'string') equals: '"string"'.
 	self assert: (STONJSON toString: '') equals: '""'.
 	self assert: (STONJSON toString: 'élèves français') equals: '"élèves français"'.
@@ -128,11 +100,8 @@ STONJSONTests>>testStrings [
 		equals: 8491 asCharacter asString, ' "Angstrom Symbol"'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONJSONTests>>testUnknown [
+{ #category : #tests }
+STONJSONTests >> testUnknown [
 	"Only Array for lists and Dictionary for maps are allowed for JSON encoding,
 	any other Smalltalk object cannot be encoded (following the specs).
 	Even considering all collections to be lists won't work because the type 

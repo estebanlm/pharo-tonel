@@ -8,30 +8,20 @@ Class {
 	#instVars : [
 		'position'
 	],
-	#category : #OSWindow-Core-Events-Touch,
-	#timestamp : 'MerwanOuddane 4/2/2015 15:02'
+	#category : #OSWindow-Core-Events-Touch
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchComplexEvent class>>id [
+{ #category : #'as yet unclassified' }
+OSTouchComplexEvent class >> id [
 	^ #default
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchComplexEvent>>position [
+{ #category : #accessing }
+OSTouchComplexEvent >> position [
 	^ position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchComplexEvent>>position: anObject [
+{ #category : #accessing }
+OSTouchComplexEvent >> position: anObject [
 	position := anObject
 ]

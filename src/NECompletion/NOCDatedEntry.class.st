@@ -10,41 +10,28 @@ Class {
 		'next',
 		'previous'
 	],
-	#category : #NECompletion-OCompletion,
-	#timestamp : '<historical>'
+	#category : #NECompletion-OCompletion
 }
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCDatedEntry>><= anEntry [
+{ #category : #operations }
+NOCDatedEntry >> <= anEntry [
 	^ date = anEntry date 
 		ifTrue: [contents <= anEntry contents]
 		ifFalse: [date > anEntry date]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCDatedEntry>>date [
+{ #category : #accessing }
+NOCDatedEntry >> date [
 	^ date
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCDatedEntry>>date: d [
+{ #category : #accessing }
+NOCDatedEntry >> date: d [
 	date := d
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCDatedEntry>>link: anODatedEntry [
+{ #category : #accessing }
+NOCDatedEntry >> link: anODatedEntry [
 	"Link the given entry after me."
 
 	anODatedEntry
@@ -54,64 +41,43 @@ NOCDatedEntry>>link: anODatedEntry [
 	next := anODatedEntry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCDatedEntry>>matches: pref [
+{ #category : #accessing }
+NOCDatedEntry >> matches: pref [
 
 	^contents beginsWithEmpty: pref caseSensitive: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCDatedEntry>>next [
+{ #category : #accessing }
+NOCDatedEntry >> next [
 
 	^next
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCDatedEntry>>next: anODatedEntry [
+{ #category : #accessing }
+NOCDatedEntry >> next: anODatedEntry [
 
 	next := anODatedEntry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCDatedEntry>>now [
+{ #category : #accessing }
+NOCDatedEntry >> now [
 	date := DateAndTime now
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCDatedEntry>>previous [
+{ #category : #accessing }
+NOCDatedEntry >> previous [
 
 	^previous
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCDatedEntry>>previous: anODatedEntry [
+{ #category : #accessing }
+NOCDatedEntry >> previous: anODatedEntry [
 
 	previous := anODatedEntry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCDatedEntry>>unlink [
+{ #category : #accessing }
+NOCDatedEntry >> unlink [
 
 	next previous: previous.
 	previous next: next

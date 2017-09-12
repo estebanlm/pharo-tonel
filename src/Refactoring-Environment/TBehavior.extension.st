@@ -1,11 +1,6 @@
-Extension {
-	#name : #TBehavior
-}
+Extension { #name : #TBehavior }
 
-{
-	#category : #'*Refactoring-Environment',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TBehavior>>asEnvironment [
+{ #category : #'*Refactoring-Environment' }
+TBehavior >> asEnvironment [
 	^ RBClassEnvironment class: self
 ]

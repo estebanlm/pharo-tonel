@@ -65,58 +65,39 @@ Class {
 		'dialog',
 		'allowedInStyle'
 	],
-	#category : #System-Settings-Core,
-	#timestamp : 'AlainPlantec 1/3/2011 10:54'
+	#category : #System-Settings-Core
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>= other  [
+{ #category : #comparing }
+PragmaSetting >> = other [ 
 	^ self species = other species
 		and: [self name = other name]
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>acceptSettings: aVisitor [
+{ #category : #visitor }
+PragmaSetting >> acceptSettings: aVisitor [
 	^ aVisitor visitPragmaSetting: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>allowedInStyle [
+{ #category : #accessing }
+PragmaSetting >> allowedInStyle [
 	^ allowedInStyle ifNil: [allowedInStyle := self hasValue]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>asString [
+{ #category : #'user interface' }
+PragmaSetting >> asString [
 	^ self name
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>chooseFileDirectory [
+{ #category : #'user interface' }
+PragmaSetting >> chooseFileDirectory [
 	| result |
 	result := self theme chooseDirectoryIn: World title: 'Choose a file' path: nil.
 	result ifNotNil: [ self realValue: result fullName ].
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>chooseFilePath [
+{ #category : #'user interface' }
+PragmaSetting >> chooseFilePath [
 	| result |
 	result := self theme fileOpenIn: World title: 'Choose a file' extensions: nil path: nil preview: true.
 	result 
@@ -125,19 +106,13 @@ PragmaSetting>>chooseFilePath [
 			result close]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>defaultIcon [
+{ #category : #'user interface' }
+PragmaSetting >> defaultIcon [
 	^ self iconNamed: #smallConfigurationIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>description [
+{ #category : #accessing }
+PragmaSetting >> description [
 	"Answer the value of description"
 
 	^ description 
@@ -146,54 +121,36 @@ PragmaSetting>>description [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>description: aString [
+{ #category : #accessing }
+PragmaSetting >> description: aString [
 	"Set the value of description"
 
 	description := aString 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>dialog [
+{ #category : #'user interface' }
+PragmaSetting >> dialog [
 	^ dialog
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>dialog: aValuable [
+{ #category : #'user interface' }
+PragmaSetting >> dialog: aValuable [
 	dialog := aValuable
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>enabled [
+{ #category : #'user interface' }
+PragmaSetting >> enabled [
 	^ true
 ]
 
-{
-	#category : #export,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>exportSettingAction [
+{ #category : #export }
+PragmaSetting >> exportSettingAction [
 	
 	^ nil
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>fontButtonLabel [
+{ #category : #'user interface' }
+PragmaSetting >> fontButtonLabel [
 	| emphases |
 	emphases := IdentityDictionary new at: nil put: 'Regular' translated;
 				 at: 0 put: 'Regular' translated;
@@ -209,11 +166,8 @@ PragmaSetting>>fontButtonLabel [
 					ifAbsent: ['']) , ' ' , self realValue pointSize asString font: self realValue
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>getFont [
+{ #category : #'user interface' }
+PragmaSetting >> getFont [
 	^ FontChooser
 		openWithWindowTitle: 'Font for ' , self name
 		for: self
@@ -221,59 +175,38 @@ PragmaSetting>>getFont [
 		getSelector: #realValue 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>hasDefault [
+{ #category : #accessing }
+PragmaSetting >> hasDefault [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>hasEditableList [
+{ #category : #accessing }
+PragmaSetting >> hasEditableList [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>hasValue [
+{ #category : #accessing }
+PragmaSetting >> hasValue [
 	^ false
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>hash [
+{ #category : #comparing }
+PragmaSetting >> hash [
 	^ self species hash bitXor: self name hash 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>icon [
+{ #category : #'user interface' }
+PragmaSetting >> icon [
 	^ icon ifNil: [icon := self defaultIcon]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>icon: aForm  [
+{ #category : #'user interface' }
+PragmaSetting >> icon: aForm [ 
 	icon := aForm
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>inputMorphFor: aContainer  [
+{ #category : #'user interface' }
+PragmaSetting >> inputMorphFor: aContainer [ 
 	^ self inputWidget
 		ifNotNil: [:iw | 
 			( self theme newRowIn: World for: {iw})
@@ -283,11 +216,8 @@ PragmaSetting>>inputMorphFor: aContainer  [
 				 yourself]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>inputWidget [
+{ #category : #'user interface' }
+PragmaSetting >> inputWidget [
 	"return the default widget for the input a the setting"
 	^ self dialog
 		ifNotNil: [:d | d numArgs = 0
@@ -295,157 +225,100 @@ PragmaSetting>>inputWidget [
 				ifFalse: [d value: self]] 
 ]
 
-{
-	#category : #export,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>isExportable [
+{ #category : #export }
+PragmaSetting >> isExportable [
 
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>label [
+{ #category : #accessing }
+PragmaSetting >> label [
 	^ label ifNil: [self name translated] ifNotNil: [label translated]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>label: aString [
+{ #category : #accessing }
+PragmaSetting >> label: aString [
 	label := aString
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>labelMorphFor: aContainer [
+{ #category : #'user interface' }
+PragmaSetting >> labelMorphFor: aContainer [
 	^ StringMorph contents: (aContainer model viewedLabelOfSetting: self)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>name [
+{ #category : #accessing }
+PragmaSetting >> name [
 	^ name ifNil: [super name] ifNotNil: [name]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>name: aName [
+{ #category : #accessing }
+PragmaSetting >> name: aName [
 	name := aName
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>noOrdering [
+{ #category : #'user interface' }
+PragmaSetting >> noOrdering [
 	ordering := false
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>notInStyle [
+{ #category : #'user interface' }
+PragmaSetting >> notInStyle [
 	allowedInStyle := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>order [
+{ #category : #accessing }
+PragmaSetting >> order [
 	^ order
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>order: aNumber [
+{ #category : #accessing }
+PragmaSetting >> order: aNumber [
 	order := aNumber
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>ordering [
+{ #category : #'user interface' }
+PragmaSetting >> ordering [
 	^ ordering ifNil: [ordering := true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>precondition [
+{ #category : #accessing }
+PragmaSetting >> precondition [
 	^ precondition ifNil: [precondition := [true]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>precondition: aValuable [
+{ #category : #accessing }
+PragmaSetting >> precondition: aValuable [
 	precondition := aValuable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>realTarget [
+{ #category : #accessing }
+PragmaSetting >> realTarget [
 	^ target isSymbol
 		ifTrue: [ Smalltalk globals at: target ifAbsent: [  ] ]
 		ifFalse: [ target ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>settingReceiver [
+{ #category : #accessing }
+PragmaSetting >> settingReceiver [
 	^ self targetSelector ifNil: [self realTarget] ifNotNil: [self realTarget perform: self targetSelector]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>target [
+{ #category : #accessing }
+PragmaSetting >> target [
 	^ target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>target: anObject [
+{ #category : #accessing }
+PragmaSetting >> target: anObject [
 	target := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>targetSelector [
+{ #category : #accessing }
+PragmaSetting >> targetSelector [
 	^ targetSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PragmaSetting>>targetSelector: aSelector [
+{ #category : #accessing }
+PragmaSetting >> targetSelector: aSelector [
 	targetSelector := aSelector
 ]

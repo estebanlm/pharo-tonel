@@ -4,14 +4,10 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestCompression,
 	#superclass : #PackageManifest,
-	#category : #Compression,
-	#timestamp : '<historical>'
+	#category : #Compression
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ManifestCompression class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestCompression class >> manuallyResolvedDependencies [
 	^ #(#Jobs #'System-Support' #'System-Localization' #'System-Changes' #'Collections-Abstract' #Transcript)
 ]

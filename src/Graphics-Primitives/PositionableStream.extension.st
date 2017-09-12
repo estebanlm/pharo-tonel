@@ -1,12 +1,7 @@
-Extension {
-	#name : #PositionableStream
-}
+Extension { #name : #PositionableStream }
 
-{
-	#category : #'*Graphics-Primitives',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-PositionableStream>>nextWordsInto: aBitmap  [
+{ #category : #'*Graphics-Primitives' }
+PositionableStream >> nextWordsInto: aBitmap [ 
 	"Fill the word based buffer from my collection. 
 	Stored on stream as Big Endian. Optimized for speed. 
 	Read in BigEndian, then restoreEndianness."

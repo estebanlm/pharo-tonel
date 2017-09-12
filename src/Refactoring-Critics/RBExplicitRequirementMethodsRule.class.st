@@ -4,32 +4,22 @@ Classes that use traits with explicit requirement methods should either implemen
 Class {
 	#name : #RBExplicitRequirementMethodsRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'MarcusDenker 12/1/2014 13:35'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExplicitRequirementMethodsRule class>>checksClass [
+{ #category : #testing }
+RBExplicitRequirementMethodsRule class >> checksClass [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExplicitRequirementMethodsRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBExplicitRequirementMethodsRule class >> uniqueIdentifierName [
 
 	^ 'ExplicitRequirementMethodsRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExplicitRequirementMethodsRule>>basicCheck: aClass  [
+{ #category : #running }
+RBExplicitRequirementMethodsRule >> basicCheck: aClass [ 
 
 	| explicitRequirementMethods |
 	explicitRequirementMethods := Set new.
@@ -47,11 +37,8 @@ RBExplicitRequirementMethodsRule>>basicCheck: aClass  [
 			noneSatisfy: [ :superclass | superclass canPerform: method selector ] ].
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExplicitRequirementMethodsRule>>checkClass: aClass  [
+{ #category : #running }
+RBExplicitRequirementMethodsRule >> checkClass: aClass [ 
 
 	| explicitRequirementMethods |
 	explicitRequirementMethods := Set new.
@@ -68,26 +55,17 @@ RBExplicitRequirementMethodsRule>>checkClass: aClass  [
 			detect: [ :superclass | superclass canPerform: method selector ] ifNone: [result addClass: aClass selector: method selector]].
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExplicitRequirementMethodsRule>>group [
+{ #category : #'as yet unclassified' }
+RBExplicitRequirementMethodsRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExplicitRequirementMethodsRule>>name [
+{ #category : #accessing }
+RBExplicitRequirementMethodsRule >> name [
 	^ 'Explicit requirement methods'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExplicitRequirementMethodsRule>>rationale [
+{ #category : #accessing }
+RBExplicitRequirementMethodsRule >> rationale [
 	^ 'Classes that use traits with explicit requirement methods should either implement the method or inherit it.'
 ]

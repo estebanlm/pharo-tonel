@@ -40,56 +40,40 @@ Class {
 		'WriteCursor',
 		'XeqCursor'
 	],
-	#category : #'Graphics-Display Objects',
-	#timestamp : '<historical>'
+	#category : #'Graphics-Display Objects'
 }
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>blank [
+{ #category : #constants }
+Cursor class >> blank [
 	"Answer the instance of me that is all white."
 
 	^BlankCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>bottomLeft [
+{ #category : #constants }
+Cursor class >> bottomLeft [
 	"Cursor bottomLeft showWhile: [Sensor waitButton]"
 	^BottomLeftCursor
 
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>bottomRight [
+{ #category : #constants }
+Cursor class >> bottomRight [
 	"Cursor bottomRight showWhile: [Sensor waitButton]"
 	^BottomRightCursor
 
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>corner [
+{ #category : #constants }
+Cursor class >> corner [
 	"Answer the instance of me that is the shape of the bottom right corner 
 	of a rectangle."
 
 	^CornerCursor
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>createStandardCursors  [
+{ #category : #initialize-release }
+Cursor class >> createStandardCursors [ 
 	self 
 		initOrigin;
 		initRightArrow;
@@ -121,64 +105,46 @@ Cursor class>>createStandardCursors  [
 		makeCursorsWithMask.
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>crossHair [
+{ #category : #constants }
+Cursor class >> crossHair [
 	"Answer the instance of me that is the shape of a cross."
 
 	^CrossHairCursor
 ]
 
-{
-	#category : #'current cursor',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>currentCursor [
+{ #category : #'current cursor' }
+Cursor class >> currentCursor [
 	"Answer the instance of Cursor that is the one currently displayed."
 
 	^CurrentCursor
 ]
 
-{
-	#category : #'current cursor',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>currentCursor: aCursor  [
+{ #category : #'current cursor' }
+Cursor class >> currentCursor: aCursor [ 
 	"Make the instance of cursor, aCursor, be the current cursor. Display it."
 
 	CurrentCursor := aCursor.
 	aCursor beCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>down [
+{ #category : #constants }
+Cursor class >> down [
 	"Answer the instance of me that is the shape of an arrow facing 
 	downward."
 
 	^DownCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>execute [
+{ #category : #constants }
+Cursor class >> execute [
 	"Answer the instance of me that is the shape of an arrow slanted left 
 	with a star next to it."
 
 	^XeqCursor
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>extent: extentPoint fromArray: anArray offset: offsetPoint  [
+{ #category : #'instance creation' }
+Cursor class >> extent: extentPoint fromArray: anArray offset: offsetPoint [ 
 	"Answer a new instance of me with width and height specified by
 	extentPoint, offset by offsetPoint, and bits from anArray.
 	NOTE: This has been kluged to take an array of 16-bit constants,
@@ -193,11 +159,8 @@ Cursor class>>extent: extentPoint fromArray: anArray offset: offsetPoint  [
 		ifFalse: [self error: 'cursors must be 16@16']
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initBottomLeft [
+{ #category : #'initialization - private' }
+Cursor class >> initBottomLeft [
 
 	BottomLeftCursor := 
 		(Cursor extent: 16 @ 16
@@ -222,11 +185,8 @@ Cursor class>>initBottomLeft [
 
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initBottomRight [
+{ #category : #'initialization - private' }
+Cursor class >> initBottomRight [
 
 	BottomRightCursor := 
 		(Cursor extent: 16 @ 16
@@ -251,11 +211,8 @@ Cursor class>>initBottomRight [
 
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initCorner [
+{ #category : #'initialization - private' }
+Cursor class >> initCorner [
 
 	CornerCursor := 
 		(Cursor 
@@ -281,11 +238,8 @@ Cursor class>>initCorner [
 
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initCrossHair [
+{ #category : #'initialization - private' }
+Cursor class >> initCrossHair [
 
 	CrossHairCursor :=   
 		(Cursor
@@ -312,11 +266,8 @@ Cursor class>>initCrossHair [
 	
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initDown [
+{ #category : #'initialization - private' }
+Cursor class >> initDown [
 
 	DownCursor  :=
 		     (Cursor
@@ -342,11 +293,8 @@ Cursor class>>initDown [
 
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initMarker [
+{ #category : #'initialization - private' }
+Cursor class >> initMarker [
 
 	MarkerCursor := 
 		Cursor
@@ -372,11 +320,8 @@ Cursor class>>initMarker [
 
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initMenu  [
+{ #category : #'initialization - private' }
+Cursor class >> initMenu [ 
 
 	MenuCursor  :=
 		        (Cursor
@@ -401,11 +346,8 @@ Cursor class>>initMenu  [
 
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initMove [
+{ #category : #'initialization - private' }
+Cursor class >> initMove [
 
 	MoveCursor := 
 		Cursor 
@@ -430,11 +372,8 @@ Cursor class>>initMove [
 
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initNormal [
+{ #category : #'initialization - private' }
+Cursor class >> initNormal [
 
 	NormalCursor :=   
 		(Cursor
@@ -462,11 +401,8 @@ Cursor class>>initNormal [
 	
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initNormalWithMask    "Cursor initNormalWithMask.  Cursor normal show" [
+{ #category : #'initialization - private' }
+Cursor class >> initNormalWithMask [    "Cursor initNormalWithMask.  Cursor normal show"
 	"Next two lines work simply for any cursor..."
 	self initNormal.
 	NormalCursor := CursorWithMask derivedFrom: NormalCursor.
@@ -486,11 +422,8 @@ Cursor class>>initNormalWithMask    "Cursor initNormalWithMask.  Cursor normal s
 			offset: 0 @ 0).
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initOrigin [
+{ #category : #'initialization - private' }
+Cursor class >> initOrigin [
 
 	OriginCursor :=   
 		(Cursor
@@ -516,11 +449,8 @@ Cursor class>>initOrigin [
 
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initOverEditableText [
+{ #category : #'initialization - private' }
+Cursor class >> initOverEditableText [
 	OverEditableText := (Cursor extent: 16@16 fromArray: #(
 				2r0
 	               2r000111011100000
@@ -543,11 +473,8 @@ Cursor class>>initOverEditableText [
 
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initRead [
+{ #category : #'initialization - private' }
+Cursor class >> initRead [
 
 	ReadCursor :=  
 		(Cursor
@@ -573,11 +500,8 @@ Cursor class>>initRead [
 
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initResizeLeft [
+{ #category : #'initialization - private' }
+Cursor class >> initResizeLeft [
 
        ResizeLeftCursor :=
                (Cursor extent: 16 @ 16 fromArray: #(
@@ -600,11 +524,8 @@ Cursor class>>initResizeLeft [
        offset: -7 @ -7 ) withMask
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initResizeTop [
+{ #category : #'initialization - private' }
+Cursor class >> initResizeTop [
     "Cursor initResizeTop"
        ResizeTopCursor :=
                (Cursor extent: 16 @ 16 fromArray: #(
@@ -626,11 +547,8 @@ Cursor class>>initResizeTop [
        offset: -7 @ -7) withMask
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initResizeTopLeft [
+{ #category : #'initialization - private' }
+Cursor class >> initResizeTopLeft [
 
        ResizeTopLeftCursor :=
                (Cursor extent: 16 @ 16 fromArray: #(
@@ -653,11 +571,8 @@ Cursor class>>initResizeTopLeft [
        offset: -7 @ -7) withMask
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initResizeTopRight [
+{ #category : #'initialization - private' }
+Cursor class >> initResizeTopRight [
 
        ResizeTopRightCursor :=
                (Cursor extent: 16 @ 16 fromArray: #(
@@ -680,11 +595,8 @@ Cursor class>>initResizeTopRight [
        offset: -7 @ -7) withMask
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initRightArrow  [
+{ #category : #'initialization - private' }
+Cursor class >> initRightArrow [ 
 
 	RightArrowCursor  :=
 		      (Cursor
@@ -711,11 +623,8 @@ Cursor class>>initRightArrow  [
 	"Cursor initRightArrow"
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initSquare [
+{ #category : #'initialization - private' }
+Cursor class >> initSquare [
 
 	SquareCursor := 
 		(Cursor
@@ -742,22 +651,16 @@ Cursor class>>initSquare [
 	
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initTarget [
+{ #category : #'initialization - private' }
+Cursor class >> initTarget [
 	^TargetCursor := Cursor
 				extent: 16 @ 16
 				fromArray:  #(1984 6448 8456 16644 17284 33026 35106 65278 35106 33026 17284 16644 8456 6448 1984 0)
 				offset: -7 @ -7
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initTopLeft [
+{ #category : #'initialization - private' }
+Cursor class >> initTopLeft [
 	TopLeftCursor := 
 		(Cursor extent: 16@16
 			fromArray: #(
@@ -781,11 +684,8 @@ Cursor class>>initTopLeft [
 
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initTopRight [
+{ #category : #'initialization - private' }
+Cursor class >> initTopRight [
 	TopRightCursor := 
 		(Cursor extent: 16@16
 			fromArray: #(
@@ -809,11 +709,8 @@ Cursor class>>initTopRight [
 
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initUp [
+{ #category : #'initialization - private' }
+Cursor class >> initUp [
 
 	UpCursor := 
 		    (Cursor
@@ -839,11 +736,8 @@ Cursor class>>initUp [
 
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initWait [
+{ #category : #'initialization - private' }
+Cursor class >> initWait [
 
 	WaitCursor := 
 		  (Cursor
@@ -868,11 +762,8 @@ Cursor class>>initWait [
 
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initWrite [
+{ #category : #'initialization - private' }
+Cursor class >> initWrite [
 
 	WriteCursor := (Cursor
 	extent: 16@16
@@ -897,11 +788,8 @@ Cursor class>>initWrite [
 
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initXeq [
+{ #category : #'initialization - private' }
+Cursor class >> initXeq [
 
 	XeqCursor := 
 		(Cursor
@@ -927,20 +815,14 @@ Cursor class>>initXeq [
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>initialize [
+{ #category : #initialize-release }
+Cursor class >> initialize [
 	self createStandardCursors.
 	SessionManager default registerGuiClassNamed: self name.
 ]
 
-{
-	#category : #'initialization - private',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>makeCursorsWithMask [
+{ #category : #'initialization - private' }
+Cursor class >> makeCursorsWithMask [
 	"Cursor initialize;makeCursorsWithMask"
 
 	self classPool associationsDo: [:var |
@@ -948,41 +830,29 @@ Cursor class>>makeCursorsWithMask [
 			ifFalse: [var value: var value withMask]] 
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>marker [
+{ #category : #constants }
+Cursor class >> marker [
 	"Answer the instance of me that is the shape of a small ball."
 
 	^MarkerCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>menu  [
+{ #category : #constants }
+Cursor class >> menu [ 
 	"Answer the instance of me that is the shape of a menu."
 
 	^MenuCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>move [
+{ #category : #constants }
+Cursor class >> move [
 	"Answer the instance of me that is the shape of a cross inside a square."
 
 	^MoveCursor
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>new [
+{ #category : #'instance creation' }
+Cursor class >> new [
 
 	^ self extent: 16 @ 16
 		fromArray: (Array new: 16 withAll: 0)
@@ -991,209 +861,143 @@ Cursor class>>new [
 	"Cursor new bitEdit show"
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>normal [
+{ #category : #constants }
+Cursor class >> normal [
 	"Answer the instance of me that is the shape of an arrow slanted left."
 
 	^NormalCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>origin [
+{ #category : #constants }
+Cursor class >> origin [
 	"Answer the instance of me that is the shape of the top left corner of a 
 	rectangle."
 
 	^OriginCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>overEditableText [
+{ #category : #constants }
+Cursor class >> overEditableText [
 	^ OverEditableText 
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>read [
+{ #category : #constants }
+Cursor class >> read [
 	"Answer the instance of me that is the shape of eyeglasses."
 
 	^ReadCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>resizeBottom [
+{ #category : #constants }
+Cursor class >> resizeBottom [
 	"Cursor resizeBottom showWhile: [Sensor waitButton]"
 	^self resizeTop
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>resizeBottomLeft [
+{ #category : #constants }
+Cursor class >> resizeBottomLeft [
 	"Cursor resizeBottomLeft showWhile: [Sensor waitButton]"
 	^self resizeTopRight
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>resizeBottomRight [
+{ #category : #constants }
+Cursor class >> resizeBottomRight [
 	"Cursor resizeBottomRight showWhile: [Sensor waitButton]"
 	^self resizeTopLeft
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>resizeForEdge: aSymbol [
+{ #category : #'instance creation' }
+Cursor class >> resizeForEdge: aSymbol [
 	"Cursor resizeForEdge: #top"
 	"Cursor resizeForEdge: #bottomLeft"
 	^self perform: ('resize', aSymbol first asString asUppercase, (aSymbol copyFrom: 2 to: aSymbol size)) asSymbol.
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>resizeLeft [
+{ #category : #constants }
+Cursor class >> resizeLeft [
 	"Cursor resizeLeft showWhile: [Sensor waitButton]"
 	^ResizeLeftCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>resizeRight [
+{ #category : #constants }
+Cursor class >> resizeRight [
 	"Cursor resizeRight showWhile: [Sensor waitButton]"
 	^self resizeLeft
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>resizeTop [
+{ #category : #constants }
+Cursor class >> resizeTop [
 	"Cursor resizeTop showWhile: [Sensor waitButton]"
 	^ResizeTopCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>resizeTopLeft [
+{ #category : #constants }
+Cursor class >> resizeTopLeft [
 	"Cursor resizeTopLeft showWhile: [Sensor waitButton]"
 	^ ResizeTopLeftCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>resizeTopRight [
+{ #category : #constants }
+Cursor class >> resizeTopRight [
 	"Cursor resizeTopRight showWhile: [Sensor waitButton]"
 	^ResizeTopRightCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>rightArrow  [
+{ #category : #constants }
+Cursor class >> rightArrow [ 
 	"Answer the instance of me that is the shape of an arrow pointing to the right."
 
 	^RightArrowCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>square [
+{ #category : #constants }
+Cursor class >> square [
 	"Answer the instance of me that is the shape of a square."
 
 	^SquareCursor
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>startUp [
+{ #category : #'system startup' }
+Cursor class >> startUp [
 	self currentCursor: self currentCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>target [
+{ #category : #constants }
+Cursor class >> target [
 	"Answer the instance of me that is the shape of a gunsight."
 	"Cursor target show"
 	^TargetCursor ifNil:[self initTarget]
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>topLeft [
+{ #category : #constants }
+Cursor class >> topLeft [
 	"Cursor topLeft showWhile: [Sensor waitButton]"
 	^ TopLeftCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>topRight [
+{ #category : #constants }
+Cursor class >> topRight [
 	"Cursor topRight showWhile: [Sensor waitButton]"
 	^ TopRightCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>up [
+{ #category : #constants }
+Cursor class >> up [
 	"Answer the instance of me that is the shape of an arrow facing upward."
 
 	^UpCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>wait [
+{ #category : #constants }
+Cursor class >> wait [
 	"Answer the instance of me that is the shape of an Hourglass (was in the 
 	shape of three small balls)."
 
 	^WaitCursor
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>webLink [
+{ #category : #constants }
+Cursor class >> webLink [
 	"Return a cursor that can be used for emphasizing web links"
 	"Cursor webLink showWhile: [Sensor waitButton]"
 	^WebLinkCursor ifNil:[
@@ -1205,32 +1009,23 @@ Cursor class>>webLink [
 			offset: 0@0)].
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor class>>write [
+{ #category : #constants }
+Cursor class >> write [
 	"Answer the instance of me that is the shape of a pen writing."
 
 	^WriteCursor
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor>>asCursorForm [
+{ #category : #converting }
+Cursor >> asCursorForm [
 	| form |
 	form := Form extent: self extent depth: 8.
 	form fillShape: self fillColor: Color black at: offset negated.
 	^ form offset: offset
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor>>beCursor [
+{ #category : #primitives }
+Cursor >> beCursor [
 	"Primitive. Tell the interpreter to use the receiver as the current cursor 
 	image. Fail if the receiver does not match the size expected by the 
 	hardware. Essential. See Object documentation whatIsAPrimitive."
@@ -1239,11 +1034,8 @@ Cursor>>beCursor [
 	self primitiveFailed
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor>>beCursorWithMask: maskForm [
+{ #category : #primitives }
+Cursor >> beCursorWithMask: maskForm [
 	"Primitive. Tell the interpreter to use the receiver as the current cursor image with the given mask Form. Both the receiver and the mask should have extent 16@16 and a depth of one. The mask and cursor bits are combined as follow:
 			mask	cursor	effect
 			 0		  0		transparent (underlying pixel shows through)
@@ -1257,56 +1049,38 @@ Cursor>>beCursorWithMask: maskForm [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor>>changed: aParameter [
+{ #category : #updating }
+Cursor >> changed: aParameter [
 	"overriden to reinstall the cursor if it is the active cursor, in case the appearance has changed.  (Is this used anywhere?  Do cursors really change in place these days?)"
 	self == CurrentCursor ifTrue: [self beCursor].
 	super changed: aParameter
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor>>hasMask [
+{ #category : #testing }
+Cursor >> hasMask [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor>>isCurrent [
+{ #category : #testing }
+Cursor >> isCurrent [
 	^ self class currentCursor == self 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor>>printOn: aStream [
+{ #category : #printing }
+Cursor >> printOn: aStream [
 
 	self storeOn: aStream base: 2
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor>>show [
+{ #category : #displaying }
+Cursor >> show [
 	"Make the hardware's mouse cursor look like the receiver"
 
 	self class currentCursor: self
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor>>showWhile: aBlock  [
+{ #category : #displaying }
+Cursor >> showWhile: aBlock [ 
 	"While evaluating the argument, aBlock, make the receiver be the cursor shape."
 	| oldcursor |
 	oldcursor := self class currentCursor.
@@ -1315,10 +1089,7 @@ Cursor>>showWhile: aBlock  [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Cursor>>withMask [
+{ #category : #converting }
+Cursor >> withMask [
 	^CursorWithMask derivedFrom: self
 ]

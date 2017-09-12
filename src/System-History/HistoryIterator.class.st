@@ -30,15 +30,11 @@ Class {
 		'recorder',
 		'maxSize'
 	],
-	#category : #System-History,
-	#timestamp : 'AlainPlantec 12/14/2010 23:40'
+	#category : #System-History
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>addItem: anHistoryItem [
+{ #category : #adding }
+HistoryIterator >> addItem: anHistoryItem [
 	| result |
 	self isPlugged ifFalse: [^ false].
 	self recorder removeLast: (self size - self index).
@@ -47,98 +43,65 @@ HistoryIterator>>addItem: anHistoryItem [
 	^ result
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>addRecord: anItem [
+{ #category : #adding }
+HistoryIterator >> addRecord: anItem [
 	^ self addItem: anItem
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>at: anInteger [
+{ #category : #accessing }
+HistoryIterator >> at: anInteger [
 	^ self recorder at: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>at: anInteger put: anItem [
+{ #category : #accessing }
+HistoryIterator >> at: anInteger put: anItem [
 	self recorder at: anInteger put: anItem
 ]
 
-{
-	#category : #grouping,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>closeGroup [
+{ #category : #grouping }
+HistoryIterator >> closeGroup [
 	self recorder closeGroup
 
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>closeRecordGroup [
+{ #category : #compatibility }
+HistoryIterator >> closeRecordGroup [
 	^ self closeGroup
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>current [
+{ #category : #accessing }
+HistoryIterator >> current [
 	^ (self index <= self size and: [self index > 0])
 		ifTrue: [self recorder at: self index]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>defaultMaximumSize [
+{ #category : #accessing }
+HistoryIterator >> defaultMaximumSize [
 	"unlimited by default"
 	^ 999999999
 ]
 
-{
-	#category : #undo-undo,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>do [
+{ #category : #undo-undo }
+HistoryIterator >> do [
 	^ self redo
 ]
 
-{
-	#category : #undo-undo,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>doAndAddRecord: anUndoRedoRecord [
+{ #category : #undo-undo }
+HistoryIterator >> doAndAddRecord: anUndoRedoRecord [
 	| result |
 	result := anUndoRedoRecord do.
 	self addItem: anUndoRedoRecord.
 	^ result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>first [
+{ #category : #accessing }
+HistoryIterator >> first [
 	^ self recorder first
 ]
 
-{
-	#category : #grouping,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>groupFrom: firstIdx to: secondIdx [
+{ #category : #grouping }
+HistoryIterator >> groupFrom: firstIdx to: secondIdx [
 	| group |
 	group := UndoRedoGroup new.
 	firstIdx to: (secondIdx min: index) do: [:i | group addItem: (self at:i)].
@@ -150,217 +113,145 @@ HistoryIterator>>groupFrom: firstIdx to: secondIdx [
 	index := index - group size + 1.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>hasNext [
+{ #category : #testing }
+HistoryIterator >> hasNext [
 	"is there an item after current index"
 	^ self recorder size - self index > 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>hasPrevious [
+{ #category : #testing }
+HistoryIterator >> hasPrevious [
 	"is there an item before current index"
 	^ self index > 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>index [
+{ #category : #accessing }
+HistoryIterator >> index [
 	^ index ifNil: [index := self size]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>isPlugged [
+{ #category : #testing }
+HistoryIterator >> isPlugged [
 	^ plugged ifNil: [plugged := true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>last [
+{ #category : #accessing }
+HistoryIterator >> last [
 	^ self recorder last
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>maxSize [
+{ #category : #accessing }
+HistoryIterator >> maxSize [
 	^ maxSize ifNil: [maxSize := self defaultMaximumSize]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>maxSize: anInteger [
+{ #category : #accessing }
+HistoryIterator >> maxSize: anInteger [
 	maxSize := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>next [
+{ #category : #accessing }
+HistoryIterator >> next [
 	"next item in history"
 	^ self hasNext
 		ifTrue: [ index := self index + 1.
 			self current]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>nextList [
+{ #category : #accessing }
+HistoryIterator >> nextList [
 	"return 'next' items sublist "
 	^ self recorder copyFrom: self index + 1 to: self size
 ]
 
-{
-	#category : #grouping,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>openGroup [
+{ #category : #grouping }
+HistoryIterator >> openGroup [
 	self recorder openGroup.
 	self updateIndex.
 
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>openRecordGroup [
+{ #category : #compatibility }
+HistoryIterator >> openRecordGroup [
 	^ self openGroup
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>previous [
+{ #category : #accessing }
+HistoryIterator >> previous [
 	"previous item in history"
 	^ self hasPrevious
 		ifTrue: [index := self index - 1.
 			self current]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>previousList [
+{ #category : #accessing }
+HistoryIterator >> previousList [
 	"return 'prev' items sublist"
 	^ self recorder copyFrom: 1 to: self index - 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>recorder [
+{ #category : #accessing }
+HistoryIterator >> recorder [
 	^ recorder ifNil: [recorder := UndoRedoGroup new]
 ]
 
-{
-	#category : #undo-undo,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>redo [
+{ #category : #undo-undo }
+HistoryIterator >> redo [
 	self unplugWhile: [
 		self hasNext ifFalse: [^false].
 		self next redo].
 	^ true
 ]
 
-{
-	#category : #undo-undo,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>redo: doMessageSend undo: undoMessageSend [
+{ #category : #undo-undo }
+HistoryIterator >> redo: doMessageSend undo: undoMessageSend [
 	self addItem: (UndoRedoRecord redo: doMessageSend undo: undoMessageSend)
 ]
 
-{
-	#category : #undo-undo,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>redoArray: doArray undoArray: undoArray [
+{ #category : #undo-undo }
+HistoryIterator >> redoArray: doArray undoArray: undoArray [
 	self addItem: (UndoRedoRecord redoArray: doArray undoArray: undoArray)
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>removeAt: anIndex [
+{ #category : #removing }
+HistoryIterator >> removeAt: anIndex [
 	self recorder removeAt: anIndex
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>removeFirst [
+{ #category : #removing }
+HistoryIterator >> removeFirst [
 	self recorder removeFirst
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>reset [
+{ #category : #accessing }
+HistoryIterator >> reset [
 	self recorder reset.
 	index := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>size [
+{ #category : #accessing }
+HistoryIterator >> size [
 	^ self recorder size
 ]
 
-{
-	#category : #undo-undo,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>undo [
+{ #category : #undo-undo }
+HistoryIterator >> undo [
 	self unplugWhile: [
 		self current ifNotNil: [:curr | curr undo].
 		self previous].
 	^ true
 ]
 
-{
-	#category : #undo-undo,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>unplugWhile: aBlock [
+{ #category : #undo-undo }
+HistoryIterator >> unplugWhile: aBlock [
 	| wasPlugged |
 	wasPlugged := self isPlugged.
 	plugged := false.
 	aBlock ensure: [ plugged := wasPlugged ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryIterator>>updateIndex [
+{ #category : #adding }
+HistoryIterator >> updateIndex [
 	self size <= self maxSize
 		ifFalse: [self removeFirst].
 	index := self size.

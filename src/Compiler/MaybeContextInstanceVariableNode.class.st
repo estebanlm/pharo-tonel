@@ -8,66 +8,44 @@ Without help from the image such a virtual machine based on an interpreter would
 Class {
 	#name : #MaybeContextInstanceVariableNode,
 	#superclass : #InstanceVariableNode,
-	#category : #Compiler-ParseNodes,
-	#timestamp : '<historical>'
+	#category : #Compiler-ParseNodes
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MaybeContextInstanceVariableNode>>code [
+{ #category : #accessing }
+MaybeContextInstanceVariableNode >> code [
 	"Answer a bogus code to avoid creating quick methods.
 	 See MethodNode>>generate:ifQuick:"
 	^LoadLong
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MaybeContextInstanceVariableNode>>emitCodeForStore: stack encoder: encoder [
+{ #category : #'code generation' }
+MaybeContextInstanceVariableNode >> emitCodeForStore: stack encoder: encoder [
 	encoder genStoreInstVarLong: index
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MaybeContextInstanceVariableNode>>emitCodeForStorePop: stack encoder: encoder [
+{ #category : #'code generation' }
+MaybeContextInstanceVariableNode >> emitCodeForStorePop: stack encoder: encoder [
 	encoder genStorePopInstVarLong: index.
 	stack pop: 1
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MaybeContextInstanceVariableNode>>emitCodeForValue: stack encoder: encoder [
+{ #category : #'code generation' }
+MaybeContextInstanceVariableNode >> emitCodeForValue: stack encoder: encoder [
 	stack push: 1.
 	^encoder genPushInstVarLong: index
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MaybeContextInstanceVariableNode>>sizeCodeForStore: encoder [
+{ #category : #'code generation' }
+MaybeContextInstanceVariableNode >> sizeCodeForStore: encoder [
 	^encoder sizeStoreInstVarLong: index
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MaybeContextInstanceVariableNode>>sizeCodeForStorePop: encoder [
+{ #category : #'code generation' }
+MaybeContextInstanceVariableNode >> sizeCodeForStorePop: encoder [
 	^encoder sizeStorePopInstVarLong: index
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MaybeContextInstanceVariableNode>>sizeCodeForValue: encoder [
+{ #category : #'code generation' }
+MaybeContextInstanceVariableNode >> sizeCodeForValue: encoder [
 	^encoder sizePushInstVarLong: index
 ]

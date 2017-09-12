@@ -6,15 +6,11 @@ We use this as a default condition for presentations. Usually, you will want to 
 Class {
 	#name : #GLMAllNotNilCondition,
 	#superclass : #GLMCondition,
-	#category : #Glamour-Helpers,
-	#timestamp : '<historical>'
+	#category : #Glamour-Helpers
 }
 
-{
-	#category : #glamour,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAllNotNilCondition>>glamourValueWithArgs: anArray  [
+{ #category : #glamour }
+GLMAllNotNilCondition >> glamourValueWithArgs: anArray [ 
 	 
 	^anArray allSatisfy: [:each | each isNil not]
 ]

@@ -10,15 +10,11 @@ Class {
 		'recipient',
 		'valueParameter'
 	],
-	#category : #Morphic-Base-Events,
-	#timestamp : 'GuillermoPolito 4/22/2012 19:17'
+	#category : #Morphic-Base-Events
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphEventSubscription class>>on: anEvent send: aSelector to: anObject [
+{ #category : #'instance creation' }
+MorphEventSubscription class >> on: anEvent send: aSelector [ to: anObject
 	^self new
 		event: anEvent;
 		selector: aSelector;
@@ -26,11 +22,8 @@ MorphEventSubscription class>>on: anEvent send: aSelector to: anObject [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphEventSubscription class>>on: anEvent send: aMessageSelector to: anObject withValue: aValue [
+{ #category : #'instance creation' }
+MorphEventSubscription class >> on: anEvent send: aMessageSelector to: anObject withValue: aValue [
 	^self new
 		event: anEvent;
 		selector: aMessageSelector;
@@ -39,69 +32,45 @@ MorphEventSubscription class>>on: anEvent send: aMessageSelector to: anObject wi
 		yourself
 ]
 
-{
-	#category : #events-triggering,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphEventSubscription>>click: anEvent fromMorph: aMorph  [
+{ #category : #events-triggering }
+MorphEventSubscription >> click: anEvent fromMorph: aMorph [ 
 	^self notify: anEvent from: aMorph
 ]
 
-{
-	#category : #events-triggering,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphEventSubscription>>doubleClick: anEvent fromMorph: aMorph  [
+{ #category : #events-triggering }
+MorphEventSubscription >> doubleClick: anEvent fromMorph: aMorph [ 
 	^self notify: anEvent from: aMorph
 ]
 
-{
-	#category : #events-triggering,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphEventSubscription>>doubleClickTimeout: anEvent fromMorph: aMorph  [
+{ #category : #events-triggering }
+MorphEventSubscription >> doubleClickTimeout: anEvent fromMorph: aMorph [ 
 	^self notify: anEvent from: aMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphEventSubscription>>event [
+{ #category : #accessing }
+MorphEventSubscription >> event [
 
 	^ event
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphEventSubscription>>event: anEvent [
+{ #category : #accessing }
+MorphEventSubscription >> event: anEvent [
 
 	event := anEvent
 ]
 
-{
-	#category : #events-triggering,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphEventSubscription>>mouseEnter: anEvent fromMorph: aMorph  [
+{ #category : #events-triggering }
+MorphEventSubscription >> mouseEnter: anEvent fromMorph: aMorph [ 
 	^self notify: anEvent from: aMorph
 ]
 
-{
-	#category : #events-triggering,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphEventSubscription>>mouseLeave: anEvent fromMorph: aMorph  [
+{ #category : #events-triggering }
+MorphEventSubscription >> mouseLeave: anEvent fromMorph: aMorph [ 
 	^self notify: anEvent from: aMorph
 ]
 
-{
-	#category : #events-triggering,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphEventSubscription>>notify: anEvent from: sourceMorph [
+{ #category : #events-triggering }
+MorphEventSubscription >> notify: anEvent from: sourceMorph [
 	| arity |
 	recipient ifNil: [^ self].
 	arity := selector numArgs.
@@ -116,56 +85,38 @@ MorphEventSubscription>>notify: anEvent from: sourceMorph [
 	self error: 'Event handling selectors must be Symbols and take 0-3 arguments'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphEventSubscription>>recipient [
+{ #category : #accessing }
+MorphEventSubscription >> recipient [
 
 	^ recipient
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphEventSubscription>>recipient: anObject [
+{ #category : #accessing }
+MorphEventSubscription >> recipient: anObject [
 
 	recipient := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphEventSubscription>>selector [
+{ #category : #accessing }
+MorphEventSubscription >> selector [
 
 	^ selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphEventSubscription>>selector: anObject [
+{ #category : #accessing }
+MorphEventSubscription >> selector: anObject [
 
 	selector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphEventSubscription>>valueParameter [
+{ #category : #accessing }
+MorphEventSubscription >> valueParameter [
 
 	^ valueParameter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphEventSubscription>>valueParameter: anObject [
+{ #category : #accessing }
+MorphEventSubscription >> valueParameter: anObject [
 
 	valueParameter := anObject
 ]

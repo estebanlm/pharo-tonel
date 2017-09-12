@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MCMockDependency,
 	#superclass : #Object,
@@ -9,55 +6,36 @@ Class {
 		'children',
 		'hasResolution'
 	],
-	#category : #Monticello-Tests,
-	#timestamp : ''
+	#category : #Monticello-Tests
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMockDependency class>>fromTree: anArray  [
+{ #category : #'instance creation' }
+MCMockDependency class >> fromTree: anArray [ 
 	^ self new initializeWithTree: anArray
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMockDependency>>= other [
+{ #category : #comparing }
+MCMockDependency >> = other [
 	^ self name = other name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMockDependency>>children [
+{ #category : #accessing }
+MCMockDependency >> children [
 	^ children collect: [:ea | self class fromTree: ea]
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMockDependency>>hasResolution [
+{ #category : #resolving }
+MCMockDependency >> hasResolution [
 	^ hasResolution
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMockDependency>>hash [
+{ #category : #comparing }
+MCMockDependency >> hash [
 	^ self name hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMockDependency>>initializeWithTree: expr [
+{ #category : #accessing }
+MCMockDependency >> initializeWithTree: expr [
 	expr isSymbol
 		ifTrue: [name := expr.
 				children := Array new.
@@ -70,11 +48,8 @@ MCMockDependency>>initializeWithTree: expr [
 							children := expr second]]
 ]
 
-{
-	#category : #mocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMockDependency>>mockVersionInfo [
+{ #category : #mocks }
+MCMockDependency >> mockVersionInfo [
 	^ MCVersionInfo
 		name: self name
 		id: (self uuidForName: name)
@@ -85,19 +60,13 @@ MCMockDependency>>mockVersionInfo [
 		ancestors: #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMockDependency>>name [
+{ #category : #accessing }
+MCMockDependency >> name [
 	^ name
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMockDependency>>resolve [
+{ #category : #resolving }
+MCMockDependency >> resolve [
 	^ self hasResolution
 		ifTrue: [MCVersion new
 					setPackage: MCSnapshotResource mockPackage
@@ -107,11 +76,8 @@ MCMockDependency>>resolve [
 		ifFalse: [nil]
 ]
 
-{
-	#category : #mocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMockDependency>>uuidForName: aName  [
+{ #category : #mocks }
+MCMockDependency >> uuidForName: aName [ 
 	| nm id |
 	nm := aName asString.
 	id := '00000000-0000-0000-0000-0000000000' 

@@ -1,40 +1,27 @@
-"
-
-"
 Class {
 	#name : #MalDisjointSets,
 	#superclass : #MalGraphAlgorithm,
 	#instVars : [
 		'components'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDisjointSets>>components [
+{ #category : #'as yet unclassified' }
+MalDisjointSets >> components [
 
 	^ (components keys collect: [:parent| 
 		(components at: parent) collect: [:n| n model] ]) asOrderedCollection 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDisjointSets>>nodeClass [
+{ #category : #'as yet unclassified' }
+MalDisjointSets >> nodeClass [
 
 	^ MalDisjointSetsNextNode 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDisjointSets>>run [
+{ #category : #'as yet unclassified' }
+MalDisjointSets >> run [
 
 	"partition nodes by connectivity"
 	self nodes do: [:n|

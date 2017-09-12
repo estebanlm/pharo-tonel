@@ -13,15 +13,11 @@ Class {
 		'newName',
 		'oldName'
 	],
-	#category : #System-Announcements-System-Classes,
-	#timestamp : 'cyrilledelaunay 1/18/2011 11:44'
+	#category : #System-Announcements-System-Classes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRenamed class>>class: aClass category: aCategoryName oldName: anOldClassName newName: aNewClassName [
+{ #category : #'instance creation' }
+ClassRenamed class >> class: aClass category: aCategoryName oldName: anOldClassName newName: aNewClassName [
 	^self new
 			classRenamed: aClass;
 			category: aCategoryName;
@@ -30,80 +26,53 @@ ClassRenamed class>>class: aClass category: aCategoryName oldName: anOldClassNam
 			yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRenamed>>category [
+{ #category : #accessing }
+ClassRenamed >> category [
 	
 	^ category
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRenamed>>category: anObject [
+{ #category : #accessing }
+ClassRenamed >> category: anObject [
 	
 	category := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRenamed>>classAffected [
+{ #category : #accessing }
+ClassRenamed >> classAffected [
 	^self classRenamed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRenamed>>classRenamed [
+{ #category : #accessing }
+ClassRenamed >> classRenamed [
 	
 	^ classRenamed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRenamed>>classRenamed: anObject [
+{ #category : #accessing }
+ClassRenamed >> classRenamed: anObject [
 	
 	classRenamed := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRenamed>>newName [
+{ #category : #accessing }
+ClassRenamed >> newName [
 	^newName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRenamed>>newName: anObject [
+{ #category : #accessing }
+ClassRenamed >> newName: anObject [
 	
 	newName := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRenamed>>oldName [
+{ #category : #accessing }
+ClassRenamed >> oldName [
 	^oldName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRenamed>>oldName: anObject [
+{ #category : #accessing }
+ClassRenamed >> oldName: anObject [
 	
 	oldName := anObject
 ]

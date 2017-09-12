@@ -18,15 +18,11 @@ Class {
 		'OFFSET_USERDATA',
 		'OFFSET_W'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'IgorStasenko 7/30/2014 18:44'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'fields description',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface class>>fieldsDesc [
+{ #category : #'fields description' }
+SDL_Surface class >> fieldsDesc [
 	"
 	self initializeAccessors
 	"
@@ -46,276 +42,183 @@ SDL_Surface class>>fieldsDesc [
  	)
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface class>>finalizeResourceData: aHandle [
+{ #category : #finalization }
+SDL_Surface class >> finalizeResourceData: aHandle [
 
 	^ self freeSurface: aHandle.
 ]
 
-{
-	#category : #video,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface class>>freeSurface: aHandle [
+{ #category : #video }
+SDL_Surface class >> freeSurface: aHandle [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	^ self nbCall: #( void SDL_FreeSurface ( ulong aHandle ) )
 ]
 
-{
-	#category : #'pixel accessing',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>SDL_LockSurface: aSurface [
+{ #category : #'pixel accessing' }
+SDL_Surface >> SDL_LockSurface: aSurface [
 	^ self ffiCall: #(int SDL_LockSurface( SDL_Surface* aSurface ))
 ]
 
-{
-	#category : #'pixel accessing',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>SDL_UnlockSurface: aSurface [
+{ #category : #'pixel accessing' }
+SDL_Surface >> SDL_UnlockSurface: aSurface [
 	^ self ffiCall: #( int SDL_UnlockSurface( SDL_Surface* aSurface ) )
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>clip_rect [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> clip_rect [
 	"This method was automatically generated"
 	^SDL_Rect fromHandle: (handle referenceStructAt: OFFSET_CLIP_RECT length: 16)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>clip_rect: anObject [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> clip_rect: anObject [
 	"This method was automatically generated"
 	handle structAt: OFFSET_CLIP_RECT put: anObject getHandle length: 16.
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>flags [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> flags [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_FLAGS
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>flags: anObject [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> flags: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_FLAGS put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>format [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> format [
 	"This method was automatically generated"
 	^SDL_PixelFormat fromHandle: (handle pointerAt: OFFSET_FORMAT)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>format: anObject [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> format: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_FORMAT put: anObject getHandle.
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>h [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> h [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_H
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>h: anObject [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> h: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_H put: anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>initialize [
+{ #category : #initialization }
+SDL_Surface >> initialize [
 	FFIExternalResourceManager addResource: self data: self getHandle value.
 ]
 
-{
-	#category : #'pixel accessing',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>lockSurface [
+{ #category : #'pixel accessing' }
+SDL_Surface >> lockSurface [
 	^ self SDL_LockSurface: self
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>lock_data [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> lock_data [
 	"This method was automatically generated"
 	^ExternalData fromHandle: (handle pointerAt: OFFSET_LOCK_DATA) type: ExternalType void asPointerType
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>lock_data: anObject [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> lock_data: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_LOCK_DATA put: anObject getHandle.
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>locked [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> locked [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_LOCKED
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>locked: anObject [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> locked: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_LOCKED put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>map [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> map [
 	"This method was automatically generated"
 	^ExternalData fromHandle: (handle pointerAt: OFFSET_MAP) type: ExternalType void asPointerType
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>map: anObject [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> map: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_MAP put: anObject getHandle.
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>pitch [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> pitch [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_PITCH
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>pitch: anObject [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> pitch: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_PITCH put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>pixels [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> pixels [
 	"This method was automatically generated"
 	^ExternalData fromHandle: (handle pointerAt: OFFSET_PIXELS) type: ExternalType void asPointerType
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>pixels: anObject [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> pixels: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_PIXELS put: anObject getHandle.
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>refcount [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> refcount [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_REFCOUNT
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>refcount: anObject [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> refcount: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_REFCOUNT put: anObject
 ]
 
-{
-	#category : #'pixel accessing',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>unlockSurface [
+{ #category : #'pixel accessing' }
+SDL_Surface >> unlockSurface [
 	^ self SDL_UnlockSurface: self
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>userdata [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> userdata [
 	"This method was automatically generated"
 	^ExternalData fromHandle: (handle pointerAt: OFFSET_USERDATA) type: ExternalType void asPointerType
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>userdata: anObject [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> userdata: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_USERDATA put: anObject getHandle.
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>w [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> w [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_W
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Surface>>w: anObject [
+{ #category : #'accessing structure variables' }
+SDL_Surface >> w: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_W put: anObject
 ]

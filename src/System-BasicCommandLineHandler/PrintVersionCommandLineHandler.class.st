@@ -26,31 +26,21 @@ Examples:
 Class {
 	#name : #PrintVersionCommandLineHandler,
 	#superclass : #CommandLineHandler,
-	#category : #System-BasicCommandLineHandler,
-	#timestamp : '<historical>'
+	#category : #System-BasicCommandLineHandler
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PrintVersionCommandLineHandler class>>commandName [
+{ #category : #accessing }
+PrintVersionCommandLineHandler class >> commandName [
 	^ 'printVersion'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PrintVersionCommandLineHandler class>>description [
+{ #category : #accessing }
+PrintVersionCommandLineHandler class >> description [
 	^ 'Print image version'
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PrintVersionCommandLineHandler>>activate [
+{ #category : #activation }
+PrintVersionCommandLineHandler >> activate [
 	self activateHelp
 		ifTrue: [  ^ self ].
 		
@@ -71,21 +61,15 @@ PrintVersionCommandLineHandler>>activate [
 	^ self exitFailure
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PrintVersionCommandLineHandler>>printNumericVersion [
+{ #category : #actions }
+PrintVersionCommandLineHandler >> printNumericVersion [
 	self stdout 
 		print: SystemVersion current highestUpdate;
 		lf
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PrintVersionCommandLineHandler>>printRelease [
+{ #category : #actions }
+PrintVersionCommandLineHandler >> printRelease [
 	self stdout 
 		print: SystemVersion current major;
 		nextPutAll: '.';
@@ -93,11 +77,8 @@ PrintVersionCommandLineHandler>>printRelease [
 		lf.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PrintVersionCommandLineHandler>>printVersion [
+{ #category : #actions }
+PrintVersionCommandLineHandler >> printVersion [
 	self stdout 
 		nextPutAll: '[version] ';
 		print: SystemVersion current majorMinorVersion;

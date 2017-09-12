@@ -31,23 +31,16 @@ Class {
 		'emphasisHere',
 		'cursorWidth'
 	],
-	#category : #Rubric-Editing-Core,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:20'
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>actualWidth [
+{ #category : #accessing }
+RubTextComposer >> actualWidth [
 	^ actualWidth
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>addNullLineForIndex: index [
+{ #category : #adding }
+RubTextComposer >> addNullLineForIndex: index [
 	"This awful bit is to ensure that if we have scanned all the text and the last character is a CR that there is a null line at the end of lines. Sometimes this was not happening which caused anomalous selections when selecting all the text. This is implemented as a post-composition fixup because I couldn't figure out where to put it in the main logic."
 
 	| oldLastLine r |
@@ -62,11 +55,8 @@ RubTextComposer>>addNullLineForIndex: index [
 	self addNullLineWithIndex: index andRectangle: r
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>addNullLineWithIndex: index andRectangle: aRectangle [
+{ #category : #adding }
+RubTextComposer >> addNullLineWithIndex: index andRectangle: aRectangle [
 	| nullString nullLine |
 	nullString := ' ' asText.
 	self emphasisHere do: [ :attr | nullString addAttribute: attr ].
@@ -84,11 +74,8 @@ RubTextComposer>>addNullLineWithIndex: index andRectangle: aRectangle [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>checkIfReadyToSlide [
+{ #category : #testing }
+RubTextComposer >> checkIfReadyToSlide [
 
 	"Check whether we are now in sync with previously composed lines"
 
@@ -111,11 +98,8 @@ RubTextComposer>>checkIfReadyToSlide [
 	]
 ]
 
-{
-	#category : #'private composition',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>completeComposition [
+{ #category : #'private composition' }
+RubTextComposer >> completeComposition [
 	numberOfPhysicalLines := 1.
 	actualWidth := 1.
 	self lines
@@ -126,11 +110,8 @@ RubTextComposer>>completeComposition [
 			actualWidth := line actualWidth max: actualWidth ]
 ]
 
-{
-	#category : #'private composition',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>composeAllLines [
+{ #category : #'private composition' }
+RubTextComposer >> composeAllLines [
 	[ currCharIndex <= theText size and: [ currentY + defaultLineHeight <= theContainer bottom ] ]
 		whileTrue: [ 
 			(nowSliding
@@ -138,11 +119,8 @@ RubTextComposer>>composeAllLines [
 				ifFalse: [ self composeOneLine ]) ifNil: [ ^ nil ] ]
 ]
 
-{
-	#category : #'private composition',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>composeAllRectangles: rectangles [
+{ #category : #'private composition' }
+RubTextComposer >> composeAllRectangles: rectangles [
 	| charIndexBeforeLine numberOfLinesBefore |
 	actualHeight := defaultLineHeight.
 	charIndexBeforeLine := currCharIndex.
@@ -164,11 +142,8 @@ RubTextComposer>>composeAllRectangles: rectangles [
 		ifTrue: [ ^ nil	"we are finished composing" ]
 ]
 
-{
-	#category : #'private composition',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>composeEachRectangleIn: rectangles [
+{ #category : #'private composition' }
+RubTextComposer >> composeEachRectangleIn: rectangles [
 
 	| myLine lastChar |
 
@@ -195,11 +170,8 @@ RubTextComposer>>composeEachRectangleIn: rectangles [
 	^false
 ]
 
-{
-	#category : #'public composition',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>composeLinesFrom: start to: stop delta: delta into: lineColl priorLines: priorLines atY: startingY [
+{ #category : #'public composition' }
+RubTextComposer >> composeLinesFrom: start to: stop delta: delta into: lineColl priorLines: priorLines atY: startingY [
 	"While the section from start to stop has changed, composition may
 	ripple all the way to the end of the text. However in a rectangular
 	container, if we ever find a line beginning with the same character as
@@ -220,11 +192,8 @@ RubTextComposer>>composeLinesFrom: start to: stop delta: delta into: lineColl pr
 	self completeComposition
 ]
 
-{
-	#category : #'private composition',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>composeLinesFrom: argStart to: argStop delta: argDelta into: argLinesCollection priorLines: argPriorLines atY: argStartY textStyle: argTextStyle text: argText container: argContainer [
+{ #category : #'private composition' }
+RubTextComposer >> composeLinesFrom: argStart to: argStop delta: argDelta into: argLinesCollection priorLines: argPriorLines atY: argStartY textStyle: argTextStyle text: argText container: argContainer [
 	theTextStyle := argTextStyle.
 	theText := argText.
 	theContainer := argContainer.
@@ -252,11 +221,8 @@ RubTextComposer>>composeLinesFrom: argStart to: argStop delta: argDelta into: ar
 	prevLines := #()
 ]
 
-{
-	#category : #'private composition',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>composeOneLine [
+{ #category : #'private composition' }
+RubTextComposer >> composeOneLine [
 	| rectangles |
 	rectangles := theContainer rectanglesAt: currentY height: defaultLineHeight.
 	rectangles notEmpty
@@ -265,59 +231,38 @@ RubTextComposer>>composeOneLine [
 	self checkIfReadyToSlide
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>container [
+{ #category : #accessing }
+RubTextComposer >> container [
 	^ theContainer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>container: aRectangle  [
+{ #category : #accessing }
+RubTextComposer >> container: aRectangle [ 
 	theContainer := aRectangle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>cursorWidth [
+{ #category : #accessing }
+RubTextComposer >> cursorWidth [
 	^ cursorWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>cursorWidth: anInteger [
+{ #category : #accessing }
+RubTextComposer >> cursorWidth: anInteger [
 	cursorWidth := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>emphasisHere [
+{ #category : #accessing }
+RubTextComposer >> emphasisHere [
 	^ emphasisHere ifNil: [ emphasisHere := ' ' asText attributesAt: 1 forStyle: self textStyle ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>emphasisHere: aListOfTextAttribute [
+{ #category : #accessing }
+RubTextComposer >> emphasisHere: aListOfTextAttribute [
 	emphasisHere := aListOfTextAttribute 
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>fastFindFirstLineSuchThat: lineBlock [
+{ #category : #querying }
+RubTextComposer >> fastFindFirstLineSuchThat: lineBlock [
 	"Perform a binary search of the lines array and return the index
 	of the first element for which lineBlock evaluates as true.
 	This assumes the condition is one that goes from false to true for
@@ -335,11 +280,8 @@ RubTextComposer>>fastFindFirstLineSuchThat: lineBlock [
 	^ low
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>fixupLastLineIfCR [
+{ #category : #private }
+RubTextComposer >> fixupLastLineIfCR [
 	"This awful bit is to ensure that if we have scanned all the text and the last character is a CR that there is a null line at the end of lines. Sometimes this was not happening which caused anomalous selections when selecting all the text. This is implemented as a post-composition fixup because I couldn't figure out where to put it in the main logic."
 
 	(theText size > 0 and: [ CharacterSet crlf includes: theText last ])
@@ -347,11 +289,8 @@ RubTextComposer>>fixupLastLineIfCR [
 	self addNullLineForIndex: theText size + 1
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>indentationOfLineIndex: lineIndex ifBlank: aBlock [
+{ #category : #querying }
+RubTextComposer >> indentationOfLineIndex: lineIndex ifBlank: aBlock [
 	"Answer the number of leading tabs in the line at lineIndex.  If there are
 	 no visible characters, pass the number of tabs to aBlock and return its value.
 	 If the line is word-wrap overflow, back up a line and recur."
@@ -368,11 +307,8 @@ RubTextComposer>>indentationOfLineIndex: lineIndex ifBlank: aBlock [
 
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>lineIndexForPoint: aPoint [
+{ #category : #querying }
+RubTextComposer >> lineIndexForPoint: aPoint [
 	"Answer the index of the line in which to select the character nearest to aPoint."
 	| i py |
 	py := aPoint y truncated.
@@ -387,54 +323,36 @@ RubTextComposer>>lineIndexForPoint: aPoint [
 	^ i
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>lineIndexOfCharacterIndex: characterIndex  [
+{ #category : #querying }
+RubTextComposer >> lineIndexOfCharacterIndex: characterIndex [ 
 	"Answer the line index for a given characterIndex."
 	^ (self fastFindFirstLineSuchThat: [:line | line first > characterIndex]) - 1 max: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>lines [
+{ #category : #accessing }
+RubTextComposer >> lines [
 	^ lines
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>lines: aCollectionOfTextLine [
+{ #category : #accessing }
+RubTextComposer >> lines: aCollectionOfTextLine [
 	lines := aCollectionOfTextLine
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>maxRightX [
+{ #category : #accessing }
+RubTextComposer >> maxRightX [
 	^ maxRightX
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>moveBy: aPoint [
+{ #category : #private }
+RubTextComposer >> moveBy: aPoint [
 	self lines do: [ :line | line moveBy: aPoint ].
 	theContainer := theContainer translateBy: aPoint.
 	maxRightX := maxRightX + aPoint x
 ]
 
-{
-	#category : #'private composition',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>needComposition [
+{ #category : #'private composition' }
+RubTextComposer >> needComposition [
 	| ret |
 	ret := prevText isNil.
 	ret ifFalse: [ret := prevTextStyle ~= theTextStyle].
@@ -448,27 +366,18 @@ RubTextComposer>>needComposition [
 	^ ret
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>numberOfPhysicalLines [
+{ #category : #accessing }
+RubTextComposer >> numberOfPhysicalLines [
 	^ numberOfPhysicalLines ifNil: [ numberOfPhysicalLines := 0 ]
 ]
 
-{
-	#category : #'public composition',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>prepareToForceComposition [
+{ #category : #'public composition' }
+RubTextComposer >> prepareToForceComposition [
 	prevText := nil
 ]
 
-{
-	#category : #'private composition',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>recomposeFrom: start to: stop delta: delta [
+{ #category : #'private composition' }
+RubTextComposer >> recomposeFrom: start to: stop delta: delta [
 	"Recompose this paragraph. The altered portion is between start and
 	stop. Recomposition may continue to the end of the text, due to a
 	ripple effect.
@@ -494,22 +403,16 @@ RubTextComposer>>recomposeFrom: start to: stop delta: delta [
 
 ]
 
-{
-	#category : #'public composition',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>replaceFrom: start to: stop with: aText [
+{ #category : #'public composition' }
+RubTextComposer >> replaceFrom: start to: stop with: aText [
 	"Edit the text, and then recompose the lines."
 	self text replaceFrom: start to: stop with: aText.
 	self recomposeFrom: start to: start + aText size - 1 delta: aText size - (stop - start + 1).
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>slideOneLineDown [
+{ #category : #private }
+RubTextComposer >> slideOneLineDown [
 
 	| priorLine |
 
@@ -527,69 +430,45 @@ RubTextComposer>>slideOneLineDown [
 	currCharIndex := priorLine last + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>startCharIndex [
+{ #category : #accessing }
+RubTextComposer >> startCharIndex [
 	^ startCharIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>startCharIndex: anObject [
+{ #category : #accessing }
+RubTextComposer >> startCharIndex: anObject [
 	^ startCharIndex := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>tabWidth [
+{ #category : #accessing }
+RubTextComposer >> tabWidth [
 	^ self textStyle rubTabWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>text [
+{ #category : #accessing }
+RubTextComposer >> text [
 	^ theText 
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>text: aText [
+{ #category : #accessing }
+RubTextComposer >> text: aText [
 	theText := aText
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>textStyle [
+{ #category : #accessing }
+RubTextComposer >> textStyle [
 	^ theTextStyle 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>textStyle: aTextStyle  [
+{ #category : #accessing }
+RubTextComposer >> textStyle: aTextStyle [ 
 	theTextStyle := aTextStyle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextComposer>>unplug [
+{ #category : #private }
+RubTextComposer >> unplug [
 	theText := '' asText.
 	lines := #().
 	prevText := prevTextStyle := prevContainer := nil.

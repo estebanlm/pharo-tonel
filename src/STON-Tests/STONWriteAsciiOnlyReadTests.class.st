@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #STONWriteAsciiOnlyReadTests,
 	#superclass : #STONWriteReadTests,
-	#category : #STON-Tests,
-	#timestamp : ''
+	#category : #STON-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteAsciiOnlyReadTests>>serialize: anObject [
+{ #category : #private }
+STONWriteAsciiOnlyReadTests >> serialize: anObject [
 	^ String streamContents: [ :stream |
 		STON writer 
 			on: stream; 
@@ -20,11 +13,8 @@ STONWriteAsciiOnlyReadTests>>serialize: anObject [
 			nextPut: anObject ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWriteAsciiOnlyReadTests>>serializeJson: anObject [
+{ #category : #private }
+STONWriteAsciiOnlyReadTests >> serializeJson: anObject [
 	^ String streamContents: [ :stream |
 		STON jsonWriter 
 			on: stream; 

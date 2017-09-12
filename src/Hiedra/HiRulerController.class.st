@@ -11,15 +11,11 @@ Class {
 		'nodes',
 		'treeModel'
 	],
-	#category : #Hiedra-Spec,
-	#timestamp : 'MartinDias 7/8/2015 14:59'
+	#category : #Hiedra-Spec
 }
 
-{
-	#category : #private-refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>buildIndexesByNode [
+{ #category : #private-refreshing }
+HiRulerController >> buildIndexesByNode [
 	indexesByNode := IdentityDictionary new.
 	nodes withIndexDo: [ :aNode :index |
 		indexesByNode 
@@ -27,48 +23,33 @@ HiRulerController>>buildIndexesByNode [
 			put: index ]
 ]
 
-{
-	#category : #private-refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>buildRulerForm [
+{ #category : #private-refreshing }
+HiRulerController >> buildRulerForm [
 	rulerForm := 
 		rulerBuilder
 			values: nodes;
 			form
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>indexOfNode: aNode [
+{ #category : #accessing }
+HiRulerController >> indexOfNode: aNode [
 	^ indexesByNode at: aNode
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>initialize [
+{ #category : #initialization }
+HiRulerController >> initialize [
 	super initialize.
 	self initializeRulerBuilder.
 	nodes := #().
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>initializeRulerBuilder [
+{ #category : #initialization }
+HiRulerController >> initializeRulerBuilder [
 	rulerBuilder := HiRulerBuilder new.
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>newTreeColumnModel [
+{ #category : #convenience }
+HiRulerController >> newTreeColumnModel [
 	"Answer a TreeColumnModel ready to be used in a TreeModel."
 	
 	^ TreeColumnModel new	
@@ -76,60 +57,39 @@ HiRulerController>>newTreeColumnModel [
 		yourself.	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>nodes [
+{ #category : #accessing }
+HiRulerController >> nodes [
 	^ nodes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>preferredWidth [
+{ #category : #accessing }
+HiRulerController >> preferredWidth [
 	^ rulerForm width
 ]
 
-{
-	#category : #private-refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>refreshRuler [
+{ #category : #private-refreshing }
+HiRulerController >> refreshRuler [
 	self buildIndexesByNode.
 	self buildRulerForm.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>rowMorphFor: aMorphTreeNode [
+{ #category : #accessing }
+HiRulerController >> rowMorphFor: aMorphTreeNode [
 	^ HiRulerLazyMorph model: self key: aMorphTreeNode withoutListWrapper
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>rulerBuilder [
+{ #category : #accessing }
+HiRulerController >> rulerBuilder [
 	^ rulerBuilder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>rulerForm [
+{ #category : #accessing }
+HiRulerController >> rulerForm [
 	^ rulerForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>rulerMorphBoundsFor: aNode [
+{ #category : #accessing }
+HiRulerController >> rulerMorphBoundsFor: aNode [
 	| nodeIndex |
 	"hack: sync with tree if needed"
 	(nodes includes: aNode) ifFalse: [ self updateFromTree ].
@@ -139,35 +99,23 @@ HiRulerController>>rulerMorphBoundsFor: aNode [
 	^ 0 @ ((nodeIndex - 1) * rulerBuilder rowSize) corner: rulerForm width @ (nodeIndex * rulerBuilder rowSize)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>treeModel [
+{ #category : #accessing }
+HiRulerController >> treeModel [
 	^ treeModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>treeModel: anObject [
+{ #category : #accessing }
+HiRulerController >> treeModel: anObject [
 	treeModel := anObject
 ]
 
-{
-	#category : #private-refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>updateFromTree [
+{ #category : #private-refreshing }
+HiRulerController >> updateFromTree [
 	self values: treeModel roots
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerController>>values: aCollection  [
+{ #category : #accessing }
+HiRulerController >> values: aCollection [ 
 	nodes := aCollection.
 	
 	self refreshRuler.

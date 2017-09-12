@@ -55,25 +55,18 @@ Class {
 		'values',
 		'size'
 	],
-	#category : #Collections-Unordered,
-	#timestamp : 'CyrilFerlicot 8/15/2017 00:47'
+	#category : #Collections-Unordered
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary class>>new: aSize  [
+{ #category : #'instance creation' }
+SmallDictionary class >> new: aSize [ 
 	"Ignore the size"
 
 	^self basicNew initialize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary class>>newFrom: aDict  [
+{ #category : #'instance creation' }
+SmallDictionary class >> newFrom: aDict [ 
 	"Answer an instance of me containing the same associations as aDict.
 	 Error if any key appears twice."
 	| newDictionary |
@@ -86,11 +79,8 @@ SmallDictionary class>>newFrom: aDict  [
 	^ newDictionary
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary class>>newFromPairs: anArray  [
+{ #category : #'instance creation' }
+SmallDictionary class >> newFromPairs: anArray [ 
 
 	"Answer an instance of me associating (anArray at:i) to (anArray at: i+i)
 	 for each odd i.  anArray must have an even number of entries."
@@ -104,11 +94,8 @@ SmallDictionary class>>newFromPairs: anArray  [
 	^ newDictionary
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>= aDictionary [
+{ #category : #comparing }
+SmallDictionary >> = aDictionary [
 	"Two dictionaries are equal if
 	 (a) they are the same 'kind' of thing.
 	 (b) they have the same set of keys.
@@ -124,31 +111,22 @@ SmallDictionary>>= aDictionary [
 	^true
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>add: anAssociation  [
+{ #category : #adding }
+SmallDictionary >> add: anAssociation [ 
 	self at: anAssociation key put: anAssociation value.
 	^anAssociation
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>addAll: aKeyedCollection [
+{ #category : #adding }
+SmallDictionary >> addAll: aKeyedCollection [
 	aKeyedCollection == self 
 		ifFalse: [
 			aKeyedCollection keysAndValuesDo: [:key :value | self at: key put: value]].
 	^aKeyedCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>associationAt: key  [
+{ #category : #accessing }
+SmallDictionary >> associationAt: key [ 
 	"Returns an association for the given key.
 
 	Modifying the association won't affect the receiver because it
@@ -157,11 +135,8 @@ SmallDictionary>>associationAt: key  [
 	^ self associationAt: key ifAbsent: [self errorKeyNotFound: key]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>associationAt: key ifAbsent: aBlock  [
+{ #category : #accessing }
+SmallDictionary >> associationAt: key ifAbsent: aBlock [ 
 	"Answer an association for the given key.
 	If the key is not found, return the result of evaluating aBlock.
 
@@ -176,11 +151,8 @@ SmallDictionary>>associationAt: key ifAbsent: aBlock  [
 	^ key->value.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>associationAt: key ifPresent: aBlock [
+{ #category : #accessing }
+SmallDictionary >> associationAt: key ifPresent: aBlock [
 	"Answer the value of evaluating aBlock optionally with an association
 	for the given key.
 	If the key is not found, return nil.
@@ -194,11 +166,8 @@ SmallDictionary>>associationAt: key ifPresent: aBlock [
 	^ aBlock cull: key -> (values at: index)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>associations [
+{ #category : #accessing }
+SmallDictionary >> associations [
 	"Answer a collection containing associations for the receiver.
 	Suggested by l. Uzonyi
 
@@ -209,11 +178,8 @@ SmallDictionary>>associations [
  		self associationsDo: [ :each | stream nextPut: each ] ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>associationsDo: aBlock  [
+{ #category : #enumerating }
+SmallDictionary >> associationsDo: aBlock [ 
 	"Evaluate aBlock for each association for the receiver.
 
 	Modifying the associations won't affect the receiver because it
@@ -222,11 +188,8 @@ SmallDictionary>>associationsDo: aBlock  [
 	self keysAndValuesDo: [:key :value | aBlock value: key -> value]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>associationsSelect: aBlock  [
+{ #category : #enumerating }
+SmallDictionary >> associationsSelect: aBlock [ 
 	"Evaluate aBlock with each of my associations as the argument. Collect
 	into a new dictionary, only those associations for which aBlock evaluates
 	to true."
@@ -239,21 +202,15 @@ SmallDictionary>>associationsSelect: aBlock  [
 	^newCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>at: key  [
+{ #category : #accessing }
+SmallDictionary >> at: key [ 
 	"Answer the value associated with the key."
 
 	^ self at: key ifAbsent: [self errorKeyNotFound: key]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>at: key ifAbsent: aBlock  [
+{ #category : #accessing }
+SmallDictionary >> at: key ifAbsent: aBlock [ 
 	"Answer the value associated with the key or, if key isn't found,
 	answer the result of evaluating aBlock."
 
@@ -269,11 +226,8 @@ SmallDictionary>>at: key ifAbsent: aBlock  [
 	^ assoc value"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>at: key ifAbsentPut: aBlock [
+{ #category : #accessing }
+SmallDictionary >> at: key ifAbsentPut: aBlock [
 	"Return the value at the given key.
 	If the key is not included in the receiver store and return the result 
 	of evaluating aBlock as the new value."
@@ -285,11 +239,8 @@ SmallDictionary>>at: key ifAbsentPut: aBlock [
 		ifTrue: [self privateAt: key put: aBlock value]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>at: key ifPresent: aBlock [
+{ #category : #accessing }
+SmallDictionary >> at: key ifPresent: aBlock [
 	"Lookup the given key in the receiver. If it is present, answer the
 	value of evaluating the given block optionally with the value associated
 	with the key.
@@ -301,11 +252,8 @@ SmallDictionary>>at: key ifPresent: aBlock [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>at: key ifPresent: aPresentBlock ifAbsent: anAbsentBlock [
+{ #category : #accessing }
+SmallDictionary >> at: key ifPresent: aPresentBlock ifAbsent: anAbsentBlock [
 	"Lookup the given key in the receiver. If it is present, answer the
 	value of evaluating the first block optionally with the value associated
 	with the key.
@@ -315,11 +263,8 @@ SmallDictionary>>at: key ifPresent: aPresentBlock ifAbsent: anAbsentBlock [
 	^ anAbsentBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>at: key ifPresent: aPresentBlock ifAbsentPut: anAbsentBlock [
+{ #category : #accessing }
+SmallDictionary >> at: key ifPresent: aPresentBlock ifAbsentPut: anAbsentBlock [
 	"Lookup the given key in the receiver. If it is present, answer the
 	value of evaluating the first block optionally with the value associated
 	with the key.
@@ -332,11 +277,8 @@ SmallDictionary>>at: key ifPresent: aPresentBlock ifAbsentPut: anAbsentBlock [
 		ifAbsent: [ self at: key put: anAbsentBlock value ]
 ]
 
-{
-	#category : #putting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>at: key put: value  [
+{ #category : #putting }
+SmallDictionary >> at: key put: value [ 
 	"Set the value at key to be anObject.  If key is not found, create a
 	new entry for key and set is value to anObject. Answer anObject."
 
@@ -348,35 +290,23 @@ SmallDictionary>>at: key put: value  [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>bindingOf: varName [
+{ #category : #accessing }
+SmallDictionary >> bindingOf: varName [
 	^self associationAt: varName ifAbsent:[nil]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>bindingsDo: aBlock [
+{ #category : #enumerating }
+SmallDictionary >> bindingsDo: aBlock [
 	self associationsDo: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>capacity [
+{ #category : #accessing }
+SmallDictionary >> capacity [
 	^keys size
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>collect: aBlock  [
+{ #category : #enumerating }
+SmallDictionary >> collect: aBlock [ 
 	"Evaluate aBlock with each of my values as the argument.  Collect the
 	resulting values into a collection that is like me. Answer with the new
 	collection."
@@ -388,11 +318,8 @@ SmallDictionary>>collect: aBlock  [
 	^newCollection
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>declare: key from: aDictionary  [
+{ #category : #adding }
+SmallDictionary >> declare: key from: aDictionary [ 
 	"Add key to the receiver. If key already exists, do nothing. If aDictionary 
 	includes key, then remove it from aDictionary and use its association as 
 	the element of the receiver."
@@ -406,11 +333,8 @@ SmallDictionary>>declare: key from: aDictionary  [
 			[self add: key -> nil]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>difference: aCollection [
+{ #category : #enumerating }
+SmallDictionary >> difference: aCollection [
 	"Answer the set theoretic difference of two collections. This is a specialized version for Dictionaries keeping the keys of the objects. At a slightly higher price of an additional Set to track duplicates."
 
 	| other result duplicates |
@@ -428,20 +352,14 @@ SmallDictionary>>difference: aCollection [
 	^ result
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>do: aBlock [
+{ #category : #enumerating }
+SmallDictionary >> do: aBlock [
 
 	^ self valuesDo: aBlock.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>empty [
+{ #category : #accessing }
+SmallDictionary >> empty [
 	1 to: size do: [ :index |
 		keys at: index put: nil.
 		values at: index put: nil ].
@@ -449,45 +367,30 @@ SmallDictionary>>empty [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>errorKeyNotFound: aKey [
+{ #category : #private }
+SmallDictionary >> errorKeyNotFound: aKey [
 
 	KeyNotFound signalFor: aKey
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>errorValueNotFound: value [
+{ #category : #private }
+SmallDictionary >> errorValueNotFound: value [
 
 	ValueNotFound signalFor: value
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>findIndexForKey: aKey  [
+{ #category : #private }
+SmallDictionary >> findIndexForKey: aKey [ 
 	^ keys indexOf: aKey.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>growKeysAndValues [
+{ #category : #private }
+SmallDictionary >> growKeysAndValues [
 	self growTo: size * 2
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>growTo: aSize  [
+{ #category : #private }
+SmallDictionary >> growTo: aSize [ 
 	| newKeys newValues |
 	newKeys := Array new: aSize.
 	newValues := Array new: aSize.
@@ -500,11 +403,8 @@ SmallDictionary>>growTo: aSize  [
 	values := newValues
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>hasBindingThatBeginsWith: aString [
+{ #category : #testing }
+SmallDictionary >> hasBindingThatBeginsWith: aString [
 	"Answer true if the receiver has a key that begins with aString, false otherwise"
 	
 	self keysDo:[:each | 
@@ -513,71 +413,50 @@ SmallDictionary>>hasBindingThatBeginsWith: aString [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>includes: aValue [
+{ #category : #testing }
+SmallDictionary >> includes: aValue [
 	self do: [:each | aValue = each ifTrue: [^true]].
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>includesAssociation: anAssociation [
+{ #category : #testing }
+SmallDictionary >> includesAssociation: anAssociation [
   ^ (self   
       associationAt: anAssociation key
       ifAbsent: [ ^ false ]) value = anAssociation value
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>includesIdentity: aValue [
+{ #category : #testing }
+SmallDictionary >> includesIdentity: aValue [
 	"Answer whether aValue is one of the values of the receiver.  Contrast #includes: in which there is only an equality check, here there is an identity check"
 
 	self do: [:each | aValue == each ifTrue: [^ true]].
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>includesKey: key [
+{ #category : #testing }
+SmallDictionary >> includesKey: key [
 	"Answer whether the receiver has a key equal to the argument, key."
 
 	^ (self findIndexForKey: key) ~= 0
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>initialize [
+{ #category : #initialization }
+SmallDictionary >> initialize [
 	super initialize.
 	keys := Array new: 2.
 	values := Array new: 2.
 	size := 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>isDictionary [
+{ #category : #testing }
+SmallDictionary >> isDictionary [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>isHealthy [
+{ #category : #testing }
+SmallDictionary >> isHealthy [
 	"Since this dictionary does no hashing, we consider it healthy
 	if it contains no duplicate keys."
 
@@ -593,11 +472,8 @@ SmallDictionary>>isHealthy [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>keyAtIdentityValue: value  [
+{ #category : #accessing }
+SmallDictionary >> keyAtIdentityValue: value [ 
 	"Answer the key that is the external name for the argument, value. If 
 	there is none, answer nil.
 	Note: There can be multiple keys with the same value. Only one is returned."
@@ -605,11 +481,8 @@ SmallDictionary>>keyAtIdentityValue: value  [
 	^self keyAtIdentityValue: value ifAbsent: [self errorValueNotFound: value]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>keyAtIdentityValue: value ifAbsent: exceptionBlock [
+{ #category : #accessing }
+SmallDictionary >> keyAtIdentityValue: value ifAbsent: exceptionBlock [
 	"Answer the key that is the external name for the argument, value. If 
 	there is none, answer the result of evaluating exceptionBlock.
 	Note: There can be multiple keys with the same value. Only one is returned."
@@ -622,22 +495,16 @@ SmallDictionary>>keyAtIdentityValue: value ifAbsent: exceptionBlock [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>keyAtValue: value  [
+{ #category : #accessing }
+SmallDictionary >> keyAtValue: value [ 
 	"Answer the key that is the external name for the argument, value. If 
 	there is none, answer nil."
 
 	^self keyAtValue: value ifAbsent: [self errorValueNotFound: value]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>keyAtValue: value ifAbsent: exceptionBlock [
+{ #category : #accessing }
+SmallDictionary >> keyAtValue: value ifAbsent: exceptionBlock [
 	"Answer the key that is the external name for the argument, value. If 
 	there is none, answer the result of evaluating exceptionBlock.
 	: Use =, not ==, so stings like 'this' can be found.  Note that MethodDictionary continues to use == so it will be fast."
@@ -652,40 +519,28 @@ SmallDictionary>>keyAtValue: value ifAbsent: exceptionBlock [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>keyForIdentity: aValue [
+{ #category : #accessing }
+SmallDictionary >> keyForIdentity: aValue [
 	"If aValue is one of the values of the receive, return its key, else return nil.  Contrast #keyAtValue: in which there is only an equality check, here there is an identity check"
 
 	self keysAndValuesDo: [:key :value |  value == aValue ifTrue: [^  key]].
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>keys [
+{ #category : #accessing }
+SmallDictionary >> keys [
 	"Answer an Array containing the receiver's keys."
 	
 	^ keys copyFrom: 1 to: size
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>keysAndValuesDo: aBlock [
+{ #category : #enumerating }
+SmallDictionary >> keysAndValuesDo: aBlock [
 	1 to: size do: [:i | aBlock value: (keys at: i) value: (values at: i)]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>keysAndValuesRemove: keyValueBlock [
+{ #category : #removing }
+SmallDictionary >> keysAndValuesRemove: keyValueBlock [
 	"Removes all entries for which keyValueBlock returns true."
 	"When removing many items, you must not do it while iterating over the dictionary, since it may be changing.  This method takes care of tallying the removals in a first pass, and then performing all the deletions afterward.  Many places in the sytem could be simplified by using this method."
 
@@ -698,19 +553,13 @@ SmallDictionary>>keysAndValuesRemove: keyValueBlock [
 		[:aKey | self removeKey: aKey]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>keysDo: aBlock  [
+{ #category : #enumerating }
+SmallDictionary >> keysDo: aBlock [ 
 	1 to: size do: [:i | aBlock value: (keys at: i)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>keysSortedSafely [
+{ #category : #accessing }
+SmallDictionary >> keysSortedSafely [
 	"Answer a SortedCollection containing the receiver's keys."
 	| sortedKeys |
 	sortedKeys := SortedCollection new: self size.
@@ -726,20 +575,14 @@ SmallDictionary>>keysSortedSafely [
 	^ sortedKeys reSort
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>postCopy [
+{ #category : #copying }
+SmallDictionary >> postCopy [
 	keys := keys copy.
 	values := values copy
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>printElementsOn: aStream [
+{ #category : #printing }
+SmallDictionary >> printElementsOn: aStream [
 	| noneYet |
 	aStream nextPut: $(.
 	noneYet := true.
@@ -751,59 +594,41 @@ SmallDictionary>>printElementsOn: aStream [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>privateAt: key put: value  [
+{ #category : #private }
+SmallDictionary >> privateAt: key put: value [ 
 	size == keys size ifTrue: [self growKeysAndValues].
 	size := size + 1.
 	keys at: size put: key.
 	^values at: size put: value
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>remove:anAssociation [
+{ #category : #removing }
+SmallDictionary >> remove:anAssociation [
 
 	self removeKey:anAssociation key.
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>remove: oldObject ifAbsent: anExceptionBlock  [
+{ #category : #removing }
+SmallDictionary >> remove: oldObject ifAbsent: anExceptionBlock [ 
 	self removeKey: oldObject key ifAbsent: anExceptionBlock.
 	^oldObject
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>removeAll [
+{ #category : #removing }
+SmallDictionary >> removeAll [
 	self initialize.
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>removeKey: key  [
+{ #category : #removing }
+SmallDictionary >> removeKey: key [ 
 	"Remove key from the receiver.
 	If key is not in the receiver, notify an error."
 
 	^ self removeKey: key ifAbsent: [self errorKeyNotFound: key]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>removeKey: key ifAbsent: aBlock  [
+{ #category : #removing }
+SmallDictionary >> removeKey: key ifAbsent: aBlock [ 
 	"Remove key (and its associated value) from the receiver. If key is not in 
 	the receiver, answer the result of evaluating aBlock. Otherwise, answer 
 	the value externally named by key."
@@ -824,19 +649,13 @@ SmallDictionary>>removeKey: key ifAbsent: aBlock  [
 	^value
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>removeUnreferencedKeys [
+{ #category : #removing }
+SmallDictionary >> removeUnreferencedKeys [
 	^ self unreferencedKeys do: [ :key | self removeKey: key ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>select: aBlock  [
+{ #category : #enumerating }
+SmallDictionary >> select: aBlock [ 
 	"Evaluate aBlock with each of my values as the argument. Collect into a
 	new dictionary, only those associations for which aBlock evaluates to
 	true."
@@ -849,27 +668,18 @@ SmallDictionary>>select: aBlock  [
 	^newCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>setClass [
+{ #category : #private }
+SmallDictionary >> setClass [
 	^ Set
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>size [
+{ #category : #accessing }
+SmallDictionary >> size [
 	^size
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>storeOn: aStream [
+{ #category : #printing }
+SmallDictionary >> storeOn: aStream [
 	| noneYet |
 	aStream nextPutAll: '(('.
 	aStream nextPutAll: self class name.
@@ -885,19 +695,13 @@ SmallDictionary>>storeOn: aStream [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>unreferencedKeys [
+{ #category : #private }
+SmallDictionary >> unreferencedKeys [
 	^ Dictionary unreferencedKeysIn: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>values [
+{ #category : #accessing }
+SmallDictionary >> values [
 	"Answer a Collection containing the receiver's values."
 	"^ values copyFrom: 1 to: size."
 	
@@ -907,11 +711,8 @@ SmallDictionary>>values [
 	^ out contents
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallDictionary>>valuesDo: aBlock  [
+{ #category : #enumerating }
+SmallDictionary >> valuesDo: aBlock [ 
 	"Evaluate aBlock for each of the receiver's values."
 
 1 to: size do: [:i | aBlock value: (values at: i)]

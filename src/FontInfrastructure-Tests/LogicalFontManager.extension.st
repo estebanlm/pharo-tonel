@@ -1,11 +1,6 @@
-Extension {
-	#name : #LogicalFontManager
-}
+Extension { #name : #LogicalFontManager }
 
-{
-	#category : #'*FontInfrastructure-Tests',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-LogicalFontManager>>identityIncludesFontProvider: aFreeTypeFontProvider  [
+{ #category : #'*FontInfrastructure-Tests' }
+LogicalFontManager >> identityIncludesFontProvider: aFreeTypeFontProvider [ 
 	^ fontProviders identityIncludes: aFreeTypeFontProvider
 ]

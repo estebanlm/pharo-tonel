@@ -1,12 +1,7 @@
-Extension {
-	#name : #Color
-}
+Extension { #name : #Color }
 
-{
-	#category : #'*Random-Core',
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Color class>>random [
+{ #category : #'*Random-Core' }
+Color class >> random [
 	"Return a random color that isn't too dark or under-saturated."
 
 	^ self 

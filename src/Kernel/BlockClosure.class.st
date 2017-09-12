@@ -42,15 +42,11 @@ Class {
 		'startpc',
 		'numArgs'
 	],
-	#category : #Kernel-Methods,
-	#timestamp : '<historical>'
+	#category : #Kernel-Methods
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure class>>outerContext: aContext startpc: aStartpc numArgs: argCount copiedValues: anArrayOrNil [
+{ #category : #'instance creation' }
+BlockClosure class >> outerContext: aContext startpc: aStartpc numArgs: argCount copiedValues: anArrayOrNil [
 	^(self new: anArrayOrNil basicSize)
 		outerContext: aContext
 		startpc: aStartpc
@@ -58,11 +54,8 @@ BlockClosure class>>outerContext: aContext startpc: aStartpc numArgs: argCount c
 		copiedValues: anArrayOrNil
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>abstractBytecodeMessagesDo: aBlock [
+{ #category : #scanning }
+BlockClosure >> abstractBytecodeMessagesDo: aBlock [
 	"Evaluate aBlock with the sequence of abstract bytecodes in the receiver."
 	self method
 		abstractBytecodeMessagesFrom: startpc
@@ -76,11 +69,8 @@ BlockClosure>>abstractBytecodeMessagesDo: aBlock [
 	 msgs"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>argumentCount [
+{ #category : #accessing }
+BlockClosure >> argumentCount [
 	"Answer the number of arguments that must be used to evaluate this block"
 
 	^numArgs
@@ -88,29 +78,20 @@ BlockClosure>>argumentCount [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>argumentNames [
+{ #category : #accessing }
+BlockClosure >> argumentNames [
 	^ self sourceNode argumentNames
 ]
 
-{
-	#category : #scheduling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>asContext [
+{ #category : #scheduling }
+BlockClosure >> asContext [
 	"Create a MethodContext that is ready to execute self.  Assumes self takes no args (if it does the args will be nil)"
 
 	^self asContextWithSender: nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>asContextWithSender: aContext [
+{ #category : #private }
+BlockClosure >> asContextWithSender: aContext [
 	"Inner private support method for evaluation.  Do not use unless you know what you're doing."
 
 	^(Context newForMethod: outerContext method)
@@ -122,31 +103,22 @@ BlockClosure>>asContextWithSender: aContext [
 		privRefresh
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>asMinimalRepresentation [
+{ #category : #private }
+BlockClosure >> asMinimalRepresentation [
 	"Answer the receiver."
 
 	^self
 ]
 
-{
-	#category : #exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>assert [
+{ #category : #exceptions }
+BlockClosure >> assert [
 
 	self value ifFalse: [AssertionFailure signal: 'Assertion failed']
 
 ]
 
-{
-	#category : #exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>assertWithDescription: aStringOrABlock [
+{ #category : #exceptions }
+BlockClosure >> assertWithDescription: aStringOrABlock [
 	| value |
 	self value
 		ifTrue: [ ^ self ].
@@ -154,11 +126,8 @@ BlockClosure>>assertWithDescription: aStringOrABlock [
 	AssertionFailure signal: value
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>bench [
+{ #category : #evaluating }
+BlockClosure >> bench [
 	"Return how many times the receiver can get executed in 5 seconds. 
 	Answer a string with meaningful description.
 	See #benchFor: which returns a BenchmarkResult"
@@ -170,11 +139,8 @@ BlockClosure>>bench [
 	^ benchmarkResult shortPrintString 
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>benchFor: duration [
+{ #category : #evaluating }
+BlockClosure >> benchFor: duration [
 	"Run me for duration and return a BenchmarkResult"
 	
 	"[ 100 factorial ] benchFor: 2 seconds"
@@ -191,11 +157,8 @@ BlockClosure>>benchFor: duration [
 		yourself
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>blockCreationBytecodeMessage [
+{ #category : #scanning }
+BlockClosure >> blockCreationBytecodeMessage [
 	"Answer the abstract bytecode message that created the receiver."
 	| blockCreationBytecodeSize |
 	^self method abstractBytecodeMessageAt: startpc - (blockCreationBytecodeSize := 4)
@@ -203,20 +166,14 @@ BlockClosure>>blockCreationBytecodeMessage [
 	"(SortedCollection sortBlock: [:a :b| a compare: b caseSensitive: false]) sortBlock blockCreationBytecodeMessage"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>copiedValueAt: i [
+{ #category : #accessing }
+BlockClosure >> copiedValueAt: i [
 	<primitive: 60>
 	^self basicAt: i
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>copyForSaving [
+{ #category : #private }
+BlockClosure >> copyForSaving [
 	"Answer a copy of the receiver suitable for serialization.
 	 Notionally, if the receiver's outerContext has been returned from then nothing
 	 needs to be done and we can use the receiver. But there's a race condition
@@ -225,11 +182,8 @@ BlockClosure>>copyForSaving [
 	^self shallowCopy postCopy
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>cull: anArg [
+{ #category : #evaluating }
+BlockClosure >> cull: anArg [
 	"Execute the receiver with one or zero arguments depending on the receiver"
 	"([ 12 ] cull: 13)
 	>>> 12 
@@ -244,11 +198,8 @@ BlockClosure>>cull: anArg [
 	
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>cull: firstArg cull: secondArg [
+{ #category : #evaluating }
+BlockClosure >> cull: firstArg [ cull: secondArg
 	"Execute the receiver with one or two arguments depending on the receiver"
 	"([:x | x + 1] cull: 13 cull: 12)
 	>>> 14
@@ -262,22 +213,16 @@ BlockClosure>>cull: firstArg cull: secondArg [
 	
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>cull: firstArg cull: secondArg cull: thirdArg [
+{ #category : #evaluating }
+BlockClosure >> cull: firstArg [ cull: secondArg cull: thirdArg
 	^numArgs < 3 
 		ifTrue: [self cull: firstArg cull: secondArg]
 		ifFalse: [self value: firstArg value: secondArg value: thirdArg]
 	
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>cull: firstArg cull: secondArg cull: thirdArg cull: fourthArg [
+{ #category : #evaluating }
+BlockClosure >> cull: firstArg [ cull: secondArg cull: thirdArg cull: fourthArg
 	"Execute the receiver with four or less arguments. Check cull:cull: for examples"
 	
 	^numArgs < 4 
@@ -286,11 +231,8 @@ BlockClosure>>cull: firstArg cull: secondArg cull: thirdArg cull: fourthArg [
 	
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>doWhileFalse: conditionBlock [
+{ #category : #controlling }
+BlockClosure >> doWhileFalse: conditionBlock [
 	"Evaluate the receiver once, then again as long the value of conditionBlock is false."
  
 	| result |
@@ -300,11 +242,8 @@ BlockClosure>>doWhileFalse: conditionBlock [
 	^ result
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>doWhileTrue: conditionBlock [
+{ #category : #controlling }
+BlockClosure >> doWhileTrue: conditionBlock [
 	"Evaluate the receiver once, then again as long the value of conditionBlock is true."
  
 	| result |
@@ -314,11 +253,8 @@ BlockClosure>>doWhileTrue: conditionBlock [
 	^ result
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>durationToRun [
+{ #category : #evaluating }
+BlockClosure >> durationToRun [
 	"Answer the duration taken to execute this block."
 
 	^ self timeToRun
@@ -328,19 +264,13 @@ BlockClosure>>durationToRun [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>endPC [
+{ #category : #accessing }
+BlockClosure >> endPC [
 	^self blockCreationBytecodeMessage arguments last + startpc - 1
 ]
 
-{
-	#category : #exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>ensure: aBlock [
+{ #category : #exceptions }
+BlockClosure >> ensure: aBlock [
 	"Evaluate a termination block after evaluating the receiver, regardless of
 	 whether the receiver's evaluation completes.  N.B.  This method is *not*
 	 implemented as a primitive.  Primitive 198 always fails.  The VM uses prim
@@ -356,21 +286,15 @@ BlockClosure>>ensure: aBlock [
 	^ returnValue
 ]
 
-{
-	#category : #scheduling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>fork [
+{ #category : #scheduling }
+BlockClosure >> fork [
 	"Create and schedule a Process running the code in the receiver."
 
 	^ self newProcess resume
 ]
 
-{
-	#category : #scheduling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>forkAndWait [
+{ #category : #scheduling }
+BlockClosure >> forkAndWait [
 	"Suspend current process and execute self in new process, when it completes resume current process"
 
 	| semaphore |
@@ -380,11 +304,8 @@ BlockClosure>>forkAndWait [
 
 ]
 
-{
-	#category : #scheduling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>forkAt: priority [
+{ #category : #scheduling }
+BlockClosure >> forkAt: priority [ 
 	"Create and schedule a Process running the code in the receiver at the given priority. Answer the newly created process."
 
 	^ self newProcess
@@ -392,11 +313,8 @@ BlockClosure>>forkAt: priority [
 		resume
 ]
 
-{
-	#category : #scheduling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>forkAt: priority named: name [
+{ #category : #scheduling }
+BlockClosure >> forkAt: priority named: name [
 
 	"Create and schedule a Process running the code in the receiver at the
 
@@ -417,11 +335,8 @@ BlockClosure>>forkAt: priority named: name [
 	^ forkedProcess resume
 ]
 
-{
-	#category : #scheduling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>forkNamed: aString [
+{ #category : #scheduling }
+BlockClosure >> forkNamed: aString [
 
 	"Create and schedule a Process running the code in the receiver and
 
@@ -432,11 +347,8 @@ BlockClosure>>forkNamed: aString [
 	^ self newProcess name: aString; resume
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>hasMethodReturn [
+{ #category : #testing }
+BlockClosure >> hasMethodReturn [
 	"Answer whether the receiver has a method-return ('^') in its code."
 	| scanner endpc |
 	scanner := InstructionStream new method: outerContext method pc: startpc.
@@ -445,19 +357,13 @@ BlockClosure>>hasMethodReturn [
 	^scanner pc <= endpc
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>home [
+{ #category : #accessing }
+BlockClosure >> home [
 	^outerContext home
 ]
 
-{
-	#category : #exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>ifCurtailed: aBlock [
+{ #category : #exceptions }
+BlockClosure >> ifCurtailed: aBlock [
 	"Evaluate the receiver with an abnormal termination action.
 	 Evaluate aBlock only if execution is unwound during execution
 	 of the receiver.  If execution of the receiver finishes normally do
@@ -471,11 +377,8 @@ BlockClosure>>ifCurtailed: aBlock [
 	^result
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>ifError: errorHandlerBlock [
+{ #category : #evaluating }
+BlockClosure >> ifError: errorHandlerBlock [
 	"Evaluate the block represented by the receiver, and normally return it's value.  If an error occurs, the errorHandlerBlock is evaluated, and it's value is instead returned.  The errorHandlerBlock must accept zero, one, or two parameters (the error message and the receiver)."
 	"Examples:
 		[1 whatsUpDoc] ifError: [:err :rcvr | 'huh?'].
@@ -489,20 +392,14 @@ BlockClosure>>ifError: errorHandlerBlock [
 		errorHandlerBlock cull: ex description cull: ex receiver]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>isBlock [
+{ #category : #accessing }
+BlockClosure >> isBlock [
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>isClean [
+{ #category : #testing }
+BlockClosure >> isClean [
 	"Answer if the receiver does not close-over any variables other than globals, and does
 	 not ^-return (does not close over the home context).  Clean blocks are amenable to
 	 being created at compile-time."
@@ -527,46 +424,31 @@ BlockClosure>>isClean [
 		 [v class] isClean"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>isClosure [
+{ #category : #testing }
+BlockClosure >> isClosure [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>isDead [
+{ #category : #testing }
+BlockClosure >> isDead [
 	"Has self finished"
 	^false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>isValid [
+{ #category : #private }
+BlockClosure >> isValid [
 	"Answer the receiver."
 
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>method [
+{ #category : #accessing }
+BlockClosure >> method [
 	^outerContext method
 ]
 
-{
-	#category : #scheduling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>newProcess [
+{ #category : #scheduling }
+BlockClosure >> newProcess [
 	"Answer a Process running the code in the receiver. The process is not 
 	scheduled.
 	IMPORTANT! Debug stepping this deep infrastructure may lock your Image
@@ -579,11 +461,8 @@ BlockClosure>>newProcess [
 		priority: Processor activePriority
 ]
 
-{
-	#category : #scheduling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>newProcessWith: anArray [
+{ #category : #scheduling }
+BlockClosure >> newProcessWith: anArray [ 
 	"Answer a Process running the code in the receiver. The receiver's block 
 	arguments are bound to the contents of the argument, anArray. The 
 	process is not scheduled."
@@ -595,21 +474,15 @@ BlockClosure>>newProcessWith: anArray [
 		priority: Processor activePriority
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>numArgs [
+{ #category : #accessing }
+BlockClosure >> numArgs [
 	"Answer the number of arguments that must be used to evaluate this block"
 
 	^numArgs
 ]
 
-{
-	#category : #'error handing',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>numArgsError: numArgsForInvocation [
+{ #category : #'error handing' }
+BlockClosure >> numArgsError: numArgsForInvocation [
 
 	| printNArgs |
 	printNArgs := [:n| n printString, ' argument', (n = 1 ifTrue: [''] ifFalse:['s'])]. 
@@ -618,11 +491,8 @@ BlockClosure>>numArgsError: numArgsForInvocation [
 			', but was called with ', (printNArgs value: numArgsForInvocation), '.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>numCopiedValues [
+{ #category : #accessing }
+BlockClosure >> numCopiedValues [
 	"Answer the number of copied values of the receiver.  Since these are
 	 stored in the receiver's indexable fields this is the receiver's basic size.
 	 Primitive. Answer the number of indexable variables in the receiver. 
@@ -632,20 +502,14 @@ BlockClosure>>numCopiedValues [
 	^self basicSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>numLocalTemps [
+{ #category : #accessing }
+BlockClosure >> numLocalTemps [
 	"Answer the number of local temporaries for the receiver"
 	^ self method encoderClass numLocalTempsForBlockAt: startpc in: outerContext method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>numTemps [
+{ #category : #accessing }
+BlockClosure >> numTemps [
 	"Answer the number of temporaries for the receiver; this includes
 	 the number of arguments and the number of copied values."
 	^self numCopiedValues
@@ -653,11 +517,8 @@ BlockClosure>>numTemps [
 	 + self numLocalTemps
 ]
 
-{
-	#category : #exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>on: exception do: handlerAction [
+{ #category : #exceptions }
+BlockClosure >> on: exception do: handlerAction [
 	"Evaluate the receiver in the scope of an exception handler.
 	The following primitive is just a marker used to find the error handling context. 
 	See MethodContext>>#isHandlerOrSignalingContext. "
@@ -665,11 +526,8 @@ BlockClosure>>on: exception do: handlerAction [
 	^ self value
 ]
 
-{
-	#category : #exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>on: exception fork: handlerAction [
+{ #category : #exceptions }
+BlockClosure >> on: exception fork: handlerAction [
 	"Activate the receiver. In case of exception, fork a new process, which will handle an error.
 	An original process will continue running as if receiver evaluation finished and answered nil,
 	i.e., an expression like:
@@ -714,11 +572,8 @@ BlockClosure>>on: exception fork: handlerAction [
 
 ]
 
-{
-	#category : #exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>onDNU: selector do: handleBlock [
+{ #category : #exceptions }
+BlockClosure >> onDNU: selector do: handleBlock [
 	"Catch MessageNotUnderstood exceptions but only those of the given selector (DNU stands for doesNotUnderstand:)"
 
 	^ self on: MessageNotUnderstood do: [:exception |
@@ -728,19 +583,13 @@ BlockClosure>>onDNU: selector do: handleBlock [
 	  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>outerContext [
+{ #category : #accessing }
+BlockClosure >> outerContext [
 	^outerContext
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>outerContext: aContext startpc: aStartpc numArgs: argCount copiedValues: anArrayOrNil [
+{ #category : #initialize-release }
+BlockClosure >> outerContext: aContext startpc: aStartpc numArgs: argCount copiedValues: anArrayOrNil [
 	outerContext := aContext.
 	startpc := aStartpc.
 	numArgs := argCount.
@@ -749,11 +598,8 @@ BlockClosure>>outerContext: aContext startpc: aStartpc numArgs: argCount copiedV
 		self at: i put: (anArrayOrNil at: i)]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>printOn: aStream [
+{ #category : #printing }
+BlockClosure >> printOn: aStream [
 
 	aStream nextPutAll: ((self method hasSourceCode
 		or: [ "There is a decompiler"
@@ -762,39 +608,27 @@ BlockClosure>>printOn: aStream [
 				ifFalse: [ 'aBlockClosure(no source code or decompiler available)' ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>receiver [
+{ #category : #accessing }
+BlockClosure >> receiver [
 	^outerContext receiver
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>reentrant [
+{ #category : #private }
+BlockClosure >> reentrant [
 	"Answer a version of the recever that can be reentered.
 	 Closures are reentrant (unlike BlockContect) so simply answer self."
 	^self
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>repeat [
+{ #category : #controlling }
+BlockClosure >> repeat [
 	"Evaluate the receiver repeatedly, ending only if the block explicitly returns."
 
 	[self value. true] whileTrue
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>repeatWithGCIf: testBlock [
+{ #category : #controlling }
+BlockClosure >> repeatWithGCIf: testBlock [
 	| ans |
 	"run the receiver, and if testBlock returns true, garbage collect and run the receiver again"
 	ans := self value.
@@ -802,21 +636,15 @@ BlockClosure>>repeatWithGCIf: testBlock [
 	^ans
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>sender [
+{ #category : #'debugger access' }
+BlockClosure >> sender [
 	"Answer the context that sent the message that created the receiver."
 
 	^outerContext sender
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>simulateValueWithArguments: anArray caller: aContext [
+{ #category : #evaluating }
+BlockClosure >> simulateValueWithArguments: anArray caller: aContext [
 	"Simulate the valueWithArguments: primitive. Fail if anArray is not an array of the right arity."
 	| newContext sz |
 	newContext := (Context newForMethod: outerContext method)
@@ -837,38 +665,26 @@ BlockClosure>>simulateValueWithArguments: anArray caller: aContext [
 	^newContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>startpc [
+{ #category : #accessing }
+BlockClosure >> startpc [
 	^startpc
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>tempNames [
+{ #category : #accessing }
+BlockClosure >> tempNames [
 	^ self sourceNode temporaryNames
 
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>timeToRun [
+{ #category : #evaluating }
+BlockClosure >> timeToRun [
 	"Answer the number of milliseconds taken to execute this block."
 
 	^ Duration milliSeconds: (Time millisecondsToRun: self)
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>value [
+{ #category : #evaluating }
+BlockClosure >> value [
 	"Activate the receiver, creating a closure activation (MethodContext)
 	 whose closure is the receiver and whose caller is the sender of this message.
 	 Supply the copied values to the activation as its arguments and copied temps.
@@ -880,11 +696,8 @@ BlockClosure>>value [
 	^self primitiveFailed
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>value: anArg [
+{ #category : #evaluating }
+BlockClosure >> value: anArg [
 	"Activate the receiver, creating a closure activation (MethodContext)
 	 whose closure is the receiver and whose caller is the sender of this message.
 	 Supply the argument and copied values to the activation as its arguments and copied temps.
@@ -896,11 +709,8 @@ BlockClosure>>value: anArg [
 	self primitiveFailed
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>value: firstArg value: secondArg [
+{ #category : #evaluating }
+BlockClosure >> value: firstArg [ value: secondArg
 	"Activate the receiver, creating a closure activation (MethodContext)
 	 whose closure is the receiver and whose caller is the sender of this message.
 	 Supply the arguments and copied values to the activation as its arguments and copied temps.
@@ -912,11 +722,8 @@ BlockClosure>>value: firstArg value: secondArg [
 	^self primitiveFailed
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>value: firstArg value: secondArg value: thirdArg [
+{ #category : #evaluating }
+BlockClosure >> value: firstArg [ value: secondArg value: thirdArg
 	"Activate the receiver, creating a closure activation (MethodContext)
 	 whose closure is the receiver and whose caller is the sender of this message.
 	 Supply the arguments and copied values to the activation as its arguments and copied temps.
@@ -928,11 +735,8 @@ BlockClosure>>value: firstArg value: secondArg value: thirdArg [
 	^self primitiveFailed
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>value: firstArg value: secondArg value: thirdArg value: fourthArg [
+{ #category : #evaluating }
+BlockClosure >> value: firstArg [ value: secondArg value: thirdArg value: fourthArg
 	"Activate the receiver, creating a closure activation (MethodContext)
 	 whose closure is the receiver and whose caller is the sender of this message.
 	 Supply the arguments and copied values to the activation as its arguments and copied temps.
@@ -944,11 +748,8 @@ BlockClosure>>value: firstArg value: secondArg value: thirdArg value: fourthArg 
 	^self primitiveFailed
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueAfterWaiting: aDelay [
+{ #category : #evaluating }
+BlockClosure >> valueAfterWaiting: aDelay [
 	"Waits for a delay, then executes the block. Answers the process so you can terminate it"
 	
 	^ [ aDelay wait. self value ] 
@@ -961,11 +762,8 @@ BlockClosure>>valueAfterWaiting: aDelay [
 					print: self ] )
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueAt: blockPriority [
+{ #category : #evaluating }
+BlockClosure >> valueAt: blockPriority [ 
 	"Evaluate the receiver (block), with another priority as the actual one 
 	and restore it afterwards. The caller should be careful with using 
 	higher priorities."
@@ -981,11 +779,8 @@ BlockClosure>>valueAt: blockPriority [
 	^ result
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueNoContextSwitch [
+{ #category : #evaluating }
+BlockClosure >> valueNoContextSwitch [
 	"An exact copy of BlockClosure>>value except that this version will not preempt
 	 the current process on block activation if a higher-priority process is runnable.
 	 Primitive. Essential."
@@ -995,11 +790,8 @@ BlockClosure>>valueNoContextSwitch [
 	self primitiveFailed
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueNoContextSwitch: anArg [
+{ #category : #evaluating }
+BlockClosure >> valueNoContextSwitch: anArg [
 	"An exact copy of BlockClosure>>value: except that this version will not preempt
 	 the current process on block activation if a higher-priority process is runnable.
 	 Primitive. Essential."
@@ -1009,21 +801,15 @@ BlockClosure>>valueNoContextSwitch: anArg [
 	self primitiveFailed
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueSupplyingAnswer: anObject [
+{ #category : #evaluating }
+BlockClosure >> valueSupplyingAnswer: anObject [
 	^ (anObject isCollection and: [anObject isString not])
 		ifTrue: [self valueSupplyingAnswers: {anObject}]
 		ifFalse: [self valueSupplyingAnswers: {{'*'. anObject}}]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueSupplyingAnswers: aListOfPairs [
+{ #category : #evaluating }
+BlockClosure >> valueSupplyingAnswers: aListOfPairs [
 	"evaluate the block using a list of questions / answers that might be called upon to
 	automatically respond to Object>>confirm: or FillInTheBlank requests"
 
@@ -1051,50 +837,35 @@ BlockClosure>>valueSupplyingAnswers: aListOfPairs [
 						ifNotNil: [notify resume: outerAnswer]]]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueSuppressingAllMessages [
+{ #category : #evaluating }
+BlockClosure >> valueSuppressingAllMessages [
 
 	^ self valueSuppressingMessages: #('*')
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueSuppressingMessages: aListOfStrings [
+{ #category : #evaluating }
+BlockClosure >> valueSuppressingMessages: aListOfStrings [
 
 	^ self
 		valueSuppressingMessages: aListOfStrings
 		supplyingAnswers: #()
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueSuppressingMessages: aListOfStrings supplyingAnswers: aListOfPairs [
+{ #category : #evaluating }
+BlockClosure >> valueSuppressingMessages: aListOfStrings supplyingAnswers: aListOfPairs [
 
 	^ self valueSupplyingAnswers: aListOfPairs, (aListOfStrings collect: [:each | {each. true}])
 ]
 
-{
-	#category : #exceptions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueUninterruptably [
+{ #category : #exceptions }
+BlockClosure >> valueUninterruptably [
 	"Prevent remote returns from escaping the sender.  Even attempts to terminate (unwind) this process will be halted and the process will resume here.  A terminate message is needed for every one of these in the sender chain to get the entire process unwound."
 
 	^ self ifCurtailed: [^ self]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueUnpreemptively [
+{ #category : #private }
+BlockClosure >> valueUnpreemptively [
 	"Evaluate the receiver (block), without the possibility of preemption by higher priority processes. Use this facility VERY sparingly!"
 	"Think about using Block>>valueUninterruptably first, and think about using Semaphore>>critical: before that, and think about redesigning your application even before that! 
 	After you've done all that thinking, go right ahead and use it..."
@@ -1113,11 +884,8 @@ BlockClosure>>valueUnpreemptively [
 	^result
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueWithArguments: anArray [
+{ #category : #evaluating }
+BlockClosure >> valueWithArguments: anArray [
 	"Activate the receiver, creating a closure activation (MethodContext)
 	 whose closure is the receiver and whose caller is the sender of this message.
 	 Supply the arguments in an anArray and copied values to the activation as its arguments and copied temps.
@@ -1136,11 +904,8 @@ BlockClosure>>valueWithArguments: anArray [
 	thisContext privSender: newContext
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueWithEnoughArguments: anArray [
+{ #category : #evaluating }
+BlockClosure >> valueWithEnoughArguments: anArray [
 	"call me with enough arguments from anArray"
 	| args |
 	(anArray size == self numArgs)
@@ -1155,19 +920,13 @@ BlockClosure>>valueWithEnoughArguments: anArray [
 	^ self valueWithArguments: args
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueWithExit [
+{ #category : #evaluating }
+BlockClosure >> valueWithExit [ 
 	  self value: [ ^nil ]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueWithInterval: aDelay [
+{ #category : #evaluating }
+BlockClosure >> valueWithInterval: aDelay [
 	"Executes the block every x milliseconds specified in arguments. Answers the process, so you can terminate it"
 	
 	^ [ [ self value. aDelay wait. ] repeat ] 
@@ -1180,11 +939,8 @@ BlockClosure>>valueWithInterval: aDelay [
 					print: self ] )
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueWithPossibleArgs: anArray [
+{ #category : #evaluating }
+BlockClosure >> valueWithPossibleArgs: anArray [ 
 	"Execute the receiver with the correct number of arguments taken from the argument."
 	"([:x | x + 1] valueWithPossibleArgs: #( 13 12 15))
 	>>> 14
@@ -1210,11 +966,8 @@ BlockClosure>>valueWithPossibleArgs: anArray [
 							ifFalse: [anArray copyFrom: 1 to: numArgs]])]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueWithPossibleArgument: anArg [
+{ #category : #evaluating }
+BlockClosure >> valueWithPossibleArgument: anArg [ 
 	"Evaluate the block represented by the receiver. 
 	 If the block requires one argument, use anArg, if it requires more than one,
 	 fill up the rest with nils."
@@ -1227,11 +980,8 @@ BlockClosure>>valueWithPossibleArgument: anArg [
 	^self valueWithArguments: a
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>valueWithin: aDuration onTimeout: timeoutBlock [
+{ #category : #evaluating }
+BlockClosure >> valueWithin: aDuration onTimeout: timeoutBlock [
 	"Evaluate the receiver.
 	If the evaluation does not complete in less than aDuration evaluate the timeoutBlock instead"
 
@@ -1264,11 +1014,8 @@ BlockClosure>>valueWithin: aDuration onTimeout: timeoutBlock [
 				ifFalse:[ e pass]].
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>whileFalse [
+{ #category : #controlling }
+BlockClosure >> whileFalse [
 	"Ordinarily compiled in-line, and therefore not overridable.
 	This is in case the message is sent to other than a literal block.
 	Evaluate the receiver, as long as its value is false."
@@ -1276,11 +1023,8 @@ BlockClosure>>whileFalse [
 	self value ifFalse: [ self whileFalse ]
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>whileFalse: aBlock [
+{ #category : #controlling }
+BlockClosure >> whileFalse: aBlock [ 
 	"Ordinarily compiled in-line, and therefore not overridable.
 	This is in case the message is sent to other than a literal block.
 	Evaluate the argument, aBlock, as long as the value of the receiver is false."
@@ -1288,31 +1032,22 @@ BlockClosure>>whileFalse: aBlock [
 	self value ifFalse: [ aBlock value. self whileFalse: aBlock ]
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>whileNil: aBlock [
+{ #category : #controlling }
+BlockClosure >> whileNil: aBlock [ 
 	"Unlike #whileTrue/False: this is not compiled inline."
 	^ [self value isNil] whileTrue: [aBlock value]
 	
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>whileNotNil: aBlock [
+{ #category : #controlling }
+BlockClosure >> whileNotNil: aBlock [ 
 	"Unlike #whileTrue/False: this is not compiled inline."
 	^ [self value notNil] whileTrue: [aBlock value]
 	
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>whileTrue [
+{ #category : #controlling }
+BlockClosure >> whileTrue [
 	"Ordinarily compiled in-line, and therefore not overridable.
 	This is in case the message is sent to other than a literal block.
 	Evaluate the receiver, as long as its value is true."
@@ -1320,11 +1055,8 @@ BlockClosure>>whileTrue [
 	self value ifTrue: [ self whileTrue ]
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockClosure>>whileTrue: aBlock [
+{ #category : #controlling }
+BlockClosure >> whileTrue: aBlock [ 
 	"Ordinarily compiled in-line, and therefore not overridable.
 	This is in case the message is sent to other than a literal block.
 	Evaluate the argument, aBlock, as long as the value of the receiver is true."

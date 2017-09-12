@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #KMKeymapTest,
 	#superclass : #AbstractKeymappingTest,
-	#category : #Keymapping-Tests,
-	#timestamp : ''
+	#category : #Keymapping-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMKeymapTest>>keymapContainer [
+{ #category : #tests }
+KMKeymapTest >> keymapContainer [
 	^ KMRepository default
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMKeymapTest>>testExecute [
+{ #category : #tests }
+KMKeymapTest >> testExecute [
 	| bm km flag category |
 	category := KMCategory named: #TestFoo.
 	KMRepository default addCategory: category.
@@ -37,11 +27,8 @@ KMKeymapTest>>testExecute [
 	self assert: flag
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMKeymapTest>>testMatching [
+{ #category : #tests }
+KMKeymapTest >> testMatching [
 	| category blockAction a b c p|
 	
 	a := self eventKey: $a.

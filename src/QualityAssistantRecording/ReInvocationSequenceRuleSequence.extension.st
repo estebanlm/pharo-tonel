@@ -1,12 +1,7 @@
-Extension {
-	#name : #ReInvocationSequenceRuleSequence
-}
+Extension { #name : #ReInvocationSequenceRuleSequence }
 
-{
-	#category : #'*qualityAssistantRecording',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRuleSequence>>dataForQAR [
+{ #category : #'*qualityAssistantRecording' }
+ReInvocationSequenceRuleSequence >> dataForQAR [
 
 	^ Dictionary newFromPairs: { 
 		#before . before .

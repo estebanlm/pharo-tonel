@@ -14,15 +14,11 @@ Class {
 	#classVars : [
 		'MethodsIconsCache'
 	],
-	#category : #Nautilus-Widgets,
-	#timestamp : 'StephaneDucasse 11/11/2015 16:13'
+	#category : #Nautilus-Widgets
 }
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget class>>buildMethodShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+MethodWidget class >> buildMethodShortcutsOn: aBuilder [
 	<keymap>	
 
 	(aBuilder shortcut: #fullBrowse)
@@ -104,11 +100,8 @@ MethodWidget class>>buildMethodShortcutsOn: aBuilder [
 		description: 'ShowBytecodes'.
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget class>>elementsMenu: aBuilder [
+{ #category : #menu }
+MethodWidget class >> elementsMenu: aBuilder [
 	<nautilusGlobalMethodMenu>
 	| selectedMethods tmp target |
 	target := aBuilder model.
@@ -249,20 +242,14 @@ MethodWidget class>>elementsMenu: aBuilder [
 		order: 2000
 ]
 
-{
-	#category : #icon,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget class>>methodsIconsCache [
+{ #category : #icon }
+MethodWidget class >> methodsIconsCache [
 
 	^ MethodsIconsCache ifNil: [ MethodsIconsCache := WeakIdentityKeyDictionary new ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget class>>removeAllFromMethodsIconsCache: aMethod [
+{ #category : #protocol }
+MethodWidget class >> removeAllFromMethodsIconsCache: aMethod [
 	self methodsIconsCache
 		keysDo: [ :method | 
 			" for overrides "
@@ -270,20 +257,14 @@ MethodWidget class>>removeAllFromMethodsIconsCache: aMethod [
 				ifTrue: [ MethodsIconsCache removeKey: method ifAbsent: [  ] ] ]
 ]
 
-{
-	#category : #icon,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget class>>resetMethodIconCache [
+{ #category : #icon }
+MethodWidget class >> resetMethodIconCache [
 
 	MethodsIconsCache := WeakIdentityKeyDictionary new 
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>buildMethodsList [
+{ #category : #'item creation' }
+MethodWidget >> buildMethodsList [
 	methodsList := self class listClass new
 		basicWrapSelector: #methodWrapper:;
 		keystrokeSelector: #keyPressedOnElement:;
@@ -306,20 +287,14 @@ MethodWidget>>buildMethodsList [
 	^ methodsList
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>doubleClick: ann [
+{ #category : #protocol }
+MethodWidget >> doubleClick: ann [
 	ann event shiftPressed ifTrue: [ ^ self openFloatingEditorToRenameAtIndex: ann selectedRowIndex  ].
 	self model fullBrowse
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>dragPassengersFor: item inMorph: dragSource  [
+{ #category : #'drag and drop' }
+MethodWidget >> dragPassengersFor: item inMorph: dragSource [ 
 
 	| transferType object |
 	(dragSource isKindOf: self class listClass) ifFalse: [^ nil ].
@@ -333,38 +308,26 @@ MethodWidget>>dragPassengersFor: item inMorph: dragSource  [
 				ifTrue: [ { object } ]]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>elementsMenu: aMenuMorph shifted: aBoolean  [
+{ #category : #protocol }
+MethodWidget >> elementsMenu: aMenuMorph shifted: aBoolean [ 
 	
 	^ self model elementsMenu: aMenuMorph shifted: aBoolean 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>getMethodItem: anIndex [
+{ #category : #private }
+MethodWidget >> getMethodItem: anIndex [
 
 	^ self getMethods at: anIndex
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>getMethods [
+{ #category : #protocol }
+MethodWidget >> getMethods [
 
 	^ methods ifNil: [ methods := self loadMethods ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>handleGroupWrappingFor: aSelector and: aStringMorph in: aPackage [
+{ #category : #private }
+MethodWidget >> handleGroupWrappingFor: aSelector [ and: aStringMorph in: aPackage
 	aPackage name = self model model class lastModifiedMethodsGroupName 
 		ifFalse: [ ^ aStringMorph ]
 		ifTrue: [ 
@@ -374,40 +337,28 @@ MethodWidget>>handleGroupWrappingFor: aSelector and: aStringMorph in: aPackage [
 				ifNone: [ ^ aStringMorph ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>hasFocus [
+{ #category : #private }
+MethodWidget >> hasFocus [
 
 	^ methodsList hasKeyboardFocus
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>initialize [
+{ #category : #initialization }
+MethodWidget >> initialize [
 
 	super initialize.
 	MethodsIconsCache ifNil: [ MethodsIconsCache := WeakIdentityKeyDictionary new ].
 	methodsSelection := OrderedCollection new.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>invalidateCacheEntryFor: aMethod [
+{ #category : #protocol }
+MethodWidget >> invalidateCacheEntryFor: aMethod [
 	self removeAllFromMethodsIconsCache: aMethod.
 	self updateMethodList
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>keyPressedOnElement: anEvent [
+{ #category : #protocol }
+MethodWidget >> keyPressedOnElement: anEvent [
 	| aCharacter |
 	
 	aCharacter := anEvent keyCharacter.
@@ -417,30 +368,21 @@ MethodWidget>>keyPressedOnElement: anEvent [
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>label: aString [
+{ #category : #protocol }
+MethodWidget >> label: aString [
 
 	"methodsGroup label: aString"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>loadMethods [
+{ #category : #private }
+MethodWidget >> loadMethods [
 	^ self model selectedCategories
 		ifEmpty: [ self model methodsForCategory: self model allLabel ]
 		ifNotEmpty: [ :cat | self model methodsForCategories: cat ]
 ]
 
-{
-	#category : #icon,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>methodIconFor: aMethod [
+{ #category : #icon }
+MethodWidget >> methodIconFor: aMethod [
 
 	| actions button action |
 	MethodsIconsCache
@@ -466,20 +408,14 @@ MethodWidget>>methodIconFor: aMethod [
 	^ button
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>methodListSize [
+{ #category : #private }
+MethodWidget >> methodListSize [
 	
 	^ self getMethods size
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>methodSelectionAt: anIndex [
+{ #category : #selection }
+MethodWidget >> methodSelectionAt: anIndex [
 	| elt |
 	elt := self getMethods at: anIndex ifAbsent: [ ^ false ].
 	^ methodsSelection
@@ -488,11 +424,8 @@ MethodWidget>>methodSelectionAt: anIndex [
 		ifNone: [ false ]
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>methodSelectionAt: anIndex put: aBoolean [
+{ #category : #selection }
+MethodWidget >> methodSelectionAt: anIndex put: aBoolean [
 	| method |
 	self flag: #clean.	"This method as classAt:put: and categoryAt:put: need to be clean latter. A class should not expose his implementation. Instead we should have selectMethod: unselectMethod:. Or better, this logic should be in AbstractWidget since all the subclasses remember the selected objects."
 	method := self getMethods at: anIndex ifAbsent: [ ^ self ].
@@ -501,11 +434,8 @@ MethodWidget>>methodSelectionAt: anIndex put: aBoolean [
 		ifFalse: [ self removeSelectionOf: method ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>methodWrapper: anItem [
+{ #category : #private }
+MethodWidget >> methodWrapper: anItem [
 	| package selector result emphasis |
 	selector := anItem selector.
 	package := self model selectedPackage.
@@ -541,57 +471,39 @@ MethodWidget>>methodWrapper: anItem [
 	^ result emphasis: emphasis
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>methodsIconsCache [
+{ #category : #protocol }
+MethodWidget >> methodsIconsCache [
 
 	^ self class methodsIconsCache
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>methodsLabel [
+{ #category : #private }
+MethodWidget >> methodsLabel [
 
 	^ self showInstance
 		ifTrue: ['Instance methods' asText ]
 		ifFalse: ['Class methods' asText allBold ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>methodsList [
+{ #category : #private }
+MethodWidget >> methodsList [
 	^ methodsList
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>methodsSelection [
+{ #category : #protocol }
+MethodWidget >> methodsSelection [
 
 	^ methodsSelection
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>okToChange [
+{ #category : #protocol }
+MethodWidget >> okToChange [
 
 	^ self model okToChange. 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>openFloatingEditorToRenameAtIndex: anIndex [
+{ #category : #private }
+MethodWidget >> openFloatingEditorToRenameAtIndex: anIndex [
 	| selectedRowMorph ed itemRowMorph vScroll font cls method selector |
 	method := self getMethods at: anIndex.
 	selector := method selector.
@@ -635,11 +547,8 @@ MethodWidget>>openFloatingEditorToRenameAtIndex: anIndex [
 	ed openEditorWithContents: selector asString thenDo: [ :editor | editor selectAll  ]
 ]
 
-{
-	#category : #icon,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>rebuildUpAndDownArrowIconFrom: array [
+{ #category : #icon }
+MethodWidget >> rebuildUpAndDownArrowIconFrom: array [
 
 	| container |
 	
@@ -659,57 +568,39 @@ MethodWidget>>rebuildUpAndDownArrowIconFrom: array [
 	^container
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>removeAllFromMethodsIconsCache: aMethod [
+{ #category : #protocol }
+MethodWidget >> removeAllFromMethodsIconsCache: aMethod [
 	^self class removeAllFromMethodsIconsCache: aMethod
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>removeSelectionOf: element [
+{ #category : #selection }
+MethodWidget >> removeSelectionOf: element [
 	"I do not remove immediatly the element because if the method have been compile, this will not be the same object anymore. So I check the class and the selector of the method."
 
 	methodsSelection detect: [ :meth | meth methodClass = element methodClass and: [ meth selector = element selector ] ] ifFound: [ :meth | methodsSelection remove: meth ] ifNone: [ ^ self ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>resetMethodList [
+{ #category : #protocol }
+MethodWidget >> resetMethodList [
 
 	methods := nil
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>resetMethodSelection [
+{ #category : #protocol }
+MethodWidget >> resetMethodSelection [
 
 	methodsSelection := OrderedCollection new
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>selectMethod: aMethod [
+{ #category : #protocol }
+MethodWidget >> selectMethod: aMethod [
 	aMethod
 		ifNotNil: [ self removeSelectionOf: aMethod.
 			methodsSelection add: aMethod ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>selectNextMethod [
+{ #category : #protocol }
+MethodWidget >> selectNextMethod [
 	| methodToSelect selectedMethodIndex |
 	self getMethods size <= 1
 		ifFalse:
@@ -722,30 +613,21 @@ MethodWidget>>selectNextMethod [
 	self model selectedMethod: methodToSelect
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>selectedMethod [
+{ #category : #protocol }
+MethodWidget >> selectedMethod [
 
 	^ self model selectedMethod
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>selectedMethod: aMethod [
+{ #category : #protocol }
+MethodWidget >> selectedMethod: aMethod [
 	"I check if it's ok here to work better with the drag/drop mechanism"
 
 	self model selectedMethod: aMethod
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>selectedMethodIndex [
+{ #category : #selection }
+MethodWidget >> selectedMethodIndex [
 	| methodClass selector |
 	self selectedMethod ifNil: [ ^ 0 ].
 	methodClass := self selectedMethod methodClass.
@@ -753,11 +635,8 @@ MethodWidget>>selectedMethodIndex [
 	^ self getMethods detectIndex: [ :method | method methodClass = methodClass and: [ method selector = selector ] ] ifNone: [ 0 ]
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>selectedMethodIndex: anInteger [
+{ #category : #selection }
+MethodWidget >> selectedMethodIndex: anInteger [
 
 	| aMethod |
 	aMethod :=  self getMethods at: anInteger ifAbsent: [ nil ].
@@ -766,55 +645,37 @@ MethodWidget>>selectedMethodIndex: anInteger [
 	self changed: #selectedMethodIndex.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>selectedMethods [
+{ #category : #protocol }
+MethodWidget >> selectedMethods [
 	^ self methodsSelection
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>setIcon: icon for: method [
+{ #category : #protocol }
+MethodWidget >> setIcon: icon for: method [
 
 	MethodsIconsCache at: method put: icon
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>showInstance [
+{ #category : #protocol }
+MethodWidget >> showInstance [
 
 	^ self model showInstance
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>takeKeyboardFocus [
+{ #category : #protocol }
+MethodWidget >> takeKeyboardFocus [
 
 	methodsList takeKeyboardFocus
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>updateMethodList [
+{ #category : #protocol }
+MethodWidget >> updateMethodList [
 
 	self update: #getMethodItem:
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>updateMethodList: aMethodOrNil [
+{ #category : #protocol }
+MethodWidget >> updateMethodList: aMethodOrNil [
 	
 	self update: #getMethodItem:.
 	self selectMethod: aMethodOrNil.
@@ -824,20 +685,14 @@ MethodWidget>>updateMethodList: aMethodOrNil [
 		self selectedMethodIndex: index.]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>vScrollValue [
+{ #category : #protocol }
+MethodWidget >> vScrollValue [
 
 	^ methodsList scrollValue y
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWidget>>vScrollValue: aNumber [
+{ #category : #protocol }
+MethodWidget >> vScrollValue: aNumber [
 
 	^ methodsList vScrollValue: aNumber
 ]

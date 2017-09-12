@@ -12,76 +12,51 @@ Class {
 	#classVars : [
 		'NilElement'
 	],
-	#category : #Collections-Support,
-	#timestamp : 'StephaneDucasse 7/14/2011 21:29'
+	#category : #Collections-Support
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-SetElement class>>initialize [
+{ #category : #'class initialization' }
+SetElement class >> initialize [
 	NilElement := self with: nil.
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-SetElement class>>with: anObject [
+{ #category : #'instance creation' }
+SetElement class >> with: anObject [
 	^ self new enclosedSetElement: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-SetElement class>>withNil [
+{ #category : #accessing }
+SetElement class >> withNil [
 	^ NilElement
 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-SetElement>>= anObject [
+{ #category : #comparing }
+SetElement >> = anObject [
 	^ anObject class = self class and: [ enclosedElement = anObject enclosedSetElement ]
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-SetElement>>asSetElement [
+{ #category : #converting }
+SetElement >> asSetElement [
 	"A receiver has to be included into a set, as a distinct object.
 	We need to wrap receiver in own turn, otherwise #enclosedSetElement will return wrong object for that set"
 	^ SetElement with: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-SetElement>>enclosedSetElement [
+{ #category : #accessing }
+SetElement >> enclosedSetElement [
 	^ enclosedElement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-SetElement>>enclosedSetElement: anObject [
+{ #category : #accessing }
+SetElement >> enclosedSetElement: anObject [
 	enclosedElement := anObject
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-SetElement>>hash [
+{ #category : #comparing }
+SetElement >> hash [
 	^ enclosedElement hash
 
 ]

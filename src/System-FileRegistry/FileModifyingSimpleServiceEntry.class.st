@@ -8,15 +8,11 @@ Such changes include:
 Class {
 	#name : #FileModifyingSimpleServiceEntry,
 	#superclass : #SimpleServiceEntry,
-	#category : #System-FileRegistry,
-	#timestamp : 'nk 11/26/2002 12:03'
+	#category : #System-FileRegistry
 }
 
-{
-	#category : #'performing service',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-FileModifyingSimpleServiceEntry>>performServiceFor: anObject [
+{ #category : #'performing service' }
+FileModifyingSimpleServiceEntry >> performServiceFor: anObject [
 	| retval |
 	retval := super performServiceFor: anObject.
 	self changed: #fileListChanged.

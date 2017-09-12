@@ -4,15 +4,11 @@ I am an acceptor in the context of a RBRefactoring. I create a namespace of the 
 Class {
 	#name : #CodeRefactoringAcceptor,
 	#superclass : #AbstractAcceptor,
-	#category : #Nautilus-Acceptors,
-	#timestamp : 'NicolaiHess 11/5/2016 00:19'
+	#category : #Nautilus-Acceptors
 }
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CodeRefactoringAcceptor>>accept: aText notifying: aController [
+{ #category : #protocol }
+CodeRefactoringAcceptor >> accept: aText notifying: aController [
 	| namespace refactoring changes |
 	self model sourceTextModel clearUserEdits.
 	namespace := RBNamespace onEnvironment: self model browsedEnvironment.

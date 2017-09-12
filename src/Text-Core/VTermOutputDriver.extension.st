@@ -1,12 +1,7 @@
-Extension {
-	#name : #VTermOutputDriver
-}
+Extension { #name : #VTermOutputDriver }
 
-{
-	#category : #'*Text-Core',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-VTermOutputDriver class>>printText: aText [
+{ #category : #'*Text-Core' }
+VTermOutputDriver class >> printText: aText [
 	" Example code shows how to output formatted text"
 	| out |
 

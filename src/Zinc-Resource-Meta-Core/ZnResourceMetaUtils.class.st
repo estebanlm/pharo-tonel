@@ -8,46 +8,33 @@ Part of Zinc HTTP Components.
 Class {
 	#name : #ZnResourceMetaUtils,
 	#superclass : #Object,
-	#category : #Zinc-Resource-Meta-Core,
-	#timestamp : '<historical>'
+	#category : #Zinc-Resource-Meta-Core
 }
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnResourceMetaUtils class>>decodePercent: string [
+{ #category : #conversions }
+ZnResourceMetaUtils class >> decodePercent: string [
 	^ ZnPercentEncoder new 
 		decodePlusAsSpace: false; 
 		decode: string
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnResourceMetaUtils class>>decodePercentForQuery: string [
+{ #category : #conversions }
+ZnResourceMetaUtils class >> decodePercentForQuery: string [
 	^ ZnPercentEncoder new 
 		decodePlusAsSpace: true; 
 		decode: string
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnResourceMetaUtils class>>encodePercent: string safeSet: safeSet encoder: encoder [
+{ #category : #conversions }
+ZnResourceMetaUtils class >> encodePercent: string safeSet: safeSet encoder: encoder [
 	^ ZnPercentEncoder new
 		characterEncoder: encoder;
 		safeSet: (self perform: safeSet);
 		encode: string
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnResourceMetaUtils class>>parseQueryFrom: stream [
+{ #category : #conversions }
+ZnResourceMetaUtils class >> parseQueryFrom: stream [
 	| string index fields |
 	fields := ZnMultiValueDictionary new.
 	[ stream atEnd ] whileFalse: [
@@ -62,11 +49,8 @@ ZnResourceMetaUtils class>>parseQueryFrom: stream [
 	^ fields
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnResourceMetaUtils class>>queryKeyValueSafeSet [
+{ #category : #accessing }
+ZnResourceMetaUtils class >> queryKeyValueSafeSet [
 	"When a query is interpreted as a list of key=value&.. pairs,
 	it is better to encode = and & and leave them out of the safe set.
 	Furthermore, since + is interpreted as space in the query part,
@@ -75,43 +59,28 @@ ZnResourceMetaUtils class>>queryKeyValueSafeSet [
 	^ 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.~!$''()*,;:@/?'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnResourceMetaUtils class>>querySafeSet [
+{ #category : #accessing }
+ZnResourceMetaUtils class >> querySafeSet [
 	^ 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.~!$&''()*+,;=:@/?'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnResourceMetaUtils class>>rfc3986SafeSet [
+{ #category : #accessing }
+ZnResourceMetaUtils class >> rfc3986SafeSet [
 	^ ZnPercentEncoder rfc3986UnreservedCharacters 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnResourceMetaUtils class>>urlPathSafeSet [
+{ #category : #accessing }
+ZnResourceMetaUtils class >> urlPathSafeSet [
 	^ 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.~!$&''()*+,;=:@'
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnResourceMetaUtils class>>writeQueryFields: dictionary on: stream [
+{ #category : #conversions }
+ZnResourceMetaUtils class >> writeQueryFields: dictionary [ on: stream
 	self writeQueryFields: dictionary withEncoder: ZnUTF8Encoder new on: stream 
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnResourceMetaUtils class>>writeQueryFields: dictionary withEncoder: encoder on: stream [
+{ #category : #conversions }
+ZnResourceMetaUtils class >> writeQueryFields: dictionary withEncoder: encoder [ on: stream
 	| first |
 	first := true.
 	dictionary keysAndValuesDo: [ :key :value | 

@@ -1,21 +1,13 @@
-Extension {
-	#name : #KomitHttpRemote
-}
+Extension { #name : #KomitHttpRemote }
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitHttpRemote>>icon [
+{ #category : #'*Komitter-UI' }
+KomitHttpRemote >> icon [
 
 	^ 'HTTP'
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitHttpRemote>>label [
+{ #category : #'*Komitter-UI' }
+KomitHttpRemote >> label [
 	
 	^ self remote location
 ]

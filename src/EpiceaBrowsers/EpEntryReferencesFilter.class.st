@@ -8,34 +8,24 @@ Class {
 		'theLog',
 		'rejectedEntryReferences'
 	],
-	#category : #EpiceaBrowsers-Filters,
-	#timestamp : 'MartinDias 4/17/2017 20:29'
+	#category : #EpiceaBrowsers-Filters
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryReferencesFilter class>>title [
+{ #category : #accessing }
+EpEntryReferencesFilter class >> title [
 
 	^ 'Hide selected entries'
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryReferencesFilter>>= other [
+{ #category : #comparing }
+EpEntryReferencesFilter >> = other [
 
 	^ self class = other class and: [ 
 		self rejectedEntryReferences = other rejectedEntryReferences ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryReferencesFilter>>accepts: anOmEntry [
+{ #category : #testing }
+EpEntryReferencesFilter >> accepts: anOmEntry [
 
 	| reference |
 	reference := theLog referenceTo: anOmEntry.
@@ -43,52 +33,34 @@ EpEntryReferencesFilter>>accepts: anOmEntry [
 	^ (rejectedEntryReferences includes: reference) not
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryReferencesFilter>>hash [
+{ #category : #comparing }
+EpEntryReferencesFilter >> hash [
 
 	^ self class hash bitXor: self rejectedEntryReferences hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryReferencesFilter>>rejectedEntryReferences [
+{ #category : #accessing }
+EpEntryReferencesFilter >> rejectedEntryReferences [
 	^ rejectedEntryReferences
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryReferencesFilter>>rejectedEntryReferences: anObject [
+{ #category : #accessing }
+EpEntryReferencesFilter >> rejectedEntryReferences: anObject [
 	rejectedEntryReferences := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryReferencesFilter>>theLog [
+{ #category : #accessing }
+EpEntryReferencesFilter >> theLog [
 	^ theLog
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryReferencesFilter>>theLog: anObject [
+{ #category : #accessing }
+EpEntryReferencesFilter >> theLog: anObject [
 	theLog := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryReferencesFilter>>title [
+{ #category : #accessing }
+EpEntryReferencesFilter >> title [
 
 	^ self class title
 ]

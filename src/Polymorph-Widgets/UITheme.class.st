@@ -18,15 +18,11 @@ Class {
 	#classInstVars : [
 		'defaultSettings'
 	],
-	#category : #Polymorph-Widgets-Themes,
-	#timestamp : 'HenrikNergaard 11/15/2015 14:11'
+	#category : #Polymorph-Widgets-Themes
 }
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>allThemeClasses [
+{ #category : #query }
+UITheme class >> allThemeClasses [
 	"Answer the subclasses of the receiver that are considered to be
 	concrete (useable as a theme)."
 
@@ -34,42 +30,30 @@ UITheme class>>allThemeClasses [
 		a themeName <= b themeName]
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>beCurrent [
+{ #category : #query }
+UITheme class >> beCurrent [
 	"Make a new instance of the receiver be the current theme."
 
 	self isAbstract ifTrue: [^self error: self name, ' is abstract, send #beCurrent to a subclass.'].
 	self current: self newDefault
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>builder [
+{ #category : #accessing }
+UITheme class >> builder [
 	"Answer a morph that has the TEasilyThemed trait."
 
 	^Builder ifNil: [Builder := self newBuilder. Builder]
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>cleanUp [
+{ #category : #cleanup }
+UITheme class >> cleanUp [
 
 	"avoid old references to morphs that should be garbage-collected"
 	UITheme current focusIndicator: nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>current [
+{ #category : #accessing }
+UITheme class >> current [
 	"Answer the current ui theme.
 	WARNING: Direct access to this method is ill-adviced, use Smalltalk ui theme instead."
 
@@ -78,11 +62,8 @@ UITheme class>>current [
 		Current ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>current: aUITheme [
+{ #category : #accessing }
+UITheme class >> current: aUITheme [
 	"Set the current ui theme."
 
 	Current := aUITheme.
@@ -109,31 +90,22 @@ UITheme class>>current: aUITheme [
 	(SystemWindow allSubInstances select:[:e | e owner isNil]) do:#themeChanged.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>currentAnimationSettings [
+{ #category : #accessing }
+UITheme class >> currentAnimationSettings [
 	"Answer the current ui theme settings."
 
 	^ self currentSettings animationSettings
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>currentSettings [
+{ #category : #accessing }
+UITheme class >> currentSettings [
 	"Answer the current ui theme settings."
 
 	^ self current settings
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>defaultSettings [
+{ #category : #accessing }
+UITheme class >> defaultSettings [
 	"Answer the default settings for the theme."
 	
 	^defaultSettings ifNil: [
@@ -141,81 +113,57 @@ UITheme class>>defaultSettings [
 		defaultSettings]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>defaultSettings: aThemeSettings [
+{ #category : #accessing }
+UITheme class >> defaultSettings: aThemeSettings [
 	"Set the default settings for the theme."
 	
 	defaultSettings := aThemeSettings
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>initialize [
+{ #category : #initialize-release }
+UITheme class >> initialize [
 	"self initialize"
 	self current class = UITheme
 		ifTrue: [self current: nil
 			"due to change to being abstract"].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>isAbstract [
+{ #category : #testing }
+UITheme class >> isAbstract [
 	"Answer whether the receiver is considered to be abstract."
 
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>isCurrent [
+{ #category : #testing }
+UITheme class >> isCurrent [
 	"Answer whether an instance of the receiver is the current theme."
 
 	^Current class == self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>lightBaseColor [
+{ #category : #accessing }
+UITheme class >> lightBaseColor [
 
 	^ Color white
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>newBuilder [
+{ #category : #accessing }
+UITheme class >> newBuilder [
 	"Answer a new builder morph."
 
 	^ComposableMorph new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>newDefault [
+{ #category : #accessing }
+UITheme class >> newDefault [
 	"Answer a new default ui theme."
 
 	^self new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>newDefaultSettings [
+{ #category : #accessing }
+UITheme class >> newDefaultSettings [
 	"Answer a new original default settings."
 
 	^ThemeSettings new
@@ -224,59 +172,41 @@ UITheme class>>newDefaultSettings [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>resetAllDefaultSettings [
+{ #category : #accessing }
+UITheme class >> resetAllDefaultSettings [
 	"Reset the default settings of all themes"
 	"self resetAllDefaultSettings"
 	self withAllSubclassesDo: [:cls | cls defaultSettings: nil]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>resetBuilder [
+{ #category : #initialize-release }
+UITheme class >> resetBuilder [
 	"self resetBuilder"
 	
 	Builder := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>resetDefaultSettings [
+{ #category : #accessing }
+UITheme class >> resetDefaultSettings [
 	"Reset the default settings to use the original values."
 
 	self defaultSettings: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>standardThemeClass [
+{ #category : #accessing }
+UITheme class >> standardThemeClass [
 	^ Pharo3Theme 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme class>>themeName [
+{ #category : #accessing }
+UITheme class >> themeName [
 	"Answer the friendly name of the theme."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>abortIn: aThemedMorph text: aStringOrText title: aString [
+{ #category : #services }
+UITheme >> abortIn: aThemedMorph text: aStringOrText title: aString [
 	"Answer the result of an error dialog (true) with the given label and title."
 
 	self abortSound play.
@@ -287,21 +217,15 @@ UITheme>>abortIn: aThemedMorph text: aStringOrText title: aString [
 			text: aStringOrText)) cancelled not
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>abortSound [
+{ #category : #sounds }
+UITheme >> abortSound [
 	"Answer the abort sound."
 
 	^self soundTheme abortSound
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>alertIn: aThemedMorph text: aStringOrText title: aString configure: aBlock [
+{ #category : #services }
+UITheme >> alertIn: aThemedMorph text: aStringOrText title: aString configure: aBlock [
 	"Answer the result of an alert dialog (true) with the given label and title."
 
 	|dialog|
@@ -315,55 +239,37 @@ UITheme>>alertIn: aThemedMorph text: aStringOrText title: aString configure: aBl
 	^dialog cancelled not
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>alertSound [
+{ #category : #sounds }
+UITheme >> alertSound [
 	"Answer the alert sound."
 
 	^self soundTheme alertSound
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>autoMenuColor [
+{ #category : #accessing }
+UITheme >> autoMenuColor [
 	^ self settings autoMenuColor
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>backgroundColor [
+{ #category : #'accessing colors' }
+UITheme >> backgroundColor [
 
 	^ Color white
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>balloonBackgroundColor [
+{ #category : #'accessing colors' }
+UITheme >> balloonBackgroundColor [
 
 	^self lightBaseColor
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>baseColor [
+{ #category : #'accessing colors' }
+UITheme >> baseColor [
 	^ self class baseColor
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>basicCreateArrowOfDirection: aSymbolDirection size: finalSizeInteger color: aColor  [
+{ #category : #scrollbars }
+UITheme >> basicCreateArrowOfDirection: aSymbolDirection size: finalSizeInteger color: aColor [ 
 	"PRIVATE - create an arrow with aSymbolDirectionDirection,  
 	finalSizeInteger and aColor.
 	aSymbolDirectionDirection = #top, #bottom. #left or #right .
@@ -394,51 +300,33 @@ UITheme>>basicCreateArrowOfDirection: aSymbolDirection size: finalSizeInteger co
 	^resizedForm trimBordersOfColor: Color transparent
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>borderColor  [
+{ #category : #'accessing colors' }
+UITheme >> borderColor [ 
 	^ Color gray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>borderWidth [
+{ #category : #accessing }
+UITheme >> borderWidth [
 	^ 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>builder [
+{ #category : #accessing }
+UITheme >> builder [
 	^ self class builder
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonBorderStyleFor: aButton [
+{ #category : #border-styles }
+UITheme >> buttonBorderStyleFor: aButton [
 	aButton borderStyle: BorderStyle thinGray
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonColor  [
+{ #category : #'accessing colors' }
+UITheme >> buttonColor [ 
 	^ self settings buttonColor
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonColorFor: aButton [
+{ #category : #basic-colors }
+UITheme >> buttonColorFor: aButton [
 	"Answer the colour for the given button."
 
 	^self settings standardColorsOnly
@@ -446,11 +334,8 @@ UITheme>>buttonColorFor: aButton [
 		ifFalse: [ aButton colorToUse ]
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonCornerStyleIn: aThemedMorph [
+{ #category : #border-styles-buttons }
+UITheme >> buttonCornerStyleIn: aThemedMorph [
 	"Allow for themes to override default behaviour."
 	
 	^aThemedMorph
@@ -461,31 +346,22 @@ UITheme>>buttonCornerStyleIn: aThemedMorph [
 				ifNotNil: [:bcs | bcs]]
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonDisabledBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+UITheme >> buttonDisabledBorderStyleFor: aButton [
 	"Return the disabled button borderStyle for the given button."
 
 	^self buttonNormalBorderStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonDisabledFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UITheme >> buttonDisabledFillStyleFor: aButton [
 	"Return the disabled button fillStyle for the given color."
 
 	^self buttonNormalFillStyleFor: aButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonFocusBoundsFor: aButton [
+{ #category : #border-styles-buttons }
+UITheme >> buttonFocusBoundsFor: aButton [
 	"Answer the bounds for drawing the focus indication for the
 	given button."
 
@@ -495,32 +371,23 @@ UITheme>>buttonFocusBoundsFor: aButton [
 					(aButton label isMorph ifTrue: [1] ifFalse: [2])]
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonFocusIndicatorCornerRadiusFor: aButton [
+{ #category : #defaults }
+UITheme >> buttonFocusIndicatorCornerRadiusFor: aButton [
 	"Answer the default corner radius preferred for the focus indicator
 	for the button for themes that support this."
 
 	^self focusIndicatorCornerRadiusFor: aButton
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonFont [
+{ #category : #defaults }
+UITheme >> buttonFont [
 	"Answer the button font to use."
 
 	^StandardFonts buttonFont
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonLabelFor: aButton [
+{ #category : #label-styles }
+UITheme >> buttonLabelFor: aButton [
 	"Answer the label to use for the given button."
 
 	|label|
@@ -531,11 +398,8 @@ UITheme>>buttonLabelFor: aButton [
 	^label
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonLabelForText: aTextOrString [
+{ #category : #label-styles }
+UITheme >> buttonLabelForText: aTextOrString [
 	"Answer the label to use for the given text."
 
 	^aTextOrString isString
@@ -549,61 +413,43 @@ UITheme>>buttonLabelForText: aTextOrString [
 					lock]
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonLabelInsetFor: aButton [
+{ #category : #defaults }
+UITheme >> buttonLabelInsetFor: aButton [
 	"Answer the inset to use for a button's label."
 
 	^2
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonMinHeight [
+{ #category : #defaults }
+UITheme >> buttonMinHeight [
 	"Answer the minumum height of a button for this theme."
 	
 	^16
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonMinWidth [
+{ #category : #defaults }
+UITheme >> buttonMinWidth [
 	"Answer the minumum width of a button for this theme."
 	
 	^16
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonMouseOverBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+UITheme >> buttonMouseOverBorderStyleFor: aButton [
 	"Return the mouse over button borderStyle for the given button."
 	
 	^self buttonNormalBorderStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonMouseOverFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UITheme >> buttonMouseOverFillStyleFor: aButton [
 	"Return the button mouse over fillStyle for the given color."
 
 	^self buttonNormalFillStyleFor: aButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonNormalBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+UITheme >> buttonNormalBorderStyleFor: aButton [
 	"Return the normal button borderStyle for the given button."
 
 	|c|
@@ -615,139 +461,97 @@ UITheme>>buttonNormalBorderStyleFor: aButton [
 		baseColor: c
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonNormalFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UITheme >> buttonNormalFillStyleFor: aButton [
 	"Return the normal button fillStyle for the given button."
 	
 	^self buttonColorFor: aButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonPressedBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+UITheme >> buttonPressedBorderStyleFor: aButton [
 	"Return the pressed button borderStyle for the given button."
 
 	^self buttonSelectedBorderStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonPressedFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UITheme >> buttonPressedFillStyleFor: aButton [
 	"Return the button pressed fillStyle for the given color."
 	
 	^self buttonMouseOverFillStyleFor: aButton
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonPressedLabelInsetFor: aButton [
+{ #category : #defaults }
+UITheme >> buttonPressedLabelInsetFor: aButton [
 	"Answer the inset to use for a button's label when pressed."
 
 	^self buttonLabelInsetFor: aButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonSelectedBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+UITheme >> buttonSelectedBorderStyleFor: aButton [
 	"Return the selected button borderStyle for the given button."
 
 	^self buttonNormalBorderStyleFor: aButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonSelectedDisabledBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+UITheme >> buttonSelectedDisabledBorderStyleFor: aButton [
 	"Return the selecteddisabled button borderStyle for the given button."
 
 	^self buttonSelectedBorderStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonSelectedDisabledFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UITheme >> buttonSelectedDisabledFillStyleFor: aButton [
 	"Return the button selected disabled fillStyle for the given color."
 	
 	^self buttonSelectedFillStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonSelectedFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UITheme >> buttonSelectedFillStyleFor: aButton [
 	"Return the button selected fillStyle for the given color."
 	
 	^self buttonNormalFillStyleFor: aButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonSelectedMouseOverBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+UITheme >> buttonSelectedMouseOverBorderStyleFor: aButton [
 	"Return the selected mouse over button borderStyle for the given button."
 
 	^self buttonSelectedBorderStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonSelectedMouseOverFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UITheme >> buttonSelectedMouseOverFillStyleFor: aButton [
 	"Return the button selected mouse over fillStyle for the given color."
 	
 	^self buttonSelectedFillStyleFor: aButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonSelectedPressedBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+UITheme >> buttonSelectedPressedBorderStyleFor: aButton [
 	"Return the selected pressed button borderStyle for the given button."
 
 	^self buttonNormalBorderStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>buttonSelectedPressedFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UITheme >> buttonSelectedPressedFillStyleFor: aButton [
 	"Return the button selected pressed fillStyle for the given color."
 
 	^self buttonSelectedMouseOverFillStyleFor: aButton
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>caretColor [
+{ #category : #'accessing colors' }
+UITheme >> caretColor [
 	^ Color blue
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>centeredAlertIn: aThemedMorph text: aStringOrText title: aString configure: aBlock [
+{ #category : #services }
+UITheme >> centeredAlertIn: aThemedMorph text: aStringOrText title: aString configure: aBlock [
 	"Answer the result of an alert dialog (true) with the given label and title."
 
 	| dialog |
@@ -763,11 +567,8 @@ UITheme>>centeredAlertIn: aThemedMorph text: aStringOrText title: aString config
 	^ dialog cancelled not
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>checkboxButtonDisabledBorderStyleFor: aCheckboxButton [
+{ #category : #border-styles-buttons }
+UITheme >> checkboxButtonDisabledBorderStyleFor: aCheckboxButton [
 	"Return the disabled checkbox button borderStyle for the given button."
 
 	^BorderStyle simple
@@ -775,11 +576,8 @@ UITheme>>checkboxButtonDisabledBorderStyleFor: aCheckboxButton [
 		baseColor: aCheckboxButton paneColor darker
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>checkboxButtonDisabledFillStyleFor: aCheckboxButton [
+{ #category : #fill-styles-buttons }
+UITheme >> checkboxButtonDisabledFillStyleFor: aCheckboxButton [
 	"Return the disabled checkbox button fillStyle for the given button."
 	
 	^aCheckboxButton paneColor
@@ -787,21 +585,15 @@ UITheme>>checkboxButtonDisabledFillStyleFor: aCheckboxButton [
 		with: Color white
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>checkboxButtonLabelNormalFillStyleFor: aCheckboxButton label: aLabel [
+{ #category : #fill-styles-buttons }
+UITheme >> checkboxButtonLabelNormalFillStyleFor: aCheckboxButton label: aLabel [
 	"Return the selected disabled checkbox button fillStyle for the given button."
 	
 	^ aLabel color
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>checkboxButtonNormalBorderStyleFor: aCheckboxButton [
+{ #category : #border-styles-buttons }
+UITheme >> checkboxButtonNormalBorderStyleFor: aCheckboxButton [
 	"Return the normal checkbox button borderStyle for the given button."
 
 	^BorderStyle simple
@@ -809,71 +601,50 @@ UITheme>>checkboxButtonNormalBorderStyleFor: aCheckboxButton [
 		baseColor: aCheckboxButton paneColor twiceDarker
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>checkboxButtonNormalFillStyleFor: aCheckboxButton [
+{ #category : #fill-styles-buttons }
+UITheme >> checkboxButtonNormalFillStyleFor: aCheckboxButton [
 	"Return the normal checkbox button fillStyle for the given button."
 	
 	^Color white
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>checkboxButtonSelectedBorderStyleFor: aCheckboxButton [
+{ #category : #border-styles-buttons }
+UITheme >> checkboxButtonSelectedBorderStyleFor: aCheckboxButton [
 	"Return the selected checkbox button borderStyle for the given button."
 
 	^self checkboxButtonNormalBorderStyleFor: aCheckboxButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>checkboxButtonSelectedDisabledBorderStyleFor: aCheckboxButton [
+{ #category : #border-styles-buttons }
+UITheme >> checkboxButtonSelectedDisabledBorderStyleFor: aCheckboxButton [
 	"Return the selected disabled checkbox button borderStyle for the given button."
 
 	^self checkboxButtonDisabledBorderStyleFor: aCheckboxButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>checkboxButtonSelectedDisabledFillStyleFor: aCheckboxButton [
+{ #category : #fill-styles-buttons }
+UITheme >> checkboxButtonSelectedDisabledFillStyleFor: aCheckboxButton [
 	"Return the selected disabled checkbox button fillStyle for the given button."
 	
 	^self checkboxButtonDisabledFillStyleFor: aCheckboxButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>checkboxButtonSelectedFillStyleFor: aCheckboxButton [
+{ #category : #fill-styles-buttons }
+UITheme >> checkboxButtonSelectedFillStyleFor: aCheckboxButton [
 	"Return the selected checkbox button fillStyle for the given button."
 	
 	^self checkboxButtonNormalFillStyleFor: aCheckboxButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>checkboxCornerStyleFor: aCheckbox [
+{ #category : #border-styles-buttons }
+UITheme >> checkboxCornerStyleFor: aCheckbox [
 	"Answer the corner style for checkbox buttons."
 	
 	^#square
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>checkboxLabelFor: aCheckbox [
+{ #category : #label-styles }
+UITheme >> checkboxLabelFor: aCheckbox [
 	"Answer the label to use for the given checkbox."
 
 	|label|
@@ -883,11 +654,8 @@ UITheme>>checkboxLabelFor: aCheckbox [
 	^label
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>checkboxLabelForText: aTextOrString [
+{ #category : #label-styles }
+UITheme >> checkboxLabelForText: aTextOrString [
 	"Answer the label to use for the given text."
 
 	|morph|
@@ -903,21 +671,15 @@ UITheme>>checkboxLabelForText: aTextOrString [
 		lock
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>checkboxMarkerForm [
+{ #category : #label-styles }
+UITheme >> checkboxMarkerForm [
 	"Answer the form to use for a checkbox marker."
 
 	^self forms at: #checkboxMarker ifAbsent: [Form extent: 12@12 depth: Display depth]
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>chooseColorIn: aThemedMorph title: aString color: aColor [
+{ #category : #services }
+UITheme >> chooseColorIn: aThemedMorph title: aString color: aColor [
 	"Answer the result of a color selector dialog with the given title and initial color."
 
 	|d|
@@ -929,11 +691,8 @@ UITheme>>chooseColorIn: aThemedMorph title: aString color: aColor [
 		ifFalse: [d selectedColor]
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>chooseColorIn: aThemedMorph title: aString color: aColor for: aBlock [
+{ #category : #services }
+UITheme >> chooseColorIn: aThemedMorph title: aString color: aColor for: aBlock [
 	"execute block with result of a color selector dialog with the given title and initial color."
 
 	|d newColor|
@@ -953,11 +712,8 @@ UITheme>>chooseColorIn: aThemedMorph title: aString color: aColor for: aBlock [
 	aBlock value: newColor.
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>chooseDirectoryIn: aThemedMorph title: title path: path [
+{ #category : #services }
+UITheme >> chooseDirectoryIn: aThemedMorph title: title path: path [
 	"Answer the result of a file dialog with the given title, choosing directories only."
 
 	|fd|
@@ -968,11 +724,8 @@ UITheme>>chooseDirectoryIn: aThemedMorph title: title path: path [
 	^(aThemedMorph openModal: fd) answer
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>chooseDropListIn: aThemedMorph text: aStringOrText title: aString list: aList [
+{ #category : #services }
+UITheme >> chooseDropListIn: aThemedMorph text: aStringOrText title: aString list: aList [
 	"Answer the result of a drop list chooser with the given label, title and list."
 
 	^(aThemedMorph openModal: (
@@ -983,11 +736,8 @@ UITheme>>chooseDropListIn: aThemedMorph text: aStringOrText title: aString list:
 			list: aList)) selectedItem
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>chooseFileIn: aThemedMorph title: title extensions: exts path: path preview: preview [
+{ #category : #services }
+UITheme >> chooseFileIn: aThemedMorph title: title extensions: exts path: path preview: preview [
 	"Answer the result of a file open dialog with the given title, extensions path and preview type.
 	Answer nil or a filename."
 
@@ -1003,11 +753,8 @@ UITheme>>chooseFileIn: aThemedMorph title: title extensions: exts path: path pre
 	^(aThemedMorph openModal: fd) answer
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>chooseFileNameIn: aThemedMorph title: title extensions: exts path: path preview: preview [
+{ #category : #services }
+UITheme >> chooseFileNameIn: aThemedMorph title: title extensions: exts path: path preview: preview [
 	"Answer the result of a file name chooser dialog with the given title, extensions
 	path and preview type.
 	Answer nil or a filename."
@@ -1024,11 +771,8 @@ UITheme>>chooseFileNameIn: aThemedMorph title: title extensions: exts path: path
 	^(aThemedMorph openModal: fd) answer
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>chooseFontIn: aThemedMorph title: aString font: aFont [
+{ #category : #services }
+UITheme >> chooseFontIn: aThemedMorph title: aString font: aFont [
 	"Answer the result of a font selector dialog with the given title and initial font."
 
 	|d|
@@ -1042,11 +786,8 @@ UITheme>>chooseFontIn: aThemedMorph title: aString font: aFont [
 		ifFalse: [d selectedFont]
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>chooseFullFileNameIn: aThemedMorph title: title extensions: exts path: path preview: preview [
+{ #category : #services }
+UITheme >> chooseFullFileNameIn: aThemedMorph title: title extensions: exts path: path preview: preview [
 	"Answer the result of a file name chooser dialog with the given title, extensions
 	path and preview type.
 	Answer nil or a full filename."
@@ -1063,11 +804,8 @@ UITheme>>chooseFullFileNameIn: aThemedMorph title: title extensions: exts path: 
 	^(aThemedMorph openModal: fd) answer
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>chooseFullFileNameIn: aThemedMorph title: title patterns: patterns path: path preview: preview [
+{ #category : #services }
+UITheme >> chooseFullFileNameIn: aThemedMorph title: title patterns: patterns path: path preview: preview [
 	"Answer the result of a file name chooser dialog with the given title, patterns
 	path and preview type.
 	Answer nil or a filename."
@@ -1087,11 +825,8 @@ UITheme>>chooseFullFileNameIn: aThemedMorph title: title patterns: patterns path
 	^(aThemedMorph openModal: fd) answer
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>chooseIn: aThemedMorph title: title labels: labels values: values lines: lines [
+{ #category : #services }
+UITheme >> chooseIn: aThemedMorph title: title labels: labels values: values lines: lines [
 	"Answer the result of a popup choice with the given title, labels, values and lines."
 
 	| pd |
@@ -1103,11 +838,8 @@ UITheme>>chooseIn: aThemedMorph title: title labels: labels values: values lines
 	^(aThemedMorph openModal: pd) choice
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>chooseIn: aThemedMorph title: title message: aMessage labels: labels values: values lines: lines [
+{ #category : #services }
+UITheme >> chooseIn: aThemedMorph title: title message: aMessage labels: labels values: values lines: lines [
 	"Answer the result of a popup choice with the given title, labels, values and lines."
 
 	|pd|
@@ -1121,11 +853,8 @@ UITheme>>chooseIn: aThemedMorph title: title message: aMessage labels: labels va
 	^(aThemedMorph openModal: pd) choice
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>chooseOrRequestIn: aThemedMorph title: title labels: labels values: values lines: lines [
+{ #category : #services }
+UITheme >> chooseOrRequestIn: aThemedMorph title: title labels: labels values: values lines: lines [
 	"Answer the result of a popup choice with the given title, labels, values and lines."
 
 	| dialog choice |
@@ -1141,19 +870,13 @@ UITheme>>chooseOrRequestIn: aThemedMorph title: title labels: labels values: val
 		ifNil: [ ^dialog filterValue ]
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>classExtensionColor [
+{ #category : #'accessing colors' }
+UITheme >> classExtensionColor [
 	^ Color gray darker
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configureDialogWindowLabelAreaFrameFor: aWindow [
+{ #category : #label-styles }
+UITheme >> configureDialogWindowLabelAreaFrameFor: aWindow [
 	"Configure the layout frame for the label area for the given dialog window."
 
 	|frame|
@@ -1165,91 +888,59 @@ UITheme>>configureDialogWindowLabelAreaFrameFor: aWindow [
 		rightOffset: 0
 ]
 
-{
-	#category : #configure,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configureDropListMorph: aMorph [
+{ #category : #configure }
+UITheme >> configureDropListMorph: aMorph [
 	"This also uses the fillStyle hack :(
 	 check at: #dropListNormalFillStyleFor: for changing style"
 ]
 
-{
-	#category : #configure,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configureLabelMorph: aMorph [
-
+{ #category : #configure }
+UITheme >> configureLabelMorph: aMorph [
 ]
 
-{
-	#category : #configure,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configureLazyListMorph: listMorph  [
+{ #category : #configure }
+UITheme >> configureLazyListMorph: listMorph [ 
 	self configureScrollPane: listMorph.
 ]
 
-{
-	#category : #configure,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configureMorphTreeMorph: aMorph [
+{ #category : #configure }
+UITheme >> configureMorphTreeMorph: aMorph [
 	aMorph preferedPaneColor: Color white.
 	aMorph 
 		rowColorForEven: Color white
 		odd: Color white.
 ]
 
-{
-	#category : #configure,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configurePluggableButtonMorph: aMorph [
+{ #category : #configure }
+UITheme >> configurePluggableButtonMorph: aMorph [
 	"This will not work because it is using the #normalFillStyle hack :(
 	 So, go check the #buttonNormalFillStyleFor: method, which is the one that 
 	 actually does something (he and his siblings)"
 ]
 
-{
-	#category : #configure,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configurePluggableListMorph: listMorph  [
+{ #category : #configure }
+UITheme >> configurePluggableListMorph: listMorph [ 
 	self configureScrollPane: listMorph.
 ]
 
-{
-	#category : #configure,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configurePluggableTextFieldMorph: textFieldMorph [
-
+{ #category : #configure }
+UITheme >> configurePluggableTextFieldMorph: textFieldMorph [
 ]
 
-{
-	#category : #configure,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configurePluggableTextMorph: textMorph  [
+{ #category : #configure }
+UITheme >> configurePluggableTextMorph: textMorph [ 
 	textMorph 
 		color: Color white;
 		borderWidth: 1.
 ]
 
-{
-	#category : #configure,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configureScrollPane: aMorph [
+{ #category : #configure }
+UITheme >> configureScrollPane: aMorph [
 	aMorph color: Color white.
 ]
 
-{
-	#category : #configure,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configureSystemWindow: aWindow  [
+{ #category : #configure }
+UITheme >> configureSystemWindow: aWindow [ 
 	aWindow basicBorderColor: Color lightGray.
 	aWindow basicBorderWidth: 1.
 	aWindow color: Color lightGray lighter lighter lighter.	
@@ -1259,27 +950,17 @@ UITheme>>configureSystemWindow: aWindow  [
 
 ]
 
-{
-	#category : #configure,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configureTextMorph: textMorph  [
-
+{ #category : #configure }
+UITheme >> configureTextMorph: textMorph [ 
 ]
 
-{
-	#category : #'*Polymorph-Widgets-Themes',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configureWatcherWindowLabelAreaFor: aWindow [
+{ #category : #'*Polymorph-Widgets-Themes' }
+UITheme >> configureWatcherWindowLabelAreaFor: aWindow [
 	^ self configureWindowLabelAreaFor: aWindow
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configureWindowBorderFor: aWindow [
+{ #category : #border-styles }
+UITheme >> configureWindowBorderFor: aWindow [
 	"Configure the border for the given window."
 
 	aWindow roundedCorners: #(1 2 3 4).
@@ -1287,11 +968,8 @@ UITheme>>configureWindowBorderFor: aWindow [
 		width: 1 color: Color lightGray)
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configureWindowDropShadowFor: aWindow [
+{ #category : #border-styles }
+UITheme >> configureWindowDropShadowFor: aWindow [
 	"Configure the drop shadow for the given window."
 
 	aWindow
@@ -1300,11 +978,8 @@ UITheme>>configureWindowDropShadowFor: aWindow [
 		shadowOffset: 1@1
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configureWindowLabelAreaFor: aWindow [
+{ #category : #label-styles }
+UITheme >> configureWindowLabelAreaFor: aWindow [
 	"Configure the label area for the given window."
 
 	aWindow labelArea
@@ -1322,11 +997,8 @@ UITheme>>configureWindowLabelAreaFor: aWindow [
 		addMorphBack: (Morph new extent: aWindow class borderWidth @ 0)
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>configureWindowLabelAreaFrameFor: aWindow [
+{ #category : #label-styles }
+UITheme >> configureWindowLabelAreaFrameFor: aWindow [
 	"Configure the layout frame for the label area for the given window."
 
 	|frame windowBorderWidth|
@@ -1342,186 +1014,135 @@ UITheme>>configureWindowLabelAreaFrameFor: aWindow [
 	aWindow labelArea layoutFrame: frame
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>controlButtonDisabledBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+UITheme >> controlButtonDisabledBorderStyleFor: aButton [
 	"Return the disabled control button borderStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 
 	^self buttonDisabledBorderStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>controlButtonDisabledFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UITheme >> controlButtonDisabledFillStyleFor: aButton [
 	"Return the disabled control button fillStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 	
 	^self buttonDisabledFillStyleFor: aButton
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>controlButtonLabelInsetFor: aButton [
+{ #category : #defaults }
+UITheme >> controlButtonLabelInsetFor: aButton [
 	"Answer the inset to use for a control button's label."
 
 	^self buttonLabelInsetFor: aButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>controlButtonMouseOverBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+UITheme >> controlButtonMouseOverBorderStyleFor: aButton [
 	"Return the mouse over control button borderStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 
 	^self buttonMouseOverBorderStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>controlButtonMouseOverFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UITheme >> controlButtonMouseOverFillStyleFor: aButton [
 	"Return the mouse over control button fillStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 	
 	^self buttonMouseOverFillStyleFor: aButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>controlButtonNormalBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+UITheme >> controlButtonNormalBorderStyleFor: aButton [
 	"Return the normal control button borderStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 
 	^self buttonNormalBorderStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>controlButtonNormalFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UITheme >> controlButtonNormalFillStyleFor: aButton [
 	"Return the normal control button fillStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 	
 	^self buttonNormalFillStyleFor: aButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>controlButtonPressedBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+UITheme >> controlButtonPressedBorderStyleFor: aButton [
 	"Return the pressed control button borderStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 
 	^self buttonPressedBorderStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>controlButtonPressedFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UITheme >> controlButtonPressedFillStyleFor: aButton [
 	"Return the pressed button fillStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 	
 	^self buttonPressedFillStyleFor: aButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>controlButtonSelectedDisabledBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+UITheme >> controlButtonSelectedDisabledBorderStyleFor: aButton [
 	"Return the selected disabled control button borderStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 
 	^self buttonSelectedDisabledBorderStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>controlButtonSelectedDisabledFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UITheme >> controlButtonSelectedDisabledFillStyleFor: aButton [
 	"Return the selected disabled control button fillStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 	
 	^self buttonSelectedDisabledFillStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>controlButtonSelectedFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UITheme >> controlButtonSelectedFillStyleFor: aButton [
 	"Return the selected control button fillStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 	
 	^self buttonSelectedFillStyleFor: aButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>controlButtonSelectedMouseOverBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+UITheme >> controlButtonSelectedMouseOverBorderStyleFor: aButton [
 	"Return the selected mouse over control button borderStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 
 	^self buttonSelectedMouseOverBorderStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>controlButtonSelectedMouseOverFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UITheme >> controlButtonSelectedMouseOverFillStyleFor: aButton [
 	"Return the selected mouse over control button fillStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 	
 	^self buttonSelectedMouseOverFillStyleFor: aButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>controlButtonSelectedPressedBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+UITheme >> controlButtonSelectedPressedBorderStyleFor: aButton [
 	"Return the selected pressed control button borderStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 
 	^self buttonSelectedPressedBorderStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>controlButtonSelectedPressedFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UITheme >> controlButtonSelectedPressedFillStyleFor: aButton [
 	"Return the selected pressed button fillStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 	
 	^self buttonSelectedPressedFillStyleFor: aButton
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>createArrowImagesCache [
+{ #category : #scrollbars }
+UITheme >> createArrowImagesCache [
 	"Creates the cache to store the arrow forms"
 
 	^ LRUCache new
@@ -1534,11 +1155,8 @@ UITheme>>createArrowImagesCache [
 		yourself
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>createArrowOfDirection: aSymbol in: aRectangle  [
+{ #category : #scrollbars }
+UITheme >> createArrowOfDirection: aSymbol in: aRectangle [ 
 	"PRIVATE - create an arrow bounded in aRectangle"
 
 	| arrow vertices |
@@ -1562,11 +1180,8 @@ UITheme>>createArrowOfDirection: aSymbol in: aRectangle  [
 	^arrow
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>createArrowOfDirection: aSymbolDirection size: finalSizeInteger color: aColor  [
+{ #category : #scrollbars }
+UITheme >> createArrowOfDirection: aSymbolDirection size: finalSizeInteger color: aColor [ 
 	"Defer to current UITheme if available."
 	
 	^self
@@ -1575,11 +1190,8 @@ UITheme>>createArrowOfDirection: aSymbolDirection size: finalSizeInteger color: 
 		color: aColor
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>createBoxImagesCache [
+{ #category : #scrollbars }
+UITheme >> createBoxImagesCache [
 	"Creates the cache to store the arrow forms"
 	
 	^ LRUCache new
@@ -1589,11 +1201,8 @@ UITheme>>createBoxImagesCache [
 		yourself
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>createBoxIn: aRectangle  [
+{ #category : #scrollbars }
+UITheme >> createBoxIn: aRectangle [ 
 	"PRIVATE - create an box bounded in aRectangle"
 	| box |
 	box := Morph new.
@@ -1603,11 +1212,8 @@ UITheme>>createBoxIn: aRectangle  [
 	^ box
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>createBoxOfSize: finalSizeInteger color: aColor  [
+{ #category : #scrollbars }
+UITheme >> createBoxOfSize: finalSizeInteger color: aColor [ 
 	"PRIVATE - create a box with finalSizeInteger and aColor  
 	 
 	Try with:  
@@ -1633,11 +1239,8 @@ UITheme>>createBoxOfSize: finalSizeInteger color: aColor  [
 		trimBordersOfColor: Color transparent
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>createCloseBoxFor: aSystemWindow [
+{ #category : #label-styles }
+UITheme >> createCloseBoxFor: aSystemWindow [
 	"Answer a button for closing the window."
 	
 	^(self
@@ -1648,11 +1251,8 @@ UITheme>>createCloseBoxFor: aSystemWindow [
 		extent: aSystemWindow boxExtent
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>createCollapseBoxFor: aSystemWindow [
+{ #category : #label-styles }
+UITheme >> createCollapseBoxFor: aSystemWindow [
 	"Answer a button for minimising the window."
 	
 	^aSystemWindow createBox
@@ -1662,11 +1262,8 @@ UITheme>>createCollapseBoxFor: aSystemWindow [
 		setBalloonText: 'Collapse this window' translated
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>createExpandBoxFor: aSystemWindow [
+{ #category : #label-styles }
+UITheme >> createExpandBoxFor: aSystemWindow [
 	"Answer a button for maximising/restoring the window."
 	
 	^aSystemWindow createBox
@@ -1676,11 +1273,8 @@ UITheme>>createExpandBoxFor: aSystemWindow [
 		setBalloonText: 'Expand to full screen' translated
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>createMenuBoxFor: aSystemWindow [
+{ #category : #label-styles }
+UITheme >> createMenuBoxFor: aSystemWindow [
 	"Answer a button for the window menu."
 	
 	^aSystemWindow createBox
@@ -1691,19 +1285,13 @@ UITheme>>createMenuBoxFor: aSystemWindow [
 		setBalloonText: 'Window menu' translated
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>currentSettings [
+{ #category : #accessing }
+UITheme >> currentSettings [
 	^ self class currentSettings
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>customQuestionIn: aThemedMorph text: labelText yesText: yesText noText: noText cancelText: cancelText default: defaultOption title: aString [
+{ #category : #services }
+UITheme >> customQuestionIn: aThemedMorph text: labelText yesText: yesText noText: noText cancelText: cancelText default: defaultOption title: aString [
 	"Answer the result of a question dialog with the given label, button labels and title.
 	defaultOption should be one of true, false or nil to set the default button."
 
@@ -1719,11 +1307,8 @@ UITheme>>customQuestionIn: aThemedMorph text: labelText yesText: yesText noText:
 			default: defaultOption)) answer
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>customQuestionIn: aThemedMorph text: labelText yesText: yesText noText: noText title: aString [
+{ #category : #services }
+UITheme >> customQuestionIn: aThemedMorph text: labelText yesText: yesText noText: noText title: aString [
 	"Answer the result of a question dialog with the given label, button labels and title."
 
 	self questionSound play.
@@ -1736,88 +1321,61 @@ UITheme>>customQuestionIn: aThemedMorph text: labelText yesText: yesText noText:
 			noText: noText help: nil)) answer
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dangerBackgroundColor [
+{ #category : #'accessing colors' }
+UITheme >> dangerBackgroundColor [
 	^ self dangerTextColor darker darker
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dangerTextColor [
+{ #category : #'accessing colors' }
+UITheme >> dangerTextColor [
 	^ Color red
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>darkBaseColor [
+{ #category : #'accessing colors' }
+UITheme >> darkBaseColor [
 	^ self class darkBaseColor
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>defaultButtonBorderColor [
+{ #category : #defaults }
+UITheme >> defaultButtonBorderColor [
 	"Answer the color to use for a 'default' button."
 
 	^self settings selectionColor
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>defaultMenuColor [
+{ #category : #defaults }
+UITheme >> defaultMenuColor [
 	"Answer the default color to use for a menu
 	in the absence of an override in settings."
 
 	^ self settings fallbackMenuColor 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>defaultMenuTitleColor [
+{ #category : #defaults }
+UITheme >> defaultMenuTitleColor [
 	"Answer the default color to use for a menu title
 	in the absence of an override in settings."
 
 	^self settings menuTitleColor
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>defaultSettings [
+{ #category : #initialize-release }
+UITheme >> defaultSettings [
 	"Answer the default settings."
 
 	^self class defaultSettings copy
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>defaultSoundTheme [
+{ #category : #initialize-release }
+UITheme >> defaultSoundTheme [
 	"Answer the default sound theme.
 	Answer the system sound theme by default."
 
 	^SoundTheme current
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>denyIn: aThemedMorph text: aStringOrText title: aString [
+{ #category : #services }
+UITheme >> denyIn: aThemedMorph text: aStringOrText title: aString [
 	"Answer the result of an deny dialog (true) with the given label and title."
 
 	self denySound play.
@@ -1828,30 +1386,21 @@ UITheme>>denyIn: aThemedMorph text: aStringOrText title: aString [
 			text: aStringOrText)) cancelled not
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>denySound [
+{ #category : #sounds }
+UITheme >> denySound [
 	"Answer the deny sound."
 
 	^self soundTheme denySound
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>desktopColor [
+{ #category : #fill-styles }
+UITheme >> desktopColor [
 
 	^(Color r: 240 g: 240 b: 240 range: 255)
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>desktopImageFor: aWorld [
+{ #category : #fill-styles }
+UITheme >> desktopImageFor: aWorld [
 	"Answer the desktop image for the given world.
 	Look for an image file with the name of the theme.
 	Answer nil for none available."
@@ -1862,32 +1411,23 @@ UITheme>>desktopImageFor: aWorld [
 		ImageReadWriter formFromFileNamed: file fullName]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>desktopImageLayout [
+{ #category : #fill-styles }
+UITheme >> desktopImageLayout [
 	"Answer the layout symbol for any desktop image.
 	See AlphaImageMorph>>layoutSymbols."
 
 	^self settings desktopImageLayout
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dialogWindowActiveFillStyleFor: aWindow [
+{ #category : #fill-styles }
+UITheme >> dialogWindowActiveFillStyleFor: aWindow [
 	"Return the dialog window active fillStyle for the given window."
 	
 	^aWindow paneColorToUse lighter
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dialogWindowInactiveFillStyleFor: aWindow [
+{ #category : #fill-styles }
+UITheme >> dialogWindowInactiveFillStyleFor: aWindow [
 	"Return the dialog window inactive fillStyle for the given window."
 	
 	^self settings  fadedBackgroundWindows
@@ -1897,48 +1437,33 @@ UITheme>>dialogWindowInactiveFillStyleFor: aWindow [
 		ifFalse: [aWindow paneColorToUse lighter]
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dialogWindowPreferredCornerStyleFor: aDialogWindow [
+{ #category : #defaults }
+UITheme >> dialogWindowPreferredCornerStyleFor: aDialogWindow [
 	"Answer the preferred corner style for the given dialog."
 
 	^#rounded
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>disabledColor  [
+{ #category : #'accessing colors' }
+UITheme >> disabledColor [ 
 	^ Color gray
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>disabledItemStyle [
+{ #category : #label-styles }
+UITheme >> disabledItemStyle [
 	"Answer either #plain or #inset to determine how
 	diabled text is drawn."
 
 	^#plain
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>disabledTextColor  [
+{ #category : #'accessing colors' }
+UITheme >> disabledTextColor [ 
 	^ self disabledColor
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dockingBarNormalFillStyleFor: aToolDockingBar [
+{ #category : #fill-styles }
+UITheme >> dockingBarNormalFillStyleFor: aToolDockingBar [
 	"Return the normal docking bar fillStyle for the given color."
 	
 	|aColor|
@@ -1953,29 +1478,20 @@ UITheme>>dockingBarNormalFillStyleFor: aToolDockingBar [
 		radial: false
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>drawTabGroupFinishingFor: aTabGroupMorph on: aCanvas [
+{ #category : #border-styles }
+UITheme >> drawTabGroupFinishingFor: aTabGroupMorph on: aCanvas [
 	"Patch up any visuals for the selected tab."
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>drawTextAdornmentFor: aPluggableTextMorph color: aColor on: aCanvas [
+{ #category : #border-styles }
+UITheme >> drawTextAdornmentFor: aPluggableTextMorph color: aColor on: aCanvas [
 	"Indicate edit status for the given morph."
 	
 	aCanvas frameRectangle: aPluggableTextMorph innerBounds width: 2 color: aColor
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>drawTextAdornmentsFor: aPluggableTextMorph on: aCanvas [
+{ #category : #border-styles }
+UITheme >> drawTextAdornmentsFor: aPluggableTextMorph on: aCanvas [
 	"Indicate edit status for the given morph."
 
 	(aPluggableTextMorph hasEditingConflicts or: [ aPluggableTextMorph hasValidText not ])
@@ -1985,11 +1501,8 @@ UITheme>>drawTextAdornmentsFor: aPluggableTextMorph on: aCanvas [
 				ifTrue: [ ^ self drawTextAdornmentFor: aPluggableTextMorph color: Color orange on: aCanvas ] ]
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>drawWindowActiveDropShadowFor: aSystemWindow on: aCanvas [
+{ #category : #border-styles }
+UITheme >> drawWindowActiveDropShadowFor: aSystemWindow on: aCanvas [
 	"Draw the active drop shadow for the given window."
 	
 	
@@ -1998,11 +1511,8 @@ UITheme>>drawWindowActiveDropShadowFor: aSystemWindow on: aCanvas [
 		ifFalse: [self drawWindowPlainDropShadowFor: aSystemWindow on: aCanvas]
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>drawWindowDiffuseDropShadowFor: aSystemWindow on: aCanvas [
+{ #category : #border-styles }
+UITheme >> drawWindowDiffuseDropShadowFor: aSystemWindow on: aCanvas [
 	"Draw the diffuse drop shadow for the given window."
 	
 	|or b r o gc|
@@ -2067,21 +1577,15 @@ UITheme>>drawWindowDiffuseDropShadowFor: aSystemWindow on: aCanvas [
 
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>drawWindowInactiveDropShadowFor: aSystemWindow on: aCanvas [
+{ #category : #border-styles }
+UITheme >> drawWindowInactiveDropShadowFor: aSystemWindow on: aCanvas [
 	"Draw the inactive drop shadow for the given window."
 	
 	self drawWindowPlainDropShadowFor: aSystemWindow on: aCanvas
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>drawWindowPlainDropShadowFor: aSystemWindow on: aCanvas [
+{ #category : #border-styles }
+UITheme >> drawWindowPlainDropShadowFor: aSystemWindow on: aCanvas [
 	"Draw the plain drop shadow for the given window."
 	
 	|blOffset brOffset trOffset|
@@ -2110,11 +1614,8 @@ UITheme>>drawWindowPlainDropShadowFor: aSystemWindow on: aCanvas [
 							on: c]
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dropListButtonLabelFor: aDropList [
+{ #category : #label-styles }
+UITheme >> dropListButtonLabelFor: aDropList [
 	"Answer the label for the button of the given drop list."
 
 	^AlphaImageMorph new
@@ -2125,41 +1626,29 @@ UITheme>>dropListButtonLabelFor: aDropList [
 		enabled: aDropList enabled
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dropListControlButtonWidth [
+{ #category : #defaults }
+UITheme >> dropListControlButtonWidth [
 	"Answer the width of a drop list control button for this theme."
 	
 	^self buttonMinWidth
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dropListDisabledBorderStyleFor: aDropList [
+{ #category : #border-styles }
+UITheme >> dropListDisabledBorderStyleFor: aDropList [
 	"Return the disabled borderStyle for the given drop list."
 
 	^self dropListNormalBorderStyleFor: aDropList
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dropListDisabledFillStyleFor: aDropList [
+{ #category : #fill-styles }
+UITheme >> dropListDisabledFillStyleFor: aDropList [
 	"Return the disabled fillStyle for the given drop list."
 	
 	^aDropList paneColor alphaMixed: 0.3 with: Color white
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dropListFocusBoundsFor: aDropList [
+{ #category : #border-styles-buttons }
+UITheme >> dropListFocusBoundsFor: aDropList [
 	"Answer the bounds for drawing the focus indication for the
 	given drop list."
 
@@ -2168,42 +1657,30 @@ UITheme>>dropListFocusBoundsFor: aDropList [
 		insetBy: aDropList layoutInset
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dropListFocusIndicatorCornerRadiusFor: aDropList [
+{ #category : #defaults }
+UITheme >> dropListFocusIndicatorCornerRadiusFor: aDropList [
 	"Answer the default corner radius preferred for the focus indicator
 	for the drop list for themes that support this."
 
 	^self focusIndicatorCornerRadiusFor: aDropList
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dropListFont [
+{ #category : #defaults }
+UITheme >> dropListFont [
 	"Answer the drop list font to use."
 
 	^self textFont
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dropListInsetFor: aDropList [
+{ #category : #defaults }
+UITheme >> dropListInsetFor: aDropList [
 	"Answer the inset to use for drop-list layout."
 
 	^Margin left: 1 top: 0 right: -1 bottom: 0
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dropListNormalBorderStyleFor: aDropList [
+{ #category : #border-styles }
+UITheme >> dropListNormalBorderStyleFor: aDropList [
 	"Return the normal borderStyle for the given drop list"
 
 	^BorderStyle inset
@@ -2211,21 +1688,15 @@ UITheme>>dropListNormalBorderStyleFor: aDropList [
 		baseColor: aDropList paneColor
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dropListNormalFillStyleFor: aDropList [
+{ #category : #fill-styles }
+UITheme >> dropListNormalFillStyleFor: aDropList [
 	"Return the normal fillStyle for the given drop list."
 	
 	^Color white
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dropListNormalListBorderStyleFor: aDropList [
+{ #category : #border-styles }
+UITheme >> dropListNormalListBorderStyleFor: aDropList [
 	"Return the normal borderStyle for the list of the given given drop list"
 
 	^BorderStyle inset
@@ -2233,39 +1704,27 @@ UITheme>>dropListNormalListBorderStyleFor: aDropList [
 		baseColor: aDropList paneColor
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>dropListNormalListFillStyleFor: aDropList [
+{ #category : #fill-styles }
+UITheme >> dropListNormalListFillStyleFor: aDropList [
 	"Return the normal fillStyle for the list of the given drop list."
 	
 	^Color white
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>editableDropListMargins [
+{ #category : #defaults }
+UITheme >> editableDropListMargins [
 	"Answer the text margins for an editable drop list for this theme."
 	
 	^Margin left: 0 top: 1 right: 2 bottom: 1
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>enabledColor  [
+{ #category : #'accessing colors' }
+UITheme >> enabledColor [ 
 	^ Color black
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>enterOrRequestIn: aThemedMorph title: title labels: labels values: values lines: lines [
+{ #category : #services }
+UITheme >> enterOrRequestIn: aThemedMorph title: title labels: labels values: values lines: lines [
 	"Answer the result of a popup choice with the given title, labels, values and lines."
 
 	| dialog choice |
@@ -2281,52 +1740,37 @@ UITheme>>enterOrRequestIn: aThemedMorph title: title labels: labels values: valu
 		ifNil: [ ^dialog filterValue ]
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>expanderTitleControlButtonWidth [
+{ #category : #defaults }
+UITheme >> expanderTitleControlButtonWidth [
 	"Answer the width of an expander title control button for this theme."
 	
 	^self buttonMinWidth
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>expanderTitleInsetFor: anExpanderTitle [
+{ #category : #defaults }
+UITheme >> expanderTitleInsetFor: anExpanderTitle [
 	"Answer the inset to use for expander title layout."
 
 	^anExpanderTitle borderWidth negated
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>expanderTitleNormalFillStyleFor: anExpanderTitle [
+{ #category : #fill-styles }
+UITheme >> expanderTitleNormalFillStyleFor: anExpanderTitle [
 	"Return the normal expander title fillStyle for the given expander title."
 	
 	^anExpanderTitle paneColor
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>fadeCheckboxWhenDisabled [
+{ #category : #fill-styles-buttons }
+UITheme >> fadeCheckboxWhenDisabled [
 	"Answer whether a checkbox should fade its appearance when disabled.
 	If false, assumed that is covered by the relevant disabled fill styles."
 
 	^true
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>fileOpenIn: aThemedMorph title: title extensions: exts path: path preview: preview [
+{ #category : #services }
+UITheme >> fileOpenIn: aThemedMorph title: title extensions: exts path: path preview: preview [
 	"Answer the result of a file open dialog with the given title, extensions path and preview type."
 
 	|fd|
@@ -2341,21 +1785,15 @@ UITheme>>fileOpenIn: aThemedMorph title: title extensions: exts path: path previ
 	^(aThemedMorph openModal: fd) answer
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>fileSaveIn: aThemedMorph title: title extensions: exts path: path [
+{ #category : #services }
+UITheme >> fileSaveIn: aThemedMorph title: title extensions: exts path: path [
 	"Answer the result of a file save dialog with the given title, extensions and path."
 
 	^self fileSaveIn: aThemedMorph title: title initialAnswer: '' extensions: exts path: path
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>fileSaveIn: aThemedMorph title: title initialAnswer: aFileName extensions: exts path: path [
+{ #category : #services }
+UITheme >> fileSaveIn: aThemedMorph title: title initialAnswer: aFileName extensions: exts path: path [
 	"Answer the result of a file save dialog with the given title, extensions and path."
 
 	|fd|
@@ -2368,39 +1806,27 @@ UITheme>>fileSaveIn: aThemedMorph title: title initialAnswer: aFileName extensio
 	^(aThemedMorph openModal: fd) answer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>flatMenu [
+{ #category : #accessing }
+UITheme >> flatMenu [
 	^ self settings flatMenu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>focusIndicator [
+{ #category : #accessing }
+UITheme >> focusIndicator [
 	"Answer the value of focusIndicator"
 
 	^ focusIndicator
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>focusIndicator: anObject [
+{ #category : #accessing }
+UITheme >> focusIndicator: anObject [
 	"Set the value of focusIndicator"
 
 	focusIndicator := anObject
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>focusIndicatorCornerRadiusFor: aMorph [
+{ #category : #defaults }
+UITheme >> focusIndicatorCornerRadiusFor: aMorph [
 	"Answer the default corner radius preferred for the focus indicator
 	for the morph for themes that support this."
 
@@ -2409,11 +1835,8 @@ UITheme>>focusIndicatorCornerRadiusFor: aMorph [
 		ifFalse: [2]
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>focusIndicatorMorphFor: aMorph [
+{ #category : #'morph creation' }
+UITheme >> focusIndicatorMorphFor: aMorph [
 	"Answer a (cached) focus indicator for the given morph."
 
 	(self focusIndicator isNil or: [
@@ -2425,31 +1848,22 @@ UITheme>>focusIndicatorMorphFor: aMorph [
 		privateBounds: aMorph focusBounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>forms [
+{ #category : #accessing }
+UITheme >> forms [
 	"Answer the value of forms"
 
 	^ forms
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>forms: anObject [
+{ #category : #accessing }
+UITheme >> forms: anObject [
 	"Set the value of forms"
 
 	forms := anObject
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>groupLabelBorderStyleFor: aGroupPanel [
+{ #category : #border-styles }
+UITheme >> groupLabelBorderStyleFor: aGroupPanel [
 	"Answer the normal border style for a group label."
 
 	^BorderStyle simple
@@ -2457,11 +1871,8 @@ UITheme>>groupLabelBorderStyleFor: aGroupPanel [
 		baseColor: Color transparent
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>groupPanelBorderStyleFor: aGroupPanel [
+{ #category : #border-styles }
+UITheme >> groupPanelBorderStyleFor: aGroupPanel [
 	"Answer the normal border style for a group panel."
 
 	^BorderStyle simple
@@ -2469,11 +1880,8 @@ UITheme>>groupPanelBorderStyleFor: aGroupPanel [
 		baseColor: Color transparent
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>handlesWindowDropShadowInHandFor: aSystemWindow [
+{ #category : #border-styles }
+UITheme >> handlesWindowDropShadowInHandFor: aSystemWindow [
 	"Answer whether the receiver will handle drop shadow drawing
 	for a window when picked up in the hand. We will when diffuse."
 
@@ -2481,19 +1889,13 @@ UITheme>>handlesWindowDropShadowInHandFor: aSystemWindow [
 		aSystemWindow isActive]
 ]
 
-{
-	#category : #icons-utilities,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>icons [
+{ #category : #icons-utilities }
+UITheme >> icons [
 	^ Smalltalk ui icons
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>initialize [
+{ #category : #initialization }
+UITheme >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -2502,11 +1904,8 @@ UITheme>>initialize [
 		settings: self defaultSettings.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>initializeForms [
+{ #category : #initialize-release }
+UITheme >> initializeForms [
 	"Initialize the receiver's image forms."
 
 	self forms: Dictionary new.
@@ -2524,11 +1923,8 @@ UITheme>>initializeForms [
 		at: #windowMaximizeOver put: self newWindowMaximizeOverForm
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>labelDisabledColorFor: aLabel [
+{ #category : #label-styles }
+UITheme >> labelDisabledColorFor: aLabel [
 	"Answer the color to use for a label when disabled."
 
 	^aLabel owner
@@ -2539,103 +1935,70 @@ UITheme>>labelDisabledColorFor: aLabel [
 			
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>labelFont [
+{ #category : #defaults }
+UITheme >> labelFont [
 	"Answer the label font to use."
 
 	^self textFont
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>lessConspicuousColorFrom: aColor [
+{ #category : #accessing }
+UITheme >> lessConspicuousColorFrom: aColor [
 
 	^	aColor alphaMixed: 0.5 with: Color white
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>lightBackgroundColor  [
+{ #category : #'accessing colors' }
+UITheme >> lightBackgroundColor [ 
 	^ Color veryLightGray muchLighter
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>lightBaseColor [
+{ #category : #'accessing colors' }
+UITheme >> lightBaseColor [
 
 	^ self class lightBaseColor
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>lineNumberColor  [
+{ #category : #'accessing colors' }
+UITheme >> lineNumberColor [ 
 	^ Color gray muchDarker
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>listBackgroundColor [
+{ #category : #'accessing colors' }
+UITheme >> listBackgroundColor [
 	^ self backgroundColor
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>listDisabledBorderStyleFor: aList [
+{ #category : #border-styles }
+UITheme >> listDisabledBorderStyleFor: aList [
 	"Return the disabled borderStyle for the given list."
 
 	^self listNormalBorderStyleFor: aList
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>listDisabledFillStyleFor: aList [
+{ #category : #fill-styles }
+UITheme >> listDisabledFillStyleFor: aList [
 	"Return the disabled fillStyle for the given list."
 	
 	^aList paneColor alphaMixed: 0.3 with: Color white
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>listFocusBoundsFor: aListMorph [
+{ #category : #border-styles }
+UITheme >> listFocusBoundsFor: aListMorph [
 	"Answer the bounds for drawing the focus indication."
 
 	^aListMorph bounds
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>listFont [
+{ #category : #defaults }
+UITheme >> listFont [
 	"Answer the list font to use."
 
 	^StandardFonts listFont
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>listNormalBorderStyleFor: aList [
+{ #category : #border-styles }
+UITheme >> listNormalBorderStyleFor: aList [
 	"Return the normal borderStyle for the given list"
 
 	^BorderStyle inset
@@ -2643,31 +2006,22 @@ UITheme>>listNormalBorderStyleFor: aList [
 		baseColor: aList paneColor
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>listNormalFillStyleFor: aList [
+{ #category : #fill-styles }
+UITheme >> listNormalFillStyleFor: aList [
 	"Return the normal fillStyle for the given list."
 	
 	^Color white
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>listTextColor [
+{ #category : #'accessing colors' }
+UITheme >> listTextColor [
 	"Answer the list text color to use."
 
 	^Color black
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>longMessageIn: aThemedMorph text: aStringOrText title: aString [
+{ #category : #services }
+UITheme >> longMessageIn: aThemedMorph text: aStringOrText title: aString [
 	"Answer the result of a (potentially long) message dialog (true) with the given label and title."
 
 	self messageSound play.
@@ -2678,57 +2032,39 @@ UITheme>>longMessageIn: aThemedMorph text: aStringOrText title: aString [
 			text: aStringOrText)) cancelled not
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuBarFont [
+{ #category : #defaults }
+UITheme >> menuBarFont [
 	"Answer the menu bar font to use."
 
 	^self textFont
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuBorderColor [
+{ #category : #'accessing colors' }
+UITheme >> menuBorderColor [
 	^  self settings menuBorderColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuBorderWidth  [
+{ #category : #accessing }
+UITheme >> menuBorderWidth [ 
 	^  self settings menuBorderWidth
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuCloseForm [
+{ #category : #label-styles }
+UITheme >> menuCloseForm [
 	"Answer the form to use for the close button of a menu."
 
 	^self windowCloseForm
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuColor [
+{ #category : #'accessing colors' }
+UITheme >> menuColor [
 	"Answer the menu color to use."
 
 	^self settings menuColor
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuColorFor: aThemedMorph [
+{ #category : #fill-styles }
+UITheme >> menuColorFor: aThemedMorph [
 	"Answer the menu color to use."
 
 	|w|
@@ -2742,11 +2078,8 @@ UITheme>>menuColorFor: aThemedMorph [
 			ifFalse: [(w valueOfProperty: #paneColor) ifNil: [self defaultMenuColor]]]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuFillStyleFor: aMenu [
+{ #category : #fill-styles }
+UITheme >> menuFillStyleFor: aMenu [
 	"Return the fillStyle for the given menu."
 	
 	| bc fill |
@@ -2759,21 +2092,15 @@ UITheme>>menuFillStyleFor: aMenu [
 	^ fill.
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuFont [
+{ #category : #defaults }
+UITheme >> menuFont [
 	"Answer the menu font to use."
 
 	^StandardFonts menuFont
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuItemDisabledTextColorFor: aMenuItem [
+{ #category : #defaults }
+UITheme >> menuItemDisabledTextColorFor: aMenuItem [
 	"Answer the color to use for disabled menu item text."
 
 	^((aMenuItem color luminance - aMenuItem owner color luminance) abs < 0.3)
@@ -2781,32 +2108,23 @@ UITheme>>menuItemDisabledTextColorFor: aMenuItem [
 		ifFalse: [aMenuItem owner color muchDarker]
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuItemInDockingBarSelectedBorderStyleFor: aMenuItem [
+{ #category : #border-styles-buttons }
+UITheme >> menuItemInDockingBarSelectedBorderStyleFor: aMenuItem [
 	"Return the selected menu item borderStyle when in a docking bar for the given menu item."
 
 	^self menuItemSelectedBorderStyleFor: aMenuItem
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuItemInDockingBarSelectedFillStyleFor: aMenuItem [
+{ #category : #fill-styles-buttons }
+UITheme >> menuItemInDockingBarSelectedFillStyleFor: aMenuItem [
 	"Answer the selected fill style to use for the given menu item that is in a docking bar."
 	
 	^ self menuItemSelectedFillStyleFor: aMenuItem
 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuItemNormalTextColorFor: aMenuItem [
+{ #category : #defaults }
+UITheme >> menuItemNormalTextColorFor: aMenuItem [
 	"Answer the color to use for normal menu item text."
 
 	^((aMenuItem color luminance - aMenuItem owner paneColor luminance) abs < 0.3)
@@ -2814,22 +2132,16 @@ UITheme>>menuItemNormalTextColorFor: aMenuItem [
 		ifFalse: [aMenuItem color]
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuItemSelectedBorderStyleFor: aMenuItem [
+{ #category : #border-styles-buttons }
+UITheme >> menuItemSelectedBorderStyleFor: aMenuItem [
 	"Return the selected menu item borderStyle for the given menu item."
 
 	^BorderStyle simple
 		width: 0
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuItemSelectedFillStyleFor: aMenuItem [
+{ #category : #fill-styles-buttons }
+UITheme >> menuItemSelectedFillStyleFor: aMenuItem [
 	"Answer the selected fill style to use for the given menu item."
 	
 	Display depth <= 2 ifTrue: [^ Color gray].
@@ -2837,56 +2149,38 @@ UITheme>>menuItemSelectedFillStyleFor: aMenuItem [
 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuItemSelectedTextColorFor: aMenuItem [
+{ #category : #defaults }
+UITheme >> menuItemSelectedTextColorFor: aMenuItem [
 	"Answer the color to use for selected menu item text."
 
 	^ self settings menuSelectionTextColor
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuKeyboardFocusColor [
+{ #category : #'accessing colors' }
+UITheme >> menuKeyboardFocusColor [
 	^ self settings menuKeyboardFocusColor
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuPinForm [
+{ #category : #label-styles }
+UITheme >> menuPinForm [
 	"Answer the form to use for the pin button of a menu."
 
 	^ self iconNamed: #smallPushpinIcon
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuShadowColor [
+{ #category : #'accessing colors' }
+UITheme >> menuShadowColor [
 	^ self settings menuShadowColor
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuTitleColor [
+{ #category : #'accessing colors' }
+UITheme >> menuTitleColor [
 	"Answer the menu title color to use."
 	^self settings menuTitleColor
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuTitleColorFor: aThemedMorph [
+{ #category : #fill-styles }
+UITheme >> menuTitleColorFor: aThemedMorph [
 	"Answer the menu titlecolor to use."
 
 	|w|
@@ -2900,11 +2194,8 @@ UITheme>>menuTitleColorFor: aThemedMorph [
 			ifFalse: [(w valueOfProperty: #paneColor) darker ifNil: [self defaultMenuTitleColor]]]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>menuTitleFillStyleFor: aMenuTitle [
+{ #category : #fill-styles }
+UITheme >> menuTitleFillStyleFor: aMenuTitle [
 	"Return the fillStyle for the given title menu."
 	| fill |
 
@@ -2915,11 +2206,8 @@ UITheme>>menuTitleFillStyleFor: aMenuTitle [
 	^ fill
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>messageIn: aThemedMorph text: aStringOrText title: aString [
+{ #category : #services }
+UITheme >> messageIn: aThemedMorph text: aStringOrText title: aString [
 	"Answer the result of a message dialog (true) with the given label and title."
 
 	self messageSound play.
@@ -2930,37 +2218,25 @@ UITheme>>messageIn: aThemedMorph text: aStringOrText title: aString [
 			text: aStringOrText)) cancelled not
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>messageSound [
+{ #category : #sounds }
+UITheme >> messageSound [
 	"Answer the message sound."
 
 	^self soundTheme messageSound
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>morphTreeColumnBorderStyleFor: aMorph [
+{ #category : #border-styles }
+UITheme >> morphTreeColumnBorderStyleFor: aMorph [
 	^ self buttonNormalBorderStyleFor: aMorph
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>morphTreeColumnFillStyleFor: aMorph [
+{ #category : #fill-styles }
+UITheme >> morphTreeColumnFillStyleFor: aMorph [
 	^ self buttonNormalFillStyleFor: aMorph 
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>morphTreeSplitterNormalFillStyleFor: aSplitter [
+{ #category : #fill-styles }
+UITheme >> morphTreeSplitterNormalFillStyleFor: aSplitter [
 	"Return the normal splitter fillStyle for the given splitter."
 	
 	|aColor|
@@ -2975,11 +2251,8 @@ UITheme>>morphTreeSplitterNormalFillStyleFor: aSplitter [
 		radial: false
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>morphTreeSplitterPressedFillStyleFor: aSplitter [
+{ #category : #fill-styles }
+UITheme >> morphTreeSplitterPressedFillStyleFor: aSplitter [
 	"Return the pressed splitter fillStyle for the given splitter."
 	
 	|aColor|
@@ -2994,11 +2267,8 @@ UITheme>>morphTreeSplitterPressedFillStyleFor: aSplitter [
 		radial: false
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>multiFormFillStyleFrom: anArray cornerWidths: widthArray in: aRectangle [
+{ #category : #fill-styles }
+UITheme >> multiFormFillStyleFrom: anArray cornerWidths: widthArray in: aRectangle [
 	"Answer a composite fill style from the given forms and central colour
 	in the given bounds. Use the widths specified for the portion of the
 	corner forms to display."
@@ -3045,11 +2315,8 @@ UITheme>>multiFormFillStyleFrom: anArray cornerWidths: widthArray in: aRectangle
 			offset: (br width - brw)@0}
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>multiFormFillStyleFrom: anArray in: aRectangle [
+{ #category : #fill-styles }
+UITheme >> multiFormFillStyleFrom: anArray in: aRectangle [
 	"Answer a composite fill style from the given forms and central colour
 	in the given bounds."
 	
@@ -3087,11 +2354,8 @@ UITheme>>multiFormFillStyleFrom: anArray in: aRectangle [
 			origin: aRectangle bottomRight - br extent}
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>multiFormTopFillStyleFrom: anArray in: aRectangle [
+{ #category : #fill-styles }
+UITheme >> multiFormTopFillStyleFrom: anArray in: aRectangle [
 	"Answer a composite fill style from the given forms and central colour
 	in the given bounds. Only top and middle sections are considered."
 	
@@ -3120,11 +2384,8 @@ UITheme>>multiFormTopFillStyleFrom: anArray in: aRectangle [
 			extent: mr width@(aRectangle height - tr height)}
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newAlphaImageIn: aThemedMorph image: aForm help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newAlphaImageIn: aThemedMorph image: aForm help: helpText [
 	"Answer an alpha image morph."
 	
 	|answer|
@@ -3136,11 +2397,8 @@ UITheme>>newAlphaImageIn: aThemedMorph image: aForm help: helpText [
 	^answer
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newAlphaSelectorIn: aThemedMorph for: aModel getAlpha: getSel setAlpha: setSel help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newAlphaSelectorIn: aThemedMorph for: aModel getAlpha: getSel setAlpha: setSel help: helpText [
 	"Answer an alpha selector ."
 
 	^(AColorSelectorMorph
@@ -3152,11 +2410,8 @@ UITheme>>newAlphaSelectorIn: aThemedMorph for: aModel getAlpha: getSel setAlpha:
 		setBalloonText: helpText
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newAutoAcceptTextEntryIn: aThemedMorph for: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel font: aFont help: helpText  [
+{ #category : #'morph creation' }
+UITheme >> newAutoAcceptTextEntryIn: aThemedMorph for: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel font: aFont help: helpText [ 
 	"Answer a text entry for the given model.
 	Object conversion will be automatic based on the class of
 	object returned after performing the get selector, aClass
@@ -3173,11 +2428,8 @@ UITheme>>newAutoAcceptTextEntryIn: aThemedMorph for: aModel get: getSel set: set
 		entryCompletion: nil
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newAutoAcceptTextEntryIn: aThemedMorph for: aModel  get: getSel set: setSel class: aClass getEnabled: enabledSel font: aFont help: helpText entryCompletion: anEntryCompletion [
+{ #category : #'morph creation' }
+UITheme >> newAutoAcceptTextEntryIn: aThemedMorph for: aModel  get: getSel set: setSel class: aClass getEnabled: enabledSel font: aFont help: helpText entryCompletion: anEntryCompletion [
 	"Answer a text entry for the given model.
 	Object conversion will be automatic based on the class of
 	object returned after performing the get selector, aClass
@@ -3213,11 +2465,8 @@ UITheme>>newAutoAcceptTextEntryIn: aThemedMorph for: aModel  get: getSel set: se
 
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newAutoAcceptTextEntryIn: aThemedMorph for: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText  [
+{ #category : #'morph creation' }
+UITheme >> newAutoAcceptTextEntryIn: aThemedMorph for: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText [ 
 	"Answer a text entry for the given model.
 	Object conversion will be automatic based on the class of
 	object returned after performing the get selector, aClass
@@ -3233,11 +2482,8 @@ UITheme>>newAutoAcceptTextEntryIn: aThemedMorph for: aModel get: getSel set: set
 		entryCompletion: nil 
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newAutoAcceptTextEntryIn: aThemedMorph for: aModel  get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText entryCompletion: anEntryCompletion [
+{ #category : #'morph creation' }
+UITheme >> newAutoAcceptTextEntryIn: aThemedMorph for: aModel  get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText entryCompletion: anEntryCompletion [
 	"Answer a text entry for the given model.
 	Object conversion will be automatic based on the class of
 	object returned after performing the get selector, aClass
@@ -3255,11 +2501,8 @@ UITheme>>newAutoAcceptTextEntryIn: aThemedMorph for: aModel  get: getSel set: se
 		entryCompletion: anEntryCompletion
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newBalloonHelpIn: aThemedMorph contents: aTextStringOrMorph for: aMorph corner: cornerSymbol [
+{ #category : #'morph creation' }
+UITheme >> newBalloonHelpIn: aThemedMorph contents: aTextStringOrMorph for: aMorph corner: cornerSymbol [
 	"Answer a new balloon help morph with the given text
 	and positioning for aMorph."
 	
@@ -3269,11 +2512,8 @@ UITheme>>newBalloonHelpIn: aThemedMorph contents: aTextStringOrMorph for: aMorph
 		corner: cornerSymbol
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newBracketSliderIn: aThemedMorph for: aModel getValue: getSel setValue: setSel min: minValue max: maxValue quantum: quantum getEnabled: enabledSel help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newBracketSliderIn: aThemedMorph for: aModel getValue: getSel setValue: setSel min: minValue max: maxValue quantum: quantum getEnabled: enabledSel help: helpText [
 	"Answer a bracket slider."
 
 	^(BracketSliderMorph
@@ -3289,11 +2529,8 @@ UITheme>>newBracketSliderIn: aThemedMorph for: aModel getValue: getSel setValue:
 		setBalloonText: helpText
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newButtonIn: aThemedMorph for: aModel getState: stateSel action: actionSel arguments: args getEnabled: enabledSel getLabel: labelSel help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newButtonIn: aThemedMorph for: aModel getState: stateSel action: actionSel arguments: args getEnabled: enabledSel getLabel: labelSel help: helpText [
 	"Answer a new button."
 
 	|b|
@@ -3317,11 +2554,8 @@ UITheme>>newButtonIn: aThemedMorph for: aModel getState: stateSel action: action
 	^b
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newButtonIn: aThemedMorph for: aModel getState: stateSel action: actionSel arguments: args getEnabled: enabledSel label: label help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newButtonIn: aThemedMorph for: aModel getState: stateSel action: actionSel arguments: args getEnabled: enabledSel label: label help: helpText [
 	"Answer a new button."
 
 	|b|
@@ -3343,11 +2577,8 @@ UITheme>>newButtonIn: aThemedMorph for: aModel getState: stateSel action: action
 	^b
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newButtonLabelIn: aThemedMorph for: aModel label: aString getEnabled: enabledSel [
+{ #category : #'morph creation' }
+UITheme >> newButtonLabelIn: aThemedMorph for: aModel label: aString getEnabled: enabledSel [
 	"Answer a new button text label."
 
 	^(self buttonLabelForText: aString)
@@ -3355,11 +2586,8 @@ UITheme>>newButtonLabelIn: aThemedMorph for: aModel label: aString getEnabled: e
 		getEnabledSelector: enabledSel
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newCancelButtonIn: aThemedMorph for: aModel [
+{ #category : #'morph creation' }
+UITheme >> newCancelButtonIn: aThemedMorph for: aModel [
 	"Answer a new cancel button."
 
 	^self
@@ -3373,11 +2601,8 @@ UITheme>>newCancelButtonIn: aThemedMorph for: aModel [
 		help: 'Cancel changes and close the window' translated
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newCheckboxIn: aThemedMorph for: aModel getSelected: getSel setSelected: setSel getEnabled: enabledSel getLabel: labelSel help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newCheckboxIn: aThemedMorph for: aModel getSelected: getSel setSelected: setSel getEnabled: enabledSel getLabel: labelSel help: helpText [
 	"Answer a checkbox with the given label ."
 
 	| answer |
@@ -3394,11 +2619,8 @@ UITheme>>newCheckboxIn: aThemedMorph for: aModel getSelected: getSel setSelected
 	^answer
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newCheckboxIn: aThemedMorph for: aModel getSelected: getSel setSelected: setSel getEnabled: enabledSel label: label help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newCheckboxIn: aThemedMorph for: aModel getSelected: getSel setSelected: setSel getEnabled: enabledSel label: label help: helpText [
 	"Answer a checkbox with the given label ."
 
 	| answer |
@@ -3415,11 +2637,8 @@ UITheme>>newCheckboxIn: aThemedMorph for: aModel getSelected: getSel setSelected
 	^answer
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newCheckboxMarkerForm [
+{ #category : #initialize-release }
+UITheme >> newCheckboxMarkerForm [
 	"Answer a new checkbox marker form."
 
 	^(Form
@@ -3429,11 +2648,8 @@ UITheme>>newCheckboxMarkerForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newCloseButtonIn: aThemedMorph for: aModel [
+{ #category : #'morph creation' }
+UITheme >> newCloseButtonIn: aThemedMorph for: aModel [
 	"Answer a new close button."
 
 	^self
@@ -3447,11 +2663,8 @@ UITheme>>newCloseButtonIn: aThemedMorph for: aModel [
 		help: 'Close the window' translated
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newCloseControlIn: aThemedMorph for: aModel action: aValuable help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newCloseControlIn: aThemedMorph for: aModel action: aValuable help: helpText [
 	"Answer a button for closing things."
 	
 	|form msb|
@@ -3464,11 +2677,8 @@ UITheme>>newCloseControlIn: aThemedMorph for: aModel action: aValuable help: hel
 	^msb
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newColorChooserIn: aThemedMorph for: aModel getColor: getSel setColor: setSel getEnabled: enabledSel help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newColorChooserIn: aThemedMorph for: aModel getColor: getSel setColor: setSel getEnabled: enabledSel help: helpText [
 	"Answer a color chooser ."
 
 	^(ColorChooserMorph
@@ -3479,11 +2689,8 @@ UITheme>>newColorChooserIn: aThemedMorph for: aModel getColor: getSel setColor: 
 		setBalloonText: helpText
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newColorPresenterIn: aThemedMorph for: aModel getColor: getSel help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newColorPresenterIn: aThemedMorph for: aModel getColor: getSel help: helpText [
 	"Answer a color presenter."
 
 	^(ColorPresenterMorph
@@ -3493,11 +2700,8 @@ UITheme>>newColorPresenterIn: aThemedMorph for: aModel getColor: getSel help: he
 		setBalloonText: helpText
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newColumnIn: aThemedMorph for: controls [
+{ #category : #'morph creation' }
+UITheme >> newColumnIn: aThemedMorph for: controls [
 	"Answer a morph laid out with a column of controls."
 
 	|answer|
@@ -3513,21 +2717,15 @@ UITheme>>newColumnIn: aThemedMorph for: controls [
 			
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newDialogPanelIn: aThemedMorph [
+{ #category : #'morph creation' }
+UITheme >> newDialogPanelIn: aThemedMorph [
 	"Answer a new (main) dialog panel."
 
 	^self newPanelIn: aThemedMorph
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newDropListIn: aThemedMorph for: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel useIndex: useIndex help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newDropListIn: aThemedMorph for: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel useIndex: useIndex help: helpText [
 	"Answer a drop list for the given model."
 
 	^(DropListMorph basicNew
@@ -3549,11 +2747,8 @@ UITheme>>newDropListIn: aThemedMorph for: aModel list: listSel getSelected: getS
 		basicTheme: nil
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newEditableDropListIn: aThemedMorph for: aModel list: listSel getSelected: getSel setSelected: setSel addToList: addSel class: aClass default: defaultValue ghostText: ghostText getEnabled: enabledSel useIndex: useIndex help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newEditableDropListIn: aThemedMorph for: aModel list: listSel getSelected: getSel setSelected: setSel addToList: addSel class: aClass default: defaultValue ghostText: ghostText getEnabled: enabledSel useIndex: useIndex help: helpText [
 	"Answer an editable drop list for the given model."
 
 	^(EditableDropListMorph
@@ -3575,11 +2770,8 @@ UITheme>>newEditableDropListIn: aThemedMorph for: aModel list: listSel getSelect
 		setBalloonText: helpText
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newEmbeddedMenuIn: aThemedMorph for: aModel [
+{ #category : #'morph creation' }
+UITheme >> newEmbeddedMenuIn: aThemedMorph for: aModel [
 	"Answer a new menu."
 
 	^EmbeddedMenuMorph new
@@ -3587,11 +2779,8 @@ UITheme>>newEmbeddedMenuIn: aThemedMorph for: aModel [
 		color: (self menuColorFor: aThemedMorph)
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newExpanderIn: aThemedMorph label: aString forAll: controls [
+{ #category : #'morph creation' }
+UITheme >> newExpanderIn: aThemedMorph label: aString forAll: controls [
 	"Answer an expander with the given label and controls."
 
 	|answer|
@@ -3606,11 +2795,8 @@ UITheme>>newExpanderIn: aThemedMorph label: aString forAll: controls [
 	^answer
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newFocusIndicatorMorphFor: aMorph [
+{ #category : #'morph creation' }
+UITheme >> newFocusIndicatorMorphFor: aMorph [
 	"Answer a new focus indicator for the given morph."
 
 	^BorderedMorph new
@@ -3621,21 +2807,15 @@ UITheme>>newFocusIndicatorMorphFor: aMorph [
 		bounds: aMorph focusBounds
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newFontSelector [
+{ #category : #'morph creation' }
+UITheme >> newFontSelector [
 	"Answer a new font selector dialog"
 		^FreeTypeFontSelectorDialogWindow new
 	
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newFuzzyLabelIn: aThemedMorph for: aModel label: aString offset: offset alpha: alpha getEnabled: enabledSel [
+{ #category : #'morph creation' }
+UITheme >> newFuzzyLabelIn: aThemedMorph for: aModel label: aString offset: offset alpha: alpha getEnabled: enabledSel [
 	"Answer a new fuzzy label."
 
 	^(FuzzyLabelMorph contents: aString font: self labelFont)
@@ -3645,11 +2825,8 @@ UITheme>>newFuzzyLabelIn: aThemedMorph for: aModel label: aString offset: offset
 		getEnabledSelector: enabledSel	
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newGroupboxIn: aThemedMorph [
+{ #category : #'morph creation' }
+UITheme >> newGroupboxIn: aThemedMorph [
 	"Answer a plain groupbox."
 
 	^PlainGroupboxMorph new
@@ -3659,22 +2836,16 @@ UITheme>>newGroupboxIn: aThemedMorph [
 		yourself
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newGroupboxIn: aThemedMorph for: control [
+{ #category : #'morph creation' }
+UITheme >> newGroupboxIn: aThemedMorph for: control [
 	"Answer a plain groupbox."
 
 	^(self newGroupboxIn: aThemedMorph)
 		addMorph: control
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newGroupboxIn: aThemedMorph forAll: controls [
+{ #category : #'morph creation' }
+UITheme >> newGroupboxIn: aThemedMorph forAll: controls [
 	"Answer a plain groupbox."
 
 	^self
@@ -3682,11 +2853,8 @@ UITheme>>newGroupboxIn: aThemedMorph forAll: controls [
 		for: (self newColumnIn: aThemedMorph for: controls)
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newGroupboxIn: aThemedMorph label: aString [
+{ #category : #'morph creation' }
+UITheme >> newGroupboxIn: aThemedMorph label: aString [
 	"Answer a groupbox with the given label."
 
 	^GroupboxMorph new
@@ -3698,11 +2866,8 @@ UITheme>>newGroupboxIn: aThemedMorph label: aString [
 		yourself
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newGroupboxIn: aThemedMorph label: aString for: control [
+{ #category : #'morph creation' }
+UITheme >> newGroupboxIn: aThemedMorph label: aString for: control [
 	"Answer a groupbox with the given label and control."
 
 	^(self newGroupboxIn: aThemedMorph label: aString)
@@ -3710,11 +2875,8 @@ UITheme>>newGroupboxIn: aThemedMorph label: aString for: control [
 		yourself
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newGroupboxIn: aThemedMorph label: aString forAll: controls [
+{ #category : #'morph creation' }
+UITheme >> newGroupboxIn: aThemedMorph label: aString forAll: controls [
 	"Answer a groupbox with the given label and controls."
 
 	^(self newGroupboxIn: aThemedMorph label: aString)
@@ -3722,11 +2884,8 @@ UITheme>>newGroupboxIn: aThemedMorph label: aString forAll: controls [
 		yourself
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newHSVASelectorIn: aThemedMorph color: aColor help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newHSVASelectorIn: aThemedMorph color: aColor help: helpText [
 	"Answer a hue-saturation-volume-alpha selector."
 
 	^HSVAColorSelectorMorph new
@@ -3736,11 +2895,8 @@ UITheme>>newHSVASelectorIn: aThemedMorph color: aColor help: helpText [
 		setBalloonText: helpText
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newHSVSelectorIn: aThemedMorph color: aColor help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newHSVSelectorIn: aThemedMorph color: aColor help: helpText [
 	"Answer a hue-saturation-volume selector."
 
 	^HSVColorSelectorMorph new
@@ -3750,11 +2906,8 @@ UITheme>>newHSVSelectorIn: aThemedMorph color: aColor help: helpText [
 		setBalloonText: helpText
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newHueSelectorIn: aThemedMorph for: aModel getHue: getSel setHue: setSel help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newHueSelectorIn: aThemedMorph for: aModel getHue: getSel setHue: setSel help: helpText [
 	"Answer a hue selector ."
 
 	^(HColorSelectorMorph
@@ -3766,11 +2919,8 @@ UITheme>>newHueSelectorIn: aThemedMorph for: aModel getHue: getSel setHue: setSe
 		setBalloonText: helpText
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newImageIn: aThemedMorph for: aModel get: getSel help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newImageIn: aThemedMorph for: aModel get: getSel help: helpText [
 	"Answer a new image morph."
 
 	^AlphaImageMorph new
@@ -3781,11 +2931,8 @@ UITheme>>newImageIn: aThemedMorph for: aModel get: getSel help: helpText [
 		updateImage
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newImageIn: aThemedMorph form: aForm [
+{ #category : #'morph creation' }
+UITheme >> newImageIn: aThemedMorph form: aForm [
 	"Answer a new text label."
 
 	^self
@@ -3794,11 +2941,8 @@ UITheme>>newImageIn: aThemedMorph form: aForm [
 		size: aForm extent
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newImageIn: aThemedMorph form: aForm size: aPoint [
+{ #category : #'morph creation' }
+UITheme >> newImageIn: aThemedMorph form: aForm size: aPoint [
 	"Answer a new image morph."
 
 	^AlphaImageMorph new
@@ -3806,11 +2950,8 @@ UITheme>>newImageIn: aThemedMorph form: aForm size: aPoint [
 		image: aForm size: aPoint
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newIncrementalSliderIn: aThemedMorph for: aModel getValue: getSel setValue: setSel min: min max: max quantum: quantum getEnabled: enabledSel help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newIncrementalSliderIn: aThemedMorph for: aModel getValue: getSel setValue: setSel min: min max: max quantum: quantum getEnabled: enabledSel help: helpText [
 	"Answer a slider inrement/decrement buttons."
 
 	^(IncrementalSliderMorph
@@ -3826,11 +2967,8 @@ UITheme>>newIncrementalSliderIn: aThemedMorph for: aModel getValue: getSel setVa
 		setBalloonText: helpText
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newLabelGroupIn: aThemedMorph for: labelsAndControls [
+{ #category : #'morph creation' }
+UITheme >> newLabelGroupIn: aThemedMorph for: labelsAndControls [
 	"Answer a morph laid out with a column of labels and a column of associated controls.
 	The vResizing for each row will be #spaceFill if the control for that row specifies
 	this, otherwise #shrinkWrap."
@@ -3855,11 +2993,8 @@ UITheme>>newLabelGroupIn: aThemedMorph for: labelsAndControls [
 		row])
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newLabelGroupIn: aThemedMorph for: labelsAndControls font: aFont labelColor: aColor [
+{ #category : #'morph creation' }
+UITheme >> newLabelGroupIn: aThemedMorph for: labelsAndControls font: aFont labelColor: aColor [
 	"Answer a morph laid out with a column of labels and a column of associated controls.
 	If spaceFill is tru then each row will share available space to pad."
 
@@ -3885,11 +3020,8 @@ UITheme>>newLabelGroupIn: aThemedMorph for: labelsAndControls font: aFont labelC
 		row])
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newLabelIn: aThemedMorph for: aModel getLabel: labelSel getEnabled: enabledSel [
+{ #category : #'morph creation' }
+UITheme >> newLabelIn: aThemedMorph for: aModel getLabel: labelSel getEnabled: enabledSel [
 	"Answer a new text label."
 
 	^(LabelMorph contents: '' font: self labelFont)
@@ -3898,11 +3030,8 @@ UITheme>>newLabelIn: aThemedMorph for: aModel getLabel: labelSel getEnabled: ena
 		getTextSelector: labelSel
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newLabelIn: aThemedMorph for: aModel label: aString getEnabled: enabledSel [
+{ #category : #'morph creation' }
+UITheme >> newLabelIn: aThemedMorph for: aModel label: aString getEnabled: enabledSel [
 	"Answer a new text label."
 
 	^(LabelMorph contents: aString font: self labelFont)
@@ -3910,11 +3039,8 @@ UITheme>>newLabelIn: aThemedMorph for: aModel label: aString getEnabled: enabled
 		getEnabledSelector: enabledSel
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newLabelIn: aThemedMorph label: aString [
+{ #category : #'morph creation' }
+UITheme >> newLabelIn: aThemedMorph label: aString [
 	"Answer a new text label."
 
 	^self
@@ -3924,11 +3050,8 @@ UITheme>>newLabelIn: aThemedMorph label: aString [
 		getEnabled: nil
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newListIn: aThemedMorph for: aModel list: listSelector selected: getSelector changeSelected: setSelector getEnabled: enabledSel help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newListIn: aThemedMorph for: aModel list: listSelector selected: getSelector changeSelected: setSelector getEnabled: enabledSel help: helpText [
 	"Answer a list for the given model."
 
 	^PluggableListMorph new
@@ -3951,11 +3074,8 @@ UITheme>>newListIn: aThemedMorph for: aModel list: listSelector selected: getSel
 		setBalloonText: helpText
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newListIn: aThemedMorph for: aModel list: listSelector selected: getSelector changeSelected: setSelector icon: iconSelector getEnabled: enabledSel help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newListIn: aThemedMorph for: aModel list: listSelector selected: getSelector changeSelected: setSelector icon: iconSelector getEnabled: enabledSel help: helpText [
 	"Answer an icon list for the given model."
 
 	^PluggableIconListMorph new
@@ -3979,11 +3099,8 @@ UITheme>>newListIn: aThemedMorph for: aModel list: listSelector selected: getSel
 		setBalloonText: helpText
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newMenuIn: aThemedMorph for: aModel [
+{ #category : #'morph creation' }
+UITheme >> newMenuIn: aThemedMorph for: aModel [
 	"Answer a new menu."
 
 	^MenuMorph new
@@ -3991,11 +3108,8 @@ UITheme>>newMenuIn: aThemedMorph for: aModel [
 		color: (self menuColorFor: aThemedMorph)
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newMorphDropListIn: aThemedMorph for: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newMorphDropListIn: aThemedMorph for: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel help: helpText [
 	"Answer a morph drop list for the given model."
 
 	^self
@@ -4009,11 +3123,8 @@ UITheme>>newMorphDropListIn: aThemedMorph for: aModel list: listSel getSelected:
 		help: helpText
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newMorphDropListIn: aThemedMorph for: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel useIndex: useIndex help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newMorphDropListIn: aThemedMorph for: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel useIndex: useIndex help: helpText [
 	"Answer a morph drop list for the given model."
 
 	^(MorphDropListMorph
@@ -4030,11 +3141,8 @@ UITheme>>newMorphDropListIn: aThemedMorph for: aModel list: listSel getSelected:
 		setBalloonText: helpText
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newMorphListIn: aThemedMorph for: aModel list: listSelector getSelected: getSelector setSelected: setSelector getEnabled: enabledSel help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newMorphListIn: aThemedMorph for: aModel list: listSelector getSelected: getSelector setSelected: setSelector getEnabled: enabledSel help: helpText [
 	"Answer a morph list for the given model."
 
 	^(PluggableMorphListMorph
@@ -4056,21 +3164,15 @@ UITheme>>newMorphListIn: aThemedMorph for: aModel list: listSelector getSelected
 		
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newMultistateButtonIn: aThemedMorph [
+{ #category : #'morph creation' }
+UITheme >> newMultistateButtonIn: aThemedMorph [
 	"Answer a new multistate button morph."
 
 	^MultistateButtonMorph new
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newNoButtonIn: aThemedMorph for: aModel [
+{ #category : #'morph creation' }
+UITheme >> newNoButtonIn: aThemedMorph for: aModel [
 	"Answer a new No button."
 
 	^(self
@@ -4086,11 +3188,8 @@ UITheme>>newNoButtonIn: aThemedMorph for: aModel [
 		vResizing: #rigid
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newOKButtonIn: aThemedMorph for: aModel getEnabled: enabledSel [
+{ #category : #'morph creation' }
+UITheme >> newOKButtonIn: aThemedMorph for: aModel getEnabled: enabledSel [
 	"Answer a new OK button."
 
 	^self
@@ -4104,11 +3203,8 @@ UITheme>>newOKButtonIn: aThemedMorph for: aModel getEnabled: enabledSel [
 		help: 'Apply changes and close the window' translated
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newOverflowRowIn: aThemedMorph forAll: aCollectionOfMorphs [
+{ #category : #'morph creation' }
+UITheme >> newOverflowRowIn: aThemedMorph forAll: aCollectionOfMorphs [
 	"Answer a new overflow row morph with the given contents."
 
 	^OverflowRowMorph new
@@ -4116,11 +3212,8 @@ UITheme>>newOverflowRowIn: aThemedMorph forAll: aCollectionOfMorphs [
 		yourself
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newPanelIn: aThemedMorph [
+{ #category : #'morph creation' }
+UITheme >> newPanelIn: aThemedMorph [
 	"Answer a new panel."
 
 	^PanelMorph new
@@ -4131,11 +3224,8 @@ UITheme>>newPanelIn: aThemedMorph [
 		yourself
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newPluggableDialogWindowIn: aThemedMorph title: title for: contentMorph [
+{ #category : #'morph creation' }
+UITheme >> newPluggableDialogWindowIn: aThemedMorph title: title for: contentMorph [
 	"Answer a new pluggable dialog panel with the given content."
 
 	|answer|
@@ -4147,11 +3237,8 @@ UITheme>>newPluggableDialogWindowIn: aThemedMorph title: title for: contentMorph
 	^answer
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newRadioButtonIn: aThemedMorph for: aModel getSelected: getSel setSelected: setSel getEnabled: enabledSel label: label help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newRadioButtonIn: aThemedMorph for: aModel getSelected: getSel setSelected: setSel getEnabled: enabledSel label: label help: helpText [
 	"Answer a checkbox (radio button appearance) with the given label ."
 
 	| answer |
@@ -4169,11 +3256,8 @@ UITheme>>newRadioButtonIn: aThemedMorph for: aModel getSelected: getSel setSelec
 	^answer
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newRadioButtonMarkerForm [
+{ #category : #initialize-release }
+UITheme >> newRadioButtonMarkerForm [
 	"Answer a new radio button marker form."
 
 	^(Form
@@ -4183,11 +3267,8 @@ UITheme>>newRadioButtonMarkerForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newRowIn: aThemedMorph for: controls [
+{ #category : #'morph creation' }
+UITheme >> newRowIn: aThemedMorph for: controls [
 	"Answer a morph laid out with a row of controls."
 
 	|answer|
@@ -4204,11 +3285,8 @@ UITheme>>newRowIn: aThemedMorph for: controls [
 			
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newSVSelectorIn: aThemedMorph color: aColor help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newSVSelectorIn: aThemedMorph color: aColor help: helpText [
 	"Answer a saturation-volume selector."
 
 	^SVColorSelectorMorph new
@@ -4219,27 +3297,18 @@ UITheme>>newSVSelectorIn: aThemedMorph color: aColor help: helpText [
 		setBalloonText: helpText
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newScrollBarDownButtonFor: aScrollbar [
+{ #category : #'morph creation' }
+UITheme >> newScrollBarDownButtonFor: aScrollbar [
 	^ BorderedMorph newBounds: (self scrollBarDownButtonBoundsFor: aScrollbar)
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newScrollBarUpButtonFor: aScrollbar [
+{ #category : #'morph creation' }
+UITheme >> newScrollBarUpButtonFor: aScrollbar [
 	^ BorderedMorph newBounds: (self scrollBarUpButtonBoundsFor: aScrollbar)
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newScrollPaneIn: aThemedMorph for: aMorph [
+{ #category : #'morph creation' }
+UITheme >> newScrollPaneIn: aThemedMorph for: aMorph [
 	"Answer a new GeneralScrollPane with given content morph."
 
 	^GeneralScrollPane new
@@ -4247,11 +3316,8 @@ UITheme>>newScrollPaneIn: aThemedMorph for: aMorph [
 		yourself
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newSeparatorIn: aThemedMorph [
+{ #category : #'morph creation' }
+UITheme >> newSeparatorIn: aThemedMorph [
 	"Answer a new horizontal separator."
 
 	^SeparatorMorph new
@@ -4261,11 +3327,8 @@ UITheme>>newSeparatorIn: aThemedMorph [
 		hResizing: #spaceFill
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newSliderIn: aThemedMorph for: aModel getValue: getSel setValue: setSel min: min max: max quantum: quantum getEnabled: enabledSel help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newSliderIn: aThemedMorph for: aModel getValue: getSel setValue: setSel min: min max: max quantum: quantum getEnabled: enabledSel help: helpText [
 	"Answer a slider. Resizing set for horizontal usage by default."
 
 	^(PluggableSliderMorph
@@ -4282,11 +3345,8 @@ UITheme>>newSliderIn: aThemedMorph for: aModel getValue: getSel setValue: setSel
 		minHeight: 16
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newStackIn: aThemedMorph for: controls [
+{ #category : #'morph creation' }
+UITheme >> newStackIn: aThemedMorph for: controls [
 	"Answer a morph laid out with a stack of controls."
 
 	|answer|
@@ -4300,22 +3360,16 @@ UITheme>>newStackIn: aThemedMorph for: controls [
 			
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newStringIn: aThemedMorph label: aStringOrText font: aFont style: aStyle [
+{ #category : #'morph creation' }
+UITheme >> newStringIn: aThemedMorph label: aStringOrText font: aFont style: aStyle [
 	"Answer a new string/text morph."
 
 	^(EmbossedStringMorph contents: aStringOrText font: aFont)
 		style: aStyle
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newTabGroupIn: aThemedMorph for: labelsAndControls [
+{ #category : #'morph creation' }
+UITheme >> newTabGroupIn: aThemedMorph for: labelsAndControls [
 	"Answer a tab group morph with the given tab labels and associated pages."
 
 	^(TabGroupMorph new
@@ -4327,11 +3381,8 @@ UITheme>>newTabGroupIn: aThemedMorph for: labelsAndControls [
 		selectedPageIndex: (labelsAndControls isEmpty ifTrue: [0] ifFalse: [1])
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newTaskListButtonIn: aTasklist for: aTask [
+{ #category : #'morph creation' }
+UITheme >> newTaskListButtonIn: aTasklist for: aTask [
 	"Answer a tasklist button morph for the given task."
 	
 	|lm lab button |
@@ -4362,11 +3413,8 @@ UITheme>>newTaskListButtonIn: aTasklist for: aTask [
 	^button
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newTaskbarButtonIn: aTaskbar for: aWindow [
+{ #category : #'morph creation' }
+UITheme >> newTaskbarButtonIn: aTaskbar for: aWindow [
 	"Answer a taskbar button morph for the given window."
 
 	|lm lab button labSize|
@@ -4399,11 +3447,8 @@ UITheme>>newTaskbarButtonIn: aTaskbar for: aWindow [
 	^button
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newTaskbarThumbnailIn: aThemedMorph for: aWindow [
+{ #category : #'morph creation' }
+UITheme >> newTaskbarThumbnailIn: aThemedMorph for: aWindow [
 	"Answer a taskbar thumbnail morph for the given window."
 
 	|answer thumb|
@@ -4425,11 +3470,8 @@ UITheme>>newTaskbarThumbnailIn: aThemedMorph for: aWindow [
 	^answer
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newTextEditorIn: aThemedMorph for: aModel getText: getSel setText: setSel getEnabled: enabledSel menu: aMenuSelector [
+{ #category : #'morph creation' }
+UITheme >> newTextEditorIn: aThemedMorph for: aModel getText: getSel setText: setSel getEnabled: enabledSel menu: aMenuSelector [
 	"Answer a text (Smalltalk code) editor for the given model."
 
 	^PluggableTextMorph new
@@ -4450,11 +3492,8 @@ UITheme>>newTextEditorIn: aThemedMorph for: aModel getText: getSel setText: setS
 		removeProperty: #theme
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newTextEntryIn: aThemedMorph for: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText [
+{ #category : #'morph creation' }
+UITheme >> newTextEntryIn: aThemedMorph for: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText [
 	"Answer a text entry for the given model."
 
 	|pt|
@@ -4485,11 +3524,8 @@ UITheme>>newTextEntryIn: aThemedMorph for: aModel get: getSel set: setSel class:
 	^pt
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newTextEntryIn: aThemedMorph for: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText entryCompletion: anEntryCompletion [
+{ #category : #'morph creation' }
+UITheme >> newTextEntryIn: aThemedMorph for: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText entryCompletion: anEntryCompletion [
 	"Answer a text entry for the given model."
 
 	|pt|
@@ -4522,11 +3558,8 @@ UITheme>>newTextEntryIn: aThemedMorph for: aModel get: getSel set: setSel class:
 	^pt
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newTextIn: aThemedMorph text: aStringOrText [
+{ #category : #'morph creation' }
+UITheme >> newTextIn: aThemedMorph text: aStringOrText [
 	"Answer a new text."
 
 	^TextMorph new
@@ -4539,11 +3572,8 @@ UITheme>>newTextIn: aThemedMorph text: aStringOrText [
 		vResizing: #shrinkWrap
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newTitleIn: aThemedMorph label: aString for: control [
+{ #category : #'morph creation' }
+UITheme >> newTitleIn: aThemedMorph label: aString for: control [
 	"Answer a morph laid out with a column with the title and control aligned to the left."
 
 	^(self newColumnIn: aThemedMorph for: {
@@ -4553,11 +3583,8 @@ UITheme>>newTitleIn: aThemedMorph label: aString for: control [
 		cellInset: 2
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newToolDockingBarIn: aThemedMorph [
+{ #category : #'morph creation' }
+UITheme >> newToolDockingBarIn: aThemedMorph [
 	"Answer a new tool docking bar."
 
 	^ToolDockingBarMorph new
@@ -4567,11 +3594,8 @@ UITheme>>newToolDockingBarIn: aThemedMorph [
 		clipSubmorphs: true
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newToolSpacerIn: aThemedMorph [
+{ #category : #'morph creation' }
+UITheme >> newToolSpacerIn: aThemedMorph [
 	"Answer a new tool spacer."
 
 	^Morph new
@@ -4580,11 +3604,8 @@ UITheme>>newToolSpacerIn: aThemedMorph [
 		extent: 3@3
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newToolbarHandleIn: aThemedMorph [
+{ #category : #'morph creation' }
+UITheme >> newToolbarHandleIn: aThemedMorph [
 	"Answer a new toolbar handle."
 
 	^PanelMorph new
@@ -4594,11 +3615,8 @@ UITheme>>newToolbarHandleIn: aThemedMorph [
 		vResizing: #spaceFill
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newToolbarIn: aThemedMorph [
+{ #category : #'morph creation' }
+UITheme >> newToolbarIn: aThemedMorph [
 	"Answer a new toolbar."
 
 	|bar|
@@ -4615,11 +3633,8 @@ UITheme>>newToolbarIn: aThemedMorph [
 	^bar
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newToolbarIn: aThemedMorph for: controls [
+{ #category : #'morph creation' }
+UITheme >> newToolbarIn: aThemedMorph for: controls [
 	"Answer a new toolbar with the given controls."
 
 	|answer|
@@ -4628,11 +3643,8 @@ UITheme>>newToolbarIn: aThemedMorph for: controls [
 	^answer
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newTreeExpandedForm [
+{ #category : #initialize-release }
+UITheme >> newTreeExpandedForm [
 	"Answer a new form for an expanded tree item."
 
 	^(Form
@@ -4645,11 +3657,8 @@ UITheme>>newTreeExpandedForm [
 			yourself
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newTreeIn: aThemedMorph for: aModel list: listSelector selected: getSelector changeSelected: setSelector [
+{ #category : #'morph creation' }
+UITheme >> newTreeIn: aThemedMorph for: aModel list: listSelector selected: getSelector changeSelected: setSelector [
 	"Answer a new tree morph."
 	
 	^TreeListMorph new
@@ -4671,11 +3680,8 @@ UITheme>>newTreeIn: aThemedMorph for: aModel list: listSelector selected: getSel
 		
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newTreeUnexpandedForm [
+{ #category : #initialize-release }
+UITheme >> newTreeUnexpandedForm [
 	"Answer a new form for an unexpanded tree item."
 
 	^(Form
@@ -4688,11 +3694,8 @@ UITheme>>newTreeUnexpandedForm [
 			yourself
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newVerticalSeparatorIn: aThemedMorph [
+{ #category : #'morph creation' }
+UITheme >> newVerticalSeparatorIn: aThemedMorph [
 	"Answer a new vertical separator."
 
 	^SeparatorMorph new
@@ -4702,11 +3705,8 @@ UITheme>>newVerticalSeparatorIn: aThemedMorph [
 		vResizing: #spaceFill
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newWindowCloseForm [
+{ #category : #initialize-release }
+UITheme >> newWindowCloseForm [
 	"Answer a new form for a window close box."
 
 	^Form
@@ -4716,32 +3716,23 @@ UITheme>>newWindowCloseForm [
 		offset: 0@0
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newWindowCloseOverForm [
+{ #category : #initialize-release }
+UITheme >> newWindowCloseOverForm [
 	"Answer a new form for a window menu box."
 
 	^ self newWindowCloseForm
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newWindowHeaderFor: aWindow [
+{ #category : #'morph creation' }
+UITheme >> newWindowHeaderFor: aWindow [
 
 	^ (AlignmentMorph newSpacer: Color transparent)
 			vResizing: #spaceFill;
 			layoutPolicy: ProportionalLayout new
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newWindowIn: aThemedMorph for: aModel title: titleString [
+{ #category : #'morph creation' }
+UITheme >> newWindowIn: aThemedMorph for: aModel title: titleString [
 	"Answer a new StandardWindow with given model and title."
 
 	^StandardWindow new
@@ -4750,11 +3741,8 @@ UITheme>>newWindowIn: aThemedMorph for: aModel title: titleString [
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newWindowMaximizeForm [
+{ #category : #initialize-release }
+UITheme >> newWindowMaximizeForm [
 	"Answer a new form for a window maximize box."
 
 	^Form
@@ -4764,21 +3752,15 @@ UITheme>>newWindowMaximizeForm [
 		offset: 0@0
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newWindowMaximizeOverForm [
+{ #category : #initialize-release }
+UITheme >> newWindowMaximizeOverForm [
 	"Answer a new form for a window menu box."
 
 	^ self newWindowMaximizeForm
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newWindowMenuForm [
+{ #category : #initialize-release }
+UITheme >> newWindowMenuForm [
 	"Answer a new form for a window menu box."
 
 	^Form
@@ -4788,11 +3770,8 @@ UITheme>>newWindowMenuForm [
 		offset: 0@0
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newWindowMinimizeForm [
+{ #category : #initialize-release }
+UITheme >> newWindowMinimizeForm [
 	"Answer a new form for a window minimize box."
 
 	^Form
@@ -4802,21 +3781,15 @@ UITheme>>newWindowMinimizeForm [
 		offset: 0@0
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newWindowMinimizeOverForm [
+{ #category : #initialize-release }
+UITheme >> newWindowMinimizeOverForm [
 	"Answer a new form for a window menu box."
 
 	^ self newWindowMinimizeForm
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>newYesButtonIn: aThemedMorph for: aModel [
+{ #category : #'morph creation' }
+UITheme >> newYesButtonIn: aThemedMorph for: aModel [
 	"Answer a new Yes button."
 
 	^(self
@@ -4832,22 +3805,16 @@ UITheme>>newYesButtonIn: aThemedMorph for: aModel [
 		vResizing: #rigid
 ]
 
-{
-	#category : #cursor,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>overTextCursorFor: aTextMorph [
+{ #category : #cursor }
+UITheme >> overTextCursorFor: aTextMorph [
 	"Answer the pointer cursor when over an active text 
 	(answer nil if no particular cursor is wanted)."
 
 	^ Cursor overEditableText
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>paneColorFor: aWindow [
+{ #category : #fill-styles }
+UITheme >> paneColorFor: aWindow [
 	"Answer the pane color that should be used."
 	
 	| cc |
@@ -4863,11 +3830,8 @@ UITheme>>paneColorFor: aWindow [
 	^aWindow paneColor
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>passwordEntryIn: aThemedMorph text: aStringOrText title: aString entryText: defaultEntryText [
+{ #category : #services }
+UITheme >> passwordEntryIn: aThemedMorph text: aStringOrText title: aString entryText: defaultEntryText [
 	"Answer the result of a password entry dialog (a string or nil if cancelled)
 	with the given label and title."
 
@@ -4879,20 +3843,14 @@ UITheme>>passwordEntryIn: aThemedMorph text: aStringOrText title: aString entryT
 			entryText: defaultEntryText)) entryText
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>patchworkUIThemeColorFor: aWindowOrModel [
+{ #category : #basic-colors }
+UITheme >> patchworkUIThemeColorFor: aWindowOrModel [
 	"Answer the colour for the given window."
 	^ self settings windowColor
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>plainGroupPanelBorderStyleFor: aGroupPanel [
+{ #category : #border-styles }
+UITheme >> plainGroupPanelBorderStyleFor: aGroupPanel [
 	"Answer the normal border style for a plain group panel."
 
 	^BorderStyle simple
@@ -4900,30 +3858,21 @@ UITheme>>plainGroupPanelBorderStyleFor: aGroupPanel [
 		baseColor: Color transparent
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>postCopy [
+{ #category : #copying }
+UITheme >> postCopy [
 	"Copy the settings too."
 	
 	super postCopy.
 	self settings: self settings copy
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>preferGradientFill [
+{ #category : #fill-styles }
+UITheme >> preferGradientFill [
 	^ self settings preferGradientFill
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>proceedIn: aThemedMorph text: aStringOrText title: aString [
+{ #category : #services }
+UITheme >> proceedIn: aThemedMorph text: aStringOrText title: aString [
 	"Answer the result of a proceed dialog with the given label and title."
 
 	self questionSound play.
@@ -4934,11 +3883,8 @@ UITheme>>proceedIn: aThemedMorph text: aStringOrText title: aString [
 			text: aStringOrText)) cancelled not
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>progressBarBorderStyleFor: aProgressBar [
+{ #category : #border-styles }
+UITheme >> progressBarBorderStyleFor: aProgressBar [
 	"Return the progress bar borderStyle for the given progress bar."
 
 	|c|
@@ -4948,21 +3894,15 @@ UITheme>>progressBarBorderStyleFor: aProgressBar [
 		baseColor: c darker
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>progressBarColorFor: aProgressBar [
+{ #category : #basic-colors }
+UITheme >> progressBarColorFor: aProgressBar [
 	"Answer the colour for the given progress bar."
 
 	^self settings progressBarColor
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>progressBarFillStyleFor: aProgressBar [
+{ #category : #fill-styles }
+UITheme >> progressBarFillStyleFor: aProgressBar [
 	"Return the progress bar fillStyle for the given progress bar."
 	
 	|aColor area|
@@ -4976,21 +3916,15 @@ UITheme>>progressBarFillStyleFor: aProgressBar [
 		radial: false
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>progressBarProgressColorFor: aProgressBar [
+{ #category : #basic-colors }
+UITheme >> progressBarProgressColorFor: aProgressBar [
 	"Answer the colour for the progress part of the given progress bar."
 
 	^self settings progressBarProgressColor
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>progressBarProgressFillStyleFor: aProgressBar [
+{ #category : #fill-styles }
+UITheme >> progressBarProgressFillStyleFor: aProgressBar [
 	"Return the progress bar progress fillStyle for the given progress bar."
 	
 	|aColor area|
@@ -5006,11 +3940,8 @@ UITheme>>progressBarProgressFillStyleFor: aProgressBar [
 		radial: false
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>progressFillStyleFor: aProgress [
+{ #category : #fill-styles }
+UITheme >> progressFillStyleFor: aProgress [
 	"Return the progress fillStyle for the given progress morph."
 	| fill |
 	fill := GradientFillStyle ramp: {0.0 -> Color white. 1 ->aProgress color}.
@@ -5020,11 +3951,8 @@ UITheme>>progressFillStyleFor: aProgress [
 	^ fill
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>questionIn: aThemedMorph text: aStringOrText title: aString [
+{ #category : #services }
+UITheme >> questionIn: aThemedMorph text: aStringOrText title: aString [
 	"Answer the result of a question dialog with the given label and title."
 
 	self questionSound play.
@@ -5035,21 +3963,15 @@ UITheme>>questionIn: aThemedMorph text: aStringOrText title: aString [
 			text: aStringOrText)) answer
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>questionSound [
+{ #category : #sounds }
+UITheme >> questionSound [
 	"Answer the question sound."
 
 	^self soundTheme questionSound
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>questionWithoutCancelIn: aThemedMorph text: aStringOrText title: aString [
+{ #category : #services }
+UITheme >> questionWithoutCancelIn: aThemedMorph text: aStringOrText title: aString [
 	"Answer the result of a question dialog with the given label and title."
 
 	self questionSound play.
@@ -5060,111 +3982,78 @@ UITheme>>questionWithoutCancelIn: aThemedMorph text: aStringOrText title: aStrin
 			text: aStringOrText)) answer
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>radioButtonCornerStyleFor: aRadioButton [
+{ #category : #border-styles-buttons }
+UITheme >> radioButtonCornerStyleFor: aRadioButton [
 	"Answer the corner style for radio buttons."
 	
 	^#rounded
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>radioButtonDisabledBorderStyleFor: aRadioButton [
+{ #category : #border-styles-buttons }
+UITheme >> radioButtonDisabledBorderStyleFor: aRadioButton [
 	"Return the disabled radio button borderStyle for the given button."
 
 	^self checkboxButtonDisabledBorderStyleFor: aRadioButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>radioButtonDisabledFillStyleFor: aRadioButton [
+{ #category : #fill-styles-buttons }
+UITheme >> radioButtonDisabledFillStyleFor: aRadioButton [
 	"Return the disabled radio button fillStyle for the given button."
 	
 	^self checkboxButtonDisabledFillStyleFor: aRadioButton
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>radioButtonMarkerForm [
+{ #category : #label-styles }
+UITheme >> radioButtonMarkerForm [
 	"Answer the form to use for a radio button marker."
 
 	^self forms at: #radioButtonMarker ifAbsent: [Form extent: 12@12 depth: Display depth]
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>radioButtonNormalBorderStyleFor: aRadioButton [
+{ #category : #border-styles-buttons }
+UITheme >> radioButtonNormalBorderStyleFor: aRadioButton [
 	"Return the disabled radio button borderStyle for the given button."
 
 	^self checkboxButtonNormalBorderStyleFor: aRadioButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>radioButtonNormalFillStyleFor: aRadioButton [
+{ #category : #fill-styles-buttons }
+UITheme >> radioButtonNormalFillStyleFor: aRadioButton [
 	"Return the normal radio button fillStyle for the given button."
 	
 	^self checkboxButtonNormalFillStyleFor: aRadioButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>radioButtonSelectedBorderStyleFor: aRadioButton [
+{ #category : #border-styles-buttons }
+UITheme >> radioButtonSelectedBorderStyleFor: aRadioButton [
 	"Return the selected radio button borderStyle for the given button."
 
 	^self radioButtonNormalBorderStyleFor: aRadioButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>radioButtonSelectedDisabledBorderStyleFor: aRadioButton [
+{ #category : #border-styles-buttons }
+UITheme >> radioButtonSelectedDisabledBorderStyleFor: aRadioButton [
 	"Return the selecteddisabled radio button borderStyle for the given button."
 
 	^self radioButtonDisabledBorderStyleFor: aRadioButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>radioButtonSelectedDisabledFillStyleFor: aRadioButton [
+{ #category : #fill-styles-buttons }
+UITheme >> radioButtonSelectedDisabledFillStyleFor: aRadioButton [
 	"Return the selected disabled radio button fillStyle for the given button."
 	
 	^self checkboxButtonSelectedDisabledFillStyleFor: aRadioButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>radioButtonSelectedFillStyleFor: aRadioButton [
+{ #category : #fill-styles-buttons }
+UITheme >> radioButtonSelectedFillStyleFor: aRadioButton [
 	"Return the selected radio button fillStyle for the given button."
 	
 	^self checkboxButtonSelectedFillStyleFor: aRadioButton
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>resizerGripNormalFillStyleFor: aResizer [
+{ #category : #fill-styles }
+UITheme >> resizerGripNormalFillStyleFor: aResizer [
 	"Return the normal fillStyle for the given resizer.
 	For the moment, answer a transparent colour for no drawing,
 	non transparent to draw as normal."
@@ -5172,29 +4061,20 @@ UITheme>>resizerGripNormalFillStyleFor: aResizer [
 	^Color white
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>runModal: aWidget [
+{ #category : #services }
+UITheme >> runModal: aWidget [
 	
 	[aWidget world notNil] whileTrue: [
 		aWidget outermostWorldMorph doOneCycle]
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollBarButtonArrowVertices: aRectangle  [
+{ #category : #scrollbars }
+UITheme >> scrollBarButtonArrowVertices: aRectangle [ 
 	^ self verticesForComplexArrow: aRectangle
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollBarDownButtonBoundsFor: aScrollbar [
+{ #category : #'morph creation' }
+UITheme >> scrollBarDownButtonBoundsFor: aScrollbar [
 	
 	| extent position |
 	
@@ -5204,29 +4084,20 @@ UITheme>>scrollBarDownButtonBoundsFor: aScrollbar [
 	^ position extent: extent
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollBarUpButtonBoundsFor: aScrollbar [
+{ #category : #'morph creation' }
+UITheme >> scrollBarUpButtonBoundsFor: aScrollbar [
 	^ aScrollbar innerBounds topLeft extent: aScrollbar buttonExtent
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollPaneDisabledBorderStyleFor: aScrollPane [
+{ #category : #border-styles }
+UITheme >> scrollPaneDisabledBorderStyleFor: aScrollPane [
 	"Return the disabled borderStyle for the given scroll pane."
 
 	^self scrollPaneNormalBorderStyleFor: aScrollPane
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollPaneNormalBorderStyleFor: aScrollPane [
+{ #category : #border-styles }
+UITheme >> scrollPaneNormalBorderStyleFor: aScrollPane [
 	"Return the normal borderStyle for the given scroll pane"
 
 	^BorderStyle inset
@@ -5234,39 +4105,27 @@ UITheme>>scrollPaneNormalBorderStyleFor: aScrollPane [
 		baseColor: aScrollPane paneColor
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarArrowOfDirection: aSymbol size: finalSizeInteger color: aColor [
+{ #category : #label-styles }
+UITheme >> scrollbarArrowOfDirection: aSymbol size: finalSizeInteger color: aColor [
 	"Answer a new scrollbar arrow form (normally cached by Scrollbar)."
 	
 	^self basicCreateArrowOfDirection: aSymbol size: finalSizeInteger color: aColor
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarButtonCornerStyleIn: aThemedMorph [
+{ #category : #border-styles-scrollbars }
+UITheme >> scrollbarButtonCornerStyleIn: aThemedMorph [
 	"Allow for themes to override default behaviour."
 	
 	^#square
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarColor [
+{ #category : #'accessing colors' }
+UITheme >> scrollbarColor [
 	^ self settings scrollbarColor
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarColorFor: aScrollbar [
+{ #category : #basic-colors }
+UITheme >> scrollbarColorFor: aScrollbar [
 	"Answer the colour for the given scrollbar."
 
 	^self settings standardColorsOnly
@@ -5275,158 +4134,113 @@ UITheme>>scrollbarColorFor: aScrollbar [
 					 ifNil: [Color white]]
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarImageColorFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UITheme >> scrollbarImageColorFor: aScrollbar [
 	"Return the scrollbar image colour (on buttons) for the given scrollbar."
 	
 	^self scrollbarColorFor: aScrollbar
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarMinimumThumbThickness [
+{ #category : #defaults }
+UITheme >> scrollbarMinimumThumbThickness [
 	"Answer the minumum width or height of a scrollbar thumb 
 	as appropriate to its orientation."
 	
 	^7
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarMouseOverBarButtonBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+UITheme >> scrollbarMouseOverBarButtonBorderStyleFor: aScrollbar [
 	"Return the button borderStyle for the given scrollbar when
 	the mouse is over the bar."
 
 	^self scrollbarNormalButtonBorderStyleFor: aScrollbar
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarMouseOverBarButtonFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UITheme >> scrollbarMouseOverBarButtonFillStyleFor: aScrollbar [
 	"Return the button fillStyle for the given scrollbar when
 	the mouse is over the bar."
 
 	^self scrollbarNormalButtonFillStyleFor: aScrollbar
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarMouseOverBarThumbBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+UITheme >> scrollbarMouseOverBarThumbBorderStyleFor: aScrollbar [
 	"Return the thumb borderStyle for the given scrollbar when
 	the mouse is over the bar."
 
 	^self scrollbarNormalThumbBorderStyleFor: aScrollbar
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarMouseOverBarThumbFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UITheme >> scrollbarMouseOverBarThumbFillStyleFor: aScrollbar [
 	"Return the thumb fillStyle for the given scrollbar when
 	the mouse is over the bar."
 
 	^self scrollbarNormalThumbFillStyleFor: aScrollbar
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarMouseOverBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+UITheme >> scrollbarMouseOverBorderStyleFor: aScrollbar [
 	"Return the mouse over borderStyle for the given scrollbar."
 
 	^self scrollbarNormalBorderStyleFor: aScrollbar
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarMouseOverButtonBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+UITheme >> scrollbarMouseOverButtonBorderStyleFor: aScrollbar [
 	"Return the mouse over button borderStyle for the given scrollbar."
 
 	^self scrollbarNormalButtonBorderStyleFor: aScrollbar
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarMouseOverButtonFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UITheme >> scrollbarMouseOverButtonFillStyleFor: aScrollbar [
 	"Return the scrollbar mouse over button fillStyle for the given color."
 
 	^self scrollbarNormalButtonFillStyleFor: aScrollbar
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarMouseOverFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UITheme >> scrollbarMouseOverFillStyleFor: aScrollbar [
 	"Return the scrollbar mouse over fillStyle for the given color."
 
 	^self scrollbarNormalFillStyleFor: aScrollbar
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarMouseOverThumbBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+UITheme >> scrollbarMouseOverThumbBorderStyleFor: aScrollbar [
 	"Return the mouse over thumb borderStyle for the given scrollbar."
 
 	^self scrollbarNormalThumbBorderStyleFor: aScrollbar
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarMouseOverThumbButtonBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+UITheme >> scrollbarMouseOverThumbButtonBorderStyleFor: aScrollbar [
 	"Return the button borderStyle for the given scrollbar when
 	the mouse is over the thumb."
 
 	^self scrollbarMouseOverBarButtonBorderStyleFor: aScrollbar
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarMouseOverThumbButtonFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UITheme >> scrollbarMouseOverThumbButtonFillStyleFor: aScrollbar [
 	"Return the button fillStyle for the given scrollbar when
 	the mouse is over the thumb."
 
 	^self scrollbarMouseOverBarButtonFillStyleFor: aScrollbar
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarMouseOverThumbFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UITheme >> scrollbarMouseOverThumbFillStyleFor: aScrollbar [
 	"Return the scrollbar mouse over thumb fillStyle for the given color."
 
 	^self scrollbarNormalThumbFillStyleFor: aScrollbar
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarNormalBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+UITheme >> scrollbarNormalBorderStyleFor: aScrollbar [
 	"Return the normal button borderStyle for the given scrollbar."
 
 	^BorderStyle simple
@@ -5434,41 +4248,29 @@ UITheme>>scrollbarNormalBorderStyleFor: aScrollbar [
 		baseColor: Color transparent
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarNormalButtonBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+UITheme >> scrollbarNormalButtonBorderStyleFor: aScrollbar [
 	"Return the normal button borderStyle for the given scrollbar."
 
 	^self scrollbarNormalThumbBorderStyleFor: aScrollbar
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarNormalButtonFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UITheme >> scrollbarNormalButtonFillStyleFor: aScrollbar [
 	"Return the normal scrollbar button fillStyle for the given scrollbar."
 	
 	^self scrollbarNormalThumbFillStyleFor: aScrollbar
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarNormalFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UITheme >> scrollbarNormalFillStyleFor: aScrollbar [
 	"Return the normal scrollbar fillStyle for the given scrollbar."
 	
 	^ Color white
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarNormalThumbBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+UITheme >> scrollbarNormalThumbBorderStyleFor: aScrollbar [
 	"Return the normal thumb borderStyle for the given scrollbar."
 
 	|aColor|
@@ -5478,158 +4280,110 @@ UITheme>>scrollbarNormalThumbBorderStyleFor: aScrollbar [
 		baseColor: aColor twiceDarker
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarNormalThumbFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UITheme >> scrollbarNormalThumbFillStyleFor: aScrollbar [
 	"Return the normal scrollbar thumb fillStyle for the given scrollbar."
 	
 	^self scrollbarColorFor: aScrollbar
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarPagingAreaCornerStyleIn: aThemedMorph [
+{ #category : #border-styles-scrollbars }
+UITheme >> scrollbarPagingAreaCornerStyleIn: aThemedMorph [
 	"Allow for themes to override default behaviour."
 	
 	^#square
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarPressedBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+UITheme >> scrollbarPressedBorderStyleFor: aScrollbar [
 	"Return the pressed borderStyle for the given scrollbar."
 
 	^self scrollbarNormalBorderStyleFor: aScrollbar
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarPressedButtonBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+UITheme >> scrollbarPressedButtonBorderStyleFor: aScrollbar [
 	"Return the pressed button borderStyle for the given scrollbar."
 
 	^self scrollbarPressedThumbBorderStyleFor: aScrollbar
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarPressedButtonFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UITheme >> scrollbarPressedButtonFillStyleFor: aScrollbar [
 	"Return the pressed scrollbar button fillStyle for the given scrollbar."
 	
 	^self scrollbarPressedThumbFillStyleFor: aScrollbar
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarPressedFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UITheme >> scrollbarPressedFillStyleFor: aScrollbar [
 	"Return the pressed scrollbar fillStyle for the given scrollbar."
 	
 	^self scrollbarNormalFillStyleFor: aScrollbar 
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarPressedThumbBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+UITheme >> scrollbarPressedThumbBorderStyleFor: aScrollbar [
 	"Return the pressed thumb borderStyle for the given scrollbar."
 
 	^self scrollbarNormalThumbBorderStyleFor: aScrollbar
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarPressedThumbFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UITheme >> scrollbarPressedThumbFillStyleFor: aScrollbar [
 	"Return the pressed scrollbar thumb fillStyle for the given scrollbar."
 	
 	^self scrollbarNormalThumbFillStyleFor: aScrollbar
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarThickness [
+{ #category : #defaults }
+UITheme >> scrollbarThickness [
 	"Answer the width or height of a scrollbar as appropriate to
 	its orientation."
 	
 	^ self settings scrollBarThickness
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>scrollbarThumbCornerStyleIn: aThemedMorph [
+{ #category : #border-styles-scrollbars }
+UITheme >> scrollbarThumbCornerStyleIn: aThemedMorph [
 	"Allow for themes to override default behaviour."
 	
 	^#square
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>secondarySelectionColor [
+{ #category : #'accessing colors' }
+UITheme >> secondarySelectionColor [
 	^ self settings secondarySelectionColor
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>selectionBarColor [
+{ #category : #'accessing colors' }
+UITheme >> selectionBarColor [
 
 	^ self settings selectionBarColor
 
 
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>selectionColor [
+{ #category : #'accessing colors' }
+UITheme >> selectionColor [
 	"Answer the selection color to use.."
 
 	^ self settings selectionColor
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>selectionColorForFrame: frame  [
+{ #category : #defaults }
+UITheme >> selectionColorForFrame: frame [ 
 
 	^ self selectionColor
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>selectionTextColor [
+{ #category : #'accessing colors' }
+UITheme >> selectionTextColor [
  ^ self settings selectionTextColor
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>separatorFillStyleFor: aSeparator [
+{ #category : #fill-styles }
+UITheme >> separatorFillStyleFor: aSeparator [
 	"Return the separator fillStyle for the given separator."
 	
 	|aColor|
@@ -5644,11 +4398,8 @@ UITheme>>separatorFillStyleFor: aSeparator [
 		radial: false
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>setSystemProgressMorphDefaultParameters: aProgressMorph [
+{ #category : #defaults }
+UITheme >> setSystemProgressMorphDefaultParameters: aProgressMorph [
 	"Set up the given progress morph."
 	aProgressMorph color: self settings derivedMenuColor.
 	self settings preferRoundCorner
@@ -5658,60 +4409,42 @@ UITheme>>setSystemProgressMorphDefaultParameters: aProgressMorph [
 	aProgressMorph updateColor.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>settings [
+{ #category : #accessing }
+UITheme >> settings [
 	"Answer the value of settings"
 
 	^ settings
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>settings: anObject [
+{ #category : #accessing }
+UITheme >> settings: anObject [
 	"Set the value of settings"
 
 	settings := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>shStyleTable [
+{ #category : #accessing }
+UITheme >> shStyleTable [
 
 	^SHTextStylerST80 blueStyleTable
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>sliderDisabledBorderStyleFor: aSlider [
+{ #category : #border-styles }
+UITheme >> sliderDisabledBorderStyleFor: aSlider [
 	"Return the disabled slider borderStyle for the given text editor."
 
 	^self sliderNormalBorderStyleFor: aSlider
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>sliderDisabledFillStyleFor: aSlider [
+{ #category : #fill-styles }
+UITheme >> sliderDisabledFillStyleFor: aSlider [
 	"Return the disabled fillStyle for the given slider."
 	
 	^aSlider paneColor alphaMixed: 0.3 with: Color white
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>sliderNormalBorderStyleFor: aSlider [
+{ #category : #border-styles }
+UITheme >> sliderNormalBorderStyleFor: aSlider [
 	"Return the normal slider borderStyle for the given text editor."
 
 	^BorderStyle inset
@@ -5719,42 +4452,30 @@ UITheme>>sliderNormalBorderStyleFor: aSlider [
 		baseColor: aSlider paneColor twiceDarker
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>sliderNormalFillStyleFor: aSlider [
+{ #category : #fill-styles }
+UITheme >> sliderNormalFillStyleFor: aSlider [
 	"Return the normal fillStyle for the given slider."
 	
 	^Color white
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>soundTheme [
+{ #category : #accessing }
+UITheme >> soundTheme [
 	"Answer the sound theme to use, if not specified
 	use the default sound theme."
 
 	^soundTheme ifNil: [self defaultSoundTheme]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>soundTheme: anObject [
+{ #category : #accessing }
+UITheme >> soundTheme: anObject [
 	"Set the sound theme specific to this instance of ui theme,"
 
 	soundTheme := anObject
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>splitterNormalFillStyleFor: aSplitter [
+{ #category : #fill-styles }
+UITheme >> splitterNormalFillStyleFor: aSplitter [
 	"Return the normal splitter fillStyle for the given splitter."
 	
 	|aColor|
@@ -5769,11 +4490,8 @@ UITheme>>splitterNormalFillStyleFor: aSplitter [
 		radial: false
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>splitterPressedFillStyleFor: aSplitter [
+{ #category : #fill-styles }
+UITheme >> splitterPressedFillStyleFor: aSplitter [
 	"Return the pressed splitter fillStyle for the given splitter."
 	
 	|aColor|
@@ -5788,56 +4506,38 @@ UITheme>>splitterPressedFillStyleFor: aSplitter [
 		radial: false
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>spotlightWindowColor  [
+{ #category : #'accessing colors' }
+UITheme >> spotlightWindowColor [ 
 	^ self selectionColor muchDarker
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>statusFont [
+{ #category : #defaults }
+UITheme >> statusFont [
 	"Answer the status font to use."
 
 	^((TextStyle named: #BitstreamVeraSansMono) ifNil: [TextStyle default])
 		fontOfPointSize: 8
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>subgroupColorFrom: paneColor [
+{ #category : #basic-colors }
+UITheme >> subgroupColorFrom: paneColor [
 	"Answer the colour for a subgroup given the pane colour."
 
 	^paneColor whiter whiter
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>successBackgroundColor [
+{ #category : #'accessing colors' }
+UITheme >> successBackgroundColor [
 	^ self successTextColor darker darker
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>successTextColor [
+{ #category : #'accessing colors' }
+UITheme >> successTextColor [
 	^ Color green
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>tabGroupCornerStyleIn: aThemedMorph [
+{ #category : #border-styles }
+UITheme >> tabGroupCornerStyleIn: aThemedMorph [
 	"Allow for themes to override default behaviour."
 	
 	^aThemedMorph
@@ -5845,21 +4545,15 @@ UITheme>>tabGroupCornerStyleIn: aThemedMorph [
 		ifNotNil: [:tm | tm preferredCornerStyle]
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>tabLabelInsetFor: aButton [
+{ #category : #defaults }
+UITheme >> tabLabelInsetFor: aButton [
 	"Answer the inset to use for a tab label."
 
 	^ Margin left: 4 top: 2 right: 4 bottom: 0
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>tabLabelNormalBorderStyleFor: aTabLabel [
+{ #category : #border-styles }
+UITheme >> tabLabelNormalBorderStyleFor: aTabLabel [
 	"Answer the normal border style for a tab label."
 
 	^BorderStyle simple
@@ -5867,41 +4561,29 @@ UITheme>>tabLabelNormalBorderStyleFor: aTabLabel [
 		baseColor: Color transparent
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>tabLabelNormalFillStyleFor: aTabLabel [
+{ #category : #fill-styles }
+UITheme >> tabLabelNormalFillStyleFor: aTabLabel [
 	"Return the normal fillStyle for the given tab label."
 	
 	^aTabLabel paneColor lighter
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>tabLabelSelectedBorderStyleFor: aTabLabel [
+{ #category : #border-styles }
+UITheme >> tabLabelSelectedBorderStyleFor: aTabLabel [
 	"Answer the selected border style for a tab label."
 
 	^self tabLabelNormalBorderStyleFor: aTabLabel
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>tabLabelSelectedFillStyleFor: aTabLabel [
+{ #category : #fill-styles }
+UITheme >> tabLabelSelectedFillStyleFor: aTabLabel [
 	"Return the selected fillStyle for the given tab label."
 	
 	^aTabLabel paneColor
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>tabPanelBorderStyleFor: aTabPanel [
+{ #category : #border-styles }
+UITheme >> tabPanelBorderStyleFor: aTabPanel [
 	"Answer the normal border style for a tab panel."
 
 	^BorderStyle simple
@@ -5909,31 +4591,22 @@ UITheme>>tabPanelBorderStyleFor: aTabPanel [
 		baseColor: Color transparent
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>tabSelectorCellInsetFor: aTabSelector [
+{ #category : #label-styles }
+UITheme >> tabSelectorCellInsetFor: aTabSelector [
 	"Answer the cell inset to use for the given tab selector."
 
 	^2@0
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>tabSelectorMorphMinExtentFor: aTabSelectorMorph [
+{ #category : #defaults }
+UITheme >> tabSelectorMorphMinExtentFor: aTabSelectorMorph [
 	"Answer the min extent of the given tab selector."
 	
 	^aTabSelectorMorph basicMinExtent + (8 @ 1)
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>taskListFillStyleFor: aTasklist [
+{ #category : #fill-styles }
+UITheme >> taskListFillStyleFor: aTasklist [
 	
 	| aColor result |
 	aColor := aTasklist color.
@@ -5947,60 +4620,42 @@ UITheme>>taskListFillStyleFor: aTasklist [
 		yourself.
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>taskbarActiveButtonColorFor: aButton [
+{ #category : #basic-colors }
+UITheme >> taskbarActiveButtonColorFor: aButton [
 	"Answer the colour for the given active taskbar button."
 
 	^(self taskbarButtonColorFor: aButton) twiceDarker
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>taskbarButtonColorFor: aButton [
+{ #category : #basic-colors }
+UITheme >> taskbarButtonColorFor: aButton [
 	"Answer the colour for the given taskbar button." 
 	^ self windowColorFor: aButton model
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>taskbarButtonLabelColorFor: aButton [
+{ #category : #basic-colors }
+UITheme >> taskbarButtonLabelColorFor: aButton [
 	"Answer the colour for the label of the given taskbar button."
 
 	^Color black
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>taskbarButtonLabelColorForCollapsed: aButton [
+{ #category : #basic-colors }
+UITheme >> taskbarButtonLabelColorForCollapsed: aButton [
 	"Answer the colour for the label of the given taskbar button, given that the corresponding window is collapsed."
 
 	^Color darkGray
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>taskbarButtonLabelColorForExpanded: aButton [
+{ #category : #basic-colors }
+UITheme >> taskbarButtonLabelColorForExpanded: aButton [
 	"Answer the colour for the label of the given taskbar button, given that the corresponding window is expanded."
 
 	^Color black
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>taskbarFillStyleFor: aTaskbar [
+{ #category : #fill-styles }
+UITheme >> taskbarFillStyleFor: aTaskbar [
 	"Return the taskbar fillStyle for the given taskbar."
 	
 	|aColor|
@@ -6015,31 +4670,22 @@ UITheme>>taskbarFillStyleFor: aTaskbar [
 		radial: false
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>taskbarMinimizedButtonColorFor: aButton [
+{ #category : #basic-colors }
+UITheme >> taskbarMinimizedButtonColorFor: aButton [
 	"Answer the colour for the given minimized taskbar button."
 
 	^self taskbarButtonColorFor: aButton
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>taskbarThumbnailCornerStyleFor: aMorph [
+{ #category : #border-styles }
+UITheme >> taskbarThumbnailCornerStyleFor: aMorph [
 	"Answer the corner style for the taskbar thumbnail/tasklist."
 	
 	^#rounded
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>taskbarThumbnailNormalBorderStyleFor: aWindow [
+{ #category : #border-styles }
+UITheme >> taskbarThumbnailNormalBorderStyleFor: aWindow [
 	"Return the normal thumbnail borderStyle for the given button."
 
 	|c|
@@ -6049,47 +4695,32 @@ UITheme>>taskbarThumbnailNormalBorderStyleFor: aWindow [
 		baseColor: c
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textColor  [
+{ #category : #'accessing colors' }
+UITheme >> textColor [ 
 	^ Color black
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textColorForNonStandardBackground [
+{ #category : #'accessing colors' }
+UITheme >> textColorForNonStandardBackground [
 	^ self textColor
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textEditorDisabledBorderStyleFor: aTextEditor [
+{ #category : #border-styles }
+UITheme >> textEditorDisabledBorderStyleFor: aTextEditor [
 	"Return the disabled text editor borderStyle for the given text editor."
 
 	^self textEditorNormalBorderStyleFor: aTextEditor
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textEditorDisabledFillStyleFor: aTextEditor [
+{ #category : #fill-styles }
+UITheme >> textEditorDisabledFillStyleFor: aTextEditor [
 	"Return the disabled fillStyle for the given text editor."
 	
 	^aTextEditor paneColor alphaMixed: 0.3 with: Color white
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textEditorIn: aThemedMorph text: aStringOrText title: aString entryText: defaultEntryText [
+{ #category : #services }
+UITheme >> textEditorIn: aThemedMorph text: aStringOrText title: aString entryText: defaultEntryText [
 	"Answer the result of a text editor (multiline) dialog ( a string or nil if cancelled)
 	with the given label and title."
 
@@ -6101,11 +4732,8 @@ UITheme>>textEditorIn: aThemedMorph text: aStringOrText title: aString entryText
 		entryHeight: 64
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textEditorIn: aThemedMorph text: aStringOrText title: aString entryText: defaultEntryText entryHeight: entryHeight [
+{ #category : #services }
+UITheme >> textEditorIn: aThemedMorph text: aStringOrText title: aString entryText: defaultEntryText entryHeight: entryHeight [
 	"Answer the result of a text editor (multiline) dialog ( a string or nil if cancelled)
 	with the given label and title."
 
@@ -6119,11 +4747,8 @@ UITheme>>textEditorIn: aThemedMorph text: aStringOrText title: aString entryText
 			entryHeight: entryHeight)) entryText
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textEditorNormalBorderStyleFor: aTextEditor [
+{ #category : #border-styles }
+UITheme >> textEditorNormalBorderStyleFor: aTextEditor [
 	"Return the normal text editor borderStyle for the given text editor."
 
 	^BorderStyle inset
@@ -6131,21 +4756,15 @@ UITheme>>textEditorNormalBorderStyleFor: aTextEditor [
 		baseColor: aTextEditor paneColor
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textEditorNormalFillStyleFor: aTextEditor [
+{ #category : #fill-styles }
+UITheme >> textEditorNormalFillStyleFor: aTextEditor [
 	"Return the normal fillStyle for the given text editor."
 	
 	^Color white
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textEntryCornerStyleIn: aThemedMorph [
+{ #category : #border-styles-buttons }
+UITheme >> textEntryCornerStyleIn: aThemedMorph [
 	"Answer the corner style to use for text entry morphs."
 	
 	^aThemedMorph
@@ -6153,11 +4772,8 @@ UITheme>>textEntryCornerStyleIn: aThemedMorph [
 		ifNotNil: [:tm | tm preferredCornerStyle]
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textEntryIn: aThemedMorph text: aStringOrText title: aString entryText: defaultEntryText [
+{ #category : #services }
+UITheme >> textEntryIn: aThemedMorph text: aStringOrText title: aString entryText: defaultEntryText [
 	"Answer the result of a text entry dialog ( a string or nil if cancelled)
 	with the given label and title."
 
@@ -6170,11 +4786,8 @@ UITheme>>textEntryIn: aThemedMorph text: aStringOrText title: aString entryText:
 			entryText: defaultEntryText)) entryText
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textEntryIn: aThemedMorph text: aStringOrText title: aString entryText: defaultEntryText entryCompletion: anEntryCompletion [
+{ #category : #services }
+UITheme >> textEntryIn: aThemedMorph text: aStringOrText title: aString entryText: defaultEntryText entryCompletion: anEntryCompletion [
 	"Answer the result of a text entry dialog ( a string or nil if cancelled)
 	with the given label and title."
 
@@ -6188,141 +4801,99 @@ UITheme>>textEntryIn: aThemedMorph text: aStringOrText title: aString entryText:
 			entryCompletion: anEntryCompletion)) entryText
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textFieldDisabledBorderStyleFor: aTextField [
+{ #category : #border-styles }
+UITheme >> textFieldDisabledBorderStyleFor: aTextField [
 	"Return the disabled text field borderStyle for the given text field."
 
 	^self textEditorDisabledBorderStyleFor: aTextField
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textFieldDisabledFillStyleFor: aTextField [
+{ #category : #fill-styles }
+UITheme >> textFieldDisabledFillStyleFor: aTextField [
 	"Return the disabled fillStyle for the given text field."
 	
 	^self textEditorDisabledFillStyleFor: aTextField
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textFieldNormalBorderStyleFor: aTextField [
+{ #category : #border-styles }
+UITheme >> textFieldNormalBorderStyleFor: aTextField [
 	"Return the normal text field borderStyle for the given text field."
 
 	^self textEditorNormalBorderStyleFor: aTextField
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textFieldNormalFillStyleFor: aTextField [
+{ #category : #fill-styles }
+UITheme >> textFieldNormalFillStyleFor: aTextField [
 	"Return the normal fillStyle for the given text field."
 	
 	^self textEditorNormalFillStyleFor: aTextField
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textFocusBoundsFor: aPluggableTextMorph [
+{ #category : #border-styles }
+UITheme >> textFocusBoundsFor: aPluggableTextMorph [
 	"Answer the bounds for drawing the focus indication."
 
 	^aPluggableTextMorph bounds
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>textFont [
+{ #category : #defaults }
+UITheme >> textFont [
 	"Answer the text font to use."
 
 	^StandardFonts defaultFont
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>treeExpandedForm [
+{ #category : #label-styles }
+UITheme >> treeExpandedForm [
 	"Answer the form to use for an expanded tree item."
 
 	^self forms at: #treeExpanded ifAbsent: [Form extent: 10@9 depth: Display depth]
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>treeLineColorsFrom: aColor [
+{ #category : #basic-colors }
+UITheme >> treeLineColorsFrom: aColor [
 	"Answer the colours to use for the tree lines.
 	The given colour is the preferred colour."
 
 	^{aColor. Color transparent}
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>treeLineDashes [
+{ #category : #basic-colors }
+UITheme >> treeLineDashes [
 	"Answer the dash lengths to use for the tree lines."
 
 	^#(1 1)
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>treeLineWidth [
+{ #category : #basic-colors }
+UITheme >> treeLineWidth [
 	"Answer the width of the tree lines."
 
 	^1
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>treeUnexpandedForm [
+{ #category : #label-styles }
+UITheme >> treeUnexpandedForm [
 	"Answer the form to use for an unexpanded tree item."
 
 	^self forms at: #treeUnexpanded ifAbsent: [Form extent: 10@9 depth: Display depth]
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>unfocusedSelectionColor [
+{ #category : #'accessing colors' }
+UITheme >> unfocusedSelectionColor [
 	^ self settings unfocusedSelectionColor
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>updateScrollBarButtonAspect: aMorph color: aColor  [
+{ #category : #scrollbars }
+UITheme >> updateScrollBarButtonAspect: aMorph color: aColor [ 
 	"update aMorph with aColor"
 	aMorph isNil ifTrue: [^ self].
 	aMorph color: aColor.
 
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>updateScrollBarButtonsAspect: aCollection color: aColor  [
+{ #category : #scrollbars }
+UITheme >> updateScrollBarButtonsAspect: aCollection color: aColor [ 
 	"update aCollection of morphs with aColor"
 	
 	
@@ -6330,11 +4901,8 @@ UITheme>>updateScrollBarButtonsAspect: aCollection color: aColor  [
 		do: [:each | self updateScrollBarButtonAspect: each color: aColor]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>updateWorldDockingBars [
+{ #category : #initialize-release }
+UITheme >> updateWorldDockingBars [
 	"Update the world docking bar gradients."
 	
 	World mainDockingBars do: [:d |
@@ -6345,22 +4913,16 @@ UITheme>>updateWorldDockingBars [
 			borderStyle: (self worldMainDockingBarBorderStyleFor: d)]
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>useScrollbarThumbShadow [
+{ #category : #fill-styles-scrollbars }
+UITheme >> useScrollbarThumbShadow [
 	"Answer whether a shadow morph should be displayed when
 	dragging a scrollbar thumb."
 
 	^true
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>verticesForComplexArrow: aRectangle  [
+{ #category : #scrollbars }
+UITheme >> verticesForComplexArrow: aRectangle [ 
 	"PRIVATE - answer a collection of vertices to draw a complex arrow"
 
 	|r vertices aux b c|
@@ -6378,11 +4940,8 @@ UITheme>>verticesForComplexArrow: aRectangle  [
 	^vertices
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>verticesForSimpleArrow: aRectangle  [
+{ #category : #scrollbars }
+UITheme >> verticesForSimpleArrow: aRectangle [ 
 	"PRIVATE - answer a collection of vertices to draw a simple arrow"
 	| vertices |
 	vertices := OrderedCollection new.
@@ -6395,45 +4954,30 @@ UITheme>>verticesForSimpleArrow: aRectangle  [
 	^ vertices
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>warningBackgroundColor [
+{ #category : #'accessing colors' }
+UITheme >> warningBackgroundColor [
 	^ self warningTextColor darker darker
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>warningTextColor [
+{ #category : #'accessing colors' }
+UITheme >> warningTextColor [
 	^ Color yellow
 ]
 
-{
-	#category : #'*Polymorph-Widgets-Themes',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>watcherWindowActiveFillStyleFor: aWindow [
+{ #category : #'*Polymorph-Widgets-Themes' }
+UITheme >> watcherWindowActiveFillStyleFor: aWindow [
 
 	^ self windowActiveFillStyleFor: aWindow
 ]
 
-{
-	#category : #'*Polymorph-Widgets-Themes',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>watcherWindowInactiveFillStyleFor: aWindow [
+{ #category : #'*Polymorph-Widgets-Themes' }
+UITheme >> watcherWindowInactiveFillStyleFor: aWindow [
 
 	^ self windowInactiveFillStyleFor: aWindow
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>whiteTreeExpandedForm [
+{ #category : #label-styles }
+UITheme >> whiteTreeExpandedForm [
 	"Answer the form to use for an expanded tree item when a contrasting one is needed."
 
 	^self forms 
@@ -6446,11 +4990,8 @@ UITheme>>whiteTreeExpandedForm [
 			self whiteTreeExpandedForm]
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>whiteTreeUnexpandedForm [
+{ #category : #label-styles }
+UITheme >> whiteTreeUnexpandedForm [
 	"Answer the form to use for an unexpanded tree item when a contrasting one is needed."
 
 	^self forms 
@@ -6463,11 +5004,8 @@ UITheme>>whiteTreeUnexpandedForm [
 			self whiteTreeUnexpandedForm]
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowActiveDropShadowOffsetRectangleFor: aSystemWindow [
+{ #category : #border-styles }
+UITheme >> windowActiveDropShadowOffsetRectangleFor: aSystemWindow [
 	"Answer a rectangle describing the offsets for each corner
 	of the the active window bounds for the drop shadow area."
 	
@@ -6476,89 +5014,62 @@ UITheme>>windowActiveDropShadowOffsetRectangleFor: aSystemWindow [
 		ifFalse: [self windowPlainDropShadowOffsetRectangleFor: aSystemWindow]
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowActiveDropShadowStyle [
+{ #category : #border-styles }
+UITheme >> windowActiveDropShadowStyle [
 	"Answer the style of drop shadow to use for active windows."
 	
 	^#plain
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowActiveFillStyleFor: aWindow [
+{ #category : #fill-styles }
+UITheme >> windowActiveFillStyleFor: aWindow [
 	"Return the window active fillStyle for the given window."
 	
 	^aWindow paneColorToUse
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowActiveLabelFillStyleFor: aWindow [
+{ #category : #fill-styles }
+UITheme >> windowActiveLabelFillStyleFor: aWindow [
 	"Return the window active label fillStyle for the given window."
 	
 	^Color black
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowActiveTitleFillStyleFor: aWindow [
+{ #category : #fill-styles }
+UITheme >> windowActiveTitleFillStyleFor: aWindow [
 	"Return the window active title fillStyle for the given color."
 	
 	^Color transparent
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowBorderWidthFor: aWindow [
+{ #category : #defaults }
+UITheme >> windowBorderWidthFor: aWindow [
 
 	^ 4
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowBottomOffset [
+{ #category : #defaults }
+UITheme >> windowBottomOffset [
 
 	^ 0
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowCloseForm [
+{ #category : #label-styles }
+UITheme >> windowCloseForm [
 	"Answer the form to use for the close button of a window."
 
 	^self forms at: #windowClose ifAbsent: [Form extent: 10@10 depth: Display depth]
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowCloseSound [
+{ #category : #sounds }
+UITheme >> windowCloseSound [
 	"Answer the window close sound."
 
 	^self soundTheme windowCloseSound
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowCollapseBoxLayoutFor: aWindow [
+{ #category : #'morph creation' }
+UITheme >> windowCollapseBoxLayoutFor: aWindow [
 
 	^ LayoutFrame new 
 		leftFraction: 1; 
@@ -6566,31 +5077,22 @@ UITheme>>windowCollapseBoxLayoutFor: aWindow [
 		yourself
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowColor [
+{ #category : #'accessing colors' }
+UITheme >> windowColor [
 	"Answer the window color to use."
 
 	^self settings windowColor
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowColorFor: aWindowOrModel  [
+{ #category : #basic-colors }
+UITheme >> windowColorFor: aWindowOrModel [ 
 	"Answer the colour for the given window."
 
 	^ self settings windowColor
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowDiffuseDropShadowOffsetRectangleFor: aSystemWindow [
+{ #category : #border-styles }
+UITheme >> windowDiffuseDropShadowOffsetRectangleFor: aSystemWindow [
 	"Answer a rectangle describing the offsets for each corner
 	of the the active window bounds for the drop shadow area
 	when the difuse style is used."
@@ -6598,51 +5100,36 @@ UITheme>>windowDiffuseDropShadowOffsetRectangleFor: aSystemWindow [
 	^8@4 corner: 8@10
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowEdgeNormalFillStyleFor: anEdgeGrip [
+{ #category : #fill-styles }
+UITheme >> windowEdgeNormalFillStyleFor: anEdgeGrip [
 	"Return the normal window edge fillStyle for the given edge grip."
 	
 	^Color transparent
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowEdgePressedFillStyleFor: anEdgeGrip [
+{ #category : #fill-styles }
+UITheme >> windowEdgePressedFillStyleFor: anEdgeGrip [
 	"Return the pressed window edge fillStyle for the given edge grip."
 	
 	^self windowEdgeNormalFillStyleFor: anEdgeGrip
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowExtentChangedFor: aWindow [
+{ #category : #fill-styles }
+UITheme >> windowExtentChangedFor: aWindow [
 	"Update any extent related visuals."
 
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowInactiveDropShadowOffsetRectangleFor: aSystemWindow [
+{ #category : #border-styles }
+UITheme >> windowInactiveDropShadowOffsetRectangleFor: aSystemWindow [
 	"Answer a rectangle describing the offsets for each corner
 	of the the inactive window bounds for the drop shadow area."
 	
 	^self windowPlainDropShadowOffsetRectangleFor: aSystemWindow
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowInactiveFillStyleFor: aWindow [
+{ #category : #fill-styles }
+UITheme >> windowInactiveFillStyleFor: aWindow [
 	"Return the window inactive fillStyle for the given window."
 	
 	^self settings fadedBackgroundWindows
@@ -6652,11 +5139,8 @@ UITheme>>windowInactiveFillStyleFor: aWindow [
 		ifFalse: [aWindow paneColorToUse]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowInactiveLabelFillStyleFor: aWindow [
+{ #category : #fill-styles }
+UITheme >> windowInactiveLabelFillStyleFor: aWindow [
 	"Return the window inactive label fillStyle for the given window."
 	
 	^self settings fadedBackgroundWindows
@@ -6664,121 +5148,85 @@ UITheme>>windowInactiveLabelFillStyleFor: aWindow [
 		ifFalse: [self windowActiveLabelFillStyleFor: aWindow]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowInactiveTitleFillStyleFor: aWindow [
+{ #category : #fill-styles }
+UITheme >> windowInactiveTitleFillStyleFor: aWindow [
 	"Return the window inactive title fillStyle for the given color."
 	
 	^self windowActiveTitleFillStyleFor: aWindow
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowLabelFor: aWindow [
+{ #category : #label-styles }
+UITheme >> windowLabelFor: aWindow [
 	"Answer the label to use for the given window."
 
 	^self windowLabelForText: aWindow labelString
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowLabelForText: aTextOrString [
+{ #category : #label-styles }
+UITheme >> windowLabelForText: aTextOrString [
 	"Answer the window label to use for the given text."
 	^ LabelMorph new
 		contents: aTextOrString;
 		font: StandardFonts windowTitleFont emphasis: 0
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowLeftOffset [
+{ #category : #defaults }
+UITheme >> windowLeftOffset [
 
 	^ 0
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowMaximizeForm [
+{ #category : #label-styles }
+UITheme >> windowMaximizeForm [
 	"Answer the form to use for the maximize button of a window."
 
 	^self forms at: #windowMaximize ifAbsent: [Form extent: 10@10 depth: Display depth]
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowMaximizeSound [
+{ #category : #sounds }
+UITheme >> windowMaximizeSound [
 	"Answer the window maximize sound."
 
 	^self soundTheme windowMaximizeSound
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowMenuForm [
+{ #category : #label-styles }
+UITheme >> windowMenuForm [
 	"Answer the form to use for the menu button of a window."
 
 	^self forms at: #windowMenu ifAbsent: [Form extent: 10@10 depth: Display depth]
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowMenuIconFor: aWindow [
+{ #category : #label-styles }
+UITheme >> windowMenuIconFor: aWindow [
 	"Answer the menu icon for the given window."
 
 	^ aWindow taskbarIcon ifNil: [self windowMenuForm]
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowMinimizeForm [
+{ #category : #label-styles }
+UITheme >> windowMinimizeForm [
 	"Answer the form to use for the minimize button of a window."
 
 	^self forms at: #windowMinimize ifAbsent: [Form extent: 10@10 depth: Display depth]
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowMinimizeSound [
+{ #category : #sounds }
+UITheme >> windowMinimizeSound [
 	"Answer the window minimize sound."
 
 	^self soundTheme windowMinimizeSound
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowOpenSound [
+{ #category : #sounds }
+UITheme >> windowOpenSound [
 	"Answer the window open sound."
 
 	^self soundTheme windowOpenSound
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowPaneBorderStyleFor: aMorph in: aSystemWindow [
+{ #category : #border-styles }
+UITheme >> windowPaneBorderStyleFor: aMorph [ in: aSystemWindow
 	"Answer the border style for a morph that is to be added
 	as a pane in the given system window,"
 
@@ -6787,11 +5235,8 @@ UITheme>>windowPaneBorderStyleFor: aMorph in: aSystemWindow [
 		width: (aMorph borderWidth = 0 ifTrue: [0] ifFalse: [1])
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowPlainDropShadowOffsetRectangleFor: aSystemWindow [
+{ #category : #border-styles }
+UITheme >> windowPlainDropShadowOffsetRectangleFor: aSystemWindow [
 	"Answer a rectangle describing the offsets for each corner
 	of the the active window bounds for the drop shadow area
 	when the plain style is used."
@@ -6799,11 +5244,8 @@ UITheme>>windowPlainDropShadowOffsetRectangleFor: aSystemWindow [
 	^aSystemWindow shadowOffset negated corner: aSystemWindow shadowOffset
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowPreferredCornerStyleFor: aWindow [
+{ #category : #defaults }
+UITheme >> windowPreferredCornerStyleFor: aWindow [
 	"Answer the preferred corner style for the given window."
 
 	aWindow isEmbedded ifTrue: [^#square].
@@ -6813,59 +5255,41 @@ UITheme>>windowPreferredCornerStyleFor: aWindow [
 		ifFalse: [#square]
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowRestoreDownSound [
+{ #category : #sounds }
+UITheme >> windowRestoreDownSound [
 	"Answer the window restore down sound."
 
 	^self soundTheme windowRestoreDownSound
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowRestoreUpSound [
+{ #category : #sounds }
+UITheme >> windowRestoreUpSound [
 	"Answer the window restore up sound."
 
 	^self soundTheme windowRestoreUpSound
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowRightOffset [
+{ #category : #defaults }
+UITheme >> windowRightOffset [
 
 	^ 0
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowShadowColor [
+{ #category : #'accessing colors' }
+UITheme >> windowShadowColor [
 	"Answer the window shadow color to use."
 
 	^Color black alpha: 0.5
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>windowTopOffset [
+{ #category : #defaults }
+UITheme >> windowTopOffset [
 
 	^ 0
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>worldMainDockingBarBorderStyleFor: aDockingBar [
+{ #category : #border-styles }
+UITheme >> worldMainDockingBarBorderStyleFor: aDockingBar [
 	"Return the world main docking bar borderStyle for the given docking bar."
 
 	^BorderStyle raised
@@ -6873,21 +5297,15 @@ UITheme>>worldMainDockingBarBorderStyleFor: aDockingBar [
 		color: aDockingBar color
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>worldMainDockingBarColorFor: aDockingBar [
+{ #category : #basic-colors }
+UITheme >> worldMainDockingBarColorFor: aDockingBar [
 	"Answer the base colour to use for a world main docking bar in this theme."
 
 	^self settings derivedMenuColor 
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UITheme>>worldMainDockingBarNormalFillStyleFor: aDockingBar [
+{ #category : #fill-styles }
+UITheme >> worldMainDockingBarNormalFillStyleFor: aDockingBar [
 	"Return the world main docking bar fillStyle for the given docking bar."
 	
 	|aColor|

@@ -4,15 +4,11 @@ I represent the mode to use to edit plain text (in menus, help browser etc)
 Class {
 	#name : #RubPlainTextMode,
 	#superclass : #RubEditingMode,
-	#category : #Rubric-Editing-Core,
-	#timestamp : 'FranckWarlouzet 7/29/2015 12:59'
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode class>>editingModeMenuOn: aBuilder [
+{ #category : #menu }
+RubPlainTextMode class >> editingModeMenuOn: aBuilder [
 	"Specify the menu used to select an editing mode"
 
 	<contextMenu>
@@ -21,11 +17,8 @@ RubPlainTextMode class>>editingModeMenuOn: aBuilder [
 		action: [:model | model textArea editingMode: self new ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode class>>fontMenuOn: aBuilder [
+{ #category : #menu }
+RubPlainTextMode class >> fontMenuOn: aBuilder [
 	"Specify the menu used when writing text. Try it with:
 	(PragmaMenuBuilder 
 		pragmaKeyword: 'RubTextEditorShiftedMenu'
@@ -43,27 +36,18 @@ RubPlainTextMode class>>fontMenuOn: aBuilder [
 						withSeparatorAfter ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode class>>label [
+{ #category : #accessing }
+RubPlainTextMode class >> label [
 	^ 'Plain text'
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode class>>menuKeyword [
+{ #category : #menu }
+RubPlainTextMode class >> menuKeyword [
 	^ 'RubPlainTextMenu'
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode class>>menuOn: aBuilder [
+{ #category : #menu }
+RubPlainTextMode class >> menuOn: aBuilder [
 	"Specify the menu used when writing text. Try it with:
 	(PragmaMenuBuilder 
 		pragmaKeyword: 'RubPlainTextMenu'
@@ -125,45 +109,30 @@ RubPlainTextMode class>>menuOn: aBuilder [
 						iconName: #smallCancelIcon ] ]
 ]
 
-{
-	#category : #'text area font',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>beAllFont: aFont [
+{ #category : #'text area font' }
+RubPlainTextMode >> beAllFont: aFont [
 	self textArea font: aFont
 ]
 
-{
-	#category : #'text area emphasis',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>bold [
+{ #category : #'text area emphasis' }
+RubPlainTextMode >> bold [
 	
 	self changeEmphasis: #bold
 ]
 
-{
-	#category : #'text area alignment',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>centered  [
+{ #category : #'text area alignment' }
+RubPlainTextMode >> centered [ 
 	self changeAlignment: #centered
 ]
 
-{
-	#category : #'text area alignment',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>changeAlignment: aSymbol [
+{ #category : #'text area alignment' }
+RubPlainTextMode >> changeAlignment: aSymbol [
 	"Change the alignment of the receiver. Alignment can be #leftFlush #centered #rightFlush #justified "
 	self changeAttribute: (TextAlignment perform: aSymbol)
 ]
 
-{
-	#category : #'text area attribute',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>changeAttribute: anAttribute [
+{ #category : #'text area attribute' }
+RubPlainTextMode >> changeAttribute: anAttribute [
 	"Change a TextAttribute  of the receiver. Emphasis, alignment..."
 
 	self textArea
@@ -175,22 +144,16 @@ RubPlainTextMode>>changeAttribute: anAttribute [
 	self textArea changed
 ]
 
-{
-	#category : #'text area emphasis',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>changeEmphasis: aSymbol [
+{ #category : #'text area emphasis' }
+RubPlainTextMode >> changeEmphasis: aSymbol [
 	"Change the alignment of the receiver. Alignment can be #normal, #bold,  #italic, #narrow, #underlined, or #struckOut"
 
 	self changeAttribute: (TextEmphasis perform: aSymbol)
 
 ]
 
-{
-	#category : #'text area font',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>fontName: fontName pointSize: pointSize [
+{ #category : #'text area font' }
+RubPlainTextMode >> fontName: fontName pointSize: pointSize [
 	| newTextStyle |
 	(LogicalFontManager current allFamilies detect: [ :f | f familyName = fontName ] ifNone: [  ])
 		ifNotNil: [ :fam | 
@@ -203,11 +166,8 @@ RubPlainTextMode>>fontName: fontName pointSize: pointSize [
 	self textArea addAttribute: (TextFontChange fontNumber: (newTextStyle fontIndexOfPointSize: pointSize))
 ]
 
-{
-	#category : #'text area font',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>fontName: fontName size: pointSize [
+{ #category : #'text area font' }
+RubPlainTextMode >> fontName: fontName size: pointSize [
 	| newTextStyle |
 	(LogicalFontManager current allFamilies detect: [ :f | f familyName = fontName ] ifNone: [  ])
 		ifNotNil: [ :fam | 
@@ -220,83 +180,56 @@ RubPlainTextMode>>fontName: fontName size: pointSize [
 	self addAttribute: (TextFontChange fontNumber: (newTextStyle fontIndexOfSize: pointSize))
 ]
 
-{
-	#category : #'text area font',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>fontPointSize: pointSize [
+{ #category : #'text area font' }
+RubPlainTextMode >> fontPointSize: pointSize [
 	self textArea addAttribute: (TextFontChange fontNumber: (self textStyle fontIndexOfPointSize: pointSize))
 ]
 
-{
-	#category : #'text area emphasis',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>italic [
+{ #category : #'text area emphasis' }
+RubPlainTextMode >> italic [
 	
 	self changeEmphasis: #italic
 ]
 
-{
-	#category : #'text area alignment',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>justified  [
+{ #category : #'text area alignment' }
+RubPlainTextMode >> justified [ 
 	self changeAlignment: #justified
 ]
 
-{
-	#category : #'text area alignment',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>leftFlush  [
+{ #category : #'text area alignment' }
+RubPlainTextMode >> leftFlush [ 
 
 	self changeAlignment: #leftFlush
 
 ]
 
-{
-	#category : #'text area emphasis',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>narrow [
+{ #category : #'text area emphasis' }
+RubPlainTextMode >> narrow [
 	
 	self changeEmphasis: #narrow
 ]
 
-{
-	#category : #'text area emphasis',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>normal [
+{ #category : #'text area emphasis' }
+RubPlainTextMode >> normal [
 	
 	self changeEmphasis: #normal
 ]
 
-{
-	#category : #'text area alignment',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>rightFlush  [
+{ #category : #'text area alignment' }
+RubPlainTextMode >> rightFlush [ 
 	
 	self changeAlignment: #rightFlush
 
 ]
 
-{
-	#category : #'text area emphasis',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>struckOut [
+{ #category : #'text area emphasis' }
+RubPlainTextMode >> struckOut [
 	
 	self changeEmphasis: #struckOut
 ]
 
-{
-	#category : #'text area emphasis',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPlainTextMode>>underlined [
+{ #category : #'text area emphasis' }
+RubPlainTextMode >> underlined [
 	
 	self changeEmphasis: #underlined
 ]

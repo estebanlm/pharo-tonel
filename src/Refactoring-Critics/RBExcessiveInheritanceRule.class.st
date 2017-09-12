@@ -12,33 +12,23 @@ The defined inheritance depth can be edited in #inheritanceDepth.
 Class {
 	#name : #RBExcessiveInheritanceRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:08'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveInheritanceRule class>>checksClass [
+{ #category : #testing }
+RBExcessiveInheritanceRule class >> checksClass [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveInheritanceRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBExcessiveInheritanceRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'ExcessiveInheritanceRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveInheritanceRule>>basicCheck: aClass [
+{ #category : #running }
+RBExcessiveInheritanceRule >> basicCheck: aClass [
 	| count current |
 	aClass isMeta ifTrue: [ ^ false ].
 	count := 1.
@@ -52,51 +42,33 @@ RBExcessiveInheritanceRule>>basicCheck: aClass [
 	^ false
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveInheritanceRule>>checkClass: aClass [
+{ #category : #running }
+RBExcessiveInheritanceRule >> checkClass: aClass [
 	(self basicCheck: aClass)
 		ifTrue: [ result addClassAndMetaClassFor: aClass ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveInheritanceRule>>group [
+{ #category : #accessing }
+RBExcessiveInheritanceRule >> group [
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveInheritanceRule>>inheritanceDepth [
+{ #category : #private }
+RBExcessiveInheritanceRule >> inheritanceDepth [
 	^ 10
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveInheritanceRule>>name [
+{ #category : #accessing }
+RBExcessiveInheritanceRule >> name [
 	^ 'Excessive inheritance depth'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveInheritanceRule>>rationale [
+{ #category : #accessing }
+RBExcessiveInheritanceRule >> rationale [
 	^ 'Deep inheritance (10+ depth) is usually a sign of a design flaw.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveInheritanceRule>>resultClass [
+{ #category : #accessing }
+RBExcessiveInheritanceRule >> resultClass [
 	^ RBClassEnvironment
 ]

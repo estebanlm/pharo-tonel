@@ -11,30 +11,20 @@ should not show completion menu with entries like CP1250TextConverter, ExampleFo
 Class {
 	#name : #NECEmptyModel,
 	#superclass : #NECModel,
-	#category : #NECompletion-Model,
-	#timestamp : 'NicolaiHess 11/23/2015 11:24'
+	#category : #NECompletion-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEmptyModel>>initializeSelectors [
+{ #category : #accessing }
+NECEmptyModel >> initializeSelectors [
 	self resetSelectors
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEmptyModel>>isEmpty [
+{ #category : #testing }
+NECEmptyModel >> isEmpty [
 	^ true
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEmptyModel>>narrowWith: aString [
+{ #category : #action }
+NECEmptyModel >> narrowWith: aString [
 	"no results"
 ]

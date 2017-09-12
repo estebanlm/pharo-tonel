@@ -1,12 +1,7 @@
-Extension {
-	#name : #WordArray
-}
+Extension { #name : #WordArray }
 
-{
-	#category : #'*Monticello-OldDataStreamCompatibility',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-WordArray class>>newFromStream: s [
+{ #category : #'*Monticello-OldDataStreamCompatibility' }
+WordArray class >> newFromStream: s [
 	"Only meant for my subclasses that are raw bits and word-like.  For quick unpack form the disk."
 	| len |
 

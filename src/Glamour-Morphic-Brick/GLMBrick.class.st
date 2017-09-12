@@ -23,26 +23,19 @@ Class {
 		'brickBounds',
 		'brickApi'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-Core,
-	#timestamp : 'AliakseiSyrel 3/22/2015 11:34'
+	#category : #Glamour-Morphic-Brick-Widgets-Core
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick class>>exampleZindexOpen [
+{ #category : #examples }
+GLMBrick class >> exampleZindexOpen [
 	"
 	self exampleZindexOpen
 	"
 	self gtExampleZindex openInBrickWindowLabeled: 'Z-Index example'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick class>>gtExampleZindex [
+{ #category : #examples }
+GLMBrick class >> gtExampleZindex [
 	<gtExample>
 	<label: 'Example of z-index support in Brick'>
 	
@@ -68,11 +61,8 @@ GLMBrick class>>gtExampleZindex [
 		yourself
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick class>>increaseFormExtentCentered: aForm to: aPoint [
+{ #category : #utils }
+GLMBrick class >> increaseFormExtentCentered: aForm to: aPoint [
 	| icon rect destination |
 	
 	aForm ifNil: [ ^ nil ].
@@ -83,11 +73,8 @@ GLMBrick class>>increaseFormExtentCentered: aForm to: aPoint [
 	^ icon
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick class>>makeForm32Bit: aForm [
+{ #category : #utils }
+GLMBrick class >> makeForm32Bit: aForm [
 	aForm ifNil: [ ^ nil ].
 	aForm depth = 32 ifTrue: [ ^ aForm ].
 	aForm depth: 32.
@@ -95,11 +82,8 @@ GLMBrick class>>makeForm32Bit: aForm [
 	^ aForm.
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick class>>makeFormTransparent: aForm factor: aFloat [
+{ #category : #utils }
+GLMBrick class >> makeFormTransparent: aForm factor: aFloat [
 	"a float must be in interval [0.0, 1.0]"
 	| a |
 	
@@ -117,11 +101,8 @@ GLMBrick class>>makeFormTransparent: aForm factor: aFloat [
 	^ aForm 
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick class>>resizeImage: anImage scale: aScale [
+{ #category : #utils }
+GLMBrick class >> resizeImage: anImage scale: aScale [
 
 	((aScale > (1@0)) | (aScale > (0@1))) ifTrue: [
 		^ self increaseFormExtentCentered: anImage to: (anImage extent * aScale).
@@ -134,21 +115,15 @@ GLMBrick class>>resizeImage: anImage scale: aScale [
 	^ anImage magnify: anImage boundingBox by: aScale smoothing: 2.
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick class>>scaleForm: aForm by: aPoint [
+{ #category : #utils }
+GLMBrick class >> scaleForm: aForm by: aPoint [
 
 	aForm ifNil: [ ^ nil ].
 	^ aForm magnify: aForm boundingBox by: aPoint smoothing: 2
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick class>>scaleForm: aForm to: aPoint [
+{ #category : #utils }
+GLMBrick class >> scaleForm: aForm to: aPoint [
 	|scaleX scaleY|
 	
 	aForm ifNil: [ ^ nil ].
@@ -157,11 +132,8 @@ GLMBrick class>>scaleForm: aForm to: aPoint [
 	^ self scaleForm: aForm by: scaleX @ scaleY.
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick class>>scalePatchForm: aForm size: aPoint [
+{ #category : #utils }
+GLMBrick class >> scalePatchForm: aForm size: aPoint [
 	"aPoint - width and height of new form
 	
 |form|
@@ -262,56 +234,38 @@ form := PatchForm scaleForm: form by: (800/(form extent x))@(800/(form extent y)
 
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>announcer [
+{ #category : #brick-properties }
+GLMBrick >> announcer [
 
 	^ super announcer
 ]
 
-{
-	#category : #brick-structure-converting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>asMorph [
+{ #category : #brick-structure-converting }
+GLMBrick >> asMorph [
 
 	^ self asBrickedMorph
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>bounds [
+{ #category : #brick-geometry }
+GLMBrick >> bounds [
 
 	^ self globalBounds
 ]
 
-{
-	#category : #morph-common,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>boundsInWorld [
+{ #category : #morph-common }
+GLMBrick >> boundsInWorld [
 
 	^ self globalBounds
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>brickApi [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrick >> brickApi [
 
 	^ brickApi ifNil: [ brickApi := GLMBrickWrapper on: self ]
 ]
 
-{
-	#category : #morph-drawing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>changed [
+{ #category : #morph-drawing }
+GLMBrick >> changed [
 	"Report that the area occupied by this morph should be redrawn.
 	Fixed to include submorphs outside the outerBounds."
 	
@@ -322,60 +276,42 @@ GLMBrick>>changed [
 	self invalidRect: self globalClippingBounds
 ]
 
-{
-	#category : #morph-drawing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>changedWith: aBlock [
+{ #category : #morph-drawing }
+GLMBrick >> changedWith: aBlock [
 
 	self changed.
 	aBlock cull: self.
 	self changed.
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>currentColor [
+{ #category : #brick-properties }
+GLMBrick >> currentColor [
 	^ self color
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>defaultRenderer [
+{ #category : #initialization }
+GLMBrick >> defaultRenderer [
 	^ GLMBrickRenderer new
 ]
 
-{
-	#category : #morph-drawing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>drawOn: aCanvas [
+{ #category : #morph-drawing }
+GLMBrick >> drawOn: aCanvas [
 	"super drawOn: aCanvas."
 	aCanvas
 		translateBy: self globalBounds origin - self brickBounds origin
 		during: [ :canvas | self onDraw: canvas ]
 ]
 
-{
-	#category : #morph-drawing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #morph-drawing }
+GLMBrick >> drawOnAthensCanvas: anAthensCanvas [
 
 	anAthensCanvas pathTransform restoreAfter: [
 					anAthensCanvas pathTransform translateBy: (self globalBounds origin - self brickBounds origin).
 					self onDrawAthensCanvas: anAthensCanvas ]
 ]
 
-{
-	#category : #morph-drawing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>drawSubmorphsOn: aCanvas [
+{ #category : #morph-drawing }
+GLMBrick >> drawSubmorphsOn: aCanvas [
 	| area zIndexedBricks |
 	
 	self submorphs isEmpty ifTrue: [ ^ self ].
@@ -420,11 +356,8 @@ GLMBrick>>drawSubmorphsOn: aCanvas [
 		
 ]
 
-{
-	#category : #morph-drawing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>drawSubmorphsOnAthensCanvas: anAthensCanvas [
+{ #category : #morph-drawing }
+GLMBrick >> drawSubmorphsOnAthensCanvas: anAthensCanvas [
 	| area zIndexedBricks |
 	
 	self submorphs isEmpty ifTrue: [ ^ self ].
@@ -472,28 +405,19 @@ GLMBrick>>drawSubmorphsOnAthensCanvas: anAthensCanvas [
 		
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>drawingBounds [
+{ #category : #brick-geometry }
+GLMBrick >> drawingBounds [
 	^ self renderer drawingBounds: self
 ]
 
-{
-	#category : #morph-common,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>fullBounds [
+{ #category : #morph-common }
+GLMBrick >> fullBounds [
 
 	^ self globalBounds
 ]
 
-{
-	#category : #morph-drawing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>fullDrawOn: aCanvas [
+{ #category : #morph-drawing }
+GLMBrick >> fullDrawOn: aCanvas [
 	"fixes bug in canvas, when it tries to draw a morph even if clip rect has size 0"
 	
 	aCanvas clipRect hasPositiveExtent
@@ -502,40 +426,28 @@ GLMBrick>>fullDrawOn: aCanvas [
 	super fullDrawOn: aCanvas
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>globalClippingBounds [
+{ #category : #brick-geometry }
+GLMBrick >> globalClippingBounds [
 	^ self owner
 		ifNotNil: [ self drawingBounds translateBy: self owner globalBoundsTranslateFactor ]
 		ifNil: [ self drawingBounds ]
 ]
 
-{
-	#category : #morph-common,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>haloClass [
+{ #category : #morph-common }
+GLMBrick >> haloClass [
 	"Answer the name of the desired kind of HaloMorph to launch on behalf of the receiver"
 
 	^ #GLMHaloBrick
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>hasProperty: aSymbol  [
+{ #category : #private-extension }
+GLMBrick >> hasProperty: aSymbol [ 
 	
 	^ super hasProperty: aSymbol
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>initialize [
+{ #category : #initialization }
+GLMBrick >> initialize [
 	super initialize.
 	color := Color transparent.
 	self fillStyle: nil.
@@ -547,11 +459,8 @@ GLMBrick>>initialize [
 		renderer: self defaultRenderer
 ]
 
-{
-	#category : #brick-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>isFitsInParent [
+{ #category : #brick-testing }
+GLMBrick >> isFitsInParent [
 
 	^ self owner
 		"if our owner is a brick"
@@ -560,130 +469,88 @@ GLMBrick>>isFitsInParent [
 		ifNil: [ self owner ifNotNil: [ self owner bounds containsRect: self globalBounds ] ifNil: [ ^ true ] ]
 ]
 
-{
-	#category : #morph-common,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>isMorphBrick [
+{ #category : #morph-common }
+GLMBrick >> isMorphBrick [
 
 	^ false
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>layoutPolicy [
+{ #category : #brick-layout }
+GLMBrick >> layoutPolicy [
 
 	^ super layoutPolicy
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>layoutPolicy: aLayout [
+{ #category : #brick-layout }
+GLMBrick >> layoutPolicy: aLayout [
 	
 	super layoutPolicy: aLayout
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>layoutProperties [
+{ #category : #brick-layout }
+GLMBrick >> layoutProperties [
 	
 	^ super layoutProperties
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>layoutProperties: aLayoutProperties  [
+{ #category : #brick-layout }
+GLMBrick >> layoutProperties: aLayoutProperties [ 
 
 	super layoutProperties: aLayoutProperties
 ]
 
-{
-	#category : #brick-drawing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>onDraw: aCanvas [
+{ #category : #brick-drawing }
+GLMBrick >> onDraw: aCanvas [
 
 	self renderer render: self on: aCanvas. 
 ]
 
-{
-	#category : #brick-drawing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>onDrawAthensCanvas: aCanvas [
+{ #category : #brick-drawing }
+GLMBrick >> onDrawAthensCanvas: aCanvas [
 
 	self renderer render: self onAthensCanvas: aCanvas. 
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>onThemerChanged [
+{ #category : #brick-properties-events }
+GLMBrick >> onThemerChanged [
 
 	self changed
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>outerBoundsInParent [
+{ #category : #brick-geometry }
+GLMBrick >> outerBoundsInParent [
 	^ self owner
 		ifNotNil: [ self wrappedBounds outerBounds translateBy: self owner brickBounds origin ]
 		ifNil: [ self wrappedBounds outerBounds ]
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>owner [
+{ #category : #brick-structure }
+GLMBrick >> owner [
 
 	^ owner
 ]
 
-{
-	#category : #morph-common,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>privateMoveBy: delta  [
+{ #category : #morph-common }
+GLMBrick >> privateMoveBy: delta [ 
 	"Private! Use 'position:' instead."
 	bounds := bounds translateBy: delta.
 	fullBounds ifNotNil: [fullBounds := fullBounds translateBy: delta].
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>privateOwner: aBrick [
+{ #category : #private-structure }
+GLMBrick >> privateOwner: aBrick [
 
 	owner := aBrick
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>privateSubbricks: aCollection [
+{ #category : #private-structure }
+GLMBrick >> privateSubbricks: aCollection [
 
 	submorphs := aCollection
 ]
 
-{
-	#category : #morph-common,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>removeAllMorphs [
+{ #category : #morph-common }
+GLMBrick >> removeAllMorphs [
 	| oldMorphs myWorld |
 	"we don't invalidate world"
 	myWorld := self world.
@@ -694,20 +561,14 @@ GLMBrick>>removeAllMorphs [
 
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>removeProperty: aSymbol [
+{ #category : #private-extension }
+GLMBrick >> removeProperty: aSymbol [
 	
 	super removeProperty: aSymbol
 ]
 
-{
-	#category : #morph-common,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>setConstrainedPosition: aPoint hangOut: partiallyOutside [
+{ #category : #morph-common }
+GLMBrick >> setConstrainedPosition: aPoint hangOut: partiallyOutside [
 	"Change the position of this morph and and all of its submorphs to aPoint, but don't let me go outside my owner's bounds."
 
 	| trialRect delta boundingRectangle |
@@ -721,47 +582,32 @@ GLMBrick>>setConstrainedPosition: aPoint hangOut: partiallyOutside [
 
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>setProperty: aSymbol toValue: anObject [
+{ #category : #private-extension }
+GLMBrick >> setProperty: aSymbol toValue: anObject [
 	
 	super setProperty: aSymbol toValue: anObject
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>subbricks [
+{ #category : #brick-structure }
+GLMBrick >> subbricks [
 
 	^ self submorphs
 ]
 
-{
-	#category : #morph-common,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>submorphAfter [
+{ #category : #morph-common }
+GLMBrick >> submorphAfter [
 
 	^ self subbrickAfter
 ]
 
-{
-	#category : #morph-common,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>submorphBefore [
+{ #category : #morph-common }
+GLMBrick >> submorphBefore [
 
 	^ self subbrickBefore
 ]
 
-{
-	#category : #morph-common,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>taskThumbnailOfSize: thumbExtent [
+{ #category : #morph-common }
+GLMBrick >> taskThumbnailOfSize: thumbExtent [
 	"Answer a new task thumbnail for the receiver."
 
 	|f t r|
@@ -777,56 +623,38 @@ GLMBrick>>taskThumbnailOfSize: thumbExtent [
 		form: f
 ]
 
-{
-	#category : #morph-common,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>updateMorphBounds [
+{ #category : #morph-common }
+GLMBrick >> updateMorphBounds [
 
 	self withAllSubbricks select: #isMorphBrick thenDo: #onLayouted
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>valueOfProperty: aSymbol [
+{ #category : #private-extension }
+GLMBrick >> valueOfProperty: aSymbol [
 	
 	^ super valueOfProperty: aSymbol
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>valueOfProperty: aSymbol ifAbsent: aBlock [
+{ #category : #private-extension }
+GLMBrick >> valueOfProperty: aSymbol ifAbsent: aBlock [
 	
 	^ super valueOfProperty: aSymbol ifAbsent: aBlock
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>valueOfProperty: aSymbol ifAbsentPut: aBlock  [
+{ #category : #private-extension }
+GLMBrick >> valueOfProperty: aSymbol ifAbsentPut: aBlock [ 
 	
 	^ super valueOfProperty: aSymbol ifAbsentPut: aBlock
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>wrappedBounds [
+{ #category : #brick-geometry }
+GLMBrick >> wrappedBounds [
 
 	^ brickBounds ifNil: [ brickBounds := GLMBrickBounds new ]
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrick>>wrappedBounds: aBounds [
+{ #category : #brick-geometry }
+GLMBrick >> wrappedBounds: aBounds [
 
 	brickBounds := aBounds
 ]

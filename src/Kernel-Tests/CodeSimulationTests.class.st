@@ -7,75 +7,50 @@ Class {
 	#classVars : [
 		'log'
 	],
-	#category : #Kernel-Tests-Methods,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:31'
+	#category : #Kernel-Tests-Methods
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>indexedBasicAt: index  [
+{ #category : #private }
+CodeSimulationTests >> indexedBasicAt: index [ 
 	<primitive: 60 error: code >
 	^ code
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>methodWithError [
+{ #category : #tests }
+CodeSimulationTests >> methodWithError [
 	self error: 'my error'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>methodWithHalt [
+{ #category : #tests }
+CodeSimulationTests >> methodWithHalt [
 	self halt
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>methodWithTranscript [
+{ #category : #tests }
+CodeSimulationTests >> methodWithTranscript [
 	Transcript show: 'something'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>runSimulated: aBlock [
+{ #category : #tests }
+CodeSimulationTests >> runSimulated: aBlock [
 	thisContext runSimulated: aBlock contextAtEachStep: [ :current |  ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>testDNU [
+{ #category : #tests }
+CodeSimulationTests >> testDNU [
 
 	self should: [ self runSimulated: [self absentMethod] ] raise: MessageNotUnderstood
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>testError [
+{ #category : #tests }
+CodeSimulationTests >> testError [
 	self should: [ self runSimulated: [self methodWithError] ] raise: Error
 ]
 
-{
-	#category : #'tests - primitives',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>testErrorCodeNotFound [
+{ #category : #'tests - primitives' }
+CodeSimulationTests >> testErrorCodeNotFound [
 	| ctx result resultSimu |
 	
 	self skip.
@@ -100,11 +75,8 @@ CodeSimulationTests>>testErrorCodeNotFound [
 	self assert: result = resultSimu second.
 ]
 
-{
-	#category : #'tests - primitives',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>testErrorCodeNotFoundIndexed [
+{ #category : #'tests - primitives' }
+CodeSimulationTests >> testErrorCodeNotFoundIndexed [
 	| ctx result resultSimu |
 	
 	Smalltalk vm isRunningCog ifFalse: [^self].
@@ -128,11 +100,8 @@ CodeSimulationTests>>testErrorCodeNotFoundIndexed [
 	self assert: result = resultSimu second.
 ]
 
-{
-	#category : #'tests - primitives',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>testErrorToken [
+{ #category : #'tests - primitives' }
+CodeSimulationTests >> testErrorToken [
 	| token1 token2 |
 	
 	token1 := Context primitiveFailToken.
@@ -143,59 +112,38 @@ CodeSimulationTests>>testErrorToken [
 	self assert: token2 second == 100.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>testErrorWithErrorHandler [
+{ #category : #tests }
+CodeSimulationTests >> testErrorWithErrorHandler [
 	self runSimulated: [[self methodWithError] on: Error do: [:err | ]]  
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>testGoodSimulation [
+{ #category : #tests }
+CodeSimulationTests >> testGoodSimulation [
 	self runSimulated: [ 1 + 2 ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>testHalt [
+{ #category : #tests }
+CodeSimulationTests >> testHalt [
 	self should: [ self runSimulated: [self methodWithHalt] ] raise: Halt
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>testHaltWithHaltHandler [
+{ #category : #tests }
+CodeSimulationTests >> testHaltWithHaltHandler [
 	self runSimulated: [[self methodWithHalt] on: Halt do: [:err |]]  
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>testTranscriptPrinting [
+{ #category : #tests }
+CodeSimulationTests >> testTranscriptPrinting [
 	self runSimulated: [self methodWithTranscript]  
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>testTranscriptPrintingWithOpenedTranscriptExists [
+{ #category : #tests }
+CodeSimulationTests >> testTranscriptPrintingWithOpenedTranscriptExists [
 	self runSimulated: [self methodWithTranscript]  
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CodeSimulationTests>>veryBasicAt: index  [
+{ #category : #private }
+CodeSimulationTests >> veryBasicAt: index [ 
 	<primitive: 'dooo' module: 'bar' error: code>
 	^ code
 

@@ -19,70 +19,48 @@ Class {
 		'permutation',
 		'implementors'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 11:58'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChangeMethodNameRefactoring>>hasPermutedArguments [
+{ #category : #testing }
+RBChangeMethodNameRefactoring >> hasPermutedArguments [
 	oldSelector numArgs = newSelector numArgs ifFalse: [^true].
 	1 to: oldSelector numArgs
 		do: [:i | (permutation at: i) = i ifFalse: [^true]].
 	^false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChangeMethodNameRefactoring>>implementors [
+{ #category : #private }
+RBChangeMethodNameRefactoring >> implementors [
 	implementors isNil 
 		ifTrue: [implementors := self model allImplementorsOf: oldSelector].
 	^implementors
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChangeMethodNameRefactoring>>implementorsCanBePrimitives [
+{ #category : #testing }
+RBChangeMethodNameRefactoring >> implementorsCanBePrimitives [
 	^false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChangeMethodNameRefactoring>>modifyImplementorParseTree: parseTree in: aClass  [
+{ #category : #private }
+RBChangeMethodNameRefactoring >> modifyImplementorParseTree: parseTree in: aClass [ 
 	| oldArgs |
 	oldArgs := parseTree arguments.
 	parseTree renameSelector: newSelector andArguments: (permutation collect: [:each | oldArgs at: each]) 
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChangeMethodNameRefactoring>>myConditions [
+{ #category : #preconditions }
+RBChangeMethodNameRefactoring >> myConditions [
 	"^self subclassResponsibility"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChangeMethodNameRefactoring>>newSelector [
+{ #category : #accessing }
+RBChangeMethodNameRefactoring >> newSelector [
 	^newSelector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChangeMethodNameRefactoring>>parseTreeRewriter [
+{ #category : #private }
+RBChangeMethodNameRefactoring >> parseTreeRewriter [
 	| rewriteRule oldString newString |
 	rewriteRule := RBParseTreeRewriter new.
 	oldString := self buildSelectorString: oldSelector.
@@ -93,11 +71,8 @@ RBChangeMethodNameRefactoring>>parseTreeRewriter [
 	^rewriteRule
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChangeMethodNameRefactoring>>preconditions [
+{ #category : #preconditions }
+RBChangeMethodNameRefactoring >> preconditions [
 	"This refactoring only preserves behavior if all implementors are renamed."
 
 	| conditions |
@@ -117,22 +92,16 @@ RBChangeMethodNameRefactoring>>preconditions [
 		true])
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChangeMethodNameRefactoring>>removeRenamedImplementors [
+{ #category : #transforming }
+RBChangeMethodNameRefactoring >> removeRenamedImplementors [
 	oldSelector = newSelector
 		ifTrue: [ ^ self ].
 	self implementors 
 		do: [ :each | each removeMethod: oldSelector ]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChangeMethodNameRefactoring>>renameImplementors [
+{ #category : #transforming }
+RBChangeMethodNameRefactoring >> renameImplementors [
 	self implementors do: 
 			[:each | 
 			| parseTree |
@@ -150,30 +119,21 @@ RBChangeMethodNameRefactoring>>renameImplementors [
 			(each methodFor: oldSelector) compileTree: parseTree]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChangeMethodNameRefactoring>>renameMessageSends [
+{ #category : #transforming }
+RBChangeMethodNameRefactoring >> renameMessageSends [
 	self convertAllReferencesTo: oldSelector using: self parseTreeRewriter
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChangeMethodNameRefactoring>>renameMethod: aSelector in: aClass to: newSel permutation: aMap  [
+{ #category : #initialize-release }
+RBChangeMethodNameRefactoring >> renameMethod: aSelector in: aClass to: newSel permutation: aMap [ 
 	oldSelector := aSelector asSymbol.
 	newSelector := newSel asSymbol.
 	class := self classObjectFor: aClass.
 	permutation := aMap
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChangeMethodNameRefactoring>>transform [
+{ #category : #transforming }
+RBChangeMethodNameRefactoring >> transform [
 	self renameImplementors.
 	self renameMessageSends.
 	self removeRenamedImplementors

@@ -20,23 +20,16 @@ Class {
 		'progressIconMorph',
 		'progress'
 	],
-	#category : #Morphic-Widgets-Tabs,
-	#timestamp : 'DenisKudryashov 7/6/2017 15:19'
+	#category : #Morphic-Widgets-Tabs
 }
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBuildingIconMorph>>currentIcon [
+{ #category : #'stepping and presenter' }
+TabBuildingIconMorph >> currentIcon [
 	^TabMorph perform: (#refreshIcon, progress asString) asSymbol
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBuildingIconMorph>>initialize [
+{ #category : #initialization }
+TabBuildingIconMorph >> initialize [
 	super initialize.
 	self 
 		clipLayoutCells: true;
@@ -47,22 +40,16 @@ TabBuildingIconMorph>>initialize [
 	self extent: progressIconMorph extent.
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBuildingIconMorph>>step [
+{ #category : #'stepping and presenter' }
+TabBuildingIconMorph >> step [
 	progress := progress + 1.
 	progress > 10 ifTrue: [ progress := 1 ].
 	
 	progressIconMorph form: self currentIcon
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBuildingIconMorph>>stepTime [
+{ #category : #'stepping and presenter' }
+TabBuildingIconMorph >> stepTime [
 	
 	^ 100 "milliseconds"
 ]

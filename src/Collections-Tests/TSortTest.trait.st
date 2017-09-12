@@ -3,27 +3,18 @@ A trait for test purposes
 "
 Trait {
 	#name : #TSortTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:35'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSortTest>>sortedInAscendingOrderCollection [
+{ #category : #requirements }
+TSortTest >> sortedInAscendingOrderCollection [
 	"Return a collection sorted in ascending order"
 	^ self explicitRequirement
 	
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSortTest>>test0SortingArrayedTest [
+{ #category : #'tests - fixture' }
+TSortTest >> test0SortingArrayedTest [
 	| tmp sorted |
 	" an unsorted collection of number "
 	self unsortedCollection.
@@ -43,30 +34,21 @@ TSortTest>>test0SortingArrayedTest [
 			tmp := each ]
 ]
 
-{
-	#category : #'tests - sorting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSortTest>>testIsSorted [
+{ #category : #'tests - sorting' }
+TSortTest >> testIsSorted [
 	self assert: self sortedInAscendingOrderCollection isSorted.
 	self deny: self unsortedCollection isSorted
 ]
 
-{
-	#category : #'tests - sorting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSortTest>>testIsSortedBy [
+{ #category : #'tests - sorting' }
+TSortTest >> testIsSortedBy [
 	self assert: (self sortedInAscendingOrderCollection isSortedBy: [:a :b | a<b]).
 	self deny: (self sortedInAscendingOrderCollection isSortedBy: [:a :b | a>b]).
 
 ]
 
-{
-	#category : #'tests - sorting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSortTest>>testSort [
+{ #category : #'tests - sorting' }
+TSortTest >> testSort [
 	| result tmp |
 	result := self unsortedCollection sort.
 	tmp := result at: 1.
@@ -74,11 +56,8 @@ TSortTest>>testSort [
 		[:each | self assert: each>=tmp. tmp:= each. ].
 ]
 
-{
-	#category : #'tests - sorting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSortTest>>testSortUsingSortBlock [
+{ #category : #'tests - sorting' }
+TSortTest >> testSortUsingSortBlock [
 	| result tmp |
 	result := self unsortedCollection sort: [:a :b | a>b].
 	tmp := result at: 1.
@@ -86,11 +65,8 @@ TSortTest>>testSortUsingSortBlock [
 		[:each | self assert: each<=tmp. tmp:= each. ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSortTest>>testSorted [
+{ #category : #tests }
+TSortTest >> testSorted [
 	| result tmp unsorted |
 	unsorted := self unsortedCollection.
 	result := unsorted sorted.
@@ -102,11 +78,8 @@ TSortTest>>testSorted [
 			tmp := each ]
 ]
 
-{
-	#category : #'tests - sorting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSortTest>>testSortedUsingBlock [
+{ #category : #'tests - sorting' }
+TSortTest >> testSortedUsingBlock [
 	| result tmp |
 	result := self unsortedCollection sorted:  [:a :b | a>b]..
 	tmp := result at: 1.
@@ -114,11 +87,8 @@ TSortTest>>testSortedUsingBlock [
 		[:each | self assert: each<=tmp. tmp:= each. ].
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSortTest>>unsortedCollection [
+{ #category : #requirements }
+TSortTest >> unsortedCollection [
 "Return a collection that is not yet sorted"
 	^self explicitRequirement
 ]

@@ -12,33 +12,23 @@ or do... ""Delay delaySchedulerClass: DelayNullScheduler""
 Class {
 	#name : #DelayNullScheduler,
 	#superclass : #DelayScheduler,
-	#category : #Kernel-Processes,
-	#timestamp : 'BenComan 3/20/2015 17:05'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #'low priority processes',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayNullScheduler>>schedule: aDelay [
+{ #category : #'low priority processes' }
+DelayNullScheduler >> schedule: aDelay [
 	aDelay delaySemaphore signal.
 	
 
 ]
 
-{
-	#category : #snapshotting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayNullScheduler>>shutDown [
+{ #category : #snapshotting }
+DelayNullScheduler >> shutDown [
 	"do nothing"
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayNullScheduler>>startTimerEventLoop [
+{ #category : #'timer process' }
+DelayNullScheduler >> startTimerEventLoop [
 	"Start a fake timer event loop that does nothing - just suspends via a wait that is never signalled"
 	"Delay restartTimerEventLoop"
 		
@@ -52,11 +42,8 @@ DelayNullScheduler>>startTimerEventLoop [
 
 ]
 
-{
-	#category : #snapshotting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayNullScheduler>>startUp [
+{ #category : #snapshotting }
+DelayNullScheduler >> startUp [
 	self error: 'Delay scheduler is NOT RUNNING!'.
 	"The running delay scheduler seems to be DelayNullScheduler.
 	 This is probably not what you want. See Tools > Process Browser.
@@ -69,11 +56,8 @@ DelayNullScheduler>>startUp [
  
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayNullScheduler>>stopTimerEventLoop [
+{ #category : #'timer process' }
+DelayNullScheduler >> stopTimerEventLoop [
 	"Stop the timer event loop"
 
 	timerEventLoop ifNotNil: [ timerEventLoop terminate ]. 
@@ -82,11 +66,8 @@ DelayNullScheduler>>stopTimerEventLoop [
 
 ]
 
-{
-	#category : #'low priority processes',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayNullScheduler>>unschedule: aDelay [
+{ #category : #'low priority processes' }
+DelayNullScheduler >> unschedule: aDelay [
 	"Nothing to do"
 		
 

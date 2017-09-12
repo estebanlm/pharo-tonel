@@ -7,72 +7,50 @@ Class {
 	#instVars : [
 		'expression'
 	],
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 14:50'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpExpressionEvaluation class>>expression: anExpression  [
+{ #category : #'instance creation' }
+EpExpressionEvaluation class >> expression: anExpression [ 
 	^ self basicNew 
 		initializeExpression: anExpression;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpExpressionEvaluation>>= other [
+{ #category : #comparing }
+EpExpressionEvaluation >> = other [
 
 	^ self class = other class 
 		and: [ self expression = other expression ]
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpExpressionEvaluation>>accept: aVisitor [
+{ #category : #visitor }
+EpExpressionEvaluation >> accept: aVisitor [
 
 	^ aVisitor visitExpressionEvaluation: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpExpressionEvaluation>>expression [
+{ #category : #accessing }
+EpExpressionEvaluation >> expression [
 
 	^ expression
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpExpressionEvaluation>>hash [
+{ #category : #comparing }
+EpExpressionEvaluation >> hash [
 
 	^ self class hash bitXor: self expression hash
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpExpressionEvaluation>>initializeExpression: anExpression [
+{ #category : #initialize }
+EpExpressionEvaluation >> initializeExpression: anExpression [
 
 	self initialize.
 	expression := anExpression.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpExpressionEvaluation>>printOn: aStream [
+{ #category : #printing }
+EpExpressionEvaluation >> printOn: aStream [
 	super printOn: aStream.
 
 	aStream 

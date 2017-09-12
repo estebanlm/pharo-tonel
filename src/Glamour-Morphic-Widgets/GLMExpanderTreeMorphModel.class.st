@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMExpanderTreeMorphModel,
 	#superclass : #MorphTreeModel,
@@ -8,39 +5,26 @@ Class {
 		'roots',
 		'glamourExpander'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExpanderTreeMorphModel>>glamourExpander [
+{ #category : #accessing }
+GLMExpanderTreeMorphModel >> glamourExpander [
 	^ glamourExpander
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExpanderTreeMorphModel>>glamourExpander: anObject [
+{ #category : #accessing }
+GLMExpanderTreeMorphModel >> glamourExpander: anObject [
 	glamourExpander := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExpanderTreeMorphModel>>nodeModelFor: anObject [
+{ #category : #accessing }
+GLMExpanderTreeMorphModel >> nodeModelFor: anObject [
 	^ GLMExpanderLabelNodeModel with: anObject in: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExpanderTreeMorphModel>>roots [
+{ #category : #accessing }
+GLMExpanderTreeMorphModel >> roots [
 "	| filtered |"
 	roots ifNil: [ self roots: self glamourExpander panes ].
 	^ roots
@@ -52,11 +36,8 @@ GLMExpanderTreeMorphModel>>roots [
 	^ filtered"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExpanderTreeMorphModel>>roots: anObjectOrCollection [
+{ #category : #accessing }
+GLMExpanderTreeMorphModel >> roots: anObjectOrCollection [
 	roots := anObjectOrCollection isCollection 
 		ifTrue: [ anObjectOrCollection collect: [:each | self nodeModelFor: each ] ]
 		ifFalse: [ OrderedCollection with: (self nodeModelFor: anObjectOrCollection) ]

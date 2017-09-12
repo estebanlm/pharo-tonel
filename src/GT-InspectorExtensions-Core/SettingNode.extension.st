@@ -1,12 +1,7 @@
-Extension {
-	#name : #SettingNode
-}
+Extension { #name : #SettingNode }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-SettingNode>>gtInspectorLiveIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+SettingNode >> gtInspectorLiveIn: composite [
 	<gtInspectorPresentationOrder: 0>
 	composite morph
 		title: 'Live';

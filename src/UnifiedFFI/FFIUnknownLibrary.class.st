@@ -18,41 +18,28 @@ Class {
 	#instVars : [
 		'moduleName'
 	],
-	#category : #UnifiedFFI-Libraries,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Libraries
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIUnknownLibrary class>>name: aString  [
+{ #category : #'instance creation' }
+FFIUnknownLibrary class >> name: aString [ 
 	^ self basicNew
 		initializeName: aString;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIUnknownLibrary class>>new  [
+{ #category : #'instance creation' }
+FFIUnknownLibrary class >> new [ 
 	self error: 'Use #name:'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIUnknownLibrary>>initializeName: aString  [
+{ #category : #initialization }
+FFIUnknownLibrary >> initializeName: aString [ 
 	moduleName := aString.
 	self initialize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIUnknownLibrary>>moduleName  [
+{ #category : #accessing }
+FFIUnknownLibrary >> moduleName [ 
 	^ moduleName
 ]

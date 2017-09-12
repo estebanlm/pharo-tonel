@@ -35,24 +35,17 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #System-Identification,
-	#timestamp : 'AndreiChis 10/12/2015 23:13'
+	#category : #System-Identification
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifier class>>cleanUp [
+{ #category : #cleanup }
+GlobalIdentifier class >> cleanUp [
 	"Clean unique instance."	
 	self reset.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifier class>>initialize [
+{ #category : #'class initialization' }
+GlobalIdentifier class >> initialize [
 
 	SessionManager default
 		register: (ClassSessionHandler forClassNamed: self name)
@@ -60,76 +53,52 @@ GlobalIdentifier class>>initialize [
 		atPriority: SessionManager default defaultPriority - 100.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifier class>>initializeUniqueInstance [
+{ #category : #initialization }
+GlobalIdentifier class >> initializeUniqueInstance [
 	uniqueInstance := self basicNew initialize.
 	uniqueInstance ensure.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifier class>>new [
+{ #category : #'instance creation' }
+GlobalIdentifier class >> new [
 	"Users should not create instances of this class.
 	Within the framework more instances are created when loading data and when testing."
 	self shouldNotImplement
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifier class>>reset [
+{ #category : #initialize-release }
+GlobalIdentifier class >> reset [
 	"self reset"
 	uniqueInstance := nil
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifier class>>startUp: resuming [
+{ #category : #'system startup' }
+GlobalIdentifier class >> startUp: resuming [
 
 	self reset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifier class>>uniqueInstance [
+{ #category : #accessing }
+GlobalIdentifier class >> uniqueInstance [
 	"self uniqueInstance"
 	uniqueInstance ifNil: [ self initializeUniqueInstance ].
 	^ uniqueInstance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifier>>computerUUID [
+{ #category : #accessing }
+GlobalIdentifier >> computerUUID [
 	"This value identifies a user logged into the computer.
 	Before calling #computerUUID method, you should call #ensure."
 	^ persistedInformation at: #computerUUID
 ]
 
-{
-	#category : #'load and saving',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifier>>ensure [
+{ #category : #'load and saving' }
+GlobalIdentifier >> ensure [
 	self persistenceStrategy ensure: self persistedInformation
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifier>>initialize [
+{ #category : #initialization }
+GlobalIdentifier >> initialize [
 	super initialize.
 	"Dictionary contains all the values that we want to persist on disk."
 	persistedInformation := Dictionary new.
@@ -139,45 +108,30 @@ GlobalIdentifier>>initialize [
 	persistenceStrategy previous: GlobalIdentifierPersistence fuel.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifier>>obfuscate: anObject [
+{ #category : #actions }
+GlobalIdentifier >> obfuscate: anObject [
 	"If you have an information that you want to obfuscate before sending,
 	this is likely a good solution for you."
 	^ anObject hash bitXor: self secretUUID hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifier>>persistedInformation [
+{ #category : #accessing }
+GlobalIdentifier >> persistedInformation [
 	^ persistedInformation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifier>>persistenceStrategy [
+{ #category : #accessing }
+GlobalIdentifier >> persistenceStrategy [
 	^ persistenceStrategy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifier>>persistenceStrategy: anObject [
+{ #category : #accessing }
+GlobalIdentifier >> persistenceStrategy: anObject [
 	persistenceStrategy := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifier>>secretUUID [
+{ #category : #accessing }
+GlobalIdentifier >> secretUUID [
 	"This value can be used for obfuscating an information before sending it.
 	See #obfuscate: method.
 	Before calling #secretUUID method, you should call #ensure."

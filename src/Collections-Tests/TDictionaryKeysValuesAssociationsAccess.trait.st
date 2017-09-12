@@ -3,35 +3,23 @@ A trait for test purposes
 "
 Trait {
 	#name : #TDictionaryKeysValuesAssociationsAccess,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Unordered,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:34'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryKeysValuesAssociationsAccess>>nonEmpty [
+{ #category : #requirements }
+TDictionaryKeysValuesAssociationsAccess >> nonEmpty [
 
 self explicitRequirement.
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryKeysValuesAssociationsAccess>>test0FixtureDictionaryKeysValuesAssociationsAccess [
+{ #category : #'tests - fixture' }
+TDictionaryKeysValuesAssociationsAccess >> test0FixtureDictionaryKeysValuesAssociationsAccess [
 	self nonEmpty.
 	self deny: self nonEmpty isEmpty
 ]
 
-{
-	#category : #'tests - Dictionary keys values associations access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryKeysValuesAssociationsAccess>>testAssociations [
+{ #category : #'tests - Dictionary keys values associations access' }
+TDictionaryKeysValuesAssociationsAccess >> testAssociations [
 
 	| collection result  |
 	collection := self nonEmpty .
@@ -43,11 +31,8 @@ TDictionaryKeysValuesAssociationsAccess>>testAssociations [
 	
 ]
 
-{
-	#category : #'tests - Dictionary keys values associations access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryKeysValuesAssociationsAccess>>testKeys [
+{ #category : #'tests - Dictionary keys values associations access' }
+TDictionaryKeysValuesAssociationsAccess >> testKeys [
 	| collection result |
 	collection := self nonEmpty.
 	result := collection keys.
@@ -56,11 +41,8 @@ TDictionaryKeysValuesAssociationsAccess>>testKeys [
 	self should: [ result detect: [ :each | (result occurrencesOf: each) > 1 ] ] raise: Error
 ]
 
-{
-	#category : #'tests - Dictionary keys values associations access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryKeysValuesAssociationsAccess>>testKeysSortedSafely [
+{ #category : #'tests - Dictionary keys values associations access' }
+TDictionaryKeysValuesAssociationsAccess >> testKeysSortedSafely [
 	| collection result |
 	collection := self nonEmpty.
 	result := collection keysSortedSafely.
@@ -70,11 +52,8 @@ TDictionaryKeysValuesAssociationsAccess>>testKeysSortedSafely [
 	self assert: result asArray isSorted
 ]
 
-{
-	#category : #'tests - Dictionary keys values associations access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryKeysValuesAssociationsAccess>>testValues [
+{ #category : #'tests - Dictionary keys values associations access' }
+TDictionaryKeysValuesAssociationsAccess >> testValues [
 	
 	| collection result |
 	collection := self nonEmpty .

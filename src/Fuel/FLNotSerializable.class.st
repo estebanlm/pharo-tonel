@@ -4,15 +4,11 @@ I represent an error which may happen while tracing in the graph an object that 
 Class {
 	#name : #FLNotSerializable,
 	#superclass : #FLSerializationError,
-	#category : #Fuel-Errors,
-	#timestamp : '<historical>'
+	#category : #Fuel-Errors
 }
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLNotSerializable class>>signalWith: anObject [
+{ #category : #signaling }
+FLNotSerializable class >> signalWith: anObject [
 
  	self signal: 'Found a forbidden object in the graph: ', anObject printString.
 ]

@@ -4,15 +4,11 @@ A ManifestBuilderTest is a class to test the behavior of ManifestBuilder
 Class {
 	#name : #BuilderManifestTest,
 	#superclass : #TestCase,
-	#category : #Manifest-Tests,
-	#timestamp : '<historical>'
+	#category : #Manifest-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>setUp [
+{ #category : #running }
+BuilderManifestTest >> setUp [
 	
 	| cl |
 	cl := Smalltalk globals at: #ManifestManifestResourcesTests ifAbsent: [ nil ].
@@ -24,11 +20,8 @@ BuilderManifestTest>>setUp [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>tearDown [
+{ #category : #running }
+BuilderManifestTest >> tearDown [
 	
 	| cl |
 	cl := Smalltalk globals at: #ManifestManifestResourcesTests ifAbsent: [ nil ].
@@ -40,11 +33,8 @@ BuilderManifestTest>>tearDown [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testAddAllFalsePositive [
+{ #category : #tests }
+BuilderManifestTest >> testAddAllFalsePositive [
 	
 	| manifestBuilder array|
 	
@@ -72,11 +62,8 @@ BuilderManifestTest>>testAddAllFalsePositive [
 	"manifestBuilder manifest class removeSelector: (manifestBuilder selectorFalsePositiveOf: 'test' version: 0)"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testAddAllToDo [
+{ #category : #tests }
+BuilderManifestTest >> testAddAllToDo [
 	
 	| manifestBuilder array|
 	
@@ -98,11 +85,8 @@ BuilderManifestTest>>testAddAllToDo [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testAddClass [
+{ #category : #tests }
+BuilderManifestTest >> testAddClass [
 	
 	| manifestBuilder|
 	
@@ -120,11 +104,8 @@ BuilderManifestTest>>testAddClass [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testAddFalsePositive [
+{ #category : #tests }
+BuilderManifestTest >> testAddFalsePositive [
 	
 	| manifestBuilder cl mth|
 	cl := MFClassA.
@@ -149,11 +130,8 @@ BuilderManifestTest>>testAddFalsePositive [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testAddRule [
+{ #category : #tests }
+BuilderManifestTest >> testAddRule [
 	
 	| manifestBuilder|
 	
@@ -171,11 +149,8 @@ BuilderManifestTest>>testAddRule [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testAddToDo [
+{ #category : #tests }
+BuilderManifestTest >> testAddToDo [
 	
 	| manifestBuilder cl mth|
 	cl := MFClassA.
@@ -200,11 +175,8 @@ BuilderManifestTest>>testAddToDo [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testCleanUpFP [
+{ #category : #tests }
+BuilderManifestTest >> testCleanUpFP [
 	| manifestBuilder |
 	
 	manifestBuilder := TheManifestBuilder of: MFClassA. .
@@ -221,11 +193,8 @@ BuilderManifestTest>>testCleanUpFP [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testCleanUpTD [
+{ #category : #tests }
+BuilderManifestTest >> testCleanUpTD [
 	| manifestBuilder |
 	
 	manifestBuilder := TheManifestBuilder of: MFClassA. .
@@ -242,11 +211,8 @@ BuilderManifestTest>>testCleanUpTD [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testContainsFalsePositive [
+{ #category : #tests }
+BuilderManifestTest >> testContainsFalsePositive [
 	
 	| manifestBuilder |
 	
@@ -263,11 +229,8 @@ BuilderManifestTest>>testContainsFalsePositive [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testContainsToDo [
+{ #category : #tests }
+BuilderManifestTest >> testContainsToDo [
 	
 	| manifestBuilder |
 	
@@ -284,11 +247,8 @@ BuilderManifestTest>>testContainsToDo [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testCreationManifest [
+{ #category : #tests }
+BuilderManifestTest >> testCreationManifest [
 	| manifestBuilder cl |
 	manifestBuilder := TheManifestBuilder new.
 	cl := Smalltalk globals at: #ManifestManifestResourcesTests ifAbsent: [ nil ].
@@ -302,11 +262,8 @@ BuilderManifestTest>>testCreationManifest [
 	self assert: (manifestBuilder manifestOf: MFClassA) notNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testCreationManifestOn [
+{ #category : #tests }
+BuilderManifestTest >> testCreationManifestOn [
 	| manifestBuilder cl |
 	manifestBuilder := TheManifestBuilder new.
 	cl := Smalltalk globals at: #ManifestManifestResourcesTests ifAbsent: [ nil ].
@@ -320,11 +277,8 @@ BuilderManifestTest>>testCreationManifestOn [
 	self assert: (manifestBuilder manifestOf: MFClassA) notNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testDateOfFalsePositive [
+{ #category : #tests }
+BuilderManifestTest >> testDateOfFalsePositive [
 	
 	| manifestBuilder date1 date2 |
 	
@@ -344,11 +298,8 @@ BuilderManifestTest>>testDateOfFalsePositive [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testDateOfToDo [
+{ #category : #tests }
+BuilderManifestTest >> testDateOfToDo [
 	
 	| manifestBuilder date1 date2 |
 	
@@ -368,11 +319,8 @@ BuilderManifestTest>>testDateOfToDo [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testInstallFalsePositive [
+{ #category : #tests }
+BuilderManifestTest >> testInstallFalsePositive [
 	| manifestBuilder |
 	manifestBuilder := TheManifestBuilder of: MFClassA. .
 	self deny: (manifestBuilder hasFalsePositiveOf: 'test' version: 0).
@@ -382,11 +330,8 @@ BuilderManifestTest>>testInstallFalsePositive [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testInstallToDo [
+{ #category : #tests }
+BuilderManifestTest >> testInstallToDo [
 	| manifestBuilder |
 	
 	manifestBuilder := TheManifestBuilder of: MFClassA. .
@@ -397,11 +342,8 @@ BuilderManifestTest>>testInstallToDo [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testIsClassAManifest [
+{ #category : #tests }
+BuilderManifestTest >> testIsClassAManifest [
 	"self debug: #testIsClassAManifest"
 	
 	self deny: Point isManifest.
@@ -409,11 +351,8 @@ BuilderManifestTest>>testIsClassAManifest [
 	self assert: ( (Smalltalk at: #ManifestManifestResourcesTests) isManifest)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testIsFalsePositive [
+{ #category : #tests }
+BuilderManifestTest >> testIsFalsePositive [
 	
 	| manifestBuilder cl mth|
 	cl := MFClassA.
@@ -440,11 +379,8 @@ BuilderManifestTest>>testIsFalsePositive [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testResetFalsePositive [
+{ #category : #tests }
+BuilderManifestTest >> testResetFalsePositive [
 	
 	| manifestBuilder array|
 	
@@ -464,11 +400,8 @@ BuilderManifestTest>>testResetFalsePositive [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BuilderManifestTest>>testResetToDo [
+{ #category : #tests }
+BuilderManifestTest >> testResetToDo [
 	
 	| manifestBuilder array|
 	

@@ -11,24 +11,17 @@ Class {
 	#classVars : [
 		'PersistentDirection'
 	],
-	#category : #OSWindow-Core-Gestures,
-	#timestamp : 'MerwanOuddane 7/22/2015 16:13'
+	#category : #OSWindow-Core-Gestures
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchScrollDetector class>>initialize [
+{ #category : #'class initialization' }
+OSTouchScrollDetector class >> initialize [
 	super initialize.
 	PersistentDirection := false
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchScrollDetector class>>minDistanceBeforeDetectionSettingsOn: aBuilder [
+{ #category : #settings }
+OSTouchScrollDetector class >> minDistanceBeforeDetectionSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #minDistanceBeforeDetection)
 		target: self;
@@ -38,27 +31,18 @@ OSTouchScrollDetector class>>minDistanceBeforeDetectionSettingsOn: aBuilder [
 		parent: #scrollGesture
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchScrollDetector class>>persistentDirection [
+{ #category : #accessing }
+OSTouchScrollDetector class >> persistentDirection [
 	^ PersistentDirection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchScrollDetector class>>persistentDirection: anObject [
+{ #category : #accessing }
+OSTouchScrollDetector class >> persistentDirection: anObject [
 	PersistentDirection := anObject
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchScrollDetector class>>persistentDirectionSettingsOn: aBuilder [
+{ #category : #settings }
+OSTouchScrollDetector class >> persistentDirectionSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #persistentDirection)
 		target: self;
@@ -68,31 +52,22 @@ OSTouchScrollDetector class>>persistentDirectionSettingsOn: aBuilder [
 		parent: #scrollGesture
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchScrollDetector class>>touchScrollSettingsOn: aBuilder [
+{ #category : #settings }
+OSTouchScrollDetector class >> touchScrollSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #scrollGesture)
 		label: 'Scroll';
 		parent: #touchGestures
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchScrollDetector>>beginConditions [
+{ #category : #preconditions }
+OSTouchScrollDetector >> beginConditions [
 	^ super beginConditions
 		and: [ self isKeepingDirection ]
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchScrollDetector>>createEventBeginning [
+{ #category : #factory }
+OSTouchScrollDetector >> createEventBeginning [
 	directionAtBeginning := direction.
 	^ self eventClassBeginGesture new
 		timestamp: eventHandler lastUpdateTimestamp;
@@ -103,11 +78,8 @@ OSTouchScrollDetector>>createEventBeginning [
 		yourself
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchScrollDetector>>createEventDuringMove [
+{ #category : #factory }
+OSTouchScrollDetector >> createEventDuringMove [
 	^ self eventClassMoveGesture new
 		timestamp: eventHandler lastUpdateTimestamp;
 		dDist: self dDist;
@@ -117,11 +89,8 @@ OSTouchScrollDetector>>createEventDuringMove [
 		yourself
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchScrollDetector>>createEventEnding [
+{ #category : #factory }
+OSTouchScrollDetector >> createEventEnding [
 	directionAtBeginning := 0@0.
 	^ self eventClassEndGesture new
 		timestamp: eventHandler lastUpdateTimestamp;
@@ -132,45 +101,30 @@ OSTouchScrollDetector>>createEventEnding [
 		yourself
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchScrollDetector>>eventClassBeginGesture [
+{ #category : #abstract }
+OSTouchScrollDetector >> eventClassBeginGesture [
 	self subclassResponsibility
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchScrollDetector>>eventClassEndGesture [
+{ #category : #abstract }
+OSTouchScrollDetector >> eventClassEndGesture [
 	self subclassResponsibility
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchScrollDetector>>eventClassMoveGesture [
+{ #category : #abstract }
+OSTouchScrollDetector >> eventClassMoveGesture [
 	self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchScrollDetector>>initialize [
+{ #category : #initialization }
+OSTouchScrollDetector >> initialize [
 	super initialize.
 	persistentDirection := self class persistentDirection.
 	directionAtBeginning := 0@0.
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchScrollDetector>>isKeepingDirection [
+{ #category : #preconditions }
+OSTouchScrollDetector >> isKeepingDirection [
 	^ persistentDirection not
 		or: [	directionAtBeginning = (0 @ 0)
 		or: [ direction abs = directionAtBeginning abs ] ]

@@ -27,31 +27,21 @@ Examples:
 Class {
 	#name : #InitializePackagesCommandLineHandler,
 	#superclass : #CommandLineHandler,
-	#category : #InitializePackagesCommandLineHandler,
-	#timestamp : 'PavelKrivanek 8/17/2017 16:45'
+	#category : #InitializePackagesCommandLineHandler
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-InitializePackagesCommandLineHandler class>>commandName [
+{ #category : #accessing }
+InitializePackagesCommandLineHandler class >> commandName [
 	^ 'initializePackages'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-InitializePackagesCommandLineHandler class>>description [
+{ #category : #accessing }
+InitializePackagesCommandLineHandler class >> description [
 	^ 'Initialize packages and protocols from a given lists'
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-InitializePackagesCommandLineHandler>>activate [
+{ #category : #activation }
+InitializePackagesCommandLineHandler >> activate [
 
 	self activateHelp
 		ifTrue: [ ^ self ].
@@ -67,11 +57,8 @@ InitializePackagesCommandLineHandler>>activate [
 	self exitSuccess
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-InitializePackagesCommandLineHandler>>initializePackagesFrom: aFileName [
+{ #category : #activation }
+InitializePackagesCommandLineHandler >> initializePackagesFrom: aFileName [
 
 	| packages |
 
@@ -85,11 +72,8 @@ InitializePackagesCommandLineHandler>>initializePackagesFrom: aFileName [
 	RPackageOrganizer registerInterestToSystemAnnouncement.
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-InitializePackagesCommandLineHandler>>initializeProtocolsFrom: aFileName [
+{ #category : #activation }
+InitializePackagesCommandLineHandler >> initializeProtocolsFrom: aFileName [
 
 	(File named: aFileName) readStreamDo: [:binaryStream | | stream |
 		stream := ZnCharacterReadStream on: binaryStream encoding: 'utf8'.

@@ -11,15 +11,11 @@ Class {
 		'decoder',
 		'header'
 	],
-	#category : #Fuel-Core,
-	#timestamp : 'MarianoMartinezPeck 10/23/2011 14:42'
+	#category : #Fuel-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterialization class>>with: aDecoder [
+{ #category : #'instance creation' }
+FLMaterialization class >> with: aDecoder [
 
 	^self basicNew
 		initializeWith: aDecoder;
@@ -27,28 +23,19 @@ FLMaterialization class>>with: aDecoder [
 
 ]
 
-{
-	#category : #header,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterialization>>additionalObjectAt: aKey [
+{ #category : #header }
+FLMaterialization >> additionalObjectAt: aKey [
 	^ header additionalObjectAt: aKey
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterialization>>afterMaterializationStep [
+{ #category : #private }
+FLMaterialization >> afterMaterializationStep [
 
 	clusters do: [ :aCluster | aCluster afterMaterializationStepWith: decoder ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterialization>>clusterInstancesStep [
+{ #category : #private }
+FLMaterialization >> clusterInstancesStep [
 
 	| aCluster |
 	aCluster := decoder nextEncodedClusterClass newMaterializing.
@@ -59,28 +46,19 @@ FLMaterialization>>clusterInstancesStep [
 	clusters add: aCluster.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterialization>>decoder [
+{ #category : #accessing }
+FLMaterialization >> decoder [
 	^ decoder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterialization>>header: aHeader [
+{ #category : #accessing }
+FLMaterialization >> header: aHeader [
 	header := aHeader
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterialization>>headerStep [
+{ #category : #private }
+FLMaterialization >> headerStep [
 
 	decoder decodeYourself.
 	clusterCount := decoder nextEncodedPositiveInteger.
@@ -88,69 +66,48 @@ FLMaterialization>>headerStep [
 	clusters resetTo: 1. "Hack that avoids OrderedCollection>>makeRoomAtLast"
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterialization>>initializeWith: aDecoder [
+{ #category : #initialize-release }
+FLMaterialization >> initializeWith: aDecoder [
 
 	self initialize.
 	decoder := aDecoder.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterialization>>instancesStep [
+{ #category : #private }
+FLMaterialization >> instancesStep [
 
 	clusterCount timesRepeat: [ self clusterInstancesStep ]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterialization>>objects [
+{ #category : #accessing }
+FLMaterialization >> objects [
 	"Answer a collection with the materialized objects."
 
 	^ decoder objects 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterialization>>referencesStep [
+{ #category : #private }
+FLMaterialization >> referencesStep [
 
 	clusters do: [ :aCluster | aCluster materializeReferencesStepWith: decoder ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterialization>>registerAll: materializedObjects [
+{ #category : #private }
+FLMaterialization >> registerAll: materializedObjects [
 	
 	decoder registerAll: materializedObjects 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterialization>>root [
+{ #category : #accessing }
+FLMaterialization >> root [
 
 	^ root 
 ]
 
-{
-	#category : #materializing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterialization>>run [
+{ #category : #materializing }
+FLMaterialization >> run [
 
 	self headerStep.
 	self instancesStep.
@@ -159,11 +116,8 @@ FLMaterialization>>run [
 	self afterMaterializationStep.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMaterialization>>trailerStep [
+{ #category : #private }
+FLMaterialization >> trailerStep [
 
 	root := decoder nextEncodedReference
 ]

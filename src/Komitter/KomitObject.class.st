@@ -17,67 +17,45 @@ Class {
 		'selected',
 		'expanded'
 	],
-	#category : #Komitter-Models,
-	#timestamp : 'StephaneDucasse 11/24/2015 19:09'
+	#category : #Komitter-Models
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>><= aKomitObject  [
+{ #category : #comparing }
+KomitObject >> <= aKomitObject [ 
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>added [
+{ #category : #accessing }
+KomitObject >> added [
 	^ added
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>added: anObject [
+{ #category : #accessing }
+KomitObject >> added: anObject [
 	added := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>expanded [
+{ #category : #accessing }
+KomitObject >> expanded [
 	^ expanded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>expanded: anObject [
+{ #category : #accessing }
+KomitObject >> expanded: anObject [
 	expanded := anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>flush [
+{ #category : #protocol }
+KomitObject >> flush [
 	
 	added := false.
 	modified := false.
 	removed := false.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>initialize [
+{ #category : #initialize }
+KomitObject >> initialize [
 
 	super initialize.
 
@@ -89,104 +67,68 @@ KomitObject>>initialize [
 	expanded := false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>isCommitable [
+{ #category : #testing }
+KomitObject >> isCommitable [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>isDefinition [
+{ #category : #testing }
+KomitObject >> isDefinition [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>isDirty [
+{ #category : #testing }
+KomitObject >> isDirty [
 
 	^ self added or: [ self modified or: [ self removed ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>isKomitClass [
+{ #category : #testing }
+KomitObject >> isKomitClass [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>isMethod [
+{ #category : #testing }
+KomitObject >> isMethod [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>isPackage [
+{ #category : #testing }
+KomitObject >> isPackage [
 
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>modified [
+{ #category : #accessing }
+KomitObject >> modified [
 	^ modified
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>modified: anObject [
+{ #category : #accessing }
+KomitObject >> modified: anObject [
 	modified := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>removed [
+{ #category : #accessing }
+KomitObject >> removed [
 	^ removed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>removed: anObject [
+{ #category : #accessing }
+KomitObject >> removed: anObject [
 	removed := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>selected [
+{ #category : #accessing }
+KomitObject >> selected [
 	^ selected
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitObject>>selected: anObject [
+{ #category : #accessing }
+KomitObject >> selected: anObject [
 	selected := anObject
 ]

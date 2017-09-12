@@ -11,76 +11,51 @@ Class {
 	#classInstVars : [
 		'instance'
 	],
-	#category : #GT-Inspector,
-	#timestamp : '<historical>'
+	#category : #GT-Inspector
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSnippets class>>instance [
+{ #category : #accessing }
+GTSnippets class >> instance [
 	^ instance ifNil: [ instance := self new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSnippets class>>reset [
+{ #category : #accessing }
+GTSnippets class >> reset [
 	instance := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSnippets class>>snippetAt: anObject [
+{ #category : #accessing }
+GTSnippets class >> snippetAt: anObject [
 	^ self instance snippetAt: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSnippets class>>snippetAt: anObject put: aString [
+{ #category : #accessing }
+GTSnippets class >> snippetAt: anObject put: aString [
 	^ self instance snippetAt: anObject put: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSnippets>>snippetAt: anObject [
+{ #category : #accessing }
+GTSnippets >> snippetAt: anObject [
 	^ self snippets 
 		at: anObject 
 		ifAbsent: [ 'self' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSnippets>>snippetAt: anObject put: aString [
+{ #category : #accessing }
+GTSnippets >> snippetAt: anObject put: aString [
 	^ self snippets 
 		at: anObject 
 		put: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSnippets>>snippetAtOrEmpty: anObject [
+{ #category : #accessing }
+GTSnippets >> snippetAtOrEmpty: anObject [
 	^ self snippets 
 		at: anObject 
 		ifAbsent: [ '' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSnippets>>snippets  [
+{ #category : #accessing }
+GTSnippets >> snippets [ 
 	^ snippets ifNil: [ snippets := IdentityDictionary new ]
 ]

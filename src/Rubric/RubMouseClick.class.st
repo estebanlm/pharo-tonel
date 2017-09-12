@@ -7,30 +7,20 @@ Class {
 	#instVars : [
 		'event'
 	],
-	#category : #Rubric-Editing-Announcements,
-	#timestamp : 'FranckWarlouzet 7/29/2015 11:14'
+	#category : #Rubric-Editing-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMouseClick class>>with: anEvent [
+{ #category : #'instance creation' }
+RubMouseClick class >> with: anEvent [
 	^ self new event: anEvent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMouseClick>>event [
+{ #category : #accessing }
+RubMouseClick >> event [
 	^ event
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMouseClick>>event: anObject [
+{ #category : #accessing }
+RubMouseClick >> event: anObject [
 	event := anObject
 ]

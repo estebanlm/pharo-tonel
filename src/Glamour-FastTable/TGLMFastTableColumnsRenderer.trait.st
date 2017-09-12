@@ -15,17 +15,11 @@ Internal Representation and Key Implementation Points.
 "
 Trait {
 	#name : #TGLMFastTableColumnsRenderer,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Glamour-FastTable-Model,
-	#timestamp : 'AndreiChis 2/6/2017 14:41'
+	#category : #Glamour-FastTable-Model
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableColumnsRenderer>>cellColumn: aColumn row: aRowIndex [
+{ #category : #rendering }
+TGLMFastTableColumnsRenderer >> cellColumn: aColumn row: aRowIndex [
 	| item cell |
 	item := self elementAt: aRowIndex.
 	cell := FTCellMorph new
@@ -38,19 +32,13 @@ TGLMFastTableColumnsRenderer>>cellColumn: aColumn row: aRowIndex [
 	^ cell
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableColumnsRenderer>>dataFromPresentationItem: anItem [
+{ #category : #accessing }
+TGLMFastTableColumnsRenderer >> dataFromPresentationItem: anItem [
 	self explicitRequirement
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableColumnsRenderer>>editRowMorphForColumn: glamourColumn node: aNode withIndex: aRowIndex  [
+{ #category : #rendering }
+TGLMFastTableColumnsRenderer >> editRowMorphForColumn: glamourColumn node: aNode withIndex: aRowIndex [ 
 	| rowMorph |
 
 	rowMorph := self viewRowMorphForColumn: glamourColumn node: aNode withIndex: aRowIndex.
@@ -78,11 +66,8 @@ TGLMFastTableColumnsRenderer>>editRowMorphForColumn: glamourColumn node: aNode w
 
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableColumnsRenderer>>rowMorphElementsForColumn: glamourColumn node: aNode withIndex: aRowIndex  [
+{ #category : #rendering }
+TGLMFastTableColumnsRenderer >> rowMorphElementsForColumn: glamourColumn node: aNode withIndex: aRowIndex [ 
 	| rowElements contentMorph tagMorphs |
 		
 	contentMorph := glamourColumn modifiedBlock
@@ -100,19 +85,13 @@ TGLMFastTableColumnsRenderer>>rowMorphElementsForColumn: glamourColumn node: aNo
 	^ rowElements
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableColumnsRenderer>>rowMorphElementsForFirstColumn: aColumn item: anItem in: rowElements [
+{ #category : #rendering }
+TGLMFastTableColumnsRenderer >> rowMorphElementsForFirstColumn: aColumn item: anItem in: rowElements [
 	self explicitRequirement  
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableColumnsRenderer>>rowMorphForColumn: aColumn item: anItem withIndex: aRowIndex [
+{ #category : #rendering }
+TGLMFastTableColumnsRenderer >> rowMorphForColumn: aColumn item: anItem withIndex: aRowIndex [
 	| rowElements |
 	rowElements := OrderedCollection new.
 	
@@ -128,11 +107,8 @@ TGLMFastTableColumnsRenderer>>rowMorphForColumn: aColumn item: anItem withIndex:
 	^ Smalltalk ui theme newRowIn: World for: rowElements
 ]
 
-{
-	#category : #'accessing - cache',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableColumnsRenderer>>valueFor: anElement withIndex: anInteger in: aGlamourColumn [
+{ #category : #'accessing - cache' }
+TGLMFastTableColumnsRenderer >> valueFor: anElement withIndex: anInteger in: aGlamourColumn [
 	
 	^ self 
 		cacheAt: aGlamourColumn title 
@@ -150,10 +126,7 @@ TGLMFastTableColumnsRenderer>>valueFor: anElement withIndex: anInteger in: aGlam
 	
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableColumnsRenderer>>viewRowMorphForColumn: aGlamourColumn node: aNode withIndex: anInteger [
+{ #category : #rendering }
+TGLMFastTableColumnsRenderer >> viewRowMorphForColumn: aGlamourColumn node: aNode withIndex: anInteger [
 	^ (self valueFor: aNode withIndex: anInteger in: aGlamourColumn) asMorph asReadOnlyMorph
 ]

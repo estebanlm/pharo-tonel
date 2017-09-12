@@ -7,32 +7,22 @@ Class {
 	#instVars : [
 		'model'
 	],
-	#category : #SmartSuggestions-Tests,
-	#timestamp : '<historical>'
+	#category : #SmartSuggestions-Tests
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-MockContainer class>>for: model [
+{ #category : #'as yet unclassified' }
+MockContainer class >> for: model [
 	^ self new 
 		model: model; 
 		yourself.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-MockContainer>>model [
+{ #category : #accessing }
+MockContainer >> model [
 	^ model.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-MockContainer>>model: anObject [
+{ #category : #accessing }
+MockContainer >> model: anObject [
 	model := anObject
 ]

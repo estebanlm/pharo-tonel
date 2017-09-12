@@ -17,58 +17,39 @@ Class {
 		'BitBufferSize',
 		'Lookahead'
 	],
-	#category : #Graphics-Files,
-	#timestamp : '<historical>'
+	#category : #Graphics-Files
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGHuffmanTable class>>initialize [
+{ #category : #initialization }
+JPEGHuffmanTable class >> initialize [
 
 	Lookahead := 8.
 	BitBufferSize := 16
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGHuffmanTable class>>lookahead [
+{ #category : #constants }
+JPEGHuffmanTable class >> lookahead [
 
 	^ Lookahead
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGHuffmanTable>>bits: anObject  [
+{ #category : #accessing }
+JPEGHuffmanTable >> bits: anObject [ 
 	bits := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGHuffmanTable>>lookaheadBits [
+{ #category : #accessing }
+JPEGHuffmanTable >> lookaheadBits [
 	^lookaheadBits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGHuffmanTable>>lookaheadSymbol [
+{ #category : #accessing }
+JPEGHuffmanTable >> lookaheadSymbol [
 	^lookaheadSymbol
 ]
 
-{
-	#category : #computation,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGHuffmanTable>>makeDerivedTables [
+{ #category : #computation }
+JPEGHuffmanTable >> makeDerivedTables [
 	| huffSize huffCode code si index lookbits |
 	mincode := Array new: 16.
 	maxcode := Array new: 17.
@@ -145,27 +126,18 @@ JPEGHuffmanTable>>makeDerivedTables [
 					index := index + 1 ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGHuffmanTable>>maxcode [
+{ #category : #accessing }
+JPEGHuffmanTable >> maxcode [
 	^maxcode
 ]
 
-{
-	#category : #computation,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGHuffmanTable>>valueForCode: code length: length [
+{ #category : #computation }
+JPEGHuffmanTable >> valueForCode: code length: length [
 
 	^ values at: ((valptr at: length) + code - (mincode at: length))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGHuffmanTable>>values: anObject  [
+{ #category : #accessing }
+JPEGHuffmanTable >> values: anObject [ 
 	values := anObject
 ]

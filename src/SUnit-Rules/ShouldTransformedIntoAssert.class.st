@@ -4,33 +4,23 @@ should: will be deprecated sooner or leater. Use assert: instead
 Class {
 	#name : #ShouldTransformedIntoAssert,
 	#superclass : #ReNodeRewriteRule,
-	#category : #SUnit-Rules,
-	#timestamp : 'YuriyTymchuk 3/31/2016 17:05'
+	#category : #SUnit-Rules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ShouldTransformedIntoAssert class>>uniqueIdentifierName [
+{ #category : #accessing }
+ShouldTransformedIntoAssert class >> uniqueIdentifierName [
 	
 	^'ShouldTransformedIntoAssert'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ShouldTransformedIntoAssert>>group [
+{ #category : #accessing }
+ShouldTransformedIntoAssert >> group [
 
 	^ 'SUnit'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ShouldTransformedIntoAssert>>initialize [
+{ #category : #initialization }
+ShouldTransformedIntoAssert >> initialize [
 	super initialize.
 
 	self
@@ -38,11 +28,8 @@ ShouldTransformedIntoAssert>>initialize [
 		with: 'self assert: ``@object1'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ShouldTransformedIntoAssert>>name [
+{ #category : #accessing }
+ShouldTransformedIntoAssert >> name [
 
 	^ 'Use assert: instead of should:'
 ]

@@ -16,32 +16,22 @@ Class {
 		'checkNewTemps',
 		'scopeStack'
 	],
-	#category : #AST-Core-Visitors,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Visitors
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester class>>isVariable: aString readBeforeWrittenIn: aBRProgramNode  [
+{ #category : #accessing }
+RBReadBeforeWrittenTester class >> isVariable: aString readBeforeWrittenIn: aBRProgramNode [ 
 	^(self isVariable: aString writtenBeforeReadIn: aBRProgramNode) not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester class>>isVariable: aString writtenBeforeReadIn: aBRProgramNode  [
+{ #category : #accessing }
+RBReadBeforeWrittenTester class >> isVariable: aString writtenBeforeReadIn: aBRProgramNode [ 
 	^(self readBeforeWritten: (Array with: aString) in: aBRProgramNode) 
 		isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester class>>readBeforeWritten: varNames in: aParseTree  [
+{ #category : #accessing }
+RBReadBeforeWrittenTester class >> readBeforeWritten: varNames in: aParseTree [ 
 	^(self new)
 		checkNewTemps: false;
 		initializeVars: varNames;
@@ -49,29 +39,20 @@ RBReadBeforeWrittenTester class>>readBeforeWritten: varNames in: aParseTree  [
 		read
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester class>>variablesReadBeforeWrittenIn: aParseTree  [
+{ #category : #accessing }
+RBReadBeforeWrittenTester class >> variablesReadBeforeWrittenIn: aParseTree [ 
 	^(self new)
 		executeTree: aParseTree;
 		read
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>checkNewTemps: aBoolean  [
+{ #category : #initialize-release }
+RBReadBeforeWrittenTester >> checkNewTemps: aBoolean [ 
 	checkNewTemps := aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>copyDictionary: aDictionary  [
+{ #category : #private }
+RBReadBeforeWrittenTester >> copyDictionary: aDictionary [ 
 	"We could send aDictionary the copy message, but that doesn't copy the associations."
 
 	| newDictionary |
@@ -80,54 +61,36 @@ RBReadBeforeWrittenTester>>copyDictionary: aDictionary  [
 	^ newDictionary
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>createScope [
+{ #category : #private }
+RBReadBeforeWrittenTester >> createScope [
 	scopeStack add: (self copyDictionary: scopeStack last)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>currentScope [
+{ #category : #private }
+RBReadBeforeWrittenTester >> currentScope [
 	^scopeStack last
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>executeTree: aParseTree  [
+{ #category : #accessing }
+RBReadBeforeWrittenTester >> executeTree: aParseTree [ 
 	^self visitNode: aParseTree
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>initialize [
+{ #category : #initialization }
+RBReadBeforeWrittenTester >> initialize [
 	super initialize.
 	scopeStack := OrderedCollection with: Dictionary new.
 	read := Set new.
 	checkNewTemps := true
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>initializeVars: varNames  [
+{ #category : #initialize-release }
+RBReadBeforeWrittenTester >> initializeVars: varNames [ 
 	varNames do: [:each | self currentScope at: each put: nil]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>processBlock: aNode  [
+{ #category : #private }
+RBReadBeforeWrittenTester >> processBlock: aNode [ 
 	| newScope |
 	self createScope.
 	self executeTree: aNode body.
@@ -138,11 +101,8 @@ RBReadBeforeWrittenTester>>processBlock: aNode  [
 				ifTrue: [self currentScope at: key put: value]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>processIfTrueIfFalse: aNode  [
+{ #category : #private }
+RBReadBeforeWrittenTester >> processIfTrueIfFalse: aNode [ 
 	| trueScope falseScope |
 	self createScope.
 	self executeTree: aNode arguments first body.
@@ -161,11 +121,8 @@ RBReadBeforeWrittenTester>>processIfTrueIfFalse: aNode  [
 								ifTrue: [self currentScope at: key put: true]]]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>processStatementNode: aNode  [
+{ #category : #private }
+RBReadBeforeWrittenTester >> processStatementNode: aNode [ 
 	| temps |
 	(checkNewTemps not or: [aNode temporaries isEmpty]) 
 		ifTrue: 
@@ -184,68 +141,47 @@ RBReadBeforeWrittenTester>>processStatementNode: aNode  [
 						ifTrue: [self currentScope at: key put: value]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>read [
+{ #category : #accessing }
+RBReadBeforeWrittenTester >> read [
 	self currentScope
 		keysAndValuesDo: [:key :value | value == true ifTrue: [read add: key]].
 	^read
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>removeScope [
+{ #category : #private }
+RBReadBeforeWrittenTester >> removeScope [
 	^scopeStack removeLast
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>variableRead: aNode  [
+{ #category : #private }
+RBReadBeforeWrittenTester >> variableRead: aNode [ 
 	(self currentScope includesKey: aNode name) 
 		ifTrue: 
 			[(self currentScope at: aNode name) isNil 
 				ifTrue: [self currentScope at: aNode name put: true]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>variableWritten: aNode  [
+{ #category : #private }
+RBReadBeforeWrittenTester >> variableWritten: aNode [ 
 	(self currentScope includesKey: aNode variable name) 
 		ifTrue: 
 			[(self currentScope at: aNode variable name) isNil 
 				ifTrue: [self currentScope at: aNode variable name put: false]]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>visitAssignmentNode: anAssignmentNode  [
+{ #category : #visiting }
+RBReadBeforeWrittenTester >> visitAssignmentNode: anAssignmentNode [ 
 	self visitNode: anAssignmentNode value.
 	self variableWritten: anAssignmentNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>visitBlockNode: aBlockNode  [
+{ #category : #visiting }
+RBReadBeforeWrittenTester >> visitBlockNode: aBlockNode [ 
 	self processBlock: aBlockNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>visitMessageNode: aMessageNode  [
+{ #category : #visiting }
+RBReadBeforeWrittenTester >> visitMessageNode: aMessageNode [ 
 	((#(#whileTrue: #whileFalse: #whileTrue #whileFalse) 
 		includes: aMessageNode selector) and: [aMessageNode receiver isBlock]) 
 		ifTrue: [self executeTree: aMessageNode receiver body]
@@ -258,18 +194,12 @@ RBReadBeforeWrittenTester>>visitMessageNode: aMessageNode  [
 	aMessageNode arguments do: [:each | self visitNode: each]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>visitSequenceNode: aSequenceNode  [
+{ #category : #visiting }
+RBReadBeforeWrittenTester >> visitSequenceNode: aSequenceNode [ 
 	self processStatementNode: aSequenceNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReadBeforeWrittenTester>>visitVariableNode: aVariableNode  [
+{ #category : #visiting }
+RBReadBeforeWrittenTester >> visitVariableNode: aVariableNode [ 
 	self variableRead: aVariableNode
 ]

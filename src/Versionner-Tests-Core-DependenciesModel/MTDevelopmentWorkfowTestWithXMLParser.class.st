@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #MTDevelopmentWorkfowTestWithXMLParser,
 	#superclass : #MTDevelopmentWorkfowTest,
-	#category : #Versionner-Tests-Core-DependenciesModel,
-	#timestamp : ''
+	#category : #Versionner-Tests-Core-DependenciesModel
 }
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfowTestWithXMLParser>>setDevelopment: aVersionString [
+{ #category : #utility }
+MTDevelopmentWorkfowTestWithXMLParser >> setDevelopment: aVersionString [
 	project configurationClass compile: 'development: spec
 	<symbolicVersion: #''development''>
 
 	spec for: #''common'' version: ''' , aVersionString , '''.'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfowTestWithXMLParser>>setUp [
+{ #category : #running }
+MTDevelopmentWorkfowTestWithXMLParser >> setUp [
 	"Create a model of the project version we want to work on."
 	| version |
 	
@@ -37,19 +27,13 @@ MTDevelopmentWorkfowTestWithXMLParser>>setUp [
 		
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfowTestWithXMLParser>>tearDown  [
+{ #category : #running }
+MTDevelopmentWorkfowTestWithXMLParser >> tearDown [ 
 	classFactory cleanUp.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfowTestWithXMLParser>>testCreateBaseline [
+{ #category : #tests }
+MTDevelopmentWorkfowTestWithXMLParser >> testCreateBaseline [
 	| baselineName baseline |
 	
 	baselineName := '84.1'.
@@ -64,20 +48,14 @@ MTDevelopmentWorkfowTestWithXMLParser>>testCreateBaseline [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfowTestWithXMLParser>>testCreateNextDevelopment [
+{ #category : #tests }
+MTDevelopmentWorkfowTestWithXMLParser >> testCreateNextDevelopment [
 	project devWorkflow createNextDevelopment: '999'.
 	self assert: (project configurationClass selectors includes: #'baseline999:').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfowTestWithXMLParser>>testIsDevelopmentUsedInRelease [
+{ #category : #tests }
+MTDevelopmentWorkfowTestWithXMLParser >> testIsDevelopmentUsedInRelease [
 	| workflow |
 	workflow := project devWorkflow.
 	self assert: workflow isDevelopmentUsedInRelease equals: false.

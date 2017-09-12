@@ -11,15 +11,11 @@ Class {
 		'filter',
 		'buttonReversed'
 	],
-	#category : #Tool-DependencyAnalyser-UI-Core,
-	#timestamp : 'BaptisteQuide 6/12/2014 15:50'
+	#category : #Tool-DependencyAnalyser-UI-Core
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel class>>defaultSpec [
+{ #category : #specs }
+DAPackageCycleDetectionTreeModel class >> defaultSpec [
 	<spec: #default>
 	^ SpecLayout composed
 		newColumn:
@@ -37,57 +33,39 @@ DAPackageCycleDetectionTreeModel class>>defaultSpec [
 				add: #tree ] yourself
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel class>>onPackagesMatch: match [
+{ #category : #instance-creation }
+DAPackageCycleDetectionTreeModel class >> onPackagesMatch: match [
 	^ (self onPackagesNamed:
 			(RPackageOrganizer default packages
 				select: [ :package | match match: package packageName asString ]
 				thenCollect: [ :package | package packageName ]) ) 
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel class>>onPackagesNamed: aCollection [
+{ #category : #instance-creation }
+DAPackageCycleDetectionTreeModel class >> onPackagesNamed: aCollection [
 	^ self new 
 		initializeWithPackageName: aCollection;
 		yourself
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel class>>system [
+{ #category : #instance-creation }
+DAPackageCycleDetectionTreeModel class >> system [
 	^ self onPackagesNamed: 
 		(RPackageOrganizer default packages collect: [ :package | package packageName asString ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>analysis [
+{ #category : #accessing }
+DAPackageCycleDetectionTreeModel >> analysis [
 	^ analysis
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>analysis: anObject [
+{ #category : #accessing }
+DAPackageCycleDetectionTreeModel >> analysis: anObject [
 	analysis := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>buildRoots [
+{ #category : #accessing }
+DAPackageCycleDetectionTreeModel >> buildRoots [
 	self tree
 		roots: cycles;
 		whenBuiltDo: [ 
@@ -104,78 +82,51 @@ DAPackageCycleDetectionTreeModel>>buildRoots [
 			'Analysis of ' , self cycles size asString , ' cycles'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>buttonReversed [
+{ #category : #accessing }
+DAPackageCycleDetectionTreeModel >> buttonReversed [
 	^ buttonReversed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>cycles [
+{ #category : #accessing }
+DAPackageCycleDetectionTreeModel >> cycles [
 	^ cycles
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>cycles: aCollectionOfCycles [
+{ #category : #accessing }
+DAPackageCycleDetectionTreeModel >> cycles: aCollectionOfCycles [
 	cycles := aCollectionOfCycles sorted: [ :a :b | a size > b size ].
 	self buildRoots.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>cyclesLabel [
+{ #category : #accessing }
+DAPackageCycleDetectionTreeModel >> cyclesLabel [
 	^ cyclesLabel
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>extent [
+{ #category : #protocol }
+DAPackageCycleDetectionTreeModel >> extent [
 	^ 1000@600
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>filter [
+{ #category : #accessing }
+DAPackageCycleDetectionTreeModel >> filter [
 	^ filter
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>filterWithPackages [
+{ #category : #filtering }
+DAPackageCycleDetectionTreeModel >> filterWithPackages [
 	
 	self cycles: (self analysis cyclesWithAtLeast: filter)
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>filterWithPackages: aCollectionOfPDPackage [
+{ #category : #filtering }
+DAPackageCycleDetectionTreeModel >> filterWithPackages: aCollectionOfPDPackage [
 	filter := aCollectionOfPDPackage.
 	self cycles: (self analysis cyclesWithAtLeast: filter)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>initializePresenter [
+{ #category : #initialization }
+DAPackageCycleDetectionTreeModel >> initializePresenter [
 	super initializePresenter.
 	
 	buttonReversed action: [ self reversedRoots  ].
@@ -190,11 +141,8 @@ DAPackageCycleDetectionTreeModel>>initializePresenter [
 					tree menu: [ :aMenu | self loadMenuFor: item in: aMenu ] ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>initializeWidgets [
+{ #category : #initialization }
+DAPackageCycleDetectionTreeModel >> initializeWidgets [
 	super initializeWidgets.
 	
 	cyclesLabel := self newLabel
@@ -210,48 +158,33 @@ DAPackageCycleDetectionTreeModel>>initializeWidgets [
 		
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>initializeWithPackageName: aCollection [
+{ #category : #initialization }
+DAPackageCycleDetectionTreeModel >> initializeWithPackageName: aCollection [
 	
 	self analysis:  (DAPackageCycleDetector onPackagesNamed: aCollection) runAlgorithm.
 	
 	self cycles: self analysis cycles.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>packageTreeNautilus: anObject [
+{ #category : #accessing }
+DAPackageCycleDetectionTreeModel >> packageTreeNautilus: anObject [
 	packageTreeNautilus := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>refresh [
+{ #category : #actions }
+DAPackageCycleDetectionTreeModel >> refresh [
 	self analysis refresh.
 	self filter ifNil: [ self cycles: self analysis cycles ]
 		ifNotNil: [ self cycles: (self analysis cyclesWithAtLeast: filter) ].
 	self buildRoots
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>reversedRoots [
+{ #category : #accessing }
+DAPackageCycleDetectionTreeModel >> reversedRoots [
 	self tree roots: (self tree roots reversed).
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetectionTreeModel>>title [
+{ #category : #protocol }
+DAPackageCycleDetectionTreeModel >> title [
 	^ 'Cycles analysis'
 ]

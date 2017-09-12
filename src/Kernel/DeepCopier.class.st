@@ -34,15 +34,11 @@ Class {
 	#instVars : [
 		'references'
 	],
-	#category : #Kernel-Copying,
-	#timestamp : 'stephane.ducasse 9/25/2008 17:47'
+	#category : #Kernel-Copying
 }
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DeepCopier>>basicCheckClass: aClass [
+{ #category : #checking }
+DeepCopier >> basicCheckClass: aClass [
 	"Every class that implements veryDeepInner: or veryDeepCopyWith: must copy all its inst vars.
 	The danger is that a user will add a new instance variable and forget to copy it.
 	
@@ -69,11 +65,8 @@ DeepCopier>>basicCheckClass: aClass [
 	^ warnings
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DeepCopier>>checkAllClasses [
+{ #category : #checking }
+DeepCopier >> checkAllClasses [
 
 	| warnings |
 	self checkBasicClasses.
@@ -85,11 +78,8 @@ DeepCopier>>checkAllClasses [
 	self raiseWarningsIfAny: warnings
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DeepCopier>>checkBasicClasses [
+{ #category : #checking }
+DeepCopier >> checkBasicClasses [
 	"Check that no indexes of instance vars have changed in certain classes.  If you get an error in this method, an implementation of veryDeepCopyWith: needs to be updated.  The idea is to catch a change while it is still in the system of the programmer who made it.  
 	DeepCopier new checkAllClasses"
 	Object instSize = 0 ifFalse: [ self error: 'Many implementers of veryDeepCopyWith: are out of date' ].
@@ -98,11 +88,8 @@ DeepCopier>>checkBasicClasses [
 
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DeepCopier>>checkClass: aClass [
+{ #category : #checking }
+DeepCopier >> checkClass: aClass [
 
 	| warnings |
 	self checkBasicClasses.
@@ -114,11 +101,8 @@ DeepCopier>>checkClass: aClass [
 			signal ]
 ]
 
-{
-	#category : #'like fullCopy',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DeepCopier>>checkDeep [
+{ #category : #'like fullCopy' }
+DeepCopier >> checkDeep [
 	"Write exceptions in the Transcript.  Every class that implements veryDeepInner: must copy all its inst vars.  Danger is that a user will add a new instance variable and forget to copy it.  This check is only run by hand once in a while to make sure nothing was forgotten.  
 (Please do not remove this method.)
 	DeepCopier new checkDeep 	"
@@ -139,11 +123,8 @@ DeepCopier>>checkDeep [
 						show: (aClass allInstVarNames at: index)]]]]
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DeepCopier>>doesMethod: aSelector writeAllInstanceVariablesOfClass: aClass [
+{ #category : #checking }
+DeepCopier >> doesMethod: aSelector writeAllInstanceVariablesOfClass: aClass [
 
 	"This method returns true if the method of the given selector writes all instance variables of the given class.
 	As an optimization, this method only checks that the last instance variable is written, assuming that all the rest are being written if the last one is."
@@ -156,11 +137,8 @@ DeepCopier>>doesMethod: aSelector writeAllInstanceVariablesOfClass: aClass [
 	^ hasNoInstanceVariables or: [ method writesField: lastFieldIndex ]
 ]
 
-{
-	#category : #'like fullCopy',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DeepCopier>>fixDependents [
+{ #category : #'like fullCopy' }
+DeepCopier >> fixDependents [
 	"They are not used much, but need to be right"
 
 	DependentsFields associationsDo:
@@ -174,32 +152,23 @@ DeepCopier>>fixDependents [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DeepCopier>>initialize [
+{ #category : #initialization }
+DeepCopier >> initialize [
 
 	super initialize.
 	self initialize: 4096.
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DeepCopier>>initialize: size [
+{ #category : #initialization }
+DeepCopier >> initialize: size [
 
 	references := IdentityDictionary new: size.
 	
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DeepCopier>>raiseWarningsIfAny: warnings [
+{ #category : #checking }
+DeepCopier >> raiseWarningsIfAny: warnings [
 
 	warnings ifNotEmpty: [
 		Warning new
@@ -208,10 +177,7 @@ DeepCopier>>raiseWarningsIfAny: warnings [
 			signal ]
 ]
 
-{
-	#category : #'like fullCopy',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DeepCopier>>references [
+{ #category : #'like fullCopy' }
+DeepCopier >> references [
 	^ references
 ]

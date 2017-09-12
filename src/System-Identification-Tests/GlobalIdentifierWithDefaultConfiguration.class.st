@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #GlobalIdentifierWithDefaultConfiguration,
 	#superclass : #GlobalIdentifierTest,
 	#instVars : [
 		'oldPreferences'
 	],
-	#category : #System-Identification-Tests,
-	#timestamp : ''
+	#category : #System-Identification-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierWithDefaultConfiguration>>oldPreferencesFileName [
+{ #category : #accessing }
+GlobalIdentifierWithDefaultConfiguration >> oldPreferencesFileName [
 	^ identifier persistenceStrategy previous fileName
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierWithDefaultConfiguration>>setUpPersistenceStrategyAndChecker [
+{ #category : #running }
+GlobalIdentifierWithDefaultConfiguration >> setUpPersistenceStrategyAndChecker [
 	preferences := FileLocator workingDirectory / self folderName / 'pharoX' / self actualPreferencesFileName.
 	preferences ensureDelete.
 	oldPreferences := FileLocator workingDirectory / self folderName / 'pharoX' / self oldPreferencesFileName.
@@ -35,20 +25,14 @@ GlobalIdentifierWithDefaultConfiguration>>setUpPersistenceStrategyAndChecker [
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierWithDefaultConfiguration>>tearDown [
+{ #category : #running }
+GlobalIdentifierWithDefaultConfiguration >> tearDown [
 	oldPreferences ensureDelete.
 	super tearDown
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierWithDefaultConfiguration>>testEnsure [
+{ #category : #tests }
+GlobalIdentifierWithDefaultConfiguration >> testEnsure [
 	| stored |
 	super testEnsure.
 	self assert: oldPreferences exists description: 'The old preferences should be stored now.'.

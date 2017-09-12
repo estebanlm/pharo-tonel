@@ -7,39 +7,26 @@ Class {
 	#instVars : [
 		'side'
 	],
-	#category : #Rubric-Editing-Widgets,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:36'
+	#category : #Rubric-Editing-Widgets
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextSideRuler>>isHorizontal [
+{ #category : #testing }
+RubScrolledTextSideRuler >> isHorizontal [
 	^ #(#top #bottom) includes: self side
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextSideRuler>>isSideRuler [
+{ #category : #testing }
+RubScrolledTextSideRuler >> isSideRuler [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextSideRuler>>isVertical [
+{ #category : #testing }
+RubScrolledTextSideRuler >> isVertical [
 	^ #(#left #right) includes: self side
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextSideRuler>>manageLayoutInBounds: aRectangle [
+{ #category : #geometry }
+RubScrolledTextSideRuler >> manageLayoutInBounds: aRectangle [
 	super manageLayoutInBounds: aRectangle.
 	self extent: (self computedExtentFrom: aRectangle).
 	self side = #left
@@ -57,18 +44,12 @@ RubScrolledTextSideRuler>>manageLayoutInBounds: aRectangle [
 	^ self error: 'side must be in #( #left #right #bottom #top #over )'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextSideRuler>>side [
+{ #category : #accessing }
+RubScrolledTextSideRuler >> side [
 	^side ifNil: [ side := #left ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextSideRuler>>side: aSide [
+{ #category : #accessing }
+RubScrolledTextSideRuler >> side: aSide [
 	side := aSide
 ]

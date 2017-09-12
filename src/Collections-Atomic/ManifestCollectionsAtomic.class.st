@@ -4,30 +4,20 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestCollectionsAtomic,
 	#superclass : #PackageManifest,
-	#category : #Collections-Atomic,
-	#timestamp : '<historical>'
+	#category : #Collections-Atomic
 }
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ManifestCollectionsAtomic class>>dependencies [
+{ #category : #meta-data }
+ManifestCollectionsAtomic class >> dependencies [
 	^ #(#Kernel)
 ]
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ManifestCollectionsAtomic class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestCollectionsAtomic class >> manuallyResolvedDependencies [
 	^ #(#'Collections-Streams')
 ]
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ManifestCollectionsAtomic class>>packageName [
+{ #category : #meta-data }
+ManifestCollectionsAtomic class >> packageName [
 	^ #'Collections-Atomic'
 ]

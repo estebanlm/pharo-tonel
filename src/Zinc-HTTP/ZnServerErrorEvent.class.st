@@ -7,22 +7,15 @@ Class {
 	#instVars : [
 		'exception'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 15:10'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerErrorEvent>>exception [
+{ #category : #accessing }
+ZnServerErrorEvent >> exception [
 	^ exception
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerErrorEvent>>exception: anObject [
+{ #category : #accessing }
+ZnServerErrorEvent >> exception: anObject [
 	exception := anObject
 ]

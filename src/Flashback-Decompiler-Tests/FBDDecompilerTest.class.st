@@ -1,39 +1,26 @@
-"
-
-"
 Class {
 	#name : #FBDDecompilerTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'decompiler'
 	],
-	#category : #Flashback-Decompiler-Tests,
-	#timestamp : ''
+	#category : #Flashback-Decompiler-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>checkCorrectDecompilation: aSelector [
+{ #category : #testing }
+FBDDecompilerTest >> checkCorrectDecompilation: aSelector [
 	self checkCorrectMethodDecompilation: (self getMethod: aSelector)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>checkCorrectMethodDecompilation: originalMethod [
+{ #category : #testing }
+FBDDecompilerTest >> checkCorrectMethodDecompilation: originalMethod [
 	| newMethod |
 	newMethod := self decompileThenRecompile: originalMethod.
 	self compare: originalMethod with: newMethod.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>compare: originalMethod with: newMethod [
+{ #category : #testing }
+FBDDecompilerTest >> compare: originalMethod with: newMethod [
 	| gp1 gp2 gp1Result gp2Result |
 	gp1 := self exampleClass new. 
 	gp2 := self exampleClass new.
@@ -43,1318 +30,829 @@ FBDDecompilerTest>>compare: originalMethod with: newMethod [
 	self comparePigs: gp1 with: gp2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>comparePigs: gp1 with: gp2 [
+{ #category : #testing }
+FBDDecompilerTest >> comparePigs: gp1 with: gp2 [
 	self assert: gp1 iVar equals: gp2 iVar
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>compareResult: result1 with: result2 [
+{ #category : #testing }
+FBDDecompilerTest >> compareResult: result1 with: result2 [
 	self assert: result1 class equals: result2 class.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>decompileThenRecompile: originalMethod [
+{ #category : #private }
+FBDDecompilerTest >> decompileThenRecompile: originalMethod [
 	| methodNode |
 	methodNode := FBDDecompiler new decompile: originalMethod.
 	methodNode ifNil: [ ^ nil ].
 	^ self exampleClass compiler compile: methodNode formattedCode.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>exampleClass [
+{ #category : #accessing }
+FBDDecompilerTest >> exampleClass [
 	^ FBDExamples 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>getMethod: selector [
+{ #category : #private }
+FBDDecompilerTest >> getMethod: selector [
 	^ self exampleClass >> selector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>test2Loops [
+{ #category : #tests }
+FBDDecompilerTest >> test2Loops [
 	self checkCorrectDecompilation: #example2Loops.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>test2Loops2 [
+{ #category : #tests }
+FBDDecompilerTest >> test2Loops2 [
 	self checkCorrectDecompilation: #example2Loops2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testAnd [
+{ #category : #tests }
+FBDDecompilerTest >> testAnd [
 	self checkCorrectDecompilation: #exampleAnd.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testAnd2 [
+{ #category : #tests }
+FBDDecompilerTest >> testAnd2 [
 	self checkCorrectDecompilation: #exampleAnd2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testAndOr [
+{ #category : #tests }
+FBDDecompilerTest >> testAndOr [
 	self checkCorrectDecompilation: #exampleAndOr.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testAndOr2 [
+{ #category : #tests }
+FBDDecompilerTest >> testAndOr2 [
 	self checkCorrectDecompilation: #exampleAndOr2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testAndOr3 [
+{ #category : #tests }
+FBDDecompilerTest >> testAndOr3 [
 	self checkCorrectDecompilation: #exampleAndOr3.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testAndOr4 [
+{ #category : #tests }
+FBDDecompilerTest >> testAndOr4 [
 	self checkCorrectDecompilation: #exampleAndOr4.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testAndOr5 [
+{ #category : #tests }
+FBDDecompilerTest >> testAndOr5 [
 	self checkCorrectDecompilation: #exampleAndOr5.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testAndOr6 [
+{ #category : #tests }
+FBDDecompilerTest >> testAndOr6 [
 	self checkCorrectDecompilation: #exampleAndOr6.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testBlockArgument [
+{ #category : #tests }
+FBDDecompilerTest >> testBlockArgument [
 	self checkCorrectDecompilation: #exampleBlockArgument.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testBlockExternal [
+{ #category : #tests }
+FBDDecompilerTest >> testBlockExternal [
 	self checkCorrectDecompilation: #exampleBlockExternal.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testBlockExternal2 [
+{ #category : #tests }
+FBDDecompilerTest >> testBlockExternal2 [
 	self checkCorrectDecompilation: #exampleBlockExternal2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testBlockExternalArg [
+{ #category : #tests }
+FBDDecompilerTest >> testBlockExternalArg [
 	self checkCorrectDecompilation: #exampleBlockExternalArg.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testBlockExternalNested [
+{ #category : #tests }
+FBDDecompilerTest >> testBlockExternalNested [
 	self checkCorrectDecompilation: #exampleBlockExternalNested.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testBlockInternal [
+{ #category : #tests }
+FBDDecompilerTest >> testBlockInternal [
 	self checkCorrectDecompilation: #exampleBlockInternal.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testBlockIntoCascade [
+{ #category : #tests }
+FBDDecompilerTest >> testBlockIntoCascade [
 	self checkCorrectDecompilation: #exampleBlockIntoCascade.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testBlockNested [
+{ #category : #tests }
+FBDDecompilerTest >> testBlockNested [
 	self checkCorrectDecompilation: #exampleBlockNested
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testBlockNumCopied [
+{ #category : #tests }
+FBDDecompilerTest >> testBlockNumCopied [
 	self checkCorrectDecompilation: #exampleBlockNumCopied
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testBlockWithArg [
+{ #category : #tests }
+FBDDecompilerTest >> testBlockWithArg [
 	self checkCorrectDecompilation: #exampleBlockWithArg.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCascade [
+{ #category : #tests }
+FBDDecompilerTest >> testCascade [
 
 	self checkCorrectDecompilation: #exampleCascade.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCascade2 [
+{ #category : #tests }
+FBDDecompilerTest >> testCascade2 [
 
 	self checkCorrectDecompilation: #exampleCascade2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCascade3 [
+{ #category : #tests }
+FBDDecompilerTest >> testCascade3 [
 
 	self checkCorrectDecompilation: #exampleCascade3.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCascade4 [
+{ #category : #tests }
+FBDDecompilerTest >> testCascade4 [
 
 	self checkCorrectDecompilation: #exampleCascade4.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCascadeIfFalse [
+{ #category : #tests }
+FBDDecompilerTest >> testCascadeIfFalse [
 
 	self checkCorrectDecompilation: #exampleCascadeIfFalse.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCascadeIfNil [
+{ #category : #tests }
+FBDDecompilerTest >> testCascadeIfNil [
 	self checkCorrectDecompilation: #exampleCascadeIfNil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCascadeIfTrueIfFalse [
+{ #category : #tests }
+FBDDecompilerTest >> testCascadeIfTrueIfFalse [
 
 	self checkCorrectDecompilation: #exampleCascadeIfTrueIfFalse.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCascadeIntoBlockIntoCascade [
+{ #category : #tests }
+FBDDecompilerTest >> testCascadeIntoBlockIntoCascade [
 	self checkCorrectDecompilation: #exampleCascadeIntoBlockIntoCascade.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCascadeIntoBlockWithTempIfTrueIfFalse [
+{ #category : #tests }
+FBDDecompilerTest >> testCascadeIntoBlockWithTempIfTrueIfFalse [
 	self checkCorrectDecompilation: #exampleCascadeIntoBlockWithTempIfTrueIfFalse.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCascadeIntoBlockWithTempIntoCascade [
+{ #category : #tests }
+FBDDecompilerTest >> testCascadeIntoBlockWithTempIntoCascade [
 	self checkCorrectDecompilation: #exampleCascadeIntoBlockWithTempIntoCascade.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCascadeNested [
+{ #category : #tests }
+FBDDecompilerTest >> testCascadeNested [
 	self checkCorrectDecompilation: #exampleCascadeNested.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCaseOf [
+{ #category : #tests }
+FBDDecompilerTest >> testCaseOf [
 	self checkCorrectDecompilation: #exampleCaseOf.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCaseOf2 [
+{ #category : #tests }
+FBDDecompilerTest >> testCaseOf2 [
 	self checkCorrectDecompilation: #exampleCaseOf2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCaseOf3 [
+{ #category : #tests }
+FBDDecompilerTest >> testCaseOf3 [
 	self checkCorrectDecompilation: #exampleCaseOf3.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCaseOf4 [
+{ #category : #tests }
+FBDDecompilerTest >> testCaseOf4 [
 	self checkCorrectDecompilation: #exampleCaseOf4.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCaseOf5 [
+{ #category : #tests }
+FBDDecompilerTest >> testCaseOf5 [
 	self checkCorrectDecompilation: #exampleCaseOf5.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCaseOf6 [
+{ #category : #tests }
+FBDDecompilerTest >> testCaseOf6 [
 	self checkCorrectDecompilation: #exampleCaseOf6.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCaseOf7 [
+{ #category : #tests }
+FBDDecompilerTest >> testCaseOf7 [
 	self checkCorrectDecompilation: #exampleCaseOf7.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCaseOf8 [
+{ #category : #tests }
+FBDDecompilerTest >> testCaseOf8 [
 	self checkCorrectDecompilation: #exampleCaseOf8.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCaseOfOtherwise [
+{ #category : #tests }
+FBDDecompilerTest >> testCaseOfOtherwise [
 	self checkCorrectDecompilation: #exampleCaseOfOtherwise.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testClassVar [
+{ #category : #tests }
+FBDDecompilerTest >> testClassVar [
 	self checkCorrectDecompilation: #exampleClassVar
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testCopyingBlock [
+{ #category : #tests }
+FBDDecompilerTest >> testCopyingBlock [
 	self checkCorrectDecompilation: #exampleCopyingBlock.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testDoublePrimitive [
+{ #category : #tests }
+FBDDecompilerTest >> testDoublePrimitive [
 	self checkCorrectDecompilation: #exampleDoublePrimitive
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testDoubleRemoteAnidatedBlocks [
+{ #category : #tests }
+FBDDecompilerTest >> testDoubleRemoteAnidatedBlocks [
 	self checkCorrectDecompilation: #doubleRemoteAnidatedBlocks.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testEffectValues [
+{ #category : #tests }
+FBDDecompilerTest >> testEffectValues [
 	self checkCorrectDecompilation: #exampleEffectValues
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testEmptyMethod [
+{ #category : #tests }
+FBDDecompilerTest >> testEmptyMethod [
 	self checkCorrectDecompilation: #exampleEmptyMethod.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testFullBlock [
+{ #category : #tests }
+FBDDecompilerTest >> testFullBlock [
 	self checkCorrectDecompilation: #exampleFullBlock.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIV [
+{ #category : #tests }
+FBDDecompilerTest >> testIV [
 	self checkCorrectDecompilation: #exampleIV
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfFalse [
+{ #category : #tests }
+FBDDecompilerTest >> testIfFalse [
 	self checkCorrectDecompilation: #exampleIfFalse
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfFalse2 [
+{ #category : #tests }
+FBDDecompilerTest >> testIfFalse2 [
 	self checkCorrectDecompilation: #exampleIfFalse2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfFalse3 [
+{ #category : #tests }
+FBDDecompilerTest >> testIfFalse3 [
 	self checkCorrectDecompilation: #exampleIfFalse3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfFalseIfTrue [
+{ #category : #tests }
+FBDDecompilerTest >> testIfFalseIfTrue [
 	self checkCorrectDecompilation: #exampleIfFalseIfTrue.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfFalseIfTrue2 [
+{ #category : #tests }
+FBDDecompilerTest >> testIfFalseIfTrue2 [
 	self checkCorrectDecompilation: #exampleIfFalseIfTrue2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfFalseIfTrue3 [
+{ #category : #tests }
+FBDDecompilerTest >> testIfFalseIfTrue3 [
 	self checkCorrectDecompilation: #exampleIfFalseIfTrue3.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfFalseIfTrue4 [
+{ #category : #tests }
+FBDDecompilerTest >> testIfFalseIfTrue4 [
 	self checkCorrectDecompilation: #exampleIfFalseIfTrue4.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfFalseIfTrue5 [
+{ #category : #tests }
+FBDDecompilerTest >> testIfFalseIfTrue5 [
 	self checkCorrectDecompilation: #exampleIfFalseIfTrue5.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfFalseIfTrue6 [
+{ #category : #tests }
+FBDDecompilerTest >> testIfFalseIfTrue6 [
 	self checkCorrectDecompilation: #exampleIfFalseIfTrue6
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfNil [
+{ #category : #tests }
+FBDDecompilerTest >> testIfNil [
 	self checkCorrectDecompilation: #exampleIfNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfNilClosure [
+{ #category : #tests }
+FBDDecompilerTest >> testIfNilClosure [
 	self checkCorrectDecompilation: #exampleIfNilClosure
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfNilDup [
+{ #category : #tests }
+FBDDecompilerTest >> testIfNilDup [
 	self checkCorrectDecompilation: #exampleIfNilDup
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfNilIfNotNil [
+{ #category : #tests }
+FBDDecompilerTest >> testIfNilIfNotNil [
 	self checkCorrectDecompilation: #exampleIfNilIfNotNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfNotNilArg [
+{ #category : #tests }
+FBDDecompilerTest >> testIfNotNilArg [
 	self checkCorrectDecompilation: #exampleIfNotNilArg
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfNotNilDup [
+{ #category : #tests }
+FBDDecompilerTest >> testIfNotNilDup [
 	self checkCorrectDecompilation: #exampleIfNotNilDup
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfNotNilReturnNil [
+{ #category : #tests }
+FBDDecompilerTest >> testIfNotNilReturnNil [
 	self checkCorrectDecompilation: #exampleIfNotNilReturnNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfTrue [
+{ #category : #tests }
+FBDDecompilerTest >> testIfTrue [
 	self checkCorrectDecompilation: #exampleIfTrue
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfTrue2 [
+{ #category : #tests }
+FBDDecompilerTest >> testIfTrue2 [
 	self checkCorrectDecompilation: #exampleIfTrue2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfTrue3 [
+{ #category : #tests }
+FBDDecompilerTest >> testIfTrue3 [
 	self checkCorrectDecompilation: #exampleIfTrue3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfTrueForEffectNested [
+{ #category : #tests }
+FBDDecompilerTest >> testIfTrueForEffectNested [
 	self checkCorrectDecompilation: #exampleIfTrueForEffectNested
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfTrueIfFalse [
+{ #category : #tests }
+FBDDecompilerTest >> testIfTrueIfFalse [
 	self checkCorrectDecompilation: #exampleIfTrueIfFalse.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfTrueIfFalse2 [
+{ #category : #tests }
+FBDDecompilerTest >> testIfTrueIfFalse2 [
 	self checkCorrectDecompilation: #exampleIfTrueIfFalse2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfTrueIfFalse3 [
+{ #category : #tests }
+FBDDecompilerTest >> testIfTrueIfFalse3 [
 	self checkCorrectDecompilation: #exampleIfTrueIfFalse3.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfTrueIfFalseLikeAnd [
+{ #category : #tests }
+FBDDecompilerTest >> testIfTrueIfFalseLikeAnd [
 	self checkCorrectDecompilation: #exampleIfTrueIfFalseLikeAnd.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfTrueIfFalseNested [
+{ #category : #tests }
+FBDDecompilerTest >> testIfTrueIfFalseNested [
 	self checkCorrectDecompilation: #exampleIfTrueIfFalseNested
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfTrueIfFalseNested2 [
+{ #category : #tests }
+FBDDecompilerTest >> testIfTrueIfFalseNested2 [
 	self checkCorrectDecompilation: #exampleIfTrueIfFalseNested2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfTrueIfFalseNested3 [
+{ #category : #tests }
+FBDDecompilerTest >> testIfTrueIfFalseNested3 [
 	self checkCorrectDecompilation: #exampleIfTrueIfFalseNested3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfTrueNested [
+{ #category : #tests }
+FBDDecompilerTest >> testIfTrueNested [
 	self checkCorrectDecompilation: #exampleIfTrueNested
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfTrueWithNilAssertion [
+{ #category : #tests }
+FBDDecompilerTest >> testIfTrueWithNilAssertion [
 	self checkCorrectDecompilation: #exampleIfTrueWithNilAssertion
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testIfTrueWithOr [
+{ #category : #tests }
+FBDDecompilerTest >> testIfTrueWithOr [
 	self checkCorrectDecompilation: #exampleIfTrueWithOr
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testInlineBlockCollectionLR3 [
+{ #category : #tests }
+FBDDecompilerTest >> testInlineBlockCollectionLR3 [
 	self checkCorrectDecompilation: #exampleInlineBlockCollectionLR3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testMethodTempInNestedBlock [
+{ #category : #tests }
+FBDDecompilerTest >> testMethodTempInNestedBlock [
 	self checkCorrectDecompilation: #exampleMethodTempInNestedBlock
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testMethodWithOptimizedBlocksA [
+{ #category : #tests }
+FBDDecompilerTest >> testMethodWithOptimizedBlocksA [
 	self checkCorrectDecompilation: #exampleMethodWithOptimizedBlocksA
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testNestedBlockScoping [
+{ #category : #tests }
+FBDDecompilerTest >> testNestedBlockScoping [
 	self checkCorrectDecompilation: #exampleNestedBlockScoping
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testNestedBlocksRemoteInBlockCase1 [
+{ #category : #tests }
+FBDDecompilerTest >> testNestedBlocksRemoteInBlockCase1 [
 	self checkCorrectDecompilation: #nestedBlocksRemoteInBlockCase1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testNestedBlocksRemoteInBlockCase2 [
+{ #category : #tests }
+FBDDecompilerTest >> testNestedBlocksRemoteInBlockCase2 [
 	self checkCorrectDecompilation: #nestedBlocksRemoteInBlockCase2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testNestedBlocksRemoteInBlockCase3 [
+{ #category : #tests }
+FBDDecompilerTest >> testNestedBlocksRemoteInBlockCase3 [
 	self checkCorrectDecompilation: #nestedBlocksRemoteInBlockCase3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testNestedIfNilIfNotNil [
+{ #category : #tests }
+FBDDecompilerTest >> testNestedIfNilIfNotNil [
 	self checkCorrectDecompilation: #exampleNestedIfNilIfNotNil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testNewArray [
+{ #category : #tests }
+FBDDecompilerTest >> testNewArray [
 	self checkCorrectDecompilation: #exampleNewArray.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testNoRemoteBlockArgument [
+{ #category : #tests }
+FBDDecompilerTest >> testNoRemoteBlockArgument [
 	self checkCorrectDecompilation: #noRemoteBlockArgument
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testNoRemoteBlockTemp [
+{ #category : #tests }
+FBDDecompilerTest >> testNoRemoteBlockTemp [
 	self checkCorrectDecompilation: #noRemoteBlockTemp
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testNoRemoteReadInBlock [
+{ #category : #tests }
+FBDDecompilerTest >> testNoRemoteReadInBlock [
 	self checkCorrectDecompilation: #noRemoteReadInBlock
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testNoRemoteReadNestedBlocks [
+{ #category : #tests }
+FBDDecompilerTest >> testNoRemoteReadNestedBlocks [
 	self checkCorrectDecompilation: #noRemoteReadNestedBlocks   
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testOptimizedBlockWrittenAfterClosedOverCase1 [
+{ #category : #tests }
+FBDDecompilerTest >> testOptimizedBlockWrittenAfterClosedOverCase1 [
 	self checkCorrectDecompilation: #optimizedBlockWrittenAfterClosedOverCase1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testOptimizedBlockWrittenAfterClosedOverCase2 [
+{ #category : #tests }
+FBDDecompilerTest >> testOptimizedBlockWrittenAfterClosedOverCase2 [
 	self checkCorrectDecompilation: #optimizedBlockWrittenAfterClosedOverCase2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testOr [
+{ #category : #tests }
+FBDDecompilerTest >> testOr [
 	self checkCorrectDecompilation: #exampleOr.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testPrimitiveErrorCode [
+{ #category : #tests }
+FBDDecompilerTest >> testPrimitiveErrorCode [
 	self checkCorrectDecompilation: #examplePrimitiveErrorCode
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testPrimitiveErrorCodeModule [
+{ #category : #tests }
+FBDDecompilerTest >> testPrimitiveErrorCodeModule [
 	| newMethod |
 	newMethod := self decompileThenRecompile: (self getMethod: #examplePrimitiveErrorCodeModule).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testPrimitiveErrorCodeModule2 [
+{ #category : #tests }
+FBDDecompilerTest >> testPrimitiveErrorCodeModule2 [
 	| newMethod |
 	newMethod := self decompileThenRecompile: (self getMethod: #examplePrimitiveErrorCodeModule2).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testPushArray [
+{ #category : #tests }
+FBDDecompilerTest >> testPushArray [
 	self checkCorrectDecompilation: #examplePushArray
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testPushBigArray [
+{ #category : #tests }
+FBDDecompilerTest >> testPushBigArray [
 	self checkCorrectDecompilation: #examplePushBigArray
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testRepeatEffect [
+{ #category : #tests }
+FBDDecompilerTest >> testRepeatEffect [
 	self checkCorrectDecompilation: #exampleRepeatEffect
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testRepeatValue [
+{ #category : #tests }
+FBDDecompilerTest >> testRepeatValue [
 	self checkCorrectDecompilation: #exampleRepeatValue
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testReturn1 [
+{ #category : #tests }
+FBDDecompilerTest >> testReturn1 [
 	self checkCorrectDecompilation: #exampleReturn1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testReturn1plus2 [
+{ #category : #tests }
+FBDDecompilerTest >> testReturn1plus2 [
 	self checkCorrectDecompilation: #exampleReturn1plus2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testReturn42 [
+{ #category : #tests }
+FBDDecompilerTest >> testReturn42 [
 	self checkCorrectDecompilation: #exampleReturn42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSelf [
+{ #category : #tests }
+FBDDecompilerTest >> testSelf [
 	self checkCorrectDecompilation: #exampleSelf
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSend [
+{ #category : #tests }
+FBDDecompilerTest >> testSend [
 	self checkCorrectDecompilation: #exampleSend
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSend2Args [
+{ #category : #tests }
+FBDDecompilerTest >> testSend2Args [
 	self checkCorrectDecompilation: #exampleSend2Args
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSimpleBlock [
+{ #category : #tests }
+FBDDecompilerTest >> testSimpleBlock [
 	self checkCorrectDecompilation: #exampleSimpleBlock
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSimpleBlockArgument1 [
+{ #category : #tests }
+FBDDecompilerTest >> testSimpleBlockArgument1 [
 	self checkCorrectDecompilation: #exampleSimpleBlockArgument1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSimpleBlockArgument2 [
+{ #category : #tests }
+FBDDecompilerTest >> testSimpleBlockArgument2 [
 	self checkCorrectDecompilation: #exampleSimpleBlockArgument2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSimpleBlockArgument3 [
+{ #category : #tests }
+FBDDecompilerTest >> testSimpleBlockArgument3 [
 	self checkCorrectDecompilation: #exampleSimpleBlockArgument3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSimpleBlockArgument4 [
+{ #category : #tests }
+FBDDecompilerTest >> testSimpleBlockArgument4 [
 	self checkCorrectDecompilation: #exampleSimpleBlockArgument4
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSimpleBlockArgument5 [
+{ #category : #tests }
+FBDDecompilerTest >> testSimpleBlockArgument5 [
 	self checkCorrectDecompilation: #exampleSimpleBlockArgument5
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSimpleBlockEmpty [
+{ #category : #tests }
+FBDDecompilerTest >> testSimpleBlockEmpty [
 	self checkCorrectDecompilation: #exampleSimpleBlockEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSimpleBlockLocal [
+{ #category : #tests }
+FBDDecompilerTest >> testSimpleBlockLocal [
 	self checkCorrectDecompilation: #exampleSimpleBlockLocal
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSimpleBlockLocalIf [
+{ #category : #tests }
+FBDDecompilerTest >> testSimpleBlockLocalIf [
 	self checkCorrectDecompilation: #exampleSimpleBlockLocalIf
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSimpleBlockLocalIfNested [
+{ #category : #tests }
+FBDDecompilerTest >> testSimpleBlockLocalIfNested [
 	self checkCorrectDecompilation: #exampleSimpleBlockLocalIfNested
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSimpleBlockLocalWhile [
+{ #category : #tests }
+FBDDecompilerTest >> testSimpleBlockLocalWhile [
 	self checkCorrectDecompilation: #exampleSimpleBlockLocalWhile
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSimpleBlockNested [
+{ #category : #tests }
+FBDDecompilerTest >> testSimpleBlockNested [
 	self checkCorrectDecompilation: #exampleSimpleBlockNested
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSimpleBlockReturn [
+{ #category : #tests }
+FBDDecompilerTest >> testSimpleBlockReturn [
 	self checkCorrectDecompilation: #exampleSimpleBlockReturn
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSimpleBlockiVar [
+{ #category : #tests }
+FBDDecompilerTest >> testSimpleBlockiVar [
 	self checkCorrectDecompilation: #exampleSimpleBlockiVar
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testSuper [
+{ #category : #tests }
+FBDDecompilerTest >> testSuper [
 	self checkCorrectDecompilation: #exampleSuper
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testThisContext [
+{ #category : #tests }
+FBDDecompilerTest >> testThisContext [
 	self checkCorrectDecompilation: #exampleThisContext
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testTimesRepeatEffect [
+{ #category : #tests }
+FBDDecompilerTest >> testTimesRepeatEffect [
 	self checkCorrectDecompilation: #exampleTimesRepeatEffect
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testTimesRepeatValue [
+{ #category : #tests }
+FBDDecompilerTest >> testTimesRepeatValue [
 	self checkCorrectDecompilation: #exampleTimesRepeatValue
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToByDo [
+{ #category : #tests }
+FBDDecompilerTest >> testToByDo [
 	self decompileThenRecompile: (self getMethod: #exampleToByDo).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToByDoNegativeLoop [
+{ #category : #tests }
+FBDDecompilerTest >> testToByDoNegativeLoop [
 	self decompileThenRecompile: (self getMethod: #exampleToByDoNegativeLoop).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToDo [
+{ #category : #tests }
+FBDDecompilerTest >> testToDo [
 	self checkCorrectDecompilation: #exampleToDo
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToDo2 [
+{ #category : #tests }
+FBDDecompilerTest >> testToDo2 [
 	self checkCorrectDecompilation: #exampleToDo2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToDo3 [
+{ #category : #tests }
+FBDDecompilerTest >> testToDo3 [
 	self checkCorrectDecompilation: #exampleToDo3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToDo4 [
+{ #category : #tests }
+FBDDecompilerTest >> testToDo4 [
 	self checkCorrectDecompilation: #exampleToDo4
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToDo5 [
+{ #category : #tests }
+FBDDecompilerTest >> testToDo5 [
 	self checkCorrectDecompilation: #exampleToDo5
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToDoArgument [
+{ #category : #tests }
+FBDDecompilerTest >> testToDoArgument [
 	self checkCorrectDecompilation: #exampleToDoArgument
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToDoArgumentLimitIsExpression [
+{ #category : #tests }
+FBDDecompilerTest >> testToDoArgumentLimitIsExpression [
 	self checkCorrectDecompilation: #exampleToDoArgumentLimitIsExpression
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToDoArgumentNotInlined [
+{ #category : #tests }
+FBDDecompilerTest >> testToDoArgumentNotInlined [
 	self checkCorrectDecompilation: #exampleToDoArgumentNotInlined
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToDoInsideBlock [
+{ #category : #tests }
+FBDDecompilerTest >> testToDoInsideBlock [
 	self checkCorrectDecompilation: #exampleToDoInsideBlock
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToDoInsideTemp [
+{ #category : #tests }
+FBDDecompilerTest >> testToDoInsideTemp [
 	self checkCorrectDecompilation: #exampleToDoInsideTemp
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToDoInsideTempNotInlined [
+{ #category : #tests }
+FBDDecompilerTest >> testToDoInsideTempNotInlined [
 	self checkCorrectDecompilation: #exampleToDoInsideTempNotInlined
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToDoOutsideTemp [
+{ #category : #tests }
+FBDDecompilerTest >> testToDoOutsideTemp [
 	self checkCorrectDecompilation: #exampleToDoOutsideTemp
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToDoOutsideTempNotInlined [
+{ #category : #tests }
+FBDDecompilerTest >> testToDoOutsideTempNotInlined [
 	self checkCorrectDecompilation: #exampleToDoOutsideTempNotInlined
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToDoValue [
+{ #category : #tests }
+FBDDecompilerTest >> testToDoValue [
 	self checkCorrectDecompilation: #exampleToDoValue
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToDoValueLimitExpression [
+{ #category : #tests }
+FBDDecompilerTest >> testToDoValueLimitExpression [
 	self checkCorrectDecompilation: #exampleToDoValueLimitExpression
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testToDoWithMessage [
+{ #category : #tests }
+FBDDecompilerTest >> testToDoWithMessage [
 	self checkCorrectDecompilation: #exampleToDoWithMessage
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testWhileFalse [
+{ #category : #tests }
+FBDDecompilerTest >> testWhileFalse [
 	self checkCorrectDecompilation: #exampleWhileFalse
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testWhileFalse2 [
+{ #category : #tests }
+FBDDecompilerTest >> testWhileFalse2 [
 	self checkCorrectDecompilation: #exampleWhileFalse2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testWhileModificationAfterNotInlined [
+{ #category : #tests }
+FBDDecompilerTest >> testWhileModificationAfterNotInlined [
 	self checkCorrectDecompilation: #exampleWhileModificationAfterNotInlined
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testWhileModificationBefore [
+{ #category : #tests }
+FBDDecompilerTest >> testWhileModificationBefore [
 	self checkCorrectDecompilation: #exampleWhileModificationBefore
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testWhileModificationBeforeNotInlined [
+{ #category : #tests }
+FBDDecompilerTest >> testWhileModificationBeforeNotInlined [
 	self checkCorrectDecompilation: #exampleWhileModificationBeforeNotInlined
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testWhileNoModification [
+{ #category : #tests }
+FBDDecompilerTest >> testWhileNoModification [
 	self checkCorrectDecompilation: #exampleWhileNoModification
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testWhileTrue [
+{ #category : #tests }
+FBDDecompilerTest >> testWhileTrue [
 	self checkCorrectDecompilation: #exampleWhileTrue
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testWhileTrue2 [
+{ #category : #tests }
+FBDDecompilerTest >> testWhileTrue2 [
 	self checkCorrectDecompilation: #exampleWhileTrue2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testWhileTrue3 [
+{ #category : #tests }
+FBDDecompilerTest >> testWhileTrue3 [
 	self checkCorrectDecompilation: #exampleWhileTrue3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testWhileTrueSameJumpTarget [
+{ #category : #tests }
+FBDDecompilerTest >> testWhileTrueSameJumpTarget [
 	self checkCorrectDecompilation: #exampleWhileTrueSameJumpTarget
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testWhileTrueSameJumpTarget2 [
+{ #category : #tests }
+FBDDecompilerTest >> testWhileTrueSameJumpTarget2 [
 	self checkCorrectDecompilation: #exampleWhileTrueSameJumpTarget2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testWhileWithTemp [
+{ #category : #tests }
+FBDDecompilerTest >> testWhileWithTemp [
 	self checkCorrectDecompilation: #exampleWhileWithTemp
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testWhileWithTempNotInlined [
+{ #category : #tests }
+FBDDecompilerTest >> testWhileWithTempNotInlined [
 	self checkCorrectDecompilation: #exampleWhileWithTempNotInlined
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testWithArgsAnd [
+{ #category : #tests }
+FBDDecompilerTest >> testWithArgsAnd [
 	self decompileThenRecompile: (self getMethod: #exampleWithArgs:and:).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FBDDecompilerTest>>testWithArgsAndTempsAnd [
+{ #category : #tests }
+FBDDecompilerTest >> testWithArgsAndTempsAnd [
 	self decompileThenRecompile: (self getMethod: #exampleWithArgsAndTemps:and:).
 ]

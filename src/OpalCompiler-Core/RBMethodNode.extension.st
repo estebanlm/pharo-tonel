@@ -1,30 +1,19 @@
-Extension {
-	#name : #RBMethodNode
-}
+Extension { #name : #RBMethodNode }
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>compiledMethod [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> compiledMethod [
 	^ self ir compiledMethod
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>decompileString  [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> decompileString [ 
 
 	^ self formattedCode 
 
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>doSemanticAnalysis [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> doSemanticAnalysis [
 
 	self compilationContext ifNil: [ self methodClass: nil class ].
 
@@ -34,29 +23,20 @@ RBMethodNode>>doSemanticAnalysis [
 		analyze: self
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>doSemanticAnalysisIn: behavior [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> doSemanticAnalysisIn: behavior [
 	self methodClass: behavior.
 	self doSemanticAnalysis
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>doSemanticAnalysisInContext: aCompilationContext [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> doSemanticAnalysisInContext: aCompilationContext [
 	self compilationContext: aCompilationContext.
 	self doSemanticAnalysis.
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode class>>errorMethodNode: selector errorMessage: messageText	 [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode class >> errorMethodNode: selector errorMessage: messageText [	
 	| message |
 	message := RBMessageNode 
 		receiver: (RBSelfNode named: 'self')
@@ -68,11 +48,8 @@ RBMethodNode class>>errorMethodNode: selector errorMessage: messageText	 [
 		body: (RBSequenceNode statements: {message}) 
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>generate [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> generate [
 	"The receiver is the root of a parse tree. Answer a CompiledMethod. The
 	argument, trailer, is the references to the source code that is stored with 
 	every CompiledMethod."
@@ -80,19 +57,13 @@ RBMethodNode>>generate [
 	^ self generate: CompiledMethodTrailer empty
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>generate: trailer [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> generate: trailer [
 	^ self generateIR compiledMethodWith: trailer.
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>generateIR [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> generateIR [
 	| ir |
 	scope ifNil: [self doSemanticAnalysisInContext: self compilationContext ].
  	ir := (self compilationContext astTranslatorClass new
@@ -101,11 +72,8 @@ RBMethodNode>>generateIR [
 	^ self ir: ir
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>generateWithSource [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> generateWithSource [
 	"Answer a CompiledMethod with source encoded in trailer."
 
 	
@@ -116,64 +84,43 @@ RBMethodNode>>generateWithSource [
 	^self generate: (CompiledMethodTrailer new sourceCode: source).
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>ir [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> ir [
 
 	^ self propertyAt: #ir ifAbsent: [self generateIR].
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>ir: aIRMethodNode [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> ir: aIRMethodNode [
 
 	^ self propertyAt: #ir put: aIRMethodNode.
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>irInstruction [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> irInstruction [
 	^ self ir
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>methodOrBlockNode [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> methodOrBlockNode [
 	"^ self"
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>notShadowedTemporaryNamesFrom: aContext [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> notShadowedTemporaryNamesFrom: aContext [
 	| ownVariableNames |
 	ownVariableNames := self allDefinedVariables collect: [ :var | var asString ].
 	^ aContext tempNames difference: ownVariableNames
 
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>owningScope [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> owningScope [
 	^ self scope
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>primitiveFromPragma [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> primitiveFromPragma [
 	pragmas ifNil: [ ^ IRPrimitive null ].
 	^ pragmas
 		detect: [ :each | each isPrimitive ]
@@ -181,27 +128,18 @@ RBMethodNode>>primitiveFromPragma [
 		ifNone: [ IRPrimitive null ]
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>properties [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> properties [
 	^self propertyAt: #methodProperties ifAbsent: nil
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>properties: aMethodeProperties  [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> properties: aMethodeProperties [ 
 	^self propertyAt: #methodProperties put: aMethodeProperties
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>rewriteTempsForContext: aContext [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> rewriteTempsForContext: aContext [
 	| rewriter contextOnlyTemps |
 	rewriter := RBParseTreeRewriter new.
 	contextOnlyTemps := self notShadowedTemporaryNamesFrom: aContext.
@@ -218,43 +156,28 @@ RBMethodNode>>rewriteTempsForContext: aContext [
 		tree
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>sourceNodeExecutedForPC: anInteger [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> sourceNodeExecutedForPC: anInteger [
 	^(self ir instructionForPC: anInteger) sourceNodeExecuted
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>sourceNodeForPC: anInteger [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> sourceNodeForPC: anInteger [
 	^(self ir instructionForPC: anInteger) sourceNode
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>sourceText: aString [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> sourceText: aString [
 	self source: aString
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>startWithoutParentheses [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> startWithoutParentheses [
 	^ 1
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMethodNode>>tempNames [
+{ #category : #'*OpalCompiler-Core' }
+RBMethodNode >> tempNames [
 	"compatibility method to old MethodNode"
 	self flag: #Clean.
 	^ self argumentNames, self temporaryNames

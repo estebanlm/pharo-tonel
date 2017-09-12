@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBPullUpInstanceVariableTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPullUpInstanceVariableTest>>testPullUpInstVar [
+{ #category : #tests }
+RBPullUpInstanceVariableTest >> testPullUpInstVar [
 	| refactoring |
 	self proceedThroughWarning: 
 		[ refactoring := RBPullUpInstanceVariableRefactoring 
@@ -23,11 +16,8 @@ RBPullUpInstanceVariableTest>>testPullUpInstVar [
 	self deny: ((refactoring model classNamed: #RBBasicLintRuleTest) directlyDefinesInstanceVariable: 'result')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPullUpInstanceVariableTest>>testPullUpVariableNotDefined [
+{ #category : #'failure tests' }
+RBPullUpInstanceVariableTest >> testPullUpVariableNotDefined [
 	self shouldFail: (RBPullUpInstanceVariableRefactoring 
 			variable: 'notDefinedVariable'
 			class: RBLintRuleTest)

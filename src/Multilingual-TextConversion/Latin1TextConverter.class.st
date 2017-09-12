@@ -4,15 +4,11 @@ Text converter for ISO 8859-1.  An international encoding used in Western Europe
 Class {
 	#name : #Latin1TextConverter,
 	#superclass : #ByteTextConverter,
-	#category : #Multilingual-TextConversion,
-	#timestamp : '<historical>'
+	#category : #Multilingual-TextConversion
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Latin1TextConverter class>>byteToUnicodeSpec [
+{ #category : #accessing }
+Latin1TextConverter class >> byteToUnicodeSpec [
 	"ByteTextConverter generateByteToUnicodeSpec: 'http://unicode.org/Public/MAPPINGS/ISO8859/8859-1.TXT'"
 
 	^ #(
@@ -34,45 +30,30 @@ Latin1TextConverter class>>byteToUnicodeSpec [
 	16r00F8 16r00F9 16r00FA 16r00FB 16r00FC 16r00FD 16r00FE 16r00FF )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Latin1TextConverter class>>encodingNames [
+{ #category : #accessing }
+Latin1TextConverter class >> encodingNames [
 	^ #('latin-1' 'latin1' 'iso-8859-1' 'iso88591') copy
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Latin1TextConverter class>>initializeTables [
+{ #category : #'class initialization' }
+Latin1TextConverter class >> initializeTables [
 	"Overwritten to be a noop for Latin1,
 	we don't use #byteToUnicodeSpec although we should"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Latin1TextConverter class>>languageEnvironment [
+{ #category : #accessing }
+Latin1TextConverter class >> languageEnvironment [
 	^Latin1Environment
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Latin1TextConverter>>byteToUnicode: char [
+{ #category : #conversion }
+Latin1TextConverter >> byteToUnicode: char [
 
 	^char
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Latin1TextConverter>>unicodeToByte: unicodeChar [
+{ #category : #conversion }
+Latin1TextConverter >> unicodeToByte: unicodeChar [
 
 	^unicodeChar charCode < 256
 		ifTrue: [unicodeChar]

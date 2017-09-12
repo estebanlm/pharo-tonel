@@ -4,6 +4,5 @@ This class is not used, but should be used when we hook into the addition and re
 Class {
 	#name : #ProtocolAdded,
 	#superclass : #ProtocolAnnouncement,
-	#category : #System-Announcements-System-Protocols,
-	#timestamp : '<historical>'
+	#category : #System-Announcements-System-Protocols
 }

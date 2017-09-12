@@ -8,15 +8,11 @@ Class {
 		'oldName',
 		'newName'
 	],
-	#category : #RPackage-Core,
-	#timestamp : '<historical>'
+	#category : #RPackage-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageRenamed class>>to: aPackage oldName: aSymbol newName: anotherSymbol [
+{ #category : #'instance creation' }
+RPackageRenamed class >> to: aPackage oldName: aSymbol newName: anotherSymbol [
 
 	^ (self to: aPackage) 
 		oldName: aSymbol;
@@ -24,38 +20,26 @@ RPackageRenamed class>>to: aPackage oldName: aSymbol newName: anotherSymbol [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageRenamed>>newName [
+{ #category : #accessing }
+RPackageRenamed >> newName [
 
 	^ newName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageRenamed>>newName: anObject [
+{ #category : #accessing }
+RPackageRenamed >> newName: anObject [
 
 	newName := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageRenamed>>oldName [
+{ #category : #accessing }
+RPackageRenamed >> oldName [
 
 	^ oldName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageRenamed>>oldName: anObject [
+{ #category : #accessing }
+RPackageRenamed >> oldName: anObject [
 
 	oldName := anObject
 ]

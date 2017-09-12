@@ -11,69 +11,47 @@ Class {
 		'color',
 		'text'
 	],
-	#category : #Versionner-Spec-Browser,
-	#timestamp : '<historical>'
+	#category : #Versionner-Spec-Browser
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-TagMorphFactory class>>example [
+{ #category : #example }
+TagMorphFactory class >> example [
 	(TagMorphFactory newTag: 'development') 
 		morph openInHand 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-TagMorphFactory class>>newTag: aText [
+{ #category : #'instance creation' }
+TagMorphFactory class >> newTag: aText [
 	^ self new
 		text: aText;
 		yourself.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-TagMorphFactory>>color [
+{ #category : #accessing }
+TagMorphFactory >> color [
 	^ color ifNil: [ Color green ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-TagMorphFactory>>color: aColor [
+{ #category : #accessing }
+TagMorphFactory >> color: aColor [
 	color := aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-TagMorphFactory>>font [
+{ #category : #accessing }
+TagMorphFactory >> font [
 	^ (LogicalFont 
 		familyName: TextStyle defaultFont familyName 
 		pointSize: 8)
 		emphasis: 1.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-TagMorphFactory>>height [
+{ #category : #accessing }
+TagMorphFactory >> height [
 	^ 12
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-TagMorphFactory>>morph [
+{ #category : #protocol }
+TagMorphFactory >> morph [
 	| textMorph width |
 	textMorph := self textMorph.
 	width := textMorph width + 10.
@@ -86,27 +64,18 @@ TagMorphFactory>>morph [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-TagMorphFactory>>text [
+{ #category : #accessing }
+TagMorphFactory >> text [
 	^ text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-TagMorphFactory>>text: aString [
+{ #category : #accessing }
+TagMorphFactory >> text: aString [
 	text := aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-TagMorphFactory>>textMorph [
+{ #category : #private }
+TagMorphFactory >> textMorph [
 	^ text asMorph 
 		color: Color black;
 		font:  self font;

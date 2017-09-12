@@ -18,15 +18,11 @@ Class {
 		'ISO3Countries',
 		'ISO3Table'
 	],
-	#category : #System-Localization-Utilities,
-	#timestamp : 'StephaneDucasse 9/13/2014 21:04'
+	#category : #System-Localization-Utilities
 }
 
-{
-	#category : #'private - ISO 3166',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition class>>buildIso3166CodesTables [
+{ #category : #'private - ISO 3166' }
+ISOLanguageDefinition class >> buildIso3166CodesTables [
 	"ISOLanguageDefinition buildIso3166CodesTables"
 	| rawdata stream country isoa2 isoa3 unNumeric macName macCode windowsName windowsCode empty table |
 	rawdata := self iso3166Codes.
@@ -50,22 +46,16 @@ ISOLanguageDefinition class>>buildIso3166CodesTables [
 	^table
 ]
 
-{
-	#category : #'private - ISO 3166',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition class>>initISO3LanguageTable [
+{ #category : #'private - ISO 3166' }
+ISOLanguageDefinition class >> initISO3LanguageTable [
 	"self  initISO3LanguageTable"
 	
 	^ self readISOLanguagesFrom: self isoLanguages readStream.
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition class>>initISOCountries [
+{ #category : #private }
+ISOLanguageDefinition class >> initISOCountries [
 	"self initISOCountries"
 	| iso3166Table |
 	iso3166Table := self buildIso3166CodesTables.
@@ -77,22 +67,16 @@ ISOLanguageDefinition class>>initISOCountries [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition class>>initialize [
+{ #category : #initialization }
+ISOLanguageDefinition class >> initialize [
 	"self initialize"
 
 	ISO3Table := nil.
 	ISO2Table := nil
 ]
 
-{
-	#category : #'private - ISO 2',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition class>>iso2Countries [
+{ #category : #'private - ISO 2' }
+ISOLanguageDefinition class >> iso2Countries [
 	"self iso2Countries"
 	"ISO2Countries := nil. ISO3Countries := nil"
 
@@ -100,19 +84,13 @@ ISOLanguageDefinition class>>iso2Countries [
 	^ISO2Countries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition class>>iso2LanguageDefinition: aString [
+{ #category : #accessing }
+ISOLanguageDefinition class >> iso2LanguageDefinition: aString [
 	^self iso2LanguageTable at: aString
 ]
 
-{
-	#category : #'private - ISO 2',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition class>>iso2LanguageTable [
+{ #category : #'private - ISO 2' }
+ISOLanguageDefinition class >> iso2LanguageTable [
 	"self iso2LanguageTable"
 
 	ISO2Table ifNotNil: [^ISO2Table].
@@ -122,11 +100,8 @@ ISOLanguageDefinition class>>iso2LanguageTable [
 	^ISO2Table
 ]
 
-{
-	#category : #'private - ISO 3166',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition class>>iso3166Codes [
+{ #category : #'private - ISO 3166' }
+ISOLanguageDefinition class >> iso3166Codes [
 	"http://www.unicode.org/onlinedat/countries.html"
 
 ^'ÅLAND ISLANDS
@@ -2092,11 +2067,8 @@ CTRY_ZIMBABWE
 '
 ]
 
-{
-	#category : #'private - ISO 3',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition class>>iso3Countries [
+{ #category : #'private - ISO 3' }
+ISOLanguageDefinition class >> iso3Countries [
 	"self iso3Countries"
 	"ISO2Countries := nil. ISO3Countries := nil"
 
@@ -2104,29 +2076,20 @@ ISOLanguageDefinition class>>iso3Countries [
 	^ISO3Countries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition class>>iso3LanguageDefinition: aString [
+{ #category : #accessing }
+ISOLanguageDefinition class >> iso3LanguageDefinition: aString [
 	^self iso3LanguageTable at: aString
 ]
 
-{
-	#category : #'private - ISO 3',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition class>>iso3LanguageTable [
+{ #category : #'private - ISO 3' }
+ISOLanguageDefinition class >> iso3LanguageTable [
 	"self iso3LanguageTable"
 
 	^ISO3Table ifNil: [ISO3Table := self initISO3LanguageTable]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition class>>isoLanguages [
+{ #category : #private }
+ISOLanguageDefinition class >> isoLanguages [
 	"ISO 639: 3-letter codes"
 	^'abk	ab	Abkhazian
 ace		Achinese
@@ -2534,11 +2497,8 @@ zul	zu	Zulu
 zun		Zuni'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition class>>readISOLanguagesFrom: stream [
+{ #category : #private }
+ISOLanguageDefinition class >> readISOLanguagesFrom: stream [
 	"self readISOLanguagesFrom: self isoLanguages readStream "
 	| languages language code3 index line |
 	languages := Dictionary new.
@@ -2559,66 +2519,42 @@ ISOLanguageDefinition class>>readISOLanguagesFrom: stream [
 	^languages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition>>iso2 [
+{ #category : #accessing }
+ISOLanguageDefinition >> iso2 [
 	^iso2 ifNil: [self iso3]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition>>iso2: aString [
+{ #category : #accessing }
+ISOLanguageDefinition >> iso2: aString [
 	iso2 := aString ifEmpty: [nil] ifNotEmpty: [aString]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition>>iso3 [
+{ #category : #accessing }
+ISOLanguageDefinition >> iso3 [
 	^iso3 ifNil: ['']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition>>iso3: aString [
+{ #category : #accessing }
+ISOLanguageDefinition >> iso3: aString [
 	iso3 := aString ifEmpty: [nil] ifNotEmpty: [aString]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition>>iso3Alternate [
+{ #category : #accessing }
+ISOLanguageDefinition >> iso3Alternate [
 	^iso3Alternate ifNil: ['']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition>>iso3Alternate: aString [
+{ #category : #accessing }
+ISOLanguageDefinition >> iso3Alternate: aString [
 	iso3Alternate := aString ifEmpty: [nil] ifNotEmpty: [aString]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition>>language [
+{ #category : #accessing }
+ISOLanguageDefinition >> language [
 	^ language
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ISOLanguageDefinition>>language: aString [
+{ #category : #accessing }
+ISOLanguageDefinition >> language: aString [
 	language := aString
 ]

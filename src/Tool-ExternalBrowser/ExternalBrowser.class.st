@@ -24,24 +24,17 @@ Class {
 		'showClassSide',
 		'model'
 	],
-	#category : #Tool-ExternalBrowser,
-	#timestamp : 'GuillermoPolito 5/29/2015 13:37'
+	#category : #Tool-ExternalBrowser
 }
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser class>>browseStream: aStream [
+{ #category : #'public access' }
+ExternalBrowser class >> browseStream: aStream [
 
 	self openOn: (RingChunkImporter fromStream: aStream)
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser class>>defaultSpec [
+{ #category : #specs }
+ExternalBrowser class >> defaultSpec [
 	<spec: #default>
 	
 	^ SpecLayout composed 
@@ -59,11 +52,8 @@ ExternalBrowser class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #System-FileRegistry,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser class>>fileReaderServicesForFile: fullName suffix: suffix [
+{ #category : #System-FileRegistry }
+ExternalBrowser class >> fileReaderServicesForFile: fullName suffix: suffix [
 	<fileService>
 
 	^ (#('st' 'cs') includes: suffix)
@@ -71,11 +61,8 @@ ExternalBrowser class>>fileReaderServicesForFile: fullName suffix: suffix [
 		ifFalse: [ #() ].
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser class>>openOn: model [
+{ #category : #specs }
+ExternalBrowser class >> openOn: model [
 
 	self basicNew
 		model: model;
@@ -83,11 +70,8 @@ ExternalBrowser class>>openOn: model [
 		openWithSpec
 ]
 
-{
-	#category : #System-FileRegistry,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser class>>serviceBrowseCode [
+{ #category : #System-FileRegistry }
+ExternalBrowser class >> serviceBrowseCode [
 	"Answer the service of opening a file-contents browser"
 
 	^ (SimpleServiceEntry
@@ -99,30 +83,21 @@ ExternalBrowser class>>serviceBrowseCode [
 		argumentGetter: [ :file| file readOnlyStream ]
 ]
 
-{
-	#category : #System-FileRegistry,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser class>>services [
+{ #category : #System-FileRegistry }
+ExternalBrowser class >> services [
 	"Answer potential file services associated with this class"
 
 	^ {self serviceBrowseCode}.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>classes [
+{ #category : #accessing }
+ExternalBrowser >> classes [
 
 	^ classes
 ]
 
-{
-	#category : #'structure accessing',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>classesOfPackage: aPackage [
+{ #category : #'structure accessing' }
+ExternalBrowser >> classesOfPackage: aPackage [
 	| theClasses |
 	theClasses := aPackage classes.
 	^ self showClassSide state
@@ -130,46 +105,31 @@ ExternalBrowser>>classesOfPackage: aPackage [
 		ifFalse: [ theClasses ]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>initialExtent [
+{ #category : #initialize }
+ExternalBrowser >> initialExtent [
 
 	^ 800@600
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>initializeClassList [
+{ #category : #initialize }
+ExternalBrowser >> initializeClassList [
 	classes := self newList
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>initializeMethodBodyPane [
+{ #category : #initialize }
+ExternalBrowser >> initializeMethodBodyPane [
 	method := self newCode
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>initializePackageList [
+{ #category : #initialize }
+ExternalBrowser >> initializePackageList [
 	packages := self newList.
 	self populatePackages.
 	packages displayBlock: [ :m | m name ]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>initializePresenter [
+{ #category : #initialize }
+ExternalBrowser >> initializePresenter [
 	self wirePackages.
 	self wireClasses.
 	self wireProtocols.
@@ -179,29 +139,20 @@ ExternalBrowser>>initializePresenter [
 		whenChangedDo: [ self refreshClasses: self packages selectedItem ].
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>initializeProtocolList [
+{ #category : #initialize }
+ExternalBrowser >> initializeProtocolList [
 	protocols := self newList
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>initializeSelectorList [
+{ #category : #initialize }
+ExternalBrowser >> initializeSelectorList [
 
 	selectors := self newList.
 	
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>initializeWidgets [
+{ #category : #initialize }
+ExternalBrowser >> initializeWidgets [
 	self initializePackageList.
 	self initializeClassList.
 	self initializeProtocolList.
@@ -220,82 +171,55 @@ ExternalBrowser>>initializeWidgets [
 		add: method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>method [
+{ #category : #accessing }
+ExternalBrowser >> method [
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>method: anObject [
+{ #category : #accessing }
+ExternalBrowser >> method: anObject [
 	method := anObject
 ]
 
-{
-	#category : #'structure accessing',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>methodFor: aSelector [
+{ #category : #'structure accessing' }
+ExternalBrowser >> methodFor: aSelector [
 
 	^ (self classes selectedItem methodNamed: aSelector) sourceCode
 			
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>model: aModel [
+{ #category : #accessing }
+ExternalBrowser >> model: aModel [
 
 	model := aModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>packages [
+{ #category : #accessing }
+ExternalBrowser >> packages [
 
 	^ packages
 ]
 
-{
-	#category : #'selection operation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>populatePackages [
+{ #category : #'selection operation' }
+ExternalBrowser >> populatePackages [
 
 	packages items: model packages.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>protocols [
+{ #category : #accessing }
+ExternalBrowser >> protocols [
 
 	^ protocols
 ]
 
-{
-	#category : #'structure accessing',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>protocolsOfClass: aClass [
+{ #category : #'structure accessing' }
+ExternalBrowser >> protocolsOfClass: aClass [
 
 	^ aClass protocols
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>refreshClasses: pack [
+{ #category : #initialize }
+ExternalBrowser >> refreshClasses: pack [
 	self resetClassSelection.
 	pack 
 		ifNil: [ classes items: #() ] 
@@ -303,63 +227,42 @@ ExternalBrowser>>refreshClasses: pack [
 	Transcript show: pack printString;cr
 ]
 
-{
-	#category : #'selection operation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>resetClassSelection [
+{ #category : #'selection operation' }
+ExternalBrowser >> resetClassSelection [
 
 	self classes resetSelection
 ]
 
-{
-	#category : #'selection operation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>resetMethodBodyPane [
+{ #category : #'selection operation' }
+ExternalBrowser >> resetMethodBodyPane [
 	self method text: ''
 	
 ]
 
-{
-	#category : #'selection operation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>resetProtocolSelection [
+{ #category : #'selection operation' }
+ExternalBrowser >> resetProtocolSelection [
 
 	self protocols resetSelection
 ]
 
-{
-	#category : #'selection operation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>resetSelectorSelection [
+{ #category : #'selection operation' }
+ExternalBrowser >> resetSelectorSelection [
 
 	self selectors resetSelection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>selectors [
+{ #category : #accessing }
+ExternalBrowser >> selectors [
 	^ selectors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>selectors: anObject [
+{ #category : #accessing }
+ExternalBrowser >> selectors: anObject [
 	selectors := anObject
 ]
 
-{
-	#category : #'structure accessing',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>selectorsOfProtocol: aProtocol  [
+{ #category : #'structure accessing' }
+ExternalBrowser >> selectorsOfProtocol: aProtocol [ 
 	
 	| theSelectedClass |
 	theSelectedClass := self showClassSide state
@@ -369,36 +272,24 @@ ExternalBrowser>>selectorsOfProtocol: aProtocol  [
 		methodsInProtocol: self protocols selectedItem) collect: #selector
 ]
 
-{
-	#category : #'structure accessing',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>showClassDefinition [
+{ #category : #'structure accessing' }
+ExternalBrowser >> showClassDefinition [
 	method text: (self classes selectedItem definition  ifNil:[''])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>showClassSide [
+{ #category : #accessing }
+ExternalBrowser >> showClassSide [
 
 	^ showClassSide
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>title  [
+{ #category : #accessing }
+ExternalBrowser >> title [ 
 	^ 'External Package Browser'
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>wireClasses [
+{ #category : #initialize }
+ExternalBrowser >> wireClasses [
 	classes
 		whenSelectedItemChanged: [ :class | 
 			self resetProtocolSelection.
@@ -408,11 +299,8 @@ ExternalBrowser>>wireClasses [
 					         self showClassDefinition ] ]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>wirePackages [
+{ #category : #initialize }
+ExternalBrowser >> wirePackages [
 	packages whenSelectedItemChanged: [ :pack | 
 		self refreshClasses: pack ].
 
@@ -420,11 +308,8 @@ ExternalBrowser>>wirePackages [
 	
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>wireProtocols [
+{ #category : #initialize }
+ExternalBrowser >> wireProtocols [
 	protocols
 		whenSelectedItemChanged: [ :protocol | 
 			self resetSelectorSelection.
@@ -433,11 +318,8 @@ ExternalBrowser>>wireProtocols [
 				ifNotNil: [ selectors items: (self selectorsOfProtocol: protocol) ] ]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalBrowser>>wireSelectors [
+{ #category : #initialize }
+ExternalBrowser >> wireSelectors [
 	selectors
 		whenSelectedItemChanged: [ :selector | 
 			selector 

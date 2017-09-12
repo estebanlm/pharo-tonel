@@ -1,12 +1,7 @@
-Extension {
-	#name : #SequenceableCollection
-}
+Extension { #name : #SequenceableCollection }
 
-{
-	#category : #'*Traits',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-SequenceableCollection>>asTraitComposition [
+{ #category : #'*Traits' }
+SequenceableCollection >> asTraitComposition [
 	"For convenience the composition {T1. T2 ...} is the same as T1 + T2 + ..."
 	^self isEmpty
 		ifFalse: [

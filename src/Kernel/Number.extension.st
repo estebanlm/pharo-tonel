@@ -1,171 +1,115 @@
-Extension {
-	#name : #Number
-}
+Extension { #name : #Number }
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>asDuration [
+{ #category : #'*Kernel-Chronology' }
+Number >> asDuration [
  
  	^ Duration seconds: self asInteger
  
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>asSeconds [
+{ #category : #'*Kernel-Chronology' }
+Number >> asSeconds [
 	^ Duration milliSeconds: self * 1000
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>day [
+{ #category : #'*Kernel-Chronology' }
+Number >> day [
  
  	^ self days
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>days [
+{ #category : #'*Kernel-Chronology' }
+Number >> days [
  
  	^ Duration days: self
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>hour [
+{ #category : #'*Kernel-Chronology' }
+Number >> hour [
  
  	^ self hours
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>hours [
+{ #category : #'*Kernel-Chronology' }
+Number >> hours [
  
  	^ Duration hours: self
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>milliSecond [
+{ #category : #'*Kernel-Chronology' }
+Number >> milliSecond [
  
  	^ self milliSeconds
  
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>milliSeconds [
+{ #category : #'*Kernel-Chronology' }
+Number >> milliSeconds [
  
  	^ Duration milliSeconds: self
  
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>minute [
+{ #category : #'*Kernel-Chronology' }
+Number >> minute [
  
  	^ self minutes
  
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>minutes [
+{ #category : #'*Kernel-Chronology' }
+Number >> minutes [
  
  	^ Duration minutes: self
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>nanoSecond [
+{ #category : #'*Kernel-Chronology' }
+Number >> nanoSecond [
  
  	^ self nanoSeconds
  
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>nanoSeconds [
+{ #category : #'*Kernel-Chronology' }
+Number >> nanoSeconds [
  
  	^ Duration nanoSeconds: self.
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>second [
+{ #category : #'*Kernel-Chronology' }
+Number >> second [
  
  	^ self seconds
  
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>seconds [
+{ #category : #'*Kernel-Chronology' }
+Number >> seconds [
  
  	^ Duration seconds: self
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>week [
+{ #category : #'*Kernel-Chronology' }
+Number >> week [
  
  	^ self weeks
  
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>weeks [
+{ #category : #'*Kernel-Chronology' }
+Number >> weeks [
  
  	^ Duration weeks: self
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>year [
+{ #category : #'*Kernel-Chronology' }
+Number >> year [
  
  	^self years
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Number>>years [
+{ #category : #'*Kernel-Chronology' }
+Number >> years [
  
  	^ Duration years: self
 ]

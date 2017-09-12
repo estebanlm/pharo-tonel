@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnStatusLineTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStatusLineTests>>testInitialization [
+{ #category : #testing }
+ZnStatusLineTests >> testInitialization [
 	"Make sure everything is properly initialized"
 	
 	ZnConstants officialHTTPStatusCodesSpec pairsDo: [ :code :reason |
@@ -22,11 +15,8 @@ ZnStatusLineTests>>testInitialization [
 		self assert: statusLine reason equals: reason ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStatusLineTests>>testReading [
+{ #category : #testing }
+ZnStatusLineTests >> testReading [
 	| statusLine string |
 	string := 'HTTP/1.1 200 OK', String crlf.
 	statusLine := ZnStatusLine readFrom: string readStream.
@@ -35,41 +25,29 @@ ZnStatusLineTests>>testReading [
 	self assert: statusLine version = ZnConstants defaultHTTPVersion 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStatusLineTests>>testReadingWrongCode [
+{ #category : #testing }
+ZnStatusLineTests >> testReadingWrongCode [
 	| string |
 	string := 'HTTP/1.0 1000 OK', String crlf.
 	self should: [ ZnStatusLine readFrom: string readStream ] raise: ZnUnknownHttpStatusCode 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStatusLineTests>>testReadingWrongVersion [
+{ #category : #testing }
+ZnStatusLineTests >> testReadingWrongVersion [
 	| string |
 	string := 'HTTP/0.9 200 OK', String crlf.
 	self should: [ ZnStatusLine readFrom: string readStream ] raise: ZnUnknownHttpVersion
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStatusLineTests>>testReadingWrongVersion2 [
+{ #category : #testing }
+ZnStatusLineTests >> testReadingWrongVersion2 [
 	| string |
 	string := 'HTTP/0.9 Foo OK', String crlf.
 	self should: [ ZnStatusLine readFrom: string readStream ] raise: ZnUnknownHttpVersion
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStatusLineTests>>testWriting [
+{ #category : #testing }
+ZnStatusLineTests >> testWriting [
 	| statusLine string |
 	statusLine := ZnStatusLine ok.
 	string := String streamContents: [ :stream | statusLine writeOn: stream ].

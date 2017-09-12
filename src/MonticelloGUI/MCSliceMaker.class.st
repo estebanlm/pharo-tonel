@@ -27,77 +27,52 @@ Class {
 		'window',
 		'okToDoSlice'
 	],
-	#category : #MonticelloGUI,
-	#timestamp : 'AlainPlantec 9/27/2011 11:43'
+	#category : #MonticelloGUI
 }
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker class>>openFor: anotherWindow [
+{ #category : #opening }
+MCSliceMaker class >> openFor: anotherWindow [
 	^ self new openFor: anotherWindow
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>cancel [
+{ #category : #'user interface' }
+MCSliceMaker >> cancel [
 	self cleanUp.
 	self noSlice
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>cleanUp [
+{ #category : #private }
+MCSliceMaker >> cleanUp [
 	info removeDependent: self.
 	window delete
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>downloadIssueTitle [
+{ #category : #actions }
+MCSliceMaker >> downloadIssueTitle [
 	[self info setTitleFromIssue]
 		on: Error
 		do: [:ex | ^ self informFailedWith: ex].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>info [
+{ #category : #accessing }
+MCSliceMaker >> info [
 	^ info 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>informFailedWith: anError [
+{ #category : #actions }
+MCSliceMaker >> informFailedWith: anError [
 	self inform: anError asString.
 	self info title: '------'
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>initialExtent [
+{ #category : #'user interface' }
+MCSliceMaker >> initialExtent [
 	^ 800@400
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>initialize [
+{ #category : #initialization }
+MCSliceMaker >> initialize [
 	super initialize.
 	info := MCSliceInfo new.
 	info addDependent: self.
@@ -105,11 +80,8 @@ MCSliceMaker>>initialize [
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>issueNumberEntryOn: canvas [
+{ #category : #'user interface' }
+MCSliceMaker >> issueNumberEntryOn: canvas [
 	| issueNumberEntry |
 	issueNumberEntry := canvas
 				newTextEntryFor: self info
@@ -126,11 +98,8 @@ MCSliceMaker>>issueNumberEntryOn: canvas [
 	^ issueNumberEntry
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>issueTitleOn: canvas [
+{ #category : #'user interface' }
+MCSliceMaker >> issueTitleOn: canvas [
 	| sliceTitleEntry |
 	sliceTitleEntry := canvas window
 				newAutoAcceptTextEntryFor: self info
@@ -143,72 +112,48 @@ MCSliceMaker>>issueTitleOn: canvas [
 	^ sliceTitleEntry
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>noSlice [
+{ #category : #'user interface' }
+MCSliceMaker >> noSlice [
 	info := nil.
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>ok [
+{ #category : #'user interface' }
+MCSliceMaker >> ok [
 	self okToDoSlice: true.
 	self cleanUp
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>okEnabled [
+{ #category : #'user interface' }
+MCSliceMaker >> okEnabled [
 	^ self info canMakePackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>okToDoSlice [
+{ #category : #accessing }
+MCSliceMaker >> okToDoSlice [
 	^ okToDoSlice ifNil: [false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>okToDoSlice: aBoolean [
+{ #category : #accessing }
+MCSliceMaker >> okToDoSlice: aBoolean [
 	okToDoSlice := aBoolean
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>openFor: anotherWindow [
+{ #category : #'user interface' }
+MCSliceMaker >> openFor: anotherWindow [
 	window := self window.
 	anotherWindow openModal: window.
 	^ self resultInfo
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>resultInfo [
+{ #category : #accessing }
+MCSliceMaker >> resultInfo [
 	^ self okToDoSlice 
 		ifTrue: [info]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>rootItems [
+{ #category : #'user interface' }
+MCSliceMaker >> rootItems [
 	^ (MCWorkingCopy allManagers sort: [ :a :b | 
 		"Sort alphabetically, putting modified packages first in the list. Copy/pasted from MCWorkingCopyBrowser>>#orderSpecs"
 		(a modified = b modified) 
@@ -217,32 +162,23 @@ MCSliceMaker>>rootItems [
 		])
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>selectionChanged: aSelectionChangedAnnounce [
+{ #category : #selecting }
+MCSliceMaker >> selectionChanged: aSelectionChangedAnnounce [
 	| selectedWorkingCopies |
 	selectedWorkingCopies := aSelectionChangedAnnounce selection selectedItems.
 	self info includedPackages: selectedWorkingCopies.
 	self changed: #okEnabled
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>update: aSymbol [
+{ #category : #updating }
+MCSliceMaker >> update: aSymbol [
 	aSymbol = #issueNumber ifTrue: [ self downloadIssueTitle ].
 	self changed: #okEnabled.
 	super update: aSymbol
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceMaker>>window [
+{ #category : #'user interface' }
+MCSliceMaker >> window [
 	| sliceInfoRow buttonsRow okBtn cancelBtn issueNumberEntry issueSummaryEntry tree treeMorph |
 	window := StandardWindow new model: self.
 	window title: ' Slice Maker' translated.

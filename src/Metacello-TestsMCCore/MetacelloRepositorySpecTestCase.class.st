@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #MetacelloRepositorySpecTestCase,
 	#superclass : #MetacelloSpecTestCase,
-	#category : #Metacello-TestsMCCore,
-	#timestamp : ''
+	#category : #Metacello-TestsMCCore
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositorySpecTestCase>>projectClass [
+{ #category : #accessing }
+MetacelloRepositorySpecTestCase >> projectClass [
     ^ MetacelloMCProject
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositorySpecTestCase>>testRepositoryMergeSpec [
+{ #category : #tests }
+MetacelloRepositorySpecTestCase >> testRepositoryMergeSpec [
     | repositoryA repositoryB repository |
     repositoryA := self repositorySpec
         description: '/opt/gemstone/repository';
@@ -39,11 +29,8 @@ MetacelloRepositorySpecTestCase>>testRepositoryMergeSpec [
     self assert: repository type = 'http'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloRepositorySpecTestCase>>testRepositorySpec [
+{ #category : #tests }
+MetacelloRepositorySpecTestCase >> testRepositorySpec [
     | repository |
     repository := self repositorySpec
         description: '/opt/gemstone/repository';

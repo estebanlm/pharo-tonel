@@ -25,24 +25,17 @@ Class {
 	#name : #FFICallbackReturnValue,
 	#superclass : #Alien,
 	#type : #bytes,
-	#category : #Alien-Core,
-	#timestamp : 'eem 9/7/2016 18:35'
+	#category : #Alien-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackReturnValue class>>dataSize [
+{ #category : #'instance creation' }
+FFICallbackReturnValue class >> dataSize [
 	"See class comment"
 	^16
 ]
 
-{
-	#category : #primitives-callbacks,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackReturnValue>>primReturnFromContext: callbackContext "<ContextPart>" through: jmpbuf "<Integer>" "^not reached" [
+{ #category : #primitives-callbacks }
+FFICallbackReturnValue >> primReturnFromContext: callbackContext "<ContextPart>" through: jmpbuf [ "<Integer>" "^not reached"
 	"Return a value, as described by the receiver, to some C callee that has made a
 	callback.   Reestablish the interpreter's state prior to the callback so that either
 	the callout can return or subsequent callbacks can occur.  callbackContext is an
@@ -52,36 +45,24 @@ FFICallbackReturnValue>>primReturnFromContext: callbackContext "<ContextPart>" t
 	self primitiveFailed
 ]
 
-{
-	#category : #'instance initalization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackReturnValue>>returnDouble: f [
+{ #category : #'instance initalization' }
+FFICallbackReturnValue >> returnDouble: f [
 	self signedLongAt: self typeOffset put: 2.
 	self doubleAt: self valueOffset put: f asFloat
 ]
 
-{
-	#category : #'instance initalization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackReturnValue>>returnInteger: n [
+{ #category : #'instance initalization' }
+FFICallbackReturnValue >> returnInteger: n [
 	self signedLongAt: self typeOffset put: 0.
 	self signedLongAt: self valueOffset put: n asInteger
 ]
 
-{
-	#category : #'field offsets',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackReturnValue>>typeOffset [
+{ #category : #'field offsets' }
+FFICallbackReturnValue >> typeOffset [
 	^1 "0"
 ]
 
-{
-	#category : #'field offsets',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackReturnValue>>valueOffset [
+{ #category : #'field offsets' }
+FFICallbackReturnValue >> valueOffset [
 	^9 "8"
 ]

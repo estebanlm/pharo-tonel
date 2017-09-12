@@ -11,15 +11,11 @@ The use of bit 25 of the source pointer for file references permits backward com
 Class {
 	#name : #SourceFileArrayTest,
 	#superclass : #TestCase,
-	#category : #Tests-Files,
-	#timestamp : 'dtl 12/22/2009 23:10'
+	#category : #Tests-Files
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SourceFileArrayTest>>ensureChangesFileOpenedInProcess [
+{ #category : #running }
+SourceFileArrayTest >> ensureChangesFileOpenedInProcess [
 	"Ensure the changes file is open"
 
 	| remoteString |
@@ -29,11 +25,8 @@ SourceFileArrayTest>>ensureChangesFileOpenedInProcess [
 	"self deny: ProcessAndSessionLocalSourcesFileArray value isNil."
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SourceFileArrayTest>>testAddressRange [
+{ #category : #testing }
+SourceFileArrayTest >> testAddressRange [
 	"Test source pointer to file position address translation across a wide address range"
 	
 	| sf i p a |
@@ -46,11 +39,8 @@ SourceFileArrayTest>>testAddressRange [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SourceFileArrayTest>>testChangesFileAddressRange [
+{ #category : #testing }
+SourceFileArrayTest >> testChangesFileAddressRange [
 	"Test file position to source pointer address translation for the changes file"
 	
 	| sf i p a a2 |
@@ -93,20 +83,14 @@ SourceFileArrayTest>>testChangesFileAddressRange [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SourceFileArrayTest>>testChangesFileStream [
+{ #category : #testing }
+SourceFileArrayTest >> testChangesFileStream [
 
 	self assert: SourceFiles changesFileStream isNotNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SourceFileArrayTest>>testFileIndexFromSourcePointer [
+{ #category : #testing }
+SourceFileArrayTest >> testFileIndexFromSourcePointer [
 	"Test derivation of file index for sources or changes file from source pointers"
 
 	| sf |
@@ -148,11 +132,8 @@ SourceFileArrayTest>>testFileIndexFromSourcePointer [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SourceFileArrayTest>>testFilePositionFromSourcePointer [
+{ #category : #testing }
+SourceFileArrayTest >> testFilePositionFromSourcePointer [
 	"Test derivation of file position for sources or changes file from source pointers"
 
 	| sf |
@@ -178,11 +159,8 @@ SourceFileArrayTest>>testFilePositionFromSourcePointer [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SourceFileArrayTest>>testForkedRead [
+{ #category : #testing }
+SourceFileArrayTest >> testForkedRead [
 
 	| originalString remoteString readSemaphore readString testSemaphore |
 	originalString := '"test"'.
@@ -210,11 +188,8 @@ SourceFileArrayTest>>testForkedRead [
 	self assert: readString equals: originalString.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SourceFileArrayTest>>testForkedWrite [
+{ #category : #testing }
+SourceFileArrayTest >> testForkedWrite [
 
 	| originalString remoteString readSemaphore readString testSemaphore |
 	originalString := '"test"'.
@@ -243,11 +218,8 @@ SourceFileArrayTest>>testForkedWrite [
 	self assert: readString equals: originalString.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SourceFileArrayTest>>testProtocol [
+{ #category : #testing }
+SourceFileArrayTest >> testProtocol [
 	"Test that we can access protocol correctly"
 	"self debug: #testProtocol"
 
@@ -262,11 +234,8 @@ SourceFileArrayTest>>testProtocol [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SourceFileArrayTest>>testSourcePointerFromFileIndexAndPosition [
+{ #category : #testing }
+SourceFileArrayTest >> testSourcePointerFromFileIndexAndPosition [
 	"Test valid input ranges"
 
 	| sf |
@@ -294,11 +263,8 @@ SourceFileArrayTest>>testSourcePointerFromFileIndexAndPosition [
 	self assert: 16r4FFFFFF = (sf sourcePointerFromFileIndex: 2 andPosition: 16r1FFFFFF)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SourceFileArrayTest>>testSourcesFileAddressRange [
+{ #category : #testing }
+SourceFileArrayTest >> testSourcesFileAddressRange [
 	"Test file position to source pointer address translation for the sources file"
 	
 	| sf i p a a2 |
@@ -339,20 +305,14 @@ SourceFileArrayTest>>testSourcesFileAddressRange [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SourceFileArrayTest>>testSourcesFileStream [
+{ #category : #testing }
+SourceFileArrayTest >> testSourcesFileStream [
 
 	self assert: SourceFiles sourcesFileStream isNotNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SourceFileArrayTest>>testTimeStamp [
+{ #category : #testing }
+SourceFileArrayTest >> testTimeStamp [
 	"Test that we can access timeStamp correctly"
 	"self debug: #testTimeStamp"
 

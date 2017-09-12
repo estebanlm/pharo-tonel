@@ -4,31 +4,21 @@ Used for cleaning the image
 Class {
 	#name : #ImageCleaner,
 	#superclass : #Object,
-	#category : #Tool-ImageCleaner,
-	#timestamp : 'TorstenBergmann 2/4/2014 20:43'
+	#category : #Tool-ImageCleaner
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-ImageCleaner class>>cleanUpForProduction [
+{ #category : #'instance creation' }
+ImageCleaner class >> cleanUpForProduction [
 	self new cleanUpForProduction
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-ImageCleaner class>>cleanUpForRelease [
+{ #category : #'instance creation' }
+ImageCleaner class >> cleanUpForRelease [
 	self new cleanUpForRelease
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-ImageCleaner>>cleanUpForProduction [
+{ #category : #api }
+ImageCleaner >> cleanUpForProduction [
 	"self new cleanUpForProduction"
 	"delete logo"	
 	PolymorphSystemSettings showDesktopLogo: false.
@@ -77,11 +67,8 @@ ImageCleaner>>cleanUpForProduction [
 	
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-ImageCleaner>>cleanUpForRelease [
+{ #category : #api }
+ImageCleaner >> cleanUpForRelease [
 	"self new cleanUpForRelease"
 
 	Author fullName: 'Mr.Cleaner'.
@@ -105,11 +92,8 @@ ImageCleaner>>cleanUpForRelease [
 	Author reset
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-ImageCleaner>>cleanUpMethods [
+{ #category : #cleaning }
+ImageCleaner >> cleanUpMethods [
 	"Make sure that all methods in use are restarted"
 	"self new cleanUpMethods"
 
@@ -120,11 +104,8 @@ ImageCleaner>>cleanUpMethods [
 	Delay restartTimerEventLoop.
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-ImageCleaner>>cleanUpProcesses [
+{ #category : #cleaning }
+ImageCleaner >> cleanUpProcesses [
 
     (Process allInstances
                reject: [ :p |
@@ -140,27 +121,18 @@ ImageCleaner>>cleanUpProcesses [
 
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-ImageCleaner>>examplePackages [
+{ #category : #cleaning }
+ImageCleaner >> examplePackages [
 	^RPackageOrganizer default packageNames select: [ :each | each endsWith: 'Examples' ]
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-ImageCleaner>>helpPackages [
+{ #category : #cleaning }
+ImageCleaner >> helpPackages [
 	^RPackageOrganizer default packageNames select: [ :each | each endsWith: '-Help' ]
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-ImageCleaner>>packagesForCleanUpInProduction [
+{ #category : #cleaning }
+ImageCleaner >> packagesForCleanUpInProduction [
 	"A list of packages who will be unloaded when going to production.
 	 WARNING, ORDER IS IMPORTANT"
 	
@@ -190,11 +162,8 @@ ImageCleaner>>packagesForCleanUpInProduction [
 
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-ImageCleaner>>removeEmptyCategories [
+{ #category : #cleaning }
+ImageCleaner >> removeEmptyCategories [
 
 	"Remove empty categories, which are not in MC packages, because MC does
 	not do this (this script does not make packages dirty)"
@@ -209,20 +178,14 @@ ImageCleaner>>removeEmptyCategories [
 						value: class class organization ].
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-ImageCleaner>>removeEmptyPackages [
+{ #category : #cleaning }
+ImageCleaner >> removeEmptyPackages [
 	| empty |
 	empty := RPackageOrganizer default packages select: #isEmpty.
 	empty do: #unregister.
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-ImageCleaner>>testPackages [
+{ #category : #cleaning }
+ImageCleaner >> testPackages [
 	^(RPackageOrganizer default  packageNames select: [ :each | each endsWith: 'Tests' ]) copyWithout: 'ReleaseTests'
 ]

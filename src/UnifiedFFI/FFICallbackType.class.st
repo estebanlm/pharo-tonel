@@ -9,32 +9,22 @@ The C side of a callback is void* (because is a pointer to a function)
 Class {
 	#name : #FFICallbackType,
 	#superclass : #FFIExternalObjectType,
-	#category : #UnifiedFFI-Types,
-	#timestamp : 'EstebanLorenzano 9/8/2015 20:54'
+	#category : #UnifiedFFI-Types
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackType>>instanceVariableName [
+{ #category : #accessing }
+FFICallbackType >> instanceVariableName [
 	^ #thunk
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackType>>offsetReadFieldAt: offsetVariableName [
+{ #category : #'emitting code' }
+FFICallbackType >> offsetReadFieldAt: offsetVariableName [
 	^ String streamContents: [ :stream | 
 		stream << '^' << self objectClass name << ' forAddress: ((handle pointerAt: ' << offsetVariableName asString << ') asInteger)' ]
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackType>>offsetWriteFieldAt: offsetVariableName with: valueName [
+{ #category : #'emitting code' }
+FFICallbackType >> offsetWriteFieldAt: offsetVariableName with: valueName [
 	| cr tab |
 	cr := String cr.
 	tab := String tab.
@@ -47,20 +37,14 @@ FFICallbackType>>offsetWriteFieldAt: offsetVariableName with: valueName [
 			<< tab << tab << tab << 'ifNil: [ ExternalAddress null ])' ]
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackType>>readFieldAt: byteOffset [
+{ #category : #'emitting code' }
+FFICallbackType >> readFieldAt: byteOffset [
 	^ String streamContents: [ :stream | 
 		stream << '^' << self objectClass name << ' forAddress: ((handle pointerAt: ' << byteOffset asString << ') asInteger)' ]
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackType>>writeFieldAt: byteOffset with: valueName [
+{ #category : #'emitting code' }
+FFICallbackType >> writeFieldAt: byteOffset with: valueName [
 	^ String streamContents: [ :stream | 
 		stream << 'handle pointerAt: ' << byteOffset asString << ' put: (ExternalAddress fromAddress: anObject thunk address)' ]
 ]

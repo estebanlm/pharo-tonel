@@ -8,38 +8,25 @@ Class {
 	#instVars : [
 		'wrapped'
 	],
-	#category : #Spec-Inspector-Element,
-	#timestamp : 'MarcusDenker 8/5/2014 10:38'
+	#category : #Spec-Inspector-Element
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerWrapper class>>wrap: anObject [
+{ #category : #'instance creation' }
+EyePointerWrapper class >> wrap: anObject [
 	^self new wrappedObject: anObject.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerWrapper>>printString [
+{ #category : #printing }
+EyePointerWrapper >> printString [
 	^wrapped printString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerWrapper>>wrappedObject [
+{ #category : #accessing }
+EyePointerWrapper >> wrappedObject [
 	^wrapped
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerWrapper>>wrappedObject: anObject [
+{ #category : #accessing }
+EyePointerWrapper >> wrappedObject: anObject [
 	wrapped := anObject
 ]

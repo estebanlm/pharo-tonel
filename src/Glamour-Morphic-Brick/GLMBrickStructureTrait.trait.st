@@ -3,17 +3,11 @@ I declare api and logic to work with structure of a Brick as adding, removing, t
 "
 Trait {
 	#name : #GLMBrickStructureTrait,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Glamour-Morphic-Brick-Traits,
-	#timestamp : 'AliakseiSyrel 1/30/2015 10:58'
+	#category : #Glamour-Morphic-Brick-Traits
 }
 
-{
-	#category : #brick-structure-adding/removing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>addAllBricks: aCollection [
+{ #category : #brick-structure-adding/removing }
+GLMBrickStructureTrait >> addAllBricks: aCollection [
 	|bricks|
 	bricks := self privateAddAllBricks: aCollection.
 	bricks do: [ :b | self privatePrepareBrickAfterAdding: b ].
@@ -21,11 +15,8 @@ GLMBrickStructureTrait>>addAllBricks: aCollection [
 	^ aCollection
 ]
 
-{
-	#category : #brick-structure-adding/removing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>addBrick: aBrick after: otherBrick [
+{ #category : #brick-structure-adding/removing }
+GLMBrickStructureTrait >> addBrick: aBrick after: otherBrick [
 	|result|
 	result := self privateAddBrick: aBrick asBrick after: otherBrick.
 	self privatePrepareBrickAfterAdding: result.
@@ -33,11 +24,8 @@ GLMBrickStructureTrait>>addBrick: aBrick after: otherBrick [
 	^ aBrick
 ]
 
-{
-	#category : #brick-structure-adding/removing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>addBrick: aBrick before: otherBrick [
+{ #category : #brick-structure-adding/removing }
+GLMBrickStructureTrait >> addBrick: aBrick before: otherBrick [
 	|result|
 	result := self privateAddBrick: aBrick asBrick before: otherBrick.
 	self privatePrepareBrickAfterAdding: result.
@@ -45,11 +33,8 @@ GLMBrickStructureTrait>>addBrick: aBrick before: otherBrick [
 	^ aBrick
 ]
 
-{
-	#category : #brick-structure-adding/removing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>addBrickBack: aBrick [
+{ #category : #brick-structure-adding/removing }
+GLMBrickStructureTrait >> addBrickBack: aBrick [
 	|result|
 	result := self privateAddBrickBack: aBrick asBrick.
 	self privatePrepareBrickAfterAdding: result.
@@ -57,11 +42,8 @@ GLMBrickStructureTrait>>addBrickBack: aBrick [
 	^ aBrick
 ]
 
-{
-	#category : #brick-structure-adding/removing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>addBrickFirst: aBrick [
+{ #category : #brick-structure-adding/removing }
+GLMBrickStructureTrait >> addBrickFirst: aBrick [
 	|result|
 	result := self privateAddBrickFirst: aBrick asBrick.
 	self privatePrepareBrickAfterAdding: result.
@@ -69,225 +51,153 @@ GLMBrickStructureTrait>>addBrickFirst: aBrick [
 	^ aBrick
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>allOwnersDo: aBlock [
+{ #category : #brick-structure }
+GLMBrickStructureTrait >> allOwnersDo: aBlock [
 	"Evaluate aBlock with all owners of the receiver"
 	self owner ifNotNil:[ ^ self owner withAllOwnersDo: aBlock ].
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>allSubbricks [
+{ #category : #brick-structure }
+GLMBrickStructureTrait >> allSubbricks [
 	| all |
 	all := OrderedCollection new.
 	self allSubbricksDo: [:each | all add: each ].
 	^ all
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>allSubbricksDo: aBlock [
+{ #category : #brick-structure }
+GLMBrickStructureTrait >> allSubbricksDo: aBlock [
 
 	self subbricks do: [:each | 
 		each isBrick ifTrue: [ aBlock value: each. each allSubbricksDo: aBlock ] ]
 ]
 
-{
-	#category : #brick-structure-converting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>asBrick [
+{ #category : #brick-structure-converting }
+GLMBrickStructureTrait >> asBrick [
 	^ self
 ]
 
-{
-	#category : #brick-structure-converting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>asBrickedMorph [
+{ #category : #brick-structure-converting }
+GLMBrickStructureTrait >> asBrickedMorph [
 
 	^ GLMFoundationBrick new brickRoot: self
 ]
 
-{
-	#category : #brick-structure-converting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>asFormValue [
+{ #category : #brick-structure-converting }
+GLMBrickStructureTrait >> asFormValue [
 
 	^ nil
 ]
 
-{
-	#category : #brick-structure-converting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>brick [
+{ #category : #brick-structure-converting }
+GLMBrickStructureTrait >> brick [
 
 	^ self
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>brickDoubleLink [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> brickDoubleLink [
 
 	^ self valueOfProperty: #brickDoubleLink ifAbsentPut: [ nil ]
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>brickDoubleLink: aDoubleLink [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> brickDoubleLink: aDoubleLink [
 
 	self setProperty: #brickDoubleLink toValue: aDoubleLink
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>brickRoot [
+{ #category : #brick-structure }
+GLMBrickStructureTrait >> brickRoot [
 
 	^ self owner ifNotNil: [ self owner brickRoot ] ifNil: [ ^ self ]
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>firstOwnerSuchThat: conditionBlock [
+{ #category : #brick-structure }
+GLMBrickStructureTrait >> firstOwnerSuchThat: conditionBlock [
 
 	self allOwnersDo: [:m | (conditionBlock cull: m) ifTrue: [^ m]].
 	^ nil
 
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>firstSubbrick [
+{ #category : #brick-structure }
+GLMBrickStructureTrait >> firstSubbrick [
 
 	^ self subbricks first
 ]
 
-{
-	#category : #brick-structure-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>hasOwner [
+{ #category : #brick-structure-testing }
+GLMBrickStructureTrait >> hasOwner [
 
 	^ self owner isNotNil
 ]
 
-{
-	#category : #brick-structure-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>hasSubbrick: aBrick [
+{ #category : #brick-structure-testing }
+GLMBrickStructureTrait >> hasSubbrick: aBrick [
 
 	^ aBrick owner = self
 ]
 
-{
-	#category : #brick-structure-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>hasSubbricks [
+{ #category : #brick-structure-testing }
+GLMBrickStructureTrait >> hasSubbricks [
 
 	^ self subbricks isEmpty not
 ]
 
-{
-	#category : #brick-structure-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>isBrick [
+{ #category : #brick-structure-testing }
+GLMBrickStructureTrait >> isBrick [
 
 	^ true
 ]
 
-{
-	#category : #brick-structure-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>isFirstInOwner [
+{ #category : #brick-structure-testing }
+GLMBrickStructureTrait >> isFirstInOwner [
 
 	^ self brickDoubleLink 
 		ifNotNil: [ :bdl | bdl hasPredecessor not ]
 		ifNil: [ false ]
 ]
 
-{
-	#category : #brick-structure-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>isFoundationBrick [
+{ #category : #brick-structure-testing }
+GLMBrickStructureTrait >> isFoundationBrick [
 
 	^ false
 ]
 
-{
-	#category : #brick-structure-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>isLastInOwner [
+{ #category : #brick-structure-testing }
+GLMBrickStructureTrait >> isLastInOwner [
 
 	^ self brickDoubleLink
 		ifNotNil: [ :bdl | bdl hasSuccessor not ]
 		ifNil: [ false ]
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>lastSubbrick [
+{ #category : #brick-structure }
+GLMBrickStructureTrait >> lastSubbrick [
 
 	^ self subbricks last
 ]
 
-{
-	#category : #brick-structure-converting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>morph [
+{ #category : #brick-structure-converting }
+GLMBrickStructureTrait >> morph [
 	^ self
 ]
 
-{
-	#category : #brick-structure-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>onRemovedFrom: aBrick [
+{ #category : #brick-structure-events }
+GLMBrickStructureTrait >> onRemovedFrom: aBrick [
 	"is called when brick is removed from aBrick"
 	self subbricks do: [ :each | each onRemovedFrom: aBrick ]
 ]
 
-{
-	#category : #brick-structure-opening,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>openCenteredInBrickWindow [
+{ #category : #brick-structure-opening }
+GLMBrickStructureTrait >> openCenteredInBrickWindow [
 
 	self openCenteredInBrickWindowLabeled: self
 ]
 
-{
-	#category : #brick-structure-opening,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>openCenteredInBrickWindowLabeled: aLabel [
+{ #category : #brick-structure-opening }
+GLMBrickStructureTrait >> openCenteredInBrickWindowLabeled: aLabel [
 
 	self
 		vAlign: #center;
@@ -295,20 +205,14 @@ GLMBrickStructureTrait>>openCenteredInBrickWindowLabeled: aLabel [
 		openInBrickWindowLabeled: aLabel
 ]
 
-{
-	#category : #brick-structure-opening,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>openInBrickWindow [
+{ #category : #brick-structure-opening }
+GLMBrickStructureTrait >> openInBrickWindow [
 
 	^ self openInBrickWindowLabeled: self
 ]
 
-{
-	#category : #brick-structure-opening,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>openInBrickWindowLabeled: aLabel [
+{ #category : #brick-structure-opening }
+GLMBrickStructureTrait >> openInBrickWindowLabeled: aLabel [
 	
 	^ self class environment at: #GLMSystemWindowBrick 
 		ifPresent: [ :glmSystemWindowBrick |
@@ -327,20 +231,14 @@ GLMBrickStructureTrait>>openInBrickWindowLabeled: aLabel [
 	
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>owner [
+{ #category : #brick-structure }
+GLMBrickStructureTrait >> owner [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>owner: aBrick [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> owner: aBrick [
 	|oldOwner|
 	oldOwner := self owner.
 	self privateOwner: aBrick.
@@ -349,21 +247,15 @@ GLMBrickStructureTrait>>owner: aBrick [
 		ifNil: [ self onRemovedFrom: oldOwner ]
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>ownerThatIsA: aClass [
+{ #category : #brick-structure }
+GLMBrickStructureTrait >> ownerThatIsA: aClass [
 	"Return the first enclosing morph that is a kind of aClass, or nil if none"
 
 	^ self firstOwnerSuchThat: [:m | m isKindOf: aClass]
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>privateAddAllBricks: aCollection [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> privateAddAllBricks: aCollection [
 	|bricks|
 	bricks := aCollection collect: #asBrick.
 	bricks do: [ :each | self privateAddBrickLinkBack: each ].
@@ -371,11 +263,8 @@ GLMBrickStructureTrait>>privateAddAllBricks: aCollection [
 	^ bricks
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>privateAddBrick: aBrick after: otherBrick [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> privateAddBrick: aBrick after: otherBrick [
 	| brick link otherLink otherLinkSuccessor index|
 	brick := aBrick asBrick.
 	
@@ -399,11 +288,8 @@ GLMBrickStructureTrait>>privateAddBrick: aBrick after: otherBrick [
 	^ aBrick
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>privateAddBrick: aBrick before: otherBrick [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> privateAddBrick: aBrick before: otherBrick [
 	| brick link otherLink otherLinkPredeccessor index|
 	brick := aBrick asBrick.
 	
@@ -427,11 +313,8 @@ GLMBrickStructureTrait>>privateAddBrick: aBrick before: otherBrick [
 	^ aBrick
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>privateAddBrickBack: aBrick [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> privateAddBrickBack: aBrick [
 	|brick|
 	
 	brick := aBrick asBrick.
@@ -441,11 +324,8 @@ GLMBrickStructureTrait>>privateAddBrickBack: aBrick [
 	^ aBrick
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>privateAddBrickFirst: aBrick [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> privateAddBrickFirst: aBrick [
 	| link head tail brick|
 	
 	brick := aBrick asBrick.
@@ -466,11 +346,8 @@ GLMBrickStructureTrait>>privateAddBrickFirst: aBrick [
 	^ aBrick
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>privateAddBrickLinkBack: aBrick [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> privateAddBrickLinkBack: aBrick [
 	|link brick|
 	
 	brick := aBrick asBrick.
@@ -486,11 +363,8 @@ GLMBrickStructureTrait>>privateAddBrickLinkBack: aBrick [
 	^ aBrick
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>privateAddIntoWorld: aBrick [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> privateAddIntoWorld: aBrick [
 
 	self world == aBrick world
 		ifFalse: [ self privateRemoveOutWorld: aBrick ].
@@ -498,39 +372,27 @@ GLMBrickStructureTrait>>privateAddIntoWorld: aBrick [
 	
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>privateOwner: aBrick [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> privateOwner: aBrick [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>privatePrepareBrickAfterAdding: aBrick [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> privatePrepareBrickAfterAdding: aBrick [
 
 	aBrick wrappedBounds markWidthDirty; markHeightDirty.
 	self privateAddIntoWorld: aBrick
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>privatePrepareBrickAfterRemoving: aBrick [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> privatePrepareBrickAfterRemoving: aBrick [
 
 	self privateRemoveOutWorld: aBrick
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>privateRemoveAllBricks [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> privateRemoveAllBricks [
 	
 	self hasSubbricks ifFalse: [ ^ self ].
 	self subbricks do: [:each |
@@ -539,11 +401,8 @@ GLMBrickStructureTrait>>privateRemoveAllBricks [
 	self subbricks removeAll
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>privateRemoveBrick: aBrick [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> privateRemoveBrick: aBrick [
 	| predecessor successor link head tail index|
 	aBrick ifNil: [ ^ aBrick ].
 	(self hasSubbrick: aBrick) ifFalse: [ ^ aBrick ].
@@ -570,30 +429,21 @@ GLMBrickStructureTrait>>privateRemoveBrick: aBrick [
 	^ aBrick
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>privateRemoveOutWorld: aBrick [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> privateRemoveOutWorld: aBrick [
 
 	aBrick outOfWorld: aBrick world
 	
 ]
 
-{
-	#category : #private-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>privateSubbricks: aCollection [
+{ #category : #private-structure }
+GLMBrickStructureTrait >> privateSubbricks: aCollection [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #brick-structure-adding/removing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>removeAllBricks [
+{ #category : #brick-structure-adding/removing }
+GLMBrickStructureTrait >> removeAllBricks [
 	|copy|
 	copy := self subbricks copy.
 	self privateRemoveAllBricks.
@@ -601,11 +451,8 @@ GLMBrickStructureTrait>>removeAllBricks [
 	self doLayoutForce
 ]
 
-{
-	#category : #brick-structure-adding/removing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>removeBrick: aBrick [
+{ #category : #brick-structure-adding/removing }
+GLMBrickStructureTrait >> removeBrick: aBrick [
 	|result|
 	aBrick ifNil: [ ^ aBrick ].
 	result := self privateRemoveBrick: aBrick.
@@ -614,11 +461,8 @@ GLMBrickStructureTrait>>removeBrick: aBrick [
 	^ result
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>subbrickAfter [
+{ #category : #brick-structure }
+GLMBrickStructureTrait >> subbrickAfter [
 
 	"Return the subbbrick after (behind) me, or nil"
 	| link |
@@ -628,11 +472,8 @@ GLMBrickStructureTrait>>subbrickAfter [
 	^ link nextLink value
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>subbrickBefore [
+{ #category : #brick-structure }
+GLMBrickStructureTrait >> subbrickBefore [
 
 	"Return the subbrick before me, or nil"
 	| link |
@@ -642,38 +483,26 @@ GLMBrickStructureTrait>>subbrickBefore [
 	^ link previousLink value
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>subbricks [
+{ #category : #brick-structure }
+GLMBrickStructureTrait >> subbricks [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>subbricksCount [
+{ #category : #brick-structure }
+GLMBrickStructureTrait >> subbricksCount [
 
 	^ self subbricks size
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>subbricksReverseDo: aBlock [
+{ #category : #brick-structure }
+GLMBrickStructureTrait >> subbricksReverseDo: aBlock [
 
 	self subbricks reverseDo: aBlock
 ]
 
-{
-	#category : #brick-structure-opening,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>window [
+{ #category : #brick-structure-opening }
+GLMBrickStructureTrait >> window [
 	"Answer the receiver's window."
 	
 	^ self class environment at: #GLMWindowBrick 
@@ -683,21 +512,15 @@ GLMBrickStructureTrait>>window [
 		ifAbsent: [ self ownerThatIsA: SystemWindow ].
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>withAllOwnersDo: aBlock [
+{ #category : #brick-structure }
+GLMBrickStructureTrait >> withAllOwnersDo: aBlock [
 	"Evaluate aBlock with the receiver and all of its owners"
 	aBlock cull: self.
 	self owner ifNotNil:[ ^ self owner withAllOwnersDo: aBlock ]
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickStructureTrait>>withAllSubbricks [
+{ #category : #brick-structure }
+GLMBrickStructureTrait >> withAllSubbricks [
 
 	^ self allSubbricks add: self;
 		 yourself

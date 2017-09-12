@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterPaneBrick,
 	#superclass : #GLMBrick,
@@ -9,44 +6,31 @@ Class {
 		'previewBrick',
 		'arrowBrick'
 	],
-	#category : #GT-Spotter-UI,
-	#timestamp : ''
+	#category : #GT-Spotter-UI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPaneBrick>>arrowBrick [
+{ #category : #accessing }
+GTSpotterPaneBrick >> arrowBrick [
 
 	^ arrowBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPaneBrick>>arrowBrick: aBrick [
+{ #category : #accessing }
+GTSpotterPaneBrick >> arrowBrick: aBrick [
 
 	arrowBrick := aBrick.
 	self themer spotterThemer spotterPreviewArrowContainerStyleFor: self arrowBrick.
 	self addBrickBack: self arrowBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPaneBrick>>contentsBrick [
+{ #category : #accessing }
+GTSpotterPaneBrick >> contentsBrick [
 
 	^ contentsBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPaneBrick>>contentsBrick: aBrick [
+{ #category : #accessing }
+GTSpotterPaneBrick >> contentsBrick: aBrick [
 	
 	contentsBrick ifNotNil: [self removeBrick: contentsBrick].
 	contentsBrick := aBrick.
@@ -56,11 +40,8 @@ GTSpotterPaneBrick>>contentsBrick: aBrick [
 	self addBrickBack: contentsBrick
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPaneBrick>>hidePreview [
+{ #category : #action }
+GTSpotterPaneBrick >> hidePreview [
 
 	self isPreviewShown ifFalse: [ ^ self ].
 
@@ -69,11 +50,8 @@ GTSpotterPaneBrick>>hidePreview [
 	self changed.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPaneBrick>>initialize [
+{ #category : #initialization }
+GTSpotterPaneBrick >> initialize [
 	super initialize.
 	
 	self contentsBrick: self newContentsBrick.
@@ -81,56 +59,38 @@ GTSpotterPaneBrick>>initialize [
 	self previewBrick: self newPreviewBrick
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPaneBrick>>isPreviewShown [
+{ #category : #testing }
+GTSpotterPaneBrick >> isPreviewShown [
 
 	^ self hasSubbrick: self previewBrick
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPaneBrick>>newArrowBrick [
+{ #category : #'instance creation' }
+GTSpotterPaneBrick >> newArrowBrick [
 
 	^ GTSpotterPreviewArrowBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPaneBrick>>newContentsBrick [
+{ #category : #'instance creation' }
+GTSpotterPaneBrick >> newContentsBrick [
 
 	^ GTSpotterContentsBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPaneBrick>>newPreviewBrick [
+{ #category : #'instance creation' }
+GTSpotterPaneBrick >> newPreviewBrick [
 
 	^ GTSpotterPreviewBrick new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPaneBrick>>previewBrick [
+{ #category : #accessing }
+GTSpotterPaneBrick >> previewBrick [
 
 	^ previewBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPaneBrick>>previewBrick: aBrick [
+{ #category : #accessing }
+GTSpotterPaneBrick >> previewBrick: aBrick [
 
 	previewBrick ifNotNil: [self removeBrick: aBrick].
 	previewBrick := aBrick.
@@ -138,11 +98,8 @@ GTSpotterPaneBrick>>previewBrick: aBrick [
 	self themer spotterThemer spotterPreviewStyleFor: previewBrick
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPaneBrick>>showPreview [
+{ #category : #action }
+GTSpotterPaneBrick >> showPreview [
 	
 	self isPreviewShown ifTrue: [ ^ self ].
 	
@@ -155,11 +112,8 @@ GTSpotterPaneBrick>>showPreview [
 	self changed.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPaneBrick>>spotterModel: aSpotter [
+{ #category : #accessing }
+GTSpotterPaneBrick >> spotterModel: aSpotter [
 
 	self contentsBrick spotterModel: aSpotter.
 	self arrowBrick spotterModel: aSpotter.

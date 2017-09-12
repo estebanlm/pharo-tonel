@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ChunkImportTestCase,
 	#superclass : #TestCase,
-	#category : #Tests-CodeImport,
-	#timestamp : ''
+	#category : #Tests-CodeImport
 }
 
-{
-	#category : #auxiliar,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChunkImportTestCase>>importAClass [
+{ #category : #auxiliar }
+ChunkImportTestCase >> importAClass [
 
 	^CodeImporter evaluateString: 'Object subclass: #CodeImportTestCaseTestClass
 			instanceVariableNames: ''var1 var2 var3''
@@ -21,11 +14,8 @@ ChunkImportTestCase>>importAClass [
 			category: ''CodeImporter-Tests-Garbage''!'.
 ]
 
-{
-	#category : #importing-code,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChunkImportTestCase>>testExportAMethodWithLangTag [
+{ #category : #importing-code }
+ChunkImportTestCase >> testExportAMethodWithLangTag [
 	|  stream chunkWriteStream |
 	stream := String new writeStream.
 	chunkWriteStream := ChunkWriteStream on: stream.
@@ -128,11 +118,8 @@ ChunkImportTestCase>>testExportAMethodWithLangTag [
 		yourself!]lang[(2798)0!'
 ]
 
-{
-	#category : #importing-code,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChunkImportTestCase>>testImportAClass [
+{ #category : #importing-code }
+ChunkImportTestCase >> testImportAClass [
 	| class |
 	SystemAnnouncer uniqueInstance suspendAllWhile: [ [
 		class := self importAClass.
@@ -145,11 +132,8 @@ ChunkImportTestCase>>testImportAClass [
 	] ensure: [ class ifNotNil: [ class removeFromSystem ] ] ]
 ]
 
-{
-	#category : #importing-code,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChunkImportTestCase>>testImportAClassCategory [
+{ #category : #importing-code }
+ChunkImportTestCase >> testImportAClassCategory [
 	| class classOrganizationString chunk |
 	classOrganizationString := '(#testing testImportAMethod testImportAClass)
 (#auxiliar importAClass)'.
@@ -170,11 +154,8 @@ ChunkImportTestCase>>testImportAClassCategory [
 	] ensure: [ class ifNotNil: [ class removeFromSystem ] ] ]
 ]
 
-{
-	#category : #importing-code,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChunkImportTestCase>>testImportAClassComment [
+{ #category : #importing-code }
+ChunkImportTestCase >> testImportAClassComment [
 	| class comment |
 	comment := 'I''m a nice comment, treat me well :).'.
 	SystemAnnouncer uniqueInstance suspendAllWhile: [[
@@ -184,11 +165,8 @@ ChunkImportTestCase>>testImportAClassComment [
 	] ensure: [ class ifNotNil: [ class removeFromSystem ] ] ]
 ]
 
-{
-	#category : #importing-code,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChunkImportTestCase>>testImportAClassCommentWithExclamationMarks [
+{ #category : #importing-code }
+ChunkImportTestCase >> testImportAClassCommentWithExclamationMarks [
 	| class comment commentToWrite |
 	comment := 'I''m a nice comment!, treat me well :).'.
 	commentToWrite := 'I''m a nice comment!!, treat me well :).' replaceAll: '!' with: '!!'.
@@ -199,11 +177,8 @@ ChunkImportTestCase>>testImportAClassCommentWithExclamationMarks [
 	] ensure: [ class ifNotNil: [ class removeFromSystem ] ] ]
 ]
 
-{
-	#category : #importing-code,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChunkImportTestCase>>testImportAMethod [
+{ #category : #importing-code }
+ChunkImportTestCase >> testImportAMethod [
 	| class |
 	SystemAnnouncer uniqueInstance
 		suspendAllWhile: [ 
@@ -217,11 +192,8 @@ ChunkImportTestCase>>testImportAMethod [
 				ensure: [ class ifNotNil: [ class removeFromSystem ] ] ]
 ]
 
-{
-	#category : #importing-code,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChunkImportTestCase>>testImportAMethodWithLangTag [
+{ #category : #importing-code }
+ChunkImportTestCase >> testImportAMethodWithLangTag [
 	| class |
 	SystemAnnouncer uniqueInstance suspendAllWhile: [ [
 		class := self importAClass.
@@ -279,11 +251,8 @@ ChunkImportTestCase>>testImportAMethodWithLangTag [
 				ensure: [ class ifNotNil: [ class removeFromSystem ] ] ]
 ]
 
-{
-	#category : #importing-code,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChunkImportTestCase>>testImportAMethodWithNoTimestamp [
+{ #category : #importing-code }
+ChunkImportTestCase >> testImportAMethodWithNoTimestamp [
 	| class |
 	SystemAnnouncer uniqueInstance
 		suspendAllWhile: [ 
@@ -297,11 +266,8 @@ ChunkImportTestCase>>testImportAMethodWithNoTimestamp [
 				ensure: [ class ifNotNil: [ class removeFromSystem ] ] ]
 ]
 
-{
-	#category : #importing-code,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChunkImportTestCase>>testImportAMethodWithSpacesInItsCategory [
+{ #category : #importing-code }
+ChunkImportTestCase >> testImportAMethodWithSpacesInItsCategory [
 	| class |
 	SystemAnnouncer uniqueInstance
 		suspendAllWhile: [ 
@@ -315,18 +281,12 @@ ChunkImportTestCase>>testImportAMethodWithSpacesInItsCategory [
 				ensure: [ class ifNotNil: [ class removeFromSystem ] ] ]
 ]
 
-{
-	#category : #importing-methods,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChunkImportTestCase>>testImportFromReadStream [
+{ #category : #importing-methods }
+ChunkImportTestCase >> testImportFromReadStream [
 	self assert: 4 equals: (CodeImporter evaluateReadStream: '2+2!' readStream)
 ]
 
-{
-	#category : #importing-methods,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChunkImportTestCase>>testImportString [
+{ #category : #importing-methods }
+ChunkImportTestCase >> testImportString [
 	self assert: 4 equals: (CodeImporter evaluateString: '2+2!')
 ]

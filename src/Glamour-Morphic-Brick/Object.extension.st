@@ -1,66 +1,43 @@
-Extension {
-	#name : #Object
-}
+Extension { #name : #Object }
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Object>>asBrick [
+{ #category : #'*Glamour-Morphic-Brick' }
+Object >> asBrick [
 
 	^ GLMMorphBrick on: self asMorph
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Object>>brickAlert [
+{ #category : #'*Glamour-Morphic-Brick' }
+Object >> brickAlert [
 
 	GLMAlertBrick alert: self
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Object>>brickValue: aBrick [
+{ #category : #'*Glamour-Morphic-Brick' }
+Object >> brickValue: aBrick [
 
 	^ self
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Object>>brickValue: anObject withEnoughArguments: aCollection [
+{ #category : #'*Glamour-Morphic-Brick' }
+Object >> brickValue: anObject withEnoughArguments: aCollection [
 
 	^ self
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Object>>phlowValue: anObject [
+{ #category : #'*Glamour-Morphic-Brick' }
+Object >> phlowValue: anObject [
 
 	^ self
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Object>>phlowValue: anObject value: otherObject [
+{ #category : #'*Glamour-Morphic-Brick' }
+Object >> phlowValue: anObject value: otherObject [
 
 	^ self
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Object>>phlowValue: anObject withEnoughArguments: aCollection [
+{ #category : #'*Glamour-Morphic-Brick' }
+Object >> phlowValue: anObject withEnoughArguments: aCollection [
 
 	^ self
 ]

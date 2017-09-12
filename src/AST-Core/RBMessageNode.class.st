@@ -18,26 +18,19 @@ Class {
 		'keywordsPositions',
 		'arguments'
 	],
-	#category : #AST-Core-Nodes,
-	#timestamp : 'NicolaiHess 8/2/2016 14:11'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode class>>receiver: aValueNode selector: aSelector  [
+{ #category : #'instance creation' }
+RBMessageNode class >> receiver: aValueNode selector: aSelector [ 
 	^self 
 		receiver: aValueNode
 		selector: aSelector
 		arguments: #()
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode class>>receiver: aValueNode selector: aSelector arguments: valueNodes  [
+{ #category : #'instance creation' }
+RBMessageNode class >> receiver: aValueNode selector: aSelector arguments: valueNodes [ 
 	^self
 		receiver: aValueNode
 		selector: aSelector
@@ -45,11 +38,8 @@ RBMessageNode class>>receiver: aValueNode selector: aSelector arguments: valueNo
 		arguments: valueNodes.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode class>>receiver: aValueNode selector: aSelector keywordsPositions: positionList arguments: valueNodes [
+{ #category : #'instance creation' }
+RBMessageNode class >> receiver: aValueNode selector: aSelector keywordsPositions: positionList arguments: valueNodes [
 	^(self new)
 		receiver: aValueNode
 			selector: aSelector
@@ -58,11 +48,8 @@ RBMessageNode class>>receiver: aValueNode selector: aSelector keywordsPositions:
 		yourself.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>= anObject  [
+{ #category : #comparing }
+RBMessageNode >> = anObject [ 
 	self == anObject ifTrue: [^true].
 	self class = anObject class ifFalse: [^false].
 	(self receiver = anObject receiver 
@@ -73,36 +60,24 @@ RBMessageNode>>= anObject  [
 	^true
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visiting }
+RBMessageNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^aProgramNodeVisitor visitMessageNode: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>arguments [
+{ #category : #accessing }
+RBMessageNode >> arguments [
 	^arguments ifNil: [#()] ifNotNil: [arguments]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>arguments: argCollection  [
+{ #category : #accessing }
+RBMessageNode >> arguments: argCollection [ 
 	arguments := argCollection.
 	arguments do: [:each | each parent: self]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>bestNodeFor: anInterval  [
+{ #category : #querying }
+RBMessageNode >> bestNodeFor: anInterval [ 
 	(self intersectsInterval: anInterval) ifFalse: [^nil].
 	(self containedBy: anInterval) ifTrue: [^self].
 	self keywordsIntervals do:
@@ -117,50 +92,35 @@ RBMessageNode>>bestNodeFor: anInterval  [
 			node notNil ifTrue: [^node]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>children [
+{ #category : #accessing }
+RBMessageNode >> children [
 	^(OrderedCollection with: self receiver)
 		addAll: self arguments;
 		yourself
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>copyInContext: aDictionary  [
+{ #category : #matching }
+RBMessageNode >> copyInContext: aDictionary [ 
 	^self class
 		receiver: (self receiver copyInContext: aDictionary)
 		selector: self selector
 		arguments: (self arguments collect: [ :each | each copyInContext: aDictionary ]).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>debugHighlightStart [
+{ #category : #accessing }
+RBMessageNode >> debugHighlightStart [
 
 	^ self  keywordsPositions first
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>debugHighlightStop [
+{ #category : #accessing }
+RBMessageNode >> debugHighlightStop [
 
 	^ self stopWithoutParentheses
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>equalTo: anObject withMapping: aDictionary  [
+{ #category : #comparing }
+RBMessageNode >> equalTo: anObject withMapping: aDictionary [ 
 	self class = anObject class ifFalse: [^false].
 	((self receiver equalTo: anObject receiver withMapping: aDictionary)
 		and: [self selector = anObject selector]) ifFalse: [^false].
@@ -170,145 +130,94 @@ RBMessageNode>>equalTo: anObject withMapping: aDictionary  [
 	^true
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>hash [
+{ #category : #comparing }
+RBMessageNode >> hash [
 	^ (self receiver hash bitXor: self selector hash) bitXor: (self hashForCollection: self arguments)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>isBinary [
+{ #category : #testing }
+RBMessageNode >> isBinary [
 	^(self isUnary or: [self isKeyword]) not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>isCascaded [
+{ #category : #testing }
+RBMessageNode >> isCascaded [
 	^parent notNil and: [parent isCascade]
 ]
 
-{
-	#category : #private-replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>isContainmentReplacement: aNode  [
+{ #category : #private-replacing }
+RBMessageNode >> isContainmentReplacement: aNode [ 
 	^(self mappingFor: self receiver) = aNode 
 		or: [self arguments anySatisfy: [:each | (self mappingFor: each) = aNode]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>isFaulty [
+{ #category : #testing }
+RBMessageNode >> isFaulty [
 	^self receiver isFaulty or: [self arguments anySatisfy: #isFaulty]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>isFirstCascaded [
+{ #category : #testing }
+RBMessageNode >> isFirstCascaded [
 	^self isCascaded and: [parent messages first == self]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>isKeyword [
+{ #category : #testing }
+RBMessageNode >> isKeyword [
 	^(selector indexOf: $:) ~= 0.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>isMessage [
+{ #category : #testing }
+RBMessageNode >> isMessage [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>isSelfSend [
+{ #category : #testing }
+RBMessageNode >> isSelfSend [
 	^ self receiver isVariable and: [ self receiver name = 'self' ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>isSuperSend [
+{ #category : #testing }
+RBMessageNode >> isSuperSend [
 	^ self receiver isVariable and: [ self receiver name = 'super' ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>isUnary [
+{ #category : #testing }
+RBMessageNode >> isUnary [
 	^arguments isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>keywords [
+{ #category : #accessing }
+RBMessageNode >> keywords [
 	^ selector keywords.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>keywordsIntervals [
+{ #category : #accessing }
+RBMessageNode >> keywordsIntervals [
 	^ selector keywords
 		with: self keywordsPositions 
 		collect: [ :keyword :start | start to: (start == 0 ifTrue: [ -1 ] ifFalse: [ start + keyword size - 1]) ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>keywordsPositions [
+{ #category : #accessing }
+RBMessageNode >> keywordsPositions [
 	^keywordsPositions ifNil: [ (selector keywords collect: [:char| 0 ]) asIntegerArray ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>keywordsPositions: aPositionsList [
+{ #category : #accessing }
+RBMessageNode >> keywordsPositions: aPositionsList [
 	keywordsPositions := aPositionsList ifNotNil: [:list| list asIntegerArray ].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>lastIsReturn [
+{ #category : #testing }
+RBMessageNode >> lastIsReturn [
 	(self isInlineIf or: [ self isInlineIfNil]) ifFalse: [^false  ].
 	arguments size = 1 ifTrue: [ ^false ].
 	^ arguments first isBlock and: [ arguments first body lastIsReturn 
 		and: [ arguments last isBlock and: [ arguments last body lastIsReturn ] ] ] 
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>match: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBMessageNode >> match: aNode inContext: aDictionary [ 
 	aNode class = self class ifFalse: [^false].
 	self selector = aNode selector ifFalse: [^false].
 	(receiver match: aNode receiver inContext: aDictionary) ifFalse: [^false].
@@ -318,11 +227,8 @@ RBMessageNode>>match: aNode inContext: aDictionary  [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>needsParenthesis [
+{ #category : #testing }
+RBMessageNode >> needsParenthesis [
 	^parent 
 		ifNil: [false]
 		ifNotNil: 
@@ -330,56 +236,38 @@ RBMessageNode>>needsParenthesis [
 				or: [self precedence = parent precedence and: [self isUnary not]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>numArgs [
+{ #category : #accessing }
+RBMessageNode >> numArgs [
 	^self selector numArgs
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>postCopy [
+{ #category : #copying }
+RBMessageNode >> postCopy [
 	super postCopy.
 	self receiver: self receiver copy.
 	self arguments: (self arguments collect: [ :each | each copy ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>precedence [
+{ #category : #accessing }
+RBMessageNode >> precedence [
 	^self isUnary 
 		ifTrue: [1]
 		ifFalse: [self isKeyword ifTrue: [3] ifFalse: [2]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>receiver [
+{ #category : #accessing }
+RBMessageNode >> receiver [
 	^receiver
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>receiver: aValueNode  [
+{ #category : #accessing }
+RBMessageNode >> receiver: aValueNode [ 
 	receiver := aValueNode.
 	receiver parent: self
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>receiver: aValueNode selector: aSelector keywordsPositions: positionList arguments: valueNodes [
+{ #category : #initialize-release }
+RBMessageNode >> receiver: aValueNode selector: aSelector keywordsPositions: positionList arguments: valueNodes [
 	aSelector numArgs == valueNodes size
 		ifFalse: 
 			[self error: 'Attempting to assign selector with wrong number of arguments.'].
@@ -391,21 +279,15 @@ RBMessageNode>>receiver: aValueNode selector: aSelector keywordsPositions: posit
 		keywordsPositions: positionList.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>renameSelector: newSelector andArguments: varNodeCollection  [
+{ #category : #accessing }
+RBMessageNode >> renameSelector: newSelector andArguments: varNodeCollection [ 
 	self
 		arguments: varNodeCollection;
 		selector: newSelector
 ]
 
-{
-	#category : #private-replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>replaceContainmentSourceWith: aNode  [
+{ #category : #private-replacing }
+RBMessageNode >> replaceContainmentSourceWith: aNode [ 
 	| originalNode needsParenthesis |
 	needsParenthesis := aNode hasParentheses not and: [aNode needsParenthesis].
 	originalNode := (self mappingFor: self receiver) = aNode 
@@ -422,11 +304,8 @@ RBMessageNode>>replaceContainmentSourceWith: aNode  [
 					with: (needsParenthesis ifTrue: [')'] ifFalse: ['']))
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>replaceNode: aNode withNode: anotherNode  [
+{ #category : #replacing }
+RBMessageNode >> replaceNode: aNode withNode: anotherNode [ 
 	"If we're inside a cascade node and are changing the receiver, change all the receivers"
 
 	receiver == aNode 
@@ -438,22 +317,16 @@ RBMessageNode>>replaceNode: aNode withNode: anotherNode  [
 				collect: [:each | each == aNode ifTrue: [anotherNode] ifFalse: [each]])
 ]
 
-{
-	#category : #private-replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>replaceSourceWith: aNode  [
+{ #category : #private-replacing }
+RBMessageNode >> replaceSourceWith: aNode [ 
 	(self isContainmentReplacement: aNode) 
 		ifTrue: [^self replaceContainmentSourceWith: aNode].
 	aNode isMessage ifFalse: [^super replaceSourceWith: aNode].
 	^self replaceSourceWithMessageNode: aNode
 ]
 
-{
-	#category : #private-replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>replaceSourceWithMessageNode: aNode  [
+{ #category : #private-replacing }
+RBMessageNode >> replaceSourceWithMessageNode: aNode [ 
 	| isBinaryToKeyword newSelectorParts  oldkeywordsIntervals|
 	self numArgs = aNode numArgs ifFalse: [^super replaceSourceWith: aNode].
 	self arguments with: aNode arguments
@@ -497,54 +370,36 @@ RBMessageNode>>replaceSourceWithMessageNode: aNode  [
 											ifFalse: [newSelectorParts at: index]))]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>selector [
+{ #category : #accessing }
+RBMessageNode >> selector [
 	^ selector.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>selector: aSelector [
+{ #category : #accessing }
+RBMessageNode >> selector: aSelector [
 	keywordsPositions := nil.
 	selector := aSelector asSymbol.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>selectorParts [
+{ #category : #accessing }
+RBMessageNode >> selectorParts [
 	^ self keywords collect: #asSymbol.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>sentMessages [
+{ #category : #accessing }
+RBMessageNode >> sentMessages [
 	^ super sentMessages
 		add: self selector;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>startWithoutParentheses [
+{ #category : #accessing }
+RBMessageNode >> startWithoutParentheses [
 	^receiver start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMessageNode>>stopWithoutParentheses [
+{ #category : #accessing }
+RBMessageNode >> stopWithoutParentheses [
 	^arguments isEmpty 
 		ifTrue: [self keywordsIntervals first last]
 		ifFalse: [arguments last stop]

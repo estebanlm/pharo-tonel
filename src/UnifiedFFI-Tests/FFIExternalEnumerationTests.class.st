@@ -1,46 +1,30 @@
-"
-
-"
 Class {
 	#name : #FFIExternalEnumerationTests,
 	#superclass : #TestCase,
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumerationTests>>enumClass [
+{ #category : #accessing }
+FFIExternalEnumerationTests >> enumClass [
 	^ FFITestEnumeration
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumerationTests>>ffiTestCall: enumValue format: format to: buffer [
+{ #category : #primitives }
+FFIExternalEnumerationTests >> ffiTestCall: enumValue format: format to: buffer [
 	^ self 
 		ffiCall: #( int sprintf ( ByteArray buffer, String format, FFITestEnumeration enumValue ) )
 		module: LibC
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumerationTests>>ffiTestReturn: aNumber format: format to: buffer [
+{ #category : #primitives }
+FFIExternalEnumerationTests >> ffiTestReturn: aNumber format: format to: buffer [
 	^ self 
 		ffiCall: #( FFITestEnumeration sprintf ( ByteArray buffer, String format, int aNumber ) )
 		module: LibC
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumerationTests>>testCall [
+{ #category : #tests }
+FFIExternalEnumerationTests >> testCall [
 	| result buffer |
 
 	buffer := ByteArray new: 100. 
@@ -49,29 +33,20 @@ FFIExternalEnumerationTests>>testCall [
 	self assert: (buffer first: result) asString equals: '2400'	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumerationTests>>testEnumIdents [
+{ #category : #tests }
+FFIExternalEnumerationTests >> testEnumIdents [
 	self assert: self enumClass AAA value = 1.
 	self assert: self enumClass DDD value = 2400
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumerationTests>>testEnumIncludes [
+{ #category : #tests }
+FFIExternalEnumerationTests >> testEnumIncludes [
 	self assert: (self enumClass includes: #DDD).
 	self deny: (self enumClass includes: #EEE)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumerationTests>>testFromInteger [
+{ #category : #tests }
+FFIExternalEnumerationTests >> testFromInteger [
 	self assert: (self enumClass fromInteger:  1) value = 1 .
 	self assert: (self enumClass fromInteger: 2) value = 2.
 	self assert: (self enumClass fromInteger: 3) value = 3.
@@ -79,19 +54,13 @@ FFIExternalEnumerationTests>>testFromInteger [
 	self should: [ self enumClass fromInteger: 234 ] raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumerationTests>>testNewError [
+{ #category : #tests }
+FFIExternalEnumerationTests >> testNewError [
 	self should: [ self enumClass new ] raise: ShouldNotImplement
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalEnumerationTests>>testReturn [
+{ #category : #tests }
+FFIExternalEnumerationTests >> testReturn [
 	| result buffer |
 
 	buffer := ByteArray new: 100. 

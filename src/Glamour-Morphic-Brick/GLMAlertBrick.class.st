@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMAlertBrick,
 	#superclass : #GLMBandBrick,
@@ -8,34 +5,24 @@ Class {
 		'textBrick',
 		'okButton'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-UI,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Widgets-UI
 }
 
-{
-	#category : #open,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAlertBrick class>>alert: anObject [
+{ #category : #open }
+GLMAlertBrick class >> alert: anObject [
 
 	self new alert: anObject
 	
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAlertBrick class>>exampleOpen [
+{ #category : #examples }
+GLMAlertBrick class >> exampleOpen [
 
 	'Hello world!' brickAlert
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAlertBrick class>>gtExample [
+{ #category : #examples }
+GLMAlertBrick class >> gtExample [
 	<gtExample>
 	<label: 'Simple alert window displaying a message'>
 	
@@ -43,11 +30,8 @@ GLMAlertBrick class>>gtExample [
 	
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAlertBrick>>alert: anObject [
+{ #category : #scripting }
+GLMAlertBrick >> alert: anObject [
 	|window|
 	self alertOn: anObject.
 	window := (self openInBrickWindowLabeled: 'Alert').
@@ -58,21 +42,15 @@ GLMAlertBrick>>alert: anObject [
 
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAlertBrick>>alertOn: anObject [
+{ #category : #scripting }
+GLMAlertBrick >> alertOn: anObject [
 
 	self textBrick
 		text: anObject asString
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAlertBrick>>initialize [
+{ #category : #initialization }
+GLMAlertBrick >> initialize [
 	super initialize.
 	
 	self
@@ -82,37 +60,25 @@ GLMAlertBrick>>initialize [
 	
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAlertBrick>>newButtonBrick [
+{ #category : #'instance creation' }
+GLMAlertBrick >> newButtonBrick [
 
 	^ GLMButtonBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAlertBrick>>newTextBrick [
+{ #category : #'instance creation' }
+GLMAlertBrick >> newTextBrick [
 
 	^ GLMRubEditingAreaBrick new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAlertBrick>>okButton [
+{ #category : #accessing }
+GLMAlertBrick >> okButton [
 	^ okButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAlertBrick>>okButton: anObject [
+{ #category : #accessing }
+GLMAlertBrick >> okButton: anObject [
 	okButton := anObject.
 	
 	self okButton
@@ -124,20 +90,14 @@ GLMAlertBrick>>okButton: anObject [
 	self addBrickBack: self okButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAlertBrick>>textBrick [
+{ #category : #accessing }
+GLMAlertBrick >> textBrick [
 
 	^ textBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAlertBrick>>textBrick: aBrick [
+{ #category : #accessing }
+GLMAlertBrick >> textBrick: aBrick [
 
 	textBrick := aBrick.
 	

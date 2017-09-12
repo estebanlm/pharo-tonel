@@ -13,26 +13,19 @@ Class {
 	#classVars : [
 		'DefaultInstance'
 	],
-	#category : #System-Sources,
-	#timestamp : '<historical>'
+	#category : #System-Sources
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ChangesLog class>>default [
+{ #category : #accessing }
+ChangesLog class >> default [
 	^DefaultInstance ifNil: [ 
 		DefaultInstance := self new.
 		self registerInterestToSystemAnnouncement.
 		DefaultInstance.].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ChangesLog class>>registerInterestToSystemAnnouncement [
+{ #category : #accessing }
+ChangesLog class >> registerInterestToSystemAnnouncement [
 	<systemEventRegistration>
 	
 	DefaultInstance ifNotNil: [:defaultInstance |
@@ -41,20 +34,14 @@ ChangesLog class>>registerInterestToSystemAnnouncement [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ChangesLog class>>reset [
+{ #category : #accessing }
+ChangesLog class >> reset [
 	SystemAnnouncer uniqueInstance unsubscribe: DefaultInstance.
 	DefaultInstance := nil.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ChangesLog>>assureStartupStampLogged [
+{ #category : #private }
+ChangesLog >> assureStartupStampLogged [
 	"If there is a startup stamp not yet actually logged to disk, do it now."
 
 	startupStamp ifNil: [ ^ self ].
@@ -69,11 +56,8 @@ ChangesLog>>assureStartupStampLogged [
 	SourceFiles forceChangesToDisk
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ChangesLog>>logChange: aStringOrText [
+{ #category : #logging }
+ChangesLog >> logChange: aStringOrText [
 	"Write the argument, aString, onto the changes file."
 
 	| aString |
@@ -93,41 +77,29 @@ ChangesLog>>logChange: aStringOrText [
 	SourceFiles forceChangesToDisk
 ]
 
-{
-	#category : #event-listening,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ChangesLog>>logClassRemoved: annoucement [
+{ #category : #event-listening }
+ChangesLog >> logClassRemoved: annoucement [
 	annoucement classRemoved acceptsLoggingOfCompilation ifTrue: [
 		self logChange: 'Smalltalk globals removeClassNamed: #', annoucement classRemoved name	
 	].
 
 ]
 
-{
-	#category : #event-listening,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ChangesLog>>logClassRenamed: annoucement [
+{ #category : #event-listening }
+ChangesLog >> logClassRenamed: annoucement [
 	annoucement classRenamed acceptsLoggingOfCompilation ifTrue: [
 		self logChange: '(Smalltalk globals at: #', annoucement oldName, ') rename: #', annoucement newName.	
 	].
 
 ]
 
-{
-	#category : #event-listening,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ChangesLog>>logExpressionEvaluated: announcement [
+{ #category : #event-listening }
+ChangesLog >> logExpressionEvaluated: announcement [
 	self logChange: announcement expressionEvaluated.
 ]
 
-{
-	#category : #event-listening,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ChangesLog>>logMethodRemoved: announcement [
+{ #category : #event-listening }
+ChangesLog >> logMethodRemoved: announcement [
 	announcement methodClass acceptsLoggingOfCompilation ifTrue: [
 		self logChange: 
 			announcement methodClass name, ' removeSelector: #', announcement selector
@@ -135,11 +107,8 @@ ChangesLog>>logMethodRemoved: announcement [
 	
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ChangesLog>>logSnapshot: save andQuit: quit [
+{ #category : #logging }
+ChangesLog >> logSnapshot: save andQuit: quit [
 	"Log into the changes file the fact that the session will be either snapshoted, quit, or both."
 
 	| message |	
@@ -175,21 +144,15 @@ ChangesLog>>logSnapshot: save andQuit: quit [
 	self logChange: message
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ChangesLog>>recordStartupStamp [
+{ #category : #accessing }
+ChangesLog >> recordStartupStamp [
 	
 	startupStamp := '----STARTUP----', DateAndTime now printString, ' as ', Smalltalk imagePath.
 
 ]
 
-{
-	#category : #event-listening,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ChangesLog>>registerToAnnouncements [
+{ #category : #event-listening }
+ChangesLog >> registerToAnnouncements [
 	SystemAnnouncer uniqueInstance weak
 		when: ClassRemoved 
 			send: #logClassRemoved:

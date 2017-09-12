@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'gradient'
 	],
-	#category : #Athens-Morphic,
-	#timestamp : '<historical>'
+	#category : #Athens-Morphic
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensMorphicGradientPaint>>athensFillPath: aPath on: canvas [
+{ #category : #rendering }
+AthensMorphicGradientPaint >> athensFillPath: aPath on: canvas [
 	"This is a terminal method in rendering dispatch scheme
 	canvas->shape->paint. See AthensCanvas>>fillShape: "
 	
@@ -25,11 +21,8 @@ AthensMorphicGradientPaint>>athensFillPath: aPath on: canvas [
 
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensMorphicGradientPaint>>athensFillRectangle: aRect on: canvas [
+{ #category : #rendering }
+AthensMorphicGradientPaint >> athensFillRectangle: aRect on: canvas [
 	"This is a terminal method in rendering dispatch scheme
 	canvas->shape->paint. See AthensCanvas>>fillShape: "
 	
@@ -39,11 +32,8 @@ AthensMorphicGradientPaint>>athensFillRectangle: aRect on: canvas [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensMorphicGradientPaint>>convertGradientToPaintOn: aCanvas [
+{ #category : #private }
+AthensMorphicGradientPaint >> convertGradientToPaintOn: aCanvas [
 	"This is a terminal method in rendering dispatch scheme
 	canvas->shape->paint. See AthensCanvas>>fillShape: "
 	
@@ -61,10 +51,7 @@ AthensMorphicGradientPaint>>convertGradientToPaintOn: aCanvas [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensMorphicGradientPaint>>gradient: aGradient [
+{ #category : #accessing }
+AthensMorphicGradientPaint >> gradient: aGradient [
 	gradient := aGradient
 ]

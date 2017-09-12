@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MCMergingTest,
 	#superclass : #MCTestCase,
@@ -8,23 +5,16 @@ Class {
 		'conflictBlock',
 		'conflicts'
 	],
-	#category : #Monticello-Tests,
-	#timestamp : ''
+	#category : #Monticello-Tests
 }
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMergingTest>>assert: aCollection hasElements: anArray [
+{ #category : #asserting }
+MCMergingTest >> assert: aCollection hasElements: anArray [
 	self assert: (aCollection collect: [:ea | ea token]) asSet = anArray asSet
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMergingTest>>assertMerge: local with: remote base: ancestor gives: result conflicts: conflictResult [
+{ #category : #asserting }
+MCMergingTest >> assertMerge: local with: remote base: ancestor gives: result conflicts: conflictResult [
 	| merger |
 	conflicts := #().
 	merger := MCThreeWayMerger
@@ -36,11 +26,8 @@ MCMergingTest>>assertMerge: local with: remote base: ancestor gives: result conf
 	self assert: conflicts asSet = conflictResult asSet.
 ]
 
-{
-	#category : #emulating,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMergingTest>>handleConflict: aConflict	 [
+{ #category : #emulating }
+MCMergingTest >> handleConflict: aConflict [	
 	|l r|
 	l := #removed.
 	r := #removed.
@@ -56,20 +43,14 @@ MCMergingTest>>handleConflict: aConflict	 [
 		
 ]
 
-{
-	#category : #emulating,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMergingTest>>snapshotWithElements: anArray [
+{ #category : #emulating }
+MCMergingTest >> snapshotWithElements: anArray [
 	^ MCSnapshot
 		fromDefinitions: (anArray collect: [:t | self mockToken: t])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMergingTest>>testAdditiveConflictlessMerge [
+{ #category : #tests }
+MCMergingTest >> testAdditiveConflictlessMerge [
 	self
 		assertMerge: #(a1 b1)
 				with: #(a1 c1)
@@ -79,11 +60,8 @@ MCMergingTest>>testAdditiveConflictlessMerge [
 				conflicts: #()
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMergingTest>>testComplexConflictlessMerge [
+{ #category : #tests }
+MCMergingTest >> testComplexConflictlessMerge [
 	self 
 		assertMerge: #(a1 b1 d1)
 				with: #(a2 c1)
@@ -93,11 +71,8 @@ MCMergingTest>>testComplexConflictlessMerge [
 				conflicts: #()
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMergingTest>>testIdenticalModification [
+{ #category : #tests }
+MCMergingTest >> testIdenticalModification [
 	self
 		assertMerge: #(a2 b1)
 				with: #(a2 b1)
@@ -107,11 +82,8 @@ MCMergingTest>>testIdenticalModification [
 				conflicts: #()
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMergingTest>>testLocalModifyRemoteRemove [
+{ #category : #tests }
+MCMergingTest >> testLocalModifyRemoteRemove [
 	self assertMerge: #(a2 b1)
 				with: #(b1)
 				base: #(a1 b1)
@@ -127,11 +99,8 @@ MCMergingTest>>testLocalModifyRemoteRemove [
 				conflicts: #((removed a1)).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMergingTest>>testLocalRemoveRemoteModify [
+{ #category : #tests }
+MCMergingTest >> testLocalRemoveRemoteModify [
 	self assertMerge: #(b1)
 				with: #(a1 b1)
 				base: #(a2 b1)
@@ -147,11 +116,8 @@ MCMergingTest>>testLocalRemoveRemoteModify [
 				conflicts: #((a2 removed)).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMergingTest>>testMultiPackageMerge [
+{ #category : #tests }
+MCMergingTest >> testMultiPackageMerge [
 	| merger |
 	conflicts := #().
 	merger := MCThreeWayMerger new.
@@ -163,11 +129,8 @@ MCMergingTest>>testMultiPackageMerge [
 	self assert: conflicts isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMergingTest>>testMultiPackageMerge2 [
+{ #category : #tests }
+MCMergingTest >> testMultiPackageMerge2 [
 	| merger |
 	conflicts := #().
 	merger := MCThreeWayMerger new.
@@ -179,11 +142,8 @@ MCMergingTest>>testMultiPackageMerge2 [
 	self assert: conflicts isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMergingTest>>testMultiPackageMerge3 [
+{ #category : #tests }
+MCMergingTest >> testMultiPackageMerge3 [
 	| merger |
 	conflicts := #().
 	merger := MCThreeWayMerger new.
@@ -195,11 +155,8 @@ MCMergingTest>>testMultiPackageMerge3 [
 	self assert: conflicts isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMergingTest>>testMultipleConflicts [
+{ #category : #tests }
+MCMergingTest >> testMultipleConflicts [
 	self assertMerge: #(a1 b3 c1)
 				with: #(a1 b2 d1)
 				base: #(a1 b1 c2)
@@ -209,11 +166,8 @@ MCMergingTest>>testMultipleConflicts [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMergingTest>>testSimultaneousModification [
+{ #category : #tests }
+MCMergingTest >> testSimultaneousModification [
 	self assertMerge: #(a2)
 				with: #(a3)
 				base: #(a1)
@@ -222,11 +176,8 @@ MCMergingTest>>testSimultaneousModification [
 				conflicts: #((a3 a2)).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMergingTest>>testSimultaneousRemove [
+{ #category : #tests }
+MCMergingTest >> testSimultaneousRemove [
 	self assertMerge: #(a1)
 				with: #(a1)
 				base: #(a1 b1)
@@ -235,11 +186,8 @@ MCMergingTest>>testSimultaneousRemove [
 				conflicts: #()
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMergingTest>>testSubtractiveConflictlessMerge [
+{ #category : #tests }
+MCMergingTest >> testSubtractiveConflictlessMerge [
 	self assertMerge: #(a1 b1)
 				with: #()
 				base: #(a1)

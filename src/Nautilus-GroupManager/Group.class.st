@@ -10,191 +10,130 @@ Class {
 		'removable',
 		'isFillable'
 	],
-	#category : #Nautilus-GroupManager,
-	#timestamp : 'FranckWarlouzet 7/6/2015 11:03'
+	#category : #Nautilus-GroupManager
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group class>>cleanUp [
+{ #category : #'instance creation' }
+Group class >> cleanUp [
 
 	self unsubscribeExistingGroups.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group class>>named: aString [
+{ #category : #'instance creation' }
+Group class >> named: aString [
 
 	^ self new name: aString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group class>>new [
+{ #category : #'instance creation' }
+Group class >> new [
 	^ self basicNew initialize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group class>>unsubscribeExistingGroups [
+{ #category : #'instance creation' }
+Group class >> unsubscribeExistingGroups [
 	"self unsubscribeExistingGroups"
 	
 	self allSubInstances do: [ :each |  SystemAnnouncer uniqueInstance unsubscribe: each ].
 	
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>addClass: aClass [
+{ #category : #adding }
+Group >> addClass: aClass [
 	"It is for the dropping of a class in a group, do not react"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>beReadOnly [
+{ #category : #accessing }
+Group >> beReadOnly [
 
 	readOnly := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>categoryName [
+{ #category : #accessing }
+Group >> categoryName [
 	"This is the package name set if a class is intended to be created in this group"
 
 	^ '_UnpackagedPackage'
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>classes [
+{ #category : #queries }
+Group >> classes [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>elements [
+{ #category : #accessing }
+Group >> elements [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>hasClassNamed: aClassName [
+{ #category : #testing }
+Group >> hasClassNamed: aClassName [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>ifAllowed: aBlock [
+{ #category : #private }
+Group >> ifAllowed: aBlock [
 
 	^ self ifAllowed: aBlock ifNot: []
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>ifAllowed: aBlock ifNot: anotherBlock [
+{ #category : #private }
+Group >> ifAllowed: aBlock ifNot: anotherBlock [
 
 	^ self isReadOnly
 		ifTrue: anotherBlock
 		ifFalse: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>initialize [
+{ #category : #initialization }
+Group >> initialize [
 	super initialize.
 	readOnly := false
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>isFillable [
+{ #category : #accessing }
+Group >> isFillable [
 
 	^ isFillable ifNil: [ isFillable := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>isFillable: aBoolean [
+{ #category : #accessing }
+Group >> isFillable: aBoolean [
 
 	isFillable := aBoolean
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>isReadOnly [
+{ #category : #testing }
+Group >> isReadOnly [
 
 	^ readOnly == true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>name [
+{ #category : #accessing }
+Group >> name [
 
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>name: aString [
+{ #category : #accessing }
+Group >> name: aString [
 
 	self ifAllowed: [ name := aString ]
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>packages  [
+{ #category : #queries }
+Group >> packages [ 
 	^ (self classes 
 		collect: #package 
 		as: Set)
 		asArray
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>printOn: aStream [
+{ #category : #printing }
+Group >> printOn: aStream [
 
 	super printOn: aStream.
 	aStream
@@ -203,20 +142,14 @@ Group>>printOn: aStream [
 		nextPutAll: ' )'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>removable [
+{ #category : #testing }
+Group >> removable [
 
 	^ removable ifNil: [ removable := true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Group>>removable: aBoolean [
+{ #category : #accessing }
+Group >> removable: aBoolean [
 
 	removable := aBoolean
 ]

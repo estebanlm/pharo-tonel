@@ -25,26 +25,19 @@ Class {
 		'tags',
 		'contours'
 	],
-	#category : #FreeType-Base,
-	#timestamp : '<historical>'
+	#category : #FreeType-Base
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Outline>>allocateArrays [
+{ #category : #private }
+FT2Outline >> allocateArrays [
 	" allocate the arrays for the primLoadArraysFrom:"
 	points := 	IntegerArray new: pointsSize * 2.
 	tags := 		ByteArray new: pointsSize.
 	contours := 	ShortIntegerArray new: contoursSize.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Outline>>contoursCollection [
+{ #category : #accessing }
+FT2Outline >> contoursCollection [
 	"returns a list of contours with tag => points list pairs"
 	| allPoints result start end |
 	allPoints := self pointCollection.
@@ -66,11 +59,8 @@ FT2Outline>>contoursCollection [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Outline>>pointCollection [
+{ #category : #accessing }
+FT2Outline >> pointCollection [
 
 	^(1 to: pointsSize * 2 by: 2) collect: [ :i | ((points at: i) / 64) @ ((points at: i + 1) / 64)]
 
@@ -80,20 +70,14 @@ FT2Outline>>pointCollection [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Outline>>primLoadArraysFrom: anFT2Face [
+{ #category : #private }
+FT2Outline >> primLoadArraysFrom: anFT2Face [
 	<primitive: 'primitiveLoadOutlineArraysFromFace' module: 'FT2Plugin'>
 	^self primitiveFailed.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Outline>>primLoadSizesFrom: anFT2Face [
+{ #category : #private }
+FT2Outline >> primLoadSizesFrom: anFT2Face [
 	<primitive: 'primitiveLoadOutlineSizesFromFace' module: 'FT2Plugin'>
 	^self primitiveFailed.
 ]

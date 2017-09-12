@@ -1,12 +1,7 @@
-Extension {
-	#name : #CompiledMethod
-}
+Extension { #name : #CompiledMethod }
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CompiledMethod>>ban: aCritique [
+{ #category : #'*renraku' }
+CompiledMethod >> ban: aCritique [
 
 	ReSystemAnnouncer uniqueInstance
 		notifyCritique: aCritique
@@ -17,32 +12,23 @@ CompiledMethod>>ban: aCritique [
 		banRule: aCritique rule for: self.
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CompiledMethod>>banChecksForValidation [
+{ #category : #'*renraku' }
+CompiledMethod >> banChecksForValidation [
 "returns ban levels that have to be checked before validation"
 
 	^ { self . self methodClass }
 
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CompiledMethod>>banLevelCandidates [
+{ #category : #'*renraku' }
+CompiledMethod >> banLevelCandidates [
 "returns code entities which can ban a rule for this entity"
 
 	^ { self } , self methodClass banLevelCandidates
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CompiledMethod>>critiques [
+{ #category : #'*renraku' }
+CompiledMethod >> critiques [
 	<eProperty>
 	| critiques |
 	
@@ -54,21 +40,15 @@ CompiledMethod>>critiques [
 	^ critiques
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CompiledMethod>>glmCritiqueSourceIn: composite [
+{ #category : #'*renraku' }
+CompiledMethod >> glmCritiqueSourceIn: composite [
 
 	^ self gtInspectorSourceIn: composite
 	
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CompiledMethod>>overriddenMethods [
+{ #category : #'*renraku' }
+CompiledMethod >> overriddenMethods [
 	| overridenMethods |
 	
 	overridenMethods := OrderedCollection new.
@@ -82,19 +62,13 @@ CompiledMethod>>overriddenMethods [
 	^ overridenMethods 
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CompiledMethod>>reBanName [
+{ #category : #'*renraku' }
+CompiledMethod >> reBanName [
 
 	^ self name, ' (Method)'
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CompiledMethod>>suitableRulesFrom: aReRuleManager  [
+{ #category : #'*renraku' }
+CompiledMethod >> suitableRulesFrom: aReRuleManager [ 
 	^ aReRuleManager methodRules
 ]

@@ -9,15 +9,11 @@ Class {
 		'model',
 		'selectionPreviousHighligth'
 	],
-	#category : #SmartSuggestions-Menu,
-	#timestamp : '<historical>'
+	#category : #SmartSuggestions-Menu
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext class>>contextFor: anEditor [
+{ #category : #'instance creation' }
+SugsAbstractContext class >> contextFor: anEditor [
 	(anEditor respondsTo: #sugsContext)
 		ifTrue: [ ^ anEditor sugsContext ].
 	(anEditor model respondsTo: #interactionModel)
@@ -28,45 +24,30 @@ SugsAbstractContext class>>contextFor: anEditor [
 	^ SugsNullContext new
 ]
 
-{
-	#category : #build,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext class>>model: theModel [
+{ #category : #build }
+SugsAbstractContext class >> model: theModel [
 	^ self new 
 		model: theModel;
 		yourself.
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>bindedSelectedClass [
+{ #category : #selection }
+SugsAbstractContext >> bindedSelectedClass [
 	^selectedNode binding value.
 ]
 
-{
-	#category : #refactoring,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>browsedEnvironment [
+{ #category : #refactoring }
+SugsAbstractContext >> browsedEnvironment [
 	^RBBrowserEnvironment new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>code [
+{ #category : #accessing }
+SugsAbstractContext >> code [
 	^self sourceTextArea text
 ]
 
-{
-	#category : #refactoring,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>formatSourceCode [
+{ #category : #refactoring }
+SugsAbstractContext >> formatSourceCode [
 	| formatted |
 
 	formatted := selectedNode formattedCode.
@@ -76,11 +57,8 @@ SugsAbstractContext>>formatSourceCode [
 		hasUnacceptedEdits: true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>hasClassUnImplementedAccessors [
+{ #category : #testing }
+SugsAbstractContext >> hasClassUnImplementedAccessors [
 	| hasGetter hasSetter name |
 
 	name := self selectedVariableName asString copy.
@@ -91,57 +69,39 @@ SugsAbstractContext>>hasClassUnImplementedAccessors [
 	^ (hasGetter not | hasSetter not) check
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>hasInstanceVariable [
+{ #category : #testing }
+SugsAbstractContext >> hasInstanceVariable [
 	
 	^(RBCondition hasInstanceVariable: self selectedClass) check.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>hasMoreSentences [
+{ #category : #testing }
+SugsAbstractContext >> hasMoreSentences [
 	^ selectedNode parent isNotNil and: [ selectedNode parent isMethod not ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>hasOneStatement [
+{ #category : #testing }
+SugsAbstractContext >> hasOneStatement [
 	^ (self selectedMessageName isNotNil or: [ selectedNode isLiteralNode ] ) or: [ selectedNode statements size = 1]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>hasParameters [
+{ #category : #testing }
+SugsAbstractContext >> hasParameters [
 	
 	^self selectedMessageName isNil or:[ self selectedMessageName numArgs > 0].
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>hasSubclasses [
+{ #category : #testing }
+SugsAbstractContext >> hasSubclasses [
 	
 	^(RBCondition hasSubclasses: self selectedClass) check.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>hasUnImplementedAccessors [
+{ #category : #testing }
+SugsAbstractContext >> hasUnImplementedAccessors [
 	| hasGetter hasSetter |
 	
 	hasGetter := RBCondition canUnderstand: self selectedVariableName asSymbol in: self selectedClass.
@@ -149,137 +109,89 @@ SugsAbstractContext>>hasUnImplementedAccessors [
 	^ (hasGetter not | hasSetter not) check
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>hasUnacceptedEdits [
+{ #category : #testing }
+SugsAbstractContext >> hasUnacceptedEdits [
 	^self sourceTextArea hasUnacceptedEdits
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>isMethodSelected [
+{ #category : #testing }
+SugsAbstractContext >> isMethodSelected [
 	^selectedNode isMethod 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>model [
+{ #category : #accessing }
+SugsAbstractContext >> model [
 	^ model
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>model: aModel  [
+{ #category : #initialize }
+SugsAbstractContext >> model: aModel [ 
 	model := aModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>nodeStart [
+{ #category : #accessing }
+SugsAbstractContext >> nodeStart [
 	^selectedNode start.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>nodeStop [
+{ #category : #accessing }
+SugsAbstractContext >> nodeStop [
 	^selectedNode stop.
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>selectTheTextForTheNode [
+{ #category : #selection }
+SugsAbstractContext >> selectTheTextForTheNode [
 	selectionPreviousHighligth := self selectedInterval .
 	selectedNode ifNotNil: [ self sourceTextArea selectFrom: self nodeStart to: self nodeStop]
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>selectedClass [
+{ #category : #selection }
+SugsAbstractContext >> selectedClass [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>selectedInterval [
+{ #category : #selection }
+SugsAbstractContext >> selectedInterval [
 
 	^ 1 to: 0
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>selectedMessageName [
+{ #category : #selection }
+SugsAbstractContext >> selectedMessageName [
 	^[selectedNode selector] on: MessageNotUnderstood do: [ nil ]
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>selectedMethod [
+{ #category : #selection }
+SugsAbstractContext >> selectedMethod [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>selectedNode [
+{ #category : #initialize }
+SugsAbstractContext >> selectedNode [
 	^selectedNode 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>selectedNode: theSelectedNode [
+{ #category : #initialize }
+SugsAbstractContext >> selectedNode: theSelectedNode [
 	selectedNode := theSelectedNode .
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>selectedNodeLabel [
+{ #category : #accessing }
+SugsAbstractContext >> selectedNodeLabel [
 	| label |
 	selectedNode ifNil: [ ^ '' ].
 	label := selectedNode sugsMenuLabel.
 	^ label copyFrom: 1 to: (35 min: label size)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>selectedStatements [
+{ #category : #private }
+SugsAbstractContext >> selectedStatements [
 	selectedNode isMessage ifTrue: [ ^{selectedNode} ].
 	^(selectedNode statements select: [ :stat | stat containedBy: selectionPreviousHighligth ]).
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>selectedStatementsAsSequence [
+{ #category : #selection }
+SugsAbstractContext >> selectedStatementsAsSequence [
 	| statements temporaries  |
 	
 	temporaries :=  self selectedTemporaryVariables.
@@ -288,11 +200,8 @@ SugsAbstractContext>>selectedStatementsAsSequence [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>selectedTemporaryVariables [
+{ #category : #private }
+SugsAbstractContext >> selectedTemporaryVariables [
 	selectedNode isSequence ifFalse: [ ^#() ].
 	selectedNode temporaries ifEmpty: [^OrderedCollection new].
 	^ ((selectedNode temporaries at: 1) containedBy: selectionPreviousHighligth )
@@ -301,26 +210,17 @@ SugsAbstractContext>>selectedTemporaryVariables [
 	
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>selectedVariableName [
+{ #category : #selection }
+SugsAbstractContext >> selectedVariableName [
 	^selectedNode name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>sourceTextArea [
+{ #category : #accessing }
+SugsAbstractContext >> sourceTextArea [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsAbstractContext>>window [
+{ #category : #accessing }
+SugsAbstractContext >> window [
 	^ self sourceTextArea ownerThatIsA: SystemWindow
 ]

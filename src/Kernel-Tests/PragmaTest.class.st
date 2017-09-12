@@ -10,15 +10,11 @@ Class {
 		'yetAnotherAtPragma',
 		'atPutPragma'
 	],
-	#category : #Kernel-Tests-Pragmas,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:42'
+	#category : #Kernel-Tests-Pragmas
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-PragmaTest>>setUp [
+{ #category : #running }
+PragmaTest >> setUp [
 
 	atPragma := Pragma for: (Object methodDict at: #at:) selector: #primitive: arguments: (Array with: 60).
 	anotherAtPragma := Pragma for: (Object methodDict at: #at:) selector: #primitive: arguments: (Array with: 60).
@@ -27,11 +23,8 @@ PragmaTest>>setUp [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-PragmaTest>>testCopy [
+{ #category : #tests }
+PragmaTest >> testCopy [
 
 	| copy |
 
@@ -43,11 +36,8 @@ PragmaTest>>testCopy [
 	self assert: atPragma arguments == copy arguments.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-PragmaTest>>testEqual [
+{ #category : #tests }
+PragmaTest >> testEqual [
 
 	self assert: atPragma = atPragma.		"Reflexivity"
 
@@ -61,11 +51,8 @@ PragmaTest>>testEqual [
 	self deny: atPragma = atPutPragma.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-PragmaTest>>testHash [
+{ #category : #tests }
+PragmaTest >> testHash [
 
 	self assert: atPragma hash = atPragma hash.
 

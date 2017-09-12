@@ -12,43 +12,30 @@ Part of Zinc HTTP Components.
 Class {
 	#name : #ZnUTF32Encoder,
 	#superclass : #ZnEndianSensitiveUTFEncoder,
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : 'SvenVanCaekenberghe 1/7/2016 14:57'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF32Encoder class>>handlesEncoding: string [
+{ #category : #accessing }
+ZnUTF32Encoder class >> handlesEncoding: string [
 	"Return true when my instances handle the encoding described by string"
 
 	^ self knownEncodingIdentifiers includes: (self canonicalEncodingIdentifier: string)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF32Encoder class>>knownEncodingIdentifiers [
+{ #category : #accessing }
+ZnUTF32Encoder class >> knownEncodingIdentifiers [
 	^ #( 'utf32' 'utf32be' 'utf32le' 'ucs4' 'ucs4be' 'ucs4le')
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF32Encoder>>backOnStream: stream [
+{ #category : #converting }
+ZnUTF32Encoder >> backOnStream: stream [
 	"Move back one character on stream"
 
 	4 timesRepeat: [ stream back ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF32Encoder>>encodedByteCountForCodePoint: codePoint [
+{ #category : #converting }
+ZnUTF32Encoder >> encodedByteCountForCodePoint: codePoint [
 	"Return how many bytes are needed to encode integer codePoint"
 
 	codePoint > self maximumUTFCode 
@@ -56,27 +43,18 @@ ZnUTF32Encoder>>encodedByteCountForCodePoint: codePoint [
 	^ 4
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF32Encoder>>errorIncomplete [
+{ #category : #'error handling' }
+ZnUTF32Encoder >> errorIncomplete [
 	self error: 'Incomplete utf-32 encoding'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF32Encoder>>identifier [
+{ #category : #accessing }
+ZnUTF32Encoder >> identifier [
 	^ #utf32
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF32Encoder>>nextCodePointFromStream: stream [
+{ #category : #converting }
+ZnUTF32Encoder >> nextCodePointFromStream: stream [
 	"Read and return the next integer code point from stream"
 
 	| codePoint |
@@ -88,11 +66,8 @@ ZnUTF32Encoder>>nextCodePointFromStream: stream [
 	^ codePoint
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF32Encoder>>nextPutCodePoint: codePoint toStream: stream [
+{ #category : #converting }
+ZnUTF32Encoder >> nextPutCodePoint: codePoint toStream: stream [
 	"Write the encoding for integer code point to stream"
 
 	(self isSurrogateCodePoint: codePoint) 
@@ -104,11 +79,8 @@ ZnUTF32Encoder>>nextPutCodePoint: codePoint toStream: stream [
 			self errorOutsideRange ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF32Encoder>>processByteOrderMark: codePoint [
+{ #category : #private }
+ZnUTF32Encoder >> processByteOrderMark: codePoint [
 	^ (codePoint = 16rFEFF or: [ codePoint = 16rFFFE0000 ])
 		ifTrue: [ 
 			codePoint = 16rFFFE0000
@@ -117,11 +89,8 @@ ZnUTF32Encoder>>processByteOrderMark: codePoint [
 		ifFalse: [ false ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF32Encoder>>readCodePointFrom: stream [
+{ #category : #private }
+ZnUTF32Encoder >> readCodePointFrom: stream [
 	| byte1 byte2 byte3 byte4 |
 	byte1 := stream next.
 	byte2 := stream next.
@@ -136,11 +105,8 @@ ZnUTF32Encoder>>readCodePointFrom: stream [
 			(byte4 bitShift: 24) + (byte3 bitShift: 16) + (byte2 bitShift: 8) + byte1 ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF32Encoder>>writeCodePoint: codePoint to: stream [
+{ #category : #private }
+ZnUTF32Encoder >> writeCodePoint: codePoint to: stream [
 	self isBigEndian 
 		ifTrue: [ 
 			stream 

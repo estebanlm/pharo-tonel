@@ -1,21 +1,13 @@
-Extension {
-	#name : #TApplyingOnClassSide
-}
+Extension { #name : #TApplyingOnClassSide }
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-TApplyingOnClassSide>>asFullRingDefinition [
+{ #category : #'*Ring-Core-Kernel' }
+TApplyingOnClassSide >> asFullRingDefinition [
 
 	^ self theNonMetaClass asFullRingDefinition theMetaClass
 ]
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-TApplyingOnClassSide>>asRingDefinition [
+{ #category : #'*Ring-Core-Kernel' }
+TApplyingOnClassSide >> asRingDefinition [
 
 	^ self theNonMetaClass asRingDefinition theMetaClass
 ]

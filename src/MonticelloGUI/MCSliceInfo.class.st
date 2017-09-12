@@ -9,95 +9,64 @@ Class {
 		'issue',
 		'title'
 	],
-	#category : #MonticelloGUI,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:52'
+	#category : #MonticelloGUI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo class>>namePrefix [
+{ #category : #accessing }
+MCSliceInfo class >> namePrefix [
 	^ 'SLICE-Issue-'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo>>canMakePackage [
+{ #category : #testing }
+MCSliceInfo >> canMakePackage [
 
 	^ self issueNumber isNotNil
 		and: [title isEmptyOrNil not
 		and: [self includedPackages isEmptyOrNil not]]
 ]
 
-{
-	#category : #'issue tracker',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo>>downloadIssueTitle [
+{ #category : #'issue tracker' }
+MCSliceInfo >> downloadIssueTitle [
 	^ self issue downloadTitle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo>>includedPackages [
+{ #category : #accessing }
+MCSliceInfo >> includedPackages [
 
 	^ includedPackages ifNil: [#()]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo>>includedPackages: aCollection [
+{ #category : #accessing }
+MCSliceInfo >> includedPackages: aCollection [
 
 	includedPackages := aCollection.
 	self changed: #includedPackages.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo>>initialize [
+{ #category : #initialization }
+MCSliceInfo >> initialize [
 	super initialize.
 	issue := NullPharoIssue new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo>>issue [
+{ #category : #accessing }
+MCSliceInfo >> issue [
 	^ issue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo>>issueNumber [
+{ #category : #accessing }
+MCSliceInfo >> issueNumber [
 	^ self issue number
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo>>issueNumber: anInteger [
+{ #category : #accessing }
+MCSliceInfo >> issueNumber: anInteger [
 	issue := PharoIssue number: anInteger.
 	self changed: #issueNumber
 ]
 
-{
-	#category : #slice-making,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo>>makeSlice [
+{ #category : #slice-making }
+MCSliceInfo >> makeSlice [
 	| workingCopy package |
 	self canMakePackage ifFalse: [ ^ nil ].
 	package := RPackageOrganizer default registerPackageNamed: self mcPackageName.
@@ -107,27 +76,18 @@ MCSliceInfo>>makeSlice [
 	^ workingCopy
 ]
 
-{
-	#category : #accessing-MC,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo>>mcPackageName [
+{ #category : #accessing-MC }
+MCSliceInfo >> mcPackageName [
 	^ self class namePrefix, self issueNumber asString, '-', self title.
 ]
 
-{
-	#category : #'input sanitizing',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo>>sanitizeIssueNumberFromString: aString [
+{ #category : #'input sanitizing' }
+MCSliceInfo >> sanitizeIssueNumberFromString: aString [
 	^ aString select: [ :c | c isDigit ].
 ]
 
-{
-	#category : #'input sanitizing',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo>>sanitizeIssueTitle: aString [
+{ #category : #'input sanitizing' }
+MCSliceInfo >> sanitizeIssueTitle: aString [
 	| separators safeSeparator |
 	safeSeparator := $-.
 	separators := { Character space. Character tab. $_. safeSeparator }.
@@ -137,37 +97,25 @@ MCSliceInfo>>sanitizeIssueTitle: aString [
 			c isAlphaNumeric ifTrue: [ str nextPut: c ] ] ]
 ]
 
-{
-	#category : #'issue tracker',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo>>setTitleFromIssue [
+{ #category : #'issue tracker' }
+MCSliceInfo >> setTitleFromIssue [
 	| sanitizedIssueTitle |
 	sanitizedIssueTitle := self sanitizeIssueTitle: self issue title.
 	self title: sanitizedIssueTitle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo>>title [
+{ #category : #accessing }
+MCSliceInfo >> title [
 	^ title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo>>title: aString [
+{ #category : #accessing }
+MCSliceInfo >> title: aString [
 	title := self sanitizeIssueTitle: aString.
 	self changed: #title
 ]
 
-{
-	#category : #accessing-MC,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCSliceInfo>>workingCopy [
+{ #category : #accessing-MC }
+MCSliceInfo >> workingCopy [
 	^ (RPackage named: self mcPackageName) mcWorkingCopy
 ]

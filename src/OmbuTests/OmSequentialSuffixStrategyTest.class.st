@@ -4,6 +4,5 @@ An OmSecuentialSuffixStrategyTest is a test class for testing the behavior of Om
 Class {
 	#name : #OmSequentialSuffixStrategyTest,
 	#superclass : #OmSessionStoreNameStrategyTest,
-	#category : #OmbuTests,
-	#timestamp : '<historical>'
+	#category : #OmbuTests
 }

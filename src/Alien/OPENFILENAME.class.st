@@ -32,15 +32,11 @@ Class {
 	#name : #OPENFILENAME,
 	#superclass : #Alien,
 	#type : #bytes,
-	#category : #Alien-Win32,
-	#timestamp : 'eem 11/28/2007 14:32'
+	#category : #Alien-Win32
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-OPENFILENAME class>>dataSize [
+{ #category : #'instance creation' }
+OPENFILENAME class >> dataSize [
 	"sizeof(OPENFILENAME) in Windows 5 (76 in Windows 4)"
 	^88
 	
@@ -75,62 +71,41 @@ typedef struct tagOFN {
 "
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-OPENFILENAME>>MAXPATH [
+{ #category : #constants }
+OPENFILENAME >> MAXPATH [
 	^260
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-OPENFILENAME>>fileName [
+{ #category : #accessing }
+OPENFILENAME >> fileName [
 	^(Alien forPointer: (self unsignedLongAt: self lpstrFileOffset)) strcpyUTF8
 ]
 
-{
-	#category : #'memory management',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-OPENFILENAME>>free [
+{ #category : #'memory management' }
+OPENFILENAME >> free [
 	self class primFree: (self unsignedLongAt:  self lpstrFileOffset).
 	super free
 ]
 
-{
-	#category : #'instance initalization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-OPENFILENAME>>initialize [
+{ #category : #'instance initalization' }
+OPENFILENAME >> initialize [
 	self
 		unsignedLongAt: self lStructSizeOffset put: self class dataSize;
 		unsignedLongAt: self lpstrFileOffset put: (self class Ccalloc: self MAXPATH);
 		unsignedLongAt: self nMaxFileOffset put: self MAXPATH
 ]
 
-{
-	#category : #'field offsets',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-OPENFILENAME>>lStructSizeOffset [
+{ #category : #'field offsets' }
+OPENFILENAME >> lStructSizeOffset [
 	^1 "0"
 ]
 
-{
-	#category : #'field offsets',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-OPENFILENAME>>lpstrFileOffset [
+{ #category : #'field offsets' }
+OPENFILENAME >> lpstrFileOffset [
 	^29 "28"
 ]
 
-{
-	#category : #'field offsets',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-OPENFILENAME>>nMaxFileOffset [
+{ #category : #'field offsets' }
+OPENFILENAME >> nMaxFileOffset [
 	^33 "32"
 ]

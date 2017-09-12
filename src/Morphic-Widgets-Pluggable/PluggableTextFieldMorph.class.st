@@ -13,15 +13,11 @@ Class {
 		'textMorphClass',
 		'textFont'
 	],
-	#category : #Morphic-Widgets-Pluggable,
-	#timestamp : 'gvc 5/18/2007 12:39'
+	#category : #Morphic-Widgets-Pluggable
 }
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>acceptTextInModel [
+{ #category : #'model access' }
+PluggableTextFieldMorph >> acceptTextInModel [
 	"Inform the model that the receiver's textMorph's
 	text should be accepted.
 	Answer true if the model accepted ok, false
@@ -45,29 +41,20 @@ PluggableTextFieldMorph>>acceptTextInModel [
 				ifFalse: [model perform: setTextSelector with: objectToAccept]]
 ]
 
-{
-	#category : #encryption,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>beDecrypted [
+{ #category : #encryption }
+PluggableTextFieldMorph >> beDecrypted [
 
 	self textMorph font: TextStyle defaultFont.
 ]
 
-{
-	#category : #encryption,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>beEncrypted [
+{ #category : #encryption }
+PluggableTextFieldMorph >> beEncrypted [
 
 	self textMorph font: (StrikeFont passwordFontSize: self theme textFont pointSize).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>borderStyleToUse [
+{ #category : #accessing }
+PluggableTextFieldMorph >> borderStyleToUse [
 	"Answer the borderStyle that should be used for the receiver."
 	
 	^self enabled
@@ -75,28 +62,19 @@ PluggableTextFieldMorph>>borderStyleToUse [
 		ifFalse: [self theme textFieldDisabledBorderStyleFor: self]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>chooserHasFocus [
+{ #category : #testing }
+PluggableTextFieldMorph >> chooserHasFocus [
 	^ entryCompletion notNil and: [entryCompletion chooser notNil and: [entryCompletion chooser hasKeyboardFocus]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>closeChooser	 [
+{ #category : #accessing }
+PluggableTextFieldMorph >> closeChooser [	
 	entryCompletion
 		ifNotNil: [entryCompletion closeChooser]
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>convertTo: aClass [
+{ #category : #'model access' }
+PluggableTextFieldMorph >> convertTo: aClass [
 	"Set the converter object class."
 
 	self converter isNil
@@ -104,47 +82,32 @@ PluggableTextFieldMorph>>convertTo: aClass [
 		ifFalse: [self converter objectClass: aClass]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>converter [
+{ #category : #accessing }
+PluggableTextFieldMorph >> converter [
 	"Answer the value of converter"
 
 	^ converter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>converter: anObject [
+{ #category : #accessing }
+PluggableTextFieldMorph >> converter: anObject [
 	"Set the value of converter"
 
 	converter := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>default [
+{ #category : #accessing }
+PluggableTextFieldMorph >> default [
 	^ default
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>default: anObject [
+{ #category : #accessing }
+PluggableTextFieldMorph >> default: anObject [
 	default := anObject
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>drawOn: aCanvas  [
+{ #category : #drawing }
+PluggableTextFieldMorph >> drawOn: aCanvas [ 
 	"Eventually draw the helpText"
 	super drawOn: aCanvas.
 	self ghostText
@@ -163,22 +126,16 @@ PluggableTextFieldMorph>>drawOn: aCanvas  [
 		ifNotNil: [entryCompletion closeIfNotNeeded: self].
 ]
 
-{
-	#category : #encryption,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>encrypted: aBoolean [
+{ #category : #encryption }
+PluggableTextFieldMorph >> encrypted: aBoolean [
 
 	aBoolean
 		ifTrue: [ self beEncrypted ]
 		ifFalse: [ self beDecrypted ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>entryCompletion: anEntryCompletion [
+{ #category : #accessing }
+PluggableTextFieldMorph >> entryCompletion: anEntryCompletion [
 	entryCompletion := anEntryCompletion.
 	entryCompletion 
 		ifNotNil: [ entryCompletion chooseBlock isNil
@@ -189,11 +146,8 @@ PluggableTextFieldMorph>>entryCompletion: anEntryCompletion [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>fillStyleToUse [
+{ #category : #accessing }
+PluggableTextFieldMorph >> fillStyleToUse [
 	"Answer the fillStyle that should be used for the receiver."
 	self color ifNotNil: [ ^ self color ].
 	^self enabled
@@ -201,22 +155,16 @@ PluggableTextFieldMorph>>fillStyleToUse [
 		ifFalse: [self theme textFieldDisabledFillStyleFor: self]
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>focusChanged [
+{ #category : #focus }
+PluggableTextFieldMorph >> focusChanged [
 	(self hasFocus or: [self chooserHasFocus])
 		ifFalse: [self closeChooser].
 	super focusChanged
 
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>getSelection [
+{ #category : #'model access' }
+PluggableTextFieldMorph >> getSelection [
 	"Answer the model's selection interval.
 	If not available keep the current selection."
 
@@ -224,11 +172,8 @@ PluggableTextFieldMorph>>getSelection [
 	^selectionInterval ifNil: [super getSelection]
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>getText [
+{ #category : #'model access' }
+PluggableTextFieldMorph >> getText [
 	"Retrieve the current model text. Set the converter to
 	convert between the class of the returned object and string form."
 
@@ -243,41 +188,29 @@ PluggableTextFieldMorph>>getText [
 		ifNotNil: [:s | s shallowCopy]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>ghostText [
+{ #category : #accessing }
+PluggableTextFieldMorph >> ghostText [
 	"Answer the value of helpText"
 
 	^ ghostText ifNil: [ghostText := '']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>ghostText: aText [
+{ #category : #accessing }
+PluggableTextFieldMorph >> ghostText: aText [
 	"Set the value of helpText"
 	ghostText := aText ifNotNil: [aText asString]
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>handlesMouseWheel: evt [
+{ #category : #'event handling' }
+PluggableTextFieldMorph >> handlesMouseWheel: evt [
 	"Do I want to receive mouseWheel events?." 
 
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>hasUnacceptedEdits: aBoolean [
+{ #category : #accessing }
+PluggableTextFieldMorph >> hasUnacceptedEdits: aBoolean [
 	"Set the hasUnacceptedEdits flag to the given value. "
 	
 	aBoolean == hasUnacceptedEdits 
@@ -289,11 +222,8 @@ PluggableTextFieldMorph>>hasUnacceptedEdits: aBoolean [
 		ifTrue: [ self styler styleInBackgroundProcess: textMorph contents]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>hasValidText [
+{ #category : #testing }
+PluggableTextFieldMorph >> hasValidText [
 	"Return true if the text is valid with respect to the converter."
 
 	|string|
@@ -303,22 +233,16 @@ PluggableTextFieldMorph>>hasValidText [
 		self converter isStringValid: string]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>initialize [
+{ #category : #initialization }
+PluggableTextFieldMorph >> initialize [
 
 	textMorphClass := TextMorphForFieldView.
 	super initialize.
 	self beDecrypted
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>innerBounds [
+{ #category : #geometry }
+PluggableTextFieldMorph >> innerBounds [
 	| inb |
 	inb := super innerBounds.
 	endRow 
@@ -326,21 +250,15 @@ PluggableTextFieldMorph>>innerBounds [
 	^ inb
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>keyboardFocusChange: aBoolean [
+{ #category : #focus }
+PluggableTextFieldMorph >> keyboardFocusChange: aBoolean [
 	self closeChooser.
 	super keyboardFocusChange: aBoolean.
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>keystrokeFromTextMorph: anEvent [
+{ #category : #'event handling' }
+PluggableTextFieldMorph >> keystrokeFromTextMorph: anEvent [
 	anEvent keyCharacter = Character cr
 		ifTrue: [self closeChooser].
 	^ (super keystrokeFromTextMorph: anEvent)
@@ -349,11 +267,8 @@ PluggableTextFieldMorph>>keystrokeFromTextMorph: anEvent [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>layoutChanged [
+{ #category : #initialization }
+PluggableTextFieldMorph >> layoutChanged [
 	super layoutChanged.
 	endRow 
 		ifNotNil: [ | deltaY |
@@ -362,77 +277,53 @@ PluggableTextFieldMorph>>layoutChanged [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>maxLength [
+{ #category : #accessing }
+PluggableTextFieldMorph >> maxLength [
 	"Answer the maximum number of characters that may be typed."
 
 	^self textMorph maxLength
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>maxLength: anInteger [
+{ #category : #accessing }
+PluggableTextFieldMorph >> maxLength: anInteger [
 	"Set the maximum number of characters that may be typed."
 
 	self textMorph maxLength: anInteger
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>mouseDownFromTextMorph: anEvent [
+{ #category : #'event handling' }
+PluggableTextFieldMorph >> mouseDownFromTextMorph: anEvent [
 	super mouseDownFromTextMorph: anEvent.
 	entryCompletion ifNotNil: [entryCompletion mouseDownFromTextMorph: anEvent]
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>okToStyle [
+{ #category : #styling }
+PluggableTextFieldMorph >> okToStyle [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>openChooser	 [
+{ #category : #accessing }
+PluggableTextFieldMorph >> openChooser [	
 	entryCompletion
 		ifNotNil: [entryCompletion openChooserWith: textMorph text string from: self]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>outOfWorld: aWorld [
+{ #category : #initialization }
+PluggableTextFieldMorph >> outOfWorld: aWorld [
 	self closeChooser.
 	super outOfWorld: aWorld
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>scrollByKeyboard: event  [
+{ #category : #'event handling' }
+PluggableTextFieldMorph >> scrollByKeyboard: event [ 
 	"If event is ctrl+up/down then scroll and answer true.
 	Just don't, really!"
 	
 	^false
 ]
 
-{
-	#category : #'editor access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>scrollSelectionIntoView: event  [
+{ #category : #'editor access' }
+PluggableTextFieldMorph >> scrollSelectionIntoView: event [ 
 	"Scroll my text into view if necessary and return true, else return false.
 	Redone here to deal with horizontal scrolling!"
 	
@@ -459,60 +350,42 @@ PluggableTextFieldMorph>>scrollSelectionIntoView: event  [
 	^ false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>textChanged [
+{ #category : #'event handling' }
+PluggableTextFieldMorph >> textChanged [
 	super textChanged.
 	self openChooser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>textFont [
+{ #category : #accessing }
+PluggableTextFieldMorph >> textFont [
 	"We should clean"
 	
 	^ textFont ifNil: [ StandardFonts defaultFont  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>textFont: aFont [
+{ #category : #accessing }
+PluggableTextFieldMorph >> textFont: aFont [
 	"We should clean"
 	
 	textFont := aFont
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>textMarginsWidth [
+{ #category : #accessing }
+PluggableTextFieldMorph >> textMarginsWidth [
 	
 	^ self textMorph margins asMargin left
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>textMorphClass [
+{ #category : #private }
+PluggableTextFieldMorph >> textMorphClass [
 	"Answer the class used to create the receiver's textMorph"
 	
 	^ textMorphClass
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>update: aSymbol [
+{ #category : #updating }
+PluggableTextFieldMorph >> update: aSymbol [
 	"Update the receiver based on the given aspect.
 	Override to not accept an #appendText for a text field
 	since if broadcast by a model it will append to ALL
@@ -523,11 +396,8 @@ PluggableTextFieldMorph>>update: aSymbol [
 	^super update: aSymbol
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextFieldMorph>>withDropListButton [
+{ #category : #initialization }
+PluggableTextFieldMorph >> withDropListButton [
 	| downArrow downArrowBtn |
 	endRow := AlignmentMorph newRow.
 	downArrow := (self theme 

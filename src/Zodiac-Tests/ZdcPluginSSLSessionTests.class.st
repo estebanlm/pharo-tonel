@@ -8,34 +8,24 @@ Class {
 	#instVars : [
 		'session'
 	],
-	#category : #Zodiac-Tests,
-	#timestamp : 'HenrikNergaard 3/27/2017 09:23'
+	#category : #Zodiac-Tests
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcPluginSSLSessionTests>>setUp [
+{ #category : #initialization }
+ZdcPluginSSLSessionTests >> setUp [
 
 	session := ZdcPluginSSLSession new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcPluginSSLSessionTests>>tearDown [
+{ #category : #initialization }
+ZdcPluginSSLSessionTests >> tearDown [
 
 	session destroy.
 	session := nil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcPluginSSLSessionTests>>testCertificateName [
+{ #category : #tests }
+ZdcPluginSSLSessionTests >> testCertificateName [
 	
 	self assert: session certificateName equals: nil.
 	
@@ -53,11 +43,8 @@ ZdcPluginSSLSessionTests>>testCertificateName [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcPluginSSLSessionTests>>testServerName [
+{ #category : #tests }
+ZdcPluginSSLSessionTests >> testServerName [
 	
 	[ session serverName ] on: PrimitiveFailed do: [ self skip ].
 	

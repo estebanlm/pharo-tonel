@@ -33,15 +33,11 @@ Class {
 		'requestor',
 		'failBlock'
 	],
-	#category : #AST-Core-Parser,
-	#timestamp : 'nice 2/13/2010 00:31'
+	#category : #AST-Core-Parser
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser class>>isNumber: aStringOrStream [
+{ #category : #testing }
+NumberParser class >> isNumber: aStringOrStream [
 
 	| stream |
 	stream := aStringOrStream readStream.
@@ -49,40 +45,28 @@ NumberParser class>>isNumber: aStringOrStream [
 	^ stream atEnd
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser class>>on: aStringOrStream [
+{ #category : #'instance creation' }
+NumberParser class >> on: aStringOrStream [
 	^self new on: aStringOrStream
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser class>>parse: aStringOrStream  [
+{ #category : #'instance creation' }
+NumberParser class >> parse: aStringOrStream [ 
 	^self new
 		on: aStringOrStream;
 		nextNumber
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser class>>parse: aStringOrStream onError: failBlock  [
+{ #category : #'instance creation' }
+NumberParser class >> parse: aStringOrStream onError: failBlock [ 
 	^(self new)
 		on: aStringOrStream;
 		failBlock: failBlock;
 		nextNumber
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser class>>squeezeNumberOutOfString: stringOrStream [
+{ #category : #'instance creation' }
+NumberParser class >> squeezeNumberOutOfString: stringOrStream [
 	"Try and find a number in this string. First, look if the string 
 	starts with a number. Then, see if it ends with a number. Then,
 	remove a character from the front and see if the remaining 
@@ -92,11 +76,8 @@ NumberParser class>>squeezeNumberOutOfString: stringOrStream [
 	^ self squeezeNumberOutOfString: stringOrStream onError: [self error: 'Reading a number failed']
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser class>>squeezeNumberOutOfString: stringOrStream onError: errorBlock [
+{ #category : #'instance creation' }
+NumberParser class >> squeezeNumberOutOfString: stringOrStream onError: errorBlock [
 	"Try and find a number in this string. First, look if the string 
 	starts with a number. Then, see if it ends with a number. Then,
 	remove a character from the front and see if the remaining 
@@ -116,31 +97,22 @@ NumberParser class>>squeezeNumberOutOfString: stringOrStream onError: errorBlock
 	^ errorBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>allowPlusSign [
+{ #category : #accessing }
+NumberParser >> allowPlusSign [
 	"return a boolean indicating if plus sign is allowed or not"
 
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>allowPlusSignInExponent [
+{ #category : #accessing }
+NumberParser >> allowPlusSignInExponent [
 	"return a boolean indicating if plus sign is allowed or not in exponent"
 
 	^self allowPlusSign
 ]
 
-{
-	#category : #error,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>expected: aString  [
+{ #category : #error }
+NumberParser >> expected: aString [ 
 	| errorString |
 	errorString := aString , ' expected'.
 	requestor isNil
@@ -152,11 +124,8 @@ NumberParser>>expected: aString  [
 	self error: 'Reading a number failed: ' , errorString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>exponentLetters [
+{ #category : #accessing }
+NumberParser >> exponentLetters [
 	"answer the list of possible exponents for Numbers.
 	Note: this parser will not honour precision attached to the exponent.
 	different exponent do not lead to different precisions.
@@ -165,28 +134,19 @@ NumberParser>>exponentLetters [
 	^'edq'
 ]
 
-{
-	#category : #error,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>fail [
+{ #category : #error }
+NumberParser >> fail [
 	failBlock ifNotNil: [^failBlock value].
 	self error: 'Reading a number failed'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>failBlock: aBlockOrNil [
+{ #category : #accessing }
+NumberParser >> failBlock: aBlockOrNil [
 	failBlock := aBlockOrNil
 ]
 
-{
-	#category : #parsing-private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>makeFloatFromMantissa: m exponent: k base: aRadix  [
+{ #category : #parsing-private }
+NumberParser >> makeFloatFromMantissa: m exponent: k base: aRadix [ 
 	"Convert infinite precision arithmetic into Floating point.
 	This alogrithm rely on correct IEEE rounding mode
 	being implemented in Integer>>asFloat and Fraction>>asFloat"
@@ -196,11 +156,8 @@ NumberParser>>makeFloatFromMantissa: m exponent: k base: aRadix  [
 		ifFalse: [Fraction numerator: m denominator: (aRadix raisedToInteger: k negated)]) asFloat
 ]
 
-{
-	#category : #parsing-private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>makeIntegerOrScaledIntegerOrFloat [
+{ #category : #parsing-private }
+NumberParser >> makeIntegerOrScaledIntegerOrFloat [
 	"at this point, there is no digit, nor fractionPart.
 	maybe it can be a scaled decimal with fraction omitted...
 	integer with negative exponent can be floats not fractions"
@@ -217,11 +174,8 @@ NumberParser>>makeIntegerOrScaledIntegerOrFloat [
 	^ integerPart
 ]
 
-{
-	#category : #parsing-private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>makeScaledDecimalWithNumberOfNonZeroFractionDigits: numberOfNonZeroFractionDigits andNumberOfTrailingZeroInFractionPart: numberOfTrailingZeroInFractionPart [
+{ #category : #parsing-private }
+NumberParser >> makeScaledDecimalWithNumberOfNonZeroFractionDigits: numberOfNonZeroFractionDigits andNumberOfTrailingZeroInFractionPart: numberOfTrailingZeroInFractionPart [
 	"at this point integerPart fractionPart and scale have been read out (in inst var).
 	Form a ScaledDecimal.
 	Care of eliminating trailing zeroes from the fractionPart"
@@ -234,11 +188,8 @@ NumberParser>>makeScaledDecimalWithNumberOfNonZeroFractionDigits: numberOfNonZer
 	^decimalFraction asScaledDecimal: scale
 ]
 
-{
-	#category : #'parsing-large int',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>nextElementaryLargeIntegerBase: aRadix [
+{ #category : #'parsing-large int' }
+NumberParser >> nextElementaryLargeIntegerBase: aRadix [
 	"Form an unsigned integer with incoming digits from sourceStream.
 	Return this integer, or zero if no digits found.
 	Stop reading if end of digits or if a LargeInteger is formed.
@@ -261,11 +212,8 @@ NumberParser>>nextElementaryLargeIntegerBase: aRadix [
 	^value
 ]
 
-{
-	#category : #parsing-public,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>nextFraction [
+{ #category : #parsing-public }
+NumberParser >> nextFraction [
 	| numerator denominator |
 	numerator := self nextInteger.
 	(sourceStream peekFor: $/) ifFalse: [^numerator].
@@ -273,11 +221,8 @@ NumberParser>>nextFraction [
 	^numerator / denominator
 ]
 
-{
-	#category : #parsing-public,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>nextInteger [
+{ #category : #parsing-public }
+NumberParser >> nextInteger [
 	"Main method for reading an Integer.
 	This won't try to read a Float nor a ScaledDecimal."
 	
@@ -303,11 +248,8 @@ NumberParser>>nextInteger [
 	^ integerPart
 ]
 
-{
-	#category : #parsing-public,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>nextIntegerBase: aRadix [
+{ #category : #parsing-public }
+NumberParser >> nextIntegerBase: aRadix [
 	"Form an integer with following digits.
 	Fail if no digit found"
 	
@@ -319,11 +261,8 @@ NumberParser>>nextIntegerBase: aRadix [
 		ifFalse: [value]
 ]
 
-{
-	#category : #parsing-public,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>nextIntegerBase: aRadix ifFail: aBlock [
+{ #category : #parsing-public }
+NumberParser >> nextIntegerBase: aRadix ifFail: aBlock [
 	"Form an integer with optional sign and following digits from sourceStream."
 	
 	| isNeg value |
@@ -335,11 +274,8 @@ NumberParser>>nextIntegerBase: aRadix ifFail: aBlock [
 		ifFalse: [value]
 ]
 
-{
-	#category : #'parsing-large int',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>nextLargeIntegerBase: aRadix nPackets: nPackets  [
+{ #category : #'parsing-large int' }
+NumberParser >> nextLargeIntegerBase: aRadix nPackets: nPackets [ 
 	"Form a Large integer with incoming digits from sourceStream.
 	Return this integer, or zero if no digits found.
 	Stop reading when no more digits or when nPackets elementary LargeInteger have been encountered.
@@ -361,11 +297,8 @@ NumberParser>>nextLargeIntegerBase: aRadix nPackets: nPackets  [
 	^high * (aRadix raisedToInteger: nDigitsLow) + low
 ]
 
-{
-	#category : #parsing-public,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>nextNumber [
+{ #category : #parsing-public }
+NumberParser >> nextNumber [
 	"main method for reading a number.
 	This one can read Float Integer and ScaledDecimal"
 	
@@ -393,11 +326,8 @@ NumberParser>>nextNumber [
 		ifFalse: [self makeIntegerOrScaledIntegerOrFloat]
 ]
 
-{
-	#category : #parsing-public,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>nextNumberBase: b [
+{ #category : #parsing-public }
+NumberParser >> nextNumberBase: b [
 	"Method for reading a number without radix prefix.
 	This one can read Float Integer and ScaledDecimal"
 	
@@ -415,11 +345,8 @@ NumberParser>>nextNumberBase: b [
 		ifFalse: [self makeIntegerOrScaledIntegerOrFloat]
 ]
 
-{
-	#category : #parsing-public,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>nextScaledDecimal [
+{ #category : #parsing-public }
+NumberParser >> nextScaledDecimal [
 	"Main method for reading a (scaled) decimal number.
 	Good Gracious, do not accept a decimal in another base than 10!
 	In other words, do not accept radix notation like 2r1.1, even not 10r5.3
@@ -447,11 +374,8 @@ NumberParser>>nextScaledDecimal [
 	^integerPart asScaledDecimal: scale
 ]
 
-{
-	#category : #parsing-public,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>nextUnsignedIntegerBase: aRadix  [
+{ #category : #parsing-public }
+NumberParser >> nextUnsignedIntegerBase: aRadix [ 
 	"Form an unsigned integer with incoming digits from sourceStream.
 	Fail if no digit found.
 	Count the number of digits and the lastNonZero digit and store int in instVar "
@@ -462,11 +386,8 @@ NumberParser>>nextUnsignedIntegerBase: aRadix  [
 	^value
 ]
 
-{
-	#category : #parsing-public,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>nextUnsignedIntegerBase: aRadix ifFail: errorBlock [
+{ #category : #parsing-public }
+NumberParser >> nextUnsignedIntegerBase: aRadix ifFail: errorBlock [
 	"Form an unsigned integer with incoming digits from sourceStream.
 	Answer this integer, or execute errorBlock if no digit found.
 	Count the number of digits and the position of lastNonZero digit and store them in instVar"
@@ -477,11 +398,8 @@ NumberParser>>nextUnsignedIntegerBase: aRadix ifFail: errorBlock [
 	^value
 ]
 
-{
-	#category : #parsing-public,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>nextUnsignedIntegerOrNilBase: aRadix [
+{ #category : #parsing-public }
+NumberParser >> nextUnsignedIntegerOrNilBase: aRadix [
 	"Form an unsigned integer with incoming digits from sourceStream.
 	Answer this integer, or nil if no digit found.
 	Count the number of digits and the position of lastNonZero digit and store them in instVar"
@@ -512,11 +430,8 @@ NumberParser>>nextUnsignedIntegerOrNilBase: aRadix [
 	^high
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>on: aStringOrStream  [
+{ #category : #initialize-release }
+NumberParser >> on: aStringOrStream [ 
 	sourceStream := aStringOrStream isString 
 		ifTrue: [ aStringOrStream readStream ]
 		ifFalse: [ aStringOrStream ].
@@ -526,11 +441,8 @@ NumberParser>>on: aStringOrStream  [
 	requestor := failBlock := nil
 ]
 
-{
-	#category : #parsing-private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>peekSignIsMinus [
+{ #category : #parsing-private }
+NumberParser >> peekSignIsMinus [
 	"Peek an optional sign from sourceStream.
 	Answer true if it is minus sign"
 
@@ -540,11 +452,8 @@ NumberParser>>peekSignIsMinus [
 	^isMinus
 ]
 
-{
-	#category : #parsing-private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>readExponent [
+{ #category : #parsing-private }
+NumberParser >> readExponent [
 	"read the exponent if any (stored in instVar).
 	Answer true if found, answer false if none.
 	If exponent letter is not followed by a digit,
@@ -581,11 +490,8 @@ NumberParser>>readExponent [
 	^ true
 ]
 
-{
-	#category : #parsing-private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>readNamedFloatOrFail [
+{ #category : #parsing-private }
+NumberParser >> readNamedFloatOrFail [
 	"This method is used when there is no digit encountered:
 	It try and read a named Float NaN or Infinity.
 	Negative sign for -Infinity has been read before sending this method, and is indicated in the neg inst.var.
@@ -600,11 +506,8 @@ NumberParser>>readNamedFloatOrFail [
 	^self expected: 'a digit between 0 and ' , (String with: (Character digitValue: base - 1))
 ]
 
-{
-	#category : #parsing-private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>readNumberWithFractionPartNumberOfTrailingZeroInIntegerPart: numberOfTrailingZeroInIntegerPart [
+{ #category : #parsing-private }
+NumberParser >> readNumberWithFractionPartNumberOfTrailingZeroInIntegerPart: numberOfTrailingZeroInIntegerPart [
 	"at this stage, sign integerPart and a decimal point have been read.
 	try and form a number with a fractionPart"
 	
@@ -638,11 +541,8 @@ NumberParser>>readNumberWithFractionPartNumberOfTrailingZeroInIntegerPart: numbe
 		ifFalse: [value]
 ]
 
-{
-	#category : #parsing-private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>readScaleWithDefaultNumberOfDigits: anInteger [
+{ #category : #parsing-private }
+NumberParser >> readScaleWithDefaultNumberOfDigits: anInteger [
 	"Read the scale if any and store it into scale instance Variable.
 	Answer true if found, answer false if none.
 	The scale is specified by letter s, optionnally followed by a positive integer in base 10.
@@ -666,10 +566,7 @@ NumberParser>>readScaleWithDefaultNumberOfDigits: anInteger [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-NumberParser>>requestor: anObjectOrNil [
+{ #category : #accessing }
+NumberParser >> requestor: anObjectOrNil [
 	requestor := anObjectOrNil
 ]

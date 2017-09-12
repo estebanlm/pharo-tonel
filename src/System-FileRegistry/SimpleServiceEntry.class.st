@@ -32,152 +32,106 @@ Class {
 		'argumentGetter',
 		'buttonLabel'
 	],
-	#category : #System-FileRegistry,
-	#timestamp : '<historical>'
+	#category : #System-FileRegistry
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry class>>provider: anObject label: aString selector: aSymbol [
+{ #category : #'instance creation' }
+SimpleServiceEntry class >> provider: anObject label: aString selector: aSymbol [
 
 	^self provider: anObject label: aString selector: aSymbol description: ''.
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry class>>provider: anObject label: aString selector: aSymbol description: anotherString [
+{ #category : #'instance creation' }
+SimpleServiceEntry class >> provider: anObject label: aString selector: aSymbol description: anotherString [
 
 	^self new provider: anObject label: aString selector: aSymbol description: anotherString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry class>>provider: anObject label: aString selector: aSymbol description: anotherString buttonLabel: aLabel [
+{ #category : #'instance creation' }
+SimpleServiceEntry class >> provider: anObject label: aString selector: aSymbol description: anotherString buttonLabel: aLabel [
 	"Answer a new service object with the given initializations.  This variant allows a custom button label to be provided, in order to preserve precious horizontal real-estate in the button pane, while still allowing more descriptive wordings in the popup menu"
 
 	^ self new provider: anObject label: aString selector: aSymbol description: anotherString; buttonLabel: aLabel; yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>argumentGetter: aBlock [
+{ #category : #accessing }
+SimpleServiceEntry >> argumentGetter: aBlock [
 
 	argumentGetter := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>buttonLabel [
+{ #category : #accessing }
+SimpleServiceEntry >> buttonLabel [
 	"Answer the label to be emblazoned on a button representing the service in a file list, for example"
 
 	^ buttonLabel ifNil: [label]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>buttonLabel: aString  [
+{ #category : #accessing }
+SimpleServiceEntry >> buttonLabel: aString [ 
 	"Set the receiver's buttonLabel, to be used on a button in a 
 	tool-pane; this is split out so that a more abbreviated wording 
 	can be deployed if desired"
 	buttonLabel := aString translated
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>description [
+{ #category : #accessing }
+SimpleServiceEntry >> description [
 	"may be used for balloon or other"
 
 	^ description
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>description: aString [
+{ #category : #accessing }
+SimpleServiceEntry >> description: aString [
 	"may be used for balloon or other"
 
 	description := aString
 
 ]
 
-{
-	#category : #'services menu',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>doNotUseLineAfter [
+{ #category : #'services menu' }
+SimpleServiceEntry >> doNotUseLineAfter [
 
 	self usingLineAfter: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>extraSelector [
+{ #category : #accessing }
+SimpleServiceEntry >> extraSelector [
 	"normally should not be used directly"
 
 	^stateSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>extraSelector: aSymbol [
+{ #category : #accessing }
+SimpleServiceEntry >> extraSelector: aSymbol [
 
 	stateSelector := aSymbol
 ]
 
-{
-	#category : #'performing service',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>getArgumentsFrom: aProvider [
+{ #category : #'performing service' }
+SimpleServiceEntry >> getArgumentsFrom: aProvider [
 
 	argumentGetter ifNil: [^aProvider fullName].
 	^argumentGetter value: aProvider
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>initialize [
+{ #category : #initialization }
+SimpleServiceEntry >> initialize [
 	
 	super initialize.
 	self useLineAfter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>label [
+{ #category : #accessing }
+SimpleServiceEntry >> label [
 	^label
 ]
 
-{
-	#category : #extra,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>performExtraFor: anObject [
+{ #category : #extra }
+SimpleServiceEntry >> performExtraFor: anObject [
 	"carry out the extra service I provide"
 	"the stateSelector can be used to ask state of the provider to be reflected in button or other"
 
@@ -187,11 +141,8 @@ SimpleServiceEntry>>performExtraFor: anObject [
 
 ]
 
-{
-	#category : #'performing service',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>performServiceFor: anObject [
+{ #category : #'performing service' }
+SimpleServiceEntry >> performServiceFor: anObject [
 	"carry out the service I provide"
 
 	^selector numArgs = 0
@@ -202,11 +153,8 @@ SimpleServiceEntry>>performServiceFor: anObject [
 				ifFalse: [ provider perform: selector withArguments: (self getArgumentsFrom: anObject) ]]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>printOn: aStream [
+{ #category : #printing }
+SimpleServiceEntry >> printOn: aStream [
 
 	aStream nextPutAll: self class name; nextPutAll: ': ('.
 	self provider notNil
@@ -219,20 +167,14 @@ SimpleServiceEntry>>printOn: aStream [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>provider [
+{ #category : #accessing }
+SimpleServiceEntry >> provider [
 
 	^ provider
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>provider: anObject label: aString selector: aSymbol  [
+{ #category : #accessing }
+SimpleServiceEntry >> provider: anObject label: aString selector: aSymbol [ 
 	"basic initialization message"
 	provider := anObject.
 	label := aString translated.
@@ -241,11 +183,8 @@ SimpleServiceEntry>>provider: anObject label: aString selector: aSymbol  [
 	description := ''
 ]
 
-{
-	#category : #'performing service',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>provider: anObject label: aString selector: aSymbol description: anotherString  [
+{ #category : #'performing service' }
+SimpleServiceEntry >> provider: anObject label: aString selector: aSymbol description: anotherString [ 
 	"basic initialization message"
 	self
 		provider: anObject
@@ -255,50 +194,35 @@ SimpleServiceEntry>>provider: anObject label: aString selector: aSymbol descript
 	description := anotherString translated
 ]
 
-{
-	#category : #extra,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>requestExtraSelector [
+{ #category : #extra }
+SimpleServiceEntry >> requestExtraSelector [
 	"send me this message to ask me to perform secondary service"
 
 	^#performExtraFor:
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>selector [
+{ #category : #accessing }
+SimpleServiceEntry >> selector [
 	"normally should not be used directly"
 
 	^selector
 ]
 
-{
-	#category : #'services menu',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>useLineAfter [
+{ #category : #'services menu' }
+SimpleServiceEntry >> useLineAfter [
 
 	self usingLineAfter: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>usingLineAfter [
+{ #category : #accessing }
+SimpleServiceEntry >> usingLineAfter [
 
 	^ usingLineAfter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-SimpleServiceEntry>>usingLineAfter: aBoolean [
+{ #category : #accessing }
+SimpleServiceEntry >> usingLineAfter: aBoolean [
 
 	usingLineAfter := aBoolean
 ]

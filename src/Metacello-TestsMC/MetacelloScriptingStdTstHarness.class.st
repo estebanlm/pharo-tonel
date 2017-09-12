@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloScriptingStdTstHarness,
 	#superclass : #TestCase,
@@ -10,32 +7,22 @@ Class {
 		'configurationRepository',
 		'initialWorkingCopyList'
 	],
-	#category : #Metacello-TestsMC,
-	#timestamp : ''
+	#category : #Metacello-TestsMC
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>defaultTimeout [
+{ #category : #running }
+MetacelloScriptingStdTstHarness >> defaultTimeout [
 	"I don't want no stkinkin' timeouts"
 	^60000
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>doSilently [
+{ #category : #running }
+MetacelloScriptingStdTstHarness >> doSilently [
     ^ true
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>hasPackage: aString [
+{ #category : #utilities }
+MetacelloScriptingStdTstHarness >> hasPackage: aString [
 	| package |
 	package := MCWorkingCopy allManagers
 		detect: [ :each | each packageName = aString ]
@@ -43,11 +30,8 @@ MetacelloScriptingStdTstHarness>>hasPackage: aString [
 	^ package notNil
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>runCase [
+{ #category : #running }
+MetacelloScriptingStdTstHarness >> runCase [
     | original |
     self doSilently
         ifFalse: [ ^ super runCase ].
@@ -58,11 +42,8 @@ MetacelloScriptingStdTstHarness>>runCase [
         ensure: [ MetacelloPlatform current bypassGoferLoadUpdateCategories: original ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>setUp [
+{ #category : #running }
+MetacelloScriptingStdTstHarness >> setUp [
   super setUp.
   MetacelloPlatform current clearPackageCache.
   registry := MetacelloProjectRegistration registry.
@@ -73,27 +54,18 @@ MetacelloScriptingStdTstHarness>>setUp [
     collect: [ :each | each packageName ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>setUpRepositories [
+{ #category : #running }
+MetacelloScriptingStdTstHarness >> setUpRepositories [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>setUpRepositoryContents [
+{ #category : #running }
+MetacelloScriptingStdTstHarness >> setUpRepositoryContents [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>tearDown [
+{ #category : #running }
+MetacelloScriptingStdTstHarness >> tearDown [
   | finalWorkingCopyList diff |
   super tearDown.
   self tearDownPackages.
@@ -111,19 +83,13 @@ MetacelloScriptingStdTstHarness>>tearDown [
   self assert: diff isEmpty
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>tearDownPackageList [
+{ #category : #running }
+MetacelloScriptingStdTstHarness >> tearDownPackageList [
     ^ #()
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>tearDownPackages [
+{ #category : #running }
+MetacelloScriptingStdTstHarness >> tearDownPackages [
     | aGofer |
     aGofer := Gofer new.
     self tearDownPackageList
@@ -134,19 +100,13 @@ MetacelloScriptingStdTstHarness>>tearDownPackages [
         ifTrue: [ aGofer metacelloUnload ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>tearDownRepositories [
+{ #category : #running }
+MetacelloScriptingStdTstHarness >> tearDownRepositories [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>unloadPackage: packageName [
+{ #category : #running }
+MetacelloScriptingStdTstHarness >> unloadPackage: packageName [
   | aGofer |
   aGofer := Gofer new.
   (self hasPackage: packageName)
@@ -155,11 +115,8 @@ MetacelloScriptingStdTstHarness>>unloadPackage: packageName [
     ifTrue: [ aGofer unload ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>validate: expectedConfigurationClassName expConfigVersion: expectedConfigurationVersion expConfigRepo: expectedConfigurationRepository expBaselineClassName: expectedBaselineClassName expBaselineVersion: expectedBaselineVersion expBaselineRepo: expectedBaselineRepository [
+{ #category : #utilities }
+MetacelloScriptingStdTstHarness >> validate: expectedConfigurationClassName expConfigVersion: expectedConfigurationVersion expConfigRepo: expectedConfigurationRepository expBaselineClassName: expectedBaselineClassName expBaselineVersion: expectedBaselineVersion expBaselineRepo: expectedBaselineRepository [
   MetacelloProjectRegistration registry configurationRegistry
     at: expectedConfigurationClassName
     ifPresent: [ :existing | 
@@ -183,11 +140,8 @@ MetacelloScriptingStdTstHarness>>validate: expectedConfigurationClassName expCon
     ifAbsent: [ self assert: expectedBaselineVersion == nil ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>validateProjects: specArrays [
+{ #category : #utilities }
+MetacelloScriptingStdTstHarness >> validateProjects: specArrays [
   specArrays
     do: [ :array | 
       self
@@ -199,11 +153,8 @@ MetacelloScriptingStdTstHarness>>validateProjects: specArrays [
         expBaselineRepo: (array at: 6) ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>verify: packageName loadedFrom: repositoryDescription [
+{ #category : #utilities }
+MetacelloScriptingStdTstHarness >> verify: packageName loadedFrom: repositoryDescription [
     | externalCoreWorkingCopy |
     externalCoreWorkingCopy := MCWorkingCopy allManagers detect: [ :wc | wc packageName = packageName ].
     self
@@ -212,20 +163,14 @@ MetacelloScriptingStdTstHarness>>verify: packageName loadedFrom: repositoryDescr
                 includes: (MetacelloMCProject new repositorySpec description: repositoryDescription) createRepository)
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>verify: packageName version: fileName [
+{ #category : #utilities }
+MetacelloScriptingStdTstHarness >> verify: packageName version: fileName [
     | externalCoreWorkingCopy x |
     externalCoreWorkingCopy := MCWorkingCopy allManagers detect: [ :wc | wc packageName = packageName ].
     self assert: (x := externalCoreWorkingCopy ancestors first name) = fileName
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingStdTstHarness>>verifyPackageNotLoaded: packageName [
+{ #category : #utilities }
+MetacelloScriptingStdTstHarness >> verifyPackageNotLoaded: packageName [
     self assert: (MCWorkingCopy allManagers detect: [ :wc | wc packageName = packageName ] ifNone: [  ]) == nil
 ]

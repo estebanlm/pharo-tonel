@@ -9,15 +9,11 @@ You can subclass me and implement #read and #write: for creating special kinds o
 Class {
 	#name : #ClassVariable,
 	#superclass : #LiteralVariable,
-	#category : #Slot-Variables,
-	#timestamp : 'MarcusDenker 7/18/2014 10:02'
+	#category : #Slot-Variables
 }
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassVariable>>definitionString [
+{ #category : #printing }
+ClassVariable >> definitionString [
 	"non special globals are defined by the symbol"
 	^self isSpecial
 		ifTrue: [super definitionString]
@@ -25,39 +21,27 @@ ClassVariable>>definitionString [
 
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassVariable>>emitStore: methodBuilder [
+{ #category : #'code generation' }
+ClassVariable >> emitStore: methodBuilder [
 
 	methodBuilder storeIntoLiteralVariable: self.
 
 
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassVariable>>emitValue: methodBuilder [
+{ #category : #'code generation' }
+ClassVariable >> emitValue: methodBuilder [
 
 	methodBuilder pushLiteralVariable: self.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassVariable>>isClassVariable [
+{ #category : #testing }
+ClassVariable >> isClassVariable [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassVariable>>isSpecial [
+{ #category : #testing }
+ClassVariable >> isSpecial [
 	"I just a class var Note: my subclasses are special"
 	^(self class = ClassVariable) not
 ]

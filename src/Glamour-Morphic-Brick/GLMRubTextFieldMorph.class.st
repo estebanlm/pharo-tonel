@@ -55,15 +55,11 @@ Class {
 	#instVars : [
 		'customHeight'
 	],
-	#category : #Glamour-Morphic-Brick-Morphic,
-	#timestamp : 'AliakseiSyrel 3/21/2015 18:59'
+	#category : #Glamour-Morphic-Brick-Morphic
 }
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldMorph>>extent: aPoint [
+{ #category : #geometry }
+GLMRubTextFieldMorph >> extent: aPoint [
 	|newTop patch offset|
 	super extent: aPoint.
 	
@@ -74,20 +70,14 @@ GLMRubTextFieldMorph>>extent: aPoint [
 	self textArea top: newTop.
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldMorph>>forceHeight: anObject [
+{ #category : #geometry }
+GLMRubTextFieldMorph >> forceHeight: anObject [
 
 	customHeight := anObject.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldMorph>>newScrollPane [
+{ #category : #initialize-release }
+GLMRubTextFieldMorph >> newScrollPane [
 	"using hacked ScrollPane to remove focus border"
 	| sp |
 	sp := GLMRubTextScrollPane new.
@@ -95,11 +85,8 @@ GLMRubTextFieldMorph>>newScrollPane [
 	^ sp
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldMorph>>textFieldHeight [
+{ #category : #geometry }
+GLMRubTextFieldMorph >> textFieldHeight [
 
 	^ customHeight
 		ifNil: [ self textArea height ]

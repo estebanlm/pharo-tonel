@@ -7,15 +7,11 @@ Class {
 	#pools : [
 		'AthensCairoDefs'
 	],
-	#category : #Athens-Cairo-Paints,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Paints
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoGradientPaint class>>createLinearGradient: aColorRamp start: aStartPoint stop: aStopPoint [
+{ #category : #'as yet unclassified' }
+AthensCairoGradientPaint class >> createLinearGradient: aColorRamp start: aStartPoint stop: aStopPoint [
 	| paint |
 	paint := self
 		primCreateLinearX0: aStartPoint x asFloat
@@ -29,11 +25,8 @@ AthensCairoGradientPaint class>>createLinearGradient: aColorRamp start: aStartPo
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoGradientPaint class>>primCreateLinearX0: x0 y0: y0 x1: x1 y1: y1 [
+{ #category : #primitives }
+AthensCairoGradientPaint class >> primCreateLinearX0: x0 y0: y0 x1: x1 y1: y1 [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^self nbCall: #(AthensCairoGradientPaint cairo_pattern_create_linear (
@@ -44,11 +37,8 @@ AthensCairoGradientPaint class>>primCreateLinearX0: x0 y0: y0 x1: x1 y1: y1 [
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoGradientPaint class>>primCreateRadialXo: xo yo: yo radiuso: radiuso x1: x1 y1: y1 radius1: radius1 [
+{ #category : #primitives }
+AthensCairoGradientPaint class >> primCreateRadialXo: xo yo: yo radiuso: radiuso x1: x1 y1: y1 radius1: radius1 [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^self nbCall: #(AthensCairoGradientPaint cairo_pattern_create_radial (
@@ -61,11 +51,8 @@ AthensCairoGradientPaint class>>primCreateRadialXo: xo yo: yo radiuso: radiuso x
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoGradientPaint class>>radialBetween: origin
+{ #category : #'as yet unclassified' }
+AthensCairoGradientPaint class >> radialBetween: origin
 	extending: innerRadius
 	and: outerOrigin
 	extending: outerRadius
@@ -88,32 +75,23 @@ AthensCairoGradientPaint class>>radialBetween: origin
 	^ paint.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoGradientPaint>>addColorStopAt: anOffset colored: aColor [
+{ #category : #private }
+AthensCairoGradientPaint >> addColorStopAt: anOffset colored: aColor [
 
 	self
 		primAddColorStopOffset: anOffset R: aColor red G: aColor green B: aColor blue A: aColor alpha
 		
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoGradientPaint>>defaultExtend [
+{ #category : #initialize-release }
+AthensCairoGradientPaint >> defaultExtend [
 "The default extend mode is CAIRO_EXTEND_NONE for surface patterns and CAIRO_EXTEND_PAD for gradient patterns.
 "
 	^  CAIRO_EXTEND_PAD
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoGradientPaint>>initializeRadialBetween: origin
+{ #category : #initialize-release }
+AthensCairoGradientPaint >> initializeRadialBetween: origin
 			extending: innerRadius
 			and: outerOrigin
 			extending: outerRadius
@@ -127,11 +105,8 @@ AthensCairoGradientPaint>>initializeRadialBetween: origin
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoGradientPaint>>populateRamp: aRamp [
+{ #category : #private }
+AthensCairoGradientPaint >> populateRamp: aRamp [
 	aRamp do: [ :each |
 		self
 			addColorStopAt: each key
@@ -139,11 +114,8 @@ AthensCairoGradientPaint>>populateRamp: aRamp [
 	
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoGradientPaint>>primAddColorStopOffset: offset R: red G: green B: blue A: alpha  [
+{ #category : #primitives }
+AthensCairoGradientPaint >> primAddColorStopOffset: offset R: red G: green B: blue [ A: alpha 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^ self nbCall:#( void cairo_pattern_add_color_stop_rgba ( cairo_pattern_t  self,

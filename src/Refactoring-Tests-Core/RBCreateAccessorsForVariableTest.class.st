@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #RBCreateAccessorsForVariableTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBCreateAccessorsForVariableTest>>setUp [
+{ #category : #'set up' }
+RBCreateAccessorsForVariableTest >> setUp [
 	super setUp.
 	model := self abstractVariableTestData.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBCreateAccessorsForVariableTest>>testExistingInstanceVariableAccessors [
+{ #category : #tests }
+RBCreateAccessorsForVariableTest >> testExistingInstanceVariableAccessors [
 	| ref |
 	ref := RBCreateAccessorsForVariableRefactoring 
 		variable: 'name'
@@ -33,11 +23,8 @@ RBCreateAccessorsForVariableTest>>testExistingInstanceVariableAccessors [
 	self assert: ref getterMethod == #name
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBCreateAccessorsForVariableTest>>testNewClassVariableAccessors [
+{ #category : #tests }
+RBCreateAccessorsForVariableTest >> testNewClassVariableAccessors [
 	| ref class |
 	ref := RBCreateAccessorsForVariableRefactoring 
 		variable: 'Foo1'
@@ -52,11 +39,8 @@ RBCreateAccessorsForVariableTest>>testNewClassVariableAccessors [
 	self assert: (class parseTreeFor: #foo1:) = (RBParser parseMethod: 'foo1: anObject Foo1 := anObject')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBCreateAccessorsForVariableTest>>testNewInstanceVariableAccessors [
+{ #category : #tests }
+RBCreateAccessorsForVariableTest >> testNewInstanceVariableAccessors [
 	| ref class |
 	ref := RBCreateAccessorsForVariableRefactoring 
 		variable: 'foo1'
@@ -71,11 +55,8 @@ RBCreateAccessorsForVariableTest>>testNewInstanceVariableAccessors [
 	self assert: (class parseTreeFor: #foo1:) = (RBParser parseMethod: 'foo1: anObject foo1 := anObject')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBCreateAccessorsForVariableTest>>testNonExistantName [
+{ #category : #'failure tests' }
+RBCreateAccessorsForVariableTest >> testNonExistantName [
 	self
 		shouldFail: (RBCreateAccessorsForVariableRefactoring 
 				variable: #Foo

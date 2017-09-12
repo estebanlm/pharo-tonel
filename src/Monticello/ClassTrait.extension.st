@@ -1,12 +1,7 @@
-Extension {
-	#name : #ClassTrait
-}
+Extension { #name : #ClassTrait }
 
-{
-	#category : #'*Monticello',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassTrait>>asMCDefinition [
+{ #category : #'*Monticello' }
+ClassTrait >> asMCDefinition [
 
 	<localClassTraitMethod> 
     "This method is supposed to be local in ClassTrait because of a good reason.

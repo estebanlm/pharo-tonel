@@ -35,54 +35,35 @@ For a much more sophisticated JSON parser/writer implementation, have a look at 
 Class {
 	#name : #STONJSON,
 	#superclass : #Object,
-	#category : #STON-Core,
-	#timestamp : 'SvenVanCaekenberghe 3/15/2016 15:16'
+	#category : #STON-Core
 }
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONJSON class>>fromStream: stream [
+{ #category : #convenience }
+STONJSON class >> fromStream: stream [
 	^ STON fromStream: stream
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONJSON class>>fromString: string [
+{ #category : #convenience }
+STONJSON class >> fromString: string [
 	^ STON fromString: string
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONJSON class>>put: object onStream: stream [
+{ #category : #convenience }
+STONJSON class >> put: object onStream: stream [
 	STON put: object asJsonOnStream: stream
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONJSON class>>put: object onStreamPretty: stream [
+{ #category : #convenience }
+STONJSON class >> put: object onStreamPretty: stream [
 	STON put: object asJsonOnStreamPretty: stream
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONJSON class>>toString: object [
+{ #category : #convenience }
+STONJSON class >> toString: object [
 	^ STON toJsonString: object
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONJSON class>>toStringPretty: object [
+{ #category : #convenience }
+STONJSON class >> toStringPretty: object [
 	^ STON toJsonStringPretty: object
 ]

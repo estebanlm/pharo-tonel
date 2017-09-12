@@ -7,15 +7,11 @@ Class {
 	#classInstVars : [
 		'debug'
 	],
-	#category : #Keymapping-Core,
-	#timestamp : '<historical>'
+	#category : #Keymapping-Core
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMLog class>>log: aKeyEvent [
+{ #category : #'as yet unclassified' }
+KMLog class >> log: aKeyEvent [
 
 	debug == true ifFalse: [ ^self ].
 	
@@ -25,11 +21,8 @@ KMLog class>>log: aKeyEvent [
 		flush.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMLog class>>logCompleteMatch: aKeymap [
+{ #category : #'as yet unclassified' }
+KMLog class >> logCompleteMatch: aKeymap [
 
 	debug == true ifFalse: [ ^self ].
 	
@@ -40,11 +33,8 @@ KMLog class>>logCompleteMatch: aKeymap [
 		flush.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMLog class>>logCompleteMatchBetween: aMorph and: aKeymap [
+{ #category : #'as yet unclassified' }
+KMLog class >> logCompleteMatchBetween: aMorph and: aKeymap [
 
 	debug == true ifFalse: [ ^self ].
 	
@@ -56,11 +46,8 @@ KMLog class>>logCompleteMatchBetween: aMorph and: aKeymap [
 		flush.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMLog class>>logPartialMatch: anEvent [
+{ #category : #'as yet unclassified' }
+KMLog class >> logPartialMatch: anEvent [
 
 	debug == true ifFalse: [ ^self ].
 	
@@ -71,27 +58,18 @@ KMLog class>>logPartialMatch: anEvent [
 		flush.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMLog class>>logger [
+{ #category : #'as yet unclassified' }
+KMLog class >> logger [
 
 	^Transcript
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMLog class>>removeDebug [
+{ #category : #'as yet unclassified' }
+KMLog class >> removeDebug [
 	debug := false
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMLog class>>setDebug [
+{ #category : #'as yet unclassified' }
+KMLog class >> setDebug [
 	debug := true
 ]

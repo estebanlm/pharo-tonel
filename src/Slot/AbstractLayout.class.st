@@ -9,224 +9,142 @@ Class {
 	#instVars : [
 		'host'
 	],
-	#category : #Slot-Layout,
-	#timestamp : '<historical>'
+	#category : #Slot-Layout
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>= other [
+{ #category : #comparing }
+AbstractLayout >> = other [
 	^ self class = other class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>allSlots [
+{ #category : #accessing }
+AbstractLayout >> allSlots [
 	^ {}
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>allSlotsDo: aBlock [
+{ #category : #enumerating }
+AbstractLayout >> allSlotsDo: aBlock [
 	self slotScope allSlotsDo: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>allVisibleSlots [
+{ #category : #accessing }
+AbstractLayout >> allVisibleSlots [
 	^ {}
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>checkIntegrity [
+{ #category : #validation }
+AbstractLayout >> checkIntegrity [
 	self checkSanity
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>checkSanity [
+{ #category : #validation }
+AbstractLayout >> checkSanity [
 	host ifNil: [ self error: 'Host should not be nil' ].
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>definesSlot: aSlot  [
+{ #category : #api }
+AbstractLayout >> definesSlot: aSlot [ 
 	^self slots identityIncludes: aSlot 
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>extendImmediate [
+{ #category : #extending }
+AbstractLayout >> extendImmediate [
 	^ ImmediateLayout new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>fieldSize [
+{ #category : #accessing }
+AbstractLayout >> fieldSize [
 	^ 0
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>finalize [
+{ #category : #finalization }
+AbstractLayout >> finalize [
 	self allSlotsDo: [ :aSlot | aSlot finalize: self ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>hasFields [
+{ #category : #testing }
+AbstractLayout >> hasFields [
 	^ false
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>hasSlot: aSlot [
+{ #category : #api }
+AbstractLayout >> hasSlot: aSlot [
 	^ self allSlots identityIncludes: aSlot 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>hasSlotNamed: aString [
+{ #category : #api }
+AbstractLayout >> hasSlotNamed: aString [
 	^self allSlots anySatisfy: [:slot | slot name = aString  ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>hasSlots [
+{ #category : #testing }
+AbstractLayout >> hasSlots [
 	^ false
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>hash [
+{ #category : #comparing }
+AbstractLayout >> hash [
 	^ self class hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>host [
+{ #category : #accessing }
+AbstractLayout >> host [
 	^ host
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>host: aClass [
+{ #category : #accessing }
+AbstractLayout >> host: aClass [
 	host := aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>instVarIndexFor: aString ifAbsent: aBlockClosure [
+{ #category : #accessing }
+AbstractLayout >> instVarIndexFor: aString ifAbsent: aBlockClosure [
 	"we do not have instance variables"
 	^aBlockClosure value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>instVarNames [
+{ #category : #accessing }
+AbstractLayout >> instVarNames [
 	^ {}
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>isBits [
+{ #category : #testing }
+AbstractLayout >> isBits [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>isCustomLayout [
+{ #category : #testing }
+AbstractLayout >> isCustomLayout [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>isVariable [
+{ #category : #testing }
+AbstractLayout >> isVariable [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>isWeak [
+{ #category : #testing }
+AbstractLayout >> isWeak [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>resolveSlot: aName [
+{ #category : #accessing }
+AbstractLayout >> resolveSlot: aName [
 	self flag: 'Signal rather than error'.
 	self error: 'No slots found'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>slotScope [
+{ #category : #accessing }
+AbstractLayout >> slotScope [
 	^ LayoutEmptyScope instance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>slots [
+{ #category : #accessing }
+AbstractLayout >> slots [
 	^ {}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractLayout>>visibleSlots [
+{ #category : #accessing }
+AbstractLayout >> visibleSlots [
 	^self slots select: [:slot | slot isVisible]
 ]

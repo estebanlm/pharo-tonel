@@ -1,12 +1,7 @@
-Extension {
-	#name : #HelpTopic
-}
+Extension { #name : #HelpTopic }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-HelpTopic>>gtInspectorActionOpenHelpBrowser [
+{ #category : #'*GT-InspectorExtensions-Core' }
+HelpTopic >> gtInspectorActionOpenHelpBrowser [
 	<gtInspectorAction>
 	^ GLMGenericAction new
 		action: [ HelpBrowser openOn: self ];
@@ -14,11 +9,8 @@ HelpTopic>>gtInspectorActionOpenHelpBrowser [
 		title: 'Browse'
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-HelpTopic>>gtInspectorContentsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+HelpTopic >> gtInspectorContentsIn: composite [
 	<gtInspectorPresentationOrder: 40>
 	
 	composite text
@@ -27,11 +19,8 @@ HelpTopic>>gtInspectorContentsIn: composite [
 		when: [ self contents notEmpty  ] 
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-HelpTopic>>gtInspectorSubtopicsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+HelpTopic >> gtInspectorSubtopicsIn: composite [
 	<gtInspectorPresentationOrder: 50>
 
 	composite tree

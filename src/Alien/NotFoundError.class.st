@@ -1,9 +1,5 @@
-"
-
-"
 Class {
 	#name : #NotFoundError,
 	#superclass : #Error,
-	#category : #Alien-Core,
-	#timestamp : ''
+	#category : #Alien-Core
 }

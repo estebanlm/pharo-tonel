@@ -7,31 +7,21 @@ Class {
 	#instVars : [
 		'filterBlock'
 	],
-	#category : #Glamour-FastTable-Model,
-	#timestamp : 'JurajKubelka 4/10/2017 11:42'
+	#category : #Glamour-FastTable-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFilterBlock class>>block: aBlockClosure [
+{ #category : #'instance creation' }
+GLMFilterBlock class >> block: aBlockClosure [
 	^ self new filterBlock: aBlockClosure; yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFilterBlock>>filterBlock [
+{ #category : #accessing }
+GLMFilterBlock >> filterBlock [
 	^ filterBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFilterBlock>>filterBlock: anObject [
+{ #category : #accessing }
+GLMFilterBlock >> filterBlock: anObject [
 	"Two argument block: 
 		- filtered item
 		- string pattern.
@@ -39,11 +29,8 @@ GLMFilterBlock>>filterBlock: anObject [
 	filterBlock := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFilterBlock>>matches: anObject [
+{ #category : #testing }
+GLMFilterBlock >> matches: anObject [
 	"Return true if anObject should be displayed; false otherwise."
 	self filterBlock ifNil: [ ^ true ].
 	^ self filterBlock valueWithEnoughArguments: { anObject. pattern }

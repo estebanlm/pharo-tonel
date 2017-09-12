@@ -77,15 +77,11 @@ Class {
 		'history',
 		'opened'
 	],
-	#category : #System-History,
-	#timestamp : 'AlainPlantec 12/15/2010 00:04'
+	#category : #System-History
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>addItem: anHistoryItem  [
+{ #category : #adding }
+HistoryNode >> addItem: anHistoryItem [ 
 	self current notNil
 		ifTrue: [(self current addItem: anHistoryItem)
 				ifTrue: [^ true]].
@@ -95,35 +91,23 @@ HistoryNode>>addItem: anHistoryItem  [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>at: aPosition [
+{ #category : #accessing }
+HistoryNode >> at: aPosition [
 	^ self history at: aPosition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>at: aPosition put: anItem [
+{ #category : #accessing }
+HistoryNode >> at: aPosition put: anItem [
 	self history at: aPosition put: anItem
 ]
 
-{
-	#category : #opening-closing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>close [
+{ #category : #opening-closing }
+HistoryNode >> close [
 	opened := false
 ]
 
-{
-	#category : #opening-closing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>closeGroup [
+{ #category : #opening-closing }
+HistoryNode >> closeGroup [
 	(self current notNil
 			and: [self current isComposite
 				and: [self current opened]])
@@ -131,148 +115,94 @@ HistoryNode>>closeGroup [
 		ifFalse: [self close]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>closed [
+{ #category : #testing }
+HistoryNode >> closed [
 	^ self opened not
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>copyFrom: start to: stop [
+{ #category : #copying }
+HistoryNode >> copyFrom: start to: stop [
 	^ self history copyFrom: start to: stop
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>current [
+{ #category : #accessing }
+HistoryNode >> current [
 	^ self history isEmpty
 		ifFalse: [self history last] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>first [
+{ #category : #accessing }
+HistoryNode >> first [
 	^ self history first
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>groupClass [
+{ #category : #accessing }
+HistoryNode >> groupClass [
 	^ self class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>history [
+{ #category : #accessing }
+HistoryNode >> history [
 	^ history ifNil: [history := OrderedCollection new] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>isComposite [
+{ #category : #testing }
+HistoryNode >> isComposite [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>isEmpty [
+{ #category : #testing }
+HistoryNode >> isEmpty [
 	^ self history isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>last [
+{ #category : #accessing }
+HistoryNode >> last [
 	^ self history last
 ]
 
-{
-	#category : #opening-closing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>open [
+{ #category : #opening-closing }
+HistoryNode >> open [
 	opened := true
 ]
 
-{
-	#category : #opening-closing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>openGroup [
+{ #category : #opening-closing }
+HistoryNode >> openGroup [
 	^ self addItem: self groupClass new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>opened [
+{ #category : #testing }
+HistoryNode >> opened [
 	^ opened ifNil: [opened := true]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>removeAt: anIndex [
+{ #category : #removing }
+HistoryNode >> removeAt: anIndex [
 	self history removeAt: anIndex
 ]
 
-{
-	#category : #'private ',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>removeFirst [
+{ #category : #'private ' }
+HistoryNode >> removeFirst [
 	self history removeFirst
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>removeLast [
+{ #category : #removing }
+HistoryNode >> removeLast [
 	self history removeLast
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>removeLast: count [
+{ #category : #removing }
+HistoryNode >> removeLast: count [
 	self history removeLast: count
 ]
 
-{
-	#category : #opening-closing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>reset [
+{ #category : #opening-closing }
+HistoryNode >> reset [
 	history := nil.
 	opened := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryNode>>size [
+{ #category : #accessing }
+HistoryNode >> size [
 	^ self history size
 ]

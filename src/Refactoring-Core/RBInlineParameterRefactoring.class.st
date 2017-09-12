@@ -41,26 +41,19 @@ Class {
 	#instVars : [
 		'expressions'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 12:56'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineParameterRefactoring class>>inlineParameter: aString in: aClass selector: aSelector  [
+{ #category : #'instance creation' }
+RBInlineParameterRefactoring class >> inlineParameter: aString in: aClass selector: aSelector [ 
 	^self new 
 		inlineParameter: aString
 		in: aClass
 		selector: aSelector
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineParameterRefactoring class>>model: aRBSmalltalk inlineParameter: aString in: aClass selector: aSelector  [
+{ #category : #'instance creation' }
+RBInlineParameterRefactoring class >> model: aRBSmalltalk inlineParameter: aString in: aClass selector: aSelector [ 
 	^(self new)
 		model: aRBSmalltalk;
 		inlineParameter: aString
@@ -69,11 +62,8 @@ RBInlineParameterRefactoring class>>model: aRBSmalltalk inlineParameter: aString
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineParameterRefactoring>>allExpressionsToInline [
+{ #category : #private }
+RBInlineParameterRefactoring >> allExpressionsToInline [
 	| coll |
 	coll := Set new.
 	self model allReferencesTo: oldSelector
@@ -85,11 +75,8 @@ RBInlineParameterRefactoring>>allExpressionsToInline [
 	^coll asOrderedCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineParameterRefactoring>>expressionsToInlineFrom: aTree  [
+{ #category : #private }
+RBInlineParameterRefactoring >> expressionsToInlineFrom: aTree [ 
 	| searcher |
 	searcher := RBParseTreeSearcher new.
 	searcher matches: '``@obj ' , (self buildSelectorString: oldSelector)
@@ -101,21 +88,15 @@ RBInlineParameterRefactoring>>expressionsToInlineFrom: aTree  [
 	^searcher executeTree: aTree initialAnswer: OrderedCollection new
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineParameterRefactoring>>inlineParameter: aString in: aClass selector: aSelector [
+{ #category : #initialize-release }
+RBInlineParameterRefactoring >> inlineParameter: aString in: aClass selector: aSelector [
 	oldSelector := aSelector.
 	class := self classObjectFor: aClass.
 	argument := aString
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineParameterRefactoring>>modifyImplementorParseTree: parseTree in: aClass  [
+{ #category : #transforming }
+RBInlineParameterRefactoring >> modifyImplementorParseTree: parseTree in: aClass [ 
 	| node assignment |
 	node := (parseTree arguments at: parameterIndex) copy.
 	parseTree body addTemporaryNamed: node name.
@@ -124,11 +105,8 @@ RBInlineParameterRefactoring>>modifyImplementorParseTree: parseTree in: aClass  
 	super modifyImplementorParseTree: parseTree in: aClass
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineParameterRefactoring>>myConditions [
+{ #category : #preconditions }
+RBInlineParameterRefactoring >> myConditions [
 	self getNewSelector.
 	expressions := self allExpressionsToInline.
 	^(RBCondition definesSelector: oldSelector in: class) 
@@ -140,11 +118,8 @@ RBInlineParameterRefactoring>>myConditions [
 					errorMacro: 'All values passed must be literal.')
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineParameterRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBInlineParameterRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream

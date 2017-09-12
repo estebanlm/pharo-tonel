@@ -4,286 +4,192 @@ I am an abstract class providing all the properties shared amongs all the morphi
 Class {
 	#name : #AbstractMorphicAdapter,
 	#superclass : #AbstractAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter class>>defaultSpec [
+{ #category : #specs }
+AbstractMorphicAdapter class >> defaultSpec [
 
 	^ SpecLayout composed
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>acceptDropBlock [
+{ #category : #'drag and drop' }
+AbstractMorphicAdapter >> acceptDropBlock [
 
 	^ self model acceptDropBlock
 ]
 
-{
-	#category : #'drag and drop - private',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>acceptDroppingMorph: draggedMorph event: event inMorph: source [
+{ #category : #'drag and drop - private' }
+AbstractMorphicAdapter >> acceptDroppingMorph: draggedMorph event: event inMorph: source [
 
 	^ self acceptDropBlock cull: draggedMorph model model cull: event cull: source model model
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>add: aWidget [
+{ #category : #protocol }
+AbstractMorphicAdapter >> add: aWidget [
 	
 	self widgetDo: [ :w | w ensureLayoutAndAddMorph: aWidget asWidget ]
 ]
 
-{
-	#category : #dispatch,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>beginsWith: aString fromList: aMorph [
+{ #category : #dispatch }
+AbstractMorphicAdapter >> beginsWith: aString fromList: aMorph [
 	"This method is used bu the list for the search of elements when you are typing directly in the list"
 	
 	^ false
 ]
 
-{
-	#category : #protocol-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>bindKeyCombination: aShortcut toAction: aBlock [
+{ #category : #protocol-shortcuts }
+AbstractMorphicAdapter >> bindKeyCombination: aShortcut toAction: aBlock [
 
 	self widget ifNotNil: [ :w | w bindKeyCombination: aShortcut toAction: aBlock ]
 ]
 
-{
-	#category : #protocol-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>bindMenuKeyCombination: aShortcut toAction: aBlock [
+{ #category : #protocol-shortcuts }
+AbstractMorphicAdapter >> bindMenuKeyCombination: aShortcut toAction: aBlock [
 
 	self widget ifNotNil: [ :w | w bindKeyCombination: aShortcut toAction: aBlock ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>borderColor [
+{ #category : #protocol }
+AbstractMorphicAdapter >> borderColor [
 
 	^ self model borderColor
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>borderColor: color [
+{ #category : #protocol }
+AbstractMorphicAdapter >> borderColor: color [
 
 	self widget ifNotNil: [ :w | w borderColor: color ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>borderWidth [
+{ #category : #protocol }
+AbstractMorphicAdapter >> borderWidth [
 
 	^ self model borderWidth
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>borderWidth: width [
+{ #category : #protocol }
+AbstractMorphicAdapter >> borderWidth: width [
 
 	self widget ifNotNil: [ :w | w borderWidth: width ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>changed [
+{ #category : #'spec protocol' }
+AbstractMorphicAdapter >> changed [
 
 	^ self widgetDo: [ :w | w changed ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>color [
+{ #category : #protocol }
+AbstractMorphicAdapter >> color [
 
 	^ self model color
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>color: color [
+{ #category : #protocol }
+AbstractMorphicAdapter >> color: color [
 
 	self widgetDo: [ :w | w color: color ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>delete [
+{ #category : #'spec protocol' }
+AbstractMorphicAdapter >> delete [
 	
 	self widgetDo: [ :w | w delete ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>disable [
+{ #category : #protocol }
+AbstractMorphicAdapter >> disable [
 	
 	self model enabled: false
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>dragEnabled [
+{ #category : #'drag and drop' }
+AbstractMorphicAdapter >> dragEnabled [
 
 	^ self model dragEnabled
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>dragEnabled: aBoolean [
+{ #category : #'drag and drop' }
+AbstractMorphicAdapter >> dragEnabled: aBoolean [
 
 	self widget ifNotNil: [ :w | w dragEnabled: aBoolean ]
 ]
 
-{
-	#category : #'drag and drop - private',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>dragPassengerFor: item inMorph: dragSource  [
+{ #category : #'drag and drop - private' }
+AbstractMorphicAdapter >> dragPassengerFor: item inMorph: dragSource [ 
 	
 	^ self dragTransformationBlock cull: item cull: dragSource
 ]
 
-{
-	#category : #'drag and drop - private',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>dragPassengersFor: item inMorph: dragSource  [
+{ #category : #'drag and drop - private' }
+AbstractMorphicAdapter >> dragPassengersFor: item inMorph: dragSource [ 
 	
 	^ { self dragTransformationBlock cull: item cull: dragSource }
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>dragTransformationBlock [
+{ #category : #'drag and drop' }
+AbstractMorphicAdapter >> dragTransformationBlock [
 
 	^ self model dragTransformationBlock
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>dropEnabled [
+{ #category : #'drag and drop' }
+AbstractMorphicAdapter >> dropEnabled [
 
 	^ self model dropEnabled
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>dropEnabled: aBoolean [
+{ #category : #'drag and drop' }
+AbstractMorphicAdapter >> dropEnabled: aBoolean [
 
 	self widget ifNotNil: [ :w | w dropEnabled: aBoolean ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>enable [
+{ #category : #protocol }
+AbstractMorphicAdapter >> enable [
 
 	self model enabled: true
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>enabled [
+{ #category : #protocol }
+AbstractMorphicAdapter >> enabled [
 	
 	^ self model enabled
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>enabled: aBoolean [
+{ #category : #protocol }
+AbstractMorphicAdapter >> enabled: aBoolean [
 
 	self widget ifNotNil: [ :w | w enabled: aBoolean ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>extent [
+{ #category : #protocol }
+AbstractMorphicAdapter >> extent [
 
 	^ self widget extent
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>hRigid [
+{ #category : #protocol }
+AbstractMorphicAdapter >> hRigid [
 	
 	self widgetDo: [ :w | w hResizing: #rigid ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>hShrinkWrap [
+{ #category : #protocol }
+AbstractMorphicAdapter >> hShrinkWrap [
 	
 	self widgetDo: [ :w | w hResizing: #shrinkWrap ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>hSpaceFill [
+{ #category : #protocol }
+AbstractMorphicAdapter >> hSpaceFill [
 	
 	self widgetDo: [ :w | w hResizing: #spaceFill ]
 ]
 
-{
-	#category : #dispatch,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>heightToDisplayInList: aList [
+{ #category : #dispatch }
+AbstractMorphicAdapter >> heightToDisplayInList: aList [
 	"Return the width of my representation as a list item"
 	
 	self model extent ifNotNil: [:ex | ^ ex y ].
@@ -297,11 +203,8 @@ AbstractMorphicAdapter>>heightToDisplayInList: aList [
 	^ self widget heightToDisplayInList: aList
 ]
 
-{
-	#category : #dispatch,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>heightToDisplayInTree: aTree [
+{ #category : #dispatch }
+AbstractMorphicAdapter >> heightToDisplayInTree: aTree [
 	"Return the width of my representation as a list item"
 	
 	self extent ifNotNil: [:ex | ^ ex y ].
@@ -311,29 +214,20 @@ AbstractMorphicAdapter>>heightToDisplayInTree: aTree [
 	^ self widget heightToDisplayInTree: aTree
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>help [
+{ #category : #protocol }
+AbstractMorphicAdapter >> help [
 
 	^ self model help
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>isMorphicAdapter [
+{ #category : #testing }
+AbstractMorphicAdapter >> isMorphicAdapter [
 
 	^ true
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>layout: aLayout [
+{ #category : #protocol }
+AbstractMorphicAdapter >> layout: aLayout [
 	| layout |
 	
 	layout := aLayout asMorphicLayout.
@@ -341,11 +235,8 @@ AbstractMorphicAdapter>>layout: aLayout [
 	self widgetDo: [ :w | w layoutFrame: layout ]
 ]
 
-{
-	#category : #dispatch,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>listRenderOn: aCanvas atRow: aRow bounds: drawBounds color: drawColor backgroundColor: backgroundColor from: aMorph [
+{ #category : #dispatch }
+AbstractMorphicAdapter >> listRenderOn: aCanvas atRow: aRow bounds: drawBounds color: drawColor backgroundColor: backgroundColor from: aMorph [
 	"Specify how this object as a list item should be drawn"
 
 	self widget ifNil: [ self buildWithSpec ].
@@ -362,148 +253,100 @@ AbstractMorphicAdapter>>listRenderOn: aCanvas atRow: aRow bounds: drawBounds col
 		from: aMorph
 ]
 
-{
-	#category : #protocol-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>removeKeyCombination: aShortcut [
+{ #category : #protocol-shortcuts }
+AbstractMorphicAdapter >> removeKeyCombination: aShortcut [
 
 	self widget ifNotNil: [ :w | w removeKeyCombination: aShortcut ]
 ]
 
-{
-	#category : #protocol-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>removeMenuKeyCombination: aShortcut [
+{ #category : #protocol-shortcuts }
+AbstractMorphicAdapter >> removeMenuKeyCombination: aShortcut [
 
 	self widget ifNotNil: [ :w | w removeKeyCombination: aShortcut ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>removeSubWidgets [
+{ #category : #protocol }
+AbstractMorphicAdapter >> removeSubWidgets [
 	
 	self widgetDo: [ :w | w removeAllMorphs ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>setBalloonText: aString [
+{ #category : #protocol }
+AbstractMorphicAdapter >> setBalloonText: aString [
 
 	self widget ifNotNil: [ :w | w setBalloonText: aString ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>setModal: aWindow  [
+{ #category : #'spec protocol' }
+AbstractMorphicAdapter >> setModal: aWindow [ 
 
 	self widgetDo: [ :w | w setModal: aWindow ]
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>transferBlock [
+{ #category : #'drag and drop' }
+AbstractMorphicAdapter >> transferBlock [
 
 	^ self model transferBlock
 ]
 
-{
-	#category : #'drag and drop - private',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>transferFor: passenger from: source [
+{ #category : #'drag and drop - private' }
+AbstractMorphicAdapter >> transferFor: passenger from: source [
 	^ (self transferBlock cull: passenger cull: self model) buildWithSpec
 ]
 
-{
-	#category : #dispatch,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>treeRenderOn: aCanvas bounds: drawBounds color: drawColor font: aFont from: aMorph [
+{ #category : #dispatch }
+AbstractMorphicAdapter >> treeRenderOn: aCanvas bounds: drawBounds color: drawColor font: aFont from: aMorph [
 	"Specify how this object as a list item should be drawn"
 
 	self widget ifNil: [ self buildWithSpec ].
 	self widget treeRenderOn: aCanvas bounds: drawBounds color: drawColor font: aFont from: aMorph
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>useProportionalLayout [
+{ #category : #protocol }
+AbstractMorphicAdapter >> useProportionalLayout [
 
 	self widgetDo: [ :w | w changeProportionalLayout ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>vRigid [
+{ #category : #protocol }
+AbstractMorphicAdapter >> vRigid [
 	
 	self widgetDo: [ :w | w vResizing: #rigid ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>vShrinkWrap [
+{ #category : #protocol }
+AbstractMorphicAdapter >> vShrinkWrap [
 	
 	self widgetDo: [ :w | w vResizing: #shrinkWrap ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>vSpaceFill [
+{ #category : #protocol }
+AbstractMorphicAdapter >> vSpaceFill [
 	
 	self widgetDo: [ :w | w vResizing: #spaceFill ]
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>wantDropBlock [
+{ #category : #'drag and drop' }
+AbstractMorphicAdapter >> wantDropBlock [
 
 	^ self model wantDropBlock
 ]
 
-{
-	#category : #'drag and drop - private',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>wantsDroppedMorph: draggedMorph event: anEvent inMorph: source [
+{ #category : #'drag and drop - private' }
+AbstractMorphicAdapter >> wantsDroppedMorph: draggedMorph event: anEvent inMorph: source [
 
 	^ self wantDropBlock cull: draggedMorph cull: anEvent cull:source
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>when: anAnnouncement do: aBlock [
+{ #category : #protocol }
+AbstractMorphicAdapter >> when: anAnnouncement do: aBlock [
 
 	self widgetDo: [ :w | w announcer
 		when: anAnnouncement do: aBlock ]
 ]
 
-{
-	#category : #dispatch,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>widthToDisplayInList: aList [
+{ #category : #dispatch }
+AbstractMorphicAdapter >> widthToDisplayInList: aList [
 	"Return the width of my representation as a list item"
 	
 	self model extent ifNotNil: [:ex | ^ ex x ].
@@ -517,11 +360,8 @@ AbstractMorphicAdapter>>widthToDisplayInList: aList [
 	^ self widget widthToDisplayInList: aList
 ]
 
-{
-	#category : #dispatch,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMorphicAdapter>>widthToDisplayInTree: aTree [
+{ #category : #dispatch }
+AbstractMorphicAdapter >> widthToDisplayInTree: aTree [
 	"Return the width of my representation as a list item"
 	
 	self extent ifNotNil: [:ex | ^ ex x ].

@@ -8,24 +8,17 @@ Class {
 		'morph',
 		'currentEntity'
 	],
-	#category : #QualityAssistant,
-	#timestamp : 'YuriyTymchuk 3/17/2015 17:33'
+	#category : #QualityAssistant
 }
 
-{
-	#category : #position,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin class>>defaultPosition [
+{ #category : #position }
+QANautilusPlugin class >> defaultPosition [
 
 	^ #bottom 
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin class>>install [
+{ #category : #installing }
+QANautilusPlugin class >> install [
 
 	self isInstalled ifFalse: [
 		Nautilus pluginClasses:
@@ -33,98 +26,68 @@ QANautilusPlugin class>>install [
 				{ self . self defaultPosition }) ]
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin class>>isInstalled [
+{ #category : #installing }
+QANautilusPlugin class >> isInstalled [
 
 	^ Nautilus pluginClasses anySatisfy: [ :pluginBinding | 
 			pluginBinding first = self ]
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin class>>pluginName [
+{ #category : #display }
+QANautilusPlugin class >> pluginName [
 	^ 'Quality Assistant'
 ]
 
-{
-	#category : #information,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin class>>possiblePositions [
+{ #category : #information }
+QANautilusPlugin class >> possiblePositions [
 
 	^ { #middle . #bottom }
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin class>>uninstall [
+{ #category : #installing }
+QANautilusPlugin class >> uninstall [
 
 	Nautilus pluginClasses:
 		(Nautilus pluginClasses reject: [ :each | 
 			each first = self ])
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin class>>unload [
+{ #category : #initialize-release }
+QANautilusPlugin class >> unload [
 
 	self uninstall 
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin>>classSelected: anAnnouncement [
+{ #category : #'announcement handling' }
+QANautilusPlugin >> classSelected: anAnnouncement [
 
 	currentEntity := anAnnouncement selectedClass.
 	self updateMorph  
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin>>critiqueBanned: ann [
+{ #category : #'announcement handling' }
+QANautilusPlugin >> critiqueBanned: ann [
 
 	ann entity = self currentEntity ifTrue: [ 
 		self updateMorph ]
 ]
 
-{
-	#category : #'interaction delegation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin>>critiqueSelected: aCritique [
+{ #category : #'interaction delegation' }
+QANautilusPlugin >> critiqueSelected: aCritique [
 	aCritique sourceAnchor providesInterval ifTrue: [ 
 		self model codeTextMorph
 			setSelection: aCritique sourceAnchor interval;
 			takeKeyboardFocus ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin>>currentEntity [
+{ #category : #properties }
+QANautilusPlugin >> currentEntity [
 
 	^ currentEntity
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin>>display [
+{ #category : #display }
+QANautilusPlugin >> display [
 
    morph := QANautilusPluginMorph new.
 	morph pluginDelegate: self.
@@ -134,29 +97,20 @@ QANautilusPlugin>>display [
 	^ morph
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin>>methodSelected: anAnnouncement [
+{ #category : #'announcement handling' }
+QANautilusPlugin >> methodSelected: anAnnouncement [
 
 	currentEntity := anAnnouncement selectedMethod.
 	self updateMorph  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin>>morph [
+{ #category : #accessing }
+QANautilusPlugin >> morph [
 	^ morph
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin>>otherSelected: anAnnouncement [
+{ #category : #'announcement handling' }
+QANautilusPlugin >> otherSelected: anAnnouncement [
 
 	 (anAnnouncement class == NautilusPackageSelected or:
 	[ anAnnouncement class == NautilusProtocolSelected ]) ifFalse: [ ^ self ].
@@ -165,22 +119,16 @@ QANautilusPlugin>>otherSelected: anAnnouncement [
 	self updateMorph  
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin>>packageSelected: anAnnouncement [
+{ #category : #'announcement handling' }
+QANautilusPlugin >> packageSelected: anAnnouncement [
 
 	currentEntity := anAnnouncement selectedPackage package.
 	self updateMorph  
 
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin>>registerTo: aModel [
+{ #category : #registration }
+QANautilusPlugin >> registerTo: aModel [
 
 	aModel announcer
 		when: NautilusPackageSelected  send: #packageSelected:  to: self;
@@ -195,11 +143,8 @@ QANautilusPlugin>>registerTo: aModel [
 	
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPlugin>>updateMorph [
+{ #category : #'announcement handling' }
+QANautilusPlugin >> updateMorph [
 	morph ifNil: [ ^ self ].
 	
 	morph entity: self currentEntity

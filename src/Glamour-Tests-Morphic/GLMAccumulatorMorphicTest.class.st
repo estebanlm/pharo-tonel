@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #GLMAccumulatorMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMAccumulatorMorphicTest>>tabGroup [
+{ #category : #private }
+GLMAccumulatorMorphicTest >> tabGroup [
 	^ self find: TabGroupMorph in: window
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMAccumulatorMorphicTest>>testActiveEntity [
+{ #category : #tests }
+GLMAccumulatorMorphicTest >> testActiveEntity [
 	| browser |
 	browser := GLMAccumulator new.
 	browser show: [ :a | a list display: [ :x | $a to: x ] ].
@@ -33,11 +23,8 @@ GLMAccumulatorMorphicTest>>testActiveEntity [
 	self assert: browser activeEntity equals: $d
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMAccumulatorMorphicTest>>testCloseTab [
+{ #category : #tests }
+GLMAccumulatorMorphicTest >> testCloseTab [
 	| browser |
 	browser := GLMAccumulator new.
 	browser
@@ -53,11 +40,8 @@ GLMAccumulatorMorphicTest>>testCloseTab [
 	self assert: browser panes size equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMAccumulatorMorphicTest>>testCreation [
+{ #category : #tests }
+GLMAccumulatorMorphicTest >> testCreation [
 	| browser |
 	browser := GLMAccumulator new.
 	browser show: [ :a | a list display: [ :x | $a to: x ] ].
@@ -65,11 +49,8 @@ GLMAccumulatorMorphicTest>>testCreation [
 	self find: LazyTabGroupMorph in: window
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMAccumulatorMorphicTest>>testListInside [
+{ #category : #tests }
+GLMAccumulatorMorphicTest >> testListInside [
 	| browser firstTreeMorph |
 	browser := GLMAccumulator new.
 	browser show: [ :a | a list display: [ :x | $a to: x ] ].
@@ -78,11 +59,8 @@ GLMAccumulatorMorphicTest>>testListInside [
 	self assert: ((firstTreeMorph roots collect: #complexContents) collect: #item) equals: ($a to: $d) asArray
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMAccumulatorMorphicTest>>testPaneCreation [
+{ #category : #tests }
+GLMAccumulatorMorphicTest >> testPaneCreation [
 	| browser |
 	browser := GLMAccumulator new.
 	browser show: [ :a | a list display: [ :x | $a to: x ] ].
@@ -92,11 +70,8 @@ GLMAccumulatorMorphicTest>>testPaneCreation [
 	self assert: self tabGroup pages size equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMAccumulatorMorphicTest>>testPaneRemoval [
+{ #category : #tests }
+GLMAccumulatorMorphicTest >> testPaneRemoval [
 	| browser |
 	browser := GLMAccumulator new.
 	browser show: [ :a | a list display: [ :x | $a to: x ] ].
@@ -114,11 +89,8 @@ GLMAccumulatorMorphicTest>>testPaneRemoval [
 	self assert: self tabGroup tabSelectorMorph tabs size equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMAccumulatorMorphicTest>>testSelectedTab [
+{ #category : #tests }
+GLMAccumulatorMorphicTest >> testSelectedTab [
 	| browser |
 	browser := GLMAccumulator new.
 	browser
@@ -133,11 +105,8 @@ GLMAccumulatorMorphicTest>>testSelectedTab [
 	self assert: self tabGroup selectedPageIndex equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMAccumulatorMorphicTest>>testTabTitle [
+{ #category : #tests }
+GLMAccumulatorMorphicTest >> testTabTitle [
 	| browser firstTabLabel |
 	browser := GLMAccumulator new.
 	browser

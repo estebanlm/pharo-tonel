@@ -9,183 +9,122 @@ Class {
 		'node',
 		'children'
 	],
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : 'ajh 3/24/2003 21:53'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>addChild: aScope [
+{ #category : #initializing }
+OCAbstractScope >> addChild: aScope [
 	self children add: aScope
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>children [
+{ #category : #accessing }
+OCAbstractScope >> children [
 	^children ifNil: [ children := OrderedCollection new ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>hasTempVector [
+{ #category : #testing }
+OCAbstractScope >> hasTempVector [
 	^ false
 ]
 
-{
-	#category : #decompiling,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>instanceScope [
+{ #category : #decompiling }
+OCAbstractScope >> instanceScope [
 
 	^self outerScope instanceScope
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>isBlockScope [
+{ #category : #testing }
+OCAbstractScope >> isBlockScope [
 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>isInsideOptimizedLoop [
+{ #category : #testing }
+OCAbstractScope >> isInsideOptimizedLoop [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>isInstanceScope [
+{ #category : #testing }
+OCAbstractScope >> isInstanceScope [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>isMethodScope [
+{ #category : #testing }
+OCAbstractScope >> isMethodScope [
 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>isOptimizedBlockScope [
+{ #category : #testing }
+OCAbstractScope >> isOptimizedBlockScope [
 	^false
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>lookupSelector: name [
+{ #category : #lookup }
+OCAbstractScope >> lookupSelector: name [
 
 	Symbol hasInterned: name ifTrue: [ :sym | ^ sym].
 	^ nil
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>lookupVar: name [
+{ #category : #lookup }
+OCAbstractScope >> lookupVar: name [
 	"subclass responsibility"
 
 	^ self outerScope lookupVar: name
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>lookupVar: name inContext: aContext [
+{ #category : #lookup }
+OCAbstractScope >> lookupVar: name inContext: aContext [
 
 	^ self outerScope lookupVar: name inContext: aContext outerContext
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>lookupVarForDeclaration: name [
+{ #category : #lookup }
+OCAbstractScope >> lookupVarForDeclaration: name [
 	"subclass responsibility"
 
 	^ self outerScope lookupVarForDeclaration: name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>node [
+{ #category : #accessing }
+OCAbstractScope >> node [
 	^node
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>node: aNode [
+{ #category : #accessing }
+OCAbstractScope >> node: aNode [
 	node := aNode
 ]
 
-{
-	#category : #levels,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>outerScope [
+{ #category : #levels }
+OCAbstractScope >> outerScope [
 
 	^ outerScope
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>outerScope: aSemScope [
+{ #category : #initializing }
+OCAbstractScope >> outerScope: aSemScope [
 
 	outerScope := aSemScope.
 	aSemScope addChild: self. 
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>possibleSelectorsFor: string [
+{ #category : #lookup }
+OCAbstractScope >> possibleSelectorsFor: string [
 
 	^ Symbol possibleSelectorsFor: string
 ]
 
-{
-	#category : #levels,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>scopeLevel [
+{ #category : #levels }
+OCAbstractScope >> scopeLevel [
 
 	outerScope ifNil: [^ 0].
 	^ outerScope scopeLevel + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractScope>>variableNamed: aName [
+{ #category : #accessing }
+OCAbstractScope >> variableNamed: aName [
 
 	^ self variableNamed: aName ifAbsent: [ nil ]
 ]

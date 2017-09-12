@@ -9,56 +9,37 @@ Class {
 	#instVars : [
 		'originalVar'
 	],
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : 'MarcusDenker 8/11/2014 10:20'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #'temp vector',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCCopyingTempVariable>>indexFromIR [
+{ #category : #'temp vector' }
+OCCopyingTempVariable >> indexFromIR [
 
 	^ scope node irInstruction indexForVarNamed: name
 ]
 
-{
-	#category : #debugging,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCCopyingTempVariable>>indexInTempVectorFromIR: aName [
+{ #category : #debugging }
+OCCopyingTempVariable >> indexInTempVectorFromIR: aName [
 	^(scope methodScope node irInstruction tempVectorNamed: name) indexForVarNamed: aName.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCCopyingTempVariable>>isCopying [
+{ #category : #testing }
+OCCopyingTempVariable >> isCopying [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCCopyingTempVariable>>originalVar [
+{ #category : #accessing }
+OCCopyingTempVariable >> originalVar [
 	^ originalVar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCCopyingTempVariable>>originalVar: anObject [
+{ #category : #accessing }
+OCCopyingTempVariable >> originalVar: anObject [
 	originalVar := anObject
 ]
 
-{
-	#category : #'temp vector',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCCopyingTempVariable>>tempVectorForTempStoringIt [
+{ #category : #'temp vector' }
+OCCopyingTempVariable >> tempVectorForTempStoringIt [
 	"If I am stroring a temp Vector, this method returns this victor.
 	useful for analysis e.g. which variables are active in a context"
 	

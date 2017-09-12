@@ -7,15 +7,11 @@ It is similar to ShouldBeImplemented, with a slightly different meaning.
 Class {
 	#name : #NotYetImplemented,
 	#superclass : #SelectorException,
-	#category : #Kernel-Exceptions,
-	#timestamp : '<historical>'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-NotYetImplemented>>standardMessageText [
+{ #category : #printing }
+NotYetImplemented >> standardMessageText [
 	"Generate a standard textual description"
 	
 	^ String streamContents: [ :stream |

@@ -7,34 +7,24 @@ Class {
 	#instVars : [
 		'entry'
 	],
-	#category : #Epicea-Announcements,
-	#timestamp : '<historical>'
+	#category : #Epicea-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryAdded class>>for: anEntry [
+{ #category : #'instance creation' }
+EpEntryAdded class >> for: anEntry [
 
 	^ self basicNew
 		initializeWith: anEntry;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryAdded>>entry [
+{ #category : #accessing }
+EpEntryAdded >> entry [
 	^ entry
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryAdded>>initializeWith: anEntry [
+{ #category : #initialize-release }
+EpEntryAdded >> initializeWith: anEntry [
 
 	self initialize.
 	entry := anEntry.

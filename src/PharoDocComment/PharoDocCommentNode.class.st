@@ -21,39 +21,26 @@ Class {
 	#classVars : [
 		'DocCommentEnabled'
 	],
-	#category : #PharoDocComment,
-	#timestamp : 'StephaneDucasse 11/3/2016 13:09'
+	#category : #PharoDocComment
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentNode class>>docCommentEnabled [
+{ #category : #settings }
+PharoDocCommentNode class >> docCommentEnabled [
 	^ DocCommentEnabled  ifNil: [ DocCommentEnabled  := true ] 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentNode class>>docCommentEnabled: aBoolean [
+{ #category : #settings }
+PharoDocCommentNode class >> docCommentEnabled: aBoolean [
 	DocCommentEnabled := aBoolean
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentNode class>>docCommentRangesIn: aText [
+{ #category : #parsing }
+PharoDocCommentNode class >> docCommentRangesIn: aText [
 	^ '(([^[:cntrl:]]*)>>>\3?([^[:cntrl:]]*))' asRegex matchingRangesIn: aText
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentNode class>>expression: aDocExpression result: anotherDocExpression inComment: aRBComment [
+{ #category : #'instance creation' }
+PharoDocCommentNode class >> expression: aDocExpression result: anotherDocExpression inComment: aRBComment [
 	^ self new
 		expression: aDocExpression;
 		result: anotherDocExpression;
@@ -61,11 +48,8 @@ PharoDocCommentNode class>>expression: aDocExpression result: anotherDocExpressi
 		yourself
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentNode class>>parseDocComments: aRBCommentNode [
+{ #category : #parsing }
+PharoDocCommentNode class >> parseDocComments: aRBCommentNode [
 	| ranges |
 	ranges := self docCommentRangesIn: aRBCommentNode contents.
 	^ ranges
@@ -81,11 +65,8 @@ PharoDocCommentNode class>>parseDocComments: aRBCommentNode [
 			self expression: expression result: result inComment: aRBCommentNode ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentNode class>>settingsOn: aBuilder [
+{ #category : #settings }
+PharoDocCommentNode class >> settingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #docCommentEnabled)
 		target: self;
@@ -97,36 +78,24 @@ PharoDocCommentNode class>>settingsOn: aBuilder [
 		parent: #codeBrowsing
 ]
 
-{
-	#category : #operation,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentNode>>asTriplet [
+{ #category : #operation }
+PharoDocCommentNode >> asTriplet [
 	"Return the expression, its returned value and its expect result."
 	^ { self expression expressionCode formattedCode . self expression evaluate . self result expressionCode formattedCode}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentNode>>expression [
+{ #category : #accessing }
+PharoDocCommentNode >> expression [
 	^ expression
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentNode>>expression: anObject [
+{ #category : #accessing }
+PharoDocCommentNode >> expression: anObject [
 	expression := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentNode>>printOn: aStream [
+{ #category : #printing }
+PharoDocCommentNode >> printOn: aStream [
 
 	super printOn: aStream.
 	aStream nextPutAll: '('.
@@ -134,34 +103,22 @@ PharoDocCommentNode>>printOn: aStream [
 	aStream nextPutAll: ')'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentNode>>result [
+{ #category : #accessing }
+PharoDocCommentNode >> result [
 	^ result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentNode>>result: anObject [
+{ #category : #accessing }
+PharoDocCommentNode >> result: anObject [
 	result := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentNode>>sourceNode [
+{ #category : #accessing }
+PharoDocCommentNode >> sourceNode [
 	^ sourceNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PharoDocCommentNode>>sourceNode: anObject [
+{ #category : #accessing }
+PharoDocCommentNode >> sourceNode: anObject [
 	sourceNode := anObject
 ]

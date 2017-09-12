@@ -8,22 +8,15 @@ the scanner produces the tokens 'a' and '-1'. This will be converted to the toke
 Class {
 	#name : #RBNumberLiteralToken,
 	#superclass : #RBLiteralToken,
-	#category : #AST-Core-Tokens,
-	#timestamp : 'NicolaiHess 8/22/2016 15:46'
+	#category : #AST-Core-Tokens
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBNumberLiteralToken>>isNumberLiteralToken [
+{ #category : #testing }
+RBNumberLiteralToken >> isNumberLiteralToken [
 	^true.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBNumberLiteralToken>>storeOn: aStream  [
+{ #category : #printing }
+RBNumberLiteralToken >> storeOn: aStream [ 
 	aStream nextPutAll: source
 ]

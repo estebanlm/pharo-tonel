@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #RubCurrentLineBarDecorator,
 	#superclass : #RubParagraphDecorator,
-	#category : #Rubric-Editing-Core,
-	#timestamp : ''
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCurrentLineBarDecorator class>>key [
+{ #category : #querying }
+RubCurrentLineBarDecorator class >> key [
 	^ #selectionBar
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCurrentLineBarDecorator>>drawOn: aCanvas [
+{ #category : #drawing }
+RubCurrentLineBarDecorator >> drawOn: aCanvas [
  
 	| line bnd |
 	
@@ -33,11 +23,8 @@ RubCurrentLineBarDecorator>>drawOn: aCanvas [
 	aCanvas fillRectangle: bnd color: self selectionBarColor
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCurrentLineBarDecorator>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #drawing }
+RubCurrentLineBarDecorator >> drawOnAthensCanvas: anAthensCanvas [
 	| line bnd |
 	super drawOnAthensCanvas: anAthensCanvas.
 	self selectionStart = self selectionStop ifFalse: [^self].
@@ -49,10 +36,7 @@ RubCurrentLineBarDecorator>>drawOnAthensCanvas: anAthensCanvas [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCurrentLineBarDecorator>>selectionBarColor [
+{ #category : #accessing }
+RubCurrentLineBarDecorator >> selectionBarColor [
 	^ self theme selectionBarColor
 ]

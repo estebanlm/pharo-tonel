@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBReadBeforeWrittenTesterTest,
 	#superclass : #TestCase,
-	#category : #AST-Tests-Core,
-	#timestamp : ''
+	#category : #AST-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBReadBeforeWrittenTesterTest>>testReadBeforeWritten [
+{ #category : #tests }
+RBReadBeforeWrittenTesterTest >> testReadBeforeWritten [
 	#(('a ifTrue: [^self]' true ) ('self foo. a := b' false ) ('condition ifTrue: [a := b] ifFalse: [self foo: a]' true ) ('condition ifTrue: [a := b] ifFalse: [self foo]. a isNil' true ) ('condition ifTrue: [a := b]. a := c' false ) ('[a := b] whileFalse: [a isNil]' false ) ('self foo: b' false ) ) do: 
 		[:each | 
 		self assert: ((RBReadBeforeWrittenTester readBeforeWritten: #('a' ) in: (RBParser parseExpression: each first))
@@ -40,11 +33,8 @@ RBReadBeforeWrittenTesterTest>>testReadBeforeWritten [
 		self assert: (read size = 1 and: [read includes: 'read'])]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBReadBeforeWrittenTesterTest>>testReadBeforeWritten1 [
+{ #category : #tests }
+RBReadBeforeWrittenTesterTest >> testReadBeforeWritten1 [
 	self 
 		assert: (RBReadBeforeWrittenTester variablesReadBeforeWrittenIn: (RBParser 
 						parseMethod: 'addAll: aCollection 

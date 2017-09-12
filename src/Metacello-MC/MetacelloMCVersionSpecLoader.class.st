@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloMCVersionSpecLoader,
 	#superclass : #Object,
@@ -11,35 +8,25 @@ Class {
 		'loader',
 		'loaderPolicy'
 	],
-	#category : #Metacello-MC-Loaders,
-	#timestamp : ''
+	#category : #Metacello-MC-Loaders
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader class>>on: aVersionSpec [
+{ #category : #'instance creation' }
+MetacelloMCVersionSpecLoader class >> on: aVersionSpec [
 
 	^(self new) 
 		versionSpec: aVersionSpec;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>label [
+{ #category : #accessing }
+MetacelloMCVersionSpecLoader >> label [
 
 	^self versionSpec label
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>load [
+{ #category : #loading }
+MetacelloMCVersionSpecLoader >> load [
   | mcLoader |
   packages := Dictionary new.
   self resolveToLoadableSpecs.
@@ -64,11 +51,8 @@ MetacelloMCVersionSpecLoader>>load [
   ^ mcLoader
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>loader [
+{ #category : #accessing }
+MetacelloMCVersionSpecLoader >> loader [
 
 	loader == nil 
 		ifTrue: [
@@ -78,80 +62,53 @@ MetacelloMCVersionSpecLoader>>loader [
 	^loader
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>loaderPolicy [
+{ #category : #accessing }
+MetacelloMCVersionSpecLoader >> loaderPolicy [
 	^ loaderPolicy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>loaderPolicy: anObject [
+{ #category : #accessing }
+MetacelloMCVersionSpecLoader >> loaderPolicy: anObject [
 	loaderPolicy := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>name [
+{ #category : #accessing }
+MetacelloMCVersionSpecLoader >> name [
 
 	^self versionSpec name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>operator [
+{ #category : #accessing }
+MetacelloMCVersionSpecLoader >> operator [
 
 	^self loader operator
 ]
 
-{
-	#category : #'spec compatibility',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>packageSpecsInLoadOrder [
+{ #category : #'spec compatibility' }
+MetacelloMCVersionSpecLoader >> packageSpecsInLoadOrder [
     ^ self versionSpec packageSpecsInLoadOrderForMap: packages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>packages [
+{ #category : #accessing }
+MetacelloMCVersionSpecLoader >> packages [
 
 	^packages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>project [
+{ #category : #accessing }
+MetacelloMCVersionSpecLoader >> project [
 
 	^self versionSpec project
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>repositories [
+{ #category : #loading }
+MetacelloMCVersionSpecLoader >> repositories [
 
 	^self repositorySpecs
 ]
 
-{
-	#category : #'spec compatibility',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>repositorySpecs [
+{ #category : #'spec compatibility' }
+MetacelloMCVersionSpecLoader >> repositorySpecs [
 
 	| repositoryMap |
 	repositoryMap := self versionSpec repositories ~~ nil
@@ -160,64 +117,43 @@ MetacelloMCVersionSpecLoader>>repositorySpecs [
 	^repositoryMap values.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>required [
+{ #category : #accessing }
+MetacelloMCVersionSpecLoader >> required [
 
 	required == nil ifTrue: [ ^#() ].
 	^ required
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>required: anObject [
+{ #category : #accessing }
+MetacelloMCVersionSpecLoader >> required: anObject [
 	required := anObject
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>resolvePackageNames [
+{ #category : #loading }
+MetacelloMCVersionSpecLoader >> resolvePackageNames [
 
 	packages := Dictionary new.
 	self resolveToLoadableSpecs.
 	^packages values collect: [:pkg | pkg name ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>resolveToLoadableSpecs [
+{ #category : #private }
+MetacelloMCVersionSpecLoader >> resolveToLoadableSpecs [
     self versionSpec resolveToLoadableSpecs: required forLoad: true map: packages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>versionSpec [
+{ #category : #accessing }
+MetacelloMCVersionSpecLoader >> versionSpec [
 	^ versionSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>versionSpec: anObject [
+{ #category : #accessing }
+MetacelloMCVersionSpecLoader >> versionSpec: anObject [
 	versionSpec := anObject
 ]
 
-{
-	#category : #'spec compatibility',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionSpecLoader>>versionString [
+{ #category : #'spec compatibility' }
+MetacelloMCVersionSpecLoader >> versionString [
 
 	^self versionSpec versionString
 ]

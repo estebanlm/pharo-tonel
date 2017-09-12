@@ -12,121 +12,78 @@ Class {
 		'source',
 		'destForm'
 	],
-	#category : #Balloon-Simulation,
-	#timestamp : '<historical>'
+	#category : #Balloon-Simulation
 }
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonFillData>>computeFill [
+{ #category : #computing }
+BalloonFillData >> computeFill [
 	(destForm isNil or:[destForm width < self width]) ifTrue:[
 		destForm := Form extent: (self width + 10) @ 1 depth: 32.
 	].
 	source computeFillFrom: minX to: maxX at: yValue in: destForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonFillData>>destForm [
+{ #category : #accessing }
+BalloonFillData >> destForm [
 	^destForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonFillData>>destForm: aForm [
+{ #category : #accessing }
+BalloonFillData >> destForm: aForm [
 	destForm := aForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonFillData>>index [
+{ #category : #accessing }
+BalloonFillData >> index [
 	^index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonFillData>>index: anInteger [
+{ #category : #accessing }
+BalloonFillData >> index: anInteger [
 	index := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonFillData>>maxX [
+{ #category : #accessing }
+BalloonFillData >> maxX [
 	^maxX
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonFillData>>maxX: anInteger [
+{ #category : #accessing }
+BalloonFillData >> maxX: anInteger [
 	maxX := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonFillData>>minX [
+{ #category : #accessing }
+BalloonFillData >> minX [
 	^minX
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonFillData>>minX: anInteger [
+{ #category : #accessing }
+BalloonFillData >> minX: anInteger [
 	minX := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonFillData>>source [
+{ #category : #accessing }
+BalloonFillData >> source [
 	^source
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonFillData>>source: anObject [
+{ #category : #accessing }
+BalloonFillData >> source: anObject [
 	source := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonFillData>>width [
+{ #category : #accessing }
+BalloonFillData >> width [
 	^maxX - minX
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonFillData>>yValue [
+{ #category : #accessing }
+BalloonFillData >> yValue [
 	^yValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonFillData>>yValue: anInteger [
+{ #category : #accessing }
+BalloonFillData >> yValue: anInteger [
 	yValue := anInteger
 ]

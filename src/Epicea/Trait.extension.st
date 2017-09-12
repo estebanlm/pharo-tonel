@@ -1,23 +1,15 @@
-Extension {
-	#name : #Trait
-}
+Extension { #name : #Trait }
 
-{
-	#category : #'*Epicea-Ring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-Trait>>asEpiceaRingDefinition [
+{ #category : #'*Epicea-Ring' }
+Trait >> asEpiceaRingDefinition [
 
 	^ self asRingDefinition
 		package: self epiceaPackageName;
 		yourself.
 ]
 
-{
-	#category : #'*Epicea-Ring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-Trait>>epiceaPackageName [
+{ #category : #'*Epicea-Ring' }
+Trait >> epiceaPackageName [
 	"Answer my package name for Epicea serialization"
 
 	self flag: #fix.

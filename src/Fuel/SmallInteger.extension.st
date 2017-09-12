@@ -1,21 +1,13 @@
-Extension {
-	#name : #SmallInteger
-}
+Extension { #name : #SmallInteger }
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-SmallInteger>>fuelAccept: aGeneralMapper [
+{ #category : #'*Fuel' }
+SmallInteger >> fuelAccept: aGeneralMapper [
 
 	^aGeneralMapper visitSmallInteger: self
 ]
 
-{
-	#category : #'*Fuel-Collections',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-SmallInteger>>largeIdentityHash [
+{ #category : #'*Fuel-Collections' }
+SmallInteger >> largeIdentityHash [
 	"Return an integer between 0 and 4095 based on all of my bits. Make sure that for nearby receivers the result will not be nearby with high probability."
 
 	| remainder hash |

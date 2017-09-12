@@ -18,25 +18,18 @@ Class {
 	#instVars : [
 		'cases'
 	],
-	#category : #Morphic-Tests-Bugs,
-	#timestamp : 'wiz 1/3/2007 13:57'
+	#category : #Morphic-Tests-Bugs
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphicUIBugTest>>setUp [
+{ #category : #running }
+MorphicUIBugTest >> setUp [
 	"default. tests will add morphs to list. Teardown will delete."
 
 	cases := #()
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphicUIBugTest>>tearDown [
+{ #category : #running }
+MorphicUIBugTest >> tearDown [
 	"default. tests will add morphs to list. Teardown will delete."
 
 	cases do: [ :each | each delete ]

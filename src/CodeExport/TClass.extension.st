@@ -1,12 +1,7 @@
-Extension {
-	#name : #TClass
-}
+Extension { #name : #TClass }
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TClass>>fileOut [
+{ #category : #'*CodeExport' }
+TClass >> fileOut [
 	"Create a file whose name is the name of the receiver with '.st' as the 
 	extension, and file a description of the receiver onto it."
 	
@@ -23,37 +18,25 @@ TClass>>fileOut [
 	FileStream writeSourceCodeFrom: internalStream baseName: self name isSt: true
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TClass>>fileOutInitializerOn: aStream [
+{ #category : #'*CodeExport' }
+TClass >> fileOutInitializerOn: aStream [
 	^self class fileOutInitializerOn: aStream
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TClass>>fileOutOn: aFileStream [
+{ #category : #'*CodeExport' }
+TClass >> fileOutOn: aFileStream [
 	"File a description of the receiver on aFileStream."
 
 	^ self fileOutOn: aFileStream initializing: true
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TClass>>fileOutOn: aFileStream initializing: aBool [
+{ #category : #'*CodeExport' }
+TClass >> fileOutOn: aFileStream initializing: aBool [
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TClass>>fileOutPool: aPool onFileStream: aFileStream  [
+{ #category : #'*CodeExport' }
+TClass >> fileOutPool: aPool onFileStream: aFileStream [ 
 	| aPoolName |
 	(aPool  isKindOf: SharedPool class) ifTrue:[^self notify: 'we do not fileout SharedPool type shared pools for now'].
 	aPoolName := self environment keyAtIdentityValue: aPool.
@@ -72,11 +55,8 @@ TClass>>fileOutPool: aPool onFileStream: aFileStream  [
 	aFileStream cr
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TClass>>fileOutSharedPoolsOn: aFileStream [
+{ #category : #'*CodeExport' }
+TClass >> fileOutSharedPoolsOn: aFileStream [
 	"file out the shared pools of this class after prompting the user about each pool"
 	| poolsToFileOut |
 	poolsToFileOut := self sharedPools select: 
@@ -85,20 +65,14 @@ TClass>>fileOutSharedPoolsOn: aFileStream [
 	
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TClass>>shouldFileOutPool: aPoolName [
+{ #category : #'*CodeExport' }
+TClass >> shouldFileOutPool: aPoolName [
 	"respond with true if the user wants to file out aPoolName"
 	^self confirm: ('FileOut the sharedPool ', aPoolName, '?')
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TClass>>shouldFileOutPools [
+{ #category : #'*CodeExport' }
+TClass >> shouldFileOutPools [
 	"respond with true if the user wants to file out the shared pools"
 	^self confirm: 'FileOut selected sharedPools?'
 ]

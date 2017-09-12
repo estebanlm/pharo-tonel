@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'currentPageFirstIndex'
 	],
-	#category : #Morphic-Widgets-Tree-Pagination,
-	#timestamp : 'TorstenBergmann 9/5/2014 15:30'
+	#category : #Morphic-Widgets-Tree-Pagination
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>allIntervals [
+{ #category : #accessing }
+MorphTreePager >> allIntervals [
 	| intervals |
 	intervals := OrderedCollection new.
 	1 to: self lastPage do: [:p | | start | intervals add: ((start := (((p - 1) * self pageSize) + 1)) -> (start + pageSize - 1))].
@@ -23,11 +19,8 @@ MorphTreePager>>allIntervals [
 	^ intervals
 ]
 
-{
-	#category : #navigation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>buildPanel [
+{ #category : #navigation }
+MorphTreePager >> buildPanel [
 	| widgets firstPageButton previousButton wid nextButton lastPageButton pageSizeEditor searchEditor |
 	self removeAllMorphs.
 	pageSize
@@ -93,11 +86,8 @@ MorphTreePager>>buildPanel [
 	self updateContents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>choosePage [
+{ #category : #accessing }
+MorphTreePager >> choosePage [
 	| choiceList chosen |
 	choiceList := OrderedCollection new.
 	self allIntervals 
@@ -114,29 +104,20 @@ MorphTreePager>>choosePage [
 	self currentPage: chosen.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>currentNodelist [
+{ #category : #private }
+MorphTreePager >> currentNodelist [
 	^ self nodeList copyFrom: self currentPageFirstIndex to: self currentPageLastIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>currentPage [
+{ #category : #accessing }
+MorphTreePager >> currentPage [
 	^ self currentPageLastIndex \\ pageSize > 0
 		ifTrue: [(self currentPageLastIndex / pageSize) asInteger + 1]
 		ifFalse: [(self currentPageLastIndex / pageSize) asInteger]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>currentPage: anIndex [
+{ #category : #accessing }
+MorphTreePager >> currentPage: anIndex [
 	anIndex = self currentPage ifTrue: [^ self].
 	anIndex = 1 
 		ifTrue: [self setPageInterval: (1 to: (pageSize min: self nodeList size))]
@@ -148,35 +129,23 @@ MorphTreePager>>currentPage: anIndex [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>currentPageFirstIndex [
+{ #category : #accessing }
+MorphTreePager >> currentPageFirstIndex [
 	^ currentPageFirstIndex ifNil: [currentPageFirstIndex := 1]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>currentPageLastIndex [
+{ #category : #accessing }
+MorphTreePager >> currentPageLastIndex [
 	^ pageSize ifNil: [self nodeList size] ifNotNil: [(self currentPageFirstIndex + pageSize - 1) min: self nodeList size]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>hasSeveralPages [
+{ #category : #testing }
+MorphTreePager >> hasSeveralPages [
 	^ self lastPage > 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>lastPage [
+{ #category : #accessing }
+MorphTreePager >> lastPage [
 	| p |
 	p := (self nodeList size / pageSize) asInteger.
 	self nodeList size \\ pageSize > 0 ifTrue: [p := p + 1].
@@ -184,84 +153,57 @@ MorphTreePager>>lastPage [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>nextPage [
+{ #category : #accessing }
+MorphTreePager >> nextPage [
 	self currentPageLastIndex < self nodeList size
 		ifTrue: [currentPageFirstIndex := (currentPageFirstIndex + pageSize) min: self nodeList size.
 			self showCurrentPage]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>nextPage: theIndexOfAnElement [
+{ #category : #accessing }
+MorphTreePager >> nextPage: theIndexOfAnElement [
 	"To make sure we can go to the page of an element."
 
 	self currentPage: (self pageOfNodeIndex: theIndexOfAnElement)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>notOnFirstPage [
+{ #category : #testing }
+MorphTreePager >> notOnFirstPage [
 	^ self onFirstPage not
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>notOnLastPage [
+{ #category : #testing }
+MorphTreePager >> notOnLastPage [
 	^ self onLastPage not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>onFirstPage [
+{ #category : #testing }
+MorphTreePager >> onFirstPage [
 	^ self currentPageFirstIndex = 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>onLastPage [
+{ #category : #testing }
+MorphTreePager >> onLastPage [
 	^ self currentPageLastIndex = self nodeList size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>previousPage [
+{ #category : #accessing }
+MorphTreePager >> previousPage [
 	self currentPageFirstIndex > 1
 		ifTrue: [currentPageFirstIndex := (currentPageFirstIndex - pageSize) max: 1.
 			self showCurrentPage]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>setPageInterval: anInterval [
+{ #category : #accessing }
+MorphTreePager >> setPageInterval: anInterval [
 	currentPageFirstIndex := anInterval first.
 	self showCurrentPage.
 	self changed: #currentPage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>showCurrentPage [
+{ #category : #accessing }
+MorphTreePager >> showCurrentPage [
 	self buildPanel.
 	treeMorph scroller removeAllMorphs.
 	(self nodeList isNil or: [self nodeList isEmpty]) 
@@ -272,11 +214,8 @@ MorphTreePager>>showCurrentPage [
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreePager>>updateForNewPageSize: newPageSize [
+{ #category : #'user interface' }
+MorphTreePager >> updateForNewPageSize: newPageSize [
 	pageSize ~= newPageSize
 		ifTrue: [ |  oldLast |
 			oldLast := self currentPageLastIndex.

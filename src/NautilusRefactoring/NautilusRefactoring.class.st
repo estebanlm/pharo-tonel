@@ -17,15 +17,11 @@ Class {
 	#classVars : [
 		'PromptOnRefactoring'
 	],
-	#category : #NautilusRefactoring,
-	#timestamp : '<historical>'
+	#category : #NautilusRefactoring
 }
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring class>>buildRefactoringMethodShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+NautilusRefactoring class >> buildRefactoringMethodShortcutsOn: aBuilder [
 	<keymap>	
 
 	(aBuilder shortcut: #rename)
@@ -39,11 +35,8 @@ NautilusRefactoring class>>buildRefactoringMethodShortcutsOn: aBuilder [
 		
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring class>>buildRefactoringShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+NautilusRefactoring class >> buildRefactoringShortcutsOn: aBuilder [
 	<keymap>	
 
 	(aBuilder shortcut: #generateAccessors)
@@ -59,11 +52,8 @@ NautilusRefactoring class>>buildRefactoringShortcutsOn: aBuilder [
 		description: 'Generate a subclass for the selected class'.
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring class>>buildSourceCodeShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+NautilusRefactoring class >> buildSourceCodeShortcutsOn: aBuilder [
 	<keymap>
 	(aBuilder shortcut: #rename)
 		category: #NautilusSourceCodeShortcuts
@@ -92,11 +82,8 @@ NautilusRefactoring class>>buildSourceCodeShortcutsOn: aBuilder [
 		do: [ :target | target refactor formatSourceCode ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring class>>classRefactoringSubmenu: aBuilder [
+{ #category : #menu }
+NautilusRefactoring class >> classRefactoringSubmenu: aBuilder [
 	<nautilusGlobalClassMenu>
 	| target |
 	target := aBuilder model.
@@ -105,11 +92,8 @@ NautilusRefactoring class>>classRefactoringSubmenu: aBuilder [
 	target selectedClass refactoringSubmenu: aBuilder.
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring class>>classVarRefactoringSubmenu: aBuilder [
+{ #category : #menu }
+NautilusRefactoring class >> classVarRefactoringSubmenu: aBuilder [
 	<nautilusGlobalClassMenu>
 	| target selectedClass |
 	target := aBuilder model.
@@ -121,11 +105,8 @@ NautilusRefactoring class>>classVarRefactoringSubmenu: aBuilder [
 	
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring class>>codeRewritingClassSubmenu: aBuilder [
+{ #category : #menu }
+NautilusRefactoring class >> codeRewritingClassSubmenu: aBuilder [
 	<nautilusGlobalClassMenu>
 	| target |
 	target := aBuilder model.
@@ -134,11 +115,8 @@ NautilusRefactoring class>>codeRewritingClassSubmenu: aBuilder [
 	target selectedClass codeRewritingClass: aBuilder.
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring class>>groupRefactoringMenu: aBuilder [
+{ #category : #menu }
+NautilusRefactoring class >> groupRefactoringMenu: aBuilder [
 	<nautilusGlobalGroupMenu>
 	| target |
 	target := aBuilder model.
@@ -146,11 +124,8 @@ NautilusRefactoring class>>groupRefactoringMenu: aBuilder [
 		target selectedClass groupRefactoring: aBuilder ].
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring class>>instVarRefactoringSubmenu: aBuilder [
+{ #category : #menu }
+NautilusRefactoring class >> instVarRefactoringSubmenu: aBuilder [
 	<nautilusGlobalClassMenu>
 	| target selectedClass |
 	
@@ -161,11 +136,8 @@ NautilusRefactoring class>>instVarRefactoringSubmenu: aBuilder [
 	selectedClass instVarRefactoring: aBuilder.
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring class>>methodRefactoringSubMenu: aBuilder [
+{ #category : #menu }
+NautilusRefactoring class >> methodRefactoringSubMenu: aBuilder [
 	<nautilusGlobalMethodMenu>
 	| target selectedMethod |
 
@@ -176,22 +148,16 @@ NautilusRefactoring class>>methodRefactoringSubMenu: aBuilder [
 	selectedMethod origin instanceSide methodRefactoring: aBuilder.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring class>>model: model [
+{ #category : #'instance creation' }
+NautilusRefactoring class >> model: model [
 
 	^ self new
 		model: model;
 		yourself
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring class>>packageRefactoringMenu: aBuilder [
+{ #category : #menu }
+NautilusRefactoring class >> packageRefactoringMenu: aBuilder [
 	<nautilusGlobalPackageMenu>
 	
 	| target |
@@ -214,20 +180,14 @@ NautilusRefactoring class>>packageRefactoringMenu: aBuilder [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring class>>promptOnRefactoring [
+{ #category : #accessing }
+NautilusRefactoring class >> promptOnRefactoring [
 
 	^ PromptOnRefactoring ifNil: [ PromptOnRefactoring := true ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring class>>refactoringClassMenu: aBuilder [
+{ #category : #menu }
+NautilusRefactoring class >> refactoringClassMenu: aBuilder [
 	<nautilusGlobalClassMenu>
 	| target |
 	target := aBuilder model.
@@ -235,11 +195,8 @@ NautilusRefactoring class>>refactoringClassMenu: aBuilder [
 	target selectedClass refactoringMenu: aBuilder
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring class>>refactoringMethodMenu: aBuilder [
+{ #category : #menu }
+NautilusRefactoring class >> refactoringMethodMenu: aBuilder [
 	<nautilusGlobalMethodMenu>
 	| target |
 	target := aBuilder model.
@@ -247,11 +204,8 @@ NautilusRefactoring class>>refactoringMethodMenu: aBuilder [
 	target selectedMethod origin instanceSide refactoringMethod: aBuilder
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring class>>sourceCodeRefactoringMenuHolder: aBuilder [
+{ #category : #menu }
+NautilusRefactoring class >> sourceCodeRefactoringMenuHolder: aBuilder [
 	<nautilusGlobalSourceCodeMenu>
 	| target |
 	target := aBuilder model.
@@ -261,11 +215,8 @@ NautilusRefactoring class>>sourceCodeRefactoringMenuHolder: aBuilder [
 		ifNotNil: [ :selectedClass | selectedClass sourceCodeRefactoringMenu: aBuilder ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring class>>sourceCodeRefactoringSubMenu: aBuilder [
+{ #category : #menu }
+NautilusRefactoring class >> sourceCodeRefactoringSubMenu: aBuilder [
 	<nautilusGlobalSourceCodeMenu>
 	| target |
 	target := aBuilder model.
@@ -275,72 +226,48 @@ NautilusRefactoring class>>sourceCodeRefactoringSubMenu: aBuilder [
 		ifNotNil: [ :selectedClass | selectedClass sourceCodeRefactoring: aBuilder ]
 ]
 
-{
-	#category : #'class var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>abstractClassVarFrom: aClass [
+{ #category : #'class var' }
+NautilusRefactoring >> abstractClassVarFrom: aClass [
 	self performRefactoringFor: #privateAbstractClassVarFrom: with: aClass
 ]
 
-{
-	#category : #'inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>abstractInstVarFrom: aClass [
+{ #category : #'inst var' }
+NautilusRefactoring >> abstractInstVarFrom: aClass [
 	self performRefactoringFor: #privateAbstractInstVarFrom: with: aClass
 
 ]
 
-{
-	#category : #'class var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>accessorsClassVarFrom: aClass [
+{ #category : #'class var' }
+NautilusRefactoring >> accessorsClassVarFrom: aClass [
 	self performRefactoringFor: #privateAccessorsClassVarFrom: with: aClass.
 
 ]
 
-{
-	#category : #'inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>accessorsInstVarFrom: aClass [
+{ #category : #'inst var' }
+NautilusRefactoring >> accessorsInstVarFrom: aClass [
 	self performRefactoringFor: #privateAccessorsInstVarFrom: with: aClass
 
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>addAParameterFor: aMethod [
+{ #category : #method }
+NautilusRefactoring >> addAParameterFor: aMethod [
 	self performRefactoringFor: #privateAddAParameterFor: with: aMethod
 ]
 
-{
-	#category : #'class var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>addClassVarFrom: aClass [
+{ #category : #'class var' }
+NautilusRefactoring >> addClassVarFrom: aClass [
 	self performRefactoringFor: #privateAddClassVarFrom: with: aClass
 
 ]
 
-{
-	#category : #'inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>addInstVarFrom: aClass [
+{ #category : #'inst var' }
+NautilusRefactoring >> addInstVarFrom: aClass [
 	 self performRefactoringFor: #privateAddInstVarFrom: with: aClass
 
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>buildRenameRefactoringEngineFor: aClass [
+{ #category : #class }
+NautilusRefactoring >> buildRenameRefactoringEngineFor: aClass [
 
 	| newName |
 	newName := (UIManager default
@@ -353,58 +280,40 @@ NautilusRefactoring>>buildRenameRefactoringEngineFor: aClass [
 		to: newName
 ]
 
-{
-	#category : #'rewrite code',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>categoryRegex [
+{ #category : #'rewrite code' }
+NautilusRefactoring >> categoryRegex [
 	self model refactorCode: self categoryRegexText
 ]
 
-{
-	#category : #'rewrite code',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>categoryRegexText [
+{ #category : #'rewrite code' }
+NautilusRefactoring >> categoryRegexText [
 	^ 'RBCategoryRegexRefactoring new
 	replace: ''^Kernel-(.*)$'' with: ''System-$1'' ignoreCase: false;
 	yourself'
 ]
 
-{
-	#category : #undo-redo,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>changeManager [
+{ #category : #undo-redo }
+NautilusRefactoring >> changeManager [
 	^ RBRefactoryChangeManager instance
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>changeSuperclassOf: aClass [
+{ #category : #class }
+NautilusRefactoring >> changeSuperclassOf: aClass [
 	"should be implemented if it really makes sense"
 
 	self model flashSourceCodeArea
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>chooseFrom: anArray [
+{ #category : #display }
+NautilusRefactoring >> chooseFrom: anArray [
 	| answer |
 	answer := UIManager default chooseFrom: anArray.
 	answer = 0 ifTrue: [ RefactoringAborted signal ].
 	^ answer
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>chooseFrom: anArray title: aString lines: aCollection  [
+{ #category : #display }
+NautilusRefactoring >> chooseFrom: anArray title: aString lines: aCollection [ 
 	anArray isEmpty
 		ifTrue: [ ^ nil ].
 	anArray size = 1
@@ -412,19 +321,13 @@ NautilusRefactoring>>chooseFrom: anArray title: aString lines: aCollection  [
 	^ UIManager default chooseOrRequestFrom: anArray lines: aCollection title: aString
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>chooseMultipleFrom: anArray [
+{ #category : #display }
+NautilusRefactoring >> chooseMultipleFrom: anArray [
 	^ self chooseMultipleFrom: anArray title: ''
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>chooseMultipleFrom: anArray title: aString [
+{ #category : #display }
+NautilusRefactoring >> chooseMultipleFrom: anArray title: aString [
 	| window |
 	window :=  TickDialogWindow 
 					itemsList: anArray 
@@ -437,11 +340,8 @@ NautilusRefactoring>>chooseMultipleFrom: anArray title: aString [
 		ifFalse: [ window chooseFromOwner: self model window ]
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>class: aClass andClassVariable: aBlock [
+{ #category : #display }
+NautilusRefactoring >> class: aClass andClassVariable: aBlock [
 	| variables index variable class |
 	variables := aClass theNonMetaClass allClassVarNames asArray sort.
 	index := self chooseFrom: variables.
@@ -450,11 +350,8 @@ NautilusRefactoring>>class: aClass andClassVariable: aBlock [
 	^ aBlock value: class value: variable
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>class: aClass andInstVariable: aBlock [
+{ #category : #display }
+NautilusRefactoring >> class: aClass andInstVariable: aBlock [
 	| variables index variable class |
 	variables := aClass instVarNames sorted.
 	variables ifEmpty:[ ^ self notifyNoVariablesIn: aClass].
@@ -468,29 +365,20 @@ NautilusRefactoring>>class: aClass andInstVariable: aBlock [
 	^ aBlock value: class value: variable
 ]
 
-{
-	#category : #private-class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>classObjectFor: anObject  [
+{ #category : #private-class }
+NautilusRefactoring >> classObjectFor: anObject [ 
 	(anObject isBehavior or: [anObject isTrait]) ifTrue: [ ^ environment classFor: anObject ].
 	anObject isSymbol ifTrue: [ ^ environment classNamed: anObject ].
 	^ anObject
 ]
 
-{
-	#category : #'rewrite code',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>classRegex [
+{ #category : #'rewrite code' }
+NautilusRefactoring >> classRegex [
 	self model refactorCode: self classRegexText
 ]
 
-{
-	#category : #'rewrite code',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>classRegexText [
+{ #category : #'rewrite code' }
+NautilusRefactoring >> classRegexText [
 	^ 'RBClassRegexRefactoring new
 
 	"Example 1: Change class prefixes"
@@ -509,53 +397,35 @@ NautilusRefactoring>>classRegexText [
 	yourself'
 ]
 
-{
-	#category : #private-class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>classRemovalRefactoringObjectFor: aCollection [
+{ #category : #private-class }
+NautilusRefactoring >> classRemovalRefactoringObjectFor: aCollection [
 	^ RBRemoveClassRefactoring 
 		model: environment 
 		classNames: (aCollection collect: [:e | e theNonMetaClass name ])
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>createCascadeBetween: anInterval from: aMethod [
+{ #category : #source }
+NautilusRefactoring >> createCascadeBetween: anInterval from: aMethod [
 	self performRefactoringFor: #privateCreateCascadeBetween:from: with: anInterval with: aMethod
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>deprecateMethodFor: aMethod [
+{ #category : #method }
+NautilusRefactoring >> deprecateMethodFor: aMethod [
 	self performRefactoringFor: #privateDeprecateMethodFor: with: aMethod
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>extractBetween: anInterval from: aMethod [
+{ #category : #source }
+NautilusRefactoring >> extractBetween: anInterval from: aMethod [
 	self performRefactoringFor:  #privateExtractBetween:from: with: anInterval with: aMethod
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>extractToComponentBetween: anInterval from: aMethod [
+{ #category : #source }
+NautilusRefactoring >> extractToComponentBetween: anInterval from: aMethod [
 	self performRefactoringFor:  #privateExtractToComponentBetween:from: with: anInterval with: aMethod
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>extractToMethodTextSelection [
+{ #category : #source }
+NautilusRefactoring >> extractToMethodTextSelection [
 	| aMethod |
 	aMethod := self model selectedMethod.
 	aMethod ifNil: [ ^ self model flashSourceCodeArea ].
@@ -563,11 +433,8 @@ NautilusRefactoring>>extractToMethodTextSelection [
 	self extractBetween: self model selectionInterval from: aMethod
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>extractToTempTextSelection [
+{ #category : #source }
+NautilusRefactoring >> extractToTempTextSelection [
 	| aMethod |
 	aMethod := self model selectedMethod.
 	aMethod ifNil: [ ^ self model flashSourceCodeArea ].
@@ -575,47 +442,32 @@ NautilusRefactoring>>extractToTempTextSelection [
 	self extractToTemporaryBetween: self model selectionInterval from: aMethod
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>extractToTemporaryBetween: anInterval from: aMethod [
+{ #category : #source }
+NautilusRefactoring >> extractToTemporaryBetween: anInterval from: aMethod [
 	self performRefactoringFor: #privateExtractToTemporaryBetween:from: with: anInterval with: aMethod
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>formatSourceCode [
+{ #category : #source }
+NautilusRefactoring >> formatSourceCode [
 	self model sourceTextModel formatSourceCodeInView
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>generateAccessors [
+{ #category : #class }
+NautilusRefactoring >> generateAccessors [
 
 	| refactorings |
 	refactorings := self privateGenerateAccessorsFor: self model selectedClass.
 	self performRefactorings: refactorings
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>generateSubclass [
+{ #category : #class }
+NautilusRefactoring >> generateSubclass [
 	self performRefactoringFor: #privateGenerateSubclassFor: with: self model selectedClass theNonMetaClass
 
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>generateSuperClass [
+{ #category : #class }
+NautilusRefactoring >> generateSuperClass [
 	"Execute the refactoring of the receiver."
 
 	| refactoring |
@@ -623,46 +475,31 @@ NautilusRefactoring>>generateSuperClass [
 	self performRefactoring: refactoring.
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>handleError: anException [
+{ #category : #display }
+NautilusRefactoring >> handleError: anException [
 	self informAnExceptionFor: anException.
 	anException resume
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>handleFailure: anException [
+{ #category : #display }
+NautilusRefactoring >> handleFailure: anException [
 	self informAnExceptionFor: anException.
 	anException return
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>handleMethodNameRequest: aMethodName [
+{ #category : #display }
+NautilusRefactoring >> handleMethodNameRequest: aMethodName [
 	^ (MethodNameEditor openOn: aMethodName) methodName
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>handleWarning: anException [
+{ #category : #display }
+NautilusRefactoring >> handleWarning: anException [
 	self inform: anException messageText.
 	anException resume
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>informAnExceptionFor: anException [
+{ #category : #private }
+NautilusRefactoring >> informAnExceptionFor: anException [
 	anException actionBlock isNil
 		ifTrue: [ self inform: anException messageText ]
 		ifFalse: [ 
@@ -670,68 +507,44 @@ NautilusRefactoring>>informAnExceptionFor: anException [
 				ifTrue: [ anException actionBlock value ] ]
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>inlineAllSendersFor: aMethod [
+{ #category : #method }
+NautilusRefactoring >> inlineAllSendersFor: aMethod [
 	self performRefactoringFor: #privateInlineAllSendersFor: with: aMethod
 
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>inlineMethodBetween: anInterval from: aMethod [
+{ #category : #source }
+NautilusRefactoring >> inlineMethodBetween: anInterval from: aMethod [
 	self performRefactoringFor: #privateInlineMethodBetween:from: with: anInterval with: aMethod
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>inlineMethodFromComponentBetween: anInterval from: aMethod [
+{ #category : #source }
+NautilusRefactoring >> inlineMethodFromComponentBetween: anInterval from: aMethod [
 	self performRefactoringFor: #privateInlineMethodFromComponentBetween:from: with: anInterval with: aMethod
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>inlineParameterFor: aMethod [
+{ #category : #method }
+NautilusRefactoring >> inlineParameterFor: aMethod [
 	self performRefactoringFor: #privateInlineParameterFor: with: aMethod
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>inlineTemporaryBetween: anInterval from: aMethod [
+{ #category : #source }
+NautilusRefactoring >> inlineTemporaryBetween: anInterval from: aMethod [
 	self performRefactoringFor: #privateInlineTemporaryBetween:from: with: anInterval with: aMethod
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>insertSubclass [
+{ #category : #class }
+NautilusRefactoring >> insertSubclass [
 	self performRefactoringFor: #privateInsertSubclassFor: with: self model selectedClass theNonMetaClass
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>insertSuperclass [
+{ #category : #class }
+NautilusRefactoring >> insertSuperclass [
 	self performRefactoringFor: #privateInsertSuperclassFor: with: self model selectedClass theNonMetaClass
 ]
 
-{
-	#category : #performing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>internalPerformRefactorings: aCollectionRefactoring [
+{ #category : #performing }
+NautilusRefactoring >> internalPerformRefactorings: aCollectionRefactoring [
 	"Try to properly label aRefactoring and perform it or open the changes browser, depending on the preferences of the user."
 
 	self promptOnRefactoring
@@ -749,133 +562,90 @@ NautilusRefactoring>>internalPerformRefactorings: aCollectionRefactoring [
 			(ChangesBrowser changes: aCollectionRefactoring) open ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>model [
+{ #category : #accessing }
+NautilusRefactoring >> model [
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>model: aNautilusUI [
+{ #category : #accessing }
+NautilusRefactoring >> model: aNautilusUI [
 	model := aNautilusUI.
 	environment := (RBClassModelFactory rbNamespace onEnvironment: aNautilusUI browsedEnvironment)
 						name: self printString;
 						yourself
 ]
 
-{
-	#category : #'inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>moveInstVarToClass: aClass [
+{ #category : #'inst var' }
+NautilusRefactoring >> moveInstVarToClass: aClass [
 	self performRefactoringFor: #privateMoveInstVarToClass: with: aClass
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>moveMethodFor: aMethod [
+{ #category : #method }
+NautilusRefactoring >> moveMethodFor: aMethod [
 	self performRefactoringFor: #privateMoveMethodFor: with: aMethod
 
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>moveMethodToClassFor: aMethod [
+{ #category : #method }
+NautilusRefactoring >> moveMethodToClassFor: aMethod [
 	self performRefactoringFor: #privateMoveMethodToClassFor: with: aMethod
 	
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>moveVariableDefinitionBetween: anInterval from: aMethod [
+{ #category : #source }
+NautilusRefactoring >> moveVariableDefinitionBetween: anInterval from: aMethod [
 	self performRefactoringFor: #privateMoveVariableDefinitionBetween:from: with: anInterval with: aMethod
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>newVariableRequestText [
+{ #category : #private }
+NautilusRefactoring >> newVariableRequestText [
 
 	^ 'Enter the new variable name:'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>notifyNoVariablesIn: aClass  [
+{ #category : #private }
+NautilusRefactoring >> notifyNoVariablesIn: aClass [ 
 	self inform: aClass printString , ' does not define any instance variable.'.
 	RefactoringAborted signal.
 ]
 
-{
-	#category : #option,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>openEnvironment: anEnvironment for: aRefactoring [
+{ #category : #option }
+NautilusRefactoring >> openEnvironment: anEnvironment for: aRefactoring [
 	anEnvironment isEmpty
 		ifTrue: [ ^ self inform: 'Empty scope' ].
 	Smalltalk tools browser openInEnvironment: anEnvironment
 ]
 
-{
-	#category : #performing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>performRefactoring: aRefactoring [
+{ #category : #performing }
+NautilusRefactoring >> performRefactoring: aRefactoring [
 	"Try to properly label aRefactoring and perform it or open the changes browser, depending on the preferences of the user."
 	
 	self performRefactorings: {aRefactoring}
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>performRefactoringFor: aSymbol with: anArgument [
+{ #category : #private }
+NautilusRefactoring >> performRefactoringFor: aSymbol with: anArgument [
 	[ self performRefactoring: (self perform: aSymbol with: anArgument) ]
 		on: RefactoringAborted
 		do: [ :ex | self inform: 'Refactoring aborted' ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>performRefactoringFor: aSymbol with: anArgument with: anotherArgument [
+{ #category : #private }
+NautilusRefactoring >> performRefactoringFor: aSymbol with: anArgument [ with: anotherArgument
 	[ self performRefactoring: (self perform: aSymbol with: anArgument with: anotherArgument) ]
 		on: RefactoringAborted
 		do: [ :ex | self inform: 'Refactoring aborted' ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>performRefactoringFor: aSymbol withArguments: anArray [
+{ #category : #private }
+NautilusRefactoring >> performRefactoringFor: aSymbol withArguments: anArray [
 	[ self performRefactoring: (self perform: aSymbol withArguments: anArray) ]
 		on: RefactoringAborted
 		do: [ :ex | self inform: 'Refactoring aborted' ]
 ]
 
-{
-	#category : #performing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>"protocol: performing"
-performRefactorings: aCollectionRefactoring [
+{ #category : #performing }
+NautilusRefactoring >> performRefactorings: aCollectionRefactoring [
 	aCollectionRefactoring ifNil: [ ^ self ].
 	aCollectionRefactoring do: [ :each | each model environment: self model browsedEnvironment ].
 	[ 
@@ -889,21 +659,15 @@ performRefactorings: aCollectionRefactoring [
 		do: [ :exception | self handleError: exception ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>performRefactoringsFor: aSymbol with: anArgument [
+{ #category : #private }
+NautilusRefactoring >> performRefactoringsFor: aSymbol with: anArgument [
 	[ self performRefactorings: (self perform: aSymbol with: anArgument) ]
 		on: RefactoringAborted
 		do: [ :ex | self inform: 'Refactoring aborted' ]
 ]
 
-{
-	#category : #'private-class var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateAbstractClassVarFrom: aClass [
+{ #category : #'private-class var' }
+NautilusRefactoring >> privateAbstractClassVarFrom: aClass [
 	^ self class: aClass andClassVariable: [ :class :variable | 
 		RBAbstractClassVariableRefactoring
 			model: environment
@@ -911,11 +675,8 @@ NautilusRefactoring>>privateAbstractClassVarFrom: aClass [
 			class: class ]
 ]
 
-{
-	#category : #'private-inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateAbstractInstVarFrom: aClass [
+{ #category : #'private-inst var' }
+NautilusRefactoring >> privateAbstractInstVarFrom: aClass [
 	^ self class: aClass andInstVariable: [ :class :variable | 
 		RBAbstractInstanceVariableRefactoring
 			model: environment
@@ -923,11 +684,8 @@ NautilusRefactoring>>privateAbstractInstVarFrom: aClass [
 			class: class ]
 ]
 
-{
-	#category : #'private-class var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateAccessorsClassVarFrom: aClass [
+{ #category : #'private-class var' }
+NautilusRefactoring >> privateAccessorsClassVarFrom: aClass [
 	^ self class: aClass andClassVariable: [ :class :variable | 
 		RBCreateAccessorsForVariableRefactoring 
 			model: environment
@@ -936,11 +694,8 @@ NautilusRefactoring>>privateAccessorsClassVarFrom: aClass [
 			classVariable: true ]
 ]
 
-{
-	#category : #'private-inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateAccessorsInstVarFrom: aClass [
+{ #category : #'private-inst var' }
+NautilusRefactoring >> privateAccessorsInstVarFrom: aClass [
 	^ self class: aClass andInstVariable: [ :class :variable | 
 		RBCreateAccessorsForVariableRefactoring 
 			model: environment
@@ -949,11 +704,8 @@ NautilusRefactoring>>privateAccessorsInstVarFrom: aClass [
 			classVariable: false ]
 ]
 
-{
-	#category : #private-method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateAddAParameterFor: aMethod [
+{ #category : #private-method }
+NautilusRefactoring >> privateAddAParameterFor: aMethod [
 	| initialAnswer oldSelector |
 	oldSelector := aMethod selector.
 	initialAnswer := oldSelector numArgs = 0
@@ -967,33 +719,24 @@ NautilusRefactoring>>privateAddAParameterFor: aMethod [
 		initializer: (self request: 'Enter default value for parameter:' initialAnswer: 'nil')
 ]
 
-{
-	#category : #'private-class var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateAddClassVarFrom: aClass [
+{ #category : #'private-class var' }
+NautilusRefactoring >> privateAddClassVarFrom: aClass [
 	^ RBAddClassVariableRefactoring 
 		model: environment 
 		variable: (self request: self newVariableRequestText initialAnswer: 'Var')
 		class: aClass theNonMetaClass
 ]
 
-{
-	#category : #'private-inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateAddInstVarFrom: aClass [
+{ #category : #'private-inst var' }
+NautilusRefactoring >> privateAddInstVarFrom: aClass [
 	^ RBAddInstanceVariableRefactoring 
 		model: environment 
 		variable: (self request: self newVariableRequestText initialAnswer: 'inst') 
 		class: aClass theNonMetaClass
 ]
 
-{
-	#category : #private-source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateCreateCascadeBetween: aSelection from: aMethod [
+{ #category : #private-source }
+NautilusRefactoring >> privateCreateCascadeBetween: aSelection from: aMethod [
 	^ RBCreateCascadeRefactoring 
 		model: environment
 		combine: aSelection
@@ -1001,11 +744,8 @@ NautilusRefactoring>>privateCreateCascadeBetween: aSelection from: aMethod [
 		in: aMethod methodClass
 ]
 
-{
-	#category : #private-method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateDeprecateMethodFor: aMethod [
+{ #category : #private-method }
+NautilusRefactoring >> privateDeprecateMethodFor: aMethod [
 	| class selector newMethod |
 	class := aMethod methodClass.
 	selector := aMethod selector.
@@ -1017,11 +757,8 @@ NautilusRefactoring>>privateDeprecateMethodFor: aMethod [
 		using: newMethod selector
 ]
 
-{
-	#category : #private-source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateExtractBetween: anInterval from: aMethod [
+{ #category : #private-source }
+NautilusRefactoring >> privateExtractBetween: anInterval from: aMethod [
 	^ RBExtractMethodRefactoring
 		model: environment
 		extract: anInterval
@@ -1029,11 +766,8 @@ NautilusRefactoring>>privateExtractBetween: anInterval from: aMethod [
 		in: aMethod methodClass
 ]
 
-{
-	#category : #private-source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateExtractToComponentBetween: anInterval from: aMethod [
+{ #category : #private-source }
+NautilusRefactoring >> privateExtractToComponentBetween: anInterval from: aMethod [
 	^ RBExtractMethodToComponentRefactoring
 		model: environment
 		extract: anInterval
@@ -1041,11 +775,8 @@ NautilusRefactoring>>privateExtractToComponentBetween: anInterval from: aMethod 
 		in: aMethod methodClass
 ]
 
-{
-	#category : #private-source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateExtractToTemporaryBetween: anInterval from: aMethod [
+{ #category : #private-source }
+NautilusRefactoring >> privateExtractToTemporaryBetween: anInterval from: aMethod [
 
 	^ RBExtractToTemporaryRefactoring
 		model: environment
@@ -1055,11 +786,8 @@ NautilusRefactoring>>privateExtractToTemporaryBetween: anInterval from: aMethod 
 		in: aMethod methodClass
 ]
 
-{
-	#category : #private-class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateGenerateAccessorsFor: class [
+{ #category : #private-class }
+NautilusRefactoring >> privateGenerateAccessorsFor: class [
 	^ class instVarNames
 		collect: [ :aVarName | 
 			RBCreateAccessorsForVariableRefactoring
@@ -1069,11 +797,8 @@ NautilusRefactoring>>privateGenerateAccessorsFor: class [
 				classVariable: false ]
 ]
 
-{
-	#category : #private-class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateGenerateSubclassFor: class [
+{ #category : #private-class }
+NautilusRefactoring >> privateGenerateSubclassFor: class [
 	| subclassName |
 	subclassName := self request: 'Enter new subclass name:'.
 	^ RBAddClassRefactoring
@@ -1084,11 +809,8 @@ NautilusRefactoring>>privateGenerateSubclassFor: class [
 		category: class category
 ]
 
-{
-	#category : #private-class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateGenerateSuperClassFor: class [
+{ #category : #private-class }
+NautilusRefactoring >> privateGenerateSuperClassFor: class [
 	| superclassName subclasses |
 	superclassName := self request: 'Enter new superclass name:'.
 	subclasses := self chooseMultipleFrom: class subclasses title: 'Select subclasses of ' , superclassName , ':'.
@@ -1100,22 +822,16 @@ NautilusRefactoring>>privateGenerateSuperClassFor: class [
 		subclasses: subclasses
 ]
 
-{
-	#category : #private-method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateInlineAllSendersFor: aMethod [
+{ #category : #private-method }
+NautilusRefactoring >> privateInlineAllSendersFor: aMethod [
 	^ RBInlineAllSendersRefactoring
 		model: environment
 		sendersOf: aMethod selector
 		in: aMethod methodClass
 ]
 
-{
-	#category : #private-source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateInlineMethodBetween: anInterval from: aMethod [
+{ #category : #private-source }
+NautilusRefactoring >> privateInlineMethodBetween: anInterval from: aMethod [
 	^ RBInlineMethodRefactoring
 		model: environment
 		inline: anInterval
@@ -1123,11 +839,8 @@ NautilusRefactoring>>privateInlineMethodBetween: anInterval from: aMethod [
 		forClass: aMethod methodClass
 ]
 
-{
-	#category : #private-source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateInlineMethodFromComponentBetween: anInterval from: aMethod [
+{ #category : #private-source }
+NautilusRefactoring >> privateInlineMethodFromComponentBetween: anInterval from: aMethod [
 	^ RBInlineMethodFromComponentRefactoring
 		model: environment
 		inline: anInterval
@@ -1135,11 +848,8 @@ NautilusRefactoring>>privateInlineMethodFromComponentBetween: anInterval from: a
 		forClass: aMethod methodClass
 ]
 
-{
-	#category : #private-method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateInlineParameterFor: aMethod [
+{ #category : #private-method }
+NautilusRefactoring >> privateInlineParameterFor: aMethod [
 	^ RBInlineParameterRefactoring
 		model: environment
 		inlineParameter:
@@ -1151,11 +861,8 @@ NautilusRefactoring>>privateInlineParameterFor: aMethod [
 		selector: aMethod selector
 ]
 
-{
-	#category : #private-source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateInlineTemporaryBetween: anInterval from: aMethod [
+{ #category : #private-source }
+NautilusRefactoring >> privateInlineTemporaryBetween: anInterval from: aMethod [
 	^ RBInlineTemporaryRefactoring
 		model: environment
 		inline: (aMethod ast bestNodeFor: anInterval) sourceInterval
@@ -1163,11 +870,8 @@ NautilusRefactoring>>privateInlineTemporaryBetween: anInterval from: aMethod [
 		in: aMethod methodClass
 ]
 
-{
-	#category : #private-class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateInsertSubclassFor: class [
+{ #category : #private-class }
+NautilusRefactoring >> privateInsertSubclassFor: class [
 	^ RBAddClassRefactoring
 		model: environment
 		addClass: ( self request: 'Enter new subclass name :')
@@ -1176,11 +880,8 @@ NautilusRefactoring>>privateInsertSubclassFor: class [
 		category: class category
 ]
 
-{
-	#category : #private-class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateInsertSuperclassFor: class [
+{ #category : #private-class }
+NautilusRefactoring >> privateInsertSuperclassFor: class [
 	^ RBAddClassRefactoring
 		model: environment
 		addClass: (self request: 'Enter new superclass name :')
@@ -1189,11 +890,8 @@ NautilusRefactoring>>privateInsertSuperclassFor: class [
 		category: class category
 ]
 
-{
-	#category : #'private-inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateMoveInstVarToClass: aClass [
+{ #category : #'private-inst var' }
+NautilusRefactoring >> privateMoveInstVarToClass: aClass [
 	| newClass |
 	newClass := (SearchFacade classSearchInEnvironment: RBBrowserEnvironment default) chooseFromOwner: World.
 	^ self class: aClass andInstVariable: [ :class :variable | 
@@ -1204,11 +902,8 @@ NautilusRefactoring>>privateMoveInstVarToClass: aClass [
 			oldClass: aClass ]
 ]
 
-{
-	#category : #private-method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateMoveMethodFor: aMethod [
+{ #category : #private-method }
+NautilusRefactoring >> privateMoveMethodFor: aMethod [
 	^ RBMoveMethodRefactoring
 		model: environment
 		selector: aMethod selector
@@ -1216,11 +911,8 @@ NautilusRefactoring>>privateMoveMethodFor: aMethod [
 		variable: (self chooseFrom: aMethod methodClass instVarNames title: 'Choose:' lines:  aMethod methodClass instVarNames)
 ]
 
-{
-	#category : #private-method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateMoveMethodToClassFor: aMethod [
+{ #category : #private-method }
+NautilusRefactoring >> privateMoveMethodToClassFor: aMethod [
 	| class |
 	class := (SearchFacade classSearchInEnvironment: Smalltalk) chooseFromOwner: World.
 	class ifNil: [ RefactoringAborted signal ].
@@ -1230,11 +922,8 @@ NautilusRefactoring>>privateMoveMethodToClassFor: aMethod [
 		class: class
 ]
 
-{
-	#category : #private-source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateMoveVariableDefinitionBetween: anInterval from: aMethod [
+{ #category : #private-source }
+NautilusRefactoring >> privateMoveVariableDefinitionBetween: anInterval from: aMethod [
 	^ RBMoveVariableDefinitionRefactoring
 		model: environment
 		bindTight: anInterval
@@ -1242,11 +931,8 @@ NautilusRefactoring>>privateMoveVariableDefinitionBetween: anInterval from: aMet
 		selector: aMethod selector
 ]
 
-{
-	#category : #'private-class var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privatePullUpClassVarFrom: aClass [
+{ #category : #'private-class var' }
+NautilusRefactoring >> privatePullUpClassVarFrom: aClass [
 	^ self class: aClass andClassVariable: [ :class :variable | 
 		RBPullUpClassVariableRefactoring 
 			model: environment
@@ -1254,11 +940,8 @@ NautilusRefactoring>>privatePullUpClassVarFrom: aClass [
 			class: class ]
 ]
 
-{
-	#category : #'private-inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privatePullUpInstVarFrom: aClass [
+{ #category : #'private-inst var' }
+NautilusRefactoring >> privatePullUpInstVarFrom: aClass [
 	^ self class: aClass andInstVariable: [ :class :variable | 
 		RBPullUpInstanceVariableRefactoring 
 			model: environment
@@ -1266,22 +949,16 @@ NautilusRefactoring>>privatePullUpInstVarFrom: aClass [
 			class: class superclass ]
 ]
 
-{
-	#category : #private-method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privatePullUpMethodsFor: aCollection [
+{ #category : #private-method }
+NautilusRefactoring >> privatePullUpMethodsFor: aCollection [
 	| selectors class |
 	selectors := aCollection collect: #selector.
 	class := aCollection first methodClass.
 	^ RBPullUpMethodRefactoring model: environment pullUp: selectors from: class
 ]
 
-{
-	#category : #'private-class var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privatePushDownClassVarFrom: aClass [
+{ #category : #'private-class var' }
+NautilusRefactoring >> privatePushDownClassVarFrom: aClass [
 	^ self class: aClass andClassVariable: [ :class :variable | 
 		RBPushDownClassVariableRefactoring
 			model: environment
@@ -1289,11 +966,8 @@ NautilusRefactoring>>privatePushDownClassVarFrom: aClass [
 			class: class ]
 ]
 
-{
-	#category : #'private-inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privatePushDownInstVarFrom: aClass [
+{ #category : #'private-inst var' }
+NautilusRefactoring >> privatePushDownInstVarFrom: aClass [
 	^ self class: aClass andInstVariable: [ :class :variable | 
 		RBPushDownInstanceVariableRefactoring
 			model: environment
@@ -1301,11 +975,8 @@ NautilusRefactoring>>privatePushDownInstVarFrom: aClass [
 			class: class ]
 ]
 
-{
-	#category : #private-method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privatePushDownMethodsFor: aCollection [
+{ #category : #private-method }
+NautilusRefactoring >> privatePushDownMethodsFor: aCollection [
 	| selectors class |
 	selectors := aCollection collect: #selector.
 	class := aCollection first methodClass.
@@ -1315,19 +986,13 @@ NautilusRefactoring>>privatePushDownMethodsFor: aCollection [
 		from: class
 ]
 
-{
-	#category : #private-class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateRealizeClassFor: aClass [
+{ #category : #private-class }
+NautilusRefactoring >> privateRealizeClassFor: aClass [
 	^ RBRealizeClassRefactoring model: environment className: aClass theNonMetaClass name
 ]
 
-{
-	#category : #'private-class var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateRemoveClassVarFrom: aClass [
+{ #category : #'private-class var' }
+NautilusRefactoring >> privateRemoveClassVarFrom: aClass [
 	^ self class: aClass andClassVariable: [ :class :variable | 
 		RBRemoveClassVariableRefactoring
 			model: environment
@@ -1335,11 +1000,8 @@ NautilusRefactoring>>privateRemoveClassVarFrom: aClass [
 			class: class ]
 ]
 
-{
-	#category : #'private-inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateRemoveInstVarFrom: aClass [
+{ #category : #'private-inst var' }
+NautilusRefactoring >> privateRemoveInstVarFrom: aClass [
 	^ self class: aClass andInstVariable: [ :class :variable | 
 		RBRemoveInstanceVariableRefactoring
 			model: environment
@@ -1347,11 +1009,8 @@ NautilusRefactoring>>privateRemoveInstVarFrom: aClass [
 			class: class ]
 ]
 
-{
-	#category : #private-method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateRemoveMethodsFor: aCollection [
+{ #category : #private-method }
+NautilusRefactoring >> privateRemoveMethodsFor: aCollection [
 	| selectors class |
 	selectors := aCollection collect: #selector.
 	class := aCollection first origin.
@@ -1361,11 +1020,8 @@ NautilusRefactoring>>privateRemoveMethodsFor: aCollection [
 		from: class
 ]
 
-{
-	#category : #private-method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateRemoveParameterMethodFor: aMethod [
+{ #category : #private-method }
+NautilusRefactoring >> privateRemoveParameterMethodFor: aMethod [
 	^ RBRemoveParameterRefactoring
 		model: environment
 		removeParameter: (self chooseFrom: aMethod argumentNames title: 'Choose a parameter to remove:' lines:  aMethod argumentNames)
@@ -1373,11 +1029,8 @@ NautilusRefactoring>>privateRemoveParameterMethodFor: aMethod [
 		selector: aMethod selector
 ]
 
-{
-	#category : #'private-class var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateRenameClassVarFrom: aClass [
+{ #category : #'private-class var' }
+NautilusRefactoring >> privateRenameClassVarFrom: aClass [
 
 	^ self class: aClass andClassVariable: [ :class :variable | 
 			RBRenameClassVariableRefactoring
@@ -1388,11 +1041,8 @@ NautilusRefactoring>>privateRenameClassVarFrom: aClass [
 	]
 ]
 
-{
-	#category : #'private-class var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateRenameClassVarNamed: variable from: aClass [
+{ #category : #'private-class var' }
+NautilusRefactoring >> privateRenameClassVarNamed: variable from: aClass [
 
 	^ RBRenameClassVariableRefactoring
 		model: environment
@@ -1401,11 +1051,8 @@ NautilusRefactoring>>privateRenameClassVarNamed: variable from: aClass [
 		in: aClass
 ]
 
-{
-	#category : #'private-inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateRenameInstVarFrom: aClass [
+{ #category : #'private-inst var' }
+NautilusRefactoring >> privateRenameInstVarFrom: aClass [
 
 	^ self class: aClass andInstVariable: [ :class :variable | 
 		RBRenameInstanceVariableRefactoring
@@ -1416,11 +1063,8 @@ NautilusRefactoring>>privateRenameInstVarFrom: aClass [
 	]
 ]
 
-{
-	#category : #'private-inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateRenameInstVarNamed: variable from: aClass [
+{ #category : #'private-inst var' }
+NautilusRefactoring >> privateRenameInstVarNamed: variable from: aClass [
 
 	^ RBRenameInstanceVariableRefactoring
 		model: environment
@@ -1429,11 +1073,8 @@ NautilusRefactoring>>privateRenameInstVarNamed: variable from: aClass [
 		in: aClass
 ]
 
-{
-	#category : #private-method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateRenameMessageFor: aMethodOrMessageNode [
+{ #category : #private-method }
+NautilusRefactoring >> privateRenameMessageFor: aMethodOrMessageNode [
 	|  newMethodName oldMethodName selector oldArguments argumentPermutation |
 	selector := aMethodOrMessageNode selector.
 	oldArguments := aMethodOrMessageNode arguments collect: #name.
@@ -1448,11 +1089,8 @@ NautilusRefactoring>>privateRenameMessageFor: aMethodOrMessageNode [
 		permutation: argumentPermutation
 ]
 
-{
-	#category : #private-method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateRenameMethodFor: aMethod [
+{ #category : #private-method }
+NautilusRefactoring >> privateRenameMethodFor: aMethod [
 	|  newMethodName oldMethodName selector oldArguments |
 	selector := aMethod selector.
 	oldArguments := aMethod ast arguments collect: #name.
@@ -1462,11 +1100,8 @@ NautilusRefactoring>>privateRenameMethodFor: aMethod [
 
 ]
 
-{
-	#category : #private-method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateRenameMethodFor: aMethod withNewName: newMethodName [
+{ #category : #private-method }
+NautilusRefactoring >> privateRenameMethodFor: aMethod withNewName: newMethodName [
 	| class selector  tempOldArguments argumentPermutation |
 	class := aMethod methodClass.
 	selector := aMethod selector.
@@ -1480,11 +1115,8 @@ NautilusRefactoring>>privateRenameMethodFor: aMethod withNewName: newMethodName 
 		permutation: argumentPermutation
 ]
 
-{
-	#category : #private-source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateRenameTemporaryNamed: oldname Between: anInterval from: aMethod [
+{ #category : #private-source }
+NautilusRefactoring >> privateRenameTemporaryNamed: oldname Between: anInterval from: aMethod [
 
 	^ RBRenameTemporaryRefactoring
 		model: environment
@@ -1494,11 +1126,8 @@ NautilusRefactoring>>privateRenameTemporaryNamed: oldname Between: anInterval fr
 		selector: aMethod selector
 ]
 
-{
-	#category : #private-source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateSplitCascadeBetween: anInterval from: aMethod [
+{ #category : #private-source }
+NautilusRefactoring >> privateSplitCascadeBetween: anInterval from: aMethod [
 	^ RBSplitCascadeRefactoring
 		model: environment
 		split: anInterval
@@ -1506,11 +1135,8 @@ NautilusRefactoring>>privateSplitCascadeBetween: anInterval from: aMethod [
 		in: aMethod methodClass
 ]
 
-{
-	#category : #private-class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateSplitClassFor: aClass [
+{ #category : #private-class }
+NautilusRefactoring >> privateSplitClassFor: aClass [
 	| class |
 	class := aClass theNonMetaClass.
 	^ RBSplitClassRefactoring
@@ -1521,20 +1147,14 @@ NautilusRefactoring>>privateSplitClassFor: aClass [
 		referenceVariableName: (self request: 'Enter new variable name where requests will be forwarded:')
 ]
 
-{
-	#category : #private-method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateSwapMethodFor: aCollection [
+{ #category : #private-method }
+NautilusRefactoring >> privateSwapMethodFor: aCollection [
 	^ aCollection
 		collect: [ :aMethod | RBSwapMethodRefactoring model: environment swapMethod: aMethod selector in: aMethod methodClass ]
 ]
 
-{
-	#category : #private-source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>privateTemporaryToInstanceVariableNamed: name Between: anInterval from: aMethod [
+{ #category : #private-source }
+NautilusRefactoring >> privateTemporaryToInstanceVariableNamed: name Between: anInterval from: aMethod [
 	^ RBTemporaryToInstanceVariableRefactoring
 		model: environment
 		class: aMethod methodClass
@@ -1542,115 +1162,76 @@ NautilusRefactoring>>privateTemporaryToInstanceVariableNamed: name Between: anIn
 		variable: name
 ]
 
-{
-	#category : #option,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>promptOnRefactoring [
+{ #category : #option }
+NautilusRefactoring >> promptOnRefactoring [
 	^ promptOnRefactoring ifNil: [ self class promptOnRefactoring ]
 ]
 
-{
-	#category : #option,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>promptOnRefactoring: aBoolean [
+{ #category : #option }
+NautilusRefactoring >> promptOnRefactoring: aBoolean [
 	promptOnRefactoring := aBoolean
 ]
 
-{
-	#category : #'rewrite code',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>protocolRegex [
+{ #category : #'rewrite code' }
+NautilusRefactoring >> protocolRegex [
 	self model refactorCode: self protocolRegexText
 ]
 
-{
-	#category : #'rewrite code',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>protocolRegexText [
+{ #category : #'rewrite code' }
+NautilusRefactoring >> protocolRegexText [
 	^ 'RBProtocolRegexRefactoring new
 	replace: ''^\*system(.*)$'' with: ''*kernel$1'' ignoreCase: true;
 	yourself'
 ]
 
-{
-	#category : #'class var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>pullUpClassVarFrom: aClass [
+{ #category : #'class var' }
+NautilusRefactoring >> pullUpClassVarFrom: aClass [
 	self performRefactoringFor: #privatePullUpClassVarFrom: with: aClass
 
 ]
 
-{
-	#category : #'inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>pullUpInstVarFrom: aClass [
+{ #category : #'inst var' }
+NautilusRefactoring >> pullUpInstVarFrom: aClass [
 	self performRefactoringFor: #privatePullUpInstVarFrom: with: aClass
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>pullUpMethodsFor: aCollection [
+{ #category : #method }
+NautilusRefactoring >> pullUpMethodsFor: aCollection [
 	self performRefactoringFor: #privatePullUpMethodsFor: with: aCollection
 
 ]
 
-{
-	#category : #'class var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>pushDownClassVarFrom: aClass [
+{ #category : #'class var' }
+NautilusRefactoring >> pushDownClassVarFrom: aClass [
 	self performRefactoringFor: #privatePushDownClassVarFrom: with: aClass
 
 ]
 
-{
-	#category : #'inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>pushDownInstVarFrom: aClass [
+{ #category : #'inst var' }
+NautilusRefactoring >> pushDownInstVarFrom: aClass [
 	self performRefactoringFor: #privatePushDownInstVarFrom: with: aClass
 
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>pushDownMethodsFor: aCollection [
+{ #category : #method }
+NautilusRefactoring >> pushDownMethodsFor: aCollection [
 	self performRefactoringFor: #privatePushDownMethodsFor: with: aCollection
 
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>realizeClass [
+{ #category : #class }
+NautilusRefactoring >> realizeClass [
 	self performRefactoringFor: #privateRealizeClassFor: with: self model selectedClass theNonMetaClass
 
 ]
 
-{
-	#category : #undo-redo,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>redoEnabled [
+{ #category : #undo-redo }
+NautilusRefactoring >> redoEnabled [
 	^ self changeManager hasRedoableOperations
 ]
 
-{
-	#category : #undo-redo,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>redoLabel [
+{ #category : #undo-redo }
+NautilusRefactoring >> redoLabel [
 	| stream |
 	stream := WriteStream with: 'Redo'.
 	self changeManager hasRedoableOperations
@@ -1666,19 +1247,13 @@ NautilusRefactoring>>redoLabel [
 	^ stream contents
 ]
 
-{
-	#category : #undo-redo,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>redoOperation  [
+{ #category : #undo-redo }
+NautilusRefactoring >> redoOperation [ 
 	self changeManager redoOperation
 ]
 
-{
-	#category : #option,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>refactoringOptions: aRefactoring [
+{ #category : #option }
+NautilusRefactoring >> refactoringOptions: aRefactoring [
 	aRefactoring
 		setOption: #implementorToInline
 		toUse: [ :ref :imps | self requestImplementorToInline: imps ];
@@ -1702,19 +1277,13 @@ NautilusRefactoring>>refactoringOptions: aRefactoring [
 		toUse: [ :ref :env | self openEnvironment: env  for: ref]
 ]
 
-{
-	#category : #'class var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>removeClassVarFrom: aClass [
+{ #category : #'class var' }
+NautilusRefactoring >> removeClassVarFrom: aClass [
 	self performRefactoringFor: #privateRemoveClassVarFrom: with: aClass
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>removeClasses: aCollection [
+{ #category : #class }
+NautilusRefactoring >> removeClasses: aCollection [
 	"Execute the refactoring of the receiver."
 
 	| refactoring |
@@ -1724,122 +1293,80 @@ NautilusRefactoring>>removeClasses: aCollection [
 	^ true
 ]
 
-{
-	#category : #'inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>removeInstVarFrom: aClass [
+{ #category : #'inst var' }
+NautilusRefactoring >> removeInstVarFrom: aClass [
 	self performRefactoringFor: #privateRemoveInstVarFrom: with: aClass
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>removeMethodsFor: aCollection [
+{ #category : #method }
+NautilusRefactoring >> removeMethodsFor: aCollection [
 	self performRefactoringFor: #privateRemoveMethodsFor: with: aCollection
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>removeParameterFor: aMethod [
+{ #category : #method }
+NautilusRefactoring >> removeParameterFor: aMethod [
 	self performRefactoringFor: #privateRemoveParameterMethodFor: with: aMethod
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>renameClass: aClass [
+{ #category : #class }
+NautilusRefactoring >> renameClass: aClass [
 	self performRefactoringFor: #buildRenameRefactoringEngineFor: with: aClass
 ]
 
-{
-	#category : #'class var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>renameClassVarFrom: aClass [
+{ #category : #'class var' }
+NautilusRefactoring >> renameClassVarFrom: aClass [
 	self performRefactoringFor: #privateRenameClassVarFrom: with: aClass
 ]
 
-{
-	#category : #'class var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>renameClassVarNamed: aName from: aClass [
+{ #category : #'class var' }
+NautilusRefactoring >> renameClassVarNamed: aName from: aClass [
 	self performRefactoringFor: #privateRenameClassVarNamed:from: with: aName with: aClass
 ]
 
-{
-	#category : #'inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>renameInstVarFrom: aClass [
+{ #category : #'inst var' }
+NautilusRefactoring >> renameInstVarFrom: aClass [
 	self performRefactoringFor: #privateRenameInstVarFrom: with: aClass
 ]
 
-{
-	#category : #'inst var',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>renameInstVarNamed: aName from: aClass [
+{ #category : #'inst var' }
+NautilusRefactoring >> renameInstVarNamed: aName from: aClass [
 	self performRefactoringFor: #privateRenameInstVarNamed:from: with: aName with: aClass
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>renameMessageFor: aMethodOrMessageNode [
+{ #category : #method }
+NautilusRefactoring >> renameMessageFor: aMethodOrMessageNode [
 	model okToChange ifFalse: [ ^ self ].
 	aMethodOrMessageNode ifNil: [ ^ self ].
 	self performRefactoringFor: #privateRenameMessageFor: with: aMethodOrMessageNode
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>renameMethodFor: aMethod [
+{ #category : #method }
+NautilusRefactoring >> renameMethodFor: aMethod [
 	model okToChange ifFalse: [ ^ self ].
 	aMethod ifNil: [ ^ self ].
 	self performRefactoringFor: #privateRenameMethodFor: with: aMethod
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>renameMethodFor: aMethod withNewMethodName: aMethodName [
+{ #category : #method }
+NautilusRefactoring >> renameMethodFor: aMethod withNewMethodName: aMethodName [
 	self performRefactoringFor: #privateRenameMethodFor:withNewName: with: aMethod with: aMethodName
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>renameTemporaryNamed: oldname Between: anInterval from: aMethod [
+{ #category : #source }
+NautilusRefactoring >> renameTemporaryNamed: oldname Between: anInterval from: aMethod [
 	aMethod ifNil: [ ^ self ].
 	self performRefactoringFor: #privateRenameTemporaryNamed:Between:from: withArguments: {oldname. anInterval. aMethod}.
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>renameTextSelection [
+{ #category : #source }
+NautilusRefactoring >> renameTextSelection [
 	self model selectedMethod ifNotNil: [ ^ self renameTextSelectionForMethod ].
 	(self model selectedCategory isNil and: [ self model selectedClass notNil ])
 		ifTrue: [ ^ self renameTextSelectionForClass ]	" we are editing a class definition "
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>renameTextSelectionForClass [
+{ #category : #source }
+NautilusRefactoring >> renameTextSelectionForClass [
 	| selectedInterval selection class |
 	class := self model selectedClass.
 	selection := self model contentSelection.
@@ -1855,11 +1382,8 @@ NautilusRefactoring>>renameTextSelectionForClass [
 	self renameVariable: selection
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>renameTextSelectionForMethod [
+{ #category : #source }
+NautilusRefactoring >> renameTextSelectionForMethod [
 	| selectedInterval  method tempNode |
 	method := self model selectedMethod.
 	selectedInterval := self model selectionInterval.
@@ -1869,11 +1393,8 @@ NautilusRefactoring>>renameTextSelectionForMethod [
 	tempNode executeRenameRefactoringBy: self
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>renameVariable: aString [
+{ #category : #source }
+NautilusRefactoring >> renameVariable: aString [
 	| class |
 	class := self model selectedClass.
 	(class instVarNames includes: aString)
@@ -1883,19 +1404,13 @@ NautilusRefactoring>>renameVariable: aString [
 	self model flashSourceCodeArea
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>request: aString [
+{ #category : #display }
+NautilusRefactoring >> request: aString [
 	^ self request: aString initialAnswer: ''
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>request: requestString initialAnswer: initialAnswerString [
+{ #category : #display }
+NautilusRefactoring >> request: requestString initialAnswer: initialAnswerString [
 	| answer |
 	answer := UIManager default request: requestString initialAnswer: initialAnswerString.
 	answer isEmptyOrNil ifTrue:  [ RefactoringAborted signal ].
@@ -1904,43 +1419,28 @@ NautilusRefactoring>>request: requestString initialAnswer: initialAnswerString [
 
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>requestImplementorToInline: imps [
+{ #category : #display }
+NautilusRefactoring >> requestImplementorToInline: imps [
 	^ self chooseFrom: imps title: 'Choose the class that should provide the implementation.' lines:#()
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>requestMethodNameFor: aMethodName [
+{ #category : #display }
+NautilusRefactoring >> requestMethodNameFor: aMethodName [
 	^ self handleMethodNameRequest: aMethodName
 ]
 
-{
-	#category : #option,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>requestSelfArgumentName [
+{ #category : #option }
+NautilusRefactoring >> requestSelfArgumentName [
 	^ self request: 'Enter name for argument to refer to "self" in extracted method'
 ]
 
-{
-	#category : #'rewrite code',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>rewriteCode [
+{ #category : #'rewrite code' }
+NautilusRefactoring >> rewriteCode [
 	self model rewriteCode: self rewriteCodeText
 ]
 
-{
-	#category : #'rewrite code',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>rewriteCodeText [
+{ #category : #'rewrite code' }
+NautilusRefactoring >> rewriteCodeText [
 	^ 'RBParseTreeRewriter new
 	replace: ''`@object'' with: ''`@object'';
 	replace: ''`@object'' with: ''`@object'' when: [ :node | true ];
@@ -1953,30 +1453,21 @@ NautilusRefactoring>>rewriteCodeText [
 	yourself'
 ]
 
-{
-	#category : #'rewrite code',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>searchCode [
+{ #category : #'rewrite code' }
+NautilusRefactoring >> searchCode [
 	self model searchCode: self searchCodeText
 ]
 
-{
-	#category : #'rewrite code',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>searchCodeText [
+{ #category : #'rewrite code' }
+NautilusRefactoring >> searchCodeText [
 	^ 'RBParseTreeSearcher new
 	matches: ''`@object'' do: [ :node :answer | node ];
 	matchesMethod: ''`@method: `@args | `@temps | `@.statements'' do: [ :node :answer | node ];
 	yourself'
 ]
 
-{
-	#category : #option,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>selectVariableToMoveMethodTo: aSelector class: aClass [
+{ #category : #option }
+NautilusRefactoring >> selectVariableToMoveMethodTo: aSelector class: aClass [
 	| parseTree nameList |
 	parseTree := aClass parseTreeFor: aSelector.
 	parseTree isNil
@@ -1991,11 +1482,8 @@ NautilusRefactoring>>selectVariableToMoveMethodTo: aSelector class: aClass [
 		lines: (Array with: parseTree argumentNames size)
 ]
 
-{
-	#category : #option,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>selectVariableTypesFrom: aCollectionOfTypes selected: aSelectedCollection for: aRefactoring [
+{ #category : #option }
+NautilusRefactoring >> selectVariableTypesFrom: aCollectionOfTypes selected: aSelectedCollection for: aRefactoring [
 	| stream result |
 	stream := WriteStream on: String new.
 	aCollectionOfTypes do: [ :each | stream nextPutAll: each name ] separatedBy: [ stream cr ].
@@ -2010,52 +1498,34 @@ NautilusRefactoring>>selectVariableTypesFrom: aCollectionOfTypes selected: aSele
 		collect: [ :each | aRefactoring model classFor: (Smalltalk classNamed: each trimBoth) ]
 ]
 
-{
-	#category : #option,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>shouldExtractAssignmentTo: aString [
+{ #category : #option }
+NautilusRefactoring >> shouldExtractAssignmentTo: aString [
 	^ self confirm: ('Do you want to extract the assignment of <1s> at the end of selection?' expandMacrosWith: aString)
 ]
 
-{
-	#category : #option,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>shouldInlineExpression: aString [
+{ #category : #option }
+NautilusRefactoring >> shouldInlineExpression: aString [
 	^ self confirm: ('Do you want to inline the expression ''<1s>'' in the current method?' expandMacrosWith: aString)
 ]
 
-{
-	#category : #option,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>shouldOverride: aSelector in: aClass  [
+{ #category : #option }
+NautilusRefactoring >> shouldOverride: aSelector in: aClass [ 
 	^ self confirm: ('<1s> is already defined in the <2p> hierarchy. Extracting it to an existing selector may change behavior. Do you wish to use <1s> anyway?' expandMacrosWith: aSelector with: aClass)
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>shouldUseExistingMethod: aMethodName [
+{ #category : #display }
+NautilusRefactoring >> shouldUseExistingMethod: aMethodName [
 	"for now we always want to use the existing method."
 	^ true
 ]
 
-{
-	#category : #'rewrite code',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>sourceRegex [
+{ #category : #'rewrite code' }
+NautilusRefactoring >> sourceRegex [
 	self model refactorCode: self sourceRegexText
 ]
 
-{
-	#category : #'rewrite code',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>sourceRegexText [
+{ #category : #'rewrite code' }
+NautilusRefactoring >> sourceRegexText [
 	^ 'RBSourceRegexRefactoring new
 	
 	"Example 1: Replace symbols with strings"
@@ -2067,73 +1537,49 @@ NautilusRefactoring>>sourceRegexText [
 	yourself'
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>splitCascadeBetween: anInterval from: aMethod [
+{ #category : #source }
+NautilusRefactoring >> splitCascadeBetween: anInterval from: aMethod [
 	self performRefactoringFor: #privateSplitCascadeBetween:from: with: anInterval with: aMethod
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>splitClass: aClass [
+{ #category : #class }
+NautilusRefactoring >> splitClass: aClass [
 	self performRefactoringFor: #privateSplitClassFor: with: aClass
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>swapMethodFor: aCollection [
+{ #category : #method }
+NautilusRefactoring >> swapMethodFor: aCollection [
 	self performRefactoringsFor: #privateSwapMethodFor: with: aCollection
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>temporaryToInstanceVariableNamed: name Between: anInterval from: aMethod [
+{ #category : #source }
+NautilusRefactoring >> temporaryToInstanceVariableNamed: name Between: anInterval from: aMethod [
 	| refactoring | 
 	aMethod ifNil: [ ^ self ].
 	refactoring := self privateTemporaryToInstanceVariableNamed: name Between: anInterval from: aMethod.
 	self performRefactoring: refactoring
 ]
 
-{
-	#category : #'rewrite code',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>typeClass [
+{ #category : #'rewrite code' }
+NautilusRefactoring >> typeClass [
 	self model sourceCode: (self typeClassTextFor: self model selectedClasses)
 ]
 
-{
-	#category : #'rewrite code',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>typeClassTextFor: aCollectionOfClass [
+{ #category : #'rewrite code' }
+NautilusRefactoring >> typeClassTextFor: aCollectionOfClass [
 	^ String streamContents: [:s |
 		aCollectionOfClass do: [:class |
 			s << (RBRefactoryTyper new runOn: class) printString.
 			s cr; cr ]]
 ]
 
-{
-	#category : #undo-redo,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>undoEnabled [
+{ #category : #undo-redo }
+NautilusRefactoring >> undoEnabled [
 	^ self changeManager hasUndoableOperations
 ]
 
-{
-	#category : #undo-redo,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>undoLabel [
+{ #category : #undo-redo }
+NautilusRefactoring >> undoLabel [
 	| stream |
 	stream := WriteStream with: 'Undo'.
 	self changeManager hasUndoableOperations
@@ -2149,10 +1595,7 @@ NautilusRefactoring>>undoLabel [
 	^ stream contents
 ]
 
-{
-	#category : #undo-redo,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-NautilusRefactoring>>undoOperation [
+{ #category : #undo-redo }
+NautilusRefactoring >> undoOperation [
 	self changeManager undoOperation
 ]

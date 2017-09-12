@@ -11,79 +11,54 @@ Class {
 		'localHeaderRelativeOffset',
 		'dataOffset'
 	],
-	#category : #Compression-Archives,
-	#timestamp : '<historical>'
+	#category : #Compression-Archives
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember class>>newFrom: stream named: fileName [
+{ #category : #'as yet unclassified' }
+ZipFileMember class >> newFrom: stream named: fileName [
 	^(self new) stream: stream externalFileName: fileName
 ]
 
-{
-	#category : #private-reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>canonicalizeFileName [
+{ #category : #private-reading }
+ZipFileMember >> canonicalizeFileName [
 	"For security reasons, make all paths relative and remove any ../ portions"
 
 	[fileName beginsWith: '/'] whileTrue: [fileName := fileName allButFirst].
 	fileName := fileName copyReplaceAll: '../' with: ''
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>close [
+{ #category : #initialization }
+ZipFileMember >> close [
 	stream ifNotNil:[stream close].
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>copyDataTo: aStream [
+{ #category : #private-writing }
+ZipFileMember >> copyDataTo: aStream [
 
 	self copyRawDataTo: aStream.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>initialize [
+{ #category : #initialization }
+ZipFileMember >> initialize [
 	super initialize.
 	crc32 := 0.
 	localHeaderRelativeOffset := 0.
 	dataOffset := 0.
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>localHeaderRelativeOffset [
+{ #category : #private-writing }
+ZipFileMember >> localHeaderRelativeOffset [
 	^localHeaderRelativeOffset
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>looksLikeDirectory [
+{ #category : #testing }
+ZipFileMember >> looksLikeDirectory [
 	^fileName last = $/
 		and: [ uncompressedSize = 0 ]
 ]
 
-{
-	#category : #private-reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>readCentralDirectoryFileHeaderFrom: aStream [
+{ #category : #private-reading }
+ZipFileMember >> readCentralDirectoryFileHeaderFrom: aStream [
 	"Assumes aStream positioned after signature"
 
 	| fileNameLength extraFieldLength fileCommentLength |
@@ -115,11 +90,8 @@ ZipFileMember>>readCentralDirectoryFileHeaderFrom: aStream [
 	self desiredCompressionMethod: compressionMethod
 ]
 
-{
-	#category : #private-reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>readFrom: aStream  [
+{ #category : #private-reading }
+ZipFileMember >> readFrom: aStream [ 
 	"assumes aStream positioned after CD header; leaves stream positioned after my CD entry"
 
 	self readCentralDirectoryFileHeaderFrom: aStream.
@@ -129,11 +101,8 @@ ZipFileMember>>readFrom: aStream  [
 
 ]
 
-{
-	#category : #private-reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>readLocalDirectoryFileHeaderFrom: aStream  [
+{ #category : #private-reading }
+ZipFileMember >> readLocalDirectoryFileHeaderFrom: aStream [ 
 	"Positions stream as necessary. Will return stream to its original position"
 
 	| fileNameLength extraFieldLength xcrc32 xcompressedSize xuncompressedSize sig oldPos |
@@ -173,19 +142,13 @@ ZipFileMember>>readLocalDirectoryFileHeaderFrom: aStream  [
 	aStream position: oldPos.
 ]
 
-{
-	#category : #private-reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>readRawChunk: n [
+{ #category : #private-reading }
+ZipFileMember >> readRawChunk: n [
 	^stream next: n
 ]
 
-{
-	#category : #private-reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>rewindData [
+{ #category : #private-reading }
+ZipFileMember >> rewindData [
 	super rewindData.
 	(stream isNil or: [ stream closed ])
 		ifTrue: [ self error: 'stream missing or closed' ].
@@ -193,11 +156,8 @@ ZipFileMember>>rewindData [
 	self skipLocalDirectoryFileHeaderFrom: stream.
 ]
 
-{
-	#category : #private-reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>skipLocalDirectoryFileHeaderFrom: aStream  [
+{ #category : #private-reading }
+ZipFileMember >> skipLocalDirectoryFileHeaderFrom: aStream [ 
 	"Assumes that stream is positioned after signature."
 
 	|  extraFieldLength fileNameLength |
@@ -210,20 +170,14 @@ ZipFileMember>>skipLocalDirectoryFileHeaderFrom: aStream  [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>stream: aStream externalFileName: aFileName [
+{ #category : #initialization }
+ZipFileMember >> stream: aStream externalFileName: aFileName [
 	stream := aStream.
 	externalFileName := aFileName.
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>uncompressDataTo: aStream [
+{ #category : #private-writing }
+ZipFileMember >> uncompressDataTo: aStream [
 
 	| decoder buffer crcErrorMessage |
 	decoder := ZipReadStream on: stream.
@@ -244,11 +198,8 @@ ZipFileMember>>uncompressDataTo: aStream [
 
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>uncompressDataTo: aStream from: start to: finish [
+{ #category : #private-writing }
+ZipFileMember >> uncompressDataTo: aStream from: start to: finish [
 
 	| decoder buffer chunkSize |
 	decoder := FastInflateStream on: stream.
@@ -265,11 +216,8 @@ ZipFileMember>>uncompressDataTo: aStream from: start to: finish [
 
 ]
 
-{
-	#category : #private-reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>unzipTimestamp: dosTimestampInteger [
+{ #category : #private-reading }
+ZipFileMember >> unzipTimestamp: dosTimestampInteger [
 
 	^ [ DateAndTime fromDosTimestamp: dosTimestampInteger ]
 		on: Error
@@ -277,11 +225,8 @@ ZipFileMember>>unzipTimestamp: dosTimestampInteger [
 			DateAndTime fromSeconds: 2492992800 + dosTimestampInteger ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileMember>>usesFileNamed: aFileName [
+{ #category : #testing }
+ZipFileMember >> usesFileNamed: aFileName [
 	"Do I require aFileName? That is, do I care if it's clobbered?"
 	^ externalFileName asFileReference = aFileName asFileReference
 ]

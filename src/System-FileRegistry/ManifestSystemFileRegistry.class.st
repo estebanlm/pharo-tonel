@@ -4,14 +4,10 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestSystemFileRegistry,
 	#superclass : #PackageManifest,
-	#category : #System-FileRegistry,
-	#timestamp : '<historical>'
+	#category : #System-FileRegistry
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ManifestSystemFileRegistry class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestSystemFileRegistry class >> manuallyResolvedDependencies [
 	^ #(#'System-Localization' #'FileSystem-Core' #'Collections-Abstract')
 ]

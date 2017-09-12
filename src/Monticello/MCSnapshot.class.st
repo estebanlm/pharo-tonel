@@ -9,31 +9,21 @@ Class {
 	#instVars : [
 		'definitions'
 	],
-	#category : #Monticello-Base,
-	#timestamp : '<historical>'
+	#category : #Monticello-Base
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSnapshot class>>empty [
+{ #category : #instance-creation }
+MCSnapshot class >> empty [
 	^ self fromDefinitions: #()
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSnapshot class>>fromDefinitions: aCollection [
+{ #category : #instance-creation }
+MCSnapshot class >> fromDefinitions: aCollection [
 	^ self new initializeWithDefinitions: aCollection
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSnapshot>>= other [
+{ #category : #comparing }
+MCSnapshot >> = other [
 	self == other
 		ifTrue: [ ^ true ].
 	self species = other species
@@ -41,50 +31,32 @@ MCSnapshot>>= other [
 	^ definitions asArray = other definitions asArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSnapshot>>definitions [
+{ #category : #accessing }
+MCSnapshot >> definitions [
 	^ definitions
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSnapshot>>hash [
+{ #category : #comparing }
+MCSnapshot >> hash [
 	^ definitions asArray hash
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSnapshot>>initializeWithDefinitions: aCollection [
+{ #category : #initializing }
+MCSnapshot >> initializeWithDefinitions: aCollection [
 	definitions := aCollection.
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSnapshot>>install [
+{ #category : #loading }
+MCSnapshot >> install [
 	MCPackageLoader installSnapshot: self
 ]
 
-{
-	#category : #patching,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSnapshot>>patchRelativeToBase: aSnapshot [
+{ #category : #patching }
+MCSnapshot >> patchRelativeToBase: aSnapshot [
 	^ MCPatch fromBase: aSnapshot target: self
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSnapshot>>updatePackage: aPackage [
+{ #category : #loading }
+MCSnapshot >> updatePackage: aPackage [
 	MCPackageLoader updatePackage: aPackage withSnapshot: self
 ]

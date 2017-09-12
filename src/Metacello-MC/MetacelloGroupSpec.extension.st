@@ -1,29 +1,18 @@
-Extension {
-	#name : #MetacelloGroupSpec
-}
+Extension { #name : #MetacelloGroupSpec }
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGroupSpec>>loadUsing: aLoader gofer: gofer [
+{ #category : #'*metacello-mc' }
+MetacelloGroupSpec >> loadUsing: aLoader gofer: gofer [
 	"noop"
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGroupSpec>>resolveToLoadableSpec [
+{ #category : #'*metacello-mc' }
+MetacelloGroupSpec >> resolveToLoadableSpec [
 
 	^nil
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGroupSpec>>resolveToPackagesIn: aVersionSpec andProjects: andProjectsBool into: packages visited: visited [
+{ #category : #'*metacello-mc' }
+MetacelloGroupSpec >> resolveToPackagesIn: aVersionSpec andProjects: andProjectsBool into: packages visited: visited [
   visited
     visit: self
     doing: [ :aSpec | 
@@ -44,11 +33,8 @@ MetacelloGroupSpec>>resolveToPackagesIn: aVersionSpec andProjects: andProjectsBo
                 visited: visited ] ] ]
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGroupSpec>>resolveToPackagesIn: aVersionSpec andProjects: andProjectsBool visited: visited [
+{ #category : #'*metacello-mc' }
+MetacelloGroupSpec >> resolveToPackagesIn: aVersionSpec andProjects: andProjectsBool visited: visited [
   | packages |
   packages := Dictionary new.
   self
@@ -59,11 +45,8 @@ MetacelloGroupSpec>>resolveToPackagesIn: aVersionSpec andProjects: andProjectsBo
   ^ packages values asOrderedCollection
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGroupSpec>>resolveToPackagesIn: aVersionSpec into: packages visited: visited [
+{ #category : #'*metacello-mc' }
+MetacelloGroupSpec >> resolveToPackagesIn: aVersionSpec into: packages visited: visited [
   self
     resolveToPackagesIn: aVersionSpec
     andProjects: false
@@ -71,11 +54,8 @@ MetacelloGroupSpec>>resolveToPackagesIn: aVersionSpec into: packages visited: vi
     visited: visited
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGroupSpec>>resolveToPackagesIn: aVersionSpec visited: visited [
+{ #category : #'*metacello-mc' }
+MetacelloGroupSpec >> resolveToPackagesIn: aVersionSpec visited: visited [
   | packages |
   packages := Dictionary new.
   self

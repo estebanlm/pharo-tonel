@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #ZnResourceMetaUtilsTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Resource-Meta-Tests,
-	#timestamp : ''
+	#category : #Zinc-Resource-Meta-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnResourceMetaUtilsTests>>testDecodePercent [
+{ #category : #testing }
+ZnResourceMetaUtilsTests >> testDecodePercent [
 	self assert: (ZnResourceMetaUtils decodePercent: 'foo%20bar') equals: 'foo bar'.
 	self should: [ ZnResourceMetaUtils decodePercent: 'foo%%bar' ] raise: ZnCharacterEncodingError 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnResourceMetaUtilsTests>>testQueryParsing [
+{ #category : #testing }
+ZnResourceMetaUtilsTests >> testQueryParsing [
 	| string fields |
 	string := 'foo=100&x=', (ZnPercentEncoder new encode: '/a b').
 	fields := ZnResourceMetaUtils parseQueryFrom: string readStream.
@@ -30,11 +20,8 @@ ZnResourceMetaUtilsTests>>testQueryParsing [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnResourceMetaUtilsTests>>testQueryWriting [
+{ #category : #testing }
+ZnResourceMetaUtilsTests >> testQueryWriting [
 	| fields string |
 	(fields := Dictionary new)
 		at: 'foo' put: '100';

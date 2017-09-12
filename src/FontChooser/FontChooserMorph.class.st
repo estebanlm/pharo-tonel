@@ -26,34 +26,24 @@ Class {
 		'languageList',
 		'fontList'
 	],
-	#category : #FontChooser,
-	#timestamp : '<historical>'
+	#category : #FontChooser
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph class>>withModel: aFontChooser [
+{ #category : #'instance creation' }
+FontChooserMorph class >> withModel: aFontChooser [
 	^self new 
 		initializeWithModel: aFontChooser;
 		yourself.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>apply [
+{ #category : #actions }
+FontChooserMorph >> apply [
 	result := model selectedFont.
 	model apply
 ]
 
-{
-	#category : #'ui elements',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>applyButton [
+{ #category : #'ui elements' }
+FontChooserMorph >> applyButton [
 	^applyButton ifNil: [
 		applyButton := (self
 			newButtonFor: self
@@ -63,20 +53,14 @@ FontChooserMorph>>applyButton [
 			hResizing: #spaceFill ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>applyButtonClicked [
+{ #category : #actions }
+FontChooserMorph >> applyButtonClicked [
 	self apply.
 	
 ]
 
-{
-	#category : #'ui elements',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>cancelButton [
+{ #category : #'ui elements' }
+FontChooserMorph >> cancelButton [
 	^cancelButton ifNil: [
 		cancelButton := (self
 			newButtonFor: self
@@ -86,21 +70,15 @@ FontChooserMorph>>cancelButton [
 			hResizing: #spaceFill ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>cancelButtonClicked [
+{ #category : #actions }
+FontChooserMorph >> cancelButtonClicked [
 	result :=nil.
 	self delete
 	
 ]
 
-{
-	#category : #'interface building',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>createWindow [
+{ #category : #'interface building' }
+FontChooserMorph >> createWindow [
 	"Create the package loader window."
 	
 	| buttonBar buttonBarOffset previewFrame buttonBarFrame |	
@@ -154,31 +132,22 @@ FontChooserMorph>>createWindow [
 		fullFrame: buttonBarFrame.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>delete [
+{ #category : #actions }
+FontChooserMorph >> delete [
 	model := nil.
 	super delete
 	
 ]
 
-{
-	#category : #'ui elements',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>fontPreviewPanel  [
+{ #category : #'ui elements' }
+FontChooserMorph >> fontPreviewPanel [ 
 
 	^fontPreviewPanel ifNil:
 		[ fontPreviewPanel := self newScrollPaneFor: self newFontPreviewInnerPanel ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>initializeLabelArea [
+{ #category : #initialize-release }
+FontChooserMorph >> initializeLabelArea [
 	"Customize the window bar by removing all the decorations"
 	
 	super initializeLabelArea.
@@ -188,11 +157,8 @@ FontChooserMorph>>initializeLabelArea [
 		removeMenuBox
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>initializeWithModel: aFontChooser [
+{ #category : #initialize-release }
+FontChooserMorph >> initializeWithModel: aFontChooser [
 	self 
 		model: aFontChooser;
 		clipSubmorphs: true;
@@ -205,22 +171,16 @@ FontChooserMorph>>initializeWithModel: aFontChooser [
 	self updatePreview
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>languageIndex [
+{ #category : #accessing }
+FontChooserMorph >> languageIndex [
 
 	| item |
 	item := self pangrams detect: [ :one | one value = selectedPangram ] ifNone: nil.
 	^self pangrams indexOf: item.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>languageIndex: anIndex [
+{ #category : #accessing }
+FontChooserMorph >> languageIndex: anIndex [
 
 	anIndex isZero ifTrue: [ ^ self ]. 
 	selectedPangram := (self pangrams at: anIndex) value.
@@ -228,20 +188,14 @@ FontChooserMorph>>languageIndex: anIndex [
 	self updatePreview
 ]
 
-{
-	#category : #'interface building',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>languages [
+{ #category : #'interface building' }
+FontChooserMorph >> languages [
 	
 	^ self pangrams collect: #key
 ]
 
-{
-	#category : #'interface building',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>newFontList  [
+{ #category : #'interface building' }
+FontChooserMorph >> newFontList [ 
 
 	| widget requiredWidth |
 	widget := PluggableListMorph
@@ -267,11 +221,8 @@ FontChooserMorph>>newFontList  [
 	^ widget.
 ]
 
-{
-	#category : #'interface building',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>newFontPointSizeField [
+{ #category : #'interface building' }
+FontChooserMorph >> newFontPointSizeField [
 	^ (RubScrolledTextMorph
 		on: self
 		text: #pointSizeString
@@ -290,22 +241,16 @@ FontChooserMorph>>newFontPointSizeField [
 		yourself
 ]
 
-{
-	#category : #'interface building',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>newFontPointSizeLabel  [
+{ #category : #'interface building' }
+FontChooserMorph >> newFontPointSizeLabel [ 
 
 	^ StringMorph
 		contents: 'Point size:' translated;
 		yourself.
 ]
 
-{
-	#category : #'interface building',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>newFontPreviewInnerPanel [
+{ #category : #'interface building' }
+FontChooserMorph >> newFontPreviewInnerPanel [
 	"Answer a morph for the preview text."
 	
 	| textMorph |
@@ -316,11 +261,8 @@ FontChooserMorph>>newFontPreviewInnerPanel [
 		ifNotNil: [ :f | textMorph beAllFont: f ]
 ]
 
-{
-	#category : #'interface building',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>newFontSizePanel [
+{ #category : #'interface building' }
+FontChooserMorph >> newFontSizePanel [
 
 	pointSizeMorph := self newFontPointSizeField.
 	^ Morph new
@@ -340,11 +282,8 @@ FontChooserMorph>>newFontSizePanel [
 		
 ]
 
-{
-	#category : #'interface building',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>newFontStyleList  [
+{ #category : #'interface building' }
+FontChooserMorph >> newFontStyleList [ 
 
 	| widget minWidth requiredWidth |
 	widget := PluggableListMorph
@@ -368,11 +307,8 @@ FontChooserMorph>>newFontStyleList  [
 			yourself.
 ]
 
-{
-	#category : #'interface building',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>newLanguageList [
+{ #category : #'interface building' }
+FontChooserMorph >> newLanguageList [
 
 	| widget |
 	widget := PluggableListMorph
@@ -388,11 +324,8 @@ FontChooserMorph>>newLanguageList [
 			yourself.
 ]
 
-{
-	#category : #'interface building',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>newPointSizeList  [
+{ #category : #'interface building' }
+FontChooserMorph >> newPointSizeList [ 
 
 	| widget |
 	widget := PluggableListMorph
@@ -408,11 +341,8 @@ FontChooserMorph>>newPointSizeList  [
 			yourself.
 ]
 
-{
-	#category : #'ui elements',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>okButton [
+{ #category : #'ui elements' }
+FontChooserMorph >> okButton [
 
 	okButton ifNotNil: [ ^ okButton ].
 	okButton := self
@@ -425,30 +355,21 @@ FontChooserMorph>>okButton [
 			yourself.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>okButtonClicked [
+{ #category : #actions }
+FontChooserMorph >> okButtonClicked [
 
 	self apply.
 	self delete.
 ]
 
-{
-	#category : #'interface building',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>open [
+{ #category : #'interface building' }
+FontChooserMorph >> open [
 
 	^ self createWindow openAsIsIn: self currentWorld.
 ]
 
-{
-	#category : #'interface building',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>pangrams [
+{ #category : #'interface building' }
+FontChooserMorph >> pangrams [
 	^ OrderedCollection new
 		add: 'English' -> 'the quick brown fox jumps over the lazy dog';
 		add: 'Bulgarian' -> 'Под южно дърво, цъфтящо в синьо, бягаше малко пухкаво зайче.';
@@ -498,20 +419,14 @@ FontChooserMorph>>pangrams [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>pointSizeString [
+{ #category : #accessing }
+FontChooserMorph >> pointSizeString [
 
 	^ model pointSize asString.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>pointSizeString: aText [
+{ #category : #actions }
+FontChooserMorph >> pointSizeString: aText [
 	
 	| string number |
 	string := aText asString trimBoth.
@@ -527,11 +442,8 @@ FontChooserMorph>>pointSizeString: aText [
 	model pointSize: number
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>previewText [
+{ #category : #accessing }
+FontChooserMorph >> previewText [
 	"Answer the preview text based on current font."
 	
 	| sample i maxLineLength endOfLineCharacters |
@@ -558,27 +470,18 @@ FontChooserMorph>>previewText [
 	^ sample contents.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>result [
+{ #category : #accessing }
+FontChooserMorph >> result [
 	^ result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>selectedPangram [
+{ #category : #accessing }
+FontChooserMorph >> selectedPangram [
 	^ selectedPangram ifNil: [ self pangrams first value ]
 ]
 
-{
-	#category : #'ui elements',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>updateButton [
+{ #category : #'ui elements' }
+FontChooserMorph >> updateButton [
 
 	updateButton ifNotNil: [ ^ updateButton ].
 	updateButton := self
@@ -591,20 +494,14 @@ FontChooserMorph>>updateButton [
 		yourself.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>updateButtonClicked [
+{ #category : #actions }
+FontChooserMorph >> updateButtonClicked [
 
 	self updateFontList.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>updateFontIndex [
+{ #category : #actions }
+FontChooserMorph >> updateFontIndex [
 
 	fontList ifNotNil: [ fontList selectionIndex: model selectedFontIndex ].
 	styleList ifNotNil: [ styleList updateList ].
@@ -612,21 +509,15 @@ FontChooserMorph>>updateFontIndex [
 	self updatePreview
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>updateFontList [
+{ #category : #actions }
+FontChooserMorph >> updateFontList [
 
 	model updateFontList.
 	self announcer announce: #fontsUpdated.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>updatePointSize [
+{ #category : #actions }
+FontChooserMorph >> updatePointSize [
 
 	pointSizeList ifNotNil: [ pointSizeList selectionIndex: model selectedPointSizeIndex ].
 	"this should not be like that but managed by the list!!!!"
@@ -634,30 +525,21 @@ FontChooserMorph>>updatePointSize [
 	self updatePreview
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>updatePointSizeList [
+{ #category : #actions }
+FontChooserMorph >> updatePointSizeList [
 
 	pointSizeList ifNotNil: [ pointSizeList updateList ].
 	self updatePreview
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>updatePreview [
+{ #category : #actions }
+FontChooserMorph >> updatePreview [
 
 	 self fontPreviewPanel scrollTarget: self newFontPreviewInnerPanel
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>updateStyleList [
+{ #category : #actions }
+FontChooserMorph >> updateStyleList [
 
 	styleList ifNotNil: [ styleList selectionIndex: model selectedFontStyleIndex ].
 	"this should not be like that but managed by the list!!!!"
@@ -665,11 +547,8 @@ FontChooserMorph>>updateStyleList [
 	self updatePreview
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooserMorph>>widthRequiredFor: aBlock from: aCollection noLessThan: anInteger [
+{ #category : #private }
+FontChooserMorph >> widthRequiredFor: aBlock from: aCollection noLessThan: anInteger [
 	"aBlock - takes each item as an argument, and returns the width it needs"
 
 	^ aCollection inject: anInteger into: [ :max :each | | itemWidth |

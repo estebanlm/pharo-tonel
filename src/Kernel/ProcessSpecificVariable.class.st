@@ -18,120 +18,80 @@ Class {
 	#classInstVars : [
 		'soleInstance'
 	],
-	#category : #Kernel-Processes,
-	#timestamp : 'DenisKudryashov 5/24/2016 17:20'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessSpecificVariable class>>initialize [
+{ #category : #'class initialization' }
+ProcessSpecificVariable class >> initialize [
 	self resetSoleInstance.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessSpecificVariable class>>isInheritable [
+{ #category : #testing }
+ProcessSpecificVariable class >> isInheritable [
 	^false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessSpecificVariable class>>new [
+{ #category : #'instance creation' }
+ProcessSpecificVariable class >> new [
 	| instance |
 	instance := super new.
 	instance index: (Process allocatePSKey: instance).
 	^ instance
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessSpecificVariable class>>resetSoleInstance [
+{ #category : #'class initialization' }
+ProcessSpecificVariable class >> resetSoleInstance [
 	soleInstance := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessSpecificVariable class>>soleInstance [
+{ #category : #accessing }
+ProcessSpecificVariable class >> soleInstance [
 	^ soleInstance ifNil: [ soleInstance := self new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessSpecificVariable class>>value [
+{ #category : #accessing }
+ProcessSpecificVariable class >> value [
 	"Answer the current value for this variable in the current context."
 	^ self soleInstance value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessSpecificVariable>>default [
+{ #category : #accessing }
+ProcessSpecificVariable >> default [
 	"Answer the default value for the variable. The default for the default value is nil."
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessSpecificVariable>>index [
+{ #category : #accessing }
+ProcessSpecificVariable >> index [
 	^ index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessSpecificVariable>>index: anInteger [
+{ #category : #accessing }
+ProcessSpecificVariable >> index: anInteger [
 	index := anInteger
 ]
 
-{
-	#category : #inheriting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessSpecificVariable>>installValue: anObject intoForked: newProcess from: ownerProcess [
+{ #category : #inheriting }
+ProcessSpecificVariable >> installValue: anObject intoForked: newProcess from: ownerProcess [
 "
 	In subclasses you can override this method to implement specific variable inheritance logic
 "
 	newProcess psValueAt: index put: anObject
 ]
 
-{
-	#category : #inheriting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessSpecificVariable>>isInheritable [
+{ #category : #inheriting }
+ProcessSpecificVariable >> isInheritable [
 	^self class isInheritable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessSpecificVariable>>value [
+{ #category : #accessing }
+ProcessSpecificVariable >> value [
 
 	^ (Processor activeProcess psValueAt: index) ifNil: [ self default ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessSpecificVariable>>valueOrNil [
+{ #category : #accessing }
+ProcessSpecificVariable >> valueOrNil [
 	"a faster version, which doesn't using ifAbsent: to avoid using block closure"
 	^ Processor activeProcess psValueAt: index 
 ]

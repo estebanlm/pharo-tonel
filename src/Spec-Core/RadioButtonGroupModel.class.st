@@ -35,26 +35,19 @@ Class {
 		'canDeselectByClick',
 		'currentActivated'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 7/18/2016 17:33'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel class>>defaultSpec [
+{ #category : #specs }
+RadioButtonGroupModel class >> defaultSpec [
 	<spec: #default>
 	^ SpecLayout composed
 		newColumn: [ :column |  ];
 		yourself
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel class>>example [
+{ #category : #example }
+RadioButtonGroupModel class >> example [
 	| example |
 	example := RadioButtonGroupModel new.
 	example
@@ -66,11 +59,8 @@ RadioButtonGroupModel class>>example [
 	^ example
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel>>addRadioButton: aButton [
+{ #category : #protocol }
+RadioButtonGroupModel >> addRadioButton: aButton [
 	self linkRadioButton: aButton.
 	aButton canDeselectByClick: self canDeselectByClick.
 	buttons add: aButton.
@@ -80,68 +70,47 @@ RadioButtonGroupModel>>addRadioButton: aButton [
 	self rebuildWidget
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel>>buttons [
+{ #category : #accessing }
+RadioButtonGroupModel >> buttons [
 	^ buttons
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel>>canDeselectByClick [
+{ #category : #protocol }
+RadioButtonGroupModel >> canDeselectByClick [
 	<api: #inspect>
 	"Return true clicking on a selected radio button deselects it"
 
 	^ canDeselectByClick value
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel>>canDeselectByClick: aBoolean [
+{ #category : #protocol }
+RadioButtonGroupModel >> canDeselectByClick: aBoolean [
 	<api: #boolean getter: #canDeselectByClick registration: #whenCanDeselectByClickChanged>
 	"Set if clicking on a selected radio button can deselect it"
 	
 	canDeselectByClick value: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel>>createWidgets [
+{ #category : #accessing }
+RadioButtonGroupModel >> createWidgets [
 	buttons
 		withIndexDo: [ :each :i | 
 			self assign: each to: ('radio' , i asString) asSymbol.
 			 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel>>currentActivated [
+{ #category : #accessing }
+RadioButtonGroupModel >> currentActivated [
 	^ currentActivated value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel>>currentActivated: aRadioButton [
+{ #category : #accessing }
+RadioButtonGroupModel >> currentActivated: aRadioButton [
 	currentActivated value: aRadioButton
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel>>default: aButton [
+{ #category : #protocol }
+RadioButtonGroupModel >> default: aButton [
 	aButton privateSetState: true.
 	aButton takeKeyboardFocus.
 	aButton
@@ -150,21 +119,15 @@ RadioButtonGroupModel>>default: aButton [
 	
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel>>defaultOnce: aButton [
+{ #category : #protocol }
+RadioButtonGroupModel >> defaultOnce: aButton [
 	aButton privateSetState: true.
 	self currentActivated: aButton.
 	"This method is used to avoid a problem of default: with a DynamicComposableModel but a fix would be better (if possible)"
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel>>dynamicLayout [
+{ #category : #specs }
+RadioButtonGroupModel >> dynamicLayout [
 	|lay|
 	lay := SpecLayout composed
 		newColumn: [ :column | 
@@ -174,31 +137,22 @@ RadioButtonGroupModel>>dynamicLayout [
 	^ lay
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel>>initialize [
+{ #category : #initialization }
+RadioButtonGroupModel >> initialize [
 	buttons := OrderedCollection new.
 	canDeselectByClick := false asValueHolder.
 	currentActivated := nil asValueHolder.
 	super initialize.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel>>initializePresenter [
+{ #category : #initialization }
+RadioButtonGroupModel >> initializePresenter [
 	self
 		whenCanDeselectByClickChanged: [ :aBoolean | buttons do: [ :each | each canDeselectByClick: aBoolean ] ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel>>linkRadioButton: aButton [
+{ #category : #protocol }
+RadioButtonGroupModel >> linkRadioButton: aButton [
 	buttons
 		do: [ :b | 
 			aButton whenActivatedDo: [ b privateSetState: false ].
@@ -206,32 +160,23 @@ RadioButtonGroupModel>>linkRadioButton: aButton [
 	aButton whenActivatedDo: [ self currentActivated: aButton ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel>>rebuildWidget [
+{ #category : #accessing }
+RadioButtonGroupModel >> rebuildWidget [
 	self widgets removeAll.
 	self createWidgets.
 	self needFullRebuild: false.
 	self buildWithSpecLayout: self dynamicLayout
 ]
 
-{
-	#category : #protocol-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel>>whenCanDeselectByClickChanged: aBlock [
+{ #category : #protocol-events }
+RadioButtonGroupModel >> whenCanDeselectByClickChanged: aBlock [
 	"This method is triggered when `canDeselectByClick` changes"
 	
 	canDeselectByClick whenChangedDo: aBlock
 ]
 
-{
-	#category : #protocol-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroupModel>>whenCurrentActivatedChanged: aBlock [
+{ #category : #protocol-events }
+RadioButtonGroupModel >> whenCurrentActivatedChanged: aBlock [
 
 	currentActivated whenChangedDo: aBlock
 ]

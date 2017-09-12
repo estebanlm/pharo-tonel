@@ -1,12 +1,7 @@
-Extension {
-	#name : #BitmapFillStyle
-}
+Extension { #name : #BitmapFillStyle }
 
-{
-	#category : #'*Athens-Core',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-BitmapFillStyle>>asAthensPaintOn: anAthensCanvas [
+{ #category : #'*Athens-Core' }
+BitmapFillStyle >> asAthensPaintOn: anAthensCanvas [
 	| paint |
 	paint := (anAthensCanvas surface createFormPaint: form)
 		origin: origin;

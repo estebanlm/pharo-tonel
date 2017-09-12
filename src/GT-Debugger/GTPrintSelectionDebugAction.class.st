@@ -4,73 +4,51 @@ This action is responsible for printing a selected piece of code from the code p
 Class {
 	#name : #GTPrintSelectionDebugAction,
 	#superclass : #GTCodeDebugAction,
-	#category : #GT-Debugger-Actions,
-	#timestamp : 'TudorGirba 1/10/2016 23:43'
+	#category : #GT-Debugger-Actions
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPrintSelectionDebugAction class>>gtActionFor: aDebugger [
+{ #category : #registration }
+GTPrintSelectionDebugAction class >> gtActionFor: aDebugger [
 	"<gtContextCodeDebuggingAction>"
 	
 	^ (self forDebugger: aDebugger)
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPrintSelectionDebugAction>>defaultKeymap [
+{ #category : #accessing }
+GTPrintSelectionDebugAction >> defaultKeymap [
 
 	^ PharoShortcuts current printItShortcut
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPrintSelectionDebugAction>>defaultLabel [
+{ #category : #accessing }
+GTPrintSelectionDebugAction >> defaultLabel [
 
 	^ 'Print it'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPrintSelectionDebugAction>>defaultOrder [
+{ #category : #accessing }
+GTPrintSelectionDebugAction >> defaultOrder [
 
 	^ 15
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPrintSelectionDebugAction>>executeAction [
+{ #category : #actions }
+GTPrintSelectionDebugAction >> executeAction [
 	
 	self codePresentation printSelection
 		
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPrintSelectionDebugAction>>id [
+{ #category : #accessing }
+GTPrintSelectionDebugAction >> id [
 
 	^ #gTPrintSelectionDebugAction
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPrintSelectionDebugAction>>initialize [
+{ #category : #initialization }
+GTPrintSelectionDebugAction >> initialize [
 	super initialize.
 	self needsUpdate: false
 ]

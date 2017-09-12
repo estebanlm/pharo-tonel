@@ -6,24 +6,17 @@ My subclasses implement the concrete ways to do it.
 Class {
 	#name : #OmSuffixAfterDotStrategy,
 	#superclass : #OmSessionStoreNamingStrategy,
-	#category : #Ombu-Strategies,
-	#timestamp : 'MartinDias 1/21/2017 16:06'
+	#category : #Ombu-Strategies
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSuffixAfterDotStrategy>>nextSuffix [
+{ #category : #accessing }
+OmSuffixAfterDotStrategy >> nextSuffix [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSuffixAfterDotStrategy>>nextTo: aName in: aDirectory [
+{ #category : #accessing }
+OmSuffixAfterDotStrategy >> nextTo: aName in: aDirectory [
 	
 	^ String streamContents: [ :stream |
 		stream

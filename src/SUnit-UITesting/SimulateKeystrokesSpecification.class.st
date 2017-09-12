@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #SimulateKeystrokesSpecification,
 	#superclass : #UITestCase,
-	#category : #SUnit-UITesting,
-	#timestamp : ''
+	#category : #SUnit-UITesting
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SimulateKeystrokesSpecification>>testSimulateCmdKeystroke [
+{ #category : #tests }
+SimulateKeystrokesSpecification >> testSimulateCmdKeystroke [
 
 	| ws |
 	ws := Smalltalk tools workspace open.
@@ -22,11 +15,8 @@ SimulateKeystrokesSpecification>>testSimulateCmdKeystroke [
 	ws delete.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SimulateKeystrokesSpecification>>testSimulateKeystroke [
+{ #category : #tests }
+SimulateKeystrokesSpecification >> testSimulateKeystroke [
 
 	| textMorph |
 	textMorph := TextMorph new contents: ''; openInWorld.
@@ -37,11 +27,8 @@ SimulateKeystrokesSpecification>>testSimulateKeystroke [
 	textMorph delete.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SimulateKeystrokesSpecification>>testSimulateKeystrokes [
+{ #category : #tests }
+SimulateKeystrokesSpecification >> testSimulateKeystrokes [
 
 	| textMorph |
 	textMorph := TextMorph new contents: ''; openInWorld.

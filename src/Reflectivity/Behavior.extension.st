@@ -1,12 +1,7 @@
-Extension {
-	#name : #Behavior
-}
+Extension { #name : #Behavior }
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-Behavior>>metaLinkOptions [
+{ #category : #'*Reflectivity' }
+Behavior >> metaLinkOptions [
 	^{
 	#methodDict -> #( + optionCompileOnLinkInstallation).
 	#metaLinkOptions -> #( + optionCompileOnLinkInstallation)

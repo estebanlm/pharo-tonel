@@ -7,15 +7,11 @@ self new open
 Class {
 	#name : #OSWindowGenericRendererDrawingExample,
 	#superclass : #OSWindowGenericRendererExample,
-	#category : #OSWindow-SDL2-Examples-Basic,
-	#timestamp : 'RonieSalgado 4/10/2016 02:23'
+	#category : #OSWindow-SDL2-Examples-Basic
 }
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGenericRendererDrawingExample>>redraw [
+{ #category : #drawing }
+OSWindowGenericRendererDrawingExample >> redraw [
 	| seconds x y|
 	seconds := Time millisecondClockValue * 0.001.
 	

@@ -6,15 +6,11 @@ Additionally I will empty the current .changes file.
 Class {
 	#name : #PharoSourcesCondenser,
 	#superclass : #PharoChangesCondenser,
-	#category : #System-Sources,
-	#timestamp : 'CamilloBruni 2/23/2014 20:30'
+	#category : #System-Sources
 }
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoSourcesCondenser class>>condenseNewSources [
+{ #category : #helper }
+PharoSourcesCondenser class >> condenseNewSources [
 	| fileName condenser arch |
 
 	arch := (Smalltalk vm wordSize = 4) ifTrue: [32] ifFalse: [64].
@@ -26,29 +22,20 @@ PharoSourcesCondenser class>>condenseNewSources [
 	condenser condense.
 ]
 
-{
-	#category : #'private - 3 installing',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoSourcesCondenser>>backupOldChanges [
+{ #category : #'private - 3 installing' }
+PharoSourcesCondenser >> backupOldChanges [
 	super backupOldChanges.
 	self installFreshChangesFile.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoSourcesCondenser>>fileIndex [
+{ #category : #accessing }
+PharoSourcesCondenser >> fileIndex [
 	"We are working on the .sources file which has index = 1"
 	^ 1
 ]
 
-{
-	#category : #'private - 3 installing',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoSourcesCondenser>>installFreshChangesFile [
+{ #category : #'private - 3 installing' }
+PharoSourcesCondenser >> installFreshChangesFile [
 	| changesFile |
 	
 	"install a new .changes file"
@@ -60,11 +47,8 @@ PharoSourcesCondenser>>installFreshChangesFile [
 		 strm timeStamp ].
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoSourcesCondenser>>newSourceNamed: aString [
+{ #category : #public }
+PharoSourcesCondenser >> newSourceNamed: aString [
 	"Create a new version of the .soruces file by copying the existing file to a new location"
 	| originalSourcesFile newSourcesFile |
 	
@@ -78,47 +62,32 @@ PharoSourcesCondenser>>newSourceNamed: aString [
 	Smalltalk openSourceFiles.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoSourcesCondenser>>originalFile [
+{ #category : #accessing }
+PharoSourcesCondenser >> originalFile [
 	^ Smalltalk sourcesFile asFileReference
 ]
 
-{
-	#category : #'private - testing',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoSourcesCondenser>>shouldCondenseMethod: aCompiledMethod [
+{ #category : #'private - testing' }
+PharoSourcesCondenser >> shouldCondenseMethod: aCompiledMethod [
 	"The sources condenser moves ALL method sources to a new file"
 	^ aCompiledMethod hasSourcePointer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoSourcesCondenser>>temporaryFile [
+{ #category : #accessing }
+PharoSourcesCondenser >> temporaryFile [
 	^ 'new.sources' asFileReference nextVersion
 ]
 
-{
-	#category : #'private - 3 installing',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoSourcesCondenser>>updateQuitPosition [
+{ #category : #'private - 3 installing' }
+PharoSourcesCondenser >> updateQuitPosition [
 	
 	"We use an empty .changes file, hence the last quit position is 0"
 	
 	Smalltalk lastQuitLogPosition: 0.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoSourcesCondenser>>writeClassComment: aClass [
+{ #category : #'as yet unclassified' }
+PharoSourcesCondenser >> writeClassComment: aClass [
 	| organizer commentRemoteString stamp |
 	
 	organizer := aClass organization.

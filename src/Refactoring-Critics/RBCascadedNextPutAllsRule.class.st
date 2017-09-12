@@ -13,51 +13,35 @@ String streamContents: [ :s|
 Class {
 	#name : #RBCascadedNextPutAllsRule,
 	#superclass : #RBTransformationRule,
-	#category : #Refactoring-Critics-TransformationRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 17:42'
+	#category : #Refactoring-Critics-TransformationRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBCascadedNextPutAllsRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBCascadedNextPutAllsRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'CascadedNextPutAllsRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBCascadedNextPutAllsRule>>group [
+{ #category : #accessing }
+RBCascadedNextPutAllsRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBCascadedNextPutAllsRule>>initialize [
+{ #category : #initialization }
+RBCascadedNextPutAllsRule >> initialize [
 	super initialize.
 	self rewriteRule
 		replace: '``@rcvr nextPutAll: ``@object1 , ``@object2' with: '``@rcvr nextPutAll: ``@object1; nextPutAll: ``@object2';
 		replace: '``@rcvr show: ``@object1 , ``@object2' with: '``@rcvr show: ``@object1; show: ``@object2'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBCascadedNextPutAllsRule>>name [
+{ #category : #accessing }
+RBCascadedNextPutAllsRule >> name [
 	^ 'Use cascaded nextPutAll:''s instead of #, in #nextPutAll:'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBCascadedNextPutAllsRule>>rationale  [
+{ #category : #accessing }
+RBCascadedNextPutAllsRule >> rationale [ 
 	^ 'Use cascaded nextPutAll:''s instead of #, in #nextPutAll:.'
 ]

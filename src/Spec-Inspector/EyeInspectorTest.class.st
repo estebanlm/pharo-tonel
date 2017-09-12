@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #EyeInspectorTest,
 	#superclass : #TestCase,
-	#category : #Spec-Inspector-Test,
-	#timestamp : ''
+	#category : #Spec-Inspector-Test
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorTest>>instancesToTry [
+{ #category : #accessing }
+EyeInspectorTest >> instancesToTry [
 	^ { 
 	Object new . 
 	Class . 
@@ -36,11 +29,8 @@ EyeInspectorTest>>instancesToTry [
 	}
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorTest>>testErrorRaised [
+{ #category : #tests }
+EyeInspectorTest >> testErrorRaised [
 	| inspector morphsBefore morphsAfter |
 	morphsBefore := World submorphs. 
 	self instancesToTry do: [ :each | inspector := EyeInspector inspector: each].

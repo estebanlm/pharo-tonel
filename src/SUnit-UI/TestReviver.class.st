@@ -19,15 +19,11 @@ Class {
 		'imageVersion',
 		'imageVersionLabel'
 	],
-	#category : #SUnit-UI,
-	#timestamp : '<historical>'
+	#category : #SUnit-UI
 }
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver class>>open [
+{ #category : #opening }
+TestReviver class >> open [
 	<script>
 	
 	|model|
@@ -36,11 +32,8 @@ TestReviver class>>open [
 	^model
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver class>>spec [
+{ #category : #specs }
+TestReviver class >> spec [
 	<spec: #default>
 
 	^ SpecLayout composed
@@ -62,20 +55,14 @@ TestReviver class>>spec [
 		yourself.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver class>>title [
+{ #category : #accessing }
+TestReviver class >> title [
 
 	^ 'Test Error Browser'.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver>>browse: anAbstractFileReference [
+{ #category : #private }
+TestReviver >> browse: anAbstractFileReference [
 
 	| tokens testClass |
 	anAbstractFileReference ifNil: [ ^self ].
@@ -84,63 +71,42 @@ TestReviver>>browse: anAbstractFileReference [
 	Smalltalk tools browser openOnClass: testClass selector: tokens second asSymbol.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver>>browseButton [
+{ #category : #private }
+TestReviver >> browseButton [
 
 	^ browseButton.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver>>debugButton [
+{ #category : #private }
+TestReviver >> debugButton [
 
 	^ debugButton.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver>>errorListModel [
+{ #category : #private }
+TestReviver >> errorListModel [
 
 	^ errorListModel.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver>>imageVersion [
+{ #category : #accessing }
+TestReviver >> imageVersion [
 	^ imageVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver>>imageVersionLabel [
+{ #category : #accessing }
+TestReviver >> imageVersionLabel [
 	^ imageVersionLabel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver>>initialExtent [
+{ #category : #private }
+TestReviver >> initialExtent [
 
 	^ 700@500.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver>>initializePresenter [
+{ #category : #initialization }
+TestReviver >> initializePresenter [
 
 	errorListModel whenSelectedItemChanged: [ :item | | header |
 		item 
@@ -158,11 +124,8 @@ TestReviver>>initializePresenter [
 	]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver>>initializeWidgets [
+{ #category : #initialization }
+TestReviver >> initializeWidgets [
 	| serializedErrors |
 	self instantiateWidgets.
 	serializedErrors := self selectTestFailures.
@@ -195,11 +158,8 @@ TestReviver>>initializeWidgets [
 		add: errorListModel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver>>instantiateWidgets [
+{ #category : #initialization }
+TestReviver >> instantiateWidgets [
 	errorListModel := self newList.
 	debugButton := self newButton.
 	browseButton := self newButton.
@@ -211,20 +171,14 @@ TestReviver>>instantiateWidgets [
 	imageVersion := self newText
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver>>materialize: fuelFileReference [
+{ #category : #private }
+TestReviver >> materialize: fuelFileReference [
 	fuelFileReference ifNil: [ ^self ].
 	FLMaterializer materializeFromFileNamed: fuelFileReference fullName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver>>selectTestFailures	 [
+{ #category : #accessing }
+TestReviver >> selectTestFailures [	
 	| files results tokens method | 
 	results := OrderedCollection new.
 	files := FileLocator imageDirectory filesMatching: '*.fuel'.
@@ -241,36 +195,24 @@ TestReviver>>selectTestFailures	 [
 	^ results
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver>>timeStamp [
+{ #category : #accessing }
+TestReviver >> timeStamp [
 	^ timeStamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver>>timeStampLabel [
+{ #category : #accessing }
+TestReviver >> timeStampLabel [
 	^ timeStampLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver>>vmVersion [
+{ #category : #accessing }
+TestReviver >> vmVersion [
 
 	^ vmVersion.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestReviver>>vmVersionLabel [
+{ #category : #accessing }
+TestReviver >> vmVersionLabel [
 
 	^ vmVersionLabel.
 ]

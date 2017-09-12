@@ -10,45 +10,32 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #MonticelloRemoteRepositories,
-	#timestamp : 'TorstenBergmann 2/5/2014 13:56'
+	#category : #MonticelloRemoteRepositories
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCServerRegistry class>>uniqueInstance [
+{ #category : #'instance creation' }
+MCServerRegistry class >> uniqueInstance [
 
 	^ uniqueInstance ifNil: [ uniqueInstance := self new ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCServerRegistry>>initialize [
+{ #category : #initialization }
+MCServerRegistry >> initialize [
 
 	super initialize.
 	registry := Dictionary new.
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCServerRegistry>>on: repositoryUrl beUser: nameString withPassword: passwordString [
+{ #category : #public }
+MCServerRegistry >> on: repositoryUrl beUser: nameString withPassword: passwordString [
 
 	| credentials |
 	credentials := MCServerCredentials user: nameString password: passwordString.
 	registry at: repositoryUrl put: credentials.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCServerRegistry>>repositoryAt: urlString credentialsDo: aBlock [
+{ #category : #private }
+MCServerRegistry >> repositoryAt: urlString credentialsDo: aBlock [
 
 
 	| possibleMatches bestMatch |

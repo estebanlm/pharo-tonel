@@ -10,15 +10,11 @@ Class {
 		'rule',
 		'tinyHint'
 	],
-	#category : #Renraku-Critiques,
-	#timestamp : 'YuriyTymchuk 10/16/2015 01:52'
+	#category : #Renraku-Critiques
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique class>>for: anEntity by: aRule [
+{ #category : #'instance creation' }
+ReAbstractCritique class >> for: anEntity by: aRule [
 
 	^ self basicNew
 		initializeRule: aRule
@@ -26,11 +22,8 @@ ReAbstractCritique class>>for: anEntity by: aRule [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique class>>withAnchor: anAnchor by: aRule [
+{ #category : #'instance creation' }
+ReAbstractCritique class >> withAnchor: anAnchor by: aRule [
 
 	^ self basicNew
 		initializeRule: aRule
@@ -38,11 +31,8 @@ ReAbstractCritique class>>withAnchor: anAnchor by: aRule [
 		yourself
 ]
 
-{
-	#category : #'special instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique class>>withAnchor: anAnchor by: aRule hint: aString [
+{ #category : #'special instance creation' }
+ReAbstractCritique class >> withAnchor: anAnchor by: aRule hint: aString [
 
 	^ (self
 		withAnchor: anAnchor
@@ -51,11 +41,8 @@ ReAbstractCritique class>>withAnchor: anAnchor by: aRule hint: aString [
 		yourself
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>actions  [
+{ #category : #actions }
+ReAbstractCritique >> actions [ 
 
 	| actions |
 	
@@ -102,37 +89,25 @@ ReAbstractCritique>>actions  [
 	^ actions
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>ban [
+{ #category : #actions }
+ReAbstractCritique >> ban [
 	
 	sourceAnchor sourceEntity ban: self  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>change [
+{ #category : #accessing }
+ReAbstractCritique >> change [
 	
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>description [
+{ #category : #accessing }
+ReAbstractCritique >> description [
 	^ rule rationale
 ]
 
-{
-	#category : #gt-extension,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>gtInspectorDescriptionIn: composite [
+{ #category : #gt-extension }
+ReAbstractCritique >> gtInspectorDescriptionIn: composite [
 	<gtInspectorPresentationOrder: 1>
 
 	^ composite text
@@ -140,11 +115,8 @@ ReAbstractCritique>>gtInspectorDescriptionIn: composite [
 		display: [ self description ]
 ]
 
-{
-	#category : #gt-extension,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>gtInspectorSourceCodeIn: composite [
+{ #category : #gt-extension }
+ReAbstractCritique >> gtInspectorSourceCodeIn: composite [
 	<gtInspectorPresentationOrder: 0>
 
 	sourceAnchor gtInspectorAnchorIn: composite
@@ -152,99 +124,66 @@ ReAbstractCritique>>gtInspectorSourceCodeIn: composite [
 		
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>guidedBan [
+{ #category : #actions }
+ReAbstractCritique >> guidedBan [
 
 	ReCriticEngine guidedBy: sourceAnchor entity ban: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>icon [
+{ #category : #accessing }
+ReAbstractCritique >> icon [
 
 	^ self iconNamed: ('small', rule severity capitalized, 'Icon') asSymbol
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>initializeRule: aRule sourceAnchor: anAnchor [
+{ #category : #initialization }
+ReAbstractCritique >> initializeRule: aRule sourceAnchor: anAnchor [
 
 	self initializeSourceAnchor: anAnchor.
 	rule := aRule.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>initializeRule: aRule target: anEntity [
+{ #category : #initialization }
+ReAbstractCritique >> initializeRule: aRule target: anEntity [
 
 	self
 		initializeRule: aRule
 		sourceAnchor: (ReSourceAnchor entity: anEntity)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>isCritique [
+{ #category : #testing }
+ReAbstractCritique >> isCritique [
 	^ true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>popDescriptionUp [
+{ #category : #actions }
+ReAbstractCritique >> popDescriptionUp [
 	UIManager default longMessage: self description title: self title
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>provideNegativeFeedback: aComment [
+{ #category : #actions }
+ReAbstractCritique >> provideNegativeFeedback: aComment [
 	ReFeedbacker negativeFeedback: aComment About: self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>providePositiveFeedback: aComment [
+{ #category : #actions }
+ReAbstractCritique >> providePositiveFeedback: aComment [
 	ReFeedbacker positiveFeedback: aComment About: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>providesChange [
+{ #category : #testing }
+ReAbstractCritique >> providesChange [
 
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>rule [
+{ #category : #accessing }
+ReAbstractCritique >> rule [
 	^ rule
 ]
 
-{
-	#category : #gt-extension,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>spotterPreviewRationaleIn: aComposite [
+{ #category : #gt-extension }
+ReAbstractCritique >> spotterPreviewRationaleIn: aComposite [
 	<spotterPreview: 5>
 	aComposite text
 		title: [ self title ];
@@ -252,28 +191,19 @@ ReAbstractCritique>>spotterPreviewRationaleIn: aComposite [
 		entity: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>tinyHint [
+{ #category : #accessing }
+ReAbstractCritique >> tinyHint [
 
 	^ tinyHint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>tinyHint: anObject [
+{ #category : #accessing }
+ReAbstractCritique >> tinyHint: anObject [
 	tinyHint := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>title [
+{ #category : #accessing }
+ReAbstractCritique >> title [
 	^ (self tinyHint isNil or: [ self tinyHint isEmpty ])
 		ifTrue: [ rule name ]
 		ifFalse: [

@@ -8,46 +8,33 @@ Class {
 	#instVars : [
 		'entryText'
 	],
-	#category : #Polymorph-Widgets-Windows,
-	#timestamp : 'gvc 9/23/2008 11:36'
+	#category : #Polymorph-Widgets-Windows
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LongMessageDialogWindow>>entryText [
+{ #category : #accessing }
+LongMessageDialogWindow >> entryText [
 	"Answer the value of entryText"
 
 	^ entryText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LongMessageDialogWindow>>entryText: anObject [
+{ #category : #accessing }
+LongMessageDialogWindow >> entryText: anObject [
 	"Set the value of entryText"
 
 	entryText := anObject.
 	self changed: #entryText
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LongMessageDialogWindow>>isResizeable [
+{ #category : #'as yet unclassified' }
+LongMessageDialogWindow >> isResizeable [
 	"Answer whether we are not we can be resized."
 
 	^true
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LongMessageDialogWindow>>newContentMorph [
+{ #category : #'as yet unclassified' }
+LongMessageDialogWindow >> newContentMorph [
 	"Answer a new content morph."
 
 	self iconMorph: self newIconMorph.
@@ -58,11 +45,8 @@ LongMessageDialogWindow>>newContentMorph [
 			vResizing: #spaceFill)
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LongMessageDialogWindow>>newTextMorph [
+{ #category : #'as yet unclassified' }
+LongMessageDialogWindow >> newTextMorph [
 	"Answer a new text editor morph."
 
 	|tm|
@@ -78,11 +62,8 @@ LongMessageDialogWindow>>newTextMorph [
 	^tm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LongMessageDialogWindow>>text: aStringOrText [
+{ #category : #accessing }
+LongMessageDialogWindow >> text: aStringOrText [
 	"Set the text."
 	
 	|t|

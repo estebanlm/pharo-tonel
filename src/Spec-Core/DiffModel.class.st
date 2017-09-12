@@ -19,35 +19,25 @@ Class {
 		'showOnlyDestination',
 		'showOnlySource'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel class>>adapterName [
+{ #category : #specs }
+DiffModel class >> adapterName [
 
 	^ #DiffAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel class>>defaultSpec [
+{ #category : #specs }
+DiffModel class >> defaultSpec [
 	<spec>
 	
 	^ #(MorphicDiffAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel class>>exampleWithOptions [
+{ #category : #example }
+DiffModel class >> exampleWithOptions [
 	"
 	self exampleWithOptions
 	"
@@ -60,11 +50,8 @@ DiffModel class>>exampleWithOptions [
 		openWithSpec
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel class>>exampleWithoutOptions [
+{ #category : #example }
+DiffModel class >> exampleWithoutOptions [
 	"
 	self exampleWithoutOptions
 	"
@@ -77,29 +64,20 @@ DiffModel class>>exampleWithoutOptions [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel>>contextClass [
+{ #category : #accessing }
+DiffModel >> contextClass [
 
 	^ contextClassHolder value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel>>contextClass: anObject [
+{ #category : #accessing }
+DiffModel >> contextClass: anObject [
 
 	contextClassHolder value: anObject 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel>>initialize [
+{ #category : #initialization }
+DiffModel >> initialize [
 
 	super initialize.
 	
@@ -118,105 +96,72 @@ DiffModel>>initialize [
 	showOnlySource whenChangedDo: [:aBoolean | self changed: #showOnlySource: with: { aBoolean } ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel>>leftText [
+{ #category : #accessing }
+DiffModel >> leftText [
 
 	^ leftTextHolder value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel>>leftText: anObject [
+{ #category : #accessing }
+DiffModel >> leftText: anObject [
 
 	leftTextHolder value: anObject 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel>>rightText [
+{ #category : #accessing }
+DiffModel >> rightText [
 
 	^ rightTextHolder value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel>>rightText: anObject [
+{ #category : #accessing }
+DiffModel >> rightText: anObject [
 
 	rightTextHolder value: anObject 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel>>showBoth [
+{ #category : #api }
+DiffModel >> showBoth [
 
 	showOnlySource rawValue: false.
 	showOnlyDestination rawValue: false.
 	self changed: #showBoth with: { }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel>>showOnlyDestination [
+{ #category : #api }
+DiffModel >> showOnlyDestination [
 
 	^ showOnlyDestination value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel>>showOnlyDestination: aBoolean [
+{ #category : #api }
+DiffModel >> showOnlyDestination: aBoolean [
 
 	showOnlyDestination rawValue: false.
 	showOnlyDestination value: aBoolean.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel>>showOnlySource [
+{ #category : #api }
+DiffModel >> showOnlySource [
 
 	^ showOnlySource value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel>>showOnlySource: aBoolean [
+{ #category : #api }
+DiffModel >> showOnlySource: aBoolean [
 
 	showOnlyDestination rawValue: false.
 	showOnlySource value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel>>showOptions [
+{ #category : #api }
+DiffModel >> showOptions [
 
 	^ showOptions value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DiffModel>>showOptions: aBoolean [
+{ #category : #api }
+DiffModel >> showOptions: aBoolean [
 
 	showOptions value: aBoolean
 ]

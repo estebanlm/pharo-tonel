@@ -14,15 +14,11 @@ Class {
 		'uniformDropList',
 		'heterogeneousDropList'
 	],
-	#category : #Spec-Examples-Morphic,
-	#timestamp : 'Spirita 7/26/2016 15:50'
+	#category : #Spec-Examples-Morphic
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DropListExample class>>defaultSpec [
+{ #category : #specs }
+DropListExample class >> defaultSpec [
 
 	^ { #ContainerModel.
 			#add:.	{ self topSpec . #layout: . #(#SpecLayoutFrame
@@ -32,28 +28,19 @@ DropListExample class>>defaultSpec [
 													topOffset: 42). }}
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DropListExample class>>example [
+{ #category : #example }
+DropListExample class >> example [
 	^ self new openWithSpec
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DropListExample class>>title [
+{ #category : #specs }
+DropListExample class >> title [
 
 	^ 'Drop list'
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DropListExample class>>topSpec [
+{ #category : #specs }
+DropListExample class >> topSpec [
 
 	^ SpecLayout composed
 		newRow: [ :r |
@@ -63,29 +50,20 @@ DropListExample class>>topSpec [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DropListExample>>container [
+{ #category : #accessing }
+DropListExample >> container [
 
 	^ container asSpecAdapter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DropListExample>>heterogeneousDropList [
+{ #category : #accessing }
+DropListExample >> heterogeneousDropList [
 
 	^ heterogeneousDropList.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DropListExample>>initialize [
+{ #category : #initialization }
+DropListExample >> initialize [
 
 	container := PanelMorph new.
 	self instantiateMorphs.
@@ -97,11 +75,8 @@ DropListExample>>initialize [
 	super initialize.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DropListExample>>initializeWidgets [
+{ #category : #initialization }
+DropListExample >> initializeWidgets [
 	uniformDropList := self newDropList.
 	heterogeneousDropList := self newDropList.
 	uniformDropList
@@ -130,11 +105,8 @@ DropListExample>>initializeWidgets [
 	self setFocus
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DropListExample>>instantiateMorphs [
+{ #category : #initialization }
+DropListExample >> instantiateMorphs [
 
 	morph1 := Morph new
 					color: Color red;
@@ -150,11 +122,8 @@ DropListExample>>instantiateMorphs [
 					height: 50.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DropListExample>>setFocus [
+{ #category : #initialization }
+DropListExample >> setFocus [
 	
 	self focusOrder
 		add: uniformDropList;
@@ -162,11 +131,8 @@ DropListExample>>setFocus [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DropListExample>>uniformDropList [
+{ #category : #accessing }
+DropListExample >> uniformDropList [
 
 	^ uniformDropList
 ]

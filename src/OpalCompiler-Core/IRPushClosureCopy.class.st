@@ -16,230 +16,148 @@ Class {
 		'lastBlockSequence',
 		'arguments'
 	],
-	#category : #OpalCompiler-Core-IR-Nodes,
-	#timestamp : 'MarcusDenker 8/11/2014 10:15'
+	#category : #OpalCompiler-Core-IR-Nodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>accept: aVisitor [
+{ #category : #visiting }
+IRPushClosureCopy >> accept: aVisitor [
 	^ aVisitor visitPushClosureCopy: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>arguments [
+{ #category : #accessing }
+IRPushClosureCopy >> arguments [
 	^arguments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>arguments: anArray [
+{ #category : #accessing }
+IRPushClosureCopy >> arguments: anArray [
 	arguments := anArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>blockHasTempVector: aSymbol [
+{ #category : #private }
+IRPushClosureCopy >> blockHasTempVector: aSymbol [
 	^ blockSequence hasTempVector: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>blockSequence  [
+{ #category : #accessing }
+IRPushClosureCopy >> blockSequence [ 
 ^blockSequence
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>blockSequence: anIRSequence  [
+{ #category : #accessing }
+IRPushClosureCopy >> blockSequence: anIRSequence [ 
 	blockSequence := anIRSequence
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>copiedValues [
+{ #category : #accessing }
+IRPushClosureCopy >> copiedValues [
 	^ copiedValues
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>copiedValues: anArray  [
+{ #category : #accessing }
+IRPushClosureCopy >> copiedValues: anArray [ 
 	copiedValues := anArray.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>definedTemps [
+{ #category : #accessing }
+IRPushClosureCopy >> definedTemps [
 
 	^self tempMap keys copyWithoutAll: (arguments, copiedValues).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>hasTempVector: aSymbol [
+{ #category : #testing }
+IRPushClosureCopy >> hasTempVector: aSymbol [
 	^ (blockSequence hasTempVector: aSymbol) or:[sequence hasTempVector: aSymbol]
 ]
 
-{
-	#category : #scoping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>indexForVarNamed: aName [
+{ #category : #scoping }
+IRPushClosureCopy >> indexForVarNamed: aName [
 
 	^tempMap at: aName
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>initialize [
+{ #category : #initialization }
+IRPushClosureCopy >> initialize [
 	super initialize.
 	tempMap := Dictionary new.
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>isGoto [
+{ #category : #testing }
+IRPushClosureCopy >> isGoto [
 	^ 	false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>isJump [
+{ #category : #testing }
+IRPushClosureCopy >> isJump [
 	^ 	false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>isPushClosureCopy [
+{ #category : #testing }
+IRPushClosureCopy >> isPushClosureCopy [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>lastBlockSequence  [
+{ #category : #accessing }
+IRPushClosureCopy >> lastBlockSequence [ 
 	^lastBlockSequence
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>lastBlockSequence: aSequence [
+{ #category : #accessing }
+IRPushClosureCopy >> lastBlockSequence: aSequence [
 	lastBlockSequence := aSequence
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>nonBodySuccessorSequences [
+{ #category : #accessing }
+IRPushClosureCopy >> nonBodySuccessorSequences [
 
 	^ {destination}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>numArgs [
+{ #category : #accessing }
+IRPushClosureCopy >> numArgs [
 	^numArgs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>numArgs: aSmallInteger  [
+{ #category : #accessing }
+IRPushClosureCopy >> numArgs: aSmallInteger [ 
 	numArgs := aSmallInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>sequenceHasTempVector: aSymbol [
+{ #category : #private }
+IRPushClosureCopy >> sequenceHasTempVector: aSymbol [
 	^ sequence hasTempVector: aSymbol
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>sourceNodeExecuted [
+{ #category : #mapping }
+IRPushClosureCopy >> sourceNodeExecuted [
 	^self sourceNode parent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>successorSequences [
+{ #category : #accessing }
+IRPushClosureCopy >> successorSequences [
 
 	^ {destination. blockSequence} 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>tempKeys [
+{ #category : #accessing }
+IRPushClosureCopy >> tempKeys [
 	^tempMap keys 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>tempMap [
+{ #category : #accessing }
+IRPushClosureCopy >> tempMap [
 	^tempMap
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>tempVectorName [
+{ #category : #testing }
+IRPushClosureCopy >> tempVectorName [
 	self blockSequence do:[:irNode | irNode isTempVector ifTrue:[^irNode name]].
 	^nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushClosureCopy>>tempVectorNamed: aName [
+{ #category : #accessing }
+IRPushClosureCopy >> tempVectorNamed: aName [
     (self blockHasTempVector: aName)
         ifTrue: [ ^ blockSequence tempVectorNamed: aName ].
     (self sequenceHasTempVector: aName)

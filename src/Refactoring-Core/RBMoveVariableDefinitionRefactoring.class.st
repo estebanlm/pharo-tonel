@@ -14,26 +14,19 @@ Class {
 		'blockNodes',
 		'definingNode'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 16:45'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveVariableDefinitionRefactoring class>>bindTight: anInterval in: aClass selector: aSelector  [
+{ #category : #'instance creation' }
+RBMoveVariableDefinitionRefactoring class >> bindTight: anInterval in: aClass selector: aSelector [ 
 	^self new
 		class: aClass
 		selector: aSelector
 		interval: anInterval
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveVariableDefinitionRefactoring class>>model: aRBSmalltalk bindTight: anInterval in: aClass selector: aSelector  [
+{ #category : #'instance creation' }
+RBMoveVariableDefinitionRefactoring class >> model: aRBSmalltalk bindTight: anInterval in: aClass selector: aSelector [ 
 	^(self new)
 		model: aRBSmalltalk;
 		class: aClass
@@ -42,11 +35,8 @@ RBMoveVariableDefinitionRefactoring class>>model: aRBSmalltalk bindTight: anInte
 		yourself
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveVariableDefinitionRefactoring>>checkNodes: sequenceNodes  [
+{ #category : #transforming }
+RBMoveVariableDefinitionRefactoring >> checkNodes: sequenceNodes [ 
 	(sequenceNodes 
 		detect: [:each | RBReadBeforeWrittenTester isVariable: name readBeforeWrittenIn: each]
 		ifNone: [nil]) notNil 
@@ -61,11 +51,8 @@ RBMoveVariableDefinitionRefactoring>>checkNodes: sequenceNodes  [
 	^true
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveVariableDefinitionRefactoring>>checkParseTree [
+{ #category : #transforming }
+RBMoveVariableDefinitionRefactoring >> checkParseTree [
 	| node |
 	blockNodes := OrderedCollection new.
 	node := self whichVariableNode: parseTree
@@ -84,21 +71,15 @@ RBMoveVariableDefinitionRefactoring>>checkParseTree [
 		ifFalse: [self refactoringError: 'Variable is possibly read before written']
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveVariableDefinitionRefactoring>>class: aClass selector: aSelector interval: anInterval  [
+{ #category : #initialize-release }
+RBMoveVariableDefinitionRefactoring >> class: aClass selector: aSelector interval: anInterval [ 
 	interval := anInterval.
 	class := self classObjectFor: aClass.
 	selector := aSelector
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveVariableDefinitionRefactoring>>preconditions [
+{ #category : #preconditions }
+RBMoveVariableDefinitionRefactoring >> preconditions [
 	^(RBCondition definesSelector: selector in: class) 
 		& (RBCondition withBlock: 
 					[| methodSource |
@@ -117,11 +98,8 @@ RBMoveVariableDefinitionRefactoring>>preconditions [
 					true])
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveVariableDefinitionRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBMoveVariableDefinitionRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream nextPutAll: ' bindTight: '.
@@ -134,11 +112,8 @@ RBMoveVariableDefinitionRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveVariableDefinitionRefactoring>>subblocksIn: aParseTree  [
+{ #category : #transforming }
+RBMoveVariableDefinitionRefactoring >> subblocksIn: aParseTree [ 
 	| searcher |
 	searcher := RBParseTreeSearcher new.
 	searcher matches: '[:`@blockTemps | | `@temps | `@.Statements]'
@@ -150,21 +125,15 @@ RBMoveVariableDefinitionRefactoring>>subblocksIn: aParseTree  [
 	^searcher executeTree: aParseTree initialAnswer: OrderedCollection new
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveVariableDefinitionRefactoring>>transform [
+{ #category : #transforming }
+RBMoveVariableDefinitionRefactoring >> transform [
 	definingNode removeTemporaryNamed: name.
 	blockNodes do: [:each | each body addTemporaryNamed: name].
 	class compileTree: parseTree
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveVariableDefinitionRefactoring>>usesDirectly: aParseTree  [
+{ #category : #transforming }
+RBMoveVariableDefinitionRefactoring >> usesDirectly: aParseTree [ 
 	| searcher |
 	searcher := RBParseTreeSearcher new.
 	searcher

@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicFTTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-FastTable-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-FastTable-Morphic-Renderer
 }
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTTest>>assertNoDuplicatedAnnoucementsIn: anAnnouncement [
+{ #category : #asserting }
+GLMMorphicFTTest >> assertNoDuplicatedAnnoucementsIn: anAnnouncement [
 	| duplications | 
 	duplications := ((anAnnouncement subscriptions glmSubscriptions groupedBy: [ :aSubscription |
 		aSubscription announcementClass ]) select: [ :each | each value size > 1 ]).
 	self assert: duplications isEmpty description: 'The announcement should have only one subscription of a given type.'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTTest>>testNoDuplicateRegistrationOfAnnouncementsOnDataSource [
+{ #category : #tests }
+GLMMorphicFTTest >> testNoDuplicateRegistrationOfAnnouncementsOnDataSource [
 	| table amountOfMenuItemSelectedSubscriptions |
 	window := GLMCompositePresentation new 
 			with: [ :c | 
@@ -34,11 +24,8 @@ GLMMorphicFTTest>>testNoDuplicateRegistrationOfAnnouncementsOnDataSource [
 	self assert: amountOfMenuItemSelectedSubscriptions equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTTest>>testNoDuplicateRegistrationsInFastTableRenderer [
+{ #category : #tests }
+GLMMorphicFTTest >> testNoDuplicateRegistrationsInFastTableRenderer [
 	| table |
 	window := GLMCompositePresentation new
 	  with: [ :c |
@@ -50,11 +37,8 @@ GLMMorphicFTTest>>testNoDuplicateRegistrationsInFastTableRenderer [
 	self assertNoDuplicatedAnnoucementsIn: table dataSource announcer.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTTest>>testTypeOfMultipleSelection [
+{ #category : #tests }
+GLMMorphicFTTest >> testTypeOfMultipleSelection [
 	| composer firstTreeMorph treeNodeMorph |
 	composer := GLMCompositePresentation new.
 	composer fastList beMultiple.

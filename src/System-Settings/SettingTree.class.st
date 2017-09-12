@@ -20,35 +20,25 @@ Class {
 		'nodeList',
 		'persistence'
 	],
-	#category : #System-Settings-Browser,
-	#timestamp : 'AlainPlantec 1/2/2011 22:56'
+	#category : #System-Settings-Browser
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree class>>acceptableKeywords: aCollectionOfStrings [
+{ #category : #'instance creation' }
+SettingTree class >> acceptableKeywords: aCollectionOfStrings [
 	^ self new acceptableKeywords: aCollectionOfStrings 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>acceptableKeywords: keywords [
+{ #category : #accessing }
+SettingTree >> acceptableKeywords: keywords [
 	self collector filter: [:prg | prg methodClass isMeta and: [keywords includes: prg keyword]].
 	nodeList := nil.
 	self collector reset.
 
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>checkForUnknownParent [
+{ #category : #checking }
+SettingTree >> checkForUnknownParent [
 	self unclassified
 		ifNotEmpty: [ :nodesWithUnknownParent | 
 			| builder g |
@@ -63,22 +53,16 @@ SettingTree>>checkForUnknownParent [
 				do: [ :node | node parentName: #nodesWithUnknownParent ] ]
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>checkForUnknownTarget [
+{ #category : #checking }
+SettingTree >> checkForUnknownTarget [
 	"check only root because other nodes with unknown target inherits it from its parent"
 	self settingTreeRoots do: [:node | node item target ifNil: [node item target: (node pragma ifNotNil: [:prg | prg methodClass theNonMetaClass])]].
 	self settingTreeRoots do: [:node | node checkForUnknownTarget].
 
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>childrenOf: aNode [
+{ #category : #querying }
+SettingTree >> childrenOf: aNode [
 	| children idx order |
 	"Get aNode children. Assign children order if one child has an order which is not nil"
 	children := self nodeList select: [ :p | p parentName = aNode settingDeclaration name ].
@@ -99,58 +83,40 @@ SettingTree>>childrenOf: aNode [
 	^ children
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>collector [
+{ #category : #accessing }
+SettingTree >> collector [
 	^ collector ifNil: [collector := PragmaCollector new]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>deeplyDetect: aBlock  [
+{ #category : #querying }
+SettingTree >> deeplyDetect: aBlock [ 
 	self settingTreeRoots
 		do: [:sub | (sub deeplyDetect: aBlock)
 				ifNotNil: [:found | ^ found]].
 	^ nil 
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>deeplySelect: aBlock [
+{ #category : #querying }
+SettingTree >> deeplySelect: aBlock [
 	^ self deeplySelect: aBlock in: OrderedCollection new
 
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>deeplySelect: aBlock in: aCollection  [
+{ #category : #querying }
+SettingTree >> deeplySelect: aBlock in: aCollection [ 
 	self settingTreeRoots
 		do: [:aRoot | aRoot deeplySelect: aBlock in: aCollection]. 
 	^ aCollection
 ]
 
-{
-	#category : #'private tree building',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>emptyNodeNamed: aSymbol [
+{ #category : #'private tree building' }
+SettingTree >> emptyNodeNamed: aSymbol [
 	(self nodeNamed: aSymbol)
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>itemSortBlock [
+{ #category : #accessing }
+SettingTree >> itemSortBlock [
 	^ [:a :b | 
 		((a order notNil and: [b order notNil]) and: [a order ~= b order])
 			ifTrue: [a order < b order]
@@ -159,11 +125,8 @@ SettingTree>>itemSortBlock [
 				ifFalse: [a order ifNil: [false] ifNotNil: [true]]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>nodeList [
+{ #category : #accessing }
+SettingTree >> nodeList [
 	| builder |
 	^ nodeList 
 		ifNil: [
@@ -176,113 +139,74 @@ SettingTree>>nodeList [
 			self nodeList]
 ]
 
-{
-	#category : #'private tree building',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>nodeNamed: aSymbol [
+{ #category : #'private tree building' }
+SettingTree >> nodeNamed: aSymbol [
 	^ self nodeNamed: aSymbol ifAbsent: []
 
 ]
 
-{
-	#category : #'private tree building',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>nodeNamed: aSymbol ifAbsent: aBlock [
+{ #category : #'private tree building' }
+SettingTree >> nodeNamed: aSymbol ifAbsent: aBlock [
 	^ self nodeList detect: [:d | d settingDeclaration name = aSymbol] ifNone: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>persistence [
+{ #category : #accessing }
+SettingTree >> persistence [
 	^ persistence ifNil: [ persistence := SystemSettingsPersistence settingTree: self ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>pragmasDo: aBlock [
+{ #category : #querying }
+SettingTree >> pragmasDo: aBlock [
 	^  self collector do: aBlock
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>retainedNodesFromList: aListOfNodes [
+{ #category : #querying }
+SettingTree >> retainedNodesFromList: aListOfNodes [
 	| retained |
 	retained := OrderedCollection new.
 	aListOfNodes do: [:n | [n item precondition value ifTrue: [retained add: n]] on: Error do: [retained add: n]].
 	^ retained
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>settingTreeRoots [
+{ #category : #querying }
+SettingTree >> settingTreeRoots [
 	^ self retainedNodesFromList: ((self nodeList select: [:n | n parentName isNil]) asArray sort: self sortBlock) asOrderedCollection.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>sortBlock [
+{ #category : #accessing }
+SettingTree >> sortBlock [
 	^ [:a :b | self itemSortBlock value: a settingDeclaration value: b settingDeclaration]
 ]
 
-{
-	#category : #persistence,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>storeSettingNodes [
+{ #category : #persistence }
+SettingTree >> storeSettingNodes [
 	self persistence storeSettingNodes
 ]
 
-{
-	#category : #theme,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>theme [
+{ #category : #theme }
+SettingTree >> theme [
 	^ Smalltalk ui theme
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>unclassified [
+{ #category : #querying }
+SettingTree >> unclassified [
 	^ self nodeList select: [:node | node parentName notNil and: [node parentNode isNil]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>updateList [
+{ #category : #accessing }
+SettingTree >> updateList [
 	nodeList := nil.
 
 ]
 
-{
-	#category : #persistence,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>updateSettingNodes [
+{ #category : #persistence }
+SettingTree >> updateSettingNodes [
 	self persistence updateSettingNodes
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTree>>whenChangedSend: aSelector to: aTarget [
+{ #category : #updating }
+SettingTree >> whenChangedSend: aSelector [ to: aTarget
 	self collector whenChangedSend: aSelector to: aTarget.
 	self collector whenResetSend: aSelector to: aTarget.
 ]

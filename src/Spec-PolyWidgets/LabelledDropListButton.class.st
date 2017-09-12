@@ -11,24 +11,17 @@ I provide shortcuts for the most common methods to avoid the use of the DoesNotU
 Class {
 	#name : #LabelledDropListButton,
 	#superclass : #LabelledContainer,
-	#category : #Spec-PolyWidgets-Labelled,
-	#timestamp : 'Spirita 7/25/2016 16:52'
+	#category : #Spec-PolyWidgets-Labelled
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton class>>defaultSpec [
+{ #category : #specs }
+LabelledDropListButton class >> defaultSpec [
 	<spec: #default>
 	^ super labelLeft 
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton class>>example [
+{ #category : #example }
+LabelledDropListButton class >> example [
 	| example |
 	example := self abstractExample.
 	example button label: 'I am a button'.
@@ -40,11 +33,8 @@ LabelledDropListButton class>>example [
 	^ example
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton class>>exampleUse [
+{ #category : #example }
+LabelledDropListButton class >> exampleUse [
 	| example |
 	example := self new.
 	example button label: 'Add'.
@@ -57,134 +47,86 @@ LabelledDropListButton class>>exampleUse [
 	^ example
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton>>action: aBlock [
+{ #category : #api-shortcuts }
+LabelledDropListButton >> action: aBlock [
 	^self button action: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton>>button [
+{ #category : #accessing }
+LabelledDropListButton >> button [
 	^ self dropListButton button
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton>>displayBlock: aBlock [
+{ #category : #api-shortcuts }
+LabelledDropListButton >> displayBlock: aBlock [
 	^self dropList displayBlock: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton>>dropList [
+{ #category : #accessing }
+LabelledDropListButton >> dropList [
 	^ self dropListButton dropList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton>>dropListButton [
+{ #category : #accessing }
+LabelledDropListButton >> dropListButton [
 	^ subwidget
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton>>emptyList [
+{ #category : #api-shortcuts }
+LabelledDropListButton >> emptyList [
 	^self dropList emptyList
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton>>icon: anIcon [
+{ #category : #api-shortcuts }
+LabelledDropListButton >> icon: anIcon [
 ^	self button icon: anIcon
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton>>initializeWidgets [
+{ #category : #initialization }
+LabelledDropListButton >> initializeWidgets [
 super initializeWidgets.
 	self content: DropListButton.
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton>>items: aList [
+{ #category : #api-shortcuts }
+LabelledDropListButton >> items: aList [
 	^self dropList items: aList
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton>>listSize [
+{ #category : #api-shortcuts }
+LabelledDropListButton >> listSize [
 	^ self dropList listSize
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton>>resetSelection [
+{ #category : #api-shortcuts }
+LabelledDropListButton >> resetSelection [
 ^	self dropList resetSelection
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton>>selectedItem [
+{ #category : #api-shortcuts }
+LabelledDropListButton >> selectedItem [
 	^ self dropList selectedItem
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton>>setIndex: anIndex [
+{ #category : #api-shortcuts }
+LabelledDropListButton >> setIndex: anIndex [
 	^ self dropList setIndex: anIndex
 ]
 
-{
-	#category : #events-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton>>whenSelectedItemChanged: aBlock [
+{ #category : #events-shortcuts }
+LabelledDropListButton >> whenSelectedItemChanged: aBlock [
 	self dropList
 		whenSelectedItemChanged: aBlock
 ]
 
-{
-	#category : #events-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton>>whenSelectionChanged: aBlock [
+{ #category : #events-shortcuts }
+LabelledDropListButton >> whenSelectionChanged: aBlock [
 	self dropList
 		whenSelectionChanged: aBlock
 ]
 
-{
-	#category : #events-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledDropListButton>>whenSelectionIndexChanged: aBlock [
+{ #category : #events-shortcuts }
+LabelledDropListButton >> whenSelectionIndexChanged: aBlock [
 	self dropList
 		whenSelectionIndexChanged: aBlock
 ]

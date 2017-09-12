@@ -17,41 +17,28 @@ Class {
 	#classVars : [
 		'Singleton'
 	],
-	#category : #Text-Edition,
-	#timestamp : 'TorstenBergmann 1/31/2014 12:21'
+	#category : #Text-Edition
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService class>>default [
+{ #category : #accessing }
+FindReplaceService class >> default [
 	^ EditorFindReplaceDialogWindow singleton state
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>caseSensitive [
+{ #category : #accessing }
+FindReplaceService >> caseSensitive [
 	^ caseSensitive ifNil: [caseSensitive := TextEditor caseSensitiveFinds]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>caseSensitive: aBoolean [
+{ #category : #accessing }
+FindReplaceService >> caseSensitive: aBoolean [
 	caseSensitive := aBoolean.
 	self changed: #findPolicy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>convertedFindString [
+{ #category : #accessing }
+FindReplaceService >> convertedFindString [
 	| specials |
 	specials := '^$:\+*[](){}'.
 	^String 
@@ -60,28 +47,19 @@ FindReplaceService>>convertedFindString [
 				s nextPut: c]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>entireWordsOnly [
+{ #category : #accessing }
+FindReplaceService >> entireWordsOnly [
 	^ entireWordsOnly ifNil: [entireWordsOnly := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>entireWordsOnly: aBoolean [
+{ #category : #accessing }
+FindReplaceService >> entireWordsOnly: aBoolean [
 	entireWordsOnly := aBoolean.
 	self changed: #findPolicy
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>findInTextMorph: aTextMorph [
+{ #category : #services }
+FindReplaceService >> findInTextMorph: aTextMorph [
 	| where  |
 	findStartIndex 
 		ifNil: [findStartIndex := self searchBackwards 
@@ -104,11 +82,8 @@ FindReplaceService>>findInTextMorph: aTextMorph [
 
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>findNextSubstring: aSubstring inTextMorph: aTextMorph [
+{ #category : #services }
+FindReplaceService >> findNextSubstring: aSubstring inTextMorph: aTextMorph [
 	| where  |
 	findStartIndex 
 		ifNil: [findStartIndex := aTextMorph editor startIndex].
@@ -120,11 +95,8 @@ FindReplaceService>>findNextSubstring: aSubstring inTextMorph: aTextMorph [
 
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>findRegex [
+{ #category : #services }
+FindReplaceService >> findRegex [
 	| s |
 	s := self entireWordsOnly
 		ifTrue: ['\<', self regexString, '\>']
@@ -138,133 +110,91 @@ FindReplaceService>>findRegex [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>findStartIndex [
+{ #category : #accessing }
+FindReplaceService >> findStartIndex [
 	^ findStartIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>findStartIndex: anInteger [
+{ #category : #accessing }
+FindReplaceService >> findStartIndex: anInteger [
 	findStartIndex := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>findString [
+{ #category : #accessing }
+FindReplaceService >> findString [
 	^ self findText asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>findText [
+{ #category : #accessing }
+FindReplaceService >> findText [
 	^ (findText ifNil: [findText := '' asText. findText]) asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>findText: aStringOrText [
+{ #category : #accessing }
+FindReplaceService >> findText: aStringOrText [
 	findText := aStringOrText asText.
 	self changed: #findPolicy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>findText: aStringOrText isRegex: aBoolean [
+{ #category : #accessing }
+FindReplaceService >> findText: aStringOrText isRegex: aBoolean [
 		self isRegex: aBoolean.
 		self findText: aStringOrText.
 		self replaceText: ''.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>findText: aStringOrText isRegex: isReg caseSensitive: isCaseSensitive entireWordsOnly: forEntireWordsOnly [
+{ #category : #accessing }
+FindReplaceService >> findText: aStringOrText isRegex: isReg caseSensitive: isCaseSensitive entireWordsOnly: forEntireWordsOnly [
 		self isRegex: isReg.
 		self findText: aStringOrText.
 		self entireWordsOnly: forEntireWordsOnly.
 		self caseSensitive: isCaseSensitive
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>findText: aStringOrText isRegex: aBoolean entireWordsOnly: forEntireWordsOnly [
+{ #category : #accessing }
+FindReplaceService >> findText: aStringOrText isRegex: aBoolean entireWordsOnly: forEntireWordsOnly [
 		self isRegex: aBoolean.
 		self findText: aStringOrText.
 		self entireWordsOnly: forEntireWordsOnly
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>findTextSilently: aStringOrText [
+{ #category : #accessing }
+FindReplaceService >> findTextSilently: aStringOrText [
 	findText := aStringOrText asText.
 	self changed: #findText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>isRegex [
+{ #category : #accessing }
+FindReplaceService >> isRegex [
 	^ isRegex ifNil: [isRegex := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>isRegex: aBoolean [
+{ #category : #accessing }
+FindReplaceService >> isRegex: aBoolean [
 	isRegex := aBoolean.
 	self changed: #findPolicy
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>regexString [
+{ #category : #accessing }
+FindReplaceService >> regexString [
 	^ self isRegex 
 		ifTrue: [self findString]
 		ifFalse: [self convertedFindString]
 
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>replaceAllInTextMorph: aTextMorph [
+{ #category : #services }
+FindReplaceService >> replaceAllInTextMorph: aTextMorph [
 	| startIdx |
 	startIdx := self wrapAround ifTrue: [1] ifFalse: [aTextMorph editor selectionInterval first].
 	aTextMorph replaceAll: self findRegex with: self replaceText startingAt: startIdx
 
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>replaceInTextMorph: aTextMorph [
+{ #category : #services }
+FindReplaceService >> replaceInTextMorph: aTextMorph [
 
 	findStartIndex := self searchBackwards 
 		ifTrue: [aTextMorph editor stopIndex] 
@@ -273,74 +203,50 @@ FindReplaceService>>replaceInTextMorph: aTextMorph [
 		ifNotNil: [aTextMorph replaceSelectionWith: self replaceText]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>replaceText [
+{ #category : #accessing }
+FindReplaceService >> replaceText [
 	^ replaceText ifNil: [replaceText := '']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>replaceText: aStringOrText [
+{ #category : #accessing }
+FindReplaceService >> replaceText: aStringOrText [
 	replaceText := aStringOrText asString.
 	self changed: #findPolicy
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>searchBackwards [
+{ #category : #accessing }
+FindReplaceService >> searchBackwards [
 	^ searchBackwards ifNil: [searchBackwards := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>searchBackwards: aBoolean [
+{ #category : #accessing }
+FindReplaceService >> searchBackwards: aBoolean [
 	searchBackwards := aBoolean.
 	self changed: #findPolicy
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>selectionRegexString [
+{ #category : #accessing }
+FindReplaceService >> selectionRegexString [
 	^ self convertedFindString
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>updateFindStartIndexForTextMorph: aTextMorph [
+{ #category : #updating }
+FindReplaceService >> updateFindStartIndexForTextMorph: aTextMorph [
 	| si |
 	si := aTextMorph editor selectionInterval.
 	self findStartIndex: (self searchBackwards ifTrue: [si first - 1] ifFalse: [si last + 1])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>wrapAround [
+{ #category : #accessing }
+FindReplaceService >> wrapAround [
 	^ wrapAround ifNil: [wrapAround := true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FindReplaceService>>wrapAround: aBoolean [
+{ #category : #accessing }
+FindReplaceService >> wrapAround: aBoolean [
 	wrapAround := aBoolean.
 	self changed: #findPolicy
 

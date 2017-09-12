@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMPageSwitched,
 	#superclass : #Announcement,
@@ -8,38 +5,25 @@ Class {
 		'smooth',
 		'pageIndex'
 	],
-	#category : #Glamour-Morphic-Pager-Announcement,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Pager-Announcement
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPageSwitched>>pageIndex [
+{ #category : #accessing }
+GLMPageSwitched >> pageIndex [
 	^ pageIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPageSwitched>>pageIndex: anObject [
+{ #category : #accessing }
+GLMPageSwitched >> pageIndex: anObject [
 	pageIndex := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPageSwitched>>smooth [
+{ #category : #accessing }
+GLMPageSwitched >> smooth [
 	^ smooth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPageSwitched>>smooth: anObject [
+{ #category : #accessing }
+GLMPageSwitched >> smooth: anObject [
 	smooth := anObject
 ]

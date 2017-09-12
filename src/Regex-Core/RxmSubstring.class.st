@@ -13,53 +13,37 @@ Class {
 		'sample',
 		'compare'
 	],
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:14'
+	#category : #Regex-Core
 }
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmSubstring>>beCaseInsensitive [
+{ #category : #initialize-release }
+RxmSubstring >> beCaseInsensitive [
 
 	compare := [:char1 :char2 | char1 sameAs: char2]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmSubstring>>beCaseSensitive [
+{ #category : #initialize-release }
+RxmSubstring >> beCaseSensitive [
 
 	compare := [:char1 :char2 | char1 = char2]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmSubstring>>character: aCharacter ignoreCase: aBoolean [
+{ #category : #initialize-release }
+RxmSubstring >> character: aCharacter ignoreCase: aBoolean [
 	"Match exactly this character."
 
 	sample := String with: aCharacter.
 	aBoolean ifTrue: [self beCaseInsensitive]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmSubstring>>initialize [
+{ #category : #initialization }
+RxmSubstring >> initialize [
 	super initialize.
 	self beCaseSensitive
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmSubstring>>matchAgainst: aMatcher [
+{ #category : #matching }
+RxmSubstring >> matchAgainst: aMatcher [
 	"Match if my sample stream is exactly the current prefix
 	of the matcher stream's contents."
 
@@ -77,20 +61,14 @@ RxmSubstring>>matchAgainst: aMatcher [
 			^false]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmSubstring>>sampleStream [
+{ #category : #private }
+RxmSubstring >> sampleStream [
 
 	^sample readStream
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmSubstring>>substring: aString ignoreCase: aBoolean [
+{ #category : #initialize-release }
+RxmSubstring >> substring: aString ignoreCase: aBoolean [
 	"Match exactly this string."
 
 	sample := aString.

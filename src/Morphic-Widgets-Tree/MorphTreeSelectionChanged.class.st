@@ -7,22 +7,15 @@ Class {
 	#instVars : [
 		'selection'
 	],
-	#category : #Morphic-Widgets-Tree-Announcements,
-	#timestamp : 'TorstenBergmann 9/5/2014 15:25'
+	#category : #Morphic-Widgets-Tree-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeSelectionChanged>>selection [
+{ #category : #accessing }
+MorphTreeSelectionChanged >> selection [
 	^ selection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeSelectionChanged>>selection: aSelection [
+{ #category : #accessing }
+MorphTreeSelectionChanged >> selection: aSelection [
 	selection := aSelection
 ]

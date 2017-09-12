@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #DependentsArrayTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Objects,
-	#timestamp : ''
+	#category : #Kernel-Tests-Objects
 }
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DependentsArrayTest>>testSize [
+{ #category : #test }
+DependentsArrayTest >> testSize [
 
 	self 
 		assert: (DependentsArray with: nil) size = 0;

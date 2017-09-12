@@ -7,72 +7,47 @@ Class {
 	#instVars : [
 		'index'
 	],
-	#category : #GT-Inspector,
-	#timestamp : 'AndreiChis 2/27/2017 11:19'
+	#category : #GT-Inspector
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorIndexedNode class>>hostObject: anObject index: index [
+{ #category : #'instance creation' }
+GTInspectorIndexedNode class >> hostObject: anObject index: index [
 	^ (self hostObject: anObject)
 		index: index;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorIndexedNode>>errorMessage [
+{ #category : #accessing }
+GTInspectorIndexedNode >> errorMessage [
 	^ 'error obtaining indexed attribute value'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorIndexedNode>>index [
+{ #category : #accessing }
+GTInspectorIndexedNode >> index [
 	^ index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorIndexedNode>>index: anInteger [
+{ #category : #accessing }
+GTInspectorIndexedNode >> index: anInteger [
 	index := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorIndexedNode>>key [
+{ #category : #accessing }
+GTInspectorIndexedNode >> key [
 	^ self index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorIndexedNode>>rawValue [
+{ #category : #accessing }
+GTInspectorIndexedNode >> rawValue [
 	^ self hostObject basicAt: index
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorIndexedNode>>save: aValue [
+{ #category : #actions }
+GTInspectorIndexedNode >> save: aValue [
 	self hostObject at: self index put: aValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorIndexedNode>>variableTag [
+{ #category : #accessing }
+GTInspectorIndexedNode >> variableTag [
 	^ 'attribute'
 ]

@@ -4,33 +4,23 @@ Checks for bytecodePrimEqual  using the do: method instead of using the contains
 Class {
 	#name : #RBDetectContainsRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:27'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDetectContainsRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBDetectContainsRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'DetectContainsRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDetectContainsRule>>group [
+{ #category : #accessing }
+RBDetectContainsRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDetectContainsRule>>initialize [
+{ #category : #initialization }
+RBDetectContainsRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyOf: #(
@@ -61,10 +51,7 @@ RBDetectContainsRule>>initialize [
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDetectContainsRule>>name [
+{ #category : #accessing }
+RBDetectContainsRule >> name [
 	^ 'Uses do: instead of contains: or detect:''s'
 ]

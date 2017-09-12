@@ -1,9 +1,5 @@
-"
-
-"
 Class {
 	#name : #GLMTestAnnouncement2,
 	#superclass : #Announcement,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }

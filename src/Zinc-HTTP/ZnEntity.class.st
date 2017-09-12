@@ -14,31 +14,21 @@ Class {
 		'contentType',
 		'contentLength'
 	],
-	#category : #Zinc-HTTP-Core,
-	#timestamp : 'SvenVanCaekenberghe 1/18/2011 11:03'
+	#category : #Zinc-HTTP-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>byteArrayEntityClass [
+{ #category : #accessing }
+ZnEntity class >> byteArrayEntityClass [
 	^ ZnByteArrayEntity 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>bytes: bytes [
+{ #category : #'instance creation' }
+ZnEntity class >> bytes: bytes [
 	^ self byteArrayEntityClass bytes: bytes
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>concreteSubclassForType: mimeType binary: forceBinary [
+{ #category : #private }
+ZnEntity class >> concreteSubclassForType: mimeType binary: forceBinary [
 	"Answer the concrete ZnEntity subclass that handles mimeType"
 	
 	^ self allSubclasses 
@@ -51,48 +41,33 @@ ZnEntity class>>concreteSubclassForType: mimeType binary: forceBinary [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>designatedMimeType [
+{ #category : #testing }
+ZnEntity class >> designatedMimeType [
 	"Answer the mime type we are designated to handle.
 	See #concreteSubclassForType: "
 	
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>html: html [
+{ #category : #'instance creation' }
+ZnEntity class >> html: html [
 	^ self stringEntityClass html: html
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>matches: mimeType [
+{ #category : #testing }
+ZnEntity class >> matches: mimeType [
 	"Return whether a given mimeType can be handled by instances of the receiver"
 	
 	^ mimeType matches: self designatedMimeType 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>new [
+{ #category : #'instance creation' }
+ZnEntity class >> new [
 	^ super new initialize 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>readBinaryFrom: stream usingType: mimeType andLength: length [
+{ #category : #'instance creation' }
+ZnEntity class >> readBinaryFrom: stream usingType: mimeType andLength: length [
 	"Create and return a new buffered entity of mimeType and length from stream.
 	The concrete subclass depends on mimeType, but textual type will remain binary"
 	
@@ -104,11 +79,8 @@ ZnEntity class>>readBinaryFrom: stream usingType: mimeType andLength: length [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>readFrom: stream usingType: mimeType andLength: length [
+{ #category : #'instance creation' }
+ZnEntity class >> readFrom: stream usingType: mimeType andLength: length [
 	"Create and return a new buffered entity of mimeType and length from stream.
 	The concrete subclass depends on mimeType"
 	
@@ -120,35 +92,23 @@ ZnEntity class>>readFrom: stream usingType: mimeType andLength: length [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>stringEntityClass [
+{ #category : #accessing }
+ZnEntity class >> stringEntityClass [
 	^ ZnStringEntity
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>text: text [
+{ #category : #'instance creation' }
+ZnEntity class >> text: text [
 	^ self stringEntityClass text: text
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>textCRLF: text [
+{ #category : #'instance creation' }
+ZnEntity class >> textCRLF: text [
 	^ self text: text, String crlf
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>type: type [
+{ #category : #'instance creation' }
+ZnEntity class >> type: type [
 	"Create a new entity with a given mime type and (currently) undetermined length"
 	
 	^ self new
@@ -156,11 +116,8 @@ ZnEntity class>>type: type [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>type: type length: length [
+{ #category : #'instance creation' }
+ZnEntity class >> type: type length: length [
 	"Create a new entity with a given mime type and length"
 	
 	^ self new
@@ -169,11 +126,8 @@ ZnEntity class>>type: type length: length [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>with: object [
+{ #category : #'instance creation' }
+ZnEntity class >> with: object [
 	"Create a new entity holding object.
 	Currently works for strings and byte arrays.
 	You will probably want to set the mime type to something more specific"
@@ -183,11 +137,8 @@ ZnEntity class>>with: object [
 		ifFalse: [ self bytes: object ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>with: object type: type [
+{ #category : #'instance creation' }
+ZnEntity class >> with: object type: type [
 	"Create a new entity holding object.
 	Currently works for strings and byte arrays.
 	The entity is set to mime type"
@@ -197,72 +148,47 @@ ZnEntity class>>with: object type: type [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity class>>xml: text [
+{ #category : #'instance creation' }
+ZnEntity class >> xml: text [
 	^ self stringEntityClass xml: text
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>= other [
+{ #category : #comparing }
+ZnEntity >> = other [
 	self class = other class ifFalse: [ ^ false ].
 	^ self contentType = other contentType and: [ self contentLength = other contentLength ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>asByteArray [
+{ #category : #converting }
+ZnEntity >> asByteArray [
 	"Return the ByteArray that is the binary, encoded representation of the receiver"
 	
 	^ ByteArray streamContents: [ :stream | self writeOn: stream ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>close [
-
+{ #category : #initialize-release }
+ZnEntity >> close [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>contentLength [
+{ #category : #accessing }
+ZnEntity >> contentLength [ 
 	"Content length can be nil when it is (currently) unknown."
 	
 	^ contentLength
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>contentLength: integer [
+{ #category : #accessing }
+ZnEntity >> contentLength: integer [
 	contentLength := integer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>contentType [
+{ #category : #accessing }
+ZnEntity >> contentType [
 	^ contentType 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>contentType: object [
+{ #category : #accessing }
+ZnEntity >> contentType: object [
 	"We only allow assignment compatible with our designated mime type"
 	
 	| newType |
@@ -274,96 +200,63 @@ ZnEntity>>contentType: object [
 				ifTrue: [ contentType := newType ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>contents [
+{ #category : #accessing }
+ZnEntity >> contents [
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>hasContentLength [
+{ #category : #testing }
+ZnEntity >> hasContentLength [
 	^ contentLength notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>hasContentType [
+{ #category : #testing }
+ZnEntity >> hasContentType [
 	^ contentType notNil
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>hash [
+{ #category : #comparing }
+ZnEntity >> hash [
 	^ self contentType hash bitXor: self contentLength hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>isEmpty [
+{ #category : #testing }
+ZnEntity >> isEmpty [ 
 	self subclassResponsibility 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>printContentTypeAndLengthOn: stream [
+{ #category : #printing }
+ZnEntity >> printContentTypeAndLengthOn: stream [
 	self hasContentType ifTrue: [ 
 		stream print: self contentType; space ].
 	self hasContentLength ifTrue: [
 		stream print: self contentLength; nextPut: $B ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>printContentsOn: stream [
+{ #category : #printing }
+ZnEntity >> printContentsOn: stream [
 	self printContentTypeAndLengthOn: stream
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>printOn: stream [
+{ #category : #printing }
+ZnEntity >> printOn: stream [
 	super printOn: stream.
 	stream nextPut: $(.
 	self printContentsOn: stream.
 	stream nextPut: $)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>readBinaryFrom: stream [
+{ #category : #initialize-release }
+ZnEntity >> readBinaryFrom: stream [
 	self readFrom: stream
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>readFrom: stream [
+{ #category : #initialize-release }
+ZnEntity >> readFrom: stream [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntity>>writeOn: stream [
+{ #category : #writing }
+ZnEntity >> writeOn: stream [
 	self subclassResponsibility 
 ]

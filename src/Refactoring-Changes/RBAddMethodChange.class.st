@@ -16,57 +16,38 @@ Class {
 		'controller',
 		'definedSelector'
 	],
-	#category : #Refactoring-Changes,
-	#timestamp : 'NicolaiHess 9/9/2016 20:08'
+	#category : #Refactoring-Changes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange class>>compile: aString in: aClass [
+{ #category : #'instance creation' }
+RBAddMethodChange class >> compile: aString [ in: aClass
 	^ self compile: aString in: aClass for: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange class>>compile: aString in: aBehavior classified: aProtocol [
+{ #category : #'instance creation' }
+RBAddMethodChange class >> compile: aString in: aBehavior classified: aProtocol [
 	^ self compile: aString in: aBehavior classified: aProtocol for: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange class>>compile: aString in: aBehavior classified: aProtocol for: aController [
+{ #category : #'instance creation' }
+RBAddMethodChange class >> compile: aString in: aBehavior classified: aProtocol for: aController [
 	^ self new class: aBehavior protocol: aProtocol source: aString controller: aController
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange class>>compile: aString in: aClass for: aController [
+{ #category : #'instance creation' }
+RBAddMethodChange class >> compile: aString in: aClass for: aController [
 	^ self new class: aClass source: aString contoller: aController
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>= anAddMethodChange [
+{ #category : #comparing }
+RBAddMethodChange >> = anAddMethodChange [
 	super = anAddMethodChange
 		ifFalse: [ ^ false ].
 	^ self parseTree = anAddMethodChange parseTree
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>asUndoOperation [
+{ #category : #converting }
+RBAddMethodChange >> asUndoOperation [
 	^ (self changeClass includesSelector: self selector)
 		ifTrue: [ 
 			| oldProtocol |
@@ -77,122 +58,83 @@ RBAddMethodChange>>asUndoOperation [
 		ifFalse: [ RBRefactoryChangeManager changeFactory removeMethod: selector from: self changeClass ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>changeForClass: aClassName selector: aSelector  [
+{ #category : #accessing }
+RBAddMethodChange >> changeForClass: aClassName selector: aSelector [ 
 	^ (isMeta not and: [ self selector = aSelector and: [ className = aClassName ] ])
 		ifTrue: [ self ]
 		ifFalse: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>changeForMetaclass: aClassName selector: aSelector  [
+{ #category : #accessing }
+RBAddMethodChange >> changeForMetaclass: aClassName selector: aSelector [ 
 	^ (isMeta and: [ self selector = aSelector and: [ className = aClassName ] ])
 		ifTrue: [ self ]
 		ifFalse: [ nil ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>changeString [
+{ #category : #printing }
+RBAddMethodChange >> changeString [
 	^ self displayClassName , '>>' , self selector
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>class: aClass protocol: aProtocol source: aString  [
+{ #category : #initialize-release }
+RBAddMethodChange >> class: aClass protocol: aProtocol source: aString [ 
 	self changeClass: aClass.
 	self protocols: aProtocol.
 	source := aString
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>class: aClass protocol: aProtocol source: aString controller: aController  [
+{ #category : #initialize-release }
+RBAddMethodChange >> class: aClass protocol: aProtocol source: aString controller: aController [ 
 	self changeClass: aClass.
 	self protocols: aProtocol.
 	source := aString.
 	controller := aController
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>class: aClass source: aString contoller: aController [
+{ #category : #initialize-release }
+RBAddMethodChange >> class: aClass source: aString contoller: aController [
 	self changeClass: aClass.
 	source := aString.
 	self protocols: (RBBrowserEnvironment new whichProtocolIncludes: self selector in: aClass).
 	controller := aController
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>controller [
+{ #category : #private }
+RBAddMethodChange >> controller [
 	^ controller
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>controller: aController  [
+{ #category : #initialize-release }
+RBAddMethodChange >> controller: aController [ 
 	controller := aController
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>definedSelector [
+{ #category : #accessing }
+RBAddMethodChange >> definedSelector [
 	^ definedSelector
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>hash [
+{ #category : #comparing }
+RBAddMethodChange >> hash [
 	^ self parseTree hash
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>parseTree [
+{ #category : #private }
+RBAddMethodChange >> parseTree [
 	^ RBParser parseMethod: source onError: [ :str :pos | ^ nil ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>primitiveExecute [
+{ #category : #private }
+RBAddMethodChange >> primitiveExecute [
 	definedSelector := self changeClass 
 		compile: self source
 		classified: self protocol
 		notifying: self controller
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>printOn: aStream  [
+{ #category : #printing }
+RBAddMethodChange >> printOn: aStream [ 
 	aStream
 		nextPut: $!;
 		nextPutAll: self displayClassName;
@@ -206,27 +148,18 @@ RBAddMethodChange>>printOn: aStream  [
 		nextPutAll: '! !'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>protocol [
+{ #category : #accessing }
+RBAddMethodChange >> protocol [
 	^ self protocols first
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>protocols [
+{ #category : #accessing }
+RBAddMethodChange >> protocols [
 	^ protocols
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>protocols: aCollectionOrString [
+{ #category : #initialize-release }
+RBAddMethodChange >> protocols: aCollectionOrString [
 	protocols := aCollectionOrString isString
 		ifTrue: [ 	
 			aCollectionOrString = Protocol unclassified 
@@ -237,11 +170,8 @@ RBAddMethodChange>>protocols: aCollectionOrString [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>selector [
+{ #category : #accessing }
+RBAddMethodChange >> selector [
 	selector isNil ifTrue: [ 
 		selector := RBParser parseMethodPattern: source.
 		selector isNil
@@ -249,10 +179,7 @@ RBAddMethodChange>>selector [
 	^ selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddMethodChange>>source [
+{ #category : #accessing }
+RBAddMethodChange >> source [
 	^ source
 ]

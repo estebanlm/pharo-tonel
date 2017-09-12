@@ -1,12 +1,7 @@
-Extension {
-	#name : #PasteUpMorph
-}
+Extension { #name : #PasteUpMorph }
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PasteUpMorph>>dragThroughOnDesktop: evt [
+{ #category : #'*Morphic-Base' }
+PasteUpMorph >> dragThroughOnDesktop: evt [
 	"Draw out a selection rectangle"
 	| selection |
 	selection := SelectionMorph newBounds: (evt cursorPoint extent: 8@8).
@@ -15,20 +10,14 @@ PasteUpMorph>>dragThroughOnDesktop: evt [
 
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PasteUpMorph>>drawingClass [
+{ #category : #'*Morphic-Base' }
+PasteUpMorph >> drawingClass [
 
 	^ ImageMorph
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PasteUpMorph>>makeAScreenshot [
+{ #category : #'*Morphic-Base' }
+PasteUpMorph >> makeAScreenshot [
 	| filePrefix |
 	filePrefix :=  'PharoScreenshot'.
 	(UIManager default

@@ -26,77 +26,52 @@ Class {
 	#classVars : [
 		'CallbackRegistry'
 	],
-	#category : #UnifiedFFI,
-	#timestamp : 'EstebanLorenzano 4/22/2016 14:56'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackFunctionResolution class>>callbackNamed: functionName ifAbsent: aBlock  [
+{ #category : #private }
+FFICallbackFunctionResolution class >> callbackNamed: functionName ifAbsent: aBlock [ 
 	^ self callbackRegistry 
 		at: functionName asSymbol
 		ifAbsent: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackFunctionResolution class>>callbackRegistry  [
+{ #category : #private }
+FFICallbackFunctionResolution class >> callbackRegistry [ 
 	^ CallbackRegistry ifNil: [ CallbackRegistry := Dictionary new ]
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackFunctionResolution class>>cleanUp [
+{ #category : #cleanup }
+FFICallbackFunctionResolution class >> cleanUp [
 	self reset
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackFunctionResolution class>>registerCallback: aCallback as: functionName [
+{ #category : #registration }
+FFICallbackFunctionResolution class >> registerCallback: aCallback as: functionName [
 	self callbackRegistry 
 		at: functionName asSymbol 
 		put: aCallback.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackFunctionResolution class>>reset [
+{ #category : #accessing }
+FFICallbackFunctionResolution class >> reset [
 	CallbackRegistry := nil
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackFunctionResolution class>>unregister: functionName [
+{ #category : #registration }
+FFICallbackFunctionResolution class >> unregister: functionName [
 	self callbackRegistry removeKey: functionName asSymbol 
 		
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackFunctionResolution>>isApplicableFor: aRequestor [
+{ #category : #testing }
+FFICallbackFunctionResolution >> isApplicableFor: aRequestor [
 	^ aRequestor optionAt: #optCallbackCall
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackFunctionResolution>>resolveFunction: anExternalFunction [
+{ #category : #resolving }
+FFICallbackFunctionResolution >> resolveFunction: anExternalFunction [
 	| callback |
 	callback := self class 
 		callbackNamed: anExternalFunction name

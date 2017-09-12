@@ -19,15 +19,11 @@ Class {
 		'removeRemoteIcon',
 		'editRemoteIcon'
 	],
-	#category : #Komitter-Support,
-	#timestamp : 'ChristopheDemarey 1/8/2014 17:00'
+	#category : #Komitter-Support
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager class>>defaultSpec [
+{ #category : #specs }
+RemotesManager class >> defaultSpec [
 	<spec: #default>
 	^ SpecLayout composed
 		newColumn: [ :col | 
@@ -43,30 +39,21 @@ RemotesManager class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>addRemote [
+{ #category : #private }
+RemotesManager >> addRemote [
 	
 	MCTool newRepository ifNotNil: [ :repo | 
 		MCRepositoryGroup default addRepository: repo.
 		remotes roots: self buildRoots ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>addRemoteWidget [
+{ #category : #accessing }
+RemotesManager >> addRemoteWidget [
 	^ addRemote
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>buildRoots [
+{ #category : #private }
+RemotesManager >> buildRoots [
 	^ MCRepositoryGroup default repositories
 		select: [ :each | (each isCache not) and: [ each isRemote ] ]
 		thenCollect: [ :each | | remote  |			
@@ -79,11 +66,8 @@ RemotesManager>>buildRoots [
 				yourself ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>editRemote [
+{ #category : #private }
+RemotesManager >> editRemote [
 	| item view |
 	
 	item := remotes highlightedItem content.
@@ -103,47 +87,32 @@ RemotesManager>>editRemote [
 		password: view getPassword
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>editRemoteWidget [
+{ #category : #accessing }
+RemotesManager >> editRemoteWidget [
 	^ editRemote
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>initialExtent [
+{ #category : #api }
+RemotesManager >> initialExtent [
 
 	^  400@260
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>initialize [
+{ #category : #initialization }
+RemotesManager >> initialize [
 	selectedRemotes := Set new.
 	super initialize
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>initializeDialogWindow: aWindow [
+{ #category : #initialization }
+RemotesManager >> initializeDialogWindow: aWindow [
 
 	aWindow
 		toolbar: OkToolbar new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>initializePresenter [
+{ #category : #initialization }
+RemotesManager >> initializePresenter [
 
 	remotes whenHighlightedItemChanged: [ :item | 
 		editRemote enabled: item notNil.
@@ -151,11 +120,8 @@ RemotesManager>>initializePresenter [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>initializeWidgets [
+{ #category : #initialization }
+RemotesManager >> initializeWidgets [
 	remotes := self newTree.
 	addRemote := self newButton.
 	removeRemote := self newButton.
@@ -187,19 +153,13 @@ RemotesManager>>initializeWidgets [
 		add: addRemote
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>remotes [
+{ #category : #accessing }
+RemotesManager >> remotes [
 	^ remotes
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>removeRemote [
+{ #category : #private }
+RemotesManager >> removeRemote [
 	| item |
 	
 	item := remotes highlightedItem content.
@@ -211,53 +171,35 @@ RemotesManager>>removeRemote [
 		highlightedItem: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>removeRemoteWidget [
+{ #category : #accessing }
+RemotesManager >> removeRemoteWidget [
 	^ removeRemote
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>selected: aRepository changed: selected [
+{ #category : #private }
+RemotesManager >> selected: aRepository changed: selected [
 	selected
 		ifTrue: [ selectedRemotes add: aRepository ]
 		ifFalse: [ selectedRemotes remove: aRepository ifAbsent: [  ] ].
 	selectedChangedBlock ifNotNil: [ selectedChangedBlock cull: aRepository cull: selected ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>selectedChangedBlock: aBlock [
+{ #category : #api }
+RemotesManager >> selectedChangedBlock: aBlock [
 	selectedChangedBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>selectedRemotes [
+{ #category : #accessing }
+RemotesManager >> selectedRemotes [
 	^ selectedRemotes
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>selectedRemotes: aRemoteList [
+{ #category : #api }
+RemotesManager >> selectedRemotes: aRemoteList [
 	selectedRemotes := aRemoteList asSet
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RemotesManager>>title [
+{ #category : #accessing }
+RemotesManager >> title [
 	^ 'Remotes manager'
 ]

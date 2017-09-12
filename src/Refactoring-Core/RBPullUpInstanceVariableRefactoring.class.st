@@ -4,15 +4,11 @@ I am a refactoring for moving a instance  variable up to the superclass.
 Class {
 	#name : #RBPullUpInstanceVariableRefactoring,
 	#superclass : #RBVariableRefactoring,
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 21:20'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpInstanceVariableRefactoring>>preconditions [
+{ #category : #preconditions }
+RBPullUpInstanceVariableRefactoring >> preconditions [
 	^RBCondition withBlock: 
 			[(class hierarchyDefinesInstanceVariable: variableName) 
 				ifFalse: [self refactoringFailure: 'No subclass defines ' , variableName].
@@ -26,11 +22,8 @@ RBPullUpInstanceVariableRefactoring>>preconditions [
 			true]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpInstanceVariableRefactoring>>transform [
+{ #category : #transforming }
+RBPullUpInstanceVariableRefactoring >> transform [
 	class allSubclasses do: 
 			[:each | 
 			(each directlyDefinesInstanceVariable: variableName) 

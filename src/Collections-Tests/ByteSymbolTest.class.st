@@ -4,15 +4,11 @@ SUnit tests for byte symbols
 Class {
 	#name : #ByteSymbolTest,
 	#superclass : #SymbolTest,
-	#category : #Collections-Tests-Strings,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:29'
+	#category : #Collections-Tests-Strings
 }
 
-{
-	#category : #'test - creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ByteSymbolTest>>testAs [
+{ #category : #'test - creation' }
+ByteSymbolTest >> testAs [
 	"self debug: #testAs"
 
 | tStr tAs1 tAs2 |
@@ -31,22 +27,16 @@ self assert: 	(ByteSymbol allInstances select: [:e | e asString = tStr] ) size =
 
 ]
 
-{
-	#category : #'test - non-creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ByteSymbolTest>>testNew [
+{ #category : #'test - non-creation' }
+ByteSymbolTest >> testNew [
 	"self debug: #testNew"
 
 	
 	self should: [ByteSymbol new: 5 ] raise: self defaultTestError. 
 ]
 
-{
-	#category : #'test - creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ByteSymbolTest>>testNewFrom [
+{ #category : #'test - creation' }
+ByteSymbolTest >> testNewFrom [
 	"self debug: #testNewFrom"
 
 | dt newFrom1 newFrom2 |
@@ -70,11 +60,8 @@ self assert:
 	
 ]
 
-{
-	#category : #'test - creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ByteSymbolTest>>testReadFromString [
+{ #category : #'test - creation' }
+ByteSymbolTest >> testReadFromString [
 	"self debug: #testReadFromString"
 
 | str strWithPound readFrom1 readFrom2 |

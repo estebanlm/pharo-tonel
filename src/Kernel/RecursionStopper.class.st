@@ -16,46 +16,33 @@ Class {
 	#classVars : [
 		'Default'
 	],
-	#category : #Kernel-Processes,
-	#timestamp : 'HenrikNergaard 6/29/2016 19:37'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-RecursionStopper class>>default [
+{ #category : #api }
+RecursionStopper class >> default [
 
 	^ Default ifNil: [ Default := self new ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-RecursionStopper class>>during: aBlock [
+{ #category : #api }
+RecursionStopper class >> during: aBlock [
 	<debuggerCompleteToSender>
 	self default 
 		stopMethod: thisContext sender method 
 		during: aBlock
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-RecursionStopper>>initialize [
+{ #category : #'as yet unclassified' }
+RecursionStopper >> initialize [
 
 	super initialize.
 	
 	activeMethods := OrderedCollection new.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-RecursionStopper>>stopMethod: aMethod during: aBlock [
+{ #category : #'as yet unclassified' }
+RecursionStopper >> stopMethod: aMethod during: aBlock [
 
 	(activeMethods includes: aMethod) ifTrue: [ ^ self ].
 	

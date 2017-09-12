@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'reader'
 	],
-	#category : #Ombu-Persistence,
-	#timestamp : 'MartinDias 12/12/2014 16:11'
+	#category : #Ombu-Persistence
 }
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSTONEntryReader>>entryPositionsDo: aBlock [
+{ #category : #reading }
+OmSTONEntryReader >> entryPositionsDo: aBlock [
 
 	[ self
 		nextEntryPositionIfFound: [:position |
@@ -24,11 +20,8 @@ OmSTONEntryReader>>entryPositionsDo: aBlock [
 	] whileTrue
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSTONEntryReader>>entryPositionsReverseDo: aBlock [
+{ #category : #reading }
+OmSTONEntryReader >> entryPositionsReverseDo: aBlock [
 
 	| found token |
 	token := 'OmEntry {'.
@@ -47,11 +40,8 @@ OmSTONEntryReader>>entryPositionsReverseDo: aBlock [
 
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSTONEntryReader>>entryPositionsUpTo: endPosition [
+{ #category : #reading }
+OmSTONEntryReader >> entryPositionsUpTo: endPosition [
 
 	| positions |
 	positions := OrderedCollection new.
@@ -63,11 +53,8 @@ OmSTONEntryReader>>entryPositionsUpTo: endPosition [
 	^ positions
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSTONEntryReader>>nextEntry [
+{ #category : #reading }
+OmSTONEntryReader >> nextEntry [
 
 	^ OmCurrentGlobalName
 		value: store globalName
@@ -77,11 +64,8 @@ OmSTONEntryReader>>nextEntry [
 				next ]
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSTONEntryReader>>nextEntryPositionIfFound: foundBlock ifNone: noneBlock [
+{ #category : #reading }
+OmSTONEntryReader >> nextEntryPositionIfFound: foundBlock ifNone: noneBlock [
 
 	| token |
 	token := 'OmEntry {'.
@@ -95,11 +79,8 @@ OmSTONEntryReader>>nextEntryPositionIfFound: foundBlock ifNone: noneBlock [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSTONEntryReader>>stonReader [
+{ #category : #accessing }
+OmSTONEntryReader >> stonReader [
 
 	^ reader ifNil: [ 
 		reader := STON reader
@@ -107,11 +88,8 @@ OmSTONEntryReader>>stonReader [
 			yourself ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSTONEntryReader>>stream: aReadStream [
+{ #category : #accessing }
+OmSTONEntryReader >> stream: aReadStream [
 
 	super stream: aReadStream.
 	self stonReader on: stream.

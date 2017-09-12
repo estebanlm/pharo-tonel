@@ -7,43 +7,30 @@ Class {
 	#instVars : [
 		'currentIcon'
 	],
-	#category : #Spec-MorphicAdapters-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters-Support
 }
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDropListMorph>>getIconFor: anItem [
+{ #category : #protocol }
+SpecDropListMorph >> getIconFor: anItem [
 
 	^ self model getIconFor: anItem
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDropListMorph>>listHeight [
+{ #category : #private }
+SpecDropListMorph >> listHeight [
 	"Answer the height for the list."
 
 	^ super listHeight + 12
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDropListMorph>>listMorphClass [
+{ #category : #private }
+SpecDropListMorph >> listMorphClass [
 
 	^ PluggableIconListMorph
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDropListMorph>>newListMorph [
+{ #category : #drawing }
+SpecDropListMorph >> newListMorph [
 	"Answer a new list morph"
 
 	^ (self listMorphClass
@@ -63,11 +50,8 @@ SpecDropListMorph>>newListMorph [
 			yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDropListMorph>>updateListSelectionIndex [
+{ #category : #private }
+SpecDropListMorph >> updateListSelectionIndex [
 
 	currentIcon ifNotNil: [ self removeMorph: currentIcon ].
 		
@@ -79,11 +63,8 @@ SpecDropListMorph>>updateListSelectionIndex [
 			self addMorphFront: currentIcon ] ] 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDropListMorph>>wrapItem: anItem index: anIndex [
+{ #category : #private }
+SpecDropListMorph >> wrapItem: anItem index: anIndex [
 
 	^ self model wrapItem: anItem index: anIndex
 ]

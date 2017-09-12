@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #TraitTest,
 	#superclass : #TraitsTestCase,
-	#category : #Tests-Traits,
-	#timestamp : ''
+	#category : #Tests-Traits
 }
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>createClassUsing: aTrait [
+{ #category : #utils }
+TraitTest >> createClassUsing: aTrait [
 	^ Object
 		subclass: #AClassForTests
 		uses: aTrait
@@ -22,22 +15,16 @@ TraitTest>>createClassUsing: aTrait [
 		category: 'AAA'
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>createTrait [
+{ #category : #utils }
+TraitTest >> createTrait [
 	| trait |
 	trait := Trait named: #ATraitForTests uses: {} category: 'AAA'.
 	trait compile: 'm1 ^1' classified: 'test'.
 	^ trait
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testAddAndRemoveMethodsFromSubtraits [
+{ #category : #testing }
+TraitTest >> testAddAndRemoveMethodsFromSubtraits [
 	| aC2 |
 	aC2 := self c2 new.
 	self assert: aC2 m51.
@@ -50,11 +37,8 @@ TraitTest>>testAddAndRemoveMethodsFromSubtraits [
 	self assert: aC2 m51 == aC2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testAddAndRemoveMethodsInClassOrTrait [
+{ #category : #testing }
+TraitTest >> testAddAndRemoveMethodsInClassOrTrait [
 	| aC2 |
 	aC2 := self c2 new.
 	self assert: aC2 m51.
@@ -67,21 +51,15 @@ TraitTest>>testAddAndRemoveMethodsInClassOrTrait [
 	self assert: (self t4 includesSelector: #m11)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testAllClassVarNames [
+{ #category : #testing }
+TraitTest >> testAllClassVarNames [
 	
 	
 	self assert: self t1 allClassVarNames isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testCompositionCopy [
+{ #category : #testing }
+TraitTest >> testCompositionCopy [
 	| t6compositionCopyFirst c2compositionCopy |
 	self assert: (self t1 + self t2) allTraits 
 				= (self t1 + self t2) copyTraitExpression allTraits.
@@ -102,11 +80,8 @@ TraitTest>>testCompositionCopy [
 	self c2 traitComposition transformations first exclusions = #(#m11 )
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testErrorClassCreation [
+{ #category : #testing }
+TraitTest >> testErrorClassCreation [
     | tmpCategory trait aSubclass aClass |
 	
     tmpCategory := 'TemporaryGeneratedClasses'.
@@ -143,11 +118,8 @@ TraitTest>>testErrorClassCreation [
             Smalltalk globals at: aClassName ifPresent: [ :v | v removeFromSystem ]]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testExplicitRequirement [
+{ #category : #testing }
+TraitTest >> testExplicitRequirement [
 	"self run: #testExplicitRequirement"
 
 	self t1 compile: 'm self explicitRequirement'.
@@ -159,11 +131,8 @@ TraitTest>>testExplicitRequirement [
 	self should: [self c2 new m] raise: Error
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testExplicitRequirementDoesNotTakePrecedenceEvenWhenAddingTraits [
+{ #category : #testing }
+TraitTest >> testExplicitRequirementDoesNotTakePrecedenceEvenWhenAddingTraits [
 	"Make sure that an explicitRequirement method from a trait does not take precedence over a superclass implementation, even if he trait is created later."
 
 	| tempClass tempTrait |
@@ -174,11 +143,8 @@ TraitTest>>testExplicitRequirementDoesNotTakePrecedenceEvenWhenAddingTraits [
 	self assert: tempClass new m equals: 100
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testExplicitRequirementDoesNotTakePrecedenceInDeepHierarchy [
+{ #category : #testing }
+TraitTest >> testExplicitRequirementDoesNotTakePrecedenceInDeepHierarchy [
 	"Make sure that an explicitRequirement method from a trait does not take precedence over a superclass implementation, even if the superclass implementation is not just in the direct superclass."
 
 	"C9 inherits from Object. C10 inherits from C9. C11 inherits from C10. Each Ci uses the trait Ti."
@@ -194,11 +160,8 @@ TraitTest>>testExplicitRequirementDoesNotTakePrecedenceInDeepHierarchy [
 	self assert: self c11 new m equals: 2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testExplicitRequirementInClassAlwaysTakesPrecedence [
+{ #category : #testing }
+TraitTest >> testExplicitRequirementInClassAlwaysTakesPrecedence [
 	"If i create an explicit requirement method on a class, and the superclass already have the method (non explicit requirement), the class should raise an exception"
 
 	self c10 compile: 'm ^111'.
@@ -206,11 +169,8 @@ TraitTest>>testExplicitRequirementInClassAlwaysTakesPrecedence [
 	self should: [ self c11 new m ] raise: Error
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testExplicitRequirementTakesPrecedenceOverTraitImplementation [
+{ #category : #testing }
+TraitTest >> testExplicitRequirementTakesPrecedenceOverTraitImplementation [
 	"If i create an explicit requirement method on a trait, the method has to be explicit requirement "
 	self t12 compile: 'm ^11'.
 	self t11 compile: 'm ^self explicitRequirement'.
@@ -225,11 +185,8 @@ TraitTest>>testExplicitRequirementTakesPrecedenceOverTraitImplementation [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testExplicitRequirementWithSuperclassImplementation [
+{ #category : #testing }
+TraitTest >> testExplicitRequirementWithSuperclassImplementation [
 	"Make sure that an explicitRequirement method from a trait does not take precedence over a superclass implementation."
 
 	self t10 compile: 'm ^self explicitRequirement'.
@@ -246,11 +203,8 @@ TraitTest>>testExplicitRequirementWithSuperclassImplementation [
 	self t10 removeSelector: #m
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testExplicitRequirementWithSuperclassImplementationAndAnotherTrait [
+{ #category : #testing }
+TraitTest >> testExplicitRequirementWithSuperclassImplementationAndAnotherTrait [
 	"Make sure that an explicitRequirement method from a trait does not take precedence over a superclass implementation."
 
 	"The previous should still be true even in the presence of a superclass importing another explicitRequirement method."
@@ -267,11 +221,8 @@ TraitTest>>testExplicitRequirementWithSuperclassImplementationAndAnotherTrait [
 	self assert: self c11 new m equals: 2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testExplicitRequirementWithSuperclassImplementatiosAlwaysReturnsTheCorrectValue [
+{ #category : #testing }
+TraitTest >> testExplicitRequirementWithSuperclassImplementatiosAlwaysReturnsTheCorrectValue [
 	"Make sure that an explicitRequirement method from a trait that is overrided by a method on a superclass always returns the value from the class defined method, even when an explict return from the trait defined method is missing."
 
 	"C9 inherits from Object. C10 inherits from C9.  Each Ci uses the trait Ti."
@@ -285,20 +236,14 @@ TraitTest>>testExplicitRequirementWithSuperclassImplementatiosAlwaysReturnsTheCo
 	self assert: self c10 new m2 equals: 2.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testIsRootInEnvironment [
+{ #category : #testing }
+TraitTest >> testIsRootInEnvironment [
 	self assert: self t1 isRootInEnvironment.
 	self assert: self t2 isRootInEnvironment
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testLocalMethodWithSameCodeInTrait [
+{ #category : #testing }
+TraitTest >> testLocalMethodWithSameCodeInTrait [
 	"Test whether there are no unintentional overridden traits methods"
 
 	SystemNavigation new allBehaviorsDo: [ :each |
@@ -310,11 +255,8 @@ TraitTest>>testLocalMethodWithSameCodeInTrait [
 							self deny: (trait >> selector = (each >> selector)) ] ] ] ] ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testMarkerMethods [
+{ #category : #testing }
+TraitTest >> testMarkerMethods [
 	"self debug: #testMarkerMethods"
 
 	self t1 compile: 'm1 self foo bar'.
@@ -328,11 +270,8 @@ TraitTest>>testMarkerMethods [
 	self assert: (self t1 >> #m3) markerOrNil == #requirement.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testOrigin [
+{ #category : #testing }
+TraitTest >> testOrigin [
 	| tr1 tr2 tr3 tr23 aMethodDescription |
 	tr1 := self createTraitNamed: #TTT1 uses: {}.
 	tr2 := self createTraitNamed: #TTT2 uses: {tr1}.
@@ -377,11 +316,8 @@ TraitTest>>testOrigin [
 	"----------"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testOriginWithRequiredMethod [
+{ #category : #testing }
+TraitTest >> testOriginWithRequiredMethod [
 	| tr1 c1 |
 	tr1 := self createTraitNamed: #TTT1 uses: {}.
 	
@@ -392,11 +328,8 @@ TraitTest>>testOriginWithRequiredMethod [
 	self assert: (c1 >> #foo) origin == tr1.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testOriginWithRequiredMethodInTraitChain [
+{ #category : #testing }
+TraitTest >> testOriginWithRequiredMethodInTraitChain [
 	"check that the origin of a explicit requirement is the trait defining this method, even if we check
 this from another *trait* using the first trait. Tr2 uses Tr1, Tr1 defines a explicit requirement #foo, the
 origin of Tr2>>foo is Tr1"
@@ -409,22 +342,16 @@ origin of Tr2>>foo is Tr1"
 	self assert: (tr2 >> #foo) origin == tr1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testPrinting [
+{ #category : #testing }
+TraitTest >> testPrinting [
 	self assertPrints: self t6 definition
 		like: 'Trait named: #T6
 	uses: T1 + (T2 @ {#m22Alias->#m22})
 	category: ''Tests-Traits'''
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testPrintingClassSide [
+{ #category : #testing }
+TraitTest >> testPrintingClassSide [
 	"self run: #testPrintingClassSide"
 	
 	self assertPrints: self t6 classSide definition
@@ -432,11 +359,8 @@ TraitTest>>testPrintingClassSide [
 	uses: T1 classTrait + T2 classTrait'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testRemoveFromSystem [
+{ #category : #testing }
+TraitTest >> testRemoveFromSystem [
 	self flag: #fix.	"It has to be refactored when Mariano's ClassBuilder for testCase is integrated :)"
 	SystemAnnouncer uniqueInstance
 		suspendAllWhile: [ 
@@ -450,11 +374,8 @@ TraitTest>>testRemoveFromSystem [
 				ensure: [ aClass removeFromSystem: false ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testRequirement [
+{ #category : #testing }
+TraitTest >> testRequirement [
 	"self debug: #testRequirement"
 
 	self t1 compile: 'm self requirement'.
@@ -464,11 +385,8 @@ TraitTest>>testRequirement [
 	self should: [self c2 new m] raise: Error
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testTraitCompositionRespectsParenthesis [
+{ #category : #testing }
+TraitTest >> testTraitCompositionRespectsParenthesis [
 	self t1 compile: 'method ^1234'.
 	self t2 compile: 'method ^4'.
 	self c1 setTraitComposition: self t1 + self t2 - #method.
@@ -478,11 +396,8 @@ TraitTest>>testTraitCompositionRespectsParenthesis [
 	self assert: self c1 new method = 1234
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testTraitRemoval [
+{ #category : #testing }
+TraitTest >> testTraitRemoval [
 	self flag: #fix.	"It has to be refactored when Mariano's ClassBuilder for testCase is integrated :)"
 	SystemAnnouncer uniqueInstance
 		suspendAllWhile: [ 
@@ -501,11 +416,8 @@ TraitTest>>testTraitRemoval [
 					aTrait removeFromSystem: false ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testTraitsMethodClassSanity [
+{ #category : #testing }
+TraitTest >> testTraitsMethodClassSanity [
 	"self debug: #testTraitsMethodClassSanity"
 	
 	(Smalltalk globals allTraits flatCollect: #traitUsers) asSet do: [ :each |
@@ -513,11 +425,8 @@ TraitTest>>testTraitsMethodClassSanity [
 			self should: [ (each >> selector) methodClass == each ] ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testTraitsUsersSanity [
+{ #category : #testing }
+TraitTest >> testTraitsUsersSanity [
 	"This documents bug http://code.google.com/p/pharo/issues/detail?id=443"
 	"self debug: #testTraitsUsersSanity"
 	
@@ -528,11 +437,8 @@ TraitTest>>testTraitsUsersSanity [
 		self assert: (each traitUsers allSatisfy: [ :b | b traits includes: each ]) ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testUsers [
+{ #category : #testing }
+TraitTest >> testUsers [
 	self assert: self t1 traitUsers size = 3.
 	self assert: (self t1 traitUsers includesAll: {self t4. self t5. self t6 }).
 	self assert: self t3 traitUsers isEmpty.
@@ -545,11 +451,8 @@ TraitTest>>testUsers [
 	self assert: self t5 traitUsers isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitTest>>testUsersWithClassChanges [
+{ #category : #testing }
+TraitTest >> testUsersWithClassChanges [
 	"This documents bug http://code.google.com/p/pharo/issues/detail?id=443"
 	"self debug: #testUsersWithClassChanges"
 	

@@ -25,39 +25,26 @@ Class {
 		'comments',
 		'pragmas'
 	],
-	#category : #AST-Core-Parser,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Parser
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser class>>errorNodeBlock [
+{ #category : #accessing }
+RBParser class >> errorNodeBlock [
 	^ [ :aString :position :parser| parser parseErrorNode: aString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser class>>parseCompiledMethod: aCompiledMethod [
+{ #category : #accessing }
+RBParser class >> parseCompiledMethod: aCompiledMethod [
 	^ self parseMethod: aCompiledMethod sourceCode
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser class>>parseExpression: aString  [
+{ #category : #parsing }
+RBParser class >> parseExpression: aString [ 
 	^self parseExpression: aString onError: nil
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser class>>parseExpression: aString onError: aBlock  [
+{ #category : #parsing }
+RBParser class >> parseExpression: aString onError: aBlock [ 
 	| node parser |
 	parser := self new.
 	parser errorBlock: aBlock.
@@ -68,46 +55,31 @@ RBParser class>>parseExpression: aString onError: aBlock  [
 		ifFalse: [node]
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser class>>parseFaultyExpression: aString  [
+{ #category : #parsing }
+RBParser class >> parseFaultyExpression: aString [ 
 	^self parseExpression: aString onError: self errorNodeBlock
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser class>>parseFaultyMethod: aString  [
+{ #category : #parsing }
+RBParser class >> parseFaultyMethod: aString [ 
 	^self parseMethod: aString onError: self errorNodeBlock
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser class>>parseLiterals: aString  [
+{ #category : #parsing }
+RBParser class >> parseLiterals: aString [ 
 	| parser |
 	parser := self new.
 	parser initializeParserWith: aString.
 	^parser parseLiterals: aString
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser class>>parseMethod: aString  [
+{ #category : #parsing }
+RBParser class >> parseMethod: aString [ 
 	^self parseMethod: aString onError: nil
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser class>>parseMethod: aString onError: aBlock  [
+{ #category : #parsing }
+RBParser class >> parseMethod: aString onError: aBlock [ 
 	| parser |
 	parser := self new.
 	parser errorBlock: aBlock.
@@ -117,11 +89,8 @@ RBParser class>>parseMethod: aString onError: aBlock  [
 		do: [ :exception | self parseMethod: exception newSource onError: aBlock ]
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser class>>parseMethodPattern: aString  [
+{ #category : #parsing }
+RBParser class >> parseMethodPattern: aString [ 
 	| parser |
 	parser := self new.
 	parser errorBlock: [:error :position | ^nil].
@@ -129,96 +98,63 @@ RBParser class>>parseMethodPattern: aString  [
 	^parser parseMessagePattern selector
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser class>>parseRewriteExpression: aString  [
+{ #category : #parsing }
+RBParser class >> parseRewriteExpression: aString [ 
 	^self parseRewriteExpression: aString onError: nil
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser class>>parseRewriteExpression: aString onError: aBlock  [
+{ #category : #parsing }
+RBParser class >> parseRewriteExpression: aString onError: aBlock [ 
 	^RBPatternParser parseExpression: aString onError: aBlock
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser class>>parseRewriteMethod: aString  [
+{ #category : #parsing }
+RBParser class >> parseRewriteMethod: aString [ 
 	^self parseRewriteMethod: aString onError: nil
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser class>>parseRewriteMethod: aString onError: aBlock  [
+{ #category : #parsing }
+RBParser class >> parseRewriteMethod: aString onError: aBlock [ 
 	^RBPatternParser parseMethod: aString onError: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>addCommentsTo: aNode [
+{ #category : #private }
+RBParser >> addCommentsTo: aNode [
 	aNode comments: aNode comments , comments.
 	comments := OrderedCollection new
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>addParserError: errorMessage to: aNode [
+{ #category : #private-parsing }
+RBParser >> addParserError: errorMessage to: aNode [
 	| errorNode |
 	errorNode := self parserError: errorMessage.
 	aNode addFaultyNode: errorNode.
 	^ aNode
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>addPragma: aPragma [
+{ #category : #private }
+RBParser >> addPragma: aPragma [
 	pragmas ifNil: [ pragmas := OrderedCollection new ].
 	pragmas addLast: aPragma
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>arrayNodeClass [
+{ #category : #private-classes }
+RBParser >> arrayNodeClass [
 	^ RBArrayNode
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>assignmentNodeClass [
+{ #category : #private-classes }
+RBParser >> assignmentNodeClass [
 	^ RBAssignmentNode
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>atEnd [
+{ #category : #testing }
+RBParser >> atEnd [
 	^currentToken class == RBToken
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>basicParsePragma [
+{ #category : #private-parsing }
+RBParser >> basicParsePragma [
 	^ currentToken isIdentifier
 		ifTrue: [ self parseUnaryPragma ]
 		ifFalse: [
@@ -230,52 +166,34 @@ RBParser>>basicParsePragma [
 				ifFalse: [ self parseBinaryPragma ] ]
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>blockNodeClass [
+{ #category : #private-classes }
+RBParser >> blockNodeClass [
 	^ RBBlockNode
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>cascadeNodeClass [
+{ #category : #private-classes }
+RBParser >> cascadeNodeClass [
 	^ RBCascadeNode
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>errorBlock [
+{ #category : #'error handling' }
+RBParser >> errorBlock [
 	^errorBlock ifNil: [[:message :position | ]] ifNotNil: [errorBlock]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>errorBlock: aBlock  [
+{ #category : #accessing }
+RBParser >> errorBlock: aBlock [ 
 	errorBlock := aBlock.
 	scanner notNil ifTrue: [scanner errorBlock: aBlock]
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>errorPosition [
+{ #category : #'error handling' }
+RBParser >> errorPosition [
 	^currentToken ifNotNil: [ :token | token start] ifNil:[1]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>extractCommentsFrom: aToken [
+{ #category : #private }
+RBParser >> extractCommentsFrom: aToken [
  
 	aToken comments 
 		collect: [:interval |
@@ -284,87 +202,57 @@ RBParser>>extractCommentsFrom: aToken [
 		into: comments
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>initialize [
+{ #category : #initialization }
+RBParser >> initialize [
 	comments := OrderedCollection new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>initializeParserWith: aString  [
+{ #category : #accessing }
+RBParser >> initializeParserWith: aString [ 
 	source := aString.
 	self scanner: (self scannerClass on: (ReadStream on: aString) errorBlock: self errorBlock)		
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>literalArrayNodeClass [
+{ #category : #private-classes }
+RBParser >> literalArrayNodeClass [
 	^ RBLiteralArrayNode
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>literalNodeClass [
+{ #category : #private-classes }
+RBParser >> literalNodeClass [
 	^ RBLiteralNode
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>literalValueNodeClass [
+{ #category : #private-classes }
+RBParser >> literalValueNodeClass [
 	^ RBLiteralValueNode
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>messageNodeClass [
+{ #category : #private-classes }
+RBParser >> messageNodeClass [
 	^ RBMessageNode
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>methodNodeClass [
+{ #category : #private-classes }
+RBParser >> methodNodeClass [
 	^ RBMethodNode
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>nextToken [
+{ #category : #private }
+RBParser >> nextToken [
 	^nextToken ifNil: [nextToken := scanner next] ifNotNil: [nextToken]
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseArgs [
+{ #category : #private-parsing }
+RBParser >> parseArgs [
 	| args |
 	args := OrderedCollection new.
 	[currentToken isIdentifier] whileTrue: [args add: self parseVariableNode].
 	^args
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseArray [
+{ #category : #private-parsing }
+RBParser >> parseArray [
 	| position node |
 	position := currentToken start.
 	self step.
@@ -378,11 +266,8 @@ RBParser>>parseArray [
 	^ node
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseAssignment [
+{ #category : #private-parsing }
+RBParser >> parseAssignment [
 	"Need one token lookahead to see if we have a ':='. This method could 
 	make it possible to assign the literals true, false and nil."
 
@@ -398,11 +283,8 @@ RBParser>>parseAssignment [
 		position: position
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseBinaryMessage [
+{ #category : #private-parsing }
+RBParser >> parseBinaryMessage [
 	| node |
 	node := self parseUnaryMessage.
 	
@@ -412,11 +294,8 @@ RBParser>>parseBinaryMessage [
 	^node
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseBinaryMessageWith: aNode  [
+{ #category : #private-parsing }
+RBParser >> parseBinaryMessageWith: aNode [ 
 	| binaryToken |
 	binaryToken := currentToken.
 	self step.
@@ -427,11 +306,8 @@ RBParser>>parseBinaryMessageWith: aNode  [
 		arguments: (Array with: self parseUnaryMessage)
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseBinaryPattern [
+{ #category : #private-parsing }
+RBParser >> parseBinaryPattern [
 	| binaryToken node args |
 	currentToken isBinary
 		ifFalse: [ ^ self parserError: 'Message pattern expected'].
@@ -447,11 +323,8 @@ RBParser>>parseBinaryPattern [
 	^node
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseBinaryPragma [
+{ #category : #private-parsing }
+RBParser >> parseBinaryPragma [
 	| binaryToken |
 	currentToken isBinary 
 		ifFalse: [ ^ self parserError: 'Message pattern expected' ].
@@ -463,11 +336,8 @@ RBParser>>parseBinaryPragma [
 		arguments: (Array with: self parsePragmaLiteral)
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseBlock [
+{ #category : #private-parsing }
+RBParser >> parseBlock [
 	| position node |
 	position := currentToken start.
 	self step.
@@ -486,11 +356,8 @@ RBParser>>parseBlock [
 	^node
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseBlockArgsInto: node  [
+{ #category : #private-parsing }
+RBParser >> parseBlockArgsInto: node [ 
 	| verticalBar args colons |
 	args := OrderedCollection new: 2.
 	colons := OrderedCollection new: 2.
@@ -526,11 +393,8 @@ RBParser>>parseBlockArgsInto: node  [
 	^node
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseCascadeMessage [
+{ #category : #private-parsing }
+RBParser >> parseCascadeMessage [
 	| node receiver messages semicolons |
 	node := self parseKeywordMessage.
 	(currentToken isSpecial and: [ currentToken value = $; ])
@@ -565,11 +429,8 @@ RBParser>>parseCascadeMessage [
 	^self cascadeNodeClass messages: messages semicolons: semicolons
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseErrorNode: aMessageString [
+{ #category : #'error handling' }
+RBParser >> parseErrorNode: aMessageString [
 	| sourceString |
 	currentToken isError 
 		ifTrue: [ ^ RBParseErrorNode errorMessage: currentToken cause value: currentToken value at: currentToken start ].
@@ -578,11 +439,8 @@ RBParser>>parseErrorNode: aMessageString [
 		errorMessage: aMessageString value: sourceString at: self errorPosition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseExpression: aString  [
+{ #category : #accessing }
+RBParser >> parseExpression: aString [ 
 	| node |
 	node := self parseStatements: false.
 	(RBMethodNode selector: #noMethod body: node) source: aString.	"Make the sequence node have a method node as its parent"
@@ -590,11 +448,8 @@ RBParser>>parseExpression: aString  [
 	^node
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseIncompleteExpression: priorStatementsNode [
+{ #category : #private-parsing }
+RBParser >> parseIncompleteExpression: priorStatementsNode [
 	"some incomplete expressions followed. Add a parserError node
  to the prior statements, but not if priopriorStatementsNode  is already 
  an errorNode"
@@ -607,19 +462,13 @@ RBParser>>parseIncompleteExpression: priorStatementsNode [
 			priorStatementsNode ]
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseKeywordMessage [
+{ #category : #private-parsing }
+RBParser >> parseKeywordMessage [
 	^self parseKeywordMessageWith: self parseBinaryMessage
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseKeywordMessageWith: node  [
+{ #category : #private-parsing }
+RBParser >> parseKeywordMessageWith: node [ 
 	| args isKeyword keywordsStartPositions selector|
 	args := OrderedCollection new: 3.
 	keywordsStartPositions := OrderedCollection new: 3.
@@ -642,11 +491,8 @@ RBParser>>parseKeywordMessageWith: node  [
 		ifFalse: [node]
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseKeywordPattern [
+{ #category : #private-parsing }
+RBParser >> parseKeywordPattern [
 	| selector positions args node |
 	selector := ''.
 	positions := OrderedCollection new: 2.
@@ -666,11 +512,8 @@ RBParser>>parseKeywordPattern [
 	^node
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseKeywordPragma [
+{ #category : #private-parsing }
+RBParser >> parseKeywordPragma [
 	| selector positions arguments |
 	selector := ''.
 	positions := OrderedCollection new: 2.
@@ -686,11 +529,8 @@ RBParser>>parseKeywordPragma [
 		arguments: arguments.
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseLiteralArray [
+{ #category : #private-parsing }
+RBParser >> parseLiteralArray [
 	| stream start stop |
 	start := currentToken start.
 	stream := (Array new: 5) writeStream.
@@ -708,11 +548,8 @@ RBParser>>parseLiteralArray [
 		isByteArray: false
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseLiteralArrayObject [
+{ #category : #private-parsing }
+RBParser >> parseLiteralArrayObject [
 	currentToken isSpecial 
 		ifTrue: 
 			[currentToken value = $( ifTrue: [^self parseLiteralArray].
@@ -728,11 +565,8 @@ RBParser>>parseLiteralArrayObject [
 	^self parsePrimitiveLiteral
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseLiteralByteArray [
+{ #category : #private-parsing }
+RBParser >> parseLiteralByteArray [
 	| stream start stop |
 	start := currentToken start.
 	stream := (Array new: 5) writeStream.
@@ -750,11 +584,8 @@ RBParser>>parseLiteralByteArray [
 		isByteArray: true
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseLiteralByteArrayObject [
+{ #category : #private-parsing }
+RBParser >> parseLiteralByteArrayObject [
 	(currentToken isLiteralToken and: 
 			[currentToken value isInteger and: [currentToken value between: 0 and: 255]]) 
 		ifFalse: [
@@ -765,11 +596,8 @@ RBParser>>parseLiteralByteArrayObject [
 	^self parsePrimitiveLiteral
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseLiterals: aString  [
+{ #category : #accessing }
+RBParser >> parseLiterals: aString [ 
 	| stream |
 	stream := (Array new: 5) writeStream.
 	[self atEnd or: [currentToken isSpecial and: [currentToken value = $)]]] 
@@ -780,11 +608,8 @@ RBParser>>parseLiterals: aString  [
 	^stream contents collect: [ :each | each value ]
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseMessagePattern [
+{ #category : #private-parsing }
+RBParser >> parseMessagePattern [
 	currentToken isLiteralToken ifTrue: [self patchLiteralMessage].
 	^currentToken isIdentifier 
 		ifTrue: [self parseUnaryPattern]
@@ -794,11 +619,8 @@ RBParser>>parseMessagePattern [
 				ifFalse: [self parseBinaryPattern]]
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseMethod [
+{ #category : #private-parsing }
+RBParser >> parseMethod [
 	| methodNode sequenceNode | 
 	methodNode := self parseMessagePattern.
 	self parsePragmas.
@@ -811,11 +633,8 @@ methodNode body: sequenceNode .
 	^methodNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseMethod: aString [
+{ #category : #accessing }
+RBParser >> parseMethod: aString [
 	| node |
 	node := self parseMethod.
 	node source: aString.
@@ -826,11 +645,8 @@ RBParser>>parseMethod: aString [
 	^ node
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseNumberLiteral [
+{ #category : #private-parsing }
+RBParser >> parseNumberLiteral [
 	| token |
 	token := currentToken.
 	self step.
@@ -843,11 +659,8 @@ RBParser>>parseNumberLiteral [
 	
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseParenthesizedExpression [
+{ #category : #private-parsing }
+RBParser >> parseParenthesizedExpression [
 	| leftParen node |
 	leftParen := currentToken start.
 	self step.
@@ -860,11 +673,8 @@ RBParser>>parseParenthesizedExpression [
 		ifFalse: [ self parserError: ''')'' expected']
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parsePragma [
+{ #category : #private-parsing }
+RBParser >> parsePragma [
 	| start pragma |
 	start := currentToken start.
 	self step.
@@ -875,11 +685,8 @@ RBParser>>parsePragma [
 	self addPragma: pragma.
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parsePragmaLiteral [
+{ #category : #private-parsing }
+RBParser >> parsePragmaLiteral [
 	currentToken isLiteralArrayToken 
 		ifTrue: 
 			[^currentToken isForByteArray 
@@ -889,21 +696,15 @@ RBParser>>parsePragmaLiteral [
 	^self parsePrimitiveLiteral
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parsePragmas [
+{ #category : #private-parsing }
+RBParser >> parsePragmas [
 	[ currentToken isBinary and: [ currentToken value = #< ] ] whileTrue: [
 		self parsePragma.
 		self step ]
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parsePrimitiveIdentifier [
+{ #category : #private-parsing }
+RBParser >> parsePrimitiveIdentifier [
 	| token node |
 	token := currentToken.
 	self step.
@@ -912,11 +713,8 @@ RBParser>>parsePrimitiveIdentifier [
 	^node
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parsePrimitiveKeywordPragma [
+{ #category : #private-parsing }
+RBParser >> parsePrimitiveKeywordPragma [
 	| selector positions arguments |
 	selector := ''.
 	positions := OrderedCollection new: 2.
@@ -932,22 +730,16 @@ RBParser>>parsePrimitiveKeywordPragma [
 		arguments: arguments.
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parsePrimitiveLiteral [
+{ #category : #private-parsing }
+RBParser >> parsePrimitiveLiteral [
 
 	currentToken isNumberLiteralToken
 		ifTrue: [ ^ self parseNumberLiteral ]
 		ifFalse: [ ^ self parsePrimitiveValueLiteral ]
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parsePrimitiveObject [
+{ #category : #private-parsing }
+RBParser >> parsePrimitiveObject [
 	currentToken isIdentifier ifTrue: [^self parsePrimitiveIdentifier].
 	(currentToken isLiteralToken and: [currentToken isMultiKeyword not]) 
 		ifTrue: [^self parsePrimitiveLiteral].
@@ -964,11 +756,8 @@ RBParser>>parsePrimitiveObject [
 	^ self parserError: 'Variable or expression expected'
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parsePrimitiveValueLiteral [
+{ #category : #private-parsing }
+RBParser >> parsePrimitiveValueLiteral [
 	| token |
 	token := currentToken.
 	self step.
@@ -981,11 +770,8 @@ RBParser>>parsePrimitiveValueLiteral [
 	
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseStatementList: pragmaBoolean into: sequenceNode  [
+{ #category : #private-parsing }
+RBParser >> parseStatementList: pragmaBoolean into: sequenceNode [ 
 	| statements return periods returnPosition node |
 	return := false.
 	statements := OrderedCollection new.
@@ -1034,19 +820,13 @@ RBParser>>parseStatementList: pragmaBoolean into: sequenceNode  [
 	^sequenceNode
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseStatements: pragmaBoolean [
+{ #category : #private-parsing }
+RBParser >> parseStatements: pragmaBoolean [
 	^ self parseStatements: pragmaBoolean into: self sequenceNodeClass new
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseStatements: pragmaBoolean into: aSequenceNode [
+{ #category : #private-parsing }
+RBParser >> parseStatements: pragmaBoolean into: aSequenceNode [
 	| temps leftBar rightBar |
 	temps := #().
 	leftBar := rightBar := nil.
@@ -1074,22 +854,16 @@ RBParser>>parseStatements: pragmaBoolean into: aSequenceNode [
 				rightBar: rightBar)
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseTemps [
+{ #category : #private-parsing }
+RBParser >> parseTemps [
 	| temps |
 	temps := OrderedCollection new.
 	[currentToken isIdentifier] whileTrue: [temps add: self parsePrimitiveIdentifier].
 	^temps
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseUnaryMessage [
+{ #category : #private-parsing }
+RBParser >> parseUnaryMessage [
 	| node |
 	node := self parsePrimitiveObject.
 	self addCommentsTo: node.
@@ -1100,11 +874,8 @@ RBParser>>parseUnaryMessage [
 	^node
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseUnaryMessageWith: aNode  [
+{ #category : #private-parsing }
+RBParser >> parseUnaryMessageWith: aNode [ 
 	| selector |
 	selector := currentToken.
 	self step.
@@ -1115,43 +886,31 @@ RBParser>>parseUnaryMessageWith: aNode  [
 		arguments: #()
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseUnaryPattern [
+{ #category : #private-parsing }
+RBParser >> parseUnaryPattern [
 	| selector |
 	selector := currentToken.
 	self step.
 	^self methodNodeClass selector: selector value asSymbol keywordsPositions: (Array with: selector start) arguments: #()
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseUnaryPragma [
+{ #category : #private-parsing }
+RBParser >> parseUnaryPragma [
 	| selector |
 	selector := currentToken.
 	self step.
 	^ self pragmaNodeClass selector: selector value asSymbol keywordsPositions: (Array with: selector start) arguments: #()
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parseVariableNode [
+{ #category : #private-parsing }
+RBParser >> parseVariableNode [
 	currentToken isIdentifier 
 		ifFalse: [ ^ self parserError: 'Variable name expected' ].
 	^self parsePrimitiveIdentifier
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>parserError: aString  [
+{ #category : #'error handling' }
+RBParser >> parserError: aString [ 
 	"Let the errorBlock try to recover from the error."
 	| errorNode errorMessage errorPosition newSource |
 	errorNode := self errorBlock cull: aString cull: self errorPosition cull: self.
@@ -1171,11 +930,8 @@ RBParser>>parserError: aString  [
 	ReparseAfterSourceEditing signalWithNewSource: newSource
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>patchLiteralArrayToken [
+{ #category : #private }
+RBParser >> patchLiteralArrayToken [
 	(currentToken isIdentifier and: 
 			[self nextToken isAssignment 
 				and: [currentToken stop + 1 = self nextToken start]]) 
@@ -1224,11 +980,8 @@ RBParser>>patchLiteralArrayToken [
 				source: (source copyFrom: currentToken start to: currentToken stop).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>patchLiteralMessage [
+{ #category : #private }
+RBParser >> patchLiteralMessage [
 	currentToken value == true 
 		ifTrue: 
 			[^currentToken := RBIdentifierToken value: 'true' start: currentToken start].
@@ -1240,11 +993,8 @@ RBParser>>patchLiteralMessage [
 			[^currentToken := RBIdentifierToken value: 'nil' start: currentToken start]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>patchNegativeLiteral [
+{ #category : #private }
+RBParser >> patchNegativeLiteral [
 	"Handle the special negative number case for binary message sends."
 
 	currentToken value isNumber 
@@ -1265,27 +1015,18 @@ RBParser>>patchNegativeLiteral [
 	nextToken start: nextToken start + 1
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>pragmaNodeClass [
+{ #category : #private-classes }
+RBParser >> pragmaNodeClass [
 	^ RBPragmaNode
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>returnNodeClass [
+{ #category : #private-classes }
+RBParser >> returnNodeClass [
 	^ RBReturnNode
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>saveCommentsDuring: aBlock [
+{ #category : #private-parsing }
+RBParser >> saveCommentsDuring: aBlock [
 	| currentComments |
 	currentComments := comments copy.
 	comments removeAll.
@@ -1293,11 +1034,8 @@ RBParser>>saveCommentsDuring: aBlock [
 		ensure: [ comments := comments, currentComments ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>scanner: aScanner  [
+{ #category : #initialize-release }
+RBParser >> scanner: aScanner [ 
 	scanner := aScanner.
 	pragmas := nil.
 	aScanner errorBlock: self errorBlock.
@@ -1305,35 +1043,23 @@ RBParser>>scanner: aScanner  [
 	self step.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>scannerClass [
+{ #category : #accessing }
+RBParser >> scannerClass [
 	^RBScanner
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>selfNodeClass [
+{ #category : #private-classes }
+RBParser >> selfNodeClass [
 	^ RBSelfNode
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>sequenceNodeClass [
+{ #category : #private-classes }
+RBParser >> sequenceNodeClass [
 	^ RBSequenceNode
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>step [
+{ #category : #private }
+RBParser >> step [
 	(currentToken notNil and: [currentToken comments notNil]) 
 		ifTrue: [self extractCommentsFrom: currentToken].
 	nextToken notNil 
@@ -1343,26 +1069,17 @@ RBParser>>step [
 		ifFalse: [currentToken := scanner next].
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>superNodeClass [
+{ #category : #private-classes }
+RBParser >> superNodeClass [
 	^ RBSuperNode
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>thisContextNodeClass [
+{ #category : #private-classes }
+RBParser >> thisContextNodeClass [
 	^ RBThisContextNode
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParser>>variableNodeClass [
+{ #category : #private-classes }
+RBParser >> variableNodeClass [
 	^ RBVariableNode
 ]

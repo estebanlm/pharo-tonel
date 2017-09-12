@@ -4,33 +4,23 @@ Check for code that checks that a collection is non-empty before sending it an i
 Class {
 	#name : #RBSizeCheckRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 23:00'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSizeCheckRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBSizeCheckRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'SizeCheckRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSizeCheckRule>>group [
+{ #category : #accessing }
+RBSizeCheckRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSizeCheckRule>>initialize [
+{ #category : #initialization }
+RBSizeCheckRule >> initialize [
 	| patterns |
 	super initialize.
 	patterns := OrderedCollection new.
@@ -47,26 +37,17 @@ RBSizeCheckRule>>initialize [
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSizeCheckRule>>name [
+{ #category : #accessing }
+RBSizeCheckRule >> name [
 	^ 'Unnecessary size check'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSizeCheckRule>>rationale [
+{ #category : #accessing }
+RBSizeCheckRule >> rationale [
 	^ 'Check for code that checks that a collection is non-empty before sending it an iteration message (e.g., do:, collect:, etc.).'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSizeCheckRule>>selectors [
+{ #category : #private }
+RBSizeCheckRule >> selectors [
 	^ #( collect: do: reject: select: )
 ]

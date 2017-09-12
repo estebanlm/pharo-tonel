@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'pager'
 	],
-	#category : #Morphic-Widgets-Tree-Pagination,
-	#timestamp : 'TorstenBergmann 9/5/2014 15:31'
+	#category : #Morphic-Widgets-Tree-Pagination
 }
 
-{
-	#category : #'pager managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>addNavigationPane: aNavigPane [
+{ #category : #'pager managing' }
+PaginatedMorphTreeMorph >> addNavigationPane: aNavigPane [
 	pager := aNavigPane.
 	self addMorph: pager.
 	pager buildPanel.
@@ -23,11 +19,8 @@ PaginatedMorphTreeMorph>>addNavigationPane: aNavigPane [
 	self changed
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>adoptPaneColor: paneColor [
+{ #category : #'accessing colors' }
+PaginatedMorphTreeMorph >> adoptPaneColor: paneColor [
 	"Pass on to the selection, the border and on the eventual pager too."
 	
 	super adoptPaneColor: paneColor.
@@ -35,20 +28,14 @@ PaginatedMorphTreeMorph>>adoptPaneColor: paneColor [
 	self pager ifNotNil: [:p | p color: self pagerColor]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>buildContents [
+{ #category : #updating }
+PaginatedMorphTreeMorph >> buildContents [
 	super buildContents.
 	self updatePager
 ]
 
-{
-	#category : #'pager managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>chunkSize: aPageSize  [
+{ #category : #'pager managing' }
+PaginatedMorphTreeMorph >> chunkSize: aPageSize [ 
 	self pager
 		ifNil: [aPageSize ifNotNil: [self addNavigationPane: (MorphTreeChunkPager on: self pageSize: aPageSize)]]
 		ifNotNil: [aPageSize 
@@ -56,22 +43,16 @@ PaginatedMorphTreeMorph>>chunkSize: aPageSize  [
 			ifNotNil: [self pager changePageSize: aPageSize]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>currentNodelist [
+{ #category : #accessing }
+PaginatedMorphTreeMorph >> currentNodelist [
 	"The nodeList currently viewed (not the full node list if a pager is used)"
 	^ self pager
 		ifNil: [super nodeList]
 		ifNotNil: [self pager currentNodelist]
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>expandItemPath: anItemPath [
+{ #category : #expanding-collapsing }
+PaginatedMorphTreeMorph >> expandItemPath: anItemPath [
 	| rest |
 	rest := anItemPath asOrderedCollection.
 	[ rest notEmpty ]
@@ -86,42 +67,30 @@ PaginatedMorphTreeMorph>>expandItemPath: anItemPath [
 	^ self
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>extent: newExtent [
+{ #category : #geometry }
+PaginatedMorphTreeMorph >> extent: newExtent [
 	self extent = newExtent ifTrue: [^ self].
 	super extent: newExtent.
 	self updatePager.
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>hResizeScrollBar [
+{ #category : #geometry }
+PaginatedMorphTreeMorph >> hResizeScrollBar [
 	super hResizeScrollBar.
 	hScrollBar bounds: ((hScrollBar bounds withTop: (hScrollBar top - self pagerHeight)) withBottom: (hScrollBar bottom - self pagerHeight))
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>innerBounds [
+{ #category : #geometry }
+PaginatedMorphTreeMorph >> innerBounds [
 	| inner |
 	inner := super innerBounds.
 	inner := inner withBottom: inner bottom - self pagerHeight.
 	^ inner
 ]
 
-{
-	#category : #'pager managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>pageSize: aPageSize  [
+{ #category : #'pager managing' }
+PaginatedMorphTreeMorph >> pageSize: aPageSize [ 
 	self pager
 		ifNil: [aPageSize ifNotNil: [self addNavigationPane: (MorphTreePager on: self pageSize: aPageSize)]]
 		ifNotNil: [aPageSize 
@@ -129,38 +98,26 @@ PaginatedMorphTreeMorph>>pageSize: aPageSize  [
 			ifNotNil: [self pager changePageSize: aPageSize]]
 ]
 
-{
-	#category : #'pager managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>pager [
+{ #category : #'pager managing' }
+PaginatedMorphTreeMorph >> pager [
 	^ pager
 	
 ]
 
-{
-	#category : #'pager managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>pagerColor [
+{ #category : #'pager managing' }
+PaginatedMorphTreeMorph >> pagerColor [
 	^ self color darker alpha: 0.6
 ]
 
-{
-	#category : #'pager managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>pagerHeight [
+{ #category : #'pager managing' }
+PaginatedMorphTreeMorph >> pagerHeight [
 	^ self pager
 		ifNil: [0]
 		ifNotNil: [pager computedHeight]
 ]
 
-{
-	#category : #'pager managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>removePager [
+{ #category : #'pager managing' }
+PaginatedMorphTreeMorph >> removePager [
 	self pager ifNotNil: [
 		self removeMorph: self pager.
 		pager := nil.
@@ -169,37 +126,25 @@ PaginatedMorphTreeMorph>>removePager [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>updateContentsWithPreviouslyExpanded: aNodeList [
+{ #category : #updating }
+PaginatedMorphTreeMorph >> updateContentsWithPreviouslyExpanded: aNodeList [
 	super updateContentsWithPreviouslyExpanded: aNodeList.
 	self updatePager
 ]
 
-{
-	#category : #'pager managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>updatePager [
+{ #category : #'pager managing' }
+PaginatedMorphTreeMorph >> updatePager [
 	self pager
 		ifNotNil: [self pager buildPanel]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>vScrollBarHeight [
+{ #category : #geometry }
+PaginatedMorphTreeMorph >> vScrollBarHeight [
 	^ super vScrollBarHeight - self pagerHeight
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeMorph>>vScrollBarValue: scrollValue [
+{ #category : #scrolling }
+PaginatedMorphTreeMorph >> vScrollBarValue: scrollValue [
 	super vScrollBarValue: scrollValue.
 	self pager ifNotNil: [:p | p vScrollBarValue: scrollValue]
 ]

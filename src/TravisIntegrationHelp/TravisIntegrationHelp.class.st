@@ -4,23 +4,16 @@ Help for getting Travis running with Pharo.
 Class {
 	#name : #TravisIntegrationHelp,
 	#superclass : #CustomHelp,
-	#category : #TravisIntegrationHelp,
-	#timestamp : 'AlexandreBergel 4/20/2017 16:43'
+	#category : #TravisIntegrationHelp
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-TravisIntegrationHelp class>>bookName [
+{ #category : #accessing }
+TravisIntegrationHelp class >> bookName [
 	^ 'Travis Integration'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-TravisIntegrationHelp class>>introduction [
+{ #category : #pages }
+TravisIntegrationHelp class >> introduction [
 	^ HelpTopic 
 		title: 'Introduction to Travis Integration'
 		contents: 
@@ -32,11 +25,8 @@ The example used in this help is Roassal2.
 This help has been written as a cheatsheet and does not constitute a complete documentation.'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-TravisIntegrationHelp class>>matrix [
+{ #category : #pages }
+TravisIntegrationHelp class >> matrix [
 	^ HelpTopic 
 		title: 'Matrix Configuration'
 		contents: 
@@ -110,11 +100,8 @@ matrix:
 With this new content, Travis will run different configurations.'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-TravisIntegrationHelp class>>moreInformation [
+{ #category : #pages }
+TravisIntegrationHelp class >> moreInformation [
 	^ HelpTopic 
 		title: 'More information'
 		contents:
@@ -132,27 +119,18 @@ Big thanks to the HPI team that has produced the Pharo support. More information
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-TravisIntegrationHelp class>>open [
+{ #category : #accessing }
+TravisIntegrationHelp class >> open [
 	^ (HelpBrowser openOn: self) next
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-TravisIntegrationHelp class>>pages [
+{ #category : #accessing }
+TravisIntegrationHelp class >> pages [
 	^ #(introduction step01 step02 step03 step04 step05 matrix moreInformation)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-TravisIntegrationHelp class>>step01 [
+{ #category : #pages }
+TravisIntegrationHelp class >> step01 [
 	^ HelpTopic 
 		title: 'Step 01 - Configuration'
 		contents: 
@@ -164,11 +142,8 @@ Before moving to the next step, you need to have a working configuration. Note t
 In this help, we will use the ConfigurationOfRoassal2 located in ', (self url: 'http://smalltalkhub.com/mc/Pharo/MetaRepoForPharo60/main')
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-TravisIntegrationHelp class>>step02 [
+{ #category : #pages }
+TravisIntegrationHelp class >> step02 [
 	^ HelpTopic 
 		title: 'Step 02 - GitHub repository'
 		contents: 
@@ -179,11 +154,8 @@ You can have a look at the Roassal2 GitHub repository: https://github.com/Object
 '
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-TravisIntegrationHelp class>>step03 [
+{ #category : #pages }
+TravisIntegrationHelp class >> step03 [
 	^ HelpTopic 
 		title: 'Step 03 - Account on Travis-ci.org'
 		contents: 
@@ -196,11 +168,8 @@ TravisIntegrationHelp class>>step03 [
 '
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-TravisIntegrationHelp class>>step04 [
+{ #category : #pages }
+TravisIntegrationHelp class >> step04 [
 	^ HelpTopic 
 		title: 'Step 04 - Define .smalltalk.ston'
 		contents: 
@@ -236,11 +205,8 @@ SmalltalkCISpec {
 '
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-TravisIntegrationHelp class>>step05 [
+{ #category : #pages }
+TravisIntegrationHelp class >> step05 [
 	^ HelpTopic 
 		title: 'Step 05 - Define .travis.yml'
 		contents: 

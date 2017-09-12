@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #RBParseTreeEnvironment,
 	#superclass : #RBSelectorEnvironment,
 	#instVars : [
 		'matcher'
 	],
-	#category : #Refactoring-Critics,
-	#timestamp : ''
+	#category : #Refactoring-Critics
 }
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBParseTreeEnvironment>>matcher: aParseTreeSearcher [
+{ #category : #initialize-release }
+RBParseTreeEnvironment >> matcher: aParseTreeSearcher [
 	matcher := aParseTreeSearcher
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBParseTreeEnvironment>>selectionIntervalFor: aString  [
+{ #category : #accessing }
+RBParseTreeEnvironment >> selectionIntervalFor: aString [ 
 	| parseTree node |
 	matcher isNil 
 		ifTrue: [ ^ super selectionIntervalFor: aString ].

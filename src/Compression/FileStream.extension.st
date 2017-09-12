@@ -1,12 +1,7 @@
-Extension {
-	#name : #FileStream
-}
+Extension { #name : #FileStream }
 
-{
-	#category : #'*Compression',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-FileStream>>viewGZipContents [
+{ #category : #'*Compression' }
+FileStream >> viewGZipContents [
 	"View the contents of a gzipped file"
 	| stringContents |
 

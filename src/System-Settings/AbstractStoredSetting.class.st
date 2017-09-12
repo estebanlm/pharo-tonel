@@ -23,40 +23,27 @@ Class {
 	#instVars : [
 		'settingNodeIdentifier'
 	],
-	#category : #System-Settings-Persistence-Ston-StoredSettings,
-	#timestamp : 'JurajKubelka 10/1/2015 14:37'
+	#category : #System-Settings-Persistence-Ston-StoredSettings
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractStoredSetting>>= aStoredSetting [
+{ #category : #comparing }
+AbstractStoredSetting >> = aStoredSetting [
 	^ self class = aStoredSetting class and: [ 
 		self settingNodeIdentifier = aStoredSetting settingNodeIdentifier ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractStoredSetting>>hash [
+{ #category : #comparing }
+AbstractStoredSetting >> hash [
 	^ self class hash bitXor: self settingNodeIdentifier hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractStoredSetting>>isForSettingNode: aSettingNode  [
+{ #category : #testing }
+AbstractStoredSetting >> isForSettingNode: aSettingNode [ 
 	^ self settingNodeIdentifier = aSettingNode settingNodeIdentifier
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractStoredSetting>>printOn: aStream [
+{ #category : #printing }
+AbstractStoredSetting >> printOn: aStream [
 	super printOn: aStream.
 	aStream
 		nextPut: $(;
@@ -64,35 +51,23 @@ AbstractStoredSetting>>printOn: aStream [
 		nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractStoredSetting>>realValue [
+{ #category : #accessing }
+AbstractStoredSetting >> realValue [
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractStoredSetting>>settingNodeIdentifier [
+{ #category : #accessing }
+AbstractStoredSetting >> settingNodeIdentifier [
 	^ settingNodeIdentifier
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractStoredSetting>>settingNodeIdentifier: aString [
+{ #category : #accessing }
+AbstractStoredSetting >> settingNodeIdentifier: aString [
 	settingNodeIdentifier := aString
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractStoredSetting>>updateSettingNode: aSettingNode  [
+{ #category : #loading }
+AbstractStoredSetting >> updateSettingNode: aSettingNode [ 
 	| value |
 	[ value := self realValue ] on: Error do: [ :exception | "ignore and leave" 
 		self inform: 'Cannot read stored value of ', self settingNodeIdentifier, '. Exception: ', exception printString.

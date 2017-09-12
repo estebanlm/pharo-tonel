@@ -10,73 +10,48 @@ Class {
 		'rangeSetting',
 		'defaultDirectoryName'
 	],
-	#category : #System-Settings-Tests,
-	#timestamp : 'JurajKubelka 10/1/2015 14:43'
+	#category : #System-Settings-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>booleanSetting [
+{ #category : #accessing }
+MockSettings class >> booleanSetting [
 	^ booleanMockSetting ifNil: [ booleanMockSetting := true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>booleanSetting: aBoolean [
+{ #category : #accessing }
+MockSettings class >> booleanSetting: aBoolean [
 	^ booleanMockSetting := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>booleanSettingNode [
+{ #category : #settings }
+MockSettings class >> booleanSettingNode [
 	^ self settingTree nodeNamed: #booleanSetting
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>booleanSettingNodeOn: aBuilder [
+{ #category : #settings }
+MockSettings class >> booleanSettingNodeOn: aBuilder [
 	<mocksystemsettings>
 	(aBuilder setting: #booleanSetting)
 		label: 'Mock boolean setting'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>cacheDirectory [
+{ #category : #accessing }
+MockSettings class >> cacheDirectory [
 	^ cacheDirectory ifNil: [ cacheDirectory := FileLocator workingDirectory ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>cacheDirectory: aFileReference [
+{ #category : #accessing }
+MockSettings class >> cacheDirectory: aFileReference [
 	cacheDirectory := aFileReference
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>cacheDirectorySettingNode [
+{ #category : #settings }
+MockSettings class >> cacheDirectorySettingNode [
 	^ self settingTree nodeNamed: #cacheDirectory
 ]
 
-{
-	#category : #'setting strings',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>changedClassStoredSettingVariable [
+{ #category : #'setting strings' }
+MockSettings class >> changedClassStoredSettingVariable [
 	^ 
 '[
 	ClassStoredSetting {
@@ -89,38 +64,26 @@ MockSettings class>>changedClassStoredSettingVariable [
 ]'
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>cleanUp [
+{ #category : #cleanup }
+MockSettings class >> cleanUp [
 	self booleanSetting: nil.
 	self rangeSetting: nil.
 	self defaultDirectoryName: nil.
 	self cacheDirectory: nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>defaultDirectoryName [
+{ #category : #accessing }
+MockSettings class >> defaultDirectoryName [
 	^ defaultDirectoryName ifNil: [ defaultDirectoryName := FileLocator workingDirectory ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>defaultDirectoryName: aFileReference [
+{ #category : #accessing }
+MockSettings class >> defaultDirectoryName: aFileReference [
 	defaultDirectoryName := aFileReference
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>monticelloSettingsOn: aBuilder   [
+{ #category : #settings }
+MockSettings class >> monticelloSettingsOn: aBuilder [  
 	<mocksystemsettings>  
 	(aBuilder group: #monticello)
 		label: 'Mock Monticello';
@@ -139,20 +102,14 @@ MockSettings class>>monticelloSettingsOn: aBuilder   [
 			].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>nodeSettings [
+{ #category : #accessing }
+MockSettings class >> nodeSettings [
 	"self nodeSettings"
 	^ self settingTree nodeList
 ]
 
-{
-	#category : #'setting strings',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>notExistingClassStoredSettingSTONString [
+{ #category : #'setting strings' }
+MockSettings class >> notExistingClassStoredSettingSTONString [
 	^ 
 '[
 	ClassStoredSetting {
@@ -162,11 +119,8 @@ MockSettings class>>notExistingClassStoredSettingSTONString [
 ]'
 ]
 
-{
-	#category : #'setting strings',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>oneStoredSettingSTONString [
+{ #category : #'setting strings' }
+MockSettings class >> oneStoredSettingSTONString [
 	^ 
 '[
 	StoredSetting {
@@ -176,66 +130,45 @@ MockSettings class>>oneStoredSettingSTONString [
 ]'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>rangeSetting [
+{ #category : #accessing }
+MockSettings class >> rangeSetting [
 	^ rangeSetting ifNil: [ rangeSetting := 10 ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>rangeSetting: anInteger  [
+{ #category : #accessing }
+MockSettings class >> rangeSetting: anInteger [ 
 	rangeSetting := anInteger
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>rangeSettingNode [
+{ #category : #settings }
+MockSettings class >> rangeSettingNode [
 	^ self settingTree nodeNamed: #rangeSetting
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>rangeSettingNodeOn: aBuilder [
+{ #category : #settings }
+MockSettings class >> rangeSettingNodeOn: aBuilder [
 	<mocksystemsettings>
 	(aBuilder range: #rangeSetting)
 		label: 'Mock range setting';
 		range: (0 to: 100 by: 5)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>settingTree [
+{ #category : #accessing }
+MockSettings class >> settingTree [
 	"self settingTree"
 	^ SettingTree new acceptableKeywords: (Array with: #mocksystemsettings)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>storedSettings [
+{ #category : #accessing }
+MockSettings class >> storedSettings [
 	"self storedSettings"
 	| builder |
 	builder := StoredSettingsFactory new.
 	^ self nodeSettings collect: [ :e | builder from: e ]
 ]
 
-{
-	#category : #'setting strings',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MockSettings class>>twoStoredSettingsSTONString [
+{ #category : #'setting strings' }
+MockSettings class >> twoStoredSettingsSTONString [
 	^ 
 '[
 	StoredSetting {

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RubCharacterBlockScanner,
 	#superclass : #RubCharacterScanner,
@@ -13,15 +10,11 @@ Class {
 		'nextLeftMargin',
 		'specialWidth'
 	],
-	#category : #Rubric-TextScanning,
-	#timestamp : ''
+	#category : #Rubric-TextScanning
 }
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterBlockScanner>>characterBlockAtPoint: aPoint index: index in: textLine [
+{ #category : #scanning }
+RubCharacterBlockScanner >> characterBlockAtPoint: aPoint index: index [ in: textLine
 	"This method is the Morphic characterBlock finder.  It combines
 	MVC's characterBlockAtPoint:, -ForIndex:, and buildCharcterBlock:in:"
 
@@ -85,19 +78,13 @@ RubCharacterBlockScanner>>characterBlockAtPoint: aPoint index: index in: textLin
 								extent: lastCharacterExtent) textLine: line ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterBlockScanner>>characterPointSetX: xVal [
+{ #category : #private }
+RubCharacterBlockScanner >> characterPointSetX: xVal [
 	characterPoint := xVal @ characterPoint y
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterBlockScanner>>cr  [
+{ #category : #'stop conditions' }
+RubCharacterBlockScanner >> cr [ 
 	"Answer a CharacterBlock that specifies the current location of the mouse 
 	relative to a carriage return stop condition that has just been 
 	encountered. The ParagraphEditor convention is to denote selections by 
@@ -124,11 +111,8 @@ RubCharacterBlockScanner>>cr  [
 		^true
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterBlockScanner>>crossedX [
+{ #category : #'stop conditions' }
+RubCharacterBlockScanner >> crossedX [
 	"Text display has wrapping. The scanner just found a character past the x 
 	location of the cursor. We know that the cursor is pointing at a character 
 	or before one."
@@ -181,11 +165,8 @@ RubCharacterBlockScanner>>crossedX [
 	^ true
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterBlockScanner>>endOfRun [
+{ #category : #'stop conditions' }
+RubCharacterBlockScanner >> endOfRun [
 	"Before arriving at the cursor location, the selection has encountered an 
 	end of run. Answer false if the selection continues, true otherwise. Set 
 	up indexes for building the appropriate CharacterBlock."
@@ -239,38 +220,26 @@ RubCharacterBlockScanner>>endOfRun [
 	^true
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterBlockScanner>>indentationLevel: anInteger [
+{ #category : #scanning }
+RubCharacterBlockScanner >> indentationLevel: anInteger [
 	super indentationLevel: anInteger.
 	nextLeftMargin := leftMargin.
 	indentationLevel timesRepeat: [
 		nextLeftMargin := self nextTabXFrom: nextLeftMargin]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterBlockScanner>>lastCharacterExtentSetX: xVal [
+{ #category : #private }
+RubCharacterBlockScanner >> lastCharacterExtentSetX: xVal [
 	lastCharacterExtent := xVal @ lastCharacterExtent y
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterBlockScanner>>lastSpaceOrTabExtentSetX: xVal [
+{ #category : #private }
+RubCharacterBlockScanner >> lastSpaceOrTabExtentSetX: xVal [
 	lastSpaceOrTabExtent := xVal @ lastSpaceOrTabExtent y
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterBlockScanner>>paddedSpace [
+{ #category : #'stop conditions' }
+RubCharacterBlockScanner >> paddedSpace [
 	"When the line is justified, the spaces will not be the same as the font's 
 	space character. A padding of extra space must be considered in trying 
 	to find which character the cursor is pointing at. Answer whether the 
@@ -291,11 +260,8 @@ RubCharacterBlockScanner>>paddedSpace [
 
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterBlockScanner>>placeEmbeddedObject: anchoredMorph [
+{ #category : #scanning }
+RubCharacterBlockScanner >> placeEmbeddedObject: anchoredMorph [
 	"Workaround: The following should really use #textAnchorType"
 	anchoredMorph relativeTextAnchorPosition ifNotNil:[^true].
 	(super placeEmbeddedObject: anchoredMorph) ifFalse: [^ false].
@@ -303,20 +269,14 @@ RubCharacterBlockScanner>>placeEmbeddedObject: anchoredMorph [
 	^ true
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterBlockScanner>>setFont [
+{ #category : #'stop conditions' }
+RubCharacterBlockScanner >> setFont [
 	specialWidth := nil.
 	super setFont
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterBlockScanner>>setStopConditions [
+{ #category : #'stop conditions' }
+RubCharacterBlockScanner >> setStopConditions [
 	"Set the font and the stop conditions for the current run."
 	
 	self setFont.
@@ -324,11 +284,8 @@ RubCharacterBlockScanner>>setStopConditions [
 
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCharacterBlockScanner>>tab [
+{ #category : #'stop conditions' }
+RubCharacterBlockScanner >> tab [
 	| currentX |
 	currentX := (alignment = Justified and: [self leadingTab not])
 		ifTrue:		"imbedded tabs in justified text are weird"

@@ -14,40 +14,27 @@ Class {
 		'id',
 		'creationTime'
 	],
-	#category : #System-SessionManager,
-	#timestamp : 'ChristopheDemarey 10/12/2015 16:03'
+	#category : #System-SessionManager
 }
 
-{
-	#category : #'deferred startup actions',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-WorkingSession>>addDeferredStartupAction: aBlock [
+{ #category : #'deferred startup actions' }
+WorkingSession >> addDeferredStartupAction: aBlock [
 	"Add the block to the list of actions that we will be performed immediately after the startup list is executed."
 	deferredStartupActions add: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-WorkingSession>>creationTime [
+{ #category : #accessing }
+WorkingSession >> creationTime [
 	^ creationTime
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-WorkingSession>>errorHandler [
+{ #category : #accessing }
+WorkingSession >> errorHandler [
 	^ UIManager default
 ]
 
-{
-	#category : #'deferred startup actions',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-WorkingSession>>executeDeferredStartupActions: resuming [
+{ #category : #'deferred startup actions' }
+WorkingSession >> executeDeferredStartupActions: resuming [
 	"Execute the deferred actions which where added during startup, 
 	resuming is true if the image was started fresh, false if we just saved an image"
 
@@ -59,66 +46,45 @@ WorkingSession>>executeDeferredStartupActions: resuming [
 			The current UI manager will handle the error." ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-WorkingSession>>id [
+{ #category : #accessing }
+WorkingSession >> id [
 	^ id ifNil: [ id := UUID new ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-WorkingSession>>initialize [
+{ #category : #initialization }
+WorkingSession >> initialize [
 	super initialize.
 	deferredStartupActions := OrderedCollection new.
 	creationTime := DateAndTime now
 ]
 
-{
-	#category : #'startup - shutdown',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-WorkingSession>>install [
+{ #category : #'startup - shutdown' }
+WorkingSession >> install [
 	manager installSession: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-WorkingSession>>manager: aSessionManager  [
+{ #category : #accessing }
+WorkingSession >> manager: aSessionManager [ 
 	manager := aSessionManager
 ]
 
-{
-	#category : #'startup - shutdown',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-WorkingSession>>runList: aList do: aBlock [
+{ #category : #'startup - shutdown' }
+WorkingSession >> runList: aList do: aBlock [
 	aList do: [ :each | 
 		[aBlock value: each] 
 			on: Exception
 			do: [ :error | self errorHandler handleError: error] ]
 ]
 
-{
-	#category : #'startup - shutdown',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-WorkingSession>>runShutdown: isImageQuitting [
+{ #category : #'startup - shutdown' }
+WorkingSession >> runShutdown: isImageQuitting [
 	self
 		runList: manager shutdownList
 		do: [ :each | each shutdown: isImageQuitting ]
 ]
 
-{
-	#category : #'startup - shutdown',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-WorkingSession>>runStartup: isImageStarting [
+{ #category : #'startup - shutdown' }
+WorkingSession >> runStartup: isImageStarting [
 	self
 		runList: manager startupList
 		do: [ :each | each startup: isImageStarting ].
@@ -126,11 +92,8 @@ WorkingSession>>runStartup: isImageStarting [
 	
 ]
 
-{
-	#category : #'startup - shutdown',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-WorkingSession>>start: isImageStarting [
+{ #category : #'startup - shutdown' }
+WorkingSession >> start: isImageStarting [
 	Smalltalk vm setGCParameters.
 	isImageStarting
 		ifTrue: [ Smalltalk clearExternalObjects ].
@@ -138,20 +101,14 @@ WorkingSession>>start: isImageStarting [
 	self runStartup: isImageStarting.
 ]
 
-{
-	#category : #'startup - shutdown',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-WorkingSession>>stop: isImageQuitting [
+{ #category : #'startup - shutdown' }
+WorkingSession >> stop: isImageQuitting [
 
 	Object flushDependents.
 	self runShutdown: isImageQuitting.
 ]
 
-{
-	#category : #'startup - shutdown',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-WorkingSession>>uninstall [
+{ #category : #'startup - shutdown' }
+WorkingSession >> uninstall [
 	manager uninstallSession: self
 ]

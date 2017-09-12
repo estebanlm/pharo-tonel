@@ -17,15 +17,11 @@ Class {
 		'unselectedLabel',
 		'selectedLabel'
 	],
-	#category : #Tool-Finder,
-	#timestamp : 'TorstenBergmann 2/4/2014 20:44'
+	#category : #Tool-Finder
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser class>>on: aModel unselectedItems: unselectedItems selectedItems: selectedItems selectedItemsSetterSelector: anotherSelector title: aString unselectedItemsLabel: unselectedLabel selectedItemsLabel: selectedLabel [
+{ #category : #'instance creation' }
+DialogItemsChooser class >> on: aModel unselectedItems: unselectedItems selectedItems: selectedItems selectedItemsSetterSelector: anotherSelector title: aString unselectedItemsLabel: unselectedLabel [ selectedItemsLabel: selectedLabel
 	| instance |
 	instance := self new 
 					model: aModel;
@@ -38,207 +34,135 @@ DialogItemsChooser class>>on: aModel unselectedItems: unselectedItems selectedIt
 	^instance.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>choicesList [
+{ #category : #accessing }
+DialogItemsChooser >> choicesList [
 	^ choicesList ifNil: [ choicesList := OrderedCollection new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>choicesList: anObject [
+{ #category : #accessing }
+DialogItemsChooser >> choicesList: anObject [
 
 	choicesList := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>initialize [
+{ #category : #initialization }
+DialogItemsChooser >> initialize [
 	super initialize.
 	selection := OrderedCollection new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>methodNameUI [
+{ #category : #accessing }
+DialogItemsChooser >> methodNameUI [
 
 	^ methodNameUI
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>methodNameUI: anObject [
+{ #category : #accessing }
+DialogItemsChooser >> methodNameUI: anObject [
 
 	methodNameUI := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>model [
+{ #category : #accessing }
+DialogItemsChooser >> model [
 	^model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>model: aModel [
+{ #category : #accessing }
+DialogItemsChooser >> model: aModel [
 	model := aModel
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>open [
+{ #category : #display }
+DialogItemsChooser >> open [
 
 	(DialogItemsChooserUI on: self)
 			title: self title;
 			openInWorld
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>resultList [
+{ #category : #accessing }
+DialogItemsChooser >> resultList [
 	^ resultList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>resultList: aList [
+{ #category : #accessing }
+DialogItemsChooser >> resultList: aList [
 	resultList := aList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>selectedItems [
+{ #category : #accessing }
+DialogItemsChooser >> selectedItems [
 
 	^ selectedItems
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>selectedItems: anObject [
+{ #category : #accessing }
+DialogItemsChooser >> selectedItems: anObject [
 
 	selectedItems := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>selectedItemsSetterSelector [
+{ #category : #accessing }
+DialogItemsChooser >> selectedItemsSetterSelector [
 	^selectedItemsSetterSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>selectedItemsSetterSelector: aSelector [
+{ #category : #accessing }
+DialogItemsChooser >> selectedItemsSetterSelector: aSelector [
 	selectedItemsSetterSelector := aSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>selectedLabel [
+{ #category : #accessing }
+DialogItemsChooser >> selectedLabel [
 	^selectedLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>selectedLabel: anObject [
+{ #category : #accessing }
+DialogItemsChooser >> selectedLabel: anObject [
 
 	selectedLabel := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>selection [
+{ #category : #accessing }
+DialogItemsChooser >> selection [
 	^selection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>sendSelection [
+{ #category : #accessing }
+DialogItemsChooser >> sendSelection [
 	self model perform: self selectedItemsSetterSelector with: self selectedItems
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>title [
+{ #category : #accessing }
+DialogItemsChooser >> title [
 		^title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>title: aFinderUI [
+{ #category : #accessing }
+DialogItemsChooser >> title: aFinderUI [
 	title := aFinderUI
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>unselectedItems [
+{ #category : #accessing }
+DialogItemsChooser >> unselectedItems [
 
 	^ unselectedItems
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>unselectedItems: anObject [
+{ #category : #accessing }
+DialogItemsChooser >> unselectedItems: anObject [
 
 	unselectedItems := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>unselectedLabel [
+{ #category : #accessing }
+DialogItemsChooser >> unselectedLabel [
 	^unselectedLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooser>>unselectedLabel: anObject [
+{ #category : #accessing }
+DialogItemsChooser >> unselectedLabel: anObject [
 
 	unselectedLabel := anObject
 ]

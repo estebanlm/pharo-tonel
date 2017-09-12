@@ -25,15 +25,11 @@ Class {
 	#classVars : [
 		'OptimizedMessages'
 	],
-	#category : #OpalCompiler-Core-Translator,
-	#timestamp : 'NicolaiHess 1/15/2017 22:45'
+	#category : #OpalCompiler-Core-Translator
 }
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator class>>initialize [
+{ #category : #initialize }
+OCASTTranslator class >> initialize [
 	"OCASTTranslator initialize"
 	
 	super initialize.
@@ -62,11 +58,8 @@ OCASTTranslator class>>initialize [
 	 } asDictionary
 ]
 
-{
-	#category : #errors,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>backendError: aMessage forNode: aNode [
+{ #category : #errors }
+OCASTTranslator >> backendError: aMessage forNode: aNode [
 		
 	SyntaxErrorNotification 	
 		inClass: Object
@@ -76,35 +69,23 @@ OCASTTranslator>>backendError: aMessage forNode: aNode [
 		location: aNode startWithoutParentheses
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>classForEffect [
+{ #category : #initialization }
+OCASTTranslator >> classForEffect [
 	^OCASTTranslatorForEffect
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>classForValue [
+{ #category : #initialization }
+OCASTTranslator >> classForValue [
 	^OCASTTranslatorForValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>compilationContext [
+{ #category : #accessing }
+OCASTTranslator >> compilationContext [
 	^methodBuilder compilationContext 
 ]
 
-{
-	#category : #'inline messages factored',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitAllButLastCases: cases [
+{ #category : #'inline messages factored' }
+OCASTTranslator >> emitAllButLastCases: cases [
 
 	|  assocMessageNode  |
 	
@@ -121,11 +102,8 @@ OCASTTranslator>>emitAllButLastCases: cases [
 	]
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitAnd: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitAnd: aMessageNode [
 
 	valueTranslator visitNode: aMessageNode receiver.
 	methodBuilder jumpAheadTo: #else if: false.
@@ -136,11 +114,8 @@ OCASTTranslator>>emitAnd: aMessageNode [
 	methodBuilder jumpAheadTarget: #end.
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitCaseOf: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitCaseOf: aMessageNode [
 
 	self 
 		emitCaseOf: aMessageNode 
@@ -149,11 +124,8 @@ OCASTTranslator>>emitCaseOf: aMessageNode [
 			methodBuilder send: #caseError ]
 ]
 
-{
-	#category : #'inline messages factored',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitCaseOf: aMessageNode otherwiseBlock: aBlock [
+{ #category : #'inline messages factored' }
+OCASTTranslator >> emitCaseOf: aMessageNode otherwiseBlock: aBlock [
 
 	| cases assocMessageNode  |
 	
@@ -182,22 +154,16 @@ OCASTTranslator>>emitCaseOf: aMessageNode otherwiseBlock: aBlock [
 		ifFalse: [self isEffectTranslator ifTrue: [methodBuilder popTop]].
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitCaseOfOtherwise: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitCaseOfOtherwise: aMessageNode [
 
 	self 
 		emitCaseOf: aMessageNode 
 		otherwiseBlock: [ valueTranslator visitInlinedBlockNode: aMessageNode arguments last ]
 ]
 
-{
-	#category : #'inline messages factored',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitCondition: args boolean: aBoolean [
+{ #category : #'inline messages factored' }
+OCASTTranslator >> emitCondition: args boolean: aBoolean [
 	"emits the jumps so that one of the 2 blocks in args is evaluated depending on boolean"
 	
 	methodBuilder jumpAheadTo: #else if: aBoolean.
@@ -208,40 +174,28 @@ OCASTTranslator>>emitCondition: args boolean: aBoolean [
 	methodBuilder jumpAheadTarget: #end.
 ]
 
-{
-	#category : #'inline messages factored',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitIf: aMessageNode boolean: aBoolean [
+{ #category : #'inline messages factored' }
+OCASTTranslator >> emitIf: aMessageNode boolean: aBoolean [
 
 	valueTranslator visitNode: aMessageNode receiver.
 	
 	self emitCondition: aMessageNode arguments boolean: aBoolean
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitIfFalse: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitIfFalse: aMessageNode [
 
 	self shouldBeSentToValueOrEffectTranslator
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitIfFalseIfTrue: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitIfFalseIfTrue: aMessageNode [
 
 	self emitIf: aMessageNode boolean: true
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitIfNil: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitIfNil: aMessageNode [
 
 	valueTranslator visitNode: aMessageNode receiver.
 	self isValueTranslator ifTrue: [ methodBuilder pushDup ].
@@ -254,11 +208,8 @@ OCASTTranslator>>emitIfNil: aMessageNode [
 
 ]
 
-{
-	#category : #'inline messages factored',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitIfNil: aMessageNode boolean: aBoolean [
+{ #category : #'inline messages factored' }
+OCASTTranslator >> emitIfNil: aMessageNode boolean: aBoolean [
 	| args notNilBlock |
 	
 	valueTranslator visitNode: aMessageNode receiver.
@@ -273,54 +224,36 @@ OCASTTranslator>>emitIfNil: aMessageNode boolean: aBoolean [
 	self emitCondition: args boolean: aBoolean
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitIfNilIfNotNil: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitIfNilIfNotNil: aMessageNode [
 	self emitIfNil: aMessageNode boolean: false
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitIfNotNil: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitIfNotNil: aMessageNode [
 
 	self shouldBeSentToValueOrEffectTranslator
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitIfNotNilIfNil: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitIfNotNilIfNil: aMessageNode [
 	self emitIfNil: aMessageNode boolean: true
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitIfTrue: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitIfTrue: aMessageNode [
 
 	self shouldBeSentToValueOrEffectTranslator
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitIfTrueIfFalse: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitIfTrueIfFalse: aMessageNode [
 	
 	self emitIf: aMessageNode boolean: false
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitMessageNode: aMessageNode [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> emitMessageNode: aMessageNode [
 
 	aMessageNode isCascaded ifFalse: [
 		valueTranslator visitNode: aMessageNode receiver].
@@ -332,11 +265,8 @@ OCASTTranslator>>emitMessageNode: aMessageNode [
 
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitOr: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitOr: aMessageNode [
 
 	valueTranslator visitNode: aMessageNode receiver.
 	methodBuilder jumpAheadTo: #else if: false.
@@ -347,11 +277,8 @@ OCASTTranslator>>emitOr: aMessageNode [
 	methodBuilder jumpAheadTarget: #end.
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitRepeat: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitRepeat: aMessageNode [
 	| block |
 	block := aMessageNode receiver.
 	methodBuilder jumpBackTarget: #start.
@@ -360,11 +287,8 @@ OCASTTranslator>>emitRepeat: aMessageNode [
 	self isValueTranslator ifTrue: [ methodBuilder pushLiteral: nil ]
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitTimesRepeat: aMessageNode  [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitTimesRepeat: aMessageNode [ 
 	| limit block limitEmit |
 	
 	limit := aMessageNode receiver.
@@ -400,11 +324,8 @@ OCASTTranslator>>emitTimesRepeat: aMessageNode  [
 	methodBuilder jumpAheadTarget: #done.
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitToByDo: aMessageNode  [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitToByDo: aMessageNode [ 
 
 	| step |
 	
@@ -415,20 +336,14 @@ OCASTTranslator>>emitToByDo: aMessageNode  [
 	self emitToDo: aMessageNode step: step
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitToDo: aMessageNode  [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitToDo: aMessageNode [ 
 	
 	self emitToDo: aMessageNode step: 1
 ]
 
-{
-	#category : #'inline messages factored',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitToDo: aMessageNode step: step [
+{ #category : #'inline messages factored' }
+OCASTTranslator >> emitToDo: aMessageNode step: step [
 	| limit block iterator limitEmit |
 	
 	limit := aMessageNode arguments first.
@@ -463,11 +378,8 @@ OCASTTranslator>>emitToDo: aMessageNode step: step [
 	methodBuilder jumpAheadTarget: #done.
 ]
 
-{
-	#category : #'inline messages factored',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitWhile: aMessageNode boolean: aBoolean [
+{ #category : #'inline messages factored' }
+OCASTTranslator >> emitWhile: aMessageNode boolean: aBoolean [
 
 	methodBuilder jumpBackTarget: #begin.
 	valueTranslator visitInlinedBlockNode: aMessageNode receiver.
@@ -478,29 +390,20 @@ OCASTTranslator>>emitWhile: aMessageNode boolean: aBoolean [
 	methodBuilder jumpAheadTarget: #end.
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitWhileFalse: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitWhileFalse: aMessageNode [
 
 	self emitWhile: aMessageNode boolean: true
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>emitWhileTrue: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslator >> emitWhileTrue: aMessageNode [
 
 	self emitWhile: aMessageNode boolean: false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>initialize [
+{ #category : #initialization }
+OCASTTranslator >> initialize [
 
 	methodBuilder := IRBuilder new.
 	effectTranslator := self as: self classForEffect.
@@ -511,44 +414,29 @@ OCASTTranslator>>initialize [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>ir [
+{ #category : #accessing }
+OCASTTranslator >> ir [
 
 	^ methodBuilder ir
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>isEffectTranslator [
+{ #category : #testing }
+OCASTTranslator >> isEffectTranslator [
 	^self == effectTranslator
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>isValueTranslator [
+{ #category : #testing }
+OCASTTranslator >> isValueTranslator [
 	^self == valueTranslator
 ]
 
-{
-	#category : #errors,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>shouldBeSentToValueOrEffectTranslator [
+{ #category : #errors }
+OCASTTranslator >> shouldBeSentToValueOrEffectTranslator [
 	self error: 'should be sent only to valueTranslator or effectTranslator'
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>translateFullBlock: aBlockNode [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> translateFullBlock: aBlockNode [
 	| argumentNames |
 	methodBuilder compilationContext: aBlockNode methodNode compilationContext.
 	
@@ -570,11 +458,8 @@ OCASTTranslator>>translateFullBlock: aBlockNode [
 	^ aBlockNode ir compiledBlock: aBlockNode scope
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitArrayNode: anArrayNode  [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitArrayNode: anArrayNode [ 
 
 	| elementNodes |
 	
@@ -585,22 +470,16 @@ OCASTTranslator>>visitArrayNode: anArrayNode  [
 	methodBuilder pushConsArray: elementNodes size.
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitAssignmentNode: anAssignmentNode  [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitAssignmentNode: anAssignmentNode [ 
 
 	valueTranslator visitNode: anAssignmentNode value.
 	anAssignmentNode variable binding emitStore: methodBuilder
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitBlockNode: aBlockNode [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitBlockNode: aBlockNode [
 	| tempNames argumentNames copiedNames |
 	aBlockNode arguments size >15 ifTrue: [self backendError: 'Too many arguments' forNode: aBlockNode ].
 	
@@ -630,11 +509,8 @@ OCASTTranslator>>visitBlockNode: aBlockNode [
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitCascadeNode: aCascadeNode  [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitCascadeNode: aCascadeNode [ 
 
 	valueTranslator visitNode: aCascadeNode receiver.
 	aCascadeNode messages allButLastDo: [:node |
@@ -645,22 +521,16 @@ OCASTTranslator>>visitCascadeNode: aCascadeNode  [
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitFullBlockNode: aBlockNode [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitFullBlockNode: aBlockNode [
 	| compiledBlock copiedNames |
 	compiledBlock := self compilationContext astTranslatorClass new translateFullBlock: aBlockNode.
 	copiedNames := (aBlockNode scope inComingCopiedVars asArray collect: [:each | each name]).
 	methodBuilder pushFullClosureCompiledBlock: compiledBlock copiedValues: copiedNames
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitInlinedBlockNode: anOptimizedBlockNode [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitInlinedBlockNode: anOptimizedBlockNode [
 
 	"We are visiting a scope that is not a block, but inlined in the outer context.
 	This means: 
@@ -693,11 +563,8 @@ OCASTTranslator>>visitInlinedBlockNode: anOptimizedBlockNode [
 	self visitNode: anOptimizedBlockNode body.
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitLargeArrayNode: aRBArrayNode  [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitLargeArrayNode: aRBArrayNode [ 
 	"Long form: generates (Array braceStream: N) nextPut: a; nextPut: b; ...; braceArray"
 	methodBuilder pushLiteralVariable: Array binding.
 	methodBuilder pushLiteral: aRBArrayNode statements size.
@@ -712,31 +579,22 @@ OCASTTranslator>>visitLargeArrayNode: aRBArrayNode  [
 				
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitLiteralArrayNode: aRBLiteralArrayNode  [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitLiteralArrayNode: aRBLiteralArrayNode [ 
 	 
 	methodBuilder pushLiteral: aRBLiteralArrayNode value.
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitLiteralNode: aLiteralNode [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitLiteralNode: aLiteralNode [
 
 	methodBuilder pushLiteral: aLiteralNode value.
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitMessageNode: aMessageNode [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitMessageNode: aMessageNode [
 	aMessageNode isInlined ifTrue: [
 		methodBuilder addLiteral: aMessageNode selector. "so searching for senders will work"
 		^self 
@@ -745,11 +603,8 @@ OCASTTranslator>>visitMessageNode: aMessageNode [
 	^ self emitMessageNode: aMessageNode
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitMethodNode: aMethodNode [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitMethodNode: aMethodNode [
 	
 	aMethodNode arguments size > 15 ifTrue: [self backendError: 'Too many arguments' forNode: aMethodNode ].
 
@@ -770,22 +625,16 @@ OCASTTranslator>>visitMethodNode: aMethodNode [
 	aMethodNode body lastIsReturn ifFalse:  [methodBuilder pushReceiver; returnTop]
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitNode: aNode [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitNode: aNode [
 	methodBuilder mapToNode: aNode.
 	super visitNode: aNode.
 	methodBuilder popMap.
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitParseErrorNode: anErrorNode   [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitParseErrorNode: anErrorNode [  
 	methodBuilder 
 		pushLiteralVariable: #error -> anErrorNode asSyntaxErrorNotification;
 		send: #signal.
@@ -793,22 +642,16 @@ OCASTTranslator>>visitParseErrorNode: anErrorNode   [
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitPragmaNode: aPragmaNode [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitPragmaNode: aPragmaNode [
 	methodBuilder addPragma: aPragmaNode asPragma.
 	aPragmaNode isPrimitiveError ifTrue: [
 		methodBuilder storeTemp: (aPragmaNode argumentAt: #error:) value].
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitReturnNode: aReturnNode  [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitReturnNode: aReturnNode [ 
 
 	valueTranslator visitNode: aReturnNode value.
 	methodBuilder returnTop.
@@ -816,20 +659,14 @@ OCASTTranslator>>visitReturnNode: aReturnNode  [
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitSequenceNode: aSequenceNode  [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitSequenceNode: aSequenceNode [ 
 
 	self shouldBeSentToValueOrEffectTranslator
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslator>>visitVariableNode: aVariableNode [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslator >> visitVariableNode: aVariableNode [
 	aVariableNode binding emitValue: methodBuilder
 	
 	

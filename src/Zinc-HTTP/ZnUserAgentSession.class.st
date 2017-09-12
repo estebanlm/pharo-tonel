@@ -13,94 +13,60 @@ Class {
 		'credentials',
 		'currentRealm'
 	],
-	#category : #Zinc-HTTP-Support,
-	#timestamp : 'SvenVanCaekenberghe 12/6/2010 13:04'
+	#category : #Zinc-HTTP-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUserAgentSession class>>withCookieJar: aCookieJar [
+{ #category : #'instance creation' }
+ZnUserAgentSession class >> withCookieJar: aCookieJar [
 	^ self new cookiejar: aCookieJar; yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUserAgentSession>>addCredential: aCredential [
+{ #category : #accessing }
+ZnUserAgentSession >> addCredential: aCredential [
 	self credentials at: aCredential domain, '@', aCredential realm put: aCredential 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUserAgentSession>>cookieJar [
+{ #category : #accessing }
+ZnUserAgentSession >> cookieJar [
 	^ cookiejar ifNil: [ cookiejar := ZnCookieJar new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUserAgentSession>>cookiejar: anObject [
+{ #category : #accessing }
+ZnUserAgentSession >> cookiejar: anObject [
 	cookiejar := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUserAgentSession>>credentialAt: aRealm forUrl: urlObject [
+{ #category : #accessing }
+ZnUserAgentSession >> credentialAt: aRealm forUrl: urlObject [
 	^ self credentials at: urlObject authority, '@', aRealm ifAbsent: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUserAgentSession>>credentials [
+{ #category : #accessing }
+ZnUserAgentSession >> credentials [
 	^ credentials ifNil: [ credentials := Dictionary new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUserAgentSession>>credentials: anObject [
+{ #category : #accessing }
+ZnUserAgentSession >> credentials: anObject [
 	credentials := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUserAgentSession>>credentialsForUrl: urlObject [
+{ #category : #accessing }
+ZnUserAgentSession >> credentialsForUrl: urlObject [
 	^ self credentials values select: [ :cred | urlObject authority includesSubstring: (cred domain) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUserAgentSession>>currentRealm [
+{ #category : #accessing }
+ZnUserAgentSession >> currentRealm [
 	^ currentRealm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUserAgentSession>>currentRealm: anObject [
+{ #category : #accessing }
+ZnUserAgentSession >> currentRealm: anObject [
 	currentRealm := anObject
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUserAgentSession>>resetCookies [
+{ #category : #operations }
+ZnUserAgentSession >> resetCookies [
 	cookiejar ifNotNil: [ cookiejar removeAll ]
 ]

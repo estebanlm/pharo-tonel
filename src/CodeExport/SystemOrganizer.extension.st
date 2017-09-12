@@ -1,12 +1,7 @@
-Extension {
-	#name : #SystemOrganizer
-}
+Extension { #name : #SystemOrganizer }
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>fileOut   [
+{ #category : #'*CodeExport' }
+SystemOrganizer >> fileOut [  
 	"SystemOrganization fileOut"
 
 	| internalStream |
@@ -22,11 +17,8 @@ SystemOrganizer>>fileOut   [
 
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>fileOutCategory: category  [
+{ #category : #'*CodeExport' }
+SystemOrganizer >> fileOutCategory: category [ 
 	"Store on the file named category (a string) concatenated with '.st' all the 
 	classes associated with the category."
 	
@@ -36,21 +28,15 @@ SystemOrganizer>>fileOutCategory: category  [
 	^ FileStream writeSourceCodeFrom: internalStream baseName: category isSt: true 
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>fileOutCategory: category on: aFileStream  [
+{ #category : #'*CodeExport' }
+SystemOrganizer >> fileOutCategory: category on: aFileStream [ 
 	"Store on the file associated with aFileStream, all the classes associated 
 	with the category and any requested shared pools."
 	^self fileOutCategory: category on: aFileStream initializing: true
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>fileOutCategory: category on: aFileStream initializing: aBool [
+{ #category : #'*CodeExport' }
+SystemOrganizer >> fileOutCategory: category on: aFileStream initializing: aBool [
 	"Store on the file associated with aFileStream, all the traits and classes associated 
 	with the category and any requested shared pools in the right order."
 

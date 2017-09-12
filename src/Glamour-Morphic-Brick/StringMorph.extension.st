@@ -1,12 +1,7 @@
-Extension {
-	#name : #StringMorph
-}
+Extension { #name : #StringMorph }
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-StringMorph>>brickImageForm: aColor [
+{ #category : #'*Glamour-Morphic-Brick' }
+StringMorph >> brickImageForm: aColor [
 	| canvas rect |
 	rect := self fullBounds origin extent: self measureContents.
 	canvas := Display defaultCanvasClass extent: rect extent depth: Display depth.

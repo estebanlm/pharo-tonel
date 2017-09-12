@@ -1,12 +1,7 @@
-Extension {
-	#name : #MetacelloMCVersion
-}
+Extension { #name : #MetacelloMCVersion }
 
-{
-	#category : #'*NautilusGroupAutoBuilder',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MetacelloMCVersion>>loadAndCreateGroupInNautilus [
+{ #category : #'*NautilusGroupAutoBuilder' }
+MetacelloMCVersion >> loadAndCreateGroupInNautilus [
 	self doLoadRequiredFromArray: self spec defaultPackageNames.
 	LoadedPackagesGroupCreatingCodeProvider
 		configurationName: spec project configuration class asString

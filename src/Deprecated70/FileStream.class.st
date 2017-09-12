@@ -18,36 +18,26 @@ Class {
 		'Stdout',
 		'TheStdioHandles'
 	],
-	#category : #Deprecated70,
-	#timestamp : '<historical>'
+	#category : #Deprecated70
 }
 
-{
-	#category : #'file reader services',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>changesFileSuffixes [
+{ #category : #'file reader services' }
+FileStream class >> changesFileSuffixes [
 
 	^#('changes')
 
 
 ]
 
-{
-	#category : #'concrete classes',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>concreteStream [
+{ #category : #'concrete classes' }
+FileStream class >> concreteStream [
 	"Who should we really direct class queries to?  "
 	^ MultiByteFileStream.
 
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>convertCRtoLF: fileName [
+{ #category : #utils }
+FileStream class >> convertCRtoLF: fileName [
 	"Convert the given file to LF line endings. Put the result in a file with the extention '.lf'"
 
 	| in out c justPutCR |
@@ -68,22 +58,16 @@ FileStream class>>convertCRtoLF: fileName [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>detectFile: aBlock do: anotherBlock [
+{ #category : #'instance creation' }
+FileStream class >> detectFile: aBlock do: anotherBlock [
 
 	^aBlock value
 		ifNil: [nil]
       	ifNotNil: [:file| [anotherBlock value: file] ensure: [file close]]
 ]
 
-{
-	#category : #'file reader services',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>fileIn: fullName [
+{ #category : #'file reader services' }
+FileStream class >> fileIn: fullName [
 	"File in the entire contents of the file specified by the name provided"
 
 	| ff fn |
@@ -97,29 +81,20 @@ FileStream class>>fileIn: fullName [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>fileNamed: fileName  [
+{ #category : #'instance creation' }
+FileStream class >> fileNamed: fileName [ 
 	^ self concreteStream fileNamed: (self fullName: fileName)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>fileNamed: fileName do: aBlock [
+{ #category : #'instance creation' }
+FileStream class >> fileNamed: fileName do: aBlock [
 	"Returns the result of aBlock."
 	
 	^ self detectFile: [ self fileNamed: fileName ] do: aBlock
 ]
 
-{
-	#category : #stdio,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>flushAndVoidStdioFiles [
+{ #category : #stdio }
+FileStream class >> flushAndVoidStdioFiles [
 
 	StdioFiles ifNotNil: [
 		StdioFiles do: [ :file |
@@ -133,131 +108,89 @@ FileStream class>>flushAndVoidStdioFiles [
 	self voidStdioFiles
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>forceNewFileNamed: fileName [
+{ #category : #'instance creation' }
+FileStream class >> forceNewFileNamed: fileName [
  	"Create a new file with the given name, and answer a stream opened for writing on that file. If the file already exists, delete it without asking before creating the new file."
 
 	^self concreteStream forceNewFileNamed: fileName
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>forceNewFileNamed: fileName do: aBlock [
+{ #category : #'instance creation' }
+FileStream class >> forceNewFileNamed: fileName do: aBlock [
 	"Returns the result of aBlock."
 	
 	^ self detectFile: [ self forceNewFileNamed: fileName ] do: aBlock
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>fullName: fileName [
+{ #category : #'instance creation' }
+FileStream class >> fullName: fileName [
 	^ fileName asFileReference fullName 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>initialize [
+{ #category : #initialize-release }
+FileStream class >> initialize [
 	TheStdioHandles := Array new: 3.
 	SessionManager default registerSystemClassNamed: self name
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>isAFileNamed: fName [
+{ #category : #'instance creation' }
+FileStream class >> isAFileNamed: fName [
 	"return whether a file exists with the given name"
 	^self concreteStream isAFileNamed: (self fullName: fName)
 ]
 
-{
-	#category : #'file reader services',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>isChangesFileSuffix: suffix [
+{ #category : #'file reader services' }
+FileStream class >> isChangesFileSuffix: suffix [
 
 	^ self changesFileSuffixes includes: suffix
 
 ]
 
-{
-	#category : #'file reader services',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>isSourceFileSuffix: suffix [
+{ #category : #'file reader services' }
+FileStream class >> isSourceFileSuffix: suffix [
 
 	^ self sourceFileSuffixes includes: suffix
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>new [
+{ #category : #'instance creation' }
+FileStream class >> new [
 	^ self basicNew
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>newFileNamed: fileName  [
+{ #category : #'instance creation' }
+FileStream class >> newFileNamed: fileName [ 
 	^ self concreteStream newFileNamed: (self fullName: fileName)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>newFileNamed: fileName do: aBlock [
+{ #category : #'instance creation' }
+FileStream class >> newFileNamed: fileName do: aBlock [
 	"Returns the result of aBlock."
 	
 	^ self detectFile: [ self newFileNamed: fileName ] do: aBlock
 ]
 
-{
-	#category : #stdio,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>newForStdio [
+{ #category : #stdio }
+FileStream class >> newForStdio [
 	"This is a hook for subclasses to initialize themselves properly."
 
 	^self new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>oldFileNamed: fileName  [
+{ #category : #'instance creation' }
+FileStream class >> oldFileNamed: fileName [ 
 	^ self concreteStream oldFileNamed: (self fullName: fileName)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>oldFileNamed: fileName do: aBlock [
+{ #category : #'instance creation' }
+FileStream class >> oldFileNamed: fileName do: aBlock [
 	"Returns the result of aBlock."
 	
 	^ self detectFile: [ self oldFileNamed: fileName ] do: aBlock
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>oldFileOrNoneNamed: fileName [
+{ #category : #'instance creation' }
+FileStream class >> oldFileOrNoneNamed: fileName [
 	"If the file exists, answer a read-only FileStream on it. If it doesn't, answer nil."
 
 	| fullName |
@@ -268,30 +201,21 @@ FileStream class>>oldFileOrNoneNamed: fileName [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>readOnlyFileNamed: fileName  [
+{ #category : #'instance creation' }
+FileStream class >> readOnlyFileNamed: fileName [ 
 	^ self concreteStream readOnlyFileNamed: (self fullName: fileName)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>readOnlyFileNamed: fileName do: aBlock [
+{ #category : #'instance creation' }
+FileStream class >> readOnlyFileNamed: fileName do: aBlock [
 	"Open the existing file with the given name for read-only access and pass it as argument to aBlock.
 	Returns the result of aBlock."
 	
 	^ self detectFile: [ self readOnlyFileNamed: fileName ] do: aBlock
 ]
 
-{
-	#category : #'file reader services',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>removeLineFeeds: fullName [
+{ #category : #'file reader services' }
+FileStream class >> removeLineFeeds: fullName [
 	| fileContents |
 	fileContents := ((FileStream readOnlyFileNamed: fullName) wantsLineEndConversion: true) contentsOfEntireFile.
 	(FileStream newFileNamed: fullName) 
@@ -299,39 +223,27 @@ FileStream class>>removeLineFeeds: fullName [
 		close.
 ]
 
-{
-	#category : #'dnd requests',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>requestDropStream: dropIndex [
+{ #category : #'dnd requests' }
+FileStream class >> requestDropStream: dropIndex [
 	"Request a read-only stream for some file that was dropped onto the application"
 	^self concreteStream new requestDropStream: dropIndex.
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>shutDown: isImageQuitting [
+{ #category : #'system startup' }
+FileStream class >> shutDown: isImageQuitting [
 	isImageQuitting ifTrue: [ self flushAndVoidStdioFiles ]
 ]
 
-{
-	#category : #'file reader services',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>sourceFileSuffixes [
+{ #category : #'file reader services' }
+FileStream class >> sourceFileSuffixes [
 
 	^#('st' 'cs')
 
 
 ]
 
-{
-	#category : #stdio,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>standardIOStreamNamed: moniker forWrite: forWrite [
+{ #category : #stdio }
+FileStream class >> standardIOStreamNamed: moniker forWrite: forWrite [
 	"Create if necessary and store default stdin, stdout and other files based on the their names"
 	
 	| index |
@@ -360,11 +272,8 @@ FileStream class>>standardIOStreamNamed: moniker forWrite: forWrite [
 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>startUp: isImageStarting [
+{ #category : #'system startup' }
+FileStream class >> startUp: isImageStarting [
 	isImageStarting
 		ifFalse: [ ^ self ].
 	self voidStdioFiles.
@@ -375,20 +284,14 @@ FileStream class>>startUp: isImageStarting [
 				ifFalse: [ TheStdioHandles := Array new: 3 ] ]
 ]
 
-{
-	#category : #stdio,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>stderr [
+{ #category : #stdio }
+FileStream class >> stderr [
 
 	^Stderr ifNil: [ Stderr := self standardIOStreamNamed: #stderr forWrite: true ]
 ]
 
-{
-	#category : #stdio,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>stdin [
+{ #category : #stdio }
+FileStream class >> stdin [
 
 	^Stdin ifNil: [
 		Stdin := self standardIOStreamNamed: #stdin forWrite: false.
@@ -397,29 +300,20 @@ FileStream class>>stdin [
 			yourself ].
 ]
 
-{
-	#category : #stdio,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>stdioHandles [
+{ #category : #stdio }
+FileStream class >> stdioHandles [
 	<primitive: 'primitiveFileStdioHandles' module: 'FilePlugin' error: ec>
 	self primitiveFailed
 ]
 
-{
-	#category : #stdio,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>stdout [
+{ #category : #stdio }
+FileStream class >> stdout [
 
 	^Stdout ifNil: [ Stdout := self standardIOStreamNamed: #stdout forWrite: true ]
 ]
 
-{
-	#category : #stdio,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>voidStdioFiles [
+{ #category : #stdio }
+FileStream class >> voidStdioFiles [
 		
 	Smalltalk os isWin32 ifTrue: [ 
 		{Stdout . Stderr } do: [ :each | 
@@ -436,11 +330,8 @@ FileStream class>>voidStdioFiles [
 	Stdin := Stdout := Stderr := StdioFiles := nil
 ]
 
-{
-	#category : #'*Deprecated70',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>writeSourceCodeFrom: aStream baseName: baseName isSt: stOrCsFlag [
+{ #category : #'*Deprecated70' }
+FileStream class >> writeSourceCodeFrom: aStream baseName: baseName isSt: stOrCsFlag [
 
 	| extension converter fileName  |
 	[ 	extension :=  stOrCsFlag ifTrue: ['.st']  ifFalse: ['.cs'].
@@ -468,75 +359,54 @@ FileStream class>>writeSourceCodeFrom: aStream baseName: baseName isSt: stOrCsFl
 	self inform: 'Filed out to: ', String cr, fileName.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>asBinaryOrTextStream [
+{ #category : #converting }
+FileStream >> asBinaryOrTextStream [
 	"I can switch between binary and text data"
 
 	^ self
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>ascii [
+{ #category : #modes }
+FileStream >> ascii [
 	"Set this file to ascii (text) mode."
 
 	self subclassResponsibility
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>atEnd [
+{ #category : #testing }
+FileStream >> atEnd [
 	"Answer true if the current position is >= the end of file position."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>binary [
+{ #category : #modes }
+FileStream >> binary [
 	"Set this file to binary mode."
 
 	self subclassResponsibility
 
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>close [
+{ #category : #open/close }
+FileStream >> close [
 	"Close this file."
 
 	self subclassResponsibility
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>closed [
+{ #category : #testing }
+FileStream >> closed [
 	"Answer true if this file is closed."
 
 	self subclassResponsibility
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>contents [
+{ #category : #accessing }
+FileStream >> contents [
 	"Return the contents of the receiver. Do not close or otherwise touch the receiver. Return data in whatever mode the receiver is in (e.g., binary or text)."
 	| s savePos |
 	savePos := self position.
@@ -546,11 +416,8 @@ FileStream>>contents [
 	^s
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>contentsOfEntireFile [
+{ #category : #accessing }
+FileStream >> contentsOfEntireFile [
 	"Read all of the contents of the receiver."
 
 	| s binary |
@@ -563,29 +430,20 @@ FileStream>>contentsOfEntireFile [
 	^s
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>directoryEntry [
+{ #category : #accessing }
+FileStream >> directoryEntry [
 	^(self directory / self localName) entry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>file [
+{ #category : #accessing }
+FileStream >> file [
 	"Answer the file for the page the receiver is streaming over."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #ToDeprecate,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>fileIn [
+{ #category : #ToDeprecate }
+FileStream >> fileIn [
 	"Guarantee that the receiver is readOnly before fileIn for efficiency and
 	to eliminate remote sharing conflicts."
 
@@ -593,11 +451,8 @@ FileStream>>fileIn [
 	CodeImporter evaluateFileStream: self.
 ]
 
-{
-	#category : #flushing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>flush [
+{ #category : #flushing }
+FileStream >> flush [
 	"When writing, this flushes the write buffer the stream uses to reduce
 	the number of write() system calls it makes. This should generally be
 	used before #sync, but on Windows they do the same thing."
@@ -606,70 +461,49 @@ FileStream>>flush [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>localName [
+{ #category : #accessing }
+FileStream >> localName [
 
 	^ self name asFileReference basename
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>longPrintOn: aStream [
+{ #category : #printing }
+FileStream >> longPrintOn: aStream [
 	"Do nothing, so it will print short.  Called to print the error file.  If the error was in a file operation, we can't read the contents of that file.  Just print its name instead."
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>longPrintOn: aStream limitedTo: sizeLimit indent: indent [
+{ #category : #printing }
+FileStream >> longPrintOn: aStream limitedTo: sizeLimit indent: indent [
 
 	"Do nothing, so it will print short.  Called to print the error file.  If the error was in a file operation, we can't read the contents of that file.  Just print its name instead."
 
 	aStream cr
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>mimeTypes [
+{ #category : #accessing }
+FileStream >> mimeTypes [
 	^ self name asFileReference mimeTypes.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>name [
+{ #category : #accessing }
+FileStream >> name [
 	"Answer the name of the file for the page the receiver is streaming over."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>next [
+{ #category : #accessing }
+FileStream >> next [
 
 	(position >= readLimit and: [self atEnd])
 		ifTrue: [^nil]
 		ifFalse: [^collection at: (position := position + 1)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>next: anInteger [
+{ #category : #accessing }
+FileStream >> next: anInteger [
 
 	| newCollection howManyRead increment |
 	newCollection := self collectionSpecies new: anInteger.
@@ -687,92 +521,65 @@ FileStream>>next: anInteger [
 	^newCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>nextPut: aByte [
+{ #category : #accessing }
+FileStream >> nextPut: aByte [
 	"1/31/96 sw: subclassResponsibility"
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>nextPutAll: aCollection [
+{ #category : #accessing }
+FileStream >> nextPutAll: aCollection [
 	"1/31/96 sw: made subclass responsibility"
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>position [
+{ #category : #positioning }
+FileStream >> position [
 	"Answer the current character position in the file."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>position: pos [
+{ #category : #positioning }
+FileStream >> position: pos [
 	"Set the current character position in the file to pos."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>printOn: aStream [
+{ #category : #printing }
+FileStream >> printOn: aStream [
 
 	super printOn: aStream.
 	aStream nextPutAll: ' on '.
 	self file printOn: aStream
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>readOnly [
+{ #category : #modes }
+FileStream >> readOnly [
 	"Set this file's mode to read-only."
 
 	self subclassResponsibility
 
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>readOnlyStream [
+{ #category : #modes }
+FileStream >> readOnlyStream [
 	^self readOnly
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>readWrite [
+{ #category : #modes }
+FileStream >> readWrite [
 	"Set this file's mode to read-write."
 
 	self subclassResponsibility
 
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>reopen [
+{ #category : #open/close }
+FileStream >> reopen [
 	"Ensure that the receiver is open, re-open it if necessary."
 	"Details: Files that were open when a snapshot occurs are no longer valid when the snapshot is resumed. This operation re-opens the file if that has happened."
 
@@ -780,53 +587,38 @@ FileStream>>reopen [
 
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>reset [
+{ #category : #positioning }
+FileStream >> reset [
 	"Set the current character position to the beginning of the file."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>setToEnd [
+{ #category : #positioning }
+FileStream >> setToEnd [
 	"Set the current character position to the end of the File. The same as
 	self position: self size."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>size [
+{ #category : #accessing }
+FileStream >> size [
 	"Answer the size of the file in characters."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>skip: n [
+{ #category : #positioning }
+FileStream >> skip: n [
 	"Set the character position to n characters from the current position.
 	Error if not enough characters left in the file."
  
 	self subclassResponsibility
 ]
 
-{
-	#category : #flushing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>sync [
+{ #category : #flushing }
+FileStream >> sync [
 	"When writing, this syncs any written/flushed data still in the kernel
 	file system buffers to disk. This should generally be used after #flush,
 	but on Windows they do the same thing."
@@ -835,22 +627,16 @@ FileStream>>sync [
 
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>text [
+{ #category : #modes }
+FileStream >> text [
 	"Set this file to text (ascii) mode."
 
 	self ascii.
 
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream>>truncate: pos [
+{ #category : #positioning }
+FileStream >> truncate: pos [
 	"Truncate file to pos"
 
 	self subclassResponsibility

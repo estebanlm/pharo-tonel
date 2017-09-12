@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #FLPharoPlatform,
 	#superclass : #FLPlatform,
-	#category : #FuelPlatform-Pharo-Core-FuelPlatform-Pharo-Core,
-	#timestamp : ''
+	#category : #FuelPlatform-Pharo-Core-FuelPlatform-Pharo-Core
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLPharoPlatform class>>addNativeBoostComponents [
+{ #category : #testing }
+FLPharoPlatform class >> addNativeBoostComponents [
 	Smalltalk
 		at: #NBExternalHandle
 		ifPresent: [ :handle | ^ self ].
@@ -23,11 +16,8 @@ FLPharoPlatform class>>addNativeBoostComponents [
 		category: self hacksCategoryName
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLPharoPlatform class>>addPackageManifest [
+{ #category : #testing }
+FLPharoPlatform class >> addPackageManifest [
 	Smalltalk
 		at: #PackageManifest
 		ifPresent: [ ^ self ].
@@ -39,11 +29,8 @@ FLPharoPlatform class>>addPackageManifest [
 		category: self hacksCategoryName
 ]
 
-{
-	#category : #private-hacks,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLPharoPlatform class>>basicAddHacks [
+{ #category : #private-hacks }
+FLPharoPlatform class >> basicAddHacks [
 	super basicAddHacks.
 	
 	self
@@ -51,51 +38,33 @@ FLPharoPlatform class>>basicAddHacks [
 		addPackageManifest
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLPharoPlatform class>>isResponsibleForCurrentPlatform [
+{ #category : #testing }
+FLPharoPlatform class >> isResponsibleForCurrentPlatform [
 	^ SystemVersion current version beginsWith: 'Pharo'
 ]
 
-{
-	#category : #accessing-system,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLPharoPlatform>>absolutePathOf: aString [
+{ #category : #accessing-system }
+FLPharoPlatform >> absolutePathOf: aString [
 	^ aString asFileReference fullName
 ]
 
-{
-	#category : #accessing-system,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLPharoPlatform>>imageName [
+{ #category : #accessing-system }
+FLPharoPlatform >> imageName [
 	^ Smalltalk image shortImageName
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLPharoPlatform>>isPharo [
+{ #category : #testing }
+FLPharoPlatform >> isPharo [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLPharoPlatform>>isSpur [
+{ #category : #testing }
+FLPharoPlatform >> isSpur [
 	^ true
 ]
 
-{
-	#category : #accessing-compiler,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLPharoPlatform>>renamedMethodCopyOf: aMethod selector: aSymbol [
+{ #category : #accessing-compiler }
+FLPharoPlatform >> renamedMethodCopyOf: aMethod selector: aSymbol [
 	| newMethod |
 	newMethod := aMethod ast
 		selector: aSymbol
@@ -104,11 +73,8 @@ FLPharoPlatform>>renamedMethodCopyOf: aMethod selector: aSymbol [
 	^ newMethod compiledMethod
 ]
 
-{
-	#category : #accessing-system,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLPharoPlatform>>useAuthor: aString during: aBlock [
+{ #category : #accessing-system }
+FLPharoPlatform >> useAuthor: aString during: aBlock [
 	(Smalltalk at: #Author)
 		useAuthor: aString
 		during: aBlock

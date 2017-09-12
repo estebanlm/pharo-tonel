@@ -8,24 +8,17 @@ Class {
 		'bytes',
 		'size'
 	],
-	#category : #FileSystem-Memory,
-	#timestamp : '<historical>'
+	#category : #FileSystem-Memory
 }
 
-{
-	#category : #stream-protocol,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>at: index [
+{ #category : #stream-protocol }
+MemoryFileSystemFile >> at: index [
 	self flag: #todo. "out of bounds checks?"
 	^ bytes at: index
 ]
 
-{
-	#category : #stream-protocol,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>at: index put: anObject [
+{ #category : #stream-protocol }
+MemoryFileSystemFile >> at: index put: anObject [
 	index > bytes size
 		 ifTrue: [ self grow ].
 		
@@ -36,11 +29,8 @@ MemoryFileSystemFile>>at: index put: anObject [
 	size := size max: index
 ]
 
-{
-	#category : #stream-protocol,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>at: index read: aCollection startingAt: start count: count  [
+{ #category : #stream-protocol }
+MemoryFileSystemFile >> at: index read: aCollection startingAt: start count: count [ 
 	| max stop |
 	max := size - index + 1 min: count.
 	stop := start + max - 1.
@@ -52,11 +42,8 @@ MemoryFileSystemFile>>at: index read: aCollection startingAt: start count: count
 	^ stop - start + 1
 ]
 
-{
-	#category : #stream-protocol,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>at: first write: aCollection startingAt: start count: count  [
+{ #category : #stream-protocol }
+MemoryFileSystemFile >> at: first write: aCollection startingAt: start count: count [ 
 	| last |
 	last := first + count - 1.
 	last > bytes size ifTrue: [ self grownBy: last - size ].
@@ -68,111 +55,72 @@ MemoryFileSystemFile>>at: first write: aCollection startingAt: start count: coun
 	size := last
 ]
 
-{
-	#category : #streams-compatibility,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>binaryReadStream [
+{ #category : #streams-compatibility }
+MemoryFileSystemFile >> binaryReadStream [
 	^ ReadStream on: self bytes from: 1 to: size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>bytes [
+{ #category : #accessing }
+MemoryFileSystemFile >> bytes [
 	^ bytes
 ]
 
-{
-	#category : #stream-protocol,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>copyFrom: from to: position [
+{ #category : #stream-protocol }
+MemoryFileSystemFile >> copyFrom: from to: position [
 	^ bytes copyFrom: from to: position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>fileSize [
+{ #category : #accessing }
+MemoryFileSystemFile >> fileSize [
 	^ size
 ]
 
-{
-	#category : #stream-protocol,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>grow [
+{ #category : #stream-protocol }
+MemoryFileSystemFile >> grow [
 	self grownBy: self sizeIncrement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>grownBy: length [
+{ #category : #accessing }
+MemoryFileSystemFile >> grownBy: length [
 	bytes := bytes grownBy: length.
 	
 	self modified.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>initialize [
+{ #category : #initialization }
+MemoryFileSystemFile >> initialize [
 	super initialize.
 	bytes := #[].
 	size := 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>internalSize [
+{ #category : #accessing }
+MemoryFileSystemFile >> internalSize [
 	^ bytes size
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>isDirectory [
+{ #category : #testing }
+MemoryFileSystemFile >> isDirectory [
 	^ false
 ]
 
-{
-	#category : #stream-protocol,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>readStream [
+{ #category : #stream-protocol }
+MemoryFileSystemFile >> readStream [
 	^ ReadStream on: self bytes asString from: 1 to: size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>sizeIncrement [
+{ #category : #accessing }
+MemoryFileSystemFile >> sizeIncrement [
 	^ (bytes size min: 20) max: 1024
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>truncate [
+{ #category : #accessing }
+MemoryFileSystemFile >> truncate [
 	self truncateTo: size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>truncateTo: aSize [
+{ #category : #accessing }
+MemoryFileSystemFile >> truncateTo: aSize [
 	bytes size = aSize
 		ifFalse: [bytes := bytes size < aSize
 			ifTrue: [(ByteArray new: aSize)
@@ -182,20 +130,14 @@ MemoryFileSystemFile>>truncateTo: aSize [
 	self modified.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>updateSize: newSize [
+{ #category : #private }
+MemoryFileSystemFile >> updateSize: newSize [
 	size := newSize.
 	modificationTime := nil
 ]
 
-{
-	#category : #stream-protocol,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemFile>>writeStreamDo: aBlock [
+{ #category : #stream-protocol }
+MemoryFileSystemFile >> writeStreamDo: aBlock [
 	| stream |
 	stream := WriteStream on: ByteArray new.
 	[ aBlock value: stream ] ensure: [ stream close ].

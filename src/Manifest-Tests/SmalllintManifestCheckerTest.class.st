@@ -7,25 +7,18 @@ Class {
 	#instVars : [
 		'checker'
 	],
-	#category : #Manifest-Tests,
-	#timestamp : 'TorstenBergmann 2/19/2014 08:34'
+	#category : #Manifest-Tests
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SmalllintManifestCheckerTest class>>DoIt [
+{ #category : #'as yet unclassified' }
+SmalllintManifestCheckerTest class >> DoIt [
 	^ MCWorkingCopy
 		managersForClass: MFClassA
 		do: [:p | ^ p first] 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SmalllintManifestCheckerTest>>cleaningResources [
+{ #category : #running }
+SmalllintManifestCheckerTest >> cleaningResources [
 	Smalltalk globals
 		at: #ManifestManifestResourcesTests
 		ifPresent: [ :cl | 
@@ -34,20 +27,14 @@ SmalllintManifestCheckerTest>>cleaningResources [
 				removeFromSystemUnlogged ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SmalllintManifestCheckerTest>>package  [
+{ #category : #private }
+SmalllintManifestCheckerTest >> package [ 
 	MCWorkingCopy managersForClass: MFClassA  do: [:p | ^ p packageSet packages first].
 	" should be equivalent to RPackageOrganizer default packageNamed: #'Manifest-Resources-Tests' "
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SmalllintManifestCheckerTest>>setUp [
+{ #category : #running }
+SmalllintManifestCheckerTest >> setUp [
 	| bm |
 	self cleaningResources.
 	bm := TheManifestBuilder of: MFClassA.
@@ -63,21 +50,15 @@ SmalllintManifestCheckerTest>>setUp [
 	checker := ReSmalllintChecker new
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SmalllintManifestCheckerTest>>tearDown [
+{ #category : #running }
+SmalllintManifestCheckerTest >> tearDown [
 	
 	self cleaningResources.
 	ASTCache reset
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SmalllintManifestCheckerTest>>testCriticsOf [
+{ #category : #tests }
+SmalllintManifestCheckerTest >> testCriticsOf [
 
 	| rule critiques |
 	rule := ReRuleManager visibleRuleClasses collect: #new.
@@ -96,11 +77,8 @@ SmalllintManifestCheckerTest>>testCriticsOf [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SmalllintManifestCheckerTest>>testIsFalsePositive  [
+{ #category : #tests }
+SmalllintManifestCheckerTest >> testIsFalsePositive [ 
 
 	| rule |
 	rule  := ReRuleManager visibleRuleClasses collect: #new.
@@ -115,11 +93,8 @@ SmalllintManifestCheckerTest>>testIsFalsePositive  [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SmalllintManifestCheckerTest>>testIsToDo [
+{ #category : #tests }
+SmalllintManifestCheckerTest >> testIsToDo [
 
 	| rule |
 	rule  := ReRuleManager visibleRuleClasses collect: #new.
@@ -134,11 +109,8 @@ SmalllintManifestCheckerTest>>testIsToDo [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SmalllintManifestCheckerTest>>testToDoOf [
+{ #category : #tests }
+SmalllintManifestCheckerTest >> testToDoOf [
 
 	| rule |
 	rule := ReRuleManager visibleRuleClasses collect: #new.

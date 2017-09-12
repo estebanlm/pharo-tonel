@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCFileTreeRepository
-}
+Extension { #name : #MCFileTreeRepository }
 
-{
-	#category : #'*metacello-filetree',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCFileTreeRepository>>metacelloProjectClassFor: aScriptEngine [
+{ #category : #'*metacello-filetree' }
+MCFileTreeRepository >> metacelloProjectClassFor: aScriptEngine [
 
     aScriptEngine versionString isEmptyOrNil
         ifFalse: [ 
@@ -16,11 +11,8 @@ MCFileTreeRepository>>metacelloProjectClassFor: aScriptEngine [
     ^ MetacelloMCBaselineProject
 ]
 
-{
-	#category : #'*metacello-filetree',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCFileTreeRepository>>repositoryBranchName [
+{ #category : #'*metacello-filetree' }
+MCFileTreeRepository >> repositoryBranchName [
   "extract a branch name from the repository ... if possible"
 
   (MetacelloPlatform current gitBranchNameFor: self directory fullName)
@@ -28,20 +20,14 @@ MCFileTreeRepository>>repositoryBranchName [
   ^ super repositoryBranchName
 ]
 
-{
-	#category : #'*metacello-filetree',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCFileTreeRepository>>repositoryDescription [
+{ #category : #'*metacello-filetree' }
+MCFileTreeRepository >> repositoryDescription [
   ^ self description , ' [' , self repositoryVersionString , ':'
     , self repositoryBranchName , ']'
 ]
 
-{
-	#category : #'*metacello-filetree',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCFileTreeRepository>>repositoryVersionString [
+{ #category : #'*metacello-filetree' }
+MCFileTreeRepository >> repositoryVersionString [
   "extract a version string from the repository ... if possible"
 
   (MetacelloPlatform current gitCommitShaFor: self directory fullName)

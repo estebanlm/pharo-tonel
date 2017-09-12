@@ -18,15 +18,11 @@ Class {
 		'BackslashConstants',
 		'BackslashSpecials'
 	],
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:13'
+	#category : #Regex-Core
 }
 
-{
-	#category : #DOCUMENTATION,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>a: x introduction: xx  [
+{ #category : #DOCUMENTATION }
+RxParser class >> a: x introduction: xx [ 
 " 
 A regular expression is a template specifying a class of strings. A
 regular expression matcher is an tool that determines whether a string
@@ -68,11 +64,8 @@ April 4, 1999
 	self error: 'comment only'
 ]
 
-{
-	#category : #DOCUMENTATION,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>b: x whatsNewInThisRelease: xx [
+{ #category : #DOCUMENTATION }
+RxParser class >> b: x whatsNewInThisRelease: xx [
 "
 VERSION 1.3.1 (September 2008)
 1. Updated documentation of character classes, making clear the problems of locale - an area for future improvement
@@ -238,11 +231,8 @@ October 3, 1999
 	self error: 'comment only'
 ]
 
-{
-	#category : #DOCUMENTATION,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>c: x syntax: xx [
+{ #category : #DOCUMENTATION }
+RxParser class >> c: x syntax: xx [
 " 
 
 [You can select and `print it' examples in this method. Just don't
@@ -502,11 +492,8 @@ general number format: anything like 999, or 999.999, or -999.999e+21.
 	self error: 'comment only'
 ]
 
-{
-	#category : #DOCUMENTATION,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>d: x usage: xx [
+{ #category : #DOCUMENTATION }
+RxParser class >> d: x usage: xx [
 " 
 The preceding section covered the syntax of regular expressions. It
 used the simplest possible interface to the matcher: sending
@@ -795,11 +782,8 @@ VisualAge:
 	self error: 'comment only'
 ]
 
-{
-	#category : #'exception signaling',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>doHandlingMessageNotUnderstood: aBlock [
+{ #category : #'exception signaling' }
+RxParser class >> doHandlingMessageNotUnderstood: aBlock [
 	"MNU should be trapped and resignaled as a match error in a few places in the matcher.
 	This method factors out this dialect-dependent code to make porting easier."
 	^ aBlock
@@ -807,11 +791,8 @@ RxParser class>>doHandlingMessageNotUnderstood: aBlock [
 		do: [:ex | RxParser signalMatchException: 'invalid predicate selector']
 ]
 
-{
-	#category : #DOCUMENTATION,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>e: x implementationNotes: xx [
+{ #category : #DOCUMENTATION }
+RxParser class >> e: x implementationNotes: xx [
 "	
 	Version:		1.1
 	Released:		October 1999
@@ -877,11 +858,8 @@ comp.lang.smalltalk or comp.lang.lisp.
 	self error: 'comment only'
 ]
 
-{
-	#category : #DOCUMENTATION,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>f: x boringStuff: xx [
+{ #category : #DOCUMENTATION }
+RxParser class >> f: x boringStuff: xx [
 "
 The Regular Expression Matcher (``The Software'') 
 is Copyright (C) 1996, 1999 Vassili Bykov.  
@@ -920,22 +898,16 @@ It is provided to the Smalltalk community in hope it will be useful.
 	self error: 'comment only'
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>initialize [
+{ #category : #'class initialization' }
+RxParser class >> initialize [
 	"self initialize"
 	self
 		initializeBackslashConstants;
 		initializeBackslashSpecials
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>initializeBackslashConstants [
+{ #category : #'class initialization' }
+RxParser class >> initializeBackslashConstants [
 	"self initializeBackslashConstants"
 
 	(BackslashConstants := Dictionary new)
@@ -946,11 +918,8 @@ RxParser class>>initializeBackslashConstants [
 		at: $t put: Character tab
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>initializeBackslashSpecials [
+{ #category : #'class initialization' }
+RxParser class >> initializeBackslashSpecials [
 	"Keys are characters that normally follow a \, the values are
 	associations of classes and initialization selectors on the instance side
 	of the classes."
@@ -969,22 +938,16 @@ RxParser class>>initializeBackslashSpecials [
 		at: $> put: (Association key: RxsContextCondition value: #beEndOfWord)
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>parse: aString [
+{ #category : #utilities }
+RxParser class >> parse: aString [
 	"Parse the argument and return the result (the parse tree).
 	In case of a syntax error, the corresponding exception is signaled."
 
 	^self new parse: aString
 ]
 
-{
-	#category : #preferences,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>preferredMatcherClass [
+{ #category : #preferences }
+RxParser class >> preferredMatcherClass [
 	"The matcher to use. For now just one is available, but in
 	principle this determines the matchers built implicitly,
 	such as by String>>asRegex, or String>>matchesRegex:.
@@ -994,54 +957,36 @@ RxParser class>>preferredMatcherClass [
 	^RxMatcher
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>safelyParse: aString [
+{ #category : #utilities }
+RxParser class >> safelyParse: aString [
 	"Parse the argument and return the result (the parse tree).
 	In case of a syntax error, return nil.
 	Exception handling here is dialect-dependent."
 	^ [self new parse: aString] on: RegexSyntaxError do: [:ex | nil]
 ]
 
-{
-	#category : #'exception signaling',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>signalCompilationException: errorString [
+{ #category : #'exception signaling' }
+RxParser class >> signalCompilationException: errorString [
 	RegexCompilationError new signal: errorString
 ]
 
-{
-	#category : #'exception signaling',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>signalMatchException: errorString [
+{ #category : #'exception signaling' }
+RxParser class >> signalMatchException: errorString [
 	RegexMatchingError new signal: errorString
 ]
 
-{
-	#category : #'exception signaling',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>signalSyntaxException: errorString [
+{ #category : #'exception signaling' }
+RxParser class >> signalSyntaxException: errorString [
 	RegexSyntaxError new signal: errorString
 ]
 
-{
-	#category : #'exception signaling',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser class>>signalSyntaxException: errorString at: errorPosition [
+{ #category : #'exception signaling' }
+RxParser class >> signalSyntaxException: errorString at: errorPosition [
 	RegexSyntaxError signal: errorString at: errorPosition
 ]
 
-{
-	#category : #'recursive descent',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>atom [
+{ #category : #'recursive descent' }
+RxParser >> atom [
 	"An atom is one of a lot of possibilities, see below."
 
 	| atom |
@@ -1115,11 +1060,8 @@ RxParser>>atom [
 	^atom
 ]
 
-{
-	#category : #'recursive descent',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>branch [
+{ #category : #'recursive descent' }
+RxParser >> branch [
 	"<branch> ::= e | <piece> <branch>"
 
 	| piece branch |
@@ -1134,11 +1076,8 @@ RxParser>>branch [
 		branch: branch
 ]
 
-{
-	#category : #'recursive descent',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>characterSet [
+{ #category : #'recursive descent' }
+RxParser >> characterSet [
 	"Match a range of characters: something between `[' and `]'.
 	Opening bracked has already been seen, and closing should
 	not be consumed as well. Set spec is as usual for
@@ -1156,11 +1095,8 @@ RxParser>>characterSet [
 	^self characterSetFrom: spec
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>characterSetFrom: setSpec [
+{ #category : #private }
+RxParser >> characterSetFrom: setSpec [
 	"<setSpec> is what goes between the brackets in a charset regex
 	(a String). Make a string containing all characters the spec specifies.
 	Spec is never empty."
@@ -1176,11 +1112,8 @@ RxParser>>characterSetFrom: setSpec [
 		negated: negated
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>ifSpecial: aCharacter then: aBlock [
+{ #category : #private }
+RxParser >> ifSpecial: aCharacter then: aBlock [
 	"If the character is such that it defines a special node when follows a $\,
 	then create that node and evaluate aBlock with the node as the parameter.
 	Otherwise just return."
@@ -1190,11 +1123,8 @@ RxParser>>ifSpecial: aCharacter then: aBlock [
 	^aBlock value: (classAndSelector key new perform: classAndSelector value)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>inputUpTo: aCharacter errorMessage: aString [
+{ #category : #private }
+RxParser >> inputUpTo: aCharacter errorMessage: aString [
 	"Accumulate input stream until <aCharacter> is encountered
 	and answer the accumulated chars as String, not including
 	<aCharacter>. Signal error if end of stream is encountered,
@@ -1211,11 +1141,8 @@ RxParser>>inputUpTo: aCharacter errorMessage: aString [
 	^accumulator contents
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>inputUpTo: aCharacter nestedOn: anotherCharacter errorMessage: aString  [
+{ #category : #private }
+RxParser >> inputUpTo: aCharacter nestedOn: anotherCharacter errorMessage: aString [ 
 	"Accumulate input stream until <aCharacter> is encountered
 	and answer the accumulated chars as String, not including
 	<aCharacter>. Signal error if end of stream is encountered,
@@ -1233,11 +1160,8 @@ RxParser>>inputUpTo: aCharacter nestedOn: anotherCharacter errorMessage: aString
 	^accumulator contents
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>inputUpToAny: aDelimiterString errorMessage: aString [
+{ #category : #private }
+RxParser >> inputUpToAny: aDelimiterString errorMessage: aString [
 	"Accumulate input stream until any character from <aDelimiterString> is encountered
 	and answer the accumulated chars as String, not including the matched characters from the
 	<aDelimiterString>. Signal error if end of stream is encountered,
@@ -1254,11 +1178,8 @@ RxParser>>inputUpToAny: aDelimiterString errorMessage: aString [
 	^accumulator contents
 ]
 
-{
-	#category : #'recursive descent',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>lookAround [
+{ #category : #'recursive descent' }
+RxParser >> lookAround [
 	"Parse a lookaround expression after: (?<lookround>) 
 	<lookround> ::= !<regex> | =<regex>"
 	| lookaround |
@@ -1273,11 +1194,8 @@ RxParser>>lookAround [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>match: aCharacter [
+{ #category : #private }
+RxParser >> match: aCharacter [
 	"<aCharacter> MUST match the current lookeahead.
 	If this is the case, advance the input. Otherwise, blow up."
 
@@ -1286,11 +1204,8 @@ RxParser>>match: aCharacter [
 	self next
 ]
 
-{
-	#category : #'recursive descent',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>messagePredicate [
+{ #category : #'recursive descent' }
+RxParser >> messagePredicate [
 	"Match a message predicate specification: a selector (presumably
 	understood by a Character) enclosed in :'s ."
 
@@ -1306,11 +1221,8 @@ RxParser>>messagePredicate [
 		negated: negated
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>next [
+{ #category : #private }
+RxParser >> next [
 	"Advance the input storing the just read character
 	as the lookahead."
 
@@ -1319,11 +1231,8 @@ RxParser>>next [
 		ifFalse: [lookahead := input next]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>parse: aString [
+{ #category : #accessing }
+RxParser >> parse: aString [
 	"Parse input from a string <aString>.
 	On success, answers an RxsRegex -- parse tree root.
 	On error, raises `RxParser syntaxErrorSignal' with the current
@@ -1332,11 +1241,8 @@ RxParser>>parse: aString [
 	^self parseStream: (ReadStream on: aString)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>parseStream: aStream [
+{ #category : #accessing }
+RxParser >> parseStream: aStream [
 	"Parse an input from a character stream <aStream>.
 	On success, answers an RxsRegex -- parse tree root.
 	On error, raises `RxParser syntaxErrorSignal' with the current
@@ -1351,11 +1257,8 @@ RxParser>>parseStream: aStream [
 	^tree
 ]
 
-{
-	#category : #'recursive descent',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>piece [
+{ #category : #'recursive descent' }
+RxParser >> piece [
 	"<piece> ::= <atom> | <atom>* | <atom>+ | <atom>? | <atom>{<number>,<number>}"
 
 	| atom |
@@ -1390,11 +1293,8 @@ RxParser>>piece [
 	^ RxsPiece new initializeAtom: atom
 ]
 
-{
-	#category : #'recursive descent',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>quantifiedAtom: atom [
+{ #category : #'recursive descent' }
+RxParser >> quantifiedAtom: atom [
 	"Parse a quanitifer expression which can have one of the following forms
 		{<min>,<max>}    match <min> to <max> occurences
 		{<minmax>}       which is the same as with repeated limits: {<number>,<number>}
@@ -1421,11 +1321,8 @@ RxParser>>quantifiedAtom: atom [
 		max: max
 ]
 
-{
-	#category : #'recursive descent',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>regex [
+{ #category : #'recursive descent' }
+RxParser >> regex [
 	"<regex> ::= e | <branch> `|' <regex>"
 
 	| branch regex |
@@ -1441,29 +1338,20 @@ RxParser>>regex [
 	^RxsRegex new initializeBranch: branch regex: regex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>signalNullableClosureParserError [
+{ #category : #private }
+RxParser >> signalNullableClosureParserError [
 	self signalParseError: ' nullable closure'.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>signalParseError [
+{ #category : #private }
+RxParser >> signalParseError [
 
 	self class 
 		signalSyntaxException: 'Regex syntax error' at: input position
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxParser>>signalParseError: aString [
+{ #category : #private }
+RxParser >> signalParseError: aString [
 
 	self class signalSyntaxException: aString at: input position
 ]

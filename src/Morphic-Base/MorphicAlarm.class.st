@@ -26,42 +26,29 @@ Class {
 		'scheduledTime',
 		'numArgs'
 	],
-	#category : #Morphic-Base-Events,
-	#timestamp : 'LaurentLaffont 3/4/2011 22:45'
+	#category : #Morphic-Base-Events
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicAlarm class>>scheduledAt: scheduledTime receiver: aTarget selector: aSelector arguments: argArray [
+{ #category : #'instance creation' }
+MorphicAlarm class >> scheduledAt: scheduledTime receiver: aTarget selector: aSelector arguments: argArray [
 	^(self receiver: aTarget selector: aSelector arguments: argArray)
 		scheduledTime: scheduledTime.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicAlarm>>scheduledTime [
+{ #category : #accessing }
+MorphicAlarm >> scheduledTime [
 	"Return the time (in milliseconds) that the receiver is scheduled to be executed"
 	^scheduledTime
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicAlarm>>scheduledTime: msecs [
+{ #category : #accessing }
+MorphicAlarm >> scheduledTime: msecs [
 	"Set the time (in milliseconds) that the receiver is scheduled to be executed"
 	scheduledTime := msecs
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicAlarm>>value: anArgument [
+{ #category : #evaluating }
+MorphicAlarm >> value: anArgument [
 	| nArgs |
 	numArgs ifNil:[numArgs := selector numArgs].
 	nArgs := arguments ifNil:[0] ifNotNil:[arguments size].

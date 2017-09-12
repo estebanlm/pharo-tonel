@@ -42,31 +42,21 @@ Class {
 	#classInstVars : [
 		'localeAnnouncer'
 	],
-	#category : #System-Localization-Locales,
-	#timestamp : '<historical>'
+	#category : #System-Localization-Locales
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>activated [
+{ #category : #settings }
+Locale class >> activated [
 	^ Activated ifNil: [Activated := false]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>activated: aBoolean [
+{ #category : #settings }
+Locale class >> activated: aBoolean [
 	Activated := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>current [
+{ #category : #accessing }
+Locale class >> current [
 	"Current := nil"
 	Current ifNil: [
 		Current := self determineCurrentLocale.
@@ -74,31 +64,22 @@ Locale class>>current [
 	^Current
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>currentPlatform [
+{ #category : #accessing }
+Locale class >> currentPlatform [
 	"CurrentPlatform := nil"
 	CurrentPlatform ifNil: [CurrentPlatform := self determineCurrentLocale].
 	^CurrentPlatform
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>currentPlatform: locale [
+{ #category : #accessing }
+Locale class >> currentPlatform: locale [
 	CurrentPlatform := locale.
 	LanguageEnvironment startUp.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>currentPlatform: locale during: aBlock  [
+{ #category : #accessing }
+Locale class >> currentPlatform: locale during: aBlock [ 
 	"Alter current language platform during a block"
 	| backupPlatform |
 	backupPlatform := self currentPlatform.
@@ -107,11 +88,8 @@ Locale class>>currentPlatform: locale during: aBlock  [
 		ensure: [self currentPlatform: backupPlatform]
 ]
 
-{
-	#category : #'platform specific',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>defaultEncodingName: languageSymbol  [
+{ #category : #'platform specific' }
+Locale class >> defaultEncodingName: languageSymbol [ 
 	| encodings platformName osVersion |
 	platformName := Smalltalk os platformName.
 	osVersion := Smalltalk os version.
@@ -123,22 +101,16 @@ Locale class>>defaultEncodingName: languageSymbol  [
 	^encodings at: #default
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>defaultLocales [
+{ #category : #private }
+Locale class >> defaultLocales [
 	
 	"return IDs of default locales"
 	
 	^ #(de en ja 'ja-kids' nl no sv)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>determineCurrentLocale [
+{ #category : #private }
+Locale class >> determineCurrentLocale [
 	"For now just return the default locale.
 	A smarter way would be to determine the current platforms default locale."
 	"Locale determineCurrentLocale"
@@ -146,11 +118,8 @@ Locale class>>determineCurrentLocale [
 	^self new determineLocale
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>initKnownLocales [
+{ #category : #private }
+Locale class >> initKnownLocales [
 	| locales |
 	locales := Dictionary new.
 
@@ -160,20 +129,14 @@ Locale class>>initKnownLocales [
 	^locales
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>initialize [
+{ #category : #initialization }
+Locale class >> initialize [
 	SessionManager default 
 		registerSystemClassNamed: self name
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>initializePlatformEncodings [
+{ #category : #initialization }
+Locale class >> initializePlatformEncodings [
 	"Locale initializePlatformEncodings"
 
 	| platform |
@@ -203,80 +166,53 @@ Locale class>>initializePlatformEncodings [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>isoLanguage: isoLanguage [
+{ #category : #accessing }
+Locale class >> isoLanguage: isoLanguage [
 	^self isoLanguage: isoLanguage isoCountry: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>isoLanguage: isoLanguage isoCountry: isoCountry [
+{ #category : #accessing }
+Locale class >> isoLanguage: isoLanguage isoCountry: isoCountry [
 	^self localeID: (LocaleID  isoLanguage: isoLanguage isoCountry: isoCountry)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>knownLocales [
+{ #category : #private }
+Locale class >> knownLocales [
 	"KnownLocales := nil"
 	^KnownLocales ifNil: [KnownLocales := self initKnownLocales]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>languageSymbol: languageSymbol [
+{ #category : #accessing }
+Locale class >> languageSymbol: languageSymbol [
 	"Locale languageSymbol: #Deutsch"
 
 	^self isoLanguage: (LanguageSymbols at: languageSymbol)
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>localTimeZone [
+{ #category : #'system startup' }
+Locale class >> localTimeZone [
 	^ LocalTimeZone new
 ]
 
-{
-	#category : #announcing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>localeAnnouncer [
+{ #category : #announcing }
+Locale class >> localeAnnouncer [
 	^localeAnnouncer ifNil: [ localeAnnouncer := Announcer new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>localeID: id [
+{ #category : #accessing }
+Locale class >> localeID: id [
 	^self knownLocales at: id ifAbsentPut: [Locale new localeID: id]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>platformEncodings [
+{ #category : #accessing }
+Locale class >> platformEncodings [
 	PlatformEncodings isEmptyOrNil ifTrue: [ self initializePlatformEncodings ].
 	^PlatformEncodings
 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>startUp: resuming [
+{ #category : #'system startup' }
+Locale class >> startUp: resuming [
 	| newID |
 	resuming ifFalse: [^self].
 	DateAndTime localTimeZone: self localTimeZone.
@@ -287,11 +223,8 @@ Locale class>>startUp: resuming [
 				ifTrue: [self switchToID: newID]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>stringForLanguageNameIs: localeID  [
+{ #category : #accessing }
+Locale class >> stringForLanguageNameIs: localeID [ 
 	"Answer a string for a menu determining whether the given  
 	symbol is the project's natural language"
 	^ (self current localeID = localeID
@@ -300,11 +233,8 @@ Locale class>>stringForLanguageNameIs: localeID  [
 		, localeID displayLanguage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>switchTo: locale  [
+{ #category : #accessing }
+Locale class >> switchTo: locale [ 
 	"Locale switchTo: Locale isoLanguage: 'de'"
 	Current localeID = locale localeID
 		ifFalse: [
@@ -315,29 +245,20 @@ Locale class>>switchTo: locale  [
 			self localeAnnouncer announce: announcement ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale class>>switchToID: localeID [
+{ #category : #accessing }
+Locale class >> switchToID: localeID [
 	"Locale switchToID: (LocaleID isoLanguage: 'de') "
 
 	self switchTo: (Locale localeID: localeID)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>determineLocale [
+{ #category : #accessing }
+Locale >> determineLocale [
 	self localeID: self determineLocaleID
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>determineLocaleID [
+{ #category : #accessing }
+Locale >> determineLocaleID [
 	"Locale current determineLocaleID"
 	| langCode isoLang countryCode isoCountry |
 	langCode := self fetchISO2Language.
@@ -351,11 +272,8 @@ Locale>>determineLocaleID [
 	^LocaleID isoLanguage: isoLang isoCountry: isoCountry
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>fetchISO2Language [
+{ #category : #private }
+Locale >> fetchISO2Language [
 	"Locale current fetchISO2Language"
 	| lang isoLang |
 	lang := self primLanguage.
@@ -369,132 +287,90 @@ Locale>>fetchISO2Language [
 		ifNotNil: [isoLang iso2]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>isoCountry [
+{ #category : #accessing }
+Locale >> isoCountry [
 	^self localeID isoCountry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>isoLanguage [
+{ #category : #accessing }
+Locale >> isoLanguage [
 	^self localeID isoLanguage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>isoLocale [
+{ #category : #accessing }
+Locale >> isoLocale [
 	"<language>-<country>"
 	^self isoCountry
 		ifNil: [self isoLanguage]
 		ifNotNil: [self isoLanguage , '-' , self isoCountry]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>languageEnvironment [
+{ #category : #accessing }
+Locale >> languageEnvironment [
 	^LanguageEnvironment localeID: self localeID
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>localeID [
+{ #category : #accessing }
+Locale >> localeID [
 	^id
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>localeID: anID [
+{ #category : #accessing }
+Locale >> localeID: anID [
 	id := anID
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>primCountry [
+{ #category : #'system primitives' }
+Locale >> primCountry [
 	"Returns string with country tag according to ISO 639"
 	<primitive: 'primitiveCountry' module: 'LocalePlugin'>
 	^'FR'
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>primCurrencyNotation [
+{ #category : #'system primitives' }
+Locale >> primCurrencyNotation [
 	"Returns boolean if symbol is pre- (true) or post-fix (false)"
 	<primitive: 'primitiveCurrencyNotation' module: 'LocalePlugin'>
 	^true
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>primCurrencySymbol [
+{ #category : #'system primitives' }
+Locale >> primCurrencySymbol [
 	"Returns string with currency symbol"
 	<primitive: 'primitiveCurrencySymbol' module:'LocalePlugin'>
 	^'$'
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>primDST [
+{ #category : #'system primitives' }
+Locale >> primDST [
 	"Returns boolean if DST  (daylight saving time) is active or not"
 	<primitive:'primitiveDaylightSavings' module: 'LocalePlugin'>
 	^false
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>primDecimalSymbol [
+{ #category : #'system primitives' }
+Locale >> primDecimalSymbol [
 	"Returns string with e.g. '.' or ','"
 	<primitive:'primitiveDecimalSymbol' module: 'LocalePlugin'>
 	^'.'
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>primDigitGrouping [
+{ #category : #'system primitives' }
+Locale >> primDigitGrouping [
 	"Returns string with e.g. '.' or ',' (thousands etc)"
 	<primitive:'primitiveDigitGroupingSymbol' module: 'LocalePlugin'>
 	^','
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>primLanguage [
+{ #category : #'system primitives' }
+Locale >> primLanguage [
 	"returns string with language tag according to ISO 639"
 	<primitive:'primitiveLanguage' module: 'LocalePlugin'>
 	^'en'
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>primLongDateFormat [
+{ #category : #'system primitives' }
+Locale >> primLongDateFormat [
 	"Returns the long date format
 	d day, m month, y year,
 	double symbol is null padded, single not padded (m=6, mm=06)
@@ -505,22 +381,16 @@ Locale>>primLongDateFormat [
 
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>primMeasurement [
+{ #category : #'system primitives' }
+Locale >> primMeasurement [
 	"Returns boolean denoting metric(true) or imperial(false)."
 	<primitive:'primitiveMeasurementMetric' module: 'LocalePlugin'>
 	^true
 
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>primShortDateFormat [
+{ #category : #'system primitives' }
+Locale >> primShortDateFormat [
 	"Returns the short date format
 	d day, m month, y year,
 	double symbol is null padded, single not padded (m=6, mm=06)
@@ -531,11 +401,8 @@ Locale>>primShortDateFormat [
 
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>primTimeFormat [
+{ #category : #'system primitives' }
+Locale >> primTimeFormat [
 	"Returns string time format
 	Format is made up of 
 	h hour (h 12, H 24), m minute, s seconds, x (am/pm String)
@@ -545,22 +412,16 @@ Locale>>primTimeFormat [
 
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>primTimezone [
+{ #category : #'system primitives' }
+Locale >> primTimezone [
 	"The offset from UTC in minutes, with positive offsets being towards the east.
 	(San Francisco is in UTC -07*60 and Paris is in UTC +02*60 (daylight savings is not in effect)."
 	<primitive:'primitiveTimezoneOffset' module: 'LocalePlugin'>
 	^0
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>primVMOffsetToUTC [
+{ #category : #'system primitives' }
+Locale >> primVMOffsetToUTC [
 	"Returns the offset in minutes between the VM and UTC.
 	If the VM does not support UTC times, this is 0.
 	Also gives us backward compatibility with old VMs as the primitive will fail and we then can return 0."
@@ -568,11 +429,8 @@ Locale>>primVMOffsetToUTC [
 	^0
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-Locale>>printOn: aStream  [
+{ #category : #printing }
+Locale >> printOn: aStream [ 
 	super printOn: aStream.
 	aStream nextPutAll: '(' , id printString , ')'
 ]

@@ -7,38 +7,25 @@ Class {
 	#instVars : [
 		'block'
 	],
-	#category : #DebuggerFilters,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:30'
+	#category : #DebuggerFilters
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-BlockFilter class>>forBlock: aBlockClosure [
+{ #category : #'instance creation' }
+BlockFilter class >> forBlock: aBlockClosure [
 	^ self new block: aBlockClosure
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-BlockFilter>>block [
+{ #category : #accessing }
+BlockFilter >> block [
 	 ^block
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-BlockFilter>>block: aBlockClosure [
+{ #category : #accessing }
+BlockFilter >> block: aBlockClosure [
 	block:= aBlockClosure
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-BlockFilter>>shouldDisplay: aContext [
+{ #category : #testing }
+BlockFilter >> shouldDisplay: aContext [
 	 ^self block value: aContext
 ]

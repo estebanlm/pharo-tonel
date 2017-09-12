@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMPortEventTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPortEventTest>>testCreation [
+{ #category : #tests }
+GLMPortEventTest >> testCreation [
 	| anEvent portOne portTwo |
 	portOne := (GLMSimplePort new) name: #portOne; value: 1.
 	portTwo := (GLMSimplePort new) name: #portTwo; value: 2.
@@ -22,11 +15,8 @@ GLMPortEventTest>>testCreation [
 	self assert: anEvent transmissionContext isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPortEventTest>>testCreationWithTransmissionContext [
+{ #category : #tests }
+GLMPortEventTest >> testCreationWithTransmissionContext [
 	| anEvent aContext portOne portTwo |
 	aContext := OrderedCollection new.
 	portOne := (GLMSimplePort new) name: #portOne; value: 1.
@@ -37,11 +27,8 @@ GLMPortEventTest>>testCreationWithTransmissionContext [
 	self assert: anEvent transmissionContext equals: aContext
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPortEventTest>>testInterdependentPanesCycleBreak [
+{ #category : #tests }
+GLMPortEventTest >> testInterdependentPanesCycleBreak [
 	| browser outerCount oneCount |
 	outerCount := 0.
 	oneCount := 0.
@@ -78,11 +65,8 @@ GLMPortEventTest>>testInterdependentPanesCycleBreak [
 	self assert: outerCount equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPortEventTest>>testInterdependentPanesProperPorts [
+{ #category : #tests }
+GLMPortEventTest >> testInterdependentPanesProperPorts [
 	| browser |
 	browser := GLMTabulator new.
 	browser
@@ -123,11 +107,8 @@ GLMPortEventTest>>testInterdependentPanesProperPorts [
 	self assert: ((browser paneNamed: #three) port: #selection) value equals: nil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPortEventTest>>testPortName [
+{ #category : #tests }
+GLMPortEventTest >> testPortName [
 	| anEvent portTwo|
 	portTwo := (GLMSimplePort new) name: #portTwo; value: 2.
 	anEvent := GLMPortEvent

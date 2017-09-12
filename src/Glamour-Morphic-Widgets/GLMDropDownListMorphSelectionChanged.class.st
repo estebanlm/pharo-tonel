@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMDropDownListMorphSelectionChanged,
 	#superclass : #Announcement,
@@ -8,38 +5,25 @@ Class {
 		'selectionIndex',
 		'selectionValue'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMDropDownListMorphSelectionChanged>>selectionIndex [
+{ #category : #accessing }
+GLMDropDownListMorphSelectionChanged >> selectionIndex [
 	^ selectionIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMDropDownListMorphSelectionChanged>>selectionIndex: anInteger [
+{ #category : #accessing }
+GLMDropDownListMorphSelectionChanged >> selectionIndex: anInteger [
 	selectionIndex := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMDropDownListMorphSelectionChanged>>selectionValue [
+{ #category : #accessing }
+GLMDropDownListMorphSelectionChanged >> selectionValue [
 	^ selectionValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMDropDownListMorphSelectionChanged>>selectionValue: anObject [
+{ #category : #accessing }
+GLMDropDownListMorphSelectionChanged >> selectionValue: anObject [
 	selectionValue := anObject
 ]

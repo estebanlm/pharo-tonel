@@ -18,25 +18,18 @@ Class {
 		'buffer',
 		'position'
 	],
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : '<historical>'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream class>>on: writeStream [
+{ #category : #'instance creation' }
+ZnBufferedWriteStream class >> on: writeStream [
 	^ self basicNew
 		on: writeStream;
 		yourself
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream class>>on: writeStream do: block [
+{ #category : #convenience }
+ZnBufferedWriteStream class >> on: writeStream do: block [
 	"Execute block with as argument a ZnBufferedWriteStream on writeStream,
 	making sure #flush is called at the end. Return the value of block."
 	
@@ -47,89 +40,59 @@ ZnBufferedWriteStream class>>on: writeStream do: block [
 	^ result
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>buffer [
+{ #category : #private }
+ZnBufferedWriteStream >> buffer [
 	buffer isNil 
 		ifTrue: [ self sizeBuffer: self defaultBufferSize ].
 	^ buffer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>bufferFreeSize [
+{ #category : #accessing }
+ZnBufferedWriteStream >> bufferFreeSize [
 	^ self bufferSize - position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>bufferSize [
+{ #category : #accessing }
+ZnBufferedWriteStream >> bufferSize [
 	^ buffer isNil 
 		ifTrue: [ self defaultBufferSize ]
 		ifFalse: [ buffer size ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>close [
+{ #category : #initialize-release }
+ZnBufferedWriteStream >> close [
 	self flushBuffer.
 	stream close
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>cr [
+{ #category : #accessing }
+ZnBufferedWriteStream >> cr [
 	self nextPut: Character cr
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>crlf [
+{ #category : #accessing }
+ZnBufferedWriteStream >> crlf [
 	self cr; lf
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>defaultBufferSize [
+{ #category : #accessing }
+ZnBufferedWriteStream >> defaultBufferSize [
 	^ 2 raisedToInteger: 16
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>finish [
+{ #category : #initialize-release }
+ZnBufferedWriteStream >> finish [
 	self flushBuffer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>flush [
+{ #category : #accessing }
+ZnBufferedWriteStream >> flush [
 	self flushBuffer.
 	stream flush
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>flushBuffer [
+{ #category : #private }
+ZnBufferedWriteStream >> flushBuffer [
 	position = 0 ifTrue: [ ^ self ].
 	position = self bufferSize
 		ifTrue: [
@@ -141,29 +104,20 @@ ZnBufferedWriteStream>>flushBuffer [
 	position := 0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>flushBufferIfFull [
+{ #category : #private }
+ZnBufferedWriteStream >> flushBufferIfFull [
 	position = self bufferSize 
 		ifTrue: [ self flushBuffer ]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>lf [
+{ #category : #accessing }
+ZnBufferedWriteStream >> lf [
 	self nextPut: Character lf
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>next: count putAll: collection [
+{ #category : #accessing }
+ZnBufferedWriteStream >> next: count putAll: collection [
 	"Write count elements from collection"
 	
 	self 
@@ -172,11 +126,8 @@ ZnBufferedWriteStream>>next: count putAll: collection [
 		startingAt: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>next: count putAll: collection startingAt: offset [
+{ #category : #accessing }
+ZnBufferedWriteStream >> next: count putAll: collection startingAt: offset [
 	"Write count elements from collection starting at offset."
 	
 	self flushBufferIfFull.
@@ -192,21 +143,15 @@ ZnBufferedWriteStream>>next: count putAll: collection startingAt: offset [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>nextPut: object [
+{ #category : #accessing }
+ZnBufferedWriteStream >> nextPut: object [
 	self flushBufferIfFull.
 	position := position + 1.
 	self buffer at: position put: object
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>nextPutAll: collection [
+{ #category : #accessing }
+ZnBufferedWriteStream >> nextPutAll: collection [
 	"Write a collection"
 	
 	self 
@@ -215,53 +160,35 @@ ZnBufferedWriteStream>>nextPutAll: collection [
 		startingAt: 1
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>on: writeStream [
+{ #category : #initialize-release }
+ZnBufferedWriteStream >> on: writeStream [
 	stream := writeStream.
 	position := 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>print: object [
+{ #category : #accessing }
+ZnBufferedWriteStream >> print: object [
 	object printOn: self
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>printOn: aStream [
+{ #category : #printing }
+ZnBufferedWriteStream >> printOn: aStream [
 	aStream 
 		nextPutAll: 'a '; 
 		nextPutAll: self class name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>sizeBuffer: size [
+{ #category : #accessing }
+ZnBufferedWriteStream >> sizeBuffer: size [
 	buffer := (stream isBinary ifTrue: [ ByteArray ] ifFalse: [ String ]) new: size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>space [
+{ #category : #accessing }
+ZnBufferedWriteStream >> space [
 	self nextPut: Character space
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedWriteStream>>tab [
+{ #category : #accessing }
+ZnBufferedWriteStream >> tab [
 	self nextPut: Character tab
 ]

@@ -9,48 +9,32 @@ Class {
 	#instVars : [
 		'slot'
 	],
-	#category : #Slot-ClassBuilder,
-	#timestamp : '<historical>'
+	#category : #Slot-ClassBuilder
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-UnmodifiedField>>fieldIndex [
+{ #category : #accessing }
+UnmodifiedField >> fieldIndex [
 	^ slot index + fieldIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-UnmodifiedField>>installOn: aModification [
+{ #category : #accessing }
+UnmodifiedField >> installOn: aModification [
 	aModification installUnmodifiedSlot: self
 ]
 
-{
-	#category : #migrating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-UnmodifiedField>>migrateAt: index to: newInstance from: oldInstance [
+{ #category : #migrating }
+UnmodifiedField >> migrateAt: index to: newInstance from: oldInstance [
 	newInstance
 		instVarAt: index
 		put: (oldInstance instVarAt: index)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-UnmodifiedField>>slot [
+{ #category : #accessing }
+UnmodifiedField >> slot [
 	^ slot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-UnmodifiedField>>slot: anObject [
+{ #category : #accessing }
+UnmodifiedField >> slot: anObject [
 	slot := anObject
 ]

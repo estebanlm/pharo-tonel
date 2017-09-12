@@ -18,15 +18,11 @@ Class {
 	#pools : [
 		'FreeTypeCacheConstants'
 	],
-	#category : #FreeType-Tests-cache,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:12'
+	#category : #FreeType-Tests-cache
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>setUp [
+{ #category : #running }
+FreeTypeCacheTest >> setUp [
 
 	cache := FreeTypeCache new.
 	font1 := FreeTypeFont basicNew.
@@ -51,11 +47,8 @@ FreeTypeCacheTest>>setUp [
 		fullCache atFont: font1 charCode: i type: FreeTypeCacheGlyph put: font1YGlyph]. 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testConstants [
+{ #category : #tests }
+FreeTypeCacheTest >> testConstants [
 	
 	| constants |
 	constants := {FreeTypeCacheWidth. FreeTypeCacheGlyphMono. FreeTypeCacheGlyphLCD.FreeTypeCacheGlyph}.
@@ -65,11 +58,8 @@ FreeTypeCacheTest>>testConstants [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testEntriesRemovedFIFO [
+{ #category : #tests }
+FreeTypeCacheTest >> testEntriesRemovedFIFO [
 	| |
 	cache maximumSize: 10*(cache sizeOf: font1XGlyph).
 	1 to: 10 do:[:i |
@@ -99,11 +89,8 @@ FreeTypeCacheTest>>testEntriesRemovedFIFO [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testFailedGet [
+{ #category : #tests }
+FreeTypeCacheTest >> testFailedGet [
 	| |
 
 	self 
@@ -115,11 +102,8 @@ FreeTypeCacheTest>>testFailedGet [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testFreeTypeCacheEntry [
+{ #category : #tests }
+FreeTypeCacheTest >> testFreeTypeCacheEntry [
 	| f f2  f3 |
 	f := FreeTypeCacheEntry new.
 	f charCode: 1; font: font1; type: FreeTypeCacheGlyph; object: font1XGlyph.
@@ -134,11 +118,8 @@ FreeTypeCacheTest>>testFreeTypeCacheEntry [
 	self assert: f = f3. "equality not based on nextLink"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testInstanceInitialization [
+{ #category : #tests }
+FreeTypeCacheTest >> testInstanceInitialization [
 	self assert: (cache instVarNamed: #maximumSize) = FreeTypeCache defaultMaximumSize.
 	self assert: (cache instVarNamed: #used) = 0.
 	self assert: (cache instVarNamed: #fontTable) class = cache dictionaryClass.
@@ -148,11 +129,8 @@ FreeTypeCacheTest>>testInstanceInitialization [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testMaximumSizeRespectedOnIfAbsentPut [
+{ #category : #tests }
+FreeTypeCacheTest >> testMaximumSizeRespectedOnIfAbsentPut [
 	| |
 	cache maximumSize: (cache sizeOf: font1XGlyph).
 	cache 
@@ -179,11 +157,8 @@ FreeTypeCacheTest>>testMaximumSizeRespectedOnIfAbsentPut [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testMaximumSizeRespectedOnPut [
+{ #category : #tests }
+FreeTypeCacheTest >> testMaximumSizeRespectedOnPut [
 	| |
 	cache maximumSize: (cache sizeOf: font1XGlyph).
 	cache 
@@ -210,11 +185,8 @@ FreeTypeCacheTest>>testMaximumSizeRespectedOnPut [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testNormalGetIfAbsentPut [
+{ #category : #tests }
+FreeTypeCacheTest >> testNormalGetIfAbsentPut [
 	| u g r |
 	cache maximumSize: nil. 
 	u := cache instVarNamed: #used.
@@ -233,11 +205,8 @@ FreeTypeCacheTest>>testNormalGetIfAbsentPut [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testNormalGetIfAbsentPutTwice [
+{ #category : #tests }
+FreeTypeCacheTest >> testNormalGetIfAbsentPutTwice [
 	| u g r |
 	cache maximumSize: nil. 
 	u := cache instVarNamed: #used.
@@ -261,11 +230,8 @@ FreeTypeCacheTest>>testNormalGetIfAbsentPutTwice [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testNormalGetIfAbsentPutTwiceIntoNonEmptyCache [
+{ #category : #tests }
+FreeTypeCacheTest >> testNormalGetIfAbsentPutTwiceIntoNonEmptyCache [
 	| u g r |
 	cache maximumSize: nil. 
 	u := cache instVarNamed: #used.
@@ -294,11 +260,8 @@ FreeTypeCacheTest>>testNormalGetIfAbsentPutTwiceIntoNonEmptyCache [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testNormalPutGet [
+{ #category : #tests }
+FreeTypeCacheTest >> testNormalPutGet [
 	| u g |
 	cache maximumSize: nil. 
 	u := cache instVarNamed: #used.
@@ -312,11 +275,8 @@ FreeTypeCacheTest>>testNormalPutGet [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testNormalPutGetTwice [
+{ #category : #tests }
+FreeTypeCacheTest >> testNormalPutGetTwice [
 	| u g |
 	cache maximumSize: nil. 
 	u := cache instVarNamed: #used.
@@ -331,11 +291,8 @@ FreeTypeCacheTest>>testNormalPutGetTwice [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testNormalPutGetWidth [
+{ #category : #tests }
+FreeTypeCacheTest >> testNormalPutGetWidth [
 	| u g |
 	cache maximumSize: nil. 
 	u := cache instVarNamed: #used.
@@ -349,11 +306,8 @@ FreeTypeCacheTest>>testNormalPutGetWidth [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testPutSameElementTwice [
+{ #category : #tests }
+FreeTypeCacheTest >> testPutSameElementTwice [
 	| |
 	cache maximumSize: nil. 
 	cache atFont: font1 charCode: $X asInteger type: FreeTypeCacheGlyph put: font1XGlyph.
@@ -367,11 +321,8 @@ FreeTypeCacheTest>>testPutSameElementTwice [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testRemoveAll [
+{ #category : #tests }
+FreeTypeCacheTest >> testRemoveAll [
 	| m fifo fontTable |
 	m := fullCache instVarNamed: #maximumSize.
 	fifo := fullCache instVarNamed: #fifo.
@@ -385,11 +336,8 @@ FreeTypeCacheTest>>testRemoveAll [
 	self assert: fontTable class = (fullCache instVarNamed: #fontTable) class.	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testRemoveAllForFont [
+{ #category : #tests }
+FreeTypeCacheTest >> testRemoveAllForFont [
 	| fifo |
 
 	fullCache maximumSize: nil.	
@@ -413,11 +361,8 @@ FreeTypeCacheTest>>testRemoveAllForFont [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testRemoveAllForType [
+{ #category : #tests }
+FreeTypeCacheTest >> testRemoveAllForType [
 	| fifo |
 
 	fullCache maximumSize: nil.	
@@ -441,11 +386,8 @@ FreeTypeCacheTest>>testRemoveAllForType [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testReport [
+{ #category : #tests }
+FreeTypeCacheTest >> testReport [
 	self assert: fullCache report = '100% Full (maximumSize: 400320 , used: 400320)'.
 	fullCache maximumSize:  800640.
 	self assert: fullCache report = '50% Full (maximumSize: 800640 , used: 400320)'.
@@ -454,11 +396,8 @@ FreeTypeCacheTest>>testReport [
 	self assert: cache report = '0% Full (maximumSize: nil , used: 0)'.	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testSetMaximumSize [
+{ #category : #tests }
+FreeTypeCacheTest >> testSetMaximumSize [
 	cache maximumSize: 0.
 	self assert: (cache instVarNamed: #maximumSize) = 0.
 	cache maximumSize: 99999999999999999.
@@ -469,11 +408,8 @@ FreeTypeCacheTest>>testSetMaximumSize [
 	self validateCollections: cache
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testSetMaximumSizeGrow [
+{ #category : #tests }
+FreeTypeCacheTest >> testSetMaximumSizeGrow [
 	| u m |
 	
 	u := fullCache instVarNamed: #used.
@@ -484,11 +420,8 @@ FreeTypeCacheTest>>testSetMaximumSizeGrow [
 	self validateCollections: cache
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testSetMaximumSizeShrink [
+{ #category : #tests }
+FreeTypeCacheTest >> testSetMaximumSizeShrink [
 	| m |
 
 	m := fullCache instVarNamed: #maximumSize.
@@ -500,11 +433,8 @@ FreeTypeCacheTest>>testSetMaximumSizeShrink [
 		
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testSetMaximumSizeUnbounded [
+{ #category : #tests }
+FreeTypeCacheTest >> testSetMaximumSizeUnbounded [
 		
 	| u |
 	u := fullCache instVarNamed: #used.
@@ -515,21 +445,15 @@ FreeTypeCacheTest>>testSetMaximumSizeUnbounded [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>testSingleton [
+{ #category : #tests }
+FreeTypeCacheTest >> testSingleton [
 	self assert: FreeTypeCache current class = FreeTypeCache.
 	self assert: FreeTypeCache current ==  FreeTypeCache current.
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>validateCollections: aFreeTypeCache [
+{ #category : #private }
+FreeTypeCacheTest >> validateCollections: aFreeTypeCache [
 	"check that the fifo list entries match the fontTable dict hierarchy"
 	| fontTable fontTableEntries fifo lastLink |
 	fontTable := aFreeTypeCache instVarNamed: #fontTable.
@@ -548,11 +472,8 @@ FreeTypeCacheTest>>validateCollections: aFreeTypeCache [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FreeTypeCacheTest>>validateSizes: aFreeTypeCache [
+{ #category : #private }
+FreeTypeCacheTest >> validateSizes: aFreeTypeCache [
 	"check that the used, maximumSize, and caches entries are valid"
 	| fontTable calcSize max used |
 	fontTable := aFreeTypeCache instVarNamed: #fontTable.

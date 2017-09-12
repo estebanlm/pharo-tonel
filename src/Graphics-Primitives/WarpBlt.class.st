@@ -24,15 +24,11 @@ Class {
 		'cellSize',
 		'sourceRGBmap'
 	],
-	#category : #Graphics-Primitives,
-	#timestamp : '<historical>'
+	#category : #Graphics-Primitives
 }
 
-{
-	#category : #'form rotation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-WarpBlt class>>rotate: srcForm degrees: angleInDegrees center: aPoint scaleBy: scalePoint smoothing: cellSize  [
+{ #category : #'form rotation' }
+WarpBlt class >> rotate: srcForm degrees: angleInDegrees center: aPoint scaleBy: scalePoint smoothing: cellSize [ 
 	"Rotate the given Form the given number of degrees about the given center and scale its width and height by x and y of the given scale point. Smooth using the given cell size, an integer between 1 and 3, where 1 means no smoothing. Return a pair where the first element is the rotated Form and the second is the position offset required to align the center of the rotated Form with that of the original. Note that the dimensions of the resulting Form generally differ from those of the original."
 	| srcRect center radians dstOrigin dstCorner p dstRect inverseScale quad dstForm newCenter warpSrc |
 	srcRect := srcForm boundingBox.
@@ -99,28 +95,19 @@ WarpBlt class>>rotate: srcForm degrees: angleInDegrees center: aPoint scaleBy: s
 		with: dstRect origin + (newCenter - center)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-WarpBlt class>>toForm: destinationForm [
+{ #category : #initialization }
+WarpBlt class >> toForm: destinationForm [
 	"Default cell size is 1 (no pixel smoothing)"
 	^ (super toForm: destinationForm) cellSize: 1
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-WarpBlt>>cellSize [
+{ #category : #setup }
+WarpBlt >> cellSize [
 	^ cellSize
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-WarpBlt>>cellSize: s  [
+{ #category : #setup }
+WarpBlt >> cellSize: s [ 
 	cellSize := s.
 	cellSize = 1 ifTrue: [ ^ self ].
 	colorMap := Color 
@@ -128,20 +115,14 @@ WarpBlt>>cellSize: s  [
 		to: destForm depth
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-WarpBlt>>copyQuad: pts toRect: destRect [
+{ #category : #primitives }
+WarpBlt >> copyQuad: pts toRect: destRect [
 	self sourceQuad: pts destRect: destRect.
 	self warpBits
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-WarpBlt>>deltaFrom: x1 to: x2 nSteps: n  [
+{ #category : #primitives }
+WarpBlt >> deltaFrom: x1 to: x2 nSteps: n [ 
 	"Utility routine for computing Warp increments.
 	x1 is starting pixel, x2 is ending pixel;  assumes n >= 1"
 	| fixedPtOne |
@@ -153,11 +134,8 @@ WarpBlt>>deltaFrom: x1 to: x2 nSteps: n  [
 			^ 0 - ((x1 - x2 + fixedPtOne) // (n + 1) + 1) ]
 ]
 
-{
-	#category : #smoothing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-WarpBlt>>mixPix: pix sourceMap: sourceMap destMap: destMap  [
+{ #category : #smoothing }
+WarpBlt >> mixPix: pix sourceMap: sourceMap destMap: destMap [ 
 	"Average the pixels in array pix to produce a destination pixel.
 	First average the RGB values either from the pixels directly,
 	or as supplied in the sourceMap.  Then return either the resulting
@@ -201,11 +179,8 @@ WarpBlt>>mixPix: pix sourceMap: sourceMap destMap: destMap  [
 		ifFalse: [ ^ destMap at: rgb + 1 ]
 ]
 
-{
-	#category : #smoothing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-WarpBlt>>rgbMap: sourcePixel from: nBitsIn to: nBitsOut  [
+{ #category : #smoothing }
+WarpBlt >> rgbMap: sourcePixel from: nBitsIn to: nBitsOut [ 
 	"NOTE: This code is copied verbatim from BitBltSimulation so that it
 	may be removed from the system"
 	"Convert the given pixel value with nBitsIn bits for each color component to a pixel value with nBitsOut bits for each color component. Typical values for nBitsIn/nBitsOut are 3, 5, or 8."
@@ -236,11 +211,8 @@ WarpBlt>>rgbMap: sourcePixel from: nBitsIn to: nBitsOut  [
 			^ destPix ]
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-WarpBlt>>sourceForm: srcForm destRect: dstRectangle  [
+{ #category : #primitives }
+WarpBlt >> sourceForm: srcForm destRect: dstRectangle [ 
 	"Set up a WarpBlt from the entire source Form to the given destination rectangle."
 	| w h |
 	sourceForm := srcForm.
@@ -262,11 +234,8 @@ WarpBlt>>sourceForm: srcForm destRect: dstRectangle  [
 	p1z := p2z := p3z := p4z := 16384	"z-warp ignored for now"
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-WarpBlt>>sourceQuad: pts destRect: aRectangle  [
+{ #category : #primitives }
+WarpBlt >> sourceQuad: pts destRect: aRectangle [ 
 	| fixedPt1 |
 	sourceX := sourceY := 0.
 	self destRect: aRectangle.
@@ -284,22 +253,16 @@ WarpBlt>>sourceQuad: pts destRect: aRectangle  [
 	p1z := p2z := p3z := p4z := 16384	"z-warp ignored for now"
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-WarpBlt>>startFrom: x1 to: x2 offset: sumOfDeltas [
+{ #category : #primitives }
+WarpBlt >> startFrom: x1 to: x2 offset: sumOfDeltas [
 	"Utility routine for computing Warp increments."
 	x2 >= x1
 		ifTrue: [^ x1]
 		ifFalse: [^ x2 - sumOfDeltas]
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-WarpBlt>>warpBits [
+{ #category : #primitives }
+WarpBlt >> warpBits [
 	"Move those pixels!"
 
 	cellSize < 1 ifTrue: [ ^self error: 'cellSize must be >= 1' ].
@@ -309,11 +272,8 @@ WarpBlt>>warpBits [
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-WarpBlt>>warpBitsSmoothing: n sourceMap: sourceMap  [
+{ #category : #primitives }
+WarpBlt >> warpBitsSmoothing: n sourceMap: sourceMap [ 
 	| deltaP12 deltaP43 pA pB deltaPAB sp fixedPtOne picker poker pix nSteps |
 	<primitive: 'primitiveWarpBits' module: 'BitBltPlugin'>
 	(sourceForm isForm and: 

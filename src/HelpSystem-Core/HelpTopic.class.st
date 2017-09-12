@@ -43,15 +43,11 @@ Class {
 		'subtopics',
 		'owner'
 	],
-	#category : #HelpSystem-Core-Model,
-	#timestamp : 'tbn 3/29/2010 14:53'
+	#category : #HelpSystem-Core-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic class>>named: aString [
+{ #category : #'instance creation' }
+HelpTopic class >> named: aString [
 	"Create a new instance with given title and empty contents"
 	
 	^(self new)
@@ -59,11 +55,8 @@ HelpTopic class>>named: aString [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic class>>title: aTitle contents: aText [
+{ #category : #'instance creation' }
+HelpTopic class >> title: aTitle contents: aText [
 	"Create a new instance with given title and content"
 	
 	^(self new)
@@ -73,11 +66,8 @@ HelpTopic class>>title: aTitle contents: aText [
 		
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic class>>title: aTitle icon: anIcon contents: aText [
+{ #category : #'instance creation' }
+HelpTopic class >> title: aTitle icon: anIcon contents: aText [
 	"Create a new instance with given title, icon and content"
 	
 	^(self new)
@@ -88,11 +78,8 @@ HelpTopic class>>title: aTitle icon: anIcon contents: aText [
 		
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic class>>title: aTitle iconName: anIconName contents: aText [
+{ #category : #'instance creation' }
+HelpTopic class >> title: aTitle iconName: anIconName contents: aText [
 	"Create a new instance with given title, icon and content"
 	
 	^(self new)
@@ -103,21 +90,15 @@ HelpTopic class>>title: aTitle iconName: anIconName contents: aText [
 		
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>><= anotherHelpTopic [
+{ #category : #comparing }
+HelpTopic >> <= anotherHelpTopic [
 	"Use sorting by title as the default sort order"
 	
 	^self title <= anotherHelpTopic title 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>addSubtopic: aTopic [
+{ #category : #accessing }
+HelpTopic >> addSubtopic: aTopic [
 	"Adds the given topic to the receivers collection of subtopics, and set this object as owner of the subtopic"
 	
 	self subtopics add: aTopic.
@@ -125,92 +106,65 @@ HelpTopic>>addSubtopic: aTopic [
 	^aTopic
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>asHelpTopic  [
+{ #category : #conversion }
+HelpTopic >> asHelpTopic [ 
 	"Converts the receiver to a help topic"
 	
 	^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>contents [
+{ #category : #accessing }
+HelpTopic >> contents [
 	"Returns the receivers contents"
 	
 	^ contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>contents: anObject [
+{ #category : #accessing }
+HelpTopic >> contents: anObject [
 	"Sets the receivers contents to the given object" 
 		
 	contents := anObject
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>defaultTitle [
+{ #category : #defaults }
+HelpTopic >> defaultTitle [
 	"Returns the receivers default title"
 	
 	^'Unnamed Topic'
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>hasSubtopics  [
+{ #category : #testing }
+HelpTopic >> hasSubtopics [ 
 	"Returns true if the receiver has subtopics, false otherwise"
 	
 	^self subtopics notEmpty 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>icon  [
+{ #category : #accessing }
+HelpTopic >> icon [ 
  	"Returns the receivers icon"
 	
 	^icon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>icon: aSymbol [
+{ #category : #accessing }
+HelpTopic >> icon: aSymbol [
 	"Sets the receivers icon"
 	
 	icon := aSymbol 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>iconName: aSymbol [
+{ #category : #accessing }
+HelpTopic >> iconName: aSymbol [
 	"Sets the receivers icon"
 	
 	self icon: (self iconNamed: aSymbol) 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>initialize  [
+{ #category : #initialization }
+HelpTopic >> initialize [ 
 	"Initializes the receiver"
 	
 	super initialize.
@@ -219,49 +173,34 @@ HelpTopic>>initialize  [
 	self key: '' 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>key 	 [
+{ #category : #accessing }
+HelpTopic >> key [ 	
 	"Returns a unique key identifying the receiver in the help system"	
 		
 	^key
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>key: aUniqueKey [
+{ #category : #accessing }
+HelpTopic >> key: aUniqueKey [
 	"Sets a unique key identifying the receiver in the help system"	
 		
 	key := aUniqueKey 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>owner [
+{ #category : #accessing }
+HelpTopic >> owner [
 	"an ownder is a HelpTopic that uses the current HelptTopic as subtopic"
 ^ owner
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>owner: topic [
+{ #category : #accessing }
+HelpTopic >> owner: topic [
 	"an owner is a HelpTopic that uses the current HelptTopic as subtopic"
 owner := topic
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>pathToTopicSatisfying: aBlock [
+{ #category : #accessing }
+HelpTopic >> pathToTopicSatisfying: aBlock [
 	"I return the complete path to the first topic satifying the given block.
 	The path is a collection starting with the root node and ending with the 
 	node satifying the given block. If no node is found I return an empty collection."
@@ -275,52 +214,37 @@ HelpTopic>>pathToTopicSatisfying: aBlock [
 	^ #()
 ]
 
-{
-	#category : #operating,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>sortSubtopicsByTitle [
+{ #category : #operating }
+HelpTopic >> sortSubtopicsByTitle [
 	"Sort the subtopics by title"
 	
 	subtopics := SortedCollection withAll: self subtopics  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>subtopics  [
+{ #category : #accessing }
+HelpTopic >> subtopics [ 
 	"Returns the receivers list of subtopics"
 	
 	^ subtopics ifNil: [subtopics := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>subtopics: aCollection  [
+{ #category : #accessing }
+HelpTopic >> subtopics: aCollection [ 
 	"Sets the receivers subtopics"
 	
 	aCollection do: [ :topic|  topic owner: self  ].
 	subtopics := aCollection.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>title [
+{ #category : #accessing }
+HelpTopic >> title [
 	"Returns the receivers title"
 	
 	^ title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopic>>title: anObject [
+{ #category : #accessing }
+HelpTopic >> title: anObject [
 	"Sets the receivers title"
 	
 	title := anObject

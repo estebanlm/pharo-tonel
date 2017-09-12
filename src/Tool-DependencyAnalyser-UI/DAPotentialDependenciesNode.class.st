@@ -7,26 +7,19 @@ Class {
 	#instVars : [
 		'messageSendAnalysis'
 	],
-	#category : #Tool-DependencyAnalyser-UI-Nodes,
-	#timestamp : 'ChristopheDemarey 7/8/2015 09:56'
+	#category : #Tool-DependencyAnalyser-UI-Nodes
 }
 
-{
-	#category : #browse-nautilus,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPotentialDependenciesNode>>browseInNautilus [
+{ #category : #browse-nautilus }
+DAPotentialDependenciesNode >> browseInNautilus [
 	self browseMethodInNautilus:
 		([ self packageUnderAnalysis packageManifest class methodNamed: #manuallyResolvedDependencies ]
 			on: KeyNotFound
 			do: [ PackageManifest class>>#manuallyResolvedDependencies ])
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPotentialDependenciesNode>>buildChildren [
+{ #category : #api }
+DAPotentialDependenciesNode >> buildChildren [
 	^ (self messageSendAnalysis unimplementedCallsInAllDependencies
 		collect: [ :selector | 
 						(DAMissingMethodNode new
@@ -37,69 +30,45 @@ DAPotentialDependenciesNode>>buildChildren [
 			sort: [ :a :b | a content < b content ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPotentialDependenciesNode>>content [
+{ #category : #accessing }
+DAPotentialDependenciesNode >> content [
 	^ 'Potential dependencies'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPotentialDependenciesNode>>extensionDependenciesSize [
+{ #category : #accessing }
+DAPotentialDependenciesNode >> extensionDependenciesSize [
 	^ 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPotentialDependenciesNode>>hasChildren [
+{ #category : #accessing }
+DAPotentialDependenciesNode >> hasChildren [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPotentialDependenciesNode>>icon [
+{ #category : #accessing }
+DAPotentialDependenciesNode >> icon [
 	^ self iconNamed: #smallHelpIcon
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPotentialDependenciesNode>>isPackageNode [
+{ #category : #testing }
+DAPotentialDependenciesNode >> isPackageNode [
 	^ false
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPotentialDependenciesNode>>label [
+{ #category : #displaying }
+DAPotentialDependenciesNode >> label [
 	^ self content
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPotentialDependenciesNode>>messageSendAnalysis [
+{ #category : #accessing }
+DAPotentialDependenciesNode >> messageSendAnalysis [
 	[ messageSendAnalysis ifNil: [ messageSendAnalysis := DAMessageSendAnalyzer on: self parentNode content packageName ] ]
 		on: PotentialOutDatedDependencyWarning 
 		do: [ :ex | ex resume. "ignore. We already got an alert box" ].
 	^ messageSendAnalysis
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPotentialDependenciesNode>>numberOfDependencies [
+{ #category : #compatibility }
+DAPotentialDependenciesNode >> numberOfDependencies [
 	^ 0
 ]

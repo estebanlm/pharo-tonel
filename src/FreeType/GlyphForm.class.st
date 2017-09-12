@@ -8,31 +8,21 @@ Class {
 		'advance',
 		'linearAdvance'
 	],
-	#category : #FreeType-Fonts,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:11'
+	#category : #FreeType-Fonts
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-GlyphForm>>advance [
+{ #category : #accessing }
+GlyphForm >> advance [
 	^advance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-GlyphForm>>advance: aNumber [
+{ #category : #accessing }
+GlyphForm >> advance: aNumber [
 	^advance := aNumber
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-GlyphForm>>asFormOfDepth: d [
+{ #category : #converting }
+GlyphForm >> asFormOfDepth: d [
 	| newForm |
 	d = self depth ifTrue:[^self].
 	newForm := self class extent: self extent depth: d.
@@ -48,19 +38,13 @@ GlyphForm>>asFormOfDepth: d [
 	^newForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-GlyphForm>>linearAdvance [
+{ #category : #accessing }
+GlyphForm >> linearAdvance [
 	^linearAdvance
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-GlyphForm>>linearAdvance: aNumber [
+{ #category : #accessing }
+GlyphForm >> linearAdvance: aNumber [
 	^linearAdvance := aNumber
 ]

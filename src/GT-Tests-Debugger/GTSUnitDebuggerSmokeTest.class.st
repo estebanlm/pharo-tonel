@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #GTSUnitDebuggerSmokeTest,
 	#superclass : #GTDebuggerSmokeTest,
-	#category : #GT-Tests-Debugger,
-	#timestamp : ''
+	#category : #GT-Tests-Debugger
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSUnitDebuggerSmokeTest>>debuggerToTest [
+{ #category : #accessing }
+GTSUnitDebuggerSmokeTest >> debuggerToTest [
 
 	^ GTSUnitDebugger
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSUnitDebuggerSmokeTest>>stepBlockForTestArrays [
+{ #category : #utils }
+GTSUnitDebuggerSmokeTest >> stepBlockForTestArrays [
 
 	^ [ :aProcess |
 		aProcess
@@ -39,11 +29,8 @@ GTSUnitDebuggerSmokeTest>>stepBlockForTestArrays [
 
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSUnitDebuggerSmokeTest>>stepBlockForTestWithHalt [
+{ #category : #utils }
+GTSUnitDebuggerSmokeTest >> stepBlockForTestWithHalt [
 
 	^ [ :aProcess |
 		aProcess 
@@ -60,11 +47,8 @@ GTSUnitDebuggerSmokeTest>>stepBlockForTestWithHalt [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSUnitDebuggerSmokeTest>>testAssertionEqualsDetected [
+{ #category : #tests }
+GTSUnitDebuggerSmokeTest >> testAssertionEqualsDetected [
 
 	self 
 		assertDebuggerInitializationForContext: [ GTSUnitExampleFailingTest new testArrays ] asContext 
@@ -79,11 +63,8 @@ GTSUnitDebuggerSmokeTest>>testAssertionEqualsDetected [
  	self assertDebuggerClosing.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSUnitDebuggerSmokeTest>>testSuccessfullTestWithHalt [
+{ #category : #tests }
+GTSUnitDebuggerSmokeTest >> testSuccessfullTestWithHalt [
 
 	self 
 		assertDebuggerInitializationForContext: [ GTSUnitExampleFailingTest new testWithHalt ] asContext 

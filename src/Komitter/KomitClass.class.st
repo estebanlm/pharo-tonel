@@ -16,33 +16,23 @@ Class {
 	#classInstVars : [
 		'classes'
 	],
-	#category : #Komitter-Models,
-	#timestamp : 'StephaneDucasse 11/24/2015 18:55'
+	#category : #Komitter-Models
 }
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass class>>initialize [
+{ #category : #initialize }
+KomitClass class >> initialize [
 
 	classes := Dictionary new.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass class>>resetCache [
+{ #category : #protocol }
+KomitClass class >> resetCache [
 
 	classes removeAll
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass class>>trackedClass: trackedClass [
+{ #category : #'instance creation' }
+KomitClass class >> trackedClass: trackedClass [
 
 	^ classes 
 		at: trackedClass name
@@ -51,11 +41,8 @@ KomitClass class>>trackedClass: trackedClass [
 			yourself ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass class>>trackedClass: trackedClass forExtension: aCategory [
+{ #category : #'instance creation' }
+KomitClass class >> trackedClass: trackedClass forExtension: aCategory [
 
 	^ classes 
 		at: trackedClass name, aCategory
@@ -64,84 +51,57 @@ KomitClass class>>trackedClass: trackedClass forExtension: aCategory [
 			yourself ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>><= aKomitObject  [
+{ #category : #comparing }
+KomitClass >> <= aKomitObject [ 
 
 	^ self class name <= aKomitObject class name
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>addClassDefinition: aMCRemoval  [
+{ #category : #'*Komitter-UI' }
+KomitClass >> addClassDefinition: aMCRemoval [ 
 
 	self definition: aMCRemoval
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>addMethodDefinition: aMCAddition [
+{ #category : #'*Komitter-UI' }
+KomitClass >> addMethodDefinition: aMCAddition [
 
 	self addOperation: aMCAddition
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>addOperation: anOperation [
+{ #category : #private }
+KomitClass >> addOperation: anOperation [
 
 	operations add: anOperation
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>addOrganizationDefinition: aMCModification  [
+{ #category : #'*Komitter-UI' }
+KomitClass >> addOrganizationDefinition: aMCModification [ 
 	
 	self addOperation: aMCModification
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>definition [
+{ #category : #accessing }
+KomitClass >> definition [
 	^ definition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>definition: aMCRemoval  [
+{ #category : #accessing }
+KomitClass >> definition: aMCRemoval [ 
 	
 	definition := aMCRemoval
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>definitions [
+{ #category : #protocol }
+KomitClass >> definitions [
 
 	^ definitions ifNil: [ definitions := (self operations
 		select: [ :each | each isClassPatch ]
 		thenCollect: [ :each | each koDefinition ]) sorted ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>flush [
+{ #category : #protocol }
+KomitClass >> flush [
 	super flush.
 	definition := nil.
 	operations removeAll.
@@ -151,74 +111,53 @@ KomitClass>>flush [
 	definitions := nil
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>initialize [
+{ #category : #initialize }
+KomitClass >> initialize [
 
 	super initialize.
 	operations := Set new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>isKomitClass [
+{ #category : #testing }
+KomitClass >> isKomitClass [
 
 	^ true
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>koDestinationText [
+{ #category : #'*Komitter-UI' }
+KomitClass >> koDestinationText [
 
 	^ self isDirty
 		ifTrue: [ self definition koDestinationText ]
 		ifFalse: [ '' ]
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>koSourceText [
+{ #category : #'*Komitter-UI' }
+KomitClass >> koSourceText [
 
 	^ self isDirty
 		ifFalse: [ 'No changes' ]
 		ifTrue: [ self definition koSourceText ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>methods [
+{ #category : #protocol }
+KomitClass >> methods [
 
 	^ methods ifNil: [ methods := (self operations 
 		select: [ :each | each isMethodPatch ]
 		thenCollect: [ :each | each koMethod ]) sorted ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>operations [
+{ #category : #protocol }
+KomitClass >> operations [
 	
 	^ (definition
 		ifNil: [ operations ]
 		ifNotNil: [ {definition}, operations asOrderedCollection ]) asOrderedCollection
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>printOn: aStream [
+{ #category : #printing }
+KomitClass >> printOn: aStream [
 
 	super printOn: aStream.
 	aStream << '[ '.
@@ -226,18 +165,12 @@ KomitClass>>printOn: aStream [
 	aStream << ' ]'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>trackedClass [
+{ #category : #accessing }
+KomitClass >> trackedClass [
 	^ trackedClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClass>>trackedClass: anObject [
+{ #category : #accessing }
+KomitClass >> trackedClass: anObject [
 	trackedClass := anObject
 ]

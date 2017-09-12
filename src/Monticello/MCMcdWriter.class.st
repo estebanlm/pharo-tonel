@@ -4,59 +4,40 @@ Writing MCD format
 Class {
 	#name : #MCMcdWriter,
 	#superclass : #MCMczWriter,
-	#category : #Monticello-Storing,
-	#timestamp : 'TorstenBergmann 2/6/2014 08:08'
+	#category : #Monticello-Storing
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMcdWriter class>>readerClass [
+{ #category : #accessing }
+MCMcdWriter class >> readerClass [
 	^ MCMcdReader
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMcdWriter>>writeBaseInfo: aVersionInfo [
+{ #category : #writing }
+MCMcdWriter >> writeBaseInfo: aVersionInfo [
 	| string |
 	string := self serializeVersionInfo: aVersionInfo.
 	self addString: string at: 'base' encodedTo: 'utf8'.
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMcdWriter>>writeDefinitions: aVersion [
+{ #category : #visiting }
+MCMcdWriter >> writeDefinitions: aVersion [
 	self writeBaseInfo: aVersion baseInfo.
 	self writePatch: aVersion patch.
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMcdWriter>>writeNewDefinitions: aCollection [
+{ #category : #writing }
+MCMcdWriter >> writeNewDefinitions: aCollection [
 	self addString: (self serializeDefinitions: aCollection) at: 'new/source.', self snapshotWriterClass extension encodedTo: 'utf8'.
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMcdWriter>>writeOldDefinitions: aCollection [
+{ #category : #writing }
+MCMcdWriter >> writeOldDefinitions: aCollection [
 	self addString: (self serializeDefinitions: aCollection) at: 'old/source.', self snapshotWriterClass extension encodedTo: 'utf8'.
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMcdWriter>>writePatch: aPatch [
+{ #category : #writing }
+MCMcdWriter >> writePatch: aPatch [
 	| old new |
 	old := OrderedCollection new.
 	new := OrderedCollection new.

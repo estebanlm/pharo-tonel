@@ -1,23 +1,15 @@
-Extension {
-	#name : #MCPatch
-}
+Extension { #name : #MCPatch }
 
-{
-	#category : #'*Komitter-Models',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCPatch>>initializeWithTarget: targetSnapshot [
+{ #category : #'*Komitter-Models' }
+MCPatch >> initializeWithTarget: targetSnapshot [
 	| target |	
 		
 	target := MCDefinitionIndex definitions: targetSnapshot definitions.
 	operations := (target definitions collect: [ :definition | MCAddition of: definition ]) asOrderedCollection.
 ]
 
-{
-	#category : #'*Komitter-Models',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCPatch>>silentInitializeWithBase: baseSnapshot target: targetSnapshot [
+{ #category : #'*Komitter-Models' }
+MCPatch >> silentInitializeWithBase: baseSnapshot target: targetSnapshot [
 	| base target |	
 	operations := OrderedCollection new.
 	base := MCDefinitionIndex definitions: baseSnapshot definitions.

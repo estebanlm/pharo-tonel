@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloAtomicMonticelloResource,
 	#superclass : #TestResource,
@@ -8,23 +5,16 @@ Class {
 		'versionReferences',
 		'monticelloRepository'
 	],
-	#category : #Metacello-TestsMCResources,
-	#timestamp : ''
+	#category : #Metacello-TestsMCResources
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicMonticelloResource>>monticelloRepository [
+{ #category : #accessing }
+MetacelloAtomicMonticelloResource >> monticelloRepository [
 	^ monticelloRepository
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicMonticelloResource>>setUp [
+{ #category : #running }
+MetacelloAtomicMonticelloResource >> setUp [
 	super setUp.
 	self
 		setUpVersionReferences;
@@ -33,11 +23,8 @@ MetacelloAtomicMonticelloResource>>setUp [
 		setUpNewerDependency
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicMonticelloResource>>setUpDependency [
+{ #category : #running }
+MetacelloAtomicMonticelloResource >> setUpDependency [
 	"self reset"
 
 	| reference |
@@ -64,11 +51,8 @@ MetacelloAtomicMonticelloResource>>setUpDependency [
 						info: (monticelloRepository versionInfoFromVersionNamed: 'GoferFooDependency-lr.30'))))
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicMonticelloResource>>setUpMonticelloRepository [
+{ #category : #running }
+MetacelloAtomicMonticelloResource >> setUpMonticelloRepository [
 	"This method builds a fake repository with the version references from #buildReferences."
 
 	monticelloRepository := MCDictionaryRepository new.
@@ -91,11 +75,8 @@ MetacelloAtomicMonticelloResource>>setUpMonticelloRepository [
 			dependencies: #()) ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicMonticelloResource>>setUpNewerDependency [
+{ #category : #running }
+MetacelloAtomicMonticelloResource >> setUpNewerDependency [
 	"self reset"
 
 	| reference |
@@ -122,11 +103,8 @@ MetacelloAtomicMonticelloResource>>setUpNewerDependency [
 						info: (monticelloRepository versionInfoFromVersionNamed: 'GoferFooDependency-lr.35'))))
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicMonticelloResource>>setUpVersionReferences [
+{ #category : #running }
+MetacelloAtomicMonticelloResource >> setUpVersionReferences [
 	"self reset"
 
 	versionReferences := OrderedCollection new.
@@ -148,10 +126,7 @@ MetacelloAtomicMonticelloResource>>setUpVersionReferences [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicMonticelloResource>>versionReferences [
+{ #category : #accessing }
+MetacelloAtomicMonticelloResource >> versionReferences [
 	^ versionReferences
 ]

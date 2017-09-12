@@ -1,28 +1,17 @@
-Extension {
-	#name : #Time
-}
+Extension { #name : #Time }
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-Time class>>fromSton: stonReader [
+{ #category : #'*ston-core' }
+Time class >> fromSton: stonReader [
 	^ self readFrom: stonReader parseListSingleton readStream
 ]
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-Time>>stonContainSubObjects  [
+{ #category : #'*ston-core' }
+Time >> stonContainSubObjects [ 
 	^ false
 ]
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-Time>>stonOn: stonWriter [
+{ #category : #'*ston-core' }
+Time >> stonOn: stonWriter [
 	"Use an ISO style HH:MM:SS.N representation (with optional nanoseconds)"
 	 
 	stonWriter writeObject: self listSingleton: 

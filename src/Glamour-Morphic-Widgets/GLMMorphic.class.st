@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMMorphic,
 	#superclass : #Object,
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #'utils - morph creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphic class>>alignmentMorph: aCollectionOfMorphs [
+{ #category : #'utils - morph creation' }
+GLMMorphic class >> alignmentMorph: aCollectionOfMorphs [
 	"Answer a row-oriented AlignmentMorph holding the given collection"
 	| morph |
 
@@ -29,11 +22,8 @@ GLMMorphic class>>alignmentMorph: aCollectionOfMorphs [
 	^morph
 ]
 
-{
-	#category : #'utils - morph creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphic class>>containerMorph [
+{ #category : #'utils - morph creation' }
+GLMMorphic class >> containerMorph [
 	^ GLMPanelMorph new
 		layoutPolicy: ProportionalLayout new;
 		hResizing: #spaceFill;
@@ -42,21 +32,15 @@ GLMMorphic class>>containerMorph [
 		yourself
 ]
 
-{
-	#category : #'utils - morph creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphic class>>emptyMorph [
+{ #category : #'utils - morph creation' }
+GLMMorphic class >> emptyMorph [
 	^ self containerMorph
 		fillStyle: (SolidFillStyle color: Color transparent );
 		yourself
 ]
 
-{
-	#category : #'button styles',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphic class>>grayRoundedButtonStyle: button morph: aMorph pressed: aBoolean [
+{ #category : #'button styles' }
+GLMMorphic class >> grayRoundedButtonStyle: button morph: aMorph pressed: aBoolean [
 	button useRoundedCorners.
 	(self isAlignmentMorph: aMorph)
 		ifTrue: [
@@ -76,47 +60,32 @@ GLMMorphic class>>grayRoundedButtonStyle: button morph: aMorph pressed: aBoolean
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphic class>>isAlignmentMorph: anObject [
+{ #category : #testing }
+GLMMorphic class >> isAlignmentMorph: anObject [
 
 	^anObject isMemberOf: AlignmentMorph
 ]
 
-{
-	#category : #'button styles',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphic class>>isGrayRoundedButton: aSymbol [
+{ #category : #'button styles' }
+GLMMorphic class >> isGrayRoundedButton: aSymbol [
 
 	^aSymbol = #grayRoundedButton
 		or:[ aSymbol = #default ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphic class>>isImageMorph: anObject [
+{ #category : #testing }
+GLMMorphic class >> isImageMorph: anObject [
 
 	^anObject isMemberOf: ImageMorph
 ]
 
-{
-	#category : #'button styles',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphic class>>isWhiteRectangledButton: aSymbol [
+{ #category : #'button styles' }
+GLMMorphic class >> isWhiteRectangledButton: aSymbol [
 	^aSymbol = #whiteRectangledButton
 ]
 
-{
-	#category : #'utils - morph creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphic class>>morphElement: anObject [
+{ #category : #'utils - morph creation' }
+GLMMorphic class >> morphElement: anObject [
 
 	anObject isString
 	ifTrue:[ ^StringMorph 
@@ -137,11 +106,8 @@ GLMMorphic class>>morphElement: anObject [
 	^self containerMorph
 ]
 
-{
-	#category : #'button styles',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphic class>>styleButton: button morph: m pressed: aBoolean style: aSymbol [
+{ #category : #'button styles' }
+GLMMorphic class >> styleButton: button morph: m pressed: aBoolean [ style: aSymbol
 	(self isGrayRoundedButton: aSymbol)
 		ifTrue:[ self grayRoundedButtonStyle: button morph: m pressed: aBoolean ].
 	
@@ -149,11 +115,8 @@ GLMMorphic class>>styleButton: button morph: m pressed: aBoolean style: aSymbol 
 		ifTrue:[ self whiteRectangledButtonStyle: button morph: m pressed: aBoolean ]
 ]
 
-{
-	#category : #'utils - morph creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphic class>>togglingButtonLabelled: anObject pressed: aBoolean style: aSymbol [
+{ #category : #'utils - morph creation' }
+GLMMorphic class >> togglingButtonLabelled: anObject pressed: aBoolean style: aSymbol [
 	| button oldLabel m |
 	button := SimpleButtonMorph new.
 	(oldLabel := button findA: StringMorph) ifNotNil: [ oldLabel delete ].
@@ -175,11 +138,8 @@ GLMMorphic class>>togglingButtonLabelled: anObject pressed: aBoolean style: aSym
 	^ button
 ]
 
-{
-	#category : #'button styles',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphic class>>whiteRectangledButtonStyle: button morph: aMorph pressed: aBoolean [
+{ #category : #'button styles' }
+GLMMorphic class >> whiteRectangledButtonStyle: button morph: aMorph pressed: aBoolean [
 
 	button useSquareCorners.
 	(self isAlignmentMorph: aMorph)

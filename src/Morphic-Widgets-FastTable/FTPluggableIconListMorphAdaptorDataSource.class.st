@@ -15,15 +15,11 @@ Class {
 		'dropItemSelector',
 		'wantsDropSelector'
 	],
-	#category : #Morphic-Widgets-FastTable-PluggableAdaptor,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-FastTable-PluggableAdaptor
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>cellColumn: column row: rowIndex [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptorDataSource >> cellColumn: column row: rowIndex [
 	| object text icon |
 	object := self elementAt: rowIndex.
 	
@@ -34,11 +30,8 @@ FTPluggableIconListMorphAdaptorDataSource>>cellColumn: column row: rowIndex [
 	^ self createCellText: text icon: icon.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>createCellText: aString icon: anIcon [
+{ #category : #private }
+FTPluggableIconListMorphAdaptorDataSource >> createCellText: aString icon: anIcon [ 
 	| text icon cell |
 	text := aString.
 	icon := anIcon.
@@ -56,19 +49,13 @@ FTPluggableIconListMorphAdaptorDataSource>>createCellText: aString icon: anIcon 
 	^ cell
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>dragTransferType [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptorDataSource >> dragTransferType [
 	^ self getListElementSelector
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>dropElements: aCollection index: rowIndex [
+{ #category : #'drag and drop' }
+FTPluggableIconListMorphAdaptorDataSource >> dropElements: aCollection index: rowIndex [
 	self dropItemSelector ifNil: [ ^ self ].
 	self model 
 		perform: self dropItemSelector 
@@ -76,28 +63,19 @@ FTPluggableIconListMorphAdaptorDataSource>>dropElements: aCollection index: rowI
 		with: rowIndex
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>dropItemSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptorDataSource >> dropItemSelector [
 	^ dropItemSelector 
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>dropItemSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptorDataSource >> dropItemSelector: aSelector [
 	dropItemSelector := aSelector
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>elementAt: rowIndex [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptorDataSource >> elementAt: rowIndex [
 	^ self getListElementSelector 
 		ifNotNil: [ 
 			self model perform: self getListElementSelector with: rowIndex ]
@@ -105,109 +83,70 @@ FTPluggableIconListMorphAdaptorDataSource>>elementAt: rowIndex [
 			(self model perform: self getListSelector) at: rowIndex  ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>elementWrapped: object [
+{ #category : #private }
+FTPluggableIconListMorphAdaptorDataSource >> elementWrapped: object [
 	^ self wrapSelector 
 		ifNotNil: [ :selector | self model perform: selector with: object ] 
 		ifNil: [ object ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>elements [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptorDataSource >> elements [
 	^self model getList
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>getIconSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptorDataSource >> getIconSelector [
 	^ getIconSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>getIconSelector: anObject [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptorDataSource >> getIconSelector: anObject [
 	getIconSelector := anObject
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>getListElementSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptorDataSource >> getListElementSelector [
 	^ getListElementSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>getListElementSelector: anObject [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptorDataSource >> getListElementSelector: anObject [
 	getListElementSelector := anObject
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>getListSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptorDataSource >> getListSelector [
 	^ getListSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>getListSelector: anObject [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptorDataSource >> getListSelector: anObject [
 	getListSelector := anObject
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>getListSizeSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptorDataSource >> getListSizeSelector [
 	^ getListSizeSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>getListSizeSelector: anObject [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptorDataSource >> getListSizeSelector: anObject [
 	getListSizeSelector := anObject
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>getMenuSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptorDataSource >> getMenuSelector [
 	^ getMenuSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>getMenuSelector: anObject [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptorDataSource >> getMenuSelector: anObject [
 	getMenuSelector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>menuColumn: column row: rowIndex [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptorDataSource >> menuColumn: column row: rowIndex [
 	| menu |
 	
 	self getMenuSelector ifNil: [ ^ nil ].
@@ -222,27 +161,18 @@ FTPluggableIconListMorphAdaptorDataSource>>menuColumn: column row: rowIndex [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>model [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptorDataSource >> model [
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>model: anObject [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptorDataSource >> model: anObject [
 	model := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>newDataSourceMatching: aFTFilter [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptorDataSource >> newDataSourceMatching: aFTFilter [
 	| newElements wrappedItem text newDataSource modelCopy |
 	newElements := self elements select: [ :each | 
 		wrappedItem := self elementWrapped: each.
@@ -258,11 +188,8 @@ FTPluggableIconListMorphAdaptorDataSource>>newDataSourceMatching: aFTFilter [
 	^newDataSource
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>numberOfRows [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptorDataSource >> numberOfRows [
 	^ self model 
 		ifNotNil: [ 
 			self getListSizeSelector 
@@ -271,11 +198,8 @@ FTPluggableIconListMorphAdaptorDataSource>>numberOfRows [
 		ifNil: [ 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>searchText: aString [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptorDataSource >> searchText: aString [
 	| search text result |
 	aString isEmptyOrNil ifTrue: [ ^ #() ].
 	result := OrderedCollection new.
@@ -287,19 +211,13 @@ FTPluggableIconListMorphAdaptorDataSource>>searchText: aString [
 	^ result asArray
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>transferFor: passenger from: aMorph [
+{ #category : #'drag and drop' }
+FTPluggableIconListMorphAdaptorDataSource >> transferFor: passenger from: aMorph [
     ^self model transferFor: passenger from: self table
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>wantsDropElements: aCollection type: type index: rowIndex [
+{ #category : #'drag and drop' }
+FTPluggableIconListMorphAdaptorDataSource >> wantsDropElements: aCollection type: type index: rowIndex [
 	self dropItemSelector ifNil: [ ^ false ].
 	self wantsDropSelector ifNil: [ ^ true ].
 	^ self model 
@@ -307,34 +225,22 @@ FTPluggableIconListMorphAdaptorDataSource>>wantsDropElements: aCollection type: 
 		with: aCollection
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>wantsDropSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptorDataSource >> wantsDropSelector [
 	^ wantsDropSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>wantsDropSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptorDataSource >> wantsDropSelector: aSelector [
 	wantsDropSelector := aSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>wrapSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptorDataSource >> wrapSelector [
 	^ wrapSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptorDataSource>>wrapSelector: anObject [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptorDataSource >> wrapSelector: anObject [
 	wrapSelector := anObject
 ]

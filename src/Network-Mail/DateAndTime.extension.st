@@ -1,12 +1,7 @@
-Extension {
-	#name : #DateAndTime
-}
+Extension { #name : #DateAndTime }
 
-{
-	#category : #'*Network-Mail',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-DateAndTime>>asEmailString [
+{ #category : #'*Network-Mail' }
+DateAndTime >> asEmailString [
 	"Format per RFC5322  e.g.  'Thu, 18 Feb 1999 20:38:51 -0500'"
 
 	| timeString |

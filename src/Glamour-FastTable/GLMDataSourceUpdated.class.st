@@ -26,32 +26,22 @@ Class {
 	#instVars : [
 		'newDataSource'
 	],
-	#category : #Glamour-FastTable-Announcement,
-	#timestamp : 'CyrilFerlicot 11/16/2015 15:51'
+	#category : #Glamour-FastTable-Announcement
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMDataSourceUpdated class>>newDataSource: aDataSource [
+{ #category : #'instance creation' }
+GLMDataSourceUpdated class >> newDataSource: aDataSource [
 	^ self new
 		newDataSource: aDataSource;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMDataSourceUpdated>>newDataSource [
+{ #category : #accessing }
+GLMDataSourceUpdated >> newDataSource [
 	^ newDataSource
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMDataSourceUpdated>>newDataSource: anObject [
+{ #category : #accessing }
+GLMDataSourceUpdated >> newDataSource: anObject [
 	newDataSource := anObject
 ]

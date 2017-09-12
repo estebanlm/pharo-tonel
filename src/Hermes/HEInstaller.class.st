@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #HEInstaller,
 	#superclass : #Object,
 	#instVars : [
 		'environment'
 	],
-	#category : #Hermes-ClassInstaller,
-	#timestamp : ''
+	#category : #Hermes-ClassInstaller
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEInstaller>>asClassVariables: aString [
+{ #category : #converting }
+HEInstaller >> asClassVariables: aString [
 	| trimmed |
 	trimmed := aString trimBoth.
 
@@ -25,11 +18,8 @@ HEInstaller>>asClassVariables: aString [
 	^ (trimmed substrings: ' ') collect: [:x | x asSymbol => ClassVariable]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEInstaller>>asSlots: aString [
+{ #category : #converting }
+HEInstaller >> asSlots: aString [
 	| trimmed |
 	trimmed := aString trimBoth.
 
@@ -39,11 +29,8 @@ HEInstaller>>asSlots: aString [
 	^ (trimmed splitOn: ' ') collect: [ :e | e asSymbol asSlot ] as: Array
 ]
 
-{
-	#category : #'creating classes',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEInstaller>>build: aHEClass [
+{ #category : #'creating classes' }
+HEInstaller >> build: aHEClass [
 	| newMetaclass newClass superclass layoutType |
 	newMetaclass := Metaclass new.
 	
@@ -76,11 +63,8 @@ HEInstaller>>build: aHEClass [
 
 ]
 
-{
-	#category : #'creating traits',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEInstaller>>buildTrait: aTraitDefinition [
+{ #category : #'creating traits' }
+HEInstaller >> buildTrait: aTraitDefinition [
 	| newTrait traitComposition |
 	traitComposition := aTraitDefinition traitComposition asLiteralIn: environment.
 	
@@ -95,43 +79,28 @@ HEInstaller>>buildTrait: aTraitDefinition [
 	^ newTrait
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEInstaller>>classNamed: aSymbol [
+{ #category : #accessing }
+HEInstaller >> classNamed: aSymbol [
 	^ self environment at: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEInstaller>>environment [
+{ #category : #accessing }
+HEInstaller >> environment [
 	^ environment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEInstaller>>environment: anObject [
+{ #category : #accessing }
+HEInstaller >> environment: anObject [
 	environment := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEInstaller>>initialize [
+{ #category : #initialization }
+HEInstaller >> initialize [
 	environment := self class environment.
 ]
 
-{
-	#category : #'creating classes',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEInstaller>>installClass: aClass in: category [
+{ #category : #'creating classes' }
+HEInstaller >> installClass: aClass [ in: category
 	environment at: aClass name put: aClass.
 	aClass superclass addSubclass: aClass.
 
@@ -141,32 +110,23 @@ HEInstaller>>installClass: aClass in: category [
 
 ]
 
-{
-	#category : #'installing methods',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEInstaller>>installExtensionMethod: extensionMethod [
+{ #category : #'installing methods' }
+HEInstaller >> installExtensionMethod: extensionMethod [
 	| aClass |
 	aClass := self environment classNamed: extensionMethod className.
 	self rebuildMethod: extensionMethod into: aClass.
 ]
 
-{
-	#category : #'installing methods',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEInstaller>>installMethods: exportedClass into: aClass [
+{ #category : #'installing methods' }
+HEInstaller >> installMethods: exportedClass into: aClass [
 	exportedClass methods do: [ :e | self rebuildMethod: e into: aClass ].
 	exportedClass classSideMethods
 		do:
 			[ :e | self rebuildMethod: e into: aClass theMetaClass ]
 ]
 
-{
-	#category : #'installing package',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEInstaller>>installPackage: aHEPackage [
+{ #category : #'installing package' }
+HEInstaller >> installPackage: aHEPackage [
 	| newTraits newClasses |
 	RPackageOrganizer default registerPackageNamed: aHEPackage packageName.
 
@@ -191,11 +151,8 @@ HEInstaller>>installPackage: aHEPackage [
 	aHEPackage extensionMethods do: [ :e | self installExtensionMethod: e ]
 ]
 
-{
-	#category : #'installing methods',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEInstaller>>rebuildMethod: aMethod into: aClass [
+{ #category : #'installing methods' }
+HEInstaller >> rebuildMethod: aMethod into: aClass [
 	| newMethod literalSpace extendedEnvironment |
 	newMethod := CompiledMethod newMethod: aMethod bytecode size header: aMethod header.
 

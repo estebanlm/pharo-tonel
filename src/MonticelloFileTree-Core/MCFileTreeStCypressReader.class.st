@@ -6,31 +6,21 @@ see https://github.com/CampSmalltalk/Cypress
 Class {
 	#name : #MCFileTreeStCypressReader,
 	#superclass : #MCFileTreeStSnapshotReader,
-	#category : #MonticelloFileTree-Core,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:57'
+	#category : #MonticelloFileTree-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader class>>extension [
+{ #category : #accessing }
+MCFileTreeStCypressReader class >> extension [
     ^ 'package'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader class>>monticelloMetaDirName [
+{ #category : #accessing }
+MCFileTreeStCypressReader class >> monticelloMetaDirName [
     ^ MCFileTreeStCypressWriter monticelloMetaDirName
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>addClassAndMethodDefinitionsFromDirectory: aDirectory [
+{ #category : #utilities }
+MCFileTreeStCypressReader >> addClassAndMethodDefinitionsFromDirectory: aDirectory [
     aDirectory entries
         do: [ :entry | 
             (entry name endsWith: '.trait')
@@ -41,11 +31,8 @@ MCFileTreeStCypressReader>>addClassAndMethodDefinitionsFromDirectory: aDirectory
                 ifTrue: [ self addExtensionClassAndMethodDefinitionsFromEntry: entry ] ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>addClassAndMethodDefinitionsFromEntry: classEntry [
+{ #category : #utilities }
+MCFileTreeStCypressReader >> addClassAndMethodDefinitionsFromEntry: classEntry [
     | classDirectory classPropertiesDict classComment entries methodPropertiesDict |
     classDirectory := self fileUtils directoryFromEntry: classEntry.
     ((entries := classDirectory entries) detect: [:entry | self isPropertyFile: entry] ifNone: [  ])
@@ -66,11 +53,8 @@ MCFileTreeStCypressReader>>addClassAndMethodDefinitionsFromEntry: classEntry [
         in: entries
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>addClassDefinitionFrom: classPropertiesDict comment: classComment [
+{ #category : #utilities }
+MCFileTreeStCypressReader >> addClassDefinitionFrom: classPropertiesDict comment: classComment [
   | categoryName className |
   className := classPropertiesDict at: 'name'.
   categoryName := classPropertiesDict
@@ -97,11 +81,8 @@ MCFileTreeStCypressReader>>addClassDefinitionFrom: classPropertiesDict comment: 
 
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>addExtensionClassAndMethodDefinitionsFromEntry: classEntry [
+{ #category : #utilities }
+MCFileTreeStCypressReader >> addExtensionClassAndMethodDefinitionsFromEntry: classEntry [
   | classDirectory classPropertiesDict methodPropertiesDict entries |
   classDirectory := self fileUtils directoryFromEntry: classEntry.
   ((entries := classDirectory entries)
@@ -126,11 +107,8 @@ MCFileTreeStCypressReader>>addExtensionClassAndMethodDefinitionsFromEntry: class
 
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>addMethodDefinitionsForClass: className methodProperties: methodProperties in: entries [
+{ #category : #utilities }
+MCFileTreeStCypressReader >> addMethodDefinitionsForClass: className methodProperties: methodProperties [ in: entries
   ^ self
     addMethodDefinitionsForClass: className
     methodProperties: methodProperties
@@ -138,11 +116,8 @@ MCFileTreeStCypressReader>>addMethodDefinitionsForClass: className methodPropert
     extensionMethod: false
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>addMethodDefinitionsForClass: className methodProperties: methodProperties in: entries extensionMethod: extensionMethod [
+{ #category : #utilities }
+MCFileTreeStCypressReader >> addMethodDefinitionsForClass: className methodProperties: methodProperties in: entries extensionMethod: extensionMethod [
     entries
         do: [ :entry | 
             | classIsMeta |
@@ -181,11 +156,8 @@ MCFileTreeStCypressReader>>addMethodDefinitionsForClass: className methodPropert
 
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>addTraitAndMethodDefinitionsFromEntry: classEntry [
+{ #category : #utilities }
+MCFileTreeStCypressReader >> addTraitAndMethodDefinitionsFromEntry: classEntry [
     | classDirectory classPropertiesDict classComment entries methodPropertiesDict |
     classDirectory := self fileUtils directoryFromEntry: classEntry.
     ((entries := classDirectory entries) detect: [:entry | self isPropertyFile: entry] ifNone: [  ])
@@ -207,11 +179,8 @@ MCFileTreeStCypressReader>>addTraitAndMethodDefinitionsFromEntry: classEntry [
         in: entries
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>addTraitDefinitionFrom: traitPropertiesDict comment: traitComment [
+{ #category : #utilities }
+MCFileTreeStCypressReader >> addTraitDefinitionFrom: traitPropertiesDict comment: traitComment [
     definitions
         add:
             (MCTraitDefinition
@@ -228,11 +197,8 @@ MCFileTreeStCypressReader>>addTraitDefinitionFrom: traitPropertiesDict comment: 
                     classTraitComposition: classTraitComposition)].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>basicVersion [
+{ #category : #accessing }
+MCFileTreeStCypressReader >> basicVersion [
     self hasMonticelloMetadata
         ifTrue: [ ^ super basicVersion ].
     ^ MCVersion new
@@ -243,27 +209,18 @@ MCFileTreeStCypressReader>>basicVersion [
         yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>isMethodPropertyFile: entry [
+{ #category : #private }
+MCFileTreeStCypressReader >> isMethodPropertyFile: entry [
 	^ entry name = 'methodProperties.ston' or: [ entry name = 'methodProperties.json']
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>isPropertyFile: entry [
+{ #category : #private }
+MCFileTreeStCypressReader >> isPropertyFile: entry [
 	^ entry name = 'properties.ston' or: [ entry name = 'properties.json']
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>loadDefinitions [
+{ #category : #utilities }
+MCFileTreeStCypressReader >> loadDefinitions [
     | entries directory |
     definitions := OrderedCollection new.
     directory := self fileUtils directoryFromPath: self monticelloMetaDirName relativeTo: packageDirectory.
@@ -282,21 +239,15 @@ MCFileTreeStCypressReader>>loadDefinitions [
                 inDirectory: directory ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>loadPackage [
+{ #category : #accessing }
+MCFileTreeStCypressReader >> loadPackage [
     self hasMonticelloMetadata
         ifTrue: [ ^ super loadPackage ].
     package := MCPackage named: self packageNameFromPackageDirectory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>loadVersionInfo [
+{ #category : #accessing }
+MCFileTreeStCypressReader >> loadVersionInfo [
   self hasMonticelloMetadata
     ifTrue: [ ^ info := self extractInfoFrom: (self parseMember: 'version') ].
   info := MCVersionInfo
@@ -311,30 +262,21 @@ MCFileTreeStCypressReader>>loadVersionInfo [
 
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>methodSelectorFor: source [
+{ #category : #utilities }
+MCFileTreeStCypressReader >> methodSelectorFor: source [
     ^ Object compilerClass new parseSelector: source
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>packageNameFromPackageDirectory [
+{ #category : #accessing }
+MCFileTreeStCypressReader >> packageNameFromPackageDirectory [
     | filename |
     filename := self fileUtils directoryName: packageDirectory.
     ^ filename copyFrom: 1 to: (filename lastIndexOf: $.) - 1
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>validateClassCategory: categoryName for: className [
+{ #category : #validation }
+MCFileTreeStCypressReader >> validateClassCategory: categoryName for: className [
   "https://github.com/dalehenrich/filetree/issues/136"
 
   "class category must match the package name ... guard against manual editing mistakes"
@@ -350,11 +292,8 @@ MCFileTreeStCypressReader>>validateClassCategory: categoryName for: className [
         , prefix printString
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>validateExtensionMethodCategory: categoryName for: className selector: selector [
+{ #category : #validation }
+MCFileTreeStCypressReader >> validateExtensionMethodCategory: categoryName for: className selector: selector [
   "https://github.com/dalehenrich/filetree/issues/136"
 
   "method category must match the package name for extension methods... guard against manual editing mistakes"
@@ -380,11 +319,8 @@ MCFileTreeStCypressReader>>validateExtensionMethodCategory: categoryName for: cl
 
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStCypressReader>>verifyCategory: categoryName matches: basicPackageName [
+{ #category : #validation }
+MCFileTreeStCypressReader >> verifyCategory: categoryName matches: basicPackageName [
   "https://github.com/dalehenrich/filetree/issues/136"
 
   "copied from PackageInfo>>category:matches: and GoferVersionReference>>parseName:"

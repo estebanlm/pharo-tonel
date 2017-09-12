@@ -4,15 +4,11 @@ Set the description on the selected development version
 Class {
 	#name : #VSSetDescriptionCommand,
 	#superclass : #VSVersionCommand,
-	#category : #Versionner-Core-Commands,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSSetDescriptionCommand>>execute [
+{ #category : #execute }
+VSSetDescriptionCommand >> execute [
 	|  message |
 	message := UIManager default 
 					multilineRequest: 'Enter description' initialAnswer: ''.
@@ -21,11 +17,8 @@ VSSetDescriptionCommand>>execute [
 	self executeWithMessage: message
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSSetDescriptionCommand>>executeWithMessage: message [
+{ #category : #execute }
+VSSetDescriptionCommand >> executeWithMessage: message [
 	| toolbox updatedSpecs |
 	toolbox := MetacelloToolBox configurationNamed: target configurationBasename.
 	toolbox
@@ -45,10 +38,7 @@ VSSetDescriptionCommand>>executeWithMessage: message [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSSetDescriptionCommand>>title [
+{ #category : #accessing }
+VSSetDescriptionCommand >> title [
 	^ 'set description'
 ]

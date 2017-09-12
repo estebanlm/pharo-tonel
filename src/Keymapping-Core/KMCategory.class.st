@@ -8,118 +8,78 @@ Class {
 		'name',
 		'platforms'
 	],
-	#category : #Keymapping-Core,
-	#timestamp : 'GuillermoPolito 12/14/2010 21:32'
+	#category : #Keymapping-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory class>>named: aCategorySymbol [
+{ #category : #'instance creation' }
+KMCategory class >> named: aCategorySymbol [
 	^ (self new)
 		name: aCategorySymbol;
 		yourself
 ]
 
-{
-	#category : #associating,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>addKeymapEntry: aKeymapEntry  [
+{ #category : #associating }
+KMCategory >> addKeymapEntry: aKeymapEntry [ 
 	self commonEntries add: aKeymapEntry.
 ]
 
-{
-	#category : #associating,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>addKeymapEntry: aKeymapEntry at: aPlatform [
+{ #category : #associating }
+KMCategory >> addKeymapEntry: aKeymapEntry at: aPlatform [
 	(self entriesAt: aPlatform) add: aKeymapEntry
 ]
 
-{
-	#category : #associating,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>allEntries [
+{ #category : #associating }
+KMCategory >> allEntries [
 	^self commonEntries, self platformEntries
 ]
 
-{
-	#category : #binding,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>asKmCategoryIn: aKmRepository [
+{ #category : #binding }
+KMCategory >> asKmCategoryIn: aKmRepository [
 
 	"Maybe we should validate we exist in the repository?"
 	^ self
 ]
 
-{
-	#category : #binding,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>bindToObject: anObject andMorph: aMorph [
+{ #category : #binding }
+KMCategory >> bindToObject: anObject andMorph: aMorph [
 	
 	^ KMCategoryBinding target: anObject morph: aMorph category: self.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>buildKeymapOnMethod: method [
+{ #category : #initialize-release }
+KMCategory >> buildKeymapOnMethod: method [
 
 	self addKeymapEntry: (self perform: method selector)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>categoryName [
+{ #category : #accessing }
+KMCategory >> categoryName [
 	^ name
 ]
 
-{
-	#category : #associating,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>commonEntries [
+{ #category : #associating }
+KMCategory >> commonEntries [
 	^self entriesAt: #all
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>entriesAt: aPlatform [
+{ #category : #accessing }
+KMCategory >> entriesAt: aPlatform [
 	platforms ifNil: [ platforms := Dictionary new ].
 	^platforms at: aPlatform ifAbsentPut: [ KMStorage new ].
 ]
 
-{
-	#category : #associating,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>hasKeymapNamed: aKeymapEntryName [
+{ #category : #associating }
+KMCategory >> hasKeymapNamed: aKeymapEntryName [
 	^self allEntries hasKeymapNamed: aKeymapEntryName
 ]
 
-{
-	#category : #associating,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>hasKeymapNamed: aKeymapEntryName at: aPlatform [
+{ #category : #associating }
+KMCategory >> hasKeymapNamed: aKeymapEntryName at: aPlatform [
 	^ (self entriesAt: aPlatform) hasKeymapNamed: aKeymapEntryName
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>initialize [
+{ #category : #initialize-release }
+KMCategory >> initialize [
 
 	super initialize.
 	self class methods
@@ -127,106 +87,70 @@ KMCategory>>initialize [
 		thenDo: [ :m | self buildKeymapOnMethod: m ]
 ]
 
-{
-	#category : #binding,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>installAsGlobalCategory [
+{ #category : #binding }
+KMCategory >> installAsGlobalCategory [
 
 	KMRepository default setAsGlobalCategory: self
 ]
 
-{
-	#category : #binding,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>keymapForShortcut: aShortcut [
+{ #category : #binding }
+KMCategory >> keymapForShortcut: aShortcut [
 
 	^ self allEntries keymapForShortcut: aShortcut
 ]
 
-{
-	#category : #associating,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>keymapNamed: aKeymapEntryName [
+{ #category : #associating }
+KMCategory >> keymapNamed: aKeymapEntryName [
 	^self allEntries keymapNamed: aKeymapEntryName
 ]
 
-{
-	#category : #associating,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>keymapNamed: aKeymapEntryName at: aPlatform [
+{ #category : #associating }
+KMCategory >> keymapNamed: aKeymapEntryName at: aPlatform [
 	^(self entriesAt: aPlatform) keymapNamed: aKeymapEntryName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>keymaps [
+{ #category : #accessing }
+KMCategory >> keymaps [
 	^self allEntries keymaps
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>matches: aString [
+{ #category : #testing }
+KMCategory >> matches: aString [
 	^ self keymaps anySatisfy: [ :entry | 
 		entry matches: aString ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>matchesCompletely: aString [
+{ #category : #testing }
+KMCategory >> matchesCompletely: aString [
 	^ self keymaps anySatisfy: [ :entry | 
 		entry matchesCompletely: aString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>name [
+{ #category : #accessing }
+KMCategory >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>name: aCategorySymbol  [
+{ #category : #accessing }
+KMCategory >> name: aCategorySymbol [ 
 	name := aCategorySymbol 
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>onMatchWith: anEventBuffer notify: aMatchListener andDo: aBlock [
+{ #category : #matching }
+KMCategory >> onMatchWith: anEventBuffer notify: aMatchListener andDo: aBlock [
 	self keymaps do: [ :entry | 
 		entry onMatchWith: anEventBuffer 
 			notify: aMatchListener 
 			andDo: aBlock ].
 ]
 
-{
-	#category : #associating,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>platformEntries [
+{ #category : #associating }
+KMCategory >> platformEntries [
 	^self entriesAt: Smalltalk os platformFamily
 ]
 
-{
-	#category : #associating,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategory>>removeKeymapEntry: aKeymapEntry [
+{ #category : #associating }
+KMCategory >> removeKeymapEntry: aKeymapEntry [
 
 	[ self commonEntries remove: aKeymapEntry ] 
 	on: Error

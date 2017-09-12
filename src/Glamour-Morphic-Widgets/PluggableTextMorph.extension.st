@@ -1,12 +1,7 @@
-Extension {
-	#name : #PluggableTextMorph
-}
+Extension { #name : #PluggableTextMorph }
 
-{
-	#category : #'*glamour-morphic-widgets',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-PluggableTextMorph>>setOptimalResizing [
+{ #category : #'*glamour-morphic-widgets' }
+PluggableTextMorph >> setOptimalResizing [
 	self hResizing: #rigid.
 	self vResizing: #rigid
 ]

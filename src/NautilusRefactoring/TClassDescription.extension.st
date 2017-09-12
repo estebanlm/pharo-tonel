@@ -1,12 +1,7 @@
-Extension {
-	#name : #TClassDescription
-}
+Extension { #name : #TClassDescription }
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-TClassDescription>>codeRewritingClass: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+TClassDescription >> codeRewritingClass: aBuilder [
 	| target |
 	target := aBuilder model.
 	
@@ -48,11 +43,8 @@ TClassDescription>>codeRewritingClass: aBuilder [
 		withSeparatorAfter.
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-TClassDescription>>groupRefactoring: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+TClassDescription >> groupRefactoring: aBuilder [
 	| target |
 	target := aBuilder model.
 	
@@ -71,27 +63,18 @@ TClassDescription>>groupRefactoring: aBuilder [
 		order: 100.
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-TClassDescription>>instVarRefactoring: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+TClassDescription >> instVarRefactoring: aBuilder [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-TClassDescription>>methodRefactoring: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+TClassDescription >> methodRefactoring: aBuilder [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-TClassDescription>>packageRefactoringMenu: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+TClassDescription >> packageRefactoringMenu: aBuilder [
 	| target |
 	target := aBuilder model.
 	
@@ -110,19 +93,13 @@ TClassDescription>>packageRefactoringMenu: aBuilder [
 		order: 100.
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-TClassDescription>>refactoringMenu: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+TClassDescription >> refactoringMenu: aBuilder [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-TClassDescription>>refactoringMethod: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+TClassDescription >> refactoringMethod: aBuilder [
 
 	(aBuilder item: #'Refactoring')
 		order: -100.
@@ -132,19 +109,13 @@ TClassDescription>>refactoringMethod: aBuilder [
 		withSeparatorAfter
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-TClassDescription>>refactoringSubmenu: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+TClassDescription >> refactoringSubmenu: aBuilder [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-TClassDescription>>renameMethodAllItem: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+TClassDescription >> renameMethodAllItem: aBuilder [
 
 	^ (aBuilder item: #'Rename method (all)')
 			keyText: 'r, m' if: Nautilus useOldStyleKeys not;
@@ -157,11 +128,8 @@ TClassDescription>>renameMethodAllItem: aBuilder [
 				 ].
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-TClassDescription>>sourceCodeRefactoring: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+TClassDescription >> sourceCodeRefactoring: aBuilder [
 	| target |
 	target := aBuilder model.
 	(aBuilder item: #'Create cascade')
@@ -265,11 +233,8 @@ TClassDescription>>sourceCodeRefactoring: aBuilder [
 		withSeparatorAfter
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-TClassDescription>>sourceCodeRefactoringMenu: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+TClassDescription >> sourceCodeRefactoringMenu: aBuilder [
 	| target |
 	target := aBuilder model.
 	(aBuilder item: #Format)
@@ -282,10 +247,7 @@ TClassDescription>>sourceCodeRefactoringMenu: aBuilder [
 		withSeparatorAfter
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-TClassDescription>>varRefactoringSubMenu: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+TClassDescription >> varRefactoringSubMenu: aBuilder [
 	^self explicitRequirement.
 ]

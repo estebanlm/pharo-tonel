@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMPagerBarBrick,
 	#superclass : #GLMBrick,
@@ -9,24 +6,17 @@ Class {
 		'pagerModel',
 		'sliderBrick'
 	],
-	#category : #Glamour-Morphic-Pager-Brick,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Pager-Brick
 }
 
-{
-	#category : #bar-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBarBrick>>buttonsBrick [
+{ #category : #bar-accessing }
+GLMPagerBarBrick >> buttonsBrick [
 
 	^ buttonsBrick
 ]
 
-{
-	#category : #bar-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBarBrick>>buttonsBrick: aBrick [
+{ #category : #bar-accessing }
+GLMPagerBarBrick >> buttonsBrick: aBrick [
 
 	buttonsBrick := aBrick.
 	
@@ -39,69 +29,48 @@ GLMPagerBarBrick>>buttonsBrick: aBrick [
 	self addBrickBack: self buttonsBrick
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBarBrick>>initialize [
+{ #category : #initialization }
+GLMPagerBarBrick >> initialize [
 	super initialize.
 	
 	self
 		useVerticalLinearLayout
 ]
 
-{
-	#category : #'bar-instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBarBrick>>newButtonsBrick [
+{ #category : #'bar-instance creation' }
+GLMPagerBarBrick >> newButtonsBrick [
 
 	^ GLMPagerButtonsPaneBrick new
 ]
 
-{
-	#category : #'bar-instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBarBrick>>newSliderBrick [
+{ #category : #'bar-instance creation' }
+GLMPagerBarBrick >> newSliderBrick [
 
 	^ GLMPagerScrollSlidingBrick new
 ]
 
-{
-	#category : #bar-event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBarBrick>>onPagePoped [
+{ #category : #bar-event-handling }
+GLMPagerBarBrick >> onPagePoped [
 
 	buttonsBrick onPagePoped.
 	self recomputeScrollBar.
 ]
 
-{
-	#category : #bar-event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBarBrick>>onPagePushed: addedAnnouncement [
+{ #category : #bar-event-handling }
+GLMPagerBarBrick >> onPagePushed: addedAnnouncement [
 
 	self buttonsBrick onPagePushed: addedAnnouncement.
 	self recomputeScrollBar
 ]
 
-{
-	#category : #bar-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBarBrick>>pagerModel [
+{ #category : #bar-accessing }
+GLMPagerBarBrick >> pagerModel [
 
 	^ pagerModel
 ]
 
-{
-	#category : #bar-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBarBrick>>pagerModel: aModel [
+{ #category : #bar-accessing }
+GLMPagerBarBrick >> pagerModel: aModel [
 	
 	pagerModel := aModel.
 	
@@ -112,29 +81,20 @@ GLMPagerBarBrick>>pagerModel: aModel [
 	self buttonsBrick: self newButtonsBrick.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBarBrick>>recomputeScrollBar [
+{ #category : #initialization }
+GLMPagerBarBrick >> recomputeScrollBar [
 	
 	self sliderBrick ifNotNil: #setWidthAfterResizing
 ]
 
-{
-	#category : #bar-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBarBrick>>sliderBrick [
+{ #category : #bar-accessing }
+GLMPagerBarBrick >> sliderBrick [
 
 	^ sliderBrick
 ]
 
-{
-	#category : #bar-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBarBrick>>sliderBrick: aBrick [
+{ #category : #bar-accessing }
+GLMPagerBarBrick >> sliderBrick: aBrick [
 
 	sliderBrick := aBrick.
 	

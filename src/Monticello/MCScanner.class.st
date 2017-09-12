@@ -11,32 +11,22 @@ Class {
 	#instVars : [
 		'stream'
 	],
-	#category : #'Monticello-Chunk Format',
-	#timestamp : 'LaurentLaffont 3/31/2011 21:08'
+	#category : #'Monticello-Chunk Format'
 }
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCScanner class>>scan: aStream [
+{ #category : #'public api' }
+MCScanner class >> scan: aStream [
 	^ (self new stream: aStream) next
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCScanner class>>scanTokens: aString [
+{ #category : #'public api' }
+MCScanner class >> scanTokens: aString [
 	"compatibility"
 	^ Array with: (self scan: aString readStream)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCScanner>>next [
+{ #category : #actions }
+MCScanner >> next [
 	| c |
 	stream skipSeparators.
 	c := stream peek.
@@ -47,11 +37,8 @@ MCScanner>>next [
 	self error: 'Unknown token type'.	
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCScanner>>nextArray [
+{ #category : #actions }
+MCScanner >> nextArray [
 	stream next. "("
 	^ Array streamContents: [:s |
 		[	stream skipSeparators.
@@ -61,29 +48,20 @@ MCScanner>>nextArray [
 			ifFalse: [ self error: 'Unclosed array' ]]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCScanner>>nextString [
+{ #category : #actions }
+MCScanner >> nextString [
 	^ stream nextDelimited: $'
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCScanner>>nextSymbol [
+{ #category : #actions }
+MCScanner >> nextSymbol [
 	^ (String streamContents:
 		[:s |
 		[stream peek isAlphaNumeric] whileTrue: [s nextPut: stream next]]) asSymbol
 			
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCScanner>>stream: aStream [
+{ #category : #accessing }
+MCScanner >> stream: aStream [
 	stream := aStream
 ]

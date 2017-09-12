@@ -5,23 +5,16 @@ Originally suggested by A. Raab.
 Class {
 	#name : #OutOfMemory,
 	#superclass : #Error,
-	#category : #Kernel-Exceptions,
-	#timestamp : 'StephaneDucasse 12/18/2009 12:01'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-OutOfMemory>>defaultAction [
+{ #category : #handling }
+OutOfMemory >> defaultAction [
 	Smalltalk signalLowSpace.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-OutOfMemory>>isResumable [
+{ #category : #testing }
+OutOfMemory >> isResumable [
 
 	^true
 ]

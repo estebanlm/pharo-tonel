@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMSelectedTextChanged,
 	#superclass : #Announcement,
@@ -9,62 +6,40 @@ Class {
 		'end',
 		'selectedText'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSelectedTextChanged>>end [
+{ #category : #accessing }
+GLMSelectedTextChanged >> end [
 	^ end
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSelectedTextChanged>>end: anObject [
+{ #category : #accessing }
+GLMSelectedTextChanged >> end: anObject [
 	end := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSelectedTextChanged>>interval [
+{ #category : #accessing }
+GLMSelectedTextChanged >> interval [
 	^ self start to: self end
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSelectedTextChanged>>selectedText [
+{ #category : #accessing }
+GLMSelectedTextChanged >> selectedText [
 	^ selectedText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSelectedTextChanged>>selectedText: anObject [
+{ #category : #accessing }
+GLMSelectedTextChanged >> selectedText: anObject [
 	selectedText := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSelectedTextChanged>>start [
+{ #category : #accessing }
+GLMSelectedTextChanged >> start [
 	^ start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSelectedTextChanged>>start: anObject [
+{ #category : #accessing }
+GLMSelectedTextChanged >> start: anObject [
 	start := anObject
 ]

@@ -21,57 +21,38 @@ Class {
 		'limit',
 		'binary'
 	],
-	#category : #Zinc-HTTP-Streaming,
-	#timestamp : 'SvenVanCaekenberghe 1/18/2011 11:02'
+	#category : #Zinc-HTTP-Streaming
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream class>>on: stream limit: limit [
+{ #category : #'instance creation' }
+ZnLimitedReadStream class >> on: stream limit: limit [
 	^ self basicNew
 		on: stream limit: limit;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>ascii [
+{ #category : #accessing }
+ZnLimitedReadStream >> ascii [
 	binary := false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>atEnd [
+{ #category : #testing }
+ZnLimitedReadStream >> atEnd [
 	^ position >= limit or: [ stream atEnd ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>binary [
+{ #category : #accessing }
+ZnLimitedReadStream >> binary [
 	binary := true
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>close [
+{ #category : #initialize-release }
+ZnLimitedReadStream >> close [
 	stream ifNotNil: [ stream close. stream := nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>collectionSpecies [
+{ #category : #accessing }
+ZnLimitedReadStream >> collectionSpecies [
 	"I can be set to binary or ascii explicitely.
 	If not set, delegate to our wrapped stream."
 	
@@ -84,39 +65,27 @@ ZnLimitedReadStream>>collectionSpecies [
 				ifFalse: [ stream isBinary ifTrue: [ ByteArray ] ifFalse: [ ByteString ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>contents [
+{ #category : #accessing }
+ZnLimitedReadStream >> contents [
 	"This is technically not correct, but it is better than nothing"
 	
 	^ self upToEnd
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>contentsOfEntireFile [
+{ #category : #accessing }
+ZnLimitedReadStream >> contentsOfEntireFile [
 	^ self upToEnd
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>isBinary [
+{ #category : #testing }
+ZnLimitedReadStream >> isBinary [
 	^ binary isNil
 		ifTrue: [ stream isBinary ]
 		ifFalse: [ binary ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>match: subCollection [
+{ #category : #accessing }
+ZnLimitedReadStream >> match: subCollection [
 	"Try to read and match the elements of subCollection. 
 	If successful return true and leave the me positioned after the match.
 	If unsuccesful return false and leave me at end."
@@ -147,11 +116,8 @@ ZnLimitedReadStream>>match: subCollection [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>next [
+{ #category : #accessing }
+ZnLimitedReadStream >> next [
 	"We do byte/char conversions on the fly."
 	
 	^ self atEnd 
@@ -166,11 +132,8 @@ ZnLimitedReadStream>>next [
 						ifFalse: [ stream next asCharacter ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>next: requestedCount [
+{ #category : #accessing }
+ZnLimitedReadStream >> next: requestedCount [ 
 	"Read requestedCount elements into new collection and return it,
 	 it could be that less elements were available"
 
@@ -179,11 +142,8 @@ ZnLimitedReadStream>>next: requestedCount [
 		into: (self collectionSpecies new: requestedCount)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>next: requestedCount into: collection [
+{ #category : #accessing }
+ZnLimitedReadStream >> next: requestedCount into: collection [
 	"Read requestedCount elements into collection,
 	returning a copy if less elements are available"
 	
@@ -193,11 +153,8 @@ ZnLimitedReadStream>>next: requestedCount into: collection [
 		startingAt: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>next: requestedCount into: collection startingAt: offset [
+{ #category : #accessing }
+ZnLimitedReadStream >> next: requestedCount into: collection startingAt: offset [
 	"Read requestedCount elements into collection starting at offset,
 	returning a copy if less elements are available"
 	
@@ -211,11 +168,8 @@ ZnLimitedReadStream>>next: requestedCount into: collection startingAt: offset [
 		ifFalse: [ collection copyFrom: 1 to: offset + readCount - 1 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>nextInto: collection [
+{ #category : #accessing }
+ZnLimitedReadStream >> nextInto: collection [
 	"Read the next elements of the receiver into collection,
 	returning a copy if less elements are available"
 	
@@ -224,21 +178,15 @@ ZnLimitedReadStream>>nextInto: collection [
 		into: collection
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>on: readStream limit: integer [
+{ #category : #initialize-release }
+ZnLimitedReadStream >> on: readStream limit: integer [
 	stream := readStream.
 	limit := integer.
 	position := 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>peek [
+{ #category : #accessing }
+ZnLimitedReadStream >> peek [
 	"We do byte/char conversions on the fly."
 	
 	^ self atEnd 
@@ -252,37 +200,25 @@ ZnLimitedReadStream>>peek [
 						ifFalse: [ stream peek asCharacter ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>peekFor: anElement [
+{ #category : #accessing }
+ZnLimitedReadStream >> peekFor: anElement [
 	^ self peek = anElement and: [ self next. true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>position [
+{ #category : #accessing }
+ZnLimitedReadStream >> position [
 	^ position
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>printOn: aStream [
+{ #category : #printing }
+ZnLimitedReadStream >> printOn: aStream [
 	aStream 
 		nextPutAll: 'a '; 
 		nextPutAll: self class name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>readInto: collection startingAt: offset count: count [
+{ #category : #accessing }
+ZnLimitedReadStream >> readInto: collection startingAt: offset count: count [ 
 	"Read count elements and place them in collection starting at offset.
 	Return the number of elements actually read."
 	
@@ -296,27 +232,18 @@ ZnLimitedReadStream>>readInto: collection startingAt: offset count: count [
 	^ actual
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>reset [
+{ #category : #accessing }
+ZnLimitedReadStream >> reset [
 	"We don't allow it"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>skip: count [
+{ #category : #accessing }
+ZnLimitedReadStream >> skip: count [
 	count timesRepeat: [ self next ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>upTo: anObject [
+{ #category : #accessing }
+ZnLimitedReadStream >> upTo: anObject [ 
 	"We use our own collectionSpecies."
 	
 	^ self collectionSpecies streamContents: [ :out | | element |
@@ -324,10 +251,7 @@ ZnLimitedReadStream>>upTo: anObject [
 			out nextPut: element ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLimitedReadStream>>upToEnd [
+{ #category : #accessing }
+ZnLimitedReadStream >> upToEnd [
 	^ ZnUtils readUpToEnd: self limit: nil
 ]

@@ -34,32 +34,22 @@ Class {
 		'horizontalPosition',
 		'verticalPosition'
 	],
-	#category : #Morphic-Base-ProgressBar,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-ProgressBar
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>cleanUp [
+{ #category : #cleanup }
+SystemProgressMorph class >> cleanUp [
 	self reset
 ]
 
-{
-	#category : #enabling/disabling,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>disable [
+{ #category : #enabling/disabling }
+SystemProgressMorph class >> disable [
 
 	Job jobAnnouncer unsubscribe: self.
 ]
 
-{
-	#category : #enabling/disabling,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>enable [
+{ #category : #enabling/disabling }
+SystemProgressMorph class >> enable [
 
 	Job jobAnnouncer when: JobStart send: #startJob: to: self.
 	Job jobAnnouncer when: JobEnd send: #endJob: to: self.
@@ -67,11 +57,8 @@ SystemProgressMorph class>>enable [
 
 ]
 
-{
-	#category : #'job subscription',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>endJob: aJobEnd  [
+{ #category : #'job subscription' }
+SystemProgressMorph class >> endJob: aJobEnd [ 
 	| bars |
 	self flag: #toFix. "camillo I need help"
 	bars := self uniqueInstance bars.
@@ -79,11 +66,8 @@ SystemProgressMorph class>>endJob: aJobEnd  [
 		ifFalse: [ self uniqueInstance close:  bars last ] 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>example [
+{ #category : #examples }
+SystemProgressMorph class >> example [
 	"SystemProgressMorph example"
 	'Progress' 
 		displayProgressFrom: 0 to: 1000
@@ -91,11 +75,8 @@ SystemProgressMorph class>>example [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>exampleChangeLabel [
+{ #category : #examples }
+SystemProgressMorph class >> exampleChangeLabel [
 	"SystemProgressMorph exampleChangeLabel"
 	| classes |
 	classes := Smalltalk globals allClasses copyFrom: 1 to: 100.
@@ -108,11 +89,8 @@ SystemProgressMorph class>>exampleChangeLabel [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>exampleLabelOnly [
+{ #category : #examples }
+SystemProgressMorph class >> exampleLabelOnly [
 	"SystemProgressMorph exampleLabelOnly"
 	| words |
 	words := #(zero one two three four five six seven eight nine ten) reversed.
@@ -122,49 +100,34 @@ SystemProgressMorph class>>exampleLabelOnly [
 			(Delay forSeconds: 1) wait]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>horizontalPosition [
+{ #category : #accessing }
+SystemProgressMorph class >> horizontalPosition [
 	^ horizontalPosition ifNil: [ horizontalPosition := 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>horizontalPosition: aFloat [
+{ #category : #accessing }
+SystemProgressMorph class >> horizontalPosition: aFloat [
 	"0.0: left ... 1.0: right"
 	horizontalPosition := aFloat.
 	self uniqueInstance reposition.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>initialize [
+{ #category : #initialization }
+SystemProgressMorph class >> initialize [
 	"SystemProgressMorph initialize"
 
 	self reset.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>reset [
+{ #category : #'instance creation' }
+SystemProgressMorph class >> reset [
 	"SystemProgressMorph reset"
 	UniqueInstance ifNotNil: [ UniqueInstance delete ].
 	UniqueInstance := nil.
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>settingOn: aBuilder [
+{ #category : #settings }
+SystemProgressMorph class >> settingOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #progress)
 		label: 'Progress Bar';
@@ -186,58 +149,40 @@ SystemProgressMorph class>>settingOn: aBuilder [
 				domainValues: {'bottom'->1. 'middle'->0.5. 'top'->0}]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>show: aJob [
+{ #category : #'instance creation' }
+SystemProgressMorph class >> show: aJob [
 
 	^ self uniqueInstance show: aJob.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>show: aString from: startNumber to: endNumber [
+{ #category : #'instance creation' }
+SystemProgressMorph class >> show: aString from: startNumber to: endNumber [
 	self flag: 'When we go from Exceptions to announcements, delete this and use show:from:to:during:'.
 
 	^ self uniqueInstance show: aString from: startNumber to: endNumber.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>show: aString from: startNumber to: endNumber during: aBlock [
+{ #category : #'instance creation' }
+SystemProgressMorph class >> show: aString from: startNumber to: endNumber during: aBlock [
 	self flag: 'When we go from Exceptions to announcements, this will be the primary entry point'.
 
 	^ self uniqueInstance show: aString from: startNumber to: endNumber during: aBlock.
 ]
 
-{
-	#category : #'job subscription',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>startJob: aJobStart [
+{ #category : #'job subscription' }
+SystemProgressMorph class >> startJob: aJobStart [
 
 	self show: aJobStart job
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>uniqueInstance [
+{ #category : #'instance creation' }
+SystemProgressMorph class >> uniqueInstance [
 
 	^ UniqueInstance ifNil: [ UniqueInstance := self new ].
 ]
 
-{
-	#category : #'job subscription',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>updateJob: aJobChange [
+{ #category : #'job subscription' }
+SystemProgressMorph class >> updateJob: aJobChange [
 	| bars |
 	bars := self uniqueInstance bars.
 	bars isEmpty 
@@ -247,29 +192,20 @@ SystemProgressMorph class>>updateJob: aJobChange [
 				progress: aJobChange progress ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>verticalPosition [
+{ #category : #accessing }
+SystemProgressMorph class >> verticalPosition [
 	^ verticalPosition ifNil: [ verticalPosition := 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph class>>verticalPosition: fraction [
+{ #category : #accessing }
+SystemProgressMorph class >> verticalPosition: fraction [
 	"0.0: top ... 1.0: bottom"
 	verticalPosition := fraction.
 	self uniqueInstance reposition.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>addItemShowing: aJob [
+{ #category : #private }
+SystemProgressMorph >> addItemShowing: aJob [
 	
 	lock critical: [ | item items |
 		item := JobProgressMorph job: aJob.
@@ -280,11 +216,8 @@ SystemProgressMorph>>addItemShowing: aJob [
 		^ item ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>addItemShowing: aString from: startNumber to: endNumber [
+{ #category : #private }
+SystemProgressMorph >> addItemShowing: aString from: startNumber to: endNumber [
 	
 	lock critical: [ | item items |
 		item := SystemProgressItemMorph labeled: aString from: startNumber to: endNumber.
@@ -295,20 +228,14 @@ SystemProgressMorph>>addItemShowing: aString from: startNumber to: endNumber [
 		^ item ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>bars [
+{ #category : #private }
+SystemProgressMorph >> bars [
 	
 	^ self submorphs.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>close: aSystemProgressItemMorph [
+{ #category : #private }
+SystemProgressMorph >> close: aSystemProgressItemMorph [
 
 	self bars isEmpty ifTrue: [ ^ self ].
 	
@@ -321,20 +248,14 @@ SystemProgressMorph>>close: aSystemProgressItemMorph [
 	self refresh.
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>dismissViaHalo [
+{ #category : #submorphs-add/remove }
+SystemProgressMorph >> dismissViaHalo [
 
 	self class reset.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>initialize [
+{ #category : #initialization }
+SystemProgressMorph >> initialize [
 
 	super initialize.
 	lock := Semaphore forMutualExclusion.
@@ -353,39 +274,27 @@ SystemProgressMorph>>initialize [
 		minWidth: 150
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>lastRefresh [
+{ #category : #accessing }
+SystemProgressMorph >> lastRefresh [
 
         ^ lastRefresh ifNil: [ lastRefresh := 0 ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>maxBarWidth [
+{ #category : #private }
+SystemProgressMorph >> maxBarWidth [
 
 	^ self bars inject: 0 into: [ :max :next | next minExtent x max: max ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>morphicLayerNumber [
+{ #category : #initialization }
+SystemProgressMorph >> morphicLayerNumber [
 	"progress morphs are behind menus and balloons, but in front of most other stuff"
 	^self valueOfProperty: #morphicLayerNumber ifAbsent: [ 12 ].
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>openInWorld [
+{ #category : #'as yet unclassified' }
+SystemProgressMorph >> openInWorld [
 
 	super openInWorld.
 	self width: 200.
@@ -393,30 +302,21 @@ SystemProgressMorph>>openInWorld [
 	
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>recenter [
+{ #category : #updating }
+SystemProgressMorph >> recenter [
 	self reposition
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>refresh [
+{ #category : #updating }
+SystemProgressMorph >> refresh [
 	"We may be blocking the UI thread, and thus have to draw the world ourselves when necessary"
 	lastRefresh := Time millisecondClockValue.
 	UIManager default uiProcess == Processor activeProcess
 		ifTrue: [ self currentWorld doOneCycleNow]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>reposition [
+{ #category : #private }
+SystemProgressMorph >> reposition [
 	"Calculate the proper position"
 	
 	| xPos yPos margin |
@@ -433,31 +333,22 @@ SystemProgressMorph>>reposition [
 	self refresh.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>resize [
+{ #category : #updating }
+SystemProgressMorph >> resize [
 
 	| newWidth |
 	newWidth := self maxBarWidth + 50 max: self width.
 	self width: newWidth.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>setDefaultParameters [
+{ #category : #initialization }
+SystemProgressMorph >> setDefaultParameters [
 
 	self theme setSystemProgressMorphDefaultParameters: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>show: aJob [
+{ #category : #private }
+SystemProgressMorph >> show: aJob [
 
 	| progressMorph |
 
@@ -471,11 +362,8 @@ SystemProgressMorph>>show: aJob [
 	^ progressMorph.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>show: aString from: startNumber to: endNumber [
+{ #category : #private }
+SystemProgressMorph >> show: aString from: startNumber to: endNumber [
 
 	| progressMorph |
 	self flag: 'When we go from Exceptions to announcements, delete this and use show:from:to:during:'.
@@ -490,11 +378,8 @@ SystemProgressMorph>>show: aString from: startNumber to: endNumber [
 	^ progressMorph.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>show: aString from: startNumber to: endNumber during: aBlock [
+{ #category : #private }
+SystemProgressMorph >> show: aString from: startNumber to: endNumber during: aBlock [
 
 	| progressMorph result |
 
@@ -509,11 +394,8 @@ SystemProgressMorph>>show: aString from: startNumber to: endNumber during: aBloc
 	^ result.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>update: aSymbol [
+{ #category : #updating }
+SystemProgressMorph >> update: aSymbol [
 	
 	| msRefreshRate isTimeForRefresh |
 	
@@ -528,31 +410,22 @@ SystemProgressMorph>>update: aSymbol [
 	self refresh
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>updateColor [
+{ #category : #updating }
+SystemProgressMorph >> updateColor [
 	"Callback from theme"
 	
 	self theme preferGradientFill ifFalse: [^ self].
 	self fillStyle: (self theme progressFillStyleFor: self)
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>updateProgressValue [
+{ #category : #updating }
+SystemProgressMorph >> updateProgressValue [
 
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressMorph>>updateWidth [
+{ #category : #updating }
+SystemProgressMorph >> updateWidth [
 
 	self resize
 ]

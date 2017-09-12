@@ -18,26 +18,19 @@ Class {
 	#pools : [
 		'TextConstants'
 	],
-	#category : #Graphics-Fonts,
-	#timestamp : '<historical>'
+	#category : #Graphics-Fonts
 }
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FontSet class>>acceptsLoggingOfCompilation [
+{ #category : #compiling }
+FontSet class >> acceptsLoggingOfCompilation [
 	"Dont log sources for my subclasses, so as not to waste time
 	and space storing printString versions of the string literals."
 
 	^ self == FontSet
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FontSet class>>fileOut [
+{ #category : #filein/out }
+FontSet class >> fileOut [
 	"FileOut and then change the properties of the file so that it won't be
 	treated as text by, eg, email attachment facilities"
 
@@ -45,27 +38,18 @@ FontSet class>>fileOut [
 	(FileStream oldFileNamed: self name , '.st') close
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FontSet class>>fontCategory [
+{ #category : #private }
+FontSet class >> fontCategory [
 	^ 'Graphics-Fonts' asSymbol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FontSet class>>fontName [
+{ #category : #private }
+FontSet class >> fontName [
 	^ self name asSymbol
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FontSet class>>fontNamed: fontName fromMimeLiteral: aString [
+{ #category : #installing }
+FontSet class >> fontNamed: fontName fromMimeLiteral: aString [
 	"This method allows a font set to be captured as sourcecode in a subclass.
 	The string literals will presumably be created by printing, eg,
 		(FileStream readOnlyFileNamed: 'Palatino24.sf2') contentsOfEntireFile,
@@ -78,11 +62,8 @@ FontSet class>>fontNamed: fontName fromMimeLiteral: aString [
 		readFromStrike2Stream: (Base64MimeConverter mimeDecodeToBytes: aString readStream)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FontSet class>>fontSetClass: aString  [
+{ #category : #private }
+FontSet class >> fontSetClass: aString [ 
 	| className fontSet |
 	className := (self name , (aString select: [ :c | c isAlphaNumeric ]) capitalized) asSymbol.
 	fontSet := Smalltalk globals
@@ -98,11 +79,8 @@ FontSet class>>fontSetClass: aString  [
 	^ fontSet
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FontSet class>>installAsDefault  [
+{ #category : #installing }
+FontSet class >> installAsDefault [ 
 	"FontSetNewYork installAsDefault"
 	
 	(self confirm: 'Do you want to install' translated, '
@@ -114,11 +92,8 @@ FontSet class>>installAsDefault  [
 
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FontSet class>>installAsTextStyle [
+{ #category : #installing }
+FontSet class >> installAsTextStyle [
 	"FontSetNewYork installAsTextStyle"
 	| selectors |
 	(TextSharedInformation includesKey: self fontName) ifTrue: 

@@ -4,50 +4,34 @@ Checks for literal arrays that contain the #, symbol. The user may have thought 
 Class {
 	#name : #RBLiteralArrayContainsCommaRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 20:57'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayContainsCommaRule class>>checksMethod [
+{ #category : #testing }
+RBLiteralArrayContainsCommaRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayContainsCommaRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBLiteralArrayContainsCommaRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'LiteralArrayContainsCommaRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayContainsCommaRule>>basicCheck: aMethod  [
+{ #category : #running }
+RBLiteralArrayContainsCommaRule >> basicCheck: aMethod [ 
 	^ aMethod allLiterals anySatisfy: [ :each | self doesLiteralArrayContainComma: each ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayContainsCommaRule>>checkMethod: aMethod  [
+{ #category : #running }
+RBLiteralArrayContainsCommaRule >> checkMethod: aMethod [ 
 	(self basicCheck: aMethod) 
 		ifTrue: [ result addMethod: aMethod ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayContainsCommaRule>>doesLiteralArrayContainComma: aLiteral  [
+{ #category : #private }
+RBLiteralArrayContainsCommaRule >> doesLiteralArrayContainComma: aLiteral [ 
 	aLiteral class = Array 
 		ifFalse: [ ^ false ].
 	(aLiteral includes: #,)
@@ -56,18 +40,12 @@ RBLiteralArrayContainsCommaRule>>doesLiteralArrayContainComma: aLiteral  [
 		anySatisfy: [ :each | self doesLiteralArrayContainComma: each ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayContainsCommaRule>>group [
+{ #category : #accessing }
+RBLiteralArrayContainsCommaRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayContainsCommaRule>>name [
+{ #category : #accessing }
+RBLiteralArrayContainsCommaRule >> name [
 	^ 'Literal array contains a #,'
 ]

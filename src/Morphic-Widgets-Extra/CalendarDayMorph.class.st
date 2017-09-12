@@ -30,15 +30,11 @@ Class {
 		'owner',
 		'highlighted'
 	],
-	#category : #Morphic-Widgets-Extra,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Extra
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarDayMorph class>>on: aDate for: aCalendarChooserMorph [
+{ #category : #'instance creation' }
+CalendarDayMorph class >> on: aDate for: aCalendarChooserMorph [
 
 	^self new
 		date: aDate;
@@ -47,48 +43,33 @@ CalendarDayMorph class>>on: aDate for: aCalendarChooserMorph [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarDayMorph>>bounds [
+{ #category : #accessing }
+CalendarDayMorph >> bounds [
 
 	^ bounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarDayMorph>>bounds: aRectangle [
+{ #category : #accessing }
+CalendarDayMorph >> bounds: aRectangle [
 
 	bounds := aRectangle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarDayMorph>>date [
+{ #category : #accessing }
+CalendarDayMorph >> date [
 
 	^ date
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarDayMorph>>date: aDate [
+{ #category : #accessing }
+CalendarDayMorph >> date: aDate [
 
 	date := aDate.
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarDayMorph>>debugPrint [
+{ #category : #printing }
+CalendarDayMorph >> debugPrint [
 
 	^(WriteStream on: (String new: 10))
 		print: self class;
@@ -100,11 +81,8 @@ CalendarDayMorph>>debugPrint [
 		contents
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarDayMorph>>drawOn: aCanvas offset: origin [
+{ #category : #drawing }
+CalendarDayMorph >> drawOn: aCanvas offset: origin [
 
 	| box dayString textColor textTopLeft textWidth today |
 	dayString := date dayOfMonth printString.
@@ -134,56 +112,38 @@ CalendarDayMorph>>drawOn: aCanvas offset: origin [
 		color: textColor.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarDayMorph>>highlighted [
+{ #category : #accessing }
+CalendarDayMorph >> highlighted [
 
 	^highlighted
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarDayMorph>>highlighted: aBoolean [
+{ #category : #accessing }
+CalendarDayMorph >> highlighted: aBoolean [
 
 	highlighted := aBoolean
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarDayMorph>>initialize [
+{ #category : #initialization }
+CalendarDayMorph >> initialize [
 	super initialize.
 	self highlighted: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarDayMorph>>owner [
+{ #category : #accessing }
+CalendarDayMorph >> owner [
 
 	^ owner
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarDayMorph>>owner: aCalendarChooserMorph [
+{ #category : #accessing }
+CalendarDayMorph >> owner: aCalendarChooserMorph [
 
 	owner := aCalendarChooserMorph
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarDayMorph>>printOn: aStream [
+{ #category : #printing }
+CalendarDayMorph >> printOn: aStream [
 
 	aStream
 		print: self class;

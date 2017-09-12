@@ -12,15 +12,11 @@ Class {
 	#classInstVars : [
 		'urlProvider'
 	],
-	#category : #GT-Playground,
-	#timestamp : 'TudorGirba 10/22/2014 07:50'
+	#category : #GT-Playground
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTUrlProvider class>>settingsOn: aBuilder  [
+{ #category : #settings }
+GTUrlProvider class >> settingsOn: aBuilder [ 
 	<systemsettings>
 	
 	(aBuilder setting: #stringUrlProvider)
@@ -31,54 +27,36 @@ GTUrlProvider class>>settingsOn: aBuilder  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTUrlProvider class>>stringUrlProvider [
+{ #category : #accessing }
+GTUrlProvider class >> stringUrlProvider [
 	^ self urlProvider asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTUrlProvider class>>stringUrlProvider: aString [
+{ #category : #accessing }
+GTUrlProvider class >> stringUrlProvider: aString [
 	self urlProvider: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTUrlProvider class>>urlProvider [
+{ #category : #accessing }
+GTUrlProvider class >> urlProvider [
 	^ urlProvider ifNil: [ urlProvider := 'http://ws.stfx.eu' asZnUrl ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTUrlProvider class>>urlProvider: aUrlObject [
+{ #category : #accessing }
+GTUrlProvider class >> urlProvider: aUrlObject [
 	urlProvider := aUrlObject ifNotNil: [ aUrlObject asZnUrl ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTUrlProvider>>get: url	 [
+{ #category : #public }
+GTUrlProvider >> get: url [	
 	| contents |
 	contents := self httpClient get: url.
 	^ String new: contents size streamContents: [ :stream |
 		contents linesDo: [ :each | stream nextPutAll: each; cr ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTUrlProvider>>httpClient [
+{ #category : #private }
+GTUrlProvider >> httpClient [
 	^ ZnClient new
 		systemPolicy;
 		beOneShot;
@@ -87,11 +65,8 @@ GTUrlProvider>>httpClient [
 		yourself
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTUrlProvider>>post: string [
+{ #category : #public }
+GTUrlProvider >> post: string [
 	| entity client url |
 	entity := ZnEntity text: string asString.
 	(client := self httpClient)
@@ -101,18 +76,12 @@ GTUrlProvider>>post: string [
 	^ url asZnUrl inContextOf: self urlProvider 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTUrlProvider>>urlProvider [
+{ #category : #public }
+GTUrlProvider >> urlProvider [
 	^ urlProvider ifNil: [ urlProvider := self class urlProvider ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTUrlProvider>>urlProvider: anUrlObject [
+{ #category : #initialize-release }
+GTUrlProvider >> urlProvider: anUrlObject [
 	urlProvider := anUrlObject asZnUrl 
 ]

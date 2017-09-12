@@ -22,50 +22,34 @@ Class {
 	#classVars : [
 		'HasNewFinalization'
 	],
-	#category : #System-Finalization,
-	#timestamp : 'Igor.Stasenko 9/22/2010 21:09'
+	#category : #System-Finalization
 }
 
-{
-	#category : #'vm capability test',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizationList class>>hasNewFinalization [
+{ #category : #'vm capability test' }
+WeakFinalizationList class >> hasNewFinalization [
 	"new finalization is always false"
 	^ false
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizationList class>>initialize  [
+{ #category : #'class initialization' }
+WeakFinalizationList class >> initialize [ 
 	SessionManager default
 		registerSystemClassNamed: self name.
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizationList class>>startUp: resuming  [
+{ #category : #'system startup' }
+WeakFinalizationList class >> startUp: resuming [ 
 	resuming ifTrue: [ 
 		HasNewFinalization := Smalltalk vm isPharoVM ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizationList>>first [
+{ #category : #accessing }
+WeakFinalizationList >> first [
 	^ first
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakFinalizationList>>swapWithNil [
+{ #category : #accessing }
+WeakFinalizationList >> swapWithNil [
 
 	| head |
 	head := first.

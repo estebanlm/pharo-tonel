@@ -1,12 +1,7 @@
-Extension {
-	#name : #PositionableStream
-}
+Extension { #name : #PositionableStream }
 
-{
-	#category : #'*Text-Core',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-PositionableStream>>nextChunkText [
+{ #category : #'*Text-Core' }
+PositionableStream >> nextChunkText [
 	"Deliver the next chunk as a Text.  Decode the following ]style[ chunk if present.  Position at start of next real chunk."
 	| string runsRaw strm runs peek pos |
 	"Read the plain text"

@@ -4,6 +4,5 @@ I am an MC-specific errror
 Class {
 	#name : #MCRepositoryError,
 	#superclass : #Error,
-	#category : #Monticello-Repositories,
-	#timestamp : '<historical>'
+	#category : #Monticello-Repositories
 }

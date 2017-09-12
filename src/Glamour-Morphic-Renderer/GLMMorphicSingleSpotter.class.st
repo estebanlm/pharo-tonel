@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicSingleSpotter,
 	#superclass : #DialogWindow,
@@ -14,98 +11,64 @@ Class {
 		'answer',
 		'parent'
 	],
-	#category : #Glamour-Morphic-Renderer-Spotter,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer-Spotter
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter class>>on: aRequest [
+{ #category : #'instance creation' }
+GLMMorphicSingleSpotter class >> on: aRequest [
 	^ self basicNew initializeOn: aRequest
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter class>>on: aRequest parent: parent [
+{ #category : #'instance creation' }
+GLMMorphicSingleSpotter class >> on: aRequest parent: parent [
 	^ self basicNew initializeOn: aRequest parent: parent
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter class>>openOn: aRequest [
+{ #category : #'instance creation' }
+GLMMorphicSingleSpotter class >> openOn: aRequest [
 	^ UITheme builder openModal: (self on: aRequest)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>answer [
+{ #category : #accessing }
+GLMMorphicSingleSpotter >> answer [
 	"Answer the result of the dialog or nil, if this dialog has been cancelled."
 	
 	^ answer
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>arrowKey: anEvent from: aMorph [
+{ #category : #callbacks }
+GLMMorphicSingleSpotter >> arrowKey: anEvent from: aMorph [
 	"Ignore this request."
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>cancel [
+{ #category : #actions }
+GLMMorphicSingleSpotter >> cancel [
 	answer := nil.
 	^ super cancel
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>clickIconAt: anInteger [
+{ #category : #callbacks }
+GLMMorphicSingleSpotter >> clickIconAt: anInteger [
 	"Ignore this request."
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>defaultFocusMorph [
+{ #category : #morphic }
+GLMMorphicSingleSpotter >> defaultFocusMorph [
 	^ textMorph
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>deselect [
+{ #category : #morphic }
+GLMMorphicSingleSpotter >> deselect [
 	self listIndex: 0.  
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>doubleClick [
+{ #category : #callbacks }
+GLMMorphicSingleSpotter >> doubleClick [
 	self ok
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>editorKeyStroke: anEvent [
+{ #category : #callbacks }
+GLMMorphicSingleSpotter >> editorKeyStroke: anEvent [
 	anEvent keyCharacter = Character arrowDown ifTrue: [
 		self listIndex: (self listIndex + 1 min: listValues size).
 		^ true ].
@@ -115,19 +78,13 @@ GLMMorphicSingleSpotter>>editorKeyStroke: anEvent [
 	^ false
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>iconAt: anIndex [
+{ #category : #callbacks }
+GLMMorphicSingleSpotter >> iconAt: anIndex [
 	^ model ifNotNil: [model iconFor: (listValues at: anIndex ifAbsent: [ ^ nil ])]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>initializeOn: aRequest [
+{ #category : #initialization }
+GLMMorphicSingleSpotter >> initializeOn: aRequest [
 	model := aRequest.
 	listValues := listLabels := #().
 	listIndex := 0.
@@ -137,47 +94,32 @@ GLMMorphicSingleSpotter>>initializeOn: aRequest [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>initializeOn: aRequest parent: theParent [
+{ #category : #initialization }
+GLMMorphicSingleSpotter >> initializeOn: aRequest parent: theParent [
 	parent := theParent.
 	self initializeOn: aRequest.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>isAssisted [
+{ #category : #testing }
+GLMMorphicSingleSpotter >> isAssisted [
 	^ self model assisted
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>isEnabled [
+{ #category : #testing }
+GLMMorphicSingleSpotter >> isEnabled [
 	^ self model assisted
 		ifTrue: [ self text isEmptyOrNil not ]
 		ifFalse: [ self listIndex > 0 ]
 ]
 
-{
-	#category : #accessing-list,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>listIndex [
+{ #category : #accessing-list }
+GLMMorphicSingleSpotter >> listIndex [
 	^ listIndex
 ]
 
-{
-	#category : #accessing-list,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>listIndex: anInteger [
+{ #category : #accessing-list }
+GLMMorphicSingleSpotter >> listIndex: anInteger [
 	anInteger isZero not ifTrue: [
 		parent selectionIn: self.].
 	listIndex = anInteger
@@ -190,44 +132,29 @@ GLMMorphicSingleSpotter>>listIndex: anInteger [
 	self changed: #listIndex; changed: #isEnabled
 ]
 
-{
-	#category : #accessing-list,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>listLabels [
+{ #category : #accessing-list }
+GLMMorphicSingleSpotter >> listLabels [
 	^ listLabels
 ]
 
-{
-	#category : #accessing-list,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>listSelection [
+{ #category : #accessing-list }
+GLMMorphicSingleSpotter >> listSelection [
 	^ listValues at: self listIndex ifAbsent: [ nil ]
 ]
 
-{
-	#category : #accessing-list,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>listSelection: anObject [
+{ #category : #accessing-list }
+GLMMorphicSingleSpotter >> listSelection: anObject [
 
 	self listIndex: (listValues indexOf: anObject ifAbsent: [ 0 ])
 ]
 
-{
-	#category : #accessing-list,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>listValues [
+{ #category : #accessing-list }
+GLMMorphicSingleSpotter >> listValues [
 	^ listValues
 ]
 
-{
-	#category : #accessing-list,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>listValues: aCollection [
+{ #category : #accessing-list }
+GLMMorphicSingleSpotter >> listValues: aCollection [
 	| previous |
 	previous := self listSelection.
 	listValues := aCollection asArray.
@@ -236,22 +163,16 @@ GLMMorphicSingleSpotter>>listValues: aCollection [
 	self changed: #listLabels; listSelection: previous
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>newContentMorph [
+{ #category : #morphic }
+GLMMorphicSingleSpotter >> newContentMorph [
 	^ (self newColumn: { self newTextMorph. self newListMorph })
 		minWidth: 320;
 		minHeight: 200;
 		yourself
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>newListMorph [
+{ #category : #morphic }
+GLMMorphicSingleSpotter >> newListMorph [
 	listMorph := PluggableListMorph
 		on: self
 		list: #listLabels
@@ -268,19 +189,13 @@ GLMMorphicSingleSpotter>>newListMorph [
 	^ listMorph
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>newOKButton [
+{ #category : #morphic }
+GLMMorphicSingleSpotter >> newOKButton [
 	^ self newOKButtonFor: self getEnabled: #isEnabled
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>newTextMorph [
+{ #category : #morphic }
+GLMMorphicSingleSpotter >> newTextMorph [
 	textMorph := self
 		newTextEntryFor: self
 		getText: #text
@@ -294,46 +209,31 @@ GLMMorphicSingleSpotter>>newTextMorph [
 	^ textMorph
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>ok [
+{ #category : #actions }
+GLMMorphicSingleSpotter >> ok [
 	answer := self model assisted
 		ifTrue: [ self text ]
 		ifFalse: [ self listSelection ].
 	^ super ok
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>parent [
+{ #category : #accessing }
+GLMMorphicSingleSpotter >> parent [
 	^ parent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>parent: anObject [
+{ #category : #accessing }
+GLMMorphicSingleSpotter >> parent: anObject [
 	parent := anObject
 ]
 
-{
-	#category : #accessing-text,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>text [
+{ #category : #accessing-text }
+GLMMorphicSingleSpotter >> text [
 	^ text
 ]
 
-{
-	#category : #accessing-text,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSingleSpotter>>text: aString [
+{ #category : #accessing-text }
+GLMMorphicSingleSpotter >> text: aString [
 	text = aString
 		ifTrue: [ ^ self ].
 	text := aString.

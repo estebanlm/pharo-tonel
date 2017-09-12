@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #FFITypesTests,
 	#superclass : #TestCase,
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #ranges,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>signed1ByteNumbers [
+{ #category : #ranges }
+FFITypesTests >> signed1ByteNumbers [
 	^ { 
 		-128.
 		-127.
@@ -22,11 +15,8 @@ FFITypesTests>>signed1ByteNumbers [
  	}
 ]
 
-{
-	#category : #ranges,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>signed2ByteNumbers [
+{ #category : #ranges }
+FFITypesTests >> signed2ByteNumbers [
 	^ { 
 		-32768.
 		-32767.
@@ -45,11 +35,8 @@ FFITypesTests>>signed2ByteNumbers [
  	}
 ]
 
-{
-	#category : #ranges,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>signed4ByteNumbers [
+{ #category : #ranges }
+FFITypesTests >> signed4ByteNumbers [
 	^ { 
 		-2147483648.
 		-2147483647.
@@ -77,11 +64,8 @@ FFITypesTests>>signed4ByteNumbers [
  	}
 ]
 
-{
-	#category : #ranges,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>signed8ByteNumbers [
+{ #category : #ranges }
+FFITypesTests >> signed8ByteNumbers [
 	^ {
 		-9223372036854775808.
 		-9223372036854775807.
@@ -115,11 +99,8 @@ FFITypesTests>>signed8ByteNumbers [
  	}
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>testSigned1ByteIntegers [
+{ #category : #tests }
+FFITypesTests >> testSigned1ByteIntegers [
 	self signed1ByteNumbers do: [ :int |
 		|ref|
 		ref := ByteArray new: 1.
@@ -127,11 +108,8 @@ FFITypesTests>>testSigned1ByteIntegers [
 		self assert: (ref integerAt: 1 size: 1 signed: true) = int ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>testSigned2ByteIntegers [
+{ #category : #tests }
+FFITypesTests >> testSigned2ByteIntegers [
 	self signed2ByteNumbers do: [ :int |
 		|ref|
 		ref := ByteArray new: 2.
@@ -139,11 +117,8 @@ FFITypesTests>>testSigned2ByteIntegers [
 		self assert: (ref integerAt: 1 size: 2 signed: true) = int ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>testSigned4ByteIntegers [
+{ #category : #tests }
+FFITypesTests >> testSigned4ByteIntegers [
 	self signed4ByteNumbers do: [ :int |
 		|ref|
 		ref := ByteArray new: 4.
@@ -151,11 +126,8 @@ FFITypesTests>>testSigned4ByteIntegers [
 		self assert: (ref integerAt: 1 size: 4 signed: true) = int ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>testSignedAtWithDiferentSizes [
+{ #category : #tests }
+FFITypesTests >> testSignedAtWithDiferentSizes [
 	"This is tests for issue 17757" 
 	| ref|
 	
@@ -172,11 +144,8 @@ FFITypesTests>>testSignedAtWithDiferentSizes [
 	self assert: (ref integerAt: 1 size: 8 signed: true) = -10
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>testSignedLong [
+{ #category : #tests }
+FFITypesTests >> testSignedLong [
 	self signed4ByteNumbers do: [ :int |
 		|ref|
 		ref := ByteArray new: FFIInt32 externalTypeSize.
@@ -184,11 +153,8 @@ FFITypesTests>>testSignedLong [
 		self assert: (ref signedLongAt: 1) = int ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>testSignedLongLong [
+{ #category : #tests }
+FFITypesTests >> testSignedLongLong [
 	self signed8ByteNumbers do: [ :int |
 		|ref|
 		ref := ByteArray new: FFIInt64 externalTypeSize.
@@ -196,11 +162,8 @@ FFITypesTests>>testSignedLongLong [
 		self assert: (ref signedLongLongAt: 1) = int ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>testUnsigned1ByteIntegers [
+{ #category : #tests }
+FFITypesTests >> testUnsigned1ByteIntegers [
 	self unsigned1ByteNumbers do: [ :int |
 		|ref|
 		ref := ByteArray new: 1.
@@ -208,11 +171,8 @@ FFITypesTests>>testUnsigned1ByteIntegers [
 		self assert: (ref integerAt: 1 size: 1 signed: false) = int ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>testUnsigned2ByteIntegers [
+{ #category : #tests }
+FFITypesTests >> testUnsigned2ByteIntegers [
 	self unsigned2ByteNumbers do: [ :int |
 		|ref|
 		ref := ByteArray new: 2.
@@ -220,11 +180,8 @@ FFITypesTests>>testUnsigned2ByteIntegers [
 		self assert: (ref integerAt: 1 size: 2 signed: false) = int ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>testUnsigned4ByteIntegers [
+{ #category : #tests }
+FFITypesTests >> testUnsigned4ByteIntegers [
 	self unsigned4ByteNumbers do: [ :int |
 		|ref|
 		ref := ByteArray new: 4.
@@ -232,11 +189,8 @@ FFITypesTests>>testUnsigned4ByteIntegers [
 		self assert: (ref integerAt: 1 size: 4 signed: false) = int ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>testUnsignedLong [
+{ #category : #tests }
+FFITypesTests >> testUnsignedLong [
 	self unsigned4ByteNumbers do: [ :int |
 		|ref|
 		ref := ByteArray new: FFIUInt32 externalTypeSize.
@@ -244,11 +198,8 @@ FFITypesTests>>testUnsignedLong [
 		self assert: (ref unsignedLongAt: 1) = int ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>testUnsignedLongLong [
+{ #category : #tests }
+FFITypesTests >> testUnsignedLongLong [
 	self unsigned8ByteNumbers do: [ :int |
 		|ref|
 		ref := ByteArray new: FFIUInt64 externalTypeSize.
@@ -256,11 +207,8 @@ FFITypesTests>>testUnsignedLongLong [
 		self assert: (ref unsignedLongLongAt: 1) = int ]
 ]
 
-{
-	#category : #ranges,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>unsigned1ByteNumbers [
+{ #category : #ranges }
+FFITypesTests >> unsigned1ByteNumbers [
 	^ { 
 		0.
 		126.
@@ -271,11 +219,8 @@ FFITypesTests>>unsigned1ByteNumbers [
  	}
 ]
 
-{
-	#category : #ranges,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>unsigned2ByteNumbers [
+{ #category : #ranges }
+FFITypesTests >> unsigned2ByteNumbers [
 	^ { 
 		0.
 		126.
@@ -292,11 +237,8 @@ FFITypesTests>>unsigned2ByteNumbers [
  	}
 ]
 
-{
-	#category : #ranges,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>unsigned4ByteNumbers [
+{ #category : #ranges }
+FFITypesTests >> unsigned4ByteNumbers [
 	^ { 
 		0.
 		126.
@@ -319,11 +261,8 @@ FFITypesTests>>unsigned4ByteNumbers [
  	}
 ]
 
-{
-	#category : #ranges,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypesTests>>unsigned8ByteNumbers [
+{ #category : #ranges }
+FFITypesTests >> unsigned8ByteNumbers [
 	^ { 
 		0.
 		126.

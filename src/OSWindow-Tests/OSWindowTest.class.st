@@ -4,15 +4,11 @@ An OSWindowTest is a test class for testing the behavior of OSWindow
 Class {
 	#name : #OSWindowTest,
 	#superclass : #TestCase,
-	#category : #OSWindow-Tests,
-	#timestamp : '<historical>'
+	#category : #OSWindow-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowTest>>testCreatingWindow [
+{ #category : #tests }
+OSWindowTest >> testCreatingWindow [
 
 	| window attributes |
 	attributes := OSWindowAttributes new.
@@ -23,11 +19,8 @@ OSWindowTest>>testCreatingWindow [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowTest>>testNewWindowDefaults [
+{ #category : #tests }
+OSWindowTest >> testNewWindowDefaults [
 
 	| window |
 	
@@ -41,11 +34,8 @@ OSWindowTest>>testNewWindowDefaults [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowTest>>testSettingUpWindow [
+{ #category : #tests }
+OSWindowTest >> testSettingUpWindow [
 
 	| window |
 	

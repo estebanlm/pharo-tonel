@@ -10,77 +10,52 @@ Class {
 		'runningIndex',
 		'sccs'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : 'ChristopheDemarey 3/23/2015 14:26'
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjan>>circuits [
+{ #category : #accessing }
+MalTarjan >> circuits [
 	^ self stronglyConnectedComponents
 		select: [ :each | each size > 1 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjan>>findNode: aModel ifAbsent: aBlock [
+{ #category : #accessing }
+MalTarjan >> findNode: aModel ifAbsent: aBlock [
 	^ nodes 
 		at: aModel
 		ifAbsent: aBlock
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjan>>initialize [
+{ #category : #initialize-release }
+MalTarjan >> initialize [
 	super initialize.
 	nodes := Dictionary new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjan>>isRootNode: aTarjanNode [
+{ #category : #testing }
+MalTarjan >> isRootNode: aTarjanNode [
 	^ aTarjanNode tarjanIndex = aTarjanNode tarjanLowlink
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjan>>nodeClass [
+{ #category : #configuration }
+MalTarjan >> nodeClass [
 	^ MalTarjanNode 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjan>>nodes [
+{ #category : #accessing }
+MalTarjan >> nodes [
 	^ nodes values
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjan>>nodes: aCollection [
+{ #category : #accessing }
+MalTarjan >> nodes: aCollection [
 	aCollection do: [ :model |
 		nodes at: model put: (self nodeClass with: model)
 	]
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjan>>nodesAndNextFrom: aNodeList [
+{ #category : #setting }
+MalTarjan >> nodesAndNextFrom: aNodeList [
 	aNodeList 
 		do: [ :node | 
 				nodes 
@@ -94,11 +69,8 @@ MalTarjan>>nodesAndNextFrom: aNodeList [
 							to: (self findNode: each model) ] ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjan>>popStackAndUpdateCurrentScc: aComponent until: aTarjanNode [
+{ #category : #running }
+MalTarjan >> popStackAndUpdateCurrentScc: aComponent until: aTarjanNode [
 	| currentNode |
 	[ currentNode := stack pop.
 	currentNode popped.
@@ -108,20 +80,14 @@ MalTarjan>>popStackAndUpdateCurrentScc: aComponent until: aTarjanNode [
 	aComponent do: [ :each | each cycleNodes: aComponent ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjan>>putOnStack: aTarjanNode [
+{ #category : #running }
+MalTarjan >> putOnStack: aTarjanNode [
 	stack push: aTarjanNode.
 	aTarjanNode inStack: true. "I use a flag to avoid stack access"
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjan>>run [
+{ #category : #running }
+MalTarjan >> run [
 	sccs := OrderedCollection new.
 	stack := Stack new.
 	runningIndex := 0.
@@ -132,19 +98,13 @@ MalTarjan>>run [
 	^ sccs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjan>>stronglyConnectedComponents [
+{ #category : #accessing }
+MalTarjan >> stronglyConnectedComponents [
 	^ sccs ifNil: [ self run ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjan>>traverse: aTarjanNode [
+{ #category : #running }
+MalTarjan >> traverse: aTarjanNode [
 	| component |
 	aTarjanNode tarjanIndex: runningIndex.
 	aTarjanNode tarjanLowlink: runningIndex.
@@ -156,11 +116,8 @@ MalTarjan>>traverse: aTarjanNode [
 					self popStackAndUpdateCurrentScc: component until: aTarjanNode ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTarjan>>traverseChildrenOf: aTarjanNode [
+{ #category : #running }
+MalTarjan >> traverseChildrenOf: aTarjanNode [
 	aTarjanNode nextNodes
 		do: [ :next | 
 			next isTarjanUndefined

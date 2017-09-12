@@ -30,25 +30,18 @@ Class {
 		'stepModel',
 		'candidateLink'
 	],
-	#category : #GT-Spotter-UI,
-	#timestamp : 'AliakseiSyrel 3/5/2017 16:54'
+	#category : #GT-Spotter-UI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>actionbarBrick [
+{ #category : #accessing }
+GTSpotterItemBrick >> actionbarBrick [
 	"Return action bar brick"
 
 	^ actionbarBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>actionbarBrick: aBrick [
+{ #category : #accessing }
+GTSpotterItemBrick >> actionbarBrick: aBrick [
 
 	actionbarBrick ifNotNil: [ self removeBrick: actionbarBrick ].
 	actionbarBrick := aBrick.
@@ -57,39 +50,27 @@ GTSpotterItemBrick>>actionbarBrick: aBrick [
 	self addBrickBack: actionbarBrick
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>beSelected [
+{ #category : #actions }
+GTSpotterItemBrick >> beSelected [
 	self stepModel select: self candidateLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>candidateLink [
+{ #category : #accessing }
+GTSpotterItemBrick >> candidateLink [
 
 	^ candidateLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>candidateLink: aDoubleLink  [
+{ #category : #accessing }
+GTSpotterItemBrick >> candidateLink: aDoubleLink [ 
 
 	candidateLink := aDoubleLink.
 	
 	self actionbarBrick candidateLink: self candidateLink
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>check [
+{ #category : #'event handling' }
+GTSpotterItemBrick >> check [
 	"#check on UI side means that item is selected in Spotter model"
 	super check.
 
@@ -97,48 +78,33 @@ GTSpotterItemBrick>>check [
 	self notifySelected
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>checkOrUncheck [
+{ #category : #'event handling' }
+GTSpotterItemBrick >> checkOrUncheck [
 
 	(self stepModel isSelected: self candidateLink)
 		ifTrue: [ self isChecked ifFalse: [ self check ] ]
 		ifFalse: [ self isChecked ifTrue: [ self uncheck ] ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>deselect [
+{ #category : #'event handling' }
+GTSpotterItemBrick >> deselect [
 	super deselect.
 	self hideActionbar
 ]
 
-{
-	#category : #'morphic - events',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>doubleClick: anEvent [
+{ #category : #'morphic - events' }
+GTSpotterItemBrick >> doubleClick: anEvent [
 
 	self stepModel actDueTo: #doubleClick
 ]
 
-{
-	#category : #'morphic - events',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>handlesMouseDown: evt [
+{ #category : #'morphic - events' }
+GTSpotterItemBrick >> handlesMouseDown: evt [
 	^ true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>hideActionbar [
+{ #category : #actions }
+GTSpotterItemBrick >> hideActionbar [
 
 	self shouldShowActionbar
 		ifTrue: [ ^ self ].
@@ -146,36 +112,24 @@ GTSpotterItemBrick>>hideActionbar [
 	self actionbarBrick visible: false
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>highlightQuery [
+{ #category : #actions }
+GTSpotterItemBrick >> highlightQuery [
 	self labelBrick label highlight: self stepModel context text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>icon: aForm [
+{ #category : #accessing }
+GTSpotterItemBrick >> icon: aForm [
 
 	self iconBrick normalImage: aForm.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>iconBrick [
+{ #category : #accessing }
+GTSpotterItemBrick >> iconBrick [
 	^ iconBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>iconBrick: aBrick [
+{ #category : #accessing }
+GTSpotterItemBrick >> iconBrick: aBrick [
 
 	iconBrick ifNotNil: [ self removeBrick: iconBrick ].
 	iconBrick := aBrick.
@@ -185,11 +139,8 @@ GTSpotterItemBrick>>iconBrick: aBrick [
 	self addBrickBack: iconBrick
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>initialize [
+{ #category : #initialization }
+GTSpotterItemBrick >> initialize [
 	super initialize.
 	self enable.
 
@@ -200,19 +151,13 @@ GTSpotterItemBrick>>initialize [
 	self actionbarBrick: self newActionbarBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>labelBrick [
+{ #category : #accessing }
+GTSpotterItemBrick >> labelBrick [
 	^ labelBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>labelBrick: aBrick [
+{ #category : #accessing }
+GTSpotterItemBrick >> labelBrick: aBrick [
 
 	labelBrick ifNotNil: [self removeBrick: labelBrick].
 	labelBrick := aBrick.
@@ -222,11 +167,8 @@ GTSpotterItemBrick>>labelBrick: aBrick [
 	self addBrickBack: labelBrick
 ]
 
-{
-	#category : #'morphic - events',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>mouseDown: evt [
+{ #category : #'morphic - events' }
+GTSpotterItemBrick >> mouseDown: evt [
 	|selectors|
 	
 	self isEnabled ifFalse: [ ^ self ].
@@ -245,29 +187,20 @@ GTSpotterItemBrick>>mouseDown: evt [
 	
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>newActionbarBrick [
+{ #category : #'instance creation' }
+GTSpotterItemBrick >> newActionbarBrick [
 
 	^ GTSpotterItemActionbarBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>newIconBrick [
+{ #category : #'instance creation' }
+GTSpotterItemBrick >> newIconBrick [
 
 	^ GLMInteractableBrick new normalImage: ((Form extent: 16@16 depth: 32) fillAlpha: 0)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>newLabelBrick [
+{ #category : #'instance creation' }
+GTSpotterItemBrick >> newLabelBrick [
 	self flag: 'find a better number, or at least a better place for the number :)'.
 
 	^ GLMLabelBrick new 
@@ -275,31 +208,22 @@ GTSpotterItemBrick>>newLabelBrick [
 		paddingRight: 16
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>notifySelected [
+{ #category : #notifying }
+GTSpotterItemBrick >> notifySelected [
 
 	self stepModel spotter announce: (GTSpotterCandidateSelected new itemBrick: self).
 	self stepModel announcer announce: (GTSpotterCandidateSelected new itemBrick: self)
 ]
 
-{
-	#category : #brick-layout-events,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>onLayouted [
+{ #category : #brick-layout-events }
+GTSpotterItemBrick >> onLayouted [
 	super onLayouted.
 	
 	self isChecked ifTrue: [ self stepModel spotter announce: GTSpotterCandidateSelectedMoved new ]
 ]
 
-{
-	#category : #brick-structure-events,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>onRemovedFrom: aBrick [
+{ #category : #brick-structure-events }
+GTSpotterItemBrick >> onRemovedFrom: aBrick [
 	super onRemovedFrom: aBrick.
 	
 	"I must not receive any announcements as soon as i'm removed from dom"
@@ -308,58 +232,40 @@ GTSpotterItemBrick>>onRemovedFrom: aBrick [
 		self stepModel spotter announcer unsubscribe: self  ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>onSelectedChanged: anAnnouncement [
+{ #category : #'event handling' }
+GTSpotterItemBrick >> onSelectedChanged: anAnnouncement [
 
 	self checkOrUncheck
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>onStepPopped [
+{ #category : #'event handling' }
+GTSpotterItemBrick >> onStepPopped [
 
 	
 	(self stepModel spotter steps last = self stepModel) & self isChecked ifTrue: [
 		self notifySelected ]
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>onThemerChanged [
+{ #category : #brick-properties-events }
+GTSpotterItemBrick >> onThemerChanged [
 	super onThemerChanged.
 	
 	self themer spotterThemer itemNormalWidgetStyleFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>processor [
+{ #category : #accessing }
+GTSpotterItemBrick >> processor [
 	^ self candidateLink processor
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>select [
+{ #category : #'event handling' }
+GTSpotterItemBrick >> select [
 	super select.
 	self showActionbar
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>shouldShowActionbar [
+{ #category : #testing }
+GTSpotterItemBrick >> shouldShowActionbar [
 	"Return true if actionbar should be shown, false otherwise"
 	<return: #Boolean>
 
@@ -368,40 +274,28 @@ GTSpotterItemBrick>>shouldShowActionbar [
 			self stepModel isSelected: self candidateLink ] ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>showActionbar [
+{ #category : #actions }
+GTSpotterItemBrick >> showActionbar [
 	self shouldShowActionbar
 		ifFalse: [ ^ self ].
 
 	self actionbarBrick visible: true
 ]
 
-{
-	#category : #'morphic - events',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>singleClick: evt [
+{ #category : #'morphic - events' }
+GTSpotterItemBrick >> singleClick: evt [
 
 	self stepModel select: self candidateLink dueTo: #singleClick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>stepModel [
+{ #category : #accessing }
+GTSpotterItemBrick >> stepModel [
 
 	^ stepModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>stepModel: aModel [
+{ #category : #accessing }
+GTSpotterItemBrick >> stepModel: aModel [
 
 	stepModel := aModel.
 	
@@ -415,20 +309,14 @@ GTSpotterItemBrick>>stepModel: aModel [
 		checkOrUncheck
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>text: aString [
+{ #category : #accessing }
+GTSpotterItemBrick >> text: aString [
 
 	self labelBrick text: aString
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemBrick>>uncheck [
+{ #category : #'event handling' }
+GTSpotterItemBrick >> uncheck [
 	super uncheck.
 	self hideActionbar
 ]

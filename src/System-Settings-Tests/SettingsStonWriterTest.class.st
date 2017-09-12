@@ -7,43 +7,30 @@ Class {
 	#instVars : [
 		'writer'
 	],
-	#category : #System-Settings-Tests,
-	#timestamp : '<historical>'
+	#category : #System-Settings-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SettingsStonWriterTest>>setUp [
+{ #category : #running }
+SettingsStonWriterTest >> setUp [
 	super setUp.
 	writer := SettingsStonWriter new.
 	writer stream: (WriteStream on: String new).
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SettingsStonWriterTest>>testBasic [
+{ #category : #tests }
+SettingsStonWriterTest >> testBasic [
 	"Checking that no error occur"
 	SettingsStonWriter new store
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SettingsStonWriterTest>>testEmptyStream [
+{ #category : #tests }
+SettingsStonWriterTest >> testEmptyStream [
 	self assert: writer stream contents isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SettingsStonWriterTest>>testStore [
+{ #category : #tests }
+SettingsStonWriterTest >> testStore [
 	| settingNode |
 	settingNode := MockSettings booleanSettingNode.
 	writer addSetting: (StoredSettingsFactory new from: settingNode).
@@ -52,11 +39,8 @@ SettingsStonWriterTest>>testStore [
 	self assert: writer stream contents equals: MockSettings oneStoredSettingSTONString
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SettingsStonWriterTest>>testStoreTwoObjects [
+{ #category : #tests }
+SettingsStonWriterTest >> testStoreTwoObjects [
 	| settingNode1 settingNode2 |
 	settingNode1 := MockSettings booleanSettingNode.
 	settingNode2 := MockSettings rangeSettingNode.

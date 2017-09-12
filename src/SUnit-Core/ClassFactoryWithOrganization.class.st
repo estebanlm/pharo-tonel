@@ -9,25 +9,18 @@ Class {
 	#instVars : [
 		'organization'
 	],
-	#category : #SUnit-Core-Extensions,
-	#timestamp : 'LaurentLaffont 5/4/2011 21:25'
+	#category : #SUnit-Core-Extensions
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganization class>>newWithOrganization: aSystemOrganizer [
+{ #category : #'instance creation' }
+ClassFactoryWithOrganization class >> newWithOrganization: aSystemOrganizer [
 	^self new
 		organization: aSystemOrganizer;
 		yourself
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganization>>deletePackage [
+{ #category : #cleaning }
+ClassFactoryWithOrganization >> deletePackage [
 	| categoriesMatchString |
 	categoriesMatchString := self packageName, '-*'.
 	self organization removeCategoriesMatching: categoriesMatchString ; 
@@ -35,11 +28,8 @@ ClassFactoryWithOrganization>>deletePackage [
 	
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganization>>newClassNamed: aString subclassOf: aClass instanceVariableNames: ivNamesString classVariableNames:  classVarsString  [
+{ #category : #creating }
+ClassFactoryWithOrganization >> newClassNamed: aString subclassOf: aClass instanceVariableNames: ivNamesString classVariableNames:  classVarsString [ 
 	^self 
 		newClassNamed: aString
 		subclassOf: aClass 
@@ -48,11 +38,8 @@ ClassFactoryWithOrganization>>newClassNamed: aString subclassOf: aClass instance
 		category:  (self packageName, '-', self defaultCategoryPostfix) asSymbol.
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganization>>newClassNamed: aString subclassOf: aClass instanceVariableNames: ivNamesString classVariableNames: classVarsString category: category [
+{ #category : #creating }
+ClassFactoryWithOrganization >> newClassNamed: aString subclassOf: aClass instanceVariableNames: ivNamesString classVariableNames: classVarsString category: category [
 	| newClass |
 	newClass := aClass classInstaller
 		make: [ :builder | 
@@ -69,11 +56,8 @@ ClassFactoryWithOrganization>>newClassNamed: aString subclassOf: aClass instance
 	^ newClass
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganization>>newSubclassOf: aClass instanceVariableNames: ivNamesString classVariableNames:  classVarsString  [
+{ #category : #creating }
+ClassFactoryWithOrganization >> newSubclassOf: aClass instanceVariableNames: ivNamesString classVariableNames:  classVarsString [ 
 	^self 
 		newSubclassOf: aClass 
 		instanceVariableNames: ivNamesString 
@@ -81,11 +65,8 @@ ClassFactoryWithOrganization>>newSubclassOf: aClass instanceVariableNames: ivNam
 		category:  (self packageName, '-', self defaultCategoryPostfix) asSymbol.
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganization>>newSubclassOf: aClass instanceVariableNames: ivNamesString classVariableNames: classVarsString category: category [
+{ #category : #creating }
+ClassFactoryWithOrganization >> newSubclassOf: aClass instanceVariableNames: ivNamesString classVariableNames: classVarsString category: category [
 	| newClass |
 	newClass := aClass classInstaller
 		make: [ :builder | 
@@ -102,18 +83,12 @@ ClassFactoryWithOrganization>>newSubclassOf: aClass instanceVariableNames: ivNam
 	^ newClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganization>>organization [
+{ #category : #accessing }
+ClassFactoryWithOrganization >> organization [
 	^organization
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganization>>organization: aSystemOrganizer [
+{ #category : #accessing }
+ClassFactoryWithOrganization >> organization: aSystemOrganizer [
 	organization := aSystemOrganizer
 ]

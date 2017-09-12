@@ -4,15 +4,11 @@ Text converter for ISO 8859-2.  An international encoding used in Eastern Europe
 Class {
 	#name : #ISO88592TextConverter,
 	#superclass : #ByteTextConverter,
-	#category : #Multilingual-TextConversion,
-	#timestamp : '<historical>'
+	#category : #Multilingual-TextConversion
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ISO88592TextConverter class>>byteToUnicodeSpec [
+{ #category : #accessing }
+ISO88592TextConverter class >> byteToUnicodeSpec [
 	"ByteTextConverter generateByteToUnicodeSpec: 'http://unicode.org/Public/MAPPINGS/ISO8859/8859-2.TXT'"
 
 	^ #(
@@ -34,28 +30,19 @@ ISO88592TextConverter class>>byteToUnicodeSpec [
 	16r0159 16r016F 16r00FA 16r0171 16r00FC 16r00FD 16r0163 16r02D9 )
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ISO88592TextConverter class>>encodingNames  [
+{ #category : #utilities }
+ISO88592TextConverter class >> encodingNames [ 
 
 	^ #('iso-8859-2') copy
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ISO88592TextConverter class>>initialize [
+{ #category : #initialization }
+ISO88592TextConverter class >> initialize [
 	self initializeTables
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ISO88592TextConverter class>>languageEnvironment [
+{ #category : #accessing }
+ISO88592TextConverter class >> languageEnvironment [
 	^Latin2Environment
 ]

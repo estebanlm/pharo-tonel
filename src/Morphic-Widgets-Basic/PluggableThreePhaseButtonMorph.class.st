@@ -12,109 +12,75 @@ Class {
 		'pressedImageSelector',
 		'stateSelector'
 	],
-	#category : #Morphic-Widgets-Basic-Buttons,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Basic-Buttons
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableThreePhaseButtonMorph class>>on: aModel [
+{ #category : #'instance creation' }
+PluggableThreePhaseButtonMorph class >> on: aModel [
 
 	^ self new 
 			target: aModel;
 			yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableThreePhaseButtonMorph>>offImageSelector [
+{ #category : #accessing }
+PluggableThreePhaseButtonMorph >> offImageSelector [
 
 	^ offImageSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableThreePhaseButtonMorph>>offImageSelector: anObject  [
+{ #category : #accessing }
+PluggableThreePhaseButtonMorph >> offImageSelector: anObject [ 
 
 	offImageSelector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableThreePhaseButtonMorph>>onImageSelector [
+{ #category : #accessing }
+PluggableThreePhaseButtonMorph >> onImageSelector [
 
 	^ onImageSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableThreePhaseButtonMorph>>onImageSelector: anObject  [
+{ #category : #accessing }
+PluggableThreePhaseButtonMorph >> onImageSelector: anObject [ 
 
 	onImageSelector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableThreePhaseButtonMorph>>pressedImageSelector [
+{ #category : #accessing }
+PluggableThreePhaseButtonMorph >> pressedImageSelector [
 
 	^ pressedImageSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableThreePhaseButtonMorph>>pressedImageSelector: anObject  [
+{ #category : #accessing }
+PluggableThreePhaseButtonMorph >> pressedImageSelector: anObject [ 
 
 	pressedImageSelector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableThreePhaseButtonMorph>>stateSelector [
+{ #category : #accessing }
+PluggableThreePhaseButtonMorph >> stateSelector [
 
 	^ stateSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableThreePhaseButtonMorph>>stateSelector: anObject  [
+{ #category : #accessing }
+PluggableThreePhaseButtonMorph >> stateSelector: anObject [ 
 
 	stateSelector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableThreePhaseButtonMorph>>target: anObject [
+{ #category : #accessing }
+PluggableThreePhaseButtonMorph >> target: anObject [
 
 	target ifNotNil: [ target removeDependent: self ].
 	anObject ifNotNil: [ anObject addDependent: self ].
 	target := anObject.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableThreePhaseButtonMorph>>update: aSymbol [
+{ #category : #updating }
+PluggableThreePhaseButtonMorph >> update: aSymbol [
 
 	aSymbol == stateSelector
 		ifTrue: [ ^ self updateState ].
@@ -128,38 +94,26 @@ PluggableThreePhaseButtonMorph>>update: aSymbol [
 	^ super update: aSymbol
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableThreePhaseButtonMorph>>updateOffImage [
+{ #category : #updating }
+PluggableThreePhaseButtonMorph >> updateOffImage [
 
 	self offImage: ( target perform: offImageSelector )
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableThreePhaseButtonMorph>>updateOnImage [
+{ #category : #updating }
+PluggableThreePhaseButtonMorph >> updateOnImage [
 
 	self onImage: ( target perform: onImageSelector )
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableThreePhaseButtonMorph>>updatePressedImage [
+{ #category : #updating }
+PluggableThreePhaseButtonMorph >> updatePressedImage [
 
 	self pressedImage: ( target perform: pressedImageSelector )
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableThreePhaseButtonMorph>>updateState [
+{ #category : #updating }
+PluggableThreePhaseButtonMorph >> updateState [
 
 	( target perform: stateSelector )
 		ifTrue: [ self state: #on ]

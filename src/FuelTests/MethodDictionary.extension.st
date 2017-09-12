@@ -1,12 +1,7 @@
-Extension {
-	#name : #MethodDictionary
-}
+Extension { #name : #MethodDictionary }
 
-{
-	#category : #'*FuelTests',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionary>>isEqualRegardlessMethodsTrailerTo: aMethodDictionary [
+{ #category : #'*FuelTests' }
+MethodDictionary >> isEqualRegardlessMethodsTrailerTo: aMethodDictionary [
 
 	"Two dictionaries are equal if
 	 (a) they are the same 'kind' of thing.

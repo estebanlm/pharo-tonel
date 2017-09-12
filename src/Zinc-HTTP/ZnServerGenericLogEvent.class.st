@@ -13,15 +13,11 @@ Class {
 	#instVars : [
 		'subject'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 15:03'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerGenericLogEvent class>>subject: object [
+{ #category : #'instance creation' }
+ZnServerGenericLogEvent class >> subject: object [
 	"self subject: #(i 10 j -1)."
 	"self subject: 'How are you?'."
 	
@@ -30,27 +26,18 @@ ZnServerGenericLogEvent class>>subject: object [
 		yourself
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerGenericLogEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnServerGenericLogEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream space; nextPutAll: subject asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerGenericLogEvent>>subject [
+{ #category : #accessing }
+ZnServerGenericLogEvent >> subject [
 	^ subject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerGenericLogEvent>>subject: anObject [
+{ #category : #accessing }
+ZnServerGenericLogEvent >> subject: anObject [
 	subject := anObject
 ]

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #EpLogTest,
 	#superclass : #TestCase,
@@ -8,52 +5,36 @@ Class {
 		'log',
 		'logBuilder'
 	],
-	#category : #EpiceaTests-Log,
-	#timestamp : ''
+	#category : #EpiceaTests-Log
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogTest>>setUp [
+{ #category : #running }
+EpLogTest >> setUp [
 	super setUp.
 	
 	logBuilder := EpTestLogBuilder new.
 	log := logBuilder oneTriggerWithFourChildrenLog.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogTest>>tearDown [
+{ #category : #running }
+EpLogTest >> tearDown [
 	super tearDown.
 	
 	logBuilder cleanUp.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogTest>>testEntries [
+{ #category : #tests }
+EpLogTest >> testEntries [
 	self assert: log entries size equals: 5
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogTest>>testEntriesCount [
+{ #category : #tests }
+EpLogTest >> testEntriesCount [
 	self assert: log entriesCount equals: 5
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogTest>>testEntryReferences [
+{ #category : #tests }
+EpLogTest >> testEntryReferences [
 
 	| entryReferences |
 	entryReferences := log entryReferences.
@@ -68,21 +49,15 @@ EpLogTest>>testEntryReferences [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogTest>>testFirstEntryIfAbsent [
+{ #category : #tests }
+EpLogTest >> testFirstEntryIfAbsent [
 	self 
 		assert: (log firstEntryIfAbsent: [ self fail ]) 
 		equals: log entries first
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogTest>>testFromDetect [
+{ #category : #tests }
+EpLogTest >> testFromDetect [
 	| reference isPrior entry |
 	reference := log priorReferenceAt: log head.
 	entry := log entryFor: reference.
@@ -102,11 +77,8 @@ EpLogTest>>testFromDetect [
 		equals: (log entryFor: (log priorReferenceAt: entry)).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogTest>>testFromDetectIfNotFound [
+{ #category : #tests }
+EpLogTest >> testFromDetectIfNotFound [
 	| reference |
 	reference := log priorReferenceAt: log head.
 	" Assert for getting 42 when entry is not found. "
@@ -118,11 +90,8 @@ EpLogTest>>testFromDetectIfNotFound [
 		equals: 42.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogTest>>testFromHeadDetect [
+{ #category : #tests }
+EpLogTest >> testFromHeadDetect [
 
 	" Assert for head "
 	self
@@ -130,11 +99,8 @@ EpLogTest>>testFromHeadDetect [
 		equals: log head.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogTest>>testFromHeadDetectIfNotFound [
+{ #category : #tests }
+EpLogTest >> testFromHeadDetectIfNotFound [
 
 	" Assert for getting 42 when entry is not found. "
 	self
@@ -144,40 +110,28 @@ EpLogTest>>testFromHeadDetectIfNotFound [
 		equals: 42.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogTest>>testFromNullReferenceDetectNotFound [
+{ #category : #tests }
+EpLogTest >> testFromNullReferenceDetectNotFound [
 
 	self
 		should: [ log from: log nullReference detect: [ :entry | true ] ]
 		raise: KeyNotFound
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogTest>>testHeadReference [
+{ #category : #tests }
+EpLogTest >> testHeadReference [
 	self deny: log headReference isNull
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogTest>>testPriorEntriesFromNullReferenceIsEmpty [
+{ #category : #tests }
+EpLogTest >> testPriorEntriesFromNullReferenceIsEmpty [
 	| priorEntries |
 	priorEntries := log priorEntriesFrom: log nullReference.
 	self assert: priorEntries isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogTest>>testShouldKeepHeadReferenceAfterReOpen [
+{ #category : #tests }
+EpLogTest >> testShouldKeepHeadReferenceAfterReOpen [
 	| anotherLog |
 
 	anotherLog := EpLog newWithStore: log store copy refresh.
@@ -185,11 +139,8 @@ EpLogTest>>testShouldKeepHeadReferenceAfterReOpen [
 	self assert: anotherLog headReference equals: log headReference.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogTest>>testShouldKeepHeadReferenceAfterRefresh [
+{ #category : #tests }
+EpLogTest >> testShouldKeepHeadReferenceAfterRefresh [
 	| headReference |
 	headReference := log headReference.
 

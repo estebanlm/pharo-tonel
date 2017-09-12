@@ -12,15 +12,11 @@ Class {
 		'time',
 		'author'
 	],
-	#category : #Monticello-Versioning,
-	#timestamp : '<historical>'
+	#category : #Monticello-Versioning
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo class>>name: vName id: id message: message date: date time: time author: author ancestors: ancestors [
+{ #category : #instance-creation }
+MCVersionInfo class >> name: vName id: id message: message date: date time: time author: author ancestors: ancestors [
 	^ self 
 		name: vName
 		id: id
@@ -32,11 +28,8 @@ MCVersionInfo class>>name: vName id: id message: message date: date time: time a
 		stepChildren: #()
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo class>>name: vName id: id message: message date: date time: time author: author ancestors: ancestors stepChildren: stepChildren [
+{ #category : #instance-creation }
+MCVersionInfo class >> name: vName id: id message: message date: date time: time author: author ancestors: ancestors stepChildren: stepChildren [
 	^ self new
 		initializeWithName: vName
 		id: id
@@ -48,20 +41,14 @@ MCVersionInfo class>>name: vName id: id message: message date: date time: time a
 		stepChildren: stepChildren
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>= other [
+{ #category : #comparing }
+MCVersionInfo >> = other [
 	^ other species = self species
 		and: [other hasID: id]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>asDictionary [
+{ #category : #converting }
+MCVersionInfo >> asDictionary [
 	^ Dictionary new
 		at: #name put: name;
 		at: #id put: id asString;
@@ -73,51 +60,33 @@ MCVersionInfo>>asDictionary [
 		yourself
 ]
 
-{
-	#category : #pillaging,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>author [
+{ #category : #pillaging }
+MCVersionInfo >> author [
 	^ author
 ]
 
-{
-	#category : #pillaging,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>date [
+{ #category : #pillaging }
+MCVersionInfo >> date [
 	^ date
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>hasID: aUUID [
+{ #category : #private }
+MCVersionInfo >> hasID: aUUID [
 	^ id = aUUID
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>hash [
+{ #category : #comparing }
+MCVersionInfo >> hash [
 	^ id hash
 ]
 
-{
-	#category : #pillaging,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>id [
+{ #category : #pillaging }
+MCVersionInfo >> id [
 	^ id 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>initializeWithName: vName id: aUUID message: aString date: aDate time: aTime author: initials ancestors: aCollection stepChildren: stepCollection [
+{ #category : #initialization }
+MCVersionInfo >> initializeWithName: vName id: aUUID message: aString date: aDate time: aTime author: initials ancestors: aCollection stepChildren: stepCollection [
 	name := vName.
 	id := aUUID.
 	message := aString.
@@ -128,19 +97,13 @@ MCVersionInfo>>initializeWithName: vName id: aUUID message: aString date: aDate 
 	stepChildren := stepCollection
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>lazy [
+{ #category : #initialization }
+MCVersionInfo >> lazy [
 	^ MCLazyVersionInfo from: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>loadAncestorsAndStepChildren [
+{ #category : #private }
+MCVersionInfo >> loadAncestorsAndStepChildren [
 	"This code scans all the repositories to find the exact package version and reload the relevant info."
 
 	"Transient failures, such as the lack of network connectivity, will return nothing and no errors from this code."
@@ -157,27 +120,18 @@ MCVersionInfo>>loadAncestorsAndStepChildren [
 			self setStepChildren: aVersion info stepChildren ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>message [
+{ #category : #accessing }
+MCVersionInfo >> message [
 	^ message ifNil: ['']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>name [
+{ #category : #accessing }
+MCVersionInfo >> name [
 	^ name ifNil: ['<working copy>']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>nameWithout: packageName [
+{ #category : #accessing }
+MCVersionInfo >> nameWithout: packageName [
 	| result |
 	result := self name.
 	(result beginsWith: packageName , '-') ifTrue: [
@@ -185,21 +139,15 @@ MCVersionInfo>>nameWithout: packageName [
 	^result
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>printOn: aStream [
+{ #category : #printing }
+MCVersionInfo >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut: $(; nextPutAll: self name; nextPut: $)
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>setAncestors: someAncestors [
+{ #category : #private }
+MCVersionInfo >> setAncestors: someAncestors [
 	"Unused in MCVersionInfo"
 
 	"It is there to allow a certain customisation with lazy stuff without kernel dependencies on LRUCache"
@@ -207,11 +155,8 @@ MCVersionInfo>>setAncestors: someAncestors [
 	ancestors := someAncestors
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>setStepChildren: someStepChildren [
+{ #category : #private }
+MCVersionInfo >> setStepChildren: someStepChildren [
 	"Unused in MCVersionInfo"
 
 	"It is there to allow a certain customisation with lazy stuff without kernel dependencies on LRUCache"
@@ -219,11 +164,8 @@ MCVersionInfo>>setStepChildren: someStepChildren [
 	stepChildren := someStepChildren
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>summary [
+{ #category : #accessing }
+MCVersionInfo >> summary [
 	^ String streamContents:
 		[:s |
 		s
@@ -232,11 +174,8 @@ MCVersionInfo>>summary [
 		]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>summaryHeader [
+{ #category : #accessing }
+MCVersionInfo >> summaryHeader [
 	^ String streamContents:
 		[:s |
 		s
@@ -254,34 +193,22 @@ MCVersionInfo>>summaryHeader [
 		]
 ]
 
-{
-	#category : #pillaging,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>time [
+{ #category : #pillaging }
+MCVersionInfo >> time [
 	^ time
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>timeStamp [
+{ #category : #accessing }
+MCVersionInfo >> timeStamp [
 	^ DateAndTime date: date time: time
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>timeString [
+{ #category : #accessing }
+MCVersionInfo >> timeString [
 	^ date asString, ', ', time asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfo>>versionNumber [
+{ #category : #accessing }
+MCVersionInfo >> versionNumber [
 	^ ((self name copyAfterLast: $-) copyAfter: $.) asInteger
 ]

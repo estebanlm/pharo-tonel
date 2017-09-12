@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #HiNodesAndLinksIteratorWithOneLinkModelTest,
 	#superclass : #TestCase,
@@ -13,26 +10,19 @@ Class {
 		'reversedNodes',
 		'linkBuilder'
 	],
-	#category : #HiedraTests,
-	#timestamp : ''
+	#category : #HiedraTests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiNodesAndLinksIteratorWithOneLinkModelTest>>assertIteratedAsExpected [
+{ #category : #running }
+HiNodesAndLinksIteratorWithOneLinkModelTest >> assertIteratedAsExpected [
 	| builtArray |
 	builtArray := self iteratedAsArray.
 	
 	self assert: builtArray equals: expectedArray
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiNodesAndLinksIteratorWithOneLinkModelTest>>iteratedAsArray [
+{ #category : #running }
+HiNodesAndLinksIteratorWithOneLinkModelTest >> iteratedAsArray [
 	| result |
 	result := OrderedCollection new.	
 		
@@ -45,21 +35,15 @@ HiNodesAndLinksIteratorWithOneLinkModelTest>>iteratedAsArray [
 	^ result asArray
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiNodesAndLinksIteratorWithOneLinkModelTest>>setUp [
+{ #category : #running }
+HiNodesAndLinksIteratorWithOneLinkModelTest >> setUp [
 	linkBuilder := HiLinkBuilder new
 		targetsBlock: [ :node | node parents ];
 		yourself.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiNodesAndLinksIteratorWithOneLinkModelTest>>testEmpty [
+{ #category : #tests }
+HiNodesAndLinksIteratorWithOneLinkModelTest >> testEmpty [
 
 	reversedNodes := {}.
 	expectedArray := {}.
@@ -67,11 +51,8 @@ HiNodesAndLinksIteratorWithOneLinkModelTest>>testEmpty [
 	self assertIteratedAsExpected.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiNodesAndLinksIteratorWithOneLinkModelTest>>testOneNode [
+{ #category : #tests }
+HiNodesAndLinksIteratorWithOneLinkModelTest >> testOneNode [
 	"
 	a
 	"
@@ -85,11 +66,8 @@ HiNodesAndLinksIteratorWithOneLinkModelTest>>testOneNode [
 	self assertIteratedAsExpected.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiNodesAndLinksIteratorWithOneLinkModelTest>>testTwoConnectedNodes [
+{ #category : #tests }
+HiNodesAndLinksIteratorWithOneLinkModelTest >> testTwoConnectedNodes [
 	"
 	b
 	|
@@ -109,11 +87,8 @@ HiNodesAndLinksIteratorWithOneLinkModelTest>>testTwoConnectedNodes [
 	self assertIteratedAsExpected.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiNodesAndLinksIteratorWithOneLinkModelTest>>testTwoMergedFork [
+{ #category : #tests }
+HiNodesAndLinksIteratorWithOneLinkModelTest >> testTwoMergedFork [
 	"
 	c
 	|\ 
@@ -141,11 +116,8 @@ HiNodesAndLinksIteratorWithOneLinkModelTest>>testTwoMergedFork [
 	self assertIteratedAsExpected.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiNodesAndLinksIteratorWithOneLinkModelTest>>testTwoUnconnectedNodes [
+{ #category : #tests }
+HiNodesAndLinksIteratorWithOneLinkModelTest >> testTwoUnconnectedNodes [
 	"
 	b
 
@@ -164,11 +136,8 @@ HiNodesAndLinksIteratorWithOneLinkModelTest>>testTwoUnconnectedNodes [
 	self assertIteratedAsExpected.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiNodesAndLinksIteratorWithOneLinkModelTest>>testTwoUnmergedForks [
+{ #category : #tests }
+HiNodesAndLinksIteratorWithOneLinkModelTest >> testTwoUnmergedForks [
 	"
 	c
 	|
@@ -195,11 +164,8 @@ HiNodesAndLinksIteratorWithOneLinkModelTest>>testTwoUnmergedForks [
 	self assertIteratedAsExpected.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiNodesAndLinksIteratorWithOneLinkModelTest>>testTwoUnmergedForks2 [
+{ #category : #tests }
+HiNodesAndLinksIteratorWithOneLinkModelTest >> testTwoUnmergedForks2 [
 	"
 	d
 	|

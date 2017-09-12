@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #MalSccNodeDecomposition,
 	#superclass : #MalSccExtractor,
 	#traits : 'MalTNormalize',
 	#classTraits : 'MalTNormalize classTrait',
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSccNodeDecomposition>>nodeClass [
+{ #category : #running }
+MalSccNodeDecomposition >> nodeClass [
 
 	^ MalSndNode
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSccNodeDecomposition>>retrieveCircuit: aNode [
+{ #category : #running }
+MalSccNodeDecomposition >> retrieveCircuit: aNode [
 
 	|c n i|
 	c := OrderedCollection new.
@@ -35,22 +25,16 @@ MalSccNodeDecomposition>>retrieveCircuit: aNode [
 	^ c
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSccNodeDecomposition>>run [
+{ #category : #running }
+MalSccNodeDecomposition >> run [
 
 	self nodes do: [:n|
 		self run: n
 	]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSccNodeDecomposition>>run: aNode [
+{ #category : #running }
+MalSccNodeDecomposition >> run: aNode [
 
 	| fifo visited ancestors |
 	visited := Set new.

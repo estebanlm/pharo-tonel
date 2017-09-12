@@ -4,39 +4,26 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestCollectionsUnordered,
 	#superclass : #PackageManifest,
-	#category : #Collections-Unordered,
-	#timestamp : '<historical>'
+	#category : #Collections-Unordered
 }
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ManifestCollectionsUnordered class>>dependencies [
+{ #category : #meta-data }
+ManifestCollectionsUnordered class >> dependencies [
 	^ #(#'Collections-Strings' #'Collections-Support' #Kernel #'Collections-Sequenceable' #'Collections-Abstract')
 ]
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ManifestCollectionsUnordered class>>description [
+{ #category : #meta-data }
+ManifestCollectionsUnordered class >> description [
 	^ 'I contain collections that do not care about the order of the elements they contain.
 Main classes: Bag, Dictionary, Matrix, Set'
 ]
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ManifestCollectionsUnordered class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestCollectionsUnordered class >> manuallyResolvedDependencies [
 	^ #(#Jobs #'Collections-Streams' #UIManager #'System-Support')
 ]
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ManifestCollectionsUnordered class>>packageName [
+{ #category : #meta-data }
+ManifestCollectionsUnordered class >> packageName [
 	^ #'Collections-Unordered'
 ]

@@ -9,17 +9,11 @@ To get the behavior I define, my users should implement:
 "
 Trait {
 	#name : #TSortable,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Abstract,
-	#timestamp : '<historical>'
+	#category : #Collections-Abstract
 }
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-TSortable>>isSorted [
+{ #category : #sorting }
+TSortable >> isSorted [
 	"Return true if the receiver is sorted by the given criterion.
 	Optimization for isSortedBy: [:a :b | a <= b]."
 
@@ -34,11 +28,8 @@ TSortable>>isSorted [
 	^ true
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-TSortable>>isSortedBy: aBlock [
+{ #category : #sorting }
+TSortable >> isSortedBy: aBlock [
 	"Return true if the receiver is sorted by the given criterion."
 
 	| lastElm elm |
@@ -52,11 +43,8 @@ TSortable>>isSortedBy: aBlock [
 	^ true
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-TSortable>>mergeFirst: first middle: middle last: last into: dst by: aBlock [
+{ #category : #sorting }
+TSortable >> mergeFirst: first middle: middle last: last into: dst by: aBlock [
 	"Private. Merge the sorted ranges [first..middle] and [middle+1..last] 
 	of the receiver into the range [first..last] of dst."
 
@@ -82,11 +70,8 @@ TSortable>>mergeFirst: first middle: middle last: last into: dst by: aBlock [
 		ifFalse: [dst replaceFrom: out + 1 to: last with: self startingAt: i2]
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-TSortable>>mergeSortFrom: startIndex to: stopIndex by: aBlock [
+{ #category : #sorting }
+TSortable >> mergeSortFrom: startIndex to: stopIndex by: aBlock [
 	"Sort the given range of indices using the mergesort algorithm.
 	Mergesort is a worst-case O(N log N) sorting algorithm that usually
 	does only half as many comparisons as heapsort or quicksort."
@@ -110,11 +95,8 @@ TSortable>>mergeSortFrom: startIndex to: stopIndex by: aBlock [
 		by: aBlock
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-TSortable>>mergeSortFrom: first to: last src: src dst: dst by: aBlock [
+{ #category : #sorting }
+TSortable >> mergeSortFrom: first to: last src: src dst: dst by: aBlock [
 	"Private. Split the range to be sorted in half, sort each half, and 
 	merge the two half-ranges into dst."
 
@@ -126,21 +108,15 @@ TSortable>>mergeSortFrom: first to: last src: src dst: dst by: aBlock [
 	src mergeFirst: first middle: middle last: last into: dst by: aBlock
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-TSortable>>sort [
+{ #category : #sorting }
+TSortable >> sort [
 	"Sort this collection into ascending order using the '<=' operator."
 
 	self sort: [:a :b | a <= b]
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-TSortable>>sort: aSortBlock  [
+{ #category : #sorting }
+TSortable >> sort: aSortBlock [ 
 	"Sort this array using aSortBlock. The block should take two arguments
 	and return true if the first element should preceed the second one."
 
@@ -150,22 +126,16 @@ TSortable>>sort: aSortBlock  [
 		by: aSortBlock
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-TSortable>>sorted [
+{ #category : #sorting }
+TSortable >> sorted [
 	"Return a new sequenceable collection which contains the same elements as self but its 
 elements are sorted in ascending order using the #'<=' operator."
 	
 	^self sorted: [ :a :b| a <= b ]
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-TSortable>>sorted: aSortBlockOrNil [
+{ #category : #sorting }
+TSortable >> sorted: aSortBlockOrNil [
 	"Return a new sequenceable collection which contains the same elements as self but its 
 elements are sorted by aSortBlockOrNil. The block should take two arguments and return true if 
 the first element should preceed the second one. If aSortBlock is nil then <= is used for 

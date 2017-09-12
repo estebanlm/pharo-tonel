@@ -11,15 +11,11 @@ Class {
 		'nameOfItem',
 		'name'
 	],
-	#category : #StartupPreferences,
-	#timestamp : '<historical>'
+	#category : #StartupPreferences
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupAction class>>name: nameOfItem code: code [
+{ #category : #'instance creation' }
+StartupAction class >> name: nameOfItem code: code [
 
 	^ self new
 		code: code;
@@ -27,11 +23,8 @@ StartupAction class>>name: nameOfItem code: code [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupAction class>>name: nameOfItem code: code runOnce: aBoolean [
+{ #category : #'instance creation' }
+StartupAction class >> name: nameOfItem code: code runOnce: aBoolean [
 
 	^ self new
 		code: code;
@@ -40,39 +33,27 @@ StartupAction class>>name: nameOfItem code: code runOnce: aBoolean [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupAction>>= anObject [
+{ #category : #accessing }
+StartupAction >> = anObject [
 
 	anObject class = self class ifFalse: [ ^ false ].
 	^ self code = anObject code and: [ self name = anObject name and: [ self runOnce = anObject runOnce ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupAction>>code [
+{ #category : #accessing }
+StartupAction >> code [
 
 	^ code
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupAction>>code: anObject [
+{ #category : #accessing }
+StartupAction >> code: anObject [
 	
 	code := anObject
 ]
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupAction>>execute [
+{ #category : #execution }
+StartupAction >> execute [
 
 	| block correctlyExecuted |
 	(self hasBeenExecuted and: [ self runOnce ]) ifTrue: [ ^ self ].
@@ -86,74 +67,50 @@ StartupAction>>execute [
 	self hasBeenExecuted: correctlyExecuted.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupAction>>hasBeenExecuted [
+{ #category : #accessing }
+StartupAction >> hasBeenExecuted [
 
 	^ hasBeenExecuted ifNil: [ hasBeenExecuted := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupAction>>hasBeenExecuted: anObject [
+{ #category : #accessing }
+StartupAction >> hasBeenExecuted: anObject [
 	
 	hasBeenExecuted := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupAction>>name [
+{ #category : #accessing }
+StartupAction >> name [
 
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupAction>>name: anObject [
+{ #category : #accessing }
+StartupAction >> name: anObject [
 	
 	name := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupAction>>printOn: aStream [
+{ #category : #printing }
+StartupAction >> printOn: aStream [
 
 	aStream <<'a ' << self class name << '(' << self name << ')'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupAction>>runOnce [
+{ #category : #accessing }
+StartupAction >> runOnce [
 
 	^ runOnce ifNil: [ runOnce := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupAction>>runOnce: anObject [
+{ #category : #accessing }
+StartupAction >> runOnce: anObject [
 	
 	runOnce := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupAction>>storeOn: aStream [
+{ #category : #printing }
+StartupAction >> storeOn: aStream [
 
 	aStream << self class name << ' name: '<< self name printString <<' code: ' << code printString.
 	self runOnce ifTrue: [ aStream << ' runOnce: true']

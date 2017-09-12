@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCWorkingCopyBrowser
-}
+Extension { #name : #MCWorkingCopyBrowser }
 
-{
-	#category : #'*Tool-Diff',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCWorkingCopyBrowser>>viewChanges [
+{ #category : #'*Tool-Diff' }
+MCWorkingCopyBrowser >> viewChanges [
 	"View the changes made in the working copy."
 	
 	| patch |
@@ -30,11 +25,8 @@ MCWorkingCopyBrowser>>viewChanges [
 					to: ('Modified {1}' translated format: {workingCopy description})]]
 ]
 
-{
-	#category : #'*Tool-Diff',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCWorkingCopyBrowser>>viewChanges: patch from: fromDescription to: toDescription [
+{ #category : #'*Tool-Diff' }
+MCWorkingCopyBrowser >> viewChanges: patch from: fromDescription to: toDescription [
 	"Open a browser on the given patch."
 
 	PSMCPatchMorph usedByDefault

@@ -1,12 +1,7 @@
-Extension {
-	#name : #StandardFileStream
-}
+Extension { #name : #StandardFileStream }
 
-{
-	#category : #'*Graphics-Primitives',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-StandardFileStream>>nextWordsInto: aBitmap [
+{ #category : #'*Graphics-Primitives' }
+StandardFileStream >> nextWordsInto: aBitmap [
 	"Note: The file primitives automatically adjust for word based objects."
 
 	self next: aBitmap basicSize into: aBitmap startingAt: 1.

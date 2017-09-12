@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMPagerScrollBrick,
 	#superclass : #GLMBrick,
@@ -13,33 +10,23 @@ Class {
 		'currentScrollDelta',
 		'animation'
 	],
-	#category : #Glamour-Morphic-Pager-Brick,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Pager-Brick
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>animation [
+{ #category : #accessing }
+GLMPagerScrollBrick >> animation [
 
 	^ animation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>band [
+{ #category : #accessing }
+GLMPagerScrollBrick >> band [
 
 	^ band
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>band: aBrick [
+{ #category : #accessing }
+GLMPagerScrollBrick >> band: aBrick [
 
 	band := aBrick.
 	band
@@ -54,11 +41,8 @@ GLMPagerScrollBrick>>band: aBrick [
 	self addBrickBack: band.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>configurePane: aBrick [
+{ #category : #api }
+GLMPagerScrollBrick >> configurePane: aBrick [
 	|brick|
 	brick := aBrick asBrick.
 	brick
@@ -73,20 +57,14 @@ GLMPagerScrollBrick>>configurePane: aBrick [
 	^ brick
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>convertScrollValue: aFloat [
+{ #category : #scrolling }
+GLMPagerScrollBrick >> convertScrollValue: aFloat [
 	self pagerModel actualNumberOfVisiblePages = 0 ifTrue: [ ^ 0 ].
 	^ (self width - ((self width / self pagerModel actualNumberOfVisiblePages + self paneMargin) * self band subbricksCount)) * aFloat
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>focusChanged: anEvent [
+{ #category : #event-handling }
+GLMPagerScrollBrick >> focusChanged: anEvent [
 	| pageIndex newFocus |
 	
 	newFocus := anEvent morph.
@@ -98,20 +76,14 @@ GLMPagerScrollBrick>>focusChanged: anEvent [
 			pagerModel focusedMorphChanged: newFocus at: pageIndex ] ]
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>glmAnimateValue: aValue duration: anInteger [
+{ #category : #scrolling }
+GLMPagerScrollBrick >> glmAnimateValue: aValue duration: anInteger [
 
 	self glmAnimateValue: aValue duration: anInteger callback: nil.
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>glmAnimateValue: aValue duration: anInteger callback: aBlock [
+{ #category : #scrolling }
+GLMPagerScrollBrick >> glmAnimateValue: aValue duration: anInteger callback: aBlock [
 	
 	self animation ifNotNil: #terminate.
 	animation := GLMAnimation new
@@ -124,11 +96,8 @@ GLMPagerScrollBrick>>glmAnimateValue: aValue duration: anInteger callback: aBloc
 		animate: self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>initialize [
+{ #category : #initialization }
+GLMPagerScrollBrick >> initialize [
 	super initialize.
 	
 	focus := Dictionary new.
@@ -139,81 +108,54 @@ GLMPagerScrollBrick>>initialize [
 		when: MorphGotFocus send: #focusChanged: to: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>lastPane [
+{ #category : #accessing }
+GLMPagerScrollBrick >> lastPane [
 
 	self subbricksCount = 0 ifTrue: [ ^ nil ].
 	^ self panes last.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>maxPanes [
+{ #category : #accessing }
+GLMPagerScrollBrick >> maxPanes [
 	^ maxPanes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>maxPanes: anInteger [
+{ #category : #accessing }
+GLMPagerScrollBrick >> maxPanes: anInteger [
 	maxPanes := anInteger
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>newBand [
+{ #category : #'instance creation' }
+GLMPagerScrollBrick >> newBand [
 
 	^ GLMScrollPaneBandBrick new
 ]
 
-{
-	#category : #brick-layout-events,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>onChildrenLayouted [
+{ #category : #brick-layout-events }
+GLMPagerScrollBrick >> onChildrenLayouted [
 	super onChildrenLayouted.
 	self band translateXTo: (self convertScrollValue: (self pagerModel convertIndexToValue: self pagerModel firstVisiblePageIndex))
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>onPagePoped: popedAnnouncement [
+{ #category : #event-handling }
+GLMPagerScrollBrick >> onPagePoped: popedAnnouncement [
 	self popPane: popedAnnouncement smooth.
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>onPagePopedAndReplaced: ann [
+{ #category : #event-handling }
+GLMPagerScrollBrick >> onPagePopedAndReplaced: ann [
 
 	self popAndReplace: ann brick
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>onPagePreviewUpdate: updateAnnouncement [
+{ #category : #event-handling }
+GLMPagerScrollBrick >> onPagePreviewUpdate: updateAnnouncement [
 
 	GLMPagerPanePreviewMorph uniqueInstance updateFor: (self paneAt: updateAnnouncement pageIndex).
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>onPagePushed: pushedAnnouncement [
+{ #category : #event-handling }
+GLMPagerScrollBrick >> onPagePushed: pushedAnnouncement [
 
 	"added new page to the end of pane"
 	self pushPane: pushedAnnouncement morph
@@ -224,11 +166,8 @@ GLMPagerScrollBrick>>onPagePushed: pushedAnnouncement [
 
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>onPagesNumberChanged [
+{ #category : #event-handling }
+GLMPagerScrollBrick >> onPagesNumberChanged [
 
 	self maxPanes: pagerModel numberOfVisiblePages.
 	self doLayoutForce.
@@ -236,52 +175,37 @@ GLMPagerScrollBrick>>onPagesNumberChanged [
 	
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>onPositionChanged: announcement [
+{ #category : #event-handling }
+GLMPagerScrollBrick >> onPositionChanged: announcement [
 
 
 	self scrollToPane: pagerModel firstVisiblePageIndex smooth: announcement smooth callback: announcement callback
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>onSelectedPageChanged [
+{ #category : #event-handling }
+GLMPagerScrollBrick >> onSelectedPageChanged [
 	
 	self panes do: [ :each | each borderColor: Color transparent ].
 	
 	self theme pagerWidgetThemer selectedPaneStyleFor: (self panes at: pagerModel selectedPageIndex)
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>onSynchronizeScroll: announcement [
+{ #category : #event-handling }
+GLMPagerScrollBrick >> onSynchronizeScroll: announcement [
 
 	"directly scrolls to value"
 	self scrollTo: announcement value smooth: false
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>outOfWorld: aWorld [
+{ #category : #initialize }
+GLMPagerScrollBrick >> outOfWorld: aWorld [
 
 	Morph announcer unsubscribe: self.
 	^ super outOfWorld: aWorld.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>pageOf: aSubMorph [
+{ #category : #accessing }
+GLMPagerScrollBrick >> pageOf: aSubMorph [
 	"returns 0 if morph is not in pager"
 	|parent page|	
 	
@@ -298,20 +222,14 @@ GLMPagerScrollBrick>>pageOf: aSubMorph [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>pagerModel [
+{ #category : #accessing }
+GLMPagerScrollBrick >> pagerModel [
 
 	^ pagerModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>pagerModel: aModel [
+{ #category : #accessing }
+GLMPagerScrollBrick >> pagerModel: aModel [
 	
 	pagerModel := aModel.
 	maxPanes := aModel numberOfVisiblePages.
@@ -341,38 +259,26 @@ GLMPagerScrollBrick>>pagerModel: aModel [
 		when: GLMPagerPreviewUpdate send: #onPagePreviewUpdate: to: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>paneAt: anIndex [
+{ #category : #accessing }
+GLMPagerScrollBrick >> paneAt: anIndex [
 	^ self panes at: anIndex.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>paneMargin [
+{ #category : #accessing }
+GLMPagerScrollBrick >> paneMargin [
 	"please leave it 0, becasue otherwise it doesn't work"
 	self flag: 'fix support of margin'.
 	^ 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>panes [
+{ #category : #accessing }
+GLMPagerScrollBrick >> panes [
 
 	^ self band submorphs
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>popAndReplace: aBrick [
+{ #category : #api }
+GLMPagerScrollBrick >> popAndReplace: aBrick [
 	|brick|
 
 	brick := self configurePane: aBrick.
@@ -387,21 +293,15 @@ GLMPagerScrollBrick>>popAndReplace: aBrick [
 	
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>popPane [
+{ #category : #api }
+GLMPagerScrollBrick >> popPane [
 	
 	self band doNotLayoutDuring: [ :b | b removeBrick: b lastSubbrick ].
 	self doLayoutForce
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>popPane: isSmooth [
+{ #category : #api }
+GLMPagerScrollBrick >> popPane: isSmooth [
 
 	(isSmooth not or: [self lastPane isNil]) ifTrue: [ ^ self popPane ].
 	
@@ -412,66 +312,45 @@ GLMPagerScrollBrick>>popPane: isSmooth [
 		callback: [ self doLayoutForce ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>pushPane: aMorph [
+{ #category : #api }
+GLMPagerScrollBrick >> pushPane: aMorph [
 
 	self band addBrickBack: (self configurePane: aMorph)
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>scrollTo: aValue smooth: isSmooth [
+{ #category : #scrolling }
+GLMPagerScrollBrick >> scrollTo: aValue smooth: isSmooth [
 
  	self scrollTo: aValue smooth: isSmooth callback: nil
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>scrollTo: aValue smooth: isSmooth callback: aBlock [
+{ #category : #scrolling }
+GLMPagerScrollBrick >> scrollTo: aValue smooth: isSmooth callback: aBlock [
 
  	isSmooth ifTrue: [ self glmAnimateValue: aValue duration: 300 callback: aBlock ]
 				ifFalse: [ self scrollValue: (self convertScrollValue: aValue). self updatePaneBounds. aBlock value ].
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>scrollToPane: anIndex smooth: isSmooth [
+{ #category : #scrolling }
+GLMPagerScrollBrick >> scrollToPane: anIndex smooth: isSmooth [
 
 	self scrollToPane: anIndex smooth: isSmooth callback: nil
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>scrollToPane: anIndex smooth: isSmooth callback: aBlock [
+{ #category : #scrolling }
+GLMPagerScrollBrick >> scrollToPane: anIndex smooth: isSmooth callback: aBlock [
 
 	self scrollTo: (pagerModel convertIndexToValue: anIndex) smooth: isSmooth callback: aBlock.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>scrollValue [
+{ #category : #accessing }
+GLMPagerScrollBrick >> scrollValue [
 
 	^ currentScrollDelta
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>scrollValue: value [
+{ #category : #scrolling }
+GLMPagerScrollBrick >> scrollValue: value [
 	
 	currentScrollDelta := value.
 	
@@ -479,11 +358,8 @@ GLMPagerScrollBrick>>scrollValue: value [
 	self changed
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollBrick>>updatePaneBounds [
+{ #category : #scrolling }
+GLMPagerScrollBrick >> updatePaneBounds [
 
 	self band updateMorphBounds
 ]

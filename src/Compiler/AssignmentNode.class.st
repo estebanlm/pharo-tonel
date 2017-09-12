@@ -8,33 +8,23 @@ Class {
 		'variable',
 		'value'
 	],
-	#category : #Compiler-ParseNodes,
-	#timestamp : '<historical>'
+	#category : #Compiler-ParseNodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AssignmentNode>>accept: aVisitor [
+{ #category : #visiting }
+AssignmentNode >> accept: aVisitor [
 	^aVisitor visitAssignmentNode: self
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AssignmentNode>>analyseTempsWithin: scopeBlock "<BlockNode>"  rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools "<Dictionary>" [
+{ #category : #'code generation (closures)' }
+AssignmentNode >> analyseTempsWithin: scopeBlock "<BlockNode>"  rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools [ "<Dictionary>"
 	"N.B.  since assigment happens _after_ the value is evaluated the value is sent the message _first_."
 	value analyseTempsWithin: scopeBlock rootNode: rootNode assignmentPools: assignmentPools.
 	variable beingAssignedToAnalyseTempsWithin: scopeBlock rootNode: rootNode assignmentPools: assignmentPools
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AssignmentNode>>emitCodeForEffect: stack encoder: encoder [
+{ #category : #'code generation' }
+AssignmentNode >> emitCodeForEffect: stack encoder: encoder [
 
 	variable emitCodeForLoad: stack encoder: encoder.
 	value emitCodeForValue: stack encoder: encoder.
@@ -42,11 +32,8 @@ AssignmentNode>>emitCodeForEffect: stack encoder: encoder [
 	variable emitCodeForStorePop: stack encoder: encoder
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AssignmentNode>>emitCodeForValue: stack encoder: encoder [
+{ #category : #'code generation' }
+AssignmentNode >> emitCodeForValue: stack encoder: encoder [
 
 	variable emitCodeForLoad: stack encoder: encoder.
 	value emitCodeForValue: stack encoder: encoder.
@@ -54,99 +41,69 @@ AssignmentNode>>emitCodeForValue: stack encoder: encoder [
 	variable emitCodeForStore: stack encoder: encoder
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AssignmentNode>>isAssignmentNode [
+{ #category : #testing }
+AssignmentNode >> isAssignmentNode [
 	^true
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AssignmentNode>>printOn: aStream indent: level  [
+{ #category : #printing }
+AssignmentNode >> printOn: aStream indent: level [ 
 	variable printOn: aStream indent: level.
 	aStream nextPutAll: ' := '.
 	value printOn: aStream indent: level + 2
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AssignmentNode>>printOn: aStream indent: level precedence: p [
+{ #category : #printing }
+AssignmentNode >> printOn: aStream indent: level precedence: p [
 
 	aStream nextPut: $(.
 	self printOn: aStream indent: level.
 	aStream nextPut: $)
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AssignmentNode>>sizeCodeForEffect: encoder [
+{ #category : #'code generation' }
+AssignmentNode >> sizeCodeForEffect: encoder [
 
 	^(variable sizeCodeForLoad: encoder)
 	+ (value sizeCodeForValue: encoder)
 	+ (variable sizeCodeForStorePop: encoder)
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AssignmentNode>>sizeCodeForValue: encoder [
+{ #category : #'code generation' }
+AssignmentNode >> sizeCodeForValue: encoder [
 
 	^(variable sizeCodeForLoad: encoder)
 	+ (value sizeCodeForValue: encoder)
 	+ (variable sizeCodeForStore: encoder)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AssignmentNode>>toDoIncrement: var [
+{ #category : #initialize-release }
+AssignmentNode >> toDoIncrement: var [
 	var = variable ifFalse: [^ nil].
 	(value isMemberOf: MessageNode) 
 		ifTrue: [^ value toDoIncrement: var]
 		ifFalse: [^ nil]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AssignmentNode>>value [
+{ #category : #initialize-release }
+AssignmentNode >> value [
 	^ value
 ]
 
-{
-	#category : #'equation translation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AssignmentNode>>variable [
+{ #category : #'equation translation' }
+AssignmentNode >> variable [
 	^variable
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AssignmentNode>>variable: aVariable value: expression [
+{ #category : #initialize-release }
+AssignmentNode >> variable: aVariable value: expression [
 
 	variable := aVariable.
 	value := expression
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AssignmentNode>>variable: aVariable value: expression from: encoder [
+{ #category : #initialize-release }
+AssignmentNode >> variable: aVariable value: expression from: encoder [
 
 	(aVariable isMemberOf: MessageAsTempNode)
 		ifTrue: ["Case of remote temp vars"
@@ -155,11 +112,8 @@ AssignmentNode>>variable: aVariable value: expression from: encoder [
 	value := expression
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AssignmentNode>>variable: aVariable value: expression from: encoder sourceRange: range [
+{ #category : #initialize-release }
+AssignmentNode >> variable: aVariable value: expression from: encoder sourceRange: range [
 
 	encoder noteSourceRange: range forNode: self.
 	^self

@@ -4,32 +4,22 @@ Infos about a package
 Class {
 	#name : #MBPackageInfo,
 	#superclass : #MBAbstractPackageInfo,
-	#category : #Versionner-Core-Model,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:12'
+	#category : #Versionner-Core-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfo class>>helpLabel [
+{ #category : #accessing }
+MBPackageInfo class >> helpLabel [
 
 	^'Package'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfo>>basePackageName [
+{ #category : #accessing }
+MBPackageInfo >> basePackageName [
 	^ self packageName copyUpToLast: #-
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfo>>buildStringOrText [
+{ #category : #converting }
+MBPackageInfo >> buildStringOrText [
 	| string wc loadedPkgName attributes |
 	string := super buildStringOrText.
 	(wc := self workingCopy) isNil
@@ -50,68 +40,47 @@ MBPackageInfo>>buildStringOrText [
 	^ string
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfo>>classForBrowsing [
+{ #category : #accessing }
+MBPackageInfo >> classForBrowsing [
 
 	^self workingCopy packageInfo classes anyOne
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfo>>cmdBrowsePackageHistory [
+{ #category : #commands }
+MBPackageInfo >> cmdBrowsePackageHistory [
 	<command>
 	^ MBPackageHistoryCommand
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfo>>cmdLoad [
+{ #category : #'as yet unclassified' }
+MBPackageInfo >> cmdLoad [
 	<command>
 	^ MBLoadPackageCommand.
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfo>>cmdRevertPackage [
+{ #category : #commands }
+MBPackageInfo >> cmdRevertPackage [
 	<command>
 	^ MBRevertPackageCommand
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfo>>cmdSavePackage [
+{ #category : #commands }
+MBPackageInfo >> cmdSavePackage [
 	<command>
 	^ MBSavePackageCommand
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfo>>compareWorkingCopyNamed: wcName using: comarisonOperator [
+{ #category : #testing }
+MBPackageInfo >> compareWorkingCopyNamed: wcName using: comarisonOperator [
 	| fileRef wcRef |
 	fileRef := GoferResolvedReference name: self spec file.
 	wcRef := GoferResolvedReference name: wcName.
 	^ wcRef compare: fileRef using: comarisonOperator
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfo>>currentVersionMismatch [
+{ #category : #testing }
+MBPackageInfo >> currentVersionMismatch [
            | wc loadedPkgName |
            (wc := self workingCopy) isNil
                    ifTrue: [ ^ false ].
@@ -124,20 +93,14 @@ MBPackageInfo>>currentVersionMismatch [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfo>>interestedInPackageNamed: aString [
+{ #category : #testing }
+MBPackageInfo >> interestedInPackageNamed: aString [
 
 	^aString beginsWith: self packageName
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfo>>mbPacakgeName [
+{ #category : #'as yet unclassified' }
+MBPackageInfo >> mbPacakgeName [
 	| string wc loadedPkgName attributes |
 	string := ''.
 	(wc := self workingCopy) isNil
@@ -158,11 +121,8 @@ MBPackageInfo>>mbPacakgeName [
 	^ string
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfo>>printOn: aStream [
+{ #category : #printing }
+MBPackageInfo >> printOn: aStream [
 	| wc |
 	self isDirty
 		ifTrue: [ aStream nextPutAll: '* ' ].
@@ -188,30 +148,21 @@ MBPackageInfo>>printOn: aStream [
 								nextPutAll: refString ] ] ]
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfo>>repositories [
+{ #category : #utils }
+MBPackageInfo >> repositories [
 	"Return the repositories associated with the package."
 
 	^self spec workingCopy repositoryGroup repositories
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfo>>typeLabel [
+{ #category : #accessing }
+MBPackageInfo >> typeLabel [
 
 	^'package'
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfo>>versions [
+{ #category : #'as yet unclassified' }
+MBPackageInfo >> versions [
 	""
 	|wc v|
 	(wc := self workingCopy) isNil

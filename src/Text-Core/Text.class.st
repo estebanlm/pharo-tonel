@@ -13,15 +13,11 @@ Class {
 	#pools : [
 		'TextConstants'
 	],
-	#category : #Text-Core,
-	#timestamp : '<historical>'
+	#category : #Text-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text class>>addAttribute: att toArray: others  [
+{ #category : #private }
+Text class >> addAttribute: att toArray: others [ 
 	"Add a new text attribute to an existing set"
 	"NOTE: The use of reset and set in this code is a specific
 	hack for merging TextKerns."
@@ -32,11 +28,8 @@ Text class>>addAttribute: att toArray: others  [
 		att set ifTrue: [strm nextPut: att]]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text class>>fromString: aString  [
+{ #category : #'instance creation' }
+Text class >> fromString: aString [ 
   "Answer an instance of me whose characters are those of the argument, aString."
 
   ^ self
@@ -45,11 +38,8 @@ Text class>>fromString: aString  [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text class>>fromUser [
+{ #category : #'instance creation' }
+Text class >> fromUser [
 	"Answer an instance of me obtained by requesting the user to type a string."
 	"Text fromUser"
 
@@ -58,21 +48,15 @@ Text class>>fromUser [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text class>>initialFont: aStrikeFont stringOrText: aStringOrText [
+{ #category : #'instance creation' }
+Text class >> initialFont: aStrikeFont stringOrText: aStringOrText [
 	"Answer an instance of me whose characters are aString."
 	
 	^Text string: aStringOrText asString attribute: (TextFontReference toFont: aStrikeFont)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text class>>initialize	"Text initialize" [
+{ #category : #initialization }
+Text class >> initialize [	"Text initialize"
 	"Initialize constants shared by classes associated with text display."
 
 	TextSharedInformation at: #CaretForm put:
@@ -86,62 +70,44 @@ Text class>>initialize	"Text initialize" [
 					offset: -3@0).
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text class>>new: stringSize [
+{ #category : #'instance creation' }
+Text class >> new: stringSize [
 
 	^self fromString: (String new: stringSize)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text class>>streamContents: blockWithArg  [
+{ #category : #'instance creation' }
+Text class >> streamContents: blockWithArg [ 
 	| stream |
 	stream := TextStream on: (self new: 400).
 	blockWithArg value: stream.
 	^ stream contents
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text class>>string: aString attribute: att [
+{ #category : #'instance creation' }
+Text class >> string: aString attribute: att [
 	"Answer an instance of me whose characters are aString.
 	att is a TextAttribute."
 
 	^self string: aString attributes: (Array with: att)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text class>>string: aString attributes: atts [
+{ #category : #'instance creation' }
+Text class >> string: aString attributes: atts [
 	"Answer an instance of me whose characters are those of aString.
 	atts is an array of TextAttributes."
 
 	^self string: aString runs: (RunArray new: aString size withAll: atts)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text class>>string: aString runs: anArray [
+{ #category : #private }
+Text class >> string: aString runs: anArray [
  
 	^self basicNew setString: aString setRuns: anArray
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>= other [
+{ #category : #comparing }
+Text >> = other [
 	"Am I equal to the other Text or String?  
 	***** Warning ***** Two Texts are considered equal if they have the same characters in them.  They might have completely different emphasis, fonts, sizes, text actions, or embedded morphs.  If you need to find out if one is a true copy of the other, you must do (text1 = text2 and: [text1 runs = text2 runs])."
 
@@ -151,19 +117,13 @@ Text>>= other [
 	^ false
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>addAttribute: att  [
+{ #category : #emphasis }
+Text >> addAttribute: att [ 
 	^ self addAttribute: att from: 1 to: self size
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>addAttribute: att from: start to: stop  [
+{ #category : #emphasis }
+Text >> addAttribute: att from: start to: stop [ 
 	"Set the attribute for characters in the interval start to stop."
 	self runs: (runs copyReplaceFrom: start to: stop
 			with: ((runs copyFrom: start to: stop)
@@ -172,11 +132,8 @@ Text>>addAttribute: att from: start to: stop  [
 
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>alignmentAt: characterIndex ifAbsent: aBlock [
+{ #category : #emphasis }
+Text >> alignmentAt: characterIndex ifAbsent: aBlock [
 	| attributes emph |
 	self size = 0 ifTrue: [^aBlock value].
 	emph := nil.
@@ -185,42 +142,30 @@ Text>>alignmentAt: characterIndex ifAbsent: aBlock [
 	^ emph ifNil: aBlock ifNotNil: [emph alignment]
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>allBold  [
+{ #category : #emphasis }
+Text >> allBold [ 
 	"Force this whole text to be bold."
 	string size = 0 ifTrue: [^self].
 	self makeBoldFrom: 1 to: string size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>append: stringOrText [
+{ #category : #accessing }
+Text >> append: stringOrText [
 
 	self replaceFrom: string size + 1
 				to: string size with: stringOrText
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>asNumber [
+{ #category : #converting }
+Text >> asNumber [
 	"Answer the number created by interpreting the receiver as the textual 
 	representation of a number."
 
 	^string asNumber
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>asOctetStringText [
+{ #category : #converting }
+Text >> asOctetStringText [
 
 	string class == WideString ifTrue: [
 		^ self class string: string asOctetString runs: self runs copy.
@@ -229,59 +174,41 @@ Text>>asOctetStringText [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>asString [
+{ #category : #converting }
+Text >> asString [
 	"Answer a String representation of the textual receiver."
 
 	^string
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>asStringOrText	 [
+{ #category : #converting }
+Text >> asStringOrText [	
 	"Answer the receiver itself."
 
 	^self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>asText	 [
+{ #category : #converting }
+Text >> asText [	
 	"Answer the receiver itself."
 
 	^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>at: index [
+{ #category : #accessing }
+Text >> at: index [
 
 	^string at: index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>at: index put: character [
+{ #category : #accessing }
+Text >> at: index put: character [
 
 	^string at: index put: character
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>attributesAt: characterIndex  [
+{ #category : #emphasis }
+Text >> attributesAt: characterIndex [ 
 	"Answer the code for characters in the run beginning at characterIndex."
 	"NB: no senders any more (supplanted by #attributesAt:forStyle: but retained for the moment in order not to break user code that may exist somewhere that still calls this"
 	| attributes |
@@ -292,22 +219,16 @@ Text>>attributesAt: characterIndex  [
 	^ attributes
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>attributesAt: characterIndex do: aBlock [
+{ #category : #emphasis }
+Text >> attributesAt: characterIndex do: aBlock [
 	"Answer the code for characters in the run beginning at characterIndex."
 	"NB: no senders any more (supplanted by #attributesAt:forStyle: but retained for the moment in order not to break user code that may exist somewhere that still calls this"
 	self size = 0 ifTrue:[^self].
 	(runs at: characterIndex) do: aBlock
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>attributesAt: characterIndex forStyle: aTextStyle [
+{ #category : #emphasis }
+Text >> attributesAt: characterIndex forStyle: aTextStyle [
 	"Answer the code for characters in the run beginning at characterIndex."
 	| attributes |
 	self size = 0
@@ -316,11 +237,8 @@ Text>>attributesAt: characterIndex forStyle: aTextStyle [
 	^ attributes
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>copyFrom: start to: stop  [
+{ #category : #copying }
+Text >> copyFrom: start to: stop [ 
 	"Answer a copied subrange of the receiver."
 
 	| realStart realStop |
@@ -335,11 +253,8 @@ Text>>copyFrom: start to: stop  [
 		runs: (runs copyFrom: realStart to: realStop)
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>copyReplaceFrom: start to: stop with: aTextOrString [
+{ #category : #copying }
+Text >> copyReplaceFrom: start to: stop with: aTextOrString [
 
 	| txt |
 	txt := aTextOrString asText.	"might be a string"
@@ -349,42 +264,30 @@ Text>>copyReplaceFrom: start to: stop with: aTextOrString [
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>copyReplaceTokens: oldSubstring with: newSubstring  [
+{ #category : #copying }
+Text >> copyReplaceTokens: oldSubstring with: newSubstring [ 
 	"Replace all occurrences of oldSubstring that are surrounded
 	by non-alphanumeric characters"
 	^ (self string copyReplaceAll: oldSubstring with: newSubstring asTokens: true) asText
 	"'File asFile Files File''s File' copyReplaceTokens: 'File' with: 'Snick'"
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>copyWithoutExternalReferences [
+{ #category : #converting }
+Text >> copyWithoutExternalReferences [
 
 	^ self copy  
 		removeAttributesThat: [:attr | attr mayHaveExternalReferences ] replaceAttributesThat: [:attr | false ] by: [:attr | ];
 		yourself.
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>deepCopy [
+{ #category : #copying }
+Text >> deepCopy [
 
 	^ self copy "Both string and runs are assumed to be read-only"
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>emphasisAt: characterIndex [
+{ #category : #emphasis }
+Text >> emphasisAt: characterIndex [
 	"Answer the fontfor characters in the run beginning at characterIndex."
 	| attributes |
 	self size = 0 ifTrue: [^ 0].	"null text tolerates access"
@@ -393,28 +296,19 @@ Text>>emphasisAt: characterIndex [
 		[:emph :att | emph bitOr: att emphasisCode].
 ]
 
-{
-	#category : #'paragraph support',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>encompassLine: anInterval [
+{ #category : #'paragraph support' }
+Text >> encompassLine: anInterval [
 	^string encompassLine: anInterval
 ]
 
-{
-	#category : #'paragraph support',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>encompassParagraph: anInterval [
+{ #category : #'paragraph support' }
+Text >> encompassParagraph: anInterval [
 
 	^string encompassParagraph: anInterval
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>find: attribute [
+{ #category : #emphasis }
+Text >> find: attribute [
 	"Return the first interval over which this attribute applies"
 	| begin end |
 	begin := 0.
@@ -428,41 +322,29 @@ Text>>find: attribute [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>findString: aString startingAt: start  [
+{ #category : #accessing }
+Text >> findString: aString startingAt: start [ 
 	"Answer the index of substring within the receiver, starting at index 
 	start. If the receiver does not contain substring, answer 0."
 
 	^string findString: aString asString startingAt: start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>findString: aString startingAt: start caseSensitive: caseSensitive [
+{ #category : #accessing }
+Text >> findString: aString startingAt: start caseSensitive: caseSensitive [
 	"Answer the index of substring within the receiver, starting at index 
 	start. If the receiver does not contain substring, answer 0."
 
 	^string findString: aString asString startingAt: start caseSensitive: caseSensitive
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>fontAt: characterIndex [
+{ #category : #emphasis }
+Text >> fontAt: characterIndex [
 	^self fontAt: characterIndex withStyle: TextStyle default
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>fontAt: characterIndex withStyle: aTextStyle [
+{ #category : #emphasis }
+Text >> fontAt: characterIndex withStyle: aTextStyle [
 	"Answer the fontfor characters in the run beginning at characterIndex."
 	| attributes font |
 	self size = 0 ifTrue: [^ aTextStyle defaultFont].	"null text tolerates access"
@@ -473,11 +355,8 @@ Text>>fontAt: characterIndex withStyle: aTextStyle [
 	^ font
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>fontNumberAt: characterIndex  [
+{ #category : #emphasis }
+Text >> fontNumberAt: characterIndex [ 
 	"Answer the fontNumber for characters in the run beginning at characterIndex."
 	| attributes fontNumber |
 	self size = 0 ifTrue: [^1].	"null text tolerates access"
@@ -488,158 +367,107 @@ Text>>fontNumberAt: characterIndex  [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>hasWideCharacterFrom: start to: stop [
+{ #category : #testing }
+Text >> hasWideCharacterFrom: start to: stop [
 	^string hasWideCharacterFrom: start to: stop
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>hash [
+{ #category : #comparing }
+Text >> hash [
 	"#hash is implemented, because #= is implemented.  We are now equal to a string with the same characters.  Hash must reflect that."
 
 	^ string hash
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>howManyMatch: aString [
+{ #category : #comparing }
+Text >> howManyMatch: aString [
 
 	^ self string howManyMatch: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>includesSubstring: substring [
+{ #category : #accessing }
+Text >> includesSubstring: substring [
 	^ substring isEmpty or: [ (self findString: substring startingAt: 1) > 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>includesSubstring: aString caseSensitive: caseSensitive [
+{ #category : #accessing }
+Text >> includesSubstring: aString caseSensitive: caseSensitive [
 	
 	^ (self findString: aString startingAt: 1 caseSensitive: caseSensitive) > 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>initialStyle [
+{ #category : #accessing }
+Text >> initialStyle [
 	^TextStyle default
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>isText [
+{ #category : #comparing }
+Text >> isText [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>lineCount [
+{ #category : #accessing }
+Text >> lineCount [
 
 	^ string lineCount
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>makeAllColor: color [
+{ #category : #emphasis }
+Text >> makeAllColor: color [
 	| attribute |
 	attribute := TextColor color: color.
 
 	^ self addAttribute: attribute from: 1 to: self size
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>makeBoldFrom: start to: stop [
+{ #category : #emphasis }
+Text >> makeBoldFrom: start to: stop [
 
 	^ self addAttribute: TextEmphasis bold from: start to: stop
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>makeColor: color from: start to: stop [
+{ #category : #emphasis }
+Text >> makeColor: color from: start to: stop [
 	| attribute |
 	attribute := TextColor color: color.
 
 	^ self addAttribute: attribute from: start to: stop
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>postCopy [
+{ #category : #copying }
+Text >> postCopy [
 	super postCopy.
 	string := string copy.
 	runs := runs copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>prepend: stringOrText [
+{ #category : #accessing }
+Text >> prepend: stringOrText [
 
 	self replaceFrom: 1 to: 0 with: stringOrText
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>printOn: aStream [
+{ #category : #printing }
+Text >> printOn: aStream [
 	self printNameOn: aStream.
 	aStream nextPutAll: ' for '; print: string
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>rangeOf: attribute startingAt: index [
+{ #category : #accessing }
+Text >> rangeOf: attribute startingAt: index [
 "Answer an interval that gives the range of attribute at index position  index. An empty interval with start value index is returned when the attribute is not present at position index.  "
    ^string size = 0
       ifTrue: [index to: index - 1]
 	 ifFalse: [runs rangeOf: attribute startingAt: index]
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>removeAttribute: att  [
+{ #category : #emphasis }
+Text >> removeAttribute: att [ 
 	^ self removeAttribute: att from: 1 to: self size
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>removeAttribute: att from: start to: stop  [
+{ #category : #emphasis }
+Text >> removeAttribute: att from: start to: stop [ 
 	"Remove the attribute over the interval start to stop."
 	self runs: (runs copyReplaceFrom: start to: stop
 			with: ((runs copyFrom: start to: stop)
@@ -648,11 +476,8 @@ Text>>removeAttribute: att from: start to: stop  [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>removeAttributesThat: removalBlock replaceAttributesThat: replaceBlock by: convertBlock [
+{ #category : #converting }
+Text >> removeAttributesThat: removalBlock replaceAttributesThat: replaceBlock by: convertBlock [
 	"Enumerate all attributes in the receiver. Remove those passing removalBlock and replace those passing replaceBlock after converting it through convertBlock"
 	| added removed |
 	"Deliberately optimized for the no-op default."
@@ -681,11 +506,8 @@ Text>>removeAttributesThat: removalBlock replaceAttributesThat: replaceBlock by:
 		self addAttribute: spec last from: spec first to: spec second]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>replaceFrom: start to: stop with: aText [
+{ #category : #accessing }
+Text >> replaceFrom: start to: stop with: aText [
 
 	| txt |
 	txt := aText asText.	"might be a string"
@@ -693,11 +515,8 @@ Text>>replaceFrom: start to: stop with: aText [
 	runs := runs copyReplaceFrom: start to: stop with: txt runs
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>replaceFrom: start to: stop with: replacement startingAt: repStart  [
+{ #category : #converting }
+Text >> replaceFrom: start to: stop with: replacement startingAt: repStart [ 
  	"This destructively replaces elements from start to stop in the receiver starting at index, repStart, in replacementCollection. Do it to both the string and the runs."
  
  	| rep newRepRuns |
@@ -707,11 +526,8 @@ Text>>replaceFrom: start to: stop with: replacement startingAt: repStart  [
 	runs := runs copyReplaceFrom: start to: stop with: newRepRuns
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>reversed [
+{ #category : #converting }
+Text >> reversed [
  
  	"Answer a copy of the receiver with element order reversed."
  
@@ -720,52 +536,37 @@ Text>>reversed [
    "  It is assumed that  self size = runs size  holds. "
 ]
 
-{
-	#category : #emphasis,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>runLengthFor: characterIndex  [
+{ #category : #emphasis }
+Text >> runLengthFor: characterIndex [ 
 	"Answer the count of characters remaining in run beginning with 
 	characterIndex."
 
 	^runs runLengthAt: characterIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>runs [
+{ #category : #private }
+Text >> runs [
 
 	^runs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>runs: anArray [
+{ #category : #accessing }
+Text >> runs: anArray [
 	anArray size = string size
 		ifFalse:
 			[^self error: 'Some code is setting text attributes length not matching the string size'].
 	runs := anArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>setString: aString setRuns: anArray [
+{ #category : #private }
+Text >> setString: aString setRuns: anArray [
 
 	string := aString.
 	runs := anArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>setString: aString setRunsChecking: aRunArray [
+{ #category : #private }
+Text >> setString: aString setRunsChecking: aRunArray [
 	"Check runs and do the best you can to make them fit..."
 
 	string := aString.
@@ -778,20 +579,14 @@ Text>>setString: aString setRunsChecking: aRunArray [
 	runs := aRunArray.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>size [
+{ #category : #accessing }
+Text >> size [
 
 	^string size
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>storeOn: aStream [
+{ #category : #printing }
+Text >> storeOn: aStream [
 
 	aStream nextPutAll: '(Text string: ';
 		store: string;
@@ -800,21 +595,15 @@ Text>>storeOn: aStream [
 		nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>string [
+{ #category : #accessing }
+Text >> string [
 	"Answer the string representation of the receiver."
 
 	^string
 ]
 
-{
-	#category : #attributes,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>unembellished  [
+{ #category : #attributes }
+Text >> unembellished [ 
 	"Return true if the only emphases are the default font and bold"
 	| font1 bold |
 	font1 := TextFontChange defaultFontChange.
@@ -826,11 +615,8 @@ Text>>unembellished  [
 	^ true
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Text>>withSqueakLineEndings [
+{ #category : #converting }
+Text >> withSqueakLineEndings [
 	"Answer a copy of myself in which all sequences of <CR><LF> or <LF> have been changed to <CR>"
 	| newText |
 	(string includes: Character lf) ifFalse: [ ^self copy ].

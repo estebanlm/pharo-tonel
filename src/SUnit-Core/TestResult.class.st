@@ -14,59 +14,40 @@ Class {
 		'passed',
 		'skipped'
 	],
-	#category : #SUnit-Core-Kernel,
-	#timestamp : '<historical>'
+	#category : #SUnit-Core-Kernel
 }
 
-{
-	#category : #exceptions,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult class>>error [
+{ #category : #exceptions }
+TestResult class >> error [
 	^self exError
 ]
 
-{
-	#category : #exceptions,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult class>>exError [
+{ #category : #exceptions }
+TestResult class >> exError [
 	^Error
 			
 ]
 
-{
-	#category : #exceptions,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult class>>failure [
+{ #category : #exceptions }
+TestResult class >> failure [
 	^TestFailure
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult class>>historyAt: aTestCaseClass [
+{ #category : #history }
+TestResult class >> historyAt: aTestCaseClass [
 "I will return the last test dictionary for aTestCaseClass. If none found, I will create a new empty one and link it in the history."
 
 	^ aTestCaseClass history 
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult class>>historyAt: aTestCaseClass put: aDictionary [
+{ #category : #history }
+TestResult class >> historyAt: aTestCaseClass put: aDictionary [
 	aTestCaseClass history: aDictionary
 	"^ self history at: aTestCaseClass put: aDictionary "
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult class>>historyFor: aTestCaseClass [
+{ #category : #history }
+TestResult class >> historyFor: aTestCaseClass [
 	"I return the last test dictionary for aTestCaseClass. 
 	If none found, I return an empty dictionary but will not link it to the class in the history."
 	
@@ -78,11 +59,8 @@ TestResult class>>historyFor: aTestCaseClass [
 "	^ self history at: aTestCaseClass ifAbsent: [ self newTestDictionary ]"
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult class>>newTestDictionary [
+{ #category : #history }
+TestResult class >> newTestDictionary [
 
 	^ Dictionary new at: #timeStamp put: DateAndTime now;
 		at: #passed put: Set new;
@@ -92,11 +70,8 @@ TestResult class>>newTestDictionary [
 		
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult class>>removeFromTestHistory: aSelector in: aTestCaseClass [
+{ #category : #history }
+TestResult class >> removeFromTestHistory: aSelector in: aTestCaseClass [
 	| lastRun |
 	
 	lastRun := self historyFor: aTestCaseClass.
@@ -105,45 +80,30 @@ TestResult class>>removeFromTestHistory: aSelector in: aTestCaseClass [
 
 ]
 
-{
-	#category : #exceptions,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult class>>resumableFailure [
+{ #category : #exceptions }
+TestResult class >> resumableFailure [
 	^ResumableTestFailure
 ]
 
-{
-	#category : #exceptions,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult class>>signalErrorWith: aString  [
+{ #category : #exceptions }
+TestResult class >> signalErrorWith: aString [ 
 	self error signal: aString
 			
 ]
 
-{
-	#category : #exceptions,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult class>>signalFailureWith: aString  [
+{ #category : #exceptions }
+TestResult class >> signalFailureWith: aString [ 
 	self failure signal: aString
 			
 ]
 
-{
-	#category : #exceptions,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult class>>skip [
+{ #category : #exceptions }
+TestResult class >> skip [
 	^ TestSkip
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult class>>updateTestHistoryFor: aTestCase status: aSymbol [
+{ #category : #history }
+TestResult class >> updateTestHistoryFor: aTestCase status: aSymbol [
 	| cls sel |
 	
 	cls := aTestCase class.
@@ -152,78 +112,54 @@ TestResult class>>updateTestHistoryFor: aTestCase status: aSymbol [
 	((self historyAt: cls) at: aSymbol ) add: sel.
 ]
 
-{
-	#category : #exceptions,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult class>>warning [
+{ #category : #exceptions }
+TestResult class >> warning [
 	"Warning that should be treated as test failure"
 	^Deprecation 
 			
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>addError: aTestCase [
+{ #category : #adding }
+TestResult >> addError: aTestCase [
 	"We cannot use self errors as that incorporates test expectations and so does not return the stored collection."
 
 	^errors add: aTestCase
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>addFailure: aTestCase [
+{ #category : #adding }
+TestResult >> addFailure: aTestCase [
 	"We cannot use self failures as that incorporates test expectations and so does not return the stored collection."
 
 	^failures add: aTestCase
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>addPass: aTestCase [
+{ #category : #adding }
+TestResult >> addPass: aTestCase [
 	"We cannot use self passed as that incorporates test expectations and so does not return the stored collection."
 
 	^passed add: aTestCase
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>addSkip: aTestCase [
+{ #category : #adding }
+TestResult >> addSkip: aTestCase [
 
 	^skipped add: aTestCase
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>classesTested [
+{ #category : #accessing }
+TestResult >> classesTested [
 	^ (self tests collect: [ :testCase | testCase class ]) asSet
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>defects [
+{ #category : #accessing }
+TestResult >> defects [
 	^OrderedCollection new
 		addAll: self errors;
 		addAll: self failures; yourself
 ]
 
-{
-	#category : #diff,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>diff: aTestResult [
+{ #category : #diff }
+TestResult >> diff: aTestResult [
 	"Return a collection that contains differences"
 	| passed1Selectors failed1Selectors errors1Selectors passed2Selectors failed2Selectors errors2Selectors |
 	passed1Selectors := self passed collect: [:testCase | testCase selector].
@@ -239,11 +175,8 @@ TestResult>>diff: aTestResult [
 		errors1Selectors copyWithoutAll: errors2Selectors}
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>dispatchResultsIntoHistory  [
+{ #category : #history }
+TestResult >> dispatchResultsIntoHistory [ 
 
 	self classesTested do: 
 		[ :testClass | 
@@ -253,77 +186,50 @@ TestResult>>dispatchResultsIntoHistory  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>errorCount [
+{ #category : #accessing }
+TestResult >> errorCount [
 
 	^self errors size
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>errors [
+{ #category : #compatibility }
+TestResult >> errors [
 	^ self unexpectedErrors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>expectedDefectCount [
+{ #category : #accessing }
+TestResult >> expectedDefectCount [
 	^ self expectedDefects size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>expectedDefects [
+{ #category : #accessing }
+TestResult >> expectedDefects [
 	^ (errors, failures asOrderedCollection) select: [:each | each shouldPass not] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>expectedPassCount [
+{ #category : #accessing }
+TestResult >> expectedPassCount [
 	^ self expectedPasses size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>expectedPasses [
+{ #category : #accessing }
+TestResult >> expectedPasses [
 	^ passed select: [:each | each shouldPass] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>failureCount [
+{ #category : #accessing }
+TestResult >> failureCount [
 
 	^self failures size
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>failures [
+{ #category : #compatibility }
+TestResult >> failures [
 	^ self unexpectedFailures, self unexpectedPasses 
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>fileOutOn: aFileStream [
+{ #category : #filein/out }
+TestResult >> fileOutOn: aFileStream [
 	"Write in aFileStream like:
 	3 run, 2 passes, 0 expected failures, 1 failures, 0 errors, 0 unexpected passes
 	Failures:
@@ -342,38 +248,26 @@ TestResult>>fileOutOn: aFileStream [
 	printer value: 'Errors:' value: self errors.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>hasErrors [
+{ #category : #testing }
+TestResult >> hasErrors [
 
 	^self errors size > 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>hasFailures [
+{ #category : #testing }
+TestResult >> hasFailures [
 
 	^self failures size > 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>hasPassed [
+{ #category : #testing }
+TestResult >> hasPassed [
 
 	^self hasErrors not and: [self hasFailures not]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>initialize [
+{ #category : #initialization }
+TestResult >> initialize [
 	super initialize.
 	passed := OrderedCollection new.
 	failures := Set new.
@@ -382,78 +276,51 @@ TestResult>>initialize [
 	timeStamp := DateAndTime now
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>isError: aTestCase [
+{ #category : #testing }
+TestResult >> isError: aTestCase [
 
 	^self errors includes: aTestCase
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>isErrorFor: class selector: selector [
+{ #category : #querying }
+TestResult >> isErrorFor: class selector: selector [
 	^ self errors anySatisfy: [:testCase | testCase class == class and: [testCase selector == selector]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>isFailure: aTestCase [
+{ #category : #testing }
+TestResult >> isFailure: aTestCase [
 	^self failures includes: aTestCase
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>isFailureFor: class selector: selector [
+{ #category : #querying }
+TestResult >> isFailureFor: class selector: selector [
 	^ self failures anySatisfy: [:testCase | testCase class == class and: [testCase selector == selector]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>isPassed: aTestCase [
+{ #category : #testing }
+TestResult >> isPassed: aTestCase [
 
 	^self passed includes: aTestCase
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>isPassedFor: class selector: selector [
+{ #category : #querying }
+TestResult >> isPassedFor: class selector: selector [
 	^ self passed anySatisfy: [:testCase | testCase class == class and: [testCase selector == selector]]
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>passed [
+{ #category : #compatibility }
+TestResult >> passed [
 	^ self expectedPasses, self expectedDefects
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>passedCount [
+{ #category : #accessing }
+TestResult >> passedCount [
 
 	^self passed size
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>printOn: aStream [
+{ #category : #printing }
+TestResult >> printOn: aStream [
 	aStream
 		nextPutAll: self runCount printString;
 		nextPutAll: ' run, ';
@@ -471,11 +338,8 @@ TestResult>>printOn: aStream [
 		nextPutAll:' unexpected passes'.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>runCase: aTestCase [
+{ #category : #running }
+TestResult >> runCase: aTestCase [
 	[
 	aTestCase announce: TestCaseStarted withResult: self.
 	aTestCase runCaseManaged.
@@ -485,11 +349,8 @@ TestResult>>runCase: aTestCase [
 		do: [:ex | ex sunitAnnounce: aTestCase toResult: self]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>runCaseForDebug: aTestCase [
+{ #category : #running }
+TestResult >> runCaseForDebug: aTestCase [
 	[
 	aTestCase announce: TestCaseStarted withResult: self.
 	aTestCase runCaseManaged.
@@ -499,20 +360,14 @@ TestResult>>runCaseForDebug: aTestCase [
 		do: [:ex | ex sunitAnnounce: aTestCase toResult: self. ex pass]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>runCount [
+{ #category : #accessing }
+TestResult >> runCount [
 
 	^self passedCount + self failureCount + self errorCount
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>selectResultsForTestCase: aTestCaseClass [
+{ #category : #history }
+TestResult >> selectResultsForTestCase: aTestCaseClass [
 	| passedSelectors errorsSelectors failuresSelectors |
 	passedSelectors := self passed
 						select: [:testCase | testCase class == aTestCaseClass ] thenCollect: [:testCase | testCase selector].
@@ -529,28 +384,19 @@ TestResult>>selectResultsForTestCase: aTestCaseClass [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>skipped [
+{ #category : #accessing }
+TestResult >> skipped [
 	^ skipped
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>skippedCount [
+{ #category : #accessing }
+TestResult >> skippedCount [
 
 	^ self skipped size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>tests [
+{ #category : #accessing }
+TestResult >> tests [
 	^(OrderedCollection new: self runCount)
 		addAll: passed;
 		addAll: failures;
@@ -559,75 +405,48 @@ TestResult>>tests [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>timeStamp [
+{ #category : #accessing }
+TestResult >> timeStamp [
 	^ timeStamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>timeStamp: anObject [
+{ #category : #accessing }
+TestResult >> timeStamp: anObject [
 	timeStamp := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>unexpectedErrorCount [
+{ #category : #accessing }
+TestResult >> unexpectedErrorCount [
 	^ self unexpectedErrors size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>unexpectedErrors [
+{ #category : #accessing }
+TestResult >> unexpectedErrors [
 	^ errors select: [:each | each shouldPass] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>unexpectedFailureCount [
+{ #category : #accessing }
+TestResult >> unexpectedFailureCount [
 	^ self unexpectedFailures size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>unexpectedFailures [
+{ #category : #accessing }
+TestResult >> unexpectedFailures [
 	^ failures select: [:each | each shouldPass] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>unexpectedPassCount [
+{ #category : #accessing }
+TestResult >> unexpectedPassCount [
 	^ self unexpectedPasses size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>unexpectedPasses [
+{ #category : #accessing }
+TestResult >> unexpectedPasses [
 	^ passed select: [:each | each shouldPass not] 
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestResult>>updateResultsInHistory [
+{ #category : #history }
+TestResult >> updateResultsInHistory [
 	|classesToNotify|
 	classesToNotify:= Set new.
 	#(#passed #failures #errors) do: [ :status | 

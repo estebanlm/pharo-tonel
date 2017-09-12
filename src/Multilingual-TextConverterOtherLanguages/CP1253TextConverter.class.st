@@ -7,15 +7,11 @@ Class {
 	#classVars : [
 		'FromTable'
 	],
-	#category : #Multilingual-TextConverterOtherLanguages,
-	#timestamp : '<historical>'
+	#category : #Multilingual-TextConverterOtherLanguages
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CP1253TextConverter class>>byteToUnicodeSpec [
+{ #category : #accessing }
+CP1253TextConverter class >> byteToUnicodeSpec [
 	"ByteTextConverter generateByteToUnicodeSpec: 'http://unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS/CP1253.TXT'"
 
 	^ #(
@@ -37,28 +33,19 @@ CP1253TextConverter class>>byteToUnicodeSpec [
 	16r03C8 16r03C9 16r03CA 16r03CB 16r03CC 16r03CD 16r03CE nil )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CP1253TextConverter class>>encodingNames  [
+{ #category : #accessing }
+CP1253TextConverter class >> encodingNames [ 
 
 	^ #('cp-1253') copy
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CP1253TextConverter class>>initialize [
+{ #category : #'as yet unclassified' }
+CP1253TextConverter class >> initialize [
 	self initializeTables
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CP1253TextConverter class>>languageEnvironment [
+{ #category : #accessing }
+CP1253TextConverter class >> languageEnvironment [
 	^GreekEnvironment
 ]

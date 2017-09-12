@@ -7,41 +7,28 @@ This is the unit test for the class UndefinedObject. Unit tests are a good way t
 Class {
 	#name : #UndefinedObjectTest,
 	#superclass : #ClassTestCase,
-	#category : #Kernel-Tests-Objects,
-	#timestamp : '<historical>'
+	#category : #Kernel-Tests-Objects
 }
 
-{
-	#category : #'tests - Class Methods',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testAllInstances [
+{ #category : #'tests - Class Methods' }
+UndefinedObjectTest >> testAllInstances [
 	self assert: UndefinedObject allInstances size = 1 description: 'There should be a single instance of UndefinedObject'.
 	self assert: (UndefinedObject allInstances includes: nil) description: 'nil should be an instance of UndefinedObject'.
 ]
 
-{
-	#category : #'tests - copying',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testDeepCopy [
+{ #category : #'tests - copying' }
+UndefinedObjectTest >> testDeepCopy [
 	self assert: nil deepCopy isNil
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testHaltIfNil [
+{ #category : #'tests - testing' }
+UndefinedObjectTest >> testHaltIfNil [
 
 	self should: [ nil haltIfNil] raise: Halt.
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testIfNil [
+{ #category : #'tests - testing' }
+UndefinedObjectTest >> testIfNil [
 
 	self should: [ nil ifNil: [self halt]] raise: Halt.
 
@@ -49,11 +36,8 @@ UndefinedObjectTest>>testIfNil [
 
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testIfNilIfNotNil [
+{ #category : #'tests - testing' }
+UndefinedObjectTest >> testIfNilIfNotNil [
 
 	self should: [ nil ifNil: [self halt] ifNotNil: [self error] ] raise: Halt.
 
@@ -61,11 +45,8 @@ UndefinedObjectTest>>testIfNilIfNotNil [
 
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testIfNotNil [
+{ #category : #'tests - testing' }
+UndefinedObjectTest >> testIfNotNil [
 
 	nil ifNotNil: [
 		self fail: 'should not get here' ].
@@ -74,22 +55,16 @@ UndefinedObjectTest>>testIfNotNil [
 
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testIfNotNilDo [
+{ #category : #'tests - testing' }
+UndefinedObjectTest >> testIfNotNilDo [
 
 	nil ifNotNil: [
 		self fail: 'should not get here' ].
 
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testIfNotNilIfNil [
+{ #category : #'tests - testing' }
+UndefinedObjectTest >> testIfNotNilIfNil [
 
 	self should: [ nil ifNotNil: [self error] ifNil: [self halt] ] raise: Halt.
 
@@ -97,84 +72,57 @@ UndefinedObjectTest>>testIfNotNilIfNil [
 
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testIsEmptyOrNil [
+{ #category : #'tests - testing' }
+UndefinedObjectTest >> testIsEmptyOrNil [
 
 	self assert: (nil isEmptyOrNil).
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testIsLiteral [
+{ #category : #'tests - testing' }
+UndefinedObjectTest >> testIsLiteral [
 
 	self assert: (nil isLiteral).
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testIsNil [
+{ #category : #'tests - testing' }
+UndefinedObjectTest >> testIsNil [
 
 	self assert: (nil isNil).
 ]
 
-{
-	#category : #'tests - Class Methods',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testNew [
+{ #category : #'tests - Class Methods' }
+UndefinedObjectTest >> testNew [
 
 	self should: [ UndefinedObject new] raise: Error.
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testNotNil [
+{ #category : #'tests - testing' }
+UndefinedObjectTest >> testNotNil [
 
 	self deny: (nil notNil).
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testPrintOn [
+{ #category : #'tests - printing' }
+UndefinedObjectTest >> testPrintOn [
 
 	| string |
 	string := String streamContents: [:stream | nil printOn: stream].
 	self assert: (string = 'nil').
 ]
 
-{
-	#category : #'tests - copying',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testShallowCopy [
+{ #category : #'tests - copying' }
+UndefinedObjectTest >> testShallowCopy [
 	self assert: nil shallowCopy isNil
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testStoreOn [
+{ #category : #'tests - printing' }
+UndefinedObjectTest >> testStoreOn [
 	| string |
 	string := String streamContents: [ :stream | nil storeOn: stream ].
 	self assert: (self class compiler evaluate: string) isNil
 ]
 
-{
-	#category : #'tests - copying',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-UndefinedObjectTest>>testVeryDeepCopyWith [
+{ #category : #'tests - copying' }
+UndefinedObjectTest >> testVeryDeepCopyWith [
 	self assert: (nil veryDeepCopyWith: nil) isNil
 ]

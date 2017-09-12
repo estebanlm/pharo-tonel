@@ -4,15 +4,11 @@ A container morph that tracks the owner's pane colour unless an explicit fillSty
 Class {
 	#name : #PanelMorph,
 	#superclass : #BorderedMorph,
-	#category : #Morphic-Widgets-Windows-Widgets,
-	#timestamp : 'gvc 5/18/2007 12:38'
+	#category : #Morphic-Widgets-Windows-Widgets
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+PanelMorph >> adoptPaneColor: paneColor [
 	"Change our color too."
 	
 	super adoptPaneColor: paneColor.
@@ -22,11 +18,8 @@ PanelMorph>>adoptPaneColor: paneColor [
 	self borderStyle baseColor: paneColor darker
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>checkMorphsLeftOrTopFrom: splitter [
+{ #category : #protocol }
+PanelMorph >> checkMorphsLeftOrTopFrom: splitter [
 	| index size |
 	
 	size := submorphs size.
@@ -44,11 +37,8 @@ PanelMorph>>checkMorphsLeftOrTopFrom: splitter [
 		index := index + 1 ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>checkMorphsLeftOrTopFrom: splitter size: size [
+{ #category : #protocol }
+PanelMorph >> checkMorphsLeftOrTopFrom: splitter size: size [
 	| index |
 	
 	index := submorphs identityIndexOf: splitter.
@@ -65,11 +55,8 @@ PanelMorph>>checkMorphsLeftOrTopFrom: splitter size: size [
 		index := index + 1 ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>checkMorphsRightOrBottomFrom: splitter [
+{ #category : #protocol }
+PanelMorph >> checkMorphsRightOrBottomFrom: splitter [
 	| index |
 	
 	index := submorphs identityIndexOf: splitter.
@@ -83,11 +70,8 @@ PanelMorph>>checkMorphsRightOrBottomFrom: splitter [
 		index := index - 1 ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>checkSplitters [
+{ #category : #protocol }
+PanelMorph >> checkSplitters [
 		
 	(self submorphsSatisfying: [ :e | e isKindOf: ProportionalSplitterMorph ])
 		do: [ :splitter |
@@ -95,41 +79,29 @@ PanelMorph>>checkSplitters [
 			self checkMorphsRightOrBottomFrom: splitter ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>defaultBorderWidth [
+{ #category : #initialization }
+PanelMorph >> defaultBorderWidth [
 	"Answer the default border width for the receiver."
 	
 	^0
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>defaultColor [
+{ #category : #initialize }
+PanelMorph >> defaultColor [
 	"Answer the default color for the receiver."
 
 	^Color transparent
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>enabled: aBoolean [
+{ #category : #protocol }
+PanelMorph >> enabled: aBoolean [
 	"Pass on to submorphs."
 
 	self submorphsDo: [:m | m enabled: aBoolean]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>handleMouseOver: anEvent [
+{ #category : #events-processing }
+PanelMorph >> handleMouseOver: anEvent [
 	"System level event handling."
 	
 	super handleMouseOver: anEvent.
@@ -138,21 +110,15 @@ PanelMorph>>handleMouseOver: anEvent [
 		self mouseOver: anEvent]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>initialColorInSystemWindow: aSystemWindow [
+{ #category : #initialization }
+PanelMorph >> initialColorInSystemWindow: aSystemWindow [
 	"Answer the colour the receiver should be when added to a SystemWindow."
 
 	^Color transparent
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>initialize [
+{ #category : #initialization }
+PanelMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -161,11 +127,8 @@ PanelMorph>>initialize [
 		beSticky "stop being grabbed"
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>interactionState: aSymbol [
+{ #category : #protocol }
+PanelMorph >> interactionState: aSymbol [
 	"Pass on to submorphs."
 
 	self submorphsDo: [:m |
@@ -173,11 +136,8 @@ PanelMorph>>interactionState: aSymbol [
 			m interactionState: aSymbol]]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>isResizeableMorph: submorph forSplitter: e [
+{ #category : #protocol }
+PanelMorph >> isResizeableMorph: submorph forSplitter: e [
 	| done |
 	done := e splitsTopAndBottom
 		ifTrue: [ submorph layoutFrame isVerticallyResizeable ]
@@ -185,11 +145,8 @@ PanelMorph>>isResizeableMorph: submorph forSplitter: e [
 	^ done
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>mouseOver: anEvent [
+{ #category : #protocol }
+PanelMorph >> mouseOver: anEvent [
 	"Handle a mouseOver event, meaning the mouse just moved within the receiver
 	with no button pressed. The default response is to let my eventHandler, if any, handle it."
 
@@ -197,22 +154,16 @@ PanelMorph>>mouseOver: anEvent [
 		[self eventHandler mouseOver: anEvent fromMorph: self]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>newHSplitter [
+{ #category : #protocol }
+PanelMorph >> newHSplitter [
 
 	^ ProportionalSplitterMorph new
 			beSplitsTopAndBottom;
 			setProperty: #model toValue: self.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>newHSplitterAt: anIndex [
+{ #category : #protocol }
+PanelMorph >> newHSplitterAt: anIndex [
 
 	| above frame splitter index size |
 	size := submorphs size.
@@ -225,21 +176,15 @@ PanelMorph>>newHSplitterAt: anIndex [
 	self privateAddMorph: splitter atIndex: (size - anIndex + 2)
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>newVSplitter [
+{ #category : #protocol }
+PanelMorph >> newVSplitter [
 
 	^ ProportionalSplitterMorph new
 			setProperty: #model toValue: self.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PanelMorph>>newVSplitterAt: anIndex [
+{ #category : #protocol }
+PanelMorph >> newVSplitterAt: anIndex [
 	| left frame splitter index size |
 
 	size := submorphs size.

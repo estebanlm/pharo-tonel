@@ -8,41 +8,28 @@ Class {
 		'kern',
 		'active'
 	],
-	#category : #Text-Core,
-	#timestamp : '<historical>'
+	#category : #Text-Core
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextKern class>>kern: kernValue [
+{ #category : #'as yet unclassified' }
+TextKern class >> kern: kernValue [
 	^ self new kern: kernValue
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextKern>>= other  [
+{ #category : #'as yet unclassified' }
+TextKern >> = other [ 
 	^ (other class == self class) 
 		and: [other kern = kern]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextKern>>dominatedByCmd0 [
+{ #category : #'as yet unclassified' }
+TextKern >> dominatedByCmd0 [
 	"Cmd-0 should turn off kerning"
 	^ true
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextKern>>dominates: other [
+{ #category : #'as yet unclassified' }
+TextKern >> dominates: other [
 	"NOTE: The use of active in this code is specific to its use in the method
 		Text class addAttribute: att toArray: others"
 	(active and: [other class == self class and: [other kern + kern = 0]])
@@ -50,61 +37,40 @@ TextKern>>dominates: other [
 	^ false
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextKern>>hash [
+{ #category : #'as yet unclassified' }
+TextKern >> hash [
 	"#hash is re-implemented because #= is re-implemented"
 	^kern hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextKern>>isKern [
+{ #category : #testing }
+TextKern >> isKern [
 	^true
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextKern>>kern [
+{ #category : #'as yet unclassified' }
+TextKern >> kern [
 	^ kern
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextKern>>kern: kernValue [
+{ #category : #'as yet unclassified' }
+TextKern >> kern: kernValue [
 	kern := kernValue.
 	self reset.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextKern>>reset [
+{ #category : #'as yet unclassified' }
+TextKern >> reset [
 	active := true
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextKern>>set [
+{ #category : #'as yet unclassified' }
+TextKern >> set [
 	^ active
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextKern>>writeScanOn: strm [
+{ #category : #'as yet unclassified' }
+TextKern >> writeScanOn: strm [
 
 	kern > 0 ifTrue: [
 		1 to: kern do: [:kk | strm nextPut: $+]].

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBVariableNodeTest,
 	#superclass : #TestCase,
-	#category : #AST-Tests-Core,
-	#timestamp : ''
+	#category : #AST-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBVariableNodeTest>>testStartForReplacement [
+{ #category : #tests }
+RBVariableNodeTest >> testStartForReplacement [
 
 	| source tree dTemporary |
 	source := 'foo
@@ -26,11 +19,8 @@ RBVariableNodeTest>>testStartForReplacement [
 	self assert: (dTemporary start - dTemporary startForReplacement) equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBVariableNodeTest>>testStartForReplacement02 [
+{ #category : #tests }
+RBVariableNodeTest >> testStartForReplacement02 [
 
 	| source tree dTemporary |
 	source := 'foo

@@ -12,15 +12,11 @@ Class {
 		'textModel2',
 		'textRefreshingProcess'
 	],
-	#category : #Spec-Examples,
-	#timestamp : 'Spirita 7/26/2016 15:03'
+	#category : #Spec-Examples
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ListSelectionModel class>>bottomSpec [
+{ #category : #specs }
+ListSelectionModel class >> bottomSpec [
 
 	^ SpecLayout composed
 		newRow: [ :row |
@@ -30,11 +26,8 @@ ListSelectionModel class>>bottomSpec [
 		yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ListSelectionModel class>>defaultSpec [
+{ #category : #specs }
+ListSelectionModel class >> defaultSpec [
 
 	^ SpecLayout composed
 		newColumn: [ :column |
@@ -47,28 +40,19 @@ ListSelectionModel class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ListSelectionModel class>>example [
+{ #category : #example }
+ListSelectionModel class >> example [
 	^ self new openWithSpec
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ListSelectionModel>>initializePresenter  [
+{ #category : #initialization }
+ListSelectionModel >> initializePresenter [ 
 
 	listModel whenSelectionChanged: [ self updateText ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ListSelectionModel>>initializeWidgets [
+{ #category : #initialization }
+ListSelectionModel >> initializeWidgets [
 	listModel := self newList.
 	textModel1 := self newText.
 	textModel2 := self newCode.
@@ -76,38 +60,26 @@ ListSelectionModel>>initializeWidgets [
 	listModel items: Smalltalk globals allClasses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ListSelectionModel>>listModel [
+{ #category : #accessing }
+ListSelectionModel >> listModel [
 
 	^ listModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ListSelectionModel>>textModel1 [
+{ #category : #accessing }
+ListSelectionModel >> textModel1 [
 
 	^ textModel1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ListSelectionModel>>textModel2 [
+{ #category : #accessing }
+ListSelectionModel >> textModel2 [
 
 	^ textModel2
 ]
 
-{
-	#category : #update,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ListSelectionModel>>updateText [
+{ #category : #update }
+ListSelectionModel >> updateText [
 	"update the displayed list in a separate thread to avoid UI blocking"
 	
 	"if there is already a background thread running for the new list discard it"

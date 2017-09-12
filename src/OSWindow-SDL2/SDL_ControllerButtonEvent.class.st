@@ -13,15 +13,11 @@ Class {
 		'OFFSET_TYPE',
 		'OFFSET_WHICH'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'RonieSalgado 4/10/2016 00:54'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerButtonEvent class>>fieldsDesc [
+{ #category : #'field definition' }
+SDL_ControllerButtonEvent class >> fieldsDesc [
 	"
 	self rebuildFieldAccessors
 	"
@@ -36,128 +32,86 @@ SDL_ControllerButtonEvent class>>fieldsDesc [
  	)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerButtonEvent>>button [
+{ #category : #'accessing structure variables' }
+SDL_ControllerButtonEvent >> button [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_BUTTON
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerButtonEvent>>button: anObject [
+{ #category : #'accessing structure variables' }
+SDL_ControllerButtonEvent >> button: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_BUTTON put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerButtonEvent>>padding1 [
+{ #category : #'accessing structure variables' }
+SDL_ControllerButtonEvent >> padding1 [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_PADDING1
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerButtonEvent>>padding1: anObject [
+{ #category : #'accessing structure variables' }
+SDL_ControllerButtonEvent >> padding1: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_PADDING1 put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerButtonEvent>>padding2 [
+{ #category : #'accessing structure variables' }
+SDL_ControllerButtonEvent >> padding2 [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_PADDING2
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerButtonEvent>>padding2: anObject [
+{ #category : #'accessing structure variables' }
+SDL_ControllerButtonEvent >> padding2: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_PADDING2 put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerButtonEvent>>state [
+{ #category : #'accessing structure variables' }
+SDL_ControllerButtonEvent >> state [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_STATE
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerButtonEvent>>state: anObject [
+{ #category : #'accessing structure variables' }
+SDL_ControllerButtonEvent >> state: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_STATE put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerButtonEvent>>timestamp [
+{ #category : #'accessing structure variables' }
+SDL_ControllerButtonEvent >> timestamp [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_TIMESTAMP
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerButtonEvent>>timestamp: anObject [
+{ #category : #'accessing structure variables' }
+SDL_ControllerButtonEvent >> timestamp: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_TIMESTAMP put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerButtonEvent>>type [
+{ #category : #'accessing structure variables' }
+SDL_ControllerButtonEvent >> type [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_TYPE
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerButtonEvent>>type: anObject [
+{ #category : #'accessing structure variables' }
+SDL_ControllerButtonEvent >> type: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_TYPE put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerButtonEvent>>which [
+{ #category : #'accessing structure variables' }
+SDL_ControllerButtonEvent >> which [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_WHICH
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerButtonEvent>>which: anObject [
+{ #category : #'accessing structure variables' }
+SDL_ControllerButtonEvent >> which: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_WHICH put: anObject
 ]

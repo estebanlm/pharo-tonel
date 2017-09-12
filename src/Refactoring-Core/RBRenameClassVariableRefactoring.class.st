@@ -11,15 +11,11 @@ Class {
 	#instVars : [
 		'newName'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 21:25'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameClassVariableRefactoring class>>model: aRBSmalltalk rename: aVarName to: aName in: aClass  [
+{ #category : #'instance creation' }
+RBRenameClassVariableRefactoring class >> model: aRBSmalltalk rename: aVarName to: aName in: aClass [ 
 	^(self new)
 		model: aRBSmalltalk;
 		rename: aVarName
@@ -28,38 +24,26 @@ RBRenameClassVariableRefactoring class>>model: aRBSmalltalk rename: aVarName to:
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameClassVariableRefactoring class>>rename: aVarName to: aName in: aClass [
+{ #category : #'instance creation' }
+RBRenameClassVariableRefactoring class >> rename: aVarName to: aName in: aClass [
 	^self new
 		rename: aVarName
 		to: aName
 		in: aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameClassVariableRefactoring>>newName [
+{ #category : #accessing }
+RBRenameClassVariableRefactoring >> newName [
 	^ newName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameClassVariableRefactoring>>newName: anObject [
+{ #category : #accessing }
+RBRenameClassVariableRefactoring >> newName: anObject [
 	newName := anObject
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameClassVariableRefactoring>>preconditions [
+{ #category : #preconditions }
+RBRenameClassVariableRefactoring >> preconditions [
 	^(RBCondition isMetaclass: class) not 
 		& (RBCondition isValidClassVarName: newName asString for: class) 
 			& (RBCondition definesClassVariable: variableName asString in: class) 
@@ -67,20 +51,14 @@ RBRenameClassVariableRefactoring>>preconditions [
 			& (RBCondition isGlobal: newName asString in: self model) not
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameClassVariableRefactoring>>rename: aVarName to: aName in: aClass [
+{ #category : #initialize-release }
+RBRenameClassVariableRefactoring >> rename: aVarName to: aName in: aClass [
 	self variable: aVarName class: aClass.
 	newName := aName
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameClassVariableRefactoring>>renameReferences [
+{ #category : #transforming }
+RBRenameClassVariableRefactoring >> renameReferences [
 	| replacer subclasses |
 	replacer := RBParseTreeRewriter 
 		rename: variableName
@@ -95,11 +73,8 @@ RBRenameClassVariableRefactoring>>renameReferences [
 		using: replacer
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameClassVariableRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBRenameClassVariableRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream
@@ -112,11 +87,8 @@ RBRenameClassVariableRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameClassVariableRefactoring>>transform [
+{ #category : #transforming }
+RBRenameClassVariableRefactoring >> transform [
 	class 
 		renameClassVariable: variableName
 		to: newName

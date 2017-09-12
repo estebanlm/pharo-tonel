@@ -4,22 +4,15 @@ I know how to replace the call of a class variable for the use of an accessor an
 Class {
 	#name : #SugsUseAccessorsForClassVar,
 	#superclass : #SugsSuggestion,
-	#category : #SmartSuggestions-Suggestion,
-	#timestamp : '<historical>'
+	#category : #SmartSuggestions-Suggestion
 }
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsUseAccessorsForClassVar>>execute [
+{ #category : #execution }
+SugsUseAccessorsForClassVar >> execute [
 	(NautilusRefactoring model: context) abstractClassVarFrom: context selectedClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsUseAccessorsForClassVar>>label [
+{ #category : #accessing }
+SugsUseAccessorsForClassVar >> label [
 	^'Use accessor' translated
 ]

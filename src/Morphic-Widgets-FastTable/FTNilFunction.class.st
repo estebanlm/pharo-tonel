@@ -10,75 +10,49 @@ FTNilFunction table: (FTTableMorph with: (1 to: 200))
 Class {
 	#name : #FTNilFunction,
 	#superclass : #FTFunction,
-	#category : #Morphic-Widgets-FastTable-Functions,
-	#timestamp : 'CyrilFerlicot 10/27/2015 14:03'
+	#category : #Morphic-Widgets-FastTable-Functions
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTNilFunction>>beExplicite [
+{ #category : #accessing }
+FTNilFunction >> beExplicite [
 	"Do nothing"
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTNilFunction>>disable [
+{ #category : #protocol }
+FTNilFunction >> disable [
 	"Do nothing"
 
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTNilFunction>>isExplicite [
+{ #category : #testing }
+FTNilFunction >> isExplicite [
 	^ false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTNilFunction>>keyStroke: anEvent [
+{ #category : #'event handling' }
+FTNilFunction >> keyStroke: anEvent [
 	"Do nothing"
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTNilFunction>>reset [
-
+{ #category : #accessing }
+FTNilFunction >> reset [
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTNilFunction>>resizeContainerFrom: topLefPoint to: bottomRightPoint [
+{ #category : #private }
+FTNilFunction >> resizeContainerFrom: topLefPoint [ to: bottomRightPoint
 	"I do not change the size of the container."
 
 	^ topLefPoint corner: bottomRightPoint
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTNilFunction>>resizeWidget [
+{ #category : #private }
+FTNilFunction >> resizeWidget [
 	"Do nothing"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTNilFunction>>showWidget [
+{ #category : #accessing }
+FTNilFunction >> showWidget [
 	"Do nothing"
 ]

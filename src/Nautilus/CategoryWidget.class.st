@@ -12,15 +12,11 @@ Class {
 		'categoriesList',
 		'categoriesSelection'
 	],
-	#category : #Nautilus-Widgets,
-	#timestamp : 'StephaneDucasse 11/11/2015 16:12'
+	#category : #Nautilus-Widgets
 }
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget class>>buildProtocolShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+CategoryWidget class >> buildProtocolShortcutsOn: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #fullBrowse)
@@ -60,11 +56,8 @@ CategoryWidget class>>buildProtocolShortcutsOn: aBuilder [
 		description: 'Remove the selected protocols'.
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget class>>categoriesMenu: aBuilder [
+{ #category : #menus }
+CategoryWidget class >> categoriesMenu: aBuilder [
 	<nautilusGlobalProtocolMenu>
 	| target |
 	
@@ -127,11 +120,8 @@ CategoryWidget class>>categoriesMenu: aBuilder [
 		order: 1600.
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>buildCategoriesList [
+{ #category : #'item creation' }
+CategoryWidget >> buildCategoriesList [
 	^ categoriesList := self class listClass new
 		basicWrapSelector: #categoryWrapper:;
 		resetListSelector: #resetCategorySelection;
@@ -163,40 +153,28 @@ CategoryWidget>>buildCategoriesList [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>categoriesLabel [
+{ #category : #private }
+CategoryWidget >> categoriesLabel [
 
 	^ self showInstance
 		ifTrue: ['Instance protocols:' asText]
 		ifFalse: ['Class protocols:' asText allBold ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>categoriesMenu: aMenuMorph shifted: aBoolean  [
+{ #category : #protocol }
+CategoryWidget >> categoriesMenu: aMenuMorph shifted: aBoolean [ 
 
 	^ self model categoriesMenu: aMenuMorph shifted: aBoolean 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>categoriesSelection [
+{ #category : #protocol }
+CategoryWidget >> categoriesSelection [
 
 	^ categoriesSelection
 ]
 
-{
-	#category : #icon,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>categoryIconFor: aString [
+{ #category : #icon }
+CategoryWidget >> categoryIconFor: aString [
 	(aString beginsWith: '*')
 		ifTrue: [ ^ self iconNamed: #protocolExtensionIcon ].
 	(aString beginsWith: 'private')
@@ -207,31 +185,22 @@ CategoryWidget>>categoryIconFor: aString [
 	^ self iconNamed: #protocolNoneIcon
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>categoryListSize [
+{ #category : #private }
+CategoryWidget >> categoryListSize [
 
 	^ self getCategories size
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>categorySelectionAt: anIndex [
+{ #category : #selection }
+CategoryWidget >> categorySelectionAt: anIndex [
 
 	| elt |
 	elt := self getCategories at: anIndex ifAbsent: [ nil ].
 	^ categoriesSelection at: elt ifAbsent: [ false ].
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>categorySelectionAt: anIndex put: aBoolean [
+{ #category : #selection }
+CategoryWidget >> categorySelectionAt: anIndex put: aBoolean [
 	| elt |
 	
 	elt := self getCategories at: anIndex ifAbsent: [ nil ].
@@ -240,22 +209,16 @@ CategoryWidget>>categorySelectionAt: anIndex put: aBoolean [
 	^ aBoolean
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>categorySelectionNamed: aString put: aBoolean [
+{ #category : #selection }
+CategoryWidget >> categorySelectionNamed: aString put: aBoolean [
 	
 	categoriesSelection at: aString put: aBoolean.
 	self model categorySelectionChanged.
 	^ aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>categoryWrapper: anItem [
+{ #category : #private }
+CategoryWidget >> categoryWrapper: anItem [
 	| package class result |
 
 	package := self model selectedPackage.
@@ -275,28 +238,19 @@ CategoryWidget>>categoryWrapper: anItem [
 	^ result
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>deselectProtocol: aString [
+{ #category : #private }
+CategoryWidget >> deselectProtocol: aString [
 
 	categoriesSelection at: aString put: false
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>doubleClick: ann [
+{ #category : #protocol }
+CategoryWidget >> doubleClick: ann [
 	ann event shiftPressed ifTrue: [ self openFloatingEditorToRenameAtIndex: ann selectedRowIndex ]
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>dragPassengersFor: item inMorph: dragSource  [
+{ #category : #'drag and drop' }
+CategoryWidget >> dragPassengersFor: item inMorph: dragSource [ 
 
 	| transferType object |
 	
@@ -307,57 +261,39 @@ CategoryWidget>>dragPassengersFor: item inMorph: dragSource  [
 	^ nil
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>dropMethod: aCollectionOfMethods inARow: aRow [
+{ #category : #'drag and drop' }
+CategoryWidget >> dropMethod: aCollectionOfMethods inARow: aRow [
 
 	self model dropMethod: aCollectionOfMethods inARow: aRow
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>getCategories [
+{ #category : #protocol }
+CategoryWidget >> getCategories [
 
 	^ categories ifNil: [ categories := self loadCategories ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>getCategoryItem: anIndex [
+{ #category : #private }
+CategoryWidget >> getCategoryItem: anIndex [
 
 	^ self getCategories at: anIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>hasFocus [
+{ #category : #private }
+CategoryWidget >> hasFocus [
 	
 	^ categoriesList hasKeyboardFocus
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>initialize [
+{ #category : #initialization }
+CategoryWidget >> initialize [
 
 	super initialize.
 	categoriesSelection := Dictionary new.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>keyPressedOnCategory: anEvent [
+{ #category : #protocol }
+CategoryWidget >> keyPressedOnCategory: anEvent [
 	| aCharacter |
 
 	aCharacter := anEvent keyCharacter.
@@ -367,31 +303,22 @@ CategoryWidget>>keyPressedOnCategory: anEvent [
 	
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>label: aString [
+{ #category : #protocol }
+CategoryWidget >> label: aString [
 
 	"categoriesGroup label: aString"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>loadCategories [
+{ #category : #private }
+CategoryWidget >> loadCategories [
 	| class |
 	class := self model selectedClass.
 	class ifNil: [ ^ #() ].
 	^ self loadPackagesCategoriesFor: class
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>loadGroupsCategoriesFor: class [
+{ #category : #private }
+CategoryWidget >> loadGroupsCategoriesFor: class [
 	| env |
 	
 	env := model browsedEnvironment.
@@ -400,33 +327,24 @@ CategoryWidget>>loadGroupsCategoriesFor: class [
 		ifFalse: [ self loadGroupsCategoriesInARestrictedEnvironment: env for: class ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>loadGroupsCategoriesInARestrictedEnvironment: env for: class [
+{ #category : #private }
+CategoryWidget >> loadGroupsCategoriesInARestrictedEnvironment: env for: class [
 	| group |
 	
 	group := self model selectedGroup.
 	^ self sortCategories: ((group protocolsFor: class ) intersection: ( env protocolsFor: class )) forClass: class
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>loadGroupsCategoriesInSytemEnvironmentFor: class [
+{ #category : #private }
+CategoryWidget >> loadGroupsCategoriesInSytemEnvironmentFor: class [
 	| group |
 
 	group := self model selectedGroup.
 	^ self sortCategories: (group protocolsFor: class ) forClass: class
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>loadPackagesCategoriesFor: class [
+{ #category : #private }
+CategoryWidget >> loadPackagesCategoriesFor: class [
 	| env |
 	
 	env :=  self model browsedEnvironment.
@@ -435,53 +353,38 @@ CategoryWidget>>loadPackagesCategoriesFor: class [
 		ifFalse: [ self loadPackagesCategoriesInARestrictedEnvironment: env for: class  ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>loadPackagesCategoriesInARestrictedEnvironment: env for: class [
+{ #category : #private }
+CategoryWidget >> loadPackagesCategoriesInARestrictedEnvironment: env for: class [
 	^ self 
 		sortCategories: 
 			((model browsedEnvironment protocolsFor: class) copyWithFirst:  AllProtocol defaultName)
 		forClass: class
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>loadPackagesCategoriesInSystemEnvironmentFor: class [
+{ #category : #private }
+CategoryWidget >> loadPackagesCategoriesInSystemEnvironmentFor: class [
 	
 	^ self 
 		sortCategories: class organization allProtocolsNames 
 		forClass: class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>model: aModel [
+{ #category : #accessing }
+CategoryWidget >> model: aModel [
 	
 	super model: aModel.
 	self selectedCategory
 		ifNotNil: [:cat | categoriesSelection at: cat put: true ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>okToChange [
+{ #category : #updating }
+CategoryWidget >> okToChange [
 
 	^ self model okToChange
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>openFloatingEditorToRenameAtIndex: anIndex [
+{ #category : #protocol }
+CategoryWidget >> openFloatingEditorToRenameAtIndex: anIndex [
 	| selectedRowMorph ed cat catMorph vScroll font cls |
 	cls := self model selectedClass.
 	cat := self getCategoryItem: anIndex.
@@ -516,11 +419,8 @@ CategoryWidget>>openFloatingEditorToRenameAtIndex: anIndex [
 	ed openEditorWithContents: cat asString thenDo: [ :editor | editor selectAll ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>renameCategory: oldCatString toBe: newCatString [
+{ #category : #private }
+CategoryWidget >> renameCategory: oldCatString toBe: newCatString [
 	| cls |
 	cls := self model selectedClass.
 	cls organization renameCategory: oldCatString toBe: newCatString.
@@ -530,47 +430,32 @@ CategoryWidget>>renameCategory: oldCatString toBe: newCatString [
 	self model updateCategoryAndMethodList
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>resetCategoryList [
+{ #category : #protocol }
+CategoryWidget >> resetCategoryList [
 
 	categories := nil
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>resetCategorySelection [
+{ #category : #protocol }
+CategoryWidget >> resetCategorySelection [
 
 	categoriesSelection removeAll
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>searchedElement: index [
+{ #category : #protocol }
+CategoryWidget >> searchedElement: index [
 
 	categoriesList searchedElement: index
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>selectProtocol: aString [
+{ #category : #private }
+CategoryWidget >> selectProtocol: aString [
 
 	categoriesSelection at: aString put: true
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>selectedCategories [
+{ #category : #protocol }
+CategoryWidget >> selectedCategories [
 
 	| associations |
 	associations := self categoriesSelection associations select: [:assoc | assoc value ].
@@ -578,29 +463,20 @@ CategoryWidget>>selectedCategories [
 	^ associations select: [:each | each notNil ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>selectedCategory [
+{ #category : #protocol }
+CategoryWidget >> selectedCategory [
 
 	^ self model selectedCategory
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>selectedCategoryIndex [
+{ #category : #selection }
+CategoryWidget >> selectedCategoryIndex [
 
 	^ self getCategories indexOf: self selectedCategory ifAbsent: [ 0 ]
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>selectedCategoryIndex: anInteger [
+{ #category : #selection }
+CategoryWidget >> selectedCategoryIndex: anInteger [
 
 	| anObject |
 	anObject := self getCategories at: anInteger ifAbsent: [ nil ].
@@ -611,31 +487,22 @@ CategoryWidget>>selectedCategoryIndex: anInteger [
 	self model changed: #currentHistoryIndex.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>showInstance [
+{ #category : #protocol }
+CategoryWidget >> showInstance [
 
 	^ self model showInstance
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>sortCategories: protocols forClass: class [
+{ #category : #private }
+CategoryWidget >> sortCategories: protocols forClass: class [
 	^ self 
 		sortCategories: protocols
 		forClass: class
 		firstInPackage: self model selectedPackage
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>sortCategories: allProtocols forClass: class firstInPackage: currentPackage [
+{ #category : #private }
+CategoryWidget >> sortCategories: allProtocols forClass: class firstInPackage: currentPackage [
 	"List the protocols in this order: 
 		1. the -- all -- category
 		2. the extension protocols of the given package
@@ -654,46 +521,31 @@ CategoryWidget>>sortCategories: allProtocols forClass: class firstInPackage: cur
 	^ (currentPackageProtocols sort: sortBlock), (otherProtocols sort: sortBlock)
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>takeKeyboardFocus [
+{ #category : #protocol }
+CategoryWidget >> takeKeyboardFocus [
 
 	categoriesList takeKeyboardFocus
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>updateCategoryList [
+{ #category : #protocol }
+CategoryWidget >> updateCategoryList [
 	self changed: #getCategoryItem:
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>vScrollValue [
+{ #category : #protocol }
+CategoryWidget >> vScrollValue [
 
 	^ categoriesList scrollValue y
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>vScrollValue: aNumber [
+{ #category : #protocol }
+CategoryWidget >> vScrollValue: aNumber [
 
 	^ categoriesList vScrollValue: aNumber
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-CategoryWidget>>wantsDroppedMorph: transferMorph event: anEvent inMorph: destinationLM  [
+{ #category : #'drag and drop' }
+CategoryWidget >> wantsDroppedMorph: transferMorph event: anEvent inMorph: destinationLM [ 
 	"We are only interested in TransferMorphs as wrappers for             
 	informations. If their content is really interesting for us, will             
 	determined later in >>acceptDroppingMorph:event:."

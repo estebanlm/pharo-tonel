@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBNamespaceTest,
 	#superclass : #RBRefactoringBrowserTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'class tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBNamespaceTest>>testAllClassesDo [
+{ #category : #'class tests' }
+RBNamespaceTest >> testAllClassesDo [
 	| model classes |
 	classes := 0.
 	model := RBClassModelFactory rbNamespace new.
@@ -24,11 +17,8 @@ RBNamespaceTest>>testAllClassesDo [
 	self assert: classes = 0
 ]
 
-{
-	#category : #'class tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBNamespaceTest>>testCommentChange [
+{ #category : #'class tests' }
+RBNamespaceTest >> testCommentChange [
 	| st cl |
 	st := RBClassModelFactory rbNamespace new.
 	cl := st classNamed: self class name.
@@ -43,11 +33,8 @@ RBNamespaceTest>>testCommentChange [
 	self assert: st changes changes last comment isNil
 ]
 
-{
-	#category : #'class tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBNamespaceTest>>testDefineClassAfterDeletedChange [
+{ #category : #'class tests' }
+RBNamespaceTest >> testDefineClassAfterDeletedChange [
 	| st |
 	st := RBClassModelFactory rbNamespace new.
 	st removeClassNamed: self class name.
@@ -57,11 +44,8 @@ RBNamespaceTest>>testDefineClassAfterDeletedChange [
 	self assert: (st classNamed: self class name) notNil
 ]
 
-{
-	#category : #'class tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBNamespaceTest>>testDefineClassChange [
+{ #category : #'class tests' }
+RBNamespaceTest >> testDefineClassChange [
 	| st |
 	st := RBClassModelFactory rbNamespace new.
 	st 
@@ -74,11 +58,8 @@ RBNamespaceTest>>testDefineClassChange [
 	self assert: (st classNamed: #SmalltalkTestXXX) notNil
 ]
 
-{
-	#category : #'class tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBNamespaceTest>>testImplementors [
+{ #category : #'class tests' }
+RBNamespaceTest >> testImplementors [
 	| st |
 	st := RBClassModelFactory rbNamespace new.
 	self assert: ((st allImplementorsOf: #printString) 
@@ -88,11 +69,8 @@ RBNamespaceTest>>testImplementors [
 				includes: (st classNamed: #Object))
 ]
 
-{
-	#category : #'class tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBNamespaceTest>>testIncludesClass [
+{ #category : #'class tests' }
+RBNamespaceTest >> testIncludesClass [
 	self assert: (RBClassModelFactory rbNamespace new includesClassNamed: #Object).
 	self deny: (RBClassModelFactory rbNamespace new includesClassNamed: #Object1).
 	self 
@@ -102,11 +80,8 @@ RBNamespaceTest>>testIncludesClass [
 					includesClassNamed: #OrderedCollection)
 ]
 
-{
-	#category : #'class tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBNamespaceTest>>testModelImplementorsSenders [
+{ #category : #'class tests' }
+RBNamespaceTest >> testModelImplementorsSenders [
 	| model class modelImps refs found |
 	model := RBClassModelFactory rbNamespace new.
 	model 
@@ -136,11 +111,8 @@ RBNamespaceTest>>testModelImplementorsSenders [
 
 ]
 
-{
-	#category : #'class tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBNamespaceTest>>testRedefineClassChange [
+{ #category : #'class tests' }
+RBNamespaceTest >> testRedefineClassChange [
 	| st |
 	st := RBClassModelFactory rbNamespace new.
 	st defineClass: 'nil subclass: #Object
@@ -152,11 +124,8 @@ RBNamespaceTest>>testRedefineClassChange [
 	self assert: (st classNamed: #Object) notNil
 ]
 
-{
-	#category : #'class tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBNamespaceTest>>testReferencesPrintOn [
+{ #category : #'class tests' }
+RBNamespaceTest >> testReferencesPrintOn [
 	| hasFoundObject hasFoundSelf smalltalk |
 	hasFoundObject := false.
 	hasFoundSelf := false.
@@ -172,11 +141,8 @@ RBNamespaceTest>>testReferencesPrintOn [
 	self assert: hasFoundSelf
 ]
 
-{
-	#category : #'class tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBNamespaceTest>>testReferencesPrintOnAfterAddition [
+{ #category : #'class tests' }
+RBNamespaceTest >> testReferencesPrintOnAfterAddition [
 	| hasFoundObject hasFoundSelf smalltalk |
 	hasFoundObject := false.
 	hasFoundSelf := false.
@@ -198,11 +164,8 @@ RBNamespaceTest>>testReferencesPrintOnAfterAddition [
 	self assert: hasFoundSelf
 ]
 
-{
-	#category : #'class tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBNamespaceTest>>testReferencesPrintOnAfterRemove [
+{ #category : #'class tests' }
+RBNamespaceTest >> testReferencesPrintOnAfterRemove [
 	| hasFoundObject hasFoundSelf smalltalk |
 	hasFoundObject := false.
 	hasFoundSelf := false.
@@ -222,11 +185,8 @@ RBNamespaceTest>>testReferencesPrintOnAfterRemove [
 	self deny: hasFoundSelf
 ]
 
-{
-	#category : #'class tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBNamespaceTest>>testRemoveClassChange [
+{ #category : #'class tests' }
+RBNamespaceTest >> testRemoveClassChange [
 	| st |
 	st := RBClassModelFactory rbNamespace new.
 	st removeClassNamed: self class name.
@@ -234,11 +194,8 @@ RBNamespaceTest>>testRemoveClassChange [
 	self assert: (st classNamed: self class name) isNil
 ]
 
-{
-	#category : #'class tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBNamespaceTest>>testReparentSuperclassChange [
+{ #category : #'class tests' }
+RBNamespaceTest >> testReparentSuperclassChange [
 	| st superclass subclasses |
 	st := RBClassModelFactory rbNamespace new.
 	superclass := st classFor: TestCase superclass.
@@ -247,11 +204,8 @@ RBNamespaceTest>>testReparentSuperclassChange [
 	subclasses do: [:each | self assert: each superclass = superclass]
 ]
 
-{
-	#category : #'class tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBNamespaceTest>>testRoots [
+{ #category : #'class tests' }
+RBNamespaceTest >> testRoots [
 	| model |
 	model := RBClassModelFactory rbNamespace new.
 	self 

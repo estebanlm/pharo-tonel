@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCRepository
-}
+Extension { #name : #MCRepository }
 
-{
-	#category : #'*monticellofiletree-core',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCRepository>>retrieveVersionsWithPackageNames: packageNames [
+{ #category : #'*monticellofiletree-core' }
+MCRepository >> retrieveVersionsWithPackageNames: packageNames [
     ^ self readableFileNames
         collect: [ :each | 
             | name |

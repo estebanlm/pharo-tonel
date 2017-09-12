@@ -4,44 +4,31 @@ Action when the method contains a flag
 Class {
 	#name : #MethodContainsFlagsAction,
 	#superclass : #AbstractMethodIconAction,
-	#category : #Nautilus-Widgets,
-	#timestamp : '<historical>'
+	#category : #Nautilus-Widgets
 }
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodContainsFlagsAction>>actionOrder [
+{ #category : #order }
+MethodContainsFlagsAction >> actionOrder [
 	"Return the priority of this action"
 
 	^ 300
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodContainsFlagsAction>>actionStateToCache [
+{ #category : #order }
+MethodContainsFlagsAction >> actionStateToCache [
 	"Return the state of the icon for caching purpose"
 	
 	^ icon
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodContainsFlagsAction>>isActionHandled  [
+{ #category : #order }
+MethodContainsFlagsAction >> isActionHandled [ 
 
 	^ method sendsAnySelectorOf: #(flag:)
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodContainsFlagsAction>>privateActionIcon [
+{ #category : #order }
+MethodContainsFlagsAction >> privateActionIcon [
 	"Return the icon for this action"
 
 	^ self iconNamed: #flagIcon

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RubUnderlinedSegmentMorph,
 	#superclass : #RubTextSegmentMorph,
@@ -9,15 +6,11 @@ Class {
 		'straight',
 		'underlineShape'
 	],
-	#category : #Rubric-Editing-Core,
-	#timestamp : ''
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubUnderlinedSegmentMorph>>computeVertices [
+{ #category : #drawing }
+RubUnderlinedSegmentMorph >> computeVertices [
 	| lpos rpos fln lln |
 	super computeVertices.
 	fln := self firstLineIndex.
@@ -37,56 +30,38 @@ RubUnderlinedSegmentMorph>>computeVertices [
 		underlineShape add: (self underlineShapeFromPosition: lpos toPosition: rpos) ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubUnderlinedSegmentMorph>>defaultBorderColor [
+{ #category : #initialization }
+RubUnderlinedSegmentMorph >> defaultBorderColor [
 	^ super defaultColor alpha: 0.5.
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubUnderlinedSegmentMorph>>defaultColor [
+{ #category : #initialization }
+RubUnderlinedSegmentMorph >> defaultColor [
 	^ Color white alpha: 0.05
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubUnderlinedSegmentMorph>>defaultUnderlineColor [
+{ #category : #initialization }
+RubUnderlinedSegmentMorph >> defaultUnderlineColor [
 	^ super defaultColor
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubUnderlinedSegmentMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+RubUnderlinedSegmentMorph >> drawOn: aCanvas [
 	super drawOn: aCanvas.
 	self drawUnderlineOn: aCanvas
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubUnderlinedSegmentMorph>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #drawing }
+RubUnderlinedSegmentMorph >> drawOnAthensCanvas: anAthensCanvas [
 	super drawOnAthensCanvas: anAthensCanvas.
 	self drawUnderlineOnAthensCanvas: anAthensCanvas
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubUnderlinedSegmentMorph>>drawUnderlineOn: aCanvas [
+{ #category : #drawing }
+RubUnderlinedSegmentMorph >> drawUnderlineOn: aCanvas [
 	underlineShape
 		do: [ :s | 
 			(1 to: s size - 1 by:
@@ -104,11 +79,8 @@ RubUnderlinedSegmentMorph>>drawUnderlineOn: aCanvas [
 						color: self underlineColor ] ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubUnderlinedSegmentMorph>>drawUnderlineOnAthensCanvas: aCanvas [
+{ #category : #drawing }
+RubUnderlinedSegmentMorph >> drawUnderlineOnAthensCanvas: aCanvas [
 	underlineShape
 		do: [ :s | 
 			| path |
@@ -129,54 +101,36 @@ RubUnderlinedSegmentMorph>>drawUnderlineOnAthensCanvas: aCanvas [
 					aCanvas drawShape: path ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubUnderlinedSegmentMorph>>straight [
+{ #category : #accessing }
+RubUnderlinedSegmentMorph >> straight [
 	^ straight ifNil: [ straight := true ]
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubUnderlinedSegmentMorph>>straight: aBoolean [
+{ #category : #accessing }
+RubUnderlinedSegmentMorph >> straight: aBoolean [
 	straight := aBoolean.
 	self computeVertices 
 	
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubUnderlinedSegmentMorph>>tabLineDashes [
+{ #category : #drawing }
+RubUnderlinedSegmentMorph >> tabLineDashes [
 	^ { 1. 1} 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubUnderlinedSegmentMorph>>underlineColor [
+{ #category : #accessing }
+RubUnderlinedSegmentMorph >> underlineColor [
 	^ underlineColor ifNil: [ underlineColor := self defaultUnderlineColor ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubUnderlinedSegmentMorph>>underlineColor: aColor [
+{ #category : #accessing }
+RubUnderlinedSegmentMorph >> underlineColor: aColor [
 	underlineColor := aColor
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubUnderlinedSegmentMorph>>underlineShapeFromPosition: firstPos toPosition: lastPos [
+{ #category : #drawing }
+RubUnderlinedSegmentMorph >> underlineShapeFromPosition: firstPos toPosition: lastPos [
 	| shape ygap pos |
 	shape := OrderedCollection new.
 	ygap := self straight

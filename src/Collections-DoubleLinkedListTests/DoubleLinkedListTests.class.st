@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #DoubleLinkedListTests,
 	#superclass : #TestCase,
-	#category : #Collections-DoubleLinkedListTests,
-	#timestamp : ''
+	#category : #Collections-DoubleLinkedListTests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testAddAfterLink [
+{ #category : #testing }
+DoubleLinkedListTests >> testAddAfterLink [
 	| list link |
 	list := DoubleLinkedList new.
 	list add: 1.
@@ -22,11 +15,8 @@ DoubleLinkedListTests>>testAddAfterLink [
 	self assert: list asArray equals: #( 1 2 0 3 )
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testAddBeforeLink [
+{ #category : #testing }
+DoubleLinkedListTests >> testAddBeforeLink [
 	| list link |
 	list := DoubleLinkedList new.
 	list add: 1.
@@ -36,11 +26,8 @@ DoubleLinkedListTests>>testAddBeforeLink [
 	self assert: list asArray equals: #( 1 0 2 3 )
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testAddFirst [
+{ #category : #testing }
+DoubleLinkedListTests >> testAddFirst [
 	| list |
 	list := DoubleLinkedList new.
 	1 to: 3 do: [ :each | list add: each ].
@@ -51,11 +38,8 @@ DoubleLinkedListTests>>testAddFirst [
 	self assert: list asArray equals: #( 0 1 2 3 )
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testAddLast [
+{ #category : #testing }
+DoubleLinkedListTests >> testAddLast [
 	| list |
 	list := DoubleLinkedList new.
 	1 to: 3 do: [ :each | list add: each ].
@@ -66,11 +50,8 @@ DoubleLinkedListTests>>testAddLast [
 	self assert: list asArray equals: #( 1 2 3 0 )
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testCollect [
+{ #category : #testing }
+DoubleLinkedListTests >> testCollect [
 	| list doubles |
 	list := DoubleLinkedList new.
 	list addAll: #(1 2 3).
@@ -78,11 +59,8 @@ DoubleLinkedListTests>>testCollect [
 	self assert: doubles asArray equals: #(2 4 6)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testDo [
+{ #category : #testing }
+DoubleLinkedListTests >> testDo [
 	| list value |
 	list := DoubleLinkedList new.
 	list addAll: (1 to: 10).
@@ -92,11 +70,8 @@ DoubleLinkedListTests>>testDo [
 		value := value + 1 ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testEmpty [
+{ #category : #testing }
+DoubleLinkedListTests >> testEmpty [
 	| list |
 	list := DoubleLinkedList new.
 	self assert: list isEmpty.
@@ -106,11 +81,8 @@ DoubleLinkedListTests>>testEmpty [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testFirstAndLastLink [
+{ #category : #testing }
+DoubleLinkedListTests >> testFirstAndLastLink [
 	| list firstLink secondLink |
 	list := DoubleLinkedList new.
 	self should: [ list firstLink ] raise: CollectionIsEmpty. 
@@ -133,11 +105,8 @@ DoubleLinkedListTests>>testFirstAndLastLink [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testIncludes [
+{ #category : #testing }
+DoubleLinkedListTests >> testIncludes [
 	| list |
 	list := DoubleLinkedList new.
 	list addAll: (1 to: 10).
@@ -145,11 +114,8 @@ DoubleLinkedListTests>>testIncludes [
 	self deny: (list includes: 0)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testLinksDo [
+{ #category : #testing }
+DoubleLinkedListTests >> testLinksDo [
 	| list links index |
 	list := DoubleLinkedList new.
 	links := OrderedCollection new.
@@ -162,11 +128,8 @@ DoubleLinkedListTests>>testLinksDo [
 		index := index + 1 ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testOne [
+{ #category : #testing }
+DoubleLinkedListTests >> testOne [
 	| list |
 	list := DoubleLinkedList new.
 	list add: #one.
@@ -176,11 +139,8 @@ DoubleLinkedListTests>>testOne [
 	self assert: list asArray equals: #( one )
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testOneRemoveFirst [
+{ #category : #testing }
+DoubleLinkedListTests >> testOneRemoveFirst [
 	| list |
 	list := DoubleLinkedList new.
 	list add: #one.
@@ -191,11 +151,8 @@ DoubleLinkedListTests>>testOneRemoveFirst [
 	self assert: list isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testOneRemoveLast [
+{ #category : #testing }
+DoubleLinkedListTests >> testOneRemoveLast [
 	| list |
 	list := DoubleLinkedList new.
 	list add: #one.
@@ -206,11 +163,8 @@ DoubleLinkedListTests>>testOneRemoveLast [
 	self assert: list isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testReject [
+{ #category : #testing }
+DoubleLinkedListTests >> testReject [
 	| list even |
 	list := DoubleLinkedList new.
 	list addAll: (1 to: 10).
@@ -218,11 +172,8 @@ DoubleLinkedListTests>>testReject [
 	self assert: even asArray equals: #(2 4 6 8 10)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testReverseDo [
+{ #category : #testing }
+DoubleLinkedListTests >> testReverseDo [
 	| list value |
 	list := DoubleLinkedList new.
 	list addAll: (1 to: 10).
@@ -232,11 +183,8 @@ DoubleLinkedListTests>>testReverseDo [
 		value := value - 1 ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testReverseLinksDo [
+{ #category : #testing }
+DoubleLinkedListTests >> testReverseLinksDo [
 	| list links index |
 	list := DoubleLinkedList new.
 	links := OrderedCollection new.
@@ -249,11 +197,8 @@ DoubleLinkedListTests>>testReverseLinksDo [
 		index := index - 1 ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testSelect [
+{ #category : #testing }
+DoubleLinkedListTests >> testSelect [
 	| list even |
 	list := DoubleLinkedList new.
 	list addAll: (1 to: 10).
@@ -261,11 +206,8 @@ DoubleLinkedListTests>>testSelect [
 	self assert: even asArray equals: #(2 4 6 8 10)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testThree [
+{ #category : #testing }
+DoubleLinkedListTests >> testThree [
 	| list |
 	list := DoubleLinkedList new.
 	1 to: 3 do: [ :each | list add: each ].
@@ -275,11 +217,8 @@ DoubleLinkedListTests>>testThree [
 	self assert: list asArray equals: #( 1 2 3 )
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testThreeRemoveFirst [
+{ #category : #testing }
+DoubleLinkedListTests >> testThreeRemoveFirst [
 	| list link |
 	list := DoubleLinkedList new.
 	1 to: 3 do: [ :each | list add: each ].
@@ -290,11 +229,8 @@ DoubleLinkedListTests>>testThreeRemoveFirst [
 	self assert: list asArray equals: #( 2 3 )
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testThreeRemoveLast [
+{ #category : #testing }
+DoubleLinkedListTests >> testThreeRemoveLast [
 	| list link |
 	list := DoubleLinkedList new.
 	1 to: 3 do: [ :each | list add: each ].
@@ -305,11 +241,8 @@ DoubleLinkedListTests>>testThreeRemoveLast [
 	self assert: list asArray equals: #( 1 2 )
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-DoubleLinkedListTests>>testThreeRemoveLink [
+{ #category : #testing }
+DoubleLinkedListTests >> testThreeRemoveLink [
 	| list link |
 	list := DoubleLinkedList new.
 	list add: 1.

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #NewValueHolderTest,
 	#superclass : #TestCase,
-	#category : #NewValueHolder-Tests,
-	#timestamp : ''
+	#category : #NewValueHolder-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-NewValueHolderTest>>testChange [
+{ #category : #tests }
+NewValueHolderTest >> testChange [
 	| valueHolder fired |
 	valueHolder := 'word' asValueHolder.
 	self assert: valueHolder value equals: 'word'.
@@ -23,11 +16,8 @@ NewValueHolderTest>>testChange [
 	self assert: valueHolder value equals: 'new'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-NewValueHolderTest>>testValuesInBlock [
+{ #category : #tests }
+NewValueHolderTest >> testValuesInBlock [
 	| valueHolder old new ann |
 	valueHolder := 'old' asValueHolder.
 	valueHolder

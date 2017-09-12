@@ -5,68 +5,46 @@ A RestartDebugAction restarts the execution of the current context.
 Class {
 	#name : #RestartDebugAction,
 	#superclass : #DebugAction,
-	#category : #DebuggerActions,
-	#timestamp : '<historical>'
+	#category : #DebuggerActions
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-RestartDebugAction class>>actionType [
+{ #category : #registration }
+RestartDebugAction class >> actionType [
 	<debuggingAction>
 	<contextMenuDebuggingAction>
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-RestartDebugAction>>defaultHelp [
+{ #category : #accessing }
+RestartDebugAction >> defaultHelp [
 	^ 'Go back the start of the current execution context, resetting all local variables and take debugger control.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-RestartDebugAction>>defaultKeymap [
+{ #category : #accessing }
+RestartDebugAction >> defaultKeymap [
 
 	^ PharoShortcuts current restartExecutionShortcut
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-RestartDebugAction>>defaultLabel [
+{ #category : #accessing }
+RestartDebugAction >> defaultLabel [
 
 	^ 'Restart'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-RestartDebugAction>>defaultOrder [
+{ #category : #accessing }
+RestartDebugAction >> defaultOrder [
 
 	^ 10
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-RestartDebugAction>>executeAction [
+{ #category : #actions }
+RestartDebugAction >> executeAction [
 
 	self session restart: self currentContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-RestartDebugAction>>id [
+{ #category : #accessing }
+RestartDebugAction >> id [
 
 	^ #restart
 ]

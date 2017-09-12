@@ -1,12 +1,7 @@
-Extension {
-	#name : #DebugAction
-}
+Extension { #name : #DebugAction }
 
-{
-	#category : #'*spec-debugger',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DebugAction>>asMenuRegistrationIn: aBuilder [
+{ #category : #'*spec-debugger' }
+DebugAction >> asMenuRegistrationIn: aBuilder [
 	| item |
 	item := (aBuilder item: self specId)
 		label: self label, (self keyText ifNil: [ '' ] ifNotNil: [ '  (', self keyText, ')' ] );
@@ -23,20 +18,14 @@ DebugAction>>asMenuRegistrationIn: aBuilder [
 
 ]
 
-{
-	#category : #'*spec-debugger',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DebugAction>>specId [
+{ #category : #'*spec-debugger' }
+DebugAction >> specId [
 
 	^ (self id, 'SpecId') asSymbol
 ]
 
-{
-	#category : #'*spec-debugger',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DebugAction>>specModel [
+{ #category : #'*spec-debugger' }
+DebugAction >> specModel [
 
 	^ #SpecDebugActionButton
 ]

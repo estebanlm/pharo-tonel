@@ -1,12 +1,7 @@
-Extension {
-	#name : #MetacelloProject
-}
+Extension { #name : #MetacelloProject }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MetacelloProject>>spotterForVersionsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MetacelloProject >> spotterForVersionsFor: aStep [
 	<spotterOrder: 1>
 	self flag: #maybeRewriteForDirectStreaming.
 	aStep listProcessor

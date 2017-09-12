@@ -9,24 +9,17 @@ Class {
 		'selectionStart',
 		'selectionEnd'
 	],
-	#category : #OpalCompiler-Tests-FromOld,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:25'
+	#category : #OpalCompiler-Tests-FromOld
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MockSourceEditor>>contents: aText [
+{ #category : #'as yet unclassified' }
+MockSourceEditor >> contents: aText [
 
 	text := aText
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MockSourceEditor>>cut [
+{ #category : #'as yet unclassified' }
+MockSourceEditor >> cut [
 
 	text := (text first: selectionStart-1), (text copyFrom: selectionEnd+1 to: text size).
 		
@@ -34,30 +27,21 @@ MockSourceEditor>>cut [
 	selectionEnd := selectionStart
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MockSourceEditor>>editor [
+{ #category : #'as yet unclassified' }
+MockSourceEditor >> editor [
 
 	^ self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MockSourceEditor>>initialize [
+{ #category : #initialization }
+MockSourceEditor >> initialize [
 
 	super initialize.
 	selectionStart := selectionEnd := 0.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MockSourceEditor>>insertAndSelect: aString at: anInteger [
+{ #category : #'as yet unclassified' }
+MockSourceEditor >> insertAndSelect: aString at: anInteger [
 
 	text := (text first: anInteger-1), 
 		(' ' , aString), 
@@ -67,11 +51,8 @@ MockSourceEditor>>insertAndSelect: aString at: anInteger [
 	selectionEnd := anInteger + aString size 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MockSourceEditor>>notify: aString at: anInteger in: aStream [
+{ #category : #'as yet unclassified' }
+MockSourceEditor >> notify: aString at: anInteger [ in: aStream
 
 	| pos |
 	pos := self selectionInterval notEmpty
@@ -80,59 +61,41 @@ MockSourceEditor>>notify: aString at: anInteger in: aStream [
 	self insertAndSelect: aString at: (pos max: 1)
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MockSourceEditor>>selectFrom: start to: end [
+{ #category : #'as yet unclassified' }
+MockSourceEditor >> selectFrom: start to: end [
 
 	selectionStart := start.
 	selectionEnd := end.
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MockSourceEditor>>selection [
+{ #category : #'as yet unclassified' }
+MockSourceEditor >> selection [
 
 	^ self text copyFrom: selectionStart to: selectionEnd
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MockSourceEditor>>selectionAsStream [
+{ #category : #'as yet unclassified' }
+MockSourceEditor >> selectionAsStream [
 
 	^ ReadStream
 		on: (self text copyFrom: selectionStart to: selectionEnd)
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MockSourceEditor>>selectionInterval [
+{ #category : #'as yet unclassified' }
+MockSourceEditor >> selectionInterval [
 
 	^ Interval from: selectionStart to: selectionEnd.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MockSourceEditor>>startIndex [
+{ #category : #'as yet unclassified' }
+MockSourceEditor >> startIndex [
 
 	^ selectionStart
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MockSourceEditor>>text [
+{ #category : #'as yet unclassified' }
+MockSourceEditor >> text [
 
 	^ text
 ]

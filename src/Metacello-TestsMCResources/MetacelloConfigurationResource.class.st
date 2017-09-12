@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloConfigurationResource,
 	#superclass : #TestResource,
@@ -10,43 +7,30 @@ Class {
 	#classVars : [
 		'ProjectAttributes'
 	],
-	#category : #Metacello-TestsMCResources,
-	#timestamp : ''
+	#category : #Metacello-TestsMCResources
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource class>>project [
+{ #category : #accessing }
+MetacelloConfigurationResource class >> project [
 
 	^self new project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource class>>projectAttributes [
+{ #category : #accessing }
+MetacelloConfigurationResource class >> projectAttributes [
 
 	ProjectAttributes == nil ifTrue: [ ^#() ].
 	^ProjectAttributes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource class>>projectAttributes: aCollection [
+{ #category : #accessing }
+MetacelloConfigurationResource class >> projectAttributes: aCollection [
 
 	ProjectAttributes := aCollection
 ]
 
-{
-	#category : #'Issue 77',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline10B: spec  [
+{ #category : #'Issue 77' }
+MetacelloConfigurationResource >> baseline10B: spec [ 
 	"self reset"
 	<version: '1.0'>
 	
@@ -64,11 +48,8 @@ MetacelloConfigurationResource>>baseline10B: spec  [
 
 ]
 
-{
-	#category : #'Issue 77',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline10D: spec  [
+{ #category : #'Issue 77' }
+MetacelloConfigurationResource >> baseline10D: spec [ 
 	"self reset"
 	<version: '1.0'>
 	
@@ -89,33 +70,24 @@ MetacelloConfigurationResource>>baseline10D: spec  [
 
 ]
 
-{
-	#category : #'Issue 77',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline10MethodSourceB [
+{ #category : #'Issue 77' }
+MetacelloConfigurationResource >> baseline10MethodSourceB [
 
 	^(self class sourceCodeAt: #baseline10B:) asString
 
 
 ]
 
-{
-	#category : #'Issue 77',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline10MethodSourceD [
+{ #category : #'Issue 77' }
+MetacelloConfigurationResource >> baseline10MethodSourceD [
 
 	^(self class sourceCodeAt: #baseline10D:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfProjectFum,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline10ProjectFum: spec [
+{ #category : #ConfigurationOfProjectFum }
+MetacelloConfigurationResource >> baseline10ProjectFum: spec [
     "self reset"
 
     <version: '1.0'>
@@ -138,11 +110,8 @@ MetacelloConfigurationResource>>baseline10ProjectFum: spec [
                 yourself ]
 ]
 
-{
-	#category : #'Issue 77',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline12C: spec  [
+{ #category : #'Issue 77' }
+MetacelloConfigurationResource >> baseline12C: spec [ 
 	"self reset"
 	<version: '1.2'>
 	
@@ -155,22 +124,16 @@ MetacelloConfigurationResource>>baseline12C: spec  [
 
 ]
 
-{
-	#category : #'Issue 77',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline12MethodSourceC [
+{ #category : #'Issue 77' }
+MetacelloConfigurationResource >> baseline12MethodSourceC [
 
 	^(self class sourceCodeAt: #baseline12C:) asString
 
 
 ]
 
-{
-	#category : #'Issue 77',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline13C: spec  [
+{ #category : #'Issue 77' }
+MetacelloConfigurationResource >> baseline13C: spec [ 
 	"self reset"
 	<version: '1.3'>
 	
@@ -183,22 +146,16 @@ MetacelloConfigurationResource>>baseline13C: spec  [
 
 ]
 
-{
-	#category : #'Issue 77',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline13MethodSourceC [
+{ #category : #'Issue 77' }
+MetacelloConfigurationResource >> baseline13MethodSourceC [
 
 	^(self class sourceCodeAt: #baseline13C:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfProjectFie,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline15ProjectFie: spec [
+{ #category : #ConfigurationOfProjectFie }
+MetacelloConfigurationResource >> baseline15ProjectFie: spec [
   "self reset"
 
   <version: '1.5'>
@@ -214,11 +171,8 @@ MetacelloConfigurationResource>>baseline15ProjectFie: spec [
             repository: 'dictionary://Metacello_Configuration_Test_Repository' ] ]
 ]
 
-{
-	#category : #ConfigurationOfFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline20Fan: spec  [
+{ #category : #ConfigurationOfFan }
+MetacelloConfigurationResource >> baseline20Fan: spec [ 
 	"self reset"
 	<version: '2.0'>
 	
@@ -243,11 +197,8 @@ MetacelloConfigurationResource>>baseline20Fan: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline20Foo: spec  [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> baseline20Foo: spec [ 
 	"self reset"
 	<version: '2.0'>
 	
@@ -262,33 +213,24 @@ MetacelloConfigurationResource>>baseline20Foo: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline20MethodSourceFan [
+{ #category : #ConfigurationOfFan }
+MetacelloConfigurationResource >> baseline20MethodSourceFan [
 
 	^(self class sourceCodeAt: #baseline20Fan:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline20MethodSourceFoo [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> baseline20MethodSourceFoo [
 
 	^(self class sourceCodeAt: #baseline20Foo:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfProjectFie,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline25ProjectFie: spec [
+{ #category : #ConfigurationOfProjectFie }
+MetacelloConfigurationResource >> baseline25ProjectFie: spec [
   "self reset"
 
   <version: '2.5'>
@@ -304,11 +246,8 @@ MetacelloConfigurationResource>>baseline25ProjectFie: spec [
             repository: 'dictionary://Metacello_Configuration_Test_Repository' ] ]
 ]
 
-{
-	#category : #ConfigurationOfFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline30Fan: spec  [
+{ #category : #ConfigurationOfFan }
+MetacelloConfigurationResource >> baseline30Fan: spec [ 
 	"self reset"
 	<version: '3.0'>
 	
@@ -326,11 +265,8 @@ MetacelloConfigurationResource>>baseline30Fan: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline30Foo: spec  [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> baseline30Foo: spec [ 
 	"self reset"
 	<version: '3.0'>
 	
@@ -348,33 +284,24 @@ MetacelloConfigurationResource>>baseline30Foo: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline30MethodSourceFan [
+{ #category : #ConfigurationOfFan }
+MetacelloConfigurationResource >> baseline30MethodSourceFan [
 
 	^(self class sourceCodeAt: #baseline30Fan:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline30MethodSourceFoo [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> baseline30MethodSourceFoo [
 
 	^(self class sourceCodeAt: #baseline30Foo:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline35Fan: spec  [
+{ #category : #ConfigurationOfFan }
+MetacelloConfigurationResource >> baseline35Fan: spec [ 
 	"self reset"
 	<version: '3.5'>
 	
@@ -392,11 +319,8 @@ MetacelloConfigurationResource>>baseline35Fan: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline35Foo: spec [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> baseline35Foo: spec [
   "self reset"
 
   <version: '3.5'>
@@ -416,33 +340,24 @@ MetacelloConfigurationResource>>baseline35Foo: spec [
         yourself ]
 ]
 
-{
-	#category : #ConfigurationOfFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline35MethodSourceFan [
+{ #category : #ConfigurationOfFan }
+MetacelloConfigurationResource >> baseline35MethodSourceFan [
 
 	^(self class sourceCodeAt: #baseline35Fan:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline35MethodSourceFoo [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> baseline35MethodSourceFoo [
 
 	^(self class sourceCodeAt: #baseline35Foo:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfProjectFie,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline35ProjectFie: spec  [
+{ #category : #ConfigurationOfProjectFie }
+MetacelloConfigurationResource >> baseline35ProjectFie: spec [ 
 	"just projects"
 	"self reset"
 
@@ -465,11 +380,8 @@ MetacelloConfigurationResource>>baseline35ProjectFie: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40Fan: spec  [
+{ #category : #ConfigurationOfFan }
+MetacelloConfigurationResource >> baseline40Fan: spec [ 
 	"self reset"
 	<version: '4.0'>
 	
@@ -487,11 +399,8 @@ MetacelloConfigurationResource>>baseline40Fan: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfFeaux,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40Feaux: spec  [
+{ #category : #ConfigurationOfFeaux }
+MetacelloConfigurationResource >> baseline40Feaux: spec [ 
 	"self reset"
 	<version: '4.0'>
 	
@@ -504,11 +413,8 @@ MetacelloConfigurationResource>>baseline40Feaux: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40Foo: spec [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> baseline40Foo: spec [
   "self reset"
 
   <version: '4.0'>
@@ -528,110 +434,80 @@ MetacelloConfigurationResource>>baseline40Foo: spec [
         yourself ]
 ]
 
-{
-	#category : #ConfigurationOfFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40MethodSourceFan [
+{ #category : #ConfigurationOfFan }
+MetacelloConfigurationResource >> baseline40MethodSourceFan [
 
 	^(self class sourceCodeAt: #baseline40Fan:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfFeaux,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40MethodSourceFeaux [
+{ #category : #ConfigurationOfFeaux }
+MetacelloConfigurationResource >> baseline40MethodSourceFeaux [
 
 	^(self class sourceCodeAt: #baseline40Feaux:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40MethodSourceFoo [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> baseline40MethodSourceFoo [
 
 	^(self class sourceCodeAt: #baseline40Foo:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfProjectFee,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40MethodSourceProjectFee [
+{ #category : #ConfigurationOfProjectFee }
+MetacelloConfigurationResource >> baseline40MethodSourceProjectFee [
 
 	^(self class sourceCodeAt: #baseline40ProjectFee:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfProjectFoe,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40MethodSourceProjectFoe [
+{ #category : #ConfigurationOfProjectFoe }
+MetacelloConfigurationResource >> baseline40MethodSourceProjectFoe [
 
 	^(self class sourceCodeAt: #baseline40ProjectFoe:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfFum,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40MethodSourceProjectFum [
+{ #category : #ConfigurationOfFum }
+MetacelloConfigurationResource >> baseline40MethodSourceProjectFum [
 
 	^(self class sourceCodeAt: #baseline40ProjectFum:) asString
 
 
 ]
 
-{
-	#category : #'Issue 95',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40MethodSourceProjectInfinite [
+{ #category : #'Issue 95' }
+MetacelloConfigurationResource >> baseline40MethodSourceProjectInfinite [
 
 	^(self class sourceCodeAt: #baseline40ProjectInfinite:) asString
 
 
 ]
 
-{
-	#category : #'Issue 95',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40MethodSourceProjectIssue95 [
+{ #category : #'Issue 95' }
+MetacelloConfigurationResource >> baseline40MethodSourceProjectIssue95 [
 
 	^(self class sourceCodeAt: #baseline40ProjectIssue95:) asString
 
 
 ]
 
-{
-	#category : #'Issue 95',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40MethodSourceProjectLoop [
+{ #category : #'Issue 95' }
+MetacelloConfigurationResource >> baseline40MethodSourceProjectLoop [
 
 	^(self class sourceCodeAt: #baseline40ProjectLoop:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfProjectFee,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40ProjectFee: spec  [
+{ #category : #ConfigurationOfProjectFee }
+MetacelloConfigurationResource >> baseline40ProjectFee: spec [ 
 	"projects and packages"
 	"self reset"
 	<version: '4.0'>
@@ -653,11 +529,8 @@ MetacelloConfigurationResource>>baseline40ProjectFee: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectFie,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40ProjectFie: spec  [
+{ #category : #ConfigurationOfProjectFie }
+MetacelloConfigurationResource >> baseline40ProjectFie: spec [ 
 	"just projects"
 	"self reset"
 
@@ -680,11 +553,8 @@ MetacelloConfigurationResource>>baseline40ProjectFie: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectFoe,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40ProjectFoe: spec  [
+{ #category : #ConfigurationOfProjectFoe }
+MetacelloConfigurationResource >> baseline40ProjectFoe: spec [ 
 	"projects and packages"
 	"self reset"
 	<version: '4.0'>
@@ -703,11 +573,8 @@ MetacelloConfigurationResource>>baseline40ProjectFoe: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfFum,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40ProjectFum: spec  [
+{ #category : #ConfigurationOfFum }
+MetacelloConfigurationResource >> baseline40ProjectFum: spec [ 
 	"master"
 	"self reset"
 	<version: '4.0'>
@@ -743,11 +610,8 @@ MetacelloConfigurationResource>>baseline40ProjectFum: spec  [
 
 ]
 
-{
-	#category : #'Issue 95',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40ProjectInfinite: spec  [
+{ #category : #'Issue 95' }
+MetacelloConfigurationResource >> baseline40ProjectInfinite: spec [ 
 	"self reset"
 	<version: '4.0'>
 	
@@ -771,11 +635,8 @@ MetacelloConfigurationResource>>baseline40ProjectInfinite: spec  [
 			yourself ].
 ]
 
-{
-	#category : #'Issue 95',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40ProjectIssue95: spec  [
+{ #category : #'Issue 95' }
+MetacelloConfigurationResource >> baseline40ProjectIssue95: spec [ 
 	"self reset"
 	<version: '4.0'>
 	
@@ -797,11 +658,8 @@ MetacelloConfigurationResource>>baseline40ProjectIssue95: spec  [
 			yourself ].
 ]
 
-{
-	#category : #'Issue 95',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline40ProjectLoop: spec  [
+{ #category : #'Issue 95' }
+MetacelloConfigurationResource >> baseline40ProjectLoop: spec [ 
 	"self reset"
 	<version: '4.0'>
 	
@@ -827,11 +685,8 @@ MetacelloConfigurationResource>>baseline40ProjectLoop: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline50Fan: spec  [
+{ #category : #ConfigurationOfFan }
+MetacelloConfigurationResource >> baseline50Fan: spec [ 
 	"self reset"
 	<version: '5.0'>
 	
@@ -849,11 +704,8 @@ MetacelloConfigurationResource>>baseline50Fan: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline50Foo: spec  [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> baseline50Foo: spec [ 
 	"self reset"
 	<version: '5.0'>
 	
@@ -872,33 +724,24 @@ MetacelloConfigurationResource>>baseline50Foo: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline50MethodSourceFan [
+{ #category : #ConfigurationOfFan }
+MetacelloConfigurationResource >> baseline50MethodSourceFan [
 
 	^(self class sourceCodeAt: #baseline50Fan:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline50MethodSourceFoo [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> baseline50MethodSourceFoo [
 
 	^(self class sourceCodeAt: #baseline50Foo:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfFix,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline60Fix: spec  [
+{ #category : #ConfigurationOfFix }
+MetacelloConfigurationResource >> baseline60Fix: spec [ 
 	"self reset"
 	<version: '6.0'>
 	
@@ -912,22 +755,16 @@ MetacelloConfigurationResource>>baseline60Fix: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfFix,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline60MethodSourceFix [
+{ #category : #ConfigurationOfFix }
+MetacelloConfigurationResource >> baseline60MethodSourceFix [
 
 	^(self class sourceCodeAt: #baseline60Fix:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfFix,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline61Fix: spec  [
+{ #category : #ConfigurationOfFix }
+MetacelloConfigurationResource >> baseline61Fix: spec [ 
 	"self reset"
 	<version: '6.1'>
 	
@@ -942,22 +779,16 @@ MetacelloConfigurationResource>>baseline61Fix: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfFix,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baseline61MethodSourceFix [
+{ #category : #ConfigurationOfFix }
+MetacelloConfigurationResource >> baseline61MethodSourceFix [
 
 	^(self class sourceCodeAt: #baseline61Fix:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineGoo300Issue156Configuration: spec [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> baselineGoo300Issue156Configuration: spec [
   "https://github.com/dalehenrich/metacello-work/issues/156"
 
   <version: '3.0.0'>
@@ -973,11 +804,8 @@ MetacelloConfigurationResource>>baselineGoo300Issue156Configuration: spec [
         yourself ]
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineGoo400Issue156Configuration: spec [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> baselineGoo400Issue156Configuration: spec [
   "https://github.com/dalehenrich/metacello-work/issues/156"
 
   <version: '4.0.0'>
@@ -990,11 +818,8 @@ MetacelloConfigurationResource>>baselineGoo400Issue156Configuration: spec [
         import: 'Goo' ]
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineGoo500Issue156Configuration: spec [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> baselineGoo500Issue156Configuration: spec [
   "https://github.com/dalehenrich/metacello-work/issues/156"
 
   <version: '5.0.0'>
@@ -1007,11 +832,8 @@ MetacelloConfigurationResource>>baselineGoo500Issue156Configuration: spec [
         import: 'Goo' ]
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineGooIssue156Baseline: spec [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> baselineGooIssue156Baseline: spec [
   "https://github.com/dalehenrich/metacello-work/issues/156"
 
   <baseline>
@@ -1026,11 +848,8 @@ MetacelloConfigurationResource>>baselineGooIssue156Baseline: spec [
         yourself ]
 ]
 
-{
-	#category : #'Issue 115',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion10Issue115: spec [
+{ #category : #'Issue 115' }
+MetacelloConfigurationResource >> baselineVersion10Issue115: spec [
     <version: '1.0-baseline'>
     spec
         for: #'common'
@@ -1048,11 +867,8 @@ MetacelloConfigurationResource>>baselineVersion10Issue115: spec [
             spec package: 'GeauxFoo' ]
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion10Issue119: spec [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> baselineVersion10Issue119: spec [
     <version: '1.0-baseline'>
     spec
         for: #'common'
@@ -1069,11 +885,8 @@ MetacelloConfigurationResource>>baselineVersion10Issue119: spec [
             spec package: 'GoferBar ' ]
 ]
 
-{
-	#category : #'Issue 136',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion10Issue136: spec [
+{ #category : #'Issue 136' }
+MetacelloConfigurationResource >> baselineVersion10Issue136: spec [
 	<version: '1.0-baseline'>
 
 	spec for: #'common' do: [
@@ -1084,11 +897,8 @@ MetacelloConfigurationResource>>baselineVersion10Issue136: spec [
 
 ]
 
-{
-	#category : #'Issue 154',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion10Issue154: spec [
+{ #category : #'Issue 154' }
+MetacelloConfigurationResource >> baselineVersion10Issue154: spec [
     <version: '1.0-baseline'>
     spec
         for: #'common'
@@ -1107,11 +917,8 @@ MetacelloConfigurationResource>>baselineVersion10Issue154: spec [
                 yourself ]
 ]
 
-{
-	#category : #'Issue 154',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion10MetacelloExample: spec [
+{ #category : #'Issue 154' }
+MetacelloConfigurationResource >> baselineVersion10MetacelloExample: spec [
     <version: '1.0-baseline'>
     spec
         for: #'common'
@@ -1121,11 +928,8 @@ MetacelloConfigurationResource>>baselineVersion10MetacelloExample: spec [
             spec package: 'GoferFoo' ]
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion113ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> baselineVersion113ProjectToolBox: spec [
 	<version: '1.1.3-baseline'>
 
 	spec for: #'outer' do: [
@@ -1135,11 +939,8 @@ MetacelloConfigurationResource>>baselineVersion113ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #'Issue 154',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion11Issue154: spec [
+{ #category : #'Issue 154' }
+MetacelloConfigurationResource >> baselineVersion11Issue154: spec [
     <version: '1.1-baseline'>
     spec
         for: #'common'
@@ -1158,11 +959,8 @@ MetacelloConfigurationResource>>baselineVersion11Issue154: spec [
                 yourself ]
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion124ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> baselineVersion124ProjectToolBox: spec [
 	<version: '1.2.4-baseline'>
 
 	spec for: #'common' do: [
@@ -1174,11 +972,8 @@ MetacelloConfigurationResource>>baselineVersion124ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #'Issue 154',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion12Issue154: spec [
+{ #category : #'Issue 154' }
+MetacelloConfigurationResource >> baselineVersion12Issue154: spec [
     <version: '1.2-baseline'>
     spec
         for: #'common'
@@ -1198,11 +993,8 @@ MetacelloConfigurationResource>>baselineVersion12Issue154: spec [
                 yourself ]
 ]
 
-{
-	#category : #'Issue 154',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion13Issue154: spec [
+{ #category : #'Issue 154' }
+MetacelloConfigurationResource >> baselineVersion13Issue154: spec [
     <version: '1.3-baseline'>
     spec
         for: #'common'
@@ -1221,11 +1013,8 @@ MetacelloConfigurationResource>>baselineVersion13Issue154: spec [
                 yourself ]
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion20Issue119: spec [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> baselineVersion20Issue119: spec [
     <version: '2.0-baseline'>
     spec
         for: #'common'
@@ -1243,11 +1032,8 @@ MetacelloConfigurationResource>>baselineVersion20Issue119: spec [
             spec package: 'GoferBar ' ]
 ]
 
-{
-	#category : #'Issue 125',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion20Issue125: spec [
+{ #category : #'Issue 125' }
+MetacelloConfigurationResource >> baselineVersion20Issue125: spec [
     <version: '2.0-baseline'>
     spec
         for: #'common'
@@ -1261,11 +1047,8 @@ MetacelloConfigurationResource>>baselineVersion20Issue125: spec [
                 yourself ]
 ]
 
-{
-	#category : #'Issue 154',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion20Issue154: spec [
+{ #category : #'Issue 154' }
+MetacelloConfigurationResource >> baselineVersion20Issue154: spec [
     <version: '2.0-baseline'>
     spec
         for: #'common'
@@ -1281,11 +1064,8 @@ MetacelloConfigurationResource>>baselineVersion20Issue154: spec [
                 yourself ]
 ]
 
-{
-	#category : #'Issue 171',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion20Issue171: spec [
+{ #category : #'Issue 171' }
+MetacelloConfigurationResource >> baselineVersion20Issue171: spec [
     <version: '2.0-baseline'>
     spec
         for: #'common'
@@ -1302,11 +1082,8 @@ MetacelloConfigurationResource>>baselineVersion20Issue171: spec [
             spec package: 'GeauxFoo' ]
 ]
 
-{
-	#category : #'Issue 171',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion21Issue171: spec [
+{ #category : #'Issue 171' }
+MetacelloConfigurationResource >> baselineVersion21Issue171: spec [
     <version: '2.1-baseline'>
     spec
         for: #'common'
@@ -1319,11 +1096,8 @@ MetacelloConfigurationResource>>baselineVersion21Issue171: spec [
             spec package: 'GeauxFoo' ]
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion30Issue119: spec [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> baselineVersion30Issue119: spec [
     <version: '3.0-baseline'>
     spec
         for: #'common'
@@ -1341,11 +1115,8 @@ MetacelloConfigurationResource>>baselineVersion30Issue119: spec [
             spec package: 'GoferBar' ]
 ]
 
-{
-	#category : #'Issue 125',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion30Issue125: spec [
+{ #category : #'Issue 125' }
+MetacelloConfigurationResource >> baselineVersion30Issue125: spec [
     <version: '3.0-baseline' imports: #('2.0-baseline')>
     spec
         for: #(#'attribute1' #'attribute2')
@@ -1357,11 +1128,8 @@ MetacelloConfigurationResource>>baselineVersion30Issue125: spec [
                 yourself ]
 ]
 
-{
-	#category : #'Issue 154',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion30Issue154: spec [
+{ #category : #'Issue 154' }
+MetacelloConfigurationResource >> baselineVersion30Issue154: spec [
     <version: '3.0-baseline'>
     spec
         for: #'common'
@@ -1377,11 +1145,8 @@ MetacelloConfigurationResource>>baselineVersion30Issue154: spec [
                 yourself ]
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>baselineVersion40Issue119: spec [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> baselineVersion40Issue119: spec [
     <version: '4.0-baseline'>
     spec
         for: #'common'
@@ -1399,83 +1164,59 @@ MetacelloConfigurationResource>>baselineVersion40Issue119: spec [
             spec package: 'GoferBar' ]
 ]
 
-{
-	#category : #'issue 283',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>bleedingEdge206A: spec [
+{ #category : #'issue 283' }
+MetacelloConfigurationResource >> bleedingEdge206A: spec [
   "self reset"
 
   <symbolicVersion: #'bleedingEdge'>
   spec for: #'common' version: '2.0'
 ]
 
-{
-	#category : #'issue 283',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>bleedingEdge206B: spec [
+{ #category : #'issue 283' }
+MetacelloConfigurationResource >> bleedingEdge206B: spec [
   "self reset"
 
   <symbolicVersion: #'bleedingEdge'>
   spec for: #'common' version: '2.1'
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>bleedingEdgeVersion: spec [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> bleedingEdgeVersion: spec [
     "self reset"
 
     <symbolicVersion: #'bleedingEdge'>
     spec for: #'common' version: '4.0'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>monticelloRepository [
+{ #category : #accessing }
+MetacelloConfigurationResource >> monticelloRepository [
 	^ monticelloRepository
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>postloadDoIt [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> postloadDoIt [
 	"self reset"
 
 	Smalltalk at: #'Metacello_Configuration_Test_POST_DoIt_Result' put: true
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>preloadDoIt [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> preloadDoIt [
 	"self reset"
 
 	Smalltalk at: #'Metacello_Configuration_Test_DoIt_Result' put: true
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>preloadDoItMethodSource [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> preloadDoItMethodSource [
 
 	^(self class sourceCodeAt: #preloadDoIt) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>project [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> project [
 	"self reset"
 
 	| constructor project |
@@ -1493,33 +1234,24 @@ MetacelloConfigurationResource>>project [
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>projectClassMethodSource [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> projectClassMethodSource [
 
 	^(self class class sourceCodeAt: #project) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>projectMethodSource [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> projectMethodSource [
 
 	^(self class sourceCodeAt: #project) asString
 
 
 ]
 
-{
-	#category : #'issue 283',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>projectVersion10Issue283: spec [
+{ #category : #'issue 283' }
+MetacelloConfigurationResource >> projectVersion10Issue283: spec [
   <version: '1.0'>
   spec
     for: #'common'
@@ -1533,11 +1265,8 @@ MetacelloConfigurationResource>>projectVersion10Issue283: spec [
             repository: 'dictionary://Metacello_Configuration_Test_Repository' ] ]
 ]
 
-{
-	#category : #'issue 283',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>projectVersion20Issue283: spec [
+{ #category : #'issue 283' }
+MetacelloConfigurationResource >> projectVersion20Issue283: spec [
   <version: '2.0'>
   spec
     for: #'common'
@@ -1551,11 +1280,8 @@ MetacelloConfigurationResource>>projectVersion20Issue283: spec [
             repository: 'dictionary://Metacello_Configuration_Test_Repository' ] ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUp [
+{ #category : #running }
+MetacelloConfigurationResource >> setUp [
   "self reset"
 
   super setUp.
@@ -1587,11 +1313,8 @@ MetacelloConfigurationResource>>setUp [
     yourself
 ]
 
-{
-	#category : #ConfigurationOfFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfFan [
+{ #category : #ConfigurationOfFan }
+MetacelloConfigurationResource >> setUpConfigurationOfFan [
 	"self reset"
 	
 	| reference className definitionArray |
@@ -1659,11 +1382,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfFan [
 
 ]
 
-{
-	#category : #ConfigurationOfFeaux,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfFeaux [
+{ #category : #ConfigurationOfFeaux }
+MetacelloConfigurationResource >> setUpConfigurationOfFeaux [
 	"self reset"
 	
 	| reference className definitionArray |
@@ -1707,11 +1427,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfFeaux [
 
 ]
 
-{
-	#category : #ConfigurationOfFix,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfFix [
+{ #category : #ConfigurationOfFix }
+MetacelloConfigurationResource >> setUpConfigurationOfFix [
 	"self reset"
 	
 	| reference className definitionArray |
@@ -1761,11 +1478,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfFix [
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfFoo [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> setUpConfigurationOfFoo [
     "self reset"
 
     | reference className definitionArray |
@@ -1851,11 +1565,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfFoo [
                 dependencies: #())
 ]
 
-{
-	#category : #ConfigurationOfFum,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfFum [
+{ #category : #ConfigurationOfFum }
+MetacelloConfigurationResource >> setUpConfigurationOfFum [
 	"self reset"
 	
 	| reference className definitionArray |
@@ -1899,11 +1610,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfFum [
 
 ]
 
-{
-	#category : #'Issue 154',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfMetacelloExampledkh1 [
+{ #category : #'Issue 154' }
+MetacelloConfigurationResource >> setUpConfigurationOfMetacelloExampledkh1 [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -1958,11 +1666,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfMetacelloExampledkh1 [
     ^ versionInfo
 ]
 
-{
-	#category : #'issue 283',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectConfigIssue283dkh1 [
+{ #category : #'issue 283' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectConfigIssue283dkh1 [
   "self reset"
 
   | reference className definitionArray versionInfo |
@@ -2018,11 +1723,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectConfigIssue283dkh1 [
   ^ versionInfo
 ]
 
-{
-	#category : #ConfigurationOfProjectFee,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectFee [
+{ #category : #ConfigurationOfProjectFee }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectFee [
 	"self reset"
 	
 	| reference className definitionArray |
@@ -2066,11 +1768,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectFee [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectFie,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectFie [
+{ #category : #ConfigurationOfProjectFie }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectFie [
     "self reset"
 
     | reference className definitionArray |
@@ -2137,11 +1836,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectFie [
                 dependencies: #())
 ]
 
-{
-	#category : #ConfigurationOfProjectFoe,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectFoe [
+{ #category : #ConfigurationOfProjectFoe }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectFoe [
 	"self reset"
 	
 	| reference className definitionArray |
@@ -2185,11 +1881,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectFoe [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectFum,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectFum [
+{ #category : #ConfigurationOfProjectFum }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectFum [
     "self reset"
 
     | reference className definitionArray |
@@ -2238,11 +1931,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectFum [
                 dependencies: #())
 ]
 
-{
-	#category : #'Issue 95',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectInfinite [
+{ #category : #'Issue 95' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectInfinite [
 	"self reset"
 	
 	| reference className definitionArray |
@@ -2286,11 +1976,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectInfinite [
 
 ]
 
-{
-	#category : #'Issue 115',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue115 [
+{ #category : #'Issue 115' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue115 [
 	"self reset"
 	
 	| versionInfo |
@@ -2299,11 +1986,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue115 [
 	
 ]
 
-{
-	#category : #'Issue 115',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue115dkh1 [
+{ #category : #'Issue 115' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue115dkh1 [
 	"self reset"
 	
 	| reference className definitionArray versionInfo |
@@ -2353,11 +2037,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue115dkh1 [
 	^versionInfo
 ]
 
-{
-	#category : #'Issue 115',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue115dkh2: ancestors [
+{ #category : #'Issue 115' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue115dkh2: ancestors [
 	"self reset"
 	
 	| reference className definitionArray versionInfo |
@@ -2414,11 +2095,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue115dkh2: ancesto
 
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue119 [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue119 [
     "self reset"
 
     | versionInfo |
@@ -2431,11 +2109,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue119 [
     versionInfo := self setUpConfigurationOfProjectIssue119dkh7: {versionInfo}
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue119dkh1 [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue119dkh1 [
     "version 1.0"
 
     "self reset"
@@ -2492,11 +2167,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue119dkh1 [
     ^ versionInfo
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue119dkh2: ancestors [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue119dkh2: ancestors [
     "version 2.0"
 
     "self reset"
@@ -2553,11 +2225,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue119dkh2: ancesto
     ^ versionInfo
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue119dkh3: ancestors [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue119dkh3: ancestors [
     "version 3.0"
 
     "self reset"
@@ -2614,11 +2283,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue119dkh3: ancesto
     ^ versionInfo
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue119dkh4: ancestors [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue119dkh4: ancestors [
     "version 4.0"
 
     "self reset"
@@ -2675,11 +2341,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue119dkh4: ancesto
     ^ versionInfo
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue119dkh5: ancestors [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue119dkh5: ancestors [
     "versions, 4.0, 4.1, 4.2, 4.3, 4.4"
 
     "self reset"
@@ -2760,11 +2423,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue119dkh5: ancesto
     ^ versionInfo
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue119dkh6: ancestors [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue119dkh6: ancestors [
     "versions 1.0, 2.0. 3.0,4.0, 4.1, 4.2, 4.3, 4.4"
 
     "self reset"
@@ -2881,11 +2541,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue119dkh6: ancesto
     ^ versionInfo
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue119dkh7: ancestors [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue119dkh7: ancestors [
     "versions 5.0"
 
     "self reset"
@@ -2942,11 +2599,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue119dkh7: ancesto
     ^ versionInfo
 ]
 
-{
-	#category : #'Issue 125',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue125 [
+{ #category : #'Issue 125' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue125 [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -3008,11 +2662,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue125 [
     ^ versionInfo
 ]
 
-{
-	#category : #'Issue 136',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue136 [
+{ #category : #'Issue 136' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue136 [
 	"self reset"
 	
 	| versionInfo |
@@ -3021,11 +2672,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue136 [
 	
 ]
 
-{
-	#category : #'Issue 136',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue136dkh1 [
+{ #category : #'Issue 136' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue136dkh1 [
 	"self reset"
 	
 	| reference className definitionArray versionInfo |
@@ -3075,11 +2723,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue136dkh1 [
 	^versionInfo
 ]
 
-{
-	#category : #'Issue 136',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue136dkh2: ancestors [
+{ #category : #'Issue 136' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue136dkh2: ancestors [
 	"self reset"
 	
 	| reference className definitionArray versionInfo |
@@ -3136,11 +2781,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue136dkh2: ancesto
 
 ]
 
-{
-	#category : #'Issue 154',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue154 [
+{ #category : #'Issue 154' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue154 [
     "self reset"
 
     | versionInfo |
@@ -3148,11 +2790,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue154 [
     versionInfo := self setUpConfigurationOfProjectIssue154dkh1
 ]
 
-{
-	#category : #'Issue 154',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue154dkh1 [
+{ #category : #'Issue 154' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue154dkh1 [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -3231,11 +2870,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue154dkh1 [
     ^ versionInfo
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue156 [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue156 [
   "https://github.com/dalehenrich/metacello-work/issues/156"
 
   "self reset"
@@ -3245,11 +2881,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue156 [
     setUpIssue156ConfigurationOfGoo
 ]
 
-{
-	#category : #'Issue 171',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue171 [
+{ #category : #'Issue 171' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue171 [
     "self reset"
 
     | versionInfo |
@@ -3257,11 +2890,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue171 [
     versionInfo := self setUpConfigurationOfProjectIssue171dkh2: {versionInfo}
 ]
 
-{
-	#category : #'Issue 171',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue171dkh1 [
+{ #category : #'Issue 171' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue171dkh1 [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -3316,11 +2946,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue171dkh1 [
     ^ versionInfo
 ]
 
-{
-	#category : #'Issue 171',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue171dkh2: ancestors [
+{ #category : #'Issue 171' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue171dkh2: ancestors [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -3375,11 +3002,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue171dkh2: ancesto
     ^ versionInfo
 ]
 
-{
-	#category : #'issue 283',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue283 [
+{ #category : #'issue 283' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue283 [
   "self reset"
 
   | versionInfo |
@@ -3388,11 +3012,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue283 [
   self setUpConfigurationOfProjectConfigIssue283dkh1
 ]
 
-{
-	#category : #'issue 283',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue283dkh1 [
+{ #category : #'issue 283' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue283dkh1 [
   "self reset"
 
   | reference className definitionArray versionInfo |
@@ -3454,11 +3075,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue283dkh1 [
   ^ versionInfo
 ]
 
-{
-	#category : #'issue 283',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue283dkh2: ancestors [
+{ #category : #'issue 283' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue283dkh2: ancestors [
   "self reset"
 
   | reference className definitionArray versionInfo |
@@ -3526,11 +3144,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue283dkh2: ancesto
   ^ versionInfo
 ]
 
-{
-	#category : #'Issue 95',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue95 [
+{ #category : #'Issue 95' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectIssue95 [
 	"self reset"
 	
 	| reference className definitionArray |
@@ -3574,11 +3189,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectIssue95 [
 
 ]
 
-{
-	#category : #'Issue 95',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectLoop [
+{ #category : #'Issue 95' }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectLoop [
 	"self reset"
 	
 	| reference className definitionArray |
@@ -3622,11 +3234,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectLoop [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfProjectToolBox [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> setUpConfigurationOfProjectToolBox [
     "self reset"
 
     | reference className definitionArray |
@@ -3914,11 +3523,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfProjectToolBox [
                 dependencies: #())
 ]
 
-{
-	#category : #ConfigurationOfSymbolic,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpConfigurationOfSymbolic [
+{ #category : #ConfigurationOfSymbolic }
+MetacelloConfigurationResource >> setUpConfigurationOfSymbolic [
 	"self reset"
 	
 	| reference className definitionArray |
@@ -3986,11 +3592,8 @@ MetacelloConfigurationResource>>setUpConfigurationOfSymbolic [
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpIssue156BaselineOfGoo [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> setUpIssue156BaselineOfGoo [
   "https://github.com/dalehenrich/metacello-work/issues/156"
 
   "self reset"
@@ -4029,11 +3632,8 @@ MetacelloConfigurationResource>>setUpIssue156BaselineOfGoo [
         dependencies: #())
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpIssue156ConfigurationOfGoo [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> setUpIssue156ConfigurationOfGoo [
   "https://github.com/dalehenrich/metacello-work/issues/156"
 
   "self reset"
@@ -4087,11 +3687,8 @@ MetacelloConfigurationResource>>setUpIssue156ConfigurationOfGoo [
         dependencies: #())
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpIssue156ConfigurationOfProjectGoo [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> setUpIssue156ConfigurationOfProjectGoo [
   "https://github.com/dalehenrich/metacello-work/issues/156"
 
   "self reset"
@@ -4148,11 +3745,8 @@ MetacelloConfigurationResource>>setUpIssue156ConfigurationOfProjectGoo [
         dependencies: #())
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpIssue156ConfigurationOfProjectSoo [
+{ #category : #ConfigurationOfFoo }
+MetacelloConfigurationResource >> setUpIssue156ConfigurationOfProjectSoo [
   "self reset"
 
   | reference className definitionArray |
@@ -4207,11 +3801,8 @@ MetacelloConfigurationResource>>setUpIssue156ConfigurationOfProjectSoo [
         dependencies: #())
 ]
 
-{
-	#category : #'Issue 77',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpIssue77 [
+{ #category : #'Issue 77' }
+MetacelloConfigurationResource >> setUpIssue77 [
 	"self reset"
 	
 	self
@@ -4221,11 +3812,8 @@ MetacelloConfigurationResource>>setUpIssue77 [
 		
 ]
 
-{
-	#category : #'Issue 77',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpIssue77B [
+{ #category : #'Issue 77' }
+MetacelloConfigurationResource >> setUpIssue77B [
 	"self reset"
 	
 	| reference className definitionArray |
@@ -4269,11 +3857,8 @@ MetacelloConfigurationResource>>setUpIssue77B [
 
 ]
 
-{
-	#category : #'Issue 77',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpIssue77C [
+{ #category : #'Issue 77' }
+MetacelloConfigurationResource >> setUpIssue77C [
 	"self reset"
 	
 	| reference className definitionArray |
@@ -4323,11 +3908,8 @@ MetacelloConfigurationResource>>setUpIssue77C [
 
 ]
 
-{
-	#category : #'Issue 77',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpIssue77D [
+{ #category : #'Issue 77' }
+MetacelloConfigurationResource >> setUpIssue77D [
 	"self reset"
 	
 	| reference className definitionArray |
@@ -4371,11 +3953,8 @@ MetacelloConfigurationResource>>setUpIssue77D [
 
 ]
 
-{
-	#category : #'Issue 95',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpIssue95 [
+{ #category : #'Issue 95' }
+MetacelloConfigurationResource >> setUpIssue95 [
 	"self reset"
 	
 	self
@@ -4385,11 +3964,8 @@ MetacelloConfigurationResource>>setUpIssue95 [
 		yourself		
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>setUpMonticelloRepository [
+{ #category : #running }
+MetacelloConfigurationResource >> setUpMonticelloRepository [
 	"This method builds a fake repository with the version references from #buildReferences."
 	"self reset"
 
@@ -4397,33 +3973,24 @@ MetacelloConfigurationResource>>setUpMonticelloRepository [
 
 ]
 
-{
-	#category : #'issue 283',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>stableVersion283A: spec [
+{ #category : #'issue 283' }
+MetacelloConfigurationResource >> stableVersion283A: spec [
   "self reset"
 
   <symbolicVersion: #'stable'>
   spec for: #'common' version: '2.0'
 ]
 
-{
-	#category : #'issue 283',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>stableVersion283B: spec [
+{ #category : #'issue 283' }
+MetacelloConfigurationResource >> stableVersion283B: spec [
   "self reset"
 
   <symbolicVersion: #'stable'>
   spec for: #'common' version: '2.1'
 ]
 
-{
-	#category : #ConfigurationOfSymbolic,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>stableVersionC: spec  [
+{ #category : #ConfigurationOfSymbolic }
+MetacelloConfigurationResource >> stableVersionC: spec [ 
 	"self reset"
 	<symbolicVersion: #stable>
 	
@@ -4435,11 +4002,8 @@ MetacelloConfigurationResource>>stableVersionC: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfSymbolic,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>stableVersionD: spec  [
+{ #category : #ConfigurationOfSymbolic }
+MetacelloConfigurationResource >> stableVersionD: spec [ 
 	"self reset"
 	<symbolicVersion: #stable>
 	
@@ -4451,31 +4015,22 @@ MetacelloConfigurationResource>>stableVersionD: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfSymbolic,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>stableVersionDMethodSourceSymbolic [
+{ #category : #ConfigurationOfSymbolic }
+MetacelloConfigurationResource >> stableVersionDMethodSourceSymbolic [
 
 	^(self class sourceCodeAt: #stableVersionD:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>symbolicVersionExplicitlyDoesNotExistProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> symbolicVersionExplicitlyDoesNotExistProjectToolBox: spec [
     <symbolicVersion: #'explicitly does not exist'>
     spec for: #'common' version: #'notDefined'
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version100ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version100ProjectToolBox: spec [
 	<version: '1.0-baseline'>
 
 	spec for: #'common' do: [
@@ -4495,11 +4050,8 @@ MetacelloConfigurationResource>>version100ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version101ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version101ProjectToolBox: spec [
 	<version: '1.0.1-baseline'>
 
 	spec for: #'common' do: [
@@ -4507,11 +4059,8 @@ MetacelloConfigurationResource>>version101ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version102ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version102ProjectToolBox: spec [
 	<version: '1.0.2-baseline'>
 
 	spec for: #'common' do: [
@@ -4527,11 +4076,8 @@ MetacelloConfigurationResource>>version102ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version103ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version103ProjectToolBox: spec [
 	<version: '1.0.3-baseline' imports: #('1.0.2-baseline' )>
 
 	spec for: #'common' do: [
@@ -4539,11 +4085,8 @@ MetacelloConfigurationResource>>version103ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version104ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version104ProjectToolBox: spec [
 	<version: '1.0.4-baseline' imports: #('1.0.2-baseline' )>
 
 	spec for: #'common' do: [
@@ -4551,11 +4094,8 @@ MetacelloConfigurationResource>>version104ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version105ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version105ProjectToolBox: spec [
 	<version: '1.0.5-baseline'>
 
 	spec for: #'common' do: [
@@ -4564,11 +4104,8 @@ MetacelloConfigurationResource>>version105ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version106ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version106ProjectToolBox: spec [
 	<version: '1.0.6-baseline'>
 
 	spec for: #'common' do: [
@@ -4580,11 +4117,8 @@ MetacelloConfigurationResource>>version106ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version107ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version107ProjectToolBox: spec [
 	<version: '1.0.7-baseline'>
 
 	spec for: #'common' do: [
@@ -4599,11 +4133,8 @@ MetacelloConfigurationResource>>version107ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version108ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version108ProjectToolBox: spec [
 	<version: '1.0.8-baseline'>
 
 	spec for: #'common' do: [
@@ -4614,11 +4145,8 @@ MetacelloConfigurationResource>>version108ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version109ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version109ProjectToolBox: spec [
 	<version: '1.0.9-baseline'>
 
 	spec for: #'common' do: [
@@ -4629,11 +4157,8 @@ MetacelloConfigurationResource>>version109ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #'Issue 115',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version10Issue115: spec [
+{ #category : #'Issue 115' }
+MetacelloConfigurationResource >> version10Issue115: spec [
 	<version: '1.0' imports: #('1.0-baseline')>
 
 	spec for: #'common' do: [
@@ -4643,11 +4168,8 @@ MetacelloConfigurationResource>>version10Issue115: spec [
 
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version10Issue119: spec [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> version10Issue119: spec [
     <version: '1.0' imports: #('1.0-baseline')>
     spec
         for: #'common'
@@ -4657,11 +4179,8 @@ MetacelloConfigurationResource>>version10Issue119: spec [
             spec package: 'GoferBar' with: 'GoferBar-jf.1' ]
 ]
 
-{
-	#category : #'Issue 136',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version10Issue136: spec [
+{ #category : #'Issue 136' }
+MetacelloConfigurationResource >> version10Issue136: spec [
 	<version: '1.0' imports: #('1.0-baseline')>
 
 	spec for: #'common' do: [
@@ -4670,11 +4189,8 @@ MetacelloConfigurationResource>>version10Issue136: spec [
 
 ]
 
-{
-	#category : #'Issue 115',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version10Issue156: spec [
+{ #category : #'Issue 115' }
+MetacelloConfigurationResource >> version10Issue156: spec [
   "https://github.com/dalehenrich/metacello-work/issues/156"
 
   <version: '1.0.0'>
@@ -4691,11 +4207,8 @@ MetacelloConfigurationResource>>version10Issue156: spec [
         yourself ]
 ]
 
-{
-	#category : #'Issue 154',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version10MetacelloExample: spec [
+{ #category : #'Issue 154' }
+MetacelloConfigurationResource >> version10MetacelloExample: spec [
     <version: '1.0' imports: #('1.0-baseline')>
     spec
         for: #'common'
@@ -4704,11 +4217,8 @@ MetacelloConfigurationResource>>version10MetacelloExample: spec [
             spec package: 'GoferFoo' with: 'GoferFoo-lr.2' ]
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version110ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version110ProjectToolBox: spec [
 	<version: '1.1.0-baseline'>
 
 	spec for: #'common' do: [
@@ -4735,11 +4245,8 @@ MetacelloConfigurationResource>>version110ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version111ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version111ProjectToolBox: spec [
 	<version: '1.1.1-baseline'>
 
 	spec for: #'common' do: [
@@ -4753,11 +4260,8 @@ MetacelloConfigurationResource>>version111ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version112ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version112ProjectToolBox: spec [
 	<version: '1.1.2-baseline'>
 
 	spec for: #'common' do: [
@@ -4773,11 +4277,8 @@ MetacelloConfigurationResource>>version112ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version113ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version113ProjectToolBox: spec [
 	<version: '1.1.3' imports: #('1.1.3-baseline' )>
 
 	spec for: #'outer' do: [
@@ -4793,11 +4294,8 @@ MetacelloConfigurationResource>>version113ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version114ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version114ProjectToolBox: spec [
 	<version: '1.1.4-baseline'>
 
 	spec for: #'common' do: [
@@ -4811,11 +4309,8 @@ MetacelloConfigurationResource>>version114ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version115ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version115ProjectToolBox: spec [
 	<version: '1.1.5-baseline' imports: #('1.1.4-baseline' )>
 
 	spec for: #'common' do: [
@@ -4825,11 +4320,8 @@ MetacelloConfigurationResource>>version115ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version116ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version116ProjectToolBox: spec [
 	<version: '1.1.6-baseline' imports: #('1.1.4-baseline' )>
 
 	spec for: #'common' do: [
@@ -4839,11 +4331,8 @@ MetacelloConfigurationResource>>version116ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version117ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version117ProjectToolBox: spec [
 	<version: '1.1.7-baseline' imports: #('1.0-baseline' )>
 
 	spec for: #'common' do: [
@@ -4852,11 +4341,8 @@ MetacelloConfigurationResource>>version117ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version118ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version118ProjectToolBox: spec [
 	<version: '1.1.8-baseline' imports: #('1.0-baseline' )>
 
 	spec for: #'common' do: [
@@ -4865,11 +4351,8 @@ MetacelloConfigurationResource>>version118ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version119ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version119ProjectToolBox: spec [
 	<version: '1.1.9-baseline' imports: #('1.1.4-baseline' )>
 
 	spec for: #'common' do: [
@@ -4882,11 +4365,8 @@ MetacelloConfigurationResource>>version119ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #'Issue 115',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version11Issue115: spec [
+{ #category : #'Issue 115' }
+MetacelloConfigurationResource >> version11Issue115: spec [
 	<version: '1.1' imports: #('1.0-baseline')>
 
 	spec for: #'common' do: [
@@ -4896,11 +4376,8 @@ MetacelloConfigurationResource>>version11Issue115: spec [
 
 ]
 
-{
-	#category : #'Issue 136',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version11Issue136: spec [
+{ #category : #'Issue 136' }
+MetacelloConfigurationResource >> version11Issue136: spec [
 	<version: '1.1' imports: #('1.0-baseline')>
 
 	spec for: #'common' do: [
@@ -4909,11 +4386,8 @@ MetacelloConfigurationResource>>version11Issue136: spec [
 
 ]
 
-{
-	#category : #'Issue 115',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version11Issue156: spec [
+{ #category : #'Issue 115' }
+MetacelloConfigurationResource >> version11Issue156: spec [
   "https://github.com/dalehenrich/metacello-work/issues/156"
 
   <version: '1.1.0'>
@@ -4926,11 +4400,8 @@ MetacelloConfigurationResource>>version11Issue156: spec [
         yourself ]
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version120ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version120ProjectToolBox: spec [
 	<version: '1.2.0-baseline' imports: #('1.1.4-baseline' )>
 
 	spec for: #'common' do: [
@@ -4940,11 +4411,8 @@ MetacelloConfigurationResource>>version120ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version121ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version121ProjectToolBox: spec [
 	<version: '1.2.1-baseline'>
 
 	spec for: #'common' do: [
@@ -4965,11 +4433,8 @@ MetacelloConfigurationResource>>version121ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version122ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version122ProjectToolBox: spec [
 	<version: '1.2.2-baseline'>
 
 	spec for: #'common' do: [
@@ -4980,11 +4445,8 @@ MetacelloConfigurationResource>>version122ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version123ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version123ProjectToolBox: spec [
 	<version: '1.2.3-baseline'>
 
 	spec for: #'common' do: [
@@ -4996,11 +4458,8 @@ MetacelloConfigurationResource>>version123ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version124ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version124ProjectToolBox: spec [
 	<version: '1.2.4' imports: #('1.2.4-baseline' )>
 
 	spec for: #'common' do: [
@@ -5008,11 +4467,8 @@ MetacelloConfigurationResource>>version124ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version125ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version125ProjectToolBox: spec [
 	<version: '1.2.5-baseline' imports: #('1.0-baseline' )>
 
 	spec for: #'common' do: [
@@ -5023,11 +4479,8 @@ MetacelloConfigurationResource>>version125ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version126ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version126ProjectToolBox: spec [
 	<version: '1.2.6-baseline' imports: #('1.2.5-baseline' )>
 
 	spec for: #'common' do: [
@@ -5038,11 +4491,8 @@ MetacelloConfigurationResource>>version126ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version127ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version127ProjectToolBox: spec [
 	<version: '1.2.7-baseline'>
 
 	spec for: #'common' do: [
@@ -5056,11 +4506,8 @@ MetacelloConfigurationResource>>version127ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version128ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version128ProjectToolBox: spec [
 	<version: '1.2.8-baseline' imports: #('1.2.7-baseline' )>
 
 	spec for: #'common' do: [
@@ -5071,11 +4518,8 @@ MetacelloConfigurationResource>>version128ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version129ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version129ProjectToolBox: spec [
 	<version: '1.2.9-baseline'>
 
 	spec for: #'common' do: [
@@ -5094,11 +4538,8 @@ MetacelloConfigurationResource>>version129ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version130ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version130ProjectToolBox: spec [
 	<version: '1.3.0-baseline'>
 
 	spec for: #'common' do: [
@@ -5115,11 +4556,8 @@ MetacelloConfigurationResource>>version130ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version131ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version131ProjectToolBox: spec [
 	<version: '1.3.1-baseline'>
 
 	spec for: #'common' do: [
@@ -5152,11 +4590,8 @@ MetacelloConfigurationResource>>version131ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version132ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version132ProjectToolBox: spec [
 	<version: '1.3.2-baseline'>
 
 	spec for: #'common' do: [
@@ -5180,11 +4615,8 @@ MetacelloConfigurationResource>>version132ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version133ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version133ProjectToolBox: spec [
 	<version: '1.3.3-baseline'>
 
 	spec for: #'common' do: [
@@ -5211,11 +4643,8 @@ MetacelloConfigurationResource>>version133ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version134ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version134ProjectToolBox: spec [
 	<version: '1.3.4-baseline'>
 
 	spec for: #'common' do: [
@@ -5223,11 +4652,8 @@ MetacelloConfigurationResource>>version134ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #ConfigurationOfProjectToolBox,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version135ProjectToolBox: spec [
+{ #category : #ConfigurationOfProjectToolBox }
+MetacelloConfigurationResource >> version135ProjectToolBox: spec [
 	<version: '1.3.5' imports: #('1.2.4-baseline' )>
 
 	spec for: #'common' do: [
@@ -5238,11 +4664,8 @@ MetacelloConfigurationResource>>version135ProjectToolBox: spec [
 
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version20Issue119: spec [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> version20Issue119: spec [
     <version: '2.0' imports: #('2.0-baseline')>
     spec
         for: #'common'
@@ -5252,11 +4675,8 @@ MetacelloConfigurationResource>>version20Issue119: spec [
             spec package: 'GoferBar' with: 'GoferBar-jf.1' ]
 ]
 
-{
-	#category : #'Issue 115',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version20Issue156: spec [
+{ #category : #'Issue 115' }
+MetacelloConfigurationResource >> version20Issue156: spec [
   "https://github.com/dalehenrich/metacello-work/issues/156"
 
   <version: '2.0.0'>
@@ -5273,11 +4693,8 @@ MetacelloConfigurationResource>>version20Issue156: spec [
         yourself ]
 ]
 
-{
-	#category : #'Issue 171',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version20Issue171: spec [
+{ #category : #'Issue 171' }
+MetacelloConfigurationResource >> version20Issue171: spec [
     <version: '2.0' imports: #('2.0-baseline')>
     spec
         for: #'common'
@@ -5287,11 +4704,8 @@ MetacelloConfigurationResource>>version20Issue171: spec [
             spec package: 'GeauxFoo' with: 'GeauxFoo-lr.1' ]
 ]
 
-{
-	#category : #'issue 283',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version20Issue283: spec [
+{ #category : #'issue 283' }
+MetacelloConfigurationResource >> version20Issue283: spec [
   <version: '2.0'>
   spec
     for: #'common'
@@ -5301,11 +4715,8 @@ MetacelloConfigurationResource>>version20Issue283: spec [
       spec package: 'GoferFoo' with: 'GoferFoo-lr.2' ]
 ]
 
-{
-	#category : #'Issue 171',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version21Issue171: spec [
+{ #category : #'Issue 171' }
+MetacelloConfigurationResource >> version21Issue171: spec [
     <version: '2.1' imports: #('2.1-baseline')>
     spec
         for: #'common'
@@ -5315,11 +4726,8 @@ MetacelloConfigurationResource>>version21Issue171: spec [
             spec package: 'GeauxFoo' with: 'GeauxFoo-lr.1' ]
 ]
 
-{
-	#category : #'issue 283',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version21Issue283: spec [
+{ #category : #'issue 283' }
+MetacelloConfigurationResource >> version21Issue283: spec [
   <version: '2.1'>
   spec
     for: #'common'
@@ -5329,11 +4737,8 @@ MetacelloConfigurationResource>>version21Issue283: spec [
       spec package: 'GoferFoo' with: 'GoferFoo-lr.4' ]
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version30Issue119: spec [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> version30Issue119: spec [
     <version: '3.0' imports: #('3.0-baseline')>
     spec
         for: #'common'
@@ -5343,11 +4748,8 @@ MetacelloConfigurationResource>>version30Issue119: spec [
             spec package: 'GoferBar' with: 'GoferBar-jf.1' ]
 ]
 
-{
-	#category : #'Issue 125',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version30Issue125: spec [
+{ #category : #'Issue 125' }
+MetacelloConfigurationResource >> version30Issue125: spec [
     <version: '3.0' imports: #('3.0-baseline')>
     spec
         for: #'common'
@@ -5374,11 +4776,8 @@ MetacelloConfigurationResource>>version30Issue125: spec [
                 yourself ]
 ]
 
-{
-	#category : #'Issue 115',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version30Issue156: spec [
+{ #category : #'Issue 115' }
+MetacelloConfigurationResource >> version30Issue156: spec [
   "https://github.com/dalehenrich/metacello-work/issues/156"
 
   <version: '3.0.0'>
@@ -5395,11 +4794,8 @@ MetacelloConfigurationResource>>version30Issue156: spec [
         yourself ]
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version40Issue119: spec [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> version40Issue119: spec [
     <version: '4.0' imports: #('4.0-baseline')>
     spec
         for: #'common'
@@ -5409,11 +4805,8 @@ MetacelloConfigurationResource>>version40Issue119: spec [
             spec package: 'GoferBar' with: 'GoferBar-jf.1' ]
 ]
 
-{
-	#category : #ConfigurationOfSymbolic,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version40Symbolic: spec  [
+{ #category : #ConfigurationOfSymbolic }
+MetacelloConfigurationResource >> version40Symbolic: spec [ 
 	"self reset"
 	<version: '4.0'>
 	
@@ -5427,22 +4820,16 @@ MetacelloConfigurationResource>>version40Symbolic: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfSymbolic,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version40SymbolicMethodSourceSymbolic [
+{ #category : #ConfigurationOfSymbolic }
+MetacelloConfigurationResource >> version40SymbolicMethodSourceSymbolic [
 
 	^(self class sourceCodeAt: #version40Symbolic:) asString
 
 
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version41Issue119: spec [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> version41Issue119: spec [
     <version: '4.1' imports: #('4.0-baseline')>
     spec
         for: #'common'
@@ -5452,11 +4839,8 @@ MetacelloConfigurationResource>>version41Issue119: spec [
             spec package: 'GoferBar' with: 'GoferBar-jf.1' ]
 ]
 
-{
-	#category : #ConfigurationOfSymbolic,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version41Symbolic: spec  [
+{ #category : #ConfigurationOfSymbolic }
+MetacelloConfigurationResource >> version41Symbolic: spec [ 
 	"self reset"
 	<version: '4.1'>
 	
@@ -5470,22 +4854,16 @@ MetacelloConfigurationResource>>version41Symbolic: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfSymbolic,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version41SymbolicMethodSourceSymbolic [
+{ #category : #ConfigurationOfSymbolic }
+MetacelloConfigurationResource >> version41SymbolicMethodSourceSymbolic [
 
 	^(self class sourceCodeAt: #version41Symbolic:) asString
 
 
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version42Issue119: spec [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> version42Issue119: spec [
     <version: '4.2' imports: #('4.0-baseline')>
     spec
         for: #'common'
@@ -5495,11 +4873,8 @@ MetacelloConfigurationResource>>version42Issue119: spec [
             spec package: 'GoferBar ' with: 'GoferBar-jf.1' ]
 ]
 
-{
-	#category : #ConfigurationOfSymbolic,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version42Symbolic: spec  [
+{ #category : #ConfigurationOfSymbolic }
+MetacelloConfigurationResource >> version42Symbolic: spec [ 
 	"self reset"
 	<version: '4.2'>
 	
@@ -5513,22 +4888,16 @@ MetacelloConfigurationResource>>version42Symbolic: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfSymbolic,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version42SymbolicMethodSourceSymbolic [
+{ #category : #ConfigurationOfSymbolic }
+MetacelloConfigurationResource >> version42SymbolicMethodSourceSymbolic [
 
 	^(self class sourceCodeAt: #version42Symbolic:) asString
 
 
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version43Issue119: spec [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> version43Issue119: spec [
     <version: '4.3' imports: #('4.0-baseline')>
     spec
         for: #'common'
@@ -5538,11 +4907,8 @@ MetacelloConfigurationResource>>version43Issue119: spec [
             spec package: 'GoferBar ' with: 'GoferBar-jf.1' ]
 ]
 
-{
-	#category : #ConfigurationOfSymbolic,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version43Symbolic: spec  [
+{ #category : #ConfigurationOfSymbolic }
+MetacelloConfigurationResource >> version43Symbolic: spec [ 
 	"self reset"
 	<version: '4.3'>
 	
@@ -5556,22 +4922,16 @@ MetacelloConfigurationResource>>version43Symbolic: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfSymbolic,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version43SymbolicMethodSourceSymbolic [
+{ #category : #ConfigurationOfSymbolic }
+MetacelloConfigurationResource >> version43SymbolicMethodSourceSymbolic [
 
 	^(self class sourceCodeAt: #version43Symbolic:) asString
 
 
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version44Issue119: spec [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> version44Issue119: spec [
     <version: '4.4' imports: #('4.0-baseline')>
     spec
         for: #'common'
@@ -5581,11 +4941,8 @@ MetacelloConfigurationResource>>version44Issue119: spec [
             spec package: 'GoferBar ' with: 'GoferBar-jf.1' ]
 ]
 
-{
-	#category : #'Issue 119',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloConfigurationResource>>version50Issue119: spec [
+{ #category : #'Issue 119' }
+MetacelloConfigurationResource >> version50Issue119: spec [
     <version: '5.0' imports: #('4.0-baseline')>
     spec
         for: #'common'

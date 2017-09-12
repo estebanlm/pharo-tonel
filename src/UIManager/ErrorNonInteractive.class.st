@@ -9,26 +9,19 @@ Class {
 	#instVars : [
 		'exception'
 	],
-	#category : #UIManager,
-	#timestamp : 'IgorStasenko 1/25/2011 13:29'
+	#category : #UIManager
 }
 
-{
-	#category : #signalling,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-ErrorNonInteractive class>>signalForException: anError [
+{ #category : #signalling }
+ErrorNonInteractive class >> signalForException: anError [
 
 	^ self new
 		exception: anError;
 		signal
 ]
 
-{
-	#category : #exceptiondescription,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-ErrorNonInteractive>>defaultAction [
+{ #category : #exceptiondescription }
+ErrorNonInteractive >> defaultAction [
 	" log error and quit "
 	
 	^ UIManager default 
@@ -36,11 +29,8 @@ ErrorNonInteractive>>defaultAction [
 		withMessage: self description
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-ErrorNonInteractive>>description [
+{ #category : #accessing }
+ErrorNonInteractive >> description [
 	^ String streamContents: [ :s |
 		s nextPutAll: 'An attempt to use interactive tools detected, while in non-interactive mode'. 
 		self messageText  ifNotEmpty: [ :message| 
@@ -49,20 +39,14 @@ ErrorNonInteractive>>description [
 			s cr; tab; print: ex ]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-ErrorNonInteractive>>exception [
+{ #category : #accessing }
+ErrorNonInteractive >> exception [
 
 	^ exception
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-ErrorNonInteractive>>exception: anError [
+{ #category : #accessing }
+ErrorNonInteractive >> exception: anError [
 
 	exception := anError
 ]

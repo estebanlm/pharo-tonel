@@ -19,25 +19,18 @@ Class {
 		'number',
 		'title'
 	],
-	#category : #IssueTracking,
-	#timestamp : 'SeanDeNigris 5/7/2015 10:27'
+	#category : #IssueTracking
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PharoIssue class>>number: anInteger  [
+{ #category : #'instance creation' }
+PharoIssue class >> number: anInteger [ 
 	^ self new
 		number: anInteger;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PharoIssue>>changesFromSliceCommitMessage [
+{ #category : #private }
+PharoIssue >> changesFromSliceCommitMessage [
 
 	| messageHeaderLines changesLines |
 	messageHeaderLines := 3.
@@ -45,77 +38,53 @@ PharoIssue>>changesFromSliceCommitMessage [
 	^ changesLines joinUsing: Character cr
 ]
 
-{
-	#category : #communicating,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PharoIssue>>creationNotification [
+{ #category : #communicating }
+PharoIssue >> creationNotification [
 	^ String streamContents: [ :str |
 		str nextPutAll: self headerString;
 		cr;
 		print: self trackerUrl ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PharoIssue>>downloadTitle [
+{ #category : #private }
+PharoIssue >> downloadTitle [
 	^ ZnClient new
 		url: 'http://tracker.pharo.org/issues/name/', self number asString;
 		enforceHttpSuccess: true;
 		get.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PharoIssue>>headerString [
+{ #category : #private }
+PharoIssue >> headerString [
 	^ 'Issue ', self number asString, ': ', self title.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PharoIssue>>number [
+{ #category : #accessing }
+PharoIssue >> number [
 	^ number
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PharoIssue>>number: anInteger [
+{ #category : #accessing }
+PharoIssue >> number: anInteger [
 	number := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PharoIssue>>slice [
+{ #category : #accessing }
+PharoIssue >> slice [
 	^ MCSliceInfo new
 		issueNumber: self number asString;
 		title: self title;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PharoIssue>>sliceCommitMessage [
+{ #category : #private }
+PharoIssue >> sliceCommitMessage [
 	^ self slice workingCopy versionInfo message.
 	
 ]
 
-{
-	#category : #communicating,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PharoIssue>>sliceNotification [
+{ #category : #communicating }
+PharoIssue >> sliceNotification [
 	^ String streamContents: [ :str |
 		str
 			nextPutAll: 'Fix in inbox: ';
@@ -125,28 +94,19 @@ PharoIssue>>sliceNotification [
 		nextPutAll: self changesFromSliceCommitMessage ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PharoIssue>>title [
+{ #category : #accessing }
+PharoIssue >> title [
 
 	^ title ifNil: [ title := self downloadTitle ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PharoIssue>>title: aString [
+{ #category : #accessing }
+PharoIssue >> title: aString [
 	title := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PharoIssue>>trackerUrl [
+{ #category : #accessing }
+PharoIssue >> trackerUrl [
 	^ ('https://pharo.fogbugz.com/default.asp?', self number asString) asUrl
 	
 ]

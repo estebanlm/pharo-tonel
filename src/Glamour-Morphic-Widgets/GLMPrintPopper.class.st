@@ -13,15 +13,11 @@ Class {
 	#instVars : [
 		'inspectButton'
 	],
-	#category : #Glamour-Morphic-Widgets-Popper,
-	#timestamp : 'AndreiChis 10/1/2014 13:24'
+	#category : #Glamour-Morphic-Widgets-Popper
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrintPopper class>>selectionEvaluationPopper [
+{ #category : #examples }
+GLMPrintPopper class >> selectionEvaluationPopper [
 	"
 	self selectionEvaluationPopper
 	"
@@ -32,11 +28,8 @@ GLMPrintPopper class>>selectionEvaluationPopper [
 			setSelection: (1to:6))
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrintPopper class>>simpleObjectPopper [
+{ #category : #examples }
+GLMPrintPopper class >> simpleObjectPopper [
 	"
 	self simpleObjectPopper
 	"
@@ -46,32 +39,23 @@ GLMPrintPopper class>>simpleObjectPopper [
 		withResult: 'notification goes here'.
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrintPopper>>evaluateAndOpenFromRubric: aMorph [
+{ #category : #public }
+GLMPrintPopper >> evaluateAndOpenFromRubric: aMorph [
 
 	self 
 		openFromRubric: aMorph
 		withResult: aMorph textArea editor evaluateSelection
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrintPopper>>initialize [
+{ #category : #initialization }
+GLMPrintPopper >> initialize [
 	super initialize.
 	self initializeInspectButton.
 	self initializeTextMorph
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrintPopper>>initializeInspectButton [
+{ #category : #initialization }
+GLMPrintPopper >> initializeInspectButton [
 
 	inspectButton := MultistateButtonMorph new
 		extent: GLMUIThemeExtraIcons glamorousInspect extent;
@@ -82,11 +66,8 @@ GLMPrintPopper>>initializeInspectButton [
 		fullFrame: (LayoutFrame fractions: (1 @ 0 corner: 1 @ 0) offsets: (inspectButton width  @ 0 corner: 0 @ (2*inspectButton width) ))
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrintPopper>>initializeTextMorph [
+{ #category : #initialization }
+GLMPrintPopper >> initializeTextMorph [
 	textMorph := RubScrolledTextMorph new.
 	textMorph
 		beReadOnly;
@@ -100,11 +81,8 @@ GLMPrintPopper>>initializeTextMorph [
 		addMorph: textMorph fullFrame: (LayoutFrame fractions: (0 @ 0 corner: 1 @ 1) offsets: (0 @ 0 corner: 0 @ 0))
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrintPopper>>openFromRubric: aMorph withResult: anObject [
+{ #category : #public }
+GLMPrintPopper >> openFromRubric: aMorph withResult: anObject [
 	| string |
 	string := anObject printString.
 	self withString: string from: aMorph.

@@ -32,575 +32,382 @@ Class {
 		'collectionNotIncluded',
 		'simpleCollection'
 	],
-	#category : #Collections-Tests-Sequenceable,
-	#timestamp : 'BG 1/10/2004 22:07'
+	#category : #Collections-Tests-Sequenceable
 }
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>aValue [
+{ #category : #helpers }
+OrderedCollectionTest >> aValue [
 
 	^ 33
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>accessCollection [
+{ #category : #requirements }
+OrderedCollectionTest >> accessCollection [
 
 	^ indexCollection
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>anIndex [
+{ #category : #helpers }
+OrderedCollectionTest >> anIndex [
 
 	^ 2
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>anotherElementNotIn [
+{ #category : #'tests - includes' }
+OrderedCollectionTest >> anotherElementNotIn [
 	^ 42
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>anotherElementOrAssociationIn [
+{ #category : #requirements }
+OrderedCollectionTest >> anotherElementOrAssociationIn [
 	" return an element (or an association for Dictionary ) present  in 'collection' "
 	^ self collection  anyOne
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>anotherElementOrAssociationNotIn [
+{ #category : #requirements }
+OrderedCollectionTest >> anotherElementOrAssociationNotIn [
 	" return an element (or an association for Dictionary )not present  in 'collection' "
 	^ elementNotIn 
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>anotherValue [
+{ #category : #helpers }
+OrderedCollectionTest >> anotherValue [
 
 	^ 66
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collection [
+{ #category : #setup }
+OrderedCollectionTest >> collection [
 
 	^ collectionWith4Elements
 ]
 
-{
-	#category : #'test - creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionClass  [
+{ #category : #'test - creation' }
+OrderedCollectionTest >> collectionClass [ 
 	
 	^ OrderedCollection
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionInForIncluding [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionInForIncluding [
 	^ self nonEmpty copyWithoutFirst.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionMoreThan1NoDuplicates [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionMoreThan1NoDuplicates [
 	" return a collection of size 5 without equal elements"
 	^ withoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionMoreThan5Elements [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionMoreThan5Elements [
 " return a collection including at least 5 elements"
 	
 	^collection5Elements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionNotIncluded [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionNotIncluded [
 	^ OrderedCollection new add: elementNotIn ; add: elementNotIn ; yourself.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionOfCollectionsOfInts [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionOfCollectionsOfInts [
 	^collectionOfCollectionsOfInts.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionOfCollectionsOfStrings [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionOfCollectionsOfStrings [
 	^collectionOfCollectionsOfStrings.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionOfFloat [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionOfFloat [
 	^ collectionOfFloat 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionWith1TimeSubcollection [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionWith1TimeSubcollection [
 " return a collection including 'oldSubCollection'  only one time "
 	^ ((OrderedCollection new add: elementNotIn; yourself),self oldSubCollection) add: elementNotIn;yourself   
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionWith2TimeSubcollection [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionWith2TimeSubcollection [
 " return a collection including 'oldSubCollection'  two or many time "
 	^ (((OrderedCollection new add: elementNotIn; yourself),self oldSubCollection ) add: elementNotIn;yourself),self  oldSubCollection
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionWith5Elements [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionWith5Elements [
 " return a collection of size 5 including 5 elements"
 ^ indexCollection 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionWithCharacters [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionWithCharacters [
 	^withCharacters.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionWithCopyNonIdentical [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionWithCopyNonIdentical [
 	" return a collection that include elements for which 'copy' return a different object (this is not the case of SmallInteger)"
 	^ collectionOfFloat
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionWithElement [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionWithElement [
 	"Returns a collection that already includes what is returned by #element."
 	^ collectionWithElement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionWithElementsToRemove [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionWithElementsToRemove [
 	^ nonEmpty copyWithoutFirst.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionWithEqualElements [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionWithEqualElements [
 " return a collecition including atLeast two elements equal"
 
 ^collectionWithDuplicateElement 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionWithNonIdentitySameAtEndAndBegining [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionWithNonIdentitySameAtEndAndBegining [
 	" return a collection with elements at end and begining equals only with classic equality (they are not the same object).
 (others elements of the collection are not equal to those elements)"
 	^ floatCollectionWithSameBeginingEnd 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionWithSameAtEndAndBegining [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionWithSameAtEndAndBegining [
 " return a collection with elements at end and begining equals .
 (others elements of the collection are not equal to those elements)"
 	^ floatCollectionWithSameBeginingEnd 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionWithSortableElements [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionWithSortableElements [
 " return a collection elements that can be sorte ( understanding message ' < '  or ' > ')"
 	^ collectionOfFloat 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionWithoutEqualElements [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionWithoutEqualElements [
 
 " return a collection not including equal elements "
 	^ withoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>collectionWithoutNilElements [
+{ #category : #requirements }
+OrderedCollectionTest >> collectionWithoutNilElements [
 " return a collection that doesn't includes a nil element  and that doesn't includes equal elements'"
 	^ withoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>element [
+{ #category : #requirements }
+OrderedCollectionTest >> element [
 	"Returns an object that can be added to the collection returned by #collection."
 	^ 5
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>elementInCollectionOfFloat [
+{ #category : #requirements }
+OrderedCollectionTest >> elementInCollectionOfFloat [
 	^ collectionOfFloat anyOne.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>elementInForElementAccessing [
+{ #category : #requirements }
+OrderedCollectionTest >> elementInForElementAccessing [
 " return an element inculded in 'accessCollection '"
 	^ self accessCollection anyOne
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>elementInForIncludesTest [
+{ #category : #requirements }
+OrderedCollectionTest >> elementInForIncludesTest [
 " return an element included in nonEmpty "
 	^ self nonEmpty anyOne
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>elementInForIndexAccessing [
+{ #category : #requirements }
+OrderedCollectionTest >> elementInForIndexAccessing [
 
 ^ self accessCollection  anyOne.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>elementNotIn [
+{ #category : #requirements }
+OrderedCollectionTest >> elementNotIn [
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>elementNotInForElementAccessing [
+{ #category : #requirements }
+OrderedCollectionTest >> elementNotInForElementAccessing [
 " return an element not included in 'accessCollection' "
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>elementNotInForIndexAccessing [
+{ #category : #requirements }
+OrderedCollectionTest >> elementNotInForIndexAccessing [
 
 	^ elementNotIn 
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>elementNotInForOccurrences [
+{ #category : #'tests - includes' }
+OrderedCollectionTest >> elementNotInForOccurrences [
 	^ 666
 ]
 
-{
-	#category : #'test - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>elementToAdd [
+{ #category : #'test - copy' }
+OrderedCollectionTest >> elementToAdd [
 	^ 55
 ]
 
-{
-	#category : #'test - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>elementTwiceIn [
+{ #category : #'test - remove' }
+OrderedCollectionTest >> elementTwiceIn [
 	^ super elementTwiceIn
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>elementTwiceInForOccurrences [
+{ #category : #requirements }
+OrderedCollectionTest >> elementTwiceInForOccurrences [
 " return an element included exactly two time in # collectionWithEqualElements"
 ^ duplicateElement 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>elementsCopyNonIdenticalWithoutEqualElements [
+{ #category : #requirements }
+OrderedCollectionTest >> elementsCopyNonIdenticalWithoutEqualElements [
 	" return a collection that does niot incllude equal elements ( classic equality )"
 	^ collectionOfFloat
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>empty [
+{ #category : #setup }
+OrderedCollectionTest >> empty [
 	
 	^ empty
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>emptyButAllocatedWith20  [
+{ #category : #setup }
+OrderedCollectionTest >> emptyButAllocatedWith20 [ 
 
 	^ emptyButAllocatedWith20
 ]
 
-{
-	#category : #'test - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>expectedSizeAfterReject [
+{ #category : #'test - iterate' }
+OrderedCollectionTest >> expectedSizeAfterReject [
 	^1
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>firstCollection [
+{ #category : #requirements }
+OrderedCollectionTest >> firstCollection [
 " return a collection that will be the first part of the concatenation"
 	^ nonEmpty 	
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>firstIndex [
+{ #category : #requirements }
+OrderedCollectionTest >> firstIndex [
 " return an index between 'nonEmpty' bounds that is < to 'second index' "
 	^1
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>floatCollectionWithSameAtEndAndBegining [
+{ #category : #requirements }
+OrderedCollectionTest >> floatCollectionWithSameAtEndAndBegining [
 " return a collection with elements at end and begining equals only with classic equality (they are not the same object).
 (others elements of the collection are not equal to those elements)"
 	^ floatCollectionWithSameBeginingEnd 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>indexArray [
+{ #category : #requirements }
+OrderedCollectionTest >> indexArray [
 	^ indexArray .
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>indexInForCollectionWithoutDuplicates [
+{ #category : #requirements }
+OrderedCollectionTest >> indexInForCollectionWithoutDuplicates [
 " return an index between 'collectionWithoutEqualsElements'  bounds"
 	^ 2
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>indexInNonEmpty [
+{ #category : #requirements }
+OrderedCollectionTest >> indexInNonEmpty [
 " return an index between bounds of 'nonEmpty' "
 
 	^ 2
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>integerCollection [
+{ #category : #requirements }
+OrderedCollectionTest >> integerCollection [
 " return a collection only including SmallInteger elements"
 	^ indexCollection 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>integerCollectionWithoutEqualElements [
+{ #category : #requirements }
+OrderedCollectionTest >> integerCollectionWithoutEqualElements [
 " return a collection of integer without equal elements"
 	^ withoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>moreThan3Elements [
+{ #category : #requirements }
+OrderedCollectionTest >> moreThan3Elements [
 	" return a collection including atLeast 3 elements"
 	^ indexCollection 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>moreThan4Elements [
+{ #category : #requirements }
+OrderedCollectionTest >> moreThan4Elements [
 
 " return a collection including at leat 4 elements"
 	^ indexCollection 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>newElement [
+{ #category : #requirements }
+OrderedCollectionTest >> newElement [
 "return an element that will be put in the collection in place of another"
 	^999
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>nonEmpty [
+{ #category : #setup }
+OrderedCollectionTest >> nonEmpty [
 	
 	^ nonEmpty
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>nonEmpty1Element [
+{ #category : #requirements }
+OrderedCollectionTest >> nonEmpty1Element [
 " return a collection of size 1 including one element"
 	^ OrderedCollection new add:( self nonEmpty anyOne); yourself.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>nonEmptyMoreThan1Element [
+{ #category : #requirements }
+OrderedCollectionTest >> nonEmptyMoreThan1Element [
 " return a collection with more than one element"
 	^ withoutEqualElements  .
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>nonEmptyWithoutEqualElements [
+{ #category : #requirements }
+OrderedCollectionTest >> nonEmptyWithoutEqualElements [
 " return a collection without equal elements "
 	^ withoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>oldSubCollection [
+{ #category : #requirements }
+OrderedCollectionTest >> oldSubCollection [
 " return a subCollection included in collectionWith1TimeSubcollection .
 ex :   subCollection := #( 2 3 4) and collectionWith1TimeSubcollection := #(1 2 3 4 5)"
 	^ nonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>otherCollection [
+{ #category : #requirements }
+OrderedCollectionTest >> otherCollection [
 	^ otherCollection
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>replacementCollection [
+{ #category : #requirements }
+OrderedCollectionTest >> replacementCollection [
 " return a collection that will be used to replace 'oldSubcollection' in ' collectionWith1TimeSubcollection'  " 
 	^ collectionWith4Elements
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>replacementCollectionSameSize [
+{ #category : #requirements }
+OrderedCollectionTest >> replacementCollectionSameSize [
 " return a collection of size (secondIndex - firstIndex + 1)"
 
 | res |
@@ -613,48 +420,33 @@ res := OrderedCollection new.
 	^res.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>result [
+{ #category : #requirements }
+OrderedCollectionTest >> result [
 
 ^ collectResult 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>secondCollection [
+{ #category : #requirements }
+OrderedCollectionTest >> secondCollection [
 " return a collection that will be the second part of the concatenation"
 	^ collectionWith4Elements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>secondIndex [
+{ #category : #requirements }
+OrderedCollectionTest >> secondIndex [
 " return an index between 'nonEmpty' bounds that is > to 'second index' "
 	^2
 ]
 
-{
-	#category : #parameters,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>selectorToAccessValuePutIn [
+{ #category : #parameters }
+OrderedCollectionTest >> selectorToAccessValuePutIn [
 	"return the selector of the method that should be invoked to access an element"
 	
 	^ #first
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>setUp [
+{ #category : #setup }
+OrderedCollectionTest >> setUp [
 
 	
 	nonEmpty := OrderedCollection new  add: self valuePutIn; add: self elementTwiceIn; add: self elementTwiceIn; yourself.
@@ -680,28 +472,19 @@ OrderedCollectionTest>>setUp [
 	collection5Elements := OrderedCollection new add: 1; add: 2;  add: 3;  add: 4;  add: 5; yourself.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>simpleCollection [
+{ #category : #requirements }
+OrderedCollectionTest >> simpleCollection [
 	^simpleCollection.
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>sizeCollection [
+{ #category : #setup }
+OrderedCollectionTest >> sizeCollection [
 
 	^ collectionWith4Elements
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>sortedInAscendingOrderCollection [
+{ #category : #requirements }
+OrderedCollectionTest >> sortedInAscendingOrderCollection [
 	"Return a collection sorted in ascending order"
 
 	^ OrderedCollection new
@@ -713,29 +496,20 @@ OrderedCollectionTest>>sortedInAscendingOrderCollection [
 		yourself
 ]
 
-{
-	#category : #'test - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>speciesClass [
+{ #category : #'test - iterate' }
+OrderedCollectionTest >> speciesClass [
 	
 	^ OrderedCollection
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>subCollectionNotIn [
+{ #category : #requirements }
+OrderedCollectionTest >> subCollectionNotIn [
 
 	^ self collectionNotIncluded .
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>test0FixtureTConvertAsSetForMultiplinessTest [
+{ #category : #'tests - fixture' }
+OrderedCollectionTest >> test0FixtureTConvertAsSetForMultiplinessTest [
 	"a collection ofFloat with equal elements:"
 
 	| res |
@@ -753,11 +527,8 @@ OrderedCollectionTest>>test0FixtureTConvertAsSetForMultiplinessTest [
 	self assert: res = false
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAdd [
+{ #category : #'tests - adding' }
+OrderedCollectionTest >> testAdd [
 	| l |
 	l := #(1 2 3 4) asOrderedCollection.
 	l add: 88.
@@ -768,11 +539,8 @@ OrderedCollectionTest>>testAdd [
 
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAddAfter [
+{ #category : #'tests - adding' }
+OrderedCollectionTest >> testAddAfter [
 
 	| l |
 	l := #(1 2 3 4) asOrderedCollection.
@@ -784,11 +552,8 @@ OrderedCollectionTest>>testAddAfter [
 
 ]
 
-{
-	#category : #'testing-public methods',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAddAfterIndex [
+{ #category : #'testing-public methods' }
+OrderedCollectionTest >> testAddAfterIndex [
 	"self run: #testAddAfterIndex"
 	| l |
 	l := #(1 2 3 4) asOrderedCollection.
@@ -808,11 +573,8 @@ OrderedCollectionTest>>testAddAfterIndex [
 	self should: [l add: 666 afterIndex: l size+1] raise: Error.
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAddAll [
+{ #category : #'tests - adding' }
+OrderedCollectionTest >> testAddAll [
 	"Allows one to add each element of an orderedCollection at the end of another
 	orderedCollection "
 	"self run:#testAddAll" 
@@ -824,11 +586,8 @@ OrderedCollectionTest>>testAddAll [
 	self assert: c1 = #(1 2 3 4 5 6 7 8 9) asOrderedCollection
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAddAllFirst [
+{ #category : #'tests - adding' }
+OrderedCollectionTest >> testAddAllFirst [
 	"Allows one to add each element of an orderedCollection at the beginning of another
 	orderedCollection "
 	"self run:#testAddAllFirst" 
@@ -840,11 +599,8 @@ OrderedCollectionTest>>testAddAllFirst [
 	self assert: c2 = #(1 2 3 4 5 6 7 8 9) asOrderedCollection
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAddAllFirstUnlessAlreadyPresent [
+{ #category : #'tests - adding' }
+OrderedCollectionTest >> testAddAllFirstUnlessAlreadyPresent [
 	"Allows one to add each element of an orderedCollection at the beginning of
 	another orderedCollection preserving the order but no duplicate element"
 	"self run:#testAddAllFirstUnlessAlreadyPresent" 
@@ -861,11 +617,8 @@ OrderedCollectionTest>>testAddAllFirstUnlessAlreadyPresent [
 	
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAddAllLast [
+{ #category : #'tests - adding' }
+OrderedCollectionTest >> testAddAllLast [
 	"Allows one to add each element of an orderedCollection at the beginning of another
 	orderedCollection "
 	"self run:#testAddAllLast" 
@@ -877,11 +630,8 @@ OrderedCollectionTest>>testAddAllLast [
 	self assert: c1 = #(1 2 3 4 5 6 7 8 9) asOrderedCollection
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAddBefore [
+{ #category : #'tests - adding' }
+OrderedCollectionTest >> testAddBefore [
 
 	| l |
 	l := #(1 2 3 4) asOrderedCollection.
@@ -893,11 +643,8 @@ OrderedCollectionTest>>testAddBefore [
 
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAddBeforeAndRemove [
+{ #category : #'tests - adding' }
+OrderedCollectionTest >> testAddBeforeAndRemove [
 
 	| l initialCollection |
 	l := #(1 2 3 4) asOrderedCollection.
@@ -913,11 +660,8 @@ OrderedCollectionTest>>testAddBeforeAndRemove [
 
 ]
 
-{
-	#category : #'testing-public methods',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAddBeforeIndex [
+{ #category : #'testing-public methods' }
+OrderedCollectionTest >> testAddBeforeIndex [
 	"self run: #testAddBeforeIndex"
 	| l |
 	l := #(1 2 3 4) asOrderedCollection.
@@ -939,11 +683,8 @@ OrderedCollectionTest>>testAddBeforeIndex [
 
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAddDuplicateItem1 [
+{ #category : #'tests - adding' }
+OrderedCollectionTest >> testAddDuplicateItem1 [
 	| collection |
 	collection := #('Jim' 'Mary' 'John' 'Andrew' ) asOrderedCollection.
 	collection add: 'John' before: 'John'.
@@ -956,11 +697,8 @@ OrderedCollectionTest>>testAddDuplicateItem1 [
 								at: (collection indexOf: 'John'))])
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAddFirst [
+{ #category : #'tests - adding' }
+OrderedCollectionTest >> testAddFirst [
 	| l |
 	l := #(1 2 3 4) asOrderedCollection.
 	l addFirst: 88.
@@ -971,11 +709,8 @@ OrderedCollectionTest>>testAddFirst [
 
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAddItem1 [
+{ #category : #'tests - adding' }
+OrderedCollectionTest >> testAddItem1 [
 
    | collection size |
    collection := #('Jim' 'Mary' 'John' 'Andrew' ) asOrderedCollection.
@@ -986,11 +721,8 @@ OrderedCollectionTest>>testAddItem1 [
 
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAddItem2 [
+{ #category : #'tests - adding' }
+OrderedCollectionTest >> testAddItem2 [
 	| collection |
 	collection := #('Jim' 'Mary' 'John' 'Andrew' ) asOrderedCollection.
 	collection add: 'James' before: 'Jim'.
@@ -1003,11 +735,8 @@ OrderedCollectionTest>>testAddItem2 [
 			= (collection indexOf: 'Andrew')
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAddLast [
+{ #category : #'tests - adding' }
+OrderedCollectionTest >> testAddLast [
 	| l |
 	l := #(1 2 3 4) asOrderedCollection.
 	l addLast: 88.
@@ -1018,11 +747,8 @@ OrderedCollectionTest>>testAddLast [
 
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAsOrderedCollectionKeepsIdentity [
+{ #category : #'tests - converting' }
+OrderedCollectionTest >> testAsOrderedCollectionKeepsIdentity [
 	
 	|x y|
 	x := (1 to: 5) asOrderedCollection.
@@ -1030,31 +756,22 @@ OrderedCollectionTest>>testAsOrderedCollectionKeepsIdentity [
 	self assert: y identityHash = x identityHash  
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAsOrderedCollectionReturnsOrderedCollection [
+{ #category : #'tests - converting' }
+OrderedCollectionTest >> testAsOrderedCollectionReturnsOrderedCollection [
 	
 	self assert: #(5 4 3 ) asSortedCollection asOrderedCollection species == OrderedCollection 
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAt [
+{ #category : #'tests - accessing' }
+OrderedCollectionTest >> testAt [
 	| collection |
 	collection := #('Jim' 'Mary' 'John' 'Andrew' ) asOrderedCollection.
 	self assert: (collection at:1) = 'Jim'.
 	self assert: (collection at:2) = 'Mary'
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAtIfAbsentPut [
+{ #category : #'tests - adding' }
+OrderedCollectionTest >> testAtIfAbsentPut [
 	"Allows one to add an element at an index if no element exist at this index"
 
 	"self run:#testAtIfAbsentPut"
@@ -1069,11 +786,8 @@ OrderedCollectionTest>>testAtIfAbsentPut [
 	self assert: c = #(1 2 3 4 5 nil 7) asOrderedCollection
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testAtPut [
+{ #category : #'tests - accessing' }
+OrderedCollectionTest >> testAtPut [
 	"Allows one to replace an element but not at an off range index"
 	"self run:#testAtPut"
 	| c |
@@ -1086,11 +800,8 @@ OrderedCollectionTest>>testAtPut [
 	self deny: c = #(1 5 3 4 8 ) asOrderedCollection
 ]
 
-{
-	#category : #'tests begin ',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testBeginsWithAnyOf [
+{ #category : #'tests begin ' }
+OrderedCollectionTest >> testBeginsWithAnyOf [
 	"We can't test SequenceableCollection directly. However, we can test a sampling of its descendants."
 	"self debug: #testBeginsWithAnyOf"
 	
@@ -1107,11 +818,8 @@ OrderedCollectionTest>>testBeginsWithAnyOf [
 	self deny: (la beginsWithAnyOf: #((42))).
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testCapacityFromAsOrderedCollection [
+{ #category : #'tests - accessing' }
+OrderedCollectionTest >> testCapacityFromAsOrderedCollection [
 	"Allows one to check the current capacity of an Ordered collection"
 	"self run:#testCapacityFromAsOrderedCollection"
 	
@@ -1126,11 +834,8 @@ OrderedCollectionTest>>testCapacityFromAsOrderedCollection [
 	
 ]
 
-{
-	#category : #'tests - enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testCollect [
+{ #category : #'tests - enumerating' }
+OrderedCollectionTest >> testCollect [
 	"Allows one to collect some element of a collection into another collection"
 	"self run: #testCollect"
 	 
@@ -1141,11 +846,8 @@ OrderedCollectionTest>>testCollect [
 	self assert: (c2 = res).
 ]
 
-{
-	#category : #'tests - enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testCollectFromTo [
+{ #category : #'tests - enumerating' }
+OrderedCollectionTest >> testCollectFromTo [
 	"Allows one to collect some element of a collection into another collection between a first index and an end index for the collect"
 	"self run: #testCollectFromTo"
 	
@@ -1157,11 +859,8 @@ OrderedCollectionTest>>testCollectFromTo [
 	self should: [c1 collect: [:each | each abs] from: 5 to: 2] raise: Error.
 ]
 
-{
-	#category : #'tests - copying',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testCopyEmptyOld [
+{ #category : #'tests - copying' }
+OrderedCollectionTest >> testCopyEmptyOld [
 	"Allows one to create a copy of the receiver that contains no elements"
 	"self run:#testCopyEmpty"
 	
@@ -1171,11 +870,8 @@ OrderedCollectionTest>>testCopyEmptyOld [
 	self assert: (c2 size = 0).
 ]
 
-{
-	#category : #'tests - copying',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testCopyFromTo [
+{ #category : #'tests - copying' }
+OrderedCollectionTest >> testCopyFromTo [
 	"Allows one to create a copy of the receiver that contains elements from position start to end"
 	"self run: #testCopyFromTo"
 	
@@ -1195,19 +891,13 @@ OrderedCollectionTest>>testCopyFromTo [
 
 ]
 
-{
-	#category : #'tests - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testCopyNonEmptyWithoutAllNotIncluded [
+{ #category : #'tests - copy' }
+OrderedCollectionTest >> testCopyNonEmptyWithoutAllNotIncluded [
 	
 ]
 
-{
-	#category : #'tests - copying',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testCopyReplaceFromToWith [
+{ #category : #'tests - copying' }
+OrderedCollectionTest >> testCopyReplaceFromToWith [
 	"Allows one to create a copy from the receiver which elements between start and end of the 	receiver being replace by 	element of the collection after with:"
 	"self run:#testCopyReplaceFromToWith"
 
@@ -1224,11 +914,8 @@ OrderedCollectionTest>>testCopyReplaceFromToWith [
 	
 ]
 
-{
-	#category : #'tests - copying',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testCopyWith [
+{ #category : #'tests - copying' }
+OrderedCollectionTest >> testCopyWith [
 	"Allows one to create a copy of the receiver that contains the new element at the end"
 	"self run: #testCopyWith"
 	
@@ -1245,11 +932,8 @@ OrderedCollectionTest>>testCopyWith [
 
 ]
 
-{
-	#category : #'tests begin ',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testEndsWithAnyOf [
+{ #category : #'tests begin ' }
+OrderedCollectionTest >> testEndsWithAnyOf [
 	"We can't test SequenceableCollection directly. However, we can test a sampling of its descendants."
 	"self debug: #testEndsWithAnyOf"
 	| la oc |
@@ -1265,11 +949,8 @@ OrderedCollectionTest>>testEndsWithAnyOf [
 	self deny: (la endsWithAnyOf: #((42))).
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testIdentityIncludes [
+{ #category : #'tests - includes' }
+OrderedCollectionTest >> testIdentityIncludes [
 	" test the comportement in presence of elements 'includes' but not 'identityIncludes' "
 
 	" can not be used by collections that can't include elements for wich copy doesn't return another instance "
@@ -1281,22 +962,16 @@ OrderedCollectionTest>>testIdentityIncludes [
 	self deny: (collection identityIncludes: element)
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testIncludesElementIsNotThere [
+{ #category : #'tests - includes' }
+OrderedCollectionTest >> testIncludesElementIsNotThere [
 	"self debug: #testIncludesElementIsNotThere"
 	self deny: (self nonEmpty includes: self elementNotInForOccurrences).
 	self assert: (self nonEmpty includes: self nonEmpty anyOne).
 	self deny: (self empty includes: self elementNotInForOccurrences)
 ]
 
-{
-	#category : #'tests - enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testIndexOfWithDuplicates [
+{ #category : #'tests - enumerating' }
+OrderedCollectionTest >> testIndexOfWithDuplicates [
 
    | collection indices bagOfIndices |
    collection := #('Jim' 'Mary' 'John' 'Andrew' 'Mary' 'John' 'Jim' 'Micheal') asOrderedCollection.
@@ -1312,11 +987,8 @@ OrderedCollectionTest>>testIndexOfWithDuplicates [
      is found  n  times. "
 ]
 
-{
-	#category : #testsRemoving,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testRemoveAll [
+{ #category : #testsRemoving }
+OrderedCollectionTest >> testRemoveAll [
 	"Allows one to remove all elements of a collection" 
 	
 	| c1 c2 s2 |
@@ -1332,11 +1004,8 @@ OrderedCollectionTest>>testRemoveAll [
 	
 ]
 
-{
-	#category : #'tests - removing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testRemoveAllSuchThat [
+{ #category : #'tests - removing' }
+OrderedCollectionTest >> testRemoveAllSuchThat [
 	| collection |
 	collection := (1 to: 10) asOrderedCollection.
 	collection
@@ -1344,11 +1013,8 @@ OrderedCollectionTest>>testRemoveAllSuchThat [
 	self assert: collection = (1 to: 10 by: 2) asOrderedCollection
 ]
 
-{
-	#category : #'tests - removing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testRemoveAt [
+{ #category : #'tests - removing' }
+OrderedCollectionTest >> testRemoveAt [
 	"Allows one to remove an element from a collection at an index"
 	"self run:#testRemoveAt" 
 	
@@ -1361,11 +1027,8 @@ OrderedCollectionTest>>testRemoveAt [
 	
 ]
 
-{
-	#category : #'tests - removing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testRemoveFirst [
+{ #category : #'tests - removing' }
+OrderedCollectionTest >> testRemoveFirst [
 	"Allows one to remove n element of a collection at the first"
 	"self run:#testRemoveFirst" 
 	
@@ -1380,11 +1043,8 @@ OrderedCollectionTest>>testRemoveFirst [
 	
 ]
 
-{
-	#category : #'tests - removing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testRemoveIfAbsent [
+{ #category : #'tests - removing' }
+OrderedCollectionTest >> testRemoveIfAbsent [
 	"Allows one to remove an element from a collection and to copy it in another collection."
 	"If the element isn't in the first collection, the second collection copy the element after ifAbsent"
 	"self run:#testRemoveIfAbsent"
@@ -1402,11 +1062,8 @@ OrderedCollectionTest>>testRemoveIfAbsent [
 	self assert: (c2 = #(2 6) asOrderedCollection).
 ]
 
-{
-	#category : #'tests - removing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testRemoveLast [
+{ #category : #'tests - removing' }
+OrderedCollectionTest >> testRemoveLast [
 	"Allows one to remove n element of a collection at the end"
 	"self run:#testRemoveLast" 
 	
@@ -1419,11 +1076,8 @@ OrderedCollectionTest>>testRemoveLast [
 	self should: [c1 removeLast: 10] raise: Error.
 ]
 
-{
-	#category : #'tests - copying',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testReversed [
+{ #category : #'tests - copying' }
+OrderedCollectionTest >> testReversed [
 	| collection1 collection2 |
 	collection1 := #('Jim' 'Mary' 'John' 'Andrew' ) asOrderedCollection.
 	collection2 := collection1 reversed.
@@ -1431,11 +1085,8 @@ OrderedCollectionTest>>testReversed [
 	self assert: collection2 last = 'Jim'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testSort [
+{ #category : #tests }
+OrderedCollectionTest >> testSort [
 	"self run: #testSort"
 	
 	| ord |
@@ -1448,11 +1099,8 @@ OrderedCollectionTest>>testSort [
 
 ]
 
-{
-	#category : #'tests - enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>testWithCollect [
+{ #category : #'tests - enumerating' }
+OrderedCollectionTest >> testWithCollect [
 	"Allows one to collect some element of two collections into another collection with element corresponding to the condition in the blocks"
 	"self run: #testWithCollect"
 	
@@ -1466,11 +1114,8 @@ OrderedCollectionTest>>testWithCollect [
 	
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>unsortedCollection [
+{ #category : #requirements }
+OrderedCollectionTest >> unsortedCollection [
 	^ OrderedCollection new
 		add: 3;
 		add: 1;
@@ -1480,11 +1125,8 @@ OrderedCollectionTest>>unsortedCollection [
 		yourself
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedCollectionTest>>withEqualElements [
+{ #category : #requirements }
+OrderedCollectionTest >> withEqualElements [
 	" return a collection of float including equal elements (classic equality)"
 	^ collectionOfFloat , collectionOfFloat
 ]

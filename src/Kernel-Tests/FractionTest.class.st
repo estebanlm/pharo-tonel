@@ -4,24 +4,17 @@ SUnit tests for fractions
 Class {
 	#name : #FractionTest,
 	#superclass : #ClassTestCase,
-	#category : #Kernel-Tests-Numbers,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:36'
+	#category : #Kernel-Tests-Numbers
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>assert: a classAndValueEquals: b [
+{ #category : #private }
+FractionTest >> assert: a classAndValueEquals: b [
 	self assert: a class = b class.
 	self assert: a = b
 ]
 
-{
-	#category : #'tests - conversions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testAsLargerPowerOfTwo [
+{ #category : #'tests - conversions' }
+FractionTest >> testAsLargerPowerOfTwo [
 
 "SmallIntegers, Fraction value < 1"
 	"Exact power of two"
@@ -78,11 +71,8 @@ FractionTest>>testAsLargerPowerOfTwo [
 
 ]
 
-{
-	#category : #'tests - conversions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testAsSmallerPowerOfTwo [
+{ #category : #'tests - conversions' }
+FractionTest >> testAsSmallerPowerOfTwo [
 
 "SmallIntegers, Fraction value < 1"
 	"Exact power of two"
@@ -138,42 +128,30 @@ FractionTest>>testAsSmallerPowerOfTwo [
 
 ]
 
-{
-	#category : #'tests - conversions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testCeiling [
+{ #category : #'tests - conversions' }
+FractionTest >> testCeiling [
 	self assert: (3 / 2) ceiling = 2.
 	self assert: (-3 / 2) ceiling = -1.
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testDegreeCos [
+{ #category : #'tests - mathematical functions' }
+FractionTest >> testDegreeCos [
 	"self run: #testDegreeCos"
 
 	(4 / 3) degreeCos.
 	-361 / 3 to: 359 / 3 do: [ :i | self assert: (i degreeCos closeTo: i degreesToRadians cos) ]
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testDegreeSin [
+{ #category : #'tests - mathematical functions' }
+FractionTest >> testDegreeSin [
 	"self run: #testDegreeSin"
 
 	(4 / 3) degreeSin.
 	-361 / 3 to: 359 / 3 do: [ :i | self assert: (i degreeSin closeTo: i degreesToRadians sin) ]
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testExactRaisedTo [
+{ #category : #'tests - mathematical functions' }
+FractionTest >> testExactRaisedTo [
 	"
 	FractionTest new testExactRaisedTo
 	"
@@ -245,11 +223,8 @@ FractionTest>>testExactRaisedTo [
 		self assert: ((f negated raisedTo: 3) -1 raisedTo: 5/3) isFloat ].
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testExactSqrt [
+{ #category : #'tests - mathematical functions' }
+FractionTest >> testExactSqrt [
 	"
 	FractionTest new testExactSqrt
 	"
@@ -262,20 +237,14 @@ FractionTest>>testExactSqrt [
 		self assert: f squared sqrt classAndValueEquals: f ]
 ]
 
-{
-	#category : #'tests - conversions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testFloor [
+{ #category : #'tests - conversions' }
+FractionTest >> testFloor [
 	self assert: (3 / 2) floor = 1.
 	self assert: (-3 / 2) floor = -2.
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testFloorLog [
+{ #category : #'tests - mathematical functions' }
+FractionTest >> testFloorLog [
 	self assert: (1/100 floorLog: 10) = -2.
 	self assert: (((2 raisedTo: Float emax + 11)/3) floorLog: 10)
 		= ((Float emax + 11)*2 log - 3 log) floor description: 'Fraction>>log should not overflow'.
@@ -283,11 +252,8 @@ FractionTest>>testFloorLog [
 		= ((Float emin - Float precision)*2 log + 3 log) floor description: 'Fraction>>log should not underflow'
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testFractionPrinting [
+{ #category : #'tests - printing' }
+FractionTest >> testFractionPrinting [
 
 	self assert: (353/359) printString = '(353/359)'.
 	self assert: ((2/3) printStringBase: 2) = '(10/11)'.
@@ -368,11 +334,8 @@ FractionTest>>testFractionPrinting [
 
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testInexactRaisedTo [
+{ #category : #'tests - mathematical functions' }
+FractionTest >> testInexactRaisedTo [
 	"
 	FractionTest new testInexactRaisedTo
 	"
@@ -380,22 +343,16 @@ FractionTest>>testInexactRaisedTo [
 	self assert: (((1 << 1024 + 1) / (1 << 1024 + 3)) negated raisedTo: 1/3) = -1.0
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testInexactSqrt [
+{ #category : #'tests - mathematical functions' }
+FractionTest >> testInexactSqrt [
 	"
 	FractionTest new testInexactSqrt
 	"
 	self assert: ((1 << 1024 + 1) / (1 << 1024 + 3)) sqrt = 1.0
 ]
 
-{
-	#category : #'tests - conversions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testIsPowerOfTwo [
+{ #category : #'tests - conversions' }
+FractionTest >> testIsPowerOfTwo [
 	"Negative fraction"
 	self deny: (1 / (2 raisedTo: 80) negated) isPowerOfTwo.
 	self deny: (1 negated / (2 raisedTo: 80)) isPowerOfTwo.
@@ -409,11 +366,8 @@ FractionTest>>testIsPowerOfTwo [
 	self assert: ((2 raisedTo: 80) / 4) isPowerOfTwo
 ]
 
-{
-	#category : #'tests - reading',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testIvalidReadFrom [
+{ #category : #'tests - reading' }
+FractionTest >> testIvalidReadFrom [
 	self should: [Fraction readFromString: '+3'] raise: Error description: 'numerator cannot specify a plus sign'.
 	self should: [Fraction readFromString: '-2/+3'] raise: Error description: 'denominator cannot specify a plus sign'.
 	self should: [Fraction readFromString: '(3/2)'] raise: Error description: 'parenthesis are not allowed'.
@@ -427,40 +381,28 @@ FractionTest>>testIvalidReadFrom [
 	self assert: (Fraction readFromString: '23s0/3') = 23 description: 'scale specification interrupt decoding'.
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testLn [
+{ #category : #'tests - mathematical functions' }
+FractionTest >> testLn [
 	self assert: ((1/100) ln closeTo: -2 * 10 ln).
 	self assert: (((2 raisedTo: Float emax + 11)/3) ln closeTo: (Float emax + 11)*2 ln - 3 ln) description: 'Fraction>>ln should not overflow'.
 	self assert: ((3/(2 raisedTo: Float precision - Float emin)) ln closeTo: (Float emin - Float precision)*2 ln + 3 ln) description: 'Fraction>>ln should not underflow'
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testLog [
+{ #category : #'tests - mathematical functions' }
+FractionTest >> testLog [
 	self assert: ((1/100) log closeTo: -2).
 	self assert: (((2 raisedTo: Float emax + 11)/3) log closeTo: (Float emax + 11)*2 log - 3 log) description: 'Fraction>>log should not overflow'.
 	self assert: ((3/(2 raisedTo: Float precision - Float emin)) log closeTo: (Float emin - Float precision)*2 log + 3 log) description: 'Fraction>>log should not underflow'
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testNthRoot [
+{ #category : #'tests - mathematical functions' }
+FractionTest >> testNthRoot [
 	self assert: ((-2 raisedTo: 35) / (3 raisedTo: 20) raisedTo: 1/5) equals: (-2 raisedTo: 7) / (3 raisedTo: 4).
 	self assert: (1 / (1 << 2000) raisedTo: 1/100) equals: 1 / (1 << 20)
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testRaisedToErrorConditions [
+{ #category : #'tests - mathematical functions' }
+FractionTest >> testRaisedToErrorConditions [
 	"
 	FractionTest new testRaisedToErrorConditions
 	"
@@ -468,11 +410,8 @@ FractionTest>>testRaisedToErrorConditions [
 	self should: [ ((1 << 1024 + 1) / (1 << 1024 + 3)) negated raisedTo: 1/4 ] raise: ArithmeticError
 ]
 
-{
-	#category : #'tests - reading',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testReadFrom [
+{ #category : #'tests - reading' }
+FractionTest >> testReadFrom [
 	self assert: (Fraction readFromString: '3') = 3 description: 'denominator is optional'.
 	self assert: (Fraction readFromString: '2/3') = (2/3) description: 'fraction and denominator must follow numerator'.
 	self assert: (Fraction readFromString: '-2/3') = (-2/3) description: 'numerator can specify a minus sign'.
@@ -484,11 +423,8 @@ FractionTest>>testReadFrom [
 	self assert: (Fraction readFromString: '1/3r22') = (1/8) description: 'denominator can specify a radix'.
 ]
 
-{
-	#category : #'tests - sinuses',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testReciprocal [
+{ #category : #'tests - sinuses' }
+FractionTest >> testReciprocal [
 
 	self 
 		assert: (1/2) reciprocal = 2;
@@ -497,11 +433,8 @@ FractionTest>>testReciprocal [
 		assert: (-3/5) reciprocal = (-5/3)
 ]
 
-{
-	#category : #'tests - conversions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testRounded [
+{ #category : #'tests - conversions' }
+FractionTest >> testRounded [
 	self assert: (4 / 5) rounded = 1.
 	self assert: (6 / 5) rounded = 1.
 	self assert: (-4 / 5) rounded = -1.
@@ -512,11 +445,8 @@ FractionTest>>testRounded [
 	self assert: (-3 / 2) rounded = -2.
 ]
 
-{
-	#category : #'tests - rounding',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testRounding [
+{ #category : #'tests - rounding' }
+FractionTest >> testRounding [
         "
         self debug: #testRounding
         "
@@ -524,11 +454,8 @@ FractionTest>>testRounding [
         self assert: ((6/90) round: 2) equals: 0.07
 ]
 
-{
-	#category : #'tests - mathematical functions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testSqrtErrorConditions [
+{ #category : #'tests - mathematical functions' }
+FractionTest >> testSqrtErrorConditions [
 	"
 	FractionTest new testSqrtErrorConditions
 	"
@@ -536,11 +463,8 @@ FractionTest>>testSqrtErrorConditions [
 	self should: [ ((1 << 1024 + 1) / (1 << 1024 + 3)) negated sqrt ] raise: DomainError
 ]
 
-{
-	#category : #'tests - conversions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FractionTest>>testTruncated [
+{ #category : #'tests - conversions' }
+FractionTest >> testTruncated [
 	self assert: (3 / 2) truncated = 1.
 	self assert: (-3 / 2) truncated = -1.
 ]

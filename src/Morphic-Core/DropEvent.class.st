@@ -22,57 +22,38 @@ Class {
 		'contents',
 		'wasHandled'
 	],
-	#category : #Morphic-Core-Events,
-	#timestamp : 'LaurentLaffont 3/15/2011 20:47'
+	#category : #Morphic-Core-Events
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DropEvent>>contents [
+{ #category : #accessing }
+DropEvent >> contents [
 	^contents
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DropEvent>>copyHandlerState: anEvent [
+{ #category : #initialize }
+DropEvent >> copyHandlerState: anEvent [
 	"Copy the handler state from anEvent. Used for quickly transferring handler information between transformed events."
 	wasHandled := anEvent wasHandled.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DropEvent>>cursorPoint [
+{ #category : #accessing }
+DropEvent >> cursorPoint [
 	"For compatibility with mouse events"
 	^position
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DropEvent>>isDropEvent [
+{ #category : #testing }
+DropEvent >> isDropEvent [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DropEvent>>position [
+{ #category : #accessing }
+DropEvent >> position [
 	^position
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DropEvent>>printOn: aStream [
+{ #category : #printing }
+DropEvent >> printOn: aStream [
 
 	aStream nextPut: $[.
 	aStream nextPutAll: self position printString; space.
@@ -81,73 +62,49 @@ DropEvent>>printOn: aStream [
 	aStream nextPut: $].
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DropEvent>>resetHandlerFields [
+{ #category : #initialize }
+DropEvent >> resetHandlerFields [
 	"Reset anything that is used to cross-communicate between two eventual handlers during event dispatch"
 	wasHandled := false.
 ]
 
-{
-	#category : #dispatching,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DropEvent>>sentTo: anObject [
+{ #category : #dispatching }
+DropEvent >> sentTo: anObject [
 	"Dispatch the receiver into anObject"
 	^anObject handleDropMorph: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DropEvent>>setPosition: pos contents: aMorph hand: aHand [
+{ #category : #private }
+DropEvent >> setPosition: pos contents: aMorph hand: aHand [
 	position := pos.
 	contents := aMorph.
 	source := aHand.
 	wasHandled := false.
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DropEvent>>transformBy: aMorphicTransform [
+{ #category : #transforming }
+DropEvent >> transformBy: aMorphicTransform [
 	"Transform the receiver into a local coordinate system."
 	position :=  aMorphicTransform globalPointToLocal: position.
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DropEvent>>transformedBy: aMorphicTransform [
+{ #category : #transforming }
+DropEvent >> transformedBy: aMorphicTransform [
 	"Return the receiver transformed by the given transform into a local coordinate system."
 	^self shallowCopy transformBy: aMorphicTransform
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DropEvent>>type [
+{ #category : #accessing }
+DropEvent >> type [
 	^#dropEvent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DropEvent>>wasHandled [
+{ #category : #accessing }
+DropEvent >> wasHandled [
 	^wasHandled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DropEvent>>wasHandled: aBool [
+{ #category : #accessing }
+DropEvent >> wasHandled: aBool [
 	wasHandled := aBool.
 ]

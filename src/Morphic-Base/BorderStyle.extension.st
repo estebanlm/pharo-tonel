@@ -1,85 +1,53 @@
-Extension {
-	#name : #BorderStyle
-}
+Extension { #name : #BorderStyle }
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BorderStyle class>>complexAltFramed [
+{ #category : #'*Morphic-Base' }
+BorderStyle class >> complexAltFramed [
 	^ComplexBorder style: #complexAltFramed
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BorderStyle class>>complexAltInset [
+{ #category : #'*Morphic-Base' }
+BorderStyle class >> complexAltInset [
 	^ComplexBorder style: #complexAltInset
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BorderStyle class>>complexAltRaised [
+{ #category : #'*Morphic-Base' }
+BorderStyle class >> complexAltRaised [
 	^ComplexBorder style: #complexAltRaised
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BorderStyle class>>complexFramed [
+{ #category : #'*Morphic-Base' }
+BorderStyle class >> complexFramed [
 	^ComplexBorder style: #complexFramed
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BorderStyle class>>complexInset [
+{ #category : #'*Morphic-Base' }
+BorderStyle class >> complexInset [
 	^ComplexBorder style: #complexInset
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BorderStyle class>>complexRaised [
+{ #category : #'*Morphic-Base' }
+BorderStyle class >> complexRaised [
 	^ComplexBorder style: #complexRaised
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BorderStyle class>>inset [
+{ #category : #'*Morphic-Base' }
+BorderStyle class >> inset [
 	^InsetBorder new
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BorderStyle class>>raised [
+{ #category : #'*Morphic-Base' }
+BorderStyle class >> raised [
 	^RaisedBorder new
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BorderStyle class>>simple [
+{ #category : #'*Morphic-Base' }
+BorderStyle class >> simple [
 	"Answer a simple border style"
 
 	^ SimpleBorder new
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BorderStyle class>>width: aNumber color: aColor [
+{ #category : #'*Morphic-Base' }
+BorderStyle class >> width: aNumber color: aColor [
 	^SimpleBorder new color: aColor; width: aNumber; yourself
 ]

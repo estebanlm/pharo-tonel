@@ -30,43 +30,30 @@ Class {
 		'numberReplaced',
 		'numberNotReplaced'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 13:41'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineAllSendersRefactoring class>>model: aRBSmalltalk sendersOf: aSelector in: aClass  [
+{ #category : #'instance creation' }
+RBInlineAllSendersRefactoring class >> model: aRBSmalltalk sendersOf: aSelector in: aClass [ 
 	^(self new)
 		model: aRBSmalltalk;
 		sendersOf: aSelector in: aClass;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineAllSendersRefactoring class>>sendersOf: aSelector in: aClass  [
+{ #category : #'instance creation' }
+RBInlineAllSendersRefactoring class >> sendersOf: aSelector in: aClass [ 
 	^self new sendersOf: aSelector in: aClass
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineAllSendersRefactoring>>checkInlinedMethods [
+{ #category : #transforming }
+RBInlineAllSendersRefactoring >> checkInlinedMethods [
 	numberReplaced = 0 
 		ifTrue: [self refactoringFailure: 'Could not inline any senders']
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineAllSendersRefactoring>>inlineMessagesInClass: aClass andSelector: aSelector  [
+{ #category : #transforming }
+RBInlineAllSendersRefactoring >> inlineMessagesInClass: aClass andSelector: aSelector [ 
 	| messagesToInline previousCountOfMessages |
 	previousCountOfMessages := 4294967295.	"Some really large number > # of initial self sends."
 	
@@ -88,11 +75,8 @@ RBInlineAllSendersRefactoring>>inlineMessagesInClass: aClass andSelector: aSelec
 	numberNotReplaced := numberNotReplaced + messagesToInline
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineAllSendersRefactoring>>inlineSelfSends [
+{ #category : #transforming }
+RBInlineAllSendersRefactoring >> inlineSelfSends [
 	class withAllSubclasses do: 
 			[:each | 
 			| selectors |
@@ -101,46 +85,31 @@ RBInlineAllSendersRefactoring>>inlineSelfSends [
 			selectors do: [:sel | self inlineMessagesInClass: each andSelector: sel]]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineAllSendersRefactoring>>messagePattern [
+{ #category : #transforming }
+RBInlineAllSendersRefactoring >> messagePattern [
 	^'self ' , (self buildSelectorString: selector)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineAllSendersRefactoring>>messagesNotReplaced [
+{ #category : #accessing }
+RBInlineAllSendersRefactoring >> messagesNotReplaced [
 	^numberNotReplaced
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineAllSendersRefactoring>>numberOfSelfSendsIn: aParseTree  [
+{ #category : #transforming }
+RBInlineAllSendersRefactoring >> numberOfSelfSendsIn: aParseTree [ 
 	| search |
 	search := RBParseTreeSearcher new.
 	search matches: self messagePattern do: [:aNode :answer | answer + 1].
 	^search executeTree: aParseTree initialAnswer: 0
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineAllSendersRefactoring>>preconditions [
+{ #category : #preconditions }
+RBInlineAllSendersRefactoring >> preconditions [
 	^RBCondition canUnderstand: selector in: class
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineAllSendersRefactoring>>removeMethod [
+{ #category : #transforming }
+RBInlineAllSendersRefactoring >> removeMethod [
 	self onError: 
 			[self performComponentRefactoring: (RBRemoveMethodRefactoring 
 						model: self model
@@ -149,32 +118,23 @@ RBInlineAllSendersRefactoring>>removeMethod [
 		do: []
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineAllSendersRefactoring>>selfSendIn: aTree  [
+{ #category : #transforming }
+RBInlineAllSendersRefactoring >> selfSendIn: aTree [ 
 	| searcher |
 	searcher := RBParseTreeSearcher new.
 	searcher matches: self messagePattern do: [:aNode :answer | ^aNode].
 	^searcher executeTree: aTree initialAnswer: nil
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineAllSendersRefactoring>>sendersOf: aSelector in: aClass  [
+{ #category : #initialize-release }
+RBInlineAllSendersRefactoring >> sendersOf: aSelector in: aClass [ 
 	class := self classObjectFor: aClass.
 	selector := aSelector.
 	numberReplaced := numberNotReplaced := 0
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineAllSendersRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBInlineAllSendersRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream
@@ -185,11 +145,8 @@ RBInlineAllSendersRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineAllSendersRefactoring>>transform [
+{ #category : #transforming }
+RBInlineAllSendersRefactoring >> transform [
 	self
 		inlineSelfSends;
 		removeMethod;

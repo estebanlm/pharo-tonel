@@ -102,62 +102,43 @@ Class {
 		'askOkToClose',
 		'titleHolder'
 	],
-	#category : #Spec-Core,
-	#timestamp : 'Spirita 7/19/2016 16:31'
+	#category : #Spec-Core
 }
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel class>>buttonHeight [
+{ #category : #defaults }
+ComposableModel class >> buttonHeight [
 
 	^ StandardFonts defaultFont height + 12
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel class>>buttonWidth [
+{ #category : #defaults }
+ComposableModel class >> buttonWidth [
 
 	^ (StandardFonts defaultFont widthOfString: 'eilwp') + 44
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel class>>defaultSpec [
+{ #category : #specs }
+ComposableModel class >> defaultSpec [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel class>>inputTextHeight [
+{ #category : #defaults }
+ComposableModel class >> inputTextHeight [
 
 	^ StandardFonts defaultFont height + 12
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel class>>owner: owner [
+{ #category : #'instance creation' }
+ComposableModel class >> owner: owner [
 
 	^ self new
 		owner: owner;
 		yourself
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel class>>specSelectors [
+{ #category : #protocol }
+ComposableModel class >> specSelectors [
 	
 	^  self class withAllSuperclasses flatCollect: [ :class |
 		(((SpecPragmaCollector behavior: class)
@@ -167,121 +148,82 @@ ComposableModel class>>specSelectors [
 			collect: [ :pragmas | pragmas method selector ]]
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel class>>title [
+{ #category : #specs }
+ComposableModel class >> title [
 	
 	^ 'Untitled window'
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel class>>toolbarHeight [
+{ #category : #defaults }
+ComposableModel class >> toolbarHeight [
 
 	^ StandardFonts defaultFont height + 12
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>aboutText [
+{ #category : #api }
+ComposableModel >> aboutText [
 
 	^ aboutText value ifNil: [ aboutText value: 'The about text for this window has not been set.']
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>aboutText: aString [
+{ #category : #api }
+ComposableModel >> aboutText: aString [
 
 	aboutText value: aString
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>adapterFrom: aSpecLayout model: aModel [
+{ #category : #api }
+ComposableModel >> adapterFrom: aSpecLayout model: aModel [
 	^ SpecInterpreter interpretASpec: aSpecLayout model: aModel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>addAll: aWindow withSpec: aSpec [
+{ #category : #private }
+ComposableModel >> addAll: aWindow withSpec: aSpec [
 
 	aWindow
 		addMorph: (self buildWithSpec: aSpec)
 		frame: (0@0 corner: 1@1).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>addAll: aWindow withSpecLayout: aSpec [
+{ #category : #private }
+ComposableModel >> addAll: aWindow withSpecLayout: aSpec [
 
 	aWindow
 		addMorph: (self buildWithSpecLayout: aSpec)
 		frame: (0@0 corner: 1@1).
 ]
 
-{
-	#category : #'window menu',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>addMenuItemsToWindowMenu: aMenu [
+{ #category : #'window menu' }
+ComposableModel >> addMenuItemsToWindowMenu: aMenu [
 	"Do nothing"
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>additionalKeyBindings [
+{ #category : #api-shortcuts }
+ComposableModel >> additionalKeyBindings [
 
 	^ additionalKeyBindings value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>announce: anAnnouncement [
+{ #category : #api }
+ComposableModel >> announce: anAnnouncement [
 
 	self announcer announce: anAnnouncement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>announcer [
+{ #category : #accessing }
+ComposableModel >> announcer [
 
 	^ announcer
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>apiSelectors [
+{ #category : #api }
+ComposableModel >> apiSelectors [
 
 	^ self class apiSelectors
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>applyMenuModel: aMenuModel [
+{ #category : #api }
+ComposableModel >> applyMenuModel: aMenuModel [
 
 	aMenuModel menuGroups do: [ :group |
 		group menuItems do: [ :item |
@@ -289,71 +231,50 @@ ComposableModel>>applyMenuModel: aMenuModel [
 			item subMenu ifNotNil: [ :subMenu | subMenu applyTo: self	] ] ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>askOkToClose [
+{ #category : #api }
+ComposableModel >> askOkToClose [
 
 	^ askOkToClose value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>askOkToClose: aBoolean [
+{ #category : #api }
+ComposableModel >> askOkToClose: aBoolean [
 
 	askOkToClose value: aBoolean
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>bindKeyCombination: aShortcut toAction: aBlock [
+{ #category : #api-shortcuts }
+ComposableModel >> bindKeyCombination: aShortcut toAction: aBlock [
 
 	additionalKeyBindings at: aShortcut put: aBlock.
 	
 	self changed: #bindKeyCombination:toAction: with: {aShortcut . aBlock}
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>bindMenuKeyCombination: aShortcut toAction: aBlock [
+{ #category : #api-shortcuts }
+ComposableModel >> bindMenuKeyCombination: aShortcut toAction: aBlock [
 
 	additionalKeyBindings at: aShortcut put: aBlock.
 	
 	self changed: #bindMenuKeyCombination:toAction: with: {aShortcut . aBlock}
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>buildWithSpec [
+{ #category : #api }
+ComposableModel >> buildWithSpec [
 	"Build the widget using the default spec"
 	
 	^ self buildWithSpec: self defaultSpecSelector
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>buildWithSpec: aSpec [
+{ #category : #api }
+ComposableModel >> buildWithSpec: aSpec [
 	"Build the widget using the spec name provided as argument"
 	
 	^ self buildWithSpecLayout: (self retrieveSpec: aSpec)
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>buildWithSpecLayout: aSpecLayout [
+{ #category : #api }
+ComposableModel >> buildWithSpecLayout: aSpecLayout [
 	"Build the widget using the spec name provided as argument"
 	| widget adapter|
 	adapter := self adapterFrom: aSpecLayout model: self.
@@ -362,49 +283,34 @@ ComposableModel>>buildWithSpecLayout: aSpecLayout [
 	^ widget
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>cancelled [
+{ #category : #api }
+ComposableModel >> cancelled [
 
 	^ self window
 		ifNil: [ false ]
 		ifNotNil: [ :w | w cancelled ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>centerWidget: aWindow [
+{ #category : #api }
+ComposableModel >> centerWidget: aWindow [
 
 	self changed: #centerWidget: with: { aWindow }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>centered [
+{ #category : #api }
+ComposableModel >> centered [
 
 	window value ifNotNil: [ :w | w centered ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>centeredRelativeTo: aModel [
+{ #category : #api }
+ComposableModel >> centeredRelativeTo: aModel [
 
 	window value ifNotNil: [ :w | w centeredRelativeTo: aModel ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>createInstanceFor: aClassSymbol [
+{ #category : #'instance creation' }
+ComposableModel >> createInstanceFor: aClassSymbol [
 	"Retrieve the class corresponding to aClassSymbol using the bindings, then create a new instance of theis class"
 	| class |
 	
@@ -412,20 +318,14 @@ ComposableModel>>createInstanceFor: aClassSymbol [
 	^ self instantiate: class.
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>defaultSpec [
+{ #category : #specs }
+ComposableModel >> defaultSpec [
 
 	^ self class perform: self defaultSpecSelector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>defaultSpecSelector [
+{ #category : #private }
+ComposableModel >> defaultSpecSelector [
 
 	self class class withAllSuperclassesDo: [ :class |
 		(((SpecPragmaCollector behavior: class)
@@ -444,30 +344,21 @@ ComposableModel>>defaultSpecSelector [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>defaultWindowModelClass  [
+{ #category : #accessing }
+ComposableModel >> defaultWindowModelClass [ 
 	^ WindowModel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>delete [
+{ #category : #private }
+ComposableModel >> delete [
 
 	window value
 		ifNil: [ self changed: #delete with: #() ]
 		ifNotNil: [ :w | w delete ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>ensureExtentFor: widget [
+{ #category : #api }
+ComposableModel >> ensureExtentFor: widget [
 
 	self extent
 		ifNil: [ self initialExtent
@@ -480,11 +371,8 @@ ComposableModel>>ensureExtentFor: widget [
 	
 ]
 
-{
-	#category : #private-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>ensureKeyBindingsFor: aWidget [
+{ #category : #private-focus }
+ComposableModel >> ensureKeyBindingsFor: aWidget [
 
 	self registerKeyStrokesForNextFor: aWidget.
 	self registerKeyStrokesForPreviousFor: aWidget.
@@ -492,66 +380,45 @@ ComposableModel>>ensureKeyBindingsFor: aWidget [
 	additionalKeyBindings associationsDo: [:association | aWidget bindKeyCombination: association key toAction: association value ]
 ]
 
-{
-	#category : #api-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>eventKeyStrokesForNextFocus [
+{ #category : #api-focus }
+ComposableModel >> eventKeyStrokesForNextFocus [
 	"String describing the keystroke to perform to jump to the next widget"
 
 	^ keyStrokesForNextFocusHolder value
 ]
 
-{
-	#category : #api-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>eventKeyStrokesForPreviousFocus [
+{ #category : #api-focus }
+ComposableModel >> eventKeyStrokesForPreviousFocus [
 	"String describing the keystroke to perform to jump to the previous widget"
 
 	^ keyStrokesForPreviousFocusHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>extent [
+{ #category : #api }
+ComposableModel >> extent [
 
 	^  extentHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>extent: aPoint [
+{ #category : #api }
+ComposableModel >> extent: aPoint [
 
 	^  extentHolder value: aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>focusOrder [
+{ #category : #accessing }
+ComposableModel >> focusOrder [
 
 	^ focusOrder ifNil: [ focusOrder := OrderedCollection new ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>focusOrder: anObject [
+{ #category : #accessing }
+ComposableModel >> focusOrder: anObject [
 	^ focusOrder := anObject
 ]
 
-{
-	#category : #private-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>giveFocusToNextFrom: aModel [
+{ #category : #private-focus }
+ComposableModel >> giveFocusToNextFrom: aModel [
 	| focus |
 	
 	focus := self focusOrder.
@@ -577,11 +444,8 @@ ComposableModel>>giveFocusToNextFrom: aModel [
 			true ]
 ]
 
-{
-	#category : #private-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>giveFocusToPreviousFrom: aModel  [
+{ #category : #private-focus }
+ComposableModel >> giveFocusToPreviousFrom: aModel [ 
 	| focus |
 	
 	focus := self focusOrder.
@@ -607,60 +471,42 @@ ComposableModel>>giveFocusToPreviousFrom: aModel  [
 			true ]
 ]
 
-{
-	#category : #private-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>handlesKeyboard: evt [
+{ #category : #private-focus }
+ComposableModel >> handlesKeyboard: evt [
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>hasWindow [
+{ #category : #testing }
+ComposableModel >> hasWindow [
 	"Answers true if there is an open window using this model."
 
 	self owner ifNil: [ ^ self window ifNotNil: [ :w | w isClosed not ] ifNil: [ false ] ].
 	 ^ self owner hasWindow
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>hide [
+{ #category : #api }
+ComposableModel >> hide [
 
 	self widget ifNotNil: [:widget |
 		(widget respondsTo: #hide) ifTrue: [ widget hide ]].
 ]
 
-{
-	#category : #icon,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>icon: aSymbol [
+{ #category : #icon }
+ComposableModel >> icon: aSymbol [
 	"Return the icon associated with the argument."
 	self flag: #remove.
 	^ self iconNamed: aSymbol
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>initialExtent [
+{ #category : #api }
+ComposableModel >> initialExtent [
 
 	^ nil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>initialize [
+{ #category : #initialization }
+ComposableModel >> initialize [
 
 	super initialize.
 	extentHolder := nil asValueHolder.
@@ -683,19 +529,13 @@ ComposableModel>>initialize [
 	titleHolder whenChangedDo: [ self updateTitle ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>initializeDialogWindow: aWindow [
+{ #category : #initialization }
+ComposableModel >> initializeDialogWindow: aWindow [
 	"used to initialize the model in the case of the use into a dialog window"
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>initializePresenter [
+{ #category : #initialization }
+ComposableModel >> initializePresenter [
 	"Used to specify the subwidgets, and/or to bind them together"
 	"By default, do not do anything"
 	
@@ -705,29 +545,20 @@ ComposableModel>>initializePresenter [
 				ifTrue: [ widget extent: ex ]]].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>initializeWidgets [
+{ #category : #initialization }
+ComposableModel >> initializeWidgets [
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>instantiate: aComposableModelClass [
+{ #category : #'instance creation' }
+ComposableModel >> instantiate: aComposableModelClass [
 	"Instantiate a ComposableModel subclass and set its instance owner"
 	^ aComposableModelClass owner: self
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>instantiateModels: aCollectionOfPairs [
+{ #category : #'instance creation' }
+ComposableModel >> instantiateModels: aCollectionOfPairs [
 	"instantiateModels: is legacy code in ComposableModel and must not be used. It will be deprecated and removed."
 
 	"Used to instantiate multiple sub widget at once. Take aCollectionOfPairs where each odd element is an inst var name and each even element is a class name, create an instance from the class name and store it into the inst var"
@@ -743,75 +574,51 @@ ComposableModel>>instantiateModels: aCollectionOfPairs [
 				pairsDo: [ :k :v | self instVarNamed: k asString put: (self createInstanceFor: v) ] ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>isDisplayed [
+{ #category : #api }
+ComposableModel >> isDisplayed [
 	"Return true if the widget is currently displayed on screen"
 	
 	^ self window notNil and: [ self window isDisplayed ]
 ]
 
-{
-	#category : #api-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>keyStrokeForNextFocus: aKMShortcut [
+{ #category : #api-focus }
+ComposableModel >> keyStrokeForNextFocus: aKMShortcut [
 
 	keyStrokesForNextFocusHolder value: { aKMShortcut }
 ]
 
-{
-	#category : #api-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>keyStrokeForPreviousFocus: aKMShortcut [
+{ #category : #api-focus }
+ComposableModel >> keyStrokeForPreviousFocus: aKMShortcut [
 
 	keyStrokesForPreviousFocusHolder value: { aKMShortcut }
 ]
 
-{
-	#category : #api-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>keyStrokesForNextFocus: aCollection [
+{ #category : #api-focus }
+ComposableModel >> keyStrokesForNextFocus: aCollection [
 
 	keyStrokesForNextFocusHolder value: aCollection
 ]
 
-{
-	#category : #api-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>keyStrokesForPreviousFocus: aCollection [
+{ #category : #api-focus }
+ComposableModel >> keyStrokesForPreviousFocus: aCollection [
 
 	keyStrokesForPreviousFocusHolder value: aCollection 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>needRebuild [
+{ #category : #accessing }
+ComposableModel >> needRebuild [
 
 	^ needRebuild value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>needRebuild: aBoolean [
+{ #category : #accessing }
+ComposableModel >> needRebuild: aBoolean [
 
 	needRebuild value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>neglectMenuModel: aMenuModel [
+{ #category : #api }
+ComposableModel >> neglectMenuModel: aMenuModel [
 
 	aMenuModel menuGroups do: [ :group |
 		group menuItems do: [ :item |
@@ -819,149 +626,95 @@ ComposableModel>>neglectMenuModel: aMenuModel [
 			item subMenu ifNotNil: [ :subMenu | subMenu neglect: self	] ] ]
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newButton [
+{ #category : #widgets }
+ComposableModel >> newButton [
 	^ self instantiate: ButtonModel
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newCheckBox [
+{ #category : #widgets }
+ComposableModel >> newCheckBox [
 	^ self instantiate: CheckBoxModel
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newCode [
+{ #category : #widgets }
+ComposableModel >> newCode [
 	^ (self instantiate: TextModel)
 		beForCode;
 		yourself
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newDiff [
+{ #category : #widgets }
+ComposableModel >> newDiff [
 	^ self instantiate: DiffModel
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newDropList [
+{ #category : #widgets }
+ComposableModel >> newDropList [
 	^ self instantiate: DropListModel
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newIconList [
+{ #category : #widgets }
+ComposableModel >> newIconList [
 	^ self instantiate: IconListModel
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newImage [
+{ #category : #widgets }
+ComposableModel >> newImage [
 	^ self instantiate: ImageModel
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newLabel [
+{ #category : #widgets }
+ComposableModel >> newLabel [
 	^ self instantiate: LabelModel
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newList [
+{ #category : #widgets }
+ComposableModel >> newList [
 	^ self instantiate: ListModel
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newMultiColumnList [
+{ #category : #widgets }
+ComposableModel >> newMultiColumnList [
 	^ self instantiate: MultiColumnListModel
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newRadioButton [
+{ #category : #widgets }
+ComposableModel >> newRadioButton [
 	^ self instantiate: RadioButtonModel
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newSlider [
+{ #category : #widgets }
+ComposableModel >> newSlider [
 	^ self instantiate: SliderModel
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newTab [
+{ #category : #widgets }
+ComposableModel >> newTab [
 	^ self instantiate: TabModel
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newTabManager [
+{ #category : #widgets }
+ComposableModel >> newTabManager [
 	^ self instantiate: TabManagerModel
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newText [
+{ #category : #widgets }
+ComposableModel >> newText [
 	^ self instantiate: TextModel
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newTextInput [
+{ #category : #widgets }
+ComposableModel >> newTextInput [
 	^ self instantiate: TextInputFieldModel
 ]
 
-{
-	#category : #widgets,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>newTree [
+{ #category : #widgets }
+ComposableModel >> newTree [
 	^ self instantiate: TreeModel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>okToChange [
+{ #category : #private }
+ComposableModel >> okToChange [
 
 	^ owner 
 		ifNil: [
@@ -971,20 +724,14 @@ ComposableModel>>okToChange [
 		ifNotNil: [ owner okToChange ]
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>on: aShortcut do: aBlock [
+{ #category : #api-shortcuts }
+ComposableModel >> on: aShortcut do: aBlock [
 
 	self bindKeyCombination: aShortcut toAction: aBlock
 ]
 
-{
-	#category : #api-announcements,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>on: anAnnouncement send: aSelector to: aTarget [
+{ #category : #api-announcements }
+ComposableModel >> on: anAnnouncement send: aSelector [ to: aTarget
 
 	self announcer
 		when: anAnnouncement 
@@ -992,31 +739,22 @@ ComposableModel>>on: anAnnouncement send: aSelector to: aTarget [
 		to: aTarget
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>openDialogWithSpec [
+{ #category : #api }
+ComposableModel >> openDialogWithSpec [
 	"Build the widget using the default spec and display it into a window"
 
 	^ self openDialogWithSpec: self defaultSpecSelector.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>openDialogWithSpec: aSpec [
+{ #category : #api }
+ComposableModel >> openDialogWithSpec: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a window"
 
 	^ self openDialogWithSpecLayout: (self retrieveSpec: aSpec)
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>openDialogWithSpecLayout: aSpec [
+{ #category : #api }
+ComposableModel >> openDialogWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a window"
 
 	(window value notNil and: [ self needRebuild not ])
@@ -1032,31 +770,22 @@ ComposableModel>>openDialogWithSpecLayout: aSpec [
 	^ window value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>openWithSpec [
+{ #category : #api }
+ComposableModel >> openWithSpec [
 	"Build the widget using the default spec and display it into a window"
 
 	^ self openWithSpec: self defaultSpecSelector.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>openWithSpec: aSpec [
+{ #category : #api }
+ComposableModel >> openWithSpec: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a window"
 
 	^ self openWithSpecLayout: (self retrieveSpec: aSpec)
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>openWithSpecLayout: aSpec [
+{ #category : #api }
+ComposableModel >> openWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument and display it into a window"
 
 	(window value notNil and: [ self needRebuild not ])
@@ -1070,48 +799,33 @@ ComposableModel>>openWithSpecLayout: aSpec [
 	^ window value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>owner [
+{ #category : #accessing }
+ComposableModel >> owner [
 
 	^ owner
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>owner: anObject [
+{ #category : #accessing }
+ComposableModel >> owner: anObject [
 
 	owner := anObject.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>privateAdapterFromModel: aModel withSpec: aSpec [
+{ #category : #private }
+ComposableModel >> privateAdapterFromModel: aModel withSpec: aSpec [
 	"apparently when looking at the implementation, it does not return a widget but an adapter so it should be called adapter :)"
 	^ SpecInterpreter private_buildWidgetFor: self withSpec: aSpec.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>private_buildWithSpec [
+{ #category : #private }
+ComposableModel >> private_buildWithSpec [
 	"Build the widget using the default spec"
 	
 	^ self private_buildWithSpec: self defaultSpecSelector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>private_buildWithSpec: aSpec [
+{ #category : #private }
+ComposableModel >> private_buildWithSpec: aSpec [
 	"Build the widget using the spec name provided as argument"
 	| adapter |
 	adapter := self privateAdapterFromModel: self withSpec: aSpec.
@@ -1119,11 +833,8 @@ ComposableModel>>private_buildWithSpec: aSpec [
 	^ adapter
 ]
 
-{
-	#category : #private-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>registerKeyStrokesForNextFor: aWidget [
+{ #category : #private-focus }
+ComposableModel >> registerKeyStrokesForNextFor: aWidget [
 
 	aWidget ifNil: [ ^ self ].
 	
@@ -1131,11 +842,8 @@ ComposableModel>>registerKeyStrokesForNextFor: aWidget [
 		aWidget bindKeyCombination: each toAction: [ self giveFocusToNextFrom: self ] ]
 ]
 
-{
-	#category : #private-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>registerKeyStrokesForPreviousFor: aWidget [
+{ #category : #private-focus }
+ComposableModel >> registerKeyStrokesForPreviousFor: aWidget [
 
 	aWidget ifNil: [ ^ self ].
 	
@@ -1143,11 +851,8 @@ ComposableModel>>registerKeyStrokesForPreviousFor: aWidget [
 		aWidget bindKeyCombination: each toAction: [ self giveFocusToPreviousFrom: self ] ]
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>removeKeyCombination: aShortcut [
+{ #category : #api-shortcuts }
+ComposableModel >> removeKeyCombination: aShortcut [
 
 	additionalKeyBindings 
 		removeKey: aShortcut 
@@ -1156,11 +861,8 @@ ComposableModel>>removeKeyCombination: aShortcut [
 	self changed: #removeKeyCombination: with: { aShortcut }
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>removeMenuKeyCombination: aShortcut [
+{ #category : #api-shortcuts }
+ComposableModel >> removeMenuKeyCombination: aShortcut [
 
 	additionalKeyBindings 
 		removeKey: aShortcut 
@@ -1169,20 +871,14 @@ ComposableModel>>removeMenuKeyCombination: aShortcut [
 	self changed: #removeMenuKeyCombination: with: { aShortcut }
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>resolveSymbol: aSymbol [
+{ #category : #'instance creation' }
+ComposableModel >> resolveSymbol: aSymbol [
 
 	^ Smalltalk at: aSymbol
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>retrieveSpec: aSelector [
+{ #category : #api }
+ComposableModel >> retrieveSpec: aSelector [
 	| layout |
 	
 	layout := self class perform: aSelector.
@@ -1190,11 +886,8 @@ ComposableModel>>retrieveSpec: aSelector [
 	^ layout
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>setExtentAndBindingTo: widget [
+{ #category : #api }
+ComposableModel >> setExtentAndBindingTo: widget [
 
 	self ensureExtentFor: widget.
 	self ensureKeyBindingsFor: widget.
@@ -1202,157 +895,109 @@ ComposableModel>>setExtentAndBindingTo: widget [
 	
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>setModal: aWindow  [
+{ #category : #api }
+ComposableModel >> setModal: aWindow [ 
 	
 	self changed: #setModal: with: { aWindow }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>show [
+{ #category : #api }
+ComposableModel >> show [
 
 	self widget ifNotNil: [:widget |
 		(widget respondsTo: #show) ifTrue: [ widget show ]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>spec [
+{ #category : #accessing }
+ComposableModel >> spec [
 
 	^ spec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>spec: aSpec [
+{ #category : #accessing }
+ComposableModel >> spec: aSpec [
 
 	spec := aSpec
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>specSelectors [
+{ #category : #api }
+ComposableModel >> specSelectors [
 	"Return all the spec names"
 	
 	^ self class specSelectors
 ]
 
-{
-	#category : #private-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>takeKeyboardFocus [
+{ #category : #private-focus }
+ComposableModel >> takeKeyboardFocus [
 
 	self focusOrder ifNotEmpty:[:focus | ^ focus first takeKeyboardFocus ].
 	^ self changed: #takeKeyboardFocus with: #()
 ]
 
-{
-	#category : #private-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>takeLastKeyboardFocus [
+{ #category : #private-focus }
+ComposableModel >> takeLastKeyboardFocus [
 
 	self focusOrder
 		ifEmpty: [ self takeKeyboardFocus ]
 		ifNotEmpty: [:focus | focus last takeKeyboardFocus ].
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>title [
+{ #category : #api }
+ComposableModel >> title [
 	"Return the window's title"
 
 	^ titleHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>title: aString [
+{ #category : #api }
+ComposableModel >> title: aString [
 
 	titleHolder value: aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>update: aParameter [
+{ #category : #private }
+ComposableModel >> update: aParameter [
 
 	self changed: aParameter
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>updateTitle [
+{ #category : #api }
+ComposableModel >> updateTitle [
 	"Update the window title"
 
 	self window ifNotNil: [:w | w updateTitle ]
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>whenBuiltDo: aBlock [
+{ #category : #api-events }
+ComposableModel >> whenBuiltDo: aBlock [
 
 	self announcer 
 		when: WidgetBuilt
 		do: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>whenShortcutsChanged: aBlock [
+{ #category : #api-events }
+ComposableModel >> whenShortcutsChanged: aBlock [
 	"Set a block to value when the shortcuts block has changed"
 	additionalKeyBindings whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>whenWindowChanged: aBlock [
+{ #category : #api-events }
+ComposableModel >> whenWindowChanged: aBlock [
 
 	window whenChangedDo: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>widget [
+{ #category : #accessing }
+ComposableModel >> widget [
 
 	^ spec
 		ifNil: [ nil ]
 		ifNotNil: [:s | s instance ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>window [
+{ #category : #accessing }
+ComposableModel >> window [
 
 	^ window value
 		ifNil: [
@@ -1361,20 +1006,14 @@ ComposableModel>>window [
 				ifNotNil: [:o | o window ]]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>windowIcon [
+{ #category : #api }
+ComposableModel >> windowIcon [
 
 	^ windowIcon value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ComposableModel>>windowIcon: aForm [
+{ #category : #api }
+ComposableModel >> windowIcon: aForm [
 
 	windowIcon value: aForm
 ]

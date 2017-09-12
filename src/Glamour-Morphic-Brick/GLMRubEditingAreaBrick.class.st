@@ -9,51 +9,35 @@ hSpaceFill - doesn't really makes sense, since text area still shrinks to fit te
 Class {
 	#name : #GLMRubEditingAreaBrick,
 	#superclass : #GLMRubScrolledTextBrick,
-	#category : #Glamour-Morphic-Brick-Widgets-Basic,
-	#timestamp : 'AliakseiSyrel 3/23/2015 01:00'
+	#category : #Glamour-Morphic-Brick-Widgets-Basic
 }
 
-{
-	#category : #examples-open,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubEditingAreaBrick class>>exampleBandOpen [
+{ #category : #examples-open }
+GLMRubEditingAreaBrick class >> exampleBandOpen [
 
 	self gtExampleBand openInBrickWindow
 ]
 
-{
-	#category : #examples-open,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubEditingAreaBrick class>>exampleFillOpen [
+{ #category : #examples-open }
+GLMRubEditingAreaBrick class >> exampleFillOpen [
 
 	self gtExampleFill openCenteredInBrickWindow
 ]
 
-{
-	#category : #examples-open,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubEditingAreaBrick class>>exampleOpen [
+{ #category : #examples-open }
+GLMRubEditingAreaBrick class >> exampleOpen [
 
 	self gtExample openCenteredInBrickWindow
 ]
 
-{
-	#category : #examples-open,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubEditingAreaBrick class>>exampleScrollPaneOpen [
+{ #category : #examples-open }
+GLMRubEditingAreaBrick class >> exampleScrollPaneOpen [
 	
 	self gtExampleScrollPane openInBrickWindowLabeled: 'Rubric in ScrollPane'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubEditingAreaBrick class>>gtExample [
+{ #category : #examples }
+GLMRubEditingAreaBrick class >> gtExample [
 	<gtExample>
 	<label: 'Basic Rubric Editing Area'>
 	
@@ -62,11 +46,8 @@ GLMRubEditingAreaBrick class>>gtExample [
 		yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubEditingAreaBrick class>>gtExampleBand [
+{ #category : #examples }
+GLMRubEditingAreaBrick class >> gtExampleBand [
 	<gtExample>
 	<label: 'Two rubric text areas in band'>
 	
@@ -81,11 +62,8 @@ GLMRubEditingAreaBrick class>>gtExampleBand [
 		yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubEditingAreaBrick class>>gtExampleBasic [
+{ #category : #examples }
+GLMRubEditingAreaBrick class >> gtExampleBasic [
 	<gtExample>
 	<label: 'Basic Rubric Editing Area with padding and border'>
 	
@@ -98,11 +76,8 @@ GLMRubEditingAreaBrick class>>gtExampleBasic [
 		borderColor: Color veryLightGray
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubEditingAreaBrick class>>gtExampleFill [
+{ #category : #examples }
+GLMRubEditingAreaBrick class >> gtExampleFill [
 	<gtExample>
 	<label: 'Basic Rubric Editing Area that fills parent'>
 	
@@ -112,11 +87,8 @@ GLMRubEditingAreaBrick class>>gtExampleFill [
 		yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubEditingAreaBrick class>>gtExampleScrollPane [
+{ #category : #examples }
+GLMRubEditingAreaBrick class >> gtExampleScrollPane [
 	<gtExample>
 	<label: 'Multiple rubric text areas in scroll pane'>
 	
@@ -131,11 +103,8 @@ GLMRubEditingAreaBrick class>>gtExampleScrollPane [
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubEditingAreaBrick>>initialize [
+{ #category : #initialization }
+GLMRubEditingAreaBrick >> initialize [
 	super initialize.
 	
 	self
@@ -143,31 +112,22 @@ GLMRubEditingAreaBrick>>initialize [
 		vShrinkWrap
 ]
 
-{
-	#category : #rubric-brick-creation,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubEditingAreaBrick>>newRubricMorph [
+{ #category : #rubric-brick-creation }
+GLMRubEditingAreaBrick >> newRubricMorph [
 
 	^ GLMRubEditingArea new beWrapped
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubEditingAreaBrick>>shrinkingWidth [
+{ #category : #brick-geometry }
+GLMRubEditingAreaBrick >> shrinkingWidth [
 
 	self rubric width: self rubric textArea width.
 	self onLayouted.
 	^ self rubric textArea width
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubEditingAreaBrick>>withoutBackground [
+{ #category : #brick-properties }
+GLMRubEditingAreaBrick >> withoutBackground [
 
 	self rubric color: Color transparent
 ]

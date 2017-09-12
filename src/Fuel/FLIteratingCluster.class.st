@@ -8,15 +8,11 @@ Class {
 		'objects',
 		'references'
 	],
-	#category : #Fuel-Clusters,
-	#timestamp : '<historical>'
+	#category : #Fuel-Clusters
 }
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>add: anObject traceWith: aAnalysis [
+{ #category : #analyzing }
+FLIteratingCluster >> add: anObject traceWith: aAnalysis [
 	"Add an object to the cluster and trace references."
 
 	objects addIfNotPresent: anObject ifPresentDo: [ ^ self ].
@@ -29,11 +25,8 @@ FLIteratingCluster>>add: anObject traceWith: aAnalysis [
 			aAnalysis trace: actual ]
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>addReferenceFrom: anObject to: anotherObject [
+{ #category : #analyzing }
+FLIteratingCluster >> addReferenceFrom: anObject to: anotherObject [
 	| list |
 	list := self references
 		at: anObject
@@ -42,60 +35,42 @@ FLIteratingCluster>>addReferenceFrom: anObject to: anotherObject [
 	list add: anotherObject
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>addReferencesFrom: anObject to: aCollection [
+{ #category : #analyzing }
+FLIteratingCluster >> addReferencesFrom: anObject to: aCollection [
 	aCollection do: [ :ref |
 		self addReferenceFrom: anObject to: ref ]
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>clusterMaterializeStepWith: aMaterialization [
+{ #category : #serialize/materialize }
+FLIteratingCluster >> clusterMaterializeStepWith: aMaterialization [
 
 	super clusterMaterializeStepWith: aMaterialization.
 	objects := Array new: aMaterialization decoder nextEncodedPositiveInteger
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>clusterSerializeStepWith: aSerialization [
+{ #category : #serialize/materialize }
+FLIteratingCluster >> clusterSerializeStepWith: aSerialization [
 
 	super clusterSerializeStepWith: aSerialization.
 	aSerialization encoder encodePositiveInteger: objects size.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>initializeAnalyzing [
+{ #category : #initialize-release }
+FLIteratingCluster >> initializeAnalyzing [
 
 	super initializeAnalyzing.
 	objects := self newAnalyzingCollection.
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>materializeInstanceWith: aDecoder [
+{ #category : #serialize/materialize }
+FLIteratingCluster >> materializeInstanceWith: aDecoder [
 	"Hook method that each subclass should customize for its special way of materializing"
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>materializeInstancesStepWith: aDecoder [
+{ #category : #serialize/materialize }
+FLIteratingCluster >> materializeInstancesStepWith: aDecoder [
 
 	1 to: objects size do: [ :index |
 		objects 
@@ -103,66 +78,45 @@ FLIteratingCluster>>materializeInstancesStepWith: aDecoder [
 			put: (self materializeInstanceWith: aDecoder) ].
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>newAnalyzingCollection [
+{ #category : #analyzing }
+FLIteratingCluster >> newAnalyzingCollection [
 	"Answer a collection for the objects that correspond to this cluster."
 
 	^ FLLargeIdentitySet new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>objects [
+{ #category : #accessing }
+FLIteratingCluster >> objects [
 
 	^objects
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>printNameOn: aStream [
+{ #category : #printing }
+FLIteratingCluster >> printNameOn: aStream [
 
 	super printOn: aStream
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>printOn: aStream [
+{ #category : #printing }
+FLIteratingCluster >> printOn: aStream [
 
 	self printNameOn: aStream.
 	aStream nextPutAll: '->'.
 	objects printElementsOn: aStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>references [
+{ #category : #accessing }
+FLIteratingCluster >> references [
 	^ references ifNil: [  references := FLLargeIdentityDictionary new ]
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>referencesOf: anObject do: aBlock [
+{ #category : #analyzing }
+FLIteratingCluster >> referencesOf: anObject do: aBlock [
 	"Evaluate a block with each object referenced by anObject"
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>registerIndexesOn: anEncoder [
+{ #category : #serialize/materialize }
+FLIteratingCluster >> registerIndexesOn: anEncoder [
 	| indexes |
 	indexes := anEncoder objectsIndexes.
 	self objects do: [ :instance |
@@ -171,19 +125,13 @@ FLIteratingCluster>>registerIndexesOn: anEncoder [
 			put: indexes size + 1 ]
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>serializeInstance: anObject with: anEncoder [
+{ #category : #serialize/materialize }
+FLIteratingCluster >> serializeInstance: anObject with: anEncoder [
 	"Hook method that each subclass should customize for its special way of serializing"
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIteratingCluster>>serializeInstancesStepWith: anEncoder [
+{ #category : #serialize/materialize }
+FLIteratingCluster >> serializeInstancesStepWith: anEncoder [
 
 	objects do: [ :instance | self serializeInstance: instance with: anEncoder ]
 ]

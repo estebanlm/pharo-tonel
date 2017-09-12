@@ -7,56 +7,37 @@ Class {
 	#classInstVars : [
 		'instance'
 	],
-	#category : #Slot-Layout,
-	#timestamp : '<historical>'
+	#category : #Slot-Layout
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-EmptyLayout class>>instance [
+{ #category : #'instance creation' }
+EmptyLayout class >> instance [
 	^ instance ifNil: [ instance := self new ]
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-EmptyLayout>>extend: someSlots [
+{ #category : #extending }
+EmptyLayout >> extend: someSlots [
 	^ FixedLayout new
 		slotScope: (LayoutEmptyScope instance extend: someSlots)
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-EmptyLayout>>extendByte [
+{ #category : #extending }
+EmptyLayout >> extendByte [
 	^ ByteLayout new
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-EmptyLayout>>extendVariable: someSlots [
+{ #category : #extending }
+EmptyLayout >> extendVariable: someSlots [
 	^ VariableLayout new
 		slotScope: (LayoutEmptyScope extend: someSlots)
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-EmptyLayout>>extendWeak [
+{ #category : #extending }
+EmptyLayout >> extendWeak [
 	^ WeakLayout new
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-EmptyLayout>>extendWord [
+{ #category : #extending }
+EmptyLayout >> extendWord [
 	^ WordLayout new
 ]

@@ -6,15 +6,11 @@ I collaborate with GlobalIdentifierPersistence that uses me for checking before 
 Class {
 	#name : #GlobalIdentifierPersistenceChecker,
 	#superclass : #Object,
-	#category : #System-Identification,
-	#timestamp : 'JurajKubelka 4/17/2017 09:36'
+	#category : #System-Identification
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistenceChecker>>isEnabled [
+{ #category : #testing }
+GlobalIdentifierPersistenceChecker >> isEnabled [
 	"See class comment or https://pharo.fogbugz.com/f/cases/19944."
 	^ FileLocator home exists
 ]

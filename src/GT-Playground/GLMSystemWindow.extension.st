@@ -1,12 +1,7 @@
-Extension {
-	#name : #GLMSystemWindow
-}
+Extension { #name : #GLMSystemWindow }
 
-{
-	#category : #'*GT-Playground',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GLMSystemWindow>>acceptAction: anAction  [
+{ #category : #'*GT-Playground' }
+GLMSystemWindow >> acceptAction: anAction [ 
 	"Be compatible with edit:label:accept:.
 	Not the best place for this method.
 	Interim situation to move things forward..."
@@ -14,11 +9,8 @@ GLMSystemWindow>>acceptAction: anAction  [
 	self model ifNotNil: [:aModel | aModel acceptAction: anAction].
 ]
 
-{
-	#category : #'*GT-Playground',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GLMSystemWindow>>acceptContents: aString  [
+{ #category : #'*GT-Playground' }
+GLMSystemWindow >> acceptContents: aString [ 
 	"Be compatible with edit:label:accept:.
 	Not the best place for this method.
 	Interim situation to move things forward..."
@@ -28,10 +20,7 @@ GLMSystemWindow>>acceptContents: aString  [
 	
 ]
 
-{
-	#category : #'*GT-Playground',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GLMSystemWindow>>model: anObject [
+{ #category : #'*GT-Playground' }
+GLMSystemWindow >> model: anObject [
 	model := anObject
 ]

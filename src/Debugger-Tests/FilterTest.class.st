@@ -12,15 +12,11 @@ Class {
 		'otherProcess',
 		'otherSession'
 	],
-	#category : #Debugger-Tests,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:30'
+	#category : #Debugger-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FilterTest>>setUp [
+{ #category : #running }
+FilterTest >> setUp [
 
 	context := [ (Set with: 1 with: 2) collect: [ :e | e * 2 ]. self halt ] asContext.
 	process := Process 
@@ -35,22 +31,16 @@ FilterTest>>setUp [
 	otherSession stepInto
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FilterTest>>testBlockFilter [
+{ #category : #tests }
+FilterTest >> testBlockFilter [
 	| fromBlockFilter |
 	
 	fromBlockFilter := [ :ctx | ctx isNotNil ] asFilter.
 	self assert: (fromBlockFilter shouldDisplay: context)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FilterTest>>testBooleanFilter [
+{ #category : #tests }
+FilterTest >> testBooleanFilter [
 	| kernelFilter doItFilter filters booleanFilter |
 	
 	kernelFilter := KernelClassesFilter new.
@@ -60,11 +50,8 @@ FilterTest>>testBooleanFilter [
 	self assert: (booleanFilter shouldDisplay: context)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FilterTest>>testKernelClassesFilter [
+{ #category : #tests }
+FilterTest >> testKernelClassesFilter [
 	| kernelClassesFilter setContext |
 	
 	setContext := session stepInto stepInto stack first.
@@ -74,11 +61,8 @@ FilterTest>>testKernelClassesFilter [
 	self deny: (kernelClassesFilter shouldDisplay: setContext)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FilterTest>>testSelectorFilter [
+{ #category : #tests }
+FilterTest >> testSelectorFilter [
 	| doItFilter nilMessagesFilter |
 	
 	doItFilter := SelectorFilter forSelector: #doIt.

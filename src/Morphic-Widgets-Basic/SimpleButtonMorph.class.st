@@ -42,35 +42,25 @@ Class {
 		'oldColor',
 		'label'
 	],
-	#category : #Morphic-Widgets-Basic-Buttons,
-	#timestamp : 'StephaneDucasse 8/8/2010 17:34'
+	#category : #Morphic-Widgets-Basic-Buttons
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph class>>newWithLabel: labelString [
+{ #category : #'as yet unclassified' }
+SimpleButtonMorph class >> newWithLabel: labelString [
 
 	^ self new label:  labelString
 
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>actWhen [
+{ #category : #submorphs-add/remove }
+SimpleButtonMorph >> actWhen [
 	"acceptable symbols:  #buttonDown, #buttonUp, and #whilePressed"
 
 	^ actWhen
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>actWhen: condition [
+{ #category : #submorphs-add/remove }
+SimpleButtonMorph >> actWhen: condition [
 	"Accepts symbols:  #buttonDown, #buttonUp, and #whilePressed, #startDrag"
 	actWhen := condition.
 	actWhen == #startDrag
@@ -78,21 +68,15 @@ SimpleButtonMorph>>actWhen: condition [
 		ifTrue:[self on: #startDrag send: #doButtonAction to: self].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>actionSelector [
+{ #category : #accessing }
+SimpleButtonMorph >> actionSelector [
 
 	^ actionSelector
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>actionSelector: aSymbolOrString [
+{ #category : #accessing }
+SimpleButtonMorph >> actionSelector: aSymbolOrString [
 
 	(nil = aSymbolOrString or:
 	 ['nil' = aSymbolOrString or:
@@ -103,11 +87,8 @@ SimpleButtonMorph>>actionSelector: aSymbolOrString [
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>addCustomMenuItems: aCustomMenu hand: aHandMorph [
+{ #category : #menu }
+SimpleButtonMorph >> addCustomMenuItems: aCustomMenu hand: aHandMorph [
 
 	super addCustomMenuItems: aCustomMenu hand: aHandMorph.
 	self addLabelItemsTo: aCustomMenu hand: aHandMorph.
@@ -118,19 +99,13 @@ SimpleButtonMorph>>addCustomMenuItems: aCustomMenu hand: aHandMorph [
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>addLabelItemsTo: aCustomMenu hand: aHandMorph  [
+{ #category : #menu }
+SimpleButtonMorph >> addLabelItemsTo: aCustomMenu hand: aHandMorph [ 
 	aCustomMenu add: 'change label' selector: #setLabel
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>addTargetingMenuItems: aCustomMenu hand: aHandMorph  [
+{ #category : #menu }
+SimpleButtonMorph >> addTargetingMenuItems: aCustomMenu hand: aHandMorph [ 
 	"Add targeting menu items"
 	aCustomMenu addLine.
 	aCustomMenu add: 'set target' selector: #targetWith:.
@@ -138,50 +113,35 @@ SimpleButtonMorph>>addTargetingMenuItems: aCustomMenu hand: aHandMorph  [
 		ifNotNil: [aCustomMenu add: 'clear target' translated selector: #clearTarget]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>arguments [
+{ #category : #accessing }
+SimpleButtonMorph >> arguments [
 
 	^ arguments
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>arguments: aCollection [
+{ #category : #accessing }
+SimpleButtonMorph >> arguments: aCollection [
 
 	arguments := aCollection asArray copy.
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>clearTarget [
+{ #category : #menu }
+SimpleButtonMorph >> clearTarget [
 
 	target := nil.
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>defaultLabel [
+{ #category : #initialization }
+SimpleButtonMorph >> defaultLabel [
 	^ 'Flash'.
 
 ]
 
-{
-	#category : #button,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>doButtonAction [
+{ #category : #button }
+SimpleButtonMorph >> doButtonAction [
 	"Perform the action of this button. Subclasses may override this method. The default behavior is to send the button's actionSelector to its target object with its arguments."
 
 	(target notNil and: [actionSelector notNil]) 
@@ -191,21 +151,15 @@ SimpleButtonMorph>>doButtonAction [
 	actWhen == #startDrag ifTrue: [oldColor ifNotNil: [self color: oldColor]]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>extent: newExtent [
+{ #category : #geometry }
+SimpleButtonMorph >> extent: newExtent [
 
 	super extent: newExtent.
 	label ifNotNil: [label position: self center - (label extent // 2)].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>fitContents [
+{ #category : #accessing }
+SimpleButtonMorph >> fitContents [
 	| aMorph aCenter |
 	aCenter := self center.
 	submorphs isEmpty ifTrue: [^self].
@@ -215,46 +169,31 @@ SimpleButtonMorph>>fitContents [
 	aMorph position: aCenter - (aMorph extent // 2)
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>handlesMouseDown: evt [
+{ #category : #'event handling' }
+SimpleButtonMorph >> handlesMouseDown: evt [
 	^  true
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>handlesMouseStillDown: evt [
+{ #category : #'event handling' }
+SimpleButtonMorph >> handlesMouseStillDown: evt [
 	^actWhen == #whilePressed
 ]
 
-{
-	#category : #balloon,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>helpText [
+{ #category : #balloon }
+SimpleButtonMorph >> helpText [
 
 	^ self balloonText
 ]
 
-{
-	#category : #balloon,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>helpText: aString [
+{ #category : #balloon }
+SimpleButtonMorph >> helpText: aString [
 
 	self setBalloonText: aString
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>initialize [
+{ #category : #initialization }
+SimpleButtonMorph >> initialize [
 	super initialize.
 
 	self borderWidth: 1.
@@ -268,35 +207,23 @@ SimpleButtonMorph>>initialize [
 	self setDefaultLabel 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>isDefault [
+{ #category : #testing }
+SimpleButtonMorph >> isDefault [
 	^ self extension isDefault
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>label [
+{ #category : #accessing }
+SimpleButtonMorph >> label [
 	^ label contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>label: aString [
+{ #category : #accessing }
+SimpleButtonMorph >> label: aString [
 	self label: aString font: StandardFonts buttonFont
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>label: aString font: aFont [
+{ #category : #accessing }
+SimpleButtonMorph >> label: aString font: aFont [
 
 	label ifNotNil: [label delete].
 	label := StringMorph contents: aString font: (aFont ifNil: [StandardFonts buttonFont]).
@@ -307,11 +234,8 @@ SimpleButtonMorph>>label: aString font: aFont [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>labelString: aString [
+{ #category : #accessing }
+SimpleButtonMorph >> labelString: aString [
 
 	label ifNil: [self label: aString]
 		ifNotNil:
@@ -320,11 +244,8 @@ SimpleButtonMorph>>labelString: aString [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>mouseDown: evt [
+{ #category : #'event handling' }
+SimpleButtonMorph >> mouseDown: evt [
 
 	super mouseDown: evt.
 	evt yellowButtonPressed ifTrue: [ ^self ] .
@@ -335,38 +256,26 @@ SimpleButtonMorph>>mouseDown: evt [
 	self mouseStillDown: evt.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>mouseMove: evt [
+{ #category : #'event handling' }
+SimpleButtonMorph >> mouseMove: evt [
 	actWhen == #buttonDown ifTrue: [^ self].
 	self updateVisualState: evt.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>mouseStillDown: evt [
+{ #category : #'event handling' }
+SimpleButtonMorph >> mouseStillDown: evt [
 	actWhen == #whilePressed ifFalse:[^self].
 	(self containsPoint: evt cursorPoint) ifTrue:[self doButtonAction].
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>mouseStillDownStepRate [
+{ #category : #events-processing }
+SimpleButtonMorph >> mouseStillDownStepRate [
 	"Answer how often I want the #handleMouseStillDown: stepped"
 	^200
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>mouseUp: evt [
+{ #category : #'event handling' }
+SimpleButtonMorph >> mouseUp: evt [
 	super mouseUp: evt.
 	oldColor ifNotNil:
 		["if oldColor nil, it signals that mouse had not gone DOWN
@@ -382,11 +291,8 @@ SimpleButtonMorph>>mouseUp: evt [
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>setActWhen [
+{ #category : #menu }
+SimpleButtonMorph >> setActWhen [
 	| selections |
 	selections := #(#buttonDown #buttonUp #whilePressed #startDrag ).
 	actWhen := UIManager default
@@ -396,11 +302,8 @@ SimpleButtonMorph>>setActWhen [
 				title: 'Choose one of the following conditions' translated
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>setActionSelector [
+{ #category : #menu }
+SimpleButtonMorph >> setActionSelector [
 
 	| newSel |
 	newSel := UIManager default
@@ -412,11 +315,8 @@ the target when this button is pressed' translated
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>setArguments [
+{ #category : #menu }
+SimpleButtonMorph >> setArguments [
 	| newArgs newArgsArray |
 	newArgs := UIManager default
 		request:
@@ -431,20 +331,14 @@ when this button is pressed separated by periods' translated
 			self arguments: newArgsArray ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>setDefaultLabel [
+{ #category : #initialization }
+SimpleButtonMorph >> setDefaultLabel [
 	self label: self defaultLabel
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>setLabel [
+{ #category : #menu }
+SimpleButtonMorph >> setLabel [
 
 	| newLabel |
 	newLabel := UIManager default
@@ -454,42 +348,30 @@ SimpleButtonMorph>>setLabel [
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>setTarget: evt  [
+{ #category : #menu }
+SimpleButtonMorph >> setTarget: evt [ 
 	| rootMorphs |
 	rootMorphs := self world rootMorphsAt: evt hand targetPoint.
 	target := rootMorphs size > 1
 				ifTrue: [rootMorphs second]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>target [
+{ #category : #accessing }
+SimpleButtonMorph >> target [
 
 	^ target
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>target: anObject [
+{ #category : #accessing }
+SimpleButtonMorph >> target: anObject [
 
 	target := anObject
 
 ]
 
-{
-	#category : #theme,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>themeChanged [
+{ #category : #theme }
+SimpleButtonMorph >> themeChanged [
 
 	self
 	layoutInset: (self theme buttonLabelInsetFor: self);
@@ -501,20 +383,14 @@ SimpleButtonMorph>>themeChanged [
 	super themeChanged
 ]
 
-{
-	#category : #theme,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>themedFillStyle [
+{ #category : #theme }
+SimpleButtonMorph >> themedFillStyle [
 
 	^self theme buttonNormalFillStyleFor: self
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>updateVisualState: evt [
+{ #category : #'visual properties' }
+SimpleButtonMorph >> updateVisualState: evt [
 	
 	oldColor ifNotNil: [
 		 self color: 
@@ -524,11 +400,8 @@ SimpleButtonMorph>>updateVisualState: evt [
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>veryDeepFixupWith: deepCopier [
+{ #category : #copying }
+SimpleButtonMorph >> veryDeepFixupWith: deepCopier [
 	"If target and arguments fields were weakly copied, fix them here.  If they were in the tree being copied, fix them up, otherwise point to the originals!!"
 
 super veryDeepFixupWith: deepCopier.
@@ -538,11 +411,8 @@ arguments := arguments collect: [:each |
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleButtonMorph>>veryDeepInner: deepCopier [
+{ #category : #copying }
+SimpleButtonMorph >> veryDeepInner: deepCopier [
 	"Copy all of my instance variables.  Some need to be not copied at all, but shared.  	Warning!!  Every instance variable defined in this class must be handled.  We must also implement veryDeepFixupWith:.  See DeepCopier class comment."
 
 super veryDeepInner: deepCopier.

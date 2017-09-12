@@ -10,30 +10,20 @@ OSPlatform current.
 Class {
 	#name : #MacOSXPlatform,
 	#superclass : #MacOSPlatform,
-	#category : #System-Platforms,
-	#timestamp : '<historical>'
+	#category : #System-Platforms
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MacOSXPlatform class>>isActivePlatform [
+{ #category : #testing }
+MacOSXPlatform class >> isActivePlatform [
 	^ self isMacOS and: [ self currentVersion asNumber >= 1000 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MacOSXPlatform>>family [
+{ #category : #accessing }
+MacOSXPlatform >> family [
 	^#MacOSX
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MacOSXPlatform>>isMacOSX [
+{ #category : #testing }
+MacOSXPlatform >> isMacOSX [
 	^ true
 ]

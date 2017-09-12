@@ -11,23 +11,16 @@ Class {
 		'packageTreeNautilusUI',
 		'open'
 	],
-	#category : #Tool-DependencyAnalyser-UI-Core,
-	#timestamp : 'BaptisteQuide 7/11/2014 14:47'
+	#category : #Tool-DependencyAnalyser-UI-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>actionOnRefresh [
+{ #category : #private }
+DAPackageTreeModel >> actionOnRefresh [
 	buttonRefresh action: [ self refresh ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>addDependenciesOptionsFor: selectedNodes on: menuGroup [
+{ #category : #actions }
+DAPackageTreeModel >> addDependenciesOptionsFor: selectedNodes [ on: menuGroup
 	| namesOfSelected |
 	(self areClassToDependencyNodes: selectedNodes)
 		ifTrue: [ 
@@ -39,11 +32,8 @@ DAPackageTreeModel>>addDependenciesOptionsFor: selectedNodes on: menuGroup [
 						action: [ self openTreeFor: namesOfSelected ]) ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>addPackageOptionsFor: selectedNodes on: menuGroup [
+{ #category : #actions }
+DAPackageTreeModel >> addPackageOptionsFor: selectedNodes [ on: menuGroup
 	| selectedPackageNames |
 	(self arePackageNodes: selectedNodes)
 		ifTrue: [ 
@@ -62,85 +52,55 @@ DAPackageTreeModel>>addPackageOptionsFor: selectedNodes on: menuGroup [
 								action: [ (DAPackageAnalyzerCycleDetectionWindow onPackagesNamed: selectedPackageNames) open ]) ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>areClassToDependencyNodes: aCollectionOfItem [
+{ #category : #testing }
+DAPackageTreeModel >> areClassToDependencyNodes: aCollectionOfItem [
 	^ aCollectionOfItem allSatisfy: [ :node |  node isClassToDependencyNode ].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>arePackageNodes: aCollectionOfItem [
+{ #category : #testing }
+DAPackageTreeModel >> arePackageNodes: aCollectionOfItem [
 	^ aCollectionOfItem allSatisfy: [ :node |  node isPackageNode ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>browseReference [
+{ #category : #initialization }
+DAPackageTreeModel >> browseReference [
 	self selectedItemFromTree isReferenceNode ifTrue: [ 
 			self selectedItemFromTree browseReference
 		 ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>buildRoots [
+{ #category : #private }
+DAPackageTreeModel >> buildRoots [
 	self subclassResponsibility.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>buttonRefresh [
+{ #category : #accessing }
+DAPackageTreeModel >> buttonRefresh [
 	^ buttonRefresh
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>close [
+{ #category : #actions }
+DAPackageTreeModel >> close [
 	open := false
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>defaultFormat [
+{ #category : #protocol }
+DAPackageTreeModel >> defaultFormat [
 	^ #png
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>ifGraphVizAbsent: aBlock [
+{ #category : #testing }
+DAPackageTreeModel >> ifGraphVizAbsent: aBlock [
 	Smalltalk at: #GVGraphViz ifAbsent: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>initializePresenter [
+{ #category : #initialization }
+DAPackageTreeModel >> initializePresenter [
 	self actionOnRefresh
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>initializeWidgets [
+{ #category : #initialization }
+DAPackageTreeModel >> initializeWidgets [
 	tree := self newTree
 		multiSelection: true;
 		on: $b meta
@@ -155,19 +115,13 @@ DAPackageTreeModel>>initializeWidgets [
 	packageTreeNautilus := Nautilus new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>isOpen [
+{ #category : #testing }
+DAPackageTreeModel >> isOpen [
 	^ open
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>loadMenuFor: item in: aMenu [
+{ #category : #actions }
+DAPackageTreeModel >> loadMenuFor: item in: aMenu [
 	| menuGroup selectedNodes |
 	selectedNodes := self selectedItemsFromTree.
 	menuGroup := MenuGroupModel new.
@@ -180,20 +134,14 @@ DAPackageTreeModel>>loadMenuFor: item in: aMenu [
 	^ aMenu
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>open [
+{ #category : #'instance creation' }
+DAPackageTreeModel >> open [
 	open := true.
 	^ self openWithSpec 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>openTreeFor: namesOfSelected [
+{ #category : #actions }
+DAPackageTreeModel >> openTreeFor: namesOfSelected [
 	| treeToOpen relationGraph |
 	treeToOpen := TreeModel new.
 	relationGraph := self tree owner relationGraph.
@@ -210,69 +158,45 @@ DAPackageTreeModel>>openTreeFor: namesOfSelected [
 		openWithSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>packageTreeNautilus [
+{ #category : #accessing }
+DAPackageTreeModel >> packageTreeNautilus [
 	^ packageTreeNautilus
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>packageTreeNautilusUI [
+{ #category : #accessing }
+DAPackageTreeModel >> packageTreeNautilusUI [
 	^ packageTreeNautilusUI
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>packageTreeNautilusUI: anObject [
+{ #category : #accessing }
+DAPackageTreeModel >> packageTreeNautilusUI: anObject [
 	packageTreeNautilusUI := anObject.
 	"have to rebuild the roots, because the Nautilus UI just changed"
 	self buildRoots
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>refresh [
+{ #category : #actions }
+DAPackageTreeModel >> refresh [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>saveGraphAndOpenWith: graphvizGenerator [
+{ #category : #protocol }
+DAPackageTreeModel >> saveGraphAndOpenWith: graphvizGenerator [
 	graphvizGenerator saveDotFileAndGenerateForType: self defaultFormat.
 	^ graphvizGenerator openWith: self defaultFormat
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>selectedItemFromTree [
+{ #category : #actions }
+DAPackageTreeModel >> selectedItemFromTree [
 	^ self tree selectedItem
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>selectedItemsFromTree [
+{ #category : #accessing }
+DAPackageTreeModel >> selectedItemsFromTree [
 	^ self tree selectedItems
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageTreeModel>>tree [
+{ #category : #accessing }
+DAPackageTreeModel >> tree [
 	^ tree
 ]

@@ -33,34 +33,23 @@ Class {
 		'hasChildrenBlockHolder',
 		'autoRefreshOnExpand'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel class>>adapterName [
-
+{ #category : #specs }
+TreeModel class >> adapterName [
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel class>>defaultSpec [
+{ #category : #specs }
+TreeModel class >> defaultSpec [
 	<spec: #default>
 	
 	^ #(TreeAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel class>>example [
+{ #category : #examples }
+TreeModel class >> example [
 	| m |
 
 	m := self new.
@@ -89,11 +78,8 @@ TreeModel class>>example [
 	^ m
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel class>>exampleOfAutoRefreshOnExpand [
+{ #category : #examples }
+TreeModel class >> exampleOfAutoRefreshOnExpand [
 	"Each time a node is expanded, the computation of the children is made again, instead of being cached as it is usually"
 
 	TreeModel new
@@ -106,11 +92,8 @@ TreeModel class>>exampleOfAutoRefreshOnExpand [
 		openWithSpec
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel class>>exampleWithCustomColumnsAndNodes [
+{ #category : #examples }
+TreeModel class >> exampleWithCustomColumnsAndNodes [
 	"self exampleWithCustomColumnsAndNodes"
 	| m col1 col2 |
 
@@ -152,11 +135,8 @@ TreeModel class>>exampleWithCustomColumnsAndNodes [
 	col1 headerIcon: (self iconNamed: #nautilusIcon).
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel class>>exampleWithCustomColumnsAndNodesAndChildren [
+{ #category : #examples }
+TreeModel class >> exampleWithCustomColumnsAndNodesAndChildren [
 	"self exampleWithCustomColumnsAndNodesAndChildren"
 
 	| m col1 col2 |
@@ -185,11 +165,8 @@ TreeModel class>>exampleWithCustomColumnsAndNodesAndChildren [
 		displayBlock: [ :node | (Character value: node content asString first asciiValue + 2) asString ]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel class>>exampleWithNoSpecifiedNodes [
+{ #category : #examples }
+TreeModel class >> exampleWithNoSpecifiedNodes [
 	"self exampleWithNoSpecifiedNodes"
 
 	TreeModel new
@@ -198,90 +175,60 @@ TreeModel class>>exampleWithNoSpecifiedNodes [
 		 openWithSpec
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>allowMenuOnNoItem [
+{ #category : #api }
+TreeModel >> allowMenuOnNoItem [
 
 	^ allowMenuOnNoItem value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>allowMenuOnNoItem: aBoolean [
+{ #category : #api }
+TreeModel >> allowMenuOnNoItem: aBoolean [
 
 	allowMenuOnNoItem value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>autoDeselection [
+{ #category : #api }
+TreeModel >> autoDeselection [
 
 	^ autoDeselection value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>autoDeselection: aBoolean [
+{ #category : #api }
+TreeModel >> autoDeselection: aBoolean [
 
 	autoDeselection value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>autoMultiSelection [
+{ #category : #api }
+TreeModel >> autoMultiSelection [
 
 	^ autoMultiSelection value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>autoMultiSelection: aBoolean [
+{ #category : #api }
+TreeModel >> autoMultiSelection: aBoolean [
 
 	autoMultiSelection value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>autoRefreshOnExpand [
+{ #category : #api }
+TreeModel >> autoRefreshOnExpand [
 	^ autoRefreshOnExpand value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>autoRefreshOnExpand: aBoolean [
+{ #category : #api }
+TreeModel >> autoRefreshOnExpand: aBoolean [
 	autoRefreshOnExpand value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>beCheckList [
+{ #category : #api }
+TreeModel >> beCheckList [
 
 	self isCheckList: true
 ]
 
-{
-	#category : #api-compatibility,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>childrenBlock [
+{ #category : #api-compatibility }
+TreeModel >> childrenBlock [
 	"< api: #inspect>"
 	"Return the block used to retrieve the children of a node.
 	The optional block arguments are:
@@ -291,11 +238,8 @@ TreeModel>>childrenBlock [
 	^ childrenBlockHolder value
 ]
 
-{
-	#category : #api-compatibility,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>childrenBlock: aBlock [
+{ #category : #api-compatibility }
+TreeModel >> childrenBlock: aBlock [
 	"< api: #block getter: #childrenBlock registration: #whenChildrenBlockChanged:>"
 	"Set the block used to retrieve the children of a node.
 	The optional block arguments are:
@@ -305,65 +249,44 @@ TreeModel>>childrenBlock: aBlock [
 	childrenBlockHolder value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>childrenFor: anItem [
+{ #category : #api }
+TreeModel >> childrenFor: anItem [
 
 	^ self childrenBlock cull: anItem cull: self
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>collapseAll [
+{ #category : #api }
+TreeModel >> collapseAll [
 	
 	self changed: #collapseAll with: #()
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>columnInset [
+{ #category : #api }
+TreeModel >> columnInset [
 
 	^ columnInset value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>columnInset: anInteger [
+{ #category : #api }
+TreeModel >> columnInset: anInteger [
 
 	columnInset value: anInteger
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>columns [
+{ #category : #api }
+TreeModel >> columns [
 	
 	^ columns value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>columns: aCollection [
+{ #category : #api }
+TreeModel >> columns: aCollection [
 	
 	columns value: aCollection
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>defaultNodeFor: item [
+{ #category : #initialization }
+TreeModel >> defaultNodeFor: item [
 
 	^ TreeNodeModel new
 		content: item;
@@ -372,20 +295,14 @@ TreeModel>>defaultNodeFor: item [
 		yourself
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>deselectAll [
+{ #category : #api }
+TreeModel >> deselectAll [
 	
 	self changed: #deselectAll with: #()
 ]
 
-{
-	#category : #api-compatibility,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>displayBlock [
+{ #category : #api-compatibility }
+TreeModel >> displayBlock [
 	"< api: #inspect>"
 	"Return the block used to generate the display of the items.
 	The optioanl block arguments are:
@@ -395,11 +312,8 @@ TreeModel>>displayBlock [
 	^ displayBlock value
 ]
 
-{
-	#category : #api-compatibility,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>displayBlock: aBlock [
+{ #category : #api-compatibility }
+TreeModel >> displayBlock: aBlock [
 	"<api: #block getter: #displayBlock registration: #whenDisplayBlockChanged:>"
 	"Set the block used to generate the display of the items.
 	The optioanl block arguments are:
@@ -409,85 +323,58 @@ TreeModel>>displayBlock: aBlock [
 	displayBlock value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>doubleClick [
+{ #category : #api }
+TreeModel >> doubleClick [
 
 	doubleClick value value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>doubleClick: aBlock [
+{ #category : #api }
+TreeModel >> doubleClick: aBlock [
 
 	doubleClick value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>evenRowColor [
+{ #category : #api }
+TreeModel >> evenRowColor [
 
 	^ evenRowColor value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>evenRowColor: aColor [
+{ #category : #api }
+TreeModel >> evenRowColor: aColor [
 
 	evenRowColor value: aColor
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>eventKeyStrokesForNextFocus [
+{ #category : #focus }
+TreeModel >> eventKeyStrokesForNextFocus [
 	"String describing the keystroke to perform to jump to the next widget"	
 		
 	^ { Character tab asKeyCombination }
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>eventKeyStrokesForPreviousFocus [
+{ #category : #focus }
+TreeModel >> eventKeyStrokesForPreviousFocus [
 	"String describing the keystroke to perform to jump to the previous widget"
 	
 	^ { Character tab shift asKeyCombination }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>expandAll [
+{ #category : #api }
+TreeModel >> expandAll [
 
 	self changed: #expandAll with: #()
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>expandRoots [
+{ #category : #api }
+TreeModel >> expandRoots [
 
 	self changed: #expandRoots with: #()
 ]
 
-{
-	#category : #api-filtering,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>filterWith: aFilter [
+{ #category : #api-filtering }
+TreeModel >> filterWith: aFilter [
 	
 	self selection: nil.
 	self updateTree.
@@ -498,11 +385,8 @@ TreeModel>>filterWith: aFilter [
 	self expandAll.
 ]
 
-{
-	#category : #api-compatibility,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>hasChildrenBlock [
+{ #category : #api-compatibility }
+TreeModel >> hasChildrenBlock [
 	"<api: #inspect>"
 	"Get the block used to check if a node has children.
 	The optional block arguments are:
@@ -512,11 +396,8 @@ TreeModel>>hasChildrenBlock [
 	^ hasChildrenBlockHolder value
 ]
 
-{
-	#category : #api-compatibility,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>hasChildrenBlock: aBlock [
+{ #category : #api-compatibility }
+TreeModel >> hasChildrenBlock: aBlock [
 	"< api: #block getter: #hasChildrenBlock registration: #whenHasChildrenBlockChanged:>"
 	"Set the block used to  check if a node has children.
 	The optional block arguments are:
@@ -526,42 +407,30 @@ TreeModel>>hasChildrenBlock: aBlock [
 	hasChildrenBlockHolder value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>hasChildrenFor: anItem [
+{ #category : #api }
+TreeModel >> hasChildrenFor: anItem [
 
 	^ self hasChildrenBlock cull: anItem cull: self
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>hasSelectedItem [
+{ #category : #api }
+TreeModel >> hasSelectedItem [
 	"< api: #inspect>"
 	"Return true if the tree contains any selected items"
 	
 	^ selectionHolder value isNotEmpty
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>highlightedItem [
+{ #category : #api }
+TreeModel >> highlightedItem [
 	"<api: #inspect>"
 	"Return the currently highlighted item"
 
 	^ highlightedItem value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>highlightedItem: anItem [
+{ #category : #api }
+TreeModel >> highlightedItem: anItem [
 	"< api: #st getter: #highlightedItem registration: #whenHighlightedItemChanged:>"
 	"Set the highlightedItem item"
 	"In the case of keyboard navigation with checklist, it may differ from the last selected item"
@@ -569,29 +438,20 @@ TreeModel>>highlightedItem: anItem [
 	highlightedItem value: anItem
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>iconBlock: aBlock [
+{ #category : #api }
+TreeModel >> iconBlock: aBlock [
 
 	iconBlock value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>iconFor: aNode [
+{ #category : #api }
+TreeModel >> iconFor: aNode [
 
 	^ iconBlock value cull: aNode content cull: aNode
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>initialize [
+{ #category : #initialization }
+TreeModel >> initialize [
 	super initialize.
 
 	childrenBlockHolder := [ {} ] asValueHolder.
@@ -635,69 +495,48 @@ TreeModel>>initialize [
 	self registerEvents
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>isCheckList [
+{ #category : #api }
+TreeModel >> isCheckList [
 
 	^ isCheckList value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>isCheckList: aBoolean [
+{ #category : #api }
+TreeModel >> isCheckList: aBoolean [
 
 	isCheckList value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>keyStroke: aKeyStroke [
+{ #category : #api }
+TreeModel >> keyStroke: aKeyStroke [
 
 	keyStroke value cull: aKeyStroke
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>keyStrokeAction: aBlock [
+{ #category : #api }
+TreeModel >> keyStrokeAction: aBlock [
 
 	keyStroke value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>menu [
+{ #category : #api }
+TreeModel >> menu [
 	"<api: #inspect>"
 	"Return the block used to generate the tree menu"
 
 	^ menuBlockHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>menu: aBlock [
+{ #category : #api }
+TreeModel >> menu: aBlock [
 "	< api: #block getter: #menu registration: #whenMenuChanged:>"
 	"Set the block used to generate the tree menu"
 
 	menuBlockHolder value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>menu: aMenu shifted: aBoolean [
+{ #category : #api }
+TreeModel >> menu: aMenu shifted: aBoolean [
 	| menu |
 	
 	(self allowMenuOnNoItem not and: [ self selectedItems isEmpty ])
@@ -714,73 +553,49 @@ TreeModel>>menu: aMenu shifted: aBoolean [
 	^ menu
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>multiSelection [
+{ #category : #api }
+TreeModel >> multiSelection [
 
 	^ multiSelection value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>multiSelection: aBoolean [
+{ #category : #api }
+TreeModel >> multiSelection: aBoolean [
 
 	multiSelection value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>oddRowColor [
+{ #category : #api }
+TreeModel >> oddRowColor [
 
 	^ oddRowColor value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>oddRowColor: aColor [
+{ #category : #api }
+TreeModel >> oddRowColor: aColor [
 
 	oddRowColor value: aColor
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>onWidgetBuilt [
+{ #category : #initialization }
+TreeModel >> onWidgetBuilt [
 	^ self selectedItems: selectionHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>preferedPaneColor [
+{ #category : #api }
+TreeModel >> preferedPaneColor [
 
 	^ preferedPaneColor value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>preferedPaneColor: aColor [
+{ #category : #api }
+TreeModel >> preferedPaneColor: aColor [
 
 	preferedPaneColor value: aColor
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>registerEvents [
+{ #category : #initialization }
+TreeModel >> registerEvents [
 	
 	rootsHolder whenChangedDo: [ self updateTree ].
 	childrenBlockHolder whenChangedDo: [ self updateTree ].
@@ -821,47 +636,32 @@ TreeModel>>registerEvents [
 		to: self.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>removeOnlyLastSelected: aBoolean [
+{ #category : #api }
+TreeModel >> removeOnlyLastSelected: aBoolean [
 
 	removeOnlyLastSelected value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>resetSelection [
+{ #category : #api }
+TreeModel >> resetSelection [
 
 	self selectedItems: {}
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>resizerWidth [
+{ #category : #api }
+TreeModel >> resizerWidth [
 
 	^ resizerWidth value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>resizerWidth: anInteger [
+{ #category : #api }
+TreeModel >> resizerWidth: anInteger [
 
 	resizerWidth value: anInteger
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>rootNodeFor: item [
+{ #category : #api }
+TreeModel >> rootNodeFor: item [
 	| node |
 	
 	node := self rootNodeHolder cull: item.
@@ -870,40 +670,28 @@ TreeModel>>rootNodeFor: item [
 	^ node
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>rootNodeHolder [
+{ #category : #api }
+TreeModel >> rootNodeHolder [
 
 	^ rootNodeHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>rootNodeHolder: aBlock [
+{ #category : #api }
+TreeModel >> rootNodeHolder: aBlock [
 
 	rootNodeHolder value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>roots [
+{ #category : #api }
+TreeModel >> roots [
 	"< api: #inspect>"
 	"Return the tree roots"
 
 	^ rootsHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>roots: aCollection [
+{ #category : #api }
+TreeModel >> roots: aCollection [
 	"< api: #st getter: #roots registration: #whenRootsChanged:>"
 	"Set the tree roots"
 
@@ -911,56 +699,38 @@ TreeModel>>roots: aCollection [
 	self changed: #setRoots: with: { aCollection }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>rowInset [
+{ #category : #api }
+TreeModel >> rowInset [
 
 	^ rowInset value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>rowInset: anInteger [
+{ #category : #api }
+TreeModel >> rowInset: anInteger [
 
 	rowInset value: anInteger
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>secondSelection: anItem [
+{ #category : #api }
+TreeModel >> secondSelection: anItem [
 	
 	self widget ifNotNil: [ :w | w listManager secondSelection: anItem ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>selectAll [
+{ #category : #api }
+TreeModel >> selectAll [
 	
 	self changed: #selectAdd with: #()
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>selectOnlyLastHighlighted [
+{ #category : #api }
+TreeModel >> selectOnlyLastHighlighted [
 
 	^ removeOnlyLastSelected value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>selectedItem [
+{ #category : #api }
+TreeModel >> selectedItem [
 	"< api: #inspect>"
 	"Return the selected item"
 	"In the case of a multiple selection list, it returns the last selected item"
@@ -970,11 +740,8 @@ TreeModel>>selectedItem [
 		ifNotEmpty: [ :col | col  last ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>selectedItem: anItem [
+{ #category : #api }
+TreeModel >> selectedItem: anItem [
 	"< api: #st getter: #selectedItem registration: #whenSelectedItemsChanged:>"
 	"Set the selected item"
 	"In the case of a multiple selection list, it returns the last selected item"
@@ -982,22 +749,16 @@ TreeModel>>selectedItem: anItem [
 	self selectedItems: { anItem }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>selectedItems [
+{ #category : #api }
+TreeModel >> selectedItems [
 	"< api: #inspect>"
 	"Return the selected items"
 	
 	^ selectionHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>selectedItems: aCollection [
+{ #category : #api }
+TreeModel >> selectedItems: aCollection [
 	"<api: #st getter: #selectedItems registration: #whenSelectedItemsChanged:>"
 	"Set the selected item"
 	"In the case of a multiple selection list, it returns the last selected item"
@@ -1007,40 +768,28 @@ TreeModel>>selectedItems: aCollection [
 	
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>selection: aSelection [
+{ #category : #api }
+TreeModel >> selection: aSelection [
  
 	self changed: #selection: with: { aSelection }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>selectionChanged [
+{ #category : #api }
+TreeModel >> selectionChanged [
 	
 	self changed: #selectionChanged with: #()
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>selectionChanged: ann [
+{ #category : #initialization }
+TreeModel >> selectionChanged: ann [
 
 	^ selectionHolder value: (ann selection
 		ifNil: [ #() ]
 		ifNotNil: [:selection | selection selectedNodes ])
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>updateTree [
+{ #category : #api }
+TreeModel >> updateTree [
 	"< api: #do>"
 	"Force the tree to refresh"
 
@@ -1048,69 +797,48 @@ TreeModel>>updateTree [
 	treeUpdated value: nil.
 ]
 
-{
-	#category : #api-events-compatibility,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>whenChildrenBlockChanged: aBlock [
+{ #category : #api-events-compatibility }
+TreeModel >> whenChildrenBlockChanged: aBlock [
 	"Set a block to perform when a new childrenBlock is set"
 
 	childrenBlockHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events-compatibility,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>whenDisplayBlockChanged: aBlock [
+{ #category : #api-events-compatibility }
+TreeModel >> whenDisplayBlockChanged: aBlock [
 	"Set a block to perform when a new displayBlock is set"
 
 	displayBlock whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events-compatibility,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>whenHasChildrenBlockChanged: aBlock [
+{ #category : #api-events-compatibility }
+TreeModel >> whenHasChildrenBlockChanged: aBlock [
 	"Set a block to perform when a new hasChildrenBlock is set"
 
 	hasChildrenBlockHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>whenHighlightedItemChanged: aBlock [
+{ #category : #api-events }
+TreeModel >> whenHighlightedItemChanged: aBlock [
 
 	highlightedItem whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>whenMenuChanged: aBlock [
+{ #category : #api-events }
+TreeModel >> whenMenuChanged: aBlock [
 	"Set a block to perform when a new menuBlock is set"
 
 	menuBlockHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>whenRootsChanged: aBlock [
+{ #category : #api-events }
+TreeModel >> whenRootsChanged: aBlock [
 
 	rootsHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events-compatibility,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>whenSelectedItemChanged: aBlock [
+{ #category : #api-events-compatibility }
+TreeModel >> whenSelectedItemChanged: aBlock [
 	"Set a block to perform when a new item is selected"
 
 	selectionHolder whenChangedDo: [ :col | 
@@ -1123,30 +851,21 @@ TreeModel>>whenSelectedItemChanged: aBlock [
 						ifFalse: [ nil ]) ] ] ]
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>whenSelectedItemsChanged: aBlock [
+{ #category : #api-events }
+TreeModel >> whenSelectedItemsChanged: aBlock [
 	"Set a block to perform when a new item is selected"
 
 	selectionHolder whenChangedDo: [ :col | aBlock cull: (col collect: [:e | e content ]) ]
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>whenTreeUpdated: aBlock [
+{ #category : #api-events }
+TreeModel >> whenTreeUpdated: aBlock [
 
 	treeUpdated whenChangedDo: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeModel>>wrapItem: anItem [
+{ #category : #api }
+TreeModel >> wrapItem: anItem [
 
 	^ displayBlock value cull: anItem cull: self
 ]

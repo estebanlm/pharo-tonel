@@ -11,53 +11,37 @@ To do in the future:
 Class {
 	#name : #EmbeddedFreeTypeFontFontDescription,
 	#superclass : #Object,
-	#category : #EmbeddedFreeType,
-	#timestamp : 'IgorStasenko 4/8/2014 17:19'
+	#category : #EmbeddedFreeType
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontFontDescription class>>canBeInstalled [
+{ #category : #testing }
+EmbeddedFreeTypeFontFontDescription class >> canBeInstalled [
 	"By default, font can be installed anywhere"
 	^ true
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontFontDescription class>>fontContents [
+{ #category : #accessing }
+EmbeddedFreeTypeFontFontDescription class >> fontContents [
 	self subclassResponsibility
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontFontDescription class>>installAllFontsIn: provider [
+{ #category : #accessing }
+EmbeddedFreeTypeFontFontDescription class >> installAllFontsIn: provider [
 	self allSubclasses do: [ :each | each installFontsIn: provider ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontFontDescription class>>installFontsIn: provider [
+{ #category : #accessing }
+EmbeddedFreeTypeFontFontDescription class >> installFontsIn: provider [
 	self canBeInstalled ifFalse: [ ^ self ].
 	provider
 		addFromFileContents: self fontContents 
 		baseName: self originalFileName 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-EmbeddedFreeTypeFontFontDescription class>>originalFileName [
+{ #category : #accessing }
+EmbeddedFreeTypeFontFontDescription class >> originalFileName [
 	self subclassResponsibility
 
 ]

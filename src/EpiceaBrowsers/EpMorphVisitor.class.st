@@ -4,110 +4,76 @@ I answer a morph for each EpEvent.
 Class {
 	#name : #EpMorphVisitor,
 	#superclass : #EpEntryContentVisitor,
-	#category : #EpiceaBrowsers-Visitors,
-	#timestamp : 'MartinDias 10/27/2014 17:59'
+	#category : #EpiceaBrowsers-Visitors
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>displayBehavior: aString  [
+{ #category : #private }
+EpMorphVisitor >> displayBehavior: aString [ 
 
 	^ { self morphFactory emphasizedStringFor: aString }
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>displayBehavior: aClassName method: aSelector [
+{ #category : #private }
+EpMorphVisitor >> displayBehavior: aClassName method: aSelector [
 
 	^ (self displayBehavior: aClassName), (self displayOperation: '»'), (self displayString: aSelector)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>displayBehaviorComment: aClassName [
+{ #category : #private }
+EpMorphVisitor >> displayBehaviorComment: aClassName [
 
 	^ (self displayBehavior: aClassName), (self displayOperation: 'comment')
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>displayBrowserOperation: aBrowserOperationEvent [
+{ #category : #private }
+EpMorphVisitor >> displayBrowserOperation: aBrowserOperationEvent [
 
 	^ self displayOperation: (
 		String streamContents: [ :stream |
 			stream nextPutAll: aBrowserOperationEvent title ])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>displayCategory: aCategoryName [
+{ #category : #private }
+EpMorphVisitor >> displayCategory: aCategoryName [
 
 	^ (self displayOperation: 'Package tag'), (self displayString: aCategoryName asString)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>displayClass: aClassName protocol: aProtocolName [
+{ #category : #private }
+EpMorphVisitor >> displayClass: aClassName protocol: aProtocolName [
 
 	^ (self displayBehavior: aClassName), (self displayOperation: 'protocol'), (self displayString: aProtocolName)
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>displayOperation: aString  [
+{ #category : #private }
+EpMorphVisitor >> displayOperation: aString [ 
 
 	^ self 
 		displayString: aString 
 		color: self morphFactory softerTextColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>displayString: aString [
+{ #category : #private }
+EpMorphVisitor >> displayString: aString [
 
 	^ { aString asMorph }
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>displayString: aString color: aColor [
+{ #category : #private }
+EpMorphVisitor >> displayString: aString color: aColor [
 
 	^ { self morphFactory stringFor: aString color: aColor }
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>morphFactory [
+{ #category : #private }
+EpMorphVisitor >> morphFactory [
 
 	^ EpMorphFactory default
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitBehaviorCategoryChange: aClassRecategorizationChange [
+{ #category : #visitor }
+EpMorphVisitor >> visitBehaviorCategoryChange: aClassRecategorizationChange [
 
 	^	(self displayOperation: 'Move'),
 		(self displayBehavior: aClassRecategorizationChange behaviorAffectedName), 
@@ -117,29 +83,20 @@ EpMorphVisitor>>visitBehaviorCategoryChange: aClassRecategorizationChange [
 		(self displayString: aClassRecategorizationChange newCategory)
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitBehaviorCommentChange: aChange [
+{ #category : #visitor }
+EpMorphVisitor >> visitBehaviorCommentChange: aChange [
 
 	^ self displayBehaviorComment: aChange behaviorAffectedName
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitBehaviorCopy: aClassCopy [
+{ #category : #visitor }
+EpMorphVisitor >> visitBehaviorCopy: aClassCopy [
 
 	^ (self displayBehavior: aClassCopy definition name), (self displayOperation: 'copyNamed:'), (self displayBehavior: '#', aClassCopy newName)
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitBehaviorNameChange: aClassRenamedChange [
+{ #category : #visitor }
+EpMorphVisitor >> visitBehaviorNameChange: aClassRenamedChange [
 
 	^	(self displayOperation: 'Rename'), 
 		(self displayBehavior: aClassRenamedChange oldName), 
@@ -147,29 +104,20 @@ EpMorphVisitor>>visitBehaviorNameChange: aClassRenamedChange [
 		(self displayString: aClassRenamedChange newName)
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitCategoryAddition: aCategoryChange [
+{ #category : #visitor }
+EpMorphVisitor >> visitCategoryAddition: aCategoryChange [
 
 	^ self displayCategory: aCategoryChange categoryName
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitCategoryRemoval: aCategoryChange [
+{ #category : #visitor }
+EpMorphVisitor >> visitCategoryRemoval: aCategoryChange [
 
 	^ self displayCategory: aCategoryChange categoryName
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitCategoryRename: aCategoryChange [
+{ #category : #visitor }
+EpMorphVisitor >> visitCategoryRename: aCategoryChange [
 
 	^	(self displayOperation: 'Rename tag'),
 		(self displayString: aCategoryChange oldCategoryName),
@@ -177,82 +125,58 @@ EpMorphVisitor>>visitCategoryRename: aCategoryChange [
 		(self displayString: aCategoryChange newCategoryName )
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitClassChange: aChange [
+{ #category : #visitor }
+EpMorphVisitor >> visitClassChange: aChange [
 
 	^ self displayBehavior: aChange behaviorAffectedName
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitEvent: anEvent [
+{ #category : #visitor }
+EpMorphVisitor >> visitEvent: anEvent [
 
 	^ self displayString: ''
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitExpressionEvaluation: anExpressionEvaluation [
+{ #category : #visitor }
+EpMorphVisitor >> visitExpressionEvaluation: anExpressionEvaluation [
 
 	^ (self displayOperation: 'DoIt:'), (self displayString:
 		(anExpressionEvaluation expression printStringLimitedTo: 50) 
 			withSeparatorsCompacted)
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitLogCommentModification: aLogCommentModification  [
+{ #category : #visitor }
+EpMorphVisitor >> visitLogCommentModification: aLogCommentModification [ 
 
 	^ self displayString: aLogCommentModification comment printString
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitMethodAddition: aMethodCreatedChange [
+{ #category : #visitor }
+EpMorphVisitor >> visitMethodAddition: aMethodCreatedChange [
 
 	^ self 
 		displayBehavior: aMethodCreatedChange behaviorAffectedName
 		method: aMethodCreatedChange methodAdded selector
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitMethodModification: aMethodModified [
+{ #category : #visitor }
+EpMorphVisitor >> visitMethodModification: aMethodModified [
 
 	^ self 
 		displayBehavior: aMethodModified behaviorAffectedName
 		method: aMethodModified oldMethod selector
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitMethodRemoval: aMethodRemoved [
+{ #category : #visitor }
+EpMorphVisitor >> visitMethodRemoval: aMethodRemoved [
 
 	^ self 
 		displayBehavior: aMethodRemoved behaviorAffectedName
 		method: aMethodRemoved methodRemoved selector
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitMonticelloVersionSave: aChange [
+{ #category : #visitor }
+EpMorphVisitor >> visitMonticelloVersionSave: aChange [
 
 	^	(self displayOperation: 'MC save'), 
 		(self displayString: aChange versionName asString), 
@@ -260,102 +184,72 @@ EpMorphVisitor>>visitMonticelloVersionSave: aChange [
 		(self displayString: aChange repositoryDescription asString)
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitMonticelloVersionsLoad: aMonticelloVersionLoaded  [
+{ #category : #visitor }
+EpMorphVisitor >> visitMonticelloVersionsLoad: aMonticelloVersionLoaded [ 
 
 	^	(self displayOperation: 'MC load'), 
 		(self displayString: aMonticelloVersionLoaded versionNames asCommaStringAnd)
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitProtocolAddition: aProtocolChange [
+{ #category : #visitor }
+EpMorphVisitor >> visitProtocolAddition: aProtocolChange [
 
 	^ self 
 		displayClass: aProtocolChange behaviorAffectedName
 		protocol: aProtocolChange protocol asString
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitProtocolRemoval: aProtocolChange [
+{ #category : #visitor }
+EpMorphVisitor >> visitProtocolRemoval: aProtocolChange [
 
 	^ self 
 		displayClass: aProtocolChange behaviorAffectedName
 		protocol: aProtocolChange protocol asString
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitRedo: aRedoEvent [
+{ #category : #visitor }
+EpMorphVisitor >> visitRedo: aRedoEvent [
 
 	^ self displayBrowserOperation: aRedoEvent
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitRefactoring: aRefactoring  [
+{ #category : #visitor }
+EpMorphVisitor >> visitRefactoring: aRefactoring [ 
 
 	^  (self displayOperation: 'Refactoring: '), 
 		(self displayString: (String streamContents: [ :aStream | 
 			aRefactoring summaryOn: aStream ]))
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitSessionEnd: anEvent [
+{ #category : #visitor }
+EpMorphVisitor >> visitSessionEnd: anEvent [
 
 	^ (self displayOperation: 'End:'), 
 		(self displayString: anEvent imageName)
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitSessionSnapshot: anEvent [
+{ #category : #visitor }
+EpMorphVisitor >> visitSessionSnapshot: anEvent [
 
 	^ (self displayOperation: 'Snapshot:'), 
 		(self displayString: anEvent imageName)
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitSessionStart: anEvent [
+{ #category : #visitor }
+EpMorphVisitor >> visitSessionStart: anEvent [
 
 	^ (self displayOperation: 'Start:'), 
 		(self displayString: anEvent imageName)
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitTraitChange: aChange [
+{ #category : #visitor }
+EpMorphVisitor >> visitTraitChange: aChange [
 
 	^ self displayBehavior: aChange behaviorAffectedName
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphVisitor>>visitUndo: anUndoEvent [
+{ #category : #visitor }
+EpMorphVisitor >> visitUndo: anUndoEvent [
 
 	^ self displayBrowserOperation: anUndoEvent
 ]

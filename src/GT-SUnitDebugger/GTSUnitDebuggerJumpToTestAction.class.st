@@ -6,71 +6,49 @@ I am only valid if the context that triggered the failed assertion is diffferent
 Class {
 	#name : #GTSUnitDebuggerJumpToTestAction,
 	#superclass : #DebugAction,
-	#category : #GT-SUnitDebugger,
-	#timestamp : 'AndreiChis 1/22/2016 14:32'
+	#category : #GT-SUnitDebugger
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebuggerJumpToTestAction class>>gtDebuggerActionFor: aDebugger [
+{ #category : #'as yet unclassified' }
+GTSUnitDebuggerJumpToTestAction class >> gtDebuggerActionFor: aDebugger [
 	<gtStackDebuggingAction>
 	
 	^ (self forDebugger: aDebugger)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebuggerJumpToTestAction>>appliesToDebugger: aDebugger [
+{ #category : #testing }
+GTSUnitDebuggerJumpToTestAction >> appliesToDebugger: aDebugger [
 
 	^ aDebugger session class = GTSUnitDebugSession and: [ 
 		aDebugger session assertionCallerContext notNil and: [ 
 			aDebugger session testContext ~= aDebugger session assertionCallerContext ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebuggerJumpToTestAction>>defaultLabel [
+{ #category : #accessing }
+GTSUnitDebuggerJumpToTestAction >> defaultLabel [
 
 	^ 'Jump to test method'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebuggerJumpToTestAction>>defaultOrder [
+{ #category : #accessing }
+GTSUnitDebuggerJumpToTestAction >> defaultOrder [
 
 	^ 10
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebuggerJumpToTestAction>>executeAction [
+{ #category : #actions }
+GTSUnitDebuggerJumpToTestAction >> executeAction [
 	self debugger stackPresentation selection: self debugger session testContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebuggerJumpToTestAction>>id [
+{ #category : #accessing }
+GTSUnitDebuggerJumpToTestAction >> id [
 
 	^ GTSUnitDebuggerJumpToTestAction name
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebuggerJumpToTestAction>>initialize [
+{ #category : #'as yet unclassified' }
+GTSUnitDebuggerJumpToTestAction >> initialize [
 	super initialize.
 	self needsUpdate: false
 ]

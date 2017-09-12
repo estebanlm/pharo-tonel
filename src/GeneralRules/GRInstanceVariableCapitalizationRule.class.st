@@ -4,23 +4,16 @@ Instance variable names on the instance- and class-side should start with a lowe
 Class {
 	#name : #GRInstanceVariableCapitalizationRule,
 	#superclass : #ReAbstractRule,
-	#category : #GeneralRules,
-	#timestamp : 'YuriyTymchuk 9/7/2016 11:31'
+	#category : #GeneralRules
 }
 
-{
-	#category : #testing-interest,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRInstanceVariableCapitalizationRule class>>checksClass [
+{ #category : #testing-interest }
+GRInstanceVariableCapitalizationRule class >> checksClass [
 	^ true
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRInstanceVariableCapitalizationRule>>check: aClass forCritiquesDo: aCriticBlock [
+{ #category : #running }
+GRInstanceVariableCapitalizationRule >> check: aClass forCritiquesDo: aCriticBlock [
 	
 	aClass instVarNames
 		select: [ :each | each first isUppercase ]
@@ -29,11 +22,8 @@ GRInstanceVariableCapitalizationRule>>check: aClass forCritiquesDo: aCriticBlock
 				self critiqueFor: aClass about: each) ]
 ]
 
-{
-	#category : #running-helpers,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRInstanceVariableCapitalizationRule>>critiqueFor: aClass about: aVarName [
+{ #category : #running-helpers }
+GRInstanceVariableCapitalizationRule >> critiqueFor: aClass about: aVarName [
 	| crit |
 
 	crit := ReRefactoringCritique
@@ -53,18 +43,12 @@ GRInstanceVariableCapitalizationRule>>critiqueFor: aClass about: aVarName [
 	^ crit
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRInstanceVariableCapitalizationRule>>group [
+{ #category : #accessing }
+GRInstanceVariableCapitalizationRule >> group [
 	^ 'Style'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRInstanceVariableCapitalizationRule>>name [
+{ #category : #accessing }
+GRInstanceVariableCapitalizationRule >> name [
 	^ 'Instance variable capitalized'
 ]

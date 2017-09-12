@@ -21,69 +21,47 @@ Class {
 		'position',
 		'streamRespondsToNextPutAllStartingAt'
 	],
-	#category : #Fuel-Streams,
-	#timestamp : 'MarianoMartinezPeck 6/5/2011 12:41'
+	#category : #Fuel-Streams
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream class>>defaultBufferSize  [
+{ #category : #accessing }
+FLBufferedWriteStream class >> defaultBufferSize [ 
 	^ 4096
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream class>>on: writeStream  [
+{ #category : #'instance creation' }
+FLBufferedWriteStream class >> on: writeStream [ 
 
 	^ self on: writeStream bufferSize: self defaultBufferSize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream class>>on: writeStream bufferSize: aSize [
+{ #category : #'instance creation' }
+FLBufferedWriteStream class >> on: writeStream bufferSize: aSize [
 	^ self basicNew
 		initializeOn: writeStream 
 		bufferSize: aSize;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>buffer [
+{ #category : #private }
+FLBufferedWriteStream >> buffer [
 	buffer ifNil: [ self sizeBuffer: self defaultBufferSize ].
 	^ buffer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>bufferFreeSize [
+{ #category : #accessing }
+FLBufferedWriteStream >> bufferFreeSize [
 	^ buffer size - position
 ]
 
-{
-	#category : #'file open/close',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>close [
+{ #category : #'file open/close' }
+FLBufferedWriteStream >> close [
 	self flushBuffer.
 	stream close
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>copyWordObjectToBuffer: aWordObject [
+{ #category : #private }
+FLBufferedWriteStream >> copyWordObjectToBuffer: aWordObject [
 	| blt |
 	blt := (BitBlt
 		toForm: (Form new hackBits: self buffer))
@@ -100,31 +78,22 @@ FLBufferedWriteStream>>copyWordObjectToBuffer: aWordObject [
 	blt copyBits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>defaultBufferSize [
+{ #category : #accessing }
+FLBufferedWriteStream >> defaultBufferSize [
 	^ 8192 "2 raisedTo: 13  "
 	
 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>flush [
+{ #category : #accessing }
+FLBufferedWriteStream >> flush [
 	self flushBuffer.
 	stream flush
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>flushBuffer [
+{ #category : #private }
+FLBufferedWriteStream >> flushBuffer [
 	position = 0 ifTrue: [ ^ self ].
 	position = buffer size
 		ifTrue: [
@@ -136,21 +105,15 @@ FLBufferedWriteStream>>flushBuffer [
 	position := 0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>flushBufferIfFull [
+{ #category : #private }
+FLBufferedWriteStream >> flushBufferIfFull [
 	position = buffer size 
 		ifTrue: [ self flushBuffer ]
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>initializeOn: writeStream bufferSize: aSize [
+{ #category : #initialize-release }
+FLBufferedWriteStream >> initializeOn: writeStream bufferSize: aSize [
 
 	self initialize.
 	self initializeStream: writeStream.
@@ -158,21 +121,15 @@ FLBufferedWriteStream>>initializeOn: writeStream bufferSize: aSize [
 	position := 0.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>initializeStream: aWriteStream [
+{ #category : #initialize-release }
+FLBufferedWriteStream >> initializeStream: aWriteStream [
 	stream := aWriteStream.
 	"This is ugly, but it is an optimization for #flushBuffer"
 	streamRespondsToNextPutAllStartingAt := (stream respondsTo: #next:putAll:startingAt:).
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>nextBytesPutAll: collection [
+{ #category : #writing }
+FLBufferedWriteStream >> nextBytesPutAll: collection [
 	self flushBufferIfFull.
 	collection size <= self bufferFreeSize
 		ifTrue: [
@@ -186,21 +143,15 @@ FLBufferedWriteStream>>nextBytesPutAll: collection [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>nextPut: object [
+{ #category : #accessing }
+FLBufferedWriteStream >> nextPut: object [
 	self flushBufferIfFull.
 	position := position + 1.
 	self buffer at: position put: object 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>nextPutAll: collection [
+{ #category : #accessing }
+FLBufferedWriteStream >> nextPutAll: collection [
 	self flushBufferIfFull.
 	collection size <= self bufferFreeSize
 		ifTrue: [
@@ -214,11 +165,8 @@ FLBufferedWriteStream>>nextPutAll: collection [
 
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>nextWordsPut: aWordObject [
+{ #category : #writing }
+FLBufferedWriteStream >> nextWordsPut: aWordObject [
 
 	| byteSize |
 	byteSize := aWordObject basicSize * 4.
@@ -235,29 +183,20 @@ FLBufferedWriteStream>>nextWordsPut: aWordObject [
 	position := position +  byteSize.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>position [
+{ #category : #accessing }
+FLBufferedWriteStream >> position [
 	^ position + stream position
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>printOn: aStream [
+{ #category : #printing }
+FLBufferedWriteStream >> printOn: aStream [
 	aStream 
 		nextPutAll: 'a '; 
 		nextPutAll: self class name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLBufferedWriteStream>>sizeBuffer: size [
+{ #category : #accessing }
+FLBufferedWriteStream >> sizeBuffer: size [
     buffer ifNotNil: [self flushBuffer].
     buffer := (stream isBinary ifTrue: [ ByteArray ] ifFalse: [ String ]) new: size
 

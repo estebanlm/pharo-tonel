@@ -10,15 +10,11 @@ Class {
 		'matrix3',
 		'matrix23'
 	],
-	#category : #Collections-Tests-Unordered,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:30'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>setUp [
+{ #category : #setup }
+MatrixTest >> setUp [
 	matrix1 := Matrix new: 2.
 	matrix1 at:1 at:1 put: 1.
 	matrix1 at:1 at:2 put: 3.
@@ -40,11 +36,8 @@ MatrixTest>>setUp [
 	matrix23 at: 3 at: 2 put: 23.
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testAtAllPut [
+{ #category : #'tests - accessing' }
+MatrixTest >> testAtAllPut [
 
 	| m | 
 	m := Matrix new: 3. 
@@ -53,11 +46,8 @@ MatrixTest>>testAtAllPut [
 	m do: [ :each | self assert: each equals: 1 ].
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testAtAt [
+{ #category : #'tests - accessing' }
+MatrixTest >> testAtAt [
 	self should:[matrix1 at: 2 at: 3] raise: Error.
 	self should:[matrix1 at: 3 at: 2] raise: Error.
 	self should:[matrix1 at: 3 at: 3] raise: Error.
@@ -74,33 +64,24 @@ MatrixTest>>testAtAt [
 	self assert: (matrix23 at: 3 at: 2) equals: 23.
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testAtColumn [
+{ #category : #'tests - accessing' }
+MatrixTest >> testAtColumn [
 
 	self assert: (matrix23 atColumn: 1) equals: #(11 12 13).
 	self assert: (matrix23 atColumn: 2) equals: #(21 22 23).
 	
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testAtRow [
+{ #category : #'tests - accessing' }
+MatrixTest >> testAtRow [
 
 	self assert: (matrix23 atRow: 1) equals: #(11 21).
 	self assert: (matrix23 atRow: 2) equals: #(12 22).
 	self assert: (matrix23 atRow: 3) equals: #(13 23).
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testCollectCreatesANewMatrix [
+{ #category : #'tests - accessing' }
+MatrixTest >> testCollectCreatesANewMatrix [
 
 	| m m2 | 
 	m := Matrix new: 3. 
@@ -111,11 +92,8 @@ MatrixTest>>testCollectCreatesANewMatrix [
 	self assert: (m2 occurrencesOf: 1) equals: 9
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testColumnVector [
+{ #category : #'tests - instance creation' }
+MatrixTest >> testColumnVector [
 
 	| m m2 | 
 
@@ -133,31 +111,22 @@ MatrixTest>>testColumnVector [
 	
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testContentsEncodings [
+{ #category : #'tests - accessing' }
+MatrixTest >> testContentsEncodings [
 
 	self assert: matrix23 privateContents equals: #(11 21 12 22 13 23)
 ]
 
-{
-	#category : #'tests - copying',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testCopy [
+{ #category : #'tests - copying' }
+MatrixTest >> testCopy [
 
 	| copyMatrix |
 	copyMatrix := matrix1 copy.
 	self assert: matrix1 = copyMatrix 
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testDiagonal [
+{ #category : #'tests - instance creation' }
+MatrixTest >> testDiagonal [
 
 	| m m2 | 
 
@@ -176,11 +145,8 @@ MatrixTest>>testDiagonal [
 	
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testIdentity [
+{ #category : #'tests - instance creation' }
+MatrixTest >> testIdentity [
 
 	| m  m2 | 
 	m := Matrix new: 3 element: 0.
@@ -193,11 +159,8 @@ MatrixTest>>testIdentity [
 
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testIdentityOtherTest [
+{ #category : #'tests - instance creation' }
+MatrixTest >> testIdentityOtherTest [
 
 	| m | 
 	m := Matrix identity: 3.
@@ -208,22 +171,16 @@ MatrixTest>>testIdentityOtherTest [
 
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testIncludes [
+{ #category : #'tests - testing' }
+MatrixTest >> testIncludes [
 	self assert:
 			((1 to: 4)
 				allSatisfy: [:i | matrix1 includes: i])
 
 ]
 
-{
-	#category : #'tests - arithmetic',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testMultiply [
+{ #category : #'tests - arithmetic' }
+MatrixTest >> testMultiply [
 	
 	| result |
 	self	should: [matrix1 preMultiplyByMatrix: (Matrix new: 3)] raise: Error.
@@ -235,11 +192,8 @@ MatrixTest>>testMultiply [
 	self assert: (result at: 2 at: 2) = 46
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testNewTabulate [
+{ #category : #'tests - instance creation' }
+MatrixTest >> testNewTabulate [
 
 	| m m2 | 
 
@@ -261,11 +215,8 @@ MatrixTest>>testNewTabulate [
 	
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testOnes [
+{ #category : #'tests - instance creation' }
+MatrixTest >> testOnes [
 
 	| m m2 | 
 
@@ -283,11 +234,8 @@ MatrixTest>>testOnes [
 	
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testReplaceAll [
+{ #category : #'tests - accessing' }
+MatrixTest >> testReplaceAll [
 
 	matrix1 replaceAll: 1 with: 10.
 	self assert: (matrix1 at: 1 at: 1) equals: 10.
@@ -296,11 +244,8 @@ MatrixTest>>testReplaceAll [
 	self assert: (matrix1 at: 2 at: 2) equals: 4.
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testRowVector [
+{ #category : #'tests - instance creation' }
+MatrixTest >> testRowVector [
 
 	| m m2 | 
 
@@ -318,31 +263,22 @@ MatrixTest>>testRowVector [
 	
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testSquaredWithAllElement [
+{ #category : #'tests - accessing' }
+MatrixTest >> testSquaredWithAllElement [
 
 	self assert: ((Matrix new: 3 element: -1) occurrencesOf: -1) equals: 9.
 
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testSwap [
+{ #category : #'tests - accessing' }
+MatrixTest >> testSwap [
 	matrix1 swap: 1 at: 2 with: 1 at: 1.
 	self assert: (matrix1 at: 1 at: 1) = 3.
 	self assert: (matrix1 at: 1 at: 2) = 1.
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testTabulate [
+{ #category : #'tests - testing' }
+MatrixTest >> testTabulate [
 	| m |
 	m := Matrix rows: 3 columns: 2 tabulate: [ :row :column | column * 10 + row ].
 	self assert: (m at: 1 at: 1) equals: 11.
@@ -353,22 +289,16 @@ MatrixTest>>testTabulate [
 	self assert: (m at: 3 at: 2) equals: 23.
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testTabulateEquals [
+{ #category : #'tests - testing' }
+MatrixTest >> testTabulateEquals [
 	| m |
 	m := Matrix rows: 3 columns: 2 tabulate: [ :row :column | column * 10 + row ].
 	self assert: (m = matrix23)
 
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MatrixTest>>testTransposed [
+{ #category : #'tests - accessing' }
+MatrixTest >> testTransposed [
 	| transposedMatrix |
 	transposedMatrix := matrix1 transposed.
 	self assert: (transposedMatrix at: 1 at: 1) equals: 1.

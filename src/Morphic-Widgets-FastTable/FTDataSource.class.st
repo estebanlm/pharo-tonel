@@ -36,63 +36,44 @@ Class {
 	#instVars : [
 		'table'
 	],
-	#category : #Morphic-Widgets-FastTable-DataSource,
-	#timestamp : 'CyrilFerlicot 11/17/2015 12:00'
+	#category : #Morphic-Widgets-FastTable-DataSource
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDataSource>>cellColumn: column row: rowIndex [
+{ #category : #accessing }
+FTDataSource >> cellColumn: column row: rowIndex [
 	"Answer a morph with the cell view. I will probably return a FTCellMorph."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDataSource>>dropElements: aCollection index: rowIndex [
+{ #category : #'drag and drop' }
+FTDataSource >> dropElements: aCollection index: rowIndex [
 	^ false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDataSource>>elementAt: rowIndex [
+{ #category : #private }
+FTDataSource >> elementAt: rowIndex [
 	"I am a really important method for a DataSource. I take an index and I return an object 
 	 that should be displayed in the table for the index."
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDataSource>>headerColumn: column [
+{ #category : #accessing }
+FTDataSource >> headerColumn: column [
 	"Answers a cell who will be the header of a column"
 
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDataSource>>menuColumn: column row: rowIndex [
+{ #category : #accessing }
+FTDataSource >> menuColumn: column row: rowIndex [
 	"Answer a menu for the (column, row) provided"
 
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDataSource>>newDataSourceMatching: aFTFilter [
+{ #category : #accessing }
+FTDataSource >> newDataSourceMatching: aFTFilter [
 	"I am here to help the FTFilterFunction. I take a aFTFilter and I need to return a new dataSource with filtered elements. Each dataSource is responsible of his filtering in order to get a generic mechanism."
 	
 	"the default action is to just do nothing, return self"
@@ -100,51 +81,36 @@ FTDataSource>>newDataSourceMatching: aFTFilter [
 	^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDataSource>>numberOfRows [
+{ #category : #accessing }
+FTDataSource >> numberOfRows [
 	"I return the number of elements I can display in the table when I am call."
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDataSource>>passengerAt: rowIndex [
+{ #category : #'drag and drop' }
+FTDataSource >> passengerAt: rowIndex [
 	"Answer 'passenger' for drag&drop operation (a passenger is the object who will travel between 
 	 drag and drop). By default, passenger is same as current element"
 	^ self elementAt: rowIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDataSource>>readyToBeDisplayed [
+{ #category : #private }
+FTDataSource >> readyToBeDisplayed [
 	"I am a method call when I am set to a FTTableMorph. I can be override, for example the dataSource of glamour send an announcement to update the dataSource of a Refderer."
 
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDataSource>>realElementAt: anIndex [
+{ #category : #accessing }
+FTDataSource >> realElementAt: anIndex [
 	"I am here because some dataSource wrap there element into an other Object but we still want to access to the initial element. In that case a DataSource can override me to get the real element."
 
 	^ self elementAt: anIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDataSource>>searchText: aString [
+{ #category : #accessing }
+FTDataSource >> searchText: aString [
 	"search a text and answers a list of elements indexes matching condition. 
 	 E.g,
 	 	#() 		--> No match 
@@ -155,46 +121,31 @@ FTDataSource>>searchText: aString [
 	^ #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDataSource>>table [
+{ #category : #accessing }
+FTDataSource >> table [
 	"this the table binded to this dataSource"
 
 	^ table
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDataSource>>table: anObject [
+{ #category : #accessing }
+FTDataSource >> table: anObject [
 	table := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDataSource>>tableRefresh [
+{ #category : #private }
+FTDataSource >> tableRefresh [
 	^ self table refresh
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDataSource>>toString: anObject [
+{ #category : #accessing }
+FTDataSource >> toString: anObject [
 	"Override me if you expect something else."
 
 	^ anObject asString
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDataSource>>wantsDropElements: aCollection type: type index: rowIndex [
+{ #category : #'drag and drop' }
+FTDataSource >> wantsDropElements: aCollection type: type index: rowIndex [
 	^ false
 ]

@@ -7,32 +7,22 @@ Class {
 	#instVars : [
 		'announcingCounter'
 	],
-	#category : #Announcements-Tests-Core-Mocks,
-	#timestamp : 'Tbn 11/12/2010 10:54'
+	#category : #Announcements-Tests-Core-Mocks
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncementMockC>>announcingCounter [
+{ #category : #accessing }
+AnnouncementMockC >> announcingCounter [
 	^ announcingCounter
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncementMockC>>initialize [
+{ #category : #initialization }
+AnnouncementMockC >> initialize [
 	super initialize.
 	announcingCounter := 0
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncementMockC>>prepareForDelivery [
+{ #category : #initialization }
+AnnouncementMockC >> prepareForDelivery [
 
 	announcingCounter := announcingCounter + 1
 ]

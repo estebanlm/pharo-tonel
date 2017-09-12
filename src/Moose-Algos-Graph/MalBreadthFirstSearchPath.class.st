@@ -9,49 +9,33 @@ Class {
 		'end',
 		'fifo'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : 'ChristopheDemarey 3/26/2015 14:29'
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalBreadthFirstSearchPath>>edgeClass [
+{ #category : #accessing }
+MalBreadthFirstSearchPath >> edgeClass [
 
 	^ MalGraphEdge 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalBreadthFirstSearchPath>>end [
+{ #category : #private }
+MalBreadthFirstSearchPath >> end [
 	^ end
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalBreadthFirstSearchPath>>end: aDijsktraNode [
+{ #category : #private }
+MalBreadthFirstSearchPath >> end: aDijsktraNode [
 	end := aDijsktraNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalBreadthFirstSearchPath>>nodeClass [
+{ #category : #accessing }
+MalBreadthFirstSearchPath >> nodeClass [
 
 	^ MalBfsNode 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalBreadthFirstSearchPath>>run [
+{ #category : #running }
+MalBreadthFirstSearchPath >> run [
 	
 	| path |
 	fifo := OrderedCollection withAll: start nextEdges.
@@ -61,11 +45,8 @@ MalBreadthFirstSearchPath>>run [
 	^ path
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalBreadthFirstSearchPath>>run: depth [
+{ #category : #running }
+MalBreadthFirstSearchPath >> run: depth [
 	| edge path next |
 	edge := fifo removeFirst.
 	next := edge to.
@@ -86,30 +67,21 @@ MalBreadthFirstSearchPath>>run: depth [
 			path ]	"stop recursion, start backtrack"
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalBreadthFirstSearchPath>>runFrom: startModel to: endModel [
+{ #category : #running }
+MalBreadthFirstSearchPath >> runFrom: startModel to: endModel [
 	self
 		start: (self findNode: startModel);
 		end: (self findNode: endModel).
 	^ self run
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalBreadthFirstSearchPath>>start [
+{ #category : #private }
+MalBreadthFirstSearchPath >> start [
 	^ start
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalBreadthFirstSearchPath>>start: aDijsktraNode [
+{ #category : #private }
+MalBreadthFirstSearchPath >> start: aDijsktraNode [
 	start := aDijsktraNode.
 
 ]

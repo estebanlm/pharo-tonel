@@ -14,35 +14,25 @@ Class {
 	#instVars : [
 		'clipboard'
 	],
-	#category : #System-Clipboard,
-	#timestamp : 'michael.rueger 3/2/2009 13:25'
+	#category : #System-Clipboard
 }
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalClipboard>>addClipboardData: data dataFormat: aFormat [
+{ #category : #primitives }
+ExternalClipboard >> addClipboardData: data dataFormat: aFormat [
 	clipboard = 0 ifTrue: 
 		[Clipboard clipboardText: data asString.	
 		^self].
 	self primAddClipboardData: clipboard data: data dataFormat: aFormat
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalClipboard>>clearClipboard [
+{ #category : #accessing }
+ExternalClipboard >> clearClipboard [
 	clipboard = 0 ifTrue: [^self].
 	^ self primClearClipboard: clipboard.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalClipboard>>clipboardText [
+{ #category : #accessing }
+ExternalClipboard >> clipboardText [
 	"Return the text currently in the clipboard. If the system clipboard is empty, or if it differs from the Smalltalk clipboard text, use the Smalltalk clipboard. This is done since (a) the Mac clipboard gives up on very large chunks of text and (b) since not all platforms support the notion of a clipboard."
 
 	| decodedString bytes |
@@ -59,11 +49,8 @@ ExternalClipboard>>clipboardText [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalClipboard>>clipboardText: text  [
+{ #category : #accessing }
+ExternalClipboard >> clipboardText: text [ 
 
 	| string data |
 	string := text asString.
@@ -76,69 +63,48 @@ ExternalClipboard>>clipboardText: text  [
 	self primAddClipboardData: clipboard data: data dataFormat: 'public.utf8-plain-text'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalClipboard>>createClipboard [
+{ #category : #private }
+ExternalClipboard >> createClipboard [
 	clipboard = 0 ifTrue: [^self].
 	^ self primCreateClipboard.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalClipboard>>initialize [
+{ #category : #initialization }
+ExternalClipboard >> initialize [
 	super initialize.
 	clipboard := [self createClipboard] on: Error do: [:ex | clipboard := 0]
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalClipboard>>primAddClipboardData: aClipboard data: data dataFormat: aFormat [
+{ #category : #primitives }
+ExternalClipboard >> primAddClipboardData: aClipboard data: data dataFormat: aFormat [
 
 	<primitive:'ioAddClipboardData' module: 'ClipboardExtendedPlugin'>
 	^ self primitiveFailed
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalClipboard>>primClearClipboard:  aClipboard [
+{ #category : #primitives }
+ExternalClipboard >> primClearClipboard:  aClipboard [
 	<primitive:'ioClearClipboard' module: 'ClipboardExtendedPlugin'>
 	^ self primitiveFailed.
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalClipboard>>primCreateClipboard [
+{ #category : #primitives }
+ExternalClipboard >> primCreateClipboard [
 	<primitive:'ioCreateClipboard' module: 'ClipboardExtendedPlugin'>
 	^ self primitiveFailed.
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalClipboard>>primGetClipboardFormat: aClipboard formatNumber: formatNumber [
+{ #category : #primitives }
+ExternalClipboard >> primGetClipboardFormat: aClipboard formatNumber: formatNumber [
 
 	<primitive:'ioGetClipboardFormat' module: 'ClipboardExtendedPlugin'>
 	^ self primitiveFailed
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalClipboard>>primReadClipboardData: aClipboard format: format [
+{ #category : #primitives }
+ExternalClipboard >> primReadClipboardData: aClipboard format: format [
 
 	<primitive:'ioReadClipboardData' module: 'ClipboardExtendedPlugin'>
 	^ self primitiveFailed

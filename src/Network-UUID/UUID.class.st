@@ -37,15 +37,11 @@ Class {
 	#name : #UUID,
 	#superclass : #ByteArray,
 	#type : #bytes,
-	#category : #Network-UUID,
-	#timestamp : 'SvenVanCaekenberghe 2/12/2017 10:27'
+	#category : #Network-UUID
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID class>>fromString36: aString [
+{ #category : #'instance creation' }
+UUID class >> fromString36: aString [
 	"Decode a UUID from a base 36 string using 0-9 and lowercase a-z.
 	This is the shortest representation still being able to work as
 	filenames etc since it does not depend on case nor characters
@@ -58,11 +54,8 @@ UUID class>>fromString36: aString [
 	^object
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID class>>fromString: aString [
+{ #category : #'instance creation' }
+UUID class >> fromString: aString [
 	"Read a UUID from aString with my official representation, 32 lowercase hexadecimal (base 16) digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 alphanumeric characters and four hyphens)"
 
 	| uuid |
@@ -72,21 +65,15 @@ UUID class>>fromString: aString [
 	^ uuid
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID class>>new [
+{ #category : #'instance creation' }
+UUID class >> new [
 	"Create and return a new UUID"
 	
 	^ (self new: 16)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID class>>nilUUID [
+{ #category : #'instance creation' }
+UUID class >> nilUUID [
 	"Return a empty un-initialized UUID, with all zero values"
 	
 	"Must call basicNew: here because I have a non-trivial initialize method."
@@ -94,11 +81,8 @@ UUID class>>nilUUID [
 	^ self basicNew: 16
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID>>< aMagnitude  [
+{ #category : #comparing }
+UUID >> < aMagnitude [ 
 	"Answer whether the receiver is less than the argument."
 
 	(self size = aMagnitude size) ifFalse: [ 
@@ -109,51 +93,36 @@ UUID>>< aMagnitude  [
 	^false.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID>><= aMagnitude  [
+{ #category : #comparing }
+UUID >> <= aMagnitude [ 
 	"Answer whether the receiver is less than or equal to the argument."
 
 	^(self > aMagnitude) not
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID>>> aMagnitude  [
+{ #category : #comparing }
+UUID >> > aMagnitude [ 
 	"Answer whether the receiver is greater than the argument."
 
 	^aMagnitude < self
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID>>>= aMagnitude  [
+{ #category : #comparing }
+UUID >> >= aMagnitude [ 
 	"Answer whether the receiver is greater than or equal to the argument."
 
 	^(self < aMagnitude) not
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID>>asString [
+{ #category : #converting }
+UUID >> asString [
 	"Return a String with my official representation, 32 lowercase hexadecimal digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 alphanumeric characters and four hyphens)"
 	
 	^ self printString
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID>>asString36 [
+{ #category : #converting }
+UUID >> asString36 [
 	"Return a String encoding the receiver as a base 36 number using 0-9 and lowercase a-z.
 	This is the shortest representation still being able to work as
 	filenames etc since it does not depend on case nor characters
@@ -165,28 +134,19 @@ UUID>>asString36 [
 	^ (num printStringBase: 36) asLowercase
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID>>initialize [
+{ #category : #initialization }
+UUID >> initialize [
 	super initialize.
 	UUIDGenerator default placeFields: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID>>isNilUUID [
+{ #category : #testing }
+UUID >> isNilUUID [
 	^ self allSatisfy: [ :each | each isZero ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID>>printHexAt: index to: aStream [
+{ #category : #private }
+UUID >> printHexAt: index to: aStream [
 	| map v |
 	map := '0123456789abcdef'.
 	v := self at: index.
@@ -195,11 +155,8 @@ UUID>>printHexAt: index to: aStream [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID>>printOn: aStream [
+{ #category : #printing }
+UUID >> printOn: aStream [
 	"Print my official representation, 32 lowercase hexadecimal digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 alphanumeric characters and four hyphens) on aStream"
 
 	1 to: 4 do: [ :i | self printHexAt: i to: aStream ].
@@ -213,11 +170,8 @@ UUID>>printOn: aStream [
 	11 to: 16 do: [ :i | self printHexAt: i to: aStream ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID>>printString [
+{ #category : #printing }
+UUID >> printString [
 	"Return a String with my official representation, 32 lowercase hexadecimal digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 alphanumeric characters and four hyphens)"
 
 	^ String 
@@ -225,11 +179,8 @@ UUID>>printString [
 		streamContents: [ :stringStream | self printOn: stringStream ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID>>readFrom: aStream [
+{ #category : #initialization }
+UUID >> readFrom: aStream [
 	"Read my official representation, 32 lowercase hexadecimal digits, displayed in five groups separated by hyphens, in the form 8-4-4-4-12 for a total of 36 characters (32 alphanumeric characters and four hyphens) from aStream"
 	
 	1 to: 4 do: [ :i | self at: i put: (self readHexByteFrom: aStream) ].
@@ -243,11 +194,8 @@ UUID>>readFrom: aStream [
 	11 to: 16 do: [ :i | self at: i put: (self readHexByteFrom: aStream) ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUID>>readHexByteFrom: aStream [
+{ #category : #private }
+UUID >> readHexByteFrom: aStream [
 	| map v |
 	map := '0123456789abcdef'.
 	v := (map indexOf: aStream next asLowercase ifAbsent: [ self error: 'hex digit expected' ]) - 1.

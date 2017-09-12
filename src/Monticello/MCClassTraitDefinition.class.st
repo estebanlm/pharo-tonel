@@ -9,23 +9,16 @@ Class {
 		'classTraitComposition',
 		'category'
 	],
-	#category : #Monticello-Modeling,
-	#timestamp : 'TorstenBergmann 2/5/2014 13:45'
+	#category : #Monticello-Modeling
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition class>>baseTraitName: aString classTraitComposition: classTraitCompositionString [
+{ #category : #'instance creation' }
+MCClassTraitDefinition class >> baseTraitName: aString classTraitComposition: classTraitCompositionString [
 	^ self baseTraitName: aString classTraitComposition: classTraitCompositionString category: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition class>>baseTraitName: aString classTraitComposition: classTraitCompositionString category: aCategoryString [
+{ #category : #'instance creation' }
+MCClassTraitDefinition class >> baseTraitName: aString classTraitComposition: classTraitCompositionString category: aCategoryString [
 	^self instanceLike: (
 		self new
 			initializeWithBaseTraitName: aString
@@ -33,11 +26,8 @@ MCClassTraitDefinition class>>baseTraitName: aString classTraitComposition: clas
 			category: aCategoryString).
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>= aDefinition [
+{ #category : #comparing }
+MCClassTraitDefinition >> = aDefinition [
 	^ (super = aDefinition)
 		and: [baseTrait = aDefinition baseTrait
 		and: [self classTraitCompositionString = aDefinition classTraitCompositionString]]
@@ -45,86 +35,59 @@ MCClassTraitDefinition>>= aDefinition [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>accept: aVisitor [
+{ #category : #visiting }
+MCClassTraitDefinition >> accept: aVisitor [
 	^ aVisitor visitClassTraitDefinition: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>baseTrait [
+{ #category : #accessing }
+MCClassTraitDefinition >> baseTrait [
 	^baseTrait
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>category [
+{ #category : #accessing }
+MCClassTraitDefinition >> category [
 	^ category ifNil: [(Smalltalk classOrTraitNamed: self baseTrait)
 							ifNotNil: [:bTrait | bTrait category]
 							ifNil: [self error: 'Can''t detect the category']] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>className [
+{ #category : #accessing }
+MCClassTraitDefinition >> className [
 	^self baseTrait
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>classTraitComposition [
+{ #category : #accessing }
+MCClassTraitDefinition >> classTraitComposition [
 	^classTraitComposition
 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>classTraitCompositionString [
+{ #category : #accessing }
+MCClassTraitDefinition >> classTraitCompositionString [
 	^self classTraitComposition ifNil: ['{}'].
 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>definitionString [
+{ #category : #accessing }
+MCClassTraitDefinition >> definitionString [
 	^self baseTrait , ' classTrait
 	uses: ' , self classTraitCompositionString.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>description [
+{ #category : #accessing }
+MCClassTraitDefinition >> description [
 	^Array
 		with: baseTrait
 		with: classTraitComposition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>hash [
+{ #category : #accessing }
+MCClassTraitDefinition >> hash [
 	| hash |
 	hash := String stringHash: baseTrait initialHash: 0.
 	hash := String stringHash: self classTraitCompositionString initialHash: hash.
@@ -132,48 +95,33 @@ MCClassTraitDefinition>>hash [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>initializeWithBaseTraitName: aTraitName classTraitComposition: aString [
+{ #category : #initialization }
+MCClassTraitDefinition >> initializeWithBaseTraitName: aTraitName classTraitComposition: aString [
 	baseTrait := aTraitName.
 	classTraitComposition := aString.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>initializeWithBaseTraitName: aTraitName classTraitComposition: aString category: aCategoryString [
+{ #category : #initialization }
+MCClassTraitDefinition >> initializeWithBaseTraitName: aTraitName classTraitComposition: aString category: aCategoryString [
 	baseTrait := aTraitName.
 	classTraitComposition := aString.
 	category := aCategoryString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>isClassDefinition [
+{ #category : #testing }
+MCClassTraitDefinition >> isClassDefinition [
 	"Traits are treated the same like classes."
 	
 	^ true
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>load	 [
+{ #category : #installing }
+MCClassTraitDefinition >> load [	
 	self class compiler evaluate: self definitionString
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>printDefinitionOn: stream [
+{ #category : #printing }
+MCClassTraitDefinition >> printDefinitionOn: stream [
 	stream
 		nextPutAll: self baseTrait;
 		nextPutAll: ' classTrait';
@@ -183,35 +131,23 @@ MCClassTraitDefinition>>printDefinitionOn: stream [
 		nextPutAll: self classTraitCompositionString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>requirements [
+{ #category : #accessing }
+MCClassTraitDefinition >> requirements [
 	^Array with: baseTrait
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>sortKey [
+{ #category : #accessing }
+MCClassTraitDefinition >> sortKey [
 	^ self baseTrait , '.classTrait'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>source [
+{ #category : #accessing }
+MCClassTraitDefinition >> source [
 	^self definitionString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassTraitDefinition>>summary [
+{ #category : #accessing }
+MCClassTraitDefinition >> summary [
 	^self baseTrait , ' classTrait'
 
 ]

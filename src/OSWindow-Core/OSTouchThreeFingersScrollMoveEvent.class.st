@@ -4,14 +4,10 @@ Three fingers are scrolling
 Class {
 	#name : #OSTouchThreeFingersScrollMoveEvent,
 	#superclass : #OSTouchThreeFingersScrollEvent,
-	#category : #OSWindow-Core-Events-Touch,
-	#timestamp : 'MerwanOuddane 5/11/2015 15:16'
+	#category : #OSWindow-Core-Events-Touch
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchThreeFingersScrollMoveEvent>>accept: aVisitor [
+{ #category : #visitor }
+OSTouchThreeFingersScrollMoveEvent >> accept: aVisitor [
 	aVisitor visitTouchThreeFingersScrollMoveEvent: self
 ]

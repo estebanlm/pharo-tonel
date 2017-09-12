@@ -27,15 +27,11 @@ Class {
 		'handlerContext',
 		'outerContext'
 	],
-	#category : #Kernel-Exceptions,
-	#timestamp : 'MarcusDenker 6/9/2014 16:43'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #exceptionselector,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception class>>, anotherException [
+{ #category : #exceptionselector }
+Exception class >> , anotherException [
 	"Create an exception set containing the receiver and anotherException"
 
 	^ ExceptionSet new
@@ -44,11 +40,8 @@ Exception class>>, anotherException [
 		yourself
 ]
 
-{
-	#category : #exceptionselector,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception class>>- anotherException [
+{ #category : #exceptionselector }
+Exception class >> - anotherException [
 	"Create an exception set containing the receiver 
 	and anotherException as exclusion."
 
@@ -58,41 +51,29 @@ Exception class>>- anotherException [
 		yourself
 ]
 
-{
-	#category : #exceptionselector,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception class>>handles: exception [
+{ #category : #exceptionselector }
+Exception class >> handles: exception [
 	"Determine whether an exception handler will accept a signaled exception."
 
 	^ exception isKindOf: self
 ]
 
-{
-	#category : #exceptioninstantiator,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception class>>signal [
+{ #category : #exceptioninstantiator }
+Exception class >> signal [
 	"Signal the occurrence of an exceptional condition."
 
 	^ self new signal
 ]
 
-{
-	#category : #exceptioninstantiator,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception class>>signal: message [
+{ #category : #exceptioninstantiator }
+Exception class >> signal: message [
 	"Signal the occurrence of an exceptional condition with a specified textual description."
 
 	^ self new signal: message
 ]
 
-{
-	#category : #exceptioninstantiator,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception class>>signal: message in: context [
+{ #category : #exceptioninstantiator }
+Exception class >> signal: message in: context [
 	"Signal the occurrence of an exceptional condition with a specified textual description in the given context."
 
 	^ self new 
@@ -100,61 +81,43 @@ Exception class>>signal: message in: context [
 		signalIn: context
 ]
 
-{
-	#category : #exceptioninstantiator,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception class>>signalIn: context [
+{ #category : #exceptioninstantiator }
+Exception class >> signalIn: context [
 	"Signal the occurrence of an exceptional condition in the given context."
 
 	^ self new signalIn: context
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>debug [
+{ #category : #handling }
+Exception >> debug [
 	"open a debugger on myself"
 	Processor activeProcess 
 		debug: self signalerContext
 		title: self description
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>defaultAction [
+{ #category : #accessing }
+Exception >> defaultAction [
 	"The default action taken if the exception is signaled."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>defaultResumeValue [
+{ #category : #private }
+Exception >> defaultResumeValue [
 	"Answer the value that by default should be returned if the exception is resumed"
 	
 	^ nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>defaultReturnValue [
+{ #category : #private }
+Exception >> defaultReturnValue [
 	"Answer the value that by default should be returned if the exception is returned"
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>description [
+{ #category : #accessing }
+Exception >> description [
 	"Return a textual description of the exception."
 
 	^ String streamContents: [ :stream | | mt |
@@ -163,70 +126,49 @@ Exception>>description [
 			ifFalse: [ stream << ': ' << mt ] ]
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>freeze [
+{ #category : #handling }
+Exception >> freeze [
 	"freeze the context stack to keep the exception usable outside the catch blocks"
 
 	self freezeUpTo: thisContext
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>freezeUpTo:  aContext [
+{ #category : #handling }
+Exception >> freezeUpTo:  aContext [
 	"freeze the signal context up to the given context so the exception is usable outside the catch block"
 	signalContext := signalContext copyTo: aContext
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>isNested [
+{ #category : #testing }
+Exception >> isNested [
 	"Determine whether the current exception handler is within the scope of another handler for the same exception."
 
 	^ handlerContext nextHandlerContext canHandleSignal: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>isResumable [
+{ #category : #testing }
+Exception >> isResumable [
 	"Determine whether an exception is resumable."
 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>messageText [
+{ #category : #accessing }
+Exception >> messageText [
 	"Return an exception's message text."
 
 	^ messageText ifNil: [ String empty ]
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>messageText: signalerText [
+{ #category : #signaling }
+Exception >> messageText: signalerText [
 	"Set an exception's message text."
 
 	messageText := signalerText
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>outer [
+{ #category : #handling }
+Exception >> outer [
 	"Evaluate the enclosing exception action and return to here instead of signal if it resumes (see #resumeUnchecked:)."
 
 	| prevOuterContext |
@@ -238,86 +180,59 @@ Exception>>outer [
 
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>pass [
+{ #category : #handling }
+Exception >> pass [
 	"Yield control to the enclosing exception action for the receiver."
 
 	handlerContext nextHandlerContext handleSignal: self
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>printOn: stream [
+{ #category : #printing }
+Exception >> printOn: stream [
 
 	stream nextPutAll: self description
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>privHandlerContext [
+{ #category : #private }
+Exception >> privHandlerContext [
 
 	^handlerContext
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>privHandlerContext: aContextTag [
+{ #category : #private }
+Exception >> privHandlerContext: aContextTag [
 
 	handlerContext := aContextTag
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>receiver [
+{ #category : #accessing }
+Exception >> receiver [
 	^ self signalerContext receiver
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>resignalAs: replacementException [
+{ #category : #handling }
+Exception >> resignalAs: replacementException [
 	"Signal an alternative exception in place of the receiver."
 	^ replacementException signalIn: signalContext
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>resume [
+{ #category : #handling }
+Exception >> resume [
 	"Return from the message that signaled the receiver."
 
 	self resume: self defaultResumeValue
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>resume: resumptionValue [
+{ #category : #handling }
+Exception >> resume: resumptionValue [
 	"Return resumptionValue as the value of the signal message."
 
 	self isResumable ifFalse: [ IllegalResumeAttempt signal ].
 	self resumeUnchecked: resumptionValue
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>resumeUnchecked: resumptionValue [
+{ #category : #handling }
+Exception >> resumeUnchecked: resumptionValue [
 	"Return resumptionValue as the value of #signal, unless this was called after an #outer message, then return resumptionValue as the value of #outer."
 
 	| ctxt |
@@ -331,62 +246,44 @@ Exception>>resumeUnchecked: resumptionValue [
 
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>retry [
+{ #category : #handling }
+Exception >> retry [
 	"Abort an exception handler and re-evaluate its protected block."
 
 	handlerContext restart
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>retryUsing: alternativeBlock [
+{ #category : #handling }
+Exception >> retryUsing: alternativeBlock [
 	"Abort an exception handler and evaluate a new block in place of the handler's protected block."
 
 	handlerContext restartWithNewReceiver: alternativeBlock
 
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>return [
+{ #category : #handling }
+Exception >> return [
 	"Return nil as the value of the block protected by the active exception handler."
 
 	self return: self defaultReturnValue
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>return: returnValue [
+{ #category : #handling }
+Exception >> return: returnValue [
 	"Return the argument as the value of the block protected by the active exception handler."
 
 	handlerContext return: returnValue
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>searchFrom: aContext [
+{ #category : #handling }
+Exception >> searchFrom: aContext [
 	" Set the context where the handler search will start. "
 
 	signalContext := aContext contextTag
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>signal [
+{ #category : #signaling }
+Exception >> signal [
 	"Ask ContextHandlers in the sender chain to handle this signal.  The default is to execute and return my defaultAction."
 
 	signalContext := thisContext contextTag.
@@ -394,22 +291,16 @@ Exception>>signal [
 	^ signalContext nextHandlerContext handleSignal: self
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>signal: signalerText [
+{ #category : #signaling }
+Exception >> signal: signalerText [
 	"Signal the occurrence of an exceptional condition with a specified textual description."
 
 	self messageText: signalerText.
 	^ self signal
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>signalIn: context [
+{ #category : #signaling }
+Exception >> signalIn: context [
 	"Ask ContextHandlers in the sender chain starting at the given context to handle this signal. 
 	The default is to execute and return my defaultAction."
 
@@ -418,11 +309,8 @@ Exception>>signalIn: context [
 	^ signalContext nextHandlerContext handleSignal: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>signaler [
+{ #category : #accessing }
+Exception >> signaler [
 	"Return the object that is the subject involving me.
 	This is set automatically to my #receiver during #signal
 	but could be overwritten when I am signaled"
@@ -430,11 +318,8 @@ Exception>>signaler [
 	^ signaler
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>signaler: anObject [
+{ #category : #accessing }
+Exception >> signaler: anObject [
 	"Set the object that is the subject involving me.
 	This is set automatically to my #receiver during #signal
 	but could be overwritten when I am signaled"
@@ -442,11 +327,8 @@ Exception>>signaler: anObject [
 	signaler := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>signalerContext [
+{ #category : #accessing }
+Exception >> signalerContext [
 	"Find the first sender of signal(:), the first context which is neither for an instance method nor for a class side method of Exception (or subclass).
 	This will make sure that the same context is found for both, `Error signal` and `Error new signal`"
 
@@ -455,11 +337,8 @@ Exception>>signalerContext [
 		or: [ context receiver == self class ]) not ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>tag [
+{ #category : #accessing }
+Exception >> tag [
 	"Return an exception's tag value."
 
 	^ tag 
@@ -467,11 +346,8 @@ Exception>>tag [
 		ifNotNil: [ tag ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Exception>>tag: t [
+{ #category : #accessing }
+Exception >> tag: t [
 	"This message is not specified in the ANSI protocol, but that looks like an oversight because #tag is specified, and the spec states that the signaler may store the tag value."
 
 	tag := t

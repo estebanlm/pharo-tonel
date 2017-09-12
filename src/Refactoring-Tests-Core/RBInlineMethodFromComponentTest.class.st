@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBInlineMethodFromComponentTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodFromComponentTest>>testInlineComponentIntoCascadedMessage [
+{ #category : #tests }
+RBInlineMethodFromComponentTest >> testInlineComponentIntoCascadedMessage [
 	| refactoring |
 	self proceedThroughWarning: 
 		[ refactoring := RBInlineMethodFromComponentRefactoring 
@@ -37,11 +30,8 @@ RBInlineMethodFromComponentTest>>testInlineComponentIntoCascadedMessage [
 	^aBehavior yourself')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodFromComponentTest>>testInlineComponentMethodMax [
+{ #category : #tests }
+RBInlineMethodFromComponentTest >> testInlineComponentMethodMax [
 	| refactoring |
 	self proceedThroughWarning: 
 		[ | class |
@@ -77,11 +67,8 @@ RBInlineMethodFromComponentTest>>testInlineComponentMethodMax [
 								^q')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodFromComponentTest>>testInlineEmptyComponentMethod [
+{ #category : #tests }
+RBInlineMethodFromComponentTest >> testInlineEmptyComponentMethod [
 	| refactoring |
 	self proceedThroughWarning: 
 		[ refactoring := RBInlineMethodFromComponentRefactoring 
@@ -107,11 +94,8 @@ RBInlineMethodFromComponentTest>>testInlineEmptyComponentMethod [
 	^anObject')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodFromComponentTest>>testInlineMethodFromComponentFailure [
+{ #category : #'failure tests' }
+RBInlineMethodFromComponentTest >> testInlineMethodFromComponentFailure [
 	self shouldFail: (RBInlineMethodFromComponentRefactoring 
 			inline: (self 
 					convertInterval: (50 to: 64)
@@ -120,11 +104,8 @@ RBInlineMethodFromComponentTest>>testInlineMethodFromComponentFailure [
 			forClass: RBRefactoryTestDataApp)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodFromComponentTest>>testModelInlineMethodWithSameVariableNames [
+{ #category : #tests }
+RBInlineMethodFromComponentTest >> testModelInlineMethodWithSameVariableNames [
 	| class refactoring |
 	model := RBClassModelFactory rbNamespace new.
 	class := model classNamed: self class name.
@@ -145,11 +126,8 @@ RBInlineMethodFromComponentTest>>testModelInlineMethodWithSameVariableNames [
 						parseMethod: 'foo | a b c | a := InlineMethodFromComponentTest new. b := 1. c := 2. ^a + b + c')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodFromComponentTest>>testModelInlineMethodWithSameVariableNames1 [
+{ #category : #tests }
+RBInlineMethodFromComponentTest >> testModelInlineMethodWithSameVariableNames1 [
 	| class refactoring |
 	model := RBClassModelFactory rbNamespace new.
 	class := model classNamed: #Rectangle.
@@ -173,11 +151,8 @@ RBInlineMethodFromComponentTest>>testModelInlineMethodWithSameVariableNames1 [
 						parseMethod: 'foo | aRectangle temp | aRectangle := 0@0 corner: 1@1. temp := aRectangle. ^aRectangle origin extent: temp extent')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodFromComponentTest>>testModelInlineMethodWithSameVariableNames2 [
+{ #category : #tests }
+RBInlineMethodFromComponentTest >> testModelInlineMethodWithSameVariableNames2 [
 	| class refactoring |
 	model := RBClassModelFactory rbNamespace new.
 	class := model classNamed: self class name.

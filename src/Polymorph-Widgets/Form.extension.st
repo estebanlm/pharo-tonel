@@ -1,12 +1,7 @@
-Extension {
-	#name : #Form
-}
+Extension { #name : #Form }
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Form>>listRenderOn: aCanvas atRow: index bounds: aRectangle color: aColor backgroundColor: backgroundColor from: aList [
+{ #category : #'*Polymorph-Widgets' }
+Form >> listRenderOn: aCanvas atRow: index bounds: aRectangle color: aColor backgroundColor: backgroundColor from: aList [
 	self asMorph
 		listRenderOn: aCanvas
 		atRow: index
@@ -16,29 +11,20 @@ Form>>listRenderOn: aCanvas atRow: index bounds: aRectangle color: aColor backgr
 		from: aList
 ]
 
-{
-	#category : #'*Polymorph-Widgets-Themes',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Form>>mergeBottomRightWith: aForm [
+{ #category : #'*Polymorph-Widgets-Themes' }
+Form >> mergeBottomRightWith: aForm [
 	^ self 
 		mergeWith: aForm 
 		at: self extent - aForm extent
 ]
 
-{
-	#category : #'*Polymorph-Widgets-Themes',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Form>>mergeWith: aForm [
+{ #category : #'*Polymorph-Widgets-Themes' }
+Form >> mergeWith: aForm [
 	^ self mergeWith: aForm at: 0@0
 ]
 
-{
-	#category : #'*Polymorph-Widgets-Themes',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Form>>mergeWith: aForm at: aPoint [
+{ #category : #'*Polymorph-Widgets-Themes' }
+Form >> mergeWith: aForm at: aPoint [
 	| mergedForm |
 
 	mergedForm := self deepCopy.
@@ -49,11 +35,8 @@ Form>>mergeWith: aForm at: aPoint [
 	^ mergedForm 
 ]
 
-{
-	#category : #'*Polymorph-Widgets-Themes',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Form>>setAsBackground [
+{ #category : #'*Polymorph-Widgets-Themes' }
+Form >> setAsBackground [
 	"Set this form as a background image."
 	| world |
 	world := self currentWorld.

@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #SearchableListTest,
 	#superclass : #SpecTestCase,
-	#category : #Spec-Tests-PolyWidgets-ListAndTree,
-	#timestamp : ''
+	#category : #Spec-Tests-PolyWidgets-ListAndTree
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SearchableListTest>>classToTest [
+{ #category : #running }
+SearchableListTest >> classToTest [
 	^ SearchableList
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SearchableListTest>>testFiltering [
+{ #category : #tests }
+SearchableListTest >> testFiltering [
 	testedInstance listModel items: {'aa' . 'bb' . 'ab' . 'ba'}.
 	testedInstance searchModel text: 'a'.
 	self assert: testedInstance listModel listItems asArray equals: {'aa' . 'ab'}

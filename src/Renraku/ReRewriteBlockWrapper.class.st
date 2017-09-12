@@ -7,34 +7,24 @@ Class {
 	#instVars : [
 		'block'
 	],
-	#category : #Renraku-Rules-Rewrite,
-	#timestamp : 'YuriyTymchuk 7/6/2016 23:16'
+	#category : #Renraku-Rules-Rewrite
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRewriteBlockWrapper class>>on: aBlock [
+{ #category : #'instance creation' }
+ReRewriteBlockWrapper class >> on: aBlock [
 
 	^ self basicNew
 		initializeBlock: aBlock;
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRewriteBlockWrapper>>initializeBlock: aBlock [
+{ #category : #initialization }
+ReRewriteBlockWrapper >> initializeBlock: aBlock [
 	block := aBlock
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRewriteBlockWrapper>>rewriten: aNode with: aMap [
+{ #category : #actions }
+ReRewriteBlockWrapper >> rewriten: aNode with: aMap [
 
 	^ block cull: aNode cull: aMap
 ]

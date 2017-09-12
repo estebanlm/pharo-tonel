@@ -17,82 +17,54 @@ Class {
 		'queue',
 		'relationGraph'
 	],
-	#category : #Tool-DependencyAnalyser-Core,
-	#timestamp : 'BaptisteQuide 7/11/2014 14:26'
+	#category : #Tool-DependencyAnalyser-Core
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector class>>collections [
+{ #category : #instance-creation }
+DAPackageCycleDetector class >> collections [
 	^ (self onPackagesNamed: #('Collections-Abstract' 'Collections-Arithmetic' 'Collections-Arrayed' 'Collections-Atomic' 'Collections-Native' 'Collections-Sequenceable' 'Collections-Stack' 'Collections-Streams' 'Collections-Strings' 'Collections-Support' 'Collections-Traits' 'Collections-Unordered' 'Collections-Weak')) runAlgorithm.
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector class>>morphic [
+{ #category : #instance-creation }
+DAPackageCycleDetector class >> morphic [
 	^ (self onPackagesNamed: #('Morphic-Base' 'Morphic-Core' 'Morphic-Examples' 'MorphicTests' 'Spec-MorphicAdapters')) runAlgorithm.
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector class>>new [
+{ #category : #instance-creation }
+DAPackageCycleDetector class >> new [
 	^ self onPackagesNamed: #()
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector class>>onPackages: aCollection [
+{ #category : #instance-creation }
+DAPackageCycleDetector class >> onPackages: aCollection [
 	^ self basicNew 
 		initializeWithRPackageSet: aCollection;
 		yourself
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector class>>onPackagesNamed: aCollection [
+{ #category : #instance-creation }
+DAPackageCycleDetector class >> onPackagesNamed: aCollection [
 	^ self onPackages: (aCollection collect: [ :each | RPackageSet named: each ])
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector class>>system [
+{ #category : #instance-creation }
+DAPackageCycleDetector class >> system [
 	^ (self onPackagesNamed: 
 		(RPackageOrganizer default packages collect: [ :package | package packageName asString ])) 			runAlgorithm.
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>addCycle: aPDPackageCycle [
+{ #category : #adding }
+DAPackageCycleDetector >> addCycle: aPDPackageCycle [
 	cycles add: aPDPackageCycle
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>addVisitedNodes: aNode  [
+{ #category : #adding }
+DAPackageCycleDetector >> addVisitedNodes: aNode [ 
 	visitedNodes add: aNode
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>buildCycleUntil: children [
+{ #category : #actions }
+DAPackageCycleDetector >> buildCycleUntil: children [
 	| aPackageCycle currentNode |
 	aPackageCycle := DAPackageCycle new.
 	currentNode := children.
@@ -106,80 +78,53 @@ DAPackageCycleDetector>>buildCycleUntil: children [
 			self addCycle: aPackageCycle ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>childrensFrom: stronglyConnectedComponents for: aNode [
+{ #category : #accessing }
+DAPackageCycleDetector >> childrensFrom: stronglyConnectedComponents for: aNode [
 	^ stronglyConnectedComponents successors: aNode
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>cycleAlreadyFound: aPackageCycle [
+{ #category : #testing }
+DAPackageCycleDetector >> cycleAlreadyFound: aPackageCycle [
 	^ cycles anySatisfy: [ :cycle | cycle = aPackageCycle ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>cycles [
+{ #category : #accessing }
+DAPackageCycleDetector >> cycles [
 	^ cycles sorted: [ :a :b | a size < b size ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>cycles: anObject [
+{ #category : #accessing }
+DAPackageCycleDetector >> cycles: anObject [
 	cycles := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>cyclesWith: aPDPackage [
+{ #category : #accessing }
+DAPackageCycleDetector >> cyclesWith: aPDPackage [
 	^ cycles select: [ :cycle |
 			cycle isInCycle: aPDPackage
 		 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>cyclesWithAtLeast: aCollectionOfPDPackage [
+{ #category : #accessing }
+DAPackageCycleDetector >> cyclesWithAtLeast: aCollectionOfPDPackage [
 	^ cycles select: [ :cycle | cycle isAtLeastInCycle: aCollectionOfPDPackage ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>dequeue [
+{ #category : #actions }
+DAPackageCycleDetector >> dequeue [
 	| aNode |
 	aNode := queue nextOrNil.
 	aNode ifNotNil: [ aNode inStack: false ].
 	^ aNode
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>enqueue: aNode [
+{ #category : #actions }
+DAPackageCycleDetector >> enqueue: aNode [
 	queue nextPut: aNode
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>findAllCyclesFrom: stronglyConnectedComponents for: package [
+{ #category : #actions }
+DAPackageCycleDetector >> findAllCyclesFrom: stronglyConnectedComponents for: package [
 	| parents |
 	self initializeVisitedNodes.
 	parents := self parentsFrom: stronglyConnectedComponents For: package.
@@ -187,32 +132,23 @@ DAPackageCycleDetector>>findAllCyclesFrom: stronglyConnectedComponents for: pack
 	 [ parents isEmpty ] whileFalse: [ self startBfsFrom: stronglyConnectedComponents For: parents ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>findCycles: stronglyConnectedComponents [
+{ #category : #actions }
+DAPackageCycleDetector >> findCycles: stronglyConnectedComponents [
 	stronglyConnectedComponents packages
 		do: [ :package | 
 			self findAllCyclesFrom: stronglyConnectedComponents for: package 
 			]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>initialize [
+{ #category : #initialization }
+DAPackageCycleDetector >> initialize [
 	super initialize.
 	cycles := SortedCollection new.
 	sccs := OrderedCollection new.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>initializeQueueWith: package [
+{ #category : #initialization }
+DAPackageCycleDetector >> initializeQueueWith: package [
 
 	package bfsParent: nil.	
 	package inStack: true.
@@ -220,21 +156,15 @@ DAPackageCycleDetector>>initializeQueueWith: package [
 	queue nextPut: package
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>initializeVisitedNodes [
+{ #category : #initialization }
+DAPackageCycleDetector >> initializeVisitedNodes [
 	
 	visitedNodes := Set new.
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>initializeWithRPackageSet: aCollection [
+{ #category : #initialization }
+DAPackageCycleDetector >> initializeWithRPackageSet: aCollection [
 	relationGraph := DAPackageRelationGraph onPackages: (aCollection collect: [ :each | DAPackage on: each ]).
 	cycles := OrderedCollection new.
 	self relationGraph build.
@@ -243,66 +173,45 @@ DAPackageCycleDetector>>initializeWithRPackageSet: aCollection [
 		stronglyConnectedComponents
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>isVisitedOrInQueue: aNode [
+{ #category : #testing }
+DAPackageCycleDetector >> isVisitedOrInQueue: aNode [
 	^ (visitedNodes includes: aNode) or: [ aNode isInStack ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>parentsFrom: stronglyConnectedComponents For: aNode [
+{ #category : #accessing }
+DAPackageCycleDetector >> parentsFrom: stronglyConnectedComponents For: aNode [
 	^ stronglyConnectedComponents predecessors: aNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>refresh [
+{ #category : #accessing }
+DAPackageCycleDetector >> refresh [
 	self relationGraph refreshGraph.
 	self 
 		reset;
 		runAlgorithm.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>relationGraph [
+{ #category : #accessing }
+DAPackageCycleDetector >> relationGraph [
 	^ relationGraph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>reset [
+{ #category : #accessing }
+DAPackageCycleDetector >> reset [
 	cycles := SortedCollection new.
 	visitedNodes := nil.
 	queue := nil
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>runAlgorithm [
+{ #category : #actions }
+DAPackageCycleDetector >> runAlgorithm [
 	self stronglyConnectedComponents
 		do: [ :scc | self findCycles: scc ]
 		displayingProgress: 'finding cycles'
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>startBfsFrom: stronglyConnectedComponents For: parents [
+{ #category : #actions }
+DAPackageCycleDetector >> startBfsFrom: stronglyConnectedComponents For: parents [
 	| dequeue childrens |
 	dequeue := self dequeue.
 	childrens := self childrensFrom: stronglyConnectedComponents for: dequeue.
@@ -319,18 +228,12 @@ DAPackageCycleDetector>>startBfsFrom: stronglyConnectedComponents For: parents [
 	self addVisitedNodes: dequeue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>stronglyConnectedComponents [
+{ #category : #accessing }
+DAPackageCycleDetector >> stronglyConnectedComponents [
 	^ sccs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleDetector>>visitedNodes [
+{ #category : #accessing }
+DAPackageCycleDetector >> visitedNodes [
 	^ visitedNodes
 ]

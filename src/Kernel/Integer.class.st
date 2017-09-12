@@ -10,26 +10,19 @@ Integer division consists of:
 Class {
 	#name : #Integer,
 	#superclass : #Number,
-	#category : #Kernel-Numbers,
-	#timestamp : '<historical>'
+	#category : #Kernel-Numbers
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer class>>basicNew [
+{ #category : #'instance creation' }
+Integer class >> basicNew [
 
 	self == Integer ifTrue: [
 		^ self error: 'Integer is an abstract class.  Make a concrete subclass.'].
 	^ super basicNew
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer class>>byte1: byte1 byte2: byte2 byte3: byte3 byte4: byte4 [
+{ #category : #'instance creation' }
+Integer class >> byte1: byte1 byte2: byte2 byte3: byte3 byte4: byte4 [ 
 	"Depending on high-order byte copy directly into a LargeInteger,
 	or build up a SmallInteger by shifting"
 	| value |
@@ -46,20 +39,14 @@ Integer class>>byte1: byte1 byte2: byte2 byte3: byte3 byte4: byte4 [
 	^ value
 ]
 
-{
-	#category : #'prime numbers',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer class>>largePrimesUpTo: maxValue [
+{ #category : #'prime numbers' }
+Integer class >> largePrimesUpTo: maxValue [
 	"Compute and return all the prime numbers up to maxValue"
 	^Array streamContents:[:s| self largePrimesUpTo: maxValue do:[:prime| s nextPut: prime]]
 ]
 
-{
-	#category : #'prime numbers',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer class>>largePrimesUpTo: max do: aBlock [
+{ #category : #'prime numbers' }
+Integer class >> largePrimesUpTo: max do: aBlock [
 	"Evaluate aBlock with all primes up to maxValue.
 	The Algorithm is adapted from http://www.rsok.com/~jrm/printprimes.html
 	It encodes prime numbers much more compactly than #primesUpTo: 
@@ -132,22 +119,16 @@ Integer class>>largePrimesUpTo: max do: aBlock [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer class>>new [
+{ #category : #'instance creation' }
+Integer class >> new [
 
 	self == Integer ifTrue: [
 		^ self error: 'Integer is an abstract class.  Make a concrete subclass.'].
 	^ super new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer class>>new: length neg: neg [
+{ #category : #'instance creation' }
+Integer class >> new: length neg: neg [
 	"Answer an instance of a large integer whose size is length. neg is a flag 
 	determining whether the integer is negative or not."
 
@@ -156,21 +137,15 @@ Integer class>>new: length neg: neg [
 		ifFalse: [^LargePositiveInteger new: length]
 ]
 
-{
-	#category : #'prime numbers',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer class>>primesUpTo: max [
+{ #category : #'prime numbers' }
+Integer class >> primesUpTo: max [
 	"Return a list of prime integers up to the given integer."
 	"Integer primesUpTo: 100"
 	^Array streamContents:[:s| self primesUpTo: max do:[:prime| s nextPut: prime]]
 ]
 
-{
-	#category : #'prime numbers',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer class>>primesUpTo: max do: aBlock [
+{ #category : #'prime numbers' }
+Integer class >> primesUpTo: max do: aBlock [
 	"Compute aBlock with all prime integers up to the given integer."
 	"Integer primesUpTo: 100"
 
@@ -191,19 +166,13 @@ Integer class>>primesUpTo: max do: aBlock [
 
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>& aNumber [
+{ #category : #'bit manipulation' }
+Integer >> & aNumber [
 	^ self bitAnd: aNumber
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>* aNumber [
+{ #category : #arithmetic }
+Integer >> * aNumber [
 	"Refer to the comment in Number * " 
 	aNumber isInteger ifTrue:
 		[^ self digitMultiply: aNumber 
@@ -211,11 +180,8 @@ Integer>>* aNumber [
 	^ aNumber adaptToInteger: self andSend: #*
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>+ aNumber [
+{ #category : #arithmetic }
+Integer >> + aNumber [
 	"Refer to the comment in Number + "
 	aNumber isInteger ifTrue:
 		[self negative == aNumber negative
@@ -226,11 +192,8 @@ Integer>>+ aNumber [
 	^ aNumber adaptToInteger: self andSend: #+
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>- aNumber [
+{ #category : #arithmetic }
+Integer >> - aNumber [
 	"Refer to the comment in Number - "
 	aNumber isInteger ifTrue:
 		[self negative == aNumber negative
@@ -241,11 +204,8 @@ Integer>>- aNumber [
 	^ aNumber adaptToInteger: self andSend: #-
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>/ aNumber [
+{ #category : #arithmetic }
+Integer >> / aNumber [
 	"Refer to the comment in Number / "
 	| quoRem |
 	aNumber isInteger ifTrue:
@@ -256,11 +216,8 @@ Integer>>/ aNumber [
 	^ aNumber adaptToInteger: self andSend: #/
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>// aNumber [
+{ #category : #arithmetic }
+Integer >> // aNumber [ 
 	| q |
 	aNumber = 0 ifTrue: [^ (ZeroDivide dividend: self) signal"<- Chg"].
 	self = 0 ifTrue: [^ 0].
@@ -273,11 +230,8 @@ Integer>>// aNumber [
 		ifFalse: [^ q]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>< aNumber [
+{ #category : #comparing }
+Integer >> < aNumber [
 	aNumber isInteger ifTrue:
 		[self negative == aNumber negative
 			ifTrue: [self negative
@@ -287,22 +241,16 @@ Integer>>< aNumber [
 	^ aNumber adaptToInteger: self andCompare: #<
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>><< shiftAmount [
+{ #category : #'bit manipulation' }
+Integer >> << shiftAmount [
 	"left shift"
 	
 	shiftAmount < 0 ifTrue: [self error: 'negative arg'].
 	^ self bitShift: shiftAmount
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>><= aNumber [
+{ #category : #comparing }
+Integer >> <= aNumber [
 	aNumber isInteger ifTrue:
 		[self negative == aNumber negative
 			ifTrue: [self negative
@@ -312,11 +260,8 @@ Integer>><= aNumber [
 	^ aNumber adaptToInteger: self andCompare: #<=
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>= aNumber [
+{ #category : #comparing }
+Integer >> = aNumber [
 	aNumber isNumber ifFalse: [^ false].
 	aNumber isInteger ifTrue:
 		[aNumber negative == self negative
@@ -325,11 +270,8 @@ Integer>>= aNumber [
 	^ aNumber adaptToInteger: self andCompare: #=
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>> aNumber [
+{ #category : #comparing }
+Integer >> > aNumber [
 	aNumber isInteger ifTrue:
 		[self negative == aNumber negative
 			ifTrue: [self negative
@@ -339,11 +281,8 @@ Integer>>> aNumber [
 	^ aNumber adaptToInteger: self andCompare: #>
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>>= aNumber [
+{ #category : #comparing }
+Integer >> >= aNumber [
 	aNumber isInteger ifTrue:
 		[self negative == aNumber negative
 			ifTrue: [self negative
@@ -353,41 +292,29 @@ Integer>>>= aNumber [
 	^ aNumber adaptToInteger: self andCompare: #>=
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>>> shiftAmount [
+{ #category : #'bit manipulation' }
+Integer >> >> shiftAmount [
 	"right shift"
 	
 	shiftAmount < 0 ifTrue: [self error: 'negative arg'].
 	^ self bitShift: 0 - shiftAmount
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>\\\ anInteger [
+{ #category : #arithmetic }
+Integer >> \\\ anInteger [ 
 	"a modulo method for use in DSA. Be careful if you try to use this elsewhere."
 
 	^self \\ anInteger
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>adaptToFraction: rcvr andSend: selector [
+{ #category : #converting }
+Integer >> adaptToFraction: rcvr andSend: selector [
 	"If I am involved in arithmetic with a Fraction, convert me to a Fraction."
 	^ rcvr perform: selector with: (Fraction numerator: self denominator: 1)
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>alignedTo: anInteger [
+{ #category : #arithmetic }
+Integer >> alignedTo: anInteger [
 	"Answer the smallest number not less than receiver that is a multiple of anInteger."
 
 	^(self+anInteger-1//anInteger)*anInteger
@@ -396,22 +323,16 @@ Integer>>alignedTo: anInteger [
 "12 alignedTo: 3"
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>allMask: mask [
+{ #category : #'bit manipulation' }
+Integer >> allMask: mask [ 
 	"Treat the argument as a bit mask. Answer whether all of the bits that 
 	are 1 in the argument are 1 in the receiver."
 
 	^mask = (self bitAnd: mask)
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>anyBitOfMagnitudeFrom: start to: stopArg [
+{ #category : #'bit manipulation' }
+Integer >> anyBitOfMagnitudeFrom: start to: stopArg [ 
 	"Tests for any magnitude bits in the interval from start to stopArg."
 	"Primitive fixed in LargeIntegers v1.2. If you have an earlier version 
 	comment out the primitive call (using this ST method then)."
@@ -451,30 +372,21 @@ Integer>>anyBitOfMagnitudeFrom: start to: stopArg [
 	^ false
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>anyMask: mask [
+{ #category : #'bit manipulation' }
+Integer >> anyMask: mask [ 
 	"Treat the argument as a bit mask. Answer whether any of the bits that 
 	are 1 in the argument are 1 in the receiver."
 
 	^0 ~= (self bitAnd: mask)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>as31BitSmallInt [
+{ #category : #accessing }
+Integer >> as31BitSmallInt [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #converting-arrays,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asArray [
+{ #category : #converting-arrays }
+Integer >> asArray [
 
 	| stream |
 	stream := Array new writeStream.
@@ -484,11 +396,8 @@ Integer>>asArray [
 
 ]
 
-{
-	#category : #converting-arrays,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asByteArray [
+{ #category : #converting-arrays }
+Integer >> asByteArray [
 
 	| stream |
 	stream := ByteArray new writeStream.
@@ -498,11 +407,8 @@ Integer>>asByteArray [
 
 ]
 
-{
-	#category : #converting-arrays,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asByteArrayOfSize: aSize [
+{ #category : #converting-arrays }
+Integer >> asByteArrayOfSize: aSize [ 
 	"Answer a ByteArray of aSize with my value, most-significant byte first."
 	| answer digitPos |
 	aSize < self digitLength ifTrue: [ self error: 'number to large for byte array' ].
@@ -520,48 +426,33 @@ Integer>>asByteArrayOfSize: aSize [
 	^ answer
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asCharacter [
+{ #category : #converting }
+Integer >> asCharacter [
 	"Answer the Character whose value is the receiver."
 	^Character value: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asCharacterDigit [
+{ #category : #converting }
+Integer >> asCharacterDigit [
 	"Answer the Character whose string representation is the receiver."
 	^Character digitValue: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asFraction [
+{ #category : #converting }
+Integer >> asFraction [
 	"Answer a Fraction that represents the value of the receiver.
 	Since an Integer already behaves as a special kind of Fraction, no conversion is required, see #isFraction."
 
 	^self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asHexDigit [
+{ #category : #converting }
+Integer >> asHexDigit [
 	^'0123456789ABCDEF' at: self+1
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asInteger [
+{ #category : #converting }
+Integer >> asInteger [
 	"Answer with the receiver itself."
 
 	^self
@@ -569,11 +460,8 @@ Integer>>asInteger [
 
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asLargerPowerOfTwo [
+{ #category : #'truncation and round off' }
+Integer >> asLargerPowerOfTwo [
 	"Convert the receiver into a power of two which is not less than the receiver"
 	^self isPowerOfTwo
 		ifTrue:[self]
@@ -581,37 +469,25 @@ Integer>>asLargerPowerOfTwo [
 						ifFalse: [DomainError signal: 'Value outside (0 , infinity)' from: 0]]
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asPowerOfTwo [
+{ #category : #'truncation and round off' }
+Integer >> asPowerOfTwo [
 	"Convert the receiver into a power of two"
 	^self asSmallerPowerOfTwo
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asScaledDecimal [
+{ #category : #converting }
+Integer >> asScaledDecimal [
 	"The number of significant digits of the answer is the same as the number of decimal digits in the receiver."
 	^ ScaledDecimal newFromNumber: self scale: 0
 ]
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asSeconds [
+{ #category : #'*Kernel-Chronology' }
+Integer >> asSeconds [
 	^ Duration seconds: self
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asSmallerPowerOfTwo [
+{ #category : #'truncation and round off' }
+Integer >> asSmallerPowerOfTwo [
 	"Convert the receiver into a power of two which is not larger than the receiver"
 	^self isPowerOfTwo
 		ifTrue:[self]
@@ -619,33 +495,24 @@ Integer>>asSmallerPowerOfTwo [
 						ifFalse: [DomainError signal: 'Value outside (0 , infinity)' from: 0]]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asStringWithCommas [
+{ #category : #printing }
+Integer >> asStringWithCommas [
 	"123456789 asStringWithCommas"
 	"-123456789 asStringWithCommas"
 	^ String streamContents: [:stream | 
 		self printWithCommasOn: stream ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asStringWithCommasSigned [
+{ #category : #printing }
+Integer >> asStringWithCommasSigned [
 	"123456789 asStringWithCommasSigned"
 	"-123456789 asStringWithCommasSigned"
 	^ String streamContents: [:stream | 
 		self printWithCommasSignedOn: stream ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asTwoCharacterString [
+{ #category : #printing }
+Integer >> asTwoCharacterString [
 	"Answer a two-character string representing the receiver, with leading zero if required.  Intended for use with integers in the range 0 to 99, but plausible replies given for other values too
 	Examples:
 		2 asTwoCharacterString
@@ -660,11 +527,8 @@ Integer>>asTwoCharacterString [
 		ifFalse:	[self printString copyFrom: 1 to: 2]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asWords [
+{ #category : #printing }
+Integer >> asWords [
 	"SmallInteger maxVal asWords"
 	| mils minus three num answer milCount |
 	self = 0 ifTrue: [^'zero'].
@@ -691,20 +555,14 @@ Integer>>asWords [
 	^minus,answer
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asYear [
+{ #category : #converting }
+Integer >> asYear [
 
  	^ Year year: self  
 ]
 
-{
-	#category : #benchmarks,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>benchFib  "Handy send-heavy benchmark" [
+{ #category : #benchmarks }
+Integer >> benchFib [  "Handy send-heavy benchmark"
 	"(result // seconds to run) = approx calls per second"
 	" | r t |
 	  t := Time millisecondsToRun: [r := 26 benchFib].
@@ -716,11 +574,8 @@ Integer>>benchFib  "Handy send-heavy benchmark" [
 
 ]
 
-{
-	#category : #benchmarks,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>benchmark  "Handy bytecode-heavy benchmark" [
+{ #category : #benchmarks }
+Integer >> benchmark [  "Handy bytecode-heavy benchmark"
 	"(500000 // time to run) = approx bytecodes per second"
 	"5000000 // (Time millisecondsToRun: [10 benchmark]) * 1000"
 	"3059000 on a Mac 8100/100"
@@ -741,11 +596,8 @@ Integer>>benchmark  "Handy bytecode-heavy benchmark" [
     ^ count
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>bitAnd: n [
+{ #category : #'bit manipulation' }
+Integer >> bitAnd: n [ 
 	"Answer an Integer whose bits are the logical AND of the receiver's bits  
 	and those of the argument, n."
 	| norm |
@@ -757,11 +609,8 @@ Integer>>bitAnd: n [
 		length: (self digitLength max: norm digitLength)
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>bitAt: anInteger [
+{ #category : #'bit manipulation' }
+Integer >> bitAt: anInteger [
 	"Answer 1 if the bit at position anInteger is set to 1, 0 otherwise.
 	self is considered an infinite sequence of bits, so anInteger can be any strictly positive integer.
 	Bit at position 1 is the least significant bit.
@@ -772,11 +621,8 @@ Integer>>bitAt: anInteger [
 	^(self bitShift: 1 - anInteger) bitAnd: 1
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>bitAt: anInteger put: value [
+{ #category : #'bit manipulation' }
+Integer >> bitAt: anInteger put: value [
 	"Answer a new Integer that has the bit of rank anInteger set to value.
 	The bit value should be 0 or 1, otherwise raise an Error.
 	The bits are indexed starting at 1 for the least significant bit.
@@ -790,42 +636,30 @@ Integer>>bitAt: anInteger put: value [
 	self error: 'bit value should be 0 or 1'
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>bitClear: aMask [
+{ #category : #'bit manipulation' }
+Integer >> bitClear: aMask [ 
 	"Answer an Integer equal to the receiver, except with all bits cleared that are set in aMask."
 
 	^ (self bitOr: aMask) - aMask
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>bitInvert [
+{ #category : #'bit manipulation' }
+Integer >> bitInvert [
 	"Answer an Integer whose bits are the logical negation of the receiver's bits.
 	Numbers are interpreted as having 2's-complement representation."
 
 	^ -1 - self.
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>bitInvert32 [
+{ #category : #'bit manipulation' }
+Integer >> bitInvert32 [
 	"Answer the 32-bit complement of the receiver."
 
 	^ self bitXor: 16rFFFFFFFF
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>bitOr: n [
+{ #category : #'bit manipulation' }
+Integer >> bitOr: n [ 
 	"Answer an Integer whose bits are the logical OR of the receiver's bits  
 	and those of the argument, n."
 	| norm |
@@ -837,11 +671,8 @@ Integer>>bitOr: n [
 		length: (self digitLength max: norm digitLength)
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>bitShift: shiftCount [
+{ #category : #'bit manipulation' }
+Integer >> bitShift: shiftCount [ 
 	"Answer an Integer whose value (in twos-complement representation) is  
 	the receiver's value (in twos-complement representation) shifted left by 
 	the number of bits indicated by the argument. Negative arguments  
@@ -854,11 +685,8 @@ Integer>>bitShift: shiftCount [
 		ifFalse: [magnitudeShift]
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>bitShiftMagnitude: shiftCount [
+{ #category : #'bit manipulation' }
+Integer >> bitShiftMagnitude: shiftCount [ 
 	"Answer an Integer whose value (in magnitude representation) is  
 	the receiver's value (in magnitude representation) shifted left by  
 	the number of bits indicated by the argument. Negative arguments
@@ -873,11 +701,8 @@ Integer>>bitShiftMagnitude: shiftCount [
 		lookfirst: self digitLength) normalize
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>bitString [
+{ #category : #'bit manipulation' }
+Integer >> bitString [
 	"Returns a string representing the receiver in binary form"
 	"2 bitString 
 		'0000000000000000000000000000010'
@@ -893,22 +718,16 @@ Integer>>bitString [
 		collect: [:i | Character value: $0 charCode + (self bitAt: i)] as: String
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>bitStringLength [
+{ #category : #'bit manipulation' }
+Integer >> bitStringLength [
 
       ^self digitLength * 8
            	"make sure positive integer bitString always begins with 0"
            + (self positive ifTrue: [1] ifFalse: [0])
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>bitXor: n [
+{ #category : #'bit manipulation' }
+Integer >> bitXor: n [ 
 	"Answer an Integer whose bits are the logical XOR of the receiver's bits  
 	and those of the argument, n."
 	| norm |
@@ -920,29 +739,20 @@ Integer>>bitXor: n [
 		length: (self digitLength max: norm digitLength)
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>ceiling [
+{ #category : #'truncation and round off' }
+Integer >> ceiling [ 
 	"Refer to the comment in Number|ceiling."
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>copyto: x [
+{ #category : #private }
+Integer >> copyto: x [
 	| stop |
 	stop := self digitLength min: x digitLength.
 	^ x replaceFrom: 1 to: stop with: self startingAt: 1
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>crossSumBase: aBase [
+{ #category : #arithmetic }
+Integer >> crossSumBase: aBase [
 	|aResult|
 	"Precondition"
 	[aBase isInteger and: [aBase >=2]] assert.
@@ -957,11 +767,8 @@ Integer>>crossSumBase: aBase [
 	^aResult
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>decimalDigitAt: anExponent [
+{ #category : #accessing }
+Integer >> decimalDigitAt: anExponent [
 
 	"Return number that represents digit at given decimal position.
 		42 digitAt: 2 base: 10 -> 4
@@ -973,11 +780,8 @@ Integer>>decimalDigitAt: anExponent [
 	^ self digitAt: anExponent base: 10
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>decimalDigitLength [
+{ #category : #accessing }
+Integer >> decimalDigitLength [
 
 	"Return how many digits are necessary to print this number in base 10.
 	This does not count any place for minus sign, radix prefix or whatever.
@@ -986,20 +790,14 @@ Integer>>decimalDigitLength [
 	^ self numberOfDigitsInBase: 10
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>denominator [
+{ #category : #accessing }
+Integer >> denominator [
 	"Let an Integer be polymorphic to a Fraction. See #isFraction."
 	^1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>digitAdd: arg [
+{ #category : #private }
+Integer >> digitAdd: arg [ 
 	| len arglen accum sum |
 	<primitive: 'primDigitAdd' module:'LargeIntegers'>
 	accum := 0.
@@ -1018,11 +816,8 @@ Integer>>digitAdd: arg [
 	^ sum
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>digitAt: anExponent base: base [
+{ #category : #accessing }
+Integer >> digitAt: anExponent base: base [
 
 	"Return number that represents digit at given position.
 		42 digitAt: 2 base: 10 -> 4
@@ -1035,11 +830,8 @@ Integer>>digitAt: anExponent base: base [
 	^ self // (base raisedToInteger: anExponent - 1) \\ base
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>digitCompare: arg [
+{ #category : #private }
+Integer >> digitCompare: arg [ 
 	"Compare the magnitude of self with that of arg.   
 	Return a code of 1, 0, -1 for self >, = , < arg"
 	| len arglen argDigit selfDigit |
@@ -1059,11 +851,8 @@ Integer>>digitCompare: arg [
 	^ 0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>digitDiv: arg neg: ng [
+{ #category : #private }
+Integer >> digitDiv: arg neg: ng [ 
 	"Answer with an array of (quotient, remainder)."
 	| quo rem ql d div dh dnh dl qhi qlo j l hi lo r3 a t |
 	<primitive: 'primDigitDivNegative' module:'LargeIntegers'>
@@ -1177,19 +966,13 @@ Integer>>digitDiv: arg neg: ng [
 	^ Array with: quo with: rem
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>digitLength [
+{ #category : #'system primitives' }
+Integer >> digitLength [
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>digitLogic: arg op: op length: len [
+{ #category : #private }
+Integer >> digitLogic: arg op: op length: len [ 
 	| i result neg1 neg2 rneg z1 z2 rz b1 b2 b |
 	neg1 := self negative.
 	neg2 := arg negative.
@@ -1239,11 +1022,8 @@ Integer>>digitLogic: arg op: op length: len [
 	^ result normalize
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>digitLshift: shiftCount [
+{ #category : #private }
+Integer >> digitLshift: shiftCount [ 
 	| carry rShift mask len result digit byteShift bitShift highBit |
 	(highBit := self highBitOfMagnitude) = 0 ifTrue: [^ 0].
 	len := highBit + shiftCount + 7 // 8.
@@ -1270,11 +1050,8 @@ Integer>>digitLshift: shiftCount [
 	^ result
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>digitMultiply: arg neg: ng [
+{ #category : #private }
+Integer >> digitMultiply: arg neg: ng [ 
 	| prod prodLen carry digit k ab |
 	<primitive: 'primDigitMultiplyNegative' module:'LargeIntegers'>
 	(arg digitLength = 1 and: [(arg digitAt: 1)
@@ -1302,11 +1079,8 @@ Integer>>digitMultiply: arg neg: ng [
 	^ prod normalize
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>digitRshift: anInteger bytes: b lookfirst: a [
+{ #category : #private }
+Integer >> digitRshift: anInteger bytes: b lookfirst: a [ 
 	 "Shift right 8*b+anInteger bits, 0<=n<8.
 	Discard all digits beyond a, and all zeroes at or below a."
 	| n x r f m digit count i |
@@ -1332,11 +1106,8 @@ Integer>>digitRshift: anInteger bytes: b lookfirst: a [
 	^r
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>digitSubtract: arg [
+{ #category : #private }
+Integer >> digitSubtract: arg [ 
 	| smaller larger z sum sl al ng |
 	<primitive: 'primDigitSubtract' module:'LargeIntegers'>
 	sl := self digitLength.
@@ -1371,21 +1142,15 @@ Integer>>digitSubtract: arg [
 	^ sum normalize
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>even [
+{ #category : #testing }
+Integer >> even [ 
 	"Refer to the comment in Number|even."
 
 	^((self digitAt: 1) bitAnd: 1) = 0
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>factorial [
+{ #category : #'mathematical functions' }
+Integer >> factorial [
 	"Answer the factorial of the receiver."
 
 	self = 0 ifTrue: [^ 1].
@@ -1393,19 +1158,13 @@ Integer>>factorial [
 	self error: 'Not valid for negative integers'
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>floor [
+{ #category : #'truncation and round off' }
+Integer >> floor [ 
 	"Refer to the comment in Number|floor."
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>gcd: anInteger [
+{ #category : #'mathematical functions' }
+Integer >> gcd: anInteger [
 	"See Knuth, Vol 2, 4.5.2, Algorithm L"
 	"Initialize"
 	| higher u v k uHat vHat a b c d vPrime vPrimePrime q t |
@@ -1442,29 +1201,20 @@ Integer>>gcd: anInteger [
 	^ v gcd: u
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>growby: n [
+{ #category : #private }
+Integer >> growby: n [
 
 	^self growto: self digitLength + n
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>growto: n [
+{ #category : #private }
+Integer >> growto: n [
 
 	^self copyto: (self species new: n)
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>hex [
+{ #category : #converting }
+Integer >> hex [
 	"Print the receiver as hex, prefixed with 16r.  DO NOT CHANGE THIS!  The Cog VMMaker depends on this.
 	 Consider using any of
 		printStringHex
@@ -1476,11 +1226,8 @@ Integer>>hex [
 	^self storeStringBase: 16
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>highBit [
+{ #category : #'bit manipulation' }
+Integer >> highBit [
 	"Answer the index of the high order bit of the receiver, or zero if the  
 	receiver is zero. Raise an error if the receiver is negative, since  
 	negative integers are defined to have an infinite number of leading 1's 
@@ -1490,51 +1237,36 @@ Integer>>highBit [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>highBitOfMagnitude [
+{ #category : #'bit manipulation' }
+Integer >> highBitOfMagnitude [
 	"Answer the index of the high order bit of the magnitude of the  
 	receiver, or zero if the receiver is zero."
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>isFraction [
+{ #category : #testing }
+Integer >> isFraction [
 	"Each Integer is considered as a special kind of Fraction with self as numerator and a unit denominator.
 	Rationale: A Fraction with a unit denominator will be automatically reduced to an Integer.
 	Hence Integer has to be polymorphic to Fraction."
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>isInteger [
+{ #category : #testing }
+Integer >> isInteger [
 	"True for all subclasses of Integer."
 
 	^ true
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>isLiteral [
+{ #category : #printing }
+Integer >> isLiteral [
 
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>isMostLikelyPrime [
+{ #category : #testing }
+Integer >> isMostLikelyPrime [
 	"See isProbablyPrimeWithK:andQ: for the algoritm description."
 	| k q |
 	self <= 1 ifTrue: [^self error: 'operation undefined'].
@@ -1550,20 +1282,14 @@ Integer>>isMostLikelyPrime [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>isPowerOfTwo [
+{ #category : #testing }
+Integer >> isPowerOfTwo [
 	"Return true if the receiver is an integral power of two."
 	^ self ~= 0 and: [(self bitAnd: self-1) = 0]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>isPrime [
+{ #category : #testing }
+Integer >> isPrime [
 	"Answer true if the receiver is a prime number. See isProbablyPrime for a probabilistic
 	implementation that is much faster for large integers, and that is correct to an extremely
 	high statistical level of confidence (effectively deterministic)."
@@ -1575,11 +1301,8 @@ Integer>>isPrime [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>isProbablyPrime [
+{ #category : #testing }
+Integer >> isProbablyPrime [
 	"See isProbablyPrimeWithK:andQ:randomIndex: for the algoritm description."
 	
 	| k q randomNumbers |
@@ -1607,11 +1330,8 @@ Integer>>isProbablyPrime [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>isProbablyPrimeWithK: k andQ: q randomIndex: aRandomFloat [
+{ #category : #testing }
+Integer >> isProbablyPrimeWithK: k andQ: q randomIndex: aRandomFloat [
 	"Algorithm P, probabilistic primality test, from
 	Knuth, Donald E. 'The Art of Computer Programming', Vol 2,
 	Third Edition, section 4.5.4, page 395, P1-P5 refer to Knuth description..
@@ -1636,31 +1356,22 @@ Integer>>isProbablyPrimeWithK: k andQ: q randomIndex: aRandomFloat [
 	^false
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>lastDigit [
+{ #category : #'system primitives' }
+Integer >> lastDigit [
 	"Answer the last digit of the integer base 256.  LargePositiveInteger uses bytes of base two number, and each is a 'digit'."
 
 	^self digitAt: self digitLength
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>lcm: n [
+{ #category : #'mathematical functions' }
+Integer >> lcm: n [ 
 	"Answer the least common multiple of the receiver and n."
 
 	^self // (self gcd: n) * n
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>lowBit [
+{ #category : #'bit manipulation' }
+Integer >> lowBit [
 	"Answer the index of the low order bit of this number."
 	| index |
 	self = 0 ifTrue: [ ^ 0 ].
@@ -1671,50 +1382,35 @@ Integer>>lowBit [
 	^ (self digitAt: index) lowBit + (8 * (index - 1))
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>montgomeryDigitBase [
+{ #category : #private }
+Integer >> montgomeryDigitBase [
 	"Answer the base used by Montgomery algorithm."
 	^1 << self montgomeryDigitLength
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>montgomeryDigitLength [
+{ #category : #private }
+Integer >> montgomeryDigitLength [
 	"Answer the number of bits composing a digit in Montgomery algorithm.
 	Primitive use either 8 or 32 bits digits"
 	<primitive: 'primMontgomeryDigitLength' module:'LargeIntegers'>
 	^8 "Legacy plugin which did not have this primitive did use 8 bits digits"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>montgomeryDigitMax [
+{ #category : #private }
+Integer >> montgomeryDigitMax [
 	"Answer the maximum value of a digit used in Montgomery algorithm."
 	
 	^1 << self montgomeryDigitLength - 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>montgomeryNumberOfDigits [
+{ #category : #private }
+Integer >> montgomeryNumberOfDigits [
 	"Answer the number of montgomery digits required to represent the receiver."
 	^self digitLength * 8 + (self montgomeryDigitLength - 1) // self montgomeryDigitLength
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>montgomeryRaisedTo: n times: y modulo: m mInvModB: mInv [
+{ #category : #private }
+Integer >> montgomeryRaisedTo: n times: y modulo: m mInvModB: mInv [
 	"Private - do a Montgomery exponentiation of self modulo m.
 	The operation is equivalent to (self/y raisedTo: n)*y \\ m,
 	with y is (b raisedTo: m montgomeryNumberOfDigits),
@@ -1761,11 +1457,8 @@ Integer>>montgomeryRaisedTo: n times: y modulo: m mInvModB: mInv [
 	^pow
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>montgomeryTimes: a modulo: m mInvModB: mInv [
+{ #category : #private }
+Integer >> montgomeryTimes: a modulo: m mInvModB: mInv [
 	"Answer the result of a Montgomery multiplication
 	self * a * (b raisedTo: m montgomeryNumberOfDigits) inv \\ m
 	NOTE: it is assumed that:
@@ -1780,31 +1473,22 @@ Integer>>montgomeryTimes: a modulo: m mInvModB: mInv [
 	^nil
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>noMask: mask [
+{ #category : #'bit manipulation' }
+Integer >> noMask: mask [ 
 	"Treat the argument as a bit mask. Answer whether none of the bits that 
 	are 1 in the argument are 1 in the receiver."
 
 	^0 = (self bitAnd: mask)
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>normalize [
+{ #category : #'truncation and round off' }
+Integer >> normalize [ 
 	"SmallInts OK; LgInts override"
 	^ self
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>nthRoot: aPositiveInteger [
+{ #category : #'mathematical functions' }
+Integer >> nthRoot: aPositiveInteger [
 	"Answer the nth root of the receiver.
 	Answer an Integer if root is exactly this Integer, else answer the Float nearest the exact root."
 
@@ -1821,11 +1505,8 @@ Integer>>nthRoot: aPositiveInteger [
 	^(guess / (1 << p)) asFloat
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>nthRootRounded: aPositiveInteger [
+{ #category : #'mathematical functions' }
+Integer >> nthRootRounded: aPositiveInteger [
 	"Answer the integer nearest the nth root of the receiver."
 	| guess |
 	self = 0 ifTrue: [^0].
@@ -1839,11 +1520,8 @@ Integer>>nthRootRounded: aPositiveInteger [
 		ifFalse: [guess]
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>nthRootTruncated: aPositiveInteger [
+{ #category : #'mathematical functions' }
+Integer >> nthRootTruncated: aPositiveInteger [
 	"Answer the integer part of the nth root of the receiver."
 	| guess guessToTheNthMinusOne delta |
 	self = 0 ifTrue: [^0].
@@ -1862,11 +1540,8 @@ Integer>>nthRootTruncated: aPositiveInteger [
 	^guess
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>numberOfDigits [
+{ #category : #printing }
+Integer >> numberOfDigits [
 	"Return how many digits are necessary to print this number in base 10.
 	This does not count any place for minus sign, radix prefix or whatever."
 
@@ -1874,11 +1549,8 @@ Integer>>numberOfDigits [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>numberOfDigitsInBase: b [
+{ #category : #printing }
+Integer >> numberOfDigitsInBase: b [ 
 	"Return how many digits are necessary to print this number in base b.
 	This does not count any place for minus sign, radix prefix or whatever.
 	Note that this algorithm may cost a few operations on LargeInteger."
@@ -1909,31 +1581,22 @@ Integer>>numberOfDigitsInBase: b [
 		ifFalse: [total + 1]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>numerator [
+{ #category : #accessing }
+Integer >> numerator [
 	"Let an Integer be polymorphic to a Fraction. See #isFraction."
 	^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>primeFactors [
+{ #category : #accessing }
+Integer >> primeFactors [
 	"Return all primeFactors of myself"
 	"( 106260 primeFactors fold: [ :a :b | a * b ]) = 106260"
 	
 	^ Array streamContents: [ :s | self primeFactorsOn: s ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>primeFactorsOn: aStream [
+{ #category : #accessing }
+Integer >> primeFactorsOn: aStream [
 	"Recursively calculate the primefactors of myself and put the factors into the given stream"
 	self = 1 
 		ifTrue: [ ^ self ].
@@ -1951,11 +1614,8 @@ Integer>>primeFactorsOn: aStream [
 	aStream nextPut: self.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>print: positiveNumberString on: aStream prefix: prefix length: minimum padded: zeroFlag [
+{ #category : #private }
+Integer >> print: positiveNumberString on: aStream prefix: prefix length: minimum padded: zeroFlag [
 	| padLength |
 	padLength := minimum - positiveNumberString size - prefix size.
 	padLength > 0
@@ -1967,19 +1627,13 @@ Integer>>print: positiveNumberString on: aStream prefix: prefix length: minimum 
 	
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printOn: aStream [
+{ #category : #printing }
+Integer >> printOn: aStream [
 	^self printOn: aStream base: 10
 ]
 
-{
-	#category : #printing-numerative,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printOn: aStream base: base length: minimum padded: zeroFlag [
+{ #category : #printing-numerative }
+Integer >> printOn: aStream base: base length: minimum padded: zeroFlag [
 	| prefix |
 	
 	prefix := self negative ifTrue: ['-'] ifFalse: [ '' ].
@@ -1988,22 +1642,16 @@ Integer>>printOn: aStream base: base length: minimum padded: zeroFlag [
 
 ]
 
-{
-	#category : #printing-numerative,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printOn: aStream base: b nDigits: n [
+{ #category : #printing-numerative }
+Integer >> printOn: aStream base: b nDigits: n [ 
 	"Append a representation of this number in base b on aStream using nDigits.
 	self must be positive."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printOn: outputStream base: baseInteger showRadix: flagBoolean [
+{ #category : #printing }
+Integer >> printOn: outputStream base: baseInteger showRadix: flagBoolean [ 
 	"Write a sequence of characters that describes the receiver in radix 
 	baseInteger with optional radix specifier. 
 	The result is undefined if baseInteger less than 2 or greater than 36."
@@ -2019,11 +1667,8 @@ Integer>>printOn: outputStream base: baseInteger showRadix: flagBoolean [
 	outputStream nextPutAll: (tempString copyFrom: startPos to: tempString size)
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printOn: aStream showingDecimalPlaces: placesDesired [
+{ #category : #printing }
+Integer >> printOn: aStream showingDecimalPlaces: placesDesired [
 	"Same as super, but provides a faster implementation because fraction part and rounding are trivial."
 	
 	self printOn: aStream base: 10.
@@ -2034,11 +1679,8 @@ Integer>>printOn: aStream showingDecimalPlaces: placesDesired [
 	placesDesired timesRepeat: [ aStream nextPut: $0 ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printPaddedWith: aCharacter to: anInteger [
+{ #category : #printing }
+Integer >> printPaddedWith: aCharacter to: anInteger [ 
 	"Answer the string containing the ASCII representation of the receiver 
 	padded on the left with aCharacter to be at least anInteger characters."
 	
@@ -2048,11 +1690,8 @@ Integer>>printPaddedWith: aCharacter to: anInteger [
 		base: 10
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printPaddedWith: aCharacter to: anInteger base: aRadix [
+{ #category : #printing }
+Integer >> printPaddedWith: aCharacter to: anInteger base: aRadix [ 
 	"Answer the string containing the ASCII representation of the receiver 
 	padded on the left with aCharacter to be at least anInteger characters."
 	| aStream padding digits |
@@ -2069,11 +1708,8 @@ Integer>>printPaddedWith: aCharacter to: anInteger base: aRadix [
 	 yourself) , digits
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printSeparatedBy: aDelimiter every: offset signed: printSigned base: base on: aStream [
+{ #category : #printing }
+Integer >> printSeparatedBy: aDelimiter every: offset signed: printSigned base: base on: aStream [
 	| digits |
 	digits := self abs printStringBase: base.
 	
@@ -2087,37 +1723,25 @@ Integer>>printSeparatedBy: aDelimiter every: offset signed: printSigned base: ba
 			ifTrue: [ aStream nextPut: aDelimiter ] ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printSeparatedBy: aDelimiter every: offset signed: printSigned on: aStream [
+{ #category : #printing }
+Integer >> printSeparatedBy: aDelimiter every: offset signed: printSigned on: aStream [
 	^ self printSeparatedBy: aDelimiter every: offset signed: printSigned base: 10 on: aStream
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printString [
+{ #category : #printing }
+Integer >> printString [
 	"For Integer, prefer the stream version to the string version for efficiency"
 	
 	^String streamContents: [:str | self printOn: str base: 10]
 ]
 
-{
-	#category : #printing-numerative,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printStringBase: base length: minimum padded: zeroFlag [
+{ #category : #printing-numerative }
+Integer >> printStringBase: base length: minimum padded: zeroFlag [
 	^String streamContents: [:s| self printOn: s base: base length: minimum padded: zeroFlag]
 ]
 
-{
-	#category : #printing-numerative,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printStringHex [
+{ #category : #printing-numerative }
+Integer >> printStringHex [
 	"returns the hex digit part of the integer when printed in hexadecimal format.
 	30 printStringHex 
 		'1E'
@@ -2127,37 +1751,25 @@ Integer>>printStringHex [
 	^self printStringBase: 16
 ]
 
-{
-	#category : #printing-numerative,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printStringLength: minimal [
+{ #category : #printing-numerative }
+Integer >> printStringLength: minimal [
 	^self printStringLength: minimal padded: false
 
 ]
 
-{
-	#category : #printing-numerative,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printStringLength: minimal padded: zeroFlag [
+{ #category : #printing-numerative }
+Integer >> printStringLength: minimal padded: zeroFlag [
 	^self printStringBase: 10 length: minimal padded: zeroFlag
 ]
 
-{
-	#category : #printing-numerative,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printStringPadded: minimal [
+{ #category : #printing-numerative }
+Integer >> printStringPadded: minimal [
 	^self printStringLength: minimal padded: true
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printStringRadix: baseInteger [
+{ #category : #printing }
+Integer >> printStringRadix: baseInteger [ 
 	"Return a string containing a sequence of characters that represents the 
 	numeric value of the receiver in the radix specified by the argument.  
 	If the receiver is negative, a minus sign ('-') is prepended to the 
@@ -2176,11 +1788,8 @@ Integer>>printStringRadix: baseInteger [
 	^ self storeStringBase: baseInteger
 ]
 
-{
-	#category : #printing-numerative,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printStringRoman [
+{ #category : #printing-numerative }
+Integer >> printStringRoman [
 	| stream integer |
 	stream := String new writeStream.
 	integer := self negative ifTrue: [stream nextPut: $-. self negated] ifFalse: [self].
@@ -2192,41 +1801,29 @@ Integer>>printStringRoman [
 	^stream contents
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printWithCommasOn: aStream [
+{ #category : #printing }
+Integer >> printWithCommasOn: aStream [
 	"123456789 asStringWithCommas"
 	"-123456789 asStringWithCommas"
 	^ self printSeparatedBy: $, every: 3 signed: false on: aStream
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>printWithCommasSignedOn: aStream [
+{ #category : #printing }
+Integer >> printWithCommasSignedOn: aStream [
 	"123456789 asStringWithCommasSigned"
 	"-123456789 asStringWithCommasSigned"
 	^ self printSeparatedBy: $, every: 3 signed: true on: aStream
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>putOn: aStream [
+{ #category : #streaming }
+Integer >> putOn: aStream [
 	aStream isBinary
 		ifTrue: [ self asByteArray do: [ :each | aStream nextPut: each ] ]
 		ifFalse: [ self asString putOn: aStream ]
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>quo: aNumber [
+{ #category : #arithmetic }
+Integer >> quo: aNumber [ 
 	"Refer to the comment in Number quo: "
 	| ng quo |
 	aNumber isInteger ifTrue: 
@@ -2236,19 +1833,13 @@ Integer>>quo: aNumber [
 	^ aNumber adaptToInteger: self andSend: #quo:
 ]
 
-{
-	#category : #printing-numerative,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>radix: base [
+{ #category : #printing-numerative }
+Integer >> radix: base [ 
 	^ self printStringBase: base
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>raisedTo: n modulo: m [
+{ #category : #'mathematical functions' }
+Integer >> raisedTo: n modulo: m [
 	"Answer the modular exponential.
 	Note: this implementation is optimized for case of large integers raised to large powers."
 	| a s mInv |
@@ -2278,22 +1869,16 @@ Integer>>raisedTo: n modulo: m [
 	^a montgomeryTimes: 1 modulo: m mInvModB: mInv
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>raisedToInteger: exp modulo: m [
+{ #category : #'mathematical functions' }
+Integer >> raisedToInteger: exp modulo: m [
 	(exp = 0) ifTrue: [^ 1].
 	exp even
 		ifTrue: [^ (self raisedToInteger: (exp // 2) modulo: m) squared \\ m]
 		ifFalse: [^ (self * (self raisedToInteger: (exp - 1) modulo: m)) \\ m].
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>reciprocalModulo: n [
+{ #category : #arithmetic }
+Integer >> reciprocalModulo: n [
 	"Answer an integer x such that (self * x) \\ n = 1, x > 0, x < n.
 	Raise an error if there is no such integer.
 	The algorithm is a non extended euclidean modular inversion called NINV.
@@ -2320,11 +1905,8 @@ Integer>>reciprocalModulo: n [
 		ifFalse: [result2]
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>replaceFrom: start to: stop with: replacement startingAt: repStart [
+{ #category : #'system primitives' }
+Integer >> replaceFrom: start to: stop with: replacement startingAt: repStart [
 	| j |  "Catches failure if LgInt replace primitive fails"
 	j := repStart.
 	start to: stop do:
@@ -2333,11 +1915,8 @@ Integer>>replaceFrom: start to: stop with: replacement startingAt: repStart [
 		j := j+1]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>romanDigits: digits for: base on: aStream [
+{ #category : #private }
+Integer >> romanDigits: digits for: base on: aStream [
 	| n |
 	n := self \\ (base * 10) // base.
 	n = 9 ifTrue: [^ aStream nextPut: digits last; nextPut: digits first].
@@ -2346,29 +1925,20 @@ Integer>>romanDigits: digits for: base on: aStream [
 	n \\ 5 timesRepeat: [aStream nextPut: digits last]
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>round: numberOfWishedDecimal [
+{ #category : #'truncation and round off' }
+Integer >> round: numberOfWishedDecimal [
 	"Round the decimal part of the receiver to be limited to the number of wished decimal. Only leave a fixed amount of decimal. Integers there are already rounded."
  
 	^self
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>rounded [
+{ #category : #'truncation and round off' }
+Integer >> rounded [ 
 	"Refer to the comment in Number|rounded."
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>slidingLeftRightRaisedTo: n modulo: m [
+{ #category : #private }
+Integer >> slidingLeftRightRaisedTo: n modulo: m [
 	"Private - compute (self raisedTo: n) \\ m,
 	Note: this method has to be fast because it is generally used with large integers in cryptography.
 	It thus operate on exponent bits from left to right by packets with a sliding window rather than bit by bit (see below)."
@@ -2413,11 +1983,8 @@ Integer>>slidingLeftRightRaisedTo: n modulo: m [
 	^pow
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>sqrt [
+{ #category : #'mathematical functions' }
+Integer >> sqrt [
 	"Answer the square root of the receiver."
 
 	| selfAsFloat floatResult guess |
@@ -2448,11 +2015,8 @@ Integer>>sqrt [
 	^floatResult
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>sqrtFloor [
+{ #category : #testing }
+Integer >> sqrtFloor [
 	"Return the integer part of the square root of self"
 
 	| guess guessSquared delta |
@@ -2466,11 +2030,8 @@ Integer>>sqrtFloor [
 	^guess
 ]
 
-{
-	#category : #printing-numerative,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>storeOn: aStream base: base [
+{ #category : #printing-numerative }
+Integer >> storeOn: aStream base: base [
 	"Print a representation of the receiver on the stream
 	<aStream> in base <base> where
 	2 <= <baseInteger> <= 16. If <base> is other than 10
@@ -2486,11 +2047,8 @@ Integer>>storeOn: aStream base: base [
 
 ]
 
-{
-	#category : #printing-numerative,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>storeOn: aStream base: base length: minimum padded: zeroFlag [
+{ #category : #printing-numerative }
+Integer >> storeOn: aStream base: base length: minimum padded: zeroFlag [
 	| prefix |
 	prefix := self negative ifTrue: ['-'] ifFalse: [String new].
 	base = 10 ifFalse: [prefix := prefix, base printString, 'r'].
@@ -2498,28 +2056,19 @@ Integer>>storeOn: aStream base: base length: minimum padded: zeroFlag [
 
 ]
 
-{
-	#category : #printing-numerative,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>storeStringBase: base length: minimum padded: zeroFlag [
+{ #category : #printing-numerative }
+Integer >> storeStringBase: base length: minimum padded: zeroFlag [
 	^String streamContents: [:s| 
 		self storeOn: s base: base length: minimum padded: zeroFlag ]
 ]
 
-{
-	#category : #printing-numerative,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>storeStringHex [
+{ #category : #printing-numerative }
+Integer >> storeStringHex [
 	^self storeStringBase: 16
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>take: kk [
+{ #category : #'mathematical functions' }
+Integer >> take: kk [
 	"Return the number of combinations of (self) elements taken kk at a time.  
 	For 6 take 3, this is 6*5*4 / (1*2*3).  Zero outside of Pascal's triangle.  Use a trick to go faster."
 	" 6 take: 3  "
@@ -2534,11 +2083,8 @@ Integer>>take: kk [
 	^ num // denom
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>timesRepeat: aBlock [
+{ #category : #enumerating }
+Integer >> timesRepeat: aBlock [ 
 	"Evaluate the argument, aBlock, the number of times represented by the 
 	receiver."
 
@@ -2550,11 +2096,8 @@ Integer>>timesRepeat: aBlock [
 			count := count + 1]
 ]
 
-{
-	#category : #benchmarks,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>tinyBenchmarks [
+{ #category : #benchmarks }
+Integer >> tinyBenchmarks [
 	"Report the results of running the two tiny Squeak benchmarks.
 	ar 9/10/1999: Adjusted to run at least 1 sec to get more stable results"
 	"0 tinyBenchmarks"
@@ -2573,10 +2116,7 @@ Integer>>tinyBenchmarks [
 	  ((r * 1000) // t2) printString, ' sends/sec'
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>truncated [
+{ #category : #'truncation and round off' }
+Integer >> truncated [ 
 	"Refer to the comment in Number|truncated."
 ]

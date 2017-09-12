@@ -4,31 +4,21 @@ I represent a local variable
 Class {
 	#name : #NECLocalEntry,
 	#superclass : #NECEntry,
-	#category : #NECompletion-Model,
-	#timestamp : '<historical>'
+	#category : #NECompletion-Model
 }
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECLocalEntry>>guessTypeWith: anECContext  [
+{ #category : #operations }
+NECLocalEntry >> guessTypeWith: anECContext [ 
 	^ (anECContext guessTempVarClass: contents type: self type) 
 		ifNil: [anECContext guessArgument: contents]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECLocalEntry>>isLocal [
+{ #category : #testing }
+NECLocalEntry >> isLocal [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECLocalEntry>>label [
+{ #category : #accessing }
+NECLocalEntry >> label [
 	^ 'local variable'
 ]

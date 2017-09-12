@@ -13,23 +13,16 @@ Class {
 		'columnDisplayMorph',
 		'lineNumbersDisplayMorph'
 	],
-	#category : #Rubric-Editing-Widgets,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:37'
+	#category : #Rubric-Editing-Widgets
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer class>>key [
+{ #category : #querying }
+RubAnnotationDisplayer class >> key [
 	^ #annotation
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer class>>tabWidthMenuOn: aBuilder [
+{ #category : #menus }
+RubAnnotationDisplayer class >> tabWidthMenuOn: aBuilder [
 	"Specify the menu used to select the tab width"
 
 	<contextMenu>
@@ -37,19 +30,13 @@ RubAnnotationDisplayer class>>tabWidthMenuOn: aBuilder [
 	(6 to: 200 by: 6) do: [ :t | (aBuilder item: t asString asSymbol) action: [ :model | model chosenTabWidth: t ] ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>backgroundColor [
+{ #category : #accessing }
+RubAnnotationDisplayer >> backgroundColor [
 	^ self paragraphProvider backgroundColor darker
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>changeColumnDisplay [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> changeColumnDisplay [
 	self paragraphProvider columnRuler
 		ifNil: [ self paragraphProvider withColumns ]
 		ifNotNil: [ self paragraphProvider withoutColumns ].
@@ -57,11 +44,8 @@ RubAnnotationDisplayer>>changeColumnDisplay [
 	self updateContents
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>changeLineNumbersDisplay [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> changeLineNumbersDisplay [
 	self paragraphProvider lineNumbersRuler 
 		ifNil: [ self paragraphProvider withLineNumbers ]
 		ifNotNil: [ self paragraphProvider withoutLineNumbers ].
@@ -69,11 +53,8 @@ RubAnnotationDisplayer>>changeLineNumbersDisplay [
 	self updateContents
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>changeWrappingPolicy [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> changeWrappingPolicy [
 	self paragraphProvider wrapped 
 		ifTrue: [ self paragraphProvider beNotWrapped  ]
 		ifFalse: [ self paragraphProvider beWrapped ].
@@ -81,158 +62,107 @@ RubAnnotationDisplayer>>changeWrappingPolicy [
 	self paragraphProvider changed
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>chooseEditingMode: anEvent [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> chooseEditingMode: anEvent [
 	self modeListMenu invokeAt: anEvent position in: self world.
 	self updateContents
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>chooseTabWidth: anEvent [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> chooseTabWidth: anEvent [
 	self tabWidthMenu invokeAt: anEvent position in: self world
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>chosenTabWidth: anInteger [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> chosenTabWidth: anInteger [
 	self paragraph tabWidth: anInteger.
 	self updateContents
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>columnDisplayLabel [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> columnDisplayLabel [
 	^ self paragraphProvider columnRuler 
 		ifNil: [ '+C' ]
 		ifNotNil: [ 'C' ]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>columnDisplayLabelMorph [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> columnDisplayLabelMorph [
 	^ StringMorph
 		contents: self columnDisplayLabel
 		font: self fontToUse
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>computedHeightFrom: aRectangle [
+{ #category : #geometry }
+RubAnnotationDisplayer >> computedHeightFrom: aRectangle [
 	^ row ifNil: [0] ifNotNil: [row height]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>computedWidthFrom: aRectangle [
+{ #category : #geometry }
+RubAnnotationDisplayer >> computedWidthFrom: aRectangle [
 	^ aRectangle width
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>editingModeLabel [
+{ #category : #accessing }
+RubAnnotationDisplayer >> editingModeLabel [
 	^ self paragraphProvider editingMode label
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>editingModeLabelMorph [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> editingModeLabelMorph [
 	^ StringMorph
 		contents: self editingModeLabel
 		font: self fontToUse
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>fontToUse [
+{ #category : #accessing }
+RubAnnotationDisplayer >> fontToUse [
 	^ RubAbstractTextArea lineNumbersFont 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>initialize [
+{ #category : #initialize-release }
+RubAnnotationDisplayer >> initialize [
 	super initialize.
 	self side: #bottom.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>level [
+{ #category : #accessing }
+RubAnnotationDisplayer >> level [
 	^ 1
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>lineNumbersDisplayLabel [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> lineNumbersDisplayLabel [
 	^ self paragraphProvider lineNumbersRuler  
 		ifNil: [ '+L' ]
 		ifNotNil: [ 'L' ]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>lineNumbersDisplayLabelMorph [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> lineNumbersDisplayLabelMorph [
 	^ StringMorph
 		contents: self lineNumbersDisplayLabel
 		font: self fontToUse
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>manageLayoutInBounds: aRectangle [
+{ #category : #geometry }
+RubAnnotationDisplayer >> manageLayoutInBounds: aRectangle [
 	| ret |
 	ret := super manageLayoutInBounds: aRectangle.
 	self updateContents.
 	^ ret
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>modeListMenu [
+{ #category : #accessing }
+RubAnnotationDisplayer >> modeListMenu [
 	"Answer the menu to be presented to select an editing mode"
 
 	^ (PragmaMenuBuilder pragmaKeyword: #RubEditingModeMenu model: self) menu
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>noteNewOwner: aMorph [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> noteNewOwner: aMorph [
 	super noteNewOwner: aMorph.
 	self color: self backgroundColor.
 	lineAnnotation := RubTextFieldArea new.
@@ -273,76 +203,52 @@ RubAnnotationDisplayer>>noteNewOwner: aMorph [
 	self addMorph: row
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>selectionChanged [
+{ #category : #'event handling' }
+RubAnnotationDisplayer >> selectionChanged [
 	self updateContents.
 	super selectionChanged
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>spacer: anInteger [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> spacer: anInteger [
 	^ Morph new
 		borderWidth: 0;
 		color: Color transparent;
 		extent: anInteger@3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>tabWidth [
+{ #category : #accessing }
+RubAnnotationDisplayer >> tabWidth [
 	^ self paragraph tabWidth
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>tabWidthLabel [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> tabWidthLabel [
 	^ 'Tab width: ', self tabWidth printString
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>tabWidthLabelMorph [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> tabWidthLabelMorph [
 	^ StringMorph
 		contents: self tabWidthLabel
 		font: self fontToUse
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>tabWidthMenu [
+{ #category : #accessing }
+RubAnnotationDisplayer >> tabWidthMenu [
 	"Answer the menu to be presented to select a tab width"
 
 	^ (PragmaMenuBuilder pragmaKeyword: #RubTabWidthMenu model: self) menu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>textColor [
+{ #category : #accessing }
+RubAnnotationDisplayer >> textColor [
 	^ self textArea lineNumbersTextColor muchDarker
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>textOfCharBlock: aCharacterBlock [
+{ #category : #'event handling' }
+RubAnnotationDisplayer >> textOfCharBlock: aCharacterBlock [
 	| t l c |
 	l := aCharacterBlock textLine.
 	c := aCharacterBlock stringIndex - l first + 1.
@@ -357,11 +263,8 @@ RubAnnotationDisplayer>>textOfCharBlock: aCharacterBlock [
 	^ t
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>updateContents [
+{ #category : #'event handling' }
+RubAnnotationDisplayer >> updateContents [
 	| t |
 	row ifNil: [ ^self ].
 	self textArea selectionStart ifNil: [ ^self ].
@@ -382,21 +285,15 @@ RubAnnotationDisplayer>>updateContents [
 	row width: self innerBounds width
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>wrappingPolicyLabel [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> wrappingPolicyLabel [
 	^ self paragraphProvider wrapped
 				ifTrue: [ 'W' ]
 				ifFalse: [ 'NW' ]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubAnnotationDisplayer>>wrappingPolicyLabelMorph [
+{ #category : #submorphs-accessing }
+RubAnnotationDisplayer >> wrappingPolicyLabelMorph [
 	^ StringMorph
 		contents: self wrappingPolicyLabel
 		font: self fontToUse

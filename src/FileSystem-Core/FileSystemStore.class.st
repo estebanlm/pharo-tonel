@@ -11,158 +11,106 @@ My associated filesystem can be accessed as follows:
 Class {
 	#name : #FileSystemStore,
 	#superclass : #Object,
-	#category : #FileSystem-Core-Kernel,
-	#timestamp : '<historical>'
+	#category : #FileSystem-Core-Kernel
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore class>>delimiter [
+{ #category : #accessing }
+FileSystemStore class >> delimiter [
 	self shouldBeImplemented 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore class>>isCaseSensitive [
+{ #category : #accessing }
+FileSystemStore class >> isCaseSensitive [
 	^ self shouldBeImplemented
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore class>>separator [
+{ #category : #accessing }
+FileSystemStore class >> separator [
 	self shouldBeImplemented
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>basenameFromEntry: aNode [
+{ #category : #public }
+FileSystemStore >> basenameFromEntry: aNode [
 	"Used to extract the basename from the low-level representation (node / entry) from the store."
 	self subclassResponsibility
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>basicCreationTimeOf: aNode [
+{ #category : #abstract }
+FileSystemStore >> basicCreationTimeOf: aNode [
 	"Used to decide whether the low-level representation (node / entry) from the store is a readable
 	file or a directory whose contents can be listed."
 	self subclassResponsibility 
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>basicEntry: directoryEntry path: aPath nodesDo: aBlock [
+{ #category : #abstract }
+FileSystemStore >> basicEntry: directoryEntry path: aPath nodesDo: aBlock [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>basicIsDirectory: aNode [
+{ #category : #abstract }
+FileSystemStore >> basicIsDirectory: aNode [
 	"Used to decide whether the low-level representation (node / entry) from the store is a directory.
 	This private message should only be called form within the store."
 	self subclassResponsibility 
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>basicIsFile: aNode [
+{ #category : #abstract }
+FileSystemStore >> basicIsFile: aNode [
 	"Used to decide whether the low-level representation (node / entry) from the store is a file.
 	This private message should only be called form within the store."
 	self subclassResponsibility 
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>basicIsSymlink: aNode [
+{ #category : #abstract }
+FileSystemStore >> basicIsSymlink: aNode [
 	^self subclassResponsibility 
 	
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>basicIsWritable: aNode [
+{ #category : #abstract }
+FileSystemStore >> basicIsWritable: aNode [
 	"Used to decide whether the low-level representation (node / entry) from the store is 
 	a writable file or can be changed."
 	self subclassResponsibility 
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>basicModificationTime: aNode [
+{ #category : #abstract }
+FileSystemStore >> basicModificationTime: aNode [
 	"Used to decide whether the low-level representation (node / entry) from the store is a readable
 	file or a directory whose contents can be listed."
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'error signalling',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>basicOpen: aPath writable: aBoolean [
+{ #category : #'error signalling' }
+FileSystemStore >> basicOpen: aPath writable: aBoolean [
 	"open the file at the given path and return an identifier"
 	self subclassResponsibility
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>basicPosixPermissions: aNode [
+{ #category : #abstract }
+FileSystemStore >> basicPosixPermissions: aNode [
 	"Used to get the posix permissions from a low-level filesystem entry / node"
 	self subclassResponsibility 
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>basicSizeOf: aNode [
+{ #category : #abstract }
+FileSystemStore >> basicSizeOf: aNode [
 	"Used to get the size of the low-level representation (node / entry) "
 	self subclassResponsibility 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>checkName: aString fixErrors: fixErrors [
+{ #category : #public }
+FileSystemStore >> checkName: aString fixErrors: fixErrors [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>close [
+{ #category : #abstract }
+FileSystemStore >> close [
 	"Some kinds of filesystems need to open connections to external resources"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>copy: sourcePath ifAbsent: absentBlock to: destinationPath ifPresent: presentBlock fileSystem: aFilesystem [
+{ #category : #private }
+FileSystemStore >> copy: sourcePath ifAbsent: absentBlock to: destinationPath ifPresent: presentBlock fileSystem: aFilesystem [
 
 	| buffer out in |
 	
@@ -189,19 +137,13 @@ FileSystemStore>>copy: sourcePath ifAbsent: absentBlock to: destinationPath ifPr
 		out ifNotNil: [ out close ]]
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>createDirectory: aPath [
+{ #category : #abstract }
+FileSystemStore >> createDirectory: aPath [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>creationTimeOf: aPath [
+{ #category : #public }
+FileSystemStore >> creationTimeOf: aPath [
 	"Return the date of creation of the File described by aPath"
 	^ self 
 		nodeAt: aPath 
@@ -210,35 +152,23 @@ FileSystemStore>>creationTimeOf: aPath [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>defaultWorkingDirectory [
+{ #category : #accessing }
+FileSystemStore >> defaultWorkingDirectory [
 	^ Path root
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>delete: aPath [
+{ #category : #abstract }
+FileSystemStore >> delete: aPath [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>delimiter [
+{ #category : #accessing }
+FileSystemStore >> delimiter [
 	^ self class delimiter
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>directoryAt: aPath ifAbsent: absentBlock directoryNodesDo: aBlock [
+{ #category : #public }
+FileSystemStore >> directoryAt: aPath ifAbsent: absentBlock directoryNodesDo: aBlock [
 	^ self 
 		directoryAt: aPath 
 		ifAbsent: absentBlock 
@@ -247,11 +177,8 @@ FileSystemStore>>directoryAt: aPath ifAbsent: absentBlock directoryNodesDo: aBlo
 				ifTrue: [ aBlock value: entry ]].
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>directoryAt: aPath ifAbsent: absentBlock fileNodesDo: aBlock [
+{ #category : #public }
+FileSystemStore >> directoryAt: aPath ifAbsent: absentBlock fileNodesDo: aBlock [
 	^ self 
 		directoryAt: aPath 
 		ifAbsent: absentBlock 
@@ -260,11 +187,8 @@ FileSystemStore>>directoryAt: aPath ifAbsent: absentBlock fileNodesDo: aBlock [
 				ifFalse: [ aBlock value: entry ]].
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>directoryAt: aPath ifAbsent: absentBlock nodesDo: aBlock [
+{ #category : #public }
+FileSystemStore >> directoryAt: aPath ifAbsent: absentBlock nodesDo: aBlock [
 	^ self
 		nodeAt: aPath
 		ifPresent: [ :entry | 
@@ -274,21 +198,15 @@ FileSystemStore>>directoryAt: aPath ifAbsent: absentBlock nodesDo: aBlock [
 		ifAbsent: absentBlock
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>ensureCreateDirectory: aPath [
+{ #category : #public }
+FileSystemStore >> ensureCreateDirectory: aPath [
 	(self isDirectory: aPath) ifTrue: [ ^ self ].
 	self ensureCreateDirectory: aPath parent.
 	self createDirectory: aPath
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>entryFromNode: aNode fileSystem: aFilesystem path: aPath [
+{ #category : #private }
+FileSystemStore >> entryFromNode: aNode fileSystem: aFilesystem path: aPath [
 	^ FileSystemDirectoryEntry
 		fileSystem: aFilesystem
 		path: aPath
@@ -300,21 +218,15 @@ FileSystemStore>>entryFromNode: aNode fileSystem: aFilesystem path: aPath [
 		isSymlink: (self basicIsSymlink: aNode)
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>entryFromNode: node path: path for: aFileystem [
+{ #category : #public }
+FileSystemStore >> entryFromNode: node path: path for: aFileystem [
 	| entryPath |
 	entryPath := path / (self basenameFromEntry: node).
 	^ self entryFromNode: node fileSystem: aFileystem path: entryPath
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>exists: aPath [
+{ #category : #public }
+FileSystemStore >> exists: aPath [
 	self 
 		nodeAt: aPath 
 		ifPresent: [ :entry | ^ true ] 
@@ -322,27 +234,18 @@ FileSystemStore>>exists: aPath [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>filename: aByteString matches: aByteString2 [
+{ #category : #private }
+FileSystemStore >> filename: aByteString matches: aByteString2 [
 	^ aByteString = aByteString2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>isCaseSensitive [
+{ #category : #accessing }
+FileSystemStore >> isCaseSensitive [
 	^ self class isCaseSensitive
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>isDirectory: aPath [
+{ #category : #public }
+FileSystemStore >> isDirectory: aPath [
 	aPath isRoot ifTrue: [ ^ true ].
 	self 
 		nodeAt: aPath 
@@ -351,11 +254,8 @@ FileSystemStore>>isDirectory: aPath [
 	
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>isFile: aPath [
+{ #category : #public }
+FileSystemStore >> isFile: aPath [
 	"slow solution for big directories! "
 	^ self 
 		nodeAt: aPath 
@@ -364,11 +264,8 @@ FileSystemStore>>isFile: aPath [
 	
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>isSymlink: aPath [
+{ #category : #public }
+FileSystemStore >> isSymlink: aPath [
 	aPath isRoot ifTrue: [ ^ true ].
 	self 
 		nodeAt: aPath 
@@ -377,22 +274,16 @@ FileSystemStore>>isSymlink: aPath [
 	
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>isWritable: aPath [
+{ #category : #public }
+FileSystemStore >> isWritable: aPath [
 	self nodeAt: aPath 
 		ifPresent: [ :entry | ^ self basicIsWritable: entry ] 
 		ifAbsent: [ ^ false ].
 	
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>mimeTypesAt: aPath [
+{ #category : #public }
+FileSystemStore >> mimeTypesAt: aPath [
 	| mimeType |
 	mimeType := ZnMimeType 
 						forFilenameExtension: aPath extension 
@@ -400,11 +291,8 @@ FileSystemStore>>mimeTypesAt: aPath [
 	^ Array with: mimeType
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>modificationTimeOf: aPath [
+{ #category : #public }
+FileSystemStore >> modificationTimeOf: aPath [
 	"Returns the last date of modification of the File described by aPath"
 	^ self 
 		nodeAt: aPath 
@@ -413,78 +301,54 @@ FileSystemStore>>modificationTimeOf: aPath [
 	
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>nodeAt: aPath [
+{ #category : #public }
+FileSystemStore >> nodeAt: aPath [
 	^ self 
 		nodeAt: aPath 
 		ifPresent: [ :node| node ]
 		ifAbsent: [ NotFound signalFor: aPath in: self ]
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>nodeAt: aPath ifPresent: presentBlock ifAbsent: absentBlock [
+{ #category : #abstract }
+FileSystemStore >> nodeAt: aPath ifPresent: presentBlock ifAbsent: absentBlock [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>open [
+{ #category : #abstract }
+FileSystemStore >> open [
 	"Some kinds of filesystems need to open connections to external resources"
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>openFileStream: path writable: writable [
+{ #category : #public }
+FileSystemStore >> openFileStream: path writable: writable [
 	self subclassResponsibility
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>pathFromString: aString [
+{ #category : #converting }
+FileSystemStore >> pathFromString: aString [
 	"Use the unix convention by default, since many filesystems are based on it."
 	
 	^ Path from: aString delimiter: self delimiter
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>permissions: aPath [
+{ #category : #public }
+FileSystemStore >> permissions: aPath [
 	self nodeAt: aPath 
 		ifPresent: [ :entry | ^ FileSystemPermission posixPermissions: (self basicPosixPermissions: entry) ] 
 		ifAbsent: [ ^ FileSystemPermission default ].
 	
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>printPath: aPath on: out [
+{ #category : #converting }
+FileSystemStore >> printPath: aPath on: out [
 	"Use the unix convention by default, since it's the most common."
 	
 	aPath isAbsolute ifTrue: [ out nextPut: self delimiter ].
 	^ aPath printOn: out delimiter: self delimiter
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>rename: sourcePath ifAbsent: absentBlock to: destinationPath ifPresent: presentBlock fileSystem: anFSFilesystem [
+{ #category : #private }
+FileSystemStore >> rename: sourcePath ifAbsent: absentBlock to: destinationPath ifPresent: presentBlock fileSystem: anFSFilesystem [
 
 	| result |
 	(self exists: destinationPath) ifTrue: [ ^ presentBlock value ].
@@ -494,59 +358,38 @@ FileSystemStore>>rename: sourcePath ifAbsent: absentBlock to: destinationPath if
 	^ self.
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>rename: sourcePath to: destinationPath [
+{ #category : #abstract }
+FileSystemStore >> rename: sourcePath to: destinationPath [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>separator [
+{ #category : #accessing }
+FileSystemStore >> separator [
 	^ self class separator
 ]
 
-{
-	#category : #'error signalling',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>signalDirectoryDoesNotExist: aPath [
+{ #category : #'error signalling' }
+FileSystemStore >> signalDirectoryDoesNotExist: aPath [
 	^ DirectoryDoesNotExist signalWith: aPath
 ]
 
-{
-	#category : #'error signalling',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>signalDirectoryExists: aPath [
+{ #category : #'error signalling' }
+FileSystemStore >> signalDirectoryExists: aPath [
 	^ DirectoryExists signalWith: aPath
 ]
 
-{
-	#category : #'error signalling',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>signalFileDoesNotExist: aPath [
+{ #category : #'error signalling' }
+FileSystemStore >> signalFileDoesNotExist: aPath [
 	^ FileDoesNotExist signalWith: aPath
 ]
 
-{
-	#category : #'error signalling',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>signalFileExists: aPath [
+{ #category : #'error signalling' }
+FileSystemStore >> signalFileExists: aPath [
 	^ FileExists signalWith: aPath
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>sizeOf: aPath [
+{ #category : #public }
+FileSystemStore >> sizeOf: aPath [
 	"Return the size of the File described by aPath"
 	^ self 
 		nodeAt: aPath 
@@ -555,11 +398,8 @@ FileSystemStore>>sizeOf: aPath [
 	
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemStore>>stringFromPath: aPath [
+{ #category : #converting }
+FileSystemStore >> stringFromPath: aPath [
 	^ String streamContents: [ :out | 
 		self printPath: aPath on: out ]
 ]

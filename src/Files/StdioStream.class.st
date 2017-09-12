@@ -13,24 +13,17 @@ Class {
 	#instVars : [
 		'peekBuffer'
 	],
-	#category : #Files-Streams,
-	#timestamp : 'GuillermoPolito 6/5/2015 11:06'
+	#category : #Files-Streams
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-StdioStream>>atEnd [
+{ #category : #testing }
+StdioStream >> atEnd [
 
 	^ file atEnd
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-StdioStream>>next: n [
+{ #category : #accessing }
+StdioStream >> next: n [
 	"Return a string with the next n characters of the filestream in it."
 	| readBuffer read startingAt |
 	readBuffer := ByteArray new: n.
@@ -45,11 +38,8 @@ StdioStream>>next: n [
 		ifFalse: [ readBuffer copyFrom: 1 to: read ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-StdioStream>>peek [
+{ #category : #accessing }
+StdioStream >> peek [
 	"Answer what would be returned if the message next were sent to the receiver. If the receiver is at the end, answer nil.  "
 	self atEnd ifTrue: [^ nil ].
 
@@ -58,11 +48,8 @@ StdioStream>>peek [
 	^ peekBuffer := self next.
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-StdioStream>>position [
+{ #category : #positioning }
+StdioStream >> position [
 
 	^ file position
 ]

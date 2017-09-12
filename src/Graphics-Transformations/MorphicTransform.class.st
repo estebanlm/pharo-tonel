@@ -9,79 +9,54 @@ Class {
 		'angle',
 		'scale'
 	],
-	#category : #Graphics-Transformations,
-	#timestamp : '<historical>'
+	#category : #Graphics-Transformations
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform class>>identity [
+{ #category : #'instance creation' }
+MorphicTransform class >> identity [
 
 	^ self offset: 0@0 angle: 0.0 scale: 1.0
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform class>>new [
+{ #category : #'instance creation' }
+MorphicTransform class >> new [
 
 	^ self offset: 0@0
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform class>>offset: aPoint [
+{ #category : #'instance creation' }
+MorphicTransform class >> offset: aPoint [
 
 	^ self offset: aPoint angle: 0.0 scale: 1.0
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform class>>offset: aPoint angle: radians scale: aNumberOrPoint [
+{ #category : #'instance creation' }
+MorphicTransform class >> offset: aPoint angle: radians scale: aNumberOrPoint [
 
 	^ self basicNew setOffset: aPoint angle: radians scale: aNumberOrPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>angle [
+{ #category : #accessing }
+MorphicTransform >> angle [
 	^ angle
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>asMatrixTransform2x3 [
+{ #category : #converting }
+MorphicTransform >> asMatrixTransform2x3 [
 	^((MatrixTransform2x3 withRotation: angle radiansToDegrees negated) composedWithLocal:
 		(MatrixTransform2x3 withScale: scale))
 			offset: offset negated
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>asMorphicTransform [
+{ #category : #converting }
+MorphicTransform >> asMorphicTransform [
 
 	^ self
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>composedWith: aTransform [
+{ #category : #transformations }
+MorphicTransform >> composedWith: aTransform [
 	"Return a new transform that has the effect of transforming points first by the receiver and then by the argument."
 
 	self isIdentity ifTrue: [^ aTransform].
@@ -90,11 +65,8 @@ MorphicTransform>>composedWith: aTransform [
 							localTransform: aTransform
 ]
 
-{
-	#category : #composing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>composedWithLocal: aTransform [
+{ #category : #composing }
+MorphicTransform >> composedWithLocal: aTransform [
 	aTransform isIdentity ifTrue:[^self].
 	self isIdentity ifTrue:[^aTransform].
 	aTransform isMorphicTransform ifFalse:[^super composedWithLocal: aTransform].
@@ -105,20 +77,14 @@ MorphicTransform>>composedWithLocal: aTransform [
 	^super composedWithLocal: aTransform.
 ]
 
-{
-	#category : #'transforming points',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>globalPointToLocal: aPoint [
+{ #category : #'transforming points' }
+MorphicTransform >> globalPointToLocal: aPoint [
 	"Transform aPoint from global coordinates into local coordinates"
 	^self transform: aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>inverseTransformation [
+{ #category : #accessing }
+MorphicTransform >> inverseTransformation [
 	"Return the inverse transformation of the receiver"
 	^MorphicTransform
 		offset: (self transform: 0@0) - (self transform: offset)
@@ -126,11 +92,8 @@ MorphicTransform>>inverseTransformation [
 		scale: scale reciprocal
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>invert: aPoint  [
+{ #category : #transformations }
+MorphicTransform >> invert: aPoint [ 
 	"Transform the given point from local to global coordinates."
 	| p3 p2 |
 	self isPureTranslation ifTrue: [ ^ aPoint - offset ].
@@ -139,11 +102,8 @@ MorphicTransform>>invert: aPoint  [
 	^ p2 - offset
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>invertBoundsRect: aRectangle  [
+{ #category : #transformations }
+MorphicTransform >> invertBoundsRect: aRectangle [ 
 	"Return a rectangle whose coordinates have been transformed
 	from local back to global coordinates.  NOTE: if the transformation
 	is not just a translation, then it will compute the bounding box
@@ -158,69 +118,48 @@ MorphicTransform>>invertBoundsRect: aRectangle  [
 			^ outerRect topLeft - (1 @ 1) corner: outerRect bottomRight + (2 @ 2) ]
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>invertRect: aRectangle [
+{ #category : #transformations }
+MorphicTransform >> invertRect: aRectangle [
 
 	self error: 'method name changed to emphasize enclosing bounds'.
 	^ self invertBoundsRect: aRectangle
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>isIdentity [
+{ #category : #testing }
+MorphicTransform >> isIdentity [
 	"Return true if the receiver is the identity transform; that is, if applying to a point returns the point itself."
 
 	^ self isPureTranslation and: [offset = (0@0)]
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>isMorphicTransform [
+{ #category : #testing }
+MorphicTransform >> isMorphicTransform [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>isPureTranslation [
+{ #category : #testing }
+MorphicTransform >> isPureTranslation [
 	"Return true if the receiver specifies no rotation or scaling."
 
 	^ angle = 0.0 and: [scale = 1.0]
 
 ]
 
-{
-	#category : #'transforming points',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>localPointToGlobal: aPoint [
+{ #category : #'transforming points' }
+MorphicTransform >> localPointToGlobal: aPoint [
 	"Transform aPoint from global coordinates into local coordinates"
 	^self invert: aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>offset [
+{ #category : #accessing }
+MorphicTransform >> offset [
 	^ offset
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>printOn: aStream [
+{ #category : #printing }
+MorphicTransform >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut:$(;
 		nextPutAll:'angle = '; print: angle;
@@ -229,63 +168,42 @@ MorphicTransform>>printOn: aStream [
 		nextPut:$).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>scale [
+{ #category : #accessing }
+MorphicTransform >> scale [
 	^ scale
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>setAngle: radians [
+{ #category : #private }
+MorphicTransform >> setAngle: radians [
 	angle := radians
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>setIdentiy [
+{ #category : #initialize }
+MorphicTransform >> setIdentiy [
 	scale := 1.0.
 	offset := 0 @ 0.
 	angle := 0.0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>setOffset: aPoint  [
+{ #category : #private }
+MorphicTransform >> setOffset: aPoint [ 
 	offset := aPoint
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>setOffset: aPoint angle: radians scale: aNumberOrPoint [
+{ #category : #private }
+MorphicTransform >> setOffset: aPoint angle: radians scale: aNumberOrPoint [
 	offset := aPoint.
 	angle := radians.
 	scale := aNumberOrPoint
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>setScale: aNumberOrPoint  [
+{ #category : #private }
+MorphicTransform >> setScale: aNumberOrPoint [ 
 	scale := aNumberOrPoint
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>transform: aPoint  [
+{ #category : #transformations }
+MorphicTransform >> transform: aPoint [ 
 	"Transform the given point from global to local coordinates."
 	| p2 p3 |
 	self isPureTranslation ifTrue: [ ^ aPoint + offset ].
@@ -294,11 +212,8 @@ MorphicTransform>>transform: aPoint  [
 	^ p3
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>transformBoundsRect: aRectangle  [
+{ #category : #transformations }
+MorphicTransform >> transformBoundsRect: aRectangle [ 
 	"Return a rectangle whose coordinates have been transformed
 	from global to local coordinates.  NOTE: if the transformation
 	is not just a translation, then it will compute the bounding box
@@ -313,26 +228,17 @@ MorphicTransform>>transformBoundsRect: aRectangle  [
 			^ outerRect topLeft - (1 @ 1) corner: outerRect bottomRight + (2 @ 2) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>withAngle: radians [
+{ #category : #accessing }
+MorphicTransform >> withAngle: radians [
 	^ self copy setAngle: radians
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>withOffset: aPoint [
+{ #category : #accessing }
+MorphicTransform >> withOffset: aPoint [
 	^ self copy setOffset: aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-MorphicTransform>>withScale: aNumberOrPoint [
+{ #category : #accessing }
+MorphicTransform >> withScale: aNumberOrPoint [
 	^ self copy setScale: aNumberOrPoint
 ]

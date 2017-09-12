@@ -14,50 +14,34 @@ Class {
 		'ShowTaskbar',
 		'ShowWindowPreview'
 	],
-	#category : #Morphic-Widgets-Taskbar,
-	#timestamp : 'AlainPlantec 1/7/2010 22:47'
+	#category : #Morphic-Widgets-Taskbar
 }
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph class>>initialize [
+{ #category : #initializing }
+TaskbarMorph class >> initialize [
 	"Initialize the receiver."
 	self showTaskbarPreferenceChanged
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph class>>maximumButtons [
+{ #category : #setting }
+TaskbarMorph class >> maximumButtons [
 	^ MaximumButtons ifNil: [MaximumButtons := self maximumButtonsDefault]
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph class>>maximumButtons: anInteger [
+{ #category : #setting }
+TaskbarMorph class >> maximumButtons: anInteger [
 	(anInteger isKindOf: Integer) ifFalse: [ ^ self ].
 	anInteger > 0 ifFalse: [ ^ self ].
 	MaximumButtons := anInteger.
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph class>>maximumButtonsDefault [
+{ #category : #setting }
+TaskbarMorph class >> maximumButtonsDefault [
 	^100
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph class>>reset [
+{ #category : #initializing }
+TaskbarMorph class >> reset [
 	"Remove the taskbar and add a new one." 
 	
 	(World submorphs select: [:m | m isKindOf: self])
@@ -65,56 +49,38 @@ TaskbarMorph class>>reset [
 	World createTaskbarIfNecessary
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph class>>showTaskbar [
+{ #category : #setting }
+TaskbarMorph class >> showTaskbar [
 	^ ShowTaskbar ifNil: [ShowTaskbar := true]
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph class>>showTaskbar: aBoolean [
+{ #category : #setting }
+TaskbarMorph class >> showTaskbar: aBoolean [
 	ShowTaskbar ~= aBoolean
 		ifTrue: [ShowTaskbar := aBoolean.
 			self showTaskbarPreferenceChanged]
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph class>>showTaskbarPreferenceChanged [
+{ #category : #setting }
+TaskbarMorph class >> showTaskbarPreferenceChanged [
 	"Add or remove the taskbar as appropriate.
 	Delegate to the current World."
 	
 	World showWorldTaskbar:  self showTaskbar
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph class>>showWindowPreview [
+{ #category : #setting }
+TaskbarMorph class >> showWindowPreview [
 	^ ShowWindowPreview ifNil: [ShowWindowPreview := true]
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph class>>showWindowPreview: aBoolean [
+{ #category : #setting }
+TaskbarMorph class >> showWindowPreview: aBoolean [
 	ShowWindowPreview := aBoolean
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph class>>taskbarSettingOn: aBuilder [
+{ #category : #setting }
+TaskbarMorph class >> taskbarSettingOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #showTaskbar)
 		target: self;
@@ -132,11 +98,8 @@ TaskbarMorph class>>taskbarSettingOn: aBuilder [
 		]
 ]
 
-{
-	#category : #taskbar,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>buttonForMorph: aMorph [
+{ #category : #taskbar }
+TaskbarMorph >> buttonForMorph: aMorph [
 	"Answer the button corresonding to the given
 	morph or nil if none."
 	
@@ -145,60 +108,42 @@ TaskbarMorph>>buttonForMorph: aMorph [
 	^index = 0 ifTrue: [nil] ifFalse: [self submorphs at: index ifAbsent: []]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>clipSubmorphs  [
+{ #category : #drawing }
+TaskbarMorph >> clipSubmorphs [ 
 
 	^ true
 ]
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>displayExtentChanged [
+{ #category : #'change reporting' }
+TaskbarMorph >> displayExtentChanged [
 
 	self updateBounds
 ]
 
-{
-	#category : #'private - accessing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>edgeToAdhereTo [
+{ #category : #'private - accessing' }
+TaskbarMorph >> edgeToAdhereTo [
 	"Must implement. Answer #bottom."
 	
 	^#bottom
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>handlesMouseDown: evt [
+{ #category : #'event handling' }
+TaskbarMorph >> handlesMouseDown: evt [
 	"Best to say we will to avoid being grabbed."
 	
 	^true
 ]
 
-{
-	#category : #taskbar,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>indicateModalChildForMorph: aMorph [
+{ #category : #taskbar }
+TaskbarMorph >> indicateModalChildForMorph: aMorph [
 	"Flash the button corresonding to the given morph ."
 	
 	(self buttonForMorph: aMorph) ifNotNil: [:b |
 		b indicateModalChild]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>initialize [
+{ #category : #initialization }
+TaskbarMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -209,11 +154,8 @@ TaskbarMorph>>initialize [
 		orderedTasks: OrderedCollection new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>initializeAppearance [
+{ #category : #initialization }
+TaskbarMorph >> initializeAppearance [
 	"Initialize the appearance."
 
 	self
@@ -221,11 +163,8 @@ TaskbarMorph>>initializeAppearance [
 		fillStyle: (self theme taskbarFillStyleFor: self)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>initializeLayout [
+{ #category : #initialization }
+TaskbarMorph >> initializeLayout [
 	"Initialize the layout."
 
 	self
@@ -239,11 +178,8 @@ TaskbarMorph>>initializeLayout [
 		extent: self minimumExtent
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>intoWorld: aWorld [
+{ #category : #initialization }
+TaskbarMorph >> intoWorld: aWorld [
 	"Stick to the bottom left now."
 	
 	self
@@ -252,112 +188,79 @@ TaskbarMorph>>intoWorld: aWorld [
 	super intoWorld: aWorld
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>isAdheringToBottom [
+{ #category : #testing }
+TaskbarMorph >> isAdheringToBottom [
 	"Must implement. Answer true."
 	
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>isAdheringToLeft [
+{ #category : #testing }
+TaskbarMorph >> isAdheringToLeft [
 	"Must implement. Answer false."
 	
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>isAdheringToRight [
+{ #category : #testing }
+TaskbarMorph >> isAdheringToRight [
 	"Must implement. Answer false."
 	
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>isAdheringToTop [
+{ #category : #testing }
+TaskbarMorph >> isAdheringToTop [
 	"Must implement. Answer false."
 	
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>isDockingBar [
+{ #category : #testing }
+TaskbarMorph >> isDockingBar [
 	"Answer yes so we get updated when the Display is resized."
 
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>isTaskbar [
+{ #category : #testing }
+TaskbarMorph >> isTaskbar [
 	"Answer true."
 
 	^true
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>minimumExtent [
+{ #category : #geometry }
+TaskbarMorph >> minimumExtent [
 	"Answer the minimum extent."
 
 	^40@25
 ]
 
-{
-	#category : #'wiw support',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>morphicLayerNumber [
+{ #category : #'wiw support' }
+TaskbarMorph >> morphicLayerNumber [
 	"Helpful for ensuring some morphs always appear in front of or 
 	behind others. Smaller numbers are in front"
 	
 	^11
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>orderedTasks [
+{ #category : #accessing }
+TaskbarMorph >> orderedTasks [
 	"Answer the value of orderedTasks"
 
 	^ orderedTasks
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>orderedTasks: anObject [
+{ #category : #accessing }
+TaskbarMorph >> orderedTasks: anObject [
 	"Set the value of orderedTasks"
 
 	orderedTasks := anObject
 ]
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>ownerChanged [
+{ #category : #'change reporting' }
+TaskbarMorph >> ownerChanged [
 	"The receiver's owner has changed its layout.
 	Since this method is called synchronously in the
 	ui, delete the receiver if there are any excpetions."
@@ -370,22 +273,16 @@ TaskbarMorph>>ownerChanged [
 	super ownerChanged
 ]
 
-{
-	#category : #theme,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>preferredButtonCornerStyle [
+{ #category : #theme }
+TaskbarMorph >> preferredButtonCornerStyle [
 	"Answer the preferred button corner style
 	for submorphs."
 
 	^#square
 ]
 
-{
-	#category : #taskbar,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>removeFromWorld [
+{ #category : #taskbar }
+TaskbarMorph >> removeFromWorld [
 	"Delete the receiver from its world after restoring minimized tasks.
 	Collapse those that were minimized after removal.
 	Turn window animation off for the duration."
@@ -400,59 +297,41 @@ TaskbarMorph>>removeFromWorld [
 		ensure: [animation ifTrue: [self theme settings animationSettings useAnimation: true]]
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>showWindowPreview [
+{ #category : #setting }
+TaskbarMorph >> showWindowPreview [
 	^ self class showWindowPreview
 ]
 
-{
-	#category : #taskbar,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>taskButtonOf: aMorph [
+{ #category : #taskbar }
+TaskbarMorph >> taskButtonOf: aMorph [
 	"Answer the task button of the given morph or nil if none."
 
 	^self submorphs detect: [:t | t model = aMorph] ifNone: []
 ]
 
-{
-	#category : #taskbar,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>taskOf: aMorph [
+{ #category : #taskbar }
+TaskbarMorph >> taskOf: aMorph [
 	"Answer the task of the given morph or nil if none."
 
 	^self orderedTasks detect: [:t | t morph = aMorph] ifNone: []
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>tasks [
+{ #category : #accessing }
+TaskbarMorph >> tasks [
 	"Answer the value of tasks"
 
 	^ tasks
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>tasks: anObject [
+{ #category : #accessing }
+TaskbarMorph >> tasks: anObject [
 	"Set the value of tasks"
 
 	tasks := anObject
 ]
 
-{
-	#category : #theme,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>themeChanged [
+{ #category : #theme }
+TaskbarMorph >> themeChanged [
 	"The theme has changed. Update our appearance."
 
 	self initializeAppearance.
@@ -461,11 +340,8 @@ TaskbarMorph>>themeChanged [
 	self updateTaskButtons
 ]
 
-{
-	#category : #'private - layout',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>updateBounds [
+{ #category : #'private - layout' }
+TaskbarMorph >> updateBounds [
 	"Update the receiver's bounds to fill the world."
 
 	self
@@ -473,11 +349,8 @@ TaskbarMorph>>updateBounds [
 		snapToEdgeIfAppropriate
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>updateTaskButtons [
+{ #category : #private }
+TaskbarMorph >> updateTaskButtons [
 	"Make buttons for the ordered tasks."
 	
 	| oldButtons size |
@@ -491,11 +364,8 @@ TaskbarMorph>>updateTaskButtons [
 		button ifNotNil: [self addMorphBack: button]]
 ]
 
-{
-	#category : #taskbar,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>updateTasks [
+{ #category : #taskbar }
+TaskbarMorph >> updateTasks [
 	"Check for changes in the world's submorphs.
 	Note that if the task attributes change then a
 	task will be considered dead along with a new replacement."
@@ -519,22 +389,16 @@ TaskbarMorph>>updateTasks [
 	self defer: [self layoutChanged] "may have a different number of rows"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>wantsToBeTopmost [
+{ #category : #accessing }
+TaskbarMorph >> wantsToBeTopmost [
 	"Answer if the receiver want to be one of the topmost
 	objects in its owner."
 	
 	^ true
 ]
 
-{
-	#category : #taskbar,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarMorph>>worldMorphs [
+{ #category : #taskbar }
+TaskbarMorph >> worldMorphs [
 	"Answer the world's submorphs plus those in hand.
 	Nasty case since hand removes the morph before dropping"
 	

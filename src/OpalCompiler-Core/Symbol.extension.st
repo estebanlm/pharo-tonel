@@ -1,12 +1,7 @@
-Extension {
-	#name : #Symbol
-}
+Extension { #name : #Symbol }
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-Symbol>>asMethodPreamble [
+{ #category : #'*opalcompiler-core' }
+Symbol >> asMethodPreamble [
 	self numArgs = 0
 		ifTrue: [ ^ self asString ].
 	^ String
@@ -22,11 +17,8 @@ Symbol>>asMethodPreamble [
 					index = keywords size ifFalse: [ str space ] ] ]
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-Symbol>>asOneArgSelector [
+{ #category : #'*opalcompiler-core' }
+Symbol >> asOneArgSelector [
 	^ String streamContents: [:str|
 		| parts |
 		parts := (self findTokens: ':)').

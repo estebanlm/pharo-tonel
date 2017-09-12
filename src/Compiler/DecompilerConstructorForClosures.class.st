@@ -4,15 +4,11 @@ Similar to superclass but for closures
 Class {
 	#name : #DecompilerConstructorForClosures,
 	#superclass : #DecompilerConstructor,
-	#category : #Compiler-Support,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:21'
+	#category : #Compiler-Support
 }
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructorForClosures>>codeMethod: selector block: block tempVars: vars primitive: primitive class: class [
+{ #category : #constructor }
+DecompilerConstructorForClosures >> codeMethod: selector block: block tempVars: vars primitive: primitive class: class [
 
 	| blockNode selectorNode visibleTemps invisibleTemps arguments temporaries |
 	selectorNode := self codeSelector: selector code: nil.
@@ -44,11 +40,8 @@ DecompilerConstructorForClosures>>codeMethod: selector block: block tempVars: va
 	^blockNode
 ]
 
-{
-	#category : #constructor,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructorForClosures>>codeRemoteTemp: index remoteTemps: tempVector [
+{ #category : #constructor }
+DecompilerConstructorForClosures >> codeRemoteTemp: index remoteTemps: tempVector [
 
 	^(RemoteTempVectorNode new
 		name: '_r', index printString
@@ -59,10 +52,7 @@ DecompilerConstructorForClosures>>codeRemoteTemp: index remoteTemps: tempVector 
 			yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DecompilerConstructorForClosures>>isForClosures [
+{ #category : #testing }
+DecompilerConstructorForClosures >> isForClosures [
 	^true
 ]

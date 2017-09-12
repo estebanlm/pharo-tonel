@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'stream'
 	],
-	#category : #SUnit-Tests-Core,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:15'
+	#category : #SUnit-Tests-Core
 }
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest class>>lastStoredRun [
+{ #category : #history }
+SUnitExtensionsTest class >> lastStoredRun [
 	^ ((Dictionary new) add: (#passed->((Set new) add: #testNoExceptionWithMatchingString; add: #testNoExceptionWithNoMatchingString; add: #testExceptionWithMatchingString; add: #testExceptionWithoutMatchingString; add: #testValidShouldNotTakeMoreThan; add: #testInvalidShouldNotTakeMoreThanMilliseconds; add: #testDifferentExceptionInShouldRaiseWithExceptionDo; add: #testShouldRaiseWithExceptionDo; add: #testShouldFix; add: #testAssertionFailedInRaiseWithExceptionDo; add: #testAutoDenyFalse; add: #testAutoDenyTrue; add: #testAutoAssertFalse; add: #testAutoAssertTrue; add: #testValidShouldNotTakeMoreThanMilliseconds; add: #testErrorInRaiseWithExceptionDo; add: #testNoExceptionInShouldRaiseWithExceptionDo; add: #testInvalidShouldNotTakeMoreThan; yourself)); add: (#timeStamp->'22 November 2008 10:11:35 pm'); add: (#failures->((Set new))); add: (#errors->((Set new))); yourself)
 ]
 
-{
-	#category : #'real tests',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>assertionFailedInRaiseWithExceptionDoTest [
+{ #category : #'real tests' }
+SUnitExtensionsTest >> assertionFailedInRaiseWithExceptionDoTest [
 
 	self 
 		should: [ Error signal ]
@@ -31,11 +24,8 @@ SUnitExtensionsTest>>assertionFailedInRaiseWithExceptionDoTest [
 		withExceptionDo: [ :anException | self assert: false ]
 ]
 
-{
-	#category : #'real tests',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>differentExceptionInShouldRaiseWithExceptionDoTest [
+{ #category : #'real tests' }
+SUnitExtensionsTest >> differentExceptionInShouldRaiseWithExceptionDoTest [
 
 	[ self 
 		should: [ Error signal ]
@@ -45,11 +35,8 @@ SUnitExtensionsTest>>differentExceptionInShouldRaiseWithExceptionDoTest [
 	do: [ :anException | anException return: nil ]
 ]
 
-{
-	#category : #'real tests',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>errorInRaiseWithExceptionDoTest [
+{ #category : #'real tests' }
+SUnitExtensionsTest >> errorInRaiseWithExceptionDoTest [
 
 	self 
 		should: [ Error  signal ]
@@ -57,45 +44,30 @@ SUnitExtensionsTest>>errorInRaiseWithExceptionDoTest [
 		withExceptionDo: [ :anException | Error signal: 'A forced error' ]
 ]
 
-{
-	#category : #'test support',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>failureLog [
+{ #category : #'test support' }
+SUnitExtensionsTest >> failureLog [
 	^self stream
 ]
 
-{
-	#category : #'real tests',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>invalidShouldNotTakeMoreThan [
+{ #category : #'real tests' }
+SUnitExtensionsTest >> invalidShouldNotTakeMoreThan [
 
 	self should: [(Delay forMilliseconds: 100) wait] notTakeMoreThan: 50 milliSeconds.
 ]
 
-{
-	#category : #'real tests',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>invalidShouldNotTakeMoreThanMilliseconds [
+{ #category : #'real tests' }
+SUnitExtensionsTest >> invalidShouldNotTakeMoreThanMilliseconds [
 
 	self should: [(Delay forMilliseconds: 100) wait] notTakeMoreThanMilliseconds: 50
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>isLogging [
+{ #category : #testing }
+SUnitExtensionsTest >> isLogging [
 	^true
 ]
 
-{
-	#category : #'real tests',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>noExceptionInShouldRaiseWithExceptionDoTest [
+{ #category : #'real tests' }
+SUnitExtensionsTest >> noExceptionInShouldRaiseWithExceptionDoTest [
 
 	self 
 		should: [  ]
@@ -103,21 +75,15 @@ SUnitExtensionsTest>>noExceptionInShouldRaiseWithExceptionDoTest [
 		withExceptionDo: [ :anException | Error signal: 'Should not get here' ]
 ]
 
-{
-	#category : #'real tests',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>shouldFixTest [
+{ #category : #'real tests' }
+SUnitExtensionsTest >> shouldFixTest [
 
 	self shouldFix: [ Error signal: 'any kind of error' ]
 
 ]
 
-{
-	#category : #'real tests',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>shouldRaiseWithExceptionDoTest [
+{ #category : #'real tests' }
+SUnitExtensionsTest >> shouldRaiseWithExceptionDoTest [
 
 	self 
 		should: [ Error signal: '1' ]
@@ -125,11 +91,8 @@ SUnitExtensionsTest>>shouldRaiseWithExceptionDoTest [
 		withExceptionDo: [ :anException | self assert: anException messageText = '1' ]
 ]
 
-{
-	#category : #'real tests',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>shouldRaiseWithSignalDoTest [
+{ #category : #'real tests' }
+SUnitExtensionsTest >> shouldRaiseWithSignalDoTest [
 
 	self 
 		should: [ Error signal: '1' ]
@@ -137,19 +100,13 @@ SUnitExtensionsTest>>shouldRaiseWithSignalDoTest [
 		withExceptionDo: [ :anException | self assert: anException messageText = '1' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>stream [
+{ #category : #accessing }
+SUnitExtensionsTest >> stream [
 	^stream ifNil: [stream := String new writeStream].
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testAssertionFailedInRaiseWithExceptionDo [
+{ #category : #test }
+SUnitExtensionsTest >> testAssertionFailedInRaiseWithExceptionDo [
 
 	| testCase testResult  |
 	
@@ -164,11 +121,8 @@ SUnitExtensionsTest>>testAssertionFailedInRaiseWithExceptionDo [
 	
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testAutoAssertFalse [
+{ #category : #test }
+SUnitExtensionsTest >> testAutoAssertFalse [
 	| booleanCondition |
 	self assert: self isLogging.
 	self should: [ self assert: 1 = 2 description: 'self assert: 1 = 2' ] raise: self defaultTestFailure.
@@ -176,20 +130,14 @@ SUnitExtensionsTest>>testAutoAssertFalse [
 	self assert: booleanCondition
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testAutoAssertTrue [
+{ #category : #test }
+SUnitExtensionsTest >> testAutoAssertTrue [
 	self assert: 1 = 1.
 	self assert: true
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testAutoDenyFalse [
+{ #category : #test }
+SUnitExtensionsTest >> testAutoDenyFalse [
 	| booleanCondition |
 	self assert: self isLogging.
 	self should: [ self deny: 1 = 1 description: 'self deny: 1 = 1'.] raise: self defaultTestFailure.
@@ -197,20 +145,14 @@ SUnitExtensionsTest>>testAutoDenyFalse [
 	self assert: booleanCondition
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testAutoDenyTrue [
+{ #category : #test }
+SUnitExtensionsTest >> testAutoDenyTrue [
 	self deny: 1 = 2.
 	self deny: false
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testDifferentExceptionInShouldRaiseWithExceptionDo [
+{ #category : #test }
+SUnitExtensionsTest >> testDifferentExceptionInShouldRaiseWithExceptionDo [
 
 	| testCase testResult  |
 	
@@ -223,11 +165,8 @@ SUnitExtensionsTest>>testDifferentExceptionInShouldRaiseWithExceptionDo [
 	self assert: testResult passed size=1
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testErrorInRaiseWithExceptionDo [
+{ #category : #test }
+SUnitExtensionsTest >> testErrorInRaiseWithExceptionDo [
 
 	| testCase testResult  |
 	
@@ -242,19 +181,13 @@ SUnitExtensionsTest>>testErrorInRaiseWithExceptionDo [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testExceptionWithMatchingString [
+{ #category : #tests }
+SUnitExtensionsTest >> testExceptionWithMatchingString [
 	self should: [ Object obsolete ] raise: Error whoseDescriptionIncludes: 'NOT obsolete' description: 'tested obsoleting Object'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testExceptionWithoutMatchingString [
+{ #category : #tests }
+SUnitExtensionsTest >> testExceptionWithoutMatchingString [
 	self 
 		should: [ Object obsolete ]
 		raise: Error
@@ -262,11 +195,8 @@ SUnitExtensionsTest>>testExceptionWithoutMatchingString [
 		description: 'tested obsoleting Object'
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testInvalidShouldNotTakeMoreThan [
+{ #category : #test }
+SUnitExtensionsTest >> testInvalidShouldNotTakeMoreThan [
 
 	| testCase testResult |
 
@@ -281,11 +211,8 @@ SUnitExtensionsTest>>testInvalidShouldNotTakeMoreThan [
 
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testInvalidShouldNotTakeMoreThanMilliseconds [
+{ #category : #test }
+SUnitExtensionsTest >> testInvalidShouldNotTakeMoreThanMilliseconds [
 
 	| testCase testResult |
 
@@ -300,11 +227,8 @@ SUnitExtensionsTest>>testInvalidShouldNotTakeMoreThanMilliseconds [
 
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testNoExceptionInShouldRaiseWithExceptionDo [
+{ #category : #test }
+SUnitExtensionsTest >> testNoExceptionInShouldRaiseWithExceptionDo [
 
 	| testCase testResult  |
 	
@@ -319,11 +243,8 @@ SUnitExtensionsTest>>testNoExceptionInShouldRaiseWithExceptionDo [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testNoExceptionWithMatchingString [
+{ #category : #tests }
+SUnitExtensionsTest >> testNoExceptionWithMatchingString [
 	self 
 		shouldnt: [ Object messageNotUnderstoodByObject ]
 		raise: MessageNotUnderstood 
@@ -331,11 +252,8 @@ SUnitExtensionsTest>>testNoExceptionWithMatchingString [
 		description: 'tested obsoleting Object'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testNoExceptionWithNoMatchingString [
+{ #category : #tests }
+SUnitExtensionsTest >> testNoExceptionWithNoMatchingString [
 	self
 		shouldnt: [ Object messageNotUnderstoodByObject ]
 		raise: MessageNotUnderstood
@@ -343,11 +261,8 @@ SUnitExtensionsTest>>testNoExceptionWithNoMatchingString [
 		description: 'tested obsoleting Object'
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testShouldFix [
+{ #category : #test }
+SUnitExtensionsTest >> testShouldFix [
 
 	| testCase testResult  |
 	
@@ -362,11 +277,8 @@ SUnitExtensionsTest>>testShouldFix [
 	
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testShouldRaiseWithExceptionDo [
+{ #category : #test }
+SUnitExtensionsTest >> testShouldRaiseWithExceptionDo [
 
 	| testCase testResult  |
 	
@@ -381,11 +293,8 @@ SUnitExtensionsTest>>testShouldRaiseWithExceptionDo [
 	
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testValidShouldNotTakeMoreThan [
+{ #category : #test }
+SUnitExtensionsTest >> testValidShouldNotTakeMoreThan [
 	| testCase testResult |
 
 	testCase := self class selector: #validShouldNotTakeMoreThan.
@@ -399,11 +308,8 @@ SUnitExtensionsTest>>testValidShouldNotTakeMoreThan [
 
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>testValidShouldNotTakeMoreThanMilliseconds [
+{ #category : #test }
+SUnitExtensionsTest >> testValidShouldNotTakeMoreThanMilliseconds [
 
 	| testCase testResult |
 
@@ -418,20 +324,14 @@ SUnitExtensionsTest>>testValidShouldNotTakeMoreThanMilliseconds [
 
 ]
 
-{
-	#category : #'real tests',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>validShouldNotTakeMoreThan [
+{ #category : #'real tests' }
+SUnitExtensionsTest >> validShouldNotTakeMoreThan [
 
 	self should: [(Delay forMilliseconds: 100) wait] notTakeMoreThan:  200 milliSeconds.
 ]
 
-{
-	#category : #'real tests',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SUnitExtensionsTest>>validShouldNotTakeMoreThanMilliseconds [
+{ #category : #'real tests' }
+SUnitExtensionsTest >> validShouldNotTakeMoreThanMilliseconds [
 
 	self should: [(Delay forMilliseconds: 100) wait] notTakeMoreThanMilliseconds: 200
 ]

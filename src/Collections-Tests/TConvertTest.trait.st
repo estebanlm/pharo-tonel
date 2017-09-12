@@ -3,28 +3,19 @@ A trait for test purposes
 "
 Trait {
 	#name : #TConvertTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:33'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertTest>>assertNoDuplicates: aCollection whenConvertedTo: aClass  [
+{ #category : #'tests - converting' }
+TConvertTest >> assertNoDuplicates: aCollection whenConvertedTo: aClass [ 
 	| result |
 	result := self collectionWithEqualElements asIdentitySet.
 	self assert: (result class includesBehavior: IdentitySet).
 	self collectionWithEqualElements do: [ :initial | self assert: (result occurrencesOf: initial) = 1 ]
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertTest>>assertNonDuplicatedContents: aCollection whenConvertedTo: aClass  [
+{ #category : #'tests - converting' }
+TConvertTest >> assertNonDuplicatedContents: aCollection whenConvertedTo: aClass [ 
 	| result |
 	result := aCollection perform: ('as' , aClass name) asSymbol.
 	self assert: (result class includesBehavior: aClass).
@@ -34,39 +25,27 @@ TConvertTest>>assertNonDuplicatedContents: aCollection whenConvertedTo: aClass  
 	^ result
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertTest>>assertSameContents: aCollection whenConvertedTo: aClass  [
+{ #category : #'tests - converting' }
+TConvertTest >> assertSameContents: aCollection whenConvertedTo: aClass [ 
 	| result |
 	result := self assertNonDuplicatedContents: aCollection whenConvertedTo: aClass.
 	self assert: result size = aCollection size
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertTest>>collectionWithoutEqualElements [
+{ #category : #requirements }
+TConvertTest >> collectionWithoutEqualElements [
 " return a collection without equal elements"
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertTest>>integerCollectionWithoutEqualElements [
+{ #category : #requirements }
+TConvertTest >> integerCollectionWithoutEqualElements [
 " return a collection of integer without equal elements"
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertTest>>test0FixtureTConvertTest [
+{ #category : #'tests - fixture' }
+TConvertTest >> test0FixtureTConvertTest [
 	"a collection of number without equal elements:"
 
 	| res |
@@ -78,31 +57,22 @@ TConvertTest>>test0FixtureTConvertTest [
 	self assert: res = false
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertTest>>testAsArray [
+{ #category : #'tests - converting' }
+TConvertTest >> testAsArray [
 	"self debug: #testAsArray3"
 	self 
 		assertSameContents: self collectionWithoutEqualElements
 		whenConvertedTo: Array
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertTest>>testAsBag [
+{ #category : #'tests - converting' }
+TConvertTest >> testAsBag [
 
 	self assertSameContents: self collectionWithoutEqualElements whenConvertedTo: Bag
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertTest>>testAsByteArray [
+{ #category : #'tests - converting' }
+TConvertTest >> testAsByteArray [
 	| res |
 	self integerCollectionWithoutEqualElements.
 	self integerCollectionWithoutEqualElements do: [ :each | self assert: each class = SmallInteger ].
@@ -114,11 +84,8 @@ TConvertTest>>testAsByteArray [
 	self assertSameContents: self integerCollectionWithoutEqualElements whenConvertedTo: ByteArray
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertTest>>testAsIdentitySet [
+{ #category : #'tests - converting' }
+TConvertTest >> testAsIdentitySet [
 	"test with a collection without equal elements :"
 	self 
 		assertSameContents: self collectionWithoutEqualElements
@@ -126,20 +93,14 @@ TConvertTest>>testAsIdentitySet [
 
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertTest>>testAsOrderedCollection [
+{ #category : #'tests - converting' }
+TConvertTest >> testAsOrderedCollection [
 	
 	self assertSameContents: self collectionWithoutEqualElements whenConvertedTo: OrderedCollection
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertTest>>testAsSet [
+{ #category : #'tests - converting' }
+TConvertTest >> testAsSet [
 	| |
 	"test with a collection without equal elements :"
 	self assertSameContents: self collectionWithoutEqualElements whenConvertedTo: Set.

@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #ClassQueryTest,
 	#superclass : #TestCase,
-	#category : #System-SupportTests,
-	#timestamp : ''
+	#category : #System-SupportTests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ClassQueryTest>>testAllCallsOn [
+{ #category : #tests }
+ClassQueryTest >> testAllCallsOn [
 	| calls |
 	calls := ClassQueryTest allCallsOn.
 	self assert: calls size equals: 1.
 	self assert: calls first compiledMethod equals: ClassQueryTest>>#testAllCallsOn
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ClassQueryTest>>testAllCallsOnASymbol [
+{ #category : #tests }
+ClassQueryTest >> testAllCallsOnASymbol [
 
 	| set cm |
 	set := Object allCallsOn: #shallowCopy.
@@ -31,11 +21,8 @@ ClassQueryTest>>testAllCallsOnASymbol [
 	self assert: (cm literals includes: #shallowCopy)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ClassQueryTest>>testReferencedClasses [
+{ #category : #tests }
+ClassQueryTest >> testReferencedClasses [
 	
 	| refs |
 	refs := Metaclass referencedClasses.

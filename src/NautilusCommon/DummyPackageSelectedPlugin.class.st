@@ -7,24 +7,17 @@ Class {
 	#instVars : [
 		'morph'
 	],
-	#category : #NautilusCommon-Plugin-Examples,
-	#timestamp : 'StephaneDucasse 10/30/2014 08:21'
+	#category : #NautilusCommon-Plugin-Examples
 }
 
-{
-	#category : #position,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DummyPackageSelectedPlugin class>>defaultPosition [
+{ #category : #position }
+DummyPackageSelectedPlugin class >> defaultPosition [
 
 	^ #middle
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DummyPackageSelectedPlugin>>display [
+{ #category : #display }
+DummyPackageSelectedPlugin >> display [
 
 	morph :=  LabelMorph new 
 					contents: '';
@@ -35,11 +28,8 @@ DummyPackageSelectedPlugin>>display [
 	^ morph
 ]
 
-{
-	#category : #announcement,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DummyPackageSelectedPlugin>>packageSelected: anAnnouncement [
+{ #category : #announcement }
+DummyPackageSelectedPlugin >> packageSelected: anAnnouncement [
 	
 	| package name |
 	package := anAnnouncement package.

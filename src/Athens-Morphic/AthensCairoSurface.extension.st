@@ -1,12 +1,7 @@
-Extension {
-	#name : #AthensCairoSurface
-}
+Extension { #name : #AthensCairoSurface }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCairoSurface>>displayOnMorphicCanvas: canvas at: aPoint [
+{ #category : #'*Athens-Morphic' }
+AthensCairoSurface >> displayOnMorphicCanvas: canvas at: aPoint [
 	
 	canvas
 		image: self asForm

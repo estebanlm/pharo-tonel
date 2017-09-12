@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #SlotClassVariableTest,
 	#superclass : #SlotClassBuilderTest,
@@ -8,15 +5,11 @@ Class {
 		'announcement',
 		'collectedAnnouncements'
 	],
-	#category : #Slot-Tests,
-	#timestamp : ''
+	#category : #Slot-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotClassVariableTest>>testAccessorInstanceVariableSlotGeneratesAccessors [
+{ #category : #tests }
+SlotClassVariableTest >> testAccessorInstanceVariableSlotGeneratesAccessors [
 	| class1 |	
 	
 	class1 := self make: [ :builder | 
@@ -30,11 +23,8 @@ SlotClassVariableTest>>testAccessorInstanceVariableSlotGeneratesAccessors [
 	self assert: (class1 class canUnderstand: #foo:).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotClassVariableTest>>testClassVariableDoesNotDuplicatesSubclassesOfSuperclass [
+{ #category : #tests }
+SlotClassVariableTest >> testClassVariableDoesNotDuplicatesSubclassesOfSuperclass [
 	"Issue: 13028"
 	| class1 class2 |	
 	
@@ -58,11 +48,8 @@ SlotClassVariableTest>>testClassVariableDoesNotDuplicatesSubclassesOfSuperclass 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotClassVariableTest>>testSlotIsPersistedAfterRebuildOfClass [
+{ #category : #tests }
+SlotClassVariableTest >> testSlotIsPersistedAfterRebuildOfClass [
 	| class1 |	
 	
 	class1 := self make: [ :builder | 

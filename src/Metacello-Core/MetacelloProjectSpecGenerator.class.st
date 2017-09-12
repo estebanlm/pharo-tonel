@@ -1,37 +1,24 @@
-"
-
-"
 Class {
 	#name : #MetacelloProjectSpecGenerator,
 	#superclass : #Object,
 	#instVars : [
 		'target'
 	],
-	#category : #Metacello-Core-Scripts,
-	#timestamp : ''
+	#category : #Metacello-Core-Scripts
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecGenerator>>projectSpecCreationBlock [
+{ #category : #accessing }
+MetacelloProjectSpecGenerator >> projectSpecCreationBlock [
     ^ [ :projectName | {(MetacelloMCProject new projectSpec name: projectName)} ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecGenerator>>projectSpecListBlock [
+{ #category : #accessing }
+MetacelloProjectSpecGenerator >> projectSpecListBlock [
     ^ [ MetacelloProjectRegistration projectSpecs ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecGenerator>>projectSpecLookupBlock [
+{ #category : #accessing }
+MetacelloProjectSpecGenerator >> projectSpecLookupBlock [
     ^ [ :projectName | 
     {(MetacelloProjectRegistration
         projectSpecForClassNamed: (MetacelloScriptEngine baselineNameFrom: projectName)
@@ -41,18 +28,12 @@ MetacelloProjectSpecGenerator>>projectSpecLookupBlock [
         ifAbsent: [  ])} ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecGenerator>>target [
+{ #category : #accessing }
+MetacelloProjectSpecGenerator >> target [
 	^ target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecGenerator>>target: anObject [
+{ #category : #accessing }
+MetacelloProjectSpecGenerator >> target: anObject [
 	target := anObject
 ]

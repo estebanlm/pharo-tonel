@@ -1,9 +1,5 @@
-"
-
-"
 Class {
 	#name : #RBFooLintRuleTest1,
 	#superclass : #RBLintRuleTest,
-	#category : #Refactoring-Tests-Core-Data,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core-Data
 }

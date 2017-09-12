@@ -1,12 +1,7 @@
-Extension {
-	#name : #GLMBasicExamples
-}
+Extension { #name : #GLMBasicExamples }
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastListDoubleHeight [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastListDoubleHeight [
 	"self new fastListDoubleHeight openOn: (Smalltalk allClassesAndTraits)"
 
 	<glmBrowser: 'Fast List With Double Height' input: 'Smalltalk allClassesAndTraits'>
@@ -21,11 +16,8 @@ GLMBasicExamples>>fastListDoubleHeight [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastListDoubleHeightCustomFormat [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastListDoubleHeightCustomFormat [
 	"self new fastListDoubleHeightCustomFormat openOn: (Smalltalk allClassesAndTraits)"
 
 	<glmBrowser: 'Fast List With Double Height And Custom Format' input: 'Smalltalk allClassesAndTraits'>
@@ -45,11 +37,8 @@ GLMBasicExamples>>fastListDoubleHeightCustomFormat [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastListDoubleHeightCustomFormatAndTags [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastListDoubleHeightCustomFormatAndTags [
 	"self new fastListDoubleHeightCustomFormatAndTags openOn: (Smalltalk allClassesAndTraits)"
 
 	<glmBrowser: 'Fast List With Double Height And Custom Format And Tags' input: 'Smalltalk allClassesAndTraits'>
@@ -73,11 +62,8 @@ GLMBasicExamples>>fastListDoubleHeightCustomFormatAndTags [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastListDragAndDrop [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastListDragAndDrop [
 	<glmBrowser: 'Fast List drag&drop' input: '(1 to: 5) asOrderedCollection'>
 	"self new fastListDragAndDrop openOn: (1 to: 5) asOrderedCollection"
 	| browser |
@@ -103,11 +89,8 @@ GLMBasicExamples>>fastListDragAndDrop [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastListDropDown [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastListDropDown [
 	"self new fastListDropDown openOn: 5"
 	<glmBrowser: 'Fast List Drop-down' input: '5'>
 
@@ -125,11 +108,8 @@ GLMBasicExamples>>fastListDropDown [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastListFunctions [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastListFunctions [
 	"self new fastListFunctions openOn: ((Smalltalk allClassesAndTraits sort: [ :a :b | a asString < b asString ]) asArray)"
 
 	"This can be done for a fastlist, a fastlist with separators, a fasttable and even a fastftree."
@@ -161,11 +141,8 @@ GLMBasicExamples>>fastListFunctions [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastListMultipleSelection [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastListMultipleSelection [
 	"self new fastListMultipleSelection openOn: 10"
 	<glmBrowser: 'Fast List Multiple Selection' input: '10'>
 
@@ -182,11 +159,8 @@ GLMBasicExamples>>fastListMultipleSelection [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastListOutlineSimple [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastListOutlineSimple [
 	"self new fastListOutlineSimple openOn: Object"
 
 	<glmBrowser: 'Fast List Outline Simple' input: 'Object'>
@@ -203,11 +177,8 @@ GLMBasicExamples>>fastListOutlineSimple [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastListOutlineWithTag [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastListOutlineWithTag [
 	"self new fastListOutlineWithTag openOn: Object"
 
 	<glmBrowser: 'Fast List Outline with Tag' input: 'Object'>
@@ -226,11 +197,8 @@ GLMBasicExamples>>fastListOutlineWithTag [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastListSimple [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastListSimple [
 	"self new fastListSimple openOn: (Smalltalk allClassesAndTraits)"
 
 	<glmBrowser: 'Fast List Simple' input: 'Smalltalk allClassesAndTraits'>
@@ -243,11 +211,8 @@ GLMBasicExamples>>fastListSimple [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastTableSimple [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastTableSimple [
 	<glmBrowser: 'Fast Table simple' input: '100'>
 	"| f | 
 	f := self new simpleTable.
@@ -264,11 +229,8 @@ GLMBasicExamples>>fastTableSimple [
 	^ wrapper
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastTableWithIcons [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastTableWithIcons [
 	<glmBrowser: 'Fast Table with icons' input: '($A to: $z)'>
 	"self new tableWithIcons openOn: ($A to: $z)"
 	|browser |
@@ -300,11 +262,8 @@ GLMBasicExamples>>fastTableWithIcons [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastTableWithSearch [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastTableWithSearch [
 	<glmBrowser: 'Fast Table with search' input: '100'>
 	"| f | 
 	f := self new fastTableWithSearch.
@@ -323,11 +282,8 @@ GLMBasicExamples>>fastTableWithSearch [
 	^ wrapper
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastTreeSimple [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastTreeSimple [
 	"self new fastTreeSimple openOn: (GLMPresentation allSubclasses sort: [:a :b | a asString < b asString])"
 
 	<glmBrowser: 'Fast Tree Simple' input: '(GLMPresentation allSubclasses sort: [:a :b | a asString < b asString])'>
@@ -356,11 +312,8 @@ GLMBasicExamples>>fastTreeSimple [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastTreeStrategies [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastTreeStrategies [
 	"self new fastTreeStrategies openOn: (GLMPresentation allSubclasses sort: [:a :b | a asString < b asString])"
 
 	<glmBrowser: 'Fast Tree Function Strategies' input: '(GLMPresentation allSubclasses sort: [:a :b | a asString < b asString])'>
@@ -394,11 +347,8 @@ GLMBasicExamples>>fastTreeStrategies [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastTreeWithColumnsAndEditing [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastTreeWithColumnsAndEditing [
 	"self new fastTreeWithColumnsAndEditing openOn: ((1 to: 5) collect: [ :index1 |
 	((1 to: 10) collect: [ :index | index -> (ValueHolder new contents: 'description') ]) asDictionary ]) "
 
@@ -419,11 +369,8 @@ GLMBasicExamples>>fastTreeWithColumnsAndEditing [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastTreeWithColumnsSimple [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastTreeWithColumnsSimple [
 	"self new fastTreeWithColumnsSimple openOn: (1 to: 10)"
 
 	<glmBrowser: 'Fast Tree With Columns' input: '(1 to: 10)'>
@@ -444,11 +391,8 @@ GLMBasicExamples>>fastTreeWithColumnsSimple [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastTreeWithIcon [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastTreeWithIcon [
 	"self new fastTreeWithIcon openOn: (1 to: 10)"
 
 	<glmBrowser: 'Fast Tree With Icon' input: '(1 to: 10)'>
@@ -469,11 +413,8 @@ GLMBasicExamples>>fastTreeWithIcon [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>fastTreeWithLazyChildren [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> fastTreeWithLazyChildren [
 	"self new fastTreeWithLazyChildren openOn: (1 to: 10)"
 
 	<glmBrowser: 'Fast Tree Lazy Children' input: '(1 to: 10)'>
@@ -490,11 +431,8 @@ GLMBasicExamples>>fastTreeWithLazyChildren [
 	^ browser
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMBasicExamples>>tagBlockWith: num [
+{ #category : #'*Glamour-FastTable' }
+GLMBasicExamples >> tagBlockWith: num [
 	| tagBlock |
 	tagBlock := [ :item | 
 	item isNumber

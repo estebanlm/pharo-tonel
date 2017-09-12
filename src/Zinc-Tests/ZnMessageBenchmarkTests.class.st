@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnMessageBenchmarkTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmarkTests>>testRequests [
+{ #category : #testing }
+ZnMessageBenchmarkTests >> testRequests [
 	ZnMessageBenchmark requests do: [ :each |
 		| bench |
 		bench := ZnMessageBenchmark new.
@@ -25,11 +18,8 @@ ZnMessageBenchmarkTests>>testRequests [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmarkTests>>testResponses [
+{ #category : #testing }
+ZnMessageBenchmarkTests >> testResponses [
 	ZnMessageBenchmark responses do: [ :each |
 		| bench |
 		bench := ZnMessageBenchmark new.

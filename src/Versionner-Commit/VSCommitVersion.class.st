@@ -15,47 +15,31 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #Versionner-Commit,
-	#timestamp : 'EstebanLorenzano 4/23/2015 16:35'
+	#category : #Versionner-Commit
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitVersion class>>label [
+{ #category : #accessing }
+VSCommitVersion class >> label [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitVersion class>>major  [
+{ #category : #accessing }
+VSCommitVersion class >> major [ 
 	^ VSCommitMajorVersion uniqueInstance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitVersion class>>minor [
+{ #category : #accessing }
+VSCommitVersion class >> minor [
 	^ VSCommitMinorVersion uniqueInstance
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitVersion class>>new  [
+{ #category : #'instance creation' }
+VSCommitVersion class >> new [ 
 	self error: 'Use #uniqueInstance'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitVersion class>>parseSemanticVersionFor: versionString ifError: aBlock  [
+{ #category : #accessing }
+VSCommitVersion class >> parseSemanticVersionFor: versionString ifError: aBlock [ 
 	"This is probably not the best way to retrieve a semantic version :P"
 	| parsedVersion |
 	versionString ifNil: [ ^ aBlock value ].
@@ -73,45 +57,30 @@ VSCommitVersion class>>parseSemanticVersionFor: versionString ifError: aBlock  [
 	^ parsedVersion collect: #asInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitVersion class>>patch [
+{ #category : #accessing }
+VSCommitVersion class >> patch [
 	^ VSCommitPatchVersion uniqueInstance
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitVersion class>>uniqueInstance [
+{ #category : #'instance creation' }
+VSCommitVersion class >> uniqueInstance [
 	self = VSCommitVersion 
 		ifTrue: [ self error: 'I''m an abstract class, use one of my children' ].
 	^ uniqueInstance ifNil: [ uniqueInstance := self basicNew initialize ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitVersion class>>versions [
+{ #category : #accessing }
+VSCommitVersion class >> versions [
 	^ self allSubclasses collect: #uniqueInstance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitVersion>>label [
+{ #category : #accessing }
+VSCommitVersion >> label [
 	^ self class label
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitVersion>>latestVersion: metacelloProject [
+{ #category : #private }
+VSCommitVersion >> latestVersion: metacelloProject [
 	| latestVersion |
 	
 	latestVersion := (metacelloProject versions 
@@ -122,19 +91,13 @@ VSCommitVersion>>latestVersion: metacelloProject [
 		ifNil: [ nil ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitVersion>>nextVersionOf: aProject [
+{ #category : #accessing }
+VSCommitVersion >> nextVersionOf: aProject [
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitVersion>>semanticVersionFor: aProject [
+{ #category : #private }
+VSCommitVersion >> semanticVersionFor: aProject [
 	| projectLatestVersion |
 	
 	projectLatestVersion := self latestVersion: (aProject configurationClass project).

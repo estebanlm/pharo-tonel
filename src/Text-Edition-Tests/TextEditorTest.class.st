@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #TextEditorTest,
 	#superclass : #TestCase,
-	#category : #Text-Edition-Tests,
-	#timestamp : ''
+	#category : #Text-Edition-Tests
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextEditorTest>>keyboardEvent  [
+{ #category : #'as yet unclassified' }
+TextEditorTest >> keyboardEvent [ 
 	| event |
 	event := KeyboardEvent new.
 	event 
@@ -26,11 +19,8 @@ TextEditorTest>>keyboardEvent  [
 	^ event 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextEditorTest>>testCursorEnd [
+{ #category : #accessing }
+TextEditorTest >> testCursorEnd [
 	| editor |
 	"
 	self debug: #testCursorEnd.
@@ -39,11 +29,8 @@ TextEditorTest>>testCursorEnd [
 	editor cursorEnd: self keyboardEvent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextEditorTest>>testSetSearchString [
+{ #category : #accessing }
+TextEditorTest >> testSetSearchString [
 	| editor |
 	"
 	self debug: #testSetSearchString.

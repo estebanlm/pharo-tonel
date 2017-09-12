@@ -3,79 +3,52 @@ A trait for test purposes
 "
 Trait {
 	#name : #TReplacementSequencedTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:35'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TReplacementSequencedTest>>elementInForReplacement [
+{ #category : #requirements }
+TReplacementSequencedTest >> elementInForReplacement [
 " return an element included in 'nonEmpty' "
 ^ self nonEmpty anyOne.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TReplacementSequencedTest>>firstIndex [
+{ #category : #requirements }
+TReplacementSequencedTest >> firstIndex [
 " return an index between 'nonEmpty' bounds that is < to 'second index' "
 	^self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TReplacementSequencedTest>>newElement [
+{ #category : #requirements }
+TReplacementSequencedTest >> newElement [
 "return an element that will be put in the collection in place of another"
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TReplacementSequencedTest>>nonEmpty [
+{ #category : #requirements }
+TReplacementSequencedTest >> nonEmpty [
 	^self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TReplacementSequencedTest>>replacementCollection [
+{ #category : #requirements }
+TReplacementSequencedTest >> replacementCollection [
 " return a collection that will be put into 'nonEmpty' "
 	^ self replacementCollectionSameSize, self 	replacementCollectionSameSize   
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TReplacementSequencedTest>>replacementCollectionSameSize [
+{ #category : #requirements }
+TReplacementSequencedTest >> replacementCollectionSameSize [
 " return a collection of size (secondIndex - firstIndex + 1)"
 	^self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TReplacementSequencedTest>>secondIndex [
+{ #category : #requirements }
+TReplacementSequencedTest >> secondIndex [
 " return an index between 'nonEmpty' bounds that is > to 'first index' "
 	^self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TReplacementSequencedTest>>testOFixtureReplacementSequencedTest [
+{ #category : #'tests - fixture' }
+TReplacementSequencedTest >> testOFixtureReplacementSequencedTest [
 
 	self nonEmpty.
 	self deny: self nonEmpty isEmpty.
@@ -100,11 +73,8 @@ TReplacementSequencedTest>>testOFixtureReplacementSequencedTest [
 	
 ]
 
-{
-	#category : #'tests - replacing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TReplacementSequencedTest>>testReplaceAllWith [
+{ #category : #'tests - replacing' }
+TReplacementSequencedTest >> testReplaceAllWith [
 	| result  collection oldElement newElement oldOccurrences |
 	collection := self nonEmpty .
 	result := collection  copy.
@@ -116,11 +86,8 @@ TReplacementSequencedTest>>testReplaceAllWith [
 	self assert: oldOccurrences = (result occurrencesOf: newElement)
 ]
 
-{
-	#category : #'tests - replacing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TReplacementSequencedTest>>testReplaceFromToWith [
+{ #category : #'tests - replacing' }
+TReplacementSequencedTest >> testReplaceFromToWith [
 	| result  collection replacementCollec firstInd secondInd |
 	collection := self nonEmpty .
 	replacementCollec := self replacementCollectionSameSize .
@@ -149,11 +116,8 @@ TReplacementSequencedTest>>testReplaceFromToWith [
 	
 ]
 
-{
-	#category : #'tests - replacing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TReplacementSequencedTest>>testReplaceFromToWithStartingAt [
+{ #category : #'tests - replacing' }
+TReplacementSequencedTest >> testReplaceFromToWithStartingAt [
 	| result  repStart collection replacementCollec firstInd secondInd |
 	collection := self nonEmpty .
 	result := collection copy.

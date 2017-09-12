@@ -4,15 +4,11 @@ This is the unit test for the class Margin.
 Class {
 	#name : #MarginTest,
 	#superclass : #TestCase,
-	#category : #Graphics-Tests-Primitives,
-	#timestamp : 'HenrikNergaard 7/28/2016 20:07'
+	#category : #Graphics-Tests-Primitives
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MarginTest>>testConstruction [
+{ #category : #tests }
+MarginTest >> testConstruction [
 
 	| margin |
 	
@@ -31,11 +27,8 @@ MarginTest>>testConstruction [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MarginTest>>testExpandRectangle [
+{ #category : #tests }
+MarginTest >> testExpandRectangle [
 
 	| rect |
 	
@@ -52,11 +45,8 @@ MarginTest>>testExpandRectangle [
 	self assert: rect equals: ((2@1) negated extent: 16@14)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MarginTest>>testExtendRectangle [
+{ #category : #tests }
+MarginTest >> testExtendRectangle [
 
 	| rect |
 	
@@ -73,11 +63,8 @@ MarginTest>>testExtendRectangle [
 	self assert: rect equals: (0@0 extent: 16@14)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MarginTest>>testFromPoint [
+{ #category : #tests }
+MarginTest >> testFromPoint [
 
 	| margin |
 
@@ -94,11 +81,8 @@ MarginTest>>testFromPoint [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MarginTest>>testInitialization [
+{ #category : #tests }
+MarginTest >> testInitialization [
 
 	| margin |
 	
@@ -118,11 +102,8 @@ MarginTest>>testInitialization [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MarginTest>>testInsetRectangle [
+{ #category : #tests }
+MarginTest >> testInsetRectangle [
 
 	| rect |
 	

@@ -10,15 +10,11 @@ Class {
 		'OFFSET_Y',
 		'OFFSET_Z'
 	],
-	#category : #UnifiedFFI-Tests,
-	#timestamp : 'RonieSalgado 2/14/2017 01:57'
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestStructureSmallFloatStructure class>>fieldsDesc [
+{ #category : #'field definition' }
+FFITestStructureSmallFloatStructure class >> fieldsDesc [
 	"self rebuildFieldAccessors"
 	^ #(
 	float x;
@@ -28,74 +24,50 @@ FFITestStructureSmallFloatStructure class>>fieldsDesc [
 	)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestStructureSmallFloatStructure>>w [
+{ #category : #'accessing structure variables' }
+FFITestStructureSmallFloatStructure >> w [
 	"This method was automatically generated"
 	^handle floatAt: OFFSET_W
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestStructureSmallFloatStructure>>w: anObject [
+{ #category : #'accessing structure variables' }
+FFITestStructureSmallFloatStructure >> w: anObject [
 	"This method was automatically generated"
 	handle floatAt: OFFSET_W put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestStructureSmallFloatStructure>>x [
+{ #category : #'accessing structure variables' }
+FFITestStructureSmallFloatStructure >> x [
 	"This method was automatically generated"
 	^handle floatAt: OFFSET_X
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestStructureSmallFloatStructure>>x: anObject [
+{ #category : #'accessing structure variables' }
+FFITestStructureSmallFloatStructure >> x: anObject [
 	"This method was automatically generated"
 	handle floatAt: OFFSET_X put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestStructureSmallFloatStructure>>y [
+{ #category : #'accessing structure variables' }
+FFITestStructureSmallFloatStructure >> y [
 	"This method was automatically generated"
 	^handle floatAt: OFFSET_Y
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestStructureSmallFloatStructure>>y: anObject [
+{ #category : #'accessing structure variables' }
+FFITestStructureSmallFloatStructure >> y: anObject [
 	"This method was automatically generated"
 	handle floatAt: OFFSET_Y put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestStructureSmallFloatStructure>>z [
+{ #category : #'accessing structure variables' }
+FFITestStructureSmallFloatStructure >> z [
 	"This method was automatically generated"
 	^handle floatAt: OFFSET_Z
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestStructureSmallFloatStructure>>z: anObject [
+{ #category : #'accessing structure variables' }
+FFITestStructureSmallFloatStructure >> z: anObject [
 	"This method was automatically generated"
 	handle floatAt: OFFSET_Z put: anObject
 ]

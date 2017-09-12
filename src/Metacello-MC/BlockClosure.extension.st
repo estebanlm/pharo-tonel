@@ -1,12 +1,7 @@
-Extension {
-	#name : #BlockClosure
-}
+Extension { #name : #BlockClosure }
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-BlockClosure>>valueSupplyingMetacelloAnswers: aListOfPairs [
+{ #category : #'*metacello-mc' }
+BlockClosure >> valueSupplyingMetacelloAnswers: aListOfPairs [
 	"evaluate the block using a list of questions / answers that might be called upon to
 	automatically respond to Object>>confirm: or FillInTheBlank requests"
 

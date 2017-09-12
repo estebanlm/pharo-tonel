@@ -5,23 +5,16 @@ I'm a patch version.
 Class {
 	#name : #VSCommitPatchVersion,
 	#superclass : #VSCommitVersion,
-	#category : #Versionner-Commit,
-	#timestamp : '<historical>'
+	#category : #Versionner-Commit
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPatchVersion class>>label [
+{ #category : #accessing }
+VSCommitPatchVersion class >> label [
 	^ 'Patch'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPatchVersion>>nextVersionOf: aProject [
+{ #category : #accessing }
+VSCommitPatchVersion >> nextVersionOf: aProject [
 	| version |
 	version := self semanticVersionFor: aProject.
 	^ '{1}.{2}.{3}' format: {

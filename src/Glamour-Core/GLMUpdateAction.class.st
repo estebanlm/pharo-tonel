@@ -18,15 +18,11 @@ Class {
 		'announcerObjects',
 		'transformation'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'TudorGirba 1/7/2011 07:30'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMUpdateAction>>actOn: anAnnouncement [
+{ #category : #'announcement handling' }
+GLMUpdateAction >> actOn: anAnnouncement [
 	| allowedToTrigger |
 	allowedToTrigger := self condition glamourValue: (	
 							anAnnouncement asGlamorousMultiValue, 
@@ -34,93 +30,60 @@ GLMUpdateAction>>actOn: anAnnouncement [
 	allowedToTrigger ifTrue: [ self presentation update ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMUpdateAction>>announcement [
+{ #category : #accessing }
+GLMUpdateAction >> announcement [
 	^ announcement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMUpdateAction>>announcement: anObject [
+{ #category : #accessing }
+GLMUpdateAction >> announcement: anObject [
 	announcement := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMUpdateAction>>announcerObjects  [
+{ #category : #accessing }
+GLMUpdateAction >> announcerObjects [ 
 	^ announcerObjects := self computeAnnouncerObjects ifNil: [OrderedCollection new]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMUpdateAction>>computeAnnouncerObjects  [
+{ #category : #public }
+GLMUpdateAction >> computeAnnouncerObjects [ 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMUpdateAction>>condition [
+{ #category : #accessing }
+GLMUpdateAction >> condition [
 	^ condition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMUpdateAction>>condition: anObject [
+{ #category : #accessing }
+GLMUpdateAction >> condition: anObject [
 	condition := anObject
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMUpdateAction>>initialize [
+{ #category : #initialize-release }
+GLMUpdateAction >> initialize [
 	super initialize.
 	condition := true
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMUpdateAction>>postCopy [
+{ #category : #copying }
+GLMUpdateAction >> postCopy [
 	super postCopy.
 	announcerObjects := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMUpdateAction>>presentation [
+{ #category : #accessing }
+GLMUpdateAction >> presentation [
 	^ presentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMUpdateAction>>presentation: anObject [
+{ #category : #accessing }
+GLMUpdateAction >> presentation: anObject [
 	presentation := anObject
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMUpdateAction>>registerInPresentation [
+{ #category : #public }
+GLMUpdateAction >> registerInPresentation [
 	self announcerObjects do: [: announcerObject |
 		announcerObject notNil ifTrue: [
 			(announcerObject when: self announcement send: #actOn: to: self) makeWeak.
@@ -130,27 +93,18 @@ GLMUpdateAction>>registerInPresentation [
 			self presentation registeredAnnouncers add: announcerObject ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMUpdateAction>>transformation [
+{ #category : #accessing }
+GLMUpdateAction >> transformation [
 	^ transformation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMUpdateAction>>transformation: anObject [
+{ #category : #accessing }
+GLMUpdateAction >> transformation: anObject [
 	transformation := anObject
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMUpdateAction>>unregisterFromAllAnnouncements [
+{ #category : #public }
+GLMUpdateAction >> unregisterFromAllAnnouncements [
 	self announcerObjects do: [:each | 
 		[each unsubscribe: self] on: Error do: [:e | e resume]] 
 ]

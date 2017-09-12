@@ -16,26 +16,19 @@ Class {
 		'showInstance',
 		'showCategories'
 	],
-	#category : #NautilusCommon,
-	#timestamp : '<historical>'
+	#category : #NautilusCommon
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry class>>with: aNautilus [
+{ #category : #'instance creation' }
+NautilusHistoryEntry class >> with: aNautilus [
 
 	^ self new 
 		with: aNautilus;
 		yourself
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>= anotherWrapper [
+{ #category : #protocol }
+NautilusHistoryEntry >> = anotherWrapper [
 	self species = anotherWrapper species
 		ifFalse: [ ^ false ].
 	^ self selectedPackage = anotherWrapper selectedPackage
@@ -66,11 +59,8 @@ NautilusHistoryEntry>>= anotherWrapper [
 																		and: [ self showCategories = anotherWrapper showCategories ] ] ] ] ] ] ] ] ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>applyTo: aNautilus [
+{ #category : #protocol }
+NautilusHistoryEntry >> applyTo: aNautilus [
 	aNautilus ui ifNotNil: [ :interface | interface resetAllListSelections ].
 	aNautilus
 		selectedPackage: self selectedPackage;
@@ -99,11 +89,8 @@ NautilusHistoryEntry>>applyTo: aNautilus [
 			interface updateCategoryAndMethodList ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>asHistoryString [
+{ #category : #protocol }
+NautilusHistoryEntry >> asHistoryString [
 	| separator |
 	separator := ' >>#'.
 	^ String
@@ -119,11 +106,8 @@ NautilusHistoryEntry>>asHistoryString [
 							self selectedSelector ifNotNil: [ :m | s << separator << m asString ] ] ] ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>hash [
+{ #category : #protocol }
+NautilusHistoryEntry >> hash [
 	| hash |
 	hash := selectedPackage hash.
 	{ selectedCategory . selectedSelector . selectedClass . selectedGroup } do: [ :iv |
@@ -131,209 +115,140 @@ NautilusHistoryEntry>>hash [
 	^ hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>selectedCategory [
+{ #category : #accessing }
+NautilusHistoryEntry >> selectedCategory [
 
 		^ selectedCategory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>selectedCategory: anObject [
+{ #category : #accessing }
+NautilusHistoryEntry >> selectedCategory: anObject [
 	
 		selectedCategory := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>selectedClass [
+{ #category : #accessing }
+NautilusHistoryEntry >> selectedClass [
 
 		^ selectedClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>selectedClass: anObject [
+{ #category : #accessing }
+NautilusHistoryEntry >> selectedClass: anObject [
 	
 		selectedClass := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>selectedGroup [
+{ #category : #accessing }
+NautilusHistoryEntry >> selectedGroup [
 
 		^ selectedGroup
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>selectedGroup: anObject [
+{ #category : #accessing }
+NautilusHistoryEntry >> selectedGroup: anObject [
 	
 		selectedGroup := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>selectedMethod [
+{ #category : #accessing }
+NautilusHistoryEntry >> selectedMethod [
 	selectedSelector ifNil: [ ^ nil ].
 	^ selectedClass ifNil: [ nil ] ifNotNil: [ selectedClass compiledMethodAt: selectedSelector ifAbsent: [ nil ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>selectedMethod: anObject [
+{ #category : #accessing }
+NautilusHistoryEntry >> selectedMethod: anObject [
 	
 		selectedSelector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>selectedPackage [
+{ #category : #accessing }
+NautilusHistoryEntry >> selectedPackage [
 
 		^ selectedPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>selectedPackage: anObject [
+{ #category : #accessing }
+NautilusHistoryEntry >> selectedPackage: anObject [
 	
 		selectedPackage := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>selectedSelector [
+{ #category : #accessing }
+NautilusHistoryEntry >> selectedSelector [
 
 	^ selectedSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>selectedSelector: anObject [
+{ #category : #accessing }
+NautilusHistoryEntry >> selectedSelector: anObject [
 	
 		selectedSelector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>showCategories [
+{ #category : #accessing }
+NautilusHistoryEntry >> showCategories [
 
 		^ showCategories
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>showCategories: anObject [
+{ #category : #accessing }
+NautilusHistoryEntry >> showCategories: anObject [
 	
 		showCategories := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>showComment [
+{ #category : #accessing }
+NautilusHistoryEntry >> showComment [
 
 		^ showComment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>showComment: anObject [
+{ #category : #accessing }
+NautilusHistoryEntry >> showComment: anObject [
 	
 		showComment := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>showHierarchy [
+{ #category : #accessing }
+NautilusHistoryEntry >> showHierarchy [
 
 		^ showHierarchy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>showHierarchy: anObject [
+{ #category : #accessing }
+NautilusHistoryEntry >> showHierarchy: anObject [
 	
 		showHierarchy:= anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>showInstance [
+{ #category : #accessing }
+NautilusHistoryEntry >> showInstance [
 
 		^ showInstance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>showInstance: anObject [
+{ #category : #accessing }
+NautilusHistoryEntry >> showInstance: anObject [
 	
 		showInstance := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>sortHierarchically [
+{ #category : #accessing }
+NautilusHistoryEntry >> sortHierarchically [
 
 		^ sortHierarchically
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>sortHierarchically: anObject [
+{ #category : #accessing }
+NautilusHistoryEntry >> sortHierarchically: anObject [
 	
 		sortHierarchically := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusHistoryEntry>>with: aNautilus [
+{ #category : #private }
+NautilusHistoryEntry >> with: aNautilus [
 	
 	self 
 		selectedPackage: aNautilus selectedPackage;

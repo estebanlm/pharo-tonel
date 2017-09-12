@@ -14,15 +14,11 @@ Class {
 		'classVariable',
 		'needsReturn'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 21:00'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring class>>model: aRBSmalltalk variable: aVarName class: aClass classVariable: aBoolean  [
+{ #category : #'instance creation' }
+RBCreateAccessorsForVariableRefactoring class >> model: aRBSmalltalk variable: aVarName class: aClass classVariable: aBoolean [ 
 	^(self 
 		model: aRBSmalltalk
 		variable: aVarName
@@ -31,46 +27,31 @@ RBCreateAccessorsForVariableRefactoring class>>model: aRBSmalltalk variable: aVa
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring class>>variable: aVarName class: aClass classVariable: aBoolean  [
+{ #category : #'instance creation' }
+RBCreateAccessorsForVariableRefactoring class >> variable: aVarName class: aClass classVariable: aBoolean [ 
 	^(self variable: aVarName class: aClass)
 		classVariable: aBoolean; yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>classVariable: aBoolean  [
+{ #category : #initialize-release }
+RBCreateAccessorsForVariableRefactoring >> classVariable: aBoolean [ 
 	classVariable := aBoolean
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>createGetterAccessor [
+{ #category : #transforming }
+RBCreateAccessorsForVariableRefactoring >> createGetterAccessor [
 	getterMethod := self findGetterMethod.
 	getterMethod isNil ifTrue: [getterMethod := self defineGetterMethod]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>createSetterAccessor [
+{ #category : #transforming }
+RBCreateAccessorsForVariableRefactoring >> createSetterAccessor [
 	setterMethod := self findSetterMethod.
 	setterMethod isNil ifTrue: [setterMethod := self defineSetterMethod]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>defineGetterMethod [
+{ #category : #transforming }
+RBCreateAccessorsForVariableRefactoring >> defineGetterMethod [
 	| selector definingClass |
 	definingClass := self definingClass.
 	selector := self safeMethodNameFor: definingClass
@@ -81,11 +62,8 @@ RBCreateAccessorsForVariableRefactoring>>defineGetterMethod [
 	^selector
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>defineSetterMethod [
+{ #category : #transforming }
+RBCreateAccessorsForVariableRefactoring >> defineSetterMethod [
 	| selector definingClass string |
 	definingClass := self definingClass.
 	string := self needsReturnForSetter 
@@ -99,21 +77,15 @@ RBCreateAccessorsForVariableRefactoring>>defineSetterMethod [
 	^selector
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>definingClass [
+{ #category : #private-accessing }
+RBCreateAccessorsForVariableRefactoring >> definingClass [
 	^ classVariable 
 		ifTrue: [ class theMetaClass ]
 		ifFalse: [ class ]
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>findGetterMethod [
+{ #category : #private-accessing }
+RBCreateAccessorsForVariableRefactoring >> findGetterMethod [
 	| definingClass matcher |
 	definingClass := self definingClass.
 	matcher := RBParseTreeSearcher getterMethod: variableName.
@@ -127,11 +99,8 @@ RBCreateAccessorsForVariableRefactoring>>findGetterMethod [
 		ifNone: [nil]
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>findSetterMethod [
+{ #category : #private-accessing }
+RBCreateAccessorsForVariableRefactoring >> findSetterMethod [
 	| definingClass matcher |
 	definingClass := self definingClass.
 	matcher := self needsReturnForSetter 
@@ -147,30 +116,21 @@ RBCreateAccessorsForVariableRefactoring>>findSetterMethod [
 		ifNone: [nil]
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>getterMethod [
+{ #category : #private-accessing }
+RBCreateAccessorsForVariableRefactoring >> getterMethod [
 	^getterMethod
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>methodsReferencingVariable [
+{ #category : #private-accessing }
+RBCreateAccessorsForVariableRefactoring >> methodsReferencingVariable [
 	^classVariable 
 		ifTrue: [self definingClass whichSelectorsReferToClassVariable: variableName]
 		ifFalse: 
 			[self definingClass whichSelectorsReferToInstanceVariable: variableName]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>needsReturnForSetter [
+{ #category : #testing }
+RBCreateAccessorsForVariableRefactoring >> needsReturnForSetter [
 	needsReturn isNil 
 		ifTrue: 
 			[needsReturn := self 
@@ -180,45 +140,30 @@ RBCreateAccessorsForVariableRefactoring>>needsReturnForSetter [
 	^needsReturn
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>possibleGetterSelectors [
+{ #category : #private-accessing }
+RBCreateAccessorsForVariableRefactoring >> possibleGetterSelectors [
 	^self methodsReferencingVariable select: [:each | each numArgs == 0]
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>possibleSetterSelectors [
+{ #category : #private-accessing }
+RBCreateAccessorsForVariableRefactoring >> possibleSetterSelectors [
 	^self methodsReferencingVariable select: [:each | each numArgs == 1]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>preconditions [
+{ #category : #preconditions }
+RBCreateAccessorsForVariableRefactoring >> preconditions [
 	^classVariable 
 		ifTrue: [RBCondition definesClassVariable: variableName asSymbol in: class]
 		ifFalse: [RBCondition definesInstanceVariable: variableName in: class]
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>setterMethod [
+{ #category : #private-accessing }
+RBCreateAccessorsForVariableRefactoring >> setterMethod [
 	^setterMethod
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBCreateAccessorsForVariableRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream nextPutAll: ' variable: '.
@@ -230,21 +175,15 @@ RBCreateAccessorsForVariableRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>transform [
+{ #category : #transforming }
+RBCreateAccessorsForVariableRefactoring >> transform [
 	self
 		createGetterAccessor;
 		createSetterAccessor
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateAccessorsForVariableRefactoring>>usesAssignmentOf: aString in: aClass classVariable: isClassVar  [
+{ #category : #testing }
+RBCreateAccessorsForVariableRefactoring >> usesAssignmentOf: aString in: aClass classVariable: isClassVar [ 
 	| matcher definingClass |
 	matcher := RBParseTreeSearcher new.
 	matcher

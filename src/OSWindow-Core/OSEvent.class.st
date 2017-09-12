@@ -12,90 +12,59 @@ Class {
 		'window',
 		'suppressDefaultAction'
 	],
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'IgorStasenko 7/30/2014 17:13'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSEvent class>>for: aWindow [
+{ #category : #'as yet unclassified' }
+OSEvent class >> for: aWindow [
 	^ self new window: aWindow; yourself
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSEvent>>accept: aVisitor [
+{ #category : #visitor }
+OSEvent >> accept: aVisitor [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'default actions',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSEvent>>defaultAction [
+{ #category : #'default actions' }
+OSEvent >> defaultAction [
 	"do nothing by default"
 ]
 
-{
-	#category : #dispatching,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSEvent>>deliver [
+{ #category : #dispatching }
+OSEvent >> deliver [
 	"deliver an event to its handler(s)"
 	
 	^ window deliverEvent: self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSEvent>>initialize [
+{ #category : #initialization }
+OSEvent >> initialize [
 	suppressDefaultAction := false
 ]
 
-{
-	#category : #'default actions',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSEvent>>performDefaultAction [
+{ #category : #'default actions' }
+OSEvent >> performDefaultAction [
 	suppressDefaultAction ifFalse: [  self defaultAction ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSEvent>>printOn: aStream [
+{ #category : #printing }
+OSEvent >> printOn: aStream [
 	super printOn: aStream. 
 	window ifNotNil: [ aStream << ' (WindowId=' << window windowId printString << ')' ]
 
 ]
 
-{
-	#category : #'default actions',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSEvent>>suppressDefaultAction  [
+{ #category : #'default actions' }
+OSEvent >> suppressDefaultAction [ 
 	suppressDefaultAction  := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSEvent>>window [
+{ #category : #accessing }
+OSEvent >> window [
 	^ window
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSEvent>>window: anOSWindow  [
+{ #category : #accessing }
+OSEvent >> window: anOSWindow [ 
 	window := anOSWindow
 ]

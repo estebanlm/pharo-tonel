@@ -8,15 +8,11 @@ Class {
 		'base',
 		'patch'
 	],
-	#category : #Komitter-Models,
-	#timestamp : '<historical>'
+	#category : #Komitter-Models
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPatch class>>base: base patch: patch [
+{ #category : #'instance creation' }
+KomitPatch class >> base: base patch: patch [
 
 	^ self new
 		base: base;
@@ -24,43 +20,28 @@ KomitPatch class>>base: base patch: patch [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPatch>>base [
+{ #category : #accessing }
+KomitPatch >> base [
 	^ base ifNil: [ MCSnapshot empty ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPatch>>base: anObject [
+{ #category : #accessing }
+KomitPatch >> base: anObject [
 	base := anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPatch>>operations [
+{ #category : #protocol }
+KomitPatch >> operations [
 
 	^ patch operations
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPatch>>patch [
+{ #category : #accessing }
+KomitPatch >> patch [
 	^ patch
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPatch>>patch: anObject [
+{ #category : #accessing }
+KomitPatch >> patch: anObject [
 	patch := anObject
 ]

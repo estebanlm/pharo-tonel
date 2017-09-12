@@ -20,31 +20,21 @@ Class {
 		'defaultSortBlock',
 		'modifiedBlock'
 	],
-	#category : #Glamour-Presentations,
-	#timestamp : 'TudorGirba 2/4/2011 21:14'
+	#category : #Glamour-Presentations
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTableColumn>>computation [
+{ #category : #accessing }
+GLMTableColumn >> computation [
 	^ computation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTableColumn>>computation: anObject [
+{ #category : #accessing }
+GLMTableColumn >> computation: anObject [
 	computation := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTableColumn>>defaultSortBlockForPresentation: aGlamourPresentation [
+{ #category : #accessing }
+GLMTableColumn >> defaultSortBlockForPresentation: aGlamourPresentation [
 	
 	^ [ :x :y | 		
 			(aGlamourPresentation
@@ -55,98 +45,62 @@ GLMTableColumn>>defaultSortBlockForPresentation: aGlamourPresentation [
 				valueFor: y) asString ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTableColumn>>modifiedBlock [
+{ #category : #accessing }
+GLMTableColumn >> modifiedBlock [
 	^ modifiedBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTableColumn>>modifiedBlock: anObject [
+{ #category : #accessing }
+GLMTableColumn >> modifiedBlock: anObject [
 	modifiedBlock := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTableColumn>>sortBlock [
+{ #category : #accessing }
+GLMTableColumn >> sortBlock [
 	^ sortBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTableColumn>>sortBlock: aBlock [
+{ #category : #accessing }
+GLMTableColumn >> sortBlock: aBlock [
 	sortBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTableColumn>>tagsBlock [
+{ #category : #accessing }
+GLMTableColumn >> tagsBlock [
 	^ tagsBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTableColumn>>tagsBlock: aBlock [
+{ #category : #accessing }
+GLMTableColumn >> tagsBlock: aBlock [
 	tagsBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTableColumn>>tagsFilter: aBlock [
+{ #category : #accessing }
+GLMTableColumn >> tagsFilter: aBlock [
 	tagsFilterBlock := aBlock 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTableColumn>>tagsFilterBlock [
+{ #category : #accessing }
+GLMTableColumn >> tagsFilterBlock [
 	^ tagsFilterBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTableColumn>>title [
+{ #category : #accessing }
+GLMTableColumn >> title [
 	^ title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTableColumn>>title: anObject [
+{ #category : #accessing }
+GLMTableColumn >> title: anObject [
 	title := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTableColumn>>width [
+{ #category : #accessing }
+GLMTableColumn >> width [
 	^ width ifNil: [200]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTableColumn>>width: anObject [
+{ #category : #accessing }
+GLMTableColumn >> width: anObject [
 	width := anObject
 ]

@@ -9,32 +9,22 @@ Class {
 	#instVars : [
 		'port'
 	],
-	#category : #Zinc-Resource-Meta-Core,
-	#timestamp : 'SvenVanCaekenberghe 2/28/2011 15:23'
+	#category : #Zinc-Resource-Meta-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnPortNotANumber class>>port: port [
+{ #category : #'instance creation' }
+ZnPortNotANumber class >> port: port [
 	^ self new
 		port: port;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnPortNotANumber>>port [
+{ #category : #accessing }
+ZnPortNotANumber >> port [
 	^ port
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnPortNotANumber>>port: anObject [
+{ #category : #accessing }
+ZnPortNotANumber >> port: anObject [
 	port := anObject
 ]

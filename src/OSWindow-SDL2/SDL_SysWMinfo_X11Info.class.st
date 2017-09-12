@@ -8,15 +8,11 @@ Class {
 		'OFFSET_DISPLAY',
 		'OFFSET_WINDOW'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'RonieSalgado 5/27/2016 13:18'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_SysWMinfo_X11Info class>>fieldsDesc [
+{ #category : #'field definition' }
+SDL_SysWMinfo_X11Info class >> fieldsDesc [
 	"
 	self rebuildFieldAccessors
 	"
@@ -26,11 +22,8 @@ SDL_SysWMinfo_X11Info class>>fieldsDesc [
  	)
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_SysWMinfo_X11Info>>asPlatformSpecificHandle [
+{ #category : #converting }
+SDL_SysWMinfo_X11Info >> asPlatformSpecificHandle [
 	^ OSWindowPlatformSpecificHandle new
 		platform: #x11;
 		display: self display;
@@ -38,38 +31,26 @@ SDL_SysWMinfo_X11Info>>asPlatformSpecificHandle [
 		yourself
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_SysWMinfo_X11Info>>display [
+{ #category : #'accessing structure variables' }
+SDL_SysWMinfo_X11Info >> display [
 	"This method was automatically generated"
 	^ExternalData fromHandle: (handle pointerAt: OFFSET_DISPLAY) type: ExternalType void asPointerType
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_SysWMinfo_X11Info>>display: anObject [
+{ #category : #'accessing structure variables' }
+SDL_SysWMinfo_X11Info >> display: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_DISPLAY put: anObject getHandle.
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_SysWMinfo_X11Info>>window [
+{ #category : #'accessing structure variables' }
+SDL_SysWMinfo_X11Info >> window [
 	"This method was automatically generated"
 	^ExternalData fromHandle: (handle pointerAt: OFFSET_WINDOW) type: ExternalType void asPointerType
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_SysWMinfo_X11Info>>window: anObject [
+{ #category : #'accessing structure variables' }
+SDL_SysWMinfo_X11Info >> window: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_WINDOW put: anObject getHandle.
 ]

@@ -7,39 +7,26 @@ Class {
 	#instVars : [
 		'definitions'
 	],
-	#category : #Monticello-Patching,
-	#timestamp : 'LaurentLaffont 3/31/2011 21:06'
+	#category : #Monticello-Patching
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinitionIndex class>>definitions: aCollection [
+{ #category : #instance-creation }
+MCDefinitionIndex class >> definitions: aCollection [
 	^ self new addAll: aCollection
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinitionIndex>>add: aDefinition [
+{ #category : #adding }
+MCDefinitionIndex >> add: aDefinition [
 	^ definitions at: aDefinition description put: aDefinition
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinitionIndex>>addAll: aCollection [
+{ #category : #adding }
+MCDefinitionIndex >> addAll: aCollection [
 	aCollection do: [:ea | self add: ea]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinitionIndex>>definitionLike: aDefinition ifPresent: foundBlock ifAbsent: errorBlock [
+{ #category : #accessing }
+MCDefinitionIndex >> definitionLike: aDefinition ifPresent: foundBlock ifAbsent: errorBlock [
 	| definition |
 	definition := definitions at: aDefinition description ifAbsent: [].
 	^ definition
@@ -47,27 +34,18 @@ MCDefinitionIndex>>definitionLike: aDefinition ifPresent: foundBlock ifAbsent: e
 		ifNotNil: [foundBlock value: definition]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinitionIndex>>definitions [
+{ #category : #accessing }
+MCDefinitionIndex >> definitions [
 	^ definitions values
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinitionIndex>>initialize [
+{ #category : #initialization }
+MCDefinitionIndex >> initialize [
 	super initialize.
 	definitions := Dictionary new
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinitionIndex>>remove: aDefinition [
+{ #category : #removing }
+MCDefinitionIndex >> remove: aDefinition [
 	definitions removeKey: aDefinition description ifAbsent: []
 ]

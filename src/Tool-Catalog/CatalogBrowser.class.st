@@ -16,25 +16,18 @@ Class {
 	#instVars : [
 		'provider'
 	],
-	#category : #Tool-Catalog-UI,
-	#timestamp : 'StephaneDucasse 8/16/2015 11:18'
+	#category : #Tool-Catalog-UI
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser class>>iconFor: project [
+{ #category : #utilities }
+CatalogBrowser class >> iconFor: project [
 	^ (Smalltalk globals includesKey: project packageName asSymbol)
 		ifTrue: [ self iconNamed: #configLoaded ]
 		ifFalse: [ self iconNamed: #config ]
 ]
 
-{
-	#category : #'world menu',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser class>>menuCommandOn: aBuilder [
+{ #category : #'world menu' }
+CatalogBrowser class >> menuCommandOn: aBuilder [
 	"Add a custom menu item to the world menu"
 
 	<worldMenu>
@@ -45,38 +38,26 @@ CatalogBrowser class>>menuCommandOn: aBuilder [
 		action: [ self open ]
 ]
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser class>>open [
+{ #category : #showing }
+CatalogBrowser class >> open [
 	<script>
 
 	^self new open
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser class>>title [
+{ #category : #accessing }
+CatalogBrowser class >> title [
 	^ 'Pharo Project Catalog'
 ]
 
-{
-	#category : #'private - utilities',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>availableRepositoryURLStrings [
+{ #category : #'private - utilities' }
+CatalogBrowser >> availableRepositoryURLStrings [
 
 	^ CatalogProject availableRepositoryURLStrings
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>buildBrowser [
+{ #category : #building }
+CatalogBrowser >> buildBrowser [
 	| browser |
 	browser := GLMTabulator new
 		title: self class title;
@@ -110,11 +91,8 @@ CatalogBrowser>>buildBrowser [
 	^ browser
 ]
 
-{
-	#category : #'private - utilities',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>buildContextMenuOn: aList [
+{ #category : #'private - utilities' }
+CatalogBrowser >> buildContextMenuOn: aList [
 	| col |
 	col := (PragmaCollector new
 		filter:
@@ -126,33 +104,24 @@ CatalogBrowser>>buildContextMenuOn: aList [
 		do: [ :each | self perform: each methodSelector with: aList ]
 ]
 
-{
-	#category : #'private - utilities',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>buildMenuOn: aList [
+{ #category : #'private - utilities' }
+CatalogBrowser >> buildMenuOn: aList [
 	| col |
 	col := (PragmaCollector filter: [ :prg | prg keyword = #menuOrder: and: [ prg methodClass = self class ] ]) reset.
 	col collected sort: [ :a :b | (a argumentAt: 1) <= (b argumentAt: 1) ].
 	col do: [ :each | self perform: each methodSelector with: aList ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>defineAllRepositoriesInMCBrowser [
+{ #category : #actions }
+CatalogBrowser >> defineAllRepositoriesInMCBrowser [
 	"Define all the repositories as a repository browsable from within the MC Browser. This is is simpler to copy a configuration to the meta repositories."
 	self availableRepositoryURLStrings do: [ :each | 
 		MCRepositoryGroup default 
 			addRepository: (self repositoryObjectFromURLString: each)] 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>defineAllRepositoriesInMCBrowserButton: aList [
+{ #category : #menu }
+CatalogBrowser >> defineAllRepositoriesInMCBrowserButton: aList [
 
 	<menuOrder: 9>
 	aList
@@ -161,11 +130,8 @@ CatalogBrowser>>defineAllRepositoriesInMCBrowserButton: aList [
 		entitled: 'Define all distribution catalog MC repositories'
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>defineCurrentVersionRepositoryButton: aList [
+{ #category : #menu }
+CatalogBrowser >> defineCurrentVersionRepositoryButton: aList [
 
 	<menuOrder: 7>
 	aList
@@ -174,28 +140,19 @@ CatalogBrowser>>defineCurrentVersionRepositoryButton: aList [
 		entitled: 'Define current distribution catalog MC repository'
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>defineCurrentVersionRepositoryInMCBrowser [
+{ #category : #actions }
+CatalogBrowser >> defineCurrentVersionRepositoryInMCBrowser [
 	MCRepositoryGroup default addRepository: (self repositoryObjectFromURLString: CatalogProject pharoDistributionRepository)
 ]
 
-{
-	#category : #'private - utilities',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>iconFor: project [
+{ #category : #'private - utilities' }
+CatalogBrowser >> iconFor: project [
 
 	^self class iconFor: project
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>installStableVersion: aProject onSuccess: aBlock [
+{ #category : #actions }
+CatalogBrowser >> installStableVersion: aProject onSuccess: aBlock [
 	aProject ifNil: [ ^self ].
 	aProject isAvailableForCurrentPharo 
 		ifFalse: [  
@@ -210,11 +167,8 @@ Do you want to continue (installation could fail)?' format: { aProject name. Sma
 		self inform: 'There was an error while trying to install ', aProject name, '. Installation was cancelled.' ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>installStableVersionButton: aList [
+{ #category : #menu }
+CatalogBrowser >> installStableVersionButton: aList [
 	<menuOrder: 2>
 	aList
 		act: [ :presenter | self onInstallFrom: presenter ]
@@ -222,11 +176,8 @@ CatalogBrowser>>installStableVersionButton: aList [
 		entitled: 'Install stable version'
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>installStableVersionMenuItem: aList [
+{ #category : #menu }
+CatalogBrowser >> installStableVersionMenuItem: aList [
 	<contextMenu>
 	aList 
 		selectionAct: [ :presenter | self onInstallFrom: presenter ] 
@@ -234,11 +185,8 @@ CatalogBrowser>>installStableVersionMenuItem: aList [
 		entitled: 'Install stable version'
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>loadConfiguration: aProject onSuccess: aBlock [
+{ #category : #actions }
+CatalogBrowser >> loadConfiguration: aProject onSuccess: aBlock [
 	[ 
 		aProject loadConfiguration.
 		aBlock value ] 
@@ -247,11 +195,8 @@ CatalogBrowser>>loadConfiguration: aProject onSuccess: aBlock [
 		self inform: 'There was an error while trying to load ', aProject name, '. Loading was cancelled.' ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>loadConfigurationButton: aList [
+{ #category : #menu }
+CatalogBrowser >> loadConfigurationButton: aList [
 	<menuOrder: 4>
 	aList
 		act: [ :presenter | self onLoadFrom: presenter ]
@@ -259,11 +204,8 @@ CatalogBrowser>>loadConfigurationButton: aList [
 		entitled: 'Load configuration (do not install project)'
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>loadConfigurationMenuItem: aList [
+{ #category : #menu }
+CatalogBrowser >> loadConfigurationMenuItem: aList [
 	<contextMenu>
 	aList 
 		selectionAct: [ :presenter | self onLoadFrom: presenter ] 
@@ -271,57 +213,39 @@ CatalogBrowser>>loadConfigurationMenuItem: aList [
 		entitled: 'Load configuration (do not install project)'
 ]
 
-{
-	#category : #'private - events',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>onInstallFrom: presenter [
+{ #category : #'private - events' }
+CatalogBrowser >> onInstallFrom: presenter [
 
 	self installStableVersion: presenter selection
 		  onSuccess: [ presenter update ]
 ]
 
-{
-	#category : #'private - events',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>onLoadFrom: presenter [
+{ #category : #'private - events' }
+CatalogBrowser >> onLoadFrom: presenter [
 	presenter selection ifNil: [ ^self ].
 	self loadConfiguration: presenter selection
 		  onSuccess: [ presenter update ]
 ]
 
-{
-	#category : #'private - events',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>onRefreshFrom: presenter [
+{ #category : #'private - events' }
+CatalogBrowser >> onRefreshFrom: presenter [
 
 	self refresh.
 	presenter pane browser update
 ]
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>open [
+{ #category : #showing }
+CatalogBrowser >> open [
 	^ self buildBrowser openOn: self provider
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>provider  [
+{ #category : #accessing }
+CatalogBrowser >> provider [ 
 	^ provider ifNil: [ provider := CatalogProvider default ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>refresh [
+{ #category : #actions }
+CatalogBrowser >> refresh [
 	[ UIManager default 
 		informUser: 'Refreshing catalog (invalidating cache)...'
 		during: [ self provider reset ] ]
@@ -330,11 +254,8 @@ CatalogBrowser>>refresh [
 		self inform: 'I cannot refresh catalog list. Please review your internet connection and try again!' ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>refreshButton: aList [
+{ #category : #building }
+CatalogBrowser >> refreshButton: aList [
 	<menuOrder: 10>
 	aList
 		act: [ :presenter | self onRefreshFrom: presenter ]
@@ -342,11 +263,8 @@ CatalogBrowser>>refreshButton: aList [
 		entitled: 'Refresh'
 ]
 
-{
-	#category : #'private - utilities',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogBrowser>>repositoryObjectFromURLString: aString [
+{ #category : #'private - utilities' }
+CatalogBrowser >> repositoryObjectFromURLString: aString [
 	"self new repositoryObjectFromURLString: 'blabla'"
 
 	^ MCHttpRepository location: aString user: Author fullName password: ''

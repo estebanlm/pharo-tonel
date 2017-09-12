@@ -11,76 +11,51 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #Glamour-Morphic-Pager-Morphic,
-	#timestamp : 'AndreiChis 5/27/2014 19:59'
+	#category : #Glamour-Morphic-Pager-Morphic
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerPanePreviewMorph class>>cleanUp [
+{ #category : #cleanup }
+GLMPagerPanePreviewMorph class >> cleanUp [
 	super cleanUp.
 	uniqueInstance := nil
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerPanePreviewMorph class>>remove [
+{ #category : #actions }
+GLMPagerPanePreviewMorph class >> remove [
 
 	self uniqueInstance delete.	
 	uniqueInstance := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerPanePreviewMorph class>>uniqueInstance [
+{ #category : #accessing }
+GLMPagerPanePreviewMorph class >> uniqueInstance [
 	^ uniqueInstance ifNil: [ uniqueInstance := GLMPagerPanePreviewMorph new ].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerPanePreviewMorph>>align: aPoint [
+{ #category : #actions }
+GLMPagerPanePreviewMorph >> align: aPoint [
 	
 	position := aPoint.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerPanePreviewMorph>>defaultBorderWidth [
+{ #category : #initialization }
+GLMPagerPanePreviewMorph >> defaultBorderWidth [
 	^ 5
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerPanePreviewMorph>>defaultBottomMargin [
+{ #category : #initialization }
+GLMPagerPanePreviewMorph >> defaultBottomMargin [
 	^ 11
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerPanePreviewMorph>>hideFromWorld [
+{ #category : #actions }
+GLMPagerPanePreviewMorph >> hideFromWorld [
 	"Remove the morph from the world"
 	self delete
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerPanePreviewMorph>>initialize [
+{ #category : #initialization }
+GLMPagerPanePreviewMorph >> initialize [
 	super initialize.
 
 	self color: Color transparent.
@@ -89,30 +64,21 @@ GLMPagerPanePreviewMorph>>initialize [
 	self borderWidth: self defaultBorderWidth.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerPanePreviewMorph>>maxExtent [
+{ #category : #initialization }
+GLMPagerPanePreviewMorph >> maxExtent [
 	^ 300@300.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerPanePreviewMorph>>showAt: aPoint [
+{ #category : #actions }
+GLMPagerPanePreviewMorph >> showAt: aPoint [
 
 	self 
 		openInWorld;
 		align: aPoint.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerPanePreviewMorph>>updateFor: aMorph [
+{ #category : #actions }
+GLMPagerPanePreviewMorph >> updateFor: aMorph [
 
 	thumbnail := aMorph taskThumbnailOfSize: self maxExtent.
 	self image: thumbnail form.

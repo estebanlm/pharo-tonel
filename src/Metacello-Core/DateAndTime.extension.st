@@ -1,20 +1,12 @@
-Extension {
-	#name : #DateAndTime
-}
+Extension { #name : #DateAndTime }
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-DateAndTime>>setTimestampInMetacelloConfig: aMetacelloConfig [
+{ #category : #'*Metacello-Core' }
+DateAndTime >> setTimestampInMetacelloConfig: aMetacelloConfig [
     aMetacelloConfig setTimestampWithString: self printString
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-DateAndTime>>setTimestampInMetacelloVersion: aMetacelloVersionSpec [
+{ #category : #'*Metacello-Core' }
+DateAndTime >> setTimestampInMetacelloVersion: aMetacelloVersionSpec [
 
 	aMetacelloVersionSpec setTimestamp: 
 		(aMetacelloVersionSpec project valueHolderSpec

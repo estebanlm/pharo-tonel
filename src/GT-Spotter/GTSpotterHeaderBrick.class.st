@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterHeaderBrick,
 	#superclass : #GLMBrick,
@@ -12,24 +9,17 @@ Class {
 		'settingsButton',
 		'helpButton'
 	],
-	#category : #GT-Spotter-UI,
-	#timestamp : ''
+	#category : #GT-Spotter-UI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>closeButton [
+{ #category : #accessing }
+GTSpotterHeaderBrick >> closeButton [
 
 	^ closeButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>closeButton: aBrick [
+{ #category : #accessing }
+GTSpotterHeaderBrick >> closeButton: aBrick [
 
 	closeButton ifNotNil: [self removeBrick: closeButton].
 	closeButton := aBrick.
@@ -45,20 +35,14 @@ GTSpotterHeaderBrick>>closeButton: aBrick [
 	self addBrickBack: closeButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>helpButton [
+{ #category : #accessing }
+GTSpotterHeaderBrick >> helpButton [
 
 	^ helpButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>helpButton: aBrick [
+{ #category : #accessing }
+GTSpotterHeaderBrick >> helpButton: aBrick [
 
 	| tree item |
 	helpButton ifNotNil: [self removeBrick: helpButton].
@@ -79,11 +63,8 @@ GTSpotterHeaderBrick>>helpButton: aBrick [
 	self addBrickBack: helpButton
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>initialize [
+{ #category : #initialization }
+GTSpotterHeaderBrick >> initialize [
 	super initialize.
 	
 	self searchField: self newSearchField.
@@ -94,88 +75,61 @@ GTSpotterHeaderBrick>>initialize [
 	
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>newCloseButton [
+{ #category : #'instance creation' }
+GTSpotterHeaderBrick >> newCloseButton [
 
 	^ GLMHintableActionButtonBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>newHelpButton [
+{ #category : #'instance creation' }
+GTSpotterHeaderBrick >> newHelpButton [
 
 	^ GLMHintableActionButtonBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>newSearchField [
+{ #category : #'instance creation' }
+GTSpotterHeaderBrick >> newSearchField [
 
 	^ GLMRubTextFieldBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>newSettingsButton [
+{ #category : #'instance creation' }
+GTSpotterHeaderBrick >> newSettingsButton [
 
 	^ GLMHintableActionButtonBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>newStepsBand [
+{ #category : #'instance creation' }
+GTSpotterHeaderBrick >> newStepsBand [
 
 	^ GLMBrick new
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>onCurrentStepChanged [
+{ #category : #'event handling' }
+GTSpotterHeaderBrick >> onCurrentStepChanged [
 
 	self searchField rubric updateTextWith: self spotterModel currentStep context text.
 	self searchField rubric selectFrom: self searchField rubric text size + 1 to: self searchField rubric text size
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>onHideHints [
+{ #category : #'event handling' }
+GTSpotterHeaderBrick >> onHideHints [
 
 	self themer spotterThemer hintHideStyleFor: self settingsButton.
 	self themer spotterThemer hintHideStyleFor: self closeButton.
 	self themer spotterThemer hintHideStyleFor: self helpButton.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>onRevealHints [
+{ #category : #'event handling' }
+GTSpotterHeaderBrick >> onRevealHints [
 
 	self themer spotterThemer hintRevealStyleFor: self settingsButton.
 	self themer spotterThemer hintRevealStyleFor: self closeButton.
 	self themer spotterThemer hintRevealStyleFor: self helpButton
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>onThemerChanged [
+{ #category : #brick-properties-events }
+GTSpotterHeaderBrick >> onThemerChanged [
 	super onThemerChanged.
 	
 	self themer spotterThemer headerWidgetStyleFor: self.
@@ -184,29 +138,20 @@ GTSpotterHeaderBrick>>onThemerChanged [
 	self themer spotterThemer settingsButtonWidgetStyleFor: self settingsButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>openSettingsBrowser [
+{ #category : #accessing }
+GTSpotterHeaderBrick >> openSettingsBrowser [
 	GLMPrivacyAgreementBrick openSettingsBrowser.
 	self spotterModel exitDueTo: #openSettingsBrowser.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>searchField [
+{ #category : #accessing }
+GTSpotterHeaderBrick >> searchField [
 
 	^ searchField
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>searchField: aBrick [
+{ #category : #accessing }
+GTSpotterHeaderBrick >> searchField: aBrick [
 
 	searchField := aBrick.
 	
@@ -217,20 +162,14 @@ GTSpotterHeaderBrick>>searchField: aBrick [
 	self addBrickBack: searchField
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>settingsButton [
+{ #category : #accessing }
+GTSpotterHeaderBrick >> settingsButton [
 
 	^ settingsButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>settingsButton: aBrick [
+{ #category : #accessing }
+GTSpotterHeaderBrick >> settingsButton: aBrick [
 
 	settingsButton ifNotNil: [self removeBrick: settingsButton].
 	settingsButton := aBrick.
@@ -246,20 +185,14 @@ GTSpotterHeaderBrick>>settingsButton: aBrick [
 	self addBrickBack: settingsButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>spotterModel [
+{ #category : #accessing }
+GTSpotterHeaderBrick >> spotterModel [
 
 	^ spotterModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHeaderBrick>>spotterModel: aModel  [
+{ #category : #accessing }
+GTSpotterHeaderBrick >> spotterModel: aModel [ 
 
 	spotterModel := aModel.
 	self searchField morph on: spotterModel.

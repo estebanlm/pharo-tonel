@@ -12,48 +12,32 @@ Class {
 	#instVars : [
 		'timestamp'
 	],
-	#category : #System-Caching,
-	#timestamp : 'SvenVanCaekenberghe 2/9/2015 15:23'
+	#category : #System-Caching
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TTLAssociation>>isStale: timeToLive [
+{ #category : #testing }
+TTLAssociation >> isStale: timeToLive [
 	^ self now - timestamp >= timeToLive
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TTLAssociation>>key: aKey value: anObject  [
+{ #category : #accessing }
+TTLAssociation >> key: aKey value: anObject [ 
 	super key: aKey value: anObject.
 	timestamp := self now
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TTLAssociation>>now [
+{ #category : #accessing }
+TTLAssociation >> now [
 	^ Time totalSeconds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TTLAssociation>>timestamp [
+{ #category : #accessing }
+TTLAssociation >> timestamp [
 	^ timestamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TTLAssociation>>value: anObject [
+{ #category : #accessing }
+TTLAssociation >> value: anObject [
 	super value: anObject.
 	timestamp := self now
 ]

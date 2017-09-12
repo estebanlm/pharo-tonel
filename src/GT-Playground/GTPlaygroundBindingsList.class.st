@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #GTPlaygroundBindingsList,
 	#superclass : #GLMFallbackScrollListBrick,
-	#category : #GT-Playground,
-	#timestamp : ''
+	#category : #GT-Playground
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlaygroundBindingsList>>hideActionsOf: aRowBrick [
+{ #category : #actions }
+GTPlaygroundBindingsList >> hideActionsOf: aRowBrick [
 	aRowBrick subbricks select: [ :each | each isKindOf: GLMHintableActionButtonBrick ] thenDo: [ :each | each visible: false ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlaygroundBindingsList>>initialize [
+{ #category : #initialization }
+GTPlaygroundBindingsList >> initialize [
 	super initialize.
 	
 	self
@@ -30,11 +20,8 @@ GTPlaygroundBindingsList>>initialize [
 		width: 300
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlaygroundBindingsList>>newActionButton [
+{ #category : #'instance creation' }
+GTPlaygroundBindingsList >> newActionButton [
 	|margin padding|
 	margin := self themer bindingThemer padding + self themer bindingThemer borderWidth.
 	padding := (margin / 2) rounded.
@@ -49,11 +36,8 @@ GTPlaygroundBindingsList>>newActionButton [
 		pressedColor: self themer buttonPressedColor
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlaygroundBindingsList>>newBindingLabel [
+{ #category : #'instance creation' }
+GTPlaygroundBindingsList >> newBindingLabel [
 
 	^ GLMLabelBrick new
 		hSpaceFill: 50;
@@ -63,11 +47,8 @@ GTPlaygroundBindingsList>>newBindingLabel [
 		padding: { 0 . self themer bindingThemer padding }
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlaygroundBindingsList>>newBindingRow: anAssociation in: aCollection [
+{ #category : #'instance creation' }
+GTPlaygroundBindingsList >> newBindingRow: anAssociation [ in: aCollection
 
 	^ self newRow
 		borderWidth: { 0 . 0 . aCollection last == anAssociation ifTrue: [ 0 ] ifFalse: [ self themer bindingThemer borderWidth ] . 0 };
@@ -86,11 +67,8 @@ GTPlaygroundBindingsList>>newBindingRow: anAssociation in: aCollection [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlaygroundBindingsList>>newEmptyText [
+{ #category : #'instance creation' }
+GTPlaygroundBindingsList >> newEmptyText [
 
 	^ GLMLabelBrick new
 			text: 'No bindings';
@@ -102,11 +80,8 @@ GTPlaygroundBindingsList>>newEmptyText [
 			yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlaygroundBindingsList>>newGoButtonFor: anAssociation [
+{ #category : #'instance creation' }
+GTPlaygroundBindingsList >> newGoButtonFor: anAssociation [
 
 	^ self newActionButton
 		hintTitle: 'Go';
@@ -115,11 +90,8 @@ GTPlaygroundBindingsList>>newGoButtonFor: anAssociation [
 		action: [ : b | self remove. self announce: #go event: anAssociation. ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlaygroundBindingsList>>newInspectButtonFor: anAssociation [
+{ #category : #'instance creation' }
+GTPlaygroundBindingsList >> newInspectButtonFor: anAssociation [
 
 	^ self newActionButton
 		hintTitle: 'Inspect';
@@ -128,11 +100,8 @@ GTPlaygroundBindingsList>>newInspectButtonFor: anAssociation [
 		action: [ : b | self remove. self announce: #inspect event: anAssociation. ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlaygroundBindingsList>>newRemoveButtonFor: anAssociation [
+{ #category : #'instance creation' }
+GTPlaygroundBindingsList >> newRemoveButtonFor: anAssociation [
 
 	^ self newActionButton
 		beError;
@@ -149,11 +118,8 @@ GTPlaygroundBindingsList>>newRemoveButtonFor: anAssociation [
 				animate: b owner ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlaygroundBindingsList>>newRow [
+{ #category : #'instance creation' }
+GTPlaygroundBindingsList >> newRow [
 
 	^ GLMInteractableBrick new
 		enable;
@@ -164,11 +130,8 @@ GTPlaygroundBindingsList>>newRow [
 		borderColor: self themer bindingThemer borderColor
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlaygroundBindingsList>>on: aBindingsCollection [
+{ #category : #'instance creation' }
+GTPlaygroundBindingsList >> on: aBindingsCollection [
 	|model|
 	model := GLMBrickListModel new
 		on: aBindingsCollection.
@@ -177,30 +140,21 @@ GTPlaygroundBindingsList>>on: aBindingsCollection [
 	self model: model
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlaygroundBindingsList>>onThemerChanged [
+{ #category : #brick-properties-events }
+GTPlaygroundBindingsList >> onThemerChanged [
 	super onThemerChanged.
 	
 	self doLayoutForce
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlaygroundBindingsList>>remove [
+{ #category : #actions }
+GTPlaygroundBindingsList >> remove [
 
 	(self ownerThatIsA:  GLMFoundationBrick)
 		ifNotNil: [ :o | o delete ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlaygroundBindingsList>>showActionsOf: aRowBrick [
+{ #category : #actions }
+GTPlaygroundBindingsList >> showActionsOf: aRowBrick [
 	aRowBrick subbricks select: [ :each | each isKindOf: GLMHintableActionButtonBrick ] thenDo: [ :each | each visible: true ]
 ]

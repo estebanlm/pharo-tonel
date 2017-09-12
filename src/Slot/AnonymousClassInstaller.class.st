@@ -5,62 +5,34 @@ As it's name suggest it is used for anonymous classes, for instance in Tests.
 Class {
 	#name : #AnonymousClassInstaller,
 	#superclass : #AbstractClassInstaller,
-	#category : #Slot-ClassBuilder,
-	#timestamp : '<historical>'
+	#category : #Slot-ClassBuilder
 }
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AnonymousClassInstaller>>classAdded: aClass inCategory: aCategory [
-
+{ #category : #notifications }
+AnonymousClassInstaller >> classAdded: aClass inCategory: aCategory [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AnonymousClassInstaller>>classAt: aName ifAbsent: aBlock [
+{ #category : #accessing }
+AnonymousClassInstaller >> classAt: aName ifAbsent: aBlock [
 	^ aBlock value
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AnonymousClassInstaller>>classDefinitionDeeplyChangedFrom: oldClass to: newClass by: classModification [
-
+{ #category : #notifications }
+AnonymousClassInstaller >> classDefinitionDeeplyChangedFrom: oldClass to: newClass by: classModification [
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AnonymousClassInstaller>>classDefinitionShallowChangedFrom: oldClass to: newClass by: classModification [
-
+{ #category : #notifications }
+AnonymousClassInstaller >> classDefinitionShallowChangedFrom: oldClass to: newClass by: classModification [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AnonymousClassInstaller>>environment: anEnvironment [
-
+{ #category : #accessing }
+AnonymousClassInstaller >> environment: anEnvironment [
 ]
 
-{
-	#category : #migrating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AnonymousClassInstaller>>migrateClasses: old to: new using: anInstanceModification [
-
+{ #category : #migrating }
+AnonymousClassInstaller >> migrateClasses: old to: new using: anInstanceModification [
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AnonymousClassInstaller>>recategorize: aClass to: aCategory [
-
+{ #category : #notifications }
+AnonymousClassInstaller >> recategorize: aClass to: aCategory [
 ]

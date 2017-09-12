@@ -8,15 +8,11 @@ Class {
 		'oldClass',
 		'newClass'
 	],
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 14:45'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpClassModification class>>oldClass: anOldClass newClass: aNewClass [
+{ #category : #'instance creation' }
+EpClassModification class >> oldClass: anOldClass newClass: aNewClass [
 
 	^ self basicNew
 		initializeOldClass: anOldClass
@@ -25,46 +21,31 @@ EpClassModification class>>oldClass: anOldClass newClass: aNewClass [
 
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpClassModification>>accept: aVisitor [
+{ #category : #visitor }
+EpClassModification >> accept: aVisitor [
 
 	^ aVisitor visitClassModification: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpClassModification>>behaviorAffected [
+{ #category : #accessing }
+EpClassModification >> behaviorAffected [
 	^ newClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpClassModification>>behaviorAffectedName [
+{ #category : #accessing }
+EpClassModification >> behaviorAffectedName [
 	^ newClass name
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpClassModification>>hasMetaclassChanges [
+{ #category : #testing }
+EpClassModification >> hasMetaclassChanges [
 	"FIX should compare metaclasses as a whole"
 
 	^ oldClass theMetaClass instVarNames ~= newClass theMetaClass instVarNames
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpClassModification>>hasNonMetaclassChanges [
+{ #category : #testing }
+EpClassModification >> hasNonMetaclassChanges [
 
 	^ oldClass classVarNames ~= newClass classVarNames
 		or: [ oldClass instVarNames ~= newClass instVarNames
@@ -72,31 +53,22 @@ EpClassModification>>hasNonMetaclassChanges [
 						or: [ oldClass superclassName ~= newClass superclassName ] ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpClassModification>>initializeOldClass: anOldClass newClass: aNewClass [
+{ #category : #initialization }
+EpClassModification >> initializeOldClass: anOldClass newClass: aNewClass [
 
 	self initialize.
 	oldClass := anOldClass asEpiceaRingDefinition theNonMetaClass.
 	newClass := aNewClass asEpiceaRingDefinition theNonMetaClass.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpClassModification>>newClass [
+{ #category : #accessing }
+EpClassModification >> newClass [
 
 	^ newClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpClassModification>>oldClass [
+{ #category : #accessing }
+EpClassModification >> oldClass [
 
 	^ oldClass
 ]

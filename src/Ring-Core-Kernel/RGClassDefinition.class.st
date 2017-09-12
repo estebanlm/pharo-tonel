@@ -12,15 +12,11 @@ Class {
 		'package',
 		'sharedPools'
 	],
-	#category : #Ring-Core-Kernel,
-	#timestamp : 'VeronicaUquillas 4/19/2011 16:01'
+	#category : #Ring-Core-Kernel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition class>>createSharedPoolNamed: aSymbol [
+{ #category : #'instance creation' }
+RGClassDefinition class >> createSharedPoolNamed: aSymbol [
 	"A shared pool is a class inheriting from #SharedPool"
 
 	^(RGClassDefinition named: aSymbol)
@@ -29,70 +25,49 @@ RGClassDefinition class>>createSharedPoolNamed: aSymbol [
 			yourself
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>addClassVarNamed: aString [
+{ #category : #'class variables' }
+RGClassDefinition >> addClassVarNamed: aString [
 	| var |
 	var := (RGClassVariableDefinition named: aString) parent: self.
 	self addVariable: var in: classVariables.
 	^var
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>addClassVariable: aRCClassVariable [
+{ #category : #'class variables' }
+RGClassDefinition >> addClassVariable: aRCClassVariable [
 
 	self addVariable: (aRCClassVariable parent: self) 
 		in: classVariables
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>addClassVariables: aCollection [
+{ #category : #'class variables' }
+RGClassDefinition >> addClassVariables: aCollection [
 	
 	aCollection do: [:var | self addClassVarNamed: var ]
 ]
 
-{
-	#category : #'shared pools',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>addSharedPool: aRGPoolVariableDefinition [
+{ #category : #'shared pools' }
+RGClassDefinition >> addSharedPool: aRGPoolVariableDefinition [
 	self 
 		addVariable: (aRGPoolVariableDefinition parent: self) 
 		in: sharedPools
 ]
 
-{
-	#category : #'shared pools',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>addSharedPoolNamed: poolName [
+{ #category : #'shared pools' }
+RGClassDefinition >> addSharedPoolNamed: poolName [
 	| pool |
 	pool:= (RGPoolVariableDefinition named:  poolName) parent: self.
 	self addVariable: pool in: sharedPools.
 	^pool
 ]
 
-{
-	#category : #'shared pools',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>addSharedPools: aCollection [
+{ #category : #'shared pools' }
+RGClassDefinition >> addSharedPools: aCollection [
 	aCollection do: [ :pool | self addSharedPoolNamed: pool ]
 ]
 
-{
-	#category : #'managing pool users',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>addUser: aRGClassDefinition [
+{ #category : #'managing pool users' }
+RGClassDefinition >> addUser: aRGClassDefinition [
 	"The receiver registers the aRGClassDefinition as an user.  An reinforces its status as a shared pool."
 	
 	aRGClassDefinition isClass ifFalse:[ ^self ].
@@ -102,20 +77,14 @@ RGClassDefinition>>addUser: aRGClassDefinition [
 	self users add: aRGClassDefinition theNonMetaClass
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>allClassVarNames [
+{ #category : #'class variables' }
+RGClassDefinition >> allClassVarNames [
 
 	^self allClassVariables collect:[ :cvar| cvar name ]
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>allClassVariables [
+{ #category : #'class variables' }
+RGClassDefinition >> allClassVariables [
 	"Answer a collection of the receiver's classVariables, including those defined its superclasses"
 
 	^self hasSuperclass 
@@ -123,19 +92,13 @@ RGClassDefinition>>allClassVariables [
 		ifTrue:[ self superclass allClassVariables, classVariables ]
 ]
 
-{
-	#category : #'shared pools',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>allSharedPoolNames [
+{ #category : #'shared pools' }
+RGClassDefinition >> allSharedPoolNames [
 	^ self allSharedPools collect: [ :pool | pool name ]
 ]
 
-{
-	#category : #'shared pools',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>allSharedPools [
+{ #category : #'shared pools' }
+RGClassDefinition >> allSharedPools [
 	"Answer a collection of the pools the receiver shares, including those defined  
 	in the superclasses of the receiver."
 
@@ -144,78 +107,54 @@ RGClassDefinition>>allSharedPools [
 		ifTrue: [ self superclass allSharedPools , sharedPools ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>category [
+{ #category : #accessing }
+RGClassDefinition >> category [
 	"retrieves a tag for its package"
 	
 	^category
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>category: aSymbol [
+{ #category : #accessing }
+RGClassDefinition >> category: aSymbol [
 	"stores a tag for its package"
 
 	category := aSymbol
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>classVarNamed: aString [
+{ #category : #'class variables' }
+RGClassDefinition >> classVarNamed: aString [
 
 	^classVariables detect:[ :v| v name = aString asSymbol ] ifNone:[ nil ]
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>classVarNames [
+{ #category : #'class variables' }
+RGClassDefinition >> classVarNames [
 	"Answer a collection of the names of the class variables defined in the receiver."
 	
 	^classVariables collect:[ :cvar| cvar name ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>classVariables [
+{ #category : #accessing }
+RGClassDefinition >> classVariables [
 
 	^classVariables
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>classVariables: aCollection [
+{ #category : #accessing }
+RGClassDefinition >> classVariables: aCollection [
 
 	classVariables:= aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>comment [
+{ #category : #accessing }
+RGClassDefinition >> comment [
 	"Retrieves the comment definition object"
 
 	^comment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>comment: anObject [
+{ #category : #accessing }
+RGClassDefinition >> comment: anObject [
 	"Sets a RGCommentDefinition object based on the argument"
 	
 	comment := anObject isRingObject 
@@ -229,78 +168,54 @@ RGClassDefinition>>comment: anObject [
 	 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>hasComment [
+{ #category : #testing }
+RGClassDefinition >> hasComment [
 
 	^comment isEmptyOrNil not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>hasMetaclass [
+{ #category : #testing }
+RGClassDefinition >> hasMetaclass [
 
 	^metaClass notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>hasStamp [
+{ #category : #testing }
+RGClassDefinition >> hasStamp [
 
 	^self stamp isEmptyOrNil not
 ]
 
-{
-	#category : #'managing pool users',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>includesUser: aRGBehaviorDefinition [
+{ #category : #'managing pool users' }
+RGClassDefinition >> includesUser: aRGBehaviorDefinition [
 
 	^self users includes: aRGBehaviorDefinition
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>initialize [
+{ #category : #initialization }
+RGClassDefinition >> initialize [
 
 	super initialize.
 	classVariables:= OrderedCollection new.
 	sharedPools:= OrderedCollection new.
 ]
 
-{
-	#category : #'managing pool users',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>isPool [
+{ #category : #'managing pool users' }
+RGClassDefinition >> isPool [
 	"The receiver is a shared pool if it inherits from SharedPool"
 	
 	^self annotationNamed: self class isPoolKey 
 		ifAbsent: [ self superclassName == #SharedPool ]
 ]
 
-{
-	#category : #'managing pool users',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>isPool: aBoolean [
+{ #category : #'managing pool users' }
+RGClassDefinition >> isPool: aBoolean [
 	
 	^self annotationNamed: self class isPoolKey put: aBoolean
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>isSameRevisionAs: aRGClassDefinition [
+{ #category : #testing }
+RGClassDefinition >> isSameRevisionAs: aRGClassDefinition [
 	"This method look for equality of the properties of the receiver"
 
 	^(super isSameRevisionAs: aRGClassDefinition)
@@ -313,67 +228,46 @@ RGClassDefinition>>isSameRevisionAs: aRGClassDefinition [
 		and:[ (self theMetaClass isSameRevisionAs: aRGClassDefinition theMetaClass) ] ] ] ] ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>package [
+{ #category : #accessing }
+RGClassDefinition >> package [
 	"Retrieves the package in which this class is contained, if exists"
 	
 	^package
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>package: aRGPackage [
+{ #category : #accessing }
+RGClassDefinition >> package: aRGPackage [
 	"Sets the package in which this class is contained"
 	
 	package:= aRGPackage
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>removeClassVarNamed: aString [
+{ #category : #'class variables' }
+RGClassDefinition >> removeClassVarNamed: aString [
 
 	self removeVariable: (self classVarNamed: aString) from: classVariables
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>removeClassVariable: aRGClassVariableDefinition [
+{ #category : #'class variables' }
+RGClassDefinition >> removeClassVariable: aRGClassVariableDefinition [
 
 	self removeVariable: aRGClassVariableDefinition from: classVariables
 ]
 
-{
-	#category : #'shared pools',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>removeSharedPool: aRGPoolVariableDefinition [
+{ #category : #'shared pools' }
+RGClassDefinition >> removeSharedPool: aRGPoolVariableDefinition [
 
 	self removeVariable: aRGPoolVariableDefinition from: sharedPools
 ]
 
-{
-	#category : #'shared pools',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>removeSharedPoolNamed: poolName [
+{ #category : #'shared pools' }
+RGClassDefinition >> removeSharedPoolNamed: poolName [
 
 	self removeVariable: (self sharedPoolNamed: poolName) from: sharedPools
 ]
 
-{
-	#category : #'managing pool users',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>removeUser: aRGClassDefinition [
+{ #category : #'managing pool users' }
+RGClassDefinition >> removeUser: aRGClassDefinition [
 	"Removes this RGClassDefinition from the users of the receiver"
 	
 	aRGClassDefinition isClass ifFalse:[ ^self ].
@@ -381,56 +275,38 @@ RGClassDefinition>>removeUser: aRGClassDefinition [
 	self users remove: aRGClassDefinition theNonMetaClass ifAbsent:[ ]
 ]
 
-{
-	#category : #'shared pools',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>sharedPoolNamed: poolName [
+{ #category : #'shared pools' }
+RGClassDefinition >> sharedPoolNamed: poolName [
 
 	^sharedPools detect:[ :v| v name = poolName asSymbol ] ifNone:[ nil ]
 ]
 
-{
-	#category : #'shared pools',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>sharedPoolNames [
+{ #category : #'shared pools' }
+RGClassDefinition >> sharedPoolNames [
 	
 	^sharedPools collect:[ :pool| pool name ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>sharedPools [
+{ #category : #accessing }
+RGClassDefinition >> sharedPools [
 	"Keeps the pool variable relationship of the receiver"
 
 	^ sharedPools
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>sharedPools: aCollection [
+{ #category : #accessing }
+RGClassDefinition >> sharedPools: aCollection [
 	sharedPools := aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>stamp [
+{ #category : #accessing }
+RGClassDefinition >> stamp [
 
 	^self hasComment ifTrue:[ self comment stamp ] ifFalse:[ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>stamp: aString [
+{ #category : #accessing }
+RGClassDefinition >> stamp: aString [
 
 	self hasComment
 	ifTrue: [ self comment stamp: aString ]
@@ -439,29 +315,20 @@ RGClassDefinition>>stamp: aString [
 						 stamp: aString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>theMetaClass [
+{ #category : #accessing }
+RGClassDefinition >> theMetaClass [
 	
 	^metaClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>theNonMetaClass [
+{ #category : #accessing }
+RGClassDefinition >> theNonMetaClass [
 
 	^self
 ]
 
-{
-	#category : #'managing pool users',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>users [
+{ #category : #'managing pool users' }
+RGClassDefinition >> users [
 	"If the reciever is a SharedPool then retrieves its users"
 	
 	^self isPool
@@ -469,22 +336,16 @@ RGClassDefinition>>users [
 		ifFalse:[ #() ]
 ]
 
-{
-	#category : #behavior,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>withMetaclass [
+{ #category : #behavior }
+RGClassDefinition >> withMetaclass [
 	"Registers explicitly the metaclass of a class"
 
 	metaClass:= RGMetaclassDefinition class: self
 
 ]
 
-{
-	#category : #behavior,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGClassDefinition>>withMetaclass: aRGMetaclassDefinition [
+{ #category : #behavior }
+RGClassDefinition >> withMetaclass: aRGMetaclassDefinition [
 	"Registers explicitly the metaclass of a class"
 
 	metaClass:= aRGMetaclassDefinition.

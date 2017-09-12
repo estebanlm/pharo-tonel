@@ -17,62 +17,43 @@ Class {
 		'arcLengths',
 		'subMorph'
 	],
-	#category : #Morphic-Widgets-Pluggable,
-	#timestamp : 'KLC 9/17/2004 11:27'
+	#category : #Morphic-Widgets-Pluggable
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph class>>on: anObject label: getTextSelector [
+{ #category : #'instance creation' }
+PluggableTabButtonMorph class >> on: anObject label: getTextSelector [
 	^self new
 	      model: anObject;
 		textSelector: getTextSelector;
 		yourself.
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>active [
+{ #category : #access }
+PluggableTabButtonMorph >> active [
 	active ifNil: [ active := false ].
 	^ active
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>active: aBoolean [
+{ #category : #access }
+PluggableTabButtonMorph >> active: aBoolean [
 	active := aBoolean.
 	self changed.
 ]
 
-{
-	#category : #'private - access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>arcLengths [
+{ #category : #'private - access' }
+PluggableTabButtonMorph >> arcLengths [
 	arcLengths ifNil: [ self calculateArcLengths ].
 	^ arcLengths
 ]
 
-{
-	#category : #'private - access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>arcLengths: anArrayOfIntegers [
+{ #category : #'private - access' }
+PluggableTabButtonMorph >> arcLengths: anArrayOfIntegers [
 	arcLengths := anArrayOfIntegers
 
 ]
 
-{
-	#category : #precalculations,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>calculateArcLengths [
+{ #category : #precalculations }
+PluggableTabButtonMorph >> calculateArcLengths [
 	| array radius |
 	radius := self cornerRadius.
 	array := Array new: radius.
@@ -85,29 +66,20 @@ PluggableTabButtonMorph>>calculateArcLengths [
 	self arcLengths: array
 ]
 
-{
-	#category : #'private - access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>cornerRadius [
+{ #category : #'private - access' }
+PluggableTabButtonMorph >> cornerRadius [
 	^ 5
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+PluggableTabButtonMorph >> drawOn: aCanvas [
 	self drawTabOn: aCanvas.
 	self drawSubMorphOn: aCanvas
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>drawSubMorphOn: aCanvas [
+{ #category : #drawing }
+PluggableTabButtonMorph >> drawSubMorphOn: aCanvas [
 	| morphBounds |
 	morphBounds := self bounds insetBy: (self cornerRadius + 3) @ (self topInactiveGap // 2 + 2).
 	morphBounds := morphBounds translateBy: 0@(self topInactiveGap // 2 + 1).
@@ -126,11 +98,8 @@ PluggableTabButtonMorph>>drawSubMorphOn: aCanvas [
 	aCanvas drawMorph: self subMorph
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>drawTabOn: aCanvas [
+{ #category : #drawing }
+PluggableTabButtonMorph >> drawTabOn: aCanvas [
 	| top myColor cornerRadius myArcLengths myBounds |
 	cornerRadius := self cornerRadius.
 	myBounds := self bounds.
@@ -174,146 +143,98 @@ PluggableTabButtonMorph>>drawTabOn: aCanvas [
 
 ]
 
-{
-	#category : #event,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>handlesKeyboard: evt [
+{ #category : #event }
+PluggableTabButtonMorph >> handlesKeyboard: evt [
 	"Yes, we do it here."
 	
 	^true
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>innerExtent: aPoint [
+{ #category : #access }
+PluggableTabButtonMorph >> innerExtent: aPoint [
 	"Set the extent based on the primary visible part of the tab.  In other words add twice the cornerRadius to this extent"
 	self extent: (aPoint x + (self cornerRadius * 2)) @ (aPoint y)
 ]
 
-{
-	#category : #event,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>keyStroke: event [
+{ #category : #event }
+PluggableTabButtonMorph >> keyStroke: event [
 
 	(self navigationKey: event) ifTrue: [^self].
 	super keyStroke: event
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>model [
+{ #category : #access }
+PluggableTabButtonMorph >> model [
 	^ model
 
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>model: anObject [
+{ #category : #access }
+PluggableTabButtonMorph >> model: anObject [
 	model := anObject
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>outerGap [
+{ #category : #access }
+PluggableTabButtonMorph >> outerGap [
 	"The horizontal distance of the outer left and right edges of the tab excluding the inner visible part"
 	^ self cornerRadius * 2
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>step [
+{ #category : #stepping }
+PluggableTabButtonMorph >> step [
 	self subMorph step.
 	self changed.
 
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>stepTime [
+{ #category : #stepping }
+PluggableTabButtonMorph >> stepTime [
 	^ self subMorph stepTime
 
 ]
 
-{
-	#category : #'private - access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>subMorph [
+{ #category : #'private - access' }
+PluggableTabButtonMorph >> subMorph [
 	subMorph ifNil: [ self update: self textSelector ].
 	^ subMorph
 ]
 
-{
-	#category : #'private - access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>subMorph: aMorph [
+{ #category : #'private - access' }
+PluggableTabButtonMorph >> subMorph: aMorph [
 	subMorph := aMorph
 
 ]
 
-{
-	#category : #event,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>takesKeyboardFocus [
+{ #category : #event }
+PluggableTabButtonMorph >> takesKeyboardFocus [
 	"Answer whether the receiver can normally take keyboard focus."
 
 	^true
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>textSelector [
+{ #category : #access }
+PluggableTabButtonMorph >> textSelector [
 	^ textSelector
 
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>textSelector: aSymbol [
+{ #category : #access }
+PluggableTabButtonMorph >> textSelector: aSymbol [
 	textSelector := aSymbol
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>toggle [
+{ #category : #actions }
+PluggableTabButtonMorph >> toggle [
 	self active: self active not
 ]
 
-{
-	#category : #'private - access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>topInactiveGap [
+{ #category : #'private - access' }
+PluggableTabButtonMorph >> topInactiveGap [
 	^ 5
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>update: aSelector [
+{ #category : #updating }
+PluggableTabButtonMorph >> update: aSelector [
 	self textSelector
 		ifNotNil: [ 
 			aSelector = self textSelector
@@ -326,10 +247,7 @@ PluggableTabButtonMorph>>update: aSelector [
 	self changed
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTabButtonMorph>>wantsSteps [
+{ #category : #stepping }
+PluggableTabButtonMorph >> wantsSteps [
 	^ self subMorph wantsSteps
 ]

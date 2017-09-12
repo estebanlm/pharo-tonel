@@ -28,75 +28,53 @@ Class {
 		'deferredEndEntry',
 		'stepContents'
 	],
-	#category : #Transcript,
-	#timestamp : 'SvenVanCaekenberghe 5/12/2015 14:39'
+	#category : #Transcript
 }
 
-{
-	#category : #declare,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript class>>install [
+{ #category : #declare }
+ThreadSafeTranscript class >> install [
 
 	self installThreadSafeAsTranscript
 ]
 
-{
-	#category : #declare,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript class>>installThreadSafeAsSTranscript [
+{ #category : #declare }
+ThreadSafeTranscript class >> installThreadSafeAsSTranscript [
 
 	Smalltalk globals at: #STranscript put: (self new)
 	
 	"ThreadSafeTranscript open"
 ]
 
-{
-	#category : #declare,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript class>>installThreadSafeAsTranscript [
+{ #category : #declare }
+ThreadSafeTranscript class >> installThreadSafeAsTranscript [
 
 	Smalltalk globals at: #Transcript put: (self new)
 
 	"ThreadSafeTranscript open"
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript class>>taskbarIconName [
+{ #category : #icons }
+ThreadSafeTranscript class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^#transcriptIcon
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>><< anObject [
+{ #category : #streaming }
+ThreadSafeTranscript >> << anObject [
 	"Output anObject asString on the receiver and show the output"
 	
 	self show: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>characterLimit [
+{ #category : #accessing }
+ThreadSafeTranscript >> characterLimit [
 
 	^ 20000
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>clear  [
+{ #category : #streaming }
+ThreadSafeTranscript >> clear [ 
 "	Clear all characters by resetting the stream and voiding any previously flagged deferredEndEntry.
 	Redisplays the view by signalling for #step to send #changed: .
 "	
@@ -107,21 +85,15 @@ ThreadSafeTranscript>>clear  [
 			stream reset ]
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>close [
+{ #category : #streaming }
+ThreadSafeTranscript >> close [
 	self flush.
 	self critical: [ stream close ]
 	
 ]
 
-{
-	#category : #'protected low level',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>contents  [
+{ #category : #'protected low level' }
+ThreadSafeTranscript >> contents [ 
 "	Cannot directly return == stream contents == since Morphic assumes multiple calls will return 
 	the same value within the one cycle.  WorldState>>runStepMethodsIn:  sends #step to 
 	do == stepContents := stream contents ==.
@@ -129,70 +101,49 @@ ThreadSafeTranscript>>contents  [
 	^ stepContents
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>cr [
+{ #category : #streaming }
+ThreadSafeTranscript >> cr [
 	"Output a cr on the receiver, buffered and not yet shown"
 	
 	self nextPut: Character cr
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>crShow: anObject [
+{ #category : #streaming }
+ThreadSafeTranscript >> crShow: anObject [
 	"Output anObject asString on the receiver preceded by a cr and show the output"
 	
 	self critical: [ self cr; show: anObject ]
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>critical: block [
+{ #category : #streaming }
+ThreadSafeTranscript >> critical: block [
 	"Execute block making sure only one thread accesses the receiver"
 
 	^ accessSemaphore critical: block 
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>endEntry [
+{ #category : #streaming }
+ThreadSafeTranscript >> endEntry [
 "	Signal to #step to display all the characters since the last #step. 
 	Stream is reset there.
 "  
   	self critical: [ deferredEndEntry := true ].
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>flush [
+{ #category : #streaming }
+ThreadSafeTranscript >> flush [
 	self endEntry
 
 ]
 
-{
-	#category : #'ui building',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>initialExtent [
+{ #category : #'ui building' }
+ThreadSafeTranscript >> initialExtent [
 	
 	^447@300
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>initialize [
+{ #category : #initialization }
+ThreadSafeTranscript >> initialize [
  
 	super initialize.
 	accessSemaphore := Mutex new.
@@ -204,92 +155,65 @@ ThreadSafeTranscript>>initialize [
 	
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>isSelfEvaluating [
+{ #category : #printing }
+ThreadSafeTranscript >> isSelfEvaluating [
 
 	self == Transcript ifTrue: [^true].
 	^super isSelfEvaluating
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>menu [
+{ #category : #accessing }
+ThreadSafeTranscript >> menu [
 	" return nil to let the editing mode build the right menu"
 	^nil
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>nextPut: value [
+{ #category : #streaming }
+ThreadSafeTranscript >> nextPut: value [
 	"Output character on the receiver, buffered, not yet shown"
 
 	self critical: [ stream nextPut: value ].
 	^ value
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>nextPutAll: value [
+{ #category : #streaming }
+ThreadSafeTranscript >> nextPutAll: value [
 	"Output string on the receiver, buffered, not yet shown"
 
 	self critical: [ stream nextPutAll: value ].
 	^ value
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>print: anObject [
+{ #category : #streaming }
+ThreadSafeTranscript >> print: anObject [
 	"Output anObject asString on the receiver, buffered, not yet shown"
 	
 	self nextPutAll: anObject asString
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>printOn: aStream [
+{ #category : #printing }
+ThreadSafeTranscript >> printOn: aStream [
 
 	self == Transcript ifFalse: [^super printOn: aStream].
 	aStream nextPutAll: 'Transcript'
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>show: anObject [
+{ #category : #streaming }
+ThreadSafeTranscript >> show: anObject [
 	"Output anObject asString on the receiver and show the output"
 	
 	self critical: [ self print: anObject; endEntry ]
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>space [
+{ #category : #streaming }
+ThreadSafeTranscript >> space [
 	"Output a space on the receiver, buffered and not yet shown"
 
 	self nextPut: Character space
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>stepGlobal [
+{ #category : #updating }
+ThreadSafeTranscript >> stepGlobal [
 "	The superclass method Model>>step indicates a convention that might be used to interoperate 
 	synchronously with the UI-thread.  However when multiple Transcript windows are open, their 
 	PluggableTextMorphs share a single instance, from the global Transcript.  To avoid potential trouble, 
@@ -321,21 +245,15 @@ ThreadSafeTranscript>>stepGlobal [
 	
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>tab [
+{ #category : #streaming }
+ThreadSafeTranscript >> tab [
 	"Output a tab on the receiver, buffered and not yet shown"
 
 	self nextPut: Character tab
 ]
 
-{
-	#category : #'ui building',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ThreadSafeTranscript>>title [
+{ #category : #'ui building' }
+ThreadSafeTranscript >> title [
 
 	^ 'Transcript'
 ]

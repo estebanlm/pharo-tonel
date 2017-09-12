@@ -33,121 +33,81 @@ Class {
 		'previousPersistence',
 		'checker'
 	],
-	#category : #System-Identification,
-	#timestamp : 'JurajKubelka 10/30/2015 16:53'
+	#category : #System-Identification
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence class>>fuel [
+{ #category : #'instance creation' }
+GlobalIdentifierPersistence class >> fuel [
 	^ GlobalIdentifierFuelPersistence new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence class>>ston [
+{ #category : #'instance creation' }
+GlobalIdentifierPersistence class >> ston [
 	^ GlobalIdentifierStonPersistence new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>checker [
+{ #category : #accessing }
+GlobalIdentifierPersistence >> checker [
 	"Return a GlobalIdentifierPersistenceChecker object."
 	^ checker ifNil: [ checker := GlobalIdentifierPersistenceChecker new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>checker: aGlobalIdentifierPersistenceChecker [
+{ #category : #accessing }
+GlobalIdentifierPersistence >> checker: aGlobalIdentifierPersistenceChecker [
 	checker := aGlobalIdentifierPersistenceChecker
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>defaultPreferences [
+{ #category : #configuration }
+GlobalIdentifierPersistence >> defaultPreferences [
 	^ FileLocator preferences / 'pharo' / self fileName
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>delete [
+{ #category : #operations }
+GlobalIdentifierPersistence >> delete [
 	"self deletePreferences"
 	[ self preferences ensureDelete ]
 	on: Error do: [ "ignore" ]
 ]
 
-{
-	#category : #'load and saving',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>ensure: existingDictionary [
+{ #category : #'load and saving' }
+GlobalIdentifierPersistence >> ensure: existingDictionary [
 	"It proceeds all backward compatibility work."
 	self shouldCallPreviousPersistence ifTrue: [ 
 		previousPersistence ensure: existingDictionary ].
 	self load: existingDictionary
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>ensureDirectory [
+{ #category : #operations }
+GlobalIdentifierPersistence >> ensureDirectory [
 	self preferences parent ensureCreateDirectory 
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>fileName [
+{ #category : #configuration }
+GlobalIdentifierPersistence >> fileName [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>hasPreviousPersistence [
+{ #category : #testing }
+GlobalIdentifierPersistence >> hasPreviousPersistence [
 	^ previousPersistence notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>isEnabled [
+{ #category : #testing }
+GlobalIdentifierPersistence >> isEnabled [
 	"If HOME directory does not exists, ignore the persistence mechanism.
 	HOME directory may not exists in case of a server deployment.
 	See https://pharo.fogbugz.com/f/cases/19944"
 	^ self checker isEnabled
 ]
 
-{
-	#category : #'load and saving',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>load [
+{ #category : #'load and saving' }
+GlobalIdentifierPersistence >> load [
 	"It loads and returns stored dictionary."
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'load and saving',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>load: existingDictionary [
+{ #category : #'load and saving' }
+GlobalIdentifierPersistence >> load: existingDictionary [
 	"It loads stored information into existingDictionary."
 	self isEnabled ifFalse: [ ^ self ].
 	self preferences exists ifFalse: [
@@ -162,64 +122,43 @@ GlobalIdentifierPersistence>>load: existingDictionary [
 		self mayOverwrite: existingDictionary ]
 ]
 
-{
-	#category : #'load and saving',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>mayOverwrite: aDictionary [
+{ #category : #'load and saving' }
+GlobalIdentifierPersistence >> mayOverwrite: aDictionary [
 	"If I keep previous persistence strategy, I am the main one and I can overwrite the current preference file.
 	I am called only on loading failure; it means when I cannot load preference file."
 	self hasPreviousPersistence ifTrue: [ self save: aDictionary ].
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>mergeExisting: existingDictionary stored: storedDictionary [
+{ #category : #merging }
+GlobalIdentifierPersistence >> mergeExisting: existingDictionary stored: storedDictionary [
 	^ GlobalIdentifierMerger new
 			existing: existingDictionary;
 			stored: storedDictionary;
 			merge
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>preferences [
+{ #category : #accessing }
+GlobalIdentifierPersistence >> preferences [
 	^ preferences ifNil: [ preferences := self defaultPreferences ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>preferences: anObject [
+{ #category : #accessing }
+GlobalIdentifierPersistence >> preferences: anObject [
 	preferences := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>previous [
+{ #category : #accessing }
+GlobalIdentifierPersistence >> previous [
 	^ previousPersistence
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>previous: aGlobalIdentifierPersistence [
+{ #category : #accessing }
+GlobalIdentifierPersistence >> previous: aGlobalIdentifierPersistence [
 	previousPersistence := aGlobalIdentifierPersistence
 ]
 
-{
-	#category : #'load and saving',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>save: aDictionary [
+{ #category : #'load and saving' }
+GlobalIdentifierPersistence >> save: aDictionary [
 	self isEnabled ifFalse: [ ^ self ].
 	self delete.
 	self ensureDirectory.
@@ -227,19 +166,13 @@ GlobalIdentifierPersistence>>save: aDictionary [
 			self save: aDictionary into: aPreferenceStream ]
 ]
 
-{
-	#category : #'load and saving',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>save: aDictionary into: aWriteStream [
+{ #category : #'load and saving' }
+GlobalIdentifierPersistence >> save: aDictionary into: aWriteStream [
 	"Saves aDictionary into aWriteStream"
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierPersistence>>shouldCallPreviousPersistence [
+{ #category : #testing }
+GlobalIdentifierPersistence >> shouldCallPreviousPersistence [
 	^ self preferences exists not and: [ self hasPreviousPersistence ]
 ]

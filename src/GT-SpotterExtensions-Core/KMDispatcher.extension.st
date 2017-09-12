@@ -1,12 +1,7 @@
-Extension {
-	#name : #KMDispatcher
-}
+Extension { #name : #KMDispatcher }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-KMDispatcher>>spotterForKeysFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+KMDispatcher >> spotterForKeysFor: aStep [
 	<spotterOrder: 15>
 		
 	aStep listProcessor

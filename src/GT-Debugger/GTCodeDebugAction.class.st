@@ -8,39 +8,26 @@ Class {
 	#instVars : [
 		'codePresentationSelector'
 	],
-	#category : #GT-Debugger-Actions,
-	#timestamp : 'AndreiChis 1/20/2015 19:47'
+	#category : #GT-Debugger-Actions
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTCodeDebugAction>>codePresentation [
+{ #category : #accessing }
+GTCodeDebugAction >> codePresentation [
 	^ self debugger perform: self codePresentationSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTCodeDebugAction>>codePresentationSelector [
+{ #category : #accessing }
+GTCodeDebugAction >> codePresentationSelector [
 	^ codePresentationSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTCodeDebugAction>>codePresentationSelector: aSelector [
+{ #category : #accessing }
+GTCodeDebugAction >> codePresentationSelector: aSelector [
 	codePresentationSelector := aSelector
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTCodeDebugAction>>initialize [
+{ #category : #initialization }
+GTCodeDebugAction >> initialize [
 	super initialize.
 	self codePresentationSelector: #codePresentation
 ]

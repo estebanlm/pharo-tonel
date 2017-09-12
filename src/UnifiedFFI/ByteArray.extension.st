@@ -1,32 +1,21 @@
-Extension {
-	#name : #ByteArray
-}
+Extension { #name : #ByteArray }
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ByteArray>>packAsDoubleToArity: arity [
+{ #category : #'*UnifiedFFI' }
+ByteArray >> packAsDoubleToArity: arity [
 	"In case I sending a buffer to get the contents I need to understand this message. 
 	 See AthensCairoCanvas>>getCurrentPoint as an example."
 	^ self packToArity: arity 
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ByteArray>>packAsFloatToArity: arity [
+{ #category : #'*UnifiedFFI' }
+ByteArray >> packAsFloatToArity: arity [
 	"In case I sending a buffer to get the contents I need to understand this message. 
 	 See AthensCairoCanvas>>getCurrentPoint as an example."
 	^ self packToArity: arity 
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ByteArray>>packToArity: arity [
+{ #category : #'*UnifiedFFI' }
+ByteArray >> packToArity: arity [
 	"This is complicated... I assuming this ways of calling a function: 
 	 
    arity == 1: 
@@ -55,22 +44,16 @@ ByteArray>>packToArity: arity [
 	self error: 'Use ExternalAddress instead!'
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ByteArray>>platformLongAt: byteOffset [
+{ #category : #'*UnifiedFFI' }
+ByteArray >> platformLongAt: byteOffset [
 	^ self 
 		integerAt: byteOffset 
 		size: FFIArchitecture forCurrentArchitecture longTypeSize 
 		signed: true
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ByteArray>>platformLongAt: byteOffset put: value [
+{ #category : #'*UnifiedFFI' }
+ByteArray >> platformLongAt: byteOffset put: value [
 	self 
 		integerAt: byteOffset
 		put: value
@@ -78,22 +61,16 @@ ByteArray>>platformLongAt: byteOffset put: value [
 		signed: true
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ByteArray>>platformUnsignedLongAt: byteOffset [
+{ #category : #'*UnifiedFFI' }
+ByteArray >> platformUnsignedLongAt: byteOffset [
 	^ self 
 		integerAt: byteOffset 
 		size: FFIArchitecture forCurrentArchitecture longTypeSize
 		signed: false
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ByteArray>>platformUnsignedLongAt: byteOffset put: value [
+{ #category : #'*UnifiedFFI' }
+ByteArray >> platformUnsignedLongAt: byteOffset put: value [
 	self 
 		integerAt: byteOffset
 		put: value
@@ -101,55 +78,37 @@ ByteArray>>platformUnsignedLongAt: byteOffset put: value [
 		signed: false
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ByteArray>>readString [
+{ #category : #'*UnifiedFFI' }
+ByteArray >> readString [
 	^ (ExternalData fromHandle: self type: ExternalType string) readString
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ByteArray>>readStringUTF8 [
+{ #category : #'*UnifiedFFI' }
+ByteArray >> readStringUTF8 [
 	^ (ExternalData fromHandle: self type: ExternalType string) readStringUTF8.
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ByteArray>>referenceStructAt: byteOffset length: length [
+{ #category : #'*UnifiedFFI' }
+ByteArray >> referenceStructAt: byteOffset length: length [
 	^ FFIExternalStructureReferenceHandle 
 		handle: self 
 		offset: byteOffset
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ByteArray>>signedByteAt: byteOffset [
+{ #category : #'*UnifiedFFI' }
+ByteArray >> signedByteAt: byteOffset [
     "Return a 8bit signed integer starting at the given byte offset"
     ^self integerAt: byteOffset size: 1 signed: true
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ByteArray>>signedByteAt: byteOffset put: value [
+{ #category : #'*UnifiedFFI' }
+ByteArray >> signedByteAt: byteOffset put: value [
 	"Store a 8bit signed integer starting at the given byte offset"
 	^self integerAt: byteOffset put: value size: 1 signed: true
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ByteArray>>unpackHandleFromArity: arity [
+{ #category : #'*UnifiedFFI' }
+ByteArray >> unpackHandleFromArity: arity [
 	"This will 'unpack' a long (handle) from a certain arity. See #packToArity: for a better explanation."
 
 	arity > 1 ifTrue: [ ^ self error: 'Use ExternalAddress instead!' ].
@@ -157,10 +116,7 @@ ByteArray>>unpackHandleFromArity: arity [
 
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ByteArray>>writeString: aString [
+{ #category : #'*UnifiedFFI' }
+ByteArray >> writeString: aString [
 	LibC memCopy: aString to: self size: aString size
 ]

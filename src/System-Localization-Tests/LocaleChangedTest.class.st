@@ -1,34 +1,21 @@
-"
-
-"
 Class {
 	#name : #LocaleChangedTest,
 	#superclass : #TestCase,
-	#category : #System-Localization-Tests,
-	#timestamp : ''
+	#category : #System-Localization-Tests
 }
 
-{
-	#category : #'private accessing',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleChangedTest>>englishLocale [
+{ #category : #'private accessing' }
+LocaleChangedTest >> englishLocale [
 	^ Locale isoLanguage: 'en'
 ]
 
-{
-	#category : #'private accessing',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleChangedTest>>germanLocale [
+{ #category : #'private accessing' }
+LocaleChangedTest >> germanLocale [
 	^ Locale isoLanguage: 'de'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleChangedTest>>testInstanceCreation [
+{ #category : #tests }
+LocaleChangedTest >> testInstanceCreation [
 	| instance |
 	instance := LocaleChanged from: self englishLocale to: self germanLocale.
 	

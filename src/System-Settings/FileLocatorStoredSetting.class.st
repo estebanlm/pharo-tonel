@@ -8,30 +8,20 @@ Class {
 		'origin',
 		'pathSegments'
 	],
-	#category : #System-Settings-Persistence-Ston-StoredSettings,
-	#timestamp : 'JurajKubelka 10/1/2015 14:39'
+	#category : #System-Settings-Persistence-Ston-StoredSettings
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FileLocatorStoredSetting>>origin: anObject [
+{ #category : #accessing }
+FileLocatorStoredSetting >> origin: anObject [
 	origin := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FileLocatorStoredSetting>>pathSegments: anObject [
+{ #category : #accessing }
+FileLocatorStoredSetting >> pathSegments: anObject [
 	pathSegments := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FileLocatorStoredSetting>>realValue [
+{ #category : #accessing }
+FileLocatorStoredSetting >> realValue [
 	^ FileLocator origin: origin path: (RelativePath withAll: pathSegments)
 ]

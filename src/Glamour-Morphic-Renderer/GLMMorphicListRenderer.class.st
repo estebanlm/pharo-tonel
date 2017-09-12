@@ -1,9 +1,5 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicListRenderer,
 	#superclass : #GLMMorphicListingRenderer,
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }

@@ -4,36 +4,26 @@ I get signalled when a temporary variable is used that is not defined.  My defau
 Class {
 	#name : #OCUndeclaredVariableWarning,
 	#superclass : #OCSemanticWarning,
-	#category : #OpalCompiler-Core-Exception,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-Exception
 }
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariableWarning>>declareClassVar [
+{ #category : #correcting }
+OCUndeclaredVariableWarning >> declareClassVar [
 
 	self methodClass theNonMetaClass
 		addClassVarNamed: node name asSymbol.
 	^ self lookUpVariable
 ]
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariableWarning>>declareGlobal [
+{ #category : #correcting }
+OCUndeclaredVariableWarning >> declareGlobal [
 
 	Smalltalk at: node name asSymbol put: nil.
 	^self lookUpVariable
 ]
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariableWarning>>declareInstVar: name [
+{ #category : #correcting }
+OCUndeclaredVariableWarning >> declareInstVar: name [
 	"Declare an instance variable."
 	self methodClass addInstVarNamed: name.
 	"We are changing a class after the scope hierarchy was created, so we need to update the
@@ -42,11 +32,8 @@ OCUndeclaredVariableWarning>>declareInstVar: name [
 	^ self lookUpVariable
 ]
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariableWarning>>declareTempAndPaste: name [
+{ #category : #correcting }
+OCUndeclaredVariableWarning >> declareTempAndPaste: name [
 	| insertion delta theTextString characterBeforeMark tempsMark newMethodNode |
 
 	"Below we are getting the text that is actually seen in the morph. This is rather ugly. Maybe there is a better way to do this."
@@ -83,11 +70,8 @@ OCUndeclaredVariableWarning>>declareTempAndPaste: name [
 	(OCSourceCodeChanged new newSourceCode: self requestor text) signal
 ]
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariableWarning>>defaultAction [
+{ #category : #correcting }
+OCUndeclaredVariableWarning >> defaultAction [
 	| varName className selector |
 	
  	className  :=  self methodClass name .
@@ -103,11 +87,8 @@ OCUndeclaredVariableWarning>>defaultAction [
 		OCUndeclaredVariable new name: varName asSymbol]
 ]
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariableWarning>>defineClass: className  [
+{ #category : #correcting }
+OCUndeclaredVariableWarning >> defineClass: className [ 
 	"Prompts the user to define a new class."
 	
 	| classSymbol systemCategory classDefinition |
@@ -132,11 +113,8 @@ OCUndeclaredVariableWarning>>defineClass: className  [
 		ifNil: [self error: 'should be not happen']
 ]
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariableWarning>>defineTrait: traitName  [
+{ #category : #correcting }
+OCUndeclaredVariableWarning >> defineTrait: traitName [ 
 	"Prompts the user to define a new trait."
 	
 	| traitSymbol systemCategory traitDefinition |
@@ -160,31 +138,22 @@ OCUndeclaredVariableWarning>>defineTrait: traitName  [
 		ifNil: [self error: 'should be not happen']
 ]
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariableWarning>>lookUpVariable [
+{ #category : #correcting }
+OCUndeclaredVariableWarning >> lookUpVariable [
 	^ (node owningScope lookupVar: node name)
 		ifNil: [self error: 'should be found']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariableWarning>>node: aVariableNode [
+{ #category : #accessing }
+OCUndeclaredVariableWarning >> node: aVariableNode [
 
 	super node: aVariableNode.
 	messageText := 'Undeclared temp: ', aVariableNode name.
 
 ]
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariableWarning>>openMenuIn: aBlock [
+{ #category : #correcting }
+OCUndeclaredVariableWarning >> openMenuIn: aBlock [
 	| alternatives labels actions lines caption choice name interval |
 	interval := node sourceInterval.
 	name := node name.
@@ -230,11 +199,8 @@ OCUndeclaredVariableWarning>>openMenuIn: aBlock [
 	choice ifNotNil: [ self resume: (actions at: choice ifAbsent: [ compilationContext failBlock value ]) value ]
 ]
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariableWarning>>possibleVariablesFor: proposedVariable  [
+{ #category : #correcting }
+OCUndeclaredVariableWarning >> possibleVariablesFor: proposedVariable [ 
 	| results class |
 	class := node methodNode methodClass .
 	
@@ -247,11 +213,8 @@ OCUndeclaredVariableWarning>>possibleVariablesFor: proposedVariable  [
 
 ]
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariableWarning>>substituteVariable: varName atInterval: anInterval  [
+{ #category : #correcting }
+OCUndeclaredVariableWarning >> substituteVariable: varName atInterval: anInterval [ 
 	self 
 		substituteWord: varName
 		wordInterval: anInterval
@@ -262,11 +225,8 @@ OCUndeclaredVariableWarning>>substituteVariable: varName atInterval: anInterval 
 		ifNil: [self error: 'should be found'].
 ]
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariableWarning>>substituteWord: correctWord wordInterval: spot offset: o [
+{ #category : #correcting }
+OCUndeclaredVariableWarning >> substituteWord: correctWord wordInterval: spot offset: o [
 	"Substitute the correctSelector into the (presuamed interactive) receiver."
 
 	self requestor correctFrom: (spot first + o)

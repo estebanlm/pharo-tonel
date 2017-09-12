@@ -20,35 +20,25 @@ Class {
 	#classVars : [
 		'DefaultImage'
 	],
-	#category : #Morphic-Base-Basic,
-	#timestamp : 'StephaneDucasse 6/23/2014 16:33'
+	#category : #Morphic-Base-Basic
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph class>>defaultImage: aForm [
+{ #category : #'instance creation' }
+AlphaImageMorph class >> defaultImage: aForm [
 	"Set the default image used for new instances of the receiver."
 
 	DefaultImage := aForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>alpha [
+{ #category : #accessing }
+AlphaImageMorph >> alpha [
 	"Answer the value of alpha"
 
 	^ alpha
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>alpha: anObject [
+{ #category : #accessing }
+AlphaImageMorph >> alpha: anObject [
 	"Set the value of alpha"
 
 	alpha := anObject.
@@ -58,31 +48,22 @@ AlphaImageMorph>>alpha: anObject [
 		changed: #alpha
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>autoSize [
+{ #category : #accessing }
+AlphaImageMorph >> autoSize [
 	"Answer the value of autoSize"
 
 	^ autoSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>autoSize: anObject [
+{ #category : #accessing }
+AlphaImageMorph >> autoSize: anObject [
 	"Set the value of autoSize"
 
 	autoSize := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>cachedForm [
+{ #category : #accessing }
+AlphaImageMorph >> cachedForm [
 	"Answer the value of cachedForm"
 	
 	|form i effectiveAlpha|
@@ -102,41 +83,29 @@ AlphaImageMorph>>cachedForm [
 	^cachedForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>cachedForm: anObject [
+{ #category : #accessing }
+AlphaImageMorph >> cachedForm: anObject [
 	"Set the value of cachedForm"
 
 	cachedForm := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>defaultColor [
+{ #category : #initialization }
+AlphaImageMorph >> defaultColor [
 	"Answer the default color for the receiver."
 
 	^Color transparent
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>defaultImage [
+{ #category : #initialization }
+AlphaImageMorph >> defaultImage [
 	"Answer the default image for the receiver."
 
 	^DefaultImage ifNil: [DefaultImage := DefaultForm asFormOfDepth: 32]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>displayBounds [
+{ #category : #geometry }
+AlphaImageMorph >> displayBounds [
 	"Answer a rectangle in display coordinates that
 	bounds the image (may be larger/smaller than visible area).
 	Just one rep for the tiled case."
@@ -145,11 +114,8 @@ AlphaImageMorph>>displayBounds [
 	
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+AlphaImageMorph >> drawOn: aCanvas [
 	"Draw with the current alpha
 	Can't do simple way since BitBlt rules are dodgy!."
 	
@@ -161,21 +127,15 @@ AlphaImageMorph>>drawOn: aCanvas [
 					c translucentImage: self cachedForm at: self layoutPosition]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>enabled [
+{ #category : #accessing }
+AlphaImageMorph >> enabled [
 	"Answer the value of enabled"
 
 	^enabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>enabled: anObject [
+{ #category : #accessing }
+AlphaImageMorph >> enabled: anObject [
 	"Set the value of enabled"
 
 	enabled := anObject.
@@ -184,11 +144,8 @@ AlphaImageMorph>>enabled: anObject [
 		changed
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>extent: aPoint [
+{ #category : #geometry }
+AlphaImageMorph >> extent: aPoint [
 	"Allow as normal."
 	
 	self basicExtent: aPoint.
@@ -197,39 +154,27 @@ AlphaImageMorph>>extent: aPoint [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>getImageSelector [
+{ #category : #accessing }
+AlphaImageMorph >> getImageSelector [
 
 	^ getImageSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>getImageSelector: anObject [
+{ #category : #accessing }
+AlphaImageMorph >> getImageSelector: anObject [
 
 	getImageSelector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>image: anImage  [
+{ #category : #accessing }
+AlphaImageMorph >> image: anImage [ 
 	"Clear the cached form."
 	
 	^self image: anImage size: anImage extent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>image: aForm size: aPoint [
+{ #category : #accessing }
+AlphaImageMorph >> image: aForm size: aPoint [
 	"Set the image to be the form scaled to the given size and padded if neccesary."
 
 	|f|
@@ -250,21 +195,15 @@ AlphaImageMorph>>image: aForm size: aPoint [
 	self changed: #imageExtent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>imageExtent [
+{ #category : #accessing }
+AlphaImageMorph >> imageExtent [
 	"Answer the extent of the original form."
 
 	^self form extent
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>imageRectangleFromDisplayRectangle: aRectangle [
+{ #category : #geometry }
+AlphaImageMorph >> imageRectangleFromDisplayRectangle: aRectangle [
 	"Answer a rectangle in (original) image coordinates that
 	corresponds to the given rectangle (in relative display coordinates)."
 
@@ -283,11 +222,8 @@ AlphaImageMorph>>imageRectangleFromDisplayRectangle: aRectangle [
 					scaleBy: 1 / self scale) rounded]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>initialize [
+{ #category : #initialization }
+AlphaImageMorph >> initialize [
 	"Initialize the receiver.
 	Use the 32 bit depth default image to avoid
 	unnecessary conversions."
@@ -300,21 +236,15 @@ AlphaImageMorph>>initialize [
 	super initialize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>layout [
+{ #category : #accessing }
+AlphaImageMorph >> layout [
 	"Answer the value of layout"
 
 	^ layout
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>layout: aSymbol [
+{ #category : #accessing }
+AlphaImageMorph >> layout: aSymbol [
 	"Set the value of layout"
 
 	|old|
@@ -325,11 +255,8 @@ AlphaImageMorph>>layout: aSymbol [
 	self changed
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>layoutPosition [
+{ #category : #geometry }
+AlphaImageMorph >> layoutPosition [
 	"Answer the position that the cached form should be drawn
 	based on the layout"
 	
@@ -344,11 +271,8 @@ AlphaImageMorph>>layoutPosition [
 	^self innerBounds topLeft
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>layoutSymbols [
+{ #category : #accessing }
+AlphaImageMorph >> layoutSymbols [
 	"Answer the available layout options."
 
 	^#(#center #tiled #scaled #scaledAspect
@@ -356,20 +280,14 @@ AlphaImageMorph>>layoutSymbols [
 		#bottomRight #bottomCenter #bottomLeft #leftCenter)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>model [
+{ #category : #accessing }
+AlphaImageMorph >> model [
 
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>model: anObject [
+{ #category : #accessing }
+AlphaImageMorph >> model: anObject [
 	"Set my model and make me me a dependent of the given object."
 
 	model ifNotNil: [model removeDependent: self].
@@ -378,31 +296,22 @@ AlphaImageMorph>>model: anObject [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>optimalExtent [
+{ #category : #geometry }
+AlphaImageMorph >> optimalExtent [
 	"Answer the optimal extent for the receiver."
 	
 	^self form extent * self scale + (self borderWidth * 2)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>scale [
+{ #category : #accessing }
+AlphaImageMorph >> scale [
 	"Answer the value of scale"
 
 	^ scale
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>scale: aNumber [
+{ #category : #accessing }
+AlphaImageMorph >> scale: aNumber [
 	"Set the value of scale"
 
 	scale = aNumber ifTrue: [^self].
@@ -413,11 +322,8 @@ AlphaImageMorph>>scale: aNumber [
 		changed: #scale
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>scaledImage [
+{ #category : #accessing }
+AlphaImageMorph >> scaledImage [
 	"Answer the image scaled as required."
 	
 	|i|
@@ -434,11 +340,8 @@ AlphaImageMorph>>scaledImage [
 	^i
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>update: aSymbol [
+{ #category : #accessing }
+AlphaImageMorph >> update: aSymbol [
 	"Update the image if changed."
 	
 	super update: aSymbol.
@@ -446,11 +349,8 @@ AlphaImageMorph>>update: aSymbol [
 		self updateImage]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlphaImageMorph>>updateImage [
+{ #category : #accessing }
+AlphaImageMorph >> updateImage [
 	"Get the image from the model."
 	
 	(self model notNil and: [self getImageSelector notNil]) ifTrue: [

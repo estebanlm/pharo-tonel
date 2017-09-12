@@ -6,26 +6,19 @@ For example if a package and a class is selected but the user does not define a 
 Class {
 	#name : #ClassOrMethodDefinitionAcceptor,
 	#superclass : #AbstractAcceptor,
-	#category : #Nautilus-Acceptors,
-	#timestamp : 'StephaneDucasse 9/6/2015 10:05'
+	#category : #Nautilus-Acceptors
 }
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassOrMethodDefinitionAcceptor>>accept: source notifying: aController [
+{ #category : #protocol }
+ClassOrMethodDefinitionAcceptor >> accept: source notifying: aController [
 
 	self model selectedClass isMeta
 		ifTrue: [ self acceptClassSide: source notifying: aController ]
 		ifFalse: [ self acceptInstanceSide: source notifying: aController ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassOrMethodDefinitionAcceptor>>acceptClassSide: source notifying: aController [
+{ #category : #protocol }
+ClassOrMethodDefinitionAcceptor >> acceptClassSide: source notifying: aController [
 	| isClassDefinition |
 	
 	isClassDefinition := (' ' split: source) first = self model selectedClass theNonMetaClass name.
@@ -42,11 +35,8 @@ ClassOrMethodDefinitionAcceptor>>acceptClassSide: source notifying: aController 
 				notifying: aController ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassOrMethodDefinitionAcceptor>>acceptInstanceSide: source notifying: aController [
+{ #category : #protocol }
+ClassOrMethodDefinitionAcceptor >> acceptInstanceSide: source notifying: aController [
 	| isClassDefinition |
 	
 	isClassDefinition := false.

@@ -6,6 +6,5 @@ Part of Zinc HTTP Components.
 Class {
 	#name : #ZnMissingHost,
 	#superclass : #Error,
-	#category : #Zinc-HTTP-Exceptions,
-	#timestamp : 'SvenVanCaekenberghe 8/11/2011 19:37'
+	#category : #Zinc-HTTP-Exceptions
 }

@@ -7,15 +7,11 @@ self openOn: (self>>#compose) parseTree
 Class {
 	#name : #GTSimpleRBTreeBrowser,
 	#superclass : #GLMCompositePresentation,
-	#category : #GT-InspectorExtensions-Core,
-	#timestamp : '<historical>'
+	#category : #GT-InspectorExtensions-Core
 }
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSimpleRBTreeBrowser>>compose [
+{ #category : #building }
+GTSimpleRBTreeBrowser >> compose [
 	self title: 'Tree'.
 	self tabulator with: [ :browser |
 		browser
@@ -36,21 +32,15 @@ GTSimpleRBTreeBrowser>>compose [
 			from: #tree port: #selectedNode ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSimpleRBTreeBrowser>>sourceIn: a [
+{ #category : #building }
+GTSimpleRBTreeBrowser >> sourceIn: a [
 	^ a pharoMethod 
 		smalltalkClass: [ :each | each parents first methodClass ]; 
 		display: [ :each | each source ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSimpleRBTreeBrowser>>treeIn: a [
+{ #category : #building }
+GTSimpleRBTreeBrowser >> treeIn: a [
 	^ a tree
 		rootsExpanded;
 		display: [ :anObject | {anObject} ];

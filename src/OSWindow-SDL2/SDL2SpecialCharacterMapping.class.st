@@ -10,15 +10,11 @@ Class {
 	#pools : [
 		'SDL2Constants'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'RonieSalgado 3/25/2014 17:19'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2SpecialCharacterMapping class>>initialize [
+{ #category : #'class initialization' }
+SDL2SpecialCharacterMapping class >> initialize [
 	"
 	self initialize
 	"
@@ -40,10 +36,7 @@ SDL2SpecialCharacterMapping class>>initialize [
 	} pairsDo: [ :key :val | Mapping at: key put: val ]
 ]
 
-{
-	#category : #'symbol mapping',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2SpecialCharacterMapping class>>mapKeySymbol: keySym ifAbsent: aBlock [
+{ #category : #'symbol mapping' }
+SDL2SpecialCharacterMapping class >> mapKeySymbol: keySym ifAbsent: aBlock [
 	^( Mapping at: keySym ifAbsent: [^ aBlock value ]) asCharacter 
 ]

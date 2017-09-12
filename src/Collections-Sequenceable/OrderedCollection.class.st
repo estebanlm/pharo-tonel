@@ -79,55 +79,36 @@ Class {
 		'firstIndex',
 		'lastIndex'
 	],
-	#category : #Collections-Sequenceable,
-	#timestamp : 'NicolaiHess 5/25/2016 21:36'
+	#category : #Collections-Sequenceable
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection class>>arrayType [
+{ #category : #private }
+OrderedCollection class >> arrayType [
 	^ Array
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection class>>new [
+{ #category : #'instance creation' }
+OrderedCollection class >> new [
 	^ self new: 10
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection class>>new: anInteger  [
+{ #category : #'instance creation' }
+OrderedCollection class >> new: anInteger [ 
 	^ self basicNew setCollection: (self arrayType new: anInteger)
 ]
 
-{
-	#category : #'stream creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection class>>new: size streamContents: aBlock [
+{ #category : #'stream creation' }
+OrderedCollection class >> new: size streamContents: aBlock [
 	^ self withAll: (super new: size streamContents: aBlock)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection class>>new: anInteger withAll: anObject [
+{ #category : #'instance creation' }
+OrderedCollection class >> new: anInteger withAll: anObject [
 	^ self basicNew setContents: (self arrayType new: anInteger withAll: anObject)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection class>>newFrom: aCollection  [
+{ #category : #'instance creation' }
+OrderedCollection class >> newFrom: aCollection [ 
 	"Answer an instance of me containing the same elements as aCollection."
 
 	| newCollection |
@@ -141,11 +122,8 @@ OrderedCollection class>>newFrom: aCollection  [
 "
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection class>>ofSize: n [
+{ #category : #'instance creation' }
+OrderedCollection class >> ofSize: n [
 	"Create a new collection of size n with nil as its elements.
 	This method exists because OrderedCollection new: n creates an
 	empty collection,  not one of size n."
@@ -156,28 +134,19 @@ OrderedCollection class>>ofSize: n [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection class>>streamSpecies [
+{ #category : #accessing }
+OrderedCollection class >> streamSpecies [
 	^ Array
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>add: newObject [
+{ #category : #adding }
+OrderedCollection >> add: newObject [
 
 	^self addLast: newObject
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>add: newObject after: oldObject  [
+{ #category : #adding }
+OrderedCollection >> add: newObject after: oldObject [ 
 	"Add the argument, newObject, as an element of the receiver. Put it in 
 	the sequence just succeeding oldObject. Answer newObject."
 	
@@ -187,11 +156,8 @@ OrderedCollection>>add: newObject after: oldObject  [
 	^newObject
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>add: newObject afterIndex: index  [
+{ #category : #adding }
+OrderedCollection >> add: newObject afterIndex: index [ 
 	"Add the argument, newObject, as an element of the receiver. Put it in 
 	the sequence just after index. Answer newObject."
 	(index between: 0 and: self size) ifFalse:[^self errorSubscriptBounds: index].
@@ -199,11 +165,8 @@ OrderedCollection>>add: newObject afterIndex: index  [
 	^ newObject
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>add: newObject before: oldObject  [
+{ #category : #adding }
+OrderedCollection >> add: newObject before: oldObject [ 
 	"Add the argument, newObject, as an element of the receiver. Put it in 
 	the sequence just preceding oldObject. Answer newObject."
 	
@@ -213,11 +176,8 @@ OrderedCollection>>add: newObject before: oldObject  [
 	^newObject
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>add: newObject beforeIndex: index  [
+{ #category : #adding }
+OrderedCollection >> add: newObject beforeIndex: index [ 
 	"Add the argument, newObject, as an element of the receiver. Put it in 
 	the sequence just before index. Answer newObject."
 	(index between: 1 and: self size+1) ifFalse:[^self errorSubscriptBounds: index].
@@ -225,21 +185,15 @@ OrderedCollection>>add: newObject beforeIndex: index  [
 	^ newObject
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>addAll: aCollection  [
+{ #category : #adding }
+OrderedCollection >> addAll: aCollection [ 
 	"Add each element of aCollection at my end. Answer	aCollection."
 
 	^ self addAllLast: aCollection
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>addAllFirst: anOrderedCollection  [
+{ #category : #adding }
+OrderedCollection >> addAllFirst: anOrderedCollection [ 
 	"Add each element of anOrderedCollection at the beginning of the 
 	receiver. Answer anOrderedCollection."
 
@@ -247,11 +201,8 @@ OrderedCollection>>addAllFirst: anOrderedCollection  [
 	^anOrderedCollection
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>addAllFirstUnlessAlreadyPresent: anOrderedCollection  [
+{ #category : #adding }
+OrderedCollection >> addAllFirstUnlessAlreadyPresent: anOrderedCollection [ 
 	"Add each element of anOrderedCollection at the beginning of the receiver, preserving the order, but do not add any items that are already in the receiver.  Answer anOrderedCollection."
 
 	anOrderedCollection reverseDo:
@@ -259,11 +210,8 @@ OrderedCollection>>addAllFirstUnlessAlreadyPresent: anOrderedCollection  [
 	^ anOrderedCollection
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>addAllLast: aCollection  [
+{ #category : #adding }
+OrderedCollection >> addAllLast: aCollection [ 
 	"Add each element of aCollection at the end of the receiver. 
 	Answer aCollection."
 
@@ -271,11 +219,8 @@ OrderedCollection>>addAllLast: aCollection  [
 	^aCollection
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>addFirst: newObject  [
+{ #category : #adding }
+OrderedCollection >> addFirst: newObject [ 
 	"Add newObject to the beginning of the receiver. Answer newObject."
 
 	firstIndex = 1 ifTrue: [self makeRoomAtFirst].
@@ -284,11 +229,8 @@ OrderedCollection>>addFirst: newObject  [
 	^ newObject
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>addLast: newObject  [
+{ #category : #adding }
+OrderedCollection >> addLast: newObject [ 
 	"Add newObject to the end of the receiver. Answer newObject."
 
 	lastIndex = array size ifTrue: [self makeRoomAtLast].
@@ -297,29 +239,20 @@ OrderedCollection>>addLast: newObject  [
 	^ newObject
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>asArray [
+{ #category : #converting }
+OrderedCollection >> asArray [
 	^ (Array new: self size) replaceFrom: 1 to: self size with: array startingAt: firstIndex.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>asOrderedCollection  [
+{ #category : #converting }
+OrderedCollection >> asOrderedCollection [ 
 
 	self species == OrderedCollection ifTrue: [ ^self ].
 	^super asOrderedCollection 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>at: anInteger [
+{ #category : #accessing }
+OrderedCollection >> at: anInteger [
 	"Answer my element at index anInteger. at: is used by a knowledgeable
 	client to access an existing element"
 
@@ -331,11 +264,8 @@ OrderedCollection>>at: anInteger [
 	^ array at: index
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>at: index ifAbsentPut: block [
+{ #category : #adding }
+OrderedCollection >> at: index ifAbsentPut: block [
 	"Return value at index, however, if value does not exist (nil or out of bounds) then add block's value at index (growing self if necessary)"
 
 	| v |
@@ -348,11 +278,8 @@ OrderedCollection>>at: index ifAbsentPut: block [
 	^ self at: index put: block value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>at: anInteger put: anObject [
+{ #category : #accessing }
+OrderedCollection >> at: anInteger put: anObject [
 	"Put anObject at element index anInteger. at:put: cannot be used to
 	append, front or back, to an ordered collection; it is used by a
 	knowledgeable client to replace an element."
@@ -365,21 +292,15 @@ OrderedCollection>>at: anInteger put: anObject [
 	^ array at: index put: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>capacity [
+{ #category : #accessing }
+OrderedCollection >> capacity [
 	"Answer the current capacity of the receiver."
 
 	^ array size
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>collect: aBlock  [
+{ #category : #enumerating }
+OrderedCollection >> collect: aBlock [ 
 	"Evaluate aBlock with each of my elements as the argument. Collect the 
 	resulting values into a collection that is like me. Answer the new 
 	collection. Override superclass in order to use addLast:, not at:put:."
@@ -392,11 +313,8 @@ OrderedCollection>>collect: aBlock  [
 	^ newCollection
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>collect: aBlock from: fromIndex to: toIndex [
+{ #category : #enumerating }
+OrderedCollection >> collect: aBlock from: fromIndex to: toIndex [
 	"Override superclass in order to use addLast:, not at:put:."
 	| result |
 	self ensureBoundsFrom: fromIndex to: toIndex.
@@ -407,11 +325,8 @@ OrderedCollection>>collect: aBlock from: fromIndex to: toIndex [
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>collect: collectBlock thenSelect: selectBlock [
+{ #category : #enumerating }
+OrderedCollection >> collect: collectBlock thenSelect: selectBlock [
     "Optimized version Collection>>#collect:thenSelect:"
 
     | newCollection newElement |
@@ -424,40 +339,28 @@ OrderedCollection>>collect: collectBlock thenSelect: selectBlock [
     ^ newCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>collector  "Private" [
+{ #category : #private }
+OrderedCollection >> collector [  "Private"
 	^ array
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>copyEmpty [
+{ #category : #copying }
+OrderedCollection >> copyEmpty [
 	"Answer a copy of the receiver that contains no elements."
 
 	^self species new
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>copyFrom: startIndex to: endIndex  [
+{ #category : #copying }
+OrderedCollection >> copyFrom: startIndex to: endIndex [ 
 	"Answer a copy of the receiver that contains elements from position
 	startIndex to endIndex."
 
 	^self shallowCopy postCopyFrom: startIndex to: endIndex
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>copyReplaceFrom: start to: stop with: replacementCollection  [
+{ #category : #copying }
+OrderedCollection >> copyReplaceFrom: start to: stop with: replacementCollection [ 
 	"Answer a copy of the receiver with replacementCollection's elements in
 	place of the receiver's start'th to stop'th elements. This does not expect
 	a 1-1 map from replacementCollection to the start to stop elements, so it
@@ -488,11 +391,8 @@ OrderedCollection>>copyReplaceFrom: start to: stop with: replacementCollection  
 	^newOrderedCollection
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>copyWith: newElement  [
+{ #category : #copying }
+OrderedCollection >> copyWith: newElement [ 
 	"Answer a copy of the receiver that is 1 bigger than the receiver and 
 	includes the argument, newElement, at the end."
 
@@ -502,42 +402,30 @@ OrderedCollection>>copyWith: newElement  [
 	^newCollection
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>do: aBlock [
+{ #category : #enumerating }
+OrderedCollection >> do: aBlock [
 	"Override the superclass for performance reasons."
 
 	firstIndex to: lastIndex do: [ :index | 
 		aBlock value: (array at: index) ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>ensureBoundsFrom: fromIndex to: toIndex [
+{ #category : #private }
+OrderedCollection >> ensureBoundsFrom: fromIndex to: toIndex [
 	(fromIndex < 1)
 		ifTrue: [^self errorSubscriptBounds: fromIndex].
 	(toIndex + firstIndex - 1 > lastIndex)
 		ifTrue: [^self errorSubscriptBounds: toIndex].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>errorConditionNotSatisfied [
+{ #category : #private }
+OrderedCollection >> errorConditionNotSatisfied [
 
 	self error: 'no element satisfies condition'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>find: oldObject [
+{ #category : #private }
+OrderedCollection >> find: oldObject [
   "  This method answers an index in the range firstIndex .. lastIndex, which is meant for internal use only.
      Never use this method in your code, the methods for public use are:
         #indexOf:
@@ -552,11 +440,8 @@ OrderedCollection>>find: oldObject [
 	self errorNotFound: oldObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>growAtFirst [
+{ #category : #private }
+OrderedCollection >> growAtFirst [
 	"Add new empty slots to the front of array, while keeping the empty slots at the end."
 
 	| newArray newFirstIndex newLastIndex |
@@ -573,11 +458,8 @@ OrderedCollection>>growAtFirst [
 	lastIndex := newLastIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>growAtLast [
+{ #category : #private }
+OrderedCollection >> growAtLast [
 	"Add new empty slots to the end of array, while keeping the empty slots at the front."
 
 	| newArray |
@@ -590,11 +472,8 @@ OrderedCollection>>growAtLast [
 	array := newArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>insert: anObject before: spot [
+{ #category : #private }
+OrderedCollection >> insert: anObject before: spot [
 
   "  spot is an index in the range firstIndex .. lastIndex, such an index is not known from outside the collection. 
      Never use this method in your code, it is meant for private use by OrderedCollection only.
@@ -624,11 +503,8 @@ OrderedCollection>>insert: anObject before: spot [
 	^ anObject
 ]
 
-{
-	#category : #splitjoin,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>join: aCollection  [
+{ #category : #splitjoin }
+OrderedCollection >> join: aCollection [ 
 	| result |
 	result := self class new.
 	aCollection
@@ -637,11 +513,8 @@ OrderedCollection>>join: aCollection  [
 	^ result
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>makeRoomAtFirst [
+{ #category : #private }
+OrderedCollection >> makeRoomAtFirst [
 	"Make some empty slots at the front of the array. If we have more than 50% free space, then just move the elements, so that the first 50% of the slots are free, otherwise add new free slots to the front by growing. Precondition: firstIndex = 1"
 	
 	| tally newFirstIndex newLastIndex |
@@ -657,11 +530,8 @@ OrderedCollection>>makeRoomAtFirst [
 	lastIndex := newLastIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>makeRoomAtLast [
+{ #category : #private }
+OrderedCollection >> makeRoomAtLast [
 	"Make some empty slots at the end of the array. If we have more than 50% free space, then just move the elements, so that the last 50% of the slots are free, otherwise add new free slots to the end by growing. Precondition: lastIndex = array size"
 	
 	| tally newFirstIndex newLastIndex |
@@ -680,19 +550,13 @@ OrderedCollection>>makeRoomAtLast [
 	lastIndex := newLastIndex
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>postCopy [
+{ #category : #copying }
+OrderedCollection >> postCopy [
 	array := array copy
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>postCopyFrom: startIndex to: endIndex  [
+{ #category : #copying }
+OrderedCollection >> postCopyFrom: startIndex to: endIndex [ 
 	"finish copying the array in a certain range."
 
 	endIndex < startIndex ifFalse: [
@@ -708,11 +572,8 @@ OrderedCollection>>postCopyFrom: startIndex to: endIndex  [
 	lastIndex := array size
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>reject: rejectBlock  [
+{ #category : #enumerating }
+OrderedCollection >> reject: rejectBlock [ 
 	"Optimized version of Collection>>#reject:"
 
 	| newCollection element |
@@ -726,11 +587,8 @@ OrderedCollection>>reject: rejectBlock  [
 	^ newCollection
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>reject: rejectBlock thenCollect: collectBlock [
+{ #category : #enumerating }
+OrderedCollection >> reject: rejectBlock thenCollect: collectBlock [
     " Optimized version of Collection>>#reject:thenCollect: "
 
 	| newCollection |
@@ -746,11 +604,8 @@ OrderedCollection>>reject: rejectBlock thenCollect: collectBlock [
     ^ newCollection
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>remove: oldObject ifAbsent: absentBlock [
+{ #category : #removing }
+OrderedCollection >> remove: oldObject ifAbsent: absentBlock [
 
 	| index |
 	index := firstIndex.
@@ -764,22 +619,16 @@ OrderedCollection>>remove: oldObject ifAbsent: absentBlock [
 	^ absentBlock value
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>removeAll [
+{ #category : #removing }
+OrderedCollection >> removeAll [
 	"remove all the elements from this collection.
 	Keep same amount of storage"
 	
 	self setCollection: (self class arrayType new: array size)
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>removeAllSuchThat: aBlock  [
+{ #category : #removing }
+OrderedCollection >> removeAllSuchThat: aBlock [ 
 	"Remove each element of the receiver for which aBlock evaluates to true.
 	The method in Collection is O(N^2), this is O(N)."
 
@@ -793,22 +642,16 @@ OrderedCollection>>removeAllSuchThat: aBlock  [
 	lastIndex := n - 1
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>removeAt: index [
+{ #category : #removing }
+OrderedCollection >> removeAt: index [
 	| removed |
 	removed := self at: index.
 	self removeIndex: index + firstIndex - 1.
 	^removed
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>removeFirst [
+{ #category : #removing }
+OrderedCollection >> removeFirst [
 	"Remove the first element of the receiver and answer it. If the receiver is 
 	empty, create an error notification."
 	| firstObject |
@@ -819,11 +662,8 @@ OrderedCollection>>removeFirst [
 	^ firstObject
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>removeFirst: n  [
+{ #category : #removing }
+OrderedCollection >> removeFirst: n [ 
 	"Remove first n object into an array"
 	| list |
 	list := self class arrayType new: n.
@@ -836,11 +676,8 @@ OrderedCollection>>removeFirst: n  [
 	^ list
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>removeIndex: removedIndex [
+{ #category : #private }
+OrderedCollection >> removeIndex: removedIndex [
   "  removedIndex is an index in the range firstIndex .. lastIndex, such an index is not known from outside the collection.
     Never use this method in your code, it is meant for private use by OrderedCollection only.
      The method for public use is:
@@ -855,11 +692,8 @@ OrderedCollection>>removeIndex: removedIndex [
 	lastIndex := lastIndex - 1.
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>removeLast [
+{ #category : #removing }
+OrderedCollection >> removeLast [
 	"Remove the last element of the receiver and answer it. If the receiver is 
 	empty, create an error notification."
 	| lastObject |
@@ -870,11 +704,8 @@ OrderedCollection>>removeLast [
 	^ lastObject
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>removeLast: n  [
+{ #category : #removing }
+OrderedCollection >> removeLast: n [ 
 	"Remove last n object into an array with last in last position"
 	| list |
 	list := self class arrayType new: n.
@@ -888,41 +719,29 @@ OrderedCollection>>removeLast: n  [
 	^ list
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>reset [
+{ #category : #removing }
+OrderedCollection >> reset [
 	"Quickly remove all elements. The objects will be still referenced, but will not be 	accessible."
 	
 	self resetTo: 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>resetTo: index [
+{ #category : #private }
+OrderedCollection >> resetTo: index [
 	firstIndex := index.
 	lastIndex := firstIndex - 1
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>reverseDo: aBlock [
+{ #category : #enumerating }
+OrderedCollection >> reverseDo: aBlock [
 	"Override the superclass for performance reasons."
 
 	lastIndex to: firstIndex by: -1 do: [ :index | 
 		aBlock value: (array at: index) ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>reversed [
+{ #category : #copying }
+OrderedCollection >> reversed [
 	"Answer a copy of the receiver with element order reversed.  "
 	| newCol |
 	newCol := self species new.
@@ -933,11 +752,8 @@ OrderedCollection>>reversed [
 "#(2 3 4 'fred') reversed"
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>select: selectBlock  [
+{ #category : #enumerating }
+OrderedCollection >> select: selectBlock [ 
 	"Optimized version of Collection>>#select: "
 
 	| newCollection element |
@@ -951,11 +767,8 @@ OrderedCollection>>select: selectBlock  [
 	^ newCollection
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>select: selectBlock thenCollect: collectBlock [
+{ #category : #enumerating }
+OrderedCollection >> select: selectBlock thenCollect: collectBlock [
     " Optimized version Collection>>#select:thenCollect: "
 
 	| newCollection element |
@@ -970,40 +783,28 @@ OrderedCollection>>select: selectBlock thenCollect: collectBlock [
     ^ newCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>setCollection: anArray [
+{ #category : #private }
+OrderedCollection >> setCollection: anArray [
 	array := anArray.
 	self reset
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>setContents: anArray [
+{ #category : #private }
+OrderedCollection >> setContents: anArray [
 	array := anArray.
 	firstIndex := 1.
 	lastIndex := array size.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>size [
+{ #category : #accessing }
+OrderedCollection >> size [
 	"Answer how many elements the receiver contains."
 
 	^ lastIndex - firstIndex + 1
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>sort: aSortBlock  [
+{ #category : #enumerating }
+OrderedCollection >> sort: aSortBlock [ 
 	"Sort this array using aSortBlock. The block should take two arguments
 	and return true if the first element should preceed the second one."
 
@@ -1016,11 +817,8 @@ OrderedCollection>>sort: aSortBlock  [
 		by: aSortBlock
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>with: otherCollection collect: twoArgBlock  [
+{ #category : #enumerating }
+OrderedCollection >> with: otherCollection collect: twoArgBlock [ 
 	"Collect and return the result of evaluating twoArgBlock with 
 	corresponding elements from this collection and otherCollection."
 	| result |
@@ -1032,11 +830,8 @@ OrderedCollection>>with: otherCollection collect: twoArgBlock  [
 	^ result
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedCollection>>withIndexCollect: elementAndIndexBlock  [
+{ #category : #enumerating }
+OrderedCollection >> withIndexCollect: elementAndIndexBlock [ 
 	"Just like with:collect: except that the iteration index supplies the second argument to the block. Override superclass in order to use addLast:, not at:put:."
 
 	| newCollection |

@@ -32,26 +32,19 @@ Class {
 		'nodeReplacements',
 		'compilationContext'
 	],
-	#category : #AST-Core-Nodes,
-	#timestamp : 'NicolaiHess 8/2/2016 13:27'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode class>>selector: aSymbol arguments: valueNodes [
+{ #category : #'instance creation' }
+RBMethodNode class >> selector: aSymbol arguments: valueNodes [
 	^(self new)
 		selector: aSymbol;
 		arguments: valueNodes;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode class>>selector: aSymbol arguments: variableNodes body: aSequenceNode  [
+{ #category : #'instance creation' }
+RBMethodNode class >> selector: aSymbol arguments: variableNodes body: aSequenceNode [ 
 	^(self new)
 		arguments: variableNodes;
 		selector: aSymbol;
@@ -59,22 +52,16 @@ RBMethodNode class>>selector: aSymbol arguments: variableNodes body: aSequenceNo
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode class>>selector: aSymbol body: aSequenceNode  [
+{ #category : #'instance creation' }
+RBMethodNode class >> selector: aSymbol body: aSequenceNode [ 
 	^self 
 		selector: aSymbol
 		arguments: #()
 		body: aSequenceNode
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode class>>selector: aSymbol keywordsPositions: positionList arguments: valueNodes [
+{ #category : #'instance creation' }
+RBMethodNode class >> selector: aSymbol keywordsPositions: positionList arguments: valueNodes [
 	^(self new)
 		selector: aSymbol
 			keywordsPositions: positionList 
@@ -82,11 +69,8 @@ RBMethodNode class>>selector: aSymbol keywordsPositions: positionList arguments:
 		yourself.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>= anObject  [
+{ #category : #comparing }
+RBMethodNode >> = anObject [ 
 	self == anObject ifTrue: [ ^ true ].
 	self class = anObject class ifFalse: [ ^ false ].
 	(self selector = anObject selector
@@ -102,138 +86,90 @@ RBMethodNode>>= anObject  [
 	^ true
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visiting }
+RBMethodNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^aProgramNodeVisitor visitMethodNode: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>addNode: aNode [
+{ #category : #accessing }
+RBMethodNode >> addNode: aNode [
 	^ body addNode: aNode
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>addReplacement: aStringReplacement  [
+{ #category : #replacing }
+RBMethodNode >> addReplacement: aStringReplacement [ 
 	replacements ifNil: [^self].
 	replacements add: aStringReplacement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>addReturn [
+{ #category : #accessing }
+RBMethodNode >> addReturn [
 	^ body addReturn
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>addSelfReturn [
+{ #category : #accessing }
+RBMethodNode >> addSelfReturn [
 	^ body addSelfReturn
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>allArgumentVariables [
+{ #category : #accessing }
+RBMethodNode >> allArgumentVariables [
 	^(self argumentNames asOrderedCollection)
 		addAll: super allArgumentVariables;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>allDefinedVariables [
+{ #category : #accessing }
+RBMethodNode >> allDefinedVariables [
 	^(self argumentNames asOrderedCollection)
 		addAll: super allDefinedVariables;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>argumentNames [
+{ #category : #accessing }
+RBMethodNode >> argumentNames [
 	^ self arguments collect: [:each | each name] as: Array
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>arguments [
+{ #category : #accessing }
+RBMethodNode >> arguments [
 	^arguments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>arguments: variableNodes  [
+{ #category : #accessing }
+RBMethodNode >> arguments: variableNodes [ 
 	arguments := variableNodes.
 	arguments do: [:each | each parent: self]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>asSequenceNode [
+{ #category : #converting }
+RBMethodNode >> asSequenceNode [
 	^body
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>assignmentNodes [
+{ #category : #accessing }
+RBMethodNode >> assignmentNodes [
 	^self allChildren select: [:each | each isAssignment].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>blockNodes [
+{ #category : #accessing }
+RBMethodNode >> blockNodes [
 	^self allChildren select: [:each | each isBlock].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>body [
+{ #category : #accessing }
+RBMethodNode >> body [
 	^body
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>body: stmtsNode  [
+{ #category : #accessing }
+RBMethodNode >> body: stmtsNode [ 
 	body := stmtsNode.
 	body parent: self
 ]
 
-{
-	#category : #private-replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>changeSourceSelector: oldSelector keywordsIntervals: oldIntervals arguments: oldArguments [
+{ #category : #private-replacing }
+RBMethodNode >> changeSourceSelector: oldSelector keywordsIntervals: oldIntervals arguments: oldArguments [
 	"If this is the same number of arguments, we try a one to one replacement of selector parts and arguments. If this is not the c
 ase try to rewrite the signature as a whole, what unfortunately drops the comments within the signature."
 
@@ -265,11 +201,8 @@ ase try to rewrite the signature as a whole, what unfortunately drops the commen
 		do: [ :ex | ex return ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>children [
+{ #category : #accessing }
+RBMethodNode >> children [
 	^ OrderedCollection new
 		addAll: self arguments;
 		addAll: self pragmas;
@@ -277,35 +210,23 @@ RBMethodNode>>children [
 		yourself
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>clearReplacements [
+{ #category : #replacing }
+RBMethodNode >> clearReplacements [
 	replacements := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>compilationContext [
+{ #category : #accessing }
+RBMethodNode >> compilationContext [
 	^ compilationContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>compilationContext: aCompilationContext [
+{ #category : #accessing }
+RBMethodNode >> compilationContext: aCompilationContext [
 	compilationContext := aCompilationContext.
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>copyInContext: aDictionary [
+{ #category : #matching }
+RBMethodNode >> copyInContext: aDictionary [
 	^ self class new
 		selector: self selector;
 		arguments: (self arguments collect: [ :each | each copyInContext: aDictionary ]);
@@ -317,21 +238,15 @@ RBMethodNode>>copyInContext: aDictionary [
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>defines: aName [
+{ #category : #testing }
+RBMethodNode >> defines: aName [
 ^ (arguments anySatisfy: [ :each | each name = aName ])
 
 		or: [ self pragmas anySatisfy: [ :pragma | pragma defines: aName ] ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>equalTo: anObject withMapping: aDictionary  [
+{ #category : #comparing }
+RBMethodNode >> equalTo: anObject withMapping: aDictionary [ 
 	self class = anObject class ifFalse: [ ^ false ].
 	(self selector = anObject selector
 		and: [ self pragmas size = anObject pragmas size
@@ -347,55 +262,37 @@ RBMethodNode>>equalTo: anObject withMapping: aDictionary  [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>firstPrecodeComment [
+{ #category : #accessing }
+RBMethodNode >> firstPrecodeComment [
 	| comment  | 
 	self comments ifEmpty: [ ^nil ].
 	comment :=  self comments first.
 	^self source copyFrom: comment start to: comment stop.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>hasArgumentNamed: aString	 [
+{ #category : #testing }
+RBMethodNode >> hasArgumentNamed: aString [	
 	^ self arguments anySatisfy: [ :argument| argument name = aString ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>hasPragmaNamed: aSymbol	 [
+{ #category : #testing }
+RBMethodNode >> hasPragmaNamed: aSymbol [	
 	self pragmaNamed: aSymbol ifAbsent: [ ^ false ].
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>hasTemporaryNamed: aString	 [
+{ #category : #testing }
+RBMethodNode >> hasTemporaryNamed: aString [	
 	^ self temporaries anySatisfy: [ :temp| temp name = aString ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>hash [
+{ #category : #comparing }
+RBMethodNode >> hash [
 	^ ((self selector hash bitXor: (self hashForCollection: self arguments)) bitXor: (self hashForCollection: self pragmas)) bitXor: self body hash
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>initialize [
+{ #category : #initialization }
+RBMethodNode >> initialize [
 	replacements := SortedCollection sortBlock: 
 					[:a :b | 
 					a startPosition < b startPosition 
@@ -403,119 +300,77 @@ RBMethodNode>>initialize [
 	nodeReplacements := IdentityDictionary new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>instanceVariableReadNodes [
+{ #category : #accessing }
+RBMethodNode >> instanceVariableReadNodes [
 		^self variableReadNodes select: [:each | each isInstance]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>instanceVariableWriteNodes [
+{ #category : #accessing }
+RBMethodNode >> instanceVariableWriteNodes [
 		^self variableWriteNodes select: [:each | each isInstance]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>isFaulty [
+{ #category : #testing }
+RBMethodNode >> isFaulty [
 	(self arguments anySatisfy: #isFaulty) ifTrue:[ ^true].
 	(self pragmas anySatisfy: #isFaulty) ifTrue:[ ^true].
 	^self body isFaulty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>isLast: aNode  [
+{ #category : #testing }
+RBMethodNode >> isLast: aNode [ 
 	^body isLast: aNode
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>isMethod [
+{ #category : #testing }
+RBMethodNode >> isMethod [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>isPrimitive [
+{ #category : #testing }
+RBMethodNode >> isPrimitive [
 	^ self pragmas anySatisfy: [ :each | each isPrimitive ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>keywords [
+{ #category : #accessing }
+RBMethodNode >> keywords [
 	^ selector keywords.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>keywordsIntervals [
+{ #category : #accessing }
+RBMethodNode >> keywordsIntervals [
 	^selector keywords
 		with: self keywordsPositions 
 		collect: [:keyword :start| start to: (start = 0 ifTrue: [ -1 ] ifFalse: [ start + keyword size - 1]) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>keywordsPositions [
+{ #category : #accessing }
+RBMethodNode >> keywordsPositions [
 	^keywordsPositions ifNil: [ (selector keywords collect: [:char| 0 ]) asIntegerArray ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>keywordsPositions: aPositionsList [
+{ #category : #accessing }
+RBMethodNode >> keywordsPositions: aPositionsList [
 	keywordsPositions := aPositionsList ifNotNil: [:list| list asIntegerArray ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>lastIsReturn [
+{ #category : #testing }
+RBMethodNode >> lastIsReturn [
 	^body lastIsReturn
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>map: oldNode to: newNode  [
+{ #category : #replacing }
+RBMethodNode >> map: oldNode to: newNode [ 
 	nodeReplacements at: oldNode put: newNode
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>mappingFor: oldNode  [
+{ #category : #replacing }
+RBMethodNode >> mappingFor: oldNode [ 
 	^nodeReplacements at: oldNode ifAbsent: [oldNode]
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>match: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBMethodNode >> match: aNode inContext: aDictionary [ 
 	self class = aNode class ifFalse: [ ^ false ].
 	aDictionary at: '-source-' put: aNode source.
 	self selector = aNode selector ifFalse: [ ^ false ].
@@ -524,11 +379,8 @@ RBMethodNode>>match: aNode inContext: aDictionary  [
 		and: [ body match: aNode body inContext: aDictionary ] ]
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>matchPragmas: matchNodes against: pragmaNodes inContext: aDictionary [
+{ #category : #matching }
+RBMethodNode >> matchPragmas: matchNodes against: pragmaNodes inContext: aDictionary [
 	matchNodes isEmpty ifTrue: [ 
 		aDictionary at: '-pragmas-' put: pragmaNodes.
 		^ true ].
@@ -537,144 +389,96 @@ RBMethodNode>>matchPragmas: matchNodes against: pragmaNodes inContext: aDictiona
 			matchNode match: pragmaNode inContext: aDictionary ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>methodClass [
+{ #category : #accessing }
+RBMethodNode >> methodClass [
 	^self compilationContext getClass 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>methodClass: aClass	 [
+{ #category : #accessing }
+RBMethodNode >> methodClass: aClass [	
 	compilationContext ifNil: [compilationContext := aClass compiler compilationContext].
 	self compilationContext class: aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>methodComments [
+{ #category : #accessing }
+RBMethodNode >> methodComments [
 	| methodComments |
 	methodComments := OrderedCollection withAll: self comments.
 	arguments do: [:each | methodComments addAll: each comments].
 	^methodComments asSortedCollection: [:a :b | a start < b start]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>methodNode [
+{ #category : #accessing }
+RBMethodNode >> methodNode [
 	^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>newSource [
+{ #category : #accessing }
+RBMethodNode >> newSource [
 	replacements ifNil: [^self formattedCode].
 	^[self reformatSource] on: Error do: [:ex | ex return: self formattedCode]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>numArgs [
+{ #category : #accessing }
+RBMethodNode >> numArgs [
 	^self selector numArgs
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>postCopy [
+{ #category : #copying }
+RBMethodNode >> postCopy [
 	super postCopy.
 	self arguments: (self arguments collect: [ :each | each copy ]).
 	self pragmas: (self pragmas collect: [ :each | each copy ]).
 	self body: self body copy
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>pragmaNamed: aSymbol	 [
+{ #category : #testing }
+RBMethodNode >> pragmaNamed: aSymbol [	
 	^ self pragmaNamed: aSymbol ifAbsent: [ KeyNotFound signalFor: aSymbol  ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>pragmaNamed: aSymbol ifAbsent: absentBlock [
+{ #category : #testing }
+RBMethodNode >> pragmaNamed: aSymbol ifAbsent: absentBlock [
 	^ self pragmas 
 		detect: [ :pragma| pragma selector = aSymbol ]
 		ifNone: absentBlock
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>pragmaNamed: aSymbol ifPresent: foundBlock [
+{ #category : #testing }
+RBMethodNode >> pragmaNamed: aSymbol ifPresent: foundBlock [
 	^ self pragmas 
 		detect: [ :pragma| pragma selector = aSymbol ]
 		ifFound: foundBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>pragmas [
+{ #category : #accessing }
+RBMethodNode >> pragmas [
 	^ pragmas ifNil: [ #() ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>pragmas: aCollection [
+{ #category : #accessing }
+RBMethodNode >> pragmas: aCollection [
 	pragmas := aCollection.
 	pragmas do: [ :each | each parent: self ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>primitiveSources [
+{ #category : #accessing }
+RBMethodNode >> primitiveSources [
 	^ self pragmas collect: [ :each | self source copyFrom: each first to: each last ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>printOn: aStream  [
+{ #category : #printing }
+RBMethodNode >> printOn: aStream [ 
 	aStream nextPutAll: self formattedCode
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>references: aVariableName  [
+{ #category : #testing }
+RBMethodNode >> references: aVariableName [ 
 	^body references: aVariableName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>reformatSource [
+{ #category : #private }
+RBMethodNode >> reformatSource [
 	| stream newSource newTree |
 	stream := (String new: source size + 100) writeStream.
 	stream
@@ -696,11 +500,8 @@ RBMethodNode>>reformatSource [
 	^ newSource
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>renameSelector: newSelector andArguments: varNodeCollection  [
+{ #category : #accessing }
+RBMethodNode >> renameSelector: newSelector andArguments: varNodeCollection [ 
 	| oldIntervals oldArguments oldSelector |
 	oldSelector := selector.
 	oldIntervals := self keywordsIntervals.
@@ -711,65 +512,44 @@ RBMethodNode>>renameSelector: newSelector andArguments: varNodeCollection  [
 	self changeSourceSelector: oldSelector keywordsIntervals: oldIntervals arguments: oldArguments
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>replaceNode: aNode withNode: anotherNode  [
+{ #category : #replacing }
+RBMethodNode >> replaceNode: aNode withNode: anotherNode [ 
 	aNode == body ifTrue: [self body: anotherNode].
 	self arguments: (arguments 
 				collect: [:each | each == aNode ifTrue: [anotherNode] ifFalse: [each]])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>scope [
+{ #category : #accessing }
+RBMethodNode >> scope [
 	^ scope
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>scope: aScopedNode [
+{ #category : #accessing }
+RBMethodNode >> scope: aScopedNode [
 	scope := aScopedNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>selector [
+{ #category : #accessing }
+RBMethodNode >> selector [
 	^ selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>selector: aSelector [
+{ #category : #accessing }
+RBMethodNode >> selector: aSelector [
 	keywordsPositions := nil.
 	selector := aSelector asSymbol.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>selector: aSymbol keywordsPositions: positionList arguments: valueNodes [
+{ #category : #initialize-release }
+RBMethodNode >> selector: aSymbol keywordsPositions: positionList arguments: valueNodes [
 	self 
 		arguments: valueNodes;
 		selector: aSymbol;
 		keywordsPositions: positionList.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>selectorAndArgumentNames [
+{ #category : #accessing }
+RBMethodNode >> selectorAndArgumentNames [
 	"Returns the selector and argument names portion of a method as a string"
 
 	^ self arguments
@@ -779,132 +559,84 @@ RBMethodNode>>selectorAndArgumentNames [
 			self source first: lastArgument start + (lastArgument name size - 1)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>selectorParts [
+{ #category : #accessing }
+RBMethodNode >> selectorParts [
 	^ self keywords collect: #asSymbol.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>sendNodes [
+{ #category : #accessing }
+RBMethodNode >> sendNodes [
 	^self allChildren select: [:each | each isMessage].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>source [
+{ #category : #accessing }
+RBMethodNode >> source [
 	^source
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>source: anObject [
+{ #category : #accessing }
+RBMethodNode >> source: anObject [
 	source := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>sourceCode [
+{ #category : #accessing }
+RBMethodNode >> sourceCode [
 	"compatibility to MethodNode"
 	^source
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>start [
+{ #category : #accessing }
+RBMethodNode >> start [
 	^ 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>statements [
+{ #category : #accessing }
+RBMethodNode >> statements [
 	^ self body statements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>statements: aCollection [
+{ #category : #accessing }
+RBMethodNode >> statements: aCollection [
 	self body statements: aCollection 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>stop [
+{ #category : #accessing }
+RBMethodNode >> stop [
 	^ self newSource size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>tempVariableReadNodes [
+{ #category : #accessing }
+RBMethodNode >> tempVariableReadNodes [
 		^self variableReadNodes select: [:each | each isTemp]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>temporaries [
+{ #category : #accessing }
+RBMethodNode >> temporaries [
 	^ self body temporaries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>temporaryNames [
+{ #category : #accessing }
+RBMethodNode >> temporaryNames [
 	^ self body temporaryNames
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>uses: aNode  [
+{ #category : #testing }
+RBMethodNode >> uses: aNode [ 
 	^body == aNode and: [aNode lastIsReturn]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>variableNodes [
+{ #category : #accessing }
+RBMethodNode >> variableNodes [
 		^self allChildren select: [:each | 
 			each isVariable and: [each isDefinition not]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>variableReadNodes [
+{ #category : #accessing }
+RBMethodNode >> variableReadNodes [
 	^self variableNodes select: [:each | each isRead]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBMethodNode>>variableWriteNodes [
+{ #category : #accessing }
+RBMethodNode >> variableWriteNodes [
 		^self variableNodes select: [:each | each isWrite]
 ]

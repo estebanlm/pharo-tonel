@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #GLMTextPresentationTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTextPresentationTest>>expectedFailures [
+{ #category : #tests }
+GLMTextPresentationTest >> expectedFailures [
 
 	^ #(testTextPortIsPopulatedByDefault)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTextPresentationTest>>testSelectedText [
+{ #category : #tests }
+GLMTextPresentationTest >> testSelectedText [
 	| presentation |
 	presentation := GLMRubricTextPresentation new.
 	self assert: presentation selectedText equals: ''.
@@ -29,11 +19,8 @@ GLMTextPresentationTest>>testSelectedText [
 	self assert: presentation selectedText equals: 'selection'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTextPresentationTest>>testSelectionIntervalInitialization [
+{ #category : #tests }
+GLMTextPresentationTest >> testSelectionIntervalInitialization [
 	| presentation |
 	presentation := GLMRubricTextPresentation new
 		initialize: [ :pres | pres selectionInterval: (3 to: 9) ].
@@ -42,11 +29,8 @@ GLMTextPresentationTest>>testSelectionIntervalInitialization [
 	self assert: presentation selectionInterval equals: (3 to: 9)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTextPresentationTest>>testTextPortIsPopulatedByDefault [
+{ #category : #tests }
+GLMTextPresentationTest >> testTextPortIsPopulatedByDefault [
 	| composite |
 	composite := (GLMCompositePresentation new with: [:a | a text ]) startOn: '42'.
 	self assert: composite presentations first text equals: '42'

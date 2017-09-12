@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloProjectRegistrationVersionInfo,
 	#superclass : #Object,
@@ -8,50 +5,34 @@ Class {
 		'versionString',
 		'projectVersion'
 	],
-	#category : #Metacello-Core-Scripts,
-	#timestamp : ''
+	#category : #Metacello-Core-Scripts
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistrationVersionInfo>>projectVersion [
+{ #category : #accessing }
+MetacelloProjectRegistrationVersionInfo >> projectVersion [
   ^ projectVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistrationVersionInfo>>projectVersion: anObject [
+{ #category : #accessing }
+MetacelloProjectRegistrationVersionInfo >> projectVersion: anObject [
   projectVersion := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistrationVersionInfo>>setVersionString: anObject [
+{ #category : #accessing }
+MetacelloProjectRegistrationVersionInfo >> setVersionString: anObject [
   "set versionString, only if it does not already have avalue"
 
   versionString ifNil: [ self versionString: anObject ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistrationVersionInfo>>versionString [
+{ #category : #accessing }
+MetacelloProjectRegistrationVersionInfo >> versionString [
 
    ^versionString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistrationVersionInfo>>versionString: anObject [
+{ #category : #accessing }
+MetacelloProjectRegistrationVersionInfo >> versionString: anObject [
   versionString := anObject.
   projectVersion := nil
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #ZnUrlTests
-}
+Extension { #name : #ZnUrlTests }
 
-{
-	#category : #'*zinc-tests',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUrlTests>>testRetrieveContents [
+{ #category : #'*zinc-tests' }
+ZnUrlTests >> testRetrieveContents [
 	| numbers |
 	numbers := 'http://zn.stfx.eu/zn/numbers.txt' asZnUrl retrieveContents.
 	numbers := numbers lines collect: [ :each | each asInteger ].
@@ -14,11 +9,8 @@ ZnUrlTests>>testRetrieveContents [
 	self should: [ 'http://zn.stfx.eu/zn/numbers-wrong.txt' asZnUrl retrieveContents ] raise: Error
 ]
 
-{
-	#category : #'*zinc-tests',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUrlTests>>testSaveContentsToFile [
+{ #category : #'*zinc-tests' }
+ZnUrlTests >> testSaveContentsToFile [
 	| url target result numbers |
 	url := 'http://zn.stfx.eu/zn/numbers.txt' asZnUrl.
 	target := Path * 'numbers.txt'.

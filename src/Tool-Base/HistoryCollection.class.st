@@ -14,24 +14,17 @@ Class {
 		'storage',
 		'maxSize'
 	],
-	#category : #Tool-Base,
-	#timestamp : 'BenjaminVanRyseghem 3/17/2011 13:41'
+	#category : #Tool-Base
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection class>>maxSize: anInteger [
+{ #category : #'instance creation' }
+HistoryCollection class >> maxSize: anInteger [
 
 	^ self new maxSize: anInteger
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection>>add: anElement [
+{ #category : #protocol }
+HistoryCollection >> add: anElement [
 
 	| count |
 	count := 0.
@@ -45,58 +38,40 @@ HistoryCollection>>add: anElement [
 	^ storage addFirst: (anElement -> (count+1))
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection>>at: anElement [
+{ #category : #protocol }
+HistoryCollection >> at: anElement [
 
 	^ storage detect: [:each | each key = anElement]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection>>elements [
+{ #category : #protocol }
+HistoryCollection >> elements [
 	
 	^ storage collect: [:each | each key ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection>>identityIncludes: anElement [
+{ #category : #protocol }
+HistoryCollection >> identityIncludes: anElement [
 
 	^ storage anySatisfy: [:association | association key == anElement ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection>>includes: anElement [
+{ #category : #protocol }
+HistoryCollection >> includes: anElement [
 
 	^ storage anySatisfy: [:association | association key = anElement ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection>>initialize [
+{ #category : #initialization }
+HistoryCollection >> initialize [
 
 	super initialize.
 	maxSize := 5.
 	storage := OrderedCollection new: maxSize.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection>>lessSeen [
+{ #category : #protocol }
+HistoryCollection >> lessSeen [
 
 	| min |
 	min := storage first.
@@ -107,29 +82,20 @@ HistoryCollection>>lessSeen [
 	^ min key
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection>>maxSize [
+{ #category : #accessing }
+HistoryCollection >> maxSize [
 
 	^ maxSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection>>maxSize: anInteger [
+{ #category : #accessing }
+HistoryCollection >> maxSize: anInteger [
 
 	maxSize := anInteger
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection>>mostSeen [
+{ #category : #protocol }
+HistoryCollection >> mostSeen [
 
 	| max |
 	max := storage first.
@@ -140,29 +106,20 @@ HistoryCollection>>mostSeen [
 	^ max key
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection>>mostViewedElements [
+{ #category : #protocol }
+HistoryCollection >> mostViewedElements [
 	
 	^ (storage sorted: [:a :b | a value >= b value]) collect: [:each | each key ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection>>oldest [
+{ #category : #protocol }
+HistoryCollection >> oldest [
 
 	^ storage last key
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection>>remove: anElement [
+{ #category : #protocol }
+HistoryCollection >> remove: anElement [
 
 	| association |
 	association := self at: anElement.
@@ -170,11 +127,8 @@ HistoryCollection>>remove: anElement [
 	
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection>>removeLast [
+{ #category : #protocol }
+HistoryCollection >> removeLast [
 	" I remove the less seen one, in case of equality, I remove the latest one "
 
 
@@ -188,20 +142,14 @@ HistoryCollection>>removeLast [
 	storage remove: min
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection>>size [
+{ #category : #protocol }
+HistoryCollection >> size [
 
 	^ storage size
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-HistoryCollection>>youngest [
+{ #category : #protocol }
+HistoryCollection >> youngest [
 
 	^ storage first key
 ]

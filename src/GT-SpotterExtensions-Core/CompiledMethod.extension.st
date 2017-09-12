@@ -1,20 +1,12 @@
-Extension {
-	#name : #CompiledMethod
-}
+Extension { #name : #CompiledMethod }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CompiledMethod>>spotterActDefault [
+{ #category : #'*GT-SpotterExtensions-Core' }
+CompiledMethod >> spotterActDefault [
 	^ self browse
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CompiledMethod>>spotterForBytecodesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+CompiledMethod >> spotterForBytecodesFor: aStep [
 	<spotterOrder: 15>
 	aStep listProcessor
 		title: 'Bytecode';
@@ -23,11 +15,8 @@ CompiledMethod>>spotterForBytecodesFor: aStep [
 		filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CompiledMethod>>spotterForImplementorsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+CompiledMethod >> spotterForImplementorsFor: aStep [
 	<spotterOrder: 10>
 	aStep listProcessor
 			title: 'Implementors';
@@ -36,11 +25,8 @@ CompiledMethod>>spotterForImplementorsFor: aStep [
 			keyBinding: $m command
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CompiledMethod>>spotterForMessagesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+CompiledMethod >> spotterForMessagesFor: aStep [
 	<spotterOrder: 12>
 	aStep listProcessor
 			title: 'Messages';
@@ -48,11 +34,8 @@ CompiledMethod>>spotterForMessagesFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CompiledMethod>>spotterForSendersFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+CompiledMethod >> spotterForSendersFor: aStep [
 	<spotterOrder: 11>
 	aStep listProcessor
 			title: 'Senders';
@@ -61,19 +44,13 @@ CompiledMethod>>spotterForSendersFor: aStep [
 			keyBinding: $n command
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CompiledMethod>>spotterItemsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+CompiledMethod >> spotterItemsFor: aStep [
 	"do nothing for compiled method"
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CompiledMethod>>spotterMethodClassFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+CompiledMethod >> spotterMethodClassFor: aStep [
 	<spotterOrder: 50>
 	aStep listProcessor
 			allCandidates: [  {self methodClass }];
@@ -82,11 +59,8 @@ CompiledMethod>>spotterMethodClassFor: aStep [
 			itemIcon: #systemIcon
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CompiledMethod>>spotterPreviewCodeIn: aComposite [
+{ #category : #'*GT-SpotterExtensions-Core' }
+CompiledMethod >> spotterPreviewCodeIn: aComposite [
 	<spotterPreview: 10>
 	aComposite pharoMethod
 		title: [ self gtDisplayString ];
@@ -98,10 +72,7 @@ CompiledMethod>>spotterPreviewCodeIn: aComposite [
 	self flag: 'move "entity: self" somewhere else, maybe'
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CompiledMethod>>spotterSelectFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+CompiledMethod >> spotterSelectFor: aStep [
 	" ignore :) "
 ]

@@ -1,11 +1,6 @@
-Extension {
-	#name : #ByteString
-}
+Extension { #name : #ByteString }
 
-{
-	#category : #'*Hermes',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-ByteString>>asExportedLiteral [
+{ #category : #'*Hermes' }
+ByteString >> asExportedLiteral [
 	^ HEByteString for:self.
 ]

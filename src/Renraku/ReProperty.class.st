@@ -7,24 +7,17 @@ Class {
 	#instVars : [
 		'sourceAnchor'
 	],
-	#category : #Renraku-Critiques,
-	#timestamp : 'YuriyTymchuk 1/14/2016 15:26'
+	#category : #Renraku-Critiques
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReProperty>>actions  [
+{ #category : #actions }
+ReProperty >> actions [ 
 
 	^ #()
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReProperty>>gtInspectorActions [
+{ #category : #actions }
+ReProperty >> gtInspectorActions [
 	^ (self actions collect: [ :act | 
 		GLMGenericAction new
 			action: [ act actOnCritic: self ofEntity: self sourceAnchor entity ];
@@ -34,30 +27,21 @@ ReProperty>>gtInspectorActions [
 	super gtInspectorActions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReProperty>>icon [
+{ #category : #accessing }
+ReProperty >> icon [
 
 	^ Form extent: 16@16 depth: 32
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReProperty>>initializeSourceAnchor: anAnchor [
+{ #category : #initialization }
+ReProperty >> initializeSourceAnchor: anAnchor [
 
 	self initialize.
 	sourceAnchor := anAnchor
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReProperty>>isCritic [
+{ #category : #deprecated }
+ReProperty >> isCritic [
 
 	self
 		deprecated: 'Please use #isCritique instead'
@@ -65,27 +49,18 @@ ReProperty>>isCritic [
 	^ self isCritique
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReProperty>>isCritique [
+{ #category : #testing }
+ReProperty >> isCritique [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReProperty>>sourceAnchor [
+{ #category : #accessing }
+ReProperty >> sourceAnchor [
 	^ sourceAnchor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReProperty>>title [
+{ #category : #accessing }
+ReProperty >> title [
 
 	^ self subclassResponsibility 
 ]

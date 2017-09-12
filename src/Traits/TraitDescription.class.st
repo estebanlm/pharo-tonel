@@ -12,26 +12,19 @@ Class {
 	#instVars : [
 		'organization'
 	],
-	#category : #Traits-Kernel,
-	#timestamp : '<historical>'
+	#category : #Traits-Kernel
 }
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>+ aTraitOrTraitComposition [
+{ #category : #composition }
+TraitDescription >> + aTraitOrTraitComposition [
 	"Use double dispatch to avoid having nested composition in cases where
 	parenthesis are used, such as T1 + (T2 + T3)"
 	
 	^aTraitOrTraitComposition addOnTheLeft: self
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>- anArrayOfSelectors [
+{ #category : #composition }
+TraitDescription >> - anArrayOfSelectors [
 	^TraitExclusion
 		with: self
 		exclusions: (anArrayOfSelectors isSymbol 
@@ -39,30 +32,21 @@ TraitDescription>>- anArrayOfSelectors [
 							ifFalse: [ anArrayOfSelectors])
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>@ anArrayOfAssociations  [
+{ #category : #composition }
+TraitDescription >> @ anArrayOfAssociations [ 
 	^ TraitAlias with: self aliases: anArrayOfAssociations
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>acceptsLoggingOfCompilation [
+{ #category : #compiling }
+TraitDescription >> acceptsLoggingOfCompilation [
 	"Answer whether the receiver's method submisions and class defintions should be logged to the changes file and to the current change set.  The metaclass follows the rule of the class itself
 	Weird name is so that it will come lexically before #compile, so that a clean build can make it through."
 
 	^ true
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>addAndClassifySelector: selector withMethod: compiledMethod inProtocol: category notifying: requestor  [
+{ #category : #'accessing method dictionary' }
+TraitDescription >> addAndClassifySelector: selector withMethod: compiledMethod inProtocol: category notifying: requestor [ 
 	| priorMethodOrNil priorOriginOrNil oldProtocol  |
 	
 	priorMethodOrNil := self
@@ -86,62 +70,41 @@ TraitDescription>>addAndClassifySelector: selector withMethod: compiledMethod in
 				oldProtocol: oldProtocol ]
 ]
 
-{
-	#category : #organization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>addCategory: newName before: aCategory [
+{ #category : #organization }
+TraitDescription >> addCategory: newName before: aCategory [
 
 	^ self organization addCategory: newName before: aCategory 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>addCompositionOnLeft: aTraitComposition [
+{ #category : #private }
+TraitDescription >> addCompositionOnLeft: aTraitComposition [
 	^ aTraitComposition add: self
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>addExclusionOf: aSymbol [
+{ #category : #composition }
+TraitDescription >> addExclusionOf: aSymbol [
 	^self - {aSymbol}
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>addInstVarNamed: aString [
+{ #category : #'instance variables' }
+TraitDescription >> addInstVarNamed: aString [
 	"Compatibility purposes"
 ]
 
-{
-	#category : #'accessing tags',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>addMethodTag: aSymbol [
+{ #category : #'accessing tags' }
+TraitDescription >> addMethodTag: aSymbol [
 	"Any method could be tagged with multiple symbols for user purpose.
 	In class we could define what tags could be used for methods"
 	self organization addCategory: aSymbol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>addOnTheLeft: aTraitExpression [
+{ #category : #private }
+TraitDescription >> addOnTheLeft: aTraitExpression [
 	^TraitComposition with: aTraitExpression with: self
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>addSelector: selector withMethod: compiledMethod notifying: requestor [
+{ #category : #'accessing method dictionary' }
+TraitDescription >> addSelector: selector withMethod: compiledMethod notifying: requestor [
 	| priorMethodOrNil oldProtocol |
 	priorMethodOrNil := self compiledMethodAt: selector ifAbsent: [nil].
 	oldProtocol := priorMethodOrNil ifNotNil: [ priorMethodOrNil protocol ].
@@ -151,38 +114,26 @@ TraitDescription>>addSelector: selector withMethod: compiledMethod notifying: re
 		ifNotNil: [SystemAnnouncer uniqueInstance methodChangedFrom: priorMethodOrNil to: compiledMethod oldProtocol: oldProtocol ].
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>addSelectorSilently: selector withMethod: compiledMethod [
+{ #category : #'accessing method dictionary' }
+TraitDescription >> addSelectorSilently: selector withMethod: compiledMethod [
 	super addSelectorSilently: selector withMethod: compiledMethod.
 	self instanceSide noteAddedSelector: selector meta: self isMeta.
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>aliasesForSelector: aSelector  [
+{ #category : #enquiries }
+TraitDescription >> aliasesForSelector: aSelector [ 
 	^ OrderedCollection new
 
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>allAliasesDict [
+{ #category : #enquiries }
+TraitDescription >> allAliasesDict [
 	^IdentityDictionary new
 
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>allInstVarNamesEverywhere [
+{ #category : #'instance variables' }
+TraitDescription >> allInstVarNamesEverywhere [
 	"Answer the set of inst var names used by the receiver, all superclasses, and all subclasses"
 
 	| aList |
@@ -194,11 +145,8 @@ TraitDescription>>allInstVarNamesEverywhere [
 	"BorderedMorph allInstVarNamesEverywhere"
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>allProtocolsUpTo: mostGenericClass [
+{ #category : #'accessing method dictionary' }
+TraitDescription >> allProtocolsUpTo: mostGenericClass [
 	"Answer a list of all the method protocols of the receiver and all its superclasses, up through mostGenericClass"
 
 	| otherClassCategories thisClassCategories lowercaseSortBlock  |
@@ -215,11 +163,8 @@ TraitDescription>>allProtocolsUpTo: mostGenericClass [
 								thisClassCategories includes: each ]) sorted: lowercaseSortBlock)
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>allSelectorsInProtocol: aName  [
+{ #category : #'accessing method dictionary' }
+TraitDescription >> allSelectorsInProtocol: aName [ 
 	"Answer a list of all the methods of the receiver and all its 
 	superclasses that are in the protocol named aName"
 	
@@ -230,29 +175,20 @@ TraitDescription>>allSelectorsInProtocol: aName  [
 	^ aColl asSet asArray sort
 ]
 
-{
-	#category : #'pool variable',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>allSharedPools [
+{ #category : #'pool variable' }
+TraitDescription >> allSharedPools [
 	"Answer an ordered collection  of the shared pools the receiver shares, including those defined  in the superclasses of the receiver."
 	
 	^ OrderedCollection new
 ]
 
-{
-	#category : #slots,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>allSlots [
+{ #category : #slots }
+TraitDescription >> allSlots [
 	^#()
 ]
 
-{
-	#category : #slots,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>allSlotsEverywhere [
+{ #category : #slots }
+TraitDescription >> allSlotsEverywhere [
 	"Answer the set of slots used by the receiver, all superclasses, and all subclasses"
 
 	| aList |
@@ -262,11 +198,8 @@ TraitDescription>>allSlotsEverywhere [
 	^ aList asSet
 ]
 
-{
-	#category : #'organization updating',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>applyChangesOfNewTraitCompositionReplacing: oldComposition [
+{ #category : #'organization updating' }
+TraitDescription >> applyChangesOfNewTraitCompositionReplacing: oldComposition [
 	| changedSelectors oldMethodDict |
 	oldMethodDict := self methodDict copy.
 	changedSelectors := super applyChangesOfNewTraitCompositionReplacing: oldComposition.
@@ -275,53 +208,35 @@ TraitDescription>>applyChangesOfNewTraitCompositionReplacing: oldComposition [
 	^ changedSelectors.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>asTraitComposition [
+{ #category : #converting }
+TraitDescription >> asTraitComposition [
 	^TraitComposition with: self
 ]
 
-{
-	#category : #authors,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>authors [
+{ #category : #authors }
+TraitDescription >> authors [
 	"Returns a bag representing the author frequency based on the latest version of the methods of the receiver."
 
 	^(self methods, self theMetaClass methods) collect: [ :each | each author ] as: Bag
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>baseTrait [
+{ #category : #'accessing parallel hierarchy' }
+TraitDescription >> baseTrait [
 	self subclassResponsibility
 ]
 
-{
-	#category : #organization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>basicOrganization [
+{ #category : #organization }
+TraitDescription >> basicOrganization [
 	^ organization 
 ]
 
-{
-	#category : #organization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>basicOrganization: aClassOrg [
+{ #category : #organization }
+TraitDescription >> basicOrganization: aClassOrg [
 	organization := aClassOrg
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>changedSelectorsComparedTo: aTraitTransformation [
+{ #category : #enquiries }
+TraitDescription >> changedSelectorsComparedTo: aTraitTransformation [
 	| selectors otherSelectors changedSelectors aliases otherAliases |
 	selectors := self allSelectors asIdentitySet.
 	otherSelectors := aTraitTransformation allSelectors asIdentitySet.
@@ -337,20 +252,14 @@ TraitDescription>>changedSelectorsComparedTo: aTraitTransformation [
 
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>classComment: aString [
+{ #category : #filein/out }
+TraitDescription >> classComment: aString [
 	"Store the comment, aString or Text or RemoteString, associated with the class we are orgainzing.  Empty string gets stored only if had a non-empty one before."
 	^ self classComment: aString stamp: '<historical>'
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>classComment: aString stamp: aStamp [
+{ #category : #filein/out }
+TraitDescription >> classComment: aString stamp: aStamp [
 	"Store the comment, aString or Text or RemoteString, associated with the class we are organizing.  Empty string gets stored only if had a non-empty one before."
 
 	| pointer header oldCommentRemoteString oldComment oldStamp preamble |
@@ -400,11 +309,8 @@ TraitDescription>>classComment: aString stamp: aStamp [
 		newStamp: aStamp
 ]
 
-{
-	#category : #'accessing comment',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>classCommentBlank [
+{ #category : #'accessing comment' }
+TraitDescription >> classCommentBlank [
 
 	| existingComment stream |
 	existingComment := self theNonMetaClass organization classComment.
@@ -445,47 +351,32 @@ stream cr; cr; nextPutAll: '    Implementation Points'.
 	^stream contents
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>classSide [
+{ #category : #'accessing parallel hierarchy' }
+TraitDescription >> classSide [
 	^self theMetaClass.
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>classThatDefinesClassVariable: classVarName [
+{ #category : #'instance variables' }
+TraitDescription >> classThatDefinesClassVariable: classVarName [
 	"Answer the class that defines the given class variable"
 
 	(self classPool includesKey: classVarName asSymbol) ifTrue: [^ self]. 
 	^self superclass ifNotNil: [self superclass classThatDefinesClassVariable: classVarName]
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>classThatDefinesInstanceVariable: instVarName [
+{ #category : #'instance variables' }
+TraitDescription >> classThatDefinesInstanceVariable: instVarName [
 	(self instVarNames notNil and: [self instVarNames includes: instVarName asString]) ifTrue: [^ self]. 
 	^self superclass ifNotNil: [self superclass classThatDefinesInstanceVariable: instVarName]
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>classTrait [
+{ #category : #'accessing parallel hierarchy' }
+TraitDescription >> classTrait [
 	self subclassResponsibility
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>classVariablesString [
+{ #category : #printing }
+TraitDescription >> classVariablesString [
 	"Answer a string of my class variable names separated by spaces."
 
 	^String streamContents: [ :stream | 
@@ -494,11 +385,8 @@ TraitDescription>>classVariablesString [
 			separatedBy: [ stream space ] ]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>classesThatImplementAllOf: selectorSet [
+{ #category : #'accessing class hierarchy' }
+TraitDescription >> classesThatImplementAllOf: selectorSet [
 	"Return an array of any classes that implement all the messages in selectorSet."
 
 	| found remaining |
@@ -516,22 +404,16 @@ TraitDescription>>classesThatImplementAllOf: selectorSet [
 							subsThatDo , (sub classesThatImplementAllOf: remaining)]]
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>collectMethodsFor: aSelector into: methodDescription [
+{ #category : #enquiries }
+TraitDescription >> collectMethodsFor: aSelector into: methodDescription [
 	(self includesSelector: aSelector) ifTrue: [ 
 		methodDescription addLocatedMethod: 
 			(self compiledMethodAt: aSelector)
 		]
 ]
 
-{
-	#category : #'accessing comment',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>comment [
+{ #category : #'accessing comment' }
+TraitDescription >> comment [
 	"Answer the receiver's comment. (If missing, supply a template) "
 	| aString |
 	aString := self instanceSide organization classComment.
@@ -539,31 +421,22 @@ TraitDescription>>comment [
 	^self classCommentBlank
 ]
 
-{
-	#category : #'accessing comment',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>comment: aStringOrText [
+{ #category : #'accessing comment' }
+TraitDescription >> comment: aStringOrText [
 	"Set the receiver's comment to be the argument, aStringOrText."
 
 	self instanceSide classComment: aStringOrText.
 ]
 
-{
-	#category : #'accessing comment',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>comment: aStringOrText stamp: aStamp [
+{ #category : #'accessing comment' }
+TraitDescription >> comment: aStringOrText stamp: aStamp [
 	"Set the receiver's comment to be the argument, aStringOrText."
 
 	self instanceSide classComment: aStringOrText stamp: aStamp.
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>commentInventory [
+{ #category : #'accessing class hierarchy' }
+TraitDescription >> commentInventory [
 	"Answer a string with a count of the classes with and without comments 
 	for all the classes in the package of which this class is a member."
 
@@ -572,19 +445,13 @@ TraitDescription>>commentInventory [
 	^ self environment organization commentInventory: (self category copyUpTo: $-), '*'
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>commentStamp: changeStamp [
+{ #category : #filein/out }
+TraitDescription >> commentStamp: changeStamp [
 	self organization commentStamp: changeStamp
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>compile: code classified: heading  [
+{ #category : #compiling }
+TraitDescription >> compile: code classified: heading [ 
 	"Compile the argument, code, as source code in the context of the 
 	receiver and install the result in the receiver's method dictionary under 
 	the classification indicated by the second argument, heading. nil is to be 
@@ -598,11 +465,8 @@ TraitDescription>>compile: code classified: heading  [
 		notifying: nil
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>compile: text classified: category notifying: requestor [
+{ #category : #compiling }
+TraitDescription >> compile: text classified: category notifying: requestor [
 	| stamp |
 	stamp := self acceptsLoggingOfCompilation
 		ifTrue: [ Author changeStamp ]
@@ -614,11 +478,8 @@ TraitDescription>>compile: text classified: category notifying: requestor [
 		notifying: requestor
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>compile: text classified: category withStamp: changeStamp notifying: requestor [
+{ #category : #compiling }
+TraitDescription >> compile: text classified: category withStamp: changeStamp notifying: requestor [
 	^ self
 		compile: text
 		classified: category
@@ -627,11 +488,8 @@ TraitDescription>>compile: text classified: category withStamp: changeStamp noti
 		logSource: self acceptsLoggingOfCompilation
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>compile: text classified: category withStamp: changeStamp notifying: requestor logSource: logSource [
+{ #category : #compiling }
+TraitDescription >> compile: text classified: category withStamp: changeStamp notifying: requestor logSource: logSource [
  
 	| method selector |
 
@@ -662,11 +520,8 @@ TraitDescription>>compile: text classified: category withStamp: changeStamp noti
 	^ selector
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>compile: code notifying: requestor  [
+{ #category : #compiling }
+TraitDescription >> compile: code notifying: requestor [ 
 	"Refer to the comment in Behavior|compile:notifying:." 
 
 	^self compile: code
@@ -674,32 +529,23 @@ TraitDescription>>compile: code notifying: requestor  [
 		 notifying: requestor
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>compileSilently: code classified: category [
+{ #category : #compiling }
+TraitDescription >> compileSilently: code classified: category [
 	"Compile the code and classify the resulting method in the given category, leaving no trail in the system log, nor in any change set, nor in the 'recent submissions' list. This should only be used when you know for sure that the compilation will succeed."
 
 	^ self compileSilently: code classified: category notifying: nil.
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>compileSilently: code classified: category notifying: requestor [
+{ #category : #compiling }
+TraitDescription >> compileSilently: code classified: category notifying: requestor [
 	"Compile the code and classify the resulting method in the given category, leaving no trail in the system log, nor in any change set, nor in the 'recent submissions' list. This should only be used when you know for sure that the compilation will succeed."
 
 	^ SystemAnnouncer uniqueInstance 
 		suspendAllWhile: [self compile: code classified: category notifying: requestor].
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>copy: sel from: class  [
+{ #category : #copying }
+TraitDescription >> copy: sel from: class [ 
 	"Install the method associated with the first argument, sel, a message 
 	selector, found in the method dictionary of the second argument, class, 
 	as one of the receiver's methods. Classify the message under -As yet not 
@@ -710,11 +556,8 @@ TraitDescription>>copy: sel from: class  [
 		classified: nil
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>copy: sel from: class classified: cat  [
+{ #category : #copying }
+TraitDescription >> copy: sel from: class classified: cat [ 
 	"Install the method associated with the first arugment, sel, a message 
 	selector, found in the method dictionary of the second argument, class, 
 	as one of the receiver's methods. Classify the message under the third 
@@ -736,11 +579,8 @@ TraitDescription>>copy: sel from: class classified: cat  [
 			self compile: code classified: category]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>copyAll: selArray from: class  [
+{ #category : #copying }
+TraitDescription >> copyAll: selArray from: class [ 
 	"Install all the methods found in the method dictionary of the second 
 	argument, class, as the receiver's methods. Classify the messages under 
 	-As yet not classified-."
@@ -750,11 +590,8 @@ TraitDescription>>copyAll: selArray from: class  [
 		classified: nil
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>copyAll: selArray from: class classified: cat  [
+{ #category : #copying }
+TraitDescription >> copyAll: selArray from: class classified: cat [ 
 	"Install all the methods found in the method dictionary of the second 
 	argument, class, as the receiver's methods. Classify the messages under 
 	the third argument, cat."
@@ -766,11 +603,8 @@ TraitDescription>>copyAll: selArray from: class classified: cat  [
 				classified: cat ] ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>copyAllCategoriesFrom: aClass  [
+{ #category : #copying }
+TraitDescription >> copyAllCategoriesFrom: aClass [ 
 	"Specify that the categories of messages for the receiver include all of 
 	those found in the class, aClass. Install each of the messages found in 
 	these categories into the method dictionary of the receiver, classified 
@@ -779,11 +613,8 @@ TraitDescription>>copyAllCategoriesFrom: aClass  [
 	aClass organization categories do: [:cat | self copyCategory: cat from: aClass]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>copyCategory: cat from: class  [
+{ #category : #copying }
+TraitDescription >> copyCategory: cat from: class [ 
 	"Specify that one of the categories of messages for the receiver is cat, as 
 	found in the class, class. Copy each message found in this category."
 
@@ -792,11 +623,8 @@ TraitDescription>>copyCategory: cat from: class  [
 		classified: cat
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>copyCategory: cat from: aClass classified: newCat  [
+{ #category : #copying }
+TraitDescription >> copyCategory: cat from: aClass classified: newCat [ 
 	"Specify that one of the categories of messages for the receiver is the 
 	third argument, newCat. Copy each message found in the category cat in 
 	class aClass into this new category."
@@ -806,52 +634,37 @@ TraitDescription>>copyCategory: cat from: aClass classified: newCat  [
 		classified: newCat
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>copyMethodDictionaryFrom: donorClass [
+{ #category : #copying }
+TraitDescription >> copyMethodDictionaryFrom: donorClass [
 	"Copy the method dictionary of the donor class over to the receiver"
 
 	self methodDict: donorClass copyOfMethodDictionary.
 	self organization: donorClass organization deepCopy.
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>copyTraitExpression [
+{ #category : #copying }
+TraitDescription >> copyTraitExpression [
 	"When recursively copying a trait expression, the primitive traits should NOT be copied
 because they are globally named 'well-known' objects"
 	^ self 
 ]
 
-{
-	#category : #slots,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>definesSlot: aSlot [
+{ #category : #slots }
+TraitDescription >> definesSlot: aSlot [
 	"Return true whether the receiver defines an instance variable named aString"
 	
 	^ self slots identityIncludes: aSlot
 ]
 
-{
-	#category : #slots,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>definesSlotNamed: aString [
+{ #category : #slots }
+TraitDescription >> definesSlotNamed: aString [
 	"Return true whether the receiver defines an instance variable named aString."
 	
 	^ self slotNames includes: aString
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>definition [
+{ #category : #filein/out }
+TraitDescription >> definition [
 	"Answer a String that defines the receiver"
 
 	^String streamContents: [:stream |
@@ -864,37 +677,25 @@ TraitDescription>>definition [
 				store: self category asString].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>definitionForNautilus [
+{ #category : #accessing }
+TraitDescription >> definitionForNautilus [
 
 	^ self definition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>definitionForNautilusWithSlots [
+{ #category : #accessing }
+TraitDescription >> definitionForNautilusWithSlots [
 
 	^ self definition
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>errorCategoryName [
+{ #category : #private }
+TraitDescription >> errorCategoryName [
 	self error: 'Category name must be a String'
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>forceNewFrom: anArray [
+{ #category : #'instance variables' }
+TraitDescription >> forceNewFrom: anArray [
     "Create a new instance of the class and fill
     its instance variables up with the array."
     | object max |
@@ -907,79 +708,55 @@ TraitDescription>>forceNewFrom: anArray [
     ^ object
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>hasClassSide [
+{ #category : #'accessing parallel hierarchy' }
+TraitDescription >> hasClassSide [
 	^self subclassResponsibility.
 ]
 
-{
-	#category : #'accessing comment',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>hasComment [
+{ #category : #'accessing comment' }
+TraitDescription >> hasComment [
 	"return whether this class truly has a comment other than the default"
 	| org |
 	org := self instanceSide organization.
 	^org classComment isEmptyOrNil not
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>hasInstVarNamed: aString [
+{ #category : #'instance variables' }
+TraitDescription >> hasInstVarNamed: aString [
 	"Return true whether the receiver defines an instance variable named aString."
 	
 	^ self instVarNames includes: aString
 ]
 
-{
-	#category : #'pool variable',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>hasSharedPools [
+{ #category : #'pool variable' }
+TraitDescription >> hasSharedPools [
 	"Only a class may have shared pools"
 	^ false
 ]
 
-{
-	#category : #slots,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>hasSlot: aSlot [
+{ #category : #slots }
+TraitDescription >> hasSlot: aSlot [
 	"Return true whether the receivers hierarchy defines an instance variable named aString."
 	
 	^ self allSlots identityIncludes: aSlot
 ]
 
-{
-	#category : #slots,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>hasSlotNamed: aString [
+{ #category : #slots }
+TraitDescription >> hasSlotNamed: aString [
 	"Return true whether the receiver defines an instance variable named aString."
 	
 	^ self allSlots anySatisfy: [:slot | slot name = aString]
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>instVarIndexFor: instVarName [
+{ #category : #'instance variables' }
+TraitDescription >> instVarIndexFor: instVarName [
 	"Answer the index of the named instance variable."
 
 	^self instVarIndexFor: instVarName ifAbsent: 0
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>instVarIndexFor: instVarName ifAbsent: aBlock [
+{ #category : #'instance variables' }
+TraitDescription >> instVarIndexFor: instVarName ifAbsent: aBlock [
 	"Answer the index of the named instance variable."
 
 	| index |
@@ -993,11 +770,8 @@ TraitDescription>>instVarIndexFor: instVarName ifAbsent: aBlock [
 		ifNotNil: [index + self superclass instSize]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>instVarMappingFrom: oldClass [
+{ #category : #private }
+TraitDescription >> instVarMappingFrom: oldClass [
 	"Return the mapping from instVars of oldClass to new class that is used for converting old instances of oldClass."
 	| oldInstVarNames |
 	oldInstVarNames := oldClass allInstVarNames.
@@ -1005,11 +779,8 @@ TraitDescription>>instVarMappingFrom: oldClass [
 			collect: [:instVarName | oldInstVarNames indexOf: instVarName].
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>instVarNameForIndex: index [
+{ #category : #'instance variables' }
+TraitDescription >> instVarNameForIndex: index [
 	"Answer the named instance variable with index index or nil if none."
 
 	| superInstSize |
@@ -1025,21 +796,15 @@ TraitDescription>>instVarNameForIndex: index [
 			[:cls| (1 to: cls instSize) collect: [:i| cls instVarNameForIndex: i]]"
 ]
 
-{
-	#category : #slots,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>instVarNames [
+{ #category : #slots }
+TraitDescription >> instVarNames [
 	"Answer an Array of the receiver's instance variable names."
 
 	^#()
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>instVarNamesAndOffsetsDo: aBinaryBlock [
+{ #category : #compiling }
+TraitDescription >> instVarNamesAndOffsetsDo: aBinaryBlock [
 	"This is part of the interface between the compiler and a class's instance or field names.
 	 The class should enumerate aBinaryBlock with the instance variable name strings and
 	 their integer offsets.  The order is important. Names evaluated later will override the
@@ -1052,27 +817,18 @@ TraitDescription>>instVarNamesAndOffsetsDo: aBinaryBlock [
 		[:i| aBinaryBlock value: (self instVarNames at: i) value: i + superInstSize]
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>instanceSide [
+{ #category : #'accessing parallel hierarchy' }
+TraitDescription >> instanceSide [
 	^ self theNonMetaClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>instanceVariables [
+{ #category : #accessing }
+TraitDescription >> instanceVariables [
 	^#().
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>instanceVariablesString [
+{ #category : #printing }
+TraitDescription >> instanceVariablesString [
 	"Answer a string of my instance variable names separated by spaces."
 
 	^String streamContents: [ :stream |
@@ -1081,69 +837,45 @@ TraitDescription>>instanceVariablesString [
 			separatedBy: [ stream space ] ]
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>isBaseTrait [
+{ #category : #'accessing parallel hierarchy' }
+TraitDescription >> isBaseTrait [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>isClassSide [
+{ #category : #'accessing parallel hierarchy' }
+TraitDescription >> isClassSide [
 	^self == self classSide
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>isClassTrait [
+{ #category : #'accessing parallel hierarchy' }
+TraitDescription >> isClassTrait [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>isInstanceSide [
+{ #category : #'accessing parallel hierarchy' }
+TraitDescription >> isInstanceSide [
 	^self isClassSide not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>isLocalMethodsProtocol: aProtocol [
+{ #category : #testing }
+TraitDescription >> isLocalMethodsProtocol: aProtocol [
 	aProtocol methods ifEmpty: [ ^true ].
 	
 	^aProtocol methods anySatisfy: [ :each | self isLocalSelector: each]
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>isMeta [
+{ #category : #'accessing parallel hierarchy' }
+TraitDescription >> isMeta [
 	^self isClassSide
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>isTaggedWith: aSymbol [
+{ #category : #testing }
+TraitDescription >> isTaggedWith: aSymbol [
 	^self tags includes: aSymbol 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>linesOfCode  [
+{ #category : #private }
+TraitDescription >> linesOfCode [ 
 	"An approximate measure of lines of code.
 	Includes comments, but excludes blank lines."
 
@@ -1154,11 +886,8 @@ TraitDescription>>linesOfCode  [
 		ifFalse: [ lines + self theMetaClass linesOfCode ]
 ]
 
-{
-	#category : #'accessing tags',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>methodsTaggedWith: aSymbol [
+{ #category : #'accessing tags' }
+TraitDescription >> methodsTaggedWith: aSymbol [
 	"Any method could be tagged with multiple symbols for user purpose. 
 	And class contains all method tags which used or not used yet by methods.
 	This method select all methods marked by given tag.
@@ -1167,11 +896,8 @@ TraitDescription>>methodsTaggedWith: aSymbol [
 	^self localMethods select: [ :each | each isTaggedWith: aSymbol ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>newInstanceFrom: oldInstance variable: variable size: instSize [
+{ #category : #private }
+TraitDescription >> newInstanceFrom: oldInstance variable: variable size: instSize [
 	"Create a new instance of the receiver based on the given old instance.
 	The supplied map contains a mapping of the old instVar names into
 	the receiver's instVars"
@@ -1195,11 +921,8 @@ TraitDescription>>newInstanceFrom: oldInstance variable: variable size: instSize
 	^ new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>newInstanceFrom: oldInstance variable: variable size: instSize map: map [
+{ #category : #private }
+TraitDescription >> newInstanceFrom: oldInstance variable: variable size: instSize map: map [
 	"Create a new instance of the receiver based on the given old instance.
 	The supplied map contains a mapping of the old instVar names into
 	the receiver's instVars"
@@ -1218,19 +941,13 @@ TraitDescription>>newInstanceFrom: oldInstance variable: variable size: instSize
 	^new
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>noteAddedSelector: aSelector meta: isMeta [
+{ #category : #'accessing method dictionary' }
+TraitDescription >> noteAddedSelector: aSelector meta: isMeta [
 	"A hook allowing some classes to react to adding of certain selectors"
 ]
 
-{
-	#category : #'organization updating',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>noteChangesFrom: oldMethodDict [
+{ #category : #'organization updating' }
+TraitDescription >> noteChangesFrom: oldMethodDict [
 	"create notifications about the changes made to the method dictionary"
 	
 	"deal with additions"
@@ -1250,65 +967,44 @@ TraitDescription>>noteChangesFrom: oldMethodDict [
 	
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>noteCompilationOf: aSelector meta: isMeta [
+{ #category : #compiling }
+TraitDescription >> noteCompilationOf: aSelector meta: isMeta [
 	"A hook allowing some classes to react to recompilation of certain selectors"
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>noteCompilationOfMethod: aCompiledMethod meta: isMeta [
+{ #category : #compiling }
+TraitDescription >> noteCompilationOfMethod: aCompiledMethod meta: isMeta [
 	self noteCompilationOf: aCompiledMethod selector meta: isMeta
 ]
 
-{
-	#category : #'organization updating',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>noteMethodAdded: aMethod [
+{ #category : #'organization updating' }
+TraitDescription >> noteMethodAdded: aMethod [
 	SystemAnnouncer uniqueInstance
 		methodAdded: aMethod
 ]
 
-{
-	#category : #'organization updating',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>noteMethodChanged: oldMethod to: newMethod [
+{ #category : #'organization updating' }
+TraitDescription >> noteMethodChanged: oldMethod to: newMethod [
 	self flag: #todo. "oldProtocol is not set properly here"
 	SystemAnnouncer uniqueInstance methodChangedFrom: oldMethod to: newMethod oldProtocol: Protocol unclassified
 ]
 
-{
-	#category : #'organization updating',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>noteMethodRemoved: oldMethod [
+{ #category : #'organization updating' }
+TraitDescription >> noteMethodRemoved: oldMethod [
 	self flag: #todo. "protocol and origin are not set properly here"
 	SystemAnnouncer uniqueInstance methodRemoved: oldMethod protocol: oldMethod protocol origin: oldMethod origin
 ]
 
-{
-	#category : #'organization updating',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>noteRecategorizedSelector: aSymbol from: oldCategoryOrNil to: newCategoryOrNil [
+{ #category : #'organization updating' }
+TraitDescription >> noteRecategorizedSelector: aSymbol from: oldCategoryOrNil [ to: newCategoryOrNil
 	| changedCategories |
 	changedCategories := self updateOrganizationSelector: aSymbol oldCategory: oldCategoryOrNil newCategory: newCategoryOrNil.
 	changedCategories do: [:each |
 		(self organization isEmptyCategoryNamed: each) ifTrue: [self organization removeCategory: each]]
 ]
 
-{
-	#category : #'organization updating',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>noteRecategorizedSelectors: aCollection oldComposition: aTraitComposition [
+{ #category : #'organization updating' }
+TraitDescription >> noteRecategorizedSelectors: aCollection oldComposition: aTraitComposition [
 	
 	aCollection do: [:each | | oldCategory newCategory | 
 		oldCategory := self organization categoryOfElement: each.
@@ -1316,11 +1012,8 @@ TraitDescription>>noteRecategorizedSelectors: aCollection oldComposition: aTrait
 		self noteRecategorizedSelector: each from: oldCategory to: newCategory]
 ]
 
-{
-	#category : #'organization updating',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>notifyOfRecategorizedSelector: selector from: oldCategory to: newCategory [
+{ #category : #'organization updating' }
+TraitDescription >> notifyOfRecategorizedSelector: selector from: oldCategory [ to: newCategory
 	"If compiled method is not there, it meens it has been removed, not recategorized... so I skip 
 	 the method recategorized announce"
 	(self compiledMethodAt: selector ifAbsent: [ nil ]) 
@@ -1335,11 +1028,8 @@ TraitDescription>>notifyOfRecategorizedSelector: selector from: oldCategory to: 
 			to: newCategory ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>notifyRepackage: selector method: compiledMethod oldProtocol: oldProtocol newProtocol: newProtocol [
+{ #category : #private }
+TraitDescription >> notifyRepackage: selector method: compiledMethod oldProtocol: oldProtocol newProtocol: newProtocol [
 	| oldPackage newPackage |
 	
 	(newProtocol = oldProtocol)
@@ -1365,29 +1055,20 @@ TraitDescription>>notifyRepackage: selector method: compiledMethod oldProtocol: 
 	SystemAnnouncer uniqueInstance methodRecategorized: compiledMethod oldProtocol: oldProtocol
 ]
 
-{
-	#category : #'users notification',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>notifyUsersOfChangedSelectors: aCollection [
+{ #category : #'users notification' }
+TraitDescription >> notifyUsersOfChangedSelectors: aCollection [
 	self traitUsers do: [:each |
 		each noteChangedSelectors: aCollection]
 ]
 
-{
-	#category : #'users notification',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>notifyUsersOfRecategorizedSelector: element from: oldCategory to: newCategory [
+{ #category : #'users notification' }
+TraitDescription >> notifyUsersOfRecategorizedSelector: element from: oldCategory [ to: newCategory
 	self traitUsers do: [:each |
 		each noteRecategorizedSelector: element from: oldCategory to: newCategory]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>numberOfMethods [
+{ #category : #private }
+TraitDescription >> numberOfMethods [
 	"count all methods that are local (not comming from a trait)"
 	| num |
 	num := self localMethods size.
@@ -1396,22 +1077,16 @@ TraitDescription>>numberOfMethods [
 		ifFalse: [ num + self theMetaClass numberOfMethods ] 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>obsolete [
+{ #category : #initialize-release }
+TraitDescription >> obsolete [
 	"Make the receiver obsolete."
 	self superclass removeSubclass: self.
 	self organization: nil.
 	super obsolete.
 ]
 
-{
-	#category : #organization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>organization [
+{ #category : #organization }
+TraitDescription >> organization [
 	"Answer the instance of ClassOrganizer that represents the organization 
 	of the messages of the receiver."
 
@@ -1424,39 +1099,27 @@ TraitDescription>>organization [
 	
 ]
 
-{
-	#category : #organization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>organization: aClassOrg [
+{ #category : #organization }
+TraitDescription >> organization: aClassOrg [
 	"Install an instance of ClassOrganizer that represents the organization of the messages of the receiver."
 
 	aClassOrg ifNotNil: [aClassOrg setSubject: self].
 	self basicOrganization: aClassOrg.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>printOn: aStream  [
+{ #category : #printing }
+TraitDescription >> printOn: aStream [ 
 	aStream nextPutAll: self name
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>printSubclassesOn: aStream level: level  [
+{ #category : #'accessing class hierarchy' }
+TraitDescription >> printSubclassesOn: aStream level: level [ 
 
 		self printSubclassesOn: aStream level: level filter: nil
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>printSubclassesOn: aStream level: level filter: filterCollection [
+{ #category : #'accessing class hierarchy' }
+TraitDescription >> printSubclassesOn: aStream level: level filter: filterCollection [
 	"As part of the algorithm for printing a description of the receiver, print the
 	subclass on the file stream, aStream, indenting level times. 
 	An optional filterCollection restricts printing to contained classes only."
@@ -1476,42 +1139,30 @@ TraitDescription>>printSubclassesOn: aStream level: level filter: filterCollecti
 		[:subclass | subclass printSubclassesOn: aStream level: level + 1 filter: filterCollection]
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>reformatAll [
+{ #category : #compiling }
+TraitDescription >> reformatAll [
 	"Reformat all methods in this class"
 	self methods do: [:method | method reformat]
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>removeInstVarNamed: aString  [
+{ #category : #'instance variables' }
+TraitDescription >> removeInstVarNamed: aString [ 
 	"Remove the argument, aString, as one of the receiver's instance 
 	variables. Create an error notification if the argument is not found."
 
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'accessing tags',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>removeMethodTag: aSymbol [
+{ #category : #'accessing tags' }
+TraitDescription >> removeMethodTag: aSymbol [
 	"Any method could be tagged with multiple symbols for user purpose.
 	In class we could define what tags could be used for methods.
 	Here we could remove what we not need"
 	self organization removeCategory: aSymbol
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>removeProtocol: aString  [
+{ #category : #'accessing method dictionary' }
+TraitDescription >> removeProtocol: aString [ 
 	"Remove each of the messages categorized under aString in the method 
 	dictionary of the receiver. Then remove the category aString."
 	| categoryName |
@@ -1521,11 +1172,8 @@ TraitDescription>>removeProtocol: aString  [
 	self organization removeCategory: categoryName
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>removeSelector: selector  [
+{ #category : #'accessing method dictionary' }
+TraitDescription >> removeSelector: selector [ 
 	"Remove the message whose selector is given from the method 
 	dictionary of the receiver, if it is there. Answer nil otherwise."
 	
@@ -1539,21 +1187,15 @@ TraitDescription>>removeSelector: selector  [
 	SystemAnnouncer uniqueInstance methodRemoved: priorMethod protocol: priorProtocol origin: origin
 ]
 
-{
-	#category : #organization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>reorganize [
+{ #category : #organization }
+TraitDescription >> reorganize [
 	"During fileIn, !Rectangle reorganize! allows Rectangle to seize control and treat the next chunk as its organization.  See the transfer of control where ReadWriteStream fileIn calls scanFrom:"
 
 	^self organization
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>selectorsInCategory: aName  [
+{ #category : #'accessing method dictionary' }
+TraitDescription >> selectorsInCategory: aName [ 
 	"Answer a list of the selectors of the receiver that are in category named aName"
 	
 	| aColl |
@@ -1561,11 +1203,8 @@ TraitDescription>>selectorsInCategory: aName  [
 	^ aColl asArray sort
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>selectorsInProtocol: aName  [
+{ #category : #'accessing method dictionary' }
+TraitDescription >> selectorsInProtocol: aName [ 
 	"Answer a list of the selectors of the receiver that are in category named aName"
 	
 	| aColl |
@@ -1573,21 +1212,15 @@ TraitDescription>>selectorsInProtocol: aName  [
 	^ aColl asArray sort
 ]
 
-{
-	#category : #'pool variable',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>sharedPoolOfVarNamed: aString [
+{ #category : #'pool variable' }
+TraitDescription >> sharedPoolOfVarNamed: aString [
 	"Only classes may have shared pools"
 	
 	^ nil
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>sharedPoolsString [
+{ #category : #printing }
+TraitDescription >> sharedPoolsString [
 	"Answer a string of my shared pool names separated by spaces."
 
 	^String streamContents: [ :stream |
@@ -1602,11 +1235,8 @@ TraitDescription>>sharedPoolsString [
 			separatedBy: [ stream space ] ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>slotDefinitionString [
+{ #category : #printing }
+TraitDescription >> slotDefinitionString [
 	"Answer a string that contains an executable description of my Slots"
 
 	"^self slots ifNotEmpty: [self slots asString] ifEmpty: ['{}']"
@@ -1623,113 +1253,77 @@ TraitDescription>>slotDefinitionString [
 
 ]
 
-{
-	#category : #slots,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>slotNamed: aName [
+{ #category : #slots }
+TraitDescription >> slotNamed: aName [
 	"Tratis have no slots"
 	^self error: 'no slot found'.
 ]
 
-{
-	#category : #slots,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>slotNamed: aName ifFound: foundBlock [
+{ #category : #slots }
+TraitDescription >> slotNamed: aName ifFound: foundBlock [
 	"Tratis have no slots"
 	^self error: 'no slot found'.
 ]
 
-{
-	#category : #slots,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>slotNamed: aName ifFound: foundBlock ifNone: exceptionBlock [
+{ #category : #slots }
+TraitDescription >> slotNamed: aName ifFound: foundBlock ifNone: exceptionBlock [
 	"Tratis have no slots"
 	^self error: 'no slot found'.
 ]
 
-{
-	#category : #slots,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>slotNames [
+{ #category : #slots }
+TraitDescription >> slotNames [
 	^self slots collect: [ :each | each name ]
 ]
 
-{
-	#category : #slots,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>slots [
+{ #category : #slots }
+TraitDescription >> slots [
 	^#()
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>spaceUsed [
+{ #category : #private }
+TraitDescription >> spaceUsed [
 	^super spaceUsed + (self hasClassSide
 		ifTrue: [self classSide spaceUsed] 
 		ifFalse: [0])
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>storeOn: aStream [
+{ #category : #printing }
+TraitDescription >> storeOn: aStream [
 	"Classes and Metaclasses have global names."
 
 	aStream nextPutAll: self name
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>subclassesDo: aBlock [
+{ #category : #'accessing class hierarchy' }
+TraitDescription >> subclassesDo: aBlock [
 	"Evaluate the argument, aBlock, for each of the receiver's immediate subclasses."
 	^self subclasses do: aBlock
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>subject [
+{ #category : #enquiries }
+TraitDescription >> subject [
 	"for compatibility with TraitTransformations"
 	^ self
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>superclass: aClass methodDictionary: mDict format: fmt [
+{ #category : #initialize-release }
+TraitDescription >> superclass: aClass methodDictionary: mDict format: fmt [
 	"Basic initialization of the receiver"
 	super superclass: aClass methodDictionary: mDict format: fmt.
 	self organization: nil.
 ]
 
-{
-	#category : #'as yet unclassified ',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>syntacticallyEquals: aTraitTransformation [
+{ #category : #'as yet unclassified ' }
+TraitDescription >> syntacticallyEquals: aTraitTransformation [
 	"Test syntactic equivalence of this trait (as a trait transformation) with another."
 
 	^ self = aTraitTransformation
 ]
 
-{
-	#category : #'accessing tags',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>tagWith: aSymbol [
+{ #category : #'accessing tags' }
+TraitDescription >> tagWith: aSymbol [
 	| package packageTag |
 	"Any class or trait could be tagged by multiple symbols for user purpose.
 	For now we could only model single tag with RPackageTag"
@@ -1739,11 +1333,8 @@ TraitDescription>>tagWith: aSymbol [
 	packageTag addClass: self
 ]
 
-{
-	#category : #'accessing tags',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>tags [
+{ #category : #'accessing tags' }
+TraitDescription >> tags [
 	| packageTag |
 	"Any class or trait could be tagged by multiple symbols for user purpose.
 	For now we only define API to manage them on top of RPackageTag"
@@ -1754,11 +1345,8 @@ TraitDescription>>tags [
 	^{packageTag name}
 ]
 
-{
-	#category : #'accessing tags',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>tagsForMethods [
+{ #category : #'accessing tags' }
+TraitDescription >> tagsForMethods [
 	"Any method could be tagged with multiple symbols for user purpose. 
 	And class contains all method tags which used or not used yet by methods.
 	For now we could only implemented it on top of Protocol. 
@@ -1776,45 +1364,30 @@ TraitDescription>>tagsForMethods [
 	^tags
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>theMetaClass [
+{ #category : #'accessing parallel hierarchy' }
+TraitDescription >> theMetaClass [
 	^ self classTrait
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>theNonMetaClass [
+{ #category : #'accessing parallel hierarchy' }
+TraitDescription >> theNonMetaClass [
 	^ self baseTrait
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>trait [
+{ #category : #enquiries }
+TraitDescription >> trait [
 	"for compatibility with TraitTransformations"
 	^ self
 
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>uncategorizedSelectors [
+{ #category : #'accessing method dictionary' }
+TraitDescription >> uncategorizedSelectors [
 	^ self selectorsInProtocol: Protocol unclassified
 ]
 
-{
-	#category : #'accessing tags',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>untagFrom: aSymbol [
+{ #category : #'accessing tags' }
+TraitDescription >> untagFrom: aSymbol [
 	| package packageTag |
 	"Any class or trait could be tagged by multiple symbols for user purpose.
 	For now we could only model single tag with RPackageTag"
@@ -1827,11 +1400,8 @@ TraitDescription>>untagFrom: aSymbol [
 	package addClass: self
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>updateInstances: oldInstances from: oldClass isMeta: isMeta [
+{ #category : #initialize-release }
+TraitDescription >> updateInstances: oldInstances from: oldClass isMeta: isMeta [
 	"Recreate any existing instances of the argument, oldClass, as instances of the receiver,
 	 which is a newly changed class. Permute variables as necessary, and forward old instances
 	 to new instances.  Answer nil to defeat old clients that expect an array of old instances.
@@ -1854,11 +1424,8 @@ TraitDescription>>updateInstances: oldInstances from: oldClass isMeta: isMeta [
 	^ nil
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>updateInstancesFrom: oldClass [
+{ #category : #initialize-release }
+TraitDescription >> updateInstancesFrom: oldClass [
 	"Recreate any existing instances of the argument, oldClass, as instances of 
 	the receiver, which is a newly changed class. Permute variables as 
 	necessary. Return the array of old instances (none of which should be
@@ -1892,11 +1459,8 @@ TraitDescription>>updateInstancesFrom: oldClass [
 
 ]
 
-{
-	#category : #'organization updating',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>updateOrganizationDescription: each oldCategory: newCategoryOrNil newCategory: oldCategoryOrNil changed: changedCategories [
+{ #category : #'organization updating' }
+TraitDescription >> updateOrganizationDescription: each oldCategory: newCategoryOrNil newCategory: oldCategoryOrNil changed: changedCategories [
 	| sel effectiveCategory currentCategory |
 	
 	sel := each selector.
@@ -1924,11 +1488,8 @@ TraitDescription>>updateOrganizationDescription: each oldCategory: newCategoryOr
 			self organization classify: sel under: effectiveCategory suppressIfDefault: false ]
 ]
 
-{
-	#category : #'organization updating',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>updateOrganizationDescription: aTraitMethodDescription oldCategory: oldCategoryOrNil newCategory: newCategoryOrNil changedCategories: changedCategories [
+{ #category : #'organization updating' }
+TraitDescription >> updateOrganizationDescription: aTraitMethodDescription oldCategory: oldCategoryOrNil newCategory: newCategoryOrNil changedCategories: changedCategories [
 	| sel effectiveCategory currentCategory |
 	sel := aTraitMethodDescription selector.
 	
@@ -1951,11 +1512,8 @@ TraitDescription>>updateOrganizationDescription: aTraitMethodDescription oldCate
 			self organization classify: sel under: effectiveCategory suppressIfDefault: false ]
 ]
 
-{
-	#category : #'organization updating',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>updateOrganizationSelector: aSymbol oldCategory: oldCategoryOrNil newCategory: newCategoryOrNil [
+{ #category : #'organization updating' }
+TraitDescription >> updateOrganizationSelector: aSymbol oldCategory: oldCategoryOrNil newCategory: newCategoryOrNil [
 	| changedCategories composition |
 	
 	changedCategories := IdentitySet new.
@@ -1975,78 +1533,54 @@ TraitDescription>>updateOrganizationSelector: aSymbol oldCategory: oldCategoryOr
 	^ changedCategories
 ]
 
-{
-	#category : #'pool variable',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>usesLocalPoolVarNamed: aString [
+{ #category : #'pool variable' }
+TraitDescription >> usesLocalPoolVarNamed: aString [
 	^false.
 ]
 
-{
-	#category : #'pool variable',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>usesPoolVarNamed: aString [
+{ #category : #'pool variable' }
+TraitDescription >> usesPoolVarNamed: aString [
 	"Only classes may use a pool variable named: aString"
 	
 	^ false
 ]
 
-{
-	#category : #slots,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>usesSpecialClassVariables [
+{ #category : #slots }
+TraitDescription >> usesSpecialClassVariables [
 
 	^self classVariables anySatisfy: [ :each | each isSpecial ]
 ]
 
-{
-	#category : #slots,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>usesSpecialSlot [
+{ #category : #slots }
+TraitDescription >> usesSpecialSlot [
 	"return true if we define something else than InstanceVariableSlots"
 	^self slots anySatisfy: [ :each | each isSpecial ]
 ]
 
-{
-	#category : #slots,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>usesSpecialVariables [
+{ #category : #slots }
+TraitDescription >> usesSpecialVariables [
     "return true if we define something else than InstanceVariableSlots"
     ^(self usesSpecialSlot 
         or: [ self class usesSpecialSlot ])
         or: [self usesSpecialClassVariables ]
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>wantsChangeSetLogging [
+{ #category : #compiling }
+TraitDescription >> wantsChangeSetLogging [
 	"Answer whether code submitted for the receiver should be remembered by the changeSet mechanism."
 
 	^ true
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>wantsRecompilationProgressReported [
+{ #category : #compiling }
+TraitDescription >> wantsRecompilationProgressReported [
 	"Answer whether the receiver would like progress of its recompilation reported interactively to the user."
 
 	^ true
 ]
 
-{
-	#category : #organization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>whichCategoryIncludesSelector: aSelector  [
+{ #category : #organization }
+TraitDescription >> whichCategoryIncludesSelector: aSelector [ 
 	"Answer the category of the argument, aSelector, in the organization of 
 	the receiver, or answer nil if the receiver does not inlcude this selector."
 
@@ -2055,11 +1589,8 @@ TraitDescription>>whichCategoryIncludesSelector: aSelector  [
 		ifFalse: [^nil]
 ]
 
-{
-	#category : #organization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitDescription>>zapOrganization [
+{ #category : #organization }
+TraitDescription >> zapOrganization [
 	"Remove the organization of this class by message categories.
 	This is typically done to save space in small systems.  Classes and methods
 	created or filed in subsequently will, nonetheless, be organized"

@@ -14,39 +14,26 @@ Class {
 		'externalDirectory',
 		'sampleDirectory'
 	],
-	#category : #Metacello-TestsMC,
-	#timestamp : 'dkh 5/5/2012 19:52'
+	#category : #Metacello-TestsMC
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingTestCase>>configurationPath [
+{ #category : #accessing }
+MetacelloScriptingTestCase >> configurationPath [
     ^ 'metacello-tests/configuration'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingTestCase>>externalPath [
+{ #category : #accessing }
+MetacelloScriptingTestCase >> externalPath [
     ^ 'metacello-tests/external'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingTestCase>>samplePath [
+{ #category : #accessing }
+MetacelloScriptingTestCase >> samplePath [
     ^ 'metacello-tests/sample'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingTestCase>>setUpRepositories [
+{ #category : #running }
+MetacelloScriptingTestCase >> setUpRepositories [
   | defaultDirectory |
   super setUpRepositories.
   defaultDirectory := MetacelloPlatform current defaultDirectory.
@@ -86,11 +73,8 @@ MetacelloScriptingTestCase>>setUpRepositories [
     put: mczConfigurationRepository
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingTestCase>>setUpRepositoryContents: packageList sourceRepo: sourceRepo targetRepo: targetRepo [
+{ #category : #running }
+MetacelloScriptingTestCase >> setUpRepositoryContents: packageList sourceRepo: sourceRepo targetRepo: targetRepo [
     packageList
         do: [ :package | 
             | versionInfo |
@@ -98,11 +82,8 @@ MetacelloScriptingTestCase>>setUpRepositoryContents: packageList sourceRepo: sou
             targetRepo storeVersion: (sourceRepo versionWithInfo: versionInfo ifAbsent: [ self assert: false ]) ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingTestCase>>tearDownRepositories [
+{ #category : #running }
+MetacelloScriptingTestCase >> tearDownRepositories [
   super tearDownRepositories.
   configurationDirectory exists
     ifTrue: [ MetacelloPlatform current recursiveDelete: configurationDirectory ].

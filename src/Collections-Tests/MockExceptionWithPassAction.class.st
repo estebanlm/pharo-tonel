@@ -8,22 +8,15 @@ Class {
 	#instVars : [
 		'passAction'
 	],
-	#category : #Collections-Tests-Weak,
-	#timestamp : '<historical>'
+	#category : #Collections-Tests-Weak
 }
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MockExceptionWithPassAction>>pass [
+{ #category : #handling }
+MockExceptionWithPassAction >> pass [
 	^ passAction cull: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MockExceptionWithPassAction>>passAction: aValuable [
+{ #category : #accessing }
+MockExceptionWithPassAction >> passAction: aValuable [
 	passAction := aValuable
 ]

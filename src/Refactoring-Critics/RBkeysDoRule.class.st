@@ -11,33 +11,23 @@ This array can be quite large and using the keysDo: does not create such interme
 Class {
 	#name : #RBkeysDoRule,
 	#superclass : #RBTransformationRule,
-	#category : #Refactoring-Critics-TransformationRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 19:32'
+	#category : #Refactoring-Critics-TransformationRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBkeysDoRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBkeysDoRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'keysDoRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBkeysDoRule>>group [
+{ #category : #accessing }
+RBkeysDoRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBkeysDoRule>>initialize [
+{ #category : #initialization }
+RBkeysDoRule >> initialize [
 	super initialize.
 	self rewriteRule
 		replace: '``@object keys do: ``@block' with: '``@object keysDo: ``@block';
@@ -45,18 +35,12 @@ RBkeysDoRule>>initialize [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBkeysDoRule>>name [
+{ #category : #accessing }
+RBkeysDoRule >> name [
 	^ 'keys do: -> keysDo: and valuesDo:'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBkeysDoRule>>rationale [
+{ #category : #accessing }
+RBkeysDoRule >> rationale [
 	^ 'The use of keysDo:/valuesDo: means one intermediate collection created less'
 ]

@@ -7,25 +7,18 @@ Class {
 	#instVars : [
 		'inMemoryStream'
 	],
-	#category : #FuelTests-StreamStrategies,
-	#timestamp : 'MartinDias 10/12/2011 11:37'
+	#category : #FuelTests-StreamStrategies
 }
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLByteArrayStreamStrategy>>readStreamDo: aValuable [
+{ #category : #reading }
+FLByteArrayStreamStrategy >> readStreamDo: aValuable [
 	"Evaluates the argument with a read stream. Answers the result."
 	
 	^aValuable value: inMemoryStream contents readStream
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLByteArrayStreamStrategy>>writeStreamDo: aValuable [
+{ #category : #writing }
+FLByteArrayStreamStrategy >> writeStreamDo: aValuable [
 	"Evaluates the argument with a write stream. Answers the result."
 	
 	inMemoryStream := ByteArray new writeStream.

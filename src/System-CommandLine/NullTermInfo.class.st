@@ -8,23 +8,16 @@ Class {
 	#instVars : [
 		'out'
 	],
-	#category : #System-CommandLine,
-	#timestamp : '<historical>'
+	#category : #System-CommandLine
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-NullTermInfo>>on: aStream [
+{ #category : #'instance creation' }
+NullTermInfo >> on: aStream [
 	"Null"
 	^self
 ]
 
-{
-	#category : #TermStyle,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-NullTermInfo>>set: aString [
+{ #category : #TermStyle }
+NullTermInfo >> set: aString [
 	^ aString
 ]

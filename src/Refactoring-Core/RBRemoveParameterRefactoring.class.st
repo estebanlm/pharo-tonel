@@ -13,15 +13,11 @@ Class {
 		'parameterIndex',
 		'argument'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 14:09'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveParameterRefactoring class>>model: aRBSmalltalk removeParameter: aString in: aClass selector: aSelector  [
+{ #category : #'instance creation' }
+RBRemoveParameterRefactoring class >> model: aRBSmalltalk removeParameter: aString in: aClass selector: aSelector [ 
 	^(self new)
 		model: aRBSmalltalk;
 		removeParameter: aString
@@ -30,19 +26,13 @@ RBRemoveParameterRefactoring class>>model: aRBSmalltalk removeParameter: aString
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveParameterRefactoring class>>removeParameter: aString in: aClass selector: aSelector [
+{ #category : #'instance creation' }
+RBRemoveParameterRefactoring class >> removeParameter: aString in: aClass selector: aSelector [
 	^self new removeParameter: aString in: aClass selector: aSelector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveParameterRefactoring>>computeNewSelector [
+{ #category : #private }
+RBRemoveParameterRefactoring >> computeNewSelector [
 	| keywords |
 	oldSelector numArgs == 0
 		ifTrue: [ self refactoringFailure: 'This method contains no arguments' ].
@@ -55,11 +45,8 @@ RBRemoveParameterRefactoring>>computeNewSelector [
 	^ (String streamContents: [ :str | keywords do: [ :each | str nextPutAll: each ] ]) asSymbol
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveParameterRefactoring>>getNewSelector [
+{ #category : #transforming }
+RBRemoveParameterRefactoring >> getNewSelector [
 	| tree |
 	(class directlyDefinesMethod: oldSelector)
 		ifFalse: [ self refactoringFailure: 'Method doesn''t exist' ].
@@ -71,22 +58,16 @@ RBRemoveParameterRefactoring>>getNewSelector [
 	newSelector := self computeNewSelector
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveParameterRefactoring>>hasReferencesToTemporaryIn: each  [
+{ #category : #transforming }
+RBRemoveParameterRefactoring >> hasReferencesToTemporaryIn: each [ 
 	| tree |
 	tree := each parseTreeFor: oldSelector.
 	tree isNil ifTrue: [self refactoringFailure: 'Cannot parse sources.'].
 	^tree references: (tree argumentNames at: parameterIndex)
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveParameterRefactoring>>myConditions [
+{ #category : #preconditions }
+RBRemoveParameterRefactoring >> myConditions [
 	| imps |
 	imps := self model allImplementorsOf: oldSelector.
 	self getNewSelector.
@@ -98,21 +79,15 @@ RBRemoveParameterRefactoring>>myConditions [
 						errorString: 'This argument is still referenced in at least one implementor!!')]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveParameterRefactoring>>removeParameter: aString in: aClass selector: aSelector  [
+{ #category : #initialize-release }
+RBRemoveParameterRefactoring >> removeParameter: aString in: aClass selector: aSelector [ 
 	oldSelector := aSelector.
 	class := self classObjectFor: aClass.
 	argument := aString
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveParameterRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBRemoveParameterRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream

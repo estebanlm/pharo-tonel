@@ -18,15 +18,11 @@ Class {
 		'value',
 		'start'
 	],
-	#category : #AST-Core-Nodes,
-	#timestamp : 'NicolaiHess 8/2/2016 14:15'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode class>>errorMessage: aString value: aValue at: aPosition [
+{ #category : #'instance creation' }
+RBParseErrorNode class >> errorMessage: aString value: aValue at: aPosition [
 
 	^ self new
 		errorMessage: aString;
@@ -35,27 +31,18 @@ RBParseErrorNode class>>errorMessage: aString value: aValue at: aPosition [
 		yourself
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>acceptVisitor: aProgramNodeVisitor [
+{ #category : #visiting }
+RBParseErrorNode >> acceptVisitor: aProgramNodeVisitor [
 	^ aProgramNodeVisitor visitParseErrorNode: self.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>adaptToSemanticNode [
+{ #category : #converting }
+RBParseErrorNode >> adaptToSemanticNode [
 	" I can't provide more semantics "
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>asSyntaxErrorNotification [
+{ #category : #converting }
+RBParseErrorNode >> asSyntaxErrorNotification [
 	^SyntaxErrorNotification new
 		setClass: self methodNode methodClass
 		code: self methodNode source
@@ -64,125 +51,80 @@ RBParseErrorNode>>asSyntaxErrorNotification [
 		location: self start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>binding: anOCTempVariable  [
+{ #category : #accessing }
+RBParseErrorNode >> binding: anOCTempVariable [ 
 	"only for compatibility"
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>body: aSequenceNode [
+{ #category : #accessing }
+RBParseErrorNode >> body: aSequenceNode [
 	"I am not a valid MethodNode, but go one with parsing"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>errorMessage [
+{ #category : #accessing }
+RBParseErrorNode >> errorMessage [
 	^ errorMessage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>errorMessage: anObject [
+{ #category : #accessing }
+RBParseErrorNode >> errorMessage: anObject [
 	errorMessage := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>isFaulty [
+{ #category : #testing }
+RBParseErrorNode >> isFaulty [
 	^true.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>name [
+{ #category : #accessing }
+RBParseErrorNode >> name [
 	"be polymorphic with variable nodes"
 
 	^ ''
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>needsParenthesis [
+{ #category : #testing }
+RBParseErrorNode >> needsParenthesis [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>source: aString [
+{ #category : #accessing }
+RBParseErrorNode >> source: aString [
 	"I am not a valid MethodNode, but go one with parsing"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>start [
+{ #category : #accessing }
+RBParseErrorNode >> start [
 	^ start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>start: aPosition [
+{ #category : #accessing }
+RBParseErrorNode >> start: aPosition [
 	start := aPosition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>startWithoutParentheses [
+{ #category : #accessing }
+RBParseErrorNode >> startWithoutParentheses [
 	^ start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>stop [
+{ #category : #accessing }
+RBParseErrorNode >> stop [
 	^ start + value size - 1.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>stopWithoutParentheses [
+{ #category : #accessing }
+RBParseErrorNode >> stopWithoutParentheses [
 	^ self stop
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>value [
+{ #category : #accessing }
+RBParseErrorNode >> value [
 	^value.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseErrorNode>>value: aString [
+{ #category : #accessing }
+RBParseErrorNode >> value: aString [
 	value := aString.
 ]

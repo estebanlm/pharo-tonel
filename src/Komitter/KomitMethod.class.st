@@ -12,112 +12,75 @@ Class {
 	#classInstVars : [
 		'methods'
 	],
-	#category : #Komitter-Models,
-	#timestamp : 'StephaneDucasse 11/24/2015 19:01'
+	#category : #Komitter-Models
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitMethod class>>initialize [
+{ #category : #initialization }
+KomitMethod class >> initialize [
 	
 	methods := Dictionary new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitMethod class>>method: aMethod [
+{ #category : #'instance creation' }
+KomitMethod class >> method: aMethod [
 
 	^ self new
 		method: aMethod;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitMethod>><= aKomitObject  [
+{ #category : #comparing }
+KomitMethod >> <= aKomitObject [ 
 
 	^ self method selector <= aKomitObject method selector
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitMethod>>isCommitable [
+{ #category : #testing }
+KomitMethod >> isCommitable [
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitMethod>>isMethod [
+{ #category : #testing }
+KomitMethod >> isMethod [
 
 	^ true
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitMethod>>koDestinationText [
+{ #category : #'*Komitter-UI' }
+KomitMethod >> koDestinationText [
 	^ operation koDestinationText
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitMethod>>koSourceText [
+{ #category : #'*Komitter-UI' }
+KomitMethod >> koSourceText [
 	
 	^ self operation koSourceText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitMethod>>method [
+{ #category : #accessing }
+KomitMethod >> method [
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitMethod>>method: anObject [
+{ #category : #accessing }
+KomitMethod >> method: anObject [
 	method := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitMethod>>operation [
+{ #category : #accessing }
+KomitMethod >> operation [
 	^ operation
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitMethod>>operation: anOperation [
+{ #category : #protocol }
+KomitMethod >> operation: anOperation [
 
 	operation := anOperation
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitMethod>>printOn: aStream [
+{ #category : #'*Komitter-UI' }
+KomitMethod >> printOn: aStream [
 
 	super printOn: aStream.
 	aStream << '[ '.
@@ -125,11 +88,8 @@ KomitMethod>>printOn: aStream [
 	aStream << ' ]'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitMethod>>selector [
+{ #category : #accessing }
+KomitMethod >> selector [
 
 	^ self method selector
 ]

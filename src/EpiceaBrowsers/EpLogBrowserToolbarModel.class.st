@@ -9,15 +9,11 @@ Class {
 		'logBrowserModel',
 		'statusLabelModel'
 	],
-	#category : #EpiceaBrowsers-UI-Log,
-	#timestamp : 'MartinDias 4/6/2017 16:08'
+	#category : #EpiceaBrowsers-UI-Log
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserToolbarModel class>>spec [
+{ #category : #specs }
+EpLogBrowserToolbarModel class >> spec [
 	<spec: #default>
 
 	^ SpecLayout composed newRow: [:row |
@@ -27,21 +23,15 @@ EpLogBrowserToolbarModel class>>spec [
 			yourself ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserToolbarModel>>activeFiltersString [
+{ #category : #private }
+EpLogBrowserToolbarModel >> activeFiltersString [
 
 	^ 'Filters (', logBrowserModel filters size asString, ')'
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserToolbarModel>>beApplyMode [
+{ #category : #accessing }
+EpLogBrowserToolbarModel >> beApplyMode [
 
 	filtersButtonModel
 		icon: (self iconNamed: #smallRedoIcon);
@@ -50,11 +40,8 @@ EpLogBrowserToolbarModel>>beApplyMode [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserToolbarModel>>beHistoryMode [
+{ #category : #initialization }
+EpLogBrowserToolbarModel >> beHistoryMode [
 
 	filtersButtonModel
 		icon: (self iconNamed: #smallFindIcon);
@@ -62,11 +49,8 @@ EpLogBrowserToolbarModel>>beHistoryMode [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserToolbarModel>>beRevertMode [
+{ #category : #accessing }
+EpLogBrowserToolbarModel >> beRevertMode [
 
 	filtersButtonModel
 		icon: (self iconNamed: #smallUndoIcon);
@@ -75,39 +59,27 @@ EpLogBrowserToolbarModel>>beRevertMode [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserToolbarModel>>filtersAction [
+{ #category : #private }
+EpLogBrowserToolbarModel >> filtersAction [
 
 	logBrowserModel filtersSubMenu openWithSpecAt: ActiveHand position
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserToolbarModel>>filtersButtonModel [
+{ #category : #accessing }
+EpLogBrowserToolbarModel >> filtersButtonModel [
 
 	^ filtersButtonModel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserToolbarModel>>initializePresenter [
+{ #category : #initialization }
+EpLogBrowserToolbarModel >> initializePresenter [
 	"See be* methods"
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserToolbarModel>>initializeWidgets [
+{ #category : #initialization }
+EpLogBrowserToolbarModel >> initializeWidgets [
 
 	self instantiateModels: {
 		#filtersButtonModel -> #ButtonModel.
@@ -116,46 +88,31 @@ EpLogBrowserToolbarModel>>initializeWidgets [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserToolbarModel>>logBrowserModel [
+{ #category : #accessing }
+EpLogBrowserToolbarModel >> logBrowserModel [
 	^ logBrowserModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserToolbarModel>>logBrowserModel: anObject [
+{ #category : #accessing }
+EpLogBrowserToolbarModel >> logBrowserModel: anObject [
 	logBrowserModel := anObject
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserToolbarModel>>refresh [
+{ #category : #refreshing }
+EpLogBrowserToolbarModel >> refresh [
 
 	filtersButtonModel label: self activeFiltersString.
 	statusLabelModel label: self statusString.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserToolbarModel>>statusLabelModel [
+{ #category : #accessing }
+EpLogBrowserToolbarModel >> statusLabelModel [
 
 	^ statusLabelModel
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserToolbarModel>>statusString [
+{ #category : #refreshing }
+EpLogBrowserToolbarModel >> statusString [
 
 	^ String streamContents: [:stream |
 		| filtered total |

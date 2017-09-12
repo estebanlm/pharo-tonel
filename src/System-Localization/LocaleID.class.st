@@ -8,47 +8,31 @@ Class {
 		'isoLanguage',
 		'isoCountry'
 	],
-	#category : #System-Localization-Locales,
-	#timestamp : 'TorstenBergmann 1/31/2014 10:08'
+	#category : #System-Localization-Locales
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID class>>current [
+{ #category : #accessing }
+LocaleID class >> current [
 	^Locale current localeID
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID class>>default [
+{ #category : #accessing-defaults }
+LocaleID class >> default [
 	^ self isoLanguage: 'en'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID class>>isoLanguage: langString [
+{ #category : #'instance creation' }
+LocaleID class >> isoLanguage: langString [
 	^self isoLanguage: langString isoCountry: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID class>>isoLanguage: langString isoCountry: countryStringOrNil [
+{ #category : #'instance creation' }
+LocaleID class >> isoLanguage: langString isoCountry: countryStringOrNil [
 	^self new isoLanguage: langString isoCountry: countryStringOrNil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID class>>isoString: isoString [
+{ #category : #'instance creation' }
+LocaleID class >> isoString: isoString [
 	"Parse the isoString (<language>-<country>) into its components and return the matching LocaleID"
 	"LocaleID isoString: 'en' "
 	"LocaleID isoString: 'en-us' "
@@ -61,39 +45,27 @@ LocaleID class>>isoString: isoString [
 	^self isoLanguage: language isoCountry: country
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID class>>posixName: aString  [
+{ #category : #'instance creation' }
+LocaleID class >> posixName: aString [ 
 	^ self
 		isoString: (aString copyReplaceAll: '_' with: '-')
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID>>= anotherObject [
+{ #category : #comparing }
+LocaleID >> = anotherObject [
 	self class == anotherObject class
 		ifFalse: [^false].
 	^self isoLanguage = anotherObject isoLanguage
 		and: [self isoCountry = anotherObject isoCountry]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID>>displayCountry [
+{ #category : #accessing }
+LocaleID >> displayCountry [
 	^(ISOLanguageDefinition iso2Countries at: self isoCountry asUppercase ifAbsent: [ self isoCountry ]) 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID>>displayLanguage [
+{ #category : #accessing }
+LocaleID >> displayLanguage [
 	| language |
 	language := (ISOLanguageDefinition iso2LanguageTable
 				at: self isoLanguage
@@ -103,68 +75,44 @@ LocaleID>>displayLanguage [
 		ifNotNil: [language , ' (' , self displayCountry , ')']
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID>>hasParent [
+{ #category : #testing }
+LocaleID >> hasParent [
 	^self isoCountry notNil
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID>>hash [
+{ #category : #comparing }
+LocaleID >> hash [
 	^self isoLanguage hash bitXor: self isoCountry hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID>>isoCountry [
+{ #category : #accessing }
+LocaleID >> isoCountry [
 	^isoCountry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID>>isoLanguage [
+{ #category : #accessing }
+LocaleID >> isoLanguage [
 	^isoLanguage
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID>>isoLanguage: langString isoCountry: countryStringOrNil [
+{ #category : #initialize }
+LocaleID >> isoLanguage: langString isoCountry: countryStringOrNil [
 	isoLanguage := langString.
 	isoCountry := countryStringOrNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID>>isoString [
+{ #category : #accessing }
+LocaleID >> isoString [
 	^self asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID>>parent [
+{ #category : #accessing }
+LocaleID >> parent [
 	^self class isoLanguage: self isoLanguage
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID>>posixName [
+{ #category : #printing }
+LocaleID >> posixName [
 	"(LocaleID isoString: 'es-MX') posixName"
 	"(LocaleID isoString: 'es') posixName"
 	"language[_territory]"
@@ -173,22 +121,16 @@ LocaleID>>posixName [
 		ifNotNil: [self isoLanguage , '_' , self isoCountry]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID>>printOn: stream [
+{ #category : #printing }
+LocaleID >> printOn: stream [
 	"<language>-<country>"
 	stream nextPutAll: self isoLanguage.
 	self isoCountry
 		ifNotNil: [stream nextPut: $-; nextPutAll: self isoCountry]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleID>>storeOn: aStream  [
+{ #category : #printing }
+LocaleID >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	aStream nextPutAll: self class name.
 	aStream nextPutAll: ' isoString: '.

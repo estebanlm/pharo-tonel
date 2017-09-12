@@ -1,22 +1,14 @@
-Extension {
-	#name : #TClass
-}
+Extension { #name : #TClass }
 
-{
-	#category : #'*Epicea-Ring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-TClass>>asEpiceaRingDefinition [
+{ #category : #'*Epicea-Ring' }
+TClass >> asEpiceaRingDefinition [
 	"Answer a Ring definition as Epicea requires it (customized for serialization)."
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'*Epicea-Ring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-TClass>>epiceaPackageName [
+{ #category : #'*Epicea-Ring' }
+TClass >> epiceaPackageName [
 	"Answer my package name for Epicea serialization"
 
 	self flag: #fix.

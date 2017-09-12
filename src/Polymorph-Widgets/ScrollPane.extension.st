@@ -1,12 +1,7 @@
-Extension {
-	#name : #ScrollPane
-}
+Extension { #name : #ScrollPane }
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ScrollPane>>adoptPaneColor: paneColor [
+{ #category : #'*Polymorph-Widgets' }
+ScrollPane >> adoptPaneColor: paneColor [
 	"Match the pane colour."
 	
 	super adoptPaneColor: paneColor.
@@ -17,11 +12,8 @@ ScrollPane>>adoptPaneColor: paneColor [
 		self borderStyle: self borderStyleToUse]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ScrollPane>>borderStyle: aBorderStyle [
+{ #category : #'*Polymorph-Widgets' }
+ScrollPane >> borderStyle: aBorderStyle [
 	"Optimised when no change."
 	
 	self borderStyle = aBorderStyle ifTrue: [^self].
@@ -29,11 +21,8 @@ ScrollPane>>borderStyle: aBorderStyle [
 	self setScrollDeltas
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ScrollPane>>borderStyleToUse [
+{ #category : #'*Polymorph-Widgets' }
+ScrollPane >> borderStyleToUse [
 	"Answer the borderStyle that should be used for the receiver."
 	
 	^self enabled
@@ -41,50 +30,35 @@ ScrollPane>>borderStyleToUse [
 		ifFalse: [self theme scrollPaneDisabledBorderStyleFor: self]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ScrollPane>>getMenuSelector [
+{ #category : #'*Polymorph-Widgets' }
+ScrollPane >> getMenuSelector [
 
 	^ getMenuSelector
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ScrollPane>>getMenuSelector: aSymbol [
+{ #category : #'*Polymorph-Widgets' }
+ScrollPane >> getMenuSelector: aSymbol [
 	"Set the menu selector."
 
 	getMenuSelector := aSymbol
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ScrollPane>>hScrollValue: scrollValue [
+{ #category : #'*Polymorph-Widgets' }
+ScrollPane >> hScrollValue: scrollValue [
 	"Set the horizontal scroll value via the scrollbar itself."
 
 	hScrollBar setValue: scrollValue
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ScrollPane>>handlesMouseWheel: evt [
+{ #category : #'*Polymorph-Widgets' }
+ScrollPane >> handlesMouseWheel: evt [
 	"Do I want to receive mouseWheel events?" 
 
 	^self vIsScrollable or: [ self hIsScrollable ]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ScrollPane>>hideOrShowScrollBar [
+{ #category : #'*Polymorph-Widgets' }
+ScrollPane >> hideOrShowScrollBar [
 	"Hide or show the scrollbar depending on if the pane is scrolled/scrollable."
 
 	"Don't show it if we were told not to."
@@ -95,11 +69,8 @@ ScrollPane>>hideOrShowScrollBar [
 
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ScrollPane>>minHeight [
+{ #category : #'*Polymorph-Widgets' }
+ScrollPane >> minHeight [
 	"Answer the minimum height."
 
 	| noVPlease noHPlease minH |
@@ -117,11 +88,8 @@ ScrollPane>>minHeight [
 	^ minH max: super minHeight
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ScrollPane>>minWidth [
+{ #category : #'*Polymorph-Widgets' }
+ScrollPane >> minWidth [
 	"Answer the minimum width."
 
 	|noVPlease noHPlease minW|
@@ -137,11 +105,8 @@ ScrollPane>>minWidth [
 	^minW max: super minWidth
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ScrollPane>>mouseWheel: event  [
+{ #category : #'*Polymorph-Widgets' }
+ScrollPane >> mouseWheel: event [ 
 	"Handle a mouseWheel event."
 	
 	event isUp ifTrue: [ ^ scrollBar scrollUp: 3 ].
@@ -150,41 +115,29 @@ ScrollPane>>mouseWheel: event  [
 	event isRight  ifTrue: [ ^ hScrollBar scrollRight: 3 ].
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ScrollPane>>scrollBarThickness [
+{ #category : #'*Polymorph-Widgets' }
+ScrollPane >> scrollBarThickness [
 	"Includes border"
 	^ self theme scrollbarThickness
 	
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ScrollPane>>scrollValue [
+{ #category : #'*Polymorph-Widgets' }
+ScrollPane >> scrollValue [
 	"Answer the values of the scrollbars as a point."
 
 	^hScrollBar value @ scrollBar value
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ScrollPane>>scrollValue: aPoint [
+{ #category : #'*Polymorph-Widgets' }
+ScrollPane >> scrollValue: aPoint [
 	self 
 		hScrollValue: aPoint x;
 		vScrollValue: aPoint y.
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ScrollPane>>themeChanged [
+{ #category : #'*Polymorph-Widgets' }
+ScrollPane >> themeChanged [
 	"The current theme has changed.
 	Update any dependent visual aspects."
 
@@ -193,11 +146,8 @@ ScrollPane>>themeChanged [
 	super themeChanged
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ScrollPane>>vScrollValue: scrollValue [
+{ #category : #'*Polymorph-Widgets' }
+ScrollPane >> vScrollValue: scrollValue [
 	"Set the vertical scroll value via the scrollbar itself."
 
 	scrollBar setValue: scrollValue

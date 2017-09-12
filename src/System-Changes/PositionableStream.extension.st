@@ -1,12 +1,7 @@
-Extension {
-	#name : #PositionableStream
-}
+Extension { #name : #PositionableStream }
 
-{
-	#category : #'*System-Changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-PositionableStream>>basicNextChunk [
+{ #category : #'*System-Changes' }
+PositionableStream >> basicNextChunk [
 	"Answer the contents of the receiver, up to the next terminator character. Doubled terminators indicate an embedded terminator character."
 
 	| terminator out ch |
@@ -24,11 +19,8 @@ PositionableStream>>basicNextChunk [
 	^ out contents
 ]
 
-{
-	#category : #'*System-Changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-PositionableStream>>decodeString: string andRuns: runsRaw [
+{ #category : #'*System-Changes' }
+PositionableStream >> decodeString: string andRuns: runsRaw [
 	| strm runLength runValues newString index |
 	strm := ReadStream on: runsRaw from: 1 to: runsRaw size.
 	(strm peekFor: $()
@@ -52,19 +44,13 @@ PositionableStream>>decodeString: string andRuns: runsRaw [
 	^ newString
 ]
 
-{
-	#category : #'*System-Changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-PositionableStream>>header [
+{ #category : #'*System-Changes' }
+PositionableStream >> header [
 	"If the stream requires a standard header, override this message.  See HtmlFileStream"
 ]
 
-{
-	#category : #'*System-Changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-PositionableStream>>nextChunk [
+{ #category : #'*System-Changes' }
+PositionableStream >> nextChunk [
 	"Answer the contents of the receiver, up to the next terminator character. Doubled terminators indicate an embedded terminator character."
 
 	| terminator out ch |
@@ -82,11 +68,8 @@ PositionableStream>>nextChunk [
 	^ self parseLangTagFor: out contents
 ]
 
-{
-	#category : #'*System-Changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-PositionableStream>>nextPreamble [
+{ #category : #'*System-Changes' }
+PositionableStream >> nextPreamble [
 	"Assuming that preamble part does not contain ]lang[ tag"
 	| terminator out ch |
 	terminator := $!.
@@ -103,11 +86,8 @@ PositionableStream>>nextPreamble [
 	^ out contents
 ]
 
-{
-	#category : #'*System-Changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-PositionableStream>>parseLangTagFor: aString [
+{ #category : #'*System-Changes' }
+PositionableStream >> parseLangTagFor: aString [
 
 	| string peek runsRaw pos |
 	string := aString.
@@ -125,11 +105,8 @@ PositionableStream>>parseLangTagFor: aString [
 
 ]
 
-{
-	#category : #'*System-Changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-PositionableStream>>skipStyleChunk [
+{ #category : #'*System-Changes' }
+PositionableStream >> skipStyleChunk [
 	"Get to the start of the next chunk that is not a style for the previous chunk"
 
 	| pos |
@@ -144,19 +121,13 @@ PositionableStream>>skipStyleChunk [
 
 ]
 
-{
-	#category : #'*System-Changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-PositionableStream>>trailer [
+{ #category : #'*System-Changes' }
+PositionableStream >> trailer [
 	"If the stream requires a standard trailer, override this message.  See HtmlFileStream"
 ]
 
-{
-	#category : #'*System-Changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-PositionableStream>>verbatim: aString [
+{ #category : #'*System-Changes' }
+PositionableStream >> verbatim: aString [
 	"Do not attempt to translate the characters.  Use to override nextPutAll:"
 	^ self nextPutAll: aString
 ]

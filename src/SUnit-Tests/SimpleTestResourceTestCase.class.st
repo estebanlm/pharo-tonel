@@ -7,31 +7,21 @@ Class {
 	#instVars : [
 		'resource'
 	],
-	#category : #SUnit-Tests-Core,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:14'
+	#category : #SUnit-Tests-Core
 }
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResourceTestCase class>>lastStoredRun [
+{ #category : #history }
+SimpleTestResourceTestCase class >> lastStoredRun [
 	^ ((Dictionary new) add: (#passed->((Set new) add: #testResourceInitRelease; add: #testResourcesCollection; yourself)); add: (#timeStamp->'22 November 2008 10:11:35 pm'); add: (#failures->((Set new))); add: (#errors->((Set new))); yourself)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResourceTestCase class>>resources [
+{ #category : #accessing }
+SimpleTestResourceTestCase class >> resources [
 	^Array with: SimpleTestResource
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResourceTestCase>>clearOuterResourceStateDuring: aBlock [
+{ #category : #utility }
+SimpleTestResourceTestCase >> clearOuterResourceStateDuring: aBlock [
 	"This self-testing test must clear the outer state of its resources before starting and after finishing, so that it can construct test cases and suites of itself and test them."
 	
 	self
@@ -52,11 +42,8 @@ SimpleTestResourceTestCase>>clearOuterResourceStateDuring: aBlock [
 				description: 'The resource was not set up again after the test']
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResourceTestCase>>dummy [
+{ #category : #private }
+SimpleTestResourceTestCase >> dummy [
 	self assert: resource hasSetup
 		description: 'This test uses a resource but it was not set up'.
 	self setRun.
@@ -64,27 +51,18 @@ SimpleTestResourceTestCase>>dummy [
 		description: 'This test uses a resource but we could not interact with it'.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResourceTestCase>>error [
+{ #category : #private }
+SimpleTestResourceTestCase >> error [
 	'foo' odd
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResourceTestCase>>setRun [
+{ #category : #private }
+SimpleTestResourceTestCase >> setRun [
 	resource setRun
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResourceTestCase>>setUp [
+{ #category : #running }
+SimpleTestResourceTestCase >> setUp [
 	"Ensure that we error, not just fail, if resource is nil so that #should:raise: checks cannot mistake such an error for what they are trapping."
 	
 	resource := SimpleTestResource rawCurrentForTest.
@@ -99,21 +77,15 @@ SimpleTestResourceTestCase>>setUp [
 		description: 'This test uses a resource but it was not set up'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResourceTestCase>>testDebugTestWithResource [
+{ #category : #running }
+SimpleTestResourceTestCase >> testDebugTestWithResource [
 	"The debug will raise an error if the resource is not set up properly."
 	
 	self clearOuterResourceStateDuring: [(self class selector: #setRun) debug]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResourceTestCase>>testResourceCollection [
+{ #category : #running }
+SimpleTestResourceTestCase >> testResourceCollection [
 	self assert: self class buildSuiteFromSelectors resources size = self resources size
 		description: 'The suite should have the same number of resources as its test'.
 	self class buildSuiteFromSelectors resources do:
@@ -122,11 +94,8 @@ SimpleTestResourceTestCase>>testResourceCollection [
 			description: each name , ':  I have this resource but my suite does not'].
 ]
 
-{
-	#category : #'not categorized',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResourceTestCase>>testResourceInitRelease [
+{ #category : #'not categorized' }
+SimpleTestResourceTestCase >> testResourceInitRelease [
 	| suite error failure |
 	suite := self classForTestSuite new.
 	suite addTest: (error := self class selector: #error).
@@ -136,11 +105,8 @@ SimpleTestResourceTestCase>>testResourceInitRelease [
 	self assert: resource hasSetup
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResourceTestCase>>testRunSuiteWithResource [
+{ #category : #running }
+SimpleTestResourceTestCase >> testRunSuiteWithResource [
 	| suite |
 	suite :=  self classForTestSuite new.
 	suite addTest: (SimpleTestResourceTestCase selector: #error).
@@ -152,11 +118,8 @@ SimpleTestResourceTestCase>>testRunSuiteWithResource [
 			description: 'A suite of tests needing SimpleTestResource did not run as expected'].
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResourceTestCase>>testRunTestWithResource [
+{ #category : #running }
+SimpleTestResourceTestCase >> testRunTestWithResource [
 	self clearOuterResourceStateDuring:
 		[self
 			assert: (self class selector: #dummy) run printString =

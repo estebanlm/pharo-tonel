@@ -1,30 +1,20 @@
-"
-
-"
 Class {
 	#name : #GTSpotterCandidatesListTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'candidates'
 	],
-	#category : #GT-Tests-Spotter,
-	#timestamp : ''
+	#category : #GT-Tests-Spotter
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>addCategories: aCollection [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> addCategories: aCollection [
 
 	aCollection do: [ :each | candidates addProcessor: each ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>hasCategories: aCollection [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> hasCategories: aCollection [
 	|counter|
 	candidates processors asArray size = aCollection size ifFalse: [ ^ false ].
 	counter := 1.
@@ -33,20 +23,14 @@ GTSpotterCandidatesListTest>>hasCategories: aCollection [
 	^ true
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>setUp [
+{ #category : #running }
+GTSpotterCandidatesListTest >> setUp [
 
 	candidates := GTSpotterCandidatesList new.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testAddCategories [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testAddCategories [
 	|categories|
 	categories := { GTSpotterA1 . GTSpotterA2 . GTSpotterA3 }.
 	
@@ -54,11 +38,8 @@ GTSpotterCandidatesListTest>>testAddCategories [
 	self assert: (self hasCategories: categories)
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testAddOneCandidateA1 [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testAddOneCandidateA1 [
 	|link category|
 	
 	category := candidates addProcessor: GTSpotterA1.
@@ -74,11 +55,8 @@ GTSpotterCandidatesListTest>>testAddOneCandidateA1 [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testAddOneCandidateA1A2 [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testAddOneCandidateA1A2 [
 	|link11 link21 category1 category2|
 	
 	category1 := candidates addProcessor: GTSpotterA1.
@@ -104,11 +82,8 @@ GTSpotterCandidatesListTest>>testAddOneCandidateA1A2 [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testAddOneCandidateA1A2A3 [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testAddOneCandidateA1A2A3 [
 	|link11 link21 link31 category1 category2 category3|
 	
 	category1 := candidates addProcessor: GTSpotterA1.
@@ -141,11 +116,8 @@ GTSpotterCandidatesListTest>>testAddOneCandidateA1A2A3 [
 	self assert: ((category3 tailLink) = link31).
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testAddThreeCandidateA1 [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testAddThreeCandidateA1 [
 	|link1 link2 link3 category|
 	
 	category := candidates addProcessor: GTSpotterA1.
@@ -170,11 +142,8 @@ GTSpotterCandidatesListTest>>testAddThreeCandidateA1 [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testAddThreeCandidateA1A2 [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testAddThreeCandidateA1A2 [
 	|link11 link12 link13 link21 link22 link23 category1 category2|
 	
 	category1 := candidates addProcessor: GTSpotterA1.
@@ -215,11 +184,8 @@ GTSpotterCandidatesListTest>>testAddThreeCandidateA1A2 [
 	self assert: ((category2 tailLink) = link23).
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testAddThreeCandidateA1A2A3 [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testAddThreeCandidateA1A2A3 [
 	|link11 link12 link13 link21 link22 link23 link31 link32 link33 category1 category2 category3|
 	
 	category1 := candidates addProcessor: GTSpotterA1.
@@ -276,11 +242,8 @@ GTSpotterCandidatesListTest>>testAddThreeCandidateA1A2A3 [
 	self assert: ((category3 tailLink) = link33).
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testAddThreeCandidateA1A2A3Shuffled [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testAddThreeCandidateA1A2A3Shuffled [
 	|link11 link12 link13 link21 link22 link23 link31 link32 link33 category1 category2 category3|
 	
 	category1 := candidates addProcessor: GTSpotterA1.
@@ -337,11 +300,8 @@ GTSpotterCandidatesListTest>>testAddThreeCandidateA1A2A3Shuffled [
 	self assert: ((category3 tailLink) = link33).
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testAddTwoCandidateA1 [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testAddTwoCandidateA1 [
 	|link1 link2 category|
 	
 	category := candidates addProcessor: GTSpotterA1.
@@ -362,11 +322,8 @@ GTSpotterCandidatesListTest>>testAddTwoCandidateA1 [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testAddTwoCandidateA1A2 [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testAddTwoCandidateA1A2 [
 	|link11 link12 link21 link22 category1 category2|
 	
 	category1 := candidates addProcessor: GTSpotterA1.
@@ -401,11 +358,8 @@ GTSpotterCandidatesListTest>>testAddTwoCandidateA1A2 [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testAddTwoCandidateA1A2A3 [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testAddTwoCandidateA1A2A3 [
 	|link11 link12 link21 link22 link31 link32 category1 category2 category3|
 	
 	category1 := candidates addProcessor: GTSpotterA1.
@@ -450,11 +404,8 @@ GTSpotterCandidatesListTest>>testAddTwoCandidateA1A2A3 [
 	self assert: ((category3 tailLink) = link32).
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testCategoryLinkByCandidateLinkThreeA1A2A3 [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testCategoryLinkByCandidateLinkThreeA1A2A3 [
 	|link11 link12 link13 link21 link22 link23 link31 link32 link33 category1 category2 category3|
 	
 	category1 := candidates addProcessor: GTSpotterA1.
@@ -484,11 +435,8 @@ GTSpotterCandidatesListTest>>testCategoryLinkByCandidateLinkThreeA1A2A3 [
 	self assert: (category3 = (candidates getProcessorLinkByCandidateLink: link33)).
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testNextA1A2Category [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testNextA1A2Category [
 
 	|link11 link12 link13 link21 link22 link23 category1 category2|
 	
@@ -508,11 +456,8 @@ GTSpotterCandidatesListTest>>testNextA1A2Category [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testNextA1A2EmptyCategory [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testNextA1A2EmptyCategory [
 
 	|link11 link12 link13 category1 category2|
 	
@@ -529,11 +474,8 @@ GTSpotterCandidatesListTest>>testNextA1A2EmptyCategory [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testNextA1Category [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testNextA1Category [
 
 	|link11 link12 link13 category1 |
 	
@@ -548,11 +490,8 @@ GTSpotterCandidatesListTest>>testNextA1Category [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testPreviousA1A2Category [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testPreviousA1A2Category [
 
 	|link11 link12 link13 link21 link22 link23 category1 category2|
 	
@@ -572,11 +511,8 @@ GTSpotterCandidatesListTest>>testPreviousA1A2Category [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testPreviousA1A2EmptyCategory [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testPreviousA1A2EmptyCategory [
 
 	|link11 link12 link13 category1 category2|
 	
@@ -593,11 +529,8 @@ GTSpotterCandidatesListTest>>testPreviousA1A2EmptyCategory [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testPreviousA1Category [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testPreviousA1Category [
 
 	|link11 link12 link13 category1 |
 	
@@ -612,11 +545,8 @@ GTSpotterCandidatesListTest>>testPreviousA1Category [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testRemoveCandidatesA1A2A3FromA1A2A3 [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testRemoveCandidatesA1A2A3FromA1A2A3 [
 	|category1 category2 category3|
 	
 	category1 := candidates addProcessor: GTSpotterA1.
@@ -650,11 +580,8 @@ GTSpotterCandidatesListTest>>testRemoveCandidatesA1A2A3FromA1A2A3 [
 	self assert: ((category3 tailLink) = nil).
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testRemoveCandidatesA1A3FromA1A2A3 [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testRemoveCandidatesA1A3FromA1A2A3 [
 	|link21 link22 link23 category1 category2 category3|
 	
 	category1 := candidates addProcessor: GTSpotterA1.
@@ -696,11 +623,8 @@ GTSpotterCandidatesListTest>>testRemoveCandidatesA1A3FromA1A2A3 [
 	self assert: ((category3 tailLink) = nil).
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterCandidatesListTest>>testRemoveCandidatesA1FromA1A2A3 [
+{ #category : #'as yet unclassified' }
+GTSpotterCandidatesListTest >> testRemoveCandidatesA1FromA1A2A3 [
 	|link21 link22 link23 link31 link32 link33 category1 category2 category3|
 	
 	category1 := candidates addProcessor: GTSpotterA1.

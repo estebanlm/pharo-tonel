@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #RBAbstractInstanceVariableTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAbstractInstanceVariableTest>>setUp [
+{ #category : #'set up' }
+RBAbstractInstanceVariableTest >> setUp [
 	super setUp.
 	model := self abstractVariableTestData.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAbstractInstanceVariableTest>>testAbstractInstanceVariable [
+{ #category : #tests }
+RBAbstractInstanceVariableTest >> testAbstractInstanceVariable [
 	| refactoring class |
 	refactoring := RBAbstractInstanceVariableRefactoring 
 		variable: 'class'
@@ -54,11 +44,8 @@ RBAbstractInstanceVariableTest>>testAbstractInstanceVariable [
 						classified: aSmalllintContext protocols]]')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAbstractInstanceVariableTest>>testAbstractWithAssignmentUsed [
+{ #category : #tests }
+RBAbstractInstanceVariableTest >> testAbstractWithAssignmentUsed [
 	| refactoring class |
 	class := model classNamed: #Foo.
 	refactoring := RBAbstractInstanceVariableRefactoring 
@@ -86,11 +73,8 @@ RBAbstractInstanceVariableTest>>testAbstractWithAssignmentUsed [
 						instVarName1 := instVarName1 + self instVarName2 + ClassVarName1')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAbstractInstanceVariableTest>>testAbstractWithDefaultNamesUsed [
+{ #category : #tests }
+RBAbstractInstanceVariableTest >> testAbstractWithDefaultNamesUsed [
 	| refactoring class |
 	class := model classNamed: #Foo.
 	refactoring := RBAbstractInstanceVariableRefactoring 
@@ -117,21 +101,15 @@ RBAbstractInstanceVariableTest>>testAbstractWithDefaultNamesUsed [
 						self instVarName11: self instVarName11 + instVarName2 + ClassVarName1')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAbstractInstanceVariableTest>>testInheritedName [
+{ #category : #'failure tests' }
+RBAbstractInstanceVariableTest >> testInheritedName [
 	self shouldFail: (RBAbstractInstanceVariableRefactoring 
 			variable: 'name'
 			class: RBBasicLintRuleTest)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAbstractInstanceVariableTest>>testMetaclassInstanceVariables [
+{ #category : #tests }
+RBAbstractInstanceVariableTest >> testMetaclassInstanceVariables [
 	| refactoring class |
 	class := model metaclassNamed: #Foo.
 	class addInstanceVariable: 'foo'.
@@ -151,11 +129,8 @@ RBAbstractInstanceVariableTest>>testMetaclassInstanceVariables [
 				= (RBParser parseMethod: 'zzz ^self foo: self foo1 + self foo1 * 2')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAbstractInstanceVariableTest>>testNonExistantName [
+{ #category : #'failure tests' }
+RBAbstractInstanceVariableTest >> testNonExistantName [
 	self shouldFail: (RBAbstractInstanceVariableRefactoring 
 			variable: 'foo'
 			class: RBBasicLintRuleTest)

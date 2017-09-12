@@ -5,15 +5,11 @@ I clusterize CompiledMethods that will be obtained on materialization accessing 
 Class {
 	#name : #FLGlobalCompiledMethodCluster,
 	#superclass : #FLGlobalCluster,
-	#category : #Fuel-Clusters,
-	#timestamp : '<historical>'
+	#category : #Fuel-Clusters
 }
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLGlobalCompiledMethodCluster>>materializeInstanceWith: aDecoder [
+{ #category : #serialize/materialize }
+FLGlobalCompiledMethodCluster >> materializeInstanceWith: aDecoder [
 
 	| methodClass selector method serializedHash |
 	methodClass := self materializeGlobalClassFrom: aDecoder.
@@ -29,11 +25,8 @@ FLGlobalCompiledMethodCluster>>materializeInstanceWith: aDecoder [
 	^method
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLGlobalCompiledMethodCluster>>serializeInstance: aCompiledMethod with: anEncoder [
+{ #category : #serialize/materialize }
+FLGlobalCompiledMethodCluster >> serializeInstance: aCompiledMethod with: anEncoder [
 	| methodClass |
 	methodClass := aCompiledMethod methodClass.
 	self serializeGlobalClass: methodClass instanceSide on: anEncoder.

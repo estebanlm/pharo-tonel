@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCOrganizationDefinition
-}
+Extension { #name : #MCOrganizationDefinition }
 
-{
-	#category : #'*Ring-Monticello',
-	#timestamp : ' 8/31/2017 07:17:02'
-}
-MCOrganizationDefinition>>asRingDefinition [
+{ #category : #'*Ring-Monticello' }
+MCOrganizationDefinition >> asRingDefinition [
 
 	^RGOrganization new
 		categories: self categories;

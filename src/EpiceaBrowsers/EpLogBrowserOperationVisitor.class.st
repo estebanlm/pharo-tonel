@@ -7,54 +7,38 @@ Class {
 	#instVars : [
 		'environment'
 	],
-	#category : #EpiceaBrowsers-Visitors,
-	#timestamp : 'MartinDias 10/27/2014 18:01'
+	#category : #EpiceaBrowsers-Visitors
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationVisitor class>>inEnvironment: anEnvironment [
+{ #category : #'instance creation' }
+EpLogBrowserOperationVisitor class >> inEnvironment: anEnvironment [
 
 	^ self basicNew 
 		initializeWith: anEnvironment;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationVisitor class>>new [
+{ #category : #'instance creation' }
+EpLogBrowserOperationVisitor class >> new [
 	^ self inEnvironment: self environment
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationVisitor>>behaviorNamed: aSymbol ifPresent: presentBlock [
+{ #category : #private }
+EpLogBrowserOperationVisitor >> behaviorNamed: aSymbol ifPresent: presentBlock [
 
 	^ (environment classOrTraitNamed: aSymbol) 
 		ifNil: [ self inform: 'Cannot find ', aSymbol ]
 		ifNotNil: presentBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationVisitor>>compiler  [
+{ #category : #private }
+EpLogBrowserOperationVisitor >> compiler [ 
 
 	^ self class compiler
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationVisitor>>initializeWith: anEnvironment [
+{ #category : #initialize }
+EpLogBrowserOperationVisitor >> initializeWith: anEnvironment [
 
 	self initialize.
 	environment := anEnvironment 

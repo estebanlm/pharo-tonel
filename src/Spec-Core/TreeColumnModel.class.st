@@ -14,161 +14,109 @@ Class {
 		'headerIcon',
 		'headerAction'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel class>>adapterName [
+{ #category : #specs }
+TreeColumnModel class >> adapterName [
 
 	^ #TreeColumnAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel class>>defaultSpec [
+{ #category : #specs }
+TreeColumnModel class >> defaultSpec [
 	<spec: #default>
 	
 	^ #(TreeColumnAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>container [
+{ #category : #api }
+TreeColumnModel >> container [
 
 	^ container value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>container: aTreeModel [
+{ #category : #api }
+TreeColumnModel >> container: aTreeModel [
 
 	container value: aTreeModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>displayBlock [
+{ #category : #api }
+TreeColumnModel >> displayBlock [
 
 	^ displayBlock value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>displayBlock: aBlock [
+{ #category : #api }
+TreeColumnModel >> displayBlock: aBlock [
 
 	displayBlock value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>headerAction [
+{ #category : #api }
+TreeColumnModel >> headerAction [
 
 	^ headerAction value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>headerAction: aBlock [
+{ #category : #api }
+TreeColumnModel >> headerAction: aBlock [
 
 	headerAction value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>headerFont [
+{ #category : #api }
+TreeColumnModel >> headerFont [
 
 	^ headerFont value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>headerFont: aFont [
+{ #category : #api }
+TreeColumnModel >> headerFont: aFont [
 
 	headerFont value: aFont
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>headerIcon [
+{ #category : #api }
+TreeColumnModel >> headerIcon [
 
 	^ headerIcon value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>headerIcon: anIcon [
+{ #category : #api }
+TreeColumnModel >> headerIcon: anIcon [
 
 	headerIcon value: anIcon
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>headerLabel [
+{ #category : #api }
+TreeColumnModel >> headerLabel [
 
 	^ headerLabel value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>headerLabel: aString [
+{ #category : #api }
+TreeColumnModel >> headerLabel: aString [
 
 	headerLabel value: aString
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>initialWidth [
+{ #category : #api }
+TreeColumnModel >> initialWidth [
 
 	^ initialWidth value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>initialWidth: anInteger [
+{ #category : #api }
+TreeColumnModel >> initialWidth: anInteger [
 
 	initialWidth value: anInteger
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>initialize [
+{ #category : #initialization }
+TreeColumnModel >> initialize [
 
 	super initialize.
 
@@ -184,11 +132,8 @@ TreeColumnModel>>initialize [
 	self registerEvents
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>registerEvents [
+{ #category : #initialization }
+TreeColumnModel >> registerEvents [
 
 	displayBlock whenChangedDo: [ self changed: #displayBlockChanged ].
 	resizable whenChangedDo: [ self changed: #resizableChanged ].
@@ -197,20 +142,14 @@ TreeColumnModel>>registerEvents [
 	headerIcon whenChangedDo: [ self changed: #headerIconChanged ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>resizable [
+{ #category : #api }
+TreeColumnModel >> resizable [
 
 	^ resizable value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TreeColumnModel>>resizable: aBoolean [
+{ #category : #api }
+TreeColumnModel >> resizable: aBoolean [
 
 	resizable value: aBoolean
 ]

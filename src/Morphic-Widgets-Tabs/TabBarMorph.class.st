@@ -10,34 +10,24 @@ Class {
 		'menuButton',
 		'numberOfSelectedTabs'
 	],
-	#category : #Morphic-Widgets-Tabs,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Tabs
 }
 
-{
-	#category : #private-constants,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>actionOffset [
+{ #category : #private-constants }
+TabBarMorph >> actionOffset [
 	^ 4
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>actionsChanged: aTab [
+{ #category : #private }
+TabBarMorph >> actionsChanged: aTab [
 
 	self selectedTab = aTab ifFalse: [ ^ self ].
 	self adjustLayout.
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>addActionsFor: aTab [
+{ #category : #private }
+TabBarMorph >> addActionsFor: aTab [
 	| rightOffset |
 	
 	rightOffset := self actionOffset.
@@ -62,31 +52,22 @@ TabBarMorph>>addActionsFor: aTab [
 		rightOffset := rightOffset + each icon width + self actionOffset]
 ]
 
-{
-	#category : #private-history,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>addFirstInHistory: aTab [
+{ #category : #private-history }
+TabBarMorph >> addFirstInHistory: aTab [
 
 	self removeFromHistory: aTab.
 	selectionHistory addFirst: aTab
 ]
 
-{
-	#category : #private-history,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>addInHistory: aTab [
+{ #category : #private-history }
+TabBarMorph >> addInHistory: aTab [
 
 	self removeFromHistory: aTab.
 	selectionHistory addLast: aTab
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>addMenuButton [
+{ #category : #initialization }
+TabBarMorph >> addMenuButton [
 	| topOffset rightOffset |
 	
 	rightOffset := self actionOffset.
@@ -103,11 +84,8 @@ TabBarMorph>>addMenuButton [
 				bottomOffset: topOffset + self menuButtonHeight)
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>addTab: aTab [
+{ #category : #protocol }
+TabBarMorph >> addTab: aTab [
 	
 	(tabs includes: aTab) ifTrue: [ ^ self ].
 
@@ -121,11 +99,8 @@ TabBarMorph>>addTab: aTab [
 	self triggerEvent: #tabAdded with: aTab
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>adjustLayout [
+{ #category : #drawing }
+TabBarMorph >> adjustLayout [
 	| length overlap |
 	
 	length := self computeLength.
@@ -148,48 +123,33 @@ TabBarMorph>>adjustLayout [
 	self addActionsFor: self selectedTab.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>borderColor [
+{ #category : #drawing }
+TabBarMorph >> borderColor [
 	"I do not use #borderColor because I want a light border"
 	^ Smalltalk ui theme lightBackgroundColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>bounds: b [
+{ #category : #accessing }
+TabBarMorph >> bounds: b [
 
 	super bounds: b.
 	self adjustLayout
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>canBeClosed [
+{ #category : #protocol }
+TabBarMorph >> canBeClosed [
 
 	^ tabs allSatisfy: [ :tab | tab closeable ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>closeAllTabs [
+{ #category : #protocol }
+TabBarMorph >> closeAllTabs [
 
 	tabs copy do: [ :tab | tab close ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>computeLength [
+{ #category : #private }
+TabBarMorph >> computeLength [
 	| width size length |
 
 	size := tabs size.
@@ -204,20 +164,14 @@ TabBarMorph>>computeLength [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>createActionButtonFor: anAction [
+{ #category : #private }
+TabBarMorph >> createActionButtonFor: anAction [
 
 	^ TabActionButtonMorph forAction: anAction
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>createMenuButton [
+{ #category : #private }
+TabBarMorph >> createMenuButton [
 	"Answer a button for the window menu."
 	| form msb |
 	
@@ -249,30 +203,21 @@ TabBarMorph>>createMenuButton [
 	^ msb
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>delete [
+{ #category : #protocol }
+TabBarMorph >> delete [
 
 	super delete.
 	self triggerEvent: #barDeleted with: self
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>deleteSelectedTabs [
+{ #category : #private-actions }
+TabBarMorph >> deleteSelectedTabs [
 	
 	self selectedTabs do: [:e | e close ].
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>drawLinesOn: canvas [
+{ #category : #drawing }
+TabBarMorph >> drawLinesOn: canvas [
 	"This method draws the line below the tab-label, to make it look as 'behind' (when there is one 
 	 selected, it draws that line except on the corresponding selected tab."
 	self selectedTab 
@@ -281,20 +226,14 @@ TabBarMorph>>drawLinesOn: canvas [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>drawSubmorphsOn: canvas [
+{ #category : #drawing }
+TabBarMorph >> drawSubmorphsOn: canvas [
 	super drawSubmorphsOn: canvas.
 	self drawLinesOn: canvas
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>drawWithSelectionOn: canvas [
+{ #category : #drawing }
+TabBarMorph >> drawWithSelectionOn: canvas [
 	canvas
 		line: self bottomLeft + (0 @ -1)
 		to: self selectedTab bottomLeft
@@ -312,11 +251,8 @@ TabBarMorph>>drawWithSelectionOn: canvas [
 		color: self borderColor
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>drawWithoutSelectedOn: canvas [
+{ #category : #drawing }
+TabBarMorph >> drawWithoutSelectedOn: canvas [
 	canvas
 		line: self bottomLeft + (0 @ -1)
 		to: self bottomRight + (0 @ -1)
@@ -324,20 +260,14 @@ TabBarMorph>>drawWithoutSelectedOn: canvas [
 		color: self borderColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>extraSpace [
+{ #category : #private }
+TabBarMorph >> extraSpace [
 
 	^ tabs max: [ :each | each extraSpaceForActions ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>initialize [
+{ #category : #initialization }
+TabBarMorph >> initialize [
 
 	super initialize.
 
@@ -351,36 +281,24 @@ TabBarMorph>>initialize [
 	
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>isMultiSelection [
+{ #category : #protocol }
+TabBarMorph >> isMultiSelection [
 
 	^ numberOfSelectedTabs > 1
 ]
 
-{
-	#category : #private-constants,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>menuButtonHeight [
+{ #category : #private-constants }
+TabBarMorph >> menuButtonHeight [
 	^ 16
 ]
 
-{
-	#category : #private-constants,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>menuButtonWidth [
+{ #category : #private-constants }
+TabBarMorph >> menuButtonWidth [
 	^ 16
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>needSpaceForActions  [
+{ #category : #private }
+TabBarMorph >> needSpaceForActions [ 
 	| tab |
 	
 	tab := self selectedTab.
@@ -389,50 +307,35 @@ TabBarMorph>>needSpaceForActions  [
 	^ self selectedTab hasMenu or: [ self selectedTab hasActions ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>orderedSelectedTabs [
+{ #category : #protocol }
+TabBarMorph >> orderedSelectedTabs [
 	
 	^ tabs select: [ :e | e selected ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>overlap [
+{ #category : #private }
+TabBarMorph >> overlap [
 
 	^ 8
 ]
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>ownerChanged [
+{ #category : #'change reporting' }
+TabBarMorph >> ownerChanged [
 
 	super ownerChanged.
 	self adjustLayout
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>popUpMenu [
+{ #category : #menu }
+TabBarMorph >> popUpMenu [
 	| menu |
 	
 	menu := self selectedTab menu.
 	menu popUpAt: menuButton bottomRight forHand: ActiveHand in: World
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>registerActionsFor: aTab [
+{ #category : #private }
+TabBarMorph >> registerActionsFor: aTab [
 
 	aTab 
 		when: #tabSelected send: #tabSelected: to: self;
@@ -448,20 +351,14 @@ TabBarMorph>>registerActionsFor: aTab [
 		when: #tabEmptyContents send: #tabEmptyContents: to: self
 ]
 
-{
-	#category : #private-history,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>removeFromHistory: aTab [
+{ #category : #private-history }
+TabBarMorph >> removeFromHistory: aTab [
 
 	selectionHistory remove: aTab ifAbsent: [  ].
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>removeTab: aTab [
+{ #category : #private-actions }
+TabBarMorph >> removeTab: aTab [
 	| nextSelection |
 
 	(aTab selected and: [selectionHistory size > 1])
@@ -475,30 +372,21 @@ TabBarMorph>>removeTab: aTab [
 	self adjustLayout
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>reversedSelectedTabs [
+{ #category : #protocol }
+TabBarMorph >> reversedSelectedTabs [
 
 	^ selectionHistory last: numberOfSelectedTabs
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>selectLastTab [
+{ #category : #protocol }
+TabBarMorph >> selectLastTab [
 	
 	tabs ifEmpty: [ ^self ].
 	tabs last selected: true
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>selectNext [
+{ #category : #private-actions }
+TabBarMorph >> selectNext [
 	| index nextSelection |
 	
 	index := tabs indexOf: self selectedTab.
@@ -507,11 +395,8 @@ TabBarMorph>>selectNext [
 	nextSelection selected: true.
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>selectPrevious [
+{ #category : #private-actions }
+TabBarMorph >> selectPrevious [
 	| index nextSelection |
 	
 	index := tabs indexOf: self selectedTab.
@@ -520,48 +405,33 @@ TabBarMorph>>selectPrevious [
 	nextSelection selected: true.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>selectTabAt: index ifAbsent: aBlock [
+{ #category : #protocol }
+TabBarMorph >> selectTabAt: index ifAbsent: aBlock [
 	| tab |
 	
 	tab := tabs at: index ifAbsent: [ ^ aBlock value ].
 	tab selected: true
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>selectedColor [
+{ #category : #drawing }
+TabBarMorph >> selectedColor [
 	^ Smalltalk ui theme selectionColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>selectedTab [
+{ #category : #accessing }
+TabBarMorph >> selectedTab [
 
 	  ^selectionHistory ifEmpty: [ nil ] ifNotEmpty: [ selectionHistory last ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>selectedTabs [
+{ #category : #protocol }
+TabBarMorph >> selectedTabs [
 
 	^ (selectionHistory last: numberOfSelectedTabs) reversed
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>tabAddedToSelection: aTab [
+{ #category : #private-actions }
+TabBarMorph >> tabAddedToSelection: aTab [
 
 	aTab selected ifTrue: [ ^ self ].
 	numberOfSelectedTabs := numberOfSelectedTabs + 1.
@@ -572,20 +442,14 @@ TabBarMorph>>tabAddedToSelection: aTab [
 	self triggerEvent: #tabAddedToSelection with: aTab
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>tabDeleted: aTab [
+{ #category : #private-actions }
+TabBarMorph >> tabDeleted: aTab [
 
 	self removeTab: aTab
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>tabEmptyContents: aTab [
+{ #category : #private-actions }
+TabBarMorph >> tabEmptyContents: aTab [
 
 	self selectedTab = aTab ifFalse: [ ^ self ].
 
@@ -596,22 +460,16 @@ TabBarMorph>>tabEmptyContents: aTab [
 	self triggerEvent: #tabEmptyContents with: aTab
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>tabRefreshed: aTab [
+{ #category : #private-actions }
+TabBarMorph >> tabRefreshed: aTab [
 
 	self selectedTab = aTab ifFalse: [ ^ self ].
 
 	self triggerEvent: #tabRefreshed with: aTab
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>tabRemovedFromSelection: aTab [
+{ #category : #private-actions }
+TabBarMorph >> tabRemovedFromSelection: aTab [
 
 	numberOfSelectedTabs == 1 ifTrue: [ ^ self ].
 	numberOfSelectedTabs := numberOfSelectedTabs - 1.
@@ -626,11 +484,8 @@ TabBarMorph>>tabRemovedFromSelection: aTab [
 	self triggerEvent: #tabRemovedFromSelection with: aTab
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>tabResetSelection: aTab [
+{ #category : #private-actions }
+TabBarMorph >> tabResetSelection: aTab [
 	"Clicked on an already clicked tab, since it can happened after a multi selection, I have to clear the selection except for this tab"
 	
 	selectionHistory ifNotEmpty: [
@@ -644,11 +499,8 @@ TabBarMorph>>tabResetSelection: aTab [
 	self triggerEvent: #tabResetSelection with: aTab
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>tabSelectTo: aTab [
+{ #category : #private-actions }
+TabBarMorph >> tabSelectTo: aTab [
 	| index selectedIndex |
 	
 	index := tabs indexOf: aTab. "If absent, then the system must be in a curious shape"
@@ -667,11 +519,8 @@ TabBarMorph>>tabSelectTo: aTab [
 	self adjustLayout.
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>tabSelected: aTab [
+{ #category : #private-actions }
+TabBarMorph >> tabSelected: aTab [
 
 	self isMultiSelection
 		ifTrue: [ self tabResetSelection: aTab ]
@@ -682,19 +531,13 @@ TabBarMorph>>tabSelected: aTab [
 			self triggerEvent: #tabSelected with: aTab ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>tabs [
+{ #category : #accessing }
+TabBarMorph >> tabs [
 	^ tabs
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>tabs: aCollection [
+{ #category : #protocol }
+TabBarMorph >> tabs: aCollection [
 
 	tabs do: [ :e | e silentlySelected: false ].
 	tabs := aCollection.
@@ -710,19 +553,13 @@ TabBarMorph>>tabs: aCollection [
 	self triggerEvent: #tabsChanged
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>themeChanged [
+{ #category : #initialization }
+TabBarMorph >> themeChanged [
 	super themeChanged.
 	tabs do:#themeChanged.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabBarMorph>>useSortedTabsBy: sortBlock [
+{ #category : #accessing }
+TabBarMorph >> useSortedTabsBy: sortBlock [
 	tabs := SortedCollection sortBlock: sortBlock
 ]

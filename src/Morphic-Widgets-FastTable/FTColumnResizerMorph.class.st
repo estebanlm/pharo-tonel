@@ -12,15 +12,11 @@ Class {
 		'leftColumn',
 		'rightColumn'
 	],
-	#category : #Morphic-Widgets-FastTable,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-FastTable
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph class>>container: aTableContainerMorph left: aColumn right: otherColumn [
+{ #category : #'instance creation' }
+FTColumnResizerMorph class >> container: aTableContainerMorph left: aColumn right: otherColumn [
 	^ self basicNew 
 		initializeContainer: aTableContainerMorph 
 			left: aColumn 
@@ -28,56 +24,38 @@ FTColumnResizerMorph class>>container: aTableContainerMorph left: aColumn right:
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph class>>new [
+{ #category : #'instance creation' }
+FTColumnResizerMorph class >> new [
 	^ self error: 'Use #container:left:right:'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph class>>resizerWidth [
+{ #category : #accessing }
+FTColumnResizerMorph class >> resizerWidth [
 	^ 8
 ]
 
-{
-	#category : #'private - testing',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>canResizeColumn [
+{ #category : #'private - testing' }
+FTColumnResizerMorph >> canResizeColumn [
 	^ container owner isResizable
 
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>delete [
+{ #category : #submorphs-add/remove }
+FTColumnResizerMorph >> delete [
 	super delete.
 	self release.
 	
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+FTColumnResizerMorph >> drawOn: aCanvas [
 	(owner notNil and: [owner containsPoint: self position])
 		ifTrue: [super drawOn: aCanvas]
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>initializeContainer: aTableContainerMorph left: aColumn right: otherColumn [
+{ #category : #initialization }
+FTColumnResizerMorph >> initializeContainer: aTableContainerMorph left: aColumn right: otherColumn [
 	self initialize.
 	self width: self class resizerWidth.
 	container := aTableContainerMorph.
@@ -86,11 +64,8 @@ FTColumnResizerMorph>>initializeContainer: aTableContainerMorph left: aColumn ri
 	
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>mouseDown: anEvent [
+{ #category : #'event handling' }
+FTColumnResizerMorph >> mouseDown: anEvent [ 
 	"A mouse button has been pressed.
 	Update the color for feedback and store the mouse
 	position and relative offset to the receiver."
@@ -103,30 +78,21 @@ FTColumnResizerMorph>>mouseDown: anEvent [
 	lastMouse := {cp. cp - self position}
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>mouseEnter: anEvent [
+{ #category : #'event handling' }
+FTColumnResizerMorph >> mouseEnter: anEvent [
 	self canResizeColumn ifFalse: [^ self].
 	(owner notNil and: [owner bounds containsPoint: anEvent position]) 
 		ifTrue: [super mouseEnter: anEvent]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>mouseLeave: anEvent [
+{ #category : #'event handling' }
+FTColumnResizerMorph >> mouseLeave: anEvent [
 	self canResizeColumn ifFalse: [^ self].
 	super mouseLeave: anEvent
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>mouseMove: anEvent [
+{ #category : #'event handling' }
+FTColumnResizerMorph >> mouseMove: anEvent [ 
 	self canResizeColumn ifFalse: [^ self].
 	anEvent hand temporaryCursor ifNil: [^ self].
 	traceMorph ifNil: [
@@ -137,11 +103,8 @@ FTColumnResizerMorph>>mouseMove: anEvent [
 	traceMorph position: (anEvent cursorPoint x - lastMouse second x) @ traceMorph position y
 ]
 
-{
-	#category : #Polymorph-Widgets,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>mouseUp: anEvent [
+{ #category : #Polymorph-Widgets }
+FTColumnResizerMorph >> mouseUp: anEvent [
 	"Change the cursor back to normal if necessary and change the color back to normal."
 	
 	self canResizeColumn ifFalse: [^ self].
@@ -153,29 +116,20 @@ FTColumnResizerMorph>>mouseUp: anEvent [
 	self triggerEvent: #mouseUp
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>normalFillStyle [
+{ #category : #style }
+FTColumnResizerMorph >> normalFillStyle [
 	"Return the normal fillstyle for the receiver."
 	^ self theme morphTreeSplitterNormalFillStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>pressedFillStyle [
+{ #category : #style }
+FTColumnResizerMorph >> pressedFillStyle [
 	"Return the pressed fillStyle of the receiver."
 	^ self theme morphTreeSplitterPressedFillStyleFor: self
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>release [
+{ #category : #submorphs-add/remove }
+FTColumnResizerMorph >> release [
 	traceMorph := nil.
 	oldColor := nil.
 	container := nil.
@@ -184,54 +138,36 @@ FTColumnResizerMorph>>release [
 	
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>resizeCursor [
+{ #category : #actions }
+FTColumnResizerMorph >> resizeCursor [
 	^ Cursor resizeForEdge: #left
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>setGrabbedColor [
+{ #category : #private }
+FTColumnResizerMorph >> setGrabbedColor [
 	"Set the color of the receiver when it is grabbed."
 	self fillStyle: Smalltalk ui theme fastTableColumnSplitterSelectedColor
 ]
 
-{
-	#category : #Polymorph-Widgets,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>shouldDraw [
+{ #category : #Polymorph-Widgets }
+FTColumnResizerMorph >> shouldDraw [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>splitsTopAndBottom [
+{ #category : #accessing }
+FTColumnResizerMorph >> splitsTopAndBottom [
 	^ false
 ]
 
-{
-	#category : #Polymorph-Widgets,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>themeChanged [
+{ #category : #Polymorph-Widgets }
+FTColumnResizerMorph >> themeChanged [
 	"Update the fill style."
 	self fillStyle: self normalFillStyle.
 	super themeChanged
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumnResizerMorph>>updateFromEvent: anEvent [
+{ #category : #'event handling' }
+FTColumnResizerMorph >> updateFromEvent: anEvent [ 
 	"Update the splitter and attached morph positions from
 	the mouse event.
 	Take into account the mouse down offset."

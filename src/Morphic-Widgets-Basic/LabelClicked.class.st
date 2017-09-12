@@ -8,15 +8,11 @@ Class {
 		'source',
 		'stateChanged'
 	],
-	#category : #Morphic-Widgets-Basic,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Basic
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelClicked class>>source: source stateChanged: stateChanged [
+{ #category : #'instance creation' }
+LabelClicked class >> source: source stateChanged: stateChanged [
 
 	^ self new
 		source: source;
@@ -24,34 +20,22 @@ LabelClicked class>>source: source stateChanged: stateChanged [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelClicked>>source [
+{ #category : #accessing }
+LabelClicked >> source [
 	^ source
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelClicked>>source: anObject [
+{ #category : #accessing }
+LabelClicked >> source: anObject [
 	source := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelClicked>>stateChanged [
+{ #category : #accessing }
+LabelClicked >> stateChanged [
 	^ stateChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelClicked>>stateChanged: anObject [
+{ #category : #accessing }
+LabelClicked >> stateChanged: anObject [
 	stateChanged := anObject
 ]

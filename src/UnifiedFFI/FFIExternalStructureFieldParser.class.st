@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'fieldSpec'
 	],
-	#category : #UnifiedFFI,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFieldParser>>fieldSpec  [
+{ #category : #accessing }
+FFIExternalStructureFieldParser >> fieldSpec [ 
 	^ fieldSpec
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFieldParser>>parseFields: fields structure: structClass [
+{ #category : #parsing }
+FFIExternalStructureFieldParser >> parseFields: fields structure: structClass [
 	| stream type fieldName generator anonFieldCount |
 	
 	stream := fields readStream.

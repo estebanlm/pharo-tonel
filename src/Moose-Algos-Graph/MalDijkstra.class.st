@@ -8,24 +8,17 @@ Class {
 		'start',
 		'end'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : 'ChristopheDemarey 3/26/2015 14:28'
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #backtracking,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstra>>backtrack  [
+{ #category : #backtracking }
+MalDijkstra >> backtrack [ 
 
 	^ self backtrack: self end
 ]
 
-{
-	#category : #backtracking,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstra>>backtrack: b [
+{ #category : #backtracking }
+MalDijkstra >> backtrack: b [
 
 	| p |
 	b pathWeight = Float infinity
@@ -37,11 +30,8 @@ MalDijkstra>>backtrack: b [
 			(self backtrack: p) add: b model; yourself ].
 ]
 
-{
-	#category : #backtracking,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstra>>backtrack: b edgeDo: aBlock [
+{ #category : #backtracking }
+MalDijkstra >> backtrack: b edgeDo: aBlock [
 	"special purpose backtracking for CSE: backtrack through edge and do something on each edge 
 	while traversing.
 	 do not check if there is a solution (pathWeight ~= Float infinity)"
@@ -56,53 +46,35 @@ MalDijkstra>>backtrack: b edgeDo: aBlock [
 			(self backtrack: p edgeDo: aBlock) add: b model; yourself ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstra>>edgeClass [
+{ #category : #accessing }
+MalDijkstra >> edgeClass [
 
 	^ MalDijkstraEdge
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstra>>end [
+{ #category : #private }
+MalDijkstra >> end [
 	^ end
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstra>>end: aDijsktraNode [
+{ #category : #private }
+MalDijkstra >> end: aDijsktraNode [
 	end := aDijsktraNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstra>>nodeClass [
+{ #category : #accessing }
+MalDijkstra >> nodeClass [
 
 	^ MalDijkstraNode 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstra>>pathWeight [
+{ #category : #running }
+MalDijkstra >> pathWeight [
 	^ self end pathWeight
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstra>>reset [
+{ #category : #running }
+MalDijkstra >> reset [
 
 	self nodes do: [:n|
 		n pathWeight: Float infinity ].
@@ -110,48 +82,33 @@ MalDijkstra>>reset [
 		e visited: false ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstra>>run [
+{ #category : #running }
+MalDijkstra >> run [
 	
 	self traverse: self start
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstra>>runFrom: startModel to: endModel [
+{ #category : #running }
+MalDijkstra >> runFrom: startModel to: endModel [
 
 	self start: (self findNode: startModel); end: (self findNode: endModel).
 	self run.
 	^ self pathWeight
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstra>>start [
+{ #category : #private }
+MalDijkstra >> start [
 	^ start
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstra>>start: aDijsktraNode [
+{ #category : #private }
+MalDijkstra >> start: aDijsktraNode [
 	start := aDijsktraNode.
 	aDijsktraNode pathWeight: 0
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstra>>traverse: node [
+{ #category : #running }
+MalDijkstra >> traverse: node [
 
 	self flag: #todo. "optimize traversal of nodes"
 	node nextEdges do: [:edge |

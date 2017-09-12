@@ -14,33 +14,23 @@ Class {
 		'multiBundle1',
 		'multiBundle2'
 	],
-	#category : #GT-EventRecorder-Tests-Support,
-	#timestamp : '<historical>'
+	#category : #GT-EventRecorder-Tests-Support
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventMultiBundleFactoryTest>>allBundles [
+{ #category : #accessing }
+GTEventMultiBundleFactoryTest >> allBundles [
 	^ { bundle1. bundle2. bundle3. bundle4 }
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventMultiBundleFactoryTest>>detectEvents [
+{ #category : #private }
+GTEventMultiBundleFactoryTest >> detectEvents [
 	multiBundle1 := multiBundles first.
 	multiBundle2 := multiBundles second.
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventMultiBundleFactoryTest>>setUp [
+{ #category : #running }
+GTEventMultiBundleFactoryTest >> setUp [
 	super setUp.
 	bundle1 := GTEventBundle new 
 		url: 'http://localhost/gt/events1' asZnUrl; category: #c1; data: #[1 2 3]; yourself.
@@ -53,11 +43,8 @@ GTEventMultiBundleFactoryTest>>setUp [
 	factory := GTEventMultiBundleFactory new.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventMultiBundleFactoryTest>>testFromBundles [
+{ #category : #tests }
+GTEventMultiBundleFactoryTest >> testFromBundles [
 	multiBundles := factory fromBundles: self allBundles.
 	self assert: multiBundles size equals: 2.
 	self detectEvents.
@@ -74,11 +61,8 @@ GTEventMultiBundleFactoryTest>>testFromBundles [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventMultiBundleFactoryTest>>testFromBundles2 [
+{ #category : #tests }
+GTEventMultiBundleFactoryTest >> testFromBundles2 [
 	"#fromBundles: can also receive GTMultiBundle object. It should be consolidate too."
 	multiBundles := factory fromBundles: self allBundles.
 	multiBundles := factory fromBundles: (self allBundles copy asOrderedCollection
@@ -103,11 +87,8 @@ GTEventMultiBundleFactoryTest>>testFromBundles2 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventMultiBundleFactoryTest>>testFromBundles3 [
+{ #category : #tests }
+GTEventMultiBundleFactoryTest >> testFromBundles3 [
 	"#fromBundles: can also receive GTMultiBundle object. It should be consolidate too."
 	multiBundles := factory fromBundles: self allBundles.
 	multiBundles := factory fromBundles: (multiBundles copy asOrderedCollection
@@ -132,11 +113,8 @@ GTEventMultiBundleFactoryTest>>testFromBundles3 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventMultiBundleFactoryTest>>testFromBundles4 [
+{ #category : #tests }
+GTEventMultiBundleFactoryTest >> testFromBundles4 [
 	"#fromBundles: can also receive GTMultiBundle object. It should be consolidate too."
 	multiBundles := factory fromBundles: self allBundles.
 	multiBundles := factory fromBundles: multiBundles.

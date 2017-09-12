@@ -9,36 +9,26 @@ Class {
 		'isOverride',
 		'result'
 	],
-	#category : #Nautilus-Widgets,
-	#timestamp : '<historical>'
+	#category : #Nautilus-Widgets
 }
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodOveridesAction>>actionOrder [
+{ #category : #order }
+MethodOveridesAction >> actionOrder [
 	"Return the priority of this action"
 	
 	^ 600
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodOveridesAction>>actionStateToCache [
+{ #category : #order }
+MethodOveridesAction >> actionStateToCache [
 	"Return the state of the icon for caching purpose"
 	^ result 
 		ifNil: [ super actionStateToCache ]
 		ifNotNil: [ {(IconicButtonStateHolder forNautilus: result value first). (IconicButtonStateHolder forNautilus: result value second)} ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodOveridesAction>>buildUpAndDownArrowIcon: aMethod [
+{ #category : #private }
+MethodOveridesAction >> buildUpAndDownArrowIcon: aMethod [
 
 	| container up down |
 	container := Morph new.
@@ -71,22 +61,16 @@ MethodOveridesAction>>buildUpAndDownArrowIcon: aMethod [
 		yourself) -> {up. down}.
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodOveridesAction>>isActionHandled [
+{ #category : #order }
+MethodOveridesAction >> isActionHandled [
 
 	isOverridden := self isOverridden.
 	isOverride := self isOverride.
 	^ isOverridden or: [ isOverride ]
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodOveridesAction>>isOverridden [
+{ #category : #order }
+MethodOveridesAction >> isOverridden [
 	| selector| 
 	selector := method selector.
 	method methodClass allSubclassesDo: [:each | 
@@ -96,11 +80,8 @@ MethodOveridesAction>>isOverridden [
 	
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodOveridesAction>>isOverride [
+{ #category : #order }
+MethodOveridesAction >> isOverride [
 	| selector |
 	selector := method selector.
 	method methodClass allSuperclassesDo: [:each | 
@@ -109,11 +90,8 @@ MethodOveridesAction>>isOverride [
 	^ false
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodOveridesAction>>privateActionIcon [
+{ #category : #order }
+MethodOveridesAction >> privateActionIcon [
 	"Return the icon for this action"
 
 	isOverride

@@ -9,23 +9,16 @@ Class {
 	#instVars : [
 		'athensCanvas'
 	],
-	#category : #Hiedra-Rendering,
-	#timestamp : 'MartinDias 3/17/2016 23:46'
+	#category : #Hiedra-Rendering
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRenderer>>athensCanvas: anAthensCanvas  [
+{ #category : #accessing }
+HiRenderer >> athensCanvas: anAthensCanvas [ 
 	athensCanvas := anAthensCanvas 
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRenderer>>render [
+{ #category : #rendering }
+HiRenderer >> render [
 	"Render a Hiedra ruler element in the athensCanvas"
 	
 	self subclassResponsibility

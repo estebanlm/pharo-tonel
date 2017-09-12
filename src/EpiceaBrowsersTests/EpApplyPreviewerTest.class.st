@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #EpApplyPreviewerTest,
 	#superclass : #EpLogBrowserOperationFactoryTest,
-	#category : #EpiceaBrowsersTests-Integration,
-	#timestamp : ''
+	#category : #EpiceaBrowsersTests-Integration
 }
 
-{
-	#category : #resources,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>assertEmptyPreviewLog [
+{ #category : #resources }
+EpApplyPreviewerTest >> assertEmptyPreviewLog [
 
 	self assert: self outputEvents isEmpty.
 ]
 
-{
-	#category : #resources,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>assertOutputsAnEventWith: aBlock [
+{ #category : #resources }
+EpApplyPreviewerTest >> assertOutputsAnEventWith: aBlock [
 
 	| outputEvents |
 	outputEvents := self outputEvents.
@@ -32,11 +22,8 @@ EpApplyPreviewerTest>>assertOutputsAnEventWith: aBlock [
 
 ]
 
-{
-	#category : #resources,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>assertOutputsEventsWith: aBlock [
+{ #category : #resources }
+EpApplyPreviewerTest >> assertOutputsEventsWith: aBlock [
 
 	| logBrowserModel outputLog |
 	logBrowserModel := EpLogBrowserModel newWithLog: monitor log.
@@ -52,11 +39,8 @@ EpApplyPreviewerTest>>assertOutputsEventsWith: aBlock [
 
 ]
 
-{
-	#category : #resources,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>outputEvents [
+{ #category : #resources }
+EpApplyPreviewerTest >> outputEvents [
 
 	| outputLog logBrowserModel |
 	logBrowserModel := EpLogBrowserModel newWithLog: monitor log.
@@ -71,11 +55,8 @@ EpApplyPreviewerTest>>outputEvents [
 	^ outputLog entries collect: #content
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testBehaviorCategoryChange [
+{ #category : #tests }
+EpApplyPreviewerTest >> testBehaviorCategoryChange [
 
 	| aClass aCategory anotherCategory |
 	aClass := classFactory newClass.
@@ -94,11 +75,8 @@ EpApplyPreviewerTest>>testBehaviorCategoryChange [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testBehaviorCommentChange [
+{ #category : #tests }
+EpApplyPreviewerTest >> testBehaviorCommentChange [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -114,11 +92,8 @@ EpApplyPreviewerTest>>testBehaviorCommentChange [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testBehaviorNameChange [
+{ #category : #tests }
+EpApplyPreviewerTest >> testBehaviorNameChange [
 
 	| aClass oldName newName |
 	aClass := classFactory newClass.
@@ -137,11 +112,8 @@ EpApplyPreviewerTest>>testBehaviorNameChange [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testCategoryAdditionWithCategoryRemoved [
+{ #category : #tests }
+EpApplyPreviewerTest >> testCategoryAdditionWithCategoryRemoved [
 
 	self class environment organization addCategory: classFactory defaultCategory.
 	self setHeadAsInputEntry.
@@ -153,11 +125,8 @@ EpApplyPreviewerTest>>testCategoryAdditionWithCategoryRemoved [
 		]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testCategoryRemovalWithCategoryAdded [
+{ #category : #tests }
+EpApplyPreviewerTest >> testCategoryRemovalWithCategoryAdded [
 
 	self class environment organization addCategory: classFactory defaultCategory.
 	self class environment organization removeCategory: classFactory defaultCategory.
@@ -171,11 +140,8 @@ EpApplyPreviewerTest>>testCategoryRemovalWithCategoryAdded [
 		]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testCategoryRenameWithPreviousRollback [
+{ #category : #tests }
+EpApplyPreviewerTest >> testCategoryRenameWithPreviousRollback [
 
 	| organization aCategory anotherCategory |
 	organization := self class environment organization.
@@ -194,11 +160,8 @@ EpApplyPreviewerTest>>testCategoryRenameWithPreviousRollback [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testClassAdditionWithClassRemoved [
+{ #category : #tests }
+EpApplyPreviewerTest >> testClassAdditionWithClassRemoved [
 
 	| aClass className classDefinition |
 	aClass := classFactory newClass.
@@ -214,11 +177,8 @@ EpApplyPreviewerTest>>testClassAdditionWithClassRemoved [
 		]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testClassAdditionWithInstanceVariablesChanged [
+{ #category : #tests }
+EpApplyPreviewerTest >> testClassAdditionWithInstanceVariablesChanged [
 
 	| aClass classDefinition |
 	aClass := classFactory newClass.
@@ -234,11 +194,8 @@ EpApplyPreviewerTest>>testClassAdditionWithInstanceVariablesChanged [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testClassAdditionWithSuperclassChanged [
+{ #category : #tests }
+EpApplyPreviewerTest >> testClassAdditionWithSuperclassChanged [
 
 	| aClass classDefinition |
 	aClass := classFactory newClass.
@@ -256,11 +213,8 @@ EpApplyPreviewerTest>>testClassAdditionWithSuperclassChanged [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testClassRemovalWithClassAdded [
+{ #category : #tests }
+EpApplyPreviewerTest >> testClassRemovalWithClassAdded [
 
 	| aClass className classDefinition |
 	aClass := classFactory newClass.
@@ -280,11 +234,8 @@ EpApplyPreviewerTest>>testClassRemovalWithClassAdded [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testKeepChangeWhenMethodAdditionWithAbsentBehavior [
+{ #category : #tests }
+EpApplyPreviewerTest >> testKeepChangeWhenMethodAdditionWithAbsentBehavior [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -297,11 +248,8 @@ EpApplyPreviewerTest>>testKeepChangeWhenMethodAdditionWithAbsentBehavior [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testKeepChangeWhenMethodModificationWithAbsentBehavior [
+{ #category : #tests }
+EpApplyPreviewerTest >> testKeepChangeWhenMethodModificationWithAbsentBehavior [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -315,11 +263,8 @@ EpApplyPreviewerTest>>testKeepChangeWhenMethodModificationWithAbsentBehavior [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testMethodAdditionWithMethodRemoved [
+{ #category : #tests }
+EpApplyPreviewerTest >> testMethodAdditionWithMethodRemoved [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -334,11 +279,8 @@ EpApplyPreviewerTest>>testMethodAdditionWithMethodRemoved [
 		]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testMethodAdditionWithProtocolChanged [
+{ #category : #tests }
+EpApplyPreviewerTest >> testMethodAdditionWithProtocolChanged [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -355,11 +297,8 @@ EpApplyPreviewerTest>>testMethodAdditionWithProtocolChanged [
 		]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testMethodAdditionWithSourceCodeChanged [
+{ #category : #tests }
+EpApplyPreviewerTest >> testMethodAdditionWithSourceCodeChanged [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -376,11 +315,8 @@ EpApplyPreviewerTest>>testMethodAdditionWithSourceCodeChanged [
 		]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testMethodModificationWithMethodRemoved [
+{ #category : #tests }
+EpApplyPreviewerTest >> testMethodModificationWithMethodRemoved [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -396,11 +332,8 @@ EpApplyPreviewerTest>>testMethodModificationWithMethodRemoved [
 		]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testMethodRemovalWithMethodAdded [
+{ #category : #tests }
+EpApplyPreviewerTest >> testMethodRemovalWithMethodAdded [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -416,11 +349,8 @@ EpApplyPreviewerTest>>testMethodRemovalWithMethodAdded [
 		]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testNonCodeChangeEvent [
+{ #category : #tests }
+EpApplyPreviewerTest >> testNonCodeChangeEvent [
 
 	monitor logEntryCommented:
 		(EpLogEntriesComment 
@@ -434,11 +364,8 @@ EpApplyPreviewerTest>>testNonCodeChangeEvent [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testProtocolAdditionWithProtocolRemoved [
+{ #category : #tests }
+EpApplyPreviewerTest >> testProtocolAdditionWithProtocolRemoved [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -453,11 +380,8 @@ EpApplyPreviewerTest>>testProtocolAdditionWithProtocolRemoved [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testProtocolRemovalWithProtocolAdded [
+{ #category : #tests }
+EpApplyPreviewerTest >> testProtocolRemovalWithProtocolAdded [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -473,11 +397,8 @@ EpApplyPreviewerTest>>testProtocolRemovalWithProtocolAdded [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testRedundantBehaviorCategoryChange [
+{ #category : #tests }
+EpApplyPreviewerTest >> testRedundantBehaviorCategoryChange [
 
 	| aClass aCategory anotherCategory |
 	aClass := classFactory newClass.
@@ -490,11 +411,8 @@ EpApplyPreviewerTest>>testRedundantBehaviorCategoryChange [
 	self assertEmptyPreviewLog.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testRedundantBehaviorCategoryChangeWithAbsentBehavior [
+{ #category : #tests }
+EpApplyPreviewerTest >> testRedundantBehaviorCategoryChangeWithAbsentBehavior [
 
 	| aClass aCategory anotherCategory |
 	aClass := classFactory newClass.
@@ -508,11 +426,8 @@ EpApplyPreviewerTest>>testRedundantBehaviorCategoryChangeWithAbsentBehavior [
 	self assertEmptyPreviewLog.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testRedundantBehaviorCommentChangeWithAbsentBehavior [
+{ #category : #tests }
+EpApplyPreviewerTest >> testRedundantBehaviorCommentChangeWithAbsentBehavior [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -523,11 +438,8 @@ EpApplyPreviewerTest>>testRedundantBehaviorCommentChangeWithAbsentBehavior [
 	self assertEmptyPreviewLog.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testRedundantCategoryAddition [
+{ #category : #tests }
+EpApplyPreviewerTest >> testRedundantCategoryAddition [
 
 	self class environment organization addCategory: classFactory defaultCategory.
 	self setHeadAsInputEntry.
@@ -535,11 +447,8 @@ EpApplyPreviewerTest>>testRedundantCategoryAddition [
 	self assertEmptyPreviewLog.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testRedundantCategoryRemoval [
+{ #category : #tests }
+EpApplyPreviewerTest >> testRedundantCategoryRemoval [
 
 	self class environment organization addCategory: classFactory defaultCategory.
 	self class environment organization removeCategory: classFactory defaultCategory.
@@ -548,11 +457,8 @@ EpApplyPreviewerTest>>testRedundantCategoryRemoval [
 	self assertEmptyPreviewLog.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testRedundantCategoryRenameWithAbsentCategory [
+{ #category : #tests }
+EpApplyPreviewerTest >> testRedundantCategoryRenameWithAbsentCategory [
 
 	| organization aCategory anotherCategory |
 	organization := self class environment organization.
@@ -565,11 +471,8 @@ EpApplyPreviewerTest>>testRedundantCategoryRenameWithAbsentCategory [
 	self assertEmptyPreviewLog
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testRedundantClassAddition [
+{ #category : #tests }
+EpApplyPreviewerTest >> testRedundantClassAddition [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -578,11 +481,8 @@ EpApplyPreviewerTest>>testRedundantClassAddition [
 	self assertEmptyPreviewLog.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testRedundantClassRemoval [
+{ #category : #tests }
+EpApplyPreviewerTest >> testRedundantClassRemoval [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -592,11 +492,8 @@ EpApplyPreviewerTest>>testRedundantClassRemoval [
 	self assertEmptyPreviewLog.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testRedundantMethodAddition [
+{ #category : #tests }
+EpApplyPreviewerTest >> testRedundantMethodAddition [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -607,11 +504,8 @@ EpApplyPreviewerTest>>testRedundantMethodAddition [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testRedundantMethodModification [
+{ #category : #tests }
+EpApplyPreviewerTest >> testRedundantMethodModification [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -623,11 +517,8 @@ EpApplyPreviewerTest>>testRedundantMethodModification [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testRedundantMethodRemoval [
+{ #category : #tests }
+EpApplyPreviewerTest >> testRedundantMethodRemoval [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -638,11 +529,8 @@ EpApplyPreviewerTest>>testRedundantMethodRemoval [
 	self assertEmptyPreviewLog.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testRedundantMethodRemovalWithAbsentBehavior [
+{ #category : #tests }
+EpApplyPreviewerTest >> testRedundantMethodRemovalWithAbsentBehavior [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -654,11 +542,8 @@ EpApplyPreviewerTest>>testRedundantMethodRemovalWithAbsentBehavior [
 	self assertEmptyPreviewLog.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testRedundantProtocolAddition [
+{ #category : #tests }
+EpApplyPreviewerTest >> testRedundantProtocolAddition [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -668,11 +553,8 @@ EpApplyPreviewerTest>>testRedundantProtocolAddition [
 	self assertEmptyPreviewLog.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testRedundantProtocolRemoval [
+{ #category : #tests }
+EpApplyPreviewerTest >> testRedundantProtocolRemoval [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -683,11 +565,8 @@ EpApplyPreviewerTest>>testRedundantProtocolRemoval [
 	self assertEmptyPreviewLog.
 ]
 
-{
-	#category : #'tests - multiple changes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testSequenceOfClassAndMethodAddition [
+{ #category : #'tests - multiple changes' }
+EpApplyPreviewerTest >> testSequenceOfClassAndMethodAddition [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -705,11 +584,8 @@ EpApplyPreviewerTest>>testSequenceOfClassAndMethodAddition [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testTraitAdditionWithTraitRemoved [
+{ #category : #tests }
+EpApplyPreviewerTest >> testTraitAdditionWithTraitRemoved [
 
 	| aTrait traitDefinition |
 	aTrait := classFactory newTrait.
@@ -724,21 +600,15 @@ EpApplyPreviewerTest>>testTraitAdditionWithTraitRemoved [
 		]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testTraitModification [
+{ #category : #tests }
+EpApplyPreviewerTest >> testTraitModification [
 	<expectedFailure>
 	
 	self fail. "Missing test/feature"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyPreviewerTest>>testTraitRemovalWithTraitAdded [
+{ #category : #tests }
+EpApplyPreviewerTest >> testTraitRemovalWithTraitAdded [
 
 	| aTrait traitName traitDefinition |
 	aTrait := classFactory newTrait.

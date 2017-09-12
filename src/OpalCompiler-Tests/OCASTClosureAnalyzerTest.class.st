@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #OCASTClosureAnalyzerTest,
 	#superclass : #TestCase,
-	#category : #OpalCompiler-Tests-AST,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-AST
 }
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testBlockArgumentIsArgumentVariable [
+{ #category : #'testing - variables' }
+OCASTClosureAnalyzerTest >> testBlockArgumentIsArgumentVariable [
 	| ast blockNode |
 	ast := (OCOpalExamples>>#exampleForBlockArgument) parseTree.
 	ast doSemanticAnalysis.
@@ -22,11 +15,8 @@ OCASTClosureAnalyzerTest>>testBlockArgumentIsArgumentVariable [
 	
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testDoubleRemoteAnidatedBlocks [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testDoubleRemoteAnidatedBlocks [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#doubleRemoteAnidatedBlocks) parseTree.
 	ast doSemanticAnalysis.
@@ -49,11 +39,8 @@ OCASTClosureAnalyzerTest>>testDoubleRemoteAnidatedBlocks [
 
 ]
 
-{
-	#category : #'tests - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testExampleBlockArgument [
+{ #category : #'tests - blocks' }
+OCASTClosureAnalyzerTest >> testExampleBlockArgument [
 	| ast assignment vars blockScope blockScope2 |
 	ast := (OCOpalExamples>>#exampleBlockArgument) parseTree.
 	ast doSemanticAnalysis.
@@ -91,11 +78,8 @@ OCASTClosureAnalyzerTest>>testExampleBlockArgument [
 
 ]
 
-{
-	#category : #'tests - optimized blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testExampleSimpleBlockLocalIf [
+{ #category : #'tests - optimized blocks' }
+OCASTClosureAnalyzerTest >> testExampleSimpleBlockLocalIf [
 	| ast  assignment var |
 	ast := (OCOpalExamples>>#exampleSimpleBlockLocalIf) parseTree.
 	ast doSemanticAnalysis.
@@ -106,11 +90,8 @@ OCASTClosureAnalyzerTest>>testExampleSimpleBlockLocalIf [
 	self deny: var isEscaping.
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testExampleSimpleBlockLocalWhile [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testExampleSimpleBlockLocalWhile [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#exampleSimpleBlockLocalWhile) parseTree.
 	ast doSemanticAnalysis.
@@ -139,11 +120,8 @@ OCASTClosureAnalyzerTest>>testExampleSimpleBlockLocalWhile [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testExampleSimpleBlockNested [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testExampleSimpleBlockNested [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#exampleSimpleBlockNested) parseTree.
 	ast doSemanticAnalysis.
@@ -174,11 +152,8 @@ OCASTClosureAnalyzerTest>>testExampleSimpleBlockNested [
 
 ]
 
-{
-	#category : #'tests - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testExampleWhileModificationBefore [
+{ #category : #'tests - blocks' }
+OCASTClosureAnalyzerTest >> testExampleWhileModificationBefore [
 	| ast assignment vars blockScope blockScope2 |
 	ast := (OCOpalExamples>>#exampleWhileModificationBefore) parseTree.
 	ast doSemanticAnalysis.
@@ -196,11 +171,8 @@ OCASTClosureAnalyzerTest>>testExampleWhileModificationBefore [
 
 ]
 
-{
-	#category : #'tests - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testExampleWhileNoModification [
+{ #category : #'tests - blocks' }
+OCASTClosureAnalyzerTest >> testExampleWhileNoModification [
 "A block in an optimized loop with no modification on temp vars in the loop
 only needs to copy the tempvars. No write -> no indirection vector."
 	| ast |
@@ -221,11 +193,8 @@ only needs to copy the tempvars. No write -> no indirection vector."
 
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testInlinedBlockArgumentIsArgumentVariable [
+{ #category : #'testing - variables' }
+OCASTClosureAnalyzerTest >> testInlinedBlockArgumentIsArgumentVariable [
 	| ast blockNode |
 	ast := (OCOpalExamples>>#exampleForInlinedBlockArgument) parseTree.
 	ast doSemanticAnalysis.
@@ -235,11 +204,8 @@ OCASTClosureAnalyzerTest>>testInlinedBlockArgumentIsArgumentVariable [
 	
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testMethodArgumentIsArgumentVariable [
+{ #category : #'testing - variables' }
+OCASTClosureAnalyzerTest >> testMethodArgumentIsArgumentVariable [
 	| ast |
 	ast := (OCOpalExamples>>#exampleWithArgument:) parseTree.
 	ast doSemanticAnalysis .
@@ -248,11 +214,8 @@ OCASTClosureAnalyzerTest>>testMethodArgumentIsArgumentVariable [
 	
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testNestedBlocksRemoteInBlockCase1 [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testNestedBlocksRemoteInBlockCase1 [
 	| ast scopes |
 	ast := (OCOpalExamples>>#nestedBlocksRemoteInBlockCase1) parseTree.
 	ast doSemanticAnalysis.
@@ -279,11 +242,8 @@ OCASTClosureAnalyzerTest>>testNestedBlocksRemoteInBlockCase1 [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testNestedBlocksRemoteInBlockCase2 [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testNestedBlocksRemoteInBlockCase2 [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#nestedBlocksRemoteInBlockCase2) parseTree.
 	ast doSemanticAnalysis.
@@ -319,11 +279,8 @@ OCASTClosureAnalyzerTest>>testNestedBlocksRemoteInBlockCase2 [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testNestedBlocksRemoteInBlockCase3 [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testNestedBlocksRemoteInBlockCase3 [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#nestedBlocksRemoteInBlockCase3) parseTree.
 	ast doSemanticAnalysis.
@@ -359,11 +316,8 @@ OCASTClosureAnalyzerTest>>testNestedBlocksRemoteInBlockCase3 [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testNoRemoteBlockArgument [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testNoRemoteBlockArgument [
 	| ast assignment vars |
 	ast := (OCOpalExamples>>#noRemoteBlockArgument) parseTree.
 	ast doSemanticAnalysis.
@@ -378,11 +332,8 @@ OCASTClosureAnalyzerTest>>testNoRemoteBlockArgument [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testNoRemoteReadInBlock [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testNoRemoteReadInBlock [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#noRemoteReadInBlock) parseTree.
 	ast doSemanticAnalysis.
@@ -401,11 +352,8 @@ OCASTClosureAnalyzerTest>>testNoRemoteReadInBlock [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testNoRemoteReadNestedBlocks [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testNoRemoteReadNestedBlocks [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#noRemoteReadNestedBlocks) parseTree.
 	ast doSemanticAnalysis.
@@ -427,11 +375,8 @@ OCASTClosureAnalyzerTest>>testNoRemoteReadNestedBlocks [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testOptimizedBlockReadInBlock [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testOptimizedBlockReadInBlock [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#optimizedBlockReadInBlock) parseTree.
 	ast doSemanticAnalysis.
@@ -452,11 +397,8 @@ OCASTClosureAnalyzerTest>>testOptimizedBlockReadInBlock [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testOptimizedBlockWriteInBlock [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testOptimizedBlockWriteInBlock [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#optimizedBlockWriteInBlock) parseTree.
 	ast doSemanticAnalysis.
@@ -477,11 +419,8 @@ OCASTClosureAnalyzerTest>>testOptimizedBlockWriteInBlock [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testOptimizedBlockWriteInNestedBlock [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testOptimizedBlockWriteInNestedBlock [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#optimizedBlockWriteInNestedBlock) parseTree.
 	ast doSemanticAnalysis.
@@ -502,11 +441,8 @@ OCASTClosureAnalyzerTest>>testOptimizedBlockWriteInNestedBlock [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testOptimizedBlockWriteInNestedBlockCase2 [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testOptimizedBlockWriteInNestedBlockCase2 [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#optimizedBlockWriteInNestedBlockCase2) parseTree.
 	ast doSemanticAnalysis.
@@ -528,11 +464,8 @@ OCASTClosureAnalyzerTest>>testOptimizedBlockWriteInNestedBlockCase2 [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testOptimizedBlockWriteInNestedBlockCase3 [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testOptimizedBlockWriteInNestedBlockCase3 [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#optimizedBlockWriteInNestedBlockCase3) parseTree.
 	ast doSemanticAnalysis.
@@ -557,11 +490,8 @@ OCASTClosureAnalyzerTest>>testOptimizedBlockWriteInNestedBlockCase3 [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testOptimizedBlockWriteInNestedBlockCase4 [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testOptimizedBlockWriteInNestedBlockCase4 [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#optimizedBlockWriteInNestedBlockCase4) parseTree.
 	ast doSemanticAnalysis.
@@ -586,11 +516,8 @@ OCASTClosureAnalyzerTest>>testOptimizedBlockWriteInNestedBlockCase4 [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testOptimizedBlockWrittenAfterClosedOverCase1 [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testOptimizedBlockWrittenAfterClosedOverCase1 [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#optimizedBlockWrittenAfterClosedOverCase1) parseTree.
 	ast doSemanticAnalysis.
@@ -615,11 +542,8 @@ OCASTClosureAnalyzerTest>>testOptimizedBlockWrittenAfterClosedOverCase1 [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testOptimizedBlockWrittenAfterClosedOverCase2 [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testOptimizedBlockWrittenAfterClosedOverCase2 [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#optimizedBlockWrittenAfterClosedOverCase2) parseTree.
 	ast doSemanticAnalysis.
@@ -639,11 +563,8 @@ OCASTClosureAnalyzerTest>>testOptimizedBlockWrittenAfterClosedOverCase2 [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testSingleRemoteDifferentBlocksSameArgumentName [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testSingleRemoteDifferentBlocksSameArgumentName [
 	| ast assignment vars |
 	ast := (OCOpalExamples>>#singleRemoteDifferentBlocksSameArgumentName) parseTree.
 	ast doSemanticAnalysis.
@@ -657,11 +578,8 @@ OCASTClosureAnalyzerTest>>testSingleRemoteDifferentBlocksSameArgumentName [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testSingleRemoteMethodArgument [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testSingleRemoteMethodArgument [
 	| ast assignment vars |
 	ast := (OCOpalExamples>>#singleRemoteMethodArgument) parseTree.
 	ast doSemanticAnalysis.
@@ -675,11 +593,8 @@ OCASTClosureAnalyzerTest>>testSingleRemoteMethodArgument [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testSingleRemoteReadNestedBlocks [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testSingleRemoteReadNestedBlocks [
 	| ast assignment vars |
 	ast := (OCOpalExamples>>#singleRemoteReadNestedBlocks) parseTree.
 	ast doSemanticAnalysis.
@@ -692,11 +607,8 @@ OCASTClosureAnalyzerTest>>testSingleRemoteReadNestedBlocks [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testSingleRemoteTempVar [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testSingleRemoteTempVar [
 	| ast |
 	ast := (OCOpalExamples>>#singleRemoteTempVar) parseTree.
 	ast doSemanticAnalysis.
@@ -713,11 +625,8 @@ OCASTClosureAnalyzerTest>>testSingleRemoteTempVar [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testWrittenAfterClosedOver [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testWrittenAfterClosedOver [
 	| ast assignment vars scopes |
 	ast := (OCOpalExamples>>#writtenAfterClosedOver) parseTree.
 	ast doSemanticAnalysis.
@@ -736,11 +645,8 @@ OCASTClosureAnalyzerTest>>testWrittenAfterClosedOver [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testsingleRemoteTempVarWhileWithTempNotInlined [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testsingleRemoteTempVarWhileWithTempNotInlined [
 	| ast |
 	ast := (OCOpalExamples>>#exampleWhileWithTempNotInlined) parseTree.
 	ast doSemanticAnalysis.
@@ -757,11 +663,8 @@ OCASTClosureAnalyzerTest>>testsingleRemoteTempVarWhileWithTempNotInlined [
 
 ]
 
-{
-	#category : #'tests - special cases',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTClosureAnalyzerTest>>testsingleRemoteTempVarWrittenAfterClosedOver [
+{ #category : #'tests - special cases' }
+OCASTClosureAnalyzerTest >> testsingleRemoteTempVarWrittenAfterClosedOver [
 	| ast |
 	ast := (OCOpalExamples>>#singleRemoteTempVarWrittenAfterClosedOver) parseTree.
 	ast doSemanticAnalysis.

@@ -15,121 +15,78 @@ Class {
 		'created',
 		'modified'
 	],
-	#category : #Zinc-HTTP-Support,
-	#timestamp : '<historical>'
+	#category : #Zinc-HTTP-Support
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSession>>age [
+{ #category : #accessing }
+ZnServerSession >> age [
 	^ DateAndTime now - created
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSession>>attributeAt: key [
+{ #category : #accessing }
+ZnServerSession >> attributeAt: key [
 	^ attributes at: key
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSession>>attributeAt: key ifAbsent: block [
+{ #category : #accessing }
+ZnServerSession >> attributeAt: key ifAbsent: block [
 	^ attributes at: key ifAbsent: block
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSession>>attributeAt: key ifAbsentPut: block [
+{ #category : #accessing }
+ZnServerSession >> attributeAt: key ifAbsentPut: block [
 	^ attributes at: key ifAbsentPut: block
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSession>>attributeAt: key put: value [
+{ #category : #accessing }
+ZnServerSession >> attributeAt: key put: value [
 	^ attributes at: key put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSession>>attributeKeys [
+{ #category : #accessing }
+ZnServerSession >> attributeKeys [
 	^ attributes keys
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSession>>created [
+{ #category : #accessing }
+ZnServerSession >> created [
 	^ created
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSession>>id [
+{ #category : #accessing }
+ZnServerSession >> id [
 	^ id
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSession>>id: anObject [
+{ #category : #initialize-release }
+ZnServerSession >> id: anObject [
 	id := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSession>>inactivity [
+{ #category : #accessing }
+ZnServerSession >> inactivity [
 	^ DateAndTime now - modified 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSession>>initialize [
+{ #category : #initialization }
+ZnServerSession >> initialize [
 	super initialize.
 	attributes := SmallDictionary new.
 	created := modified := DateAndTime now
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSession>>isValid [
+{ #category : #testing }
+ZnServerSession >> isValid [
 	^ self inactivity < 1 hour
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSession>>modified [
+{ #category : #accessing }
+ZnServerSession >> modified [
 	^ modified
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSession>>printOn: stream [
+{ #category : #printing }
+ZnServerSession >> printOn: stream [
 	super printOn: stream.
 	id
 		ifNotNil: [ 
@@ -139,18 +96,12 @@ ZnServerSession>>printOn: stream [
 				nextPut: $) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSession>>removeAttribute: key [
+{ #category : #accessing }
+ZnServerSession >> removeAttribute: key [
 	attributes removeKey: key ifAbsent: [ ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSession>>touch [
+{ #category : #accessing }
+ZnServerSession >> touch [
 	modified := DateAndTime now
 ]

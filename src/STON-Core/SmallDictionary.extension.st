@@ -1,12 +1,7 @@
-Extension {
-	#name : #SmallDictionary
-}
+Extension { #name : #SmallDictionary }
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-SmallDictionary class>>fromSton: stonReader [
+{ #category : #'*ston-core' }
+SmallDictionary class >> fromSton: stonReader [
 	"My instances are stored as maps."
 	
 	| dictionary |
@@ -16,11 +11,8 @@ SmallDictionary class>>fromSton: stonReader [
 	^ dictionary
 ]
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-SmallDictionary>>stonOn: stonWriter [
+{ #category : #'*ston-core' }
+SmallDictionary >> stonOn: stonWriter [
 	"I store my instances as maps"
 	
 	stonWriter 

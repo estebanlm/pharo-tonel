@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMCustomCell,
 	#superclass : #Object,
@@ -11,150 +8,101 @@ Class {
 		'browser',
 		'size'
 	],
-	#category : #Glamour-Browsers-Tabulator,
-	#timestamp : ''
+	#category : #Glamour-Browsers-Tabulator
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomCell>>browser  [
+{ #category : #accessing }
+GLMCustomCell >> browser [ 
 	 
 	^browser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomCell>>browser: anObject  [
+{ #category : #accessing }
+GLMCustomCell >> browser: anObject [ 
 	 
 	browser := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomCell>>children  [
+{ #category : #accessing }
+GLMCustomCell >> children [ 
 	 
 	^children ifNil: [children := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomCell>>children: anObject  [
+{ #category : #accessing }
+GLMCustomCell >> children: anObject [ 
 	 
 	children := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomCell>>childrenCount  [
+{ #category : #accessing }
+GLMCustomCell >> childrenCount [ 
 	 
 	^self children 
 		inject: 0 
 		into: [:sum :each | sum + each span]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomCell>>hasId  [
+{ #category : #testing }
+GLMCustomCell >> hasId [ 
 	 
 	^id notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomCell>>id  [
+{ #category : #accessing }
+GLMCustomCell >> id [ 
 	 
 	^id ifNil: [#anonymous]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomCell>>id: anObject  [
+{ #category : #accessing }
+GLMCustomCell >> id: anObject [ 
 	 
 	id := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomCell>>isColumn  [
+{ #category : #testing }
+GLMCustomCell >> isColumn [ 
 	 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomCell>>isRow  [
+{ #category : #testing }
+GLMCustomCell >> isRow [ 
 	 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomCell>>isSplitIntoColumns  [
+{ #category : #testing }
+GLMCustomCell >> isSplitIntoColumns [ 
 	 
 	^self children allSatisfy: [:each | each isColumn]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomCell>>isSplitIntoRows  [
+{ #category : #testing }
+GLMCustomCell >> isSplitIntoRows [ 
 	 
 	^self children allSatisfy: [:each | each isRow]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomCell>>size [
+{ #category : #accessing }
+GLMCustomCell >> size [
 	^ size ifNil: [0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomCell>>size: anObject [
+{ #category : #accessing }
+GLMCustomCell >> size: anObject [
 	size := anObject.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomCell>>span  [
+{ #category : #accessing }
+GLMCustomCell >> span [ 
 	 
 	^span ifNil: [span := 1]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCustomCell>>span: anObject  [
+{ #category : #accessing }
+GLMCustomCell >> span: anObject [ 
 	 
 	span := anObject
 ]

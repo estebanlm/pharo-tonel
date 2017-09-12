@@ -4,15 +4,11 @@ I do quoted printable MIME decoding as specified in RFC 2047 """"MIME Part Three
 Class {
 	#name : #RFC2047MimeConverter,
 	#superclass : #QuotedPrintableMimeConverter,
-	#category : #Network-MIME,
-	#timestamp : '<historical>'
+	#category : #Network-MIME
 }
 
-{
-	#category : #private-encoding,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-RFC2047MimeConverter>>encodeChar: aChar to: aStream [
+{ #category : #private-encoding }
+RFC2047MimeConverter >> encodeChar: aChar to: aStream [
 
 	aChar = Character space
 		ifTrue: [^ aStream nextPut: $_].
@@ -24,11 +20,8 @@ RFC2047MimeConverter>>encodeChar: aChar to: aStream [
 
 ]
 
-{
-	#category : #private-encoding,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-RFC2047MimeConverter>>encodeWord: aString [
+{ #category : #private-encoding }
+RFC2047MimeConverter >> encodeWord: aString [
 
 	(aString allSatisfy: [:c | c asciiValue < 128])
 		ifTrue: [^ aString].
@@ -38,11 +31,8 @@ RFC2047MimeConverter>>encodeWord: aString [
 		stream nextPutAll: '?=']
 ]
 
-{
-	#category : #private-encoding,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-RFC2047MimeConverter>>isStructuredField: aString [
+{ #category : #private-encoding }
+RFC2047MimeConverter >> isStructuredField: aString [
 
 	| fName |
 	fName := aString copyUpTo: $:.
@@ -51,11 +41,8 @@ RFC2047MimeConverter>>isStructuredField: aString [
 	^#('Sender' 'From' 'Reply-To' 'To' 'cc' 'bcc') anySatisfy: [:each | fName sameAs: each]
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-RFC2047MimeConverter>>mimeDecode [
+{ #category : #conversion }
+RFC2047MimeConverter >> mimeDecode [
 	"Do conversion reading from mimeStream writing to dataStream. See String>>decodeMimeHeader"
 
 	| c |
@@ -69,11 +56,8 @@ RFC2047MimeConverter>>mimeDecode [
 	^ dataStream
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-RFC2047MimeConverter>>mimeEncode [
+{ #category : #conversion }
+RFC2047MimeConverter >> mimeEncode [
 	"Do conversion reading from dataStream writing to mimeStream. Break long lines and escape non-7bit chars."
 
 	| word pos wasGood isGood max |
@@ -94,11 +78,8 @@ RFC2047MimeConverter>>mimeEncode [
 	^ mimeStream
 ]
 
-{
-	#category : #private-encoding,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-RFC2047MimeConverter>>readWord [
+{ #category : #private-encoding }
+RFC2047MimeConverter >> readWord [
 
 	| strm |
 	strm := (String new: 20) writeStream.

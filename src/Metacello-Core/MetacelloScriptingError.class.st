@@ -1,9 +1,5 @@
-"
-
-"
 Class {
 	#name : #MetacelloScriptingError,
 	#superclass : #Error,
-	#category : #Metacello-Core-Scripts,
-	#timestamp : ''
+	#category : #Metacello-Core-Scripts
 }

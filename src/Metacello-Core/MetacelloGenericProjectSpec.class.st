@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloGenericProjectSpec,
 	#superclass : #MetacelloProjectSpec,
@@ -8,44 +5,31 @@ Class {
 		'projectPackage',
 		'repositories'
 	],
-	#category : #Metacello-Core-Specs,
-	#timestamp : ''
+	#category : #Metacello-Core-Specs
 }
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>compareEqual: aMetacelloProjectSpec [
+{ #category : #scripting }
+MetacelloGenericProjectSpec >> compareEqual: aMetacelloProjectSpec [
     "'projectPackage repositories'"
 
     ^ (super compareEqual: aMetacelloProjectSpec)
         and: [ self repositories compareEqual: aMetacelloProjectSpec repositories ]
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>determineCurrentVersionForLoad [
+{ #category : #loading }
+MetacelloGenericProjectSpec >> determineCurrentVersionForLoad [
     self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>getRepositories [
+{ #category : #accessing }
+MetacelloGenericProjectSpec >> getRepositories [
     "raw access to iv"
 
     ^ repositories
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>hasNoLoadConflicts: aMetacelloProjectSpec [
+{ #category : #scripting }
+MetacelloGenericProjectSpec >> hasNoLoadConflicts: aMetacelloProjectSpec [
   "'projectPackage repositories'"
 
   ^ (super hasNoLoadConflicts: aMetacelloProjectSpec)
@@ -54,48 +38,33 @@ MetacelloGenericProjectSpec>>hasNoLoadConflicts: aMetacelloProjectSpec [
         or: [ self repositories hasNoLoadConflicts: aMetacelloProjectSpec repositories ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>hasRepository [
+{ #category : #testing }
+MetacelloGenericProjectSpec >> hasRepository [
     ^ self repositorySpecs notEmpty
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>load [
+{ #category : #loading }
+MetacelloGenericProjectSpec >> load [
     (MetacelloLookupProjectSpecForLoad new
         projectSpec: self;
         yourself) signal performLoad
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>loadVersion: aVersionOrNil [
+{ #category : #loading }
+MetacelloGenericProjectSpec >> loadVersion: aVersionOrNil [
     self subclassResponsibility
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>mergeMap [
+{ #category : #merging }
+MetacelloGenericProjectSpec >> mergeMap [
     | map |
     map := super mergeMap.
     map at: #'repositories' put: repositories.
     ^ map
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>mergeRepositoriesSpec: anotherRepositories [
+{ #category : #merging }
+MetacelloGenericProjectSpec >> mergeRepositoriesSpec: anotherRepositories [
   self
     repositories:
       (self getRepositories == nil
@@ -103,19 +72,13 @@ MetacelloGenericProjectSpec>>mergeRepositoriesSpec: anotherRepositories [
         ifFalse: [ self repositories mergeSpec: anotherRepositories ])
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>mergeScriptRepository: anotherSpec [
+{ #category : #scripting }
+MetacelloGenericProjectSpec >> mergeScriptRepository: anotherSpec [
     self repositories: anotherSpec repositories
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>mergeSpec: anotherSpec [
+{ #category : #merging }
+MetacelloGenericProjectSpec >> mergeSpec: anotherSpec [
   | newSpec map anotherRepositories |
   newSpec := super mergeSpec: anotherSpec.
   map := anotherSpec mergeMap.
@@ -124,142 +87,94 @@ MetacelloGenericProjectSpec>>mergeSpec: anotherSpec [
   ^ newSpec
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>metacelloRegistrationHash [
+{ #category : #scripting }
+MetacelloGenericProjectSpec >> metacelloRegistrationHash [
     "projectPackage (ignored) repositories"
 
     ^ super metacelloRegistrationHash bitXor: self repositories metacelloRegistrationHash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>name: aString [
+{ #category : #accessing }
+MetacelloGenericProjectSpec >> name: aString [
     super name: aString.
     self projectPackage: nil
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>nonOverridable [
+{ #category : #merging }
+MetacelloGenericProjectSpec >> nonOverridable [
     ^ super nonOverridable , #(#'projectPackage' #'repositories')
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>postCopy [
+{ #category : #copying }
+MetacelloGenericProjectSpec >> postCopy [
     super postCopy.
     repositories := repositories copy.
     projectPackage := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>projectPackage [
+{ #category : #accessing }
+MetacelloGenericProjectSpec >> projectPackage [
     self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>projectPackage: aProjectPackage [
+{ #category : #accessing }
+MetacelloGenericProjectSpec >> projectPackage: aProjectPackage [
     self shouldBeMutable.
     projectPackage := aProjectPackage
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>projectPackage: aBlock constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloGenericProjectSpec >> projectPackage: aBlock constructor: aVersionConstructor [
     aVersionConstructor projectPackageForProject: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>repositories [
+{ #category : #accessing }
+MetacelloGenericProjectSpec >> repositories [
     repositories ifNil: [ repositories := self project repositoriesSpec ].
     ^ repositories
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>repositories: anObject [
+{ #category : #accessing }
+MetacelloGenericProjectSpec >> repositories: anObject [
     self shouldBeMutable.
     repositories := anObject.
     self projectPackage: nil
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>repositories: aBlock constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloGenericProjectSpec >> repositories: aBlock constructor: aVersionConstructor [
     aVersionConstructor repositoriesForProject: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>repository: aStringOrMetacelloRepositorySpec [
+{ #category : #accessing }
+MetacelloGenericProjectSpec >> repository: aStringOrMetacelloRepositorySpec [
     self repositories repository: aStringOrMetacelloRepositorySpec.
     self projectPackage: nil
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>repository: anObject constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloGenericProjectSpec >> repository: anObject constructor: aVersionConstructor [
     aVersionConstructor repositoryForProject: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>repository: aString username: username password: password [
+{ #category : #accessing }
+MetacelloGenericProjectSpec >> repository: aString username: username password: password [
     self repositories repository: aString username: username password: password.
     self projectPackage: nil
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>repository: aString username: username password: password constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloGenericProjectSpec >> repository: aString username: username password: password constructor: aVersionConstructor [
     aVersionConstructor repositoryForProject: aString username: username password: password
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>repositoryDescriptions [
+{ #category : #querying }
+MetacelloGenericProjectSpec >> repositoryDescriptions [
     ^ self repositorySpecs collect: [ :repoSpec | repoSpec description ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloGenericProjectSpec>>repositorySpecs [
+{ #category : #querying }
+MetacelloGenericProjectSpec >> repositorySpecs [
     repositories ifNil: [ ^ #() ].
     ^ self repositories map values
 ]

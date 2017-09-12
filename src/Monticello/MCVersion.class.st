@@ -11,63 +11,41 @@ Class {
 		'dependencies',
 		'completeSnapshot'
 	],
-	#category : #Monticello-Versioning,
-	#timestamp : 'TorstenBergmann 2/5/2014 13:56'
+	#category : #Monticello-Versioning
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion class>>package: aPackage [
+{ #category : #'instance creation' }
+MCVersion class >> package: aPackage [
 	^ self package: aPackage info: MCVersionInfo new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion class>>package: aPackage info: aVersionInfo [
+{ #category : #'instance creation' }
+MCVersion class >> package: aPackage info: aVersionInfo [
 	^ self package: aPackage info: aVersionInfo snapshot: aPackage snapshot
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion class>>package: aPackage info: aVersionInfo snapshot: aSnapshot [
+{ #category : #'instance creation' }
+MCVersion class >> package: aPackage info: aVersionInfo snapshot: aSnapshot [
 	^ self package: aPackage info: aVersionInfo snapshot: aSnapshot dependencies: #()
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion class>>package: aPackage info: aVersionInfo snapshot: aSnapshot dependencies: aCollection [
+{ #category : #'instance creation' }
+MCVersion class >> package: aPackage info: aVersionInfo snapshot: aSnapshot dependencies: aCollection [
 	^ self new initializeWithPackage: aPackage info: aVersionInfo snapshot: aSnapshot dependencies: aCollection
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>addToCache [
+{ #category : #actions }
+MCVersion >> addToCache [
 	MCCacheRepository uniqueInstance storeVersion: self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>adopt [
+{ #category : #actions }
+MCVersion >> adopt [
 	self workingCopy adopt: self
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>allAvailableDependenciesDo: aBlock [
+{ #category : #enumerating }
+MCVersion >> allAvailableDependenciesDo: aBlock [
 	
 	self dependencies do:
 		[:ea |
@@ -77,29 +55,20 @@ MCVersion>>allAvailableDependenciesDo: aBlock [
 			on: Error do: []]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>allDependenciesDo: aBlock [
+{ #category : #enumerating }
+MCVersion >> allDependenciesDo: aBlock [
 	self allDependenciesDo: aBlock ifUnresolved: [:ignored | true]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>allDependenciesDo: aBlock ifUnresolved: failBlock [
+{ #category : #enumerating }
+MCVersion >> allDependenciesDo: aBlock ifUnresolved: failBlock [
 	| dict |
 	dict := Dictionary new.
 	self allDependenciesNotIn: dict do: aBlock ifUnresolved: failBlock
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>allDependenciesNotIn: aDictionary do: aBlock ifUnresolved: failBlock [
+{ #category : #enumerating }
+MCVersion >> allDependenciesNotIn: aDictionary do: aBlock ifUnresolved: failBlock [
 	
 	self dependencies do: 
 		[:ea | | version | 
@@ -115,11 +84,8 @@ MCVersion>>allDependenciesNotIn: aDictionary do: aBlock ifUnresolved: failBlock 
 						aBlock value: version]]]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>asDiffAgainst: aVersion [
+{ #category : #converting }
+MCVersion >> asDiffAgainst: aVersion [
 	aVersion info = self info ifTrue: [self error: 'Cannot diff against self!'].
 	^ MCDiffyVersion
 		package: self package
@@ -129,77 +95,50 @@ MCVersion>>asDiffAgainst: aVersion [
 		baseVersion: aVersion
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>canOptimizeLoading [
+{ #category : #testing }
+MCVersion >> canOptimizeLoading [
 	"Answer wether I can provide a patch for the working copy without the usual diff pass"
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>changes [
+{ #category : #accessing }
+MCVersion >> changes [
 	^ self completeSnapshot patchRelativeToBase: self completePackageSnapshot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>completePackageSnapshot [
+{ #category : #accessing }
+MCVersion >> completePackageSnapshot [
 	"Answer with a snapshot of current working copy of this package and all its dependencies."
 	^self loadCompletePackageSnapshot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>completeSnapshot [
+{ #category : #accessing }
+MCVersion >> completeSnapshot [
 	^ completeSnapshot ifNil: [ completeSnapshot := self loadCompleteSnapshot ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>dependencies [
+{ #category : #accessing }
+MCVersion >> dependencies [
 	^ dependencies ifNil: [#()]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>fileName [
+{ #category : #accessing }
+MCVersion >> fileName [
 	^ info name, '.', self writerClass extension
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>fileOutOn: aStream [
+{ #category : #actions }
+MCVersion >> fileOutOn: aStream [
 	self writerClass fileOut: self on: aStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>info [
+{ #category : #accessing }
+MCVersion >> info [
 	^ info
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>initializeWithPackage: aPackage info: aVersionInfo snapshot: aSnapshot dependencies: aCollection [
+{ #category : #initialization }
+MCVersion >> initializeWithPackage: aPackage info: aVersionInfo snapshot: aSnapshot dependencies: aCollection [
 	package := aPackage.
 	info := aVersionInfo.
 	snapshot := aSnapshot.
@@ -207,35 +146,23 @@ MCVersion>>initializeWithPackage: aPackage info: aVersionInfo snapshot: aSnapsho
 	self addToCache.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>isCacheable [
+{ #category : #testing }
+MCVersion >> isCacheable [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>isDiffy [
+{ #category : #testing }
+MCVersion >> isDiffy [
 	^ false
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>load [
+{ #category : #actions }
+MCVersion >> load [
 	MCVersionLoader loadVersion: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>loadCompletePackageSnapshot [
+{ #category : #accessing }
+MCVersion >> loadCompletePackageSnapshot [
 	| definitions |
 	definitions := OrderedCollection withAll: package snapshot definitions.
 	
@@ -248,11 +175,8 @@ MCVersion>>loadCompletePackageSnapshot [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>loadCompleteSnapshot [
+{ #category : #accessing }
+MCVersion >> loadCompleteSnapshot [
 	|definitions|
 	
 	definitions := OrderedCollection withAll: self snapshot definitions.
@@ -264,60 +188,42 @@ MCVersion>>loadCompleteSnapshot [
 	^ MCSnapshot fromDefinitions: definitions
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>merge [
+{ #category : #actions }
+MCVersion >> merge [
 	MCVersionMerger mergeVersion: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>package [
+{ #category : #accessing }
+MCVersion >> package [
 	^ package
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>printOn: aStream [
+{ #category : #printing }
+MCVersion >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut: $(.
 	aStream nextPutAll: self info printString.
 	aStream nextPut: $).
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>setPackage: aPackage info: aVersionInfo snapshot: aSnapshot dependencies: aCollection [
+{ #category : #initialization }
+MCVersion >> setPackage: aPackage info: aVersionInfo snapshot: aSnapshot dependencies: aCollection [
 	package := aPackage.
 	info := aVersionInfo.
 	snapshot := aSnapshot.
 	dependencies := aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>snapshot [
+{ #category : #accessing }
+MCVersion >> snapshot [
 	"lazily load snapshot..."
 	snapshot isBlock ifTrue: [ 
 		snapshot := snapshot value ].
 	^ snapshot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>summary [
+{ #category : #accessing }
+MCVersion >> summary [
 	^ String streamContents:
 		[:s |
 		s nextPutAll: info summaryHeader.
@@ -329,38 +235,26 @@ MCVersion>>summary [
 		s cr; cr; nextPutAll: info message]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>withAllDependenciesDo: aBlock [
+{ #category : #enumerating }
+MCVersion >> withAllDependenciesDo: aBlock [
 	self allDependenciesDo: aBlock ifUnresolved: [:ignored |].
 	aBlock value: self
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>withAllDependenciesDo: aBlock ifUnresolved: failBlock [
+{ #category : #enumerating }
+MCVersion >> withAllDependenciesDo: aBlock ifUnresolved: failBlock [
 	| dict |
 	dict := Dictionary new.
 	self allDependenciesNotIn: dict do: aBlock ifUnresolved: failBlock.
 	aBlock value: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>workingCopy [
+{ #category : #accessing }
+MCVersion >> workingCopy [
 	^ package workingCopy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersion>>writerClass [
+{ #category : #accessing }
+MCVersion >> writerClass [
 	^ MCMczWriter 
 ]

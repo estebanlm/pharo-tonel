@@ -4,176 +4,121 @@ I am an abstract class that represents an accessor for a sequence of objects. Th
 Class {
 	#name : #Stream,
 	#superclass : #Object,
-	#category : #Collections-Streams,
-	#timestamp : '<historical>'
+	#category : #Collections-Streams
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream class>>new [
+{ #category : #'instance creation' }
+Stream class >> new [
 
 	self error: 'Streams are created with on: and with:'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>><< anObject [
+{ #category : #accessing }
+Stream >> << anObject [
 	"A more readable, shorter alternative to #nextPutAll: that also
 	accepts non-Collection arguments"
 
  	anObject putOn: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>atEnd [
+{ #category : #testing }
+Stream >> atEnd [
 	"Answer whether the receiver can access any more objects."
 
 	self subclassResponsibility 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>basicNext [
+{ #category : #private }
+Stream >> basicNext [
 
 	^ self next.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>basicNext: anAmount putAll: aCollection startingAt: startIndex [
+{ #category : #private }
+Stream >> basicNext: anAmount putAll: aCollection startingAt: startIndex [
 
 	^ self next: anAmount putAll: aCollection startingAt: startIndex.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>basicNextPut: anObject  [
+{ #category : #private }
+Stream >> basicNextPut: anObject [ 
 
 	^ self nextPut: anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>basicNextPutAll: aCollection  [
+{ #category : #private }
+Stream >> basicNextPutAll: aCollection [ 
 
 	^ self nextPutAll: aCollection.
 
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>binary [
+{ #category : #modes }
+Stream >> binary [
 	"do nothing"
 	^self 
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>close [
+{ #category : #open/close }
+Stream >> close [
 	"Presumably sets the status of the receiver to be closed. This message does 
 	nothing at this level, but is included for FileStream compatibility."
 
 	^self 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>closed [
+{ #category : #testing }
+Stream >> closed [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>contents [
+{ #category : #accessing }
+Stream >> contents [
 	"Answer all of the contents of the receiver."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>do: aBlock  [
+{ #category : #enumerating }
+Stream >> do: aBlock [ 
 	"Evaluate aBlock for each of the objects accessible by receiver."
 
 	[self atEnd]
 		whileFalse: [aBlock value: self next]
 ]
 
-{
-	#category : #flushing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>flush [
+{ #category : #flushing }
+Stream >> flush [
 	"Do nothing by default" 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>isBinary [
+{ #category : #testing }
+Stream >> isBinary [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>isStream [
+{ #category : #testing }
+Stream >> isStream [
 	"Return true if the receiver responds to the stream protocol"
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>localName [
+{ #category : #accessing }
+Stream >> localName [
 	^'a stream'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>next [
+{ #category : #accessing }
+Stream >> next [
 	"Answer the next object accessible by the receiver."
 
 	self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>next: anInteger  [
+{ #category : #accessing }
+Stream >> next: anInteger [ 
 	"Answer the next anInteger number of objects accessible by the receiver."
 	
 	| aCollection |
@@ -182,11 +127,8 @@ Stream>>next: anInteger  [
 	^aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>next: anInteger put: anObject  [
+{ #category : #accessing }
+Stream >> next: anInteger put: anObject [ 
 	<compilerOptions: #(+ optionInlineTimesRepeat)>
 	
 	"Make anObject be the next anInteger number of objects accessible by the 
@@ -196,22 +138,16 @@ Stream>>next: anInteger put: anObject  [
 	^ anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>next: anInteger putAll: aCollection startingAt: startIndex [
+{ #category : #accessing }
+Stream >> next: anInteger putAll: aCollection startingAt: startIndex [
 	"Store the next anInteger elements from the given collection."
 	(startIndex = 1 and:[anInteger = aCollection size])
 		ifTrue:[^self nextPutAll: aCollection].
 	^self nextPutAll: (aCollection copyFrom: startIndex to: startIndex+anInteger-1)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>nextMatchAll: aColl [
+{ #category : #accessing }
+Stream >> nextMatchAll: aColl [
     "Answer true if next N objects are the ones in aColl,
      else false.  Advance stream of true, leave as was if false."
     | save |
@@ -224,33 +160,24 @@ Stream>>nextMatchAll: aColl [
     ^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>nextMatchFor: anObject  [
+{ #category : #accessing }
+Stream >> nextMatchFor: anObject [ 
 	"Gobble the next object and answer whether it is equal to the argument, 
 	anObject."
 
 	^anObject = self next
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>nextPut: anObject  [
+{ #category : #accessing }
+Stream >> nextPut: anObject [ 
 	"Insert the argument, anObject, as the next object accessible by the 
 	receiver. Answer anObject."
 	
 	self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>nextPutAll: aCollection  [
+{ #category : #accessing }
+Stream >> nextPutAll: aCollection [ 
 	"Append the elements of aCollection to the sequence of objects accessible 
 	by the receiver. Answer aCollection."
 	
@@ -258,11 +185,8 @@ Stream>>nextPutAll: aCollection  [
 	^aCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>nextWordsPutAll: aCollection [
+{ #category : #private }
+Stream >> nextWordsPutAll: aCollection [
 	"Write the argument a word-like object in big endian format on the receiver.
 	May be used to write other than plain word-like objects (such as ColorArray)."
 	
@@ -273,38 +197,26 @@ Stream>>nextWordsPutAll: aCollection [
 	^ aCollection
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>openReadOnly [
+{ #category : #open/close }
+Stream >> openReadOnly [
 	^self
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>print: anObject [
+{ #category : #printing }
+Stream >> print: anObject [
 	"Have anObject print itself on the receiver."
 
 	anObject printOn: self
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>readOnly [
+{ #category : #modes }
+Stream >> readOnly [
 	"do nothing"
 	^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>upToEnd [
+{ #category : #accessing }
+Stream >> upToEnd [
 	"answer the remaining elements in the string"
 	| elements |
 	elements := OrderedCollection new.
@@ -313,11 +225,8 @@ Stream>>upToEnd [
 	^elements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Stream>>write: anObject [
+{ #category : #accessing }
+Stream >> write: anObject [
 	"Like <<, but returns the object putOn the receiver."
 
 	anObject putOn: self.

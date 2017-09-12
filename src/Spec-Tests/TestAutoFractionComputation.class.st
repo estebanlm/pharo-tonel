@@ -9,15 +9,11 @@ Class {
 		'list',
 		'text'
 	],
-	#category : #Spec-Tests-Utils,
-	#timestamp : '<historical>'
+	#category : #Spec-Tests-Utils
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestAutoFractionComputation class>>defaultSpec [
+{ #category : #'as yet unclassified' }
+TestAutoFractionComputation class >> defaultSpec [
 	<spec>
 	
 	^ SpecLayout composed
@@ -31,36 +27,24 @@ TestAutoFractionComputation class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestAutoFractionComputation>>button [
+{ #category : #accessing }
+TestAutoFractionComputation >> button [
 	^ button
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestAutoFractionComputation>>initializeWidgets [
+{ #category : #initialization }
+TestAutoFractionComputation >> initializeWidgets [
 	button := self newButton.
 	list := self newList.
 	text := self newText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestAutoFractionComputation>>list [
+{ #category : #accessing }
+TestAutoFractionComputation >> list [
 	^ list
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestAutoFractionComputation>>text [
+{ #category : #accessing }
+TestAutoFractionComputation >> text [
 	^ text
 ]

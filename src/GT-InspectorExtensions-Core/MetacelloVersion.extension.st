@@ -1,12 +1,7 @@
-Extension {
-	#name : #MetacelloVersion
-}
+Extension { #name : #MetacelloVersion }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-MetacelloVersion>>allProjects [
+{ #category : #'*GT-InspectorExtensions-Core' }
+MetacelloVersion >> allProjects [
 	| all |
 	all := OrderedCollection new.
 	self allProjectsDo: [ :each |
@@ -14,19 +9,13 @@ MetacelloVersion>>allProjects [
 	^ all
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-MetacelloVersion>>allProjectsDo: aBlock [
+{ #category : #'*GT-InspectorExtensions-Core' }
+MetacelloVersion >> allProjectsDo: aBlock [
 	self allProjectsDo: aBlock withTraversedProjects: OrderedCollection new
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-MetacelloVersion>>allProjectsDo: aBlock withTraversedProjects: aCollection [
+{ #category : #'*GT-InspectorExtensions-Core' }
+MetacelloVersion >> allProjectsDo: aBlock withTraversedProjects: aCollection [
 	self projects do: [ :each |
 		(each version notNil and: [(aCollection includes: each version) not]) 
 		ifTrue: [
@@ -35,11 +24,8 @@ MetacelloVersion>>allProjectsDo: aBlock withTraversedProjects: aCollection [
 			each version allProjectsDo: aBlock withTraversedProjects: aCollection ] ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-MetacelloVersion>>gtInspectorActionLoad [
+{ #category : #'*GT-InspectorExtensions-Core' }
+MetacelloVersion >> gtInspectorActionLoad [
 	<gtInspectorAction>
 	^ GLMGenericAction new
 		action: [ self load ];
@@ -47,11 +33,8 @@ MetacelloVersion>>gtInspectorActionLoad [
 		title: 'Load'
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-MetacelloVersion>>gtInspectorPackagesIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+MetacelloVersion >> gtInspectorPackagesIn: composite [
 	<gtInspectorPresentationOrder: 40>
 	composite list
 		title: 'Packages';
@@ -59,11 +42,8 @@ MetacelloVersion>>gtInspectorPackagesIn: composite [
 				each isKindOf: MetacelloPackageSpec ] ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-MetacelloVersion>>gtInspectorProjectsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+MetacelloVersion >> gtInspectorProjectsIn: composite [
 	<gtInspectorPresentationOrder: 40>
 	composite list
 		title: 'Projects';

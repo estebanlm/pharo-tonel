@@ -4,35 +4,25 @@ I implement a simple Stack. #push: adds a new object of any kind on top of the s
 Class {
 	#name : #Stack,
 	#superclass : #LinkedList,
-	#category : #Collections-Stack,
-	#timestamp : 'dc 7/24/2005 15:41'
+	#category : #Collections-Stack
 }
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-Stack>>pop [
+{ #category : #removing }
+Stack >> pop [
 	"Returns the first element and remove it from the stack."
 
 	^self  removeFirst 
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-Stack>>push: anObject  [
+{ #category : #adding }
+Stack >> push: anObject [ 
 	"Adds a new object of any kind on top of the stack."
 	self addFirst: anObject.
 	^ anObject.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-Stack>>top [
+{ #category : #accessing }
+Stack >> top [
 	"Answer the first element of the stack without removing it."
 	^ self first
 ]

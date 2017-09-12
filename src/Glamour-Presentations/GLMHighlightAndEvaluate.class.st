@@ -7,22 +7,15 @@ Class {
 	#instVars : [
 		'action'
 	],
-	#category : #Glamour-Presentations-Announcements,
-	#timestamp : 'AndreiChis 1/14/2015 13:15'
+	#category : #Glamour-Presentations-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMHighlightAndEvaluate>>action [
+{ #category : #accessing }
+GLMHighlightAndEvaluate >> action [
 	^ action
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMHighlightAndEvaluate>>action: anObject [
+{ #category : #accessing }
+GLMHighlightAndEvaluate >> action: anObject [
 	action := anObject
 ]

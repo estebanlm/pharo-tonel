@@ -21,15 +21,11 @@ Class {
 		'tagsBlock',
 		'tagsFilterBlock'
 	],
-	#category : #Glamour-Presentations,
-	#timestamp : 'AndreiChis 10/3/2014 18:28'
+	#category : #Glamour-Presentations
 }
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListPresentation>>defaultValidate: anObject on: aPort [
+{ #category : #validation }
+GLMListPresentation >> defaultValidate: anObject on: aPort [
 	"we only allow objects that are in the display value"
 
 	(aPort name == #selection) ifFalse: [ ^ true ].
@@ -40,43 +36,28 @@ GLMListPresentation>>defaultValidate: anObject on: aPort [
 		ifFalse: [ self displayValue includes: anObject ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListPresentation>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMListPresentation >> renderGlamorouslyOn: aRenderer [ 
 	self registerAnnouncements.
 	^ aRenderer renderListPresentation: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListPresentation>>tagsBlock [
+{ #category : #accessing }
+GLMListPresentation >> tagsBlock [
 	^ tagsBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListPresentation>>tagsBlock: anObject [
+{ #category : #scripting }
+GLMListPresentation >> tagsBlock: anObject [
 	tagsBlock := anObject
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListPresentation>>tagsFilter: aBlock [
+{ #category : #scripting }
+GLMListPresentation >> tagsFilter: aBlock [
 	tagsFilterBlock := aBlock 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListPresentation>>tagsFilterBlock [
+{ #category : #accessing }
+GLMListPresentation >> tagsFilterBlock [
 	^ tagsFilterBlock
 ]

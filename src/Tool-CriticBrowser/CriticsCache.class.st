@@ -50,15 +50,11 @@ Class {
 		'packages',
 		'change'
 	],
-	#category : #Tool-CriticBrowser,
-	#timestamp : '<historical>'
+	#category : #Tool-CriticBrowser
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>addAllCriticToFalsePositive: aCollectionOfCritic forRule: aRule on: aManifestBuilder [
+{ #category : #private }
+CriticsCache >> addAllCriticToFalsePositive: aCollectionOfCritic forRule: aRule [ on: aManifestBuilder
 
 	| ruleId versionId  criticss |
 	criticss := aCollectionOfCritic reject: [ :c | falsePositiveClasses includes: c criticTheNonMetaclassClass ].
@@ -71,11 +67,8 @@ CriticsCache>>addAllCriticToFalsePositive: aCollectionOfCritic forRule: aRule on
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>addAllCriticToToDo: aCollectionOfCritic forRule: aRule on: aManifestBuilder [
+{ #category : #private }
+CriticsCache >> addAllCriticToToDo: aCollectionOfCritic forRule: aRule [ on: aManifestBuilder
 
 	| ruleId versionId  |
 	ruleId := aRule class uniqueIdentifierName.
@@ -87,11 +80,8 @@ CriticsCache>>addAllCriticToToDo: aCollectionOfCritic forRule: aRule on: aManife
 	
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>addCritic: aCritic forRule: aRule [
+{ #category : #add/remove }
+CriticsCache >> addCritic: aCritic forRule: aRule [
 
 	(critics includesKey: aRule) 
 		ifFalse: [ critics at:aRule put: IdentitySet new ].
@@ -99,11 +89,8 @@ CriticsCache>>addCritic: aCritic forRule: aRule [
 	self updateBrowser
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>addFalsePositive: aCritic forRule: aRule [
+{ #category : #add/remove }
+CriticsCache >> addFalsePositive: aCritic forRule: aRule [
 
 	(falsePositives includesKey: aRule) 
 		ifFalse: [ falsePositives at: aRule put: IdentitySet new ].
@@ -111,11 +98,8 @@ CriticsCache>>addFalsePositive: aCritic forRule: aRule [
 	self updateBrowser 	
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>addFalsePositiveClass: aClass  [
+{ #category : #add/remove }
+CriticsCache >> addFalsePositiveClass: aClass [ 
 	
 	| fp |
 	falsePositiveClasses add: aClass theNonMetaClass. 
@@ -126,11 +110,8 @@ CriticsCache>>addFalsePositiveClass: aClass  [
 
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>addFalsePositiveRule: aRule forPackage: aPackage [
+{ #category : #add/remove }
+CriticsCache >> addFalsePositiveRule: aRule forPackage: aPackage [
 	
 	| fp |
 	(falsePositiveRules includesKey: aPackage) 
@@ -141,11 +122,8 @@ CriticsCache>>addFalsePositiveRule: aRule forPackage: aPackage [
 	fp do: [ :c | self addFalsePositive: c forRule: aRule ]
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>addToDo: aCritic forRule: aRule [
+{ #category : #add/remove }
+CriticsCache >> addToDo: aCritic forRule: aRule [
 
 	(toDos includesKey: aRule) 
 		ifFalse: [ toDos at:aRule put: IdentitySet new ].
@@ -153,59 +131,38 @@ CriticsCache>>addToDo: aCritic forRule: aRule [
 	self updateBrowser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>browser: aCodeCritiicBrowser [
+{ #category : #accessing }
+CriticsCache >> browser: aCodeCritiicBrowser [
 	browser := aCodeCritiicBrowser 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>builderManifestClass [
+{ #category : #private }
+CriticsCache >> builderManifestClass [
 	^ TheManifestBuilder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>cacheChange [
+{ #category : #accessing }
+CriticsCache >> cacheChange [
 	^ change
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>cacheChanged  [
+{ #category : #private }
+CriticsCache >> cacheChanged [ 
 	change := true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>cacheNotChanged  [
+{ #category : #private }
+CriticsCache >> cacheNotChanged [ 
 	change := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>checker: aSmallLintChercker [
+{ #category : #accessing }
+CriticsCache >> checker: aSmallLintChercker [
 	checker := aSmallLintChercker
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>criticsOf: aRule [
+{ #category : #protocol }
+CriticsCache >> criticsOf: aRule [
 
 	aRule ifNil: [ ^ {} ].	
 	^ aRule isComposite
@@ -213,11 +170,8 @@ CriticsCache>>criticsOf: aRule [
 		ifFalse: [ critics at: aRule ifAbsent: [{}]]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>falsePositiveOf: aRule [
+{ #category : #protocol }
+CriticsCache >> falsePositiveOf: aRule [
 	
 	aRule ifNil: [ ^ {}].
 	^ aRule isComposite
@@ -227,11 +181,8 @@ CriticsCache>>falsePositiveOf: aRule [
 	
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>initCache [
+{ #category : #initialize-release }
+CriticsCache >> initCache [
 
 	checker rule leaves do: [ :rule | 
 		falsePositives at: rule put: (IdentitySet newFrom: (checker falsePositiveOf: rule)).
@@ -244,11 +195,8 @@ CriticsCache>>initCache [
 	]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>initialize [
+{ #category : #initialization }
+CriticsCache >> initialize [
 	
 	super initialize.
 	falsePositives := Dictionary new.
@@ -260,27 +208,18 @@ CriticsCache>>initialize [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>isFalsePositive: aCritic forRule: aRule [
+{ #category : #testing }
+CriticsCache >> isFalsePositive: aCritic forRule: aRule [
 	^ (self falsePositiveOf: aRule) includes: aCritic
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>isToDo: aCritic forRule: aRule [
+{ #category : #testing }
+CriticsCache >> isToDo: aCritic forRule: aRule [
 	^ (self toDosOf: aRule) includes: aCritic
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>itemRemoved: anItem [
+{ #category : #add/remove }
+CriticsCache >> itemRemoved: anItem [
 
 	{ critics . toDos . falsePositives } do: [ :ruleDict |
 		ruleDict valuesDo: [ :crits |
@@ -289,11 +228,8 @@ CriticsCache>>itemRemoved: anItem [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>logFalsePositiveClassInManifest [
+{ #category : #private }
+CriticsCache >> logFalsePositiveClassInManifest [
 	| manifestBuilder |
 	packages
 		do: [ :package | 
@@ -302,11 +238,8 @@ CriticsCache>>logFalsePositiveClassInManifest [
 			falsePositiveClasses \ manifestBuilder rejectClasses do: [ :cl | manifestBuilder addRejectClass: cl ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>logFalsePositiveInManifest [
+{ #category : #private }
+CriticsCache >> logFalsePositiveInManifest [
 	| removeFp addFp |
 	falsePositives
 		keysAndValuesDo: [ :rule :criticss | 
@@ -320,11 +253,8 @@ CriticsCache>>logFalsePositiveInManifest [
 						ifFalse: [ self addAllCriticToFalsePositive: value forRule: rule on: manifestBuilder ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>logFalsePositiveRulesInManifest [
+{ #category : #private }
+CriticsCache >> logFalsePositiveRulesInManifest [
 	| manifestBuilder |
 	falsePositiveRules
 		keysAndValuesDo: [ :package :rules | 
@@ -333,11 +263,8 @@ CriticsCache>>logFalsePositiveRulesInManifest [
 			rules \ manifestBuilder rejectRules do: [ :rule | manifestBuilder addRejectRule: rule ] ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>logInManifest [
+{ #category : #protocol }
+CriticsCache >> logInManifest [
 
 	self cacheChange 
 		ifFalse: [^ self].
@@ -350,11 +277,8 @@ CriticsCache>>logInManifest [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>logToDosInManifest [
+{ #category : #private }
+CriticsCache >> logToDosInManifest [
 	| removeFp addFp |
 	toDos
 		keysAndValuesDo: [ :rule :criticss | 
@@ -368,31 +292,22 @@ CriticsCache>>logToDosInManifest [
 						ifFalse: [ self addAllCriticToToDo: value forRule: rule on: manifestBuilder ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>packageOf: aCritc [
+{ #category : #private }
+CriticsCache >> packageOf: aCritc [
 	^ aCritc mcWorkingCopy 
 	"aCritc isCompiledMethod 
 		ifTrue: [MCWorkingCopy managersForClass: aCritc methodClass selector: aCritc selector do: [ :package | ^ package ]]	
 		ifFalse: [MCWorkingCopy managersForClass: aCritc do: [: package | ^ package ]]	"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>packages: aPackageEnv [
+{ #category : #accessing }
+CriticsCache >> packages: aPackageEnv [
 	
 	packages := aPackageEnv packages
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>removeAllCriticToFalsePositive: aCollectionOfCritic forRule: aRule on: aManifestBuilder [
+{ #category : #private }
+CriticsCache >> removeAllCriticToFalsePositive: aCollectionOfCritic forRule: aRule [ on: aManifestBuilder
 
 	| ruleId versionId |
 	ruleId := aRule class uniqueIdentifierName.
@@ -404,11 +319,8 @@ CriticsCache>>removeAllCriticToFalsePositive: aCollectionOfCritic forRule: aRule
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>removeAllCriticToToDo: aCollectionOfCritic forRule: aRule on: aManifestBuilder [
+{ #category : #private }
+CriticsCache >> removeAllCriticToToDo: aCollectionOfCritic forRule: aRule [ on: aManifestBuilder
 
 	| ruleId versionId |
 	ruleId := aRule class uniqueIdentifierName.
@@ -420,11 +332,8 @@ CriticsCache>>removeAllCriticToToDo: aCollectionOfCritic forRule: aRule on: aMan
 	
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>removeCritic: aCritic forRule: aRule [
+{ #category : #add/remove }
+CriticsCache >> removeCritic: aCritic forRule: aRule [
 
 	(critics includesKey: aRule) 
 		ifFalse: [^ self].
@@ -433,11 +342,8 @@ CriticsCache>>removeCritic: aCritic forRule: aRule [
 	
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>removeFalsePositive: aCritic forRule: aRule [
+{ #category : #add/remove }
+CriticsCache >> removeFalsePositive: aCritic forRule: aRule [
 
 	(falsePositives includesKey: aRule) 
 		ifFalse: [^ self].
@@ -449,11 +355,8 @@ CriticsCache>>removeFalsePositive: aCritic forRule: aRule [
 	self updateBrowser
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>removeFalsePositiveClass: aClass [
+{ #category : #add/remove }
+CriticsCache >> removeFalsePositiveClass: aClass [
 	
 	| fp |
 	falsePositiveClasses remove: aClass ifAbsent: [^ self]. 
@@ -462,11 +365,8 @@ CriticsCache>>removeFalsePositiveClass: aClass [
 		fp do: [ :each | self removeFalsePositive: each forRule: rule ]].
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>removeFalsePositiveRule: aRule forPackage: aPackage [
+{ #category : #add/remove }
+CriticsCache >> removeFalsePositiveRule: aRule forPackage: aPackage [
 	| fp |
 	
 	(falsePositiveRules includesKey: aPackage) 
@@ -482,21 +382,15 @@ CriticsCache>>removeFalsePositiveRule: aRule forPackage: aPackage [
 	self updateBrowser 
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>removeRule: aRule [
+{ #category : #add/remove }
+CriticsCache >> removeRule: aRule [
 
 	{ critics . toDos . falsePositives } do: [ :ruleDict |
 		ruleDict removeKey: aRule ]
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>removeToDo: aCritic forRule: aRule [
+{ #category : #add/remove }
+CriticsCache >> removeToDo: aCritic forRule: aRule [
 
 	(toDos includesKey: aRule) 
 		ifFalse: [^ self].
@@ -506,11 +400,8 @@ CriticsCache>>removeToDo: aCritic forRule: aRule [
 	
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>replaceAll: oldMethod by: newMethod [
+{ #category : #protocol }
+CriticsCache >> replaceAll: oldMethod by: newMethod [
 
 	critics valuesDo: [:each |  
 		(each includes: oldMethod)
@@ -532,11 +423,8 @@ CriticsCache>>replaceAll: oldMethod by: newMethod [
 	
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>toDosOf: aRule [
+{ #category : #protocol }
+CriticsCache >> toDosOf: aRule [
 
 	aRule ifNil: [ ^ {}].
 	^ aRule isComposite
@@ -544,11 +432,8 @@ CriticsCache>>toDosOf: aRule [
 		ifFalse: [toDos at: aRule ifAbsent: [{}]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticsCache>>updateBrowser [
+{ #category : #private }
+CriticsCache >> updateBrowser [
 
 	self cacheChanged.
 	browser updateTree 

@@ -9,71 +9,49 @@ Class {
 		'modifiedClassIcon',
 		'addedClassIcon'
 	],
-	#category : #Komitter-UI,
-	#timestamp : '<historical>'
+	#category : #Komitter-UI
 }
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClassNode class>>addedClassIcon [
+{ #category : #icons }
+KomitClassNode class >> addedClassIcon [
 	^ addedClassIcon
 		ifNil: [ addedClassIcon := (self defaultClassIcon asFormOfDepth: 32)
 				mergeBottomRightWith: (self iconNamed: #overlayAdd) ]
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClassNode class>>defaultClassIcon [
+{ #category : #icons }
+KomitClassNode class >> defaultClassIcon [
 	^ self iconNamed: #classIcon
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClassNode class>>deletedClassIcon [
+{ #category : #icons }
+KomitClassNode class >> deletedClassIcon [
 	^ deletedClassIcon
 		ifNil: [ deletedClassIcon := (self defaultClassIcon asFormOfDepth: 32)
 				mergeBottomRightWith: (self iconNamed: #overlayRemove) ]
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClassNode class>>modifiedClassIcon [
+{ #category : #icons }
+KomitClassNode class >> modifiedClassIcon [
 	^ modifiedClassIcon
 		ifNil: [ modifiedClassIcon := (self defaultClassIcon asFormOfDepth: 32)
 				mergeBottomRightWith: (self iconNamed: #overlayModification) ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClassNode>>getDefinitions [
+{ #category : #private }
+KomitClassNode >> getDefinitions [
 
 	^ self content definitions
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClassNode>>getMethods [
+{ #category : #private }
+KomitClassNode >> getMethods [
 
 	^ self content methods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClassNode>>icon [
+{ #category : #accessing }
+KomitClassNode >> icon [
 	
 	self content added ifTrue: [ ^ self class addedClassIcon ].
 	self content modified ifTrue: [ ^ self class modifiedClassIcon ].
@@ -82,11 +60,8 @@ KomitClassNode>>icon [
 	^ self class defaultClassIcon
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClassNode>>initialize	 [
+{ #category : #initialization }
+KomitClassNode >> initialize [	
 	super initialize.
 	
 	self whenSelectedChanged: [ :aBoolean |
@@ -108,20 +83,14 @@ KomitClassNode>>initialize	 [
 		self children: [ childrenNode ] ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClassNode>>label [
+{ #category : #api }
+KomitClassNode >> label [
 
 	^ self content trackedClass
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitClassNode>>printOn: aStream [
+{ #category : #printing }
+KomitClassNode >> printOn: aStream [
 
 	super printOn: aStream.
 	aStream << '[ '.

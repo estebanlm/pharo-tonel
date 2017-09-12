@@ -1,11 +1,6 @@
-Extension {
-	#name : #FileLocator
-}
+Extension { #name : #FileLocator }
 
-{
-	#category : #'*System-Settings',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-FileLocator>>acceptSettings: aVisitor [
+{ #category : #'*System-Settings' }
+FileLocator >> acceptSettings: aVisitor [
 	^ aVisitor visitFileLocator: self
 ]

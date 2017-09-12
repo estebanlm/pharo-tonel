@@ -45,15 +45,11 @@ Class {
 		'margins',
 		'defaultColor'
 	],
-	#category : #Morphic-Base-Basic,
-	#timestamp : 'MarcusDenker 2/14/2010 22:24'
+	#category : #Morphic-Base-Basic
 }
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph class>>buildTextEditorKeymapsOn: aBuilder [
+{ #category : #shortcuts }
+TextMorph class >> buildTextEditorKeymapsOn: aBuilder [
 	<keymap>
 	
 	(aBuilder shortcut: #accept)
@@ -62,43 +58,31 @@ TextMorph class>>buildTextEditorKeymapsOn: aBuilder [
 		do: [ :morph | morph acceptContents ].
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>acceptContents [
+{ #category : #editing }
+TextMorph >> acceptContents [
 	"The message is sent when the user hits enter or Cmd-S.
 	Accept the current contents and end editing.
 	This default implementation does nothing."
 	self updateFromParagraph
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>acceptDroppingMorph: aMorph event: evt [
+{ #category : #layout }
+TextMorph >> acceptDroppingMorph: aMorph event: evt [
 	"This message is sent when a morph is dropped onto me."
 
 	self addMorphFront: aMorph fromWorldPosition: aMorph position.
 		"Make a TextAnchor and install it in a run."
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>acceptOnCR [
+{ #category : #editing }
+TextMorph >> acceptOnCR [
 	"Answer whether the receiver wants to accept when the Return key is hit.  Generic TextMorph has no such feature, but subclasses may."
 
 	^ false
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>addCustomMenuItems: aCustomMenu hand: aHandMorph [
+{ #category : #menu }
+TextMorph >> addCustomMenuItems: aCustomMenu hand: aHandMorph [
 	| outer |
 	super addCustomMenuItems: aCustomMenu hand: aHandMorph.
 	aCustomMenu addUpdating: #autoFitString target: self selector: #autoFitOnOff.
@@ -125,11 +109,8 @@ TextMorph>>addCustomMenuItems: aCustomMenu hand: aHandMorph [
 	
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>addMorphFront: aMorph fromWorldPosition: wp  [
+{ #category : #submorphs-add/remove }
+TextMorph >> addMorphFront: aMorph fromWorldPosition: wp [ 
 	"Overridden for more specific re-layout and positioning"
 	aMorph textAnchorType == #document 
 		ifFalse:[^self anchorMorph: aMorph at: wp type: aMorph textAnchorType].
@@ -137,11 +118,8 @@ TextMorph>>addMorphFront: aMorph fromWorldPosition: wp  [
 
 ]
 
-{
-	#category : #'linked frames',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>addPredecessor: evt [
+{ #category : #'linked frames' }
+TextMorph >> addPredecessor: evt [
 	| newMorph |
 	newMorph := self copy predecessor: predecessor successor: self.
 	newMorph extent: self width @ 100.
@@ -151,11 +129,8 @@ TextMorph>>addPredecessor: evt [
 	evt hand attachMorph: newMorph
 ]
 
-{
-	#category : #'linked frames',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>addSuccessor: evt [
+{ #category : #'linked frames' }
+TextMorph >> addSuccessor: evt [
 	| newMorph |
 	newMorph := self copy predecessor: self successor: successor.
 	newMorph extent: self width @ 100.
@@ -165,19 +140,13 @@ TextMorph>>addSuccessor: evt [
 	evt hand attachMorph: newMorph
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>adjustLineIndicesBy: delta [
+{ #category : #private }
+TextMorph >> adjustLineIndicesBy: delta [
 	paragraph ifNotNil: [paragraph adjustLineIndicesBy: delta]
 ]
 
-{
-	#category : #anchors,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>anchorMorph: aMorph at: aPoint type: anchorType [
+{ #category : #anchors }
+TextMorph >> anchorMorph: aMorph at: aPoint type: anchorType [
 	| relPt index newText block |
 	aMorph owner == self ifTrue:[self removeMorph: aMorph].
 	aMorph textAnchorType: nil.
@@ -201,11 +170,8 @@ TextMorph>>anchorMorph: aMorph at: aPoint type: anchorType [
 	self fit.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>areasRemainingToFill: aRectangle [
+{ #category : #drawing }
+TextMorph >> areasRemainingToFill: aRectangle [
 	"Overridden from BorderedMorph to test backgroundColor instead of (text) color."
 	(backgroundColor isNil or: [backgroundColor isTranslucent])
 		ifTrue: [^ Array with: aRectangle].
@@ -218,39 +184,27 @@ TextMorph>>areasRemainingToFill: aRectangle [
 				ifFalse: [^ aRectangle areasOutside: self bounds]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>asText [
+{ #category : #accessing }
+TextMorph >> asText [
 	^ text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>autoFit: trueOrFalse [
+{ #category : #accessing }
+TextMorph >> autoFit: trueOrFalse [
 	"Should I automatically adjust my size to fit text as it changes?"
 
 	self isAutoFit = trueOrFalse ifTrue: [^ self].
 	self autoFitOnOff
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>autoFitOnOff [
+{ #category : #menu }
+TextMorph >> autoFitOnOff [
 	self setProperty: #autoFitContents toValue: self isAutoFit not.
 	self isAutoFit ifTrue: [self fit]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>autoFitString [
+{ #category : #menu }
+TextMorph >> autoFitString [
 	"Answer the string to put in a menu that will invite the user to 
 	switch autoFit mode"
 	^ (self isAutoFit
@@ -259,37 +213,25 @@ TextMorph>>autoFitString [
 		, 'text auto fit' translated
 ]
 
-{
-	#category : #containment,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>avoidsOcclusions [
+{ #category : #containment }
+TextMorph >> avoidsOcclusions [
 	^container notNil and: [ container avoidsOcclusions ]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>backgroundColor [
+{ #category : #accessing }
+TextMorph >> backgroundColor [
 	^ backgroundColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>backgroundColor: newColor [
+{ #category : #accessing }
+TextMorph >> backgroundColor: newColor [
 	backgroundColor := newColor.
 	self changed
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>basicKeyStroke: evt  [
+{ #category : #'event handling' }
+TextMorph >> basicKeyStroke: evt [ 
 	"Handle a keystroke event."
 	| action |
 
@@ -307,95 +249,65 @@ TextMorph>>basicKeyStroke: evt  [
 	super keyStroke: evt.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>beAllFont: aFont [
+{ #category : #initialization }
+TextMorph >> beAllFont: aFont [
 
 	textStyle := TextStyle fontArray: (Array with: aFont).
 	self releaseCachedState; changed
 ]
 
-{
-	#category : #blinking,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>blinkStart [
+{ #category : #blinking }
+TextMorph >> blinkStart [
 	"Reset time for blink cursor after which blinking should actually start"
 	^self valueOfProperty: #blinkStart ifAbsent:[Time millisecondClockValue]
 
 ]
 
-{
-	#category : #blinking,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>blinkStart: msecs [
+{ #category : #blinking }
+TextMorph >> blinkStart: msecs [
 	"Reset time for blink cursor after which blinking should actually start"
 	^self setProperty: #blinkStart toValue: msecs
 
 ]
 
-{
-	#category : #'editing helpers',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>bold [
+{ #category : #'editing helpers' }
+TextMorph >> bold [
 	
 	self changeEmphasis: #bold
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>borderWidth: newWidth [
+{ #category : #accessing }
+TextMorph >> borderWidth: newWidth [
 	super borderWidth: newWidth.
 	paragraph ifNotNil: [self composeToBounds].
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>bounds [
+{ #category : #geometry }
+TextMorph >> bounds [
 	container ifNil: [^ bounds].
 	^ container bounds ifNil: [bounds]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>canChangeText [
+{ #category : #testing }
+TextMorph >> canChangeText [
 	^ self enabled 
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>cancelEdits [
+{ #category : #editing }
+TextMorph >> cancelEdits [
 	"The message is sent when the user hits enter or Cmd-L.
 	Cancel the current contents and end editing.
 	This default implementation does nothing."
 	self releaseParagraph
 ]
 
-{
-	#category : #alignment,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>centered  [
+{ #category : #alignment }
+TextMorph >> centered [ 
 	self changeAlignment: #centered
 ]
 
-{
-	#category : #'editing helpers',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>changeAlignment: aSymbol [
+{ #category : #'editing helpers' }
+TextMorph >> changeAlignment: aSymbol [
 	"Change the alignment of the receiver. Alignment can be #leftFlush #centered #rightFlush #justified "
 	
 	"| t |
@@ -412,11 +324,8 @@ t inspect"
 	self updateFromParagraph
 ]
 
-{
-	#category : #'editing helpers',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>changeEmphasis: aSymbol [
+{ #category : #'editing helpers' }
+TextMorph >> changeEmphasis: aSymbol [
 	"Change the alignment of the receiver. Alignment can be #normal, #bold,  #italic, #narrow, #underlined, or #struckOut"
 	
 	"| t |
@@ -435,11 +344,8 @@ t inspect"
 	self updateFromParagraph
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>changeMargins: evt [
+{ #category : #menu }
+TextMorph >> changeMargins: evt [
 	| handle origin aHand newMargin |
 	aHand := evt ifNil: [self primaryHand] ifNotNil: [evt hand].
 	origin := aHand position.
@@ -461,68 +367,47 @@ Click when done.' hand: evt hand.
 	handle startStepping
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>chooseAlignment [
+{ #category : #editing }
+TextMorph >> chooseAlignment [
 	"Interactively change alignment."
 	
 	self editor changeAlignment.
 	self updateFromParagraph
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>chooseEmphasis [
+{ #category : #editing }
+TextMorph >> chooseEmphasis [
 	"Interactively change emphasis."
 	
 	self editor changeEmphasis.
 	self updateFromParagraph
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>chooseEmphasisOrAlignment [
+{ #category : #editing }
+TextMorph >> chooseEmphasisOrAlignment [
 	self editor changeEmphasisOrAlignment.
 	self updateFromParagraph
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>chooseFont [
+{ #category : #editing }
+TextMorph >> chooseFont [
 	self editor changeTextFont.
 	self updateFromParagraph.
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>chooseStyle [
+{ #category : #editing }
+TextMorph >> chooseStyle [
 	self editor changeStyle.
 	self updateFromParagraph.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>clippingRectangle [
+{ #category : #private }
+TextMorph >> clippingRectangle [
 	^ self innerBounds
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>composeToBounds [
+{ #category : #private }
+TextMorph >> composeToBounds [
 	"Compose my text to fit my bounds.
 	If any text lies outside my bounds, it will be clipped, or
 	if I have successors, it will be shown in the successors."
@@ -537,11 +422,8 @@ TextMorph>>composeToBounds [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>compositionRectangle [
+{ #category : #private }
+TextMorph >> compositionRectangle [
 	| compRect |
 	compRect := self innerBounds.
 	compRect := compRect insetBy: margins.
@@ -550,11 +432,8 @@ TextMorph>>compositionRectangle [
 	^ compRect
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>container [
+{ #category : #geometry }
+TextMorph >> container [
 	"Return the container for composing this text.  There are four cases:
 	1.  container is specified as, eg, an arbitrary shape,
 	2.  container is specified as the bound rectangle, because
@@ -569,11 +448,8 @@ TextMorph>>container [
 	^ container
 ]
 
-{
-	#category : #'geometry testing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>containsPoint: aPoint [
+{ #category : #'geometry testing' }
+TextMorph >> containsPoint: aPoint [
 	(super containsPoint: aPoint) ifFalse: [^ false].  "Not in my bounds"
 	container ifNil: [^ true].  "In bounds of simple text"
 	self startingIndex > text size ifTrue:
@@ -584,28 +460,19 @@ TextMorph>>containsPoint: aPoint [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>contents [
+{ #category : #accessing }
+TextMorph >> contents [
 
 	^ text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>contents: stringOrText [
+{ #category : #accessing }
+TextMorph >> contents: stringOrText [
 	^ self contentsAsIs: stringOrText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>contents: stringOrText wrappedTo: width [
+{ #category : #accessing }
+TextMorph >> contents: stringOrText wrappedTo: width [
 	"Accept new text contents.  Lay it out, wrapping to width.
 	Then fit my height to the result."
 	self newContents: ''.
@@ -614,11 +481,8 @@ TextMorph>>contents: stringOrText wrappedTo: width [
 	self newContents: stringOrText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>contentsAsIs: stringOrText [
+{ #category : #accessing }
+TextMorph >> contentsAsIs: stringOrText [
 	"Accept new text contents with line breaks only as in the text.
 	Fit my width and height to the result."
 	wrapFlag := false.
@@ -626,58 +490,40 @@ TextMorph>>contentsAsIs: stringOrText [
 	self newContents: stringOrText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>contentsWrapped: stringOrText [
+{ #category : #accessing }
+TextMorph >> contentsWrapped: stringOrText [
 	"Accept new text contents.  Lay it out, wrapping within my current width.
 	Then fit my height to the result."
 	wrapFlag := true.
 	self newContents: stringOrText
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>copy [
+{ #category : #copying }
+TextMorph >> copy [
 	^ super copy text: text copy textStyle: textStyle copy 
 		wrap: wrapFlag color: color
 		predecessor: nil successor: nil
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>correctFrom: start to: stop with: aString [
+{ #category : #'interactive error protocol' }
+TextMorph >> correctFrom: start to: stop with: aString [
 	editor ifNotNil: [ editor correctFrom: start to: stop with: aString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>crAction [
+{ #category : #accessing }
+TextMorph >> crAction [
 	"Return the action to perform when encountering a CR in the input"
 	^self valueOfProperty: #crAction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>crAction: aMessageSend [
+{ #category : #accessing }
+TextMorph >> crAction: aMessageSend [
 	"Return the action to perform when encountering a CR in the input"
 	^self setProperty: #crAction toValue: aMessageSend
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>cursor [
+{ #category : #accessing }
+TextMorph >> cursor [
 	"Answer the receiver's logical cursor position"
 
 	| loc |
@@ -687,11 +533,8 @@ TextMorph>>cursor [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>cursorWrapped: aNumber [
+{ #category : #accessing }
+TextMorph >> cursorWrapped: aNumber [
 	"Set the cursor as indicated"
 
 	self setProperty: #textCursorLocation toValue: (((aNumber rounded - 1) \\  text string size) + 1)
@@ -699,69 +542,48 @@ TextMorph>>cursorWrapped: aNumber [
 	
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>debugDrawLineRectsOn: aCanvas [
+{ #category : #drawing }
+TextMorph >> debugDrawLineRectsOn: aCanvas [
 	"Shows where text line rectangles are"
 	self paragraph lines do:
 		[:line | aCanvas frameRectangle: line rectangle color: Color brown]
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>defaultColor [
+{ #category : #initialization }
+TextMorph >> defaultColor [
 
 	^ defaultColor ifNil: [ self theme textColor ]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>defaultLineHeight [
+{ #category : #geometry }
+TextMorph >> defaultLineHeight [
 	^ textStyle lineGrid
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>delete [
+{ #category : #submorphs-add/remove }
+TextMorph >> delete [
 	predecessor ifNotNil: [predecessor setSuccessor: successor].
 	successor ifNotNil: [successor setPredecessor: predecessor.
 						successor recomposeChain].
 	super delete
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>deselect [
+{ #category : #'interactive error protocol' }
+TextMorph >> deselect [
 	editor ifNotNil: [ editor deselect ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>drawNullTextOn: aCanvas [
+{ #category : #drawing }
+TextMorph >> drawNullTextOn: aCanvas [
 	"Make null text frame visible.
 	Nicer if not shaded!"
 
 	aCanvas fillRectangle: bounds color: (self backgroundColor ifNil: [Color transparent])
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+TextMorph >> drawOn: aCanvas [
 	"Draw the receiver on a canvas.
 	Draw keyboard focus if appropriate."
 
@@ -776,50 +598,35 @@ TextMorph>>drawOn: aCanvas [
 	aCanvas paragraph: self paragraph bounds: fauxBounds color: color.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>editor [
+{ #category : #accessing }
+TextMorph >> editor [
 	"Return my current editor, or install a new one."
 	editor ifNotNil: [^ editor].
 	^ self installEditorToReplace: nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>editorClass [
+{ #category : #private }
+TextMorph >> editorClass [
 	"Answer the class used to create the receiver's editor"
 	
 	^SmalltalkEditor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>elementCount [
+{ #category : #accessing }
+TextMorph >> elementCount [
 	"Answer how many sub-objects are within me"
 
 	^ self text string size 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>enabled [
+{ #category : #testing }
+TextMorph >> enabled [
 
 	^super enabled and: [ self isLocked not ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>enabled: aBoolean [
+{ #category : #accessing }
+TextMorph >> enabled: aBoolean [
 
 	aBoolean 
 		ifTrue: [ text makeAllColor: self defaultColor ]
@@ -828,19 +635,13 @@ TextMorph>>enabled: aBoolean [
 	self changed
 ]
 
-{
-	#category : #blinking,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>ensureCursor [
+{ #category : #blinking }
+TextMorph >> ensureCursor [
 	paragraph ifNotNil: [ :p | p showCaret: true ]
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>enterClickableRegion: evt [
+{ #category : #editing }
+TextMorph >> enterClickableRegion: evt [
 	| |
 	
 	evt hand hasSubmorphs ifTrue:[^self].
@@ -850,19 +651,13 @@ TextMorph>>enterClickableRegion: evt [
 "
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>escapePressed [
+{ #category : #'event handling' }
+TextMorph >> escapePressed [
 	
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>extent: aPoint  [
+{ #category : #geometry }
+TextMorph >> extent: aPoint [ 
 	| newExtent priorEditor |
 	bounds extent = aPoint ifTrue: [^ self].
 	priorEditor := editor.
@@ -881,11 +676,8 @@ TextMorph>>extent: aPoint  [
 
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>fillStyle [
+{ #category : #'visual properties' }
+TextMorph >> fillStyle [
 	"Return the current fillStyle of the receiver."
 	
 	self assureExtension.
@@ -894,40 +686,28 @@ TextMorph>>fillStyle [
 			ifNil: [Color transparent]]
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>fillStyle: aFillStyle [
+{ #category : #'visual properties' }
+TextMorph >> fillStyle: aFillStyle [
 	"Set the current fillStyle of the receiver."
 	
 	backgroundColor := aFillStyle asColor.
 	super fillStyle: aFillStyle
 ]
 
-{
-	#category : #containment,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>fillingOnOff [
+{ #category : #containment }
+TextMorph >> fillingOnOff [
 	"Establish a container for this text, with opposite filling status"
 	self fillsOwner: (self fillsOwner not)
 ]
 
-{
-	#category : #containment,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>fillsOwner [
+{ #category : #containment }
+TextMorph >> fillsOwner [
 	"Answer true if I fill my owner's shape."
 	^container notNil and: [container fillsOwner]
 ]
 
-{
-	#category : #containment,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>fillsOwner: aBoolean  [
+{ #category : #containment }
+TextMorph >> fillsOwner: aBoolean [ 
 	self fillsOwner == aBoolean
 		ifTrue: [^ self].
 	self
@@ -941,19 +721,13 @@ TextMorph>>fillsOwner: aBoolean  [
 						ifTrue: [container fillsOwner: false]])
 ]
 
-{
-	#category : #'linked frames',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>firstCharacterIndex [
+{ #category : #'linked frames' }
+TextMorph >> firstCharacterIndex [
 	^ self paragraph firstCharacterIndex
 ]
 
-{
-	#category : #'linked frames',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>firstInChain [
+{ #category : #'linked frames' }
+TextMorph >> firstInChain [
 	"Return the first morph in a chain of textMorphs"
 
 	| first |
@@ -962,11 +736,8 @@ TextMorph>>firstInChain [
 	^first
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>fit [
+{ #category : #private }
+TextMorph >> fit [
 	"Adjust my bounds to fit the text.  Should be a no-op if autoFit is not specified.
 	Required after the text changes,
 	or if wrapFlag is true and the user attempts to change the extent."
@@ -1004,11 +775,8 @@ TextMorph>>fit [
 					should cause invalidation."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>font [
+{ #category : #accessing }
+TextMorph >> font [
 	"Answer the probable font"
 
 	self textStyle fonts ifEmpty: [^TextStyle defaultFont].
@@ -1016,11 +784,8 @@ TextMorph>>font [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>font: aFont [
+{ #category : #accessing }
+TextMorph >> font: aFont [
 	| newTextStyle |
 	newTextStyle := aFont textStyle copy ifNil: [ TextStyle fontArray: { aFont } ].
 	textStyle := newTextStyle.
@@ -1028,11 +793,8 @@ TextMorph>>font: aFont [
 	paragraph ifNotNil: [paragraph textStyle: newTextStyle]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>fontName: fontName pointSize: fontSize [
+{ #category : #accessing }
+TextMorph >> fontName: fontName pointSize: fontSize [
 	| newTextStyle |
 	newTextStyle := ((TextStyle named: fontName asSymbol) ifNil: [ TextStyle default ]) copy.
 	newTextStyle ifNil: [self error: 'font ', fontName, ' not found.'].
@@ -1042,11 +804,8 @@ TextMorph>>fontName: fontName pointSize: fontSize [
 	paragraph ifNotNil: [paragraph textStyle: newTextStyle]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>fontName: fontName size: fontSize [
+{ #category : #accessing }
+TextMorph >> fontName: fontName size: fontSize [
 	| newTextStyle |
 	newTextStyle := ((TextStyle named: fontName asSymbol) ifNil: [ TextStyle default ]) copy.
 	textStyle := newTextStyle.
@@ -1054,32 +813,23 @@ TextMorph>>fontName: fontName size: fontSize [
 	paragraph ifNotNil: [paragraph textStyle: newTextStyle]
 ]
 
-{
-	#category : #'scripting access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>getAllButFirstCharacter [
+{ #category : #'scripting access' }
+TextMorph >> getAllButFirstCharacter [
 	"Obtain all but the first character from the receiver; if that would be empty, return a black dot"
 
 	| aString |
 	^ (aString := text string) size > 1 ifTrue: [aString copyFrom: 2 to: aString size] ifFalse: ['·']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>getCharacters [
+{ #category : #accessing }
+TextMorph >> getCharacters [
 	"obtain a string value from the receiver"
 
 	^ self text string copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>getFirstCharacter [
+{ #category : #accessing }
+TextMorph >> getFirstCharacter [
 	"obtain the first character from the receiver if it is empty, return a  
 	black dot"
 	| aString |
@@ -1088,32 +838,23 @@ TextMorph>>getFirstCharacter [
 		ifFalse: [aString first asString] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>getLastCharacter [
+{ #category : #accessing }
+TextMorph >> getLastCharacter [
 	"obtain the last character from the receiver if it is empty, return a black dot"
 
 	| aString |
 	^ (aString := text string) size > 0 ifTrue: [aString last asString] ifFalse: ['·']
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>getMenu: shiftKeyState  [
+{ #category : #'event handling' }
+TextMorph >> getMenu: shiftKeyState [ 
 	^ shiftKeyState not
 		ifTrue: [TextEditor yellowButtonMenu]
 		ifFalse: [TextEditor shiftedYellowButtonMenu]
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>goBehind [
+{ #category : #submorphs-add/remove }
+TextMorph >> goBehind [
 	"We need to save the container, as it knows about fill and run-around"
 	| cont |
 	container ifNil: [^ super goBehind].
@@ -1124,11 +865,8 @@ TextMorph>>goBehind [
 	self changed
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>handleEdit: editBlock [
+{ #category : #editing }
+TextMorph >> handleEdit: editBlock [
 	"Ensure that changed areas get suitably redrawn"
 	self selectionChanged.  "Note old selection"
 		editBlock value.
@@ -1136,11 +874,8 @@ TextMorph>>handleEdit: editBlock [
 	self updateFromParagraph  "Propagate changes as necessary"
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>handleInteraction: interactionBlock [
+{ #category : #editing }
+TextMorph >> handleInteraction: interactionBlock [
 	"Perform the changes in interactionBlock, noting any change in selection
 	and possibly a change in the size of the paragraph.
 	Couple ParagraphEditor to Morphic keyboard events"
@@ -1162,11 +897,8 @@ TextMorph>>handleInteraction: interactionBlock [
 		ifFalse:[ self updateFromParagraph ].
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>handleMouseMove: anEvent [
+{ #category : #events-processing }
+TextMorph >> handleMouseMove: anEvent [
 	"Re-implemented to allow for mouse-up move events"
 	anEvent wasHandled ifTrue:[^self]. "not interested"
 	(anEvent hand hasSubmorphs) ifTrue:[^self].
@@ -1182,62 +914,41 @@ TextMorph>>handleMouseMove: anEvent [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>handlesKeyboard: evt [
+{ #category : #'event handling' }
+TextMorph >> handlesKeyboard: evt [
 	^true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>handlesMouseDown: evt [
+{ #category : #'event handling' }
+TextMorph >> handlesMouseDown: evt [
 	^ self innerBounds containsPoint: evt cursorPoint
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>handlesMouseOver: evt  [
+{ #category : #'event handling' }
+TextMorph >> handlesMouseOver: evt [ 
 	"Do I want to receive mouseEnter: and mouseLeave: when the button is up and the hand is empty?"
 	^ self enabled
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>hasFocus [
+{ #category : #'event handling' }
+TextMorph >> hasFocus [
 	^editor notNil
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>hasUnacceptedEdits: aBoolean [
+{ #category : #editing }
+TextMorph >> hasUnacceptedEdits: aBoolean [
 	"Ignored here, but noted in TextMorphForEditView"
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>hideOverEditableTextCursor   [
+{ #category : #'event handling' }
+TextMorph >> hideOverEditableTextCursor [  
 	self currentHand showTemporaryCursor: nil
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>initialize [
+{ #category : #initialization }
+TextMorph >> initialize [
 	super initialize.
 	borderWidth := 0.
 	textStyle := TextStyle default copy.
@@ -1247,11 +958,8 @@ TextMorph>>initialize [
 	self attachKeymapCategory: #TextMorph.
 ]
 
-{
-	#category : #'scripting access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>insertCharacters: aSource [
+{ #category : #'scripting access' }
+TextMorph >> insertCharacters: aSource [
 	"Insert the characters from the given source at my current cursor position"
 
 	| aLoc |
@@ -1260,11 +968,8 @@ TextMorph>>insertCharacters: aSource [
 	self updateFromParagraph  
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>installEditorToReplace: priorEditor [
+{ #category : #private }
+TextMorph >> installEditorToReplace: priorEditor [
 	"Install an editor for my paragraph.  This constitutes 'hasFocus'.
 	If priorEditor is not nil, then initialize the new editor from its state.
 	We may want to rework this so it actually uses the prior editor."
@@ -1277,38 +982,26 @@ TextMorph>>installEditorToReplace: priorEditor [
 	^ editor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>isAutoFit [
+{ #category : #accessing }
+TextMorph >> isAutoFit [
 	^ self valueOfProperty: #autoFitContents ifAbsent: [true]
 
 ]
 
-{
-	#category : #'linked frames',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>isLinkedTo: aMorph [
+{ #category : #'linked frames' }
+TextMorph >> isLinkedTo: aMorph [
 	self firstInChain withSuccessorsDo:
 		[:m | m == aMorph ifTrue: [^ true]].
 	^ false
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>isTextMorph [
+{ #category : #classification }
+TextMorph >> isTextMorph [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>isTranslucentButNotTransparent [
+{ #category : #accessing }
+TextMorph >> isTranslucentButNotTransparent [
 	"Overridden from BorderedMorph to test backgroundColor instead of (text) color."
 
 	backgroundColor ifNil: [ ^ true ].
@@ -1319,37 +1012,25 @@ TextMorph>>isTranslucentButNotTransparent [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>isWrapped [
+{ #category : #accessing }
+TextMorph >> isWrapped [
 	
 	^wrapFlag
 ]
 
-{
-	#category : #'editing helpers',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>italic [
+{ #category : #'editing helpers' }
+TextMorph >> italic [
 	
 	self changeEmphasis: #italic
 ]
 
-{
-	#category : #alignment,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>justified  [
+{ #category : #alignment }
+TextMorph >> justified [ 
 	self changeAlignment: #justified
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>keyStroke: evt  [
+{ #category : #'event handling' }
+TextMorph >> keyStroke: evt [ 
 	"Handle a keystroke event."
 
 	Smalltalk tools 
@@ -1358,11 +1039,8 @@ TextMorph>>keyStroke: evt  [
 		keyStroke: evt.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>keyboardFocusChange: aBoolean 	 [
+{ #category : #'event handling' }
+TextMorph >> keyboardFocusChange: aBoolean [ 	
 	super keyboardFocusChange: aBoolean.
 	paragraph isNil ifFalse:[paragraph focused: aBoolean].	
 	aBoolean 
@@ -1379,29 +1057,20 @@ TextMorph>>keyboardFocusChange: aBoolean 	 [
 	self focusChanged
 ]
 
-{
-	#category : #'linked frames',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>lastCharacterIndex [
+{ #category : #'linked frames' }
+TextMorph >> lastCharacterIndex [
 	^ self paragraph lastCharacterIndex
 ]
 
-{
-	#category : #alignment,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>leftFlush  [
+{ #category : #alignment }
+TextMorph >> leftFlush [ 
 
 	self changeAlignment: #leftFlush
 
 ]
 
-{
-	#category : #blinking,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>manageCursor [
+{ #category : #blinking }
+TextMorph >> manageCursor [
 	(paragraph isNil or: [paragraph focused not])
 		ifTrue: [^ self
 				resetBlinkCursor;
@@ -1411,31 +1080,22 @@ TextMorph>>manageCursor [
 		ifFalse: [self ensureCursor]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>margins [
+{ #category : #accessing }
+TextMorph >> margins [
 
 	^margins
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>margins: newMargins [
+{ #category : #accessing }
+TextMorph >> margins: newMargins [
 	"newMargins can be a number, point or rectangle, as allowed by, eg, insetBy:."
 
 	margins := newMargins.
 	self composeToBounds
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>minimumExtent [
+{ #category : #geometry }
+TextMorph >> minimumExtent [
 
 
 	| minExt |
@@ -1445,11 +1105,8 @@ TextMorph>>minimumExtent [
 	^ ((0@0 extent: minExt) expandBy: margins) extent
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>mouseDown: evt  [
+{ #category : #'event handling' }
+TextMorph >> mouseDown: evt [ 
 	"Make this TextMorph be the keyboard input focus, if it isn't  
 	already, and repond to the text selection gesture"
 	
@@ -1463,62 +1120,44 @@ TextMorph>>mouseDown: evt  [
 	super mouseDown: evt
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>mouseEnter: evt [
+{ #category : #'event handling' }
+TextMorph >> mouseEnter: evt [
 	"Handle a mouseEnter event, meaning the mouse just entered my bounds with no button pressed."
 	super mouseEnter: evt.
 	self showOverEditableTextCursor
 	
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>mouseLeave: evt [
+{ #category : #'event handling' }
+TextMorph >> mouseLeave: evt [
 	"Handle a mouseLeave event, meaning the mouse just left my bounds with no button pressed."
 	super mouseLeave: evt.
 	self hideOverEditableTextCursor
 	
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>mouseMove: event [
+{ #category : #'event handling' }
+TextMorph >> mouseMove: event [
 
 	event redButtonPressed ifFalse: [ ^ self ].
 	self handleInteraction: [ editor mouseMove: event ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>mouseUp: evt [
+{ #category : #accessing }
+TextMorph >> mouseUp: evt [
 	self handleInteraction: [editor mouseUp: evt].
 	(self boundsInWorld containsPoint: self currentHand position)
 		ifFalse: [self hideOverEditableTextCursor]
 ]
 
-{
-	#category : #'editing helpers',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>narrow [
+{ #category : #'editing helpers' }
+TextMorph >> narrow [
 	
 	self changeEmphasis: #narrow
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>newContents: stringOrText  [
+{ #category : #accessing }
+TextMorph >> newContents: stringOrText [ 
 	"Accept new text contents."
 	| newText embeddedMorphs |
 	"If my text is all the same font, use the font for my new contents"
@@ -1555,36 +1194,24 @@ TextMorph>>newContents: stringOrText  [
 	self world ifNotNil: [self world startSteppingSubmorphsOf: self]
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>nextTokenFrom: start direction: dir [
+{ #category : #'interactive error protocol' }
+TextMorph >> nextTokenFrom: start direction: dir [
 	^ self editor nextTokenFrom: start direction: dir
 ]
 
-{
-	#category : #'editing helpers',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>normal [
+{ #category : #'editing helpers' }
+TextMorph >> normal [
 	
 	self changeEmphasis: #normal
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>notify: aString at: anInteger in: aStream [
+{ #category : #'interactive error protocol' }
+TextMorph >> notify: aString at: anInteger [ in: aStream
 	^ self editor notify: aString at: anInteger in: aStream
 ]
 
-{
-	#category : #containment,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>occlusionsOnOff [
+{ #category : #containment }
+TextMorph >> occlusionsOnOff [
 	"Establish a container for this text, with opposite occlusion avoidance status"
 	self setContainer:
 	(container
@@ -1595,11 +1222,8 @@ TextMorph>>occlusionsOnOff [
 			ifFalse: [container avoidsOcclusions: container avoidsOcclusions not]])
 ]
 
-{
-	#category : #blinking,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>onBlinkCursor [
+{ #category : #blinking }
+TextMorph >> onBlinkCursor [
 	"Blink the cursor"
 	| para |
 	para := self paragraph ifNil:[^nil].
@@ -1611,19 +1235,13 @@ TextMorph>>onBlinkCursor [
 	para caretRect ifNotNil:[:r| self invalidRect: r].
 ]
 
-{
-	#category : #find-replace,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>openFindDialog [
+{ #category : #find-replace }
+TextMorph >> openFindDialog [
 	self flash
 ]
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>ownerChanged [
+{ #category : #'change reporting' }
+TextMorph >> ownerChanged [
 	| priorEditor |
 	super ownerChanged.
 	container ifNotNil: 
@@ -1640,11 +1258,8 @@ TextMorph>>ownerChanged [
 					self installEditorToReplace: priorEditor]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>paragraph [
+{ #category : #private }
+TextMorph >> paragraph [
 	"Paragraph instantiation is lazy -- create it only when needed"
 	|newParagraph|
 	paragraph ifNotNil: [^ paragraph].
@@ -1673,11 +1288,8 @@ TextMorph>>paragraph [
 	^ paragraph
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>passKeyboardFocusTo: otherMorph  [
+{ #category : #editing }
+TextMorph >> passKeyboardFocusTo: otherMorph [ 
 	| w |
 	self flag: #arNote.	"Do we need this?!"
 	(w := self world) isNil 
@@ -1686,30 +1298,21 @@ TextMorph>>passKeyboardFocusTo: otherMorph  [
 				handsDo: [:h | h keyboardFocus == self ifTrue: [h newKeyboardFocus: otherMorph]]]
 ]
 
-{
-	#category : #'linked frames',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>predecessor [
+{ #category : #'linked frames' }
+TextMorph >> predecessor [
 	^ predecessor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>predecessor: pred successor: succ [
+{ #category : #private }
+TextMorph >> predecessor: pred successor: succ [
 	"Private -- for use only in morphic duplication"
 	predecessor := pred.
 	successor := succ.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>predecessorChanged [
+{ #category : #private }
+TextMorph >> predecessorChanged [
 	| newStart oldStart |
 	(self hasProperty: #CreatingParagraph) ifTrue: [^self].
 	newStart := predecessor isNil 
@@ -1727,11 +1330,8 @@ TextMorph>>predecessorChanged [
 				self withSuccessorsDo: [:m | m adjustLineIndicesBy: newStart - oldStart]]
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>preferredKeyboardPosition [
+{ #category : #editing }
+TextMorph >> preferredKeyboardPosition [
 
 	| default rects |
 	default  := (self bounds: self bounds in: World) topLeft.
@@ -1744,11 +1344,8 @@ TextMorph>>preferredKeyboardPosition [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>privateMoveBy: delta  [
+{ #category : #geometry }
+TextMorph >> privateMoveBy: delta [ 
 	super privateMoveBy: delta.
 	editor ifNil: [paragraph ifNotNil: [paragraph moveBy: delta]]
 		ifNotNil: 
@@ -1758,11 +1355,8 @@ TextMorph>>privateMoveBy: delta  [
 			self installEditorToReplace: editor]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>privateOwner: newOwner [
+{ #category : #private }
+TextMorph >> privateOwner: newOwner [
 	"Nil the container when text gets extracted"
 	super privateOwner: newOwner.
 	container ifNotNil: [
@@ -1770,11 +1364,8 @@ TextMorph>>privateOwner: newOwner [
 			newOwner isWorldOrHandMorph ifTrue: [self setContainer: nil]]]
 ]
 
-{
-	#category : #'linked frames',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>recomposeChain [
+{ #category : #'linked frames' }
+TextMorph >> recomposeChain [
 	"Recompose this textMorph and all that follow it."
 	self withSuccessorsDo:
 		[:m |  m text: text textStyle: textStyle;  "Propagate new style if any"
@@ -1782,22 +1373,16 @@ TextMorph>>recomposeChain [
 				fit  "and propagate the change"]
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>releaseCachedState [
+{ #category : #caching }
+TextMorph >> releaseCachedState [
  
 	super releaseCachedState.
 	self releaseParagraph
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>releaseEditor  [
+{ #category : #private }
+TextMorph >> releaseEditor [ 
 	"Release the editor for my paragraph.  This morph no longer 'hasFocus'."
 	editor ifNotNil:
 		[self selectionChanged.
@@ -1805,11 +1390,8 @@ TextMorph>>releaseEditor  [
 		editor := nil].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>releaseParagraph [
+{ #category : #private }
+TextMorph >> releaseParagraph [
 
 	"a slight kludge so subclasses can have a bit more control over whether the paragraph really 
 	gets released. important for GeeMail since the selection needs to be accessible even if the 
@@ -1819,11 +1401,8 @@ TextMorph>>releaseParagraph [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>releaseParagraphReally [
+{ #category : #private }
+TextMorph >> releaseParagraphReally [
 
 	"a slight kludge so subclasses can have a bit more control over whether the paragraph really 
 	gets released. important for GeeMail since the selection needs to be accessible even if the 
@@ -1837,11 +1416,8 @@ TextMorph>>releaseParagraphReally [
 		[container releaseCachedState]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>removedMorph: aMorph [
+{ #category : #private }
+TextMorph >> removedMorph: aMorph [
 	| range |
 	range := text find: (TextAnchor new anchoredMorph: aMorph).
 	range ifNotNil:
@@ -1853,11 +1429,8 @@ TextMorph>>removedMorph: aMorph [
 	super removedMorph: aMorph.
 ]
 
-{
-	#category : #blinking,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>resetBlinkCursor [
+{ #category : #blinking }
+TextMorph >> resetBlinkCursor [
 	"Reset the blinking cursor"
 	| para |
 	self blinkStart: Time millisecondClockValue + 500.
@@ -1869,70 +1442,46 @@ TextMorph>>resetBlinkCursor [
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>reverseCurveDirection [
+{ #category : #menu }
+TextMorph >> reverseCurveDirection [
 	container textDirection: container textDirection negated.
 	self paragraph composeAll
 ]
 
-{
-	#category : #alignment,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>rightFlush  [
+{ #category : #alignment }
+TextMorph >> rightFlush [ 
 	
 	self changeAlignment: #rightFlush
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>select [
+{ #category : #accessing }
+TextMorph >> select [
 	editor ifNotNil: [ editor select ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>selectAll [
+{ #category : #accessing }
+TextMorph >> selectAll [
 	self editor selectFrom: 1 to: text size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>selectFrom: a to: b [
+{ #category : #accessing }
+TextMorph >> selectFrom: a to: b [
 	self editor selectFrom: a to: b
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>selectInvisiblyFrom: start to: stop [
+{ #category : #accessing }
+TextMorph >> selectInvisiblyFrom: start to: stop [
 	editor ifNotNil: [ editor selectInvisiblyFrom: start to: stop ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>selection [
+{ #category : #accessing }
+TextMorph >> selection [
 	^editor ifNotNil: [ editor selection ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>selectionChanged [
+{ #category : #private }
+TextMorph >> selectionChanged [
 	"Invalidate all the selection rectangles. 
 	Make sure that any drop shadow is accounted for too."
 	self paragraph selectionRects
@@ -1941,41 +1490,29 @@ TextMorph>>selectionChanged [
 			intr ifNotNil: [ self invalidRect: (self expandFullBoundsForDropShadow: intr)] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>selectionInterval [
+{ #category : #accessing }
+TextMorph >> selectionInterval [
 	^editor ifNotNil: [ editor selectionInterval ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>setCharacters: chars [
+{ #category : #accessing }
+TextMorph >> setCharacters: chars [
 	"obtain a string value from the receiver"
 
 	(self getCharacters = chars) ifFalse:
 		[self newContents: chars]
 ]
 
-{
-	#category : #containment,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>setContainer: newContainer [
+{ #category : #containment }
+TextMorph >> setContainer: newContainer [
 	"Adopt (or abandon) container shape"
 	self changed.
 	container := newContainer.
 	self releaseParagraph
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>setCurveBaseline: evt [
+{ #category : #menu }
+TextMorph >> setCurveBaseline: evt [
 	| handle origin |
 	origin := evt cursorPoint.
 	handle := HandleMorph new forEachPointDo:
@@ -1989,11 +1526,8 @@ TextMorph>>setCurveBaseline: evt [
 	handle startStepping	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>setDefaultContentsIfNil [
+{ #category : #private }
+TextMorph >> setDefaultContentsIfNil [
 	"Set the default contents"
 
 	| toUse |
@@ -2003,11 +1537,8 @@ TextMorph>>setDefaultContentsIfNil [
 		text := toUse]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>setFirstCharacter: source  [
+{ #category : #accessing }
+TextMorph >> setFirstCharacter: source [ 
 	"Set the first character of the receiver as indicated"
 	| aChar chars |
 	aChar := source asCharacter.
@@ -2023,11 +1554,8 @@ TextMorph>>setFirstCharacter: source  [
 										nextPutAll: (chars copyFrom: 2 to: chars size)])]] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>setLastCharacter: source [
+{ #category : #accessing }
+TextMorph >> setLastCharacter: source [
 	"Set the last character of the receiver as indicated"
 
 	| aChar chars |
@@ -2043,48 +1571,33 @@ TextMorph>>setLastCharacter: source [
 						aStream nextPut: aChar])]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>setPredecessor: newPredecessor [
+{ #category : #private }
+TextMorph >> setPredecessor: newPredecessor [
 	predecessor := newPredecessor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>setSuccessor: newSuccessor [
+{ #category : #private }
+TextMorph >> setSuccessor: newSuccessor [
 
 	successor := newSuccessor.
 	paragraph ifNotNil: [paragraph wantsColumnBreaks: successor notNil].
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>setTextStyle: aTextStyle [
+{ #category : #initialization }
+TextMorph >> setTextStyle: aTextStyle [
 
 	textStyle := aTextStyle.
 	self releaseCachedState; changed
 ]
 
-{
-	#category : #find-replace,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>sharesFindReplace [
+{ #category : #find-replace }
+TextMorph >> sharesFindReplace [
 	^ false
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>shiftedYellowButtonActivity [
+{ #category : #menu }
+TextMorph >> shiftedYellowButtonActivity [
 	"Supply the normal 'code pane' menu to use its text editing commands from a menu."
 
 	self editor pluggableYellowButtonActivity: true.
@@ -2092,11 +1605,8 @@ TextMorph>>shiftedYellowButtonActivity [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>showOverEditableTextCursor [
+{ #category : #'event handling' }
+TextMorph >> showOverEditableTextCursor [
 	| o |
 	owner isNil
 		ifTrue: [^ self].
@@ -2108,11 +1618,8 @@ TextMorph>>showOverEditableTextCursor [
 
 ]
 
-{
-	#category : #blinking,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>startBlinking [
+{ #category : #blinking }
+TextMorph >> startBlinking [
 	self startStepping: #onBlinkCursor 
 		at: Time millisecondClockValue 
 		arguments: nil stepTime: 500.
@@ -2120,39 +1627,27 @@ TextMorph>>startBlinking [
 
 ]
 
-{
-	#category : #'linked frames',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>startingIndex [
+{ #category : #'linked frames' }
+TextMorph >> startingIndex [
 	predecessor isNil
 		ifTrue: [^ 1].
 	^ predecessor lastCharacterIndex + 1 
 ]
 
-{
-	#category : #blinking,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>stopBlinking [
+{ #category : #blinking }
+TextMorph >> stopBlinking [
 	self stopSteppingSelector: #onBlinkCursor.
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>string: aString fontName: aName size: aSize [
+{ #category : #initialization }
+TextMorph >> string: aString fontName: aName size: aSize [
 
 	self string: aString fontName: aName size: aSize wrap: true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>string: aString fontName: aName size: aSize wrap: shouldWrap [
+{ #category : #initialization }
+TextMorph >> string: aString fontName: aName size: aSize wrap: shouldWrap [
 
 	shouldWrap
 		ifTrue: [self contentsWrapped: aString]
@@ -2160,36 +1655,24 @@ TextMorph>>string: aString fontName: aName size: aSize wrap: shouldWrap [
 	self fontName: aName size: aSize
 ]
 
-{
-	#category : #'editing helpers',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>struckOut [
+{ #category : #'editing helpers' }
+TextMorph >> struckOut [
 	
 	self changeEmphasis: #struckOut
 ]
 
-{
-	#category : #'linked frames',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>successor [
+{ #category : #'linked frames' }
+TextMorph >> successor [
 	^ successor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>text [
+{ #category : #accessing }
+TextMorph >> text [
 	^ text
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>text: t textStyle: s [
+{ #category : #private }
+TextMorph >> text: t textStyle: s [
 	"Private -- for use only in morphic duplication"
 	text := t.
 	defaultColor := (t attributesAt: 1) detect: [ :e | e isKindOf: TextColor ] ifNone: [ self color ].
@@ -2197,11 +1680,8 @@ TextMorph>>text: t textStyle: s [
 	paragraph ifNotNil: [paragraph textStyle: s]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>text: t textStyle: s wrap: wrap color: c
+{ #category : #private }
+TextMorph >> text: t textStyle: s wrap: wrap color: c
 	predecessor: pred successor: succ [
 	"Private -- for use only in morphic duplication"
 	text := t.
@@ -2213,46 +1693,31 @@ TextMorph>>text: t textStyle: s wrap: wrap color: c
 	self predecessor: pred successor: succ
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>textAlignment [
+{ #category : #accessing }
+TextMorph >> textAlignment [
 	"Answer 1..4, representing #leftFlush, #rightFlush, #centered, or #justified"
 	^self editor textAlignment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>textAlignmentSymbol [
+{ #category : #accessing }
+TextMorph >> textAlignmentSymbol [
 	"Answer one of #leftFlush, #rightFlush, #centered, or #justified"
 	^self editor textAlignmentSymbol
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>textBounds [
+{ #category : #geometry }
+TextMorph >> textBounds [
 	^ bounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>textColor [
+{ #category : #accessing }
+TextMorph >> textColor [
 
 	^ color
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>textColor: aColor [
+{ #category : #accessing }
+TextMorph >> textColor: aColor [
 
 	color = aColor ifTrue: [^ self].
 	color := aColor.
@@ -2261,28 +1726,19 @@ TextMorph>>textColor: aColor [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>textStyle [
+{ #category : #accessing }
+TextMorph >> textStyle [
 	^textStyle
 ]
 
-{
-	#category : #'editing helpers',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>underlined [
+{ #category : #'editing helpers' }
+TextMorph >> underlined [
 	
 	self changeEmphasis: #underlined
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>updateFromParagraph [
+{ #category : #private }
+TextMorph >> updateFromParagraph [
 	"A change has taken place in my paragraph, as a result of editing and I must be updated.  If a line break causes recomposition of the current paragraph, or it the selection has entered a different paragraph, then the current editor will be released, and must be reinstalled with the resulting new paragraph, while retaining any editor state, such as selection, undo state, and current typing emphasis."
 
 	| newStyle sel oldLast oldEditor back |
@@ -2341,21 +1797,15 @@ TextMorph>>updateFromParagraph [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>userString [
+{ #category : #accessing }
+TextMorph >> userString [
 	"Do I have a text string to be searched on?"
 
 	^ text string
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>veryDeepFixupWith: deepCopier  [
+{ #category : #copying }
+TextMorph >> veryDeepFixupWith: deepCopier [ 
 	"If target and arguments fields were weakly copied, fix them here.  If 
 	they were in the tree being copied, fix them up, otherwise point to the 
 	originals!"
@@ -2366,11 +1816,8 @@ TextMorph>>veryDeepFixupWith: deepCopier  [
 	successor := deepCopier references at: successor ifAbsent: [nil]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>veryDeepInner: deepCopier  [
+{ #category : #copying }
+TextMorph >> veryDeepInner: deepCopier [ 
 	"Copy all of my instance variables. Some need to be not copied at all, but shared.
 	Warning!! Every instance variable defined in this class must be handled.
 	We must also implement veryDeepFixupWith:.  See DeepCopier class comment."
@@ -2389,11 +1836,8 @@ TextMorph>>veryDeepInner: deepCopier  [
 
 ]
 
-{
-	#category : #'linked frames',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>withSuccessorsDo: aBlock  [
+{ #category : #'linked frames' }
+TextMorph >> withSuccessorsDo: aBlock [ 
 	"Evaluate aBlock for each morph in my successor chain"
 
 	| each |
@@ -2403,30 +1847,21 @@ TextMorph>>withSuccessorsDo: aBlock  [
 			each := each successor]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>wouldAcceptKeyboardFocusUponTab [
+{ #category : #'event handling' }
+TextMorph >> wouldAcceptKeyboardFocusUponTab [
 	"Answer whether the receiver might accept keyboard focus if 
 	tab were hit in some container playfield"
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>wrapFlag [
+{ #category : #accessing }
+TextMorph >> wrapFlag [
 	^ wrapFlag 
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>wrapFlag: aBoolean [
+{ #category : #accessing }
+TextMorph >> wrapFlag: aBoolean [
 	"Should contained text stay wrapped at my width?"
 
 	aBoolean == wrapFlag ifTrue: [^ self].
@@ -2434,19 +1869,13 @@ TextMorph>>wrapFlag: aBoolean [
 	self composeToBounds
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>wrapOnOff [
+{ #category : #menu }
+TextMorph >> wrapOnOff [
 	self wrapFlag: wrapFlag not
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>wrapString [
+{ #category : #menu }
+TextMorph >> wrapString [
 	"Answer the string to put in a menu that will invite the user to 
 	switch autoFit mode"
 	^ (wrapFlag
@@ -2455,21 +1884,15 @@ TextMorph>>wrapString [
 		, 'text wrap to bounds' translated
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>yellowButtonActivity [
+{ #category : #'event handling' }
+TextMorph >> yellowButtonActivity [
 	"Supply the normal 'code pane' menu to use its text editing 
 	commands from a menu."
 	^ self yellowButtonActivity:false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorph>>yellowButtonActivity: shiftKeyState  [
+{ #category : #'event handling' }
+TextMorph >> yellowButtonActivity: shiftKeyState [ 
 	"Invoke the text-editing menu.
 	Check if required first!"
 	

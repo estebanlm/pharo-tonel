@@ -20,33 +20,23 @@ or more concisely...
 Class {
 	#name : #RBStringConcatenationRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 22:59'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBStringConcatenationRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBStringConcatenationRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'StringConcatenationRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBStringConcatenationRule>>group [
+{ #category : #accessing }
+RBStringConcatenationRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBStringConcatenationRule>>initialize [
+{ #category : #initialization }
+RBStringConcatenationRule >> initialize [
 	| concatenationMatcher |
 	super initialize.
 	concatenationMatcher := RBParseTreeSearcher new.
@@ -77,18 +67,12 @@ RBStringConcatenationRule>>initialize [
 				ifFalse: [ answer ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBStringConcatenationRule>>name [
+{ #category : #accessing }
+RBStringConcatenationRule >> name [
 	^ 'String concatenation instead of streams'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBStringConcatenationRule>>rationale [
+{ #category : #accessing }
+RBStringConcatenationRule >> rationale [
 	^ 'Check for code using string concatenation inside some iteration message.'
 ]

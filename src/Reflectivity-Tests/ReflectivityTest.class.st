@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #ReflectivityTest,
 	#superclass : #TestCase,
@@ -10,40 +7,27 @@ Class {
 		'link',
 		'link2'
 	],
-	#category : #Reflectivity-Tests,
-	#timestamp : ''
+	#category : #Reflectivity-Tests
 }
 
-{
-	#category : #tagging,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityTest>>increase [
+{ #category : #tagging }
+ReflectivityTest >> increase [
 	count ifNil: [ count := 0 ].
 	count := count + 1.
 ]
 
-{
-	#category : #tagging,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityTest>>tagExec [
+{ #category : #tagging }
+ReflectivityTest >> tagExec [
 	tag := #yes
 ]
 
-{
-	#category : #tagging,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityTest>>tagExec: aTag [
+{ #category : #tagging }
+ReflectivityTest >> tagExec: aTag [
 	tag := aTag
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityTest>>tearDown [
+{ #category : #running }
+ReflectivityTest >> tearDown [
 	link ifNotNil: [link uninstall].
 	link2 ifNotNil: [link2 uninstall].
 	tag := nil.
@@ -51,11 +35,8 @@ ReflectivityTest>>tearDown [
 	(ReflectivityExamples>>#exampleWithArg:)  recompile
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityTest>>testTwoLinksUnstallOne [
+{ #category : #tests }
+ReflectivityTest >> testTwoLinksUnstallOne [
 	| node instance |
 	node := (ReflectivityExamples>>#exampleWithArg:) ast.
 	link := MetaLink new 

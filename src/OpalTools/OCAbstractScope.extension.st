@@ -1,12 +1,7 @@
-Extension {
-	#name : #OCAbstractScope
-}
+Extension { #name : #OCAbstractScope }
 
-{
-	#category : #'*OpalTools',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OCAbstractScope>>gtInspectorSourceCodeIn: composite [
+{ #category : #'*OpalTools' }
+OCAbstractScope >> gtInspectorSourceCodeIn: composite [
 	<gtInspectorPresentationOrder: 30> 
 
 	^ composite pharoMethod 
@@ -18,11 +13,8 @@ OCAbstractScope>>gtInspectorSourceCodeIn: composite [
 		act: [ self method compiledMethod browse ] icon: GLMUIThemeExtraIcons glamorousBrowse entitled: 'Browse'
 ]
 
-{
-	#category : #'*OpalTools',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OCAbstractScope>>sourceInterval [
+{ #category : #'*OpalTools' }
+OCAbstractScope >> sourceInterval [
 	^self node 
 		ifNil: [0 to: 0]
 		ifNotNil: [:n | n sourceInterval]

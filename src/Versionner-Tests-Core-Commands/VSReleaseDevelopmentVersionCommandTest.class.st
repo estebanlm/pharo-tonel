@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #VSReleaseDevelopmentVersionCommandTest,
 	#superclass : #TestCase,
@@ -9,15 +6,11 @@ Class {
 		'project',
 		'cmd'
 	],
-	#category : #Versionner-Tests-Core-Commands,
-	#timestamp : ''
+	#category : #Versionner-Tests-Core-Commands
 }
 
-{
-	#category : #'expected results',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSReleaseDevelopmentVersionCommandTest>>expectedTestResolveSymbolicVersionInResult [
+{ #category : #'expected results' }
+VSReleaseDevelopmentVersionCommandTest >> expectedTestResolveSymbolicVersionInResult [
 	^ 'testVersion: spec
 	<version: ''3.0'' imports: #(''1.0-baseline'')>
 	spec
@@ -32,11 +25,8 @@ VSReleaseDevelopmentVersionCommandTest>>expectedTestResolveSymbolicVersionInResu
 					''VersionnerTestXML-Tests-Parser-StephaneDucasse.15'' ]'
 ]
 
-{
-	#category : #'test data',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSReleaseDevelopmentVersionCommandTest>>generateTestVersion [
+{ #category : #'test data' }
+VSReleaseDevelopmentVersionCommandTest >> generateTestVersion [
 	| ast |
 
 	ast := (project configurationClass methodNamed: #version101:) ast.
@@ -45,11 +35,8 @@ VSReleaseDevelopmentVersionCommandTest>>generateTestVersion [
 	project configurationClass compile: ast formattedCode
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSReleaseDevelopmentVersionCommandTest>>setUp [
+{ #category : #running }
+VSReleaseDevelopmentVersionCommandTest >> setUp [
 	| visitor config version |
 	super setUp.
 	classFactory := ClassFactoryForTestCase new.
@@ -65,21 +52,15 @@ VSReleaseDevelopmentVersionCommandTest>>setUp [
 				devWorkflow for: self.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSReleaseDevelopmentVersionCommandTest>>tearDown [
+{ #category : #running }
+VSReleaseDevelopmentVersionCommandTest >> tearDown [
 	super tearDown.
 	ASTCache reset.
 	classFactory cleanUp
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSReleaseDevelopmentVersionCommandTest>>testProjectReferenceConfigurationFrom [
+{ #category : #tests }
+VSReleaseDevelopmentVersionCommandTest >> testProjectReferenceConfigurationFrom [
 	| config |
 	
 	config := cmd 
@@ -93,11 +74,8 @@ VSReleaseDevelopmentVersionCommandTest>>testProjectReferenceConfigurationFrom [
 		equals: ConfigurationOfVersionnerTestXMLWriter
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSReleaseDevelopmentVersionCommandTest>>testResolveSymbolicVersionsIn [
+{ #category : #tests }
+VSReleaseDevelopmentVersionCommandTest >> testResolveSymbolicVersionsIn [
     | initialVersion configurationClass |
     self generateTestVersion.
     configurationClass := Smalltalk globals

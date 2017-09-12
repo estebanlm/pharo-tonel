@@ -11,15 +11,11 @@ Class {
 		'tempVector',
 		'id'
 	],
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>addCopiedTempToAllScopesUpToDefVector: aVariable [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> addCopiedTempToAllScopesUpToDefVector: aVariable [
 		
 	(self hasCopyingTempNamed: aVariable name)
 		ifFalse: [self addCopyingTemp: aVariable ].
@@ -27,11 +23,8 @@ OCAbstractMethodScope>>addCopiedTempToAllScopesUpToDefVector: aVariable [
 	^ self outerScope addCopiedTempToAllScopesUpToDefVector: aVariable.
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>addCopyingTemp: aTempVar [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> addCopyingTemp: aTempVar [
 	^ copiedVars add: (OCCopyingTempVariable new
 			originalVar: aTempVar originalVar;
 			name: aTempVar name;
@@ -41,22 +34,16 @@ OCAbstractMethodScope>>addCopyingTemp: aTempVar [
 			yourself)
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>addCopyingTempNamed: name [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> addCopyingTempNamed: name [
 	^ copiedVars add: (OCCopyingTempVariable new
 			name: name;
 			scope: self;
 			yourself)
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>addCopyingTempToAllScopesUpToDefTemp: aVar [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> addCopyingTempToAllScopesUpToDefTemp: aVar [
 
 	(self hasCopyingTempNamed: aVar name) ifFalse: [self addCopyingTemp: aVar].
 	tempVars at: aVar name ifPresent: [:v | ^ self].
@@ -64,30 +51,21 @@ OCAbstractMethodScope>>addCopyingTempToAllScopesUpToDefTemp: aVar [
 				
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>addCopyingTempToAllScopesUpToDefVector: aName [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> addCopyingTempToAllScopesUpToDefVector: aName [
 		
 	(self hasCopyingTempNamed: aName) ifFalse: [self addCopyingTempNamed: aName].
 	self tempVectorName = aName  ifTrue: [^ self].
 	^ self outerScope addCopyingTempToAllScopesUpToDefVector: aName.
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>addTemp: name [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> addTemp: name [
 	^self addTemp: OCTempVariable new withName: name
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>addTemp: aTempVariable withName: aString [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> addTemp: aTempVariable withName: aString [
 	^ tempVars
 		at: aString
 		put: (aTempVariable
@@ -96,11 +74,8 @@ OCAbstractMethodScope>>addTemp: aTempVariable withName: aString [
 				yourself)
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>addVectorTemp: aTemp [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> addVectorTemp: aTemp [
 	^ tempVector 
 		at:  aTemp name
 		put: (OCVectorTempVariable new
@@ -112,19 +87,13 @@ OCAbstractMethodScope>>addVectorTemp: aTemp [
 			yourself)
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>allTempNames [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> allTempNames [
 	^self allTemps collect: #name.
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>allTemps [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> allTemps [
 	"return all temps defined, even the ones in the outer scope that are not used in the current.
 	 This includes the arguments
 	 We do not need to care about shadowed temps as temp shadowing is not allowed."
@@ -139,19 +108,13 @@ OCAbstractMethodScope>>allTemps [
 	
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>copiedVars [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> copiedVars [
 	^ copiedVars
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>findVariable: aBlock ifNone: aNotFound [
+{ #category : #lookup }
+OCAbstractMethodScope >> findVariable: aBlock ifNone: aNotFound [
 
 	(aBlock value: thisContextVar) ifTrue: [^ thisContextVar].
 	self allTemps
@@ -162,35 +125,23 @@ OCAbstractMethodScope>>findVariable: aBlock ifNone: aNotFound [
 		^  outerScope findVariable: aBlock ifNone: aNotFound ]
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>hasCopyingTempNamed: name [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> hasCopyingTempNamed: name [
 	^self copiedVars anySatisfy: [:each | each name = name]
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>hasTempVector [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> hasTempVector [
 	^ tempVector isNotEmpty
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>id: int [
+{ #category : #initializing }
+OCAbstractMethodScope >> id: int [
 	id := int
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>initialize [
+{ #category : #initialization }
+OCAbstractMethodScope >> initialize [
 
 	tempVars :=  OrderedDictionary new.
 	tempVector  := Dictionary new.
@@ -202,19 +153,13 @@ OCAbstractMethodScope>>initialize [
 
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>localTempNames [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> localTempNames [
 	^self localTemps collect: [:each | each name]
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>localTemps [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> localTemps [
 	"all temps accessed in the context... for tempVectors, it takes all the vars even those not used here"
 	| localVars |
 	localVars := OrderedCollection new.
@@ -226,11 +171,8 @@ OCAbstractMethodScope>>localTemps [
 	^localVars asArray
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>lookupTempVector: name inContext: aContext [
+{ #category : #lookup }
+OCAbstractMethodScope >> lookupTempVector: name inContext: aContext [
 	"Similar to lookupVariable:inContext: but looks for a temp vector. If we don't find the temp vector (because it was nilled or not created), we lookup in the outer context with the corresponding outer scope"
 	
 	| variable theVector |
@@ -242,11 +184,8 @@ OCAbstractMethodScope>>lookupTempVector: name inContext: aContext [
 	^ { variable . theVector }
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>lookupVar: name [
+{ #category : #lookup }
+OCAbstractMethodScope >> lookupVar: name [
 	copiedVars at: name ifPresent: [:v | ^ v].
 	tempVector  at: name ifPresent: [:v | ^ v].
 	tempVars at: name ifPresent: [:v | ^ v].
@@ -255,11 +194,8 @@ OCAbstractMethodScope>>lookupVar: name [
 	
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>lookupVar: name inContext: aContext [
+{ #category : #lookup }
+OCAbstractMethodScope >> lookupVar: name inContext: aContext [
 	"We lookup a variable in a context. If it not in this context, we look in the outer context using the corresponding outer scope"
 	
 	| variable theValue |
@@ -270,68 +206,47 @@ OCAbstractMethodScope>>lookupVar: name inContext: aContext [
 	^ theValue
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>lookupVarForDeclaration: name [
+{ #category : #lookup }
+OCAbstractMethodScope >> lookupVarForDeclaration: name [
 	tempVars at: name ifPresent: [:v | ^ v].
 	name = 'thisContext' ifTrue: [^ thisContextVar].
 	^self outerScope lookupVarForDeclaration: name
 	
 ]
 
-{
-	#category : #debugging,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>methodScope [
+{ #category : #debugging }
+OCAbstractMethodScope >> methodScope [
 
 	^ self outerScope methodScope
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>moveToVectorTemp: aTempVar [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> moveToVectorTemp: aTempVar [
 
 	self addVectorTemp: aTempVar.
 	self removeTemp: aTempVar.	
 ]
 
-{
-	#category : #scope,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>newBlockScope: int [
+{ #category : #scope }
+OCAbstractMethodScope >> newBlockScope: int [
 	^ OCBlockScope new outerScope: self; id: int; yourself.
 ]
 
-{
-	#category : #scope,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>newOptimizedBlockScope: int [
+{ #category : #scope }
+OCAbstractMethodScope >> newOptimizedBlockScope: int [
 	^ OCOptimizedBlockScope new 
 			outerScope: self; 
 			id: int;
 			yourself.
 ]
 
-{
-	#category : #scope,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>outerNotOptimizedScope [
+{ #category : #scope }
+OCAbstractMethodScope >> outerNotOptimizedScope [
 	^self
 ]
 
-{
-	#category : #scope,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>outerOffsetTo: aScope [
+{ #category : #scope }
+OCAbstractMethodScope >> outerOffsetTo: aScope [
 	"return how many scopes up from me aScope is. We ignore optimized scopes so the resulting offset maps to
 	 contexts"
 
@@ -349,29 +264,20 @@ OCAbstractMethodScope>>outerOffsetTo: aScope [
 	
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>outerScopeLookupVar: name inContext: aContext [
+{ #category : #lookup }
+OCAbstractMethodScope >> outerScopeLookupVar: name inContext: aContext [
 	Error signal: 'Cannot find variable named''', name, ''' in this method'
 ]
 
-{
-	#category : #scope,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>popScope [
+{ #category : #scope }
+OCAbstractMethodScope >> popScope [
 	"Propogate free var usages to their outer vars, then return outer scope"
 
 	^ self outerScope
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>printOn: stream [
+{ #category : #printing }
+OCAbstractMethodScope >> printOn: stream [
 
 	super printOn: stream.
 	stream space.
@@ -379,56 +285,38 @@ OCAbstractMethodScope>>printOn: stream [
 
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>removeTemp: tempVar [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> removeTemp: tempVar [
 
 	tempVars removeKey: tempVar name
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>tempVarNames [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> tempVarNames [
 
 	^ self tempVars collect: [:each| each name]
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>tempVars [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> tempVars [
 
 	^ tempVars
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>tempVector [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> tempVector [
 	^ tempVector 
 ]
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>tempVectorName [
+{ #category : #'temp vars' }
+OCAbstractMethodScope >> tempVectorName [
 	"the name of the tempVector is not a valid name of a temp variable
 	 This way we avoid name clashes "
 	^'0vector', id asString
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractMethodScope>>variableNamed: name ifAbsent: aBlock [
+{ #category : #lookup }
+OCAbstractMethodScope >> variableNamed: name ifAbsent: aBlock [
 	copiedVars at: name ifPresent: [:v | ^ v].
 	tempVector  at: name ifPresent: [:v | ^ v].
 	tempVars at: name ifPresent: [:v | ^ v].

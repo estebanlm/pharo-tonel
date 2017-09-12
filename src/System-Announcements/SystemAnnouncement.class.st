@@ -9,42 +9,29 @@ Class {
 	#instVars : [
 		'timeStamp'
 	],
-	#category : #System-Announcements-System-Base,
-	#timestamp : '<historical>'
+	#category : #System-Announcements-System-Base
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SystemAnnouncement>>initialize [
+{ #category : #initialization }
+SystemAnnouncement >> initialize [
 	super initialize.
 	self setTimeStamp.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SystemAnnouncement>>setTimeStamp [
+{ #category : #private }
+SystemAnnouncement >> setTimeStamp [
 
 	timeStamp := DateAndTime current
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SystemAnnouncement>>timeStamp [
+{ #category : #accessing }
+SystemAnnouncement >> timeStamp [
 
 	^ timeStamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SystemAnnouncement>>timeStamp: aTimeStamp [
+{ #category : #accessing }
+SystemAnnouncement >> timeStamp: aTimeStamp [
 
 	timeStamp := aTimeStamp
 ]

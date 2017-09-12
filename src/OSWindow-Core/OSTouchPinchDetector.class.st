@@ -11,41 +11,28 @@ Class {
 	#classVars : [
 		'MaxDistanceBetweenFingersLine'
 	],
-	#category : #OSWindow-Core-Gestures,
-	#timestamp : 'MerwanOuddane 7/22/2015 16:24'
+	#category : #OSWindow-Core-Gestures
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector class>>initialize [
+{ #category : #'class initialization' }
+OSTouchPinchDetector class >> initialize [
 	super initialize.
 	MaxDistanceBetweenFingersLine := 0.2.
 	MinDistanceBeforeDetection := 0.03
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector class>>maxDistanceBetweenFingersLine [
+{ #category : #accessing }
+OSTouchPinchDetector class >> maxDistanceBetweenFingersLine [
 	^ MaxDistanceBetweenFingersLine
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector class>>maxDistanceBetweenFingersLine: aNumber [
+{ #category : #accessing }
+OSTouchPinchDetector class >> maxDistanceBetweenFingersLine: aNumber [
 	MaxDistanceBetweenFingersLine := aNumber
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector class>>maxDistanceBetweenFingersLineSettingsOn: aBuilder [
+{ #category : #settings }
+OSTouchPinchDetector class >> maxDistanceBetweenFingersLineSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #maxDistanceBetweenFingersLine)
 		target: self;
@@ -55,11 +42,8 @@ OSTouchPinchDetector class>>maxDistanceBetweenFingersLineSettingsOn: aBuilder [
 		parent: #pinchGesture
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector class>>minDistanceBeforeDetectionSettingsOn: aBuilder [
+{ #category : #settings }
+OSTouchPinchDetector class >> minDistanceBeforeDetectionSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #minDistanceBeforeDetection)
 		target: self;
@@ -69,22 +53,16 @@ OSTouchPinchDetector class>>minDistanceBeforeDetectionSettingsOn: aBuilder [
 		parent: #pinchGesture
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector class>>touchPinchSettingsOn: aBuilder [
+{ #category : #settings }
+OSTouchPinchDetector class >> touchPinchSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #pinchGesture)
 		label: 'Pinch';
 		parent: #touchGestures
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector>>areFingersLinesNotTooFarApart [
+{ #category : #preconditions }
+OSTouchPinchDetector >> areFingersLinesNotTooFarApart [
 	| firstFinger secondFinger minDistance |
 	firstFinger := self activeFingers first.
 	secondFinger := self activeFingers last.
@@ -93,21 +71,15 @@ OSTouchPinchDetector>>areFingersLinesNotTooFarApart [
 	^ minDistance < maxDistanceBetweenFingersLine
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector>>beginConditions [
+{ #category : #preconditions }
+OSTouchPinchDetector >> beginConditions [
 	^ super beginConditions
 		and: [ self areFingersLinesNotTooFarApart
 		and: [ self doesFingersGoesInOppositeDirection ]]
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector>>createEventBeginning [
+{ #category : #factory }
+OSTouchPinchDetector >> createEventBeginning [
 	fingersDistanceFromCenter := self fingersDistanceFromCenter.
 	^ self eventClassBeginGesture new
 		timestamp: eventHandler lastUpdateTimestamp;
@@ -117,11 +89,8 @@ OSTouchPinchDetector>>createEventBeginning [
 		yourself
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector>>createEventDuringMove [
+{ #category : #factory }
+OSTouchPinchDetector >> createEventDuringMove [
 	^ self eventClassMoveGesture new
 		timestamp: eventHandler lastUpdateTimestamp;
 		deviceId: deviceId;
@@ -130,11 +99,8 @@ OSTouchPinchDetector>>createEventDuringMove [
 		yourself
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector>>createEventEnding [
+{ #category : #factory }
+OSTouchPinchDetector >> createEventEnding [
 	^ self eventClassEndGesture new
 		timestamp: eventHandler lastUpdateTimestamp;
 		deviceId: deviceId;
@@ -143,22 +109,16 @@ OSTouchPinchDetector>>createEventEnding [
 		yourself
 ]
 
-{
-	#category : #'event field',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector>>dDist [
+{ #category : #'event field' }
+OSTouchPinchDetector >> dDist [
 	| oldDistance |
 	oldDistance := fingersDistanceFromCenter.
 	fingersDistanceFromCenter := self fingersDistanceFromCenter.
 	^ fingersDistanceFromCenter - oldDistance
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector>>doesFingersGoesInOppositeDirection [
+{ #category : #preconditions }
+OSTouchPinchDetector >> doesFingersGoesInOppositeDirection [
 	| fingersDirection direction |
 	fingersDirection := self activeFingers collect: [ :each | each direction ].
 
@@ -170,45 +130,30 @@ OSTouchPinchDetector>>doesFingersGoesInOppositeDirection [
 	^ fingersDirection anySatisfy: [ :finger | finger = direction negated ]
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector>>eventClassBeginGesture [
+{ #category : #abstract }
+OSTouchPinchDetector >> eventClassBeginGesture [
 	self subclassResponsibility
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector>>eventClassEndGesture [
+{ #category : #abstract }
+OSTouchPinchDetector >> eventClassEndGesture [
 	self subclassResponsibility
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector>>eventClassMoveGesture [
+{ #category : #abstract }
+OSTouchPinchDetector >> eventClassMoveGesture [
 	self subclassResponsibility
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector>>fingersDistanceFromCenter [
+{ #category : #preconditions }
+OSTouchPinchDetector >> fingersDistanceFromCenter [
 	| centerOfAllFingers |
 	centerOfAllFingers := self centerOfAllFingers.
 	^ (self activeFingers collect: [ :each | centerOfAllFingers distanceTo: each lastPosition ]) sum
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchDetector>>initialize [
+{ #category : #initialization }
+OSTouchPinchDetector >> initialize [
 	super initialize.
 	maxDistanceBetweenFingersLine := self class maxDistanceBetweenFingersLine.
 ]

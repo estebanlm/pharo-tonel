@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #GLMAnnouncerTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'announcer'
 	],
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnnouncerTest>>setUp [
+{ #category : #running }
+GLMAnnouncerTest >> setUp [
 	announcer := GLMAnnouncer new
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnnouncerTest>>testNestedSuspendAllWhile [
+{ #category : #tests }
+GLMAnnouncerTest >> testNestedSuspendAllWhile [
 	| announcement |
 	announcer
 		when: GLMTestAnnouncement
@@ -36,11 +26,8 @@ GLMAnnouncerTest>>testNestedSuspendAllWhile [
 	self assert: announcement isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnnouncerTest>>testNestedSuspendParticularAnnouncementWhile [
+{ #category : #tests }
+GLMAnnouncerTest >> testNestedSuspendParticularAnnouncementWhile [
 	| announcement instance2 announcement2 |
 	announcer
 		when: GLMTestAnnouncement, GLMTestAnnouncement2
@@ -57,11 +44,8 @@ GLMAnnouncerTest>>testNestedSuspendParticularAnnouncementWhile [
 	self assert: announcement2 equals: instance2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnnouncerTest>>testSimpleNestedSuspendParticularAnnouncementWhile [
+{ #category : #tests }
+GLMAnnouncerTest >> testSimpleNestedSuspendParticularAnnouncementWhile [
 	| announcement |
 	announcer
 		when: GLMTestAnnouncement
@@ -74,11 +58,8 @@ GLMAnnouncerTest>>testSimpleNestedSuspendParticularAnnouncementWhile [
 	self assert: announcement isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnnouncerTest>>testSuspendAllWhile [
+{ #category : #tests }
+GLMAnnouncerTest >> testSuspendAllWhile [
 	| announcement instance |
 	announcer when: GLMTestAnnouncement do: [ :ann | announcement := ann ].
 	announcement := nil.
@@ -89,11 +70,8 @@ GLMAnnouncerTest>>testSuspendAllWhile [
 	self assert: announcement isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnnouncerTest>>testSuspendParticularAnnouncementWhile [
+{ #category : #tests }
+GLMAnnouncerTest >> testSuspendParticularAnnouncementWhile [
 	| announcement instance |
 	announcer when: GLMTestAnnouncement do: [ :ann | announcement := ann ].
 	announcer when: GLMTestAnnouncement2 do: [ :ann | announcement := ann ].
@@ -111,11 +89,8 @@ GLMAnnouncerTest>>testSuspendParticularAnnouncementWhile [
 	self assert: announcement equals: instance.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnnouncerTest>>testSuspendParticularAnnouncementWithInheritanceWhile [
+{ #category : #tests }
+GLMAnnouncerTest >> testSuspendParticularAnnouncementWithInheritanceWhile [
 	| announcement instance |
 	announcer when: Announcement do: [ :ann | announcement := ann ].
 	announcement := nil.

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #SortHierarchicallyTests,
 	#superclass : #TestCase,
@@ -10,15 +7,11 @@ Class {
 		'unrelatedClasses',
 		'archivesClasses'
 	],
-	#category : #Nautilus-Tests,
-	#timestamp : ''
+	#category : #Nautilus-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SortHierarchicallyTests>>nodes: nodes shouldBe: correctNodes [
+{ #category : #private }
+SortHierarchicallyTests >> nodes: nodes shouldBe: correctNodes [
 	"sort the collection of nodes. The result should be the correctNodes"
 
 	| sorted |
@@ -27,11 +20,8 @@ SortHierarchicallyTests>>nodes: nodes shouldBe: correctNodes [
 	correctNodes with: sorted do: [:node :sortedNode | self assert: node equals: sortedNode]
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SortHierarchicallyTests>>setUp [
+{ #category : #setup }
+SortHierarchicallyTests >> setUp [
 
 	completeTree := {String . ByteString . Symbol . ByteSymbol . WideSymbol . WideString} .
 	partialTree := {String . ByteString . ByteSymbol . WideString}.
@@ -39,42 +29,30 @@ SortHierarchicallyTests>>setUp [
 	archivesClasses :=  {Archive . TarArchive . ZipArchive . ArchiveMember . TarArchiveMember . ZipArchiveMember . ZipFileMember . ZipDirectoryMember . ZipNewFileMember . ZipStringMember . ZipFileConstants}
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SortHierarchicallyTests>>sortByNameSize: collection [
+{ #category : #private }
+SortHierarchicallyTests >> sortByNameSize: collection [
 
 	^collection asSortedCollection: [:x :y | x name size < y name size]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SortHierarchicallyTests>>testArchivesClassesReversed [
+{ #category : #tests }
+SortHierarchicallyTests >> testArchivesClassesReversed [
 
 	self
 		nodes: archivesClasses reversed
 		shouldBe: archivesClasses
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SortHierarchicallyTests>>testArchivesClassesUnchanged [
+{ #category : #tests }
+SortHierarchicallyTests >> testArchivesClassesUnchanged [
 
 	self
 		nodes: archivesClasses
 		shouldBe: archivesClasses
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SortHierarchicallyTests>>testArchivesClassesUnordered [
+{ #category : #tests }
+SortHierarchicallyTests >> testArchivesClassesUnordered [
 
 	self
 		nodes: (self sortByNameSize: archivesClasses)
@@ -83,44 +61,32 @@ SortHierarchicallyTests>>testArchivesClassesUnordered [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SortHierarchicallyTests>>testCompleteTreeReversed [
+{ #category : #tests }
+SortHierarchicallyTests >> testCompleteTreeReversed [
 
 	self
 		nodes: completeTree reversed
 		shouldBe: completeTree
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SortHierarchicallyTests>>testCompleteTreeUnchanged [
+{ #category : #tests }
+SortHierarchicallyTests >> testCompleteTreeUnchanged [
 
 	self
 		nodes: completeTree
 		shouldBe: completeTree
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SortHierarchicallyTests>>testCompleteTreeUnordered [
+{ #category : #tests }
+SortHierarchicallyTests >> testCompleteTreeUnordered [
 
 	self
 		nodes: (self sortByNameSize: completeTree)
 		shouldBe: completeTree
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SortHierarchicallyTests>>testOneClass [
+{ #category : #tests }
+SortHierarchicallyTests >> testOneClass [
 
 	| pointNode sorted |
 	pointNode := SortHierarchicallyIndentNode.
@@ -129,66 +95,48 @@ SortHierarchicallyTests>>testOneClass [
 	self assert: (sorted includes: pointNode)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SortHierarchicallyTests>>testPartialTreeReversed [
+{ #category : #tests }
+SortHierarchicallyTests >> testPartialTreeReversed [
 
 	self
 		nodes: partialTree reversed
 		shouldBe: partialTree
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SortHierarchicallyTests>>testPartialTreeUnchanged [
+{ #category : #tests }
+SortHierarchicallyTests >> testPartialTreeUnchanged [
 
 	self
 		nodes: partialTree
 		shouldBe: partialTree
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SortHierarchicallyTests>>testPartialTreeUnsorted [
+{ #category : #tests }
+SortHierarchicallyTests >> testPartialTreeUnsorted [
 
 	self
 		nodes: (self sortByNameSize: partialTree)
 		shouldBe: partialTree
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SortHierarchicallyTests>>testUnrelatedClassesReversed [
+{ #category : #tests }
+SortHierarchicallyTests >> testUnrelatedClassesReversed [
 
 	self
 		nodes: unrelatedClasses reversed
 		shouldBe: unrelatedClasses
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SortHierarchicallyTests>>testUnrelatedClassesUnchanged [
+{ #category : #tests }
+SortHierarchicallyTests >> testUnrelatedClassesUnchanged [
 
 	self
 		nodes: unrelatedClasses
 		shouldBe: unrelatedClasses
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SortHierarchicallyTests>>testUnrelatedClassesUnsorted [
+{ #category : #tests }
+SortHierarchicallyTests >> testUnrelatedClassesUnsorted [
 
 	self
 		nodes: (self sortByNameSize: unrelatedClasses)

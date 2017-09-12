@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'window'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : '<historical>'
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWindowRenderer>>actOnPresentationToolbarUpdated: ann [
+{ #category : #rendering }
+GLMMorphicWindowRenderer >> actOnPresentationToolbarUpdated: ann [
 	| dock |
 
 	self setLabelOf: window for: ann presentation.
@@ -24,19 +20,13 @@ GLMMorphicWindowRenderer>>actOnPresentationToolbarUpdated: ann [
 	window toolbarBox: dock.
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWindowRenderer>>actOnPresentationUpdated: ann [
+{ #category : #rendering }
+GLMMorphicWindowRenderer >> actOnPresentationUpdated: ann [
 		self setLabelOf: window for: ann presentation
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWindowRenderer>>handlePotentialStatusbarFor: aRenderable [
+{ #category : #rendering }
+GLMMorphicWindowRenderer >> handlePotentialStatusbarFor: aRenderable [
 	| statusbarMorph bottomOffset |
 	bottomOffset := 0.
 	aRenderable hasStatusbar
@@ -49,11 +39,8 @@ GLMMorphicWindowRenderer>>handlePotentialStatusbarFor: aRenderable [
 	^ bottomOffset
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWindowRenderer>>render: aRenderable [
+{ #category : #rendering }
+GLMMorphicWindowRenderer >> render: aRenderable [
 	| dock offset bottomOffset |
 	window := GLMSystemWindow new model: aRenderable.
 	self installActionsOnModel: window fromPresentation: aRenderable.
@@ -79,11 +66,8 @@ GLMMorphicWindowRenderer>>render: aRenderable [
 	^ window
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWindowRenderer>>renderToolbarForPresentation: aPresentation inMorph: aMorph [
+{ #category : #rendering }
+GLMMorphicWindowRenderer >> renderToolbarForPresentation: aPresentation inMorph: aMorph [
 	| dock buttons |
 	dock := aMorph theme newToolDockingBarIn: aMorph.
 	buttons := self toolbarButtonsForPresentation: aPresentation.
@@ -99,26 +83,17 @@ GLMMorphicWindowRenderer>>renderToolbarForPresentation: aPresentation inMorph: a
 	^ dock
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWindowRenderer>>setLabelOf: aWindow for: aRenderable [
+{ #category : #rendering }
+GLMMorphicWindowRenderer >> setLabelOf: aWindow for: aRenderable [
 	aWindow setLabel: (self titleFor: aRenderable).
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWindowRenderer>>setPotentialBackgroundColorFor: aRenderable [
+{ #category : #rendering }
+GLMMorphicWindowRenderer >> setPotentialBackgroundColorFor: aRenderable [
 	aRenderable colorValue ifNotNil: [ window borderColor: aRenderable colorValue ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWindowRenderer>>titleFor: aRenderable [
+{ #category : #rendering }
+GLMMorphicWindowRenderer >> titleFor: aRenderable [
 	^ aRenderable titleValue ifNil: [ 'Glamorous Browser' ]
 ]

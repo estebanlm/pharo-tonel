@@ -1,20 +1,12 @@
-Extension {
-	#name : #MessageBrowser
-}
+Extension { #name : #MessageBrowser }
 
-{
-	#category : #'*MessageBrowserRefactoringAddition',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-MessageBrowser>>browsedEnvironment [
+{ #category : #'*MessageBrowserRefactoringAddition' }
+MessageBrowser >> browsedEnvironment [
 	^ browsedEnvironment ifNil: [ browsedEnvironment := RBBrowserEnvironment new ]
 ]
 
-{
-	#category : #'*MessageBrowserRefactoringAddition',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-MessageBrowser class>>methodRefactoringSubMenu: aBuilder [
+{ #category : #'*MessageBrowserRefactoringAddition' }
+MessageBrowser class >> methodRefactoringSubMenu: aBuilder [
 	<messageBrowserListMenu>
 	| target |
 	target := aBuilder model.
@@ -22,19 +14,13 @@ MessageBrowser class>>methodRefactoringSubMenu: aBuilder [
 	aBuilder model selectedClass methodRefactoring: aBuilder
 ]
 
-{
-	#category : #'*MessageBrowserRefactoringAddition',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-MessageBrowser>>refactor [
+{ #category : #'*MessageBrowserRefactoringAddition' }
+MessageBrowser >> refactor [
 	^ NautilusRefactoring model: self
 ]
 
-{
-	#category : #'*MessageBrowserRefactoringAddition',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-MessageBrowser class>>refactoringMethodMenu: aBuilder [
+{ #category : #'*MessageBrowserRefactoringAddition' }
+MessageBrowser class >> refactoringMethodMenu: aBuilder [
 	<messageBrowserListMenu>
 	| target |
 	target := aBuilder model.

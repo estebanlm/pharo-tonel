@@ -16,44 +16,31 @@ source := String streamContents: [:aStream| |writer|
 Class {
 	#name : #MCStReader,
 	#superclass : #MCSnapshotReader,
-	#category : #Monticello-Storing,
-	#timestamp : 'LaurentLaffont 3/31/2011 21:07'
+	#category : #Monticello-Storing
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStReader class>>extension [
+{ #category : #accessing }
+MCStReader class >> extension [
 	^ 'st'
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStReader>>addDefinitionsFromDoit: aString [
+{ #category : #adding }
+MCStReader >> addDefinitionsFromDoit: aString [
 	(MCDoItParser forDoit: aString) ifNotNil:
 		[:parser |
 		parser addDefinitionsTo: definitions]
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStReader>>categoryFromDoIt: aString [
+{ #category : #reading }
+MCStReader >> categoryFromDoIt: aString [
 	| tokens  |
 	tokens := aString parseLiterals.
 	tokens size = 3 ifFalse: [self error: 'Unrecognized category definition'].
 	^ tokens at: 3
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStReader>>classDefinitionFrom: aRingClass [
+{ #category : #reading }
+MCStReader >> classDefinitionFrom: aRingClass [
 	| tokens traitCompositionString lastIndex classTraitCompositionString |
 	tokens := aRingClass definitionSource parseLiterals.
 	traitCompositionString := (aRingClass definitionSource readStream
@@ -80,11 +67,8 @@ MCStReader>>classDefinitionFrom: aRingClass [
 		commentStamp: (self commentStampFor: aRingClass)
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStReader>>classInstVarNamesFor: aRingClass [
+{ #category : #reading }
+MCStReader >> classInstVarNamesFor: aRingClass [
 	| tokens |
 	
 	self flag: #traits.
@@ -94,32 +78,23 @@ MCStReader>>classInstVarNamesFor: aRingClass [
 	^ tokens last findTokens: ' '
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStReader>>commentFor: aRingClass [
+{ #category : #reading }
+MCStReader >> commentFor: aRingClass [
 
 	^ aRingClass hasComment
 		ifTrue: [ aRingClass comment content asString ]
 		ifFalse: [ '' ]
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStReader>>commentStampFor: aRingClass [
+{ #category : #reading }
+MCStReader >> commentStampFor: aRingClass [
 	^ aRingClass hasComment
 		ifTrue: [ aRingClass comment stamp ]
 		ifFalse: [ nil ]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStReader>>loadDefinitions [
+{ #category : #evaluating }
+MCStReader >> loadDefinitions [
 	| filePackage |
 	filePackage := RingChunkImporter fromStream: self readStream.
 	definitions := OrderedCollection new.
@@ -135,31 +110,22 @@ MCStReader>>loadDefinitions [
 	
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStReader>>methodDefinitionsFor: aRingClass [
+{ #category : #reading }
+MCStReader >> methodDefinitionsFor: aRingClass [
 
 	^ aRingClass methods collect: 
 		[ :each | each asMCMethodDefinition ]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStReader>>readStream [
+{ #category : #evaluating }
+MCStReader >> readStream [
 	^ ('!!
 
 ', stream contents) readStream
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStReader>>systemOrganizationFromRecords: changeRecords [
+{ #category : #reading }
+MCStReader >> systemOrganizationFromRecords: changeRecords [
 	| categories |
 	categories := changeRecords
 					select: [:ea | 'SystemOrganization*' match: ea string]
@@ -167,11 +133,8 @@ MCStReader>>systemOrganizationFromRecords: changeRecords [
 	^ categories isEmpty ifFalse: [MCOrganizationDefinition categories: categories asArray]
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStReader>>typeOfSubclass: aSymbol [
+{ #category : #reading }
+MCStReader >> typeOfSubclass: aSymbol [
 	#(
 		(subclass: normal)
 		(named: normal)

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZdcByteArrayManagerTests,
 	#superclass : #TestCase,
-	#category : #Zodiac-Tests,
-	#timestamp : ''
+	#category : #Zodiac-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcByteArrayManagerTests>>testClearing [
+{ #category : #testing }
+ZdcByteArrayManagerTests >> testClearing [
 	| byteArrayManager one two |
 	byteArrayManager := ZdcByteArrayManager new.
 	byteArrayManager limit: 1.
@@ -24,11 +17,8 @@ ZdcByteArrayManagerTests>>testClearing [
 	self assert: two equals: (ByteArray new: 10)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcByteArrayManagerTests>>testSimple [
+{ #category : #testing }
+ZdcByteArrayManagerTests >> testSimple [
 	| byteArrayManager byteArray |
 	byteArrayManager := ZdcByteArrayManager new.
 	byteArrayManager limit: 1.

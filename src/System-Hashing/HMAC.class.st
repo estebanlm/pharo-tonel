@@ -12,65 +12,43 @@ Class {
 		'ipad',
 		'epad'
 	],
-	#category : #System-Hashing-Core,
-	#timestamp : '<historical>'
+	#category : #System-Hashing-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-HMAC class>>on: aHashFunction [
+{ #category : #'instance creation' }
+HMAC class >> on: aHashFunction [
 	^ self new setHash: aHashFunction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-HMAC>>destroy [
+{ #category : #accessing }
+HMAC >> destroy [
 	key destroy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-HMAC>>digestMessage: aByteArray [
+{ #category : #accessing }
+HMAC >> digestMessage: aByteArray [
 	^ hash hashMessage: (key bitXor: epad), (hash hashMessage: (key bitXor: ipad), aByteArray)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-HMAC>>digestSize [
+{ #category : #accessing }
+HMAC >> digestSize [
 	^ hash hashSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-HMAC>>key: aByteArray  [
+{ #category : #accessing }
+HMAC >> key: aByteArray [ 
 	key := aByteArray.
 	key size > hash blockSize ifTrue: [ key := hash hashMessage: key ].
 	key size < hash blockSize ifTrue: [ key := key , (ByteArray new: hash blockSize - key size) ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-HMAC>>printOn: aStream [
+{ #category : #printing }
+HMAC >> printOn: aStream [
 	aStream nextPutAll: 'HMAC-'; print: hash
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-HMAC>>setHash: aHash  [
+{ #category : #initialization }
+HMAC >> setHash: aHash [ 
 	hash := aHash.
 	ipad := ByteArray 
 		new: aHash blockSize

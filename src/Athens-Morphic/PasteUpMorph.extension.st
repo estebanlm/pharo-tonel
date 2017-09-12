@@ -1,12 +1,7 @@
-Extension {
-	#name : #PasteUpMorph
-}
+Extension { #name : #PasteUpMorph }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PasteUpMorph>>drawOnAthensCanvas: aCanvas  [
+{ #category : #'*Athens-Morphic' }
+PasteUpMorph >> drawOnAthensCanvas: aCanvas [ 
 	"Draw in order:
 	- background color
 	- background sketch, if any

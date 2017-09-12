@@ -7,35 +7,25 @@ Class {
 	#instVars : [
 		'cornerRadius'
 	],
-	#category : #Morphic-Base-Borders,
-	#timestamp : 'gvc 9/23/2008 11:52'
+	#category : #Morphic-Base-Borders
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-RoundedBorder>>cornerRadius [
+{ #category : #accessing }
+RoundedBorder >> cornerRadius [
 	"Answer the value of cornerRadius"
 
 	^ cornerRadius
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-RoundedBorder>>cornerRadius: anObject [
+{ #category : #accessing }
+RoundedBorder >> cornerRadius: anObject [
 	"Set the value of cornerRadius"
 
 	cornerRadius := anObject
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-RoundedBorder>>frameRectangle0: aRectangle on: aCanvas [
+{ #category : #drawing }
+RoundedBorder >> frameRectangle0: aRectangle on: aCanvas [
 	"Draw the border for a corner radius of 0."
 
 	aCanvas
@@ -45,11 +35,8 @@ RoundedBorder>>frameRectangle0: aRectangle on: aCanvas [
 		borderColor: self color
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-RoundedBorder>>frameRectangle1: aRectangle on: aCanvas [
+{ #category : #drawing }
+RoundedBorder >> frameRectangle1: aRectangle on: aCanvas [
 	"Draw the border for a corner radius of 1."
 
 	|r|
@@ -62,11 +49,8 @@ RoundedBorder>>frameRectangle1: aRectangle on: aCanvas [
 		line: r bottomLeft - (0@1) to: r topLeft + (0@1) width: self width color: self color
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-RoundedBorder>>frameRectangle2: aRectangle on: aCanvas [
+{ #category : #drawing }
+RoundedBorder >> frameRectangle2: aRectangle on: aCanvas [
 	"Draw the border for a corner radius of 2."
 
 	|r|
@@ -83,11 +67,8 @@ RoundedBorder>>frameRectangle2: aRectangle on: aCanvas [
 		line: r topLeft + (1@1) to: r topLeft + (1@1) width: self width color: self color
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-RoundedBorder>>frameRectangle3: aRectangle on: aCanvas [
+{ #category : #drawing }
+RoundedBorder >> frameRectangle3: aRectangle on: aCanvas [
 	"Draw the border for a corner radius of 3."
 
 	|r|
@@ -108,11 +89,8 @@ RoundedBorder>>frameRectangle3: aRectangle on: aCanvas [
 		line: r topLeft + (1@1) to: r topLeft + (2@1) width: self width color: self color
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-RoundedBorder>>frameRectangle4: aRectangle on: aCanvas [
+{ #category : #drawing }
+RoundedBorder >> frameRectangle4: aRectangle on: aCanvas [
 	"Draw the border for a corner radius of 4."
 
 	|r|
@@ -133,11 +111,8 @@ RoundedBorder>>frameRectangle4: aRectangle on: aCanvas [
 		line: r topLeft + (2@1) to: r topLeft + (3@1) width: self width color: self color
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-RoundedBorder>>frameRectangle5: aRectangle on: aCanvas [
+{ #category : #drawing }
+RoundedBorder >> frameRectangle5: aRectangle on: aCanvas [
 	"Draw the border for a corner radius of 5."
 
 	|r|
@@ -158,11 +133,8 @@ RoundedBorder>>frameRectangle5: aRectangle on: aCanvas [
 		line: r topLeft + (2@2) to: r topLeft + (4@1) width: self width color: self color
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-RoundedBorder>>frameRectangle6: aRectangle on: aCanvas [
+{ #category : #drawing }
+RoundedBorder >> frameRectangle6: aRectangle on: aCanvas [
 	"Draw the border for a corner radius of 6."
 
 	|r|
@@ -187,11 +159,8 @@ RoundedBorder>>frameRectangle6: aRectangle on: aCanvas [
 		line: r topLeft + (3@2) to: r topLeft + (5@1) width: self width color: self color
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-RoundedBorder>>frameRectangle7: aRectangle on: aCanvas [
+{ #category : #drawing }
+RoundedBorder >> frameRectangle7: aRectangle on: aCanvas [
 	"Draw the border for a corner radius of 7."
 
 	|r|
@@ -216,11 +185,8 @@ RoundedBorder>>frameRectangle7: aRectangle on: aCanvas [
 		line: r topLeft + (5@1) to: r topLeft + (6@1) width: self width color: self color
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-RoundedBorder>>frameRectangle8: aRectangle on: aCanvas [
+{ #category : #drawing }
+RoundedBorder >> frameRectangle8: aRectangle on: aCanvas [
 	"Draw the border for a corner radius of 8."
 
 	|r|
@@ -245,11 +211,8 @@ RoundedBorder>>frameRectangle8: aRectangle on: aCanvas [
 		line: r topLeft + (6@1) to: r topLeft + (7@1) width: self width color: self color
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-RoundedBorder>>frameRectangle: aRectangle on: aCanvas [
+{ #category : #drawing }
+RoundedBorder >> frameRectangle: aRectangle on: aCanvas [
 	"Draw the border. Radius is the x/y offset not width 'around the corner'."
 	
 	self cornerRadius = 0 ifTrue: [^self frameRectangle0: aRectangle on: aCanvas].
@@ -264,11 +227,8 @@ RoundedBorder>>frameRectangle: aRectangle on: aCanvas [
 	^super frameRectangle: aRectangle on: aCanvas.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-RoundedBorder>>initialize [
+{ #category : #initialization }
+RoundedBorder >> initialize [
 	"Initialize the receiver."
 
 	super initialize.

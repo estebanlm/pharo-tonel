@@ -15,106 +15,69 @@ Class {
 	#classVars : [
 		'Current'
 	],
-	#category : #Tool-CriticBrowser,
-	#timestamp : '<historical>'
+	#category : #Tool-CriticBrowser
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticWorkingConfiguration class>>current [
+{ #category : #'instance creation' }
+CriticWorkingConfiguration class >> current [
 
 	^ Current ifNil: [ Current  := self basicNew initialize ].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticWorkingConfiguration class>>exists [
+{ #category : #testing }
+CriticWorkingConfiguration class >> exists [
 
 	^ Current notNil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticWorkingConfiguration class>>new [
+{ #category : #'instance creation' }
+CriticWorkingConfiguration class >> new [
 
 	^ self shouldNotImplement
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticWorkingConfiguration class>>reset [
+{ #category : #'instance creation' }
+CriticWorkingConfiguration class >> reset [
 
 	Current := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticWorkingConfiguration>>environment [
+{ #category : #accessing }
+CriticWorkingConfiguration >> environment [
 	^ environment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticWorkingConfiguration>>environment: anObject [
+{ #category : #accessing }
+CriticWorkingConfiguration >> environment: anObject [
 	environment := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticWorkingConfiguration>>logInManifest [
+{ #category : #accessing }
+CriticWorkingConfiguration >> logInManifest [
 	^ logInManifest
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticWorkingConfiguration>>logInManifest: anObject [
+{ #category : #accessing }
+CriticWorkingConfiguration >> logInManifest: anObject [
 	logInManifest := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticWorkingConfiguration>>removeTestCase [
+{ #category : #accessing }
+CriticWorkingConfiguration >> removeTestCase [
 	^ removeTestCase
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticWorkingConfiguration>>removeTestCase: aBoolean [
+{ #category : #accessing }
+CriticWorkingConfiguration >> removeTestCase: aBoolean [
 	removeTestCase := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticWorkingConfiguration>>rule [
+{ #category : #accessing }
+CriticWorkingConfiguration >> rule [
 	^ rule
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticWorkingConfiguration>>rule: anObject [
+{ #category : #accessing }
+CriticWorkingConfiguration >> rule: anObject [
 	rule := anObject
 ]

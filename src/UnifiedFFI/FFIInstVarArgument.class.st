@@ -7,39 +7,26 @@ Class {
 	#instVars : [
 		'argName'
 	],
-	#category : #UnifiedFFI,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIInstVarArgument>>argName [
+{ #category : #accessing }
+FFIInstVarArgument >> argName [
 	^ argName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIInstVarArgument>>argName: anObject [
+{ #category : #accessing }
+FFIInstVarArgument >> argName: anObject [
 	argName := anObject
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIInstVarArgument>>emitArgument: aBuilder context: aContext [
+{ #category : #'emitting code' }
+FFIInstVarArgument >> emitArgument: aBuilder context: aContext [
 	aBuilder pushInstVar: (aContext methodClass instVarIndexFor: self argName).
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIInstVarArgument>>emitArgument: aBuilder context: aContext objectClass: objectClass instVarName: aName [
+{ #category : #'emitting code' }
+FFIInstVarArgument >> emitArgument: aBuilder context: aContext objectClass: objectClass instVarName: aName [
 	"If argument is an object, I need to send value of instVar aName instead it self"
 	aBuilder 
 		pushInstVar: (aContext methodClass instVarIndexFor: self argName);
@@ -49,11 +36,8 @@ FFIInstVarArgument>>emitArgument: aBuilder context: aContext objectClass: object
 		send: #instVarAt:
 ]
 
-{
-	#category : #'private emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIInstVarArgument>>emitArgumentVariableAccesingPart: aBuilder context: aContext objectClass: objectClass instVarName: aName [
+{ #category : #'private emitting code' }
+FFIInstVarArgument >> emitArgumentVariableAccesingPart: aBuilder context: aContext objectClass: objectClass instVarName: aName [
 	aBuilder 
 		pushInstVar: (aContext methodClass instVarIndexFor: self argName);
 		pushLiteral: (objectClass 
@@ -62,10 +46,7 @@ FFIInstVarArgument>>emitArgumentVariableAccesingPart: aBuilder context: aContext
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIInstVarArgument>>rolledPointerTempName [
+{ #category : #private }
+FFIInstVarArgument >> rolledPointerTempName [
 	^ self rolledPointerTempNameFor: self argName
 ]

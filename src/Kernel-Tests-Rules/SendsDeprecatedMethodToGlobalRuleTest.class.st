@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #SendsDeprecatedMethodToGlobalRuleTest,
 	#superclass : #TestCase,
@@ -8,24 +5,17 @@ Class {
 		'testClass',
 		'globalName'
 	],
-	#category : #Kernel-Tests-Rules,
-	#timestamp : ''
+	#category : #Kernel-Tests-Rules
 }
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SendsDeprecatedMethodToGlobalRuleTest>>deprecatedMethodName [
+{ #category : #properties }
+SendsDeprecatedMethodToGlobalRuleTest >> deprecatedMethodName [
 
 	^ 'deprecatedMethod'
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SendsDeprecatedMethodToGlobalRuleTest>>globalName [
+{ #category : #properties }
+SendsDeprecatedMethodToGlobalRuleTest >> globalName [
 
 	^ globalName ifNil: [ 
 		[ globalName :=
@@ -34,20 +24,14 @@ SendsDeprecatedMethodToGlobalRuleTest>>globalName [
 			Smalltalk globals includesKey: globalName ] ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SendsDeprecatedMethodToGlobalRuleTest>>nonDeprecatedMethodName [
+{ #category : #properties }
+SendsDeprecatedMethodToGlobalRuleTest >> nonDeprecatedMethodName [
 
 	^ 'not', self deprecatedMethodName 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SendsDeprecatedMethodToGlobalRuleTest>>setUp [
+{ #category : #running }
+SendsDeprecatedMethodToGlobalRuleTest >> setUp [
 	| deprClass |
 	
 	deprClass := Object newAnonymousSubclass. 
@@ -60,11 +44,8 @@ SendsDeprecatedMethodToGlobalRuleTest>>setUp [
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SendsDeprecatedMethodToGlobalRuleTest>>tearDown [
+{ #category : #running }
+SendsDeprecatedMethodToGlobalRuleTest >> tearDown [
 
 	Smalltalk globals removeKey: self globalName ifAbsent: [ ].
 	globalName := nil.
@@ -72,11 +53,8 @@ SendsDeprecatedMethodToGlobalRuleTest>>tearDown [
 	testClass := nil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SendsDeprecatedMethodToGlobalRuleTest>>testBasicCheck [
+{ #category : #tests }
+SendsDeprecatedMethodToGlobalRuleTest >> testBasicCheck [
 
 	| testMethod |
 	testMethod := testClass >> (
@@ -86,11 +64,8 @@ SendsDeprecatedMethodToGlobalRuleTest>>testBasicCheck [
 		eprop rule class = SendsDeprecatedMethodToGlobalRule ])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SendsDeprecatedMethodToGlobalRuleTest>>testBasicCheck1 [
+{ #category : #tests }
+SendsDeprecatedMethodToGlobalRuleTest >> testBasicCheck1 [
 
 	| testMethod |
 	testMethod := testClass >> (
@@ -100,11 +75,8 @@ SendsDeprecatedMethodToGlobalRuleTest>>testBasicCheck1 [
 		eprop rule class = SendsDeprecatedMethodToGlobalRule ])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SendsDeprecatedMethodToGlobalRuleTest>>testBasicCheck2 [
+{ #category : #tests }
+SendsDeprecatedMethodToGlobalRuleTest >> testBasicCheck2 [
 
 	| testMethod |
 	testMethod := testClass >> (
@@ -114,11 +86,8 @@ SendsDeprecatedMethodToGlobalRuleTest>>testBasicCheck2 [
 		eprop rule class = SendsDeprecatedMethodToGlobalRule ])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SendsDeprecatedMethodToGlobalRuleTest>>testBasicCheck3 [
+{ #category : #tests }
+SendsDeprecatedMethodToGlobalRuleTest >> testBasicCheck3 [
 
 	| testMethod |
 	

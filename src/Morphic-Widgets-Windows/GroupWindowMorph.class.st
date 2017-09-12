@@ -13,25 +13,18 @@ Class {
 	#instVars : [
 		'tabGroup'
 	],
-	#category : #Morphic-Widgets-Windows-Widgets,
-	#timestamp : 'LaurentLaffont 7/12/2011 23:33'
+	#category : #Morphic-Widgets-Windows-Widgets
 }
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>acceptDroppingMorph: aSystemWindow event: evt [
+{ #category : #layout }
+GroupWindowMorph >> acceptDroppingMorph: aSystemWindow event: evt [
 	"Add the window."
 
 	self addWindow: aSystemWindow
 ]
 
-{
-	#category : #windows,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>addWindow: aSystemWindow [
+{ #category : #windows }
+GroupWindowMorph >> addWindow: aSystemWindow [
   "Add an existing window to the pages."
 
 	aSystemWindow isTopWindow
@@ -56,11 +49,8 @@ GroupWindowMorph>>addWindow: aSystemWindow [
 		to: self
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>changePropotionalLayout [
+{ #category : #layout }
+GroupWindowMorph >> changePropotionalLayout [
 	| layout |
 	((layout := self layoutPolicy) notNil and:[layout isProportionalLayout])
 		ifTrue:[^self]. "already proportional layout"
@@ -68,19 +58,13 @@ GroupWindowMorph>>changePropotionalLayout [
 	self layoutChanged.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>defaultColor [
+{ #category : #initialize }
+GroupWindowMorph >> defaultColor [
 	^ self theme windowColor lighter
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>dragTab: aSystemWindow event: anEvent in: aTabLabel [
+{ #category : #dropping/grabbing }
+GroupWindowMorph >> dragTab: aSystemWindow event: anEvent [ in: aTabLabel
 	"Drag a tab. Remove the window from the organiser and place in hand."
 	
 	self removeWindow: aSystemWindow.
@@ -88,11 +72,8 @@ GroupWindowMorph>>dragTab: aSystemWindow event: anEvent in: aTabLabel [
 	anEvent hand grabMorph: aSystemWindow
 ]
 
-{
-	#category : #windows,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>grabWindow [
+{ #category : #windows }
+GroupWindowMorph >> grabWindow [
 	"Request an existing window from the user and add it."
 
 	|windows choice|
@@ -106,11 +87,8 @@ GroupWindowMorph>>grabWindow [
 	choice ifNotNil: [self addWindow: choice]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>handleDropMorph: anEvent [
+{ #category : #events-processing }
+GroupWindowMorph >> handleDropMorph: anEvent [
 	"Handle a dropping morph."
 	
 	| aMorph |
@@ -124,11 +102,8 @@ GroupWindowMorph>>handleDropMorph: anEvent [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>initialize [
+{ #category : #initialization }
+GroupWindowMorph >> initialize [
 	"Add the tab group with an inital workspace."
 
 	super initialize.
@@ -142,19 +117,13 @@ GroupWindowMorph>>initialize [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>isActive [
+{ #category : #testing }
+GroupWindowMorph >> isActive [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>isWindowActive: aSystemWindow [
+{ #category : #testing }
+GroupWindowMorph >> isWindowActive: aSystemWindow [
 	"Answer whether the given window is active.
 	True if the receiver is active and the window is the
 	current page."
@@ -162,22 +131,16 @@ GroupWindowMorph>>isWindowActive: aSystemWindow [
 	^ self tabGroup page == aSystemWindow and: [aSystemWindow isTopWindow ]
 ]
 
-{
-	#category : #windows,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>newTabGroup [
+{ #category : #windows }
+GroupWindowMorph >> newTabGroup [
 	"Answer a new tab group."
 
 	^(self newTabGroup: #())
 		cornerStyle: #square
 ]
 
-{
-	#category : #windows,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>offerWindowMenu [
+{ #category : #windows }
+GroupWindowMorph >> offerWindowMenu [
 	"Popup the window menu. Fill from current workspace."
 
 	| aMenu |
@@ -191,19 +154,13 @@ GroupWindowMorph>>offerWindowMenu [
 	aMenu popUpEvent: self currentEvent in: self world
 ]
 
-{
-	#category : #windows,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>onWindowLabelChanged: ann [
+{ #category : #windows }
+GroupWindowMorph >> onWindowLabelChanged: ann [
 	self tabGroup relabelPage: ann window with: (self tabLabelFor: ann window)  
 ]
 
-{
-	#category : #windows,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>removeWindow: aSystemWindow [
+{ #category : #windows }
+GroupWindowMorph >> removeWindow: aSystemWindow [
 	"Remove a window from the pages."
 
 	aSystemWindow announcer unsubscribe: self.
@@ -215,29 +172,20 @@ GroupWindowMorph>>removeWindow: aSystemWindow [
 		ifTrue: [ self owner delete ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>tabGroup [
+{ #category : #accessing }
+GroupWindowMorph >> tabGroup [
 
 	^ tabGroup
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>tabGroup: anObject [
+{ #category : #accessing }
+GroupWindowMorph >> tabGroup: anObject [
 
 	tabGroup := anObject
 ]
 
-{
-	#category : #windows,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>tabLabelFor: aSystemWindow [
+{ #category : #windows }
+GroupWindowMorph >> tabLabelFor: aSystemWindow [
 	"Answer the tab label to use for the given page."
 
 	^self newRow: {
@@ -249,11 +197,8 @@ GroupWindowMorph>>tabLabelFor: aSystemWindow [
 			help: 'Close this tab and free the window'}
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>update: aSymbol [
+{ #category : #updating }
+GroupWindowMorph >> update: aSymbol [
 	"Handle tab changes."
 
 	super update: aSymbol.
@@ -261,11 +206,8 @@ GroupWindowMorph>>update: aSymbol [
 		ifTrue: [self tabGroup page activate]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>update: aSymbol with: anObject [
+{ #category : #updating }
+GroupWindowMorph >> update: aSymbol with: anObject [
 	"Handle tab changes."
 
 	super update: aSymbol.
@@ -278,11 +220,8 @@ GroupWindowMorph>>update: aSymbol with: anObject [
 				]
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupWindowMorph>>wantsDroppedMorph: aMorph event: evt [
+{ #category : #dropping/grabbing }
+GroupWindowMorph >> wantsDroppedMorph: aMorph event: evt [
   "Accept if a SystemWindow."
   
   self visible ifFalse: [^ false].

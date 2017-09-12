@@ -22,24 +22,17 @@ Class {
 	#classVars : [
 		'FinalizationList'
 	],
-	#category : #Announcements-Core,
-	#timestamp : 'IgorStasenko 3/12/2011 20:43'
+	#category : #Announcements-Core
 }
 
-{
-	#category : #'finalization support',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription class>>finalizationList [
+{ #category : #'finalization support' }
+WeakAnnouncementSubscription class >> finalizationList [
 	
 	^ FinalizationList ifNil: [ FinalizationList := WeakFinalizationList new ].
 ]
 
-{
-	#category : #'finalization support',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription class>>finalizeValues [
+{ #category : #'finalization support' }
+WeakAnnouncementSubscription class >> finalizeValues [
 	
 	| head |
 	
@@ -51,11 +44,8 @@ WeakAnnouncementSubscription class>>finalizeValues [
 	].
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription class>>initialize [
+{ #category : #'class initialization' }
+WeakAnnouncementSubscription class >> initialize [
 	"self initialize"
 	
 	
@@ -66,72 +56,48 @@ WeakAnnouncementSubscription class>>initialize [
 	"Make sure that it is not added twice."
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription class>>new [
+{ #category : #'instance creation' }
+WeakAnnouncementSubscription class >> new [
 	^ (self basicNew: 1) initialize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>action [
+{ #category : #accessing }
+WeakAnnouncementSubscription >> action [
 
 	^ action
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>action: anObject [
+{ #category : #accessing }
+WeakAnnouncementSubscription >> action: anObject [
 
 	action := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>announcementClass [
+{ #category : #accessing }
+WeakAnnouncementSubscription >> announcementClass [
 
 	^ announcementClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>announcementClass: anObject [
+{ #category : #accessing }
+WeakAnnouncementSubscription >> announcementClass: anObject [
 
 	announcementClass := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>announcer [
+{ #category : #accessing }
+WeakAnnouncementSubscription >> announcer [
 
 	^ announcer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>announcer: anAnnouncer [
+{ #category : #accessing }
+WeakAnnouncementSubscription >> announcer: anAnnouncer [
 	announcer := anAnnouncer
 ]
 
-{
-	#category : #announcing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>deliver: anAnnouncement [
+{ #category : #announcing }
+WeakAnnouncementSubscription >> deliver: anAnnouncement [
 	" deliver an announcement to receiver. In case of failure, it will be handled in separate process"
 
 	^ (self handlesAnnouncement: anAnnouncement ) ifTrue: [
@@ -139,38 +105,26 @@ WeakAnnouncementSubscription>>deliver: anAnnouncement [
 			on: UnhandledError fork: [:ex | ex pass ]]
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>finalize [
+{ #category : #finalization }
+WeakAnnouncementSubscription >> finalize [
 
 	announcer removeSubscription: self.
 	
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>handlesAnnouncement: anAnnouncement [
+{ #category : #'error handling' }
+WeakAnnouncementSubscription >> handlesAnnouncement: anAnnouncement [
 
 	^ announcementClass handlesAnnouncement: anAnnouncement
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>initialize [
+{ #category : #initialization }
+WeakAnnouncementSubscription >> initialize [
 	list := self class finalizationList
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>makeStrong [
+{ #category : #converting }
+WeakAnnouncementSubscription >> makeStrong [
 
 	| sub |
 	sub := self subscriber.
@@ -185,27 +139,18 @@ WeakAnnouncementSubscription>>makeStrong [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>makeWeak [
+{ #category : #converting }
+WeakAnnouncementSubscription >> makeWeak [
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>next [
+{ #category : #accessing }
+WeakAnnouncementSubscription >> next [
 	^ next
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>printOn: stream [
+{ #category : #printing }
+WeakAnnouncementSubscription >> printOn: stream [
 
 	super printOn: stream.
 	
@@ -215,31 +160,22 @@ WeakAnnouncementSubscription>>printOn: stream [
 		nextPut: $).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>subscriber [
+{ #category : #accessing }
+WeakAnnouncementSubscription >> subscriber [
 
 	^ self basicAt: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>subscriber: anObject [
+{ #category : #accessing }
+WeakAnnouncementSubscription >> subscriber: anObject [
 
 	self subscriber ifNotNil: [ self error: 'subscriber already set' ].
 
 	self basicAt: 1 put: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-WeakAnnouncementSubscription>>valuable: aValuable [
+{ #category : #accessing }
+WeakAnnouncementSubscription >> valuable: aValuable [
 	"Used when subscriber should be extracted from valuable object"
 	self action:  aValuable.
 	self subscriber: aValuable receiver.

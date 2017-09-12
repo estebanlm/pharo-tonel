@@ -1,34 +1,21 @@
-"
-
-"
 Class {
 	#name : #NautilusUtilsTest,
 	#superclass : #TestCase,
-	#category : #Nautilus-Tests,
-	#timestamp : ''
+	#category : #Nautilus-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusUtilsTest>>stubClass [
+{ #category : #accessing }
+NautilusUtilsTest >> stubClass [
 	^ NautilusUtilsTestStub
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusUtilsTest>>stubTestClass [
+{ #category : #accessing }
+NautilusUtilsTest >> stubTestClass [
 	^ NautilusUtilsTestStubTest
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusUtilsTest>>testAsTestMethod [
+{ #category : #tests }
+NautilusUtilsTest >> testAsTestMethod [
 	{((self stubClass >> #one) -> (self stubTestClass >> #testOne)).
 	((self stubClass >> #one:) -> (self stubTestClass >> #testOne)).
 	((self stubClass >> #two) -> (self stubTestClass >> #testTwo)).
@@ -49,11 +36,8 @@ NautilusUtilsTest>>testAsTestMethod [
 		do: [ :each | self assert: each key asTestMethod == each value ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusUtilsTest>>testCorrespondingTestCase [
+{ #category : #tests }
+NautilusUtilsTest >> testCorrespondingTestCase [
 	"tests that classes and their meta classes have the same test class
 	corresponding to them"
 
@@ -71,11 +55,8 @@ NautilusUtilsTest>>testCorrespondingTestCase [
 		do: [ :each | self assert: each key correspondingTestCase == each value ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusUtilsTest>>testCorrespondingTestMethod [
+{ #category : #tests }
+NautilusUtilsTest >> testCorrespondingTestMethod [
 	{((self stubClass >> #one) -> (self stubTestClass >> #testOne)).
 	((self stubClass >> #one:) -> (self stubTestClass >> #testOne)).
 	((self stubClass >> #two) -> (self stubTestClass >> #testTwo)).
@@ -96,11 +77,8 @@ NautilusUtilsTest>>testCorrespondingTestMethod [
 		do: [ :each | self assert: each key correspondingTestMethod == each value ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusUtilsTest>>testCorrespondingTestedMethods [
+{ #category : #tests }
+NautilusUtilsTest >> testCorrespondingTestedMethods [
 	{(self stubTestClass >> #testOne) ->
 		{(self stubClass >> #one).
 		(self stubClass >> #one:)}.
@@ -122,11 +100,8 @@ NautilusUtilsTest>>testCorrespondingTestedMethods [
 			self assert: each correspondingTestedMethods isEmpty ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusUtilsTest>>testNormalizedSelectorForComparison [
+{ #category : #tests }
+NautilusUtilsTest >> testNormalizedSelectorForComparison [
 	#(#one #one: #two #two: #one:two: #oneTwo: #+ #- #+-)
 		with: #('one' 'one' 'two' 'two' 'onetwo' 'onetwo' '+' '-' '+-')
 		do: [ :original :transformed | 

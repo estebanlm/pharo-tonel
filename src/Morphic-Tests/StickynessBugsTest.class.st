@@ -7,15 +7,11 @@ Instance Variables
 Class {
 	#name : #StickynessBugsTest,
 	#superclass : #MorphicUIBugTest,
-	#category : #Morphic-Tests-Bugs,
-	#timestamp : 'wiz 11/24/2006 00:24'
+	#category : #Morphic-Tests-Bugs
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-StickynessBugsTest>>testForTiltedStickyness [
+{ #category : #tests }
+StickynessBugsTest >> testForTiltedStickyness [
 	"self new testForTiltedStickyness"
 
 	"self run: #testForTiltedStickyness"

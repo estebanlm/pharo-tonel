@@ -7,30 +7,20 @@ Class {
 	#instVars : [
 		'tempVectorName'
 	],
-	#category : #OpalCompiler-Core-IR-Nodes,
-	#timestamp : 'MarcusDenker 8/11/2014 10:14'
+	#category : #OpalCompiler-Core-IR-Nodes
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRRemoteTempAccess>>isRemoteTemp [
+{ #category : #testing }
+IRRemoteTempAccess >> isRemoteTemp [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRRemoteTempAccess>>tempVectorName [
+{ #category : #accessing }
+IRRemoteTempAccess >> tempVectorName [
 	^ tempVectorName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRRemoteTempAccess>>tempVectorName: anObject [
+{ #category : #accessing }
+IRRemoteTempAccess >> tempVectorName: anObject [
 	tempVectorName := anObject
 ]

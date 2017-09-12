@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #LocalRecursionStopperTest,
 	#superclass : #TestCase,
@@ -8,42 +5,29 @@ Class {
 		'fork',
 		'value'
 	],
-	#category : #Kernel-Tests-Processes,
-	#timestamp : ''
+	#category : #Kernel-Tests-Processes
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-LocalRecursionStopperTest>>complexRecursion [
+{ #category : #'as yet unclassified' }
+LocalRecursionStopperTest >> complexRecursion [
 	
 	LocalRecursionStopper during: [ self complexRecursionFirstCall ].
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-LocalRecursionStopperTest>>complexRecursionFirstCall [
+{ #category : #'as yet unclassified' }
+LocalRecursionStopperTest >> complexRecursionFirstCall [
 
 	LocalRecursionStopper during: [ self complexRecursionLastCall ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-LocalRecursionStopperTest>>complexRecursionLastCall [
+{ #category : #'as yet unclassified' }
+LocalRecursionStopperTest >> complexRecursionLastCall [
 	
 	self complexRecursion
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-LocalRecursionStopperTest>>mixedMethod [
+{ #category : #'as yet unclassified' }
+LocalRecursionStopperTest >> mixedMethod [
 
 	LocalRecursionStopper during: [ 
 		self assert: value equals: 0.
@@ -65,38 +49,26 @@ LocalRecursionStopperTest>>mixedMethod [
 	^ value 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-LocalRecursionStopperTest>>recursion [
+{ #category : #'as yet unclassified' }
+LocalRecursionStopperTest >> recursion [
 	
 	LocalRecursionStopper during: [ self recursion ].
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-LocalRecursionStopperTest>>setUp [
+{ #category : #'as yet unclassified' }
+LocalRecursionStopperTest >> setUp [
 
 	value := 0
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-LocalRecursionStopperTest>>tearDown [
+{ #category : #'as yet unclassified' }
+LocalRecursionStopperTest >> tearDown [
 
 	fork ifNotNil: [ fork terminate. fork := nil ].
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-LocalRecursionStopperTest>>testMixedMethod [
+{ #category : #'as yet unclassified' }
+LocalRecursionStopperTest >> testMixedMethod [
 
 	| result |
 
@@ -105,31 +77,22 @@ LocalRecursionStopperTest>>testMixedMethod [
 	self assert: result equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-LocalRecursionStopperTest>>testNoRecursion [
+{ #category : #tests }
+LocalRecursionStopperTest >> testNoRecursion [
 
 	LocalRecursionStopper during: [ value := value + 1 ].
 
 	self assert: value equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-LocalRecursionStopperTest>>testWithComplexRecursion [
+{ #category : #tests }
+LocalRecursionStopperTest >> testWithComplexRecursion [
 
 	self should: [ self complexRecursion ] notTakeMoreThanMilliseconds: 3.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-LocalRecursionStopperTest>>testWithRecursion [
+{ #category : #tests }
+LocalRecursionStopperTest >> testWithRecursion [
 
 	self should: [ self recursion ] notTakeMoreThanMilliseconds: 3.
 ]

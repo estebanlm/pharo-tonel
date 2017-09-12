@@ -4,22 +4,15 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestNetworkUUID,
 	#superclass : #PackageManifest,
-	#category : #Network-UUID,
-	#timestamp : '<historical>'
+	#category : #Network-UUID
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-ManifestNetworkUUID class>>ignoredDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestNetworkUUID class >> ignoredDependencies [
 	^ #(#'Network-Kernel')
 ]
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-ManifestNetworkUUID class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestNetworkUUID class >> manuallyResolvedDependencies [
 	^ #(#'AST-Core' #'Collections-Abstract')
 ]

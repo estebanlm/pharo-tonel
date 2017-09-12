@@ -19,15 +19,11 @@ Class {
 		'timestamp',
 		'project'
 	],
-	#category : #Versionner-Core-DependenciesModel,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-DependenciesModel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion class>>fromVersionName: aVersionName [
+{ #category : #'instance creation' }
+MTVersion class >> fromVersionName: aVersionName [
 	"Create a new version from a versionName (a file reference)."
 
 	| version names |
@@ -40,11 +36,8 @@ MTVersion class>>fromVersionName: aVersionName [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion class>>fromVersionString: aVersionString [
+{ #category : #'instance creation' }
+MTVersion class >> fromVersionString: aVersionString [
 	"Create a new version from a versionString."
 
 	| version |
@@ -54,11 +47,8 @@ MTVersion class>>fromVersionString: aVersionString [
 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion>>= other [
+{ #category : #comparing }
+MTVersion >> = other [
 	(self name = other name) ifFalse: [ ^false ].
 	(self author = other author) ifFalse: [ ^false ].
 	(self versionString = other versionString) ifFalse: [ ^false ].
@@ -68,51 +58,33 @@ MTVersion>>= other [
 	^true.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion>>acceptVisitor: anMTProjectVisitor [
+{ #category : #visiting }
+MTVersion >> acceptVisitor: anMTProjectVisitor [
 	anMTProjectVisitor visitVersion: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion>>author [
+{ #category : #accessing }
+MTVersion >> author [
 	^ author
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion>>author: anObject [
+{ #category : #accessing }
+MTVersion >> author: anObject [
 	author := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion>>description [
+{ #category : #accessing }
+MTVersion >> description [
 	^ description
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion>>description: anObject [
+{ #category : #accessing }
+MTVersion >> description: anObject [
 	description := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion>>mcVersion [
+{ #category : #accessing }
+MTVersion >> mcVersion [
 	"Get the MetacelloMCVersion object representing this version"
 
 	| configurationClass |
@@ -120,27 +92,18 @@ MTVersion>>mcVersion [
 	configurationClass project version: versionString. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion>>name [
+{ #category : #accessing }
+MTVersion >> name [
 	^name.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion>>name: aName  [
+{ #category : #accessing }
+MTVersion >> name: aName [ 
 	name := aName.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion>>printOn: aStream [
+{ #category : #printing }
+MTVersion >> printOn: aStream [
 	"Pretty print for a version"
 	aStream "nextPutAll: name ;
 			nextPut: $- ;
@@ -149,44 +112,29 @@ MTVersion>>printOn: aStream [
 			nextPutAll: versionString asString .
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion>>project [
+{ #category : #accessing }
+MTVersion >> project [
 	"Get the project this version is refering to. May be a project or a required project"
 	^ project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion>>timestamp [
+{ #category : #accessing }
+MTVersion >> timestamp [
 	^ timestamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion>>timestamp: anObject [
+{ #category : #accessing }
+MTVersion >> timestamp: anObject [
 	timestamp := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion>>versionString [
+{ #category : #accessing }
+MTVersion >> versionString [
 	^ versionString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTVersion>>versionString: aVersionString [
+{ #category : #accessing }
+MTVersion >> versionString: aVersionString [
 	versionString := aVersionString.
 	name := aVersionString.
 ]

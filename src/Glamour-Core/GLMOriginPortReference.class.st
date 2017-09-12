@@ -10,66 +10,44 @@ Class {
 		'active',
 		'transformation'
 	],
-	#category : #Glamour-Core,
-	#timestamp : '<historical>'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMOriginPortReference>>beActive  [
+{ #category : #accessing }
+GLMOriginPortReference >> beActive [ 
 	 
 	active := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMOriginPortReference>>bePassive  [
+{ #category : #accessing }
+GLMOriginPortReference >> bePassive [ 
 	 
 	active := false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMOriginPortReference>>isActive  [
+{ #category : #testing }
+GLMOriginPortReference >> isActive [ 
 	 
 	^active ifNil: [active := true]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMOriginPortReference>>isPassive  [
+{ #category : #testing }
+GLMOriginPortReference >> isPassive [ 
 	 
 	^self isActive not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMOriginPortReference>>transformation [
+{ #category : #accessing }
+GLMOriginPortReference >> transformation [
 	^ transformation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMOriginPortReference>>transformation: anObject [
+{ #category : #accessing }
+GLMOriginPortReference >> transformation: anObject [
 	transformation := anObject
 ]
 
-{
-	#category : #accessing-convenience,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMOriginPortReference>>value [
+{ #category : #accessing-convenience }
+GLMOriginPortReference >> value [
 	^ self transformation isNil ifTrue: [self port value] ifFalse: [self transformation value: self port value]
 ]

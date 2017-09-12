@@ -9,59 +9,40 @@ Class {
 		'commitVersion',
 		'nextVersion'
 	],
-	#category : #Versionner-Commit,
-	#timestamp : 'EstebanLorenzano 4/23/2015 15:50'
+	#category : #Versionner-Commit
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction class>>project: aMTProject  [
+{ #category : #'instance creation' }
+VSCommitProjectAction class >> project: aMTProject [ 
 	^ self basicNew
 		initializeProject: aMTProject;
 		yourself
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction>>browseOn: aBrowser [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitProjectAction >> browseOn: aBrowser [
 	aBrowser browseProject: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction>>configurationClass [
+{ #category : #accessing }
+VSCommitProjectAction >> configurationClass [
 	^ self project configurationClass
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction>>currentString [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitProjectAction >> currentString [
 	^ [ self project stableVersion ifNotNil: [  :version | version versionString  ] ]
 	on: Error 
 	do: [ :e | '' ]
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction>>displayString [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitProjectAction >> displayString [
 	^ self project name
 ]
 
-{
-	#category : #executing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction>>executeOn: aUnit [
+{ #category : #executing }
+VSCommitProjectAction >> executeOn: aUnit [
 	| version |
 	version := self nextVersionOn: aUnit.
 	self project devWorkflow 
@@ -72,91 +53,58 @@ VSCommitProjectAction>>executeOn: aUnit [
 		comment: aUnit comment
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction>>icon [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitProjectAction >> icon [
 	^ Smalltalk ui icons iconNamed: #config
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction>>initializeProject: aMTProject  [
+{ #category : #initialization }
+VSCommitProjectAction >> initializeProject: aMTProject [ 
 	project := aMTProject.
 	self initialize
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction>>isProject [
+{ #category : #testing }
+VSCommitProjectAction >> isProject [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction>>nextVersion: anObject [
+{ #category : #accessing }
+VSCommitProjectAction >> nextVersion: anObject [
 	^ nextVersion := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction>>nextVersionOn: aUnit  [
+{ #category : #accessing }
+VSCommitProjectAction >> nextVersionOn: aUnit [ 
 	^ nextVersion ifNil: [ aUnit commitVersion nextVersionOf: self project ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction>>packageName [
+{ #category : #accessing }
+VSCommitProjectAction >> packageName [
 	^ self project configurationClass package name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction>>project [
+{ #category : #accessing }
+VSCommitProjectAction >> project [
 	^ project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction>>removeOn: aUnit [
+{ #category : #accessing }
+VSCommitProjectAction >> removeOn: aUnit [
 	aUnit removeProjectAction: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction>>repository [
+{ #category : #accessing }
+VSCommitProjectAction >> repository [
 	^ self project repository
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction>>validate [
+{ #category : #validation }
+VSCommitProjectAction >> validate [
 	(VSCommitProjectValidator project: self project) validate
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectAction>>workingCopy  [
+{ #category : #private }
+VSCommitProjectAction >> workingCopy [ 
 	^ self project workingCopy
 ]

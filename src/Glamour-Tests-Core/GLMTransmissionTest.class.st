@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMTransmissionTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTransmissionTest>>testBundleStrategy [
+{ #category : #tests }
+GLMTransmissionTest >> testBundleStrategy [
 	| pane1 pane2 transmission presentation |
 	pane1 := GLMPane named: 'pane1'.
 	pane2 := GLMPane named: 'pane2'.
@@ -31,11 +24,8 @@ GLMTransmissionTest>>testBundleStrategy [
 	self assert: pane2 presentations first ~~ presentation
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTransmissionTest>>testCopy [
+{ #category : #tests }
+GLMTransmissionTest >> testCopy [
 	| transmission port1 port2 newTransmission |
 	transmission := GLMTransmission new.
 	port1 := GLMSimplePort new.
@@ -47,19 +37,13 @@ GLMTransmissionTest>>testCopy [
 	self assert: newTransmission origins first ~~ transmission origins first.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTransmissionTest>>testDefaultStrategy [
+{ #category : #tests }
+GLMTransmissionTest >> testDefaultStrategy [
 	self assert: GLMTransmission new transmissionStrategy class equals: GLMNoStrategy
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTransmissionTest>>testNoOverrideStrategy [
+{ #category : #tests }
+GLMTransmissionTest >> testNoOverrideStrategy [
 	| pane1 pane2 transmission presentation |
 	pane1 := GLMPane named: 'pane1'.
 	pane2 := GLMPane named: 'pane2'.
@@ -82,11 +66,8 @@ GLMTransmissionTest>>testNoOverrideStrategy [
 	self assert: pane2 presentations first == presentation
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTransmissionTest>>testSimple [
+{ #category : #tests }
+GLMTransmissionTest >> testSimple [
 	| pane1 pane2 transmission |
 	pane1 := GLMPane named: 'test1'.
 	pane2 := GLMPane named: 'test2'.
@@ -102,11 +83,8 @@ GLMTransmissionTest>>testSimple [
 	self assert: (pane2 port: #input) value equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTransmissionTest>>testTriggerConditions  [
+{ #category : #tests }
+GLMTransmissionTest >> testTriggerConditions [ 
 	"Tests that the transmission is triggered only when the origin changes." 
 	
 	| transmission port1 port2 | 
@@ -120,11 +98,8 @@ GLMTransmissionTest>>testTriggerConditions  [
 	self assert: (transmission originatesAt: GLMPort new) not
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTransmissionTest>>testTriggerConditionsWithParentPort  [
+{ #category : #tests }
+GLMTransmissionTest >> testTriggerConditionsWithParentPort [ 
 	| transmission presentation | 
 	transmission := GLMTransmission new. 
 	presentation := GLMPresentation new. 
@@ -141,11 +116,8 @@ GLMTransmissionTest>>testTriggerConditionsWithParentPort  [
 	self assert: (transmission originatesAt: (presentation pane port: #port1))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTransmissionTest>>testWhenCondition [
+{ #category : #tests }
+GLMTransmissionTest >> testWhenCondition [
 	"Tests that the transmission is triggered only when the origin changes."
 
 	| transmission port1 port2 |

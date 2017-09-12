@@ -18,31 +18,21 @@ Class {
 		'DoubleTouchSpeed',
 		'MaxDistance'
 	],
-	#category : #OSWindow-Core-Gestures,
-	#timestamp : 'MerwanOuddane 7/22/2015 16:27'
+	#category : #OSWindow-Core-Gestures
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchOneFingerDoubleTapDetector class>>doubleTouchSpeed [
+{ #category : #accessing }
+OSTouchOneFingerDoubleTapDetector class >> doubleTouchSpeed [
 	^ DoubleTouchSpeed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchOneFingerDoubleTapDetector class>>doubleTouchSpeed: anObject [
+{ #category : #accessing }
+OSTouchOneFingerDoubleTapDetector class >> doubleTouchSpeed: anObject [
 	DoubleTouchSpeed := anObject
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchOneFingerDoubleTapDetector class>>doubleTouchSpeedSettingsOn: aBuilder [
+{ #category : #settings }
+OSTouchOneFingerDoubleTapDetector class >> doubleTouchSpeedSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #doubleTouchSpeed)
 		target: self;
@@ -52,37 +42,25 @@ OSTouchOneFingerDoubleTapDetector class>>doubleTouchSpeedSettingsOn: aBuilder [
 		parent: #doubleTapGesture
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchOneFingerDoubleTapDetector class>>initialize [
+{ #category : #'class initialization' }
+OSTouchOneFingerDoubleTapDetector class >> initialize [
 	super initialize.
 	DoubleTouchSpeed := 700.
 	MaxDistance := 0.05
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchOneFingerDoubleTapDetector class>>maxDistance [
+{ #category : #accessing }
+OSTouchOneFingerDoubleTapDetector class >> maxDistance [
 	^ MaxDistance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchOneFingerDoubleTapDetector class>>maxDistance: anObject [
+{ #category : #accessing }
+OSTouchOneFingerDoubleTapDetector class >> maxDistance: anObject [
 	MaxDistance := anObject
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchOneFingerDoubleTapDetector class>>maxDistanceSettingsOn: aBuilder [
+{ #category : #settings }
+OSTouchOneFingerDoubleTapDetector class >> maxDistanceSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #maxDistance)
 		target: self;
@@ -92,22 +70,16 @@ OSTouchOneFingerDoubleTapDetector class>>maxDistanceSettingsOn: aBuilder [
 		parent: #doubleTapGesture
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchOneFingerDoubleTapDetector class>>touchDoubleTapSettingsOn: aBuilder [
+{ #category : #settings }
+OSTouchOneFingerDoubleTapDetector class >> touchDoubleTapSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #doubleTapGesture)
 		label: 'Double Tap';
 		parent: #touchGestures
 ]
 
-{
-	#category : #'gesture detection',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchOneFingerDoubleTapDetector>>checkDoubleTouch [
+{ #category : #'gesture detection' }
+OSTouchOneFingerDoubleTapDetector >> checkDoubleTouch [
 	(timestamp - previousTimestamp < doubleTouchSpeed 
 		and: [ (position distanceTo: previousPosition) < maxDistanceBetweenEachTouch ])
 		ifFalse: [ ^ self ].
@@ -115,41 +87,29 @@ OSTouchOneFingerDoubleTapDetector>>checkDoubleTouch [
 	self reinitialize
 ]
 
-{
-	#category : #creation,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchOneFingerDoubleTapDetector>>createEvent [
+{ #category : #creation }
+OSTouchOneFingerDoubleTapDetector >> createEvent [
 	^ OSTouchOneFingerDoubleTapEvent new
 		position: position;
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchOneFingerDoubleTapDetector>>initialize [
+{ #category : #initialization }
+OSTouchOneFingerDoubleTapDetector >> initialize [
 	super initialize.
 	doubleTouchSpeed := self class doubleTouchSpeed.
 	maxDistanceBetweenEachTouch := self class maxDistance.
 	self reinitialize.
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchOneFingerDoubleTapDetector>>reinitialize [
+{ #category : #operations }
+OSTouchOneFingerDoubleTapDetector >> reinitialize [
 	position := 0@0.
 	timestamp := 0
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchOneFingerDoubleTapDetector>>visitTouchPointerDownEvent: anEvent [
+{ #category : #visiting }
+OSTouchOneFingerDoubleTapDetector >> visitTouchPointerDownEvent: anEvent [
 	super visitTouchPointerDownEvent: anEvent.
 	previousPosition := position.
 	previousTimestamp := timestamp.

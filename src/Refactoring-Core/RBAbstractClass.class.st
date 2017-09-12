@@ -34,67 +34,45 @@ Class {
 	#classVars : [
 		'LookupSuperclass'
 	],
-	#category : #Refactoring-Core-Model,
-	#timestamp : 'NicolaiHess 5/18/2016 23:34'
+	#category : #Refactoring-Core-Model
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass class>>initialize [
+{ #category : #'class initialization' }
+RBAbstractClass class >> initialize [
 	LookupSuperclass := Object new
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>= aRBClass  [
+{ #category : #comparing }
+RBAbstractClass >> = aRBClass [ 
 	^self class = aRBClass class 
 		and: [self name = aRBClass name and: [self model = aRBClass model]]
 ]
 
-{
-	#category : #'variable accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>addInstanceVariable: aString  [
+{ #category : #'variable accessing' }
+RBAbstractClass >> addInstanceVariable: aString [ 
 	self privateInstanceVariableNames add: aString.
 	model addInstanceVariable: aString to: self
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>addMethod: aRBMethod  [
+{ #category : #'method accessing' }
+RBAbstractClass >> addMethod: aRBMethod [ 
 	self newMethods at: aRBMethod selector put: aRBMethod.
 	removedMethods notNil 
 		ifTrue: [removedMethods remove: aRBMethod selector ifAbsent: []]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>addSubclass: aRBClass  [
+{ #category : #private }
+RBAbstractClass >> addSubclass: aRBClass [ 
 	self subclasses add: aRBClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>allClassVariableNames [
+{ #category : #accessing }
+RBAbstractClass >> allClassVariableNames [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>allInstanceVariableNames [
+{ #category : #accessing }
+RBAbstractClass >> allInstanceVariableNames [
 	| sprClass |
 	sprClass := self superclass.
 	^sprClass isNil 
@@ -102,19 +80,13 @@ RBAbstractClass>>allInstanceVariableNames [
 		ifFalse: [sprClass allInstanceVariableNames , self instanceVariableNames]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>allPoolDictionaryNames [
+{ #category : #accessing }
+RBAbstractClass >> allPoolDictionaryNames [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>allSelectors [
+{ #category : #'method accessing' }
+RBAbstractClass >> allSelectors [
 	| class selectors |
 	class := self.
 	selectors := Set new.
@@ -124,11 +96,8 @@ RBAbstractClass>>allSelectors [
 	^selectors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>allSubclasses [
+{ #category : #accessing }
+RBAbstractClass >> allSubclasses [
 	| allSubclasses index |
 	index := 1.
 	allSubclasses := OrderedCollection withAll: self subclasses.
@@ -138,11 +107,8 @@ RBAbstractClass>>allSubclasses [
 	^allSubclasses
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>allSubclassesDo: aBlock  [
+{ #category : #enumerating }
+RBAbstractClass >> allSubclassesDo: aBlock [ 
 	"Evaluate the argument, aBlock, for each of the receiver's subclasses."
 
 	self subclassesDo: 
@@ -151,11 +117,8 @@ RBAbstractClass>>allSubclassesDo: aBlock  [
 		cl allSubclassesDo: aBlock]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>allSuperclasses [
+{ #category : #accessing }
+RBAbstractClass >> allSuperclasses [
 	| supers sprClass |
 	supers := OrderedCollection new.
 	sprClass := self superclass.
@@ -165,44 +128,29 @@ RBAbstractClass>>allSuperclasses [
 	^supers
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>bindingOf: aString  [
+{ #category : #'method accessing' }
+RBAbstractClass >> bindingOf: aString [ 
 	^self realClass classPool associationAt: aString asSymbol
 		ifAbsent: [self realClass classPool associationAt: aString asString ifAbsent: [nil]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>canUnderstand: aSelector  [
+{ #category : #testing }
+RBAbstractClass >> canUnderstand: aSelector [ 
 	^self definesMethod: aSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>classBinding [
+{ #category : #accessing }
+RBAbstractClass >> classBinding [
 	^ Smalltalk globals associationAt: self name
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>compile: aString  [
+{ #category : #'method accessing' }
+RBAbstractClass >> compile: aString [ 
 	^ self compile: aString withAttributesFrom: (self methodFor: (RBParser parseMethodPattern: aString))
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>compile: aString classified: aSymbolCollection  [
+{ #category : #'method accessing' }
+RBAbstractClass >> compile: aString classified: aSymbolCollection [ 
 	| change method |
 	change := model 
 				compile: aString
@@ -216,11 +164,8 @@ RBAbstractClass>>compile: aString classified: aSymbolCollection  [
 	^ change
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>compile: aString withAttributesFrom: aRBMethod  [
+{ #category : #'method accessing' }
+RBAbstractClass >> compile: aString withAttributesFrom: aRBMethod [ 
 	| change method |
 	change := model 
 		compile: aString
@@ -234,85 +179,58 @@ RBAbstractClass>>compile: aString withAttributesFrom: aRBMethod  [
 	^ change
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>compileTree: aRBMethodNode  [
+{ #category : #'method accessing' }
+RBAbstractClass >> compileTree: aRBMethodNode [ 
 	^ (self methodFor: aRBMethodNode selector) compileTree: aRBMethodNode
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>definesClassVariable: aSymbol  [
+{ #category : #testing }
+RBAbstractClass >> definesClassVariable: aSymbol [ 
 	self realClass isTrait ifTrue: [^false].
 	(self directlyDefinesClassVariable: aSymbol) ifTrue: [^true].
 	^self superclass notNil 
 		and: [self superclass definesClassVariable: aSymbol]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>definesInstanceVariable: aString  [
+{ #category : #testing }
+RBAbstractClass >> definesInstanceVariable: aString [ 
 	(self directlyDefinesInstanceVariable: aString) ifTrue: [^true].
 	^self superclass notNil 
 		and: [self superclass definesInstanceVariable: aString]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>definesMethod: aSelector  [
+{ #category : #testing }
+RBAbstractClass >> definesMethod: aSelector [ 
 	(self directlyDefinesMethod: aSelector) ifTrue: [^true].
 	^self superclass notNil and: [self superclass definesMethod: aSelector]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>definesPoolDictionary: aSymbol  [
+{ #category : #testing }
+RBAbstractClass >> definesPoolDictionary: aSymbol [ 
 	(self directlyDefinesPoolDictionary: aSymbol) ifTrue: [^true].
 	^self inheritsPoolDictionaries and: 
 			[self superclass notNil 
 				and: [self superclass definesPoolDictionary: aSymbol]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>definesVariable: aVariableName  [
+{ #category : #testing }
+RBAbstractClass >> definesVariable: aVariableName [ 
 	^(self definesClassVariable: aVariableName) 
 		or: [self definesInstanceVariable: aVariableName]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>directlyDefinesClassVariable: aString  [
+{ #category : #testing }
+RBAbstractClass >> directlyDefinesClassVariable: aString [ 
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>directlyDefinesInstanceVariable: aString  [
+{ #category : #testing }
+RBAbstractClass >> directlyDefinesInstanceVariable: aString [ 
 	^self instanceVariableNames includes: aString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>directlyDefinesLocalMethod: aSelector  [
+{ #category : #testing }
+RBAbstractClass >> directlyDefinesLocalMethod: aSelector [ 
 	self isDefined 
 		ifTrue: 
 			[(self hasRemoved: aSelector) ifTrue: [^false].
@@ -320,11 +238,8 @@ RBAbstractClass>>directlyDefinesLocalMethod: aSelector  [
 	^newMethods notNil and: [newMethods includesKey: aSelector]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>directlyDefinesMethod: aSelector  [
+{ #category : #testing }
+RBAbstractClass >> directlyDefinesMethod: aSelector [ 
 	self isDefined 
 		ifTrue: 
 			[(self hasRemoved: aSelector) ifTrue: [^false].
@@ -332,28 +247,19 @@ RBAbstractClass>>directlyDefinesMethod: aSelector  [
 	^newMethods notNil and: [newMethods includesKey: aSelector]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>directlyDefinesPoolDictionary: aString  [
+{ #category : #testing }
+RBAbstractClass >> directlyDefinesPoolDictionary: aString [ 
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>directlyDefinesVariable: aVariableName  [
+{ #category : #testing }
+RBAbstractClass >> directlyDefinesVariable: aVariableName [ 
 	^(self directlyDefinesClassVariable: aVariableName) 
 		or: [self directlyDefinesInstanceVariable: aVariableName]
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>existingMethodsThatReferTo: aSymbol  [
+{ #category : #'method accessing' }
+RBAbstractClass >> existingMethodsThatReferTo: aSymbol [ 
 	| existingMethods |
 	existingMethods := self realClass thoroughWhichSelectorsReferTo: aSymbol.
 	(newMethods isNil and: [ removedMethods isNil ])
@@ -362,11 +268,8 @@ RBAbstractClass>>existingMethodsThatReferTo: aSymbol  [
 		reject: [ :each | (self hasRemoved: each) or: [ self newMethods includesKey: each ] ]
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>existingMethodsThatReferToClassVariable: aString [
+{ #category : #'method accessing' }
+RBAbstractClass >> existingMethodsThatReferToClassVariable: aString [
 	| binding existingMethods |
 	binding := (self bindingOf: aString)
 		ifNil: [ ^ #() ].
@@ -378,11 +281,8 @@ RBAbstractClass>>existingMethodsThatReferToClassVariable: aString [
 		reject: [ :each | (self hasRemoved: each) or: [ self newMethods includesKey: each ] ]
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>existingMethodsThatReferToInstanceVariable: aString [
+{ #category : #'method accessing' }
+RBAbstractClass >> existingMethodsThatReferToInstanceVariable: aString [
 	| existingMethods |
 	existingMethods := self realClass 
 		whichSelectorsAccess: aString.
@@ -392,80 +292,56 @@ RBAbstractClass>>existingMethodsThatReferToInstanceVariable: aString [
 		reject: [ :each | (self hasRemoved: each) or: [ self newMethods includesKey: each ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>hasRemoved: aSelector  [
+{ #category : #testing }
+RBAbstractClass >> hasRemoved: aSelector [ 
 	^removedMethods notNil and: [removedMethods includes: aSelector]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>hash [
+{ #category : #comparing }
+RBAbstractClass >> hash [
 	^self name hash bitXor: self class hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>hierarchyDefinesClassVariable: aString  [
+{ #category : #testing }
+RBAbstractClass >> hierarchyDefinesClassVariable: aString [ 
 	(self definesClassVariable: aString) ifTrue: [^true].
 	^(self allSubclasses 
 		detect: [:each | each directlyDefinesClassVariable: aString]
 		ifNone: [nil]) notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>hierarchyDefinesInstanceVariable: aString  [
+{ #category : #testing }
+RBAbstractClass >> hierarchyDefinesInstanceVariable: aString [ 
 	(self definesInstanceVariable: aString) ifTrue: [^true].
 	^(self allSubclasses 
 		detect: [:each | each directlyDefinesInstanceVariable: aString]
 		ifNone: [nil]) notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>hierarchyDefinesMethod: aSelector  [
+{ #category : #testing }
+RBAbstractClass >> hierarchyDefinesMethod: aSelector [ 
 	(self definesMethod: aSelector) ifTrue: [^true].
 	^self subclassRedefines: aSelector
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>hierarchyDefinesPoolDictionary: aString  [
+{ #category : #testing }
+RBAbstractClass >> hierarchyDefinesPoolDictionary: aString [ 
 	(self definesPoolDictionary: aString) ifTrue: [^true].
 	^(self allSubclasses 
 		detect: [:each | each directlyDefinesPoolDictionary: aString]
 		ifNone: [nil]) notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>hierarchyDefinesVariable: aString  [
+{ #category : #testing }
+RBAbstractClass >> hierarchyDefinesVariable: aString [ 
 	(self definesVariable: aString) ifTrue: [^true].
 	^(self allSubclasses 
 		detect: [:each | each directlyDefinesVariable: aString]
 		ifNone: [nil]) notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>includesClass: aRBClass  [
+{ #category : #testing }
+RBAbstractClass >> includesClass: aRBClass [ 
 	| currentClass |
 	currentClass := self.
 	[currentClass notNil and: [currentClass ~= aRBClass]] 
@@ -473,70 +349,46 @@ RBAbstractClass>>includesClass: aRBClass  [
 	^currentClass = aRBClass
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>inheritsPoolDictionaries [
+{ #category : #testing }
+RBAbstractClass >> inheritsPoolDictionaries [
 	^false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>initialize [
+{ #category : #initialization }
+RBAbstractClass >> initialize [
 	name := #'Unknown Class'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>instanceVariableNames [
+{ #category : #accessing }
+RBAbstractClass >> instanceVariableNames [
 	^self privateInstanceVariableNames copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>instanceVariableNames: aCollectionOfStrings  [
+{ #category : #accessing }
+RBAbstractClass >> instanceVariableNames: aCollectionOfStrings [ 
 	instanceVariableNames := aCollectionOfStrings asOrderedCollection
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>isAbstract [
+{ #category : #testing }
+RBAbstractClass >> isAbstract [
 	(self whichSelectorsReferToSymbol: #subclassResponsibility) isEmpty 
 		ifFalse: [^true].
 	model allReferencesToClass: self do: [:each | ^false].
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>isDefined [
+{ #category : #testing }
+RBAbstractClass >> isDefined [
 	^self realClass notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>isMeta [
+{ #category : #testing }
+RBAbstractClass >> isMeta [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>methodFor: aSelector  [
+{ #category : #'method accessing' }
+RBAbstractClass >> methodFor: aSelector [ 
 	^self newMethods at: aSelector
 		ifAbsent: 
 			[| compiledMethod class |
@@ -553,72 +405,48 @@ RBAbstractClass>>methodFor: aSelector  [
 						andSelector: aSelector]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>model [
+{ #category : #accessing }
+RBAbstractClass >> model [
 	^model
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>model: aRBSmalltalk [
+{ #category : #initialize-release }
+RBAbstractClass >> model: aRBSmalltalk [
 	model := aRBSmalltalk
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>name [
+{ #category : #accessing }
+RBAbstractClass >> name [
 	^name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>name: aSymbol  [
+{ #category : #accessing }
+RBAbstractClass >> name: aSymbol [ 
 	name := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>newMethods [
+{ #category : #accessing }
+RBAbstractClass >> newMethods [
 	^newMethods isNil 
 		ifTrue: [newMethods := IdentityDictionary new]
 		ifFalse: [newMethods]
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>parseTreeFor: aSelector  [
+{ #category : #'method accessing' }
+RBAbstractClass >> parseTreeFor: aSelector [ 
 	| class |
 	class := self whoDefinesMethod: aSelector.
 	class isNil ifTrue: [^nil].
 	^(class methodFor: aSelector) parseTree
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>printOn: aStream  [
+{ #category : #printing }
+RBAbstractClass >> printOn: aStream [ 
 	aStream nextPutAll: self name
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>privateInstanceVariableNames [
+{ #category : #private }
+RBAbstractClass >> privateInstanceVariableNames [
 	instanceVariableNames isNil 
 		ifTrue: 
 			[self isDefined 
@@ -627,11 +455,8 @@ RBAbstractClass>>privateInstanceVariableNames [
 	^instanceVariableNames
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>protocolsFor: aSelector  [
+{ #category : #'method accessing' }
+RBAbstractClass >> protocolsFor: aSelector [ 
 	| change |
 	change := self isMeta 
 				ifTrue: [model changes changeForMetaclass: name selector: aSelector]
@@ -645,65 +470,44 @@ RBAbstractClass>>protocolsFor: aSelector  [
 		ifFalse: [change protocols]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>realClass [
+{ #category : #accessing }
+RBAbstractClass >> realClass [
 	^realClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>realClass: aClass  [
+{ #category : #accessing }
+RBAbstractClass >> realClass: aClass [ 
 	realClass := aClass.
 	superclass isNil ifTrue: [superclass := LookupSuperclass]
 ]
 
-{
-	#category : #'variable accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>removeInstanceVariable: aString  [
+{ #category : #'variable accessing' }
+RBAbstractClass >> removeInstanceVariable: aString [ 
 	self privateInstanceVariableNames remove: aString.
 	model removeInstanceVariable: aString from: self
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>removeMethod: aSelector  [
+{ #category : #'method accessing' }
+RBAbstractClass >> removeMethod: aSelector [ 
 	self newMethods removeKey: aSelector ifAbsent: [].
 	model removeMethod: aSelector from: self.
 	self removedMethods add: aSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>removeSubclass: aRBClass  [
+{ #category : #accessing }
+RBAbstractClass >> removeSubclass: aRBClass [ 
 	self subclasses remove: aRBClass ifAbsent: []
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>removedMethods [
+{ #category : #accessing }
+RBAbstractClass >> removedMethods [
 	^removedMethods isNil 
 		ifTrue: [removedMethods := Set new]
 		ifFalse: [removedMethods]
 ]
 
-{
-	#category : #'variable accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>renameInstanceVariable: oldName to: newName around: aBlock  [
+{ #category : #'variable accessing' }
+RBAbstractClass >> renameInstanceVariable: oldName to: newName around: aBlock [ 
 	self privateInstanceVariableNames 
 		at: (self privateInstanceVariableNames indexOf: oldName asString)
 		put: newName asString.
@@ -714,11 +518,8 @@ RBAbstractClass>>renameInstanceVariable: oldName to: newName around: aBlock  [
 		around: aBlock
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>selectors [
+{ #category : #'method accessing' }
+RBAbstractClass >> selectors [
 	| selectors |
 	selectors := Set new.
 	selectors addAll: self newMethods keys.
@@ -730,48 +531,33 @@ RBAbstractClass>>selectors [
 	^selectors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>soleInstance [
+{ #category : #accessing }
+RBAbstractClass >> soleInstance [
 	^ self theNonMetaClass
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>sourceCodeFor: aSelector  [
+{ #category : #'method accessing' }
+RBAbstractClass >> sourceCodeFor: aSelector [ 
 	| class |
 	class := self whoDefinesMethod: aSelector.
 	class isNil ifTrue: [^nil].
 	^(class methodFor: aSelector) source
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>storeOn: aStream  [
+{ #category : #printing }
+RBAbstractClass >> storeOn: aStream [ 
 	aStream nextPutAll: self name
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>subclassRedefines: aSelector [
+{ #category : #testing }
+RBAbstractClass >> subclassRedefines: aSelector [
 	"Return true, if one of your subclasses redefines the method with name, aMethod"
 
 	^ self allSubclasses anySatisfy: [ :each | each directlyDefinesMethod: aSelector ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>subclasses [
+{ #category : #accessing }
+RBAbstractClass >> subclasses [
 	^subclasses isNil 
 		ifTrue: 
 			[subclasses := self isDefined 
@@ -783,63 +569,42 @@ RBAbstractClass>>subclasses [
 		ifFalse: [subclasses]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>subclassesDo: aBlock  [
+{ #category : #enumerating }
+RBAbstractClass >> subclassesDo: aBlock [ 
 	self subclasses do: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>superclass [
+{ #category : #accessing }
+RBAbstractClass >> superclass [
 	^superclass == LookupSuperclass 
 		ifTrue: [model classFor: self realClass superclass]
 		ifFalse: [superclass]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>superclass: aRBClass  [
+{ #category : #private }
+RBAbstractClass >> superclass: aRBClass [ 
 	self superclass notNil ifTrue: [self superclass removeSubclass: self].
 	superclass := aRBClass.
 	superclass notNil ifTrue: [superclass addSubclass: self].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>theMetaClass [
+{ #category : #accessing }
+RBAbstractClass >> theMetaClass [
 	^ model metaclassNamed: self name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>theNonMetaClass [
+{ #category : #accessing }
+RBAbstractClass >> theNonMetaClass [
 	^ model classNamed: self name
 ]
 
-{
-	#category : #'variable accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>typeOfClassVariable: aSymbol  [
+{ #category : #'variable accessing' }
+RBAbstractClass >> typeOfClassVariable: aSymbol [ 
 	^model classNamed: #Object
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>whichSelectorsReferToClass: aRBClass  [
+{ #category : #'method accessing' }
+RBAbstractClass >> whichSelectorsReferToClass: aRBClass [ 
 	| selectors |
 	selectors := Set new.
 	newMethods isNil ifFalse: [
@@ -852,11 +617,8 @@ RBAbstractClass>>whichSelectorsReferToClass: aRBClass  [
 	^ selectors
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>whichSelectorsReferToClassVariable: aString  [
+{ #category : #'method accessing' }
+RBAbstractClass >> whichSelectorsReferToClassVariable: aString [ 
 	| selectors |
 	selectors := Set new.
 	newMethods isNil ifFalse: [
@@ -868,11 +630,8 @@ RBAbstractClass>>whichSelectorsReferToClassVariable: aString  [
 	^ selectors
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>whichSelectorsReferToInstanceVariable: aString  [
+{ #category : #'method accessing' }
+RBAbstractClass >> whichSelectorsReferToInstanceVariable: aString [ 
 	| selectors |
 	selectors := Set new.
 	newMethods isNil ifFalse: [
@@ -884,11 +643,8 @@ RBAbstractClass>>whichSelectorsReferToInstanceVariable: aString  [
 	^ selectors
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>whichSelectorsReferToSymbol: aSymbol  [
+{ #category : #'method accessing' }
+RBAbstractClass >> whichSelectorsReferToSymbol: aSymbol [ 
 	| selectors |
 	selectors := Set new.
 	newMethods isNil ifFalse: [
@@ -900,11 +656,8 @@ RBAbstractClass>>whichSelectorsReferToSymbol: aSymbol  [
 	^ selectors
 ]
 
-{
-	#category : #'variable accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>whoDefinesClassVariable: aString  [
+{ #category : #'variable accessing' }
+RBAbstractClass >> whoDefinesClassVariable: aString [ 
 	| sprClass |
 	(self directlyDefinesClassVariable: aString) ifTrue: [^self].
 	sprClass := self superclass.
@@ -913,11 +666,8 @@ RBAbstractClass>>whoDefinesClassVariable: aString  [
 		ifFalse: [sprClass whoDefinesClassVariable: aString]
 ]
 
-{
-	#category : #'variable accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>whoDefinesInstanceVariable: aString  [
+{ #category : #'variable accessing' }
+RBAbstractClass >> whoDefinesInstanceVariable: aString [ 
 	| sprClass |
 	(self directlyDefinesInstanceVariable: aString) ifTrue: [^self].
 	sprClass := self superclass.
@@ -926,11 +676,8 @@ RBAbstractClass>>whoDefinesInstanceVariable: aString  [
 		ifFalse: [sprClass whoDefinesInstanceVariable: aString]
 ]
 
-{
-	#category : #'method accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>whoDefinesMethod: aSelector  [
+{ #category : #'method accessing' }
+RBAbstractClass >> whoDefinesMethod: aSelector [ 
 	| sprClass |
 	(self directlyDefinesMethod: aSelector) ifTrue: [^self].
 	sprClass := self superclass.
@@ -939,21 +686,15 @@ RBAbstractClass>>whoDefinesMethod: aSelector  [
 		ifFalse: [sprClass whoDefinesMethod: aSelector]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>withAllSubclasses [
+{ #category : #accessing }
+RBAbstractClass >> withAllSubclasses [
 	^(self allSubclasses)
 		add: self;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractClass>>withAllSuperclasses [
+{ #category : #accessing }
+RBAbstractClass >> withAllSuperclasses [
 	^(self allSuperclasses)
 		add: self;
 		yourself

@@ -4,30 +4,20 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestPharoBootstrapInitialization,
 	#superclass : #PackageManifest,
-	#category : #PharoBootstrap-Initialization,
-	#timestamp : '<historical>'
+	#category : #PharoBootstrap-Initialization
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-ManifestPharoBootstrapInitialization class>>ignoredDependencies [
+{ #category : #'as yet unclassified' }
+ManifestPharoBootstrapInitialization class >> ignoredDependencies [
 	^ #(#'SUnit-Core')
 ]
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-ManifestPharoBootstrapInitialization class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestPharoBootstrapInitialization class >> manuallyResolvedDependencies [
 	^ #(#'System-Finalization' #'SUnit-Core')
 ]
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-ManifestPharoBootstrapInitialization class>>packageName [
+{ #category : #'meta-data - dependency analyser' }
+ManifestPharoBootstrapInitialization class >> packageName [
 	^ #'PharoBootstrap-Initialization'
 ]

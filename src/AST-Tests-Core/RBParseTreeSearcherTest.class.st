@@ -1,30 +1,20 @@
-"
-
-"
 Class {
 	#name : #RBParseTreeSearcherTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'searcher'
 	],
-	#category : #AST-Tests-Core,
-	#timestamp : ''
+	#category : #AST-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBParseTreeSearcherTest>>setUp [
+{ #category : #tests }
+RBParseTreeSearcherTest >> setUp [
 	searcher := RBParseTreeSearcher new.
 	
 ]
 
-{
-	#category : #'tests - to de refined',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBParseTreeSearcherTest>>testDynamicArrayStatements [
+{ #category : #'tests - to de refined' }
+RBParseTreeSearcherTest >> testDynamicArrayStatements [
 	"match in context for arraynodes wrongly matched all array statements against the last variable, if all variables are pattern-list-variables"
 
 	| dict |
@@ -36,11 +26,8 @@ RBParseTreeSearcherTest>>testDynamicArrayStatements [
 		
 ]
 
-{
-	#category : #'tests - to de refined',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBParseTreeSearcherTest>>testDynamicArrayWithStatementListPattern [
+{ #category : #'tests - to de refined' }
+RBParseTreeSearcherTest >> testDynamicArrayWithStatementListPattern [
 	"pattern with statementlist in a dynamic array, to match all dynamic array expressions"
 
 	| dict |
@@ -50,11 +37,8 @@ RBParseTreeSearcherTest>>testDynamicArrayWithStatementListPattern [
 
 ]
 
-{
-	#category : #'tests - to de refined',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBParseTreeSearcherTest>>testSearching [
+{ #category : #'tests - to de refined' }
+RBParseTreeSearcherTest >> testSearching [
 
 	searcher matches: '``@rcv at: ``@arg `sel: ``@arg1'
 		do: [:aNode :answer | answer + 1].
@@ -77,11 +61,8 @@ RBParseTreeSearcherTest>>testSearching [
 				initialAnswer: false)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBParseTreeSearcherTest>>testSearchingComposedSelector [
+{ #category : #tests }
+RBParseTreeSearcherTest >> testSearchingComposedSelector [
 	
 	searcher 
 		matches: '``@rcv at: ``@arg `sel: ``@arg1'
@@ -96,11 +77,8 @@ RBParseTreeSearcherTest>>testSearchingComposedSelector [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBParseTreeSearcherTest>>testSearchingComposedSelector2 [
+{ #category : #tests }
+RBParseTreeSearcherTest >> testSearchingComposedSelector2 [
 
 	searcher
 		matches: '``@rcv at: ``@arg'

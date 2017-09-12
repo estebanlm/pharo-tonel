@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #MBAddConfigurationCommandTest,
 	#superclass : #MBCommandTests,
 	#instVars : [
 		'command'
 	],
-	#category : #Versionner-Tests-Core-Commands,
-	#timestamp : ''
+	#category : #Versionner-Tests-Core-Commands
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAddConfigurationCommandTest>>testExecute [
+{ #category : #'as yet unclassified' }
+MBAddConfigurationCommandTest >> testExecute [
 	| t v |
 	t := false.
 	command := MBAddConfigurationCommand target: self for: nil.

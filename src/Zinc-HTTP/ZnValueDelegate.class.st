@@ -14,32 +14,22 @@ Class {
 	#instVars : [
 		'object'
 	],
-	#category : #Zinc-HTTP-Client-Server,
-	#timestamp : 'SvenVanCaekenberghe 12/7/2010 16:14'
+	#category : #Zinc-HTTP-Client-Server
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnValueDelegate class>>with: object [
+{ #category : #'instance creation' }
+ZnValueDelegate class >> with: object [
 	^ self new
 		object: object;
 		yourself
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnValueDelegate>>handleRequest: request [
+{ #category : #public }
+ZnValueDelegate >> handleRequest: request [
 	^ object value: request
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnValueDelegate>>object: anObject [
+{ #category : #initialize-release }
+ZnValueDelegate >> object: anObject [
 	object := anObject
 ]

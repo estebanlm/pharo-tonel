@@ -3,35 +3,23 @@ A trait for test purposes
 "
 Trait {
 	#name : #TIncludesForIdentityCollectionsTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:34'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIncludesForIdentityCollectionsTest>>identityCollectionWithElementsCopyNotIdentical [
+{ #category : #requirements }
+TIncludesForIdentityCollectionsTest >> identityCollectionWithElementsCopyNotIdentical [
 	" return a collection including elements for which #copy return a new object "
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIncludesForIdentityCollectionsTest>>test0FixtureInludesForIdentityCollectionsTest [
+{ #category : #'tests - fixture' }
+TIncludesForIdentityCollectionsTest >> test0FixtureInludesForIdentityCollectionsTest [
 	self identityCollectionWithElementsCopyNotIdentical.
 	self identityCollectionWithElementsCopyNotIdentical do: [ :each | self deny: each == each copy ]
 ]
 
-{
-	#category : #'tests - including for identity collections',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIncludesForIdentityCollectionsTest>>testIdentityIncludesForIdentityCollections [
+{ #category : #'tests - including for identity collections' }
+TIncludesForIdentityCollectionsTest >> testIdentityIncludesForIdentityCollections [
 	" test the comportement in presence of elements 'includes' but not 'identityIncludes' "
 	" can not be used by collections that can't include elements for wich copy doesn't return another instance "
 	| collection element |
@@ -40,11 +28,8 @@ TIncludesForIdentityCollectionsTest>>testIdentityIncludesForIdentityCollections 
 	self deny: (collection identityIncludes: element)
 ]
 
-{
-	#category : #'tests - including for identity collections',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIncludesForIdentityCollectionsTest>>testIncludesAllOfForIdentityCollections [
+{ #category : #'tests - including for identity collections' }
+TIncludesForIdentityCollectionsTest >> testIncludesAllOfForIdentityCollections [
 	"self debug: #testIncludesAllOfAllThere'"
 	| collection copyCollection |
 	collection := self identityCollectionWithElementsCopyNotIdentical .
@@ -55,11 +40,8 @@ TIncludesForIdentityCollectionsTest>>testIncludesAllOfForIdentityCollections [
 	self deny: (collection includesAll: {  (copyCollection anyOne)  })
 ]
 
-{
-	#category : #'tests - including for identity collections',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIncludesForIdentityCollectionsTest>>testIncludesAnyOfForIdentityCollections [
+{ #category : #'tests - including for identity collections' }
+TIncludesForIdentityCollectionsTest >> testIncludesAnyOfForIdentityCollections [
 	"self debug: #testIncludesAnyOfAllThere'"
 	| collection copyCollection |
 	collection := self identityCollectionWithElementsCopyNotIdentical .
@@ -69,11 +51,8 @@ TIncludesForIdentityCollectionsTest>>testIncludesAnyOfForIdentityCollections [
 	self assert: (collection includesAny: {  (collection anyOne)  })
 ]
 
-{
-	#category : #'tests - including for identity collections',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIncludesForIdentityCollectionsTest>>testIncludesForIdentityCollections [
+{ #category : #'tests - including for identity collections' }
+TIncludesForIdentityCollectionsTest >> testIncludesForIdentityCollections [
 	"self debug: #testIncludesElementIsThere"
 	| collection element elementCopy |
 	collection := self identityCollectionWithElementsCopyNotIdentical .

@@ -8,23 +8,16 @@ I should not be used directly
 Class {
 	#name : #TableContainerModel,
 	#superclass : #ContainerModel,
-	#category : #Spec-Core-Support,
-	#timestamp : 'webwarrior 6/9/2014 15:40'
+	#category : #Spec-Core-Support
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TableContainerModel class>>adapterName [
+{ #category : #specs }
+TableContainerModel class >> adapterName [
 	^ #MorphicTableContainerAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TableContainerModel class>>defaultSpec [
+{ #category : #specs }
+TableContainerModel class >> defaultSpec [
 	<spec>
 	^ #(MorphicTableContainerAdapter
 		adapt: #(model))

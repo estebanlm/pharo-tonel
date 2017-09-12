@@ -4,15 +4,11 @@ SUnit tests for shared queues
 Class {
 	#name : #SharedQueueTest,
 	#superclass : #TestCase,
-	#category : #Collections-Tests-Sequenceable,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:30'
+	#category : #Collections-Tests-Sequenceable
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SharedQueueTest>>testBasics [
+{ #category : #testing }
+SharedQueueTest >> testBasics [
 	| q |
 	q := SharedQueue new.
 	self should: [ q nextOrNil isNil ].
@@ -24,11 +20,8 @@ SharedQueueTest>>testBasics [
 	self assert: q atEnd.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SharedQueueTest>>testContention1 [
+{ #category : #testing }
+SharedQueueTest >> testContention1 [
 	"here is a test case that breaks the standard SharedQueue from Squeak 3.8"
 
 	| q r1 r2 |
@@ -46,11 +39,8 @@ SharedQueueTest>>testContention1 [
 	self should: [ q nextOrNil isNil ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SharedQueueTest>>testNextOrNilSuchThat [
+{ #category : #testing }
+SharedQueueTest >> testNextOrNilSuchThat [
 	| q item |
 	q := SharedQueue new.
 	q nextPut: 5.

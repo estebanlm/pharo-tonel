@@ -1,12 +1,7 @@
-Extension {
-	#name : #Object
-}
+Extension { #name : #Object }
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-Object>>externalProperties [
+{ #category : #'*renraku' }
+Object >> externalProperties [
 
 	| pragmas  externalProperties |
 	pragmas := Pragma allNamed: #eProperty from: self class to: ProtoObject.
@@ -30,20 +25,14 @@ Object>>externalProperties [
 
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-Object>>glmCritiqueSourceIn: composite [
+{ #category : #'*renraku' }
+Object >> glmCritiqueSourceIn: composite [
 
 	"display nothing for now"
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-Object>>gtInspectorEProportiesIn: composite [
+{ #category : #'*renraku' }
+Object >> gtInspectorEProportiesIn: composite [
 	"This provides a list of all external properties"
 
 	<gtInspectorPresentationOrder: 20>
@@ -72,11 +61,8 @@ Object>>gtInspectorEProportiesIn: composite [
 		format: #title
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-Object>>spotterRePropertiesFor: aStep [
+{ #category : #'*renraku' }
+Object >> spotterRePropertiesFor: aStep [
 	<spotterOrder: 0>
 	
 	ReSettings spotterPlugin ifFalse: [ ^ self ].

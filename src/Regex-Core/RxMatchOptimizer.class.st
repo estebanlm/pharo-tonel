@@ -20,15 +20,11 @@ Class {
 		'nonPredicates',
 		'lookarounds'
 	],
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:13'
+	#category : #Regex-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>canStartMatch: aCharacter in: aMatcher  [
+{ #category : #accessing }
+RxMatchOptimizer >> canStartMatch: aCharacter in: aMatcher [ 
 	"Answer whether a match could commence at the given lookahead
 	character, or in the current state of <aMatcher>. True answered
 	by this method does not mean a match will definitly occur, while false
@@ -38,11 +34,8 @@ RxMatchOptimizer>>canStartMatch: aCharacter in: aMatcher  [
 	^testBlock == nil or: [testBlock value: aCharacter value: aMatcher]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>conditionTester [
+{ #category : #accessing }
+RxMatchOptimizer >> conditionTester [
 	"#any condition is filtered at the higher level;
 	it cannot appear among the conditions here."
 
@@ -66,11 +59,8 @@ RxMatchOptimizer>>conditionTester [
 			matcher perform: conditionSelector]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>determineTestMethod [
+{ #category : #private }
+RxMatchOptimizer >> determineTestMethod [
 	"Answer a block closure that will work as a can-match predicate.
 	Answer nil if no viable optimization is possible (too many chars would
 	be able to start a match)."
@@ -90,11 +80,8 @@ RxMatchOptimizer>>determineTestMethod [
 	^[:char :matcher | testers contains: [:t | t value: char value: matcher]]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>initialize: aRegex ignoreCase: aBoolean  [
+{ #category : #initialize-release }
+RxMatchOptimizer >> initialize: aRegex ignoreCase: aBoolean [ 
 	"Set `testMethod' variable to a can-match predicate block:
 	two-argument block which accepts a lookahead character
 	and a matcher (presumably built from aRegex) and answers 
@@ -116,11 +103,8 @@ RxMatchOptimizer>>initialize: aRegex ignoreCase: aBoolean  [
 	testBlock := self determineTestMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>methodPredicateTester [
+{ #category : #accessing }
+RxMatchOptimizer >> methodPredicateTester [
 	| p selector |
 	methodPredicates isEmpty ifTrue: [^nil].
 	p := self optimizeSet: methodPredicates.	"also allows copying closures"
@@ -137,11 +121,8 @@ RxMatchOptimizer>>methodPredicateTester [
 				[p contains: [:sel | char perform: sel]]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>nonMethodPredicateTester [
+{ #category : #accessing }
+RxMatchOptimizer >> nonMethodPredicateTester [
 	| p selector |
 	nonMethodPredicates isEmpty ifTrue: [^nil].
 	p := self optimizeSet: nonMethodPredicates.	"also allows copying closures"
@@ -157,11 +138,8 @@ RxMatchOptimizer>>nonMethodPredicateTester [
 				[p contains: [:sel | (char perform: sel) not]]]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>nonPredicateTester [
+{ #category : #private }
+RxMatchOptimizer >> nonPredicateTester [
 
 	| p pred |
 	nonPredicates isEmpty ifTrue: [^nil].
@@ -174,11 +152,8 @@ RxMatchOptimizer>>nonPredicateTester [
 			[[:char :m | p contains: [:some | (some value: char) not]]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>nonPrefixTester [
+{ #category : #private }
+RxMatchOptimizer >> nonPrefixTester [
 
 	| np nonPrefixChar |
 	nonPrefixes isEmpty ifTrue: [^nil].
@@ -190,11 +165,8 @@ RxMatchOptimizer>>nonPrefixTester [
 		ifFalse: [[:char : matcher | (np includes: char) not]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>optimizeSet: aSet [
+{ #category : #private }
+RxMatchOptimizer >> optimizeSet: aSet [
 	"If a set is small, convert it to array to speed up lookup
 	(Array has no hashing overhead, beats Set on small number
 	of elements)."
@@ -202,11 +174,8 @@ RxMatchOptimizer>>optimizeSet: aSet [
 	^aSet size < 10 ifTrue: [aSet asArray] ifFalse: [aSet]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>predicateTester [
+{ #category : #private }
+RxMatchOptimizer >> predicateTester [
 
 	| p pred |
 	predicates isEmpty ifTrue: [^nil].
@@ -221,11 +190,8 @@ RxMatchOptimizer>>predicateTester [
 				p contains: [:some | some value: char ]]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>prefixTester [
+{ #category : #private }
+RxMatchOptimizer >> prefixTester [
 
 	| p prefixChar |
 	prefixes isEmpty ifTrue: [^nil].
@@ -243,41 +209,29 @@ RxMatchOptimizer>>prefixTester [
 				ifFalse: [[:char :matcher | p includes: char]]]
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>syntaxAny [
+{ #category : #'double dispatch' }
+RxMatchOptimizer >> syntaxAny [
 	"Any special char is among the prefixes."
 
 	conditions add: #any
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>syntaxBeginningOfLine [
+{ #category : #'double dispatch' }
+RxMatchOptimizer >> syntaxBeginningOfLine [
 	"Beginning of line is among the prefixes."
 
 	conditions add: #atBeginningOfLine
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>syntaxBeginningOfWord [
+{ #category : #'double dispatch' }
+RxMatchOptimizer >> syntaxBeginningOfWord [
 	"Beginning of line is among the prefixes."
 
 	conditions add: #atBeginningOfWord
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>syntaxBranch: branchNode [
+{ #category : #'double dispatch' }
+RxMatchOptimizer >> syntaxBranch: branchNode [
 	"If the head piece of the branch is transparent (allows 0 matches),
 	we must recurse down the branch. Otherwise, just the head atom
 	is important."
@@ -287,11 +241,8 @@ RxMatchOptimizer>>syntaxBranch: branchNode [
 	branchNode piece dispatchTo: self
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>syntaxCharSet: charSetNode  [
+{ #category : #'double dispatch' }
+RxMatchOptimizer >> syntaxCharSet: charSetNode [ 
 	"All these (or none of these) characters is the prefix."
 
 	charSetNode isNegated
@@ -303,96 +254,66 @@ RxMatchOptimizer>>syntaxCharSet: charSetNode  [
 				ifFalse: [predicates addAll: charSetNode predicates]]
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>syntaxCharacter: charNode [
+{ #category : #'double dispatch' }
+RxMatchOptimizer >> syntaxCharacter: charNode [
 	"This character is the prefix, of one of them."
 
 	prefixes add: charNode character
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>syntaxEndOfLine [
+{ #category : #'double dispatch' }
+RxMatchOptimizer >> syntaxEndOfLine [
 	"Beginning of line is among the prefixes."
 
 	conditions add: #atEndOfLine
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>syntaxEndOfWord [
+{ #category : #'double dispatch' }
+RxMatchOptimizer >> syntaxEndOfWord [
 
 	conditions add: #atEndOfWord
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>syntaxEpsilon [
+{ #category : #'double dispatch' }
+RxMatchOptimizer >> syntaxEpsilon [
 	"Empty string, terminate the recursion (do nothing)."
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>syntaxLookaround: lookaroundNode  [
+{ #category : #'double dispatch' }
+RxMatchOptimizer >> syntaxLookaround: lookaroundNode [ 
 
 	
 	lookarounds add: lookaroundNode
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>syntaxMessagePredicate: messagePredicateNode  [
+{ #category : #'double dispatch' }
+RxMatchOptimizer >> syntaxMessagePredicate: messagePredicateNode [ 
 	messagePredicateNode negated
 		ifTrue: [nonMethodPredicates add: messagePredicateNode selector]
 		ifFalse: [methodPredicates add: messagePredicateNode selector]
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>syntaxNonWordBoundary [
+{ #category : #'double dispatch' }
+RxMatchOptimizer >> syntaxNonWordBoundary [
 
 	conditions add: #notAtWordBoundary
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>syntaxPiece: pieceNode [
+{ #category : #'double dispatch' }
+RxMatchOptimizer >> syntaxPiece: pieceNode [
 	"Pass on to the atom."
 
 	pieceNode atom dispatchTo: self
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>syntaxPredicate: predicateNode  [
+{ #category : #'double dispatch' }
+RxMatchOptimizer >> syntaxPredicate: predicateNode [ 
 
 	predicates add: predicateNode predicate
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>syntaxRegex: regexNode [
+{ #category : #'double dispatch' }
+RxMatchOptimizer >> syntaxRegex: regexNode [
 	"All prefixes of the regex's branches should be combined.
 	Therefore, just recurse."
 
@@ -401,11 +322,8 @@ RxMatchOptimizer>>syntaxRegex: regexNode [
 		ifTrue: [regexNode regex dispatchTo: self]
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatchOptimizer>>syntaxWordBoundary [
+{ #category : #'double dispatch' }
+RxMatchOptimizer >> syntaxWordBoundary [
 
 	conditions add: #atWordBoundary
 ]

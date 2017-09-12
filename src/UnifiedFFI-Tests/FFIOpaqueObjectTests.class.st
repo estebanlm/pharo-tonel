@@ -1,34 +1,21 @@
-"
-
-"
 Class {
 	#name : #FFIOpaqueObjectTests,
 	#superclass : #TestCase,
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIOpaqueObjectTests>>ffiBindingOf: aName [
+{ #category : #private }
+FFIOpaqueObjectTests >> ffiBindingOf: aName [
 	^ self class ffiBindingOf: aName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIOpaqueObjectTests>>ffiInstVarArgument: argName generator: generator [
+{ #category : #private }
+FFIOpaqueObjectTests >> ffiInstVarArgument: argName generator: generator [
 	^ argName
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIOpaqueObjectTests>>newParser  [
+{ #category : #tests }
+FFIOpaqueObjectTests >> newParser [ 
 	^ FFIFunctionParser new
 		requestor: (FFICallout new
 			requestor: self;
@@ -36,11 +23,8 @@ FFIOpaqueObjectTests>>newParser  [
 		yourself
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIOpaqueObjectTests>>testDereferencedExternalObjectError [
+{ #category : #tests }
+FFIOpaqueObjectTests >> testDereferencedExternalObjectError [
 	self 
 		should: [ self newParser parseNamedFunction: #( void function ( FFIOpaqueObject arg ) ) ]
 		raise: FFIDereferencedOpaqueObjectError.
@@ -51,11 +35,8 @@ FFIOpaqueObjectTests>>testDereferencedExternalObjectError [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIOpaqueObjectTests>>testParseAsBigArityPointer [
+{ #category : #tests }
+FFIOpaqueObjectTests >> testParseAsBigArityPointer [
 	 | fnSpec arg returnType |
 	
 	fnSpec := self newParser parseNamedFunction: #( void function ( FFIOpaqueObject **arg ) ). 
@@ -69,11 +50,8 @@ FFIOpaqueObjectTests>>testParseAsBigArityPointer [
 	self assert: returnType pointerArity equals: 2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIOpaqueObjectTests>>testParseAsPointer [
+{ #category : #tests }
+FFIOpaqueObjectTests >> testParseAsPointer [
 	 | fnSpec arg returnType |
 	
 	fnSpec := self newParser parseNamedFunction: #( void function ( FFIOpaqueObject *arg ) ). 

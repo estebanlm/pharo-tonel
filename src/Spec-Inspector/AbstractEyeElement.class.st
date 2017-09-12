@@ -15,44 +15,31 @@ Class {
 	#instVars : [
 		'host'
 	],
-	#category : #Spec-Inspector-Element,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector-Element
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement class>>host: anObject  [
+{ #category : #'instance creation' }
+AbstractEyeElement class >> host: anObject [ 
 	^ self new
 		host: anObject;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>= anObject [
+{ #category : #comparing }
+AbstractEyeElement >> = anObject [
 	self == anObject ifTrue: [ ^ true ].
 	self class = anObject class ifFalse: [ ^ false ].
 	^ host == anObject host
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>accessorCode [
+{ #category : #accessing }
+AbstractEyeElement >> accessorCode [
 	"Answers a code string to access the value from the inspector"
 	self subclassResponsibility
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>browseSubMenu: aMenu [
+{ #category : #menu }
+AbstractEyeElement >> browseSubMenu: aMenu [
 	
 	aMenu addGroup: [ :aGroup |
 		aGroup addItem: [ :anItem |
@@ -73,66 +60,45 @@ AbstractEyeElement>>browseSubMenu: aMenu [
 				shortcut: $h meta ] ]
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>browseValue [
+{ #category : #action }
+AbstractEyeElement >> browseValue [
 	^ self value browse
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>browseValueClass [
+{ #category : #action }
+AbstractEyeElement >> browseValueClass [
 	"Open an class browser on the selectObject (class side)"
 	
 	^ self valueClass browse
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>browseValueClassHierarchy [
+{ #category : #action }
+AbstractEyeElement >> browseValueClassHierarchy [
 	"Create and schedule a class list browser on the receiver's hierarchy."
 
 	^ self valueClass browseHierarchy
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>copyAccessorCode [
+{ #category : #action }
+AbstractEyeElement >> copyAccessorCode [
 	"Copy the name of the current variable, so the user can paste it into the 
 	window below and work with is."
 
 	Clipboard clipboardText: self accessorCode asText
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>customSubMenu: aMenu [
+{ #category : #menu }
+AbstractEyeElement >> customSubMenu: aMenu [
 	"Subclasse may add more menu items here"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>description [
+{ #category : #accessing }
+AbstractEyeElement >> description [
 	^ self value printStringLimitedTo: 2000
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>endSubMenu: aMenu  [
+{ #category : #menu }
+AbstractEyeElement >> endSubMenu: aMenu [ 
 	
 	aMenu addGroup: [ :aGroup |
 		aGroup addItem: [ :anItem |
@@ -142,21 +108,15 @@ AbstractEyeElement>>endSubMenu: aMenu  [
 				shortcut: $c meta ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>errorPropertySelectors [
+{ #category : #accessing }
+AbstractEyeElement >> errorPropertySelectors [
 	"Return a collection of selectors on this eye-element that are checked against errors.
 	See #withErrorsDo: and #errorSubMenu:"
 	^ #(icon label longLabel description)
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>errorSubMenu: aMenu [
+{ #category : #menu }
+AbstractEyeElement >> errorSubMenu: aMenu [
 	"Add debug menu entries for the failing #errorPropertySelectors of this eye element"
 	
 	self hasError 
@@ -172,29 +132,20 @@ AbstractEyeElement>>errorSubMenu: aMenu [
 					action: [ [ self perform: itemSelector] fork ]]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>errorWhileAccessing: selector do: aBlock [
+{ #category : #accessing }
+AbstractEyeElement >> errorWhileAccessing: selector do: aBlock [
 	[ self perform: selector ]
 		on: Error do: [ :error |  
 			aBlock cull: error cull: selector ].
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>explorePointers [
+{ #category : #action }
+AbstractEyeElement >> explorePointers [
 	^ Smalltalk tools pointerExplorer openStrongOn: self value
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>exploreSubMenu: aMenu [
+{ #category : #menu }
+AbstractEyeElement >> exploreSubMenu: aMenu [
 
 	aMenu addGroup: [ :aGroup |
 		aGroup addItem: [ :anItem |
@@ -203,88 +154,58 @@ AbstractEyeElement>>exploreSubMenu: aMenu [
 				action: [ self explorePointers ] ] ]
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>exploreValue [
+{ #category : #action }
+AbstractEyeElement >> exploreValue [
 	^ self value explore
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>hasError [
+{ #category : #testing }
+AbstractEyeElement >> hasError [
 	self withErrorsDo: [ ^ true ].
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>hasSelectedObject [
+{ #category : #testing }
+AbstractEyeElement >> hasSelectedObject [
 	^ true
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>hash [
+{ #category : #comparing }
+AbstractEyeElement >> hash [
 	^ host hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>host [
+{ #category : #accessing }
+AbstractEyeElement >> host [
 	"Answers the object currently inspected by the outer inspector.
 	See #value for the object represented by this EyeElement."
 	^ host
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>host: anObject [
+{ #category : #accessing }
+AbstractEyeElement >> host: anObject [
 	host := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>hostClass [
+{ #category : #accessing }
+AbstractEyeElement >> hostClass [
 	^ host class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>icon [
+{ #category : #accessing }
+AbstractEyeElement >> icon [
 	^ (self value iconOrThumbnailOfSize: 16)
 		ifNil: [ self value class systemIcon ]
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>inspectValue [
+{ #category : #action }
+AbstractEyeElement >> inspectValue [
 	"Bring up a non-special inspector"
 	^ self value inspect
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>inspectionMenu: aMenu [
+{ #category : #menu }
+AbstractEyeElement >> inspectionMenu: aMenu [
 	"specific menu for the current element"
 		
 	self 
@@ -295,20 +216,14 @@ AbstractEyeElement>>inspectionMenu: aMenu [
 		errorSubMenu: aMenu.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>label [
+{ #category : #accessing }
+AbstractEyeElement >> label [
 	"Answers the label associated with this EyeElement"
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>longLabel [
+{ #category : #accessing }
+AbstractEyeElement >> longLabel [
 	"This is used by EyeTreeInspector"
 	
 	| description |
@@ -320,11 +235,8 @@ AbstractEyeElement>>longLabel [
 		ifNil: [ description ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>mainInspectSubMenu: aMenu  [
+{ #category : #menu }
+AbstractEyeElement >> mainInspectSubMenu: aMenu [ 
 	aMenu 
 		add: 'Inspect (i)' 
 		target: self
@@ -336,71 +248,47 @@ AbstractEyeElement>>mainInspectSubMenu: aMenu  [
 		selector: #exploreSelectedObject.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>printOn: aStream [
+{ #category : #printing }
+AbstractEyeElement >> printOn: aStream [
 	aStream
 		print: self label;
 		<< '->';
 		<< (self value printStringLimitedTo: 50)
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>save: aValue [
+{ #category : #action }
+AbstractEyeElement >> save: aValue [
 	"Subclasse may override this"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>selectedObject [
+{ #category : #accessing }
+AbstractEyeElement >> selectedObject [
 	^ self value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>selectedObjectDo: aBlock [
+{ #category : #accessing }
+AbstractEyeElement >> selectedObjectDo: aBlock [
 	aBlock value: self selectedObject 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>shouldShowInTree [
+{ #category : #testing }
+AbstractEyeElement >> shouldShowInTree [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>value [
+{ #category : #accessing }
+AbstractEyeElement >> value [
 	"Answers the object associated with this EyeElement."
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>valueClass [
+{ #category : #accessing }
+AbstractEyeElement >> valueClass [
 	^ self value class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractEyeElement>>withErrorsDo: aBlock [
+{ #category : #accessing }
+AbstractEyeElement >> withErrorsDo: aBlock [
 	self errorPropertySelectors
 		do: [ :selector | 
 			self errorWhileAccessing: selector do: aBlock ].

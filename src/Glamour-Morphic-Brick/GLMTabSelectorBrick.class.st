@@ -37,65 +37,46 @@ Class {
 		'font',
 		'tabs'
 	],
-	#category : #Glamour-Morphic-Brick-Morphic,
-	#timestamp : 'AliakseiSyrel 10/17/2014 10:33'
+	#category : #Glamour-Morphic-Brick-Morphic
 }
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>addTab: aStringOrMorph [
+{ #category : #adding/removing }
+GLMTabSelectorBrick >> addTab: aStringOrMorph [
 	"Add a new tab with the given text."
 	
 	self tabs add: (self newLabelBrick: aStringOrMorph).
 	self updateTabs
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>addTab: aStringOrMorph selected: selectedStringOrMorph [
+{ #category : #adding/removing }
+GLMTabSelectorBrick >> addTab: aStringOrMorph selected: selectedStringOrMorph [
 	"Add a new tab with the given text or morph and alternate for when selected."
 	
 	self tabs add: (self newLabelBrick: aStringOrMorph selected: selectedStringOrMorph).
 	self updateTabs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>font [
+{ #category : #accessing }
+GLMTabSelectorBrick >> font [
 	"Answer the label font"
 	^ font
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>font: aFont [
+{ #category : #accessing }
+GLMTabSelectorBrick >> font: aFont [
 	"Set the label font"
 	font := aFont
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>handlesKeyboard: evt [
+{ #category : #'event handling' }
+GLMTabSelectorBrick >> handlesKeyboard: evt [
 	"Yes, we do it here."
 	
 	^ true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>keyStroke: event  [
+{ #category : #'event handling' }
+GLMTabSelectorBrick >> keyStroke: event [ 
 	"Process keys navigation and space to toggle."
 
 	(self navigationKey: event) ifTrue: [ ^ self ].
@@ -105,22 +86,16 @@ GLMTabSelectorBrick>>keyStroke: event  [
 		ifTrue: [ self selectNextTab ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>keyboardFocusChange: aBoolean [
+{ #category : #'event handling' }
+GLMTabSelectorBrick >> keyboardFocusChange: aBoolean [
 	"The message is sent to a morph when its keyboard focus changes.
 	Update for focus feedback."
 	super keyboardFocusChange: aBoolean.
 	self focusChanged
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>newLabelBrick: aStringOrBrick [
+{ #category : #'instance creation' }
+GLMTabSelectorBrick >> newLabelBrick: aStringOrBrick [
 	"Answer a new label brick with the given label text."
 
 	^ GLMTabLabelBrick new
@@ -130,11 +105,8 @@ GLMTabSelectorBrick>>newLabelBrick: aStringOrBrick [
 		vSpaceFill
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>newLabelBrick: aStringOrBrick selected: selectedStringOrBrick [
+{ #category : #'instance creation' }
+GLMTabSelectorBrick >> newLabelBrick: aStringOrBrick selected: selectedStringOrBrick [
 	"Answer a new label brick with the given label text or brick and
 	alternate when selected."
 	^ GLMTabLabelBrick new
@@ -144,32 +116,23 @@ GLMTabSelectorBrick>>newLabelBrick: aStringOrBrick selected: selectedStringOrBri
 		vSpaceFill
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>onTabClicked: anEvent with: aBrick  [
+{ #category : #'event handling' }
+GLMTabSelectorBrick >> onTabClicked: anEvent with: aBrick [ 
 	"A tab has been clicked."
 	
 	self selectedIndex: (self tabs indexOf: aBrick)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>relabelTab: aTab with: aStringOrBrick [
+{ #category : #actions }
+GLMTabSelectorBrick >> relabelTab: aTab with: aStringOrBrick [
 	"Relabel the tab update tab layout."
 
 	aTab label: aStringOrBrick.
 	self updateTabs
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>removeTabIndex: anInteger [
+{ #category : #adding/removing }
+GLMTabSelectorBrick >> removeTabIndex: anInteger [
 	"Remove the tab at the given index and
 	adjust any selected (next or first if was last)."
 	
@@ -180,21 +143,15 @@ GLMTabSelectorBrick>>removeTabIndex: anInteger [
 		
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>selectNextTab [
+{ #category : #actions }
+GLMTabSelectorBrick >> selectNextTab [
 	"Select the next tab, or the first if none selected."
 	
 	self selectedIndex: self selectedIndex \\ self tabs size + 1
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>selectPreviousTab [
+{ #category : #actions }
+GLMTabSelectorBrick >> selectPreviousTab [
 	"Select the previous tab, or the last if none selected."
 	
 	self selectedIndex: (self selectedIndex < 2
@@ -202,21 +159,15 @@ GLMTabSelectorBrick>>selectPreviousTab [
 		ifFalse: [self selectedIndex - 1])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>selectedIndex [
+{ #category : #accessing }
+GLMTabSelectorBrick >> selectedIndex [
 	"Answer the value of selectedIndex"
 
 	^ selectedIndex ifNil: [ selectedIndex := 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>selectedIndex: index [
+{ #category : #accessing }
+GLMTabSelectorBrick >> selectedIndex: index [
 	"Set the value of selectedIndex"
 
 	|oldIndex|
@@ -227,40 +178,28 @@ GLMTabSelectorBrick>>selectedIndex: index [
 	self changed: #selectedIndex with: oldIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>selectedTab [
+{ #category : #accessing }
+GLMTabSelectorBrick >> selectedTab [
 	"Answer the selected tab."
 	
 	^ self selectedIndex = 0
 		ifFalse: [self tabs at: self selectedIndex ifAbsent: [ nil ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>tabs [
+{ #category : #accessing }
+GLMTabSelectorBrick >> tabs [
 
 	^ tabs ifNil: [ tabs := OrderedCollection new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>tabs: anObject [
+{ #category : #accessing }
+GLMTabSelectorBrick >> tabs: anObject [
 
 	tabs := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabSelectorBrick>>updateTabs [
+{ #category : #actions }
+GLMTabSelectorBrick >> updateTabs [
 	"Update the submorphs based on visible tabs."
 
 	|selectedTab|

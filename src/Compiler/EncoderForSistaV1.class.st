@@ -143,23 +143,16 @@ We define the following inlined primitives:
 Class {
 	#name : #EncoderForSistaV1,
 	#superclass : #BytecodeEncoder,
-	#category : #Compiler-Kernel,
-	#timestamp : 'ClementBera 5/7/2015 10:08'
+	#category : #Compiler-Kernel
 }
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>backJumpBytecodeSize [
+{ #category : #'bytecode decoding' }
+EncoderForSistaV1 class >> backJumpBytecodeSize [
 	^ 4
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>bindingReadScanBlockFor: litVarIndex using: scanner [
+{ #category : #'compiled method support' }
+EncoderForSistaV1 class >> bindingReadScanBlockFor: litVarIndex using: scanner [
 	"Answer a block argument for InstructionStream>>scanFor: that answers true
 	 for reads of the value of the binding with zero-relative index litVarIndex.
 	 N.B. Don't assume the compiler uses the most compact encoding available."
@@ -177,11 +170,8 @@ EncoderForSistaV1 class>>bindingReadScanBlockFor: litVarIndex using: scanner [
 			and: [scanner followingByte + prevext = litVarIndex]]]
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>bindingWriteScanBlockFor: litVarIndex using: scanner [
+{ #category : #'compiled method support' }
+EncoderForSistaV1 class >> bindingWriteScanBlockFor: litVarIndex using: scanner [
 	"Answer a block argument for InstructionStream>>scanFor: that answers true
 	 for writes of the value of the binding with zero-relative index litVarIndex.
 	 N.B. Don't assume the compiler uses the most compact encoding available."
@@ -198,32 +188,23 @@ EncoderForSistaV1 class>>bindingWriteScanBlockFor: litVarIndex using: scanner [
 	   and: [scanner followingByte + prevext = litVarIndex]]
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>bytecodeSize: bytecode [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> bytecodeSize: bytecode [
 	"Answer the number of bytes in the bytecode."
 	bytecode < 224 ifTrue: [^1].
 	bytecode < 248 ifTrue: [^2].
 	^3
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>callPrimitiveCode [
+{ #category : #'bytecode decoding' }
+EncoderForSistaV1 class >> callPrimitiveCode [
 	"Answer the call primitive bytecode, if it exists in the encoder's bytecode set, or nil if not.
 	 248	11111000 	iiiiiiii	mjjjjjjj	Call Primitive #iiiiiiii + (jjjjjjj * 256) m=1 means inlined primitive, no hard return after execution."
 	^248
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>extensionsAt: bcpc in: method into: aTrinaryBlock [
+{ #category : #'compiled method support' }
+EncoderForSistaV1 class >> extensionsAt: bcpc in: method into: aTrinaryBlock [
 	"If the bytecode at pc is an extension then evaluate aBinaryBlock with the values of extA and extB and number of extension *bytes*.
 	 If the bytecode at pc is not extended then evaluate aBinaryBlock with 0 and 0.
 	224		11100000	aaaaaaaa	Extend A (Ext A = Ext A prev * 256 + Ext A)
@@ -260,11 +241,8 @@ EncoderForSistaV1 class>>extensionsAt: bcpc in: method into: aTrinaryBlock [
 	   Time millisecondsToRun: [1 to: n do: [:i| (byte bitAnd: 16rFE) = 16rE0 ifTrue: []]] }] #(#(297 599) #(702 671))"
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>instVarReadScanBlockFor: varIndexCode using: scanner [
+{ #category : #'compiled method support' }
+EncoderForSistaV1 class >> instVarReadScanBlockFor: varIndexCode using: scanner [
 	"Answer a block argument for InstructionStream>>scanFor: that answers true
 	 for reads of the inst var with zero-relative index varIndexCode.
 	 N.B. Don't assume the compiler uses the most compact encoding available."
@@ -282,11 +260,8 @@ EncoderForSistaV1 class>>instVarReadScanBlockFor: varIndexCode using: scanner [
 			and: [scanner followingByte + prevext = varIndexCode]]]
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>instVarWriteScanBlockFor: varIndexCode using: scanner [
+{ #category : #'compiled method support' }
+EncoderForSistaV1 class >> instVarWriteScanBlockFor: varIndexCode using: scanner [
 	"Answer a block argument for InstructionStream>>scanFor: that answers true
 	 for writes of the inst var with zero-relative index varIndexCode.
 	 N.B. Don't assume the compiler uses the most compact encoding available."
@@ -307,49 +282,34 @@ EncoderForSistaV1 class>>instVarWriteScanBlockFor: varIndexCode using: scanner [
 		  and: [scanner followingByte + prevext = varIndexCode]]]
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>interpretJumpIfCondIn: anInstructionStream [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> interpretJumpIfCondIn: anInstructionStream [
 	"Double-dispatch through the encoder to select the correct conditional jump decoder for the instruction set."
 	^anInstructionStream interpretSistaV1JumpIfCond
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>interpretJumpIn: anInstructionStream [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> interpretJumpIn: anInstructionStream [
 	"Double-dispatch through the encoder to select the correct unconditional jump decoder for the instruction set."
 	^anInstructionStream interpretSistaV1Jump
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>interpretNextInstructionFor: aClient in: anInstructionStream [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> interpretNextInstructionFor: aClient [ in: anInstructionStream
 	"Double-dispatch through the encoder to select the correct instruction set decoder."
 	^anInstructionStream interpretNextSistaV1InstructionFor: aClient
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>isBlockReturnAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> isBlockReturnAt: pc in: method [
 	"Answer whether the bytecode at pc is a return from block."
 	"	93			01011101			BlockReturn nil
 	 *	94			01011110			BlockReturn Top [* return from enclosing block N, N = Extend A, then jump by Ext B ]"
 	^(self nonExtensionBytecodeAt: pc in: method) between: 93 and: 94
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>isBranchIfFalseAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> isBranchIfFalseAt: pc in: method [
 	"Answer whether the bytecode at pc is a conditional branch-if-false."
 
 	"	192-199	11000 iii				Pop and Jump 0n False iii +1 (i.e., 1 through 8)
@@ -359,11 +319,8 @@ EncoderForSistaV1 class>>isBranchIfFalseAt: pc in: method [
 	^byte >= 192 and: [byte <= 199 or: [byte = 239]]
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>isBranchIfTrueAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> isBranchIfTrueAt: pc in: method [
 	"Answer whether the bytecode at pc is a conditional branch-if-true."
 
 	"	184-191	10111 iii				Pop and Jump 0n True iii +1 (i.e., 1 through 8)
@@ -373,11 +330,8 @@ EncoderForSistaV1 class>>isBranchIfTrueAt: pc in: method [
 	^byte >= 184 and: [byte <= 191 or: [byte = 238]]
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>isCreateBlockAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> isCreateBlockAt: pc in: method [
 	"Answer whether the bytecode at pc is a block creation bytecode."
 	
 	"250		11111010 	eeiiikkk		jjjjjjjj		Push Closure Num Copied iii (+ExtA//16*8) Num Args kkk (+ ExtA\\16*8) BlockSize jjjjjjjj (+ExtB*256). ee = num extensions"
@@ -387,21 +341,15 @@ EncoderForSistaV1 class>>isCreateBlockAt: pc in: method [
 	^ byte = 250
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>isExtension: bytecode [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> isExtension: bytecode [
 	"Answer if the bytecode is an extension bytecode, i.e. one that extends
 	 the range of the following bytecode."
 	^bytecode >= 16rE0 and: [bytecode <= 16rE1]
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>isJumpAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> isJumpAt: pc in: method [
 	"Answer whether the bytecode at pc is an (unconditional) jump."
 
 	"	176-183	10110 iii				Jump iii + 1 (i.e., 1 through 8)
@@ -412,31 +360,22 @@ EncoderForSistaV1 class>>isJumpAt: pc in: method [
 	^byte >= 176 and: [byte <= 183 or: [byte = 237]]
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>isJustPopAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> isJustPopAt: pc in: method [
 	"Answer whether the bytecode at pc is a pop."
 
 	^(method at: pc) = 216 "216		11011000			Pop Stack Top"
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>isRealSendAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> isRealSendAt: pc in: method [
 	"Answer whether the bytecode at pc is a real message-send, not blockCopy:."
 
 	^self isSendAt: pc in: method
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>isReturnAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> isReturnAt: pc in: method [
 	"Answer whether the bytecode at pc is a return from block."
 	"	88-91		010110 ii			Return Receiver/true/false/nil
 		92			01011100			Return top
@@ -445,21 +384,15 @@ EncoderForSistaV1 class>>isReturnAt: pc in: method [
 	^(self nonExtensionBytecodeAt: pc in: method) between: 88 and: 94
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>isReturnTopFromMethodAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> isReturnTopFromMethodAt: pc in: method [
 	"Answer whether the bytecode at pc is a return stack top from method."
 
 	^(method at: pc) = 92
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>isSendAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> isSendAt: pc in: method [
 	"Answer whether the bytecode at pc is a message-send."
 
 	"	96-111		0110 iiii			Send Arithmetic Message #iiii #(#+ #- #< #> #'<=' #'>=' #= #'~=' #* #/ #'\\' #@ #bitShift: #'//' #bitAnd: #bitOr:)
@@ -481,11 +414,8 @@ EncoderForSistaV1 class>>isSendAt: pc in: method [
 		 or: [byte >= 234 and: [byte <= 235]]]
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>isStoreAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> isStoreAt: pc in: method [
 	"Answer whether the bytecode at pc is a store or store-pop."
 
 	"	200-207	11001 iii						Pop and Store Receiver Variable #iii
@@ -509,11 +439,8 @@ EncoderForSistaV1 class>>isStoreAt: pc in: method [
 		 or: [(byte between: 252 and: 253)]]]
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>isStorePopAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> isStorePopAt: pc in: method [
 	"Answer whether the bytecode at pc is a store or store-pop."
 
 	"	200-207	11001 iii						Pop and Store Receiver Variable #iii
@@ -533,11 +460,8 @@ EncoderForSistaV1 class>>isStorePopAt: pc in: method [
 		 or: [byte = 253]]]
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>markerOrNilFor: compiledMethod [
+{ #category : #'compiled method support' }
+EncoderForSistaV1 class >> markerOrNilFor: compiledMethod [
 	"What is a marker method?  It is method with body like 
 		'self subclassResponsibility' or '^ self subclassResponsibility' 
 	used to indicate ('mark') a special property.
@@ -566,11 +490,8 @@ EncoderForSistaV1 class>>markerOrNilFor: compiledMethod [
 	^ compiledMethod literalAt: 1
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>method: method refersInBytecodeToLiteral: aLiteral specialSelectorIndex: specialOrNil [
+{ #category : #scanning }
+EncoderForSistaV1 class >> method: method refersInBytecodeToLiteral: aLiteral specialSelectorIndex: specialOrNil [
 	"Answer if method refers to the literal aLiteral in the bytecode, as opposed to in its literal frame."
 
 	"	77			01001101				Push true
@@ -647,11 +568,8 @@ EncoderForSistaV1 class>>method: method refersInBytecodeToLiteral: aLiteral spec
 	^false
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>nonExtensionBytecodeAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> nonExtensionBytecodeAt: pc in: method [
 	"Answer the actual bytecode at pc in method, skipping past any preceeding extensions."
 	| scanpc byte |
 	scanpc := pc.
@@ -660,11 +578,8 @@ EncoderForSistaV1 class>>nonExtensionBytecodeAt: pc in: method [
 	^ byte
 ]
 
-{
-	#category : #'block closure support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>numLocalTempsForBlockAt: startpc in: method [
+{ #category : #'block closure support' }
+EncoderForSistaV1 class >> numLocalTempsForBlockAt: startpc in: method [
 	| firstByte |
 	firstByte := method at: startpc.
 	^ firstByte = 230 
@@ -673,19 +588,13 @@ EncoderForSistaV1 class>>numLocalTempsForBlockAt: startpc in: method [
 	
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>prepareMethod: compiledMethod forSimulationWith: numArgs [
+{ #category : #'compiled method support' }
+EncoderForSistaV1 class >> prepareMethod: compiledMethod forSimulationWith: numArgs [
 	self shouldBeImplemented
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>selectorToSendOrItselfFor: anInstructionStream in: method at: pc [
+{ #category : #'bytecode decoding' }
+EncoderForSistaV1 class >> selectorToSendOrItselfFor: anInstructionStream in: method at: pc [
 	"If anInstructionStream is at a send bytecode then answer the send's selector,
 	 otherwise answer anInstructionStream itself.  The rationale for answering
 	 anInstructionStream instead of, say, nil, is that potentially any existing object
@@ -738,11 +647,8 @@ EncoderForSistaV1 class>>selectorToSendOrItselfFor: anInstructionStream in: meth
 		 method literalAt: index + 1]
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>sendsToSuperFor: compiledMethod [
+{ #category : #'compiled method support' }
+EncoderForSistaV1 class >> sendsToSuperFor: compiledMethod [
 	"Answer whether the receiver sends any message to super."
 	| scanner |
 	scanner := InstructionStream on: compiledMethod.
@@ -750,19 +656,13 @@ EncoderForSistaV1 class>>sendsToSuperFor: compiledMethod [
 		[:instr |  instr = 235 ]
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>specialLiterals [
+{ #category : #'bytecode decoding' }
+EncoderForSistaV1 class >> specialLiterals [
 	^ #(true false nil 0 1) 
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>stackDeltaForPrimitive: primitiveIndex in: method [
+{ #category : #'bytecode decoding' }
+EncoderForSistaV1 class >> stackDeltaForPrimitive: primitiveIndex in: method [
 	"Answer the stack delta for the callPrimitive: bytecode (see my class comment).
 	 There is no delta for non-inlined primitives (its implicitly 0 - method numArgs).
 	 Inlined primitives are grouped by the thousand by argument count, 32 args max ;-)."
@@ -771,11 +671,8 @@ EncoderForSistaV1 class>>stackDeltaForPrimitive: primitiveIndex in: method [
 		ifFalse: [primitiveIndex - 32768 // 1000]
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>superSendScanBlockUsing: scanner [
+{ #category : #'instruction stream support' }
+EncoderForSistaV1 class >> superSendScanBlockUsing: scanner [
 	"Answer a block argument for InstructionStream>>scanFor:
 	 that answers true for super sends."
 
@@ -786,31 +683,22 @@ EncoderForSistaV1 class>>superSendScanBlockUsing: scanner [
 	^[:instr | instr = 235]
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>supportsClosures [
+{ #category : #'compiled method support' }
+EncoderForSistaV1 class >> supportsClosures [
 	"Answer if the instruction set supports closures (contains
 	 closure creation and indirect temp access bytecodes)."
 
 	^true
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1 class>>unusedBytecode [
+{ #category : #'bytecode decoding' }
+EncoderForSistaV1 class >> unusedBytecode [
 	"Answer the opcode of a single-byte unused bytecode, if it exists in the encoder's bytecode set, or nil if not."
 	^ 84
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genBranchIfNotInstanceOf: literalIndex distance: distance [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genBranchIfNotInstanceOf: literalIndex distance: distance [
 	"254		11111110	kkkkkkkk	jjjjjjjj		branch If Not Instance Of Behavior/Array Of Behavior kkkkkkkk (+ Extend A * 256, where Extend A >= 0) distance jjjjjjjj (+ Extend B * 256, where Extend B >= 0)"
 							
 	| extendedIndex extendedDistance |
@@ -831,11 +719,8 @@ EncoderForSistaV1>>genBranchIfNotInstanceOf: literalIndex distance: distance [
 		nextPut: extendedDistance
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genBranchPopFalse: distance [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genBranchPopFalse: distance [
 	(distance > 0 and: [distance < 9]) ifTrue:
 		["192-199	11000 iii			Pop and Jump 0n False iii + 1 (i.e., 1 through 8)"
 		 stream nextPut: 191 + distance.
@@ -843,11 +728,8 @@ EncoderForSistaV1>>genBranchPopFalse: distance [
 	^self genBranchPopFalseLong: distance
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genBranchPopFalseLong: distance [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genBranchPopFalseLong: distance [
 	"239		11101111	iiiiiiii		Pop and Jump 0n False #iiiiiiii (+ Extend B * 256, where Extend B >= 0)	"
 	| distanceMod256 |
 	(distance < 0 or: [distance > 32767]) ifTrue:
@@ -862,11 +744,8 @@ EncoderForSistaV1>>genBranchPopFalseLong: distance [
 		nextPut: distanceMod256
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genBranchPopTrue: distance [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genBranchPopTrue: distance [
 	(distance > 0 and: [distance < 9]) ifTrue:
 		["184-191	10111 iii			Pop and Jump 0n True iii + 1 (i.e., 1 through 8)"
 		 stream nextPut: 183 + distance.
@@ -874,11 +753,8 @@ EncoderForSistaV1>>genBranchPopTrue: distance [
 	^self genBranchPopTrueLong: distance
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genBranchPopTrueLong: distance [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genBranchPopTrueLong: distance [
 	"238		11101110	iiiiiiii		Pop and Jump 0n True #iiiiiiii (+ Extend B * 256, where Extend B >= 0)"
 	| distanceMod256 |
 	(distance < 0 or: [distance > 32767]) ifTrue:
@@ -897,11 +773,8 @@ EncoderForSistaV1>>genBranchPopTrueLong: distance [
 		nextPut: distanceMod256
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genCallInlinePrimitive: primitiveIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genCallInlinePrimitive: primitiveIndex [
 	"248		11111000	i i i i i i i i	1jjjjjjj		Call Primitive #iiiiiiii + (jjjjjjj * 256)"
 	"N.B. We could have made CallPrimitive a 2-byte code taking an extension, but that would
 	 complicate the VM's determination of the primitive number and the primitive error code
@@ -914,11 +787,8 @@ EncoderForSistaV1>>genCallInlinePrimitive: primitiveIndex [
 		nextPut: (primitiveIndex bitShift: -8) + 128
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genCallPrimitive: primitiveIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genCallPrimitive: primitiveIndex [
 	"248		11111000	i i i i i i i i	0jjjjjjj		Call Primitive #iiiiiiii + (jjjjjjj * 256)"
 	"N.B. We could have made CallPrimitive a 2-byte code taking an extension, but that would
 	 complicate the VM's determination of the primitive number and the primitive error code
@@ -931,28 +801,19 @@ EncoderForSistaV1>>genCallPrimitive: primitiveIndex [
 		nextPut: (primitiveIndex bitShift: -8)
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genDup [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genDup [
 	"83			01010011			Duplicate Stack Top"
 	stream nextPut: 83
 ]
 
-{
-	#category : #'in-line primitive generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genInlineSmallIntegerAdd [
+{ #category : #'in-line primitive generation' }
+EncoderForSistaV1 >> genInlineSmallIntegerAdd [
 	^self genCallInlinePrimitive: 0
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genJump: distance [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genJump: distance [
 	(distance > 0 and: [distance < 9]) ifTrue:
 		["176-183	10110 iii			Jump iii + 1 (i.e., 1 through 8)"
 		 stream nextPut: 175 + distance.
@@ -961,11 +822,8 @@ EncoderForSistaV1>>genJump: distance [
 	^self genJumpLong: distance
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genJumpLong: distance [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genJumpLong: distance [
 	"237		11101101	iiiiiiii		Jump #iiiiiiii (+ Extend B * 256, where bbbbbbbb = sddddddd, e.g. -32768 = i=0, a=0, s=1)"
 	(distance between: -32768 and: 32767) ifFalse:
 		[^self outOfRangeError: 'index' index: distance range: -32768 to: 32767].
@@ -976,29 +834,20 @@ EncoderForSistaV1>>genJumpLong: distance [
 		nextPut: (distance bitAnd: 255)
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genNop [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genNop [
 	"95			01011111			Nop"
 	stream nextPut: 95
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genPop [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genPop [
 	"216		11011000			Pop Stack Top"
 	stream nextPut: 216
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genPushCharacter: aCharacterOrCode [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genPushCharacter: aCharacterOrCode [
 	"233		11101001	i i i i i i i i	Push Character #iiiiiiii (+ Extend B * 256)"
 	"Why restrict the range to 16 bits when we could encode arbitrarily 32-bit Characters?
 	 Well, 16 bits requires 4 bytes (extB + byte, 78 + byte) and so beyond this range we
@@ -1016,11 +865,8 @@ EncoderForSistaV1>>genPushCharacter: aCharacterOrCode [
 		nextPut: (code bitAnd: 255)
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genPushClosureCopyNumCopiedValues: numCopied numArgs: numArgs jumpSize: jumpSize [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genPushClosureCopyNumCopiedValues: numCopied numArgs: numArgs jumpSize: jumpSize [
 	"250		11111010 eeiiikkk		jjjjjjjj		Push Closure Num Copied iii (+ Ext A // 16 * 8) Num Args kkk (+ Ext A \\ 16 * 8) BlockSize jjjjjjjj (+ Ext B * 256). ee = num extensions"
 	"Including numExtensions makes decoding the bytecode quicker since it obviates having to scan from the beginning of a method."
 	| numExtensions numCopiedMod8 numArgsMod8 extA |
@@ -1049,11 +895,8 @@ EncoderForSistaV1>>genPushClosureCopyNumCopiedValues: numCopied numArgs: numArgs
 		nextPut: (jumpSize bitAnd: 16rFF)
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genPushConsArray: size [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genPushConsArray: size [
 	(size < 0 or: [size > 127]) ifTrue:
 		[^self outOfRangeError: 'size' index: size range: 0 to: 127].
 	"231		11100111	jkkkkkkk	Push (Array new: kkkkkkk) (j = 0)
@@ -1063,11 +906,8 @@ EncoderForSistaV1>>genPushConsArray: size [
 		nextPut: size + 128
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genPushInstVar: instVarIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genPushInstVar: instVarIndex [
 	(instVarIndex between: 0 and: 15) ifTrue:
 		["0-15 	0000iiii 	Push Receiver Variable #iiii"
 		 stream nextPut: 0 + instVarIndex.
@@ -1075,11 +915,8 @@ EncoderForSistaV1>>genPushInstVar: instVarIndex [
 	self genPushInstVarLong: instVarIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genPushInstVarLong: instVarIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genPushInstVarLong: instVarIndex [
 	"226		11100010	i i i i i i i i	Push Receiver Variable #iiiiiiii (+ Extend A * 256)"
 	"See also MaybeContextInstanceVariableNode"
 	(instVarIndex < 0 or: [instVarIndex > 65535]) ifTrue:
@@ -1091,11 +928,8 @@ EncoderForSistaV1>>genPushInstVarLong: instVarIndex [
 		nextPut: instVarIndex \\ 256
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genPushInteger: anInteger [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genPushInteger: anInteger [
 	"80			01010000				Push 0
 	 81			01010001				Push 1
 	 232		11101000	i i i i i i i i	Push Integer #iiiiiiii (+ Extend B * 256, where bbbbbbbb = sddddddd, e.g. -32768 = i=0, a=0, s=1)"
@@ -1119,11 +953,8 @@ EncoderForSistaV1>>genPushInteger: anInteger [
 		nextPut: (anInteger bitAnd: 255)
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genPushLiteral: literalIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genPushLiteral: literalIndex [
     | extendedIndex |
     (literalIndex < 0 or: [literalIndex > 32767]) ifTrue:
         [^self outOfRangeError: 'index' index: literalIndex range: 0 to: 32768].
@@ -1140,11 +971,8 @@ EncoderForSistaV1>>genPushLiteral: literalIndex [
         nextPut: extendedIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genPushLiteralVar: literalIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genPushLiteralVar: literalIndex [
 	| extendedIndex |
 	(literalIndex < 0 or: [literalIndex > 65535]) ifTrue:
 		[^self outOfRangeError: 'index' index: literalIndex range: 0 to: 65535].
@@ -1161,11 +989,8 @@ EncoderForSistaV1>>genPushLiteralVar: literalIndex [
 		nextPut: extendedIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genPushNClosureTemps: numTemps [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genPushNClosureTemps: numTemps [
 	"	230		11100110	iiiiiiii		PushNClosureTemps iiiiiiii"
 	(numTemps < 0 or: [numTemps >= 64]) ifTrue:
 		[^self outOfRangeError: 'closure num temps' index: numTemps range: 0 to: 127].
@@ -1173,11 +998,8 @@ EncoderForSistaV1>>genPushNClosureTemps: numTemps [
 	stream nextPut: numTemps
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genPushNewArray: size [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genPushNewArray: size [
 	(size < 0 or: [size > 127]) ifTrue:
 		[^self outOfRangeError: 'size' index: size range: 0 to: 127].
 	"231		11100111	jkkkkkkk	Push (Array new: kkkkkkk) (j = 0)
@@ -1187,20 +1009,14 @@ EncoderForSistaV1>>genPushNewArray: size [
 		nextPut: size
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genPushReceiver [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genPushReceiver [
 	"76			01001100		Push Receiver"
 	stream nextPut: 76
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genPushRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genPushRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 	"251		11111011 kkkkkkkk	jjjjjjjj		Push Temp At kkkkkkkk In Temp Vector At: jjjjjjjj"
 	(tempIndex < 0 or: [tempIndex >= 256]) ifTrue:
 		[^self outOfRangeError: 'remoteTempIndex' index: tempIndex range: 0 to: 255].
@@ -1212,11 +1028,8 @@ EncoderForSistaV1>>genPushRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 		nextPut: tempVectorIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genPushSpecialLiteral: aLiteral [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genPushSpecialLiteral: aLiteral [
 	"77			01001101			Push true
 	 78			01001110			Push false
 	 79			01001111			Push nil
@@ -1238,11 +1051,8 @@ EncoderForSistaV1>>genPushSpecialLiteral: aLiteral [
 	stream nextPut: 76 + index
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genPushTemp: tempIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genPushTemp: tempIndex [
 	(tempIndex < 0 or: [tempIndex > 63]) ifTrue:
 		[^self outOfRangeError: 'index' index: tempIndex range: 0 to: 63].
 	tempIndex < 12 ifTrue: 
@@ -1256,29 +1066,20 @@ EncoderForSistaV1>>genPushTemp: tempIndex [
 		nextPut: tempIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genPushThisContext [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genPushThisContext [
 	"82			01010010			Push thisContext, (then e.g. Extend B 1 = push thisProcess)"
 	stream nextPut: 82
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genReturnReceiver [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genReturnReceiver [
 	"88-91		010110 ii			Return Receiver/true/false/nil"
 	stream nextPut: 88
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genReturnSpecialLiteral: aLiteral [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genReturnSpecialLiteral: aLiteral [
 	"88-91		010110 ii			Return Receiver/true/false/nil"
 	| index |
 	index := #(true false nil) indexOf: aLiteral ifAbsent: 0.
@@ -1287,20 +1088,14 @@ EncoderForSistaV1>>genReturnSpecialLiteral: aLiteral [
 	stream nextPut: 88 + index
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genReturnTop [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genReturnTop [
 	"92		1011100		Return Stack Top From Message"
 	stream nextPut: 92
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genReturnTopToCaller [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genReturnTopToCaller [
 	"94		01011110		Return Stack Top From Block [* return from enclosing block N, ExtA]"
 	"If extended, the least significant bit of the extension determines if we return to the caller or not
 	 and the most significant bits determine how many levels of the static chain to return from.
@@ -1316,11 +1111,8 @@ EncoderForSistaV1>>genReturnTopToCaller [
 	stream nextPut: 94
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genSend: selectorLiteralIndex numArgs: nArgs [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genSend: selectorLiteralIndex numArgs: nArgs [
 	| extendedIndex extendedNArgs |
 	(selectorLiteralIndex < 0 or: [selectorLiteralIndex > 65535]) ifTrue:
 		[^self outOfRangeError: 'selectorLiteralIndex' index: selectorLiteralIndex range: 0 to: 65535].
@@ -1344,11 +1136,8 @@ EncoderForSistaV1>>genSend: selectorLiteralIndex numArgs: nArgs [
 		nextPut: extendedNArgs + (extendedIndex * 8)
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genSendDirectedSuper: selectorLiteralIndex numArgs: nArgs [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genSendDirectedSuper: selectorLiteralIndex numArgs: nArgs [
 	| extendedIndex |
 	(selectorLiteralIndex < 0 or: [selectorLiteralIndex > 65535]) ifTrue:
 		[^self outOfRangeError: 'selectorLiteralIndex' index: selectorLiteralIndex range: 0 to: 65535].
@@ -1365,11 +1154,8 @@ EncoderForSistaV1>>genSendDirectedSuper: selectorLiteralIndex numArgs: nArgs [
 		nextPut: nArgs \\ 8 + (extendedIndex * 8)
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genSendSpecial: specialSelectorIndex numArgs: nArgs [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genSendSpecial: specialSelectorIndex numArgs: nArgs [
 	self assert: (specialSelectorIndex between: 1 and: Smalltalk specialSelectorSize).
 	self assert: nArgs = (Smalltalk specialNargsAt: specialSelectorIndex).
 	"Special selector sends.
@@ -1379,11 +1165,8 @@ EncoderForSistaV1>>genSendSpecial: specialSelectorIndex numArgs: nArgs [
 	stream nextPut: specialSelectorIndex + 95
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genSendSuper: selectorLiteralIndex numArgs: nArgs [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genSendSuper: selectorLiteralIndex numArgs: nArgs [
 	| extendedIndex extendedNArgs |
 	(selectorLiteralIndex < 0 or: [selectorLiteralIndex > 65535]) ifTrue:
 		[^self outOfRangeError: 'selectorLiteralIndex' index: selectorLiteralIndex range: 0 to: 65535].
@@ -1401,11 +1184,8 @@ EncoderForSistaV1>>genSendSuper: selectorLiteralIndex numArgs: nArgs [
 		nextPut: extendedNArgs + (extendedIndex * 8)
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genSignedSingleExtendB: extendedIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genSignedSingleExtendB: extendedIndex [
 	(extendedIndex between: -128 and: 127) ifFalse:
 		[^self outOfRangeError: 'index' index: extendedIndex range: -128 to: 127].
 	"225		11100001	sbbbbbbb	Extend B (Ext B = Ext B prev * 256 + Ext B)"
@@ -1414,20 +1194,14 @@ EncoderForSistaV1>>genSignedSingleExtendB: extendedIndex [
 		nextPut: (extendedIndex >= 0 ifTrue: [extendedIndex] ifFalse: [extendedIndex + 256]) 
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genStoreInstVar: instVarIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genStoreInstVar: instVarIndex [
 	"243		11110011	iiiiiiii		Store Receiver Variable #iiiiiii (+ Extend A * 256)"
 	self genStoreInstVarLong: instVarIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genStoreInstVarLong: instVarIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genStoreInstVarLong: instVarIndex [
 	"243		11110011	iiiiiiii		Store Receiver Variable #iiiiiii (+ Extend A * 256)"
 	(instVarIndex < 0 or: [instVarIndex > 65535]) ifTrue:
 		[^self outOfRangeError: 'index' index: instVarIndex range: 0 to: 65535].
@@ -1438,11 +1212,8 @@ EncoderForSistaV1>>genStoreInstVarLong: instVarIndex [
 		nextPut: instVarIndex \\ 256
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genStoreLiteralVar: literalIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genStoreLiteralVar: literalIndex [
 	"244		11110100	iiiiiiii		Store Literal Variable #iiiiiiii (+ Extend A * 256)"
 	(literalIndex < 0 or: [literalIndex > 65535]) ifTrue:
 		[^self outOfRangeError: 'index' index: literalIndex range: 0 to: 65535].
@@ -1453,11 +1224,8 @@ EncoderForSistaV1>>genStoreLiteralVar: literalIndex [
 		nextPut: literalIndex \\ 256
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genStorePopInstVar: instVarIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genStorePopInstVar: instVarIndex [
 	"200-207	11001 iii			Pop and Store Receiver Variable #iii
 	 240		11110000	iiiiiiii	Pop and Store Receiver Variable #iiiiiii (+ Extend A * 256)"
 	(instVarIndex < 0 or: [instVarIndex > 7]) ifTrue:
@@ -1465,11 +1233,8 @@ EncoderForSistaV1>>genStorePopInstVar: instVarIndex [
 	stream nextPut: 200 + instVarIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genStorePopInstVarLong: instVarIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genStorePopInstVarLong: instVarIndex [
 	"240		11110000	iiiiiiii		Pop and Store Receiver Variable #iiiiiii (+ Extend A * 256)"
 	(instVarIndex < 0 or: [instVarIndex > 65535]) ifTrue:
 		[^self outOfRangeError: 'index' index: instVarIndex range: 0 to: 65535].
@@ -1480,11 +1245,8 @@ EncoderForSistaV1>>genStorePopInstVarLong: instVarIndex [
 		nextPut: instVarIndex \\ 256
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genStorePopLiteralVar: literalIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genStorePopLiteralVar: literalIndex [
 	"241		11110001	iiiiiiii		Pop and Store Literal Variable #iiiiiiii (+ Extend A * 256)"
 	(literalIndex < 0 or: [literalIndex > 65535]) ifTrue:
 		[^self outOfRangeError: 'index' index: literalIndex range: 0 to: 65535].
@@ -1495,11 +1257,8 @@ EncoderForSistaV1>>genStorePopLiteralVar: literalIndex [
 		nextPut: literalIndex \\ 256
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genStorePopRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genStorePopRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 	"253		11111101 	kkkkkkkk	jjjjjjjj		Pop and Store Temp At kkkkkkkk In Temp Vector At: jjjjjjjj"
 	(tempIndex < 0 or: [tempIndex >= 256]) ifTrue:
 		[^self outOfRangeError: 'remoteTempIndex' index: tempIndex range: 0 to: 255].
@@ -1511,11 +1270,8 @@ EncoderForSistaV1>>genStorePopRemoteTemp: tempIndex inVectorAt: tempVectorIndex 
 		nextPut: tempVectorIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genStorePopTemp: tempIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genStorePopTemp: tempIndex [
 	"208-215	11010 iii			Pop and Store Temporary Variable #iii
 	 242		11110010	iiiiiiii	Pop and Store Temporary Variable #iiiiiiii"
 	(tempIndex < 0 or: [tempIndex > 63]) ifTrue:
@@ -1528,11 +1284,8 @@ EncoderForSistaV1>>genStorePopTemp: tempIndex [
 		nextPut: tempIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genStoreRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genStoreRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 	"252		11111100 	kkkkkkkk	jjjjjjjj		Store Temp At kkkkkkkk In Temp Vector At: jjjjjjjj"
 	(tempIndex < 0 or: [tempIndex >= 256]) ifTrue:
 		[^self outOfRangeError: 'remoteTempIndex' index: tempIndex range: 0 to: 255].
@@ -1544,11 +1297,8 @@ EncoderForSistaV1>>genStoreRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 		nextPut: tempVectorIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genStoreTemp: tempIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genStoreTemp: tempIndex [
 	"245		11110110	iiiiiiii		Store Temporary Variable #iiiiiiii"
 	(tempIndex < 0 or: [tempIndex > 63]) ifTrue:
 		[^self outOfRangeError: 'index' index: tempIndex range: 0 to: 63].
@@ -1557,20 +1307,14 @@ EncoderForSistaV1>>genStoreTemp: tempIndex [
 		nextPut: tempIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genTrap [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genTrap [
 	"217		11011001			Unconditionnal trap"
 	stream nextPut: 217
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genTrapIfNotInstanceOf: literalIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genTrapIfNotInstanceOf: literalIndex [
 	"*	236		11101100	iiiiiiii		Trap If Not Instance Of Behavior/Array Of Behavior #iiiiiiii (+ Extend A * 256, where Extend A >= 0)"
 
 	| extendedIndex |
@@ -1584,11 +1328,8 @@ EncoderForSistaV1>>genTrapIfNotInstanceOf: literalIndex [
 		nextPut: extendedIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genUnsignedMultipleExtendA: extendedIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genUnsignedMultipleExtendA: extendedIndex [
 	"224		11100000	aaaaaaaa	Extend A (Ext A = Ext A prev * 256 + Ext A)"
 	extendedIndex > 255 ifTrue:
 		[self genUnsignedMultipleExtendA: extendedIndex // 256].
@@ -1597,11 +1338,8 @@ EncoderForSistaV1>>genUnsignedMultipleExtendA: extendedIndex [
 		nextPut: extendedIndex \\ 256
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genUnsignedSingleExtendA: extendedIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genUnsignedSingleExtendA: extendedIndex [
 	(extendedIndex between: 0 and: 255) ifFalse:
 		[^self outOfRangeError: 'index' index: extendedIndex range: 0 to: 255].
 	"224		11100000	aaaaaaaa	Extend A (Ext A = Ext A prev * 256 + Ext A)"
@@ -1610,11 +1348,8 @@ EncoderForSistaV1>>genUnsignedSingleExtendA: extendedIndex [
 		nextPut: extendedIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>genUnsignedSingleExtendB: extendedIndex [
+{ #category : #'bytecode generation' }
+EncoderForSistaV1 >> genUnsignedSingleExtendB: extendedIndex [
 	(extendedIndex between: 0 and: 255) ifFalse:
 		[^self outOfRangeError: 'index' index: extendedIndex range: 0 to: 255].
 	"225		11100001	sbbbbbbb	Extend B (Ext B = Ext B prev * 256 + Ext B)"
@@ -1623,11 +1358,8 @@ EncoderForSistaV1>>genUnsignedSingleExtendB: extendedIndex [
 		nextPut: extendedIndex
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForSistaV1>>isSpecialLiteralForPush: literal [
+{ #category : #testing }
+EncoderForSistaV1 >> isSpecialLiteralForPush: literal [
 	^literal == false
 	  or: [literal == true
 	  or: [literal == nil

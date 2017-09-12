@@ -4,31 +4,21 @@ SUnit tests for Button model
 Class {
 	#name : #ButtonModelTest,
 	#superclass : #SpecTestCase,
-	#category : #Spec-Tests-Core-Widgets,
-	#timestamp : 'TorstenBergmann 2/5/2014 09:21'
+	#category : #Spec-Tests-Core-Widgets
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ButtonModelTest>>classToTest [
+{ #category : #running }
+ButtonModelTest >> classToTest [
 ^ ButtonModel 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ButtonModelTest>>morph [
+{ #category : #running }
+ButtonModelTest >> morph [
 	^ testedInstance widget widget
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ButtonModelTest>>testAskBeforeChanging [
+{ #category : #tests }
+ButtonModelTest >> testAskBeforeChanging [
 	| state |
 	self assert: testedInstance askBeforeChanging not.
 	self openInstance.
@@ -39,11 +29,8 @@ ButtonModelTest>>testAskBeforeChanging [
 	self assert: state
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ButtonModelTest>>testEnabled [
+{ #category : #tests }
+ButtonModelTest >> testEnabled [
 	self assert: testedInstance enabled.
 	self openInstance.
 	self assert: self morph enabled.

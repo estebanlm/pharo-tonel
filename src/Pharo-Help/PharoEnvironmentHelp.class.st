@@ -157,15 +157,11 @@ In particular, you may also be interested in:
 Class {
 	#name : #PharoEnvironmentHelp,
 	#superclass : #Object,
-	#category : #Pharo-Help,
-	#timestamp : 'StephaneDucasse 5/24/2016 14:16'
+	#category : #Pharo-Help
 }
 
-{
-	#category : #help-text,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-PharoEnvironmentHelp class>>wikiStyleHelp [
+{ #category : #help-text }
+PharoEnvironmentHelp class >> wikiStyleHelp [
 	<wikiStyleHelp: #' Pharo Environment Help'>
 	
 	^ self comment

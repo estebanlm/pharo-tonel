@@ -16,105 +16,71 @@ Class {
 		'getStringSelector',
 		'hasContentsSelector'
 	],
-	#category : #Morphic-Widgets-List,
-	#timestamp : 'ar 10/14/2003 23:51'
+	#category : #Morphic-Widgets-List
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListItemWrapper>>asString [
+{ #category : #accessing }
+PluggableListItemWrapper >> asString [
 	string ifNotNil:[^string].
 	getStringSelector ifNil:[^super asString].
 	^self sendToModel: getStringSelector
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListItemWrapper>>contents [
+{ #category : #accessing }
+PluggableListItemWrapper >> contents [
 	getContentsSelector ifNil:[^#()].
 	^self sendToModel: getContentsSelector.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListItemWrapper>>getContentsSelector [
+{ #category : #accessing }
+PluggableListItemWrapper >> getContentsSelector [
 	^getContentsSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListItemWrapper>>getContentsSelector: aSymbol [
+{ #category : #accessing }
+PluggableListItemWrapper >> getContentsSelector: aSymbol [
 	self validateSelector: aSymbol.
 	getContentsSelector := aSymbol.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListItemWrapper>>getStringSelector [
+{ #category : #accessing }
+PluggableListItemWrapper >> getStringSelector [
 	^getStringSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListItemWrapper>>getStringSelector: aSymbol [
+{ #category : #accessing }
+PluggableListItemWrapper >> getStringSelector: aSymbol [
 	self validateSelector: aSymbol.
 	getStringSelector := aSymbol.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListItemWrapper>>hasContents [
+{ #category : #accessing }
+PluggableListItemWrapper >> hasContents [
 	hasContentsSelector ifNil:[^super hasContents].
 	^self sendToModel: hasContentsSelector
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListItemWrapper>>hasContentsSelector [
+{ #category : #accessing }
+PluggableListItemWrapper >> hasContentsSelector [
 	^hasContentsSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListItemWrapper>>hasContentsSelector: aSymbol [
+{ #category : #accessing }
+PluggableListItemWrapper >> hasContentsSelector: aSymbol [
 	self validateSelector: aSymbol.
 	hasContentsSelector := aSymbol.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListItemWrapper>>printOn: aStream [
+{ #category : #printing }
+PluggableListItemWrapper >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut:$(; nextPutAll: self asString; nextPut:$).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListItemWrapper>>sendToModel: aSelector [
+{ #category : #private }
+PluggableListItemWrapper >> sendToModel: aSelector [
 	aSelector numArgs = 0 
 		ifTrue:[^model perform: aSelector].
 	aSelector numArgs = 1 
@@ -123,26 +89,17 @@ PluggableListItemWrapper>>sendToModel: aSelector [
 		ifTrue:[^model perform: aSelector with: item with: self].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListItemWrapper>>string [
+{ #category : #accessing }
+PluggableListItemWrapper >> string [
 	^string
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListItemWrapper>>string: aString [
+{ #category : #accessing }
+PluggableListItemWrapper >> string: aString [
 	string := aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableListItemWrapper>>validateSelector: aSymbol [
+{ #category : #private }
+PluggableListItemWrapper >> validateSelector: aSymbol [
 	(aSymbol numArgs between: 0 and: 2) ifFalse:[^self error: 'Invalid pluggable selector'].
 ]

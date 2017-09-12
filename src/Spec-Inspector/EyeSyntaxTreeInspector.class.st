@@ -10,23 +10,16 @@ As an example, inspect
 Class {
 	#name : #EyeSyntaxTreeInspector,
 	#superclass : #EyeTreeInspector,
-	#category : #Spec-Inspector,
-	#timestamp : 'MarcusDenker 8/4/2014 16:22'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeSyntaxTreeInspector class>>label [
+{ #category : #accessing }
+EyeSyntaxTreeInspector class >> label [
 	^ 'AST Inspector'
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeSyntaxTreeInspector>>childrenForObject: aNode [
+{ #category : #api }
+EyeSyntaxTreeInspector >> childrenForObject: aNode [
 	^ aNode children collect: [ :each | 
 			DynamicEyeElement
 				host: aNode
@@ -35,10 +28,7 @@ EyeSyntaxTreeInspector>>childrenForObject: aNode [
 				value: [each] ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeSyntaxTreeInspector>>roots [
+{ #category : #api }
+EyeSyntaxTreeInspector >> roots [
 	^ self childrenForObject: self object
 ]

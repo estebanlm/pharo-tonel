@@ -64,31 +64,21 @@ Class {
 		'colors',
 		'lineStyles'
 	],
-	#category : #Morphic-Base-Borders,
-	#timestamp : 'MarcusDenker 2/14/2010 22:32'
+	#category : #Morphic-Base-Borders
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder class>>style: aSymbol [
+{ #category : #'instance creation' }
+ComplexBorder class >> style: aSymbol [
 	^self new style: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>colors [
+{ #category : #accessing }
+ComplexBorder >> colors [
 	^colors ifNil:[colors := self computeColors].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>colorsForDirection: direction  [
+{ #category : #private }
+ComplexBorder >> colorsForDirection: direction [ 
 	"Return an array of colors describing the receiver in the given direction"
 
 	| colorArray dT cc |
@@ -128,11 +118,8 @@ ComplexBorder>>colorsForDirection: direction  [
 	^colorArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>computeAltFramedColors [
+{ #category : #private }
+ComplexBorder >> computeAltFramedColors [
 	| base light dark w hw colorArray param |
 	base := self color asColor.
 	light := Color white.
@@ -152,11 +139,8 @@ ComplexBorder>>computeAltFramedColors [
 	^colorArray, colorArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>computeAltInsetColors [
+{ #category : #private }
+ComplexBorder >> computeAltInsetColors [
 	| base light dark w colorArray param hw |
 	base := self color asColor.
 	light := Color white.
@@ -181,11 +165,8 @@ ComplexBorder>>computeAltInsetColors [
 	^colorArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>computeAltRaisedColors [
+{ #category : #private }
+ComplexBorder >> computeAltRaisedColors [
 	| base light dark w colorArray param hw |
 	base := self color asColor.
 	light := Color white.
@@ -205,11 +186,8 @@ ComplexBorder>>computeAltRaisedColors [
 	^colorArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>computeColors [
+{ #category : #private }
+ComplexBorder >> computeColors [
 	width = 0 ifTrue:[^colors := #()].
 	style == #complexFramed ifTrue:[^self computeFramedColors].
 	style == #complexAltFramed ifTrue:[^self computeAltFramedColors].
@@ -220,11 +198,8 @@ ComplexBorder>>computeColors [
 	self error:'Unknown border style: ', style printString.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>computeFramedColors [
+{ #category : #private }
+ComplexBorder >> computeFramedColors [
 	| base light dark w hw colorArray param |
 	base := self color asColor.
 	light := Color white.
@@ -244,11 +219,8 @@ ComplexBorder>>computeFramedColors [
 	^colorArray, colorArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>computeInsetColors [
+{ #category : #private }
+ComplexBorder >> computeInsetColors [
 	| base light dark w colorArray param hw |
 	base := self color asColor.
 	light := Color white.
@@ -270,11 +242,8 @@ ComplexBorder>>computeInsetColors [
 	^colorArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>computeRaisedColors [
+{ #category : #private }
+ComplexBorder >> computeRaisedColors [
 	| base light dark w colorArray param hw |
 	base := self color asColor.
 	light := Color white.
@@ -294,11 +263,8 @@ ComplexBorder>>computeRaisedColors [
 	^colorArray
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>drawLineFrom: startPoint to: stopPoint on: aCanvas  [
+{ #category : #drawing }
+ComplexBorder >> drawLineFrom: startPoint to: stopPoint on: aCanvas [ 
 	"Here we're using the balloon engine since this is much faster than BitBlt w/ brushes."
 
 	| delta length dir cos sin tfm w h w1 w2 h1 h2 fill |
@@ -338,11 +304,8 @@ ComplexBorder>>drawLineFrom: startPoint to: stopPoint on: aCanvas  [
 				fillStyle: fill]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>drawPolyPatchFrom: startPoint to: stopPoint on: aCanvas usingEnds: endsArray [
+{ #category : #drawing }
+ComplexBorder >> drawPolyPatchFrom: startPoint to: stopPoint on: aCanvas usingEnds: endsArray [
 
 	| cos sin tfm fill dir fsOrigin fsDirection points x y |
 	dir := (stopPoint - startPoint) normalized.
@@ -376,11 +339,8 @@ false ifTrue:[
 ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>fillStyleForDirection: direction [
+{ #category : #private }
+ComplexBorder >> fillStyleForDirection: direction [
 	"Fill the given form describing the receiver's look at a particular direction"
 	| index fill dir |
 	index := direction degrees truncated // 10 + 1.
@@ -399,11 +359,8 @@ ComplexBorder>>fillStyleForDirection: direction [
 	^fill
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>framePolygon: vertices on: aCanvas [
+{ #category : #drawing }
+ComplexBorder >> framePolygon: vertices [ on: aCanvas
 	| dir1 dir2 dir3 nrm1 nrm2 nrm3 point1 point2 point3 
 	 cross1 cross2 pointA pointB pointC pointD w p1 p2 p3 p4 balloon ends pointE pointF |
 	balloon := aCanvas asBalloonCanvas.
@@ -476,11 +433,8 @@ ComplexBorder>>framePolygon: vertices on: aCanvas [
 	balloon == aCanvas ifFalse:[balloon flush].
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>frameRectangle: aRectangle on: aCanvas [
+{ #category : #drawing }
+ComplexBorder >> frameRectangle: aRectangle on: aCanvas [
 	"Note: This uses BitBlt since it's roughly a factor of two faster for rectangles"
 	| w h r |
 	self colors ifNil:[^super frameRectangle: aRectangle on: aCanvas].
@@ -500,11 +454,8 @@ ComplexBorder>>frameRectangle: aRectangle on: aCanvas [
 	].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>intersectFrom: startPt with: startDir to: endPt with: endDir [
+{ #category : #private }
+ComplexBorder >> intersectFrom: startPt with: startDir to: endPt [ with: endDir
 	"Compute the intersection of two lines. Return nil if either
 		* the intersection does not exist, or
 		* the intersection is 'before' startPt, or
@@ -524,53 +475,35 @@ ComplexBorder>>intersectFrom: startPt with: startDir to: endPt with: endDir [
 	^(startPt x + (alpha * startDir x)) @ (startPt y + (alpha * startDir y))
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>isComplex [
+{ #category : #testing }
+ComplexBorder >> isComplex [
 	^true
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>releaseCachedState [
+{ #category : #initialize }
+ComplexBorder >> releaseCachedState [
 	colors := nil.
 	lineStyles := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>style [
+{ #category : #accessing }
+ComplexBorder >> style [
 	^style
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>style: newStyle [
+{ #category : #accessing }
+ComplexBorder >> style: newStyle [
 	style == newStyle ifTrue:[^self].
 	style := newStyle.
 	self releaseCachedState.
 ]
 
-{
-	#category : #'color tracking',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>trackColorFrom: aMorph [
+{ #category : #'color tracking' }
+ComplexBorder >> trackColorFrom: aMorph [
 	baseColor ifNil:[self color: aMorph raisedColor].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ComplexBorder>>widthForRounding [
+{ #category : #accessing }
+ComplexBorder >> widthForRounding [
 	^0
 ]

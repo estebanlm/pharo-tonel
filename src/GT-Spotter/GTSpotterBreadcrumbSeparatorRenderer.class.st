@@ -1,28 +1,18 @@
-"
-
-"
 Class {
 	#name : #GTSpotterBreadcrumbSeparatorRenderer,
 	#superclass : #GLMBrickRenderer,
-	#category : #GT-Spotter-Renderer,
-	#timestamp : ''
+	#category : #GT-Spotter-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterBreadcrumbSeparatorRenderer>>render: aBrick on: aCanvas [
+{ #category : #rendering }
+GTSpotterBreadcrumbSeparatorRenderer >> render: aBrick on: aCanvas [
 	super renderBackgroundColorOf: aBrick on: aCanvas.
 	
 	self renderArrow: aBrick on: aCanvas
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterBreadcrumbSeparatorRenderer>>renderArrow: aBrick on: aCanvas [
+{ #category : #rendering }
+GTSpotterBreadcrumbSeparatorRenderer >> renderArrow: aBrick on: aCanvas [
 	|height width hW hH aX bX cX aY bY cY a b c overdraw delta|
 	
 	overdraw := 2.

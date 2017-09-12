@@ -1,12 +1,7 @@
-Extension {
-	#name : #DefaultExecutionEnvironment
-}
+Extension { #name : #DefaultExecutionEnvironment }
 
-{
-	#category : #'*SUnit-Core',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-DefaultExecutionEnvironment>>runTestCase: aTestCase [
+{ #category : #'*SUnit-Core' }
+DefaultExecutionEnvironment >> runTestCase: aTestCase [
 
 	| testEnv |
 	testEnv := TestExecutionEnvironment new.
@@ -15,11 +10,8 @@ DefaultExecutionEnvironment>>runTestCase: aTestCase [
 		testEnv runTestCase: aTestCase]
 ]
 
-{
-	#category : #'*SUnit-Core',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-DefaultExecutionEnvironment>>runTestsBy: aBlock [
+{ #category : #'*SUnit-Core' }
+DefaultExecutionEnvironment >> runTestsBy: aBlock [
 
 	TestExecutionEnvironment new beActiveDuring: aBlock
 ]

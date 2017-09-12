@@ -1,38 +1,25 @@
-"
-
-"
 Class {
 	#name : #TemporaryVariableTest,
 	#superclass : #TestCase,
-	#category : #Slot-Tests,
-	#timestamp : ''
+	#category : #Slot-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TemporaryVariableTest>>testHasTemporaryVariablesBlock [
+{ #category : #tests }
+TemporaryVariableTest >> testHasTemporaryVariablesBlock [
 	| block |
 	block := [ | b | b := 2. b +2  ].
 	self assert: (block hasTemporaryVariableNamed: #b).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TemporaryVariableTest>>testHasTemporaryVariablesMethod [
+{ #category : #tests }
+TemporaryVariableTest >> testHasTemporaryVariablesMethod [
 	| method |
 	method := self class >> #testTemporaryVariablesMethod.
 	self assert: (method hasTemporaryVariableNamed: #method).
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TemporaryVariableTest>>testPropertyAtPut [
+{ #category : #properties }
+TemporaryVariableTest >> testPropertyAtPut [
 
 	| testValue temp |
 	
@@ -48,11 +35,8 @@ TemporaryVariableTest>>testPropertyAtPut [
 	self assert: temp properties isNil.
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TemporaryVariableTest>>testPropertyAtPutPersistent [
+{ #category : #properties }
+TemporaryVariableTest >> testPropertyAtPutPersistent [
 
 	| testValue temp temp2 |
 	testValue := Date today.
@@ -77,11 +61,8 @@ TemporaryVariableTest>>testPropertyAtPutPersistent [
 	self assert: thisContext method savedTemps isNil.
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TemporaryVariableTest>>testPropertyBlockPersistent [
+{ #category : #properties }
+TemporaryVariableTest >> testPropertyBlockPersistent [
 
 	| testValue temp temp2 block |
 	testValue := Date today.
@@ -107,11 +88,8 @@ TemporaryVariableTest>>testPropertyBlockPersistent [
 	self assert: block method savedTemps isNil.
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TemporaryVariableTest>>testPropertyContextPersistent [
+{ #category : #properties }
+TemporaryVariableTest >> testPropertyContextPersistent [
 
 	| testValue temp temp2 |
 	testValue := Date today.
@@ -136,42 +114,30 @@ TemporaryVariableTest>>testPropertyContextPersistent [
 	self assert: thisContext method savedTemps isNil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TemporaryVariableTest>>testReadTemporaryVariablesMethod [
+{ #category : #tests }
+TemporaryVariableTest >> testReadTemporaryVariablesMethod [
 	| tempVar |
 	tempVar := thisContext temporaryVariableNamed: #tempVar.
 
 	self assert: (tempVar readInContext: thisContext) class = TemporaryVariable.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TemporaryVariableTest>>testTemporaryVariablesBlock [
+{ #category : #tests }
+TemporaryVariableTest >> testTemporaryVariablesBlock [
 	| block |
 	block := [ | b | b +2  ].
 	self assert: block temporaryVariables first name = #b.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TemporaryVariableTest>>testTemporaryVariablesMethod [
+{ #category : #tests }
+TemporaryVariableTest >> testTemporaryVariablesMethod [
 	| method |
 	method := self class >> #testTemporaryVariablesMethod.
 	self assert: method temporaryVariables first name = #method.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TemporaryVariableTest>>testWriteTemporaryVariablesMethod [
+{ #category : #tests }
+TemporaryVariableTest >> testWriteTemporaryVariablesMethod [
 	| tempVar |
 	tempVar := thisContext temporaryVariableNamed: #tempVar.
 

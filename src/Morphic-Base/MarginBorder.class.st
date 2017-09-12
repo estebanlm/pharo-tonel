@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'margin'
 	],
-	#category : #Morphic-Base-Borders,
-	#timestamp : 'gvc 5/18/2007 12:46'
+	#category : #Morphic-Base-Borders
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MarginBorder>>drawLineFrom: startPoint to: stopPoint on: aCanvas [
+{ #category : #accessing }
+MarginBorder >> drawLineFrom: startPoint to: stopPoint on: aCanvas [
 	"Reduce the width by the margin."
 	
 	| lineColor |
@@ -29,11 +25,8 @@ MarginBorder>>drawLineFrom: startPoint to: stopPoint on: aCanvas [
 		color: lineColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MarginBorder>>frameRectangle: aRectangle on: aCanvas [
+{ #category : #accessing }
+MarginBorder >> frameRectangle: aRectangle on: aCanvas [
 	"Reduce width by the margin."
 	
 	aCanvas frameAndFillRectangle: aRectangle
@@ -43,11 +36,8 @@ MarginBorder>>frameRectangle: aRectangle on: aCanvas [
 		bottomRightColor: self bottomRightColor.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MarginBorder>>initialize [
+{ #category : #initialization }
+MarginBorder >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -55,21 +45,15 @@ MarginBorder>>initialize [
 		margin: 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MarginBorder>>margin [
+{ #category : #accessing }
+MarginBorder >> margin [
 	"Answer the value of margin"
 
 	^ margin
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MarginBorder>>margin: anObject [
+{ #category : #accessing }
+MarginBorder >> margin: anObject [
 	"Set the value of margin"
 
 	margin := anObject

@@ -11,148 +11,96 @@ Class {
 	#classInstVars : [
 		'enabled'
 	],
-	#category : #Shout-Styling,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:23'
+	#category : #Shout-Styling
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>applyStyle [
+{ #category : #private }
+SHPreferences class >> applyStyle [
 	| table |
 	table := Groups values flatCollect: [:group | group styleForTable].
 	SHTextStylerST80 styleTable: table.
 	SHRBTextStyler styleTable: table.
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>argsStyle [
+{ #category : #accessing-styles }
+SHPreferences class >> argsStyle [
 	^ Groups at: #args
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>argsStyle: aGroupStyle  [
+{ #category : #accessing-styles }
+SHPreferences class >> argsStyle: aGroupStyle [ 
 	^ Groups at: #args put: aGroupStyle
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>commentStyle [
+{ #category : #accessing-styles }
+SHPreferences class >> commentStyle [
 	^ Groups at: #comment
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>commentStyle: aGroupStyle  [
+{ #category : #accessing-styles }
+SHPreferences class >> commentStyle: aGroupStyle [ 
 	^ Groups at: #comment put: aGroupStyle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>customStyleTable [
+{ #category : #private }
+SHPreferences class >> customStyleTable [
 	^ CustomStyleTable
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>customStyleTable: anArray  [
+{ #category : #private }
+SHPreferences class >> customStyleTable: anArray [ 
 	CustomStyleTable := anArray.
 	self initializeGroups
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>defaultStyle [
+{ #category : #accessing-styles }
+SHPreferences class >> defaultStyle [
 	^ Groups at: #default
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>defaultStyle: aGroupStyle  [
+{ #category : #accessing-styles }
+SHPreferences class >> defaultStyle: aGroupStyle [ 
 	^ Groups at: #default put: aGroupStyle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>enabled [
+{ #category : #accessing }
+SHPreferences class >> enabled [
 	^ enabled
 		ifNil: [enabled := true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>enabled: aBoolean  [
+{ #category : #accessing }
+SHPreferences class >> enabled: aBoolean [ 
 	enabled := aBoolean
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>errorStyle [
+{ #category : #accessing-styles }
+SHPreferences class >> errorStyle [
 	^ Groups at: #error
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>errorStyle: aGroupStyle  [
+{ #category : #accessing-styles }
+SHPreferences class >> errorStyle: aGroupStyle [ 
 	^ Groups at: #error put: aGroupStyle
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>globalVarStyle [
+{ #category : #accessing-styles }
+SHPreferences class >> globalVarStyle [
 	^ Groups at: #globalVar
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>globalVarStyle: aGroupStyle  [
+{ #category : #accessing-styles }
+SHPreferences class >> globalVarStyle: aGroupStyle [ 
 	^ Groups at: #globalVar put: aGroupStyle
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>initialize [
+{ #category : #initialization }
+SHPreferences class >> initialize [
 	self customStyleTable: SHTextStylerST80 defaultStyleTable
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>initializeGroups [
+{ #category : #initialization }
+SHPreferences class >> initializeGroups [
 	Groups := Dictionary new.
 	#(#default #(#default ) #reservedWords #(#self #super #true #false #nil #thisContext ) #primitiveTypes #(#'$' #character #integer #number #- #symbol #stringSymbol #literalArray #string #unfinishedString ) #selectorPatterns #(#patternKeyword #patternBinary #patternUnary ) #messageSends #(#keyword #binary #unary #incompleteKeyword #incompleteBinary #incompleteUnary ) #primitiveOrModule #(#primitive #externalFunctionCallingConvention #module #externalCallType #externalCallTypePointerIndicator #primitiveOrExternalCallStart #primitiveOrExternalCallEnd ) #args #(#patternArg #methodArg #blockPatternArg #blockArg #argument ) #variable #(#blockTempVar #blockPatternTempVar #workspaceVar #tempVar #patternTempVar #incompleteIdentifier ) #instanceVar #(#instVar #classVar ) #globalVar #(#globalVar #poolConstant ) #comment #(#comment #unfinishedComment ) #error #(#invalid #excessCode #undefinedKeyword #undefinedBinary #undefinedUnary #undefinedIdentifier ) #syntax #(#assignment #ansiAssignment #literal #return #blockArgColon #leftParenthesis #rightParenthesis #leftParenthesis1 #rightParenthesis1 #leftParenthesis2 #rightParenthesis2 #leftParenthesis3 #rightParenthesis3 #leftParenthesis4 #rightParenthesis4 #leftParenthesis5 #rightParenthesis5 #leftParenthesis6 #rightParenthesis6 #leftParenthesis7 #rightParenthesis7 #blockStart #blockEnd #blockStart1 #blockEnd1 #blockStart2 #blockEnd2 #blockStart3 #blockEnd3 #blockStart4 #blockEnd4 #blockStart5 #blockEnd5 #blockStart6 #blockEnd6 #blockStart7 #blockEnd7 #arrayStart #arrayEnd #arrayStart1 #arrayEnd1 #byteArrayStart #byteArrayEnd #byteArrayStart1 #byteArrayEnd1 #leftBrace #rightBrace #cascadeSeparator #statementSeparator #methodTempBar #blockTempBar #blockArgsBar ) )
 		pairsDo: [:gname :tokens | Groups
@@ -160,116 +108,74 @@ SHPreferences class>>initializeGroups [
 				put: (SHStyleElement withTokens: tokens)]
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>instanceVarStyle [
+{ #category : #accessing-styles }
+SHPreferences class >> instanceVarStyle [
 	^ Groups at: #instanceVar
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>instanceVarStyle: aGroupStyle  [
+{ #category : #accessing-styles }
+SHPreferences class >> instanceVarStyle: aGroupStyle [ 
 	^ Groups at: #instanceVar put: aGroupStyle
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>messageSendsStyle [
+{ #category : #accessing-styles }
+SHPreferences class >> messageSendsStyle [
 	^ Groups at: #messageSends
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>messageSendsStyle: aGroupStyle  [
+{ #category : #accessing-styles }
+SHPreferences class >> messageSendsStyle: aGroupStyle [ 
 	^ Groups at: #messageSends put: aGroupStyle
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>primitiveOrModuleStyle [
+{ #category : #accessing-styles }
+SHPreferences class >> primitiveOrModuleStyle [
 	^ Groups at: #primitiveOrModule
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>primitiveOrModuleStyle: aGroupStyle  [
+{ #category : #accessing-styles }
+SHPreferences class >> primitiveOrModuleStyle: aGroupStyle [ 
 	^ Groups at: #primitiveOrModule put: aGroupStyle
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>primitiveTypesStyle [
+{ #category : #accessing-styles }
+SHPreferences class >> primitiveTypesStyle [
 	^ Groups at: #primitiveTypes
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>primitiveTypesStyle: aGroupStyle  [
+{ #category : #accessing-styles }
+SHPreferences class >> primitiveTypesStyle: aGroupStyle [ 
 	^ Groups at: #primitiveTypes put: aGroupStyle
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>reservedWordsStyle [
+{ #category : #accessing-styles }
+SHPreferences class >> reservedWordsStyle [
 	^ Groups at: #reservedWords
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>reservedWordsStyle: aGroupStyle  [
+{ #category : #accessing-styles }
+SHPreferences class >> reservedWordsStyle: aGroupStyle [ 
 	^ Groups at: #reservedWords put: aGroupStyle
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>selectorPatternsStyle [
+{ #category : #accessing-styles }
+SHPreferences class >> selectorPatternsStyle [
 	^ Groups at: #selectorPatterns
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>selectorPatternsStyle: aGroupStyle  [
+{ #category : #accessing-styles }
+SHPreferences class >> selectorPatternsStyle: aGroupStyle [ 
 	^ Groups at: #selectorPatterns put: aGroupStyle
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>setStyleTable: anArray [
+{ #category : #settings }
+SHPreferences class >> setStyleTable: anArray [
 	SHTextStylerST80 styleTable: anArray.
 	SHRBTextStyler styleTable: anArray.
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>setStyleTableNamed: aString [
+{ #category : #settings }
+SHPreferences class >> setStyleTableNamed: aString [
 	self setStyleTable: (((Pragma allNamed: #styleTable: in: SHTextStylerST80 class)
 		detect: [ :each | (each argumentAt: 1) = aString ])
 		method 
@@ -277,11 +183,8 @@ SHPreferences class>>setStyleTableNamed: aString [
 			arguments: #())
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>settingsOn: aBuilder  [
+{ #category : #settings }
+SHPreferences class >> settingsOn: aBuilder [ 
 	<systemsettings>
 	(aBuilder setting: #'Syntax Highlighting') 
 		target: self;
@@ -332,11 +235,8 @@ SHPreferences class>>settingsOn: aBuilder  [
 				description: 'Temporary variable'  ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>styleTableRow [
+{ #category : #settings }
+SHPreferences class >> styleTableRow [
 	| allStyles |
 	
 	allStyles := Pragma  allNamed: #styleTable: in: SHTextStylerST80 class.
@@ -358,34 +258,22 @@ SHPreferences class>>styleTableRow [
 					yourself ] ))
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>syntaxStyle [
+{ #category : #accessing-styles }
+SHPreferences class >> syntaxStyle [
 	^ Groups at: #syntax
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>syntaxStyle: aGroupStyle  [
+{ #category : #accessing-styles }
+SHPreferences class >> syntaxStyle: aGroupStyle [ 
 	^ Groups at: #syntax put: aGroupStyle
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>variableStyle [
+{ #category : #accessing-styles }
+SHPreferences class >> variableStyle [
 	^ Groups at: #variable
 ]
 
-{
-	#category : #accessing-styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHPreferences class>>variableStyle: aGroupStyle  [
+{ #category : #accessing-styles }
+SHPreferences class >> variableStyle: aGroupStyle [ 
 	^ Groups at: #variable put: aGroupStyle
 ]

@@ -31,35 +31,25 @@ Class {
 		'absoluteValue',
 		'labelHolder'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 6/28/2016 13:16'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel class>>adapterName [
+{ #category : #specs }
+SliderModel class >> adapterName [
 
 	^ #SliderAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel class>>defaultSpec [
+{ #category : #specs }
+SliderModel class >> defaultSpec [
 	<spec: #default>
 	
 	^ #(SliderAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel class>>example [
+{ #category : #specs }
+SliderModel class >> example [
 	| slider |
 	slider := self new.
 	slider
@@ -70,42 +60,30 @@ SliderModel class>>example [
 	^ slider 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>absoluteValue [
+{ #category : #api }
+SliderModel >> absoluteValue [
 	"<api: #inspect>"
 	"Return the position of the slider in a scale between 0 and 1 despite of the min and max value"
 	^ absoluteValue value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>absoluteValue: aFloat [
+{ #category : #api }
+SliderModel >> absoluteValue: aFloat [
 	"<api: #float min: 0 max: 1 getter:#absoluteValue registration: #whenAbsoluteValueChanged:>"
 	"Set the position of the slider in a scale between 0 and 1 despite of the min and max value"
 
 	absoluteValue value: aFloat
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>color: aColor [
+{ #category : #api }
+SliderModel >> color: aColor [
 
 	"Hack because during the interpretation, the state is slightly inconistent"
 	self widget ifNotNil: [:w | w == self ifFalse: [ super color: aColor ]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>initialize [
+{ #category : #initialization }
+SliderModel >> initialize [
 
 	super initialize.
 	max := 100 asValueHolder.
@@ -138,121 +116,88 @@ SliderModel>>initialize [
 	labelHolder whenChangedDo: [:v | self changed: #label ].
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>label [
+{ #category : #api }
+SliderModel >> label [
 	"<api: #inspect>"
 	"Return the label of the slider"
 
 	^ labelHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>label: aString [
+{ #category : #api }
+SliderModel >> label: aString [
 	"<api: #string getter: #label registration: #whenLabelChanged:>"
 	"Set the label of the slider"
 	
 	labelHolder value: aString
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>max [
+{ #category : #api }
+SliderModel >> max [
 	"<api: #inspect>"
 	"Return the maximun value"
 	
 	^ max value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>max: anObject [
+{ #category : #api }
+SliderModel >> max: anObject [
 	"<api: #integer min: 1 max: 100 getter:#max registration: #whenMaxChanged:>"
 	"Set the maximun value"
 
 	max value: anObject
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>min [
+{ #category : #api }
+SliderModel >> min [
 	"<api: #inspect>"
 	"Return the minimum value"
 	
 	^ min value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>min: anObject [
+{ #category : #api }
+SliderModel >> min: anObject [
 	"<api: #integer min: 0 max: 99 getter:#min registration: #whenMinChanged:>"
 	"Set the minimum value"
 	
 	min value: anObject
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>quantum [
+{ #category : #api }
+SliderModel >> quantum [
 	"<api: #inspect>"
 	"Return the quantum betwen values"
 
 	^ quantum value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>quantum: aNumber [
+{ #category : #api }
+SliderModel >> quantum: aNumber [
 	"<api: #integer min: #min max: #max getter:#quantum registration: #whenQuantumChanged:>"
 	"Set the quantum betwen values"
 
 	quantum value: aNumber
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>reset [
+{ #category : #api }
+SliderModel >> reset [
 	"<api:#do>"
 	"Reset the cursor to the minimum value"
 	
 	self value: self min
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>value [
+{ #category : #api }
+SliderModel >> value [
 	"<api: #inspect>"
 	"Return the current value in a range between min and max"
 
 	^ value value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>value: aNumber [
+{ #category : #api }
+SliderModel >> value: aNumber [
 	"<api: #integer min: #min max: #max getter:#value registration: #whenValueChanged:>"
 	"Set the value in a range between min and max"
 	
@@ -260,61 +205,43 @@ SliderModel>>value: aNumber [
 	value value: aNumber.
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>whenAbsoluteValueChangedDo: aBlock [
+{ #category : #api-events }
+SliderModel >> whenAbsoluteValueChangedDo: aBlock [
 	"Block performed when the absolute value changed"
 
 	absoluteValue whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>whenLabelChangedDo: aBlock [
+{ #category : #api-events }
+SliderModel >> whenLabelChangedDo: aBlock [
 	"Block performed when the label changed"
 
 	labelHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>whenMaxChangedDo: aBlock  [
+{ #category : #api-events }
+SliderModel >> whenMaxChangedDo: aBlock [ 
 	"Block performed when the maximum value changed"
 
 	max whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>whenMinChangedDo: aBlock  [
+{ #category : #api-events }
+SliderModel >> whenMinChangedDo: aBlock [ 
 	"Block performed when the minimum value changed"
 
 	min whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>whenQuantumChangedDo: aBlock  [
+{ #category : #api-events }
+SliderModel >> whenQuantumChangedDo: aBlock [ 
 	"Block performed when the quantum value changed"
 
 	quantum whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SliderModel>>whenValueChangedDo: aBlock  [
+{ #category : #api-events }
+SliderModel >> whenValueChangedDo: aBlock [ 
 	"Block performed when the value changed"
 
 	value whenChangedDo: aBlock

@@ -12,33 +12,23 @@ Class {
 	#instVars : [
 		'label'
 	],
-	#category : #Morphic-Widgets-Windows-Announcements,
-	#timestamp : 'NicolaiHess 4/25/2015 23:21'
+	#category : #Morphic-Widgets-Windows-Announcements
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowLabelled>>isLabelled [
+{ #category : #testing }
+WindowLabelled >> isLabelled [
 
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowLabelled>>label [
+{ #category : #accessing }
+WindowLabelled >> label [
 
 	^ label
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowLabelled>>label: anObject [
+{ #category : #accessing }
+WindowLabelled >> label: anObject [
 
 	label := anObject
 ]

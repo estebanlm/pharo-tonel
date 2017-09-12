@@ -3,200 +3,125 @@ I am a visitor for EpCodeChange subinstances.
 "
 Trait {
 	#name : #EpTCodeChangeVisitor,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Epicea-Visitors,
-	#timestamp : '<historical>'
+	#category : #Epicea-Visitors
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitBehaviorCategoryChange: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitBehaviorCategoryChange: aChange [
 	^ self visitBehaviorChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitBehaviorChange: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitBehaviorChange: aChange [
 	^ self visitCodeChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitBehaviorCommentChange: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitBehaviorCommentChange: aChange [
 	^ self visitBehaviorChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitBehaviorNameChange: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitBehaviorNameChange: aChange [
 	^ self visitBehaviorChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitCategoryAddition: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitCategoryAddition: aChange [
 	^ self visitCategoryChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitCategoryChange: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitCategoryChange: aChange [
 	^ self visitCodeChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitCategoryRemoval: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitCategoryRemoval: aChange [
 	^ self visitCategoryChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitCategoryRename: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitCategoryRename: aChange [
 	^ self visitCategoryChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitClassAddition: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitClassAddition: aChange [
 	^ self visitClassChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitClassChange: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitClassChange: aChange [
 	^ self visitBehaviorChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitClassModification: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitClassModification: aChange [
 	^ self visitClassChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitClassRemoval: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitClassRemoval: aChange [
 	^ self visitClassChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitCodeChange: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitCodeChange: aChange [
 	^ self explicitRequirement
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitMethodAddition: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitMethodAddition: aChange [
 	^ self visitMethodChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitMethodChange: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitMethodChange: aChange [
 	^ self visitCodeChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitMethodModification: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitMethodModification: aChange [
 	^ self visitMethodChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitMethodRemoval: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitMethodRemoval: aChange [
 	^ self visitMethodChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitProtocolAddition: aProtocolAddition [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitProtocolAddition: aProtocolAddition [
 	^ self visitProtocolChange: aProtocolAddition
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitProtocolChange: aProtocolAddition [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitProtocolChange: aProtocolAddition [
 	^ self visitBehaviorChange: aProtocolAddition.
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitProtocolRemoval: aProtocolRemoved [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitProtocolRemoval: aProtocolRemoved [
 	^ self visitProtocolChange: aProtocolRemoved
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitTraitAddition: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitTraitAddition: aChange [
 	^ self visitTraitChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitTraitChange: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitTraitChange: aChange [
 	^ self visitBehaviorChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitTraitModification: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitTraitModification: aChange [
 	^ self visitTraitChange: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTCodeChangeVisitor>>visitTraitRemoval: aChange [
+{ #category : #visitor }
+EpTCodeChangeVisitor >> visitTraitRemoval: aChange [
 	^ self visitTraitChange: aChange
 ]

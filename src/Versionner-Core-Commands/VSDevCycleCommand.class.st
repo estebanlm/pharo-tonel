@@ -4,15 +4,11 @@ Versionnner commands related to the development workflow.
 Class {
 	#name : #VSDevCycleCommand,
 	#superclass : #VSCommand,
-	#category : #Versionner-Core-Commands,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSDevCycleCommand>>createDevelopmentVersion [
+{ #category : #private }
+VSDevCycleCommand >> createDevelopmentVersion [
 	| newDevVersionString |
 	
 	newDevVersionString := UIManager default
@@ -25,21 +21,15 @@ VSDevCycleCommand>>createDevelopmentVersion [
 		workflow createNextDevelopment: newDevVersionString ]
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSDevCycleCommand>>ensureDevelopmentVersionExists [
+{ #category : #checking }
+VSDevCycleCommand >> ensureDevelopmentVersionExists [
 	[ workflow developmentVersion ]
 		on: MetacelloVersionDoesNotExistError
 		do: [ self createDevelopmentVersion ]
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSDevCycleCommand>>ensureDevelopmentVersionIsBaseline [
+{ #category : #checking }
+VSDevCycleCommand >> ensureDevelopmentVersionIsBaseline [
 	| devVersion |
 	devVersion := workflow developmentVersion.
 	(devVersion blessing == #baseline) 

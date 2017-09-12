@@ -15,15 +15,11 @@ Class {
 		'morph2',
 		'morph3'
 	],
-	#category : #Spec-Examples-Morphic,
-	#timestamp : 'Spirita 7/26/2016 15:50'
+	#category : #Spec-Examples-Morphic
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample class>>defaultSpec [
+{ #category : #specs }
+CheckBoxExample class >> defaultSpec [
 
 	^ { #ContainerModel.
 			#add:.	{ self topSpec. #layout:. 	#(#SpecLayoutFrame
@@ -33,11 +29,8 @@ CheckBoxExample class>>defaultSpec [
 	   }
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample class>>defaultSpec2 [
+{ #category : #specs }
+CheckBoxExample class >> defaultSpec2 [
 
 	^ { #Panel.
 			#changeTableLayout.
@@ -49,11 +42,8 @@ CheckBoxExample class>>defaultSpec2 [
 			#vResizing:.	#shrinkWrap.	}
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample class>>defaultSpec3 [
+{ #category : #specs }
+CheckBoxExample class >> defaultSpec3 [
 	<spec: #default>
 	^ SpecLayout composed
 		newColumn: [ :column | 
@@ -69,28 +59,19 @@ CheckBoxExample class>>defaultSpec3 [
 		yourself
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample class>>example [
+{ #category : #example }
+CheckBoxExample class >> example [
 	^ self new openWithSpec
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample class>>title [
+{ #category : #specs }
+CheckBoxExample class >> title [
 
 	^ 'CheckBox Example'
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample class>>topSpec [
+{ #category : #specs }
+CheckBoxExample class >> topSpec [
 
 	^ { #ContainerModel.
 			#add:. {{#model .	#button1 } . #layout:.  #(#SpecLayoutFrame
@@ -108,47 +89,32 @@ CheckBoxExample class>>topSpec [
 															bottomOffset: 25)}}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample>>button1 [
+{ #category : #accessing }
+CheckBoxExample >> button1 [
 
 	^ button1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample>>button2 [
+{ #category : #accessing }
+CheckBoxExample >> button2 [
 
 	^ button2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample>>button3 [
+{ #category : #accessing }
+CheckBoxExample >> button3 [
 
 	^ button3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample>>container [
+{ #category : #accessing }
+CheckBoxExample >> container [
 
 	^ container  asSpecAdapter
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample>>initialize [
+{ #category : #initialization }
+CheckBoxExample >> initialize [
 
 	container := PanelMorph new.
 	
@@ -160,22 +126,16 @@ CheckBoxExample>>initialize [
 	super initialize.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample>>initializePresenter [
+{ #category : #initialization }
+CheckBoxExample >> initializePresenter [
 
 	self setActionsForButton1.
 	self setActionsForButton2.
 	self setActionsForButton3.	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample>>initializeWidgets  [
+{ #category : #initialization }
+CheckBoxExample >> initializeWidgets [ 
 
 	button1 := self newCheckBox.
 	button2 := self newCheckBox.
@@ -187,11 +147,8 @@ CheckBoxExample>>initializeWidgets  [
 	self setFocus.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample>>instantiateMorphs [
+{ #category : #initialization }
+CheckBoxExample >> instantiateMorphs [
 
 	morph1 := Morph new
 					color: Color red;
@@ -207,41 +164,29 @@ CheckBoxExample>>instantiateMorphs [
 					height: 50.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample>>setActionsForButton1 [
+{ #category : #initialization }
+CheckBoxExample >> setActionsForButton1 [
 
 	button1 whenActivatedDo: [ container addMorph: morph1 ].
 	button1 whenDeactivatedDo: [ container removeMorph: morph1 ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample>>setActionsForButton2 [
+{ #category : #initialization }
+CheckBoxExample >> setActionsForButton2 [
 
 	button2 whenActivatedDo: [ container addMorph: morph2 ].
 	button2 whenDeactivatedDo: [ container removeMorph: morph2 ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample>>setActionsForButton3 [
+{ #category : #initialization }
+CheckBoxExample >> setActionsForButton3 [
 
 	button3 whenActivatedDo: [ container addMorph: morph3 ].
 	button3 whenDeactivatedDo: [ container removeMorph: morph3 ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample>>setFocus [
+{ #category : #initialization }
+CheckBoxExample >> setFocus [
 	
 	self focusOrder
 		add: button1;
@@ -250,11 +195,8 @@ CheckBoxExample>>setFocus [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-CheckBoxExample>>setGroup [
+{ #category : #initialization }
+CheckBoxExample >> setGroup [
 
 	RadioButtonGroupModel new 
 		addRadioButton: button1;

@@ -14,59 +14,40 @@ Class {
 	#instVars : [
 		'categories'
 	],
-	#category : #Refactoring-Environment,
-	#timestamp : 'NicolaiHess 4/27/2015 21:22'
+	#category : #Refactoring-Environment
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBCategoryEnvironment class>>categories: aCollection [
+{ #category : #'instance creation' }
+RBCategoryEnvironment class >> categories: aCollection [
 	^ self
 		onEnvironment: self default
 		categories: aCollection
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBCategoryEnvironment class>>category: aCategory [
+{ #category : #'instance creation' }
+RBCategoryEnvironment class >> category: aCategory [
 	^ self categories: { aCategory }
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBCategoryEnvironment class>>onEnvironment: anEnvironment categories: aCollection [
+{ #category : #'instance creation' }
+RBCategoryEnvironment class >> onEnvironment: anEnvironment categories: aCollection [
 	^(self onEnvironment: anEnvironment)
 		categories: aCollection;
 		yourself
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBCategoryEnvironment>>addCategory: aSymbol [
+{ #category : #adding }
+RBCategoryEnvironment >> addCategory: aSymbol [
 	categories add: aSymbol
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBCategoryEnvironment>>categories: aCollection [
+{ #category : #initialize-release }
+RBCategoryEnvironment >> categories: aCollection [
 	categories addAll: aCollection
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBCategoryEnvironment>>classNames [
+{ #category : #accessing-classes }
+RBCategoryEnvironment >> classNames [
 	^ self categories 
 		inject: IdentitySet new
 		into: [ :answer :each | 
@@ -75,81 +56,54 @@ RBCategoryEnvironment>>classNames [
 				yourself ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBCategoryEnvironment>>defaultLabel [
+{ #category : #private }
+RBCategoryEnvironment >> defaultLabel [
 	| stream |
 	stream := String new writeStream.
 	categories do: [:each | stream nextPutAll: each; nextPut: $ ].
 	^stream contents
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBCategoryEnvironment>>definesClass: aClass  [
+{ #category : #testing }
+RBCategoryEnvironment >> definesClass: aClass [ 
 	^ (super definesClass: aClass) and: [ categories includes: aClass theNonMetaClass category ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBCategoryEnvironment>>includesCategory: aCategory [
+{ #category : #testing }
+RBCategoryEnvironment >> includesCategory: aCategory [
 	^(categories includes: aCategory)
 		and: [super includesCategory: aCategory]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBCategoryEnvironment>>includesClass: aClass  [
+{ #category : #testing }
+RBCategoryEnvironment >> includesClass: aClass [ 
 	^ (super includesClass: aClass) and: [ categories includes: aClass theNonMetaClass category ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBCategoryEnvironment>>initialize [
+{ #category : #initialization }
+RBCategoryEnvironment >> initialize [
 	super initialize.
 	categories := IdentitySet new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBCategoryEnvironment>>isEmpty [
+{ #category : #testing }
+RBCategoryEnvironment >> isEmpty [
 	^categories isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBCategoryEnvironment>>packages [
+{ #category : #accessing }
+RBCategoryEnvironment >> packages [
 	^ self classes collect: #package
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBCategoryEnvironment>>postCopy [
+{ #category : #copying }
+RBCategoryEnvironment >> postCopy [
 	super postCopy.
 	categories := categories copy
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBCategoryEnvironment>>storeOn: aStream [
+{ #category : #printing }
+RBCategoryEnvironment >> storeOn: aStream [
 	aStream nextPut: $(.
 	super storeOn: aStream.
 	aStream nextPutAll: ' categories: '.

@@ -14,30 +14,20 @@ Class {
 	#instVars : [
 		'pragma'
 	],
-	#category : #PragmaCollector,
-	#timestamp : 'alain.plantec 10/20/2009 11:34'
+	#category : #PragmaCollector
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaAnnouncement class>>pragma: aPragma [
+{ #category : #'instance creation' }
+PragmaAnnouncement class >> pragma: aPragma [
 	^ self new pragma: aPragma
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaAnnouncement>>pragma [
+{ #category : #accessing }
+PragmaAnnouncement >> pragma [
 	^ pragma
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaAnnouncement>>pragma: aPragma [
+{ #category : #accessing }
+PragmaAnnouncement >> pragma: aPragma [
 	pragma := aPragma
 ]

@@ -8,31 +8,21 @@ Class {
 		'rootClass',
 		'mode'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 19:41'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassRegexRefactoring>>copy: aClass name: aSymbol [
+{ #category : #transforming }
+RBClassRegexRefactoring >> copy: aClass name: aSymbol [
 	^ self duplicate: aClass name: aSymbol deep: true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassRegexRefactoring>>copyClasses [
+{ #category : #actions }
+RBClassRegexRefactoring >> copyClasses [
 	mode := #copy:name:
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassRegexRefactoring>>copyFrom: aSourceClass to: aTargetClass [
+{ #category : #private }
+RBClassRegexRefactoring >> copyFrom: aSourceClass to: aTargetClass [
 	aSourceClass instanceVariableNames
 		do: [ :each | aTargetClass addInstanceVariable: each ].
 	aSourceClass isMeta ifFalse: [
@@ -46,27 +36,18 @@ RBClassRegexRefactoring>>copyFrom: aSourceClass to: aTargetClass [
 			classified: (aSourceClass protocolsFor: each) ]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassRegexRefactoring>>create: aClass name: aSymbol [
+{ #category : #transforming }
+RBClassRegexRefactoring >> create: aClass name: aSymbol [
 	^ self duplicate: aClass name: aSymbol deep: false
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassRegexRefactoring>>createClasses [
+{ #category : #actions }
+RBClassRegexRefactoring >> createClasses [
 	mode := #create:name:
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassRegexRefactoring>>duplicate: aClass name: aSymbol deep: aBoolean [
+{ #category : #private }
+RBClassRegexRefactoring >> duplicate: aClass name: aSymbol deep: aBoolean [
 	| superclass superclassName name class |
 	(self model includesClassNamed: aSymbol)
 		ifTrue: [ ^ nil ].
@@ -94,55 +75,37 @@ RBClassRegexRefactoring>>duplicate: aClass name: aSymbol deep: aBoolean [
 	^ nil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassRegexRefactoring>>initialize [
+{ #category : #initialization }
+RBClassRegexRefactoring >> initialize [
 	super initialize.
 	self createClasses
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassRegexRefactoring>>rename: aClass name: aSymbol [
+{ #category : #transforming }
+RBClassRegexRefactoring >> rename: aClass [ name: aSymbol
 	^ RBRenameClassRefactoring 
 		model: self model
 		rename: aClass
 		to: aSymbol
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassRegexRefactoring>>renameClasses [
+{ #category : #actions }
+RBClassRegexRefactoring >> renameClasses [
 	mode := #rename:name:
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassRegexRefactoring>>rootClass [
+{ #category : #accessing }
+RBClassRegexRefactoring >> rootClass [
 	^ rootClass ifNil: [ Object ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassRegexRefactoring>>rootClass: aClass [
+{ #category : #initialization }
+RBClassRegexRefactoring >> rootClass: aClass [
 	rootClass := aClass theNonMetaClass
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassRegexRefactoring>>transform [
+{ #category : #transforming }
+RBClassRegexRefactoring >> transform [
 	| replacement refactoring |
 	self model allClassesDo: [ :class |
 		(class isNil or: [ class isMeta ]) ifFalse: [

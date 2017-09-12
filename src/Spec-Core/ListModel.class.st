@@ -56,66 +56,47 @@ Class {
 		'backgroundColorBlock',
 		'autoDeselect'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 7/19/2016 11:13'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel class>>adapterName [
+{ #category : #specs }
+ListModel class >> adapterName [
 
 	^ #ListAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel class>>defaultSpec [
+{ #category : #specs }
+ListModel class >> defaultSpec [
 	<spec: #default>
 	
 	^ #(ListAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel class>>example [
+{ #category : #example }
+ListModel class >> example [
 	^ self
 		new
 		openWithSpec;
 		items: Smalltalk allClasses
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel class>>title [
+{ #category : #specs }
+ListModel class >> title [
 
 	^ 'List'
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>allowToSelect [
+{ #category : #api }
+ListModel >> allowToSelect [
 	"<api: #inspect>"
 	"Return whether the list items can be selected or not"
 
 	^ allowToSelect value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>allowToSelect: aBoolean [
+{ #category : #api }
+ListModel >> allowToSelect: aBoolean [
 	"<api: #boolean getter: #allowToSelect registration: #whenAllowToSelectChanged:>"
 	"Set if the list items can be selected or not"
 
@@ -124,11 +105,8 @@ ListModel>>allowToSelect: aBoolean [
 		ifFalse: [ self resetSelection ].
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>autoDeselect [
+{ #category : #api }
+ListModel >> autoDeselect [
 	"<api: #inspect>"
 	"Return whether the list items can be selected if it's already the selected item"
 	"If true, clicking again on the selected item will unselect it"
@@ -136,75 +114,54 @@ ListModel>>autoDeselect [
 	^ autoDeselect value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>autoDeselect: aBoolean [
+{ #category : #api }
+ListModel >> autoDeselect: aBoolean [
 	"<api: #boolean getter: #autoDeselect registration: #whenAutoSelectChanged:>"
 	"Set if the list items can be selected again"
 
 	autoDeselect value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>backgroundColorBlock [
+{ #category : #api }
+ListModel >> backgroundColorBlock [
 	"<api: #inspect>"
 	"Return the block use to compute the background color for each item"
 
 	^ backgroundColorBlock value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>backgroundColorBlock: aBlock [
+{ #category : #api }
+ListModel >> backgroundColorBlock: aBlock [
 	"<api: #block getter: #backgroundColorBlock registration: #whenBackgroundColorBlockChanged:>"
 	"Set the block used to compute an item background"
 
 	backgroundColorBlock value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>backgroundColorFor: anItem at: index [
+{ #category : #api }
+ListModel >> backgroundColorFor: anItem at: index [
 
 	^ self backgroundColorBlock cull: anItem cull: index
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>beMultipleSelection [
+{ #category : #api }
+ListModel >> beMultipleSelection [
 	"<api: #do>"
 	"Make list selection multiple"
 
 	self multiSelection: true
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>beSingleSelection [
+{ #category : #api }
+ListModel >> beSingleSelection [
 	"<api: #do>"
 	"Make list selection single"
 
 	self multiSelection: false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>clickOnSelectedItem [
+{ #category : #private }
+ListModel >> clickOnSelectedItem [
 	| item |
 	
 	item := self selectedItem.
@@ -213,27 +170,18 @@ ListModel>>clickOnSelectedItem [
 		ifFalse: [ ^ false ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>defaultFilteringBlock  [
+{ #category : #initialization }
+ListModel >> defaultFilteringBlock [ 
 	^ [:col | col]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>defaultSortingBlock  [
+{ #category : #initialization }
+ListModel >> defaultSortingBlock [ 
 	^ [:a :b | true]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>displayBlock [
+{ #category : #api }
+ListModel >> displayBlock [
 	"<api: #inspect>"
 	"Return the one argument block used to wrap your domain specific items.
 	The block should return something that can be displayed in a list - like a String or a Text"
@@ -241,11 +189,8 @@ ListModel>>displayBlock [
 	^ wrapBlockHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>displayBlock: aBlock [
+{ #category : #api }
+ListModel >> displayBlock: aBlock [
 	"<api: #block getter:#displayBlock registration: #whenDisplayBlockChanged:>"
 	"Set the one argument block used to wrap your domain specific items.
 	The block should return something that can be displayed in a list - like a String or a Text"
@@ -253,63 +198,45 @@ ListModel>>displayBlock: aBlock [
 	wrapBlockHolder value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>filteringBlock [
+{ #category : #api }
+ListModel >> filteringBlock [
 	"<api: #inspect>"
 	"Return the filtering of the items"
 	
 	^ filteringBlockHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>filteringBlock: aBlock [
+{ #category : #api }
+ListModel >> filteringBlock: aBlock [
 	"<api: #block getter: #filteringBlock registration: #whenFilteringBlockChanged:>"
 	"To set the filtering of the items"
 	
 	filteringBlockHolder value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>getIndex [
+{ #category : #api }
+ListModel >> getIndex [
 	"Return the index of the selected item"
 	
 	^  selectionHolder index value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>getList [
+{ #category : #api }
+ListModel >> getList [
 
 	^ listHolder value
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>getSelectionStateFor: anIndex [
+{ #category : #private }
+ListModel >> getSelectionStateFor: anIndex [
 	"Return the current state of the item -if selected or not - in a multiple selection list"
 	"Answer true if the item at index _anIndex_ is selected"
 	
 	^ (multiSelectionHolder at: anIndex ifAbsent: [ ^ false ]) == true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>initialize [
+{ #category : #initialization }
+ListModel >> initialize [
 	super initialize.
 	self initializeValueHolders.	
 	self registerEvents.
@@ -319,11 +246,8 @@ ListModel>>initialize [
 		toAction: [ self clickOnSelectedItem ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>initializeValueHolders [
+{ #category : #initialization }
+ListModel >> initializeValueHolders [
 	selectionHolder := SelectionValueHolder new.
 	listHolder := Array new asValueHolder.
 	sortingBlockHolder := self defaultSortingBlock asValueHolder.
@@ -339,11 +263,8 @@ ListModel>>initializeValueHolders [
 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>items: aList [
+{ #category : #api }
+ListModel >> items: aList [
 	"Set the items of the list.
 	aList is a collection of your domain specific items.
 	Use a two stages notification (issue 7420)."
@@ -355,31 +276,22 @@ ListModel>>items: aList [
 	listAnnouncer announce: (ValueChanged oldValue: oldContents newValue: listHolder value)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>listElementAt: anIndex [
+{ #category : #private }
+ListModel >> listElementAt: anIndex [
 	"Return the item at index _anIndex_"
 	
 	^ self listItems at: anIndex ifAbsent: [ nil ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>listElementAt: anIndex ifAbsent: aBlock	 [
+{ #category : #private }
+ListModel >> listElementAt: anIndex ifAbsent: aBlock [	
 	"Return the item at index _anIndex_"
 	
 	^ self listItems at: anIndex ifAbsent: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>listItems [
+{ #category : #api }
+ListModel >> listItems [
 	"<api: #inspect>"
 	"Return the items of the list. They are your domain specific items"
 	
@@ -387,54 +299,39 @@ ListModel>>listItems [
 	
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>listSize [
+{ #category : #api }
+ListModel >> listSize [
 	"<api: #inspect>"
 	"Return the size of the list"
 	
 	^ self listItems size
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>menu [
+{ #category : #api }
+ListModel >> menu [
 	"<api: #inspect>"
 	"Return the block used to defined the menu"
 	
 	^ menuHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>menu: aBlock [
+{ #category : #api }
+ListModel >> menu: aBlock [
 	"<api: #block getter: #menu registration: #whenMenuChanged:>"
 	"Set the block used to defined the menu"
 	
 	menuHolder value: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>menu: aMenu shifted: aBoolean [
+{ #category : #private }
+ListModel >> menu: aMenu shifted: aBoolean [
 	"Build the menu when you right click on an item"
 
 	^ menuHolder value cull: aMenu cull: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>multiSelection [
+{ #category : #api }
+ListModel >> multiSelection [
 	"<api: #inspect>"
 	"Return true if the list has a multiple selection.
 	False if the list has a single selection"
@@ -442,11 +339,8 @@ ListModel>>multiSelection [
 	^ multiSelection value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>multiSelection: aBoolean [
+{ #category : #api }
+ListModel >> multiSelection: aBoolean [
 	"<api: #boolean getter: #multiSelection registration: #whenMultiSelectionChanged:>"
 
 	"Make the list selection become multiple if aBoolean is true.
@@ -455,21 +349,15 @@ ListModel>>multiSelection: aBoolean [
 	multiSelection value: aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>refreshListItems [
+{ #category : #private }
+ListModel >> refreshListItems [
 
 	listItemsCache := nil.
 	^ self changed: #listElementAt:
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>registerEvents [
+{ #category : #initialization }
+ListModel >> registerEvents [
 
 	listHolder whenChangedDo: [ self refreshListItems ].
 	filteringBlockHolder whenChangedDo: [ self refreshListItems ].
@@ -485,32 +373,23 @@ ListModel>>registerEvents [
 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>resetFilteringBlock [
+{ #category : #api }
+ListModel >> resetFilteringBlock [
 	"<api: #do>"
 	"Reset the filtering block with the default value which consists in showing everything"
 
 	filteringBlockHolder value: self defaultFilteringBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>resetListSelection [
+{ #category : #private }
+ListModel >> resetListSelection [
 	"Reset the selection manager for multiple selection lists"
 	
 	multiSelectionHolder removeAll
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>resetSelection [
+{ #category : #api }
+ListModel >> resetSelection [
 	"<api: #do>"
 	"Unselect every items"
 
@@ -518,31 +397,22 @@ ListModel>>resetSelection [
 	multiSelectionHolder removeAll
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>resetSortingBlock [
+{ #category : #api }
+ListModel >> resetSortingBlock [
 	"<api: #do>"
 	"Reset the sortering block with the default value which consists in not sorting"
 
 	sortingBlockHolder value: self defaultSortingBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>selectAll [
+{ #category : #api }
+ListModel >> selectAll [
 	self listItems withIndexDo: [ :each :i | self setSelectionStateFor: i at: true ].
 	self changed: #listElementAt:
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>selectedIndex [
+{ #category : #api }
+ListModel >> selectedIndex [
 	"<api: #inspect>"
 	"Return the index of the selected item
 	In the case of a multiple selection list, it returns the last selected item"
@@ -550,22 +420,16 @@ ListModel>>selectedIndex [
 	^ self getIndex
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>selectedIndexes [
+{ #category : #api }
+ListModel >> selectedIndexes [
 	"<api: #inspect>"
 	"Return the indexes of selected items on the case of a multiple selection list"
 	
 	^ multiSelectionHolder keys select: [:index | multiSelectionHolder at: index ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>selectedItem [
+{ #category : #api }
+ListModel >> selectedItem [
 	"<api: #inspect>"
 	"Return the selected item.
 	In the case of a multiple selection list, it returns the last selected item"
@@ -573,31 +437,22 @@ ListModel>>selectedItem [
 	^ self selectedItemHolder value
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>selectedItemHolder [
+{ #category : #private }
+ListModel >> selectedItemHolder [
 
 	^ selectionHolder selection
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>selectedItems [
+{ #category : #api }
+ListModel >> selectedItems [
 	"<api: #inspect>"
 	"Return all the selected items in the case of a multiple selection list"
 
 	^ multiSelectionHolder keys select: [:index | multiSelectionHolder at: index ] thenCollect: [:index | self listElementAt: index ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>selectedItemsSorted [
+{ #category : #api }
+ListModel >> selectedItemsSorted [
 	
 	"return all the selected items sorted by their index"
 
@@ -606,11 +461,8 @@ ListModel>>selectedItemsSorted [
 				collect: [:index | self listElementAt: index ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>setIndex: anIndex [
+{ #category : #private }
+ListModel >> setIndex: anIndex [
 	"Set the index of the selected item when you click on an item"
 
 	self allowToSelect ifFalse: [ ^ self ].
@@ -619,11 +471,8 @@ ListModel>>setIndex: anIndex [
 	selectionHolder selection value: (self listElementAt: anIndex).
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>setSelectedIndex: anIndex [
+{ #category : #api }
+ListModel >> setSelectedIndex: anIndex [
 	"<api: #integer min: 0 max: #listSize getter: #selectedIndex registration: #whenSelectionIndexChanged:>"
 	"Set the index of the item you want to be selected"
 	| idx selection |
@@ -641,11 +490,8 @@ ListModel>>setSelectedIndex: anIndex [
 	selectionHolder selection value: selection.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>setSelectedItem: anItem [
+{ #category : #api }
+ListModel >> setSelectedItem: anItem [
 	"<api: #st getter: #selectedItem registration: #whenSelectedItemChanged:>"
 	"Set the item you want to be selected"
 	| index |
@@ -656,44 +502,32 @@ ListModel>>setSelectedItem: anItem [
 	selectionHolder selection value: anItem
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>setSelectionStateFor: anIndex at: aBoolean [
+{ #category : #private }
+ListModel >> setSelectionStateFor: anIndex [ at: aBoolean
 	"Set the selection state of the item at index _anIndex_ in the case of multiple selection list"
 
 	self allowToSelect ifFalse: [ ^ self ].
 	^ multiSelectionHolder at: anIndex put: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>sortingBlock [
+{ #category : #api }
+ListModel >> sortingBlock [
 	"<api: #inspect>"
 	"Return the ordering of the items"
 	
 	^ sortingBlockHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>sortingBlock: aBlock [
+{ #category : #api }
+ListModel >> sortingBlock: aBlock [
 	"<api: #block getter: #sortingBlock registration: #whenSortingBlockChanged:>"
 	"To set the ordering of the items"
 	
 	sortingBlockHolder value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>updateList [
+{ #category : #api }
+ListModel >> updateList [
 	"<api: #do>"
 	"Refresh the list"
 	
@@ -701,61 +535,43 @@ ListModel>>updateList [
 	self resetSelection
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>whenAllowToSelectChanged: aBlock [
+{ #category : #api-events }
+ListModel >> whenAllowToSelectChanged: aBlock [
 	"Set a block to value when the value of allowToSelect has changed"
 	
 	allowToSelect whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>whenAutoDeselectChanged: aBlock [
+{ #category : #api-events }
+ListModel >> whenAutoDeselectChanged: aBlock [
 	"Set a block to value when the value of autoDeselect has changed"
 	
 	autoDeselect whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>whenBackgroundColorBlockChanged: aBlock [
+{ #category : #api-events }
+ListModel >> whenBackgroundColorBlockChanged: aBlock [
 	"Set a block to value when the backgroundColorBlock has changed"
 	
 	backgroundColorBlock whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>whenDisplayBlockChanged: aBlock [
+{ #category : #api-events }
+ListModel >> whenDisplayBlockChanged: aBlock [
 	"Set a block to value when the filtering block has changed"
 	
 	wrapBlockHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>whenFilteringBlockChanged: aBlock [
+{ #category : #api-events }
+ListModel >> whenFilteringBlockChanged: aBlock [
 	"Set a block to value when the filtering block block has changed"
 	
 	filteringBlockHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>whenListChanged: aBlock [
+{ #category : #api-events }
+ListModel >> whenListChanged: aBlock [
 	"Specify a block to value after the contents of the list has changed"
 	"Basically when you set a new list of items"
 	"<api: #event>"
@@ -772,41 +588,29 @@ ListModel>>whenListChanged: aBlock [
 		do: block
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>whenMenuChanged: aBlock [
+{ #category : #api-events }
+ListModel >> whenMenuChanged: aBlock [
 	"Set a block to value when the menu block has changed"
 	
 	menuHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>whenMultiSelectionChanged: aBlock [
+{ #category : #api-events }
+ListModel >> whenMultiSelectionChanged: aBlock [
 	"Set a block to value when the multiSelection value has changed"
 	
 	multiSelection whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>whenSelectedItemChanged: aBlock [
+{ #category : #api-events }
+ListModel >> whenSelectedItemChanged: aBlock [
 	"Set a block to value when the select item is changed"
 	
 	selectionHolder selection whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>whenSelectionChanged: aBlock [
+{ #category : #api-events }
+ListModel >> whenSelectionChanged: aBlock [
 	"Set a block to value when the selection of the list has changed"
 
 	"The method should be used only if you are interested in the fact that there was a change, without caring about what has changed
@@ -817,41 +621,29 @@ ListModel>>whenSelectionChanged: aBlock [
 	multiSelectionHolder whenChangedDo: aBlock.
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>whenSelectionIndexChanged: aBlock [
+{ #category : #api-events }
+ListModel >> whenSelectionIndexChanged: aBlock [
 	"Set a block to value when the selection index has changed"
 	
 	selectionHolder index whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>whenSortingBlockChanged: aBlock [
+{ #category : #api-events }
+ListModel >> whenSortingBlockChanged: aBlock [
 	"Set a block to value when the sorting block has changed"
 	
 	sortingBlockHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>wrapItem: anObject  [
+{ #category : #private }
+ListModel >> wrapItem: anObject [ 
 	"Return the item _anObject_ wrapped"
 
 	^ wrapBlockHolder value cull: anObject 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ListModel>>wrapItem: anObject index: index [
+{ #category : #private }
+ListModel >> wrapItem: anObject index: index [
 	"Return the item _anObject_ wrapped"
 
 	^ wrapBlockHolder value cull: anObject cull: index

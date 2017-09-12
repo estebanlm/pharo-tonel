@@ -1,22 +1,14 @@
-Extension {
-	#name : #Morph
-}
+Extension { #name : #Morph }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Morph>>gtInspectorMappingsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Morph >> gtInspectorMappingsIn: composite [
 	<gtInspectorPresentationOrder: 95>
 	(self hasProperty: #kmDispatcher) ifFalse: [^self].
 	self kmDispatcher gtInspectorMappingsIn: composite
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Morph>>gtInspectorMorphExtensionIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Morph >> gtInspectorMorphExtensionIn: composite [
 	<gtInspectorPresentationOrder: 15>
 	
 	^ composite table
@@ -44,11 +36,8 @@ Morph>>gtInspectorMorphExtensionIn: composite [
 			entitled: 'Open pointers to'
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Morph>>gtInspectorMorphIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Morph >> gtInspectorMorphIn: composite [
 	<gtInspectorPresentationOrder: 90>
 	| morphPresentation |
 	morphPresentation := composite morph.
@@ -67,11 +56,8 @@ Morph>>gtInspectorMorphIn: composite [
 		act: [ :pres | self delete ] entitled: 'Delete'
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Morph>>gtInspectorSubmorphsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Morph >> gtInspectorSubmorphsIn: composite [
 	<gtInspectorPresentationOrder: 80>  
 	composite tree 
 		title: 'Submorphs';

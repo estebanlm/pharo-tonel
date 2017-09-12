@@ -8,52 +8,36 @@ Class {
 	#instVars : [
 		'cache'
 	],
-	#category : #System-CommandLine,
-	#timestamp : 'ValentinRyckewaert 6/24/2016 10:49'
+	#category : #System-CommandLine
 }
 
-{
-	#category : #TermStyle,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-TermInfoCharacter>>on: aStream [
+{ #category : #TermStyle }
+TermInfoCharacter >> on: aStream [
 	"Define the stream where termcap will change the style, normaly it's used on a terminal"
 
 	out := aStream
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-TermInfoCharacter>>print: aString [
+{ #category : #streaming }
+TermInfoCharacter >> print: aString [
 	"Print on the outStream aString"
 
 	out nextPutAll: aString
 ]
 
-{
-	#category : #TermStyle,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-TermInfoCharacter>>set: aString [
+{ #category : #TermStyle }
+TermInfoCharacter >> set: aString [
 	self print: Character escape asString, '['   , aString
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-TermInfoCharacter>>setBackgroundColor: aColor [
+{ #category : #'as yet unclassified' }
+TermInfoCharacter >> setBackgroundColor: aColor [
 
 	self set: aColor asTerminfoCharacterBackground , 'm'.
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-TermInfoCharacter>>setFontColor: aColor  [
+{ #category : #styling }
+TermInfoCharacter >> setFontColor: aColor [ 
 
 	self set: aColor asTerminfoCharacterFont, 'm'
 ]

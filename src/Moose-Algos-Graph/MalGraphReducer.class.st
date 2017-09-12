@@ -10,23 +10,16 @@ Class {
 		'circuits',
 		'circuitNodes'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : 'ChristopheDemarey 3/24/2015 16:50'
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphReducer>>addCircuitNodes [
+{ #category : #updating }
+MalGraphReducer >> addCircuitNodes [
 	nodes addAll: circuitNodes
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphReducer>>findCircuits [
+{ #category : #running }
+MalGraphReducer >> findCircuits [
 	| tarjanCircuits |
 	tarjanCircuits := MalTarjan new
 		nodesAndNextFrom: nodes;
@@ -37,21 +30,15 @@ MalGraphReducer>>findCircuits [
 			circuit collect: [ :each | self findNode: each model ] ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphReducer>>initialize [
+{ #category : #initialize-release }
+MalGraphReducer >> initialize [
 	super initialize.
 	circuitNodes := OrderedCollection new.
 	circuits := OrderedCollection new
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphReducer>>mergeNodesInCircuit: aNodeList [
+{ #category : #merging }
+MalGraphReducer >> mergeNodesInCircuit: aNodeList [
 	| sortedNodes |
 	"ensure that we get the same order in nodes part of a cycle. MalTarjan uses a dictionary and order depends on model hash that can differ from a machine to another one."
 	sortedNodes := aNodeList sort: [ :one :other | one model < other model ].
@@ -63,67 +50,46 @@ MalGraphReducer>>mergeNodesInCircuit: aNodeList [
 		yourself)
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphReducer>>mergeNodesInCircuits [
+{ #category : #merging }
+MalGraphReducer >> mergeNodesInCircuits [
 	circuits do: [ :each | self mergeNodesInCircuit: each ].
 	self removeReferencesToMergedNodes.
 	self removeMergedNodes.
 	self addCircuitNodes
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphReducer>>nextNodesFor: aNodeList [
+{ #category : #computing }
+MalGraphReducer >> nextNodesFor: aNodeList [
 	"compute next nodes for the future node replacing aNodeList"
 	^ ((aNodeList flatCollect: #nextNodes as: Set)
 		difference: aNodeList) asOrderedCollection
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphReducer>>nodeClass [
+{ #category : #configuration }
+MalGraphReducer >> nodeClass [
 	^ MalReducedGraphNode
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphReducer>>previousNodesFor: aNodeList [
+{ #category : #computing }
+MalGraphReducer >> previousNodesFor: aNodeList [
 	"compute previous nodes for the future node replacing aNodeList"
 	^ ((aNodeList flatCollect: #previousNodes as: Set)
 		difference: aNodeList) asOrderedCollection
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphReducer>>removeCircularDependenciesFrom: circuitNode [
+{ #category : #updating }
+MalGraphReducer >> removeCircularDependenciesFrom: circuitNode [
 	circuitNode nextNodes removeAllSuchThat: [ :each | each = circuitNode ].
 	circuitNode previousNodes removeAllSuchThat: [ :each | each = circuitNode ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphReducer>>removeMergedNodes [
+{ #category : #updating }
+MalGraphReducer >> removeMergedNodes [
 	nodes removeAll: (circuitNodes flatCollect: #mergedNodes)
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphReducer>>removeReferencesToMergedNodes [
+{ #category : #updating }
+MalGraphReducer >> removeReferencesToMergedNodes [
 	circuitNodes do: 
 		[ :circuitNode |
 		self 
@@ -132,21 +98,15 @@ MalGraphReducer>>removeReferencesToMergedNodes [
 		self removeCircularDependenciesFrom: circuitNode ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphReducer>>run [
+{ #category : #running }
+MalGraphReducer >> run [
 	self findCircuits.
 	self mergeNodesInCircuits.
 	^ nodes
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphReducer>>updateNextNodesOf: mergedNode replacing: aNodeList by: anotherNode [
+{ #category : #updating }
+MalGraphReducer >> updateNextNodesOf: mergedNode replacing: aNodeList by: anotherNode [
 	mergedNode nextNodes
 		do: [ :node | 
 			node previousNodes
@@ -154,11 +114,8 @@ MalGraphReducer>>updateNextNodesOf: mergedNode replacing: aNodeList by: anotherN
 				addIfNotPresent: anotherNode ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphReducer>>updatePreviousNodesOf: mergedNode replacing: aNodeList by: anotherNode [
+{ #category : #updating }
+MalGraphReducer >> updatePreviousNodesOf: mergedNode replacing: aNodeList by: anotherNode [
 	mergedNode previousNodes
 		do: [ :node | 
 			node nextNodes
@@ -166,11 +123,8 @@ MalGraphReducer>>updatePreviousNodesOf: mergedNode replacing: aNodeList by: anot
 				addIfNotPresent: anotherNode ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphReducer>>updateReferencesTo: aNodeList by: anotherNode [
+{ #category : #updating }
+MalGraphReducer >> updateReferencesTo: aNodeList by: anotherNode [
 	aNodeList do: 
 		[ :mergedNode | 
 		self 

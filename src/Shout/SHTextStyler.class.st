@@ -37,50 +37,34 @@ Class {
 		'view',
 		'stylingEnabled'
 	],
-	#category : #Shout-Styling,
-	#timestamp : 'StephaneDucasse 11/29/2011 22:28'
+	#category : #Shout-Styling
 }
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStyler>>format: aText  [
+{ #category : #formatting }
+SHTextStyler >> format: aText [ 
 	self terminateBackgroundStylingProcess.
 	^ aText
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStyler>>initialize [
+{ #category : #initialization }
+SHTextStyler >> initialize [
 	stylingEnabled := true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStyler>>monitor [
+{ #category : #private }
+SHTextStyler >> monitor [
 	monitor isNil
 		ifTrue: [monitor := Monitor new].
 	^ monitor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStyler>>privateStyle: aText  [
+{ #category : #private }
+SHTextStyler >> privateStyle: aText [ 
 	self shouldBeImplemented
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStyler>>style: aText [
+{ #category : #styling }
+SHTextStyler >> style: aText [
 	self terminateBackgroundStylingProcess.
 	stylingEnabled
 		ifFalse: [ ^ self ].
@@ -89,11 +73,8 @@ SHTextStyler>>style: aText [
 	view ifNotNil: [ :view2 | view2 stylerStyled: text ]
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStyler>>styleInBackgroundProcess: aText [
+{ #category : #styling }
+SHTextStyler >> styleInBackgroundProcess: aText [
 	self terminateBackgroundStylingProcess.
 	stylingEnabled ifFalse: [ ^ self ].
 	text := aText copy.
@@ -104,53 +85,35 @@ SHTextStyler>>styleInBackgroundProcess: aText [
 				view stylerStyledInBackground: text ] ] forkAt: Processor userBackgroundPriority ]
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStyler>>styledTextFor: aText  [
+{ #category : #styling }
+SHTextStyler >> styledTextFor: aText [ 
 	^self privateStyle: aText
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStyler>>stylingEnabled [
+{ #category : #private }
+SHTextStyler >> stylingEnabled [
 	^ stylingEnabled
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStyler>>stylingEnabled: aBoolean [
+{ #category : #private }
+SHTextStyler >> stylingEnabled: aBoolean [
 	stylingEnabled := aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStyler>>terminateBackgroundStylingProcess [
+{ #category : #private }
+SHTextStyler >> terminateBackgroundStylingProcess [
 	self monitor critical: [
 		backgroundProcess ifNotNil: [
 			backgroundProcess terminate.
 			backgroundProcess := nil ] ]
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStyler>>unstyledTextFrom: aText  [
+{ #category : #styling }
+SHTextStyler >> unstyledTextFrom: aText [ 
 	^ Text fromString: aText string
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStyler>>view: aViewOrMorph  [
+{ #category : #accessing }
+SHTextStyler >> view: aViewOrMorph [ 
 	view := aViewOrMorph
 ]

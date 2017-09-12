@@ -21,23 +21,16 @@ Class {
 		'HaloWithDebugHandle',
 		'ShowBoundsInHalo'
 	],
-	#category : #Morphic-Base-Widgets,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-Widgets
 }
 
-{
-	#category : #'halo theme',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph class>>allHaloSpecsFromArray: anArray [
+{ #category : #'halo theme' }
+HaloMorph class >> allHaloSpecsFromArray: anArray [
 	^ anArray collect: [:quin | self haloSpecFromArray: quin]
 ]
 
-{
-	#category : #'halo theme',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph class>>classicHaloSpecifications [
+{ #category : #'halo theme' }
+HaloMorph class >> classicHaloSpecifications [
 	"Non-iconic halos with traditional placements"
 
 	"
@@ -67,20 +60,14 @@ HaloMorph class>>classicHaloSpecifications [
 
 ]
 
-{
-	#category : #'halo theme',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph class>>currentHaloSpecifications [
+{ #category : #'halo theme' }
+HaloMorph class >> currentHaloSpecifications [
 	^ CurrentHaloSpecifications ifNil: [self installHaloTheme: #iconicHaloSpecifications]
 
 ]
 
-{
-	#category : #'halo theme',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph class>>customHaloSpecifications [
+{ #category : #'halo theme' }
+HaloMorph class >> customHaloSpecifications [
 	"Intended for you to modify to suit your personal preference.  What is implemented in the default here is just a skeleton; in comment at the bottom of this method are some useful lines you may wish to paste in to the main body here, possibly modifying positions, colors, etc..
 	Note that in this example, we include:
 			Dismiss handle, at top-left
@@ -125,27 +112,18 @@ HaloMorph class>>customHaloSpecifications [
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph class>>haloEnclosesFullBounds [
+{ #category : #settings }
+HaloMorph class >> haloEnclosesFullBounds [
 	^ HaloEnclosesFullBounds ifNil: [HaloEnclosesFullBounds := false]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph class>>haloEnclosesFullBounds: aBoolean [
+{ #category : #settings }
+HaloMorph class >> haloEnclosesFullBounds: aBoolean [
 	HaloEnclosesFullBounds := aBoolean
 ]
 
-{
-	#category : #'halo theme',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph class>>haloSpecFromArray: anArray  [
+{ #category : #'halo theme' }
+HaloMorph class >> haloSpecFromArray: anArray [ 
 	| aColor |
 	aColor := Color.
 	anArray fourth
@@ -158,11 +136,8 @@ HaloMorph class>>haloSpecFromArray: anArray  [
 		addHandleSelector: anArray first 
 ]
 
-{
-	#category : #'halo theme',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph class>>haloSpecificationsForWorld [
+{ #category : #'halo theme' }
+HaloMorph class >> haloSpecificationsForWorld [
 	| desired |
 	"Answer a list of HaloSpecs that describe which halos 
 	are to be used on a world halo, what they should 
@@ -173,27 +148,18 @@ HaloMorph class>>haloSpecificationsForWorld [
 		select: [:spec | desired includes: spec addHandleSelector]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph class>>haloWithDebugHandle [
+{ #category : #settings }
+HaloMorph class >> haloWithDebugHandle [
 	^ HaloWithDebugHandle ifNil: [HaloWithDebugHandle := true]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph class>>haloWithDebugHandle: aBoolean [
+{ #category : #settings }
+HaloMorph class >> haloWithDebugHandle: aBoolean [
 	 HaloWithDebugHandle := aBoolean
 ]
 
-{
-	#category : #'halo theme',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph class>>iconicHaloSpecifications [
+{ #category : #'halo theme' }
+HaloMorph class >> iconicHaloSpecifications [
 	"Answer an array that characterizes the locations, colors, icons, and selectors of the halo handles that may be used in the iconic halo scheme"
 
 	"self installHaloTheme: #iconicHaloSpecifications"
@@ -219,47 +185,32 @@ HaloMorph class>>iconicHaloSpecifications [
 
 ]
 
-{
-	#category : #'halo theme',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph class>>initialize [
+{ #category : #'halo theme' }
+HaloMorph class >> initialize [
 	"self initialize"
 	
 	self installHaloTheme: #iconicHaloSpecifications
 
 ]
 
-{
-	#category : #'halo theme',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph class>>installHaloTheme: haloSpecificationsSelector [
+{ #category : #'halo theme' }
+HaloMorph class >> installHaloTheme: haloSpecificationsSelector [
 	^ CurrentHaloSpecifications := self allHaloSpecsFromArray: (self perform: haloSpecificationsSelector).
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph class>>showBoundsInHalo [
+{ #category : #settings }
+HaloMorph class >> showBoundsInHalo [
 	^ ShowBoundsInHalo ifNil: [ShowBoundsInHalo := false]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph class>>showBoundsInHalo: aBoolean [
+{ #category : #settings }
+HaloMorph class >> showBoundsInHalo: aBoolean [
 	ShowBoundsInHalo := aBoolean
 ]
 
-{
-	#category : #'halo theme',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph class>>simpleFullHaloSpecifications [
+{ #category : #'halo theme' }
+HaloMorph class >> simpleFullHaloSpecifications [
 	"This method gives the specs for the 'full' handles variant when simple halos are in effect"
 
 	"
@@ -287,11 +238,8 @@ HaloMorph class>>simpleFullHaloSpecifications [
 	(addRecolorHandle:		right		bottomCenter	(magenta darker)				#haloRecolorIcon) ) 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addCircleHandles [
+{ #category : #private }
+HaloMorph >> addCircleHandles [
 	| box |
 	target isWorldMorph ifTrue: [^ self addHandlesForWorldHalos].
 
@@ -308,11 +256,8 @@ HaloMorph>>addCircleHandles [
 
 ]
 
-{
-	#category : #handles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addCollapseHandle: handleSpec [
+{ #category : #handles }
+HaloMorph >> addCollapseHandle: handleSpec [
 	"Add the collapse handle, with all of its event handlers set up, unless the target's owner is not the world or the hand."
 
 	| collapseHandle |
@@ -326,22 +271,16 @@ HaloMorph>>addCollapseHandle: handleSpec [
 
 ]
 
-{
-	#category : #handles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addDebugHandle: handleSpec [
+{ #category : #handles }
+HaloMorph >> addDebugHandle: handleSpec [
 	self class haloWithDebugHandle ifTrue:
 		[self addHandle: handleSpec
 			on: #mouseDown send: #doDebug:with: to: self]
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addDirectionHandles [
+{ #category : #private }
+HaloMorph >> addDirectionHandles [
 
 	| centerHandle d w directionShaft patch patchColor crossHairColor |
 	self showingDirectionHandles ifFalse: [^ self].
@@ -375,11 +314,8 @@ HaloMorph>>addDirectionHandles [
 
 ]
 
-{
-	#category : #handles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addDismissHandle: handleSpec  [
+{ #category : #handles }
+HaloMorph >> addDismissHandle: handleSpec [ 
 	"Add the dismiss handle according to the spec, unless my target resists
 	dismissal "
 	| dismissHandle |
@@ -403,11 +339,8 @@ HaloMorph>>addDismissHandle: handleSpec  [
 				to: self]
 ]
 
-{
-	#category : #handles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addDragHandle: haloSpec [
+{ #category : #handles }
+HaloMorph >> addDragHandle: haloSpec [
 	(self addHandle: haloSpec on: #mouseDown send: #startDrag:with: to: self)
 		on: #mouseMove send: #doDrag:with: to: self
 
@@ -415,11 +348,8 @@ HaloMorph>>addDragHandle: haloSpec [
 
 ]
 
-{
-	#category : #handles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addDupHandle: haloSpec [
+{ #category : #handles }
+HaloMorph >> addDupHandle: haloSpec [
 	"Add the halo that offers duplication, or, when shift is down, make-sibling"
 
 	self addHandle: haloSpec on: #mouseDown send: #doDup:with: to: self
@@ -427,11 +357,8 @@ HaloMorph>>addDupHandle: haloSpec [
 
 ]
 
-{
-	#category : #handles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addFontEmphHandle: haloSpec  [
+{ #category : #handles }
+HaloMorph >> addFontEmphHandle: haloSpec [ 
 	(innerTarget isTextMorph) 
 		ifTrue: 
 			[self 
@@ -441,11 +368,8 @@ HaloMorph>>addFontEmphHandle: haloSpec  [
 				to: innerTarget]
 ]
 
-{
-	#category : #handles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addFontSizeHandle: haloSpec  [
+{ #category : #handles }
+HaloMorph >> addFontSizeHandle: haloSpec [ 
 	(innerTarget isTextMorph) 
 		ifTrue: 
 			[self 
@@ -455,11 +379,8 @@ HaloMorph>>addFontSizeHandle: haloSpec  [
 				to: innerTarget]
 ]
 
-{
-	#category : #handles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addFontStyleHandle: haloSpec  [
+{ #category : #handles }
+HaloMorph >> addFontStyleHandle: haloSpec [ 
 	(innerTarget isTextMorph) 
 		ifTrue: 
 			[self 
@@ -469,19 +390,13 @@ HaloMorph>>addFontStyleHandle: haloSpec  [
 				to: innerTarget]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addFullHandles [
+{ #category : #private }
+HaloMorph >> addFullHandles [
 	self addCircleHandles
 ]
 
-{
-	#category : #handles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addGrabHandle: haloSpec [
+{ #category : #handles }
+HaloMorph >> addGrabHandle: haloSpec [
 	"If appropriate, add the black halo handle for picking up the target"
 
 	self addHandle: haloSpec on: #mouseDown send: #doGrab:with: to: self
@@ -489,11 +404,8 @@ HaloMorph>>addGrabHandle: haloSpec [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addGraphicalHandle: formKey at: aPoint on: eventName send: selector to: recipient [
+{ #category : #private }
+HaloMorph >> addGraphicalHandle: formKey at: aPoint on: eventName send: selector [ to: recipient
 	"Add the supplied form as a graphical handle centered at the given point, and set it up to respond to the given event by sending the given selector to the given recipient.  Return the handle."
 	| handle |
 	handle := self addGraphicalHandleFrom: formKey at: aPoint.
@@ -503,11 +415,8 @@ HaloMorph>>addGraphicalHandle: formKey at: aPoint on: eventName send: selector t
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addGraphicalHandleFrom: formKey at: aPoint [
+{ #category : #private }
+HaloMorph >> addGraphicalHandleFrom: formKey at: aPoint [
 	"Add the supplied form as a graphical handle centered at the given point.  Return the handle."
 	| handle aForm |
 	aForm := Smalltalk ui icons
@@ -521,11 +430,8 @@ HaloMorph>>addGraphicalHandleFrom: formKey at: aPoint [
 
 ]
 
-{
-	#category : #handles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addGrowHandle: haloSpec [
+{ #category : #handles }
+HaloMorph >> addGrowHandle: haloSpec [
 	target shouldFlex ifFalse: 
 		[(self addHandle: haloSpec
 				on: #mouseDown send: #startGrow:with: to: self)
@@ -534,11 +440,8 @@ HaloMorph>>addGrowHandle: haloSpec [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addHandle: handleSpec on: eventName send: selector to: recipient  [
+{ #category : #private }
+HaloMorph >> addHandle: handleSpec on: eventName send: selector [ to: recipient 
 	"Add a handle within the halo box as per the haloSpec, and set 
 	it up to respond to the given event by sending the given 
 	selector to the given recipient. Return the handle."
@@ -557,11 +460,8 @@ HaloMorph>>addHandle: handleSpec on: eventName send: selector to: recipient  [
 	^ handle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addHandleAt: aPoint color: aColor icon: iconName on: eventName send: selector to: recipient  [
+{ #category : #private }
+HaloMorph >> addHandleAt: aPoint color: aColor icon: iconName on: eventName send: selector [ to: recipient 
 	"Add a handle centered at the given point with the given color, 
 	and set it up to respond to the given event by sending the 
 	given selector to the given recipient. Return the handle."
@@ -576,29 +476,20 @@ HaloMorph>>addHandleAt: aPoint color: aColor icon: iconName on: eventName send: 
 	^ handle 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addHandleAt: aPoint color: aColor on: eventName send: selector to: recipient [
+{ #category : #private }
+HaloMorph >> addHandleAt: aPoint color: aColor on: eventName send: selector [ to: recipient
 	^ self addHandleAt: aPoint color: aColor icon: nil on: eventName send: selector to: recipient
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addHandles [
+{ #category : #private }
+HaloMorph >> addHandles [
 	self addCircleHandles.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addHandlesForWorldHalos [
+{ #category : #private }
+HaloMorph >> addHandlesForWorldHalos [
 	"Add handles for world halos, like the man said"
 
 	| box w |
@@ -615,40 +506,28 @@ HaloMorph>>addHandlesForWorldHalos [
 
 ]
 
-{
-	#category : #handles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addHelpHandle: haloSpec [
+{ #category : #handles }
+HaloMorph >> addHelpHandle: haloSpec [
 	target balloonText ifNotNil:
 		[(self addHandle: haloSpec on: #mouseDown send: #mouseDownOnHelpHandle: to: innerTarget)
 			on: #mouseUp send: #deleteBalloon to: innerTarget]
 
 ]
 
-{
-	#category : #handles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addMenuHandle: haloSpec [
+{ #category : #handles }
+HaloMorph >> addMenuHandle: haloSpec [
 	self addHandle: haloSpec on: #mouseDown send: #doMenu:with: to: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addName [
+{ #category : #private }
+HaloMorph >> addName [
 	"Add a name readout at the bottom of the halo."
 	self addNameBeneath: self basicBox string: target externalName
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addNameBeneath: outerRectangle string: aString [
+{ #category : #private }
+HaloMorph >> addNameBeneath: outerRectangle string: aString [
 	"Add a name display centered beneath the bottom of the outer rectangle. Return the handle."
 
 	| namePosition w |
@@ -669,11 +548,8 @@ HaloMorph>>addNameBeneath: outerRectangle string: aString [
 	^ nameMorph
 ]
 
-{
-	#category : #handles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addRecolorHandle: haloSpec [
+{ #category : #handles }
+HaloMorph >> addRecolorHandle: haloSpec [
 	"Add a recolor handle to the receiver, if appropriate"
 
 	"since this halo now opens a more general properties panel, allow it in all cases"
@@ -682,22 +558,16 @@ HaloMorph>>addRecolorHandle: haloSpec [
 	self addHandle: haloSpec on: #mouseUp send: #doRecolor:with: to: self.
 ]
 
-{
-	#category : #handles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addRotateHandle: haloSpec [
+{ #category : #handles }
+HaloMorph >> addRotateHandle: haloSpec [
 	(self addHandle: haloSpec on: #mouseDown send: #startRot:with: to: self)
 		on: #mouseMove send: #doRot:with: to: self
 
 
 ]
 
-{
-	#category : #handles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addScaleHandle: haloSpec [
+{ #category : #handles }
+HaloMorph >> addScaleHandle: haloSpec [
 	target shouldFlex ifTrue: 
 		[(self addHandle: haloSpec
 				on: #mouseDown send: #startScale:with: to: self)
@@ -706,22 +576,16 @@ HaloMorph>>addScaleHandle: haloSpec [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addSimpleHandlesForWorldHalos [
+{ #category : #private }
+HaloMorph >> addSimpleHandlesForWorldHalos [
 	"Nothing special at present here -- just use the regular handles.  Cannot rotate or resize world"
 
 	self addHandlesForWorldHalos
 
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>addSimpleHandlesTo: aHaloMorph box: aBox [
+{ #category : #'halos and balloon help' }
+HaloMorph >> addSimpleHandlesTo: aHaloMorph box: aBox [
 	| aHandle |
 
 	target isWorldMorph ifTrue: [^ self addSimpleHandlesForWorldHalos].
@@ -748,11 +612,8 @@ HaloMorph>>addSimpleHandlesTo: aHaloMorph box: aBox [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>basicBox [
+{ #category : #private }
+HaloMorph >> basicBox [
 	| aBox minSide anExtent w |
 	minSide := 4 * self handleSize.
 	anExtent := ((self width + self handleSize + 8) max: minSide) @
@@ -767,11 +628,8 @@ HaloMorph>>basicBox [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>basicBoxForSimpleHalos [
+{ #category : #private }
+HaloMorph >> basicBoxForSimpleHalos [
 	| w |
 	w := self world ifNil:[target outermostWorldMorph].
 	^ ((self worldBoundsForMorph: target topRendererOrSelf) expandBy: self handleAllowanceForIconicHalos)
@@ -779,11 +637,8 @@ HaloMorph>>basicBoxForSimpleHalos [
 
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>blueButtonDown: event [
+{ #category : #meta-actions }
+HaloMorph >> blueButtonDown: event [
 	"Transfer the halo to the next likely recipient"
 	target ifNil:[^self delete].
 	event hand obtainHalo: self.
@@ -796,11 +651,8 @@ HaloMorph>>blueButtonDown: event [
 		threshold: 5.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>borderStyle [
+{ #category : #accessing }
+HaloMorph >> borderStyle [
 	"Answer the border style to use for the receiver.
 	Depends on the target and on some settings."
 	
@@ -809,11 +661,8 @@ HaloMorph>>borderStyle [
 		ifFalse: [SimpleBorder width: 0 color: Color transparent]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>changed [
+{ #category : #updating }
+HaloMorph >> changed [
 	"Quicker to invalidate handles individually if target is large (especially the world)"
 
 	self extent > (200@200)
@@ -826,32 +675,23 @@ HaloMorph>>changed [
 
 ]
 
-{
-	#category : #'geometry testing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>containsPoint: aPoint  [
+{ #category : #'geometry testing' }
+HaloMorph >> containsPoint: aPoint [ 
 	"This method is overridden so that, once up, the handles will stay up as long as the mouse is within the box that encloses all the handles even if it is not over any handle or over its owner."
 
 	^ target ifNil: [super containsPoint: aPoint] ifNotNil: [false]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>containsPoint: aPoint event: anEvent [
+{ #category : #events-processing }
+HaloMorph >> containsPoint: aPoint event: anEvent [
 	"Blue buttons are handled by the halo"
 	(anEvent isMouse and:[anEvent isMouseDown and:[anEvent blueButtonPressed]])
 		ifFalse:[^super containsPoint: aPoint event: anEvent].
 	^bounds containsPoint: anEvent position
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>createHandleAt: aPoint color: aColor iconName: iconName  [
+{ #category : #private }
+HaloMorph >> createHandleAt: aPoint color: aColor iconName: iconName [ 
 	| bou handle |
 	bou := Rectangle center: aPoint extent: self handleSize asPoint.
 	self gradientHalo
@@ -876,40 +716,28 @@ HaloMorph>>createHandleAt: aPoint color: aColor iconName: iconName  [
 	^ handle
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>defaultColor [
+{ #category : #initialization }
+HaloMorph >> defaultColor [
 	"Answer the default color/fill style for the receiver."
 	
 	^Color transparent
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>delete [
+{ #category : #submorphs-add/remove }
+HaloMorph >> delete [
 	"Delete the halo.  Tell the target that it no longer has the halo; accept any pending edits to the name; and then  actually delete myself"
 
 	target ifNotNil: [target hasHalo: false].
 	super delete.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>directionArrowLength [
+{ #category : #private }
+HaloMorph >> directionArrowLength [
 	^ 25
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>doDebug: evt with: menuHandle [
+{ #category : #private }
+HaloMorph >> doDebug: evt with: menuHandle [
 	"Ask hand to invoke the a debugging menu for my inner target.  If shift key is down, immediately put up an inspector on the inner target"
 
 	| menu |
@@ -929,20 +757,14 @@ HaloMorph>>doDebug: evt with: menuHandle [
 	popUpEvent: evt in: self world
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>doDirection: anEvent with: directionHandle [
+{ #category : #private }
+HaloMorph >> doDirection: anEvent with: directionHandle [
 	anEvent hand obtainHalo: self.
 	self removeAllHandlesBut: directionHandle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>doDrag: evt with: dragHandle [
+{ #category : #private }
+HaloMorph >> doDrag: evt with: dragHandle [
 	| thePoint |
 	evt hand obtainHalo: self.
 	thePoint := target point: evt position - positionOffset from: owner.
@@ -950,11 +772,8 @@ HaloMorph>>doDrag: evt with: dragHandle [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>doDup: evt with: dupHandle [
+{ #category : #private }
+HaloMorph >> doDup: evt with: dupHandle [
 	"Ask hand to duplicate my target."
 
 	(target isKindOf: SelectionMorph) ifTrue:
@@ -967,11 +786,8 @@ HaloMorph>>doDup: evt with: dupHandle [
 	evt hand addMouseListener: self. "Listen for the drop"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>doGrab: evt with: grabHandle [
+{ #category : #private }
+HaloMorph >> doGrab: evt with: grabHandle [
 	"Ask hand to grab my target."
 
 	self obtainHaloForEvent: evt andRemoveAllHandlesBut: grabHandle.
@@ -980,11 +796,8 @@ HaloMorph>>doGrab: evt with: grabHandle [
 	evt hand addMouseListener: self. "Listen for the drop"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>doGrow: evt with: growHandle [
+{ #category : #private }
+HaloMorph >> doGrow: evt with: growHandle [
 	"Called while the mouse is down in the grow handle"
 
 	| newExtent extentToUse scale |
@@ -1002,11 +815,8 @@ HaloMorph>>doGrow: evt with: growHandle [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>doMenu: evt with: menuHandle [
+{ #category : #private }
+HaloMorph >> doMenu: evt with: menuHandle [
 	"Ask hand to invoke the halo menu for my inner target."
 
 	| menu |
@@ -1018,11 +828,8 @@ HaloMorph>>doMenu: evt with: menuHandle [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>doRecolor: evt with: aHandle [
+{ #category : #private }
+HaloMorph >> doRecolor: evt with: aHandle [
 	"The mouse went down in the 'recolor' halo handle.  Allow the user to change the color of the innerTarget"
 
 	evt hand obtainHalo: self.
@@ -1034,11 +841,8 @@ HaloMorph>>doRecolor: evt with: aHandle [
 			self showingDirectionHandles ifTrue: [self addHandles]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>doRot: evt with: rotHandle [
+{ #category : #private }
+HaloMorph >> doRot: evt with: rotHandle [
 	"Update the rotation of my target if it is rotatable.  Keep the relevant command object up to date."
 
 	| degrees |
@@ -1060,11 +864,8 @@ HaloMorph>>doRot: evt with: rotHandle [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>doScale: evt with: scaleHandle [
+{ #category : #private }
+HaloMorph >> doScale: evt with: scaleHandle [
 	"Update the scale of my target if it is scalable."
 	| newHandlePos colorToUse |
 	evt hand obtainHalo: self.
@@ -1080,11 +881,8 @@ HaloMorph>>doScale: evt with: scaleHandle [
 
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>dragTarget: event [
+{ #category : #events }
+HaloMorph >> dragTarget: event [
 	"Begin dragging the target"
 	| thePoint |
 	thePoint := target point: event position - positionOffset from: owner.
@@ -1092,22 +890,16 @@ HaloMorph>>dragTarget: event [
 	event hand newMouseFocus: self.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>drawSubmorphsOn: aCanvas [
+{ #category : #drawing }
+HaloMorph >> drawSubmorphsOn: aCanvas [
 	| alpha |
 	((alpha := self magicAlpha) = 1.0)
 		ifTrue:[^super drawSubmorphsOn: aCanvas].
 	^super drawSubmorphsOn: (aCanvas asAlphaBlendingCanvas: alpha)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>endInteraction [
+{ #category : #private }
+HaloMorph >> endInteraction [
 	"Clean up after a user interaction with the a halo control"
 
 	| m |
@@ -1124,43 +916,28 @@ HaloMorph>>endInteraction [
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>gradientHalo [
+{ #category : #settings }
+HaloMorph >> gradientHalo [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>haloBox: aBox [
+{ #category : #accessing }
+HaloMorph >> haloBox: aBox [
 	haloBox := aBox
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>haloEnclosesFullBounds [
+{ #category : #settings }
+HaloMorph >> haloEnclosesFullBounds [
 	^ self class haloEnclosesFullBounds
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>handleAllowanceForIconicHalos [
+{ #category : #private }
+HaloMorph >> handleAllowanceForIconicHalos [
 	^ 12
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>handleListenEvent: anEvent [
+{ #category : #events-processing }
+HaloMorph >> handleListenEvent: anEvent [
 	"We listen for possible drop events here to add back those handles after a dup/grab operation"
 
 	(anEvent isMouse and:[anEvent isMove not]) ifFalse:[^ self]. "not interested"
@@ -1169,28 +946,19 @@ HaloMorph>>handleListenEvent: anEvent [
 	self addHandles  "and get those handles back"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>handleSize [
+{ #category : #private }
+HaloMorph >> handleSize [
 	^ 20
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>handlerForBlueButtonDown: anEvent [
+{ #category : #meta-actions }
+HaloMorph >> handlerForBlueButtonDown: anEvent [
 	"Blue button was clicked within the receiver"
 	^self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>initialize [
+{ #category : #initialization }
+HaloMorph >> initialize [
 	"initialize the state of the receiver"
 	super initialize.
 
@@ -1200,21 +968,15 @@ HaloMorph>>initialize [
 		color: self theme settings menuSelectionColor)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>innerTarget [
+{ #category : #accessing }
+HaloMorph >> innerTarget [
 
 	^ innerTarget
 
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>localHaloBoundsFor: aMorph [
+{ #category : #stepping }
+HaloMorph >> localHaloBoundsFor: aMorph [
 	"aMorph may be in the hand and perhaps not in our world"
 
 	| r |
@@ -1223,28 +985,19 @@ HaloMorph>>localHaloBoundsFor: aMorph [
 	^((self transformFromOutermostWorld) globalBoundsToLocal: r) truncated
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>magicAlpha [
+{ #category : #accessing }
+HaloMorph >> magicAlpha [
 	^self valueOfProperty: #magicAlpha ifAbsent:[1.0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>magicAlpha: alpha [
+{ #category : #accessing }
+HaloMorph >> magicAlpha: alpha [
 	self setProperty: #magicAlpha toValue: alpha.
 	self changed.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>maybeCollapse: evt with: collapseHandle  [
+{ #category : #private }
+HaloMorph >> maybeCollapse: evt with: collapseHandle [ 
 	"Ask hand to collapse my target if mouse comes up in it."
 
 	evt hand obtainHalo: self.
@@ -1258,11 +1011,8 @@ HaloMorph>>maybeCollapse: evt with: collapseHandle  [
 			target collapse]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>maybeDismiss: evt with: dismissHandle  [
+{ #category : #private }
+HaloMorph >> maybeDismiss: evt with: dismissHandle [ 
 	"Ask hand to dismiss my target if mouse comes up
 	in it." 
 
@@ -1281,20 +1031,14 @@ HaloMorph>>maybeDismiss: evt with: dismissHandle  [
 			target addHalo: evt]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>maybeDoDup: evt with: dupHandle [
+{ #category : #private }
+HaloMorph >> maybeDoDup: evt with: dupHandle [
 	evt hand obtainHalo: self.
 	^ self doDup: evt with: dupHandle
 ]
 
-{
-	#category : #'wiw support',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>morphicLayerNumber [
+{ #category : #'wiw support' }
+HaloMorph >> morphicLayerNumber [
 
 	"helpful for insuring some morphs always appear in front of or behind others.
 	smaller numbers are in front"
@@ -1302,55 +1046,40 @@ HaloMorph>>morphicLayerNumber [
 	^7		"Halos are very front-like things"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>mouseDownInCollapseHandle: evt with: collapseHandle [
+{ #category : #private }
+HaloMorph >> mouseDownInCollapseHandle: evt with: collapseHandle [
 	"The mouse went down in the collapse handle; collapse the morph"
 
 	self obtainHaloForEvent: evt andRemoveAllHandlesBut: collapseHandle.
 	self setDismissColor: evt with: collapseHandle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>mouseDownInDimissHandle: evt with: dismissHandle [
+{ #category : #private }
+HaloMorph >> mouseDownInDimissHandle: evt with: dismissHandle [
 	evt hand obtainHalo: self.
 	self removeAllHandlesBut: dismissHandle.
 	self setColor: Color darkGray toHandle: dismissHandle.
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>mouseMove: evt [
+{ #category : #'event handling' }
+HaloMorph >> mouseMove: evt [
 	"Drag our target around"
 	| thePoint |
 	thePoint := target point: (evt position - positionOffset) from: owner.
 	target setConstrainedPosition: thePoint hangOut: true.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>obtainHaloForEvent: evt andRemoveAllHandlesBut: aHandle [
+{ #category : #private }
+HaloMorph >> obtainHaloForEvent: evt andRemoveAllHandlesBut: aHandle [
 	"Make sure the event's hand correlates with the receiver, and remove all handles except the given one.  If nil is provided as the handles argument, the result is that all handles are removed.  Note that any pending edits to the name-string in the halo are accepted at this time."
 
 	evt hand obtainHalo: self.
 	self removeAllHandlesBut: aHandle
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>popUpFor: aMorph event: evt  [
+{ #category : #events }
+HaloMorph >> popUpFor: aMorph event: evt [ 
 	"This message is sent by morphs that explicitly request the halo on a button click. Note: anEvent is in aMorphs coordinate frame."
 
 	| hand anEvent |
@@ -1372,22 +1101,16 @@ HaloMorph>>popUpFor: aMorph event: evt  [
 	
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>position: pos [
+{ #category : #geometry }
+HaloMorph >> position: pos [
 	"Halos display imprefectly if their coordinates are non-integral
 		-- especially the direction handles."
 
 	^ super position: pos asIntegerPoint
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>positionDirectionShaft: shaft [
+{ #category : #private }
+HaloMorph >> positionDirectionShaft: shaft [
 	"Position the shaft."
 	| alphaRadians unitVector | 
 	"Pretty crude and slow approach at present, but a stake in the ground"
@@ -1398,11 +1121,8 @@ HaloMorph>>positionDirectionShaft: shaft [
 
 ]
 
-{
-	#category : #handles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>positionIn: aBox horizontalPlacement: horiz verticalPlacement: vert [
+{ #category : #handles }
+HaloMorph >> positionIn: aBox horizontalPlacement: horiz verticalPlacement: vert [
 	| xCoord yCoord |
 
 	horiz == #left
@@ -1430,11 +1150,8 @@ HaloMorph>>positionIn: aBox horizontalPlacement: horiz verticalPlacement: vert [
 	^ xCoord asInteger @ yCoord asInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>prepareToTrackCenterOfRotation: evt with: rotationHandle [
+{ #category : #private }
+HaloMorph >> prepareToTrackCenterOfRotation: evt with: rotationHandle [
 	evt hand obtainHalo: self.
 	evt shiftPressed ifTrue:[
 		self removeAllHandlesBut: rotationHandle.
@@ -1445,32 +1162,23 @@ HaloMorph>>prepareToTrackCenterOfRotation: evt with: rotationHandle [
 	evt hand showTemporaryCursor: Cursor blank
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>rejectsEvent: anEvent [
+{ #category : #events-processing }
+HaloMorph >> rejectsEvent: anEvent [
 	"Return true to reject the given event. Rejecting an event means neither the receiver nor any of it's submorphs will be given any chance to handle it."
 	(super rejectsEvent: anEvent) ifTrue:[^true].
 	anEvent isDropEvent ifTrue:[^true]. "never attempt to drop on halos"
 	^false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>removeAllHandlesBut: aHandle [
+{ #category : #private }
+HaloMorph >> removeAllHandlesBut: aHandle [
 	"Remove all handles except aHandle."
 	submorphs copy do: [:m | m == aHandle ifFalse: [m delete]]
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>setCenterOfRotation: evt with: rotationHandle [
+{ #category : #private }
+HaloMorph >> setCenterOfRotation: evt with: rotationHandle [
 	| localPt |
 	evt hand obtainHalo: self.
 	evt hand showTemporaryCursor: nil.
@@ -1483,11 +1191,8 @@ HaloMorph>>setCenterOfRotation: evt with: rotationHandle [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>setColor: aColor toHandle: aHandle  [
+{ #category : #private }
+HaloMorph >> setColor: aColor toHandle: aHandle [ 
 	"private - change the color to the given handle, applying the 
 	alternate look if corresponds"
 	aHandle color: aColor.
@@ -1499,22 +1204,16 @@ HaloMorph>>setColor: aColor toHandle: aHandle  [
 			aHandle fillStyle: fill] 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>setDirection: anEvent with: directionHandle [
+{ #category : #private }
+HaloMorph >> setDirection: anEvent with: directionHandle [
 	"The user has let up after having dragged the direction arrow; now set the forward direction of the actual SketchMorph accordingly"
 	anEvent hand obtainHalo: self.
 	target setDirectionFrom: directionHandle center.
 	self endInteraction
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>setDismissColor: evt with: dismissHandle [
+{ #category : #private }
+HaloMorph >> setDismissColor: evt with: dismissHandle [
 	"Called on mouseStillDown in the dismiss handle; set the color appropriately."
 
 	| colorToUse |
@@ -1528,11 +1227,8 @@ HaloMorph>>setDismissColor: evt with: dismissHandle [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>setTarget: aMorph [
+{ #category : #accessing }
+HaloMorph >> setTarget: aMorph [
 	"Private! Set the target without adding handles."
 
 	target := aMorph topRendererOrSelf.
@@ -1544,70 +1240,49 @@ HaloMorph>>setTarget: aMorph [
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>showBoundsInHalo [
+{ #category : #settings }
+HaloMorph >> showBoundsInHalo [
 	^ self class showBoundsInHalo
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>showDirectionHandles: wantToShow [
+{ #category : #private }
+HaloMorph >> showDirectionHandles: wantToShow [
 
 	self showDirectionHandles: wantToShow addHandles: true  "called from menu"
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>showDirectionHandles: wantToShow addHandles: needHandles  [
+{ #category : #private }
+HaloMorph >> showDirectionHandles: wantToShow addHandles: needHandles [ 
 	directionArrowAnchor := wantToShow 
 				ifTrue: [target referencePositionInWorld	"not nil means show"]
 				ifFalse: [nil].
 	needHandles ifTrue: [self addHandles] 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>showingDirectionHandles [
+{ #category : #private }
+HaloMorph >> showingDirectionHandles [
 	^directionArrowAnchor notNil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>simpleFudgeOffset [
+{ #category : #private }
+HaloMorph >> simpleFudgeOffset [
 	"account for the difference in basicBoxes between regular and simple handles"
 
 	^ 0@0
 
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>startDrag: evt with: dragHandle [
+{ #category : #dropping/grabbing }
+HaloMorph >> startDrag: evt with: dragHandle [
 	"Drag my target without removing it from its owner."
 
 	self obtainHaloForEvent: evt andRemoveAllHandlesBut: dragHandle.
 	positionOffset := dragHandle center - (target point: target position in: owner).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>startGrow: evt with: growHandle [
+{ #category : #private }
+HaloMorph >> startGrow: evt with: growHandle [
 	"Initialize resizing of my target.  Launch a command representing it, to support Undo"
 
 	| botRt |
@@ -1620,11 +1295,8 @@ HaloMorph>>startGrow: evt with: growHandle [
 	originalExtent := target extent
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>startRot: evt with: rotHandle [
+{ #category : #private }
+HaloMorph >> startRot: evt with: rotHandle [
 	"Initialize rotation of my target if it is rotatable"
 
 	self obtainHaloForEvent: evt andRemoveAllHandlesBut: rotHandle.
@@ -1638,11 +1310,8 @@ HaloMorph>>startRot: evt with: rotHandle [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>startScale: evt with: scaleHandle [
+{ #category : #private }
+HaloMorph >> startScale: evt with: scaleHandle [
 	"Initialize scaling of my target."
 
 	self obtainHaloForEvent: evt andRemoveAllHandlesBut: scaleHandle.
@@ -1653,19 +1322,13 @@ HaloMorph>>startScale: evt with: scaleHandle [
 
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>staysUpWhenMouseIsDownIn: aMorph [
+{ #category : #events }
+HaloMorph >> staysUpWhenMouseIsDownIn: aMorph [
 	^ ((aMorph == target) or: [aMorph hasOwner: self])
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>step [
+{ #category : #stepping }
+HaloMorph >> step [
 	| newBounds |
 	target
 		ifNil: [^ self].
@@ -1683,73 +1346,52 @@ HaloMorph>>step [
 	self bounds: newBounds
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>stepTime [
+{ #category : #testing }
+HaloMorph >> stepTime [
 
 	^ 0  "every cycle"
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>target [
+{ #category : #accessing }
+HaloMorph >> target [
 
 	^ target
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>target: aMorph [
+{ #category : #accessing }
+HaloMorph >> target: aMorph [
 
 	self setTarget: aMorph.
 	target ifNotNil: [self addHandles].
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>trackCenterOfRotation: anEvent with: rotationHandle [
+{ #category : #private }
+HaloMorph >> trackCenterOfRotation: anEvent with: rotationHandle [
 	(rotationHandle hasProperty: #dragByCenterOfRotation) 
 		ifTrue:[^self doDrag: anEvent with: rotationHandle].
 	anEvent hand obtainHalo: self.
 	rotationHandle center: anEvent cursorPoint.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>trackDirectionArrow: anEvent with: shaft [
+{ #category : #private }
+HaloMorph >> trackDirectionArrow: anEvent with: shaft [
 	anEvent hand obtainHalo: self.
 	shaft setVertices: {directionArrowAnchor. anEvent cursorPoint}.
 	self layoutChanged
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>transferHalo: event [
+{ #category : #events }
+HaloMorph >> transferHalo: event [
 	"Transfer the halo to the next likely recipient"
 	target ifNil:[^self delete].
 	target transferHalo: (event transformedBy: (target transformedFrom: self)) from: target.
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>veryDeepFixupWith: deepCopier [
+{ #category : #copying }
+HaloMorph >> veryDeepFixupWith: deepCopier [
 	"If target and arguments fields were weakly copied, fix them here.  If they were in the tree being copied, fix them up, otherwise point to the originals!!"
 
 super veryDeepFixupWith: deepCopier.
@@ -1758,11 +1400,8 @@ innerTarget := deepCopier references at: innerTarget ifAbsent: [innerTarget].
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>veryDeepInner: deepCopier [
+{ #category : #copying }
+HaloMorph >> veryDeepInner: deepCopier [
 	"Copy all of my instance variables.  Some need to be not copied at all, but shared.  	Warning!!  Every instance variable defined in this class must be handled.  We must also implement veryDeepFixupWith:.  See DeepCopier class comment."
 
 	super veryDeepInner: deepCopier.
@@ -1778,39 +1417,27 @@ HaloMorph>>veryDeepInner: deepCopier [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>wantsKeyboardFocusFor: aSubmorph [
+{ #category : #'event handling' }
+HaloMorph >> wantsKeyboardFocusFor: aSubmorph [
 	"to allow the name to be edited in the halo in the old tty way; when we morphic-text-ize the name editing, presumably this method should be removed"
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>wantsToBeTopmost [
+{ #category : #accessing }
+HaloMorph >> wantsToBeTopmost [
 	"Answer if the receiver want to be one of the topmost objects in 
 	its owner"
 	^ true
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>wantsYellowButtonMenu [
+{ #category : #menu }
+HaloMorph >> wantsYellowButtonMenu [
 	"Answer true if the receiver wants a yellow button menu"
 	^ false
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloMorph>>worldBoundsForMorph: aMorph [
+{ #category : #geometry }
+HaloMorph >> worldBoundsForMorph: aMorph [
 	"Answer the rectangle to be used as the inner dimension of aMorph halos.
 	Allow for showing either bounds or fullBounds, and compensate for the optional bounds rectangle."
 

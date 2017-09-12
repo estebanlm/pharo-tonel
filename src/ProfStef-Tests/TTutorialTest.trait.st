@@ -3,27 +3,18 @@ Trait for testing tutorials
 "
 Trait {
 	#name : #TTutorialTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #ProfStef-Tests,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:49'
+	#category : #ProfStef-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-TTutorialTest>>testEachSelectorExists [
+{ #category : #tests }
+TTutorialTest >> testEachSelectorExists [
 	self testedTutorial tutorial do: [:aSelector|
 		self assert: (self tutorial respondsTo: aSelector) 
 	]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-TTutorialTest>>testEachSelectorReturnsALesson [
+{ #category : #tests }
+TTutorialTest >> testEachSelectorReturnsALesson [
 	| answer |
 	self testedTutorial tutorial do: [:aSelector|
 		answer := (self testedTutorial perform: aSelector).
@@ -31,11 +22,8 @@ TTutorialTest>>testEachSelectorReturnsALesson [
 	]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-TTutorialTest>>testLessonAtReturnsCorrespondingLesson [
+{ #category : #tests }
+TTutorialTest >> testLessonAtReturnsCorrespondingLesson [
 	| answer |
 	1 to: (self testedTutorial tutorial size) do: [:index|
 		answer := self testedTutorial lessonAt: index.
@@ -44,27 +32,18 @@ TTutorialTest>>testLessonAtReturnsCorrespondingLesson [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-TTutorialTest>>testNotEmpty [
+{ #category : #tests }
+TTutorialTest >> testNotEmpty [
 	self assert: self testedTutorial tutorial notEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-TTutorialTest>>testSizeReturnsNumberOfSelectors [
+{ #category : #tests }
+TTutorialTest >> testSizeReturnsNumberOfSelectors [
 	self assert: (self testedTutorial tutorial size) equals: self testedTutorial size.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-TTutorialTest>>testedTutorial [
+{ #category : #requirements }
+TTutorialTest >> testedTutorial [
 	"Returns an instance of an AbstractTutorial subclass"
 	^ self explicitRequirement
 ]

@@ -6,25 +6,18 @@ Instances of this class are used to terminate matcher's chains. When a match rea
 Class {
 	#name : #RxmTerminator,
 	#superclass : #Object,
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:14'
+	#category : #Regex-Core
 }
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmTerminator>>matchAgainst: aStream [
+{ #category : #matching }
+RxmTerminator >> matchAgainst: aStream [
 	"If got here, the match is successful."
 
 	^true
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmTerminator>>pointTailTo: anRxmLink [
+{ #category : #building }
+RxmTerminator >> pointTailTo: anRxmLink [
 	"Branch tails are never redirected by the build algorithm.
 	Healthy terminators should never receive this."
 
@@ -32,11 +25,8 @@ RxmTerminator>>pointTailTo: anRxmLink [
 		'internal matcher build error - redirecting terminator tail'
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmTerminator>>terminateWith: aTerminator [
+{ #category : #building }
+RxmTerminator >> terminateWith: aTerminator [
 	"Branch terminators are never supposed to change.
 	Make sure this is the case."
 

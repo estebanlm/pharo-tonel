@@ -8,25 +8,18 @@ Class {
 		'records',
 		'merger'
 	],
-	#category : #Monticello-Versioning,
-	#timestamp : 'TorstenBergmann 2/6/2014 08:09'
+	#category : #Monticello-Versioning
 }
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionMerger class>>mergeVersion: aVersion [
+{ #category : #action }
+MCVersionMerger class >> mergeVersion: aVersion [
 	self new
 		addVersion: aVersion;
 		mergeWithNameLike: aVersion info name
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionMerger>>addVersion: aVersion [
+{ #category : #adding }
+MCVersionMerger >> addVersion: aVersion [
 	
 	records add: (MCMergeRecord version: aVersion).
 	aVersion dependencies 
@@ -37,39 +30,27 @@ MCVersionMerger>>addVersion: aVersion [
 		displayingProgress: [ :ea| 'Searching dependency: ', ea package name]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionMerger>>addVersions: aCollection [
+{ #category : #adding }
+MCVersionMerger >> addVersions: aCollection [
 	aCollection do: [ :version|
 		self addVersion: version].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionMerger>>gatherChanges [
+{ #category : #actions }
+MCVersionMerger >> gatherChanges [
 	records do: [:ea | merger addBaseSnapshot: ea packageSnapshot].
 	records do: [:ea | merger applyPatch: ea mergePatch].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionMerger>>initialize [
+{ #category : #initialization }
+MCVersionMerger >> initialize [
 	super initialize.
 	records := OrderedCollection new.
 	merger := MCThreeWayMerger new.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionMerger>>merge [
+{ #category : #actions }
+MCVersionMerger >> merge [
 
 	self gatherChanges.
 
@@ -81,11 +62,8 @@ MCVersionMerger>>merge [
 	^ false
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionMerger>>mergeWithNameLike: baseName [
+{ #category : #actions }
+MCVersionMerger >> mergeWithNameLike: baseName [
 
 	self gatherChanges.
 	
@@ -94,11 +72,8 @@ MCVersionMerger>>mergeWithNameLike: baseName [
 		records do: [:ea | ea updateWorkingCopy]].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionMerger>>resolveConflicts [
+{ #category : #actions }
+MCVersionMerger >> resolveConflicts [
 	(records allSatisfy: [:ea | ea isAncestorMerge]) 
 		ifTrue: [
 			MCNoChangesException signal. 

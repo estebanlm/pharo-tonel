@@ -11,15 +11,11 @@ Class {
 		'minor',
 		'patch'
 	],
-	#category : #FreeType-Base,
-	#timestamp : '<historical>'
+	#category : #FreeType-Base
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Version class>>current [
+{ #category : #'instance creation' }
+FT2Version class >> current [
 	"
 	FT2Version current
 	"
@@ -28,44 +24,29 @@ FT2Version class>>current [
 		yourself] on: Error do: [:ex | ex return: nil]
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Version>>libraryVersion [
+{ #category : #primitives }
+FT2Version >> libraryVersion [
 	<primitive: 'primitiveVersion' module: 'FT2Plugin'>
 	^self primitiveFailed.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Version>>major [
+{ #category : #accessing }
+FT2Version >> major [
 	^major
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Version>>minor [
+{ #category : #accessing }
+FT2Version >> minor [
 	^minor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Version>>patch [
+{ #category : #accessing }
+FT2Version >> patch [
 	^patch
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Version>>printOn: aStream [
+{ #category : #printing }
+FT2Version >> printOn: aStream [
 	aStream print: major; nextPut: $.; print: minor; nextPut:$.; print: patch.
 ]

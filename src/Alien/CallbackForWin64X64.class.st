@@ -4,23 +4,16 @@ A CallbackForWin64X64 is a callback for platforms with x64/x86_64 processors usi
 Class {
 	#name : #CallbackForWin64X64,
 	#superclass : #Callback,
-	#category : #Alien-Core,
-	#timestamp : ''
+	#category : #Alien-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CallbackForWin64X64 class>>abi [
+{ #category : #accessing }
+CallbackForWin64X64 class >> abi [
 	^'X64Win64'
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CallbackForWin64X64 class>>isForCurrentPlatform [
+{ #category : #'class initialization' }
+CallbackForWin64X64 class >> isForCurrentPlatform [
 	| processor |
 	(#('Win32' 'Win64') includes: (SmalltalkImage current getSystemAttribute: 1001)) ifFalse:
 		[^false].
@@ -28,11 +21,8 @@ CallbackForWin64X64 class>>isForCurrentPlatform [
 	^processor first = $x and: [processor = 'x64' or: [('x86#64*' match: processor)]]
 ]
 
-{
-	#category : #signatures,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CallbackForWin64X64>>intcharstarRetint: callbackContext regs: regsAlien [
+{ #category : #signatures }
+CallbackForWin64X64 >> intcharstarRetint: callbackContext regs: regsAlien [
 	<signature: #(int (*)(int, char *))>
 	^callbackContext wordResult:
 		(block
@@ -40,11 +30,8 @@ CallbackForWin64X64>>intcharstarRetint: callbackContext regs: regsAlien [
 			value: (Alien forPointer: (regsAlien unsignedLongLongAt: 9)))
 ]
 
-{
-	#category : #evaluation,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CallbackForWin64X64>>valueInContext: callbackContext "<VMCallbackContext32|VMCallbackContext64> ^<Integer>" [
+{ #category : #evaluation }
+CallbackForWin64X64 >> valueInContext: callbackContext [ "<VMCallbackContext32|VMCallbackContext64> ^<Integer>"
 	numEvaluatorArgs = 2 ifTrue:
 		[^self perform: evaluator
 			with: callbackContext
@@ -66,11 +53,8 @@ CallbackForWin64X64>>valueInContext: callbackContext "<VMCallbackContext32|VMCal
 	self error: 'invalid evaluator argument count'
 ]
 
-{
-	#category : #signatures,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CallbackForWin64X64>>voidstarvoidstarRetint: callbackContext regs: regsAlien [
+{ #category : #signatures }
+CallbackForWin64X64 >> voidstarvoidstarRetint: callbackContext regs: regsAlien [
 	<signature: #(int (*)(const void *, const void *))>
 	^callbackContext wordResult:
 		(block

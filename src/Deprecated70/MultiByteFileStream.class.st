@@ -25,47 +25,34 @@ Class {
 		'LineEndStrings',
 		'LookAheadCount'
 	],
-	#category : #Deprecated70,
-	#timestamp : '<historical>'
+	#category : #Deprecated70
 }
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream class>>defaultToCR [
+{ #category : #defaults }
+MultiByteFileStream class >> defaultToCR [
 
 	"MultiByteFileStream defaultToCR"
 	LineEndDefault := #cr.
 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream class>>defaultToCRLF [
+{ #category : #defaults }
+MultiByteFileStream class >> defaultToCRLF [
 
 	"MultiByteFileStream defaultToCRLF"
 	LineEndDefault := #crlf.
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream class>>defaultToLF [
+{ #category : #defaults }
+MultiByteFileStream class >> defaultToLF [
 
 	"MultiByteFileStream defaultToLF"
 	LineEndDefault := #lf.
 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream class>>guessDefaultLineEndConvention [
+{ #category : #defaults }
+MultiByteFileStream class >> guessDefaultLineEndConvention [
 	"Lets try to guess the line end convention from what we know about the
 	path name delimiter from FileDirectory."
 	
@@ -84,11 +71,8 @@ MultiByteFileStream class>>guessDefaultLineEndConvention [
 	^ self defaultToCR
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream class>>initialize [
+{ #category : #'class initialization' }
+MultiByteFileStream class >> initialize [
 	Cr := Character cr.
 	Lf := Character lf.
 	CrLf := String with: Cr with: Lf.
@@ -103,21 +87,15 @@ MultiByteFileStream class>>initialize [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream class>>lineEndDefault [
+{ #category : #accessing }
+MultiByteFileStream class >> lineEndDefault [
 	"Answer the default line-ending convention that will be used by default, which was determined at start-up by looking at platform attributes."
 	^ LineEndDefault
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream class>>newFrom: aFileStream [
+{ #category : #'instance creation' }
+MultiByteFileStream class >> newFrom: aFileStream [
 
 	| rw n |
 	n := aFileStream name.
@@ -127,60 +105,42 @@ MultiByteFileStream class>>newFrom: aFileStream [
 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream class>>startUp [
+{ #category : #'system startup' }
+MultiByteFileStream class >> startUp [
 	self guessDefaultLineEndConvention.
 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream class>>startUp: resuming [
+{ #category : #'system startup' }
+MultiByteFileStream class >> startUp: resuming [
 	self guessDefaultLineEndConvention.
 
 ]
 
-{
-	#category : #remnant,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>accepts: aSymbol [
+{ #category : #remnant }
+MultiByteFileStream >> accepts: aSymbol [
 
  	^ converter accepts: aSymbol.
 
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>ascii [
+{ #category : #modes }
+MultiByteFileStream >> ascii [
 
 	super ascii.
 	self detectLineEndConvention.
 
 ]
 
-{
-	#category : #'private - crlf',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>bareNext [
+{ #category : #'private - crlf' }
+MultiByteFileStream >> bareNext [
 
 	 ^ self converter nextFromStream: self.
 
 ]
 
-{
-	#category : #fileIn/Out,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>basicChunk [
+{ #category : #fileIn/Out }
+MultiByteFileStream >> basicChunk [
 	"If our buffer in collection contains an chunk with no embedded !'s, nor
 	any non-ascii characters, return that.
 	This presumes the source code encoding is unambiguously ascii-compatible"
@@ -197,161 +157,113 @@ MultiByteFileStream>>basicChunk [
 				goodString]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>basicNext: anInteger [
+{ #category : #private }
+MultiByteFileStream >> basicNext: anInteger [
 
 	^ super next: anInteger.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>basicNext: n into: aString [
+{ #category : #private }
+MultiByteFileStream >> basicNext: n into: aString [
 
 	^ super next: n into: aString.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>basicNext: anInteger putAll: aCollection startingAt: startIndex [
+{ #category : #private }
+MultiByteFileStream >> basicNext: anInteger putAll: aCollection startingAt: startIndex [
 
 
         ^super next: anInteger putAll: aCollection startingAt: startIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>basicNextInto: aString [
+{ #category : #private }
+MultiByteFileStream >> basicNextInto: aString [
 
 	^ super nextInto: aString.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>basicNextPut: char [
+{ #category : #private }
+MultiByteFileStream >> basicNextPut: char [
 
 	^ super nextPut: char.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>basicNextPutAll: aString [
+{ #category : #private }
+MultiByteFileStream >> basicNextPutAll: aString [
 
 	^ super nextPutAll: aString.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>basicPeek [
+{ #category : #private }
+MultiByteFileStream >> basicPeek [
 
 	^ super peek
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>basicPosition [
+{ #category : #private }
+MultiByteFileStream >> basicPosition [
 
 	^ super position.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>basicPosition: pos [
+{ #category : #private }
+MultiByteFileStream >> basicPosition: pos [
 
 	^ super position: pos.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>basicReadInto: byteArray startingAt: startIndex count: count [
+{ #category : #private }
+MultiByteFileStream >> basicReadInto: byteArray startingAt: startIndex count: count [
 
 	^ super readInto: byteArray startingAt: startIndex count: count.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>basicSetToEnd [
+{ #category : #private }
+MultiByteFileStream >> basicSetToEnd [
 
 	^ super setToEnd.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>basicSkip: n [
+{ #category : #private }
+MultiByteFileStream >> basicSkip: n [
 
 	^ super skip: n.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>basicUpTo: delim [
+{ #category : #private }
+MultiByteFileStream >> basicUpTo: delim [
 
 	^ super upTo: delim.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>basicVerbatim: aString [
+{ #category : #private }
+MultiByteFileStream >> basicVerbatim: aString [
 
 	^ super verbatim: aString.
 
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>binary [
+{ #category : #modes }
+MultiByteFileStream >> binary [
 
 	super binary.
 	self lineEndConvention: nil
 ]
 
-{
-	#category : #'private - crlf',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>convertStringFromCr: aString  [
+{ #category : #'private - crlf' }
+MultiByteFileStream >> convertStringFromCr: aString [ 
 	| inStream outStream |
 	lineEndConvention ifNil: [^ aString].
 	lineEndConvention == #cr ifTrue: [^ aString].
@@ -367,11 +279,8 @@ MultiByteFileStream>>convertStringFromCr: aString  [
 	^ outStream contents
 ]
 
-{
-	#category : #'private - crlf',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>convertStringToCr: aString  [
+{ #category : #'private - crlf' }
+MultiByteFileStream >> convertStringToCr: aString [ 
 	| inStream outStream |
 	lineEndConvention ifNil: [^ aString].
 	lineEndConvention == #cr ifTrue: [^ aString].
@@ -389,33 +298,24 @@ MultiByteFileStream>>convertStringToCr: aString  [
 	^ outStream contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>converter [
+{ #category : #accessing }
+MultiByteFileStream >> converter [
 
 	converter ifNil: [self converter: TextConverter defaultSystemConverter].
 	^ converter
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>converter: aConverter [
+{ #category : #accessing }
+MultiByteFileStream >> converter: aConverter [
 
 	converter := aConverter.
 	self installLineEndConventionInConverter
 
 ]
 
-{
-	#category : #'private - crlf',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>detectLineEndConvention [
+{ #category : #'private - crlf' }
+MultiByteFileStream >> detectLineEndConvention [
 	"Detect the line end convention used in this stream. The result may be either #cr, #lf or #crlf."
 	| char numRead state |
 	self isBinary ifTrue: [^ self error: 'Line end conventions are not used on binary streams'].
@@ -449,31 +349,22 @@ MultiByteFileStream>>detectLineEndConvention [
 	^ lineEndConvention
 ]
 
-{
-	#category : #'private - crlf',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>doConversion [
+{ #category : #'private - crlf' }
+MultiByteFileStream >> doConversion [
 
 	^wantsLineEndConversion == true and: [ lineEndConvention notNil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>fileInEncodingName: aString [
+{ #category : #accessing }
+MultiByteFileStream >> fileInEncodingName: aString [
 
 	self converter: (TextConverter newForEncoding: aString).
 	super fileIn.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>installLineEndConventionInConverter [
+{ #category : #private }
+MultiByteFileStream >> installLineEndConventionInConverter [
 
 	converter ifNotNil: [
 		converter installLineEndConvention: (
@@ -482,30 +373,21 @@ MultiByteFileStream>>installLineEndConventionInConverter [
 				ifFalse: [ nil ]) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>lineEndConvention [
+{ #category : #accessing }
+MultiByteFileStream >> lineEndConvention [
 
 	^lineEndConvention
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>lineEndConvention: aSymbol [
+{ #category : #accessing }
+MultiByteFileStream >> lineEndConvention: aSymbol [
 
 	(lineEndConvention := aSymbol) ifNotNil: [wantsLineEndConversion := true].
 	self installLineEndConventionInConverter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>next [
+{ #category : #accessing }
+MultiByteFileStream >> next [
 
 	| char secondChar state |
 	char := (converter ifNil: [ self converter ]) nextFromStream: self.
@@ -524,11 +406,8 @@ MultiByteFileStream>>next [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>next: anInteger  [
+{ #category : #accessing }
+MultiByteFileStream >> next: anInteger [ 
 
 	| multiString |
 	self isBinary ifTrue: [^ super next: anInteger].
@@ -551,11 +430,8 @@ MultiByteFileStream>>next: anInteger  [
 
 ]
 
-{
-	#category : #'private - crlf',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>next: n innerFor: aString [
+{ #category : #'private - crlf' }
+MultiByteFileStream >> next: n innerFor: aString [
 
 	| peekChar state |
 	"if we just read a CR, and the next character is an LF, then skip the LF"
@@ -572,11 +448,8 @@ MultiByteFileStream>>next: n innerFor: aString [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>next: anInteger putAll: aCollection startingAt: startIndex [
+{ #category : #accessing }
+MultiByteFileStream >> next: anInteger putAll: aCollection startingAt: startIndex [
 
 
         (self isBinary or: [ aCollection class == ByteArray ]) ifTrue: [
@@ -584,11 +457,8 @@ MultiByteFileStream>>next: anInteger putAll: aCollection startingAt: startIndex 
         ^self converter next: anInteger putAll: aCollection startingAt: startIndex toStream: self
 ]
 
-{
-	#category : #fileIn/Out,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>nextChunk [
+{ #category : #fileIn/Out }
+MultiByteFileStream >> nextChunk [
 	"Answer the contents of the receiver, up to the next terminator
 	character. Doubled terminators indicate an embedded terminator
 	character."
@@ -608,11 +478,8 @@ MultiByteFileStream>>nextChunk [
 								ifNotNil: [converter restoreStateOf: self with: state.]]])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>nextDelimited: terminator [
+{ #category : #accessing }
+MultiByteFileStream >> nextDelimited: terminator [
 
 	| out ch save |
 	out := (String new: 1000) writeStream.
@@ -637,11 +504,8 @@ MultiByteFileStream>>nextDelimited: terminator [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>nextMatchAll: aColl [
+{ #category : #accessing }
+MultiByteFileStream >> nextMatchAll: aColl [
 
     | save |
     save := converter saveStateOf: self.
@@ -655,11 +519,8 @@ MultiByteFileStream>>nextMatchAll: aColl [
 
 ]
 
-{
-	#category : #fileIn/Out,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>nextPreamble [
+{ #category : #fileIn/Out }
+MultiByteFileStream >> nextPreamble [
 	"Assuming that preamble part does not contain ]lang[ tag"
 	self skipSeparators.
 	^ self basicChunk
@@ -676,11 +537,8 @@ MultiByteFileStream>>nextPreamble [
 								ifNotNil: [converter restoreStateOf: self with: state.]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>nextPut: aCharacter [
+{ #category : #accessing }
+MultiByteFileStream >> nextPut: aCharacter [
 	aCharacter isInteger 
 		ifTrue: [ ^ super nextPut: aCharacter ].
 	(wantsLineEndConversion == true and: [ lineEndConvention notNil ]) "#doConversion is inlined here"
@@ -693,21 +551,15 @@ MultiByteFileStream>>nextPut: aCharacter [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>nextPutAll: aCollection [
+{ #category : #accessing }
+MultiByteFileStream >> nextPutAll: aCollection [
 	^ (self isBinary or: [ aCollection class == ByteArray ])
 		ifTrue: [ super nextPutAll: aCollection ]
 		ifFalse: [ self converter nextPutAll: aCollection toStream: self ]
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>open: fileName forWrite: writeMode  [
+{ #category : #open/close }
+MultiByteFileStream >> open: fileName forWrite: writeMode [ 
 	| result |
 	result := super open: fileName forWrite: writeMode.
 	result ifNotNil: [
@@ -717,11 +569,8 @@ MultiByteFileStream>>open: fileName forWrite: writeMode  [
 	^result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>peek [
+{ #category : #accessing }
+MultiByteFileStream >> peek [
 	"Answer what would be returned if the message next were sent to the receiver. If the receiver is at the end, answer nil.  "
 
 	| next save |
@@ -734,11 +583,8 @@ MultiByteFileStream>>peek [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>peekFor: item  [
+{ #category : #accessing }
+MultiByteFileStream >> peekFor: item [ 
 
 	| next state |
 	state := converter saveStateOf: self.
@@ -749,11 +595,8 @@ MultiByteFileStream>>peekFor: item  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>readInto: buffer startingAt: offset count: requestedCount [
+{ #category : #accessing }
+MultiByteFileStream >> readInto: buffer startingAt: offset count: requestedCount [
 	"Read up to requestedCount elements into the given buffer starting at offset.
 	Return the number of elements actually read.
 	If I am binary or if buffer is a ByteArray, I skip decoding. Yes this is weird.
@@ -768,11 +611,8 @@ MultiByteFileStream>>readInto: buffer startingAt: offset count: requestedCount [
 	^ requestedCount
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>requestDropStream: dropIndex [
+{ #category : #private }
+MultiByteFileStream >> requestDropStream: dropIndex [
 	"Needs to install proper converter"
 	
 	| result |
@@ -783,11 +623,8 @@ MultiByteFileStream>>requestDropStream: dropIndex [
 	^result
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>reset [
+{ #category : #positioning }
+MultiByteFileStream >> reset [
 
 	super reset.
 	converter ifNil: [
@@ -796,11 +633,8 @@ MultiByteFileStream>>reset [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>setConverterForCode [
+{ #category : #private }
+MultiByteFileStream >> setConverterForCode [
 
 	| current |
 	SourceFiles changesFileStream ifNotNil: [ :aStream |
@@ -818,11 +652,8 @@ MultiByteFileStream>>setConverterForCode [
 
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>skipSeparators [
+{ #category : #positioning }
+MultiByteFileStream >> skipSeparators [
 
 	| state character |
 	[ 
@@ -834,11 +665,8 @@ MultiByteFileStream>>skipSeparators [
 		converter restoreStateOf: self with: state ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>skipSeparatorsAndPeekNext [
+{ #category : #accessing }
+MultiByteFileStream >> skipSeparatorsAndPeekNext [
 	"Same as #skipSeparators, but returns the next character after the separators if such exists."
 
 	| state character |
@@ -853,11 +681,8 @@ MultiByteFileStream>>skipSeparatorsAndPeekNext [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>upTo: delimiter [
+{ #category : #accessing }
+MultiByteFileStream >> upTo: delimiter [
 
 	^self collectionSpecies new: 1000 streamContents: [ :stream |
 		| ch |
@@ -866,11 +691,8 @@ MultiByteFileStream>>upTo: delimiter [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>upToAnyOf: delimiters do: aBlock [
+{ #category : #accessing }
+MultiByteFileStream >> upToAnyOf: delimiters do: aBlock [
 
 	^self collectionSpecies new: 1000 streamContents: [ :stream |
 		| ch |
@@ -878,11 +700,8 @@ MultiByteFileStream>>upToAnyOf: delimiters do: aBlock [
 			whileFalse: [ stream nextPut: ch ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>upToEnd [
+{ #category : #accessing }
+MultiByteFileStream >> upToEnd [
 
 	^self collectionSpecies
 		new: self size - self position
@@ -893,21 +712,15 @@ MultiByteFileStream>>upToEnd [
 
 ]
 
-{
-	#category : #'private - crlf',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>wantsLineEndConversion [
+{ #category : #'private - crlf' }
+MultiByteFileStream >> wantsLineEndConversion [
 
 	^wantsLineEndConversion == true
 
 ]
 
-{
-	#category : #remnant,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteFileStream>>wantsLineEndConversion: aBoolean [
+{ #category : #remnant }
+MultiByteFileStream >> wantsLineEndConversion: aBoolean [
 	
 	wantsLineEndConversion :=  aBoolean.
 

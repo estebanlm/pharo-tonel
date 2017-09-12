@@ -11,15 +11,11 @@ Class {
 		'caseSensitive',
 		'query'
 	],
-	#category : #GT-Spotter-Filters,
-	#timestamp : 'AndreiChis 7/17/2015 13:46'
+	#category : #GT-Spotter-Filters
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTStringFilter>>applyFilter [
+{ #category : #private }
+GTStringFilter >> applyFilter [
 	self hasQuery ifFalse: [ 
 		self applyFilterWithoutQuery.
 		^ self allItems. " return the unfiltered items (all) - used for divein (no filtering appied) "  ].
@@ -27,19 +23,13 @@ GTStringFilter>>applyFilter [
 	^ self filteredItems " return the filtered items only "
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTStringFilter>>applyFilterWithQuery [
+{ #category : #private }
+GTStringFilter >> applyFilterWithQuery [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTStringFilter>>applyFilterWithoutQuery [
+{ #category : #private }
+GTStringFilter >> applyFilterWithoutQuery [
 	" WARNING: this is not a copy of GTNullFilter>>#applyFilterWithoutQuery !!! "
 	self streamed 
 		ifTrue: [
@@ -56,43 +46,28 @@ GTStringFilter>>applyFilterWithoutQuery [
 			self addItems: self filteredItems ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTStringFilter>>caseSensitive [
+{ #category : #accessing }
+GTStringFilter >> caseSensitive [
 	^ caseSensitive
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTStringFilter>>caseSensitive: anObject [
+{ #category : #accessing }
+GTStringFilter >> caseSensitive: anObject [
 	caseSensitive := anObject
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTStringFilter>>defaultCaseSensitive [
+{ #category : #accessing-defaults }
+GTStringFilter >> defaultCaseSensitive [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTStringFilter>>hasQuery [
+{ #category : #testing }
+GTStringFilter >> hasQuery [
 	^ self query isEmptyOrNil not
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTStringFilter>>prepareFilterInContext: aSpotterContext [
+{ #category : #private }
+GTStringFilter >> prepareFilterInContext: aSpotterContext [
 	super prepareFilterInContext: aSpotterContext.
 	
 	caseSensitive ifNil: [ caseSensitive := self defaultCaseSensitive ]. " performance optimization "
@@ -101,18 +76,12 @@ GTStringFilter>>prepareFilterInContext: aSpotterContext [
 		ifFalse: [ self context textLowercase ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTStringFilter>>query [
+{ #category : #accessing }
+GTStringFilter >> query [
 	^ query
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTStringFilter>>query: anObject [
+{ #category : #accessing }
+GTStringFilter >> query: anObject [
 	query := anObject
 ]

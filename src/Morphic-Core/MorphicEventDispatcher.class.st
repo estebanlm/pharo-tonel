@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'morph'
 	],
-	#category : #Morphic-Core-Events,
-	#timestamp : '<historical>'
+	#category : #Morphic-Core-Events
 }
 
-{
-	#category : #dispatching,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>dispatchDefault: anEvent with: aMorph [
+{ #category : #dispatching }
+MorphicEventDispatcher >> dispatchDefault: anEvent with: aMorph [
 	"Dispatch the given event. The event will be passed to the front-most visible submorph that contains the position wrt. to the event."
 	| localEvt index child morphs inside |
 	"See if we're fully outside aMorphs bounds"
@@ -43,11 +39,8 @@ MorphicEventDispatcher>>dispatchDefault: anEvent with: aMorph [
 
 ]
 
-{
-	#category : #dispatching,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>dispatchDropEvent: anEvent with: aMorph [
+{ #category : #dispatching }
+MorphicEventDispatcher >> dispatchDropEvent: anEvent with: aMorph [
 	"Find the appropriate receiver for the event and let it handle it. The dispatch is similar to the default dispatch with one difference: Morphs are given the chance to reject an entire drop operation. If the operation is rejected, no drop will be executed."
 	| inside index morphs child localEvt |
 	"Try to get out quickly"
@@ -76,22 +69,16 @@ MorphicEventDispatcher>>dispatchDropEvent: anEvent with: aMorph [
 	^#rejected
 ]
 
-{
-	#category : #dispatching,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>dispatchEvent: anEvent with: aMorph [
+{ #category : #dispatching }
+MorphicEventDispatcher >> dispatchEvent: anEvent with: aMorph [
 	"Dispatch the given event for a morph that has chosen the receiver to dispatch its events. "
 	morph := aMorph.
 	[ ^ anEvent sentTo: self ]
 	ensure: [ morph := nil ]
 ]
 
-{
-	#category : #dispatching,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>dispatchMouseDown: anEvent with: aMorph [
+{ #category : #dispatching }
+MorphicEventDispatcher >> dispatchMouseDown: anEvent with: aMorph [
 	"Find the appropriate receiver for the event and let it handle it. Default rules:
 	* The top-most chain of visible, unlocked morphs containing the event position will get a chance to handle the event.
 	* When travelling down the hierarchy a prospective handler for the event is installed. This prospective handler can be used by submorphs wishing to handle the mouse down for negotiating who the receiver is.
@@ -134,11 +121,8 @@ MorphicEventDispatcher>>dispatchMouseDown: anEvent with: aMorph [
 	^#rejected
 ]
 
-{
-	#category : #dispatching,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>dispatchWindowEvent: anEvent with: aMorph [
+{ #category : #dispatching }
+MorphicEventDispatcher >> dispatchWindowEvent: anEvent with: aMorph [
 	"Host window events do not have a position and are only dispatched to the World"
 	aMorph isWorldMorph ifFalse: [^#rejected].
 	anEvent wasHandled ifTrue:[^self].
@@ -146,130 +130,85 @@ MorphicEventDispatcher>>dispatchWindowEvent: anEvent with: aMorph [
 
 ]
 
-{
-	#category : #dispatching-callback,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>handleDropFiles: anEvent  [
+{ #category : #dispatching-callback }
+MorphicEventDispatcher >> handleDropFiles: anEvent [ 
 	^ self dispatchDefault: anEvent with: morph
 ]
 
-{
-	#category : #dispatching-callback,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>handleDropMorph: anEvent  [
+{ #category : #dispatching-callback }
+MorphicEventDispatcher >> handleDropMorph: anEvent [ 
 
 	^ self dispatchDropEvent: anEvent with: morph
 ]
 
-{
-	#category : #dispatching-callback,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>handleKeyDown: anEvent  [
+{ #category : #dispatching-callback }
+MorphicEventDispatcher >> handleKeyDown: anEvent [ 
 
 		^ self dispatchDefault: anEvent with: morph
 ]
 
-{
-	#category : #dispatching-callback,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>handleKeyUp: anEvent  [
+{ #category : #dispatching-callback }
+MorphicEventDispatcher >> handleKeyUp: anEvent [ 
 
 	^ self dispatchDefault: anEvent with: morph	
 ]
 
-{
-	#category : #dispatching-callback,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>handleKeystroke: anEvent  [
+{ #category : #dispatching-callback }
+MorphicEventDispatcher >> handleKeystroke: anEvent [ 
 
 	^ self dispatchDefault: anEvent with: morph
 ]
 
-{
-	#category : #dispatching-callback,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>handleMouseDown: anEvent  [
+{ #category : #dispatching-callback }
+MorphicEventDispatcher >> handleMouseDown: anEvent [ 
 
 	^ self dispatchMouseDown: anEvent with: morph
 ]
 
-{
-	#category : #dispatching-callback,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>handleMouseEnter: anEvent  [
+{ #category : #dispatching-callback }
+MorphicEventDispatcher >> handleMouseEnter: anEvent [ 
 
 	^ self dispatchDefault: anEvent with: morph
 ]
 
-{
-	#category : #dispatching-callback,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>handleMouseLeave: anEvent  [
+{ #category : #dispatching-callback }
+MorphicEventDispatcher >> handleMouseLeave: anEvent [ 
 	^ self dispatchDefault: anEvent with: morph
 ]
 
-{
-	#category : #dispatching-callback,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>handleMouseMove: anEvent  [
+{ #category : #dispatching-callback }
+MorphicEventDispatcher >> handleMouseMove: anEvent [ 
 	^ self dispatchDefault: anEvent with: morph
 ]
 
-{
-	#category : #dispatching-callback,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>handleMouseOver: anEvent 	 [
+{ #category : #dispatching-callback }
+MorphicEventDispatcher >> handleMouseOver: anEvent [ 	
 	^ self dispatchDefault: anEvent with: morph
 ]
 
-{
-	#category : #dispatching-callback,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>handleMouseUp: anEvent  [
+{ #category : #dispatching-callback }
+MorphicEventDispatcher >> handleMouseUp: anEvent [ 
 	^ self dispatchDefault: anEvent with: morph	
 ]
 
-{
-	#category : #dispatching-callback,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>handleMouseWheel: anEvent  [
+{ #category : #dispatching-callback }
+MorphicEventDispatcher >> handleMouseWheel: anEvent [ 
 	^ self dispatchDefault: anEvent with: morph
 	
 ]
 
-{
-	#category : #dispatching-callback,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>handleStep: anEvent  [
+{ #category : #dispatching-callback }
+MorphicEventDispatcher >> handleStep: anEvent [ 
 	^ self dispatchDefault: anEvent with: morph
 ]
 
-{
-	#category : #dispatching-callback,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>handleUnknownEvent: anEvent  [
+{ #category : #dispatching-callback }
+MorphicEventDispatcher >> handleUnknownEvent: anEvent [ 
 	^ self dispatchDefault: anEvent with: morph
 ]
 
-{
-	#category : #dispatching-callback,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEventDispatcher>>handleWindowEvent: anEvent  [
+{ #category : #dispatching-callback }
+MorphicEventDispatcher >> handleWindowEvent: anEvent [ 
 
 	^ self dispatchWindowEvent: anEvent with: morph
 ]

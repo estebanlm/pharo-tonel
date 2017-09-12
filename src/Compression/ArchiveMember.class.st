@@ -8,112 +8,75 @@ Class {
 		'fileName',
 		'isCorrupt'
 	],
-	#category : #Compression-Archives,
-	#timestamp : '<historical>'
+	#category : #Compression-Archives
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ArchiveMember class>>newDirectoryNamed: aString [
+{ #category : #'as yet unclassified' }
+ArchiveMember class >> newDirectoryNamed: aString [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ArchiveMember class>>newFromFile: aFileName [
+{ #category : #'as yet unclassified' }
+ArchiveMember class >> newFromFile: aFileName [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ArchiveMember class>>newFromString: aString [
+{ #category : #'as yet unclassified' }
+ArchiveMember class >> newFromString: aString [
 	self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ArchiveMember>>close [
+{ #category : #initialization }
+ArchiveMember >> close [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ArchiveMember>>fileName [
+{ #category : #accessing }
+ArchiveMember >> fileName [
 	^fileName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ArchiveMember>>fileName: aName [
+{ #category : #accessing }
+ArchiveMember >> fileName: aName [
 	fileName := aName
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ArchiveMember>>initialize [
+{ #category : #initialization }
+ArchiveMember >> initialize [
 	super initialize.
 	fileName := ''.
 	isCorrupt := false.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ArchiveMember>>isCorrupt [
+{ #category : #accessing }
+ArchiveMember >> isCorrupt [
 	^isCorrupt ifNil: [ isCorrupt := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ArchiveMember>>isCorrupt: aBoolean [
+{ #category : #accessing }
+ArchiveMember >> isCorrupt: aBoolean [
 	"Mark this member as being corrupt."
 	isCorrupt := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ArchiveMember>>localFileName: aString [
+{ #category : #accessing }
+ArchiveMember >> localFileName: aString [
 	"Set my internal filename.
 	Returns the (possibly new) filename"
 
 	^fileName := aString copyReplaceAll: FileSystem disk delimiter asString with: UnixStore delimiter asString.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ArchiveMember>>printOn: aStream [
+{ #category : #printing }
+ArchiveMember >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut: $(;
 		nextPutAll: self fileName;
 		nextPut: $)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ArchiveMember>>usesFileNamed: aFileName [
+{ #category : #testing }
+ArchiveMember >> usesFileNamed: aFileName [
 	"Do I require aFileName? That is, do I care if it's clobbered?"
 	^false
 ]

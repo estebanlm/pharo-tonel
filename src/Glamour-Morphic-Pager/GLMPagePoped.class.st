@@ -1,38 +1,25 @@
-"
-
-"
 Class {
 	#name : #GLMPagePoped,
 	#superclass : #Announcement,
 	#instVars : [
 		'smooth'
 	],
-	#category : #Glamour-Morphic-Pager-Announcement,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Pager-Announcement
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagePoped>>initialize [
+{ #category : #'as yet unclassified' }
+GLMPagePoped >> initialize [
 	super initialize.
 	
 	smooth := false.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagePoped>>smooth [
+{ #category : #accessing }
+GLMPagePoped >> smooth [
 	^ smooth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagePoped>>smooth: anObject [
+{ #category : #accessing }
+GLMPagePoped >> smooth: anObject [
 	smooth := anObject
 ]

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #OCASTTranslatorTest,
 	#superclass : #TestCase,
-	#category : #OpalCompiler-Tests-AST,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-AST
 }
 
-{
-	#category : #'testing - simple',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testEmptyMethod [
+{ #category : #'testing - simple' }
+OCASTTranslatorTest >> testEmptyMethod [
 	| ast ir aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleEmptyMethod) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -24,11 +17,8 @@ OCASTTranslatorTest>>testEmptyMethod [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleAndOr [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleAndOr [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleAndOr) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -40,11 +30,8 @@ OCASTTranslatorTest>>testExampleAndOr [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleAndOr2 [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleAndOr2 [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleAndOr2) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -56,11 +43,8 @@ OCASTTranslatorTest>>testExampleAndOr2 [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleAndOr3 [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleAndOr3 [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleAndOr3) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -72,11 +56,8 @@ OCASTTranslatorTest>>testExampleAndOr3 [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleAndOr4 [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleAndOr4 [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleAndOr4) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -88,11 +69,8 @@ OCASTTranslatorTest>>testExampleAndOr4 [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleAndOr5 [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleAndOr5 [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleAndOr5) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -104,11 +82,8 @@ OCASTTranslatorTest>>testExampleAndOr5 [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleAndOr6 [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleAndOr6 [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleAndOr6) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -120,11 +95,8 @@ OCASTTranslatorTest>>testExampleAndOr6 [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleBlockArgument [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleBlockArgument [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleBlockArgument) parseTree.
 	ir := ast doSemanticAnalysis ir.
@@ -135,11 +107,8 @@ OCASTTranslatorTest>>testExampleBlockArgument [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleBlockExternal [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleBlockExternal [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleBlockExternal) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -150,11 +119,8 @@ OCASTTranslatorTest>>testExampleBlockExternal [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleBlockExternal2 [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleBlockExternal2 [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleBlockExternal2) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -165,11 +131,8 @@ OCASTTranslatorTest>>testExampleBlockExternal2 [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleBlockExternalArg [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleBlockExternalArg [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleBlockExternalArg) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -180,11 +143,8 @@ OCASTTranslatorTest>>testExampleBlockExternalArg [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleBlockExternalNested [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleBlockExternalNested [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleBlockExternalNested) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -195,11 +155,8 @@ OCASTTranslatorTest>>testExampleBlockExternalNested [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleBlockInternal [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleBlockInternal [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleBlockInternal) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -210,11 +167,8 @@ OCASTTranslatorTest>>testExampleBlockInternal [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleBlockMethodArgument [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleBlockMethodArgument [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleBlockMethodArgument:) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -225,11 +179,8 @@ OCASTTranslatorTest>>testExampleBlockMethodArgument [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleBlockNested [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleBlockNested [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleBlockNested) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -240,11 +191,8 @@ OCASTTranslatorTest>>testExampleBlockNested [
 	
 ]
 
-{
-	#category : #'testing - misc',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleEffectValues [
+{ #category : #'testing - misc' }
+OCASTTranslatorTest >> testExampleEffectValues [
 	| cm |
 	cm := OCOpalExamples compiler compile: (OCOpalExamples>>#exampleEffectValues) sourceCode.
 	self assert: (cm literals includes: #getMe).
@@ -252,11 +200,8 @@ OCASTTranslatorTest>>testExampleEffectValues [
 	self assert: (cm literals includes: #( got that ? )).
 ]
 
-{
-	#category : #'testing - simple',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleIfFalse [
+{ #category : #'testing - simple' }
+OCASTTranslatorTest >> testExampleIfFalse [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleIfFalse) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -268,11 +213,8 @@ OCASTTranslatorTest>>testExampleIfFalse [
 	
 ]
 
-{
-	#category : #'testing - simple',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleIfFalseIfTrue [
+{ #category : #'testing - simple' }
+OCASTTranslatorTest >> testExampleIfFalseIfTrue [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleIfFalseIfTrue) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -284,11 +226,8 @@ OCASTTranslatorTest>>testExampleIfFalseIfTrue [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleIfNotNilArg [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleIfNotNilArg [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleIfNotNilArg) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -299,11 +238,8 @@ OCASTTranslatorTest>>testExampleIfNotNilArg [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleIfNotNilReturnNil [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleIfNotNilReturnNil [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleIfNotNilReturnNil) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -314,11 +250,8 @@ OCASTTranslatorTest>>testExampleIfNotNilReturnNil [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleIfTrue [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleIfTrue [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleIfTrue) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -328,11 +261,8 @@ OCASTTranslatorTest>>testExampleIfTrue [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleIfTrueAssign [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleIfTrueAssign [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleIfTrueAssign) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -343,11 +273,8 @@ OCASTTranslatorTest>>testExampleIfTrueAssign [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleIfTrueIfFalse [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleIfTrueIfFalse [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleIfTrueIfFalse) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -357,11 +284,8 @@ OCASTTranslatorTest>>testExampleIfTrueIfFalse [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleInlineBlockCollectionLR3 [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleInlineBlockCollectionLR3 [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleInlineBlockCollectionLR3) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -372,11 +296,8 @@ OCASTTranslatorTest>>testExampleInlineBlockCollectionLR3 [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleMethodTempInNestedBlock [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleMethodTempInNestedBlock [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleMethodTempInNestedBlock) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -387,11 +308,8 @@ OCASTTranslatorTest>>testExampleMethodTempInNestedBlock [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleMethodWithOptimizedBlocksA [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleMethodWithOptimizedBlocksA [
 	| ir ast aCompiledMethod instance |
 	ast  := (OCOpalExamples>>#exampleMethodWithOptimizedBlocksA) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -403,11 +321,8 @@ OCASTTranslatorTest>>testExampleMethodWithOptimizedBlocksA [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleNestedBlockScoping [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleNestedBlockScoping [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleNestedBlockScoping) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -418,11 +333,8 @@ OCASTTranslatorTest>>testExampleNestedBlockScoping [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleOptimizedBlockWrittenAfterClosedOverCase1 [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleOptimizedBlockWrittenAfterClosedOverCase1 [
 	| ir ast aCompiledMethod instance |
 	ast  := (OCOpalExamples>>#optimizedBlockWrittenAfterClosedOverCase1) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -434,11 +346,8 @@ OCASTTranslatorTest>>testExampleOptimizedBlockWrittenAfterClosedOverCase1 [
 	
 ]
 
-{
-	#category : #'testing - primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExamplePrimitiveErrorCode [
+{ #category : #'testing - primitives' }
+OCASTTranslatorTest >> testExamplePrimitiveErrorCode [
 	| method ast ir newMethod |
 	method := (OCOpalExamples>>#examplePrimitiveErrorCode).
 	ast := method parseTree.
@@ -455,11 +364,8 @@ OCASTTranslatorTest>>testExamplePrimitiveErrorCode [
 	
 ]
 
-{
-	#category : #'testing - primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExamplePrimitiveErrorCodeModule [
+{ #category : #'testing - primitives' }
+OCASTTranslatorTest >> testExamplePrimitiveErrorCodeModule [
 	| method ast ir newMethod |
 	method := (OCOpalExamples>>#examplePrimitiveErrorCodeModule).
 	ast := method parseTree.
@@ -477,11 +383,8 @@ OCASTTranslatorTest>>testExamplePrimitiveErrorCodeModule [
 	
 ]
 
-{
-	#category : #'testing - primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExamplePrimitiveErrorModule [
+{ #category : #'testing - primitives' }
+OCASTTranslatorTest >> testExamplePrimitiveErrorModule [
 "test for primitive declaration
   <primitive: 'primFunction'  error: errorCode module: 'primModule'  >
 "
@@ -492,11 +395,8 @@ OCASTTranslatorTest>>testExamplePrimitiveErrorModule [
 	self assert: ir tempKeys equals: #(#errorCode)
 ]
 
-{
-	#category : #'testing - primitives',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExamplePrimitiveModuleError [
+{ #category : #'testing - primitives' }
+OCASTTranslatorTest >> testExamplePrimitiveModuleError [
 "teset for primitive declaration
   <primitive: 'primFunction'  module: 'primModule' error: errorCode >
 "
@@ -507,11 +407,8 @@ OCASTTranslatorTest>>testExamplePrimitiveModuleError [
 	self assert: ir tempKeys equals: #(#errorCode)
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleSelf [
+{ #category : #'testing - variables' }
+OCASTTranslatorTest >> testExampleSelf [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleSelf) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -523,11 +420,8 @@ OCASTTranslatorTest>>testExampleSelf [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleSimpleBlock [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleSimpleBlock [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleSimpleBlock) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -538,11 +432,8 @@ OCASTTranslatorTest>>testExampleSimpleBlock [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleSimpleBlockArgument1 [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleSimpleBlockArgument1 [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleSimpleBlockArgument1) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -553,11 +444,8 @@ OCASTTranslatorTest>>testExampleSimpleBlockArgument1 [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleSimpleBlockArgument2 [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleSimpleBlockArgument2 [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleSimpleBlockArgument2) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -568,11 +456,8 @@ OCASTTranslatorTest>>testExampleSimpleBlockArgument2 [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleSimpleBlockArgument3 [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleSimpleBlockArgument3 [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleSimpleBlockArgument3) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -583,11 +468,8 @@ OCASTTranslatorTest>>testExampleSimpleBlockArgument3 [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleSimpleBlockArgument4 [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleSimpleBlockArgument4 [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleSimpleBlockArgument4) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -598,11 +480,8 @@ OCASTTranslatorTest>>testExampleSimpleBlockArgument4 [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleSimpleBlockArgument5 [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleSimpleBlockArgument5 [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleSimpleBlockArgument5) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -613,11 +492,8 @@ OCASTTranslatorTest>>testExampleSimpleBlockArgument5 [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleSimpleBlockEmpty [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleSimpleBlockEmpty [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleSimpleBlockEmpty) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -628,11 +504,8 @@ OCASTTranslatorTest>>testExampleSimpleBlockEmpty [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleSimpleBlockLocal [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleSimpleBlockLocal [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleSimpleBlockLocal) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -643,11 +516,8 @@ OCASTTranslatorTest>>testExampleSimpleBlockLocal [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleSimpleBlockLocalIf [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleSimpleBlockLocalIf [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleSimpleBlockLocalIf) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -659,11 +529,8 @@ OCASTTranslatorTest>>testExampleSimpleBlockLocalIf [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleSimpleBlockLocalIfNested [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleSimpleBlockLocalIfNested [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleSimpleBlockLocalIfNested) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -674,11 +541,8 @@ OCASTTranslatorTest>>testExampleSimpleBlockLocalIfNested [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleSimpleBlockLocalWhile [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleSimpleBlockLocalWhile [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleSimpleBlockLocalWhile) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -690,11 +554,8 @@ OCASTTranslatorTest>>testExampleSimpleBlockLocalWhile [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleSimpleBlockNested [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleSimpleBlockNested [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleSimpleBlockNested) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -705,11 +566,8 @@ OCASTTranslatorTest>>testExampleSimpleBlockNested [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleSimpleBlockReturn [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleSimpleBlockReturn [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleSimpleBlockReturn) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -720,11 +578,8 @@ OCASTTranslatorTest>>testExampleSimpleBlockReturn [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleSimpleBlockiVar [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleSimpleBlockiVar [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleSimpleBlockiVar) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -735,11 +590,8 @@ OCASTTranslatorTest>>testExampleSimpleBlockiVar [
 	
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleSuper [
+{ #category : #'testing - variables' }
+OCASTTranslatorTest >> testExampleSuper [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleSuper) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -751,11 +603,8 @@ OCASTTranslatorTest>>testExampleSuper [
 	
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleThisContext [
+{ #category : #'testing - variables' }
+OCASTTranslatorTest >> testExampleThisContext [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleThisContext) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -769,11 +618,8 @@ OCASTTranslatorTest>>testExampleThisContext [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleTimesRepeatEffect [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleTimesRepeatEffect [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleTimesRepeatEffect) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -785,11 +631,8 @@ OCASTTranslatorTest>>testExampleTimesRepeatEffect [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleTimesRepeatValue [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleTimesRepeatValue [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleTimesRepeatValue) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -801,11 +644,8 @@ OCASTTranslatorTest>>testExampleTimesRepeatValue [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleToDoArgument [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleToDoArgument [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleToDoArgument) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -817,11 +657,8 @@ OCASTTranslatorTest>>testExampleToDoArgument [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleToDoArgumentLimitIsExpression [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleToDoArgumentLimitIsExpression [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleToDoArgumentLimitIsExpression) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -833,11 +670,8 @@ OCASTTranslatorTest>>testExampleToDoArgumentLimitIsExpression [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleToDoArgumentNotInlined [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleToDoArgumentNotInlined [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleToDoArgumentNotInlined) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -849,11 +683,8 @@ OCASTTranslatorTest>>testExampleToDoArgumentNotInlined [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleToDoInsideTemp [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleToDoInsideTemp [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleToDoInsideTemp) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -865,11 +696,8 @@ OCASTTranslatorTest>>testExampleToDoInsideTemp [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleToDoInsideTempNotInlined [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleToDoInsideTempNotInlined [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleToDoInsideTempNotInlined) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -881,11 +709,8 @@ OCASTTranslatorTest>>testExampleToDoInsideTempNotInlined [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleToDoOutsideTemp [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleToDoOutsideTemp [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleToDoOutsideTemp) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -897,11 +722,8 @@ OCASTTranslatorTest>>testExampleToDoOutsideTemp [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleToDoOutsideTempNotInlined [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleToDoOutsideTempNotInlined [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleToDoOutsideTempNotInlined) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -913,11 +735,8 @@ OCASTTranslatorTest>>testExampleToDoOutsideTempNotInlined [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleWhileModificationAfterNotInlined [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleWhileModificationAfterNotInlined [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleWhileModificationAfterNotInlined) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -929,11 +748,8 @@ OCASTTranslatorTest>>testExampleWhileModificationAfterNotInlined [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleWhileModificationBefore [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleWhileModificationBefore [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleWhileModificationBefore) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -944,11 +760,8 @@ OCASTTranslatorTest>>testExampleWhileModificationBefore [
 	
 ]
 
-{
-	#category : #'testing - blocks - optimized',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleWhileModificationBeforeNotInlined [
+{ #category : #'testing - blocks - optimized' }
+OCASTTranslatorTest >> testExampleWhileModificationBeforeNotInlined [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleWhileModificationBeforeNotInlined) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -960,11 +773,8 @@ OCASTTranslatorTest>>testExampleWhileModificationBeforeNotInlined [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleWhileWithTemp [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleWhileWithTemp [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleWhileWithTemp) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -976,11 +786,8 @@ OCASTTranslatorTest>>testExampleWhileWithTemp [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testExampleWhileWithTempNotInlined [
+{ #category : #'testing - blocks' }
+OCASTTranslatorTest >> testExampleWhileWithTempNotInlined [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleWhileWithTempNotInlined) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -992,11 +799,8 @@ OCASTTranslatorTest>>testExampleWhileWithTempNotInlined [
 	
 ]
 
-{
-	#category : #'testing - simple',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testNewArray [
+{ #category : #'testing - simple' }
+OCASTTranslatorTest >> testNewArray [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleNewArray) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -1008,11 +812,8 @@ OCASTTranslatorTest>>testNewArray [
 	
 ]
 
-{
-	#category : #'testing - simple',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testOnePlusTwo [
+{ #category : #'testing - simple' }
+OCASTTranslatorTest >> testOnePlusTwo [
 	| ast ir aCompiledMethod instance |
 	ast  := (OCOpalExamples>>#exampleReturn1plus2) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -1024,11 +825,8 @@ OCASTTranslatorTest>>testOnePlusTwo [
 	
 ]
 
-{
-	#category : #'testing - misc',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testPushArray [
+{ #category : #'testing - misc' }
+OCASTTranslatorTest >> testPushArray [
 	| ast ir aCompiledMethod instance |
 	ast := (OCOpalExamples>>#examplePushArray) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -1038,11 +836,8 @@ OCASTTranslatorTest>>testPushArray [
 	self assert: (aCompiledMethod valueWithReceiver: instance arguments: #()) = instance examplePushArray.
 ]
 
-{
-	#category : #'testing - misc',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testPushBigArray [
+{ #category : #'testing - misc' }
+OCASTTranslatorTest >> testPushBigArray [
 	| ast ir aCompiledMethod instance |
 	ast := (OCOpalExamples>>#examplePushBigArray) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -1052,11 +847,8 @@ OCASTTranslatorTest>>testPushBigArray [
 	self assert: (aCompiledMethod valueWithReceiver: instance arguments: #()) = instance examplePushBigArray.
 ]
 
-{
-	#category : #'testing - simple',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testReturn1 [
+{ #category : #'testing - simple' }
+OCASTTranslatorTest >> testReturn1 [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleReturn1) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -1068,11 +860,8 @@ OCASTTranslatorTest>>testReturn1 [
 	
 ]
 
-{
-	#category : #'testing - misc',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testTodoValue [
+{ #category : #'testing - misc' }
+OCASTTranslatorTest >> testTodoValue [
 	| ast ir aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleToDoValue) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -1081,11 +870,8 @@ OCASTTranslatorTest>>testTodoValue [
 	self assert: (aCompiledMethod valueWithReceiver: instance arguments: #()) = instance exampleToDoValue.
 ]
 
-{
-	#category : #'testing - misc',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testTodoValueLimitExpression [
+{ #category : #'testing - misc' }
+OCASTTranslatorTest >> testTodoValueLimitExpression [
 	| ast ir aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleToDoValueLimitExpression) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.
@@ -1094,11 +880,8 @@ OCASTTranslatorTest>>testTodoValueLimitExpression [
 	self assert: (aCompiledMethod valueWithReceiver: instance arguments: #()) = instance exampleToDoValueLimitExpression.
 ]
 
-{
-	#category : #'testing - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCASTTranslatorTest>>testiVar [
+{ #category : #'testing - variables' }
+OCASTTranslatorTest >> testiVar [
 	| ir ast aCompiledMethod instance |
 	ast := (OCOpalExamples>>#exampleiVar) parseTree.
 	ir := (ast doSemanticAnalysisIn: OCOpalExamples) ir.

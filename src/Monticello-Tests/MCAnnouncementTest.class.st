@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MCAnnouncementTest,
 	#superclass : #MCTestCase,
-	#category : #Monticello-Tests,
-	#timestamp : ''
+	#category : #Monticello-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCAnnouncementTest>>testMCVersionSaved [
+{ #category : #tests }
+MCAnnouncementTest >> testMCVersionSaved [
 
 	| announcements version repository |
 	version := self mockVersion.

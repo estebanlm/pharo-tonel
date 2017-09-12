@@ -1,12 +1,7 @@
-Extension {
-	#name : #ByteArray
-}
+Extension { #name : #ByteArray }
 
-{
-	#category : #'*Compression',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ByteArray>>lastIndexOfPKSignature: aSignature [
+{ #category : #'*Compression' }
+ByteArray >> lastIndexOfPKSignature: aSignature [
 	"Answer the last index in me where aSignature (4 bytes long) occurs, or 0 if not found"
 	| a b c d |
 	a := aSignature first.

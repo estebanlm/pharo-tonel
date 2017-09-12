@@ -1,38 +1,25 @@
-"
-
-"
 Class {
 	#name : #GlobalVariableTest,
 	#superclass : #TestCase,
-	#category : #Slot-Tests,
-	#timestamp : ''
+	#category : #Slot-Tests
 }
 
-{
-	#category : #'tests  - properties',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-GlobalVariableTest>>testIsReadInMethod [
+{ #category : #'tests  - properties' }
+GlobalVariableTest >> testIsReadInMethod [
 
 	self assert: (Object binding isReadIn: self class >> testSelector).
 	self deny: ((self class environment classNamed: #String) binding 
 							isReadIn: self class >> testSelector).
 ]
 
-{
-	#category : #'tests  - properties',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-GlobalVariableTest>>testNotWrittenInMethod [
+{ #category : #'tests  - properties' }
+GlobalVariableTest >> testNotWrittenInMethod [
 
 	self deny: (Object binding isWrittenIn: self class >> testSelector)
 ]
 
-{
-	#category : #'tests  - properties',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-GlobalVariableTest>>testPropertyAtPut [
+{ #category : #'tests  - properties' }
+GlobalVariableTest >> testPropertyAtPut [
 
 	| testValue |
 	
@@ -45,11 +32,8 @@ GlobalVariableTest>>testPropertyAtPut [
 	self assert: self class binding properties isNil.
 ]
 
-{
-	#category : #'tests  - properties',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-GlobalVariableTest>>testRemoveProperty [
+{ #category : #'tests  - properties' }
+GlobalVariableTest >> testRemoveProperty [
 
 	self class binding propertyAt: #testKeySelector put: 1.
 		

@@ -17,15 +17,11 @@ Class {
 		'associationsIndexToWrapper',
 		'blockToPerformOnWrappers'
 	],
-	#category : #Spec-PolyWidgets-ListAndTree,
-	#timestamp : 'Spirita 7/28/2016 13:26'
+	#category : #Spec-PolyWidgets-ListAndTree
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel class>>defaultSpec [
+{ #category : #specs }
+PickListModel class >> defaultSpec [
 	<spec>
 	
 	^ SpecLayout composed 
@@ -33,11 +29,8 @@ PickListModel class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel class>>example [
+{ #category : #example }
+PickListModel class >> example [
 	| example |
 	example := self new.
 	example
@@ -49,93 +42,63 @@ PickListModel class>>example [
 			^example
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel class>>title [
+{ #category : #specs }
+PickListModel class >> title [
 
 	^ 'Pick List Example'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>addPicked: item [
+{ #category : #private }
+PickListModel >> addPicked: item [
 
 	pickedItemsHolder add: item.
 	pickedItemsHolder valueChanged: true to: item.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>blockToPerformOnWrappers [
+{ #category : #accessing }
+PickListModel >> blockToPerformOnWrappers [
 
 	^ blockToPerformOnWrappers value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>blockToPerformOnWrappers: aBlock [
+{ #category : #accessing }
+PickListModel >> blockToPerformOnWrappers: aBlock [
 
 	blockToPerformOnWrappers value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>checkboxFor: anItem [
+{ #category : #api }
+PickListModel >> checkboxFor: anItem [
 
 	^ associationsItemToWrapper at: anItem ifAbsent: [ nil ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>defaultValue [
+{ #category : #api }
+PickListModel >> defaultValue [
 
 	^ defaultValueHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>defaultValue: aBoolean [
+{ #category : #api }
+PickListModel >> defaultValue: aBoolean [
 
 	defaultValueHolder value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>displayBlock: aBlock [
+{ #category : #api }
+PickListModel >> displayBlock: aBlock [
 
 	wrapHolder value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>indexFor: aCheckbox [
+{ #category : #api }
+PickListModel >> indexFor: aCheckbox [
 
 	^ listModel listItems indexOf: aCheckbox.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>initialize [
+{ #category : #initialization }
+PickListModel >> initialize [
 
 	wrapHolder := [ :i | i printString ] asValueHolder. 
 	pickedItemsHolder := OrderedCollection new asValueHolder.
@@ -149,11 +112,8 @@ PickListModel>>initialize [
 	super initialize.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>initializePresenter [
+{ #category : #initialization }
+PickListModel >> initializePresenter [
 	labelClickableHolder
 		whenChangedDo:
 			[ :aBoolean | associationsWrapperToItem keysDo: [ :e | e labelClickable: aBoolean ] ].
@@ -161,117 +121,81 @@ PickListModel>>initializePresenter [
 		whenChangedDo: [ :value | associationsWrapperToItem keysDo: [ :cb | cb state: value ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>initializeWidgets [
+{ #category : #initialization }
+PickListModel >> initializeWidgets [
 	
 	listModel := self newList.
 	listModel displayBlock: [ :item | item ].
 	self focusOrder add: listModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>itemFor: aCheckbox [
+{ #category : #api }
+PickListModel >> itemFor: aCheckbox [
 
 	^ associationsWrapperToItem at: aCheckbox ifAbsent: [ nil ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>items: aCollection [
+{ #category : #api }
+PickListModel >> items: aCollection [
 
 	associationsWrapperToItem removeAll.
 	pickedItemsHolder removeAll.
 	listModel items: (aCollection collectWithIndex: [:e :i | self wrap: e at: i ]).
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>labelClickable [
+{ #category : #api }
+PickListModel >> labelClickable [
 	
 	^ labelClickableHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>labelClickable: aBoolean [
+{ #category : #api }
+PickListModel >> labelClickable: aBoolean [
 
 	labelClickableHolder value: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>listModel [
+{ #category : #accessing }
+PickListModel >> listModel [
 
 	^ listModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>pickedItems [
+{ #category : #api }
+PickListModel >> pickedItems [
 	"Returns the selected items according to the order they have been picked"
 	
 	^ pickedItemsHolder value
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>removePicked: item [
+{ #category : #private }
+PickListModel >> removePicked: item [
 
 	pickedItemsHolder remove: item ifAbsent: [ ^ self ].
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>resetSelection [
+{ #category : #api }
+PickListModel >> resetSelection [
 
 	listModel resetSelection
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>selectedIndex [
+{ #category : #api }
+PickListModel >> selectedIndex [
 
 	^ listModel selectedIndex
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>selectedItem [
+{ #category : #api }
+PickListModel >> selectedItem [
 
 	^ associationsWrapperToItem 
 		at: listModel selectedItem
 		ifAbsent: [ nil ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>selectedItems [
+{ #category : #api }
+PickListModel >> selectedItems [
 	"Returns the selected items according to the list order"
 	| wrappers items |
 	
@@ -284,49 +208,34 @@ PickListModel>>selectedItems [
 	^ items
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>setSelectedIndex: anIndex [
+{ #category : #api }
+PickListModel >> setSelectedIndex: anIndex [
 
 	listModel setSelectedIndex: anIndex
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>whenListChanged: aBlock [
+{ #category : #api-events }
+PickListModel >> whenListChanged: aBlock [
 
 	listModel whenListChanged: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>whenPickedItemsChanged: aBlock [
+{ #category : #api-events }
+PickListModel >> whenPickedItemsChanged: aBlock [
 
 	pickedItemsHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>whenSelectedItemChanged: aBlock [
+{ #category : #api-events }
+PickListModel >> whenSelectedItemChanged: aBlock [
 	| newBlock |
 	
 	newBlock := [ :item | aBlock cull: (associationsWrapperToItem at: item ifAbsent: [ nil ])].
 	listModel whenSelectedItemChanged: newBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>whenSelectionChanged: aBlock [
+{ #category : #api-events }
+PickListModel >> whenSelectionChanged: aBlock [
 
 	"The method should be used only if you are interested in the fact that there was a change, without caring about what has changed
 	If you are interested in the items, use whenSelectedItemChanged:
@@ -335,20 +244,14 @@ PickListModel>>whenSelectionChanged: aBlock [
 	listModel whenSelectionChanged: aBlock.
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>whenSelectionIndexChanged: aBlock [
+{ #category : #api-events }
+PickListModel >> whenSelectionIndexChanged: aBlock [
 
 	listModel whenSelectionIndexChanged: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>wrap: item at: index [
+{ #category : #private }
+PickListModel >> wrap: item at: index [
 	| checkBox |
 
 	associationsIndexToWrapper 
@@ -379,20 +282,14 @@ PickListModel>>wrap: item at: index [
 	^ checkBox
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>wrapHolder [
+{ #category : #accessing }
+PickListModel >> wrapHolder [
 
 	^ wrapHolder
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PickListModel>>wrappers [
+{ #category : #api }
+PickListModel >> wrappers [
 
 	^ associationsWrapperToItem keys
 ]

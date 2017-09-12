@@ -1,34 +1,21 @@
-"
-
-"
 Class {
 	#name : #TextModelTest,
 	#superclass : #SpecTestCase,
-	#category : #Spec-Tests-Core-Widgets,
-	#timestamp : ''
+	#category : #Spec-Tests-Core-Widgets
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TextModelTest>>classToTest [
+{ #category : #running }
+TextModelTest >> classToTest [
 	^ TextModel
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TextModelTest>>initializationText [
+{ #category : #running }
+TextModelTest >> initializationText [
 	testedInstance text: 'Text for tests.'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TextModelTest>>testSelectAll [
+{ #category : #tests }
+TextModelTest >> testSelectAll [
 	self initializationText.
 	self openInstance.
 	testedInstance selectAll.

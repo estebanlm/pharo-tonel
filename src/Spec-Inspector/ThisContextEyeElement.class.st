@@ -4,22 +4,15 @@ This eye element is used in the right panel of the debugger to show thiscontext 
 Class {
 	#name : #ThisContextEyeElement,
 	#superclass : #SelfEyeElement,
-	#category : #Spec-Inspector-Element,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector-Element
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ThisContextEyeElement>>accessorCode [
+{ #category : #accessing }
+ThisContextEyeElement >> accessorCode [
 	^ super label
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ThisContextEyeElement>>label [
+{ #category : #accessing }
+ThisContextEyeElement >> label [
 	^ 'thisContext'
 ]

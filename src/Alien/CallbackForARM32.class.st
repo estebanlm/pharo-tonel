@@ -4,33 +4,23 @@ A CallbackForARM32 is a callback for platforms with ARMv4/v5/v6/v7 processors us
 Class {
 	#name : #CallbackForARM32,
 	#superclass : #Callback,
-	#category : #Alien-Core,
-	#timestamp : ''
+	#category : #Alien-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CallbackForARM32 class>>abi [
+{ #category : #accessing }
+CallbackForARM32 class >> abi [
 	^'ARM32'
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CallbackForARM32 class>>isForCurrentPlatform [
+{ #category : #'class initialization' }
+CallbackForARM32 class >> isForCurrentPlatform [
 	| processor |
 	processor := (SmalltalkImage current getSystemAttribute: 1003) asLowercase.
 	^processor = 'arm' or: [(processor beginsWith: 'armv') and: [processor fifth <= $7]]
 ]
 
-{
-	#category : #signatures,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CallbackForARM32>>intcharstarRetint: callbackContext regs: regsAlien [
+{ #category : #signatures }
+CallbackForARM32 >> intcharstarRetint: callbackContext regs: regsAlien [
 	<signature: #(int (*)(int, char *))>
 	^callbackContext wordResult:
 		(block
@@ -38,11 +28,8 @@ CallbackForARM32>>intcharstarRetint: callbackContext regs: regsAlien [
 			value: (Alien forPointer: (regsAlien unsignedLongAt: 5)))
 ]
 
-{
-	#category : #evaluation,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CallbackForARM32>>valueInContext: callbackContext "<VMCallbackContext32|VMCallbackContext64> ^<Integer>" [
+{ #category : #evaluation }
+CallbackForARM32 >> valueInContext: callbackContext [ "<VMCallbackContext32|VMCallbackContext64> ^<Integer>"
 	numEvaluatorArgs = 2 ifTrue:
 		[^self perform: evaluator
 			with: callbackContext
@@ -64,11 +51,8 @@ CallbackForARM32>>valueInContext: callbackContext "<VMCallbackContext32|VMCallba
 	self error: 'invalid evaluator argument count'
 ]
 
-{
-	#category : #signatures,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CallbackForARM32>>voidstarvoidstarRetint: callbackContext regs: regsAlien [
+{ #category : #signatures }
+CallbackForARM32 >> voidstarvoidstarRetint: callbackContext regs: regsAlien [
 	<signature: #(int (*)(const void *, const void *))>
 	^callbackContext wordResult:
 		(block

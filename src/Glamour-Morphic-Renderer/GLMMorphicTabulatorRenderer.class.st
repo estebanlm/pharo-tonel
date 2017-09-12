@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicTabulatorRenderer,
 	#superclass : #GLMMorphicBrowserRenderer,
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicTabulatorRenderer>>margin [
+{ #category : #private }
+GLMMorphicTabulatorRenderer >> margin [
 	^ 1
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicTabulatorRenderer>>render: aBrowser [
+{ #category : #rendering }
+GLMMorphicTabulatorRenderer >> render: aBrowser [
 	| container |
 	container := GLMMorphic containerMorph.
 	aBrowser cell isRow
@@ -40,11 +30,8 @@ GLMMorphicTabulatorRenderer>>render: aBrowser [
 	^ container
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicTabulatorRenderer>>renderCustomColumn: aCell ofPane: aPane inUI: aMorph inBrowser: aBrowser [
+{ #category : #private }
+GLMMorphicTabulatorRenderer >> renderCustomColumn: aCell ofPane: aPane inUI: aMorph inBrowser: aBrowser [
 	| pane totalSpans currentSpanPosition currentOffset |
 	totalSpans := aCell children inject: 0 into: [ :sum :each | sum + each span ].
 	currentSpanPosition := 0.
@@ -82,11 +69,8 @@ GLMMorphicTabulatorRenderer>>renderCustomColumn: aCell ofPane: aPane inUI: aMorp
 	aMorph addPaneSplitters
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicTabulatorRenderer>>renderCustomRow: aCell ofPane: aPane inUI: aMorph inBrowser: aBrowser  [
+{ #category : #private }
+GLMMorphicTabulatorRenderer >> renderCustomRow: aCell ofPane: aPane inUI: aMorph inBrowser: aBrowser [ 
 	| pane totalSpans currentSpanPosition currentOffset |
 	totalSpans := aCell children inject: 0 into: [ :sum :each | sum + each span ].
 	currentSpanPosition := 0.

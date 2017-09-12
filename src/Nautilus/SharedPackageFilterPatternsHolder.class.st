@@ -18,40 +18,27 @@ Class {
 	#classInstVars : [
 		'instance'
 	],
-	#category : #Nautilus-Tree,
-	#timestamp : 'JurajKubelka 12/17/2014 20:56'
+	#category : #Nautilus-Tree
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SharedPackageFilterPatternsHolder class>>cleanUp [
+{ #category : #cleanup }
+SharedPackageFilterPatternsHolder class >> cleanUp [
 	self reset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SharedPackageFilterPatternsHolder class>>instance [
+{ #category : #accessing }
+SharedPackageFilterPatternsHolder class >> instance [
 
 	^ instance ifNil: [ instance := self new value: OrderedCollection new; yourself ]
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SharedPackageFilterPatternsHolder class>>reset [
+{ #category : #cleanup }
+SharedPackageFilterPatternsHolder class >> reset [
 	instance := nil
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SharedPackageFilterPatternsHolder>>addFirst: aString  [
+{ #category : #adding }
+SharedPackageFilterPatternsHolder >> addFirst: aString [ 
 	^ mutex critical: [ 
 		value 
 			detect: [ :eachPattern | aString beginsWith: eachPattern ]
@@ -60,102 +47,69 @@ SharedPackageFilterPatternsHolder>>addFirst: aString  [
 	 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SharedPackageFilterPatternsHolder>>at: index [
+{ #category : #accessing }
+SharedPackageFilterPatternsHolder >> at: index [
 
 	^ mutex critical: [ value at: index ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SharedPackageFilterPatternsHolder>>collectWithIndex: aBlockClosure  [
+{ #category : #enumerating }
+SharedPackageFilterPatternsHolder >> collectWithIndex: aBlockClosure [ 
 	
 	^ mutex critical: [ value withIndexCollect: aBlockClosure ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SharedPackageFilterPatternsHolder>>firstOrNil [
+{ #category : #accessing }
+SharedPackageFilterPatternsHolder >> firstOrNil [
 	^ mutex critical: [ 
 		value 
 			ifNotEmpty: [ value first ] 
 			ifEmpty: [ nil ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SharedPackageFilterPatternsHolder>>indexOf: aString  [
+{ #category : #accessing }
+SharedPackageFilterPatternsHolder >> indexOf: aString [ 
 	
 	^ mutex critical: [ value indexOf: aString ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SharedPackageFilterPatternsHolder>>initialize [
+{ #category : #initialization }
+SharedPackageFilterPatternsHolder >> initialize [
 
 	super initialize.
 	mutex := Mutex new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SharedPackageFilterPatternsHolder>>lastValue [
+{ #category : #accessing }
+SharedPackageFilterPatternsHolder >> lastValue [
 	^ mutex critical: [ lastValue ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SharedPackageFilterPatternsHolder>>lastValue: aValue  [
+{ #category : #accessing }
+SharedPackageFilterPatternsHolder >> lastValue: aValue [ 
 	mutex critical: [ lastValue := aValue ]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SharedPackageFilterPatternsHolder>>remove: aString ifAbsent: aBlockClosure  [
+{ #category : #removing }
+SharedPackageFilterPatternsHolder >> remove: aString ifAbsent: aBlockClosure [ 
 	
 	^ mutex critical: [ value remove: aString ifAbsent: aBlockClosure ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SharedPackageFilterPatternsHolder>>size [
+{ #category : #accessing }
+SharedPackageFilterPatternsHolder >> size [
 
 	^ mutex critical: [ value size ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SharedPackageFilterPatternsHolder>>value [
+{ #category : #accessing }
+SharedPackageFilterPatternsHolder >> value [
 
 	^ mutex critical: [ value ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SharedPackageFilterPatternsHolder>>value: anObject [
+{ #category : #accessing }
+SharedPackageFilterPatternsHolder >> value: anObject [
 
 	mutex critical: [ value := anObject ].
 ]

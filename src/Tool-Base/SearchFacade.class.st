@@ -4,33 +4,23 @@ SearchFacade is a facade for creating searching dialog window
 Class {
 	#name : #SearchFacade,
 	#superclass : #Object,
-	#category : #Tool-Base,
-	#timestamp : '<historical>'
+	#category : #Tool-Base
 }
 
-{
-	#category : #'message search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SearchFacade class>>allMessageSearchFor: aClass [
+{ #category : #'message search' }
+SearchFacade class >> allMessageSearchFor: aClass [
 
 	^ self messageSearchIn: aClass allMethods
 ]
 
-{
-	#category : #'class search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SearchFacade class>>classSearch [
+{ #category : #'class search' }
+SearchFacade class >> classSearch [
 
 	^ self classSearchInEnvironment: self environment
 ]
 
-{
-	#category : #'class search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SearchFacade class>>classSearchIn: classes [
+{ #category : #'class search' }
+SearchFacade class >> classSearchIn: classes [
 	^ ListDialogWindow new
 		getList: [ :r | classes select: [ :e | r search: e name ] ];
 		displayBlock: [ :e | e name ];
@@ -38,40 +28,28 @@ SearchFacade class>>classSearchIn: classes [
 		yourself
 ]
 
-{
-	#category : #'class search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SearchFacade class>>classSearchInEnvironment: anEnvironment [
+{ #category : #'class search' }
+SearchFacade class >> classSearchInEnvironment: anEnvironment [
 	| classes |
 	classes :=  anEnvironment classesAndTraits sorted: [ :a :b| a name <= b name ].
 	^ self classSearchIn: classes.
 ]
 
-{
-	#category : #'class search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SearchFacade class>>hierarchySearchFor: aClass [
+{ #category : #'class search' }
+SearchFacade class >> hierarchySearchFor: aClass [
 	| classes |
 	classes := aClass allSuperclasses reverse, (aClass allSubclasses sorted: [ :a :b| a name <= b name ]).
 	^ self classSearchIn: classes
 ]
 
-{
-	#category : #'message search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SearchFacade class>>messageSearchFor: aClass [
+{ #category : #'message search' }
+SearchFacade class >> messageSearchFor: aClass [
 
 	^ self messageSearchIn: aClass methods
 ]
 
-{
-	#category : #'message search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SearchFacade class>>messageSearchIn: aCollection [
+{ #category : #'message search' }
+SearchFacade class >> messageSearchIn: aCollection [
 	| rawList |
 	rawList := aCollection sorted: [ :a :b | a selector <= b selector ].
 	^ ListDialogWindow new
@@ -81,20 +59,14 @@ SearchFacade class>>messageSearchIn: aCollection [
 		yourself
 ]
 
-{
-	#category : #'package search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SearchFacade class>>packageSearch [
+{ #category : #'package search' }
+SearchFacade class >> packageSearch [
 				
 	^ self packageSearchIn: self environment
 ]
 
-{
-	#category : #'package search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SearchFacade class>>packageSearchIn: anEnvironment [
+{ #category : #'package search' }
+SearchFacade class >> packageSearchIn: anEnvironment [
 	| rawList |
 	rawList := anEnvironment organization categories sort.
 	^ ListDialogWindow new
@@ -104,22 +76,16 @@ SearchFacade class>>packageSearchIn: anEnvironment [
 		yourself
 ]
 
-{
-	#category : #'protocol search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SearchFacade class>>protocolSearchFor: aClass [
+{ #category : #'protocol search' }
+SearchFacade class >> protocolSearchFor: aClass [
 
 	^ (self protocolSearchIn: aClass organization categories)
 			browseBlock: [:answer | Smalltalk tools browser openOnClass: aClass onProtocol: answer ]; 
 			yourself
 ]
 
-{
-	#category : #'protocol search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SearchFacade class>>protocolSearchIn: aCollection [
+{ #category : #'protocol search' }
+SearchFacade class >> protocolSearchIn: aCollection [
 	^ ListDialogWindow new
 		getList: [ :r | aCollection sorted select: [ :e | r search: e ] ];
 		displayBlock: [ :e | e ];
@@ -127,20 +93,14 @@ SearchFacade class>>protocolSearchIn: aCollection [
 		yourself
 ]
 
-{
-	#category : #'rpackage search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SearchFacade class>>rPackageSearch [
+{ #category : #'rpackage search' }
+SearchFacade class >> rPackageSearch [
 				
 	^ self rPackageSearchIn: RPackageOrganizer default
 ]
 
-{
-	#category : #'rpackage search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SearchFacade class>>rPackageSearchIn: anOrganizer [
+{ #category : #'rpackage search' }
+SearchFacade class >> rPackageSearchIn: anOrganizer [
 	| rawList |
 	rawList := anOrganizer packages sorted: [ :a :b | a name <= b name ].
 	^ ListDialogWindow new
@@ -151,21 +111,15 @@ SearchFacade class>>rPackageSearchIn: anOrganizer [
 		yourself
 ]
 
-{
-	#category : #'class search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SearchFacade class>>subclassSearchFor: aClass [
+{ #category : #'class search' }
+SearchFacade class >> subclassSearchFor: aClass [
 	| classes |
 	classes := aClass allSubclasses sorted: [ :a :b| a name <= b name ].
 	^ self classSearchIn: classes
 ]
 
-{
-	#category : #'class search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SearchFacade class>>superclassSearchFor: aClass [
+{ #category : #'class search' }
+SearchFacade class >> superclassSearchFor: aClass [
 
 	^ self classSearchIn: aClass allSuperclasses reverse
 ]

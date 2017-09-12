@@ -15,15 +15,11 @@ Class {
 		'd2',
 		'inFirstRegion'
 	],
-	#category : #Graphics-Primitives,
-	#timestamp : 'TorstenBergmann 2/20/2014 18:32'
+	#category : #Graphics-Primitives
 }
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-EllipseMidpointTracer>>on: aRectangle [
+{ #category : #initialize }
+EllipseMidpointTracer >> on: aRectangle [
 	a := aRectangle width // 2.
 	b := aRectangle height // 2.
 	x := 0.
@@ -35,11 +31,8 @@ EllipseMidpointTracer>>on: aRectangle [
 	inFirstRegion := true.
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-EllipseMidpointTracer>>stepInY [
+{ #category : #computing }
+EllipseMidpointTracer >> stepInY [
 	"Step to the next y value"
 	inFirstRegion ifTrue:[
 		"In the upper region we must step until we reach the next y value"

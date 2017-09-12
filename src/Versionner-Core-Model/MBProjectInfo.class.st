@@ -7,24 +7,17 @@ Class {
 	#instVars : [
 		'currentVersion'
 	],
-	#category : #Versionner-Core-Model,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:12'
+	#category : #Versionner-Core-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBProjectInfo class>>helpLabel [
+{ #category : #accessing }
+MBProjectInfo class >> helpLabel [
 
 	^'Project'
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBProjectInfo>>buildStringOrText [
+{ #category : #converting }
+MBProjectInfo >> buildStringOrText [
 	| string cv projectClass info attributes specVersion |
 	string := super buildStringOrText.
 	attributes := OrderedCollection new.
@@ -45,20 +38,14 @@ MBProjectInfo>>buildStringOrText [
 	^ string
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBProjectInfo>>classForBrowsing [
+{ #category : #accessing }
+MBProjectInfo >> classForBrowsing [
 
 	^self spec projectClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBProjectInfo>>currentVersion [
+{ #category : #accessing }
+MBProjectInfo >> currentVersion [
 	currentVersion == nil
 		ifTrue: [ 
 			| projectClass version info |
@@ -78,20 +65,14 @@ MBProjectInfo>>currentVersion [
 	^ currentVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBProjectInfo>>currentVersion: anObject [
+{ #category : #accessing }
+MBProjectInfo >> currentVersion: anObject [
 
 	currentVersion := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBProjectInfo>>currentVersionMismatch [
+{ #category : #testing }
+MBProjectInfo >> currentVersionMismatch [
 	| cv specVersion |
 	(cv := self currentVersion) notEmpty
 		ifTrue: [ 
@@ -100,11 +81,8 @@ MBProjectInfo>>currentVersionMismatch [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBProjectInfo>>interestedInConfigurationInfo: configInfo [
+{ #category : #testing }
+MBProjectInfo >> interestedInConfigurationInfo: configInfo [
 	| projectClass |
 	(projectClass := self spec projectClass) == nil
 		ifTrue: [ ^ false ].
@@ -112,11 +90,8 @@ MBProjectInfo>>interestedInConfigurationInfo: configInfo [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBProjectInfo>>interestedInPackageNamed: aString [
+{ #category : #testing }
+MBProjectInfo >> interestedInPackageNamed: aString [
 	| projectClass version info |
 	(projectClass := self spec projectClass) == nil
 		ifTrue: [ ^ false ].
@@ -127,11 +102,8 @@ MBProjectInfo>>interestedInPackageNamed: aString [
 	^ info interestedInPackageNamed: aString
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBProjectInfo>>printOn: aStream [
+{ #category : #printing }
+MBProjectInfo >> printOn: aStream [
 	| cv specVersion |
 	self isDirty
 		ifTrue: [ aStream nextPutAll: '* ' ].
@@ -146,30 +118,21 @@ MBProjectInfo>>printOn: aStream [
 						ifFalse: [ aStream nextPutAll: ' [' , cv , ']' ] ] ]
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBProjectInfo>>repositories [
+{ #category : #utils }
+MBProjectInfo >> repositories [
 	"Return the repositories associated with the configuration for the project."
 
 	^self spec projectPackage workingCopy repositoryGroup repositories
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBProjectInfo>>typeLabel [
+{ #category : #accessing }
+MBProjectInfo >> typeLabel [
 
 	^'project'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBProjectInfo>>validate [
+{ #category : #accessing }
+MBProjectInfo >> validate [
 	validationResult == nil
 		ifTrue: [ 
 			validationIcon := nil.
@@ -177,11 +140,8 @@ MBProjectInfo>>validate [
 	^ validationResult
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBProjectInfo>>validateIfAbsent: absentBlock [
+{ #category : #accessing }
+MBProjectInfo >> validateIfAbsent: absentBlock [
 
 	^MetacelloToolBox validateConfiguration: (Smalltalk 
 		at: self packageName asSymbol 

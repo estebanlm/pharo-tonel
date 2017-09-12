@@ -38,31 +38,21 @@ Class {
 		'repositoryURL',
 		'configurationName'
 	],
-	#category : #ConfigurationCommandLineHandler-Core,
-	#timestamp : 'TorstenBergmann 2/6/2014 08:17'
+	#category : #ConfigurationCommandLineHandler-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler class>>commandName [
+{ #category : #accessing }
+ConfigurationCommandLineHandler class >> commandName [
 	^ 'config'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler class>>description [
+{ #category : #accessing }
+ConfigurationCommandLineHandler class >> description [
 	^ 'Install and inspect Metacello Configurations from the command line'
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>activate [
+{ #category : #activation }
+ConfigurationCommandLineHandler >> activate [
 	self activateHelpWithoutArguments
 		ifTrue: [ ^ self ].
 	
@@ -73,11 +63,8 @@ ConfigurationCommandLineHandler>>activate [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>configuration [
+{ #category : #accessing }
+ConfigurationCommandLineHandler >> configuration [
 	| gofer |
 	gofer := self gofer.
 	self hasConfiguration 
@@ -87,11 +74,8 @@ ConfigurationCommandLineHandler>>configuration [
 	^ Smalltalk globals at: self configurationName asSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>configurationName [
+{ #category : #accessing }
+ConfigurationCommandLineHandler >> configurationName [
 	^ configurationName ifNil: [
 			self hasConfiguration 
 				ifFalse: [ "Demeters favourite line :("
@@ -99,38 +83,26 @@ ConfigurationCommandLineHandler>>configurationName [
 		 configurationName := self argumentAt: 2 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>configurationVersion [
+{ #category : #accessing }
+ConfigurationCommandLineHandler >> configurationVersion [
 	^ (self hasOption: 'install')
 		ifFalse: [ #stable ]
 		ifTrue: [ self optionAt: 'install' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>defaultRepositoryUrl [
+{ #category : #accessing }
+ConfigurationCommandLineHandler >> defaultRepositoryUrl [
 	^ 'http://smalltalkhub.com/mc/Pharo/MetaRepoForPharo', SystemVersion current major asString, SystemVersion current minor asString, '/main'
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>errorNoConfigurationsFound [
+{ #category : #actions }
+ConfigurationCommandLineHandler >> errorNoConfigurationsFound [
 
 	self exitFailure: 'No Configurations found in ', repositoryURL asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>gofer [
+{ #category : #accessing }
+ConfigurationCommandLineHandler >> gofer [
 	| username password |
 	username := (self hasOption: 'username')
 		ifTrue: [ self optionAt: 'username' ]
@@ -143,39 +115,27 @@ ConfigurationCommandLineHandler>>gofer [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>groups [
+{ #category : #accessing }
+ConfigurationCommandLineHandler >> groups [
 	^ (self optionAt: 'group') substrings: {$,}
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>handleMergeConflictDuring: aLoadBlock [
+{ #category : #actions }
+ConfigurationCommandLineHandler >> handleMergeConflictDuring: aLoadBlock [
 	[aLoadBlock 
 	on: MCMergeOrLoadWarning do: [ :mergeConflict | mergeConflict merge ]]
 	on: MCMergeResolutionRequest do: [ :request |  request autoMerge ].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>hasConfiguration [
+{ #category : #testing }
+ConfigurationCommandLineHandler >> hasConfiguration [
 	self flag: 'TODO: should use proper cli parser Coral??'.
 	^ (self arguments size > 1) and: [
 		((self argumentAt: 2) beginsWith: '-') not ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>hasRepositoryUrl [
+{ #category : #testing }
+ConfigurationCommandLineHandler >> hasRepositoryUrl [
 	^ self arguments size > 0 and: [ 
 		| possibleUrl |
 		possibleUrl := self arguments first.
@@ -183,19 +143,13 @@ ConfigurationCommandLineHandler>>hasRepositoryUrl [
 		(possibleUrl includesSubstring: '://') or: [ possibleUrl first = $. ]]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>installConfiguration [
+{ #category : #actions }
+ConfigurationCommandLineHandler >> installConfiguration [
 	self installVersion: self configurationVersion
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>installVersion: aVersionName [
+{ #category : #actions }
+ConfigurationCommandLineHandler >> installVersion: aVersionName [
 	| metacelloVersion |
 	self inform: 'Installing ', self configurationName, ' ', aVersionName.
 	
@@ -209,21 +163,15 @@ ConfigurationCommandLineHandler>>installVersion: aVersionName [
 	Smalltalk snapshot: true andQuit: true.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>list [
+{ #category : #actions }
+ConfigurationCommandLineHandler >> list [
 	(self hasConfiguration or: [ self hasRepositoryUrl ])
 		ifTrue: [ self listConfigurationDetails ]
 		ifFalse: [ self listConfigurations ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>listConfigurationDetails [
+{ #category : #actions }
+ConfigurationCommandLineHandler >> listConfigurationDetails [
 	"List possible configurations of the given repository"
 	
 	self printMetacelloProjectDetails: self project.
@@ -231,11 +179,8 @@ ConfigurationCommandLineHandler>>listConfigurationDetails [
 	^ self exitSuccess
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>listConfigurations [
+{ #category : #actions }
+ConfigurationCommandLineHandler >> listConfigurations [
 	"List possible configurations of the given repository"
 	
 	| configurations |
@@ -249,11 +194,8 @@ ConfigurationCommandLineHandler>>listConfigurations [
 	^ self exitSuccess
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>loadConfigurationNames [
+{ #category : #actions }
+ConfigurationCommandLineHandler >> loadConfigurationNames [
 	| references configurations |
 	
 	references := self gofer allResolved.
@@ -265,11 +207,8 @@ ConfigurationCommandLineHandler>>loadConfigurationNames [
 	^ references asSet asSortedCollection 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>loadRepositoryUrl [
+{ #category : #accessing }
+ConfigurationCommandLineHandler >> loadRepositoryUrl [
 	| possibleUrl |
 	possibleUrl := self argumentAt: 1.
 	(possibleUrl includesSubstring: '://')
@@ -277,11 +216,8 @@ ConfigurationCommandLineHandler>>loadRepositoryUrl [
 	^ possibleUrl asFileReference
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>metacelloVersion: aVersionName [
+{ #category : #actions }
+ConfigurationCommandLineHandler >> metacelloVersion: aVersionName [
 	| project |
 	project := self project.
 	^ [ project version: aVersionName ] 
@@ -295,11 +231,8 @@ ConfigurationCommandLineHandler>>metacelloVersion: aVersionName [
 					project version: aVersionName asSymbol ]].
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>printConfigurations: configurations [
+{ #category : #printing }
+ConfigurationCommandLineHandler >> printConfigurations: configurations [
 
 	self inform: (String streamContents:  [ :s|
 		s
@@ -314,11 +247,8 @@ ConfigurationCommandLineHandler>>printConfigurations: configurations [
 	
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>printMetacelloProjectDetails: metacelloProject [
+{ #category : #printing }
+ConfigurationCommandLineHandler >> printMetacelloProjectDetails: metacelloProject [
 	| versions |
 	self inform: 'Available versions for ', self configurationName.
 	
@@ -331,19 +261,13 @@ ConfigurationCommandLineHandler>>printMetacelloProjectDetails: metacelloProject 
 		self stdout nextPutAll: key; lf ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>project [
+{ #category : #accessing }
+ConfigurationCommandLineHandler >> project [
 	^ self configuration project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ConfigurationCommandLineHandler>>repositoryUrl [
+{ #category : #accessing }
+ConfigurationCommandLineHandler >> repositoryUrl [
 	^ repositoryURL ifNil: [ 
 		self hasRepositoryUrl 
 			ifFalse: [ ^ self defaultRepositoryUrl ].

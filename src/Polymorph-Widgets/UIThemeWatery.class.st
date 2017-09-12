@@ -7,25 +7,18 @@ Class {
 	#instVars : [
 		'windowActiveDropShadowStyle'
 	],
-	#category : #Polymorph-Widgets-Themes,
-	#timestamp : 'TorstenBergmann 2/5/2014 10:31'
+	#category : #Polymorph-Widgets-Themes
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery class>>isAbstract [
+{ #category : #accessing }
+UIThemeWatery class >> isAbstract [
 	"Answer whether the receiver is considered to be abstract."
 
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery class>>newDefaultSettings [
+{ #category : #accessing }
+UIThemeWatery class >> newDefaultSettings [
 	"Answer a new original default settings."
 	"self defaultSettings: nil"
 	^super newDefaultSettings
@@ -41,62 +34,44 @@ UIThemeWatery class>>newDefaultSettings [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery class>>themeName [
+{ #category : #accessing }
+UIThemeWatery class >> themeName [
 	"Answer the friendly name of the theme."
 
 	^'Watery'
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>baseScrollbarColorFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UIThemeWatery >> baseScrollbarColorFor: aScrollbar [
 	"Return the scrollbar last pane colour or that of our settings if unavailable"
 	
 	^ aScrollbar lastPaneColor 
 		ifNil: [ self scrollbarColor ]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonBottomLeftForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonBottomLeftForm [
 	"Answer the form to use for the bottom left of a button."
 
 	^self forms at: #buttonBottomLeft ifAbsent: [Form extent: 11@11 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonBottomMiddleForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonBottomMiddleForm [
 	"Answer the form to use for the bottom middle of a button."
 
 	^self forms at: #buttonBottomMiddle ifAbsent: [Form extent: 1@11 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonBottomRightForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonBottomRightForm [
 	"Answer the form to use for the bottom right of a button."
 
 	^self forms at: #buttonBottomRight ifAbsent: [Form extent: 11@11 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonColouredFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> buttonColouredFillStyleFor: aButton [
 	"Return the coloured button fillStyle for the given button."
 	
 	|round roundCorners tl t tr l m r bl b br|
@@ -114,21 +89,15 @@ UIThemeWatery>>buttonColouredFillStyleFor: aButton [
 		in: aButton bounds
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonColouredMiddleColor [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> buttonColouredMiddleColor [
 	"Return the middle area colour for a coloured button fillStyle."
 	
 	^Color r: 102 g: 127 b: 168 range: 255
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonCornerStyleIn: aThemedMorph [
+{ #category : #border-styles-buttons }
+UIThemeWatery >> buttonCornerStyleIn: aThemedMorph [
 	"Allow for themes to override default behaviour."
 	
 	^aThemedMorph
@@ -139,22 +108,16 @@ UIThemeWatery>>buttonCornerStyleIn: aThemedMorph [
 				ifNotNil: [:bcs | bcs]]
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonFocusBoundsFor: aButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> buttonFocusBoundsFor: aButton [
 	"Answer the bounds for drawing the focus indication for the
 	given button."
 
 	^aButton bounds
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonFocusIndicatorCornerRadiusFor: aButton [
+{ #category : #defaults }
+UIThemeWatery >> buttonFocusIndicatorCornerRadiusFor: aButton [
 	"Answer the default corner radius preferred for the focus indicator
 	for the button for themes that support this."
 
@@ -163,11 +126,8 @@ UIThemeWatery>>buttonFocusIndicatorCornerRadiusFor: aButton [
 		ifFalse: [2]
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonLabelForText: aTextOrString [
+{ #category : #label-styles }
+UIThemeWatery >> buttonLabelForText: aTextOrString [
 	"Answer the label to use for the given text."
 	
 	^aTextOrString isString
@@ -176,11 +136,8 @@ UIThemeWatery>>buttonLabelForText: aTextOrString [
 		ifFalse: [super buttonLabelForText: aTextOrString]
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonLabelInsetFor: aButton [
+{ #category : #defaults }
+UIThemeWatery >> buttonLabelInsetFor: aButton [
 	"Answer the inset to use for a button's label."
 
 	|left right|
@@ -191,51 +148,36 @@ UIThemeWatery>>buttonLabelInsetFor: aButton [
 		ifFalse: [3@2]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonMiddleLeftForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonMiddleLeftForm [
 	"Answer the form to use for the middle left of a button."
 
 	^self forms at: #buttonMiddleLeft ifAbsent: [Form extent: 11@1 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonMiddleRightForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonMiddleRightForm [
 	"Answer the form to use for the middle right of a button."
 
 	^self forms at: #buttonMiddleRight ifAbsent: [Form extent: 11@1 depth: Display depth]
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonMinHeight [
+{ #category : #defaults }
+UIThemeWatery >> buttonMinHeight [
 	"Answer the minumum height of a button for this theme."
 	
 	^24
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonMinWidth [
+{ #category : #defaults }
+UIThemeWatery >> buttonMinWidth [
 	"Answer the minumum width of a button for this theme."
 	
 	^24
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonNormalBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+UIThemeWatery >> buttonNormalBorderStyleFor: aButton [
 	"Return the normal button borderStyle for the given button."
 
 	^BorderStyle simple
@@ -243,11 +185,8 @@ UIThemeWatery>>buttonNormalBorderStyleFor: aButton [
 		baseColor: Color transparent
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonNormalFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> buttonNormalFillStyleFor: aButton [
 	"Return the normal button fillStyle for the given button."
 	
 	^aButton isDefault 
@@ -255,11 +194,8 @@ UIThemeWatery>>buttonNormalFillStyleFor: aButton [
 		ifFalse: [self buttonPlainFillStyleFor: aButton]
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonPlainFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> buttonPlainFillStyleFor: aButton [
 	"Return the plain button fillStyle for the given button."
 	
 	|round roundCorners tl t tr l m r bl b br|
@@ -277,61 +213,43 @@ UIThemeWatery>>buttonPlainFillStyleFor: aButton [
 		in: aButton bounds
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonPlainMiddleColor [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> buttonPlainMiddleColor [
 	"Return the middle area colour for a plain button fillStyle."
 	
 	^Color r: 211 g: 211 b: 211 range: 255
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonPressedFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> buttonPressedFillStyleFor: aButton [
 	"Return the button pressed fillStyle for the given button."
 		
 	^self buttonSelectedFillStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSelectedBottomLeftForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonSelectedBottomLeftForm [
 	"Answer the form to use for the bottom left of a selected button."
 
 	^self forms at: #buttonSelectedBottomLeft ifAbsent: [Form extent: 12@12 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSelectedBottomMiddleForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonSelectedBottomMiddleForm [
 	"Answer the form to use for the bottom middle of a selected button."
 
 	^self forms at: #buttonSelectedBottomMiddle ifAbsent: [Form extent: 1@12 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSelectedBottomRightForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonSelectedBottomRightForm [
 	"Answer the form to use for the bottom right of a selected button."
 
 	^self forms at: #buttonSelectedBottomRight ifAbsent: [Form extent: 12@12 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSelectedFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> buttonSelectedFillStyleFor: aButton [
 	"Return the selected button fillStyle for the given button."
 	
 	^aButton isDefault 
@@ -339,201 +257,141 @@ UIThemeWatery>>buttonSelectedFillStyleFor: aButton [
 		ifFalse: [self buttonColouredFillStyleFor: aButton]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSelectedMiddleLeftForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonSelectedMiddleLeftForm [
 	"Answer the form to use for the middle left of a selected button."
 
 	^self forms at: #buttonSelectedMiddleLeft ifAbsent: [Form extent: 12@1 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSelectedMiddleRightForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonSelectedMiddleRightForm [
 	"Answer the form to use for the middle right of a selected button."
 
 	^self forms at: #buttonSelectedMiddleRight ifAbsent: [Form extent: 12@1 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSelectedPressedFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> buttonSelectedPressedFillStyleFor: aButton [
 	"Return the button selected pressed fillStyle for the given color."
 
 	^self buttonNormalFillStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSelectedTopLeftForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonSelectedTopLeftForm [
 	"Answer the form to use for the top left of a selected button."
 
 	^self forms at: #buttonSelectedTopLeft ifAbsent: [Form extent: 12@12 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSelectedTopMiddleForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonSelectedTopMiddleForm [
 	"Answer the form to use for the top middle of a selected button."
 
 	^self forms at: #buttonSelectedTopMiddle ifAbsent: [Form extent: 1@12 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSelectedTopRightForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonSelectedTopRightForm [
 	"Answer the form to use for the top right of a selected button."
 
 	^self forms at: #buttonSelectedTopRight ifAbsent: [Form extent: 12@12 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSquareBottomLeftForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonSquareBottomLeftForm [
 	"Answer the form to use for the bottom left of a square button."
 
 	^self forms at: #buttonSquareBottomLeft ifAbsent: [Form extent: 12@12 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSquareBottomRightForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonSquareBottomRightForm [
 	"Answer the form to use for the bottom right of a square button."
 
 	^self forms at: #buttonSquareBottomRight ifAbsent: [Form extent: 12@12 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSquareSelectedBottomLeftForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonSquareSelectedBottomLeftForm [
 	"Answer the form to use for the bottom left of a selected square button."
 
 	^self forms at: #buttonSquareSelectedBottomLeft ifAbsent: [Form extent: 12@12 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSquareSelectedBottomRightForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonSquareSelectedBottomRightForm [
 	"Answer the form to use for the bottom right of a selected square button."
 
 	^self forms at: #buttonSquareSelectedBottomRight ifAbsent: [Form extent: 12@12 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSquareSelectedTopLeftForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonSquareSelectedTopLeftForm [
 	"Answer the form to use for the top left of a selected square button."
 
 	^self forms at: #buttonSquareSelectedTopLeft ifAbsent: [Form extent: 12@12 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSquareSelectedTopRightForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonSquareSelectedTopRightForm [
 	"Answer the form to use for the top right of a selected square button."
 
 	^self forms at: #buttonSquareSelectedTopRight ifAbsent: [Form extent: 12@12 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSquareTopLeftForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonSquareTopLeftForm [
 	"Answer the form to use for the top left of a square button."
 
 	^self forms at: #buttonSquareTopLeft ifAbsent: [Form extent: 12@12 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonSquareTopRightForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonSquareTopRightForm [
 	"Answer the form to use for the top right of a square button."
 
 	^self forms at: #buttonSquareTopRight ifAbsent: [Form extent: 12@12 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonTopLeftForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonTopLeftForm [
 	"Answer the form to use for the top left of a button."
 
 	^self forms at: #buttonTopLeft ifAbsent: [Form extent: 11@12 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonTopMiddleForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonTopMiddleForm [
 	"Answer the form to use for the top middle of a button."
 
 	^self forms at: #buttonTopMiddle ifAbsent: [Form extent: 1@12 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>buttonTopRightForm [
+{ #category : #fill-styles }
+UIThemeWatery >> buttonTopRightForm [
 	"Answer the form to use for the top right of a button."
 
 	^self forms at: #buttonTopRight ifAbsent: [Form extent: 11@12 depth: Display depth]
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>checkboxButtonDisabledBorderStyleFor: aCheckboxButton [
+{ #category : #border-styles-buttons }
+UIThemeWatery >> checkboxButtonDisabledBorderStyleFor: aCheckboxButton [
 	"Return the disabled checkbox button borderStyle for the given button."
 
 	^self checkboxButtonNormalBorderStyleFor: aCheckboxButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>checkboxButtonDisabledFillStyleFor: aCheckboxButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> checkboxButtonDisabledFillStyleFor: aCheckboxButton [
 	"Return the disabled checkbox button fillStyle for the given button."
 	
 	^self checkboxButtonNormalFillStyleFor: aCheckboxButton
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>checkboxButtonNormalBorderStyleFor: aChecboxButton [
+{ #category : #border-styles-buttons }
+UIThemeWatery >> checkboxButtonNormalBorderStyleFor: aChecboxButton [
 	"Return the normal checkbox button borderStyle for the given button."
 
 	^BorderStyle simple
@@ -541,62 +399,44 @@ UIThemeWatery>>checkboxButtonNormalBorderStyleFor: aChecboxButton [
 		baseColor: Color transparent
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>checkboxButtonNormalFillStyleFor: aCheckboxButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> checkboxButtonNormalFillStyleFor: aCheckboxButton [
 	"Return the normal checkbox button fillStyle for the given checkbox button."
 	
 	^(ImageFillStyle form: self checkboxForm) origin: aCheckboxButton topLeft
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>checkboxButtonSelectedFillStyleFor: aCheckboxButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> checkboxButtonSelectedFillStyleFor: aCheckboxButton [
 	"Return the selected checkbox button fillStyle for the given checkbox button."
 	
 	^(ImageFillStyle form: self checkboxSelectedForm) origin: aCheckboxButton topLeft
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>checkboxForm [
+{ #category : #fill-styles }
+UIThemeWatery >> checkboxForm [
 	"Answer the form to use for a normal checkbox."
 
 	^self forms at: #checkbox ifAbsent: [Form extent: 14@14 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>checkboxSelectedForm [
+{ #category : #fill-styles }
+UIThemeWatery >> checkboxSelectedForm [
 	"Answer the form to use for a selected checkbox."
 
 	^self forms at: #checkboxSelected ifAbsent: [Form extent: 14@14 depth: Display depth]
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>configureWindowBorderFor: aWindow [
+{ #category : #border-styles }
+UIThemeWatery >> configureWindowBorderFor: aWindow [
 	"Configure the border for the given window."
 
 	super configureWindowBorderFor: aWindow.
 	aWindow roundedCorners: #(1 4) "just top"
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>configureWindowLabelAreaFor: aWindow [
+{ #category : #label-styles }
+UIThemeWatery >> configureWindowLabelAreaFor: aWindow [
 	"Configure the label area for the given window."
 
 	|padding|
@@ -622,109 +462,79 @@ UIThemeWatery>>configureWindowLabelAreaFor: aWindow [
 		addMorphBack: (Morph new extent: aWindow class borderWidth @ 0)
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>controlButtonDisabledFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> controlButtonDisabledFillStyleFor: aButton [
 	"Return the disabled control button fillStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 	
 	^self controlButtonSelectedFillStyleFor: aButton
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>controlButtonLabelInsetFor: aButton [
+{ #category : #defaults }
+UIThemeWatery >> controlButtonLabelInsetFor: aButton [
 	"Answer the inset to use for a control button's label."
 
 	^2
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>controlButtonMouseOverFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> controlButtonMouseOverFillStyleFor: aButton [
 	"Return the mouse over control button fillStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 	
 	^self controlButtonNormalFillStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>controlButtonNormalFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> controlButtonNormalFillStyleFor: aButton [
 	"Return the normal control button fillStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 	
 	^self buttonSelectedFillStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>controlButtonPressedFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> controlButtonPressedFillStyleFor: aButton [
 	"Return the pressed button fillStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 	
 	^self controlButtonSelectedFillStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>controlButtonSelectedDisabledFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> controlButtonSelectedDisabledFillStyleFor: aButton [
 	"Return the selected disabled control button fillStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 	
 	^self controlButtonSelectedFillStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>controlButtonSelectedFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> controlButtonSelectedFillStyleFor: aButton [
 	"Return the selected control button fillStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 	
 	^self buttonNormalFillStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>controlButtonSelectedMouseOverFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> controlButtonSelectedMouseOverFillStyleFor: aButton [
 	"Return the selected mouse over control button fillStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 	
 	^self controlButtonSelectedFillStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>controlButtonSelectedPressedFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> controlButtonSelectedPressedFillStyleFor: aButton [
 	"Return the selected pressed button fillStyle for the given button.
 	Control buttons are generally used for drop-lists and expanders."
 	
 	^self controlButtonNormalFillStyleFor: aButton
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>createCollapseBoxFor: aSystemWindow [
+{ #category : #label-styles }
+UIThemeWatery >> createCollapseBoxFor: aSystemWindow [
 	"Answer a button for minimising the window."
 	
 	|form msb|
@@ -750,11 +560,8 @@ UIThemeWatery>>createCollapseBoxFor: aSystemWindow [
 	^msb
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>createExpandBoxFor: aSystemWindow [
+{ #category : #label-styles }
+UIThemeWatery >> createExpandBoxFor: aSystemWindow [
 	"Answer a button for maximising/restoring the window."
 	
 	|form msb|
@@ -780,11 +587,8 @@ UIThemeWatery>>createExpandBoxFor: aSystemWindow [
 	^msb
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>createMenuBoxFor: aSystemWindow [
+{ #category : #label-styles }
+UIThemeWatery >> createMenuBoxFor: aSystemWindow [
 	"Answer a button for the window menu."
 	
 	|form msb|
@@ -810,113 +614,77 @@ UIThemeWatery>>createMenuBoxFor: aSystemWindow [
 	^msb
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>dialogWindowActiveFillStyleFor: aWindow [
+{ #category : #fill-styles }
+UIThemeWatery >> dialogWindowActiveFillStyleFor: aWindow [
 	"Return the window active fillStyle for the given window."
 	
 	^self windowActiveFillStyleFor: aWindow
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>dialogWindowInactiveFillStyleFor: aWindow [
+{ #category : #fill-styles }
+UIThemeWatery >> dialogWindowInactiveFillStyleFor: aWindow [
 	"Return the window active fillStyle for the given window."
 	
 	^self windowInactiveFillStyleFor: aWindow
 ]
 
-{
-	#category : #basic-colors-diffs,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>diffAdditionalLineBackgroundColor [
+{ #category : #basic-colors-diffs }
+UIThemeWatery >> diffAdditionalLineBackgroundColor [
 	"Answer the color used to show additions in a diff view."
 	^ Color green alpha: 0.2
 ]
 
-{
-	#category : #basic-colors-diffs,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>diffAdditionalTextInLineBackgroundColor [
+{ #category : #basic-colors-diffs }
+UIThemeWatery >> diffAdditionalTextInLineBackgroundColor [
 	"Answer the color used to show addition highlights in a text line."
 	^ self diffAdditionalLineBackgroundColor alpha: 0.4
 ]
 
-{
-	#category : #basic-colors-diffs,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>diffEdgeColor [
+{ #category : #basic-colors-diffs }
+UIThemeWatery >> diffEdgeColor [
 	"Answer the color used to show the border of the changes."
 	^ Color gray alpha: 0.3
 ]
 
-{
-	#category : #basic-colors-diffs,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>diffJoinColor [
+{ #category : #basic-colors-diffs }
+UIThemeWatery >> diffJoinColor [
 	"Answer the color used for the join bar."
 	^ Color paleBlue duller
 ]
 
-{
-	#category : #basic-colors-diffs,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>diffMapColor [
+{ #category : #basic-colors-diffs }
+UIThemeWatery >> diffMapColor [
 	"Answer the color used for the mapping bar on the left side."
 	^ self backgroundColor 
 ]
 
-{
-	#category : #basic-colors-diffs,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>diffModificatedLineBackgroundColor [
+{ #category : #basic-colors-diffs }
+UIThemeWatery >> diffModificatedLineBackgroundColor [
 	"Answer the color used to show changes."
 	^ Color yellow alpha: 0.2
 ]
 
-{
-	#category : #basic-colors-diffs,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>diffRemovalHighlightColor [
+{ #category : #basic-colors-diffs }
+UIThemeWatery >> diffRemovalHighlightColor [
 	"Answer the color used to show removal highligths."
 	^ self diffRemovedLinesBackgroundColor alpha: 0.4
 ]
 
-{
-	#category : #basic-colors-diffs,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>diffRemovedLinesBackgroundColor [
+{ #category : #basic-colors-diffs }
+UIThemeWatery >> diffRemovedLinesBackgroundColor [
 	"Answer the color used to show removals in a diff view."
 	^ Color red alpha: 0.2
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>dockingBarNormalFillStyleFor: aToolDockingBar [
+{ #category : #fill-styles }
+UIThemeWatery >> dockingBarNormalFillStyleFor: aToolDockingBar [
 	"Return the normal docking bar fillStyle for the given color."
 	
 	^aToolDockingBar paneColor
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>drawTextAdornmentFor: aPluggableTextMorph color: aColor on: aCanvas [
+{ #category : #border-styles }
+UIThemeWatery >> drawTextAdornmentFor: aPluggableTextMorph color: aColor on: aCanvas [
 	"Indicate edit status for the given morph."
 	
 	|bounds size fillStyle|
@@ -934,42 +702,30 @@ UIThemeWatery>>drawTextAdornmentFor: aPluggableTextMorph color: aColor on: aCanv
 		fillStyle: fillStyle
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>dropListControlButtonWidth [
+{ #category : #border-styles-buttons }
+UIThemeWatery >> dropListControlButtonWidth [
 	"Answer the width of a drop list control button for this theme."
 	
 	^20
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>dropListDisabledFillStyleFor: aDropList [
+{ #category : #fill-styles }
+UIThemeWatery >> dropListDisabledFillStyleFor: aDropList [
 	"Return the disabled fillStyle for the given drop list."
 	
 	^self dropListNormalFillStyleFor: aDropList
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>dropListFocusBoundsFor: aDropList [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> dropListFocusBoundsFor: aDropList [
 	"Answer the bounds for drawing the focus indication for the
 	given drop list."
 
 	^aDropList bounds
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>dropListFocusIndicatorCornerRadiusFor: aDropList [
+{ #category : #defaults }
+UIThemeWatery >> dropListFocusIndicatorCornerRadiusFor: aDropList [
 	"Answer the default corner radius preferred for the focus indicator
 	for the drop list for themes that support this."
 
@@ -978,22 +734,16 @@ UIThemeWatery>>dropListFocusIndicatorCornerRadiusFor: aDropList [
 		ifFalse: [2]
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>dropListInsetFor: aDropList [
+{ #category : #defaults }
+UIThemeWatery >> dropListInsetFor: aDropList [
 	"Answer the inset to use for drop-list layout."
 	
 	^ Margin left: 6 top: 0 right: 0 bottom: 0
 	
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>dropListNormalBorderStyleFor: aDropList [
+{ #category : #border-styles }
+UIThemeWatery >> dropListNormalBorderStyleFor: aDropList [
 	"Return the normal borderStyle for the given drop list"
 
 	^BorderStyle simple
@@ -1001,11 +751,8 @@ UIThemeWatery>>dropListNormalBorderStyleFor: aDropList [
 		baseColor: Color transparent
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>dropListNormalFillStyleFor: aDropList [
+{ #category : #fill-styles }
+UIThemeWatery >> dropListNormalFillStyleFor: aDropList [
 	"Return the normal fillStyle for the given drop list."
 	
 	|round roundCorners tl t tr l m r bl b br|
@@ -1023,49 +770,34 @@ UIThemeWatery>>dropListNormalFillStyleFor: aDropList [
 		in: aDropList bounds
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>editableDropListMargins [
+{ #category : #defaults }
+UIThemeWatery >> editableDropListMargins [
 	"Answer the text margins for an editable drop list for this theme."
 	^ Margin left: 0 top: 3 right: 2 bottom: 1
 	
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>errorPopperBackgroundColor [
+{ #category : #basic-colors }
+UIThemeWatery >> errorPopperBackgroundColor [
 	^ Color paleRed
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>expanderTitleControlButtonWidth [
+{ #category : #border-styles-buttons }
+UIThemeWatery >> expanderTitleControlButtonWidth [
 	"Answer the width of an expander title control button for this theme."
 	
 	^20
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>expanderTitleInsetFor: aDropList [
+{ #category : #defaults }
+UIThemeWatery >> expanderTitleInsetFor: aDropList [
 	"Answer the inset to use for expander title layout."
 
 	^0
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>expanderTitleNormalFillStyleFor: anExpanderTitle [
+{ #category : #fill-styles }
+UIThemeWatery >> expanderTitleNormalFillStyleFor: anExpanderTitle [
 	"Return the normal expander title fillStyle for the given expander title."
 	
 	|aColor|
@@ -1079,22 +811,16 @@ UIThemeWatery>>expanderTitleNormalFillStyleFor: anExpanderTitle [
 		radial: false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>initialize [
+{ #category : #initialization }
+UIThemeWatery >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
 	self windowActiveDropShadowStyle: #diffuse
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>initializeForms [
+{ #category : #initialize-release }
+UIThemeWatery >> initializeForms [
 	"Initialize the receiver's image forms."
 
 	super initializeForms.
@@ -1141,11 +867,8 @@ UIThemeWatery>>initializeForms [
 
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>listNormalBorderStyleFor: aList [
+{ #category : #border-styles }
+UIThemeWatery >> listNormalBorderStyleFor: aList [
 	"Return the normal borderStyle for the given list"
 
 	^BorderStyle simple
@@ -1153,11 +876,8 @@ UIThemeWatery>>listNormalBorderStyleFor: aList [
 		baseColor: aList paneColor
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>menuItemInDockingBarSelectedFillStyleFor: aMenuItem [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> menuItemInDockingBarSelectedFillStyleFor: aMenuItem [
 	"Answer the selected fill style to use for the given menu item that is in a docking bar."
 	
 	| fill baseColor |
@@ -1172,11 +892,8 @@ UIThemeWatery>>menuItemInDockingBarSelectedFillStyleFor: aMenuItem [
 	^ fill
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>menuItemSelectedFillStyleFor: aMenuItem [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> menuItemSelectedFillStyleFor: aMenuItem [
 	"Answer the selected fill style to use for the given menu item."
 	
 	| fill baseColor preferenced |
@@ -1194,11 +911,8 @@ UIThemeWatery>>menuItemSelectedFillStyleFor: aMenuItem [
 	^ fill
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonBottomLeftForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonBottomLeftForm [
 	"Answer the form for the bottom left of a button."
 
 	^(Form
@@ -1208,11 +922,8 @@ UIThemeWatery>>newButtonBottomLeftForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonBottomMiddleForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonBottomMiddleForm [
 	"Answer the form for the bottom middle of a button."
 
 	^(Form
@@ -1222,11 +933,8 @@ UIThemeWatery>>newButtonBottomMiddleForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonBottomRightForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonBottomRightForm [
 	"Answer the form for the bottom right of a button."
 
 	^(Form
@@ -1236,11 +944,8 @@ UIThemeWatery>>newButtonBottomRightForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonMiddleLeftForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonMiddleLeftForm [
 	"Answer the form for the middle left of a button."
 
 	^(Form
@@ -1250,11 +955,8 @@ UIThemeWatery>>newButtonMiddleLeftForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonMiddleRightForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonMiddleRightForm [
 	"Answer the form for the middle right of a button."
 
 	^(Form
@@ -1264,11 +966,8 @@ UIThemeWatery>>newButtonMiddleRightForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonSelectedBottomLeftForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonSelectedBottomLeftForm [
 	"Answer the form for the bottom left of a selected button."
 
 	^(Form
@@ -1278,11 +977,8 @@ UIThemeWatery>>newButtonSelectedBottomLeftForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonSelectedBottomMiddleForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonSelectedBottomMiddleForm [
 	"Answer the form for the bottom middle of a selected button."
 
 	^(Form
@@ -1292,11 +988,8 @@ UIThemeWatery>>newButtonSelectedBottomMiddleForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonSelectedBottomRightForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonSelectedBottomRightForm [
 	"Answer the form for the bottom right of a selected button."
 
 	^(Form
@@ -1306,11 +999,8 @@ UIThemeWatery>>newButtonSelectedBottomRightForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonSelectedMiddleLeftForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonSelectedMiddleLeftForm [
 	"Answer the form for the middle left of a selected button."
 
 	^(Form
@@ -1320,11 +1010,8 @@ UIThemeWatery>>newButtonSelectedMiddleLeftForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonSelectedMiddleRightForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonSelectedMiddleRightForm [
 	"Answer the form for the middle right of a selected button."
 
 	^(Form
@@ -1334,11 +1021,8 @@ UIThemeWatery>>newButtonSelectedMiddleRightForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonSelectedTopLeftForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonSelectedTopLeftForm [
 	"Answer the form for the top left of a selected button."
 
 	^(Form
@@ -1348,11 +1032,8 @@ UIThemeWatery>>newButtonSelectedTopLeftForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonSelectedTopMiddleForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonSelectedTopMiddleForm [
 	"Answer the form for the top middle of a selected button."
 
 	^(Form
@@ -1362,11 +1043,8 @@ UIThemeWatery>>newButtonSelectedTopMiddleForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonSelectedTopRightForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonSelectedTopRightForm [
 	"Answer the form for the top right of a selected button."
 
 	^(Form
@@ -1376,11 +1054,8 @@ UIThemeWatery>>newButtonSelectedTopRightForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonSquareBottomLeftForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonSquareBottomLeftForm [
 	"Answer the form for the bottom left of a square button."
 
 	^(Form
@@ -1390,11 +1065,8 @@ UIThemeWatery>>newButtonSquareBottomLeftForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonSquareBottomRightForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonSquareBottomRightForm [
 	"Answer the form for the bottom right of a square button."
 
 	^(Form
@@ -1404,11 +1076,8 @@ UIThemeWatery>>newButtonSquareBottomRightForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonSquareSelectedBottomLeftForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonSquareSelectedBottomLeftForm [
 	"Answer the form for the bottom left of a selected square button."
 
 	^(Form
@@ -1418,11 +1087,8 @@ UIThemeWatery>>newButtonSquareSelectedBottomLeftForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonSquareSelectedBottomRightForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonSquareSelectedBottomRightForm [
 	"Answer the form for the bottom right of a selected square button."
 
 	^(Form
@@ -1432,11 +1098,8 @@ UIThemeWatery>>newButtonSquareSelectedBottomRightForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonSquareSelectedTopLeftForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonSquareSelectedTopLeftForm [
 	"Answer the form for the top left of a selected square button."
 
 	^(Form
@@ -1446,11 +1109,8 @@ UIThemeWatery>>newButtonSquareSelectedTopLeftForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonSquareSelectedTopRightForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonSquareSelectedTopRightForm [
 	"Answer the form for the top right of a selected square button."
 
 	^(Form
@@ -1460,11 +1120,8 @@ UIThemeWatery>>newButtonSquareSelectedTopRightForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonSquareTopLeftForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonSquareTopLeftForm [
 	"Answer the form for the top left of a square button."
 
 	^(Form
@@ -1474,11 +1131,8 @@ UIThemeWatery>>newButtonSquareTopLeftForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonSquareTopRightForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonSquareTopRightForm [
 	"Answer the form for the top right of a square button."
 
 	^(Form
@@ -1488,11 +1142,8 @@ UIThemeWatery>>newButtonSquareTopRightForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonTopLeftForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonTopLeftForm [
 	"Answer the form for the top left of a button."
 
 	^(Form
@@ -1502,11 +1153,8 @@ UIThemeWatery>>newButtonTopLeftForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonTopMiddleForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonTopMiddleForm [
 	"Answer the form for the top middle of a button."
 
 	^(Form
@@ -1516,11 +1164,8 @@ UIThemeWatery>>newButtonTopMiddleForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newButtonTopRightForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newButtonTopRightForm [
 	"Answer the form for the top right of a button."
 
 	^(Form
@@ -1530,11 +1175,8 @@ UIThemeWatery>>newButtonTopRightForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newCheckboxForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newCheckboxForm [
 	"Answer the form for a normal checkbox."
 
 	^(Form
@@ -1544,11 +1186,8 @@ UIThemeWatery>>newCheckboxForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newCheckboxMarkerForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newCheckboxMarkerForm [
 	"Answer a new checkbox marker form."
 
 	^(Form
@@ -1558,11 +1197,8 @@ UIThemeWatery>>newCheckboxMarkerForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newCheckboxSelectedForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newCheckboxSelectedForm [
 	"Answer the form for a selected checkbox."
 
 	^(Form
@@ -1572,11 +1208,8 @@ UIThemeWatery>>newCheckboxSelectedForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newCloseControlIn: aThemedMorph for: aModel action: aValuable help: helpText [
+{ #category : #'morph creation' }
+UIThemeWatery >> newCloseControlIn: aThemedMorph for: aModel action: aValuable help: helpText [
 	"Answer a button for closing things."
 	
 	|form msb|
@@ -1603,11 +1236,8 @@ UIThemeWatery>>newCloseControlIn: aThemedMorph for: aModel action: aValuable hel
 	^msb
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newDialogPanelIn: aThemedMorph [
+{ #category : #'morph creation' }
+UIThemeWatery >> newDialogPanelIn: aThemedMorph [
 	"Answer a new (main) dialog panel."
 
 	^(super 
@@ -1615,11 +1245,8 @@ UIThemeWatery>>newDialogPanelIn: aThemedMorph [
 		fillStyle: (SolidFillStyle color: Color transparent) "no pane colour tracking"
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newFocusIndicatorMorphFor: aMorph [
+{ #category : #'morph creation' }
+UIThemeWatery >> newFocusIndicatorMorphFor: aMorph [
 	"Answer a new focus indicator for the given morph."
 
 	|radius|
@@ -1638,11 +1265,8 @@ UIThemeWatery>>newFocusIndicatorMorphFor: aMorph [
 		bounds: aMorph focusBounds
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newRadioButtonForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newRadioButtonForm [
 	"Answer the form for a normal radio button."
 
 	^(Form
@@ -1652,11 +1276,8 @@ UIThemeWatery>>newRadioButtonForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newRadioButtonMarkerForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newRadioButtonMarkerForm [
 	"Answer a new radio button marker form."
 
 	^(Form
@@ -1666,11 +1287,8 @@ UIThemeWatery>>newRadioButtonMarkerForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newRadioButtonSelectedForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newRadioButtonSelectedForm [
 	"Answer the form for a selected radio button."
 
 	^(Form
@@ -1680,11 +1298,8 @@ UIThemeWatery>>newRadioButtonSelectedForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newScrollbarThumbBottomForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newScrollbarThumbBottomForm [
 	"Answer the form for the bottom of a scrollbar thumb."
 
 	^(Form
@@ -1694,11 +1309,8 @@ UIThemeWatery>>newScrollbarThumbBottomForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newScrollbarThumbHorizontalMiddleForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newScrollbarThumbHorizontalMiddleForm [
 	"Answer the form for the middle of a horizontal scrollbar thumb."
 
 	^(Form
@@ -1708,11 +1320,8 @@ UIThemeWatery>>newScrollbarThumbHorizontalMiddleForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newScrollbarThumbLeftForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newScrollbarThumbLeftForm [
 	"Answer the form for the left hand side of a scrollbar thumb."
 
 	^(Form
@@ -1722,11 +1331,8 @@ UIThemeWatery>>newScrollbarThumbLeftForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newScrollbarThumbRightForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newScrollbarThumbRightForm [
 	"Answer the form for the right hand side of a scrollbar thumb."
 
 	^(Form
@@ -1736,11 +1342,8 @@ UIThemeWatery>>newScrollbarThumbRightForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newScrollbarThumbTopForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newScrollbarThumbTopForm [
 	"Answer the form for the top of a scrollbar thumb."
 
 	^(Form
@@ -1750,11 +1353,8 @@ UIThemeWatery>>newScrollbarThumbTopForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newScrollbarThumbVerticalMiddleForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newScrollbarThumbVerticalMiddleForm [
 	"Answer the form for the middle of a vertical scrollbar thumb."
 
 	^(Form
@@ -1764,11 +1364,8 @@ UIThemeWatery>>newScrollbarThumbVerticalMiddleForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newTaskbarThumbnailIn: aThemedMorph for: aWindow [
+{ #category : #'morph creation' }
+UIThemeWatery >> newTaskbarThumbnailIn: aThemedMorph for: aWindow [
 	"Answer a taskbar thumbnail morph for the given window."
 
 	|answer thumb|
@@ -1792,11 +1389,8 @@ UIThemeWatery>>newTaskbarThumbnailIn: aThemedMorph for: aWindow [
 			
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newTreeExpandedForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newTreeExpandedForm [
 	"Answer a new form for an expanded tree item."
 
 	^(Form
@@ -1806,11 +1400,8 @@ UIThemeWatery>>newTreeExpandedForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newTreeUnexpandedForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newTreeUnexpandedForm [
 	"Answer a new form for an unexpanded tree item."
 
 	^(Form
@@ -1820,11 +1411,8 @@ UIThemeWatery>>newTreeUnexpandedForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newWindowCloseForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newWindowCloseForm [
 	"Answer a new form for a window close box."
 
 	^(Form
@@ -1834,11 +1422,8 @@ UIThemeWatery>>newWindowCloseForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newWindowCloseOverForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newWindowCloseOverForm [
 	"Answer a new form for a window close box for use when the mouse is over it."
 
 	^(Form
@@ -1848,11 +1433,8 @@ UIThemeWatery>>newWindowCloseOverForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newWindowInactiveControlForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newWindowInactiveControlForm [
 	"Answer a new form for an inactive window control box."
 
 	^(Form
@@ -1862,11 +1444,8 @@ UIThemeWatery>>newWindowInactiveControlForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newWindowMaximizeForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newWindowMaximizeForm [
 	"Answer a new form for a window minimize box."
 
 	^(Form
@@ -1876,11 +1455,8 @@ UIThemeWatery>>newWindowMaximizeForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newWindowMaximizeOverForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newWindowMaximizeOverForm [
 	"Answer a new form for a window maximize box for use when the mouse is over it."
 
 	^(Form
@@ -1890,11 +1466,8 @@ UIThemeWatery>>newWindowMaximizeOverForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newWindowMenuForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newWindowMenuForm [
 	"Answer a new form for a window menu box."
 
 	^(Form
@@ -1904,11 +1477,8 @@ UIThemeWatery>>newWindowMenuForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newWindowMenuOverForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newWindowMenuOverForm [
 	"Answer a new form for a window menu box when the mouse is over it."
 
 	^(Form
@@ -1918,11 +1488,8 @@ UIThemeWatery>>newWindowMenuOverForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newWindowMenuPassiveForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newWindowMenuPassiveForm [
 	"Answer a new form for a window menu box when inactive."
 
 	^(Form
@@ -1932,11 +1499,8 @@ UIThemeWatery>>newWindowMenuPassiveForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newWindowMinimizeForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newWindowMinimizeForm [
 	"Answer a new form for a window minimize box."
 
 	^(Form
@@ -1946,11 +1510,8 @@ UIThemeWatery>>newWindowMinimizeForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>newWindowMinimizeOverForm [
+{ #category : #initialize-release }
+UIThemeWatery >> newWindowMinimizeOverForm [
 	"Answer a new form for a window maximize box for use when the mouse is over it."
 
 	^(Form
@@ -1960,11 +1521,8 @@ UIThemeWatery>>newWindowMinimizeOverForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>paneColorFor: aWindow [
+{ #category : #fill-styles }
+UIThemeWatery >> paneColorFor: aWindow [
 	"Answer the pane color that should be used."
 	
 	^self settings fadedBackgroundWindows
@@ -1972,11 +1530,8 @@ UIThemeWatery>>paneColorFor: aWindow [
 		ifFalse: [(self windowActiveFillStyleFor: aWindow) asColor]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>progressBarFillStyleFor: aProgressBar [
+{ #category : #fill-styles }
+UIThemeWatery >> progressBarFillStyleFor: aProgressBar [
 	"Return the progress bar fillStyle for the given progress bar."
 	
 	|area c|
@@ -1994,11 +1549,8 @@ UIThemeWatery>>progressBarFillStyleFor: aProgressBar [
 		radial: false
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>progressBarProgressFillStyleFor: aProgressBar [
+{ #category : #fill-styles }
+UIThemeWatery >> progressBarProgressFillStyleFor: aProgressBar [
 	"Return the progress bar progress fillStyle for the given progress bar."
 	
 	|area c|
@@ -2016,11 +1568,8 @@ UIThemeWatery>>progressBarProgressFillStyleFor: aProgressBar [
 		radial: false
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>radioButtonCornerStyleFor: aRadioButton [
+{ #category : #border-styles-buttons }
+UIThemeWatery >> radioButtonCornerStyleFor: aRadioButton [
 	"Answer the corner style for radio buttons.
 	Answer square when not disabled since the form is rounded."
 	
@@ -2029,71 +1578,50 @@ UIThemeWatery>>radioButtonCornerStyleFor: aRadioButton [
 		ifFalse: [#rounded]
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>radioButtonDisabledFillStyleFor: aRadioButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> radioButtonDisabledFillStyleFor: aRadioButton [
 	"Return the disabled radio button fillStyle for the given button."
 	
 	^self radioButtonNormalFillStyleFor: aRadioButton
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>radioButtonForm [
+{ #category : #fill-styles }
+UIThemeWatery >> radioButtonForm [
 	"Answer the form to use for a normal radio button."
 
 	^self forms at: #radioButton ifAbsent: [Form extent: 14@14 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>radioButtonNormalFillStyleFor: aRadioButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> radioButtonNormalFillStyleFor: aRadioButton [
 	"Return the normal radio button fillStyle for the given button."
 	
 	^(ImageFillStyle form: self radioButtonForm) origin: aRadioButton topLeft
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>radioButtonSelectedDisabledFillStyleFor: aRadioButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> radioButtonSelectedDisabledFillStyleFor: aRadioButton [
 	"Return the selected disabled radio button fillStyle for the given button."
 	
 	^self radioButtonNormalFillStyleFor: aRadioButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>radioButtonSelectedFillStyleFor: aRadioButton [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> radioButtonSelectedFillStyleFor: aRadioButton [
 	"Return the selected radio button fillStyle for the given button."
 	
 	^(ImageFillStyle form: self radioButtonSelectedForm) origin: aRadioButton topLeft
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>radioButtonSelectedForm [
+{ #category : #fill-styles }
+UIThemeWatery >> radioButtonSelectedForm [
 	"Answer the form to use for a selected radio button."
 
 	^self forms at: #radioButtonSelected ifAbsent: [Form extent: 14@14 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>resizerGripNormalFillStyleFor: aResizer [
+{ #category : #fill-styles }
+UIThemeWatery >> resizerGripNormalFillStyleFor: aResizer [
 	"Return the normal fillStyle for the given resizer.
 	For the moment, answer a transparent colour for no drawing,
 	non transparent to draw as normal."
@@ -2101,11 +1629,8 @@ UIThemeWatery>>resizerGripNormalFillStyleFor: aResizer [
 	^Color transparent
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollPaneNormalBorderStyleFor: aScrollPane [
+{ #category : #border-styles }
+UIThemeWatery >> scrollPaneNormalBorderStyleFor: aScrollPane [
 	"Return the normal borderStyle for the given scroll pane."
 
 	^BorderStyle simple
@@ -2113,43 +1638,31 @@ UIThemeWatery>>scrollPaneNormalBorderStyleFor: aScrollPane [
 		baseColor: aScrollPane paneColor
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarImageColorFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UIThemeWatery >> scrollbarImageColorFor: aScrollbar [
 	"Return the scrollbar image colour (on buttons) for the given scrollbar."
 	
 	^(self baseScrollbarColorFor: aScrollbar) darker
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarMinimumThumbThickness [
+{ #category : #defaults }
+UIThemeWatery >> scrollbarMinimumThumbThickness [
 	"Answer the minumum width or height of a scrollbar thumb 
 	as appropriate to its orientation."
 	
 	^15
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarNormalButtonBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+UIThemeWatery >> scrollbarNormalButtonBorderStyleFor: aScrollbar [
 	"Return the normal button borderStyle for the given scrollbar."
 
 	^BorderStyle simple
 		width: 0
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarNormalButtonFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UIThemeWatery >> scrollbarNormalButtonFillStyleFor: aScrollbar [
 	"Return the normal scrollbar button fillStyle for the given scrollbar."
 	
 	|c|
@@ -2162,11 +1675,8 @@ UIThemeWatery>>scrollbarNormalButtonFillStyleFor: aScrollbar [
 		radial: false
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarNormalFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UIThemeWatery >> scrollbarNormalFillStyleFor: aScrollbar [
 	"Return the normal scrollbar fillStyle for the given scrollbar."
 	
 	|aColor c|
@@ -2180,11 +1690,8 @@ UIThemeWatery>>scrollbarNormalFillStyleFor: aScrollbar [
 		radial: false
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarNormalHorizontalThumbFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UIThemeWatery >> scrollbarNormalHorizontalThumbFillStyleFor: aScrollbar [
 	"Return the normal scrollbar horizontal thumb fillStyle for the given scrollbar."
 	
 	|s l m r|
@@ -2201,21 +1708,15 @@ UIThemeWatery>>scrollbarNormalHorizontalThumbFillStyleFor: aScrollbar [
 			origin: s topRight - (r width@0)}
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarNormalThumbBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+UIThemeWatery >> scrollbarNormalThumbBorderStyleFor: aScrollbar [
 	"Return the normal thumb borderStyle for the given scrollbar."
 
 	^BorderStyle simple width: 0
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarNormalThumbFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UIThemeWatery >> scrollbarNormalThumbFillStyleFor: aScrollbar [
 	"Return the normal scrollbar thumb fillStyle for the given scrollbar."
 	
 	^aScrollbar bounds isWide
@@ -2223,11 +1724,8 @@ UIThemeWatery>>scrollbarNormalThumbFillStyleFor: aScrollbar [
 		ifFalse: [self scrollbarNormalVerticalThumbFillStyleFor: aScrollbar]
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarNormalVerticalThumbFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+UIThemeWatery >> scrollbarNormalVerticalThumbFillStyleFor: aScrollbar [
 	"Return the normal scrollbar vertical thumb fillStyle for the given scrollbar."
 	
 	|s t m b|
@@ -2244,101 +1742,71 @@ UIThemeWatery>>scrollbarNormalVerticalThumbFillStyleFor: aScrollbar [
 			origin: s bottomLeft - (0@b height)}
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarPagingAreaCornerStyleIn: aThemedMorph [
+{ #category : #border-styles-scrollbars }
+UIThemeWatery >> scrollbarPagingAreaCornerStyleIn: aThemedMorph [
 	"Allow for themes to override default behaviour."
 	
 	^#rounded
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarPressedButtonBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+UIThemeWatery >> scrollbarPressedButtonBorderStyleFor: aScrollbar [
 	"Return the pressed button borderStyle for the given scrollbar."
 	^ self scrollbarNormalButtonBorderStyleFor: aScrollbar
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarThickness [
+{ #category : #defaults }
+UIThemeWatery >> scrollbarThickness [
 	"Answer the width or height of a scrollbar as appropriate to
 	its orientation."
 	
 	^13
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarThumbBottomForm [
+{ #category : #fill-styles }
+UIThemeWatery >> scrollbarThumbBottomForm [
 	"Answer the form to use for the bottom of a vertical scrollbar."
 
 	^self forms at: #sbVThumbBottom ifAbsent: [Form extent: 13@7 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarThumbHorizontalMiddleForm [
+{ #category : #fill-styles }
+UIThemeWatery >> scrollbarThumbHorizontalMiddleForm [
 	"Answer the form to use for the middle of a horizontal scrollbar."
 
 	^self forms at: #sbHThumbMiddle ifAbsent: [Form extent: 1@13 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarThumbLeftForm [
+{ #category : #fill-styles }
+UIThemeWatery >> scrollbarThumbLeftForm [
 	"Answer the form to use for the left of a horizontal scrollbar."
 
 	^self forms at: #sbHThumbLeft ifAbsent: [Form extent: 7@13 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarThumbRightForm [
+{ #category : #fill-styles }
+UIThemeWatery >> scrollbarThumbRightForm [
 	"Answer the form to use for the right of a horizontal scrollbar."
 
 	^self forms at: #sbHThumbRight ifAbsent: [Form extent: 7@13 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarThumbTopForm [
+{ #category : #fill-styles }
+UIThemeWatery >> scrollbarThumbTopForm [
 	"Answer the form to use for the top of a vertical scrollbar."
 
 	^self forms at: #sbVThumbTop ifAbsent: [Form extent: 13@7 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>scrollbarThumbVerticalMiddleForm [
+{ #category : #fill-styles }
+UIThemeWatery >> scrollbarThumbVerticalMiddleForm [
 	"Answer the form to use for the middle of a vertical scrollbar."
 
 	^self forms at: #sbVThumbMiddle ifAbsent: [Form extent: 13@1 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>splitterNormalFillStyleFor: aSplitter [
+{ #category : #fill-styles }
+UIThemeWatery >> splitterNormalFillStyleFor: aSplitter [
 	"Return the normal splitter fillStyle for the given splitter."
 	
 	|aColor|
@@ -2352,11 +1820,8 @@ UIThemeWatery>>splitterNormalFillStyleFor: aSplitter [
 		radial: false
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>splitterPressedFillStyleFor: aSplitter [
+{ #category : #fill-styles }
+UIThemeWatery >> splitterPressedFillStyleFor: aSplitter [
 	"Return the pressed splitter fillStyle for the given splitter."
 	
 	|aColor|
@@ -2370,21 +1835,15 @@ UIThemeWatery>>splitterPressedFillStyleFor: aSplitter [
 		radial: false
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>tabLabelInsetFor: aButton [
+{ #category : #defaults }
+UIThemeWatery >> tabLabelInsetFor: aButton [
 	"Answer the inset to use for a tab label."
 	^ Margin left: 8 top: 2 right: 8 bottom: 2
 
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>tabLabelNormalFillStyleFor: aTabLabel [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> tabLabelNormalFillStyleFor: aTabLabel [
 	"Return the normal fillStyle for the given tab label."
 	
 	|round roundCorners tl t tr l m r|
@@ -2399,11 +1858,8 @@ UIThemeWatery>>tabLabelNormalFillStyleFor: aTabLabel [
 		in: aTabLabel bounds
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>tabLabelSelectedFillStyleFor: aTabLabel [
+{ #category : #fill-styles-buttons }
+UIThemeWatery >> tabLabelSelectedFillStyleFor: aTabLabel [
 	"Return the selected fillStyle for the given tab label."
 	
 	|round roundCorners tl t tr l m r|
@@ -2418,11 +1874,8 @@ UIThemeWatery>>tabLabelSelectedFillStyleFor: aTabLabel [
 		in: aTabLabel bounds
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>tabPanelBorderStyleFor: aTabGroup [
+{ #category : #border-styles }
+UIThemeWatery >> tabPanelBorderStyleFor: aTabGroup [
 	"Answer the normal border style for a tab group."
 
 	^TabPanelBorder new
@@ -2431,31 +1884,22 @@ UIThemeWatery>>tabPanelBorderStyleFor: aTabGroup [
 		tabSelector: aTabGroup tabSelectorMorph
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>tabSelectorCellInsetFor: aTabSelector [
+{ #category : #defaults }
+UIThemeWatery >> tabSelectorCellInsetFor: aTabSelector [
 	"Answer the cell inset to use for the given tab selector."
 
 	^0
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>taskbarActiveButtonColorFor: aButton [
+{ #category : #basic-colors }
+UIThemeWatery >> taskbarActiveButtonColorFor: aButton [
 	"Answer the colour for the given active taskbar button."
 
 	^self scrollbarColor alphaMixed: 0.7 with: Color white
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>taskbarButtonLabelColorFor: aButton [
+{ #category : #basic-colors }
+UIThemeWatery >> taskbarButtonLabelColorFor: aButton [
 	"Answer the colour for the label of the given taskbar button."
 
 	^aButton model
@@ -2466,11 +1910,8 @@ UIThemeWatery>>taskbarButtonLabelColorFor: aButton [
 				ifFalse: [super taskbarButtonLabelColorFor: aButton]]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>taskbarFillStyleFor: aTaskbar [
+{ #category : #fill-styles }
+UIThemeWatery >> taskbarFillStyleFor: aTaskbar [
 	"Return the taskbar fillStyle for the given taskbar."
 	
 	|aColor c cm cd cb|
@@ -2485,102 +1926,72 @@ UIThemeWatery>>taskbarFillStyleFor: aTaskbar [
 		radial: false
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>taskbarMinimizedButtonColorFor: aButton [
+{ #category : #basic-colors }
+UIThemeWatery >> taskbarMinimizedButtonColorFor: aButton [
 	"Answer the colour for the given minimized taskbar button."
 
 	^Color transparent
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>textEditorDisabledFillStyleFor: aTextEditor [
+{ #category : #fill-styles }
+UIThemeWatery >> textEditorDisabledFillStyleFor: aTextEditor [
 	"Return the disabled fillStyle for the given text editor."
 	
 	^self windowColor lighter
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>textEntryCornerStyleIn: aThemedMorph [
+{ #category : #border-styles-buttons }
+UIThemeWatery >> textEntryCornerStyleIn: aThemedMorph [
 	"Answer the corner style to use for text entry morphs."
 	
 	^#square
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>textFieldNormalFillStyleFor: aTextField [
+{ #category : #fill-styles }
+UIThemeWatery >> textFieldNormalFillStyleFor: aTextField [
 	"Return the normal fillStyle for the given text field."
 	
 	^ Color white
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>treeLineWidth [
+{ #category : #defaults }
+UIThemeWatery >> treeLineWidth [
 	"Answer the width of the tree lines."
 
 	^0
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>useScrollbarThumbShadow [
+{ #category : #fill-styles-scrollbars }
+UIThemeWatery >> useScrollbarThumbShadow [
 	"Answer whether a shadow morph should be displayed when
 	dragging a scrollbar thumb."
 
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>windowActiveDropShadowStyle [
+{ #category : #accessing }
+UIThemeWatery >> windowActiveDropShadowStyle [
 	"Answer the style of drop shadow to use for active windows."
 	
 	^windowActiveDropShadowStyle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>windowActiveDropShadowStyle: anObject [
+{ #category : #accessing }
+UIThemeWatery >> windowActiveDropShadowStyle: anObject [
 	"Set the value of windowActiveDropShadowStyle"
 
 	windowActiveDropShadowStyle := anObject
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>windowActiveFillStyleFor: aWindow [
+{ #category : #fill-styles }
+UIThemeWatery >> windowActiveFillStyleFor: aWindow [
 	"Return the window active fillStyle for the given window."
 	
 	^self windowColor
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>windowActiveTitleFillStyleFor: aWindow [
+{ #category : #fill-styles }
+UIThemeWatery >> windowActiveTitleFillStyleFor: aWindow [
 	"Return the window active title fillStyle for the given window."
 	
 	|aColor|
@@ -2593,31 +2004,22 @@ UIThemeWatery>>windowActiveTitleFillStyleFor: aWindow [
 		radial: false
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>windowCloseOverForm [
+{ #category : #label-styles }
+UIThemeWatery >> windowCloseOverForm [
 	"Answer the form to use for mouse over window close buttons"
 
 	^self forms at: #windowCloseOver ifAbsent: [Form extent: 16@16 depth: Display depth]
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>windowClosePassiveForm [
+{ #category : #label-styles }
+UIThemeWatery >> windowClosePassiveForm [
 	"Answer the form to use for passive (background) window close buttons"
 
 	^self forms at: #windowClosePassive ifAbsent: [Form extent: 16@16 depth: Display depth]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>windowInactiveFillStyleFor: aWindow [
+{ #category : #fill-styles }
+UIThemeWatery >> windowInactiveFillStyleFor: aWindow [
 	"Return the window inactive fillStyle for the given window."
 	
 	^self settings fadedBackgroundWindows
@@ -2626,11 +2028,8 @@ UIThemeWatery>>windowInactiveFillStyleFor: aWindow [
 
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>windowInactiveTitleFillStyleFor: aWindow [
+{ #category : #fill-styles }
+UIThemeWatery >> windowInactiveTitleFillStyleFor: aWindow [
 	"Return the window inactive title fillStyle for the given window."
 	
 	|aColor|
@@ -2643,81 +2042,57 @@ UIThemeWatery>>windowInactiveTitleFillStyleFor: aWindow [
 		radial: false
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>windowMaximizeOverForm [
+{ #category : #label-styles }
+UIThemeWatery >> windowMaximizeOverForm [
 	"Answer the form to use for mouse over window maximize buttons"
 
 	^self forms at: #windowMaximizeOver ifAbsent: [Form extent: 16@16 depth: Display depth]
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>windowMaximizePassiveForm [
+{ #category : #label-styles }
+UIThemeWatery >> windowMaximizePassiveForm [
 	"Answer the form to use for passive (background) window maximize/restore buttons"
 
 	^self forms at: #windowMaximizePassive ifAbsent: [Form extent: 16@16 depth: Display depth]
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>windowMenuIconFor: aWindow [
+{ #category : #label-styles }
+UIThemeWatery >> windowMenuIconFor: aWindow [
 	"Answer the menu icon for the given window."
 	
 	^ self windowMenuForm
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>windowMenuOverForm [
+{ #category : #label-styles }
+UIThemeWatery >> windowMenuOverForm [
 	"Answer the form to use for mouse over window menu buttons"
 
 	^self forms at: #windowMenuOver ifAbsent: [Form extent: 16@16 depth: Display depth]
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>windowMenuPassiveForm [
+{ #category : #label-styles }
+UIThemeWatery >> windowMenuPassiveForm [
 	"Answer the form to use for inactive window menu buttons"
 
 	^self forms at: #windowMenuPassive ifAbsent: [Form extent: 16@16 depth: Display depth]
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>windowMinimizeOverForm [
+{ #category : #label-styles }
+UIThemeWatery >> windowMinimizeOverForm [
 	"Answer the form to use for mouse over window minimize buttons"
 
 	^self forms at: #windowMinimizeOver ifAbsent: [Form extent: 16@16 depth: Display depth]
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>windowMinimizePassiveForm [
+{ #category : #label-styles }
+UIThemeWatery >> windowMinimizePassiveForm [
 	"Answer the form to use for passive (background) window minimize buttons"
 
 	^self forms at: #windowMinimizePassive ifAbsent: [Form extent: 16@16 depth: Display depth]
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>windowPaneBorderStyleFor: aMorph in: aSystemWindow [
+{ #category : #border-styles }
+UIThemeWatery >> windowPaneBorderStyleFor: aMorph [ in: aSystemWindow
 	"Answer the border style for a morph that is to be added
 	as a pane in the given system window,"
 
@@ -2726,11 +2101,8 @@ UIThemeWatery>>windowPaneBorderStyleFor: aMorph in: aSystemWindow [
 		width: (aMorph borderWidth = 0 ifTrue: [0] ifFalse: [1])
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>worldMainDockingBarBorderStyleFor: aDockingBar [
+{ #category : #border-styles }
+UIThemeWatery >> worldMainDockingBarBorderStyleFor: aDockingBar [
 	"Return the world main docking bar borderStyle for the given docking bar."
 
 	^BorderStyle simple
@@ -2738,11 +2110,8 @@ UIThemeWatery>>worldMainDockingBarBorderStyleFor: aDockingBar [
 		color: Color transparent
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-UIThemeWatery>>worldMainDockingBarNormalFillStyleFor: aDockingBar [
+{ #category : #fill-styles }
+UIThemeWatery >> worldMainDockingBarNormalFillStyleFor: aDockingBar [
 	"Return the world main docking bar fillStyle for the given docking bar."
 	
 	|aColor|

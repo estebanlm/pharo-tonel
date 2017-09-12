@@ -1,39 +1,25 @@
-Extension {
-	#name : #MCPatchOperation
-}
+Extension { #name : #MCPatchOperation }
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCPatchOperation>>isMethodPatch [
+{ #category : #'*Komitter-UI' }
+MCPatchOperation >> isMethodPatch [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCPatchOperation>>koClass [
+{ #category : #'*Komitter-UI' }
+MCPatchOperation >> koClass [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCPatchOperation>>koDefinition [
+{ #category : #'*Komitter-UI' }
+MCPatchOperation >> koDefinition [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCPatchOperation>>koMethod [
+{ #category : #'*Komitter-UI' }
+MCPatchOperation >> koMethod [
 
 	^ self subclassResponsibility
 ]

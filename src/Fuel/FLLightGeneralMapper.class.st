@@ -4,15 +4,11 @@ I know how to map an object to its default cluster. I can map every object.
 Class {
 	#name : #FLLightGeneralMapper,
 	#superclass : #FLMapper,
-	#category : #Fuel-Mappers,
-	#timestamp : '<historical>'
+	#category : #Fuel-Mappers
 }
 
-{
-	#category : #protected-mapping,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>clusterClassForSmallInteger: aSmallInteger [
+{ #category : #protected-mapping }
+FLLightGeneralMapper >> clusterClassForSmallInteger: aSmallInteger [
 
 	aSmallInteger >= 0 ifTrue: [
 		aSmallInteger <= 255 ifTrue: [^ FLPositive8SmallIntegerCluster].
@@ -28,59 +24,41 @@ FLLightGeneralMapper>>clusterClassForSmallInteger: aSmallInteger [
 
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>mapAndTrace: anObject [
+{ #category : #mapping }
+FLLightGeneralMapper >> mapAndTrace: anObject [
 
 	anObject fuelAccept: self
 
 ]
 
-{
-	#category : #protected-mapping,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>mapAndTraceInstanceSideGlobal: aClassOrTrait [
+{ #category : #protected-mapping }
+FLLightGeneralMapper >> mapAndTraceInstanceSideGlobal: aClassOrTrait [
 
 	(self clusterKeyedByClusterName: FLGlobalClassCluster)
 		add: aClassOrTrait traceWith: analysis
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitBytesObject: anObject [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitBytesObject: anObject [
 
 	self mapAndTraceByObjectClass: anObject to: FLByteObjectCluster
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitClass: aClass [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitClass: aClass [
 
 	self mapAndTraceInstanceSideGlobal: aClass
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitClassTrait: aClassTrait [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitClassTrait: aClassTrait [
 
 	self mapAndTraceByClusterName: aClassTrait to: FLGlobalClassSideCluster
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitCompiledMethod: aCompiledMethod [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitCompiledMethod: aCompiledMethod [
 	(aCompiledMethod isInstalled not or: [aCompiledMethod isDoIt ])
 		ifTrue: [ self mapAndTraceByClusterName: aCompiledMethod to: FLCompiledMethodCluster ]
 		ifFalse: [self mapAndTraceByClusterName: aCompiledMethod to: FLGlobalCompiledMethodCluster]
@@ -89,125 +67,86 @@ FLLightGeneralMapper>>visitCompiledMethod: aCompiledMethod [
 	
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitDictionary: aDictionary [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitDictionary: aDictionary [
 
 	self mapAndTraceByObjectClass: aDictionary to: FLDictionaryCollectionCluster
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitFixedObject: anObject [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitFixedObject: anObject [
 
 	self mapAndTraceByObjectClass: anObject to: FLFixedObjectCluster
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitGlobalSend: anObject name: globalName selector: aSymbol [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitGlobalSend: anObject name: globalName selector: aSymbol [
 
 	(self clusterKeyedByClusterName: FLGlobalSendCluster)
 		add: anObject name: globalName selector: aSymbol traceWith: analysis
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitHookPrimitive: anObject [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitHookPrimitive: anObject [
 
 	self mapAndTraceByObjectClass: anObject to: FLHookPrimitiveCluster
 	
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitMetaclass: aMetaclass [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitMetaclass: aMetaclass [
 
 	self mapAndTraceByClusterName: aMetaclass to: FLGlobalClassSideCluster
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitMethodContext: aMethodContext [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitMethodContext: aMethodContext [
 
 	self mapAndTraceByObjectClass: aMethodContext to: FLContextCluster
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitNotSerializable: anObject [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitNotSerializable: anObject [
 	FLNotSerializable signalWith: anObject
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitPoint: aPoint [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitPoint: aPoint [
 
 	self mapAndTraceByClusterName: aPoint to: FLPointCluster
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitRectangle: aRectangle [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitRectangle: aRectangle [
 
 	self mapAndTraceByClusterName: aRectangle to: FLRectangleCluster
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitSimpleCollection: aCollection [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitSimpleCollection: aCollection [
 	self mapAndTraceByObjectClass: aCollection to: FLSimpleCollectionCluster
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitSmallInteger: aSmallInteger [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitSmallInteger: aSmallInteger [
 
 	self mapAndTraceByClusterName: aSmallInteger to: (self clusterClassForSmallInteger: aSmallInteger)
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitSubstitution: anObject by: anotherObject [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitSubstitution: anObject by: anotherObject [
 
 	(self clusterKeyedByClusterName: FLSubstitutionCluster)
 		add: anObject substitutedBy: anotherObject traceWith: analysis
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitSubstitution: anObject by: anotherObject onRecursionDo: aBlock [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitSubstitution: anObject by: anotherObject onRecursionDo: aBlock [
 
 	| cluster |
 	cluster := self clusterKeyedByClusterName: FLSubstitutionCluster.
@@ -222,38 +161,26 @@ FLLightGeneralMapper>>visitSubstitution: anObject by: anotherObject onRecursionD
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitTrait: aTrait [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitTrait: aTrait [
 
 	self mapAndTraceInstanceSideGlobal: aTrait
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitVariableObject: anObject [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitVariableObject: anObject [
 
 	self mapAndTraceByObjectClass: anObject to: FLVariableObjectCluster
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitWeakObject: anObject [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitWeakObject: anObject [
 
 	self mapAndTraceByObjectClass: anObject to: FLWeakVariableObjectCluster
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGeneralMapper>>visitWordsObject: anObject [
+{ #category : #visiting }
+FLLightGeneralMapper >> visitWordsObject: anObject [
 
 	self mapAndTraceByObjectClass: anObject to: FLWordObjectCluster
 ]

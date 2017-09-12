@@ -5,31 +5,21 @@ Represented as char* on C side.
 Class {
 	#name : #FFIExternalString,
 	#superclass : #FFIExternalType,
-	#category : #UnifiedFFI-Types,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Types
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalString class>>externalType [
+{ #category : #accessing }
+FFIExternalString class >> externalType [
 	^ ExternalType string
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalString class>>externalTypeAlignment [
+{ #category : #accessing }
+FFIExternalString class >> externalTypeAlignment [
 	^ self pointerSize
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalString>>basicHandle: aHandle at: index [
+{ #category : #private }
+FFIExternalString >> basicHandle: aHandle at: index [
 	| data |
 	data := ExternalData 
 		fromHandle: (aHandle pointerAt: index) 
@@ -38,26 +28,17 @@ FFIExternalString>>basicHandle: aHandle at: index [
 	^ data fromCString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalString>>basicHandle: aHandle at: index put: value [
+{ #category : #private }
+FFIExternalString >> basicHandle: aHandle at: index put: value [
 	self error: 'Not sure I want to do this.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalString>>externalTypeSize [
+{ #category : #accessing }
+FFIExternalString >> externalTypeSize [
 	^ self pointerSize "i am live and die as a pointer (a char*)"
 ]
 
-{
-	#category : #'stack parameter classification',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalString>>stackValueParameterClass [
+{ #category : #'stack parameter classification' }
+FFIExternalString >> stackValueParameterClass [
 	^ #integer
 ]

@@ -1,23 +1,15 @@
-Extension {
-	#name : #ProtoObject
-}
+Extension { #name : #ProtoObject }
 
-{
-	#category : #'*GT-Debugger-UI',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-ProtoObject>>gtDebuggerEvaluatorIn: composite [
+{ #category : #'*GT-Debugger-UI' }
+ProtoObject >> gtDebuggerEvaluatorIn: composite [
 	<gtDebuggerPresentationOrder: 10>
 	
 	(GTProtoObjectVariablesBrowser new evaluatorIn: composite)
 		title: 'Evaluator'
 ]
 
-{
-	#category : #'*GT-Debugger-UI',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-ProtoObject>>gtDebuggerPresentationsIn: composite inContext: aGTInspector [
+{ #category : #'*GT-Debugger-UI' }
+ProtoObject >> gtDebuggerPresentationsIn: composite inContext: aGTInspector [
 	| pragmas |
 	pragmas := (Pragma 
 				allNamed: #gtDebuggerPresentationOrder:
@@ -33,11 +25,8 @@ ProtoObject>>gtDebuggerPresentationsIn: composite inContext: aGTInspector [
 
 ]
 
-{
-	#category : #'*GT-Debugger-UI',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-ProtoObject>>gtDebuggerRawIn: composite [
+{ #category : #'*GT-Debugger-UI' }
+ProtoObject >> gtDebuggerRawIn: composite [
 	<gtDebuggerPresentationOrder: 15>
 	
 	(GTProtoObjectVariablesBrowser new variablesIn: composite)

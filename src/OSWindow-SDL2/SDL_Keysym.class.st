@@ -10,15 +10,11 @@ Class {
 		'OFFSET_SYM',
 		'OFFSET_UNUSED'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'IgorStasenko 7/30/2014 18:44'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'fields description',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Keysym class>>fieldsDesc [
+{ #category : #'fields description' }
+SDL_Keysym class >> fieldsDesc [
 	"
 	self initializeAccessors
 	"
@@ -30,74 +26,50 @@ SDL_Keysym class>>fieldsDesc [
  	)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Keysym>>mod [
+{ #category : #'accessing structure variables' }
+SDL_Keysym >> mod [
 	"This method was automatically generated"
 	^handle unsignedShortAt: OFFSET_MOD
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Keysym>>mod: anObject [
+{ #category : #'accessing structure variables' }
+SDL_Keysym >> mod: anObject [
 	"This method was automatically generated"
 	handle unsignedShortAt: OFFSET_MOD put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Keysym>>scancode [
+{ #category : #'accessing structure variables' }
+SDL_Keysym >> scancode [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_SCANCODE
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Keysym>>scancode: anObject [
+{ #category : #'accessing structure variables' }
+SDL_Keysym >> scancode: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_SCANCODE put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Keysym>>sym [
+{ #category : #'accessing structure variables' }
+SDL_Keysym >> sym [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_SYM
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Keysym>>sym: anObject [
+{ #category : #'accessing structure variables' }
+SDL_Keysym >> sym: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_SYM put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Keysym>>unused [
+{ #category : #'accessing structure variables' }
+SDL_Keysym >> unused [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_UNUSED
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Keysym>>unused: anObject [
+{ #category : #'accessing structure variables' }
+SDL_Keysym >> unused: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_UNUSED put: anObject
 ]

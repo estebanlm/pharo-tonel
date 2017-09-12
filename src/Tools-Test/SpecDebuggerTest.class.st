@@ -4,15 +4,11 @@ SUnit tests for SpecDebugger
 Class {
 	#name : #SpecDebuggerTest,
 	#superclass : #TestCase,
-	#category : #Tools-Test-Debugger,
-	#timestamp : 'AndreiChis 1/8/2016 15:52'
+	#category : #Tools-Test-Debugger
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SpecDebuggerTest>>testBasic [
+{ #category : #testing }
+SpecDebuggerTest >> testBasic [
 	| context process debugger printedString |
 	context := [ 20 factorial ] asContext.
 	process := Process

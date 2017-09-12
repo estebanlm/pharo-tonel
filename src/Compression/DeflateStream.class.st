@@ -28,15 +28,11 @@ Class {
 	#pools : [
 		'ZipConstants'
 	],
-	#category : #Compression-Streams,
-	#timestamp : 'LaurentLaffont 6/8/2011 22:23'
+	#category : #Compression-Streams
 }
 
-{
-	#category : #deflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>compare: here with: matchPos min: minLength [
+{ #category : #deflating }
+DeflateStream >> compare: here with: matchPos min: minLength [
 	"Compare the two strings and return the length of matching characters.
 	minLength is a lower bound for match lengths that will be accepted.
 	Note: here and matchPos are zero based."
@@ -59,11 +55,8 @@ DeflateStream>>compare: here with: matchPos min: minLength [
 	^length - 1
 ]
 
-{
-	#category : #deflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>deflateBlock [
+{ #category : #deflating }
+DeflateStream >> deflateBlock [
 	"Deflate the current contents of the stream"
 	| flushNeeded lastIndex |
 	(blockStart == nil) ifTrue:[
@@ -86,11 +79,8 @@ DeflateStream>>deflateBlock [
 
 ]
 
-{
-	#category : #deflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>deflateBlock: lastIndex chainLength: chainLength goodMatch: goodMatch [
+{ #category : #deflating }
+DeflateStream >> deflateBlock: lastIndex chainLength: chainLength goodMatch: goodMatch [
 	"Continue deflating the receiver's collection from blockPosition to lastIndex.
 	Note that lastIndex must be at least MaxMatch away from the end of collection"
 	| here matchResult flushNeeded hereMatch hereLength newMatch newLength hasMatch |
@@ -152,31 +142,22 @@ DeflateStream>>deflateBlock: lastIndex chainLength: chainLength goodMatch: goodM
 	^false
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>encodeLiteral: literal [
+{ #category : #encoding }
+DeflateStream >> encodeLiteral: literal [
 	"Encode the given literal.
 	Return true if the current block needs to be flushed."
 	^false
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>encodeMatch: matchLength distance: matchDistance [
+{ #category : #encoding }
+DeflateStream >> encodeMatch: matchLength distance: matchDistance [
 	"Encode a match of the given length and distance.
 	Return true if the current block should be flushed."
 	^false
 ]
 
-{
-	#category : #deflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>findMatch: here lastLength: lastLength lastMatch: lastMatch chainLength: maxChainLength goodMatch: goodMatch [
+{ #category : #deflating }
+DeflateStream >> findMatch: here lastLength: lastLength lastMatch: lastMatch chainLength: maxChainLength goodMatch: goodMatch [
 	"Find the longest match for the string starting at here.
 	If there is no match longer than lastLength return lastMatch/lastLength.
 	Traverse at most maxChainLength entries in the hash table.
@@ -229,48 +210,33 @@ DeflateStream>>findMatch: here lastLength: lastLength lastMatch: lastMatch chain
 	^matchResult
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>flush [
+{ #category : #initialization }
+DeflateStream >> flush [
 	"Force compression"
 	self deflateBlock.
 ]
 
-{
-	#category : #deflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>flushBlock [
+{ #category : #deflating }
+DeflateStream >> flushBlock [
 	"Flush a deflated block"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>goodMatchLength [
+{ #category : #accessing }
+DeflateStream >> goodMatchLength [
 	"Return the length that is considered to be a 'good' match.
 	Higher values will result in better compression but take more time."
 	^MaxMatch "Best compression"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>hashChainLength [
+{ #category : #accessing }
+DeflateStream >> hashChainLength [
 	"Return the max. number of hash chains to traverse.
 	Higher values will result in better compression but take more time."
 	^4096 "Best compression"
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>initialize [
+{ #category : #initialization }
+DeflateStream >> initialize [
 	super initialize.
 	blockStart := nil.
 	blockPosition := 0.
@@ -278,21 +244,15 @@ DeflateStream>>initialize [
 	self initializeHashTables.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>initializeHashTables [
+{ #category : #initialization }
+DeflateStream >> initializeHashTables [
 	hashHead := WordArray new: 1 << HashBits.
 	hashTail := WordArray new: WindowSize.
 
 ]
 
-{
-	#category : #deflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>insertStringAt: here [
+{ #category : #deflating }
+DeflateStream >> insertStringAt: here [
 	"Insert the string at the given start position into the hash table.
 	Note: The hash value is updated starting at MinMatch-1 since
 	all strings before have already been inserted into the hash table
@@ -304,11 +264,8 @@ DeflateStream>>insertStringAt: here [
 	hashTail at: (here bitAnd: WindowMask)+1 put: prevEntry.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>moveContentsToFront [
+{ #category : #private }
+DeflateStream >> moveContentsToFront [
 	"Move the contents of the receiver to the front"
 	| delta |
 	delta := (blockPosition - WindowSize).
@@ -327,11 +284,8 @@ DeflateStream>>moveContentsToFront [
 	self updateHashTable: hashTail delta: delta.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>next: bytesCount putAll: aCollection startingAt: startIndex [
+{ #category : #accessing }
+DeflateStream >> next: bytesCount putAll: aCollection startingAt: startIndex [
 	| start count max |
 	aCollection species = collection species
 		ifFalse:[
@@ -353,65 +307,44 @@ DeflateStream>>next: bytesCount putAll: aCollection startingAt: startIndex [
 	^ aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>nextPutAll: aCollection [
+{ #category : #accessing }
+DeflateStream >> nextPutAll: aCollection [
 	^ self next: aCollection size putAll: aCollection startingAt: 1
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>on: aCollection [
+{ #category : #initialization }
+DeflateStream >> on: aCollection [
 	self initialize.
 	super on: (aCollection species new: WindowSize * 2).
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>on: aCollection from: firstIndex to: lastIndex [
+{ #category : #initialization }
+DeflateStream >> on: aCollection from: firstIndex to: lastIndex [
 	"Not for DeflateStreams please"
 	^self shouldNotImplement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>pastEndPut: anObject [
+{ #category : #accessing }
+DeflateStream >> pastEndPut: anObject [
 	self deflateBlock.
 	^self nextPut: anObject
 ]
 
-{
-	#category : #deflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>updateHash: nextValue [
+{ #category : #deflating }
+DeflateStream >> updateHash: nextValue [
 	"Update the running hash value based on the next input byte.
 	Return the new updated hash value."
 	^((hashValue bitShift: HashShift) bitXor: nextValue) bitAnd: HashMask.
 ]
 
-{
-	#category : #deflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>updateHashAt: here [
+{ #category : #deflating }
+DeflateStream >> updateHashAt: here [
 	"Update the hash value at position here (one based)"
 	^self updateHash: (collection byteAt: here)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>updateHashTable: table delta: delta [
+{ #category : #private }
+DeflateStream >> updateHashTable: table delta: delta [
 	| pos |
 	<primitive: 'primitiveDeflateUpdateHashTable' module: 'ZipPlugin'>
 	1 to: table size do:[:i|
@@ -421,11 +354,8 @@ DeflateStream>>updateHashTable: table delta: delta [
 			ifFalse:[table at: i put: 0]].
 ]
 
-{
-	#category : #deflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-DeflateStream>>validateMatchAt: pos from: startPos to: endPos [
+{ #category : #deflating }
+DeflateStream >> validateMatchAt: pos from: startPos to: endPos [
 	| here |
 	here := pos.
 	startPos+1 to: endPos+1 do:[:i|

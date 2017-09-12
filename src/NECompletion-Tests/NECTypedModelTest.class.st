@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #NECTypedModelTest,
 	#superclass : #TestCase,
-	#category : #NECompletion-Tests,
-	#timestamp : ''
+	#category : #NECompletion-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECTypedModelTest>>testExpand [
+{ #category : #tests }
+NECTypedModelTest >> testExpand [
 	| model selectors |
 	model := NECTypedModel class: NECTestClass.
 	self assert: (model entriesOfType: #locals) isEmpty.
@@ -36,11 +29,8 @@ NECTypedModelTest>>testExpand [
 	self assert: selectors size == 6
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECTypedModelTest>>testMessage [
+{ #category : #tests }
+NECTypedModelTest >> testMessage [
 	| model |
 	model := NECTypedModel class: NECTestClass.
 	self shouldnt: model hasMessage.
@@ -49,21 +39,15 @@ NECTypedModelTest>>testMessage [
 	self assert: model message = 'no completions found'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECTypedModelTest>>testTitle [
+{ #category : #tests }
+NECTypedModelTest >> testTitle [
 	| model |
 	model := NECTypedModel class: NECTestClass.
 	self assert: #NECTestClass = model title
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECTypedModelTest>>testTyped [
+{ #category : #tests }
+NECTypedModelTest >> testTyped [
 	| model selectors |
 	model := NECTypedModel class: NECTestClass.
 	self assert: (model entriesOfType: #locals) size == 0.

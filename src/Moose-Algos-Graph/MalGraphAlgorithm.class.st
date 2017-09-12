@@ -11,15 +11,11 @@ Class {
 		'nodes',
 		'edges'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : 'ChristopheDemarey 3/24/2015 09:53'
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>addEdge: eModel from: source to: target  [
+{ #category : #private }
+MalGraphAlgorithm >> addEdge: eModel from: source to: target [ 
 
 	| edge sourceNode targetNode unknownNode |
 	unknownNode := false.
@@ -46,21 +42,15 @@ MalGraphAlgorithm>>addEdge: eModel from: source to: target  [
 	^ nil
 ]
 
-{
-	#category : #'building - graph',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>addNodeFor: aModel [
+{ #category : #'building - graph' }
+MalGraphAlgorithm >> addNodeFor: aModel [
 	^ self 
 		findNode: aModel
 		ifAbsent: [ nodes add: (self nodeClass with: aModel) ]
 ]
 
-{
-	#category : #'building - graph',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>addNodesFrom: model childrenBlock: childrenBlock [
+{ #category : #'building - graph' }
+MalGraphAlgorithm >> addNodesFrom: model childrenBlock: childrenBlock [
 	"recursively add nodes from the model"
 	| parent |
 	model ifNil: [ ^ self ].
@@ -76,36 +66,24 @@ MalGraphAlgorithm>>addNodesFrom: model childrenBlock: childrenBlock [
 				self addEdge: { parent model . child } from: #first to: #second ]
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>edgeClass [
+{ #category : #configuration }
+MalGraphAlgorithm >> edgeClass [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>edges [
+{ #category : #accessing }
+MalGraphAlgorithm >> edges [
 	^ edges
 ]
 
-{
-	#category : #'building - graph',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>edges: aCollection from: source to: target [
+{ #category : #'building - graph' }
+MalGraphAlgorithm >> edges: aCollection from: source to: target [
 	aCollection 
 		do: [ :eModel |	self addEdge: eModel from: source to: target ]
 ]
 
-{
-	#category : #'building - graph',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>edges: aCollection from: source to: target weight: weightFunction [
+{ #category : #'building - graph' }
+MalGraphAlgorithm >> edges: aCollection from: source to: target weight: weightFunction [
 	| edge |
 	aCollection 
 		do: [ :eModel |
@@ -113,11 +91,8 @@ MalGraphAlgorithm>>edges: aCollection from: source to: target weight: weightFunc
 			edge ifNotNil: [edge weight: (weightFunction value: eModel)] ]
 ]
 
-{
-	#category : #'building - graph',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>edges: aCollection from: source toAll: targets [
+{ #category : #'building - graph' }
+MalGraphAlgorithm >> edges: aCollection from: source toAll: targets [
 	aCollection 
 		do: [ :eModel |
 			(targets value: eModel) 
@@ -128,107 +103,71 @@ MalGraphAlgorithm>>edges: aCollection from: source toAll: targets [
 						to: #second ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>findEdge: aModel [
+{ #category : #accessing }
+MalGraphAlgorithm >> findEdge: aModel [
 	^ self edges detect: [:edge | edge model = aModel]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>findNode: aModel [
+{ #category : #accessing }
+MalGraphAlgorithm >> findNode: aModel [
 	^ self nodes detect: [:aNode | aNode model = aModel ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>findNode: aModel ifAbsent: aBlock [
+{ #category : #accessing }
+MalGraphAlgorithm >> findNode: aModel ifAbsent: aBlock [
 	^ self nodes 
 		detect: [:node | node model = aModel]
 		ifNone: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>findNode: aModel ifFound: aBlock [
+{ #category : #accessing }
+MalGraphAlgorithm >> findNode: aModel ifFound: aBlock [
 	^ self nodes 
 		detect: [:node | node model = aModel]
 		ifFound: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>graph [
+{ #category : #accessing }
+MalGraphAlgorithm >> graph [
 	^ {self nodes . self edges}
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>initialize [
+{ #category : #initialize-release }
+MalGraphAlgorithm >> initialize [
 	nodes := OrderedCollection new.
 	edges := OrderedCollection new.
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>nodeClass [
+{ #category : #configuration }
+MalGraphAlgorithm >> nodeClass [
 	^ MalGraphNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>nodes [
+{ #category : #accessing }
+MalGraphAlgorithm >> nodes [
 	^ nodes
 ]
 
-{
-	#category : #'building - graph',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>nodes: aNodeList [
+{ #category : #'building - graph' }
+MalGraphAlgorithm >> nodes: aNodeList [
 	aNodeList 
 		do: [ :model |	self addNodeFor: model ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>privateEdges: aCollection [
+{ #category : #private }
+MalGraphAlgorithm >> privateEdges: aCollection [
 
 	edges := aCollection 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>privateNodes: aCollection [
+{ #category : #private }
+MalGraphAlgorithm >> privateNodes: aCollection [
 
 	nodes := aCollection 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphAlgorithm>>run [
+{ #category : #running }
+MalGraphAlgorithm >> run [
 
 	self subclassResponsibility 
 ]

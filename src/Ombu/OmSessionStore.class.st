@@ -19,34 +19,24 @@ Class {
 		'storeNameStrategy',
 		'defaultBaseLocator'
 	],
-	#category : #Ombu-Stores,
-	#timestamp : 'MartinDias 4/16/2014 14:14'
+	#category : #Ombu-Stores
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore class>>defaultBaseLocator [
+{ #category : #accessing }
+OmSessionStore class >> defaultBaseLocator [
 
 	^ defaultBaseLocator ifNil: [ 
 		defaultBaseLocator := FileLocator localDirectory / 'ombu-sessions' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore class>>defaultBaseLocator: aFileLocator  [
+{ #category : #accessing }
+OmSessionStore class >> defaultBaseLocator: aFileLocator [ 
 
 	defaultBaseLocator := aFileLocator
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore class>>initialize [
+{ #category : #initialization }
+OmSessionStore class >> initialize [
 	"
 	self initialize
 	"
@@ -54,98 +44,68 @@ OmSessionStore class>>initialize [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore class>>new [
+{ #category : #'instance creation' }
+OmSessionStore class >> new [
 
 	^ self newWithBaseLocator: self defaultBaseLocator
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore class>>newWithBaseLocator: aBaseDirectory [
+{ #category : #'instance creation' }
+OmSessionStore class >> newWithBaseLocator: aBaseDirectory [
 
 	^ self basicNew
 		initializeWithBaseLocator: aBaseDirectory
 		yourself
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore class>>startUp [
+{ #category : #'system startup' }
+OmSessionStore class >> startUp [
 	"The #store accessor refreshes each instance since it will discover that the Session changed"
 
 	self allInstancesDo: #store 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore class>>storeNameStrategy [
+{ #category : #accessing }
+OmSessionStore class >> storeNameStrategy [
 
 	^ storeNameStrategy ifNil: [ 
 		storeNameStrategy := OmRandomSuffixStrategy new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore class>>storeNameStrategy: aStoreNameStrategy [
+{ #category : #accessing }
+OmSessionStore class >> storeNameStrategy: aStoreNameStrategy [
 
 	storeNameStrategy := aStoreNameStrategy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>announcer [
+{ #category : #accessing }
+OmSessionStore >> announcer [
 
 	^ announcer ifNil: [ 
 		announcer := Announcer new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>baseLocator [
+{ #category : #accessing }
+OmSessionStore >> baseLocator [
 
 	^ baseLocator
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>directory [
+{ #category : #accessing }
+OmSessionStore >> directory [
 
 	^ baseLocator asFileReference
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>entriesDo: aBlockClosure [
+{ #category : #enumerating }
+OmSessionStore >> entriesDo: aBlockClosure [
 	"Evaluate aBlockClosure with every entries this store contains"
 
 	^ self store entriesDo: aBlockClosure
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>entryFor: aReference ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
+{ #category : #accessing }
+OmSessionStore >> entryFor: aReference ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
 	"Look for an entry, evaluating either the first block closure if present or the second if absent."
 
 	^ self store 
@@ -154,61 +114,43 @@ OmSessionStore>>entryFor: aReference ifPresent: presentBlockClosure ifAbsent: ab
 		ifAbsent: absentBlockClosure
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>existsStoreNamed: aName [
+{ #category : #testing }
+OmSessionStore >> existsStoreNamed: aName [
 
 	^ OmFileStore existsStoreNamed: aName inDirectory: self directory
 
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>flush [
+{ #category : #refreshing }
+OmSessionStore >> flush [
 	"Flush any buffered state"
 	
 	self store flush
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>globalName [
+{ #category : #accessing }
+OmSessionStore >> globalName [
 
 	^ self store globalName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>headReference [
+{ #category : #accessing }
+OmSessionStore >> headReference [
 	"Answer a reference to the last entry added to this store."
 
 	^ headReference ifNil: [
 		headReference := self store headReference ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>imagePathString [
+{ #category : #private }
+OmSessionStore >> imagePathString [
 	"Answer the full path name for the current image."
 
 	^ SmalltalkImage current primImagePath
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>initializeWithBaseLocator: aDirectoryFileLocator [
+{ #category : #initialization }
+OmSessionStore >> initializeWithBaseLocator: aDirectoryFileLocator [
 
 	self initialize.
 	
@@ -218,42 +160,30 @@ OmSessionStore>>initializeWithBaseLocator: aDirectoryFileLocator [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>lowLevelFileStoreIfNone: aBlock [
+{ #category : #accessing }
+OmSessionStore >> lowLevelFileStoreIfNone: aBlock [
 	"Needed by EpLostChangesDetector"
 	
 	^ currentStore ifNil: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>needsReset [
+{ #category : #private }
+OmSessionStore >> needsReset [
 
 	^ currentSession ~~ Smalltalk session
 		or: [ currentImagePathString ~= self imagePathString ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>newEntry: anEntry [
+{ #category : #writing }
+OmSessionStore >> newEntry: anEntry [
 	"Persist a new entry"
 
 	self store newEntry: anEntry.
 	headReference := self store headReference.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>nextStoreName [
+{ #category : #accessing }
+OmSessionStore >> nextStoreName [
 
 	| name |
 	name := currentStore 
@@ -266,29 +196,20 @@ OmSessionStore>>nextStoreName [
 
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>refresh [
+{ #category : #refreshing }
+OmSessionStore >> refresh [
 
 	^ self store refresh
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>resetWithNextStoreName [
+{ #category : #accessing }
+OmSessionStore >> resetWithNextStoreName [
 
 	self resetWithStoreNamed: self nextStoreName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>resetWithStoreNamed: newName [
+{ #category : #accessing }
+OmSessionStore >> resetWithStoreNamed: newName [
 
 	| fileReference |
 	"First, ensure file is not already used."
@@ -311,11 +232,8 @@ OmSessionStore>>resetWithStoreNamed: newName [
 	self announcer announce: OmSessionStoreUpdated new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>store [
+{ #category : #accessing }
+OmSessionStore >> store [
 	"Answer the store I wrap"
 
 	(currentStore isNil or: [ self needsReset ]) 
@@ -324,48 +242,33 @@ OmSessionStore>>store [
 	^ currentStore
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>storeNameStrategy [
+{ #category : #accessing }
+OmSessionStore >> storeNameStrategy [
 
 	^ storeNameStrategy ifNil: [ self class storeNameStrategy ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>storeNameStrategy: anOmStoreNameStrategy [
+{ #category : #accessing }
+OmSessionStore >> storeNameStrategy: anOmStoreNameStrategy [
 
 	storeNameStrategy := anOmStoreNameStrategy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>writingDeferDuration [
+{ #category : #accessing }
+OmSessionStore >> writingDeferDuration [
 
 	^ writingDeferDuration ifNil: [ OmFileStore defaultWritingDeferDuration ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>writingDeferDuration: aDuration [
+{ #category : #accessing }
+OmSessionStore >> writingDeferDuration: aDuration [
 
 	writingDeferDuration := aDuration.
 	self store writingDeferDuration: aDuration.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmSessionStore>>writingFileReference [
+{ #category : #accessing }
+OmSessionStore >> writingFileReference [
 
 	^ currentStore writingFileReference
 ]

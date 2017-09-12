@@ -1,39 +1,26 @@
-"
-
-"
 Class {
 	#name : #DADependencyCheckerTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'checker'
 	],
-	#category : #Tool-DependencyAnalyser-Test,
-	#timestamp : ''
+	#category : #Tool-DependencyAnalyser-Test
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DADependencyCheckerTest>>setUp [
+{ #category : #running }
+DADependencyCheckerTest >> setUp [
 	checker := DADependencyChecker new
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DADependencyCheckerTest>>testShouldGetDirectDependencies [
+{ #category : #tests }
+DADependencyCheckerTest >> testShouldGetDirectDependencies [
 	self 	
 		assert: (checker dependenciesOf: 'Tool-DependencyAnalyser-Test-Data')
 		equals: #(#Kernel)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DADependencyCheckerTest>>testShouldGetUnresolvedDependencies [
+{ #category : #tests }
+DADependencyCheckerTest >> testShouldGetUnresolvedDependencies [
 	| result |
 	
 	result := (checker unresolvedDependenciesOf: 'Tool-DependencyAnalyser-Test-Data').

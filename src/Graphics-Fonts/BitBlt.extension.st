@@ -1,12 +1,7 @@
-Extension {
-	#name : #BitBlt
-}
+Extension { #name : #BitBlt }
 
-{
-	#category : #'*Graphics-Fonts',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BitBlt>>basicDisplayString: aString from: startIndex to: stopIndex at: aPoint strikeFont: font kern: kernDelta [
+{ #category : #'*Graphics-Fonts' }
+BitBlt >> basicDisplayString: aString from: startIndex to: stopIndex at: aPoint strikeFont: font kern: kernDelta [
 
 	destY := aPoint y.
 	destX := aPoint x.
@@ -22,11 +17,8 @@ BitBlt>>basicDisplayString: aString from: startIndex to: stopIndex at: aPoint st
 
 ]
 
-{
-	#category : #'*Graphics-Fonts',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BitBlt>>cachedFontColormapFrom: sourceDepth to: destDepth  [
+{ #category : #'*Graphics-Fonts' }
+BitBlt >> cachedFontColormapFrom: sourceDepth to: destDepth [ 
 	"Modified from computeColormapFrom:to:."
 	| srcIndex map |
 	CachedFontColorMaps class == Array ifFalse: [ CachedFontColorMaps := (1 to: 9) collect: [ :i | Array new: 32 ] ].
@@ -42,11 +34,8 @@ BitBlt>>cachedFontColormapFrom: sourceDepth to: destDepth  [
 	^ map
 ]
 
-{
-	#category : #'*Graphics-Fonts',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BitBlt>>displayGlyph: aForm at: aPoint left: leftX right: rightX font: aFont [
+{ #category : #'*Graphics-Fonts' }
+BitBlt >> displayGlyph: aForm at: aPoint left: leftX right: rightX font: aFont [
 	"Display a glyph in a multi-lingual font. Do 2 pass rendering if necessary.
 	This happens when #installStrikeFont:foregroundColor:backgroundColor: sets rule 37 (rgbMul).
 	the desired effect is to do two bitblt calls. The first one is with rule 37 and special colormap.
@@ -76,29 +65,20 @@ BitBlt>>displayGlyph: aForm at: aPoint left: leftX right: rightX font: aFont [
 	] ifFalse:[self copyBits].
 ]
 
-{
-	#category : #'*Graphics-Fonts',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BitBlt>>displayString: aString from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY font: aFont [
+{ #category : #'*Graphics-Fonts' }
+BitBlt >> displayString: aString from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY font: aFont [
 	"Double dispatch into the font. This method is present so that other-than-bitblt entities can be used by CharacterScanner and friends to display text."
 	^ aFont displayString: aString on: self from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY
 ]
 
-{
-	#category : #'*Graphics-Fonts',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BitBlt>>displayString: aString from: startIndex to: stopIndex at: aPoint kern: kernDelta font: aFont [
+{ #category : #'*Graphics-Fonts' }
+BitBlt >> displayString: aString from: startIndex to: stopIndex at: aPoint kern: kernDelta font: aFont [
 	"Double dispatch into the font. This method is present so that other-than-bitblt entities can be used by CharacterScanner and friends to display text."
 	^ aFont displayString: aString on: self from: startIndex to: stopIndex at: aPoint kern: kernDelta
 ]
 
-{
-	#category : #'*Graphics-Fonts',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BitBlt>>displayString: aString from: startIndex to: stopIndex at: aPoint strikeFont: font kern: kernDelta [
+{ #category : #'*Graphics-Fonts' }
+BitBlt >> displayString: aString from: startIndex to: stopIndex at: aPoint strikeFont: font kern: kernDelta [
 	"If required, do a second pass with new rule and colorMap.
 	This happens when #installStrikeFont:foregroundColor:backgroundColor: sets rule 37 (rgbMul).
 	the desired effect is to do two bitblt calls. The first one is with rule 37 and special colormap.
@@ -126,20 +106,14 @@ BitBlt>>displayString: aString from: startIndex to: stopIndex at: aPoint strikeF
 	^answer
 ]
 
-{
-	#category : #'*Graphics-Fonts',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BitBlt>>installFont: aFont foregroundColor: foregroundColor backgroundColor: backgroundColor [
+{ #category : #'*Graphics-Fonts' }
+BitBlt >> installFont: aFont foregroundColor: foregroundColor backgroundColor: backgroundColor [
 	"Double dispatch into the font. This method is present so that other-than-bitblt entities can be used by CharacterScanner and friends to display text."
 	^aFont installOn: self foregroundColor: foregroundColor backgroundColor: backgroundColor
 ]
 
-{
-	#category : #'*Graphics-Fonts',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BitBlt>>installStrikeFont: aStrikeFont foregroundColor: foregroundColor backgroundColor: backgroundColor [
+{ #category : #'*Graphics-Fonts' }
+BitBlt >> installStrikeFont: aStrikeFont foregroundColor: foregroundColor backgroundColor: backgroundColor [
 	| lastSourceDepth targetColor |
 	sourceForm ifNotNil:[lastSourceDepth := sourceForm depth].
 	sourceForm := aStrikeFont glyphs.

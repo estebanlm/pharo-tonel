@@ -1,12 +1,7 @@
-Extension {
-	#name : #ComposableModel
-}
+Extension { #name : #ComposableModel }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-ComposableModel>>gtInspectorModelNestingIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+ComposableModel >> gtInspectorModelNestingIn: composite [
 	<gtInspectorPresentationOrder: 20>
 	composite tree 
 		title: 'Nesting';
@@ -21,11 +16,8 @@ ComposableModel>>gtInspectorModelNestingIn: composite [
 		send: #value
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-ComposableModel>>gtInspectorPreviewIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+ComposableModel >> gtInspectorPreviewIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	
 	self widget ifNotNil: [ :w | w gtInspectorPreviewIn: composite ]

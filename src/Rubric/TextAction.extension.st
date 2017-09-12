@@ -1,12 +1,7 @@
-Extension {
-	#name : #TextAction
-}
+Extension { #name : #TextAction }
 
-{
-	#category : #'*Rubric-Editing-Core',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TextAction>>rubActOnClick: anEvent for: anObject in: paragraph editor: editor [
+{ #category : #'*Rubric-Editing-Core' }
+TextAction >> rubActOnClick: anEvent for: anObject in: paragraph editor: editor [
 	"sent when a user clicks on a piece of text to which I am applied in an editor"
 
 	"may be self is included in the event or an Object. "

@@ -5,15 +5,11 @@ A GLMBrickRenderer is most simple separate renderer of Bricks. It support only b
 Class {
 	#name : #GLMBrickRenderer,
 	#superclass : #Object,
-	#category : #Glamour-Morphic-Brick-Renderer,
-	#timestamp : 'AliakseiSyrel 10/17/2014 10:33'
+	#category : #Glamour-Morphic-Brick-Renderer
 }
 
-{
-	#category : #private-shadow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>bottomLeftCornerShadowOf: aBrick on: aCanvas [
+{ #category : #private-shadow }
+GLMBrickRenderer >> bottomLeftCornerShadowOf: aBrick on: aCanvas [
 	| gradient width origin offset |
 
 	width := aBrick shadowWidth.
@@ -30,11 +26,8 @@ GLMBrickRenderer>>bottomLeftCornerShadowOf: aBrick on: aCanvas [
 	aCanvas fillRectangle: (origin extent: width @ width) fillStyle: gradient
 ]
 
-{
-	#category : #private-shadow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>bottomRightCornerShadowOf: aBrick on: aCanvas [
+{ #category : #private-shadow }
+GLMBrickRenderer >> bottomRightCornerShadowOf: aBrick on: aCanvas [
 	| gradient width origin offset |
 
 	width := aBrick shadowWidth.
@@ -51,11 +44,8 @@ GLMBrickRenderer>>bottomRightCornerShadowOf: aBrick on: aCanvas [
 	aCanvas fillRectangle: (origin extent: width @ width) fillStyle: gradient.
 ]
 
-{
-	#category : #private-shadow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>bottomShadowOf: aBrick on: aCanvas [
+{ #category : #private-shadow }
+GLMBrickRenderer >> bottomShadowOf: aBrick on: aCanvas [
 	| gradient width origin offset |
 	
 	width := aBrick shadowWidth.
@@ -71,11 +61,8 @@ GLMBrickRenderer>>bottomShadowOf: aBrick on: aCanvas [
 	aCanvas fillRectangle: (origin extent: (aBrick width - width) @ width) fillStyle: gradient
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>drawingBounds: aBrick [
+{ #category : #geometry }
+GLMBrickRenderer >> drawingBounds: aBrick [
 	| aRectangle anOffset |
 
 	aRectangle := aBrick brickBounds.
@@ -86,11 +73,8 @@ GLMBrickRenderer>>drawingBounds: aBrick [
 		ifFalse: [ aRectangle quickMerge: ((aRectangle expandBy: aBrick shadowWidth) translateBy: anOffset) ]
 ]
 
-{
-	#category : #private-shadow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>leftShadowOf: aBrick on: aCanvas [
+{ #category : #private-shadow }
+GLMBrickRenderer >> leftShadowOf: aBrick on: aCanvas [
 	| gradient width origin offset |
 	
 	width := aBrick shadowWidth.
@@ -106,11 +90,8 @@ GLMBrickRenderer>>leftShadowOf: aBrick on: aCanvas [
 	aCanvas fillRectangle: (origin extent: width @ (aBrick height - width)) fillStyle: gradient.
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>render: aBrick on: aCanvas [
+{ #category : #rendering }
+GLMBrickRenderer >> render: aBrick on: aCanvas [
 	
 	self
 		renderShadowOf: aBrick on: aCanvas;
@@ -118,42 +99,30 @@ GLMBrickRenderer>>render: aBrick on: aCanvas [
 		renderBorderOf: aBrick on: aCanvas
 ]
 
-{
-	#category : #'rendering athens',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>render: aBrick onAthensCanvas: aCanvas [
+{ #category : #'rendering athens' }
+GLMBrickRenderer >> render: aBrick onAthensCanvas: aCanvas [
 	
 	self render: aBrick on: (AthensCanvasWrapper on: aCanvas)
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>renderBackgroundColorOf: aBrick on: aCanvas [
+{ #category : #rendering }
+GLMBrickRenderer >> renderBackgroundColorOf: aBrick on: aCanvas [
 	| rectangle |
 
 	rectangle := aBrick brickBounds expandBy: aBrick shadowWidth negated.
 	self renderBackgroundColorOf: aBrick on: aCanvas in: rectangle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>renderBackgroundColorOf: aBrick on: aCanvas in: aRectangle [
+{ #category : #private }
+GLMBrickRenderer >> renderBackgroundColorOf: aBrick on: aCanvas in: aRectangle [
 
 	aCanvas fillRectangle: aRectangle color: aBrick color.
 	(aBrick fillStyle = Color transparent) ifFalse: [ 
 		aCanvas fillRectangle: aRectangle fillStyle: aBrick fillStyle borderStyle: aBrick borderStyle ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>renderBorderOf: aBrick on: aCanvas [
+{ #category : #rendering }
+GLMBrickRenderer >> renderBorderOf: aBrick on: aCanvas [
 	| markColor markWidth |
 	aBrick border renderBorderOf: aBrick on: aCanvas.
 	
@@ -164,11 +133,8 @@ GLMBrickRenderer>>renderBorderOf: aBrick on: aCanvas [
 		aCanvas frameRectangle: aBrick brickBounds width: markWidth color: markColor ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>renderShadowOf: aBrick on: aCanvas [
+{ #category : #rendering }
+GLMBrickRenderer >> renderShadowOf: aBrick on: aCanvas [
 
 	"no need to even try drawing if shadow width is zero"
 	aBrick shadowWidth = 0
@@ -189,11 +155,8 @@ GLMBrickRenderer>>renderShadowOf: aBrick on: aCanvas [
 		color: aBrick shadowColor
 ]
 
-{
-	#category : #private-shadow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>rightShadowOf: aBrick on: aCanvas [
+{ #category : #private-shadow }
+GLMBrickRenderer >> rightShadowOf: aBrick on: aCanvas [
 	| gradient width origin |
 
 	width := aBrick shadowWidth.
@@ -208,29 +171,20 @@ GLMBrickRenderer>>rightShadowOf: aBrick on: aCanvas [
 	aCanvas fillRectangle: (origin extent: width @ (aBrick height - width)) fillStyle: gradient
 ]
 
-{
-	#category : #private-shadow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>shadowGradientFor: aBrick [
+{ #category : #private-shadow }
+GLMBrickRenderer >> shadowGradientFor: aBrick [
 
 	^ GradientFillStyle ramp: { 0.0 -> (aBrick shadowColor) . 1.0 -> (aBrick shadowColor alpha: 0)}
 ]
 
-{
-	#category : #private-shadow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>shadowGradientReverseFor: aBrick [
+{ #category : #private-shadow }
+GLMBrickRenderer >> shadowGradientReverseFor: aBrick [
 
 	^ GradientFillStyle ramp: { 0.0 -> (aBrick shadowColor alpha: 0). 1.0 -> (aBrick shadowColor) }
 ]
 
-{
-	#category : #private-shadow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>topLeftCornerShadowOf: aBrick on: aCanvas [
+{ #category : #private-shadow }
+GLMBrickRenderer >> topLeftCornerShadowOf: aBrick on: aCanvas [
 	| gradient width origin offset extent |
 	
 	width := aBrick shadowWidth.
@@ -247,11 +201,8 @@ GLMBrickRenderer>>topLeftCornerShadowOf: aBrick on: aCanvas [
 	aCanvas fillRectangle: (origin extent: extent) fillStyle: gradient.
 ]
 
-{
-	#category : #private-shadow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>topRightCornerShadowOf: aBrick on: aCanvas [
+{ #category : #private-shadow }
+GLMBrickRenderer >> topRightCornerShadowOf: aBrick on: aCanvas [
 	| gradient width origin offset |
 	
 	width := aBrick shadowWidth.
@@ -268,11 +219,8 @@ GLMBrickRenderer>>topRightCornerShadowOf: aBrick on: aCanvas [
 	aCanvas fillRectangle: (origin extent: width @ width) fillStyle: gradient.
 ]
 
-{
-	#category : #private-shadow,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickRenderer>>topShadowOf: aBrick on: aCanvas [
+{ #category : #private-shadow }
+GLMBrickRenderer >> topShadowOf: aBrick on: aCanvas [
 	| gradient width origin offset |
 
 	width := aBrick shadowWidth.

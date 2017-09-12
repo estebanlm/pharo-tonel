@@ -4,33 +4,23 @@ Do not send requests to ""Smalltalk"" (which models the whole image)  that are r
 Class {
 	#name : #RBSmalltalkGlobalsRule,
 	#superclass : #RBTransformationRule,
-	#category : #Refactoring-Critics-TransformationRules,
-	#timestamp : 'MarcusDenker 8/14/2015 17:09'
+	#category : #Refactoring-Critics-TransformationRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalltalkGlobalsRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBSmalltalkGlobalsRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^ 'SmalltalkGlobalsRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalltalkGlobalsRule>>group [
+{ #category : #accessing }
+RBSmalltalkGlobalsRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalltalkGlobalsRule>>initialize [
+{ #category : #initialization }
+RBSmalltalkGlobalsRule >> initialize [
 	super initialize.
 	self rewriteRule
 		replace: 'Smalltalk allClasses'
@@ -47,10 +37,7 @@ RBSmalltalkGlobalsRule>>initialize [
 			with: 'Smalltalk globals includesKey: `@statements'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalltalkGlobalsRule>>name [
+{ #category : #accessing }
+RBSmalltalkGlobalsRule >> name [
 	^ 'Use "Smalltalk globals" instead of "Smalltalk"'
 ]

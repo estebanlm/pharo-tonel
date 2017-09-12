@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #RBInlineParameterTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineParameterTest>>testInlineBlockFailure [
+{ #category : #'failure tests' }
+RBInlineParameterTest >> testInlineBlockFailure [
 	self shouldFail: (RBInlineParameterRefactoring 
 			inlineParameter: 'aBlock'
 			in: RBRefactoryTestDataApp
 			selector: ('inline' , 'Foo:') asSymbol)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineParameterTest>>testInlineLiteralArray [
+{ #category : #tests }
+RBInlineParameterTest >> testInlineLiteralArray [
 	| refactoring class |
 	refactoring := RBInlineParameterRefactoring 
 		inlineParameter: 'aSymbol'

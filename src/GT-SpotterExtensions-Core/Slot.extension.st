@@ -1,12 +1,7 @@
-Extension {
-	#name : #Slot
-}
+Extension { #name : #Slot }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Slot>>spotterAccessesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Slot >> spotterAccessesFor: aStep [
 	<spotterOrder: 10>
 	(aStep hasPreviousStep and: [
 		(aStep previousStep origin isKindOf: Class) or: [

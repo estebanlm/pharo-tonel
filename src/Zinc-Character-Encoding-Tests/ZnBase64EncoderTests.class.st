@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnBase64EncoderTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Character-Encoding-Tests,
-	#timestamp : ''
+	#category : #Zinc-Character-Encoding-Tests
 }
 
-{
-	#category : #benchmarks,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBase64EncoderTests class>>bench10kDecode [
+{ #category : #benchmarks }
+ZnBase64EncoderTests class >> bench10kDecode [
 	"self bench10kDecode"
 	
 	| string alphabet |
@@ -22,11 +15,8 @@ ZnBase64EncoderTests class>>bench10kDecode [
 	^ [ ZnBase64Encoder new decode: string ] bench
 ]
 
-{
-	#category : #benchmarks,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBase64EncoderTests class>>bench10kEncode [
+{ #category : #benchmarks }
+ZnBase64EncoderTests class >> bench10kEncode [
 	"self bench10kEncode"
 	
 	| bytes |
@@ -35,11 +25,8 @@ ZnBase64EncoderTests class>>bench10kEncode [
 	^ [ ZnBase64Encoder new encode: bytes ] bench
 ]
 
-{
-	#category : #benchmarks,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBase64EncoderTests class>>bench1kDecode [
+{ #category : #benchmarks }
+ZnBase64EncoderTests class >> bench1kDecode [
 	"self bench1kDecode"
 	
 	| string alphabet |
@@ -49,11 +36,8 @@ ZnBase64EncoderTests class>>bench1kDecode [
 	^ [ ZnBase64Encoder new decode: string ] bench
 ]
 
-{
-	#category : #benchmarks,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBase64EncoderTests class>>bench1kEncode [
+{ #category : #benchmarks }
+ZnBase64EncoderTests class >> bench1kEncode [
 	"self bench1kEncode"
 	
 	| bytes |
@@ -62,22 +46,16 @@ ZnBase64EncoderTests class>>bench1kEncode [
 	^ [ ZnBase64Encoder new encode: bytes ] bench
 ]
 
-{
-	#category : #benchmarks,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBase64EncoderTests class>>benchmarks [
+{ #category : #benchmarks }
+ZnBase64EncoderTests class >> benchmarks [
 	"self benchmarks"
 	
 	^ (#( bench1kEncode bench1kDecode bench10kEncode bench10kDecode )
 		 collect: [ :each | each -> (self perform: each) ]) asDictionary
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBase64EncoderTests>>testCustomLineBreaking [
+{ #category : #testing }
+ZnBase64EncoderTests >> testCustomLineBreaking [
 	| encoder input output charCount |
 	encoder := ZnBase64Encoder new.
 	encoder breakLinesAt: 16.
@@ -88,11 +66,8 @@ ZnBase64EncoderTests>>testCustomLineBreaking [
 	self assert: output size equals: (charCount + (charCount // 16 * String crlf size))
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBase64EncoderTests>>testDecodingErrors [
+{ #category : #testing }
+ZnBase64EncoderTests >> testDecodingErrors [
 	| encoder |
 	encoder := ZnBase64Encoder new.
 	self should: [ encoder decode: 'A' ] raise: ZnCharacterEncodingError.
@@ -110,11 +85,8 @@ ZnBase64EncoderTests>>testDecodingErrors [
 	self should: [ encoder decode: '****' ] raise: ZnCharacterEncodingError.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBase64EncoderTests>>testEmpty [
+{ #category : #testing }
+ZnBase64EncoderTests >> testEmpty [
 	| encoder |
 	encoder := ZnBase64Encoder new.
 	self 
@@ -125,11 +97,8 @@ ZnBase64EncoderTests>>testEmpty [
 		equals: #[]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBase64EncoderTests>>testFullAlphabet [
+{ #category : #testing }
+ZnBase64EncoderTests >> testFullAlphabet [
 	| encoder input output |
 	encoder := ZnBase64Encoder new.
 	input := encoder alphabet.
@@ -140,11 +109,8 @@ ZnBase64EncoderTests>>testFullAlphabet [
 	self assert: (encoder encode: output) equals: input
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBase64EncoderTests>>testFullSpectrum [
+{ #category : #testing }
+ZnBase64EncoderTests >> testFullSpectrum [
 	| encoder input output |
 	encoder := ZnBase64Encoder new.
 	input := (0 to: 255) asByteArray , (255 to: 0) asByteArray.
@@ -156,11 +122,8 @@ ZnBase64EncoderTests>>testFullSpectrum [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBase64EncoderTests>>testPadding [
+{ #category : #testing }
+ZnBase64EncoderTests >> testPadding [
 	| encoder |
 	encoder := ZnBase64Encoder new.
 	self assert: (encoder encode: 'M' asByteArray) equals: 'TQ=='.
@@ -169,11 +132,8 @@ ZnBase64EncoderTests>>testPadding [
 	self assert: (encoder decode: 'TWE=') equals: 'Ma' asByteArray
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBase64EncoderTests>>testQuote [
+{ #category : #testing }
+ZnBase64EncoderTests >> testQuote [
 	| input output encoder break |
 	encoder := ZnBase64Encoder new lineEndConvention: #cr; breakLines; yourself.
 	input := 'Man is distinguished, not only by his reason, but by this singular passion from other animals, which is a lust of the mind, that by a perseverance of delight in the continued and indefatigable generation of knowledge, exceeds the short vehemence of any carnal pleasure.'.
@@ -191,11 +151,8 @@ ZnBase64EncoderTests>>testQuote [
 		equals: input asByteArray 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBase64EncoderTests>>testSimple [
+{ #category : #testing }
+ZnBase64EncoderTests >> testSimple [
 	| encoder |
 	encoder := ZnBase64Encoder new.
 	self 
@@ -206,11 +163,8 @@ ZnBase64EncoderTests>>testSimple [
 		equals: 'Man' asByteArray 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBase64EncoderTests>>testWhitespaceAtEnd [
+{ #category : #testing }
+ZnBase64EncoderTests >> testWhitespaceAtEnd [
 	| encoder |
 	encoder := ZnBase64Encoder new.
 	"whitespace is #any non-alphabet character"

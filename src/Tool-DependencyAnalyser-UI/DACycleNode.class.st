@@ -4,15 +4,11 @@ A PDCycleNode is used to display a cycle in a tree.
 Class {
 	#name : #DACycleNode,
 	#superclass : #DANode,
-	#category : #Tool-DependencyAnalyser-UI-Nodes,
-	#timestamp : 'BaptisteQuide 7/11/2014 11:43'
+	#category : #Tool-DependencyAnalyser-UI-Nodes
 }
 
-{
-	#category : #building-menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DACycleNode>>addMenuEntriesOn: aMenuGroup [
+{ #category : #building-menu }
+DACycleNode >> addMenuEntriesOn: aMenuGroup [
 	| graphvizGenerator |
 
 	aMenuGroup 
@@ -26,43 +22,28 @@ DACycleNode>>addMenuEntriesOn: aMenuGroup [
 									self saveGraphAndOpenWith: graphvizGenerator ])
 ]
 
-{
-	#category : #browse-nautilus,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DACycleNode>>browseInNautilus [
+{ #category : #browse-nautilus }
+DACycleNode >> browseInNautilus [
 	"we cannot browse a cycle in Nautilus"
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DACycleNode>>childNodeClassFor: anItem [
+{ #category : #accessing }
+DACycleNode >> childNodeClassFor: anItem [
 	^ DAPackageUnderAnalysisNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DACycleNode>>children [
+{ #category : #accessing }
+DACycleNode >> children [
 	^ self content packages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DACycleNode>>icon [
+{ #category : #accessing }
+DACycleNode >> icon [
 	^ self iconNamed: #refreshIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DACycleNode>>isCycleNode [
+{ #category : #accessing }
+DACycleNode >> isCycleNode [
 	^ true
 ]

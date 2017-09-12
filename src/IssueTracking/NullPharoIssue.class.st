@@ -6,22 +6,15 @@ I am an instance of the Null Object Pattern [1] so that users of PharoIssue do n
 Class {
 	#name : #NullPharoIssue,
 	#superclass : #Object,
-	#category : #IssueTracking,
-	#timestamp : 'SeanDeNigris 5/7/2015 13:52'
+	#category : #IssueTracking
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-NullPharoIssue>>number [
+{ #category : #accessing }
+NullPharoIssue >> number [
 	^ nil
 ]
 
-{
-	#category : #acccessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-NullPharoIssue>>title [
+{ #category : #acccessing }
+NullPharoIssue >> title [
 	^ nil
 ]

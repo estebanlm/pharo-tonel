@@ -4,31 +4,21 @@ Load a project configuration into the image. The project should have a configura
 Class {
 	#name : #VSLoadProjectCommand,
 	#superclass : #VSConfigurationCommand,
-	#category : #Versionner-Core-Commands,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSLoadProjectCommand>>askProjectName [
+{ #category : #accessing }
+VSLoadProjectCommand >> askProjectName [
 	^ UIManager default request: 'Enter a project name'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSLoadProjectCommand>>configurationNameForProject: aProjectName [
+{ #category : #accessing }
+VSLoadProjectCommand >> configurationNameForProject: aProjectName [
 	^ 'ConfigurationOf', aProjectName
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSLoadProjectCommand>>execute [
+{ #category : #execute }
+VSLoadProjectCommand >> execute [
 	| mcRepository projectName configurationName  |
 	mcRepository := MCTool newRepository.
 	(mcRepository isNil or: [ mcRepository location isEmpty ])
@@ -50,10 +40,7 @@ VSLoadProjectCommand>>execute [
 			^ self ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSLoadProjectCommand>>title [
+{ #category : #accessing }
+VSLoadProjectCommand >> title [
 	^ 'load project'
 ]

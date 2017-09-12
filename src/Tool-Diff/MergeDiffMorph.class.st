@@ -1,52 +1,36 @@
-"
-
-"
 Class {
 	#name : #MergeDiffMorph,
 	#superclass : #DiffMorph,
 	#instVars : [
 		'allowJoinClicks'
 	],
-	#category : #Tool-Diff,
-	#timestamp : ''
+	#category : #Tool-Diff
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeDiffMorph>>allowJoinClicks [
+{ #category : #accessing }
+MergeDiffMorph >> allowJoinClicks [
 	"Answer the value of allowJoinClicks"
 
 	^ allowJoinClicks
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeDiffMorph>>allowJoinClicks: anObject [
+{ #category : #accessing }
+MergeDiffMorph >> allowJoinClicks: anObject [
 	"Set the value of allowJoinClicks"
 
 	allowJoinClicks := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeDiffMorph>>calculatedJoinMappings [
+{ #category : #actions }
+MergeDiffMorph >> calculatedJoinMappings [
 	"Specify click allowance for each section."
 	
 	^super calculatedJoinMappings do: [:j |
 		j allowClick: self allowJoinClicks]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeDiffMorph>>compositeText [
+{ #category : #actions }
+MergeDiffMorph >> compositeText [
 	"Answer the composite text based on the selection state
 	of the joins."
 
@@ -54,11 +38,8 @@ MergeDiffMorph>>compositeText [
 	
 ]
 
-{
-	#category : #obsolete,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeDiffMorph>>indicateDst [
+{ #category : #obsolete }
+MergeDiffMorph >> indicateDst [
 	"Change the indicators of the joins to the dst side."
 
 	self joinMappings do: [:section |
@@ -68,11 +49,8 @@ MergeDiffMorph>>indicateDst [
 		changed: #selectedDifferences
 ]
 
-{
-	#category : #obsolete,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeDiffMorph>>indicateSrc [
+{ #category : #obsolete }
+MergeDiffMorph >> indicateSrc [
 	"Change the indicators of the joins to the src side."
 
 	self joinMappings do: [:section |
@@ -82,11 +60,8 @@ MergeDiffMorph>>indicateSrc [
 		changed: #selectedDifferences
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeDiffMorph>>initialize [
+{ #category : #initialization }
+MergeDiffMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -94,32 +69,23 @@ MergeDiffMorph>>initialize [
 		allowJoinClicks: true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeDiffMorph>>joinSectionClass [
+{ #category : #actions }
+MergeDiffMorph >> joinSectionClass [
 	"Answer the class to use for a new join section."
 
 	^MergeJoinSection
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeDiffMorph>>newJoinMorph [
+{ #category : #actions }
+MergeDiffMorph >> newJoinMorph [
 	"Answer a new join morph."
 
 	^super newJoinMorph
 		when: #joinClicked send: #update: to: self with: #joinClicked
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeDiffMorph>>update: aspect [
+{ #category : #actions }
+MergeDiffMorph >> update: aspect [
 	"A join has probably changed its selection state."
 
 	super update: aspect.

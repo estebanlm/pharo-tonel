@@ -6,33 +6,23 @@ Lately Pharo tools moved to Renraku framework which requires a slightly differen
 Class {
 	#name : #RenrakuMigrationHelp,
 	#superclass : #RenrakuHelp,
-	#category : #Renraku-Help,
-	#timestamp : 'YuriyTymchuk 7/12/2016 15:49'
+	#category : #Renraku-Help
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuMigrationHelp class>>bookDescription [
+{ #category : #'as yet unclassified' }
+RenrakuMigrationHelp class >> bookDescription [
 	^ 'Lately Pharo tools moved to Renraku framework which requires a slightly different implementation from rules.
 	
 	While you can achieve much more features by reading the whole documentation and using the complete set of Renraku possibilities, this book contains a few simple steps to help you converting existing rules to work with Renraku model.'
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuMigrationHelp class>>bookName [
+{ #category : #'as yet unclassified' }
+RenrakuMigrationHelp class >> bookName [
 	    ^ 'Migrating Rules To Renraku'
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuMigrationHelp class>>genericRules  [
+{ #category : #'as yet unclassified' }
+RenrakuMigrationHelp class >> genericRules [ 
 
 	^ HelpTopic
 		title: 'Generic Rules'
@@ -49,19 +39,13 @@ Checking:
 Implement #basicCheck: in a way that it will return true if the argument violated the rule and false otherwise. The quality tools will pass you only the arguments of the type you''ve expressed interest in.'
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuMigrationHelp class>>pages [
+{ #category : #'as yet unclassified' }
+RenrakuMigrationHelp class >> pages [
 	    ^ #(genericRules parsetreeRules rewriteRules)
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuMigrationHelp class>>parsetreeRules  [
+{ #category : #'as yet unclassified' }
+RenrakuMigrationHelp class >> parsetreeRules [ 
 
 	^ HelpTopic
 		title: 'Parse Tree Rules'
@@ -87,11 +71,8 @@ But the new rules also give you a move powerful way of post-checking matched nod
 P.S. at the moment of writing the matches dictionary was not used in a real setting, so don''t hesitate to provide a feedback. Maybe instead of node objects the dictionary should contain strings.'
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuMigrationHelp class>>rewriteRules  [
+{ #category : #'as yet unclassified' }
+RenrakuMigrationHelp class >> rewriteRules [ 
 
 	^ HelpTopic
 		title: 'Rewrite Rules'

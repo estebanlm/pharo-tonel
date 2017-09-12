@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MethodQueryTest,
 	#superclass : #TestCase,
-	#category : #System-SupportTests,
-	#timestamp : ''
+	#category : #System-SupportTests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MethodQueryTest>>testReferencedClasses [
+{ #category : #tests }
+MethodQueryTest >> testReferencedClasses [
 	| refs |
 	
 	refs := (CompiledMethod>>#referencedClasses) referencedClasses.

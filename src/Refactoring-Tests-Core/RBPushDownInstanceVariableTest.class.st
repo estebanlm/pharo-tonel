@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBPushDownInstanceVariableTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownInstanceVariableTest>>testModelPushDownToMetaclass [
+{ #category : #tests }
+RBPushDownInstanceVariableTest >> testModelPushDownToMetaclass [
 	model 
 		defineClass: 'Object subclass: #SomeClass instanceVariableNames: '''' classVariableNames: '''' poolDictionaries: '''' category: #''Refactory-Test data'''.
 	(model metaclassNamed: #SomeClass) addInstanceVariable: 'foo'.
@@ -30,11 +23,8 @@ RBPushDownInstanceVariableTest>>testModelPushDownToMetaclass [
 		assert: ((model metaclassNamed: #Subclass) directlyDefinesVariable: 'foo')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownInstanceVariableTest>>testModelPushDownToMultipleSubclasses [
+{ #category : #tests }
+RBPushDownInstanceVariableTest >> testModelPushDownToMultipleSubclasses [
 	model 
 		defineClass: 'Object subclass: #SomeClass instanceVariableNames: ''foo'' classVariableNames: '''' poolDictionaries: '''' category: #''Refactory-Test data'''.
 	model 
@@ -55,11 +45,8 @@ RBPushDownInstanceVariableTest>>testModelPushDownToMultipleSubclasses [
 				directlyDefinesVariable: 'foo')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownInstanceVariableTest>>testModelRemoveUnusedVariable [
+{ #category : #tests }
+RBPushDownInstanceVariableTest >> testModelRemoveUnusedVariable [
 	model 
 		defineClass: 'Object subclass: #SomeClass instanceVariableNames: ''foo'' classVariableNames: '''' poolDictionaries: '''' category: #''Refactory-Test data'''.
 	model 
@@ -72,21 +59,15 @@ RBPushDownInstanceVariableTest>>testModelRemoveUnusedVariable [
 	self assert: ((model classNamed: #Subclass) directlyDefinesVariable: 'foo')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownInstanceVariableTest>>testNonExistantName [
+{ #category : #'failure tests' }
+RBPushDownInstanceVariableTest >> testNonExistantName [
 	self shouldFail: (RBPushDownInstanceVariableRefactoring 
 			variable: 'foo'
 			class: RBBasicLintRuleTest)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownInstanceVariableTest>>testPushDownInstanceVariable [
+{ #category : #tests }
+RBPushDownInstanceVariableTest >> testPushDownInstanceVariable [
 	| refactoring |
 	refactoring := RBPushDownInstanceVariableRefactoring 
 		variable: 'foo1'

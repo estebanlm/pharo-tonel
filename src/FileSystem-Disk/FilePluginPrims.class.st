@@ -5,15 +5,11 @@ I provide an interface to the primitives in the FilePlugin.
 Class {
 	#name : #FilePluginPrims,
 	#superclass : #Object,
-	#category : #FileSystem-Disk,
-	#timestamp : 'cwp 11/18/2009 13:02'
+	#category : #FileSystem-Disk
 }
 
-{
-	#category : #'file primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>atEnd: id [
+{ #category : #'file primitives' }
+FilePluginPrims >> atEnd: id [
 	"Answer true if the file position is at the end of the file."
 
 	<primitive: 'primitiveFileAtEnd' module: 'FilePlugin'>
@@ -21,22 +17,16 @@ FilePluginPrims>>atEnd: id [
 
 ]
 
-{
-	#category : #'file primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>close: id [
+{ #category : #'file primitives' }
+FilePluginPrims >> close: id [
 	"Close this file."
 
 	<primitive: 'primitiveFileClose' module: 'FilePlugin'>
 	
 ]
 
-{
-	#category : #'path primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>createDirectory: fullPath [
+{ #category : #'path primitives' }
+FilePluginPrims >> createDirectory: fullPath [
 	"Create a directory named by the given path. 
 	Fail if the path is bad or if a file or directory by that name already exists."
 
@@ -45,20 +35,14 @@ FilePluginPrims>>createDirectory: fullPath [
 
 ]
 
-{
-	#category : #'encoding primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>decode: aString [
+{ #category : #'encoding primitives' }
+FilePluginPrims >> decode: aString [
 
 	^ (ZnCharacterEncoder newForEncoding: 'utf8') decodeBytes: aString asByteArray
 ]
 
-{
-	#category : #'path primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>deleteDirectory: fullPath [
+{ #category : #'path primitives' }
+FilePluginPrims >> deleteDirectory: fullPath [
 	"Delete the directory named by the given path. 
 	Fail if the path is bad or if a directory by that name does not exist."
 
@@ -67,11 +51,8 @@ FilePluginPrims>>deleteDirectory: fullPath [
 
 ]
 
-{
-	#category : #'path primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>deleteFile: aFileName [
+{ #category : #'path primitives' }
+FilePluginPrims >> deleteFile: aFileName [
 	"Delete the file of the given name. 
 	Return self if the primitive succeeds, nil otherwise."
 
@@ -80,11 +61,8 @@ FilePluginPrims>>deleteFile: aFileName [
 
 ]
 
-{
-	#category : #'path primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>delimiter [
+{ #category : #'path primitives' }
+FilePluginPrims >> delimiter [
 	"Return the path delimiter for the underlying platform's file system."
 
  	<primitive: 'primitiveDirectoryDelimitor' module: 'FilePlugin'>
@@ -92,21 +70,15 @@ FilePluginPrims>>delimiter [
 
 ]
 
-{
-	#category : #'encoding primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>encode: aString [
+{ #category : #'encoding primitives' }
+FilePluginPrims >> encode: aString [
 
 	"Should not return a string"
 	^ ((ZnCharacterEncoder newForEncoding: 'utf8') encodeString: aString) asString
 ]
 
-{
-	#category : #'file primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>flush: id [
+{ #category : #'file primitives' }
+FilePluginPrims >> flush: id [
 	"On Unix, the FilePlugin uses stdio FILE* structs which maintain their
 	own internal buffer to minimize write() syscalls. This flushes that buffer.
 	On Windows this and primSync: do the same thing."
@@ -118,11 +90,8 @@ FilePluginPrims>>flush: id [
 	self primitiveFailed
 ]
 
-{
-	#category : #'path primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>getMacFile: fileName type: typeString creator: creatorString [
+{ #category : #'path primitives' }
+FilePluginPrims >> getMacFile: fileName type: typeString creator: creatorString [
 	"Get the Macintosh file type and creator info for the file with the given name. Fails if the file does not exist or if the type and creator type arguments are not strings of length 4. This primitive is Mac specific; it is a noop on other platforms."
 
  	<primitive: 'primitiveDirectoryGetMacTypeAndCreator' module: 'FilePlugin'>
@@ -130,11 +99,8 @@ FilePluginPrims>>getMacFile: fileName type: typeString creator: creatorString [
 
 ]
 
-{
-	#category : #'file primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>getPosition: id [
+{ #category : #'file primitives' }
+FilePluginPrims >> getPosition: id [
 	"Get this files current position."
 
 	<primitive: 'primitiveFileGetPosition' module: 'FilePlugin'>
@@ -142,22 +108,16 @@ FilePluginPrims>>getPosition: id [
 
 ]
 
-{
-	#category : #'path primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>imageFile [
+{ #category : #'path primitives' }
+FilePluginPrims >> imageFile [
 	"Answer the full path name for the current image."
 
 	<primitive: 121>
 	self primitiveFailed
 ]
 
-{
-	#category : #'path primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>lookupDirectory: fullPath filename: fileName [
+{ #category : #'path primitives' }
+FilePluginPrims >> lookupDirectory: fullPath filename: fileName [
 
 	"Look up <fileName> (a simple file name) in the directory identified by <fullPath> and return an array containing:
 
@@ -179,11 +139,8 @@ FilePluginPrims>>lookupDirectory: fullPath filename: fileName [
 
 ]
 
-{
-	#category : #'path primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>lookupEntryIn: fullPath index: index [
+{ #category : #'path primitives' }
+FilePluginPrims >> lookupEntryIn: fullPath index: index [
 	"Look up the index-th entry of the directory with the given fully-qualified path 
 	(i.e., starting from the root of the file hierarchy) and return an array containing:
 
@@ -204,11 +161,8 @@ FilePluginPrims>>lookupEntryIn: fullPath index: index [
 
 ]
 
-{
-	#category : #'file primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>open: fileName writable: writableFlag [
+{ #category : #'file primitives' }
+FilePluginPrims >> open: fileName writable: writableFlag [
 	"Open a file of the given name, and return the file ID obtained.
 	If writableFlag is true, then
 		if there is none with this name, then create one
@@ -222,22 +176,16 @@ FilePluginPrims>>open: fileName writable: writableFlag [
 
 ]
 
-{
-	#category : #'file primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>read: id into: byteArray startingAt: startIndex count: count [
+{ #category : #'file primitives' }
+FilePluginPrims >> read: id into: byteArray startingAt: startIndex count: count [
 	"Read up to count bytes of data from this file into the given string or byte array starting at the given index. Answer the number of bytes actually read."
 
 	<primitive: 'primitiveFileRead' module: 'FilePlugin'>
 	self primitiveFailed
 ]
 
-{
-	#category : #'path primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>rename: oldFileFullName to: newFileFullName  [
+{ #category : #'path primitives' }
+FilePluginPrims >> rename: oldFileFullName to: newFileFullName [ 
 	"Rename the file of the given name to the new name. Fail if there is no file of the old name 
 	or if there is an existing file with the new name."
 
@@ -245,11 +193,8 @@ FilePluginPrims>>rename: oldFileFullName to: newFileFullName  [
 	^nil
 ]
 
-{
-	#category : #'path primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>setMacFileNamed: fileName type: typeString creator: creatorString [
+{ #category : #'path primitives' }
+FilePluginPrims >> setMacFileNamed: fileName type: typeString creator: creatorString [
 	"Set the Macintosh file type and creator info for the file with the given name. Fails if the 
 	file does not exist or if the type and creator type arguments are not strings of length 4. This
 	primitive is Mac specific; it is a noop on other platforms."
@@ -259,11 +204,8 @@ FilePluginPrims>>setMacFileNamed: fileName type: typeString creator: creatorStri
 
 ]
 
-{
-	#category : #'file primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>setPosition: id to: anInteger [
+{ #category : #'file primitives' }
+FilePluginPrims >> setPosition: id to: anInteger [
 	"Set this file to the given position."
 
 	<primitive: 'primitiveFileSetPosition' module: 'FilePlugin'>
@@ -271,11 +213,8 @@ FilePluginPrims>>setPosition: id to: anInteger [
 
 ]
 
-{
-	#category : #'file primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>sizeOf: id [
+{ #category : #'file primitives' }
+FilePluginPrims >> sizeOf: id [
 	"Answer the size of this file."
 
 	<primitive: 'primitiveFileSize' module: 'FilePlugin'>
@@ -283,22 +222,16 @@ FilePluginPrims>>sizeOf: id [
 
 ]
 
-{
-	#category : #'file primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>sizeOrNil: id [
+{ #category : #'file primitives' }
+FilePluginPrims >> sizeOrNil: id [
 	"Answer the size of this file."
 
 	<primitive: 'primitiveFileSize' module: 'FilePlugin'>
 	^ nil
 ]
 
-{
-	#category : #'file primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>sync: id [
+{ #category : #'file primitives' }
+FilePluginPrims >> sync: id [
 	"On Unix, this syncs any written or flushed data still in the kernel file
 	system buffers to disk. On Windows this and primFlush: do the same thing"
 
@@ -308,11 +241,8 @@ FilePluginPrims>>sync: id [
 	self primitiveFailed
 ]
 
-{
-	#category : #'file primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>truncate: id to: anInteger [
+{ #category : #'file primitives' }
+FilePluginPrims >> truncate: id to: anInteger [
 	"Truncate this file to the given position."
 
 	<primitive: 'primitiveFileTruncate' module: 'FilePlugin'>
@@ -320,11 +250,8 @@ FilePluginPrims>>truncate: id to: anInteger [
 
 ]
 
-{
-	#category : #'file primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FilePluginPrims>>write: id from: stringOrByteArray startingAt: startIndex count: count [
+{ #category : #'file primitives' }
+FilePluginPrims >> write: id from: stringOrByteArray startingAt: startIndex count: count [
 	"Write count bytes onto this file from the given string or byte array starting at the given index. 	Answer the number of bytes written."
 
 	<primitive: 'primitiveFileWrite' module: 'FilePlugin'>

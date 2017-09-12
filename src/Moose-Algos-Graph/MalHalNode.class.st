@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MalHalNode,
 	#superclass : #MalTarjanNode,
@@ -8,85 +5,57 @@ Class {
 		'hNumber',
 		'previousNodes'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHalNode>>from: aHalNode [
+{ #category : #accessing }
+MalHalNode >> from: aHalNode [
 	previousNodes add: aHalNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHalNode>>hNumber [
+{ #category : #accessing }
+MalHalNode >> hNumber [
 	^ hNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHalNode>>hNumber: anObject [
+{ #category : #accessing }
+MalHalNode >> hNumber: anObject [
 	hNumber := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHalNode>>initialize [
+{ #category : #initialization }
+MalHalNode >> initialize [
 	super initialize.
 	previousNodes := Set new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHalNode>>isSink [
+{ #category : #testing }
+MalHalNode >> isSink [
 
 	^ self nextNodes isEmpty 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHalNode>>isSource [
+{ #category : #testing }
+MalHalNode >> isSource [
 
 	^ self previousNodes isEmpty 
 ]
 
-{
-	#category : #hal-algorithm,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHalNode>>label [
+{ #category : #hal-algorithm }
+MalHalNode >> label [
 
 	^ 'Ha '
 ]
 
-{
-	#category : #hal-algorithm,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHalNode>>markCycleWith: anInteger [
+{ #category : #hal-algorithm }
+MalHalNode >> markCycleWith: anInteger [
 
 	self cycleNodes do: [ :next | next hNumber: anInteger ].
 	^ self cycleNodes 
 ]
 
-{
-	#category : #hal-algorithm,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHalNode>>markHNumber: anInteger [
+{ #category : #hal-algorithm }
+MalHalNode >> markHNumber: anInteger [
 
 	self hNumber: anInteger.
 	self isInCycle ifTrue: [
@@ -95,37 +64,25 @@ MalHalNode>>markHNumber: anInteger [
 	^ OrderedCollection new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHalNode>>previousNodes [
+{ #category : #accessing }
+MalHalNode >> previousNodes [
 	^ previousNodes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHalNode>>previousNodes: anObject [
+{ #category : #accessing }
+MalHalNode >> previousNodes: anObject [
 	previousNodes := anObject
 ]
 
-{
-	#category : #hal-algorithm,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHalNode>>removeCycleFromEdges [
+{ #category : #hal-algorithm }
+MalHalNode >> removeCycleFromEdges [
 
 	self nextNodes removeAllFoundIn: self cycleNodes.
 	self previousNodes removeAllFoundIn: self cycleNodes 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHalNode>>to: aNode [
+{ #category : #accessing }
+MalHalNode >> to: aNode [
 	super to: aNode.
 	aNode previousNodes add: self
 ]

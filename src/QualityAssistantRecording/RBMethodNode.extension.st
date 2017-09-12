@@ -1,12 +1,7 @@
-Extension {
-	#name : #RBMethodNode
-}
+Extension { #name : #RBMethodNode }
 
-{
-	#category : #'*qualityAssistantRecording',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBMethodNode>>dataForQAR [
+{ #category : #'*qualityAssistantRecording' }
+RBMethodNode >> dataForQAR [
 		
 	| data |
 	
@@ -24,11 +19,8 @@ RBMethodNode>>dataForQAR [
 	^ data
 ]
 
-{
-	#category : #'*qualityAssistantRecording',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBMethodNode>>methodForQAR [
+{ #category : #'*qualityAssistantRecording' }
+RBMethodNode >> methodForQAR [
 
 	self compilationContext ifNotNil: [ :contx |
 		contx getClass ifNotNil: [ :class |

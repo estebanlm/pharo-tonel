@@ -12,39 +12,26 @@ Class {
 		'arrowPosition',
 		'label'
 	],
-	#category : #NECompletion-View,
-	#timestamp : '<historical>'
+	#category : #NECompletion-View
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph class>>height [
+{ #category : #private }
+NECDetailMorph class >> height [
 	^ NECMenuMorph itemHeight * 15.5
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph class>>width [
+{ #category : #private }
+NECDetailMorph class >> width [
 	^ NECMenuMorph itemWidth * 2.0
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph>>bounds [
+{ #category : #drawing }
+NECDetailMorph >> bounds [
 	^ super bounds topLeft extent: self class width @ self class height
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph>>contentBounds [
+{ #category : #drawing }
+NECDetailMorph >> contentBounds [
 	| factor rectangle |
 	factor := self itemHeight.
 	rectangle := self bounds top: self bounds top + 3.
@@ -53,27 +40,18 @@ NECDetailMorph>>contentBounds [
 	^ rectangle
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph>>defaultColor [
+{ #category : #drawing }
+NECDetailMorph >> defaultColor [
 	^ NECMenuMorph backgroundColor. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph>>descriptionBounds [
+{ #category : #accessing }
+NECDetailMorph >> descriptionBounds [
 	^ self contentBounds top: self contentBounds top + 30
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph>>drawArrowOn: aCanvas [
+{ #category : #drawing }
+NECDetailMorph >> drawArrowOn: aCanvas [
 	| point factor poligon |
 	factor := self itemHeight.
 	point := arrowPosition.
@@ -88,11 +66,8 @@ NECDetailMorph>>drawArrowOn: aCanvas [
 	aCanvas drawPolygon: poligon fillStyle: self scrollColor
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph>>drawMessageOn: aCanvas [
+{ #category : #drawing }
+NECDetailMorph >> drawMessageOn: aCanvas [
 	| factor rectangle width browseMessage |
 	factor := self itemHeight.
 	rectangle := self bounds top: self bounds bottom - factor.
@@ -116,22 +91,16 @@ NECDetailMorph>>drawMessageOn: aCanvas [
 		color: Color darkGray
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph>>drawOn: aCanvas  [
+{ #category : #drawing }
+NECDetailMorph >> drawOn: aCanvas [ 
 	super drawOn: aCanvas.
 	arrowPosition ifNotNil: [
 		self drawArrowOn: aCanvas.
 		self drawMessageOn: aCanvas]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph>>entryDescription: anECEntryDescription  [
+{ #category : #accessing }
+NECDetailMorph >> entryDescription: anECEntryDescription [ 
 	| categoryContents entryDescription |
 	entryDescription := anECEntryDescription.
 	title
@@ -147,11 +116,8 @@ NECDetailMorph>>entryDescription: anECEntryDescription  [
 	label contents: categoryContents
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph>>initialize [
+{ #category : #initialization }
+NECDetailMorph >> initialize [
 	| childBounds |
 	super initialize.
 	
@@ -174,27 +140,18 @@ NECDetailMorph>>initialize [
 	self addMorph: description
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph>>itemHeight [
+{ #category : #drawing }
+NECDetailMorph >> itemHeight [
 	^ NECMenuMorph itemHeight
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph>>messageFont [
+{ #category : #drawing }
+NECDetailMorph >> messageFont [
 	^ NECMenuMorph messageFont
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph>>position: aPoint menuWidth: anInteger  [
+{ #category : #drawing }
+NECDetailMorph >> position: aPoint menuWidth: anInteger [ 
 	| y x |
 	arrowPosition := aPoint.
 	y := aPoint y + self class height.
@@ -210,26 +167,17 @@ NECDetailMorph>>position: aPoint menuWidth: anInteger  [
 	self position: x @ y
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph>>positionOnLeft: anInteger  [
+{ #category : #private }
+NECDetailMorph >> positionOnLeft: anInteger [ 
 	^ arrowPosition x - self class width - anInteger 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph>>scrollColor [
+{ #category : #drawing }
+NECDetailMorph >> scrollColor [
 	^ NECMenuMorph scrollColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECDetailMorph>>titleBounds [
+{ #category : #accessing }
+NECDetailMorph >> titleBounds [
 	^ self contentBounds top: self contentBounds top + 10
 ]

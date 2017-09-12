@@ -19,25 +19,18 @@ Class {
 		'size',
 		'numberOfDisplayBlock'
 	],
-	#category : #Glamour-Browsers-Wizards,
-	#timestamp : 'TorstenBergmann 3/10/2015 22:01'
+	#category : #Glamour-Browsers-Wizards
 }
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizardGenericStep>>initialize [
+{ #category : #initialize-release }
+GLMWizardGenericStep >> initialize [
 
 	super initialize.
 	size := 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizardGenericStep>>numberOfDisplay [
+{ #category : #accessing }
+GLMWizardGenericStep >> numberOfDisplay [
 	
 	self numberOfDisplayBlock isNil 
 		ifFalse: [
@@ -49,39 +42,27 @@ GLMWizardGenericStep>>numberOfDisplay [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizardGenericStep>>numberOfDisplayBlock [
+{ #category : #accessing }
+GLMWizardGenericStep >> numberOfDisplayBlock [
 
 	^ numberOfDisplayBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizardGenericStep>>numberOfDisplayBlock: aBlock [
+{ #category : #accessing }
+GLMWizardGenericStep >> numberOfDisplayBlock: aBlock [
 
 	"this method allow the user to externally control the progression of this step. In merlin for exemple, it can be usefull to have some 'conditions' to validate before going on. If those conditions are not validated, we do not progress"
 	numberOfDisplayBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizardGenericStep>>size [
+{ #category : #accessing }
+GLMWizardGenericStep >> size [
 
 	^ size glamourValue: self input
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizardGenericStep>>size: aNumberOrAblock [
+{ #category : #accessing }
+GLMWizardGenericStep >> size: aNumberOrAblock [
 
 	size := aNumberOrAblock 
 ]

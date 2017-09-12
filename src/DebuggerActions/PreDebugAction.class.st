@@ -8,15 +8,11 @@ Class {
 	#instVars : [
 		'preDebugWindow'
 	],
-	#category : #DebuggerActions,
-	#timestamp : '<historical>'
+	#category : #DebuggerActions
 }
 
-{
-	#category : #'actions creation',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugAction class>>debugActionsFor: aDebugger [
+{ #category : #'actions creation' }
+PreDebugAction class >> debugActionsFor: aDebugger [
 	<preDebuggingAction>
 	
 	^ { 
@@ -33,40 +29,28 @@ PreDebugAction class>>debugActionsFor: aDebugger [
 	}
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugAction>>initialize [
+{ #category : #initialization }
+PreDebugAction >> initialize [
 
 	super initialize.
 	self needsUpdate: false.
 	self needsValidation: false.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugAction>>preDebugWindow [
+{ #category : #accessing }
+PreDebugAction >> preDebugWindow [
 	
 	^ preDebugWindow
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugAction>>preDebugWindow: anObject [
+{ #category : #accessing }
+PreDebugAction >> preDebugWindow: anObject [
 	
 	preDebugWindow := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugAction>>receiver [
+{ #category : #accessing }
+PreDebugAction >> receiver [
 
 	^ self preDebugWindow
 ]

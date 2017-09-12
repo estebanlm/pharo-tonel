@@ -13,33 +13,23 @@ Class {
 	#instVars : [
 		'toolbarBox'
 	],
-	#category : #OSWindow-Core-Morphic,
-	#timestamp : 'RonieSalgado 9/9/2016 18:08'
+	#category : #OSWindow-Core-Morphic
 }
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GLMOSWindowWorldMorph>>actOnWindowRequest: ann [
+{ #category : #callbacks }
+GLMOSWindowWorldMorph >> actOnWindowRequest: ann [
 
 	ann action value: self	
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GLMOSWindowWorldMorph>>delete [
+{ #category : #submorphs-add/remove }
+GLMOSWindowWorldMorph >> delete [
 	self model notNil ifTrue: [self model unregisterFromAllAnnouncements].
 	super delete
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GLMOSWindowWorldMorph>>initialize [
+{ #category : #initialization }
+GLMOSWindowWorldMorph >> initialize [
 	super initialize.
 	
 	self layoutPolicy: ProportionalLayout new.
@@ -47,18 +37,12 @@ GLMOSWindowWorldMorph>>initialize [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GLMOSWindowWorldMorph>>toolbarBox: anObject [
+{ #category : #accessing }
+GLMOSWindowWorldMorph >> toolbarBox: anObject [
 	toolbarBox := anObject
 ]
 
-{
-	#category : #announcing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GLMOSWindowWorldMorph>>when: anAnnouncement do: aBlock  [
+{ #category : #announcing }
+GLMOSWindowWorldMorph >> when: anAnnouncement do: aBlock [ 
 	^ self announcer when: anAnnouncement do: aBlock
 ]

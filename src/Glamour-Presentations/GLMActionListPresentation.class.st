@@ -11,55 +11,36 @@ Class {
 	#instVars : [
 		'isHorizontal'
 	],
-	#category : #Glamour-Presentations,
-	#timestamp : 'AndreiChis 10/3/2014 18:20'
+	#category : #Glamour-Presentations
 }
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMActionListPresentation>>beVertical [
+{ #category : #scripting }
+GLMActionListPresentation >> beVertical [
 	self isHorizontal: false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMActionListPresentation>>hasActions [
+{ #category : #testing }
+GLMActionListPresentation >> hasActions [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMActionListPresentation>>isHorizontal [
+{ #category : #accessing }
+GLMActionListPresentation >> isHorizontal [
 	^ isHorizontal ifNil: [isHorizontal := true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMActionListPresentation>>isHorizontal: anObject [
+{ #category : #accessing }
+GLMActionListPresentation >> isHorizontal: anObject [
 	isHorizontal := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMActionListPresentation>>isVertical [
+{ #category : #accessing }
+GLMActionListPresentation >> isVertical [
 	^ self isHorizontal not
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMActionListPresentation>>renderGlamorouslyOn: aRenderer [
+{ #category : #rendering }
+GLMActionListPresentation >> renderGlamorouslyOn: aRenderer [
 	self registerAnnouncements.
 	^ aRenderer renderActionListPresentation: self
 ]

@@ -8,15 +8,11 @@ Class {
 		'style',
 		'trackPaneColor'
 	],
-	#category : #Morphic-Base-Basic,
-	#timestamp : 'gvc 5/18/2007 13:15'
+	#category : #Morphic-Base-Basic
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbossedStringMorph>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+EmbossedStringMorph >> adoptPaneColor: paneColor [
 	"Set the color."
 	
 	(paneColor notNil and: [self trackPaneColor])
@@ -24,11 +20,8 @@ EmbossedStringMorph>>adoptPaneColor: paneColor [
 	super adoptPaneColor: paneColor
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbossedStringMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+EmbossedStringMorph >> drawOn: aCanvas [
 	"Draw the hi/lowlights too."
 
 	|box|
@@ -54,11 +47,8 @@ EmbossedStringMorph>>drawOn: aCanvas [
 					font: self fontToUse color: self color]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbossedStringMorph>>initWithContents: aString font: aFont emphasis: emphasisCode [
+{ #category : #initialization }
+EmbossedStringMorph >> initWithContents: aString font: aFont emphasis: emphasisCode [
 	"Grrr, why do they do basicNew?"
 	
 	super initWithContents: aString font: aFont emphasis: emphasisCode.
@@ -67,11 +57,8 @@ EmbossedStringMorph>>initWithContents: aString font: aFont emphasis: emphasisCod
 		trackPaneColor: true.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbossedStringMorph>>initialize [
+{ #category : #initialization }
+EmbossedStringMorph >> initialize [
 	"Initialize the receiver."
 	
 	super initialize.
@@ -80,62 +67,44 @@ EmbossedStringMorph>>initialize [
 		trackPaneColor: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbossedStringMorph>>measureContents [
+{ #category : #accessing }
+EmbossedStringMorph >> measureContents [
 	"Measure the contents for fitting. Add 2@2 for hi/lowlights."
 
 	^super measureContents + 2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbossedStringMorph>>style [
+{ #category : #accessing }
+EmbossedStringMorph >> style [
 	"Answer the value of style"
 
 	^ style
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbossedStringMorph>>style: anObject [
+{ #category : #accessing }
+EmbossedStringMorph >> style: anObject [
 	"Set the value of style"
 
 	style := anObject.
 	self changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbossedStringMorph>>styleSymbols [
+{ #category : #accessing }
+EmbossedStringMorph >> styleSymbols [
 	"Answer the valid styles."
 
 	^#(plain inset insetNoHighlight raised raisedNoHighlight)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbossedStringMorph>>trackPaneColor [
+{ #category : #accessing }
+EmbossedStringMorph >> trackPaneColor [
 	"Answer the value of trackPaneColor"
 
 	^ trackPaneColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbossedStringMorph>>trackPaneColor: anObject [
+{ #category : #accessing }
+EmbossedStringMorph >> trackPaneColor: anObject [
 	"Set the value of trackPaneColor"
 
 	trackPaneColor := anObject

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloValueHolderSpecTestCase,
 	#superclass : #MetacelloSpecTestCase,
-	#category : #Metacello-TestsCore-Specs,
-	#timestamp : ''
+	#category : #Metacello-TestsCore-Specs
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloValueHolderSpecTestCase>>testValueHolderMergeSpec [
+{ #category : #tests }
+MetacelloValueHolderSpecTestCase >> testValueHolderMergeSpec [
     | valueHolderA valueHolderB valueHolder |
     valueHolderA := self valueHolderSpec
         value: 'an Object';
@@ -24,11 +17,8 @@ MetacelloValueHolderSpecTestCase>>testValueHolderMergeSpec [
     self assert: valueHolder value = 1.1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloValueHolderSpecTestCase>>testValueHolderSpec [
+{ #category : #tests }
+MetacelloValueHolderSpecTestCase >> testValueHolderSpec [
     | valueHolder |
     valueHolder := self valueHolderSpec
         value: 'an Object';

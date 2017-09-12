@@ -4,42 +4,29 @@ An AbstractStoredSettingTest is a test class for testing the behavior of Abstrac
 Class {
 	#name : #AbstractStoredSettingTest,
 	#superclass : #TestCase,
-	#category : #System-Settings-Tests,
-	#timestamp : '<historical>'
+	#category : #System-Settings-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AbstractStoredSettingTest>>testEqual [
+{ #category : #tests }
+AbstractStoredSettingTest >> testEqual [
 	AbstractStoredSetting allSubclassesDo: [ :aClass |
 		self assert: aClass new equals: aClass new ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AbstractStoredSettingTest>>testHash [
+{ #category : #tests }
+AbstractStoredSettingTest >> testHash [
 	AbstractStoredSetting allSubclassesDo: [ :aClass |
 		self assert: aClass new hash equals: aClass new hash ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AbstractStoredSettingTest>>testPrintOn [
+{ #category : #tests }
+AbstractStoredSettingTest >> testPrintOn [
 	AbstractStoredSetting allSubclassesDo: [ :aClass |
 		String streamContents: [ :aStream | aClass new printOn: aStream ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AbstractStoredSettingTest>>testPrintOn2 [
+{ #category : #tests }
+AbstractStoredSettingTest >> testPrintOn2 [
 	AbstractStoredSetting allSubclassesDo: [ :aClass | | aString |
 		aString := String streamContents: [ :aStream | | anInstance |
 			anInstance := aClass new.

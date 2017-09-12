@@ -5,15 +5,11 @@ Trait {
 	#name : #TConvertAsSetForMultiplinessIdentityTest,
 	#traits : 'TConvertAsSetForMultiplinessTest',
 	#classTraits : 'TConvertAsSetForMultiplinessTest classTrait',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:32'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertAsSetForMultiplinessIdentityTest>>collectionWithCopy [
+{ #category : #requirements }
+TConvertAsSetForMultiplinessIdentityTest >> collectionWithCopy [
 	"return a collection of type 'self collectionWIithoutEqualsElements class' containing no elements equals ( with identity equality)
 	but  2 elements only equals with classic equality"
 	| result collection |
@@ -23,11 +19,8 @@ TConvertAsSetForMultiplinessIdentityTest>>collectionWithCopy [
 	^ result
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertAsSetForMultiplinessIdentityTest>>collectionWithIdentical [
+{ #category : #requirements }
+TConvertAsSetForMultiplinessIdentityTest >> collectionWithIdentical [
 	"return a collection of type : 'self collectionWIithoutEqualsElements class containing two elements equals ( with identity equality)"
 	| result collection anElement |
 	collection := OrderedCollection withAll: self elementsCopyNonIdenticalWithoutEqualElements.
@@ -37,21 +30,15 @@ TConvertAsSetForMultiplinessIdentityTest>>collectionWithIdentical [
 	^ result
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertAsSetForMultiplinessIdentityTest>>elementsCopyNonIdenticalWithoutEqualElements [
+{ #category : #requirements }
+TConvertAsSetForMultiplinessIdentityTest >> elementsCopyNonIdenticalWithoutEqualElements [
 	" return a collection that does niot incllude equal elements ( classic equality )
 	all elements included are elements for which copy is not identical to the element  "
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertAsSetForMultiplinessIdentityTest>>test0FixtureAsSetForIdentityMultiplinessTest [
+{ #category : #'tests - fixture' }
+TConvertAsSetForMultiplinessIdentityTest >> test0FixtureAsSetForIdentityMultiplinessTest [
 	"a collection (of elements for which copy is not identical ) without equal elements:"
 
 	| anElement res |
@@ -65,11 +52,8 @@ TConvertAsSetForMultiplinessIdentityTest>>test0FixtureAsSetForIdentityMultipline
 	self assert: res = false
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertAsSetForMultiplinessIdentityTest>>test0FixtureTConvertAsSetForMultiplinessTest [
+{ #category : #'tests - fixture' }
+TConvertAsSetForMultiplinessIdentityTest >> test0FixtureTConvertAsSetForMultiplinessTest [
 	"a collection  with equal elements:"
 
 	| res |
@@ -79,11 +63,8 @@ TConvertAsSetForMultiplinessIdentityTest>>test0FixtureTConvertAsSetForMultipline
 	self assert: res = true
 ]
 
-{
-	#category : #'tests - as set tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertAsSetForMultiplinessIdentityTest>>testAsIdentitySetWithEqualsElements [
+{ #category : #'tests - as set tests' }
+TConvertAsSetForMultiplinessIdentityTest >> testAsIdentitySetWithEqualsElements [
 	| result collection |
 	collection := self withEqualElements .
 	result := collection asIdentitySet.
@@ -91,11 +72,8 @@ TConvertAsSetForMultiplinessIdentityTest>>testAsIdentitySetWithEqualsElements [
 	self assert: result class = IdentitySet.
 ]
 
-{
-	#category : #'tests - as identity set',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertAsSetForMultiplinessIdentityTest>>testAsIdentitySetWithIdentityEqualsElements [
+{ #category : #'tests - as identity set' }
+TConvertAsSetForMultiplinessIdentityTest >> testAsIdentitySetWithIdentityEqualsElements [
 	| result |
 	result := self collectionWithIdentical asIdentitySet.
 	" Only one element should have been removed as two elements are equals with Identity equality"
@@ -111,11 +89,8 @@ TConvertAsSetForMultiplinessIdentityTest>>testAsIdentitySetWithIdentityEqualsEle
 	self assert: result class = IdentitySet
 ]
 
-{
-	#category : #'tests - as identity set',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertAsSetForMultiplinessIdentityTest>>testAsIdentitySetWithoutIdentityEqualsElements [
+{ #category : #'tests - as identity set' }
+TConvertAsSetForMultiplinessIdentityTest >> testAsIdentitySetWithoutIdentityEqualsElements [
 	| result collection |
 	collection := self collectionWithCopy.
 	result := collection asIdentitySet.
@@ -127,22 +102,16 @@ TConvertAsSetForMultiplinessIdentityTest>>testAsIdentitySetWithoutIdentityEquals
 	self assert: result class = IdentitySet
 ]
 
-{
-	#category : #'tests - as set tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertAsSetForMultiplinessIdentityTest>>testAsSetWithEqualsElements [
+{ #category : #'tests - as set tests' }
+TConvertAsSetForMultiplinessIdentityTest >> testAsSetWithEqualsElements [
 	| result |
 	result := self withEqualElements asSet.
 	self withEqualElements do: [ :each | self assert: (result occurrencesOf: each) = 1 ].
 	self assert: result class = Set
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConvertAsSetForMultiplinessIdentityTest>>withEqualElements [
+{ #category : #requirements }
+TConvertAsSetForMultiplinessIdentityTest >> withEqualElements [
 	" return a collection  including equal elements (classic equality)"
 	^ self explicitRequirement
 ]

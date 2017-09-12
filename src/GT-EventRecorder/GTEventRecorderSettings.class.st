@@ -9,56 +9,37 @@ Class {
 	#classInstVars : [
 		'url'
 	],
-	#category : #GT-EventRecorder-Settings,
-	#timestamp : 'JurajKubelka 10/30/2015 16:57'
+	#category : #GT-EventRecorder-Settings
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorderSettings class>>cleanUp [
+{ #category : #cleanup }
+GTEventRecorderSettings class >> cleanUp [
 	"Clean settings."
 	url := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorderSettings class>>stringUrl [
+{ #category : #accessing }
+GTEventRecorderSettings class >> stringUrl [
 	^ self url asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorderSettings class>>stringUrl: aUrlString [
+{ #category : #accessing }
+GTEventRecorderSettings class >> stringUrl: aUrlString [
 	^ self url: aUrlString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorderSettings class>>url [
+{ #category : #accessing }
+GTEventRecorderSettings class >> url [
 	^ url ifNil: [ url := 'http://gc.dcc.uchile.cl.:8080/gt/events' asZnUrl ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorderSettings class>>url: aZnUrl [
+{ #category : #accessing }
+GTEventRecorderSettings class >> url: aZnUrl [
 	url := aZnUrl ifNotNil: [ aZnUrl asZnUrl ].
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorderSettings class>>urlSettingsOn: aBuilder  [
+{ #category : #settings }
+GTEventRecorderSettings class >> urlSettingsOn: aBuilder [ 
 	<systemsettings>	
 	(aBuilder setting: #stringUrl)
 		parent: #gt;

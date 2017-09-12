@@ -4,50 +4,34 @@ See my #longDescription .
 Class {
 	#name : #RBRemoveAssignmentWithoutEffectRule,
 	#superclass : #RBTransformationRule,
-	#category : #Refactoring-Critics,
-	#timestamp : '<historical>'
+	#category : #Refactoring-Critics
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRemoveAssignmentWithoutEffectRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBRemoveAssignmentWithoutEffectRule class >> uniqueIdentifierName [
 
 	^ 'RemoveAssignmentWithoutEffectRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRemoveAssignmentWithoutEffectRule>>group [
+{ #category : #accessing }
+RBRemoveAssignmentWithoutEffectRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRemoveAssignmentWithoutEffectRule>>initialize [
+{ #category : #initialization }
+RBRemoveAssignmentWithoutEffectRule >> initialize [
 	super initialize.
  
 	self rewriteRule
 		replace: 	'`var := `var' with: ''
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRemoveAssignmentWithoutEffectRule>>longDescription  [
+{ #category : #'as yet unclassified' }
+RBRemoveAssignmentWithoutEffectRule >> longDescription [ 
 	^ 'Remove assignment has no effect. For example, var := var is unless'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRemoveAssignmentWithoutEffectRule>>name [
+{ #category : #accessing }
+RBRemoveAssignmentWithoutEffectRule >> name [
 	^ 'Remove assignment has no effect'
 ]

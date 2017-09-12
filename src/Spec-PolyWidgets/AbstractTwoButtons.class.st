@@ -15,15 +15,11 @@ Class {
 		'firstButton',
 		'secondButton'
 	],
-	#category : #Spec-PolyWidgets-Support,
-	#timestamp : 'Spirita 7/25/2016 15:47'
+	#category : #Spec-PolyWidgets-Support
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-AbstractTwoButtons class>>abstractExample [
+{ #category : #example }
+AbstractTwoButtons class >> abstractExample [
 	| example |
 	example := self new.
 	example
@@ -32,11 +28,8 @@ AbstractTwoButtons class>>abstractExample [
 	^ example
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-AbstractTwoButtons class>>horizontal [
+{ #category : #specs }
+AbstractTwoButtons class >> horizontal [
 	<spec>
 	^ SpecLayout composed
 		newRow: [ :row | 
@@ -46,11 +39,8 @@ AbstractTwoButtons class>>horizontal [
 		yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-AbstractTwoButtons class>>vertical [
+{ #category : #specs }
+AbstractTwoButtons class >> vertical [
 	<spec: #default>
 	^ SpecLayout composed
 		newColumn: [ :column | 
@@ -60,54 +50,36 @@ AbstractTwoButtons class>>vertical [
 		yourself
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-AbstractTwoButtons>>firstAction: firstActionBlock secondAction: secondActionBlock [
+{ #category : #api }
+AbstractTwoButtons >> firstAction: firstActionBlock secondAction: secondActionBlock [
 	self firstButton action: firstActionBlock.
 	self secondButton action: secondActionBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-AbstractTwoButtons>>firstButton [
+{ #category : #accessing }
+AbstractTwoButtons >> firstButton [
 	^ firstButton
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-AbstractTwoButtons>>firstIcon: firstIconName secondIcon: secondIconName [
+{ #category : #api }
+AbstractTwoButtons >> firstIcon: firstIconName secondIcon: secondIconName [
 	self firstButton icon: (self iconNamed: firstIconName).
 	self secondButton icon: (self iconNamed: secondIconName)
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-AbstractTwoButtons>>firstLabel: firstLabel secondLabel: secondLabel [
+{ #category : #api }
+AbstractTwoButtons >> firstLabel: firstLabel secondLabel: secondLabel [
 	self firstButton label: firstLabel.
 	self secondButton label: secondLabel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-AbstractTwoButtons>>initializeButtons [
+{ #category : #initialization }
+AbstractTwoButtons >> initializeButtons [
 self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-AbstractTwoButtons>>initializeWidgets [
+{ #category : #initialization }
+AbstractTwoButtons >> initializeWidgets [
 	firstButton := self instantiate: ButtonModel.
 	secondButton := self instantiate: ButtonModel.
 	self initializeButtons.
@@ -116,10 +88,7 @@ AbstractTwoButtons>>initializeWidgets [
 		add: secondButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-AbstractTwoButtons>>secondButton [
+{ #category : #accessing }
+AbstractTwoButtons >> secondButton [
 	^ secondButton
 ]

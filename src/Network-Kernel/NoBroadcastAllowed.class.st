@@ -10,6 +10,5 @@ Usually, the cause is one of two things;
 Class {
 	#name : #NoBroadcastAllowed,
 	#superclass : #SocketPrimitiveFailed,
-	#category : #Network-Kernel,
-	#timestamp : 'HenrikSperreJohansen 6/1/2015 15:09'
+	#category : #Network-Kernel
 }

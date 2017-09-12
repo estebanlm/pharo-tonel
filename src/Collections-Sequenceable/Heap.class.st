@@ -56,51 +56,35 @@ Class {
 	#classInstVars : [
 		'sortBlock'
 	],
-	#category : #Collections-Sequenceable,
-	#timestamp : 'StephaneDucasse 10/2/2010 17:42'
+	#category : #Collections-Sequenceable
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap class>>defaultSortBlock [
+{ #category : #accessing }
+Heap class >> defaultSortBlock [
 	"Cache the default sort block here.
 	Since the sortBlock is used to compare instances, a single instance for the default block helps us.."
 	^ sortBlock ifNil: [ 
 		sortBlock := [ :a :b | a <= b]]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap class>>new [
+{ #category : #'instance creation' }
+Heap class >> new [
 	^self new: 10
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap class>>new: n [
+{ #category : #'instance creation' }
+Heap class >> new: n [
 	^super new setCollection: (Array new: n)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap class>>sortBlock: aBlock [
+{ #category : #'instance creation' }
+Heap class >> sortBlock: aBlock [
 	"Create a new heap sorted by the given block"
 	^self new sortBlock: aBlock
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap class>>withAll: aCollection [
+{ #category : #'instance creation' }
+Heap class >> withAll: aCollection [
 	"Create a new heap with all the elements from aCollection"
 	^(self basicNew)
 		setCollection: aCollection asArray copy tally: aCollection size;
@@ -108,11 +92,8 @@ Heap class>>withAll: aCollection [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap class>>withAll: aCollection sortBlock: aBlock [
+{ #category : #'instance creation' }
+Heap class >> withAll: aCollection sortBlock: aBlock [
 	"Create a new heap with all the elements from aCollection"
 	^(self basicNew)
 		setCollection: aCollection asArray copy tally: aCollection size;
@@ -120,11 +101,8 @@ Heap class>>withAll: aCollection sortBlock: aBlock [
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>= anObject [
+{ #category : #comparing }
+Heap >> = anObject [
 	"Heap are considered equals only if they have same sort order and same elements."
 
 	self == anObject ifTrue: [^true].
@@ -134,11 +112,8 @@ Heap>>= anObject [
 	^(self asArray sort: sortBlock) = (anObject asArray sort: sortBlock)
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>add: anObject [
+{ #category : #adding }
+Heap >> add: anObject [
 	"Include newObject as one of the receiver's elements. Answer newObject."
 	tally = array size ifTrue:[self grow].
 	array at: (tally := tally + 1) put: anObject.
@@ -147,75 +122,51 @@ Heap>>add: anObject [
 	^anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>array [
+{ #category : #private }
+Heap >> array [
 	^array
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>at: index [
+{ #category : #accessing }
+Heap >> at: index [
 	"Heap are not designed to be accessed sequentially."
 	
 	self shouldNotImplement.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>at: index put: newObject [
+{ #category : #accessing }
+Heap >> at: index put: newObject [
 	"Heap are not designed to be accessed sequentially.
 	Please consider using #add: instead."
 	
 	self shouldNotImplement.
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>collect: aBlock [
+{ #category : #enumerating }
+Heap >> collect: aBlock [
 	^self collect: aBlock as: Array
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>copyEmpty [
+{ #category : #copying }
+Heap >> copyEmpty [
 	"Answer a copy of the receiver without any of the receiver's elements."
 
 	^self class sortBlock: sortBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>defaultSortBlock [
+{ #category : #accessing }
+Heap >> defaultSortBlock [
 	^ self class defaultSortBlock
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>do: aBlock [
+{ #category : #enumerating }
+Heap >> do: aBlock [
 	"Evaluate aBlock with each of the receiver's elements as the argument."
 	1 to: tally do:[:i| aBlock value: (array at: i)]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>downHeap: anIndex [
+{ #category : #private }
+Heap >> downHeap: anIndex [
 	"Check the heap downwards for correctness starting at anIndex.
 	 Everything above (i.e. left of) anIndex is ok."
 	| value k n j |
@@ -241,11 +192,8 @@ Heap>>downHeap: anIndex [
 	self updateObjectIndex: k.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>downHeapSingle: anIndex [
+{ #category : #private }
+Heap >> downHeapSingle: anIndex [
 	"This version is optimized for the case when only one element in the receiver can be at a wrong position. It avoids one comparison at each node when travelling down the heap and checks the heap upwards after the element is at a bottom position. Since the probability for being at the bottom of the heap is much larger than for being somewhere in the middle this version should be faster."
 	| value k n j |
 	anIndex = 0 ifTrue:[^self].
@@ -266,49 +214,34 @@ Heap>>downHeapSingle: anIndex [
 	self upHeap: k
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>first [
+{ #category : #accessing }
+Heap >> first [
 	"Return the first element in the receiver"
 	^array at: 1
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>fullySort [
+{ #category : #sorting }
+Heap >> fullySort [
 	"Fully sort the heap.
 	This method preserves the heap invariants and can thus be sent safely"
 	self privateReverseSort.
 	1 to: tally // 2 do: [:i | array swap: i with: 1 + tally - i]
 ]
 
-{
-	#category : #growing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>grow [
+{ #category : #growing }
+Heap >> grow [
 	"Become larger."
 	self growTo: self size + self growSize.
 ]
 
-{
-	#category : #growing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>growSize [
+{ #category : #growing }
+Heap >> growSize [
 	"Return the size by which the receiver should grow if there are no empty slots left."
 	^array size max: 5
 ]
 
-{
-	#category : #growing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>growTo: newSize [
+{ #category : #growing }
+Heap >> growTo: newSize [
 	"Grow to the requested size."
 	| newArray |
 	newArray := Array new: (newSize max: tally).
@@ -316,40 +249,28 @@ Heap>>growTo: newSize [
 	array := newArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>indexUpdateBlock: aBlockOrNil [
+{ #category : #accessing }
+Heap >> indexUpdateBlock: aBlockOrNil [
 
 	indexUpdateBlock := aBlockOrNil.
 
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>isEmpty [
+{ #category : #testing }
+Heap >> isEmpty [
 	"Answer whether the receiver contains any elements."
 	^tally = 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>isHeap [
+{ #category : #testing }
+Heap >> isHeap [
 
 	^ true
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>isSorted [
+{ #category : #sorting }
+Heap >> isSorted [
 	"Return true if the receiver is sorted by the given criterion.
 	Optimization for isSortedBy: [:a :b | a <= b]."
 
@@ -364,11 +285,8 @@ Heap>>isSorted [
 	^ true
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>isSortedBy: aBlock [
+{ #category : #sorting }
+Heap >> isSortedBy: aBlock [
 	"Return true if the receiver is sorted by the given criterion."
 
 	| lastElm elm |
@@ -382,11 +300,8 @@ Heap>>isSortedBy: aBlock [
 	^ true
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>mergeFirst: first middle: middle last: last into: dst by: aBlock [
+{ #category : #sorting }
+Heap >> mergeFirst: first middle: middle last: last into: dst by: aBlock [
 	"Private. Merge the sorted ranges [first..middle] and [middle+1..last] 
 	of the receiver into the range [first..last] of dst."
 
@@ -412,11 +327,8 @@ Heap>>mergeFirst: first middle: middle last: last into: dst by: aBlock [
 		ifFalse: [dst replaceFrom: out + 1 to: last with: self startingAt: i2]
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>mergeSortFrom: startIndex to: stopIndex by: aBlock [
+{ #category : #sorting }
+Heap >> mergeSortFrom: startIndex to: stopIndex by: aBlock [
 	"Sort the given range of indices using the mergesort algorithm.
 	Mergesort is a worst-case O(N log N) sorting algorithm that usually
 	does only half as many comparisons as heapsort or quicksort."
@@ -440,11 +352,8 @@ Heap>>mergeSortFrom: startIndex to: stopIndex by: aBlock [
 		by: aBlock
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>mergeSortFrom: first to: last src: src dst: dst by: aBlock [
+{ #category : #sorting }
+Heap >> mergeSortFrom: first to: last src: src dst: dst by: aBlock [
 	"Private. Split the range to be sorted in half, sort each half, and 
 	merge the two half-ranges into dst."
 
@@ -456,20 +365,14 @@ Heap>>mergeSortFrom: first to: last src: src dst: dst by: aBlock [
 	src mergeFirst: first middle: middle last: last into: dst by: aBlock
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>postCopy [
+{ #category : #copying }
+Heap >> postCopy [
 	super postCopy.
 	array := array copy
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>privateRemoveAt: index [
+{ #category : #private }
+Heap >> privateRemoveAt: index [
 	"Remove the element at the given index and make sure the sorting order is okay"
 	| removed |
 	removed := array at: index.
@@ -482,11 +385,8 @@ Heap>>privateRemoveAt: index [
 	^removed
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>privateReverseSort [
+{ #category : #private }
+Heap >> privateReverseSort [
 	"Arrange to have the array sorted in reverse order.
 	WARNING: this method breaks the heap invariants. It's up to the sender to restore them afterwards."
 	| oldTally |
@@ -498,21 +398,15 @@ Heap>>privateReverseSort [
 	tally := oldTally
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>reSort [
+{ #category : #accessing }
+Heap >> reSort [
 	"Resort the entire heap"
 	self isEmpty ifTrue:[^self].
 	tally // 2 to: 1 by: -1 do:[:i| self downHeap: i].
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>remove: oldObject ifAbsent: aBlock [
+{ #category : #removing }
+Heap >> remove: oldObject ifAbsent: aBlock [
 	"Remove oldObject as one of the receiver's elements. If several of the 
 	elements are equal to oldObject, only one is removed. If no element is 
 	equal to oldObject, answer the result of evaluating anExceptionBlock. 
@@ -522,69 +416,48 @@ Heap>>remove: oldObject ifAbsent: aBlock [
 	^aBlock value
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>removeAll [
+{ #category : #removing }
+Heap >> removeAll [
 
 	array atAllPut: nil.
 	tally := 0
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>removeFirst [
+{ #category : #removing }
+Heap >> removeFirst [
 	"Remove the first element from the receiver"
 	self emptyCheck.
 	^self privateRemoveAt: 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>setCollection: aCollection [
+{ #category : #private }
+Heap >> setCollection: aCollection [
 	array := aCollection.
 	tally := 0.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>setCollection: aCollection tally: newTally [
+{ #category : #private }
+Heap >> setCollection: aCollection tally: newTally [
 	array := aCollection.
 	tally := newTally.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>size [
+{ #category : #accessing }
+Heap >> size [
 	"Answer how many elements the receiver contains."
 
 	^ tally
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>sort [
+{ #category : #sorting }
+Heap >> sort [
 	"Sort this collection into ascending order using the '<=' operator."
 
 	self sort: [:a :b | a <= b]
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>sort: aSortBlock  [
+{ #category : #sorting }
+Heap >> sort: aSortBlock [ 
 	"Sort this array using aSortBlock. The block should take two arguments
 	and return true if the first element should preceed the second one."
 
@@ -594,39 +467,27 @@ Heap>>sort: aSortBlock  [
 		by: aSortBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>sortBlock [
+{ #category : #accessing }
+Heap >> sortBlock [
 	^ sortBlock ifNil: [ sortBlock := self defaultSortBlock ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>sortBlock: aBlock [
+{ #category : #accessing }
+Heap >> sortBlock: aBlock [
 	sortBlock := aBlock.
 	self reSort.
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>sorted [
+{ #category : #sorting }
+Heap >> sorted [
 	"Return a new sequenceable collection which contains the same elements as self but its 
 elements are sorted in ascending order using the #'<=' operator."
 	
 	^self sorted: [ :a :b| a <= b ]
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>sorted: aSortBlockOrNil [
+{ #category : #sorting }
+Heap >> sorted: aSortBlockOrNil [
 	"Return a new sequenceable collection which contains the same elements as self but its 
 elements are sorted by aSortBlockOrNil. The block should take two arguments and return true if 
 the first element should preceed the second one. If aSortBlock is nil then <= is used for 
@@ -635,11 +496,8 @@ comparison."
 	^self copy sort: aSortBlockOrNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>sorts: element1 before: element2 [
+{ #category : #testing }
+Heap >> sorts: element1 before: element2 [
 	"Return true if element1 should be sorted before element2.
 	This method defines the sort order in the receiver"
 	^sortBlock == nil
@@ -647,20 +505,14 @@ Heap>>sorts: element1 before: element2 [
 		ifFalse:[sortBlock value: element1 value: element2].
 ]
 
-{
-	#category : #growing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>trim [
+{ #category : #growing }
+Heap >> trim [
 	"Remove any empty slots in the receiver."
 	self growTo: self size.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>upHeap: anIndex [
+{ #category : #private }
+Heap >> upHeap: anIndex [
 	"Check the heap upwards for correctness starting at anIndex.
 	 Everything below anIndex is ok."
 	| value k kDiv2 tmp |
@@ -676,11 +528,8 @@ Heap>>upHeap: anIndex [
 	self updateObjectIndex: k.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-Heap>>updateObjectIndex: index [
+{ #category : #private }
+Heap >> updateObjectIndex: index [
 	"If indexUpdateBlock is not nil, notify the object at index of its new position in the heap array."
 	indexUpdateBlock ifNotNil: [
 		indexUpdateBlock value: (array at: index) value: index]

@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #RBAddClassTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddClassTest>>setUp [
+{ #category : #'set up' }
+RBAddClassTest >> setUp [
 	super setUp.
 	model := self abstractVariableTestData.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddClassTest>>testAddClass [
+{ #category : #tests }
+RBAddClassTest >> testAddClass [
 	| refactoring newClass superClass classTest |
 	refactoring := RBAddClassRefactoring 
 		addClass: #FooTest
@@ -42,11 +32,8 @@ RBAddClassTest>>testAddClass [
 	self assert: (newClass theMetaClass subclasses includes: classTest theMetaClass)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddClassTest>>testExistingName [
+{ #category : #'failure tests' }
+RBAddClassTest >> testExistingName [
 	self shouldFail: (RBAddClassRefactoring 
 				addClass: #Object
 				superclass: self class
@@ -54,11 +41,8 @@ RBAddClassTest>>testExistingName [
 				category: #'Refactory-Testing')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddClassTest>>testInvalidSubclass [
+{ #category : #'failure tests' }
+RBAddClassTest >> testInvalidSubclass [
 	self shouldFail: (RBAddClassRefactoring 
 			addClass: #Foo
 			superclass: RBCompositeLintRuleTest
@@ -66,11 +50,8 @@ RBAddClassTest>>testInvalidSubclass [
 			category: #'Refactory-Tesing')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddClassTest>>testMetaClassFailure [
+{ #category : #'failure tests' }
+RBAddClassTest >> testMetaClassFailure [
 	self shouldFail: (RBAddClassRefactoring 
 				addClass: #Foo
 				superclass: self class class
@@ -78,11 +59,8 @@ RBAddClassTest>>testMetaClassFailure [
 				category: #'Refactory-Testing')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddClassTest>>testModelAddClass [
+{ #category : #tests }
+RBAddClassTest >> testModelAddClass [
 	| refactoring newClass superClass subclass |
 	subclass := model classNamed: #Bar.
 	superClass := model classNamed: #Foo.
@@ -104,11 +82,8 @@ RBAddClassTest>>testModelAddClass [
 	self assert: (newClass theMetaClass subclasses includes: subclass theMetaClass)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddClassTest>>testModelExistingName [
+{ #category : #'failure tests' }
+RBAddClassTest >> testModelExistingName [
 	| refactoring |
 	refactoring := RBAddClassRefactoring 
 				model: model
@@ -119,11 +94,8 @@ RBAddClassTest>>testModelExistingName [
 	self shouldFail: refactoring
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddClassTest>>testModelInvalidSubclass [
+{ #category : #'failure tests' }
+RBAddClassTest >> testModelInvalidSubclass [
 	| refactoring |
 	refactoring := RBAddClassRefactoring 
 				model: model

@@ -8,31 +8,21 @@ Class {
 		'lines',
 		'text'
 	],
-	#category : #Athens-Text,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:20'
+	#category : #Athens-Text
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextComposer class>>scan: aText for: scanner [
+{ #category : #'as yet unclassified' }
+AthensTextComposer class >> scan: aText for: scanner [
 	^ self new scan: aText for: scanner
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextComposer>>lines [
+{ #category : #'as yet unclassified' }
+AthensTextComposer >> lines [
 	^ lines
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextComposer>>renderOn: aCanvas [
+{ #category : #'as yet unclassified' }
+AthensTextComposer >> renderOn: aCanvas [
 
 	| renderer |
 	
@@ -41,11 +31,8 @@ AthensTextComposer>>renderOn: aCanvas [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextComposer>>scan: aText for: scanner [
+{ #category : #'as yet unclassified' }
+AthensTextComposer >> scan: aText for: scanner [
 	" scan text from starting index,
 	answer the index of first character for potential next line"
 	| index top |	

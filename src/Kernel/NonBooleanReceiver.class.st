@@ -20,31 +20,21 @@ Class {
 	#instVars : [
 		'object'
 	],
-	#category : #Kernel-Exceptions,
-	#timestamp : '<historical>'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #signaledexception,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-NonBooleanReceiver>>isResumable [
+{ #category : #signaledexception }
+NonBooleanReceiver >> isResumable [
 
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-NonBooleanReceiver>>object [
+{ #category : #accessing }
+NonBooleanReceiver >> object [
 	^object
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-NonBooleanReceiver>>object: anObject [
+{ #category : #accessing }
+NonBooleanReceiver >> object: anObject [
 	object := anObject
 ]

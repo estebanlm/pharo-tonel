@@ -11,24 +11,17 @@ Class {
 		'strokePaints',
 		'withInset'
 	],
-	#category : #Athens-Morphic,
-	#timestamp : '<historical>'
+	#category : #Athens-Morphic
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCompositeStrokePaint>>asStrokePaintOn: aCanvas [
+{ #category : #converting }
+AthensCompositeStrokePaint >> asStrokePaintOn: aCanvas [
 	"receiver is stroke paint already"
 	^ self
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCompositeStrokePaint>>athensFillRectangle: aRect on: anAthensCanvas [
+{ #category : #drawing }
+AthensCompositeStrokePaint >> athensFillRectangle: aRect on: anAthensCanvas [
 	"This is a terminal method in rendering dispatch scheme
 	canvas->shape->paint. See AthensCanvas>>fillShape: "
 
@@ -40,19 +33,13 @@ AthensCompositeStrokePaint>>athensFillRectangle: aRect on: anAthensCanvas [
 			withInset ifTrue:[r := r insetBy: paint width ]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCompositeStrokePaint>>fromBorderStyles: borders on: anAthensCanvas [
+{ #category : #private }
+AthensCompositeStrokePaint >> fromBorderStyles: borders on: anAthensCanvas [
 	strokePaints := borders collect: [:each | (each asAthensPaintOn: anAthensCanvas ) asStrokePaintOn: anAthensCanvas]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCompositeStrokePaint>>fromDashedBorderStyle: border on: anAthensCanvas [
+{ #category : #private }
+AthensCompositeStrokePaint >> fromDashedBorderStyle: border on: anAthensCanvas [
 	| allDashLength offset width |
 	width := border width.
 	allDashLength := border dashLengths detectSum: #yourself.
@@ -74,11 +61,8 @@ AthensCompositeStrokePaint>>fromDashedBorderStyle: border on: anAthensCanvas [
 	self withInset: false
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCompositeStrokePaint>>initialize [
+{ #category : #drawing }
+AthensCompositeStrokePaint >> initialize [
 
 	super initialize.
 
@@ -86,10 +70,7 @@ AthensCompositeStrokePaint>>initialize [
 	withInset := true.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCompositeStrokePaint>>withInset: aBoolean [
+{ #category : #accessing }
+AthensCompositeStrokePaint >> withInset: aBoolean [
 	withInset := aBoolean
 ]

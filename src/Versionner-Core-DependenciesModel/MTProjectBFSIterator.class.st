@@ -10,25 +10,18 @@ Class {
 		'queue',
 		'alreadyVisited'
 	],
-	#category : #Versionner-Core-DependenciesModel,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-DependenciesModel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProjectBFSIterator class>>on: anMTProject [
+{ #category : #'instance creation' }
+MTProjectBFSIterator class >> on: anMTProject [
 	^ self new
 		project: anMTProject;
 		yourself.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProjectBFSIterator>>hasChildNodes: aNode [
+{ #category : #private }
+MTProjectBFSIterator >> hasChildNodes: aNode [
 	| dependencies |
 	
 	[ dependencies := aNode dependencies ] 
@@ -37,37 +30,25 @@ MTProjectBFSIterator>>hasChildNodes: aNode [
 	^ dependencies size > 0
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProjectBFSIterator>>hasNext [
+{ #category : #protocol }
+MTProjectBFSIterator >> hasNext [
 	^ queue isEmpty not
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProjectBFSIterator>>initialize [
+{ #category : #initialization }
+MTProjectBFSIterator >> initialize [
 	queue := SharedQueue new.
 	alreadyVisited := Set new.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProjectBFSIterator>>isNotVisited: aNode [
+{ #category : #private }
+MTProjectBFSIterator >> isNotVisited: aNode [
 	^ (alreadyVisited includes: aNode) not
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProjectBFSIterator>>next [
+{ #category : #protocol }
+MTProjectBFSIterator >> next [
 	| currentElement |
 	
 	currentElement := queue nextOrNil.
@@ -78,20 +59,14 @@ MTProjectBFSIterator>>next [
 	^ currentElement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProjectBFSIterator>>project: anMTProject [
+{ #category : #accessing }
+MTProjectBFSIterator >> project: anMTProject [
 	project := anMTProject.
 	self reset
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProjectBFSIterator>>reset [
+{ #category : #protocol }
+MTProjectBFSIterator >> reset [
 	self initialize.
 	queue nextPut: project
 ]

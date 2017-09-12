@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RenrakuTest,
 	#superclass : #ReCodeBasedTestCase,
-	#category : #Renraku-Test,
-	#timestamp : ''
+	#category : #Renraku-Test
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuTest>>testAsClassRuleTransformation [
+{ #category : #tests }
+RenrakuTest >> testAsClassRuleTransformation [
 	| asClassMethod critique |
 	
 	asClassMethod := testClass >> (testClass compile:
@@ -27,11 +20,8 @@ RenrakuTest>>testAsClassRuleTransformation [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuTest>>testBan [
+{ #category : #tests }
+RenrakuTest >> testBan [
 	| criticToSkip |
 		
 	criticToSkip := testClass critiques detect: [ :critic |
@@ -43,11 +33,8 @@ RenrakuTest>>testBan [
 		critic rule class = ScreamerRule ]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuTest>>testBan1 [
+{ #category : #tests }
+RenrakuTest >> testBan1 [
 	| criticToSkip |
 	
 		
@@ -60,11 +47,8 @@ RenrakuTest>>testBan1 [
 		critic rule class = ScreamerRule ]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuTest>>testBan2 [
+{ #category : #tests }
+RenrakuTest >> testBan2 [
 	| criticToSkip |
 	
 		
@@ -77,11 +61,8 @@ RenrakuTest>>testBan2 [
 		critic rule class = ScreamerRule ]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuTest>>testBanForPackage [
+{ #category : #tests }
+RenrakuTest >> testBanForPackage [
 	| criticToSkip |
 		
 	criticToSkip := testClass critiques detect: [ :critic |
@@ -93,11 +74,8 @@ RenrakuTest>>testBanForPackage [
 		critic rule class = ScreamerRule ]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuTest>>testNoClassComment [
+{ #category : #tests }
+RenrakuTest >> testNoClassComment [
 		
 	self assert: (testClass critiques anySatisfy: [ :critic |
 		critic rule class = RBNoClassCommentRule ]).
@@ -108,11 +86,8 @@ RenrakuTest>>testNoClassComment [
 		critic rule class = RBNoClassCommentRule ]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuTest>>testUnclassifiedMethod [
+{ #category : #tests }
+RenrakuTest >> testUnclassifiedMethod [
 
 	self assert: (testMethod critiques anySatisfy: [ :critic |
 		critic rule class = RBUnclassifiedMethodsRule ]).

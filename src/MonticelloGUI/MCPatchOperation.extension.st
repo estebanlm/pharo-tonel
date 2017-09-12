@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCPatchOperation
-}
+Extension { #name : #MCPatchOperation }
 
-{
-	#category : #'*MonticelloGUI',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchOperation>>source [
+{ #category : #'*MonticelloGUI' }
+MCPatchOperation >> source [
 	"I am call on the changes/merge tools of Monticello if you disable the 'Use Polymorph difference tool' on your setting."
 
 	^ self localChosen
@@ -14,22 +9,16 @@ MCPatchOperation>>source [
 		ifFalse: [ self sourceText ]
 ]
 
-{
-	#category : #'*MonticelloGUI',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchOperation>>sourceText [
+{ #category : #'*MonticelloGUI' }
+MCPatchOperation >> sourceText [
 	^ self isClassPatch 
 		ifTrue: [(TextDiffBuilder from: self fromSource to: self toSource) buildDisplayPatch]
 		ifFalse: [TextDiffBuilder buildDisplayPatchFrom:  self fromSource to: self toSource inClass: self targetClass]
 
 ]
 
-{
-	#category : #'*MonticelloGUI',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchOperation>>summary [
+{ #category : #'*MonticelloGUI' }
+MCPatchOperation >> summary [
 	| attribute |
 	attribute := 
 		self isResolved

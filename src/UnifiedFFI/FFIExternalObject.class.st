@@ -25,22 +25,15 @@ IMPORTANT: My instances represent a pointer in the C heap. If you need to repres
 Class {
 	#name : #FFIExternalObject,
 	#superclass : #FFIExternalReference,
-	#category : #UnifiedFFI-Objects,
-	#timestamp : 'EstebanLorenzano 3/17/2016 13:35'
+	#category : #UnifiedFFI-Objects
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalObject class>>asExternalTypeOn: generator [
+{ #category : #converting }
+FFIExternalObject class >> asExternalTypeOn: generator [
 	^ FFIExternalObjectType objectClass: self
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalObject class>>null [
+{ #category : #'instance creation' }
+FFIExternalObject class >> null [
 	^ self new
 ]

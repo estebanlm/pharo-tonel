@@ -12,15 +12,11 @@ Class {
 		'classVars',
 		'listLimit'
 	],
-	#category : #NECompletion-Model,
-	#timestamp : '<historical>'
+	#category : #NECompletion-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECUntypedModel class>>class: aClass temporaries: aCollection  [
+{ #category : #'instance creation' }
+NECUntypedModel class >> class: aClass temporaries: aCollection [ 
 	^self 
 		class: aClass
 		temporaries: aCollection
@@ -29,11 +25,8 @@ NECUntypedModel class>>class: aClass temporaries: aCollection  [
 		selectors: true
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECUntypedModel class>>class: aClass temporaries: aCollection additionals: additionalCollection variables: variablesBoolean selectors: selectorsBoolean  [
+{ #category : #'instance creation' }
+NECUntypedModel class >> class: aClass temporaries: aCollection additionals: additionalCollection variables: variablesBoolean selectors: selectorsBoolean [ 
 	| newInstance |
 	newInstance := self basicNew initialize.
 	newInstance 
@@ -45,11 +38,8 @@ NECUntypedModel class>>class: aClass temporaries: aCollection additionals: addit
 	^ newInstance
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECUntypedModel>>addAdditionals: aCollection  [
+{ #category : #private }
+NECUntypedModel >> addAdditionals: aCollection [ 
 	aCollection
 		ifNotNil: [aCollection
 				do: [:each | each isLocal
@@ -60,20 +50,14 @@ NECUntypedModel>>addAdditionals: aCollection  [
 										ifTrue: [selectors add: each value]]]]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECUntypedModel>>addSelectors [
+{ #category : #private }
+NECUntypedModel >> addSelectors [
 	self initializeSelectors.
 	self addToEntries: selectors
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECUntypedModel>>addVariables [
+{ #category : #private }
+NECUntypedModel >> addVariables [
 	includeVariables
 		ifFalse: [^ self].
 	self addToEntries: localVars.
@@ -81,11 +65,8 @@ NECUntypedModel>>addVariables [
 	self addToEntries: classVars
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECUntypedModel>>initialize [
+{ #category : #initialization }
+NECUntypedModel >> initialize [
 	super initialize.
 	localVars := SortedCollection new.
 	instVars := SortedCollection new.
@@ -95,11 +76,8 @@ NECUntypedModel>>initialize [
 	listLimit := 100.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECUntypedModel>>initializeClassVars [
+{ #category : #initialize-release }
+NECUntypedModel >> initializeClassVars [
 	(clazz isNil or: [ includeVariables not ]) ifTrue: [ ^ self ].
 	classVars := clazz theNonMetaClass allClassVarNames asSortedCollection.
 	classVars := classVars collect: 
@@ -107,11 +85,8 @@ NECUntypedModel>>initializeClassVars [
 		NECClassVarEntry contents: each ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECUntypedModel>>initializeInstVars [
+{ #category : #initialize-release }
+NECUntypedModel >> initializeInstVars [
 	(clazz isNil or: [ includeVariables not ]) ifTrue: [ ^ self ].
 	instVars := clazz allInstVarNames asSortedCollection.
 	instVars := instVars collect: 
@@ -124,11 +99,8 @@ NECUntypedModel>>initializeInstVars [
 			type: #super)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECUntypedModel>>initializeSelectors [
+{ #category : #private }
+NECUntypedModel >> initializeSelectors [
 	self resetSelectors.
 	
 	includeSelectors ifFalse: 
@@ -148,36 +120,24 @@ NECUntypedModel>>initializeSelectors [
 				selectors size > self listLimit ifTrue: [ ^ self ]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECUntypedModel>>listLimit [
+{ #category : #accessing }
+NECUntypedModel >> listLimit [
 	^ listLimit
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECUntypedModel>>listLimit: aNumber [
+{ #category : #accessing }
+NECUntypedModel >> listLimit: aNumber [
 	listLimit := aNumber
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECUntypedModel>>loadEntries [
+{ #category : #private }
+NECUntypedModel >> loadEntries [
 	self addVariables;
 		addSelectors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECUntypedModel>>message [
+{ #category : #accessing }
+NECUntypedModel >> message [
 	^ (includeSelectors and: [ narrowString isEmpty ]) 
 		ifTrue: 
 			[ selectors size = 500 
@@ -186,11 +146,8 @@ NECUntypedModel>>message [
 		ifFalse: [ super message ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECUntypedModel>>narrowString: aString  [
+{ #category : #initialize-release }
+NECUntypedModel >> narrowString: aString [ 
 	(narrowString isEmpty
 			or: [aString isEmpty
 			or: [aString first ~= narrowString first]])
@@ -198,22 +155,16 @@ NECUntypedModel>>narrowString: aString  [
 	super narrowString: aString
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECUntypedModel>>narrowWith: aString  [
+{ #category : #action }
+NECUntypedModel >> narrowWith: aString [ 
 	self narrowString: aString.
 	self resetEntries.
 	self addVariables.
 	self addSelectors
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECUntypedModel>>setClass: aClass temporaries: aCollection additionals: additionalCollection variables: variablesBoolean selectors: selectorsBoolean  [
+{ #category : #initialize-release }
+NECUntypedModel >> setClass: aClass temporaries: aCollection additionals: additionalCollection variables: variablesBoolean selectors: selectorsBoolean [ 
 	includeVariables := variablesBoolean.
 	includeSelectors := selectorsBoolean.
 	clazz := aClass.

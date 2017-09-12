@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MutexTest,
 	#superclass : #TestCase,
@@ -8,15 +5,11 @@ Class {
 		'mutex',
 		'forkedProcesses'
 	],
-	#category : #Kernel-Tests-Processes,
-	#timestamp : ''
+	#category : #Kernel-Tests-Processes
 }
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MutexTest>>fork: aBlock [
+{ #category : #helpers }
+MutexTest >> fork: aBlock [
 
 	| newProcess |
 	newProcess := aBlock forkNamed: testSelector.
@@ -24,11 +17,8 @@ MutexTest>>fork: aBlock [
 	^newProcess
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MutexTest>>fork: aBlock at: priority [
+{ #category : #helpers }
+MutexTest >> fork: aBlock at: priority [
 
 	| newProcess |
 	newProcess := aBlock forkAt: priority named: testSelector.
@@ -36,11 +26,8 @@ MutexTest>>fork: aBlock at: priority [
 	^newProcess
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MutexTest>>setUp [
+{ #category : #running }
+MutexTest >> setUp [
 	super setUp.
 	
 	forkedProcesses := OrderedCollection new.
@@ -48,11 +35,8 @@ MutexTest>>setUp [
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MutexTest>>tearDown [
+{ #category : #running }
+MutexTest >> tearDown [
 	forkedProcesses do: #terminate.
 	
 	super tearDown.
@@ -60,11 +44,8 @@ MutexTest>>tearDown [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MutexTest>>testExecutionCriticalSection [
+{ #category : #tests }
+MutexTest >> testExecutionCriticalSection [
 
 	| actual |
 	actual := mutex critical: [ #result ].
@@ -72,11 +53,8 @@ MutexTest>>testExecutionCriticalSection [
 	self assert: actual equals: #result
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MutexTest>>testFailedCriticalSectionShouldUnblockWaitingOne [
+{ #category : #tests }
+MutexTest >> testFailedCriticalSectionShouldUnblockWaitingOne [
 
 	| lastExecuted |
 	lastExecuted := false.
@@ -90,11 +68,8 @@ MutexTest>>testFailedCriticalSectionShouldUnblockWaitingOne [
 	self assert: lastExecuted
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MutexTest>>testTerminatedCriticalSectionShouldUnblockWaitingOne [
+{ #category : #tests }
+MutexTest >> testTerminatedCriticalSectionShouldUnblockWaitingOne [
 
 	| lastExecuted firstCritical |
 	lastExecuted := false.
@@ -109,11 +84,8 @@ MutexTest>>testTerminatedCriticalSectionShouldUnblockWaitingOne [
 	self assert: lastExecuted
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MutexTest>>testTerminatingBlockedCriticalSectionShouldNotUnblockAnotherWaitingSection [
+{ #category : #tests }
+MutexTest >> testTerminatingBlockedCriticalSectionShouldNotUnblockAnotherWaitingSection [
 
 	| lastExecuted lastExecutedAfterFirst secondCritical |
 	lastExecuted := false.
@@ -131,11 +103,8 @@ MutexTest>>testTerminatingBlockedCriticalSectionShouldNotUnblockAnotherWaitingSe
 	self assert: lastExecutedAfterFirst
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MutexTest>>testTerminatingBlockedCriticalWhichWasSignalledButNotResumedYet [
+{ #category : #tests }
+MutexTest >> testTerminatingBlockedCriticalWhichWasSignalledButNotResumedYet [
 
 	|  secondCriticalExecuted  firstCriticalExecuted firstCritical secondCritical lastCriticalExecuted controllingProcess |
 	firstCriticalExecuted := false.
@@ -165,11 +134,8 @@ MutexTest>>testTerminatingBlockedCriticalWhichWasSignalledButNotResumedYet [
 	self assert: lastCriticalExecuted description: 'consequent last critical should be executed'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MutexTest>>testTwoCriticalsShouldWaitEachOther [
+{ #category : #tests }
+MutexTest >> testTwoCriticalsShouldWaitEachOther [
 
 	| lastExecuted lastExecutedAfterFirst |
 	lastExecuted := false.
@@ -185,11 +151,8 @@ MutexTest>>testTwoCriticalsShouldWaitEachOther [
 	self assert: lastExecutedAfterFirst 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MutexTest>>testTwoRecursiveCriticalsShouldNotWaitEachOther [
+{ #category : #tests }
+MutexTest >> testTwoRecursiveCriticalsShouldNotWaitEachOther [
 
 	| executed |
 	executed := false.

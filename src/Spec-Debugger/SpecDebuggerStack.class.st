@@ -16,32 +16,22 @@ Class {
 		'LinkSelectorFilterEnabled',
 		'NilSelectorsFilterEnabled'
 	],
-	#category : #Spec-Debugger,
-	#timestamp : '<historical>'
+	#category : #Spec-Debugger
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>defaultStackSize [
+{ #category : #accessing }
+SpecDebuggerStack class >> defaultStackSize [
 
 	^ 20
 ]
 
-{
-	#category : #'filters creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>doItFilter [
+{ #category : #'filters creation' }
+SpecDebuggerStack class >> doItFilter [
 	^ SelectorFilter forSelector: #doIt
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>dynamicStackMenu: aBuilder [
+{ #category : #menu }
+SpecDebuggerStack class >> dynamicStackMenu: aBuilder [
 	<contextMenu>
 	<specDebuggerStackMenuNew>
 	
@@ -56,11 +46,8 @@ SpecDebuggerStack class>>dynamicStackMenu: aBuilder [
 	aBuilder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>enabledFilters [
+{ #category : #accessing }
+SpecDebuggerStack class >> enabledFilters [
 	| enabledFilters |
 	
 	enabledFilters := OrderedCollection new.
@@ -76,120 +63,78 @@ SpecDebuggerStack class>>enabledFilters [
  
 ]
 
-{
-	#category : #'settings filters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>filterDoItSelectors [
+{ #category : #'settings filters' }
+SpecDebuggerStack class >> filterDoItSelectors [
 	^ DoItFilterEnabled ifNil:[ DoItFilterEnabled := false ]
 ]
 
-{
-	#category : #'settings filters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>filterDoItSelectors: aBoolean [
+{ #category : #'settings filters' }
+SpecDebuggerStack class >> filterDoItSelectors: aBoolean [
 	DoItFilterEnabled := aBoolean
 ]
 
-{
-	#category : #'settings filters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>filterKernelClasses [
+{ #category : #'settings filters' }
+SpecDebuggerStack class >> filterKernelClasses [
 	^ KCFilterEnabled ifNil:[ KCFilterEnabled := false ]
 ]
 
-{
-	#category : #'settings filters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>filterKernelClasses: aBoolean [
+{ #category : #'settings filters' }
+SpecDebuggerStack class >> filterKernelClasses: aBoolean [
 	KCFilterEnabled := aBoolean
 ]
 
-{
-	#category : #'settings filters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>filterLinkSelectors [
+{ #category : #'settings filters' }
+SpecDebuggerStack class >> filterLinkSelectors [
   	^ LinkSelectorFilterEnabled ifNil:[ LinkSelectorFilterEnabled := false ]
 ]
 
-{
-	#category : #'settings filters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>filterLinkSelectors: aBoolean [
+{ #category : #'settings filters' }
+SpecDebuggerStack class >> filterLinkSelectors: aBoolean [
 	LinkSelectorFilterEnabled := aBoolean
 ]
 
-{
-	#category : #'settings filters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>filterNilSelectors [
+{ #category : #'settings filters' }
+SpecDebuggerStack class >> filterNilSelectors [
   	^ NilSelectorsFilterEnabled ifNil:[ NilSelectorsFilterEnabled := false ]
 ]
 
-{
-	#category : #'settings filters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>filterNilSelectors: aBoolean [
+{ #category : #'settings filters' }
+SpecDebuggerStack class >> filterNilSelectors: aBoolean [
 	NilSelectorsFilterEnabled := aBoolean
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>initialize [
+{ #category : #'class initialization' }
+SpecDebuggerStack class >> initialize [
 
 	FilterDictionary := Dictionary new.
 ]
 
-{
-	#category : #'filters creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>kernelClassesFilter [
+{ #category : #'filters creation' }
+SpecDebuggerStack class >> kernelClassesFilter [
 	^ KernelClassesFilter new.
 	
 ]
 
-{
-	#category : #'filters creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>linkMessagesFilter  [
+{ #category : #'filters creation' }
+SpecDebuggerStack class >> linkMessagesFilter [ 
 	^ SelectorFilter forSelectors: (OrderedCollection with: #ctxtEnsure: with: #valueInContext:)
 ]
 
-{
-	#category : #'filters creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>nilMsgsFilter  [
+{ #category : #'filters creation' }
+SpecDebuggerStack class >> nilMsgsFilter [ 
 	^ SelectorFilter forSelectors: (OrderedCollection with: #isNil with: #ifNotNil: with: #ifNil)
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack class>>spec [
+{ #category : #specs }
+SpecDebuggerStack class >> spec [
 	<spec: #default>
 	
 	^ SpecLayout composed
 		add: #list 
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>browseClassRefs [
+{ #category : #'actions browsing' }
+SpecDebuggerStack >> browseClassRefs [
 
 	self currentContext ifNotNil: [ :aContext || class|
 		class := aContext methodClass theNonMetaClass.
@@ -199,11 +144,8 @@ SpecDebuggerStack>>browseClassRefs [
 
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>browseClassVarRefs [
+{ #category : #'actions browsing' }
+SpecDebuggerStack >> browseClassVarRefs [
 	"1/17/96 sw: devolve responsibility to the class, so that the code that does the real work can be shared"
 
 	| cls |
@@ -212,11 +154,8 @@ SpecDebuggerStack>>browseClassVarRefs [
 		ifTrue: [self systemNavigation  browseClassVarRefs: cls]
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>browseClassVariables [
+{ #category : #'actions browsing' }
+SpecDebuggerStack >> browseClassVariables [
 	"Browse the class variables of the selected class."
 	| cls |
 	cls := self currentClass.
@@ -225,11 +164,8 @@ SpecDebuggerStack>>browseClassVariables [
 
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>browseInstVarRefs [
+{ #category : #'actions browsing' }
+SpecDebuggerStack >> browseInstVarRefs [
 	"1/26/96 sw: real work moved to class, so it can be shared"
 	| cls |
 	cls := self currentClassOrMetaClass.
@@ -237,11 +173,8 @@ SpecDebuggerStack>>browseInstVarRefs [
 		ifTrue: [self systemNavigation browseInstVarRefs: cls]
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>browseMessages [
+{ #category : #'actions browsing' }
+SpecDebuggerStack >> browseMessages [
 	"Present a menu of all messages sent by the current message. 
 	Open a message set browser of all implementors of the message chosen."
 
@@ -249,11 +182,8 @@ SpecDebuggerStack>>browseMessages [
 		self systemNavigation browseAllImplementorsOf: self currentMessageName ]
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>browseMethodFull [
+{ #category : #'actions browsing' }
+SpecDebuggerStack >> browseMethodFull [
 	"Create and schedule a full Browser and then select the current class and message."
 
 	self currentClassOrMetaClass ifNotNil: [ 
@@ -262,22 +192,16 @@ SpecDebuggerStack>>browseMethodFull [
 			selector: self currentMessageName ]
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>browseSendersOfMessages [
+{ #category : #'actions browsing' }
+SpecDebuggerStack >> browseSendersOfMessages [
 	"Present a menu of the current message, as well as all messages sent by it.  Open a message set browser of all senders of the selector chosen."
 
 	self currentMessageName ifNotNil: [   
 		self systemNavigation browseAllSendersOf: self currentMessageName ]
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>browseVersions [
+{ #category : #'actions browsing' }
+SpecDebuggerStack >> browseVersions [
 	"Create and schedule a message set browser on all versions of the 
 	currently selected message selector."
 
@@ -286,11 +210,8 @@ SpecDebuggerStack>>browseVersions [
 		selector: self currentMessageName
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>columnsFor: anEntry [
+{ #category : #printing }
+SpecDebuggerStack >> columnsFor: anEntry [
 	"protocol: printing"
 
 	"Answer the array of contexts."
@@ -310,11 +231,8 @@ SpecDebuggerStack>>columnsFor: anEntry [
 	method selector asString}
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>contextMenu: aMenu [
+{ #category : #initialization }
+SpecDebuggerStack >> contextMenu: aMenu [
 	"Create the context menu dynamically."
 	
 	self flag: 'Spec ignores the shortcuts set in the menu. Use another mechanism to load them'.
@@ -322,75 +240,51 @@ SpecDebuggerStack>>contextMenu: aMenu [
 	^ aMenu addAllFromPragma: 'specDebuggerStackMenuNew' target: self debugger.
 ]
 
-{
-	#category : #'actions lookup',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>contextMenuDebuggingActionsPragmas [
+{ #category : #'actions lookup' }
+SpecDebuggerStack >> contextMenuDebuggingActionsPragmas [
 
 	^ { #contextMenuDebuggingAction }
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>currentClass [
+{ #category : #'actions browsing' }
+SpecDebuggerStack >> currentClass [
 
 	^ self currentContext methodClass
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>currentClassOrMetaClass [
+{ #category : #'actions browsing' }
+SpecDebuggerStack >> currentClassOrMetaClass [
 
 	^ self currentContext methodClass
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>currentContext [
+{ #category : #'actions browsing' }
+SpecDebuggerStack >> currentContext [
 	
 	^ self debugger currentContext
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>currentMessageName [
+{ #category : #'actions browsing' }
+SpecDebuggerStack >> currentMessageName [
 
 	^ self currentContext methodSelector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>debugger [
+{ #category : #private }
+SpecDebuggerStack >> debugger [
 	"Return the instance of the debugger containing this toolbar"
 	
 	^  owner
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>enabledFilters [
+{ #category : #filtering }
+SpecDebuggerStack >> enabledFilters [
 
 	^ self class enabledFilters
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>expand [
+{ #category : #actions }
+SpecDebuggerStack >> expand [
 	"If the last element of the visible stack is selected, expand the stack,
 	if more elements are available."
 	
@@ -403,11 +297,8 @@ SpecDebuggerStack>>expand [
 	
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>expandBy: anInteger [
+{ #category : #actions }
+SpecDebuggerStack >> expandBy: anInteger [
 	| selectionIndex |
 	
 	selectionIndex := self list selectedIndex.
@@ -416,11 +307,8 @@ SpecDebuggerStack>>expandBy: anInteger [
 	
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>fileOutMessage [
+{ #category : #'actions browsing' }
+SpecDebuggerStack >> fileOutMessage [
 	"Put a description of the selected message on a file"
 
 	self currentMessageName ifNotNil: [
@@ -428,11 +316,8 @@ SpecDebuggerStack>>fileOutMessage [
 			[ self currentClassOrMetaClass fileOutMethod: self currentMessageName ] ]
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>filteredStackOfSize: anInteger [
+{ #category : #filtering }
+SpecDebuggerStack >> filteredStackOfSize: anInteger [
 
 	^ self debugger class filterCommonMessageSends 
 		ifTrue: [
@@ -445,11 +330,8 @@ SpecDebuggerStack>>filteredStackOfSize: anInteger [
 	 
 ]
 
-{
-	#category : #'actions lookup',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>generateContextMenuDebuggingActions [
+{ #category : #'actions lookup' }
+SpecDebuggerStack >> generateContextMenuDebuggingActions [
 
 	actionsCache ifNotNil: [  ^ actionsCache ].
 	"Cache the actions as this method is called multiple times: 
@@ -459,11 +341,8 @@ SpecDebuggerStack>>generateContextMenuDebuggingActions [
 		for: self debugger
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>initialize [
+{ #category : #initialization }
+SpecDebuggerStack >> initialize [
 
 	sessionHolder := nil asValueHolder.
 	actionsCache := nil.
@@ -472,11 +351,8 @@ SpecDebuggerStack>>initialize [
 	"self setDefaultFilters."
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>initializePresenter [
+{ #category : #initialization }
+SpecDebuggerStack >> initializePresenter [
 
 	super initializePresenter.
 
@@ -485,11 +361,8 @@ SpecDebuggerStack>>initializePresenter [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>initializeWidgets [
+{ #category : #initialization }
+SpecDebuggerStack >> initializeWidgets [
 
 	listWidget := self newMultiColumnList.
 	
@@ -498,51 +371,36 @@ SpecDebuggerStack>>initializeWidgets [
 		self contextMenu: aMenu]
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>inspectInstances [
+{ #category : #'actions browsing' }
+SpecDebuggerStack >> inspectInstances [
 	"Inspect all instances of the selected class."
 
 	self currentClassOrMetaClass ifNotNil: [ :aClass |
 		aClass theNonMetaClass inspectAllInstances ]
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>inspectSubInstances [
+{ #category : #'actions browsing' }
+SpecDebuggerStack >> inspectSubInstances [
 	"Inspect all instances of the selected class and all its subclasses"
 
 	self currentClassOrMetaClass ifNotNil: [ :aClass |
 		aClass theNonMetaClass inspectSubInstances ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>list [
+{ #category : #accessing }
+SpecDebuggerStack >> list [
 
 	^ listWidget
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>listItems [
+{ #category : #api }
+SpecDebuggerStack >> listItems [
 
 	^ self list listItems
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>methodHierarchy [
+{ #category : #'actions browsing' }
+SpecDebuggerStack >> methodHierarchy [
 	"Create and schedule a method browser on the hierarchy of implementors."
 
 	self systemNavigation 
@@ -551,76 +409,52 @@ SpecDebuggerStack>>methodHierarchy [
 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>selectedIndex [
+{ #category : #api }
+SpecDebuggerStack >> selectedIndex [
 
 	^ self list selectedIndex
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>selectedItem [
+{ #category : #api }
+SpecDebuggerStack >> selectedItem [
 
 	^ self list selectedItem
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>session [
+{ #category : #accessing }
+SpecDebuggerStack >> session [
 
 	^ sessionHolder value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>session: aSession [
+{ #category : #accessing }
+SpecDebuggerStack >> session: aSession [
 
 	sessionHolder value: aSession
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>setSelectedItem: anItem [
+{ #category : #api }
+SpecDebuggerStack >> setSelectedItem: anItem [
 
 	self list setSelectedItem: anItem
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>takeKeyboardFocus [
+{ #category : #api }
+SpecDebuggerStack >> takeKeyboardFocus [
 
 	self list takeKeyboardFocus
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>updateContentFromSession: aSession [
+{ #category : #updating }
+SpecDebuggerStack >> updateContentFromSession: aSession [
 	
 	self list items: (aSession 
 		ifNil: [ OrderedCollection new ] 
 		ifNotNil: [ self filteredStackOfSize: self class defaultStackSize ] )
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>updateDebuggingActions [
+{ #category : #updating }
+SpecDebuggerStack >> updateDebuggingActions [
 
 	actionsCache ifNotNil: [ 
 		actionsCache do: [ :each |
@@ -634,11 +468,8 @@ SpecDebuggerStack>>updateDebuggingActions [
 			self list bindKeyCombination: each keymap toAction:  [ each execute ] ] ].
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>updateForSelectionChanged [
+{ #category : #updating }
+SpecDebuggerStack >> updateForSelectionChanged [
 
 	self
 		expand;
@@ -646,20 +477,14 @@ SpecDebuggerStack>>updateForSelectionChanged [
 		updateDebuggingActions 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>whenListChanged: aBlock [
+{ #category : #api }
+SpecDebuggerStack >> whenListChanged: aBlock [
 
 	self list whenListChanged: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebuggerStack>>whenSelectedItemChanged: aBlock [
+{ #category : #api }
+SpecDebuggerStack >> whenSelectedItemChanged: aBlock [
 
 	self list whenSelectedItemChanged: aBlock
 ]

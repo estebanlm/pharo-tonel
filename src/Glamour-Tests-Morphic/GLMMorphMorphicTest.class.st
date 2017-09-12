@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMMorphMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphMorphicTest>>testMorphUpdate [
+{ #category : #tests }
+GLMMorphMorphicTest >> testMorphUpdate [
 	| browser number originalMorph newMorph |
 	number := 42.
 	browser := GLMTabulator new.
@@ -33,11 +26,8 @@ GLMMorphMorphicTest>>testMorphUpdate [
 	self assert: newMorph contents equals: 43 asString
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphMorphicTest>>testMorphUpdateOnAnnounce [
+{ #category : #tests }
+GLMMorphMorphicTest >> testMorphUpdateOnAnnounce [
 	| browser number originalMorph newMorph announcer |
 	announcer := GLMAnnouncer new.
 	number := 42.

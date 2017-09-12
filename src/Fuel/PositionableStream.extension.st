@@ -1,12 +1,7 @@
-Extension {
-	#name : #PositionableStream
-}
+Extension { #name : #PositionableStream }
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-PositionableStream>>fuelNextWordsInto: aWordObject  [
+{ #category : #'*Fuel' }
+PositionableStream >> fuelNextWordsInto: aWordObject [ 
 	"This method is the same as nextWordsInto: but the restoreEndianness is only done if needed"
 	| blt pos source byteSize |
 

@@ -34,33 +34,23 @@ Class {
 	#instVars : [
 		'topSeparator'
 	],
-	#category : #Morphic-Widgets-FastTable,
-	#timestamp : 'CyrilFerlicot 11/17/2015 14:08'
+	#category : #Morphic-Widgets-FastTable
 }
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTCellMorph>>defaultColor [
+{ #category : #initialize }
+FTCellMorph >> defaultColor [
 	^ Color transparent
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTCellMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+FTCellMorph >> drawOn: aCanvas [
 	super drawOn: aCanvas.
 	topSeparator
 		ifTrue: [ aCanvas line: bounds topLeft to: bounds topRight color: self seperatorColor ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTCellMorph>>initialize [
+{ #category : #initialization }
+FTCellMorph >> initialize [
 	super initialize.
 	topSeparator := false.
 	self
@@ -73,18 +63,12 @@ FTCellMorph>>initialize [
 		wrapCentering: #center
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTCellMorph>>seperatorColor [
+{ #category : #drawing }
+FTCellMorph >> seperatorColor [
 	^ Smalltalk ui theme scrollbarColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTCellMorph>>withTopSeparator [
+{ #category : #accessing }
+FTCellMorph >> withTopSeparator [
 	topSeparator := true
 ]

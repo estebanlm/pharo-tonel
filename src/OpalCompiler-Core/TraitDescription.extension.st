@@ -1,12 +1,7 @@
-Extension {
-	#name : #TraitDescription
-}
+Extension { #name : #TraitDescription }
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-TraitDescription>>findGlobalVariable: lookupBlock ifNone: notFoundBlock  [
+{ #category : #'*OpalCompiler-Core' }
+TraitDescription >> findGlobalVariable: lookupBlock ifNone: notFoundBlock [ 
 	| var |
 	var := OCLiteralVariable new.
 	var scope: self.

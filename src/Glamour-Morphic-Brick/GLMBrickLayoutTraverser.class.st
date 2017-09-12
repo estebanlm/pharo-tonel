@@ -1,139 +1,93 @@
-"
-
-"
 Class {
 	#name : #GLMBrickLayoutTraverser,
 	#superclass : #Object,
-	#category : #Glamour-Morphic-Brick-Layouts-Utils,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Layouts-Utils
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>customDependencies: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> customDependencies: aBrick [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>dimensionPolicy: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> dimensionPolicy: aBrick [
 
 	^ (self stateOf: aBrick) layoutPolicy: aBrick on: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>hasCustomDependencies: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> hasCustomDependencies: aBrick [
 
 	^ (self customDependencies: aBrick) isEmpty not
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>hasDimensionRestrictions: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> hasDimensionRestrictions: aBrick [
 
 	^ (self hasMinDimensionRestriction: aBrick) | (self hasMaxDimensionRestriction: aBrick)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>hasMaxDimensionRestriction: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> hasMaxDimensionRestriction: aBrick [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>hasMinDimensionRestriction: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> hasMinDimensionRestriction: aBrick [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>isClean: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> isClean: aBrick [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>isDependsOnChildren: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> isDependsOnChildren: aBrick [
 
 	^ (self stateOf: aBrick) isOnChildren
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>isDependsOnMyself: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> isDependsOnMyself: aBrick [
 
 	^ (self stateOf: aBrick) isOnMyself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>isDependsOnParent: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> isDependsOnParent: aBrick [
 
 	^ (self stateOf: aBrick) isOnParent
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>isLayoutClean: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> isLayoutClean: aBrick [
 
 	^ aBrick
 		ifNotNil: [ :b | b layout isClean ]
 		ifNil: [ true ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>isLayoutDirty: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> isLayoutDirty: aBrick [
 
 	^ aBrick
 		ifNotNil: [ :b | b layout isDirty ]
 		ifNil: [ true ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>isOppositeClean: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> isOppositeClean: aBrick [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #traversing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>layoutAround: aBrick inContext: aContextBrick [
+{ #category : #traversing }
+GLMBrickLayoutTraverser >> layoutAround: aBrick inContext: aContextBrick [
 	"want to layout non-Brick object? nice try, bro."
 	aBrick isBrick ifFalse: [ ^ self ].
 	"if my dimension is clean why do you want to layout me?"
@@ -156,29 +110,20 @@ GLMBrickLayoutTraverser>>layoutAround: aBrick inContext: aContextBrick [
 
 ]
 
-{
-	#category : #traversing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>layoutChildrenOf: aBrick [
+{ #category : #traversing }
+GLMBrickLayoutTraverser >> layoutChildrenOf: aBrick [
 
 	(self prioritySortedSubbricks: aBrick) do: [ :each | self layoutAround: each inContext: aBrick ]
 ]
 
-{
-	#category : #traversing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>layoutOwnerOf: aBrick [
+{ #category : #traversing }
+GLMBrickLayoutTraverser >> layoutOwnerOf: aBrick [
 
 	aBrick owner ifNotNil: [ self layoutAround: aBrick owner inContext: aBrick ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>layoutSubbricks: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> layoutSubbricks: aBrick [
 	aBrick ifNil: [ ^ self ].
 	aBrick isBrick ifFalse: [ ^ self ].
 	((self isClean: aBrick) & (self isOppositeClean: aBrick))
@@ -192,29 +137,20 @@ GLMBrickLayoutTraverser>>layoutSubbricks: aBrick [
 	aBrick onChildrenLayouted
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>markClean: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> markClean: aBrick [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>markDirty: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> markDirty: aBrick [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #traversing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>markDirtyAround: aBrick inContext: aContextBrick [
+{ #category : #traversing }
+GLMBrickLayoutTraverser >> markDirtyAround: aBrick inContext: aContextBrick [
 	aBrick isBrick ifFalse: [ ^ self ].
 	aBrick = aContextBrick ifTrue: [ ^ self ].
 	
@@ -248,11 +184,8 @@ GLMBrickLayoutTraverser>>markDirtyAround: aBrick inContext: aContextBrick [
 
 ]
 
-{
-	#category : #traversing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>markDirtyChildrenAround: aBrick inContext: aContextBrick [
+{ #category : #traversing }
+GLMBrickLayoutTraverser >> markDirtyChildrenAround: aBrick inContext: aContextBrick [
 
 	aBrick subbricks do: [ :each |
 		each = aContextBrick ifFalse: [
@@ -262,11 +195,8 @@ GLMBrickLayoutTraverser>>markDirtyChildrenAround: aBrick inContext: aContextBric
 				self markDirtyAround: each inContext: aBrick ] ] ] ].
 ]
 
-{
-	#category : #traversing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>markDirtyCustomDependency: aBrick inContext: aContextBrick [
+{ #category : #traversing }
+GLMBrickLayoutTraverser >> markDirtyCustomDependency: aBrick inContext: aContextBrick [
 	(aBrick isBrick) not | (aBrick = aContextBrick) ifTrue: [ ^ self ].
 	
 	(self hasCustomDependencies: aBrick) ifTrue: [
@@ -284,47 +214,32 @@ GLMBrickLayoutTraverser>>markDirtyCustomDependency: aBrick inContext: aContextBr
 								self markDirtyAround: brick inContext: aBrick ] ] ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>markLayoutClean: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> markLayoutClean: aBrick [
 
 	aBrick ifNotNil: [ :b | b markLayoutClean ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>markLayoutDirty: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> markLayoutDirty: aBrick [
 
 	aBrick ifNotNil: [ :b | b isBrick ifTrue: [ b markLayoutDirty ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>markOppositeDirty: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> markOppositeDirty: aBrick [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>opposite [
+{ #category : #accessing }
+GLMBrickLayoutTraverser >> opposite [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>prioritySortedSubbricks: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> prioritySortedSubbricks: aBrick [
 	|sorted|
 	sorted := OrderedCollection newFrom: aBrick subbricks.
 	sorted sort: [ :first :second | (self isDependsOnParent: first) ifFalse: [ true ]
@@ -336,29 +251,20 @@ GLMBrickLayoutTraverser>>prioritySortedSubbricks: aBrick [
 	^ sorted
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>state [
+{ #category : #accessing }
+GLMBrickLayoutTraverser >> state [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>stateOf: aBrick [
+{ #category : #accessing }
+GLMBrickLayoutTraverser >> stateOf: aBrick [
 
 	^ self state cull: aBrick
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTraverser>>updateDimension: aBrick [
+{ #category : #private }
+GLMBrickLayoutTraverser >> updateDimension: aBrick [
 
 	^ self subclassResponsibility
 ]

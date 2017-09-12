@@ -11,15 +11,11 @@ Class {
 		'remotes',
 		'silent'
 	],
-	#category : #Komitter-Support,
-	#timestamp : 'ChristopheDemarey 1/8/2014 16:53'
+	#category : #Komitter-Support
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageRemotesManager class>>defaultSpec [
+{ #category : #specs }
+PackageRemotesManager class >> defaultSpec [
 	<spec: #default>
 	
 	^ SpecLayout composed
@@ -32,11 +28,8 @@ PackageRemotesManager class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageRemotesManager>>change: selected forRemote: remote [
+{ #category : #private }
+PackageRemotesManager >> change: selected forRemote: remote [
 	| selectedPackage group |
 	
 	selectedPackage := packages selectedItem.
@@ -49,50 +42,35 @@ PackageRemotesManager>>change: selected forRemote: remote [
 		ifFalse: [ group removeRepository: remote ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageRemotesManager>>doIfNotSilent: aBlock [
+{ #category : #private }
+PackageRemotesManager >> doIfNotSilent: aBlock [
 
 	silent ifTrue: [ ^ self ].
 	aBlock value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageRemotesManager>>initialExtent [
+{ #category : #api }
+PackageRemotesManager >> initialExtent [
 
 	^  700@460
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageRemotesManager>>initialize [
+{ #category : #initialization }
+PackageRemotesManager >> initialize [
 
 	super initialize.
 	silent := false.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageRemotesManager>>initializeDialogWindow: aWindow [
+{ #category : #initialization }
+PackageRemotesManager >> initializeDialogWindow: aWindow [
 
 	aWindow
 		toolbar: OkToolbar new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageRemotesManager>>initializePresenter [
+{ #category : #initialization }
+PackageRemotesManager >> initializePresenter [
 
 	packages whenSelectedItemChanged: [ :item |	self updateRemoteSelectionFrom: item ].
 		
@@ -112,11 +90,8 @@ PackageRemotesManager>>initializePresenter [
 				yourself ) ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageRemotesManager>>initializeWidgets [
+{ #category : #initialization }
+PackageRemotesManager >> initializeWidgets [
 
 	packages := self instantiate: SearchableTree.
 	remotes := self instantiate: RemotesManager.
@@ -130,58 +105,40 @@ PackageRemotesManager>>initializeWidgets [
 		add: remotes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageRemotesManager>>packages [
+{ #category : #accessing }
+PackageRemotesManager >> packages [
 
 	^ packages
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageRemotesManager>>packages: mcPackages [
+{ #category : #api }
+PackageRemotesManager >> packages: mcPackages [
 
 	packages roots: mcPackages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageRemotesManager>>remotes [
+{ #category : #accessing }
+PackageRemotesManager >> remotes [
 
 	^ remotes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageRemotesManager>>remotesTree [
+{ #category : #accessing }
+PackageRemotesManager >> remotesTree [
 
 	^ remotes remotes
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageRemotesManager>>selectedPackageRepositories [
+{ #category : #private }
+PackageRemotesManager >> selectedPackageRepositories [
 
 	^ packages selectedItem
 		ifNil: [ #() ]
 		ifNotNil: [ :item | item content repositoryGroup repositories ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageRemotesManager>>silentWhile: aBlock [
+{ #category : #private }
+PackageRemotesManager >> silentWhile: aBlock [
 	| oldSilent |
 	
 	oldSilent := silent.
@@ -189,20 +146,14 @@ PackageRemotesManager>>silentWhile: aBlock [
 	aBlock ensure: [ silent := oldSilent ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageRemotesManager>>title [
+{ #category : #api }
+PackageRemotesManager >> title [
 
 	^ 'Remotes manager'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageRemotesManager>>updateRemoteSelectionFrom: aPackage [
+{ #category : #private }
+PackageRemotesManager >> updateRemoteSelectionFrom: aPackage [
 	| repositories |
 	
 	aPackage 

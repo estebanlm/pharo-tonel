@@ -7,56 +7,37 @@ Class {
 	#instVars : [
 		'subFilters'
 	],
-	#category : #EpiceaBrowsers-Filters,
-	#timestamp : 'MartinDias 8/20/2014 11:58'
+	#category : #EpiceaBrowsers-Filters
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpOrFilter class>>withAll: aCollection  [
+{ #category : #'instance creation' }
+EpOrFilter class >> withAll: aCollection [ 
 	^ self new 
 		subFilters: aCollection;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpOrFilter>>= other  [
+{ #category : #comparing }
+EpOrFilter >> = other [ 
 	^ self class = other class and: [ self subFilters = other subFilters ]
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpOrFilter>>accepts: anEntry [
+{ #category : #filtering }
+EpOrFilter >> accepts: anEntry [
 	^ self subFilters anySatisfy: [ :aFilter | aFilter accepts: anEntry ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpOrFilter>>hash [
+{ #category : #comparing }
+EpOrFilter >> hash [
 	^ self class hash bitXor: self subFilters hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpOrFilter>>subFilters [
+{ #category : #accessing }
+EpOrFilter >> subFilters [
 	^ subFilters
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpOrFilter>>subFilters: aCollectionOfFilters [
+{ #category : #accessing }
+EpOrFilter >> subFilters: aCollectionOfFilters [
 	subFilters := aCollectionOfFilters
 ]

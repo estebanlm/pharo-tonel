@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMPhlowTableColumn,
 	#superclass : #Object,
@@ -9,54 +6,35 @@ Class {
 		'title',
 		'style'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-Phlow,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Widgets-Phlow
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowTableColumn>>computation [
+{ #category : #accessing }
+GLMPhlowTableColumn >> computation [
 	^ computation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowTableColumn>>computation: anObject [
+{ #category : #accessing }
+GLMPhlowTableColumn >> computation: anObject [
 	computation := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowTableColumn>>style [
+{ #category : #accessing }
+GLMPhlowTableColumn >> style [
 	^ style
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowTableColumn>>style: anObject [
+{ #category : #accessing }
+GLMPhlowTableColumn >> style: anObject [
 	style := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowTableColumn>>title [
+{ #category : #accessing }
+GLMPhlowTableColumn >> title [
 	^ title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPhlowTableColumn>>title: anObject [
+{ #category : #accessing }
+GLMPhlowTableColumn >> title: anObject [
 	title := anObject
 ]

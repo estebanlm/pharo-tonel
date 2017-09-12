@@ -1,76 +1,50 @@
-Extension {
-	#name : #MetacelloAbstractPackageSpec
-}
+Extension { #name : #MetacelloAbstractPackageSpec }
 
-{
-	#category : #'*metacello-mc-querying',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>file  [
+{ #category : #'*metacello-mc-querying' }
+MetacelloAbstractPackageSpec >> file [ 
 	"MetacelloPackageSpec compatibility"
 	
 	^nil
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>forceUpdatePackageSpec: updatedSpecs using: anMCLoader [
+{ #category : #'*metacello-mc' }
+MetacelloAbstractPackageSpec >> forceUpdatePackageSpec: updatedSpecs using: anMCLoader [
 
 	^self updatePackageSpec: updatedSpecs using: anMCLoader
 ]
 
-{
-	#category : #'*metacello-mc-querying',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>getFile [
+{ #category : #'*metacello-mc-querying' }
+MetacelloAbstractPackageSpec >> getFile [
   "MetacelloPackageSpec compatibility"
 
   ^ nil
 ]
 
-{
-	#category : #'*metacello-mc-querying',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>isPackageLoaded [
+{ #category : #'*metacello-mc-querying' }
+MetacelloAbstractPackageSpec >> isPackageLoaded [
 
 	^false
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>loadUsing: aLoader gofer: gofer [
+{ #category : #'*metacello-mc' }
+MetacelloAbstractPackageSpec >> loadUsing: aLoader gofer: gofer [
 
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>packagesNeedSavingVisited: visitedProjects using: repos into: aCollection [
+{ #category : #'*metacello-mc' }
+MetacelloAbstractPackageSpec >> packagesNeedSavingVisited: visitedProjects using: repos into: aCollection [
 	"noop by default"
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>repositorySpecs [
+{ #category : #'*metacello-mc' }
+MetacelloAbstractPackageSpec >> repositorySpecs [
 
 	^#()
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>resolveToAllPackagesIn: aVersionSpec into: packages visited: visited [
+{ #category : #'*metacello-mc' }
+MetacelloAbstractPackageSpec >> resolveToAllPackagesIn: aVersionSpec into: packages visited: visited [
 
 	visited
 		visit: self
@@ -88,11 +62,8 @@ MetacelloAbstractPackageSpec>>resolveToAllPackagesIn: aVersionSpec into: package
 					groupDo: [:grp | grp resolveToAllPackagesIn: aVersionSpec into: packages  visited: visited ]]]
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>resolveToAllPackagesIn: aVersionSpec visited: visited [
+{ #category : #'*metacello-mc' }
+MetacelloAbstractPackageSpec >> resolveToAllPackagesIn: aVersionSpec visited: visited [
 
 	| packages |
 	packages := Dictionary new.
@@ -100,74 +71,50 @@ MetacelloAbstractPackageSpec>>resolveToAllPackagesIn: aVersionSpec visited: visi
 	^packages values asOrderedCollection
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>resolveToLoadableSpec [
+{ #category : #'*metacello-mc' }
+MetacelloAbstractPackageSpec >> resolveToLoadableSpec [
 
 	^self
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>resolveToPackagesIn: aVersionSpec andProjects: andProjectsBool visited: visited [
+{ #category : #'*metacello-mc' }
+MetacelloAbstractPackageSpec >> resolveToPackagesIn: aVersionSpec andProjects: andProjectsBool visited: visited [
   ^ self resolveToPackagesIn: aVersionSpec visited: visited
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>resolveToPackagesIn: aVersionSpec visited: visited [
+{ #category : #'*metacello-mc' }
+MetacelloAbstractPackageSpec >> resolveToPackagesIn: aVersionSpec visited: visited [
 
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>updateForSpawnMethod: sourceSpec [
+{ #category : #'*metacello-mc' }
+MetacelloAbstractPackageSpec >> updateForSpawnMethod: sourceSpec [
 	"This means that this spec was used in a baseline and will be used in a version .... drop all information that isn't useful"
 
 	answers := name := requires := includes := nil
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>updatePackageRepositoriesFor: aVersionSpec [
+{ #category : #'*metacello-mc' }
+MetacelloAbstractPackageSpec >> updatePackageRepositoriesFor: aVersionSpec [
 	"noop by default"
 	
 	^true
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>updatePackageSpec: updatedSpecs using: anMCLoader [
+{ #category : #'*metacello-mc' }
+MetacelloAbstractPackageSpec >> updatePackageSpec: updatedSpecs using: anMCLoader [
 	"Add pkg copy to updatedSpecs if the file in current image is different from the receiver's file"
 ]
 
-{
-	#category : #'*metacello-mc-querying',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>version  [
+{ #category : #'*metacello-mc-querying' }
+MetacelloAbstractPackageSpec >> version [ 
 	"MetacelloPackageSpec compatibility"
 	
 	^nil
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAbstractPackageSpec>>visitingWithPackages: packages [
+{ #category : #'*metacello-mc' }
+MetacelloAbstractPackageSpec >> visitingWithPackages: packages [
 	"noop"
 ]

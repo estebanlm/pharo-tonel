@@ -1,36 +1,22 @@
-Extension {
-	#name : #GLMCompositePresentation
-}
+Extension { #name : #GLMCompositePresentation }
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GLMCompositePresentation>>openInExternalWindow [
+{ #category : #'*OSWindow-Core' }
+GLMCompositePresentation >> openInExternalWindow [
     ^ self defaultRenderer openInExternalWindow: self
 ]
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GLMCompositePresentation>>openInExternalWindowOn: anObject  [
+{ #category : #'*OSWindow-Core' }
+GLMCompositePresentation >> openInExternalWindowOn: anObject [ 
     ^ self openOn: anObject inExternalWindowWith: self defaultRenderer
 ]
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GLMCompositePresentation>>openInExternalWindowWith: aRenderer  [
+{ #category : #'*OSWindow-Core' }
+GLMCompositePresentation >> openInExternalWindowWith: aRenderer [ 
     ^ aRenderer openInExternalWindow: self
 ]
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GLMCompositePresentation>>openOn: anObject inExternalWindowWith: aRenderer  [
+{ #category : #'*OSWindow-Core' }
+GLMCompositePresentation >> openOn: anObject inExternalWindowWith: aRenderer [ 
      
     self startOn: anObject. 
     ^ aRenderer openInExternalWindow: self

@@ -32,15 +32,11 @@ Class {
 	#classVars : [
 		'LogDebuggerStackToFile'
 	],
-	#category : #DebuggerModel,
-	#timestamp : '<historical>'
+	#category : #DebuggerModel
 }
 
-{
-	#category : #'actions registration',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession class>>debuggingActionsForPragma: aSymbol for: aDebugger [
+{ #category : #'actions registration' }
+DebugSession class >> debuggingActionsForPragma: aSymbol for: aDebugger [
 	^ (DebugAction allSubclasses reject: [ :each | each hasAbstractMethods ])
 		inject: OrderedCollection new
 		into: [ :currentActions :aClass | 
@@ -49,11 +45,8 @@ DebugSession class>>debuggingActionsForPragma: aSymbol for: aDebugger [
 				yourself ]
 ]
 
-{
-	#category : #'actions registration',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession class>>debuggingActionsForPragmas: aSymbolsCollection for: aDebugger [
+{ #category : #'actions registration' }
+DebugSession class >> debuggingActionsForPragmas: aSymbolsCollection for: aDebugger [
 	self flag: 'split me'.
 	^ (((aSymbolsCollection 
 		inject: OrderedCollection new
@@ -71,11 +64,8 @@ DebugSession class>>debuggingActionsForPragmas: aSymbolsCollection for: aDebugge
 						action1 order < action2 order ]
 ]
 
-{
-	#category : #'actions registration',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession class>>debuggingActionsFromClass: aClass forPragma: aSymbol forDebugger: aDebugger [
+{ #category : #'actions registration' }
+DebugSession class >> debuggingActionsFromClass: aClass forPragma: aSymbol forDebugger: aDebugger [
 	| pragmas actions |
 	pragmas := Pragma
 		allNamed: aSymbol
@@ -93,126 +83,87 @@ DebugSession class>>debuggingActionsFromClass: aClass forPragma: aSymbol forDebu
 	^ actions
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession class>>logDebuggerStackToFile [
+{ #category : #settings }
+DebugSession class >> logDebuggerStackToFile [
 	^ LogDebuggerStackToFile ifNil: [LogDebuggerStackToFile := true]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession class>>logDebuggerStackToFile: aBoolean [
+{ #category : #settings }
+DebugSession class >> logDebuggerStackToFile: aBoolean [
 	LogDebuggerStackToFile := aBoolean
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession class>>named: aString on: aProcess startedAt: aContext [
+{ #category : #'instance creation' }
+DebugSession class >> named: aString on: aProcess startedAt: aContext [
 	^ self new
 		name: aString;
 		process: aProcess context: aContext;
 		detectUIProcess
 ]
 
-{
-	#category : #context,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>activePC: aContext  [
+{ #category : #context }
+DebugSession >> activePC: aContext [ 
 	^ (self isLatestContext: aContext)
 		ifTrue: [ interruptedContext pc ]
 		ifFalse: [ self previousPC: aContext ].
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>clear [
+{ #category : #'debugging actions' }
+DebugSession >> clear [
 	"If after resuming the process the user does plan to reuse this session with
 	the same process, it should call this method."
 	interruptedProcess := nil.
 	self updateContextTo: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>context [
+{ #category : #accessing }
+DebugSession >> context [
 
 	^ interruptedContext
 ]
 
-{
-	#category : #context,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>contextChanged [
+{ #category : #context }
+DebugSession >> contextChanged [
 
 	self triggerEvent: #contextChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>createModelForContext: aContext [
+{ #category : #accessing }
+DebugSession >> createModelForContext: aContext [
 
 	^ (DebugContext forContext: aContext) topContext: interruptedContext
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>detectUIProcess [
+{ #category : #initialization }
+DebugSession >> detectUIProcess [
 
 	errorWasInUIProcess := UIManager default uiProcess == interruptedProcess 
 	
 
 ]
 
-{
-	#category : #context,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>downInContext: aContext [
+{ #category : #context }
+DebugSession >> downInContext: aContext [
 	"move down the context stack to the previous (enclosing) context"
 
 	self flag: 'This does not take into account (bypasses) filtering'.
 	^ aContext sender. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>errorWasInUIProcess [
+{ #category : #accessing }
+DebugSession >> errorWasInUIProcess [
 	
 	^ errorWasInUIProcess
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>errorWasInUIProcess: aBoolean [
+{ #category : #initialization }
+DebugSession >> errorWasInUIProcess: aBoolean [
 
 	errorWasInUIProcess := aBoolean
 ]
 
-{
-	#category : #context,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>filterTopContext: aContext [
+{ #category : #context }
+DebugSession >> filterTopContext: aContext [
 	|ctx|
 	 
 	ctx := aContext.
@@ -222,11 +173,8 @@ DebugSession>>filterTopContext: aContext [
 	^ nil
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>implement: aMessage classified: aSymbol inClass: aClass forContext: aContext [
+{ #category : #evaluating }
+DebugSession >> implement: aMessage classified: aSymbol inClass: aClass forContext: aContext [
 	
 	aClass
 		compile: (DynamicMessageImplementor for: aMessage in: aClass) value
@@ -242,20 +190,14 @@ DebugSession>>implement: aMessage classified: aSymbol inClass: aClass forContext
 	self contextChanged
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>installAlarm: aSelector  [
+{ #category : #private }
+DebugSession >> installAlarm: aSelector [ 
 	
 	self installAlarm: aSelector withArgument: #()
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>installAlarm: aSelector withArgument: args [
+{ #category : #private }
+DebugSession >> installAlarm: aSelector withArgument: args [
 	
 	World
 		addAlarm: aSelector
@@ -264,38 +206,26 @@ DebugSession>>installAlarm: aSelector withArgument: args [
 		at: Time millisecondClockValue + 200
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>interruptedContext [
+{ #category : #accessing }
+DebugSession >> interruptedContext [
 
 	^ interruptedContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>interruptedProcess [
+{ #category : #accessing }
+DebugSession >> interruptedProcess [
 
 	^ interruptedProcess
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>isAboutUIProcess [
+{ #category : #testing }
+DebugSession >> isAboutUIProcess [
 
 	^errorWasInUIProcess 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>isContextPostMortem: selectedContext [
+{ #category : #testing }
+DebugSession >> isContextPostMortem: selectedContext [
 	"return whether we're inspecting a frozen exception without a process attached"
 	| suspendedContext |
 	suspendedContext := interruptedProcess suspendedContext.
@@ -305,84 +235,57 @@ DebugSession>>isContextPostMortem: selectedContext [
 	^ (suspendedContext findContextSuchThat: [:c | c sender == selectedContext]) isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>isInterruptedContextATest [
+{ #category : #testing }
+DebugSession >> isInterruptedContextATest [
 
 	^ (self isTestObject: self interruptedContext receiver) and: [ self isTestMethod: self interruptedContext method of: self interruptedContext receiver ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>isInterruptedContextDoesNotUnderstand	 [
+{ #category : #testing }
+DebugSession >> isInterruptedContextDoesNotUnderstand [	
 	
 	^ self interruptedContext selector == #doesNotUnderstand:
 ]
 
-{
-	#category : #context,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>isLatestContext: aContext [
+{ #category : #context }
+DebugSession >> isLatestContext: aContext [
 
 	^ interruptedProcess suspendedContext == aContext
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>isTestMethod: aCompiledMethod of: aTestCase [
+{ #category : #testing }
+DebugSession >> isTestMethod: aCompiledMethod of: aTestCase [
 
 	^ aCompiledMethod selector = aTestCase selector
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>isTestObject: anObject [
+{ #category : #testing }
+DebugSession >> isTestObject: anObject [
 
 	"I'm not sure this is the best way to doit because it creates a coupling with TestCase, but due that SUnit is part of the core I think it is not bad after all - Hernan'"
 	^ anObject isKindOf: TestCase
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>logStackToFileIfNeeded [
+{ #category : #logging }
+DebugSession >> logStackToFileIfNeeded [
 	self class logDebuggerStackToFile ifFalse: [ ^self ].
 	
 	[[Smalltalk logError: name inContext: interruptedContext  ] ifError: [ ]]
 		valueWithin: 100 milliSeconds onTimeout: [  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>name [
+{ #category : #accessing }
+DebugSession >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>name: aString [
+{ #category : #accessing }
+DebugSession >> name: aString [
 	name := aString
 ]
 
-{
-	#category : #context,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>pcRangeForContext: aContext [
+{ #category : #context }
+DebugSession >> pcRangeForContext: aContext [
 	"Answer the indices in the source code for the method corresponding to 
 	aContext's program counter value."
 
@@ -393,11 +296,8 @@ DebugSession>>pcRangeForContext: aContext [
 		contextIsActiveContext: (self isLatestContext: aContext)
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>peelToFirstLike: aContext [
+{ #category : #'debugging actions' }
+DebugSession >> peelToFirstLike: aContext [
 	"Peel the stack back to the second occurance of the currently selected message.  Very useful for an infinite recursion.  Gets back to the second call so you can see one complete recursion cycle, and how it was called at the beginning.  Also frees a lot of space!"
 
 	| ctxt |
@@ -411,37 +311,25 @@ DebugSession>>peelToFirstLike: aContext [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>prepareTestToRunAgain [
+{ #category : #private }
+DebugSession >> prepareTestToRunAgain [
 
 	self interruptedContext receiver prepareToRunAgain
 ]
 
-{
-	#category : #context,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>previousPC: aContext [
+{ #category : #context }
+DebugSession >> previousPC: aContext [
 	^ (aContext method pcPreviousTo: aContext pc)
 		ifNil: [ aContext pc ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>process [
+{ #category : #accessing }
+DebugSession >> process [
 	^ interruptedProcess
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>process: aProcess context: aContext [
+{ #category : #initialization }
+DebugSession >> process: aProcess context: aContext [
 
 	"aProcess stepToSendOrReturn ."
 	"aProcess isSuspended ifTrue: [ aProcess stepToSendOrReturn ]."
@@ -452,11 +340,8 @@ DebugSession>>process: aProcess context: aContext [
 
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>recompileMethodTo: text inContext: aContext notifying: aNotifyer [
+{ #category : #'debugging actions' }
+DebugSession >> recompileMethodTo: text inContext: aContext notifying: aNotifyer [
 	"The retrieved information has changed and its source must now be updated.
 	 In this case, the retrieved information is the method of the given context."
 
@@ -483,11 +368,8 @@ DebugSession>>recompileMethodTo: text inContext: aContext notifying: aNotifyer [
 	^ true
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>restart: aContext [
+{ #category : #'debugging actions' }
+DebugSession >> restart: aContext [
 	"Proceed from the initial state of selectedContext." 
 	"Closing now depends on a setting (RestartAlsoProceeds class variable) --> not supported in this version"
 
@@ -501,11 +383,8 @@ DebugSession>>restart: aContext [
 	
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>resume [
+{ #category : #'debugging actions' }
+DebugSession >> resume [
 	"Proceed execution of the receiver's model, starting after the expression at 
 	which an interruption occurred."
 
@@ -519,11 +398,8 @@ DebugSession>>resume [
 	self triggerEvent: #resume
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>resume: aValue [
+{ #category : #'debugging actions' }
+DebugSession >> resume: aValue [
 	"Proceed execution of the receiver's model, starting after the expression at 
 	which an interruption occurred."
 
@@ -537,11 +413,8 @@ DebugSession>>resume: aValue [
 	self triggerEvent: #resume
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>resumeProcess [
+{ #category : #private }
+DebugSession >> resumeProcess [
 	"Make sure the interrupted process is restored properly and restart the low space handler"
 	
 	interruptedProcess isTerminated
@@ -554,22 +427,16 @@ DebugSession>>resumeProcess [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>resumeProcessWithValue: aValue [
+{ #category : #private }
+DebugSession >> resumeProcessWithValue: aValue [
 	"Make sure the interrupted process is restored properly and restart the low space handler"
 	
 	self returnValue: aValue from: interruptedProcess suspendedContext.
 	self resumeProcess.	
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>returnValue: anObject from: aContext [
+{ #category : #'debugging actions' }
+DebugSession >> returnValue: anObject from: aContext [
 	"Force a return of a given value to the previous context!"
 
 	| previous |
@@ -583,11 +450,8 @@ DebugSession>>returnValue: anObject from: aContext [
 	self contextChanged 
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>returnValueFrom: aContext [
+{ #category : #'debugging actions' }
+DebugSession >> returnValueFrom: aContext [
 	"Force a return of a given value to the previous context!"
 
 	| previous expression value |
@@ -609,11 +473,8 @@ DebugSession>>returnValueFrom: aContext [
 	self contextChanged 
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>rewindContextToMethod: aMethod fromContext: aContext [
+{ #category : #evaluating }
+DebugSession >> rewindContextToMethod: aMethod fromContext: aContext [
 	"this method is typically to be used after a hot compilation of a method from the stack.
 	in order to return to the context containg the compiled method."
 	| ctxt |
@@ -632,11 +493,8 @@ DebugSession>>rewindContextToMethod: aMethod fromContext: aContext [
 	self isInterruptedContextATest ifTrue: [ self prepareTestToRunAgain ].
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>runToSelection: selectionInterval inContext: aContext  [
+{ #category : #'debugging actions' }
+DebugSession >> runToSelection: selectionInterval inContext: aContext [ 
 	"Attempt to step over instructions in selectedContext until the 
 	execution reaches the selected instruction. This happens when the
 	program counter passes the begining of selectionInterval.
@@ -650,20 +508,14 @@ DebugSession>>runToSelection: selectionInterval inContext: aContext  [
 		whileTrue: [ self stepOver: aContext ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>selectedCodeRangeForContext: selectedContext [
+{ #category : #accessing }
+DebugSession >> selectedCodeRangeForContext: selectedContext [
 
 	^ self pcRangeForContext: selectedContext
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>shouldDisplayContext: aContext basedOnFilters: stackFilters [
+{ #category : #testing }
+DebugSession >> shouldDisplayContext: aContext basedOnFilters: stackFilters [
 	"Return true if all filters match the given context, or false otherwise.
 	True is returned if there are no filters."
 		
@@ -671,20 +523,14 @@ DebugSession>>shouldDisplayContext: aContext basedOnFilters: stackFilters [
 	
 ]
 
-{
-	#category : #context,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>shouldDisplayOnTopContext: aContext [
+{ #category : #context }
+DebugSession >> shouldDisplayOnTopContext: aContext [
 	
 	^ aContext method selector ~= #halt
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>signalDebuggerError: anError [
+{ #category : #logging }
+DebugSession >> signalDebuggerError: anError [
 
 	self primitiveError:
 							'Original error: ' , name asString
@@ -697,29 +543,20 @@ DebugSession>>signalDebuggerError: anError [
 										do: [ 'a ' , anError class printString ]) , ':' 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>stack [
+{ #category : #accessing }
+DebugSession >> stack [
 
 	^ interruptedContext stack
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>stackOfSize: size [
+{ #category : #accessing }
+DebugSession >> stackOfSize: size [
 
 	^ interruptedContext stackOfSize: size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>stackOfSize: limit usingFilters: stackFilters [
+{ #category : #accessing }
+DebugSession >> stackOfSize: limit usingFilters: stackFilters [
 	"Answer an OrderedCollection of the top 'limit' contexts on the receiver's sender chain, according to the given filters.
 	
 	Consider the following stack:   
@@ -766,20 +603,14 @@ DebugSession>>stackOfSize: limit usingFilters: stackFilters [
 	^ stack
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>stepInto [
+{ #category : #'debugging actions' }
+DebugSession >> stepInto [
 
 	self stepInto: interruptedContext
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>stepInto: aContext [
+{ #category : #'debugging actions' }
+DebugSession >> stepInto: aContext [
 	"Send the selected message in selectedContext, and take control in 
 	the method invoked to allow further step or send."
 
@@ -791,29 +622,20 @@ DebugSession>>stepInto: aContext [
 	self triggerEvent: #stepInto
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>stepIntoUntil: aBlock [
+{ #category : #'debugging actions' }
+DebugSession >> stepIntoUntil: aBlock [
 	[ aBlock cull: interruptedContext ]
 		whileFalse: [ self stepInto: interruptedContext ]
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>stepOver [
+{ #category : #'debugging actions' }
+DebugSession >> stepOver [
 
 	self stepOver: interruptedContext
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>stepOver: aContext [
+{ #category : #'debugging actions' }
+DebugSession >> stepOver: aContext [
 	"Send the selected message in selectedContext, and regain control 
 	after the invoked method returns."
 	
@@ -830,20 +652,14 @@ DebugSession>>stepOver: aContext [
 	self triggerEvent: #stepOver 
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>stepThrough [
+{ #category : #'debugging actions' }
+DebugSession >> stepThrough [
 
 	self stepThrough: interruptedContext
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>stepThrough: aContext [
+{ #category : #'debugging actions' }
+DebugSession >> stepThrough: aContext [
 	"Send messages until you return to selectedContext.
 	 Used to step into a block in the method."
 	
@@ -855,11 +671,8 @@ DebugSession>>stepThrough: aContext [
 	self triggerEvent: #stepThrough 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>stepToFirstInterestingBytecodeIn: aProcess [
+{ #category : #private }
+DebugSession >> stepToFirstInterestingBytecodeIn: aProcess [
 	"After a restart of a method activation step to the first 
 	bytecode instruction that is of interest for the debugger.
 	
@@ -870,11 +683,8 @@ DebugSession>>stepToFirstInterestingBytecodeIn: aProcess [
 	^ aProcess stepToSendOrReturn
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>terminate [
+{ #category : #'debugging actions' }
+DebugSession >> terminate [
 	"Action that needs to be executed after the window containing this debug session is closed, 
 	in order to terminate the right process."
 	
@@ -892,11 +702,8 @@ DebugSession>>terminate [
 	
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>unwindAndRestartToContext: aContext [
+{ #category : #evaluating }
+DebugSession >> unwindAndRestartToContext: aContext [
 	|ctx|
 
 	ctx := interruptedProcess popTo: aContext.
@@ -908,20 +715,14 @@ DebugSession>>unwindAndRestartToContext: aContext [
 	self updateContextTo:  aContext
 ]
 
-{
-	#category : #context,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>updateContextTo: aContext [
+{ #category : #context }
+DebugSession >> updateContextTo: aContext [
 
 	interruptedContext := aContext
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugSession>>updateWithContext: newContext fromProcess: aProcess [
+{ #category : #updating }
+DebugSession >> updateWithContext: newContext fromProcess: aProcess [
 
 	self process: aProcess context: newContext
 ]

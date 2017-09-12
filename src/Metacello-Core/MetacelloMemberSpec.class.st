@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloMemberSpec,
 	#superclass : #MetacelloSpec,
@@ -8,33 +5,23 @@ Class {
 		'name',
 		'spec'
 	],
-	#category : #Metacello-Core-Members,
-	#timestamp : ''
+	#category : #Metacello-Core-Members
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberSpec>>applyAdd: addBlock copy: copyBlock merge: mergeBlock remove: removeBlock [
+{ #category : #actions }
+MetacelloMemberSpec >> applyAdd: addBlock copy: copyBlock merge: mergeBlock remove: removeBlock [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberSpec>>applyToList: aListSpec [
+{ #category : #actions }
+MetacelloMemberSpec >> applyToList: aListSpec [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberSpec>>configMethodCascadeOn: aStream last: lastCascade indent: indent [
+{ #category : #printing }
+MetacelloMemberSpec >> configMethodCascadeOn: aStream last: lastCascade indent: indent [
 
 	self spec 
 		configMethodCascadeOn: aStream 
@@ -43,67 +30,46 @@ MetacelloMemberSpec>>configMethodCascadeOn: aStream last: lastCascade indent: in
 		indent: indent
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberSpec>>configMethodOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloMemberSpec >> configMethodOn: aStream indent: indent [
 
 	aStream nextPutAll: self class name asString, ' member: ('.
 	self spec configMethodOn: aStream indent: indent.
 	aStream nextPutAll: ')'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberSpec>>methodUpdateSelector [
+{ #category : #accessing }
+MetacelloMemberSpec >> methodUpdateSelector [
 
 	^self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberSpec>>name [
+{ #category : #accessing }
+MetacelloMemberSpec >> name [
 
 	^name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberSpec>>name: aString [
+{ #category : #accessing }
+MetacelloMemberSpec >> name: aString [
 
 	name := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberSpec>>sourceName [
+{ #category : #accessing }
+MetacelloMemberSpec >> sourceName [
 
 	^self name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberSpec>>spec [
+{ #category : #accessing }
+MetacelloMemberSpec >> spec [
 
 	^spec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMemberSpec>>spec: aMetacelloSpec [
+{ #category : #accessing }
+MetacelloMemberSpec >> spec: aMetacelloSpec [
 
 	spec := aMetacelloSpec
 ]

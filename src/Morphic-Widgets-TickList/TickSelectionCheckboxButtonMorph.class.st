@@ -7,24 +7,17 @@ Class {
 	#instVars : [
 		'index'
 	],
-	#category : #Morphic-Widgets-TickList,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-TickList
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionCheckboxButtonMorph>>index: anIndex [
+{ #category : #accessing }
+TickSelectionCheckboxButtonMorph >> index: anIndex [
 
 	index := anIndex
 ]
 
-{
-	#category : #event,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionCheckboxButtonMorph>>mouseUp: evt [
+{ #category : #event }
+TickSelectionCheckboxButtonMorph >> mouseUp: evt [
 	"Handle the transitions."
 	| result |
 	result := super mouseUp: evt.
@@ -32,11 +25,8 @@ TickSelectionCheckboxButtonMorph>>mouseUp: evt [
 	^ result 
 ]
 
-{
-	#category : #event,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionCheckboxButtonMorph>>pressed: anIndex [
+{ #category : #event }
+TickSelectionCheckboxButtonMorph >> pressed: anIndex [
 
 	self owner pressed: anIndex
 ]

@@ -16,50 +16,34 @@ Class {
 	#classVars : [
 		'OuterMargin'
 	],
-	#category : #'Morphic-Base-Text Support',
-	#timestamp : '<historical>'
+	#category : #'Morphic-Base-Text Support'
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer class>>initialize    "TextContainer initialize" [
+{ #category : #initialization }
+TextContainer class >> initialize [    "TextContainer initialize"
 	OuterMargin := 2
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>avoidsOcclusions [
+{ #category : #access }
+TextContainer >> avoidsOcclusions [
 	^ avoidsOcclusions ifNil: [false]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>avoidsOcclusions: aBoolean [
+{ #category : #access }
+TextContainer >> avoidsOcclusions: aBoolean [
 	avoidsOcclusions := aBoolean.
 	self releaseCachedState
 ]
 
-{
-	#category : #'container protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>bottom [
+{ #category : #'container protocol' }
+TextContainer >> bottom [
 	"Note we should really check for contiguous pixels here"
 	^ (self vertProfile findLast: [:count | count >= minWidth])
 		+ shadowForm offset y
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>bounds [
+{ #category : #private }
+TextContainer >> bounds [
 	| bounds theText |
 	self fillsOwner ifFalse: [^ textMorph textBounds].
 	theText := textMorph.
@@ -70,11 +54,8 @@ TextContainer>>bounds [
 	^ bounds
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>computeShadow [
+{ #category : #private }
+TextContainer >> computeShadow [
 	| canvas bounds theText |
 	bounds := self bounds.
 	theText := textMorph.
@@ -99,47 +80,32 @@ TextContainer>>computeShadow [
 	^ shadowForm
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>fillsOwner [
+{ #category : #access }
+TextContainer >> fillsOwner [
 	^ fillsOwner ifNil: [true]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>fillsOwner: aBoolean [
+{ #category : #access }
+TextContainer >> fillsOwner: aBoolean [
 	fillsOwner := aBoolean.
 	self releaseCachedState
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>for: aTextMorph minWidth: wid [
+{ #category : #private }
+TextContainer >> for: aTextMorph minWidth: wid [
 	textMorph := aTextMorph.
 	minWidth := wid.
 	fillsOwner := true.
 	avoidsOcclusions := false.
 ]
 
-{
-	#category : #'container protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>left  [
+{ #category : #'container protocol' }
+TextContainer >> left [ 
 	^ textMorph owner left
 ]
 
-{
-	#category : #'container protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>rectanglesAt: lineY height: lineHeight  [
+{ #category : #'container protocol' }
+TextContainer >> rectanglesAt: lineY height: lineHeight [ 
 	"Return a list of rectangles that are at least minWidth wide
 	in the specified horizontal strip of the shadowForm.
 	Cache the results for later retrieval if the owner does not change."
@@ -187,11 +153,8 @@ TextContainer>>rectanglesAt: lineY height: lineHeight  [
 	^rects
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>releaseCachedState [
+{ #category : #access }
+TextContainer >> releaseCachedState [
 
 	shadowForm := nil.
 	vertProfile := nil.
@@ -199,28 +162,19 @@ TextContainer>>releaseCachedState [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>shadowForm [
+{ #category : #private }
+TextContainer >> shadowForm [
 	shadowForm ifNil: [self computeShadow].
 	^ shadowForm
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>textMorph [
+{ #category : #access }
+TextContainer >> textMorph [
 	^ textMorph
 ]
 
-{
-	#category : #'container protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>top [
+{ #category : #'container protocol' }
+TextContainer >> top [
 	"Note we should really check for contiguous pixels here"
 	| outerWidth |
 	outerWidth := minWidth + (2*OuterMargin).
@@ -228,35 +182,23 @@ TextContainer>>top [
 		+ shadowForm offset y
 ]
 
-{
-	#category : #'container protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>topLeft  "for compatibility" [
+{ #category : #'container protocol' }
+TextContainer >> topLeft [  "for compatibility"
 	^ textMorph owner topLeft
 ]
 
-{
-	#category : #'container protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>translateBy: delta [
+{ #category : #'container protocol' }
+TextContainer >> translateBy: delta [
 	self releaseCachedState
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>vertProfile [
+{ #category : #private }
+TextContainer >> vertProfile [
 	vertProfile ifNil: [self computeShadow].
 	^ vertProfile
 ]
 
-{
-	#category : #'container protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextContainer>>width  "for compatibility" [
+{ #category : #'container protocol' }
+TextContainer >> width [  "for compatibility"
 	^ textMorph owner width
 ]

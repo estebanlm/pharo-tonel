@@ -1,27 +1,16 @@
-Extension {
-	#name : #MetacelloSpecTestCase
-}
+Extension { #name : #MetacelloSpecTestCase }
 
-{
-	#category : #'*metacello-testsmccore',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloSpecTestCase>>packageSpec [
+{ #category : #'*metacello-testsmccore' }
+MetacelloSpecTestCase >> packageSpec [
     ^ self project packageSpec
 ]
 
-{
-	#category : #'*metacello-testsmccore',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloSpecTestCase>>repositoriesSpec [
+{ #category : #'*metacello-testsmccore' }
+MetacelloSpecTestCase >> repositoriesSpec [
     ^ self project repositoriesSpec
 ]
 
-{
-	#category : #'*metacello-testsmccore',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloSpecTestCase>>repositorySpec [
+{ #category : #'*metacello-testsmccore' }
+MetacelloSpecTestCase >> repositorySpec [
     ^ self project repositorySpec
 ]

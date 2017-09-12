@@ -4,15 +4,11 @@ A trait for test purposes
 Class {
 	#name : #WeakOrderedCollectionTest,
 	#superclass : #TestCase,
-	#category : #Collections-Tests-Weak,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:36'
+	#category : #Collections-Tests-Weak
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakOrderedCollectionTest>>testWeakOrderedCollectionAllGarbageCollected [
+{ #category : #'as yet unclassified' }
+WeakOrderedCollectionTest >> testWeakOrderedCollectionAllGarbageCollected [
 	| anArray anotherObject weakOrderedCollection |
 	
 	anArray := OrderedCollection new.
@@ -39,11 +35,8 @@ WeakOrderedCollectionTest>>testWeakOrderedCollectionAllGarbageCollected [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakOrderedCollectionTest>>testWeakOrderedCollectionSomeGarbageCollected [
+{ #category : #'as yet unclassified' }
+WeakOrderedCollectionTest >> testWeakOrderedCollectionSomeGarbageCollected [
 	| anArray anotherObject weakOrderedCollection |
 	
 	anArray := OrderedCollection new.

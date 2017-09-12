@@ -17,23 +17,16 @@ Class {
 		'functionSpec',
 		'block'
 	],
-	#category : #UnifiedFFI,
-	#timestamp : 'EstebanLorenzano 9/21/2015 14:22'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallback class>>asExternalTypeOn: generator  [
+{ #category : #converting }
+FFICallback class >> asExternalTypeOn: generator [ 
 	^ FFICallbackType objectClass: self
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallback class>>exampleCqsort [
+{ #category : #examples }
+FFICallback class >> exampleCqsort [
 	| cb rand values orig sort |
 
 	rand := Random new.
@@ -52,11 +45,8 @@ FFICallback class>>exampleCqsort [
 	^orig -> sort
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallback class>>forAddress: address  [
+{ #category : #'instance creation' }
+FFICallback class >> forAddress: address [ 
 	"Reconstructs a callback from an address (an integer). 
 	 This is useful for reading callbacks from a structure. 
 	 WARNING: 
@@ -66,29 +56,20 @@ FFICallback class>>forAddress: address  [
 	^ (Callback forAddress: address) evaluator
 ]
 
-{
-	#category : #'private primitives',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallback class>>primQsort: array with: count with: size with: compare [
+{ #category : #'private primitives' }
+FFICallback class >> primQsort: array with: count [ with: size with: compare
 	self
 		ffiCall: #(void qsort (FFIExternalArray array, size_t count, size_t size, FFICallback compare)) 
 		module: LibC
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallback class>>signature: aSignature block: aBlock [
+{ #category : #'instance creation' }
+FFICallback class >> signature: aSignature block: aBlock [
 	^ self new signature: aSignature block: aBlock
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallback>>argumentsFor: stackPointer context: callbackContext [
+{ #category : #'as yet unclassified' }
+FFICallback >> argumentsFor: stackPointer context: callbackContext [
 	| index architecture intRegisterCount intRegisterSize intRegisterIndex floatRegisterCount floatRegisterSize floatRegisterIndex floatRegisters intRegisters structureRegisterLayout |
 	self flag: 'TODO: Refactor and improve this code.'.
 	architecture := FFIArchitecture forCurrentArchitecture.
@@ -148,19 +129,13 @@ FFICallback>>argumentsFor: stackPointer context: callbackContext [
 			value ].	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallback>>ffiBindingOf: aName [
+{ #category : #private }
+FFICallback >> ffiBindingOf: aName [
 	^ self class ffiBindingOf: aName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallback>>ffiInstVarArgument: argName generator: generator [
+{ #category : #private }
+FFICallback >> ffiInstVarArgument: argName generator: generator [
 	"Load the instance variable with given name. 
 	 It will be ignored anyway in a callback" 
 	^ FFIInstVarArgument new 
@@ -168,11 +143,8 @@ FFICallback>>ffiInstVarArgument: argName generator: generator [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallback>>newParser  [
+{ #category : #private }
+FFICallback >> newParser [ 
 	^ FFIFunctionParser new
 		requestor: (FFICallout new
 			requestor: self;
@@ -180,11 +152,8 @@ FFICallback>>newParser  [
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallback>>signature: signature "<String>" block: aBlock "<BlockClosure>" [
+{ #category : #initialization }
+FFICallback >> signature: signature "<String>" block: aBlock [ "<BlockClosure>"
 	functionSpec := self newParser parseAnonymousFunction: signature.
 	block := aBlock.
 	"declare the real callback"
@@ -193,19 +162,13 @@ FFICallback>>signature: signature "<String>" block: aBlock "<BlockClosure>" [
 	thunk := callback thunk.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallback>>thunk [
+{ #category : #accessing }
+FFICallback >> thunk [
 	^ thunk
 ]
 
-{
-	#category : #evaluation,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallback>>valueWithContext: callbackContext sp: stackPointer  [
+{ #category : #evaluation }
+FFICallback >> valueWithContext: callbackContext sp: stackPointer [ 
 	| argumentValues |
 	
 	self flag: #todo. "This can be optimised in a shadow method"

@@ -8,36 +8,26 @@ Class {
 		'invalidRects',
 		'totalRepaint'
 	],
-	#category : #Morphic-Core-Support,
-	#timestamp : 'TorstenBergmann 2/20/2014 18:27'
+	#category : #Morphic-Core-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DamageRecorder class>>new [
+{ #category : #'instance creation' }
+DamageRecorder class >> new [
 
 	^ super new reset
 
 ]
 
-{
-	#category : #recording,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DamageRecorder>>doFullRepaint [
+{ #category : #recording }
+DamageRecorder >> doFullRepaint [
 	"Record that a full redisplay is needed. No further damage rectangles will be recorded until after the next reset."
 
 	^ totalRepaint := true.
 
 ]
 
-{
-	#category : #recording,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DamageRecorder>>invalidRectsFullBounds: aRectangle [
+{ #category : #recording }
+DamageRecorder >> invalidRectsFullBounds: aRectangle [
 	"Return a collection of damaged rectangles for the given canvas. If a total repaint has been requested, return the given rectangle."
 
 	^ totalRepaint
@@ -47,11 +37,8 @@ DamageRecorder>>invalidRectsFullBounds: aRectangle [
 
 ]
 
-{
-	#category : #recording,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DamageRecorder>>recordInvalidRect: newRect [
+{ #category : #recording }
+DamageRecorder >> recordInvalidRect: newRect [
 	"Record the given rectangle in my damage list, a list of rectangular areas of the display that should be redraw on the next display cycle."
 	"Details: Damaged rectangles are often identical or overlap significantly. In these cases, we merge them to reduce the number of damage rectangles that must be processed when the display is updated. Moreover, above a certain threshold, we ignore the individual rectangles completely, and simply do a complete repaint on the next cycle."
 
@@ -86,11 +73,8 @@ DamageRecorder>>recordInvalidRect: newRect [
 	].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DamageRecorder>>reset [
+{ #category : #initialization }
+DamageRecorder >> reset [
 	"Clear the damage list."
 
 	invalidRects := OrderedCollection new: 15.
@@ -98,11 +82,8 @@ DamageRecorder>>reset [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DamageRecorder>>updateIsNeeded [
+{ #category : #testing }
+DamageRecorder >> updateIsNeeded [
 	"Return true if the display needs to be updated."
 
 	^totalRepaint or: [invalidRects notEmpty]

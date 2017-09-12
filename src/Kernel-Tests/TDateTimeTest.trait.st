@@ -3,37 +3,25 @@ I am a helper Trait for date tests. By providing methods to locally change the t
 "
 Trait {
 	#name : #TDateTimeTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Kernel-Tests-Chronology,
-	#timestamp : '<historical>'
+	#category : #Kernel-Tests-Chronology
 }
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TDateTimeTest>>restoreLocalTimeZoneAfter: aBlock [
+{ #category : #helpers }
+TDateTimeTest >> restoreLocalTimeZoneAfter: aBlock [
 
 	| realTimeZone |
 	realTimeZone := DateAndTime localTimeZone.
 	aBlock ensure: [ DateAndTime localTimeZone: realTimeZone ].
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TDateTimeTest>>useNonUtcTimeZoneDuring: aBlock [
+{ #category : #helpers }
+TDateTimeTest >> useNonUtcTimeZoneDuring: aBlock [
 
 	self useTimeZone: 'EDT' during: aBlock.
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TDateTimeTest>>useTimeZone: abbreviation during: aBlock [
+{ #category : #helpers }
+TDateTimeTest >> useTimeZone: abbreviation during: aBlock [
 
   | timeZone |
   timeZone := TimeZone abbreviated: abbreviation.

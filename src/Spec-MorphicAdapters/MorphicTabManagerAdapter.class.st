@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'isClosedHolder'
 	],
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTabManagerAdapter>>addTab: aTab [
+{ #category : #'spec protocol' }
+MorphicTabManagerAdapter >> addTab: aTab [
 	self widgetDo: [ :w | w addTab: (self buildTab: aTab) ]
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTabManagerAdapter>>buildTab: aTab [
+{ #category : #factory }
+MorphicTabManagerAdapter >> buildTab: aTab [
 	^ aTab buildWithSpec
 		when: #tabDeleted send: #tabDeleted: to: self;
 		yourself
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTabManagerAdapter>>buildWidget [
+{ #category : #factory }
+MorphicTabManagerAdapter >> buildWidget [
 	^ TabManagerMorph new
 		model: self model;
 		setTabs: self getTabs;
@@ -43,39 +33,27 @@ MorphicTabManagerAdapter>>buildWidget [
 		yourself
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTabManagerAdapter>>getTabs [
+{ #category : #'widget API' }
+MorphicTabManagerAdapter >> getTabs [
 	^ [ (self model tabs collect: [ :each | self buildTab: each ]) collect: #asWidget ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTabManagerAdapter>>removeTab: aTab [
+{ #category : #'spec protocol' }
+MorphicTabManagerAdapter >> removeTab: aTab [
 	"In Morphic, Tab removal is triggered on Tab, on TabManager."
 
 	aTab widget delete
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTabManagerAdapter>>tabDeleted: aTab [
+{ #category : #'widget API' }
+MorphicTabManagerAdapter >> tabDeleted: aTab [
 	"Tab removal notification triggered from Morphic world."
 
 	self model basicRemoveTab: aTab model
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTabManagerAdapter>>tabSelected: aTab [
+{ #category : #'widget API' }
+MorphicTabManagerAdapter >> tabSelected: aTab [
 
 	self model selectedTab: aTab model
 ]

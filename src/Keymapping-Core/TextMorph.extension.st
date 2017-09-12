@@ -1,12 +1,7 @@
-Extension {
-	#name : #TextMorph
-}
+Extension { #name : #TextMorph }
 
-{
-	#category : #'*Keymapping-Core-override',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-TextMorph>>handleKeystroke: anEvent  [
+{ #category : #'*Keymapping-Core-override' }
+TextMorph >> handleKeystroke: anEvent [ 
 	"System level event handling."
 	| pasteUp |
 

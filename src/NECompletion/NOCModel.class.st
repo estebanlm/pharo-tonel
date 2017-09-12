@@ -12,40 +12,27 @@ Class {
 		'nextModel',
 		'classTable'
 	],
-	#category : #NECompletion-OCompletion,
-	#timestamp : '<historical>'
+	#category : #NECompletion-OCompletion
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>addEntry: ent [
+{ #category : #accessing }
+NOCModel >> addEntry: ent [
 	(self tableForEntry: ent) addEntry: ent 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>addSelectors [
+{ #category : #accessing }
+NOCModel >> addSelectors [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>at: aNumber [
+{ #category : #accessing }
+NOCModel >> at: aNumber [
 	
 	^ self entries at: (aNumber max: 1) 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>completionAt: aNumber [
+{ #category : #accessing }
+NOCModel >> completionAt: aNumber [
 	"when an entry is selected, update its date (for inlined messages which do not appear in the method's body"
 	| entry |
 	
@@ -57,72 +44,47 @@ NOCModel>>completionAt: aNumber [
 		ifFalse: [ entry separateKeywords ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>context: aNOCContext [
+{ #category : #accessing }
+NOCModel >> context: aNOCContext [
 	context := aNOCContext.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>contract [
+{ #category : #accessing }
+NOCModel >> contract [
 	expand := true.
 	nextModel := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>entries [
+{ #category : #accessing }
+NOCModel >> entries [
 	entries ifEmpty: [ self loadEntries ].
 	^  entries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>entryCount [
+{ #category : #accessing }
+NOCModel >> entryCount [
 	^ self entries size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>expand [
+{ #category : #accessing }
+NOCModel >> expand [
 	expand := true.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>initialize [
+{ #category : #initialization }
+NOCModel >> initialize [
 	super initialize.
 	self contract.
 	table := NOCCompletionTable default.
 	classTable := NOCCompletionTable classes.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>initializeSelectors [
-
+{ #category : #initialize-release }
+NOCModel >> initializeSelectors [
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>loadEntries [
+{ #category : #private }
+NOCModel >> loadEntries [
 	| priorityEntries  |
 	"entries used from the last recently used"
 	priorityEntries := 6.
@@ -142,11 +104,8 @@ NOCModel>>loadEntries [
 			(a contents asString compare: b contents asString caseSensitive: false) <= 2 ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>loadFavoredEntries [
+{ #category : #private }
+NOCModel >> loadFavoredEntries [
 	
 	(narrowString notEmpty and: [narrowString first isUppercase]) 
 			ifTrue: [ ^ classTable entriesMatching: narrowString ].
@@ -156,48 +115,33 @@ NOCModel>>loadFavoredEntries [
 		ifFalse: [ ^ #() ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>loadNextModelEntries [
+{ #category : #private }
+NOCModel >> loadNextModelEntries [
 	entries := self nextModel entries 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>narrowWith: aString [
+{ #category : #accessing }
+NOCModel >> narrowWith: aString [
 	self narrowString: aString.
 	self loadEntries.
 	self nextModel ifNotNil: [:nm | nm narrowWith: aString].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>nextModel [
+{ #category : #accessing }
+NOCModel >> nextModel [
 	^ nextModel ifNil: [
 		nextModel := context nextModel. 
 		nextModel narrowWith: narrowString.
 		nextModel ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>noNextModel [
+{ #category : #accessing }
+NOCModel >> noNextModel [
 	nextModel := NOCEmptyModel new.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>sortByLastRecentlyUsed: lastRecentlyUsedEntries [
+{ #category : #private }
+NOCModel >> sortByLastRecentlyUsed: lastRecentlyUsedEntries [
 	"Sort my entrys by the most recently used date"
 	| lastRecentlyUsed |
 	
@@ -212,37 +156,25 @@ NOCModel>>sortByLastRecentlyUsed: lastRecentlyUsedEntries [
 		dateA >= dateB].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>table [
+{ #category : #accessing }
+NOCModel >> table [
 	^ table
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>tableForEntry: ent [
+{ #category : #accessing }
+NOCModel >> tableForEntry: ent [
 	^ (ent notEmpty and: [ent first isUppercase]) 
 			ifTrue: [classTable]
 			ifFalse: [table]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>title [
+{ #category : #accessing }
+NOCModel >> title [
 	^ self nextModel title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCModel>>useUniqueTable [
+{ #category : #accessing }
+NOCModel >> useUniqueTable [
 	table := NOCCompletionTable new entriesPerPrefix: 20.
 	
 ]

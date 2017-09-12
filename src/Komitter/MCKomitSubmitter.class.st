@@ -4,26 +4,19 @@ I am a class dedicated to the transformation of a Komit object into a MCCommit a
 Class {
 	#name : #MCKomitSubmitter,
 	#superclass : #Object,
-	#category : #Komitter-Models,
-	#timestamp : '<historical>'
+	#category : #Komitter-Models
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCKomitSubmitter class>>komit: komit [
+{ #category : #'instance creation' }
+MCKomitSubmitter class >> komit: komit [
 
 	^ self new
 		komit: komit;
 		yourself
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCKomitSubmitter>>commitKomit: aKomit [
+{ #category : #protocol }
+MCKomitSubmitter >> commitKomit: aKomit [
 	| versions |
 	
 	versions := self createVersionFor: aKomit.
@@ -38,11 +31,8 @@ MCKomitSubmitter>>commitKomit: aKomit [
 	 ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCKomitSubmitter>>commitSlice: aSlice [
+{ #category : #protocol }
+MCKomitSubmitter >> commitSlice: aSlice [
 	| versions slice view workingCopy version packages name |
 
 	slice := MCSliceInfo new.
@@ -84,11 +74,8 @@ MCKomitSubmitter>>commitSlice: aSlice [
 	]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCKomitSubmitter>>createVersionFor: aKomitableObject [
+{ #category : #protocol }
+MCKomitSubmitter >> createVersionFor: aKomitableObject [
 	| versions currentAuthor |
 	currentAuthor := Author fullNamePerSe.
 	Author fullName: aKomitableObject author.
@@ -113,11 +100,8 @@ MCKomitSubmitter>>createVersionFor: aKomitableObject [
 	^ versions
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCKomitSubmitter>>retryOnCredentialRequest: aBlock for: aRepository [
+{ #category : #private }
+MCKomitSubmitter >> retryOnCredentialRequest: aBlock for: aRepository [
 
 	aBlock on: MCPermissionDenied do: [ :error | |credentials| 
 		credentials := MCCredentialsRequest 
@@ -130,33 +114,24 @@ MCKomitSubmitter>>retryOnCredentialRequest: aBlock for: aRepository [
 				^ self retryOnCredentialRequest: aBlock for: aRepository ]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCKomitSubmitter>>storeDependencies: newVersion for: aKomit [
+{ #category : #private }
+MCKomitSubmitter >> storeDependencies: newVersion for: aKomit [
 
 	self 
 		retryOnCredentialRequest: [ aKomit repository storeDependencies: newVersion ]
 		for: aKomit repository
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCKomitSubmitter>>storeVersion: newVersion for: aKomit [
+{ #category : #private }
+MCKomitSubmitter >> storeVersion: newVersion for: aKomit [
 
 	self 
 		retryOnCredentialRequest: [ aKomit repository storeVersion: newVersion ]
 		for: aKomit repository
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCKomitSubmitter>>submitCommit: aKomit [
+{ #category : #protocol }
+MCKomitSubmitter >> submitCommit: aKomit [
 
 	MCSaveVersionDialog addAsLastLogMessage: aKomit message asString.
 	aKomit commitOn: self

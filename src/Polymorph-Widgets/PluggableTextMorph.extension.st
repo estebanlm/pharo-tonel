@@ -1,12 +1,7 @@
-Extension {
-	#name : #PluggableTextMorph
-}
+Extension { #name : #PluggableTextMorph }
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableTextMorph>>adoptPaneColor: paneColor [
+{ #category : #'*Polymorph-Widgets' }
+PluggableTextMorph >> adoptPaneColor: paneColor [
 	"Pass on to the border too."
 	
 	super adoptPaneColor: paneColor.
@@ -17,11 +12,8 @@ PluggableTextMorph>>adoptPaneColor: paneColor [
 		ifTrue: [self borderStyle: self borderStyleToUse]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableTextMorph>>appendText: aTextOrString [
+{ #category : #'*Polymorph-Widgets' }
+PluggableTextMorph >> appendText: aTextOrString [
 	"Append the given text to the receiver."
 
 	self handleEdit: [
@@ -34,52 +26,37 @@ PluggableTextMorph>>appendText: aTextOrString [
 			changed]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableTextMorph>>focusBounds [
+{ #category : #'*Polymorph-Widgets' }
+PluggableTextMorph >> focusBounds [
 	"Answer the bounds for drawing the focus indication
 	(when externalFocusForPluggableText is enabled)."
 
 	^self theme textFocusBoundsFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableTextMorph>>hasKeyboardFocus [
+{ #category : #'*Polymorph-Widgets' }
+PluggableTextMorph >> hasKeyboardFocus [
 	"Answer whether the receiver has keyboard focus."
 
 	^super hasKeyboardFocus or: [(self textMorph ifNil: [^false]) hasKeyboardFocus]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableTextMorph>>hasValidText [
+{ #category : #'*Polymorph-Widgets' }
+PluggableTextMorph >> hasValidText [
 	"Return true if the text is valid for acceptance."
 
 	^true
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableTextMorph>>keyboardFocusChange: aBoolean [
+{ #category : #'*Polymorph-Widgets' }
+PluggableTextMorph >> keyboardFocusChange: aBoolean [
 	"Pass on to text morph."
 	super keyboardFocusChange: aBoolean.
 	aBoolean ifTrue: [self textMorph takeKeyboardFocus]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableTextMorph>>layoutBounds: aRectangle [
+{ #category : #'*Polymorph-Widgets' }
+PluggableTextMorph >> layoutBounds: aRectangle [
 	"Set the bounds for laying out children of the receiver.
 	Note: written so that #layoutBounds can be changed without touching this method"
 	
@@ -90,31 +67,22 @@ PluggableTextMorph>>layoutBounds: aRectangle [
 
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableTextMorph>>minHeight [
+{ #category : #'*Polymorph-Widgets' }
+PluggableTextMorph >> minHeight [
 	"Implemented here since extent: overriden."
 
 	^super minHeight max: 16
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableTextMorph>>minWidth [
+{ #category : #'*Polymorph-Widgets' }
+PluggableTextMorph >> minWidth [
 	"Implemented here since extent: overriden."
 
 	^super minWidth max: 36
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableTextMorph>>navigationKey: event [
+{ #category : #'*Polymorph-Widgets' }
+PluggableTextMorph >> navigationKey: event [
 	"Check for tab key activity and change focus as appropriate.
 	Must override here rather than in #tabKey: otherwise
 	the tab will get passed to the window and change the focus."
@@ -124,30 +92,21 @@ PluggableTextMorph>>navigationKey: event [
 	^super navigationKey: event
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableTextMorph>>takesKeyboardFocus [
+{ #category : #'*Polymorph-Widgets' }
+PluggableTextMorph >> takesKeyboardFocus [
 	"Answer whether the receiver can normally take keyboard focus."
 
 	^true
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableTextMorph>>themeChanged [
+{ #category : #'*Polymorph-Widgets' }
+PluggableTextMorph >> themeChanged [
 	self color: self defaultColor.
 	super themeChanged
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableTextMorph>>wantsKeyboardFocus [
+{ #category : #'*Polymorph-Widgets' }
+PluggableTextMorph >> wantsKeyboardFocus [
 	"Answer whether the receiver would like keyboard focus
 	in the general case (mouse action normally). Even if disabled
 	we allow for text morphs since can potentially copy text."

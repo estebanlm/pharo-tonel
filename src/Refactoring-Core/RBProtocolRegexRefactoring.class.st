@@ -4,15 +4,11 @@ I am a regex refactoring renaming protocol names.
 Class {
 	#name : #RBProtocolRegexRefactoring,
 	#superclass : #RBRegexRefactoring,
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 19:41'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBProtocolRegexRefactoring>>transform [
+{ #category : #transforming }
+RBProtocolRegexRefactoring >> transform [
 	| original replacement |
 	self model allClassesDo: [ :class |
 		class selectors do: [ :selector |

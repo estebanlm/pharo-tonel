@@ -32,45 +32,32 @@ Class {
 		'hasOnlySelfReturns',
 		'selfVariableName'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 15:58'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring class>>model: aRBSmalltalk selector: aSymbol class: aClass variable: aVariableName [
+{ #category : #'instance creation' }
+RBMoveMethodRefactoring class >> model: aRBSmalltalk selector: aSymbol class: aClass variable: aVariableName [
 	^ self new
 		model: aRBSmalltalk;
 		selector: aSymbol class: aClass variable: aVariableName;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring class>>selector: aSymbol class: aClass variable: aVariableName [
+{ #category : #'instance creation' }
+RBMoveMethodRefactoring class >> selector: aSymbol class: aClass variable: aVariableName [
 	^ self new
 		selector: aSymbol class: aClass variable: aVariableName;
 		yourself
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>abstractVariables [
+{ #category : #transforming }
+RBMoveMethodRefactoring >> abstractVariables [
 	self performComponentRefactoring: self abstractVariablesRefactoring.
 	parseTree := self abstractVariablesRefactoring parseTree
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>abstractVariablesRefactoring [
+{ #category : #transforming }
+RBMoveMethodRefactoring >> abstractVariablesRefactoring [
 	^RBAbstractVariablesRefactoring 
 		model: self model
 		abstractVariablesIn: parseTree
@@ -79,29 +66,20 @@ RBMoveMethodRefactoring>>abstractVariablesRefactoring [
 		ignoring: variable
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>addSelfReturn [
+{ #category : #transforming }
+RBMoveMethodRefactoring >> addSelfReturn [
 	self hasOnlySelfReturns ifTrue: [^self].
 	parseTree addSelfReturn
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>buildParseTree [
+{ #category : #private }
+RBMoveMethodRefactoring >> buildParseTree [
 	parseTree := (class parseTreeFor: selector) copy.
 	parseTree isNil ifTrue: [self refactoringFailure: 'Could not parse method']
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>checkAssignmentsToVariable [
+{ #category : #preconditions }
+RBMoveMethodRefactoring >> checkAssignmentsToVariable [
 	| searcher |
 	variable
 		ifNotNil:
@@ -119,20 +97,14 @@ RBMoveMethodRefactoring>>checkAssignmentsToVariable [
 								expandMacrosWith: variable) ] ]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>checkForPrimitiveMethod [
+{ #category : #preconditions }
+RBMoveMethodRefactoring >> checkForPrimitiveMethod [
 	parseTree isPrimitive 
 		ifTrue: [self refactoringError: 'Cannot move primitive methods']
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>checkForSuperReferences [
+{ #category : #preconditions }
+RBMoveMethodRefactoring >> checkForSuperReferences [
 	| searcher |
 	searcher := RBParseTreeSearcher new.
 	searcher matches: 'super `@message: `@args' do: [:aNode :answer | true].
@@ -141,11 +113,8 @@ RBMoveMethodRefactoring>>checkForSuperReferences [
 			[self refactoringError: 'Cannot move the method since it has a super message send.']
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>checkTemporaryVariableNames [
+{ #category : #preconditions }
+RBMoveMethodRefactoring >> checkTemporaryVariableNames [
 	| varNames |
 	varNames := parseTree allDefinedVariables.
 	selfVariableName notNil ifTrue: [varNames add: selfVariableName].
@@ -160,11 +129,8 @@ RBMoveMethodRefactoring>>checkTemporaryVariableNames [
 										with: name)]]]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>compileDelegatorMethod [
+{ #category : #transforming }
+RBMoveMethodRefactoring >> compileDelegatorMethod [
 	| statementNode delegatorNode tree |
 	delegatorNode := RBMessageNode 
 				receiver: (RBVariableNode named: variable)
@@ -182,20 +148,14 @@ RBMoveMethodRefactoring>>compileDelegatorMethod [
 	class compileTree: tree
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>compileNewMethods [
+{ #category : #transforming }
+RBMoveMethodRefactoring >> compileNewMethods [
 	moveToClasses 
 		do: [:each | each compile: parseTree newSource withAttributesFrom: (class methodFor: selector)]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>getArgumentNameForSelf [
+{ #category : #transforming }
+RBMoveMethodRefactoring >> getArgumentNameForSelf [
 	self needsToReplaceSelfReferences ifFalse: [^self].
 	
 	[selfVariableName := self requestSelfArgumentName.
@@ -216,11 +176,8 @@ RBMoveMethodRefactoring>>getArgumentNameForSelf [
 			whileTrue: []
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>getClassForGlobalOrClassVariable [
+{ #category : #private-accessing }
+RBMoveMethodRefactoring >> getClassForGlobalOrClassVariable [
 	| definingClass type |
 	definingClass := class whoDefinesClassVariable: (variable ifNil: ['']).
 	definingClass ifNil: [ 
@@ -231,11 +188,8 @@ RBMoveMethodRefactoring>>getClassForGlobalOrClassVariable [
 	moveToClasses ifNil: [ self refactoringFailure: 'Method not moved' ]
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>getClassesForInstanceVariable [
+{ #category : #private-accessing }
+RBMoveMethodRefactoring >> getClassesForInstanceVariable [
 	| definingClass typer types |
 	definingClass := class whoDefinesInstanceVariable: variable.
 	typer := RBRefactoryTyper newFor: self model.
@@ -248,11 +202,8 @@ RBMoveMethodRefactoring>>getClassesForInstanceVariable [
 	moveToClasses isNil ifTrue: [self refactoringFailure: 'Method not moved']
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>getClassesForTemporaryVariable [
+{ #category : #private-accessing }
+RBMoveMethodRefactoring >> getClassesForTemporaryVariable [
 	| types |
 	types := RBRefactoryTyper 
 				typesFor: variable
@@ -264,11 +215,8 @@ RBMoveMethodRefactoring>>getClassesForTemporaryVariable [
 	moveToClasses isNil ifTrue: [self refactoringFailure: 'Method not moved']
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>getClassesToMoveTo [
+{ #category : #private-accessing }
+RBMoveMethodRefactoring >> getClassesToMoveTo [
 	self isMovingToArgument 
 		ifTrue: [self getClassesForTemporaryVariable]
 		ifFalse: 
@@ -279,11 +227,8 @@ RBMoveMethodRefactoring>>getClassesToMoveTo [
 		ifTrue: [self refactoringFailure: 'No classes selected, method not moved.']
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>getNewMethodName [
+{ #category : #preconditions }
+RBMoveMethodRefactoring >> getNewMethodName [
 	| newSelector parameters alreadyDefined methodName newMethodName |
 	self removeArgument.
 	parameters := parseTree argumentNames asOrderedCollection.
@@ -320,11 +265,8 @@ RBMoveMethodRefactoring>>getNewMethodName [
 			asArray
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>hasOnlySelfReturns [
+{ #category : #transforming }
+RBMoveMethodRefactoring >> hasOnlySelfReturns [
 	^hasOnlySelfReturns isNil 
 		ifTrue: 
 			[| searcher |
@@ -336,11 +278,8 @@ RBMoveMethodRefactoring>>hasOnlySelfReturns [
 		ifFalse: [hasOnlySelfReturns]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>hasSelfReferences [
+{ #category : #testing }
+RBMoveMethodRefactoring >> hasSelfReferences [
 	| searcher |
 	searcher := RBParseTreeSearcher new.
 	searcher matches: 'self' do: [:aNode :answer | true].
@@ -349,37 +288,25 @@ RBMoveMethodRefactoring>>hasSelfReferences [
 	^searcher executeTree: parseTree initialAnswer: false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>isMovingToArgument [
+{ #category : #testing }
+RBMoveMethodRefactoring >> isMovingToArgument [
 	^(parseTree arguments collect: [:each | each name]) includes: variable
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>isMovingToInstVar [
+{ #category : #testing }
+RBMoveMethodRefactoring >> isMovingToInstVar [
 	^self isMovingToArgument not 
 		and: [(class whoDefinesInstanceVariable: variable) notNil]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>needsToReplaceSelfReferences [
+{ #category : #testing }
+RBMoveMethodRefactoring >> needsToReplaceSelfReferences [
 	^self hasSelfReferences 
 		or: [self abstractVariablesRefactoring hasVariablesToAbstract]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>preconditions [
+{ #category : #preconditions }
+RBMoveMethodRefactoring >> preconditions [
 	^(RBCondition definesSelector: selector in: class) 
 		& (RBCondition withBlock: 
 					[self buildParseTree.
@@ -393,11 +320,8 @@ RBMoveMethodRefactoring>>preconditions [
 					true])
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>removeArgument [
+{ #category : #transforming }
+RBMoveMethodRefactoring >> removeArgument [
 	"Removes the excess argument if any.
 	This argument is the variable which is
 	referenced by self in the classes the
@@ -414,11 +338,8 @@ RBMoveMethodRefactoring>>removeArgument [
 									removeAt: removeIndex; yourself) asArray].
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>replaceSelfReferences [
+{ #category : #transforming }
+RBMoveMethodRefactoring >> replaceSelfReferences [
 	| replacer |
 	self needsToReplaceSelfReferences ifTrue: [
 		replacer := RBParseTreeRewriter new.
@@ -429,11 +350,8 @@ RBMoveMethodRefactoring>>replaceSelfReferences [
 		parseTree := replacer tree].
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>replaceVariableReferences [
+{ #category : #transforming }
+RBMoveMethodRefactoring >> replaceVariableReferences [
 	| replacer |
 	replacer := RBParseTreeRewriter new.
 	replacer replace: variable with: 'self'.
@@ -441,21 +359,15 @@ RBMoveMethodRefactoring>>replaceVariableReferences [
 	parseTree := replacer tree
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>selector: aSymbol class: aClass variable: aVariableName  [
+{ #category : #initialize-release }
+RBMoveMethodRefactoring >> selector: aSymbol class: aClass variable: aVariableName [ 
 	selector := aSymbol.
 	class := self classObjectFor: aClass.
 	variable := aVariableName
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBMoveMethodRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream
@@ -469,11 +381,8 @@ RBMoveMethodRefactoring>>storeOn: aStream  [
 		nextPutAll: ''')'
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>transform [
+{ #category : #transforming }
+RBMoveMethodRefactoring >> transform [
 	self
 		abstractVariables;
 		addSelfReturn;
@@ -483,11 +392,8 @@ RBMoveMethodRefactoring>>transform [
 		compileDelegatorMethod
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodRefactoring>>verifyTemporaryVariableDoesNotOverride [
+{ #category : #transforming }
+RBMoveMethodRefactoring >> verifyTemporaryVariableDoesNotOverride [
 	(parseTree allDefinedVariables includes: selfVariableName)
 		ifTrue: [ ^ false ].
 	^ moveToClasses 

@@ -12,44 +12,31 @@ Class {
 		'tabSelectedAction',
 		'selectedTab'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 6/28/2016 10:09'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabManagerModel class>>adapterName [
+{ #category : #specs }
+TabManagerModel class >> adapterName [
 
 	^ #TabManagerAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabManagerModel class>>defaultSpec [
+{ #category : #specs }
+TabManagerModel class >> defaultSpec [
 	<spec: #default>
 	
 	^ #(TabManagerAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #dependents,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabManagerModel>>addDependent: aMorph [
+{ #category : #dependents }
+TabManagerModel >> addDependent: aMorph [
 
 	self myDependents add: aMorph
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabManagerModel>>addTab: aTab [
+{ #category : #api }
+TabManagerModel >> addTab: aTab [
 
 	"BEWARE: this code is an exception. One should never access directly a value holder contents"
 	"I do this here for optimisation. No need to trigger the whole collection changed. Only the added element is interesting "
@@ -59,11 +46,8 @@ TabManagerModel>>addTab: aTab [
 	self changed: #addTab: with: { aTab }
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabManagerModel>>basicRemoveTab: aTab [
+{ #category : #private }
+TabManagerModel >> basicRemoveTab: aTab [
 	"BEWARE: this code is an exception. One should never access directly a value holder contents"
 
 	"I do this here for optimisation. No need to trigger the whole collection changed. Only the added element is interesting "
@@ -73,11 +57,8 @@ TabManagerModel>>basicRemoveTab: aTab [
 	(tabs value remove: aTab ifAbsent: [ ^ self ]) owner: nil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabManagerModel>>initialize [
+{ #category : #initialization }
+TabManagerModel >> initialize [
 	"Initialization code for TabManagerModel"
 
 	super initialize.
@@ -90,83 +71,56 @@ TabManagerModel>>initialize [
 	selectedTab whenChangedDo: [ :newTab | tabSelectedAction value cull: newTab cull: self ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabManagerModel>>removeTab: aTab [
+{ #category : #api }
+TabManagerModel >> removeTab: aTab [
 	self basicRemoveTab: aTab.
 	self changed: #removeTab: with: {aTab}
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabManagerModel>>removeTabNumber: anIndex [
+{ #category : #api }
+TabManagerModel >> removeTabNumber: anIndex [
 
 	self removeTab: (tabs at: anIndex)
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabManagerModel>>selectTabModel: tabModel [
+{ #category : #api }
+TabManagerModel >> selectTabModel: tabModel [
 
 	tabSelectedAction value cull: tabModel cull: self
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabManagerModel>>selectedTab [
+{ #category : #api }
+TabManagerModel >> selectedTab [
 
 	^ selectedTab value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabManagerModel>>selectedTab: aTab [
+{ #category : #api }
+TabManagerModel >> selectedTab: aTab [
 
 	selectedTab value: aTab
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabManagerModel>>tabSelectedAction [
+{ #category : #api }
+TabManagerModel >> tabSelectedAction [
 
 	^ tabSelectedAction value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabManagerModel>>tabs [
+{ #category : #accessing }
+TabManagerModel >> tabs [
 
 	^ tabs value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabManagerModel>>tabs: aCollection [
+{ #category : #api }
+TabManagerModel >> tabs: aCollection [
 
 	tabs value: aCollection
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabManagerModel>>whenTabSelected: aBlock [
+{ #category : #api-events }
+TabManagerModel >> whenTabSelected: aBlock [
 
 	tabSelectedAction value: aBlock
 ]

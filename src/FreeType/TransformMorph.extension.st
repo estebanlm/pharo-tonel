@@ -1,12 +1,7 @@
-Extension {
-	#name : #TransformMorph
-}
+Extension { #name : #TransformMorph }
 
-{
-	#category : #'*FreeType-override',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-TransformMorph>>drawSubmorphsOn: aCanvas [
+{ #category : #'*FreeType-override' }
+TransformMorph >> drawSubmorphsOn: aCanvas [
 
 	aCanvas transformBy: transform
 		clippingTo: self innerBounds

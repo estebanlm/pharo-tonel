@@ -1,36 +1,23 @@
-"
-
-"
 Class {
 	#name : #OCArrayLiteralTest,
 	#superclass : #TestCase,
-	#category : #OpalCompiler-Tests-FromOld,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-FromOld
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCArrayLiteralTest>>runCase [
+{ #category : #running }
+OCArrayLiteralTest >> runCase [
 
 	SystemAnnouncer uniqueInstance suspendAllWhile: [ super runCase ]
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCArrayLiteralTest>>tearDown [
+{ #category : #initialization }
+OCArrayLiteralTest >> tearDown [
 	self class removeSelector: #array
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCArrayLiteralTest>>testByteArrayBase [
+{ #category : #tests }
+OCArrayLiteralTest >> testByteArrayBase [
 	self class compile: 'array ^ #[2r1010 8r333 16rFF]'.
 	self assert: (self array isKindOf: ByteArray).
 	self assert: (self array size = 3).
@@ -41,42 +28,30 @@ OCArrayLiteralTest>>testByteArrayBase [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCArrayLiteralTest>>testByteArrayEmpty [
+{ #category : #tests }
+OCArrayLiteralTest >> testByteArrayEmpty [
 	self class compile: 'array ^ #[]'.
 	self assert: (self array isKindOf: ByteArray).
 	self assert: (self array isEmpty)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCArrayLiteralTest>>testByteArrayLiteral [
+{ #category : #tests }
+OCArrayLiteralTest >> testByteArrayLiteral [
 	self class compile: 'array ^ #[ 1 2 3 4 ]'.
 	self assert: (self array = self array).
 	self assert: (self array == self array)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCArrayLiteralTest>>testByteArrayLong [
+{ #category : #tests }
+OCArrayLiteralTest >> testByteArrayLong [
 	self class compile: 'array ^ #[ ' , ((0 to: 255) inject: ' ' into: [ :r :e | r , ' ' , e asString ]) , ' ]'.
 	self assert: (self array isKindOf: ByteArray).
 	self assert: (self array size = 256).
 	0 to: 255 do: [ :index | self assert: (self array at: index + 1) = index ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCArrayLiteralTest>>testByteArrayRange [
+{ #category : #tests }
+OCArrayLiteralTest >> testByteArrayRange [
 	self class compile: 'array ^ #[ 0 255 ]'.
 	self assert: (self array isKindOf: ByteArray).
 	self assert: (self array size = 2).
@@ -84,11 +59,8 @@ OCArrayLiteralTest>>testByteArrayRange [
 	self assert: (self array last = 255)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCArrayLiteralTest>>testByteArrayWithinArray [
+{ #category : #tests }
+OCArrayLiteralTest >> testByteArrayWithinArray [
 	self class compile: 'array ^ #( #[1] #[2] )'.
 	self assert: (self array isKindOf: Array).
 	self assert: (self array size = 2).
@@ -100,20 +72,14 @@ OCArrayLiteralTest>>testByteArrayWithinArray [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCArrayLiteralTest>>testReservedIdentifiers [
+{ #category : #tests }
+OCArrayLiteralTest >> testReservedIdentifiers [
 	self class compile: 'array ^ #(nil true false)'.
 	self assert: self array = {nil. true. false}.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCArrayLiteralTest>>testSymbols [
+{ #category : #tests }
+OCArrayLiteralTest >> testSymbols [
 	self class compile: 'array ^ #(#nil #true #false #''nil'' #''true'' #''false'')'.
 	self assert: self array = {#nil. #true. #false. #nil. #true. #false}.
 ]

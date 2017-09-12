@@ -10,33 +10,23 @@ Part of Zinc HTTP Components.
 Class {
 	#name : #ZnUTF16Encoder,
 	#superclass : #ZnEndianSensitiveUTFEncoder,
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : '<historical>'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF16Encoder class>>handlesEncoding: string [
+{ #category : #accessing }
+ZnUTF16Encoder class >> handlesEncoding: string [
 	"Return true when my instances handle the encoding described by string"
 
 	^ self knownEncodingIdentifiers includes: (self canonicalEncodingIdentifier: string)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF16Encoder class>>knownEncodingIdentifiers [
+{ #category : #accessing }
+ZnUTF16Encoder class >> knownEncodingIdentifiers [
 	^ #( 'utf16' 'utf16be' 'utf16le' )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF16Encoder>>back16BitWordOnStream: stream [
+{ #category : #private }
+ZnUTF16Encoder >> back16BitWordOnStream: stream [
 	| firstByte secondByte |
 	firstByte := stream back.
 	secondByte := stream back.
@@ -45,11 +35,8 @@ ZnUTF16Encoder>>back16BitWordOnStream: stream [
 		ifFalse: [ firstByte + (secondByte << 8) ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF16Encoder>>backOnStream: stream [
+{ #category : #converting }
+ZnUTF16Encoder >> backOnStream: stream [
 	"Move back one character on stream"
 
 	| word |
@@ -59,11 +46,8 @@ ZnUTF16Encoder>>backOnStream: stream [
 			self back16BitWordOnStream: stream ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF16Encoder>>encodedByteCountForCodePoint: codePoint [
+{ #category : #converting }
+ZnUTF16Encoder >> encodedByteCountForCodePoint: codePoint [
 	"Return how many bytes are needed to encode integer code point"
 
 	codePoint <= 65535 ifTrue: [ ^ 2 ].
@@ -71,27 +55,18 @@ ZnUTF16Encoder>>encodedByteCountForCodePoint: codePoint [
 	self errorOutsideRange
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF16Encoder>>errorIncomplete [
+{ #category : #'error handling' }
+ZnUTF16Encoder >> errorIncomplete [
 	self error: 'Incomplete utf-16 encoding'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF16Encoder>>identifier [
+{ #category : #accessing }
+ZnUTF16Encoder >> identifier [
 	^ #utf16
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF16Encoder>>nextCodePointFromStream: stream [
+{ #category : #converting }
+ZnUTF16Encoder >> nextCodePointFromStream: stream [
 	"Read and return the next integer code point from stream"
 
 	| word leadSurrogate trailSurrogate code |
@@ -108,11 +83,8 @@ ZnUTF16Encoder>>nextCodePointFromStream: stream [
 			16r10000 + code ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF16Encoder>>nextPutCodePoint: codePoint toStream: stream [
+{ #category : #converting }
+ZnUTF16Encoder >> nextPutCodePoint: codePoint toStream: stream [
 	"Write the encoding for integer code point to stream"
 
 	| leadSurrogate trailSurrogate shifted |
@@ -131,11 +103,8 @@ ZnUTF16Encoder>>nextPutCodePoint: codePoint toStream: stream [
 			self errorOutsideRange ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF16Encoder>>processByteOrderMark: word [
+{ #category : #private }
+ZnUTF16Encoder >> processByteOrderMark: word [
 	^ (word = 16rFEFF or: [ word = 16rFFFE ])
 		ifTrue: [ 
 			word = 16rFFFE
@@ -144,11 +113,8 @@ ZnUTF16Encoder>>processByteOrderMark: word [
 		ifFalse: [ false ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF16Encoder>>read16BitWordFromStream: stream [
+{ #category : #private }
+ZnUTF16Encoder >> read16BitWordFromStream: stream [
 	| firstByte secondByte |
 	firstByte := stream next.
 	secondByte := stream next.
@@ -160,11 +126,8 @@ ZnUTF16Encoder>>read16BitWordFromStream: stream [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF16Encoder>>write16BitWord: word toStream: stream [
+{ #category : #private }
+ZnUTF16Encoder >> write16BitWord: word toStream: stream [
 	self isBigEndian
 		ifTrue: [ 
 			stream

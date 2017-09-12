@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloPackageSpec,
 	#superclass : #MetacelloAbstractPackageSpec,
@@ -11,24 +8,17 @@ Class {
 		'preLoadDoIt',
 		'postLoadDoIt'
 	],
-	#category : #Metacello-MC-Specs,
-	#timestamp : ''
+	#category : #Metacello-MC-Specs
 }
 
-{
-	#category : #gofer,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>ancestors [
+{ #category : #gofer }
+MetacelloPackageSpec >> ancestors [
 
 	^self goferPackage ancestors
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>compareCurrentVersion: anOperator targetVersionStatus: statusIgnored using: anMCLoader [
+{ #category : #testing }
+MetacelloPackageSpec >> compareCurrentVersion: anOperator targetVersionStatus: statusIgnored using: anMCLoader [
 
 	self 
 		currentPackageLoaded: [:bool | ^bool ] 
@@ -37,31 +27,22 @@ MetacelloPackageSpec>>compareCurrentVersion: anOperator targetVersionStatus: sta
 		using: anMCLoader
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>compareRelativeCurrentVersion: anOperator targetVersionStatus: statusIgnored using: anMCLoader [
+{ #category : #testing }
+MetacelloPackageSpec >> compareRelativeCurrentVersion: anOperator targetVersionStatus: statusIgnored using: anMCLoader [
 
 	^self compareCurrentVersion: anOperator targetVersionStatus: statusIgnored using: anMCLoader
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>compareWorkingCopyNamed: wcName using: comarisonOperator [
+{ #category : #testing }
+MetacelloPackageSpec >> compareWorkingCopyNamed: wcName using: comarisonOperator [
 	| fileRef wcRef |
 	fileRef := GoferResolvedReference name: self file.
 	wcRef := GoferResolvedReference name: wcName.
 	^ wcRef compare: fileRef using: comarisonOperator
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>configMethodBodyOn: aStream hasName: hasName indent: indent [
+{ #category : #printing }
+MetacelloPackageSpec >> configMethodBodyOn: aStream hasName: hasName indent: indent [
 
 	| hasFile hasRepositories hasPreLoadDoIt hasPostLoadDoIt hasRequiresOrIncludesOrAnswers |
 	hasFile := file ~~ nil.
@@ -121,11 +102,8 @@ MetacelloPackageSpec>>configMethodBodyOn: aStream hasName: hasName indent: inden
 	aStream nextPut: $.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>configMethodCascadeOn: aStream member: aMember last: lastCascade indent: indent [
+{ #category : #printing }
+MetacelloPackageSpec >> configMethodCascadeOn: aStream member: aMember last: lastCascade indent: indent [
 
 	aMember methodUpdateSelector  == #remove:
 		ifTrue: [ aStream  nextPutAll: 'removePackage: ', self name printString ]
@@ -135,11 +113,8 @@ MetacelloPackageSpec>>configMethodCascadeOn: aStream member: aMember last: lastC
 		ifFalse: [ aStream nextPut: $;; cr ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>configMethodOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloPackageSpec >> configMethodOn: aStream indent: indent [
 
 	| hasRepositories hasPreLoadDoIt hasPostLoadDoIt hasRequiresOrIncludesOrAnswers hasFile |
 	hasFile := file ~~ nil.
@@ -156,11 +131,8 @@ MetacelloPackageSpec>>configMethodOn: aStream indent: indent [
 			aStream nextPutAll: 'name: ', self name printString ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>configShortCutMethodBodyOn: aStream member: aMember indent: indent [
+{ #category : #printing }
+MetacelloPackageSpec >> configShortCutMethodBodyOn: aStream member: aMember indent: indent [
 
 	| hasFile hasRepositories hasPreLoadDoIt hasPostLoadDoIt hasRequiresOrIncludesOrAnswers |
 	hasFile := file ~~ nil.
@@ -182,21 +154,15 @@ MetacelloPackageSpec>>configShortCutMethodBodyOn: aStream member: aMember indent
 		ifTrue: [ aStream nextPutAll: ' with: ', file printString ]
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>copySpecTo: aRepositorySpec [
+{ #category : #'development support' }
+MetacelloPackageSpec >> copySpecTo: aRepositorySpec [
 	"Copy current mcz file to the repository named in aRepositorySpec"
 
 	self loader copySpec: self from: self repositorySpecs to: aRepositorySpec createRepository
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>currentPackageLoaded: loadedBlock comparing: comarisonOperator notLoaded: notLoadedBlock using: anMCLoader [
+{ #category : #testing }
+MetacelloPackageSpec >> currentPackageLoaded: loadedBlock comparing: comarisonOperator notLoaded: notLoadedBlock using: anMCLoader [
   "Use currentVersionInfoFor: because it involves the loader and returns versionInfo for a planned load 
 	 (atomic loaders) or currently loaded package"
 
@@ -223,11 +189,8 @@ MetacelloPackageSpec>>currentPackageLoaded: loadedBlock comparing: comarisonOper
   ^ notLoadedBlock value: true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>currentPackageLoaded: loadedBlock notLoaded: notLoadedBlock using: anMCLoader [
+{ #category : #testing }
+MetacelloPackageSpec >> currentPackageLoaded: loadedBlock notLoaded: notLoadedBlock using: anMCLoader [
 	"Use currentVersionInfoFor: because it involves the loader and returns versionInfo for a planned load 
 	 (atomic loaders) or currently loaded package"
 
@@ -241,38 +204,26 @@ MetacelloPackageSpec>>currentPackageLoaded: loadedBlock notLoaded: notLoadedBloc
 	^ notLoadedBlock value
 ]
 
-{
-	#category : #gofer,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>currentVersionInfo [
+{ #category : #gofer }
+MetacelloPackageSpec >> currentVersionInfo [
 
 	^self goferPackage currentVersionInfo
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>ensureLoadUsing: mcLoader [
+{ #category : #loading }
+MetacelloPackageSpec >> ensureLoadUsing: mcLoader [
 	self explicitLoadUsing: mcLoader ensureSpecLoader
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>ensureLoadedForDevelopmentUsing: mcLoader [
+{ #category : #loading }
+MetacelloPackageSpec >> ensureLoadedForDevelopmentUsing: mcLoader [
 	"noop"
 	
 	^true
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>explicitLoadUsing: mcLoader [
+{ #category : #loading }
+MetacelloPackageSpec >> explicitLoadUsing: mcLoader [
 
 	| wc fetchingSpecLoader |
 	((wc := self workingCopy) ~~ nil and: [ wc needsSaving ]) 
@@ -289,30 +240,21 @@ MetacelloPackageSpec>>explicitLoadUsing: mcLoader [
 		repositories: (fetchingSpecLoader repositoriesFrom: self repositorySpecs).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>extractNameFromFile [
+{ #category : #private }
+MetacelloPackageSpec >> extractNameFromFile [
 
 	file == nil ifTrue: [ ^nil ].
 	^(self loader nameComponentsFrom: self file) first
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>fetch [
+{ #category : #loading }
+MetacelloPackageSpec >> fetch [
 
 	self fetchUsing: self loader
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>fetchPackage: aLoaderPolicy [
+{ #category : #loading }
+MetacelloPackageSpec >> fetchPackage: aLoaderPolicy [
 
 	self fetchUsing: 
 		(self loader
@@ -320,11 +262,8 @@ MetacelloPackageSpec>>fetchPackage: aLoaderPolicy [
 			yourself)
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>fetchUsing: mcLoader [
+{ #category : #loading }
+MetacelloPackageSpec >> fetchUsing: mcLoader [
 
 	| fetchingSpecLoader |
 	fetchingSpecLoader := mcLoader fetchingSpecLoader.
@@ -333,95 +272,65 @@ MetacelloPackageSpec>>fetchUsing: mcLoader [
 		repositories: (fetchingSpecLoader repositoriesFrom: self repositorySpecs).
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>file [
+{ #category : #querying }
+MetacelloPackageSpec >> file [
 
 	file == nil ifTrue: [ ^self name ].
 	^file
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>file: aString [
+{ #category : #accessing }
+MetacelloPackageSpec >> file: aString [
 
 	file := aString
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>file: aString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloPackageSpec >> file: aString constructor: aVersionConstructor [
     aVersionConstructor fileForPackage: aString
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>forceUpdatePackageSpec: updatedSpecs using: anMCLoader [
+{ #category : #'development support' }
+MetacelloPackageSpec >> forceUpdatePackageSpec: updatedSpecs using: anMCLoader [
 	
 	self updatePackageSpec: updatedSpecs force: true using: anMCLoader
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>getFile [
+{ #category : #accessing }
+MetacelloPackageSpec >> getFile [
 	"raw access to iv"
 	
 	^file
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>getName [
+{ #category : #accessing }
+MetacelloPackageSpec >> getName [
     "raw access to iv"
 
     ^ name
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>getPostLoadDoIt [
+{ #category : #querying }
+MetacelloPackageSpec >> getPostLoadDoIt [
 
 	^postLoadDoIt
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>getPreLoadDoIt [
+{ #category : #querying }
+MetacelloPackageSpec >> getPreLoadDoIt [
 
 	^preLoadDoIt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>getRepositories [
+{ #category : #accessing }
+MetacelloPackageSpec >> getRepositories [
     "raw access to iv"
 
     ^ repositories
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>goferBranchPackage: branchName message: commitMessage [
+{ #category : #'development support' }
+MetacelloPackageSpec >> goferBranchPackage: branchName message: commitMessage [
 	"uses gofer to do commit ... non-interactive"
 
 	| latestFile pkgSpec   |
@@ -437,11 +346,8 @@ MetacelloPackageSpec>>goferBranchPackage: branchName message: commitMessage [
 	self loader goferCommitBranchPackage: branchName using: self repositorySpecs commitMessage: commitMessage
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>goferCommitPackage: commitMessage [
+{ #category : #'development support' }
+MetacelloPackageSpec >> goferCommitPackage: commitMessage [
 	"uses gofer to do commit ... non-interactive"
 	
 	| latestFile pkgSpec |
@@ -454,11 +360,8 @@ MetacelloPackageSpec>>goferCommitPackage: commitMessage [
 		ifFalse: [ self loader goferCommitPackageUsing: self repositorySpecs commitMessage: commitMessage ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>goferLoaderReference [
+{ #category : #accessing }
+MetacelloPackageSpec >> goferLoaderReference [
 
 	^file == nil 
 		ifTrue: [ GoferPackageReference name: self name ]
@@ -467,101 +370,68 @@ MetacelloPackageSpec>>goferLoaderReference [
 			MetacelloGoferPackage name: self name packageFilename: self file ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>goferPackage [
+{ #category : #accessing }
+MetacelloPackageSpec >> goferPackage [
 
 	goferPackage == nil 
 		ifTrue: [ goferPackage := MetacelloGoferPackage name: self name packageFilename: self file ].
 	^goferPackage
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>hasRepository [
+{ #category : #testing }
+MetacelloPackageSpec >> hasRepository [
     ^ self repositorySpecs notEmpty
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>includes: anObject constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloPackageSpec >> includes: anObject constructor: aVersionConstructor [
     aVersionConstructor includesForPackage: anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>includesForPackageOrdering [
+{ #category : #private }
+MetacelloPackageSpec >> includesForPackageOrdering [
   ^ self includes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>info [
+{ #category : #accessing }
+MetacelloPackageSpec >> info [
 	"test compatibility method"
 
 	^self
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>isPackageLoaded [
+{ #category : #querying }
+MetacelloPackageSpec >> isPackageLoaded [
 
 	^self isPackageLoaded: self loader
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>isPackageLoaded: aLoader [
+{ #category : #querying }
+MetacelloPackageSpec >> isPackageLoaded: aLoader [
 
 	^(self workingCopyNameFor: aLoader) ~~ nil
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>load [
+{ #category : #loading }
+MetacelloPackageSpec >> load [
 
 	self explicitLoadUsing: self loader
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>loadUsing: mcLoader [
+{ #category : #loading }
+MetacelloPackageSpec >> loadUsing: mcLoader [
 
 	self loader doingLoads: [ self explicitLoadUsing: mcLoader ]
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>loadUsing: aLoader gofer: gofer [
+{ #category : #loading }
+MetacelloPackageSpec >> loadUsing: aLoader gofer: gofer [
 
 	^aLoader linearLoadPackageSpec: self gofer: gofer
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>mergeMap [
+{ #category : #merging }
+MetacelloPackageSpec >> mergeMap [
 
 	| map |
 	map := super mergeMap.
@@ -572,11 +442,8 @@ MetacelloPackageSpec>>mergeMap [
 	^map
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>mergeSpec: anotherSpec [
+{ #category : #merging }
+MetacelloPackageSpec >> mergeSpec: anotherSpec [
 
 	| newSpec map anotherPackages anotherRepositories |
 	newSpec := super mergeSpec: anotherSpec.
@@ -590,214 +457,142 @@ MetacelloPackageSpec>>mergeSpec: anotherSpec [
 	^newSpec
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>name [
+{ #category : #querying }
+MetacelloPackageSpec >> name [
 
 	name == nil ifTrue: [ name := self extractNameFromFile ].
 	^name
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>nonOverridable [
+{ #category : #merging }
+MetacelloPackageSpec >> nonOverridable [
 
 	^super nonOverridable, #( repositories)
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>packageSpecsInLoadOrder [
+{ #category : #loading }
+MetacelloPackageSpec >> packageSpecsInLoadOrder [
 
 	^{ self. }
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>packagesNeedSavingVisited: visitedProjects using: repos into: aCollection [
+{ #category : #'development support' }
+MetacelloPackageSpec >> packagesNeedSavingVisited: visitedProjects using: repos into: aCollection [
 
 	^self loader packagesNeedSavingUsing: repos into: aCollection
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>postCopy [
+{ #category : #copying }
+MetacelloPackageSpec >> postCopy [
 
 	super postCopy.
 	goferPackage := nil.
 	repositories := repositories copy.
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>postLoadDoIt [
+{ #category : #querying }
+MetacelloPackageSpec >> postLoadDoIt [
 
 	^postLoadDoIt
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>postLoadDoIt: anObject [
+{ #category : #loading }
+MetacelloPackageSpec >> postLoadDoIt: anObject [
 
 	anObject setPostLoadDoItInMetacelloSpec: self
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>postLoadDoIt: aSymbol constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloPackageSpec >> postLoadDoIt: aSymbol constructor: aVersionConstructor [
     aVersionConstructor postLoadDoItForPackage: aSymbol
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>preLoadDoIt [
+{ #category : #querying }
+MetacelloPackageSpec >> preLoadDoIt [
 
 	^preLoadDoIt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>preLoadDoIt: anObject [
+{ #category : #accessing }
+MetacelloPackageSpec >> preLoadDoIt: anObject [
 
 	anObject setPreLoadDoItInMetacelloSpec: self
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>preLoadDoIt: aSymbol constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloPackageSpec >> preLoadDoIt: aSymbol constructor: aVersionConstructor [
     aVersionConstructor preLoadDoItForPackage: aSymbol
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
+{ #category : #visiting }
+MetacelloPackageSpec >> projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
 
 	packageBlock value: self
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>repositories [
+{ #category : #querying }
+MetacelloPackageSpec >> repositories [
 
 	repositories == nil ifTrue: [ repositories := self project repositoriesSpec ].
 	^ repositories
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>repositories: anObject [
+{ #category : #querying }
+MetacelloPackageSpec >> repositories: anObject [
 	repositories := anObject
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>repositories: aBlock constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloPackageSpec >> repositories: aBlock constructor: aVersionConstructor [
     aVersionConstructor repositoriesForPackage: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>repository: aStringOrMetacelloRepositorySpec [
+{ #category : #accessing }
+MetacelloPackageSpec >> repository: aStringOrMetacelloRepositorySpec [
 
 	self repositories repository: aStringOrMetacelloRepositorySpec
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>repository: anObject constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloPackageSpec >> repository: anObject constructor: aVersionConstructor [
     aVersionConstructor repositoryForPackage: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>repository: aString username: username password: password [
+{ #category : #accessing }
+MetacelloPackageSpec >> repository: aString username: username password: password [
 
 	self repositories repository: aString username: username password: password
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>repository: aString username: username password: password constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloPackageSpec >> repository: aString username: username password: password constructor: aVersionConstructor [
     aVersionConstructor repositoryForPackage: aString username: username password: password
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>repositoryDescriptions [
+{ #category : #loading }
+MetacelloPackageSpec >> repositoryDescriptions [
     ^ self repositorySpecs collect: [ :repoSpec | repoSpec description ]
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>repositorySpecs [
+{ #category : #loading }
+MetacelloPackageSpec >> repositorySpecs [
 
 	^self repositories map values
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>requires: anObject constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloPackageSpec >> requires: anObject constructor: aVersionConstructor [
     aVersionConstructor requiresForPackage: anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>resolveToPackagesIn: aVersionSpec visited: visited [
+{ #category : #private }
+MetacelloPackageSpec >> resolveToPackagesIn: aVersionSpec visited: visited [
 
 	^{ self }
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>savePackage [
+{ #category : #'development support' }
+MetacelloPackageSpec >> savePackage [
 	"Interactive save ... prompted for commit message and package name unless MCVersionNameAndMessageRequest handled"
 
 	| latestFile pkgSpec |
@@ -810,37 +605,25 @@ MetacelloPackageSpec>>savePackage [
 		ifFalse: [ self loader savePackageUsing: self repositorySpecs ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>setPostLoadDoIt: aSymbol [
+{ #category : #accessing }
+MetacelloPackageSpec >> setPostLoadDoIt: aSymbol [
 
 	postLoadDoIt := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>setPreLoadDoIt: aSymbol [
+{ #category : #accessing }
+MetacelloPackageSpec >> setPreLoadDoIt: aSymbol [
 
 	preLoadDoIt := aSymbol
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>supplyingAnswers: anObject constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloPackageSpec >> supplyingAnswers: anObject constructor: aVersionConstructor [
     aVersionConstructor supplyingAnswersForPackage: anObject
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>updateForSpawnMethod: sourceSpec [
+{ #category : #'development support' }
+MetacelloPackageSpec >> updateForSpawnMethod: sourceSpec [
     "This means that this spec was used in a baseline and will be used in a version .... drop all information that isn't useful"
 
     | nm fl |
@@ -862,11 +645,8 @@ MetacelloPackageSpec>>updateForSpawnMethod: sourceSpec [
     ^ file == nil
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>updatePackageRepositories: repositorySpecs [
+{ #category : #'development support' }
+MetacelloPackageSpec >> updatePackageRepositories: repositorySpecs [
 
 	| resolvedPackageRef |
 	Transcript cr; show: '  Looking up version -> ', self file.
@@ -875,22 +655,16 @@ MetacelloPackageSpec>>updatePackageRepositories: repositorySpecs [
 	resolvedPackageRef version workingCopy repositoryGroup addRepository: resolvedPackageRef repository
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>updatePackageRepositoriesFor: aVersionSpec [
+{ #category : #'development support' }
+MetacelloPackageSpec >> updatePackageRepositoriesFor: aVersionSpec [
 	"Don't update the repository unless the package is loaded in the image"
 	
 	self workingCopy == nil ifTrue: [ ^self ].
 	self updatePackageRepositories: self repositorySpecs, aVersionSpec repositorySpecs.
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>updatePackageSpec: updatedSpecs force: force using: anMCLoader [
+{ #category : #'development support' }
+MetacelloPackageSpec >> updatePackageSpec: updatedSpecs force: force using: anMCLoader [
 	"Add pkg copy to updatedSpecs if the file in current image is different from the receiver's file"
 
 	| viName |
@@ -907,39 +681,27 @@ MetacelloPackageSpec>>updatePackageSpec: updatedSpecs force: force using: anMCLo
 		ifFalse: [ updatedSpecs at: self name put: #uptodate ]
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>updatePackageSpec: updatedSpecs using: anMCLoader [
+{ #category : #'development support' }
+MetacelloPackageSpec >> updatePackageSpec: updatedSpecs using: anMCLoader [
 	"Add pkg copy to updatedSpecs if the file in current image is different from the receiver's file"
 	
 	self updatePackageSpec: updatedSpecs force: false using: anMCLoader
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>visitingWithPackages: packages [
+{ #category : #visiting }
+MetacelloPackageSpec >> visitingWithPackages: packages [
 
 	packages at: self name put: self
 ]
 
-{
-	#category : #gofer,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>workingCopy [
+{ #category : #gofer }
+MetacelloPackageSpec >> workingCopy [
 
 	^self goferPackage workingCopy
 ]
 
-{
-	#category : #gofer,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>workingCopyName [
+{ #category : #gofer }
+MetacelloPackageSpec >> workingCopyName [
 
 	| wc |
 	(wc := self workingCopy) == nil ifTrue: [ ^nil ].
@@ -948,11 +710,8 @@ MetacelloPackageSpec>>workingCopyName [
 	^nil
 ]
 
-{
-	#category : #gofer,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPackageSpec>>workingCopyNameFor: anMCLoader [
+{ #category : #gofer }
+MetacelloPackageSpec >> workingCopyNameFor: anMCLoader [
 
 	| vi |
 	(vi := anMCLoader currentVersionInfoFor: self) == nil ifTrue: [ ^nil ].

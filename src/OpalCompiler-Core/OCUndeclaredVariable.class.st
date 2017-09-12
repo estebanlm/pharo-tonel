@@ -9,68 +9,46 @@ Class {
 	#instVars : [
 		'name'
 	],
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : 'MarcusDenker 7/2/2014 14:27'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariable class>>semanticNodeClass [
+{ #category : #accessing }
+OCUndeclaredVariable class >> semanticNodeClass [
 	^RBVariableNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariable>>assoc [
+{ #category : #accessing }
+OCUndeclaredVariable >> assoc [
 	^Undeclared associationAt: name
 ]
 
-{
-	#category : #emitting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariable>>emitStore: methodBuilder [
+{ #category : #emitting }
+OCUndeclaredVariable >> emitStore: methodBuilder [
 
 	methodBuilder storeIntoLiteralVariable:  self assoc
 
 
 ]
 
-{
-	#category : #emitting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariable>>emitValue: methodBuilder [
+{ #category : #emitting }
+OCUndeclaredVariable >> emitValue: methodBuilder [
 
 	methodBuilder pushLiteralVariable: self assoc.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariable>>isUndeclared [
+{ #category : #testing }
+OCUndeclaredVariable >> isUndeclared [
 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariable>>name [
+{ #category : #accessing }
+OCUndeclaredVariable >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCUndeclaredVariable>>name: anObject [
+{ #category : #accessing }
+OCUndeclaredVariable >> name: anObject [
 	name := anObject
 ]

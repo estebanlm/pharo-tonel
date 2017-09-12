@@ -27,15 +27,11 @@ Class {
 		'ImageNotStoredSignal',
 		'MagicNumberErrorSignal'
 	],
-	#category : #Graphics-Files,
-	#timestamp : '<historical>'
+	#category : #Graphics-Files
 }
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter class>>allTypicalFileExtensions [
+{ #category : #'image reading/writing' }
+ImageReadWriter class >> allTypicalFileExtensions [
 	"Answer a collection of file extensions (lowercase) which files that my subclasses can read might commonly have"
 	"ImageReadWriter allTypicalFileExtensions"
 	| extensions |
@@ -44,22 +40,16 @@ ImageReadWriter class>>allTypicalFileExtensions [
 	^ extensions
 ]
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter class>>formFromFileNamed: fileName  [
+{ #category : #'image reading/writing' }
+ImageReadWriter class >> formFromFileNamed: fileName [ 
 	"Answer a ColorForm stored on the file with the given name."
 	| stream |
 	stream := FileStream readOnlyFileNamed: fileName.
 	^ self formFromStream: stream
 ]
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter class>>formFromStream: aBinaryStream  [
+{ #category : #'image reading/writing' }
+ImageReadWriter class >> formFromStream: aBinaryStream [ 
 	"Answer a ColorForm stored on the given stream.  closes the stream"
 	| reader readerClass form |
 	readerClass := self readerClassFromStream: aBinaryStream.
@@ -69,22 +59,16 @@ ImageReadWriter class>>formFromStream: aBinaryStream  [
 	^ form
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter class>>on: aStream [
+{ #category : #'instance creation' }
+ImageReadWriter class >> on: aStream [
 	"Answer an instance of the receiver for encoding and/or decoding images on the given."
 
 	^ self new on: aStream
 
 ]
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter class>>putForm: aForm onFileNamed: fileName  [
+{ #category : #'image reading/writing' }
+ImageReadWriter class >> putForm: aForm onFileNamed: fileName [ 
 	"Store the given form on a file of the given name."
 	| writer |
 	writer := self on: (FileStream newFileNamed: fileName) binary.
@@ -92,11 +76,8 @@ ImageReadWriter class>>putForm: aForm onFileNamed: fileName  [
 	writer close
 ]
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter class>>putForm: aForm onStream: aWriteStream  [
+{ #category : #'image reading/writing' }
+ImageReadWriter class >> putForm: aForm onStream: aWriteStream [ 
 	"Store the given form on a file of the given name."
 	| writer |
 	writer := self on: aWriteStream.
@@ -104,11 +85,8 @@ ImageReadWriter class>>putForm: aForm onStream: aWriteStream  [
 	writer close
 ]
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter class>>readerClassFromStream: aBinaryStream [
+{ #category : #'image reading/writing' }
+ImageReadWriter class >> readerClassFromStream: aBinaryStream [
 	| readerClass |
 	readerClass := self withAllSubclasses
 		detect: [ :subclass | subclass understandsImageFormat: aBinaryStream ]
@@ -119,37 +97,25 @@ ImageReadWriter class>>readerClassFromStream: aBinaryStream [
 	^ readerClass
 ]
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter class>>typicalFileExtensions [
+{ #category : #'image reading/writing' }
+ImageReadWriter class >> typicalFileExtensions [
 	"Answer a collection of file extensions (lowercase) which files that I can read might commonly have"
 	^#()
 ]
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter class>>understandsImageFormat: aStream  [
+{ #category : #'image reading/writing' }
+ImageReadWriter class >> understandsImageFormat: aStream [ 
 	^[(self new on: aStream) understandsImageFormat] on: Error do:[:ex| ex return: false]
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>atEnd [
+{ #category : #'stream access' }
+ImageReadWriter >> atEnd [
 
 	^stream atEnd
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>changePadOfBits: bits width: width height: height depth: depth from: oldPad to: newPad  [
+{ #category : #private }
+ImageReadWriter >> changePadOfBits: bits width: width height: height depth: depth from: oldPad to: newPad [ 
 	"Change padding size of bits."
 	| srcRowByteSize dstRowByteSize newBits srcRowBase rowEndOffset |
 	(#(8 16 32 ) includes: oldPad) ifFalse: [ ^ self error: 'Invalid pad: ' , oldPad printString ].
@@ -174,38 +140,26 @@ ImageReadWriter>>changePadOfBits: bits width: width height: height depth: depth 
 	^ newBits
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>close [
+{ #category : #'stream access' }
+ImageReadWriter >> close [
 	
 	stream close
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>contents [
+{ #category : #'stream access' }
+ImageReadWriter >> contents [
 
 	^stream contents
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>cr [
+{ #category : #'stream access' }
+ImageReadWriter >> cr [
 
 	^stream nextPut: Character cr asInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>hasMagicNumber: aByteArray  [
+{ #category : #private }
+ImageReadWriter >> hasMagicNumber: aByteArray [ 
 	| position |
 	position := stream position.
 	(stream size - position >= aByteArray size and: [ (stream next: aByteArray size) = aByteArray ]) ifTrue: [ ^ true ].
@@ -213,60 +167,42 @@ ImageReadWriter>>hasMagicNumber: aByteArray  [
 	^ false
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>lf [
+{ #category : #'stream access' }
+ImageReadWriter >> lf [
 	"PPM and PBM are used LF as CR."
 
 	^stream nextPut: Character lf asInteger
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>next [
+{ #category : #'stream access' }
+ImageReadWriter >> next [
 
 	^stream next
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>next: size [
+{ #category : #'stream access' }
+ImageReadWriter >> next: size [
 
 	^stream next: size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>nextImage [
+{ #category : #accessing }
+ImageReadWriter >> nextImage [
 	"Dencoding an image on stream and answer the image."
 
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>nextLong [
+{ #category : #'stream access' }
+ImageReadWriter >> nextLong [
 	"Read a 32-bit quantity from the input stream."
 
 	^(stream next bitShift: 24) + (stream next bitShift: 16) +
 		(stream next bitShift: 8) + stream next
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>nextLongPut: a32BitW [
+{ #category : #'stream access' }
+ImageReadWriter >> nextLongPut: a32BitW [
 	"Write out a 32-bit integer as 32 bits."
 
 	stream nextPut: ((a32BitW bitShift: -24) bitAnd: 16rFF).
@@ -276,49 +212,34 @@ ImageReadWriter>>nextLongPut: a32BitW [
 	^a32BitW
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>nextPut: aByte [
+{ #category : #'stream access' }
+ImageReadWriter >> nextPut: aByte [
 
 	^stream nextPut: aByte
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>nextPutAll: aByteArray [
+{ #category : #'stream access' }
+ImageReadWriter >> nextPutAll: aByteArray [
 
 	^stream nextPutAll: aByteArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>nextPutImage: anImage [
+{ #category : #accessing }
+ImageReadWriter >> nextPutImage: anImage [
 	"Encoding anImage on stream."
 
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>nextWord [
+{ #category : #'stream access' }
+ImageReadWriter >> nextWord [
 	"Read a 16-bit quantity from the input stream."
 
 	^(stream next bitShift: 8) + stream next
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>nextWordPut: a16BitW [
+{ #category : #'stream access' }
+ImageReadWriter >> nextWordPut: a16BitW [
 	"Write out a 16-bit integer as 16 bits."
 
 	stream nextPut: ((a16BitW bitShift: -8) bitAnd: 16rFF).
@@ -326,84 +247,57 @@ ImageReadWriter>>nextWordPut: a16BitW [
 	^a16BitW
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>on: aStream  [
+{ #category : #private }
+ImageReadWriter >> on: aStream [ 
 	(stream := aStream) reset.
 	stream binary
 	"Note that 'reset' makes a file be text.  Must do this after."
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>peekFor: aValue [
+{ #category : #'stream access' }
+ImageReadWriter >> peekFor: aValue [
 
 	^stream peekFor: aValue
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>position [
+{ #category : #'stream access' }
+ImageReadWriter >> position [
 
 	^stream position
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>position: anInteger [
+{ #category : #'stream access' }
+ImageReadWriter >> position: anInteger [
 
 	^stream position: anInteger
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>size [
+{ #category : #'stream access' }
+ImageReadWriter >> size [
 
 	^stream size
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>skip: anInteger [
+{ #category : #'stream access' }
+ImageReadWriter >> skip: anInteger [
 
 	^stream skip: anInteger
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>space [
+{ #category : #'stream access' }
+ImageReadWriter >> space [
 
 	^stream nextPut: Character space asInteger
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>tab [
+{ #category : #'stream access' }
+ImageReadWriter >> tab [
 
 	^stream nextPut: Character tab asInteger
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>understandsImageFormat [
+{ #category : #testing }
+ImageReadWriter >> understandsImageFormat [
 	"Test to see if the image stream format is understood by this decoder.
 	This should be implemented in each subclass of ImageReadWriter so that
 	a proper decoder can be selected without ImageReadWriter having to know
@@ -412,11 +306,8 @@ ImageReadWriter>>understandsImageFormat [
 	^ false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageReadWriter>>unpackBits: bits depthTo8From: depth with: width height: height pad: pad  [
+{ #category : #private }
+ImageReadWriter >> unpackBits: bits depthTo8From: depth with: width height: height pad: pad [ 
 	"Unpack bits of depth 1, 2, or 4 image to it of depth 8 image."
 	| bitMask pixelInByte bitsWidth upBitsWidth stopWidth trailingSize upBits bitIndex upBitIndex val |
 	(#(1 2 4 ) includes: depth) ifFalse: [ ^ self error: 'depth must be 1, 2, or 4' ].

@@ -10,32 +10,22 @@ Class {
 		'newTempVector',
 		'scopeStack'
 	],
-	#category : #OpalCompiler-Core-Bytecode,
-	#timestamp : 'ajh 3/25/2003 00:26'
+	#category : #OpalCompiler-Core-Bytecode
 }
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>blockReturnTop [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> blockReturnTop [
 	self popScope.
 	irBuilder blockReturnTop.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>checkIfJumpTarget [
+{ #category : #private }
+IRBytecodeDecompiler >> checkIfJumpTarget [
 	irBuilder testJumpAheadTarget: instructionStream pc
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>decompile: aCompiledMethod [
+{ #category : #'public access' }
+IRBytecodeDecompiler >> decompile: aCompiledMethod [
 	instructionStream := InstructionStream on: aCompiledMethod.
 	irBuilder := IRReconstructor new.
 	scopeStack := Stack new.
@@ -57,27 +47,18 @@ IRBytecodeDecompiler>>decompile: aCompiledMethod [
 	^ irBuilder ir.
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>doDup [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> doDup [
 	irBuilder pushDup
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>doPop [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> doPop [
 	irBuilder popTop
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>interpret [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> interpret [
 	| endPC |
 	endPC := instructionStream method endPC.
 	[instructionStream pc > endPC ] 
@@ -87,11 +68,8 @@ IRBytecodeDecompiler>>interpret [
 			instructionStream interpretNextInstructionFor: self.]
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>jump: dist [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> jump: dist [
 	| index seq instr newSeq seqs |
 	index := instructionStream pc + dist.
 
@@ -121,11 +99,8 @@ IRBytecodeDecompiler>>jump: dist [
 
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>jump: dist if: bool [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> jump: dist if: bool [
 	| index |
 	index := instructionStream pc + dist .
 
@@ -136,37 +111,25 @@ IRBytecodeDecompiler>>jump: dist if: bool [
 	self error: 'Should not do this'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>methodClass [
+{ #category : #private }
+IRBytecodeDecompiler >> methodClass [
 	^ instructionStream  method methodClass
 ]
 
-{
-	#category : #'quick methods',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>methodReturnConstant: value [
+{ #category : #'quick methods' }
+IRBytecodeDecompiler >> methodReturnConstant: value [
 	self pushConstant: value.
 	self methodReturnTop.
 ]
 
-{
-	#category : #'quick methods',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>methodReturnReceiver [
+{ #category : #'quick methods' }
+IRBytecodeDecompiler >> methodReturnReceiver [
 	self pushReceiver.
 	self methodReturnTop.
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>methodReturnTop [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> methodReturnTop [
 	irBuilder isLastClosureInstruction
 		ifTrue: [
 			self popScope.
@@ -176,39 +139,27 @@ IRBytecodeDecompiler>>methodReturnTop [
 		ifFalse: [ irBuilder returnTop ]
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>popIntoLiteralVariable: offset [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> popIntoLiteralVariable: offset [
 	self storeIntoLiteralVariable: offset.
 	self doPop.
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>popIntoReceiverVariable: offset [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> popIntoReceiverVariable: offset [
 	self storeIntoReceiverVariable: offset.
 	self doPop.
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>popIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> popIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
 	self storeIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex.
 	self doPop.
 	
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>popIntoTemporaryVariable: offset [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> popIntoTemporaryVariable: offset [
 	newTempVector
 		ifNil: [
 			self storeIntoTemporaryVariable: offset.
@@ -221,11 +172,8 @@ IRBytecodeDecompiler>>popIntoTemporaryVariable: offset [
 			newTempVector := nil ]
 ]
 
-{
-	#category : #scope,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>popScope [
+{ #category : #scope }
+IRBytecodeDecompiler >> popScope [
 	| scope tempIndex |
 	scope := self scope.
 	
@@ -248,19 +196,13 @@ IRBytecodeDecompiler>>popScope [
 	^ scopeStack pop
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>pushActiveContext [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> pushActiveContext [
 	irBuilder pushThisContext
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>pushClosureCopyNumCopiedValues: numCopied numArgs: numArgs blockSize: blockSize  [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> pushClosureCopyNumCopiedValues: numCopied numArgs: numArgs blockSize: blockSize [ 
 	| closureEnd copiedValues |
 	copiedValues := irBuilder removeLast: numCopied.
 	self pushScope: copiedValues numArgs: numArgs.
@@ -272,91 +214,61 @@ IRBytecodeDecompiler>>pushClosureCopyNumCopiedValues: numCopied numArgs: numArgs
 		jumpTo: closureEnd.
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>pushConsArrayWithElements: numElements  [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> pushConsArrayWithElements: numElements [ 
 	irBuilder pushConsArray: numElements
 
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>pushConstant: value [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> pushConstant: value [
 	irBuilder pushLiteral: value
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>pushLiteralVariable: assoc [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> pushLiteralVariable: assoc [
 	irBuilder pushLiteralVariable: assoc.
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>pushNewArrayOfSize: size [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> pushNewArrayOfSize: size [
 	newTempVector := IRRemoteArray new size: size
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>pushReceiver [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> pushReceiver [
 	irBuilder pushReceiver
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>pushReceiverVariable: offset [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> pushReceiverVariable: offset [
 	irBuilder pushInstVar: offset + 1.
 
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>pushRemoteTemp: remoteIndex inVectorAt: tempIndex  [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> pushRemoteTemp: remoteIndex inVectorAt: tempIndex [ 
 	|  remoteArray remoteTempName |
 	remoteArray := self scope tempAt: tempIndex.
 	remoteTempName := self scope tempAt: remoteIndex inRemote: remoteArray.
 	irBuilder pushRemoteTemp: remoteTempName inVector: remoteArray.
 ]
 
-{
-	#category : #scope,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>pushScope: copiedValues numArgs: numArgs [
+{ #category : #scope }
+IRBytecodeDecompiler >> pushScope: copiedValues numArgs: numArgs [
 	|scope |
 	scope := IRBytecodeScope new numArgs: numArgs.
 	scopeStack push: scope.
 	scope copiedValues: copiedValues.
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>pushTemporaryVariable: offset [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> pushTemporaryVariable: offset [
 	irBuilder pushTemp: (self scope tempAt: offset)
 ]
 
-{
-	#category : #'quick methods',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>quickMethod [
+{ #category : #'quick methods' }
+IRBytecodeDecompiler >> quickMethod [
 
 	instructionStream method primitive = 256 ifTrue: [
 		^ self methodReturnReceiver
@@ -371,46 +283,31 @@ IRBytecodeDecompiler>>quickMethod [
 	self error: 'quick method inconsistency'
 ]
 
-{
-	#category : #scope,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>scope [
+{ #category : #scope }
+IRBytecodeDecompiler >> scope [
 	^ scopeStack top
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>send: selector super: superFlag numArgs: numArgs [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> send: selector super: superFlag numArgs: numArgs [
 	superFlag
 		ifTrue: [irBuilder send: selector toSuperOf: self methodClass]
 		ifFalse: [irBuilder send: selector]
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>storeIntoLiteralVariable: value [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> storeIntoLiteralVariable: value [
 	irBuilder storeIntoLiteralVariable: value
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>storeIntoReceiverVariable: offset [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> storeIntoReceiverVariable: offset [
 	irBuilder storeInstVar: offset + 1.
 
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>storeIntoRemoteTemp: remoteIndex inVectorAt: tempIndex  [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> storeIntoRemoteTemp: remoteIndex inVectorAt: tempIndex [ 
 	|  remoteArray remoteTempName |
 	remoteArray := self scope tempAt: tempIndex.
 	remoteTempName := self scope tempAt: remoteIndex inRemote: remoteArray.	
@@ -418,10 +315,7 @@ IRBytecodeDecompiler>>storeIntoRemoteTemp: remoteIndex inVectorAt: tempIndex  [
 	
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeDecompiler>>storeIntoTemporaryVariable: offset [
+{ #category : #'instruction decoding' }
+IRBytecodeDecompiler >> storeIntoTemporaryVariable: offset [
 	irBuilder storeTemp: (self scope tempAt: offset)
 ]

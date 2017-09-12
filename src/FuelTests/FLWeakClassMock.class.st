@@ -8,22 +8,15 @@ Class {
 	#instVars : [
 		'instVar1'
 	],
-	#category : #FuelTests-Mocks,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:23'
+	#category : #FuelTests-Mocks
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLWeakClassMock>>instVar1 [
+{ #category : #accessing }
+FLWeakClassMock >> instVar1 [
 	^ instVar1 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLWeakClassMock>>instVar1: anObject [
+{ #category : #accessing }
+FLWeakClassMock >> instVar1: anObject [
 	instVar1 := anObject
 ]

@@ -30,15 +30,11 @@ Class {
 		'day',
 		'invalidPattern'
 	],
-	#category : #Kernel-Chronology,
-	#timestamp : '<historical>'
+	#category : #Kernel-Chronology
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser class>>readingFrom: anInputStream pattern: aPattern [
+{ #category : #'instance creation' }
+DateParser class >> readingFrom: anInputStream pattern: aPattern [
 
 	"See class comment for pattern description
 	self comment"
@@ -48,164 +44,110 @@ DateParser class>>readingFrom: anInputStream pattern: aPattern [
 
 ]
 
-{
-	#category : #'parsing - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>convertTwoDigitsYear [
+{ #category : #'parsing - private' }
+DateParser >> convertTwoDigitsYear [
 
 	(year between: 0 and: 99) ifTrue: [ year := self currentMillenium + year ]
 ]
 
-{
-	#category : #'parsing - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>createDate [
+{ #category : #'parsing - private' }
+DateParser >> createDate [
 
 	^ Date year: year month: month day: day
 ]
 
-{
-	#category : #'parsing - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>currentMillenium [
+{ #category : #'parsing - private' }
+DateParser >> currentMillenium [
 	^ (Date current year / 100) asInteger * 100
 ]
 
-{
-	#category : #'parsing - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>initializeParsing [
+{ #category : #'parsing - private' }
+DateParser >> initializeParsing [
 
 	invalidPattern := false.
 	patternStream := pattern readStream
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>initializeReadingFrom: anInputStream pattern: aPattern [
+{ #category : #initialization }
+DateParser >> initializeReadingFrom: anInputStream pattern: aPattern [
 
 	inputStream := anInputStream.
 	pattern := aPattern.
 	
 ]
 
-{
-	#category : #'parsing day - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>isDayPattern [
+{ #category : #'parsing day - private' }
+DateParser >> isDayPattern [
 
 	^ char = $d
 ]
 
-{
-	#category : #'parsing - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>isDoneParsing [
+{ #category : #'parsing - private' }
+DateParser >> isDoneParsing [
 
 	^ patternStream atEnd or: [ inputStream atEnd or: [  invalidPattern  ]]
 ]
 
-{
-	#category : #'parsing - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>isEscape [
+{ #category : #'parsing - private' }
+DateParser >> isEscape [
 
 	^ char = $\
 ]
 
-{
-	#category : #'parsing year - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>isFourDigitYearPattern [
+{ #category : #'parsing year - private' }
+DateParser >> isFourDigitYearPattern [
 
 	^ patternStream nextMatchAll: 'yyy'
 ]
 
-{
-	#category : #'parsing - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>isInvalidPattern [
+{ #category : #'parsing - private' }
+DateParser >> isInvalidPattern [
 
 	^ year isNil or: [ month isNil or: [ day isNil or: [ invalidPattern ]]]
 ]
 
-{
-	#category : #'parsing month - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>isMonthPattern [
+{ #category : #'parsing month - private' }
+DateParser >> isMonthPattern [
 
 	^ char = $m
 ]
 
-{
-	#category : #'parsing day - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>isTwoDigitDayPattern [
+{ #category : #'parsing day - private' }
+DateParser >> isTwoDigitDayPattern [
 
 	^ patternStream peekFor: $d
 ]
 
-{
-	#category : #'parsing month - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>isTwoDigitMonthPattern [
+{ #category : #'parsing month - private' }
+DateParser >> isTwoDigitMonthPattern [
 
 	^ patternStream peekFor: $m
 ]
 
-{
-	#category : #'parsing year - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>isTwoDigitYearPattern [
+{ #category : #'parsing year - private' }
+DateParser >> isTwoDigitYearPattern [
 
 	^ patternStream peekFor: $y
 ]
 
-{
-	#category : #'parsing year - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>isYearPattern [
+{ #category : #'parsing year - private' }
+DateParser >> isYearPattern [
 
 	^ char = $y
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parse [
+{ #category : #parsing }
+DateParser >> parse [
 	^ self parseIfError: [ DateError signal ]
 ]
 
-{
-	#category : #'parsing - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parse: aTimeUnitName [
+{ #category : #'parsing - private' }
+DateParser >> parse: aTimeUnitName [
 	^ Integer readFrom: inputStream ifFail: [ DateError signal: 'Expecting a ',aTimeUnitName ]
 ]
 
-{
-	#category : #'parsing - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parse: timeUnitName expectedSize: anInteger [
+{ #category : #'parsing - private' }
+DateParser >> parse: timeUnitName expectedSize: anInteger [
 	| extractedString result |
 	extractedString := inputStream next: anInteger.
 	result := extractedString asInteger.
@@ -214,39 +156,27 @@ DateParser>>parse: timeUnitName expectedSize: anInteger [
 	^ result
 ]
 
-{
-	#category : #'parsing day - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parseDay [
+{ #category : #'parsing day - private' }
+DateParser >> parseDay [
 
 	self isTwoDigitDayPattern ifTrue: [ ^ self parseTwoDigitDay ].
 	self parseVariableDigitDay
 ]
 
-{
-	#category : #'parsing - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parseEscapePattern [
+{ #category : #'parsing - private' }
+DateParser >> parseEscapePattern [
 
 	inputStream next = patternStream next ifFalse: [ invalidPattern := true ]
 ]
 
-{
-	#category : #'parsing year - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parseFourDigitYear [
+{ #category : #'parsing year - private' }
+DateParser >> parseFourDigitYear [
 
 	year := self parse: 'year' expectedSize: 4
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parseIfError: aBlock [
+{ #category : #parsing }
+DateParser >> parseIfError: aBlock [
 	"Parse the date according to the given pattern"
 	self initializeParsing.
 	
@@ -260,21 +190,15 @@ DateParser>>parseIfError: aBlock [
 	^ self createDate
 ]
 
-{
-	#category : #'parsing month - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parseMonth [
+{ #category : #'parsing month - private' }
+DateParser >> parseMonth [
 
 	self isTwoDigitMonthPattern ifTrue: [ ^self parseTwoDigitMonth ].
 	self parseVariableDigitMonth 
 ]
 
-{
-	#category : #'parsing - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parseNextPattern [
+{ #category : #'parsing - private' }
+DateParser >> parseNextPattern [
 
 	self readNextChar.
 
@@ -286,84 +210,57 @@ DateParser>>parseNextPattern [
 	self parseSameChar
 ]
 
-{
-	#category : #'parsing - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parseSameChar [
+{ #category : #'parsing - private' }
+DateParser >> parseSameChar [
 
 	inputStream next = char ifFalse: [ invalidPattern := true ]
 ]
 
-{
-	#category : #'parsing day - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parseTwoDigitDay [
+{ #category : #'parsing day - private' }
+DateParser >> parseTwoDigitDay [
 	day := self parse: 'day' expectedSize: 2
 ]
 
-{
-	#category : #'parsing month - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parseTwoDigitMonth [
+{ #category : #'parsing month - private' }
+DateParser >> parseTwoDigitMonth [
 
 	month := self parse: 'month' expectedSize: 2
 ]
 
-{
-	#category : #'parsing year - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parseTwoDigitYear [
+{ #category : #'parsing year - private' }
+DateParser >> parseTwoDigitYear [
 
 	year := self parse: 'year' expectedSize: 2
 ]
 
-{
-	#category : #'parsing day - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parseVariableDigitDay [
+{ #category : #'parsing day - private' }
+DateParser >> parseVariableDigitDay [
 
 	day := self parse: 'day'
 ]
 
-{
-	#category : #'parsing month - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parseVariableDigitMonth [
+{ #category : #'parsing month - private' }
+DateParser >> parseVariableDigitMonth [
 
 	month := self parse: 'month'
 ]
 
-{
-	#category : #'parsing year - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parseVariableDigitYear [
+{ #category : #'parsing year - private' }
+DateParser >> parseVariableDigitYear [
 
 	year := self parse: 'year'
 ]
 
-{
-	#category : #'parsing year - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>parseYear [
+{ #category : #'parsing year - private' }
+DateParser >> parseYear [
 
 	self isFourDigitYearPattern ifTrue: [ ^ self parseFourDigitYear ].
 	self isTwoDigitYearPattern ifTrue: [ ^ self parseTwoDigitYear ].
 	self parseVariableDigitYear
 ]
 
-{
-	#category : #'parsing - private',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DateParser>>readNextChar [
+{ #category : #'parsing - private' }
+DateParser >> readNextChar [
 
 	char := patternStream next
 ]

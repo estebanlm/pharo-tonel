@@ -19,15 +19,11 @@ Class {
 		'EscapedLetterSelectors',
 		'NamedClassSelectors'
 	],
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:15'
+	#category : #Regex-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate class>>forEscapedLetter: aCharacter [
+{ #category : #'instance creation' }
+RxsPredicate class >> forEscapedLetter: aCharacter [
 
 	^self new perform:
 		(EscapedLetterSelectors
@@ -35,11 +31,8 @@ RxsPredicate class>>forEscapedLetter: aCharacter [
 			ifAbsent: [RxParser signalSyntaxException: 'bad backslash escape'])
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate class>>forNamedClass: aString [
+{ #category : #'instance creation' }
+RxsPredicate class >> forNamedClass: aString [
 
 	^self new perform:
 		(NamedClassSelectors
@@ -47,11 +40,8 @@ RxsPredicate class>>forNamedClass: aString [
 			ifAbsent: [RxParser signalSyntaxException: 'bad character class name'])
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate class>>initialize [
+{ #category : #'class initialization' }
+RxsPredicate class >> initialize [
 	"self initialize"
 
 	self
@@ -59,11 +49,8 @@ RxsPredicate class>>initialize [
 		initializeEscapedLetterSelectors
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate class>>initializeEscapedLetterSelectors [
+{ #category : #'class initialization' }
+RxsPredicate class >> initializeEscapedLetterSelectors [
 	"self initializeEscapedLetterSelectors"
 
 	(EscapedLetterSelectors := Dictionary new)
@@ -76,11 +63,8 @@ RxsPredicate class>>initializeEscapedLetterSelectors [
 		at: $\ put: #beBackslash
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate class>>initializeNamedClassSelectors [
+{ #category : #'class initialization' }
+RxsPredicate class >> initializeNamedClassSelectors [
 	"self initializeNamedClassSelectors"
 
 	(NamedClassSelectors := Dictionary new)
@@ -97,72 +81,51 @@ RxsPredicate class>>initializeNamedClassSelectors [
 		at: 'xdigit' put: #beHexDigit
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>beAlphaNumeric [
+{ #category : #initialize-release }
+RxsPredicate >> beAlphaNumeric [
 
 	predicate := [:char | char isAlphaNumeric].
 	negation := [:char | char isAlphaNumeric not]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>beAlphabetic [
+{ #category : #initialize-release }
+RxsPredicate >> beAlphabetic [
 
 	predicate := [:char | char isLetter].
 	negation := [:char | char isLetter not]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>beBackslash [
+{ #category : #initialize-release }
+RxsPredicate >> beBackslash [
 
 	predicate := [:char | char == $\].
 	negation := [:char | char ~~ $\]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>beControl [
+{ #category : #initialize-release }
+RxsPredicate >> beControl [
 
 	predicate := [:char | char asInteger < 32].
 	negation := [:char | char asInteger >= 32]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>beDigit [
+{ #category : #initialize-release }
+RxsPredicate >> beDigit [
 
 	predicate := [:char | char isDigit].
 	negation := [:char | char isDigit not]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>beGraphics [
+{ #category : #initialize-release }
+RxsPredicate >> beGraphics [
 
 	self
 		beControl;
 		negate
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>beHexDigit [
+{ #category : #initialize-release }
+RxsPredicate >> beHexDigit [
 
 	| hexLetters |
 	hexLetters := 'abcdefABCDEF'.
@@ -170,65 +133,47 @@ RxsPredicate>>beHexDigit [
 	negation := [:char | char isDigit not and: [(hexLetters includes: char) not]]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>beLowercase [
+{ #category : #initialize-release }
+RxsPredicate >> beLowercase [
 
 	predicate := [:char | char isLowercase].
 	negation := [:char | char isLowercase not]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>beNotDigit [
+{ #category : #initialize-release }
+RxsPredicate >> beNotDigit [
 
 	self
 		beDigit;
 		negate
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>beNotSpace [
+{ #category : #initialize-release }
+RxsPredicate >> beNotSpace [
 
 	self
 		beSpace;
 		negate
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>beNotWordConstituent [
+{ #category : #initialize-release }
+RxsPredicate >> beNotWordConstituent [
 
 	self
 		beWordConstituent;
 		negate
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>bePrintable [
+{ #category : #initialize-release }
+RxsPredicate >> bePrintable [
 
 	self
 		beControl;
 		negate
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>bePunctuation [
+{ #category : #initialize-release }
+RxsPredicate >> bePunctuation [
 
 	| punctuationChars |
 	punctuationChars := #($. $, $! $? $; $: $" $' $- $( $) $`).
@@ -236,59 +181,41 @@ RxsPredicate>>bePunctuation [
 	negation := [:char | (punctuationChars includes: char) not]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>beSpace [
+{ #category : #initialize-release }
+RxsPredicate >> beSpace [
 
 	predicate := [:char | char isSeparator].
 	negation := [:char | char isSeparator not]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>beUppercase [
+{ #category : #initialize-release }
+RxsPredicate >> beUppercase [
 
 	predicate := [:char | char isUppercase].
 	negation := [:char | char isUppercase not]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>beWordConstituent [
+{ #category : #initialize-release }
+RxsPredicate >> beWordConstituent [
 
 	predicate := [:char | char isAlphaNumeric or: [char == $_]].
 	negation := [:char | char isAlphaNumeric not and: [char ~~ $_]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>dispatchTo: anObject [
+{ #category : #accessing }
+RxsPredicate >> dispatchTo: anObject [
 
 	^anObject syntaxPredicate: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>isEnumerable [
+{ #category : #testing }
+RxsPredicate >> isEnumerable [
 
 	^false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>negate [
+{ #category : #private }
+RxsPredicate >> negate [
 
 	| tmp |
 	tmp := predicate.
@@ -296,38 +223,26 @@ RxsPredicate>>negate [
 	negation := tmp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>negated [
+{ #category : #accessing }
+RxsPredicate >> negated [
 
 	^self copy negate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>predicate [
+{ #category : #accessing }
+RxsPredicate >> predicate [
 
 	^predicate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>predicateNegation [
+{ #category : #accessing }
+RxsPredicate >> predicateNegation [
 
 	^negation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsPredicate>>value: aCharacter [
+{ #category : #accessing }
+RxsPredicate >> value: aCharacter [
 
 	^predicate value: aCharacter
 ]

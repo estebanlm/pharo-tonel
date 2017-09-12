@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #ParagraphSelectionBlock,
 	#superclass : #Object,
@@ -9,23 +6,16 @@ Class {
 		'last',
 		'color'
 	],
-	#category : #'Morphic-Base-Text Support',
-	#timestamp : ''
+	#category : #'Morphic-Base-Text Support'
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ParagraphSelectionBlock class>>first: firstCharBlock last: lastCharBlock color: aColor [
+{ #category : #'instance creation' }
+ParagraphSelectionBlock class >> first: firstCharBlock last: lastCharBlock color: aColor [
 	^ self new first: firstCharBlock last: lastCharBlock color: aColor
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ParagraphSelectionBlock>>displayInLine: line on: aCanvas  [
+{ #category : #displaying }
+ParagraphSelectionBlock >> displayInLine: line on: aCanvas [ 
 	"Display myself in the passed line."
 	| startIdx stopIdx leftX rightX |
 	startIdx := first stringIndex.
@@ -42,28 +32,19 @@ ParagraphSelectionBlock>>displayInLine: line on: aCanvas  [
 	aCanvas fillRectangle: (leftX @ line top corner: rightX @ line bottom) color: color
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ParagraphSelectionBlock>>first [
+{ #category : #accessing }
+ParagraphSelectionBlock >> first [
 	^ first
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ParagraphSelectionBlock>>first: firstCharBlock last: lastCharBlock color: aColor [
+{ #category : #initialize-release }
+ParagraphSelectionBlock >> first: firstCharBlock last: lastCharBlock color: aColor [
 	first := firstCharBlock.
 	last := lastCharBlock.
 	color := aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ParagraphSelectionBlock>>last [
+{ #category : #accessing }
+ParagraphSelectionBlock >> last [
 	^ last
 ]

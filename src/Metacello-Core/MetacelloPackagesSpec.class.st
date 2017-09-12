@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #MetacelloPackagesSpec,
 	#superclass : #MetacelloMemberListSpec,
-	#category : #Metacello-Core-Specs,
-	#timestamp : ''
+	#category : #Metacello-Core-Specs
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPackagesSpec>>add: aSpec [
+{ #category : #actions }
+MetacelloPackagesSpec >> add: aSpec [
 
 	aSpec addToMetacelloPackages: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPackagesSpec>>applyIncludesTo: orderedSpecs for: pkgSpec firstTime: firstTime for: aVersionSpec [
+{ #category : #accessing }
+MetacelloPackagesSpec >> applyIncludesTo: orderedSpecs for: pkgSpec firstTime: firstTime [ for: aVersionSpec
   | movedSpecs baseIndex |
   movedSpecs := Set new.
   baseIndex := orderedSpecs indexOf: pkgSpec.
@@ -43,11 +33,8 @@ MetacelloPackagesSpec>>applyIncludesTo: orderedSpecs for: pkgSpec firstTime: fir
   ^ movedSpecs
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPackagesSpec>>configMethodOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloPackagesSpec >> configMethodOn: aStream indent: indent [
 
 	| packageSpecs |
 	packageSpecs := self map values.
@@ -75,11 +62,8 @@ MetacelloPackagesSpec>>configMethodOn: aStream indent: indent [
 				aStream cr ]]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPackagesSpec>>copy: specNamed to: spec [
+{ #category : #actions }
+MetacelloPackagesSpec >> copy: specNamed to: spec [
 
 	self addMember: 
 		(self copyMember 
@@ -89,29 +73,20 @@ MetacelloPackagesSpec>>copy: specNamed to: spec [
 			yourself)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPackagesSpec>>merge: aSpec [
+{ #category : #actions }
+MetacelloPackagesSpec >> merge: aSpec [
 
 	aSpec mergeIntoMetacelloPackages: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPackagesSpec>>packageNamed: aString ifAbsent: aBlock [
+{ #category : #accessing }
+MetacelloPackagesSpec >> packageNamed: aString ifAbsent: aBlock [
 
 	^self map at: aString ifAbsent: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPackagesSpec>>packageSpecsInLoadOrderFor: aVersionSpec [
+{ #category : #accessing }
+MetacelloPackagesSpec >> packageSpecsInLoadOrderFor: aVersionSpec [
   "order only the packageSpecs and projectSpecs. groupSpec order does not matter"
 
   | orderedPackageSpecs groupSpecs moved lastMovedSpecs count terminationLimit map specsWithIncludes firstTime groupLoops |
@@ -192,20 +167,14 @@ MetacelloPackagesSpec>>packageSpecsInLoadOrderFor: aVersionSpec [
   ^ orderedPackageSpecs , groupSpecs asOrderedCollection
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPackagesSpec>>remove: aSpec [
+{ #category : #actions }
+MetacelloPackagesSpec >> remove: aSpec [
 
 	aSpec removeFromMetacelloPackages: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPackagesSpec>>slideIn: orderedSpecs spec: targetSpec baseIndex: baseIndex seen: seen firstTime: firstTime for: aVersionSpec [
+{ #category : #accessing }
+MetacelloPackagesSpec >> slideIn: orderedSpecs spec: targetSpec baseIndex: baseIndex seen: seen firstTime: firstTime for: aVersionSpec [
   | targetIndex requiredSpecNames targetRequires targetRequiresIndexes minIndex baseSpec required |
   (seen includes: targetSpec)
     ifTrue: [ ^ false ].
@@ -248,11 +217,8 @@ MetacelloPackagesSpec>>slideIn: orderedSpecs spec: targetSpec baseIndex: baseInd
   ^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPackagesSpec>>sortPackageSpecs: orderedSpecs packageSpec: packageSpec groupLoops: groupLoops for: aVersionSpec [
+{ #category : #private }
+MetacelloPackagesSpec >> sortPackageSpecs: orderedSpecs packageSpec: packageSpec groupLoops: groupLoops for: aVersionSpec [
   | packageIndex moved movePackage targetPackage targetIndex targetSpecNames groupLoopDetected |
   packageIndex := orderedSpecs indexOf: packageSpec.
   moved := movePackage := false.

@@ -4,15 +4,11 @@ A LiteralDictionary, like an IdentityDictionary, has a special test for equality
 Class {
 	#name : #LiteralDictionary,
 	#superclass : #Dictionary,
-	#category : #Compiler-Support,
-	#timestamp : '<historical>'
+	#category : #Compiler-Support
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralDictionary>>literalEquality: x and: y [
+{ #category : #testing }
+LiteralDictionary >> literalEquality: x and: y [
 	"Check if two literals should be considered equal and reduced to a single literal.
 	Delegate this task to the literal themselves, they are aware of their peculiarities and know how to behave."
 	
@@ -20,11 +16,8 @@ LiteralDictionary>>literalEquality: x and: y [
 
 ]
 
-{
-	#category : #internal,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralDictionary>>scanFor: anObject [
+{ #category : #internal }
+LiteralDictionary >> scanFor: anObject [
 	"Scan the key array for the first slot containing either a nil (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or zero if no slot is found. This method will be overridden in various subclasses that have different interpretations for matching elements."
 	| element start finish |
 	finish := array size.

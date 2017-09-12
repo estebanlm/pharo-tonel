@@ -17,57 +17,38 @@ Class {
 		'compilationContext',
 		'irPrimitive'
 	],
-	#category : #OpalCompiler-Core-IR-Nodes,
-	#timestamp : 'ajh 5/23/2003 11:08'
+	#category : #OpalCompiler-Core-IR-Nodes
 }
 
-{
-	#category : #optimizing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>absorbConstantConditionalJumps [
+{ #category : #optimizing }
+IRMethod >> absorbConstantConditionalJumps [
 
 	startSequence absorbConstantConditionalJumps: IdentitySet new
 ]
 
-{
-	#category : #optimizing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>absorbJumpsToSingleInstrs [
+{ #category : #optimizing }
+IRMethod >> absorbJumpsToSingleInstrs [
 
 	startSequence absorbJumpToSingleInstr: IdentitySet new
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>accept: aVisitor [
+{ #category : #visiting }
+IRMethod >> accept: aVisitor [
 	^ aVisitor visitMethod: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>addAdditionalLiteral: aLiteral [
+{ #category : #accessing }
+IRMethod >> addAdditionalLiteral: aLiteral [
 	additionalLiterals add: aLiteral
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>addAdditionalLiterals: literals  [
+{ #category : #accessing }
+IRMethod >> addAdditionalLiterals: literals [ 
 	additionalLiterals :=  literals
 ]
 
-{
-	#category : #inlining,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>addInstructionsAfter: aCollection [
+{ #category : #inlining }
+IRMethod >> addInstructionsAfter: aCollection [
 	| returningSeqs  lastInstr |
 	aCollection ifEmpty: [^self].
 	returningSeqs := self allSequences select: [:each | each last isReturn].
@@ -76,38 +57,26 @@ IRMethod>>addInstructionsAfter: aCollection [
 	
 ]
 
-{
-	#category : #inlining,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>addInstructionsBefore: aCollection [
+{ #category : #inlining }
+IRMethod >> addInstructionsBefore: aCollection [
 
 	(self startSequence nextSequence first) addInstructionsBefore: aCollection.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>addPragma: aPragma [
+{ #category : #accessing }
+IRMethod >> addPragma: aPragma [
 	
 	pragmas add: aPragma.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>additionalLiterals [
+{ #category : #accessing }
+IRMethod >> additionalLiterals [
 	^additionalLiterals
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>allInstructions [
+{ #category : #enumerating }
+IRMethod >> allInstructions [
 	" return irNodes as a flat collection "
 
 	| irInstructions |
@@ -116,11 +85,8 @@ IRMethod>>allInstructions [
 	^irInstructions
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>allInstructionsMatching: aBlock [
+{ #category : #enumerating }
+IRMethod >> allInstructionsMatching: aBlock [
 	" return irNodes as a flat collection "
 
 	| irInstructions |
@@ -129,105 +95,72 @@ IRMethod>>allInstructionsMatching: aBlock [
 	^irInstructions
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>allSequences [
+{ #category : #enumerating }
+IRMethod >> allSequences [
 	^ startSequence withAllSuccessors
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>allTempAccessInstructions [
+{ #category : #enumerating }
+IRMethod >> allTempAccessInstructions [
 	^self allInstructionsMatching: [:bc | bc isTemp].
 ]
 
-{
-	#category : #inspector,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>children [
+{ #category : #inspector }
+IRMethod >> children [
 	^self startSequence withAllSuccessors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>compilationContext [
+{ #category : #accessing }
+IRMethod >> compilationContext [
 	^ compilationContext ifNil: [ 
 		"only happens when decompiling or using stand-alone"
 		compilationContext := CompilationContext default]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>compilationContext: aCompilationContext [
+{ #category : #accessing }
+IRMethod >> compilationContext: aCompilationContext [
 	compilationContext := aCompilationContext
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>compiledBlock: scope [
+{ #category : #'as yet unclassified' }
+IRMethod >> compiledBlock: scope [
 
 	^compiledMethod 
 		ifNil: [self generateBlock: CompiledMethodTrailer empty withScope: scope ]
 		ifNotNil: [compiledMethod]
 ]
 
-{
-	#category : #translating,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>compiledMethod [
+{ #category : #translating }
+IRMethod >> compiledMethod [
 
 	^ self compiledMethodWith: CompiledMethodTrailer empty
 ]
 
-{
-	#category : #translating,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>compiledMethodWith: trailer [
+{ #category : #translating }
+IRMethod >> compiledMethodWith: trailer [
 
 	^compiledMethod 
 		ifNil: [self generate: trailer ]
 		ifNotNil: [compiledMethod]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>firstInstructionMatching: aBlock [
+{ #category : #enumerating }
+IRMethod >> firstInstructionMatching: aBlock [
 	" return irNodes as a flat collection "
 
 	startSequence withAllSuccessorsDo: [:seq | seq do: [:bc | (aBlock value: bc) ifTrue: [^bc]]].
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>forceLongForm [
+{ #category : #accessing }
+IRMethod >> forceLongForm [
 	compilationContext ifNil: [ ^ false ].
 	^compilationContext optionLongIvarAccessBytecodes
 		
 ]
 
-{
-	#category : #debugging,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>fullBlockInstructionForPC: aPC [
+{ #category : #debugging }
+IRMethod >> fullBlockInstructionForPC: aPC [
 	| pc |
 	"For a given PC, the actual instruction may start N bytes ahead."
 	pc := aPC.
@@ -236,19 +169,13 @@ IRMethod>>fullBlockInstructionForPC: aPC [
 		pc := pc - 1 ].
 ]
 
-{
-	#category : #translating,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>generate [
+{ #category : #translating }
+IRMethod >> generate [
 	^self generate: CompiledMethodTrailer empty
 ]
 
-{
-	#category : #translating,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>generate: trailer [
+{ #category : #translating }
+IRMethod >> generate: trailer [
 	
 	| irTranslator |
    irTranslator := IRTranslatorV2 context: compilationContext trailer: trailer.
@@ -266,11 +193,8 @@ IRMethod>>generate: trailer [
 	^ compiledMethod
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>generateBlock: trailer withScope: scope [
+{ #category : #'as yet unclassified' }
+IRMethod >> generateBlock: trailer withScope: scope [
 	| irTranslator |
       irTranslator := IRTranslatorV2 context: compilationContext trailer: trailer.
 	irTranslator 
@@ -281,29 +205,20 @@ IRMethod>>generateBlock: trailer withScope: scope [
 	^ compiledMethod
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>hasTempVector: aSymbol [
+{ #category : #testing }
+IRMethod >> hasTempVector: aSymbol [
 	startSequence withAllSuccessorsDo: [ :seq | (seq hasTempVector: aSymbol) ifTrue: [ ^ true ]].
 	^ false
 ]
 
-{
-	#category : #scoping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>indexForVarNamed: aName [
+{ #category : #scoping }
+IRMethod >> indexForVarNamed: aName [
 
 	^tempMap at: aName
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>initialize [
+{ #category : #initialization }
+IRMethod >> initialize [
 
 	irPrimitive := IRPrimitive null.
 	tempMap := Dictionary new.
@@ -312,11 +227,8 @@ IRMethod>>initialize [
 	numArgs := 0.
 ]
 
-{
-	#category : #debugging,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>instructionForPC: aPC [
+{ #category : #debugging }
+IRMethod >> instructionForPC: aPC [
 	| initialPC pc |
 	"generates the compiledMethod and optimize the ir. 
 	Removes the side-effect of optimizing the IR while looking for instruction, 
@@ -330,101 +242,68 @@ IRMethod>>instructionForPC: aPC [
 	^self "if we not found anything then this method is our target instruction"
 ]
 
-{
-	#category : #decompiling,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>instructionsForDecompiling [
+{ #category : #decompiling }
+IRMethod >> instructionsForDecompiling [
 	"return all instructions, but skip the block bodies, as the decompiler
 	recurses over blocks"
 	
 	^startSequence instructionsForDecompiling allButFirst.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>ir [
+{ #category : #accessing }
+IRMethod >> ir [
 	^self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>irPrimitive [
+{ #category : #accessing }
+IRMethod >> irPrimitive [
 
 	^ irPrimitive
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>irPrimitive: aPrimitiveNode [
+{ #category : #accessing }
+IRMethod >> irPrimitive: aPrimitiveNode [
 
 	irPrimitive := aPrimitiveNode
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>isPushClosureCopy [
+{ #category : #testing }
+IRMethod >> isPushClosureCopy [
 	^false.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>isSend [
+{ #category : #testing }
+IRMethod >> isSend [
 	^false.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>longPrintOn: stream [
+{ #category : #printing }
+IRMethod >> longPrintOn: stream [
 
 	IRPrinterV2 new
 		stream: stream;
 		visitNode: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>method [
+{ #category : #accessing }
+IRMethod >> method [
 	^self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>numArgs [
+{ #category : #accessing }
+IRMethod >> numArgs [
 
 	^ numArgs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>numArgs: anInteger [
+{ #category : #accessing }
+IRMethod >> numArgs: anInteger [
 
 	numArgs := anInteger
 ]
 
-{
-	#category : #optimizing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>optimize [
+{ #category : #optimizing }
+IRMethod >> optimize [
 	self removeEmptyStart.
 	self compilationContext optionOptimizeIR ifFalse: [^self].
 	self absorbJumpsToSingleInstrs.
@@ -439,38 +318,26 @@ IRMethod>>optimize [
 	self absorbJumpsToSingleInstrs"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>predecessorsOf: aSequence [
+{ #category : #accessing }
+IRMethod >> predecessorsOf: aSequence [
 	| predecessors |
 	predecessors := OrderedCollection new.
 	self allSequences do: [:each | (each successorSequences includes: aSequence) ifTrue: [predecessors add: each]].
 	^predecessors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>properties [
+{ #category : #accessing }
+IRMethod >> properties [
 	^properties
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>properties: propDict [
+{ #category : #accessing }
+IRMethod >> properties: propDict [
 	properties := propDict.
 ]
 
-{
-	#category : #optimizing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>removeEmptyStart [
+{ #category : #optimizing }
+IRMethod >> removeEmptyStart [
 
 	 (startSequence size = 1 and: [ startSequence last isPushClosureCopy not ]) ifTrue: [
         "startSeq is just unconditional jump, forget it"
@@ -478,90 +345,60 @@ IRMethod>>removeEmptyStart [
 
 ]
 
-{
-	#category : #inlining,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>removeReturn [
+{ #category : #inlining }
+IRMethod >> removeReturn [
 	self allSequences last removeLast.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>sourceInterval [
+{ #category : #accessing }
+IRMethod >> sourceInterval [
 	^self sourceNode sourceInterval
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>sourceNode [
+{ #category : #accessing }
+IRMethod >> sourceNode [
 	^sourceNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>sourceNode: aNode [
+{ #category : #accessing }
+IRMethod >> sourceNode: aNode [
 	sourceNode := aNode
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>sourceNodeExecuted  [
+{ #category : #mapping }
+IRMethod >> sourceNodeExecuted [ 
 	"It should not be used directly. But it is needed for fallback call from RBMethodNode>>sourceNodeExecutedForPC:. 
 	Problem that IRMethod can returns itself from  instructionForPC:.
 	So it should only return sourceNode without any analyzis"
 	^sourceNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>startSequence [
+{ #category : #accessing }
+IRMethod >> startSequence [
 
 	^ startSequence
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>startSequence: irSequence [
+{ #category : #initialize }
+IRMethod >> startSequence: irSequence [
 
 	startSequence := irSequence.
 	irSequence method: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>tempKeys [
+{ #category : #accessing }
+IRMethod >> tempKeys [
 
 	^ tempMap keys
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>tempMap [
+{ #category : #accessing }
+IRMethod >> tempMap [
 	^ tempMap
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRMethod>>tempVectorNamed: aName [
+{ #category : #enumerating }
+IRMethod >> tempVectorNamed: aName [
 	
 	^self firstInstructionMatching: [:ir | ir isTempVector and:  [ir name = aName ] ]
 ]

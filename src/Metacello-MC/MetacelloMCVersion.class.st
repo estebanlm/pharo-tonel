@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #MetacelloMCVersion,
 	#superclass : #MetacelloVersion,
 	#instVars : [
 		'loaderPolicy'
 	],
-	#category : #Metacello-MC-Model,
-	#timestamp : ''
+	#category : #Metacello-MC-Model
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>allPackagesForSpecNamed: aStringOrArray [
+{ #category : #querying }
+MetacelloMCVersion >> allPackagesForSpecNamed: aStringOrArray [
 	"resolves list of packages associated with the named spec.
 	   If the spec is a packages, answer a list including the package and the transitive closure on 
 			its #requires: and #includes: fields.
@@ -30,11 +23,8 @@ MetacelloMCVersion>>allPackagesForSpecNamed: aStringOrArray [
 	^self allPackagesForSpecNamed: aStringOrArray ifAbsent: [ ^#() ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>allPackagesForSpecNamed: aStringOrArray ifAbsent: aBlock [
+{ #category : #querying }
+MetacelloMCVersion >> allPackagesForSpecNamed: aStringOrArray ifAbsent: aBlock [
 	"resolves list of packages associated with the named spec.
 	   If the spec is a packages, answer a list including the package and the transitive closure on 
 			its #requires: and #includes: fields.
@@ -52,11 +42,8 @@ MetacelloMCVersion>>allPackagesForSpecNamed: aStringOrArray ifAbsent: aBlock [
 		ifAbsent: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>allPackagesForSpecs: pkgSpecs visited: visited [
+{ #category : #private }
+MetacelloMCVersion >> allPackagesForSpecs: pkgSpecs visited: visited [
 
  
 	| coll |
@@ -67,21 +54,15 @@ MetacelloMCVersion>>allPackagesForSpecs: pkgSpecs visited: visited [
 	^ coll values asOrderedCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>cacheRepository: repository  [
+{ #category : #accessing }
+MetacelloMCVersion >> cacheRepository: repository [ 
 	"by default cacheRepository is an MCDictionaryRepository"
 	
 	self loaderPolicy cacheRepository: repository
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>computeVersionStatus [
+{ #category : #private }
+MetacelloMCVersion >> computeVersionStatus [
 	"
 		#allLoadedToSpec - all projects and packages are loaded and match specification
 		#loadedToSpec - all loaded projects and packages match specifications (at least one package loaded)
@@ -93,49 +74,34 @@ MetacelloMCVersion>>computeVersionStatus [
 	^ #noStatus
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>currentlyLoadedClassesInVersion [
+{ #category : #querying }
+MetacelloMCVersion >> currentlyLoadedClassesInVersion [
 
 	^self spec currentlyLoadedClassesInVersion
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>currentlyLoadedExtensionClassesInVersion [
+{ #category : #querying }
+MetacelloMCVersion >> currentlyLoadedExtensionClassesInVersion [
 
 	^self spec currentlyLoadedExtensionClassesInVersion
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>defaultPackageNamesToLoad [
+{ #category : #querying }
+MetacelloMCVersion >> defaultPackageNamesToLoad [
 	"Answer the list of packages and projects to be loaded --> packages already loaded"
 	
 	^ self defaultPackageNamesToLoad: self spec defaultPackageNames
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>defaultPackageNamesToLoad: defaultList [
+{ #category : #querying }
+MetacelloMCVersion >> defaultPackageNamesToLoad: defaultList [
 	"Answer the list of packages and projects to be loaded: packages already loaded plust defaultList"
 	
 	^ self packageAndProjectNamesToLoad: defaultList loader: self loader
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>doFetchRequiredFromArray: anArray [
+{ #category : #private }
+MetacelloMCVersion >> doFetchRequiredFromArray: anArray [
 
 	| oldPolicy oldBypassProgress displayString |
 	displayString := self versionNumber printString, ' of ', self spec projectLabel.
@@ -152,11 +118,8 @@ MetacelloMCVersion>>doFetchRequiredFromArray: anArray [
 				loaderPolicy := oldPolicy ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>doLoadRequiredFromArray: anArray [
+{ #category : #private }
+MetacelloMCVersion >> doLoadRequiredFromArray: anArray [
 
 	| displayString oldPolicy oldBypassProgress |
 	displayString := self versionNumber printString, ' of ', self spec projectLabel.
@@ -176,11 +139,8 @@ MetacelloMCVersion>>doLoadRequiredFromArray: anArray [
 			loaderPolicy := oldPolicy ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>doRecordRequiredFromArray: anArray [
+{ #category : #private }
+MetacelloMCVersion >> doRecordRequiredFromArray: anArray [
 
 	| originalLoader oldPolicy displayString oldBypassProgress |
 	displayString := self versionNumber printString, ' of ', self spec projectLabel.
@@ -202,11 +162,8 @@ MetacelloMCVersion>>doRecordRequiredFromArray: anArray [
 					loaderPolicy := oldPolicy ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>executeLoadFromArray: anArray [
+{ #category : #private }
+MetacelloMCVersion >> executeLoadFromArray: anArray [
 
 	| loader mcLoader |
 	loader := MetacelloMCVersionSpecLoader on: self spec.
@@ -215,29 +172,20 @@ MetacelloMCVersion>>executeLoadFromArray: anArray [
 	^loader load
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>fetch [
+{ #category : #actions }
+MetacelloMCVersion >> fetch [
 
 	^self doFetchRequiredFromArray: self spec defaultPackageNames
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>fetch: required [
+{ #category : #actions }
+MetacelloMCVersion >> fetch: required [
 
 	^required fetchRequiredForMetacelloMCVersion: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>fetchRequiredFromArray: anArray [
+{ #category : #private }
+MetacelloMCVersion >> fetchRequiredFromArray: anArray [
 	| originalLoader displayString newLoader |
 	originalLoader := self versionSpec loader.
 	newLoader := originalLoader fetchingSpecLoader.
@@ -252,39 +200,27 @@ MetacelloMCVersion>>fetchRequiredFromArray: anArray [
 		displaying: displayString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>ignoreImage: aBool  [
+{ #category : #accessing }
+MetacelloMCVersion >> ignoreImage: aBool [ 
 	"by default ignoreImage is false"
 	
 	self loaderPolicy ignoreImage: aBool
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>load [
+{ #category : #actions }
+MetacelloMCVersion >> load [
 
 	^self doLoadRequiredFromArray: self spec defaultPackageNames
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>load: required [
+{ #category : #actions }
+MetacelloMCVersion >> load: required [
 
 	^required loadRequiredForMetacelloMCVersion: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>loadRequiredFromArray: anArray [
+{ #category : #private }
+MetacelloMCVersion >> loadRequiredFromArray: anArray [
 
 	| displayString |
 	displayString := 'Loading ', self versionNumber printString, ' of ', self spec projectLabel.
@@ -293,38 +229,26 @@ MetacelloMCVersion>>loadRequiredFromArray: anArray [
 		displaying: displayString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>loader: aLoader [
+{ #category : #private }
+MetacelloMCVersion >> loader: aLoader [
 
 	self versionSpec loader: aLoader
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>loaderPolicy [
+{ #category : #accessing }
+MetacelloMCVersion >> loaderPolicy [
 
 	loaderPolicy == nil ifTrue: [ loaderPolicy := MetacelloLoaderPolicy new ].
 	^ loaderPolicy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>loaderPolicy: anObject [
+{ #category : #accessing }
+MetacelloMCVersion >> loaderPolicy: anObject [
 	loaderPolicy := anObject
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>packageAndProjectNamesToLoad: defaultList loader: aLoader [
+{ #category : #querying }
+MetacelloMCVersion >> packageAndProjectNamesToLoad: defaultList loader: aLoader [
 	"Answer the list of packages and projects to be loaded: packages already loaded plust defaultList"
 	
 	| loadedPackageNames projectMap loadedProjectNames list |
@@ -359,11 +283,8 @@ MetacelloMCVersion>>packageAndProjectNamesToLoad: defaultList loader: aLoader [
 	^list
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>packages [
+{ #category : #querying }
+MetacelloMCVersion >> packages [
 	"Answers the list of packages associated with this version"
 
 	| packages |
@@ -372,11 +293,8 @@ MetacelloMCVersion>>packages [
 	^packages
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>packagesForSpecNamed: aString [
+{ #category : #querying }
+MetacelloMCVersion >> packagesForSpecNamed: aString [
 	"resolves list of packages associated with the named spec.
 	   If the spec is a packages, answer a list including only the package. #requires: and #includes:
 			fields in the package are ignored.
@@ -388,11 +306,8 @@ MetacelloMCVersion>>packagesForSpecNamed: aString [
 	^self packagesForSpecNamed: aString ifAbsent: [ ^#() ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>packagesForSpecNamed: aString ifAbsent: aBlock [
+{ #category : #querying }
+MetacelloMCVersion >> packagesForSpecNamed: aString ifAbsent: aBlock [
 	"resolves list of packages associated with the named spec.
 	   If the spec is a packages, answer a list including only the package. #requires: and #includes:
 			fields in the package are ignored.
@@ -406,38 +321,26 @@ MetacelloMCVersion>>packagesForSpecNamed: aString ifAbsent: aBlock [
 	^pkgSpec resolveToPackagesIn: self spec visited: MetacelloVisitedPackages new
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>record [
+{ #category : #actions }
+MetacelloMCVersion >> record [
 
 	^self doRecordRequiredFromArray: self spec defaultPackageNames
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>record: required [
+{ #category : #actions }
+MetacelloMCVersion >> record: required [
 
 	^required recordRequiredForMetacelloMCVersion: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>repositoryOverrides: repositoriesCollection  [
+{ #category : #accessing }
+MetacelloMCVersion >> repositoryOverrides: repositoriesCollection [ 
 
 	self loaderPolicy overrideRepositories: repositoriesCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersion>>silently: aBool  [
+{ #category : #accessing }
+MetacelloMCVersion >> silently: aBool [ 
 	"by default silently is false"
 	
 	self loaderPolicy silently: aBool

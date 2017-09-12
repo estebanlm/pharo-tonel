@@ -6,32 +6,22 @@ Sending me the #import message does nothing :).
 Class {
 	#name : #StyleChunk,
 	#superclass : #CodeChunk,
-	#category : #CodeImport,
-	#timestamp : '<historical>'
+	#category : #CodeImport
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-StyleChunk>>accept: aVisitor [
+{ #category : #'as yet unclassified' }
+StyleChunk >> accept: aVisitor [
 
 	^ aVisitor visitStyleChunk: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-StyleChunk>>description [
+{ #category : #accessing }
+StyleChunk >> description [
 
 	^ 'Style'
 ]
 
-{
-	#category : #importing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-StyleChunk>>importFor: aRequestor logSource: logSource [
+{ #category : #importing }
+StyleChunk >> importFor: aRequestor logSource: logSource [
 	"Nothing to do with style declarations"
 ]

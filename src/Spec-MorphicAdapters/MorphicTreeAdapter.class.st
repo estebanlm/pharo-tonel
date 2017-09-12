@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'treeModel'
 	],
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #'drag and drop - private',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>acceptDroppingMorph: draggedMorph event: event inMorph: source [
+{ #category : #'drag and drop - private' }
+MorphicTreeAdapter >> acceptDroppingMorph: draggedMorph event: event inMorph: source [
 	| item |
 	item := self widget ifNotNil: [ :w | w scrollerSubMorphFromPoint: event position ].
 	item ifNil: [ ^ self ].
@@ -23,29 +19,20 @@ MorphicTreeAdapter>>acceptDroppingMorph: draggedMorph event: event inMorph: sour
 		valueWithEnoughArguments: { draggedMorph model model. event. source model model model. item model nodeModel}
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>autoDeselection [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> autoDeselection [
 
 	^ self model autoDeselection
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>autoMultiSelection [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> autoMultiSelection [
 
 	^ self model autoMultiSelection
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>buildWidget [
+{ #category : #factory }
+MorphicTreeAdapter >> buildWidget [
 	^ MorphTreeMorph new
 		model: self treeModel;
 		dragEnabled: self dragEnabled;
@@ -71,56 +58,38 @@ MorphicTreeAdapter>>buildWidget [
 		yourself
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>changed: aSymbol [
+{ #category : #updating }
+MorphicTreeAdapter >> changed: aSymbol [
 
 	treeModel changed: aSymbol
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>childrenFor: aNode [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> childrenFor: aNode [
 
 	^ self model childrenFor: aNode
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>collapseAll [
+{ #category : #'spec protocol' }
+MorphicTreeAdapter >> collapseAll [
 
 	self treeModel collapseAll
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>columnInset [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> columnInset [
 
 	^ self model columnInset
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>columns [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> columns [
 
 	^ self model columns collect: [ :each | each buildWithSpec ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>columns: newColumns [
+{ #category : #'spec protocol' }
+MorphicTreeAdapter >> columns: newColumns [
 
 	self widgetDo: [ :w || columns |
 		columns := newColumns collect: [ :each | each buildWithSpec ]. 
@@ -129,11 +98,8 @@ MorphicTreeAdapter>>columns: newColumns [
 		w updateList ]
 ]
 
-{
-	#category : #'reflective operations',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>doesNotUnderstand: aMessage [
+{ #category : #'reflective operations' }
+MorphicTreeAdapter >> doesNotUnderstand: aMessage [
 
 	(self treeModel respondsTo: aMessage selector) 
 		ifFalse: [ ^ super doesNotUnderstand: aMessage ].
@@ -143,56 +109,38 @@ MorphicTreeAdapter>>doesNotUnderstand: aMessage [
 		withArguments: aMessage arguments
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>doubleClick [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> doubleClick [
 
 	^ self model doubleClick
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>evenRowColor [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> evenRowColor [
 
 	^ self model evenRowColor
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>evenRowColor: aColor [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> evenRowColor: aColor [
 
 	^ self widget rowColorForEven: aColor
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>expandAll [
+{ #category : #'spec protocol' }
+MorphicTreeAdapter >> expandAll [
 
 	self treeModel expandAll
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>expandRoots [
+{ #category : #'spec protocol' }
+MorphicTreeAdapter >> expandRoots [
 
 	self treeModel expandRoots
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>filterWith: aFilter [
+{ #category : #'spec protocol' }
+MorphicTreeAdapter >> filterWith: aFilter [
 	
 	self widgetDo: [ :w || nodes |
 		nodes := w model rootNodes.
@@ -203,29 +151,20 @@ MorphicTreeAdapter>>filterWith: aFilter [
 		self changed: #rootNodes ].
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>iconBlock [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> iconBlock [
 
 	^ [:each | self iconFor: each ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>iconFor: aNode [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> iconFor: aNode [
 
 	^ self model iconFor: aNode
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>initialize [
+{ #category : #initialize }
+MorphicTreeAdapter >> initialize [
 
 	super initialize.
 
@@ -236,75 +175,51 @@ MorphicTreeAdapter>>initialize [
 		to: self.
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>isCheckList [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> isCheckList [
 
 	^ self model isCheckList
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>isCheckList: aBoolean [
+{ #category : #'spec protocol' }
+MorphicTreeAdapter >> isCheckList: aBoolean [
 
 	self widgetDo: [ :w | w isCheckList: aBoolean ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>keyStroke: aKeyStroke [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> keyStroke: aKeyStroke [
 
 	^ self model keyStroke: aKeyStroke
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>menu: aMenu shifted: aBoolean [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> menu: aMenu shifted: aBoolean [
 
 	^ (self model menu: aMenu shifted: aBoolean) 
 		ifNotNil: [ :menuModel | menuModel buildWithSpecAsPopup ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>multiSelection [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> multiSelection [
 
 	^ self model multiSelection
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>oddRowColor [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> oddRowColor [
 
 	^ self model oddRowColor
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>oddRowColor: aColor [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> oddRowColor: aColor [
 
 	^ self widget rowColorForOdd: aColor
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>onMorphTreeSelectionChanged: ann [
+{ #category : #'spec protocol' }
+MorphicTreeAdapter >> onMorphTreeSelectionChanged: ann [
 	| items |
 	
 	items := (ann selection
@@ -316,38 +231,26 @@ MorphicTreeAdapter>>onMorphTreeSelectionChanged: ann [
 	self model selectedItems: items
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>preferedPaneColor [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> preferedPaneColor [
 
 	^ self model preferedPaneColor
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>removeRootsSuchAs: aBlock [
+{ #category : #'spec protocol' }
+MorphicTreeAdapter >> removeRootsSuchAs: aBlock [
 
 	self widgetDo: [ :w | w model rootNodes removeAllSuchThat: [ :node | aBlock value: node nodeModel ] ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>resizerWidth [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> resizerWidth [
 
 	^ self model resizerWidth
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>rootNodeFromItem: item [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> rootNodeFromItem: item [
 	| node |
 	
 	node := item isTreeNodeModel
@@ -358,83 +261,56 @@ MorphicTreeAdapter>>rootNodeFromItem: item [
 	^ node buildWithSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>rootNodeHolder [
+{ #category : #accessing }
+MorphicTreeAdapter >> rootNodeHolder [
 
 	^ self model rootNodeHolder
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>roots [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> roots [
 
 	^ self model roots
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>rowInset [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> rowInset [
 
 	^ self model rowInset
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>selectAdd [
+{ #category : #'spec protocol' }
+MorphicTreeAdapter >> selectAdd [
 
 	self widgetDo: [ :w | w selectAll ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>selectOnlyLastHighlighted [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> selectOnlyLastHighlighted [
 
 	^ self model selectOnlyLastHighlighted
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>setRoots: aCollection [
+{ #category : #'spec protocol' }
+MorphicTreeAdapter >> setRoots: aCollection [
 
 	treeModel rootItems: aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>treeModel [
+{ #category : #accessing }
+MorphicTreeAdapter >> treeModel [
 	^ treeModel
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>updateTree [
+{ #category : #protocol }
+MorphicTreeAdapter >> updateTree [
 
 	self treeModel resetRootNodes.
 	self treeModel changed: #rootNodes.
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeAdapter>>wrapItem: anItem [
+{ #category : #'widget API' }
+MorphicTreeAdapter >> wrapItem: anItem [
 
 	^ self model wrapItem: anItem
 ]

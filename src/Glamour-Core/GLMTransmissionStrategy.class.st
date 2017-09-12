@@ -7,63 +7,41 @@ Class {
 	#instVars : [
 		'transmission'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'tg 2/20/2010 14:45'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionStrategy class>>of: aTransmission [
+{ #category : #'instance creation' }
+GLMTransmissionStrategy class >> of: aTransmission [
 	^ self new transmission: aTransmission; yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionStrategy>>addPresentation: aPresentation [
+{ #category : #accessing }
+GLMTransmissionStrategy >> addPresentation: aPresentation [
 	"do nothing by default"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionStrategy>>addPresentations: aCollection [
+{ #category : #accessing }
+GLMTransmissionStrategy >> addPresentations: aCollection [
 	"do nothing by default"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionStrategy>>presentations [
+{ #category : #accessing }
+GLMTransmissionStrategy >> presentations [
 	^ OrderedCollection new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionStrategy>>transmission [
+{ #category : #accessing }
+GLMTransmissionStrategy >> transmission [
 	^ transmission
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionStrategy>>transmission: anObject [
+{ #category : #accessing }
+GLMTransmissionStrategy >> transmission: anObject [
 	transmission := anObject
 ]
 
-{
-	#category : #transmitting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTransmissionStrategy>>transmitIn: aContext [
+{ #category : #transmitting }
+GLMTransmissionStrategy >> transmitIn: aContext [
 	"override this method to add the desired semantics"
 	self subclassResponsibility
 ]

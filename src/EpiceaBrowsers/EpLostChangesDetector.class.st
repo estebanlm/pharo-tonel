@@ -12,24 +12,17 @@ Class {
 	#classInstVars : [
 		'enabled'
 	],
-	#category : #EpiceaBrowsers-Integration,
-	#timestamp : 'DenisKudryashov 5/27/2016 17:17'
+	#category : #EpiceaBrowsers-Integration
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLostChangesDetector class>>enabled: aBoolean [
+{ #category : #accessing }
+EpLostChangesDetector class >> enabled: aBoolean [
 
 	enabled := aBoolean
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLostChangesDetector class>>initialize [
+{ #category : #initialization }
+EpLostChangesDetector class >> initialize [
 	"
 	self initialize
 	"
@@ -37,40 +30,28 @@ EpLostChangesDetector class>>initialize [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLostChangesDetector class>>isEnabled [
+{ #category : #testing }
+EpLostChangesDetector class >> isEnabled [
 
 	^ enabled ifNil: [ enabled := true ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLostChangesDetector class>>new [
+{ #category : #'instance creation' }
+EpLostChangesDetector class >> new [
 
 	^ self newWithLog: EpMonitor current log
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLostChangesDetector class>>newWithLog: aLog [
+{ #category : #'instance creation' }
+EpLostChangesDetector class >> newWithLog: aLog [
 
 	^ self basicNew
 		initializeWithLog: aLog;
 		yourself
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLostChangesDetector class>>startUp: isImageStarting [
+{ #category : #'system startup' }
+EpLostChangesDetector class >> startUp: isImageStarting [
 
 	| detector |
 	(isImageStarting and: [ 
@@ -87,20 +68,14 @@ EpLostChangesDetector class>>startUp: isImageStarting [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLostChangesDetector>>hasLostChanges [
+{ #category : #testing }
+EpLostChangesDetector >> hasLostChanges [
 	
 	^ hasLostChanges
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLostChangesDetector>>initializeWithLog: aLog [
+{ #category : #initialization }
+EpLostChangesDetector >> initializeWithLog: aLog [
 
 	self initialize.
 	
@@ -112,11 +87,8 @@ EpLostChangesDetector>>initializeWithLog: aLog [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLostChangesDetector>>lostChanges [
+{ #category : #accessing }
+EpLostChangesDetector >> lostChanges [
 
 	| freshLog lastSessionHeadReference entries |
 	self hasLostChanges ifFalse: [ ^ #() ]. "Start by fastest available check: file size"
@@ -131,11 +103,8 @@ EpLostChangesDetector>>lostChanges [
 	^ entries ifNotEmpty: [ entries allButLast "reject lastSessionHeadReference's change"]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLostChangesDetector>>openBrowserIfLostChanges [
+{ #category : #accessing }
+EpLostChangesDetector >> openBrowserIfLostChanges [
 
 	| lostChanges lostChangesLog browser |
 	lostChanges := self lostChanges collect: #content.

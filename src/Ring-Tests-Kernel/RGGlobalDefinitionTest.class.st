@@ -4,15 +4,11 @@ SUnit tests for global definitions (pools, global variables)
 Class {
 	#name : #RGGlobalDefinitionTest,
 	#superclass : #TestCase,
-	#category : #Ring-Tests-Kernel,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:09'
+	#category : #Ring-Tests-Kernel
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGGlobalDefinitionTest>>testEquality [
+{ #category : #testing }
+RGGlobalDefinitionTest >> testEquality [
 	| global1 global2 |
 	
 	global1 := RGGlobalVariableDefinition named: #Transcript.
@@ -23,11 +19,8 @@ RGGlobalDefinitionTest>>testEquality [
 	self deny: global1 = global2.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGGlobalDefinitionTest>>testGlobalVariableDefinition [
+{ #category : #testing }
+RGGlobalDefinitionTest >> testGlobalVariableDefinition [
 	| global  |
 	
 	global:= RGGlobalVariableDefinition named:  #Transcript.
@@ -35,11 +28,8 @@ RGGlobalDefinitionTest>>testGlobalVariableDefinition [
 	self assert: (global parent = Smalltalk globals).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGGlobalDefinitionTest>>testPoolDefinition [
+{ #category : #testing }
+RGGlobalDefinitionTest >> testPoolDefinition [
 	| pool newClass |
 	pool := RGClassDefinition createSharedPoolNamed: #TextConstants.
 	self assert: pool isPool.

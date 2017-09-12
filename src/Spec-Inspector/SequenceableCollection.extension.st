@@ -1,11 +1,6 @@
-Extension {
-	#name : #SequenceableCollection
-}
+Extension { #name : #SequenceableCollection }
 
-{
-	#category : #'*Spec-Inspector',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SequenceableCollection class>>inspectorClass [
+{ #category : #'*Spec-Inspector' }
+SequenceableCollection class >> inspectorClass [
 	^ EyeCollectionInspector
 ]

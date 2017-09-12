@@ -1,11 +1,6 @@
-Extension {
-	#name : #FileReference
-}
+Extension { #name : #FileReference }
 
-{
-	#category : #'*monticellofiletree-filesystem-utilities',
-	#timestamp : ' 8/31/2017 07:16:59'
-}
-FileReference>>fileTreeUtilityClass [
+{ #category : #'*monticellofiletree-filesystem-utilities' }
+FileReference >> fileTreeUtilityClass [
     ^ MCFileTreeFileSystemUtils
 ]

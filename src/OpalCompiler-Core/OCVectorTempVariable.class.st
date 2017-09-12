@@ -7,57 +7,38 @@ Class {
 	#instVars : [
 		'vectorName'
 	],
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : 'MarcusDenker 8/11/2014 10:20'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #emitting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCVectorTempVariable>>emitStore: methodBuilder [
+{ #category : #emitting }
+OCVectorTempVariable >> emitStore: methodBuilder [
 
 	methodBuilder storeRemoteTemp: name inVector: vectorName.
 ]
 
-{
-	#category : #emitting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCVectorTempVariable>>emitValue: methodBuilder [
+{ #category : #emitting }
+OCVectorTempVariable >> emitValue: methodBuilder [
 
 	methodBuilder pushRemoteTemp: name inVector: vectorName.
 ]
 
-{
-	#category : #debugging,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCVectorTempVariable>>indexFromIR [
+{ #category : #debugging }
+OCVectorTempVariable >> indexFromIR [
 	^scope methodScope node irInstruction indexForVarNamed: name
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCVectorTempVariable>>isRemote [
+{ #category : #testing }
+OCVectorTempVariable >> isRemote [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCVectorTempVariable>>isTempVectorTemp [
+{ #category : #testing }
+OCVectorTempVariable >> isTempVectorTemp [
 	^true
 ]
 
-{
-	#category : #debugging,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCVectorTempVariable>>readFromContext: aContext scope: contextScope [
+{ #category : #debugging }
+OCVectorTempVariable >> readFromContext: aContext scope: contextScope [
 
 	| offset pairVariableVector |
 	pairVariableVector := contextScope lookupTempVector: vectorName inContext: aContext.
@@ -65,11 +46,8 @@ OCVectorTempVariable>>readFromContext: aContext scope: contextScope [
 	^pairVariableVector second at: offset.
 ]
 
-{
-	#category : #debugging,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCVectorTempVariable>>searchFromContext: aContext scope: contextScope [
+{ #category : #debugging }
+OCVectorTempVariable >> searchFromContext: aContext scope: contextScope [
 
 	| offset pairVariableVector |
 	pairVariableVector := contextScope lookupTempVector: vectorName inContext: aContext.
@@ -77,27 +55,18 @@ OCVectorTempVariable>>searchFromContext: aContext scope: contextScope [
 	^pairVariableVector second at: offset.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCVectorTempVariable>>vectorName [
+{ #category : #accessing }
+OCVectorTempVariable >> vectorName [
 	^ vectorName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCVectorTempVariable>>vectorName: anObject [
+{ #category : #accessing }
+OCVectorTempVariable >> vectorName: anObject [
 	vectorName := anObject
 ]
 
-{
-	#category : #debugging,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCVectorTempVariable>>writeFromContext: aContext scope: contextScope value: aValue [
+{ #category : #debugging }
+OCVectorTempVariable >> writeFromContext: aContext scope: contextScope value: aValue [
 	| tempVectorVar theVector offset |
 	tempVectorVar := contextScope lookupVar: vectorName.
 	theVector := tempVectorVar readFromContext: aContext scope: tempVectorVar scope.

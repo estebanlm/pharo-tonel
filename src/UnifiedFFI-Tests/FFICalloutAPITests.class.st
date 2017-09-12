@@ -1,109 +1,69 @@
-"
-
-"
 Class {
 	#name : #FFICalloutAPITests,
 	#superclass : #TestCase,
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>ffiCalloutClass [
+{ #category : #running }
+FFICalloutAPITests >> ffiCalloutClass [
 	^ FFICalloutAPI
 ]
 
-{
-	#category : #'primitives atomic',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>ffiCopyString: aString to: dest [
+{ #category : #'primitives atomic' }
+FFICalloutAPITests >> ffiCopyString: aString to: dest [
 	^ self ffiCall: #( String strcpy ( String dest, String aString ) )
 ]
 
-{
-	#category : #'primitives atomic',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>ffiDoubleAbs: number  [
+{ #category : #'primitives atomic' }
+FFICalloutAPITests >> ffiDoubleAbs: number [ 
 	^ self ffiCall: #( double DoubleAbsolute (double number) ) options: #(+optCallbackCall)
 ]
 
-{
-	#category : #'primitives atomic',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>ffiFloatAbs: number  [
+{ #category : #'primitives atomic' }
+FFICalloutAPITests >> ffiFloatAbs: number [ 
 	^ self ffiCall: #( float FloatAbsolute (float number) ) options: #(+optCallbackCall)
 ]
 
-{
-	#category : #'primitives atomic',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>ffiIntAbs: number [
+{ #category : #'primitives atomic' }
+FFICalloutAPITests >> ffiIntAbs: number [
 	^ self ffiCall: #( int abs ( int number ) )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>ffiLibraryName [
+{ #category : #accessing }
+FFICalloutAPITests >> ffiLibraryName [
 	^ LibC
 ]
 
-{
-	#category : #'primitives atomic',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>ffiLongLongAbs: number [
+{ #category : #'primitives atomic' }
+FFICalloutAPITests >> ffiLongLongAbs: number [
 	^ self ffiCall: #( longlong llabs (longlong number) )
 ]
 
-{
-	#category : #'primitives constant',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>ffiTestConstantFormat: format to: buffer [
+{ #category : #'primitives constant' }
+FFICalloutAPITests >> ffiTestConstantFormat: format to: buffer [
 	^ self ffiCall: #( int sprintf ( ByteArray buffer, String format, 65, 65, true ) )
 ]
 
-{
-	#category : #'primitives constant',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>ffiTestContantFormat: format value: aNumber to: buffer [
+{ #category : #'primitives constant' }
+FFICalloutAPITests >> ffiTestContantFormat: format value: aNumber to: buffer [
 	^ self ffiCall: #( int sprintf ( ByteArray buffer, String format, 65, 65, long aNumber ) )
 ]
 
-{
-	#category : #'primitives atomic',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>ffiToLower: c [
+{ #category : #'primitives atomic' }
+FFICalloutAPITests >> ffiToLower: c [
 	^ self ffiCall: #( char tolower (char c) )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>method1  [
+{ #category : #accessing }
+FFICalloutAPITests >> method1 [ 
 	| object index |
 	object := FFICalloutObjectForTest new.
 	index := FFICalloutObjectForTest class instVarIndexFor: #handle ifAbsent: [ nil ].
 	^ object instVarAt: index.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>method2 [
+{ #category : #accessing }
+FFICalloutAPITests >> method2 [
 	| result tmpResult |
 	
 	result := self call: {1. 2. 3. 4}.
@@ -114,33 +74,24 @@ FFICalloutAPITests>>method2 [
 	
 ]
 
-{
-	#category : #'primitives pointer',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>primFromByteArray: src toExternalAddress: dest size: n [
+{ #category : #'primitives pointer' }
+FFICalloutAPITests >> primFromByteArray: src toExternalAddress: dest size: n [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode >
 	^ self 
 		ffiCall: #( void *memcpy(ExternalAddress dest, ByteArray src, size_t n) )
 		module: LibC
 ]
 
-{
-	#category : #'primitives pointer',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>primMemMoveFrom: src to: dest size: n [
+{ #category : #'primitives pointer' }
+FFICalloutAPITests >> primMemMoveFrom: src to: dest size: n [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode >
 	^ self 
 		ffiCall: #( void *memcpy(void *dest, const void *src, size_t n) )
 		module: LibC
 ]
 
-{
-	#category : #'primitives pointer',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>primStr: aString cat: otherString   [
+{ #category : #'primitives pointer' }
+FFICalloutAPITests >> primStr: aString cat: otherString [  
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode >
 	^ self 
 		ffiCall: #( char *strcat ( char *aString, char *otherString ) )
@@ -148,21 +99,15 @@ FFICalloutAPITests>>primStr: aString cat: otherString   [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>resetFFIMethods [
+{ #category : #running }
+FFICalloutAPITests >> resetFFIMethods [
 	| ffiMethods |
 	ffiMethods := FFICalloutAPITests methodDict select: [ :method | (method selector beginsWith: 'ffi') or: [method selector beginsWith: 'prim'] ].
 	ffiMethods do: #recompile
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>runCase  [
+{ #category : #running }
+FFICalloutAPITests >> runCase [ 
 	| oldAPIClass |
 	
 	"Ensure I use this class for running the tests"
@@ -172,11 +117,8 @@ FFICalloutAPITests>>runCase  [
 	ensure: [ FFICalloutAPI calloutAPIClass: oldAPIClass ]
 ]
 
-{
-	#category : #'tests pointer',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>testByteArrayToExternalAddress [
+{ #category : #'tests pointer' }
+FFICalloutAPITests >> testByteArrayToExternalAddress [
 	| result dest |
 	
 
@@ -189,11 +131,8 @@ FFICalloutAPITests>>testByteArrayToExternalAddress [
 	
 ]
 
-{
-	#category : #'tests constant',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>testCallWithAllConstParameter [
+{ #category : #'tests constant' }
+FFICalloutAPITests >> testCallWithAllConstParameter [
 	"Tests a function in the form: 
 	
 	self nbCall: #( long ffiTestInts ( 65, 65, 65, long aNumber ) )
@@ -208,11 +147,8 @@ FFICalloutAPITests>>testCallWithAllConstParameter [
 	self assert: (buffer first: result) asString equals: '65, 65 and 1'
 ]
 
-{
-	#category : #'tests constant',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>testCallWithConstParameter [
+{ #category : #'tests constant' }
+FFICalloutAPITests >> testCallWithConstParameter [
 	"Tests a function in the form: 
 	
 	self nbCall: #( long ffiTestInts ( 65, 65, 65, long aNumber ) )
@@ -227,11 +163,8 @@ FFICalloutAPITests>>testCallWithConstParameter [
 	self assert: (buffer first: result) asString equals: '65, 65 and 1'
 ]
 
-{
-	#category : #'tests object',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>testCallWithObjectCreation [
+{ #category : #'tests object' }
+FFICalloutAPITests >> testCallWithObjectCreation [
 	"Test a call of the form: 
 	
 		self nbCall: #( NBFFICalloutVMObjectForTest malloc ( size_t size ) )
@@ -250,11 +183,8 @@ FFICalloutAPITests>>testCallWithObjectCreation [
 		object ifNotNil: [ object free ] ]
 ]
 
-{
-	#category : #'tests object',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>testCallWithObjectParameter [
+{ #category : #'tests object' }
+FFICalloutAPITests >> testCallWithObjectParameter [
 	"Test a call of the form: 
 	
 		self nbCall: #( void function ( self ) )
@@ -274,11 +204,8 @@ FFICalloutAPITests>>testCallWithObjectParameter [
 	self assert: object handle asString = (text copyWith: (Character value: 0))
 ]
 
-{
-	#category : #'tests object',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>testCallWithSelfParameter [
+{ #category : #'tests object' }
+FFICalloutAPITests >> testCallWithSelfParameter [
 	"Test a call of the form: 
 	
 		self nbCall: #( void function ( self ) )
@@ -295,11 +222,8 @@ FFICalloutAPITests>>testCallWithSelfParameter [
 	self assert: object handle asString = ('Hello, World' copyWith: (Character value: 0))
 ]
 
-{
-	#category : #'tests atomic',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>testCharCall [
+{ #category : #'tests atomic' }
+FFICalloutAPITests >> testCharCall [
 	"Test using generic FFI spec"
 	| result  |
 	
@@ -317,11 +241,8 @@ FFICalloutAPITests>>testCharCall [
 
 ]
 
-{
-	#category : #'tests pointer',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>testCharPointer [
+{ #category : #'tests pointer' }
+FFICalloutAPITests >> testCharPointer [
 	| result |
 	result := self 
 		primStr: ('Hello, ' asByteArray copyWith: 0) 
@@ -329,11 +250,8 @@ FFICalloutAPITests>>testCharPointer [
 	self assert: result = 'Hello, World'.
 ]
 
-{
-	#category : #'tests atomic',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>testDoubleCall [
+{ #category : #'tests atomic' }
+FFICalloutAPITests >> testDoubleCall [
 	"Test using generic FFI spec"
 	| callback result |
 	
@@ -356,11 +274,8 @@ FFICalloutAPITests>>testDoubleCall [
 
 ]
 
-{
-	#category : #'tests atomic',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>testFloatCall [
+{ #category : #'tests atomic' }
+FFICalloutAPITests >> testFloatCall [
 	"Test using generic FFI spec"
 	| callback result |
 	
@@ -385,11 +300,8 @@ FFICalloutAPITests>>testFloatCall [
 
 ]
 
-{
-	#category : #'tests atomic',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>testIntCall [
+{ #category : #'tests atomic' }
+FFICalloutAPITests >> testIntCall [
 	"Test using generic FFI spec"
 	| result |
 	
@@ -407,11 +319,8 @@ FFICalloutAPITests>>testIntCall [
 
 ]
 
-{
-	#category : #'tests atomic',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>testLongLongs [
+{ #category : #'tests atomic' }
+FFICalloutAPITests >> testLongLongs [
 	"Test passing and returning longlongs"
 	| long1 long2 result  |
 	
@@ -429,11 +338,8 @@ FFICalloutAPITests>>testLongLongs [
 	self assert: result equals: long2 abs.
 ]
 
-{
-	#category : #'tests atomic',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>testPrintString [
+{ #category : #'tests atomic' }
+FFICalloutAPITests >> testPrintString [
 	"Test using generic FFI spec"
 	| result buffer |
 	
@@ -443,11 +349,8 @@ FFICalloutAPITests>>testPrintString [
 	self assert: buffer asString equals: 'Hello World!'.	
 ]
 
-{
-	#category : #'tests pointer',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPITests>>testVoidPointer [
+{ #category : #'tests pointer' }
+FFICalloutAPITests >> testVoidPointer [
 	| result dest |
 	
 	result := self 

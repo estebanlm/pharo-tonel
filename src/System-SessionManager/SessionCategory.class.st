@@ -10,98 +10,67 @@ Class {
 		'name',
 		'priorityLists'
 	],
-	#category : #System-SessionManager,
-	#timestamp : 'ChristopheDemarey 10/2/2015 11:14'
+	#category : #System-SessionManager
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionCategory>>defaultPriority [
+{ #category : #accessing }
+SessionCategory >> defaultPriority [
 	"Completely arbitrary by now"
 	^ 100
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionCategory>>initialize [
+{ #category : #initialization }
+SessionCategory >> initialize [
 	super initialize.
 	priorityLists := Dictionary new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionCategory>>listAtPriority: anInteger  [
+{ #category : #private }
+SessionCategory >> listAtPriority: anInteger [ 
 	^ priorityLists
 		at: anInteger
 		ifAbsentPut: [ OrderedCollection new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionCategory>>name [
+{ #category : #accessing }
+SessionCategory >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionCategory>>name: aString  [
+{ #category : #accessing }
+SessionCategory >> name: aString [ 
 	name := aString
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionCategory>>printOn: aStream  [
+{ #category : #printing }
+SessionCategory >> printOn: aStream [ 
 	super printOn: aStream.
 	aStream nextPut: $(;
 		nextPutAll: self name;
 		nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionCategory>>prioritizedList [
+{ #category : #accessing }
+SessionCategory >> prioritizedList [
 	^ priorityLists keys sorted 
 		flatCollect: [ :index | priorityLists at: index ]
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionCategory>>register: anObject  [
+{ #category : #registration }
+SessionCategory >> register: anObject [ 
 	self
 		register: anObject
 		atPriority: self defaultPriority
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionCategory>>register: anObject atPriority: anInteger  [
+{ #category : #registration }
+SessionCategory >> register: anObject atPriority: anInteger [ 
 	(self listAtPriority: anInteger)
 		addLast: anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionCategory>>renamedClass: aClass from: oldName to: newName [
+{ #category : #private }
+SessionCategory >> renamedClass: aClass from: oldName to: newName [
 	
 	priorityLists do: [ :handlers |
 		handlers 
@@ -110,11 +79,8 @@ SessionCategory>>renamedClass: aClass from: oldName to: newName [
 
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionCategory>>unregisterHandler: anHandlerId  [
+{ #category : #registration }
+SessionCategory >> unregisterHandler: anHandlerId [ 
 	priorityLists values
 		do: [ :handlers |
 				handlers 

@@ -12,34 +12,24 @@ To be able to pass an object as ""self "" it need to accomplish one of this cond
 Class {
 	#name : #FFISelfArgument,
 	#superclass : #FFIFunctionArgument,
-	#category : #UnifiedFFI,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFISelfArgument>>emitArgument: aBuilder context: aContext [
+{ #category : #'emitting code' }
+FFISelfArgument >> emitArgument: aBuilder context: aContext [
 	aBuilder pushReceiver
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFISelfArgument>>emitArgument: aBuilder context: aContext objectClass: objectClass instVarName: aName [
+{ #category : #'emitting code' }
+FFISelfArgument >> emitArgument: aBuilder context: aContext objectClass: objectClass instVarName: aName [
 	"If argument is an object, I need to send value of instVar handle instead it self"
 	aBuilder pushInstVar: (objectClass 
 		instVarIndexFor: aName 
 		ifAbsent: [ self error: 'No ', aName, ' instVar' ])
 ]
 
-{
-	#category : #'private emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFISelfArgument>>emitArgumentVariableAccesingPart: aBuilder context: aContext objectClass: objectClass instVarName: aName [
+{ #category : #'private emitting code' }
+FFISelfArgument >> emitArgumentVariableAccesingPart: aBuilder context: aContext objectClass: objectClass instVarName: aName [
 
 	aBuilder 
 		pushReceiver;
@@ -48,10 +38,7 @@ FFISelfArgument>>emitArgumentVariableAccesingPart: aBuilder context: aContext ob
 			ifAbsent: [ self error: 'No ', aName, ' instVar' ])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFISelfArgument>>rolledPointerTempName [
+{ #category : #private }
+FFISelfArgument >> rolledPointerTempName [
 	^ self rolledPointerTempNameFor: #self
 ]

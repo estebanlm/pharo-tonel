@@ -31,33 +31,23 @@ Class {
 	#classInstVars : [
 		'lifoCallbackSemaphore'
 	],
-	#category : #Alien-Core,
-	#timestamp : ''
+	#category : #Alien-Core
 }
 
-{
-	#category : #'primitives-memory management',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>Ccalloc: byteSize "<Integer> ^<Integer>" [
+{ #category : #'primitives-memory management' }
+Alien class >> Ccalloc: byteSize [ "<Integer> ^<Integer>"
 	<primitive: 'primCalloc' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #'primitives-memory management',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>Cmalloc: byteSize "<Integer> ^<Integer>" [
+{ #category : #'primitives-memory management' }
+Alien class >> Cmalloc: byteSize [ "<Integer> ^<Integer>"
 	<primitive: 'primMalloc' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>atAddress: pointer "<Integer>" "^<Alien>" [
+{ #category : #'instance creation' }
+Alien class >> atAddress: pointer [ "<Integer>" "^<Alien>"
 	"N.B.  This method assumes one is creating a pointer to already initialized data, hence initiaize is not sent.
 	(Perhaps some alternative, eg. initializePointer, should be sent?"
 	^(self basicNew: WordSize * 2)
@@ -66,11 +56,8 @@ Alien class>>atAddress: pointer "<Integer>" "^<Alien>" [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>atAddress: address "<Integer>" dataSize: dataByteSize "<Integer>" "^<Alien>" [
+{ #category : #'instance creation' }
+Alien class >> atAddress: address "<Integer>" dataSize: dataByteSize [ "<Integer>" "^<Alien>"
 	"N.B.  This method assumes one is creating a pointer to already initialized data, hence initiaize is not sent.
 	(Perhaps some alternative, eg. initializePointer, should be sent?"
 	^(self basicNew: WordSize * 2)
@@ -79,21 +66,15 @@ Alien class>>atAddress: address "<Integer>" dataSize: dataByteSize "<Integer>" "
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>dataSize "^<Integer>" [
+{ #category : #'instance creation' }
+Alien class >> dataSize [ "^<Integer>"
 	"Answer the number of bytes required to represent an instance of the receiver.
 	This excludes the size word's own bytes and is just the size of the data."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>ensureInSpecialObjectsArray [
+{ #category : #'class initialization' }
+Alien class >> ensureInSpecialObjectsArray [
 	"Alien must be in the specialObjectsArray to enable the Newsqueak FFI.  Because of
 	 the bootstrap the specialObjectsArray may already have been partially initialized with
 	 the callback selector and to be large enough (as part of loading immutability), but
@@ -121,11 +102,8 @@ Alien class>>ensureInSpecialObjectsArray [
 		[Smalltalk specialObjectsArray at: index put: self]
 ]
 
-{
-	#category : #libraries,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>ensureLoaded: aLibraryName "<String> ^<Alien>" [
+{ #category : #libraries }
+Alien class >> ensureLoaded: aLibraryName [ "<String> ^<Alien>"
 	^LoadedLibraries
 		at: aLibraryName
 		ifAbsentPut:
@@ -138,11 +116,8 @@ Alien class>>ensureLoaded: aLibraryName "<String> ^<Alien>" [
 			 alien]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>ensureNotifiedAtStartup [
+{ #category : #'class initialization' }
+Alien class >> ensureNotifiedAtStartup [
 	"Alien needs to be notified at system startup to clear the LoadedLibraries table
 	and otherwise sanitise Aliens with dangling pointers."
 	self ~~ Alien ifTrue: [^self].
@@ -154,11 +129,8 @@ Alien class>>ensureNotifiedAtStartup [
 		ifNil: [Smalltalk addToStartUpList: self after: Delay]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>exampleCqsort [
+{ #category : #examples }
+Alien class >> exampleCqsort [
 	"Call the libc qsort function (which requires a callback)."
 	"Alien exampleCqsort"
 	"(Time millisecondsToRun: [100 timesRepeat: [Alien exampleCqsort]]) / 100.0"
@@ -182,11 +154,8 @@ Alien class>>exampleCqsort [
 	^orig -> sort
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>exampleEnumFontFamiliesEx [
+{ #category : #examples }
+Alien class >> exampleEnumFontFamiliesEx [
 	"Call the Win32 EnumFontFamiliesEx function."
 	"Alien exampleEnumFontFamiliesEx"
 	"(Time millisecondsToRun: [1000 timesRepeat: [Alien exampleEnumFontFamiliesEx]]) / 1000.0"
@@ -218,11 +187,8 @@ Alien class>>exampleEnumFontFamiliesEx [
 	^(err signedLongAt: 1) -> fontNames -> fontNames size
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>exampleEnumWindows [
+{ #category : #examples }
+Alien class >> exampleEnumWindows [
 	"Call the Win32 EnumWindows function, which takes a callback.
 	Count how many windows.  Use an Alien to hold the counter on the C heap.
 	Answer the count of windows (number of callbacks)."
@@ -242,11 +208,8 @@ Alien class>>exampleEnumWindows [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>exampleEnumWindowsCallbackPerformance [
+{ #category : #examples }
+Alien class >> exampleEnumWindowsCallbackPerformance [
 	"Measure the speed of callbacks using the Win32 EnumWindows function.
 	Count how many windows using a Smalltalk counter.
 	Answer seconds -> callbacks -> microseconds per callback."
@@ -268,11 +231,8 @@ Alien class>>exampleEnumWindowsCallbackPerformance [
 	^ms / 1000.0 -> count -> (ms * 1000.0 / count)
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>exampleEnumWindowsSimple [
+{ #category : #examples }
+Alien class >> exampleEnumWindowsSimple [
 	"Call the Win32 EnumWindows function, which takes a callback.
 	Count how many windows.  Use an Alien to hold the counter on the C heap.
 	Answer the count of windows (number of callbacks)."
@@ -290,11 +250,8 @@ Alien class>>exampleEnumWindowsSimple [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>exampleGetOpenFileName [
+{ #category : #examples }
+Alien class >> exampleGetOpenFileName [
 	"Call the Win32 GetOpenFileNameA function."
 	"Alien exampleGetOpenFileName"
 	| openstruct |
@@ -305,11 +262,8 @@ Alien class>>exampleGetOpenFileName [
 	^openstruct fileName
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>examplePrintf [
+{ #category : #examples }
+Alien class >> examplePrintf [
 	"Call the libc printf function."
 	"Alien examplePrintf"
 	| r s |
@@ -322,11 +276,8 @@ Alien class>>examplePrintf [
 	^r signedLongAt: 1
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>exampleVarArgsEnumFontFamiliesEx [
+{ #category : #examples }
+Alien class >> exampleVarArgsEnumFontFamiliesEx [
 	"Call the Win32 EnumFontFamiliesEx function."
 	"Alien exampleEnumFontFamiliesEx"
 	"(Time millisecondsToRun: [1000 timesRepeat: [Alien exampleEnumFontFamiliesEx]]) / 1000.0"
@@ -358,19 +309,13 @@ Alien class>>exampleVarArgsEnumFontFamiliesEx [
 	^(err signedLongAt: 1) -> fontNames -> fontNames size
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>finalize: mallocTag [
+{ #category : #finalization }
+Alien class >> finalize: mallocTag [
 	self primFree: mallocTag
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>forPointer: address "<Integer>" "^<Alien>" [
+{ #category : #'instance creation' }
+Alien class >> forPointer: address [ "<Integer>" "^<Alien>"
 	"N.B.  This method assumes one is creating a pointer to already initialized data, hence initiaize is not sent.
 	(Perhaps some alternative, eg. initializePointer, should be sent?"
 	^(self basicNew: WordSize * 2)
@@ -379,11 +324,8 @@ Alien class>>forPointer: address "<Integer>" "^<Alien>" [
 		yourself
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>initialize [
+{ #category : #'class initialization' }
+Alien class >> initialize [
 	"Alien initialize"
 	LoadedLibraries ifNil:
 		[LoadedLibraries := Dictionary new].
@@ -395,11 +337,8 @@ Alien class>>initialize [
 	self ensureNotifiedAtStartup
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>invokeCallback: thunkPtr "<Integer>" stack: stackPtr "<Integer>" registers: regsPtr "<Integer>" jmpbuf: jmpBufPtr "<Integer>" "^<FFICallbackReturnValue>" [
+{ #category : #callbacks }
+Alien class >> invokeCallback: thunkPtr "<Integer>" stack: stackPtr "<Integer>" registers: regsPtr "<Integer>" jmpbuf: jmpBufPtr [ "<Integer>" "^<FFICallbackReturnValue>"
 	"The low-level entry-point for callbacks sent from the VM/IA32ABI plugin.
 	 Return via primReturnFromContext:through:.  thisContext's sender is the
 	 call-out context."
@@ -411,11 +350,8 @@ Alien class>>invokeCallback: thunkPtr "<Integer>" stack: stackPtr "<Integer>" re
 	resultProxy primReturnFromContext: thisContext through: jmpBufPtr
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>invokeCallbackContext: vmCallbackContextAddress "<Integer>" "^<FFICallbackReturnValue>" [
+{ #category : #callbacks }
+Alien class >> invokeCallbackContext: vmCallbackContextAddress [ "<Integer>" "^<FFICallbackReturnValue>"
 	"The low-level entry-point for callbacks sent from the VM/IA32ABI plugin.
 	 Evaluate the callback corresponding to the thunk referenced by vmCallbackContextAddress,
 	 a pointer to a VMCallbackContext32 or VMCallbackContext64, set up by the VM's thunkEntry
@@ -439,11 +375,8 @@ Alien class>>invokeCallbackContext: vmCallbackContextAddress "<Integer>" "^<FFIC
 		[lifoCallbackSemaphore wait]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>libcName [
+{ #category : #examples }
+Alien class >> libcName [
 	| platform |
 	platform := SmalltalkImage current platformName.
 	platform = 'Mac OS' ifTrue:
@@ -462,22 +395,16 @@ Alien class>>libcName [
 	^nil
 ]
 
-{
-	#category : #libraries,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>lookup: symbol "<String>" inLibrary: libraryNameOrAlien "<String|Alien> ^<Alien>" [
+{ #category : #libraries }
+Alien class >> lookup: symbol "<String>" inLibrary: libraryNameOrAlien [ "<String|Alien> ^<Alien>"
 	^self forPointer: ((libraryNameOrAlien isString
 						ifTrue: [self ensureLoaded: libraryNameOrAlien]
 						ifFalse: [libraryNameOrAlien])
 							primFindSymbol: symbol)
 ]
 
-{
-	#category : #libraries,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>lookupOrNil: symbol  "<String>" inLibrary: libraryName "<String> ^<Alien>" [
+{ #category : #libraries }
+Alien class >> lookupOrNil: symbol  "<String>" inLibrary: libraryName [ "<String> ^<Alien>"
 	"Answer the address of symbol in libraryName, or nil if it is not in the library.
 	Exceptions will be raised for invalid libraries, symbol names, etc."
 	^[self lookup: symbol inLibrary: libraryName ]
@@ -485,40 +412,28 @@ Alien class>>lookupOrNil: symbol  "<String>" inLibrary: libraryName "<String> ^<
 		do: [:ex| nil]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>new [
+{ #category : #'instance creation' }
+Alien class >> new [
 	"Answer a new instance of the default size whose data resides on the Smalltalk heap directly in the instance."
 	^self new: self dataSize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>new: byteSize [
+{ #category : #'instance creation' }
+Alien class >> new: byteSize [
 	"Answer a new instance of the given byte size whose data resides on the Smalltalk heap directly in the instance."
 	^(self basicNew: byteSize + WordSize)
 		sizeFieldPut: byteSize;
 		initialize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>newC [
+{ #category : #'instance creation' }
+Alien class >> newC [
 	"Answer a new instance of the default size whose data resides on the external C heap."
 	^self newC: self dataSize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>newC: byteSize [
+{ #category : #'instance creation' }
+Alien class >> newC: byteSize [
 	"Answer a new instance of the given byte size whose data resides on the external C heap.
 	 As with instances residing on the Smalltalk heap the data is zero-filled."
 	^(self basicNew: WordSize * 2)
@@ -527,11 +442,8 @@ Alien class>>newC: byteSize [
 		initialize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>newCString: aString "<String> ^<Alien>" [
+{ #category : #'instance creation' }
+Alien class >> newCString: aString [ "<String> ^<Alien>"
 	"Answer an Alien pointing to a null-terminated copy of aString on the external C heap."
 
 	| size cString |
@@ -542,21 +454,15 @@ Alien class>>newCString: aString "<String> ^<Alien>" [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>newGC [
+{ #category : #'instance creation' }
+Alien class >> newGC [
 	"Answer a new instance of the default size whose data resides on the external C heap,
 	 and whose data will be reclaimed automatically when the instance is garbage collected."
 	^self newGC: self dataSize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>newGC: byteSize [
+{ #category : #'instance creation' }
+Alien class >> newGC: byteSize [
 	"Answer a new instance of the given byte size whose data resides on the external C heap,
 	 and whose data will be reclaimed automatically when the instance is garbage collected.
 	 As with instances residing on the Smalltalk heap the data is zero-filled."
@@ -570,29 +476,20 @@ Alien class>>newGC: byteSize [
 		initialize
 ]
 
-{
-	#category : #'primitives-memory management',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>primFree: address "<Integer>" [
+{ #category : #'primitives-memory management' }
+Alien class >> primFree: address [ "<Integer>"
 	<primitive: 'primFree' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #'primitives-library loading',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>primInLibrary: libraryHandle "<Alien>" findSymbol: symbolName "<String> ^<Integer>" [
+{ #category : #'primitives-library loading' }
+Alien class >> primInLibrary: libraryHandle "<Alien>" findSymbol: symbolName [ "<String> ^<Integer>"
 	<primitive: 'primInLibraryFindSymbol' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #'primitives-library loading',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>primLoadLibrary: libraryName "<String> ^<Integer>" [
+{ #category : #'primitives-library loading' }
+Alien class >> primLoadLibrary: libraryName [ "<String> ^<Integer>"
 	"Attempt to load the shared library/DLL named libraryName and
 	 answer a handle which can be used in primFindSymbol:inLibrary:,
 	 or fail if libraryName is invalid or libraryName cannot be found."
@@ -600,11 +497,8 @@ Alien class>>primLoadLibrary: libraryName "<String> ^<Integer>" [
 	^self primitiveFailed
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>rawNewC: byteSize [
+{ #category : #'instance creation' }
+Alien class >> rawNewC: byteSize [
 	"Answer a new instance of the given byte size whose data resides on the external C heap.
 	 Unlike newC: the data is *not* zero-filled."
 	^(self basicNew: WordSize * 2)
@@ -613,11 +507,8 @@ Alien class>>rawNewC: byteSize [
 		initialize
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien class>>startUp: resuming [
+{ #category : #'system startup' }
+Alien class >> startUp: resuming [
 	resuming ifTrue:
 		[LoadedLibraries := Dictionary new: LoadedLibraries size.
 		"Any addresses in the finalization registry at the time the image
@@ -630,196 +521,133 @@ Alien class>>startUp: resuming [
 		WordSize := Smalltalk wordSize]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>address [
+{ #category : #accessing }
+Alien >> address [
 	^self sizeField <= 0
 		ifTrue: [self addressField]
 		ifFalse: [self error: 'One cannot take the address of direct Alien instances; they may move']
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>addressField "^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> addressField [ "^<Integer>"
 	<primitive: 'primAddressField' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>addressFieldPut: value "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> addressFieldPut: value [ "<Integer> ^<Integer>"
 	<primitive: 'primAddressFieldPut' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #coercing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>asAlien [
+{ #category : #coercing }
+Alien >> asAlien [
 	^self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>asSignedByte "^<Integer>" [
+{ #category : #converting }
+Alien >> asSignedByte [ "^<Integer>"
 	"Answer an Integer created from the first byte of the receiver interpreted as a signed value."
 	
 	^self signedByteAt: 1
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>asSignedLong "^<Integer>" [
+{ #category : #converting }
+Alien >> asSignedLong [ "^<Integer>"
 	"Answer an Integer created from the first 4 bytes of the receiver interpreted as a signed value."
 	
 	^self signedLongAt: 1
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>asSignedShort "^<Integer>" [
+{ #category : #converting }
+Alien >> asSignedShort [ "^<Integer>"
 	"Answer an Integer created from the first 2 bytes of the receiver interpreted as a signed value."
 	
 	^self signedShortAt: 1
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>asUnsignedByte "^<Integer>" [
+{ #category : #converting }
+Alien >> asUnsignedByte [ "^<Integer>"
 	"Answer an Integer created from the first byte of the receiver interpreted as an unsigned value."
 	
 	^self unsignedByteAt: 1
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>asUnsignedLong "^<Integer>" [
+{ #category : #converting }
+Alien >> asUnsignedLong [ "^<Integer>"
 	"Answer an Integer created from the first 4 bytes of the receiver interpreted as an unsigned value."
 	
 	^self unsignedLongAt: 1
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>asUnsignedShort "^<Integer>" [
+{ #category : #converting }
+Alien >> asUnsignedShort [ "^<Integer>"
 	"Answer an Integer created from the first 2 bytes of the receiver interpreted as an unsigned value."
 	
 	^self unsignedShortAt: 1
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>copyInto: aByteObject "<Alien | indexableByteSubclass>" from: start "<Integer>" to: stop "<Integer>" in: replacement "<Alien | indexableByteSubclass>" startingAt: repStart "<Integer>" "^<self>" [
+{ #category : #primitives-accessing }
+Alien >> copyInto: aByteObject "<Alien | indexableByteSubclass>" from: start "<Integer>" to: stop "<Integer>" in: replacement "<Alien | indexableByteSubclass>" startingAt: repStart [ "<Integer>" "^<self>"
 	<primitive: 'primAlienReplace' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>dataSize [
+{ #category : #accessing }
+Alien >> dataSize [
 	^self sizeField abs
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>doubleAt: index "<Integer> ^<Float>" [
+{ #category : #primitives-accessing }
+Alien >> doubleAt: index [ "<Integer> ^<Float>"
 	<primitive: 'primDoubleAt' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>doubleAt: index "<Integer>" put: value "<Float | Integer> ^<Float | Integer>" [
+{ #category : #primitives-accessing }
+Alien >> doubleAt: index "<Integer>" put: value [ "<Float | Integer> ^<Float | Integer>"
 	<primitive: 'primDoubleAtPut' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>floatAt: index "<Integer> ^<Float>" [
+{ #category : #primitives-accessing }
+Alien >> floatAt: index [ "<Integer> ^<Float>"
 	<primitive: 'primFloatAt' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>floatAt: index "<Integer>" put: value "<Float | Integer> ^<Float | Integer>" [
+{ #category : #primitives-accessing }
+Alien >> floatAt: index "<Integer>" put: value [ "<Float | Integer> ^<Float | Integer>"
 	<primitive: 'primFloatAtPut' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #'memory management',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>free [
+{ #category : #'memory management' }
+Alien >> free [
 	self primFree
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>freeAfter: aBlock [
+{ #category : #accessing }
+Alien >> freeAfter: aBlock [
 	"The receiver must be a pointer to a previously allocated external C heap memory block. Invoke aBlock passing the receiver as the argument, then free the receiver. Allows automatic allocation and freeing of C artifacts using patters such as
 	(Alien newCString: 'foo') freeAfter: [:cstring | ...use cstring here...]."
 	
 	^[aBlock value: self] ensure: [self free]
 ]
 
-{
-	#category : #'instance initalization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>initialize [
+{ #category : #'instance initalization' }
+Alien >> initialize [
 	"Subclasses should redefine this method to perform initializations on instance creation"
 	"Overrides ProtoObjects' method for explicitness."
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>isPointer [
+{ #category : #testing }
+Alien >> isPointer [
 	^self sizeField = 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>pointer [
+{ #category : #accessing }
+Alien >> pointer [
 	"Answer a pointer to the receiver in the form of an Alien.
 	 This will fail if the receiver is not indirect."
 	self isPointer ifTrue:
@@ -827,137 +655,92 @@ Alien>>pointer [
 	^self class forPointer: self address
 ]
 
-{
-	#category : #primitives-callouts,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>primFFICallResult: result "<Alien> ^<Alien>" [
+{ #category : #primitives-callouts }
+Alien >> primFFICallResult: result [ "<Alien> ^<Alien>"
 	<primitive: 'primCallOutIntegralReturn' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-callouts,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>primFFICallResult: result "<Alien>" with: firstArg "<Alien | Integer> ^<Alien>" [
+{ #category : #primitives-callouts }
+Alien >> primFFICallResult: result "<Alien>" with: firstArg [ "<Alien | Integer> ^<Alien>"
 	<primitive: 'primCallOutIntegralReturn' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-callouts,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>primFFICallResult: result "<Alien>" with: firstArg "<Alien | Integer>" with: secondArg "<Alien | Integer> ^<Alien>" [
+{ #category : #primitives-callouts }
+Alien >> primFFICallResult: result "<Alien>" with: firstArg [ "<Alien | Integer>" with: secondArg "<Alien | Integer> ^<Alien>"
 	<primitive: 'primCallOutIntegralReturn' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-callouts,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>primFFICallResult: result "<Alien>" with: firstArg "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | SmallInteger> ^<Alien>" [
+{ #category : #primitives-callouts }
+Alien >> primFFICallResult: result "<Alien>" with: firstArg [ "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | SmallInteger> ^<Alien>"
 	<primitive: 'primCallOutIntegralReturn' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-callouts,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>primFFICallResult: result "<Alien>" with: firstArg "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer> ^<Alien>" [
+{ #category : #primitives-callouts }
+Alien >> primFFICallResult: result "<Alien>" with: firstArg [ "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer> ^<Alien>"
 	<primitive: 'primCallOutIntegralReturn' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-callouts,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>primFFICallResult: result "<Alien>" with: firstArg "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer>" with: fifthArg "<Alien | Integer> ^<Alien>" [
+{ #category : #primitives-callouts }
+Alien >> primFFICallResult: result "<Alien>" with: firstArg [ "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer>" with: fifthArg "<Alien | Integer> ^<Alien>"
 	<primitive: 'primCallOutIntegralReturn' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-callouts,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>primFFICallResult: result "<Alien>" with: firstArg "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer>" with: fifthArg "<Alien | Integer>" with: sixthArg "<Alien | Integer> ^<Alien>" [
+{ #category : #primitives-callouts }
+Alien >> primFFICallResult: result "<Alien>" with: firstArg [ "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer>" with: fifthArg "<Alien | Integer>" with: sixthArg "<Alien | Integer> ^<Alien>"
 	<primitive: 'primCallOutIntegralReturn' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-callouts,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>primFFICallResult: result "<Alien>" with: firstArg "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer>" with: fifthArg "<Alien | Integer>" with: sixthArg "<Alien | Integer>" with: arg7 "<Alien | Integer>" "^<Alien>" [
+{ #category : #primitives-callouts }
+Alien >> primFFICallResult: result "<Alien>" with: firstArg [ "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer>" with: fifthArg "<Alien | Integer>" with: sixthArg "<Alien | Integer>" with: arg7 "<Alien | Integer>" "^<Alien>"
 	<primitive: 'primCallOutIntegralReturn' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-callouts,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>primFFICallResult: result "<Alien>" with: firstArg "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer>" with: fifthArg "<Alien | Integer>" with: sixthArg "<Alien | Integer>" with: arg7 "<Alien | Integer>" with: arg8 "<Alien | Integer>" "^<Alien>" [
+{ #category : #primitives-callouts }
+Alien >> primFFICallResult: result "<Alien>" with: firstArg [ "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer>" with: fifthArg "<Alien | Integer>" with: sixthArg "<Alien | Integer>" with: arg7 "<Alien | Integer>" with: arg8 "<Alien | Integer>" "^<Alien>"
 	<primitive: 'primCallOutIntegralReturn' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-callouts,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>primFFICallResult: result "<Alien>" with: firstArg "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer>" with: fifthArg "<Alien | Integer>" with: sixthArg "<Alien | Integer>" with: arg7 "<Alien | Integer>" with: arg8 "<Alien | Integer>" with: arg9 "<Alien | Integer>" "^<Alien>" [
+{ #category : #primitives-callouts }
+Alien >> primFFICallResult: result "<Alien>" with: firstArg [ "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer>" with: fifthArg "<Alien | Integer>" with: sixthArg "<Alien | Integer>" with: arg7 "<Alien | Integer>" with: arg8 "<Alien | Integer>" with: arg9 "<Alien | Integer>" "^<Alien>"
 	<primitive: 'primCallOutIntegralReturn' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-callouts,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>primFFICallResult: result "<Alien>" with: firstArg "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer>" with: fifthArg "<Alien | Integer>" with: sixthArg "<Alien | Integer>" with: arg7 "<Alien | Integer>" with: arg8 "<Alien | Integer>" with: arg9 "<Alien | Integer>" with: arg10 "<Alien | Integer>" "^<Alien>" [
+{ #category : #primitives-callouts }
+Alien >> primFFICallResult: result "<Alien>" with: firstArg [ "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer>" with: fifthArg "<Alien | Integer>" with: sixthArg "<Alien | Integer>" with: arg7 "<Alien | Integer>" with: arg8 "<Alien | Integer>" with: arg9 "<Alien | Integer>" with: arg10 "<Alien | Integer>" "^<Alien>"
 	<primitive: 'primCallOutIntegralReturn' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-callouts,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>primFFICallResult: result "<Alien>" with: firstArg "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer>" with: fifthArg "<Alien | Integer>" with: sixthArg "<Alien | Integer>" with: arg7 "<Alien | Integer>" with: arg8 "<Alien | Integer>" with: arg9 "<Alien | Integer>" with: arg10 "<Alien | Integer>" with: arg11 "<Alien | Integer>" "^<Alien>" [
+{ #category : #primitives-callouts }
+Alien >> primFFICallResult: result "<Alien>" with: firstArg [ "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer>" with: fifthArg "<Alien | Integer>" with: sixthArg "<Alien | Integer>" with: arg7 "<Alien | Integer>" with: arg8 "<Alien | Integer>" with: arg9 "<Alien | Integer>" with: arg10 "<Alien | Integer>" with: arg11 "<Alien | Integer>" "^<Alien>"
 	<primitive: 'primCallOutIntegralReturn' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-callouts,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>primFFICallResult: result "<Alien>" with: firstArg "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer>" with: fifthArg "<Alien | Integer>" with: sixthArg "<Alien | Integer>" with: arg7 "<Alien | Integer>" with: arg8 "<Alien | Integer>" with: arg9 "<Alien | Integer>" with: arg10 "<Alien | Integer>" with: arg11 "<Alien | Integer>" with: arg12 "<Alien | Integer>" "^<Alien>" [
+{ #category : #primitives-callouts }
+Alien >> primFFICallResult: result "<Alien>" with: firstArg [ "<Alien | Integer>" with: secondArg "<Alien | Integer>" with: thirdArg "<Alien | Integer>" with: fourthArg "<Alien | Integer>" with: fifthArg "<Alien | Integer>" with: sixthArg "<Alien | Integer>" with: arg7 "<Alien | Integer>" with: arg8 "<Alien | Integer>" with: arg9 "<Alien | Integer>" with: arg10 "<Alien | Integer>" with: arg11 "<Alien | Integer>" with: arg12 "<Alien | Integer>" "^<Alien>"
 	<primitive: 'primCallOutIntegralReturn' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-callouts,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>primFFICallResult: result "<Alien>" withArguments: args "<Array of: Alien | Integer> ^<Alien>" [
+{ #category : #primitives-callouts }
+Alien >> primFFICallResult: result "<Alien>" withArguments: args [ "<Array of: Alien | Integer> ^<Alien>"
 	<primitive: 'primVarArgsCallOutIntegralReturn' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #'primitives-library loading',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>primFindSymbol: symbolName "<String> ^<Integer>" [
+{ #category : #'primitives-library loading' }
+Alien >> primFindSymbol: symbolName [ "<String> ^<Integer>"
 	"The receiver is assumed to be a proxy whose first field contans the handle of a library
 	 answered by primLoadLibrary.  Attempt to find symbolName in the library and answer
 	 its address, or fail if the receiver is invalid or the symbol cannot be found."
@@ -967,11 +750,8 @@ Alien>>primFindSymbol: symbolName "<String> ^<Integer>" [
 		ifFalse: [self primitiveFailed]
 ]
 
-{
-	#category : #'primitives-memory management',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>primFree [
+{ #category : #'primitives-memory management' }
+Alien >> primFree [
 	"Free the memory referenced by the receiver, or fail if
 	 the receiver is direct or the indirect pointer is invalid.
 	 Note that if successful the address and size fields are
@@ -980,110 +760,74 @@ Alien>>primFree [
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>replaceFrom: start "<Integer>" to: stop "<Integer>" with: replacement "<Alien | indexableByteSubclass>" startingAt: repStart "<Integer>" "^<self>" [
+{ #category : #primitives-accessing }
+Alien >> replaceFrom: start "<Integer>" to: stop "<Integer>" with: replacement "<Alien | indexableByteSubclass>" startingAt: repStart [ "<Integer>" "^<self>"
 	<primitive: 'primAlienReplace' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>signedByteAt: index "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> signedByteAt: index [ "<Integer> ^<Integer>"
 	<primitive: 'primSignedByteAt' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>signedByteAt: index "<Integer>" put: value "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> signedByteAt: index "<Integer>" put: value [ "<Integer> ^<Integer>"
 	<primitive: 'primSignedByteAtPut' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>signedLongAt: index "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> signedLongAt: index [ "<Integer> ^<Integer>"
 	<primitive: 'primSignedLongAt' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>signedLongAt: index "<Integer>" put: value "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> signedLongAt: index "<Integer>" put: value [ "<Integer> ^<Integer>"
 	<primitive: 'primSignedLongAtPut' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>signedLongLongAt: index "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> signedLongLongAt: index [ "<Integer> ^<Integer>"
 	<primitive: 'primSignedLongLongAt' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>signedLongLongAt: index "<Integer>" put: value "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> signedLongLongAt: index "<Integer>" put: value [ "<Integer> ^<Integer>"
 	<primitive: 'primSignedLongLongAtPut' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>signedShortAt: index "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> signedShortAt: index [ "<Integer> ^<Integer>"
 	<primitive: 'primSignedShortAt' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>signedShortAt: index "<Integer>" put: value "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> signedShortAt: index "<Integer>" put: value [ "<Integer> ^<Integer>"
 	<primitive: 'primSignedShortAtPut' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>sizeField "^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> sizeField [ "^<Integer>"
 	<primitive: 'primSizeField' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>sizeFieldPut: size "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> sizeFieldPut: size [ "<Integer> ^<Integer>"
 	<primitive: 'primSizeFieldPut' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>storeOn: aStream [
+{ #category : #printing }
+Alien >> storeOn: aStream [
 	| sizeField |
 	(sizeField := self sizeField) ~= 0 ifTrue:
 		[aStream nextPut: $(].
@@ -1110,19 +854,13 @@ Alien>>storeOn: aStream [
 		(Alien newC: 8) storeString }"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>strcpy "^<ByteString>" [
+{ #category : #accessing }
+Alien >> strcpy [ "^<ByteString>"
 	^self strcpyFrom: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>strcpyFrom: startIndex "<Integer> ^<ByteString>" [
+{ #category : #accessing }
+Alien >> strcpyFrom: startIndex [ "<Integer> ^<ByteString>"
 	| length string |
 	length := self strlenStartingAt: startIndex.
 	self copyInto: (string := ByteString new: length)
@@ -1131,19 +869,13 @@ Alien>>strcpyFrom: startIndex "<Integer> ^<ByteString>" [
 	^string
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>strcpyUTF8 "^<String>" [
+{ #category : #accessing }
+Alien >> strcpyUTF8 [ "^<String>"
 	^self strcpyUTF8From: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>strcpyUTF8From: startIndex "<Integer> ^<String>" [
+{ #category : #accessing }
+Alien >> strcpyUTF8From: startIndex [ "<Integer> ^<String>"
 	| length bytes |
 	length := self strlenStartingAt: startIndex.
 	self copyInto: (bytes := ByteArray new: length)
@@ -1152,100 +884,67 @@ Alien>>strcpyUTF8From: startIndex "<Integer> ^<String>" [
 	^bytes utf8ToIso
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>strlen [
+{ #category : #accessing }
+Alien >> strlen [
 	^self strlenStartingAt: 1
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>strlenStartingAt: index "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> strlenStartingAt: index [ "<Integer> ^<Integer>"
 	<primitive: 'primStrlenFromStartIndex' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>strlenThroughPointerAt: index "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> strlenThroughPointerAt: index [ "<Integer> ^<Integer>"
 	<primitive: 'primStrlenThroughPointerAtIndex' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>unsignedByteAt: index "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> unsignedByteAt: index [ "<Integer> ^<Integer>"
 	<primitive: 'primUnsignedByteAt' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>unsignedByteAt: index "<Integer>" put: value "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> unsignedByteAt: index "<Integer>" put: value [ "<Integer> ^<Integer>"
 	<primitive: 'primUnsignedByteAtPut' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>unsignedLongAt: index "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> unsignedLongAt: index [ "<Integer> ^<Integer>"
 	<primitive: 'primUnsignedLongAt' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>unsignedLongAt: index "<Integer>" put: value "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> unsignedLongAt: index "<Integer>" put: value [ "<Integer> ^<Integer>"
 	<primitive: 'primUnsignedLongAtPut' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>unsignedLongLongAt: index "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> unsignedLongLongAt: index [ "<Integer> ^<Integer>"
 	<primitive: 'primUnsignedLongLongAt' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>unsignedLongLongAt: index "<Integer>" put: value "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> unsignedLongLongAt: index "<Integer>" put: value [ "<Integer> ^<Integer>"
 	<primitive: 'primUnsignedLongLongAtPut' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>unsignedShortAt: index "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> unsignedShortAt: index [ "<Integer> ^<Integer>"
 	<primitive: 'primUnsignedShortAt' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives-accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Alien>>unsignedShortAt: index "<Integer>" put: value "<Integer> ^<Integer>" [
+{ #category : #primitives-accessing }
+Alien >> unsignedShortAt: index "<Integer>" put: value [ "<Integer> ^<Integer>"
 	<primitive: 'primUnsignedShortAtPut' module: 'IA32ABI' error: errorCode>
 	^self primitiveFailed
 ]

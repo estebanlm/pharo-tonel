@@ -11,105 +11,71 @@ Class {
 	#instVars : [
 		'bytes'
 	],
-	#category : #Zinc-HTTP-Core,
-	#timestamp : 'SvenVanCaekenberghe 1/18/2011 11:04'
+	#category : #Zinc-HTTP-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnByteArrayEntity class>>bytes: byteArray [
+{ #category : #'instance creation' }
+ZnByteArrayEntity class >> bytes: byteArray [
 	^ (self type: ZnMimeType applicationOctetStream length: byteArray size)
 		bytes: byteArray;
 		yourself 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnByteArrayEntity class>>designatedMimeType [
+{ #category : #testing }
+ZnByteArrayEntity class >> designatedMimeType [
 	"I have no designated mime type, I can handle all binary content.
 	See #concreteSubclassForType: "
 	
 	^ nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnByteArrayEntity class>>matches: mimeType [
+{ #category : #testing }
+ZnByteArrayEntity class >> matches: mimeType [
 	"I have no designated mime type, I can handle all binary content.
 	See #concreteSubclassForType: "
 	
 	^ false
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnByteArrayEntity>>= other [
+{ #category : #comparing }
+ZnByteArrayEntity >> = other [
 	^ super = other and: [ self bytes = other bytes ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnByteArrayEntity>>bytes [
+{ #category : #accessing }
+ZnByteArrayEntity >> bytes [
 	^ bytes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnByteArrayEntity>>bytes: anObject [
+{ #category : #accessing }
+ZnByteArrayEntity >> bytes: anObject [
 	bytes := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnByteArrayEntity>>contents [
+{ #category : #accessing }
+ZnByteArrayEntity >> contents [
 	^ self bytes
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnByteArrayEntity>>hash [
+{ #category : #comparing }
+ZnByteArrayEntity >> hash [
 	^ super hash bitXor: self bytes hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnByteArrayEntity>>isEmpty [
+{ #category : #testing }
+ZnByteArrayEntity >> isEmpty [ 
 	^ self bytes isNil or: [ self bytes isEmpty ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnByteArrayEntity>>printContentsOn: stream [
+{ #category : #printing }
+ZnByteArrayEntity >> printContentsOn: stream [
 	super printContentsOn: stream.
 	self bytes notNil ifTrue: [ 
 		stream space; print: self bytes ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnByteArrayEntity>>readFrom: stream [
+{ #category : #initialize-release }
+ZnByteArrayEntity >> readFrom: stream [
 	self contentLength isNil
 		ifTrue: [ 
 			self bytes: (ZnUtils readUpToEnd: stream limit: ZnMaximumEntitySize value).
@@ -126,18 +92,12 @@ ZnByteArrayEntity>>readFrom: stream [
 			self bytes: byteArray ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnByteArrayEntity>>readStream [
+{ #category : #accessing }
+ZnByteArrayEntity >> readStream [
 	^ self bytes readStream
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnByteArrayEntity>>writeOn: stream [
+{ #category : #writing }
+ZnByteArrayEntity >> writeOn: stream [
 	ZnUtils nextPutAll: self bytes on: stream
 ]

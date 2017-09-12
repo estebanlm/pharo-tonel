@@ -10,15 +10,11 @@ Class {
 		'buttonAddPackage',
 		'packageAnalyzerTreeModel'
 	],
-	#category : #Tool-DependencyAnalyser-UI-Core,
-	#timestamp : 'ChristopheDemarey 9/11/2015 13:54'
+	#category : #Tool-DependencyAnalyser-UI-Core
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAddPackageModel class>>defaultSpec [
+{ #category : #specs }
+DAAddPackageModel class >> defaultSpec [
 	<spec: #default>
 	^ SpecLayout composed
 		newColumn:
@@ -29,11 +25,8 @@ DAAddPackageModel class>>defaultSpec [
 				] yourself
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAddPackageModel>>actionOnAddPackage [
+{ #category : #protocol }
+DAAddPackageModel >> actionOnAddPackage [
 	| relationGraph packagesToAdd |
 	buttonAddPackage
 		action: [ 
@@ -49,11 +42,8 @@ DAAddPackageModel>>actionOnAddPackage [
 					self delete ] ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAddPackageModel>>buildList [
+{ #category : #actions }
+DAAddPackageModel >> buildList [
 	| packagesAdded packagesNotAdded |
 	packagesAdded := self packageAnalyzerTreeModel seenPackagesName.
 	packagesNotAdded := self systemPackages.
@@ -61,35 +51,23 @@ DAAddPackageModel>>buildList [
 	packageList items: packagesNotAdded.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAddPackageModel>>buttonAddPackage [
+{ #category : #accessing }
+DAAddPackageModel >> buttonAddPackage [
 	^ buttonAddPackage
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAddPackageModel>>initialExtent [
+{ #category : #api }
+DAAddPackageModel >> initialExtent [
 	^ (600@600)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAddPackageModel>>initializePresenter [
+{ #category : #initialization }
+DAAddPackageModel >> initializePresenter [
 	self actionOnAddPackage
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAddPackageModel>>initializeWidgets [
+{ #category : #initialization }
+DAAddPackageModel >> initializeWidgets [
 	
 	packageList := self newList
 		multiSelection: true;
@@ -102,59 +80,38 @@ DAAddPackageModel>>initializeWidgets [
 		yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAddPackageModel>>open [
+{ #category : #'instance creation' }
+DAAddPackageModel >> open [
 	^ self openWithSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAddPackageModel>>packageAnalyzerTreeModel [
+{ #category : #accessing }
+DAAddPackageModel >> packageAnalyzerTreeModel [
 	^ packageAnalyzerTreeModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAddPackageModel>>packageAnalyzerTreeModel: aPackageAnalyzerTreeModel [
+{ #category : #accessing }
+DAAddPackageModel >> packageAnalyzerTreeModel: aPackageAnalyzerTreeModel [
 	packageAnalyzerTreeModel := aPackageAnalyzerTreeModel.
 	self buildList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAddPackageModel>>packageList [
+{ #category : #accessing }
+DAAddPackageModel >> packageList [
 	^ packageList
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAddPackageModel>>selectedItemsFromPackageList [
+{ #category : #initialization }
+DAAddPackageModel >> selectedItemsFromPackageList [
 	^ self packageList selectedItems
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAddPackageModel>>systemPackages [
+{ #category : #accessing }
+DAAddPackageModel >> systemPackages [
 	^ (RPackageOrganizer default packages collect: [ :package | package packageName asString ] )asSortedCollection
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAddPackageModel>>title [
+{ #category : #protocol }
+DAAddPackageModel >> title [
 	^ 'Choose packages to add'
 ]

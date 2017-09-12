@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #KMPerInstanceTests,
 	#superclass : #AbstractKeymappingTest,
-	#category : #Keymapping-Tests,
-	#timestamp : ''
+	#category : #Keymapping-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMPerInstanceTests>>testAddMoreThanOneHandler [
+{ #category : #tests }
+KMPerInstanceTests >> testAddMoreThanOneHandler [
 	| flag morph |
 	flag := 0.
 	morph := Morph new.

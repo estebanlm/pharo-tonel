@@ -50,77 +50,52 @@ Class {
 		'collectionOfCollectionsOfInts',
 		'simpleCollection'
 	],
-	#category : #Collections-Tests-Arrayed,
-	#timestamp : '<historical>'
+	#category : #Collections-Tests-Arrayed
 }
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>aValue [
+{ #category : #helpers }
+ArrayTest >> aValue [
 
 	^ 33
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>accessCollection [
+{ #category : #requirements }
+ArrayTest >> accessCollection [
 
 	^ example1
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>anIndex [
+{ #category : #helpers }
+ArrayTest >> anIndex [
 
 	^ 2
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>anotherElementNotIn [
+{ #category : #requirements }
+ArrayTest >> anotherElementNotIn [
 	^ elementNotInForCopy 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>anotherElementOrAssociationIn [
+{ #category : #requirements }
+ArrayTest >> anotherElementOrAssociationIn [
 	" return an element (or an association for Dictionary ) present  in 'collection' "
 	^ self collection anyOne.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>anotherElementOrAssociationNotIn [
+{ #category : #requirements }
+ArrayTest >> anotherElementOrAssociationNotIn [
 	" return an element (or an association for Dictionary )not present  in 'collection' "
 	^ elementNotInForCopy 
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>anotherValue [
+{ #category : #helpers }
+ArrayTest >> anotherValue [
 
 	^ 66
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>assertSameContents: aCollection whenConvertedTo: aClass  [
+{ #category : #'tests - converting' }
+ArrayTest >> assertSameContents: aCollection whenConvertedTo: aClass [ 
 	| result |
 	result := aCollection perform: ('as' , aClass name) asSymbol.
 	self assert: (result class includesBehavior: aClass).
@@ -130,533 +105,347 @@ ArrayTest>>assertSameContents: aCollection whenConvertedTo: aClass  [
 	self assert: result size = aCollection size
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collection  [
+{ #category : #initialization }
+ArrayTest >> collection [ 
 
 	^ collectionWith4Elements 
 ]
 
-{
-	#category : #'test - creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionClass  [
+{ #category : #'test - creation' }
+ArrayTest >> collectionClass [ 
 	
 	^ Array
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionInForIncluding [
+{ #category : #requirements }
+ArrayTest >> collectionInForIncluding [
 	^ self nonEmpty copyWithoutFirst.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionMoreThan1NoDuplicates [
+{ #category : #requirements }
+ArrayTest >> collectionMoreThan1NoDuplicates [
 	" return a collection of size 5 without equal elements"
 	^ withoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionMoreThan5Elements [
+{ #category : #requirements }
+ArrayTest >> collectionMoreThan5Elements [
 " return a collection including at least 5 elements"
 	
 	^ collection5Elements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionNotIncluded [
+{ #category : #requirements }
+ArrayTest >> collectionNotIncluded [
 	^ collectionNotIncluded.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionOfCollectionsOfInts [
+{ #category : #requirements }
+ArrayTest >> collectionOfCollectionsOfInts [
 	^collectionOfCollectionsOfInts.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionOfCollectionsOfStrings [
+{ #category : #requirements }
+ArrayTest >> collectionOfCollectionsOfStrings [
 	^ collectionOfCollectionsOfStrings.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionOfFloat [
+{ #category : #requirements }
+ArrayTest >> collectionOfFloat [
 	^ collectionOfCollection
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionWith1TimeSubcollection [
+{ #category : #requirements }
+ArrayTest >> collectionWith1TimeSubcollection [
 	^ (self oldSubCollection copyWithoutFirst),self oldSubCollection,(self oldSubCollection copyWithoutFirst). 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionWith2TimeSubcollection [
+{ #category : #requirements }
+ArrayTest >> collectionWith2TimeSubcollection [
 	^ (self oldSubCollection copyWithoutFirst),self oldSubCollection,(self oldSubCollection copyWithoutFirst),self oldSubCollection .
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionWithCharacters [
+{ #category : #requirements }
+ArrayTest >> collectionWithCharacters [
 	^ withCharacters.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionWithCopyNonIdentical [
+{ #category : #requirements }
+ArrayTest >> collectionWithCopyNonIdentical [
 	" return a collection that include elements for which 'copy' return a different object (this is not the case of SmallInteger)"
 	^ collectionOfCollection
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionWithElementsToRemove [
+{ #category : #requirements }
+ArrayTest >> collectionWithElementsToRemove [
 	^ removedCollection
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionWithEqualElements [
+{ #category : #requirements }
+ArrayTest >> collectionWithEqualElements [
 	^ withEqualElements.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionWithNonIdentitySameAtEndAndBegining [
+{ #category : #requirements }
+ArrayTest >> collectionWithNonIdentitySameAtEndAndBegining [
 	" return a collection with elements at end and begining equals only with classic equality (they are not the same object).
 (others elements of the collection are not equal to those elements)"
 	^ floatCollectionWithSameBeginingAnEnd 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionWithSameAtEndAndBegining [
+{ #category : #requirements }
+ArrayTest >> collectionWithSameAtEndAndBegining [
 " return a collection with elements at end and begining equals .
 (others elements of the collection are not equal to those elements)"
 	^ floatCollectionWithSameBeginingAnEnd 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionWithSortableElements [
+{ #category : #requirements }
+ArrayTest >> collectionWithSortableElements [
 " return a collection elements that can be sorte ( understanding message ' < '  or ' > ')"
 	^ withoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionWithoutEqualElements [
+{ #category : #requirements }
+ArrayTest >> collectionWithoutEqualElements [
 	^ withoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>collectionWithoutNilElements [
+{ #category : #requirements }
+ArrayTest >> collectionWithoutNilElements [
 " return a collection that doesn't includes a nil element  and that doesn't includes equal elements'"
 	^ collectionWithoutNil  
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>elementInCollectionOfFloat [
+{ #category : #requirements }
+ArrayTest >> elementInCollectionOfFloat [
 	^ collectionOfCollection atRandom
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>elementInForCopy [
+{ #category : #requirements }
+ArrayTest >> elementInForCopy [
 	^ elementInForCopy 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>elementInForElementAccessing [
+{ #category : #requirements }
+ArrayTest >> elementInForElementAccessing [
 " return an element inculded in 'accessCollection '"
 	^ self accessCollection anyOne
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>elementInForIncludesTest [
+{ #category : #requirements }
+ArrayTest >> elementInForIncludesTest [
 
 	^ elementInForCopy 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>elementInForIndexAccess [
+{ #category : #requirements }
+ArrayTest >> elementInForIndexAccess [
 	^ elementInForCopy 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>elementInForIndexAccessing [
+{ #category : #requirements }
+ArrayTest >> elementInForIndexAccessing [
 
 	^ withoutEqualElements anyOne
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>elementInForOccurrences [
+{ #category : #requirements }
+ArrayTest >> elementInForOccurrences [
 	^ elementInForCopy 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>elementInForReplacement [
+{ #category : #requirements }
+ArrayTest >> elementInForReplacement [
 	^ elementInForCopy 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>elementNotIn [
+{ #category : #requirements }
+ArrayTest >> elementNotIn [
 "return an element not included in 'nonEmpty' "
 
 	^ elementNotInForCopy 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>elementNotInForCopy [
+{ #category : #requirements }
+ArrayTest >> elementNotInForCopy [
 	^ elementNotInForCopy 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>elementNotInForElementAccessing [
+{ #category : #requirements }
+ArrayTest >> elementNotInForElementAccessing [
 " return an element not included in 'accessCollection' "
 	^ elementNotInForCopy 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>elementNotInForIndexAccessing [
+{ #category : #requirements }
+ArrayTest >> elementNotInForIndexAccessing [
 
 	^elementNotInForCopy 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>elementNotInForOccurrences [
+{ #category : #requirements }
+ArrayTest >> elementNotInForOccurrences [
 	^ elementNotInForCopy 
 ]
 
-{
-	#category : #'test - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>elementToAdd [
+{ #category : #'test - copy' }
+ArrayTest >> elementToAdd [
 	^ 55
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>elementTwiceInForOccurrences [
+{ #category : #requirements }
+ArrayTest >> elementTwiceInForOccurrences [
 " return an element included exactly two time in # collectionWithEqualElements"
 ^ duplicateElement 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>elementsCopyNonIdenticalWithoutEqualElements [
+{ #category : #requirements }
+ArrayTest >> elementsCopyNonIdenticalWithoutEqualElements [
 	" return a collection that does niot include equal elements ( classic equality )"
 	^ collectionOfCollection
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>empty [
+{ #category : #initialization }
+ArrayTest >> empty [
 
 	^ empty
 ]
 
-{
-	#category : #'test - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>expectedSizeAfterReject [
+{ #category : #'test - iterate' }
+ArrayTest >> expectedSizeAfterReject [
 	^1
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>firstCollection [
+{ #category : #requirements }
+ArrayTest >> firstCollection [
 	^example1 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>firstEven [
+{ #category : #requirements }
+ArrayTest >> firstEven [
 	"Returns the first even number of #collection"
 	^ -2
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>firstIndex [
+{ #category : #requirements }
+ArrayTest >> firstIndex [
 	^ firstIndex 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>firstOdd [
+{ #category : #requirements }
+ArrayTest >> firstOdd [
 	"Returns the first odd number of #collection"
 	^ 1
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>floatCollectionWithSameAtEndAndBegining [
+{ #category : #requirements }
+ArrayTest >> floatCollectionWithSameAtEndAndBegining [
 " return a collection with elements at end and begining equals only with classic equality (they are not the same object).
 (others elements of the collection are not equal to those elements)"
 	^ floatCollectionWithSameBeginingAnEnd 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>indexArray [
+{ #category : #requirements }
+ArrayTest >> indexArray [
 	^ indexArray .
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>indexInForCollectionWithoutDuplicates [
+{ #category : #requirements }
+ArrayTest >> indexInForCollectionWithoutDuplicates [
 	^ 2.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>indexInNonEmpty [
+{ #category : #requirements }
+ArrayTest >> indexInNonEmpty [
 	^ 2 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>integerCollection [
+{ #category : #requirements }
+ArrayTest >> integerCollection [
 	^example1 .
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>integerCollectionWithoutEqualElements [
+{ #category : #requirements }
+ArrayTest >> integerCollectionWithoutEqualElements [
 	^{1. 2. 6. 5.}
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>moreThan3Elements [
+{ #category : #requirements }
+ArrayTest >> moreThan3Elements [
 	" return a collection including atLeast 3 elements"
 	^ example1 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>moreThan4Elements [
+{ #category : #requirements }
+ArrayTest >> moreThan4Elements [
 
 " return a collection including at leat 4 elements"
 	^ example1 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>newElement [
+{ #category : #requirements }
+ArrayTest >> newElement [
 	^999
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>nonEmpty [
+{ #category : #initialization }
+ArrayTest >> nonEmpty [
 
 	^ example1
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>nonEmpty1Element [
+{ #category : #requirements }
+ArrayTest >> nonEmpty1Element [
 
 	^ nonEmpty1Element  
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>nonEmptyMoreThan1Element [
+{ #category : #requirements }
+ArrayTest >> nonEmptyMoreThan1Element [
 	^nonEmptyMoreThan1Element .
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>oldSubCollection [
+{ #category : #requirements }
+ArrayTest >> oldSubCollection [
 	^oldSubCollection 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>replacementCollection [
+{ #category : #requirements }
+ArrayTest >> replacementCollection [
 	^replacementCollection .
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>replacementCollectionSameSize [
+{ #category : #requirements }
+ArrayTest >> replacementCollectionSameSize [
 	^replacementCollectionSameSize 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>result [
+{ #category : #initialization }
+ArrayTest >> result [
 	
 	^ collectResult
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>secondCollection [
+{ #category : #requirements }
+ArrayTest >> secondCollection [
 	^example2 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>secondIndex [
+{ #category : #requirements }
+ArrayTest >> secondIndex [
 	^ secondIndex 
 ]
 
-{
-	#category : #parameters,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>selectorToAccessValuePutIn [
+{ #category : #parameters }
+ArrayTest >> selectorToAccessValuePutIn [
 	"return the selector of the method that should be invoked to access an element"
 	
 	^ #second
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>setUp [
+{ #category : #initialization }
+ArrayTest >> setUp [
 
 	
 	literalArray := #(1 true 3 #four).
@@ -699,63 +488,42 @@ ArrayTest>>setUp [
 	collection5Elements := { 1. 2. 5. 3. 4.}.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>simpleCollection [
+{ #category : #requirements }
+ArrayTest >> simpleCollection [
 	^simpleCollection.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>sizeCollection [
+{ #category : #requirements }
+ArrayTest >> sizeCollection [
 
 	^ self collection
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>smallerIndex [
+{ #category : #requirements }
+ArrayTest >> smallerIndex [
 	^ firstIndex -1
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>sortedInAscendingOrderCollection [
+{ #category : #requirements }
+ArrayTest >> sortedInAscendingOrderCollection [
 	^sortedInAscendingOrderCollection .
 	
 ]
 
-{
-	#category : #'test - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>speciesClass [
+{ #category : #'test - iterate' }
+ArrayTest >> speciesClass [
 	
 	^ Array
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>subCollectionNotIn [
+{ #category : #requirements }
+ArrayTest >> subCollectionNotIn [
 
 	^subCollectionNotIn 
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>test0CopyTest [
+{ #category : #'tests - fixture' }
+ArrayTest >> test0CopyTest [
 	self empty.
 	self assert: self empty size = 0.
 	self nonEmpty.
@@ -765,11 +533,8 @@ ArrayTest>>test0CopyTest [
 	self elementToAdd
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>test0FixtureIncludeTest [
+{ #category : #'tests - fixture' }
+ArrayTest >> test0FixtureIncludeTest [
 	| anElementIn |
 	self nonEmpty.
 	self deny: self nonEmpty isEmpty.
@@ -792,11 +557,8 @@ ArrayTest>>test0FixtureIncludeTest [
 	self assert: anElementIn = true
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>test0FixtureOccurrencesTest [
+{ #category : #'tests - fixture' }
+ArrayTest >> test0FixtureOccurrencesTest [
 	self empty.
 	self assert: self empty isEmpty.
 	self nonEmpty.
@@ -807,11 +569,8 @@ ArrayTest>>test0FixtureOccurrencesTest [
 	self deny: (self nonEmpty includes: self elementNotInForOccurrences)
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>test0FixtureTConvertAsSetForMultiplinessTest [
+{ #category : #'tests - fixture' }
+ArrayTest >> test0FixtureTConvertAsSetForMultiplinessTest [
 	"a collection ofFloat with equal elements:"
 
 	| res |
@@ -829,21 +588,15 @@ ArrayTest>>test0FixtureTConvertAsSetForMultiplinessTest [
 	self assert: res = false
 ]
 
-{
-	#category : #'test - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testAnySatisfy [
+{ #category : #'test - iterate' }
+ArrayTest >> testAnySatisfy [
 
 	self assert: ( self collection anySatisfy: [:each | each = -2]).
 	self deny: (self collection anySatisfy: [:each | each isString]).
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testAsArrayKeepsIdentity [
+{ #category : #'tests - converting' }
+ArrayTest >> testAsArrayKeepsIdentity [
 	 
 	|x y|
 	x := #(1 2 3 4 5).
@@ -851,11 +604,8 @@ ArrayTest>>testAsArrayKeepsIdentity [
 	self assert: y identityHash = x identityHash
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testAtWrap2 [
+{ #category : #'tests - accessing' }
+ArrayTest >> testAtWrap2 [
 	| tabTest |
 	tabTest := #(5 6 8 ).
 	self assert: (tabTest atWrap: 2) = 6.
@@ -866,21 +616,15 @@ ArrayTest>>testAtWrap2 [
 	self assert: (tabTest atWrap: -2) = 5
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testCombinations [
+{ #category : #testing }
+ArrayTest >> testCombinations [
 
 	self assert: #(1 2 3) combinations = #(#(1) #(2) #(3) #(1 2) #(1 3) #(2 3) #(1 2 3)).
 	self assert: (1 to: 3) combinations = #(#(1) #(2) #(3) #(1 2) #(1 3) #(2 3) #(1 2 3)).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testComplexIsSelfEvaluating [
+{ #category : #testing }
+ArrayTest >> testComplexIsSelfEvaluating [
 	"self run: #testComplexIsSelfEvaluating"
 
 	| complexArray restoredArray |
@@ -906,19 +650,13 @@ ArrayTest>>testComplexIsSelfEvaluating [
 	self assert: restoredArray = complexArray
 ]
 
-{
-	#category : #'tests - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testCopyNonEmptyWithoutAllNotIncluded [
+{ #category : #'tests - copy' }
+ArrayTest >> testCopyNonEmptyWithoutAllNotIncluded [
 	
 ]
 
-{
-	#category : #'test - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testDo [
+{ #category : #'test - iterate' }
+ArrayTest >> testDo [
 
 	| res |
 	res := OrderedCollection new.  
@@ -926,11 +664,8 @@ ArrayTest>>testDo [
 	self assert: res asArray = self result.
 ]
 
-{
-	#category : #'test - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testDo2 [
+{ #category : #'test - iterate' }
+ArrayTest >> testDo2 [
 
 	| res |
 	res := OrderedCollection new.  
@@ -938,31 +673,22 @@ ArrayTest>>testDo2 [
 	self assert: res asArray = self result. 
 ]
 
-{
-	#category : #'tests - find binary',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testFindBinary [
+{ #category : #'tests - find binary' }
+ArrayTest >> testFindBinary [
 	self assert: (#(1 3 5 7 11 15 23) findBinary: [ :arg | 1 - arg ]) = 1.
 	self assert: (#(1 3 5 7 11 15 23) findBinary: [ :arg | 23 - arg ]) = 23.
 	self assert: (#(1 3 5 7 11 15 23) findBinary: [ :arg | 11 - arg ]) = 11.
 	self should: [ #(1 3 5 7 11 15 23) findBinary: [ :arg | 8 - arg ] ] raise: NotFound
 ]
 
-{
-	#category : #'tests - find binary',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testFindBinaryIfNone [
+{ #category : #'tests - find binary' }
+ArrayTest >> testFindBinaryIfNone [
 	self assert: (#(1 3 5 7 11 15 23) findBinary: [ :arg | 11 - arg ] ifNone: [ #none ]) = 11.
 	self should: (#(1 3 5 7 11 15 23) findBinary: [ :arg | 8 - arg ] ifNone: [ #none ]) = #none
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testIdentityIncludes [
+{ #category : #'tests - includes' }
+ArrayTest >> testIdentityIncludes [
 	" test the comportement in presence of elements 'includes' but not 'identityIncludes' "
 
 	" can not be used by collections that can't include elements for wich copy doesn't return another instance "
@@ -974,11 +700,8 @@ ArrayTest>>testIdentityIncludes [
 	self deny: (collection identityIncludes: element)
 ]
 
-{
-	#category : #'tests - index access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testIdentityIndexOf [
+{ #category : #'tests - index access' }
+ArrayTest >> testIdentityIndexOf [
 	"self debug: #testIdentityIndexOf"
 	| collection element |
 	element := self elementInCollectionOfFloat copy.
@@ -987,20 +710,14 @@ ArrayTest>>testIdentityIndexOf [
 	self assert: (collection identityIndexOf: element) = collection size
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testIsArray [
+{ #category : #testing }
+ArrayTest >> testIsArray [
 	
 	self assert: example1 isArray
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testIsLiteral [
+{ #category : #testing }
+ArrayTest >> testIsLiteral [
 	"We work with a copy of literalArray, to avoid corrupting the code."
 	
 	| aLiteralArray |
@@ -1011,11 +728,8 @@ ArrayTest>>testIsLiteral [
 	self deny: (literalArray as: WeakArray) isLiteral description: 'instances of Array subclasses are not literal'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testIsSelfEvaluating [
+{ #category : #testing }
+ArrayTest >> testIsSelfEvaluating [
 
 	self assert: example1 isSelfEvaluating.
 	example1 at: 1 put: Bag new.
@@ -1023,31 +737,22 @@ ArrayTest>>testIsSelfEvaluating [
 	example1 at: 1 put: 1.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testLiteralEqual [
+{ #category : #testing }
+ArrayTest >> testLiteralEqual [
 
 	self deny: (example1 literalEqual: example1 asIntegerArray)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testNewWithSize [
+{ #category : #testing }
+ArrayTest >> testNewWithSize [
 	|array|
 	array := Array new: 5.
 	self assert: array size = 5.
 	1 to: 5 do: [:index | self assert: (array at: index) isNil]
 ]
 
-{
-	#category : #'tests - occurrencesOf',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testOccurrencesOf [
+{ #category : #'tests - occurrencesOf' }
+ArrayTest >> testOccurrencesOf [
 	| result expected |
 	result := self nonEmpty occurrencesOf: self elementInForOccurrences.
 	expected := 0.
@@ -1055,39 +760,27 @@ ArrayTest>>testOccurrencesOf [
 	self assert: result = expected
 ]
 
-{
-	#category : #'tests - occurrencesOf',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testOccurrencesOfEmpty [
+{ #category : #'tests - occurrencesOf' }
+ArrayTest >> testOccurrencesOfEmpty [
 	| result |
 	result := self empty occurrencesOf: self elementInForOccurrences.
 	self assert: result = 0
 ]
 
-{
-	#category : #'tests - occurrencesOf',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testOccurrencesOfNotIn [
+{ #category : #'tests - occurrencesOf' }
+ArrayTest >> testOccurrencesOfNotIn [
 	| result |
 	result := self empty occurrencesOf: self elementNotInForOccurrences.
 	self assert: result = 0
 ]
 
-{
-	#category : #'tests - arithmetic',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testPremultiply [
+{ #category : #'tests - arithmetic' }
+ArrayTest >> testPremultiply [
 	self assert: example1 +* #(2 ) = #(2 4 6 8 10 ) 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>testPrinting [
+{ #category : #testing }
+ArrayTest >> testPrinting [
 	"self debug: #testPrinting"
 	
 	self assert: literalArray printString = '#(1 true 3 #four)'.
@@ -1098,29 +791,20 @@ ArrayTest>>testPrinting [
 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>unsortedCollection [
+{ #category : #requirements }
+ArrayTest >> unsortedCollection [
 	^unsortedCollection .
 ]
 
-{
-	#category : #parameters,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>valuePutIn [
+{ #category : #parameters }
+ArrayTest >> valuePutIn [
 	"the value that we will put in the non empty collection"
 	
 	^ 2
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ArrayTest>>withEqualElements [
+{ #category : #requirements }
+ArrayTest >> withEqualElements [
 	" return a collection of float including equal elements (classic equality)"
 	^ collectionOfFloatWithEqualElements
 ]

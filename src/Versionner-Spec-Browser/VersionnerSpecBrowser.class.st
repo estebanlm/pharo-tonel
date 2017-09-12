@@ -15,40 +15,27 @@ Class {
 		'toolbar',
 		'configurationList'
 	],
-	#category : #Versionner-Spec-Browser,
-	#timestamp : '<historical>'
+	#category : #Versionner-Spec-Browser
 }
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser class>>clean [
+{ #category : #ui }
+VersionnerSpecBrowser class >> clean [
 	self allInstances do:[ :a| a unregister].
 	Smalltalk garbageCollect.
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser class>>configurationChangedIcon [
+{ #category : #icons }
+VersionnerSpecBrowser class >> configurationChangedIcon [
 	^ self iconNamed: #configDirty
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser class>>configurationLoadedIcon [
+{ #category : #icons }
+VersionnerSpecBrowser class >> configurationLoadedIcon [
 	^ self iconNamed: #configLoaded
 ]
 
-{
-	#category : #spec,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser class>>defaultSpec [
+{ #category : #spec }
+VersionnerSpecBrowser class >> defaultSpec [
 	"Define the layout of the Versionner Browser"
 	^ SpecLayout composed
 		newColumn: [ :column | 
@@ -59,11 +46,8 @@ VersionnerSpecBrowser class>>defaultSpec [
  
 ]
 
-{
-	#category : #configurations,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser class>>imageConfigurations [
+{ #category : #configurations }
+VersionnerSpecBrowser class >> imageConfigurations [
 	| configs |
 	
 	configs := MBConfigurationRoot current configurations.
@@ -71,11 +55,8 @@ VersionnerSpecBrowser class>>imageConfigurations [
 	^ configs
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser class>>menuCommandOn: aBuilder [
+{ #category : #ui }
+VersionnerSpecBrowser class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #VersionnerSpecBrowser)
 		order: 0.21;
@@ -85,21 +66,15 @@ VersionnerSpecBrowser class>>menuCommandOn: aBuilder [
 		action: [ VersionnerSpecBrowser open ]
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser class>>open [
+{ #category : #ui }
+VersionnerSpecBrowser class >> open [
 	|windows|
 	windows := self openOn: self imageConfigurations.
 	^ windows.
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser class>>openOn: configurations [
+{ #category : #ui }
+VersionnerSpecBrowser class >> openOn: configurations [
 	| browser |
 	browser := self new. 
 	browser configurationList: configurations.
@@ -107,11 +82,8 @@ VersionnerSpecBrowser class>>openOn: configurations [
 	^ browser.
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser class>>settingsOn: aBuilder [
+{ #category : #settings }
+VersionnerSpecBrowser class >> settingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #versionner)
 		label: 'Versionner';
@@ -119,11 +91,8 @@ VersionnerSpecBrowser class>>settingsOn: aBuilder [
 		description: 'Settings related to Versionner the tool to manage projects and configurations'
 ]
 
-{
-	#category : #configurations,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser class>>testConfigurations [
+{ #category : #configurations }
+VersionnerSpecBrowser class >> testConfigurations [
 	^ #( 'ConfigurationOfVersionnerTestBitmapCharacterSet' . 
 		'ConfigurationOfVersionnerTestXMLParserTemplate' .
 		'ConfigurationOfVersionnerTestXMLWriter' .
@@ -132,57 +101,39 @@ VersionnerSpecBrowser class>>testConfigurations [
 		'MetacelloMCTestsAbstractConfig' )
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>aboutText [
+{ #category : #api }
+VersionnerSpecBrowser >> aboutText [
 	^aboutText value: 'Versionner is a GUI tool for working with Metacello configurations, which manage the dependencies between packages and projects. While it does not cover Metacello''s full API, it makes many common cases much easier than writing configurations by hand.
 
 For a tutorial video on how to use Versionner:
 	https://youtu.be/cFRJDuWL-Q0'
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>aboutTitle [
+{ #category : #api }
+VersionnerSpecBrowser >> aboutTitle [
 	^ self toolName.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>browseConfiguration: aConfiguration [
+{ #category : #api }
+VersionnerSpecBrowser >> browseConfiguration: aConfiguration [
 	aConfiguration recalculate.
 	^ VersionnerProjectBrowser openOn: aConfiguration.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>configurationList [
+{ #category : #accessing }
+VersionnerSpecBrowser >> configurationList [
 	
 	^ configurationList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>configurationList: aList [
+{ #category : #accessing }
+VersionnerSpecBrowser >> configurationList: aList [
 	"Here I reroute my entry point to the list model's entry point"
 	self configurationList items: aList.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>iconForConfiguration: aConfiguration [
+{ #category : #accessing }
+VersionnerSpecBrowser >> iconForConfiguration: aConfiguration [
 
 	"should return an IconMorph"
 	^ (aConfiguration isDirty)
@@ -190,29 +141,20 @@ VersionnerSpecBrowser>>iconForConfiguration: aConfiguration [
 					ifFalse: [ self class configurationLoadedIcon ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>initialExtent [
+{ #category : #initialization }
+VersionnerSpecBrowser >> initialExtent [
 
 	 ^  (400.0@500.0)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>initialize  [
+{ #category : #initialization }
+VersionnerSpecBrowser >> initialize [ 
 	super initialize.
 	self register.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>initializePresenter [
+{ #category : #initialization }
+VersionnerSpecBrowser >> initializePresenter [
 	"Initialize widgets behavior"
 	configurationList
 		whenSelectedItemChanged: [ :selection | 
@@ -223,11 +165,8 @@ VersionnerSpecBrowser>>initializePresenter [
 			
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>initializeWidgets [
+{ #category : #initialization }
+VersionnerSpecBrowser >> initializeWidgets [
 	"configurations"
 	configurationList := (self instantiate: FastTableModel)
 		icons: [ :configuration | self iconForConfiguration: configuration ];
@@ -245,11 +184,8 @@ VersionnerSpecBrowser>>initializeWidgets [
 	toolbar := self instantiate: VersionnerToolBar.
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>loadMenuFor: mbInfo in: aMenu  [
+{ #category : #menu }
+VersionnerSpecBrowser >> loadMenuFor: mbInfo in: aMenu [ 
 	| commands menuGroup |
 	
 	"dynamic menu"
@@ -272,19 +208,13 @@ VersionnerSpecBrowser>>loadMenuFor: mbInfo in: aMenu  [
 	^aMenu
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>refresh [
+{ #category : #actions }
+VersionnerSpecBrowser >> refresh [
 	self configurationList: self class imageConfigurations
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>register [
+{ #category : #initialization }
+VersionnerSpecBrowser >> register [
 	"Set up dependencies"
 	
 	MBConfigurationRoot current announcer weak
@@ -297,46 +227,31 @@ VersionnerSpecBrowser>>register [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>title [
+{ #category : #accessing }
+VersionnerSpecBrowser >> title [
 	^ self toolName , ' - Configuration list'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>toolName [
+{ #category : #accessing }
+VersionnerSpecBrowser >> toolName [
 	^ 'Versionner'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>toolbar [
+{ #category : #accessing }
+VersionnerSpecBrowser >> toolbar [
 
 	^ toolbar.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>unregister [
+{ #category : #initialization }
+VersionnerSpecBrowser >> unregister [
 	"Unregister from the dependent object. Typically used when closing the browser"
 	
 	MBConfigurationRoot current announcer unsubscribe: self.
 	SystemAnnouncer uniqueInstance unsubscribe: self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerSpecBrowser>>windowIsClosing [
+{ #category : #actions }
+VersionnerSpecBrowser >> windowIsClosing [
 	self unregister.
 ]

@@ -4,15 +4,11 @@ SUnit tests for serialization with ignored variables
 Class {
 	#name : #FLIgnoredVariablesTest,
 	#superclass : #FLClassSerializationTest,
-	#category : #FuelTests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:26'
+	#category : #FuelTests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLIgnoredVariablesTest>>testAllVariablesIgnored [
+{ #category : #tests }
+FLIgnoredVariablesTest >> testAllVariablesIgnored [
 
 	| anObject result aClass |
 	aClass := self newClassWithInstanceVariableNames: 'a b'.
@@ -29,11 +25,8 @@ FLIgnoredVariablesTest>>testAllVariablesIgnored [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLIgnoredVariablesTest>>testIgnoredValueIsNotMaterialized [
+{ #category : #tests }
+FLIgnoredVariablesTest >> testIgnoredValueIsNotMaterialized [
 
 	| anObject materializedInstances aClass |
 	aClass := self newClassWithInstanceVariableNames: 'a'.
@@ -49,11 +42,8 @@ FLIgnoredVariablesTest>>testIgnoredValueIsNotMaterialized [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLIgnoredVariablesTest>>testOneIgnoredVariable [
+{ #category : #tests }
+FLIgnoredVariablesTest >> testOneIgnoredVariable [
 
 	| anObject result aClass |
 	aClass := self newClassWithInstanceVariableNames: 'a b c'.
@@ -71,11 +61,8 @@ FLIgnoredVariablesTest>>testOneIgnoredVariable [
 	self assert: $C = (result instVarAt: 3)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLIgnoredVariablesTest>>testTwoIgnoredVariables [
+{ #category : #tests }
+FLIgnoredVariablesTest >> testTwoIgnoredVariables [
 
 	| anObject result aClass |
 	aClass := self newClassWithInstanceVariableNames: 'a b c'.

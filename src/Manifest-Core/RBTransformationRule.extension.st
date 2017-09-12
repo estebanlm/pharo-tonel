@@ -1,12 +1,7 @@
-Extension {
-	#name : #RBTransformationRule
-}
+Extension { #name : #RBTransformationRule }
 
-{
-	#category : #'*Manifest-Core',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-RBTransformationRule>>transform: aCritic [
+{ #category : #'*Manifest-Core' }
+RBTransformationRule >> transform: aCritic [
 	| changeCode |
 
 	changeCode := (self changes detect: [ :ch | 

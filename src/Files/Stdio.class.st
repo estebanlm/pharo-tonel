@@ -20,33 +20,23 @@ Class {
 		'Stdin',
 		'Stdout'
 	],
-	#category : #Files-Core,
-	#timestamp : 'GuillermoPolito 6/4/2015 15:43'
+	#category : #Files-Core
 }
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-Stdio class>>cleanStdioHandles [
+{ #category : #'system startup' }
+Stdio class >> cleanStdioHandles [
 
 	Stderr := Stdin := Stdout := nil
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-Stdio class>>initialize [
+{ #category : #initialize-release }
+Stdio class >> initialize [
 	SessionManager default
 		registerSystemClassNamed: self name
 ]
 
-{
-	#category : #stdio,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-Stdio class>>standardIOStreamNamed: moniker forWrite: forWrite [
+{ #category : #stdio }
+Stdio class >> standardIOStreamNamed: moniker forWrite: forWrite [
 	"Create if necessary and store default stdin, stdout and other files based on the their names"
 	
 	| handle |
@@ -64,47 +54,32 @@ Stdio class>>standardIOStreamNamed: moniker forWrite: forWrite [
 	^ StdioStream handle: handle file: (File named: moniker) forWrite: forWrite.
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-Stdio class>>startUp: resuming [
+{ #category : #'system startup' }
+Stdio class >> startUp: resuming [
 
 	resuming ifTrue: [ self cleanStdioHandles ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-Stdio class>>stderr [
+{ #category : #accessing }
+Stdio class >> stderr [
 
 	^ Stderr ifNil: [ Stderr := self standardIOStreamNamed: #stderr forWrite: true ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-Stdio class>>stdin [
+{ #category : #accessing }
+Stdio class >> stdin [
 
 	^ Stdin ifNil: [ Stdin := self standardIOStreamNamed: #stdin forWrite: false ].
 ]
 
-{
-	#category : #stdio,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-Stdio class>>stdioHandles [
+{ #category : #stdio }
+Stdio class >> stdioHandles [
 	<primitive: 'primitiveFileStdioHandles' module: 'FilePlugin' error: ec>
 	self primitiveFailed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-Stdio class>>stdout [
+{ #category : #accessing }
+Stdio class >> stdout [
 
 	^ Stdout ifNil: [ Stdout := self standardIOStreamNamed: #stdout forWrite: true ].
 ]

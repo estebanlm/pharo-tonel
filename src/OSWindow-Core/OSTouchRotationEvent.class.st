@@ -7,30 +7,20 @@ Class {
 	#instVars : [
 		'dTheta'
 	],
-	#category : #OSWindow-Core-Events-Touch,
-	#timestamp : 'MerwanOuddane 4/8/2015 14:27'
+	#category : #OSWindow-Core-Events-Touch
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchRotationEvent class>>id [
+{ #category : #'as yet unclassified' }
+OSTouchRotationEvent class >> id [
 	^ #rotate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchRotationEvent>>dTheta [
+{ #category : #accessing }
+OSTouchRotationEvent >> dTheta [
 	^ dTheta
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchRotationEvent>>dTheta: anObject [
+{ #category : #accessing }
+OSTouchRotationEvent >> dTheta: anObject [
 	dTheta := anObject
 ]

@@ -7,41 +7,28 @@ Class {
 	#instVars : [
 		'categories'
 	],
-	#category : #Monticello-Modeling,
-	#timestamp : '<historical>'
+	#category : #Monticello-Modeling
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition class>>categories: anArray [
+{ #category : #'instance creation' }
+MCOrganizationDefinition class >> categories: anArray [
 	^ self instanceLike: (self new categories: anArray)
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition>>= aDefinition [
+{ #category : #comparing }
+MCOrganizationDefinition >> = aDefinition [
 
 	^ (super = aDefinition)
 		and: [ self categories size = aDefinition categories size and: [ self categories includesAll: aDefinition categories ] ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition>>accept: aVisitor [
+{ #category : #accessing }
+MCOrganizationDefinition >> accept: aVisitor [
 	^ aVisitor visitOrganizationDefinition: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition>>basicCommonPrefix [
+{ #category : #private }
+MCOrganizationDefinition >> basicCommonPrefix [
 	"Answers the minimum common denominator on package names contained in the monticello package. 
 	 It can answer a package in the form X-Y-, with a minus at end..."
 	| stream  |
@@ -57,28 +44,19 @@ MCOrganizationDefinition>>basicCommonPrefix [
 	^stream contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition>>categories [
+{ #category : #accessing }
+MCOrganizationDefinition >> categories [
 	"ensure the categories are sorted alphabetically, so the merge don't take it as a conflict"
 	^ categories
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition>>categories: anArray [
+{ #category : #accessing }
+MCOrganizationDefinition >> categories: anArray [
 	categories := anArray sort
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition>>commonPrefix [
+{ #category : #accessing }
+MCOrganizationDefinition >> commonPrefix [
 	"Answer the package common name. 
 	 In ancient times, this was answering X-Y-, with a minus at the end... this was useful for the 
 	 old PackageInfo framework. RPackage does not do pattern matching, thus this is not needed anymore 
@@ -92,19 +70,13 @@ MCOrganizationDefinition>>commonPrefix [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition>>description [
+{ #category : #accessing }
+MCOrganizationDefinition >> description [
 	^ Array with: #organization with: self fullDescription
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition>>fullDescription [
+{ #category : #private }
+MCOrganizationDefinition >> fullDescription [
 	self categories ifEmpty: [ ^ self commonPrefix ].
 	^ String
 		streamContents: [ :stream | 
@@ -118,30 +90,21 @@ MCOrganizationDefinition>>fullDescription [
 					stream << $| << part ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition>>isOrganizationDefinition [
+{ #category : #testing }
+MCOrganizationDefinition >> isOrganizationDefinition [
 	^ true
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition>>postloadOver: oldDefinition [
+{ #category : #installing }
+MCOrganizationDefinition >> postloadOver: oldDefinition [
 	SystemOrganization categories:
 		(self
 			reorderCategories: SystemOrganization categories
 			original: (oldDefinition ifNil: [#()] ifNotNil: [oldDefinition categories]))
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition>>reorderCategories: allCategories original: oldCategories [
+{ #category : #private }
+MCOrganizationDefinition >> reorderCategories: allCategories original: oldCategories [
 	| first |
 	first := allCategories detect: [:ea | categories includes: ea] ifNone: [^ allCategories].
 	^ 	((allCategories copyUpTo: first) copyWithoutAll: oldCategories, categories),
@@ -150,46 +113,31 @@ MCOrganizationDefinition>>reorderCategories: allCategories original: oldCategori
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition>>shortSummaryPrefix [
+{ #category : #accessing }
+MCOrganizationDefinition >> shortSummaryPrefix [
 
 	^ self definition description last
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition>>sortKey [
+{ #category : #accessing }
+MCOrganizationDefinition >> sortKey [
 	^ '<organization>'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition>>source [
+{ #category : #accessing }
+MCOrganizationDefinition >> source [
 	^ String streamContents:
 		[:s |
 		categories do: [:ea | s nextPutAll: ea] separatedBy: [s cr]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition>>summary [
+{ #category : #accessing }
+MCOrganizationDefinition >> summary [
 	^ categories asArray printString
 ]
 
-{
-	#category : #unloading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCOrganizationDefinition>>unload [
+{ #category : #unloading }
+MCOrganizationDefinition >> unload [
 	categories
 		do: [ :category | 
 			(SystemOrganization isEmptyCategoryNamed: category)

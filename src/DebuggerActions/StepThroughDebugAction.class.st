@@ -5,68 +5,46 @@ A StepThroughDebugAction through the execution until control returns to the curr
 Class {
 	#name : #StepThroughDebugAction,
 	#superclass : #DebugAction,
-	#category : #DebuggerActions,
-	#timestamp : '<historical>'
+	#category : #DebuggerActions
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StepThroughDebugAction class>>actionType [
+{ #category : #registration }
+StepThroughDebugAction class >> actionType [
 	<debuggingAction>
 	<contextMenuDebuggingAction>
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StepThroughDebugAction>>defaultHelp [
+{ #category : #accessing }
+StepThroughDebugAction >> defaultHelp [
 	^ 'Step over the highlighted message, i.e. do not follow the sent message, taking debugger control after the method invoked returns or whenever execution should return inside a block used as an argument before that.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StepThroughDebugAction>>defaultKeymap [
+{ #category : #accessing }
+StepThroughDebugAction >> defaultKeymap [
 
 	^ PharoShortcuts current stepThroughShortcut
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StepThroughDebugAction>>defaultLabel [
+{ #category : #accessing }
+StepThroughDebugAction >> defaultLabel [
 
 	^ 'Through'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StepThroughDebugAction>>defaultOrder [
+{ #category : #accessing }
+StepThroughDebugAction >> defaultOrder [
 
 	^ 25
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StepThroughDebugAction>>executeAction [
+{ #category : #actions }
+StepThroughDebugAction >> executeAction [
 
 	self session stepThrough: self currentContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StepThroughDebugAction>>id [
+{ #category : #accessing }
+StepThroughDebugAction >> id [
 
 	^ #stepThrough
 ]

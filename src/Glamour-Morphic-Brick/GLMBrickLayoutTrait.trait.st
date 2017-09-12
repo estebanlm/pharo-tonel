@@ -5,25 +5,18 @@ Trait {
 	#name : #GLMBrickLayoutTrait,
 	#traits : 'GLMBrickExtensionTrait',
 	#classTraits : 'GLMBrickExtensionTrait classTrait',
-	#category : #Glamour-Morphic-Brick-Traits,
-	#timestamp : 'AliakseiSyrel 1/30/2015 10:48'
+	#category : #Glamour-Morphic-Brick-Traits
 }
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>doLayout [
+{ #category : #brick-layout }
+GLMBrickLayoutTrait >> doLayout [
 
 	self isLayotingAllowed ifTrue: [
 		GLMBrickLayouter uniqueInstance layoutIn: self brickApi ]
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>doLayoutForce [
+{ #category : #brick-layout }
+GLMBrickLayoutTrait >> doLayoutForce [
 
 	self wrappedBounds
 		markHeightDirty;
@@ -32,11 +25,8 @@ GLMBrickLayoutTrait>>doLayoutForce [
 	self doLayout
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>doNotLayoutDuring: aBlock [
+{ #category : #brick-layout }
+GLMBrickLayoutTrait >> doNotLayoutDuring: aBlock [
 	|wasAllowed|
 	wasAllowed := self isLayotingAllowed.
 	self isLayotingAllowed: false.
@@ -44,241 +34,163 @@ GLMBrickLayoutTrait>>doNotLayoutDuring: aBlock [
 		ensure: [ wasAllowed ifTrue: [ self isLayotingAllowed: true ] ]
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>floating [
+{ #category : #brick-layout-properties }
+GLMBrickLayoutTrait >> floating [
 
 	^ self layout floating
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>floating: aSymbol [
+{ #category : #brick-layout-properties }
+GLMBrickLayoutTrait >> floating: aSymbol [
 
 	self layout floating: aSymbol
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>hAlign [
+{ #category : #brick-layout-properties }
+GLMBrickLayoutTrait >> hAlign [
 
 	^ self layout hAlign
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>hAlign: aSymbol [
+{ #category : #brick-layout-properties }
+GLMBrickLayoutTrait >> hAlign: aSymbol [
 	<brickBuilderProperty: #Layout name: 'Horizontal align' as: #asSymbol getter: #hAlign model: #GLMUIBuilderTextFieldProperty>
 
 	self layout hAlign: aSymbol
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>hShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMBrickLayoutTrait >> hShrinkWrap [
 
 	self layout hShrinkWrap
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>hSpaceFill [
+{ #category : #brick-layout-properties }
+GLMBrickLayoutTrait >> hSpaceFill [
 
 	self hSpaceFill: 100
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>hSpaceFill: anInteger [
+{ #category : #brick-layout-properties }
+GLMBrickLayoutTrait >> hSpaceFill: anInteger [
 	<brickBuilderProperty: #Layout name: 'Horizontal percent' as: #asInteger getter: #hPercent model: #GLMUIBuilderTextFieldProperty>
 
 	self layout hSpaceFill: anInteger
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>hasProperty: aSymbol [
+{ #category : #private-extension }
+GLMBrickLayoutTrait >> hasProperty: aSymbol [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>innerBounds [
+{ #category : #brick-geometry }
+GLMBrickLayoutTrait >> innerBounds [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>invalidateLayout [
+{ #category : #brick-layout }
+GLMBrickLayoutTrait >> invalidateLayout [
 
 	self layoutPolicy layout: self brickApi in: self wrappedBounds innerBounds
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>invalidateWith: aBlock [
+{ #category : #brick-layout }
+GLMBrickLayoutTrait >> invalidateWith: aBlock [
 
 	aBlock cull: self.
 	self doLayoutForce.
 ]
 
-{
-	#category : #private-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>isLayotingAllowed [
+{ #category : #private-layout }
+GLMBrickLayoutTrait >> isLayotingAllowed [
 
 	^ self valueOfProperty: #brickLayoutingAllowed ifAbsent: [ true ]
 ]
 
-{
-	#category : #private-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>isLayotingAllowed: aBoolean [
+{ #category : #private-layout }
+GLMBrickLayoutTrait >> isLayotingAllowed: aBoolean [
 
 	self setProperty: #brickLayoutingAllowed toValue: aBoolean
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>layout [
+{ #category : #brick-layout }
+GLMBrickLayoutTrait >> layout [
 	"Alias for layoutProperies"
 	^ self layoutProperties
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>layout: aLayout [
+{ #category : #brick-layout }
+GLMBrickLayoutTrait >> layout: aLayout [
 	"Alias for layoutPolicy:"
 	<brickBuilderProperty: #Layout name: 'Orientation' as: #brickBuilderLayout getter: #layoutPolicy model: #GLMUIBuilderTextFieldProperty>
 
 	self layoutPolicy: aLayout
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>layoutAfter: aBlock [
+{ #category : #brick-layout }
+GLMBrickLayoutTrait >> layoutAfter: aBlock [
 
 	self doNotLayoutDuring: aBlock.
 	self doLayout
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>layoutPolicy [
+{ #category : #brick-layout }
+GLMBrickLayoutTrait >> layoutPolicy [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>layoutPolicy: aLayout [
+{ #category : #brick-layout }
+GLMBrickLayoutTrait >> layoutPolicy: aLayout [
 
 	self explicitRequirement
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>layoutProperties [
+{ #category : #brick-layout }
+GLMBrickLayoutTrait >> layoutProperties [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>layoutProperties: aLayoutProperties [
+{ #category : #brick-layout }
+GLMBrickLayoutTrait >> layoutProperties: aLayoutProperties [
 
 	self explicitRequirement
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>layoutSubbricks [
+{ #category : #brick-layout }
+GLMBrickLayoutTrait >> layoutSubbricks [
 
 	self layoutPolicy layout: self brickApi in: self innerBounds
 ]
 
-{
-	#category : #brick-layout-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>onChildrenLayouted [
+{ #category : #brick-layout-events }
+GLMBrickLayoutTrait >> onChildrenLayouted [
 	"called when all my children finished layouting"
 	self updateFoundationBounds
 ]
 
-{
-	#category : #brick-layout-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>onLayoutEvent: aLayoutEvent [
+{ #category : #brick-layout-events }
+GLMBrickLayoutTrait >> onLayoutEvent: aLayoutEvent [
 	"in case layout want's to trigger any specific event"
 ]
 
-{
-	#category : #brick-layout-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>onLayouted [
+{ #category : #brick-layout-events }
+GLMBrickLayoutTrait >> onLayouted [
 	"called when I'm layouted in my parent"
 	self updateFoundationBounds
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>removeProperty: aSymbol [
+{ #category : #private-extension }
+GLMBrickLayoutTrait >> removeProperty: aSymbol [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #private-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>resetLayout [
+{ #category : #private-layout }
+GLMBrickLayoutTrait >> resetLayout [
 
 	self vResizing: #rigid.
 	self hResizing: #rigid.
@@ -286,130 +198,88 @@ GLMBrickLayoutTrait>>resetLayout [
 	self width: nil
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>setProperty: aSymbol toValue: anObject [
+{ #category : #private-extension }
+GLMBrickLayoutTrait >> setProperty: aSymbol toValue: anObject [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #brick-structure,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>subbricks [
+{ #category : #brick-structure }
+GLMBrickLayoutTrait >> subbricks [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>useHorizontalLinearLayout [
+{ #category : #brick-layout-properties }
+GLMBrickLayoutTrait >> useHorizontalLinearLayout [
 
 	self layout: GLMHorizontalLinearLayout uniqueInstance
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>useVerticalLinearLayout [
+{ #category : #brick-layout-properties }
+GLMBrickLayoutTrait >> useVerticalLinearLayout [
 
 	self layout: GLMVerticalLinearLayout uniqueInstance
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>vAlign [
+{ #category : #brick-layout-properties }
+GLMBrickLayoutTrait >> vAlign [
 
 	^ self layout vAlign
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>vAlign: aSymbol [
+{ #category : #brick-layout-properties }
+GLMBrickLayoutTrait >> vAlign: aSymbol [
 	<brickBuilderProperty: #Layout name: 'Vertical align' as: #asSymbol getter: #vAlign model: #GLMUIBuilderTextFieldProperty>
 
 	self layout vAlign: aSymbol
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>vShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMBrickLayoutTrait >> vShrinkWrap [
 
 	self layout vShrinkWrap
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>vSpaceFill [
+{ #category : #brick-layout-properties }
+GLMBrickLayoutTrait >> vSpaceFill [
 
 	self vSpaceFill: 100
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>vSpaceFill: anInteger [
+{ #category : #brick-layout-properties }
+GLMBrickLayoutTrait >> vSpaceFill: anInteger [
 	<brickBuilderProperty: #Layout name: 'Vertical percent' as: #asInteger getter: #vPercent model: #GLMUIBuilderTextFieldProperty>
 
 	self layout vSpaceFill: anInteger
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>valueOfProperty: aSymbol [
+{ #category : #private-extension }
+GLMBrickLayoutTrait >> valueOfProperty: aSymbol [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>valueOfProperty: aSymbol ifAbsent: aBlock [
+{ #category : #private-extension }
+GLMBrickLayoutTrait >> valueOfProperty: aSymbol ifAbsent: aBlock [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>valueOfProperty: aSymbol ifAbsentPut: aBlock  [
+{ #category : #private-extension }
+GLMBrickLayoutTrait >> valueOfProperty: aSymbol ifAbsentPut: aBlock [ 
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>zIndex [
+{ #category : #brick-layout-properties }
+GLMBrickLayoutTrait >> zIndex [
 
 	^ self layout zIndex brickValue: self
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutTrait>>zIndex: anInteger [
+{ #category : #brick-layout-properties }
+GLMBrickLayoutTrait >> zIndex: anInteger [
 
 	self layout zIndex: anInteger
 ]

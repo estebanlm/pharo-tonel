@@ -52,48 +52,32 @@ Class {
 	#instVars : [
 		'parameters'
 	],
-	#category : #Glamour-FastTable-Presentations,
-	#timestamp : 'CyrilFerlicot 11/10/2015 10:52'
+	#category : #Glamour-FastTable-Presentations
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListPresentation>>allowSeparators [
+{ #category : #testing }
+GLMFastListPresentation >> allowSeparators [
 	^ self parameters at: 'withSeparators' ifAbsent: [ false ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListPresentation>>initialize [
+{ #category : #initialize-release }
+GLMFastListPresentation >> initialize [
 	super initialize.
 	parameters := Dictionary new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListPresentation>>parameters [
+{ #category : #accessing }
+GLMFastListPresentation >> parameters [
 	^ parameters
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListPresentation>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMFastListPresentation >> renderGlamorouslyOn: aRenderer [ 
 	self registerAnnouncements.
 	^ aRenderer renderFastListPresentation: self
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListPresentation>>withSeparators [
+{ #category : #'public api' }
+GLMFastListPresentation >> withSeparators [
 	self parameters at: 'withSeparators' put: true
 ]

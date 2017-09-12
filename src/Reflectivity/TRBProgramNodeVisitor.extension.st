@@ -1,27 +1,15 @@
-Extension {
-	#name : #TRBProgramNodeVisitor
-}
+Extension { #name : #TRBProgramNodeVisitor }
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-TRBProgramNodeVisitor>>visitLiteralVariableNode: aNode [
-
+{ #category : #'*Reflectivity' }
+TRBProgramNodeVisitor >> visitLiteralVariableNode: aNode [
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-TRBProgramNodeVisitor>>visitStoreIntoTempNode: aNode [
+{ #category : #'*Reflectivity' }
+TRBProgramNodeVisitor >> visitStoreIntoTempNode: aNode [
 	^ aNode
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-TRBProgramNodeVisitor>>visitStorePopIntoTempNode: aNode [
+{ #category : #'*Reflectivity' }
+TRBProgramNodeVisitor >> visitStorePopIntoTempNode: aNode [
 	^ aNode
 ]

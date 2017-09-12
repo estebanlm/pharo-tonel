@@ -4,36 +4,26 @@ A class of utility methods used to implement *NautilusCommon extension methods o
 Class {
 	#name : #NautilusUtils,
 	#superclass : #Object,
-	#category : #NautilusCommon,
-	#timestamp : 'monty 8/25/2016 06:07'
+	#category : #NautilusCommon
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUtils class>>asTestMethod: aMethod [
+{ #category : #utilities }
+NautilusUtils class >> asTestMethod: aMethod [
 	^ aMethod isTestMethod
 		ifTrue: [ aMethod ]
 		ifFalse: [ aMethod correspondingTestMethod ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUtils class>>correspondingTestCaseOf: aClassOrClassDefinition [
+{ #category : #utilities }
+NautilusUtils class >> correspondingTestCaseOf: aClassOrClassDefinition [
 	^ self environment
 		at:
 			(aClassOrClassDefinition theNonMetaClass name asString , 'Test') asSymbol
 		ifAbsent: [ nil ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUtils class>>correspondingTestMethodOf: aMethodOrMethodDefinition [
+{ #category : #utilities }
+NautilusUtils class >> correspondingTestMethodOf: aMethodOrMethodDefinition [
 	| selectorString testCase |
 	aMethodOrMethodDefinition isTestMethod
 		ifTrue: [ ^ nil ].
@@ -46,11 +36,8 @@ NautilusUtils class>>correspondingTestMethodOf: aMethodOrMethodDefinition [
 		ifNone: [ nil ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUtils class>>correspondingTestedMethodsOf: aMethodOrMethodDefinition [
+{ #category : #utilities }
+NautilusUtils class >> correspondingTestedMethodsOf: aMethodOrMethodDefinition [
 	| selectorString classTested methodsTested |
 	aMethodOrMethodDefinition isTestMethod
 		ifFalse: [ ^ #() ].

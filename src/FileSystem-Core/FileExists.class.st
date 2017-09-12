@@ -4,6 +4,5 @@ I am raised on an attempt to create a file or directory over top of an existing 
 Class {
 	#name : #FileExists,
 	#superclass : #FileSystemError,
-	#category : #FileSystem-Core-Kernel,
-	#timestamp : 'cwp 11/18/2009 12:37'
+	#category : #FileSystem-Core-Kernel
 }

@@ -8,15 +8,11 @@ This example shows how Slots can change the class that they are part of.
 Class {
 	#name : #AccessorInstanceVariableSlot,
 	#superclass : #InstanceVariableSlot,
-	#category : #Slot-Examples,
-	#timestamp : 'MarcusDenker 2/6/2015 17:09'
+	#category : #Slot-Examples
 }
 
-{
-	#category : #'class building',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AccessorInstanceVariableSlot>>installingIn: aClass [
+{ #category : #'class building' }
+AccessorInstanceVariableSlot >> installingIn: aClass [
 	| reader writer | 
 	
 	reader := String streamContents: [ :str |
@@ -38,11 +34,8 @@ AccessorInstanceVariableSlot>>installingIn: aClass [
 	aClass compile: writer classified: 'accessing'.
 ]
 
-{
-	#category : #'class building',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AccessorInstanceVariableSlot>>removingFrom: aClass [
+{ #category : #'class building' }
+AccessorInstanceVariableSlot >> removingFrom: aClass [
 	
 	aClass removeSelector: self name.
 	aClass removeSelector: self name asMutator.

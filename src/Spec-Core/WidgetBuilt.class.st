@@ -8,15 +8,11 @@ Class {
 		'model',
 		'widget'
 	],
-	#category : #Spec-Core-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WidgetBuilt class>>model: model widget: widget [
+{ #category : #'instance creation' }
+WidgetBuilt class >> model: model widget: widget [
 
 	^ self new
 		model: model;
@@ -24,34 +20,22 @@ WidgetBuilt class>>model: model widget: widget [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WidgetBuilt>>model [
+{ #category : #accessing }
+WidgetBuilt >> model [
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WidgetBuilt>>model: anObject [
+{ #category : #accessing }
+WidgetBuilt >> model: anObject [
 	model := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WidgetBuilt>>widget [
+{ #category : #accessing }
+WidgetBuilt >> widget [
 	^ widget
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WidgetBuilt>>widget: anObject [
+{ #category : #accessing }
+WidgetBuilt >> widget: anObject [
 	widget := anObject
 ]

@@ -7,56 +7,37 @@ Class {
 	#instVars : [
 		'tempIndex'
 	],
-	#category : #GT-Inspector,
-	#timestamp : 'AndreiChis 3/4/2017 14:01'
+	#category : #GT-Inspector
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextIndexedTempNode class>>hostObject: aContext tempIndex: anInteger [
+{ #category : #'as yet unclassified' }
+GTInspectorContextIndexedTempNode class >> hostObject: aContext tempIndex: anInteger [
 	^ (self hostObject: aContext) 
 		tempIndex: anInteger;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextIndexedTempNode>>label [
+{ #category : #accessing }
+GTInspectorContextIndexedTempNode >> label [
 	^ self tempIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextIndexedTempNode>>rawValue [
+{ #category : #accessing }
+GTInspectorContextIndexedTempNode >> rawValue [
 	^ self hostObject at: self tempIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextIndexedTempNode>>tempIndex [
+{ #category : #accessing }
+GTInspectorContextIndexedTempNode >> tempIndex [
 	^ tempIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextIndexedTempNode>>tempIndex: anObject [
+{ #category : #accessing }
+GTInspectorContextIndexedTempNode >> tempIndex: anObject [
 	tempIndex := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextIndexedTempNode>>variableTag [
+{ #category : #accessing }
+GTInspectorContextIndexedTempNode >> variableTag [
 	^  'temp' 
 ]

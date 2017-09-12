@@ -7,23 +7,15 @@ Class {
 	#name : #LargePositiveInteger,
 	#superclass : #LargeInteger,
 	#type : #bytes,
-	#category : #Kernel-Numbers,
-	#timestamp : '<historical>'
+	#category : #Kernel-Numbers
 }
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargePositiveInteger>>abs [
-
+{ #category : #arithmetic }
+LargePositiveInteger >> abs [
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargePositiveInteger>>bitAt: anInteger [
+{ #category : #'bit manipulation' }
+LargePositiveInteger >> bitAt: anInteger [
 	"Optimize super algorithm to avoid long bit operations.
 	Instead work on digits which are known to be SmallInteger and fast.
 	Note that this algorithm does not work for negative integers."
@@ -35,11 +27,8 @@ LargePositiveInteger>>bitAt: anInteger [
 	^(self digitAt: digitIndex) bitAt: bitIndex
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargePositiveInteger>>highBit [
+{ #category : #'bit manipulation' }
+LargePositiveInteger >> highBit [
 	"Answer the index of the high order bit of the receiver, or zero if the  
 	receiver is zero. Raise an error if the receiver is negative, since  
 	negative integers are defined to have an infinite number of leading 1's 
@@ -48,11 +37,8 @@ LargePositiveInteger>>highBit [
 	^ self highBitOfMagnitude
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargePositiveInteger>>ln [
+{ #category : #'mathematical functions' }
+LargePositiveInteger >> ln [
 	"This function is defined because super ln might overflow."
 	| res h |
 	res := super ln.
@@ -61,11 +47,8 @@ LargePositiveInteger>>ln [
 	^2 ln * h + (self / (1 << h)) asFloat ln
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargePositiveInteger>>log [
+{ #category : #'mathematical functions' }
+LargePositiveInteger >> log [
 	"This function is defined because super log might overflow."
 	| res h |
 	res := super log.
@@ -74,11 +57,8 @@ LargePositiveInteger>>log [
 	^2 log * h + (self / (1 << h)) asFloat log
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargePositiveInteger>>mightBeASquare [
+{ #category : #testing }
+LargePositiveInteger >> mightBeASquare [
 	"In base 16, a square number can end only with 0,1,4 or 9 and
 	- in case 0, only 0,1,4,9 can precede it,
 	- in case 4, only even numbers can precede it.
@@ -102,30 +82,21 @@ LargePositiveInteger>>mightBeASquare [
 		or: [ (lsb bitAnd: 16r7F) = 16 ]]]]	"10 or 90"
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargePositiveInteger>>negated [
+{ #category : #arithmetic }
+LargePositiveInteger >> negated [ 
 	^ (self copyto: (LargeNegativeInteger new: self digitLength))
 		normalize  "Need to normalize to catch SmallInteger minVal"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargePositiveInteger>>negative [
+{ #category : #testing }
+LargePositiveInteger >> negative [
 	"Answer whether the receiver is mathematically negative."
 
 	^ false
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargePositiveInteger>>normalize [
+{ #category : #converting }
+LargePositiveInteger >> normalize [
 	"Check for leading zeroes and return shortened copy if so"
 	| sLen val len oldLen |
 	<primitive: 'primNormalizePositive' module:'LargeIntegers'>
@@ -153,22 +124,16 @@ LargePositiveInteger>>normalize [
 		ifFalse: [^ self]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargePositiveInteger>>positive [
+{ #category : #testing }
+LargePositiveInteger >> positive [
 	"Answer whether the receiver is positive or equal to 0. (ST-80 protocol).
 	See also strictlyPositive"
 
 	^ true
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargePositiveInteger>>printOn: aStream base: b [
+{ #category : #printing }
+LargePositiveInteger >> printOn: aStream base: b [
 	"Append a representation of this number in base b on aStream.
 	In order to reduce cost of LargePositiveInteger ops, split the number in approximately two equal parts in number of digits."
 	
@@ -200,22 +165,16 @@ LargePositiveInteger>>printOn: aStream base: b [
 	tail printOn: aStream base: b nDigits: halfDigits
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargePositiveInteger>>sign [
+{ #category : #testing }
+LargePositiveInteger >> sign [
 	"Optimization. Answer 1 since receiver is greater than 0."
 
 	^ 1
 
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargePositiveInteger>>sqrt [
+{ #category : #'mathematical functions' }
+LargePositiveInteger >> sqrt [
 	"If we know for sure no exact solution exists, then just answer the cheap float approximation without wasting time."
 	| selfAsFloat |
 	self mightBeASquare
@@ -227,11 +186,8 @@ LargePositiveInteger>>sqrt [
 	^super sqrt
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargePositiveInteger>>strictlyPositive [
+{ #category : #testing }
+LargePositiveInteger >> strictlyPositive [
 	"Answer whether the receiver is mathematically positive."
 
 	^ true

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMDynamicPresentationTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMDynamicPresentationTest>>testCachedPresentation [
+{ #category : #tests }
+GLMDynamicPresentationTest >> testCachedPresentation [
 	| dynamic currentPresentation |
 	dynamic := GLMDynamicPresentation new.
 	dynamic entity: 42.
@@ -22,11 +15,8 @@ GLMDynamicPresentationTest>>testCachedPresentation [
 	self assert: dynamic cachedPresentation == currentPresentation
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMDynamicPresentationTest>>testDefaultPresentation [
+{ #category : #tests }
+GLMDynamicPresentationTest >> testDefaultPresentation [
 	| dynamic |
 	dynamic := GLMDynamicPresentation new.
 	dynamic entity: 42.
@@ -36,11 +26,8 @@ GLMDynamicPresentationTest>>testDefaultPresentation [
 	self assert: dynamic currentPresentation pane == dynamic pane
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMDynamicPresentationTest>>testDirectEventsPropagationTransformation [
+{ #category : #tests }
+GLMDynamicPresentationTest >> testDirectEventsPropagationTransformation [
 	| dynamic textPresentation counter portOne portTwo |
 	counter := 0.
 	dynamic := GLMDynamicPresentation new.
@@ -59,11 +46,8 @@ GLMDynamicPresentationTest>>testDirectEventsPropagationTransformation [
 	self assert: counter equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMDynamicPresentationTest>>testIndirectEventsPropagationTransformation [
+{ #category : #tests }
+GLMDynamicPresentationTest >> testIndirectEventsPropagationTransformation [
 	| dynamic textPresentation counter |
 	counter := 0.
 	dynamic := GLMDynamicPresentation new.
@@ -80,11 +64,8 @@ GLMDynamicPresentationTest>>testIndirectEventsPropagationTransformation [
 	self assert: counter equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMDynamicPresentationTest>>testPresentationInitializationBlock [
+{ #category : #tests }
+GLMDynamicPresentationTest >> testPresentationInitializationBlock [
 	| dynamic count |
 	count := 0.
 	dynamic := GLMDynamicPresentation new.
@@ -99,11 +80,8 @@ GLMDynamicPresentationTest>>testPresentationInitializationBlock [
 	self assert: count = 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMDynamicPresentationTest>>testPresentationTransformation [
+{ #category : #tests }
+GLMDynamicPresentationTest >> testPresentationTransformation [
 	| dynamic |
 	dynamic := GLMDynamicPresentation new.
 	dynamic entity: 42.

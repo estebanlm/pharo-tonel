@@ -9,15 +9,11 @@ more efficiently to work with buffer sized chunks, bypassing #next and #nextPut:
 Class {
 	#name : #ZdcOptimizedSocketStream,
 	#superclass : #ZdcSimpleSocketStream,
-	#category : #Zodiac-Core,
-	#timestamp : 'SvenVanCaekenberghe 5/17/2011 18:57'
+	#category : #Zodiac-Core
 }
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcOptimizedSocketStream>>next: count putAll: collection startingAt: offset [
+{ #category : #'stream out' }
+ZdcOptimizedSocketStream >> next: count putAll: collection startingAt: offset [
 	"Write count bytes from collection starting at offset. Overwritten, optimized"
 	
 	| totalWritten |
@@ -29,11 +25,8 @@ ZdcOptimizedSocketStream>>next: count putAll: collection startingAt: offset [
 		totalWritten = count ] whileFalse: [ self flushWriteBuffer ]
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcOptimizedSocketStream>>readInto: collection startingAt: offset count: requestedCount [
+{ #category : #'stream in' }
+ZdcOptimizedSocketStream >> readInto: collection startingAt: offset count: requestedCount [
 	"Read requestedCount elements into collection starting at offset,
 	returning the number of elements read. Overwritten, optimized"
 	
@@ -51,11 +44,8 @@ ZdcOptimizedSocketStream>>readInto: collection startingAt: offset count: request
 	^ totalRead
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcOptimizedSocketStream>>skip: count [
+{ #category : #'stream in' }
+ZdcOptimizedSocketStream >> skip: count [
 	"Skip over count bytes. Overwritten, optimized"
 	
 	| skipCount |
@@ -67,11 +57,8 @@ ZdcOptimizedSocketStream>>skip: count [
 	     (skipCount := skipCount + skipping) = count ] whileFalse: [ self fillReadBuffer ]
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcOptimizedSocketStream>>upTo: value  [
+{ #category : #'stream in' }
+ZdcOptimizedSocketStream >> upTo: value [ 
 	"Read bytes upto but not including value and return them as a ByteArray.
 	If value is not found, return the entire contents of the stream. Overwritten, optimized"
 	
@@ -89,11 +76,8 @@ ZdcOptimizedSocketStream>>upTo: value  [
 					readBuffer isEmpty ifTrue: [ self fillReadBuffer ] ] ]
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcOptimizedSocketStream>>upToEnd [
+{ #category : #'stream in' }
+ZdcOptimizedSocketStream >> upToEnd [
 	"Read bytes until the stream is atEnd and return them as a ByteArray. Overwritten, optimized"
 
 	^ self collectionSpecies 

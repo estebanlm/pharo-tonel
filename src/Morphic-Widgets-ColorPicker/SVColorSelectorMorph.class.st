@@ -9,26 +9,19 @@ Class {
 		'selectedColor',
 		'locationMorph'
 	],
-	#category : #Morphic-Widgets-ColorPicker,
-	#timestamp : 'gvc 8/8/2007 14:36'
+	#category : #Morphic-Widgets-ColorPicker
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+SVColorSelectorMorph >> adoptPaneColor: paneColor [
 	"Pass on to the border too."
 	
 	super adoptPaneColor: paneColor.
 	self borderStyle baseColor: paneColor twiceDarker
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>basicColor: aColor [
+{ #category : #'as yet unclassified' }
+SVColorSelectorMorph >> basicColor: aColor [
 	"Set the gradient colors."
 	
 	super color: aColor asNontranslucentColor.
@@ -36,11 +29,8 @@ SVColorSelectorMorph>>basicColor: aColor [
 		fillStyle: self gradient
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>blackGradient [
+{ #category : #'as yet unclassified' }
+SVColorSelectorMorph >> blackGradient [
 	"Answer the black gradient. Top to bottom, transparent to black."
 
 	^(InterpolatedGradientFillStyle colors: {Color black alpha: 0. Color black})
@@ -48,11 +38,8 @@ SVColorSelectorMorph>>blackGradient [
 		direction: 0@self innerBounds height
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>blackGradientMorph [
+{ #category : #'as yet unclassified' }
+SVColorSelectorMorph >> blackGradientMorph [
 	"Answer the black gradient morph."
 
 	^Morph new
@@ -61,11 +48,8 @@ SVColorSelectorMorph>>blackGradientMorph [
 		fillStyle: self blackGradient
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>color: aColor [
+{ #category : #accessing }
+SVColorSelectorMorph >> color: aColor [
 	"Set the gradient colors."
 	
 	self
@@ -73,11 +57,8 @@ SVColorSelectorMorph>>color: aColor [
 		selectedColor: (Color h: aColor hue s: self selectedColor saturation v: self selectedColor brightness)
 ]
 
-{
-	#category : #'pixel access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>colorAt: aPoint [
+{ #category : #'pixel access' }
+SVColorSelectorMorph >> colorAt: aPoint [
 	"Answer the color in the world at the given point."
 	
 	^self isInWorld
@@ -85,22 +66,16 @@ SVColorSelectorMorph>>colorAt: aPoint [
 		ifFalse: [Color black]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>extent: p [
+{ #category : #geometry }
+SVColorSelectorMorph >> extent: p [
 	"Update the gradient directions."
 
 	super extent: p.
 	self updateGradients
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>fillStyle: fillStyle [
+{ #category : #'visual properties' }
+SVColorSelectorMorph >> fillStyle: fillStyle [
 	"If it is a color then override with gradient."
 	
 	fillStyle isColor
@@ -108,11 +83,8 @@ SVColorSelectorMorph>>fillStyle: fillStyle [
 		ifFalse: [super fillStyle: fillStyle]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>gradient [
+{ #category : #'as yet unclassified' }
+SVColorSelectorMorph >> gradient [
 	"Answer the base gradient."
 
 	|b|
@@ -122,41 +94,29 @@ SVColorSelectorMorph>>gradient [
 		direction: (b width@0)
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>handlesMouseDown: evt [
+{ #category : #'event handling' }
+SVColorSelectorMorph >> handlesMouseDown: evt [
 	"Yes for down and move.." 
 
 	^true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>handlesMouseOverDragging: evt [
+{ #category : #'event handling' }
+SVColorSelectorMorph >> handlesMouseOverDragging: evt [
 	"Yes, make the location morph visible when leaving."
 	
 	^true
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>hideLocation [
+{ #category : #'as yet unclassified' }
+SVColorSelectorMorph >> hideLocation [
 	"Hide the location morph and update the display."
 
 	self locationMorph visible: false; changed
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>initialize [
+{ #category : #initialization }
+SVColorSelectorMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -169,11 +129,8 @@ SVColorSelectorMorph>>initialize [
 		addMorphBack: self blackGradientMorph
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>layoutBounds: aRectangle [
+{ #category : #layout }
+SVColorSelectorMorph >> layoutBounds: aRectangle [
 	"Set the bounds for laying out children of the receiver.
 	Note: written so that #layoutBounds can be changed without touching this method"
 	
@@ -181,31 +138,22 @@ SVColorSelectorMorph>>layoutBounds: aRectangle [
 	self updateGradients
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>locationMorph [
+{ #category : #accessing }
+SVColorSelectorMorph >> locationMorph [
 	"Answer the value of locationMorph"
 
 	^ locationMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>locationMorph: anObject [
+{ #category : #accessing }
+SVColorSelectorMorph >> locationMorph: anObject [
 	"Set the value of locationMorph"
 
 	locationMorph := anObject
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>mouseDown: evt  [
+{ #category : #'event handling' }
+SVColorSelectorMorph >> mouseDown: evt [ 
 	"Handle a mouse down event. Select the color at the mouse position."
 	
 	evt redButtonPressed
@@ -216,33 +164,24 @@ SVColorSelectorMorph>>mouseDown: evt  [
 	^super mouseDown: evt
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>mouseEnterDragging: evt [
+{ #category : #'event handling' }
+SVColorSelectorMorph >> mouseEnterDragging: evt [
 	"Make the location morph invisible when entering."
 	
 	self hideLocation.
 	evt hand showTemporaryCursor: (Cursor crossHair copy offset: -9 @ -9).
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>mouseLeaveDragging: evt [
+{ #category : #'event handling' }
+SVColorSelectorMorph >> mouseLeaveDragging: evt [
 	"Make the location morph visible when leaving."
 	
 	evt hand showTemporaryCursor: nil.
 	self showLocation
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>mouseMove: evt  [
+{ #category : #'event handling' }
+SVColorSelectorMorph >> mouseMove: evt [ 
 	"Handle a mouse move event. Select the color at the mouse position."
 	
 	evt redButtonPressed
@@ -251,11 +190,8 @@ SVColorSelectorMorph>>mouseMove: evt  [
 	^super mouseMove: evt
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>mouseUp: evt  [
+{ #category : #'event handling' }
+SVColorSelectorMorph >> mouseUp: evt [ 
 	"Handle a up event. Show the location morph again."
 	
 	evt hand showTemporaryCursor: nil.
@@ -263,22 +199,16 @@ SVColorSelectorMorph>>mouseUp: evt  [
 	self locationMorph visible: true
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>newLocationMorph [
+{ #category : #'instance creation' }
+SVColorSelectorMorph >> newLocationMorph [
 	"Answer a new morph indicating the location of the selected color."
 
 	^ImageMorph new
 		form: Cursor crossHair withMask asCursorForm
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>selectColorAt: aPoint [
+{ #category : #'as yet unclassified' }
+SVColorSelectorMorph >> selectColorAt: aPoint [
 	"Set the color at the given position."
 	
 	|b p|
@@ -293,21 +223,15 @@ SVColorSelectorMorph>>selectColorAt: aPoint [
 		v: 1.0 - p y)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>selectedColor [
+{ #category : #accessing }
+SVColorSelectorMorph >> selectedColor [
 	"Answer the value of selectedColor"
 
 	^selectedColor ifNil: [self color]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>selectedColor: aColor [
+{ #category : #accessing }
+SVColorSelectorMorph >> selectedColor: aColor [
 	"Set the value of selectedColor."
 
 	selectedColor := aColor.
@@ -315,11 +239,8 @@ SVColorSelectorMorph>>selectedColor: aColor [
 	self triggerEvent: #colorSelected with: aColor
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>selectedLocation [
+{ #category : #'as yet unclassified' }
+SVColorSelectorMorph >> selectedLocation [
 	"Answer the location within the receiver of the selected colour
 	relative to the receiver's top left."
 
@@ -331,21 +252,15 @@ SVColorSelectorMorph>>selectedLocation [
 	^(x truncated @ y truncated) + b topLeft
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>showLocation [
+{ #category : #'as yet unclassified' }
+SVColorSelectorMorph >> showLocation [
 	"Show the location morph and update the display."
 	
 	self locationMorph visible: true; changed.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>updateGradients [
+{ #category : #'as yet unclassified' }
+SVColorSelectorMorph >> updateGradients [
 	"Update the gradient directions."
 
 	|bgm b|
@@ -361,11 +276,8 @@ SVColorSelectorMorph>>updateGradients [
 	self updateSelectedLocation
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SVColorSelectorMorph>>updateSelectedLocation [
+{ #category : #'as yet unclassified' }
+SVColorSelectorMorph >> updateSelectedLocation [
 	"Position the location morph to indicate the selected colour."
 	
 	self locationMorph

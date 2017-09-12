@@ -9,42 +9,29 @@ Class {
 		'classFactory',
 		'logBuilder'
 	],
-	#category : #EpiceaTests-Integration,
-	#timestamp : 'MartinDias 1/6/2017 01:43'
+	#category : #EpiceaTests-Integration
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpMonitorIntegrationTest>>allLogEntriesWith: aClass [
+{ #category : #running }
+EpMonitorIntegrationTest >> allLogEntriesWith: aClass [
 	
 	^ monitor log entries select: [ :each | each content class = aClass ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpMonitorIntegrationTest>>allLogEventsWith: aClass [
+{ #category : #running }
+EpMonitorIntegrationTest >> allLogEventsWith: aClass [
 
 	^ (self allLogEntriesWith: aClass) collect: #content
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpMonitorIntegrationTest>>countLogEventsWith: aClass [
+{ #category : #running }
+EpMonitorIntegrationTest >> countLogEventsWith: aClass [
 
 	^ (self allLogEntriesWith: aClass) size
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpMonitorIntegrationTest>>setUp [
+{ #category : #running }
+EpMonitorIntegrationTest >> setUp [
 	super setUp.
 	
 	logBuilder := EpTestLogBuilder new
@@ -55,11 +42,8 @@ EpMonitorIntegrationTest>>setUp [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpMonitorIntegrationTest>>tearDown [
+{ #category : #running }
+EpMonitorIntegrationTest >> tearDown [
 	super tearDown.
 
 	monitor disable.	

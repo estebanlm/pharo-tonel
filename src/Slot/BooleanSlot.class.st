@@ -12,24 +12,17 @@ Class {
 		'baseSlot',
 		'offset'
 	],
-	#category : #Slot-Examples,
-	#timestamp : 'MarcusDenker 3/31/2015 15:58'
+	#category : #Slot-Examples
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BooleanSlot>>baseSlotRead: anObject [
+{ #category : #accessing }
+BooleanSlot >> baseSlotRead: anObject [
 	^ (baseSlot read: anObject) ifNil: [ 0 ].
 	
 ]
 
-{
-	#category : #'class building',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BooleanSlot>>calculateOffset: aClass [
+{ #category : #'class building' }
+BooleanSlot >> calculateOffset: aClass [
 	| booleanSlots  calculatedOffset |
 	"first we get all boolean slots and sort them by index"
 	booleanSlots := aClass allSlots select: [ :each | each isKindOf: self class ].
@@ -46,11 +39,8 @@ BooleanSlot>>calculateOffset: aClass [
 	
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BooleanSlot>>emitStore: methodBuilder [
+{ #category : #'code generation' }
+BooleanSlot >> emitStore: methodBuilder [
 	| tempName |
 
 	tempName := Object new.
@@ -67,11 +57,8 @@ BooleanSlot>>emitStore: methodBuilder [
 	
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BooleanSlot>>emitValue: methodBuilder [
+{ #category : #'code generation' }
+BooleanSlot >> emitValue: methodBuilder [
 
 		methodBuilder
 			pushInstVar: baseSlot index;
@@ -83,20 +70,14 @@ BooleanSlot>>emitValue: methodBuilder [
 	
 ]
 
-{
-	#category : #'class building',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BooleanSlot>>installingIn: aClass [
+{ #category : #'class building' }
+BooleanSlot >> installingIn: aClass [
 	super installingIn: aClass.
 	offset := self calculateOffset: aClass.
 ]
 
-{
-	#category : #'class building',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BooleanSlot>>layoutChanged: aClass [
+{ #category : #'class building' }
+BooleanSlot >> layoutChanged: aClass [
 	super layoutChanged: aClass.
 	"we check on the slot level as the slot is hidden"
 	(baseSlot notNil and: [aClass classLayout hasSlotNamed: baseSlot name]) ifTrue: [
@@ -109,27 +90,18 @@ BooleanSlot>>layoutChanged: aClass [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BooleanSlot>>offset [
+{ #category : #accessing }
+BooleanSlot >> offset [
 	^offset
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BooleanSlot>>read: anObject [
+{ #category : #meta-object-protocol }
+BooleanSlot >> read: anObject [
 	^((self baseSlotRead: anObject) bitAt: offset) == 1
 ]
 
-{
-	#category : #TODO,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BooleanSlot>>todo [
+{ #category : #TODO }
+BooleanSlot >> todo [
 	'
     - adding a Booleanslot in between --> offsets need to be updated?
 	 - removing BooleanSlot in the middle	
@@ -137,11 +109,8 @@ BooleanSlot>>todo [
 	'
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-BooleanSlot>>write: aValue to: anObject [
+{ #category : #meta-object-protocol }
+BooleanSlot >> write: aValue to: anObject [
 		| newInteger |
 		newInteger := (self baseSlotRead: anObject) bitAt: offset put: aValue asBit.
 		baseSlot write: newInteger to: anObject.

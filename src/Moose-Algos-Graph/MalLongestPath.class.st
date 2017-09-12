@@ -15,31 +15,21 @@ Class {
 		'leafNodes',
 		'maxIterations'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : 'VincentBlondeau 7/25/2014 15:48'
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalLongestPath>>computeLeafNodes [
+{ #category : #computing }
+MalLongestPath >> computeLeafNodes [
 	self leafNodes: (self nodes select: [ :node | node nextEdges isEmpty ])
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalLongestPath>>computeRootNodes [
+{ #category : #computing }
+MalLongestPath >> computeRootNodes [
 	self rootNodes: (self nodes select: [ :node | node previousEdges isEmpty ])
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalLongestPath>>computeStep [
+{ #category : #computing }
+MalLongestPath >> computeStep [
 	| nodesToManage |
 	self isCompleted
 		ifFalse: [ 
@@ -56,91 +46,61 @@ MalLongestPath>>computeStep [
 			self computeStep ]
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalLongestPath>>edgeClass [
+{ #category : #configuration }
+MalLongestPath >> edgeClass [
 	^ MalGraphEdge
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalLongestPath>>initialize [
+{ #category : #initialize-release }
+MalLongestPath >> initialize [
 	super initialize.
 	previousRanks := OrderedCollection new
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalLongestPath>>initializeRootNodes [
+{ #category : #initialize-release }
+MalLongestPath >> initializeRootNodes [
 	self computeRootNodes.
 	self setRanks: self rootNodes at: 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalLongestPath>>isCompleted [
+{ #category : #testing }
+MalLongestPath >> isCompleted [
 	maxIterations = 0
 		ifTrue: [ self error: 'Algorithm should be finished by now...'.
 			^ true ].
 	^ (self leafNodes anySatisfy: [ :node | node pathWeight = Float infinity ]) not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalLongestPath>>leafNodes [
+{ #category : #accessing }
+MalLongestPath >> leafNodes [
 	^ leafNodes
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalLongestPath>>leafNodes: aCollectionOfNodes [
+{ #category : #accessing }
+MalLongestPath >> leafNodes: aCollectionOfNodes [
 	leafNodes := aCollectionOfNodes
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalLongestPath>>nodeClass [
+{ #category : #configuration }
+MalLongestPath >> nodeClass [
 	^ MalDijkstraNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalLongestPath>>rootNodes [
+{ #category : #accessing }
+MalLongestPath >> rootNodes [
 	^ rootNodes 
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalLongestPath>>rootNodes: aCollectionOfNodes [
+{ #category : #accessing }
+MalLongestPath >> rootNodes: aCollectionOfNodes [
 	rootNodes := aCollectionOfNodes 
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalLongestPath>>run [
+{ #category : #running }
+MalLongestPath >> run [
 	self initializeRootNodes.
 	self computeLeafNodes.
 	previousRanks addAll: self rootNodes.
@@ -148,11 +108,8 @@ MalLongestPath>>run [
 	self computeStep
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalLongestPath>>setRanks: collectionOfNodes at: aRank [
+{ #category : #setting }
+MalLongestPath >> setRanks: collectionOfNodes at: aRank [
 	collectionOfNodes do: [ :aNode | aNode pathWeight: aRank ]
 	
 ]

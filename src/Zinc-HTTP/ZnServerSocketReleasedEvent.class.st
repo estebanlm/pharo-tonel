@@ -8,47 +8,31 @@ Class {
 		'address',
 		'port'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 15:14'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSocketReleasedEvent>>address [
+{ #category : #accessing }
+ZnServerSocketReleasedEvent >> address [
 	^ address
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSocketReleasedEvent>>address: anObject [
+{ #category : #accessing }
+ZnServerSocketReleasedEvent >> address: anObject [
 	address := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSocketReleasedEvent>>port [
+{ #category : #accessing }
+ZnServerSocketReleasedEvent >> port [
 	^ port
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSocketReleasedEvent>>port: anObject [
+{ #category : #accessing }
+ZnServerSocketReleasedEvent >> port: anObject [
 	port := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSocketReleasedEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnServerSocketReleasedEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream << ' Server Socket Released '.
 	address do: [ :each | stream print: each ] separatedBy: [ stream nextPut: $. ].

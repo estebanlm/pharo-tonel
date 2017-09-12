@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterSelectedCandidateChanged,
 	#superclass : #Announcement,
@@ -8,38 +5,25 @@ Class {
 		'eventType',
 		'selected'
 	],
-	#category : #GT-Spotter-Announcements,
-	#timestamp : ''
+	#category : #GT-Spotter-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterSelectedCandidateChanged>>eventType [
+{ #category : #accessing }
+GTSpotterSelectedCandidateChanged >> eventType [
 	^ eventType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterSelectedCandidateChanged>>eventType: anObject [
+{ #category : #accessing }
+GTSpotterSelectedCandidateChanged >> eventType: anObject [
 	eventType := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterSelectedCandidateChanged>>select: anObject [
+{ #category : #accessing }
+GTSpotterSelectedCandidateChanged >> select: anObject [
 	selected := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterSelectedCandidateChanged>>selected [
+{ #category : #accessing }
+GTSpotterSelectedCandidateChanged >> selected [
 	^ selected
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #SequenceableCollection
-}
+Extension { #name : #SequenceableCollection }
 
-{
-	#category : #'*GT-Spotter',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-SequenceableCollection>>fasterDifferencePreservingOrder: aCollection [
+{ #category : #'*GT-Spotter' }
+SequenceableCollection >> fasterDifferencePreservingOrder: aCollection [
 	" this implementation does not preserve the original species of self ! it serves ONE specific use case only "
 	| newCollection |
 	newCollection := OrderedCollection new: self size.

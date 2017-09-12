@@ -106,31 +106,21 @@ Class {
 	#classVars : [
 		'Default'
 	],
-	#category : #System-SessionManager,
-	#timestamp : 'GuillermoPolito 4/27/2017 10:12'
+	#category : #System-SessionManager
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager class>>default [
+{ #category : #accessing }
+SessionManager class >> default [
 	^ Default ifNil: [ Default := self new ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager class>>default: aSessionManager [
+{ #category : #accessing }
+SessionManager class >> default: aSessionManager [
 	Default := aSessionManager
 ]
 
-{
-	#category : #'compatibility - startupList',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager class>>forCompatibility [
+{ #category : #'compatibility - startupList' }
+SessionManager class >> forCompatibility [
 	^ SessionManager new
 		registerSystemClassNamed: #SmallInteger; "system - 10"
 		registerSystemClassNamed: #Delay; "System - 20"
@@ -192,11 +182,8 @@ SessionManager class>>forCompatibility [
 		yourself
 ]
 
-{
-	#category : #'compatibility - startupList',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager class>>initializedSessionManager [
+{ #category : #'compatibility - startupList' }
+SessionManager class >> initializedSessionManager [
 	| manager |
 	manager := SessionManager new.
 	manager
@@ -266,53 +253,38 @@ SessionManager class>>initializedSessionManager [
 	^ manager
 ]
 
-{
-	#category : #'deferred startup actions',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>addDeferredStartupAction: aBlock [
+{ #category : #'deferred startup actions' }
+SessionManager >> addDeferredStartupAction: aBlock [
 	"Add the block to the list of actions that we will be performed immediately after the startup list is executed."
 	self currentSession 
 		addDeferredStartupAction: aBlock.
 	
 ]
 
-{
-	#category : #'category management',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>basicCreateCategory: aString  [
+{ #category : #'category management' }
+SessionManager >> basicCreateCategory: aString [ 
 	^ SessionCategory new
 		name: aString;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>categoryNamed: aString  [
+{ #category : #accessing }
+SessionManager >> categoryNamed: aString [ 
 	^ categories 
 		detect: [ :each | each name = aString ]
 		ifNone: [ NotFound signalFor: aString  ]
 ]
 
-{
-	#category : #'category management',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>createCategory: aCategoryName [
+{ #category : #'category management' }
+SessionManager >> createCategory: aCategoryName [
 	| category |
 	category := self basicCreateCategory: aCategoryName.
 	categories add: category.
 	^ category
 ]
 
-{
-	#category : #'category management',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>createCategory: aCategoryName after: anotherCategoryName [
+{ #category : #'category management' }
+SessionManager >> createCategory: aCategoryName after: anotherCategoryName [
 	| category |
 	category := self basicCreateCategory: aCategoryName.	
 	categories 
@@ -321,36 +293,24 @@ SessionManager>>createCategory: aCategoryName after: anotherCategoryName [
 	^ category
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>currentSession [
+{ #category : #accessing }
+SessionManager >> currentSession [
 	^ currentSession
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>defaultPriority [
+{ #category : #accessing }
+SessionManager >> defaultPriority [
 	"Completely arbitrary by now"
 	^ 100
 ]
 
-{
-	#category : #'well-known categories',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>guiCategory [
+{ #category : #'well-known categories' }
+SessionManager >> guiCategory [
 	^ guiCategory
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>hasRegistered: handledId [
+{ #category : #registration }
+SessionManager >> hasRegistered: handledId [
 	"handledId, in most cases, will be a class name"
 	^ self startupList 
 		detect: [ :handler | handler handledId = handledId ]
@@ -358,11 +318,8 @@ SessionManager>>hasRegistered: handledId [
 		ifNone: [ false ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>initialize [
+{ #category : #initialization }
+SessionManager >> initialize [
 	super initialize.
 	categories := OrderedCollection new.
 		
@@ -373,205 +330,145 @@ SessionManager>>initialize [
 	userCategory := self createCategory: 'User'.
 ]
 
-{
-	#category : #'session management',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>installNewSession [
+{ #category : #'session management' }
+SessionManager >> installNewSession [
 	self installSession: self newSession.
 ]
 
-{
-	#category : #'session management',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>installSession: aWorkingSession  [
+{ #category : #'session management' }
+SessionManager >> installSession: aWorkingSession [ 
 	currentSession := aWorkingSession
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>maxPriority [
+{ #category : #accessing }
+SessionManager >> maxPriority [
 	"Completely arbitrary by now"
 	^ 10000
 ]
 
-{
-	#category : #'well-known categories',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>networkCategory [
+{ #category : #'well-known categories' }
+SessionManager >> networkCategory [
 	^ networkCategory
 ]
 
-{
-	#category : #'session management',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>newSession [
+{ #category : #'session management' }
+SessionManager >> newSession [
 	| aWorkingSession |
 	aWorkingSession := WorkingSession new.
 	aWorkingSession manager: self.
 	^ aWorkingSession
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>register: aSessionHandler [
+{ #category : #registration }
+SessionManager >> register: aSessionHandler [
 	self
 		register: aSessionHandler
 		inCategory: self userCategory
 		atPriority: self defaultPriority
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>register: aSessionHandler inCategory: aCategory [
+{ #category : #registration }
+SessionManager >> register: aSessionHandler inCategory: aCategory [
 	aCategory 
 		register: aSessionHandler
 		atPriority: aCategory defaultPriority
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>register: aSessionHandler inCategory: aCategory atPriority: anInteger  [
+{ #category : #registration }
+SessionManager >> register: aSessionHandler inCategory: aCategory atPriority: anInteger [ 
 	self unregisterHandler: aSessionHandler handledId.
 	aCategory 
 		register: aSessionHandler
 		atPriority: anInteger
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>registerGuiClassNamed: aClassName [
+{ #category : #registration }
+SessionManager >> registerGuiClassNamed: aClassName [
 	self 
 		register: (ClassSessionHandler forClassNamed: aClassName)
 		inCategory: self guiCategory 
 		atPriority: self defaultPriority
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>registerGuiClassNamed: aClassName atPriority: anInteger [
+{ #category : #registration }
+SessionManager >> registerGuiClassNamed: aClassName atPriority: anInteger [
 	self 
 		register: (ClassSessionHandler forClassNamed: aClassName)
 		inCategory: self guiCategory 
 		atPriority: anInteger
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>registerLast: aSessionHandler inCategory: aCategory [
+{ #category : #registration }
+SessionManager >> registerLast: aSessionHandler inCategory: aCategory [
 	self 
 		register: aSessionHandler
 		inCategory: aCategory 
 		atPriority: self maxPriority
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>registerNetworkClassNamed: aClassName [
+{ #category : #registration }
+SessionManager >> registerNetworkClassNamed: aClassName [
 	self 
 		register: (ClassSessionHandler forClassNamed: aClassName)
 		inCategory: self networkCategory 
 		atPriority: self defaultPriority
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>registerSystemClassNamed: aClassName [
+{ #category : #registration }
+SessionManager >> registerSystemClassNamed: aClassName [
 	self 
 		register: (ClassSessionHandler forClassNamed: aClassName)
 		inCategory: self systemCategory 
 		atPriority: self defaultPriority
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>registerSystemClassNamed: aClassName atPriority: anInteger [
+{ #category : #registration }
+SessionManager >> registerSystemClassNamed: aClassName atPriority: anInteger [
 	self 
 		register: (ClassSessionHandler forClassNamed: aClassName)
 		inCategory: self systemCategory 
 		atPriority: anInteger
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>registerToolClassNamed: aClassName [
+{ #category : #registration }
+SessionManager >> registerToolClassNamed: aClassName [
 	self 
 		register: (ClassSessionHandler forClassNamed: aClassName)
 		inCategory: self toolsCategory 
 		atPriority: self defaultPriority
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>registerUserClassNamed: aClassName [
+{ #category : #registration }
+SessionManager >> registerUserClassNamed: aClassName [
 	self 
 		register: (ClassSessionHandler forClassNamed: aClassName)
 		inCategory: self userCategory 
 		atPriority: self defaultPriority
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>registerUserClassNamed: aClassName atPriority: anInteger [
+{ #category : #registration }
+SessionManager >> registerUserClassNamed: aClassName atPriority: anInteger [
 	self 
 		register: (ClassSessionHandler forClassNamed: aClassName)
 		inCategory: self userCategory 
 		atPriority: anInteger
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>renamedClass: aClass from: oldName to: newName [
+{ #category : #registration }
+SessionManager >> renamedClass: aClass from: oldName to: newName [
 	"Inform SessionManager that aClass has been renamed"
 	
 	categories do: [ :category |
 		category renamedClass: aClass from: oldName to: newName ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>shutdownList [
+{ #category : #accessing }
+SessionManager >> shutdownList [
 	^ self startupList reversed
 ]
 
-{
-	#category : #'snapshot and quit',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>snapshot: save andQuit: quit [
+{ #category : #'snapshot and quit' }
+SessionManager >> snapshot: save andQuit: quit [
 	| isImageStarting snapshotResult |
 	ChangesLog default logSnapshot: save andQuit: quit.
 	
@@ -597,59 +494,38 @@ SessionManager>>snapshot: save andQuit: quit [
 	^ isImageStarting
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>startupList [
+{ #category : #accessing }
+SessionManager >> startupList [
 	^ (categories flatCollect: #prioritizedList)
 		asArray
 ]
 
-{
-	#category : #'well-known categories',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>systemCategory [
+{ #category : #'well-known categories' }
+SessionManager >> systemCategory [
 	^ systemCategory
 ]
 
-{
-	#category : #'well-known categories',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>toolsCategory [
+{ #category : #'well-known categories' }
+SessionManager >> toolsCategory [
 	^ toolsCategory
 ]
 
-{
-	#category : #'session management',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>uninstallSession: aWorkingSession  [
+{ #category : #'session management' }
+SessionManager >> uninstallSession: aWorkingSession [ 
 	currentSession := nil
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>unregisterClassNamed: aClassName  [
+{ #category : #registration }
+SessionManager >> unregisterClassNamed: aClassName [ 
 	self unregisterHandler: aClassName
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>unregisterHandler: anHandledId  [
+{ #category : #registration }
+SessionManager >> unregisterHandler: anHandledId [ 
 	categories do: [ :each | each unregisterHandler: anHandledId ]
 ]
 
-{
-	#category : #'well-known categories',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-SessionManager>>userCategory [
+{ #category : #'well-known categories' }
+SessionManager >> userCategory [
 	^ userCategory
 ]

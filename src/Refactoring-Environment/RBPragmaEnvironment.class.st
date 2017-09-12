@@ -11,148 +11,99 @@ Class {
 		'keywords',
 		'condition'
 	],
-	#category : #Refactoring-Environment,
-	#timestamp : 'NicolaiHess 4/27/2015 21:23'
+	#category : #Refactoring-Environment
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPragmaEnvironment class>>keywords: aKeywordCollection [
+{ #category : #'instance creation' }
+RBPragmaEnvironment class >> keywords: aKeywordCollection [
 	^ self
 		onEnvironment: self default
 		keywords: aKeywordCollection
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPragmaEnvironment class>>onEnvironment: anEnvironment keywords: aKeywordCollection [
+{ #category : #'instance creation' }
+RBPragmaEnvironment class >> onEnvironment: anEnvironment keywords: aKeywordCollection [
 	^ (self onEnvironment: anEnvironment)
 		keywords: aKeywordCollection;
 		yourself
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPragmaEnvironment>>addKeyword: aSymbol [
+{ #category : #adding }
+RBPragmaEnvironment >> addKeyword: aSymbol [
 	keywords add: aSymbol
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPragmaEnvironment>>condition: aBlock [
+{ #category : #initialize-release }
+RBPragmaEnvironment >> condition: aBlock [
 	condition := aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPragmaEnvironment>>defaultLabel [
+{ #category : #private }
+RBPragmaEnvironment >> defaultLabel [
 	| stream |
 	stream := String new writeStream.
 	keywords do: [ :each | stream nextPut: $<; nextPutAll: each; nextPut: $>; nextPut: $ ].
 	^ stream contents
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPragmaEnvironment>>definesClass: aClass [
+{ #category : #testing }
+RBPragmaEnvironment >> definesClass: aClass [
 	^ environment definesClass: aClass
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPragmaEnvironment>>includesCategory: aCategory [
+{ #category : #testing }
+RBPragmaEnvironment >> includesCategory: aCategory [
 	^ (environment includesCategory: aCategory) and: [ (self classNamesFor: aCategory) notEmpty ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPragmaEnvironment>>includesClass: aClass [
+{ #category : #testing }
+RBPragmaEnvironment >> includesClass: aClass [
 	^ (environment includesClass: aClass) and: [ aClass selectors anySatisfy: [ :each | self includesSelector: each in: aClass ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPragmaEnvironment>>includesPragma: aPragma [
+{ #category : #testing }
+RBPragmaEnvironment >> includesPragma: aPragma [
 	^ (keywords includes: aPragma keyword) and: [ condition value: aPragma ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPragmaEnvironment>>includesProtocol: aProtocol in: aClass [
+{ #category : #testing }
+RBPragmaEnvironment >> includesProtocol: aProtocol [ in: aClass
 	^ (environment includesProtocol: aProtocol in: aClass) and: [ (self selectorsFor: aProtocol in: aClass) notEmpty ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPragmaEnvironment>>includesSelector: aSelector in: aClass [
+{ #category : #testing }
+RBPragmaEnvironment >> includesSelector: aSelector [ in: aClass
 	(environment includesSelector: aSelector in: aClass)
 		ifFalse: [ ^ false ].
 	^ (aClass compiledMethodAt: aSelector) pragmas
 		anySatisfy: [ :each | self includesPragma: each ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPragmaEnvironment>>initialize [
+{ #category : #initialization }
+RBPragmaEnvironment >> initialize [
 	super initialize.
 	keywords := IdentitySet new.
 	condition := [ :pragma | true ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPragmaEnvironment>>keywords: aCollection [
+{ #category : #initialize-release }
+RBPragmaEnvironment >> keywords: aCollection [
 	keywords addAll: aCollection
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPragmaEnvironment>>packages [
+{ #category : #testing }
+RBPragmaEnvironment >> packages [
 	^ (self methods collect: #package) asSet
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPragmaEnvironment>>postCopy [
+{ #category : #copying }
+RBPragmaEnvironment >> postCopy [
 	super postCopy.
 	keywords := keywords copy
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBPragmaEnvironment>>storeOn: aStream [
+{ #category : #printing }
+RBPragmaEnvironment >> storeOn: aStream [
 	aStream nextPut: $(.
 	super storeOn: aStream.
 	aStream nextPutAll: ' keywords: '.

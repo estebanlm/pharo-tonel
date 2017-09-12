@@ -16,32 +16,22 @@ Class {
 	#instVars : [
 		'default'
 	],
-	#category : #Kernel-Numbers,
-	#timestamp : '<historical>'
+	#category : #Kernel-Numbers
 }
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FloatPrintPolicy class>>absPrint: float on: stream base: base [
+{ #category : #printing }
+FloatPrintPolicy class >> absPrint: float on: stream base: base [
 	"I delegate Float printing to the current dynamic value of myself"
 
 	self value absPrint: float on: stream base: base
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FloatPrintPolicy>>default [
+{ #category : #accessing }
+FloatPrintPolicy >> default [
 	^ default
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FloatPrintPolicy>>initialize [
+{ #category : #initialization }
+FloatPrintPolicy >> initialize [
 	default := ExactFloatPrintPolicy new
 ]

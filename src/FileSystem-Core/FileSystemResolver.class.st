@@ -11,68 +11,45 @@ Class {
 	#instVars : [
 		'next'
 	],
-	#category : #FileSystem-Core-Implementation,
-	#timestamp : 'cwp 3/29/2011 17:04'
+	#category : #FileSystem-Core-Implementation
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemResolver>>addResolver: aResolver [
+{ #category : #accessing }
+FileSystemResolver >> addResolver: aResolver [
 	next
 		ifNil: [next := aResolver]
 		ifNotNil: [next addResolver: aResolver]
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemResolver>>canResolve: aSymbol [
+{ #category : #resolving }
+FileSystemResolver >> canResolve: aSymbol [
 	^ self supportedOrigins includes: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemResolver>>flushCaches [
+{ #category : #accessing }
+FileSystemResolver >> flushCaches [
 	self flushLocalCache.
 	next ifNotNil: [next flushCaches]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemResolver>>flushLocalCache [
-
+{ #category : #accessing }
+FileSystemResolver >> flushLocalCache [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemResolver>>next [
+{ #category : #accessing }
+FileSystemResolver >> next [
 	^ next
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemResolver>>resolve: aSymbol [
+{ #category : #resolving }
+FileSystemResolver >> resolve: aSymbol [
 	^ (self canResolve: aSymbol)
 		ifTrue: [self perform: aSymbol]
 		ifFalse: [self unknownOrigin: aSymbol]
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemResolver>>resolveString: aString [
+{ #category : #resolving }
+FileSystemResolver >> resolveString: aString [
 	| decoded fs |
 	"The argument string is actually a byte array encoded differently on each platform.
 	We are transforming it to an image string.
@@ -84,18 +61,12 @@ FileSystemResolver>>resolveString: aString [
 		path: (fs pathFromString: decoded)
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemResolver>>supportedOrigins [
+{ #category : #resolving }
+FileSystemResolver >> supportedOrigins [
 	^ #()
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemResolver>>unknownOrigin: aSymbol [
+{ #category : #resolving }
+FileSystemResolver >> unknownOrigin: aSymbol [
 	^ next ifNotNil: [next resolve: aSymbol]
 ]

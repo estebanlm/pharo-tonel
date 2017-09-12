@@ -7,35 +7,25 @@ Class {
 	#instVars : [
 		'referencesList'
 	],
-	#category : #Tool-Base,
-	#timestamp : 'TorstenBergmann 2/20/2014 13:48'
+	#category : #Tool-Base
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMethodReferenceConverter class>>methodReference: aMessage referencesList: aListOfReferences [
+{ #category : #'instance creation' }
+AbstractMethodReferenceConverter class >> methodReference: aMessage referencesList: aListOfReferences [
 	^ (self method: aMessage)
 		referencesList: aListOfReferences;
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMethodReferenceConverter>>initialize [
+{ #category : #initialization }
+AbstractMethodReferenceConverter >> initialize [
 
 	super initialize.
 	referencesList := #()
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMethodReferenceConverter>>priorVersionOfAMethod: aMethodReference [
+{ #category : #private }
+AbstractMethodReferenceConverter >> priorVersionOfAMethod: aMethodReference [
 	| tempList |
 	
 	tempList := referencesList select:[:each | 
@@ -44,20 +34,14 @@ AbstractMethodReferenceConverter>>priorVersionOfAMethod: aMethodReference [
 	^ tempList detect: [:each | (self versionOfAMethod: each) = ((self versionOfAMethod: aMethodReference) -1)] ifNone: [aMethodReference].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMethodReferenceConverter>>referencesList: aListOfReferences [
+{ #category : #accessing }
+AbstractMethodReferenceConverter >> referencesList: aListOfReferences [
 
 	referencesList := aListOfReferences
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMethodReferenceConverter>>versionOfAMethod: aMethodReference [
+{ #category : #private }
+AbstractMethodReferenceConverter >> versionOfAMethod: aMethodReference [
 	| tempList |
 	
 	tempList := referencesList select: [:each | 

@@ -4,25 +4,18 @@ SUnit tests for Job class
 Class {
 	#name : #JobTest,
 	#superclass : #TestCase,
-	#category : #JobsTests,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:39'
+	#category : #JobsTests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-JobTest>>tearDown [
+{ #category : #tests }
+JobTest >> tearDown [
 
 	Smalltalk globals at: #SystemProgressMorph ifPresent: [:spm | 
 		spm uniqueInstance bars do: [ :e | e close ]] 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-JobTest>>testChildJob [
+{ #category : #tests }
+JobTest >> testChildJob [
 	
 	| wasRun |
 	
@@ -40,11 +33,8 @@ JobTest>>testChildJob [
 	self assert: wasRun.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-JobTest>>testCurrentJob [
+{ #category : #tests }
+JobTest >> testCurrentJob [
 	
 	[ :job |
 		[ :job2 |
@@ -56,11 +46,8 @@ JobTest>>testCurrentJob [
 		] asJob run
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-JobTest>>testJobAnnouncements [
+{ #category : #tests }
+JobTest >> testJobAnnouncements [
 	
 	| announcements |
 	announcements := OrderedCollection new.
@@ -80,11 +67,8 @@ JobTest>>testJobAnnouncements [
 	Job jobAnnouncer unsubscribe: announcements.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-JobTest>>testLookupJob [
+{ #category : #tests }
+JobTest >> testLookupJob [
 	
 	[ :job | 
 		[ :job2 | | noneFound result |
@@ -108,11 +92,8 @@ JobTest>>testLookupJob [
 		] asJob run
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-JobTest>>testOwner [
+{ #category : #tests }
+JobTest >> testOwner [
 	
 	[ :job |
 		self assert: job owner == self.
@@ -124,11 +105,8 @@ JobTest>>testOwner [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-JobTest>>testProgress [
+{ #category : #tests }
+JobTest >> testProgress [
 	| job |
 	job := Job new.
 	self assert: job progress equals: 0.0.
@@ -138,11 +116,8 @@ JobTest>>testProgress [
 	self assert: job progress equals: 1.0.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-JobTest>>testProgressChangeByCurrentValue [
+{ #category : #tests }
+JobTest >> testProgressChangeByCurrentValue [
 	| job |
 	job := Job new.
 	job min: 1; max: 11.
@@ -153,11 +128,8 @@ JobTest>>testProgressChangeByCurrentValue [
 	self assert: job progress equals: 1.0.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-JobTest>>testSingleJob [
+{ #category : #tests }
+JobTest >> testSingleJob [
 
 	| wasRun |
 	wasRun := false.

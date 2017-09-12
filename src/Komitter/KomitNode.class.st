@@ -7,34 +7,24 @@ Class {
 	#instVars : [
 		'silent'
 	],
-	#category : #Komitter-UI,
-	#timestamp : '<historical>'
+	#category : #Komitter-UI
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitNode>><= aKomitNode  [
+{ #category : #comparing }
+KomitNode >> <= aKomitNode [ 
 
 	^ self content <= aKomitNode content
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitNode>>= anotherNode [
+{ #category : #comparing }
+KomitNode >> = anotherNode [
 
 	^ self species = anotherNode species
 		and: [ self content = anotherNode content ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitNode>>checkChildren [
+{ #category : #private }
+KomitNode >> checkChildren [
 	
 	self silentWhile: [
 		(self children value allSatisfy: [ :e | e selected ])
@@ -42,38 +32,26 @@ KomitNode>>checkChildren [
 			ifFalse: [ self selected: false ] ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitNode>>hash [
+{ #category : #comparing }
+KomitNode >> hash [
 
 	^ self content hash
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitNode>>icon [
+{ #category : #api }
+KomitNode >> icon [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitNode>>ifNotSilentDo: aBlock [
+{ #category : #api }
+KomitNode >> ifNotSilentDo: aBlock [
 
 	silent ifFalse: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitNode>>initialize [
+{ #category : #initialization }
+KomitNode >> initialize [
 	silent := false.
 	super initialize.
 	self hasContentToShow: true.
@@ -87,20 +65,14 @@ KomitNode>>initialize [
 	self hasChildren: [ self children value isEmptyOrNil not ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitNode>>label [
+{ #category : #api }
+KomitNode >> label [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitNode>>silentWhile: aBlock [
+{ #category : #api }
+KomitNode >> silentWhile: aBlock [
 	| oldSilent |
 	
 	oldSilent := silent.

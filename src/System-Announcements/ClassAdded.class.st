@@ -11,57 +11,38 @@ Class {
 		'classAdded',
 		'classCategory'
 	],
-	#category : #System-Announcements-System-Classes,
-	#timestamp : 'cyrilledelaunay 1/18/2011 11:56'
+	#category : #System-Announcements-System-Classes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassAdded class>>class: aClass category: aClassCategoryName [
+{ #category : #'instance creation' }
+ClassAdded class >> class: aClass category: aClassCategoryName [
 	^self new
 			classAdded: aClass;
 			classCategory: aClassCategoryName;
 			yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassAdded>>classAdded [
+{ #category : #accessing }
+ClassAdded >> classAdded [
 	^classAdded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassAdded>>classAdded: aClass [
+{ #category : #accessing }
+ClassAdded >> classAdded: aClass [
 	classAdded := aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassAdded>>classAffected [
+{ #category : #accessing }
+ClassAdded >> classAffected [
 	^self classAdded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassAdded>>classCategory [
+{ #category : #accessing }
+ClassAdded >> classCategory [
 	^classCategory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassAdded>>classCategory: aClassCategoryName [
+{ #category : #accessing }
+ClassAdded >> classCategory: aClassCategoryName [
 	classCategory := aClassCategoryName
 ]

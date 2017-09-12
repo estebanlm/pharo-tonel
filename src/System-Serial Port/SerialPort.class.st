@@ -16,36 +16,26 @@ Class {
 		'xOnByte',
 		'xOffByte'
 	],
-	#category : #'System-Serial Port',
-	#timestamp : '<historical>'
+	#category : #'System-Serial Port'
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>baudRate [
+{ #category : #accessing }
+SerialPort >> baudRate [
 
 	^ baudRate
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>baudRate: anInteger [
+{ #category : #accessing }
+SerialPort >> baudRate: anInteger [
 	"Set the baud rate for this serial port."
 
 	baudRate := anInteger.
 
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>close [
+{ #category : #open/close }
+SerialPort >> close [
 	"Close the serial port. Do nothing if the port is not open."
 	
 	port ifNotNil: [port isString 
@@ -54,32 +44,23 @@ SerialPort>>close [
 	port := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>dataBits [
+{ #category : #accessing }
+SerialPort >> dataBits [
 
 	^ dataBits
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>dataBits: anInteger [
+{ #category : #accessing }
+SerialPort >> dataBits: anInteger [
 	"Set the number of data bits for this serial port to 5, 6, 7, or 8."
 
 	dataBits := anInteger.
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>initialize [
+{ #category : #initialization }
+SerialPort >> initialize [
 	"Default port settings."
 
 	super initialize.
@@ -95,21 +76,15 @@ SerialPort>>initialize [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>inputFlowControlType [
+{ #category : #accessing }
+SerialPort >> inputFlowControlType [
 
 	^ inputFlowControlType
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>inputFlowControlType: anInteger [
+{ #category : #accessing }
+SerialPort >> inputFlowControlType: anInteger [
 	"Set the type of input flow control, where:
 		0 - none
 		1 - XOn/XOff
@@ -119,11 +94,8 @@ SerialPort>>inputFlowControlType: anInteger [
 
 ]
 
-{
-	#category : #input/output,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>nextPutAll: aStringOrByteArray  [
+{ #category : #input/output }
+SerialPort >> nextPutAll: aStringOrByteArray [ 
 	"Send the given bytes out this serial port. The port must be
 	open. "
 	^ port isString
@@ -140,11 +112,8 @@ SerialPort>>nextPutAll: aStringOrByteArray  [
 
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>openPort: portId  [
+{ #category : #open/close }
+SerialPort >> openPort: portId [ 
 	"Open the given serial port, using the settings specified by my
 	instance variables."
 
@@ -182,21 +151,15 @@ SerialPort>>openPort: portId  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>outputFlowControlType [
+{ #category : #accessing }
+SerialPort >> outputFlowControlType [
 
 	^ outputFlowControlType
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>outputFlowControlType: anInteger [
+{ #category : #accessing }
+SerialPort >> outputFlowControlType: anInteger [
 	"Set the type of output flow control, where:
 		0 - none
 		1 - XOn/XOff
@@ -206,21 +169,15 @@ SerialPort>>outputFlowControlType: anInteger [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>parityType [
+{ #category : #accessing }
+SerialPort >> parityType [
 
 	^ parityType
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>parityType: anInteger [
+{ #category : #accessing }
+SerialPort >> parityType: anInteger [
 	"Set the parity type for this serial port, where:
 		0 - no parity
 		1 - odd parity
@@ -230,11 +187,8 @@ SerialPort>>parityType: anInteger [
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>primClosePort: portNumber [
+{ #category : #primitives }
+SerialPort >> primClosePort: portNumber [
 
 	<primitive: 'primitiveSerialPortClose' module: 'SerialPlugin'>
 	^ nil  "(DNS)"
@@ -242,21 +196,15 @@ SerialPort>>primClosePort: portNumber [
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>primClosePortByName: portName [
+{ #category : #primitives }
+SerialPort >> primClosePortByName: portName [
 	<primitive: 'primitiveSerialPortCloseByName' module:'SerialPlugin'>
 	^ nil"(DNS)"
 	"self primitiveFailed."
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>primOpenPort: portNumber baudRate: baud stopBitsType: stop
+{ #category : #primitives }
+SerialPort >> primOpenPort: portNumber baudRate: baud stopBitsType: stop
 	parityType: parity dataBits: numDataBits
 	inFlowControlType: inFlowCtrl outFlowControlType: outFlowCtrl
 	xOnByte: xOn xOffByte: xOff [
@@ -266,60 +214,42 @@ SerialPort>>primOpenPort: portNumber baudRate: baud stopBitsType: stop
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>primOpenPortByName: portName baudRate: baud stopBitsType: stop parityType: parity dataBits: numDataBits inFlowControlType: inFlowCtrl outFlowControlType: outFlowCtrl xOnByte: xOn xOffByte: xOff  [
+{ #category : #primitives }
+SerialPort >> primOpenPortByName: portName baudRate: baud stopBitsType: stop parityType: parity dataBits: numDataBits inFlowControlType: inFlowCtrl outFlowControlType: outFlowCtrl xOnByte: xOn xOffByte: xOff [ 
 	<primitive: 'primitiveSerialPortOpenByName' module:'SerialPlugin'>
 	^ nil"(DNS)"
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>primReadPort: portNumber into: byteArray startingAt: startIndex count: count [
+{ #category : #primitives }
+SerialPort >> primReadPort: portNumber into: byteArray startingAt: startIndex count: count [
 
 	<primitive: 'primitiveSerialPortRead' module: 'SerialPlugin'>
 	self primitiveFailed.
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>primReadPortByName: portName into: byteArray startingAt: startIndex count: count  [
+{ #category : #primitives }
+SerialPort >> primReadPortByName: portName into: byteArray startingAt: startIndex count: count [ 
 	<primitive: 'primitiveSerialPortReadByName' module:'SerialPlugin'>
 	self primitiveFailed
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>primWritePort: portNumber from: byteArray startingAt: startIndex count: count [
+{ #category : #primitives }
+SerialPort >> primWritePort: portNumber from: byteArray startingAt: startIndex count: count [
 
 	<primitive: 'primitiveSerialPortWrite' module: 'SerialPlugin'>
 	self primitiveFailed.
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>primWritePortByName: portName from: byteArray startingAt: startIndex count: count  [
+{ #category : #primitives }
+SerialPort >> primWritePortByName: portName from: byteArray startingAt: startIndex count: count [ 
 	<primitive: 'primitiveSerialPortWriteByName' module:'SerialPlugin'>
 	self primitiveFailed
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>printOn: aStream [
+{ #category : #printing }
+SerialPort >> printOn: aStream [
 
 	aStream
 		nextPutAll: 'SerialPort(';
@@ -333,11 +263,8 @@ SerialPort>>printOn: aStream [
 
 ]
 
-{
-	#category : #input/output,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>readByteArray [
+{ #category : #input/output }
+SerialPort >> readByteArray [
 	"Answer a ByteArray read from this serial port. Answer an empty ByteArray if no data is available. The port must be open. "
 	
 	| buf count |
@@ -356,11 +283,8 @@ SerialPort>>readByteArray [
 	^ buf copyFrom: 1 to: count
 ]
 
-{
-	#category : #input/output,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>readInto: aStringOrByteArray startingAt: index  [
+{ #category : #input/output }
+SerialPort >> readInto: aStringOrByteArray startingAt: index [ 
 	"Read data into the given String or ByteArray object starting at the given index, and answer the number of bytes read. Does not go past the end of the given String or ByteArray."
 	
 	^ port isString 
@@ -375,11 +299,8 @@ SerialPort>>readInto: aStringOrByteArray startingAt: index  [
 		
 ]
 
-{
-	#category : #input/output,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>readString [
+{ #category : #input/output }
+SerialPort >> readString [
 	"Answer a String read from this serial port. Answer the empty
 	String if no data is available. The port must be open."
 	| buf count |
@@ -398,21 +319,15 @@ SerialPort>>readString [
 	^ buf copyFrom: 1 to: count
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>stopBitsType [
+{ #category : #accessing }
+SerialPort >> stopBitsType [
 
 	^ stopBitsType
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>stopBitsType: anInteger [
+{ #category : #accessing }
+SerialPort >> stopBitsType: anInteger [
 	"Set the stop bits type for this serial port, where:
 		0 - 1.5 stop bits
 		1 - one stop bit
@@ -422,42 +337,30 @@ SerialPort>>stopBitsType: anInteger [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>xOffByte [
+{ #category : #accessing }
+SerialPort >> xOffByte [
 
 	^ xOffByte
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>xOffByte: anInteger [
+{ #category : #accessing }
+SerialPort >> xOffByte: anInteger [
 	"Set the value of the XOff byte to be used if XOn/XOff flow control is enabled."
 
 	xOffByte := anInteger.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>xOnByte [
+{ #category : #accessing }
+SerialPort >> xOnByte [
 
 	^ xOnByte
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-SerialPort>>xOnByte: anInteger [
+{ #category : #accessing }
+SerialPort >> xOnByte: anInteger [
 	"Set the value of the XOn byte to be used if XOn/XOff flow control is enabled."
 
 	xOnByte := anInteger.

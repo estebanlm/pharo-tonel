@@ -9,25 +9,18 @@ Also I am signalled first when test itself is failed. By resuming it debugger wi
 Class {
 	#name : #TestFailedByForkedProcess,
 	#superclass : #Error,
-	#category : #SUnit-Core-Kernel,
-	#timestamp : 'DenisKudryashov 2/15/2017 14:09'
+	#category : #SUnit-Core-Kernel
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestFailedByForkedProcess>>initialize [
+{ #category : #initialization }
+TestFailedByForkedProcess >> initialize [
 	super initialize.
 	
 	messageText := 'Proceed to debug it'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestFailedByForkedProcess>>isResumable [
+{ #category : #testing }
+TestFailedByForkedProcess >> isResumable [
 	"users could proceed execution to debug suspended failures"
 	^true
 ]

@@ -24,115 +24,81 @@ Class {
 		'tally',
 		'array'
 	],
-	#category : #Collections-Abstract,
-	#timestamp : 'StephaneDucasse 11/29/2011 22:22'
+	#category : #Collections-Abstract
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection class>>cleanUp: aggressive [
+{ #category : #cleanup }
+HashedCollection class >> cleanUp: aggressive [
 	"Rehash all instances when cleaning aggressively"
 
 	aggressive ifTrue: [self compactAll].
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection class>>compactAll [
+{ #category : #initialization }
+HashedCollection class >> compactAll [
 	"HashedCollection rehashAll"	
 		
 	self allSubclassesDo: #compactAllInstances
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection class>>compactAllInstances [
+{ #category : #initialization }
+HashedCollection class >> compactAllInstances [
 	"Do not use #allInstancesDo: because rehash may create new instances."
 	
 	self allInstances do: [ :each | each compact ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection class>>empty [
+{ #category : #'instance creation' }
+HashedCollection class >> empty [
 	^ self basicNew
 		initialize: 1;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection class>>new [
+{ #category : #'instance creation' }
+HashedCollection class >> new [
 	^ self basicNew
 		initialize: 5;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection class>>new: nElements [
+{ #category : #'instance creation' }
+HashedCollection class >> new: nElements [
 	"Create a Set large enough to hold nElements without growing"
 	^ self basicNew initialize: (self sizeFor: nElements)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection class>>newFrom: aCollection  [
+{ #category : #'instance creation' }
+HashedCollection class >> newFrom: aCollection [ 
 	"Answer an instance of me containing the same elements as aCollection."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection class>>rehashAll [
+{ #category : #initialization }
+HashedCollection class >> rehashAll [
 	"HashedCollection rehashAll"	
 		
 	self allSubclassesDo: #rehashAllInstances
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection class>>rehashAllInstances [
+{ #category : #initialization }
+HashedCollection class >> rehashAllInstances [
 	"Do not use #allInstancesDo: because rehash may create new instances."
 	
 	self allInstances do: [ :each | each rehash ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection class>>sizeFor: nElements [
+{ #category : #'instance creation' }
+HashedCollection class >> sizeFor: nElements [
 	"Large enough size to hold nElements with some slop (see fullCheck)"
 	
 	nElements < 4 ifTrue: [ ^5 ].
 	^ HashTableSizes atLeast: nElements +1 * 4 // 3
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>add: newObject withOccurrences: anInteger [
+{ #category : #adding }
+HashedCollection >> add: newObject withOccurrences: anInteger [
 	"Add newObject anInteger times to the receiver. Do nothing if anInteger is less than one. Answer newObject."
 	
 	anInteger < 1 ifTrue: [ ^newObject ].
@@ -140,39 +106,27 @@ HashedCollection>>add: newObject withOccurrences: anInteger [
 	^ self add: newObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>array [
+{ #category : #private }
+HashedCollection >> array [
 	^ array
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>atNewIndex: index put: anObject [
+{ #category : #private }
+HashedCollection >> atNewIndex: index put: anObject [
 	array at: index put: anObject.
 	tally := tally + 1.
 	self fullCheck
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>capacity [
+{ #category : #accessing }
+HashedCollection >> capacity [
 	"Answer the current capacity of the receiver."
 
 	^ array size
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>compact [
+{ #category : #private }
+HashedCollection >> compact [
 	"Reduce the size of array so that the load factor will be ~75%."
 	
 	| newCapacity |
@@ -180,31 +134,22 @@ HashedCollection>>compact [
 	self growTo: newCapacity
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>doWithIndex: aBlock2 [
+{ #category : #enumerating }
+HashedCollection >> doWithIndex: aBlock2 [
 	"Support Set enumeration with a counter, even though not ordered"
 	| index |
 	index := 0.
 	self do: [:item | aBlock2 value: item value: (index := index+1)]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>errorNoFreeSpace [
+{ #category : #private }
+HashedCollection >> errorNoFreeSpace [
 
 	self error: 'There is no free space in this collection!'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>findElementOrNil: anObject [
+{ #category : #private }
+HashedCollection >> findElementOrNil: anObject [
 	"Answer the index of a first slot containing either a nil (indicating an empty slot) or an element that matches the given object. Answer the index of that slot or zero. Fail if neither a match nor an empty slot is found."
 
 	| index |
@@ -218,11 +163,8 @@ HashedCollection>>findElementOrNil: anObject [
 	self error: 'There is no free space in this set!'.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>fixCollisionsFrom: start [
+{ #category : #private }
+HashedCollection >> fixCollisionsFrom: start [
 	"The element at start has been removed and replaced by nil.
 	This method moves forward from there, relocating any entries
 	that had been placed below due to collisions with this one."
@@ -230,21 +172,15 @@ HashedCollection>>fixCollisionsFrom: start [
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>fullCheck [
+{ #category : #private }
+HashedCollection >> fullCheck [
 	"Keep array at least 1/4 free for decent hash behavior"
 	array size - tally < (array size // 4 max: 1)
 		ifTrue: [self grow]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>grow [
+{ #category : #private }
+HashedCollection >> grow [
 	"Grow the elements array and reinsert the old elements"
 
 	| oldElements |
@@ -258,22 +194,16 @@ HashedCollection>>grow [
 				ifFalse: [ self noCheckAdd: each ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>growSize [
+{ #category : #private }
+HashedCollection >> growSize [
 	"Answer what my next higher table size should be"
 
 	^HashTableSizes atLeast: self capacity * 3 // 2 + 2
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>growTo: anInteger [
+{ #category : #private }
+HashedCollection >> growTo: anInteger [
 	"Grow the elements array and reinsert the old elements"
 	
 	| oldElements |
@@ -282,69 +212,48 @@ HashedCollection>>growTo: anInteger [
 	self noCheckNoGrowFillFrom: oldElements
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>initialize: n [
+{ #category : #initialization }
+HashedCollection >> initialize: n [
 	"Initialize array to an array size of n"
 	array := Array new: n.
 	tally := 0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>noCheckAdd: anObject [
+{ #category : #private }
+HashedCollection >> noCheckAdd: anObject [
 
     self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>noCheckNoGrowFillFrom: anArray [
+{ #category : #private }
+HashedCollection >> noCheckNoGrowFillFrom: anArray [
 	"Add the elements of anArray except nils to me assuming that I don't contain any of them, they are unique and I have more free space than they require."
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>rehash [
+{ #category : #private }
+HashedCollection >> rehash [
 	self growTo: self capacity
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>removeAll [
+{ #category : #removing }
+HashedCollection >> removeAll [
 	"remove all elements from this collection.
 	Preserve the capacity"
 	
 	self initialize: self capacity
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>scanFor: anObject [
+{ #category : #private }
+HashedCollection >> scanFor: anObject [
 	"Scan the key array for the first slot containing either a nil (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or raise an error if no slot is found. This method will be overridden in various subclasses that have different interpretations for matching elements."
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>scanForEmptySlotFor: aKey [
+{ #category : #private }
+HashedCollection >> scanForEmptySlotFor: aKey [
 	"Scan the key array for the first slot containing an empty slot (indicated by a nil). Answer the index of that slot. This method will be overridden in various subclasses that have different interpretations for matching elements."
 	
 	| index start |
@@ -355,29 +264,20 @@ HashedCollection>>scanForEmptySlotFor: aKey [
 	self errorNoFreeSpace
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>size [
+{ #category : #accessing }
+HashedCollection >> size [
 	^ tally
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>union: aCollection [
+{ #category : #enumerating }
+HashedCollection >> union: aCollection [
 	"Answer the set theoretic union of the receiver and aCollection, using the receiver's notion of equality and not side effecting the receiver at all."
 
 	^ self copy addAll: aCollection; yourself
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-HashedCollection>>veryDeepCopyWith: deepCopier [
+{ #category : #copying }
+HashedCollection >> veryDeepCopyWith: deepCopier [
 	| copyOfSelf|
 	copyOfSelf := super veryDeepCopyWith: deepCopier.
 	"force Sets and Dictionaries to rehash"

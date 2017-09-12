@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'list'
 	],
-	#category : #Nautilus,
-	#timestamp : 'NicolaiHess 9/7/2014 00:35'
+	#category : #Nautilus
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortAlphabeticallyClassList class>>buildHierarchyForClasses: aCollection [
+{ #category : #'instance creation' }
+SortAlphabeticallyClassList class >> buildHierarchyForClasses: aCollection [
 	| nodes |
 	nodes := aCollection asOrderedCollection sort: [:a :b  | a name < b name].
 	^ self new
@@ -23,53 +19,35 @@ SortAlphabeticallyClassList class>>buildHierarchyForClasses: aCollection [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortAlphabeticallyClassList class>>buildListFor: aPackageGroup in: anEnvironment [
+{ #category : #'instance creation' }
+SortAlphabeticallyClassList class >> buildListFor: aPackageGroup in: anEnvironment [
 	^ aPackageGroup withClassesIn: anEnvironment createHierarchySorter: self 
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortAlphabeticallyClassList>>, another  [
+{ #category : #combining }
+SortAlphabeticallyClassList >> , another [ 
 
 	^ self class new
 		list: (self list, another list);
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortAlphabeticallyClassList>>initialize [
+{ #category : #initialization }
+SortAlphabeticallyClassList >> initialize [
 	list := OrderedCollection new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortAlphabeticallyClassList>>list [
+{ #category : #accessing }
+SortAlphabeticallyClassList >> list [
 	^ list
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortAlphabeticallyClassList>>list: aList [
+{ #category : #accessing }
+SortAlphabeticallyClassList >> list: aList [
 	list := aList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortAlphabeticallyClassList>>sortedElements [
+{ #category : #accessing }
+SortAlphabeticallyClassList >> sortedElements [
 	^ list
 ]

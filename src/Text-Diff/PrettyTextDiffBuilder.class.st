@@ -14,32 +14,22 @@ Class {
 	#instVars : [
 		'sourceClass'
 	],
-	#category : #Text-Diff,
-	#timestamp : 'HenrikSperreJohansen 5/21/2010 01:42'
+	#category : #Text-Diff
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PrettyTextDiffBuilder class>>from: srcString to: dstString inClass: srcClass  [
+{ #category : #'instance creation' }
+PrettyTextDiffBuilder class >> from: srcString to: dstString inClass: srcClass [ 
 	^ (self new sourceClass: srcClass) from: srcString to: dstString
 		
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PrettyTextDiffBuilder>>sourceClass: aClass [
+{ #category : #initialize }
+PrettyTextDiffBuilder >> sourceClass: aClass [
 	sourceClass := aClass.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PrettyTextDiffBuilder>>split: aString  [
+{ #category : #initialize }
+PrettyTextDiffBuilder >> split: aString [ 
 	| formatted trimmed |
 	trimmed := aString asString trimBoth.
 	trimmed isEmpty ifTrue: [ ^super split: '' ].

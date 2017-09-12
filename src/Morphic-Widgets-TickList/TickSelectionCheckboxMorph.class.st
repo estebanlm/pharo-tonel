@@ -7,24 +7,17 @@ Class {
 	#instVars : [
 		'index'
 	],
-	#category : #Morphic-Widgets-TickList,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-TickList
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionCheckboxMorph>>index: anIndex [
+{ #category : #accessing }
+TickSelectionCheckboxMorph >> index: anIndex [
 
 	index := anIndex
 ]
 
-{
-	#category : #morph,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionCheckboxMorph>>newButtonMorph [
+{ #category : #morph }
+TickSelectionCheckboxMorph >> newButtonMorph [
 	"Answer a new button morph"
 
 	| instance |
@@ -38,11 +31,8 @@ TickSelectionCheckboxMorph>>newButtonMorph [
 	^ instance
 ]
 
-{
-	#category : #event,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionCheckboxMorph>>pressed: anIndex [
+{ #category : #event }
+TickSelectionCheckboxMorph >> pressed: anIndex [
 
 	self owner owner pressed: anIndex
 ]

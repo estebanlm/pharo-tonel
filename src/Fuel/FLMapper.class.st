@@ -8,25 +8,18 @@ Class {
 		'next',
 		'analysis'
 	],
-	#category : #Fuel-Mappers,
-	#timestamp : 'MartinDias 8/11/2011 03:09'
+	#category : #Fuel-Mappers
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMapper>>analysis: anAnalysis [
+{ #category : #accessing }
+FLMapper >> analysis: anAnalysis [
 
 	analysis := anAnalysis.
 	next ifNotNil: [ next analysis: anAnalysis ]
 ]
 
-{
-	#category : #protected-mapping,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMapper>>clusterInstanceOf: aClusterClass keyInBucket: clusterKey factory: clusterFactory [
+{ #category : #protected-mapping }
+FLMapper >> clusterInstanceOf: aClusterClass keyInBucket: clusterKey factory: clusterFactory [
 
 	| bucket |
 	bucket := aClusterClass clusterBucketIn: analysis clusterization.
@@ -39,22 +32,16 @@ FLMapper>>clusterInstanceOf: aClusterClass keyInBucket: clusterKey factory: clus
 
 ]
 
-{
-	#category : #protected-mapping,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMapper>>clusterKeyedByClusterName: aClusterClass [
+{ #category : #protected-mapping }
+FLMapper >> clusterKeyedByClusterName: aClusterClass [
 
 	^ self
 		clusterKeyedByClusterName: aClusterClass 
 		factory:  [ aClusterClass newAnalyzing ]
 ]
 
-{
-	#category : #protected-mapping,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMapper>>clusterKeyedByClusterName: aClusterClass factory: clusterFactory [
+{ #category : #protected-mapping }
+FLMapper >> clusterKeyedByClusterName: aClusterClass factory: clusterFactory [
 
 	^ self
 		clusterInstanceOf: aClusterClass
@@ -63,11 +50,8 @@ FLMapper>>clusterKeyedByClusterName: aClusterClass factory: clusterFactory [
 
 ]
 
-{
-	#category : #protected-mapping,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMapper>>clusterKeyedByObjectClass: clusterClass class: objectClass [
+{ #category : #protected-mapping }
+FLMapper >> clusterKeyedByObjectClass: clusterClass class: objectClass [
 
 	^ self 
 		clusterInstanceOf: clusterClass 
@@ -75,49 +59,34 @@ FLMapper>>clusterKeyedByObjectClass: clusterClass class: objectClass [
 		factory: [ clusterClass newAnalyzing: objectClass ]
 ]
 
-{
-	#category : #hooks,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMapper>>fuelAccept: aGeneralMapper [
+{ #category : #hooks }
+FLMapper >> fuelAccept: aGeneralMapper [
 	^ aGeneralMapper visitSubstitution: self by: nil
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMapper>>mapAndTrace: anObject [
+{ #category : #mapping }
+FLMapper >> mapAndTrace: anObject [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #protected-mapping,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMapper>>mapAndTraceByClusterName: anObject to: aClusterClass [
+{ #category : #protected-mapping }
+FLMapper >> mapAndTraceByClusterName: anObject to: aClusterClass [
 
 	(self clusterKeyedByClusterName: aClusterClass)
 		add: anObject traceWith: analysis
 
 ]
 
-{
-	#category : #protected-mapping,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMapper>>mapAndTraceByObjectClass: anObject to: aClusterClass [
+{ #category : #protected-mapping }
+FLMapper >> mapAndTraceByObjectClass: anObject to: aClusterClass [
 
 	(self clusterKeyedByObjectClass: aClusterClass class: anObject class)
 		add: anObject traceWith: analysis
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLMapper>>next: anObject [
+{ #category : #accessing }
+FLMapper >> next: anObject [
 	next := anObject
 ]

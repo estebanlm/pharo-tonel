@@ -4,15 +4,11 @@ ZdcIOBufferTests holds unit tests for ZdcIOBuffer.
 Class {
 	#name : #ZdcIOBufferTests,
 	#superclass : #TestCase,
-	#category : #Zodiac-Tests,
-	#timestamp : 'SvenVanCaekenberghe 5/17/2011 18:48'
+	#category : #Zodiac-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcIOBufferTests>>testAdvanceReadPointer [
+{ #category : #testing }
+ZdcIOBufferTests >> testAdvanceReadPointer [
 	| ioBuffer offset |
 	ioBuffer := ZdcIOBuffer on: (ByteArray new: 10).
 	3 timesRepeat: [ ioBuffer nextPut: 0 ].
@@ -29,11 +25,8 @@ ZdcIOBufferTests>>testAdvanceReadPointer [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcIOBufferTests>>testAdvanceWritePointer [
+{ #category : #testing }
+ZdcIOBufferTests >> testAdvanceWritePointer [
 	| ioBuffer offset |
 	ioBuffer := ZdcIOBuffer on: (ByteArray new: 10).
 	self assert: ioBuffer isEmpty.
@@ -47,11 +40,8 @@ ZdcIOBufferTests>>testAdvanceWritePointer [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcIOBufferTests>>testBivalentReading [
+{ #category : #testing }
+ZdcIOBufferTests >> testBivalentReading [
 	| data ioBuffer buffer |
 	data := 'some string'.
 	
@@ -69,11 +59,8 @@ ZdcIOBufferTests>>testBivalentReading [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcIOBufferTests>>testBivalentWriting [
+{ #category : #testing }
+ZdcIOBufferTests >> testBivalentWriting [
 	| data ioBuffer |
 	data := 'some string'.
 	
@@ -86,11 +73,8 @@ ZdcIOBufferTests>>testBivalentWriting [
 	self assert: ioBuffer contents equals: data asByteArray
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcIOBufferTests>>testCompact [
+{ #category : #testing }
+ZdcIOBufferTests >> testCompact [
 	| ioBuffer |
 	ioBuffer := ZdcIOBuffer on: (ByteArray new: 10).
 	1 to: 6 do: [ :each | ioBuffer nextPut: each ].
@@ -106,11 +90,8 @@ ZdcIOBufferTests>>testCompact [
 		
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcIOBufferTests>>testCompactAtBeginning [
+{ #category : #testing }
+ZdcIOBufferTests >> testCompactAtBeginning [
 	| ioBuffer |
 	ioBuffer := ZdcIOBuffer on: (ByteArray new: 10).
 	ioBuffer compact.
@@ -123,11 +104,8 @@ ZdcIOBufferTests>>testCompactAtBeginning [
 	self assert: ioBuffer gapAtFront isZero
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcIOBufferTests>>testCompactAtEnd [
+{ #category : #testing }
+ZdcIOBufferTests >> testCompactAtEnd [
 	| ioBuffer |
 	ioBuffer := ZdcIOBuffer on: (ByteArray new: 10).
 	10 timesRepeat: [ ioBuffer nextPut: 1 ].
@@ -141,11 +119,8 @@ ZdcIOBufferTests>>testCompactAtEnd [
 		
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcIOBufferTests>>testCompactDoNothing [
+{ #category : #testing }
+ZdcIOBufferTests >> testCompactDoNothing [
 	| ioBuffer |
 	ioBuffer := ZdcIOBuffer on: (ByteArray new: 10).
 	self assert: ioBuffer isEmpty.
@@ -165,11 +140,8 @@ ZdcIOBufferTests>>testCompactDoNothing [
 	self assert: ioBuffer availableForWriting = 4.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcIOBufferTests>>testNextPutAllStartingAt [
+{ #category : #testing }
+ZdcIOBufferTests >> testNextPutAllStartingAt [
 	| ioBuffer |
 	ioBuffer := ZdcIOBuffer on: (String new: 12).
 	ioBuffer next: 4 putAll: 'abcd' startingAt: 1.
@@ -178,11 +150,8 @@ ZdcIOBufferTests>>testNextPutAllStartingAt [
 	self assert: ioBuffer contents equals: 'abcdabcdabcd'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcIOBufferTests>>testReadIntoStartingAtCount [
+{ #category : #testing }
+ZdcIOBufferTests >> testReadIntoStartingAtCount [
 	| data ioBuffer string |
 	data := 'abcdefghijkl'.
 	ioBuffer := ZdcIOBuffer on: data.
@@ -194,11 +163,8 @@ ZdcIOBufferTests>>testReadIntoStartingAtCount [
 	self assert: string equals: data
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcIOBufferTests>>testReading [
+{ #category : #testing }
+ZdcIOBufferTests >> testReading [
 	| ioBuffer |
 	ioBuffer := ZdcIOBuffer on: (ByteArray new: 10).
 	1 to: 6 do: [ :each | ioBuffer nextPut: each ].
@@ -209,11 +175,8 @@ ZdcIOBufferTests>>testReading [
 	self should: [ ioBuffer next ] raise: Error
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcIOBufferTests>>testString [
+{ #category : #testing }
+ZdcIOBufferTests >> testString [
 	| ioBuffer |
 	ioBuffer := ZdcIOBuffer on: (String new: 10).
 	($a to: $f) do: [ :each | ioBuffer nextPut: each ].
@@ -223,11 +186,8 @@ ZdcIOBufferTests>>testString [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcIOBufferTests>>testWriting [
+{ #category : #testing }
+ZdcIOBufferTests >> testWriting [
 	| ioBuffer |
 	ioBuffer := ZdcIOBuffer on: (ByteArray new: 10).
 	self assert: ioBuffer isEmpty.

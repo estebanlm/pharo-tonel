@@ -4,89 +4,58 @@ SUnit tests for shouts ST80 parser
 Class {
 	#name : #SHParserST80Test,
 	#superclass : #TestCase,
-	#category : #Shout-Tests-Parsing,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:22'
+	#category : #Shout-Tests-Parsing
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHParserST80Test>>>-------> anObject [
+{ #category : #utilities }
+SHParserST80Test >> >-------> anObject [
 
 "Dummy binary selector method"
 ]
 
-{
-	#category : #tests-manual,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHParserST80Test>>d [
+{ #category : #tests-manual }
+SHParserST80Test >> d [
 	"ensure that d is defined so that we don't get an #undefinedUnary token type "
 ]
 
-{
-	#category : #tests-manual,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHParserST80Test>>e [
+{ #category : #tests-manual }
+SHParserST80Test >> e [
 	"ensure that e is defined so that we don't get an #undefinedUnary token type "
 ]
 
-{
-	#category : #tests-manual,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHParserST80Test>>q [
+{ #category : #tests-manual }
+SHParserST80Test >> q [
 	"ensure that q is defined so that we don't get an #undefinedUnary token type "
 ]
 
-{
-	#category : #tests-manual,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHParserST80Test>>r [
+{ #category : #tests-manual }
+SHParserST80Test >> r [
 	"ensure that r is defined so that we don't get an #undefinedUnary token type "
 ]
 
-{
-	#category : #tests-manual,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHParserST80Test>>s [
+{ #category : #tests-manual }
+SHParserST80Test >> s [
 	"ensure that s is defined so that we don't get an #undefinedUnary token type "
 ]
 
-{
-	#category : #tests-smoke,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHParserST80Test>>testBooleanHierarchy [
+{ #category : #tests-smoke }
+SHParserST80Test >> testBooleanHierarchy [
 	self verifyHierarchy: Boolean
 ]
 
-{
-	#category : #tests-smoke,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHParserST80Test>>testCollectionHierarchy [
+{ #category : #tests-smoke }
+SHParserST80Test >> testCollectionHierarchy [
 	self skip: 'Too slow for too little value added'.
 	self verifyHierarchy: Collection
 ]
 
-{
-	#category : #tests-smoke,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHParserST80Test>>testNumberHierarchy [
+{ #category : #tests-smoke }
+SHParserST80Test >> testNumberHierarchy [
 	self verifyHierarchy: Number
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHParserST80Test>>testNumbers [
+{ #category : #tests }
+SHParserST80Test >> testNumbers [
 	| types tokens s |
 	s := 'x 1'.
 	types := self tokenTypesIn: s.
@@ -433,50 +402,35 @@ SHParserST80Test>>testNumbers [
 	self assert: tokens = #('x' '1' '-' 'self'). 
 ]
 
-{
-	#category : #tests-smoke,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHParserST80Test>>testObjectClass [
+{ #category : #tests-smoke }
+SHParserST80Test >> testObjectClass [
 	self verifyClass: Object
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHParserST80Test>>tokenTypesIn: aString [
+{ #category : #utilities }
+SHParserST80Test >> tokenTypesIn: aString [
 	| parser ranges |
 	parser := SHParserST80 new.
 	ranges := parser rangesIn: aString classOrMetaClass: Object workspace: nil environment: nil.
 	^ranges asArray collect: [:each | each type]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHParserST80Test>>tokensIn: aString [
+{ #category : #utilities }
+SHParserST80Test >> tokensIn: aString [
 	| parser ranges |
 	parser := SHParserST80 new.
 	ranges := parser rangesIn: aString classOrMetaClass: Object workspace: nil environment: nil.
 	^ranges asArray collect: [:each | aString copyFrom: each start to: each end]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHParserST80Test>>verifyClass: aBehavior [
+{ #category : #utilities }
+SHParserST80Test >> verifyClass: aBehavior [
 	aBehavior selectors do: [ :selector | self verifyClass: aBehavior selector: selector ]
 	
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHParserST80Test>>verifyClass: aBehavior selector: aSymbol [
+{ #category : #utilities }
+SHParserST80Test >> verifyClass: aBehavior selector: aSymbol [
 	| ranges position types errors |
 	ranges := SHParserST80 new 
 		rangesIn: (aBehavior sourceCodeAt: aSymbol) 
@@ -504,10 +458,7 @@ SHParserST80Test>>verifyClass: aBehavior selector: aSymbol [
 		position := each end ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHParserST80Test>>verifyHierarchy: aBehavior [
+{ #category : #utilities }
+SHParserST80Test >> verifyHierarchy: aBehavior [
 	aBehavior withAllSubclassesDo: [ :class | self verifyClass: class; verifyClass: class class ]
 ]

@@ -5,15 +5,11 @@ Shows a warning if this class has abstract methods on its own.
 Class {
 	#name : #RBRealizeClassRefactoring,
 	#superclass : #RBClassRefactoring,
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 13:00'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRealizeClassRefactoring>>preconditions [
+{ #category : #preconditions }
+RBRealizeClassRefactoring >> preconditions [
 	^ RBCondition
 		withBlock: [
 			(self theClass withAllSubclasses
@@ -24,28 +20,19 @@ RBRealizeClassRefactoring>>preconditions [
 		errorString: self theClass printString , ' is abstract or has abstract subclasses.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRealizeClassRefactoring>>theClass [
+{ #category : #accessing }
+RBRealizeClassRefactoring >> theClass [
 	^ (self classObjectFor: className) theNonMetaClass
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRealizeClassRefactoring>>transform [
+{ #category : #transforming }
+RBRealizeClassRefactoring >> transform [
 	self transform: self theClass.
 	self transform: self theClass theMetaClass
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRealizeClassRefactoring>>transform: aClass [
+{ #category : #transforming }
+RBRealizeClassRefactoring >> transform: aClass [
 	| class method parseTree |
 	aClass allSelectors do: [ :selector |
 		class := aClass whoDefinesMethod: selector.

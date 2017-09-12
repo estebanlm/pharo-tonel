@@ -18,23 +18,16 @@ Class {
 		'enabled',
 		'highlights'
 	],
-	#category : #Rubric-Editing-Widgets,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:39'
+	#category : #Rubric-Editing-Widgets
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph class>>on: aModel  [
+{ #category : #'instance creation' }
+RubScrolledTextMorph class >> on: aModel [ 
 	^ self new on: aModel
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>acceptContents [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> acceptContents [
 	(self autoAccept not and: [ self canDiscardEdits and: [ self alwaysAccept not ] ])
 		ifTrue: [ ^ self flash ].
 	self hasEditingConflicts
@@ -52,31 +45,22 @@ editing it here.  Accept anyway?' translated)
 			self announcer announce: (RubTextAccepted morph: self) ]
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>acceptTextInModel [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> acceptTextInModel [
 	self model ifNil: [ ^ true ].
 	 ^ self setTextSelector numArgs = 2
 		ifTrue: [ self model perform: self setTextSelector with: self text with: self ]
 		ifFalse: [ self model perform: self setTextSelector withEnoughArguments: (Array with: self text) ]
 ]
 
-{
-	#category : #'accessing segments',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>addSegment: aRubTextSegmentMorph [
+{ #category : #'accessing segments' }
+RubScrolledTextMorph >> addSegment: aRubTextSegmentMorph [
 	^ self textArea addSegment: aRubTextSegmentMorph
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>adornmentColor [
+{ #category : #drawing }
+RubScrolledTextMorph >> adornmentColor [
 	"color to Indicate edit status for the given morph."
 
 	self hasEditingConflicts
@@ -86,35 +70,23 @@ RubScrolledTextMorph>>adornmentColor [
 	^ Color transparent
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>adornmentRuler [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> adornmentRuler [
 	^ self rulerNamed: #adornment
 ]
 
-{
-	#category : #'accessing menu',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>allowMenu [
+{ #category : #'accessing menu' }
+RubScrolledTextMorph >> allowMenu [
 	self menuAllowed: true
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>alwaysAccept [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> alwaysAccept [
 	^ alwaysAccept ifNil: [ alwaysAccept := false]
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>alwaysAccept: aBoolean [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> alwaysAccept: aBoolean [
 	"Set the always accept flag."
 	"This flag is used when there are unsaved changes in my text field and an exterior actor tries to modify me"
 	"If the flag is true, I will accept to change even if I have pending modification instead of poping up the Accept/Discard/Cancel window"
@@ -124,19 +96,13 @@ RubScrolledTextMorph>>alwaysAccept: aBoolean [
 
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>annotationRuler [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> annotationRuler [
 	^ self rulerNamed: #annotation
 ]
 
-{
-	#category : #'acessing text',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>appendText: stringOrText [
+{ #category : #'acessing text' }
+RubScrolledTextMorph >> appendText: stringOrText [
 	"Accept new text contents with line breaks only as in the text.
 	Fit my width and height to the result."
 
@@ -144,21 +110,15 @@ RubScrolledTextMorph>>appendText: stringOrText [
 	self resetState
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>autoAccept [
+{ #category : #accessing }
+RubScrolledTextMorph >> autoAccept [
 	"Answer whether the editor accepts its contents on each change."
 
 	^autoAccept ifNil: [autoAccept := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>autoAccept: aBoolean [
+{ #category : #accessing }
+RubScrolledTextMorph >> autoAccept: aBoolean [
 	"Whether I should accept my contents on each change."
 	autoAccept := aBoolean.
 	aBoolean
@@ -166,27 +126,18 @@ RubScrolledTextMorph>>autoAccept: aBoolean [
 		ifFalse: [ self withAdornment ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>backgroundColor [
+{ #category : #accessing }
+RubScrolledTextMorph >> backgroundColor [
 	^self color
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>backgroundColor: aColor [
+{ #category : #accessing }
+RubScrolledTextMorph >> backgroundColor: aColor [
 	self color: aColor
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>basicHasUnacceptedEdits: aBoolean [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> basicHasUnacceptedEdits: aBoolean [
 	self autoAccept
 		ifTrue: [ ^ self ].
 	aBoolean = hasUnacceptedEdits 
@@ -196,107 +147,71 @@ RubScrolledTextMorph>>basicHasUnacceptedEdits: aBoolean [
 		ifFalse: [hasEditingConflicts := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>beEditable [
+{ #category : #accessing }
+RubScrolledTextMorph >> beEditable [
 	self textArea beEditable 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>beForPlainText [
+{ #category : #initialize-release }
+RubScrolledTextMorph >> beForPlainText [
 	self textArea beForPlainText
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>beForSmalltalkCode [
+{ #category : #initialize-release }
+RubScrolledTextMorph >> beForSmalltalkCode [
 	self textArea beForSmalltalkCode.
 	self withTextSegmentIcons.
 	self textArea font: StandardFonts codeFont
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>beForSmalltalkCodeInClass: aClass [
+{ #category : #initialize-release }
+RubScrolledTextMorph >> beForSmalltalkCodeInClass: aClass [
 	self textArea beForSmalltalkCodeInClass: aClass.
 	self withTextSegmentIcons.
 	self textArea font: StandardFonts codeFont
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>beForSmalltalkCodeWithDefaultFont [
+{ #category : #initialize-release }
+RubScrolledTextMorph >> beForSmalltalkCodeWithDefaultFont [
 	self textArea beForSmalltalkCodeWithDefaultFont.
 	self withTextSegmentIcons
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>beForSmalltalkComment [
+{ #category : #initialize-release }
+RubScrolledTextMorph >> beForSmalltalkComment [
 	self textArea beForSmalltalkComment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>beForSmalltalkScripting [
+{ #category : #accessing }
+RubScrolledTextMorph >> beForSmalltalkScripting [
     self textArea beForSmalltalkScripting.
     self textArea font: StandardFonts codeFont
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>beForSmalltalkScriptingWithDefaultFont [
+{ #category : #accessing }
+RubScrolledTextMorph >> beForSmalltalkScriptingWithDefaultFont [
     self textArea beForSmalltalkScriptingWithDefaultFont
 
 ]
 
-{
-	#category : #'acessing text',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>beNotWrapped [
+{ #category : #'acessing text' }
+RubScrolledTextMorph >> beNotWrapped [
 	self scrollPane beNotWrapped 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>beReadOnly [
+{ #category : #accessing }
+RubScrolledTextMorph >> beReadOnly [
 	self textArea beReadOnly 
 ]
 
-{
-	#category : #'acessing text',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>beWrapped [
+{ #category : #'acessing text' }
+RubScrolledTextMorph >> beWrapped [
 	self scrollPane beWrapped
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>borderStyleToUse [
+{ #category : #accessing }
+RubScrolledTextMorph >> borderStyleToUse [
 	"Answer the borderStyle that should be used for the receiver."
 	
 	^self enabled
@@ -304,121 +219,79 @@ RubScrolledTextMorph>>borderStyleToUse [
 		ifFalse: [self theme rubScrolledTextMorphThemer disabledBorderStyleFor: self]
 ]
 
-{
-	#category : #'accessing scrollbars',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>borderWidth: anInteger [
+{ #category : #'accessing scrollbars' }
+RubScrolledTextMorph >> borderWidth: anInteger [
 	super borderWidth: anInteger.
 	self extent: self extent.
 	self manageLayout 
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>canDiscardEdits [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> canDiscardEdits [
 	^self hasUnacceptedEdits not
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>cancel [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> cancel [
 
 	self updateTextWith: self getTextFromModel.
 	self setSelection: self getSelectionFromModel
 ]
 
-{
-	#category : #'rulers handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>classOfRulerNamed: aKey [
+{ #category : #'rulers handling' }
+RubScrolledTextMorph >> classOfRulerNamed: aKey [
 	^ RubScrolledTextExtra classOfRulerNamed: aKey
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>classOrMetaClass: aBehavior [
+{ #category : #accessing }
+RubScrolledTextMorph >> classOrMetaClass: aBehavior [
 	self textArea classOrMetaClass: aBehavior
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>columnRuler [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> columnRuler [
 	^ self rulerNamed: #column
 ]
 
-{
-	#category : #configure,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>configureGhostText: aTextArea [
+{ #category : #configure }
+RubScrolledTextMorph >> configureGhostText: aTextArea [
 	aTextArea width: self scrollBounds width.
 	aTextArea center: self scrollBounds center
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>correctFrom: start to: stop with: aString [
+{ #category : #'interactive error protocol' }
+RubScrolledTextMorph >> correctFrom: start to: stop with: aString [
 	self textArea correctFrom: start to: stop with: aString
 ]
 
-{
-	#category : #'accessing scrollbars',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>currentHScrollBarThickness [
+{ #category : #'accessing scrollbars' }
+RubScrolledTextMorph >> currentHScrollBarThickness [
 	^self scrollPane currentHScrollBarThickness
 ]
 
-{
-	#category : #'accessing text area',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>cursor [
+{ #category : #'accessing text area' }
+RubScrolledTextMorph >> cursor [
 	"polymorphism with text area"
 	^ self textArea cursor
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>defaultBackgroundColor  [
+{ #category : #defaults }
+RubScrolledTextMorph >> defaultBackgroundColor [ 
 	^ Smalltalk ui theme backgroundColor
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>defaultBorderWidth [
+{ #category : #defaults }
+RubScrolledTextMorph >> defaultBorderWidth [
 	^ 0
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>defaultColor [
+{ #category : #defaults }
+RubScrolledTextMorph >> defaultColor [
 	^ self defaultBackgroundColor 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>defaultGhostTextMorph [
+{ #category : #defaults }
+RubScrolledTextMorph >> defaultGhostTextMorph [
 	| gt |
 	gt := RubEditingArea new.
 	gt withoutAnyDecorator.
@@ -428,38 +301,26 @@ RubScrolledTextMorph>>defaultGhostTextMorph [
 	^ gt
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>defaultScrollTarget [
+{ #category : #initialize-release }
+RubScrolledTextMorph >> defaultScrollTarget [
 	| textArea |
 	textArea := self textAreaClass new.
 	textArea backgroundColor: Color lightGray veryMuchLighter.
 	^ textArea
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>drawFocusBorder [
+{ #category : #accessing }
+RubScrolledTextMorph >> drawFocusBorder [
 	^ self scrollPane drawFocusBorder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>drawFocusBorder: aBoolean [
+{ #category : #accessing }
+RubScrolledTextMorph >> drawFocusBorder: aBoolean [
 	self scrollPane drawFocusBorder: aBoolean
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>drawHighlightsOn: aCanvas [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> drawHighlightsOn: aCanvas [
 	"Draw the highlights."
 
 	| scrollBounds scrollOffset |
@@ -474,31 +335,22 @@ RubScrolledTextMorph>>drawHighlightsOn: aCanvas [
 	]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+RubScrolledTextMorph >> drawOn: aCanvas [
 	super drawOn: aCanvas.
 	self drawHighlightsOn: aCanvas 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #drawing }
+RubScrolledTextMorph >> drawOnAthensCanvas: anAthensCanvas [
 	"Indicate unaccepted edits, conflicts etc."
 
 	super drawOnAthensCanvas: anAthensCanvas. 
 	self drawHighlightsOn: anAthensCanvas asCanvasWrapper
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>drawSubmorphsOn: aCanvas [
+{ #category : #drawing }
+RubScrolledTextMorph >> drawSubmorphsOn: aCanvas [
 	"Display submorphs back to front"
 
 	| drawBlock subs |
@@ -516,11 +368,8 @@ RubScrolledTextMorph>>drawSubmorphsOn: aCanvas [
 		ifFalse: [ drawBlock value: aCanvas ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>drawSubmorphsOnAthensCanvas: anAthensCanvas [
+{ #category : #drawing }
+RubScrolledTextMorph >> drawSubmorphsOnAthensCanvas: anAthensCanvas [
 	"Display submorphs back to front"
 
 	| drawBlock subs |
@@ -538,151 +387,100 @@ RubScrolledTextMorph>>drawSubmorphsOnAthensCanvas: anAthensCanvas [
 		ifFalse: [ drawBlock value ]
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>editPrimarySelectionSeparately [
+{ #category : #accessing-selection }
+RubScrolledTextMorph >> editPrimarySelectionSeparately [
 	self textArea editPrimarySelectionSeparately
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>editingMode [
+{ #category : #accessing }
+RubScrolledTextMorph >> editingMode [
 	^  self textArea editingMode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>editingMode: anEditingMode [
+{ #category : #accessing }
+RubScrolledTextMorph >> editingMode: anEditingMode [
 	self textArea editingMode: anEditingMode.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>editingModeClass [
+{ #category : #accessing }
+RubScrolledTextMorph >> editingModeClass [
 	^ self textArea editingMode class
 ]
 
-{
-	#category : #'mock for spec',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>enabled: aBoolean [
+{ #category : #'mock for spec' }
+RubScrolledTextMorph >> enabled: aBoolean [
 	enabled = aBoolean ifTrue: [^self].
 	enabled := aBoolean.
 	self textArea readOnly: aBoolean not.
 	self changed
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>extent: aPoint [
+{ #category : #geometry }
+RubScrolledTextMorph >> extent: aPoint [
 	super extent: aPoint.
 	self manageLayout
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>extraAreas [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> extraAreas [
 	^ self rulers select: [ :r | r isOver ]
 
 ]
 
-{
-	#category : #'acessing text',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>font [
+{ #category : #'acessing text' }
+RubScrolledTextMorph >> font [
 	^ self textArea font
 ]
 
-{
-	#category : #'accessing text area',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>font: aFont [
+{ #category : #'accessing text area' }
+RubScrolledTextMorph >> font: aFont [
 	"polymorphism with text area"
 	self textFont: aFont
 ]
 
-{
-	#category : #'accessing menu',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>forbidMenu [
+{ #category : #'accessing menu' }
+RubScrolledTextMorph >> forbidMenu [
 	self menuAllowed: false
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>formatSourceCode [
+{ #category : #formatting }
+RubScrolledTextMorph >> formatSourceCode [
 	self textArea formatMethodCode
 ]
 
-{
-	#category : #'accessing menu',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>getMenuPolicy: aGetMenuPolicy [
+{ #category : #'accessing menu' }
+RubScrolledTextMorph >> getMenuPolicy: aGetMenuPolicy [
 	self textArea getMenuPolicy: aGetMenuPolicy
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>getSelectionFromModel [
+{ #category : #accessing-selection }
+RubScrolledTextMorph >> getSelectionFromModel [
 	"Answer the model's selection interval."
 
 	^ self getSelectionSelector ifNotNil: [ :s | self model perform: s withEnoughArguments: {self} ]
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>getSelectionSelector [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> getSelectionSelector [
 	^ getSelectionSelector
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>getSelectionSelector: aSelector [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> getSelectionSelector: aSelector [
 	getSelectionSelector := aSelector.
 
 ]
 
-{
-	#category : #'acessing text',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>getText [
+{ #category : #'acessing text' }
+RubScrolledTextMorph >> getText [
 	"Retrieve the current view text, possibly not accepted"
 
 	^ self textArea text
 ]
 
-{
-	#category : #'acessing text',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>getTextFromModel [
+{ #category : #'acessing text' }
+RubScrolledTextMorph >> getTextFromModel [
 	"Retrieve the current model text"
 
 	| newText |
@@ -692,157 +490,103 @@ RubScrolledTextMorph>>getTextFromModel [
 	^newText copy asText
 ]
 
-{
-	#category : #'acessing text',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>getTextFromView [
+{ #category : #'acessing text' }
+RubScrolledTextMorph >> getTextFromView [
 	"Retrieve the current view text, possibly not accepted"
 
 	^ self textArea text
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>getTextSelector [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> getTextSelector [
 	^ getTextSelector ifNil: [  getTextSelector := #getText ]
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>getTextSelector: aSymbol  [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> getTextSelector: aSymbol [ 
 	getTextSelector  := aSymbol
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>ghostTextRuler [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> ghostTextRuler [
 	^ self rulerNamed: #ghostText
 ]
 
-{
-	#category : #'accessing scrollbars',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>hScrollbarShowAlways [
+{ #category : #'accessing scrollbars' }
+RubScrolledTextMorph >> hScrollbarShowAlways [
 	self scrollPane hScrollbarShowAlways.
 	self extent: self extent.
 	self manageLayout 
 ]
 
-{
-	#category : #'accessing scrollbars',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>hScrollbarShowNever [
+{ #category : #'accessing scrollbars' }
+RubScrolledTextMorph >> hScrollbarShowNever [
 	self scrollPane hScrollbarShowNever
 ]
 
-{
-	#category : #'accessing scrollbars',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>hScrollbarShowWhenNeeded [
+{ #category : #'accessing scrollbars' }
+RubScrolledTextMorph >> hScrollbarShowWhenNeeded [
 	self scrollPane hScrollbarShowWhenNeeded
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>handleMouseDown: event [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> handleMouseDown: event [
 	^ super handleMouseDown: event
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>handlesKeyboard: evt [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> handlesKeyboard: evt [
 	"Yes for page up/down."
 	
 	^true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>handlesMouseDown: event [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> handlesMouseDown: event [
 	^ self scrollBounds containsPoint: event cursorPoint
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>handlesMouseWheel: evt [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> handlesMouseWheel: evt [
 	"Do I want to receive mouseWheel events?" 
 
 	^ true
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>hasEditingConflicts [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> hasEditingConflicts [
 	^ hasEditingConflicts ifNil: [ hasEditingConflicts := false ] 
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>hasEditingConflicts: aBoolean [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> hasEditingConflicts: aBoolean [
 	hasEditingConflicts := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>hasKeyboardFocus [
+{ #category : #accessing }
+RubScrolledTextMorph >> hasKeyboardFocus [
 	^ (self scrollPane ifNil: [ ^false ]) hasKeyboardFocus
 ]
 
-{
-	#category : #'rulers handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>hasRuler: aRuler [
+{ #category : #'rulers handling' }
+RubScrolledTextMorph >> hasRuler: aRuler [
 	^ self rulers includes: aRuler
 	
 ]
 
-{
-	#category : #'rulers handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>hasRulerNamed: aKey [
+{ #category : #'rulers handling' }
+RubScrolledTextMorph >> hasRulerNamed: aKey [
 	^ self rulers anySatisfy: [ :r | r key = aKey ]
 	
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>hasUnacceptedEdits [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> hasUnacceptedEdits [
 	^ hasUnacceptedEdits ifNil: [ hasUnacceptedEdits := false ] 
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>hasUnacceptedEdits: aBoolean [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> hasUnacceptedEdits: aBoolean [
 	"Set the hasUnacceptedEdits flag to the given value. "
 	
 	(self model respondsTo: #hasUnacceptedEdits:)
@@ -850,35 +594,23 @@ RubScrolledTextMorph>>hasUnacceptedEdits: aBoolean [
 		ifFalse: [ self basicHasUnacceptedEdits: aBoolean ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>highlights [
+{ #category : #accessing }
+RubScrolledTextMorph >> highlights [
 	^ highlights
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>highlights: anObject [
+{ #category : #accessing }
+RubScrolledTextMorph >> highlights: anObject [
 	highlights := anObject
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>horizontalRulers [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> horizontalRulers [
 	^self rulers select: [ :r | r isHorizontal ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>initialize [
+{ #category : #initialize-release }
+RubScrolledTextMorph >> initialize [
 	super initialize.
 	self clipSubmorphs: true.
 	enabled := true.
@@ -897,44 +629,29 @@ RubScrolledTextMorph>>initialize [
 	highlights := OrderedCollection new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>isReadOnly [
+{ #category : #testing }
+RubScrolledTextMorph >> isReadOnly [
 	^ self textArea isReadOnly 
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>isRenderer [
+{ #category : #classification }
+RubScrolledTextMorph >> isRenderer [
 	^ true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>keyStroke: event [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> keyStroke: event [
 	self scrollPane
 		ifNotNil: [ :scrollpane | scrollpane keyStroke: (event transformedBy: (scrollpane transformFrom: self)) ]
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>lineNumbersRuler [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> lineNumbersRuler [
 	^ self rulerNamed: #lineNumbers
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>manageLayout [
+{ #category : #layout }
+RubScrolledTextMorph >> manageLayout [
 	| ret |
 	self textArea ifNil: [ ^self ].
 	ret := self manageLayoutInBounds: self innerBounds.
@@ -942,11 +659,8 @@ RubScrolledTextMorph>>manageLayout [
 	^ret
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>manageLayoutInBounds: aRectangle [
+{ #category : #layout }
+RubScrolledTextMorph >> manageLayoutInBounds: aRectangle [
 	| myBounds |
 	myBounds := aRectangle.
 	self horizontalRulers do: [ :r | myBounds := r manageLayoutInBounds: myBounds ].
@@ -959,28 +673,19 @@ RubScrolledTextMorph>>manageLayoutInBounds: aRectangle [
 	^ myBounds
 ]
 
-{
-	#category : #'accessing text area',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>margins: aRectangle [
+{ #category : #'accessing text area' }
+RubScrolledTextMorph >> margins: aRectangle [
 	"polymorphism with text area"
 	self textArea margins: aRectangle
 ]
 
-{
-	#category : #'accessing menu',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>menuAllowed: aBoolean [
+{ #category : #'accessing menu' }
+RubScrolledTextMorph >> menuAllowed: aBoolean [
 	self textArea menuAllowed: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>menuProvider: anObject selector: aSelector [
+{ #category : #accessing }
+RubScrolledTextMorph >> menuProvider: anObject selector: aSelector [
 	self textArea
 		getMenuPolicy:
 			(RubPluggableGetMenuPolicy new
@@ -989,19 +694,13 @@ RubScrolledTextMorph>>menuProvider: anObject selector: aSelector [
 				yourself)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>model  [
+{ #category : #accessing }
+RubScrolledTextMorph >> model [ 
 	^self textArea model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>model: aModel [
+{ #category : #accessing }
+RubScrolledTextMorph >> model: aModel [
 	self textArea model: aModel.
 	self setTextWith: self getTextFromModel.
 	self setSelection: self getSelectionFromModel.
@@ -1015,11 +714,8 @@ RubScrolledTextMorph>>model: aModel [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>mouseDown: event [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> mouseDown: event [
 	"If pane is not empty, pass the event to the last submorph,
 	assuming it is the most appropriate recipient (!)"
 
@@ -1029,83 +725,56 @@ RubScrolledTextMorph>>mouseDown: event [
 			self eventHandler ifNotNil: [ self eventHandler mouseDown: event fromMorph: self ] ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>mouseWheel: event  [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> mouseWheel: event [ 
 	"Handle a mouseWheel event."
 	
 	(self scrollPane scrollTarget handlesMouseWheel: event)
 		ifTrue: [^self scrollTarget mouseWheel: event]. "pass on"
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>moveCursorToIndex: anIndex  [
+{ #category : #accessing-selection }
+RubScrolledTextMorph >> moveCursorToIndex: anIndex [ 
 	self selectFrom: anIndex to: anIndex - 1
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>newScrollPane [
+{ #category : #initialize-release }
+RubScrolledTextMorph >> newScrollPane [
 	| sp |
 	sp := RubTextScrollPane new.
 	sp scrollTarget: self defaultScrollTarget.
 	^ sp
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>noteNewOwner: aMorph  [
+{ #category : #submorphs-accessing }
+RubScrolledTextMorph >> noteNewOwner: aMorph [ 
 	super noteNewOwner: aMorph.
 	self manageLayout 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>notificationStrategy: aStrategy [
+{ #category : #accessing }
+RubScrolledTextMorph >> notificationStrategy: aStrategy [
 	self textArea notificationStrategy: aStrategy
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>notify: message at: location in: code [
+{ #category : #'interactive error protocol' }
+RubScrolledTextMorph >> notify: message at: location in: code [
 	^ self textArea notify: message at: location in: code
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>offset [
+{ #category : #accessing }
+RubScrolledTextMorph >> offset [
 	^ self scrollPane offset
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>on: aModel  [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> on: aModel [ 
 	self model: aModel.
 
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>on: aModel text: aGetTextSelector accept: aSetTextSelector readSelection: aReadSelectionSelector menu: aGetMenuSelector [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> on: aModel text: aGetTextSelector accept: aSetTextSelector readSelection: aReadSelectionSelector menu: aGetMenuSelector [
 	self getTextSelector: aGetTextSelector.
 	self setTextSelector: aSetTextSelector.
 	self getSelectionSelector: aReadSelectionSelector.
@@ -1113,261 +782,171 @@ RubScrolledTextMorph>>on: aModel text: aGetTextSelector accept: aSetTextSelector
 	self on: aModel
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>overRulers [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> overRulers [
 	^self rulers select: [ :r | r isOver ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>paragraph [
+{ #category : #accessing }
+RubScrolledTextMorph >> paragraph [
 	^ self scrollPane paragraph 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>position: aPoint [
+{ #category : #geometry }
+RubScrolledTextMorph >> position: aPoint [
 	super position: aPoint.
 	self manageLayout
 
 	
 ]
 
-{
-	#category : #'rulers handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>removeAllRulers [
+{ #category : #'rulers handling' }
+RubScrolledTextMorph >> removeAllRulers [
 	[ self rulers notEmpty ] whileTrue: [ self withoutRuler: self rulers first ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>resetState [
+{ #category : #private }
+RubScrolledTextMorph >> resetState [
 	hasEditingConflicts := nil.
 	hasUnacceptedEdits := nil.
 	self changed
 ]
 
-{
-	#category : #'rulers handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>rulerNamed: aKey [
+{ #category : #'rulers handling' }
+RubScrolledTextMorph >> rulerNamed: aKey [
 	^self rulers detect: [ :r | r key = aKey ] ifNone: [  ]
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>rulers [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> rulers [
 	^ rulers 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>scrollBounds [
+{ #category : #geometry }
+RubScrolledTextMorph >> scrollBounds [
 	^ self scrollPane scrollBounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>scrollPane [
+{ #category : #accessing }
+RubScrolledTextMorph >> scrollPane [
 	^ scrollPane
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>scrollToBeginningOfLine [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> scrollToBeginningOfLine [
 	self scrollPane scrollToBeginningOfLine
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>scrollToBeginningOfText [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> scrollToBeginningOfText [
 	self scrollPane scrollToBeginningOfText
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>scrollToEndOfLine [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> scrollToEndOfLine [
 	self scrollPane scrollToEndOfLine
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>scrollToEndOfText [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> scrollToEndOfText [
 	self scrollPane scrollToEndOfText
 ]
 
-{
-	#category : #'accessing scrollbars',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>scrollbarsShowNever [
+{ #category : #'accessing scrollbars' }
+RubScrolledTextMorph >> scrollbarsShowNever [
 	self hScrollbarShowNever.
 	self vScrollbarShowNever
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>scrollerExtentChanged [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> scrollerExtentChanged [
 	self manageLayout
 
 ]
 
-{
-	#category : #'accessing scrollbars',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>scrollerOffsetChanged [
+{ #category : #'accessing scrollbars' }
+RubScrolledTextMorph >> scrollerOffsetChanged [
 	self rulers do: [:r | r scrollerOffsetChanged]
 ]
 
-{
-	#category : #'accessing segments',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>segments [
+{ #category : #'accessing segments' }
+RubScrolledTextMorph >> segments [
 	^ self textArea segments
 
 ]
 
-{
-	#category : #'accessing segments',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>segmentsAtLine: aLineNumber [
+{ #category : #'accessing segments' }
+RubScrolledTextMorph >> segmentsAtLine: aLineNumber [
 	^ self textArea  segmentsAtLine: aLineNumber
 
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>selectAll [
+{ #category : #accessing-selection }
+RubScrolledTextMorph >> selectAll [
 	self selectFrom: 1 to: self text size 
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>selectFrom: firstIndex to: lastIndex [
+{ #category : #accessing-selection }
+RubScrolledTextMorph >> selectFrom: firstIndex to: lastIndex [
 	self selectionInterval: (firstIndex to: lastIndex)
 
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>selectionChanged [
+{ #category : #accessing-selection }
+RubScrolledTextMorph >> selectionChanged [
 	self rulers do: [ :r | r selectionChanged ].
 	self setModelSelection: self selectionInterval
 
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>selectionInterval [
+{ #category : #accessing-selection }
+RubScrolledTextMorph >> selectionInterval [
 	^ self textArea selectionInterval
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>selectionInterval: anInterval [
+{ #category : #accessing-selection }
+RubScrolledTextMorph >> selectionInterval: anInterval [
 	self setSelection: anInterval
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>setModelSelection: aSelectionInterval [
+{ #category : #accessing-selection }
+RubScrolledTextMorph >> setModelSelection: aSelectionInterval [
 	"try to set the selection in the model"
 	setSelectionSelector
 		ifNotNil: [ self model perform: setSelectionSelector with: aSelectionInterval]
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>setSelection: aSelectionInterval [
+{ #category : #accessing-selection }
+RubScrolledTextMorph >> setSelection: aSelectionInterval [
 	aSelectionInterval ifNil: [ ^ self ].
 	self setTextAreaSelection: aSelectionInterval.
 	self selectionChanged 
 ]
 
-{
-	#category : #'mock for spec',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>setText: aText [
+{ #category : #'mock for spec' }
+RubScrolledTextMorph >> setText: aText [
 	self updateTextWith: aText
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>setTextAreaSelection: aSelectionInterval [
+{ #category : #accessing-selection }
+RubScrolledTextMorph >> setTextAreaSelection: aSelectionInterval [
 	aSelectionInterval ifNil: [ ^ self ].
 	self textArea selectFrom: aSelectionInterval first to: aSelectionInterval last.
 	self scrollPane scrollSelectionIntoView
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>setTextSelector [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> setTextSelector [
 	^ setTextSelector ifNil: [  setTextSelector := #setText:from:]
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>setTextSelector: aSymbol  [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> setTextSelector: aSymbol [ 
 	setTextSelector  := aSymbol
 ]
 
-{
-	#category : #'acessing text',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>setTextWith: stringOrText [
+{ #category : #'acessing text' }
+RubScrolledTextMorph >> setTextWith: stringOrText [
 	"Accept new text contents with line breaks only as in the text.
 	Fit my width and height to the result."
 	self scrollPane setTextWith: stringOrText.
@@ -1375,84 +954,54 @@ RubScrolledTextMorph>>setTextWith: stringOrText [
 	self resetState
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>shoutStyler [
+{ #category : #private }
+RubScrolledTextMorph >> shoutStyler [
 	^ self textArea shoutStyler
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>sideRulers [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> sideRulers [
 	^self rulers select: [ :r | r isSideRuler ]
 ]
 
-{
-	#category : #'acessing text',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>tabWidth [
+{ #category : #'acessing text' }
+RubScrolledTextMorph >> tabWidth [
 	^ self textArea tabWidth
 ]
 
-{
-	#category : #'acessing text',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>tabWidth: anInteger [
+{ #category : #'acessing text' }
+RubScrolledTextMorph >> tabWidth: anInteger [
 	self textArea tabWidth: anInteger 
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>takeKeyboardFocus [
+{ #category : #'model protocol' }
+RubScrolledTextMorph >> takeKeyboardFocus [
 	self textArea takeKeyboardFocus
 ]
 
-{
-	#category : #'acessing text',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>text [
+{ #category : #'acessing text' }
+RubScrolledTextMorph >> text [
 	^ self textArea text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>textArea [
+{ #category : #accessing }
+RubScrolledTextMorph >> textArea [
 	^ self scrollPane ifNotNil: [:sp | sp textArea]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>textAreaClass [
+{ #category : #initialize-release }
+RubScrolledTextMorph >> textAreaClass [
 	^ RubEditingArea
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>textAreaExtentChanged [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> textAreaExtentChanged [
 	self manageLayout
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>textChanged [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> textChanged [
 	self manageLayout.
 	self autoAccept
 		ifTrue: [ self acceptContents ]
@@ -1460,62 +1009,41 @@ RubScrolledTextMorph>>textChanged [
 	self rulers do: [ :r | r textChanged ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>textColor [
+{ #category : #accessing }
+RubScrolledTextMorph >> textColor [
 	^ self textArea textColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>textColor: aColor  [
+{ #category : #accessing }
+RubScrolledTextMorph >> textColor: aColor [ 
 	self textArea textColor: aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>textFont: aFont [
+{ #category : #accessing }
+RubScrolledTextMorph >> textFont: aFont [
 	self textArea font: aFont
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>textMorph [
+{ #category : #accessing }
+RubScrolledTextMorph >> textMorph [
 	^ self textArea
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>textSegmentIconsRuler [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> textSegmentIconsRuler [
 	^ self rulerNamed: #textSegmentIcons
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>themeChanged [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> themeChanged [
 	
 	self color: self defaultColor.
 	
 	super themeChanged.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>unplug [
+{ #category : #private }
+RubScrolledTextMorph >> unplug [
 	self textArea ifNotNil: [ self textArea announcer unsubscribe: self ].
 	self scrollPane
 		ifNotNil: [ :scrollpane | 
@@ -1524,11 +1052,8 @@ RubScrolledTextMorph>>unplug [
 	super unplug
 ]
 
-{
-	#category : #'acessing text',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>updateTextWith: stringOrText [
+{ #category : #'acessing text' }
+RubScrolledTextMorph >> updateTextWith: stringOrText [
 	"Accept new text contents with line breaks only as in the text.
 	Fit my width and height to the result."
 
@@ -1537,242 +1062,161 @@ RubScrolledTextMorph>>updateTextWith: stringOrText [
 	self resetState
 ]
 
-{
-	#category : #'accessing scrollbars',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>vScrollbarShowNever [
+{ #category : #'accessing scrollbars' }
+RubScrolledTextMorph >> vScrollbarShowNever [
 	self scrollPane vScrollbarShowNever
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>verticalRulers [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> verticalRulers [
 	^self rulers select: [ :r | r isVertical ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>whenCancelEditRequested: anAnnouncement [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> whenCancelEditRequested: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self cancel
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>whenCancelEditRequestedInModel: anAnnouncement [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> whenCancelEditRequestedInModel: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self cancel
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>whenConfigurationChanged: anAnnouncement [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> whenConfigurationChanged: anAnnouncement [
 	anAnnouncement configurationBlock value: self
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>whenConfigurationChangedFromModel: anAnnouncement [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> whenConfigurationChangedFromModel: anAnnouncement [
 	self announcer announce: anAnnouncement
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>whenEditsStateChangedInModel: anAnnouncement [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> whenEditsStateChangedInModel: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self basicHasUnacceptedEdits: self model hasUnacceptedEdits.
 	self changed
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>whenGotForcus: anAnnouncement [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> whenGotForcus: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self changed
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>whenKeystrokeInTextArea: anAnnouncement  [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> whenKeystrokeInTextArea: anAnnouncement [ 
 	self announcer announce: (anAnnouncement copy morph: self)
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>whenLostFocus: anAnnouncement [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> whenLostFocus: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self changed
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>whenPrimarySelectionUpdatedInModel: anAnnouncement [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> whenPrimarySelectionUpdatedInModel: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self setTextAreaSelection: self getSelectionFromModel.
 
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>whenReturnEnteredInTextArea: anAnnouncement  [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> whenReturnEnteredInTextArea: anAnnouncement [ 
 	anAnnouncement morph: self.
 	self announcer announce: anAnnouncement
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>whenTextAcceptRequest: anAnnouncement [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> whenTextAcceptRequest: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self acceptContents
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>whenTextAcceptedInModel: anAnnouncement [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> whenTextAcceptedInModel: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self acceptContents
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>whenTextChangedInTextArea: anAnnouncement  [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> whenTextChangedInTextArea: anAnnouncement [ 
 	self announcer announce: anAnnouncement
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>whenTextSetInModel: anAnnouncement [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> whenTextSetInModel: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self scrollPane setTextWith: self getTextFromModel
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>whenTextUpdatedInModel: anAnnouncement [
+{ #category : #'event handling' }
+RubScrolledTextMorph >> whenTextUpdatedInModel: anAnnouncement [
 	self announcer announce: anAnnouncement.
 	self updateTextWith: self getTextFromModel
 
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withAdornment [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withAdornment [
 	self withRulerNamed: #adornment
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withAnnotation [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withAnnotation [
 	self withRulerNamed: #annotation
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withCodeSizeFeedback [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withCodeSizeFeedback [
 	self withRulerNamed: #codeSizeFeedback
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withColumns [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withColumns [
 	self withRulerNamed: #column
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withCommentAnnotation [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withCommentAnnotation [
 	self withRulerNamed: #commentAnnotation
 ]
 
-{
-	#category : #'accessing decorators',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withDecoratorNamed: aSymbol [
+{ #category : #'accessing decorators' }
+RubScrolledTextMorph >> withDecoratorNamed: aSymbol [
 	self textArea withDecoratorNamed: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withFocusBorder [
+{ #category : #accessing }
+RubScrolledTextMorph >> withFocusBorder [
 	self scrollPane drawFocusBorder: true
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withGhostText: aText [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withGhostText: aText [
 	self withRulerNamed: #ghostText.
 	self ghostTextRuler updateTextWith: aText asText.
 	self ghostTextRuler comeToFront
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withLineNumbers [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withLineNumbers [
 	self withRulerNamed: #lineNumbers
 ]
 
-{
-	#category : #'rulers handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withRuler: aRuler [
+{ #category : #'rulers handling' }
+RubScrolledTextMorph >> withRuler: aRuler [
 	(self hasRulerNamed: aRuler key)
 		ifTrue: [ ^ self ].
 	rulers add: aRuler.
@@ -1785,11 +1229,8 @@ RubScrolledTextMorph>>withRuler: aRuler [
 	aRuler level < 0 ifTrue: [ self addMorphFront: aRuler ]
 ]
 
-{
-	#category : #'rulers handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withRulerNamed: aKey [
+{ #category : #'rulers handling' }
+RubScrolledTextMorph >> withRulerNamed: aKey [
 	"returns the ruler associated with the aKey. It can be in the receiver or in the extra hierarchy.
 	aKey is a symbol i.e., #lineNumbers"
 	(self hasRulerNamed: aKey)
@@ -1798,110 +1239,71 @@ RubScrolledTextMorph>>withRulerNamed: aKey [
 		ifNotNil: [ :cls | self withRuler: cls new ]
 ]
 
-{
-	#category : #'rulers handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withRulersNamed: aCollection [
+{ #category : #'rulers handling' }
+RubScrolledTextMorph >> withRulersNamed: aCollection [
 	"returns a collection of rulers as described by aCollection of keys. It can be in the receiver or in the extra hierarchy"
 	aCollection do: [ :m | self withRulerNamed: m ]
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withSourceCodeAnnotation [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withSourceCodeAnnotation [
 	self withRulerNamed: #SourceCodeAnnotation
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withTextSegmentIcons [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withTextSegmentIcons [
 	self withRulerNamed: #textSegmentIcons
 
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withoutAdornment [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withoutAdornment [
 	self withoutRulerNamed: #adornment
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withoutAnnotation [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withoutAnnotation [
 	self withoutRulerNamed: #annotation
 ]
 
-{
-	#category : #'accessing decorators',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withoutAnyDecorator [
+{ #category : #'accessing decorators' }
+RubScrolledTextMorph >> withoutAnyDecorator [
 	self textArea withoutAnyDecorator
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withoutCodeSizeFeedback [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withoutCodeSizeFeedback [
 	self withoutRulerNamed: #codeSizeFeedback
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withoutColumns [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withoutColumns [
 	self withoutRulerNamed: #column
 ]
 
-{
-	#category : #'accessing decorators',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withoutDecoratorNamed: aSymbol [
+{ #category : #'accessing decorators' }
+RubScrolledTextMorph >> withoutDecoratorNamed: aSymbol [
 	self textArea withoutDecoratorNamed: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withoutFocusBorder [
+{ #category : #accessing }
+RubScrolledTextMorph >> withoutFocusBorder [
 	self scrollPane drawFocusBorder: false
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withoutGhostText [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withoutGhostText [
 	self withoutRulerNamed: #ghostText.
 
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withoutLineNumbers [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withoutLineNumbers [
 	self withoutRulerNamed: #lineNumbers
 ]
 
-{
-	#category : #'rulers handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withoutRuler: aRuler [
+{ #category : #'rulers handling' }
+RubScrolledTextMorph >> withoutRuler: aRuler [
 	(self hasRuler: aRuler)
 		ifFalse: [ ^ self ].
 	rulers remove: aRuler.
@@ -1910,62 +1312,41 @@ RubScrolledTextMorph>>withoutRuler: aRuler [
 	self changed
 ]
 
-{
-	#category : #'rulers handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withoutRulerNamed: aKey [
+{ #category : #'rulers handling' }
+RubScrolledTextMorph >> withoutRulerNamed: aKey [
 	(self rulerNamed: aKey)
 		ifNotNil: [ :m | self withoutRuler: m ].
 	self changed
 ]
 
-{
-	#category : #'rulers handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withoutRulersNamed: aCollection [
+{ #category : #'rulers handling' }
+RubScrolledTextMorph >> withoutRulersNamed: aCollection [
 	aCollection do: [ :m | self withoutRulerNamed: m ]
 ]
 
-{
-	#category : #'accessing decorators',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withoutSelectionBar [
+{ #category : #'accessing decorators' }
+RubScrolledTextMorph >> withoutSelectionBar [
 	self textArea withoutSelectionBar
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withoutTextField [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withoutTextField [
 	self withoutRulerNamed: #textField.
 
 ]
 
-{
-	#category : #'accessing rulers',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>withoutTextSegmentIcons [
+{ #category : #'accessing rulers' }
+RubScrolledTextMorph >> withoutTextSegmentIcons [
 	self withoutRulerNamed: #textSegmentIcons
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>wrapped [
+{ #category : #accessing }
+RubScrolledTextMorph >> wrapped [
 	^ self scrollPane wrapped
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextMorph>>wrapped: aBoolean [
+{ #category : #accessing }
+RubScrolledTextMorph >> wrapped: aBoolean [
 	self scrollPane wrapped: aBoolean
 ]

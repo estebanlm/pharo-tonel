@@ -4,38 +4,25 @@ I am an eye element for the class of an inspected element.
 Class {
 	#name : #ClassEyeElement,
 	#superclass : #AbstractEyeElement,
-	#category : #Spec-Inspector-Element,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector-Element
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ClassEyeElement>>accessorCode [
+{ #category : #accessing }
+ClassEyeElement >> accessorCode [
 	^ 'self class'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ClassEyeElement>>label [
+{ #category : #accessing }
+ClassEyeElement >> label [
 	^ 'class'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ClassEyeElement>>shouldShowInTree [
+{ #category : #testing }
+ClassEyeElement >> shouldShowInTree [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ClassEyeElement>>value [
+{ #category : #accessing }
+ClassEyeElement >> value [
 	^ self host class
 ]

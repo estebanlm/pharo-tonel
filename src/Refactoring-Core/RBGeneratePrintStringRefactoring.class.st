@@ -13,49 +13,33 @@ Class {
 	#instVars : [
 		'variables'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 10:12'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBGeneratePrintStringRefactoring class>>className: aClass variables: anArray [
+{ #category : #instance-creation }
+RBGeneratePrintStringRefactoring class >> className: aClass variables: anArray [
 	^ (self className: aClass) variables: anArray
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBGeneratePrintStringRefactoring class>>model: aNamespace className: aClass variables: anArray [
+{ #category : #instance-creation }
+RBGeneratePrintStringRefactoring class >> model: aNamespace className: aClass variables: anArray [
 	^ (self model: aNamespace className: aClass) variables: anArray
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBGeneratePrintStringRefactoring>>preconditions [
+{ #category : #preconditions }
+RBGeneratePrintStringRefactoring >> preconditions [
 	^ variables
 		inject: RBCondition empty
 		into: [ :condition :variable | condition & (RBCondition definesInstanceVariable: variable in: self theClass) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBGeneratePrintStringRefactoring>>theClass [
+{ #category : #accessing }
+RBGeneratePrintStringRefactoring >> theClass [
 	^ (self classObjectFor: className) theNonMetaClass
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBGeneratePrintStringRefactoring>>transform [
+{ #category : #transforming }
+RBGeneratePrintStringRefactoring >> transform [
 	| method |
 	method := RBParser parseMethod: 'printOn: aStream
 		"Append a sequence of characters to aStream that identify the receiver."
@@ -70,10 +54,7 @@ RBGeneratePrintStringRefactoring>>transform [
 		classified: #(printing)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBGeneratePrintStringRefactoring>>variables: anArray [
+{ #category : #accessing }
+RBGeneratePrintStringRefactoring >> variables: anArray [
 	variables := anArray
 ]

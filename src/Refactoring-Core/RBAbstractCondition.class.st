@@ -17,89 +17,58 @@ Class {
 	#instVars : [
 		'errorMacro'
 	],
-	#category : #Refactoring-Core-Conditions,
-	#timestamp : 'NicolaiHess 5/19/2016 16:35'
+	#category : #Refactoring-Core-Conditions
 }
 
-{
-	#category : #'logical operations',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractCondition>>& aCondition  [
+{ #category : #'logical operations' }
+RBAbstractCondition >> & aCondition [ 
 	^RBConjunctiveCondition new left: self right: aCondition
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractCondition>>check [
+{ #category : #checking }
+RBAbstractCondition >> check [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractCondition>>errorBlock [
+{ #category : #accessing }
+RBAbstractCondition >> errorBlock [
 	^self errorBlockFor: false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractCondition>>errorBlockFor: aBoolean  [
+{ #category : #private }
+RBAbstractCondition >> errorBlockFor: aBoolean [ 
 	^nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractCondition>>errorMacro [
+{ #category : #private }
+RBAbstractCondition >> errorMacro [
 	^errorMacro isNil
 		ifTrue: ['unknown']
 		ifFalse: [errorMacro]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractCondition>>errorMacro: aString  [
+{ #category : #private }
+RBAbstractCondition >> errorMacro: aString [ 
 	errorMacro := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractCondition>>errorString [
+{ #category : #accessing }
+RBAbstractCondition >> errorString [
 	^self errorStringFor: false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractCondition>>errorStringFor: aBoolean [
+{ #category : #private }
+RBAbstractCondition >> errorStringFor: aBoolean [
 	^self errorMacro expandMacrosWith: aBoolean
 ]
 
-{
-	#category : #'logical operations',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractCondition>>not [
+{ #category : #'logical operations' }
+RBAbstractCondition >> not [
 	^RBNegationCondition on: self
 ]
 
-{
-	#category : #'logical operations',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractCondition>>| aCondition  [
+{ #category : #'logical operations' }
+RBAbstractCondition >> | aCondition [ 
 	"(A | B) = (A not & B not) not"
 
 	^(self not & aCondition not) not

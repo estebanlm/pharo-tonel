@@ -4,15 +4,11 @@ I am the adapter used to link a RadioButtonModel with a CheckboxMorph (which can
 Class {
 	#name : #MorphicRadioButtonAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicRadioButtonAdapter>>buildWidget [
+{ #category : #factory }
+MorphicRadioButtonAdapter >> buildWidget [
 	^ CheckboxMorph new
 		on: self selected: #state changeSelected: #state:;
 		label: self label;
@@ -26,38 +22,26 @@ MorphicRadioButtonAdapter>>buildWidget [
 		yourself
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicRadioButtonAdapter>>label [
+{ #category : #'widget API' }
+MorphicRadioButtonAdapter >> label [
 
 	^ self model label
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicRadioButtonAdapter>>labelClickable [
+{ #category : #'widget API' }
+MorphicRadioButtonAdapter >> labelClickable [
 
 	^ self model labelClickable
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicRadioButtonAdapter>>state [
+{ #category : #'widget API' }
+MorphicRadioButtonAdapter >> state [
 
 	^ self model state
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicRadioButtonAdapter>>state: aBoolean [
+{ #category : #'widget API' }
+MorphicRadioButtonAdapter >> state: aBoolean [
 
 	^ self model state: aBoolean
 ]

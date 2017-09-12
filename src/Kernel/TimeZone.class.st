@@ -19,25 +19,18 @@ Class {
 	#pools : [
 		'ChronologyConstants'
 	],
-	#category : #Kernel-Chronology,
-	#timestamp : 'brp 9/4/2003 06:32'
+	#category : #Kernel-Chronology
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-TimeZone class>>abbreviated: aString [
+{ #category : #accessing }
+TimeZone class >> abbreviated: aString [
  	"Return the timezone whose abbreviation is aString."
  	^ self timeZones detect: [ :timeZone | 
 		timeZone abbreviation = aString ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-TimeZone class>>default [
+{ #category : #accessing }
+TimeZone class >> default [
  	"Answer the default time zone - GMT"
  
  	^ self timeZones detect: [ :timeZone |
@@ -45,30 +38,21 @@ TimeZone class>>default [
  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-TimeZone class>>local [
+{ #category : #accessing }
+TimeZone class >> local [
 	^ LocalTimeZone new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-TimeZone class>>offset: anOffset [
+{ #category : #accessing }
+TimeZone class >> offset: anOffset [
  	"Return the timezone with the given offset"
  	^ self timeZones 
 		detect: [ :timeZone | timeZone offset = anOffset ]
 		ifNone: [ self new offset: anOffset ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-TimeZone class>>offset: aDuration name: aName abbreviation: anAbbreviation [
+{ #category : #'instance creation' }
+TimeZone class >> offset: aDuration name: aName abbreviation: anAbbreviation [
  
  	^ self new
  		offset: aDuration;
@@ -77,11 +61,8 @@ TimeZone class>>offset: aDuration name: aName abbreviation: anAbbreviation [
  		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-TimeZone class>>timeZones [
+{ #category : #accessing }
+TimeZone class >> timeZones [
 
 	^ {
 		self offset:  0 hours name: 'Universal Time'              abbreviation: 'UTC'.
@@ -101,60 +82,42 @@ TimeZone class>>timeZones [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-TimeZone>>abbreviation [
+{ #category : #accessing }
+TimeZone >> abbreviation [
  
  	^ abbreviation
  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-TimeZone>>abbreviation: aString [
+{ #category : #accessing }
+TimeZone >> abbreviation: aString [
 
 	abbreviation := aString
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-TimeZone>>name [
+{ #category : #accessing }
+TimeZone >> name [
  
  	^ name
  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-TimeZone>>name: aString [
+{ #category : #accessing }
+TimeZone >> name: aString [
 
 	name := aString
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-TimeZone>>offset [
+{ #category : #accessing }
+TimeZone >> offset [
  
  	^ offset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-TimeZone>>offset: aDuration [
+{ #category : #accessing }
+TimeZone >> offset: aDuration [
 
 	offset := aDuration
 ]

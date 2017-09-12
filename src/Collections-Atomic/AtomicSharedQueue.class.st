@@ -11,25 +11,18 @@ Class {
 	#instVars : [
 		'availSema'
 	],
-	#category : #Collections-Atomic,
-	#timestamp : 'IgorStasenko 2/28/2011 15:33'
+	#category : #Collections-Atomic
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-AtomicSharedQueue>>initialize [
+{ #category : #initialization }
+AtomicSharedQueue >> initialize [
 	super initialize.
 	availSema := Semaphore new.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-AtomicSharedQueue>>next [
+{ #category : #accessing }
+AtomicSharedQueue >> next [
 	"Fetch the next item from queue. If queue is locked or empty, block the sender until operation can complete"
 	 
 	| result |
@@ -42,27 +35,18 @@ AtomicSharedQueue>>next [
 	^ result
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-AtomicSharedQueue>>signalAddedNewItem [
+{ #category : #signaling }
+AtomicSharedQueue >> signalAddedNewItem [
 	availSema signal
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-AtomicSharedQueue>>signalNoMoreItems [
+{ #category : #signaling }
+AtomicSharedQueue >> signalNoMoreItems [
 	"queue is empty, reset sema signals"
 	availSema consumeAllSignals 
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-AtomicSharedQueue>>waitForNewItems [
+{ #category : #signaling }
+AtomicSharedQueue >> waitForNewItems [
 	availSema wait
 ]

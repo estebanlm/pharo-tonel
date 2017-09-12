@@ -8,6 +8,5 @@ I am not intended to be used elsewhere.
 Class {
 	#name : #TimedOut,
 	#superclass : #Notification,
-	#category : #Kernel-Exceptions,
-	#timestamp : 'brp 10/21/2004 17:47'
+	#category : #Kernel-Exceptions
 }

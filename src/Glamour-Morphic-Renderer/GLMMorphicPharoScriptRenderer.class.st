@@ -1,39 +1,26 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicPharoScriptRenderer,
 	#superclass : #GLMMorphicPharoCodeRenderer,
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoScriptRenderer>>actOnVariableBindingsAccessRequest: ann  [
+{ #category : #callbacks }
+GLMMorphicPharoScriptRenderer >> actOnVariableBindingsAccessRequest: ann [ 
 
 	ann action ifNotNil: [ :aBlock |
 		aBlock cull: textModel variableBindings ]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoScriptRenderer>>actOnVariableBindingsUpdated: ann  [
+{ #category : #callbacks }
+GLMMorphicPharoScriptRenderer >> actOnVariableBindingsUpdated: ann [ 
 
 	textModel variableBindings: nil.
 	textModel appendVariableBinding: ann presentation variableBindings.
 	textMorph shoutStyler style: textMorph text.
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoScriptRenderer>>modelFor: aPresentation [
+{ #category : #rendering }
+GLMMorphicPharoScriptRenderer >> modelFor: aPresentation [
 
 	^ (super modelFor: aPresentation)
 		highlightSmalltalk: true;
@@ -42,11 +29,8 @@ GLMMorphicPharoScriptRenderer>>modelFor: aPresentation [
 		yourself
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoScriptRenderer>>morph [
+{ #category : #rendering }
+GLMMorphicPharoScriptRenderer >> morph [
 	|morph|
 	morph := RubScrolledTextMorph new
 		getSelectionSelector: #primarySelectionInterval;
@@ -61,11 +45,8 @@ GLMMorphicPharoScriptRenderer>>morph [
 	^ morph
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoScriptRenderer>>registerEventsForPresentation: aPresentation [
+{ #category : #private }
+GLMMorphicPharoScriptRenderer >> registerEventsForPresentation: aPresentation [
 
 	super registerEventsForPresentation: aPresentation.
 	
@@ -74,11 +55,8 @@ GLMMorphicPharoScriptRenderer>>registerEventsForPresentation: aPresentation [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoScriptRenderer>>workspaceBindingsStrategy [
+{ #category : #private }
+GLMMorphicPharoScriptRenderer >> workspaceBindingsStrategy [
 
 	^ [ :currentBindings :aString :aTextModel |
 		(aTextModel doItReceiver class allInstVarNames includes: aString) 

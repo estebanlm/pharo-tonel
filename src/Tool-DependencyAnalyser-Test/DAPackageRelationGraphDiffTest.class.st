@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #DAPackageRelationGraphDiffTest,
 	#superclass : #TestCase,
@@ -11,15 +8,11 @@ Class {
 		'packageA',
 		'packageB'
 	],
-	#category : #Tool-DependencyAnalyser-Test,
-	#timestamp : ''
+	#category : #Tool-DependencyAnalyser-Test
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageRelationGraphDiffTest>>setUp [
+{ #category : #running }
+DAPackageRelationGraphDiffTest >> setUp [
 	| packageCollectionsAbstract packageCollectionsString |
 	packageA := DAPackage on: (RPackageSet named: 'A').
 	packageB := DAPackage on: (RPackageSet named: 'B').
@@ -37,11 +30,8 @@ DAPackageRelationGraphDiffTest>>setUp [
 		newRelationGraph: newRelationGraph
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageRelationGraphDiffTest>>testHasChangedForPackageItemDiff [
+{ #category : #running }
+DAPackageRelationGraphDiffTest >> testHasChangedForPackageItemDiff [
 	| first second |
 	first := newRelationGraph seenPackages first.
 	second := newRelationGraph seenPackages last.
@@ -55,11 +45,8 @@ DAPackageRelationGraphDiffTest>>testHasChangedForPackageItemDiff [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageRelationGraphDiffTest>>testHasChangedForPackageItemDiffOnOneDependentPackageRemoved [
+{ #category : #running }
+DAPackageRelationGraphDiffTest >> testHasChangedForPackageItemDiffOnOneDependentPackageRemoved [
 	| first |
 	first := newRelationGraph seenPackages first.
 	first dependencies remove: (first dependencies anyOne).
@@ -70,22 +57,16 @@ DAPackageRelationGraphDiffTest>>testHasChangedForPackageItemDiffOnOneDependentPa
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageRelationGraphDiffTest>>testMakeDependentPackagesDiffOnSameGraph [
+{ #category : #running }
+DAPackageRelationGraphDiffTest >> testMakeDependentPackagesDiffOnSameGraph [
 	packageRelationGraphDiff makePackagesDiff.
 		
 	self assert: packageRelationGraphDiff dependentPackagesDiff isEmpty
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageRelationGraphDiffTest>>testMakeDependentPackagesDifferentOnDifferentGraph [
+{ #category : #running }
+DAPackageRelationGraphDiffTest >> testMakeDependentPackagesDifferentOnDifferentGraph [
 	| oldSize |
 	oldSize := newRelationGraph seenPackages first dependentPackages size.
 	newRelationGraph seenPackages first clearDependencies.
@@ -97,11 +78,8 @@ DAPackageRelationGraphDiffTest>>testMakeDependentPackagesDifferentOnDifferentGra
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageRelationGraphDiffTest>>testMakePackagesDiffOnDifferentGraph [
+{ #category : #running }
+DAPackageRelationGraphDiffTest >> testMakePackagesDiffOnDifferentGraph [
 	newRelationGraph removePackage: 'Collections-Abstract'.
 	packageRelationGraphDiff makePackagesDiff.
 	
@@ -109,22 +87,16 @@ DAPackageRelationGraphDiffTest>>testMakePackagesDiffOnDifferentGraph [
 	self assert: (packageRelationGraphDiff packagesDiffUnderteminateSize = 1).
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageRelationGraphDiffTest>>testMakePackagesDiffOnSameGraph [
+{ #category : #running }
+DAPackageRelationGraphDiffTest >> testMakePackagesDiffOnSameGraph [
 	packageRelationGraphDiff makePackagesDiff.
 	
 	self assert: (packageRelationGraphDiff packagesDiff size = oldRelationGraph seenPackages size).
 	self assert: (packageRelationGraphDiff packagesDiff allSatisfy: [ :item | item isUnderteminate  ]).
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageRelationGraphDiffTest>>testPackagesDiffToDisplay [
+{ #category : #running }
+DAPackageRelationGraphDiffTest >> testPackagesDiffToDisplay [
 	| first second |
 	first := newRelationGraph seenPackages first.
 	second := newRelationGraph seenPackages last.
@@ -137,11 +109,8 @@ DAPackageRelationGraphDiffTest>>testPackagesDiffToDisplay [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageRelationGraphDiffTest>>testPackagesDiffToDisplayBis [
+{ #category : #running }
+DAPackageRelationGraphDiffTest >> testPackagesDiffToDisplayBis [
 	| first  |
 	first := newRelationGraph seenPackages first.
 	first clearDependencies.
@@ -151,11 +120,8 @@ DAPackageRelationGraphDiffTest>>testPackagesDiffToDisplayBis [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageRelationGraphDiffTest>>testPackagesDiffToDisplayOnSameGraph [
+{ #category : #running }
+DAPackageRelationGraphDiffTest >> testPackagesDiffToDisplayOnSameGraph [
 	
 	packageRelationGraphDiff make.
 			
@@ -163,11 +129,8 @@ DAPackageRelationGraphDiffTest>>testPackagesDiffToDisplayOnSameGraph [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageRelationGraphDiffTest>>testRemovedDependentPackagesIncludesFrom [
+{ #category : #running }
+DAPackageRelationGraphDiffTest >> testRemovedDependentPackagesIncludesFrom [
 	| dependentPackages package |
 	package := newRelationGraph seenPackages first.
 	dependentPackages := package dependentPackages.
@@ -183,11 +146,8 @@ DAPackageRelationGraphDiffTest>>testRemovedDependentPackagesIncludesFrom [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageRelationGraphDiffTest>>testRemovedPackagesIncludes [
+{ #category : #running }
+DAPackageRelationGraphDiffTest >> testRemovedPackagesIncludes [
 	newRelationGraph clearPackages .
 	packageRelationGraphDiff makePackagesDiff.
 	

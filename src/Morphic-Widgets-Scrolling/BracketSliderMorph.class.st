@@ -4,56 +4,40 @@ Abstract superclass for morphs that are used to select a component (R, G, B or A
 Class {
 	#name : #BracketSliderMorph,
 	#superclass : #PluggableSliderMorph,
-	#category : #Morphic-Widgets-Scrolling,
-	#timestamp : 'gvc 5/18/2007 13:39'
+	#category : #Morphic-Widgets-Scrolling
 }
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketSliderMorph>>defaultFillStyle [
+{ #category : #protocol }
+BracketSliderMorph >> defaultFillStyle [
 	"Answer the defauolt fill style."
 
 	^Color gray
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketSliderMorph>>extent: aPoint [
+{ #category : #geometry }
+BracketSliderMorph >> extent: aPoint [
 	"Update the gradient directions."
 
 	super extent: aPoint.
 	self updateFillStyle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketSliderMorph>>fillStyleToUse [
+{ #category : #accessing }
+BracketSliderMorph >> fillStyleToUse [
 	"Answer the fillStyle that should be used for the receiver."
 	
 	^self fillStyle
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketSliderMorph>>gradient [
+{ #category : #'as yet unclassified' }
+BracketSliderMorph >> gradient [
 	"Answer the gradient."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketSliderMorph>>initialize [
+{ #category : #initialization }
+BracketSliderMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -64,11 +48,8 @@ BracketSliderMorph>>initialize [
 		clipSubmorphs: true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketSliderMorph>>initializeSlider [
+{ #category : #initialization }
+BracketSliderMorph >> initializeSlider [
 	"Make the slider raised."
 	
 	self 
@@ -82,11 +63,8 @@ BracketSliderMorph>>initializeSlider [
 						borderStyle: (BorderStyle inset baseColor: (Color white alpha: 0.6); width: 1)).
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketSliderMorph>>layoutBounds: aRectangle [
+{ #category : #layout }
+BracketSliderMorph >> layoutBounds: aRectangle [
 	"Set the bounds for laying out children of the receiver.
 	Note: written so that #layoutBounds can be changed without touching this method"
 	
@@ -96,11 +74,8 @@ BracketSliderMorph>>layoutBounds: aRectangle [
 	sliderShadow horizontal: self bounds isWide
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketSliderMorph>>roomToMove [
+{ #category : #geometry }
+BracketSliderMorph >> roomToMove [
 	"Allow to run off the edges a bit."
 	
 	^self bounds isWide
@@ -108,32 +83,23 @@ BracketSliderMorph>>roomToMove [
 		ifFalse: [self totalSliderArea insetBy: (0@(self sliderThickness // 2) negated corner: 0@(self sliderThickness // 2 - (self sliderThickness \\ 2) + 1))]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketSliderMorph>>sliderColor: newColor [
+{ #category : #access }
+BracketSliderMorph >> sliderColor: newColor [
 	"Set the slider colour."
 	
 	super sliderColor: (self enabled ifTrue: [Color black] ifFalse: [self sliderShadowColor]).
 	slider ifNotNil: [slider borderStyle baseColor: Color white]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketSliderMorph>>sliderShadowColor [
+{ #category : #access }
+BracketSliderMorph >> sliderShadowColor [
 	"Answer the color for the slider shadow."
 	
 	^Color black alpha: 0.6
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketSliderMorph>>sliderThickness [
+{ #category : #geometry }
+BracketSliderMorph >> sliderThickness [
 	"Answer the thickness of the slider."
 	
 	^((self bounds isWide
@@ -141,11 +107,8 @@ BracketSliderMorph>>sliderThickness [
 		ifFalse: [self width]) // 2 max: 8) // 2 * 2 + 1
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-BracketSliderMorph>>updateFillStyle [
+{ #category : #protocol }
+BracketSliderMorph >> updateFillStyle [
 	"Update the fill style directions."
 
 	|b fs|

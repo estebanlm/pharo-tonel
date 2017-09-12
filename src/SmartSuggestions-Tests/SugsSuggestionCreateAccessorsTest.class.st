@@ -4,15 +4,11 @@ SUnit tests for accessor creation
 Class {
 	#name : #SugsSuggestionCreateAccessorsTest,
 	#superclass : #SugsSuggestionTest,
-	#category : #SmartSuggestions-Tests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:43'
+	#category : #SmartSuggestions-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionCreateAccessorsTest>>createSuggestionAccesorsClassVar: context [
+{ #category : #private }
+SugsSuggestionCreateAccessorsTest >> createSuggestionAccesorsClassVar: context [
 	| suggestion |
 
 	suggestion  := SugsSuggestionFactory createAccessors.
@@ -20,11 +16,8 @@ SugsSuggestionCreateAccessorsTest>>createSuggestionAccesorsClassVar: context [
 	^suggestion.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionCreateAccessorsTest>>createSuggestionAccesorsInstVar: context [
+{ #category : #private }
+SugsSuggestionCreateAccessorsTest >> createSuggestionAccesorsInstVar: context [
 	| suggestion |
 
 	suggestion  := SugsSuggestionFactory createAccesorsFor.
@@ -32,21 +25,15 @@ SugsSuggestionCreateAccessorsTest>>createSuggestionAccesorsInstVar: context [
 	^suggestion.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionCreateAccessorsTest>>targetFor: varName in: aClass [
+{ #category : #private }
+SugsSuggestionCreateAccessorsTest >> targetFor: varName in: aClass [
 	^ varName first isUppercase 
 		ifTrue: [ aClass class ] ifFalse: [aClass].
 
 ]
 
-{
-	#category : #inst-var,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionCreateAccessorsTest>>testCreateAccessorsIsNotValidIfAccessorsAreAlreadyCreated [
+{ #category : #inst-var }
+SugsSuggestionCreateAccessorsTest >> testCreateAccessorsIsNotValidIfAccessorsAreAlreadyCreated [
 	| suggestion context |
 	
 	self addVariable: 'test' to: self emptyClass.
@@ -57,11 +44,8 @@ SugsSuggestionCreateAccessorsTest>>testCreateAccessorsIsNotValidIfAccessorsAreAl
 	self deny: suggestion isValidForContext
 ]
 
-{
-	#category : #inst-var,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionCreateAccessorsTest>>testCreateAccessorsIsValidIfAccessIsMissed [
+{ #category : #inst-var }
+SugsSuggestionCreateAccessorsTest >> testCreateAccessorsIsValidIfAccessIsMissed [
 	| suggestion context |
 	
 	self addVariable: 'test' to: self emptyClass.
@@ -73,11 +57,8 @@ SugsSuggestionCreateAccessorsTest>>testCreateAccessorsIsValidIfAccessIsMissed [
 
 ]
 
-{
-	#category : #inst-var,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionCreateAccessorsTest>>testCreateAccessorsIsValidIfAccessorsAreMissed [
+{ #category : #inst-var }
+SugsSuggestionCreateAccessorsTest >> testCreateAccessorsIsValidIfAccessorsAreMissed [
 	| suggestion context |
 	
 	self addVariable: 'test' to: self emptyClass.
@@ -88,11 +69,8 @@ SugsSuggestionCreateAccessorsTest>>testCreateAccessorsIsValidIfAccessorsAreMisse
 	
 ]
 
-{
-	#category : #inst-var,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionCreateAccessorsTest>>testCreateAccessorsIsValidIfMuttatorMissed [
+{ #category : #inst-var }
+SugsSuggestionCreateAccessorsTest >> testCreateAccessorsIsValidIfMuttatorMissed [
 	| suggestion context |
 	
 	self addVariable: 'test' to: self emptyClass .
@@ -106,11 +84,8 @@ SugsSuggestionCreateAccessorsTest>>testCreateAccessorsIsValidIfMuttatorMissed [
 
 ]
 
-{
-	#category : #class-var,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionCreateAccessorsTest>>testCreateClassAccessorsIsNotValidIfAccessorsAreAlreadyCreated [
+{ #category : #class-var }
+SugsSuggestionCreateAccessorsTest >> testCreateClassAccessorsIsNotValidIfAccessorsAreAlreadyCreated [
 	| suggestion context |
 	
 	self addVariable: 'Test' to: self emptyClass.
@@ -121,11 +96,8 @@ SugsSuggestionCreateAccessorsTest>>testCreateClassAccessorsIsNotValidIfAccessors
 	self deny: suggestion isValidForContext
 ]
 
-{
-	#category : #class-var,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionCreateAccessorsTest>>testCreateClassAccessorsIsValidIfAccessIsMissed [
+{ #category : #class-var }
+SugsSuggestionCreateAccessorsTest >> testCreateClassAccessorsIsValidIfAccessIsMissed [
 	| suggestion context |
 	
 	self addVariable: 'Test' to: self emptyClass.
@@ -137,11 +109,8 @@ SugsSuggestionCreateAccessorsTest>>testCreateClassAccessorsIsValidIfAccessIsMiss
 
 ]
 
-{
-	#category : #class-var,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionCreateAccessorsTest>>testCreateClassAccessorsIsValidIfAccessorsAreMissed [
+{ #category : #class-var }
+SugsSuggestionCreateAccessorsTest >> testCreateClassAccessorsIsValidIfAccessorsAreMissed [
 	| suggestion context |
 	
 	self addVariable: 'Test' to: self emptyClass.
@@ -152,11 +121,8 @@ SugsSuggestionCreateAccessorsTest>>testCreateClassAccessorsIsValidIfAccessorsAre
 	
 ]
 
-{
-	#category : #class-var,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionCreateAccessorsTest>>testCreateClassAccessorsIsValidIfMuttatorMissed [
+{ #category : #class-var }
+SugsSuggestionCreateAccessorsTest >> testCreateClassAccessorsIsValidIfMuttatorMissed [
 	| suggestion context |
 	
 	self addVariable: 'Test' to: self emptyClass .

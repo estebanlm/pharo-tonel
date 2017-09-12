@@ -4,15 +4,11 @@ Tests for FuzzyMatcher.
 Class {
 	#name : #FuzzyMatcherTests,
 	#superclass : #TestCase,
-	#category : #FuzzyMatcher-Tests,
-	#timestamp : 'HenrikNergaard 3/28/2017 12:44'
+	#category : #FuzzyMatcher-Tests
 }
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherTests>>assert: matcher scoreFor: aString equals: aBlockOrNumber [
+{ #category : #asserting }
+FuzzyMatcherTests >> assert: matcher scoreFor: aString equals: aBlockOrNumber [
 
 	matcher match: aString ifScored: [ :score |
 		self assert: score equals: aBlockOrNumber value.
@@ -22,20 +18,14 @@ FuzzyMatcherTests>>assert: matcher scoreFor: aString equals: aBlockOrNumber [
 	self error: 'Expected to match: ', aString
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherTests>>newMatcher [
+{ #category : #running }
+FuzzyMatcherTests >> newMatcher [
 
 	^ FuzzyMatcher new
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherTests>>testAllMatchingIn [
+{ #category : #tests }
+FuzzyMatcherTests >> testAllMatchingIn [
 
 	| input output |
 	
@@ -45,11 +35,8 @@ FuzzyMatcherTests>>testAllMatchingIn [
 	self assert: output asArray equals: #('ogb' 'dog' 'FroG' 'hog')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherTests>>testAssumptions [
+{ #category : #tests }
+FuzzyMatcherTests >> testAssumptions [
 
 	self
 	 	
@@ -59,11 +46,8 @@ FuzzyMatcherTests>>testAssumptions [
 		assert: ('a' findString: 'a' startingAt: 2 caseSensitive: false) equals: 0.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherTests>>testChangePattern [
+{ #category : #tests }
+FuzzyMatcherTests >> testChangePattern [
 
 	| matcher |
 	
@@ -82,11 +66,8 @@ FuzzyMatcherTests>>testChangePattern [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherTests>>testClassSideAPI [
+{ #category : #tests }
+FuzzyMatcherTests >> testClassSideAPI [
 
 	"if the protocol is changed, so should the class comment"
 	FuzzyMatcher class protocols detect: [ :p | p = #'utilities api' ].
@@ -104,11 +85,8 @@ FuzzyMatcherTests>>testClassSideAPI [
 		
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherTests>>testEmptyPattern [
+{ #category : #tests }
+FuzzyMatcherTests >> testEmptyPattern [
 
 	| matcher |
 	
@@ -126,11 +104,8 @@ FuzzyMatcherTests>>testEmptyPattern [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherTests>>testIsSeperator [
+{ #category : #tests }
+FuzzyMatcherTests >> testIsSeperator [
 
 	| matcher |
 	
@@ -144,11 +119,8 @@ FuzzyMatcherTests>>testIsSeperator [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherTests>>testMatching [
+{ #category : #tests }
+FuzzyMatcherTests >> testMatching [
 
 	| matcher |
 	
@@ -162,11 +134,8 @@ FuzzyMatcherTests>>testMatching [
 		
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherTests>>testScoreValues [
+{ #category : #tests }
+FuzzyMatcherTests >> testScoreValues [
 
 	| matcher |
 	
@@ -230,11 +199,8 @@ FuzzyMatcherTests>>testScoreValues [
 		].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-FuzzyMatcherTests>>testSortedByScore [
+{ #category : #tests }
+FuzzyMatcherTests >> testSortedByScore [
 
 	| input output |
 	

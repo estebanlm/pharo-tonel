@@ -34,15 +34,11 @@ Class {
 		'DefaultAlphabet',
 		'DefaultInverse'
 	],
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : 'SvenVanCaekenberghe 10/30/2015 15:06'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder class>>initialize [
+{ #category : #'class initialization' }
+ZnBase64Encoder class >> initialize [
 	DefaultAlphabet := String withAll: ($A to: $Z) , ($a to: $z) , ($0 to: $9) , #($+ $/).
 	DefaultInverse := Array new: 128.
 	0 to: 127 do: [ :each | 
@@ -51,21 +47,15 @@ ZnBase64Encoder class>>initialize [
 		DefaultInverse at: each + 1 put: (offset ifNotNil: [ offset - 1 ]) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>alphabet [
+{ #category : #accessing }
+ZnBase64Encoder >> alphabet [
 	"Return the alphabet that I am using to encode byte values"
 	
 	^ alphabet 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>alphabet: string [
+{ #category : #initialization }
+ZnBase64Encoder >> alphabet: string [
 	"Set the alphabet to use to string, containing 64 characters to represent 64 byte values.
 	I automatically compute the inverse used for fast decoding."
 	
@@ -78,21 +68,15 @@ ZnBase64Encoder>>alphabet: string [
 		inverse at: each + 1 put: (offset ifNotNil: [ offset - 1 ]) ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>breakLines [
+{ #category : #initialization }
+ZnBase64Encoder >> breakLines [
 	"Configure me to break lines and insert newlines every 76 characters while encoding"
 
 	self breakLinesAt: 76
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>breakLinesAt: length [
+{ #category : #initialization }
+ZnBase64Encoder >> breakLinesAt: length [
 	"Configure me to break lines at lenth, a multiple of 4, and insert newlines"
 
 	self assert: (length \\ 4) isZero description: 'line length should be a multiple of 4'.
@@ -100,11 +84,8 @@ ZnBase64Encoder>>breakLinesAt: length [
 	lineEnd ifNil: [ self lineEndConvention: #crlf ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>byteCountFor: string	 [
+{ #category : #private }
+ZnBase64Encoder >> byteCountFor: string [	
 	| n byteCount |
 	"This assumes there are no line breaks in string"
 	n := string size.
@@ -117,11 +98,8 @@ ZnBase64Encoder>>byteCountFor: string	 [
 	^ byteCount
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>characterCountFor: bytes [
+{ #category : #private }
+ZnBase64Encoder >> characterCountFor: bytes [
 	| n characterCount | 
 	n := bytes size.
 	characterCount := n // 3 + (n \\ 3) sign * 4.
@@ -130,19 +108,13 @@ ZnBase64Encoder>>characterCountFor: bytes [
 		ifFalse: [ characterCount + ((characterCount // lineLength ) * lineEnd size) ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>characterForValue: value [
+{ #category : #private }
+ZnBase64Encoder >> characterForValue: value [
 	^ alphabet at: value + 1
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>decode: string [
+{ #category : #converting }
+ZnBase64Encoder >> decode: string [
 	"Decode a Base64 encoded string and return the resulting byte array"
 	
 	^ ByteArray 
@@ -151,11 +123,8 @@ ZnBase64Encoder>>decode: string [
 			self decode: string readStream to: byteStream ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>decode: char1 and: char2 and: char3 and: char4 to: stream [
+{ #category : #private }
+ZnBase64Encoder >> decode: char1 and: char2 and: char3 and: char4 to: stream [
 	| v1 v2 v3 v4 |
 	v1 := self valueForCharacter: char1.
 	v2 := self valueForCharacter: char2.
@@ -170,11 +139,8 @@ ZnBase64Encoder>>decode: char1 and: char2 and: char3 and: char4 to: stream [
 						stream nextPut: ((v3 bitAnd: 2r11) bitShift: 6) + v4 ] ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>decode: stringStream to: byteStream [
+{ #category : #converting }
+ZnBase64Encoder >> decode: stringStream to: byteStream [
 	| char1 char2 char3 char4 |
 	[ stringStream atEnd ] whileFalse: [ 
 		self skipWhitespace: stringStream.
@@ -188,11 +154,8 @@ ZnBase64Encoder>>decode: stringStream to: byteStream [
 		self decode: char1 and: char2 and: char3 and: char4 to: byteStream ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>encode: byteArray [
+{ #category : #converting }
+ZnBase64Encoder >> encode: byteArray [
 	"Encode byteArray using Base64 encoding and return the resulting string"
 	
 	^ String 
@@ -201,11 +164,8 @@ ZnBase64Encoder>>encode: byteArray [
 			self encode: byteArray readStream to: stringStream ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>encode: byte1 and: byte2 and: byte3 to: stream [
+{ #category : #private }
+ZnBase64Encoder >> encode: byte1 and: byte2 and: byte3 to: stream [
 	stream nextPut: (self characterForValue: (byte1 bitShift: -2)).
 	byte2
 		ifNil: [ 
@@ -222,11 +182,8 @@ ZnBase64Encoder>>encode: byte1 and: byte2 and: byte3 to: stream [
 					stream nextPut: (self characterForValue: (byte3 bitAnd: 2r111111)) ] ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>encode: byteStream to: stringStream [
+{ #category : #converting }
+ZnBase64Encoder >> encode: byteStream to: stringStream [
 	| byte1 byte2 byte3 count |
 	lineLength
 		ifNil: [ 
@@ -248,22 +205,16 @@ ZnBase64Encoder>>encode: byteStream to: stringStream [
 						count := 0 ] ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>initialize [
+{ #category : #initialization }
+ZnBase64Encoder >> initialize [
 	super initialize.
 	alphabet := DefaultAlphabet.
 	inverse := DefaultInverse.
 	self whitespace: #any
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>isLegalCharacter: character [
+{ #category : #private }
+ZnBase64Encoder >> isLegalCharacter: character [
 	"Return true when character is part of my alphabet"
 
 	| code |
@@ -271,11 +222,8 @@ ZnBase64Encoder>>isLegalCharacter: character [
 			and: [ (inverse at: code + 1) notNil ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>isWhitespaceCharacter: character [
+{ #category : #private }
+ZnBase64Encoder >> isWhitespaceCharacter: character [
 	"Return true when character should be considered whitespace"
 
 	whitespace 
@@ -290,11 +238,8 @@ ZnBase64Encoder>>isWhitespaceCharacter: character [
 	^ false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>lineEndConvention: symbol [
+{ #category : #initialization }
+ZnBase64Encoder >> lineEndConvention: symbol [
 	"Set the end of line convention to be used.
 	Either #cr, #lf or #crlf (the default)."
 	
@@ -302,20 +247,14 @@ ZnBase64Encoder>>lineEndConvention: symbol [
 	lineEnd := String perform: symbol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>skipWhitespace: stream [
+{ #category : #private }
+ZnBase64Encoder >> skipWhitespace: stream [
 	[ stream atEnd not and: [ (self isWhitespaceCharacter: stream peek) ] ] 
 		whileTrue: [ stream next ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>valueForCharacter: char [
+{ #category : #private }
+ZnBase64Encoder >> valueForCharacter: char [
 	| code |
 	(code := char asciiValue) < 128
 		ifTrue: [ 
@@ -324,11 +263,8 @@ ZnBase64Encoder>>valueForCharacter: char [
 	ZnCharacterEncodingError signal: 'Illegal Base64 input'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBase64Encoder>>whitespace: mode [
+{ #category : #initialization }
+ZnBase64Encoder >> whitespace: mode [
 	"Set the whitespace mode: 
 	nil is no whitespace allowed, 
 	#separator is CR, LF, FF, SPACE, TAB allowed,

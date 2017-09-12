@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #RGBSlidersTest,
 	#superclass : #SpecTestCase,
-	#category : #Spec-Tests-PolyWidgets-Support,
-	#timestamp : ''
+	#category : #Spec-Tests-PolyWidgets-Support
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RGBSlidersTest>>classToTest [
+{ #category : #running }
+RGBSlidersTest >> classToTest [
 	^ RGBSliders
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RGBSlidersTest>>testColor [
+{ #category : #tests }
+RGBSlidersTest >> testColor [
 	|random red green blue |
 	random := Random new.
 	red := random nextInt: 255.
@@ -39,11 +29,8 @@ RGBSlidersTest>>testColor [
 		range: 255).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RGBSlidersTest>>testwhenChangedDo [
+{ #category : #tests }
+RGBSlidersTest >> testwhenChangedDo [
 	| numberOfChanges |
 	numberOfChanges := 0.
 	testedInstance whenChangedDo: [ numberOfChanges := numberOfChanges + 1 ].

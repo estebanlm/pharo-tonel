@@ -4,14 +4,10 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestHermes,
 	#superclass : #PackageManifest,
-	#category : #Hermes,
-	#timestamp : '<historical>'
+	#category : #Hermes
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-ManifestHermes class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestHermes class >> manuallyResolvedDependencies [
 	^ #(#'RPackage-Core' #Files #'Collections-Abstract')
 ]

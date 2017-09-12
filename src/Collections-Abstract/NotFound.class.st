@@ -13,15 +13,11 @@ Class {
 	#instVars : [
 		'object'
 	],
-	#category : #Collections-Abstract,
-	#timestamp : 'SvenVanCaekenberghe 4/18/2011 14:32'
+	#category : #Collections-Abstract
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-NotFound class>>signalFor: anObject [
+{ #category : #'instance creation' }
+NotFound class >> signalFor: anObject [
 	"Create and signal a NotFound exception for anObject in the default receiver."
 	
 	^ self new
@@ -29,11 +25,8 @@ NotFound class>>signalFor: anObject [
 		signal
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-NotFound class>>signalFor: anObject in: aCollection [
+{ #category : #'instance creation' }
+NotFound class >> signalFor: anObject in: aCollection [
 	"Create and signal a NotFound exception for anObject in aCollection."
 
 	^ self new
@@ -42,61 +35,43 @@ NotFound class>>signalFor: anObject in: aCollection [
 		signal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-NotFound>>collection [
+{ #category : #accessing }
+NotFound >> collection [
 	"Return the collection where something is not found in"
 	
 	^ self signaler
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-NotFound>>collection: aCollection [
+{ #category : #accessing }
+NotFound >> collection: aCollection [
 	"Set the collection where something is not found in"
 	
 	self signaler: aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-NotFound>>messageText [
+{ #category : #accessing }
+NotFound >> messageText [
 	"Overwritten to initialiaze the message text to a standard text if it has not yet been set"
 	
 	^ messageText ifNil: [ messageText := self standardMessageText ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-NotFound>>object [
+{ #category : #accessing }
+NotFound >> object [
 	"Return the object that was not found"
 	
 	^ object
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-NotFound>>object: anObject [
+{ #category : #accessing }
+NotFound >> object: anObject [
 	"Set the object that was not found"
 	
 	object := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-NotFound>>standardMessageText [
+{ #category : #private }
+NotFound >> standardMessageText [
 	"Generate a standard textual description"
 	
 	^ String streamContents: [ :stream |

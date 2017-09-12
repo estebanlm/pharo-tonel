@@ -5,24 +5,17 @@ I pass through basic concepts to getting started with Pharo.
 Class {
 	#name : #WelcomeHelp,
 	#superclass : #CustomHelp,
-	#category : #Pharo-Help,
-	#timestamp : '<historical>'
+	#category : #Pharo-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-WelcomeHelp class>>bookName [
+{ #category : #accessing }
+WelcomeHelp class >> bookName [
 	"the character zero is a hack to display it always first"
 	^ (Character value: 0) asString, 'Welcome'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-WelcomeHelp class>>changeLog [
+{ #category : #pages }
+WelcomeHelp class >> changeLog [
 	^ HelpTopic 
 		title: 'ChangeLog'
 		contents: (self heading: 'Highlights (aka New Stuff) in Pharo 6.0'),
@@ -138,11 +131,8 @@ You can see the Pharo 6.0 changelog at:
 ', (self url: 'https://github.com/pharo-project/pharo-changelogs/blob/master/Pharo60ChangeLogs.md')
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-WelcomeHelp class>>documentation [
+{ #category : #pages }
+WelcomeHelp class >> documentation [
 	^ HelpTopic 
 		title: 'More Documentation'
 		contents: (self heading: 'More Documentation'), 
@@ -164,11 +154,8 @@ There you can find:
 - Presentations: ', (self url: 'http://www.slideshare.net/pharoproject/')
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-WelcomeHelp class>>exploreEnvironment [
+{ #category : #pages }
+WelcomeHelp class >> exploreEnvironment [
 	^ HelpTopic 
 		title: 'Explore the Pharo Environment'
 		contents: (self heading: 'Explore the Pharo Environment'), 
@@ -185,11 +172,8 @@ One chapter of particular interest is the one that provides a quick tour of the 
 ', (self url: 'https://ci.inria.fr/pharo-contribution/job/UpdatedPharoByExample/lastSuccessfulBuild/artifact/book-result/PharoTour/PharoTour.pdf')
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-WelcomeHelp class>>gettingHelp [
+{ #category : #pages }
+WelcomeHelp class >> gettingHelp [
 	^ HelpTopic 
 		title: 'Getting Help'
 		contents: (self heading: 'Getting Help'),
@@ -207,11 +191,8 @@ You can find more information, lists to browse/suscribe and places to share code
 ', (self url: 'http://pharo.org/community')
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-WelcomeHelp class>>learn [
+{ #category : #pages }
+WelcomeHelp class >> learn [
 	^ HelpTopic 
 		title: 'Learn Pharo'
 		contents: (self heading: 'Learn Pharo'), 		
@@ -235,20 +216,14 @@ A very interesting starting point would be looking into the "Updated Pharo by Ex
 '
 ]
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-WelcomeHelp class>>open [
+{ #category : #showing }
+WelcomeHelp class >> open [
 	<script>
 	^ (HelpBrowser openOn: self) next
 ]
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-WelcomeHelp class>>openForRelease [
+{ #category : #showing }
+WelcomeHelp class >> openForRelease [
 	<script>
 	| browser window findBlock |
 	
@@ -262,19 +237,13 @@ WelcomeHelp class>>openForRelease [
 	window center: Display extent / 2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-WelcomeHelp class>>pages [
+{ #category : #accessing }
+WelcomeHelp class >> pages [
 	^ #(welcome changeLog learn exploreEnvironment useExternalPackages documentation gettingHelp)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-WelcomeHelp class>>useExternalPackages [
+{ #category : #pages }
+WelcomeHelp class >> useExternalPackages [
 	^ HelpTopic 
 		title: 'Using Eternal Packages'
 		contents: (self heading: 'Using External Packages'), 'Pharo already comes pre-loaded with a rich set of packages that you can use to explore the system and develop your own applications. However there is also a huge library of user contributed projects that you can also load using the "Catalog Browser". To open it click on the following expression:
@@ -297,11 +266,8 @@ The catalog can be enabled in Spotter by enabling the "Display catalog projects 
 '
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-WelcomeHelp class>>welcome [
+{ #category : #pages }
+WelcomeHelp class >> welcome [
 	^ HelpTopic 
 		title: 'Welcome to Pharo 6.0'
 		contents: (self heading: 'Pharo 6.0'), 

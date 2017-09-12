@@ -7,110 +7,70 @@ Class {
 	#instVars : [
 		'definition'
 	],
-	#category : #Monticello-Patching,
-	#timestamp : '<historical>'
+	#category : #Monticello-Patching
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRemoval class>>of: aDefinition [
+{ #category : #instance-creation }
+MCRemoval class >> of: aDefinition [
 	^ self new intializeWithDefinition: aDefinition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRemoval>>baseDefinition [
+{ #category : #accessing }
+MCRemoval >> baseDefinition [
 	^ definition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRemoval>>basicApplyTo: anObject [
+{ #category : #accessing }
+MCRemoval >> basicApplyTo: anObject [
 	anObject removeDefinition: definition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRemoval>>definition [
+{ #category : #accessing }
+MCRemoval >> definition [
 	^ definition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRemoval>>fromSource [
+{ #category : #accessing }
+MCRemoval >> fromSource [
 	^ definition diffSource
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRemoval>>intializeWithDefinition: aDefinition [
+{ #category : #initializing }
+MCRemoval >> intializeWithDefinition: aDefinition [
 	definition := aDefinition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRemoval>>inverse [
+{ #category : #accessing }
+MCRemoval >> inverse [
 	^ MCAddition of: definition
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRemoval>>isClassPatch [
+{ #category : #testing }
+MCRemoval >> isClassPatch [
 	^definition isClassDefinition
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRemoval>>isRemoval [
+{ #category : #testing }
+MCRemoval >> isRemoval [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRemoval>>summarySuffix [
+{ #category : #accessing }
+MCRemoval >> summarySuffix [
 	^ ' (removed)'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRemoval>>targetClass [
+{ #category : #accessing }
+MCRemoval >> targetClass [
 	^ definition actualClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRemoval>>targetDefinition [
+{ #category : #accessing }
+MCRemoval >> targetDefinition [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRemoval>>toSource [
+{ #category : #accessing }
+MCRemoval >> toSource [
 	^ ''
 ]

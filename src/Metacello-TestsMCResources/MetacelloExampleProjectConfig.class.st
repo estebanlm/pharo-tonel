@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloExampleProjectConfig,
 	#superclass : #MetacelloMCTestsAbstractConfig,
-	#category : #Metacello-TestsMCResources,
-	#timestamp : ''
+	#category : #Metacello-TestsMCResources
 }
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloExampleProjectConfig>>baseline10: spec  [
+{ #category : #baselines }
+MetacelloExampleProjectConfig >> baseline10: spec [ 
 	<version: '1.0-baseline'>
 	
 	spec for: #common do: [

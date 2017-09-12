@@ -4,33 +4,23 @@ Use uncapitalized instead of withFirstCharacterDownshifted since withFirstCharac
 Class {
 	#name : #RBDeprecateWithFirstCharacterDownshifted,
 	#superclass : #RBTransformationRule,
-	#category : #Refactoring-Critics-TransformationRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 18:01'
+	#category : #Refactoring-Critics-TransformationRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDeprecateWithFirstCharacterDownshifted class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBDeprecateWithFirstCharacterDownshifted class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'FirstCharacterDownShifted'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDeprecateWithFirstCharacterDownshifted>>group [
+{ #category : #accessing }
+RBDeprecateWithFirstCharacterDownshifted >> group [
 	^ 'Style'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDeprecateWithFirstCharacterDownshifted>>initialize [
+{ #category : #initialization }
+RBDeprecateWithFirstCharacterDownshifted >> initialize [
 	super initialize.
 	self rewriteRule
 		replace: '``@object withFirstCharacterDownshifted' with: '``@object uncapitalized'.
@@ -38,10 +28,7 @@ RBDeprecateWithFirstCharacterDownshifted>>initialize [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDeprecateWithFirstCharacterDownshifted>>name [
+{ #category : #accessing }
+RBDeprecateWithFirstCharacterDownshifted >> name [
 	^ 'use uncapitalized instead of withFirstCharacterDownshifted'
 ]

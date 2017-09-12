@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ObjectFinalizerTests,
 	#superclass : #TestCase,
-	#category : #Tests-Finalization,
-	#timestamp : ''
+	#category : #Tests-Finalization
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ObjectFinalizerTests>>testFinalizationOfMultipleResources [
+{ #category : #tests }
+ObjectFinalizerTests >> testFinalizationOfMultipleResources [
 	"Test that finalizers for multiple resources registered will be ran when
 	object is finalized"
 	| objToFinalize resource1 resource2 resourceCleanBlock |

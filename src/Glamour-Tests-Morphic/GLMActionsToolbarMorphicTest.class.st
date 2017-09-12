@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #GLMActionsToolbarMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMActionsToolbarMorphicTest>>expectedFailures [
+{ #category : #'as yet unclassified' }
+GLMActionsToolbarMorphicTest >> expectedFailures [
 	^ #(testDynamicActionsAreUpdated)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMActionsToolbarMorphicTest>>testDynamicActionsAreUpdated [
+{ #category : #tests }
+GLMActionsToolbarMorphicTest >> testDynamicActionsAreUpdated [
 	| browser toolbar status count|
 	count := 0.
 	browser := GLMTabulator new.

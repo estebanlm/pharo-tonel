@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnMultiValueDictionaryTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Resource-Meta-Tests,
-	#timestamp : ''
+	#category : #Zinc-Resource-Meta-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnMultiValueDictionaryTests>>testDynamicLimit [
+{ #category : #testing }
+ZnMultiValueDictionaryTests >> testDynamicLimit [
 	ZnMaximumNumberOfDictionaryEntries
 		value: 10
 		during: [ 
@@ -25,11 +18,8 @@ ZnMultiValueDictionaryTests>>testDynamicLimit [
 				raise: ZnTooManyDictionaryEntries ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnMultiValueDictionaryTests>>testMultiValues [
+{ #category : #testing }
+ZnMultiValueDictionaryTests >> testMultiValues [
 	| dictionary values keys |
 	dictionary := ZnMultiValueDictionary new.
 	dictionary at: 'foo' add: 1; at: 'foo' add: 2.
@@ -43,11 +33,8 @@ ZnMultiValueDictionaryTests>>testMultiValues [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnMultiValueDictionaryTests>>testTooManyEntries [
+{ #category : #testing }
+ZnMultiValueDictionaryTests >> testTooManyEntries [
 	| dictionary |
 	dictionary := ZnMultiValueDictionary new.
 	self

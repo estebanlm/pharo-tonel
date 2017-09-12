@@ -4,24 +4,17 @@ MetacelloValidationCriticalWarning indicates that there is a logical inconsisten
 Class {
 	#name : #MetacelloValidationCriticalWarning,
 	#superclass : #MetacelloValidationIssue,
-	#category : #Metacello-Core-Validation,
-	#timestamp : '<historical>'
+	#category : #Metacello-Core-Validation
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationCriticalWarning>>isCriticalWarning [
+{ #category : #testing }
+MetacelloValidationCriticalWarning >> isCriticalWarning [
 
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationCriticalWarning>>label [
+{ #category : #accessing }
+MetacelloValidationCriticalWarning >> label [
 
 	^'Critical Warning'
 ]

@@ -41,81 +41,53 @@ Class {
 		'function',
 		'resizable'
 	],
-	#category : #Morphic-Widgets-FastTable,
-	#timestamp : 'CyrilFerlicot 10/26/2015 11:29'
+	#category : #Morphic-Widgets-FastTable
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph class>>defaultAllowsDeselection [
+{ #category : #accessing }
+FTTableMorph class >> defaultAllowsDeselection [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph class>>defaultBackgroundColor [
+{ #category : #accessing }
+FTTableMorph class >> defaultBackgroundColor [
 	^ Smalltalk ui theme listBackgroundColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph class>>defaultColumn [
+{ #category : #accessing }
+FTTableMorph class >> defaultColumn [	
 	^ FTColumn new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph class>>defaultHeaderColor [
+{ #category : #accessing }
+FTTableMorph class >> defaultHeaderColor [
 	self flag: #todo. "I think we should deprecate all this headerColor stuff. This is 
 	responsibility of data source, after all"
 	^ Smalltalk ui theme fastTableHeaderColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph class>>defaultIntercellSpacing [
+{ #category : #accessing }
+FTTableMorph class >> defaultIntercellSpacing [
 	^ 0@0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph class>>defaultRowHeight [
+{ #category : #accessing }
+FTTableMorph class >> defaultRowHeight [
 	^ StandardFonts defaultFont pixelSize + 7
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph class>>defaultSecondarySelectionColor [
+{ #category : #accessing }
+FTTableMorph class >> defaultSecondarySelectionColor [
 	^ Smalltalk ui theme secondarySelectionColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph class>>defaultSelectionColor [
+{ #category : #accessing }
+FTTableMorph class >> defaultSelectionColor [
 	^ Smalltalk ui theme selectionColor
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>acceptDroppingMorph: aMorph event: event [
+{ #category : #'drag and drop' }
+FTTableMorph >> acceptDroppingMorph: aMorph event: event [
 	self dataSource 
 		dropElements: aMorph passenger 
 		index: ((self container rowIndexContainingPoint: event position) ifNil: [ 0 ]).
@@ -123,166 +95,109 @@ FTTableMorph>>acceptDroppingMorph: aMorph event: event [
 	self refresh
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>addColumn: aColumn [
+{ #category : #accessing }
+FTTableMorph >> addColumn: aColumn [
 	columns := columns copyWith: aColumn
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>allowDeselection [
+{ #category : #accessing }
+FTTableMorph >> allowDeselection [
 	self allowsDeselection: true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>allowsDeselection [
+{ #category : #testing }
+FTTableMorph >> allowsDeselection [
 	^ allowsDeselection ifNil: [ self class defaultAllowsDeselection ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>allowsDeselection: aBoolean [
+{ #category : #accessing }
+FTTableMorph >> allowsDeselection: aBoolean [
 	allowsDeselection := aBoolean
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>autoScrollHeightLimit [
+{ #category : #updating }
+FTTableMorph >> autoScrollHeightLimit [
 
 	^20
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>basicHighlightRowIndexes: anArray [
+{ #category : #private }
+FTTableMorph >> basicHighlightRowIndexes: anArray [
 	highlightedRowIndexes := anArray asArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>basicMoveShowIndexTo: aNumber [
+{ #category : #private }
+FTTableMorph >> basicMoveShowIndexTo: aNumber [
 	showIndex := aNumber.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>basicSelectRowIndexes: anArray [
+{ #category : #private }
+FTTableMorph >> basicSelectRowIndexes: anArray [
 	selectedRowIndexes := anArray asArray.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>beMultipleSelection [
+{ #category : #accessing }
+FTTableMorph >> beMultipleSelection [
 	selectionStrategy := FTMultipleSelection table: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>beNotResizable [
+{ #category : #accessing }
+FTTableMorph >> beNotResizable [
 	resizable := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>beResizable [
+{ #category : #accessing }
+FTTableMorph >> beResizable [
 	resizable := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>beSingleSelection [
+{ #category : #accessing }
+FTTableMorph >> beSingleSelection [
 	selectionStrategy := FTSimpleSelection table: self
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>click: event [
+{ #category : #'event handling' }
+FTTableMorph >> click: event [
 	"check for right click (menu)"
 
 	(self isYellowButtonReallyPressed: event)
 		ifTrue: [ self showMenuForPosition: event cursorPoint ]
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>colorForSelection: primarySelection [
+{ #category : #'accessing colors' }
+FTTableMorph >> colorForSelection: primarySelection [
 	
 	^primarySelection 
 		ifTrue: [ self selectionColor ]
 		ifFalse: [ self secondarySelectionColor ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>columns [
+{ #category : #accessing }
+FTTableMorph >> columns [
 	^ columns
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>columns: aCollection [
+{ #category : #accessing }
+FTTableMorph >> columns: aCollection [ 
 	columns := aCollection asArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>container [
+{ #category : #private }
+FTTableMorph >> container [ 
 	^ container
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>dataSource [
+{ #category : #accessing }
+FTTableMorph >> dataSource [
 	"Answers a dataSource: the component responsible of providing data to the table. 
 	 Check FTDataSource and subclasses as reference."
 	^ dataSource
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>dataSource: anObject [
+{ #category : #accessing }
+FTTableMorph >> dataSource: anObject [
 	dataSource := anObject.
 	dataSource table: self.
 	dataSource readyToBeDisplayed.
@@ -290,36 +205,24 @@ FTTableMorph>>dataSource: anObject [
 	self refresh
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>defaultColor [
+{ #category : #initialization }
+FTTableMorph >> defaultColor [
 
 	^self class defaultBackgroundColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>defaultContainer [
+{ #category : #accessing }
+FTTableMorph >> defaultContainer [
 	^ FTTableContainerMorph new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>denyDeselection [
+{ #category : #accessing }
+FTTableMorph >> denyDeselection [
 	self allowsDeselection: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>disableFunction [
+{ #category : #accessing }
+FTTableMorph >> disableFunction [
 	"Disabling it just sets the funtion to nil, so I can safely skip it in #keyStrokeSearch:"
 
 	function isExplicite
@@ -328,22 +231,16 @@ FTTableMorph>>disableFunction [
 	function := FTNilFunction table: self
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>doubleClick: event [
+{ #category : #'event handling' }
+FTTableMorph >> doubleClick: event [
 	| rowIndex |
 	rowIndex := self container rowIndexContainingPoint: event cursorPoint.
 	rowIndex ifNotNil: [ 
 		self doAnnounce: (FTStrongSelectionChanged rowIndex: rowIndex event: event) ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>drawSubmorphsOn: aCanvas [
+{ #category : #drawing }
+FTTableMorph >> drawSubmorphsOn: aCanvas [ 
 	"Draw the focus here since we are using inset bounds
 	for the focus rectangle."
 	"1haltOnce."
@@ -352,72 +249,51 @@ FTTableMorph>>drawSubmorphsOn: aCanvas [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>enableFilter [
+{ #category : #accessing }
+FTTableMorph >> enableFilter [
 	"Enables filtering. Not compatible with the search."
 
 	function := FTFilterFunction table: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>enableFilter: aFTFilterClass [
+{ #category : #accessing }
+FTTableMorph >> enableFilter: aFTFilterClass [
 	"Enables filtering. Not compatible with the search."
 
 	self enableFilter.
 	function filterClass: aFTFilterClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>enableFilterWithAction: aBlock [
+{ #category : #accessing }
+FTTableMorph >> enableFilterWithAction: aBlock [
 	"Enables filtering and add an Action button. Not compatible with the search."
 
 	self enableFilterWithAction: aBlock named: 'Validate.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>enableFilterWithAction: aBlock named: aString [
+{ #category : #accessing }
+FTTableMorph >> enableFilterWithAction: aBlock named: aString [
 	"Enables filtering and add an Action button. Not compatible with the search. If I am use, the function must be explicit."
 
 	function := FTFilterFunctionWithAction table: self action: aBlock named: aString.
 	self explicitFunction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>enableSearch [
+{ #category : #accessing }
+FTTableMorph >> enableSearch [
 	"Enables search (this is the default option). Not compatible with the filter function.	"
 
 	function := FTSearchFunction table: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>ensureAtLeastOneColumn [
+{ #category : #private }
+FTTableMorph >> ensureAtLeastOneColumn [
 	self columns ifNotEmpty: [ ^ self ].
 	self addColumn: self class defaultColumn
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>ensureVisibleFirstSelection [
+{ #category : #private }
+FTTableMorph >> ensureVisibleFirstSelection [
 	| rowIndex |
 	self hasSelection ifFalse: [ ^ self ].
 	rowIndex := self selectedRowIndex.
@@ -427,29 +303,20 @@ FTTableMorph>>ensureVisibleFirstSelection [
 			ifFalse: [ self moveShowIndexTo: (rowIndex - self container calculateMinVisibleRows + 1) ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>explicitFunction [
+{ #category : #accessing }
+FTTableMorph >> explicitFunction [
 	function showWidget
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>extent: aPoint [
+{ #category : #geometry }
+FTTableMorph >> extent: aPoint [
 	super extent: aPoint.
 	container extent: aPoint.
 	self resizeAllSubviews
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>handleMouseMove: anEvent [
+{ #category : #'event handling' }
+FTTableMorph >> handleMouseMove: anEvent [
 	"Reimplemented because we really want #mouseMove when a morph is dragged around"
 	anEvent wasHandled ifTrue:[^self]. "not interested"
 	(anEvent anyButtonPressed) ifFalse:[^self].
@@ -458,103 +325,67 @@ FTTableMorph>>handleMouseMove: anEvent [
 
 ]
 
-{
-	#category : #'event testing',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>handlesKeyboard: event [
+{ #category : #'event testing' }
+FTTableMorph >> handlesKeyboard: event [
 	^ true
 ]
 
-{
-	#category : #'event testing',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>handlesMouseDown: event [
+{ #category : #'event testing' }
+FTTableMorph >> handlesMouseDown: event [
 	^ true
 
 ]
 
-{
-	#category : #'event testing',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>handlesMouseOverDragging: event [
+{ #category : #'event testing' }
+FTTableMorph >> handlesMouseOverDragging: event [
 	"Yes, for mouse down highlight."
 	^true
 ]
 
-{
-	#category : #'event testing',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>handlesMouseWheel: event [
+{ #category : #'event testing' }
+FTTableMorph >> handlesMouseWheel: event [
 	^self isVerticalScrollBarVisible and: [ self hasDataSource ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>hasDataSource [
+{ #category : #testing }
+FTTableMorph >> hasDataSource [
 	^ self dataSource notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>hasHighlighted [
+{ #category : #testing }
+FTTableMorph >> hasHighlighted [
 	^ self highlightedRowIndexes notEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>hasSelection [
+{ #category : #testing }
+FTTableMorph >> hasSelection [
 	^ self selectedRowIndexes notEmpty
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>headerColor [
+{ #category : #'accessing colors' }
+FTTableMorph >> headerColor [
 	^ headerColor ifNil: [ self class defaultHeaderColor ]
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>headerColor: aColor [
+{ #category : #'accessing colors' }
+FTTableMorph >> headerColor: aColor [
 	headerColor := aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>hideColumnHeaders [
+{ #category : #accessing }
+FTTableMorph >> hideColumnHeaders [
 	showColumnHeaders ifFalse: [ ^ self ].
 	showColumnHeaders := false.
 	self refresh
 ]
 
-{
-	#category : #'accessing selection',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>highlightRowIndex: aNumber [
+{ #category : #'accessing selection' }
+FTTableMorph >> highlightRowIndex: aNumber [
 	self highlightRowIndexes: { aNumber }
 ]
 
-{
-	#category : #'accessing selection',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>highlightRowIndexes: anArray [
+{ #category : #'accessing selection' }
+FTTableMorph >> highlightRowIndexes: anArray [
 	anArray = highlightedRowIndexes ifTrue: [ ^ self ].
 	
 	self basicHighlightRowIndexes: anArray. 
@@ -572,29 +403,20 @@ FTTableMorph>>highlightRowIndexes: anArray [
 	self refresh.
 ]
 
-{
-	#category : #'accessing selection',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>highlightedRowIndex [
+{ #category : #'accessing selection' }
+FTTableMorph >> highlightedRowIndex [
 	^ self highlightedRowIndexes 
 		ifNotEmpty: [ :indexes | indexes first ]
 		ifEmpty: [ 0 ] 
 ]
 
-{
-	#category : #'accessing selection',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>highlightedRowIndexes [
+{ #category : #'accessing selection' }
+FTTableMorph >> highlightedRowIndexes [
 	^ highlightedRowIndexes
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>initialize [
+{ #category : #initialization }
+FTTableMorph >> initialize [ 
 	super initialize.
 	showIndex := 0.
 	showColumnHeaders := true.
@@ -612,20 +434,14 @@ FTTableMorph>>initialize [
 	self resizeAllSubviews
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>initializeContainer [
+{ #category : #initialization }
+FTTableMorph >> initializeContainer [
 	container := self defaultContainer.
 	self addMorph: container
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>initializeKeyBindings [
+{ #category : #initialization }
+FTTableMorph >> initializeKeyBindings [
 	"add keybindings used by table"
 	self 
 		bindKeyCombination: Character arrowUp shift | Character arrowUp asKeyCombination
@@ -644,11 +460,8 @@ FTTableMorph>>initializeKeyBindings [
 		toAction: [ self selectAllRowIndexes ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>initializeScrollBars [
+{ #category : #initialization }
+FTTableMorph >> initializeScrollBars [
 	verticalScrollBar := ScrollBar new 
 		model: self; 
 		setValueSelector: #verticalScrollBarValue:;
@@ -656,78 +469,51 @@ FTTableMorph>>initializeScrollBars [
 	self addMorph: verticalScrollBar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>intercellSpacing [
+{ #category : #accessing }
+FTTableMorph >> intercellSpacing [ 
 	^ intercellSpacing ifNil: [ self class defaultIntercellSpacing ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>intercellSpacing: aNumberOrPoint [
+{ #category : #accessing }
+FTTableMorph >> intercellSpacing: aNumberOrPoint [
 	"Determines cell spacing 
 		x: space between cells 
 		y: space between rows"
 	intercellSpacing := aNumberOrPoint asPoint 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>isMultipleSelection [
+{ #category : #testing }
+FTTableMorph >> isMultipleSelection [
 	^ selectionStrategy isMultiple
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>isResizable [
+{ #category : #testing }
+FTTableMorph >> isResizable [
 	^ resizable
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>isRowIndexSelected: rowIndex [
+{ #category : #testing }
+FTTableMorph >> isRowIndexSelected: rowIndex [
 	^ self selectedRowIndexes includes: rowIndex
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>isRowIndexVisible: rowIndex [
+{ #category : #testing }
+FTTableMorph >> isRowIndexVisible: rowIndex [
 	^ self container isRowIndexVisible: rowIndex
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>isShowColumnHeaders [
+{ #category : #testing }
+FTTableMorph >> isShowColumnHeaders [
 	^ showColumnHeaders
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>isVerticalScrollBarVisible [
+{ #category : #private }
+FTTableMorph >> isVerticalScrollBarVisible [
 	^ self verticalScrollBar owner isNotNil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>isYellowButtonReallyPressed: anEvent [
+{ #category : #private }
+FTTableMorph >> isYellowButtonReallyPressed: anEvent [
 	anEvent yellowButtonPressed ifFalse: [ ^false ].
 	"this is shitty fix for VM bug. 
 	Now if you will press left mouse button together with pressed cmd (on Mac)
@@ -739,11 +525,8 @@ FTTableMorph>>isYellowButtonReallyPressed: anEvent [
 		ifFalse: [ anEvent controlKeyPressed not]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>keyStroke: event [
+{ #category : #'event handling' }
+FTTableMorph >> keyStroke: event [
 	self flag: #todo.	"If the function is explicit this should be redirect to the function widget."
 	((super keyStroke: event) or: [ self navigationKey: event ])
 		ifTrue: [ ^ true ].
@@ -751,11 +534,8 @@ FTTableMorph>>keyStroke: event [
 	^ self keyStrokeSearch: event
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>keyStrokeArrowDown: event [
+{ #category : #'event handling' }
+FTTableMorph >> keyStrokeArrowDown: event [
 	| rowIndex |
 	rowIndex := self selectedRowIndex.
 	rowIndex < self numberOfRows
@@ -764,11 +544,8 @@ FTTableMorph>>keyStrokeArrowDown: event [
 	self selectionStrategy selectRowIndex: rowIndex + 1 event: event
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>keyStrokeArrowUp: event [
+{ #category : #'event handling' }
+FTTableMorph >> keyStrokeArrowUp: event [
 	| rowIndex |
 	rowIndex := self selectedRowIndex.
 	rowIndex > 1
@@ -777,48 +554,33 @@ FTTableMorph>>keyStrokeArrowUp: event [
 	selectionStrategy selectRowIndex: rowIndex - 1 event: event
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>keyStrokeSearch: event [
+{ #category : #'event handling' }
+FTTableMorph >> keyStrokeSearch: event [
 	^ function keyStroke: event
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>keyboardFocusChange: aBoolean [
+{ #category : #'event handling' }
+FTTableMorph >> keyboardFocusChange: aBoolean [
 	"The message is sent to a morph when its keyboard focus changes.
 	Update for focus feedback."
 	super keyboardFocusChange: aBoolean.
 	self focusChanged
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>minHeight [
+{ #category : #layout }
+FTTableMorph >> minHeight [ 
 
 	^ 100
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>minWidth [
+{ #category : #layout }
+FTTableMorph >> minWidth [
 
 	^ 100
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>mouseDown: event [
+{ #category : #'event handling' }
+FTTableMorph >> mouseDown: event [
 	| rowIndex |
 	"perform the click"
 	
@@ -833,21 +595,15 @@ FTTableMorph>>mouseDown: event [
 	event hand waitForClicksOrDrag: self event: event
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>mouseEnterDragging: event [
+{ #category : #'event handling' }
+FTTableMorph >> mouseEnterDragging: event [
 	self enabled ifFalse: [ ^ self ].
 	(event hand hasSubmorphs and: [ self dropEnabled ]) 
 		ifFalse: [ "no d&d" ^ super mouseEnterDragging: event ].	
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>mouseLeaveDragging: event [
+{ #category : #'event handling' }
+FTTableMorph >> mouseLeaveDragging: event [
 	"The mouse has left with a button down."
 	
 	(self dropEnabled and: [event hand hasSubmorphs]) 
@@ -858,11 +614,8 @@ FTTableMorph>>mouseLeaveDragging: event [
 				
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>mouseMove: event [
+{ #category : #'event handling' }
+FTTableMorph >> mouseMove: event [
 	event isDraggingEvent ifFalse: [ ^ self ].
 	event hand hasSubmorphs ifFalse: [ ^self ].
 	(self wantsDroppedMorph: event hand submorphs first event: event) ifFalse: [ ^self ].
@@ -883,11 +636,8 @@ FTTableMorph>>mouseMove: event [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>mouseUp: event [
+{ #category : #'event handling' }
+FTTableMorph >> mouseUp: event [
 	| rowIndex |
 	
 	needToggleAtMouseUp ifFalse: [ ^ self ].
@@ -898,11 +648,8 @@ FTTableMorph>>mouseUp: event [
 	self selectRowIndex: rowIndex event: event
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>mouseWheel: event [
+{ #category : #'event handling' }
+FTTableMorph >> mouseWheel: event [
 
 	"I tried scrolling up/down with a calculated value (check #scrollUpByPageDelta implementor)
 	 but the scrollbar proved been more intelligent than me... looks like hardcoded values 
@@ -919,11 +666,8 @@ FTTableMorph>>mouseWheel: event [
 	super mouseWheel: event
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>moveShowIndexTo: aNumber [
+{ #category : #private }
+FTTableMorph >> moveShowIndexTo: aNumber [
 	"I move the showing index to a specific row, and perform a refresh of subviews. 
 	 I should not be used directly, and most methods that need to move the 
 	 showing pointer should do it directly. 
@@ -933,28 +677,19 @@ FTTableMorph>>moveShowIndexTo: aNumber [
 	self refresh
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>numberOfColumns [
+{ #category : #accessing }
+FTTableMorph >> numberOfColumns [ 
 	^ columns size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>numberOfRows [
+{ #category : #accessing }
+FTTableMorph >> numberOfRows [
 	self hasDataSource ifFalse: [ ^ 0 ]. 
 	^ self dataSource numberOfRows
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>recalculateVerticalScrollBar [
+{ #category : #private }
+FTTableMorph >> recalculateVerticalScrollBar [
 	| interval delta pageDelta visibleRows numberOfRows |
 	
 	self hasDataSource ifFalse: [ ^ self ].
@@ -971,11 +706,8 @@ FTTableMorph>>recalculateVerticalScrollBar [
 		interval: interval
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>recalculateVerticalScrollBarVisibilityIfHidden: aBlock [
+{ #category : #private }
+FTTableMorph >> recalculateVerticalScrollBarVisibilityIfHidden: aBlock [
 	self container calculateExactVisibleRows >= self dataSource numberOfRows
 		ifTrue: [ 
 			(self isVerticalScrollBarVisible)
@@ -992,11 +724,8 @@ FTTableMorph>>recalculateVerticalScrollBarVisibilityIfHidden: aBlock [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>refresh [
+{ #category : #updating }
+FTTableMorph >> refresh [
 	"Refreshes all internal values (forces an invalidate of all subviews)"
 	self ensureAtLeastOneColumn.
 	self recalculateVerticalScrollBar.
@@ -1005,19 +734,13 @@ FTTableMorph>>refresh [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>resetFunction [
+{ #category : #accessing }
+FTTableMorph >> resetFunction [
 	function reset
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>resetPosition [
+{ #category : #private }
+FTTableMorph >> resetPosition [
 	"Resets all values to original value"
 	showIndex := 0.
 	self verticalScrollBar value: 0.
@@ -1025,11 +748,8 @@ FTTableMorph>>resetPosition [
 	self container updateExposedRows.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>resizeAllSubviews [
+{ #category : #private }
+FTTableMorph >> resizeAllSubviews [
 	self resizeVerticalScrollBar.
 	"if we resized scrollbar, we need to recalculate it because values change (and now visibility 
 	 can be toggled, shown items can change, etc.)"
@@ -1043,11 +763,8 @@ FTTableMorph>>resizeAllSubviews [
 		ifTrue: [ function resizeWidget ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>resizeColumns [
+{ #category : #private }
+FTTableMorph >> resizeColumns [
 	"Resize columns just has sense if there is more than one column, otherwise it will be resized 
 	 to row size, so I can safely skip the resize part if I have just one (and then I avoid 
 	 redundancy)"
@@ -1056,11 +773,8 @@ FTTableMorph>>resizeColumns [
 		width: (self width - (self columns allButLast sum: [ :each | each width ifNil: [0]]))
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>resizeContainer [
+{ #category : #private }
+FTTableMorph >> resizeContainer [
 	| topLeft bottomRight |
 	topLeft := (self bounds left - self borderWidth) @ self bounds top - self borderWidth.
 	bottomRight := (self bounds right - self verticalScrollBarWidth - self borderWidth) @ self bounds bottom - self borderWidth.
@@ -1071,11 +785,8 @@ FTTableMorph>>resizeContainer [
 				ifFalse: [ topLeft corner: bottomRight ])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>resizeVerticalScrollBar [
+{ #category : #private }
+FTTableMorph >> resizeVerticalScrollBar [
 	| width height corner |
 	width := self scrollBarThickness.
 	height := self bounds height - (self borderWidth * 2).
@@ -1083,30 +794,21 @@ FTTableMorph>>resizeVerticalScrollBar [
 	self verticalScrollBar bounds: (corner extent: width@height)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>rowHeight [
+{ #category : #accessing }
+FTTableMorph >> rowHeight [
 	"This is the row height your rows will have. Cells answered in dataSource will be forced to have
 	 this height number... We force it instead allowing lists to have any height because the logic to 
 	 calculate rows becomes complicated. Possible, but complicated :)"
 	^ rowHeight ifNil: [ rowHeight := self class defaultRowHeight ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>rowHeight: aNumber [
+{ #category : #accessing }
+FTTableMorph >> rowHeight: aNumber [
 	rowHeight := aNumber
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>rowIndexToVerticalScrollBarValue: aNumber [
+{ #category : #private }
+FTTableMorph >> rowIndexToVerticalScrollBarValue: aNumber [
 	| numberOfRows |
 	numberOfRows := self numberOfRows - self container calculateMinVisibleRows.
 	^ (numberOfRows = 0 or: [ aNumber <= 1 ])
@@ -1114,70 +816,46 @@ FTTableMorph>>rowIndexToVerticalScrollBarValue: aNumber [
 		ifFalse: [ ((aNumber / numberOfRows) asFloat max: 0.0) min: 1.0 ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>scrollBarThickness [
+{ #category : #private }
+FTTableMorph >> scrollBarThickness [
 	^ self theme scrollbarThickness
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>secondarySelectionColor [
+{ #category : #'accessing colors' }
+FTTableMorph >> secondarySelectionColor [ 
 	^ secondarySelectionColor ifNil: [ self class defaultSecondarySelectionColor ]
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>secondarySelectionColor: aColor [
+{ #category : #'accessing colors' }
+FTTableMorph >> secondarySelectionColor: aColor [
 	secondarySelectionColor := aColor
 ]
 
-{
-	#category : #'accessing selection',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>selectAllRowIndexes [
+{ #category : #'accessing selection' }
+FTTableMorph >> selectAllRowIndexes [
 	self isMultipleSelection ifFalse: [ ^ self ].
 	self selectRowIndexes: (1 to: self numberOfRows) asArray 
 ]
 
-{
-	#category : #'accessing selection',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>selectRowIndex: aNumber [
+{ #category : #'accessing selection' }
+FTTableMorph >> selectRowIndex: aNumber [
 	self selectRowIndexes: { aNumber }
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>selectRowIndex: rowIndex event: event [
+{ #category : #private }
+FTTableMorph >> selectRowIndex: rowIndex event: event [
 	rowIndex
 		ifNotNil: [ selectionStrategy selectRowIndex: rowIndex event: event ]
 		ifNil: [ self selectRowIndexes: #() ].
 ]
 
-{
-	#category : #'accessing selection',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>selectRowIndexes: anArray [
+{ #category : #'accessing selection' }
+FTTableMorph >> selectRowIndexes: anArray [
 	self selectRowIndexes: anArray andMakeVisibleIf: true
 ]
 
-{
-	#category : #'accessing selection',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>selectRowIndexes: anArray andMakeVisibleIf: shouldEnsureVisibleSelection [
+{ #category : #'accessing selection' }
+FTTableMorph >> selectRowIndexes: anArray andMakeVisibleIf: shouldEnsureVisibleSelection [
 	| oldSelectedRowIndexes |
 	anArray = selectedRowIndexes
 		ifTrue: [ ^ self ].
@@ -1192,64 +870,43 @@ FTTableMorph>>selectRowIndexes: anArray andMakeVisibleIf: shouldEnsureVisibleSel
 				yourself)
 ]
 
-{
-	#category : #'accessing selection',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>selectedRowIndex [
+{ #category : #'accessing selection' }
+FTTableMorph >> selectedRowIndex [
 	^ self selectedRowIndexes 
 		ifNotEmpty: [ :indexes | indexes first ]
 		ifEmpty: [ 0 ] 
 ]
 
-{
-	#category : #'accessing selection',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>selectedRowIndexes [
+{ #category : #'accessing selection' }
+FTTableMorph >> selectedRowIndexes [
 	^ selectedRowIndexes
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>selectionColor [
+{ #category : #'accessing colors' }
+FTTableMorph >> selectionColor [
 	^ selectionColor ifNil: [ self class defaultSelectionColor ]
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>selectionColor: aColor [
+{ #category : #'accessing colors' }
+FTTableMorph >> selectionColor: aColor [
 	selectionColor := aColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>selectionStrategy [
+{ #category : #private }
+FTTableMorph >> selectionStrategy [
 	^ selectionStrategy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>setMultipleSelection: aBoolean [
+{ #category : #accessing }
+FTTableMorph >> setMultipleSelection: aBoolean [
 
 	aBoolean
 		ifTrue: [ self beMultipleSelection ]
 		ifFalse: [ self beSingleSelection ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>showColumnHeaders [
+{ #category : #accessing }
+FTTableMorph >> showColumnHeaders [
 	"Indicates table will show column headers. 
 	 See #hideColumnHeaders"
 	showColumnHeaders ifTrue: [ ^ self ].
@@ -1257,28 +914,19 @@ FTTableMorph>>showColumnHeaders [
 	self refresh
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>showFirstRowSelection [
+{ #category : #accessing }
+FTTableMorph >> showFirstRowSelection [
 	self hasSelection ifFalse: [ ^ self ].
 	self moveShowIndexTo: self selectedRowIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>showIndex [
+{ #category : #private }
+FTTableMorph >> showIndex [ 
 	^ showIndex
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>showMenuForPosition: aPoint [
+{ #category : #menu }
+FTTableMorph >> showMenuForPosition: aPoint [
 	| tuple |
 	
 	tuple := self container rowAndColumnIndexContainingPoint: aPoint.
@@ -1287,11 +935,8 @@ FTTableMorph>>showMenuForPosition: aPoint [
 		columnIndex: tuple second
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>showMenuForRowIndex: rowIndex columnIndex: columnIndex [
+{ #category : #menu }
+FTTableMorph >> showMenuForRowIndex: rowIndex columnIndex: columnIndex [
 	| menu |
 
 	(rowIndex notNil and: [ (self isRowIndexSelected: rowIndex) not ]) ifTrue: [ 
@@ -1308,11 +953,8 @@ FTTableMorph>>showMenuForRowIndex: rowIndex columnIndex: columnIndex [
 	
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>startDrag: event [
+{ #category : #'drag and drop' }
+FTTableMorph >> startDrag: event [
 
 	| passengers transferMorph |
 
@@ -1330,47 +972,32 @@ FTTableMorph>>startDrag: event [
 	event hand grabMorph: transferMorph 
 ]
 
-{
-	#category : #'event testing',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>takesKeyboardFocus [
+{ #category : #'event testing' }
+FTTableMorph >> takesKeyboardFocus [
 	^ self enabled
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>themeChanged [
+{ #category : #updating }
+FTTableMorph >> themeChanged [
 	self color: self defaultColor.
 	super themeChanged.
 	self refresh
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>update: symbol [
+{ #category : #updating }
+FTTableMorph >> update: symbol [
 	symbol == #refresh ifTrue: [ ^ self refresh ].
 	^ super update: symbol
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>verticalScrollBar [
+{ #category : #private }
+FTTableMorph >> verticalScrollBar [
 	^ verticalScrollBar
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>verticalScrollBarValue: aNumber [
+{ #category : #private }
+FTTableMorph >> verticalScrollBarValue: aNumber [
 
 	self hasDataSource ifFalse: [ ^ self ].
 	
@@ -1379,38 +1006,26 @@ FTTableMorph>>verticalScrollBarValue: aNumber [
 	self container changed
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>verticalScrollBarValueToRowIndex: aNumber [
+{ #category : #private }
+FTTableMorph >> verticalScrollBarValueToRowIndex: aNumber [
 	| startingIndex |
 	startingIndex := self dataSource numberOfRows - self container calculateMinVisibleRows + 1.
 	^ (startingIndex * aNumber) asInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>verticalScrollBarWidth [
+{ #category : #private }
+FTTableMorph >> verticalScrollBarWidth [
 	self isVerticalScrollBarVisible ifFalse: [  ^ 0 ].
 	^ self scrollBarThickness
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>visibleRowMorphAtIndex: index [
+{ #category : #accessing }
+FTTableMorph >> visibleRowMorphAtIndex: index [
 	^ container visibleRowMorphAtIndex: index
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableMorph>>wantsDroppedMorph: aMorph event: event [
+{ #category : #'drag and drop' }
+FTTableMorph >> wantsDroppedMorph: aMorph event: event [
 	aMorph isTransferable ifFalse: [ ^false ].
 	^ self dataSource 
 		wantsDropElements: aMorph passenger

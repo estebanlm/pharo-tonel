@@ -1,12 +1,7 @@
-Extension {
-	#name : #GLMPresentation
-}
+Extension { #name : #GLMPresentation }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPresentation>>gtInspectorBrowserIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+GLMPresentation >> gtInspectorBrowserIn: composite [
 	<gtInspectorPresentationOrder: 40>  
 	^ composite tabulator with: [ :t |
 		t title: 'Live'.
@@ -18,11 +13,8 @@ GLMPresentation>>gtInspectorBrowserIn: composite [
 		t transmit from: #default port: #selection; toOutsidePort: #selection ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPresentation>>gtInspectorPanePortsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+GLMPresentation >> gtInspectorPanePortsIn: composite [
 	<gtInspectorPresentationOrder: 50>
 	(self pane gtInspectorPortsIn: composite)
 		title: 'Pane ports'

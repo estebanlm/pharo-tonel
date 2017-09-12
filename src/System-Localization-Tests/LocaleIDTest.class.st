@@ -4,43 +4,30 @@ A unit test class for class LocaleID
 Class {
 	#name : #LocaleIDTest,
 	#superclass : #TestCase,
-	#category : #System-Localization-Tests,
-	#timestamp : 'TorstenBergmann 9/16/2014 14:32'
+	#category : #System-Localization-Tests
 }
 
-{
-	#category : #'tests - test data',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleIDTest>>frenchLocaleID [
+{ #category : #'tests - test data' }
+LocaleIDTest >> frenchLocaleID [
 
 	^LocaleID isoLanguage: 'fr'
 ]
 
-{
-	#category : #'tests - test data',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleIDTest>>germanLocaleID [
+{ #category : #'tests - test data' }
+LocaleIDTest >> germanLocaleID [
 
 	^LocaleID isoLanguage: 'de'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleIDTest>>testComparision [
+{ #category : #tests }
+LocaleIDTest >> testComparision [
 
 	self deny: self germanLocaleID = self frenchLocaleID.
 	self assert: self germanLocaleID = self germanLocaleID.	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleIDTest>>testFromISOString [
+{ #category : #tests }
+LocaleIDTest >> testFromISOString [
 
 	| locale |
 	locale := LocaleID isoString: 'en-us'.
@@ -49,11 +36,8 @@ LocaleIDTest>>testFromISOString [
 		assert: locale isoCountry = 'us'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleIDTest>>testFromSingleISOString [
+{ #category : #tests }
+LocaleIDTest >> testFromSingleISOString [
 
 	| locale |
 	locale := LocaleID isoString: 'en'.
@@ -62,33 +46,24 @@ LocaleIDTest>>testFromSingleISOString [
 		assert: locale isoCountry isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleIDTest>>testHashing [
+{ #category : #tests }
+LocaleIDTest >> testHashing [
 
 	self assert: self germanLocaleID hash = self germanLocaleID hash.
 	self assert: self frenchLocaleID hash = self frenchLocaleID hash.	
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleIDTest>>testInstanceCreationWithISOLanguage [
+{ #category : #tests }
+LocaleIDTest >> testInstanceCreationWithISOLanguage [
 
 	|germanLocale|
 	germanLocale := LocaleID isoLanguage: 'de'.
 	self assert: germanLocale isoLanguage = 'de'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleIDTest>>testInstanceCreationWithISOLanguageAndCountry [
+{ #category : #tests }
+LocaleIDTest >> testInstanceCreationWithISOLanguageAndCountry [
 
 	|locale|
 	locale := LocaleID isoLanguage: 'zh' isoCountry: 'CN'.
@@ -97,11 +72,8 @@ LocaleIDTest>>testInstanceCreationWithISOLanguageAndCountry [
 		assert: locale isoCountry = 'CN'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleIDTest>>testPosixNameConversion [
+{ #category : #tests }
+LocaleIDTest >> testPosixNameConversion [
 
 	| locale |
 	locale := LocaleID posixName: 'en_us'.
@@ -110,11 +82,8 @@ LocaleIDTest>>testPosixNameConversion [
 		assert: locale isoCountry = 'us'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleIDTest>>testPrintString [
+{ #category : #tests }
+LocaleIDTest >> testPrintString [
 
 	| locale |
 	locale := LocaleID isoString: 'en-us'.	

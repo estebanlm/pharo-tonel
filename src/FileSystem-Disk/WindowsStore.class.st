@@ -10,48 +10,32 @@ Class {
 	#classVars : [
 		'Disks'
 	],
-	#category : #FileSystem-Disk,
-	#timestamp : '<historical>'
+	#category : #FileSystem-Disk
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-WindowsStore class>>delimiter [
+{ #category : #accessing }
+WindowsStore class >> delimiter [
 	^ $\
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-WindowsStore class>>isCaseSensitive [
+{ #category : #accessing }
+WindowsStore class >> isCaseSensitive [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-WindowsStore class>>maxFileNameLength [
+{ #category : #accessing }
+WindowsStore class >> maxFileNameLength [
 	self flag: 'TODO: more tests needed here!'.
 	^ 255
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-WindowsStore class>>separator  [
+{ #category : #accessing }
+WindowsStore class >> separator [ 
 	^ $\
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-WindowsStore>>checkName: aFileName fixErrors: fixing [
+{ #category : #public }
+WindowsStore >> checkName: aFileName fixErrors: fixing [
 	"Check if the file name contains any invalid characters"
 	
 	| fName badChars hasBadChars |
@@ -69,19 +53,13 @@ WindowsStore>>checkName: aFileName fixErrors: fixing [
 				ifFalse: [char]]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-WindowsStore>>currentDisk [
+{ #category : #converting }
+WindowsStore >> currentDisk [
 	^ disk ifNil: [  disk := FileSystem workingDirectory path segments first ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-WindowsStore>>pathFromString: aString [
+{ #category : #converting }
+WindowsStore >> pathFromString: aString [
 	"Need to distinguish '' and '/' , so tag latter with invalid character ':'  "
 	| normalized pathClass pathElements |
 	normalized := aString copy replaceAll: UnixStore delimiter with: self delimiter.
@@ -94,11 +72,8 @@ WindowsStore>>pathFromString: aString [
 	^pathClass withAll: pathElements
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-WindowsStore>>printPath: aPath on: aStream [
+{ #category : #converting }
+WindowsStore >> printPath: aPath on: aStream [
 	| hasDrive |
 	aPath isRoot
 		ifTrue: [ ^ self ].	"effectively Windows root is empty string"
@@ -116,10 +91,7 @@ WindowsStore>>printPath: aPath on: aStream [
 		ifTrue: [ aStream nextPut: self delimiter ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-WindowsStore>>stripDrive: pathElements [
+{ #category : #converting }
+WindowsStore >> stripDrive: pathElements [
 	pathElements ifNotEmpty: [ pathElements at: 1 put: ( ($: split: pathElements first) last)  ]
 ]

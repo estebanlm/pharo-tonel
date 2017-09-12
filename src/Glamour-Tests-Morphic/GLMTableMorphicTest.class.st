@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMTableMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTableMorphicTest>>testColumnBlockTakesEntity [
+{ #category : #tests }
+GLMTableMorphicTest >> testColumnBlockTakesEntity [
 
 	| browser receivedEntity |
 	browser := GLMFinder new.
@@ -25,11 +18,8 @@ GLMTableMorphicTest>>testColumnBlockTakesEntity [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTableMorphicTest>>testColumnLabel [
+{ #category : #tests }
+GLMTableMorphicTest >> testColumnLabel [
 	| browser tableMorph |
 	browser := GLMTabulator new.
 	browser column: #one.

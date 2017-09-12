@@ -1,12 +1,7 @@
-Extension {
-	#name : #ZnMimePart
-}
+Extension { #name : #ZnMimePart }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-ZnMimePart>>gtInspectorContentsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+ZnMimePart >> gtInspectorContentsIn: composite [
 	<gtInspectorPresentationOrder: 40>
 	self hasEntity
 		ifTrue: [ 
@@ -24,11 +19,8 @@ ZnMimePart>>gtInspectorContentsIn: composite [
 						format: self contents ] ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-ZnMimePart>>gtInspectorHeadersIn: composite  [
+{ #category : #'*GT-InspectorExtensions-Core' }
+ZnMimePart >> gtInspectorHeadersIn: composite [ 
 	<gtInspectorPresentationOrder: 30>
 	^ (self headers gtInspectorHeadersIn: composite) 
 		title: [:anObject | self headers headers size asString , ' headers' ]

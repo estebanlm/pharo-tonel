@@ -5,24 +5,17 @@ Class {
 	#name : #WeakActionSequence,
 	#superclass : #Array,
 	#type : #variable,
-	#category : #'System-Object Events',
-	#timestamp : 'TorstenBergmann 2/4/2014 21:46'
+	#category : #'System-Object Events'
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-WeakActionSequence>>asActionSequence [
+{ #category : #converting }
+WeakActionSequence >> asActionSequence [
 
 	^self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-WeakActionSequence>>asMinimalRepresentation [
+{ #category : #converting }
+WeakActionSequence >> asMinimalRepresentation [
 
 	| valid |
 	valid := self select: [:e | e isValid ].
@@ -33,11 +26,8 @@ WeakActionSequence>>asMinimalRepresentation [
 	^valid
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-WeakActionSequence>>printOn: aStream [
+{ #category : #printing }
+WeakActionSequence >> printOn: aStream [
 
 	self size < 2 ifTrue: [^super printOn: aStream].
 	aStream nextPutAll: '#('.
@@ -47,11 +37,8 @@ WeakActionSequence>>printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-WeakActionSequence>>value [
+{ #category : #evaluating }
+WeakActionSequence >> value [
     "Answer the result of evaluating the elements of the receiver.
 	Actually, return just the last result."
 
@@ -61,11 +48,8 @@ WeakActionSequence>>value [
     ^answer
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-WeakActionSequence>>valueWithArguments: anArray [
+{ #category : #evaluating }
+WeakActionSequence >> valueWithArguments: anArray [
 
 	"Return the last result"
 

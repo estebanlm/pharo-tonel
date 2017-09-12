@@ -7,25 +7,18 @@ Class {
 	#instVars : [
 		'reference'
 	],
-	#category : #FileSystem-Zip,
-	#timestamp : '<historical>'
+	#category : #FileSystem-Zip
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-ZipStore class>>reference: aReference [
+{ #category : #'as yet unclassified' }
+ZipStore class >> reference: aReference [
 	^ self basicNew
 		initializeWithReference: aReference
 		yourself
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-ZipStore>>close [
+{ #category : #public }
+ZipStore >> close [
 	| archive fs stream |
 	archive := ZipArchive new.
 	fs := FileSystem store: self.
@@ -42,37 +35,25 @@ ZipStore>>close [
 		[ :output | output nextPutAll: stream contents ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-ZipStore>>forReferencePrintOn: aStream [
+{ #category : #printing }
+ZipStore >> forReferencePrintOn: aStream [
 	aStream nextPutAll: 'zip://'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-ZipStore>>initialize [
+{ #category : #initialization }
+ZipStore >> initialize [
 	super initialize.
 	root := ZipFileSystemDirectory new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-ZipStore>>initializeWithReference: aReference [
+{ #category : #initialization }
+ZipStore >> initializeWithReference: aReference [
 	self initialize.
 	reference := aReference
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-ZipStore>>open [
+{ #category : #public }
+ZipStore >> open [
 	| archive |
 	self reference exists
 		ifFalse: [ ^ self ].
@@ -92,11 +73,8 @@ ZipStore>>open [
 	^ self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-ZipStore>>pathFromMember: anArchiveMember [
+{ #category : #private }
+ZipStore >> pathFromMember: anArchiveMember [
 	| path |
 	path := Path from: anArchiveMember fileName.
 	^ path basename isEmpty
@@ -104,10 +82,7 @@ ZipStore>>pathFromMember: anArchiveMember [
 		ifFalse: [ path ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-ZipStore>>reference [
+{ #category : #public }
+ZipStore >> reference [
 	^ reference
 ]

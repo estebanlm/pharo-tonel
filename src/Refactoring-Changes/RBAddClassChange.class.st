@@ -13,15 +13,11 @@ Class {
 		'poolDictionaryNames',
 		'category'
 	],
-	#category : #Refactoring-Changes,
-	#timestamp : 'NicolaiHess 9/9/2016 20:34'
+	#category : #Refactoring-Changes
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddClassChange class>>definitionPatterns [
+{ #category : #private }
+RBAddClassChange class >> definitionPatterns [
 	^ #('`@superclass subclass: `#className instanceVariableNames: `#instanceVariableNames classVariableNames: `#classVariableNames poolDictionaries: `#poolDictionaries category: `#category'
 		'`@superclass subclass: `#className uses: `@traitComposition instanceVariableNames: `#instanceVariableNames classVariableNames: `#classVariableNames poolDictionaries: `#poolDictionaries category: `#category'
 		'`@superclass variableByteSubclass: `#className instanceVariableNames: `#instanceVariableNames classVariableNames: `#classVariableNames poolDictionaries: `#poolDictionaries category: `#category'
@@ -35,11 +31,8 @@ RBAddClassChange class>>definitionPatterns [
 		flatCollect: [ :each | Array with: each with: (each copyReplaceAll: '`@superclass' with: 'ProtoObject') , '. `className superclass: `@superclass' ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddClassChange>>asUndoOperation [
+{ #category : #converting }
+RBAddClassChange >> asUndoOperation [
 	| class |
 	class := Smalltalk globals
 		at: self changeClassName
@@ -49,35 +42,23 @@ RBAddClassChange>>asUndoOperation [
 		ifFalse: [ RBRefactoryChangeManager changeFactory removeClassNamed: self changeClassName ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddClassChange>>category [
+{ #category : #accessing }
+RBAddClassChange >> category [
 	^ category
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddClassChange>>classVariableNames [
+{ #category : #accessing }
+RBAddClassChange >> classVariableNames [
 	^ classVariableNames
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddClassChange>>definitionClass [
+{ #category : #private }
+RBAddClassChange >> definitionClass [
 	^ Smalltalk globals at: (self superclassName ifNil: [ ^ ProtoObject ])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddClassChange>>fillOutDefinition: aDictionary [
+{ #category : #private }
+RBAddClassChange >> fillOutDefinition: aDictionary [
 	superclassName := (aDictionary at: '`@superclass')
 		ifNotNil: [ :value | value asSymbol ].
 	className := (aDictionary at: '`#className') asSymbol.
@@ -96,26 +77,17 @@ RBAddClassChange>>fillOutDefinition: aDictionary [
 			asSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddClassChange>>instanceVariableNames [
+{ #category : #accessing }
+RBAddClassChange >> instanceVariableNames [
 	^ instanceVariableNames
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddClassChange>>sharedPoolNames [
+{ #category : #accessing }
+RBAddClassChange >> sharedPoolNames [
 	^ poolDictionaryNames
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddClassChange>>superclassName [
+{ #category : #accessing }
+RBAddClassChange >> superclassName [
 	^ superclassName
 ]

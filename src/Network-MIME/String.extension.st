@@ -1,40 +1,26 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*Network-MIME',
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-String>>asMIMEType [
+{ #category : #'*Network-MIME' }
+String >> asMIMEType [
 	^ self asZnMimeType
 ]
 
-{
-	#category : #'*Network-MIME',
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-String>>base64Decoded [
+{ #category : #'*Network-MIME' }
+String >> base64Decoded [
 	"Decode the receiver from base 64"
 	"'SGVsbG8gV29ybGQ=' base64Decoded"
 	^(Base64MimeConverter mimeDecode: self as: self class)
 ]
 
-{
-	#category : #'*Network-MIME',
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-String>>base64Encoded [
+{ #category : #'*Network-MIME' }
+String >> base64Encoded [
 	"Encode the receiver as base64"
 	"'Hello World' base64Encoded"
 	^(Base64MimeConverter mimeEncode: self readStream) contents
 ]
 
-{
-	#category : #'*Network-MIME',
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-String>>decodeMimeHeader [
+{ #category : #'*Network-MIME' }
+String >> decodeMimeHeader [
 	"See RFC 2047, MIME Part Three: Message Header Extension for Non-ASCII  
 	Text. Text containing non-ASCII characters is encoded by the sequence  
 	=?character-set?encoding?encoded-text?=  
@@ -81,11 +67,8 @@ String>>decodeMimeHeader [
 					nextPut: temp ] ] ]
 ]
 
-{
-	#category : #'*Network-MIME',
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-String>>decodeQuotedPrintable [
+{ #category : #'*Network-MIME' }
+String >> decodeQuotedPrintable [
 	"Assume receiver is in MIME 'quoted-printable' encoding, and decode it."
   
 	^QuotedPrintableMimeConverter mimeDecode: self as: self class

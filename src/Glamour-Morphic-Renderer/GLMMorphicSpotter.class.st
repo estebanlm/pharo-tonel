@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicSpotter,
 	#superclass : #DialogWindow,
@@ -10,63 +7,41 @@ Class {
 		'answer',
 		'childrenMorphs'
 	],
-	#category : #Glamour-Morphic-Renderer-Spotter,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer-Spotter
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter class>>on: aRequest [
+{ #category : #'instance creation' }
+GLMMorphicSpotter class >> on: aRequest [
 	^ self basicNew initializeOn: aRequest
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter class>>openOn: aRequest [
+{ #category : #'instance creation' }
+GLMMorphicSpotter class >> openOn: aRequest [
 	^ UITheme builder openModal: (self on: aRequest)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter>>answer [
+{ #category : #accessing }
+GLMMorphicSpotter >> answer [
 	^ answer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter>>answer: anObject [
+{ #category : #accessing }
+GLMMorphicSpotter >> answer: anObject [
 	answer := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter>>childrenMorphs [
+{ #category : #accessing }
+GLMMorphicSpotter >> childrenMorphs [
 	^ childrenMorphs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter>>childrenMorphs: anObject [
+{ #category : #accessing }
+GLMMorphicSpotter >> childrenMorphs: anObject [
 	childrenMorphs := anObject
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter>>editorKeyStroke: anEvent [
+{ #category : #callbacks }
+GLMMorphicSpotter >> editorKeyStroke: anEvent [
 "	anEvent keyCharacter = Character arrowDown ifTrue: [
 		self listIndex: (self listIndex + 1 min: listValues size).
 		^ true ].
@@ -76,20 +51,14 @@ GLMMorphicSpotter>>editorKeyStroke: anEvent [
 	^ false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter>>initialize  [
+{ #category : #initialization }
+GLMMorphicSpotter >> initialize [ 
 	childrenMorphs := OrderedCollection new.
 	super initialize
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter>>initializeOn: aRequest [
+{ #category : #initialization }
+GLMMorphicSpotter >> initializeOn: aRequest [
 	model := aRequest.
 	self initialize.
 	self title: aRequest prompt.
@@ -97,11 +66,8 @@ GLMMorphicSpotter>>initializeOn: aRequest [
 
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter>>newContentMorph [
+{ #category : #morphic }
+GLMMorphicSpotter >> newContentMorph [
 	^ (self newColumn: 
 			((OrderedCollection with: self newTextMorph) addAll: self newListMorphs; yourself) )
 		minWidth: 320;
@@ -109,11 +75,8 @@ GLMMorphicSpotter>>newContentMorph [
 		yourself
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter>>newListMorphs [
+{ #category : #morphic }
+GLMMorphicSpotter >> newListMorphs [
 	| list |
 	self model requests do: [:each | 
 		list := (GLMMorphicSingleSpotter on: each parent: self).
@@ -121,11 +84,8 @@ GLMMorphicSpotter>>newListMorphs [
 	^ childrenMorphs collect: #newListMorph
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter>>newTextMorph [
+{ #category : #morphic }
+GLMMorphicSpotter >> newTextMorph [
 	textMorph := self
 		newTextEntryFor: self
 		getText: #text
@@ -139,11 +99,8 @@ GLMMorphicSpotter>>newTextMorph [
 	^ textMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter>>ok [
+{ #category : #accessing }
+GLMMorphicSpotter >> ok [
 	| nonEmpty |
 	nonEmpty := self childrenMorphs reject: [ :e | e listIndex isZero ].
 	nonEmpty size = 1
@@ -151,30 +108,21 @@ GLMMorphicSpotter>>ok [
 	^ super ok
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter>>selectionIn: singleSpotlight [
+{ #category : #callbacks }
+GLMMorphicSpotter >> selectionIn: singleSpotlight [
 
 	(self childrenMorphs reject: [:e| e = singleSpotlight] ) do: [:e| 
 			e deselect.
 		]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter>>text [
+{ #category : #accessing }
+GLMMorphicSpotter >> text [
 	^ text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter>>text: aString [
+{ #category : #accessing }
+GLMMorphicSpotter >> text: aString [
 	text = aString
 		ifTrue: [ ^ self ].
 	text := aString.
@@ -182,18 +130,12 @@ GLMMorphicSpotter>>text: aString [
 	self changed: #text; changed: #isEnabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter>>textMorph [
+{ #category : #accessing }
+GLMMorphicSpotter >> textMorph [
 	^ textMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotter>>textMorph: anObject [
+{ #category : #accessing }
+GLMMorphicSpotter >> textMorph: anObject [
 	textMorph := anObject
 ]

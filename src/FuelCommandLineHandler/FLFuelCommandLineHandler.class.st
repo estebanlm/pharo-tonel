@@ -28,39 +28,26 @@ Class {
 	#instVars : [
 		'files'
 	],
-	#category : #FuelCommandLineHandler,
-	#timestamp : '<historical>'
+	#category : #FuelCommandLineHandler
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLFuelCommandLineHandler class>>commandName [
+{ #category : #accessing }
+FLFuelCommandLineHandler class >> commandName [
 	^ 'Fuel'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLFuelCommandLineHandler class>>description [
+{ #category : #accessing }
+FLFuelCommandLineHandler class >> description [
 	^ 'Loads fuel files'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLFuelCommandLineHandler class>>fileExtension [
+{ #category : #accessing }
+FLFuelCommandLineHandler class >> fileExtension [
 	^ '.fuel'
 ]
 
-{
-	#category : #'handler selection',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLFuelCommandLineHandler class>>isResponsibleFor: aCommandLine [
+{ #category : #'handler selection' }
+FLFuelCommandLineHandler class >> isResponsibleFor: aCommandLine [
 	"This handler is reponsible only for .fuel files"
 	(aCommandLine hasFileWithExtension: self fileExtension)
 		ifTrue: [ ^ true ].
@@ -68,11 +55,8 @@ FLFuelCommandLineHandler class>>isResponsibleFor: aCommandLine [
 	
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLFuelCommandLineHandler>>activate [
+{ #category : #activation }
+FLFuelCommandLineHandler >> activate [
 	self manageFiles.
 	(self commandLine hasOption: 'save')
 		ifTrue: [
@@ -86,19 +70,13 @@ FLFuelCommandLineHandler>>activate [
 		ifTrue: [ self exitSuccess ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLFuelCommandLineHandler>>fileExtension [
+{ #category : #accessing }
+FLFuelCommandLineHandler >> fileExtension [
 	^ self class fileExtension
 ]
 
-{
-	#category : #manage,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLFuelCommandLineHandler>>manageFile: aFileReference [
+{ #category : #manage }
+FLFuelCommandLineHandler >> manageFile: aFileReference [
 
 	aFileReference readStreamDo: [ :stream |
 		stream binary.
@@ -108,11 +86,8 @@ FLFuelCommandLineHandler>>manageFile: aFileReference [
 		].
 ]
 
-{
-	#category : #manage,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLFuelCommandLineHandler>>manageFiles [
+{ #category : #manage }
+FLFuelCommandLineHandler >> manageFiles [
 	"Load all the source files in the given array."
 	files := (self commandLine allFilesWithExtension: self fileExtension)
 		 collect: [ :each | (FileSystem disk resolve: each) asFileReference ].

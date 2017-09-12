@@ -10,33 +10,23 @@ Class {
 	#instVars : [
 		'hostName'
 	],
-	#category : #Network-Kernel,
-	#timestamp : 'mir 5/12/2003 18:16'
+	#category : #Network-Kernel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NameLookupFailure class>>hostName: aString [
+{ #category : #'instance creation' }
+NameLookupFailure class >> hostName: aString [
 	^ self new hostName: aString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NameLookupFailure class>>signalFor: hostName [
+{ #category : #'instance creation' }
+NameLookupFailure class >> signalFor: hostName [
 	"Create and signal a NameLookupFailure for hostName"
 
 	^ (self hostName: hostName) signal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NameLookupFailure>>defaultAction [
+{ #category : #accessing }
+NameLookupFailure >> defaultAction [
 	"Backward compatibility"
 
 	| response |
@@ -46,37 +36,25 @@ NameLookupFailure>>defaultAction [
 		ifFalse: [ self retry ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NameLookupFailure>>hostName [
+{ #category : #accessing }
+NameLookupFailure >> hostName [
 	^ hostName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NameLookupFailure>>hostName: aString [
+{ #category : #accessing }
+NameLookupFailure >> hostName: aString [
 	hostName := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NameLookupFailure>>messageText [
+{ #category : #accessing }
+NameLookupFailure >> messageText [
 	"Overwritten to initialiaze the message text to a standard text if it has not yet been set"
 
 	^ messageText ifNil: [ messageText := self standardMessageText ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NameLookupFailure>>standardMessageText [
+{ #category : #accessing }
+NameLookupFailure >> standardMessageText [
 	"Generate a standard textual description"
 
 	^ String

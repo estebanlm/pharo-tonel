@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'package'
 	],
-	#category : #RPackage-Core,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:55'
+	#category : #RPackage-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageAnnouncement class>>to: aPackage [
+{ #category : #'instance creation' }
+RPackageAnnouncement class >> to: aPackage [
 
 	^ self new package: aPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageAnnouncement>>package [
+{ #category : #accessing }
+RPackageAnnouncement >> package [
 
 	^ package
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageAnnouncement>>package: anObject [
+{ #category : #accessing }
+RPackageAnnouncement >> package: anObject [
 
 	package := anObject
 ]

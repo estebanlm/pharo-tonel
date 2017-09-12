@@ -1,9 +1,5 @@
-"
-
-"
 Class {
 	#name : #UnwindError,
 	#superclass : #Error,
-	#category : #Kernel-Processes,
-	#timestamp : ''
+	#category : #Kernel-Processes
 }

@@ -1,28 +1,18 @@
-"
-
-"
 Class {
 	#name : #GLMPagerButtonAnnouncement,
 	#superclass : #Announcement,
 	#instVars : [
 		'buttonModel'
 	],
-	#category : #Glamour-Morphic-Pager-Announcement,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Pager-Announcement
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonAnnouncement>>buttonModel [
+{ #category : #accessing }
+GLMPagerButtonAnnouncement >> buttonModel [
 	^ buttonModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonAnnouncement>>buttonModel: anObject [
+{ #category : #accessing }
+GLMPagerButtonAnnouncement >> buttonModel: anObject [
 	buttonModel := anObject
 ]

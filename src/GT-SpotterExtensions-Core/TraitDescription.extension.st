@@ -1,12 +1,7 @@
-Extension {
-	#name : #TraitDescription
-}
+Extension { #name : #TraitDescription }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-TraitDescription>>spotterPackageFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+TraitDescription >> spotterPackageFor: aStep [
 	<spotterOrder: 50>
 	aStep listProcessor
 			title: 'Package';

@@ -8,204 +8,137 @@ Class {
 		'wrapped',
 		'editorClass'
 	],
-	#category : #Rubric-Editing-Core,
-	#timestamp : 'FranckWarlouzet 7/29/2015 12:54'
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>autoScroll: anEvent [
+{ #category : #'event handling' }
+RubEditingArea >> autoScroll: anEvent [
 	scrollPane ifNil: [ ^self ].
 	self scrollPivot  ifNil: [ ^self ].
 	scrollPane scrollWhenMouseMove: anEvent pivotPoint: self scrollPivot
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>beForPlainText [
+{ #category : #initialize-release }
+RubEditingArea >> beForPlainText [
 	self editingMode: RubPlainTextMode new
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>beForSmalltalkCode [
+{ #category : #initialize-release }
+RubEditingArea >> beForSmalltalkCode [
 	self editingMode: RubSmalltalkCodeMode new
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>beForSmalltalkCodeInClass: aClass [
+{ #category : #initialize-release }
+RubEditingArea >> beForSmalltalkCodeInClass: aClass [
 	self editingMode: (RubSmalltalkCodeMode new
 		classOrMetaClass: aClass;
 		yourself)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>beForSmalltalkCodeWithDefaultFont [
+{ #category : #initialize-release }
+RubEditingArea >> beForSmalltalkCodeWithDefaultFont [
 	self editingMode: RubSmalltalkCodeMode new.
 	self font: StandardFonts defaultFont
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>beForSmalltalkComment [
+{ #category : #initialize-release }
+RubEditingArea >> beForSmalltalkComment [
 	self editingMode: RubSmalltalkCommentMode new
 ]
 
-{
-	#category : #'public accessing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>beForSmalltalkScripting [
+{ #category : #'public accessing' }
+RubEditingArea >> beForSmalltalkScripting [
 	self editingMode: RubSmalltalkScriptingMode new
 ]
 
-{
-	#category : #'public accessing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>beForSmalltalkScriptingWithDefaultFont [
+{ #category : #'public accessing' }
+RubEditingArea >> beForSmalltalkScriptingWithDefaultFont [
 	self editingMode: RubSmalltalkScriptingMode new.
 	self font: StandardFonts defaultFont
 ]
 
-{
-	#category : #'public accessing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>beNotWrapped [
+{ #category : #'public accessing' }
+RubEditingArea >> beNotWrapped [
 	self wrapped
 		ifTrue: [ self handleParagraphChange: [ self wrapped: false ] ]
 ]
 
-{
-	#category : #'public accessing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>beWrapped [
+{ #category : #'public accessing' }
+RubEditingArea >> beWrapped [
 	self wrapped
 		ifFalse: [ self handleParagraphChange: [ self wrapped: true ] ]
 ]
 
-{
-	#category : #binding,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>bindingOf: aString [
+{ #category : #binding }
+RubEditingArea >> bindingOf: aString [
 	^ self editingMode bindingOf: aString
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>classOrMetaClass: aBehavior [
+{ #category : #'as yet unclassified' }
+RubEditingArea >> classOrMetaClass: aBehavior [
 	"set the classOrMetaClass in the receiver's styler to aBehavior"
 	self shoutStyler ifNotNil: [ :styler | styler classOrMetaClass: aBehavior]
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>doesNotUnderstand: aMessage [
+{ #category : #'error handling' }
+RubEditingArea >> doesNotUnderstand: aMessage [
 	"{aMessage . thisContext sender} inspectOnce."
 	^ aMessage sendTo: self editingMode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>editorClass [
+{ #category : #accessing }
+RubEditingArea >> editorClass [
 	^ editorClass ifNil: [ editorClass := RubTextEditor ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>editorClass: aClass [
+{ #category : #accessing }
+RubEditingArea >> editorClass: aClass [
 	editorClass := aClass
 ]
 
-{
-	#category : #highlighting,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>ensureAndGetNewHighlightSegmentFrom: startIndex to: stopIndex [
+{ #category : #highlighting }
+RubEditingArea >> ensureAndGetNewHighlightSegmentFrom: startIndex to: stopIndex [
 	
 	^ self 
 		removeHighlightSegment;
 		addSegment: (RubHighlightSegmentMorph from: startIndex to: stopIndex)
 ]
 
-{
-	#category : #highlighting,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>ensureAndGetNewHoverHighlightSegmentFrom: startIndex to: stopIndex [
+{ #category : #highlighting }
+RubEditingArea >> ensureAndGetNewHoverHighlightSegmentFrom: startIndex to: stopIndex [
 	
 	^ self 
 		removeHoverHighlightSegment;
 		addSegment: (RubHoverHighlightSegmentMorph from: startIndex to: stopIndex)
 ]
 
-{
-	#category : #highlighting,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>getHighlightSegment [
+{ #category : #highlighting }
+RubEditingArea >> getHighlightSegment [
 
 	^ self getSegmentOfClass:  RubHighlightSegmentMorph
 ]
 
-{
-	#category : #highlighting,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>getHoverHighlightSegment [
+{ #category : #highlighting }
+RubEditingArea >> getHoverHighlightSegment [
 
 	^ self getSegmentOfClass: RubHoverHighlightSegmentMorph
 ]
 
-{
-	#category : #highlighting,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>getSegmentOfClass: aClass [
+{ #category : #highlighting }
+RubEditingArea >> getSegmentOfClass: aClass [
 
 	^ self segments detect: [ :each | each class = aClass ] ifNone: [ nil ]
 ]
 
-{
-	#category : #highlighting,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>hasHighlightSegment [
+{ #category : #highlighting }
+RubEditingArea >> hasHighlightSegment [
 
 	^ self getHighlightSegment notNil
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>mouseMove: evt [
+{ #category : #'event handling' }
+RubEditingArea >> mouseMove: evt [
 	| editEvt |
 	super mouseMove: evt.
 	scrollPane ifNil: [ ^ self ].
@@ -221,120 +154,78 @@ RubEditingArea>>mouseMove: evt [
 		ifTrue: [ self stopSteppingSelector: #autoScroll: ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>newParagraph [
+{ #category : #private }
+RubEditingArea >> newParagraph [
 	^ RubCurrentLineBarDecorator	next: (RubExtraSelectionDecorator next: super newParagraph)
 ]
 
-{
-	#category : #highlighting,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>removeHighlightSegment [
+{ #category : #highlighting }
+RubEditingArea >> removeHighlightSegment [
 
 	(self getHighlightSegment)
 		ifNotNil: [ :aSegment | aSegment delete ].
 ]
 
-{
-	#category : #highlighting,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>removeHoverHighlightSegment [
+{ #category : #highlighting }
+RubEditingArea >> removeHoverHighlightSegment [
 
 	(self getHoverHighlightSegment)
 		ifNotNil: [ :aSegment | aSegment delete ].
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>shoutAboutToStyle: myself [
+{ #category : #'as yet unclassified' }
+RubEditingArea >> shoutAboutToStyle: myself [
 
 	^self editingMode shoutAboutToStyle: myself
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>shoutStyler [
+{ #category : #'as yet unclassified' }
+RubEditingArea >> shoutStyler [
 	^ self decoratorNamed: #shoutStyler
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>textArea [
+{ #category : #'as yet unclassified' }
+RubEditingArea >> textArea [
 	"for #whenTextAreaSelectionChanged:"
 	^self
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>walkAlongDisplayedLine [
+{ #category : #settings }
+RubEditingArea >> walkAlongDisplayedLine [
 	^ self class walkAlongDisplayedLine
 ]
 
-{
-	#category : #'accessing decorators',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>withSecondarySelection [
+{ #category : #'accessing decorators' }
+RubEditingArea >> withSecondarySelection [
 	self withDecoratorNamed: #secondarySelection
 ]
 
-{
-	#category : #'accessing decorators',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>withSelectionBar [
+{ #category : #'accessing decorators' }
+RubEditingArea >> withSelectionBar [
 	self withDecoratorNamed: #selectionBar
 ]
 
-{
-	#category : #'accessing decorators',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>withoutOpeningClosingDelimitersHighlight [
+{ #category : #'accessing decorators' }
+RubEditingArea >> withoutOpeningClosingDelimitersHighlight [
 	self withoutDecoratorNamed: #openingClosingDelimitersHighlight
 ]
 
-{
-	#category : #'accessing decorators',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>withoutSelectionBar [
+{ #category : #'accessing decorators' }
+RubEditingArea >> withoutSelectionBar [
 	self withoutDecoratorNamed: #selectionBar
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>withoutShoutStyler [
+{ #category : #'as yet unclassified' }
+RubEditingArea >> withoutShoutStyler [
 	self withoutDecoratorNamed: #shoutStyler
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>wrapped [
+{ #category : #accessing }
+RubEditingArea >> wrapped [
 	^ wrapped ifNil: [ wrapped := false ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingArea>>wrapped: aBoolean [
+{ #category : #accessing }
+RubEditingArea >> wrapped: aBoolean [
 	wrapped := aBoolean
 ]

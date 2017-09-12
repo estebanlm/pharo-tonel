@@ -4,24 +4,17 @@ FreeType font family
 Class {
 	#name : #FreeTypeFontFamily,
 	#superclass : #FontFamilyAbstract,
-	#category : #FreeType-FontManager,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:07'
+	#category : #FreeType-FontManager
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFontFamily>>addMember: aFreeTypeFontFamilyMember [
+{ #category : #accessing }
+FreeTypeFontFamily >> addMember: aFreeTypeFontFamilyMember [
 	aFreeTypeFontFamilyMember family: self.
 	members add: aFreeTypeFontFamilyMember
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFontFamily>>addMembersFromFileInfos: aCollectionOfFreeTypeFileInfo [
+{ #category : #accessing }
+FreeTypeFontFamily >> addMembersFromFileInfos: aCollectionOfFreeTypeFileInfo [
 	
 	
 	aCollectionOfFreeTypeFileInfo do:[:aFileInfo | | member |
@@ -31,11 +24,8 @@ FreeTypeFontFamily>>addMembersFromFileInfos: aCollectionOfFreeTypeFileInfo [
 	
 ]
 
-{
-	#category : #'simulated members',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFontFamily>>addSimulatedMembers [
+{ #category : #'simulated members' }
+FreeTypeFontFamily >> addSimulatedMembers [
 	| membersBySlantAndStretch membersByWeightAndStretch |
 	membersBySlantAndStretch := Dictionary new.
 	members do:[:each| 
@@ -73,29 +63,20 @@ FreeTypeFontFamily>>addSimulatedMembers [
 					ifFalse:[	members add: regular asSimulatedOblique]]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFontFamily>>initialize [
+{ #category : #initialization }
+FreeTypeFontFamily >> initialize [
 	super initialize.
 	members := OrderedCollection new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFontFamily>>memberWithStyleName: aString [
+{ #category : #accessing }
+FreeTypeFontFamily >> memberWithStyleName: aString [
 	^members detect:[:each | each styleName = aString] ifNone:[]
 
 ]
 
-{
-	#category : #'simulated members',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFontFamily>>rebuildSimulatedMembers [
+{ #category : #'simulated members' }
+FreeTypeFontFamily >> rebuildSimulatedMembers [
 	"FOR TESTING ONLY"
 	
 	members := members reject:[:each| each simulated].

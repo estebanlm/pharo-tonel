@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #HEClass,
 	#superclass : #HEMethodContainer,
@@ -13,73 +10,48 @@ Class {
 		'sharedPools',
 		'layoutClass'
 	],
-	#category : #Hermes-Model,
-	#timestamp : ''
+	#category : #Hermes-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass class>>for: aClass [
+{ #category : #'instance creation' }
+HEClass class >> for: aClass [
 	^ self new
 		fromClass: aClass;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>classInstancevariables [
+{ #category : #accessing }
+HEClass >> classInstancevariables [
 	^ classInstancevariables
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>classInstancevariables: anObject [
+{ #category : #accessing }
+HEClass >> classInstancevariables: anObject [
 	classInstancevariables := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>className [
+{ #category : #initialization }
+HEClass >> className [
 	^ className
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>className: anObject [
+{ #category : #accessing }
+HEClass >> className: anObject [
 	className := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>classVariables [
+{ #category : #accessing }
+HEClass >> classVariables [
 	^ classVariables
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>classVariables: anObject [
+{ #category : #accessing }
+HEClass >> classVariables: anObject [
 	classVariables := anObject
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>doReadHeaderFrom: aReader [
+{ #category : #reading }
+HEClass >> doReadHeaderFrom: aReader [
 	className := aReader readByteSymbol.
 	superclass := aReader readByteSymbol.
 	instanceVariables := aReader readByteString.
@@ -89,11 +61,8 @@ HEClass>>doReadHeaderFrom: aReader [
 	layoutClass := aReader readByteSymbol
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>doWriteHeaderInto: aWriter [
+{ #category : #writing }
+HEClass >> doWriteHeaderInto: aWriter [
 	aWriter writeByteString: className.
 	aWriter writeByteString: superclass.
 	aWriter writeByteString: instanceVariables.
@@ -103,11 +72,8 @@ HEClass>>doWriteHeaderInto: aWriter [
 	aWriter writeByteString: layoutClass
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>fromClass: aClass [
+{ #category : #initialization }
+HEClass >> fromClass: aClass [
 	className := aClass name.
 	superclass := aClass superclass name.
 	instanceVariables := (aClass slots collect: #name) joinUsing: ' '.
@@ -119,77 +85,50 @@ HEClass>>fromClass: aClass [
 	self doFromMethodContainer: aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>instanceVariables [
+{ #category : #accessing }
+HEClass >> instanceVariables [
 	^ instanceVariables
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>instanceVariables: anObject [
+{ #category : #accessing }
+HEClass >> instanceVariables: anObject [
 	instanceVariables := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>layoutClass [
+{ #category : #accessing }
+HEClass >> layoutClass [
 	^ layoutClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>layoutClass: anObject [
+{ #category : #accessing }
+HEClass >> layoutClass: anObject [
 	layoutClass := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>printOn: aStream [
+{ #category : #printing }
+HEClass >> printOn: aStream [
 	aStream
 		nextPutAll: 'HEClass ( ';
 		nextPutAll: className asString;
 		nextPutAll: ' )'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>sharedPools [
+{ #category : #accessing }
+HEClass >> sharedPools [
 	^ sharedPools
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>sharedPools: anObject [
+{ #category : #accessing }
+HEClass >> sharedPools: anObject [
 	sharedPools := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>superclass [
+{ #category : #accessing }
+HEClass >> superclass [
 	^ superclass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEClass>>superclass: anObject [
+{ #category : #accessing }
+HEClass >> superclass: anObject [
 	superclass := anObject
 ]

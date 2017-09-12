@@ -11,15 +11,11 @@ funneling all access through #next and #nextPut.
 Class {
 	#name : #ZdcSimpleSocketStream,
 	#superclass : #ZdcAbstractSocketStream,
-	#category : #Zodiac-Core,
-	#timestamp : 'SvenVanCaekenberghe 5/17/2011 18:56'
+	#category : #Zodiac-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSimpleSocketStream class>>openConnectionToHost: hostIP port: portNumber [
+{ #category : #'instance creation' }
+ZdcSimpleSocketStream class >> openConnectionToHost: hostIP port: portNumber [
 	| platformSocket |
 	platformSocket := Socket newTCP.
 	^ (self on: platformSocket)
@@ -27,11 +23,8 @@ ZdcSimpleSocketStream class>>openConnectionToHost: hostIP port: portNumber [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSimpleSocketStream class>>openConnectionToHost: hostIP port: portNumber timeout: timeout [
+{ #category : #'instance creation' }
+ZdcSimpleSocketStream class >> openConnectionToHost: hostIP port: portNumber timeout: timeout [
 	| platformSocket |
 	platformSocket := Socket newTCP.
 	^ (self on: platformSocket)
@@ -40,11 +33,8 @@ ZdcSimpleSocketStream class>>openConnectionToHost: hostIP port: portNumber timeo
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSimpleSocketStream class>>openConnectionToHostNamed: hostName port: portNumber [
+{ #category : #'instance creation' }
+ZdcSimpleSocketStream class >> openConnectionToHostNamed: hostName port: portNumber [
 	| platformSocket socketStream hostIP |
 	platformSocket := Socket newTCP.
 	socketStream := self on: platformSocket.
@@ -54,11 +44,8 @@ ZdcSimpleSocketStream class>>openConnectionToHostNamed: hostName port: portNumbe
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSimpleSocketStream>>atEnd [
+{ #category : #testing }
+ZdcSimpleSocketStream >> atEnd [
 	"I am atEnd when there is no more data to be read and there never will be.
 	This means that readBuffer must be empty, there must be no more unread data 
 	available at the socket, and the socket must be closed"
@@ -72,22 +59,16 @@ ZdcSimpleSocketStream>>atEnd [
 	^ self isConnected not
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSimpleSocketStream>>connectTo: hostAddress port: portNumber [
+{ #category : #initialize-release }
+ZdcSimpleSocketStream >> connectTo: hostAddress port: portNumber [
 	"Connect our socket to hostAddress:portNumber.
 	Wait up to timeout for a connection"
 	
 	self socketConnectTo: hostAddress port: portNumber
 ]
 
-{
-	#category : #'private in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSimpleSocketStream>>fillBytes: bytes startingAt: offset count: count [
+{ #category : #'private in' }
+ZdcSimpleSocketStream >> fillBytes: bytes startingAt: offset count: count [
 	"Ask the socket to read count elements into bytes starting at offset. Do not wait. Return read count."
 	
 	self isConnected ifFalse: [ ConnectionClosed signal: 'Cannot read data' ].  
@@ -97,11 +78,8 @@ ZdcSimpleSocketStream>>fillBytes: bytes startingAt: offset count: count [
 		count: count
 ]
 
-{
-	#category : #'private in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSimpleSocketStream>>fillReadBuffer [
+{ #category : #'private in' }
+ZdcSimpleSocketStream >> fillReadBuffer [
 	"Ask the socket to fill the read buffer with data. Wait for a data."
 	
 	self fillReadBufferNoWait.
@@ -111,11 +89,8 @@ ZdcSimpleSocketStream>>fillReadBuffer [
 			self fillReadBuffer ]  
 ]
 
-{
-	#category : #'private in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSimpleSocketStream>>fillReadBufferNoWait [
+{ #category : #'private in' }
+ZdcSimpleSocketStream >> fillReadBufferNoWait [
 	"Ask the socket to fill the read buffer with data. Do not wait for data."
 	
 	| readCount |
@@ -128,11 +103,8 @@ ZdcSimpleSocketStream>>fillReadBufferNoWait [
 	^ readCount
 ]
 
-{
-	#category : #'private out',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSimpleSocketStream>>flushBytes: bytes startingAt: offset count: count [
+{ #category : #'private out' }
+ZdcSimpleSocketStream >> flushBytes: bytes startingAt: offset count: count [
 	"Ask the socket to write count bytes starting from offset. Wait. Fail if not successful"
 	
 	| writeCount |
@@ -145,11 +117,8 @@ ZdcSimpleSocketStream>>flushBytes: bytes startingAt: offset count: count [
 			ifFalse: [ ConnectionTimedOut signal: 'Data send timed out.' ] ]
 ]
 
-{
-	#category : #'private out',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSimpleSocketStream>>flushWriteBuffer [
+{ #category : #'private out' }
+ZdcSimpleSocketStream >> flushWriteBuffer [
 	"Ask the socket to write all data in the write buffer. Fail if not successful"
 	
 	writeBuffer isEmpty ifTrue: [ ^ self ].  
@@ -160,21 +129,15 @@ ZdcSimpleSocketStream>>flushWriteBuffer [
 	writeBuffer reset 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSimpleSocketStream>>isConnected [
+{ #category : #testing }
+ZdcSimpleSocketStream >> isConnected [
 	"Are we connected at the socket level ?"
 	
 	^ socket notNil and: [ self socketIsConnected ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSimpleSocketStream>>isDataAvailable [
+{ #category : #testing }
+ZdcSimpleSocketStream >> isDataAvailable [
 	"Return true when there is data available for reading.
 	This does not block."
 	

@@ -35,15 +35,11 @@ Class {
 		'announcer',
 		'announcing'
 	],
-	#category : #PragmaCollector,
-	#timestamp : 'AlainPlantec 11/28/2009 01:09'
+	#category : #PragmaCollector
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector class>>allSystemPragmas [
+{ #category : #utilities }
+PragmaCollector class >> allSystemPragmas [
 	^ (Array
 		streamContents: [:stream | SystemNavigation new
 				allBehaviorsDo: [:behavior | Pragma
@@ -51,30 +47,21 @@ PragmaCollector class>>allSystemPragmas [
 						do: [:pragma | stream nextPut: pragma]]]) 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector class>>filter: aOneArgValuable [
+{ #category : #'instance creation' }
+PragmaCollector class >> filter: aOneArgValuable [
 	^ self new filter: aOneArgValuable
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>addPragma: aPragma [
+{ #category : #updating }
+PragmaCollector >> addPragma: aPragma [
 	"if aPragma is to be kept, then add it and announce its adding"
 	(self keepPragma: aPragma)
 		ifTrue: [self collected add: aPragma.
 			self announce: (PragmaAdded pragma: aPragma)]
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>addedEventOccurs: anEvent [
+{ #category : #'system changes' }
+PragmaCollector >> addedEventOccurs: anEvent [
 	"method adding event occured: if the 
 	concerned method contains a pragma then 
 	try to update myself with it"
@@ -86,29 +73,20 @@ PragmaCollector>>addedEventOccurs: anEvent [
 				ifTrue: [ self addPragma: pragma ] ]
 ]
 
-{
-	#category : #subscription,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>announce: anAnnouncement [
+{ #category : #subscription }
+PragmaCollector >> announce: anAnnouncement [
 	"see Announcements packages"
 
 	self announcing ifTrue:	[ self announcer announce: anAnnouncement ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>announcing [
+{ #category : #accessing }
+PragmaCollector >> announcing [
 	^ announcing ifNil: [ announcing := true ]
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>classRemovedEventOccurs: anEvent [
+{ #category : #'system changes' }
+PragmaCollector >> classRemovedEventOccurs: anEvent [
 	"a class has been removed: first see if the class is not my class
 	because then I must be unplugged from system event notifications"
 	anEvent classRemoved = self class
@@ -118,79 +96,52 @@ PragmaCollector>>classRemovedEventOccurs: anEvent [
 		do: [:handler | self removePragma: handler] 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>collect: aBlock [
+{ #category : #enumerating }
+PragmaCollector >> collect: aBlock [
 	^ self collected collect: aBlock
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>collected [
+{ #category : #accessing }
+PragmaCollector >> collected [
 	^ collected ifNil: [collected := OrderedCollection new] 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>detect: aBlock [
+{ #category : #enumerating }
+PragmaCollector >> detect: aBlock [
 	^ self collected detect: aBlock ifNone:[]
 	
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>do: aBlock [
+{ #category : #enumerating }
+PragmaCollector >> do: aBlock [
 	self collected do: aBlock
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>filter [
+{ #category : #accessing }
+PragmaCollector >> filter [
 	^ filter ifNil: [filter := [:prg | true]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>filter: aOneArgValuable [
+{ #category : #accessing }
+PragmaCollector >> filter: aOneArgValuable [
 	filter := aOneArgValuable
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>ifNotEmpty: aBlock [
+{ #category : #testing }
+PragmaCollector >> ifNotEmpty: aBlock [
 	self collected ifNotEmpty: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>initialize [
+{ #category : #initialization }
+PragmaCollector >> initialize [
 	super initialize.
 	self installSystemNotifications
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>installSystemNotifications [
+{ #category : #'system changes' }
+PragmaCollector >> installSystemNotifications [
 	"Allows myself to be kept up-to-date regarding system changes"
 	
 	SystemAnnouncer uniqueInstance unsubscribe: self.
@@ -202,36 +153,24 @@ PragmaCollector>>installSystemNotifications [
 			when: MethodModified send: #modifiedEventOccurs: to: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>isEmpty [
+{ #category : #testing }
+PragmaCollector >> isEmpty [
 	^ self collected isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>isNotEmpty [
+{ #category : #testing }
+PragmaCollector >> isNotEmpty [
 	^ self collected isNotEmpty
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>keepPragma: aPragma [
+{ #category : #updating }
+PragmaCollector >> keepPragma: aPragma [
 	^ self filter value: aPragma
 
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>modifiedEventOccurs: anEvent [
+{ #category : #'system changes' }
+PragmaCollector >> modifiedEventOccurs: anEvent [
 	"
 	a method has been updated: try to update an handler:
 	1 - I already have one for the method, then
@@ -259,11 +198,8 @@ PragmaCollector>>modifiedEventOccurs: anEvent [
 		ifNotNil: [ :found | self removePragma: found ]
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>noMoreAnnounceWhile: aBlock [
+{ #category : #'system changes' }
+PragmaCollector >> noMoreAnnounceWhile: aBlock [
 	"unplug the announcer during aBlock"
 	| oldAnnouncing |
 	[oldAnnouncing := announcing. 
@@ -272,87 +208,60 @@ PragmaCollector>>noMoreAnnounceWhile: aBlock [
 		ensure: [announcing := oldAnnouncing]
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>noMoreNotifications [
+{ #category : #'system changes' }
+PragmaCollector >> noMoreNotifications [
 	"Do not receiver any system change notification anymore"
 	SystemAnnouncer uniqueInstance unsubscribe: self.
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>noMoreNotificationsWhile: aBlock [
+{ #category : #'system changes' }
+PragmaCollector >> noMoreNotificationsWhile: aBlock [
 	"don not receive any system change notification during aBloc"
 	self noMoreNotifications.
 	[ aBlock value ] ensure: [ self installSystemNotifications ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>noneSatisfy: aBlock [
+{ #category : #enumerating }
+PragmaCollector >> noneSatisfy: aBlock [
 	^ self collected noneSatisfy: aBlock
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>pragmaWithSelector: aSelector inClass: aClass [
+{ #category : #querying }
+PragmaCollector >> pragmaWithSelector: aSelector inClass: aClass [
 	"return the handler corresponding to a pragma method which selector is aSelector in class aClass"
 
 	^ self
 		detect: [ :prag | prag methodClass = aClass and: [ prag methodSelector = aSelector ] ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>pragmasOfClass: aClass  [
+{ #category : #querying }
+PragmaCollector >> pragmasOfClass: aClass [ 
 	"return all handlers of class aClass"
 	^ self	select: [:prag | prag methodClass = aClass ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>reject: aBlock [
+{ #category : #enumerating }
+PragmaCollector >> reject: aBlock [
 	^ self collected reject: aBlock 
 ]
 
-{
-	#category : #'dependents access',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>release [
+{ #category : #'dependents access' }
+PragmaCollector >> release [
 	self noMoreNotifications.
 	announcer := nil.
 	collected := nil.
 	super release
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>removePragma: aPragma  [
+{ #category : #updating }
+PragmaCollector >> removePragma: aPragma [ 
 	"remove an handler an announce it"
 	self collected remove: aPragma ifAbsent: [].
 	self announce: (PragmaRemoved pragma: aPragma)
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>removedEventOccurs: anEvent [
+{ #category : #'system changes' }
+PragmaCollector >> removedEventOccurs: anEvent [
 	"a method has been removed, remove any corresponding handler if found"
 
 	(self
@@ -362,11 +271,8 @@ PragmaCollector>>removedEventOccurs: anEvent [
 		ifNotNil: [ :found | self removePragma: found ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>reset [
+{ #category : #initialization }
+PragmaCollector >> reset [
 	"reinitialize current system settings"
 	self
 		noMoreAnnounceWhile: [self collected copy
@@ -376,61 +282,43 @@ PragmaCollector>>reset [
 	self announce: (PragmaCollectorReset collector: self)
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>select: aBlock [
+{ #category : #enumerating }
+PragmaCollector >> select: aBlock [
 	^ self collected select: aBlock
 	
 ]
 
-{
-	#category : #subscription,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>unsubscribe: anObject [
+{ #category : #subscription }
+PragmaCollector >> unsubscribe: anObject [
 	"see Announcements packages"
 	self announcer unsubscribe: anObject
 
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>updatePragma: aPragma [
+{ #category : #updating }
+PragmaCollector >> updatePragma: aPragma [
 	"only announce that the pragma has been updated"
 	self announcer announce: (PragmaUpdated pragma: aPragma)
 ]
 
-{
-	#category : #subscription,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>when: anAnnouncement send: aSelector to: anObject [
+{ #category : #subscription }
+PragmaCollector >> when: anAnnouncement send: aSelector [ to: anObject
 	"see Announcements packages"
 
 	self announcer when: anAnnouncement send: aSelector to: anObject
 ]
 
-{
-	#category : #subscription,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>whenChangedSend: aSelector to: anObject [
+{ #category : #subscription }
+PragmaCollector >> whenChangedSend: aSelector [ to: anObject
 	"record a change listener"
 	
 	self when: PragmaAnnouncement send: aSelector to: anObject
 
 ]
 
-{
-	#category : #subscription,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollector>>whenResetSend: aSelector to: anObject [
+{ #category : #subscription }
+PragmaCollector >> whenResetSend: aSelector [ to: anObject
 	"record a change listener"
 
 	self when: PragmaCollectorReset send: aSelector to: anObject

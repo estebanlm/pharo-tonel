@@ -8,15 +8,11 @@ Class {
 		'methodBrowser',
 		'textField'
 	],
-	#category : #Spec-Examples,
-	#timestamp : '<historical>'
+	#category : #Spec-Examples
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TextFieldExample class>>defaultSpec [
+{ #category : #specs }
+TextFieldExample class >> defaultSpec [
 	| textFieldHeight |
 	
 	textFieldHeight := StandardFonts defaultFont height + 15.
@@ -26,39 +22,27 @@ TextFieldExample class>>defaultSpec [
 		yourself 
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TextFieldExample class>>example [
+{ #category : #example }
+TextFieldExample class >> example [
 	^ self new openWithSpec
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TextFieldExample class>>title [
+{ #category : #specs }
+TextFieldExample class >> title [
 
 	^ 'Text Field Example'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TextFieldExample>>initializePresenter [
+{ #category : #initialization }
+TextFieldExample >> initializePresenter [
 	
 	textField acceptBlock: [:text | Smalltalk globals at: text asSymbol
 								ifPresent: [:class | methodBrowser messages: class methods ]
 								ifAbsent: [ methodBrowser messages: #() ]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TextFieldExample>>initializeWidgets [
+{ #category : #initialization }
+TextFieldExample >> initializeWidgets [
 
 	methodBrowser := self instantiate: MessageBrowser.
 	textField := self newTextInput.
@@ -72,20 +56,14 @@ TextFieldExample>>initializeWidgets [
 		displayBlock: [:m | { m selector } ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TextFieldExample>>methodBrowser [
+{ #category : #accessing }
+TextFieldExample >> methodBrowser [
 
 	^ methodBrowser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TextFieldExample>>textField [
+{ #category : #accessing }
+TextFieldExample >> textField [
 
 	^ textField
 ]

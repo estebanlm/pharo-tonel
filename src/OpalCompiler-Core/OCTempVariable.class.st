@@ -7,24 +7,17 @@ Class {
 	#instVars : [
 		'escaping'
 	],
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : 'MarcusDenker 8/11/2014 10:19'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable class>>semanticNodeClass [
+{ #category : #accessing }
+OCTempVariable class >> semanticNodeClass [
 
 	^RBTemporaryNode 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>= aTempVar [
+{ #category : #comparing }
+OCTempVariable >> = aTempVar [
 
 	^aTempVar class = self class 
 		and: [aTempVar scope = self scope 
@@ -34,159 +27,105 @@ OCTempVariable>>= aTempVar [
 	
 ]
 
-{
-	#category : #emitting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>emitStore: methodBuilder [
+{ #category : #emitting }
+OCTempVariable >> emitStore: methodBuilder [
 
 	methodBuilder storeTemp: name. 
 ]
 
-{
-	#category : #emitting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>emitValue: methodBuilder [
+{ #category : #emitting }
+OCTempVariable >> emitValue: methodBuilder [
 
 	methodBuilder pushTemp: name.
 ]
 
-{
-	#category : #escaping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>escaping [
+{ #category : #escaping }
+OCTempVariable >> escaping [
 	^escaping
 ]
 
-{
-	#category : #escaping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>escaping: anObject [
+{ #category : #escaping }
+OCTempVariable >> escaping: anObject [
 	escaping := anObject
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>hash [
+{ #category : #comparing }
+OCTempVariable >> hash [
 
 	^ name hash bitXor: (usage hash bitXor: scope hash).
 ]
 
-{
-	#category : #debugging,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>indexFromIR [
+{ #category : #debugging }
+OCTempVariable >> indexFromIR [
 
 	^scope outerNotOptimizedScope node irInstruction indexForVarNamed: name
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>initialize [
+{ #category : #initialization }
+OCTempVariable >> initialize [
 	super initialize.
 	escaping := false.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>isCopying [
+{ #category : #testing }
+OCTempVariable >> isCopying [
 	^false
 ]
 
-{
-	#category : #escaping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>isEscaping [
+{ #category : #escaping }
+OCTempVariable >> isEscaping [
 	^escaping = #escapingRead or: [escaping = #escapingWrite]
 ]
 
-{
-	#category : #escaping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>isEscapingRead [
+{ #category : #escaping }
+OCTempVariable >> isEscapingRead [
 	^escaping = #escapingRead
 
 ]
 
-{
-	#category : #escaping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>isEscapingWrite [
+{ #category : #escaping }
+OCTempVariable >> isEscapingWrite [
 	^escaping = #escapingWrite
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>isStoringTempVector [
+{ #category : #testing }
+OCTempVariable >> isStoringTempVector [
 	"I am a temp that stores a temp vector. Those generated temps have a invalid name starting with 0"
 	^name first = $0.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>isTemp [
+{ #category : #testing }
+OCTempVariable >> isTemp [
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>isTempVectorTemp [
+{ #category : #testing }
+OCTempVariable >> isTempVectorTemp [
 	^false
 ]
 
-{
-	#category : #escaping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>markEscapingRead [
+{ #category : #escaping }
+OCTempVariable >> markEscapingRead [
 	escaping = #escapingWrite ifFalse: [escaping := #escapingRead]
 ]
 
-{
-	#category : #escaping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>markEscapingWrite [
+{ #category : #escaping }
+OCTempVariable >> markEscapingWrite [
 	escaping := #escapingWrite.
 	self isRepeatedWrite ifFalse:[usage := #write]
 ]
 
-{
-	#category : #escaping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>markRepeatedWrite [
+{ #category : #escaping }
+OCTempVariable >> markRepeatedWrite [
 	"same as write"
 	self markWrite.
 	super markRepeatedWrite.
 ]
 
-{
-	#category : #escaping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>markWrite [
+{ #category : #escaping }
+OCTempVariable >> markWrite [
 
 	"if an escaping var is wrote to later, it needs to be remote"
 	self isEscaping 
@@ -194,33 +133,24 @@ OCTempVariable>>markWrite [
 	super markWrite.
 ]
 
-{
-	#category : #debugging,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>readFromContext: aContext scope: contextScope [
+{ #category : #debugging }
+OCTempVariable >> readFromContext: aContext scope: contextScope [
 	"Usually the loop is useless, the first case with i = offset returns the correct result. 
 	However, the loop is required for specific case as Debugger restart feature."
 
 	^ aContext tempAt: (contextScope outerNotOptimizedScope node irInstruction indexForVarNamed: name)
 ]
 
-{
-	#category : #debugging,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>searchFromContext: aContext scope: contextScope [
+{ #category : #debugging }
+OCTempVariable >> searchFromContext: aContext scope: contextScope [
 	"Usually the loop is useless, the first case with i = offset returns the correct result. 
 	However, the loop is required for specific case as Debugger restart feature."
 
 	^ contextScope lookupVar: name inContext: aContext
 ]
 
-{
-	#category : #debugging,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCTempVariable>>writeFromContext: aContext scope: contextScope value: aValue [
+{ #category : #debugging }
+OCTempVariable >> writeFromContext: aContext scope: contextScope value: aValue [
 	
 	"offset := contextScope outerOffsetTo: scope.
 	contextForRead := aContext.

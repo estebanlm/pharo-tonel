@@ -8,204 +8,130 @@ Class {
 	#instVars : [
 		'node'
 	],
-	#category : #Nautilus-Tree,
-	#timestamp : '<historical>'
+	#category : #Nautilus-Tree
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection class>>new  [
+{ #category : #'instance creation' }
+PackageTreeSelection class >> new [ 
 	self error: 'Use #node:'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection class>>node: aNode  [
+{ #category : #'instance creation' }
+PackageTreeSelection class >> node: aNode [ 
 	^ self basicNew 
 		initializeNode: aNode;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>= other  [
+{ #category : #comparing }
+PackageTreeSelection >> = other [ 
 	^ (self class = other class) and:[ self item = other item].
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>asNautilusSelection [
+{ #category : #converting }
+PackageTreeSelection >> asNautilusSelection [
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>categoryName  [
+{ #category : #accessing }
+PackageTreeSelection >> categoryName [ 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>definedClasses [
+{ #category : #accessing }
+PackageTreeSelection >> definedClasses [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>extendedClasses [
+{ #category : #accessing }
+PackageTreeSelection >> extendedClasses [
 	^ #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>extensionClasses [
+{ #category : #accessing }
+PackageTreeSelection >> extensionClasses [
 	^ #()
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>hash [
+{ #category : #comparing }
+PackageTreeSelection >> hash [
 	^ self class hash bitXor: self item hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>includesCategory: aSymbol [
+{ #category : #testing }
+PackageTreeSelection >> includesCategory: aSymbol [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>includesClass: aClass  [
+{ #category : #testing }
+PackageTreeSelection >> includesClass: aClass [ 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>initializeNode: aNode  [
+{ #category : #initialization }
+PackageTreeSelection >> initializeNode: aNode [ 
 	self initialize.
 	node := aNode. 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>isGroup  [
+{ #category : #testing }
+PackageTreeSelection >> isGroup [ 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>isPackageTag [
+{ #category : #testing }
+PackageTreeSelection >> isPackageTag [
 
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>item  [
+{ #category : #accessing }
+PackageTreeSelection >> item [ 
 	^ self node item.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>mcPackage  [
+{ #category : #accessing }
+PackageTreeSelection >> mcPackage [ 
 	^ self package mcPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>menu: aMenu shifted: aBoolean target: aTarget [
+{ #category : #accessing }
+PackageTreeSelection >> menu: aMenu shifted: aBoolean target: aTarget [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>name  [
+{ #category : #accessing }
+PackageTreeSelection >> name [ 
 	^ self item name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>node  [
+{ #category : #accessing }
+PackageTreeSelection >> node [ 
 	^ node
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>nodePath  [
+{ #category : #converting }
+PackageTreeSelection >> nodePath [ 
 	^ self node path
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>registerSelectionTarget: aTarget  [
+{ #category : #accessing }
+PackageTreeSelection >> registerSelectionTarget: aTarget [ 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>removeTarget: target  [
+{ #category : #accessing }
+PackageTreeSelection >> removeTarget: target [ 
 	self subclassResponsibility.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>renameTarget: target  [
-
+{ #category : #accessing }
+PackageTreeSelection >> renameTarget: target [ 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeSelection>>withClassesIn: anEnvironment createHierarchySorter: aHierarchyClass  [
+{ #category : #converting }
+PackageTreeSelection >> withClassesIn: anEnvironment createHierarchySorter: aHierarchyClass [ 
 	| classes defined extensions |
 	classes := self definedClasses collect: #theNonMetaClass.
 	anEnvironment isSystem

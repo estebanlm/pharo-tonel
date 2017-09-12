@@ -4,24 +4,17 @@ A GLMBrickAbstractAdaptor is an interface for all adaptors to be used with brick
 Class {
 	#name : #GLMBrickAbstractModel,
 	#superclass : #Object,
-	#category : #Glamour-Morphic-Brick-Model,
-	#timestamp : 'AliakseiSyrel 12/6/2014 20:15'
+	#category : #Glamour-Morphic-Brick-Model
 }
 
-{
-	#category : #'adaptor api',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickAbstractModel>>count [
+{ #category : #'adaptor api' }
+GLMBrickAbstractModel >> count [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #'adaptor api',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickAbstractModel>>morphAt: anInteger convert: aMorph [
+{ #category : #'adaptor api' }
+GLMBrickAbstractModel >> morphAt: anInteger convert: aMorph [
 
 	self subclassResponsibility
 ]

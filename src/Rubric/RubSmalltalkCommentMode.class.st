@@ -4,31 +4,21 @@ I represent the mode to use for editing class comments
 Class {
 	#name : #RubSmalltalkCommentMode,
 	#superclass : #RubAbstractSmalltalkMode,
-	#category : #Rubric-Editing-Code,
-	#timestamp : 'FranckWarlouzet 7/29/2015 12:58'
+	#category : #Rubric-Editing-Code
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCommentMode class>>label [
+{ #category : #accessing }
+RubSmalltalkCommentMode class >> label [
 	^ 'Smalltalk comment'
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCommentMode class>>menuKeyword [
+{ #category : #menu }
+RubSmalltalkCommentMode class >> menuKeyword [
 	^ 'RubSmalltalkCommentMenu'
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCommentMode class>>menuOn: aBuilder [
+{ #category : #menu }
+RubSmalltalkCommentMode class >> menuOn: aBuilder [
 	"Specify the menu used when writing code. Try it with:
 	(PragmaMenuBuilder 
 		pragmaKeyword: 'RubSmalltalkCommentMenu'
@@ -40,45 +30,30 @@ RubSmalltalkCommentMode class>>menuOn: aBuilder [
 	RubSmalltalkCodeMode menuOn: aBuilder 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCommentMode>>editorClass [
+{ #category : #initialize-release }
+RubSmalltalkCommentMode >> editorClass [
 	^ RubSmalltalkEditor.
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCommentMode>>formatMethodCode [
+{ #category : #initialize-release }
+RubSmalltalkCommentMode >> formatMethodCode [
 	"do nothing for code comments"
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCommentMode>>isCodeCompletionAllowed [
+{ #category : #'as yet unclassified' }
+RubSmalltalkCommentMode >> isCodeCompletionAllowed [
 	^ false
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCommentMode>>updateTextAreaWhenPlugged [
+{ #category : #initialize-release }
+RubSmalltalkCommentMode >> updateTextAreaWhenPlugged [
 	super updateTextAreaWhenPlugged
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCommentMode>>updateTextAreaWhenUnplugged [
+{ #category : #initialize-release }
+RubSmalltalkCommentMode >> updateTextAreaWhenUnplugged [
 	super updateTextAreaWhenUnplugged
 
 ]

@@ -7,26 +7,19 @@ Class {
 	#classVars : [
 		'EventTypeMap'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'IgorStasenko 7/30/2014 18:45'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Event class>>initialize [
+{ #category : #'class initialization' }
+SDL_Event class >> initialize [
 	"self initialize"
 
 	SDL2Types initialize.  "make sure its initialized"
 	self initializeEventTypeMap
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Event class>>initializeEventTypeMap [
+{ #category : #'class initialization' }
+SDL_Event class >> initializeEventTypeMap [
 	"self initializeEventTypeMap"
 	EventTypeMap := Dictionary new.
 	SDL2MappedEvent  allSubclassesDo: [ :cls |
@@ -36,35 +29,23 @@ SDL_Event class>>initializeEventTypeMap [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Event>>initialize [
+{ #category : #initialization }
+SDL_Event >> initialize [
 	super initialize.
 	self setHandle: (ByteArray new: 56)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Event>>mapped [
+{ #category : #accessing }
+SDL_Event >> mapped [
 	^ (EventTypeMap at: self type ifAbsent: [ ^ self unknownEvent ]) fromSdlEvent: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Event>>type [
+{ #category : #accessing }
+SDL_Event >> type [
 	^self getHandle nbUInt32AtOffset: 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Event>>unknownEvent [
+{ #category : #accessing }
+SDL_Event >> unknownEvent [
 	^ SDL_CommonEvent fromSdlEvent: self
 ]

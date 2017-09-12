@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'script'
 	],
-	#category : #System-Settings-Core,
-	#timestamp : 'TorstenBergmann 1/31/2014 10:34'
+	#category : #System-Settings-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SystemSettingLauncher>>defaultIcon [
+{ #category : #accessing }
+SystemSettingLauncher >> defaultIcon [
 	^ self iconNamed: #smallDoItIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SystemSettingLauncher>>inputWidget [
+{ #category : #accessing }
+SystemSettingLauncher >> inputWidget [
 	^ (self theme
 		newButtonIn: World
 		for: self
@@ -43,11 +36,8 @@ SystemSettingLauncher>>inputWidget [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SystemSettingLauncher>>launch [
+{ #category : #accessing }
+SystemSettingLauncher >> launch [
 	self script 
 			ifNotNil: [:s | s isSymbol 
 				ifTrue: [s numArgs = 0 
@@ -58,18 +48,12 @@ SystemSettingLauncher>>launch [
 					ifFalse: [s value: self]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SystemSettingLauncher>>script [
+{ #category : #accessing }
+SystemSettingLauncher >> script [
 	^ script ifNil: [script := []]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SystemSettingLauncher>>script: aValuableOrSymbol [
+{ #category : #accessing }
+SystemSettingLauncher >> script: aValuableOrSymbol [
 	script := aValuableOrSymbol
 ]

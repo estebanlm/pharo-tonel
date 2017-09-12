@@ -11,15 +11,11 @@ Class {
 		'sideRuler',
 		'currentVerticalScrollPosition'
 	],
-	#category : #Spec-Examples-Morphic,
-	#timestamp : 'Spirita 7/28/2016 15:11'
+	#category : #Spec-Examples-Morphic
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ScrollSyncExample class>>defaultSpec [
+{ #category : #specs }
+ScrollSyncExample class >> defaultSpec [
 	<spec>
 	^ SpecLayout composed
 		newRow: [ :row | 
@@ -29,36 +25,24 @@ ScrollSyncExample class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ScrollSyncExample class>>example [
+{ #category : #example }
+ScrollSyncExample class >> example [
 	^ self new openWithSpec
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ScrollSyncExample class>>title [
+{ #category : #specs }
+ScrollSyncExample class >> title [
 
 	^ self name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ScrollSyncExample>>currentVerticalScrollPosition [
+{ #category : #accessing }
+ScrollSyncExample >> currentVerticalScrollPosition [
 	^ currentVerticalScrollPosition
 ]
 
-{
-	#category : #layouts,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ScrollSyncExample>>defaultSpecLayout [
+{ #category : #layouts }
+ScrollSyncExample >> defaultSpecLayout [
 	<spec>
 	^ SpecLayout composed
 		add: #sideRuler
@@ -74,11 +58,8 @@ ScrollSyncExample>>defaultSpecLayout [
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ScrollSyncExample>>initialize [
+{ #category : #initialization }
+ScrollSyncExample >> initialize [
 	super initialize.
 	sideRuler := (Morph new
 		color: Color yellow;
@@ -90,11 +71,8 @@ ScrollSyncExample>>initialize [
 	currentVerticalScrollPosition := 0
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ScrollSyncExample>>initializeWidgets [
+{ #category : #initialization }
+ScrollSyncExample >> initializeWidgets [
 
 	text := self newText.
 		
@@ -104,27 +82,18 @@ ScrollSyncExample>>initializeWidgets [
 	text text: self loremIpsum.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ScrollSyncExample>>loremIpsum [
+{ #category : #private }
+ScrollSyncExample >> loremIpsum [
 	^ String loremIpsum: 2854
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ScrollSyncExample>>sideRuler [
+{ #category : #accessing }
+ScrollSyncExample >> sideRuler [
 	^ sideRuler
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ScrollSyncExample>>syncMorphPosition [
+{ #category : #private }
+ScrollSyncExample >> syncMorphPosition [
 	currentVerticalScrollPosition = text scrollValue y
 		ifTrue: [ ^ self ].
 	currentVerticalScrollPosition := text scrollValue y.
@@ -135,10 +104,7 @@ ScrollSyncExample>>syncMorphPosition [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ScrollSyncExample>>text [
+{ #category : #accessing }
+ScrollSyncExample >> text [
 	^ text
 ]

@@ -1,46 +1,29 @@
-Extension {
-	#name : #ScrollBar
-}
+Extension { #name : #ScrollBar }
 
-{
-	#category : #'*Morphic-Widgets-FastTable',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ScrollBar>>canScrollDown [
+{ #category : #'*Morphic-Widgets-FastTable' }
+ScrollBar >> canScrollDown [
 
 	^value < 1
 ]
 
-{
-	#category : #'*Morphic-Widgets-FastTable',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ScrollBar>>canScrollUp [
+{ #category : #'*Morphic-Widgets-FastTable' }
+ScrollBar >> canScrollUp [
 
 	^value > 0
 ]
 
-{
-	#category : #'*Morphic-Widgets-FastTable',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ScrollBar>>pageDelta [
+{ #category : #'*Morphic-Widgets-FastTable' }
+ScrollBar >> pageDelta [
 	^ pageDelta
 ]
 
-{
-	#category : #'*Morphic-Widgets-FastTable',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ScrollBar>>scrollDownByPageDelta [
+{ #category : #'*Morphic-Widgets-FastTable' }
+ScrollBar >> scrollDownByPageDelta [
 	self scrollDown: self pageDelta
 ]
 
-{
-	#category : #'*Morphic-Widgets-FastTable',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ScrollBar>>scrollRestrictedDown: aValue [
+{ #category : #'*Morphic-Widgets-FastTable' }
+ScrollBar >> scrollRestrictedDown: aValue [
 
 	"only scroll if the scrollbar is not at its end yet"
 
@@ -49,11 +32,8 @@ ScrollBar>>scrollRestrictedDown: aValue [
 	self scrollDown: aValue
 ]
 
-{
-	#category : #'*Morphic-Widgets-FastTable',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ScrollBar>>scrollRestrictedUp: aValue [
+{ #category : #'*Morphic-Widgets-FastTable' }
+ScrollBar >> scrollRestrictedUp: aValue [
 
 	"only scroll if the scrollbar is not at its end yet"
 
@@ -62,10 +42,7 @@ ScrollBar>>scrollRestrictedUp: aValue [
 	self scrollUp: aValue
 ]
 
-{
-	#category : #'*Morphic-Widgets-FastTable',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ScrollBar>>scrollUpByPageDelta [
+{ #category : #'*Morphic-Widgets-FastTable' }
+ScrollBar >> scrollUpByPageDelta [
 	self scrollUp: self pageDelta
 ]

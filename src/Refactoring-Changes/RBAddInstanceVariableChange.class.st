@@ -4,32 +4,22 @@ I am a refactoring for a instance  variable addition. My changes are executed on
 Class {
 	#name : #RBAddInstanceVariableChange,
 	#superclass : #RBRefactoryVariableChange,
-	#category : #Refactoring-Changes,
-	#timestamp : 'NicolaiHess 9/9/2016 20:40'
+	#category : #Refactoring-Changes
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddInstanceVariableChange>>asUndoOperation [
+{ #category : #converting }
+RBAddInstanceVariableChange >> asUndoOperation [
 	^ RBRefactoryChangeManager changeFactory removeInstanceVariable: self variable from: self changeClass
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddInstanceVariableChange>>changeString [
+{ #category : #printing }
+RBAddInstanceVariableChange >> changeString [
 	^ 'Add instance variable <1s> to <2s>'
 		expandMacrosWith: self variable
 		with: self displayClassName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBAddInstanceVariableChange>>changeSymbol [
+{ #category : #private }
+RBAddInstanceVariableChange >> changeSymbol [
 	^ #addInstVarNamed:
 ]

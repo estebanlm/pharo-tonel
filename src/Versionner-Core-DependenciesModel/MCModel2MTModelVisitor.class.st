@@ -15,15 +15,11 @@ Class {
 	#instVars : [
 		'project'
 	],
-	#category : #Versionner-Core-DependenciesModel,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-DependenciesModel
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MCModel2MTModelVisitor>>visitConfiguration: aConfigurationClass [
+{ #category : #visiting }
+MCModel2MTModelVisitor >> visitConfiguration: aConfigurationClass [
 	"Visits a Configuration class with the current version."
 
 	| currentVersion |
@@ -33,11 +29,8 @@ MCModel2MTModelVisitor>>visitConfiguration: aConfigurationClass [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MCModel2MTModelVisitor>>visitConfiguration: aConfigurationClass withVersion: aVersion [
+{ #category : #visiting }
+MCModel2MTModelVisitor >> visitConfiguration: aConfigurationClass withVersion: aVersion [
 	"visits a Configuration class for the specified version and returns the project root object.
 	 Returns the project root object or nil if the given version is nil."
 
@@ -49,11 +42,8 @@ MCModel2MTModelVisitor>>visitConfiguration: aConfigurationClass withVersion: aVe
 	
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MCModel2MTModelVisitor>>visitConfiguration: aConfigurationClass withVersionString: aVersionString [
+{ #category : #visiting }
+MCModel2MTModelVisitor >> visitConfiguration: aConfigurationClass withVersionString: aVersionString [
 	"visits a Configuration class for the specified version and returns the project root object.
 	 Returns the project root object or nil if the given version is nil."
 
@@ -64,11 +54,8 @@ MCModel2MTModelVisitor>>visitConfiguration: aConfigurationClass withVersionStrin
 	
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MCModel2MTModelVisitor>>visitMCGroup: aGroup [
+{ #category : #visiting }
+MCModel2MTModelVisitor >> visitMCGroup: aGroup [
 	"visit a Metacello Group"	
 	| group |
 
@@ -82,11 +69,8 @@ MCModel2MTModelVisitor>>visitMCGroup: aGroup [
 	
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MCModel2MTModelVisitor>>visitMCPackage: aPackage [
+{ #category : #visiting }
+MCModel2MTModelVisitor >> visitMCPackage: aPackage [
 	"visit a Metacello Package"
 
 	| package version |
@@ -104,11 +88,8 @@ MCModel2MTModelVisitor>>visitMCPackage: aPackage [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MCModel2MTModelVisitor>>visitMCProject: aProject withVersion: aVersion [
+{ #category : #visiting }
+MCModel2MTModelVisitor >> visitMCProject: aProject withVersion: aVersion [
 	"visit a Metacello Project with the specified version."
 	| version |
 	
@@ -117,11 +98,8 @@ MCModel2MTModelVisitor>>visitMCProject: aProject withVersion: aVersion [
 	aVersion ifNotNil: [ self visitMCVersion: aVersion ].
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MCModel2MTModelVisitor>>visitMCProjectAsRequiredProject: aProject [
+{ #category : #visiting }
+MCModel2MTModelVisitor >> visitMCProjectAsRequiredProject: aProject [
 	"visit a Metacello Project to add it as a required projet. It is quite the same as visitMCProject except that we won't dive into the project structure.
 	aProject is an instance of MetacelloMCProjectSpec."
 	| version requiredProject |
@@ -140,11 +118,8 @@ MCModel2MTModelVisitor>>visitMCProjectAsRequiredProject: aProject [
 	^ requiredProject.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MCModel2MTModelVisitor>>visitMCVersion: aVersion [
+{ #category : #visiting }
+MCModel2MTModelVisitor >> visitMCVersion: aVersion [
 	"visit a Metacello Version"
 	
 	| groups packages projects repositories |

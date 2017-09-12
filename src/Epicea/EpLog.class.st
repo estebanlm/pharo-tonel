@@ -10,73 +10,51 @@ Class {
 		'commentByEntryReference',
 		'store'
 	],
-	#category : #Epicea-Log,
-	#timestamp : '<historical>'
+	#category : #Epicea-Log
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog class>>freshFromFile: aFileReference [
+{ #category : #'instance creation' }
+EpLog class >> freshFromFile: aFileReference [
 
 	^ (self fromFile: aFileReference)
 		refresh;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog class>>fromFile: aFileReference  [
+{ #category : #'instance creation' }
+EpLog class >> fromFile: aFileReference [ 
 
 	^ self newWithStore: (OmStoreFactory current fromFile: aFileReference)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog class>>new [
+{ #category : #'instance creation' }
+EpLog class >> new [
 
 	^ self newWithSessionStore
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog class>>newNull [
+{ #category : #'instance creation' }
+EpLog class >> newNull [
 
 	^ self newWithStore: OmNullStore new.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog class>>newWithSessionStore [
+{ #category : #'instance creation' }
+EpLog class >> newWithSessionStore [
 
 	^ self newWithStore: OmSessionStore new.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog class>>newWithStore: aStore  [
+{ #category : #'instance creation' }
+EpLog class >> newWithStore: aStore [ 
 
 	^ self basicNew
 		initializeWith: aStore;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>addEntryWith: anEvent tags: blockClosureForCustomTags [
+{ #category : #accessing }
+EpLog >> addEntryWith: anEvent tags: blockClosureForCustomTags [
 	"Add an event with the specified tags"
 
 	| newEntry |
@@ -98,11 +76,8 @@ EpLog>>addEntryWith: anEvent tags: blockClosureForCustomTags [
 	^ newEntry
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>cacheEntry: newEntry [
+{ #category : #private }
+EpLog >> cacheEntry: newEntry [
 	"Update caches with a new entry"
 
 	newEntry content isEpLogEntriesComment ifTrue: [ 
@@ -113,69 +88,48 @@ EpLog>>cacheEntry: newEntry [
 		] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>commentAt: anEntry ifAbsent: aBlock  [
+{ #category : #accessing }
+EpLog >> commentAt: anEntry ifAbsent: aBlock [ 
 
 	^ commentByEntryReference
 		at: (self referenceTo: anEntry)
 		ifAbsent: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>commentAt: anEntry ifPresent: aBlock  [
+{ #category : #accessing }
+EpLog >> commentAt: anEntry ifPresent: aBlock [ 
 
 	^ commentByEntryReference
 		at: (self referenceTo: anEntry)
 		ifPresent: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>entries [
+{ #category : #accessing }
+EpLog >> entries [
 
 	^ store entries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>entriesCount [
+{ #category : #accessing }
+EpLog >> entriesCount [
 	
 	^ store entriesCount
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>entriesDo: aBlockClosure [
+{ #category : #enumerating }
+EpLog >> entriesDo: aBlockClosure [
 
 	^ store entriesDo: aBlockClosure
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>entryFor: aReference [
+{ #category : #accessing }
+EpLog >> entryFor: aReference [
 
 	^ store entryFor: aReference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>entryFor: aReference ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
+{ #category : #accessing }
+EpLog >> entryFor: aReference ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
 	"Answer an entry, evaluating either the first block closure if present or the second if absent."
 	
 	^ store 
@@ -184,76 +138,52 @@ EpLog>>entryFor: aReference ifPresent: presentBlockClosure ifAbsent: absentBlock
 		ifAbsent: absentBlockClosure
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>entryReferences [
+{ #category : #accessing }
+EpLog >> entryReferences [
 	
 	^ store entryReferences
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>firstEntryIfAbsent: absentBlock [
+{ #category : #accessing }
+EpLog >> firstEntryIfAbsent: absentBlock [
 
 	^ store firstEntryIfAbsent: absentBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>headReference [
+{ #category : #accessing }
+EpLog >> headReference [
 
 	^ store headReference
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>initializeWith: aStore  [
+{ #category : #initialization }
+EpLog >> initializeWith: aStore [ 
 
 	self initialize.
 	store := aStore.
 	commentByEntryReference := Dictionary new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>referenceTo: anEntry [
+{ #category : #accessing }
+EpLog >> referenceTo: anEntry [
 
 	^ store referenceTo: anEntry
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>refresh [
+{ #category : #refreshing }
+EpLog >> refresh [
 	store refresh.
 	commentByEntryReference := Dictionary new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>store [
+{ #category : #accessing }
+EpLog >> store [
 
 	^ store
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLog>>updateEntriesCache [
+{ #category : #private }
+EpLog >> updateEntriesCache [
 
 	store entriesDo: [ :each | self cacheEntry: each ]
 ]

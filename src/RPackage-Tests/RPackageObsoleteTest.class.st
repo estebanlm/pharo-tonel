@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'notRun'
 	],
-	#category : #RPackage-Tests,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:59'
+	#category : #RPackage-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageObsoleteTest>>setNotRun  [
+{ #category : #accessing }
+RPackageObsoleteTest >> setNotRun [ 
 	notRun := true
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageObsoleteTest>>testAnnouncementClassRemovedIsRaisedOnRemoveFromSystem [
+{ #category : #tests }
+RPackageObsoleteTest >> testAnnouncementClassRemovedIsRaisedOnRemoveFromSystem [
 	"self debug: #testAnnouncementClassRemovedIsRaisedOnRemoveFromSystem"
 	| foo | 
 	
@@ -37,11 +30,8 @@ RPackageObsoleteTest>>testAnnouncementClassRemovedIsRaisedOnRemoveFromSystem [
 ensure: [ SystemAnnouncer uniqueInstance unsubscribe: self ]. 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageObsoleteTest>>testMethodPackageFromObsoleteClass [
+{ #category : #tests }
+RPackageObsoleteTest >> testMethodPackageFromObsoleteClass [
 	"self debug: #testMethodPackageFromObsoleteClass"
 	
 	| pack method foo | 
@@ -62,11 +52,8 @@ RPackageObsoleteTest>>testMethodPackageFromObsoleteClass [
 	]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageObsoleteTest>>testMethodPackageOfRemovedClass [
+{ #category : #tests }
+RPackageObsoleteTest >> testMethodPackageOfRemovedClass [
 	"self debug: #testMethodPackageOfRemovedClass"
 	
 	| pack method foo | 

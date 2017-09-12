@@ -22,40 +22,27 @@ Class {
 		'stream',
 		'storedSettings'
 	],
-	#category : #System-Settings-Persistence-Ston-StoredSettings-Builder,
-	#timestamp : 'JurajKubelka 10/1/2015 14:16'
+	#category : #System-Settings-Persistence-Ston-StoredSettings-Builder
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingsStonWriter>>addSetting: aStoredSetting [
+{ #category : #adding }
+SettingsStonWriter >> addSetting: aStoredSetting [
 	storedSettings add: aStoredSetting
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingsStonWriter>>addSettings: aCollectionOfStoredSettings [
+{ #category : #adding }
+SettingsStonWriter >> addSettings: aCollectionOfStoredSettings [
 	storedSettings addAll: aCollectionOfStoredSettings
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingsStonWriter>>initialize [
+{ #category : #initialization }
+SettingsStonWriter >> initialize [
 	super initialize.
 	storedSettings := OrderedCollection new.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingsStonWriter>>store [
+{ #category : #actions }
+SettingsStonWriter >> store [
 	"Write the stored setting in the stream"
 
 	stream ifNil: [ ^ self ].
@@ -69,20 +56,14 @@ SettingsStonWriter>>store [
 		ensure: [ stream close ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingsStonWriter>>stream [
+{ #category : #accessing }
+SettingsStonWriter >> stream [
 	"Return the stream on which storedSettings are written in. 
 	This method is useful for testing"
 	^ stream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingsStonWriter>>stream: aWriteStream  [
+{ #category : #accessing }
+SettingsStonWriter >> stream: aWriteStream [ 
 	stream := aWriteStream
 ]

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloCoreVersionQueryTestCase,
 	#superclass : #TestCase,
-	#category : #Metacello-TestsCore-Configs,
-	#timestamp : ''
+	#category : #Metacello-TestsCore-Configs
 }
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreVersionQueryTestCase>>baseline10: spec [
+{ #category : #baselines }
+MetacelloCoreVersionQueryTestCase >> baseline10: spec [
     <version: '1.0-baseline'>
     spec
         for: #'common'
@@ -30,11 +23,8 @@ MetacelloCoreVersionQueryTestCase>>baseline10: spec [
                 group: 'Recursive' with: #('Core' 'Recursive')	"recursive group definition" ]
 ]
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreVersionQueryTestCase>>baseline11: spec [
+{ #category : #baselines }
+MetacelloCoreVersionQueryTestCase >> baseline11: spec [
     <version: '1.1-baseline' imports: #('1.0-baseline')>
     spec
         for: #'common'
@@ -52,11 +42,8 @@ MetacelloCoreVersionQueryTestCase>>baseline11: spec [
                 yourself ]
 ]
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreVersionQueryTestCase>>baseline20: spec [
+{ #category : #baselines }
+MetacelloCoreVersionQueryTestCase >> baseline20: spec [
     <version: '2.0-baseline'>
     spec
         for: #'common'
@@ -81,20 +68,14 @@ MetacelloCoreVersionQueryTestCase>>baseline20: spec [
                 group: 'Recursive' with: #('Core' 'Recursive')	"recursive group definition" ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreVersionQueryTestCase>>project [
+{ #category : #accessing }
+MetacelloCoreVersionQueryTestCase >> project [
 
 	^self projectWith: #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreVersionQueryTestCase>>projectWith: projectAttributes [
+{ #category : #accessing }
+MetacelloCoreVersionQueryTestCase >> projectWith: projectAttributes [
     | project |
     "Construct Metacello project"
     project := MetacelloProject new.
@@ -103,11 +84,8 @@ MetacelloCoreVersionQueryTestCase>>projectWith: projectAttributes [
     ^ project
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreVersionQueryTestCase>>testBaseline10Groups [
+{ #category : #tests }
+MetacelloCoreVersionQueryTestCase >> testBaseline10Groups [
     | project version expected list |
     project := self project.
     version := project version: '1.0-baseline'.
@@ -117,11 +95,8 @@ MetacelloCoreVersionQueryTestCase>>testBaseline10Groups [
     list do: [ :pkg | self assert: (expected includes: pkg name) ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreVersionQueryTestCase>>testBaseline10Projects [
+{ #category : #tests }
+MetacelloCoreVersionQueryTestCase >> testBaseline10Projects [
     | project version expected list |
     project := self project.
     version := project version: '1.0-baseline'.
@@ -131,11 +106,8 @@ MetacelloCoreVersionQueryTestCase>>testBaseline10Projects [
     list do: [ :pkg | self assert: (expected includes: pkg name) ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreVersionQueryTestCase>>testBaseline10ResolveToLoadableSpecs01 [
+{ #category : #tests }
+MetacelloCoreVersionQueryTestCase >> testBaseline10ResolveToLoadableSpecs01 [
     | project version expected list |
     project := self project.
     version := project version: '1.0-baseline'.
@@ -149,11 +121,8 @@ MetacelloCoreVersionQueryTestCase>>testBaseline10ResolveToLoadableSpecs01 [
     list do: [ :pkg | self assert: (expected includes: pkg name) ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloCoreVersionQueryTestCase>>testDifference [
+{ #category : #tests }
+MetacelloCoreVersionQueryTestCase >> testDifference [
     | project expected fromVersionString toVersionString report actual |
     project := self project.
     fromVersionString := '1.1-baseline'.

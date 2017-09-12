@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #SpecFocusOrderTest,
 	#superclass : #TestCase,
@@ -9,26 +6,19 @@ Class {
 		'button1',
 		'button2'
 	],
-	#category : #Spec-Tests-Core-Support,
-	#timestamp : ''
+	#category : #Spec-Tests-Core-Support
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecFocusOrderTest>>setUp [
+{ #category : #running }
+SpecFocusOrderTest >> setUp [
 	super setUp.
 	specFocusOrder := SpecFocusOrder new.
 	button1 := ButtonModel new.
 	button2 := ButtonModel new
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecFocusOrderTest>>testAdd [
+{ #category : #tests }
+SpecFocusOrderTest >> testAdd [
 	self
 		assert: specFocusOrder presenters isEmpty;
 		shouldnt: [ specFocusOrder
@@ -45,11 +35,8 @@ SpecFocusOrderTest>>testAdd [
 			button1} asOrderedCollection
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecFocusOrderTest>>testAddLast [
+{ #category : #tests }
+SpecFocusOrderTest >> testAddLast [
 	self
 		assert: specFocusOrder presenters isEmpty;
 		shouldnt: [ specFocusOrder
@@ -62,11 +49,8 @@ SpecFocusOrderTest>>testAddLast [
 			button2} asOrderedCollection
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecFocusOrderTest>>testGiveFocusToNextFrom [
+{ #category : #tests }
+SpecFocusOrderTest >> testGiveFocusToNextFrom [
 	self
 		assert: specFocusOrder presenters isEmpty;
 		shouldnt: [ specFocusOrder
@@ -76,11 +60,8 @@ SpecFocusOrderTest>>testGiveFocusToNextFrom [
 			assert: (specFocusOrder giveFocusToNextFrom:button1 for: nil).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecFocusOrderTest>>testRemoveAll [
+{ #category : #tests }
+SpecFocusOrderTest >> testRemoveAll [
 	self
 		assert: specFocusOrder presenters isEmpty;
 		shouldnt: [ specFocusOrder

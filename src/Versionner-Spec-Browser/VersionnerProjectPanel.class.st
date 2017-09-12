@@ -23,15 +23,11 @@ Class {
 		'removeProjectButton',
 		'editProjectButton'
 	],
-	#category : #Versionner-Spec-Browser,
-	#timestamp : '<historical>'
+	#category : #Versionner-Spec-Browser
 }
 
-{
-	#category : #spec,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel class>>defaultSpec [
+{ #category : #spec }
+VersionnerProjectPanel class >> defaultSpec [
 	"Define the layout of the Project Panel"
 
 	<spec>
@@ -63,11 +59,8 @@ VersionnerProjectPanel class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>addDependentProject [
+{ #category : #actions }
+VersionnerProjectPanel >> addDependentProject [
 	"Add a new dependent project to the configuration"
 
 	| requiredProjectNames dependentProject searchUI |
@@ -82,11 +75,8 @@ VersionnerProjectPanel>>addDependentProject [
 			projectList roots: project requiredProjects ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>addGroup [
+{ #category : #actions }
+VersionnerProjectPanel >> addGroup [
 	"Add a new group to the configuration"
 
 	| groupName |
@@ -97,27 +87,18 @@ VersionnerProjectPanel>>addGroup [
 			groupList roots: project groups ]
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>addGroupButton [
+{ #category : #accessing-ui }
+VersionnerProjectPanel >> addGroupButton [
 	^ addGroupButton
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>addProjectButton [
+{ #category : #accessing-ui }
+VersionnerProjectPanel >> addProjectButton [
 	^ addProjectButton
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>addProjectLoadDirective [
+{ #category : #actions }
+VersionnerProjectPanel >> addProjectLoadDirective [
 	"Add a load directive to the selected project."
 	
 	projectList selectedItem
@@ -130,11 +111,8 @@ VersionnerProjectPanel>>addProjectLoadDirective [
 	^ nil
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>browseProject: aConfigurationClass [
+{ #category : #actions }
+VersionnerProjectPanel >> browseProject: aConfigurationClass [
 	| configInfo |
 	configInfo := MBConfigurationRoot current configurationInfoFor: aConfigurationClass.
 	configInfo ifNotNil: 
@@ -142,21 +120,15 @@ VersionnerProjectPanel>>browseProject: aConfigurationClass [
 		^ VersionnerProjectBrowser openOn: configInfo ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>browseSelectedProject [
+{ #category : #actions }
+VersionnerProjectPanel >> browseSelectedProject [
 	^ self projectBoundToSelection
 		ifNotNil: [ :dependantProject | 
 			self browseProject: dependantProject configurationClass ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>config: anMBConfigurationInfo [
+{ #category : #api }
+VersionnerProjectPanel >> config: anMBConfigurationInfo [
 	| allGroups |
 	config := anMBConfigurationInfo.
 
@@ -173,19 +145,13 @@ VersionnerProjectPanel>>config: anMBConfigurationInfo [
 	packagesPanel project: project.
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>editProjectButton [
+{ #category : #accessing-ui }
+VersionnerProjectPanel >> editProjectButton [
 	^ editProjectButton
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>editSelectedProjectLoads [
+{ #category : #actions }
+VersionnerProjectPanel >> editSelectedProjectLoads [
 	"Edit load directives for the selected project"
 	
 	| selectedProject editionWidget |
@@ -203,27 +169,18 @@ VersionnerProjectPanel>>editSelectedProjectLoads [
 	
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>groupList [
+{ #category : #accessing-ui }
+VersionnerProjectPanel >> groupList [
 	^ groupList
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>groupsLabel [
+{ #category : #accessing-ui }
+VersionnerProjectPanel >> groupsLabel [
 	^ groupsLabel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>initializeGroupsWidget [
+{ #category : #initialization }
+VersionnerProjectPanel >> initializeGroupsWidget [
 	groupList := (self instantiate: TreeModel)
 		autoDeselection: true;
 		dragEnabled: true;
@@ -253,11 +210,8 @@ VersionnerProjectPanel>>initializeGroupsWidget [
 		help: 'Remove a group from this project'.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>initializePresenter [
+{ #category : #initialization }
+VersionnerProjectPanel >> initializePresenter [
 	"Initialize widgets behavior"
 
 	projectList whenSelectedNodesChanged: [ :selection | 
@@ -284,11 +238,8 @@ VersionnerProjectPanel>>initializePresenter [
 						fromGroup: parentGroup ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>initializeProjectsWidget [
+{ #category : #initialization }
+VersionnerProjectPanel >> initializeProjectsWidget [
 	projectList := (self instantiate: TreeModel)
 		whenBuiltDo: [ projectList rootNodeHolder: [ :item | VSProjectNode new content: item ] ];
 		on: PharoShortcuts current browseShortcut
@@ -321,11 +272,8 @@ VersionnerProjectPanel>>initializeProjectsWidget [
 		help: 'Edit the dependent project loads list'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>initializeWidgets [
+{ #category : #initialization }
+VersionnerProjectPanel >> initializeWidgets [
 	self initializeGroupsWidget.
 	self initializeProjectsWidget.
 	
@@ -340,11 +288,8 @@ VersionnerProjectPanel>>initializeWidgets [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>isProject: selection [
+{ #category : #testing }
+VersionnerProjectPanel >> isProject: selection [
 	| node |
 	
 	(selection size = 1) ifFalse: [  ^false ].
@@ -352,27 +297,18 @@ VersionnerProjectPanel>>isProject: selection [
 	^ node parentNode isNil
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>packagesPanel [
+{ #category : #accessing-ui }
+VersionnerProjectPanel >> packagesPanel [
 	^ packagesPanel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>project [
+{ #category : #accessing }
+VersionnerProjectPanel >> project [
 	^ project
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>project: anMTProject [
+{ #category : #api }
+VersionnerProjectPanel >> project: anMTProject [
 	project := anMTProject.
 	project
 		ifNil: [ 
@@ -391,11 +327,8 @@ VersionnerProjectPanel>>project: anMTProject [
 	packagesPanel addPackageButton enabled: project isNotNil.
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>projectBoundToSelection [
+{ #category : #selection }
+VersionnerProjectPanel >> projectBoundToSelection [
 	| selection |
 	
 	selection := projectList selectedItem.
@@ -405,35 +338,23 @@ VersionnerProjectPanel>>projectBoundToSelection [
 		ifNotNil: [ selection parentNode content ]
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>projectList [
+{ #category : #accessing-ui }
+VersionnerProjectPanel >> projectList [
 	^ projectList
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>projectsLabel [
+{ #category : #accessing-ui }
+VersionnerProjectPanel >> projectsLabel [
 	^ projectsLabel
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>refreshGroups [
+{ #category : #refreshing }
+VersionnerProjectPanel >> refreshGroups [
 	groupList roots: project groups
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>remove: aDependency fromGroup: aGroup [
+{ #category : #actions }
+VersionnerProjectPanel >> remove: aDependency fromGroup: aGroup [
 	"Remove a dependency from a group or project"
 
 	aDependency
@@ -449,36 +370,24 @@ VersionnerProjectPanel>>remove: aDependency fromGroup: aGroup [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>removeDependentProject: aMTDependantProject  [
+{ #category : #actions }
+VersionnerProjectPanel >> removeDependentProject: aMTDependantProject [ 
 	aMTDependantProject remove.
 	projectList roots: project requiredProjects.
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>removeGroupButton [
+{ #category : #accessing-ui }
+VersionnerProjectPanel >> removeGroupButton [
 	^ removeGroupButton
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>removeProjectButton [
+{ #category : #accessing-ui }
+VersionnerProjectPanel >> removeProjectButton [
 	^ removeProjectButton
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPanel>>requiredProjectMenu: aMenu [
+{ #category : #accessing-ui }
+VersionnerProjectPanel >> requiredProjectMenu: aMenu [
 	aMenu addMenuGroup: (MenuGroupModel new
 		addMenuItem: (MenuItemModel new
 			name: #'browse project';

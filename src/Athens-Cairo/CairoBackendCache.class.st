@@ -20,77 +20,52 @@ Class {
 		'soleInstance',
 		'session'
 	],
-	#category : #Athens-Cairo,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo
 }
 
-{
-	#category : #'session management',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoBackendCache class>>checkSession [
+{ #category : #'session management' }
+CairoBackendCache class >> checkSession [
 	session == Smalltalk session ifFalse: [ 
 		soleInstance := nil.
 		session := Smalltalk session ]
 ]
 
-{
-	#category : #flushing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoBackendCache class>>flush [
+{ #category : #flushing }
+CairoBackendCache class >> flush [
 	self soleInstance flush
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoBackendCache class>>new  [
+{ #category : #'instance creation' }
+CairoBackendCache class >> new [ 
 	self error: 'Use #soleInstance'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoBackendCache class>>soleInstance [
+{ #category : #'instance creation' }
+CairoBackendCache class >> soleInstance [
 	self checkSession.
 	^ soleInstance ifNil: [ soleInstance := super new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoBackendCache>>at: anObject  [
+{ #category : #accessing }
+CairoBackendCache >> at: anObject [ 
 
 	^ cache at: anObject  ifAbsent: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoBackendCache>>at: anObject ifAbsentPut: aBlock [
+{ #category : #accessing }
+CairoBackendCache >> at: anObject ifAbsentPut: aBlock [
 
 	^ cache at: anObject  ifAbsentPut: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoBackendCache>>flush [
+{ #category : #accessing }
+CairoBackendCache >> flush [
 
 	cache := WeakIdentityKeyDictionary new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoBackendCache>>for: anObject at: key ifAbsentPut: aBlock [
+{ #category : #accessing }
+CairoBackendCache >> for: anObject at: key ifAbsentPut: aBlock [
 
 	| subCache |
 	subCache := cache 
@@ -100,30 +75,21 @@ CairoBackendCache>>for: anObject at: key ifAbsentPut: aBlock [
 	^ subCache at: key ifAbsentPut: aBlock
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoBackendCache>>initialize [
+{ #category : #initialize-release }
+CairoBackendCache >> initialize [
 
 	self flush
 ]
 
-{
-	#category : #removeMe,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoBackendCache>>nbSessionChanged [
+{ #category : #removeMe }
+CairoBackendCache >> nbSessionChanged [
 
 	self initialize.
 	
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoBackendCache>>removeAt: anObject [
+{ #category : #removing }
+CairoBackendCache >> removeAt: anObject [
 
 	^ cache removeKey: anObject  ifAbsent: nil
 ]

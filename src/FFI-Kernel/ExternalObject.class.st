@@ -10,15 +10,11 @@ Class {
 	#instVars : [
 		'handle'
 	],
-	#category : #FFI-Kernel,
-	#timestamp : '<historical>'
+	#category : #FFI-Kernel
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalObject class>>initialize [
+{ #category : #'class initialization' }
+ExternalObject class >> initialize [
 	"ExternalObject initialize"
 	(Smalltalk classNamed: #SessionManager)
 		ifNotNil: [:sessionManagerClass|
@@ -28,11 +24,8 @@ ExternalObject class>>initialize [
 		ifNil: [Smalltalk addToStartUpList: self after: (Smalltalk classNamed: #ShortRunArray)].	
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalObject class>>install [
+{ #category : #'system startup' }
+ExternalObject class >> install [
 	"Notify all instances of the receiver that we're coming up on a new platform.
 	Note: The default implementation does nothing since the general external
 	objects are cleaned up by ExternalAddress>>startUp: but subclasses may
@@ -40,58 +33,40 @@ ExternalObject class>>install [
 	be taken."
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalObject class>>installSubclasses [
+{ #category : #'system startup' }
+ExternalObject class >> installSubclasses [
 	"Notify all the subclasses of ExternalObject that we are starting up on a new platform."
 	self withAllSubclassesDo:[:cls| cls install].
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalObject class>>startUp: resuming [
+{ #category : #'system startup' }
+ExternalObject class >> startUp: resuming [
 	"The system is coming up. If it is on a new platform, clear out the existing handles."
 	ExternalAddress startUp: resuming. "Make sure handles are invalid"
 	resuming ifTrue:[self installSubclasses].
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalObject>>getHandle [
+{ #category : #private }
+ExternalObject >> getHandle [
 	"Private. Return the handle used to represent the external entitiy."
 	^handle
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalObject>>isExternalAddress [
+{ #category : #testing }
+ExternalObject >> isExternalAddress [
 	"Return true if the receiver describes the address of an object in the outside world"
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalObject>>isNull [
+{ #category : #testing }
+ExternalObject >> isNull [
 	"Answer true if the receiver currently is a NULL pointer"
 	^handle == nil or:[handle isNull]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalObject>>setHandle: anObject [
+{ #category : #private }
+ExternalObject >> setHandle: anObject [
 	"Private. Set the handle used to represent the external entity."
 	handle := anObject
 ]

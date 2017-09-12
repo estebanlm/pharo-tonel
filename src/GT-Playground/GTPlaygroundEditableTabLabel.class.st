@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #GTPlaygroundEditableTabLabel,
 	#superclass : #GLMEditableLabelBrick,
-	#category : #GT-Playground,
-	#timestamp : ''
+	#category : #GT-Playground
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlaygroundEditableTabLabel>>defaultPadding [
+{ #category : #initialization }
+GTPlaygroundEditableTabLabel >> defaultPadding [
 
 	^ 5
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlaygroundEditableTabLabel>>initialize [
+{ #category : #initialization }
+GTPlaygroundEditableTabLabel >> initialize [
 	super initialize.
 	
 	self

@@ -9,15 +9,11 @@ Class {
 		'wrappers',
 		'covered'
 	],
-	#category : #JenkinsTools-ExtraReports,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:31'
+	#category : #JenkinsTools-ExtraReports
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDCoverageReport>>addTestsIn: aTestAsserter to: aSet [
+{ #category : #private }
+HDCoverageReport >> addTestsIn: aTestAsserter to: aSet [
 	(aTestAsserter isKindOf: TestSuite) ifTrue: [
 		aTestAsserter tests
 			do: [ :each | self addTestsIn: each to: aSet ] ].
@@ -28,11 +24,8 @@ HDCoverageReport>>addTestsIn: aTestAsserter to: aSet [
 	^ aSet
 ]
 
-{
-	#category : #generating,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDCoverageReport>>generate [
+{ #category : #generating }
+HDCoverageReport >> generate [
 	| coverage |
 	covered := (wrappers select: [ :each | each hasRun ])
 		collect: [ :each | each reference ].
@@ -42,11 +35,8 @@ HDCoverageReport>>generate [
 		ensure: [ coverage close ]
 ]
 
-{
-	#category : #generating,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDCoverageReport>>generateDataOn: aStream [
+{ #category : #generating }
+HDCoverageReport >> generateDataOn: aStream [
 	| items |
 	aStream tab; nextPutAll: '<data>'; nextPut: Character lf.
 	aStream tab; tab; nextPutAll: '<all name="all classes">'; nextPut: Character lf.
@@ -66,11 +56,8 @@ HDCoverageReport>>generateDataOn: aStream [
 	aStream tab; nextPutAll: '</data>'; nextPut: Character lf
 ]
 
-{
-	#category : #generating,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDCoverageReport>>generateOn: aStream [
+{ #category : #generating }
+HDCoverageReport >> generateOn: aStream [
 	aStream nextPutAll: '<?xml version="1.0" encoding="UTF-8"?>'; nextPut: Character lf.
 	aStream nextPutAll: '<report>'; nextPut: Character lf.
 	self generateStatsOn: aStream.
@@ -78,11 +65,8 @@ HDCoverageReport>>generateOn: aStream [
 	aStream nextPutAll: '</report>'; nextPut: Character lf
 ]
 
-{
-	#category : #generating,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDCoverageReport>>generatePackage: aPackage class: aClass on: aStream [
+{ #category : #generating }
+HDCoverageReport >> generatePackage: aPackage class: aClass on: aStream [
 	| items |
 	aStream tab: 4; nextPutAll: '<class name="'; nextPutAll: (self encode: aClass name); nextPutAll: '">'; nextPut: Character lf.
 	self
@@ -100,11 +84,8 @@ HDCoverageReport>>generatePackage: aPackage class: aClass on: aStream [
 	aStream tab: 4; nextPutAll: '</class>'; nextPut: Character lf
 ]
 
-{
-	#category : #generating,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDCoverageReport>>generatePackage: aPackage method: aReference on: aStream [
+{ #category : #generating }
+HDCoverageReport >> generatePackage: aPackage method: aReference on: aStream [
 	| items |
 	aStream tab: 5; nextPutAll: '<method name="'; nextPutAll: (self encode: aReference selector); nextPutAll: '">'; nextPut: Character lf.
 	self
@@ -115,11 +96,8 @@ HDCoverageReport>>generatePackage: aPackage method: aReference on: aStream [
 	aStream tab: 5; nextPutAll: '</method>'; nextPut: Character lf
 ]
 
-{
-	#category : #generating,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDCoverageReport>>generatePackage: aPackage on: aStream [
+{ #category : #generating }
+HDCoverageReport >> generatePackage: aPackage on: aStream [
 	| items |
 	aStream tab: 3; nextPutAll: '<package name="'; nextPutAll: (self encode: (aPackage packageName copyReplaceAll: '-' with: '.')); nextPutAll: '">'; nextPut: Character lf.
 	self
@@ -138,11 +116,8 @@ HDCoverageReport>>generatePackage: aPackage on: aStream [
 	aStream tab: 3; nextPutAll: '</package>'; nextPut: Character lf
 ]
 
-{
-	#category : #generating,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDCoverageReport>>generateStatsOn: aStream [
+{ #category : #generating }
+HDCoverageReport >> generateStatsOn: aStream [
 	aStream tab; nextPutAll: '<stats>'; nextPut: Character lf.
 	aStream tab; tab; nextPutAll: '<packages value="'; print: (packages size); nextPutAll: '"/>'; nextPut: Character lf.
 	aStream tab; tab; nextPutAll: '<classes value="'; print: (packages detectSum: [ :each | each classes size ]); nextPutAll: '"/>'; nextPut: Character lf.
@@ -150,11 +125,8 @@ HDCoverageReport>>generateStatsOn: aStream [
 	aStream tab; nextPutAll: '</stats>'; nextPut: Character lf.
 ]
 
-{
-	#category : #generating,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDCoverageReport>>generateType: aString indent: anInteger total: totalInteger actual: actualInteger on: aStream [
+{ #category : #generating }
+HDCoverageReport >> generateType: aString indent: anInteger total: totalInteger actual: actualInteger on: aStream [
 	aStream tab: anInteger; 
 		nextPutAll: '<coverage type="'; nextPutAll: aString; 
 		nextPutAll: ', %" value="'; print: (totalInteger = 0 ifTrue: [ 0 ] ifFalse: [ (100.0 * actualInteger / totalInteger) rounded ]); 
@@ -162,19 +134,13 @@ HDCoverageReport>>generateType: aString indent: anInteger total: totalInteger ac
 		nextPut: Character lf
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDCoverageReport>>ignoredSelectors [
+{ #category : #private }
+HDCoverageReport >> ignoredSelectors [
 	^ #(packageNamesUnderTest classNamesNotUnderTest)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDCoverageReport>>methodsIn: aPackage [
+{ #category : #private }
+HDCoverageReport >> methodsIn: aPackage [
 	aPackage ifNil: [ ^ #() ].
 	^ aPackage methods reject: [ :method | 
 		(self ignoredSelectors includes: method selector)
@@ -182,19 +148,13 @@ HDCoverageReport>>methodsIn: aPackage [
 			or: [ method compiledMethod refersToLiteral: #ignoreForCoverage ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDCoverageReport>>packagesIn: aTestAsserter [
+{ #category : #private }
+HDCoverageReport >> packagesIn: aTestAsserter [
 	^ self addTestsIn: aTestAsserter to: Set new
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDCoverageReport>>setUp [
+{ #category : #running }
+HDCoverageReport >> setUp [
 	super setUp.
 	wrappers := ((packages := self packagesIn: suite)
 		flatCollect: [ :package | self methodsIn: package ])
@@ -202,11 +162,8 @@ HDCoverageReport>>setUp [
 	wrappers do: [ :each | each install ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDCoverageReport>>tearDown [
+{ #category : #running }
+HDCoverageReport >> tearDown [
 	wrappers do: [ :each | each uninstall ].
 	super tearDown.
 	self generate

@@ -5,14 +5,10 @@ MultiByteFileStreamFileOutTestClass is used in MultiByteFileStreamTest>>#testFil
 Class {
 	#name : #MultiByteFileStreamFileOutTestClass,
 	#superclass : #Object,
-	#category : #Multilingual-Tests-TextConversion,
-	#timestamp : 'SvenVanCaekenberghe 11/24/2014 14:45'
+	#category : #Multilingual-Tests-TextConversion
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MultiByteFileStreamFileOutTestClass class>>scriptName [
+{ #category : #accessing }
+MultiByteFileStreamFileOutTestClass class >> scriptName [
     ^'tété'
 ]

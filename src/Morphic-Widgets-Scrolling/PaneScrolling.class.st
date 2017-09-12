@@ -12,38 +12,25 @@ Class {
 		'step',
 		'scrollPane'
 	],
-	#category : #Morphic-Widgets-Scrolling,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Scrolling
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PaneScrolling>>scrollPane [
+{ #category : #accessing }
+PaneScrolling >> scrollPane [
 	^ scrollPane
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PaneScrolling>>scrollPane: anObject [
+{ #category : #accessing }
+PaneScrolling >> scrollPane: anObject [
 	scrollPane := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PaneScrolling>>step [
+{ #category : #accessing }
+PaneScrolling >> step [
 	^ step
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PaneScrolling>>step: anObject [
+{ #category : #accessing }
+PaneScrolling >> step: anObject [
 	step := anObject
 ]

@@ -21,66 +21,47 @@ Class {
 		'directory',
 		'localRepository'
 	],
-	#category : #Monticello-Base,
-	#timestamp : 'GuillermoPolito 12/14/2016 17:36'
+	#category : #Monticello-Base
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MonticelloBootstrap class>>bootstrapDefault [
+{ #category : #instance-creation }
+MonticelloBootstrap class >> bootstrapDefault [
 
 	(self inDirectory: 'pharo-local/package-cache')
 		bootstrap
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MonticelloBootstrap class>>inDirectory: aDirectory [
+{ #category : #instance-creation }
+MonticelloBootstrap class >> inDirectory: aDirectory [
 
 	^ self new
 		directory: aDirectory;
 		yourself
 ]
 
-{
-	#category : #bootstrapping,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MonticelloBootstrap>>bootstrap [
+{ #category : #bootstrapping }
+MonticelloBootstrap >> bootstrap [
 
 	self createWorkingCopies.
 	self loadBootstrapPackages
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MonticelloBootstrap>>bootstrapVersionsExcept: aBlock [
+{ #category : #versions }
+MonticelloBootstrap >> bootstrapVersionsExcept: aBlock [
 
 	^ self bootstrapVersionsSatisfying: [ :arg | (aBlock value: arg) not ]
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MonticelloBootstrap>>bootstrapVersionsSatisfying: aBlock [
+{ #category : #versions }
+MonticelloBootstrap >> bootstrapVersionsSatisfying: aBlock [
 
 	^ RPackageOrganizer default packages
 		select: [ :package | package name ~= RPackage defaultPackageName and: [ aBlock value: package ] ]
 		thenCollect: [ :rpackage | self fileNameForPackageNamed: rpackage name ]
 ]
 
-{
-	#category : #bootstrapping,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MonticelloBootstrap>>createWorkingCopies [
+{ #category : #bootstrapping }
+MonticelloBootstrap >> createWorkingCopies [
 	
 	"For each of the packages inside the image, excepted by the Unpackaged package, create a monticello working copy.
 	This is achieved by creating an instance of a working copy and snapshotting it. This generates and registers the working copy automatically."
@@ -90,20 +71,14 @@ MonticelloBootstrap>>createWorkingCopies [
 			(MCWorkingCopy forPackage: (MCPackage named: packageName)) snapshot ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MonticelloBootstrap>>directory: aDirectory [
+{ #category : #accessing }
+MonticelloBootstrap >> directory: aDirectory [
 
 	directory := aDirectory
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MonticelloBootstrap>>fileNameForPackageNamed: name [
+{ #category : #versions }
+MonticelloBootstrap >> fileNameForPackageNamed: name [
 
 	| versionInfos |
 	versionInfos := self localRepository directory files
@@ -117,20 +92,14 @@ MonticelloBootstrap>>fileNameForPackageNamed: name [
 	^ versionInfos anyOne basename
 ]
 
-{
-	#category : #bootstrapping,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MonticelloBootstrap>>loadBootstrapPackageNamed: aName [
+{ #category : #bootstrapping }
+MonticelloBootstrap >> loadBootstrapPackageNamed: aName [
 
 	self loadBootstrapPackagesNamed: { aName }
 ]
 
-{
-	#category : #bootstrapping,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MonticelloBootstrap>>loadBootstrapPackages [
+{ #category : #bootstrapping }
+MonticelloBootstrap >> loadBootstrapPackages [
 
 	MCCacheRepository cacheDirectory: directory.
 
@@ -148,30 +117,21 @@ MonticelloBootstrap>>loadBootstrapPackages [
 	self loadBootstrapPackageNamed: 'Monticello'
 ]
 
-{
-	#category : #bootstrapping,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MonticelloBootstrap>>loadBootstrapPackagesNamed: aCollectionOfNames [
+{ #category : #bootstrapping }
+MonticelloBootstrap >> loadBootstrapPackagesNamed: aCollectionOfNames [
 
 	(self bootstrapVersionsSatisfying: [ :package | aCollectionOfNames includes: package name ])
 		do: [ :version | self loadPackageVersion: version ].
 ]
 
-{
-	#category : #bootstrapping,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MonticelloBootstrap>>loadPackageNamed: aName [
+{ #category : #bootstrapping }
+MonticelloBootstrap >> loadPackageNamed: aName [
 
 	self loadPackagesNamed: { aName }
 ]
 
-{
-	#category : #bootstrapping,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MonticelloBootstrap>>loadPackageVersion: aFileName [
+{ #category : #bootstrapping }
+MonticelloBootstrap >> loadPackageVersion: aFileName [
 	
 	[ 	('Loading ', aFileName asString) logCr.
 		"Use snapshot install instead of load to force loading.
@@ -182,22 +142,16 @@ MonticelloBootstrap>>loadPackageVersion: aFileName [
 		warning resume: true ]
 ]
 
-{
-	#category : #bootstrapping,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MonticelloBootstrap>>loadPackagesNamed: aCollectionOfNames [
+{ #category : #bootstrapping }
+MonticelloBootstrap >> loadPackagesNamed: aCollectionOfNames [
 
 	aCollectionOfNames do: [ :name | | filename |
 		filename := self fileNameForPackageNamed: name.
 		self loadPackageVersion: filename ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MonticelloBootstrap>>localRepository [
+{ #category : #accessing }
+MonticelloBootstrap >> localRepository [
 
 	^ localRepository ifNil: [
 		localRepository := MCDirectoryRepository new

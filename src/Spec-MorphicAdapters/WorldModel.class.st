@@ -9,26 +9,19 @@ Class {
 	#instVars : [
 		'widget'
 	],
-	#category : #Spec-MorphicAdapters,
-	#timestamp : 'NicolaiHess 5/25/2016 21:39'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WorldModel class>>defaultSpec [
+{ #category : #specs }
+WorldModel class >> defaultSpec [
 	<spec>
 	
 	self setUpWorld.
 	^ World asSpecAdapter
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WorldModel class>>setUpWorld [
+{ #category : #private }
+WorldModel class >> setUpWorld [
 
 	World changeProportionalLayout.
 	World submorphs do: [:e | e delete ].
@@ -40,11 +33,8 @@ WorldModel class>>setUpWorld [
 	(Smalltalk at: #TaskbarMorph) perform: #showTaskbar: with: false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WorldModel>>addModelIn: container withSpec: aSpec [
+{ #category : #private }
+WorldModel >> addModelIn: container withSpec: aSpec [
 	
 	self model ifNil: [ ^ self ].
 	widget := self model buildWithSpec: aSpec.
@@ -54,11 +44,8 @@ WorldModel>>addModelIn: container withSpec: aSpec [
 		fullFrame: LayoutFrame identity
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WorldModel>>addModelIn: container withSpecLayout: aSpec [
+{ #category : #private }
+WorldModel >> addModelIn: container withSpecLayout: aSpec [
 
 	self model ifNil: [ ^ self ].
 	widget := self model buildWithSpecLayout: aSpec.
@@ -68,87 +55,60 @@ WorldModel>>addModelIn: container withSpecLayout: aSpec [
 		fullFrame: LayoutFrame identity
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WorldModel>>buildWidget [
+{ #category : #factory }
+WorldModel >> buildWidget [
 
 	^ World asSpecAdapter
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WorldModel>>defaultInitialExtent [
+{ #category : #private }
+WorldModel >> defaultInitialExtent [
 	
 	^ World extent
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WorldModel>>ensureExtentFor: aWidget [
+{ #category : #api }
+WorldModel >> ensureExtentFor: aWidget [
 
 	self extent ifNotNil: [ :ext | DisplayScreen hostWindowSize: ext ].
 	self initialExtent ifNotNil: [ :ext | DisplayScreen hostWindowSize: ext ].
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WorldModel>>isDisplayed [
+{ #category : #api }
+WorldModel >> isDisplayed [
 
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WorldModel>>openWithSpec: aSpec [
+{ #category : #private }
+WorldModel >> openWithSpec: aSpec [
 
 	self buildWithSpec: aSpec.
 	self updateTitle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WorldModel>>openWithSpecLayout: aSpec [
+{ #category : #private }
+WorldModel >> openWithSpecLayout: aSpec [
 
 	self buildWithSpecLayout: aSpec.
 	self updateTitle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WorldModel>>title: aString [
+{ #category : #private }
+WorldModel >> title: aString [
 
 	^ DisplayScreen hostWindowTitle: aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WorldModel>>updateTitle [
+{ #category : #private }
+WorldModel >> updateTitle [
 	"Update the window title"
 
 	DisplayScreen hostWindowTitle: self title
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-WorldModel>>widget [
+{ #category : #api }
+WorldModel >> widget [
 
 	^ widget 
 ]

@@ -4,30 +4,19 @@ I am an abstract superclass for objects that can perform operations on directory
 Class {
 	#name : #FileSystemVisitor,
 	#superclass : #Object,
-	#category : #FileSystem-Core-Implementation,
-	#timestamp : 'cwp 11/18/2009 12:25'
+	#category : #FileSystem-Core-Implementation
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemVisitor>>visitDirectory: aReference [
+{ #category : #visiting }
+FileSystemVisitor >> visitDirectory: aReference [
 	^ self visitReference: aReference
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemVisitor>>visitFile: aReference [
+{ #category : #visiting }
+FileSystemVisitor >> visitFile: aReference [
 	^ self visitReference: aReference
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemVisitor>>visitReference: aReference [
-
+{ #category : #visiting }
+FileSystemVisitor >> visitReference: aReference [
 ]

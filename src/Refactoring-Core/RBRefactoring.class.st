@@ -34,32 +34,22 @@ Class {
 	#classVars : [
 		'RefactoringOptions'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 01:47'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring class>>cleanUp [
+{ #category : #'as yet unclassified' }
+RBRefactoring class >> cleanUp [
 	"RefactoringOptions holds on to blocks, we should make sure to recreate them so the block references the current method"
 	self initializeRefactoringOptions.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring class>>initialize [
+{ #category : #initialization }
+RBRefactoring class >> initialize [
 	self initializeRefactoringOptions
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring class>>initializeRefactoringOptions [
+{ #category : #initialization }
+RBRefactoring class >> initializeRefactoringOptions [
 	RefactoringOptions := IdentityDictionary new.
 	RefactoringOptions
 		at: #implementorToInline
@@ -93,89 +83,59 @@ RBRefactoring class>>initializeRefactoringOptions [
 		put: [ :ref :env |  self error: #openBrowser ]
 ]
 
-{
-	#category : #'accessing signal',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring class>>preconditionSignal [
+{ #category : #'accessing signal' }
+RBRefactoring class >> preconditionSignal [
 	^ RBRefactoringError , RBRefactoringWarning
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring class>>refactoringOptions [
+{ #category : #accessing }
+RBRefactoring class >> refactoringOptions [
 	^ RefactoringOptions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring class>>setDefaultOption: aSymbol to: aBlock  [
+{ #category : #accessing }
+RBRefactoring class >> setDefaultOption: aSymbol to: aBlock [ 
 	self refactoringOptions at: aSymbol put: aBlock
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>associationForClassVariable: aName in: aClass ifAbsent: aBlock  [
+{ #category : #utilities }
+RBRefactoring >> associationForClassVariable: aName in: aClass ifAbsent: aBlock [ 
 	^aClass realClass classPool associationAt: aName asSymbol
 		ifAbsent: [aClass realClass classPool associationAt: aName asString ifAbsent: aBlock]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>canReferenceVariable: aString in: aClass  [
+{ #category : #testing }
+RBRefactoring >> canReferenceVariable: aString [ in: aClass 
 	(aClass definesVariable: aString) ifTrue: [^true].
 	(self model includesGlobal: aString asSymbol) ifTrue: [^true].
 	^(self poolVariableNamesFor: aClass) includes: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>changes [
+{ #category : #accessing }
+RBRefactoring >> changes [
 	^self model changes
 ]
 
-{
-	#category : #support,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>checkClass: aRBClass selector: aSelector using: aMatcher  [
+{ #category : #support }
+RBRefactoring >> checkClass: aRBClass selector: aSelector using: aMatcher [ 
 	| parseTree |
 	parseTree := aRBClass parseTreeFor: aSelector.
 	parseTree notNil ifTrue: [aMatcher executeTree: parseTree].
 	^aMatcher answer
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>checkInstanceVariableName: aName in: aClass  [
+{ #category : #utilities }
+RBRefactoring >> checkInstanceVariableName: aName in: aClass [ 
 	^RBCondition checkInstanceVariableName: aName in: aClass
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>checkMethodName: aName in: aClass  [
+{ #category : #utilities }
+RBRefactoring >> checkMethodName: aName in: aClass [ 
 	^RBCondition checkMethodName: aName in: aClass
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>checkPreconditions [
+{ #category : #preconditions }
+RBRefactoring >> checkPreconditions [
 	| conditions block |
 	conditions := self preconditions.
 	conditions check
@@ -185,21 +145,15 @@ RBRefactoring>>checkPreconditions [
 				ifNil: [ self refactoringError: conditions errorString ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>classObjectFor: anObject  [
+{ #category : #private }
+RBRefactoring >> classObjectFor: anObject [ 
 	(anObject isBehavior or: [anObject isTrait]) ifTrue: [^self model classFor: anObject].
 	anObject isSymbol ifTrue: [^self model classNamed: anObject].
 	^anObject
 ]
 
-{
-	#category : #support,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>convertAllReferencesTo: aSymbol using: searchReplacer  [
+{ #category : #support }
+RBRefactoring >> convertAllReferencesTo: aSymbol using: searchReplacer [ 
 	self model allReferencesTo: aSymbol
 		do: 
 			[:method | 
@@ -209,11 +163,8 @@ RBRefactoring>>convertAllReferencesTo: aSymbol using: searchReplacer  [
 				using: searchReplacer]
 ]
 
-{
-	#category : #support,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>convertAllReferencesToClass: aRBClass using: searchReplacer  [
+{ #category : #support }
+RBRefactoring >> convertAllReferencesToClass: aRBClass using: searchReplacer [ 
 	self model allReferencesToClass: aRBClass
 		do: 
 			[:method | 
@@ -223,11 +174,8 @@ RBRefactoring>>convertAllReferencesToClass: aRBClass using: searchReplacer  [
 				using: searchReplacer]
 ]
 
-{
-	#category : #support,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>convertClasses: classSet select: aBlock using: searchReplacer  [
+{ #category : #support }
+RBRefactoring >> convertClasses: classSet select: aBlock using: searchReplacer [ 
 	classSet do: 
 			[:aClass | 
 			(aBlock value: aClass) do: 
@@ -238,11 +186,8 @@ RBRefactoring>>convertClasses: classSet select: aBlock using: searchReplacer  [
 						using: searchReplacer]]
 ]
 
-{
-	#category : #support,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>convertMethod: selector for: aClass using: searchReplacer  [
+{ #category : #support }
+RBRefactoring >> convertMethod: selector for: aClass using: searchReplacer [ 
 	"Convert the parse tree for selector using the searchReplacer. If a
 	change is made then compile it into the changeBuilder."
 
@@ -253,11 +198,8 @@ RBRefactoring>>convertMethod: selector for: aClass using: searchReplacer  [
 		ifTrue: [aClass compileTree: searchReplacer tree]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>copyOptionsFrom: aDictionary  [
+{ #category : #accessing }
+RBRefactoring >> copyOptionsFrom: aDictionary [ 
 	| dict |
 	dict := self options.
 	dict == self class refactoringOptions 
@@ -269,28 +211,19 @@ RBRefactoring>>copyOptionsFrom: aDictionary  [
 	self options: dict
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>defaultEnvironment [
+{ #category : #transforming }
+RBRefactoring >> defaultEnvironment [
 	^RBBrowserEnvironment new
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>execute [
+{ #category : #transforming }
+RBRefactoring >> execute [
 	self primitiveExecute.
 	RBRefactoringManager instance addRefactoring: self
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>model [
+{ #category : #transforming }
+RBRefactoring >> model [
 	^ model isNil 
 		ifTrue: 
 			[model := (RBClassModelFactory rbNamespace onEnvironment: self defaultEnvironment)
@@ -299,19 +232,13 @@ RBRefactoring>>model [
 		ifFalse: [model]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>model: aRBNamespace  [
+{ #category : #initialize-release }
+RBRefactoring >> model: aRBNamespace [ 
 	model := aRBNamespace
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>onError: aBlock do: errorBlock  [
+{ #category : #private }
+RBRefactoring >> onError: aBlock do: errorBlock [ 
 	^aBlock on: self class preconditionSignal
 		do: 
 			[:ex | 
@@ -319,44 +246,29 @@ RBRefactoring>>onError: aBlock do: errorBlock  [
 			ex return: nil]
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>openBrowserOn: anEnvironment  [
+{ #category : #requests }
+RBRefactoring >> openBrowserOn: anEnvironment [ 
 	^(self options at: #openBrowser) value: self value: anEnvironment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>options [
+{ #category : #accessing }
+RBRefactoring >> options [
 	^options isNil ifTrue: [self class refactoringOptions] ifFalse: [options]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>options: aDictionary  [
+{ #category : #accessing }
+RBRefactoring >> options: aDictionary [ 
 	options := aDictionary
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>performComponentRefactoring: aRefactoring  [
+{ #category : #transforming }
+RBRefactoring >> performComponentRefactoring: aRefactoring [ 
 	aRefactoring copyOptionsFrom: self options.
 	aRefactoring primitiveExecute
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>poolVariableNamesFor: aClass  [
+{ #category : #utilities }
+RBRefactoring >> poolVariableNamesFor: aClass [ 
 	| pools |
 	pools := Set new.
 	aClass withAllSuperclasses do: 
@@ -368,103 +280,67 @@ RBRefactoring>>poolVariableNamesFor: aClass  [
 	^pools
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>preconditions [
+{ #category : #preconditions }
+RBRefactoring >> preconditions [
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>primitiveExecute [
+{ #category : #private }
+RBRefactoring >> primitiveExecute [
 	self checkPreconditions.
 	self transform
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>refactoringConfirmWarning: aString [
+{ #category : #private }
+RBRefactoring >> refactoringConfirmWarning: aString [
 	| ret |
 	ret := UIManager default confirm: aString orCancel: [ ^ RBRefactoringFailure signal: 'aborted' ].
 	^ ret
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>refactoringError: aString  [
+{ #category : #private }
+RBRefactoring >> refactoringError: aString [ 
 	^ RBRefactoringError signal: aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>refactoringError: aString with: aBlock  [
+{ #category : #private }
+RBRefactoring >> refactoringError: aString with: aBlock [ 
 	^ RBRefactoringError signal: aString with: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>refactoringFailure: aString  [
+{ #category : #private }
+RBRefactoring >> refactoringFailure: aString [ 
 	^ RBRefactoringFailure signal: aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>refactoringFailure: aString with: aBlock [
+{ #category : #private }
+RBRefactoring >> refactoringFailure: aString with: aBlock [
 	^ RBRefactoringFailure signal: aString with: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>refactoringWarning: aString  [
+{ #category : #private }
+RBRefactoring >> refactoringWarning: aString [ 
 	^ RBRefactoringWarning signal: aString
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>requestImplementorToInline: implementorsCollection  [
+{ #category : #requests }
+RBRefactoring >> requestImplementorToInline: implementorsCollection [ 
 	^(self options at: #implementorToInline) value: self
 		value: implementorsCollection
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>requestMethodNameFor: aMethodName  [
+{ #category : #requests }
+RBRefactoring >> requestMethodNameFor: aMethodName [ 
 	^(self options at: #methodName) value: self value: aMethodName
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>requestSelfArgumentName [
+{ #category : #requests }
+RBRefactoring >> requestSelfArgumentName [
 	^(self options at: #selfArgumentName) value: self
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>safeMethodNameFor: aClass basedOn: aString  [
+{ #category : #utilities }
+RBRefactoring >> safeMethodNameFor: aClass basedOn: aString [ 
 	"Creates an unused method name containing aString"
 
 	| baseString newString hasParam i |
@@ -482,11 +358,8 @@ RBRefactoring>>safeMethodNameFor: aClass basedOn: aString  [
 	^newString asSymbol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>safeVariableNameFor: aClass temporaries: allTempVars basedOn: aString [
+{ #category : #private }
+RBRefactoring >> safeVariableNameFor: aClass temporaries: allTempVars basedOn: aString [
 	| baseString i newString |
 	newString := baseString := aString.
 	i := 0.
@@ -497,22 +370,16 @@ RBRefactoring>>safeVariableNameFor: aClass temporaries: allTempVars basedOn: aSt
 	^ newString
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>selectVariableToMoveMethodTo: aSelector class: aClass  [
+{ #category : #requests }
+RBRefactoring >> selectVariableToMoveMethodTo: aSelector class: aClass [ 
 	^(self options at: #selectVariableToMoveTo) 
 		value: self
 		value: aClass
 		value: aSelector
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>selectVariableTypesFrom: initialTypeCollection selected: selectedTypeCollection  [
+{ #category : #requests }
+RBRefactoring >> selectVariableTypesFrom: initialTypeCollection selected: selectedTypeCollection [ 
 	^ (self options at: #variableTypes) 
 		value: self
 		value: initialTypeCollection
@@ -520,11 +387,8 @@ RBRefactoring>>selectVariableTypesFrom: initialTypeCollection selected: selected
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>setOption: aSymbol toUse: aBlock  [
+{ #category : #accessing }
+RBRefactoring >> setOption: aSymbol toUse: aBlock [ 
 	| dict |
 	dict := self options.
 	dict == self class refactoringOptions ifTrue: [dict := dict copy].
@@ -532,54 +396,36 @@ RBRefactoring>>setOption: aSymbol toUse: aBlock  [
 	self options: dict
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>shouldExtractAssignmentTo: aString  [
+{ #category : #requests }
+RBRefactoring >> shouldExtractAssignmentTo: aString [ 
 	^(self options at: #extractAssignment) value: self value: aString
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>shouldInlineExpression: aString  [
+{ #category : #requests }
+RBRefactoring >> shouldInlineExpression: aString [ 
 	^(self options at: #inlineExpression) value: self value: aString
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>shouldOverride: aSelector in: aClass  [
+{ #category : #requests }
+RBRefactoring >> shouldOverride: aSelector in: aClass [ 
 	^(self options at: #alreadyDefined) 
 		value: self
 		value: aClass
 		value: aSelector
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>shouldUseExistingMethod: aSelector  [
+{ #category : #requests }
+RBRefactoring >> shouldUseExistingMethod: aSelector [ 
 	^(self options at: #useExistingMethod) value: self value: aSelector
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>transform [
+{ #category : #transforming }
+RBRefactoring >> transform [
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>uniqueMethodNameFor: anInteger  [
+{ #category : #private }
+RBRefactoring >> uniqueMethodNameFor: anInteger [ 
 	| before after index name |
 	before := 'a'.
 	after := ''.
@@ -592,11 +438,8 @@ RBRefactoring>>uniqueMethodNameFor: anInteger  [
 	^name asSymbol
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoring>>whichVariableNode: aParseTree inInterval: anInterval name: aName  [
+{ #category : #utilities }
+RBRefactoring >> whichVariableNode: aParseTree inInterval: anInterval name: aName [ 
 	| matcher block |
 	matcher := RBParseTreeSearcher new.
 	block := 

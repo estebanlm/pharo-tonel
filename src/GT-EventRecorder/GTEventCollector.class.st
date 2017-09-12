@@ -49,15 +49,11 @@ Class {
 		'registry',
 		'updateAnnouncementBlock'
 	],
-	#category : #GT-EventRecorder-Core,
-	#timestamp : 'JurajKubelka 11/17/2015 14:35'
+	#category : #GT-EventRecorder-Core
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector class>>notRegisteredCollector [
+{ #category : #examples }
+GTEventCollector class >> notRegisteredCollector [
 	<gtExample>
 	<label: 'It collects an integer and a string'>
 	^ self new
@@ -69,85 +65,58 @@ GTEventCollector class>>notRegisteredCollector [
 		yourself.
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>add: anEvent  [
+{ #category : #adding }
+GTEventCollector >> add: anEvent [ 
 	"And an event (any object) that you want to send to a server."
 	^ recordedEvents nextPut: anEvent
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>addIfAvailable: anEvent [
+{ #category : #adding }
+GTEventCollector >> addIfAvailable: anEvent [
 	"It add event to a queue only if sending diagnostic and usage data is enabled."
 	Privacy sendDiagnosticsAndUsageData ifFalse: [ ^ anEvent ].	
 	^ self add: anEvent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>bundle [
+{ #category : #accessing }
+GTEventCollector >> bundle [
 	"It returns all collected events that are supposed to be sent. If you need to send just a portion of the collected events, this is the place to overwrite."
 	^ self bundle: OrderedCollection new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>bundle: aCollection [
+{ #category : #accessing }
+GTEventCollector >> bundle: aCollection [
 	recordedEvents flush: [ :eachEvent | aCollection addLast: eachEvent ].
 	^ aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>category [
+{ #category : #accessing }
+GTEventCollector >> category [
 	^ category ifNil: [ category := self defaultCategory ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>category: aString  [
+{ #category : #accessing }
+GTEventCollector >> category: aString [ 
 	"It is used for distinguishing data from different application on a server.
 	The data are stored separately on a server according to category name."
 	^ category := aString
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>defaultCategory [
+{ #category : #configuration }
+GTEventCollector >> defaultCategory [
 	"Default category name. You can set your own by calling #category: or 
 	by overwriting this method if you have a spetialized subclass."
 	^ #unknown
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>flush [
+{ #category : #accessing }
+GTEventCollector >> flush [
 	"Be careful when using it. You will lost all data."
 	recordedEvents flush
 ]
 
-{
-	#category : #gt-inspector-extension,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>gtInspectorActionHelp [
+{ #category : #gt-inspector-extension }
+GTEventCollector >> gtInspectorActionHelp [
 	<gtInspectorAction>
 	^ GLMGenericAction new
 		action: [:b | 
@@ -159,47 +128,32 @@ GTEventCollector>>gtInspectorActionHelp [
 		title: 'Help'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>initialize [
+{ #category : #initialization }
+GTEventCollector >> initialize [
 	super initialize.	
 	recordedEvents := WaitfreeQueue new.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>isLiberated [
+{ #category : #testing }
+GTEventCollector >> isLiberated [
 	"When I answer true, I can be removed from a GTEventRecorder object."
 	^ self registry isLiberated and: [ recordedEvents isEmpty ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>liberate [
+{ #category : #actions }
+GTEventCollector >> liberate [
 	"Liberate me from the occupant so I can be removed from GTEventRecorder object in the next delivery cycle."
 	^ self registry liberate.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>occupant: anObject  [
+{ #category : #accessing }
+GTEventCollector >> occupant: anObject [ 
 	"anObject sends me data. I weakly keeps anObject and once it is released, I can be removed from GTEventRecorder object."
 	self registry object: anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>printOn: aStream [
+{ #category : #printing }
+GTEventCollector >> printOn: aStream [
 	super printOn: aStream.
 	aStream
 		space;
@@ -210,65 +164,44 @@ GTEventCollector>>printOn: aStream [
 		nextPut: $]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>register [
+{ #category : #initialization }
+GTEventCollector >> register [
 	"Register to the global GTEventRecorder."
 	GTEventRecorder uniqueInstance addCollector: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>registry [
+{ #category : #accessing }
+GTEventCollector >> registry [
 	"Registry is a weak holder of my owner. Once it is nil, I can be removed from GTEventRecorder object."
 	^ registry ifNil: [ registry := GTEventRegistry new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>size [
+{ #category : #accessing }
+GTEventCollector >> size [
 	"It returns number of collected events."
 	^ recordedEvents size
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>updateAnnouncement: aGTEventAnnouncement  [
+{ #category : #updating }
+GTEventCollector >> updateAnnouncement: aGTEventAnnouncement [ 
 	updateAnnouncementBlock ifNil: [ ^ aGTEventAnnouncement ].
 	updateAnnouncementBlock cull: aGTEventAnnouncement.
 	^ aGTEventAnnouncement
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>updateAnnouncementBlock: aBlockClosure  [
+{ #category : #updating }
+GTEventCollector >> updateAnnouncementBlock: aBlockClosure [ 
 	updateAnnouncementBlock := aBlockClosure
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>url [
+{ #category : #accessing }
+GTEventCollector >> url [
 	"It returns URL indicating where to send collected data."
 	^ url ifNil: [ url := GTEventRecorderSettings url ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventCollector>>url: aZnUrl [
+{ #category : #accessing }
+GTEventCollector >> url: aZnUrl [
 	"URL that indicates where to send collected data."
 	url := aZnUrl
 ]

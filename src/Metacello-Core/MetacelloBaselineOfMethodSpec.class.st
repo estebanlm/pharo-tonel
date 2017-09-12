@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloBaselineOfMethodSpec,
 	#superclass : #MetacelloVersionMethodSpec,
-	#category : #Metacello-Core-Constructors,
-	#timestamp : ''
+	#category : #Metacello-Core-Constructors
 }
 
-{
-	#category : #'method generation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloBaselineOfMethodSpec>>methodSelectorAndPragma: aSelector imports: importList on: strm [
+{ #category : #'method generation' }
+MetacelloBaselineOfMethodSpec >> methodSelectorAndPragma: aSelector imports: importList on: strm [
   strm
     nextPutAll: aSelector asString , ' spec';
     cr;
@@ -20,11 +13,8 @@ MetacelloBaselineOfMethodSpec>>methodSelectorAndPragma: aSelector imports: impor
     nextPutAll: '<baseline>'
 ]
 
-{
-	#category : #'method generation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloBaselineOfMethodSpec>>methodSource [
+{ #category : #'method generation' }
+MetacelloBaselineOfMethodSpec >> methodSource [
   | strm |
   strm := WriteStream on: String new.
   self methodSelectorAndPragma: self selector imports: self imports on: strm.
@@ -50,10 +40,7 @@ MetacelloBaselineOfMethodSpec>>methodSource [
   ^ strm contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloBaselineOfMethodSpec>>versionString [
+{ #category : #accessing }
+MetacelloBaselineOfMethodSpec >> versionString [
   ^ MetacelloMCBaselineProject singletonVersionName
 ]

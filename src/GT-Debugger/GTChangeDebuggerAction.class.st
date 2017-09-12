@@ -9,15 +9,11 @@ Class {
 		'debuggerClass',
 		'newDebugger'
 	],
-	#category : #GT-Debugger-Actions,
-	#timestamp : 'AndreiChis 12/30/2015 11:24'
+	#category : #GT-Debugger-Actions
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTChangeDebuggerAction class>>changeDebuggerActionsForContext: aContext excluding: aDebugger [
+{ #category : #accessing }
+GTChangeDebuggerAction class >> changeDebuggerActionsForContext: aContext excluding: aDebugger [
 	
 	^ (self debuggersForContext: aContext excluding: aDebugger) collect: [ :aDebuggerClass | 
 		(self forDebugger: aDebugger)
@@ -25,11 +21,8 @@ GTChangeDebuggerAction class>>changeDebuggerActionsForContext: aContext excludin
 			icon: (Form extent: 0@0) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTChangeDebuggerAction class>>debuggersForContext: aContext excluding: aDebugger  [
+{ #category : #accessing }
+GTChangeDebuggerAction class >> debuggersForContext: aContext excluding: aDebugger [ 
 	"Ungly check to make sure the debugger will work until everything is in the image"
 	(Smalltalk tools respondsTo: #debuggersForContext:) 
 		ifTrue: [ ^ (Smalltalk tools debuggersForContext: aContext) reverse
@@ -38,11 +31,8 @@ GTChangeDebuggerAction class>>debuggersForContext: aContext excluding: aDebugger
 		ifFalse: [ ^ OrderedCollection new ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTChangeDebuggerAction class>>gtChangeDebuggerActionsFor: aDebugger [
+{ #category : #'as yet unclassified' }
+GTChangeDebuggerAction class >> gtChangeDebuggerActionsFor: aDebugger [
 	<gtDebuggingAction>
 	
 	^ self 
@@ -50,56 +40,38 @@ GTChangeDebuggerAction class>>gtChangeDebuggerActionsFor: aDebugger [
 		excluding: aDebugger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTChangeDebuggerAction>>debuggerClass: aClass [
+{ #category : #accessing }
+GTChangeDebuggerAction >> debuggerClass: aClass [
 
 	debuggerClass := aClass.
 	self label: debuggerClass defaultTitle.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTChangeDebuggerAction>>defaultCategory  [
+{ #category : #initialization }
+GTChangeDebuggerAction >> defaultCategory [ 
 	
 	^ 'Available Debuggers'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTChangeDebuggerAction>>defaultOrder [
+{ #category : #initialization }
+GTChangeDebuggerAction >> defaultOrder [
 
 	^ 100
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTChangeDebuggerAction>>executeAction [
+{ #category : #actions }
+GTChangeDebuggerAction >> executeAction [
 
 	 newDebugger := self debugger debug: self interruptedContext using: debuggerClass
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTChangeDebuggerAction>>initialize [
+{ #category : #initialization }
+GTChangeDebuggerAction >> initialize [
 	super initialize.
 	self needsUpdate: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTChangeDebuggerAction>>newDebugger [
+{ #category : #accessing }
+GTChangeDebuggerAction >> newDebugger [
 	^ newDebugger
 ]

@@ -44,25 +44,18 @@ Class {
 	#pools : [
 		'EventSensorConstants'
 	],
-	#category : #Morphic-Core-Kernel,
-	#timestamp : '<historical>'
+	#category : #Morphic-Core-Kernel
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph class>>attach: aMorph [
+{ #category : #utilities }
+HandMorph class >> attach: aMorph [
 	"Attach aMorph the current world's primary hand."
 
 	self currentWorld primaryHand attachMorph: aMorph
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph class>>cleanUp [
+{ #category : #cleanup }
+HandMorph class >> cleanUp [
 	"Called from ImageCleaner>>cleanUpForRelease --> SmalltalkImage>>cleanUp:except:confirming:"
 	self logEventStatsStop.
 	ActiveHand resetClickState.
@@ -70,39 +63,27 @@ HandMorph class>>cleanUp [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph class>>doubleClickTime [
+{ #category : #accessing }
+HandMorph class >> doubleClickTime [
 
 	^ DoubleClickTime
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph class>>doubleClickTime: milliseconds [
+{ #category : #accessing }
+HandMorph class >> doubleClickTime: milliseconds [
 
 	DoubleClickTime := milliseconds.
 
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph class>>eventStats [
+{ #category : #events-processing }
+HandMorph class >> eventStats [
 	^ EventStats ifNil: [ 'EventStats are disabled' ].
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph class>>initialize [
+{ #category : #'class initialization' }
+HandMorph class >> initialize [
 	"HandMorph initialize"
 
 	PasteBuffer := nil.
@@ -111,57 +92,39 @@ HandMorph class>>initialize [
 
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph class>>logEventStats: evt [
+{ #category : #events-processing }
+HandMorph class >> logEventStats: evt [
 	EventStats ifNotNil: [
 		EventStats at: #count put: (EventStats at: #count ifAbsent:[0]) + 1.
 		EventStats at: evt type put: (EventStats at: evt type ifAbsent:[0]) + 1.
 		].
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph class>>logEventStatsEnabled [
+{ #category : #settings }
+HandMorph class >> logEventStatsEnabled [
 	"self logEventStatsEnabled"
 	^ EventStats isNotNil 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph class>>logEventStatsEnabled: aBoolean [
+{ #category : #settings }
+HandMorph class >> logEventStatsEnabled: aBoolean [
 	aBoolean
 		ifTrue: [ self logEventStatsStart ]
 		ifFalse: [ self logEventStatsStop ].
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph class>>logEventStatsStart [
+{ #category : #events-processing }
+HandMorph class >> logEventStatsStart [
 	EventStats ifNil:[EventStats := IdentityDictionary new].
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph class>>logEventStatsStop [
+{ #category : #events-processing }
+HandMorph class >> logEventStatsStop [
 	EventStats := nil.
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph class>>settingsOn: aBuilder [
+{ #category : #settings }
+HandMorph class >> settingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #handMorphsLogEventStats)
 		parent: #pharoSystem;
@@ -173,49 +136,34 @@ HandMorph class>>settingsOn: aBuilder [
 
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph class>>showEvents: aBool [
+{ #category : #utilities }
+HandMorph class >> showEvents: aBool [
 	"HandMorph showEvents: true"
 	"HandMorph showEvents: false"
 	ShowEvents := aBool.
 	aBool ifFalse: [ World invalidRect: (0@0 extent: 500@120) ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph class>>upperHandLimit [
+{ #category : #accessing }
+HandMorph class >> upperHandLimit [
 
 	^ UpperHandLimit ifNil: [ UpperHandLimit := 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph class>>upperHandLimit: anInteger [
+{ #category : #accessing }
+HandMorph class >> upperHandLimit: anInteger [
 
 	UpperHandLimit := anInteger
 ]
 
-{
-	#category : #listeners,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>addEventListener: anObject [
+{ #category : #listeners }
+HandMorph >> addEventListener: anObject [
 	"Make anObject a listener for all events. All events will be reported to the object."
 	self eventListeners: (self addListener: anObject to: self eventListeners)
 ]
 
-{
-	#category : #listeners,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>addListener: anObject to: aListenerGroup [
+{ #category : #listeners }
+HandMorph >> addListener: anObject to: aListenerGroup [
 	"Add anObject to the given listener group. Return the new group."
 	| listeners |
 	listeners := aListenerGroup.
@@ -227,36 +175,24 @@ HandMorph>>addListener: anObject to: aListenerGroup [
 	^listeners
 ]
 
-{
-	#category : #listeners,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>addMouseListener: anObject [
+{ #category : #listeners }
+HandMorph >> addMouseListener: anObject [
 	"Make anObject a listener for mouse events. All mouse events will be reported to the object."
 	self mouseListeners: (self addListener: anObject to: self mouseListeners)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>anyButtonPressed [
+{ #category : #accessing }
+HandMorph >> anyButtonPressed [
 	^lastMouseEvent anyButtonPressed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>anyModifierKeyPressed [
+{ #category : #accessing }
+HandMorph >> anyModifierKeyPressed [
 	^recentModifiers anyMask: 16r0E	"cmd | opt | ctrl"
 ]
 
-{
-	#category : #grabbing/dropping,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>attachMorph: m [
+{ #category : #grabbing/dropping }
+HandMorph >> attachMorph: m [
 	"Position the center of the given morph under this hand, then grab it.
 	This method is used to grab far away or newly created morphs."
 	| delta |
@@ -268,20 +204,14 @@ HandMorph>>attachMorph: m [
 	self addMorphBack: m.
 ]
 
-{
-	#category : #'balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>balloonHelp [
+{ #category : #'balloon help' }
+HandMorph >> balloonHelp [
 	"Return the balloon morph associated with this hand"
 	^self valueOfProperty: #balloonHelpMorph
 ]
 
-{
-	#category : #'balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>balloonHelp: aBalloonMorph [
+{ #category : #'balloon help' }
+HandMorph >> balloonHelp: aBalloonMorph [
 	"Return the balloon morph associated with this hand"
 	self balloonHelp ifNotNil:[:oldHelp |oldHelp delete].
 	aBalloonMorph
@@ -289,11 +219,8 @@ HandMorph>>balloonHelp: aBalloonMorph [
 		ifNotNil:[self setProperty: #balloonHelpMorph toValue: aBalloonMorph]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>captureEventsUntil: aBlock [
+{ #category : #events-processing }
+HandMorph >> captureEventsUntil: aBlock [
 "
 	Capture all input events, bypassing normal processing flow and redirect all events into block instead.
 	Repeat until block will answer true.
@@ -315,11 +242,8 @@ HandMorph>>captureEventsUntil: aBlock [
 	]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>captureEventsWhile: aBlock [
+{ #category : #events-processing }
+HandMorph >> captureEventsWhile: aBlock [
 "
 	Capture all input events, bypassing normal processing flow and redirect all events into block instead.
 	Repeat until block will answer false.
@@ -329,30 +253,21 @@ HandMorph>>captureEventsWhile: aBlock [
 	^ self captureEventsUntil: [:evt | (aBlock value: evt) not ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>changed [
+{ #category : #updating }
+HandMorph >> changed [
 
 	hasChanged := true.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>colorForInsets [
+{ #category : #accessing }
+HandMorph >> colorForInsets [
 	"Morphs being dragged by the hand use the world's color"
 	^ owner colorForInsets
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>copyToPasteBuffer: aMorph [
+{ #category : #meta-actions }
+HandMorph >> copyToPasteBuffer: aMorph [
 	"Save this morph in the paste buffer. This is mostly useful for copying morphs between projects."
 	aMorph ifNil:[^PasteBuffer := nil].
 	Cursor wait showWhile:[
@@ -362,11 +277,8 @@ HandMorph>>copyToPasteBuffer: aMorph [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>cursorBounds [
+{ #category : #accessing }
+HandMorph >> cursorBounds [
 
 	temporaryCursor
 		ifNil: [^ self position extent: NormalCursor extent]
@@ -374,11 +286,8 @@ HandMorph>>cursorBounds [
 								extent: temporaryCursor extent]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>cursorPoint [
+{ #category : #'event handling' }
+HandMorph >> cursorPoint [
 	"Implemented for allowing embedded worlds in an event cycle to query a hand's position and get it in its coordinates. The same can be achieved by #point:from: but this is simply much more convenient since it will look as if the hand is in the lower world."
 
 	| pos |
@@ -387,11 +296,8 @@ HandMorph>>cursorPoint [
 	^ActiveWorld point: pos from: owner
 ]
 
-{
-	#category : #'balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>deleteBalloonTarget: aMorph [
+{ #category : #'balloon help' }
+HandMorph >> deleteBalloonTarget: aMorph [
 	"Delete any existing balloon help.  This is now done unconditionally, whether or not the morph supplied is the same as the current balloon target"
 	
 	self balloonHelp: nil
@@ -401,11 +307,8 @@ HandMorph>>deleteBalloonTarget: aMorph [
 	h balloonOwner == aMorph ifTrue: [self balloonHelp: nil]"
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>drawOn: aCanvas  [
+{ #category : #drawing }
+HandMorph >> drawOn: aCanvas [ 
 	"Draw the hand itself (i.e., the cursor)."
 
 	temporaryCursor 
@@ -414,11 +317,8 @@ HandMorph>>drawOn: aCanvas  [
 	
 ]
 
-{
-	#category : #grabbing/dropping,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>dropMorph: aMorph event: anEvent [
+{ #category : #grabbing/dropping }
+HandMorph >> dropMorph: aMorph event: anEvent [
 	"Drop the given morph which was carried by the hand"
 	| event dropped |
 	(anEvent isMouseUp and:[aMorph shouldDropOnMouseUp not]) ifTrue:[^self].
@@ -437,20 +337,14 @@ HandMorph>>dropMorph: aMorph event: anEvent [
 	self mouseOverHandler processMouseOver: anEvent.
 ]
 
-{
-	#category : #grabbing/dropping,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>dropMorphs [
+{ #category : #grabbing/dropping }
+HandMorph >> dropMorphs [
 	"Drop the morphs at the hands position"
 	self dropMorphs: lastMouseEvent.
 ]
 
-{
-	#category : #grabbing/dropping,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>dropMorphs: anEvent [
+{ #category : #grabbing/dropping }
+HandMorph >> dropMorphs: anEvent [
 	"Drop the morphs at the hands position"
 	self submorphsReverseDo:[:m|
 		"Drop back to front to maintain z-order"
@@ -458,35 +352,23 @@ HandMorph>>dropMorphs: anEvent [
 	].
 ]
 
-{
-	#category : #listeners,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>eventListeners [
+{ #category : #listeners }
+HandMorph >> eventListeners [
 	^eventListeners
 ]
 
-{
-	#category : #listeners,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>eventListeners: anArrayOrNil [
+{ #category : #listeners }
+HandMorph >> eventListeners: anArrayOrNil [
 	eventListeners := anArrayOrNil
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>eventQueue [
+{ #category : #'private events' }
+HandMorph >> eventQueue [
 	^ Sensor
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>fullBounds [
+{ #category : #layout }
+HandMorph >> fullBounds [
 	"Extend my bounds by the shadow offset when carrying morphs."
 
 	| bnds |
@@ -497,11 +379,8 @@ HandMorph>>fullBounds [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>fullDrawOn: aCanvas  [
+{ #category : #drawing }
+HandMorph >> fullDrawOn: aCanvas [ 
 	"A HandMorph has unusual drawing requirements:
 		1. the hand itself (i.e., the cursor) appears in front of its submorphs
 		2. morphs being held by the hand cast a shadow on the world/morphs below
@@ -582,11 +461,8 @@ HandMorph>>fullDrawOn: aCanvas  [
 	self drawOn: aCanvas	"draw the hand itself in front of morphs"
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>generateKeyboardEvent: evtBuf [
+{ #category : #'private events' }
+HandMorph >> generateKeyboardEvent: evtBuf [
 	"Generate the appropriate mouse event for the given raw event buffer"
 
 	| buttons modifiers type pressType stamp charCode keyValue keyEvent |
@@ -652,11 +528,8 @@ HandMorph>>generateKeyboardEvent: evtBuf [
 
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>generateMouseEvent: evtBuf  [
+{ #category : #'private events' }
+HandMorph >> generateMouseEvent: evtBuf [ 
 	"Generate the appropriate mouse event for the given raw event buffer"
 
 	| position buttons modifiers type trail stamp oldButtons evtChanged |
@@ -705,11 +578,8 @@ HandMorph>>generateMouseEvent: evtBuf  [
 		stamp: stamp
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>generateWindowEvent: evtBuf  [
+{ #category : #'private events' }
+HandMorph >> generateWindowEvent: evtBuf [ 
 	"Generate the appropriate window event for the given raw event buffer"
 
 	| evt |
@@ -723,11 +593,8 @@ HandMorph>>generateWindowEvent: evtBuf  [
 
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>grabMorph: aMorph [
+{ #category : #meta-actions }
+HandMorph >> grabMorph: aMorph [
 	"Grab the given morph (i.e., add it to this hand and remove it from its current owner) without changing its position. This is used to pick up a morph under the hand's current position, versus attachMorph: which is used to pick up a morph that may not be near this hand."
 	
 	| grabbed |
@@ -739,11 +606,8 @@ HandMorph>>grabMorph: aMorph [
 	^self grabMorph: grabbed from: grabbed owner
 ]
 
-{
-	#category : #grabbing/dropping,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>grabMorph: aMorph from: formerOwner  [
+{ #category : #grabbing/dropping }
+HandMorph >> grabMorph: aMorph from: formerOwner [ 
 	"Grab the given morph (i.e., add it to this hand and remove it from its
 	current owner) without changing its position. This is used to pick up a
 	morph under the hand's current position, versus attachMorph: which
@@ -779,20 +643,14 @@ HandMorph>>grabMorph: aMorph from: formerOwner  [
 	grabbed justGrabbedFrom: formerOwner
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>halo [
+{ #category : #'halos and balloon help' }
+HandMorph >> halo [
 	"Return the halo associated with this hand, if any"
 	^self valueOfProperty: #halo
 ]
 
-{
-	#category : #'halo handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>halo: newHalo [
+{ #category : #'halo handling' }
+HandMorph >> halo: newHalo [
 	"Set halo associated with this hand"
 	| oldHalo |
 	oldHalo := self halo.
@@ -802,11 +660,8 @@ HandMorph>>halo: newHalo [
 		ifNotNil:[self setProperty: #halo toValue: newHalo]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>handleEvent: anEvent [
+{ #category : #events-processing }
+HandMorph >> handleEvent: anEvent [
 	| evt  |
 	owner ifNil:[^self].
 	evt := anEvent.
@@ -875,22 +730,16 @@ HandMorph>>handleEvent: anEvent [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>hasChanged [
+{ #category : #drawing }
+HandMorph >> hasChanged [
 	"Return true if this hand has changed, either because it has moved or because some morph it is holding has changed."
 
 	^ hasChanged ifNil: [ true ]
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>initForEvents [
+{ #category : #initialization }
+HandMorph >> initForEvents [
 	mouseOverHandler := nil.
 	lastMouseEvent := MouseEvent basicNew setType: #mouseMove position: 0@0 buttons: 0 hand: self.
 	lastEventBuffer := {1. 0. 0. 0. 0. 0. nil. nil}.
@@ -898,11 +747,8 @@ HandMorph>>initForEvents [
 	self resetClickState.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>initialize [
+{ #category : #initialization }
+HandMorph >> initialize [
 	super initialize.
 	self initForEvents.
 	keyboardFocus := nil.
@@ -914,22 +760,16 @@ HandMorph>>initialize [
 	self initForEvents.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>interrupted [
+{ #category : #initialization }
+HandMorph >> interrupted [
 	"Something went wrong - we're about to bring up a debugger. 
 	Release some stuff that could be problematic."
 	self releaseAllFocus. "or else debugger might not handle clicks"
 
 ]
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>invalidRect: damageRect from: aMorph [
+{ #category : #'change reporting' }
+HandMorph >> invalidRect: damageRect from: aMorph [
 	"Note that a change has occurred and record the given damage rectangle relative to the origin this hand's cache."
 	hasChanged := true.
 	aMorph == self ifTrue:[^self].
@@ -937,92 +777,59 @@ HandMorph>>invalidRect: damageRect from: aMorph [
 
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>isHandMorph [
+{ #category : #classification }
+HandMorph >> isHandMorph [
 
 	^ true
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>keyboardFocus  [
+{ #category : #'focus handling' }
+HandMorph >> keyboardFocus [ 
 	^ keyboardFocus
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>keyboardFocus: aMorphOrNil [
+{ #category : #'focus handling' }
+HandMorph >> keyboardFocus: aMorphOrNil [
 	self newKeyboardFocus: aMorphOrNil
 ]
 
-{
-	#category : #listeners,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>keyboardListeners [
+{ #category : #listeners }
+HandMorph >> keyboardListeners [
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>lastEvent [
+{ #category : #accessing }
+HandMorph >> lastEvent [
 	^ lastMouseEvent
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>mouseFocus [
+{ #category : #'focus handling' }
+HandMorph >> mouseFocus [
 	^mouseFocus
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>mouseFocus: aMorphOrNil [
+{ #category : #'focus handling' }
+HandMorph >> mouseFocus: aMorphOrNil [
 	mouseFocus := aMorphOrNil
 ]
 
-{
-	#category : #listeners,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>mouseListeners [
+{ #category : #listeners }
+HandMorph >> mouseListeners [
 	^mouseListeners
 ]
 
-{
-	#category : #listeners,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>mouseListeners: anArrayOrNil [
+{ #category : #listeners }
+HandMorph >> mouseListeners: anArrayOrNil [
 	mouseListeners := anArrayOrNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>mouseOverHandler [
+{ #category : #accessing }
+HandMorph >> mouseOverHandler [
 	^mouseOverHandler ifNil:[mouseOverHandler := MouseOverHandler new].
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>mouseTrailFrom: currentBuf  [
+{ #category : #'private events' }
+HandMorph >> mouseTrailFrom: currentBuf [ 
   "Current event, a mouse event buffer, is about to be processed.  If there are other similar mouse events queued up, then drop them from the queue, and report the positions inbetween."
 
   | nextEvent trail |
@@ -1042,11 +849,8 @@ HandMorph>>mouseTrailFrom: currentBuf  [
   ^trail contents
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>moveToEvent: anEvent [
+{ #category : #'private events' }
+HandMorph >> moveToEvent: anEvent [
 	"Issue a mouse move event to make the receiver appear at the given position"
 	self handleEvent: (MouseMoveEvent basicNew
 		setType: #mouseMove 
@@ -1058,11 +862,8 @@ HandMorph>>moveToEvent: anEvent [
 		stamp: anEvent timeStamp)
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>needsToBeDrawn [
+{ #category : #drawing }
+HandMorph >> needsToBeDrawn [
 	"Return true if this hand must be drawn explicitely instead of being drawn via the hardware cursor. This is the case if it (a) it is a remote hand, (b) it is showing a temporary cursor, or (c) it is not empty and there are any visible submorphs. If using the software cursor, ensure that the hardware cursor is hidden."
 	"Details:  Return true if this hand has a saved patch to ensure that is is processed by the world. This saved patch will be deleted after one final display pass when it becomes possible to start using the hardware cursor again. This trick gives us one last display cycle to allow us to remove the software cursor and shadow from the display."
 	| cursor |
@@ -1081,11 +882,8 @@ HandMorph>>needsToBeDrawn [
 
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>newKeyboardFocus: aMorphOrNil [
+{ #category : #'focus handling' }
+HandMorph >> newKeyboardFocus: aMorphOrNil [
 	"Make the given morph the new keyboard focus, canceling the previous keyboard focus if any. If the argument is nil, the current keyboard focus is cancelled."
 	| oldFocus |
 	keyboardFocus == aMorphOrNil ifTrue: [ ^self ].
@@ -1097,40 +895,28 @@ HandMorph>>newKeyboardFocus: aMorphOrNil [
 
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>newMouseFocus: aMorphOrNil [
+{ #category : #'focus handling' }
+HandMorph >> newMouseFocus: aMorphOrNil [
 	"Make the given morph the new mouse focus, canceling the previous mouse focus if any. If the argument is nil, the current mouse focus is cancelled."
 	self mouseFocus: aMorphOrNil.
 
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>newMouseFocus: aMorph event: event  [
+{ #category : #'focus handling' }
+HandMorph >> newMouseFocus: aMorph event: event [ 
 	aMorph ifNotNil: [targetOffset := event cursorPoint - aMorph position].
 	^self newMouseFocus: aMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>noButtonPressed [
+{ #category : #accessing }
+HandMorph >> noButtonPressed [
 	"Answer whether any mouse button is not being pressed."
 
 	^self anyButtonPressed not
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>nonCachingFullDrawOn: aCanvas [
+{ #category : #drawing }
+HandMorph >> nonCachingFullDrawOn: aCanvas [
 	
 	"A HandMorph has unusual drawing requirements:
 		1. the hand itself (i.e., the cursor) appears in front of its submorphs
@@ -1157,20 +943,14 @@ shadowForm displayAt: shadowForm offset negated. Display forceToScreen: (0@0 ext
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>noticeMouseOver: aMorph event: anEvent [
+{ #category : #'event handling' }
+HandMorph >> noticeMouseOver: aMorph event: anEvent [
 	mouseOverHandler ifNil:[^self].
 	mouseOverHandler noticeMouseOver: aMorph event: anEvent.
 ]
 
-{
-	#category : #'paste buffer',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>objectToPaste [
+{ #category : #'paste buffer' }
+HandMorph >> objectToPaste [
 	"It may need to be sent #startRunning by the client"
 	^ Cursor wait showWhile: [PasteBuffer veryDeepCopy]
 
@@ -1178,11 +958,8 @@ HandMorph>>objectToPaste [
 
 ]
 
-{
-	#category : #'halo handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>obtainHalo: aHalo [
+{ #category : #'halo handling' }
+HandMorph >> obtainHalo: aHalo [
 	"Used for transfering halos between hands"
 
 	self halo == aHalo
@@ -1192,42 +969,30 @@ HandMorph>>obtainHalo: aHalo [
 	self halo: aHalo
 ]
 
-{
-	#category : #'paste buffer',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>pasteBuffer [
+{ #category : #'paste buffer' }
+HandMorph >> pasteBuffer [
 	"Return the paste buffer associated with this hand"
 	^ PasteBuffer
 ]
 
-{
-	#category : #'paste buffer',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>pasteBuffer: aMorphOrNil [
+{ #category : #'paste buffer' }
+HandMorph >> pasteBuffer: aMorphOrNil [
 	"Set the contents of the paste buffer."
 	PasteBuffer := aMorphOrNil.
 
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>position [
+{ #category : #geometry }
+HandMorph >> position [
 
 	^temporaryCursor
 		ifNil: [bounds topLeft]
 		ifNotNil: [bounds topLeft - temporaryCursorOffset]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>position: aPoint [
+{ #category : #geometry }
+HandMorph >> position: aPoint [
 	"Overridden to align submorph origins to the grid if gridding is on."
 	| adjustedPosition delta box |
 	adjustedPosition := aPoint.
@@ -1249,19 +1014,13 @@ HandMorph>>position: aPoint [
 
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>processEvents [
+{ #category : #'private events' }
+HandMorph >> processEvents [
 	^ self processEventsFromQueue: self eventQueue
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>processEventsFromQueue: anEventQueue [
+{ #category : #'private events' }
+HandMorph >> processEventsFromQueue: anEventQueue [
 	"Process user input events from the local input devices."
 
 	| evt evtBuf type hadAny |
@@ -1305,21 +1064,15 @@ HandMorph>>processEventsFromQueue: anEventQueue [
 			self mouseOverHandler processMouseOver: lastMouseEvent]
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>releaseAllFocus [
+{ #category : #'focus handling' }
+HandMorph >> releaseAllFocus [
 	mouseFocus := nil.
 	self newKeyboardFocus: nil.
 
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>releaseCachedState [
+{ #category : #caching }
+HandMorph >> releaseCachedState [
 	| oo |
 	super releaseCachedState.
 	cacheCanvas := nil.
@@ -1330,75 +1083,51 @@ HandMorph>>releaseCachedState [
 	self releaseAllFocus.
 ]
 
-{
-	#category : #'halo handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>releaseHalo: aHalo [
+{ #category : #'halo handling' }
+HandMorph >> releaseHalo: aHalo [
 	"Used for transfering halos between hands"
 	self removeProperty: #halo
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>releaseKeyboardFocus [
+{ #category : #'focus handling' }
+HandMorph >> releaseKeyboardFocus [
 	"Release the current keyboard focus unconditionally"
 	self newKeyboardFocus: nil.
 
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>releaseKeyboardFocus: aMorph [
+{ #category : #'focus handling' }
+HandMorph >> releaseKeyboardFocus: aMorph [
 	"If the given morph had the keyboard focus before, release it"
 	self keyboardFocus == aMorph ifTrue:[self releaseKeyboardFocus].
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>releaseMouseFocus [
+{ #category : #'focus handling' }
+HandMorph >> releaseMouseFocus [
 	"Release the current mouse focus unconditionally."
 	self newMouseFocus: nil.
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>releaseMouseFocus: aMorph [
+{ #category : #'focus handling' }
+HandMorph >> releaseMouseFocus: aMorph [
 	"If the given morph had the mouse focus before, release it"
 	self mouseFocus == aMorph ifTrue:[self releaseMouseFocus].
 ]
 
-{
-	#category : #listeners,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>removeEventListener: anObject [
+{ #category : #listeners }
+HandMorph >> removeEventListener: anObject [
 	"Remove anObject from the current event listeners."
 	self eventListeners: (self removeListener: anObject from: self eventListeners).
 ]
 
-{
-	#category : #'halo handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>removeHalo [
+{ #category : #'halo handling' }
+HandMorph >> removeHalo [
 	"remove the receiver's halo (if any)"
 	self halo ifNotNil: [ :h | self removeHaloAround: h target ]
 ]
 
-{
-	#category : #'halo handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>removeHaloAround: aMorph [
+{ #category : #'halo handling' }
+HandMorph >> removeHaloAround: aMorph [
 	"remove the receiver's halo associated to aMorph (if any)"
 	| halo |
 	halo := self halo.
@@ -1410,11 +1139,8 @@ HandMorph>>removeHaloAround: aMorph [
 	halo delete.
 ]
 
-{
-	#category : #'halo handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>removeHaloFromClick: anEvent on: aMorph  [
+{ #category : #'halo handling' }
+HandMorph >> removeHaloFromClick: anEvent on: aMorph [ 
 	| halo |
 	halo := self halo
 				ifNil: [^ self].
@@ -1424,11 +1150,8 @@ HandMorph>>removeHaloFromClick: anEvent on: aMorph  [
 		ifFalse: [self removeHalo]
 ]
 
-{
-	#category : #listeners,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>removeListener: anObject from: aListenerGroup  [
+{ #category : #listeners }
+HandMorph >> removeListener: anObject from: aListenerGroup [ 
 	"Remove anObject from the given listener group. Return the new group."
 
 	| listeners |
@@ -1440,39 +1163,27 @@ HandMorph>>removeListener: anObject from: aListenerGroup  [
 	^listeners
 ]
 
-{
-	#category : #listeners,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>removeMouseListener: anObject [
+{ #category : #listeners }
+HandMorph >> removeMouseListener: anObject [
 	"Remove anObject from the current mouse listeners."
 	self mouseListeners: (self removeListener: anObject from: self mouseListeners).
 ]
 
-{
-	#category : #'balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>removePendingBalloonFor: aMorph [
+{ #category : #'balloon help' }
+HandMorph >> removePendingBalloonFor: aMorph [
 	"Get rid of pending balloon help."
 	self removeAlarm: #spawnBalloonFor:.
 	self deleteBalloonTarget: aMorph.
 ]
 
-{
-	#category : #'double click support',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>resetClickState [
+{ #category : #'double click support' }
+HandMorph >> resetClickState [
 	"Reset the double-click detection state to normal (i.e., not waiting for a double-click)."
 	mouseClickState := nil.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>restoreSavedPatchOn: aCanvas  [
+{ #category : #drawing }
+HandMorph >> restoreSavedPatchOn: aCanvas [ 
 	"Clear the changed flag and restore the part of the given canvas under this hand from the previously saved patch. If necessary, handle the transition to using the hardware cursor."
 	| cursor |
 
@@ -1492,11 +1203,8 @@ HandMorph>>restoreSavedPatchOn: aCanvas  [
 			savedPatch := nil]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>savePatchFrom: aCanvas  [
+{ #category : #drawing }
+HandMorph >> savePatchFrom: aCanvas [ 
 	"Save the part of the given canvas under this hand as a Form and return its bounding rectangle."
 
 	"Details: The previously used patch Form is recycled when possible to reduce the burden on storage management."
@@ -1516,11 +1224,8 @@ HandMorph>>savePatchFrom: aCanvas  [
 	^damageRect
 ]
 
-{
-	#category : #'selected object',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>selectedObject [
+{ #category : #'selected object' }
+HandMorph >> selectedObject [
 	"answer the selected object for the hand or nil is none"
 	| halo |
 	halo := self halo.
@@ -1528,20 +1233,14 @@ HandMorph>>selectedObject [
 	^ halo target renderedMorph
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>sendEvent: anEvent focus: focusHolder [
+{ #category : #'private events' }
+HandMorph >> sendEvent: anEvent focus: focusHolder [
 	"Send the event to the morph currently holding the focus, or if none to the owner of the hand."
 	^self sendEvent: anEvent focus: focusHolder clear:[nil]
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>sendEvent: anEvent focus: focusHolder clear: aBlock [
+{ #category : #'private events' }
+HandMorph >> sendEvent: anEvent focus: focusHolder clear: aBlock [
 	"Send the event to the morph currently holding the focus, or if none to the owner of the hand."
 	| result |
 	focusHolder ifNotNil:[^self sendFocusEvent: anEvent to: focusHolder clear: aBlock].
@@ -1551,11 +1250,8 @@ HandMorph>>sendEvent: anEvent focus: focusHolder clear: aBlock [
 	^result
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>sendFocusEvent: anEvent to: focusHolder clear: aBlock [
+{ #category : #'private events' }
+HandMorph >> sendFocusEvent: anEvent to: focusHolder clear: aBlock [
 	"Send the event to the morph currently holding the focus"
 	| result w |
 	w := focusHolder world ifNil:[^ aBlock value].
@@ -1568,11 +1264,8 @@ HandMorph>>sendFocusEvent: anEvent to: focusHolder clear: aBlock [
 	^result
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>sendKeyboardEvent: anEvent  [
+{ #category : #'private events' }
+HandMorph >> sendKeyboardEvent: anEvent [ 
 	"Send the event to the morph currently holding the focus, or if none to
 	the owner of the hand."
 	^ self
@@ -1581,31 +1274,22 @@ HandMorph>>sendKeyboardEvent: anEvent  [
 		clear: [self keyboardFocus: nil]
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>sendListenEvent: anEvent to: listenerGroup [
+{ #category : #'private events' }
+HandMorph >> sendListenEvent: anEvent to: listenerGroup [
 	"Send the event to the given group of listeners"
 	listenerGroup ifNil:[^self].
 	listenerGroup do:[:listener| 
 		listener ifNotNil:[listener handleListenEvent: anEvent copy]].
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>sendMouseEvent: anEvent [
+{ #category : #'private events' }
+HandMorph >> sendMouseEvent: anEvent [
 	"Send the event to the morph currently holding the focus, or if none to the owner of the hand."
 	^self sendEvent: anEvent focus: self mouseFocus clear:[self mouseFocus: nil]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>shadowForm [
+{ #category : #drawing }
+HandMorph >> shadowForm [
 	"Return a 1-bit shadow of my submorphs.  Assumes submorphs is not empty"
 	| bnds canvas |
 	bnds := Rectangle merging: (submorphs collect: [:m | m fullBounds]).
@@ -1616,28 +1300,19 @@ HandMorph>>shadowForm [
 	^ canvas form offset: bnds topLeft
 ]
 
-{
-	#category : #'drop shadows',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>shadowOffset [
+{ #category : #'drop shadows' }
+HandMorph >> shadowOffset [
 
 	^ 6@8
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>shiftPressed [
+{ #category : #accessing }
+HandMorph >> shiftPressed [
 	^lastMouseEvent shiftPressed
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>showDebugEvent: evt [
+{ #category : #events-processing }
+HandMorph >> showDebugEvent: evt [
 
 	ShowEvents == true ifTrue: [
 		| ofs| 
@@ -1648,11 +1323,8 @@ HandMorph>>showDebugEvent: evt [
 		].
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>showMouseFocusEvent: evt [
+{ #category : #events-processing }
+HandMorph >> showMouseFocusEvent: evt [
 
 	ShowEvents == true ifTrue: [
 		| ofs| 
@@ -1661,22 +1333,16 @@ HandMorph>>showMouseFocusEvent: evt [
 		
 ]
 
-{
-	#category : #cursor,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>showTemporaryCursor: cursorOrNil [
+{ #category : #cursor }
+HandMorph >> showTemporaryCursor: cursorOrNil [
 	"Set the temporary cursor to the given Form. If the argument is nil, revert to the normal cursor."
 
 	self showTemporaryCursor: cursorOrNil hotSpotOffset: 0@0
 
 ]
 
-{
-	#category : #cursor,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>showTemporaryCursor: cursorOrNil hotSpotOffset: hotSpotOffset  [
+{ #category : #cursor }
+HandMorph >> showTemporaryCursor: cursorOrNil hotSpotOffset: hotSpotOffset [ 
 	"Set the temporary cursor to the given Form.
 	If the argument is nil, revert to the normal hardware cursor."
 
@@ -1695,30 +1361,21 @@ HandMorph>>showTemporaryCursor: cursorOrNil hotSpotOffset: hotSpotOffset  [
 		changed
 ]
 
-{
-	#category : #'balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>spawnBalloonFor: aMorph [
+{ #category : #'balloon help' }
+HandMorph >> spawnBalloonFor: aMorph [
 	aMorph showBalloon: aMorph balloonText hand: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>targetOffset [
+{ #category : #accessing }
+HandMorph >> targetOffset [
 	"Return the offset of the last mouseDown location relative to the origin of the recipient morph. During menu interactions, this is the absolute location of the mouse down event that invoked the menu."
 
 	^ targetOffset
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>targetPoint [
+{ #category : #accessing }
+HandMorph >> targetPoint [
 	"Return the new position of the target.
 	I.E. return the position of the hand less 
 	the original distance between hand and target position"
@@ -1727,28 +1384,19 @@ HandMorph>>targetPoint [
 
 ]
 
-{
-	#category : #cursor,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>temporaryCursor [
+{ #category : #cursor }
+HandMorph >> temporaryCursor [
 	^ temporaryCursor
 ]
 
-{
-	#category : #'balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>triggerBalloonFor: aMorph after: timeOut [
+{ #category : #'balloon help' }
+HandMorph >> triggerBalloonFor: aMorph after: timeOut [
 	"Trigger balloon help after the given time out for some morph"
 	self addAlarm: #spawnBalloonFor: with: aMorph after: timeOut.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>updateCacheCanvas: aCanvas  [
+{ #category : #drawing }
+HandMorph >> updateCacheCanvas: aCanvas [ 
 	"Update the cached image of the morphs being held by this hand."
 
 	"Note: The following is an attempt to quickly get out if there's no change"
@@ -1800,38 +1448,26 @@ HandMorph>>updateCacheCanvas: aCanvas  [
 							self drawSubmorphsOn: c]]]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>veryDeepCopyWith: deepCopier [
+{ #category : #copying }
+HandMorph >> veryDeepCopyWith: deepCopier [
 	"Return self.  Do not copy hands this way."
 	^ self
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>visible: aBoolean [
+{ #category : #drawing }
+HandMorph >> visible: aBoolean [
 	self needsToBeDrawn ifFalse: [ ^self ].
 	super visible: aBoolean
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>waitButton [
+{ #category : #events-processing }
+HandMorph >> waitButton [
 	self captureEventsUntil: [:evt | self anyButtonPressed ]
 
 ]
 
-{
-	#category : #'double click support',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-HandMorph>>waitForClicksOrDrag: aMorph event: evt [
+{ #category : #'double click support' }
+HandMorph >> waitForClicksOrDrag: aMorph event: evt [
 	"Wait for mouse button and movement events, informing aMorph about events interesting to it via callbacks.
 	This message is typically sent to the Hand by aMorph when it first receives a mouse-down event.
 	The callback methods invoked on aMorph (which are passed a copy of evt) are:

@@ -11,24 +11,17 @@ AnnouncementLogger  allInstancesDo: [:each | SystemAnnouncer announcer unsubscri
 Class {
 	#name : #AnnouncementLogger,
 	#superclass : #Object,
-	#category : #System-Announcements-Logging,
-	#timestamp : 'StephaneDucasse 5/9/2011 17:17'
+	#category : #System-Announcements-Logging
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-AnnouncementLogger>>logAnnouncement: ann [
+{ #category : #'as yet unclassified' }
+AnnouncementLogger >> logAnnouncement: ann [
 
 	Transcript show: ann printString ; cr
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-AnnouncementLogger>>subscribeTo: anAnnouncer [
+{ #category : #'as yet unclassified' }
+AnnouncementLogger >> subscribeTo: anAnnouncer [
 
 	anAnnouncer "weak" 
 		when: Announcement send: #logAnnouncement: to: self

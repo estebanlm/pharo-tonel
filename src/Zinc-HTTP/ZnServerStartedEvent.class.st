@@ -8,31 +8,21 @@ Class {
 	#instVars : [
 		'description'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 15:14'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerStartedEvent>>description [
+{ #category : #accessing }
+ZnServerStartedEvent >> description [
 	^ description
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerStartedEvent>>description: anObject [
+{ #category : #accessing }
+ZnServerStartedEvent >> description: anObject [
 	description := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerStartedEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnServerStartedEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream << ' Started '; << description
 ]

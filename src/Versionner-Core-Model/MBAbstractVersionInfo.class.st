@@ -8,34 +8,24 @@ Class {
 		'configurationInfo',
 		'version'
 	],
-	#category : #Versionner-Core-Model,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:12'
+	#category : #Versionner-Core-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo class>>new [
+{ #category : #'instance creation' }
+MBAbstractVersionInfo class >> new [
 	self error: 'Please use version:browser: or version: instead'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo class>>version: aMetacelloVersion [
+{ #category : #'instance creation' }
+MBAbstractVersionInfo class >> version: aMetacelloVersion [
 
 	^ super new 
 		version: aMetacelloVersion;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>calculateInfoList [
+{ #category : #private }
+MBAbstractVersionInfo >> calculateInfoList [
 	| answer list cvs cv |
 	answer := OrderedCollection new.
 	cvs := ''.
@@ -58,123 +48,81 @@ MBAbstractVersionInfo>>calculateInfoList [
 	^ answer
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>cmdBrowse [
+{ #category : #commands }
+MBAbstractVersionInfo >> cmdBrowse [
 	<command>
 	^ VSBrowseVersionCommand
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>cmdLoad [
+{ #category : #commands }
+MBAbstractVersionInfo >> cmdLoad [
 	<command>
 	^ VSLoadCommand
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>cmdMakeDevelopment [
+{ #category : #commands }
+MBAbstractVersionInfo >> cmdMakeDevelopment [
 	<command>
 	^ VSMakeDevelopmentCommand
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>cmdMakeStable [
+{ #category : #commands }
+MBAbstractVersionInfo >> cmdMakeStable [
 	<command>
 	^ VSMakeStableCommand
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>cmdRemove [
+{ #category : #commands }
+MBAbstractVersionInfo >> cmdRemove [
 	<command>
 	^ VSRemoveCommand
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>configurationBasename [
+{ #category : #accessing }
+MBAbstractVersionInfo >> configurationBasename [
 	^ self configurationClass name configurationBaseName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>configurationClass [
+{ #category : #accessing }
+MBAbstractVersionInfo >> configurationClass [
 	^ self configurationInfo configurationClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>configurationInfo [
+{ #category : #accessing }
+MBAbstractVersionInfo >> configurationInfo [
 	^ configurationInfo
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>configurationInfo: anObject [
+{ #category : #accessing }
+MBAbstractVersionInfo >> configurationInfo: anObject [
 	configurationInfo := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>currentVersion [
+{ #category : #accessing }
+MBAbstractVersionInfo >> currentVersion [
 
 	^self configurationInfo currentVersion
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>hasValidationIssues [
+{ #category : #testing }
+MBAbstractVersionInfo >> hasValidationIssues [
 	validationResult == nil ifTrue: [ ^false ].
 	^validationResult notEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>isBaseline [
+{ #category : #testing }
+MBAbstractVersionInfo >> isBaseline [
 	^ self version blessing == #baseline
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>isBleedingEdge [
+{ #category : #testing }
+MBAbstractVersionInfo >> isBleedingEdge [
 	^  (self project hasVersion: #bleedingEdge) and: [
 		(self project version: #bleedingEdge) = self version ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>isCurrentVersion [
+{ #category : #testing }
+MBAbstractVersionInfo >> isCurrentVersion [
 	|cv|
 	(cv := self currentVersion) ~~ nil
 		ifTrue: [ 
@@ -183,29 +131,20 @@ MBAbstractVersionInfo>>isCurrentVersion [
 	^false.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>isDevelopment [
+{ #category : #testing }
+MBAbstractVersionInfo >> isDevelopment [
 	^  (self project hasVersion: #development) and: [
 		(self project version: #development) = self version ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>isStable [
+{ #category : #testing }
+MBAbstractVersionInfo >> isStable [
 	^ (self project hasVersion: #stable) and: [ 
 		(self project version: #stable) = self version ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>printOn: aStream [
+{ #category : #printing }
+MBAbstractVersionInfo >> printOn: aStream [
 	| cv |
 	(cv := self currentVersion) ~~ nil
 		ifTrue: [ 
@@ -215,21 +154,15 @@ MBAbstractVersionInfo>>printOn: aStream [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>project [
+{ #category : #accessing }
+MBAbstractVersionInfo >> project [
 	"Answer the MetacelloProject associated with the receiver."
 	
 	^self version project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>validate [
+{ #category : #accessing }
+MBAbstractVersionInfo >> validate [
 	validationResult == nil
 		ifTrue: [ 
 			validationIcon := nil.
@@ -237,19 +170,13 @@ MBAbstractVersionInfo>>validate [
 	^ validationResult
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>version [
+{ #category : #accessing }
+MBAbstractVersionInfo >> version [
 	^ version
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>version: aMetacelloVersion [
+{ #category : #accessing }
+MBAbstractVersionInfo >> version: aMetacelloVersion [
 
 	version := aMetacelloVersion.
 	self name: aMetacelloVersion versionString.
@@ -257,19 +184,13 @@ MBAbstractVersionInfo>>version: aMetacelloVersion [
 
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>versionForInfoList [
+{ #category : #accessing-computed }
+MBAbstractVersionInfo >> versionForInfoList [
 
 	^self version 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractVersionInfo>>versionString [
+{ #category : #accessing }
+MBAbstractVersionInfo >> versionString [
 	^ self version versionString
 ]

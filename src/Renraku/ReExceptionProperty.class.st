@@ -8,15 +8,11 @@ Class {
 		'stack',
 		'message'
 	],
-	#category : #Renraku-Critiques,
-	#timestamp : 'YuriyTymchuk 7/15/2017 23:46'
+	#category : #Renraku-Critiques
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReExceptionProperty class>>for: anEntity with: anException [
+{ #category : #'instance creation' }
+ReExceptionProperty class >> for: anEntity with: anException [
 	
 	^ self new
 		initializeSourceAnchor: (
@@ -27,11 +23,8 @@ ReExceptionProperty class>>for: anEntity with: anException [
 		
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReExceptionProperty>>actions [
+{ #category : #actions }
+ReExceptionProperty >> actions [
 
 	^ {RePropertyAction new
 			icon: (self iconNamed: #smallDebug);
@@ -45,50 +38,32 @@ ReExceptionProperty>>actions [
 			yourself}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReExceptionProperty>>icon [
+{ #category : #accessing }
+ReExceptionProperty >> icon [
 	^ self iconNamed: #exceptionIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReExceptionProperty>>message [
+{ #category : #accessing }
+ReExceptionProperty >> message [
 	^ message
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReExceptionProperty>>message: anObject [
+{ #category : #accessing }
+ReExceptionProperty >> message: anObject [
 	message := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReExceptionProperty>>stack [
+{ #category : #accessing }
+ReExceptionProperty >> stack [
 	^ stack
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReExceptionProperty>>stack: anObject [
+{ #category : #accessing }
+ReExceptionProperty >> stack: anObject [
 	stack := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReExceptionProperty>>title [
+{ #category : #accessing }
+ReExceptionProperty >> title [
 	^ '~Exception: [', message, ']'
 ]

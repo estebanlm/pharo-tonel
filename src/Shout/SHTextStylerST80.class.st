@@ -33,15 +33,11 @@ Class {
 		'styleTable',
 		'textAttributesByPixelHeight'
 	],
-	#category : #Shout-Styling,
-	#timestamp : '<historical>'
+	#category : #Shout-Styling
 }
 
-{
-	#category : #attributes,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80 class>>attributeArrayForColor: aColorOrNil emphasis: anEmphasisSymbolOrArrayorNil font: aTextStyleOrFontOrNil  [
+{ #category : #attributes }
+SHTextStylerST80 class >> attributeArrayForColor: aColorOrNil emphasis: anEmphasisSymbolOrArrayorNil font: aTextStyleOrFontOrNil [ 
 
 	| emphArray answer |	
 	answer := Array new.
@@ -62,11 +58,8 @@ SHTextStylerST80 class>>attributeArrayForColor: aColorOrNil emphasis: anEmphasis
 	^ answer
 ]
 
-{
-	#category : #attributes,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80 class>>attributesFor: aSymbol pixelHeight: aNumber  [
+{ #category : #attributes }
+SHTextStylerST80 class >> attributesFor: aSymbol pixelHeight: aNumber [ 
 	^ (self textAttributesByPixelHeight
 		at: aNumber
 		ifAbsentPut: [self initialTextAttributesForPixelHeight: aNumber])
@@ -74,11 +67,8 @@ SHTextStylerST80 class>>attributesFor: aSymbol pixelHeight: aNumber  [
 		ifAbsent: [#()]
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80 class>>blueStyleTable [
+{ #category : #styles }
+SHTextStylerST80 class >> blueStyleTable [
 	"color can be a valid argument to Color class>>colorFrom: , or nil to
 	use the editor text color.
 	Multiple emphases can be specified using an array e.g. #(bold italic).
@@ -208,11 +198,8 @@ SHTextStylerST80 class>>blueStyleTable [
 			(module 								(green muchDarker) bold))
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80 class>>darkStyleTable [
+{ #category : #styles }
+SHTextStylerST80 class >> darkStyleTable [
 	"color can be a valid argument to Color class>>colorFrom: , or nil to
 	use the editor text color.
 	Multiple emphases can be specified using an array e.g. #(bold italic).
@@ -350,11 +337,8 @@ SHTextStylerST80 class>>darkStyleTable [
 			(module 											'B4DD6E' bold))
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80 class>>defaultStyleTable [
+{ #category : #styles }
+SHTextStylerST80 class >> defaultStyleTable [
 	"color can be a valid argument to Color class>>colorFrom: , or nil to
 	use the editor text color.
 	Multiple emphases can be specified using an array e.g. #(bold italic).
@@ -365,11 +349,8 @@ SHTextStylerST80 class>>defaultStyleTable [
  	^ self blueStyleTable
 ]
 
-{
-	#category : #attributes,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80 class>>initialTextAttributesForPixelHeight: aNumber  [
+{ #category : #attributes }
+SHTextStylerST80 class >> initialTextAttributesForPixelHeight: aNumber [ 
 	| d |
 	d := IdentityDictionary new.
 	self styleTable
@@ -405,21 +386,15 @@ SHTextStylerST80 class>>initialTextAttributesForPixelHeight: aNumber  [
 	^ d
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80 class>>initialize [
+{ #category : #initialization }
+SHTextStylerST80 class >> initialize [
 	"self initialize"
 	styleTable := nil.
 	textAttributesByPixelHeight := nil.
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80 class>>solarizedStyleTable [
+{ #category : #styles }
+SHTextStylerST80 class >> solarizedStyleTable [
 	"color can be a valid argument to Color class>>colorFrom: , or nil to
 	use the editor text color.
 	Multiple emphases can be specified using an array e.g. #(bold italic).
@@ -554,29 +529,20 @@ SHTextStylerST80 class>>solarizedStyleTable [
 			(module 								(cyan muchDarker) bold))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80 class>>styleTable [
+{ #category : #accessing }
+SHTextStylerST80 class >> styleTable [
 	^ styleTable
 		ifNil: [styleTable := self defaultStyleTable]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80 class>>styleTable: anArray  [
+{ #category : #accessing }
+SHTextStylerST80 class >> styleTable: anArray [ 
 	styleTable := anArray.
 	textAttributesByPixelHeight := nil
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80 class>>tangoStyleTable [
+{ #category : #styles }
+SHTextStylerST80 class >> tangoStyleTable [
 	"color can be a valid argument to Color class>>colorFrom: , or nil to
 	use the editor text color.
 	Multiple emphases can be specified using an array e.g. #(bold italic).
@@ -714,20 +680,14 @@ SHTextStylerST80 class>>tangoStyleTable [
 			(module 								(green muchDarker) bold))
 ]
 
-{
-	#category : #attributes,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80 class>>textAttributesByPixelHeight [
+{ #category : #attributes }
+SHTextStylerST80 class >> textAttributesByPixelHeight [
 	^ textAttributesByPixelHeight
 		ifNil: [textAttributesByPixelHeight := Dictionary new]
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80 class>>vintageStyleTable [
+{ #category : #styles }
+SHTextStylerST80 class >> vintageStyleTable [
 	"color can be a valid argument to Color class>>colorFrom: , or nil to
 	use the editor text color.
 	Multiple emphases can be specified using an array e.g. #(bold italic).
@@ -865,11 +825,8 @@ SHTextStylerST80 class>>vintageStyleTable [
 			(module 								(cyan muchDarker) bold))
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80>>addAttributesFrom: attributeRuns satisfying: aTestBlock to: aText [
+{ #category : #converting }
+SHTextStylerST80 >> addAttributesFrom: attributeRuns satisfying: aTestBlock to: aText [
 
 	attributeRuns withStartStopAndValueDo: [:start :stop :attributes | 
 		attributes 
@@ -883,11 +840,8 @@ SHTextStylerST80>>addAttributesFrom: attributeRuns satisfying: aTestBlock to: aT
 	^ aText
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80>>addLinkAttributesFor: ranges in: aText to: charAttributes [
+{ #category : #private }
+SHTextStylerST80 >> addLinkAttributesFor: ranges in: aText to: charAttributes [
 	| links |
 	"TODO: put this on class side"
 	links := Dictionary new.
@@ -915,79 +869,52 @@ SHTextStylerST80>>addLinkAttributesFor: ranges in: aText to: charAttributes [
 				put: attributes ]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80>>attributesFor: aSymbol  [
+{ #category : #private }
+SHTextStylerST80 >> attributesFor: aSymbol [ 
 	^ self class attributesFor: aSymbol pixelHeight: self pixelHeight
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80>>classOrMetaClass: aBehavior  [
+{ #category : #accessing }
+SHTextStylerST80 >> classOrMetaClass: aBehavior [ 
 	classOrMetaClass := aBehavior
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80>>environment: anObject  [
+{ #category : #accessing }
+SHTextStylerST80 >> environment: anObject [ 
 	environment := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80>>font: aFont  [
+{ #category : #accessing }
+SHTextStylerST80 >> font: aFont [ 
 	font := aFont
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80>>isForWorkspace [
+{ #category : #accessing }
+SHTextStylerST80 >> isForWorkspace [
 	^ isForWorkspace ifNil: [ workspace notNil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80>>isForWorkspace: aBoolean [
+{ #category : #accessing }
+SHTextStylerST80 >> isForWorkspace: aBoolean [
 	isForWorkspace := aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80>>pixelHeight [
+{ #category : #private }
+SHTextStylerST80 >> pixelHeight [
 	^ pixelHeight
 		ifNil: [pixelHeight := (font
 						ifNil: [TextStyle defaultFont]) pixelSize]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80>>privateStyle: aText  [
+{ #category : #private }
+SHTextStylerST80 >> privateStyle: aText [ 
 	(self rangesIn: aText setWorkspace: true)
 		ifNotNil: [ :ranges| self setAttributesIn: aText fromRanges: ranges].
 	^aText.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80>>rangesIn: aText setWorkspace: aBoolean  [
+{ #category : #private }
+SHTextStylerST80 >> rangesIn: aText setWorkspace: aBoolean [ 
 	parser ifNil: [parser := SHParserST80 new on: (view ifNotNil: [ view model ]) ].
 	^ parser
 		rangesIn: aText asString
@@ -997,11 +924,8 @@ SHTextStylerST80>>rangesIn: aText setWorkspace: aBoolean  [
 		environment: environment
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80>>setAttributesIn: aText fromRanges: ranges  [
+{ #category : #private }
+SHTextStylerST80 >> setAttributesIn: aText fromRanges: ranges [ 
 	"use the . to find and assign TextAttributes to aText"
 	
 	| charAttr oldRuns |
@@ -1026,11 +950,8 @@ SHTextStylerST80>>setAttributesIn: aText fromRanges: ranges  [
 		to: aText.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80>>unstyledTextFrom: aText  [
+{ #category : #converting }
+SHTextStylerST80 >> unstyledTextFrom: aText [ 
 	"return a Text object without all styling attributes"
 	| answer |
 	answer := super unstyledTextFrom: aText.
@@ -1043,11 +964,8 @@ SHTextStylerST80>>unstyledTextFrom: aText  [
 	^ answer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHTextStylerST80>>workspace: aWorkspace  [
+{ #category : #accessing }
+SHTextStylerST80 >> workspace: aWorkspace [ 
 	workspace := aWorkspace.
 	isForWorkspace ifNil: [ isForWorkspace := true ]
 ]

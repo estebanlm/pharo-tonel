@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloVisitedPackages,
 	#superclass : #Object,
@@ -9,26 +6,19 @@ Class {
 		'packages',
 		'projects'
 	],
-	#category : #Metacello-MC-Specs,
-	#timestamp : ''
+	#category : #Metacello-MC-Specs
 }
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVisitedPackages>>initialize [
+{ #category : #initialize-release }
+MetacelloVisitedPackages >> initialize [
 
 	groups := Set new.
 	packages := Set new.
 	projects := Set new.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVisitedPackages>>pushProject: aBlock [
+{ #category : #visiting }
+MetacelloVisitedPackages >> pushProject: aBlock [
 
 	| oldGroups oldPackages oldProjects |
 	oldGroups := groups.
@@ -42,11 +32,8 @@ MetacelloVisitedPackages>>pushProject: aBlock [
 		projects := oldProjects ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloVisitedPackages>>visit: aSpec doing: aBlock [
+{ #category : #visiting }
+MetacelloVisitedPackages >> visit: aSpec doing: aBlock [
 
 	aSpec
 		projectDo: [:spec | 

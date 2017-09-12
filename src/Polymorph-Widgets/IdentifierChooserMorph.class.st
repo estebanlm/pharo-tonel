@@ -76,15 +76,11 @@ Class {
 		'scrollPaneWidth',
 		'baseColor'
 	],
-	#category : #Polymorph-Widgets,
-	#timestamp : 'AlainPlantec 11/29/2010 10:50'
+	#category : #Polymorph-Widgets
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph class>>allowedArea [
+{ #category : #accessing }
+IdentifierChooserMorph class >> allowedArea [
 	"The area allowed for the building and positioning of the morph"
 	| allowedArea |
 	allowedArea := Display usableArea.
@@ -92,11 +88,8 @@ IdentifierChooserMorph class>>allowedArea [
 	^allowedArea
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph class>>example [
+{ #category : #'instance creation' }
+IdentifierChooserMorph class >> example [
 
 	(self 
 		labels: #('aaa' 'bbb' 'ccc') 
@@ -104,95 +97,65 @@ IdentifierChooserMorph class>>example [
 	openInWorld
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph class>>labels: aCollection chooseBlock: aBlock [
+{ #category : #'instance creation' }
+IdentifierChooserMorph class >> labels: aCollection chooseBlock: aBlock [
 	"return a new chooser or nil"
 	^ aCollection isEmpty
 		ifFalse: [ self new chooseBlock: aBlock; labels: aCollection; yourself].
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>activate: evt [
+{ #category : #'event handling' }
+IdentifierChooserMorph >> activate: evt [
 	"Backstop."
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>allowedArea [
+{ #category : #accessing }
+IdentifierChooserMorph >> allowedArea [
 	^ self class allowedArea
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>baseColor [
+{ #category : #accessing }
+IdentifierChooserMorph >> baseColor [
 	^ baseColor ifNil: [baseColor := self defaultBaseColor]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>baseColor: aColor [
+{ #category : #accessing }
+IdentifierChooserMorph >> baseColor: aColor [
 	baseColor := aColor.
 	self setColor: aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>choiceMenuItems [
+{ #category : #accessing }
+IdentifierChooserMorph >> choiceMenuItems [
 	"Answer the value of choiceMenus"
 
 	^ Array streamContents: [:strm | self choiceMenus  do: [:menu | strm nextPutAll: menu menuItems]].
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>choiceMenus [
+{ #category : #accessing }
+IdentifierChooserMorph >> choiceMenus [
 	"Answer the value of choiceMenus"
 
 	^ choiceMenus
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>choiceMenus: anObject [
+{ #category : #accessing }
+IdentifierChooserMorph >> choiceMenus: anObject [
 	"Set the value of choiceMenus"
 
 	choiceMenus := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>choicesMorph: aMorph [
+{ #category : #accessing }
+IdentifierChooserMorph >> choicesMorph: aMorph [
 	choicesMorph := aMorph
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>choose: index [
+{ #category : #action }
+IdentifierChooserMorph >> choose: index [
 	"Set the given choice and ok."
 	| chosen |
 	chosen := index > 0 ifTrue: [self labels at: index] ifFalse: [nil].
@@ -202,55 +165,37 @@ IdentifierChooserMorph>>choose: index [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>chooseBlock: aBlock [
+{ #category : #accessing }
+IdentifierChooserMorph >> chooseBlock: aBlock [
 	chooseBlock := aBlock
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>close [
+{ #category : #action }
+IdentifierChooserMorph >> close [
 	self delete.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>defaultBaseColor [
+{ #category : #accessing }
+IdentifierChooserMorph >> defaultBaseColor [
 	^ Color transparent
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>deleteIfPopUp: evt [
+{ #category : #'event handling' }
+IdentifierChooserMorph >> deleteIfPopUp: evt [
 	"For compatibility with MenuMorph."
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>forcesHeight: aHeight [
+{ #category : #ui-building }
+IdentifierChooserMorph >> forcesHeight: aHeight [
 	| sp |
 	(sp := self scrollPane) minHeight: aHeight.
 	sp height: sp minHeight.
  	self height: sp height. 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>handlesKeyboard: evt [
+{ #category : #'event handling' }
+IdentifierChooserMorph >> handlesKeyboard: evt [
 	"True when either the filter morph doesn't have the focus and the key
 	is a text key or backspace or no menus have the focus and is up or down arrow."
 	^(super handlesKeyboard: evt) or: [
@@ -268,11 +213,8 @@ IdentifierChooserMorph>>handlesKeyboard: evt [
 						or: [evt keyCharacter = Character arrowRight]]]]]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>initialize [
+{ #category : #initialization }
+IdentifierChooserMorph >> initialize [
 	super initialize.
 	self borderWidth: 1.
 	self layoutInset: 0.
@@ -283,11 +225,8 @@ IdentifierChooserMorph>>initialize [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>keyStroke: anEvent [
+{ #category : #'event handling' }
+IdentifierChooserMorph >> keyStroke: anEvent [
 	anEvent keyCharacter = Character escape 
 		ifTrue: [self close. 
 			requestor 
@@ -304,66 +243,45 @@ IdentifierChooserMorph>>keyStroke: anEvent [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>labels [
+{ #category : #accessing }
+IdentifierChooserMorph >> labels [
 	"Answer the value of labels"
 
 	^ labels
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>labels: aCollectionOfString [
+{ #category : #accessing }
+IdentifierChooserMorph >> labels: aCollectionOfString [
 	"Set the value of labels"
 	labels := aCollectionOfString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>listHeight [
+{ #category : #accessing }
+IdentifierChooserMorph >> listHeight [
 	"Answer the height for the list."
 
 	^ choicesMorph height
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>listMorph [
+{ #category : #accessing }
+IdentifierChooserMorph >> listMorph [
 	"Answer the height for the list."
 
 	^ choicesMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>maxLines [
+{ #category : #accessing }
+IdentifierChooserMorph >> maxLines [
 	^ maxLines ifNil: [maxLines := 6]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>maxLines: anInteger [
+{ #category : #accessing }
+IdentifierChooserMorph >> maxLines: anInteger [
 	maxLines := anInteger
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>newChoiceButtonFor: index [
+{ #category : #ui-building }
+IdentifierChooserMorph >> newChoiceButtonFor: index [
 	"Answer a new choice button."
 	^ (self labels at: index) 
 		ifNotNil: [:v | (ToggleMenuItemMorph new
@@ -377,11 +295,8 @@ IdentifierChooserMorph>>newChoiceButtonFor: index [
 		
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>newChoicesMorph [
+{ #category : #ui-building }
+IdentifierChooserMorph >> newChoicesMorph [
 	"Answer a row of columns of buttons and separators based on the model."
 
 	| answer morphs str  |
@@ -411,11 +326,8 @@ IdentifierChooserMorph>>newChoicesMorph [
 	^answer
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>newContentMorph [
+{ #category : #ui-building }
+IdentifierChooserMorph >> newContentMorph [
 	"Answer a new content morph."
 
 	| sp choices |
@@ -433,21 +345,15 @@ IdentifierChooserMorph>>newContentMorph [
 	^ sp
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>newMenu  [
+{ #category : #ui-building }
+IdentifierChooserMorph >> newMenu [ 
 	^ self theme
 		newEmbeddedMenuIn: self
 		for: self
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>newMenuWith: menuItems [
+{ #category : #ui-building }
+IdentifierChooserMorph >> newMenuWith: menuItems [
 	"Answer menu with the given morphs."
 
 	| menu |
@@ -465,11 +371,8 @@ IdentifierChooserMorph>>newMenuWith: menuItems [
 	^ menu
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>newRow [
+{ #category : #ui-building }
+IdentifierChooserMorph >> newRow [
 	^ AlignmentMorph new
 		listDirection: #leftToRight;
 		hResizing: #spaceFill;
@@ -480,21 +383,15 @@ IdentifierChooserMorph>>newRow [
 
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>newScrollPaneFor: aMorph [
+{ #category : #ui-building }
+IdentifierChooserMorph >> newScrollPaneFor: aMorph [
 	^ self theme
 		newScrollPaneIn: self
 		for: aMorph
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>newVerticalSeparator [
+{ #category : #ui-building }
+IdentifierChooserMorph >> newVerticalSeparator [
 
 	^ SeparatorMorph new
 		fillStyle: Color transparent;
@@ -503,31 +400,22 @@ IdentifierChooserMorph>>newVerticalSeparator [
 		vResizing: #spaceFill
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>oneMenuOfWidth: anInteger [
+{ #category : #ui-building }
+IdentifierChooserMorph >> oneMenuOfWidth: anInteger [
 	self maxLines: 999999999.
 	scrollPaneWidth := anInteger.
 
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>open [
+{ #category : #ui-building }
+IdentifierChooserMorph >> open [
 	self addMorph: self newContentMorph.
 	self openInWorld.
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>processEnter: anEvent [
+{ #category : #'event handling' }
+IdentifierChooserMorph >> processEnter: anEvent [
 	self choiceMenus do: [:embeddedMenu | 
 		embeddedMenu selectedItem ifNotNil: [:item |
 			item invokeWithEvent: anEvent.
@@ -535,48 +423,33 @@ IdentifierChooserMorph>>processEnter: anEvent [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>requestor [
+{ #category : #accessing }
+IdentifierChooserMorph >> requestor [
 	^ requestor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>requestor: aTextMorph [
+{ #category : #accessing }
+IdentifierChooserMorph >> requestor: aTextMorph [
 	requestor := aTextMorph
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>scrollPane [
+{ #category : #ui-building }
+IdentifierChooserMorph >> scrollPane [
 	"Answer the scroll pane."
 
 	^self findDeeplyA: GeneralScrollPane
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>selectFirstItem [
+{ #category : #'event handling' }
+IdentifierChooserMorph >> selectFirstItem [
 	"Select the first item in the embedded menus"
 
 	self choiceMenus first selectItem:  self choiceMenuItems first event: nil.
 	self takeKeyboardFocus.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>selectLastItem [
+{ #category : #'event handling' }
+IdentifierChooserMorph >> selectLastItem [
 	"Select the last item in the embedded menus"
 
 	self choiceMenus last selectItem:  self choiceMenuItems last event: nil.
@@ -584,11 +457,8 @@ IdentifierChooserMorph>>selectLastItem [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>selectNextItem [
+{ #category : #'event handling' }
+IdentifierChooserMorph >> selectNextItem [
 	"Select the next item in the embedded menus"
 
 	| idx next |
@@ -608,11 +478,8 @@ IdentifierChooserMorph>>selectNextItem [
 	self selectFirstItem
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>selectPreviousItem [
+{ #category : #'event handling' }
+IdentifierChooserMorph >> selectPreviousItem [
 	"Select the previous item in the embedded menus"
 
 	| idx previous |
@@ -632,22 +499,16 @@ IdentifierChooserMorph>>selectPreviousItem [
 
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>setColor: aColor [
+{ #category : #ui-building }
+IdentifierChooserMorph >> setColor: aColor [
 	self color: aColor.
 	self choiceMenus 
 		ifNotNil: [:menus | menus 
 			do: [:cm | cm color: aColor]]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>switchToNextColumn [
+{ #category : #'event handling' }
+IdentifierChooserMorph >> switchToNextColumn [
 	"Give the next embedded menu keyboard focus."
 
 	self switchToOtherColumn: [:prevIdx | 
@@ -657,11 +518,8 @@ IdentifierChooserMorph>>switchToNextColumn [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>switchToOtherColumn: aBlock [
+{ #category : #'event handling' }
+IdentifierChooserMorph >> switchToOtherColumn: aBlock [
 	"Give the next embedded menu keyboard focus. 
 	The next menu indice is computed by the argument"
 
@@ -687,11 +545,8 @@ IdentifierChooserMorph>>switchToOtherColumn: aBlock [
 	self activeHand newKeyboardFocus: self.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>switchToPreviousColumn [
+{ #category : #'event handling' }
+IdentifierChooserMorph >> switchToPreviousColumn [
 	"Give the previous embedded menu keyboard focus."
 
 	self switchToOtherColumn: [:prevIdx | 
@@ -701,10 +556,7 @@ IdentifierChooserMorph>>switchToPreviousColumn [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IdentifierChooserMorph>>theme [
+{ #category : #accessing }
+IdentifierChooserMorph >> theme [
 		^ Smalltalk ui theme 
 ]

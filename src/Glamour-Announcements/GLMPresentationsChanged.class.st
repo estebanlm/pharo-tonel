@@ -8,65 +8,46 @@ Class {
 		'pane',
 		'oldPresentations'
 	],
-	#category : #Glamour-Announcements,
-	#timestamp : 'tg 2/20/2010 14:57'
+	#category : #Glamour-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentationsChanged>>oldPresentations  [
+{ #category : #accessing }
+GLMPresentationsChanged >> oldPresentations [ 
 	"The presentations that were present on the pane before the change." 
 	 
 	^oldPresentations
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentationsChanged>>oldPresentations: aCollection  [
+{ #category : #accessing }
+GLMPresentationsChanged >> oldPresentations: aCollection [ 
 	"The presentations that were present on the pane before the change." 
 	 
 	oldPresentations := aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentationsChanged>>pane  [
+{ #category : #accessing }
+GLMPresentationsChanged >> pane [ 
 	"The pane on which the presentations changed." 
 	 
 	^pane
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentationsChanged>>pane: aPane  [
+{ #category : #accessing }
+GLMPresentationsChanged >> pane: aPane [ 
 	"The pane on which the presentations changed." 
 	 
 	pane := aPane
 ]
 
-{
-	#category : #accessing-convenience,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentationsChanged>>presentations  [
+{ #category : #accessing-convenience }
+GLMPresentationsChanged >> presentations [ 
 	"The presentationt that are currently present on the pane." 
 	 
 	^self pane presentations
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentationsChanged>>printOn: aStream [
+{ #category : #printing }
+GLMPresentationsChanged >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPutAll: ' (pane = ', self pane printString , ')'
 ]

@@ -5,14 +5,10 @@ In the current scanner/parser, this assignment operator is not used or allowed a
 Class {
 	#name : #RBShortAssignmentToken,
 	#superclass : #RBAssignmentToken,
-	#category : #AST-Core-Tokens,
-	#timestamp : 'NicolaiHess 8/22/2016 15:46'
+	#category : #AST-Core-Tokens
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBShortAssignmentToken>>length [
+{ #category : #private }
+RBShortAssignmentToken >> length [
 	^ 1
 ]

@@ -13,34 +13,24 @@ Class {
 	#instVars : [
 		'packages'
 	],
-	#category : #System-Settings-Filter,
-	#timestamp : 'AlainPlantec 12/31/2010 11:38'
+	#category : #System-Settings-Filter
 }
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingPackageFilter>>keepSettingTreeNode: aSettingNode  [
+{ #category : #filtering }
+SettingPackageFilter >> keepSettingTreeNode: aSettingNode [ 
 	| rp |
 	^ (rp := aSettingNode receiverPackage) notNil and: [self packages includes: rp]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingPackageFilter>>packages [
+{ #category : #accessing }
+SettingPackageFilter >> packages [
 	"Answer the value of packages"
 
 	^ packages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingPackageFilter>>packages: aCollectionOfPackageInfo [
+{ #category : #accessing }
+SettingPackageFilter >> packages: aCollectionOfPackageInfo [
 	"Set the value of packages"
 
 	packages := aCollectionOfPackageInfo

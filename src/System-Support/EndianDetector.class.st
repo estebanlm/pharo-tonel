@@ -18,15 +18,11 @@ Class {
 	#classVars : [
 		'EndianCache'
 	],
-	#category : #System-Support,
-	#timestamp : 'GuillermoPolito 5/4/2015 15:17'
+	#category : #System-Support
 }
 
-{
-	#category : #endian,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-EndianDetector class>>calcEndianness [
+{ #category : #endian }
+EndianDetector class >> calcEndianness [
 	"store the least significant word of the float with 1; on big endian machines this is the second word"
 	| f |
 	f := Float new: 2.
@@ -35,50 +31,35 @@ EndianDetector class>>calcEndianness [
 	^ (f at: 1) = 1 ifTrue: [#little] ifFalse: [#big]
 ]
 
-{
-	#category : #endian,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-EndianDetector class>>endianness [
+{ #category : #endian }
+EndianDetector class >> endianness [
 
 	EndianCache ifNil: [EndianCache := self calcEndianness].
 	^ EndianCache.
 
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-EndianDetector class>>initialize [
+{ #category : #'class initialization' }
+EndianDetector class >> initialize [
 
 	SessionManager default
 		registerSystemClassNamed: self name
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-EndianDetector class>>isBigEndian [
+{ #category : #testing }
+EndianDetector class >> isBigEndian [
 	
 	^ self isLittleEndian not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-EndianDetector class>>isLittleEndian [
+{ #category : #testing }
+EndianDetector class >> isLittleEndian [
 	
 	^ self endianness == #little
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-EndianDetector class>>startUp: isImageStarting [
+{ #category : #'system startup' }
+EndianDetector class >> startUp: isImageStarting [
 
 	"only handle when lauching a new image"
 	isImageStarting ifFalse: [ ^ self ].

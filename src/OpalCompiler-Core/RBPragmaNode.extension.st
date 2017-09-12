@@ -1,20 +1,12 @@
-Extension {
-	#name : #RBPragmaNode
-}
+Extension { #name : #RBPragmaNode }
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBPragmaNode>>asPragma [
+{ #category : #'*opalcompiler-core' }
+RBPragmaNode >> asPragma [
 	^ Pragma keyword: selector arguments: (arguments collect: [ :each | each value ]) asArray
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBPragmaNode>>asPrimitive [
+{ #category : #'*opalcompiler-core' }
+RBPragmaNode >> asPrimitive [
 	| args module name spec  |
 	args := (self arguments collect: [ :each | each value ]) asArray.
 	self isPrimitive
@@ -35,10 +27,7 @@ RBPragmaNode>>asPrimitive [
 				yourself ]
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBPragmaNode>>isPrimitiveError [
+{ #category : #'*opalcompiler-core' }
+RBPragmaNode >> isPrimitiveError [
 	^ #( primitive:error: primitive:module:error: primitive:error:module:) includes: self selector
 ]

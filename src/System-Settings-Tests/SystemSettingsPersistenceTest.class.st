@@ -9,31 +9,21 @@ Class {
 		'memory',
 		'preferences'
 	],
-	#category : #System-Settings-Tests,
-	#timestamp : '<historical>'
+	#category : #System-Settings-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>booleanSettingNode [
+{ #category : #accessing }
+SystemSettingsPersistenceTest >> booleanSettingNode [
 	^ systemSettings nodeNamed: #booleanSetting
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>rangeSettingNode [
+{ #category : #accessing }
+SystemSettingsPersistenceTest >> rangeSettingNode [
 	^ systemSettings nodeNamed: #rangeSetting
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>setUp [
+{ #category : #running }
+SystemSettingsPersistenceTest >> setUp [
 	super setUp.
 	MockSettings cleanUp.
 	memory := FileSystem memory.
@@ -45,49 +35,34 @@ SystemSettingsPersistenceTest>>setUp [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>systemSettingNodeList [
+{ #category : #accessing }
+SystemSettingsPersistenceTest >> systemSettingNodeList [
 	^ SettingBrowser new treeHolder nodeList.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>tearDown [
+{ #category : #running }
+SystemSettingsPersistenceTest >> tearDown [
 	super tearDown.
 	MockSettings cleanUp.
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testAccessRealValues [
+{ #category : #tests }
+SystemSettingsPersistenceTest >> testAccessRealValues [
 	"Ensure we can access all setting real values."
 	self systemSettingNodeList do: [ :eachSettingNode | 
 				eachSettingNode item hasValue and: [ eachSettingNode item realValue ] ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testAccessibleRealValues [
+{ #category : #tests }
+SystemSettingsPersistenceTest >> testAccessibleRealValues [
 	"Ensure we can access all setting real values."
 	self systemSettingNodeList do: [ :eachSettingNode |
 		eachSettingNode settingDeclaration hasValue and: [ eachSettingNode settingDeclaration realValue ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testAllStoredSettings [
+{ #category : #tests }
+SystemSettingsPersistenceTest >> testAllStoredSettings [
 	"There is no preference file. It should not generate an error."
 	self assert: systemSettings allStoredSettings isEmpty.
 	systemSettings writeStream nextPutAll: 'random string'; close.
@@ -96,11 +71,8 @@ SystemSettingsPersistenceTest>>testAllStoredSettings [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testRealValueModification [
+{ #category : #tests }
+SystemSettingsPersistenceTest >> testRealValueModification [
 	self booleanSettingNode realValue: false.
 	self rangeSettingNode realValue: 55.
 	self assert: self booleanSettingNode realValue equals: false.
@@ -108,38 +80,26 @@ SystemSettingsPersistenceTest>>testRealValueModification [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testRealValues [
+{ #category : #tests }
+SystemSettingsPersistenceTest >> testRealValues [
 	self assert: (systemSettings nodeNamed: #booleanSetting) realValue equals: true.
 	self assert: (systemSettings nodeNamed: #rangeSetting) realValue equals: 10.
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testSettingNodeIdentifierForChildNode [
+{ #category : #tests }
+SystemSettingsPersistenceTest >> testSettingNodeIdentifierForChildNode [
 	self assert: MockSettings cacheDirectorySettingNode settingNodeIdentifier equals: '#monticello#cacheDirectory'.
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testSettingNodeIdentifierForRootNode [
+{ #category : #tests }
+SystemSettingsPersistenceTest >> testSettingNodeIdentifierForRootNode [
 	self assert: MockSettings rangeSettingNode settingNodeIdentifier equals: '#rangeSetting'.	
 ]
 
-{
-	#category : #'tests - loading',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testStoreAndLoadAllSystemSettings [
+{ #category : #'tests - loading' }
+SystemSettingsPersistenceTest >> testStoreAndLoadAllSystemSettings [
 	| searchCompiledMethod |
 	systemSettings settingTree: SettingBrowser new treeHolder.
 	systemSettings storeSettingNodes.
@@ -153,11 +113,8 @@ SystemSettingsPersistenceTest>>testStoreAndLoadAllSystemSettings [
 			self assert: eachStoredSetting realValue equals: settingNode realValue ] ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testStoreBooleanToSton [
+{ #category : #tests }
+SystemSettingsPersistenceTest >> testStoreBooleanToSton [
 	| node stored string stored2 |
 	node := MockSettings booleanSettingNode.
 	stored := StoredSettingsFactory new from: node.
@@ -172,11 +129,8 @@ SystemSettingsPersistenceTest>>testStoreBooleanToSton [
 	self assert: stored2 equals: stored.
 ]
 
-{
-	#category : #'tests - storing',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testStoreIdentifier [
+{ #category : #'tests - storing' }
+SystemSettingsPersistenceTest >> testStoreIdentifier [
 	self deny: preferences exists.
 	systemSettings storeIdentifier: MockSettings booleanSettingNode settingNodeIdentifier.
 	self assert: preferences exists.
@@ -184,11 +138,8 @@ SystemSettingsPersistenceTest>>testStoreIdentifier [
 	
 ]
 
-{
-	#category : #'tests - storing',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testStoreSettingNode [
+{ #category : #'tests - storing' }
+SystemSettingsPersistenceTest >> testStoreSettingNode [
 	self deny: preferences exists.
 	systemSettings storeSettingNode: MockSettings booleanSettingNode.
 	self assert: preferences exists.
@@ -196,11 +147,8 @@ SystemSettingsPersistenceTest>>testStoreSettingNode [
 	
 ]
 
-{
-	#category : #'tests - storing',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testStoreSettingNodeTwice [
+{ #category : #'tests - storing' }
+SystemSettingsPersistenceTest >> testStoreSettingNodeTwice [
 	| fileSize fullPath |
 	self deny: preferences exists.
 	fullPath := preferences fullPath.
@@ -214,11 +162,8 @@ SystemSettingsPersistenceTest>>testStoreSettingNodeTwice [
 	self assert: preferences size equals: fileSize.
 ]
 
-{
-	#category : #'tests - storing',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testStoreSettingNodes [
+{ #category : #'tests - storing' }
+SystemSettingsPersistenceTest >> testStoreSettingNodes [
 	self deny: preferences exists.
 	self testRealValueModification.
 	systemSettings storeSettingNodes: { 
@@ -230,11 +175,8 @@ SystemSettingsPersistenceTest>>testStoreSettingNodes [
 
 ]
 
-{
-	#category : #'tests - storing',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testStoreTwoSettingNodeSeparately [
+{ #category : #'tests - storing' }
+SystemSettingsPersistenceTest >> testStoreTwoSettingNodeSeparately [
 	| fileSize |
 	self deny: preferences exists.
 	systemSettings storeSettingNode: MockSettings booleanSettingNode.
@@ -245,53 +187,38 @@ SystemSettingsPersistenceTest>>testStoreTwoSettingNodeSeparately [
 	self assert: preferences size > fileSize.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testStoredValueForSetting [
+{ #category : #tests }
+SystemSettingsPersistenceTest >> testStoredValueForSetting [
 	| value |
 	self testStoreSettingNode.
 	value := systemSettings storedValueForSettingNode: MockSettings booleanSettingNode.
 	self assert: value.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testStoredValueForSettingNoStoredValue [
+{ #category : #tests }
+SystemSettingsPersistenceTest >> testStoredValueForSettingNoStoredValue [
 	| value |
 	value := systemSettings storedValueForSettingNode: MockSettings booleanSettingNode.
 	self assert: value equals: nil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testUniqueIdentifiers [
+{ #category : #tests }
+SystemSettingsPersistenceTest >> testUniqueIdentifiers [
 	| names |
 	names := self systemSettingNodeList collect: #settingNodeIdentifier.
 	self assert: names size equals: names asSet size.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testUniqueNames [
+{ #category : #tests }
+SystemSettingsPersistenceTest >> testUniqueNames [
 	| names |
 	names := self systemSettingNodeList collect: [ :eachNode | 
 						eachNode parentName printString, eachNode item name ].
 	self assert: names size equals: names asSet size.
 ]
 
-{
-	#category : #'tests - loading',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testUpdateAllSettings [
+{ #category : #'tests - loading' }
+SystemSettingsPersistenceTest >> testUpdateAllSettings [
 	self testRealValues.
 	self testRealValueModification.
 	systemSettings storeSettingNodes.
@@ -302,11 +229,8 @@ SystemSettingsPersistenceTest>>testUpdateAllSettings [
 	self assert: self rangeSettingNode realValue equals: 55
 ]
 
-{
-	#category : #'tests - loading',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testWriteAndReadBoolean [
+{ #category : #'tests - loading' }
+SystemSettingsPersistenceTest >> testWriteAndReadBoolean [
 	| node stored string stored2 |
 	node := MockSettings booleanSettingNode.
 	stored := StoredSettingsFactory new from: node.
@@ -321,11 +245,8 @@ SystemSettingsPersistenceTest>>testWriteAndReadBoolean [
 	self assert: stored2 equals: stored.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-SystemSettingsPersistenceTest>>testWriteStream [
+{ #category : #tests }
+SystemSettingsPersistenceTest >> testWriteStream [
 	| writeStream |
 	self deny: preferences exists.
 	self deny: preferences parent exists.

@@ -10,94 +10,66 @@ Class {
 	#instVars : [
 		'manifestClass'
 	],
-	#category : #Manifest-Core,
-	#timestamp : 'StephaneDucasse 1/6/2014 20:52'
+	#category : #Manifest-Core
 }
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder class>>allManifestClasses [
+{ #category : #utils }
+TheManifestBuilder class >> allManifestClasses [
 
 	^ PackageManifest subclasses
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder class>>falsePositiveBeginningTag [
+{ #category : #utils }
+TheManifestBuilder class >> falsePositiveBeginningTag [
 	"the string that identifies uniquely the beginning of a selector who give  the set of false positive for a rule"
 	
 	^ 'rule'
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder class>>falsePositiveEndTag [
+{ #category : #utils }
+TheManifestBuilder class >> falsePositiveEndTag [
 	"the string that identifies uniquely the end of a selector who give  the set of false positive for a rule"
 	
 	^ 'FalsePositive'
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder class>>falsePositiveMiddleTag [
+{ #category : #utils }
+TheManifestBuilder class >> falsePositiveMiddleTag [
 	"the string that identifies uniquely the middle of a selector who give  the set of false positive for a rule"
 	
 	^ 'V'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder class>>hasManifestFor: aItem [
+{ #category : #'instance creation' }
+TheManifestBuilder class >> hasManifestFor: aItem [
 
 	^  (self new manifestOf: aItem) isNil not
 		
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder class>>hasPackageNamed: aPackageName [
+{ #category : #'instance creation' }
+TheManifestBuilder class >> hasPackageNamed: aPackageName [
 
 	^ self allManifestClasses 
 		anySatisfy: [:each | each category = aPackageName  ]
 	
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder class>>manifestClassComment [
+{ #category : #utils }
+TheManifestBuilder class >> manifestClassComment [
 	
 	^ 'I store metadata for this package. These meta data are used by other tools such as the SmalllintManifestChecker and the critics Browser'
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder class>>manifestTag [
+{ #category : #utils }
+TheManifestBuilder class >> manifestTag [
 	"the string that identifies uniquely the beginning of a Manifest class name"
 	
 	^ 'Manifest'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder class>>of: aItem [
+{ #category : #'instance creation' }
+TheManifestBuilder class >> of: aItem [
 	| mb  |
 
 	mb := self new. 
@@ -107,11 +79,8 @@ TheManifestBuilder class>>of: aItem [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder class>>ofPackageNamed: aPackageName [
+{ #category : #'instance creation' }
+TheManifestBuilder class >> ofPackageNamed: aPackageName [
 	| builder |
 	builder := self new.
 	self allManifestClasses
@@ -121,80 +90,56 @@ TheManifestBuilder class>>ofPackageNamed: aPackageName [
 	^ builder
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder class>>rejectClassesTag [
+{ #category : #utils }
+TheManifestBuilder class >> rejectClassesTag [
 	"the string that identifies uniquely the beginning of a selector who give  the set of rejected classes"
 	
 	^ 'rejectClasses'
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder class>>rejectRulesTag [
+{ #category : #utils }
+TheManifestBuilder class >> rejectRulesTag [
 	"the string that identifies uniquely the beginning of a selector who give  the set of rejected rules"
 	
 	^ 'rejectRules'
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder class>>toDoBeginningTag [
+{ #category : #utils }
+TheManifestBuilder class >> toDoBeginningTag [
 	"the string that identifies uniquely the beginning of a selector who give  the set of TODO for a rule"
 	
 	^ 'rule'
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder class>>toDoEndTag [
+{ #category : #utils }
+TheManifestBuilder class >> toDoEndTag [
 	"the string that identifies uniquely the end of a selector who give  the set of TODO for a rule"
 	
 	^ 'TODO'
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder class>>toDoMiddleTag [
+{ #category : #utils }
+TheManifestBuilder class >> toDoMiddleTag [
 	"the string that identifies uniquely the middle of a selector who give  the set of TODO for a rule"
 	
 	^ 'V'
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder class>>truePositiveEndTag [
+{ #category : #utils }
+TheManifestBuilder class >> truePositiveEndTag [
 	"the string that identifies uniquely the end of a selector who give  the set of false positive for a rule"
 	
 	^ 'TruePositive'
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>= aObject [
+{ #category : #comparing }
+TheManifestBuilder >> = aObject [
 
 	^ aObject class = self class and: [ self manifest = aObject manifest ]
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>addAllFalsePositive: fp of: ruleId version: versionId [
+{ #category : #adding/removing }
+TheManifestBuilder >> addAllFalsePositive: fp of: ruleId version: versionId [
 
 	| selector  |	
 	selector := self selectorFalsePositiveOf: ruleId version: versionId. 
@@ -205,11 +150,8 @@ TheManifestBuilder>>addAllFalsePositive: fp of: ruleId version: versionId [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>addAllItem: aSet selector: selector [
+{ #category : #private }
+TheManifestBuilder >> addAllItem: aSet selector: selector [
 	| set newSet arrayString |
 	set := (self manifest perform: selector) asOrderedCollection.
 	newSet := aSet \ (self unwrap: set).
@@ -224,22 +166,16 @@ TheManifestBuilder>>addAllItem: aSet selector: selector [
 	self compileSelector: selector returnValue: arrayString
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>addAllToDo: aSet of: ruleId version: versionId [
+{ #category : #adding/removing }
+TheManifestBuilder >> addAllToDo: aSet of: ruleId version: versionId [
 
 	| selector |
 	selector := self selectorToDoOf: ruleId version: versionId. 
 	self addAllItem: aSet selector: selector. 
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>addFalsePositive: fp of: ruleId version: versionId [
+{ #category : #adding/removing }
+TheManifestBuilder >> addFalsePositive: fp of: ruleId version: versionId [
 
 	| selector |
 	selector := self selectorFalsePositiveOf: ruleId version: versionId. 
@@ -248,19 +184,13 @@ TheManifestBuilder>>addFalsePositive: fp of: ruleId version: versionId [
 		ifTrue: [self removeToDo: fp of:  ruleId version: versionId]. 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>addItem: fp selector: selector [
+{ #category : #private }
+TheManifestBuilder >> addItem: fp selector: selector [
 	self addAllItem: {fp} selector: selector
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>addRejectClass: aClass [
+{ #category : #adding/removing }
+TheManifestBuilder >> addRejectClass: aClass [
 
 	|  falsePositives |
 	falsePositives := self manifest rejectClasses asOrderedCollection .
@@ -272,11 +202,8 @@ TheManifestBuilder>>addRejectClass: aClass [
 	
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>addRejectRule: ruleId  [
+{ #category : #adding/removing }
+TheManifestBuilder >> addRejectRule: ruleId [ 
 
 	|  nfp |	
 	nfp := self manifest rejectRules asSet.
@@ -286,11 +213,8 @@ TheManifestBuilder>>addRejectRule: ruleId  [
 
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>addToDo: fp of: ruleId version: versionId [
+{ #category : #adding/removing }
+TheManifestBuilder >> addToDo: fp of: ruleId version: versionId [
 
 	| selector |	
 	selector := self selectorToDoOf: ruleId version: versionId. 
@@ -299,11 +223,8 @@ TheManifestBuilder>>addToDo: fp of: ruleId version: versionId [
 		ifTrue: [ self removeFalsePositive: fp of:  ruleId version: versionId ]
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>addTruePositive: fp of: ruleId version: versionId [
+{ #category : #adding/removing }
+TheManifestBuilder >> addTruePositive: fp of: ruleId version: versionId [
 
 	| selector  |	
 	selector := self selectorTruePositiveOf: ruleId version: versionId. 
@@ -317,19 +238,13 @@ TheManifestBuilder>>addTruePositive: fp of: ruleId version: versionId [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>browsedEnvironment [
+{ #category : #accessing }
+TheManifestBuilder >> browsedEnvironment [
 	^manifestClass environment 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>buildArrayString: aCollection [
+{ #category : #private }
+TheManifestBuilder >> buildArrayString: aCollection [
 	
 	^ String streamContents: [:stream | 
 		stream << '#('.
@@ -342,11 +257,8 @@ TheManifestBuilder>>buildArrayString: aCollection [
 		stream << ')']
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>cleanUp [
+{ #category : #adding/removing }
+TheManifestBuilder >> cleanUp [
 
 	| tagfp |
 	tagfp := self class falsePositiveBeginningTag.
@@ -360,22 +272,16 @@ TheManifestBuilder>>cleanUp [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>compileSelector: selector returnValue: aLiteral [
+{ #category : #private }
+TheManifestBuilder >> compileSelector: selector returnValue: aLiteral [
 	self 
 		compileSelector: selector
 		returnValue: aLiteral
 		classified: 'code-critics'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>compileSelector: selector returnValue: aLiteral classified: aProtocolName [
+{ #category : #private }
+TheManifestBuilder >> compileSelector: selector returnValue: aLiteral classified: aProtocolName [
 	| source |
 	source := String streamContents: [ :stream | 
 		stream 
@@ -389,60 +295,42 @@ TheManifestBuilder>>compileSelector: selector returnValue: aLiteral classified: 
 		classified: aProtocolName
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>containsFalsePositive: aItem onRule: ruleId version: versionId [
+{ #category : #manifest }
+TheManifestBuilder >> containsFalsePositive: aItem onRule: ruleId version: versionId [
 
 	^  (self hasFalsePositiveOf: ruleId version: versionId) 
 			and: [ (self falsePositiveOf: ruleId version: versionId) anySatisfy: [ :fp | fp = aItem ]] 
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>containsRejectedClass: aClass [
+{ #category : #manifest }
+TheManifestBuilder >> containsRejectedClass: aClass [
 	
 	^ self rejectClasses anySatisfy: [ :cl | cl = aClass ]
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>containsRejectedRule: aRuleId [
+{ #category : #manifest }
+TheManifestBuilder >> containsRejectedRule: aRuleId [
 	
 	^ self rejectRules anySatisfy: [ :fp | fp = aRuleId ]
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>containsToDo: aItem onRule: ruleId version: versionId [
+{ #category : #manifest }
+TheManifestBuilder >> containsToDo: aItem onRule: ruleId version: versionId [
 
 	^  (self hasToDoOf: ruleId version: versionId) 
 		and: [(self toDoOf: ruleId version: versionId) 
 			anySatisfy: [ :fp| fp = aItem ]] 
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>containsTruePositive: aItem onRule: ruleId version: versionId [
+{ #category : #manifest }
+TheManifestBuilder >> containsTruePositive: aItem onRule: ruleId version: versionId [
 
 	^  (self hasTruePositiveOf: ruleId version: versionId) 
 		and: [(self truePositiveOf: ruleId version: versionId) anySatisfy: [ :fp| fp = aItem ]] 
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>createManifestNamed: packageName [
+{ #category : #manifest }
+TheManifestBuilder >> createManifestNamed: packageName [
 
 	 manifestClass := PackageManifest subclass: (self class manifestTag, packageName onlyLetters) asSymbol
 			instanceVariableNames: ''
@@ -453,20 +341,14 @@ TheManifestBuilder>>createManifestNamed: packageName [
 	^ manifestClass
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>createManifestOf: elem [
+{ #category : #manifest }
+TheManifestBuilder >> createManifestOf: elem [
 
 	self createManifestNamed: (self packageNameOf: elem).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>dateOf: ringobject forSelector: aSelector [
+{ #category : #private }
+TheManifestBuilder >> dateOf: ringobject forSelector: aSelector [
 
 	| critics |
 
@@ -476,11 +358,8 @@ TheManifestBuilder>>dateOf: ringobject forSelector: aSelector [
 		
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>dateOfFalsePositive: aItem onRule: ruleId version: versionId [
+{ #category : #manifest }
+TheManifestBuilder >> dateOfFalsePositive: aItem onRule: ruleId version: versionId [
 
 	(self hasFalsePositiveOf: ruleId version: versionId)
 		ifFalse: [^ self].
@@ -490,11 +369,8 @@ TheManifestBuilder>>dateOfFalsePositive: aItem onRule: ruleId version: versionId
 		
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>dateOfToDo: aItem onRule: ruleId version: versionId [
+{ #category : #manifest }
+TheManifestBuilder >> dateOfToDo: aItem onRule: ruleId version: versionId [
 	
 	 (self hasToDoOf: ruleId version: versionId)
 		ifFalse: [^ self].
@@ -503,11 +379,8 @@ TheManifestBuilder>>dateOfToDo: aItem onRule: ruleId version: versionId [
 		
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>dateOfTruePositive: aItem onRule: ruleId version: versionId [
+{ #category : #manifest }
+TheManifestBuilder >> dateOfTruePositive: aItem onRule: ruleId version: versionId [
 
 	(self hasTruePositiveOf: ruleId version: versionId)
 		ifFalse: [^ self].
@@ -516,161 +389,110 @@ TheManifestBuilder>>dateOfTruePositive: aItem onRule: ruleId version: versionId 
 		
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>falsePositiveOf: ruleId version: versionId  [
+{ #category : #manifest }
+TheManifestBuilder >> falsePositiveOf: ruleId version: versionId [ 
 
 	^ self unwrap: (self manifest perform: (self selectorFalsePositiveOf: ruleId version: versionId))
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>hasFalsePositiveOf: ruleId version: versionId [
+{ #category : #manifest }
+TheManifestBuilder >> hasFalsePositiveOf: ruleId version: versionId [
 	^ self manifest respondsTo: (self selectorFalsePositiveOf: ruleId version: versionId)
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>hasToDoOf: ruleId version: versionId [
+{ #category : #manifest }
+TheManifestBuilder >> hasToDoOf: ruleId version: versionId [
 	^ self manifest respondsTo: (self selectorToDoOf: ruleId version: versionId)  
 	
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>hasTruePositiveOf: ruleId version: versionId [
+{ #category : #manifest }
+TheManifestBuilder >> hasTruePositiveOf: ruleId version: versionId [
 	^ self manifest respondsTo: (self selectorTruePositiveOf: ruleId version: versionId)  
 	
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>hash [
+{ #category : #comparing }
+TheManifestBuilder >> hash [
 	^ manifestClass hash bitXor: self class hash
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>installFalsePositiveOf: ruleId version: versionId [
+{ #category : #manifest }
+TheManifestBuilder >> installFalsePositiveOf: ruleId version: versionId [
 
 	self compileSelector: (self selectorFalsePositiveOf: ruleId version: versionId) returnValue: '#()'
 
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>installToDoOf: ruleId version: versionId [
+{ #category : #manifest }
+TheManifestBuilder >> installToDoOf: ruleId version: versionId [
 
 	self compileSelector: (self selectorToDoOf: ruleId version: versionId) returnValue: '#()'
 
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>installTruePositiveOf: ruleId version: versionId [
+{ #category : #manifest }
+TheManifestBuilder >> installTruePositiveOf: ruleId version: versionId [
 	
 	self compileSelector: (self selectorTruePositiveOf: ruleId version: versionId) returnValue: '#()'
 
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>isFalsePositive: anItem onRule: ruleId version: versionId [
+{ #category : #manifest }
+TheManifestBuilder >> isFalsePositive: anItem onRule: ruleId version: versionId [
 	
 	^ ((self containsFalsePositive: anItem onRule: ruleId version: versionId) or:
 			[(self containsRejectedRule: ruleId) or:
 				[(anItem class = RPackage) not and: [self containsRejectedClass: anItem criticClass]]])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>manifest [
+{ #category : #accessing }
+TheManifestBuilder >> manifest [
 	^ manifestClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>manifestClass: aClass [
+{ #category : #accessing }
+TheManifestBuilder >> manifestClass: aClass [
 	 manifestClass := aClass
 		
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>manifestOf: elem [
+{ #category : #accessing }
+TheManifestBuilder >> manifestOf: elem [
 
 	^ manifestClass := elem package ifNotNil: #packageManifestOrNil 
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>packageNameOf: elem [
+{ #category : #private }
+TheManifestBuilder >> packageNameOf: elem [
 	^ elem package name
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>printOn: aStream [
+{ #category : #printing }
+TheManifestBuilder >> printOn: aStream [
 
 	aStream
 		nextPutAll: 'ManifestBuilder of ';
 		nextPutAll: manifestClass printString.
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>rejectClasses [
+{ #category : #manifest }
+TheManifestBuilder >> rejectClasses [
 	^ self unwrap: (self manifest rejectClasses)
 
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>rejectRules [
+{ #category : #manifest }
+TheManifestBuilder >> rejectRules [
 	^ self manifest rejectRules
 	
 
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>removeAllFalsePositive: aSet of: ruleId version: versionId [
+{ #category : #adding/removing }
+TheManifestBuilder >> removeAllFalsePositive: aSet of: ruleId version: versionId [
 
 	| selector |
 	selector := self selectorFalsePositiveOf:ruleId version: versionId. 
@@ -678,11 +500,8 @@ TheManifestBuilder>>removeAllFalsePositive: aSet of: ruleId version: versionId [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>removeAllItem: aSet selector: selector [
+{ #category : #private }
+TheManifestBuilder >> removeAllItem: aSet selector: selector [
 	| set arrayString |
 	set := (self manifest perform: selector) asOrderedCollection.
 	set := set
@@ -694,20 +513,14 @@ TheManifestBuilder>>removeAllItem: aSet selector: selector [
 	self compileSelector: selector returnValue: arrayString
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>removeAllManifest [
+{ #category : #adding/removing }
+TheManifestBuilder >> removeAllManifest [
  
 	self removeClasses: (self class allManifestClasses)
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>removeAllToDo: fp of: ruleId version: versionId [
+{ #category : #adding/removing }
+TheManifestBuilder >> removeAllToDo: fp of: ruleId version: versionId [
 	
 	| selector |
 	selector := self selectorToDoOf: ruleId version: versionId. 
@@ -715,11 +528,8 @@ TheManifestBuilder>>removeAllToDo: fp of: ruleId version: versionId [
 	
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>removeFalsePositive: fp of: ruleId version: versionId [
+{ #category : #adding/removing }
+TheManifestBuilder >> removeFalsePositive: fp of: ruleId version: versionId [
 	
 	| selector |
 	selector := self selectorFalsePositiveOf: ruleId version: versionId. 
@@ -728,29 +538,20 @@ TheManifestBuilder>>removeFalsePositive: fp of: ruleId version: versionId [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>removeItem: fp selector: selector [
+{ #category : #private }
+TheManifestBuilder >> removeItem: fp selector: selector [
 	self removeAllItem: {fp} selector: selector
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>removeManifestOf: aItem [
+{ #category : #adding/removing }
+TheManifestBuilder >> removeManifestOf: aItem [
 	
 	(self manifestOf: aItem) ifNotNil: [ :myManifest | 
 			self removeClass: myManifest  ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>removeObsoleteFalsePositiveOf: aMethod [
+{ #category : #private }
+TheManifestBuilder >> removeObsoleteFalsePositiveOf: aMethod [
 
 	| set arrayString  |
 	set := (self manifest perform: aMethod selector) asOrderedCollection.
@@ -760,11 +561,8 @@ TheManifestBuilder>>removeObsoleteFalsePositiveOf: aMethod [
 	
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>removeRejectClass: aClass [
+{ #category : #adding/removing }
+TheManifestBuilder >> removeRejectClass: aClass [
 
 	|  classes |
 	classes :=  self manifest rejectClasses asOrderedCollection.
@@ -774,11 +572,8 @@ TheManifestBuilder>>removeRejectClass: aClass [
 	
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>removeRejectRule: ruleId  [
+{ #category : #adding/removing }
+TheManifestBuilder >> removeRejectRule: ruleId [ 
 
 	|  nfp |	
 	nfp := self manifest rejectRules asOrderedCollection.
@@ -789,11 +584,8 @@ TheManifestBuilder>>removeRejectRule: ruleId  [
 	
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>removeToDo: fp of: ruleId version: versionId [
+{ #category : #adding/removing }
+TheManifestBuilder >> removeToDo: fp of: ruleId version: versionId [
 	
 	| selector |
 	selector := self selectorToDoOf:ruleId version: versionId. 
@@ -801,29 +593,20 @@ TheManifestBuilder>>removeToDo: fp of: ruleId version: versionId [
 	
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>resetFalsePositiveOf: ruleId version: versionId [
+{ #category : #adding/removing }
+TheManifestBuilder >> resetFalsePositiveOf: ruleId version: versionId [
  
 	self  installFalsePositiveOf: ruleId version: versionId. 
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>resetToDoOf: ruleId version: versionId [
+{ #category : #adding/removing }
+TheManifestBuilder >> resetToDoOf: ruleId version: versionId [
  	
 	self installToDoOf: ruleId version: versionId. 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>selectorFalsePositiveOf: ruleId version: versionId [
+{ #category : #private }
+TheManifestBuilder >> selectorFalsePositiveOf: ruleId version: versionId [
 
 	^ (self class falsePositiveBeginningTag, ruleId,
 		self class falsePositiveMiddleTag, versionId asString,
@@ -831,22 +614,16 @@ TheManifestBuilder>>selectorFalsePositiveOf: ruleId version: versionId [
 			asSymbol.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>selectorToDoOf: ruleId version: versionId [
+{ #category : #private }
+TheManifestBuilder >> selectorToDoOf: ruleId version: versionId [
 
 	^ (self class toDoBeginningTag, ruleId ,
 		self class toDoMiddleTag, versionId asString,
 		self class toDoEndTag) asSymbol.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>selectorTruePositiveOf: ruleId version: versionId [
+{ #category : #private }
+TheManifestBuilder >> selectorTruePositiveOf: ruleId version: versionId [
 
 	^ (self class falsePositiveBeginningTag, ruleId ,
 		self class falsePositiveMiddleTag, versionId asString,
@@ -854,29 +631,20 @@ TheManifestBuilder>>selectorTruePositiveOf: ruleId version: versionId [
 		asSymbol.
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>toDoOf: ruleId version: versionId  [
+{ #category : #manifest }
+TheManifestBuilder >> toDoOf: ruleId version: versionId [ 
 
 	^ self unwrap: (self manifest perform: (self selectorToDoOf: ruleId version: versionId))
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>truePositiveOf: ruleId version: versionId  [
+{ #category : #manifest }
+TheManifestBuilder >> truePositiveOf: ruleId version: versionId [ 
 
 	^ self unwrap: (self manifest perform: (self selectorTruePositiveOf: ruleId version: versionId))
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TheManifestBuilder>>unwrap: aCollection [
+{ #category : #private }
+TheManifestBuilder >> unwrap: aCollection [
 
 	| unwrapCollection rgobject |
 	

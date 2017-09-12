@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicTextRenderer,
 	#superclass : #GLMMorphicWidgetRenderer,
@@ -8,15 +5,11 @@ Class {
 		'textModel',
 		'textMorph'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicTextRenderer>>actOnContextChanged: ann  [
+{ #category : #rendering }
+GLMMorphicTextRenderer >> actOnContextChanged: ann [ 
 	ann property = #selectionInterval
 		ifTrue: [ 
 			ann value notNil 
@@ -29,30 +22,21 @@ GLMMorphicTextRenderer>>actOnContextChanged: ann  [
 					textModel changedText: ann value ] ]"
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicTextRenderer>>actOnPresentationUpdated: ann  [
+{ #category : #rendering }
+GLMMorphicTextRenderer >> actOnPresentationUpdated: ann [ 
 	textModel text: ann presentation formatedDisplayValue.
 	textModel changed: #text
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicTextRenderer>>registerEventsForPresentation: aPresentation [
+{ #category : #rendering }
+GLMMorphicTextRenderer >> registerEventsForPresentation: aPresentation [
 	aPresentation when: GLMPresentationUpdated send: #actOnPresentationUpdated: to: self.
 	aPresentation when: GLMContextChanged send: #actOnContextChanged: to: self.
 	aPresentation when: GLMSelectCurrentLine send: #selectLine to: self
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicTextRenderer>>render: aPresentation [
+{ #category : #rendering }
+GLMMorphicTextRenderer >> render: aPresentation [
 	textModel := self textModelFor: aPresentation.
 	textMorph := self textMorphForModel: textModel.	"this is a horrible hack: 
 	because we cannot get the update of when the text changes from the morph,
@@ -75,30 +59,21 @@ GLMMorphicTextRenderer>>render: aPresentation [
 	^ textMorph
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicTextRenderer>>selectLine [
+{ #category : #rendering }
+GLMMorphicTextRenderer >> selectLine [
 	
 	textMorph selectLine
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicTextRenderer>>textModelFor: aPresentation [
+{ #category : #rendering }
+GLMMorphicTextRenderer >> textModelFor: aPresentation [
 	^ GLMTextModel new
 		text: aPresentation formatedDisplayValue;
 		glamourPresentation: aPresentation
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicTextRenderer>>textMorphForModel:  aTextModel [
+{ #category : #rendering }
+GLMMorphicTextRenderer >> textMorphForModel:  aTextModel [
 	^ (GLMPluggableTextMorph
 		on: aTextModel
 		text: #text

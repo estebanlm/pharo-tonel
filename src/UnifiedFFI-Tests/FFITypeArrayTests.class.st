@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #FFITypeArrayTests,
 	#superclass : #TestCase,
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArrayTests>>testAt [
+{ #category : #tests }
+FFITypeArrayTests >> testAt [
 	| externalArray |
 	
 	externalArray := (FFITypeArray ofType: 'int' size: 10) new.
@@ -21,11 +14,8 @@ FFITypeArrayTests>>testAt [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArrayTests>>testAtPut [
+{ #category : #tests }
+FFITypeArrayTests >> testAtPut [
 	| externalArray |
 	
 	externalArray := (FFITypeArray ofType: 'int' size: 1) new.
@@ -33,11 +23,8 @@ FFITypeArrayTests>>testAtPut [
 	self assert: (externalArray at: 1) equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArrayTests>>testExternalAt [
+{ #category : #tests }
+FFITypeArrayTests >> testExternalAt [
 	| externalArray |
 	
 	[
@@ -52,11 +39,8 @@ FFITypeArrayTests>>testExternalAt [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArrayTests>>testExternalAtPut [
+{ #category : #tests }
+FFITypeArrayTests >> testExternalAtPut [
 	| externalArray |
 	
 	[	
@@ -67,11 +51,8 @@ FFITypeArrayTests>>testExternalAtPut [
 		externalArray free ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArrayTests>>testExternalAtPutFloat [
+{ #category : #tests }
+FFITypeArrayTests >> testExternalAtPutFloat [
 	| random array |
 	random := Random new.
 	[
@@ -81,11 +62,8 @@ FFITypeArrayTests>>testExternalAtPutFloat [
 	ensure: [ array free ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITypeArrayTests>>testStructureRead [
+{ #category : #tests }
+FFITypeArrayTests >> testStructureRead [
 	| structure |
 	
 	structure := FFITestArrayStructure new.

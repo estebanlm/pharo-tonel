@@ -28,15 +28,11 @@ Class {
 		'widgets',
 		'layout'
 	],
-	#category : #Spec-Core,
-	#timestamp : 'Spirita 7/19/2016 11:09'
+	#category : #Spec-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicComposableModel>>assign: aModel to: anInstVarName [
+{ #category : #'instance creation' }
+DynamicComposableModel >> assign: aModel to: anInstVarName [
 
 	widgets 
 		at: anInstVarName
@@ -45,11 +41,8 @@ DynamicComposableModel>>assign: aModel to: anInstVarName [
 	aModel owner: self
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicComposableModel>>doesNotUnderstand: aMessage [
+{ #category : #'error handling' }
+DynamicComposableModel >> doesNotUnderstand: aMessage [
 	"To make sure that we can use accessors to access the dynamically managed subcomponents."
 	
 	^ widgets 
@@ -57,78 +50,53 @@ DynamicComposableModel>>doesNotUnderstand: aMessage [
 			ifAbsent: [ super doesNotUnderstand: aMessage ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicComposableModel>>initialize [
+{ #category : #initialization }
+DynamicComposableModel >> initialize [
 
 	widgets := OrderedIdentityDictionary new asValueHolder.
 	layout := nil asValueHolder.
 	super initialize.	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicComposableModel>>initializeWidgets [
-
+{ #category : #initialization }
+DynamicComposableModel >> initializeWidgets [
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicComposableModel>>instantiateModels: aCollectionOfPairs [
+{ #category : #'instance creation' }
+DynamicComposableModel >> instantiateModels: aCollectionOfPairs [
  
 	aCollectionOfPairs pairsDo: [ :k :v |
 		widgets at: k asSymbol put: (self createInstanceFor: v) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicComposableModel>>layout [
+{ #category : #accessing }
+DynamicComposableModel >> layout [
 
 	^ layout value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicComposableModel>>layout: aLayout [
+{ #category : #accessing }
+DynamicComposableModel >> layout: aLayout [
 
 	layout value: aLayout
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicComposableModel>>needFullRebuild: aBoolean [
+{ #category : #api }
+DynamicComposableModel >> needFullRebuild: aBoolean [
 
 	self needRebuild: aBoolean.
 	self widgetsDo: [:e | e needRebuild: aBoolean ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicComposableModel>>openWithSpec [
+{ #category : #api }
+DynamicComposableModel >> openWithSpec [
 
 	self layout ifNil: [ ^ super openWithSpec ].
 	^ self openWithSpecLayout: self layout
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicComposableModel>>retrieveSpec: aSelector [
+{ #category : #api }
+DynamicComposableModel >> retrieveSpec: aSelector [
 
 	self layout ifNil: [ ^ super retrieveSpec: aSelector ].
 
@@ -137,20 +105,14 @@ DynamicComposableModel>>retrieveSpec: aSelector [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicComposableModel>>widgets [
+{ #category : #accessing }
+DynamicComposableModel >> widgets [
 
 	^ widgets
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DynamicComposableModel>>widgetsDo: aBlock [
+{ #category : #accessing }
+DynamicComposableModel >> widgetsDo: aBlock [
 
 	self widgets do: aBlock 
 ]

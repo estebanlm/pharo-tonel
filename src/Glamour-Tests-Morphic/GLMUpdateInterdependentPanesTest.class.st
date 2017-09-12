@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMUpdateInterdependentPanesTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMUpdateInterdependentPanesTest>>testAllowNil [
+{ #category : #tests }
+GLMUpdateInterdependentPanesTest >> testAllowNil [
 	| browser detailsMorph |
 	browser := GLMTabulator new.
 	browser
@@ -47,11 +40,8 @@ GLMUpdateInterdependentPanesTest>>testAllowNil [
 	self assert: detailsMorph text asString equals: 'nilc'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMUpdateInterdependentPanesTest>>testInterdependentPanesShouldUpdateTheFocusTriggerPane [
+{ #category : #tests }
+GLMUpdateInterdependentPanesTest >> testInterdependentPanesShouldUpdateTheFocusTriggerPane [
 	|  treeMorphThree treeMorphThree2 browser treeMorphTwo treeMorphOne |
 	browser := GLMTabulator new.
 	browser column: #one; column: #two; column: #three.
@@ -95,11 +85,8 @@ GLMUpdateInterdependentPanesTest>>testInterdependentPanesShouldUpdateTheFocusTri
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMUpdateInterdependentPanesTest>>testInterdependentPanesShouldUpdateTheFocusTriggerPaneWithText [
+{ #category : #tests }
+GLMUpdateInterdependentPanesTest >> testInterdependentPanesShouldUpdateTheFocusTriggerPaneWithText [
 	| browser treeMorphThree treeMorphThree2 |
 	browser := GLMTabulator new.
 	browser
@@ -144,11 +131,8 @@ GLMUpdateInterdependentPanesTest>>testInterdependentPanesShouldUpdateTheFocusTri
 	self assert: treeMorphThree ~= treeMorphThree2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMUpdateInterdependentPanesTest>>testOnePanesShouldUpdateTheRenderedSelectionOnTheTriggerPane [
+{ #category : #tests }
+GLMUpdateInterdependentPanesTest >> testOnePanesShouldUpdateTheRenderedSelectionOnTheTriggerPane [
 
 	| browser morphOne |
 	browser := GLMTabulator new.
@@ -165,11 +149,8 @@ GLMUpdateInterdependentPanesTest>>testOnePanesShouldUpdateTheRenderedSelectionOn
 	self assert: morphOne selectedMorph notNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMUpdateInterdependentPanesTest>>testTwoInterdependentPanesShouldUpdateTheRenderedSelectionOnTheTriggerPane [
+{ #category : #tests }
+GLMUpdateInterdependentPanesTest >> testTwoInterdependentPanesShouldUpdateTheRenderedSelectionOnTheTriggerPane [
 
 	| browser morphTwo morphOne |
 	browser := GLMTabulator new.

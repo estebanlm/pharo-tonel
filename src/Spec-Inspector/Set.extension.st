@@ -1,11 +1,6 @@
-Extension {
-	#name : #Set
-}
+Extension { #name : #Set }
 
-{
-	#category : #'*Spec-Inspector',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Set class>>inspectorClass [
+{ #category : #'*Spec-Inspector' }
+Set class >> inspectorClass [
 	^ EyeSetInspector
 ]

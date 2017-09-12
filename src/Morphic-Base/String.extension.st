@@ -1,21 +1,13 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-String>>asDraggableMorph [
+{ #category : #'*Morphic-Base' }
+String >> asDraggableMorph [
 
 	^ self asStringMorph
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-String>>asMorph  [
+{ #category : #'*Morphic-Base' }
+String >> asMorph [ 
 	"Answer the receiver as a StringMorph"
 
 	^ StringMorph contents: self
@@ -23,11 +15,8 @@ String>>asMorph  [
 "'bugs black blood' asMorph openInHand"
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-String>>asStringMorph  [
+{ #category : #'*Morphic-Base' }
+String >> asStringMorph [ 
 	"Answer the receiver as a StringMorph"
 
 	^ StringMorph contents: self
@@ -35,29 +24,20 @@ String>>asStringMorph  [
 "'bugs black blood' asStringMorph openInHand"
 ]
 
-{
-	#category : #'*Morphic-Base-Pluggable Widgets',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-String>>beginsWith: aString fromList: aMorph [
+{ #category : #'*Morphic-Base-Pluggable Widgets' }
+String >> beginsWith: aString fromList: aMorph [
 
 	^ self trimBoth asLowercase beginsWith: aString
 ]
 
-{
-	#category : #'*Morphic-Base-Widgets',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-String>>heightToDisplayInList: aList [
+{ #category : #'*Morphic-Base-Widgets' }
+String >> heightToDisplayInList: aList [
 
 	^ aList font height
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-String>>indentationIfBlank: aBlock  [
+{ #category : #'*Morphic-Base' }
+String >> indentationIfBlank: aBlock [ 
 	"Answer the number of leading tabs in the receiver.  If there are
 	 no visible characters, pass the number of tabs to aBlock and return its value."
 	| reader leadingTabs lastSeparator cr tab ch |
@@ -74,11 +54,8 @@ String>>indentationIfBlank: aBlock  [
 	^ leadingTabs
 ]
 
-{
-	#category : #'*Morphic-Base-Widgets',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-String>>listRenderOn: aCanvas atRow: aRow bounds: bounds color: color backgroundColor: backgroundColor from: aMorph [
+{ #category : #'*Morphic-Base-Widgets' }
+String >> listRenderOn: aCanvas atRow: aRow bounds: bounds color: color backgroundColor: backgroundColor from: aMorph [
 
 	aCanvas
 		drawString: self
@@ -87,11 +64,8 @@ String>>listRenderOn: aCanvas atRow: aRow bounds: bounds color: color background
 		color: color
 ]
 
-{
-	#category : #'*Morphic-Base-Widgets',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-String>>widthToDisplayInList: aList [
+{ #category : #'*Morphic-Base-Widgets' }
+String >> widthToDisplayInList: aList [
 
 	^ aList font widthOfStringOrText: self contents
 ]

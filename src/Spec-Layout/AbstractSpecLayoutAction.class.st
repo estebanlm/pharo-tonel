@@ -8,56 +8,37 @@ Class {
 		'arguments',
 		'selector'
 	],
-	#category : #Spec-Layout,
-	#timestamp : '<historical>'
+	#category : #Spec-Layout
 }
 
-{
-	#category : #accesing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractSpecLayoutAction>>arguments [
+{ #category : #accesing }
+AbstractSpecLayoutAction >> arguments [
 	^ arguments
 ]
 
-{
-	#category : #accesing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractSpecLayoutAction>>arguments: anObject [
+{ #category : #accesing }
+AbstractSpecLayoutAction >> arguments: anObject [
 	arguments := anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractSpecLayoutAction>>asSpecElements [
+{ #category : #protocol }
+AbstractSpecLayoutAction >> asSpecElements [
 
 	self subclassResponsibility 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractSpecLayoutAction>>generateArguments [
+{ #category : #protocol }
+AbstractSpecLayoutAction >> generateArguments [
 
 	
 ]
 
-{
-	#category : #accesing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractSpecLayoutAction>>selector [
+{ #category : #accesing }
+AbstractSpecLayoutAction >> selector [
 	^ selector
 ]
 
-{
-	#category : #accesing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractSpecLayoutAction>>selector: anObject [
+{ #category : #accesing }
+AbstractSpecLayoutAction >> selector: anObject [
 	selector := anObject
 ]

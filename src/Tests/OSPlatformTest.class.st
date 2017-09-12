@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #OSPlatformTest,
 	#superclass : #TestCase,
-	#category : #Tests-System,
-	#timestamp : ''
+	#category : #Tests-System
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-OSPlatformTest>>testAPI [
+{ #category : #testing }
+OSPlatformTest >> testAPI [
 	"A test to make sure the full API will work"
 	Smalltalk os
 		isMacOS;
@@ -25,11 +18,8 @@ OSPlatformTest>>testAPI [
 		family.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-OSPlatformTest>>testStartUpList [
+{ #category : #testing }
+OSPlatformTest >> testStartUpList [
 	"This test documents issue http://code.google.com/p/pharo/issues/detail?id=838"
 	| startupList |
 	

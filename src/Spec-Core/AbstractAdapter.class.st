@@ -15,26 +15,19 @@ Class {
 		'widget',
 		'selector'
 	],
-	#category : #Spec-Core,
-	#timestamp : 'StephaneDucasse 2/27/2015 20:31'
+	#category : #Spec-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter class>>adapt: aComposableModel [
+{ #category : #'instance creation' }
+AbstractAdapter class >> adapt: aComposableModel [
 	
 	^ self new
 		adapt: aComposableModel;
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>adapt: aComposableModel [
+{ #category : #initialization }
+AbstractAdapter >> adapt: aComposableModel [
 
 	model := aComposableModel.
 	aComposableModel addDependent: self.
@@ -42,208 +35,139 @@ AbstractAdapter>>adapt: aComposableModel [
 	widget := self buildWidget.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>add: aWidget [
+{ #category : #protocol }
+AbstractAdapter >> add: aWidget [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>asWidget [
+{ #category : #protocol }
+AbstractAdapter >> asWidget [
 
 	^ self widget
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>buildWidget [
+{ #category : #factory }
+AbstractAdapter >> buildWidget [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>hRigid [
+{ #category : #protocol }
+AbstractAdapter >> hRigid [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>hShrinkWrap [
+{ #category : #protocol }
+AbstractAdapter >> hShrinkWrap [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>hSpaceFill [
+{ #category : #protocol }
+AbstractAdapter >> hSpaceFill [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>isRedrawable [
+{ #category : #protocol }
+AbstractAdapter >> isRedrawable [
 	"This must be overriden in the adapter representing your container"
 	
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>isSpecAdapter [
+{ #category : #testing }
+AbstractAdapter >> isSpecAdapter [
 
 	^ true
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>layout: aLayout [
+{ #category : #protocol }
+AbstractAdapter >> layout: aLayout [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>model [
+{ #category : #accessing }
+AbstractAdapter >> model [
 	^ model
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>removeSubWidgets [
+{ #category : #protocol }
+AbstractAdapter >> removeSubWidgets [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>selector [
+{ #category : #accessing }
+AbstractAdapter >> selector [
 	
 	^ selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>selector: anObject [
+{ #category : #accessing }
+AbstractAdapter >> selector: anObject [
 	
 	selector := anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>takeKeyboardFocus [
+{ #category : #protocol }
+AbstractAdapter >> takeKeyboardFocus [
 	
 	self widget ifNotNil: [:w | w takeKeyboardFocus ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>update: aSymbol [
+{ #category : #updating }
+AbstractAdapter >> update: aSymbol [
 
 	self changed: aSymbol
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>update: aSymbol with: anArray [
+{ #category : #updating }
+AbstractAdapter >> update: aSymbol with: anArray [
 
 	self perform: aSymbol withArguments: anArray
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>useProportionalLayout [
+{ #category : #protocol }
+AbstractAdapter >> useProportionalLayout [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>vRigid [
+{ #category : #protocol }
+AbstractAdapter >> vRigid [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>vShrinkWrap [
+{ #category : #protocol }
+AbstractAdapter >> vShrinkWrap [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>vSpaceFill [
+{ #category : #protocol }
+AbstractAdapter >> vSpaceFill [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>when: anAnnouncement do: aBlock [
+{ #category : #protocol }
+AbstractAdapter >> when: anAnnouncement do: aBlock [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>widget [
+{ #category : #accessing }
+AbstractAdapter >> widget [
 	^ widget
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>widgetDo: aBlock [
+{ #category : #private }
+AbstractAdapter >> widgetDo: aBlock [
 
 	^ self widget ifNotNil: aBlock
 ]

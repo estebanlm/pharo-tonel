@@ -8,58 +8,39 @@ Class {
 		'getMenuSelector',
 		'menuProvider'
 	],
-	#category : #Rubric-Editing-Core,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:02'
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableGetMenuPolicy>>getMenuSelector [
+{ #category : #accessing }
+RubPluggableGetMenuPolicy >> getMenuSelector [
 	^ getMenuSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableGetMenuPolicy>>getMenuSelector: aSymbol [
+{ #category : #accessing }
+RubPluggableGetMenuPolicy >> getMenuSelector: aSymbol [
 	getMenuSelector := aSymbol
 ]
 
-{
-	#category : #'accessing menu',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableGetMenuPolicy>>lookupMenu [
+{ #category : #'accessing menu' }
+RubPluggableGetMenuPolicy >> lookupMenu [
 	(getMenuSelector isNil or: [ menuProvider isNil ])
 		ifTrue: [ ^ super lookupMenu ].
 	^ (WeakMessageSend receiver: menuProvider selector: getMenuSelector) cull: MenuMorph new cull: false
 ]
 
-{
-	#category : #'accessing menu',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableGetMenuPolicy>>lookupShiftMenu [
+{ #category : #'accessing menu' }
+RubPluggableGetMenuPolicy >> lookupShiftMenu [
 	(getMenuSelector isNil or: [ menuProvider isNil ])
 		ifTrue: [ ^ super lookupMenu ].
 	^ (WeakMessageSend receiver: menuProvider selector: getMenuSelector) cull: MenuMorph new cull: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableGetMenuPolicy>>menuProvider [
+{ #category : #accessing }
+RubPluggableGetMenuPolicy >> menuProvider [
 	^ menuProvider
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableGetMenuPolicy>>menuProvider: anObject [
+{ #category : #accessing }
+RubPluggableGetMenuPolicy >> menuProvider: anObject [
 	menuProvider := anObject
 ]

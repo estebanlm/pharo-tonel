@@ -7,39 +7,26 @@ Class {
 	#instVars : [
 		'instVarName'
 	],
-	#category : #Spec-Inspector-Element,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector-Element
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InstanceVariableEyeElement class>>host: anObject instVarName: aString [
+{ #category : #'instance creation' }
+InstanceVariableEyeElement class >> host: anObject instVarName: aString [
 	^ (self host: anObject) instVarName: aString
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InstanceVariableEyeElement>>= anObject [
+{ #category : #comparing }
+InstanceVariableEyeElement >> = anObject [
 	^ super = anObject and: [ instVarName = anObject instVarName ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InstanceVariableEyeElement>>accessorCode [
+{ #category : #menu }
+InstanceVariableEyeElement >> accessorCode [
 	^ self instVarName
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InstanceVariableEyeElement>>customSubMenu: aMenu [
+{ #category : #menu }
+InstanceVariableEyeElement >> customSubMenu: aMenu [
 	
 	aMenu addGroup: [ :aGroup | 
 		aGroup 
@@ -55,69 +42,45 @@ InstanceVariableEyeElement>>customSubMenu: aMenu [
 		]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InstanceVariableEyeElement>>hash [
+{ #category : #comparing }
+InstanceVariableEyeElement >> hash [
 	^ super hash bitXor: instVarName hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InstanceVariableEyeElement>>instVarName [
+{ #category : #accessing }
+InstanceVariableEyeElement >> instVarName [
 	^ instVarName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InstanceVariableEyeElement>>instVarName: aString [
+{ #category : #accessing }
+InstanceVariableEyeElement >> instVarName: aString [
 	instVarName := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InstanceVariableEyeElement>>label [
+{ #category : #accessing }
+InstanceVariableEyeElement >> label [
 	^ self instVarName
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InstanceVariableEyeElement>>referencesToInstanceVariable [
+{ #category : #action }
+InstanceVariableEyeElement >> referencesToInstanceVariable [
 	"Open a browser on all references to the selected instance variable, if that's what currently selected."
 
 	^ self systemNavigation browseAllAccessesTo: self instVarName from: self hostClass
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InstanceVariableEyeElement>>save: aValue [
+{ #category : #action }
+InstanceVariableEyeElement >> save: aValue [
 	self host instVarNamed: self instVarName put: aValue
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InstanceVariableEyeElement>>storingsIntoInstanceVariable [
+{ #category : #action }
+InstanceVariableEyeElement >> storingsIntoInstanceVariable [
 
 	^ self systemNavigation browseAllStoresInto: self instVarName from: self hostClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-InstanceVariableEyeElement>>value [
+{ #category : #accessing }
+InstanceVariableEyeElement >> value [
 	^ self host readSlotNamed: self instVarName
 ]

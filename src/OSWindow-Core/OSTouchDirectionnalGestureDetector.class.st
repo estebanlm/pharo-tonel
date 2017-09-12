@@ -4,14 +4,10 @@ I detect gestures which needs all fingers to go on a certain direction (creating
 Class {
 	#name : #OSTouchDirectionnalGestureDetector,
 	#superclass : #OSTouchGestureNeedingThresholdDetector,
-	#category : #OSWindow-Core-Gestures,
-	#timestamp : 'MerwanOuddane 7/22/2015 16:13'
+	#category : #OSWindow-Core-Gestures
 }
 
-{
-	#category : #'event field',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchDirectionnalGestureDetector>>dDist [
+{ #category : #'event field' }
+OSTouchDirectionnalGestureDetector >> dDist [
 	^ self subclassResponsibility
 ]

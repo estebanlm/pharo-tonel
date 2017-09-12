@@ -21,15 +21,11 @@ To compare the different delay schedulers...
 Class {
 	#name : #DelayExperimentalSpinScheduler,
 	#superclass : #DelayMicrosecondScheduler,
-	#category : #Kernel-Processes,
-	#timestamp : 'BenComan 11/23/2015 22:37'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #'low priority processes',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayExperimentalSpinScheduler>>schedule: aDelay [
+{ #category : #'low priority processes' }
+DelayExperimentalSpinScheduler >> schedule: aDelay [
 
 	"Depends on the bytecode inlining and cooperative multitasking semantics 
 	 such that interuption can occur between the test and the assignment."
@@ -45,11 +41,8 @@ DelayExperimentalSpinScheduler>>schedule: aDelay [
 
 ]
 
-{
-	#category : #'low priority processes',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayExperimentalSpinScheduler>>unschedule: aDelay [
+{ #category : #'low priority processes' }
+DelayExperimentalSpinScheduler >> unschedule: aDelay [
 	
 	[	finishedDelay == nil ifTrue: [ 
 				finishedDelay := aDelay. "...and this assignment" 

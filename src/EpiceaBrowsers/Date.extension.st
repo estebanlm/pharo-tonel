@@ -1,12 +1,7 @@
-Extension {
-	#name : #Date
-}
+Extension { #name : #Date }
 
-{
-	#category : #'*EpiceaBrowsers',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-Date>>epiceaBrowsersAsString [
+{ #category : #'*EpiceaBrowsers' }
+Date >> epiceaBrowsersAsString [
 
 	| numberOfDaysAgo |
 	numberOfDaysAgo := self class today subtractDate: self.

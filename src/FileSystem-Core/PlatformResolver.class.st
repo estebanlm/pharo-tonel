@@ -4,76 +4,51 @@ I am an abstract superclass for platform-specific resolvers.
 Class {
 	#name : #PlatformResolver,
 	#superclass : #FileSystemResolver,
-	#category : #FileSystem-Core-Implementation,
-	#timestamp : 'cwp 11/18/2009 11:56'
+	#category : #FileSystem-Core-Implementation
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PlatformResolver class>>forCurrentPlatform [
+{ #category : #'instance creation' }
+PlatformResolver class >> forCurrentPlatform [
 	| platformName |
 	platformName :=  Smalltalk os platformName.
 	^ (self allSubclasses detect: [:ea | ea platformName = platformName]) new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PlatformResolver class>>platformName [
+{ #category : #accessing }
+PlatformResolver class >> platformName [
 	^ nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PlatformResolver class>>primitiveGetUntrustedUserDirectory [
+{ #category : #private }
+PlatformResolver class >> primitiveGetUntrustedUserDirectory [
 	<primitive: 'primitiveGetUntrustedUserDirectory' module: 'SecurityPlugin'>
 	self primitiveFailed.
 	self flag: 'use a more decent way to get a path in the users home directory'.
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PlatformResolver>>cache [
+{ #category : #origins }
+PlatformResolver >> cache [
 	"Operating Systems often define standard locations for a personal cache directory. The cache directory is a user-specific non-essential (cached) place where data should be written."
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PlatformResolver>>cantFindOriginError [
+{ #category : #private }
+PlatformResolver >> cantFindOriginError [
 	^ Error signal: 'Can''t find the requested origin' 
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PlatformResolver>>desktop [
+{ #category : #origins }
+PlatformResolver >> desktop [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PlatformResolver>>directoryFromEnvVariableNamed: aString [
+{ #category : #private }
+PlatformResolver >> directoryFromEnvVariableNamed: aString [
 	^ self directoryFromEnvVariableNamed: aString or: [ self cantFindOriginError ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PlatformResolver>>directoryFromEnvVariableNamed: aString or: aBlock [
+{ #category : #private }
+PlatformResolver >> directoryFromEnvVariableNamed: aString [ or: aBlock
 	| envValue |
 	envValue := [ Smalltalk os environment at: aString ifAbsent: [ nil ] ]
 		on: Error
@@ -83,43 +58,28 @@ PlatformResolver>>directoryFromEnvVariableNamed: aString or: aBlock [
 		ifFalse: [ self resolveString: envValue ]
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PlatformResolver>>documents [
+{ #category : #origins }
+PlatformResolver >> documents [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PlatformResolver>>home [
+{ #category : #origins }
+PlatformResolver >> home [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PlatformResolver>>preferences [
+{ #category : #origins }
+PlatformResolver >> preferences [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PlatformResolver>>supportedOrigins [
+{ #category : #resolving }
+PlatformResolver >> supportedOrigins [
 	^ #(home desktop documents preferences cache temp)
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PlatformResolver>>temp [
+{ #category : #origins }
+PlatformResolver >> temp [
 	"Where to put files that are not supposed to last long"
 	^ self subclassResponsibility 
 ]

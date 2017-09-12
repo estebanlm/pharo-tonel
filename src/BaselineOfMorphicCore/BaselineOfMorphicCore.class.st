@@ -13,15 +13,11 @@ Installs:
 Class {
 	#name : #BaselineOfMorphicCore,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfMorphicCore,
-	#timestamp : 'PavelKrivanek 11/7/2016 12:10'
+	#category : #BaselineOfMorphicCore
 }
 
-{
-	#category : #baseline,
-	#timestamp : ' 8/31/2017 05:26:07'
-}
-BaselineOfMorphicCore>>baseline: spec  [
+{ #category : #baseline }
+BaselineOfMorphicCore >> baseline: spec [ 
     
 	<baseline>
 
@@ -43,11 +39,8 @@ BaselineOfMorphicCore>>baseline: spec  [
 	].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:07'
-}
-BaselineOfMorphicCore>>postload: loader package: packageSpec [
+{ #category : #actions }
+BaselineOfMorphicCore >> postload: loader package: packageSpec [
 
 	| world hand |
 

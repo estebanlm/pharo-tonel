@@ -6,24 +6,17 @@ Ialso add support for on the fly refresh
 Class {
 	#name : #MorphicTreeColumnAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>argumentBlock [
+{ #category : #'widget API' }
+MorphicTreeColumnAdapter >> argumentBlock [
 
 	^ [ Array with: self model ]
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>buildWidget [
+{ #category : #factory }
+MorphicTreeColumnAdapter >> buildWidget [
 	^ SpecTreeColumn new
 		resizable: self resizable;
 		startWidth: self initialWidth;
@@ -35,69 +28,48 @@ MorphicTreeColumnAdapter>>buildWidget [
 		rowMorphGetSelector: self displayBlock
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>displayBlock [
+{ #category : #'widget API' }
+MorphicTreeColumnAdapter >> displayBlock [
 
 	^ self model displayBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>displayBlockChanged [
+{ #category : #private }
+MorphicTreeColumnAdapter >> displayBlockChanged [
 
 	self widgetDo: [ :w | 
 		w rowMorphGetSelector: self displayBlock.
 		w container updateList ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>headerAction [
+{ #category : #'widget API' }
+MorphicTreeColumnAdapter >> headerAction [
 
 	^ self model headerAction
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>headerFont [
+{ #category : #'widget API' }
+MorphicTreeColumnAdapter >> headerFont [
 
 	^ self model headerFont
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>headerFontChanged [
+{ #category : #private }
+MorphicTreeColumnAdapter >> headerFontChanged [
 	
 	self widgetDo: [ :w | 
 		w header label: self headerLabel font: self headerFont.
 		w container resizerChanged ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>headerIcon [
+{ #category : #'widget API' }
+MorphicTreeColumnAdapter >> headerIcon [
 
 	^ self model headerIcon
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>headerIconChanged [
+{ #category : #private }
+MorphicTreeColumnAdapter >> headerIconChanged [
 	
 	self widgetDo: [ :w | 
 		self headerIcon
@@ -105,78 +77,54 @@ MorphicTreeColumnAdapter>>headerIconChanged [
 			ifNotNil: [ w header icon: (ImageMorph new form: self headerIcon) ] ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>headerLabel [
+{ #category : #'widget API' }
+MorphicTreeColumnAdapter >> headerLabel [
 
 	^ self model headerLabel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>headerLabelChanged [
+{ #category : #private }
+MorphicTreeColumnAdapter >> headerLabelChanged [
 	
 	self widgetDo: [ :w | 
 		w header label: self headerLabel.
 		w container resizerChanged ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>initialWidth [
+{ #category : #'widget API' }
+MorphicTreeColumnAdapter >> initialWidth [
 
 	^ self model initialWidth
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>performHeaderAction [
+{ #category : #'widget API' }
+MorphicTreeColumnAdapter >> performHeaderAction [
 
 	self headerAction cull: self model cull: self
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>performHeaderActionSelector [
+{ #category : #'widget API' }
+MorphicTreeColumnAdapter >> performHeaderActionSelector [
 
 	^ self headerAction
 		ifNil: [ nil ]
 		ifNotNil: [ #performHeaderAction ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>resizable [
+{ #category : #'widget API' }
+MorphicTreeColumnAdapter >> resizable [
 
 	^ self model resizable
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>resizableChanged [
+{ #category : #private }
+MorphicTreeColumnAdapter >> resizableChanged [
 	
 	self widgetDo: [ :w | w resizable: self resizable ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeColumnAdapter>>update: aSymbol [
+{ #category : #updating }
+MorphicTreeColumnAdapter >> update: aSymbol [
 
 	aSymbol == #displayBlockChanged ifTrue: [ ^ self displayBlockChanged ].
 	aSymbol == #resizableChanged ifTrue: [ ^ self resizableChanged ].

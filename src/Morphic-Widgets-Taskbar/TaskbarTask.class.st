@@ -10,15 +10,11 @@ Class {
 		'label',
 		'icon'
 	],
-	#category : #Morphic-Widgets-Taskbar,
-	#timestamp : 'gvc 5/18/2007 11:20'
+	#category : #Morphic-Widgets-Taskbar
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask class>>morph: aMorph state: aSymbol icon: aForm label: aString [
+{ #category : #'as yet unclassified' }
+TaskbarTask class >> morph: aMorph state: aSymbol icon: aForm label: aString [
 	"Answer a new instance of the receiver with the given parameters."
 
 	^self new
@@ -28,11 +24,8 @@ TaskbarTask class>>morph: aMorph state: aSymbol icon: aForm label: aString [
 		label: aString
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>= aTaskbarTask [
+{ #category : #comparing }
+TaskbarTask >> = aTaskbarTask [
 	"Answer whether equal."
 
 	^self species = aTaskbarTask species
@@ -42,32 +35,23 @@ TaskbarTask>>= aTaskbarTask [
 		and: [self label = aTaskbarTask label]]]]
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>activate [
+{ #category : #activation }
+TaskbarTask >> activate [
 	"Activate the task."
 	
 	(self morph respondsTo: #restoreAndActivate)
 		ifTrue: [self morph restoreAndActivate]
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>buttonClickedForTaskList: aTasklist [
+{ #category : #user-interface }
+TaskbarTask >> buttonClickedForTaskList: aTasklist [
 	"Notify the tasklist."
 	
 	aTasklist taskClicked: self
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>hash [
+{ #category : #comparing }
+TaskbarTask >> hash [
 	"Hash is implemented because #= is implemented."
 	
 	^self morph hash
@@ -76,111 +60,78 @@ TaskbarTask>>hash [
 		bitXor: self label hash))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>icon [
+{ #category : #accessing }
+TaskbarTask >> icon [
 	"Answer the value of icon"
 
 	^ icon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>icon: anObject [
+{ #category : #accessing }
+TaskbarTask >> icon: anObject [
 	"Set the value of icon"
 
 	icon := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>isActive [
+{ #category : #testing }
+TaskbarTask >> isActive [
 	"Answer whether the task is active."
 
 	^self state == #active
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>isMinimized [
+{ #category : #testing }
+TaskbarTask >> isMinimized [
 	"Answer whether the task is minimized."
 
 	^self state == #minimized
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>label [
+{ #category : #accessing }
+TaskbarTask >> label [
 	"Answer the value of label"
 
 	^ label
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>label: anObject [
+{ #category : #accessing }
+TaskbarTask >> label: anObject [
 	"Set the value of label"
 
 	label := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>morph [
+{ #category : #accessing }
+TaskbarTask >> morph [
 	"Answer the value of morph"
 
 	^ morph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>morph: anObject [
+{ #category : #accessing }
+TaskbarTask >> morph: anObject [
 	"Set the value of morph"
 
 	morph := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>state [
+{ #category : #accessing }
+TaskbarTask >> state [
 	"Answer the value of state"
 
 	^ state
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>state: anObject [
+{ #category : #accessing }
+TaskbarTask >> state: anObject [
 	"Set the value of state"
 
 	state := anObject
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>taskListButtonFor: aTasklist [
+{ #category : #user-interface }
+TaskbarTask >> taskListButtonFor: aTasklist [
 	"Answer a button for the task."
 	
 	^self theme
@@ -188,20 +139,14 @@ TaskbarTask>>taskListButtonFor: aTasklist [
 		for: self
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>taskbarButtonFor: aTaskBar [
+{ #category : #user-interface }
+TaskbarTask >> taskbarButtonFor: aTaskBar [
 	"Answer a button for the task."
 	
 	^self morph taskbarButtonFor: aTaskBar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskbarTask>>theme [
+{ #category : #accessing }
+TaskbarTask >> theme [
 	^ Smalltalk ui theme
 ]

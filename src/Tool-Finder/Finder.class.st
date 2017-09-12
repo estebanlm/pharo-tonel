@@ -17,15 +17,11 @@ Class {
 		'resultDictionary',
 		'useRegEx'
 	],
-	#category : #Tool-Finder,
-	#timestamp : 'BenjaminVanRyseghem 9/15/2010 11:17'
+	#category : #Tool-Finder
 }
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder class>>finderMenuOn: aBuilder  [
+{ #category : #menu }
+Finder class >> finderMenuOn: aBuilder [ 
 	"I build a menu"
 	<worldMenu>
 	(aBuilder item: #Finder)
@@ -37,28 +33,19 @@ Finder class>>finderMenuOn: aBuilder  [
 	aBuilder withSeparatorAfter.	
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder class>>icon [
+{ #category : #menu }
+Finder class >> icon [
 	"My menu icon"
 	^ FinderUI icon
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder class>>open [
+{ #category : #menu }
+Finder class >> open [
 	^ self new open
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder class>>registerToolsOn: registry [
+{ #category : #'tools registry' }
+Finder class >> registerToolsOn: registry [
 	"Add ourselves to registry. See [Smalltalk tools]" 
 
 	registry register: self as: #finder
@@ -66,11 +53,8 @@ Finder class>>registerToolsOn: registry [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>classSearch: aSelectBlock [
+{ #category : #private }
+Finder >> classSearch: aSelectBlock [
 	| result |
 	result := OrderedCollection new.
 	self packagesSelection classesAndTraitsDo:[ :class | 
@@ -79,11 +63,8 @@ Finder>>classSearch: aSelectBlock [
 	^ result
 ]
 
-{
-	#category : #private-class,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>computeListOfClasses: aString [
+{ #category : #private-class }
+Finder >> computeListOfClasses: aString [
 	"Compute in the case I'm searching class names"
 		
 	^ self useRegEx
@@ -95,11 +76,8 @@ Finder>>computeListOfClasses: aString [
 				class name includesSubstring: aString caseSensitive: false ]].
 ]
 
-{
-	#category : #private-example,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>computeWithMethodFinder: aString [
+{ #category : #private-example }
+Finder >> computeWithMethodFinder: aString [
 	"Compute the selectors for the single example of receiver and args, in the very top pane"
 
 	| data result resultArray dataStrings methodFinder dataObjects temporarySearchResult statements |
@@ -154,11 +132,8 @@ Finder>>computeWithMethodFinder: aString [
 	^ resultArray
 ]
 
-{
-	#category : #private-class,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>constructClassNamesDictionary [
+{ #category : #private-class }
+Finder >> constructClassNamesDictionary [
 	"Construct the dictionary in the case I'm searching in class names"
 	
 	| result listOfClasses |
@@ -169,11 +144,8 @@ Finder>>constructClassNamesDictionary [
 	self resultDictionary: result.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>constructDictionary [
+{ #category : #private }
+Finder >> constructDictionary [
 	"I construct the adequate dictionary regarding the search mode"
 
 	self searchingString isEmpty ifTrue: [ ^ self resultDictionary: Dictionary new].
@@ -192,11 +164,8 @@ Finder>>constructDictionary [
 	] asJob run
 ]
 
-{
-	#category : #private-selector,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>constructDictionaryWithMessagesNameSearch: aString [
+{ #category : #private-selector }
+Finder >> constructDictionaryWithMessagesNameSearch: aString [
 	"Construct dictionary when searching for selector"
 	
 	| result listOfMethods |
@@ -211,11 +180,8 @@ Finder>>constructDictionaryWithMessagesNameSearch: aString [
 	self resultDictionary: result.
 ]
 
-{
-	#category : #private-example,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>constructDictionaryWithMethodFinder: aString [
+{ #category : #private-example }
+Finder >> constructDictionaryWithMethodFinder: aString [
 	"construct dictionary when searching patterns"
 
 	| result listOfStrings listOfSelectors |
@@ -242,11 +208,8 @@ Finder>>constructDictionaryWithMethodFinder: aString [
 	self resultDictionary: result
 ]
 
-{
-	#category : #private-pragma,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>constructDictionaryWithPragmaSearch: aString  [
+{ #category : #private-pragma }
+Finder >> constructDictionaryWithPragmaSearch: aString [ 
 	"construct dictionary when searching for pragmas"
 	
 	| dictionary |
@@ -263,11 +226,8 @@ Finder>>constructDictionaryWithPragmaSearch: aString  [
 	self resultDictionary: dictionary.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>constructSourceDictionary [
+{ #category : #private }
+Finder >> constructSourceDictionary [
 "construct dictionary when searching source"
 	| result listOfMethods |
 	result := Dictionary new.
@@ -281,11 +241,8 @@ Finder>>constructSourceDictionary [
 	self resultDictionary: result.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>currentSearchMode [
+{ #category : #accessing }
+Finder >> currentSearchMode [
 	"Getter"
 	"I shoud answer a Symbol in :
 		- #Selectors
@@ -296,11 +253,8 @@ Finder>>currentSearchMode [
 	 ^ currentSearchMode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>currentSearchMode: aSymbol [
+{ #category : #accessing }
+Finder >> currentSearchMode: aSymbol [
 	"Setter"
 	"If #Examples is selected, I disable the RegEx checkbo. Then I rebuild the resultDictionary"
 
@@ -313,70 +267,46 @@ Finder>>currentSearchMode: aSymbol [
 	self constructDictionary
 ]
 
-{
-	#category : #default,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>defaultEnvironment [
+{ #category : #default }
+Finder >> defaultEnvironment [
 	 ^ RBBrowserEnvironment new
 ]
 
-{
-	#category : #default,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>defaultPackagesSelection [
+{ #category : #default }
+Finder >> defaultPackagesSelection [
 	 ^ self environment
 ]
 
-{
-	#category : #default,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>defaultString [
+{ #category : #default }
+Finder >> defaultString [
 	^''
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>disableUseRegEx [
+{ #category : #private }
+Finder >> disableUseRegEx [
 	"send a disable useRegEx dropbox event"
 	^ self triggerEvent: #disableUseRegEx
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>enableUseRegEx [
+{ #category : #private }
+Finder >> enableUseRegEx [
 	"send a enable useRegEx dropbox event"
 	^ self triggerEvent: #enableUseRegEx
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>environment [
+{ #category : #accessing }
+Finder >> environment [
 	 ^ environment 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>environment: aCollection [
+{ #category : #accessing }
+Finder >> environment: aCollection [
 
 	 environment := aCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>findSelector: aString [
+{ #category : #private }
+Finder >> findSelector: aString [
 	"Answer the selector of aString."
 
 	| example tokens |
@@ -389,11 +319,8 @@ Finder>>findSelector: aString [
 	^ nil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>initialize [
+{ #category : #initialization }
+Finder >> initialize [
 	super initialize.
 	searchingString := self defaultString.
 	environment := self defaultEnvironment.
@@ -404,56 +331,38 @@ Finder>>initialize [
 	
 ]
 
-{
-	#category : #checkbox,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>isClassNamesSymbol [
+{ #category : #checkbox }
+Finder >> isClassNamesSymbol [
 	"answer if the current mode is Classes"
 	^self currentSearchMode = #Classes
 ]
 
-{
-	#category : #checkbox,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>isExamplesSymbol [
+{ #category : #checkbox }
+Finder >> isExamplesSymbol [
 	"Answer if the current mode is Examples"
 	^self currentSearchMode = #Examples
 ]
 
-{
-	#category : #checkbox,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>isPragmasSymbol [
+{ #category : #checkbox }
+Finder >> isPragmasSymbol [
 "answer if the current mode is Pragmas"
 	^self currentSearchMode = #Pragmas
 ]
 
-{
-	#category : #checkbox,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>isSelectorsSymbol [
+{ #category : #checkbox }
+Finder >> isSelectorsSymbol [
 "answer if the current mode is Selectors"
 	^self currentSearchMode = #Selectors
 ]
 
-{
-	#category : #checkbox,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>isSourceSymbol [
+{ #category : #checkbox }
+Finder >> isSourceSymbol [
 	"answer if the current mode is Source"
 	^self currentSearchMode = #Source
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>listFromResult: resultOC [
+{ #category : #private }
+Finder >> listFromResult: resultOC [
 	"The argument, resulOC, is of the form #('(data1 op data2)' '(...)'). Answer a sorted array."
 
 	(resultOC first beginsWith: 'no single method') ifTrue: [^ #()].
@@ -462,11 +371,8 @@ Finder>>listFromResult: resultOC [
 
 ]
 
-{
-	#category : #private-selector,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>messageSearchBlockFrom: aString [
+{ #category : #private-selector }
+Finder >> messageSearchBlockFrom: aString [
 	| exactMatch |
 	
 	exactMatch := aString first = $" and: [ aString last = $"].
@@ -481,11 +387,8 @@ Finder>>messageSearchBlockFrom: aString [
 			[ :method | method selector = aSymbol ]].
 ]
 
-{
-	#category : #private-selector,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>messagesNameSearch: aString [
+{ #category : #private-selector }
+Finder >> messagesNameSearch: aString [
 	"I'm searching for selectors"
 	^ self useRegEx
 		ifTrue: [ | regex |
@@ -495,11 +398,8 @@ Finder>>messagesNameSearch: aString [
 			self methodSearch: (self messageSearchBlockFrom: aString)].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>methodSearch: aSelectBlock  [
+{ #category : #private }
+Finder >> methodSearch: aSelectBlock [ 
 	| result | 
 	result := OrderedCollection new.
 	
@@ -513,38 +413,26 @@ Finder>>methodSearch: aSelectBlock  [
 	^ result
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>open [
+{ #category : #display }
+Finder >> open [
 	^ (FinderUI on: self) open
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>packagesSelection [
+{ #category : #accessing }
+Finder >> packagesSelection [
 	"I should be a selection of classes"
 	^packagesSelection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>packagesSelection: aCollection [
+{ #category : #accessing }
+Finder >> packagesSelection: aCollection [
 	"I change the classes selection, then I rebuild the result dictionary"
 	packagesSelection :=  aCollection.
 	self constructDictionary.
 ]
 
-{
-	#category : #private-pragma,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>pragmaSearch: aString  [
+{ #category : #private-pragma }
+Finder >> pragmaSearch: aString [ 
 	| result byCondition |
 	" I choose a dictionary here because the next step is to group result by pragmas "
 	result := Dictionary new.
@@ -560,30 +448,21 @@ Finder>>pragmaSearch: aString  [
 	^ result
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>resetEnvironment [
+{ #category : #private }
+Finder >> resetEnvironment [
 	"I send an event when I reset the environment"
 	self environment: self defaultEnvironment.
 	self triggerEvent: #resetEnvironment.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>resultDictionary [
+{ #category : #accessing }
+Finder >> resultDictionary [
 	"I should answer a dictionary"
 	^resultDictionary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>resultDictionary: aDictionary [
+{ #category : #accessing }
+Finder >> resultDictionary: aDictionary [
 	"When the result dictionary is update, I send an event through the whole universe"
 
 	resultDictionary := aDictionary.
@@ -593,79 +472,55 @@ Finder>>resultDictionary: aDictionary [
 	self triggerEvent: #updateSourceCode.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>searchingString [
+{ #category : #accessing }
+Finder >> searchingString [
 
 	^searchingString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>searchingString: aString [
+{ #category : #accessing }
+Finder >> searchingString: aString [
 	"When the search string is modified (in fact, when I make a search) I rebuild the result dictionary"
 
 	searchingString := aString.
 	self constructDictionary.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>searchingStringSilently: aString [
+{ #category : #accessing }
+Finder >> searchingStringSilently: aString [
 	searchingString := aString.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>selectedClass [
+{ #category : #accessing }
+Finder >> selectedClass [
 
 	^selectedClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>selectedClass: aClass [
+{ #category : #accessing }
+Finder >> selectedClass: aClass [
 	"When the class seletion is changed, I send an event to UI"
 	selectedClass := aClass.
 	self triggerEvent: #updateSelectedClass
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>selectedMethod [
+{ #category : #accessing }
+Finder >> selectedMethod [
 	"I should answer a CompiledMethod"
 	^selectedMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>selectedMethod: aMethod [
+{ #category : #accessing }
+Finder >> selectedMethod: aMethod [
 	"When the method seletion is changed, I send an event to UI"
 	selectedMethod := aMethod.
 	self triggerEvent: #updateSelectedMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>selection: aSelectionHolder [
+{ #category : #accessing }
+Finder >> selection: aSelectionHolder [
 	"anObject is a selection holder"
 	"Depending of the value of currentSearchMode, I fill selectedMethod and SelectedClass with the good items."
 	"Then, I update the source code text area"
@@ -711,42 +566,30 @@ Finder>>selection: aSelectionHolder [
 	self triggerEvent: #updateSourceCode
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>sourceRegexSearch: aSearchString [
+{ #category : #private }
+Finder >> sourceRegexSearch: aSearchString [
 	| regex |
 	regex := aSearchString asRegex.
 	^ self methodSearch: [ :method | regex search: method sourceCode ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>sourceSearch: aSearchString [
+{ #category : #private }
+Finder >> sourceSearch: aSearchString [
 	"I'm searching in sources"
 	^ self useRegEx
 		ifTrue: [ self sourceRegexSearch: aSearchString ]
 		ifFalse:[ self sourceStringSearch: aSearchString ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>sourceStringSearch: aSearchString  [
+{ #category : #private }
+Finder >> sourceStringSearch: aSearchString [ 
 	^ self 
 		methodSearch: [ :method |
 			method sourceCode includesSubstring: aSearchString caseSensitive: false ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>testObjects: dataObjects strings: dataStrings [
+{ #category : #private }
+Finder >> testObjects: dataObjects strings: dataStrings [
 	"Try to make substitutions in the user's inputs and search for the selector again.
 		1 no change to answer.
 		2 answer Array -> OrderedCollection.
@@ -800,20 +643,14 @@ Finder>>testObjects: dataObjects strings: dataStrings [
 	^ Array with: 'no single method does that function' with: dataObjects with: dataStrings
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>useRegEx [
+{ #category : #accessing }
+Finder >> useRegEx [
 	"I should answer a boolean that tells whether regExpression should be taken into account"
 	 ^ useRegEx
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Finder>>useRegEx: aBoolean [
+{ #category : #accessing }
+Finder >> useRegEx: aBoolean [
 
 	useRegEx :=  aBoolean.
 ]

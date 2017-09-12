@@ -20,24 +20,17 @@ Class {
 	#instVars : [
 		'results'
 	],
-	#category : #Tool-Profilers,
-	#timestamp : 'sd 6/20/2003 22:31'
+	#category : #Tool-Profilers
 }
 
-{
-	#category : #fileout,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally class>>printSpaceAnalysis	 [
+{ #category : #fileout }
+SpaceTally class >> printSpaceAnalysis [	
 	<script>
 	self new printSpaceAnalysis
 ]
 
-{
-	#category : #'class analysis',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>compareTallyIn: beforeFileName to: afterFileName [
+{ #category : #'class analysis' }
+SpaceTally >> compareTallyIn: beforeFileName to: afterFileName [
 	"SpaceTally new compareTallyIn: 'tally' to: 'tally2'"
 
 	| answer beforeDict a afterDict allKeys |
@@ -73,11 +66,8 @@ SpaceTally>>compareTallyIn: beforeFileName to: afterFileName [
 
 ]
 
-{
-	#category : #fileout,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>computeSpaceForClass: cl [
+{ #category : #fileout }
+SpaceTally >> computeSpaceForClass: cl [
 	| codeSpace totalInstSpace instSpace totalInstCount totalCodeSpace instCount |
 	codeSpace := cl spaceUsed.
 	Smalltalk garbageCollectMost.
@@ -95,11 +85,8 @@ SpaceTally>>computeSpaceForClass: cl [
 				spaceForInstances: instSpace)
 ]
 
-{
-	#category : #'class analysis',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>computeSpaceUsage [
+{ #category : #'class analysis' }
+SpaceTally >> computeSpaceUsage [
 
 	| entry c instanceCount |
 	1 to: results size do: [:i |
@@ -114,11 +101,8 @@ SpaceTally>>computeSpaceUsage [
 
 ]
 
-{
-	#category : #'class analysis',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>preAllocateResultsFor: classes [
+{ #category : #'class analysis' }
+SpaceTally >> preAllocateResultsFor: classes [
 
 	results := OrderedCollection new: classes size.
 	classes do: [:cl | results add: (SpaceTallyItem analyzedClassName: cl name)].
@@ -126,11 +110,8 @@ SpaceTally>>preAllocateResultsFor: classes [
 
 ]
 
-{
-	#category : #fileout,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>printHeader: aStream [
+{ #category : #fileout }
+SpaceTally >> printHeader: aStream [
 	aStream
 		nextPutAll: ('Class' padRightTo: 45);
 		nextPutAll: ('code space' padLeftTo: 12);
@@ -141,21 +122,15 @@ SpaceTally>>printHeader: aStream [
 		cr
 ]
 
-{
-	#category : #fileout,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>printSpaceAnalysis	 [
+{ #category : #fileout }
+SpaceTally >> printSpaceAnalysis [	
 	| stream |
 	stream := FileStream newFileNamed: 'STspace.text'.
 	[ self printSpaceAnalysis: 1 on: stream ] ensure: [ stream close ]
 ]
 
-{
-	#category : #fileout,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>printSpaceAnalysis: threshold on: aStream [
+{ #category : #fileout }
+SpaceTally >> printSpaceAnalysis: threshold on: aStream [
 	"SpaceTally new printSpaceAnalysis: 1 on: (FileStream forceNewFileNamed: 'STspace.text')"
 
 	"sd-This method should be rewrote to be more coherent within the rest of the class 
@@ -214,11 +189,8 @@ SpaceTally>>printSpaceAnalysis: threshold on: aStream [
 		nextPutAll: ((totalPercent roundTo: 0.1) printString padLeftTo: 12)
 ]
 
-{
-	#category : #fileout,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>printSpaceDifferenceFrom: fileName1 to: fileName2 [
+{ #category : #fileout }
+SpaceTally >> printSpaceDifferenceFrom: fileName1 to: fileName2 [
 	"For differential results, run printSpaceAnalysis twice with different fileNames,
 	then run this method...
 		SpaceTally new printSpaceAnalysis: 0 on: 'STspace.text1' asFileReference writeStream.
@@ -251,11 +223,8 @@ SpaceTally>>printSpaceDifferenceFrom: fileName1 to: fileName2 [
 		openInWorld
 ]
 
-{
-	#category : #fileout,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>printSpaceTallyItem: aSpaceTallyItem percent: percent on: aStream [
+{ #category : #fileout }
+SpaceTally >> printSpaceTallyItem: aSpaceTallyItem percent: percent on: aStream [
 	aStream
 		nextPutAll: (aSpaceTallyItem analyzedClassName padRightTo: 45);
 		nextPutAll: (aSpaceTallyItem codeSize printString padLeftTo: 12);
@@ -267,20 +236,14 @@ SpaceTally>>printSpaceTallyItem: aSpaceTallyItem percent: percent on: aStream [
 		cr
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>results [
+{ #category : #accessing }
+SpaceTally >> results [
 
 	^ results
 ]
 
-{
-	#category : #fileout,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>saveTo: aFileName [
+{ #category : #fileout }
+SpaceTally >> saveTo: aFileName [
 	"| st |
 	st := SpaceTally new.
 	st spaceTally: (Array with: TextMorph with: Point).
@@ -296,11 +259,8 @@ SpaceTally>>saveTo: aFileName [
 						nextPutAll: ' '; nextPutAll: each spaceForInstances printString; cr]].
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>spaceForInstancesOf: aClass [
+{ #category : #'as yet unclassified' }
+SpaceTally >> spaceForInstancesOf: aClass [
 	"Answer a pair of the number of bytes consumed by all instances of the
 	 given class, including their object headers, and the number of instances."
 
@@ -317,11 +277,8 @@ SpaceTally>>spaceForInstancesOf: aClass [
 	^{ total. instances size }
 ]
 
-{
-	#category : #'class analysis',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>spaceTally: classes [
+{ #category : #'class analysis' }
+SpaceTally >> spaceTally: classes [
 	"Answer a collection of SpaceTallyItems representing the memory space (in bytes) consumed 	by the code and instances of each class in the system. Note that code sizes do not currently 	report memory consumed by class variables. "
 
 	"((SpaceTally new spaceTally: (Array with: TextMorph with: Point)) asSortedCollection: [:a :b | a spaceForInstances > b spaceForInstances]) asArray"
@@ -333,11 +290,8 @@ SpaceTally>>spaceTally: classes [
 
 ]
 
-{
-	#category : #'class analysis',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>systemWideSpaceTally [
+{ #category : #'class analysis' }
+SpaceTally >> systemWideSpaceTally [
 	"Answer a collection of SpaceTallyItems representing the memory space (in bytes) consumed 	by the code and instances of each class in the system. Note that code sizes do not currently 	report memory consumed by class variables. "
 
 	"(SpaceTally new systemWideSpaceTally asSortedCollection: [:a :b | a spaceForInstances > b spaceForInstances]) asArray"

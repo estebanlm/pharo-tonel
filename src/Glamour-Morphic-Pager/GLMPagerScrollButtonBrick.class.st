@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMPagerScrollButtonBrick,
 	#superclass : #GLMInteractableBrick,
@@ -10,114 +7,77 @@ Class {
 		'focused',
 		'index'
 	],
-	#category : #Glamour-Morphic-Pager-Brick,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Pager-Brick
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollButtonBrick>>checkedFocusedIcon [
+{ #category : #'as yet unclassified' }
+GLMPagerScrollButtonBrick >> checkedFocusedIcon [
 	^ checkedFocusedIcon
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollButtonBrick>>checkedFocusedIcon: aForm [
+{ #category : #'as yet unclassified' }
+GLMPagerScrollButtonBrick >> checkedFocusedIcon: aForm [
 	checkedFocusedIcon := aForm.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollButtonBrick>>checkedIcon [
+{ #category : #'as yet unclassified' }
+GLMPagerScrollButtonBrick >> checkedIcon [
 	^ checkedIcon
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollButtonBrick>>checkedIcon: aForm [
+{ #category : #'as yet unclassified' }
+GLMPagerScrollButtonBrick >> checkedIcon: aForm [
 	checkedIcon := aForm.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollButtonBrick>>click: anEvent [
+{ #category : #'as yet unclassified' }
+GLMPagerScrollButtonBrick >> click: anEvent [
 	super click: anEvent.
 	
 	self announcer announce: (GLMPagerButtonClicked new buttonModel: self)
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollButtonBrick>>deselect [
+{ #category : #'as yet unclassified' }
+GLMPagerScrollButtonBrick >> deselect [
 	super deselect.
 	
 	self announcer announce: (GLMPagerButtonDeselected new buttonModel: self)
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollButtonBrick>>index [
+{ #category : #accessing }
+GLMPagerScrollButtonBrick >> index [
 	^ index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollButtonBrick>>index: anObject [
+{ #category : #accessing }
+GLMPagerScrollButtonBrick >> index: anObject [
 	index := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollButtonBrick>>initialize [
+{ #category : #'as yet unclassified' }
+GLMPagerScrollButtonBrick >> initialize [
 	super initialize.
 
 	focused := false.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollButtonBrick>>isFocused [
+{ #category : #'as yet unclassified' }
+GLMPagerScrollButtonBrick >> isFocused [
 	^ focused
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollButtonBrick>>select [
+{ #category : #'as yet unclassified' }
+GLMPagerScrollButtonBrick >> select [
 	super select.
 	
 	self announcer announce: (GLMPagerButtonSelected new buttonModel: self)
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollButtonBrick>>setFocused [
+{ #category : #'as yet unclassified' }
+GLMPagerScrollButtonBrick >> setFocused [
 
 	focused ifFalse: [
 		self checkedImage: checkedFocusedIcon.
@@ -125,11 +85,8 @@ GLMPagerScrollButtonBrick>>setFocused [
 		focused := true ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerScrollButtonBrick>>setNotFocused [
+{ #category : #'as yet unclassified' }
+GLMPagerScrollButtonBrick >> setNotFocused [
 
 	focused ifTrue: [
 		self checkedImage: checkedIcon.

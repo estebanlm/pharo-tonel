@@ -42,49 +42,33 @@ Class {
 	#classInstVars : [
 		'classificationTable'
 	],
-	#category : #AST-Core-Parser,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Parser
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner class>>cascadePatternCharacter [
+{ #category : #accessing }
+RBScanner class >> cascadePatternCharacter [
 	^ CascadePatternCharacter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner class>>classificationTable [
+{ #category : #accessing }
+RBScanner class >> classificationTable [
 	classificationTable 
 		ifNil: [ self initializeClassificationTable ].
 	^ classificationTable
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner class>>initialize [
+{ #category : #'class initialization' }
+RBScanner class >> initialize [
 	self initializeClassificationTable
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner class>>initializeChars: characters to: aSymbol  [
+{ #category : #'class initialization' }
+RBScanner class >> initializeChars: characters to: aSymbol [ 
 	characters do: [:c | classificationTable at: c asInteger put: aSymbol]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner class>>initializeClassificationTable [
+{ #category : #'class initialization' }
+RBScanner class >> initializeClassificationTable [
 	PatternVariableCharacter := $`.
 	KeywordPatternCharacter := $@.
 	CascadePatternCharacter := $;.
@@ -107,21 +91,15 @@ RBScanner class>>initializeClassificationTable [
 		to: #separator
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner class>>initializeUnderscore [
+{ #category : #'class initialization' }
+RBScanner class >> initializeUnderscore [
 	self classificationTable
 		at: $_ asInteger
 		put: #alphabetic
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner class>>isSelector: aSymbol  [
+{ #category : #testing }
+RBScanner class >> isSelector: aSymbol [ 
 	| scanner token |
 	scanner := self basicNew.
 	scanner on: (ReadStream on: aSymbol asString).
@@ -132,11 +110,8 @@ RBScanner class>>isSelector: aSymbol  [
 	^scanner atEnd
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner class>>isVariable: aString  [
+{ #category : #testing }
+RBScanner class >> isVariable: aString [ 
 	| scanner token |
 	scanner := self on: (ReadStream on: aString).
 	token := scanner next.
@@ -145,28 +120,19 @@ RBScanner class>>isVariable: aString  [
 	^(aString includes: $.) not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner class>>keywordPatternCharacter [
+{ #category : #accessing }
+RBScanner class >> keywordPatternCharacter [
 	^ KeywordPatternCharacter
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner class>>new [
+{ #category : #'instance creation' }
+RBScanner class >> new [
 	self initializeUnderscore.
 	^ super new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner class>>on: aStream  [
+{ #category : #'instance creation' }
+RBScanner class >> on: aStream [ 
 	| str |
 	str := self new on: aStream.
 	str
@@ -175,11 +141,8 @@ RBScanner class>>on: aStream  [
 	^str
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner class>>on: aStream errorBlock: aBlock  [
+{ #category : #'instance creation' }
+RBScanner class >> on: aStream errorBlock: aBlock [ 
 	| str |
 	str := self new on: aStream.
 	str
@@ -189,27 +152,18 @@ RBScanner class>>on: aStream errorBlock: aBlock  [
 	^str
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner class>>patternVariableCharacter [
+{ #category : #accessing }
+RBScanner class >> patternVariableCharacter [
 	^ PatternVariableCharacter
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>atEnd [
+{ #category : #testing }
+RBScanner >> atEnd [
 	^characterType = #eof
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>classify: aCharacter  [
+{ #category : #private }
+RBScanner >> classify: aCharacter [ 
 	| index |
 	aCharacter isNil ifTrue: [^nil].
 	index := aCharacter asInteger.
@@ -222,11 +176,8 @@ RBScanner>>classify: aCharacter  [
 	^classificationTable at: index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>contents [
+{ #category : #accessing }
+RBScanner >> contents [
 	| contentsStream |
 	contentsStream := (Array new: 50) writeStream.
 	[ self atEnd ]
@@ -234,35 +185,23 @@ RBScanner>>contents [
 	^ contentsStream contents
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>errorBlock [
+{ #category : #'error handling' }
+RBScanner >> errorBlock [
 	^errorBlock ifNil: [[:message :position | ]] ifNotNil: [errorBlock]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>errorBlock: aBlock  [
+{ #category : #accessing }
+RBScanner >> errorBlock: aBlock [ 
 	errorBlock := aBlock
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>errorPosition [
+{ #category : #'error handling' }
+RBScanner >> errorPosition [
 	^stream position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>getComments [
+{ #category : #accessing }
+RBScanner >> getComments [
 	| oldComments |
 	comments isEmpty ifTrue: [^nil].
 	oldComments := comments.
@@ -270,27 +209,18 @@ RBScanner>>getComments [
 	^oldComments
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>isReadable [
+{ #category : #testing }
+RBScanner >> isReadable [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>isWritable [
+{ #category : #testing }
+RBScanner >> isWritable [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>next [
+{ #category : #accessing }
+RBScanner >> next [
 	| token |
 	buffer reset.
 	tokenStart := stream position.
@@ -303,64 +233,46 @@ RBScanner>>next [
 	^token
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>nextPut: anObject  [
+{ #category : #accessing }
+RBScanner >> nextPut: anObject [ 
 	"Provide an error notification that the receiver does not
 	implement this message."
 
 	self shouldNotImplement
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>on: aStream  [
+{ #category : #initialize-release }
+RBScanner >> on: aStream [ 
 	buffer := (String new: 60) writeStream.
 	stream := aStream.
 	classificationTable := self class classificationTable.
 	comments := OrderedCollection new
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>parseErrorNode: aMessageString [
+{ #category : #'error handling' }
+RBScanner >> parseErrorNode: aMessageString [
 	| sourceString |
 	sourceString := stream contents copyFrom: self errorPosition to: stream contents size.
 	^ RBParseErrorNode
 		errorMessage: aMessageString value: sourceString at: self errorPosition
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>previousStepPosition [
+{ #category : #private }
+RBScanner >> previousStepPosition [
 	^characterType = #eof 
 		ifTrue: [stream position]
 		ifFalse: [stream position - 1]
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanAnySymbol [
+{ #category : #private-scanning }
+RBScanner >> scanAnySymbol [
 	characterType = #alphabetic ifTrue: [^self scanSymbol].
 	characterType = #binary ifTrue: [^self scanBinary: RBLiteralToken].
 	^RBToken new
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanBinary: aClass  [
+{ #category : #private-scanning }
+RBScanner >> scanBinary: aClass [ 
 	| val |
 	buffer nextPut: currentCharacter.
 	self step.
@@ -372,11 +284,8 @@ RBScanner>>scanBinary: aClass  [
 	^aClass value: val start: tokenStart
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanError: theCause [
+{ #category : #private-scanning }
+RBScanner >> scanError: theCause [
 	| location |
 	"error location is the next not parseable character. Or current stream position + 1 if 
 	an expected character is missing."
@@ -391,11 +300,8 @@ RBScanner>>scanError: theCause [
 		location: location
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanIdentifierOrKeyword [
+{ #category : #private-scanning }
+RBScanner >> scanIdentifierOrKeyword [
 	| name |
 	self scanName.
 	(currentCharacter = $: and: [stream peek ~= $=]) 
@@ -422,11 +328,8 @@ RBScanner>>scanIdentifierOrKeyword [
 	^RBIdentifierToken value: name start: tokenStart
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanKeyword [
+{ #category : #private-scanning }
+RBScanner >> scanKeyword [
 	| outputPosition inputPosition name |
 	[currentCharacter = $:] whileTrue: 
 			[buffer nextPut: currentCharacter.
@@ -447,11 +350,8 @@ RBScanner>>scanKeyword [
 				stop: tokenStart + name size - 1]
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanLiteral [
+{ #category : #private-scanning }
+RBScanner >> scanLiteral [
 	"Do not allow whitespace between # and the literal."
 
 	"Do not allow number literals after the #"
@@ -473,11 +373,8 @@ RBScanner>>scanLiteral [
 	^ self scanError: 'Expecting a literal type'
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanLiteralArrayToken [
+{ #category : #private-scanning }
+RBScanner >> scanLiteralArrayToken [
 	| token |
 	token := RBLiteralArrayToken 
 				value: (String with: $# with: currentCharacter)
@@ -486,11 +383,8 @@ RBScanner>>scanLiteralArrayToken [
 	^token
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanLiteralCharacter [
+{ #category : #private-scanning }
+RBScanner >> scanLiteralCharacter [
 	| token |
 	self step.	"$"
 	currentCharacter ifNil:[ ^ self scanError:'A Character was expected'].
@@ -502,11 +396,8 @@ RBScanner>>scanLiteralCharacter [
 	^token
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanLiteralString [
+{ #category : #private-scanning }
+RBScanner >> scanLiteralString [
 	self step.
 	
 	[currentCharacter isNil 
@@ -521,21 +412,15 @@ RBScanner>>scanLiteralString [
 		stop: self previousStepPosition
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanName [
+{ #category : #private-scanning }
+RBScanner >> scanName [
 	[characterType = #alphabetic or: [characterType = #digit]] whileTrue: 
 			[buffer nextPut: currentCharacter.
 			self step]
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanNumber [
+{ #category : #private-scanning }
+RBScanner >> scanNumber [
 	| start number stop string |
 	start := stream position.
 	stream position: start - 1.
@@ -552,11 +437,8 @@ RBScanner>>scanNumber [
 		source: string
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanPatternVariable [
+{ #category : #private-scanning }
+RBScanner >> scanPatternVariable [
 	buffer nextPut: currentCharacter.
 	self step.
 	currentCharacter = ${ 
@@ -571,11 +453,8 @@ RBScanner>>scanPatternVariable [
 	^self scanIdentifierOrKeyword
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanSpecialCharacter [
+{ #category : #private-scanning }
+RBScanner >> scanSpecialCharacter [
 	| character |
 	currentCharacter = $: 
 		ifTrue: [
@@ -595,22 +474,16 @@ RBScanner>>scanSpecialCharacter [
 	^ RBSpecialCharacterToken value: character start: tokenStart
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanStringSymbol [
+{ #category : #private-scanning }
+RBScanner >> scanStringSymbol [
 	| literalToken |
 	literalToken := self scanLiteralString.
 	literalToken value: literalToken value asSymbol.
 	^literalToken
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanSymbol [
+{ #category : #private-scanning }
+RBScanner >> scanSymbol [
 	[ characterType = #alphabetic or: [ currentCharacter = $: ] ] whileTrue: [
 		self scanName.
 		currentCharacter = $: ifTrue: [
@@ -622,11 +495,8 @@ RBScanner>>scanSymbol [
 		stop: self previousStepPosition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanToken [
+{ #category : #accessing }
+RBScanner >> scanToken [
 	"fast-n-ugly. Don't write stuff like this. Has been found to cause cancer in laboratory rats. Basically a 
 	case statement. Didn't use Dictionary because lookup is pretty slow."
 
@@ -642,11 +512,8 @@ RBScanner>>scanToken [
 	^self scanUnknownCharacter
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scanUnknownCharacter [
+{ #category : #private-scanning }
+RBScanner >> scanUnknownCharacter [
 	| errorToken |
 	errorToken := self scanError: 'Unknown character'.
 	"advance"
@@ -654,11 +521,8 @@ RBScanner>>scanUnknownCharacter [
 	^ errorToken
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>scannerError: aString [
+{ #category : #'error handling' }
+RBScanner >> scannerError: aString [
 	(self errorBlock cull: aString cull: self errorPosition cull: self) ifNil: [ 
 		^ SyntaxErrorNotification
 					inClass: Object
@@ -669,11 +533,8 @@ RBScanner>>scannerError: aString [
 	]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>step [
+{ #category : #private }
+RBScanner >> step [
 	stream atEnd 
 		ifTrue: 
 			[characterType := #eof.
@@ -683,11 +544,8 @@ RBScanner>>step [
 	^currentCharacter
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>stripComment [
+{ #category : #private-scanning }
+RBScanner >> stripComment [
 	| start stop |
 	start := stream position.
 	self step.
@@ -703,11 +561,8 @@ RBScanner>>stripComment [
 	comments add: (start to: stop)
 ]
 
-{
-	#category : #private-scanning,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBScanner>>stripSeparators [
+{ #category : #private-scanning }
+RBScanner >> stripSeparators [
 	
 	[[characterType = #separator] whileTrue: [self step].
 	currentCharacter = $"] 

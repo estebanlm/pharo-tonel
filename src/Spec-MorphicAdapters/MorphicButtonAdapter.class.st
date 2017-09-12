@@ -7,34 +7,24 @@ SpecInterpreter
 Class {
 	#name : #MorphicButtonAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicButtonAdapter>>action [
+{ #category : #'widget API' }
+MorphicButtonAdapter >> action [
 
 	self widget ifNotNil: [:m | m takeKeyboardFocus ].
 	self model performAction.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicButtonAdapter>>askBeforeChanging [
+{ #category : #protocol }
+MorphicButtonAdapter >> askBeforeChanging [
 
 	^ self model askBeforeChanging
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicButtonAdapter>>buildLabel: text withIcon: icon [
+{ #category : #private }
+MorphicButtonAdapter >> buildLabel: text withIcon: icon [
 
 	icon ifNil: [ ^ text
 			ifNil: [ '' ]
@@ -46,11 +36,8 @@ MorphicButtonAdapter>>buildLabel: text withIcon: icon [
 
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicButtonAdapter>>buildWidget [
+{ #category : #factory }
+MorphicButtonAdapter >> buildWidget [
 	
 	| button | 
 	button := PluggableButtonMorph
@@ -72,36 +59,23 @@ MorphicButtonAdapter>>buildWidget [
 	^ button
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicButtonAdapter>>font [
+{ #category : #'widget API' }
+MorphicButtonAdapter >> font [
 	^self model font
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicButtonAdapter>>keyStroke: anEvent fromMorph: aMorph [
-
+{ #category : #'widget API' }
+MorphicButtonAdapter >> keyStroke: anEvent fromMorph: aMorph [
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicButtonAdapter>>label [
+{ #category : #'widget API' }
+MorphicButtonAdapter >> label [
 	
 	^ self buildLabel: self model label withIcon: self model icon
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicButtonAdapter>>menu: aMenu [
+{ #category : #'widget API' }
+MorphicButtonAdapter >> menu: aMenu [
 	| menuModel |
 	
 	menuModel := self model menu.
@@ -109,11 +83,8 @@ MorphicButtonAdapter>>menu: aMenu [
 	^ menuModel buildWithSpec
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicButtonAdapter>>state [
+{ #category : #'widget API' }
+MorphicButtonAdapter >> state [
 
 	^ self model state
 ]

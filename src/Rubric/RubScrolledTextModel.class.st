@@ -14,148 +14,96 @@ Class {
 		'textSegments',
 		'interactionModel'
 	],
-	#category : #Rubric-Editing-Widgets,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:38'
+	#category : #Rubric-Editing-Widgets
 }
 
-{
-	#category : #'text managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>acceptEdits [
+{ #category : #'text managing' }
+RubScrolledTextModel >> acceptEdits [
 	"Accept the current contents and end editing."
 	self announce: RubTextAcceptedInModel new.
 	self clearUserEdits 
 ]
 
-{
-	#category : #'text managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>acceptEditsInView [
+{ #category : #'text managing' }
+RubScrolledTextModel >> acceptEditsInView [
 	self reconfigureViewWith:  [ :view | 
 		view textArea announce: (RubTextAcceptRequest morph: view textArea) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>announce: anAnnouncement  [
+{ #category : #accessing }
+RubScrolledTextModel >> announce: anAnnouncement [ 
 	self announcer announce: anAnnouncement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>announcer [
+{ #category : #accessing }
+RubScrolledTextModel >> announcer [
 	^ announcer ifNil: [ announcer := self defaultAnnouncer ]
 ]
 
-{
-	#category : #binding,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>bindingOf: aString  [
+{ #category : #binding }
+RubScrolledTextModel >> bindingOf: aString [ 
 	^ interactionModel ifNotNil:  [ interactionModel bindingOf: aString  ]
 ]
 
-{
-	#category : #'text managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>canDiscardEdits [
+{ #category : #'text managing' }
+RubScrolledTextModel >> canDiscardEdits [
 	^ self hasUnacceptedEdits not
 ]
 
-{
-	#category : #'text managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>cancelEdits [
+{ #category : #'text managing' }
+RubScrolledTextModel >> cancelEdits [
 	"Cancel the current contents and end editing."
 	self announce: RubCancelEditRequestedInModel new.
 	self clearUserEdits  
 ]
 
-{
-	#category : #undo-redo,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>clearUndoManager [
+{ #category : #undo-redo }
+RubScrolledTextModel >> clearUndoManager [
 	self reconfigureViewWith: [ :view | view textArea editingState clearUndoManager: nil ]
 ]
 
-{
-	#category : #'text managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>clearUserEdits [
+{ #category : #'text managing' }
+RubScrolledTextModel >> clearUserEdits [
 	self hasUnacceptedEdits: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>defaultAnnouncer [
+{ #category : #accessing }
+RubScrolledTextModel >> defaultAnnouncer [
 	^ self defaultAnnouncerClass new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>defaultAnnouncerClass  [
+{ #category : #accessing }
+RubScrolledTextModel >> defaultAnnouncerClass [ 
 	^Announcer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>doItContext [
+{ #category : #accessing }
+RubScrolledTextModel >> doItContext [
 	^ interactionModel ifNotNil: [ :im | im doItContext ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>doItReceiver [
+{ #category : #accessing }
+RubScrolledTextModel >> doItReceiver [
 	^ interactionModel ifNotNil: [ :im | im doItReceiver ]
 ]
 
-{
-	#category : #'view updating',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>formatSourceCodeInView [
+{ #category : #'view updating' }
+RubScrolledTextModel >> formatSourceCodeInView [
 	self reconfigureViewWith: [ :view | view formatSourceCode ]
 ]
 
-{
-	#category : #'text managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>getString [
+{ #category : #'text managing' }
+RubScrolledTextModel >> getString [
 	^ self getText asString
 ]
 
-{
-	#category : #'text managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>getText [
+{ #category : #'text managing' }
+RubScrolledTextModel >> getText [
 	^ self text
 ]
 
-{
-	#category : #necompletion-extensions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>guessTypeForName: aString [
+{ #category : #necompletion-extensions }
+RubScrolledTextModel >> guessTypeForName: aString [
 	"Packaging notes:
 	Since this method is necessary for Ecompletion to work we had the following possibilities:
 		- Case 1: add this method as an extension of NECompletion, but it was creating a dependency from NECompletion to 	 		  Rubric.
@@ -173,172 +121,112 @@ RubScrolledTextModel>>guessTypeForName: aString [
 	^ self interactionModel ifNotNil: [ :im | im guessTypeForName: aString ]
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>hasBindingOf: aString [
+{ #category : #shout }
+RubScrolledTextModel >> hasBindingOf: aString [
 	^ interactionModel ifNil: [ false ] ifNotNil: [ interactionModel hasBindingOf: aString ]
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>hasBindingThatBeginsWith: aString  [
+{ #category : #shout }
+RubScrolledTextModel >> hasBindingThatBeginsWith: aString [ 
 	^ interactionModel ifNil: [ false ] ifNotNil:  [ interactionModel hasBindingThatBeginsWith: aString  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>hasUnacceptedEdits [
+{ #category : #accessing }
+RubScrolledTextModel >> hasUnacceptedEdits [
 	^ hasUnacceptedEdits ifNil: [ hasUnacceptedEdits := false ]
 ]
 
-{
-	#category : #'text managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>hasUnacceptedEdits: aBoolean [
+{ #category : #'text managing' }
+RubScrolledTextModel >> hasUnacceptedEdits: aBoolean [
 	hasUnacceptedEdits := aBoolean.
 	self announce: RubEditsStateChangedInModel new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>interactionModel [
+{ #category : #accessing }
+RubScrolledTextModel >> interactionModel [
 	^ interactionModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>interactionModel: anObject 	 [
+{ #category : #accessing }
+RubScrolledTextModel >> interactionModel: anObject [ 	
 	interactionModel := anObject
 ]
 
-{
-	#category : #necompletion-extensions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>isCodeCompletionAllowed [
+{ #category : #necompletion-extensions }
+RubScrolledTextModel >> isCodeCompletionAllowed [
 	| allowed |
 	self reconfigureViewWith: [ :scrolledText | allowed := scrolledText textArea editingMode isCodeCompletionAllowed ].
 	^ allowed
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>menu [
+{ #category : #menu }
+RubScrolledTextModel >> menu [
 	^ nil
 ]
 
-{
-	#category : #'view creating',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>newScrolledText [
+{ #category : #'view creating' }
+RubScrolledTextModel >> newScrolledText [
 	^ (RubScrolledTextMorph on: self) getSelectionSelector: #primarySelectionInterval; yourself
 ]
 
-{
-	#category : #'view creating',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>newTextField [
+{ #category : #'view creating' }
+RubScrolledTextModel >> newTextField [
 	^ (RubTextFieldMorph on: self) getSelectionSelector: #primarySelectionInterval; yourself
 ]
 
-{
-	#category : #'text managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>primarySelectionInterval [
+{ #category : #'text managing' }
+RubScrolledTextModel >> primarySelectionInterval [
 	^ primarySelectionInterval 
 ]
 
-{
-	#category : #'view updating',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>reconfigureViewWith: aBlockWithAScrolledTextMorphAsArgument [
+{ #category : #'view updating' }
+RubScrolledTextModel >> reconfigureViewWith: aBlockWithAScrolledTextMorphAsArgument [
 	self announce: (RubConfigurationChange new configurationBlock: aBlockWithAScrolledTextMorphAsArgument)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>selectedClassOrMetaClass [
+{ #category : #accessing }
+RubScrolledTextModel >> selectedClassOrMetaClass [
 	^ interactionModel ifNotNil: [ :im | im selectedClassOrMetaClass ]
 ]
 
-{
-	#category : #'text managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>setInitialText: aText  [
+{ #category : #'text managing' }
+RubScrolledTextModel >> setInitialText: aText [ 
 	self setText:  aText.
 	self clearUserEdits.
 	^ true
 ]
 
-{
-	#category : #'text managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>setPrimarySelectionInterval: anInterval [
+{ #category : #'text managing' }
+RubScrolledTextModel >> setPrimarySelectionInterval: anInterval [
 
 	primarySelectionInterval := anInterval.
 	self announce: RubPrimarySelectionUpdatedInModel
 ]
 
-{
-	#category : #'text managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>setText: aText  [
+{ #category : #'text managing' }
+RubScrolledTextModel >> setText: aText [ 
 	self text:  aText.
 	self announcer announce: RubTextUpdatedInModel.
 	^ true
 ]
 
-{
-	#category : #'text managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>setText: aText from: aView [
+{ #category : #'text managing' }
+RubScrolledTextModel >> setText: aText from: aView [
 	^ self setText: aText
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>shiftMenu [
+{ #category : #menu }
+RubScrolledTextModel >> shiftMenu [
 	^ nil
 ]
 
-{
-	#category : #'text managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>text [
+{ #category : #'text managing' }
+RubScrolledTextModel >> text [
 
 	^ text ifNil: [ text := '' asText ]
 ]
 
-{
-	#category : #'text managing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextModel>>text: atextOrString [
+{ #category : #'text managing' }
+RubScrolledTextModel >> text: atextOrString [
 	text := atextOrString asText
 ]

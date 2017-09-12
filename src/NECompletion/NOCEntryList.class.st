@@ -11,31 +11,21 @@ Class {
 		'entries',
 		'entryHead'
 	],
-	#category : #NECompletion-OCompletion,
-	#timestamp : '<historical>'
+	#category : #NECompletion-OCompletion
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCEntryList class>>ofSize: n  [
+{ #category : #'instance creation' }
+NOCEntryList class >> ofSize: n [ 
 	^ self new setSize: n; yourself
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCEntryList>>addEntry: aSymbol [
+{ #category : #adding }
+NOCEntryList >> addEntry: aSymbol [
 	self addEntry: aSymbol date: DateAndTime now
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCEntryList>>addEntry: aSymbol date: aDate [
+{ #category : #adding }
+NOCEntryList >> addEntry: aSymbol date: aDate [
 
 	| entry currentEntry |
 	entry := entries at: aSymbol ifAbsent: nil.
@@ -55,11 +45,8 @@ NOCEntryList>>addEntry: aSymbol date: aDate [
 		entries removeKey: entry contents ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCEntryList>>entriesMatching: prefix [
+{ #category : #accessing }
+NOCEntryList >> entriesMatching: prefix [
 	
 	^Array new: entries size // 4 + 1 streamContents: [ :stream |
 		| entry |
@@ -69,51 +56,33 @@ NOCEntryList>>entriesMatching: prefix [
 			entry := entry previous ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCEntryList>>first [
+{ #category : #accessing }
+NOCEntryList >> first [
 	^self firstEntry contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCEntryList>>firstEntry [
+{ #category : #accessing }
+NOCEntryList >> firstEntry [
 	^ entryHead previous
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCEntryList>>last [
+{ #category : #accessing }
+NOCEntryList >> last [
 	^self lastEntry contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCEntryList>>lastEntry [
+{ #category : #accessing }
+NOCEntryList >> lastEntry [
 	^ entryHead next
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCEntryList>>numEntries [
+{ #category : #accessing }
+NOCEntryList >> numEntries [
 	^ entries size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCEntryList>>setSize: n [
+{ #category : #accessing }
+NOCEntryList >> setSize: n [
 	size := n.
 	entries := Dictionary new: n.
 	entryHead := NOCDatedEntry contents: #'' size type: #selector.

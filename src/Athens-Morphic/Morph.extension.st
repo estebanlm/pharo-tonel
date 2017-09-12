@@ -1,23 +1,15 @@
-Extension {
-	#name : #Morph
-}
+Extension { #name : #Morph }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Morph>>athensSurface [
+{ #category : #'*Athens-Morphic' }
+Morph >> athensSurface [
 
 	^ owner 
 		ifNil: [  nil ]
 		ifNotNil: [ owner athensSurface  ]
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Morph>>drawClippedOnAthensCanvas: anAthensCanvas during: aBlock [
+{ #category : #'*Athens-Morphic' }
+Morph >> drawClippedOnAthensCanvas: anAthensCanvas during: aBlock [
 
 	^ self clipSubmorphs 
 		ifTrue: [ 
@@ -28,22 +20,16 @@ Morph>>drawClippedOnAthensCanvas: anAthensCanvas during: aBlock [
 
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Morph>>drawKeyboardFocusOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+Morph >> drawKeyboardFocusOnAthensCanvas: anAthensCanvas [
 	"Draw the keyboard focus indication."
 
 	self focusIndicatorMorph
 		drawOnAthensCanvas: anAthensCanvas
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Morph>>drawOnAthensCanvas: anAthensCanvas  [
+{ #category : #'*Athens-Morphic' }
+Morph >> drawOnAthensCanvas: anAthensCanvas [ 
 	| border |
 	border := self borderStyle. 
 	anAthensCanvas setPaint: self fillStyle.
@@ -61,29 +47,20 @@ Morph>>drawOnAthensCanvas: anAthensCanvas  [
 	
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Morph>>drawOnCanvasWrapperFor: anAthensCanvas  [
+{ #category : #'*Athens-Morphic' }
+Morph >> drawOnCanvasWrapperFor: anAthensCanvas [ 
 	self drawOn: anAthensCanvas asCanvasWrapper	
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Morph>>drawSubmorphsOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+Morph >> drawSubmorphsOnAthensCanvas: anAthensCanvas [
 	self
 		drawClippedOnAthensCanvas: anAthensCanvas
 		during: [ submorphs reverseDo: [ :m | anAthensCanvas fullDrawMorph: m ] ]
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Morph>>fullDrawOnAthensCanvas: anAthensCanvas  [
+{ #category : #'*Athens-Morphic' }
+Morph >> fullDrawOnAthensCanvas: anAthensCanvas [ 
 	"Draw the full Morphic structure on the given Canvas"
 
 	self visible ifFalse: [^ self].
@@ -98,11 +75,8 @@ Morph>>fullDrawOnAthensCanvas: anAthensCanvas  [
 
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Morph>>testAthensRender [
+{ #category : #'*Athens-Morphic' }
+Morph >> testAthensRender [
 
 | surf |
 	surf := AthensCairoSurface extent: Display extent.

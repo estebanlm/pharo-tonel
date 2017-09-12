@@ -129,15 +129,11 @@ Class {
 		'cairo_t',
 		'cairo_text_extents_t'
 	],
-	#category : #Athens-CairoPools,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:22'
+	#category : #Athens-CairoPools
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoDefs class>>init_cairo_subpixel_order_t [
+{ #category : #'as yet unclassified' }
+AthensCairoDefs class >> init_cairo_subpixel_order_t [
 
 "typedef enum {"
     CAIRO_SUBPIXEL_ORDER_DEFAULT := 0.
@@ -149,11 +145,8 @@ AthensCairoDefs class>>init_cairo_subpixel_order_t [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoDefs class>>initialize [
+{ #category : #'as yet unclassified' }
+AthensCairoDefs class >> initialize [
 
 	"
 	self initialize
@@ -178,11 +171,8 @@ AthensCairoDefs class>>initialize [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoDefs class>>initialize_cairo_antialias_t [
+{ #category : #'as yet unclassified' }
+AthensCairoDefs class >> initialize_cairo_antialias_t [
 
 "typedef enum {"
     CAIRO_ANTIALIAS_DEFAULT := 0.
@@ -200,11 +190,8 @@ AthensCairoDefs class>>initialize_cairo_antialias_t [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoDefs class>>initialize_cairo_extend_t [
+{ #category : #'as yet unclassified' }
+AthensCairoDefs class >> initialize_cairo_extend_t [
 "typedef enum {"
     CAIRO_EXTEND_NONE := 0 .
     CAIRO_EXTEND_REPEAT := 1.
@@ -214,11 +201,8 @@ AthensCairoDefs class>>initialize_cairo_extend_t [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoDefs class>>initialize_cairo_font_slant_t [
+{ #category : #'as yet unclassified' }
+AthensCairoDefs class >> initialize_cairo_font_slant_t [
 
 	"typedef enum _cairo_font_slant {"
     CAIRO_FONT_SLANT_NORMAL := 0.
@@ -228,11 +212,8 @@ AthensCairoDefs class>>initialize_cairo_font_slant_t [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoDefs class>>initialize_cairo_font_type_t  [
+{ #category : #'as yet unclassified' }
+AthensCairoDefs class >> initialize_cairo_font_type_t [ 
 	"typedef enum _cairo_font_type {"
     CAIRO_FONT_TYPE_TOY := 0.
     CAIRO_FONT_TYPE_FT := 1.
@@ -242,11 +223,8 @@ AthensCairoDefs class>>initialize_cairo_font_type_t  [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoDefs class>>initialize_cairo_font_weight_t [
+{ #category : #'as yet unclassified' }
+AthensCairoDefs class >> initialize_cairo_font_weight_t [
 
 	"typedef enum _cairo_font_weight {"
     CAIRO_FONT_WEIGHT_NORMAL := 0.
@@ -254,11 +232,8 @@ AthensCairoDefs class>>initialize_cairo_font_weight_t [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoDefs class>>initialize_cairo_format_t [
+{ #category : #'as yet unclassified' }
+AthensCairoDefs class >> initialize_cairo_format_t [
 
 	"enum cairo_format_t"
 	CAIRO_FORMAT_INVALID :=  -1.
@@ -269,11 +244,8 @@ AthensCairoDefs class>>initialize_cairo_format_t [
 	CAIRO_FORMAT_RGB16_565 := 4
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoDefs class>>initialize_cairo_hint_metrics_t [
+{ #category : #'as yet unclassified' }
+AthensCairoDefs class >> initialize_cairo_hint_metrics_t [
 "typedef enum {"
     CAIRO_HINT_METRICS_DEFAULT := 0.
     CAIRO_HINT_METRICS_OFF := 1.
@@ -281,11 +253,8 @@ AthensCairoDefs class>>initialize_cairo_hint_metrics_t [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoDefs class>>initialize_cairo_hint_style_t [
+{ #category : #'as yet unclassified' }
+AthensCairoDefs class >> initialize_cairo_hint_style_t [
 
 "typedef enum { "
     CAIRO_HINT_STYLE_DEFAULT := 0.
@@ -298,11 +267,8 @@ AthensCairoDefs class>>initialize_cairo_hint_style_t [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoDefs class>>initialize_cairo_line_cap_t  [
+{ #category : #'as yet unclassified' }
+AthensCairoDefs class >> initialize_cairo_line_cap_t [ 
 	"typedef enum _cairo_line_cap { "
     CAIRO_LINE_CAP_BUTT := 0.
     CAIRO_LINE_CAP_ROUND := 1.
@@ -310,11 +276,8 @@ AthensCairoDefs class>>initialize_cairo_line_cap_t  [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoDefs class>>initialize_cairo_line_join_t [
+{ #category : #'as yet unclassified' }
+AthensCairoDefs class >> initialize_cairo_line_join_t [
 "	typedef enum _cairo_line_join {"
     CAIRO_LINE_JOIN_MITER := 0.
     CAIRO_LINE_JOIN_ROUND := 1.
@@ -323,11 +286,8 @@ AthensCairoDefs class>>initialize_cairo_line_join_t [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoDefs class>>initialize_cairo_operator_t  [
+{ #category : #'as yet unclassified' }
+AthensCairoDefs class >> initialize_cairo_operator_t [ 
 "	typedef enum _cairo_operator {"
     CAIRO_OPERATOR_CLEAR := 0.
 
@@ -365,11 +325,8 @@ AthensCairoDefs class>>initialize_cairo_operator_t  [
 "} cairo_operator_t;"
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoDefs class>>initialize_cairo_status_t [
+{ #category : #'as yet unclassified' }
+AthensCairoDefs class >> initialize_cairo_status_t [
 "	typedef enum _cairo_status {"
     CAIRO_STATUS_SUCCESS := 0.
 
@@ -413,11 +370,8 @@ AthensCairoDefs class>>initialize_cairo_status_t [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoDefs class>>initialize_types [
+{ #category : #'as yet unclassified' }
+AthensCairoDefs class >> initialize_types [
 	
 	cairo_status_t := cairo_font_type_t :=  cairo_line_join_t  := cairo_line_cap_t := cairo_status_t := cairo_font_slant_t := cairo_font_weight_t := cairo_operator_t  := #int.
 	

@@ -1,31 +1,21 @@
-"
-
-"
 Class {
 	#name : #RPackageRenameTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'oldSystemAnnouncer'
 	],
-	#category : #RPackage-Tests,
-	#timestamp : ''
+	#category : #RPackage-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageRenameTest>>setUp  [
+{ #category : #running }
+RPackageRenameTest >> setUp [ 
 	super setUp.
 	oldSystemAnnouncer := SystemAnnouncer uniqueInstance.
 	SystemAnnouncer restoreAllNotifications
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageRenameTest>>tearDown [
+{ #category : #running }
+RPackageRenameTest >> tearDown [
 	super tearDown.
 	SystemAnnouncer announcer: oldSystemAnnouncer.
 	self class environment at: #TestClass ifPresent: [ :class | class removeFromSystem ].
@@ -34,11 +24,8 @@ RPackageRenameTest>>tearDown [
 	self class environment at: #TestClass3 ifPresent: [ :class | class removeFromSystem ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageRenameTest>>testRenamePackage [
+{ #category : #tests }
+RPackageRenameTest >> testRenamePackage [
 	"Test that we do rename the package as expected."
 	| package workingCopy class |
 
@@ -71,11 +58,8 @@ RPackageRenameTest>>testRenamePackage [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageRenameTest>>testRenamePackageToOwnTagName [
+{ #category : #tests }
+RPackageRenameTest >> testRenamePackageToOwnTagName [
 	"If we rename a package to the (full)category name of one of its tags"
 	| package workingCopy class1 class2 |
 
@@ -102,11 +86,8 @@ RPackageRenameTest>>testRenamePackageToOwnTagName [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageRenameTest>>testRenamePackageToOwnTagNameWithClassesInRoot [
+{ #category : #tests }
+RPackageRenameTest >> testRenamePackageToOwnTagNameWithClassesInRoot [
 	"If we rename a package to the (full)category name of one of its tags and the (non-tag)package is not empty"
 	| package workingCopy class1 class2 class3|
 
@@ -134,11 +115,8 @@ RPackageRenameTest>>testRenamePackageToOwnTagNameWithClassesInRoot [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageRenameTest>>testUnregisterPackage [
+{ #category : #tests }
+RPackageRenameTest >> testUnregisterPackage [
 	"Test that we do rename the package as expected."
 	| package workingCopy class |
 

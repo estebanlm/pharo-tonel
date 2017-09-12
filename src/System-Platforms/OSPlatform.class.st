@@ -14,55 +14,39 @@ Class {
 	#classVars : [
 		'Current'
 	],
-	#category : #System-Platforms,
-	#timestamp : 'michael.rueger 2/25/2009 18:29'
+	#category : #System-Platforms
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform class>>current [
+{ #category : #accessing }
+OSPlatform class >> current [
 	"Answer the current platform"
 	^Current
 ]
 
-{
-	#category : #'system attributes',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform class>>currentPlatformName [
+{ #category : #'system attributes' }
+OSPlatform class >> currentPlatformName [
 	"Return the name of the platform we're running on"
 
 	^ Smalltalk vm getSystemAttribute: 1001
 ]
 
-{
-	#category : #'system attributes',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform class>>currentVersion [
+{ #category : #'system attributes' }
+OSPlatform class >> currentVersion [
 	"Return the version number string of the platform we're running on"
 
 	^ (Smalltalk vm getSystemAttribute: 1002) asString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform class>>determineActivePlatform [
+{ #category : #private }
+OSPlatform class >> determineActivePlatform [
 	"Look for the matching platform class"
 	^ self allSubclasses 
 		detect: [ :any | any isActivePlatform ].
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform class>>initialize [
+{ #category : #initialize-release }
+OSPlatform class >> initialize [
 	"OSPlatform initialize"
 
 	SessionManager default
@@ -71,30 +55,21 @@ OSPlatform class>>initialize [
 	self startUp: true.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform class>>isActivePlatform [
+{ #category : #private }
+OSPlatform class >> isActivePlatform [
 	"Answer whether the receiver is the active platform"
 	^false
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform class>>shutDown: isImageQuitting [
+{ #category : #'system startup' }
+OSPlatform class >> shutDown: isImageQuitting [
 	"The system is going down"
 	Current ifNotNil: [ Current shutDown: isImageQuitting ].
 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform class>>startUp: isImageStarting [
+{ #category : #'system startup' }
+OSPlatform class >> startUp: isImageStarting [
 	"Determine the current platform."
 	
 	isImageStarting ifFalse: [  ^ self ].
@@ -103,192 +78,126 @@ OSPlatform class>>startUp: isImageStarting [
 	Current startUp: isImageStarting
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>current [
+{ #category : #accessing }
+OSPlatform >> current [
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>family [
+{ #category : #accessing }
+OSPlatform >> family [
 	"Returns a symbol specific to the platform family (MacOSX, Windows, Unix, RiscOS).
 	This may need to be extended if there are new platforms added or significant differences within a platform family arise (as was the case between MacOS 9 and X)."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>isMacOS [
+{ #category : #testing }
+OSPlatform >> isMacOS [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>isMacOSX [
+{ #category : #testing }
+OSPlatform >> isMacOSX [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>isUnix [
+{ #category : #testing }
+OSPlatform >> isUnix [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>isUnix32 [
+{ #category : #testing }
+OSPlatform >> isUnix32 [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>isUnix64 [
+{ #category : #testing }
+OSPlatform >> isUnix64 [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>isWin32 [
+{ #category : #testing }
+OSPlatform >> isWin32 [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>isWin64 [
+{ #category : #testing }
+OSPlatform >> isWin64 [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>isWindows [
+{ #category : #testing }
+OSPlatform >> isWindows [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>isX11 [
+{ #category : #testing }
+OSPlatform >> isX11 [
 	^ self windowSystemName = 'X11'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>lineEnding [
+{ #category : #accessing }
+OSPlatform >> lineEnding [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>menuShortcutString [
+{ #category : #accessing }
+OSPlatform >> menuShortcutString [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>name [
+{ #category : #accessing }
+OSPlatform >> name [
 	"Return the name of the platform we're running on"
 
 	^ self class currentPlatformName
 ]
 
-{
-	#category : #compatbility,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>platformFamily [
+{ #category : #compatbility }
+OSPlatform >> platformFamily [
 	^ self family
 ]
 
-{
-	#category : #compatbility,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>platformName [
+{ #category : #compatbility }
+OSPlatform >> platformName [
 	^ self name
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>shutDown: quitting [
+{ #category : #initialize }
+OSPlatform >> shutDown: quitting [
 	"Pharo is shutting down. If this platform requires specific shutdown code, this is a great place to put it."
 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>startUp: resuming [
+{ #category : #initialize }
+OSPlatform >> startUp: resuming [
 	"Pharo is starting up. If this platform requires specific intialization, this is a great place to put it."
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>subtype [
+{ #category : #accessing }
+OSPlatform >> subtype [
 	"Return the subType of the platform we're running on"
 
 	^ (Smalltalk vm getSystemAttribute: 1003)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>version [
+{ #category : #accessing }
+OSPlatform >> version [
 	"Return the version number string of the platform we're running on"
 
 	^ self class currentVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>virtualKey: virtualKeyCode [
+{ #category : #accessing }
+OSPlatform >> virtualKey: virtualKeyCode [
 	"Subclass responsibility to override if necessary"
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-OSPlatform>>windowSystemName			 [
+{ #category : #accessing }
+OSPlatform >> windowSystemName [			
 	"Return the name of the window system currently being used for display."
 
 	^ Smalltalk vm getSystemAttribute: 1005

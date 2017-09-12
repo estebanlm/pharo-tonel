@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #CommandLineHandlerTest,
 	#superclass : #TestCase,
-	#category : #Tests-System-CommandLine,
-	#timestamp : ''
+	#category : #Tests-System-CommandLine
 }
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineHandlerTest>>argumentsWith: aCollection [
+{ #category : #utility }
+CommandLineHandlerTest >> argumentsWith: aCollection [
 	^ CommandLineArguments withArguments: aCollection
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineHandlerTest>>testBasicCommandlineHandler [
+{ #category : #tests }
+CommandLineHandlerTest >> testBasicCommandlineHandler [
 	
 	| args |
 	args := self argumentsWith: #().
@@ -32,11 +22,8 @@ CommandLineHandlerTest>>testBasicCommandlineHandler [
 		equals: PharoCommandLineHandler
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineHandlerTest>>testResponsibilityDefault [
+{ #category : #tests }
+CommandLineHandlerTest >> testResponsibilityDefault [
 	| args |
 	args := self argumentsWith: #('--help').
 	self assert: (PharoCommandLineHandler isResponsibleFor: args).
@@ -44,11 +31,8 @@ CommandLineHandlerTest>>testResponsibilityDefault [
 	self deny: (EvaluateCommandLineHandler isResponsibleFor: args).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineHandlerTest>>testResponsibilityEval [
+{ #category : #tests }
+CommandLineHandlerTest >> testResponsibilityEval [
 	| args |
 	args := self argumentsWith: #('eval' '1+2').
 	self assert: (PharoCommandLineHandler isResponsibleFor: args).
@@ -66,11 +50,8 @@ CommandLineHandlerTest>>testResponsibilityEval [
 	self assert: (EvaluateCommandLineHandler isResponsibleFor: args).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineHandlerTest>>testResponsibilitySt [
+{ #category : #tests }
+CommandLineHandlerTest >> testResponsibilitySt [
 	| args |
 	args := self argumentsWith: #('/foo/bar/myScript.st').
 	self assert: (PharoCommandLineHandler isResponsibleFor: args).
@@ -83,11 +64,8 @@ CommandLineHandlerTest>>testResponsibilitySt [
 	self deny: (EvaluateCommandLineHandler isResponsibleFor: args).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineHandlerTest>>testSelectHandlersCodeLoader [
+{ #category : #tests }
+CommandLineHandlerTest >> testSelectHandlersCodeLoader [
 	| args handlers |
 	args := self argumentsWith: #('/foo/bar/myScript.st').
 	handlers := CommandLineHandler selectHandlersFor: args.

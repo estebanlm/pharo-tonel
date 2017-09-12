@@ -12,15 +12,11 @@ Class {
 		'provisions',
 		'redundantAdds'
 	],
-	#category : #Monticello-Merging,
-	#timestamp : '<historical>'
+	#category : #Monticello-Merging
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCThreeWayMerger class>>base: aSnapshot patch: aPatch [
+{ #category : #instance-creation }
+MCThreeWayMerger class >> base: aSnapshot patch: aPatch [
 	aPatch isEmpty ifTrue: [MCNoChangesException signal].
 	^ self new
 		addBaseSnapshot: aSnapshot;
@@ -29,30 +25,21 @@ MCThreeWayMerger class>>base: aSnapshot patch: aPatch [
 		
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCThreeWayMerger class>>base: aSnapshot target: targetSnapshot ancestor: ancestorSnapshot [
+{ #category : #instance-creation }
+MCThreeWayMerger class >> base: aSnapshot target: targetSnapshot ancestor: ancestorSnapshot [
 	^ self base: aSnapshot patch: (targetSnapshot patchRelativeToBase: ancestorSnapshot)
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCThreeWayMerger>>addBaseSnapshot: aSnapshot [
+{ #category : #operations }
+MCThreeWayMerger >> addBaseSnapshot: aSnapshot [
 	aSnapshot definitions do:
 		[:ea |
 		index add: ea.
 		provisions addAll: ea provisions]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCThreeWayMerger>>addDefinition: aDefinition [
+{ #category : #operations }
+MCThreeWayMerger >> addDefinition: aDefinition [
 	index
 		definitionLike: aDefinition
 		ifPresent: [:other |
@@ -68,45 +55,30 @@ MCThreeWayMerger>>addDefinition: aDefinition [
 		ifAbsent: [self addOperation: (MCAddition of: aDefinition)]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCThreeWayMerger>>addOperation: anOperation [
+{ #category : #operations }
+MCThreeWayMerger >> addOperation: anOperation [
 	self operations add: anOperation
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCThreeWayMerger>>applyPatch: aPatch [
+{ #category : #operations }
+MCThreeWayMerger >> applyPatch: aPatch [
 	aPatch applyTo: self
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCThreeWayMerger>>baseSnapshot [
+{ #category : #operations }
+MCThreeWayMerger >> baseSnapshot [
 	^ (MCSnapshot fromDefinitions: index definitions)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCThreeWayMerger>>initialize [
+{ #category : #initialization }
+MCThreeWayMerger >> initialize [
 	super initialize.
 	index := MCDefinitionIndex new.
 	provisions := Set new
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCThreeWayMerger>>modificationConflictForDefinition: aDefinition [
+{ #category : #operations }
+MCThreeWayMerger >> modificationConflictForDefinition: aDefinition [
 	^ self conflicts 
 		detect: [:ea |
 			(ea definition isRevisionOf: aDefinition) and:
@@ -114,11 +86,8 @@ MCThreeWayMerger>>modificationConflictForDefinition: aDefinition [
 		ifNone: []
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCThreeWayMerger>>modifyDefinition: baseDefinition to: targetDefinition [
+{ #category : #operations }
+MCThreeWayMerger >> modifyDefinition: baseDefinition to: targetDefinition [
 	index
 		definitionLike: baseDefinition
 		ifPresent: [:other | 
@@ -130,46 +99,31 @@ MCThreeWayMerger>>modifyDefinition: baseDefinition to: targetDefinition [
 		ifAbsent: [self addConflictWithOperation: (MCAddition of: targetDefinition)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCThreeWayMerger>>operations [
+{ #category : #accessing }
+MCThreeWayMerger >> operations [
 	^ operations ifNil: [operations := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCThreeWayMerger>>provisions [
+{ #category : #accessing }
+MCThreeWayMerger >> provisions [
 	^ provisions
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCThreeWayMerger>>redundantAdds [
+{ #category : #operations }
+MCThreeWayMerger >> redundantAdds [
 	^ redundantAdds ifNil: [redundantAdds := Set new]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCThreeWayMerger>>removalForDefinition: aDefinition [
+{ #category : #operations }
+MCThreeWayMerger >> removalForDefinition: aDefinition [
 	^ operations ifNotNil:
 		[operations
 			detect: [:ea | (ea definition isRevisionOf: aDefinition) and: [ea isRemoval]]
 			ifNone: []]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCThreeWayMerger>>removeDefinition: aDefinition [
+{ #category : #operations }
+MCThreeWayMerger >> removeDefinition: aDefinition [
 	index
 		definitionLike: aDefinition
 		ifPresent: [:other | 
@@ -184,10 +138,7 @@ MCThreeWayMerger>>removeDefinition: aDefinition [
 		ifAbsent: []
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCThreeWayMerger>>removeOperation: anOperation [
+{ #category : #operations }
+MCThreeWayMerger >> removeOperation: anOperation [
 	operations remove: anOperation
 ]

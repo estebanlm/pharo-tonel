@@ -1,23 +1,15 @@
-Extension {
-	#name : #DummyUIManager
-}
+Extension { #name : #DummyUIManager }
 
-{
-	#category : #'*Graphics-Display Objects',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DummyUIManager>>checkForNewDisplaySize [
+{ #category : #'*Graphics-Display Objects' }
+DummyUIManager >> checkForNewDisplaySize [
 
 	Display extent = DisplayScreen actualScreenSize ifTrue: [^ self].
 	DisplayScreen startUp.
 
 ]
 
-{
-	#category : #'*Graphics-Display Objects',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-DummyUIManager>>newDisplayDepthNoRestore: pixelSize [
+{ #category : #'*Graphics-Display Objects' }
+DummyUIManager >> newDisplayDepthNoRestore: pixelSize [
 
 	"Change depths.  Check if there is enough space!  , di"
 	| area need |

@@ -208,15 +208,11 @@ Class {
 		'GWTimeNextFillEntry',
 		'GWTimeNextGETEntry'
 	],
-	#category : #Balloon-Engine,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:12'
+	#category : #Balloon-Engine
 }
 
-{
-	#category : #'pool definition',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngineConstants class>>initEdgeConstants [
+{ #category : #'pool definition' }
+BalloonEngineConstants class >> initEdgeConstants [
 	"Initialize the edge constants"
 
 	"Edge primitive types"
@@ -295,11 +291,8 @@ BalloonEngineConstants class>>initEdgeConstants [
 
 ]
 
-{
-	#category : #'pool definition',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngineConstants class>>initFillConstants [
+{ #category : #'pool definition' }
+BalloonEngineConstants class >> initFillConstants [
 	"Initialize the fill constants"
 
 	"Fill primitive types"
@@ -338,11 +331,8 @@ BalloonEngineConstants class>>initFillConstants [
 
 ]
 
-{
-	#category : #'pool definition',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngineConstants class>>initPrimitiveConstants [
+{ #category : #'pool definition' }
+BalloonEngineConstants class >> initPrimitiveConstants [
 	"Initialize the primitive constants"
 
 	"Primitive type constants"
@@ -360,11 +350,8 @@ BalloonEngineConstants class>>initPrimitiveConstants [
 
 ]
 
-{
-	#category : #'pool definition',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngineConstants class>>initStateConstants [
+{ #category : #'pool definition' }
+BalloonEngineConstants class >> initStateConstants [
 	"Initialize the state Constants"
 
 	GEStateUnlocked := 0.			"Buffer is unlocked and can be modified as wanted"
@@ -389,11 +376,8 @@ BalloonEngineConstants class>>initStateConstants [
 
 ]
 
-{
-	#category : #'pool definition',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngineConstants class>>initWorkBufferConstants [
+{ #category : #'pool definition' }
+BalloonEngineConstants class >> initWorkBufferConstants [
 	"Initialize the work buffer constants"
 
 	"General work buffer constants"
@@ -496,11 +480,8 @@ BalloonEngineConstants class>>initWorkBufferConstants [
 
 ]
 
-{
-	#category : #'pool definition',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngineConstants class>>initialize [
+{ #category : #'pool definition' }
+BalloonEngineConstants class >> initialize [
 	"BalloonEngineConstants initialize"
 	self initStateConstants.
 	self initWorkBufferConstants.
@@ -512,11 +493,8 @@ BalloonEngineConstants class>>initialize [
 	self initializeInstVarNames: BalloonFillData prefixedBy: 'FT'.
 ]
 
-{
-	#category : #'pool definition',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEngineConstants class>>initializeInstVarNames: aClass prefixedBy: aString [
+{ #category : #'pool definition' }
+BalloonEngineConstants class >> initializeInstVarNames: aClass prefixedBy: aString [
 
 	| token |
 	aClass instVarNames doWithIndex:[:instVarName :index| | value aToken |

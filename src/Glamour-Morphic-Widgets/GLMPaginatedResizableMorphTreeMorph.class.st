@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMPaginatedResizableMorphTreeMorph,
 	#superclass : #GLMPaginatedMorphTreeMorph,
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaginatedResizableMorphTreeMorph>>resizeColumns [
+{ #category : #'as yet unclassified' }
+GLMPaginatedResizableMorphTreeMorph >> resizeColumns [
 	| rowMorphsWidths |
 	
 	self columns size > 1 ifFalse: [ ^ self ].
@@ -22,20 +15,14 @@ GLMPaginatedResizableMorphTreeMorph>>resizeColumns [
 	self hHideScrollBar.
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaginatedResizableMorphTreeMorph>>toggleExpandedState: aMorph event: event [
+{ #category : #events-processing }
+GLMPaginatedResizableMorphTreeMorph >> toggleExpandedState: aMorph event: event [
 	super toggleExpandedState: aMorph event: event.
 	self resizeColumns.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaginatedResizableMorphTreeMorph>>updateColumnMorphs [
+{ #category : #updating }
+GLMPaginatedResizableMorphTreeMorph >> updateColumnMorphs [
 	super updateColumnMorphs.
 	self resizeColumns.
 		

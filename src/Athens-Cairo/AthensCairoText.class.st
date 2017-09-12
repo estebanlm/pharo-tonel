@@ -16,47 +16,31 @@ Class {
 	#pools : [
 		'AthensCairoDefs'
 	],
-	#category : #Athens-Cairo-Text,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Text
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>asString [
+{ #category : #accessing }
+AthensCairoText >> asString [
 	^ text asString
 ]
 
-{
-	#category : #'font description',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>beBold [
+{ #category : #'font description' }
+AthensCairoText >> beBold [
 	self fontWeight: CAIRO_FONT_WEIGHT_BOLD
 ]
 
-{
-	#category : #'font description',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>beNormal [
+{ #category : #'font description' }
+AthensCairoText >> beNormal [
 	self fontWeight: CAIRO_FONT_WEIGHT_NORMAL
 ]
 
-{
-	#category : #'font description',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>beSlantNormal [
+{ #category : #'font description' }
+AthensCairoText >> beSlantNormal [
 	self fontSlant: CAIRO_FONT_SLANT_NORMAL
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>convertTextUtf8: aString [
+{ #category : #private }
+AthensCairoText >> convertTextUtf8: aString [
 	| encoder buffer |
 	buffer := ByteArray new: (aString size + 2) * 4.
 	encoder := ZnUTF8Encoder new.
@@ -68,105 +52,72 @@ AthensCairoText>>convertTextUtf8: aString [
 	^ buffer
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>drawOn: aCanvas [
+{ #category : #drawing }
+AthensCairoText >> drawOn: aCanvas [
 	self loadOn: aCanvas.
 	self showOn: aCanvas
 ]
 
-{
-	#category : #'font description',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>fontFamily [
+{ #category : #'font description' }
+AthensCairoText >> fontFamily [
 
 	^ fontFamily
 ]
 
-{
-	#category : #'font description',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>fontFamily: anObject [
+{ #category : #'font description' }
+AthensCairoText >> fontFamily: anObject [
 	"CSS2 generic family names: serif, sans-serif, cursive, fantasy, monospace"
 	fontFamily := anObject
 ]
 
-{
-	#category : #'font description',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>fontSize [
+{ #category : #'font description' }
+AthensCairoText >> fontSize [
 
 	^ fontSize
 ]
 
-{
-	#category : #'font description',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>fontSize: anObject [
+{ #category : #'font description' }
+AthensCairoText >> fontSize: anObject [
 
 	fontSize := anObject
 ]
 
-{
-	#category : #'font description',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>fontSlant [
+{ #category : #'font description' }
+AthensCairoText >> fontSlant [
 
 	^ fontSlant
 ]
 
-{
-	#category : #'font description',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>fontSlant: anObject [
+{ #category : #'font description' }
+AthensCairoText >> fontSlant: anObject [
 	anObject isSymbol
 		ifTrue:[ fontSlant := self slantFrom: anObject ]
 		ifFalse:[ fontSlant := anObject ]
 ]
 
-{
-	#category : #'font description',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>fontWeight [
+{ #category : #'font description' }
+AthensCairoText >> fontWeight [
 
 	^ fontWeight
 ]
 
-{
-	#category : #'font description',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>fontWeight: anObject [
+{ #category : #'font description' }
+AthensCairoText >> fontWeight: anObject [
 	anObject isSymbol
 		ifTrue:[ fontWeight := self weightFrom: anObject ]
 		ifFalse:[ fontWeight :=  anObject ] 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>initialize [
+{ #category : #initialization }
+AthensCairoText >> initialize [
 	super initialize.
 	
 	self beNormal; beSlantNormal.
 	 fontSize := 10.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>loadOn: aCanvas [
+{ #category : #drawing }
+AthensCairoText >> loadOn: aCanvas [
 	fontFamily notNil ifTrue:[
 		self
 			primSelectFont:  fontFamily
@@ -177,13 +128,10 @@ AthensCairoText>>loadOn: aCanvas [
 		self primSetFontSize:  (TextStyle pointsToPixels: fontSize) on: aCanvas ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>primSelectFont: aFontFamily
+{ #category : #private }
+AthensCairoText >> primSelectFont: aFontFamily
 		slant: aFontSlant
-		weight: aFontWeight  [
+		weight: aFontWeight [ 
 		on: aCanvas
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	self nbCall: #(void cairo_select_font_face (
@@ -194,11 +142,8 @@ AthensCairoText>>primSelectFont: aFontFamily
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>primSetFontSize: aFontSize on: aCanvas [
+{ #category : #private }
+AthensCairoText >> primSetFontSize: aFontSize [ on: aCanvas
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	self nbCall: #(void cairo_set_font_size (
 			cairo_t aCanvas,
@@ -206,11 +151,8 @@ AthensCairoText>>primSetFontSize: aFontSize on: aCanvas [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>primShowText: aString on: aCanvas [
+{ #category : #private }
+AthensCairoText >> primShowText: aString on: aCanvas [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	self nbCall: #(void cairo_show_text (
 			cairo_t aCanvas,
@@ -218,62 +160,44 @@ AthensCairoText>>primShowText: aString on: aCanvas [
 
 ]
 
-{
-	#category : #'font description',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>readFrom: aFontDescription [
+{ #category : #'font description' }
+AthensCairoText >> readFrom: aFontDescription [
 	self fontFamily: aFontDescription fontFamily.
 	self fontSlant: aFontDescription fontSlant.
 	self fontWeight:  aFontDescription fontWeight.
 	self fontSize: aFontDescription fontSize.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>showOn: aCanvas [
+{ #category : #drawing }
+AthensCairoText >> showOn: aCanvas [
 	| utf8String |
 	aCanvas setPathMatrix.
 	utf8String := self convertTextUtf8: self asString.
 	self primShowText: utf8String on: aCanvas
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>slantFrom: aSymbol [
+{ #category : #private }
+AthensCairoText >> slantFrom: aSymbol [
 	^ aSymbol caseOf: {
 		[#normal]->[ CAIRO_FONT_SLANT_NORMAL ].
  		[#italic]->[   CAIRO_FONT_SLANT_ITALIC ].
 		[#oblique]->[ CAIRO_FONT_SLANT_OBLIQUE ] }
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>text [
+{ #category : #accessing }
+AthensCairoText >> text [
 
 	^ text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>text: anObject [
+{ #category : #accessing }
+AthensCairoText >> text: anObject [
 
 	text := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoText>>weightFrom: aSymbol [
+{ #category : #private }
+AthensCairoText >> weightFrom: aSymbol [
 	^ aSymbol caseOf: {
 		[#normal]->[ CAIRO_FONT_WEIGHT_NORMAL  ].
  		[#bold]->[    CAIRO_FONT_WEIGHT_BOLD ] }

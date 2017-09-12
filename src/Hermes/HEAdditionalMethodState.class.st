@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #HEAdditionalMethodState,
 	#superclass : #HEExportedLiteral,
@@ -8,23 +5,16 @@ Class {
 		'method',
 		'selector'
 	],
-	#category : #Hermes-Model,
-	#timestamp : ''
+	#category : #Hermes-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEAdditionalMethodState class>>tag [
+{ #category : #accessing }
+HEAdditionalMethodState class >> tag [
 	^ 1.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEAdditionalMethodState>>asLiteralIn: env [
+{ #category : #converting }
+HEAdditionalMethodState >> asLiteralIn: env [
 	| additionalMethodState |
 	additionalMethodState := AdditionalMethodState new: value value size.
 	additionalMethodState method: env newMethod.
@@ -34,32 +24,23 @@ HEAdditionalMethodState>>asLiteralIn: env [
 	^ additionalMethodState
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEAdditionalMethodState>>doReadFrom: aReader [
+{ #category : #reading }
+HEAdditionalMethodState >> doReadFrom: aReader [
 	method := HEExportedLiteral readFrom: aReader.
 	selector := HEExportedLiteral readFrom: aReader.
 	value := HEExportedLiteral readFrom: aReader.
 
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEAdditionalMethodState>>doWriteInto: aWriter [
+{ #category : #writing }
+HEAdditionalMethodState >> doWriteInto: aWriter [
 	method writeInto: aWriter.
 	selector writeInto: aWriter.
 	value writeInto: aWriter.		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEAdditionalMethodState>>value: anAdditionalMethodState [
+{ #category : #accessing }
+HEAdditionalMethodState >> value: anAdditionalMethodState [
 	method := anAdditionalMethodState method asExportedLiteral.
 	selector := anAdditionalMethodState selector asExportedLiteral.
 

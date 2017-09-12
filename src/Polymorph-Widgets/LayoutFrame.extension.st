@@ -1,12 +1,7 @@
-Extension {
-	#name : #LayoutFrame
-}
+Extension { #name : #LayoutFrame }
 
-{
-	#category : #'*Polymorph-Widgets-override',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LayoutFrame>>minExtentFrom: minExtent [
+{ #category : #'*Polymorph-Widgets-override' }
+LayoutFrame >> minExtentFrom: minExtent [
 	"Return the minimal extent the given bounds can be represented in."
 	
 	| width height widthProp heightProp |

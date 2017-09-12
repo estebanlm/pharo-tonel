@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #DosTimestampTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Chronology,
-	#timestamp : ''
+	#category : #Kernel-Tests-Chronology
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DosTimestampTest>>testAsDateAndTime [
+{ #category : #tests }
+DosTimestampTest >> testAsDateAndTime [
 	
 	| remoteDatetime timestamp |
 	timestamp := DosTimestamp on: 16r40B57856.
 	self assert: timestamp asDateAndTime equals: '21 May 2012 3:02:44 pm' asDateAndTime.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DosTimestampTest>>testFromDateAndTime [
+{ #category : #tests }
+DosTimestampTest >> testFromDateAndTime [
 
 	| aDateAndTime timestamp |
 	timestamp := DosTimestamp fromDateAndTime: '21 May 2012 3:02:44 pm' asDateAndTime.
@@ -31,11 +21,8 @@ DosTimestampTest>>testFromDateAndTime [
 	self assert: timestamp value equals: 16r40B57856.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DosTimestampTest>>testTimesAreLocal [
+{ #category : #tests }
+DosTimestampTest >> testTimesAreLocal [
 
 	| remoteDateAndTime remoteTimestamp localTimestamp |
 	remoteDateAndTime := DateAndTime current offset: DateAndTime localOffset + 2 hours.

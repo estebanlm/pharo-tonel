@@ -1,12 +1,7 @@
-Extension {
-	#name : #Symbol
-}
+Extension { #name : #Symbol }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Symbol>>gtInspectorImplementorsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Symbol >> gtInspectorImplementorsIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	composite list 
 		title: 'Implementors';
@@ -15,11 +10,8 @@ Symbol>>gtInspectorImplementorsIn: composite [
 		showOnly: 30
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Symbol>>gtInspectorSendersIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Symbol >> gtInspectorSendersIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	composite list 
 		title: 'Senders';
@@ -29,11 +21,8 @@ Symbol>>gtInspectorSendersIn: composite [
 		withSmalltalkSearch 
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Symbol>>pragmas [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Symbol >> pragmas [
 	^ (SystemNavigation default allBehaviors flatCollect: [ :each | 
 		(Pragma allNamed: self in: each) 
 			collect: [ :p | p method asRingDefinition ] ])

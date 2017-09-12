@@ -4,15 +4,11 @@ Remove from the configuration the selected version or baseline
 Class {
 	#name : #VSRemoveCommand,
 	#superclass : #VSVersionCommand,
-	#category : #Versionner-Core-Commands,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSRemoveCommand>>execute [
+{ #category : #execute }
+VSRemoveCommand >> execute [
 	"Remove from the configuration class what is selected in the versions panel list"
 
 	| answer imported |
@@ -44,18 +40,12 @@ VSRemoveCommand>>execute [
 			cm methodClass removeSelector: cm selector ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSRemoveCommand>>title [
+{ #category : #accessing }
+VSRemoveCommand >> title [
 	^ 'remove version'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSRemoveCommand>>versions  [
+{ #category : #accessing }
+VSRemoveCommand >> versions [ 
 	^ self configurationClass project versions
 ]

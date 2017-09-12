@@ -9,40 +9,27 @@ Class {
 	#instVars : [
 		'isBinary'
 	],
-	#category : #Deprecated70,
-	#timestamp : '<historical>'
+	#category : #Deprecated70
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>asBinaryOrTextStream [
+{ #category : #converting }
+RWBinaryOrTextStream >> asBinaryOrTextStream [
 
 	^ self
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>ascii [
+{ #category : #modes }
+RWBinaryOrTextStream >> ascii [
 	isBinary := false
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>binary [
+{ #category : #modes }
+RWBinaryOrTextStream >> binary [
 	isBinary := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>contents [
+{ #category : #accessing }
+RWBinaryOrTextStream >> contents [
 	"Answer with a copy of my collection from 1 to readLimit."
 
 	| newArray |
@@ -55,19 +42,13 @@ RWBinaryOrTextStream>>contents [
 		startingAt: 1.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>isBinary [
+{ #category : #testing }
+RWBinaryOrTextStream >> isBinary [
 	^ isBinary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>next [
+{ #category : #accessing }
+RWBinaryOrTextStream >> next [
 
 	| byte |
 	^ isBinary 
@@ -77,11 +58,8 @@ RWBinaryOrTextStream>>next [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>next: anInteger  [
+{ #category : #accessing }
+RWBinaryOrTextStream >> next: anInteger [ 
 	"Answer the next anInteger elements of my collection. Must override to get class right."
 
 	| newArray |
@@ -89,11 +67,8 @@ RWBinaryOrTextStream>>next: anInteger  [
 	^ self nextInto: newArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>next: n into: aCollection startingAt: startIndex [
+{ #category : #accessing }
+RWBinaryOrTextStream >> next: n into: aCollection startingAt: startIndex [
 	"Read n objects into the given collection. 
 	Return aCollection or a partial copy if less than n elements have been read."
 	"Overriden for efficiency"
@@ -110,49 +85,34 @@ RWBinaryOrTextStream>>next: n into: aCollection startingAt: startIndex [
 		ifFalse:[^aCollection copyFrom: 1 to: startIndex+max-1]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>next: anInteger putAll: aCollection startingAt: startIndex [
+{ #category : #accessing }
+RWBinaryOrTextStream >> next: anInteger putAll: aCollection startingAt: startIndex [
 	"Optimized for ByteArrays"
 	aCollection class == ByteArray 
 		ifTrue:[^super next: anInteger putAll: aCollection asString startingAt: startIndex].
 	^super next: anInteger putAll: aCollection startingAt: startIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>nextPut: charOrByte [
+{ #category : #accessing }
+RWBinaryOrTextStream >> nextPut: charOrByte [
 	^ super nextPut: charOrByte asCharacter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>nextPutAll: aCollection [
+{ #category : #accessing }
+RWBinaryOrTextStream >> nextPutAll: aCollection [
 	"Optimized for ByteArrays"
 	^ aCollection class == ByteArray 
 		ifTrue: [ super nextPutAll: aCollection asString ]
 		ifFalse: [ super nextPutAll: aCollection ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>padToEndWith: aChar [
+{ #category : #accessing }
+RWBinaryOrTextStream >> padToEndWith: aChar [
 	"We don't have pages, so we are at the end, and don't need to pad."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>readInto: aCollection startingAt: startIndex count: n [
+{ #category : #accessing }
+RWBinaryOrTextStream >> readInto: aCollection startingAt: startIndex count: n [
 	"Read n objects into the given collection. 
 	Return number of elements that have been read."
 	"Overriden for efficiency"
@@ -167,11 +127,8 @@ RWBinaryOrTextStream>>readInto: aCollection startingAt: startIndex count: n [
 	^ max
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>reset [
+{ #category : #positioning }
+RWBinaryOrTextStream >> reset [
 	"Set the receiver's position to the beginning of the sequence of objects."
 
 	super reset.
@@ -182,19 +139,13 @@ RWBinaryOrTextStream>>reset [
 
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>text [
+{ #category : #modes }
+RWBinaryOrTextStream >> text [
 	isBinary := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>upTo: anObject  [
+{ #category : #accessing }
+RWBinaryOrTextStream >> upTo: anObject [ 
 	"Answer a subcollection from the current access position to the 
 	occurrence (if any, but not inclusive) of anObject in the receiver. If 
 	anObject is not in the collection, answer the entire rest of the receiver."
@@ -206,11 +157,8 @@ RWBinaryOrTextStream>>upTo: anObject  [
 	^newStream contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RWBinaryOrTextStream>>upToEnd [
+{ #category : #accessing }
+RWBinaryOrTextStream >> upToEnd [
 	"Must override to get class right."
 	| newArray |
 	newArray := (isBinary ifTrue: [ByteArray] ifFalse: [ByteString]) new: self size - self position.

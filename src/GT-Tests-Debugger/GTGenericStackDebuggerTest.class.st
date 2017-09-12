@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GTGenericStackDebuggerTest,
 	#superclass : #TestCase,
-	#category : #GT-Tests-Debugger,
-	#timestamp : ''
+	#category : #GT-Tests-Debugger
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTGenericStackDebuggerTest>>testBasic [
+{ #category : #'as yet unclassified' }
+GTGenericStackDebuggerTest >> testBasic [
 	| context process debugger printedString |
 	context := [ 20 factorial ] asContext.
 	process := Process

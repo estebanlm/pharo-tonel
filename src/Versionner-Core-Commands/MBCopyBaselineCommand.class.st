@@ -4,15 +4,11 @@ Command to copy a baseline in Versionner
 Class {
 	#name : #MBCopyBaselineCommand,
 	#superclass : #MBVersionCommand,
-	#category : #Versionner-Core-Commands,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:11'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCopyBaselineCommand>>copyBaselineWithNumber: baselineNumberAsString [
+{ #category : #execute }
+MBCopyBaselineCommand >> copyBaselineWithNumber: baselineNumberAsString [
 	"Copy myself into a new baseline, with a different number"
 
 	| sourceCode newSource newNumber newSelector comment |
@@ -32,19 +28,13 @@ MBCopyBaselineCommand>>copyBaselineWithNumber: baselineNumberAsString [
 		description: comment.
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCopyBaselineCommand>>documentation [
+{ #category : #documentation }
+MBCopyBaselineCommand >> documentation [
 	^ 'Copy the selected baseline under a new name'
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCopyBaselineCommand>>execute [
+{ #category : #execute }
+MBCopyBaselineCommand >> execute [
 
 	| answer |
 	answer := self uiManager request: 'give a new baseline number (the prefix "-baseline" will be added)'.
@@ -55,10 +45,7 @@ MBCopyBaselineCommand>>execute [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCopyBaselineCommand>>title [
+{ #category : #accessing }
+MBCopyBaselineCommand >> title [
 	^ 'copy baseline'
 ]

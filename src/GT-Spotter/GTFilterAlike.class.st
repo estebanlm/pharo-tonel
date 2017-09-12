@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTFilterAlike,
 	#superclass : #GTOrderedFilter,
@@ -8,15 +5,11 @@ Class {
 		'lowerThreshold',
 		'upperThreshold'
 	],
-	#category : #GT-Spotter-Filters,
-	#timestamp : ''
+	#category : #GT-Spotter-Filters
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTFilterAlike>>applyFilterWithQuery [
+{ #category : #private }
+GTFilterAlike >> applyFilterWithQuery [
 	| allItemsPrepocessed allItemsPrepocessedAndSorted alikeMatches otherMatches upper lower |
 	alikeMatches := OrderedCollection  new.
 	otherMatches := OrderedCollection new.	
@@ -48,63 +41,42 @@ GTFilterAlike>>applyFilterWithQuery [
 	self filteredItems: alikeMatches , otherMatches 
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTFilterAlike>>defaultLowerThreshold [
+{ #category : #accessing-defaults }
+GTFilterAlike >> defaultLowerThreshold [
 	" lower threshold: to cut off the large irrelevent chunk before sorting/filtering is appplied "
 	^ 0.33
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTFilterAlike>>defaultUpperThreshold [
+{ #category : #accessing-defaults }
+GTFilterAlike >> defaultUpperThreshold [
 	" upper threshold: to keep a reasonably sized set of interesting matches "
 	^ 0.45
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTFilterAlike>>lowerThreshold [
+{ #category : #accessing }
+GTFilterAlike >> lowerThreshold [
 	^ lowerThreshold
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTFilterAlike>>lowerThreshold: anObject [
+{ #category : #accessing }
+GTFilterAlike >> lowerThreshold: anObject [
 	lowerThreshold := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTFilterAlike>>prepareFilterInContext: aSpotterContext [
+{ #category : #private }
+GTFilterAlike >> prepareFilterInContext: aSpotterContext [
 	super prepareFilterInContext: aSpotterContext.
 	
 	lowerThreshold ifNil: [ lowerThreshold := self defaultLowerThreshold ]. " performance optimization "
 	upperThreshold ifNil: [ upperThreshold := self defaultUpperThreshold ]. " performance optimization "
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTFilterAlike>>upperThreshold [
+{ #category : #accessing }
+GTFilterAlike >> upperThreshold [
 	^ upperThreshold
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTFilterAlike>>upperThreshold: anObject [
+{ #category : #accessing }
+GTFilterAlike >> upperThreshold: anObject [
 	upperThreshold := anObject
 ]

@@ -1,28 +1,18 @@
-"
-
-"
 Class {
 	#name : #GTSpotterStepAdded,
 	#superclass : #Announcement,
 	#instVars : [
 		'stepModel'
 	],
-	#category : #GT-Spotter-Announcements,
-	#timestamp : ''
+	#category : #GT-Spotter-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepAdded>>stepModel [
+{ #category : #accessing }
+GTSpotterStepAdded >> stepModel [
 	^ stepModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepAdded>>stepModel: anObject [
+{ #category : #accessing }
+GTSpotterStepAdded >> stepModel: anObject [
 	stepModel := anObject
 ]

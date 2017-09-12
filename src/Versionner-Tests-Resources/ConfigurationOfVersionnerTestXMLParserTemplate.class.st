@@ -12,15 +12,11 @@ Class {
 	#classVars : [
 		'LastVersionLoad'
 	],
-	#category : #Versionner-Tests-Resources,
-	#timestamp : '<historical>'
+	#category : #Versionner-Tests-Resources
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate class>>bootstrapPackage: aString from: aPath  [
+{ #category : #private }
+ConfigurationOfVersionnerTestXMLParserTemplate class >> bootstrapPackage: aString from: aPath [ 
 	| repository version |
 	repository := MCHttpRepository
 				location: aPath
@@ -34,11 +30,8 @@ ConfigurationOfVersionnerTestXMLParserTemplate class>>bootstrapPackage: aString 
 			version workingCopy repositoryGroup addRepository: repository]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate class>>ensureMetacello [
+{ #category : #private }
+ConfigurationOfVersionnerTestXMLParserTemplate class >> ensureMetacello [
 	"Bootstrap Gofer (if necessary), bootstrap ConfigurationOfMetacello (using old Gofer API), then load the latest 
 	version of Metacello itself."
 
@@ -56,89 +49,62 @@ ConfigurationOfVersionnerTestXMLParserTemplate class>>ensureMetacello [
 		(Smalltalk at: #ConfigurationOfMetacello) perform: #load ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate class>>isMetacelloConfig [
+{ #category : #testing }
+ConfigurationOfVersionnerTestXMLParserTemplate class >> isMetacelloConfig [
 	"Answer true and the Metacello tools will operate on you"
 	
 	^true
 ]
 
-{
-	#category : #'metacello tool support',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate class>>lastMetacelloVersionLoad [
+{ #category : #'metacello tool support' }
+ConfigurationOfVersionnerTestXMLParserTemplate class >> lastMetacelloVersionLoad [
 	"Answer the last version loaded and the list of packages loaded for that version."
 
 	LastVersionLoad == nil ifTrue: [ LastVersionLoad := nil -> 'default' ].
 	^LastVersionLoad
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate class>>load [
+{ #category : #loading }
+ConfigurationOfVersionnerTestXMLParserTemplate class >> load [
 	"self load"
 
 	^self project latestVersion load
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate class>>loadDefault [
+{ #category : #loading }
+ConfigurationOfVersionnerTestXMLParserTemplate class >> loadDefault [
 	"self loadDefault"
 
 	^ self loadMostRecentCoreWithTests
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate class>>loadMostRecentCoreWithTests [
+{ #category : #loading }
+ConfigurationOfVersionnerTestXMLParserTemplate class >> loadMostRecentCoreWithTests [
 	^self project lastVersion load: #('Core' 'Tests')
 ]
 
-{
-	#category : #'metacello tool support',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate class>>metacelloVersion: versionString loads: anArrayOrString [
+{ #category : #'metacello tool support' }
+ConfigurationOfVersionnerTestXMLParserTemplate class >> metacelloVersion: versionString loads: anArrayOrString [
 	"Stash the last version loaded and the list of packages loaded for that version. The list
 	 of packages will be used by the tools when doing 'Load Package Version'"
 
 	LastVersionLoad := versionString -> anArrayOrString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate class>>project [
+{ #category : #accessing }
+ConfigurationOfVersionnerTestXMLParserTemplate class >> project [
 
 	^self new project
 ]
 
-{
-	#category : #'unloading Metacello',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate class>>unloadMetacello [
+{ #category : #'unloading Metacello' }
+ConfigurationOfVersionnerTestXMLParserTemplate class >> unloadMetacello [
 
 	Smalltalk at: #ConfigurationOfMetacello ifPresent: [:cls | cls unloadMetacello ]
 ]
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate>>baseline10: spec [
+{ #category : #baselines }
+ConfigurationOfVersionnerTestXMLParserTemplate >> baseline10: spec [
 	<version: '1.0-baseline'>
 	spec
 		for: #common
@@ -179,11 +145,8 @@ ConfigurationOfVersionnerTestXMLParserTemplate>>baseline10: spec [
 
 ]
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate>>baseline20: spec [
+{ #category : #baselines }
+ConfigurationOfVersionnerTestXMLParserTemplate >> baseline20: spec [
 	<version: '2.0-baseline'>
 	spec
 		for: #common
@@ -224,22 +187,16 @@ ConfigurationOfVersionnerTestXMLParserTemplate>>baseline20: spec [
 
 ]
 
-{
-	#category : #'symbolic versions',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate>>development: spec [
+{ #category : #'symbolic versions' }
+ConfigurationOfVersionnerTestXMLParserTemplate >> development: spec [
 	<symbolicVersion: #'development'>
 
 	spec for: #'common' version: '1.1'.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate>>project [
+{ #category : #accessing }
+ConfigurationOfVersionnerTestXMLParserTemplate >> project [
 
 	^ project ifNil: [ | constructor |
 		"Bootstrap Metacello if it is not already loaded"
@@ -251,22 +208,16 @@ ConfigurationOfVersionnerTestXMLParserTemplate>>project [
 		project ]
 ]
 
-{
-	#category : #'symbolic versions',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate>>stable: spec [
+{ #category : #'symbolic versions' }
+ConfigurationOfVersionnerTestXMLParserTemplate >> stable: spec [
 	<symbolicVersion: #'stable'>
 
 	spec for: #'common' version: '1.1'.
 	
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate>>version100: spec [
+{ #category : #versions }
+ConfigurationOfVersionnerTestXMLParserTemplate >> version100: spec [
 	<version: '1.0' imports: #('1.0-baseline')>
 	spec
 		for: #common
@@ -280,11 +231,8 @@ ConfigurationOfVersionnerTestXMLParserTemplate>>version100: spec [
 	
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-ConfigurationOfVersionnerTestXMLParserTemplate>>version101: spec [
+{ #category : #versions }
+ConfigurationOfVersionnerTestXMLParserTemplate >> version101: spec [
 	<version: '1.1' imports: #('1.0-baseline')>
 	spec
 		for: #common

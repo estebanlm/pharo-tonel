@@ -10,25 +10,18 @@ Class {
 	#classVars : [
 		'ScreamerRule'
 	],
-	#category : #Renraku-Test,
-	#timestamp : 'YuriyTymchuk 6/14/2016 13:48'
+	#category : #Renraku-Test
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuBaseTestCase>>setUp [
+{ #category : #running }
+RenrakuBaseTestCase >> setUp [
 	super setUp.
 	testPackage := (RPackage named: #'Renraku-Nuclear-Site') register.
 	self setupScreamerRule.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuBaseTestCase>>setupScreamerRule [
+{ #category : #running }
+RenrakuBaseTestCase >> setupScreamerRule [
 
 	ScreamerRule := ReAbstractRule
 		subclass: #ReScreamerRuleForTesting
@@ -49,11 +42,8 @@ RenrakuBaseTestCase>>setupScreamerRule [
 	ReRuleManager reset
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuBaseTestCase>>tearDown [
+{ #category : #running }
+RenrakuBaseTestCase >> tearDown [
 
 	self tearDownscreamerRule.
 	testPackage unregister.
@@ -61,11 +51,8 @@ RenrakuBaseTestCase>>tearDown [
 	super tearDown 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuBaseTestCase>>tearDownscreamerRule [
+{ #category : #running }
+RenrakuBaseTestCase >> tearDownscreamerRule [
 
 	ScreamerRule removeFromSystem.
 	ScreamerRule := nil.

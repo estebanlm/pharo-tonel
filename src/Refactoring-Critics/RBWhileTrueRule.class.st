@@ -14,33 +14,23 @@ statements2
 Class {
 	#name : #RBWhileTrueRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 22:29'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBWhileTrueRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBWhileTrueRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'WhileTrueRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBWhileTrueRule>>group [
+{ #category : #accessing }
+RBWhileTrueRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBWhileTrueRule>>initialize [
+{ #category : #initialization }
+RBWhileTrueRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyOf: #(
@@ -79,18 +69,12 @@ RBWhileTrueRule>>initialize [
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBWhileTrueRule>>name [
+{ #category : #accessing }
+RBWhileTrueRule >> name [
 	^ 'Uses whileTrue: instead of to:do:'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBWhileTrueRule>>rationale [
+{ #category : #accessing }
+RBWhileTrueRule >> rationale [
 	^ 'Checks for users of whileTrue: when the shorter to:do: would work.'
 ]

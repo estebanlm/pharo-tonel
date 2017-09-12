@@ -26,62 +26,43 @@ Class {
 	#classVars : [
 		'AllBreakpoints'
 	],
-	#category : #Reflectivity-Tools-Breakpoints,
-	#timestamp : 'ClaraAllende 11/29/2014 11:12'
+	#category : #Reflectivity-Tools-Breakpoints
 }
 
-{
-	#category : #all,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint class>>browseAll [
+{ #category : #all }
+Breakpoint class >> browseAll [
 	<script>
 	| methods |
 	methods := AllBreakpoints flatCollect: [ :breakpoint | breakpoint link methods ].
 	Smalltalk tools messageList browse: methods
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint class>>cleanUp [
+{ #category : #cleanup }
+Breakpoint class >> cleanUp [
 	self removeAll.
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint class>>handleClassRemoved: anAnnouncement [
+{ #category : #'system announcements' }
+Breakpoint class >> handleClassRemoved: anAnnouncement [
 	AllBreakpoints copy do: [ :breakpoint |
 		breakpoint link methods
 			detect: [ :m | m methodClass = anAnnouncement classRemoved ]
 			ifFound: [ AllBreakpoints remove: breakpoint ] ]
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint class>>handleMethodRemoved: anAnnouncement [
+{ #category : #'system announcements' }
+Breakpoint class >> handleMethodRemoved: anAnnouncement [
 	self removeBreakpointsFromMethod: anAnnouncement method
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint class>>initialize [
+{ #category : #initialization }
+Breakpoint class >> initialize [
 	AllBreakpoints := OrderedCollection new.
 	self registerInsterestToSystemAnnouncement 
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint class>>isInstalledIn: aMethod [
+{ #category : #querying }
+Breakpoint class >> isInstalledIn: aMethod [
 
 	AllBreakpoints do: [ :breakpoint |
 		breakpoint link methods 
@@ -92,11 +73,8 @@ Breakpoint class>>isInstalledIn: aMethod [
 	^ false
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint class>>registerInsterestToSystemAnnouncement [
+{ #category : #'class initialization' }
+Breakpoint class >> registerInsterestToSystemAnnouncement [
 	<systemEventRegistration>
 	SystemAnnouncer uniqueInstance
 		unsubscribe: self.
@@ -104,52 +82,37 @@ Breakpoint class>>registerInsterestToSystemAnnouncement [
 	SystemAnnouncer uniqueInstance weak subscribe: ClassRemoved send: #handleClassRemoved: to: self.
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint class>>removeAll  [
+{ #category : #cleanup }
+Breakpoint class >> removeAll [ 
 	<script>
 	AllBreakpoints copy do: #remove.
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint class>>removeBreakpointsFromMethod: aMethod  [
+{ #category : #removing }
+Breakpoint class >> removeBreakpointsFromMethod: aMethod [ 
 	AllBreakpoints copy do: [ :breakpoint |
 		breakpoint link methods
 			detect: [ :m | m == aMethod ]
 			ifFound: [ AllBreakpoints remove: breakpoint ] ]
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint class>>removeFrom: aNode [
+{ #category : #cleanup }
+Breakpoint class >> removeFrom: aNode [
 	| links breakpointsToRemove |
 	links := aNode beforeLinks select: [ :link | link metaObject = Break].
 	breakpointsToRemove := AllBreakpoints select: [ :br | links includes: br link].
 	breakpointsToRemove do: #remove.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint>>always [
+{ #category : #api }
+Breakpoint >> always [
 	self link: self breakLink.	
 
 
 ]
 
-{
-	#category : #links,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint>>breakLink [
+{ #category : #links }
+Breakpoint >> breakLink [
  	"for now it should just halt in base level"
 	^ MetaLink new
 		metaObject: Break;
@@ -157,118 +120,76 @@ Breakpoint>>breakLink [
 		options: options
 ]
 
-{
-	#category : #links,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint>>breakLinkConditional	 [
+{ #category : #links }
+Breakpoint >> breakLinkConditional [	
 	^self breakLink condition: condition.
 ]
 
-{
-	#category : #links,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint>>breakLinkOneShot [
+{ #category : #links }
+Breakpoint >> breakLinkOneShot [
 	^ self breakLink optionOneShot: true. 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint>>condition: aCondition [
+{ #category : #api }
+Breakpoint >> condition: aCondition [
 	condition := aCondition.
 	self link: self breakLinkConditional.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint>>initialize [
+{ #category : #initialization }
+Breakpoint >> initialize [
 	options := #(+ optionCompileOnLinkInstallation)
 ]
 
-{
-	#category : #install,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint>>install [
+{ #category : #install }
+Breakpoint >> install [
 	AllBreakpoints add: self.
 	self node link: self link
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint>>level [
+{ #category : #accessing }
+Breakpoint >> level [
 	^level
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint>>level: aLevel [
+{ #category : #accessing }
+Breakpoint >> level: aLevel [
 	level := aLevel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint>>link [
+{ #category : #accessing }
+Breakpoint >> link [
 	^link ifNil: [ link := self breakLink]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint>>link: aMetaLink [
+{ #category : #accessing }
+Breakpoint >> link: aMetaLink [
 	link := aMetaLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint>>node  [
+{ #category : #accessing }
+Breakpoint >> node [ 
 	 ^ node
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint>>node: aNode [
+{ #category : #accessing }
+Breakpoint >> node: aNode [
 	node := aNode
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint>>once [
+{ #category : #api }
+Breakpoint >> once [
 	self link: self breakLinkOneShot.	
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint>>options: anArray [
+{ #category : #accessing }
+Breakpoint >> options: anArray [
 	options := anArray
 ]
 
-{
-	#category : #install,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-Breakpoint>>remove [
+{ #category : #install }
+Breakpoint >> remove [
 	AllBreakpoints remove: self.
 	link uninstall
 ]

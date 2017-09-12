@@ -1,22 +1,14 @@
-Extension {
-	#name : #Object
-}
+Extension { #name : #Object }
 
-{
-	#category : #'*Tool-Finder',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Object>>closeTo: anObject [
+{ #category : #'*Tool-Finder' }
+Object >> closeTo: anObject [
 	"Do not use this Method! It is a workaround for MethodFinder"
 
 	^[self = anObject] ifError: [false]
 ]
 
-{
-	#category : #'*Tool-Finder',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-Object>>copyTwoLevel [
+{ #category : #'*Tool-Finder' }
+Object >> copyTwoLevel [
 	"one more level than a shallowCopy"
 	"do not use this method we will deprecated soon"
 

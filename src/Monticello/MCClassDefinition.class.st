@@ -15,15 +15,11 @@ Class {
 		'traitComposition',
 		'classTraitComposition'
 	],
-	#category : #Monticello-Modeling,
-	#timestamp : '<historical>'
+	#category : #Monticello-Modeling
 }
 
-{
-	#category : #obsolete,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition class>>name: nameString
+{ #category : #obsolete }
+MCClassDefinition class >> name: nameString
 superclassName: superclassString
 category: categoryString 
 instVarNames: ivarArray
@@ -43,11 +39,8 @@ comment: commentString [
 
 ]
 
-{
-	#category : #obsolete,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition class>>name: nameString
+{ #category : #obsolete }
+MCClassDefinition class >> name: nameString
 superclassName: superclassString
 category: categoryString 
 instVarNames: ivarArray
@@ -69,11 +62,8 @@ comment: commentString [
 		commentStamp: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition class>>name: nameString
+{ #category : #'instance creation' }
+MCClassDefinition class >> name: nameString
 superclassName: superclassString
 category: categoryString 
 instVarNames: ivarArray
@@ -98,11 +88,8 @@ commentStamp: stampString [
 					commentStamp: stampString)
 ]
 
-{
-	#category : #obsolete,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition class>>name: nameString
+{ #category : #obsolete }
+MCClassDefinition class >> name: nameString
 superclassName: superclassString
 category: categoryString 
 instVarNames: ivarArray
@@ -118,11 +105,8 @@ comment: commentString [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition class>>name: nameString
+{ #category : #'instance creation' }
+MCClassDefinition class >> name: nameString
 superclassName: superclassString
 traitComposition: traitCompositionString
 classTraitComposition: classTraitCompositionString
@@ -150,11 +134,8 @@ commentStamp: stampString [
 					commentStamp: stampString)
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>= aDefinition [
+{ #category : #comparing }
+MCClassDefinition >> = aDefinition [
 	^(super = aDefinition)
 		and: [superclassName = aDefinition superclassName
 		and: [self traitCompositionString = aDefinition traitCompositionString
@@ -165,157 +146,103 @@ MCClassDefinition>>= aDefinition [
 		and: [comment = aDefinition comment]]]]]]]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>accept: aVisitor [
+{ #category : #visiting }
+MCClassDefinition >> accept: aVisitor [
 	aVisitor visitClassDefinition: self.
 	(self hasClassInstanceVariables or: [self hasClassTraitComposition])
 		ifTrue: [aVisitor visitMetaclassDefinition: self].
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>actualClass [
+{ #category : #accessing }
+MCClassDefinition >> actualClass [
 	^ Smalltalk globals classNamed: self className
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>addVariables: aCollection ofType: aClass [
+{ #category : #initializing }
+MCClassDefinition >> addVariables: aCollection ofType: aClass [
 	variables addAll: (aCollection collect: [:var | aClass name: var asString]).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>category [
+{ #category : #accessing }
+MCClassDefinition >> category [
 	^ category
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>classDefinitionString [
+{ #category : #accessing }
+MCClassDefinition >> classDefinitionString [
 	"Answer a string describing the class-side definition."
 	
 	^String streamContents: [:stream | self printClassDefinitionOn: stream]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>classInstVarNames [
+{ #category : #accessing }
+MCClassDefinition >> classInstVarNames [
 	^ self selectVariables: #isClassInstanceVariable
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>classInstanceVariables [
+{ #category : #printing }
+MCClassDefinition >> classInstanceVariables [
 	^self usesSpecialVariables 
 		ifTrue: [ self variablesOfType: #isClassInstanceVariable]
 		ifFalse: [self classInstanceVariablesString asSlotCollection]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>classInstanceVariablesString [
+{ #category : #printing }
+MCClassDefinition >> classInstanceVariablesString [
 	^ self stringForVariablesOfType: #isClassInstanceVariable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>className [
+{ #category : #accessing }
+MCClassDefinition >> className [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>classTraitComposition [
+{ #category : #accessing }
+MCClassDefinition >> classTraitComposition [
 	^classTraitComposition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>classTraitCompositionCompiled [
+{ #category : #accessing }
+MCClassDefinition >> classTraitCompositionCompiled [
 		^(Smalltalk compiler evaluate: self classTraitCompositionString) asTraitComposition 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>classTraitCompositionString [
+{ #category : #accessing }
+MCClassDefinition >> classTraitCompositionString [
 	^self classTraitComposition ifNil: ['{}'].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>classVarNames [
+{ #category : #accessing }
+MCClassDefinition >> classVarNames [
 	^(self selectVariables: #isClassVariable) asArray sort
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>classVariables [
+{ #category : #printing }
+MCClassDefinition >> classVariables [
 	^self usesSpecialVariables 
 		ifTrue: [self sortedVariablesOfType: #isClassVariable ]
 		ifFalse: [(self classVariablesString substrings: ' ') collect: [:x | x asSymbol => ClassVariable]].
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>classVariablesString [
+{ #category : #printing }
+MCClassDefinition >> classVariablesString [
 	^ self stringForSortedVariablesOfType: #isClassVariable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>comment [
+{ #category : #accessing }
+MCClassDefinition >> comment [
 	^ comment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>commentStamp [
+{ #category : #accessing }
+MCClassDefinition >> commentStamp [
 	^ commentStamp
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>createClass [
+{ #category : #installing }
+MCClassDefinition >> createClass [
 	| superClass |
 	"Ignore Context definition because of troubles with class migration on bootstrapped image. Temporary solution."
 	name = #Context
@@ -343,11 +270,8 @@ MCClassDefinition>>createClass [
 		do: [ :ex | ex resume ]
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>defaultCommentStamp [
+{ #category : #initializing }
+MCClassDefinition >> defaultCommentStamp [
 	^ String new
 
 	"The version below avoids stomping on stamps already in the image
@@ -358,60 +282,39 @@ MCClassDefinition>>defaultCommentStamp [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>definitionString [
+{ #category : #printing }
+MCClassDefinition >> definitionString [
 	^ String streamContents: [:stream | self printDefinitionOn: stream]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>description [
+{ #category : #accessing }
+MCClassDefinition >> description [
 	^ Array with: name
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>hasClassInstanceVariables [
+{ #category : #testing }
+MCClassDefinition >> hasClassInstanceVariables [
 	^ (self selectVariables: #isClassInstanceVariable) isEmpty not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>hasClassTraitComposition [
+{ #category : #testing }
+MCClassDefinition >> hasClassTraitComposition [
 	^self classTraitCompositionString ~= '{}'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>hasComment [
+{ #category : #testing }
+MCClassDefinition >> hasComment [
 	^ comment isEmptyOrNil not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>hasTraitComposition [
+{ #category : #testing }
+MCClassDefinition >> hasTraitComposition [
 	^self traitCompositionString ~= '{}'
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>hash [
+{ #category : #comparing }
+MCClassDefinition >> hash [
 	| hash |
 	hash := String stringHash: name initialHash: 0.
 	hash := String stringHash: superclassName initialHash: hash.
@@ -426,11 +329,8 @@ MCClassDefinition>>hash [
 	^ hash
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>initializeWithName: nameString
+{ #category : #initializing }
+MCClassDefinition >> initializeWithName: nameString
 superclassName: superclassString
 category: categoryString 
 instVarNames: ivarArray
@@ -453,11 +353,8 @@ commentStamp: stampStringOrNil [
 	self addVariables: civarArray ofType: MCClassInstanceVariableDefinition.
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>initializeWithName: nameString
+{ #category : #initializing }
+MCClassDefinition >> initializeWithName: nameString
 superclassName: superclassString
 traitComposition: traitCompositionString
 classTraitComposition: classTraitCompositionString
@@ -484,53 +381,35 @@ commentStamp: stampStringOrNil [
 	self addVariables: civarArray ofType: MCClassInstanceVariableDefinition.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>instVarNames [
+{ #category : #accessing }
+MCClassDefinition >> instVarNames [
 	^ self selectVariables: #isInstanceVariable
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>instanceVariables [
+{ #category : #printing }
+MCClassDefinition >> instanceVariables [
 	^self usesSpecialVariables 
 		ifTrue: [self variablesOfType: #isInstanceVariable]
 		ifFalse: [self instanceVariablesString asSlotCollection]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>instanceVariablesString [
+{ #category : #printing }
+MCClassDefinition >> instanceVariablesString [
 	^ self stringForVariablesOfType: #isInstanceVariable
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>isClassDefinition [
+{ #category : #testing }
+MCClassDefinition >> isClassDefinition [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>isCodeDefinition [
+{ #category : #testing }
+MCClassDefinition >> isCodeDefinition [
 	^ true
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>kindOfSubclass [
+{ #category : #printing }
+MCClassDefinition >> kindOfSubclass [
 	type = #normal ifTrue: [^ ' subclass: '].
 	type = #words ifTrue: [^ ' variableWordSubclass: '].
 	type = #variable ifTrue: [^ ' variableSubclass: '].
@@ -544,27 +423,18 @@ MCClassDefinition>>kindOfSubclass [
 	self error: 'Unrecognized class type'
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>load [
+{ #category : #installing }
+MCClassDefinition >> load [
 	self createClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>poolDictionaries [
+{ #category : #accessing }
+MCClassDefinition >> poolDictionaries [
 	^ self selectVariables: #isPoolImport
 ]
 
-{
-	#category : #annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>printAnnotations: requests on: aStream [
+{ #category : #annotations }
+MCClassDefinition >> printAnnotations: requests [ on: aStream
 	"Add a string for an annotation pane, trying to fulfill the browser annotationRequests"
 
 	requests do: [ :aRequest |
@@ -573,11 +443,8 @@ MCClassDefinition>>printAnnotations: requests on: aStream [
 	] separatedBy: [ aStream space ].
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>printClassDefinitionOn: stream [
+{ #category : #printing }
+MCClassDefinition >> printClassDefinitionOn: stream [
 	"Print a class-side definition of the receiver on the given stream.
 	Class instance variables and class traits."
 	
@@ -595,11 +462,8 @@ MCClassDefinition>>printClassDefinitionOn: stream [
 			store: self classInstanceVariablesString
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>printDefinitionOn: stream [
+{ #category : #printing }
+MCClassDefinition >> printDefinitionOn: stream [
 		stream 
 			nextPutAll: self superclassName;
 			nextPutAll: self kindOfSubclass;
@@ -625,11 +489,8 @@ MCClassDefinition>>printDefinitionOn: stream [
 			store: self category asString
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>printMetaDefinitionOn: stream [
+{ #category : #printing }
+MCClassDefinition >> printMetaDefinitionOn: stream [
 	stream 
 		nextPutAll: self className;
 		nextPutAll: ' class'; cr; tab.
@@ -643,53 +504,35 @@ MCClassDefinition>>printMetaDefinitionOn: stream [
 		store: self classInstanceVariablesString
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>provisions [
+{ #category : #comparing }
+MCClassDefinition >> provisions [
 	^ Array with: name
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>requirements [
+{ #category : #comparing }
+MCClassDefinition >> requirements [
 	^ ((superclassName == #nil) or: [superclassName asString beginsWith: 'AnObsolete'])
 		ifTrue: [self poolDictionaries]
 		ifFalse: [(Array with: superclassName), self poolDictionaries]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>selectVariables: aSelector [
+{ #category : #accessing }
+MCClassDefinition >> selectVariables: aSelector [
 	^ variables select: [:v | v perform: aSelector] thenCollect: [:v | v name]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>sharedPoolsString [
+{ #category : #printing }
+MCClassDefinition >> sharedPoolsString [
 	^ self stringForSortedVariablesOfType: #isPoolImport
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>sortKey [
+{ #category : #accessing }
+MCClassDefinition >> sortKey [
 	^ self className
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>sortedVariables [
+{ #category : #accessing }
+MCClassDefinition >> sortedVariables [
 	"sort variables for comparison purposes"
 
 	| sorted |
@@ -699,29 +542,20 @@ MCClassDefinition>>sortedVariables [
 	^sorted
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>sortedVariablesOfType: aSymbol [
+{ #category : #installing }
+MCClassDefinition >> sortedVariablesOfType: aSymbol [
 	"version for complex vars, { definition . definition }"
 	^(((self selectVariables: aSymbol) asSortedCollection collect: [:each | Smalltalk compiler evaluate: each])) asArray.
 		
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>source [
+{ #category : #printing }
+MCClassDefinition >> source [
 	^ self definitionString
 ]
 
-{
-	#category : #storing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>storeDataOn: aDataStream [
+{ #category : #storing }
+MCClassDefinition >> storeDataOn: aDataStream [
 	| instVarSize |
 	instVarSize := (self hasTraitComposition or: [ self hasClassTraitComposition ])
 		ifTrue: [ self class instSize ]
@@ -733,11 +567,8 @@ MCClassDefinition>>storeDataOn: aDataStream [
 		aDataStream nextPut: (self instVarAt: index) ].
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>stringForSortedVariablesOfType: aSymbol [
+{ #category : #installing }
+MCClassDefinition >> stringForSortedVariablesOfType: aSymbol [
 	^ String streamContents:
 		[:stream |
 		(self selectVariables: aSymbol) asSortedCollection
@@ -745,11 +576,8 @@ MCClassDefinition>>stringForSortedVariablesOfType: aSymbol [
 			separatedBy: [stream space]]
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>stringForVariablesOfType: aSymbol [
+{ #category : #installing }
+MCClassDefinition >> stringForVariablesOfType: aSymbol [
 	^ String streamContents:
 		[:stream |
 		(self selectVariables: aSymbol) 
@@ -757,86 +585,56 @@ MCClassDefinition>>stringForVariablesOfType: aSymbol [
 			separatedBy: [stream space]]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>summary [
+{ #category : #printing }
+MCClassDefinition >> summary [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>superclassName [
+{ #category : #accessing }
+MCClassDefinition >> superclassName [
 	^ superclassName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>traitComposition [
+{ #category : #accessing }
+MCClassDefinition >> traitComposition [
 	^traitComposition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>traitCompositionCompiled [
+{ #category : #accessing }
+MCClassDefinition >> traitCompositionCompiled [
 	^(Smalltalk compiler evaluate: self traitCompositionString) asTraitComposition 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>traitCompositionString [
+{ #category : #accessing }
+MCClassDefinition >> traitCompositionString [
 	^self traitComposition ifNil: ['{}'].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>type [
+{ #category : #accessing }
+MCClassDefinition >> type [
 	^ type
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>unload [
+{ #category : #installing }
+MCClassDefinition >> unload [
 	Smalltalk globals removeClassNamed: name
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>usesSpecialVariables [
+{ #category : #installing }
+MCClassDefinition >> usesSpecialVariables [
 	"this checks if any ivar or class var is using more than just standard definitions.
 	Complex vars are encoded with a string that starts with a # or one that has a space"
 	
 	^self variables anySatisfy: [:var | (var name beginsWith:'#') or: [ var name includes: Character space ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>variables [
+{ #category : #accessing }
+MCClassDefinition >> variables [
 	^ variables
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCClassDefinition>>variablesOfType: aSymbol [
+{ #category : #installing }
+MCClassDefinition >> variablesOfType: aSymbol [
 	"version for complex vars, { definition . definition }"
 	^(((self selectVariables: aSymbol) collect: [:each | Smalltalk compiler evaluate: each])) asArray.
 		

@@ -1,12 +1,7 @@
-Extension {
-	#name : #EditorFindReplaceDialogWindow
-}
+Extension { #name : #EditorFindReplaceDialogWindow }
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditorFindReplaceDialogWindow>>aboutText [
+{ #category : #'*Polymorph-Widgets' }
+EditorFindReplaceDialogWindow >> aboutText [
 	^ 'This dialog can be opened with <cmd-f> in an editable text area or from the text area contextual menu. 
 Previous find and replace tokens are kept so that you can directly retrieve them from the find and the replace input fields.
 While you enter a find token in the find field, in the currently edited text, all matching text portions are dynamically enlighted with the find selection color (orange color by default).
@@ -15,30 +10,21 @@ In order to get rid of the current find token, just enter <cmd-h> with nothing s
 The colorization is manageable with the settings browser from where you can completely disallow it or change the selection color'
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditorFindReplaceDialogWindow>>aboutTitle [
+{ #category : #'*Polymorph-Widgets' }
+EditorFindReplaceDialogWindow >> aboutTitle [
 	^ 'Find & replace dialog'
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditorFindReplaceDialogWindow>>initialize [
+{ #category : #'*Polymorph-Widgets' }
+EditorFindReplaceDialogWindow >> initialize [
 	"Set the initial position based on usable screen area."
 
 	super initialize.
 	self position: RealEstateAgent maximumUsableArea topLeft
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditorFindReplaceDialogWindow>>removeBoxes [
+{ #category : #'*Polymorph-Widgets' }
+EditorFindReplaceDialogWindow >> removeBoxes [
 	"Remove all label area boxes."
 
 	expandBox ifNotNil: [expandBox delete. expandBox := nil].

@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #RBAddClassVariableTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddClassVariableTest>>setUp [
+{ #category : #'set up' }
+RBAddClassVariableTest >> setUp [
 	super setUp.
 	model := self abstractVariableTestData.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddClassVariableTest>>testAddClassVariable [
+{ #category : #tests }
+RBAddClassVariableTest >> testAddClassVariable [
 	| refactoring |
 	refactoring := RBAddClassVariableRefactoring 
 		variable: 'Asdf'
@@ -30,11 +20,8 @@ RBAddClassVariableTest>>testAddClassVariable [
 	self assert: ((refactoring model classNamed: #RBTransformationRuleTest) directlyDefinesClassVariable: #Asdf)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddClassVariableTest>>testAlreadyExistingName [
+{ #category : #'failure tests' }
+RBAddClassVariableTest >> testAlreadyExistingName [
 	self
 		shouldFail: (RBAddClassVariableRefactoring 
 				variable: #RecursiveSelfRule
@@ -44,21 +31,15 @@ RBAddClassVariableTest>>testAlreadyExistingName [
 				class: RBTransformationRuleTest)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddClassVariableTest>>testMetaClassFailure [
+{ #category : #'failure tests' }
+RBAddClassVariableTest >> testMetaClassFailure [
 	self shouldFail: (RBAddClassVariableRefactoring 
 			variable: #VariableName
 			class: RBTransformationRuleTest class)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddClassVariableTest>>testMetaclass [
+{ #category : #'failure tests' }
+RBAddClassVariableTest >> testMetaclass [
 	| refactoring |
 	refactoring := RBAddClassVariableRefactoring 
 		variable: #ClassVarName3
@@ -67,11 +48,8 @@ RBAddClassVariableTest>>testMetaclass [
 	self shouldFail: refactoring
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddClassVariableTest>>testModelAddClassVariable [
+{ #category : #tests }
+RBAddClassVariableTest >> testModelAddClassVariable [
 	| refactoring |
 	refactoring := RBAddClassVariableRefactoring 
 				model: model
@@ -82,11 +60,8 @@ RBAddClassVariableTest>>testModelAddClassVariable [
 				directlyDefinesClassVariable: #ClassVarName3)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddClassVariableTest>>testModelAlreadyExistingName [
+{ #category : #'failure tests' }
+RBAddClassVariableTest >> testModelAlreadyExistingName [
 	| refactoring |
 	refactoring := RBAddClassVariableRefactoring 
 				model: model
@@ -95,11 +70,8 @@ RBAddClassVariableTest>>testModelAlreadyExistingName [
 	self shouldFail: refactoring
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddClassVariableTest>>testModelMetaclass [
+{ #category : #'failure tests' }
+RBAddClassVariableTest >> testModelMetaclass [
 	| refactoring |
 	refactoring := RBAddClassVariableRefactoring 
 		model: model

@@ -8,42 +8,29 @@ Class {
 		'source',
 		'dest'
 	],
-	#category : #FileSystem-Tests-Core,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:39'
+	#category : #FileSystem-Tests-Core
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CopyVisitorTest>>createDirectory: aString  [
+{ #category : #running }
+CopyVisitorTest >> createDirectory: aString [ 
 	source createDirectory: (source store pathFromString: aString)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CopyVisitorTest>>createFile: aString  [
+{ #category : #running }
+CopyVisitorTest >> createFile: aString [ 
 	source store createFile: (source store pathFromString: aString)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CopyVisitorTest>>setUp [
+{ #category : #running }
+CopyVisitorTest >> setUp [
 	source := FileSystem memory.
 	dest := FileSystem memory.
 	
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CopyVisitorTest>>testAll [
+{ #category : #tests }
+CopyVisitorTest >> testAll [
 	self setUpGreek.
 	CopyVisitor 
 		copy: (source / 'alpha') 

@@ -8,31 +8,21 @@ Class {
 		'frontier',
 		'bag'
 	],
-	#category : #Monticello-Versioning,
-	#timestamp : 'TorstenBergmann 2/5/2014 13:49'
+	#category : #Monticello-Versioning
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFrontier class>>frontierOn: aVersionInfo [
+{ #category : #'instance creation' }
+MCFrontier class >> frontierOn: aVersionInfo [
 	^ self frontierOnAll: (Array with: aVersionInfo)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFrontier class>>frontierOn: aVersionInfo and: otherVersionInfo [
+{ #category : #'instance creation' }
+MCFrontier class >> frontierOn: aVersionInfo and: otherVersionInfo [
 	^ self frontierOnAll: (Array with: aVersionInfo with: otherVersionInfo)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFrontier class>>frontierOnAll: aCollection [
+{ #category : #'instance creation' }
+MCFrontier class >> frontierOnAll: aCollection [
 	| remaining  allVersions |
 	remaining := Bag new.
 	allVersions := (aCollection flatCollect: [:ea | ea withBreadthFirstAncestors]) asSet.
@@ -40,28 +30,19 @@ MCFrontier class>>frontierOnAll: aCollection [
 	^self new frontier: aCollection bag: remaining
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFrontier>>frontier [
+{ #category : #accessing }
+MCFrontier >> frontier [
 	^frontier
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFrontier>>frontier: f bag: remaining [
+{ #category : #initialization }
+MCFrontier >> frontier: f bag: remaining [
 	frontier := f asOrderedCollection.
 	bag := remaining
 ]
 
-{
-	#category : #advancing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFrontier>>remove: aVersionInfo [
+{ #category : #advancing }
+MCFrontier >> remove: aVersionInfo [
 	frontier remove: aVersionInfo.
 	aVersionInfo ancestors  do:
 		[ :ancestor |
@@ -71,10 +52,7 @@ MCFrontier>>remove: aVersionInfo [
 	^aVersionInfo
 ]
 
-{
-	#category : #advancing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFrontier>>removeAll: collection [
+{ #category : #advancing }
+MCFrontier >> removeAll: collection [
 	collection do: [ :n | self remove: n]
 ]

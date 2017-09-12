@@ -1,47 +1,31 @@
-"
-
-"
 Class {
 	#name : #MethodConstantTests,
 	#superclass : #TestCase,
-	#category : #Reflectivity-Tools-Tests,
-	#timestamp : ''
+	#category : #Reflectivity-Tools-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-MethodConstantTests>>constFromBlock: aBlock [
+{ #category : #tests }
+MethodConstantTests >> constFromBlock: aBlock [
 
 	^aBlock asMethodConstant 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-MethodConstantTests>>constFromReceiverExpression [
+{ #category : #tests }
+MethodConstantTests >> constFromReceiverExpression [
 
 	^DateAndTime now asMethodConstant 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-MethodConstantTests>>sumOfTwoConsts: firstBlock and: secondBlock [
+{ #category : #tests }
+MethodConstantTests >> sumOfTwoConsts: firstBlock and: secondBlock [
 
 	^firstBlock asMethodConstant + secondBlock asMethodConstant
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-MethodConstantTests>>testAPIFromBlock [
+{ #category : #tests }
+MethodConstantTests >> testAPIFromBlock [
 
 	| constInitialResult constSecondResult |
 	constInitialResult := self constFromBlock: [DateAndTime now].
@@ -50,11 +34,8 @@ MethodConstantTests>>testAPIFromBlock [
 	self assert: constSecondResult == constInitialResult
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-MethodConstantTests>>testAPIFromMessageSendReceiver [
+{ #category : #tests }
+MethodConstantTests >> testAPIFromMessageSendReceiver [
 
 	| constInitialResult constSecondResult |
 	constInitialResult := self constFromReceiverExpression.
@@ -63,11 +44,8 @@ MethodConstantTests>>testAPIFromMessageSendReceiver [
 	self assert: constSecondResult == constInitialResult
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-MethodConstantTests>>testConstPlaceInTransformedMethod [
+{ #category : #tests }
+MethodConstantTests >> testConstPlaceInTransformedMethod [
 
 	| transformedMethod const constLiteral |
 	const := self constFromReceiverExpression. 
@@ -78,11 +56,8 @@ MethodConstantTests>>testConstPlaceInTransformedMethod [
 	self assert: (constLiteral key includesSubstring: 'meta' caseSensitive: false)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-MethodConstantTests>>testTwoConstsInSameMethod [
+{ #category : #tests }
+MethodConstantTests >> testTwoConstsInSameMethod [
 
 	| result1 result2 |
 	result1 := self sumOfTwoConsts: [ 1 ] and: [ 2 ].
@@ -91,11 +66,8 @@ MethodConstantTests>>testTwoConstsInSameMethod [
 	self assert: result2 equals: 3.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-MethodConstantTests>>testUsingConstJustInSameMethod [
+{ #category : #tests }
+MethodConstantTests >> testUsingConstJustInSameMethod [
 
 	| values |
 	<expectedFailure>

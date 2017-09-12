@@ -18,26 +18,19 @@ Class {
 	#instVars : [
 		'exclusions'
 	],
-	#category : #Announcements-Core,
-	#timestamp : 'DenisKudryashov 8/4/2016 15:17'
+	#category : #Announcements-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSetWithExclusions>>addExclusion: anAnnouncement [
+{ #category : #private }
+AnnouncementSetWithExclusions >> addExclusion: anAnnouncement [
 	"Add anAnnouncement as an exclusion to me.
 	I will explicitely not handle my exclusion announcements."
 	
 	^ exclusions add: anAnnouncement 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSetWithExclusions>>handlesAnnouncement: anAnnouncement [
+{ #category : #testing }
+AnnouncementSetWithExclusions >> handlesAnnouncement: anAnnouncement [
 	"Return true when I will handle anAnnouncement.
 	I extend my superclass behavior by explicitely 
 	not handling the exclusions."
@@ -46,21 +39,15 @@ AnnouncementSetWithExclusions>>handlesAnnouncement: anAnnouncement [
 			and: [ exclusions noneSatisfy: [ :each | each handlesAnnouncement: anAnnouncement ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSetWithExclusions>>initialize [
+{ #category : #initialization }
+AnnouncementSetWithExclusions >> initialize [
 
 	super initialize.
 	exclusions := OrderedCollection new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSetWithExclusions>>initialize: aNumber [
+{ #category : #initialization }
+AnnouncementSetWithExclusions >> initialize: aNumber [
 
 	super initialize: aNumber.
 	exclusions := OrderedCollection new

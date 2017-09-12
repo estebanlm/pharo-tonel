@@ -9,92 +9,61 @@ Class {
 		'projects',
 		'commitStrategy'
 	],
-	#category : #Versionner-Commit,
-	#timestamp : '<historical>'
+	#category : #Versionner-Commit
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSDirtyCollector class>>new [
+{ #category : #'instance creation' }
+VSDirtyCollector class >> new [
 	self error: 'Use #strategy:'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSDirtyCollector class>>strategy: aCommitStrategy [
+{ #category : #'instance creation' }
+VSDirtyCollector class >> strategy: aCommitStrategy [
 	^ self basicNew 
 		initializeStrategy: aCommitStrategy;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSDirtyCollector>>commitStrategy [
+{ #category : #accessing }
+VSDirtyCollector >> commitStrategy [
 	^ commitStrategy
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSDirtyCollector>>initialize [
+{ #category : #initialization }
+VSDirtyCollector >> initialize [
 	super initialize.
 	packages := OrderedCollection new.
 	projects := OrderedCollection new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSDirtyCollector>>initializeStrategy: aStrategy [
+{ #category : #initialization }
+VSDirtyCollector >> initializeStrategy: aStrategy [
 	commitStrategy := aStrategy.
 	self initialize
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSDirtyCollector>>packageVisited: aMTPackage [
+{ #category : #testing }
+VSDirtyCollector >> packageVisited: aMTPackage [
 	^ packages anySatisfy: [ :each | each name = aMTPackage name ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSDirtyCollector>>packages [
+{ #category : #accessing }
+VSDirtyCollector >> packages [
 	^ packages
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSDirtyCollector>>projectVisited: aProject [
+{ #category : #testing }
+VSDirtyCollector >> projectVisited: aProject [
 	^ projects anySatisfy: [ :each | each configurationClass =  aProject configurationClass ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSDirtyCollector>>projects [
+{ #category : #accessing }
+VSDirtyCollector >> projects [
 	^ projects
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSDirtyCollector>>visitDependantProject: aMTDependantProject  [
+{ #category : #visitor }
+VSDirtyCollector >> visitDependantProject: aMTDependantProject [ 
 	"Dependent projects are handled just as regular projects"
 	| class version |
 	
@@ -110,19 +79,13 @@ VSDirtyCollector>>visitDependantProject: aMTDependantProject  [
 	
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSDirtyCollector>>visitGroup: aMTGroup  [
+{ #category : #visitor }
+VSDirtyCollector >> visitGroup: aMTGroup [ 
 	"Do nothing, I do not need to handle groups"
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSDirtyCollector>>visitPackage: aMTPackage  [
+{ #category : #visitor }
+VSDirtyCollector >> visitPackage: aMTPackage [ 
 	self commitStrategy shouldCommitDirtyPackages ifFalse: [ ^ self ].
 	
 	aMTPackage isDirty ifFalse: [ ^ self ].
@@ -130,11 +93,8 @@ VSDirtyCollector>>visitPackage: aMTPackage  [
 	packages add: aMTPackage
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSDirtyCollector>>visitProject: aMTProject [
+{ #category : #visitor }
+VSDirtyCollector >> visitProject: aMTProject [
 	| oldProjects oldPackages |
 	
 	oldProjects := projects.

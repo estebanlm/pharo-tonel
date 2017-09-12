@@ -10,32 +10,22 @@ A LocalRecursionStopper value is a collection of active methods which are curren
 Class {
 	#name : #LocalRecursionStopper,
 	#superclass : #ProcessLocalVariable,
-	#category : #Kernel-Processes,
-	#timestamp : 'DenisKudryashov 2/9/2017 10:25'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LocalRecursionStopper class>>activeMethods [
+{ #category : #private }
+LocalRecursionStopper class >> activeMethods [
 	^self value ifNil: [ self value: IdentitySet new. self value ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LocalRecursionStopper class>>during: aBlock [
+{ #category : #api }
+LocalRecursionStopper class >> during: aBlock [
 	<debuggerCompleteToSender>
 	self stopMethod: thisContext sender method 	during: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LocalRecursionStopper class>>stopMethod: aMethod during: aBlock [
+{ #category : #private }
+LocalRecursionStopper class >> stopMethod: aMethod during: aBlock [
 
 	| activeMethods |
 	activeMethods := self activeMethods.

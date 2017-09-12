@@ -4,25 +4,18 @@ Text converter for UTF-8.  Since the BOM is used to distinguish the MacRoman cod
 Class {
 	#name : #UTF8TextConverter,
 	#superclass : #TextConverter,
-	#category : #Multilingual-TextConversion,
-	#timestamp : '<historical>'
+	#category : #Multilingual-TextConversion
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF8TextConverter class>>encodingNames [
+{ #category : #utilities }
+UTF8TextConverter class >> encodingNames [
 
 	^ #('utf-8' 'utf8') copy.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF8TextConverter class>>writeBOMOn: aStream [
+{ #category : #accessing }
+UTF8TextConverter class >> writeBOMOn: aStream [
 	"Write Byte Order Mark"
 	aStream nextPut: 16rEF.
 	aStream nextPut: 16rBB.
@@ -30,29 +23,20 @@ UTF8TextConverter class>>writeBOMOn: aStream [
 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF8TextConverter>>errorMalformedInput [
+{ #category : #conversion }
+UTF8TextConverter >> errorMalformedInput [
 	^UTF8InvalidText new signal: 'Invalid utf8 input detected'
 ]
 
-{
-	#category : #friend,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF8TextConverter>>leadingChar [
+{ #category : #friend }
+UTF8TextConverter >> leadingChar [
 
 	^ self shouldNotImplement
 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF8TextConverter>>nextFromStream: aStream [
+{ #category : #conversion }
+UTF8TextConverter >> nextFromStream: aStream [
 	| character1 value1 character2 value2 unicode character3 value3 character4 value4 |
 	aStream isBinary
 		ifTrue: [ ^ aStream basicNext ].
@@ -94,11 +78,8 @@ UTF8TextConverter>>nextFromStream: aStream [
 	^ Unicode value: unicode
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF8TextConverter>>nextPut: aCharacter toStream: aStream  [
+{ #category : #conversion }
+UTF8TextConverter >> nextPut: aCharacter toStream: aStream [ 
 	| leadingChar nBytes mask shift ucs2code |
 	aStream isBinary ifTrue: [^aCharacter storeBinaryOn: aStream].
 	leadingChar := aCharacter leadingChar.

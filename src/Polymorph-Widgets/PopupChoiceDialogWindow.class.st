@@ -13,15 +13,11 @@ Class {
 		'filter',
 		'filterMorph'
 	],
-	#category : #Polymorph-Widgets-Windows,
-	#timestamp : 'gvc 5/18/2007 12:26'
+	#category : #Polymorph-Widgets-Windows
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow class>>chooseFrom: aList lines: lines title: title [
+{ #category : #'instance creation' }
+PopupChoiceDialogWindow class >> chooseFrom: aList lines: lines title: title [
 	"self chooseFrom: #('yes' 'no') lines: #(1 2)  title: 'Foo is the question'"
 	"self chooseFrom: #('yes' 'no') lines: #()  title: 'Foo is the question'"
 	| pd |
@@ -35,11 +31,8 @@ PopupChoiceDialogWindow class>>chooseFrom: aList lines: lines title: title [
 	^(World openModal: pd) choice
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow class>>chooseIn: aThemedMorph title: title labels: labels values: values lines: lines [
+{ #category : #'instance creation' }
+PopupChoiceDialogWindow class >> chooseIn: aThemedMorph title: title labels: labels values: values lines: lines [
 	"self chooseIn: World title: 'foo is the question'  labels: #('yes' 'no') values: #(true false) lines: #(1 2)"
 	"self chooseIn: World title: 'foo is the question'  labels: #('yes' 'no') values: #(true false) lines: #()"
 	| pd |
@@ -51,90 +44,63 @@ PopupChoiceDialogWindow class>>chooseIn: aThemedMorph title: title labels: label
 	^(aThemedMorph openModal: pd) choice
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow class>>taskbarIconName [
+{ #category : #icons }
+PopupChoiceDialogWindow class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^#smallQuestionIcon
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>activate: evt [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindow >> activate: evt [
 	"Backstop."
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>choice [
+{ #category : #accessing }
+PopupChoiceDialogWindow >> choice [
 	"Answer the value of choice"
 
 	^ choice
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>choice: anObject [
+{ #category : #accessing }
+PopupChoiceDialogWindow >> choice: anObject [
 	"Set the value of choice"
 
 	choice := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>choiceMenus [
+{ #category : #accessing }
+PopupChoiceDialogWindow >> choiceMenus [
 	"Answer the value of choiceMenus"
 
 	^ choiceMenus ifNil: [#()] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>choiceMenus: anObject [
+{ #category : #accessing }
+PopupChoiceDialogWindow >> choiceMenus: anObject [
 	"Set the value of choiceMenus"
 
 	choiceMenus := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>choicesMorph [
+{ #category : #accessing }
+PopupChoiceDialogWindow >> choicesMorph [
 	"Answer the value of choicesMorph"
 
 	^ choicesMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>choicesMorph: anObject [
+{ #category : #accessing }
+PopupChoiceDialogWindow >> choicesMorph: anObject [
 	"Set the value of choicesMorph"
 
 	choicesMorph := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>choose: index [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindow >> choose: index [
 	"Set the given choice and ok."
 
 	self choice: (self model
@@ -143,19 +109,13 @@ PopupChoiceDialogWindow>>choose: index [
 	self ok
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>deleteIfPopUp: evt [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindow >> deleteIfPopUp: evt [
 	"For compatibility with MenuMorph."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>extent: aPoint [
+{ #category : #accessing }
+PopupChoiceDialogWindow >> extent: aPoint [
 	"Make the choices area at least fill the scroll area."
 
 	|m|
@@ -164,21 +124,15 @@ PopupChoiceDialogWindow>>extent: aPoint [
 	m ifNotNil: [m width: (m width max: self scrollPane width)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>filter [
+{ #category : #accessing }
+PopupChoiceDialogWindow >> filter [
 	"Answer the value of filter"
 
 	^ filter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>filter: aString [
+{ #category : #accessing }
+PopupChoiceDialogWindow >> filter: aString [
 	"Set the value of filter, used to match the valid choices."
 
 	filter := aString.
@@ -193,31 +147,22 @@ PopupChoiceDialogWindow>>filter: aString [
 		self filterMorph selectFrom: filter size + 1 to: filter size + 1]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>filterMorph [
+{ #category : #accessing }
+PopupChoiceDialogWindow >> filterMorph [
 	"Answer the value of filterMorph"
 
 	^ filterMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>filterMorph: anObject [
+{ #category : #accessing }
+PopupChoiceDialogWindow >> filterMorph: anObject [
 	"Set the value of filterMorph"
 
 	filterMorph := anObject
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>handlesKeyboard: evt [
+{ #category : #'event handling' }
+PopupChoiceDialogWindow >> handlesKeyboard: evt [
 	"True when either the filter morph doesn't have the focus and the key
 	is a text key or backspace or no menus have the focus and is up or down arrow."
 	
@@ -233,11 +178,8 @@ PopupChoiceDialogWindow>>handlesKeyboard: evt [
 						or: [self filterMorph hasKeyboardFocus not]]]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>initialize [
+{ #category : #initialization }
+PopupChoiceDialogWindow >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -247,11 +189,8 @@ PopupChoiceDialogWindow>>initialize [
 		filter: ''
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>keyStroke: anEvent [
+{ #category : #'event handling' }
+PopupChoiceDialogWindow >> keyStroke: anEvent [
 	"Look for a matching item?"
 	(super keyStroke: anEvent) ifTrue: [^true].
 	anEvent keyCharacter = Character backspace
@@ -269,62 +208,44 @@ PopupChoiceDialogWindow>>keyStroke: anEvent [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>labels [
+{ #category : #accessing }
+PopupChoiceDialogWindow >> labels [
 	"Answer the value of labels"
 
 	^ labels
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>labels: anObject [
+{ #category : #accessing }
+PopupChoiceDialogWindow >> labels: anObject [
 	"Set the value of labels"
 
 	labels := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>lines [
+{ #category : #accessing }
+PopupChoiceDialogWindow >> lines [
 	"Answer the value of lines"
 
 	^ lines
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>lines: anObject [
+{ #category : #accessing }
+PopupChoiceDialogWindow >> lines: anObject [
 	"Set the value of lines"
 
 	lines := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>newButtons [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindow >> newButtons [
 	"Answer new buttons as appropriate."
 
 	self filterMorph: self newFilterEntry.
 	^{self filterMorph. self newCancelButton}
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>newChoiceButtonFor: index [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindow >> newChoiceButtonFor: index [
 	"Answer a new choice button."
 
 	^(ToggleMenuItemMorph new
@@ -339,11 +260,8 @@ PopupChoiceDialogWindow>>newChoiceButtonFor: index [
 		
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>newChoicesMorph [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindow >> newChoicesMorph [
 	"Answer a row of columns of buttons and separators based on the model."
 
 	|answer morphs str maxLines|
@@ -370,11 +288,8 @@ PopupChoiceDialogWindow>>newChoicesMorph [
 	^answer
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>newContentMorph [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindow >> newContentMorph [
 	"Answer a new content morph."
 
 	|sp choices|
@@ -393,11 +308,8 @@ PopupChoiceDialogWindow>>newContentMorph [
 	^self newGroupboxFor: sp
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>newFilterEntry [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindow >> newFilterEntry [
 	"Answer a new filter entry field."
 
 	|entry|
@@ -413,11 +325,8 @@ PopupChoiceDialogWindow>>newFilterEntry [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>newMenuWith: morphs [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindow >> newMenuWith: morphs [
 	"Answer menu with the given morphs."
 
 	^(self newEmbeddedMenu addAllMorphs: morphs)
@@ -431,11 +340,8 @@ PopupChoiceDialogWindow>>newMenuWith: morphs [
 		popUpOwner: (MenuItemMorph new privateOwner: self)
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>processEnter: anEvent [
+{ #category : #'event handling' }
+PopupChoiceDialogWindow >> processEnter: anEvent [
 	self choiceMenus do: [:embeddedMenu | 
 		embeddedMenu selectedItem ifNotNil: [:item |
 			item invokeWithEvent: anEvent.
@@ -443,31 +349,22 @@ PopupChoiceDialogWindow>>processEnter: anEvent [
 	^false
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>rootMenu [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindow >> rootMenu [
 	"Answer the root menu. Answer self."
 
 	^self
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>scrollPane [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindow >> scrollPane [
 	"Answer the scroll pane."
 
 	^self findDeeplyA: GeneralScrollPane
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>selectFirstEnabledItem [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindow >> selectFirstEnabledItem [
 	"Select the first enabled item in any of the embedded menus"
 
 	|found|
@@ -483,11 +380,8 @@ PopupChoiceDialogWindow>>selectFirstEnabledItem [
 					found := true]]]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>selectLastEnabledItem [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindow >> selectLastEnabledItem [
 	"Select the last enabled item in any of the embedded menus"
 
 	|found|
@@ -503,11 +397,8 @@ PopupChoiceDialogWindow>>selectLastEnabledItem [
 					found := true]]]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>switchToNextColumn [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindow >> switchToNextColumn [
 	"Give the next embedded menu keyboard focus."
 
 	(self choiceMenus isNil or: [ self choiceMenus isEmpty ])
@@ -516,11 +407,8 @@ PopupChoiceDialogWindow>>switchToNextColumn [
 	self choiceMenus detect: [ :m | m hasKeyboardFocus ] ifNone: [ self choiceMenus first takeKeyboardFocus ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindow>>switchToPreviousColumn [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindow >> switchToPreviousColumn [
 	"Give the previous embedded menu keyboard focus."
 
 	(self choiceMenus isNil or: [ self choiceMenus isEmpty ])

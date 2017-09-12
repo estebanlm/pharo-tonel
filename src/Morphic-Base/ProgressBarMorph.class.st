@@ -39,56 +39,40 @@ Class {
 		'DefaultHeight',
 		'DefaultWidth'
 	],
-	#category : #Morphic-Base-ProgressBar,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-ProgressBar
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph class>>defaultHeight: aNumber [
+{ #category : #initialization }
+ProgressBarMorph class >> defaultHeight: aNumber [
 
 	DefaultHeight := aNumber
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph class>>defaultWidth: aNumber [
+{ #category : #initialization }
+ProgressBarMorph class >> defaultWidth: aNumber [
 	
 	DefaultWidth := aNumber.
 
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph class>>from: startNumber to: endNumber [
+{ #category : #instance-creation }
+ProgressBarMorph class >> from: startNumber to: endNumber [
 
 	^ self new
 		startAt: startNumber;
 		endAt: endNumber.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph class>>initialize [
+{ #category : #initialization }
+ProgressBarMorph class >> initialize [
 	"ProgressBarMorph initialize"
 	
 	self defaultWidth: 120.
 	self defaultHeight: 10.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph>>barFillStyle [
+{ #category : #private }
+ProgressBarMorph >> barFillStyle [
 	"Answer the fillStyle for the bar if present or
 	the theme menuTitleColor otherwise."
 
@@ -97,21 +81,15 @@ ProgressBarMorph>>barFillStyle [
 		ifAbsent: [ self theme menuTitleColor ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph>>barFillStyle: aFillStyle [
+{ #category : #private }
+ProgressBarMorph >> barFillStyle: aFillStyle [
 	"Set the fillStyle for the bar."
 
 	^self setProperty: #barFillStyle toValue: aFillStyle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph>>completedWidth [
+{ #category : #private }
+ProgressBarMorph >> completedWidth [
 
 	| range fraction progress |
 	range := end - start.
@@ -120,20 +98,14 @@ ProgressBarMorph>>completedWidth [
 	^ (fraction * self totalBarWidth) truncated.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph>>decrement [
+{ #category : #accessing }
+ProgressBarMorph >> decrement [
 
 	self value: self value - 1.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+ProgressBarMorph >> drawOn: aCanvas [
 	"Draw the receiver with the fill style for the bar, clipping to the inner bounds."
 
 	| area |
@@ -147,20 +119,14 @@ ProgressBarMorph>>drawOn: aCanvas [
 	self borderStyle frameRectangle: self bounds on: aCanvas
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph>>endAt: aNumber  [
+{ #category : #private }
+ProgressBarMorph >> endAt: aNumber [ 
 
 	end := aNumber.
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph>>extent: aPoint [
+{ #category : #geometry }
+ProgressBarMorph >> extent: aPoint [
 	"Update the bar fillStyle if appropriate."
 	
 	super extent: aPoint.
@@ -170,20 +136,14 @@ ProgressBarMorph>>extent: aPoint [
 		self barFillStyle: ( self theme progressBarProgressFillStyleFor: self)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph>>increment [
+{ #category : #accessing }
+ProgressBarMorph >> increment [
 
 	self value: self value + 1.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph>>initialize [
+{ #category : #initialization }
+ProgressBarMorph >> initialize [
 	"Initialize the receiver from the current theme."
 	
 	super initialize.
@@ -200,11 +160,8 @@ ProgressBarMorph>>initialize [
 		extent: width@height  + (2 * self borderWidth).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph>>privateMoveBy: delta  [
+{ #category : #private }
+ProgressBarMorph >> privateMoveBy: delta [ 
 	"Update the bar fillStyle if appropriate."
 	
 	| fill |
@@ -213,38 +170,26 @@ ProgressBarMorph>>privateMoveBy: delta  [
 	fill isOrientedFill ifTrue: [fill origin: fill origin + delta]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph>>startAt: aNumber  [
+{ #category : #private }
+ProgressBarMorph >> startAt: aNumber [ 
 
 	value := start := aNumber.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph>>totalBarWidth [
+{ #category : #private }
+ProgressBarMorph >> totalBarWidth [
 
 	^ self width - (2 * self borderWidth).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph>>value [
+{ #category : #accessing }
+ProgressBarMorph >> value [
 	
 	^ value.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProgressBarMorph>>value: aNumber [
+{ #category : #accessing }
+ProgressBarMorph >> value: aNumber [
 	|testWidth|
 	value := aNumber.
 	testWidth := self completedWidth.

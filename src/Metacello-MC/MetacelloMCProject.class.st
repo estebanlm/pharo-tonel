@@ -1,78 +1,50 @@
-"
-
-"
 Class {
 	#name : #MetacelloMCProject,
 	#superclass : #MetacelloProject,
-	#category : #Metacello-MC-Model,
-	#timestamp : ''
+	#category : #Metacello-MC-Model
 }
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>asBaselineProject [
+{ #category : #scripting }
+MetacelloMCProject >> asBaselineProject [
     ^ MetacelloMCBaselineProject new
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>asConfigurationProject [
+{ #category : #scripting }
+MetacelloMCProject >> asConfigurationProject [
     ^ self
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>baselineOfProjectSpecClass [
+{ #category : #'spec classes' }
+MetacelloMCProject >> baselineOfProjectSpecClass [
     ^ MetacelloMCBaselineOfProjectSpec
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>configurationOfProjectSpecClass [
+{ #category : #'spec classes' }
+MetacelloMCProject >> configurationOfProjectSpecClass [
     ^ MetacelloMCConfigurationOfProjectSpec
 ]
 
-{
-	#category : #'repository creation',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>createRepository: aRepositorySpec [
+{ #category : #'repository creation' }
+MetacelloMCProject >> createRepository: aRepositorySpec [
 
 	^ MetacelloPlatform current createRepository: aRepositorySpec
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>defaultLoaderClass [
+{ #category : #'spec classes' }
+MetacelloMCProject >> defaultLoaderClass [
 
 	^MetacelloLoadingMCSpecLoader
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>fetchProject [
+{ #category : #'development support' }
+MetacelloMCProject >> fetchProject [
 	"fetch the latest version of the configuration package"
 	
 	^self fetchProject: MetacelloLoaderPolicy new
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>fetchProject: aLoaderPolicy [
+{ #category : #'development support' }
+MetacelloMCProject >> fetchProject: aLoaderPolicy [
 	"fetch the latest version of the configuration package"
 	
 	| mcLoader |
@@ -91,51 +63,36 @@ MetacelloMCProject>>fetchProject: aLoaderPolicy [
 	^true
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>goferBranch: branchName project: commitMessage [
+{ #category : #'development support' }
+MetacelloMCProject >> goferBranch: branchName project: commitMessage [
     | pkgSpec |
     pkgSpec := self projectPackage.
     pkgSpec file: pkgSpec name , '.' , branchName.
     ^ pkgSpec goferBranchPackage: branchName message: commitMessage
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>goferCommitProject: commitMessage [
+{ #category : #'development support' }
+MetacelloMCProject >> goferCommitProject: commitMessage [
 
 	| pkgSpec |
 	(pkgSpec := self projectPackage) == nil ifTrue: [ ^false ].
 	^pkgSpec goferCommitPackage: commitMessage
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>packageSpec [
+{ #category : #'spec classes' }
+MetacelloMCProject >> packageSpec [
 
 	^self packageSpecClass for: self
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>packageSpecClass [
+{ #category : #'spec classes' }
+MetacelloMCProject >> packageSpecClass [
 
 	^MetacelloPackageSpec
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>packagesNeedSaving: aVersionString [
+{ #category : #'development support' }
+MetacelloMCProject >> packagesNeedSaving: aVersionString [
 	"Answer a collection of associations (package -> repository) representing the packages 
 	 reachable from this project that need to be saved"
 
@@ -147,28 +104,19 @@ MetacelloMCProject>>packagesNeedSaving: aVersionString [
 	^packages
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>pragmaKeywords [
+{ #category : #private }
+MetacelloMCProject >> pragmaKeywords [
 
 	^super pragmaKeywords, #(projectPackage:attribute: packages:attribute: repositories:attribute: )
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>projectForScriptEngine: aMetacelloScriptEngine unconditionalLoad: aBool [
+{ #category : #scripting }
+MetacelloMCProject >> projectForScriptEngine: aMetacelloScriptEngine unconditionalLoad: aBool [
     ^ aMetacelloScriptEngine getConfigurationProjectUnconditionalLoad: aBool
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>projectPackage [
+{ #category : #'development support' }
+MetacelloMCProject >> projectPackage [
   MCWorkingCopy
     managersForClass: self configuration class
     do: [ :mgr | 
@@ -191,74 +139,50 @@ MetacelloMCProject>>projectPackage [
   ^ nil
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>projectSpecClass [
+{ #category : #'spec classes' }
+MetacelloMCProject >> projectSpecClass [
 	^ MetacelloMCNamelessProjectSpec
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>repositoriesSpec [
+{ #category : #'spec classes' }
+MetacelloMCProject >> repositoriesSpec [
 
 	^self repositoriesSpecClass for: self
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>repositoriesSpecClass [
+{ #category : #'spec classes' }
+MetacelloMCProject >> repositoriesSpecClass [
 
 	^MetacelloRepositoriesSpec
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>repositorySpec [
+{ #category : #'spec classes' }
+MetacelloMCProject >> repositorySpec [
 
 	^self repositorySpecClass for: self
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>repositorySpecClass [
+{ #category : #'spec classes' }
+MetacelloMCProject >> repositorySpecClass [
 
 	^MetacelloRepositorySpec
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>saveProject [
+{ #category : #'development support' }
+MetacelloMCProject >> saveProject [
 
 	| pkgSpec |
 	(pkgSpec := self projectPackage) == nil ifTrue: [ ^false ].
 	^pkgSpec savePackage
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>setBaselineRepositoryDescription: aListOrRepositoryDescriptions [
+{ #category : #'as yet unclassified' }
+MetacelloMCProject >> setBaselineRepositoryDescription: aListOrRepositoryDescriptions [
     "noop "
 ]
 
-{
-	#category : #'repository updating',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>updatePackageRepositoriesFor: versionString [
+{ #category : #'repository updating' }
+MetacelloMCProject >> updatePackageRepositoriesFor: versionString [
 
 	| versionSpec |
 	(versionSpec := (self version: versionString) versionSpec) packageSpecsInLoadOrder do: [:pkgSpec |
@@ -266,11 +190,8 @@ MetacelloMCProject>>updatePackageRepositoriesFor: versionString [
 	^true
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>updateProject [
+{ #category : #'development support' }
+MetacelloMCProject >> updateProject [
 	"load the latest version of the configuration package"
 
 	"WARNING: don't forget to refresh your project instance after doing an #updateProject, 
@@ -279,11 +200,8 @@ MetacelloMCProject>>updateProject [
 	^self updateProject: MetacelloLoaderPolicy new
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>updateProject: aLoaderPolicy [
+{ #category : #'development support' }
+MetacelloMCProject >> updateProject: aLoaderPolicy [
 	"load the latest version of the configuration package"
 
 	"WARNING: don't forget to refresh your project instance after doing an #updateProject, 
@@ -310,11 +228,8 @@ MetacelloMCProject>>updateProject: aLoaderPolicy [
 	^ true
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProject>>versionSpecClass [
+{ #category : #'spec classes' }
+MetacelloMCProject >> versionSpecClass [
 
 	^MetacelloMCVersionSpec
 ]

@@ -38,23 +38,16 @@ Class {
 		'secondarySelectionTextColor',
 		'findReplaceSelectionTextColor'
 	],
-	#category : #Polymorph-Widgets-Themes,
-	#timestamp : 'gvc 5/18/2007 10:23'
+	#category : #Polymorph-Widgets-Themes
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>animationSettings [
+{ #category : #accessing }
+ThemeSettings >> animationSettings [
 	^ animationSettings ifNil: [animationSettings := AnimationSettings new]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>applySettingsFrom: aThemeSettings [
+{ #category : #settings }
+ThemeSettings >> applySettingsFrom: aThemeSettings [
 	"Change the settings to be those of aThemeSettings."
 	
 	self
@@ -63,41 +56,29 @@ ThemeSettings>>applySettingsFrom: aThemeSettings [
 		autoSelectionColor: aThemeSettings autoSelectionColor
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>autoMenuColor [
+{ #category : #menu }
+ThemeSettings >> autoMenuColor [
 	"Answer the value of autoMenuColor"
 
 	^autoMenuColor ifNil: [^false]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>autoMenuColor: aBoolean [
+{ #category : #menu }
+ThemeSettings >> autoMenuColor: aBoolean [
 	"Answer the value of autoMenuColor"
 
 	autoMenuColor := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>autoSelectionColor [
+{ #category : #accessing }
+ThemeSettings >> autoSelectionColor [
 	"Answer the value of autoSelectionColor"
 
 	^autoSelectionColor ifNil: [^true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>autoSelectionColor: anObject [
+{ #category : #accessing }
+ThemeSettings >> autoSelectionColor: anObject [
 	"Set the value of autoSelectionColor"
 
 	autoSelectionColor := anObject.
@@ -107,113 +88,77 @@ ThemeSettings>>autoSelectionColor: anObject [
 		changed: #selectionColor
 ]
 
-{
-	#category : #balloon,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>balloonHelpDelayTime [
+{ #category : #balloon }
+ThemeSettings >> balloonHelpDelayTime [
 	^ balloonHelpDelayTime ifNil: [balloonHelpDelayTime := 800]
 ]
 
-{
-	#category : #balloon,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>balloonHelpDelayTime: anInteger [
+{ #category : #balloon }
+ThemeSettings >> balloonHelpDelayTime: anInteger [
 	balloonHelpDelayTime := anInteger
 ]
 
-{
-	#category : #balloon,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>balloonHelpEnabled [
+{ #category : #balloon }
+ThemeSettings >> balloonHelpEnabled [
 	^ balloonHelpEnabled ifNil: [balloonHelpEnabled := true]
 ]
 
-{
-	#category : #balloon,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>balloonHelpEnabled: aBoolean [
+{ #category : #balloon }
+ThemeSettings >> balloonHelpEnabled: aBoolean [
 	balloonHelpEnabled := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>basicSelectionColor [
+{ #category : #accessing }
+ThemeSettings >> basicSelectionColor [
 	"Answer the recorded selection color rather than derived."
 
 	^selectionColor
 ]
 
-{
-	#category : #button,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>buttonColor [
+{ #category : #button }
+ThemeSettings >> buttonColor [
 	"Answer the value of buttonColor"
 
 	^buttonColor ifNil: [self windowColor]
 ]
 
-{
-	#category : #button,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>buttonColor: anObject [
+{ #category : #button }
+ThemeSettings >> buttonColor: anObject [
 	"Set the value of buttonColor"
 
 	buttonColor := anObject
 ]
 
-{
-	#category : #button,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>defaultButtonColor [
+{ #category : #button }
+ThemeSettings >> defaultButtonColor [
 	"Answer the default button colour."
 
 	^Color gray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>defaultScrollbarColor [
+{ #category : #accessing }
+ThemeSettings >> defaultScrollbarColor [
 	"Answer the default scrollbar colour."
 
 	^Color gray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>defaultSelectionColor [
+{ #category : #accessing }
+ThemeSettings >> defaultSelectionColor [
 	"Answer the default selection colour."
 
 	^self defaultWindowColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>defaultWindowColor [
+{ #category : #accessing }
+ThemeSettings >> defaultWindowColor [
 	"Answer the default window colour."
 
 	^ Color lightGray
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>derivedMenuColor [
+{ #category : #menu }
+ThemeSettings >> derivedMenuColor [
 	"Answer a selection colour based on the window color."
 
 	| autoColor worldColor |
@@ -229,140 +174,95 @@ ThemeSettings>>derivedMenuColor [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>derivedSelectionColor [
+{ #category : #accessing }
+ThemeSettings >> derivedSelectionColor [
 	"Answer a selection colour based on the window color."
 
 	^self windowColor whiter lighter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>desktopImageLayout [
+{ #category : #accessing }
+ThemeSettings >> desktopImageLayout [
 	"Answer the layout symbol for any desktop image.
 	See AlphaImageMorph>>layoutSymbols."
 
 	^desktopImageLayout ifNil: [desktopImageLayout := #scaled]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>desktopImageLayout: aSymbol [
+{ #category : #accessing }
+ThemeSettings >> desktopImageLayout: aSymbol [
 	"Set the layout symbol for any desktop image.
 	See AlphaImageMorph>>layoutSymbols."
 
 	desktopImageLayout := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>fadedBackgroundWindows [
+{ #category : #accessing }
+ThemeSettings >> fadedBackgroundWindows [
 	^ fadedBackgroundWindows ifNil: [fadedBackgroundWindows := true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>fadedBackgroundWindows: aBoolean [
+{ #category : #accessing }
+ThemeSettings >> fadedBackgroundWindows: aBoolean [
 	fadedBackgroundWindows := aBoolean
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>fallbackMenuColor [
+{ #category : #menu }
+ThemeSettings >> fallbackMenuColor [
 	"Answer the value of menuColor"
 
 	^ self preferGradientFill ifTrue: [Color lightGray] ifFalse: [Color lightGray muchLighter]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>fastDragging  [
+{ #category : #accessing }
+ThemeSettings >> fastDragging [ 
 		^ fastDragging ifNil: [fastDragging := false] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>fastDragging: aBoolean [
+{ #category : #accessing }
+ThemeSettings >> fastDragging: aBoolean [
 		fastDragging := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>findReplaceSelectionColor [
+{ #category : #accessing }
+ThemeSettings >> findReplaceSelectionColor [
 	"Answer the value of the selectionColor for find/replace"
 
 	^ findReplaceSelectionColor ifNil: [findReplaceSelectionColor := Color orange alpha: 0.4]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>findReplaceSelectionColor: anColor [
+{ #category : #accessing }
+ThemeSettings >> findReplaceSelectionColor: anColor [
 	findReplaceSelectionColor := anColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>findReplaceSelectionTextColor [
+{ #category : #accessing }
+ThemeSettings >> findReplaceSelectionTextColor [
 	"Answer the value of the selectionTextColor for find/replace"
 
 	^ findReplaceSelectionTextColor 
 		ifNil: [ self findReplaceSelectionColor contrastingColor ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>findReplaceSelectionTextColor: aColor [
+{ #category : #accessing }
+ThemeSettings >> findReplaceSelectionTextColor: aColor [
 	"Answer the value of the selectionTextColor for find/replace"
 
 	findReplaceSelectionTextColor := aColor
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>flatMenu  [
+{ #category : #menu }
+ThemeSettings >> flatMenu [ 
 		^ flatMenu ifNil: [flatMenu := false]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>flatMenu: aBoolean [
+{ #category : #menu }
+ThemeSettings >> flatMenu: aBoolean [
 		flatMenu := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>fromConfiguration: tree [
+{ #category : #settings }
+ThemeSettings >> fromConfiguration: tree [
 	"Update the settings from the given tree."
 	
 	(tree at: #windowColor ifAbsent: []) ifNotNil: [:v | self windowColor: v].
@@ -370,39 +270,27 @@ ThemeSettings>>fromConfiguration: tree [
 	(tree at: #selectionColor ifAbsent: []) ifNotNil: [:v | self selectionColor: v]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>haveFindReplaceSelectionTextColor [
+{ #category : #accessing }
+ThemeSettings >> haveFindReplaceSelectionTextColor [
 
 	^ findReplaceSelectionTextColor notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>haveSecondarySelectionTextColor [
+{ #category : #accessing }
+ThemeSettings >> haveSecondarySelectionTextColor [
 	"Answer the value of selectionTextColor"
 
 	^ secondarySelectionTextColor notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>haveSelectionTextColor [
+{ #category : #accessing }
+ThemeSettings >> haveSelectionTextColor [
 	
 	^ selectionTextColor notNil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>initialize [
+{ #category : #initialization }
+ThemeSettings >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -415,37 +303,25 @@ ThemeSettings>>initialize [
 		standardColorsOnly: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>manualSelectionColor [
+{ #category : #accessing }
+ThemeSettings >> manualSelectionColor [
 	"Answer the inverse of autoSelectionColor."
 
 	^self autoSelectionColor not
 ]
 
-{
-	#category : #balloon,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>maxBalloonHelpLineLength [
+{ #category : #balloon }
+ThemeSettings >> maxBalloonHelpLineLength [
 	^ maxBalloonHelpLineLength ifNil: [maxBalloonHelpLineLength := 40]
 ]
 
-{
-	#category : #balloon,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>maxBalloonHelpLineLength: anInteger [
+{ #category : #balloon }
+ThemeSettings >> maxBalloonHelpLineLength: anInteger [
 	maxBalloonHelpLineLength := anInteger
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>menuBorderColor [
+{ #category : #menu }
+ThemeSettings >> menuBorderColor [
 	"Answer the value of menuColor"
 
 	^ self flatMenu  
@@ -453,116 +329,80 @@ ThemeSettings>>menuBorderColor [
 		ifTrue: [self derivedMenuColor twiceDarker]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>menuBorderWidth [
+{ #category : #menu }
+ThemeSettings >> menuBorderWidth [
 	"Answer the value of menuColor"
 
 	^ 2
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>menuColor [
+{ #category : #menu }
+ThemeSettings >> menuColor [
 	"Answer the value of menuColor"
 
 	^ menuColor ifNil: [self fallbackMenuColor]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>menuColor: anObject [
+{ #category : #menu }
+ThemeSettings >> menuColor: anObject [
 	"Set the value of menuColor"
 
 	menuColor := anObject
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>menuKeyboardControl [
+{ #category : #menu }
+ThemeSettings >> menuKeyboardControl [
 	^ true
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>menuKeyboardFocusColor [
+{ #category : #menu }
+ThemeSettings >> menuKeyboardFocusColor [
 	^ (Color r: 0.6 g: 1.0 b: 1.0)
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>menuSelectionColor [
+{ #category : #menu }
+ThemeSettings >> menuSelectionColor [
 	"Answer the value of menuSelectionColor"
 
 	^menuSelectionColor ifNil: [self derivedMenuColor darker]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>menuSelectionColor: aColor [
+{ #category : #menu }
+ThemeSettings >> menuSelectionColor: aColor [
 	"Set the base value of menuSelectionColor.
 	If nil, actual color used will be based on derived menu color."
 
 	menuSelectionColor := aColor
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>menuSelectionTextColor [
+{ #category : #menu }
+ThemeSettings >> menuSelectionTextColor [
 	"Answer the value of menuSelectionTextColor"
 
 	^menuSelectionTextColor ifNil: [menuSelectionTextColor := Color black]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>menuSelectionTextColor: aColor [
+{ #category : #menu }
+ThemeSettings >> menuSelectionTextColor: aColor [
 	"Answer the value of menuSelectionTextColor"
 
 	menuSelectionTextColor := aColor
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>menuShadowColor [
+{ #category : #menu }
+ThemeSettings >> menuShadowColor [
 	^ Color r: 0.0 g: 0.0 b: 0.0 alpha: 0.666
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>menuTitleBorderColor [
+{ #category : #menu }
+ThemeSettings >> menuTitleBorderColor [
 	^ self flatMenu
 		ifFalse: [#inset]
 		ifTrue: [self derivedMenuColor muchDarker]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>menuTitleColor [
+{ #category : #menu }
+ThemeSettings >> menuTitleColor [
 	"Answer the value of menuTitleColor"
 
 	Display depth = 1 ifTrue: [^ Color white].
@@ -575,200 +415,137 @@ ThemeSettings>>menuTitleColor [
 					ifFalse: [mc twiceDarker]]]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>menuTitleColor: anObject [
+{ #category : #menu }
+ThemeSettings >> menuTitleColor: anObject [
 	"Set the value of menuTitleColor"
 
 	menuTitleColor := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>preferGradientFill  [
+{ #category : #accessing }
+ThemeSettings >> preferGradientFill [ 
 	"Answer the value of preferGradientFill "
 
 	^preferGradientFill  ifNil: [preferGradientFill := self preferGradientFillByDefault]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>preferGradientFill: aBoolean [
+{ #category : #accessing }
+ThemeSettings >> preferGradientFill: aBoolean [
 	"Set the value of preferGradientFill "
 
 	preferGradientFill  := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>preferGradientFillByDefault [
+{ #category : #accessing }
+ThemeSettings >> preferGradientFillByDefault [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>preferRoundCorner [
+{ #category : #accessing }
+ThemeSettings >> preferRoundCorner [
 	"Answer the value of preferRoundCorner"
 
 	^preferRoundCorner  ifNil: [preferRoundCorner := self preferRoundCornerByDefault]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>preferRoundCorner: aBoolean [
+{ #category : #accessing }
+ThemeSettings >> preferRoundCorner: aBoolean [
 	"Set the value of preferRoundCorner"
 
 	preferRoundCorner := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>preferRoundCornerByDefault [
+{ #category : #accessing }
+ThemeSettings >> preferRoundCornerByDefault [
 	^ true
 ]
 
-{
-	#category : #progressbar,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>progressBarColor [
+{ #category : #progressbar }
+ThemeSettings >> progressBarColor [
 	"Answer the value of progressBarColor"
 
 	^progressBarColor ifNil: [progressBarColor := self derivedMenuColor muchLighter]
 ]
 
-{
-	#category : #progressbar,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>progressBarColor: anObject [
+{ #category : #progressbar }
+ThemeSettings >> progressBarColor: anObject [
 	"Set the value of progressBarColor"
 
 	progressBarColor := anObject
 ]
 
-{
-	#category : #progressbar,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>progressBarProgressColor [
+{ #category : #progressbar }
+ThemeSettings >> progressBarProgressColor [
 	"Answer the value of progressBarProgressColor"
 
 	^progressBarProgressColor ifNil: [self menuTitleColor]
 ]
 
-{
-	#category : #progressbar,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>progressBarProgressColor: anObject [
+{ #category : #progressbar }
+ThemeSettings >> progressBarProgressColor: anObject [
 	"Set the value of progressBarProgressColor"
 
 	progressBarProgressColor := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>scrollBarThickness [
+{ #category : #accessing }
+ThemeSettings >> scrollBarThickness [
 	^ scrollBarThickness ifNil: [scrollBarThickness := 14]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>scrollbarColor [
+{ #category : #accessing }
+ThemeSettings >> scrollbarColor [
 	"Answer the value of scrollbarColor"
 
 	^scrollbarColor ifNil: [self windowColor]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>scrollbarColor: anObject [
+{ #category : #accessing }
+ThemeSettings >> scrollbarColor: anObject [
 	"Set the value of scrollbarColor"
 
 	scrollbarColor := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>secondarySelectionColor [
+{ #category : #accessing }
+ThemeSettings >> secondarySelectionColor [
 	"Answer the value of selectionColor"
 
 	^ secondarySelectionColor ifNil: [secondarySelectionColor :=   (Color r: 0.351 g: 0.939 b: 0.46 alpha: 0.35)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>secondarySelectionColor: anColor [
+{ #category : #accessing }
+ThemeSettings >> secondarySelectionColor: anColor [
 	secondarySelectionColor := anColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>secondarySelectionTextColor [
+{ #category : #accessing }
+ThemeSettings >> secondarySelectionTextColor [
 	"Answer the value of selectionTextColor"
 
 	^ secondarySelectionTextColor 
 		ifNil: [ self secondarySelectionColor contrastingColor ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>secondarySelectionTextColor: aColor [
+{ #category : #accessing }
+ThemeSettings >> secondarySelectionTextColor: aColor [
 	"set the value of selectionTextColor"
 
 	secondarySelectionTextColor := aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>selectionBarColor [
+{ #category : #accessing }
+ThemeSettings >> selectionBarColor [
 	^ selectionBarColor ifNil: [selectionBarColor := self selectionColor alpha: 0.06]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>selectionBarColor: aColor [
+{ #category : #accessing }
+ThemeSettings >> selectionBarColor: aColor [
 	selectionBarColor := aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>selectionColor [
+{ #category : #accessing }
+ThemeSettings >> selectionColor [
 	"Answer the value of selectionColor"
 	
 	Display depth = 1 ifTrue: [^ Color veryLightGray].
@@ -778,74 +555,50 @@ ThemeSettings>>selectionColor [
 		ifFalse: [selectionColor ifNil: [selectionColor := Color r: 0.0 g: 0.0 b: 0.8 alpha: 0.25]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>selectionColor: anObject [
+{ #category : #accessing }
+ThemeSettings >> selectionColor: anObject [
 	"Set the value of selectionColor"
 	selectionColor := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>selectionTextColor [
+{ #category : #accessing }
+ThemeSettings >> selectionTextColor [
 	"Answer the value of selectionTextColor"
 	
 	^selectionTextColor ifNil: [Color black ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>selectionTextColor: aColor [
+{ #category : #accessing }
+ThemeSettings >> selectionTextColor: aColor [
 	selectionTextColor := aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>standardColorsOnly [
+{ #category : #accessing }
+ThemeSettings >> standardColorsOnly [
 	"Answer the value of standardColorsOnly"
  
 	^standardColorsOnly ifNil: [^false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>standardColorsOnly: anObject [
+{ #category : #accessing }
+ThemeSettings >> standardColorsOnly: anObject [
 	"Set the value of standardColorsOnly"
 
 	standardColorsOnly := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>tabAmongFields [
+{ #category : #accessing }
+ThemeSettings >> tabAmongFields [
 	^ tabAmongFields ifNil: [tabAmongFields := true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>tabAmongFields: aBoolean [
+{ #category : #accessing }
+ThemeSettings >> tabAmongFields: aBoolean [
 	tabAmongFields := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>toConfiguration: tree [
+{ #category : #settings }
+ThemeSettings >> toConfiguration: tree [
 	"Update the tree from the receiver."
 	
 	tree at: #windowColor put: self windowColor.
@@ -853,41 +606,29 @@ ThemeSettings>>toConfiguration: tree [
 	tree at: #selectionColor put: self basicSelectionColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>unfocusedSelectionColor [
+{ #category : #accessing }
+ThemeSettings >> unfocusedSelectionColor [
 	"Answer the value of selectionColor when the window have not the focus"
 
 	^ unfocusedSelectionColor ifNil: [unfocusedSelectionColor := self selectionColor alphaMixed: 0.7 with: Color veryLightGray lighter]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>unfocusedSelectionColor: aColor [
+{ #category : #accessing }
+ThemeSettings >> unfocusedSelectionColor: aColor [
 	"Answer the value of selectionColor when the window have not the focus"
 
 	unfocusedSelectionColor := aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>windowColor [
+{ #category : #accessing }
+ThemeSettings >> windowColor [
 	"Answer the value of windowColor"
 
 	^ windowColor ifNil: [Color lightGray]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeSettings>>windowColor: anObject [
+{ #category : #accessing }
+ThemeSettings >> windowColor: anObject [
 	"Set the value of windowColor"
 
 	windowColor := anObject.

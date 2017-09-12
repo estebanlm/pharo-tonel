@@ -1,60 +1,40 @@
-Extension {
-	#name : #RPackageOrganizer
-}
+Extension { #name : #RPackageOrganizer }
 
-{
-	#category : #'*Monticello-RPackage',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RPackageOrganizer class>>allManagers [
+{ #category : #'*Monticello-RPackage' }
+RPackageOrganizer class >> allManagers [
 
 	^ MCWorkingCopy allManagers
 ]
 
-{
-	#category : #'*Monticello-RPackage',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RPackageOrganizer>>allManagers [
+{ #category : #'*Monticello-RPackage' }
+RPackageOrganizer >> allManagers [
 
 	^ self class allManagers 
 ]
 
-{
-	#category : #'*Monticello-RPackage',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RPackageOrganizer>>basicInitializeFromMC [
+{ #category : #'*Monticello-RPackage' }
+RPackageOrganizer >> basicInitializeFromMC [
 
 	self basicInitializeFromPackagesList: (self allManagers collect: [ :workingCopy | workingCopy packageName]).
 ]
 
-{
-	#category : #'*Monticello-RPackage',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RPackageOrganizer class>>initializeDefaultFromMC [
+{ #category : #'*Monticello-RPackage' }
+RPackageOrganizer class >> initializeDefaultFromMC [
 
 	"self initializeDefaultFromMC"
 	self setDefault:  self new initializeFromMC.
 ]
 
-{
-	#category : #'*Monticello-RPackage',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RPackageOrganizer>>initializeFromMC [
+{ #category : #'*Monticello-RPackage' }
+RPackageOrganizer >> initializeFromMC [
  	RPackage 
 		withOrganizer: self  
 		do:  [  self basicInitializeFromMC ].
 
 ]
 
-{
-	#category : #'*Monticello-RPackage',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RPackageOrganizer>>isDefinedAsPackageOrSubPackageInMC: aSymbol [
+{ #category : #'*Monticello-RPackage' }
+RPackageOrganizer >> isDefinedAsPackageOrSubPackageInMC: aSymbol [
 	"a category has been added. "
 	
 	^ self allManagers anySatisfy: [ :each | 
@@ -63,11 +43,8 @@ RPackageOrganizer>>isDefinedAsPackageOrSubPackageInMC: aSymbol [
 			matches: aSymbol ]
 ]
 
-{
-	#category : #'*Monticello-RPackage',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RPackageOrganizer>>updateAfterNewMCPackageRegistred: anAnnouncement [
+{ #category : #'*Monticello-RPackage' }
+RPackageOrganizer >> updateAfterNewMCPackageRegistred: anAnnouncement [
 	"User create a new package, MCWorkingCopy propagates changes. We react accordingly."
 	|  name |
 	
@@ -76,10 +53,7 @@ RPackageOrganizer>>updateAfterNewMCPackageRegistred: anAnnouncement [
 		ifNil: [ self ensureExistAndRegisterPackageNamed: name ]
 ]
 
-{
-	#category : #'*Monticello-RPackage',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RPackageOrganizer>>updateAfterNewMCPackageUnregistred: anAnnouncement [
+{ #category : #'*Monticello-RPackage' }
+RPackageOrganizer >> updateAfterNewMCPackageUnregistred: anAnnouncement [
 
 ]

@@ -8,76 +8,51 @@ Class {
 		'gofer',
 		'model'
 	],
-	#category : #Gofer-Core,
-	#timestamp : 'TorstenBergmann 2/5/2014 09:30'
+	#category : #Gofer-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferOperation class>>new [
+{ #category : #'instance creation' }
+GoferOperation class >> new [
 	self error: 'Gofer operations can only work on Gofer instances.'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferOperation class>>on: aGofer [
+{ #category : #'instance creation' }
+GoferOperation class >> on: aGofer [
 	^ self basicNew initializeOn: aGofer
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferOperation>>defaultModel [
+{ #category : #private }
+GoferOperation >> defaultModel [
 	^ nil
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferOperation>>execute [
+{ #category : #running }
+GoferOperation >> execute [
 	"Execute the receiving action."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferOperation>>gofer [
+{ #category : #accessing }
+GoferOperation >> gofer [
 	"Answer the Gofer instance that triggered this operation."
 
 	^ gofer
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferOperation>>initialize [
+{ #category : #initialization }
+GoferOperation >> initialize [
 	model := self defaultModel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferOperation>>initializeOn: aGofer [
+{ #category : #initialization }
+GoferOperation >> initializeOn: aGofer [
 	gofer := aGofer.
 	self initialize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferOperation>>model [
+{ #category : #accessing }
+GoferOperation >> model [
 	"Answer the Monticello model of this operation."
 	
 	^ model

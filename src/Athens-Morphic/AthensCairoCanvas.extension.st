@@ -1,12 +1,7 @@
-Extension {
-	#name : #AthensCairoCanvas
-}
+Extension { #name : #AthensCairoCanvas }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCairoCanvas>>transformBy: aDisplayTransform withClip: aClipRectangle in: aSubRectangle during: aDrawBlock [
+{ #category : #'*Athens-Morphic' }
+AthensCairoCanvas >> transformBy: aDisplayTransform withClip: aClipRectangle in: aSubRectangle during: aDrawBlock [
 	self
 		clipBy: currentClipRect
 		during: [ 

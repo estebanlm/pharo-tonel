@@ -4,15 +4,11 @@ Default superclass for application about dialogs.
 Class {
 	#name : #AboutDialogWindow,
 	#superclass : #LongMessageDialogWindow,
-	#category : #Polymorph-Widgets-Windows,
-	#timestamp : 'gvc 5/18/2007 13:53'
+	#category : #Polymorph-Widgets-Windows
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-AboutDialogWindow class>>open  [
+{ #category : #'instance creation' }
+AboutDialogWindow class >> open [ 
 	<script>
 	
 	^(self new) 
@@ -20,11 +16,8 @@ AboutDialogWindow class>>open  [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-AboutDialogWindow class>>openForPharo [
+{ #category : #'instance creation' }
+AboutDialogWindow class >> openForPharo [
 	<script>
 	| text dialog width |
 	text := Smalltalk systemInformationString withCRs.
@@ -44,11 +37,8 @@ AboutDialogWindow class>>openForPharo [
 	dialog position: 25 @ 25
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-AboutDialogWindow>>defaultLabel [
+{ #category : #defaults }
+AboutDialogWindow >> defaultLabel [
 	"Answer the default label for the receiver."
 
 	^'About' translated

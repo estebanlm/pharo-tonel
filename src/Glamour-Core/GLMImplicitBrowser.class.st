@@ -10,39 +10,26 @@ Class {
 		'presentations',
 		'transmission'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'TudorGirba 3/5/2011 21:22'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMImplicitBrowser>>addPresentation: aPresentation [
+{ #category : #accessing }
+GLMImplicitBrowser >> addPresentation: aPresentation [
 	self transmission transmissionStrategy addPresentation: aPresentation 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMImplicitBrowser>>newTransmission [
+{ #category : #accessing }
+GLMImplicitBrowser >> newTransmission [
 	^ self transmission copy
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMImplicitBrowser>>show: aBlock [
+{ #category : #scripting }
+GLMImplicitBrowser >> show: aBlock [
 	self transmission transmissionStrategy presentationsFactory: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMImplicitBrowser>>transmission [
+{ #category : #accessing }
+GLMImplicitBrowser >> transmission [
 	^ transmission ifNil: [
 		transmission := GLMTransmission new ensureReplacePresentationsStrategy.
 		transmission ]

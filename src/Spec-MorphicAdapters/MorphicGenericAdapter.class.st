@@ -6,35 +6,25 @@ Be aware that when you use this, you broke Spec plateform independency and force
 Class {
 	#name : #MorphicGenericAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicGenericAdapter class>>morph: morph [
+{ #category : #'instance creation' }
+MorphicGenericAdapter class >> morph: morph [
 
 	^ self new
 		morph: morph;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicGenericAdapter>>morph [
+{ #category : #accessing }
+MorphicGenericAdapter >> morph [
 
 	^ self widget
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicGenericAdapter>>morph: anObject [
+{ #category : #accessing }
+MorphicGenericAdapter >> morph: anObject [
 
 	widget := anObject
 ]

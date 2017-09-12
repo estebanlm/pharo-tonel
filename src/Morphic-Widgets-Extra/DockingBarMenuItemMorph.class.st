@@ -5,15 +5,11 @@ A DockingBarMenuItemMorph is a specialized version of its superclass for Docking
 Class {
 	#name : #DockingBarMenuItemMorph,
 	#superclass : #MenuItemMorph,
-	#category : #Morphic-Widgets-Extra,
-	#timestamp : 'StephaneDucasse 9/28/2014 15:18'
+	#category : #Morphic-Widgets-Extra
 }
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuItemMorph>>adjacentTo [
+{ #category : #selecting }
+DockingBarMenuItemMorph >> adjacentTo [
 	owner isFloating
 		ifTrue: [^ {self bounds bottomLeft + (5 @ 5)}].
 	owner isAdheringToTop
@@ -27,11 +23,8 @@ DockingBarMenuItemMorph>>adjacentTo [
 	^ {self bounds bottomLeft + (3 @ 5)}
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuItemMorph>>deselectTimeOut: evt [
+{ #category : #events }
+DockingBarMenuItemMorph >> deselectTimeOut: evt [
 	"Deselect timout. Now really deselect"
 
 	owner selectedItem == self
@@ -40,11 +33,8 @@ DockingBarMenuItemMorph>>deselectTimeOut: evt [
 			owner selectItem: nil event: evt ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuItemMorph>>drawOn: aCanvas  [
+{ #category : #drawing }
+DockingBarMenuItemMorph >> drawOn: aCanvas [ 
 	| stringColor stringBounds |
 	(isSelected and: [ isEnabled ])
 		ifTrue: [aCanvas fillRectangle: self bounds fillStyle: self selectionFillStyle.
@@ -73,11 +63,8 @@ DockingBarMenuItemMorph>>drawOn: aCanvas  [
 			aCanvas paintImage: subMenuMarker at: subMenuMarkerPosition]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuItemMorph>>mouseDown: evt [
+{ #category : #events }
+DockingBarMenuItemMorph >> mouseDown: evt [
 	"Handle a mouse down event. Menu items get activated when the mouse is over them."
 
 	evt shiftPressed ifTrue: [^ super mouseDown: evt].  "enable label editing"
@@ -91,11 +78,8 @@ DockingBarMenuItemMorph>>mouseDown: evt [
 
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuItemMorph>>mouseEnter: evt [
+{ #category : #events }
+DockingBarMenuItemMorph >> mouseEnter: evt [
 	"The mouse entered the receiver"
 
 	owner ifNotNil: [owner stayUp ifFalse: [self mouseEnterDragging: evt]].
@@ -106,11 +90,8 @@ DockingBarMenuItemMorph>>mouseEnter: evt [
 
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuItemMorph>>mouseUp: evt [
+{ #category : #events }
+DockingBarMenuItemMorph >> mouseUp: evt [
 	"Handle a mouse up event. Menu items get activated when the mouse is over them. Do nothing if we're not in a 'valid menu transition', meaning that the current hand focus must be aimed at the owning menu."
 	evt hand mouseFocus == owner ifFalse: [^self].
 	
@@ -123,33 +104,24 @@ DockingBarMenuItemMorph>>mouseUp: evt [
 
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuItemMorph>>noteNewOwner: aMorph  [
+{ #category : #submorphs-accessing }
+DockingBarMenuItemMorph >> noteNewOwner: aMorph [ 
 	"I have just been added as a submorph of aMorph"
 	super noteNewOwner: aMorph.
 
 	self updateLayoutInDockingBar
 ]
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuItemMorph>>ownerChanged [
+{ #category : #'change reporting' }
+DockingBarMenuItemMorph >> ownerChanged [
 	"The receiver's owner, some kind of a pasteup, has changed its 
 	layout."
 	super ownerChanged.
 	self updateLayoutInDockingBar
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuItemMorph>>roundedCorners [
+{ #category : #submorphs-accessing }
+DockingBarMenuItemMorph >> roundedCorners [
 	"Return a list of those corners to round"
 	owner isFloating
 		ifTrue: [^ #(1 4 )].
@@ -164,11 +136,8 @@ DockingBarMenuItemMorph>>roundedCorners [
 	^ #(1 2 3 4 )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuItemMorph>>subMenuMarker [
+{ #category : #private }
+DockingBarMenuItemMorph >> subMenuMarker [
 	"private - answer the form to be used as submenu marker"
 
 	owner isFloating
@@ -184,11 +153,8 @@ DockingBarMenuItemMorph>>subMenuMarker [
 	^ self rightArrow
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuItemMorph>>updateLayoutInDockingBar [
+{ #category : #private }
+DockingBarMenuItemMorph >> updateLayoutInDockingBar [
 
 	owner isVertical
 		ifTrue: [
@@ -200,11 +166,8 @@ DockingBarMenuItemMorph>>updateLayoutInDockingBar [
 	self extent: self minWidth @ self minHeight
 ]
 
-{
-	#category : #rounding,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuItemMorph>>wantsRoundedCorners [
+{ #category : #rounding }
+DockingBarMenuItemMorph >> wantsRoundedCorners [
 	^self theme currentSettings preferRoundCorner
 		
 ]

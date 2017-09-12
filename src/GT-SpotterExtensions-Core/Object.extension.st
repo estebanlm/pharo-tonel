@@ -1,12 +1,7 @@
-Extension {
-	#name : #Object
-}
+Extension { #name : #Object }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Object>>gtInspectorActionSpot [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Object >> gtInspectorActionSpot [
 	<gtInspectorAction>
 	^ GLMGenericAction new
 		action: [ 

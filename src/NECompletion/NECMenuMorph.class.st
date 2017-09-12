@@ -25,52 +25,36 @@ Class {
 		'detailMorph',
 		'detailPosition'
 	],
-	#category : #NECompletion-View,
-	#timestamp : '<historical>'
+	#category : #NECompletion-View
 }
 
-{
-	#category : #preferences-colors,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>backgroundColor [
+{ #category : #preferences-colors }
+NECMenuMorph class >> backgroundColor [
 	^NECPreferences backgroundColor
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>controller: aECController position: aPoint  [
+{ #category : #'instance creation' }
+NECMenuMorph class >> controller: aECController position: aPoint [ 
 	| newObject |
 	newObject := self new.
 	newObject setController: aECController position: aPoint.
 	^ newObject
 ]
 
-{
-	#category : #preferences,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>convertToSHSymbol: aSymbol [
+{ #category : #preferences }
+NECMenuMorph class >> convertToSHSymbol: aSymbol [
 	^ (SHTextStylerST80 new attributesFor: aSymbol) isNotEmpty
 		ifTrue: [ aSymbol ]
 		ifFalse: [ #default ]
 ]
 
-{
-	#category : #'help text',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>explanationAttributes [
+{ #category : #'help text' }
+NECMenuMorph class >> explanationAttributes [
 	^{TextIndent spaceUsed; tabs: 2}
 ]
 
-{
-	#category : #'help text',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>helpText [
+{ #category : #'help text' }
+NECMenuMorph class >> helpText [
 	| stream |
 	stream := TextStream on: Text new.
 	self 
@@ -162,97 +146,64 @@ NECMenuMorph class>>helpText [
 	^ stream contents
 ]
 
-{
-	#category : #'help text',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>helpTitle [
+{ #category : #'help text' }
+NECMenuMorph class >> helpTitle [
 
 	^ 'Completion Keyboard Help'
 ]
 
-{
-	#category : #preferences,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>itemHeight [
+{ #category : #preferences }
+NECMenuMorph class >> itemHeight [
 	^ (self selectFontFor: #default) height + 2
 ]
 
-{
-	#category : #preferences,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>itemWidth [
+{ #category : #preferences }
+NECMenuMorph class >> itemWidth [
 	^ 250
 ]
 
-{
-	#category : #preferences,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>maxLength [
+{ #category : #preferences }
+NECMenuMorph class >> maxLength [
 	^ 20
 ]
 
-{
-	#category : #preferences-fonts,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>messageFont [
+{ #category : #preferences-fonts }
+NECMenuMorph class >> messageFont [
 	^ StandardFonts menuFont
 ]
 
-{
-	#category : #preferences,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>scrollArrowSize [
+{ #category : #preferences }
+NECMenuMorph class >> scrollArrowSize [
 	^ 8
 ]
 
-{
-	#category : #preferences-colors,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>scrollColor [
+{ #category : #preferences-colors }
+NECMenuMorph class >> scrollColor [
 	^ Smalltalk ui theme selectionColor
 ]
 
-{
-	#category : #'help text',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>section: aString on: aTextStream  [
+{ #category : #'help text' }
+NECMenuMorph class >> section: aString [ on: aTextStream 
 	aTextStream
 		withAttributes: self sectionAttributes
 		do: [aTextStream nextPutAll: aString].
 	aTextStream cr
 ]
 
-{
-	#category : #'help text',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>sectionAttributes [
+{ #category : #'help text' }
+NECMenuMorph class >> sectionAttributes [
 	^ {TextEmphasis bold}
 ]
 
-{
-	#category : #preferences,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>selectColorFor: aSymbol  [
+{ #category : #preferences }
+NECMenuMorph class >> selectColorFor: aSymbol [ 
 	| attribute |
 	attribute := self convertToSHSymbol: aSymbol.
 	^ (SHTextStylerST80 new attributesFor: attribute) first color
 ]
 
-{
-	#category : #preferences-fonts,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>selectFontFor: aSymbol  [
+{ #category : #preferences-fonts }
+NECMenuMorph class >> selectFontFor: aSymbol [ 
 	| emphasized attributes |
 	attributes := SHTextStylerST80 new 
 		attributesFor: (self convertToSHSymbol: aSymbol).
@@ -263,11 +214,8 @@ NECMenuMorph class>>selectFontFor: aSymbol  [
 		emphasized: emphasized
 ]
 
-{
-	#category : #'help text',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>shortcut: aString text: secondString on: aTextStream  [
+{ #category : #'help text' }
+NECMenuMorph class >> shortcut: aString text: secondString [ on: aTextStream 
 	aTextStream
 		withAttributes: self shortcutAttributes
 		do: [aTextStream nextPutAll: aString;
@@ -279,45 +227,30 @@ NECMenuMorph class>>shortcut: aString text: secondString on: aTextStream  [
 
 ]
 
-{
-	#category : #'help text',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>shortcutAttributes [
+{ #category : #'help text' }
+NECMenuMorph class >> shortcutAttributes [
 	^ {TextIndent spaceUsed; tabs: 1. TextEmphasis italic }
 ]
 
-{
-	#category : #preferences-fonts,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph class>>titleFont [
+{ #category : #preferences-fonts }
+NECMenuMorph class >> titleFont [
 	^ StandardFonts windowTitleFont
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>browse [
+{ #category : #actions }
+NECMenuMorph >> browse [
 
 	(self selectedEntry browseWith: context)
 		ifTrue: [ controller closeMenu ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>close [
+{ #category : #actions }
+NECMenuMorph >> close [
 	self delete.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>createTitle [
+{ #category : #initialization }
+NECMenuMorph >> createTitle [
 	| titleString transformationMorph |
 	titleString := context model title ifNil: [ ^ self ].
 	
@@ -335,28 +268,19 @@ NECMenuMorph>>createTitle [
 	self resize.
 ]
 
-{
-	#category : #paging,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>currentPage [
+{ #category : #paging }
+NECMenuMorph >> currentPage [
 	^(self selected - 1 // self pageHeight ) + 1.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>delete [
+{ #category : #private }
+NECMenuMorph >> delete [
 	super delete.
 	controller menuClosed
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>detailMessage [
+{ #category : #drawing }
+NECMenuMorph >> detailMessage [
 
 	^ String streamContents: [:stream |
 		self flag: #todo. "Removing for now... most of the shortcuts are broken and no time or need now to fix them" 
@@ -367,21 +291,15 @@ NECMenuMorph>>detailMessage [
 				ifNotNil: ['<- close detail']	) ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>detailPosition: aPoint  [
+{ #category : #accessing }
+NECMenuMorph >> detailPosition: aPoint [ 
 	detailPosition := aPoint.
 	
 	self updateDetail.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>drawBottomScrollArrowOn: aCanvas  [
+{ #category : #drawing }
+NECMenuMorph >> drawBottomScrollArrowOn: aCanvas [ 
 	| aPoligon point arrowHeight |
 	point := self bounds bottomLeft translateBy: 6 @ -12.
 	arrowHeight := self class scrollArrowSize.
@@ -394,11 +312,8 @@ NECMenuMorph>>drawBottomScrollArrowOn: aCanvas  [
 		fillStyle: Color black
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>drawLine: index on: aCanvas rectangle: rectangle [
+{ #category : #drawing }
+NECMenuMorph >> drawLine: index on: aCanvas rectangle: rectangle [
 	| symbol font type string preString model highlightRectangle |
 	model := context model.
 	symbol := model entries at: index.
@@ -427,11 +342,8 @@ NECMenuMorph>>drawLine: index on: aCanvas rectangle: rectangle [
 		color: (self selectColor: type)
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>drawMessageOn: aCanvas in: rectangle  [
+{ #category : #drawing }
+NECMenuMorph >> drawMessageOn: aCanvas in: rectangle [ 
 	self hasMessage ifFalse: [ ^ self ].
 	context model isEmpty ifFalse: [ 
 		aCanvas 
@@ -443,11 +355,8 @@ NECMenuMorph>>drawMessageOn: aCanvas in: rectangle  [
 		in: rectangle.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>drawModelMessageOn: aCanvas in: rectangle  [
+{ #category : #drawing }
+NECMenuMorph >> drawModelMessageOn: aCanvas in: rectangle [ 
 	| message |
 	
 	self flag: #todo. "Removing for now... most of the shortcuts are broken and no time or need now to fix them" 
@@ -462,11 +371,8 @@ NECMenuMorph>>drawModelMessageOn: aCanvas in: rectangle  [
 		color: Color gray
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>drawOn: aCanvas  [
+{ #category : #drawing }
+NECMenuMorph >> drawOn: aCanvas [ 
 	| rectangle model |
 	"draw background"
 	super drawOn: aCanvas.
@@ -492,11 +398,8 @@ NECMenuMorph>>drawOn: aCanvas  [
 		in: rectangle
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>drawTopScrollArrowOn: aCanvas  [
+{ #category : #drawing }
+NECMenuMorph >> drawTopScrollArrowOn: aCanvas [ 
 	| aPolygon point arrowHeight |
 	arrowHeight := self class scrollArrowSize.
 	point := self bounds topLeft translateBy: 6 @ 11.
@@ -510,37 +413,25 @@ NECMenuMorph>>drawTopScrollArrowOn: aCanvas  [
 	
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>end [
+{ #category : #actions }
+NECMenuMorph >> end [
 	self gotoPage: self pageCount.
 	self changed.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>expand [
+{ #category : #actions }
+NECMenuMorph >> expand [
 	context model toggleExpand.
 	self narrowCompletion
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>firstVisible [
+{ #category : #private }
+NECMenuMorph >> firstVisible [
 	^firstVisible min: context model entryCount
 ]
 
-{
-	#category : #paging,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>gotoPage: anInteger [
+{ #category : #paging }
+NECMenuMorph >> gotoPage: anInteger [
 	| item |
 	item := (anInteger - 1) * self pageHeight + 1.
 	item >= self itemsCount
@@ -550,27 +441,18 @@ NECMenuMorph>>gotoPage: anInteger [
 	self selected: firstVisible
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>handlesMouseDown: anEvent [
+{ #category : #'event handling' }
+NECMenuMorph >> handlesMouseDown: anEvent [
 	^ true
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>hasMessage [
+{ #category : #drawing }
+NECMenuMorph >> hasMessage [
 	^ true 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>height [
+{ #category : #accessing }
+NECMenuMorph >> height [
 	| count |
 	count := self class maxLength.
 	self visible ifTrue: [ 
@@ -585,19 +467,13 @@ NECMenuMorph>>height [
 		ifFalse: [ count ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>help [
+{ #category : #actions }
+NECMenuMorph >> help [
 	self class helpText asMorph openInWindowLabeled: self class helpTitle
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>hideDetail [
+{ #category : #actions }
+NECMenuMorph >> hideDetail [
 	detailMorph ifNil: [ ^ false ].
 	self removeMorph: detailMorph.
 	detailMorph delete.
@@ -606,30 +482,21 @@ NECMenuMorph>>hideDetail [
 	^ true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>home [
+{ #category : #actions }
+NECMenuMorph >> home [
 	self gotoPage: 1.
 	self changed
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>initialize [
+{ #category : #initialization }
+NECMenuMorph >> initialize [
 	super initialize.
 	self color: self class backgroundColor.
 	self borderStyle: (BorderStyle color: Color gray width: 1).
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>insertCommonPrefix [
+{ #category : #actions }
+NECMenuMorph >> insertCommonPrefix [
 	"Return value: true if the user input has been handled, regardless of whether a prefix was inserted"
 
 	| prefix |
@@ -645,11 +512,8 @@ NECMenuMorph>>insertCommonPrefix [
 	^ true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>insertCommonPrefixOrSelected [
+{ #category : #actions }
+NECMenuMorph >> insertCommonPrefixOrSelected [
 	"Return value: true if the user input has been handled, regardless of whether a prefix was inserted"
 
 	| prefix |
@@ -666,11 +530,8 @@ NECMenuMorph>>insertCommonPrefixOrSelected [
 	^ true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>insertCompletion: aString [
+{ #category : #actions }
+NECMenuMorph >> insertCompletion: aString [
 
 	| caret old pos editor offset|
 	editor := controller editor.
@@ -686,47 +547,32 @@ NECMenuMorph>>insertCompletion: aString [
 	editor morph invalidRect: editor morph bounds
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>insertSelected [
+{ #category : #actions }
+NECMenuMorph >> insertSelected [
 	context model isEmpty ifTrue: [^ false].
 	self insertCompletion: (context model completionAt: self selected).
 	self delete.
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>isClosed [
+{ #category : #private }
+NECMenuMorph >> isClosed [
 	^ owner isNil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>itemsCount [
+{ #category : #private }
+NECMenuMorph >> itemsCount [
 	^context model entryCount
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>lastVisible [
+{ #category : #private }
+NECMenuMorph >> lastVisible [
 
 	^ (self firstVisible + self height-1)  min: (self itemsCount).
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>mouseDown: evt [
+{ #category : #'event handling' }
+NECMenuMorph >> mouseDown: evt [
 	(self bounds containsPoint: evt cursorPoint)
 		ifTrue: [	
 			evt wasHandled: true.
@@ -743,11 +589,8 @@ NECMenuMorph>>mouseDown: evt [
 	self close.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>moveDown [
+{ #category : #actions }
+NECMenuMorph >> moveDown [
 	self selected: self selected + 1.
 	(self selected > self lastVisible
 			and: [self selected <= self itemsCount])
@@ -755,11 +598,8 @@ NECMenuMorph>>moveDown [
 	self changed
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>moveUp [
+{ #category : #actions }
+NECMenuMorph >> moveUp [
 	(self selected = 0
 			and: [self firstVisible = 1])
 		ifTrue: [^ self].
@@ -769,11 +609,8 @@ NECMenuMorph>>moveUp [
 	self changed. 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>narrowCompletion [
+{ #category : #actions }
+NECMenuMorph >> narrowCompletion [
 	| model |
 	self selected: 0.
 	firstVisible := 1.
@@ -787,11 +624,8 @@ NECMenuMorph>>narrowCompletion [
 	^ true
 ]
 
-{
-	#category : #paging,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>pageCount [
+{ #category : #paging }
+NECMenuMorph >> pageCount [
 	| count |
 	self itemsCount == self pageHeight
 		ifTrue: [^ 1].
@@ -801,66 +635,45 @@ NECMenuMorph>>pageCount [
 	^count
 ]
 
-{
-	#category : #paging,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>pageCountString [
+{ #category : #paging }
+NECMenuMorph >> pageCountString [
 	^ self itemsCount = 501
 		ifTrue: [ 'more' ]
 		ifFalse: [ self pageCount asString ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>pageDown [
+{ #category : #actions }
+NECMenuMorph >> pageDown [
 	self gotoPage: self currentPage + 1.
 	self changed. 
 ]
 
-{
-	#category : #paging,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>pageHeight [
+{ #category : #paging }
+NECMenuMorph >> pageHeight [
 	^pageHeight.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>pageUp [
+{ #category : #actions }
+NECMenuMorph >> pageUp [
 	self gotoPage: self currentPage - 1.
 	self changed. 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>prepareRectForNextRow: aRectangle  [
+{ #category : #drawing }
+NECMenuMorph >> prepareRectForNextRow: aRectangle [ 
 	^aRectangle translateBy: 0 @ self class itemHeight
 ]
 
-{
-	#category : #title,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>removeTitle [
+{ #category : #title }
+NECMenuMorph >> removeTitle [
 	titleStringMorph
 		ifNil: [^ self].
 	self removeMorph: titleStringMorph owner. 
 	titleStringMorph := nil
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>resize [
+{ #category : #drawing }
+NECMenuMorph >> resize [
 	| extent height |
 	firstVisible := 1.
 	height := self visibleItemsCount * self class itemHeight.
@@ -873,66 +686,45 @@ NECMenuMorph>>resize [
 	self extent: extent.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>selectColor: type [
+{ #category : #drawing }
+NECMenuMorph >> selectColor: type [
 	^ self class selectColorFor: type
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>selectFont: aSymbol  [
+{ #category : #drawing }
+NECMenuMorph >> selectFont: aSymbol [ 
 	^ self class selectFontFor: aSymbol
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>selectIndexAtPoint: aPoint [
+{ #category : #'event handling' }
+NECMenuMorph >> selectIndexAtPoint: aPoint [
 	| yPos  |
 	yPos := aPoint y - self bounds top.
 	selected := firstVisible + (yPos / self class itemHeight) floor.
 	selected := selected min: context model entries size max: 1.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>selected [
+{ #category : #accessing }
+NECMenuMorph >> selected [
 	"Answer the value of selected"
 	selected ifNil: [ selected := self firstVisible ].
 	^ selected
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>selected: aNumber  [
+{ #category : #accessing }
+NECMenuMorph >> selected: aNumber [ 
 	"Set the value of selected"
 	context model notEmpty ifTrue: 
 		[ ((1 to: self itemsCount) includes: aNumber) ifTrue: [ aNumber ~= selected ifTrue: [ selected := aNumber ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>selectedEntry [
+{ #category : #accessing }
+NECMenuMorph >> selectedEntry [
 	^ context model entries at: self selected
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>setController: aECController position: aPoint [
+{ #category : #initialization }
+NECMenuMorph >> setController: aECController position: aPoint [
 	controller := aECController.
 	context := controller context.
 	self position: aPoint - (20 @ 0).
@@ -942,22 +734,16 @@ NECMenuMorph>>setController: aECController position: aPoint [
 	self openInWorld
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>show [
+{ #category : #actions }
+NECMenuMorph >> show [
 	self resize.
 	self activeHand 
 		newMouseFocus: self.
 	self changed.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>showDetail [
+{ #category : #actions }
+NECMenuMorph >> showDetail [
 	detailMorph ifNotNil: [ ^ self browse ].
 	self itemsCount isZero ifTrue: [ ^ self ].
 	detailMorph := NECDetailMorph new.
@@ -965,30 +751,21 @@ NECMenuMorph>>showDetail [
 	self updateDetail
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>switchToUntyped [
+{ #category : #actions }
+NECMenuMorph >> switchToUntyped [
 	context switchToUntyped.
 	self 
 		removeTitle; 
 		narrowCompletion
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>takesKeyboardFocus [
+{ #category : #testing }
+NECMenuMorph >> takesKeyboardFocus [
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>updateDetail [
+{ #category : #private }
+NECMenuMorph >> updateDetail [
 	detailMorph
 		ifNil: [^ self].
 	detailMorph
@@ -997,11 +774,8 @@ NECMenuMorph>>updateDetail [
 		show
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECMenuMorph>>visibleItemsCount. [
+{ #category : #private }
+NECMenuMorph >> visibleItemsCount. [
 
 	^ self lastVisible - self firstVisible + 1
 ]

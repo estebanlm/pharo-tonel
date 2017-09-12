@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #DelayTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Processes,
-	#timestamp : ''
+	#category : #Kernel-Tests-Processes
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayTest>>testBounds [
+{ #category : #testing }
+DelayTest >> testBounds [
 	"self run: #testBounds"
 
 	self should: [ Delay forMilliseconds: -1 ] raise: Error.
@@ -21,11 +14,8 @@ DelayTest>>testBounds [
 	(Delay forMilliseconds: Float pi) wait	"Wait 3ms"
 ]
 
-{
-	#category : #testing-limits,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayTest>>testMultiProcessWaitOnSameDelay [
+{ #category : #testing-limits }
+DelayTest >> testMultiProcessWaitOnSameDelay [
 	"Ensure that waiting on the same delay from multiple processes raises an error"
 	| delay p1 p2 wasRun |
 	delay := Delay forSeconds: 1.
@@ -42,11 +32,8 @@ DelayTest>>testMultiProcessWaitOnSameDelay [
 
 ]
 
-{
-	#category : #testing-limits,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayTest>>testMultiSchedule [
+{ #category : #testing-limits }
+DelayTest >> testMultiSchedule [
 	"Ensure that scheduling the same delay twice raises an error"
 	| delay |
 	delay := Delay forSeconds: 1.
@@ -55,11 +42,8 @@ DelayTest>>testMultiSchedule [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayTest>>testSemaphoreNoTimeout [
+{ #category : #testing }
+DelayTest >> testSemaphoreNoTimeout [
 	| sem process |
 	sem := Semaphore new.
 	[ | delay |
@@ -73,11 +57,8 @@ DelayTest>>testSemaphoreNoTimeout [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayTest>>testSemaphoreTimeout [
+{ #category : #testing }
+DelayTest >> testSemaphoreTimeout [
 	"When we provide our own semaphore for a Delay, it should be used"
 	"See http://bugs.squeak.org/view.php?id=6834"
 

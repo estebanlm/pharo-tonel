@@ -18,15 +18,11 @@ Class {
 	#classInstVars : [
 		'searchedTextListMaxSize'
 	],
-	#category : #Tool-Finder,
-	#timestamp : '<historical>'
+	#category : #Tool-Finder
 }
 
-{
-	#category : #'event subscriptions',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI class>>doAllSubscriptionsOn: aFinder to: anInstance [
+{ #category : #'event subscriptions' }
+FinderUI class >> doAllSubscriptionsOn: aFinder to: anInstance [
 	self subscribesUpdateSourceCodeOn: aFinder to: anInstance.
 	self subscribesResetEnvironmentOn: aFinder to: anInstance.
 	self subscribesEnableUseRegExOn: aFinder to: anInstance.
@@ -36,27 +32,18 @@ FinderUI class>>doAllSubscriptionsOn: aFinder to: anInstance [
 	self subscribesUpdateListOn: aFinder to: anInstance
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI class>>icon [
+{ #category : #icons }
+FinderUI class >> icon [
 	^ self iconNamed: #smallFindIcon
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI class>>initialize [
+{ #category : #initialize-release }
+FinderUI class >> initialize [
 	searchedTextListMaxSize := 15
 ]
 
-{
-	#category : #explanations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI class>>methodFinderExplanation [
+{ #category : #explanations }
+FinderUI class >> methodFinderExplanation [
 	"The comment in the bottom pane"
 
 	false ifTrue: [MethodFinder methodFor: #( (4 3) 7  (0 5) 5  (5 5) 10)].
@@ -84,117 +71,84 @@ Receiver and arguments do not have to be in the right order.
 See MethodFinder.verify for more examples.'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI class>>on: aFinder [
+{ #category : #'instance creation' }
+FinderUI class >> on: aFinder [
 	| instance |
 	instance := self new finder: aFinder.
 	self doAllSubscriptionsOn: aFinder to: instance.
 	^instance.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI class>>searchedTextListMaxSize: anInteger [
+{ #category : #accessing }
+FinderUI class >> searchedTextListMaxSize: anInteger [
 
 	self allInstancesDo: [:each | each searchedTextListMaxSize: anInteger].
 	searchedTextListMaxSize := anInteger
 ]
 
-{
-	#category : #'event subscriptions',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI class>>subscribesDisableUseRegExOn: aFinder to: anInstance. [
+{ #category : #'event subscriptions' }
+FinderUI class >> subscribesDisableUseRegExOn: aFinder to: anInstance. [
 	aFinder
 		when: #disableUseRegEx
 		send: #disableUseRegEx
 		to: anInstance.
 ]
 
-{
-	#category : #'event subscriptions',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI class>>subscribesEnableUseRegExOn: aFinder to: anInstance [
+{ #category : #'event subscriptions' }
+FinderUI class >> subscribesEnableUseRegExOn: aFinder to: anInstance [
 	aFinder
 		when: #enableUseRegEx
 		send: #enableUseRegEx
 		to: anInstance.
 ]
 
-{
-	#category : #'event subscriptions',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI class>>subscribesResetEnvironmentOn: aFinder to: anInstance  [
+{ #category : #'event subscriptions' }
+FinderUI class >> subscribesResetEnvironmentOn: aFinder to: anInstance [ 
 	aFinder
 		when: #resetEnvironment
 		send: #resetEnvironment
 		to: anInstance
 ]
 
-{
-	#category : #'event subscriptions',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI class>>subscribesUpdateListOn: aFinder to: anInstance [
+{ #category : #'event subscriptions' }
+FinderUI class >> subscribesUpdateListOn: aFinder to: anInstance [
 	aFinder
 		when: #updateResultDictionary
 		send: #updateList
 		to: anInstance.
 ]
 
-{
-	#category : #'event subscriptions',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI class>>subscribesUpdateSelectedClassOn: aFinder to: anInstance [
+{ #category : #'event subscriptions' }
+FinderUI class >> subscribesUpdateSelectedClassOn: aFinder to: anInstance [
 	aFinder
 		when: #updateSelectedClass
 		send: #updateSelectedClass
 		to: anInstance.
 ]
 
-{
-	#category : #'event subscriptions',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI class>>subscribesUpdateSelectedMethodOn: aFinder to: anInstance [
+{ #category : #'event subscriptions' }
+FinderUI class >> subscribesUpdateSelectedMethodOn: aFinder to: anInstance [
 	aFinder
 		when: #updateSelectedMethod
 		send: #updateSelectedMethod
 		to: anInstance.
 ]
 
-{
-	#category : #'event subscriptions',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI class>>subscribesUpdateSourceCodeOn: aFinder to: anInstance [
+{ #category : #'event subscriptions' }
+FinderUI class >> subscribesUpdateSourceCodeOn: aFinder to: anInstance [
 	aFinder
 		when: #updateSourceCode
 		send: #updateSourceCode
 		to: anInstance.
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI class>>taskbarIconName [
+{ #category : #icons }
+FinderUI class >> taskbarIconName [
 	^#smallFindIcon
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>addAllItems: aWindow [
+{ #category : #'items creation' }
+FinderUI >> addAllItems: aWindow [
 	| toolbar height  btnFont  btnToolbar cst |
 	toolbar := self buildSearchModeToolBar: aWindow.
 	height := toolbar minExtent y.
@@ -217,11 +171,8 @@ FinderUI>>addAllItems: aWindow [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>addToSearchedTextList: aString  [
+{ #category : #accessing }
+FinderUI >> addToSearchedTextList: aString [ 
 	self searchedTextList: (self searchedTextList
 			remove: aString
 			ifAbsent: [];
@@ -231,36 +182,24 @@ FinderUI>>addToSearchedTextList: aString  [
 	self searchedTextList addFirst: aString 
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>allClassesButtonAction [
+{ #category : #'buttons behavior' }
+FinderUI >> allClassesButtonAction [
 
 	self finder packagesSelection: self environment.
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>allClassesButtonLabel [
+{ #category : #'buttons behavior' }
+FinderUI >> allClassesButtonLabel [
 	^ 'All Packages'
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>allClassesButtonState [
+{ #category : #'buttons behavior' }
+FinderUI >> allClassesButtonState [
 	^false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>autoSelection [
+{ #category : #private }
+FinderUI >> autoSelection [
 	| aString firstIndex interval string size |
 
 	(self searchingString isEmpty or: [ self useRegEx] )
@@ -290,44 +229,29 @@ FinderUI>>autoSelection [
 		ifFalse: [interval]
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>browseButtonAction [
+{ #category : #'buttons behavior' }
+FinderUI >> browseButtonAction [
 
 	self selectedNode browse.
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>browseButtonLabel [
+{ #category : #'buttons behavior' }
+FinderUI >> browseButtonLabel [
 	^'Browse'
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>browseButtonState [
+{ #category : #'buttons behavior' }
+FinderUI >> browseButtonState [
 	^self selectedClass isNil or: [self selectedMethod isNil]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>browsedEnvironment [
+{ #category : #accessing }
+FinderUI >> browsedEnvironment [
 	^ self environment 
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildAllClassesButton [
+{ #category : #'items creation' }
+FinderUI >> buildAllClassesButton [
 	^ PluggableButtonMorph 
 			on: self 
 			getState: #allClassesButtonState 
@@ -335,20 +259,14 @@ FinderUI>>buildAllClassesButton [
 			label: #allClassesButtonLabel
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildAllTextArea [
+{ #category : #'items creation' }
+FinderUI >> buildAllTextArea [
 	self buildSearchingTextArea.
 	self buildSourceTextArea.
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildBrowseButton [
+{ #category : #'items creation' }
+FinderUI >> buildBrowseButton [
 	^ (PluggableButtonMorph 
 			on: self 
 			getState: #browseButtonState 
@@ -357,11 +275,8 @@ FinderUI>>buildBrowseButton [
 			hResizing: #spaceFill
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildBrowseToolBar: aWindow [
+{ #category : #'items creation' }
+FinderUI >> buildBrowseToolBar: aWindow [
 	| toolbar |
 	toolbar := aWindow newToolbar: {
 		self buildBrowseButton.
@@ -373,11 +288,8 @@ FinderUI>>buildBrowseToolBar: aWindow [
 	^toolbar hResizing: #shrinkWrap
 ]
 
-{
-	#category : #'text areas behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildDescriptionOf: aClass [
+{ #category : #'text areas behavior' }
+FinderUI >> buildDescriptionOf: aClass [
 	^ String
 		streamContents:
 			[ :stream | 
@@ -390,11 +302,8 @@ FinderUI>>buildDescriptionOf: aClass [
 						nextPutAll: aClass comment ] ]
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildEnvironmentButton [
+{ #category : #'items creation' }
+FinderUI >> buildEnvironmentButton [
 	^ (PluggableButtonMorph 
 			on: self 
 			getState: #environmentButtonState 
@@ -403,11 +312,8 @@ FinderUI>>buildEnvironmentButton [
 			beSticky
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildHierarchyButton [
+{ #category : #'items creation' }
+FinderUI >> buildHierarchyButton [
 	^ (PluggableButtonMorph 
 			on: self 
 			getState: #hierarchyButtonState 
@@ -416,11 +322,8 @@ FinderUI>>buildHierarchyButton [
 			hResizing: #spaceFill
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildImplementorsButton [
+{ #category : #'items creation' }
+FinderUI >> buildImplementorsButton [
 	^ (PluggableButtonMorph 
 			on: self 
 			getState: #implementorsButtonState 
@@ -429,11 +332,8 @@ FinderUI>>buildImplementorsButton [
 			hResizing: #spaceFill
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildInheritanceButton [
+{ #category : #'items creation' }
+FinderUI >> buildInheritanceButton [
 	^ (PluggableButtonMorph 
 			on: self 
 			getState: #inheritanceButtonState 
@@ -442,19 +342,13 @@ FinderUI>>buildInheritanceButton [
 			hResizing: #spaceFill
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildPackagesTree [
+{ #category : #'items creation' }
+FinderUI >> buildPackagesTree [
 	^ self defaultTreeMorph
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildRegExChooser [
+{ #category : #'items creation' }
+FinderUI >> buildRegExChooser [
 	| string btnHeight btnWidth |
 	string := 'Regexp'.
 	btnHeight := StandardFonts buttonFont height + 8.
@@ -471,11 +365,8 @@ FinderUI>>buildRegExChooser [
 									label: string
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildSearchButton [
+{ #category : #'items creation' }
+FinderUI >> buildSearchButton [
 	^ (PluggableButtonMorph 
 			on: self 
 			getState: #searchButtonState 
@@ -484,11 +375,8 @@ FinderUI>>buildSearchButton [
 			hResizing: #shrinkWrap
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildSearchModeDropListIn: aWindow [
+{ #category : #'items creation' }
+FinderUI >> buildSearchModeDropListIn: aWindow [
 			^(self theme 
 				newDropListIn: aWindow
 				for:self				
@@ -501,11 +389,8 @@ FinderUI>>buildSearchModeDropListIn: aWindow [
 
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildSearchModeToolBar: aWindow [
+{ #category : #'items creation' }
+FinderUI >> buildSearchModeToolBar: aWindow [
 	^aWindow newToolbar: {
 		self buildSearchingTextArea.
 		self buildSearchButton.
@@ -515,11 +400,8 @@ FinderUI>>buildSearchModeToolBar: aWindow [
 		self buildAllClassesButton}.
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildSearchingTextArea [
+{ #category : #'items creation' }
+FinderUI >> buildSearchingTextArea [
 	^ searchingTextArea := 
 		(EditableDropListMorph
 				on: self
@@ -535,11 +417,8 @@ FinderUI>>buildSearchingTextArea [
 	
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildSendersButton [
+{ #category : #'items creation' }
+FinderUI >> buildSendersButton [
 	^ (PluggableButtonMorph 
 			on: self 
 			getState: #sendersButtonState 
@@ -548,11 +427,8 @@ FinderUI>>buildSendersButton [
 			hResizing: #spaceFill
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildSourceTextArea [
+{ #category : #'items creation' }
+FinderUI >> buildSourceTextArea [
 	sourceTextArea := self sourceTextModel newScrolledText
 		beForSmalltalkCode;
 		beWrapped;
@@ -562,11 +438,8 @@ FinderUI>>buildSourceTextArea [
 	^ sourceTextArea
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>buildVersionsButton [
+{ #category : #'items creation' }
+FinderUI >> buildVersionsButton [
 	^ (PluggableButtonMorph 
 			on: self 
 			getState: #versionsButtonState 
@@ -575,19 +448,13 @@ FinderUI>>buildVersionsButton [
 			hResizing: #spaceFill
 ]
 
-{
-	#category : #'text areas behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>collectFromPackages: aCollection [
+{ #category : #'text areas behavior' }
+FinderUI >> collectFromPackages: aCollection [
 	self packagesSelection: (self environment forPackageNames: aCollection)
 ]
 
-{
-	#category : #'text areas behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>compileSource: aString notifying: aController [
+{ #category : #'text areas behavior' }
+FinderUI >> compileSource: aString notifying: aController [
 
 	| class method |
 	(self selectedClass isNil or: [ self selectedMethod isNil ])
@@ -602,39 +469,27 @@ FinderUI>>compileSource: aString notifying: aController [
 				self changed: #clearUserEdits ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>constructPackagesSet [
+{ #category : #private }
+FinderUI >> constructPackagesSet [
 	| result |
 	result := ((self environment packages collect:#name )difference: (self packagesSelection packages collect:#name)).
 	^result asSet asSortedCollection: [:a :b | a<b]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>constructPackagesSet: aPackageEnvironment [
+{ #category : #private }
+FinderUI >> constructPackagesSet: aPackageEnvironment [
 	| result |
 	result := aPackageEnvironment packages collect:[:c | c name].
 		^(result reject: [:each | each isNil]) asSet asSortedCollection: [:a :b | a < b ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>currentSearchMode [
+{ #category : #accessing }
+FinderUI >> currentSearchMode [
 	^self finder currentSearchMode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>currentSearchMode: aSymbol [
+{ #category : #accessing }
+FinderUI >> currentSearchMode: aSymbol [
 	
 	self finder searchingStringSilently: self searchingTextArea contentMorph textMorph text asString.
 	self searchingTextArea contentMorph textMorph hasUnacceptedEdits:false.
@@ -642,11 +497,8 @@ FinderUI>>currentSearchMode: aSymbol [
 	.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>defaultExplanation [
+{ #category : #private }
+FinderUI >> defaultExplanation [
 ^
 'The Finder can be used in 4 different ways:
 	- Selectors: your research is done among selectors
@@ -664,11 +516,8 @@ The ''Select classes'' button opened a dialog window  to select which classes wi
 The ''All classes'' button is used to reset the classes selection.'
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>defaultTreeMorph [
+{ #category : #'items creation' }
+FinderUI >> defaultTreeMorph [
 	|  col |
 	col := MorphTreeColumn new
 		rowMorphGetSelector: [:node | node displayString asMorph ].
@@ -693,115 +542,76 @@ FinderUI>>defaultTreeMorph [
 			rowColorForEven: Color veryLightGray muchLighter odd: Color white".
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>defaultWindowLabel [
+{ #category : #display }
+FinderUI >> defaultWindowLabel [
 	^'Finder'.
 ]
 
-{
-	#category : #checkbox,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>disableUseRegEx [
+{ #category : #checkbox }
+FinderUI >> disableUseRegEx [
 	useRegExCheckbox isSelected
 		ifTrue: [ useRegExCheckbox toggleSelected].
 	useRegExCheckbox enabled: false.
 
 ]
 
-{
-	#category : #'do it requirements',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>doItContext [
+{ #category : #'do it requirements' }
+FinderUI >> doItContext [
 
 	^ nil
 ]
 
-{
-	#category : #'do it requirements',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>doItReceiver [
+{ #category : #'do it requirements' }
+FinderUI >> doItReceiver [
 
 	^ self selectedClass ifNotNil: [:selectedClass | selectedClass theNonMetaClass].
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>doubleClick [
+{ #category : #'events handling' }
+FinderUI >> doubleClick [
 	self selectedNode doubleClick
 ]
 
-{
-	#category : #checkbox,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>enableUseRegEx [
+{ #category : #checkbox }
+FinderUI >> enableUseRegEx [
 	useRegExCheckbox 
 		enabled: true;
 		updateEnabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>environment [
+{ #category : #accessing }
+FinderUI >> environment [
 
 	^ self finder environment.
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>environmentButtonAction [
+{ #category : #'buttons behavior' }
+FinderUI >> environmentButtonAction [
 	self openPackageChooser
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>environmentButtonLabel [
+{ #category : #'buttons behavior' }
+FinderUI >> environmentButtonLabel [
 	^ 'Packages...'
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>environmentButtonState [
+{ #category : #'buttons behavior' }
+FinderUI >> environmentButtonState [
 	^false.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>finder [
+{ #category : #accessing }
+FinderUI >> finder [
 	^finder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>finder: aFinder [
+{ #category : #accessing }
+FinderUI >> finder: aFinder [
 	finder := aFinder
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>forSelectorsDo: selectorBlock forClassNamesDo: classNamesBlock forSourceDo: sourceBlock forExamplesDo: exampleBlock forPragmasDo: pragmaBlock [
+{ #category : #searching }
+FinderUI >> forSelectorsDo: selectorBlock forClassNamesDo: classNamesBlock forSourceDo: sourceBlock forExamplesDo: exampleBlock forPragmasDo: pragmaBlock [
 
 	self isSelectorsSymbol
 		ifTrue: [^selectorBlock value].
@@ -815,20 +625,14 @@ FinderUI>>forSelectorsDo: selectorBlock forClassNamesDo: classNamesBlock forSour
 		ifTrue: [^pragmaBlock value].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>forceSearch [
+{ #category : #accessing }
+FinderUI >> forceSearch [
 
 	 ^ forceSearch ifNil: [forceSearch := false].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>hierarchy [
+{ #category : #private }
+FinderUI >> hierarchy [
 	
 		self selectedClass ifNotNil: [ :class |
 			self selectedMethod
@@ -837,112 +641,73 @@ FinderUI>>hierarchy [
 					SystemNavigation new browseHierarchy:class selector: selector]]
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>hierarchyButtonAction [
+{ #category : #'buttons behavior' }
+FinderUI >> hierarchyButtonAction [
 	self hierarchy.
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>hierarchyButtonLabel [
+{ #category : #'buttons behavior' }
+FinderUI >> hierarchyButtonLabel [
 	^'Hierarchy'
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>hierarchyButtonState [
+{ #category : #'buttons behavior' }
+FinderUI >> hierarchyButtonState [
 	^self selectedClass isNil.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>implementors [
+{ #category : #private }
+FinderUI >> implementors [
 
 	self selectedMethod ifNil: [^self].
  	SystemNavigation new browseAllImplementorsOf: self selectedMethod
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>implementorsButtonAction [
+{ #category : #'buttons behavior' }
+FinderUI >> implementorsButtonAction [
 	self implementors.
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>implementorsButtonLabel [
+{ #category : #'buttons behavior' }
+FinderUI >> implementorsButtonLabel [
 	^'Implementors'
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>implementorsButtonState [
+{ #category : #'buttons behavior' }
+FinderUI >> implementorsButtonState [
 	^self selectedMethod isNil | self isClassNamesSymbol.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>inheritance [
+{ #category : #private }
+FinderUI >> inheritance [
 	
 		self selectedClass ifNotNil: [ :class |.
 				self selectedMethod ifNotNil: [:selector | 
 					SystemNavigation new methodHierarchyBrowserForClass: class selector: selector]]
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>inheritanceButtonAction [
+{ #category : #'buttons behavior' }
+FinderUI >> inheritanceButtonAction [
 	self inheritance.
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>inheritanceButtonLabel [
+{ #category : #'buttons behavior' }
+FinderUI >> inheritanceButtonLabel [
 	^'Inheritance'
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>inheritanceButtonState [
+{ #category : #'buttons behavior' }
+FinderUI >> inheritanceButtonState [
 	^self selectedClass isNil | self isClassNamesSymbol.
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>initialExtent [
+{ #category : #display }
+FinderUI >> initialExtent [
 	^700 @ 500
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>initialize [
+{ #category : #initialization }
+FinderUI >> initialize [
 	super initialize.
 	finder := nil.
 	forceSearch := nil.
@@ -952,77 +717,50 @@ FinderUI>>initialize [
 	wrapBlockOrSelector := [ :i | i asString ] 
 ]
 
-{
-	#category : #'mode list',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>isClassNamesSymbol [
+{ #category : #'mode list' }
+FinderUI >> isClassNamesSymbol [
 
 	^self finder isClassNamesSymbol
 ]
 
-{
-	#category : #'mode list',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>isExamplesSymbol [
+{ #category : #'mode list' }
+FinderUI >> isExamplesSymbol [
 	^self finder isExamplesSymbol
 ]
 
-{
-	#category : #'mode list',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>isPragmasSymbol [
+{ #category : #'mode list' }
+FinderUI >> isPragmasSymbol [
 	^self finder isPragmasSymbol
 ]
 
-{
-	#category : #'mode list',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>isSelectorsSymbol [
+{ #category : #'mode list' }
+FinderUI >> isSelectorsSymbol [
 	^self finder isSelectorsSymbol
 ]
 
-{
-	#category : #'mode list',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>isSourceSymbol [
+{ #category : #'mode list' }
+FinderUI >> isSourceSymbol [
 	^self finder isSourceSymbol
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>keyStroke: event [
+{ #category : #'events handling' }
+FinderUI >> keyStroke: event [
 	self selectedNode ifNotNil: [:node | node keyStroke: event]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>labelFont [
+{ #category : #private }
+FinderUI >> labelFont [
 	^StandardFonts defaultFont
 ]
 
-{
-	#category : #'t - accessing',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>menu: menu shifted: b  [
+{ #category : #'t - accessing' }
+FinderUI >> menu: menu shifted: b [ 
 	self selectedNode ifNil: [ ^menu ].
 	^ self selectedNode menu: menu shifted: b 
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>open [
+{ #category : #display }
+FinderUI >> open [
 	| window |
 	window := StandardWindow new model: self.
 	self addAllItems: window.
@@ -1031,11 +769,8 @@ FinderUI>>open [
 	self searchingTextArea contentMorph takeKeyboardFocus
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>openPackageChooser [
+{ #category : #private }
+FinderUI >> openPackageChooser [
 	(DialogItemsChooser
 		on: self
 		unselectedItems: self constructPackagesSet
@@ -1046,68 +781,44 @@ FinderUI>>openPackageChooser [
 		selectedItemsLabel: 'Selected Packages' translated) open
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>packagesSelection [
+{ #category : #private }
+FinderUI >> packagesSelection [
 	^self finder packagesSelection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>packagesSelection: aCollection [
+{ #category : #private }
+FinderUI >> packagesSelection: aCollection [
 
 	self finder packagesSelection: aCollection.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>refactor [
+{ #category : #accessing }
+FinderUI >> refactor [
 	^ NautilusRefactoring model: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>resetEnvironment [
+{ #category : #private }
+FinderUI >> resetEnvironment [
 	self triggerEvent: #resetEnvironment
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>resetSearchedTextList [
+{ #category : #private }
+FinderUI >> resetSearchedTextList [
 	self searchedTextList removeAll.
 ]
 
-{
-	#category : #'tree behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>resultDictionary  [
+{ #category : #'tree behavior' }
+FinderUI >> resultDictionary [ 
 	^self finder resultDictionary 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>rootItems [
+{ #category : #accessing }
+FinderUI >> rootItems [
 	^ self resultDictionary keys sort: [ :a :b | a asString < b asString ]
 ]
 
-{
-	#category : #'t - accessing',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>rootNodeClassFromItem: anItem  [
+{ #category : #'t - accessing' }
+FinderUI >> rootNodeClassFromItem: anItem [ 
 	"To have the good class for my nodes, I ask my owner,
 	because he is the only one who knows his state"
 	^ self 
@@ -1121,88 +832,58 @@ FinderUI>>rootNodeClassFromItem: anItem  [
 		forPragmasDo: [FinderPragmaNode]
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>searchButtonAction [
+{ #category : #'buttons behavior' }
+FinderUI >> searchButtonAction [
 	
 	forceSearch := true.
 	self searchingTextArea contentMorph acceptTextInModel.
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>searchButtonLabel [
+{ #category : #'buttons behavior' }
+FinderUI >> searchButtonLabel [
 	^'Search'
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>searchButtonState [
+{ #category : #'buttons behavior' }
+FinderUI >> searchButtonState [
 	^false.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>searchModeHelpText [
+{ #category : #private }
+FinderUI >> searchModeHelpText [
 	^'Choose the mode for the search'
 ]
 
-{
-	#category : #'mode list',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>searchModesList [
+{ #category : #'mode list' }
+FinderUI >> searchModesList [
 	^#(Selectors Classes Source Pragmas Examples)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>searchedTextList [
+{ #category : #accessing }
+FinderUI >> searchedTextList [
 	^searchedTextList ifNil: [ searchedTextList := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>searchedTextList: aCollection [
+{ #category : #accessing }
+FinderUI >> searchedTextList: aCollection [
 
 	searchedTextList := aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>searchedTextListMaxSize [
+{ #category : #accessing }
+FinderUI >> searchedTextListMaxSize [
 	^20
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>searchedTextListMaxSize: anInteger [
+{ #category : #accessing }
+FinderUI >> searchedTextListMaxSize: anInteger [
 	[self searchedTextList size > anInteger]
 		whileTrue: [ self searchedTextList removeLast].
 	self changed: #searchedTextList.
 ]
 
-{
-	#category : #'text areas behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>searchingAccept: aText [
+{ #category : #'text areas behavior' }
+FinderUI >> searchingAccept: aText [
 
 	self forceSearch
 		ifFalse: [aText asString = self searchingString ifTrue: [^self]].
@@ -1210,97 +891,64 @@ FinderUI>>searchingAccept: aText [
 	forceSearch := false.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>searchingString [
+{ #category : #accessing }
+FinderUI >> searchingString [
 	^self finder searchingString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>searchingString: aString [
+{ #category : #accessing }
+FinderUI >> searchingString: aString [
 
 	^self finder searchingString: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>searchingTextArea [
+{ #category : #accessing }
+FinderUI >> searchingTextArea [
 	^searchingTextArea ifNil: [self buildSearchingTextArea]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>selectedClass [
+{ #category : #accessing }
+FinderUI >> selectedClass [
 	^ self finder selectedClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>selectedMethod [
+{ #category : #accessing }
+FinderUI >> selectedMethod [
 	^ self finder selectedMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>selection: aSelection [
+{ #category : #accessing }
+FinderUI >> selection: aSelection [
 	
 	super selection: aSelection.
 	self finder selection: aSelection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>senders [
+{ #category : #private }
+FinderUI >> senders [
 
 	self selectedMethod 
 		ifNotNil: [ :selector |.
 			 	SystemNavigation new browseSendersOf: selector name: 'Senders of ', selector asString autoSelect: selector asString].
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>sendersButtonAction [
+{ #category : #'buttons behavior' }
+FinderUI >> sendersButtonAction [
 	self senders.
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>sendersButtonLabel [
+{ #category : #'buttons behavior' }
+FinderUI >> sendersButtonLabel [
 	^'Senders'
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>sendersButtonState [
+{ #category : #'buttons behavior' }
+FinderUI >> sendersButtonState [
 	^self selectedMethod isNil | self isClassNamesSymbol.
 ]
 
-{
-	#category : #'text areas behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>sourceCode [
+{ #category : #'text areas behavior' }
+FinderUI >> sourceCode [
 
 	^ self selectedClass 
 		ifNil: [
@@ -1319,93 +967,60 @@ FinderUI>>sourceCode [
 					(self selectedClass >> method) sourceCode]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>sourceTextArea [
+{ #category : #accessing }
+FinderUI >> sourceTextArea [
 	^sourceTextArea ifNil: [self buildSourceTextArea]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>sourceTextModel [
+{ #category : #accessing }
+FinderUI >> sourceTextModel [
 	^ sourceTextModel ifNil: [ sourceTextModel := RubScrolledTextModel new interactionModel: self ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>updateSelectedClass [
+{ #category : #private }
+FinderUI >> updateSelectedClass [
 	self changed: #selectedClass
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>updateSelectedMethod [
+{ #category : #private }
+FinderUI >> updateSelectedMethod [
 	self changed: #selectedMethod
 ]
 
-{
-	#category : #'text areas behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>updateSourceCode [
+{ #category : #'text areas behavior' }
+FinderUI >> updateSourceCode [
 	self sourceTextModel setText: self sourceCode 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>useRegEx [
+{ #category : #private }
+FinderUI >> useRegEx [
 	^ self finder useRegEx
 ]
 
-{
-	#category : #'items creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>useRegExCheckbox [
+{ #category : #'items creation' }
+FinderUI >> useRegExCheckbox [
 	^ useRegExCheckbox ifNil: [self buildRegExChooser]
 
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>versionsButtonAction [
+{ #category : #'buttons behavior' }
+FinderUI >> versionsButtonAction [
 	Smalltalk tools versionBrowser 
 		browseVersionsForClass: self selectedClass 
 		selector: self selectedMethod
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>versionsButtonLabel [
+{ #category : #'buttons behavior' }
+FinderUI >> versionsButtonLabel [
 	^'Versions'
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>versionsButtonState [
+{ #category : #'buttons behavior' }
+FinderUI >> versionsButtonState [
 	^self selectedClass isNil | self isClassNamesSymbol.
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-FinderUI>>whenTextAcceptedInView: anAnnouncement [
+{ #category : #'events handling' }
+FinderUI >> whenTextAcceptedInView: anAnnouncement [
 	self compileSource: sourceTextArea text notifying: sourceTextArea
 ]

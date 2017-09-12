@@ -4,23 +4,16 @@ I am a parse tree leaf representing a literal string or number.
 Class {
 	#name : #LiteralNode,
 	#superclass : #LeafNode,
-	#category : #Compiler-ParseNodes,
-	#timestamp : '<historical>'
+	#category : #Compiler-ParseNodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralNode>>accept: aVisitor [
+{ #category : #visiting }
+LiteralNode >> accept: aVisitor [
 	^aVisitor visitLiteralNode: self
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralNode>>emitCodeForValue: stack encoder: encoder [
+{ #category : #'code generation' }
+LiteralNode >> emitCodeForValue: stack encoder: encoder [
 	stack push: 1.
 	(encoder
 		if: code
@@ -31,54 +24,36 @@ LiteralNode>>emitCodeForValue: stack encoder: encoder [
 			[encoder genPushLiteral: index]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralNode>>isConstantNumber [
+{ #category : #testing }
+LiteralNode >> isConstantNumber [
 	^ key isNumber
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralNode>>isLiteralNode [
+{ #category : #testing }
+LiteralNode >> isLiteralNode [
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralNode>>isSpecialConstant [
+{ #category : #testing }
+LiteralNode >> isSpecialConstant [
 	^ code between: LdTrue and: LdMinus1+3
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralNode>>literalValue [
+{ #category : #testing }
+LiteralNode >> literalValue [
 
 	^key
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralNode>>name: literal key: object index: i type: type [
+{ #category : #initialize-release }
+LiteralNode >> name: literal key: object index: i type: type [
 	"For compatibility with Encoder>>name:key:class:type:set:"
 	^self key: object index: i type: type
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralNode>>printOn: aStream indent: level [
+{ #category : #printing }
+LiteralNode >> printOn: aStream indent: level [
 
 	key isVariableBinding
 		ifTrue:
@@ -91,11 +66,8 @@ LiteralNode>>printOn: aStream indent: level [
 			[key storeOn: aStream]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralNode>>sizeCodeForValue: encoder [
+{ #category : #'code generation' }
+LiteralNode >> sizeCodeForValue: encoder [
 	self reserve: encoder.
 	(encoder
 		if: code

@@ -12,31 +12,21 @@ Class {
 		'classIsMeta',
 		'announcer'
 	],
-	#category : #Rubric-Editing-Widgets-Examples,
-	#timestamp : '<historical>'
+	#category : #Rubric-Editing-Widgets-Examples
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample class>>open [
+{ #category : #'instance creation' }
+RubMethodEditingExample class >> open [
 	self new open
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>classIsMeta [
+{ #category : #accessing }
+RubMethodEditingExample >> classIsMeta [
 	^ classIsMeta ifNil: [classIsMeta := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>classIsMeta: aBoolean [
+{ #category : #accessing }
+RubMethodEditingExample >> classIsMeta: aBoolean [
 	classIsMeta := aBoolean.
 	self selector: nil.
 	self changed: #selector.
@@ -45,19 +35,13 @@ RubMethodEditingExample>>classIsMeta: aBoolean [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>className [
+{ #category : #accessing }
+RubMethodEditingExample >> className [
 	^ className ifNotNil: [className asSymbol]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>className: aClassName [
+{ #category : #accessing }
+RubMethodEditingExample >> className: aClassName [
 	className := aClassName copyWithout: Character cr.
 	self selector: nil.
 	self updateCodeWith: ''.
@@ -67,11 +51,8 @@ RubMethodEditingExample>>className: aClassName [
 		ifNotNil: [ self changed: #haveClassName]
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>classSelector [
+{ #category : #view }
+RubMethodEditingExample >> classSelector [
 	| applicantsBlock entryCompletion |
 	applicantsBlock := [(Array
 				streamContents: [:strm | Symbol
@@ -97,30 +78,21 @@ RubMethodEditingExample>>classSelector [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>classToUse [
+{ #category : #accessing }
+RubMethodEditingExample >> classToUse [
 	^ self selectedClass
 		ifNotNil: [self classIsMeta 
 				ifTrue: [self selectedClass class]
 				ifFalse: [self selectedClass]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>haveClassName [
+{ #category : #accessing }
+RubMethodEditingExample >> haveClassName [
 	^ self selectedClass notNil
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>metaSwitch [
+{ #category : #view }
+RubMethodEditingExample >> metaSwitch [
 	^ UIManager default
 		newCheckboxFor: self
 		getSelected: #classIsMeta
@@ -129,11 +101,8 @@ RubMethodEditingExample>>metaSwitch [
 		help: 'Class side is used if checked' 
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>methodSelector [
+{ #category : #view }
+RubMethodEditingExample >> methodSelector [
 	| entryCompletion applicantsBlock |
 	applicantsBlock := [self selectedClass 
 						ifNil: [#()] 
@@ -156,11 +125,8 @@ RubMethodEditingExample>>methodSelector [
 
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>newScrolledText [
+{ #category : #view }
+RubMethodEditingExample >> newScrolledText [
 	| scrolledText |
 	scrolledText := self textModel
 		newScrolledText
@@ -174,21 +140,15 @@ RubMethodEditingExample>>newScrolledText [
 	^ scrolledText
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>okToChange [
+{ #category : #updating }
+RubMethodEditingExample >> okToChange [
 	self textModel canDiscardEdits ifTrue: [ ^ true].
 	self promptForCancel ifTrue: [ self textModel clearUserEdits  ].
 	^ self textModel canDiscardEdits
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>open [
+{ #category : #view }
+RubMethodEditingExample >> open [
 	| window bar editor |
 	window := (StandardWindow labelled: 'Method editor with shout') model: self.
 	editor := self newScrolledText.
@@ -198,11 +158,8 @@ RubMethodEditingExample>>open [
 	^ window openInWorld
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>promptForCancel [
+{ #category : #accessing }
+RubMethodEditingExample >> promptForCancel [
 	"Ask if it is OK to cancel changes"
 	
 	^(self confirm:
@@ -211,36 +168,24 @@ Is it OK to cancel changes?' translated)
 			
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>selectedClass [
+{ #category : #accessing }
+RubMethodEditingExample >> selectedClass [
 	self className ifNil: [ ^ nil ]. 
 	^ Smalltalk globals at: self className ifAbsent: []
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>selectedClassOrMetaClass [
+{ #category : #accessing }
+RubMethodEditingExample >> selectedClassOrMetaClass [
 	^ self classToUse 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>selector [
+{ #category : #accessing }
+RubMethodEditingExample >> selector [
 	^ selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>selector: aSymbol [
+{ #category : #accessing }
+RubMethodEditingExample >> selector: aSymbol [
 	selector := aSymbol ifNotNil: [:sel |( sel copyWithout: Character cr) asSymbol].
 	self updateCodeWith: ''.
 	self changed: #selector.
@@ -249,29 +194,20 @@ RubMethodEditingExample>>selector: aSymbol [
 			ifTrue: [self updateCodeWith:  (cls sourceCodeAt: selector)]]
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>shoutAboutToStyle: ATextView [
+{ #category : #shout }
+RubMethodEditingExample >> shoutAboutToStyle: ATextView [
 
 	ATextView classOrMetaClass: self classToUse.
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>textModel [
+{ #category : #accessing }
+RubMethodEditingExample >> textModel [
 	^ textModel ifNil: [ textModel := RubScrolledTextModel new interactionModel: self ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMethodEditingExample>>updateCodeWith: someText. [
+{ #category : #accessing }
+RubMethodEditingExample >> updateCodeWith: someText. [
 	self textModel setText: someText.
 
 ]

@@ -4,25 +4,18 @@ A FLDictionaryCollectionCluster is a special optional cluster that rather than u
 Class {
 	#name : #FLDictionaryCollectionCluster,
 	#superclass : #FLAbstractCollectionCluster,
-	#category : #Fuel-Clusters-Optionals,
-	#timestamp : '<historical>'
+	#category : #Fuel-Clusters-Optionals
 }
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDictionaryCollectionCluster>>materializeReferencesOf: anObject with: aDecoder [
+{ #category : #serialize/materialize }
+FLDictionaryCollectionCluster >> materializeReferencesOf: anObject with: aDecoder [
 	aDecoder nextEncodedPositiveInteger "anObject size"
 		 timesRepeat: 
 			[ anObject add: aDecoder nextEncodedReference -> aDecoder nextEncodedReference ]
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDictionaryCollectionCluster>>referencesOf: anObject do: aBlock [
+{ #category : #analyzing }
+FLDictionaryCollectionCluster >> referencesOf: anObject do: aBlock [
 	aBlock value: anObject size.
 	anObject
 		keysAndValuesDo: [ :key :value | 
@@ -31,11 +24,8 @@ FLDictionaryCollectionCluster>>referencesOf: anObject do: aBlock [
 
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDictionaryCollectionCluster>>serializeReferencesOf: anObject with: anEncoder [
+{ #category : #serialize/materialize }
+FLDictionaryCollectionCluster >> serializeReferencesOf: anObject with: anEncoder [
 	| refs |
 	refs := self references at: anObject ifAbsent: [ ^ self ].
 	anEncoder encodePositiveInteger: refs first.

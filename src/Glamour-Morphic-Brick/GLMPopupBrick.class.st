@@ -10,33 +10,23 @@ Class {
 		'titleBrick',
 		'titleText'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-UI-Popup,
-	#timestamp : 'AliakseiSyrel 2/28/2017 09:19'
+	#category : #Glamour-Morphic-Brick-Widgets-UI-Popup
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick class>>exampleAllTypesBelowOpen [
+{ #category : #examples }
+GLMPopupBrick class >> exampleAllTypesBelowOpen [
 	
 	self gtExampleAllTypesBelow openCenteredInBrickWindowLabeled: 'All Below Popup Types'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick class>>exampleAllTypesOpen [
+{ #category : #examples }
+GLMPopupBrick class >> exampleAllTypesOpen [
 	
 	self gtExampleAllTypes openCenteredInBrickWindowLabeled: 'All Popup Types'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick class>>gtExampleAllTypes [
+{ #category : #examples }
+GLMPopupBrick class >> gtExampleAllTypes [
 	<gtExample>
 	<label: 'Example of all popup types'>
 
@@ -50,11 +40,8 @@ GLMPopupBrick class>>gtExampleAllTypes [
 		yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick class>>gtExampleAllTypesBelow [
+{ #category : #examples }
+GLMPopupBrick class >> gtExampleAllTypesBelow [
 	<gtExample>
 	<label: 'Example of all popup types opening below of anchor brick'>
 
@@ -68,46 +55,31 @@ GLMPopupBrick class>>gtExampleAllTypesBelow [
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick>>beError [
+{ #category : #initialization }
+GLMPopupBrick >> beError [
 
 	self themer: self themer popupErrorThemer themer
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick>>beHelp [
+{ #category : #initialization }
+GLMPopupBrick >> beHelp [
 
 	self themer: self themer popupHelpThemer themer
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick>>beSuccess [
+{ #category : #initialization }
+GLMPopupBrick >> beSuccess [
 
 	self themer: self themer popupSuccessThemer themer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick>>hintBrick [
+{ #category : #accessing }
+GLMPopupBrick >> hintBrick [
 	^ hintBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick>>hintBrick: anObject [
+{ #category : #accessing }
+GLMPopupBrick >> hintBrick: anObject [
 	hintBrick := anObject.
 	
 	
@@ -117,29 +89,20 @@ GLMPopupBrick>>hintBrick: anObject [
 	self contentBrick addBrickBack: self hintBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick>>hintText [
+{ #category : #accessing }
+GLMPopupBrick >> hintText [
 	^ hintText ifNil: [ hintText := 'Need help?' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick>>hintText: aBrick [
+{ #category : #accessing }
+GLMPopupBrick >> hintText: aBrick [
 	hintText := aBrick.
 
 	self hintBrick ifNotNil: [ self hintBrick text: self hintText ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick>>newHintBrick [
+{ #category : #'instance creation' }
+GLMPopupBrick >> newHintBrick [
 
 	^ GLMLabelBrick new
 		text: self hintText;
@@ -148,11 +111,8 @@ GLMPopupBrick>>newHintBrick [
 		height: [ :b | b approximateHeight ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick>>newTitleBrick [
+{ #category : #'instance creation' }
+GLMPopupBrick >> newTitleBrick [
 
 	^ GLMLabelBrick new
 		text: self titleText;
@@ -161,29 +121,20 @@ GLMPopupBrick>>newTitleBrick [
 		height: [ :b | b approximateHeight ]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick>>onCreated [
+{ #category : #events-processing }
+GLMPopupBrick >> onCreated [
 	self contentBrick padding: #(5 0).
 	self titleBrick: self newTitleBrick.
 	self hintBrick: self newHintBrick.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick>>titleBrick [
+{ #category : #accessing }
+GLMPopupBrick >> titleBrick [
 	^ titleBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick>>titleBrick: aBrick [
+{ #category : #accessing }
+GLMPopupBrick >> titleBrick: aBrick [
 	titleBrick := aBrick.
 	
 	self titleBrick
@@ -192,19 +143,13 @@ GLMPopupBrick>>titleBrick: aBrick [
 	self contentBrick addBrickFirst: self titleBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick>>titleText [
+{ #category : #accessing }
+GLMPopupBrick >> titleText [
 	^ titleText ifNil: [ titleText := 'Hi,' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrick>>titleText: aText [
+{ #category : #accessing }
+GLMPopupBrick >> titleText: aText [
 	titleText := aText.
 	
 	self titleBrick ifNotNil: [ self titleBrick text: self titleText ]

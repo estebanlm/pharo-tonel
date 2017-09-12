@@ -1,27 +1,16 @@
-Extension {
-	#name : #RBProgramNode
-}
+Extension { #name : #RBProgramNode }
 
-{
-	#category : #'*SmartSuggestions',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-RBProgramNode>>specialCommands [
+{ #category : #'*SmartSuggestions' }
+RBProgramNode >> specialCommands [
 	^#().
 ]
 
-{
-	#category : #'*SmartSuggestions',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-RBProgramNode>>suggestions [
+{ #category : #'*SmartSuggestions' }
+RBProgramNode >> suggestions [
 	^SugsSuggestionFactory globalCommands addAll: self specialCommands; yourself 
 ]
 
-{
-	#category : #'*SmartSuggestions',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-RBProgramNode>>sugsMenuLabel [
+{ #category : #'*SmartSuggestions' }
+RBProgramNode >> sugsMenuLabel [
 	^ self formattedCode
 ]

@@ -17,33 +17,23 @@ Class {
 		'filesystem',
 		'path'
 	],
-	#category : #FileSystem-Core-Public,
-	#timestamp : '<historical>'
+	#category : #FileSystem-Core-Public
 }
 
-{
-	#category : #'cross platform',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference class>>/ aString [
+{ #category : #'cross platform' }
+FileReference class >> / aString [
 	"Answer a reference to the argument resolved against the root of the current disk filesystem."
 	
 	^ FileSystem disk / aString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference class>>fileSystem: aFilesystem path: aPath [
+{ #category : #'instance creation' }
+FileReference class >> fileSystem: aFilesystem path: aPath [
 	^ self new setFileSystem: aFilesystem path: aPath
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference class>>newTempFilePrefix: prefix suffix: suffix [
+{ #category : #'instance creation' }
+FileReference class >> newTempFilePrefix: prefix suffix: suffix [
 	| tmpDir random fileName |
 	
 	tmpDir := FileLocator temp asFileReference.
@@ -54,19 +44,13 @@ FileReference class>>newTempFilePrefix: prefix suffix: suffix [
 	^ tmpDir / fileName
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>, extension [
+{ #category : #navigating }
+FileReference >> , extension [
 	^ self withPath: self path, extension
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>= other [
+{ #category : #comparing }
+FileReference >> = other [
 	"Two FileReferences are considered equal if they refer to the same file / directory.
 	As paths can have multiple relative representations, compare the absolute paths."
 	"Perform the path comparison last as conversion to absolute paths is relatively expensive"
@@ -76,22 +60,16 @@ FileReference>>= other [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>absolutePath [
+{ #category : #accessing }
+FileReference >> absolutePath [
 	"Return the absolute of the receiver"
 	^ self path isRelative
 		ifFalse: [ self path ]
 		ifTrue: [ filesystem resolve: self path ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>asAbsolute [
+{ #category : #converting }
+FileReference >> asAbsolute [
 	"Return the receiver as an absolute file reference."
 	
 	^ self isAbsolute
@@ -99,264 +77,174 @@ FileReference>>asAbsolute [
 		ifFalse: [ filesystem referenceTo: (filesystem resolve: path) ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>asFileReference [
+{ #category : #converting }
+FileReference >> asFileReference [
 	^ self
 ]
 
-{
-	#category : #streams-compatibility,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>binaryReadStream [
+{ #category : #streams-compatibility }
+FileReference >> binaryReadStream [
 	^ filesystem binaryReadStreamOn: self path
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>containsReference: aReference [
+{ #category : #comparing }
+FileReference >> containsReference: aReference [
 	^  aReference fileSystem = filesystem and: [path contains: aReference path]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>copyTo: aReference [
+{ #category : #operations }
+FileReference >> copyTo: aReference [
 	self isDirectory
 		ifTrue: [ aReference ensureCreateDirectory ]
 		ifFalse: [ filesystem copy: path toReference: aReference ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>copyWithPath: newPath [
+{ #category : #copying }
+FileReference >> copyWithPath: newPath [
 	^ filesystem referenceTo: newPath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>creationTime  [
+{ #category : #accessing }
+FileReference >> creationTime [ 
 	^ filesystem creationTimeOf: self path
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>delete [
+{ #category : #operations }
+FileReference >> delete [
 	filesystem delete: path
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>deleteIfAbsent: aBlock [
+{ #category : #operations }
+FileReference >> deleteIfAbsent: aBlock [
 	self exists 
 		ifTrue: [ self delete ]
 		ifFalse: aBlock
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>ensureCreateDirectory [
+{ #category : #operations }
+FileReference >> ensureCreateDirectory [
 	"Create if necessary a directory for the receiver."
 	filesystem ensureCreateDirectory: path
 	
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>entries [
+{ #category : #navigating }
+FileReference >> entries [
 	"Return the entries (meta data - file description) of the direct children of the receiver"
 	^ self fileSystem entriesAt: self path 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>entry [
+{ #category : #accessing }
+FileReference >> entry [
 	"Return the entry (meta data) describing the receiver."
 	^ filesystem entryAt: path
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>exists [
+{ #category : #testing }
+FileReference >> exists [
 	^ filesystem exists: path
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>fileSystem [
+{ #category : #accessing }
+FileReference >> fileSystem [
 	"Return the filesystem to which the receiver belong."
 	^ filesystem
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>fullName [
+{ #category : #accessing }
+FileReference >> fullName [
 	"Return the full path name of the receiver."
 	^ filesystem stringFromPath: (filesystem resolve: path)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>fullPath [
+{ #category : #accessing }
+FileReference >> fullPath [
 	^ self path
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>hasChildren [
+{ #category : #testing }
+FileReference >> hasChildren [
 	"Return whether the receiver has any children."
 	"FileSystem workingDirectory hasChildren"
 	
 	^ filesystem hasChildren: path
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>hasDirectories [
+{ #category : #testing }
+FileReference >> hasDirectories [
 	"Return whether the receiver has children that are directories."
 	"FileSystem workingDirectory hasDirectories"
 	
 	^ filesystem hasDirectories: path
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>hasFiles [
+{ #category : #testing }
+FileReference >> hasFiles [
 	"Return whether the receiver has children that are files."
 	"FileSystem workingDirectory hasFiles"
 	
 	^ filesystem hasFiles: path
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>hash [
+{ #category : #comparing }
+FileReference >> hash [
 	^ path hash bitXor: filesystem hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>isAbsolute [
+{ #category : #testing }
+FileReference >> isAbsolute [
 	^ path isAbsolute
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>isDirectory [
+{ #category : #testing }
+FileReference >> isDirectory [
 	^ filesystem isDirectory: path
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>isFile [
+{ #category : #testing }
+FileReference >> isFile [
 	^ filesystem isFile: path
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>isReadable [
+{ #category : #testing }
+FileReference >> isReadable [
 	^ filesystem isReadable: path
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>isRelative [
+{ #category : #testing }
+FileReference >> isRelative [
 	^ path isRelative
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>isRoot [
+{ #category : #testing }
+FileReference >> isRoot [
 	^ path isRoot
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>isSymlink  [
+{ #category : #testing }
+FileReference >> isSymlink [ 
 	^ filesystem isSymlink: path
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>isWritable [
+{ #category : #testing }
+FileReference >> isWritable [
 	^ filesystem isWritable: path
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>mimeTypes [
+{ #category : #accessing }
+FileReference >> mimeTypes [
 	"Return the possible mime types for the given path."
 	^ filesystem mimeTypesAt: path
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>modificationTime  [
+{ #category : #accessing }
+FileReference >> modificationTime [ 
 	"Returns the last date of modification of self"
 	^ filesystem modificationTimeOf: self path
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>moveTo: aReference [
+{ #category : #operations }
+FileReference >> moveTo: aReference [
 	
 	| result |
 	result := self fileSystem 
@@ -366,11 +254,8 @@ FileReference>>moveTo: aReference [
 		self setFileSystem: result fileSystem path: result path ].		
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>nextVersion [
+{ #category : #utility }
+FileReference >> nextVersion [
 	"Assumes a file name includes a version number encoded as '.' followed by digits 
 	preceding the file extension.  Increment the version number and answer the new file name.
 	If a version number is not found, return just the file"
@@ -395,63 +280,42 @@ FileReference>>nextVersion [
 	^ parent / (nameWithoutExtension , '.', version asString) , self extension
 ]
 
-{
-	#category : #streams,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>openWritable: aBoolean  [
+{ #category : #streams }
+FileReference >> openWritable: aBoolean [ 
 	^ filesystem open: path writable: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>path [
+{ #category : #accessing }
+FileReference >> path [
 	"Return the path internal representation that denotes the receiver in the context of its filesystem. "
 	^ path
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>pathString [
+{ #category : #printing }
+FileReference >> pathString [
 	"Return the full path name of the receiver."
 	
 	^ filesystem stringFromPath: (filesystem resolve: path)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>permissions [
+{ #category : #accessing }
+FileReference >> permissions [
 	^ filesystem permissions: self path
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>printOn: aStream [
+{ #category : #printing }
+FileReference >> printOn: aStream [
 	filesystem forReferencePrintOn: aStream.
 	filesystem printPath: path on: aStream
 ]
 
-{
-	#category : #streams,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>readStream [
+{ #category : #streams }
+FileReference >> readStream [
 	^ filesystem readStreamOn: self path
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>renameTo: newBasename [
+{ #category : #operations }
+FileReference >> renameTo: newBasename [
 	
 	| destinationPath |
 	destinationPath := self fileSystem 
@@ -466,64 +330,43 @@ FileReference>>renameTo: newBasename [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>resolve [
+{ #category : #accessing }
+FileReference >> resolve [
 	^ self
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>resolvePath: anObject [
+{ #category : #resolving }
+FileReference >> resolvePath: anObject [
 	^ self withPath: (path resolve: anObject)
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>resolveReference: aReference [
+{ #category : #resolving }
+FileReference >> resolveReference: aReference [
 	
 	^ (filesystem = aReference fileSystem or: [aReference isRelative])
 		ifTrue: [filesystem referenceTo: (path resolvePath: aReference path)]
 		ifFalse: [aReference]
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>resolveString: aString  [
+{ #category : #resolving }
+FileReference >> resolveString: aString [ 
 	| thePath |
 	thePath := filesystem pathFromString: aString.
 	^ filesystem referenceTo: (path resolve: thePath)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>setFileSystem: aFilesystem path: aPath [
+{ #category : #initialize-release }
+FileReference >> setFileSystem: aFilesystem path: aPath [
 	filesystem := aFilesystem.
 	path := aPath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>size [
+{ #category : #accessing }
+FileReference >> size [
 	^ filesystem sizeOf: path
 ]
 
-{
-	#category : #streams,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileReference>>writeStream [
+{ #category : #streams }
+FileReference >> writeStream [
 	^ filesystem writeStreamOn: self path
 ]

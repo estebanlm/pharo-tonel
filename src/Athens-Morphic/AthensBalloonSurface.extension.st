@@ -1,12 +1,7 @@
-Extension {
-	#name : #AthensBalloonSurface
-}
+Extension { #name : #AthensBalloonSurface }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>displayOnMorphicCanvas: canvas at: aPoint [
+{ #category : #'*Athens-Morphic' }
+AthensBalloonSurface >> displayOnMorphicCanvas: canvas at: aPoint [
 	"display receiver on morphic canvas"
 	canvas
 		image: self asForm

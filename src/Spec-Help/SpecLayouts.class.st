@@ -6,23 +6,16 @@ See class side for selectors.
 Class {
 	#name : #SpecLayouts,
 	#superclass : #SpecHelpTopics,
-	#category : #Spec-Help,
-	#timestamp : 'IgnacioSniechowski 2/25/2015 08:33'
+	#category : #Spec-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SpecLayouts class>>bookName [
+{ #category : #accessing }
+SpecLayouts class >> bookName [
 	^'Spec Layouts'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SpecLayouts class>>columns [
+{ #category : #pages }
+SpecLayouts class >> columns [
 	^HelpTopic 
 		title: 'Layouts in columns'
 		contents: 'Having the widgets rendered as a column is easy:
@@ -36,11 +29,8 @@ SpecLayouts class>>columns [
 			yourself'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SpecLayouts class>>columnsAndRows [
+{ #category : #pages }
+SpecLayouts class >> columnsAndRows [
 	^HelpTopic 
 		title: 'Combining Columns and Rows'
 		contents: 'Rows and columns can be combined to build more complex layouts, and splitters between cells can be added. The example 1.24 shows how to create a 3 columns layout, containing three buttons in each column. This example also shows the addSplitter message, which adds a splitter between the element added before it and the element added after.
@@ -100,11 +90,8 @@ Note that it is generally considered a bad habit to hardcode the size of the wid
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SpecLayouts class>>intro [
+{ #category : #pages }
+SpecLayouts class >> intro [
 	^HelpTopic 
 		title: 'Layouts'
 		contents: 'As layouts can become quite complex, this section provides a list of examples of the construction of layouts.  All the methods for adding sub widgets can be found in the ''commands'' and ''commands-advanced'' protocols of the SpecLayout class. You can explore them by doing:
@@ -114,19 +101,13 @@ SpecLayouts class>>intro [
 Often the layout of user interfaces can be described in rows and columns, and Spec provides for an easy way to specify such layouts.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SpecLayouts class>>pages [
+{ #category : #accessing }
+SpecLayouts class >> pages [
 	^#(intro columns rows columnsAndRows)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SpecLayouts class>>rows [
+{ #category : #pages }
+SpecLayouts class >> rows [
 	^HelpTopic 
 		title: 'Layouts in rows'
 		contents: 'If you want to arrange your widgets in a row, that''s simple:

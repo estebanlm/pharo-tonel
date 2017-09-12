@@ -25,109 +25,75 @@ Class {
 		'CpuWatcherEnabled',
 		'CurrentCPUWatcher'
 	],
-	#category : #Tool-ProcessBrowser,
-	#timestamp : 'VeronicaUquillas 6/11/2010 12:47'
+	#category : #Tool-ProcessBrowser
 }
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher class>>cpuWatcherEnabled [
+{ #category : #setting }
+CPUWatcher class >> cpuWatcherEnabled [
 	^ CpuWatcherEnabled ifNil: [CpuWatcherEnabled := false]
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher class>>cpuWatcherEnabled: aBoolean [
+{ #category : #setting }
+CPUWatcher class >> cpuWatcherEnabled: aBoolean [
 	CpuWatcherEnabled = aBoolean ifTrue: [^ self].
 	CpuWatcherEnabled := aBoolean.
 	self monitorPreferenceChanged
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher class>>current [
+{ #category : #accessing }
+CPUWatcher class >> current [
 	^CurrentCPUWatcher
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher class>>currentWatcherProcess [
+{ #category : #accessing }
+CPUWatcher class >> currentWatcherProcess [
 	^CurrentCPUWatcher ifNotNil: [ CurrentCPUWatcher watcherProcess ]
 
 ]
 
-{
-	#category : #monitoring,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher class>>dumpTallyOnTranscript [
+{ #category : #monitoring }
+CPUWatcher class >> dumpTallyOnTranscript [
 	self current ifNotNil: [
 		self processBrowser dumpTallyOnTranscript: self current tally
 	]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher class>>initialize [
+{ #category : #'class initialization' }
+CPUWatcher class >> initialize [
 	SessionManager default 
 		registerToolClassNamed: self name
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher class>>isMonitoring [
+{ #category : #testing }
+CPUWatcher class >> isMonitoring [
 
 	^CurrentCPUWatcher notNil and: [ CurrentCPUWatcher isMonitoring ]
 
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher class>>monitorPreferenceChanged [
+{ #category : #setting }
+CPUWatcher class >> monitorPreferenceChanged [
 	self cpuWatcherEnabled
 		ifTrue: [ self startMonitoring ]
 		ifFalse: [ self stopMonitoring ]
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher class>>shutDown [
+{ #category : #'system startup' }
+CPUWatcher class >> shutDown [
 	self stopMonitoring.
 ]
 
-{
-	#category : #startup-shutdown,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher class>>startMonitoring [
+{ #category : #startup-shutdown }
+CPUWatcher class >> startMonitoring [
 	"CPUWatcher startMonitoring"
 
 	^self startMonitoringPeriod: 20 rate: 100 threshold: 0.8
 ]
 
-{
-	#category : #monitoring,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher class>>startMonitoringPeriod: pd rate: rt threshold: th [
+{ #category : #monitoring }
+CPUWatcher class >> startMonitoringPeriod: pd rate: rt threshold: th [
 	"CPUWatcher startMonitoring"
 
 	CurrentCPUWatcher ifNotNil: [ ^CurrentCPUWatcher startMonitoring. ].
@@ -139,19 +105,13 @@ CPUWatcher class>>startMonitoringPeriod: pd rate: rt threshold: th [
 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher class>>startUp [
+{ #category : #'system startup' }
+CPUWatcher class >> startUp [
 	self monitorPreferenceChanged.
 ]
 
-{
-	#category : #monitoring,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher class>>stopMonitoring [
+{ #category : #monitoring }
+CPUWatcher class >> stopMonitoring [
 	"CPUWatcher stopMonitoring"
 
 	CurrentCPUWatcher ifNotNil: [ CurrentCPUWatcher stopMonitoring. ].
@@ -159,11 +119,8 @@ CPUWatcher class>>stopMonitoring [
 
 ]
 
-{
-	#category : #'porcine capture',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>catchThePig: aProcess [
+{ #category : #'porcine capture' }
+CPUWatcher >> catchThePig: aProcess [
 	| rules  |
 	"nickname, allow-stop, allow-debug"
 	rules := self processBrowser nameAndRulesFor: aProcess.
@@ -177,11 +134,8 @@ CPUWatcher>>catchThePig: aProcess [
 
 ]
 
-{
-	#category : #'process operations',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>debugProcess: aProcess [
+{ #category : #'process operations' }
+CPUWatcher >> debugProcess: aProcess [
 	| uiPriority  |
 	uiPriority := Processor activeProcess priority.
 	aProcess priority >= uiPriority ifTrue: [
@@ -190,20 +144,14 @@ CPUWatcher>>debugProcess: aProcess [
 	self processBrowser debugProcess: aProcess.
 ]
 
-{
-	#category : #'process operations',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>debugProcess: aProcess fromMenu: aMenuMorph [
+{ #category : #'process operations' }
+CPUWatcher >> debugProcess: aProcess fromMenu: aMenuMorph [
 	aMenuMorph delete.
 	self debugProcess: aProcess.
 ]
 
-{
-	#category : #'porcine capture',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>findThePig [
+{ #category : #'porcine capture' }
+CPUWatcher >> findThePig [
 	"tally has been updated. Look at it to see if there is a bad process.
 	This runs at a very high priority, so make it fast"
 
@@ -217,19 +165,13 @@ CPUWatcher>>findThePig [
 	self catchThePig: process
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>isMonitoring [
+{ #category : #accessing }
+CPUWatcher >> isMonitoring [
 	^watcher notNil
 ]
 
-{
-	#category : #startup-shutdown,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>monitorProcessPeriod: secs sampleRate: msecs [
+{ #category : #startup-shutdown }
+CPUWatcher >> monitorProcessPeriod: secs sampleRate: msecs [
 	self stopMonitoring.
 
 	watcher := [ [ | promise |
@@ -241,11 +183,8 @@ CPUWatcher>>monitorProcessPeriod: secs sampleRate: msecs [
 	Processor yield 
 ]
 
-{
-	#category : #'porcine capture',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>openMorphicWindowForSuspendedProcess: aProcess [
+{ #category : #'porcine capture' }
+CPUWatcher >> openMorphicWindowForSuspendedProcess: aProcess [
 	| menu rules |
 	menu := UIManager default newMenuIn: self for: self.
 	"nickname  allow-stop  allow-debug"
@@ -280,92 +219,62 @@ What do you want to do with it?'.
 
 ]
 
-{
-	#category : #'porcine capture',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>openWindowForSuspendedProcess: aProcess [
+{ #category : #'porcine capture' }
+CPUWatcher >> openWindowForSuspendedProcess: aProcess [
 
 	 UIManager default defer: [ self openMorphicWindowForSuspendedProcess: aProcess ] 
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>processBrowser [
+{ #category : #accessing }
+CPUWatcher >> processBrowser [
 	^ Smalltalk tools processBrowser
 ]
 
-{
-	#category : #'process operations',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>resumeProcess: aProcess fromMenu: aMenuMorph [
+{ #category : #'process operations' }
+CPUWatcher >> resumeProcess: aProcess fromMenu: aMenuMorph [
 	aMenuMorph delete.
 	self processBrowser resumeProcess: aProcess.
 ]
 
-{
-	#category : #startup-shutdown,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>startMonitoring [
+{ #category : #startup-shutdown }
+CPUWatcher >> startMonitoring [
 	self
 		monitorProcessPeriod: 20 sampleRate: 100
 ]
 
-{
-	#category : #startup-shutdown,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>stopMonitoring [
+{ #category : #startup-shutdown }
+CPUWatcher >> stopMonitoring [
 	watcher ifNotNil: [
 		self processBrowser terminateProcess: watcher.
 		watcher := nil.
 	]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>tally [
+{ #category : #accessing }
+CPUWatcher >> tally [
 	^tally copy
 ]
 
-{
-	#category : #'process operations',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>terminateProcess: aProcess fromMenu: aMenuMorph [
+{ #category : #'process operations' }
+CPUWatcher >> terminateProcess: aProcess fromMenu: aMenuMorph [
 	aMenuMorph delete.
 	self processBrowser terminateProcess: aProcess.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>threshold [
+{ #category : #accessing }
+CPUWatcher >> threshold [
 	"What fraction of the time can a process be the active process before we stop it?"
 	^threshold
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>threshold: thresh [
+{ #category : #accessing }
+CPUWatcher >> threshold: thresh [
 	"What fraction of the time can a process be the active process before we stop it?"
 	threshold := (thresh max: 0.02) min: 1.0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CPUWatcher>>watcherProcess [
+{ #category : #accessing }
+CPUWatcher >> watcherProcess [
 	^watcher
 ]

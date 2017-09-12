@@ -8,153 +8,98 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #UnifiedFFI,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture class>>forCurrentArchitecture [
+{ #category : #'instance creation' }
+FFIArchitecture class >> forCurrentArchitecture [
 	^ (self allSubclasses detect: #isActive) uniqueInstance
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture class>>isActive [
+{ #category : #testing }
+FFIArchitecture class >> isActive [
 	^ false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture class>>new [
+{ #category : #'instance creation' }
+FFIArchitecture class >> new [
 	self error: 'Use #forCurrentArchitecture'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture class>>uniqueInstance [
+{ #category : #private }
+FFIArchitecture class >> uniqueInstance [
 	self = FFIArchitecture 
 		ifTrue: [ self error: 'I''m an abstract class, use one of my children instead.' ].
 	^ uniqueInstance ifNil: [ uniqueInstance := self basicNew initialize ]
 ]
 
-{
-	#category : #'default abi',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture>>areStructuresSplitIntoRegisters [
+{ #category : #'default abi' }
+FFIArchitecture >> areStructuresSplitIntoRegisters [
 	^ false
 ]
 
-{
-	#category : #'default abi',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture>>computeStructureRegisterPassingLayout: aStructureClass [
+{ #category : #'default abi' }
+FFIArchitecture >> computeStructureRegisterPassingLayout: aStructureClass [
 	^ nil
 	
 ]
 
-{
-	#category : #types,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture>>externalLongType [
+{ #category : #types }
+FFIArchitecture >> externalLongType [
 	^ ExternalType long
 ]
 
-{
-	#category : #types,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture>>externalULongType [
+{ #category : #types }
+FFIArchitecture >> externalULongType [
 	^ ExternalType ulong
 ]
 
-{
-	#category : #'default abi',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture>>floatRegisterCountForParameterPassing [
+{ #category : #'default abi' }
+FFIArchitecture >> floatRegisterCountForParameterPassing [
 	^ 0
 ]
 
-{
-	#category : #'default abi',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture>>floatRegisterSize [
+{ #category : #'default abi' }
+FFIArchitecture >> floatRegisterSize [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'default abi',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture>>integerRegisterCountForParameterPassing [
+{ #category : #'default abi' }
+FFIArchitecture >> integerRegisterCountForParameterPassing [
 	^ 0
 ]
 
-{
-	#category : #'default abi',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture>>integerRegisterSize [
+{ #category : #'default abi' }
+FFIArchitecture >> integerRegisterSize [
 	self subclassResponsibility
 ]
 
-{
-	#category : #types,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture>>longType [
+{ #category : #types }
+FFIArchitecture >> longType [
 	^ FFIInt32
 ]
 
-{
-	#category : #types,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture>>longTypeSize [
+{ #category : #types }
+FFIArchitecture >> longTypeSize [
 	^ self externalLongType byteSize
 ]
 
-{
-	#category : #'default abi',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture>>maxStructureSizeToPassInRegisters [
+{ #category : #'default abi' }
+FFIArchitecture >> maxStructureSizeToPassInRegisters [
 	^ 0
 ]
 
-{
-	#category : #'default abi',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture>>returnSingleFloatsAsDoubles [
+{ #category : #'default abi' }
+FFIArchitecture >> returnSingleFloatsAsDoubles [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'default abi',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture>>shadowCallSpaceSize [
+{ #category : #'default abi' }
+FFIArchitecture >> shadowCallSpaceSize [
 	^ 0
 ]
 
-{
-	#category : #types,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIArchitecture>>ulongType [
+{ #category : #types }
+FFIArchitecture >> ulongType [
 	^ FFIUInt32
 ]

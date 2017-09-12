@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #FFIExternalUnionTests,
 	#superclass : #TestCase,
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalUnionTests>>testUnionAccess [
+{ #category : #tests }
+FFIExternalUnionTests >> testUnionAccess [
 
 	| union |
 	

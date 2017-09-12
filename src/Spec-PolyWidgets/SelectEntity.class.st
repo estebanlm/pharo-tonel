@@ -17,15 +17,11 @@ Class {
 		'ghostText',
 		'selectDialog'
 	],
-	#category : #Spec-PolyWidgets-Widgets,
-	#timestamp : 'jfabry 12/13/2016 15:51'
+	#category : #Spec-PolyWidgets-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity class>>defaultSpec [
+{ #category : #specs }
+SelectEntity class >> defaultSpec [
 	<spec: #default>
 		
 	^SpecLayout composed
@@ -38,11 +34,8 @@ SelectEntity class>>defaultSpec [
 
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity class>>example [
+{ #category : #example }
+SelectEntity class >> example [
 	self new
 		selectDialog: [ FastTableModel new items: #(Henrik Peter); yourself];
 		displaySymbol: #asString;
@@ -52,30 +45,21 @@ SelectEntity class>>example [
 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>displaySymbol [
+{ #category : #api }
+SelectEntity >> displaySymbol [
 	"<api: #inspect>"
 	"return the method selector used to get the label of the entity that is for entry completion"
 	^ displaySymbol value ifNil: [ #printString ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>displaySymbol: anObject [
+{ #category : #api }
+SelectEntity >> displaySymbol: anObject [
 	displaySymbol value: anObject.
 	entityText entryCompletion: self entitiesEntryCompletion.
 ]
 
-{
-	#category : #entryCompletion,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>entitiesEntryCompletion [
+{ #category : #entryCompletion }
+SelectEntity >> entitiesEntryCompletion [
 	^ EntryCompletion new
 				dataSourceBlock: [:currText | self possibleEntities collect: [:each | 
 		each perform: self displaySymbol ]];
@@ -86,72 +70,48 @@ SelectEntity>>entitiesEntryCompletion [
 					currEntity asUppercase includesSubstring: currText asString asUppercase].
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>entity [
+{ #category : #api }
+SelectEntity >> entity [
 	
 	^ entity value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>entity: anObject [
+{ #category : #api }
+SelectEntity >> entity: anObject [
 	entity value: anObject.
 	anObject ifNotNil: [  
 		self entityText text: (anObject perform: self displaySymbol)] ifNil: [ self entityText text: '' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>entityText [
+{ #category : #accessing }
+SelectEntity >> entityText [
 	^ entityText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>entityText: anObject [
+{ #category : #accessing }
+SelectEntity >> entityText: anObject [
 	entityText := anObject
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>ghostText [
+{ #category : #api }
+SelectEntity >> ghostText [
 	^ ghostText value ifNil: [ '' ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>ghostText: aString [
+{ #category : #api }
+SelectEntity >> ghostText: aString [
 	ghostText value: aString.
 	entityText ghostText: aString
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>initialize [
+{ #category : #initialization }
+SelectEntity >> initialize [
 	super initialize.
 	self initializeValueHolders
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>initializePresenter [
+{ #category : #initialization }
+SelectEntity >> initializePresenter [
 	selectEntity 
 		action: [  |select|
 			select := self selectDialog value.
@@ -161,11 +121,8 @@ SelectEntity>>initializePresenter [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>initializeValueHolders [
+{ #category : #initialization }
+SelectEntity >> initializeValueHolders [
 	displaySymbol := #displayString asValueHolder.
 	entity := nil asValueHolder.
 	ghostText := 'Choose one' asValueHolder.
@@ -173,11 +130,8 @@ SelectEntity>>initializeValueHolders [
 	selectDialog := [  ] asValueHolder
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>initializeWidgets [
+{ #category : #initialization }
+SelectEntity >> initializeWidgets [
 	entityText := self newTextInput
 		ghostText: self ghostText;
 		autoAccept: true;
@@ -191,39 +145,27 @@ SelectEntity>>initializeWidgets [
 		add: selectEntity
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>possibleEntities [
+{ #category : #api }
+SelectEntity >> possibleEntities [
 	possibleEntities value ifNil: [ ^#() ]
 		ifNotNil: [ ^possibleEntities value value ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>possibleEntities: aBlock [
+{ #category : #api }
+SelectEntity >> possibleEntities: aBlock [
 	"<api: #block getter: #possibleEntities registration: #whenPossibleEntitiesChanged:>"
 	"Set the block used to return a collection of all possible entity choices"
 	possibleEntities value: aBlock.
 	entityText entryCompletion: self entitiesEntryCompletion.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>selectDialog [
+{ #category : #api }
+SelectEntity >> selectDialog [
 	^ selectDialog value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>selectDialog: anObject [
+{ #category : #api }
+SelectEntity >> selectDialog: anObject [
 	"<api: #block getter: #selectDialog registration: #whenSelectDialogChanged:>"
 	"Set a block that returns an object that will 
 	first be sent #openDialogWithSpec
@@ -231,58 +173,37 @@ SelectEntity>>selectDialog: anObject [
 	selectDialog value: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>selectEntity [
+{ #category : #accessing }
+SelectEntity >> selectEntity [
 	^ selectEntity
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>selectEntity: anObject [
+{ #category : #accessing }
+SelectEntity >> selectEntity: anObject [
 	selectEntity := anObject
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>whenDisplaySymbolChanged: aBlock [
+{ #category : #api-events }
+SelectEntity >> whenDisplaySymbolChanged: aBlock [
 	displaySymbol whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>whenEntityChanged: aBlock [
+{ #category : #api-events }
+SelectEntity >> whenEntityChanged: aBlock [
 	entity whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>whenGhostTextChanged: aBlock [
+{ #category : #api-events }
+SelectEntity >> whenGhostTextChanged: aBlock [
 	ghostText whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>whenPossibleEntitiesChanged: aBlock [
+{ #category : #api-events }
+SelectEntity >> whenPossibleEntitiesChanged: aBlock [
 	possibleEntities whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SelectEntity>>whenSelectDialogChanged: aBlock [
+{ #category : #api-events }
+SelectEntity >> whenSelectDialogChanged: aBlock [
 	selectDialog whenChangedDo: aBlock
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #ClassDescription
-}
+Extension { #name : #ClassDescription }
 
-{
-	#category : #'*qualityAssistantRecording',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ClassDescription>>dataForQAR [
+{ #category : #'*qualityAssistantRecording' }
+ClassDescription >> dataForQAR [
 
 	^ super dataForQAR
 		at: #class put: self class name;

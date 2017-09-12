@@ -7,15 +7,11 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #QualityAssistantRecording,
-	#timestamp : 'YuriyTymchuk 11/4/2015 14:04'
+	#category : #QualityAssistantRecording
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QAEventCollector class>>initialize [
+{ #category : #'class initialization' }
+QAEventCollector class >> initialize [
 	SessionManager default
 		register: (ClassSessionHandler forClassNamed: self name)
 		inCategory: SessionManager default toolsCategory  
@@ -27,20 +23,14 @@ QAEventCollector class>>initialize [
 	ReSystemAnnouncer uniqueInstance weak when: ReCritiqueEvent send: #recordAnnouncement: to: self
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QAEventCollector class>>recordAnnouncement: anAnnouncement [
+{ #category : #events }
+QAEventCollector class >> recordAnnouncement: anAnnouncement [
 
 	self uniqueInstance recordAnnouncement: anAnnouncement 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QAEventCollector class>>recordMeta [
+{ #category : #actions }
+QAEventCollector class >> recordMeta [
 	
 	[ GTEventCollector new
 	category: #qualityAssistantMeta;
@@ -54,20 +44,14 @@ QAEventCollector class>>recordMeta [
 	  do: [ :error | ReSettings showErrors ifTrue: [ error pass ] ]
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QAEventCollector class>>startUp: resuming [
+{ #category : #'system startup' }
+QAEventCollector class >> startUp: resuming [
 	
 	self recordMeta 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QAEventCollector class>>uniqueInstance [
+{ #category : #'instance creation' }
+QAEventCollector class >> uniqueInstance [
 	^ uniqueInstance first ifNil: [ 
 		uniqueInstance at: 1 put: (
 			self new
@@ -76,29 +60,20 @@ QAEventCollector class>>uniqueInstance [
 				yourself) ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QAEventCollector class>>unload [
+{ #category : #initialize-release }
+QAEventCollector class >> unload [
 
 	self uniqueInstance liberate
 
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QAEventCollector>>defaultCategory [
+{ #category : #configuration }
+QAEventCollector >> defaultCategory [
 	^ #qualityAssistantEvents
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QAEventCollector>>initialize [
+{ #category : #initialization }
+QAEventCollector >> initialize [
 	super initialize.
 	self
 		category: #qualityAssistantEvents;
@@ -106,11 +81,8 @@ QAEventCollector>>initialize [
 			aGTEventAnnouncement at: #qaEventFormatVersion put: 1.1 ]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QAEventCollector>>recordAnnouncement: anAnnouncement [
+{ #category : #events }
+QAEventCollector >> recordAnnouncement: anAnnouncement [
 	Privacy sendDiagnosticsAndUsageData ifFalse: [ ^ self ].	
 	(anAnnouncement respondsTo: #dataForQAR) ifTrue: [
 		[ self add:

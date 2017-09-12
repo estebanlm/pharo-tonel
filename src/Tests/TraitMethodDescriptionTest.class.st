@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #TraitMethodDescriptionTest,
 	#superclass : #TraitsTestCase,
-	#category : #Tests-Traits,
-	#timestamp : ''
+	#category : #Tests-Traits
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitMethodDescriptionTest>>testArgumentNames [
+{ #category : #testing }
+TraitMethodDescriptionTest >> testArgumentNames [
 	self t1 compile: 'zork1: myArgument zork2: mySecondArgument ^true'.
 	self t2 compile: 'zork1: myArgument zork2: somethingElse ^false'.
 	self assert: ((self t5 sourceCodeAt: #zork1:zork2:) asString 
@@ -23,11 +16,8 @@ TraitMethodDescriptionTest>>testArgumentNames [
 				beginsWith: 'zork1: arg1 zork2: arg2')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitMethodDescriptionTest>>testCategories [
+{ #category : #testing }
+TraitMethodDescriptionTest >> testCategories [
 	self assert: (self t4 organization categoryOfElement: #m21) equals: #cat1.
 	self assert: (self t4 organization categoryOfElement: #m22) equals: #cat2.
 	self assert: (self t4 organization categoryOfElement: #m11) equals: #catX.
@@ -48,11 +38,8 @@ TraitMethodDescriptionTest>>testCategories [
 	self assert: (self t4 organization categories includes: #catA) not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitMethodDescriptionTest>>testConflictMethodCreation [
+{ #category : #testing }
+TraitMethodDescriptionTest >> testConflictMethodCreation [
 	"Generate conflicting methods between t1 and t2
 	and check the resulting method in Trait t5 (or c2).
 	Also test selectors like foo:x (without space) or selectors with CRs."
@@ -89,11 +76,8 @@ TraitMethodDescriptionTest>>testConflictMethodCreation [
 	self should: [self c2 new zork1: 1 zork2: 2] raise: Error
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitMethodDescriptionTest>>testConflictingCategories [
+{ #category : #testing }
+TraitMethodDescriptionTest >> testConflictingCategories [
 	| t7 t8 |
 	self t2 compile: 'm11' classified: #catY.
 	self assert: (self t4 organization categoryOfElement: #m11) equals: #catX.
@@ -115,11 +99,8 @@ TraitMethodDescriptionTest>>testConflictingCategories [
 	self assert: (t8 organization categoryOfElement: #m11) equals: #catZ
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitMethodDescriptionTest>>testInitialize [
+{ #category : #testing }
+TraitMethodDescriptionTest >> testInitialize [
 	| empty |
 	empty := TraitMethodDescription new.
 	self assert: empty isEmpty.

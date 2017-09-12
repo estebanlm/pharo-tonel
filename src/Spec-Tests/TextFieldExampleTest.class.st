@@ -1,17 +1,10 @@
-"
-
-"
 Class {
 	#name : #TextFieldExampleTest,
 	#superclass : #SpecTestCase,
-	#category : #Spec-Tests-Examples,
-	#timestamp : ''
+	#category : #Spec-Tests-Examples
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TextFieldExampleTest>>classToTest [
+{ #category : #running }
+TextFieldExampleTest >> classToTest [
 	^ TextFieldExample
 ]

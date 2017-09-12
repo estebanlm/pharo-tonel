@@ -12,70 +12,48 @@ Class {
 	#classVars : [
 		'Registry'
 	],
-	#category : #FileSystem-Disk,
-	#timestamp : 'cwp 11/18/2009 13:02'
+	#category : #FileSystem-Disk
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle class>>initialize [
+{ #category : #'class initialization' }
+FileHandle class >> initialize [
 	self useFilePlugin.
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle class>>register: aFileHandle [
+{ #category : #'as yet unclassified' }
+FileHandle class >> register: aFileHandle [
 	"properly register the given FileHandle for being closed on garbage collection"
 	^self registry add: aFileHandle
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle class>>registry [
+{ #category : #'as yet unclassified' }
+FileHandle class >> registry [
 	^Registry ifNil: [Registry := WeakRegistry new]
 
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle class>>startUp: resuming [
+{ #category : #'class initialization' }
+FileHandle class >> startUp: resuming [
 	"This functionality is disabled for now, to avoid doing a lot of processing at
 	image start up. To reenable, add this class to the start up list."
 	
 	resuming ifTrue: [self allInstancesDo: [:ea | ea startUp]]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle class>>useFilePlugin [
+{ #category : #'class initialization' }
+FileHandle class >> useFilePlugin [
 	Primitives := FilePluginPrims new
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>assureOpen [
+{ #category : #public }
+FileHandle >> assureOpen [
 	"compatibility method to make the FileHandle Tests pass"
 	self isOpen ifFalse: [ id := self basicOpen ].
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>at: index read: buffer startingAt: start count: count [
+{ #category : #public }
+FileHandle >> at: index read: buffer startingAt: start count: count [
 	
 	self flag: 'TODO: remove once FileHandles are really used!'.
 	self assureOpen.
@@ -86,11 +64,8 @@ FileHandle>>at: index read: buffer startingAt: start count: count [
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>at: index write: buffer startingAt: start count: count [
+{ #category : #public }
+FileHandle >> at: index write: buffer startingAt: start count: count [
 	
 	self flag: 'TODO: remove once FileHandles are really used!'.
 	self assureOpen.
@@ -101,11 +76,8 @@ FileHandle>>at: index write: buffer startingAt: start count: count [
 
 ]
 
-{
-	#category : #streams-compatibility,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>binaryReadStream [
+{ #category : #streams-compatibility }
+FileHandle >> binaryReadStream [
 	^ (FileStream onHandle: self)
 		ifNil: [ self streamError ]
 		ifNotNil: [ :stream | 
@@ -114,28 +86,19 @@ FileHandle>>binaryReadStream [
 				yourself ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>close [
+{ #category : #public }
+FileHandle >> close [
 	Primitives close: id.
 	id := nil
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>finalize [
+{ #category : #finalization }
+FileHandle >> finalize [
 	self primCloseNoError: id.
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>flush [
+{ #category : #public }
+FileHandle >> flush [
 	
 	self flag: 'TODO: remove once FileHandles are really used!'.
 	self assureOpen.
@@ -143,19 +106,13 @@ FileHandle>>flush [
 	Primitives flush: id
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>isOpen [
+{ #category : #testing }
+FileHandle >> isOpen [
 	^ (Primitives sizeOrNil: id) notNil
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>open [
+{ #category : #public }
+FileHandle >> open [
 	self flag: 'TODO: for now we solely rely on the old FileStreams'
 	"id := self basicOpen.
 	id ifNil: 	[
@@ -163,30 +120,21 @@ FileHandle>>open [
 		self error: 'Unable to open file ' , reference printString]"
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>readStream [
+{ #category : #public }
+FileHandle >> readStream [
 	^ (FileStream onHandle: self)
 		ifNil: [ self streamError ]
 	
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>register [
+{ #category : #finalization }
+FileHandle >> register [
 	"register the instance for proper clreanup on garbage collection"
 	^self class register: self
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>size [
+{ #category : #public }
+FileHandle >> size [
 	
 	self flag: 'TODO: remove once FileHandles are really used!'.
 	self assureOpen.
@@ -194,11 +142,8 @@ FileHandle>>size [
 	^ Primitives sizeOf: id
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>startUp [
+{ #category : #private }
+FileHandle >> startUp [
 	"This functionality is disabled for now, to avoid doing lots of processing
 	on start up."
 	
@@ -209,21 +154,15 @@ FileHandle>>startUp [
 	self basicOpen
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>streamError [
+{ #category : #public }
+FileHandle >> streamError [
 	reference exists
 		ifFalse: [FileDoesNotExist signalWith: reference].
 	self error: 'Unable to open file ' , reference printString
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>sync [
+{ #category : #public }
+FileHandle >> sync [
 	
 	self flag: 'TODO: remove once FileHandles are really used!'.
 	self assureOpen.
@@ -231,21 +170,15 @@ FileHandle>>sync [
 	Primitives sync: id
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>truncateTo: anInteger [
+{ #category : #public }
+FileHandle >> truncateTo: anInteger [
 	Primitives setPosition: id to: anInteger.
 	Primitives truncate: id to: anInteger.
 	self reopen
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileHandle>>writeStream [
+{ #category : #public }
+FileHandle >> writeStream [
 	^( FileStream onHandle: self)
 		 ifNil: [ self streamError ]
 ]

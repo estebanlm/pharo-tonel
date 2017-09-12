@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #BooleanSlotTest,
 	#superclass : #SlotSilentTest,
-	#category : #Slot-Tests-Examples,
-	#timestamp : ''
+	#category : #Slot-Tests-Examples
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-BooleanSlotTest>>testExampleBooleanSlot [
+{ #category : #tests }
+BooleanSlotTest >> testExampleBooleanSlot [
 
 	| object slot reader writer |
 	
@@ -54,11 +47,8 @@ BooleanSlotTest>>testExampleBooleanSlot [
 	self assert: object slot1 == false.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-BooleanSlotTest>>testExampleTwoBooleanSlots [
+{ #category : #tests }
+BooleanSlotTest >> testExampleTwoBooleanSlots [
 
 	| object slot1 slot2 |
 	
@@ -91,11 +81,8 @@ BooleanSlotTest>>testExampleTwoBooleanSlots [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-BooleanSlotTest>>testExampleTwoBooleanSlotsRemoveOne [
+{ #category : #tests }
+BooleanSlotTest >> testExampleTwoBooleanSlotsRemoveOne [
 
 	| object slot1 slot2 |
 	

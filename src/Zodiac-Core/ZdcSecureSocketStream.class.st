@@ -19,15 +19,11 @@ Class {
 		'out',
 		'connecting'
 	],
-	#category : #Zodiac-Core,
-	#timestamp : 'SvenVanCaekenberghe 5/18/2011 11:50'
+	#category : #Zodiac-Core
 }
 
-{
-	#category : #ssl,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>accept [
+{ #category : #ssl }
+ZdcSecureSocketStream >> accept [
 	"Do the SSL server handshake."
 	
 	| count result |
@@ -44,11 +40,8 @@ ZdcSecureSocketStream>>accept [
 	connecting := false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>atEnd [
+{ #category : #testing }
+ZdcSecureSocketStream >> atEnd [
 	"I am atEnd when there is no more data to be read and there never will be.
 	This means that readBuffer must be empty, there must be no more unread data 
 	available at the socket, and the socket must be closed"
@@ -64,11 +57,8 @@ ZdcSecureSocketStream>>atEnd [
 	^ self isConnected not
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>close [
+{ #category : #initialize-release }
+ZdcSecureSocketStream >> close [
 	"Close the stream, flush if necessary. 
 	Destory the SSLSession object."
 
@@ -80,11 +70,8 @@ ZdcSecureSocketStream>>close [
 		in := out := nil ]
 ]
 
-{
-	#category : #ssl,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>connect [
+{ #category : #ssl }
+ZdcSecureSocketStream >> connect [
 	"Do the SSL client handshake."
 	
 	| count result |
@@ -101,11 +88,8 @@ ZdcSecureSocketStream>>connect [
 	
 ]
 
-{
-	#category : #'private in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>fillBytes: bytes startingAt: offset count: count [
+{ #category : #'private in' }
+ZdcSecureSocketStream >> fillBytes: bytes startingAt: offset count: count [
 	"Ask to read count elements into bytes starting at offset. Do not wait. Return read count.
 	Overwritten: decrypt and if necessary ask the socket for encrypted data using a super call."
 	
@@ -131,21 +115,15 @@ ZdcSecureSocketStream>>fillBytes: bytes startingAt: offset count: count [
 	^ 0
 ]
 
-{
-	#category : #'private in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>fillEncryptedBytes: bytes startingAt: offset count: count [
+{ #category : #'private in' }
+ZdcSecureSocketStream >> fillEncryptedBytes: bytes startingAt: offset count: count [
 	"Read encrypted bytes from the network. Do not wait."
 	
 	^ super fillBytes: bytes startingAt: offset count: count
 ]
 
-{
-	#category : #'private out',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>flushBytes: bytes startingAt: offset count: count [
+{ #category : #'private out' }
+ZdcSecureSocketStream >> flushBytes: bytes startingAt: offset count: count [
 	"Ask to write count bytes starting from offset. Wait. Fail if not successful
 	Overwritten: first encrypt the data, then send it to the socket using a super call."
 	
@@ -163,30 +141,21 @@ ZdcSecureSocketStream>>flushBytes: bytes startingAt: offset count: count [
 		currentOffset := currentOffset + chunkCount ]
 ]
 
-{
-	#category : #'private out',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>flushEncryptedBytes: bytes startingAt: offset count: count [
+{ #category : #'private out' }
+ZdcSecureSocketStream >> flushEncryptedBytes: bytes startingAt: offset count: count [
 	"Write encrypted bytes to the network."
 	
 	^ super flushBytes: bytes startingAt: offset count: count
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>initialize  [
+{ #category : #initialize-release }
+ZdcSecureSocketStream >> initialize [ 
 	super initialize.
 	connecting := false
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>initializeBuffers [
+{ #category : #initialize-release }
+ZdcSecureSocketStream >> initializeBuffers [
 	"The maximum payload message length of a TLS record is 16Kb,
 	add a margin for the header and trailer."
 	
@@ -197,11 +166,8 @@ ZdcSecureSocketStream>>initializeBuffers [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>isConnected [
+{ #category : #testing }
+ZdcSecureSocketStream >> isConnected [
 	"Are we connected at the socket level ?
 	Has the SSL handshake been done successfully ?"
 
@@ -209,11 +175,8 @@ ZdcSecureSocketStream>>isConnected [
 		and: [ sslSession notNil and: [ connecting or: [ sslSession isConnected ] ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>isDataAvailable [
+{ #category : #testing }
+ZdcSecureSocketStream >> isDataAvailable [
 	"Return true when there is data available for reading.
 	This does not block."
 	
@@ -228,11 +191,8 @@ ZdcSecureSocketStream>>isDataAvailable [
 	^ false
 ]
 
-{
-	#category : #'private in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>readEncryptedBytes: bytes startingAt: offset count: count [
+{ #category : #'private in' }
+ZdcSecureSocketStream >> readEncryptedBytes: bytes startingAt: offset count: count [
 	"Read encrypted bytes from the network. Wait if necessary."
 	
 	| result |
@@ -245,22 +205,16 @@ ZdcSecureSocketStream>>readEncryptedBytes: bytes startingAt: offset count: count
 			result ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>resetEncryptedBuffers [
+{ #category : #private }
+ZdcSecureSocketStream >> resetEncryptedBuffers [
 	"Not necessary, but useful for debugging"
 	
 	in atAllPut: 0.
 	out atAllPut: 0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>sslException: text code: code [
+{ #category : #private }
+ZdcSecureSocketStream >> sslException: text code: code [
 	self error: 
 		(String streamContents: [ :stream |
 			stream << 'SSL Exception: ' << text << ' [code:'.
@@ -268,11 +222,8 @@ ZdcSecureSocketStream>>sslException: text code: code [
 			stream << ']' ]) 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>sslSession [
+{ #category : #accessing }
+ZdcSecureSocketStream >> sslSession [
 	"Return the underlying ZdcAbstractSSLSession object 
 	that we use for encryption and decryption, 
 	as well as connection setup handshaking, connect and accept"
@@ -281,10 +232,7 @@ ZdcSecureSocketStream>>sslSession [
 	^ sslSession
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSecureSocketStream>>sslSessionClass [
+{ #category : #accessing }
+ZdcSecureSocketStream >> sslSessionClass [
 	^ ZdcPluginSSLSession 
 ]

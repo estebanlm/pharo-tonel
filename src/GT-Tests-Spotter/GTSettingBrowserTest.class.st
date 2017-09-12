@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GTSettingBrowserTest,
 	#superclass : #TestCase,
-	#category : #GT-Tests-Spotter-SettingBrowser,
-	#timestamp : ''
+	#category : #GT-Tests-Spotter-SettingBrowser
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSettingBrowserTest>>testgroupedAndSortedSpotterExtensions [
+{ #category : #tests }
+GTSettingBrowserTest >> testgroupedAndSortedSpotterExtensions [
 
 	| res |
 	res := GTSpotterExtensionSettings groupedAndSortedSpotterExtensions.
@@ -20,19 +13,12 @@ GTSettingBrowserTest>>testgroupedAndSortedSpotterExtensions [
 	self assert: (res allSatisfy: [ :ass | ass value allSatisfy: [ :g | g class = RGMethodDefinition ] ])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSettingBrowserTest>>testshouldSpotterIgnoreProcessorDefinedInMethod [
-
+{ #category : #tests }
+GTSettingBrowserTest >> testshouldSpotterIgnoreProcessorDefinedInMethod [
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSettingBrowserTest>>testspotterExtensionTitleOf [
+{ #category : #tests }
+GTSettingBrowserTest >> testspotterExtensionTitleOf [
 	
 	| t |
 	t := GTSpotterExtensionSettings spotterExtensionTitleOf: MCPackage>> #spotterForPackageFor:.

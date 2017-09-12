@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #FLSimpleStackTest,
 	#superclass : #TestCase,
-	#category : #FuelTests-Collections,
-	#timestamp : ''
+	#category : #FuelTests-Collections
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSimpleStackTest>>testCapacity [
+{ #category : #testing }
+FLSimpleStackTest >> testCapacity [
 
 	| stack |
 	stack := FLSimpleStack new: 3.
@@ -22,11 +15,8 @@ FLSimpleStackTest>>testCapacity [
 	self assert: 5 = stack capacity.
 ]
 
-{
-	#category : #tests-adding,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSimpleStackTest>>testGrow [
+{ #category : #tests-adding }
+FLSimpleStackTest >> testGrow [
 
 	| stack |
 	stack := FLSimpleStack new: 1.
@@ -35,22 +25,16 @@ FLSimpleStackTest>>testGrow [
 	self assert: 1 < stack capacity.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSimpleStackTest>>testIsEmpty [
+{ #category : #testing }
+FLSimpleStackTest >> testIsEmpty [
 
 	| stack |
 	stack := FLSimpleStack new.
 	self assert: stack isEmpty.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSimpleStackTest>>testPop [
+{ #category : #testing }
+FLSimpleStackTest >> testPop [
 
 	| stack |
 	stack := FLSimpleStack new.
@@ -59,11 +43,8 @@ FLSimpleStackTest>>testPop [
 	self assert: stack isEmpty.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSimpleStackTest>>testPush [
+{ #category : #testing }
+FLSimpleStackTest >> testPush [
 
 	| stack |
 	stack := FLSimpleStack new.

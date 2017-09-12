@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #OCVariableSpecialisatioTest,
 	#superclass : #TestCase,
-	#category : #OpalCompiler-Tests-Misc,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-Misc
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCVariableSpecialisatioTest>>testVarTemp [
+{ #category : #tests }
+OCVariableSpecialisatioTest >> testVarTemp [
 	| sequenceNode returnNode |
 	sequenceNode := RBParser parseExpression: '| t1 t2 t3 | t1 := 1. t2 := 2. t3 := 3. ^t2'.
 	returnNode := sequenceNode statements last.

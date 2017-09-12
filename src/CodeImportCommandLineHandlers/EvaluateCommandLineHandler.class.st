@@ -22,31 +22,21 @@ Important: don't manually save the image at the end of the expression by calling
 Class {
 	#name : #EvaluateCommandLineHandler,
 	#superclass : #STCommandLineHandler,
-	#category : #CodeImportCommandLineHandlers,
-	#timestamp : '<historical>'
+	#category : #CodeImportCommandLineHandlers
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-EvaluateCommandLineHandler class>>commandName [
+{ #category : #accessing }
+EvaluateCommandLineHandler class >> commandName [
 	^ 'eval'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-EvaluateCommandLineHandler class>>description [
+{ #category : #accessing }
+EvaluateCommandLineHandler class >> description [
 	^ 'Directly evaluates passed in one line scripts'
 ]
 
-{
-	#category : #'handler selection',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-EvaluateCommandLineHandler class>>isResponsibleFor: commandLineArguments [
+{ #category : #'handler selection' }
+EvaluateCommandLineHandler class >> isResponsibleFor: commandLineArguments [
 	"directly handle top-level -e and --evaluate options"
 	commandLineArguments withFirstArgument: [ :arg| 
 		(#('-e' '--evaluate') includes: arg)
@@ -55,11 +45,8 @@ EvaluateCommandLineHandler class>>isResponsibleFor: commandLineArguments [
 	^ commandLineArguments includesSubCommand: self commandName
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-EvaluateCommandLineHandler>>activate [
+{ #category : #activation }
+EvaluateCommandLineHandler >> activate [
 	self activateHelp
 		ifTrue: [  ^ self ].
 		
@@ -78,11 +65,8 @@ EvaluateCommandLineHandler>>activate [
 		ifFalse: [ self quit ]
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-EvaluateCommandLineHandler>>argumentString [
+{ #category : #activation }
+EvaluateCommandLineHandler >> argumentString [
 	| arguments skipArguments |
 	
 	"Now this is ugly... Coral would be nice here! Basically we strip skipArguments if, and only if they appear at the beginning of arguments"
@@ -98,11 +82,8 @@ EvaluateCommandLineHandler>>argumentString [
 	^ arguments joinUsing: Character space.
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-EvaluateCommandLineHandler>>evaluate: aStream [
+{ #category : #commands }
+EvaluateCommandLineHandler >> evaluate: aStream [
 	| result |
 	[ 
 	result := Smalltalk compiler evaluate: aStream.
@@ -115,22 +96,16 @@ EvaluateCommandLineHandler>>evaluate: aStream [
 		do: [ :error | self handleError: error ]
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-EvaluateCommandLineHandler>>evaluateArguments [
+{ #category : #activation }
+EvaluateCommandLineHandler >> evaluateArguments [
 	| argumentString |
 	argumentString :=  self argumentString.
 	argumentString ifEmpty: [ ^ self ].
 	self evaluate: argumentString
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-EvaluateCommandLineHandler>>evaluateStdIn [
+{ #category : #activation }
+EvaluateCommandLineHandler >> evaluateStdIn [
 	| stdin |
 	stdin := FileStream stdin ifNil: [ ^ self ].
 	stdin atEnd  ifTrue: [ ^ self ].

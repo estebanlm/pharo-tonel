@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloScriptGitBasedDownloadNotification,
 	#superclass : #Notification,
@@ -8,38 +5,25 @@ Class {
 		'projectPath',
 		'versionString'
 	],
-	#category : #Metacello-Core-Scripts,
-	#timestamp : ''
+	#category : #Metacello-Core-Scripts
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptGitBasedDownloadNotification>>projectPath [
+{ #category : #accessing }
+MetacelloScriptGitBasedDownloadNotification >> projectPath [
 	^ projectPath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptGitBasedDownloadNotification>>projectPath: anObject [
+{ #category : #accessing }
+MetacelloScriptGitBasedDownloadNotification >> projectPath: anObject [
 	projectPath := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptGitBasedDownloadNotification>>versionString [
+{ #category : #accessing }
+MetacelloScriptGitBasedDownloadNotification >> versionString [
 	^ versionString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptGitBasedDownloadNotification>>versionString: anObject [
+{ #category : #accessing }
+MetacelloScriptGitBasedDownloadNotification >> versionString: anObject [
 	versionString := anObject
 ]

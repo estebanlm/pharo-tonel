@@ -22,15 +22,11 @@ Class {
 	#instVars : [
 		'image'
 	],
-	#category : #Zinc-HTTP-Client-Server,
-	#timestamp : '<historical>'
+	#category : #Zinc-HTTP-Client-Server
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnImageExampleDelegate class>>installInDefaultServer [
+{ #category : #public }
+ZnImageExampleDelegate class >> installInDefaultServer [
 	"Assuming the default server has the default delegate, 
 	install ourself under /image"
 	
@@ -38,30 +34,21 @@ ZnImageExampleDelegate class>>installInDefaultServer [
 		map: 'image' to: self new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnImageExampleDelegate>>downloadPharoLogo [
+{ #category : #accessing }
+ZnImageExampleDelegate >> downloadPharoLogo [
 	^ ZnClient new beOneShot
 		get: 'http://pharo.org/files/pharo.png';
 		entity
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnImageExampleDelegate>>form [
+{ #category : #accessing }
+ZnImageExampleDelegate >> form [
 	^ self formForImageEntity: self image
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnImageExampleDelegate>>formForImageEntity: imageEntity [
+{ #category : #accessing }
+ZnImageExampleDelegate >> formForImageEntity: imageEntity [
 	"Parse the actual bytes of imageEntity and return a Form."
 	
 	| imageType parserClassName parserClass parser |
@@ -73,11 +60,8 @@ ZnImageExampleDelegate>>formForImageEntity: imageEntity [
 	
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnImageExampleDelegate>>handleGetRequest: request [
+{ #category : #'request handling' }
+ZnImageExampleDelegate >> handleGetRequest: request [
 	"GET /image - Serve an HTML page showing our image and a form to upload a new one.
 	GET /image?raw=true - Serve the last image directly"
 	
@@ -88,11 +72,8 @@ ZnImageExampleDelegate>>handleGetRequest: request [
 			ZnResponse ok: self image ]
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnImageExampleDelegate>>handlePostRequest: request [
+{ #category : #'request handling' }
+ZnImageExampleDelegate >> handlePostRequest: request [
 	"POST /image <multipart form data with file part> - change the image and show the result.
 	Do full error checking before accepting the newly uploaded image"
 	
@@ -112,11 +93,8 @@ ZnImageExampleDelegate>>handlePostRequest: request [
 	
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnImageExampleDelegate>>handleRequest: request [
+{ #category : #public }
+ZnImageExampleDelegate >> handleRequest: request [
 	"Dispatch between GET and POST on /image"
 	
 	request uri path = #image
@@ -130,11 +108,8 @@ ZnImageExampleDelegate>>handleRequest: request [
 	^ ZnResponse notFound: request uri
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnImageExampleDelegate>>html [
+{ #category : #accessing }
+ZnImageExampleDelegate >> html [
 	^ ZnHtmlOutputStream streamContents: [ :html |
 		 html page: 'Image' do: [
 			html 
@@ -147,22 +122,16 @@ ZnImageExampleDelegate>>html [
 						tag: #input attributes: #(type submit value Upload) ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnImageExampleDelegate>>image [
+{ #category : #accessing }
+ZnImageExampleDelegate >> image [
 	"Return the current image entity.
 	Use a default when not yet set."
 	
 	^ image ifNil: [ image := self downloadPharoLogo ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnImageExampleDelegate>>value: request [
+{ #category : #public }
+ZnImageExampleDelegate >> value: request [
 	"I implement the generic #value: message as equivalent to #handleRequest:"
 	
 	^ self handleRequest: request

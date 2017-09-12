@@ -9,15 +9,11 @@ Class {
 	#instVars : [
 		'registry'
 	],
-	#category : #Announcements-Core,
-	#timestamp : 'MarcusDenker 3/3/2017 10:17'
+	#category : #Announcements-Core
 }
 
-{
-	#category : #announce,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcer>>announce: anAnnouncement [
+{ #category : #announce }
+Announcer >> announce: anAnnouncement [
 
 	| announcement |
 	announcement := anAnnouncement asAnnouncement.	
@@ -27,67 +23,46 @@ Announcer>>announce: anAnnouncement [
 	^ announcement
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcer>>basicSubscribe: subscription [
+{ #category : #private }
+Announcer >> basicSubscribe: subscription [
 	^ registry add: subscription
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcer>>hasSubscriber: anObject [
+{ #category : #testing }
+Announcer >> hasSubscriber: anObject [
 
 	registry subscriptionsOf: anObject do: [:each | ^ true].
 	^ false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcer>>initialize [
+{ #category : #initialization }
+Announcer >> initialize [
 	super initialize.
 	registry := SubscriptionRegistry new.
 ]
 
-{
-	#category : #statistics,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcer>>numberOfSubscriptions [
+{ #category : #statistics }
+Announcer >> numberOfSubscriptions [
 	^ registry numberOfSubscriptions
 
 ]
 
-{
-	#category : #subscription,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcer>>removeSubscription: subscription [
+{ #category : #subscription }
+Announcer >> removeSubscription: subscription [
 	"Remove the given subscription from the receiver"
 	
 	^ registry remove: subscription
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcer>>replace: subscription with: newOne [
+{ #category : #private }
+Announcer >> replace: subscription with: newOne [
 	^ registry replace: subscription with: newOne
 
 ]
 
-{
-	#category : #subscription,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcer>>subscribe: anAnnouncementClass do: aValuable  [
+{ #category : #subscription }
+Announcer >> subscribe: anAnnouncementClass do: aValuable [ 
 	"Declare that when anAnnouncementClass is raised, aValuable is executed."
 	^ registry add: (
 		AnnouncementSubscription new 
@@ -96,69 +71,48 @@ Announcer>>subscribe: anAnnouncementClass do: aValuable  [
 			valuable: aValuable)
 ]
 
-{
-	#category : #subscription,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcer>>subscribe: anAnnouncementClass send: aSelector to: anObject [
+{ #category : #subscription }
+Announcer >> subscribe: anAnnouncementClass send: aSelector [ to: anObject
 	"Declare that when anAnnouncementClass is raised, anObject should receive the message aSelector."
 	
 	^ self subscribe: anAnnouncementClass do: (MessageSend receiver: anObject selector: aSelector)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcer>>subscriptions [
+{ #category : #accessing }
+Announcer >> subscriptions [
 
 	^ registry
 ]
 
-{
-	#category : #subscription,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcer>>unsubscribe: anObject [
+{ #category : #subscription }
+Announcer >> unsubscribe: anObject [
 	"Unsubscribe all subscriptions of anObject from the receiver"
 	
 	registry removeSubscriber: anObject
 ]
 
-{
-	#category : #weak,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcer>>weak [
+{ #category : #weak }
+Announcer >> weak [
 	"announcer weak subscribe: foo"
 	^ WeakSubscriptionBuilder on: self
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcer>>when: anAnnouncementClass do: aValuable [
+{ #category : #convenience }
+Announcer >> when: anAnnouncementClass do: aValuable [
 	"Declare that when anAnnouncementClass is raised, aValuable is executed.  Pay attention that ushc method as well as when:do: should not be used on weak announcer since the block holds the receiver and more strongly."
 	
 	^ self subscribe: anAnnouncementClass do: aValuable
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcer>>when: anAnnouncementClass do: aValuable for: aSubscriber [
+{ #category : #convenience }
+Announcer >> when: anAnnouncementClass do: aValuable for: aSubscriber [
 	"Declare that when anAnnouncementClass is raised, aValuable is executed and define the subscriber."
 	
     ^ (self subscribe: anAnnouncementClass do: aValuable) subscriber: aSubscriber; yourself
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcer>>when: anAnnouncementClass send: aSelector to: anObject [
+{ #category : #convenience }
+Announcer >> when: anAnnouncementClass send: aSelector [ to: anObject
 	"Declare that when anAnnouncementClass is raised, anObject should receive the message aSelector.
     When the message expects one argument (eg #fooAnnouncement:) the announcement is passed as argument.
     When the message expects two arguments (eg #fooAnnouncement:announcer:) both the announcement and the announcer 

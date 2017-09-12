@@ -4,23 +4,16 @@ Provide help topic for world menu
 Class {
 	#name : #WorldMenuHelp,
 	#superclass : #CustomHelp,
-	#category : #WorldMenuHelp,
-	#timestamp : 'TorstenBergmann 8/10/2017 21:51'
+	#category : #WorldMenuHelp
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WorldMenuHelp class>>bookName  [
+{ #category : #'as yet unclassified' }
+WorldMenuHelp class >> bookName [ 
 	^'World Menu Items'
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WorldMenuHelp class>>overview [
+{ #category : #'as yet unclassified' }
+WorldMenuHelp class >> overview [
 	^ HelpTopic 
 		title: 'Overview'
 		contents: 
@@ -52,10 +45,7 @@ The code above creates a menu in the world menu and add an entry into it.
 '
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WorldMenuHelp class>>pages [
+{ #category : #'as yet unclassified' }
+WorldMenuHelp class >> pages [
 	^#(overview)
 ]

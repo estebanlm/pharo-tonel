@@ -7,66 +7,44 @@ Class {
 	#instVars : [
 		'literal'
 	],
-	#category : #OpalCompiler-Core-IR-Nodes,
-	#timestamp : 'ajh 3/24/2003 23:56'
+	#category : #OpalCompiler-Core-IR-Nodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushLiteral>>accept: aVisitor [
+{ #category : #visiting }
+IRPushLiteral >> accept: aVisitor [
 	^ aVisitor visitPushLiteral: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushLiteral>>canBeQuickReturn [
+{ #category : #testing }
+IRPushLiteral >> canBeQuickReturn [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushLiteral>>isPushLiteral [
+{ #category : #testing }
+IRPushLiteral >> isPushLiteral [
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushLiteral>>isPushLiteral: valueTest [
+{ #category : #testing }
+IRPushLiteral >> isPushLiteral: valueTest [
 	^ valueTest value: literal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushLiteral>>literal [
+{ #category : #accessing }
+IRPushLiteral >> literal [
 
 	^ literal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushLiteral>>literal: object [
+{ #category : #accessing }
+IRPushLiteral >> literal: object [
 
 	literal := object
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushLiteral>>quickRetNode [
+{ #category : #accessing }
+IRPushLiteral >> quickRetNode [
 	^ IRReturnLiteral new
 		literal: literal;
 		yourself

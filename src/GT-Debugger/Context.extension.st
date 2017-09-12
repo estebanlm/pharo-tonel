@@ -1,21 +1,13 @@
-Extension {
-	#name : #Context
-}
+Extension { #name : #Context }
 
-{
-	#category : #'*GT-Debugger',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Context>>findContextMatchingPredicate: aPredicate [
+{ #category : #'*GT-Debugger' }
+Context >> findContextMatchingPredicate: aPredicate [
 	^ self findContextSuchThat: [ :ctx |
 		aPredicate matches: ctx ]
 ]
 
-{
-	#category : #'*GT-Debugger',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Context>>gtConstructDebuggerInspectorIn: composite for: aDebugger [
+{ #category : #'*GT-Debugger' }
+Context >> gtConstructDebuggerInspectorIn: composite for: aDebugger [
 	
 	^ composite custom: ((GTDebuggerInspector new  
 		debugger: aDebugger;
@@ -29,22 +21,16 @@ Context>>gtConstructDebuggerInspectorIn: composite for: aDebugger [
 			startOn: self)
 ]
 
-{
-	#category : #'*GT-Debugger',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Context>>gtDebuggerDoItBindings [
+{ #category : #'*GT-Debugger' }
+Context >> gtDebuggerDoItBindings [
 	^ (self method isDoIt and: [ self receiver isNil ]) 
 		ifTrue: [ self method literals select: [ :each | 
 			each class = WorkspaceVariable ] ]
 		ifFalse: [ #() ]
 ]
 
-{
-	#category : #'*GT-Debugger',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Context>>gtDebuggerRetrieveVariableValuePairs [
+{ #category : #'*GT-Debugger' }
+Context >> gtDebuggerRetrieveVariableValuePairs [
 	|fieldList|
 
 	fieldList := SortedCollection 
@@ -68,11 +54,8 @@ Context>>gtDebuggerRetrieveVariableValuePairs [
 
 ]
 
-{
-	#category : #'*GT-Debugger',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Context>>reservedNames [
+{ #category : #'*GT-Debugger' }
+Context >> reservedNames [
 
 	^ #( 'self' 'thisContext' 'stack top')
 ]

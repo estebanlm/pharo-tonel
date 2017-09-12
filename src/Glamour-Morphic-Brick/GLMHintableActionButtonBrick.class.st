@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMHintableActionButtonBrick,
 	#superclass : #GLMActionButtonBrick,
@@ -14,53 +11,37 @@ Class {
 		'asyncTask',
 		'hintBrick'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-UI,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Widgets-UI
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick class>>asyncTaskUniqueInstance [
+{ #category : #converting }
+GLMHintableActionButtonBrick class >> asyncTaskUniqueInstance [
 
 	^ asyncTask ifNil: [ asyncTask := GLMAsyncTask new ]
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick class>>cleanUp [
+{ #category : #cleanup }
+GLMHintableActionButtonBrick class >> cleanUp [
 
 	self closeHint.
 	self reset.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick class>>closeHint [
+{ #category : #actions }
+GLMHintableActionButtonBrick class >> closeHint [
 
 	self asyncTaskUniqueInstance ifNotNil: #terminate.
 	self hintBrickUniqueInstance ifNotNil: #close
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick class>>hintBrickUniqueInstance [
+{ #category : #accessing }
+GLMHintableActionButtonBrick class >> hintBrickUniqueInstance [
 
 	^ hintBrick
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick class>>openHint: aHintString title: aTitleString type: aTypeSymbol for: aBrick [
+{ #category : #actions }
+GLMHintableActionButtonBrick class >> openHint: aHintString title: aTitleString type: aTypeSymbol for: aBrick [
 	|brick|
 	
 	self closeHint.
@@ -76,40 +57,28 @@ GLMHintableActionButtonBrick class>>openHint: aHintString title: aTitleString ty
 	
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick class>>reset [
+{ #category : #actions }
+GLMHintableActionButtonBrick class >> reset [
 
 	self closeHint.
 	asyncTask := nil.
 	hintBrick := nil.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>beError [
+{ #category : #initialization }
+GLMHintableActionButtonBrick >> beError [
 
 	self beMode: #beError
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>beHelp [
+{ #category : #initialization }
+GLMHintableActionButtonBrick >> beHelp [
 
 	self beMode: #beHelp
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>beMode: aMode [
+{ #category : #initialization }
+GLMHintableActionButtonBrick >> beMode: aMode [
 
 	self hoverAction: [ :aBrick :evt |
 			self class asyncTaskUniqueInstance
@@ -117,29 +86,20 @@ GLMHintableActionButtonBrick>>beMode: aMode [
 				delay: ((self isModifierPressed: evt) ifTrue: [ 0 ] ifFalse: [ self hintDelay ]) ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>beNormal [
+{ #category : #initialization }
+GLMHintableActionButtonBrick >> beNormal [
 
 	self beMode: #beNormal
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>beSuccess [
+{ #category : #initialization }
+GLMHintableActionButtonBrick >> beSuccess [
 
 	self beMode: #beSuccess
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>click: evt [
+{ #category : #brick-interactable-actions }
+GLMHintableActionButtonBrick >> click: evt [
 	|result|
 	result := super click: evt.
 	self class asyncTaskUniqueInstance terminate.
@@ -147,81 +107,54 @@ GLMHintableActionButtonBrick>>click: evt [
 	^ result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>hintDelay [
+{ #category : #accessing }
+GLMHintableActionButtonBrick >> hintDelay [
 
 	^ hintDelay ifNil: [ hintDelay := 700 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>hintDelay: anObject [
+{ #category : #accessing }
+GLMHintableActionButtonBrick >> hintDelay: anObject [
 	hintDelay := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>hintModifier [
+{ #category : #accessing }
+GLMHintableActionButtonBrick >> hintModifier [
 
 	^ hintModifier ifNil: [ hintModifier := #shift ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>hintModifier: anObject [
+{ #category : #accessing }
+GLMHintableActionButtonBrick >> hintModifier: anObject [
 
 	hintModifier := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>hintText [
+{ #category : #accessing }
+GLMHintableActionButtonBrick >> hintText [
 
 	^ hintText ifNil: [ hintText := 'Need help?' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>hintText: anObject [
+{ #category : #accessing }
+GLMHintableActionButtonBrick >> hintText: anObject [
 
 	hintText := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>hintTitle [
+{ #category : #accessing }
+GLMHintableActionButtonBrick >> hintTitle [
 
 	^ hintTitle ifNil: [ hintTitle := 'Hi,' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>hintTitle: anObject [
+{ #category : #accessing }
+GLMHintableActionButtonBrick >> hintTitle: anObject [
 	hintTitle := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>initialize [
+{ #category : #initialization }
+GLMHintableActionButtonBrick >> initialize [
 	super initialize.
 	
 	self beHelp.
@@ -233,11 +166,8 @@ GLMHintableActionButtonBrick>>initialize [
 				reset ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>isModifierPressed: anEvent [
+{ #category : #testing }
+GLMHintableActionButtonBrick >> isModifierPressed: anEvent [
 
 	self hintModifier ifNil: [ ^ false ].
 	self hintModifier = #shift ifTrue: [ ^ anEvent shiftPressed ].
@@ -248,11 +178,8 @@ GLMHintableActionButtonBrick>>isModifierPressed: anEvent [
 	^ false
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMHintableActionButtonBrick>>press [
+{ #category : #brick-interactable-actions }
+GLMHintableActionButtonBrick >> press [
 	super press.
 	
 	self class asyncTaskUniqueInstance terminate.

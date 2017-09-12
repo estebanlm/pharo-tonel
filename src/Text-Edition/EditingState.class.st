@@ -60,229 +60,150 @@ Class {
 		'mouseDownInterval',
 		'secondarySelectionToken'
 	],
-	#category : #Text-Edition,
-	#timestamp : 'HenrikNergaard 3/12/2016 12:59'
+	#category : #Text-Edition
 }
 
-{
-	#category : #undo-redo,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>clearUndoManager: aKeyboardEvent [
+{ #category : #undo-redo }
+EditingState >> clearUndoManager: aKeyboardEvent [
 	self undoManager reset.
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>emphasisHere [
+{ #category : #accessing }
+EditingState >> emphasisHere [
 	^ emphasisHere
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>emphasisHere: aListOfTextAttribute  [
+{ #category : #accessing }
+EditingState >> emphasisHere: aListOfTextAttribute [ 
 	emphasisHere := aListOfTextAttribute
 				ifNotNil: [:l | l reject: [:a | TextSelectionColor = a class]]
 ]
 
-{
-	#category : #private-debugging,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>exploreUndoManager: aKeyboardEvent [
+{ #category : #private-debugging }
+EditingState >> exploreUndoManager: aKeyboardEvent [
 	self undoManager explore.
 	^ true
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>focused: aBoolean from: aTextMorph [
+{ #category : #events }
+EditingState >> focused: aBoolean from: aTextMorph [
 	(aBoolean and: [aTextMorph sharesFindReplace])
 		ifTrue: [[(EditorFindReplaceDialogWindow on: aTextMorph) comeToFront] on: Error do: []].
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>handlesKeyboard: evt from: aTextMorph [
+{ #category : #events }
+EditingState >> handlesKeyboard: evt from: aTextMorph [
 	^ false
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>keystroke: aKeyboardEvent from: aTextMorph [
+{ #category : #events }
+EditingState >> keystroke: aKeyboardEvent from: aTextMorph [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>lastParenLocation [
+{ #category : #accessing }
+EditingState >> lastParenLocation [
 	^ lastParenLocation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>lastParenLocation: anIntegerIndex [
+{ #category : #accessing }
+EditingState >> lastParenLocation: anIntegerIndex [
 	lastParenLocation := anIntegerIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>markBlock [
+{ #category : #accessing }
+EditingState >> markBlock [
 	^ markBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>markBlock: aCharacterBlock [
+{ #category : #accessing }
+EditingState >> markBlock: aCharacterBlock [
 	markBlock := aCharacterBlock
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>mouseDown: anEvent from: aTextMorph [
+{ #category : #events }
+EditingState >> mouseDown: anEvent from: aTextMorph [
 	self mouseDownInterval: aTextMorph editor selectionInterval.
 	self focused: true from: aTextMorph
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>mouseDownInterval [
+{ #category : #accessing }
+EditingState >> mouseDownInterval [
 	^ mouseDownInterval
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>mouseDownInterval: anInterval [
+{ #category : #accessing }
+EditingState >> mouseDownInterval: anInterval [
 	mouseDownInterval := anInterval
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>pointBlock [
+{ #category : #accessing }
+EditingState >> pointBlock [
 	^ pointBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>pointBlock: aCharacterBlock [
+{ #category : #accessing }
+EditingState >> pointBlock: aCharacterBlock [
 	pointBlock := aCharacterBlock.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>previousInterval [
+{ #category : #accessing }
+EditingState >> previousInterval [
 
 	^ previousInterval ifNil: [previousInterval := 1 to: 0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>previousInterval: anInterval selection: aSelection [
+{ #category : #accessing }
+EditingState >> previousInterval: anInterval selection: aSelection [
 
 	previousInterval := anInterval.
 	previousSelection := aSelection.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>previousSelection [
+{ #category : #accessing }
+EditingState >> previousSelection [
 
 	^ previousSelection ifNil: [previousSelection := '' asText]
 ]
 
-{
-	#category : #undo-redo,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>redo [
+{ #category : #undo-redo }
+EditingState >> redo [
 	^ self undoManager redo 
 ]
 
-{
-	#category : #undo-redo,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>redoArray: doArray undoArray: undoArray [
+{ #category : #undo-redo }
+EditingState >> redoArray: doArray undoArray: undoArray [
 	self undoManager isPlugged 
 		ifTrue: [self undoManager redoArray: doArray undoArray: undoArray]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>startOfTyping [
+{ #category : #accessing }
+EditingState >> startOfTyping [
 	^ startOfTyping
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>startOfTyping: anIntegerIndex [
+{ #category : #accessing }
+EditingState >> startOfTyping: anIntegerIndex [
 	startOfTyping := anIntegerIndex
 ]
 
-{
-	#category : #undo-redo,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>undo [
+{ #category : #undo-redo }
+EditingState >> undo [
 	^ self undoManager undo 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>undoManager [
+{ #category : #accessing }
+EditingState >> undoManager [
 
 	^ undoManager ifNil: [ undoManager := HistoryIterator new].
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditingState>>unselect [
+{ #category : #accessing }
+EditingState >> unselect [
 	self markBlock: self pointBlock copy
 ]

@@ -5,33 +5,23 @@ A RubHighlightSegmentMorph is a volatile segment that deletes itself whenever th
 Class {
 	#name : #RubHighlightSegmentMorph,
 	#superclass : #RubTextSegmentMorph,
-	#category : #Rubric-Editing-Core,
-	#timestamp : 'AndreiChis 1/12/2015 17:14'
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubHighlightSegmentMorph>>handlesMouseDown: evt [
+{ #category : #'event handling' }
+RubHighlightSegmentMorph >> handlesMouseDown: evt [
 
 	^ true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubHighlightSegmentMorph>>mouseDown: anEvent [
+{ #category : #'event handling' }
+RubHighlightSegmentMorph >> mouseDown: anEvent [
 	super mouseDown: anEvent.
 	self delete
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubHighlightSegmentMorph>>registerTextArea [
+{ #category : #'event handling' }
+RubHighlightSegmentMorph >> registerTextArea [
 	super registerTextArea.
 	
 	textArea announcer  
@@ -46,56 +36,38 @@ RubHighlightSegmentMorph>>registerTextArea [
 		ifFalse: [ self borderWidth ])
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubHighlightSegmentMorph>>showMouseHasEntered [
+{ #category : #'event handling' }
+RubHighlightSegmentMorph >> showMouseHasEntered [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubHighlightSegmentMorph>>showMouseHasLeaved [
+{ #category : #'event handling' }
+RubHighlightSegmentMorph >> showMouseHasLeaved [
 
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubHighlightSegmentMorph>>whenKeyPressed: anEvent [
+{ #category : #'event handling' }
+RubHighlightSegmentMorph >> whenKeyPressed: anEvent [
 
 	self delete
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubHighlightSegmentMorph>>whenMouseClicked: event [
+{ #category : #'event handling' }
+RubHighlightSegmentMorph >> whenMouseClicked: event [
 
 	self delete
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubHighlightSegmentMorph>>whenSelectionChanged: anAnnouncement  [
+{ #category : #'event handling' }
+RubHighlightSegmentMorph >> whenSelectionChanged: anAnnouncement [ 
 
 	self delete
 	
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubHighlightSegmentMorph>>whenTextChanged: anAnnouncement  [
+{ #category : #'event handling' }
+RubHighlightSegmentMorph >> whenTextChanged: anAnnouncement [ 
 
 	self delete
 ]

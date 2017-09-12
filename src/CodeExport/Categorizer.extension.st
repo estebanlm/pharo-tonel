@@ -1,12 +1,7 @@
-Extension {
-	#name : #Categorizer
-}
+Extension { #name : #Categorizer }
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Categorizer>>stringForFileOut [
+{ #category : #'*CodeExport' }
+Categorizer >> stringForFileOut [
 
 	^ String streamContents: [:aStream || elementIndex |
 			elementIndex := 1.

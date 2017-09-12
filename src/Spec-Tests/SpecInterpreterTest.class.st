@@ -8,15 +8,11 @@ Class {
 		'specInterpreter',
 		'specInterpreterClass'
 	],
-	#category : #Spec-Tests,
-	#timestamp : '<historical>'
+	#category : #Spec-Tests
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecInterpreterTest>>setUp [
+{ #category : #initialization }
+SpecInterpreterTest >> setUp [
 	"Setting up code for SpecInterpreterTest"
 
 	specInterpreterClass := SpecInterpreter.
@@ -24,22 +20,16 @@ SpecInterpreterTest>>setUp [
 	specInterpreter model: TestingComposableModel new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecInterpreterTest>>tearDown [
+{ #category : #initialization }
+SpecInterpreterTest >> tearDown [
 	"Tearing down code for SpecInterpreterTest"
 
 	specInterpreterClass := nil.
 	specInterpreter := nil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecInterpreterTest>>testBuildWidgetForWithSpec [
+{ #category : #tests }
+SpecInterpreterTest >> testBuildWidgetForWithSpec [
 	| model morph |
 	model := TestingComposableModel new.
 	morph := model buildWithSpec: #testingSpec.
@@ -47,11 +37,8 @@ SpecInterpreterTest>>testBuildWidgetForWithSpec [
 	self assert: model widget class = RubPluggableTextMorph
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecInterpreterTest>>testConvertRandomSymbolOfClassToInstance [
+{ #category : #tests }
+SpecInterpreterTest >> testConvertRandomSymbolOfClassToInstance [
 	
 	| symbol instance |
 	symbol := #PluggableListMorph.
@@ -60,11 +47,8 @@ SpecInterpreterTest>>testConvertRandomSymbolOfClassToInstance [
 	self assert: (instance class name = symbol)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecInterpreterTest>>testDynamicBuild [
+{ #category : #tests }
+SpecInterpreterTest >> testDynamicBuild [
 
 	| model widget1 widget2 widget3 |
 	model := TestingComposableModel new.
@@ -85,11 +69,8 @@ SpecInterpreterTest>>testDynamicBuild [
 	self assert: model needRebuild
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecInterpreterTest>>testInterpretASpecModelMorphAssociation [
+{ #category : #tests }
+SpecInterpreterTest >> testInterpretASpecModelMorphAssociation [
 
 	| spec model morph |
 	model := AbstractWidgetModel new.

@@ -14,145 +14,93 @@ Class {
 		'methodsForSelector',
 		'reorganizeSelector'
 	],
-	#category : #CodeImport,
-	#timestamp : '<historical>'
+	#category : #CodeImport
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser class>>for: aReadStream [
+{ #category : #'instance creation' }
+ChunkFileFormatParser class >> for: aReadStream [
 	^self new
 		readStream: aReadStream;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>addDeclaration: aDeclaration [
+{ #category : #accessing }
+ChunkFileFormatParser >> addDeclaration: aDeclaration [
 	parsedDeclarations	 add: aDeclaration 
 ]
 
-{
-	#category : #'class factory',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>classCommentChunkClass [
+{ #category : #'class factory' }
+ChunkFileFormatParser >> classCommentChunkClass [
 	^ ClassCommentChunk
 ]
 
-{
-	#category : #'class factory',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>classOrganisationChunkClass [
+{ #category : #'class factory' }
+ChunkFileFormatParser >> classOrganisationChunkClass [
 	^ ClassOrganizationChunk
 ]
 
-{
-	#category : #'custom points',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>classSelector [
+{ #category : #'custom points' }
+ChunkFileFormatParser >> classSelector [
 	^ classSelector
 ]
 
-{
-	#category : #'custom points',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>classSelector: anObject [
+{ #category : #'custom points' }
+ChunkFileFormatParser >> classSelector: anObject [
 	classSelector := anObject
 ]
 
-{
-	#category : #'custom points',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>classTraitSelector [
+{ #category : #'custom points' }
+ChunkFileFormatParser >> classTraitSelector [
 	^ classTraitSelector
 ]
 
-{
-	#category : #'custom points',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>classTraitSelector: anObject [
+{ #category : #'custom points' }
+ChunkFileFormatParser >> classTraitSelector: anObject [
 	classTraitSelector := anObject
 ]
 
-{
-	#category : #'custom points',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>commentStampSelector [
+{ #category : #'custom points' }
+ChunkFileFormatParser >> commentStampSelector [
 	^ commentStampSelector
 ]
 
-{
-	#category : #'custom points',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>commentStampSelector: anObject [
+{ #category : #'custom points' }
+ChunkFileFormatParser >> commentStampSelector: anObject [
 	commentStampSelector := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>defaultClassSelector [
+{ #category : #initialization }
+ChunkFileFormatParser >> defaultClassSelector [
 	^ #class
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>defaultClassTraitSelector [
+{ #category : #initialization }
+ChunkFileFormatParser >> defaultClassTraitSelector [
 	^ #classTrait
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>defaultCommentStampSelector [
+{ #category : #initialization }
+ChunkFileFormatParser >> defaultCommentStampSelector [
 	^ #commentStamp:
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>defaultMethodsForSelector [
+{ #category : #initialization }
+ChunkFileFormatParser >> defaultMethodsForSelector [
 	^ #methodsFor:
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>defaultReorganizeSelector [
+{ #category : #initialization }
+ChunkFileFormatParser >> defaultReorganizeSelector [
 	^ #reorganize
 ]
 
-{
-	#category : #'class factory',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>doItChunkClass  [
+{ #category : #'class factory' }
+ChunkFileFormatParser >> doItChunkClass [ 
 	^ DoItChunk
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>initialize [
+{ #category : #initialization }
+ChunkFileFormatParser >> initialize [
 	super initialize.
 	parsedDeclarations := OrderedCollection new.
 	classSelector := self defaultClassSelector.
@@ -162,44 +110,29 @@ ChunkFileFormatParser>>initialize [
 	reorganizeSelector := self defaultReorganizeSelector
 ]
 
-{
-	#category : #'class factory',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>methodChunkClass [
+{ #category : #'class factory' }
+ChunkFileFormatParser >> methodChunkClass [
 	^ MethodChunk
 ]
 
-{
-	#category : #'custom points',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>methodsForSelector [
+{ #category : #'custom points' }
+ChunkFileFormatParser >> methodsForSelector [
 	^ methodsForSelector
 ]
 
-{
-	#category : #'custom points',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>methodsForSelector: anObject [
+{ #category : #'custom points' }
+ChunkFileFormatParser >> methodsForSelector: anObject [
 	methodsForSelector := anObject
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>parseChunks [
+{ #category : #parsing }
+ChunkFileFormatParser >> parseChunks [
 	[ readStream atEnd ] whileFalse: [ self parseNextDeclaration ].
 	^ parsedDeclarations 
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>parseClassOrganization: classOrganizationPreamble [
+{ #category : #parsing }
+ChunkFileFormatParser >> parseClassOrganization: classOrganizationPreamble [
 	"The comment preable is an array with the following structure:
 	If instance side method:
 	#(#CodeImportTestCaseTestClass #reorganize)
@@ -220,11 +153,8 @@ ChunkFileFormatParser>>parseClassOrganization: classOrganizationPreamble [
 				isMeta: isMeta)
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>parseCommentDeclaration: commentPreamble [
+{ #category : #parsing }
+ChunkFileFormatParser >> parseCommentDeclaration: commentPreamble [
 	"The comment preable is an array with the following structure:
 	If instance side method:
 	#(#CodeImportTestCaseTestClass #commentStamp: '<historical>' #prior: 0)
@@ -251,11 +181,8 @@ ChunkFileFormatParser>>parseCommentDeclaration: commentPreamble [
 				stamp: stamp)
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>parseMethodDeclarations: methodsPreamble [
+{ #category : #parsing }
+ChunkFileFormatParser >> parseMethodDeclarations: methodsPreamble [
 	| behaviorName isMeta category stamp methodSource |
 	"The method preable is an array with the following structure:
 	If instance side method:
@@ -299,11 +226,8 @@ ChunkFileFormatParser>>parseMethodDeclarations: methodsPreamble [
 						stamp: stamp) ]
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>parseNextDeclaration [
+{ #category : #parsing }
+ChunkFileFormatParser >> parseNextDeclaration [
 	| isMetadata nextChunk |
 	readStream skipSeparators.
 	readStream isNextStyleChunk
@@ -327,34 +251,22 @@ ChunkFileFormatParser>>parseNextDeclaration [
 				ifTrue: [ ^ self parseClassOrganization: substrings ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>readStream: aReadStream [
+{ #category : #accessing }
+ChunkFileFormatParser >> readStream: aReadStream [
 	readStream := ChunkReadStream on: aReadStream
 ]
 
-{
-	#category : #'custom points',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>reorganizeSelector [
+{ #category : #'custom points' }
+ChunkFileFormatParser >> reorganizeSelector [
 	^ reorganizeSelector
 ]
 
-{
-	#category : #'custom points',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>reorganizeSelector: anObject [
+{ #category : #'custom points' }
+ChunkFileFormatParser >> reorganizeSelector: anObject [
 	reorganizeSelector := anObject
 ]
 
-{
-	#category : #'class factory',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkFileFormatParser>>styleChunkClass  [
+{ #category : #'class factory' }
+ChunkFileFormatParser >> styleChunkClass [ 
 	^ StyleChunk
 ]

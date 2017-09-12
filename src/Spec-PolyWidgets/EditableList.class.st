@@ -25,15 +25,11 @@ Class {
 		'addItemBlock',
 		'okBlock'
 	],
-	#category : #Spec-PolyWidgets-ListAndTree,
-	#timestamp : '<historical>'
+	#category : #Spec-PolyWidgets-ListAndTree
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList class>>example [
+{ #category : #example }
+EditableList class >> example [
 	^self new
 	
 		title: 'Selectors list';
@@ -41,20 +37,14 @@ EditableList class>>example [
 	 openWithSpec
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList class>>new: aCollection [
+{ #category : #'instance creation' }
+EditableList class >> new: aCollection [
 	^ self new list: aCollection copy.
 		
 ]
 
-{
-	#category : #spec,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList class>>spec [
+{ #category : #spec }
+EditableList class >> spec [
 	<spec: #default>
 	^ SpecLayout composed
 		newColumn:
@@ -78,43 +68,28 @@ EditableList class>>spec [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>addButton [
+{ #category : #accessing }
+EditableList >> addButton [
 	^ addButton
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>addItemBlock: aBlock [
+{ #category : #api }
+EditableList >> addItemBlock: aBlock [
 	addItemBlock := aBlock.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>bottomButton [
+{ #category : #accessing }
+EditableList >> bottomButton [
 	^ bottomButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>downButton [
+{ #category : #accessing }
+EditableList >> downButton [
 	^ downButton
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>initialize [
+{ #category : #initialization }
+EditableList >> initialize [
 	"Initialization code for EditableList"
 
 	title := 'Title' asValueHolder.
@@ -123,20 +98,14 @@ EditableList>>initialize [
 	okBlock := [ ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>initializeDialogWindow: aWindow [
+{ #category : #initialization }
+EditableList >> initializeDialogWindow: aWindow [
 	super initializeDialogWindow: aWindow.
 	aWindow okAction: [ self performOkAction ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>initializePresenter [
+{ #category : #initialization }
+EditableList >> initializePresenter [
 	super initializePresenter
 	
 	addButton action: [ | requirement | 
@@ -158,11 +127,8 @@ EditableList>>initializePresenter [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>initializeWidgets [
+{ #category : #initialization }
+EditableList >> initializeWidgets [
 	list := self instantiate: FastTableModel.
 	addButton := self newButton.
 	removeButton := self newButton.
@@ -190,27 +156,18 @@ EditableList>>initializeWidgets [
 		help: 'Move this item on the last position of the list'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>list [
+{ #category : #accessing }
+EditableList >> list [
 	^ list
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>list: aList [
+{ #category : #private }
+EditableList >> list: aList [
 	list items: aList.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>moveElementAt: index to: newIndex [
+{ #category : #private }
+EditableList >> moveElementAt: index to: newIndex [
 	| elementToMove orderedList |
 	
 	(newIndex < 1 or: [ newIndex > list listItems size ]) ifTrue: [ ^self ].
@@ -224,60 +181,39 @@ EditableList>>moveElementAt: index to: newIndex [
 	self list setSelectedIndex: newIndex.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>okAction: aBlock [
+{ #category : #api }
+EditableList >> okAction: aBlock [
 
 	okBlock := aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>performOkAction [
+{ #category : #private }
+EditableList >> performOkAction [
 
 	okBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>removeButton [
+{ #category : #accessing }
+EditableList >> removeButton [
 	^ removeButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>title [
+{ #category : #accessing }
+EditableList >> title [
 	^ title value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>title: aTitle [
+{ #category : #accessing }
+EditableList >> title: aTitle [
 	title := aTitle 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>topButton [
+{ #category : #accessing }
+EditableList >> topButton [
 	^ topButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-EditableList>>upButton [
+{ #category : #accessing }
+EditableList >> upButton [
 	^ upButton
 ]

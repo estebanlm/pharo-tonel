@@ -5,17 +5,11 @@ My user need to define the #tagToFilterBy which should return a collection of ta
 "
 Trait {
 	#name : #TGLMFastTableTag,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Glamour-FastTable-Model,
-	#timestamp : 'CyrilFerlicot 11/10/2015 11:47'
+	#category : #Glamour-FastTable-Model
 }
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableTag>>buttonForTag: each filter: filter [
+{ #category : #factory }
+TGLMFastTableTag >> buttonForTag: each filter: filter [
 	^ (GLMMorphic togglingButtonLabelled: each pressed: (self shouldFilterByTag: filter) style: self glamourPresentation tagsStyle)
 		target: self;
 		actionSelector: #toggleFilteringByTag:;
@@ -23,27 +17,18 @@ TGLMFastTableTag>>buttonForTag: each filter: filter [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableTag>>resetChildrenContent [
+{ #category : #private }
+TGLMFastTableTag >> resetChildrenContent [
 	self explicitRequirement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableTag>>shouldFilterByTag: aTag [
+{ #category : #accessing }
+TGLMFastTableTag >> shouldFilterByTag: aTag [
 	^ self tagsToFilterBy includes: aTag 
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableTag>>tagMorphsFrom: aTagProvider for: element [
+{ #category : #factory }
+TGLMFastTableTag >> tagMorphsFrom: aTagProvider for: element [
 	| tagMorphs tags tagsFilter |
 	
 	tagMorphs := OrderedCollection new.
@@ -56,19 +41,13 @@ TGLMFastTableTag>>tagMorphsFrom: aTagProvider for: element [
 	^ tagMorphs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableTag>>tagsToFilterBy [
+{ #category : #accessing }
+TGLMFastTableTag >> tagsToFilterBy [
 	self explicitRequirement
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableTag>>toggleFilteringByTag: aTag [
+{ #category : #callbacks }
+TGLMFastTableTag >> toggleFilteringByTag: aTag [
 	(self shouldFilterByTag: aTag)
 		ifTrue: [ self tagsToFilterBy remove: aTag ]
 		ifFalse: [ self tagsToFilterBy add: aTag ].

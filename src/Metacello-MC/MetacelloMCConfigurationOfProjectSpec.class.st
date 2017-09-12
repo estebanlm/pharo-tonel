@@ -1,42 +1,26 @@
-"
-
-"
 Class {
 	#name : #MetacelloMCConfigurationOfProjectSpec,
 	#superclass : #MetacelloMCProjectSpec,
-	#category : #Metacello-MC-Specs,
-	#timestamp : ''
+	#category : #Metacello-MC-Specs
 }
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCConfigurationOfProjectSpec>>asConfigurationProjectSpec [
+{ #category : #scripting }
+MetacelloMCConfigurationOfProjectSpec >> asConfigurationProjectSpec [
     ^ self
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCConfigurationOfProjectSpec>>asProjectRegistration [
+{ #category : #scripting }
+MetacelloMCConfigurationOfProjectSpec >> asProjectRegistration [
     ^ MetacelloProjectRegistration fromMCConfigurationProjectSpec: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCConfigurationOfProjectSpec>>constructClassName [
+{ #category : #private }
+MetacelloMCConfigurationOfProjectSpec >> constructClassName [
     ^ 'ConfigurationOf' , self name
 ]
 
-{
-	#category : #mutability,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCConfigurationOfProjectSpec>>copyForRegistration: aMetacelloProjectRegistration onWrite: aBlock [
+{ #category : #mutability }
+MetacelloMCConfigurationOfProjectSpec >> copyForRegistration: aMetacelloProjectRegistration onWrite: aBlock [
   | copy |
   aMetacelloProjectRegistration
     configurationProjectSpecIfPresent: [ :spec | 
@@ -52,19 +36,13 @@ MetacelloMCConfigurationOfProjectSpec>>copyForRegistration: aMetacelloProjectReg
         ifAbsent: [ aBlock value: nil ] ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCConfigurationOfProjectSpec>>hasClassName [
+{ #category : #printing }
+MetacelloMCConfigurationOfProjectSpec >> hasClassName [
     ^ className ~~ nil and: [ className ~= self constructClassName ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCConfigurationOfProjectSpec>>hasConflictWithBaselineSpec: projectSpec [
+{ #category : #testing }
+MetacelloMCConfigurationOfProjectSpec >> hasConflictWithBaselineSpec: projectSpec [
 	projectSpec name = self name
 		ifFalse: [ ^ true ].
 	projectSpec project configuration className = self project configuration className
@@ -73,34 +51,22 @@ MetacelloMCConfigurationOfProjectSpec>>hasConflictWithBaselineSpec: projectSpec 
 		or: [ projectSpec repositories hasNoLoadConflicts: self repositories ]) not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCConfigurationOfProjectSpec>>hasConflictWithProjectSpec: projectSpec [
+{ #category : #testing }
+MetacelloMCConfigurationOfProjectSpec >> hasConflictWithProjectSpec: projectSpec [
 	^ projectSpec hasConflictWithConfigurationSpec: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCConfigurationOfProjectSpec>>isConfigurationOfProjectSpec [
+{ #category : #testing }
+MetacelloMCConfigurationOfProjectSpec >> isConfigurationOfProjectSpec [
 	^ true
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCConfigurationOfProjectSpec>>mergeSpec: anotherSpec [
+{ #category : #merging }
+MetacelloMCConfigurationOfProjectSpec >> mergeSpec: anotherSpec [
     ^ super mergeSpec: anotherSpec asConfigurationProjectSpec
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCConfigurationOfProjectSpec>>projectLabel [
+{ #category : #printing }
+MetacelloMCConfigurationOfProjectSpec >> projectLabel [
     ^ 'configuration'
 ]

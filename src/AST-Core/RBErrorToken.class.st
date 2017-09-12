@@ -9,15 +9,11 @@ Class {
 		'cause',
 		'location'
 	],
-	#category : #AST-Core-Tokens,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Tokens
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBErrorToken class>>value: value start: tokenStart cause: errorCause location: thePosition [
+{ #category : #'instance creation' }
+RBErrorToken class >> value: value start: tokenStart cause: errorCause location: thePosition [
 	^ self new
 		value: value
 			start: tokenStart
@@ -26,35 +22,23 @@ RBErrorToken class>>value: value start: tokenStart cause: errorCause location: t
 		yourself
 ]
 
-{
-	#category : #accesing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBErrorToken>>cause [
+{ #category : #accesing }
+RBErrorToken >> cause [
 	^ cause
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBErrorToken>>isError [
+{ #category : #testing }
+RBErrorToken >> isError [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBErrorToken>>location [
+{ #category : #accessing }
+RBErrorToken >> location [
 	^ location
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBErrorToken>>value: theValue start: tokenStart cause: errorCause location: errorPosition [
+{ #category : #testing }
+RBErrorToken >> value: theValue start: tokenStart cause: errorCause location: errorPosition [
 	self value: theValue start: tokenStart .
 	location := errorPosition.
 	cause := errorCause .

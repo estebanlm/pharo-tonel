@@ -1,12 +1,7 @@
-Extension {
-	#name : #DateAndTime
-}
+Extension { #name : #DateAndTime }
 
-{
-	#category : #'*EpiceaBrowsers',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-DateAndTime>>epiceaBrowsersAsString [
+{ #category : #'*EpiceaBrowsers' }
+DateAndTime >> epiceaBrowsersAsString [
 
 	^ String streamContents: [ :stream |
 		stream 

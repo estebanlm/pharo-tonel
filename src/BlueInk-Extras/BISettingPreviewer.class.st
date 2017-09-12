@@ -13,15 +13,11 @@ Class {
 		'formattedCheckBox',
 		'sourceCodePane'
 	],
-	#category : #BlueInk-Extras,
-	#timestamp : 'FranckWarlouzet 7/27/2015 13:24'
+	#category : #BlueInk-Extras
 }
 
-{
-	#category : #'build ui buttons',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer class>>buildOpenBIInspectorButton [
+{ #category : #'build ui buttons' }
+BISettingPreviewer class >> buildOpenBIInspectorButton [
 	^ PluggableButtonMorph
 		on: self
 		getState: #openBIInspectorButtonState
@@ -29,11 +25,8 @@ BISettingPreviewer class>>buildOpenBIInspectorButton [
 		label: #openBIInspectorButtonLabel
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer class>>defaultSpec [
+{ #category : #specs }
+BISettingPreviewer class >> defaultSpec [
 	<spec: #default>
 	^ SpecLayout composed
 		newColumn:
@@ -52,11 +45,8 @@ BISettingPreviewer class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer class>>dialogOpenBIPreviewer [
+{ #category : #settings }
+BISettingPreviewer class >> dialogOpenBIPreviewer [
 	^ Smalltalk ui theme
 		newRowIn: World
 		for:
@@ -64,35 +54,23 @@ BISettingPreviewer class>>dialogOpenBIPreviewer [
 			self buildOpenBIInspectorButton}
 ]
 
-{
-	#category : #'button behavior',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer class>>openBIInspectorButtonAction [
+{ #category : #'button behavior' }
+BISettingPreviewer class >> openBIInspectorButtonAction [
 	BISettingPreviewer new openWithSpec
 ]
 
-{
-	#category : #'button behavior',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer class>>openBIInspectorButtonLabel [
+{ #category : #'button behavior' }
+BISettingPreviewer class >> openBIInspectorButtonLabel [
 	^ 'Open'
 ]
 
-{
-	#category : #'button behavior',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer class>>openBIInspectorButtonState [
+{ #category : #'button behavior' }
+BISettingPreviewer class >> openBIInspectorButtonState [
 	^ true
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer class>>settingsOn: aBuilder [
+{ #category : #settings }
+BISettingPreviewer class >> settingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #blueInkFormatterExtra)
 		target: self;
@@ -104,22 +82,16 @@ BISettingPreviewer class>>settingsOn: aBuilder [
 	
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>buildClassSearchField [
+{ #category : #'item creation' }
+BISettingPreviewer >> buildClassSearchField [
 	^ self newTextInput
 		ghostText: 'Enter the class name...';
 		autoAccept: true;
 		yourself
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>buildFormattedCheckBox [
+{ #category : #'item creation' }
+BISettingPreviewer >> buildFormattedCheckBox [
 	^ self newCheckBox
 		label: 'Formatted';
 		state: true;
@@ -136,22 +108,16 @@ BISettingPreviewer>>buildFormattedCheckBox [
 		yourself
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>buildMethodSearchField [
+{ #category : #'item creation' }
+BISettingPreviewer >> buildMethodSearchField [
 	^ self newTextInput
 		ghostText: 'Enter the method selector...';
 		whenTextIsAccepted: [ self whenSelectorAccepted ];
 		yourself.
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>buildSettingsTreeModel [
+{ #category : #'item creation' }
+BISettingPreviewer >> buildSettingsTreeModel [
 	| settingsTreeModel |
 	settingsTreeModel := self newTree.
 	settingsTreeModel
@@ -162,40 +128,28 @@ BISettingPreviewer>>buildSettingsTreeModel [
 	^ settingsTreeModel
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>buildSourceCodePane [
+{ #category : #'item creation' }
+BISettingPreviewer >> buildSourceCodePane [
 	^ self newText
 		aboutToStyle: true;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>classSearchField [
+{ #category : #accessing }
+BISettingPreviewer >> classSearchField [
 	^ classSearchField
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>compiledMethodFromSearchFields [
+{ #category : #accessing }
+BISettingPreviewer >> compiledMethodFromSearchFields [
 	"precondition text represent class and selector"
 	
 	^ (self class environment at: classSearchField text asSymbol)
 			>> methodSearchField text asSymbol 
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>displayNodeFor: aNode [
+{ #category : #'item creation' }
+BISettingPreviewer >> displayNodeFor: aNode [
 	| nodeMorphLeft nodeMorphRight |
 	nodeMorphLeft := StringMorph contents: aNode item label.
 	nodeMorphRight := (self theme newRowIn: World for: {aNode settingDeclaration inputWidget})
@@ -213,11 +167,8 @@ BISettingPreviewer>>displayNodeFor: aNode [
 		yourself
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>formatSourceCode [
+{ #category : #api }
+BISettingPreviewer >> formatSourceCode [
 	| source tree formatted |
 	source := self compiledMethodFromSearchFields sourceCode.
 	tree := RBParser parseMethod: source onError: [ :msg :pos | ^ self ].
@@ -226,27 +177,18 @@ BISettingPreviewer>>formatSourceCode [
 	sourceCodePane text: formatted
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>formattedCheckBox [
+{ #category : #accessing }
+BISettingPreviewer >> formattedCheckBox [
 	^ formattedCheckBox
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>initialExtent [
+{ #category : #api }
+BISettingPreviewer >> initialExtent [
 	^ 1000 @ 700
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>initializeWidgets [
+{ #category : #initialization }
+BISettingPreviewer >> initializeWidgets [
 	sourceCodePane := self buildSourceCodePane.
 	classSearchField := self buildClassSearchField.
 	methodSearchField := self buildMethodSearchField.
@@ -261,19 +203,13 @@ BISettingPreviewer>>initializeWidgets [
 		add: sourceCodePane
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>methodSearchField [
+{ #category : #accessing }
+BISettingPreviewer >> methodSearchField [
 	^ methodSearchField
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>selectorAndClassAreCorrect [
+{ #category : #testing }
+BISettingPreviewer >> selectorAndClassAreCorrect [
 	| class |
 	methodSearchField text
 		ifNotNil:
@@ -287,44 +223,29 @@ BISettingPreviewer>>selectorAndClassAreCorrect [
 	^ false 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>settingsTree [
+{ #category : #accessing }
+BISettingPreviewer >> settingsTree [
 	^ settingsTree
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>sourceCodePane [
+{ #category : #accessing }
+BISettingPreviewer >> sourceCodePane [
 	^ sourceCodePane
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>title [
+{ #category : #api }
+BISettingPreviewer >> title [
 	^ 'Blue Ink Setting Previewer'
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>whenASettingChanged [
+{ #category : #'event handling' }
+BISettingPreviewer >> whenASettingChanged [
 	(self formattedCheckBox state and: [ self selectorAndClassAreCorrect ])
 		ifTrue: [ self formatSourceCode ] 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BISettingPreviewer>>whenSelectorAccepted [
+{ #category : #'event handling' }
+BISettingPreviewer >> whenSelectorAccepted [
 	| compiledMethod |
 	self selectorAndClassAreCorrect
 		ifTrue:

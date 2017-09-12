@@ -9,25 +9,18 @@ Class {
 	#classVars : [
 		'Default'
 	],
-	#category : #Morphic-Core-Borders,
-	#timestamp : 'kfr 10/27/2003 10:19'
+	#category : #Morphic-Core-Borders
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle class>>borderStyleChoices [
+{ #category : #'instance creation' }
+BorderStyle class >> borderStyleChoices [
 	"Answer the superset of all supported borderStyle symbols"
 
 	^ #(simple inset raised complexAltFramed complexAltInset complexAltRaised complexFramed complexInset complexRaised)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle class>>borderStyleForSymbol: sym [
+{ #category : #'instance creation' }
+BorderStyle class >> borderStyleForSymbol: sym [
 	"Answer a border style corresponding to the given symbol"
 
 	| aSymbol |
@@ -35,132 +28,87 @@ BorderStyle class>>borderStyleForSymbol: sym [
 	^ self perform: aSymbol
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle class>>color: aColor width: aNumber [
+{ #category : #'instance creation' }
+BorderStyle class >> color: aColor width: aNumber [
 	^self width: aNumber color: aColor
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle class>>default [
+{ #category : #'instance creation' }
+BorderStyle class >> default [
 	^Default ifNil:[Default := self new]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle class>>thinGray [
+{ #category : #'instance creation' }
+BorderStyle class >> thinGray [
 	^ self width: 1 color: Color gray
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle class>>width: aNumber [
+{ #category : #'instance creation' }
+BorderStyle class >> width: aNumber [
 	^self width: aNumber color: Smalltalk ui theme borderColor
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>= aBorderStyle [
+{ #category : #comparing }
+BorderStyle >> = aBorderStyle [
 	^self species = aBorderStyle species
 		and:[self style == aBorderStyle style
 		and:[self width = aBorderStyle width
 		and:[self color = aBorderStyle color]]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>baseColor [
+{ #category : #accessing }
+BorderStyle >> baseColor [
 	^Color transparent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>baseColor: aColor [
+{ #category : #accessing }
+BorderStyle >> baseColor: aColor [
 	"Ignored"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>color [
+{ #category : #accessing }
+BorderStyle >> color [
 	^Color transparent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>color: aColor [
+{ #category : #accessing }
+BorderStyle >> color: aColor [
 	"Ignored"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>colorsAtCorners [
+{ #category : #accessing }
+BorderStyle >> colorsAtCorners [
 	^Array new: 4 withAll: self color
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>dotOfSize: diameter forDirection: aDirection [
+{ #category : #accessing }
+BorderStyle >> dotOfSize: diameter forDirection: aDirection [
 	| form |
 	form := Form extent: diameter@diameter depth: Display depth.
 	form getCanvas fillOval: form boundingBox color: self color.
 	^form
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>drawLineFrom: startPoint to: stopPoint on: aCanvas [
+{ #category : #drawing }
+BorderStyle >> drawLineFrom: startPoint to: stopPoint on: aCanvas [
 	^aCanvas line: startPoint to: stopPoint width: self width color: self color
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>frameOval: aRectangle on: aCanvas [
+{ #category : #drawing }
+BorderStyle >> frameOval: aRectangle on: aCanvas [
 	"Frame the given rectangle on aCanvas"
 	aCanvas frameOval: aRectangle width: self width color: self color
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>framePolygon: vertices on: aCanvas [
+{ #category : #drawing }
+BorderStyle >> framePolygon: vertices [ on: aCanvas
 	"Frame the given rectangle on aCanvas"
 	self framePolyline: vertices on: aCanvas.
 	self drawLineFrom: vertices last to: vertices first on: aCanvas.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>framePolyline: vertices on: aCanvas  [
+{ #category : #drawing }
+BorderStyle >> framePolyline: vertices on: aCanvas [ 
 	"Frame the given rectangle on aCanvas"
 
 	| prev next |
@@ -176,84 +124,57 @@ BorderStyle>>framePolyline: vertices on: aCanvas  [
 			prev := next]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>frameRectangle: aRectangle on: aCanvas [
+{ #category : #drawing }
+BorderStyle >> frameRectangle: aRectangle on: aCanvas [
 	"Frame the given rectangle on aCanvas"
 	aCanvas frameRectangle: aRectangle width: self width color: self color
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>hasFillStyle [
+{ #category : #testing }
+BorderStyle >> hasFillStyle [
 	"Answer false."
 
 	^false
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>hash [
+{ #category : #comparing }
+BorderStyle >> hash [
 	"hash is implemented because #= is implemented"
 	^self species hash bitXor: (self width hash bitXor: self color hash)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>isBorderStyle [
+{ #category : #testing }
+BorderStyle >> isBorderStyle [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>isComplex [
+{ #category : #testing }
+BorderStyle >> isComplex [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>isComposite [
+{ #category : #testing }
+BorderStyle >> isComposite [
 	"Answer false."
 
 	^false
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>printOn: aStream [
+{ #category : #printing }
+BorderStyle >> printOn: aStream [
 	"Print a description of the
 	receiver on the given stream."
 
 	self storeOn: aStream
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>releaseCachedState [
+{ #category : #initialize }
+BorderStyle >> releaseCachedState [
 	"Release any associated cached state"
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>storeOn: aStream [
+{ #category : #printing }
+BorderStyle >> storeOn: aStream [
 	"Store a reconstructable representation of the
 	receiver on the given stream."
 
@@ -267,42 +188,27 @@ BorderStyle>>storeOn: aStream [
 		nextPutAll: ')'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>style [
+{ #category : #accessing }
+BorderStyle >> style [
 	^#none
 ]
 
-{
-	#category : #'color tracking',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>trackColorFrom: aMorph [
+{ #category : #'color tracking' }
+BorderStyle >> trackColorFrom: aMorph [
 	"If necessary, update our color to reflect a change in aMorphs color"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>width [
+{ #category : #accessing }
+BorderStyle >> width [
 	^0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>width: aNumber [
+{ #category : #accessing }
+BorderStyle >> width: aNumber [
 	"Ignored"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderStyle>>widthForRounding [
+{ #category : #accessing }
+BorderStyle >> widthForRounding [
 	^self width
 ]

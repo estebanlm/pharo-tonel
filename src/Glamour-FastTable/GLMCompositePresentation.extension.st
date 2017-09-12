@@ -1,35 +1,21 @@
-Extension {
-	#name : #GLMCompositePresentation
-}
+Extension { #name : #GLMCompositePresentation }
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentation>>fastList [
+{ #category : #'*Glamour-FastTable' }
+GLMCompositePresentation >> fastList [
 	^ self custom: GLMFastListPresentation new
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentation>>fastTable [
+{ #category : #'*Glamour-FastTable' }
+GLMCompositePresentation >> fastTable [
 	^ self custom: GLMFastTablePresentation new
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentation>>fastTree [
+{ #category : #'*Glamour-FastTable' }
+GLMCompositePresentation >> fastTree [
 	^ self custom: GLMFastTreePresentation new
 ]
 
-{
-	#category : #'*Glamour-FastTable',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentation>>fastTreeTable [
+{ #category : #'*Glamour-FastTable' }
+GLMCompositePresentation >> fastTreeTable [
 	^ self custom: GLMFastTreeTablePresentation new
 ]

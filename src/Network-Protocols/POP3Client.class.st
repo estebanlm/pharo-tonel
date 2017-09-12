@@ -8,23 +8,16 @@ To see an example of it's use, see POPSocket class>>example.
 Class {
 	#name : #POP3Client,
 	#superclass : #ProtocolClient,
-	#category : #Network-Protocols,
-	#timestamp : 'mir 5/12/2003 17:57'
+	#category : #Network-Protocols
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client class>>defaultPortNumber [
+{ #category : #accessing }
+POP3Client class >> defaultPortNumber [
 	^110
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client class>>example [
+{ #category : #example }
+POP3Client class >> example [
 	"POP3Client example"
 	"download a user's messages into an OrderedCollection and inspect the OrderedCollection"
 
@@ -44,19 +37,13 @@ POP3Client class>>example [
 	messages inspect.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client class>>logFlag [
+{ #category : #accessing }
+POP3Client class >> logFlag [
 	^#pop
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client>>apopLogin [
+{ #category : #'private protocol' }
+POP3Client >> apopLogin [
 	"Attempt to authenticate ourselves to the server without sending the password as cleartext."
 
 	"For secure authentication, we look for a timestamp in the initial response string we get from the server, and then try the APOP command as specified in RFC 1939.  If the initial response from the server is
@@ -86,20 +73,14 @@ and then send only the MD5 hash of that to the server.  Thus the password never 
 			(LoginFailedException protocolInstance: self) signal: 'Login failed.' ]
 ]
 
-{
-	#category : #'public protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client>>apopLoginUser: userName password: password [
+{ #category : #'public protocol' }
+POP3Client >> apopLoginUser: userName password: password [
 
 	self loginUser: userName password: password loginMethod: #APOP
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client>>clearTextLogin [
+{ #category : #'private protocol' }
+POP3Client >> clearTextLogin [
 
 	[self sendCommand: 'USER ', self user.
 	self checkResponse.
@@ -115,11 +96,8 @@ POP3Client>>clearTextLogin [
 			ex resignalAs: ((LoginFailedException protocolInstance: self) signal: 'Login failed.')]
 ]
 
-{
-	#category : #'public protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client>>deleteMessage: num [
+{ #category : #'public protocol' }
+POP3Client >> deleteMessage: num [
 	"delete the numbered message"
 
 	self ensureConnection.
@@ -128,11 +106,8 @@ POP3Client>>deleteMessage: num [
 	self logProgress: self lastResponse
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client>>getMultilineResponse [
+{ #category : #'private protocol' }
+POP3Client >> getMultilineResponse [
 	"Get a multiple line response to the last command, filtering out LF characters. A multiple line response ends with a line containing only a single period (.) character."
 
 	| response done chunk |
@@ -149,11 +124,8 @@ POP3Client>>getMultilineResponse [
 
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client>>login [
+{ #category : #'private protocol' }
+POP3Client >> login [
 	self loginMethod
 		ifNil: [^self].
 	self loginMethod == #clearText
@@ -163,36 +135,24 @@ POP3Client>>login [
 	(POP3LoginError protocolInstance: self) signal: 'Unsupported login procedure.'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client>>loginMethod [
+{ #category : #private }
+POP3Client >> loginMethod [
 	^self connectionInfo at: #loginMethod ifAbsent: [nil]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client>>loginMethod: aSymbol [
+{ #category : #private }
+POP3Client >> loginMethod: aSymbol [
 	^self connectionInfo at: #loginMethod put: aSymbol
 ]
 
-{
-	#category : #'public protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client>>loginUser: userName password: password [
+{ #category : #'public protocol' }
+POP3Client >> loginUser: userName password: password [
 
 	self loginUser: userName password: password loginMethod: #clearText
 ]
 
-{
-	#category : #'public protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client>>loginUser: userName password: password loginMethod: aLoginMethod [
+{ #category : #'public protocol' }
+POP3Client >> loginUser: userName password: password loginMethod: aLoginMethod [
 
 	self user: userName.
 	self password: password.
@@ -200,11 +160,8 @@ POP3Client>>loginUser: userName password: password loginMethod: aLoginMethod [
 	self login
 ]
 
-{
-	#category : #'public protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client>>messageCount [
+{ #category : #'public protocol' }
+POP3Client >> messageCount [
 	"Query the server and answer the number of messages that are in the user's mailbox."
 
 	| numMessages |
@@ -220,38 +177,26 @@ POP3Client>>messageCount [
 	^numMessages
 ]
 
-{
-	#category : #'public protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client>>quit [
+{ #category : #'public protocol' }
+POP3Client >> quit [
 	"QUIT <CRLF>"
 
 	self sendCommand: 'QUIT'.
 	self checkResponse.
 ]
 
-{
-	#category : #'private testing',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client>>responseIsError [
+{ #category : #'private testing' }
+POP3Client >> responseIsError [
 	^self lastResponse beginsWith: '-'
 ]
 
-{
-	#category : #'private testing',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client>>responseIsWarning [
+{ #category : #'private testing' }
+POP3Client >> responseIsWarning [
 	^self lastResponse beginsWith: '-'
 ]
 
-{
-	#category : #'public protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-POP3Client>>retrieveMessage: number [
+{ #category : #'public protocol' }
+POP3Client >> retrieveMessage: number [
 	"retrieve the numbered message"
 
 	self ensureConnection.

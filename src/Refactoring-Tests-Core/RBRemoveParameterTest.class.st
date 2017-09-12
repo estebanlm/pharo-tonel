@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBRemoveParameterTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveParameterTest>>testNonExistantName [
+{ #category : #'failure tests' }
+RBRemoveParameterTest >> testNonExistantName [
 	self
 		shouldFail: (RBRemoveParameterRefactoring 
 				removeParameter: 'asdf'
@@ -24,11 +17,8 @@ RBRemoveParameterTest>>testNonExistantName [
 				selector: #checkClass1:)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveParameterTest>>testPrimitiveMethods [
+{ #category : #'failure tests' }
+RBRemoveParameterTest >> testPrimitiveMethods [
 	| refactoring |
 	(model classNamed: #Object) 
 		compile: 'foo123: a <primitive: 100> ^#() primitiveFailed'
@@ -41,11 +31,8 @@ RBRemoveParameterTest>>testPrimitiveMethods [
 	self shouldFail: refactoring
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveParameterTest>>testRemoveParameter [
+{ #category : #tests }
+RBRemoveParameterTest >> testRemoveParameter [
 	| refactoring class |
 	refactoring := RBRemoveParameterRefactoring 
 		removeParameter: 'anArg'

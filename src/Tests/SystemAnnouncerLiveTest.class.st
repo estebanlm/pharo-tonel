@@ -4,15 +4,11 @@ Tests verifiying the behaviour of the default SystemAnnouncer instance.
 Class {
 	#name : #SystemAnnouncerLiveTest,
 	#superclass : #TestCase,
-	#category : #Tests-SystemChangeNotification,
-	#timestamp : 'hn 3/28/2016 12:31'
+	#category : #Tests-SystemChangeNotification
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemAnnouncerLiveTest>>testNoDeadSubscriptions [
+{ #category : #tests }
+SystemAnnouncerLiveTest >> testNoDeadSubscriptions [
 
 	| dead |
 
@@ -26,11 +22,8 @@ SystemAnnouncerLiveTest>>testNoDeadSubscriptions [
 	self assert: dead asArray equals: #()
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemAnnouncerLiveTest>>testOnlyWeakSubscriptions [
+{ #category : #tests }
+SystemAnnouncerLiveTest >> testOnlyWeakSubscriptions [
 
 	| strong |
 
@@ -44,11 +37,8 @@ SystemAnnouncerLiveTest>>testOnlyWeakSubscriptions [
 	self assert: strong asArray equals: #()
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemAnnouncerLiveTest>>testSaneSubscriptionSize [
+{ #category : #tests }
+SystemAnnouncerLiveTest >> testSaneSubscriptionSize [
 	
 	"self flag: 'this should be a release test, not a regular one'"
 	"self assert: SystemAnnouncer uniqueInstance subscriptions numberOfSubscriptions < 75."

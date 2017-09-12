@@ -4,15 +4,11 @@ STONWritePrettyPrinterReadTests tests pretty printed serialization followed by m
 Class {
 	#name : #STONWritePrettyPrinterReadTests,
 	#superclass : #STONWriteReadTests,
-	#category : #STON-Tests,
-	#timestamp : '<historical>'
+	#category : #STON-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWritePrettyPrinterReadTests>>serialize: anObject [
+{ #category : #private }
+STONWritePrettyPrinterReadTests >> serialize: anObject [
 	^ String streamContents: [ :stream |
 		STON writer 
 			on: stream; 
@@ -20,11 +16,8 @@ STONWritePrettyPrinterReadTests>>serialize: anObject [
 			nextPut: anObject ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONWritePrettyPrinterReadTests>>serializeJson: anObject [
+{ #category : #private }
+STONWritePrettyPrinterReadTests >> serializeJson: anObject [
 	^ String streamContents: [ :stream |
 		STON jsonWriter 
 			on: stream; 

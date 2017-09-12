@@ -46,31 +46,21 @@ Class {
 		'depth',
 		'recentlyChanged'
 	],
-	#category : #Morphic-Widgets-FastTable-Tree,
-	#timestamp : 'CyrilFerlicot 11/23/2015 15:53'
+	#category : #Morphic-Widgets-FastTable-Tree
 }
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem class>>expandedForm [
+{ #category : #expanding-collapsing }
+FTBasicItem class >> expandedForm [
 	^ Smalltalk ui theme treeExpandedForm
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem class>>unexpandedForm [
+{ #category : #expanding-collapsing }
+FTBasicItem class >> unexpandedForm [
 	^ Smalltalk ui theme treeUnexpandedForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>calculateChildren [
+{ #category : #accessing }
+FTBasicItem >> calculateChildren [
 	^ self getChildren
 		collect: [ :elem | 
 			(self class data: elem from: dataSource)
@@ -78,21 +68,15 @@ FTBasicItem>>calculateChildren [
 				yourself ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>children [
+{ #category : #accessing }
+FTBasicItem >> children [
 	"I use a cache because my children can be call often."
 
 	^ children ifNil: [ children := self calculateChildren ]
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>collapse [
+{ #category : #expanding-collapsing }
+FTBasicItem >> collapse [
 	"I do not refresh the table. Use collapseAndRefresh for that. I also do not 
 	ensure that any selected element is visible after collapsing the element.
 	If any selected elements are within the childrens of the collapsed element,
@@ -112,29 +96,20 @@ FTBasicItem>>collapse [
 	isExpanded := false
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>collapseAll [
+{ #category : #expanding-collapsing }
+FTBasicItem >> collapseAll [
 	self children do: #collapseAll.
 	self collapse
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>collapseAndRefresh [
+{ #category : #expanding-collapsing }
+FTBasicItem >> collapseAndRefresh [
 	self collapse.
 	self refreshTable
 ]
 
-{
-	#category : #button,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>collpasedButton [
+{ #category : #button }
+FTBasicItem >> collpasedButton [
 	^ IconicButton new
 		target: self;
 		actionSelector: #expandAndRefresh;
@@ -145,43 +120,28 @@ FTBasicItem>>collpasedButton [
 		borderWidth: 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>data [
+{ #category : #accessing }
+FTBasicItem >> data [
 	^ data
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>data: anObject [
+{ #category : #accessing }
+FTBasicItem >> data: anObject [
 	data := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>depth [
+{ #category : #accessing }
+FTBasicItem >> depth [
 	^ depth ifNil: [ depth := 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>depth: anObject [
+{ #category : #accessing }
+FTBasicItem >> depth: anObject [
 	depth := anObject
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>expand [
+{ #category : #expanding-collapsing }
+FTBasicItem >> expand [
 	"I do not refresh the table. Use expandAndRefresh for that. I also do not 
 	ensure that any selected element is visible after expanding the element."
 
@@ -194,49 +154,34 @@ FTBasicItem>>expand [
 				ifFalse: [ indexOfCurrentSelection + self numberOfVisibleChildren ] ]
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>expandAll [
+{ #category : #expanding-collapsing }
+FTBasicItem >> expandAll [
 	self expand.
 	self children do: #expandAll
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>expandAllTo: aDepth [
+{ #category : #expanding-collapsing }
+FTBasicItem >> expandAllTo: aDepth [
 	self expand.
 	aDepth > self depth
 		ifTrue: [ self children do: [ :each | each expandAllTo: aDepth ] ]
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>expandAndRefresh [
+{ #category : #expanding-collapsing }
+FTBasicItem >> expandAndRefresh [
 	self expand.
 	self refreshTable
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>expandWithoutChange [
+{ #category : #private }
+FTBasicItem >> expandWithoutChange [
 	"I exist because in some rare case it's hard to keep the selection during the expension so I just expand myself don't update the selection :("
 
 	isExpanded := true
 ]
 
-{
-	#category : #button,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>expandedButton [
+{ #category : #button }
+FTBasicItem >> expandedButton [
 	^ IconicButton new
 		target: self;
 		actionSelector: #collapseAndRefresh;
@@ -247,56 +192,38 @@ FTBasicItem>>expandedButton [
 		borderWidth: 0
 ]
 
-{
-	#category : #button,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>generateButton [
+{ #category : #button }
+FTBasicItem >> generateButton [
 	^ isExpanded
 		ifTrue: [ self expandedButton ]
 		ifFalse: [ self collpasedButton ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>getChildren [
+{ #category : #accessing }
+FTBasicItem >> getChildren [
 	^ dataSource childrenBlock isSymbol
 		ifTrue: [ dataSource childrenBlock value: data ]
 		ifFalse: [ dataSource childrenBlock cull: data cull: self ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>initialize [
+{ #category : #initialization }
+FTBasicItem >> initialize [
 	isExpanded := false.
 	recentlyChanged := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>isExpanded [
+{ #category : #accessing }
+FTBasicItem >> isExpanded [
 	^ isExpanded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>isRootItem [
+{ #category : #accessing }
+FTBasicItem >> isRootItem [
 	^ self depth = 0
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>printOn: aStream [
+{ #category : #printing }
+FTBasicItem >> printOn: aStream [
 	super printOn: aStream.
 	aStream
 		nextPut: $[;
@@ -304,11 +231,8 @@ FTBasicItem>>printOn: aStream [
 		nextPut: $]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>recentlyChanged [
+{ #category : #accessing }
+FTBasicItem >> recentlyChanged [
 	"Since I must be true only if I collapsed recently, I change to false if someone get me."
 
 	^ recentlyChanged
@@ -317,19 +241,13 @@ FTBasicItem>>recentlyChanged [
 			true ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>refreshTable [
+{ #category : #updating }
+FTBasicItem >> refreshTable [
 	dataSource tableRefresh.
 	dataSource table resetFunction
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicItem>>updateData [
+{ #category : #updating }
+FTBasicItem >> updateData [
 	children := nil
 ]

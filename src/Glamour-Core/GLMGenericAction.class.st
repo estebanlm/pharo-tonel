@@ -4,22 +4,15 @@ This is an action that is supposed to work in any context (e.g., Morphic or Seas
 Class {
 	#name : #GLMGenericAction,
 	#superclass : #GLMAction,
-	#category : #Glamour-Core,
-	#timestamp : '<historical>'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMGenericAction>>worksWithMorphic [
+{ #category : #testing }
+GLMGenericAction >> worksWithMorphic [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMGenericAction>>worksWithSeaside [
+{ #category : #testing }
+GLMGenericAction >> worksWithSeaside [
 	^ true
 ]

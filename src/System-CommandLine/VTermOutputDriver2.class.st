@@ -39,756 +39,497 @@ Class {
 	#pools : [
 		'VTermOutputStyles'
 	],
-	#category : #System-CommandLine,
-	#timestamp : 'PavelKrivanek 11/7/2016 17:45'
+	#category : #System-CommandLine
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2 class>>on: anOutputStream [
+{ #category : #instance-creation }
+VTermOutputDriver2 class >> on: anOutputStream [
 	^ self new
 		outStream: anOutputStream;
 		yourself
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2 class>>stderr [
+{ #category : #instance-creation }
+VTermOutputDriver2 class >> stderr [
 	^ self on: FileStream stderr
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2 class>>stdout [
+{ #category : #instance-creation }
+VTermOutputDriver2 class >> stdout [
 	^ self on: FileStream stdout
 ]
 
-{
-	#category : #'character printing',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>><< aStringOrCharacter [
+{ #category : #'character printing' }
+VTermOutputDriver2 >> << aStringOrCharacter [
 
 	self nextPutAll: aStringOrCharacter asString
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>addStyle: aString [
+{ #category : #styles }
+VTermOutputDriver2 >> addStyle: aString [
 	"Add a character sequence to the current styles"
 
 	self style addStyle: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>background [
+{ #category : #accessing }
+VTermOutputDriver2 >> background [
 
 	^ self style background
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>backgroundColor: aColor [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> backgroundColor: aColor [
 
 	self background color: aColor
 	
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>backspace [
+{ #category : #deprecated }
+VTermOutputDriver2 >> backspace [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>black [
+{ #category : #deprecated }
+VTermOutputDriver2 >> black [
 	^self blackFont.
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>black: aString [
+{ #category : #deprecated }
+VTermOutputDriver2 >> black: aString [
 	^self blackFont:aString
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>blackBackground [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> blackBackground [
 	
 	self backgroundColor: Color black
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>blackBackground: aString  [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> blackBackground: aString [ 
 	
 	self write: aString withBackground: Color black
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>blackFont [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> blackFont [
 
 	self fontColor: Color black
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>blackFont: aString  [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> blackFont: aString [ 
 	
 	self write: aString withColor: Color black
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>blink [
+{ #category : #styles }
+VTermOutputDriver2 >> blink [
 
 	self addStyle: Blink
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>blinking [
+{ #category : #deprecated }
+VTermOutputDriver2 >> blinking [
 	^self blink
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>blue [
+{ #category : #deprecated }
+VTermOutputDriver2 >> blue [
 	^self blueFont
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>blue: aString [
+{ #category : #deprecated }
+VTermOutputDriver2 >> blue: aString [
 	^self blueFont:aString
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>blueBackground [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> blueBackground [
 	
 	self backgroundColor: Color blue
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>blueBackground: aString  [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> blueBackground: aString [ 
 	
 	self write: aString withBackground: Color blue
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>blueFont [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> blueFont [
 
 	self fontColor: Color blue
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>blueFont: aString  [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> blueFont: aString [ 
 	
 	self write: aString withColor: Color blue
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>bold [
+{ #category : #styles }
+VTermOutputDriver2 >> bold [
 
 	self addStyle: Bold
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>changeStyle [
+{ #category : #styles }
+VTermOutputDriver2 >> changeStyle [
 	"Force the changes of style on the outStream"
 
 	self style = installedStyle
 		ifFalse: [ self style setInDriver: self ]
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>clear [
+{ #category : #deprecated }
+VTermOutputDriver2 >> clear [
 	^self resetStyle
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>clearFromBeginning [
+{ #category : #deprecated }
+VTermOutputDriver2 >> clearFromBeginning [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>clearScreen [
+{ #category : #deprecated }
+VTermOutputDriver2 >> clearScreen [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>clearToEnd [
+{ #category : #deprecated }
+VTermOutputDriver2 >> clearToEnd [
 	^self
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>close [
+{ #category : #initialize-release }
+VTermOutputDriver2 >> close [
 	"Stdout shouldn't be closed"
 
 	self resetStyle.
 	outStream := nil.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>closed [
+{ #category : #testing }
+VTermOutputDriver2 >> closed [
 
 	^ outStream isNil or: [ outStream closed ]
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>color: aColor [
+{ #category : #deprecated }
+VTermOutputDriver2 >> color: aColor [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>colorEscape [
+{ #category : #deprecated }
+VTermOutputDriver2 >> colorEscape [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>columns [
+{ #category : #deprecated }
+VTermOutputDriver2 >> columns [
 	^self
 ]
 
-{
-	#category : #'character printing',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>cr [
+{ #category : #'character printing' }
+VTermOutputDriver2 >> cr [
 	"Print a cr (new line)"
 
 	self nextPutAll:String cr
 ]
 
-{
-	#category : #'character printing',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>cr: anInteger [
+{ #category : #'character printing' }
+VTermOutputDriver2 >> cr: anInteger [
 	"Print anInteger cr (new line)"
 
 	anInteger timesRepeat: [ self cr ]
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>csiEscape [
+{ #category : #deprecated }
+VTermOutputDriver2 >> csiEscape [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>cursorEnhanced [
+{ #category : #deprecated }
+VTermOutputDriver2 >> cursorEnhanced [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>cursorInvisible [
+{ #category : #deprecated }
+VTermOutputDriver2 >> cursorInvisible [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>cursorInvisibleright [
+{ #category : #deprecated }
+VTermOutputDriver2 >> cursorInvisibleright [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>cursorNormal [
+{ #category : #deprecated }
+VTermOutputDriver2 >> cursorNormal [
 ^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>cyan [
+{ #category : #deprecated }
+VTermOutputDriver2 >> cyan [
 	^self cyanFont
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>cyan: aString [
+{ #category : #deprecated }
+VTermOutputDriver2 >> cyan: aString [
 	^self cyanFont: aString
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>cyanBackground [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> cyanBackground [
 	
 	self backgroundColor: Color cyan
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>cyanBackground: aString  [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> cyanBackground: aString [ 
 	
 	self write: aString withBackground: Color cyan
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>cyanFont [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> cyanFont [
 
 	self fontColor: Color cyan
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>cyanFont: aString  [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> cyanFont: aString [ 
 	
 	self write: aString withColor: Color cyan
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>deleteCharacter [
+{ #category : #deprecated }
+VTermOutputDriver2 >> deleteCharacter [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>deleteLine [
+{ #category : #deprecated }
+VTermOutputDriver2 >> deleteLine [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>down [
+{ #category : #deprecated }
+VTermOutputDriver2 >> down [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>down: aString [
+{ #category : #deprecated }
+VTermOutputDriver2 >> down: aString [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>endInsertMode [
+{ #category : #deprecated }
+VTermOutputDriver2 >> endInsertMode [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>erase [
+{ #category : #deprecated }
+VTermOutputDriver2 >> erase [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>errorColor [
+{ #category : #deprecated }
+VTermOutputDriver2 >> errorColor [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>escape [
+{ #category : #deprecated }
+VTermOutputDriver2 >> escape [
 ^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>flush [
+{ #category : #accessing }
+VTermOutputDriver2 >> flush [
 	"Flush the outStream to make the command sent be executed now"
 
 	self outStream flush
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>font [
+{ #category : #accessing }
+VTermOutputDriver2 >> font [
 
 	^ self style font
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>fontColor: aColor [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> fontColor: aColor [
 
 	self font color: aColor.
 	
 	
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>green [
+{ #category : #deprecated }
+VTermOutputDriver2 >> green [
 	^self greenFont
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>green: aString [
+{ #category : #deprecated }
+VTermOutputDriver2 >> green: aString [
 	^self greenFont: aString
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>greenBackground [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> greenBackground [
 	
 	self backgroundColor: Color green
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>greenBackground: aString  [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> greenBackground: aString [ 
 	
 	self write: aString withBackground: Color green
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>greenFont [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> greenFont [
 
 	self fontColor: Color green
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>greenFont: aString  [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> greenFont: aString [ 
 	
 	self write: aString withColor: Color green
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>here [
+{ #category : #deprecated }
+VTermOutputDriver2 >> here [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>home [
+{ #category : #deprecated }
+VTermOutputDriver2 >> home [
 	^self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>initialize [
+{ #category : #initialization }
+VTermOutputDriver2 >> initialize [
 
 	super initialize.
 	style := VTermOutputStyle new.
 	installedStyle := style copy.
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>insertCharacter [
+{ #category : #deprecated }
+VTermOutputDriver2 >> insertCharacter [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>insertLine [
+{ #category : #deprecated }
+VTermOutputDriver2 >> insertLine [
 	^self newLine
 ]
 
-{
-	#category : #'character printing',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>insertLines: anInteger [
+{ #category : #'character printing' }
+VTermOutputDriver2 >> insertLines: anInteger [
 
 	anInteger timesRepeat: [ self newLine ]
 	
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>insertMode [
+{ #category : #deprecated }
+VTermOutputDriver2 >> insertMode [
 	^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>installedStyle [
+{ #category : #accessing }
+VTermOutputDriver2 >> installedStyle [
 
 	^installedStyle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>installedStyle: aStyle [
+{ #category : #accessing }
+VTermOutputDriver2 >> installedStyle: aStyle [
 
 	installedStyle := aStyle
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>invisible [
+{ #category : #deprecated }
+VTermOutputDriver2 >> invisible [
 	^self
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>invisibleFont [
+{ #category : #styles }
+VTermOutputDriver2 >> invisibleFont [
 	"Set the current style to invisible font"
 
 	self addStyle: InvisibleFont
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>left [
+{ #category : #deprecated }
+VTermOutputDriver2 >> left [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>left: aString [
+{ #category : #deprecated }
+VTermOutputDriver2 >> left: aString [
 	^self
 ]
 
-{
-	#category : #'character printing',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>lf [
+{ #category : #'character printing' }
+VTermOutputDriver2 >> lf [
 	"Print a lf (new line)"
 
 	self nextPutAll:String lf
 ]
 
-{
-	#category : #'character printing',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>lf: anInteger [
+{ #category : #'character printing' }
+VTermOutputDriver2 >> lf: anInteger [
 	"Print anInteger lf (new line)"
 
 	anInteger timesRepeat: [ self lf ]
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>light [
+{ #category : #deprecated }
+VTermOutputDriver2 >> light [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>lines [
+{ #category : #deprecated }
+VTermOutputDriver2 >> lines [
 	^self
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>magentaBackground [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> magentaBackground [
 	
 	self backgroundColor: Color magenta
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>magentaBackground: aString  [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> magentaBackground: aString [ 
 	
 	self write: aString withBackground: Color magenta
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>magentaFont [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> magentaFont [
 
 	self fontColor: Color magenta
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>magentaFont: aString  [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> magentaFont: aString [ 
 	
 	self write: aString withColor: Color magenta
 ]
 
-{
-	#category : #'character printing',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>newLine [
+{ #category : #'character printing' }
+VTermOutputDriver2 >> newLine [
 
 	self nextPutAll: OSPlatform current lineEnding
 ]
 
-{
-	#category : #'character printing',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>nextPut: aCharacter [
+{ #category : #'character printing' }
+VTermOutputDriver2 >> nextPut: aCharacter [
 	"When a character is put, force the style changes"
 
 	self changeStyle.
@@ -796,162 +537,108 @@ VTermOutputDriver2>>nextPut: aCharacter [
 	self flush
 ]
 
-{
-	#category : #'character printing',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>nextPutAll: aString [
+{ #category : #'character printing' }
+VTermOutputDriver2 >> nextPutAll: aString [
 
 	aString do: [ :v | self nextPut: v ]
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>normal [
+{ #category : #deprecated }
+VTermOutputDriver2 >> normal [
 	^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>outStream [
+{ #category : #accessing }
+VTermOutputDriver2 >> outStream [
 
 	^outStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>outStream: stream [
+{ #category : #accessing }
+VTermOutputDriver2 >> outStream: stream [
 
 	outStream := stream.
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>overwrite: aString [
+{ #category : #deprecated }
+VTermOutputDriver2 >> overwrite: aString [
 	^self
 ]
 
-{
-	#category : #behavior,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>peekLast [
+{ #category : #behavior }
+VTermOutputDriver2 >> peekLast [
 	"Copy MultiByteFileStream behavior
 	This method is needed by SmalltalkImage>>openLog (for example)"
 
 	^ nil
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>pink [
+{ #category : #deprecated }
+VTermOutputDriver2 >> pink [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>pink: aString [
+{ #category : #deprecated }
+VTermOutputDriver2 >> pink: aString [
 	^self
 ]
 
-{
-	#category : #behavior,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>position [
+{ #category : #behavior }
+VTermOutputDriver2 >> position [
 	"Copy MultiByteFileStream behavior
 	This method is needed by SmalltalkImage>>openLog (for example)"
 
 	^ 0
 ]
 
-{
-	#category : #'character printing',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>print: anObject [
+{ #category : #'character printing' }
+VTermOutputDriver2 >> print: anObject [
 	"Have anObject print it self"
 
 	self nextPutAll: anObject asString
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>red [
+{ #category : #deprecated }
+VTermOutputDriver2 >> red [
 	^self redFont
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>red: aString [
+{ #category : #deprecated }
+VTermOutputDriver2 >> red: aString [
 	^self redFont: aString
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>redBackground [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> redBackground [
 	
 	self backgroundColor: Color red
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>redBackground: aString  [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> redBackground: aString [ 
 	
 	self write: aString withBackground: Color red
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>redFont [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> redFont [
 
 	self fontColor: Color red
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>redFont: aString  [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> redFont: aString [ 
 	
 	self write: aString withColor: Color red
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>reset [
+{ #category : #deprecated }
+VTermOutputDriver2 >> reset [
 	^self resetStyle
 ]
 
-{
-	#category : #reset,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>resetStyle [
+{ #category : #reset }
+VTermOutputDriver2 >> resetStyle [
 	"Reset the style by creating a new VTermOutputStyle and reseting the terminal to default config"
 
 	style := VTermOutputStyle new.
@@ -959,258 +646,168 @@ VTermOutputDriver2>>resetStyle [
 	self set: ResetStyle
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>restoreCursor [
+{ #category : #deprecated }
+VTermOutputDriver2 >> restoreCursor [
 	^self
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>reverse [
+{ #category : #styles }
+VTermOutputDriver2 >> reverse [
 	"Set the current style to reversed"
 
 	self addStyle: Reverse
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>right [
+{ #category : #deprecated }
+VTermOutputDriver2 >> right [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>right: aString [
+{ #category : #deprecated }
+VTermOutputDriver2 >> right: aString [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>saveCursor [
+{ #category : #deprecated }
+VTermOutputDriver2 >> saveCursor [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>scrollBackward [
+{ #category : #deprecated }
+VTermOutputDriver2 >> scrollBackward [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>scrollForward [
+{ #category : #deprecated }
+VTermOutputDriver2 >> scrollForward [
 	^self
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>set: aString [
+{ #category : #styles }
+VTermOutputDriver2 >> set: aString [
 	"Make possible the manual changes self set:'1m' will make the font bold for example"
 
 	self terminfo set: aString
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>setBackgroundColor: aColor [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> setBackgroundColor: aColor [
 
 	self terminfo setBackgroundColor: aColor
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>setFontColor: aColor  [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> setFontColor: aColor [ 
 	
 	self terminfo setFontColor: aColor
 ]
 
-{
-	#category : #'character printing',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>space [
+{ #category : #'character printing' }
+VTermOutputDriver2 >> space [
 
 	self nextPut: Character space.
 ]
 
-{
-	#category : #'character printing',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>space: anInteger [
+{ #category : #'character printing' }
+VTermOutputDriver2 >> space: anInteger [
 
 	anInteger timesRepeat: [ self space ].
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>ss3Escape [
+{ #category : #deprecated }
+VTermOutputDriver2 >> ss3Escape [
 	^self
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>standout [
+{ #category : #styles }
+VTermOutputDriver2 >> standout [
 	"Set the current style to standout"
 
 	self addStyle: Standout
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>startOfLine [
+{ #category : #deprecated }
+VTermOutputDriver2 >> startOfLine [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>store: aString [
+{ #category : #deprecated }
+VTermOutputDriver2 >> store: aString [
 	^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>style [
+{ #category : #accessing }
+VTermOutputDriver2 >> style [
 	^ style
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>style: aStyle [
+{ #category : #accessing }
+VTermOutputDriver2 >> style: aStyle [
 	style := aStyle.
 	
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>styles [
+{ #category : #accessing }
+VTermOutputDriver2 >> styles [
 	^self style styles
 ]
 
-{
-	#category : #behavior,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>tab [
+{ #category : #behavior }
+VTermOutputDriver2 >> tab [
 	self nextPut: Character tab.
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>termcap [
+{ #category : #deprecated }
+VTermOutputDriver2 >> termcap [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>termcap: aString [
+{ #category : #deprecated }
+VTermOutputDriver2 >> termcap: aString [
 	^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>terminfo [
+{ #category : #accessing }
+VTermOutputDriver2 >> terminfo [
 	^ terminfo
 		ifNil: [ self terminfo: (OSPlatform current newTerminfo on: self outStream) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>terminfo: aTerminfo [
+{ #category : #accessing }
+VTermOutputDriver2 >> terminfo: aTerminfo [
 	terminfo := aTerminfo.
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>topLeft [
+{ #category : #deprecated }
+VTermOutputDriver2 >> topLeft [
 	^self
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>underline [
+{ #category : #styles }
+VTermOutputDriver2 >> underline [
 	"Set the current style to underlined"
 
 	self addStyle: Underline
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>underlineOff [
+{ #category : #deprecated }
+VTermOutputDriver2 >> underlineOff [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>up [
+{ #category : #deprecated }
+VTermOutputDriver2 >> up [
 	^self
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>up: aString [
+{ #category : #deprecated }
+VTermOutputDriver2 >> up: aString [
 	^self
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>useStyle: newStyle during: aBlockClosure [
+{ #category : #coloring }
+VTermOutputDriver2 >> useStyle: newStyle during: aBlockClosure [
 	"Execute aBlockClosure with newStyle and set back the style to the old one after"
 
 	| oldStyle |
@@ -1220,70 +817,46 @@ VTermOutputDriver2>>useStyle: newStyle during: aBlockClosure [
 		ensure: [ self style: oldStyle ]
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>white [
+{ #category : #deprecated }
+VTermOutputDriver2 >> white [
 	^self whiteFont
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>white: aString [
+{ #category : #deprecated }
+VTermOutputDriver2 >> white: aString [
 	^self whiteFont:aString
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>whiteBackground [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> whiteBackground [
 	
 	self backgroundColor: Color white
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>whiteBackground: aString  [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> whiteBackground: aString [ 
 	
 	self write: aString withBackground: Color white
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>whiteFont [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> whiteFont [
 	self fontColor: Color white
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>whiteFont: aString  [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> whiteFont: aString [ 
 	
 	self write: aString withColor: Color white
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>width [
+{ #category : #deprecated }
+VTermOutputDriver2 >> width [
 	^self
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>write: aString withBackground: aColor [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> write: aString withBackground: aColor [
 	"Print aString with the current style and with aColor background without modifying the current style"
 
 	| tempStyle |
@@ -1294,11 +867,8 @@ VTermOutputDriver2>>write: aString withBackground: aColor [
 		during: [ self nextPutAll: aString ]
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>write: aString withColor: aColor [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> write: aString withColor: aColor [
 	"Print aString with the current style and with aColor font without modifying the current style"
 
 	| newStyle |
@@ -1309,53 +879,35 @@ VTermOutputDriver2>>write: aString withColor: aColor [
 		during: [ self nextPutAll: aString ]
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>yellow [
+{ #category : #deprecated }
+VTermOutputDriver2 >> yellow [
 	^self yellowFont
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>yellow: aString [
+{ #category : #deprecated }
+VTermOutputDriver2 >> yellow: aString [
 	^self yellowFont:aString
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>yellowBackground [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> yellowBackground [
 	
 	self backgroundColor: Color yellow
 ]
 
-{
-	#category : #'background coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>yellowBackground: aString  [
+{ #category : #'background coloring' }
+VTermOutputDriver2 >> yellowBackground: aString [ 
 	
 	self write: aString withBackground: Color yellow
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>yellowFont [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> yellowFont [
 	self fontColor: Color yellow
 ]
 
-{
-	#category : #'text coloring',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputDriver2>>yellowFont: aString  [
+{ #category : #'text coloring' }
+VTermOutputDriver2 >> yellowFont: aString [ 
 	
 	self write: aString withColor: Color yellow
 ]

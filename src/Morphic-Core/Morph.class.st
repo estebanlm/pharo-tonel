@@ -45,100 +45,66 @@ Class {
 	#classInstVars : [
 		'announcer'
 	],
-	#category : #Morphic-Core-Kernel,
-	#timestamp : 'efc 2/26/2003 20:01'
+	#category : #Morphic-Core-Kernel
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>announcer [
+{ #category : #accessing }
+Morph class >> announcer [
 
 	^ announcer ifNil: [ announcer := Announcer new ].
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>cmdGesturesEnabled [
+{ #category : #settings }
+Morph class >> cmdGesturesEnabled [
 	^ CmdGesturesEnabled ifNil: [CmdGesturesEnabled := true]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>cmdGesturesEnabled: aBoolean [
+{ #category : #settings }
+Morph class >> cmdGesturesEnabled: aBoolean [
 	CmdGesturesEnabled := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>cycleHalosBothDirections [
+{ #category : #settings }
+Morph class >> cycleHalosBothDirections [
 
 	^ CycleHalosBothDirections ifNil: [ CycleHalosBothDirections := false ].
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>cycleHalosBothDirections: aBoolean [
+{ #category : #settings }
+Morph class >> cycleHalosBothDirections: aBoolean [
 
 	CycleHalosBothDirections := aBoolean.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>defaultEventDispatcher [
+{ #category : #accessing }
+Morph class >> defaultEventDispatcher [
 	^ EventDispatcher ifNil: [ EventDispatcher := MorphicEventDispatcher new ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>defaultYellowButtonMenuEnabled [
+{ #category : #settings }
+Morph class >> defaultYellowButtonMenuEnabled [
 	^ DefaultYellowButtonMenuEnabled ifNil: [DefaultYellowButtonMenuEnabled := false]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>defaultYellowButtonMenuEnabled: aBoolean [
+{ #category : #settings }
+Morph class >> defaultYellowButtonMenuEnabled: aBoolean [
 	DefaultYellowButtonMenuEnabled := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>halosEnabled [
+{ #category : #settings }
+Morph class >> halosEnabled [
 
 	^ HalosEnabled ifNil: [ HalosEnabled := true ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>halosEnabled: aBoolean [
+{ #category : #settings }
+Morph class >> halosEnabled: aBoolean [
 
 	HalosEnabled := aBoolean
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>initialize [
+{ #category : #initialize-release }
+Morph class >> initialize [
 	"Morph initialize"
 
 	"this empty array object is shared by all morphs with no submorphs:"
@@ -146,11 +112,8 @@ Morph class>>initialize [
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>morphNavigationShortcutsOn: aBuilder [
+{ #category : #settings }
+Morph class >> morphNavigationShortcutsOn: aBuilder [
 	"Basic, general navigation shortcut among morphs. #MorphNoCtrl will not work for TextMorphs."
 
 	<keymap>
@@ -172,11 +135,8 @@ Morph class>>morphNavigationShortcutsOn: aBuilder [
 		do: [ :target :morph :event | morph navigateFocusBackward ]
 ]
 
-{
-	#category : #misc,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>morphsUnknownToTheirOwners [
+{ #category : #misc }
+Morph class >> morphsUnknownToTheirOwners [
 	"Return a list of all morphs (other than HandMorphs) whose owners do not contain them in their submorph lists"
 
 	"Morph morphsUnknownToTheirOwners"
@@ -191,39 +151,27 @@ Morph class>>morphsUnknownToTheirOwners [
 	^ problemMorphs
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>newBounds: bounds [
+{ #category : #'instance creation' }
+Morph class >> newBounds: bounds [
 
 	^ self new privateBounds: bounds
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>newBounds: bounds color: color [
+{ #category : #'instance creation' }
+Morph class >> newBounds: bounds color: color [
 
 	^ (self new privateBounds: bounds) privateColor: color
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>newSticky [
+{ #category : #'instance creation' }
+Morph class >> newSticky [
 
 	^ self new beSticky
 ]
 
-{
-	#category : #misc,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>obtainArrowheadFor: aPrompt defaultValue: defaultPoint [
+{ #category : #misc }
+Morph class >> obtainArrowheadFor: aPrompt defaultValue: defaultPoint [
 	"Allow the user to supply a point to serve as an arrowhead size.  Answer nil if we fail to get a good point"
 
 	| result  |
@@ -233,29 +181,20 @@ Morph class>>obtainArrowheadFor: aPrompt defaultValue: defaultPoint [
 		on: Error do: [:ex |  nil].
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>shortcutsHandler  [
+{ #category : #shortcuts }
+Morph class >> shortcutsHandler [ 
 
 	^ ShortcutsHandler
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph class>>shortcutsHandler: anObject [
+{ #category : #shortcuts }
+Morph class >> shortcutsHandler: anObject [
 
 	ShortcutsHandler := anObject
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>aboutToBeGrabbedBy: aHand [
+{ #category : #dropping/grabbing }
+Morph >> aboutToBeGrabbedBy: aHand [
 	"The receiver is being grabbed by a hand.
 	Perform necessary adjustments (if any) and return the actual morph
 	that should be added to the hand."
@@ -265,11 +204,8 @@ Morph>>aboutToBeGrabbedBy: aHand [
 	^self "Grab me"
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>acceptDroppingMorph: aMorph event: evt [
+{ #category : #layout }
+Morph >> acceptDroppingMorph: aMorph event: evt [
 	"This message is sent when a morph is dropped onto a morph that has agreed to accept the dropped morph by responding 'true' to the wantsDroppedMorph:Event: message. This default implementation just adds the given morph to the receiver."
 	| layout |
 	layout := self layoutPolicy.
@@ -278,150 +214,102 @@ Morph>>acceptDroppingMorph: aMorph event: evt [
 		atIndex: (layout indexForInserting: aMorph at: evt position in: self).
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>actAsExecutor [
+{ #category : #updating }
+Morph >> actAsExecutor [
 	"Prepare the receiver to act as executor for any resources associated with it"
 	self breakDependents
 ]
 
-{
-	#category : #events-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>actionMap [
+{ #category : #events-accessing }
+Morph >> actionMap [
 	"Answer an action map"
 
 	^self updateableActionMap
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>activeHand [
+{ #category : #structure }
+Morph >> activeHand [
 	| world |
    world := self world ifNil: [^ ActiveHand ].
    ^ world activeHand ifNil: [ ^ ActiveHand  ]
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addAddHandMenuItemsForHalo: aMenu hand: aHandMorph [
+{ #category : #menus }
+Morph >> addAddHandMenuItemsForHalo: aMenu hand: aHandMorph [
 	"The former charter of this method was to add halo menu items that pertained specifically to the hand.  Over time this charter has withered, and most morphs reimplement this method simply to add their morph-specific menu items.  So in the latest round, all other implementors in the standard image have been removed.  However, this is left here as a hook for the benefit of existing code in client uses."
 
 
 ]
 
-{
-	#category : #events-alarms,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addAlarm: aSelector after: delayTime [
+{ #category : #events-alarms }
+Morph >> addAlarm: aSelector after: delayTime [
 	"Add an alarm (that is an action to be executed once) with the given set of parameters"
 	^self addAlarm: aSelector withArguments: #() after: delayTime
 ]
 
-{
-	#category : #events-alarms,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addAlarm: aSelector at: scheduledTime [
+{ #category : #events-alarms }
+Morph >> addAlarm: aSelector at: scheduledTime [
 	"Add an alarm (that is an action to be executed once) with the given set of parameters"
 	^self addAlarm: aSelector withArguments: #() at: scheduledTime
 ]
 
-{
-	#category : #events-alarms,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addAlarm: aSelector with: arg1 after: delayTime [
+{ #category : #events-alarms }
+Morph >> addAlarm: aSelector with: arg1 after: delayTime [
 	"Add an alarm (that is an action to be executed once) with the given set of parameters"
 	^self addAlarm: aSelector withArguments: (Array with: arg1) after: delayTime
 ]
 
-{
-	#category : #events-alarms,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addAlarm: aSelector with: arg1 at: scheduledTime [
+{ #category : #events-alarms }
+Morph >> addAlarm: aSelector with: arg1 at: scheduledTime [
 	"Add an alarm (that is an action to be executed once) with the given set of parameters"
 	^self addAlarm: aSelector withArguments: (Array with: arg1) at: scheduledTime
 ]
 
-{
-	#category : #events-alarms,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addAlarm: aSelector with: arg1 with: arg2 after: delayTime [
+{ #category : #events-alarms }
+Morph >> addAlarm: aSelector with: arg1 with: arg2 after: delayTime [
 	"Add an alarm (that is an action to be executed once) with the given set of parameters"
 	^self addAlarm: aSelector withArguments: (Array with: arg1 with: arg2) after: delayTime
 ]
 
-{
-	#category : #events-alarms,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addAlarm: aSelector with: arg1 with: arg2 at: scheduledTime [
+{ #category : #events-alarms }
+Morph >> addAlarm: aSelector with: arg1 with: arg2 at: scheduledTime [
 	"Add an alarm (that is an action to be executed once) with the given set of parameters"
 	^self addAlarm: aSelector withArguments: (Array with: arg1 with: arg2) at: scheduledTime
 ]
 
-{
-	#category : #events-alarms,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addAlarm: aSelector withArguments: args after: delayTime [
+{ #category : #events-alarms }
+Morph >> addAlarm: aSelector withArguments: args after: delayTime [
 	"Add an alarm (that is an action to be executed once) with the given set of parameters"
 	^self addAlarm: aSelector withArguments: args at: Time millisecondClockValue + delayTime
 ]
 
-{
-	#category : #events-alarms,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addAlarm: aSelector withArguments: args at: scheduledTime [
+{ #category : #events-alarms }
+Morph >> addAlarm: aSelector withArguments: args at: scheduledTime [
 	"Add an alarm (that is an action to be executed once) with the given set of parameters"
 	| scheduler |
 	scheduler := self alarmScheduler.
 	scheduler ifNotNil:[scheduler addAlarm: aSelector withArguments: args for: self at: scheduledTime].
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addAllMorphs: aCollection [
+{ #category : #submorphs-add/remove }
+Morph >> addAllMorphs: aCollection [
 	^self privateAddAllMorphs: aCollection atIndex: submorphs size
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addAllMorphs: aCollection after: anotherMorph [
+{ #category : #submorphs-add/remove }
+Morph >> addAllMorphs: aCollection after: anotherMorph [
 	^self privateAddAllMorphs: aCollection 
 			atIndex: (submorphs indexOf: anotherMorph ifAbsent: [submorphs size])
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addBorderStyleMenuItems: aMenu hand: aHandMorph [
+{ #category : #menu }
+Morph >> addBorderStyleMenuItems: aMenu hand: aHandMorph [
 	"Probably one could offer border-style items even if it's not a borderedMorph, so this remains a loose end for the moment"
 
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addCellLayoutMenuItems: aMenu hand: aHand [
+{ #category : #layout-menu }
+Morph >> addCellLayoutMenuItems: aMenu hand: aHand [
 	"Cell (e.g., child) related items"
 	| menu sub |
 	menu := UIManager default newMenuIn: self for: self.
@@ -449,39 +337,27 @@ Morph>>addCellLayoutMenuItems: aMenu hand: aHand [
 	^ menu
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addCustomHaloMenuItems: aMenu hand: aHandMorph [
+{ #category : #menus }
+Morph >> addCustomHaloMenuItems: aMenu hand: aHandMorph [
 	"Add morph-specific items to the given menu which was invoked by the given hand from the halo.  To get started, we defer to the counterpart method used with the option-menu, but in time we can have separate menu choices for halo-menus and for option-menus"
 
 	self addCustomMenuItems: aMenu hand: aHandMorph
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addCustomMenuItems: aCustomMenu hand: aHandMorph [
+{ #category : #menus }
+Morph >> addCustomMenuItems: aCustomMenu hand: aHandMorph [
 	"Add morph-specific items to the given menu which was invoked by the given hand.  This method provides is invoked both from the halo-menu and from the control-menu regimes."
 
 ]
 
-{
-	#category : #'debug and other',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addDebuggingItemsTo: aMenu hand: aHandMorph [
+{ #category : #'debug and other' }
+Morph >> addDebuggingItemsTo: aMenu hand: aHandMorph [
 	aMenu add: 'debug...' subMenu: (self buildDebugMenu: aHandMorph).
 	aMenu lastItem icon: (self iconNamed: #smallDebugIcon)
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addDependent: anObject [
+{ #category : #updating }
+Morph >> addDependent: anObject [
 
 	self announcer 
 		when: MorphChanged , MorphChangedWithArguments
@@ -491,11 +367,8 @@ Morph>>addDependent: anObject [
 	^ anObject
 ]
 
-{
-	#category : #'drop shadows',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addDropShadow [
+{ #category : #'drop shadows' }
+Morph >> addDropShadow [
 
 	self hasDropShadow ifTrue:[^self].
 	self changed.
@@ -505,11 +378,8 @@ Morph>>addDropShadow [
 	self changed.
 ]
 
-{
-	#category : #'drop shadows',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addDropShadowMenuItems: aMenu hand: aHand [
+{ #category : #'drop shadows' }
+Morph >> addDropShadowMenuItems: aMenu hand: aHand [
 	| menu |
 	menu := UIManager default newMenuIn: self for: self.
 	menu
@@ -521,11 +391,8 @@ Morph>>addDropShadowMenuItems: aMenu hand: aHand [
 	aMenu add: 'drop shadow' subMenu: menu.
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addEmbeddingMenuItemsTo: aMenu hand: aHandMorph [
+{ #category : #meta-actions }
+Morph >> addEmbeddingMenuItemsTo: aMenu hand: aHandMorph [
 	"Construct a menu offerring embed targets for the receiver.  If the incoming menu is is not degenerate, add the constructed menu as a submenu; in any case, answer the embed-target menu"
 
 	| menu potentialEmbeddingTargets |
@@ -547,11 +414,8 @@ Morph>>addEmbeddingMenuItemsTo: aMenu hand: aHandMorph [
 	^ menu
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addExportMenuItems: aMenu hand: aHandMorph [
+{ #category : #menus }
+Morph >> addExportMenuItems: aMenu hand: aHandMorph [
 	"Add export items to the menu"
 
 	aMenu
@@ -569,11 +433,8 @@ Morph>>addExportMenuItems: aMenu hand: aHandMorph [
 				icon: (self iconNamed: #smallExportIcon) ]
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addFillStyleMenuItems: aMenu hand: aHand [
+{ #category : #menus }
+Morph >> addFillStyleMenuItems: aMenu hand: aHand [
 	"Add the items for changing the current fill style of the Morph"
 	| menu |
 	menu := UIManager default newMenuIn: self for: self.
@@ -587,11 +448,8 @@ Morph>>addFillStyleMenuItems: aMenu hand: aHand [
 
 ]
 
-{
-	#category : #'rotate scale and flex',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addFlexShell [
+{ #category : #'rotate scale and flex' }
+Morph >> addFlexShell [
 	"Wrap a rotating and scaling shell around this morph."
 
 	| oldHalo flexMorph myWorld anIndex |
@@ -608,29 +466,20 @@ Morph>>addFlexShell [
 	^ flexMorph
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addHalo [
+{ #category : #'halos and balloon help' }
+Morph >> addHalo [
 	"Invoke a halo programatically (e.g., not from a meta gesture)"
 	^self addHalo: nil
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addHalo: evt from: formerHaloOwner [
+{ #category : #'halos and balloon help' }
+Morph >> addHalo: evt from: formerHaloOwner [
 	"Transfer a halo from the former halo owner to the receiver"
 	^self addHalo: evt
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addHaloActionsTo: aMenu [
+{ #category : #menus }
+Morph >> addHaloActionsTo: aMenu [
 	"Add items to aMenu representing actions requestable via halo"
 
 	| subMenu |
@@ -668,11 +517,8 @@ Morph>>addHaloActionsTo: aMenu [
 
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addLayoutMenuItems: topMenu hand: aHand [
+{ #category : #layout-menu }
+Morph >> addLayoutMenuItems: topMenu hand: aHand [
 	| aMenu |
 	aMenu := UIManager default newMenuIn: self for: self.
 	aMenu addUpdating: #hasNoLayoutString selector: #changeNoLayout.
@@ -687,11 +533,8 @@ Morph>>addLayoutMenuItems: topMenu hand: aHand [
 	^aMenu
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addMiscExtrasTo: aMenu [
+{ #category : #menus }
+Morph >> addMiscExtrasTo: aMenu [
 	"Add a submenu of miscellaneous extra items to the menu."
 
 	| subMenu |
@@ -704,11 +547,8 @@ Morph>>addMiscExtrasTo: aMenu [
 	aMenu add: 'extras...' subMenu: subMenu
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addModelYellowButtonItemsTo: aCustomMenu event: evt  [
+{ #category : #menu }
+Morph >> addModelYellowButtonItemsTo: aCustomMenu event: evt [ 
 	"Give my models a chance to add their context-menu items to  
 	aCustomMenu."
 	self model
@@ -719,29 +559,20 @@ Morph>>addModelYellowButtonItemsTo: aCustomMenu event: evt  [
 				hand: evt hand]
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addMorph: aMorph [
+{ #category : #submorphs-add/remove }
+Morph >> addMorph: aMorph [
 
 	self addMorphFront: aMorph.
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addMorph: newMorph after: aMorph [
+{ #category : #submorphs-add/remove }
+Morph >> addMorph: newMorph after: aMorph [
 	"Add the given morph as one of my submorphs, inserting it after anotherMorph"
 	^self privateAddMorph: newMorph atIndex: (submorphs indexOf: aMorph)+1
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addMorph: aMorph asElementNumber: aNumber [
+{ #category : #submorphs-add/remove }
+Morph >> addMorph: aMorph asElementNumber: aNumber [
 	"Add the given morph so that it becomes the aNumber'th element of my submorph list.  If aMorph is already one of my submorphs, reposition it"
 
 	(submorphs includes: aMorph) ifTrue:
@@ -754,21 +585,15 @@ Morph>>addMorph: aMorph asElementNumber: aNumber [
 
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addMorph: newMorph behind: aMorph [
+{ #category : #submorphs-add/remove }
+Morph >> addMorph: newMorph behind: aMorph [
 	"Add a morph to the list of submorphs behind the specified morph"
 	^self privateAddMorph: newMorph atIndex: (submorphs indexOf: aMorph) + 1.
 
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addMorph: aMorph fullFrame: aLayoutFrame [
+{ #category : #submorphs-add/remove }
+Morph >> addMorph: aMorph fullFrame: aLayoutFrame [
 
 	aMorph layoutFrame: aLayoutFrame asLayoutFrame.
 	aMorph hResizing: #spaceFill; vResizing: #spaceFill.
@@ -777,65 +602,44 @@ Morph>>addMorph: aMorph fullFrame: aLayoutFrame [
 
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addMorph: newMorph inFrontOf: aMorph [
+{ #category : #submorphs-add/remove }
+Morph >> addMorph: newMorph inFrontOf: aMorph [
 	"Add a morph to the list of submorphs in front of the specified morph"
 	^self privateAddMorph: newMorph atIndex: ((submorphs indexOf: aMorph) max: 1).
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addMorphBack: aMorph [
+{ #category : #submorphs-add/remove }
+Morph >> addMorphBack: aMorph [
 	^self privateAddMorph: aMorph atIndex: submorphs size+1
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addMorphCentered: aMorph [
+{ #category : #submorphs-add/remove }
+Morph >> addMorphCentered: aMorph [
 
 	aMorph position: bounds center - (aMorph extent // 2).
 	self addMorphFront: aMorph.
 
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addMorphFront: aMorph [
+{ #category : #submorphs-add/remove }
+Morph >> addMorphFront: aMorph [
 	^self privateAddMorph: aMorph atIndex: 1
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addMorphFront: aMorph fromWorldPosition: wp [
+{ #category : #submorphs-add/remove }
+Morph >> addMorphFront: aMorph fromWorldPosition: wp [
 
 	self addMorphFront: aMorph.
 	aMorph position: (self transformFromWorld globalPointToLocal: wp)
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addMorphFrontFromWorldPosition: aMorph [
+{ #category : #submorphs-add/remove }
+Morph >> addMorphFrontFromWorldPosition: aMorph [
 	^self addMorphFront: aMorph fromWorldPosition: aMorph positionInWorld.
 ]
 
-{
-	#category : #'wiw support',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addMorphInFrontOfLayer: aMorph [
+{ #category : #'wiw support' }
+Morph >> addMorphInFrontOfLayer: aMorph [
 
 	| targetLayer |
 
@@ -852,11 +656,8 @@ Morph>>addMorphInFrontOfLayer: aMorph [
 
 ]
 
-{
-	#category : #'wiw support',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addMorphInLayer: aMorph [
+{ #category : #'wiw support' }
+Morph >> addMorphInLayer: aMorph [
 
 	submorphs do: [ :each |
 		each == aMorph ifTrue: [^self].
@@ -868,21 +669,15 @@ Morph>>addMorphInLayer: aMorph [
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addMyYellowButtonMenuItemsToSubmorphMenus [
+{ #category : #menu }
+Morph >> addMyYellowButtonMenuItemsToSubmorphMenus [
 	"Answer true if I have items to add to the context menus of my submorphs"
 
 	^true
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addNestedYellowButtonItemsTo: aMenu event: evt [
+{ #category : #menu }
+Morph >> addNestedYellowButtonItemsTo: aMenu event: evt [
 	"Add items to aMenu starting with me and proceeding down 
 	through my submorph chain, 
 	letting any submorphs that include the event position 
@@ -900,19 +695,13 @@ Morph>>addNestedYellowButtonItemsTo: aMenu event: evt [
 	aMenu add: underMouse externalName icon: (underMouse iconOrThumbnailOfSize: 16) subMenu: submenu
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addOptionalHandlesTo: aHalo box: box [
+{ #category : #'halos and balloon help' }
+Morph >> addOptionalHandlesTo: aHalo box: box [
 
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addStandardHaloMenuItemsTo: aMenu hand: aHandMorph [
+{ #category : #menus }
+Morph >> addStandardHaloMenuItemsTo: aMenu hand: aHandMorph [
 	"Add standard halo items to the menu"
 
 	aMenu add: 'send to back' selector: #goBehind.
@@ -936,11 +725,8 @@ Morph>>addStandardHaloMenuItemsTo: aMenu hand: aHandMorph [
 	aMenu defaultTarget: aHandMorph
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addTableLayoutMenuItems: aMenu hand: aHand [
+{ #category : #layout-menu }
+Morph >> addTableLayoutMenuItems: aMenu hand: aHand [
 	| menu sub |
 	menu := UIManager default newMenuIn: self for: self.
 	menu addUpdating: #hasReverseCellsString selector: #changeReverseCells.
@@ -1018,11 +804,8 @@ Morph>>addTableLayoutMenuItems: aMenu hand: aHand [
 	^ menu
 ]
 
-{
-	#category : #text-anchor,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addTextAnchorMenuItems: topMenu hand: aHand [
+{ #category : #text-anchor }
+Morph >> addTextAnchorMenuItems: topMenu hand: aHand [
 	| aMenu |
 	aMenu := UIManager default newMenuIn: self for: self.
 	aMenu addUpdating: #hasInlineAnchorString selector: #changeInlineAnchor.
@@ -1032,11 +815,8 @@ Morph>>addTextAnchorMenuItems: topMenu hand: aHand [
 	^aMenu
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addTitleForHaloMenu: aMenu  [
+{ #category : #menu }
+Morph >> addTitleForHaloMenu: aMenu [ 
 	aMenu buildTitle: [ :menuTitle | menuTitle
 		bigTitle: self externalName;
 		icon: (self iconOrThumbnailOfSize: 18);
@@ -1045,11 +825,8 @@ Morph>>addTitleForHaloMenu: aMenu  [
 
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addToggleItemsToHaloMenu: aMenu [
+{ #category : #menus }
+Morph >> addToggleItemsToHaloMenu: aMenu [
 	"Add standard true/false-checkbox items to the memu"
 
 	#(#(#resistsRemovalString #toggleResistsRemoval 'whether I should be reistant to easy deletion via the pink X handle' true) #(#stickinessString #toggleStickiness 'whether I should be resistant to a drag done by mousing down on me' true) #(#lockedString #lockUnlockMorph 'when "locked", I am inert to all user interactions' true) #(#hasClipSubmorphsString #changeClipSubmorphs 'whether the parts of objects within me that are outside my bounds should be masked.' false) #(#hasDirectionHandlesString #changeDirectionHandles 'whether direction handles are shown with the halo' false) #(#hasDragAndDropEnabledString #changeDragAndDrop 'whether I am open to having objects dropped into me' false))
@@ -1062,19 +839,13 @@ Morph>>addToggleItemsToHaloMenu: aMenu [
 	aMenu balloonTextForLastItem: 'whether my corners should be rounded' translated
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addTransparentSpacerOfSize: aPoint [
+{ #category : #utilities }
+Morph >> addTransparentSpacerOfSize: aPoint [
 	self addMorphBack: (self transparentSpacerOfSize: aPoint)
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addYellowButtonMenuItemsTo: aMenu event: evt  [
+{ #category : #menu }
+Morph >> addYellowButtonMenuItemsTo: aMenu event: evt [ 
 	"Populate aMenu with appropriate menu items for a  
 	yellow-button (context menu) click."
 	aMenu defaultTarget: self.
@@ -1115,20 +886,14 @@ Morph>>addYellowButtonMenuItemsTo: aMenu event: evt  [
 	self addCustomMenuItems: aMenu hand: evt hand
 ]
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>addedMorph: aMorph [
+{ #category : #'change reporting' }
+Morph >> addedMorph: aMorph [
 	"Notify the receiver that the given morph was just added."
 
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>adhereToEdge [
+{ #category : #menus }
+Morph >> adhereToEdge [
 	| menu |
 	menu := UIManager default newMenuIn: self for: self.
 	#(top right bottom left - center - topLeft topRight bottomRight bottomLeft - none)
@@ -1139,11 +904,8 @@ Morph>>adhereToEdge [
 	menu popUpEvent: self currentEvent in: self world
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>adhereToEdge: edgeSymbol  [
+{ #category : #menus }
+Morph >> adhereToEdge: edgeSymbol [ 
 	| edgeMessage |
 	(owner isNil or: [owner isHandMorph]) ifTrue: [^self].
 	(owner class canUnderstand:  edgeSymbol) ifFalse:  [^self].
@@ -1154,11 +916,8 @@ Morph>>adhereToEdge: edgeSymbol  [
 		withArguments: (Array with: (owner perform: edgeSymbol))
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>adjustLayoutBounds [
+{ #category : #layout }
+Morph >> adjustLayoutBounds [
 	"Adjust the receivers bounds depending on the resizing strategy imposed"
 
 	| hFit vFit box myExtent extent |
@@ -1180,58 +939,40 @@ Morph>>adjustLayoutBounds [
 	self layoutBounds: (box origin extent: myExtent)
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>adjustedCenter [
+{ #category : #menus }
+Morph >> adjustedCenter [
 	"Provides a hook for objects to provide a reference point other than the receiver's center,for the purpose of centering a submorph under special circumstances, such as BalloonMorph"
 
 	^ self center
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>adjustedCenter: c [
+{ #category : #menus }
+Morph >> adjustedCenter: c [
 	"Set the receiver's position based on the #adjustedCenter protocol for adhereToEdge.  By default this simply sets the receiver's center.   Though there are (at its inception anyway) no other implementors of this method, it is required in use with the #adhereToEdge when the centering of a submorph is to be with reference to a rectangle  other than the receiver's center."
 
 	self center: c
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+Morph >> adoptPaneColor: paneColor [
 	self submorphsDo:[:m| m adoptPaneColor: paneColor].
 ]
 
-{
-	#category : #events-alarms,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>alarmScheduler [
+{ #category : #events-alarms }
+Morph >> alarmScheduler [
 	"Return the scheduler being responsible for triggering alarms"
 	^self world
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>align: aPoint1 with: aPoint2 [
+{ #category : #geometry }
+Morph >> align: aPoint1 with: aPoint2 [
 	"Translate by aPoint2 - aPoint1."
 
 	^ self position: self position + (aPoint2 - aPoint1)
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>allMorphs [
+{ #category : #submorphs-accessing }
+Morph >> allMorphs [
 	"Return a collection containing all morphs in this composite morph (including the receiver)."
 
 	| all |
@@ -1240,22 +981,16 @@ Morph>>allMorphs [
 	^ all contents
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>allMorphsDo: aBlock  [
+{ #category : #submorphs-accessing }
+Morph >> allMorphsDo: aBlock [ 
 	"Evaluate the given block for all morphs in this composite morph (including the receiver)."
 
 	submorphs do: [:m | m allMorphsDo: aBlock].
 	aBlock value: self
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>allMorphsInto: aSet [
+{ #category : #submorphs-accessing }
+Morph >> allMorphsInto: aSet [
 	"Return a set of all submorphs.  Don't forget the hidden ones. Consider only objects that are in memory (see allNonSubmorphMorphs)." 
 
 	submorphs do: [:m | m allMorphsInto: aSet].
@@ -1266,40 +1001,28 @@ Morph>>allMorphsInto: aSet [
 	^ aSet
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>allNonSubmorphMorphs [
+{ #category : #submorphs-accessing }
+Morph >> allNonSubmorphMorphs [
 	"Return a collection containing all morphs in this morph which are not currently in the submorph containment hierarchy"
 
 	^ OrderedCollection new
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>allOwners [
+{ #category : #structure }
+Morph >> allOwners [
 	"Return the owners of the reciever"
 
 	^ Array streamContents: [:strm | self allOwnersDo: [:m | strm nextPut: m]]
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>allOwnersDo: aBlock [
+{ #category : #structure }
+Morph >> allOwnersDo: aBlock [
 	"Evaluate aBlock with all owners of the receiver"
 	owner ifNotNil:[^owner withAllOwnersDo: aBlock].
 ]
 
-{
-	#category : #'debug and other',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>allStringsAfter: aSubmorph  [
+{ #category : #'debug and other' }
+Morph >> allStringsAfter: aSubmorph [ 
 	"return an OrderedCollection of strings of text in my submorphs.  If aSubmorph is non-nil, begin with that container."
 
 	| list ok |
@@ -1315,20 +1038,14 @@ Morph>>allStringsAfter: aSubmorph  [
 	^list
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>announceDeleted [
+{ #category : #announcements }
+Morph >> announceDeleted [
 	self doAnnounce: (MorphDeleted morph: self).
 	self submorphs do: #announceDeleted
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>announceKeyboardFocusChange: gotFocus [
+{ #category : #announcements }
+Morph >> announceKeyboardFocusChange: gotFocus [
 	| announcement |
 	announcement := gotFocus 
 						ifTrue: [ MorphGotFocus morph: self ]
@@ -1337,28 +1054,19 @@ Morph>>announceKeyboardFocusChange: gotFocus [
 	Morph announcer announce: announcement.
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>announceOpened [
+{ #category : #announcements }
+Morph >> announceOpened [
 	self doAnnounce: (MorphOpened morph: self).
 	self submorphs do: #announceOpened
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>announcer [
+{ #category : #announcements }
+Morph >> announcer [
 	^self valueOfProperty: #announcer ifAbsentPut: [ Announcer new ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>areasRemainingToFill: aRectangle  [
+{ #category : #drawing }
+Morph >> areasRemainingToFill: aRectangle [ 
 	"Pushed up from BorderedMorph, all cases tested for there are
 	supported by basic Morph."
 	"Morphs which achieve translucency by other means than fillStyle will have
@@ -1381,21 +1089,15 @@ Morph>>areasRemainingToFill: aRectangle  [
 				ifFalse: [^ aRectangle areasOutside: self bounds]]
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>arrangeToStartStepping [
+{ #category : #'stepping and presenter' }
+Morph >> arrangeToStartStepping [
 	"Arrange to start getting sent the 'step' message, but don't do that initial #step call that startStepping does"
 
 	self arrangeToStartSteppingIn: self world
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>arrangeToStartSteppingIn: aWorld [
+{ #category : #'stepping and presenter' }
+Morph >> arrangeToStartSteppingIn: aWorld [
 	"Start getting sent the 'step' message in aWorld.  Like startSteppingIn:, but without the initial one to get started'"
 
 	aWorld ifNil: [ ^ self ].
@@ -1403,27 +1105,18 @@ Morph>>arrangeToStartSteppingIn: aWorld [
 	self changed.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>asDraggableMorph [
+{ #category : #converting }
+Morph >> asDraggableMorph [
 	^self
 ]
 
-{
-	#category : #creation,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>asMorph [
+{ #category : #creation }
+Morph >> asMorph [
 	^ self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>asText [
+{ #category : #converting }
+Morph >> asText [
 
 	| anchor embedMorphSignal |
     anchor := TextAnchor new anchoredMorph: self.
@@ -1431,85 +1124,58 @@ Morph>>asText [
     ^ Text string: embedMorphSignal attribute: anchor.
 ]
 
-{
-	#category : #'accessing - extension',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>assureExtension [
+{ #category : #'accessing - extension' }
+Morph >> assureExtension [
 	"creates an extension for the receiver if needed"
 	extension ifNil: [self initializeExtension].
 	^ extension
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>balloonColor [
+{ #category : #'halos and balloon help' }
+Morph >> balloonColor [
 	^ self
 		valueOfProperty: #balloonColor
 		ifAbsent: [self defaultBalloonColor]
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>balloonColor: aColor [
+{ #category : #'halos and balloon help' }
+Morph >> balloonColor: aColor [
 	^ self
 		setProperty: #balloonColor
 		toValue: aColor
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>balloonFont [
+{ #category : #'halos and balloon help' }
+Morph >> balloonFont [
 	^ self
 		valueOfProperty: #balloonFont
 		ifAbsent: [self defaultBalloonFont]
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>balloonFont: aFont  [
+{ #category : #'halos and balloon help' }
+Morph >> balloonFont: aFont [ 
 	^ self setProperty: #balloonFont toValue: aFont
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>balloonHelpAligner [
+{ #category : #'halos and balloon help' }
+Morph >> balloonHelpAligner [
 	"Answer the morph to which the receiver's balloon help should point"
 	^ (self valueOfProperty: #balloonTarget) ifNil: [self]
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>balloonHelpDelayTime [
+{ #category : #'halos and balloon help' }
+Morph >> balloonHelpDelayTime [
 	"Return the number of milliseconds before a balloon help should be put up on the receiver. The balloon help will only be put up if the receiver responds to #wantsBalloon by returning true."
 	^ self theme settings balloonHelpDelayTime
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>balloonHelpEnabled [
+{ #category : #settings }
+Morph >> balloonHelpEnabled [
 	^ self theme settings balloonHelpEnabled
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>balloonHelpTextForHandle: aHandle  [
+{ #category : #'halos and balloon help' }
+Morph >> balloonHelpTextForHandle: aHandle [ 
 	"Answer a string providing balloon help for the
 	given halo handle"
 	(aHandle eventHandler mouseSelectorsInclude: #doRecolor:with:) ifTrue: [^ 'Change color'].
@@ -1520,11 +1186,8 @@ Morph>>balloonHelpTextForHandle: aHandle  [
 	^ 'unknown halo handle' translated
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>balloonText [
+{ #category : #accessing }
+Morph >> balloonText [
 	"Answer balloon help text or nil, if no help is available.  
 	NB: subclasses may override such that they programatically  
 	construct the text, for economy's sake, such as model phrases in 
@@ -1535,57 +1198,39 @@ Morph>>balloonText [
 				text asString withNoLineLongerThan: self theme settings maxBalloonHelpLineLength]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>beSticky [
+{ #category : #accessing }
+Morph >> beSticky [
 	"make the receiver sticky"
 	self assureExtension sticky: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>beTransparent [
+{ #category : #accessing }
+Morph >> beTransparent [
 	self color: Color transparent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>beUnsticky [
+{ #category : #accessing }
+Morph >> beUnsticky [
 	"If the receiver is marked as sticky, make it now be unsticky"
 	extension ifNotNil: [extension sticky: false]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>becomeModal [
+{ #category : #'user interface' }
+Morph >> becomeModal [
 	self currentWorld
 		ifNotNil: [self currentWorld modalWindow: self]
 ]
 
-{
-	#category : #Morphic-Base-Widgets,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>beginsWith: aString fromList: aMorph [
+{ #category : #Morphic-Base-Widgets }
+Morph >> beginsWith: aString fromList: aMorph [
 	| string |
 	string := self userString ifNil: [(self submorphs collect: [:m | m userString]) detect: [:us | us notNil] ifNone: ['']].
 	
 	^ string asString beginsWith: aString fromList: aMorph
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>blueButtonDown: anEvent [
+{ #category : #meta-actions }
+Morph >> blueButtonDown: anEvent [
 	"Special gestures (cmd-mouse on the Macintosh; Alt-mouse on Windows and Unix) allow a mouse-sensitive morph to be moved or bring up a halo for the morph."
 	| h tfm doNotDrag |
 	h := anEvent hand halo.
@@ -1612,37 +1257,25 @@ Morph>>blueButtonDown: anEvent [
 	anEvent hand newMouseFocus: h.
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>blueButtonUp: anEvent [
+{ #category : #meta-actions }
+Morph >> blueButtonUp: anEvent [
 	"Ignored. Theoretically we should never get here since control is transferred to the halo on #blueButtonDown: but subclasses may implement this differently."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>borderColor [
+{ #category : #accessing }
+Morph >> borderColor [
 	^self borderStyle color
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>borderStyle [
+{ #category : #accessing }
+Morph >> borderStyle [
 
 	extension ifNil: [^BorderStyle default trackColorFrom: self].
 	^(extension borderStyle ifNil: [BorderStyle default]) trackColorFrom: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>borderStyle: newStyle [
+{ #category : #accessing }
+Morph >> borderStyle: newStyle [
 	newStyle = self borderStyle
 		ifTrue: [ ^ self ].
 	(self canDrawBorder: newStyle)
@@ -1654,11 +1287,8 @@ Morph>>borderStyle: newStyle [
 	self changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>borderStyleForSymbol: aStyleSymbol [
+{ #category : #accessing }
+Morph >> borderStyleForSymbol: aStyleSymbol [
 	"Answer a suitable BorderStyle for me of the type represented by a given symbol"
 
 	| aStyle existing |
@@ -1674,97 +1304,67 @@ Morph>>borderStyleForSymbol: aStyleSymbol [
 			[nil]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>borderWidth [
+{ #category : #accessing }
+Morph >> borderWidth [
 	^self borderStyle width
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>borderWidthForRounding [
+{ #category : #accessing }
+Morph >> borderWidthForRounding [
 
 	^ self borderWidth
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>bottom [
+{ #category : #geometry }
+Morph >> bottom [
 	" Return the y-coordinate of my bottom side "
 
 	^ bounds bottom
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>bottom: aNumber [
+{ #category : #geometry }
+Morph >> bottom: aNumber [
 	" Move me so that my bottom is at the y-coordinate aNumber. My extent (width & height) are unchanged "
 
 	self position: (bounds left @ (aNumber - self height))
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>bottomCenter [
+{ #category : #geometry }
+Morph >> bottomCenter [
 
 	^ bounds bottomCenter
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>bottomLeft [
+{ #category : #geometry }
+Morph >> bottomLeft [
 
 	^ bounds bottomLeft
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>bottomLeft: aPoint [
+{ #category : #geometry }
+Morph >> bottomLeft: aPoint [
 	" Move me so that my bottom left corner is at aPoint. My extent (width & height) are unchanged "
 
 	self position: ((aPoint x) @ (aPoint y - self height)).
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>bottomRight [
+{ #category : #geometry }
+Morph >> bottomRight [
 
 	^ bounds bottomRight
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>bottomRight: aPoint [
+{ #category : #geometry }
+Morph >> bottomRight: aPoint [
 	" Move me so that my bottom right corner is at aPoint. My extent (width & height) are unchanged "
 
 	self position: ((aPoint x - bounds width) @ (aPoint y - self height))
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>boundingBoxOfSubmorphs [
+{ #category : #drawing }
+Morph >> boundingBoxOfSubmorphs [
 	| aBox visibleSubmorphs |
 	visibleSubmorphs := submorphs select: [ :m | m visible ].
 	visibleSubmorphs ifEmpty: [ ^ bounds origin extent: self minimumExtent "so won't end up with something empty" ].
@@ -1773,11 +1373,8 @@ Morph>>boundingBoxOfSubmorphs [
 	^ aBox
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>bounds [
+{ #category : #geometry }
+Morph >> bounds [
 	"Return the bounds of this morph."
 	"Note: It is best not to override this method because many methods in Morph and its subclasses use the instance variable directly rather than 'self bounds'. Instead, subclasses should be sure that the bounds instance variable is correct."
 
@@ -1785,11 +1382,8 @@ Morph>>bounds [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>bounds: newBounds [
+{ #category : #geometry }
+Morph >> bounds: newBounds [
 	| oldExtent newExtent |
 	oldExtent := self extent.
 	newExtent := newBounds extent.
@@ -1802,69 +1396,48 @@ Morph>>bounds: newBounds [
 	].
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>bounds: aRectangle from: referenceMorph [
+{ #category : #geometry }
+Morph >> bounds: aRectangle from: referenceMorph [
 	"Return the receiver's bounds as seen by aMorphs coordinate frame"
 	owner ifNil: [^ aRectangle].
 	^(owner transformFrom: referenceMorph) globalBoundsToLocal: aRectangle
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>bounds: aRectangle in: referenceMorph [
+{ #category : #geometry }
+Morph >> bounds: aRectangle in: referenceMorph [
 	"Return the receiver's bounds as seen by aMorphs coordinate frame"
 	owner ifNil: [^ aRectangle].
 	^(owner transformFrom: referenceMorph) localBoundsToGlobal: aRectangle
 
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>boundsForBalloon [
+{ #category : #'halos and balloon help' }
+Morph >> boundsForBalloon [
 
 	"some morphs have bounds that are way too big"
 	^self boundsInWorld
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>boundsIn: referenceMorph [
+{ #category : #geometry }
+Morph >> boundsIn: referenceMorph [
 	"Return the receiver's bounds as seen by aMorphs coordinate frame"
 	^self bounds: self bounds in: referenceMorph
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>boundsInWorld [
+{ #category : #geometry }
+Morph >> boundsInWorld [
 	^self bounds: self bounds in: self world
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>breakDependents [
+{ #category : #updating }
+Morph >> breakDependents [
 	
 	self removeProperty: #announcer
 ]
 
-{
-	#category : #'debug and other',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>buildDebugMenu: aHand [
+{ #category : #'debug and other' }
+Morph >> buildDebugMenu: aHand [
 	"Answer a debugging menu for the receiver. 
 	 The hand argument is seemingly historical and plays no role presently"
 
@@ -1901,11 +1474,8 @@ Morph>>buildDebugMenu: aHand [
 	^ aMenu
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>buildHandleMenu: aHand [
+{ #category : #meta-actions }
+Morph >> buildHandleMenu: aHand [
 	"Build the morph menu for the given morph's halo's menu handle. This menu has two sections. The first section contains commands that are interpreted by the hand; the second contains commands provided by the target morph. This method allows the morph to decide which items should be included in the hand's section of the menu."
 
 	| menu |
@@ -1921,11 +1491,8 @@ Morph>>buildHandleMenu: aHand [
 
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>buildMetaMenu: evt [
+{ #category : #meta-actions }
+Morph >> buildMetaMenu: evt [
 	"Build the morph menu. This menu has two sections. The first section contains commands that are handled by the hand; the second contains commands handled by the argument morph."
 
 	| menu |
@@ -1967,11 +1534,8 @@ Morph>>buildMetaMenu: evt [
 	^ menu
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>buildYellowButtonMenu: aHand  [
+{ #category : #menu }
+Morph >> buildYellowButtonMenu: aHand [ 
 	"build the morph menu for the yellow button"
 	| menu |
 	menu := UIManager default newMenuIn: self for: self.
@@ -1979,41 +1543,29 @@ Morph>>buildYellowButtonMenu: aHand  [
 	^ menu
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>canDrawBorder: aBorderStyle [
+{ #category : #testing }
+Morph >> canDrawBorder: aBorderStyle [
 	"Return true if the receiver can be drawn with the given border style."
 	^true
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>cellInset [
+{ #category : #layout-properties }
+Morph >> cellInset [
 	"Layout specific. This property specifies an extra inset for each cell in the layout."
 	| props |
 	props := self layoutProperties.
 	^props ifNil:[0] ifNotNil:[props cellInset].
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>cellInset: aNumber [
+{ #category : #layout-properties }
+Morph >> cellInset: aNumber [
 	"Layout specific. This property specifies an extra inset for each cell in the layout."
 	self assureTableProperties cellInset: aNumber.
 	self layoutChanged.
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>cellPositioning [
+{ #category : #layout-properties }
+Morph >> cellPositioning [
 	"Layout specific. This property describes how the receiver should be layed out in its owner when the bounds of the cell assigned to the receiver do not exactly match its bounds. Possible values are:
 		#topLeft, #topRight, #bottomLeft, #bottomRight, #topCenter, #leftCenter, #rightCenter, #bottomCenter, #center 
 	which align the receiver's bounds with the cell at the given point."
@@ -2022,11 +1574,8 @@ Morph>>cellPositioning [
 	^props ifNil:[#center] ifNotNil:[props cellPositioning].
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>cellPositioning: aSymbol [
+{ #category : #layout-properties }
+Morph >> cellPositioning: aSymbol [
 	"Layout specific. This property describes how the receiver should be layed out in its owner when the bounds of the cell assigned to the receiver do not exactly match its bounds. Possible values are:
 		#topLeft, #topRight, #bottomLeft, #bottomRight, #topCenter, #leftCenter, #rightCenter, #bottomCenter, #center 
 	which align the receiver's bounds with the cell at the given point."
@@ -2034,19 +1583,13 @@ Morph>>cellPositioning: aSymbol [
 	self layoutChanged.
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>cellPositioningString: aSymbol [
+{ #category : #layout-properties }
+Morph >> cellPositioningString: aSymbol [
 	^self layoutMenuPropertyString: aSymbol from: self cellPositioning
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>cellSpacing [
+{ #category : #layout-properties }
+Morph >> cellSpacing [
 	"Layout specific. This property describes how the cell size for each element in a list should be computed.
 		#globalRect - globally equal rectangular cells
 		#globalSquare - globally equal square cells
@@ -2059,11 +1602,8 @@ Morph>>cellSpacing [
 	^props ifNil:[#none] ifNotNil:[props cellSpacing].
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>cellSpacing: aSymbol [
+{ #category : #layout-properties }
+Morph >> cellSpacing: aSymbol [
 	"Layout specific. This property describes how the cell size for each element in a list should be computed.
 		#globalRect - globally equal rectangular cells
 		#globalSquare - globally equal square cells
@@ -2075,54 +1615,36 @@ Morph>>cellSpacing: aSymbol [
 	self layoutChanged.
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>cellSpacingString: aSymbol [
+{ #category : #layout-properties }
+Morph >> cellSpacingString: aSymbol [
 	^self layoutMenuPropertyString: aSymbol from: self cellSpacing
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>center [
+{ #category : #geometry }
+Morph >> center [
 
 	^ bounds center
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>center: aPoint [
+{ #category : #geometry }
+Morph >> center: aPoint [
 	self position: (aPoint - (self extent // 2))
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changeClipLayoutCells [
+{ #category : #layout-menu }
+Morph >> changeClipLayoutCells [
 	self invalidRect: self fullBounds.
 	self clipLayoutCells: self clipLayoutCells not.
 	self invalidRect: self fullBounds.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changeClipSubmorphs [
+{ #category : #drawing }
+Morph >> changeClipSubmorphs [
 	self clipSubmorphs: self clipSubmorphs not.
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changeColorTarget: anObject selector: aSymbol originalColor: aColor hand: aHand [
+{ #category : #meta-actions }
+Morph >> changeColorTarget: anObject selector: aSymbol originalColor: aColor hand: aHand [
 	"Put up a color picker for changing some kind of color."
 	
 	(UIManager default chooseColor: aColor)
@@ -2130,28 +1652,19 @@ Morph>>changeColorTarget: anObject selector: aSymbol originalColor: aColor hand:
 
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changeDirectionHandles [
+{ #category : #menus }
+Morph >> changeDirectionHandles [
 	^self wantsDirectionHandles: self wantsDirectionHandles not
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changeDisableTableLayout [
+{ #category : #layout-menu }
+Morph >> changeDisableTableLayout [
 	self disableTableLayout: self disableTableLayout not.
 	self layoutChanged.
 ]
 
-{
-	#category : #text-anchor,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changeDocumentAnchor [
+{ #category : #text-anchor }
+Morph >> changeDocumentAnchor [
 	"Change the anchor from/to document anchoring"
 
 	| newType |
@@ -2166,19 +1679,13 @@ Morph>>changeDocumentAnchor [
 				type: newType]
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changeDragAndDrop [
+{ #category : #menus }
+Morph >> changeDragAndDrop [
 	^self enableDragNDrop: self dragNDropEnabled not
 ]
 
-{
-	#category : #text-anchor,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changeInlineAnchor [
+{ #category : #text-anchor }
+Morph >> changeInlineAnchor [
 	"Change the anchor from/to line anchoring"
 
 	| newType |
@@ -2193,11 +1700,8 @@ Morph>>changeInlineAnchor [
 				type: newType]
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changeListDirection: aSymbol [
+{ #category : #layout-menu }
+Morph >> changeListDirection: aSymbol [
 	| listDir wrapDir |
 	self listDirection: aSymbol.
 	(self wrapDirection == #none) ifTrue:[^self].
@@ -2214,21 +1718,15 @@ Morph>>changeListDirection: aSymbol [
 
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changeNoLayout [
+{ #category : #layout-menu }
+Morph >> changeNoLayout [
 	self layoutPolicy ifNil:[^self]. "already no layout"
 	self layoutPolicy: nil.
 	self layoutChanged.
 ]
 
-{
-	#category : #text-anchor,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changeParagraphAnchor [
+{ #category : #text-anchor }
+Morph >> changeParagraphAnchor [
 	"Change the anchor from/to paragraph anchoring"
 
 	| newType |
@@ -2243,27 +1741,18 @@ Morph>>changeParagraphAnchor [
 				type: newType]
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changeReverseCells [
+{ #category : #layout-menu }
+Morph >> changeReverseCells [
 	self reverseTableCells: self reverseTableCells not.
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changeRubberBandCells [
+{ #category : #layout-menu }
+Morph >> changeRubberBandCells [
 	self rubberBandCells: self rubberBandCells not.
 ]
 
-{
-	#category : #'drop shadows',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changeShadowColor [
+{ #category : #'drop shadows' }
+Morph >> changeShadowColor [
 	"Change the shadow color of the receiver -- triggered, e.g. from a menu"
 
 	(UIManager default chooseColor: self shadowColor)
@@ -2271,11 +1760,8 @@ Morph>>changeShadowColor [
 
 ]
 
-{
-	#category : #recategorized,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changed [
+{ #category : #recategorized }
+Morph >> changed [
 	"Report that the area occupied by this morph should be redrawn.
 	Fixed to include submorphs outside the outerBounds."
 	
@@ -2284,22 +1770,16 @@ Morph>>changed [
 		ifNotNil: [self invalidRect: fullBounds]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changed: anAspect [
+{ #category : #updating }
+Morph >> changed: anAspect [
 	
 	self doAnnounce: (MorphChanged new
 		morph: self;
 		selector: anAspect)
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>changed: anAspect with: anObject [
+{ #category : #updating }
+Morph >> changed: anAspect with: anObject [
 
 	self doAnnounce: (MorphChangedWithArguments new
 		morph: self;
@@ -2307,11 +1787,8 @@ Morph>>changed: anAspect with: anObject [
 		arguments: anObject)
 ]
 
-{
-	#category : #Morphic-Base-Worlds,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>clearArea [
+{ #category : #Morphic-Base-Worlds }
+Morph >> clearArea [
 	"Answer the clear area of the receiver. It means the area free  
 	of docking bars."
 	| visTop visBottom visLeft visRight |
@@ -2344,11 +1821,8 @@ Morph>>clearArea [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>click [
+{ #category : #'event handling' }
+Morph >> click [
 	"Pretend the user clicked on me."
 
 	(self handlesMouseDown: nil) ifTrue: [
@@ -2356,22 +1830,16 @@ Morph>>click [
 		self mouseUp: nil].
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>click: evt [
+{ #category : #'event handling' }
+Morph >> click: evt [
 	"Handle a single-click event. This message is only sent to clients that request it by sending #waitForClicksOrDrag:event: to the initiating hand in their mouseDown: method. This default implementation does nothing."
 
 	^ self eventHandler ifNotNil:
 		[self eventHandler click: evt fromMorph: self].
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>clipLayoutCells [
+{ #category : #drawing }
+Morph >> clipLayoutCells [
 	"Drawing/layout specific. If this property is set, clip the  
 	submorphs of the receiver by its cell bounds."
 	^ self
@@ -2379,11 +1847,8 @@ Morph>>clipLayoutCells [
 		ifAbsent: [false]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>clipLayoutCells: aBool [
+{ #category : #drawing }
+Morph >> clipLayoutCells: aBool [
 	"Drawing/layout specific. If this property is set, clip the submorphs of the receiver by its cell bounds."
 	aBool == false
 		ifTrue:[self removeProperty: #clipLayoutCells]
@@ -2391,11 +1856,8 @@ Morph>>clipLayoutCells: aBool [
 	self changed.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>clipSubmorphs [
+{ #category : #drawing }
+Morph >> clipSubmorphs [
 	"Drawing specific. If this property is set, clip the receiver's  
 	submorphs to the receiver's clipping bounds."
 	
@@ -2403,11 +1865,8 @@ Morph>>clipSubmorphs [
 	^extension clipSubmorphs ifNil: [false]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>clipSubmorphs: aBool [
+{ #category : #drawing }
+Morph >> clipSubmorphs: aBool [
 	"Drawing specific. If this property is set, clip the receiver's submorphs to the receiver's clipping bounds."
 	self invalidRect: self fullBounds.
 	
@@ -2417,11 +1876,8 @@ Morph>>clipSubmorphs: aBool [
 		self invalidRect: self fullBounds]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>clipText [
+{ #category : #printing }
+Morph >> clipText [
 	"Copy the text in the receiver or in its submorphs to the clipboard"
 	| content |
 	"My own text"
@@ -2439,37 +1895,25 @@ Morph>>clipText [
 		ifNotNil: [Clipboard clipboardText: content].
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>clippingBounds [
+{ #category : #drawing }
+Morph >> clippingBounds [
 	"Return the bounds to which any submorphs should be clipped if the property is set"
 	^self innerBounds
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>cmdGesturesEnabled [
+{ #category : #settings }
+Morph >> cmdGesturesEnabled [
 	^ self class cmdGesturesEnabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>color [
+{ #category : #accessing }
+Morph >> color [
 
 	^ color 	"has already been set to ((self valueOfProperty: #fillStyle) asColor)"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>color: aColor [
+{ #category : #accessing }
+Morph >> color: aColor [
 	"Set the receiver's color.  Directly set the color if appropriate, else go by way of fillStyle"
 
 	(aColor isColor or: [aColor isKindOf: InfiniteForm]) ifFalse:[^ self fillStyle: aColor].
@@ -2480,22 +1924,16 @@ Morph>>color: aColor [
 		self changed]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>colorForInsets [
+{ #category : #accessing }
+Morph >> colorForInsets [
 	"Return the color to be used for shading inset borders.  The default is my own color, but it might want to be, eg, my owner's color.  Whoever's color ends up prevailing, the color itself gets the last chance to determine, so that when, for example, an InfiniteForm serves as the color, callers won't choke on some non-Color object being returned"
 	(color isColor and:[color isTransparent and:[owner notNil]]) ifTrue:[^owner colorForInsets].
 	^ color colorForInsets
 
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>comeToFront [
+{ #category : #submorphs-add/remove }
+Morph >> comeToFront [
 	| outerMorph |
 	outerMorph := self topRendererOrSelf.
 	(outerMorph owner isNil or: [outerMorph owner hasSubmorphs not]) 
@@ -2504,20 +1942,14 @@ Morph>>comeToFront [
 		ifFalse: [outerMorph owner addMorphFront: outerMorph]
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>comeToFrontAndAddHalo [
+{ #category : #'halos and balloon help' }
+Morph >> comeToFrontAndAddHalo [
 	self comeToFront.
 	self addHalo
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>computeBounds [
+{ #category : #layout }
+Morph >> computeBounds [
 	[ self doLayoutIn: self layoutBounds ]
 		on: Error
 		do: [ :ex | 
@@ -2526,11 +1958,8 @@ Morph>>computeBounds [
 			ex pass ]
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>computeFullBounds [
+{ #category : #layout }
+Morph >> computeFullBounds [
 	[ self doLayoutIn: self layoutBounds ]
 		on: Error
 		do: [ :ex | 
@@ -2539,20 +1968,14 @@ Morph>>computeFullBounds [
 			ex pass ]
 ]
 
-{
-	#category : #'geometry testing',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>containsPoint: aPoint [
+{ #category : #'geometry testing' }
+Morph >> containsPoint: aPoint [
 
 	^ self bounds containsPoint: aPoint
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>containsPoint: aPoint event: anEvent [
+{ #category : #events-processing }
+Morph >> containsPoint: aPoint event: anEvent [
 	"Return true if aPoint is considered to be inside the receiver for the given event.
 	The default implementation treats locked children as integral part of their owners."
 	(self fullBounds containsPoint: aPoint) ifFalse:[^false].
@@ -2563,38 +1986,26 @@ Morph>>containsPoint: aPoint event: anEvent [
 	^false
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>copy [
+{ #category : #copying }
+Morph >> copy [
 
 	^ self veryDeepCopy
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>copyToPasteBuffer: evt [
+{ #category : #meta-actions }
+Morph >> copyToPasteBuffer: evt [
 	^evt hand copyToPasteBuffer: self.
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>copyWithoutSubmorph: sub [
+{ #category : #submorphs-add/remove }
+Morph >> copyWithoutSubmorph: sub [
 	"Needed to get a morph to draw without one of its submorphs.
 	NOTE:  This must be thrown away immediately after use."
 	^ self shallowCopy privateSubmorphs: (submorphs copyWithout: sub)
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>cornerStyle [
+{ #category : #'visual properties' }
+Morph >> cornerStyle [
 	"Returns one of the following symbols:
 		#square
 		#rounded
@@ -2605,11 +2016,8 @@ Morph>>cornerStyle [
 		ifNotNil: [ extension cornerStyle ]
 ]
 
-{
-	#category : #rounding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>cornerStyle: aSymbol [
+{ #category : #rounding }
+Morph >> cornerStyle: aSymbol [
 	"This method makes it possible to set up desired corner style. aSymbol has to be one of:
 		#square
 		#rounded"
@@ -2620,92 +2028,62 @@ Morph>>cornerStyle: aSymbol [
 		self changed]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>couldHaveRoundedCorners [
+{ #category : #accessing }
+Morph >> couldHaveRoundedCorners [
 	^ true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>cursorPoint [
+{ #category : #'event handling' }
+Morph >> cursorPoint [
 	^ self currentHand lastEvent cursorPoint
 ]
 
-{
-	#category : #'debug and other',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>debugDrawError [
+{ #category : #'debug and other' }
+Morph >> debugDrawError [
 	
 	(self valueOfProperty: #drawError) debug.
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>deepCopy [
+{ #category : #copying }
+Morph >> deepCopy [
 
 	self error: 'Please use veryDeepCopy'.
 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>defaultBounds [
+{ #category : #initialize }
+Morph >> defaultBounds [
 "answer the default bounds for the receiver"
 	^ 0 @ 0 corner: 50 @ 40
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>defaultColor [
+{ #category : #initialize }
+Morph >> defaultColor [
 	"answer the default color/fill style for the receiver"
 	^ Color blue
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>defaultEventDispatcher [
+{ #category : #events-processing }
+Morph >> defaultEventDispatcher [
 	"Return the default event dispatcher to use with events that are directly sent to the receiver"
  	^ self class defaultEventDispatcher
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>defaultYellowButtonMenuEnabled [
+{ #category : #settings }
+Morph >> defaultYellowButtonMenuEnabled [
 	^ self class defaultYellowButtonMenuEnabled
 ]
 
-{
-	#category : #'deferred message',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>defer: aValuable [
+{ #category : #'deferred message' }
+Morph >> defer: aValuable [
 	"aValuable will be executed in the next UI rendering cycle"
 	self owner 
 		ifNotNil: [ self owner defer: aValuable] 
 		ifNil: [ UIManager default defer: aValuable ]
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>defersHaloOnClickTo: aSubMorph [
+{ #category : #'halos and balloon help' }
+Morph >> defersHaloOnClickTo: aSubMorph [
 	"If a cmd-click on aSubMorph would make it a preferred recipient of the halo, answer true"
 	"May want to add a way (via a property) for morphs to assert true here -- this would let certain kinds of morphs that are unusually reluctant to take the halo on initial click"
 
@@ -2713,21 +2091,15 @@ Morph>>defersHaloOnClickTo: aSubMorph [
 	
 ]
 
-{
-	#category : #'rotate scale and flex',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>degreesOfFlex [
+{ #category : #'rotate scale and flex' }
+Morph >> degreesOfFlex [
 	"Return any rotation due to flexing"
 	"NOTE: because renderedMorph, which is used by the halo to set heading, goes down through dropShadows as well as transformations, we need this method (and its other implems) to come back up through such a chain."
 	^ 0.0
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>delete [
+{ #category : #submorphs-add/remove }
+Morph >> delete [
 	"Remove the receiver as a submorph of its owner and make its 
 	new owner be nil."
 	
@@ -2741,61 +2113,43 @@ Morph>>delete [
 	].
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>deleteBalloon [
+{ #category : #'halos and balloon help' }
+Morph >> deleteBalloon [
 	"If I am showing a balloon, delete it."
 	| w |
 	w := self world ifNil:[^self].
 	w deleteBalloonTarget: self.
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>deleteDockingBars [
+{ #category : #submorphs-add/remove }
+Morph >> deleteDockingBars [
 	"Delete the receiver's docking bars"
 	self dockingBars
 		do: [:each | each delete]
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>disableDragNDrop [
+{ #category : #dropping/grabbing }
+Morph >> disableDragNDrop [
 	self enableDragNDrop: false
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>disableTableLayout [
+{ #category : #layout-properties }
+Morph >> disableTableLayout [
 	"Layout specific. Disable laying out the receiver in table layout"
 	| props |
 	props := self layoutProperties.
 	^props ifNil:[false] ifNotNil:[props disableTableLayout].
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>disableTableLayout: aBool [
+{ #category : #layout-properties }
+Morph >> disableTableLayout: aBool [
 	"Layout specific. Disable laying out the receiver in table layout"
 	self assureLayoutProperties disableTableLayout: aBool.
 	self layoutChanged.
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>dismissMorph [
+{ #category : #meta-actions }
+Morph >> dismissMorph [
 	"This is called from an explicit halo destroy/delete action."
 
 	| w |
@@ -2804,41 +2158,29 @@ Morph>>dismissMorph [
 	self delete
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>dismissMorph: evt [
+{ #category : #meta-actions }
+Morph >> dismissMorph: evt [
 	self dismissMorph
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>dismissViaHalo [
+{ #category : #submorphs-add/remove }
+Morph >> dismissViaHalo [
 	"The user has clicked in the delete halo-handle.  This provides a hook in case some concomitant action should be taken, or if the particular morph is not one which should be put in the trash can, for example."
 
 	self setProperty: #lastPosition toValue: self positionInWorld.
 	self dismissMorph
 ]
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>displayExtentChanged [
+{ #category : #'change reporting' }
+Morph >> displayExtentChanged [
 
 	"
 	This method is sent to all submorphs of the worldMorph when the external display extent changes (resizing the vm window).
 	"
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>doAnnounce: anAnnouncement [
+{ #category : #announcements }
+Morph >> doAnnounce: anAnnouncement [
 	"Take care of not creating the announcer when announcing. If the announcer doesn't exist then this means nobody has expressed an interest in the message."
 
 	"Do not override announce: for now, there is a need to refactor the announcements code in at least SystemWindow and ExpanderMorph."
@@ -2846,19 +2188,13 @@ Morph>>doAnnounce: anAnnouncement [
 	(self valueOfProperty: #announcer ifAbsent: [ ^ self ]) announce: anAnnouncement
 ]
 
-{
-	#category : #button,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>doButtonAction [
+{ #category : #button }
+Morph >> doButtonAction [
 	"If the receiver has a button-action defined, do it now.  The default button action of any morph is, well, to do nothing.  Note that there are several ways -- too many ways -- for morphs to have button-like actions.  This one refers not to the #mouseUpCodeToRun feature, nor does it refer to the Player-scripting mechanism.  Instead it is intended for morph classes whose very nature is to be buttons -- this method provides glue so that arbitrary buttons on the UI can be 'fired' programatticaly from user scripts"
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>doFastReframe: ptName [
+{ #category : #'user interface' }
+Morph >> doFastReframe: ptName [
 
 	| newBounds |
 	"For fast display, only higlight the rectangle during loop"
@@ -2873,11 +2209,8 @@ Morph>>doFastReframe: ptName [
 	^newBounds.
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>doLayoutIn: layoutBounds  [
+{ #category : #layout }
+Morph >> doLayoutIn: layoutBounds [ 
 	"Compute a new layout based on the given layout bounds."
 
 	"Note: Testing for #bounds or #layoutBounds would be sufficient to
@@ -2897,22 +2230,16 @@ Morph>>doLayoutIn: layoutBounds  [
 		ifFalse: [self invalidRect: (priorBounds quickMerge: box)]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>dockingBars [
+{ #category : #submorphs-accessing }
+Morph >> dockingBars [
 	"Answer the receiver's dockingBars"
 	^ self submorphs
 		select: [:each | each isDockingBar]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>doesBevels [
+{ #category : #accessing }
+Morph >> doesBevels [
 	"To return true means that this object can show bevelled borders, and
 	therefore can accept, eg, #raised or #inset as valid borderColors.
 	Must be overridden by subclasses that do not support bevelled borders."
@@ -2920,87 +2247,60 @@ Morph>>doesBevels [
 	^ false
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>doesOwnRotation [
+{ #category : #drawing }
+Morph >> doesOwnRotation [
 	"Some morphs don't want to TransformMorph to rotate their images, but we do"
 	^ false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>doubleClick: evt [
+{ #category : #'event handling' }
+Morph >> doubleClick: evt [
 	"Handle a double-click event. This message is only sent to clients that request it by sending #waitForClicksOrDrag:event: to the initiating hand in their mouseDown: method. This default implementation does nothing."
 
 	^ self eventHandler ifNotNil:
 		[self eventHandler doubleClick: evt fromMorph: self].
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>doubleClickTimeout: evt [
+{ #category : #'event handling' }
+Morph >> doubleClickTimeout: evt [
 	"Handle a double-click timeout event. This message is only sent to clients that request it by sending #waitForClicksOrDrag:event: to the initiating hand in their mouseDown: method. This default implementation does nothing."
 
 	^ self eventHandler ifNotNil:
 		[self eventHandler doubleClickTimeout: evt fromMorph: self].
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>dragEnabled [
+{ #category : #dropping/grabbing }
+Morph >> dragEnabled [
 	"Get this morph's ability to add and remove morphs via drag-n-drop."
 	^(self valueOfProperty: #dragEnabled) == true
 
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>dragEnabled: aBool [
+{ #category : #dropping/grabbing }
+Morph >> dragEnabled: aBool [
 	^self enableDrag: aBool
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>dragNDropEnabled [
+{ #category : #dropping/grabbing }
+Morph >> dragNDropEnabled [
 	"Note: This method is only useful for dragEnabled == dropEnabled at all times"
 	self separateDragAndDrop.
 	^self dragEnabled and:[self dropEnabled]
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>dragSelectionColor [
+{ #category : #dropping/grabbing }
+Morph >> dragSelectionColor [
 	^ Color magenta
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>drawDropHighlightOn: aCanvas [
+{ #category : #drawing }
+Morph >> drawDropHighlightOn: aCanvas [
 	self highlightedForDrop ifTrue: [
 		aCanvas frameRectangle: self fullBounds color: self dropHighlightColor].
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>drawDropShadowOn: aCanvas [
+{ #category : #drawing }
+Morph >> drawDropShadowOn: aCanvas [
 
 	aCanvas 
 		translateBy: self shadowOffset 
@@ -3014,11 +2314,8 @@ Morph>>drawDropShadowOn: aCanvas [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>drawErrorOn: aCanvas [
+{ #category : #drawing }
+Morph >> drawErrorOn: aCanvas [
 	"The morph (or one of its submorphs) had an error in its drawing method."
 	aCanvas
 		frameAndFillRectangle: bounds
@@ -3036,29 +2333,20 @@ Morph>>drawErrorOn: aCanvas [
 			stringBounds := stringBounds top: stringBounds top + (TextStyle defaultFont pixelSize * 1.2) ]]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>drawMouseDownHighlightOn: aCanvas [
+{ #category : #drawing }
+Morph >> drawMouseDownHighlightOn: aCanvas [
 	self highlightedForMouseDown ifTrue: [
 		aCanvas frameRectangle: self fullBounds color: self color darker darker].
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>drawOn: aCanvas [
+{ #category : #drawing }
+Morph >> drawOn: aCanvas [
 
 	aCanvas fillRectangle: self bounds fillStyle: self fillStyle borderStyle: self borderStyle
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>drawSubmorphsOn: aCanvas  [
+{ #category : #drawing }
+Morph >> drawSubmorphsOn: aCanvas [ 
 	"Display submorphs back to front"
 
 	| drawBlock |
@@ -3069,46 +2357,31 @@ Morph>>drawSubmorphsOn: aCanvas  [
 		ifFalse: [drawBlock value: aCanvas]
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>dropEnabled [
+{ #category : #dropping/grabbing }
+Morph >> dropEnabled [
 	"Get this morph's ability to add and remove morphs via drag-n-drop."
 	^(self valueOfProperty: #dropEnabled) == true
 
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>dropEnabled: aBool [
+{ #category : #dropping/grabbing }
+Morph >> dropEnabled: aBool [
 	^self enableDrop: aBool
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>dropFiles: anEvent [
+{ #category : #'event handling' }
+Morph >> dropFiles: anEvent [
 	"Handle a number of files dropped from the OS"
 
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>dropHighlightColor [
+{ #category : #dropping/grabbing }
+Morph >> dropHighlightColor [
 	^ Color blue
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>duplicate [
+{ #category : #copying }
+Morph >> duplicate [
 	"Make and return a duplicate of the receiver"
 
 	| newMorph topRend |
@@ -3119,11 +2392,8 @@ Morph>>duplicate [
 	^newMorph
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>duplicateMorph: evt [
+{ #category : #meta-actions }
+Morph >> duplicateMorph: evt [
 	"Make and return a duplicate of the receiver's argument"
 	| dup |
 	dup := self duplicate.
@@ -3131,11 +2401,8 @@ Morph>>duplicateMorph: evt [
 	^dup
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>editBalloonHelpContent: aString [
+{ #category : #'halos and balloon help' }
+Morph >> editBalloonHelpContent: aString [
 	| reply |
 	reply := UIManager default
 		multiLineRequest: 'Edit the balloon help text for ' translated, self externalName
@@ -3147,105 +2414,72 @@ Morph>>editBalloonHelpContent: aString [
 		ifFalse: [self setBalloonText: reply]
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>editBalloonHelpText [
+{ #category : #'halos and balloon help' }
+Morph >> editBalloonHelpText [
 	"Modify the receiver's balloon help text."
 
 	self editBalloonHelpContent: self balloonText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>embeddedWindowOrNil [
+{ #category : #accessing }
+Morph >> embeddedWindowOrNil [
 
 	"answer nil for common morphs, yourself from system windows and first submorph for transformation morphs"
 
 	^ nil
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>enableDrag: aBoolean [
+{ #category : #dropping/grabbing }
+Morph >> enableDrag: aBoolean [
 	self setProperty: #dragEnabled toValue: aBoolean
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>enableDragNDrop [
+{ #category : #dropping/grabbing }
+Morph >> enableDragNDrop [
 	self enableDragNDrop: true
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>enableDragNDrop: aBoolean [
+{ #category : #dropping/grabbing }
+Morph >> enableDragNDrop: aBoolean [
 	"Set both properties at once"
 	self separateDragAndDrop.
 	self enableDrag: aBoolean.
 	self enableDrop: aBoolean.
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>enableDrop: aBoolean [
+{ #category : #dropping/grabbing }
+Morph >> enableDrop: aBoolean [
 	self setProperty: #dropEnabled toValue: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>enabled [
+{ #category : #accessing }
+Morph >> enabled [
 	"Answer whether the receiver is enabled."
 
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>enabled: aBoolean [
+{ #category : #accessing }
+Morph >> enabled: aBoolean [
 	"does nothing"
 
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>eventHandler [
+{ #category : #accessing }
+Morph >> eventHandler [
 	"answer the receiver's eventHandler"
 	^ extension ifNotNil: [extension eventHandler] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>eventHandler: anEventHandler  [
+{ #category : #accessing }
+Morph >> eventHandler: anEventHandler [ 
 	"Note that morphs can share eventHandlers and all is OK. "
 	self assureExtension eventHandler: anEventHandler
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>expandFullBoundsForRolloverBorder: aRectangle [
+{ #category : #drawing }
+Morph >> expandFullBoundsForRolloverBorder: aRectangle [
 	| delta |
 	delta := self valueOfProperty: #rolloverWidth ifAbsent: [10@10].
 	^aRectangle expandBy: delta.
@@ -3253,29 +2487,20 @@ Morph>>expandFullBoundsForRolloverBorder: aRectangle [
 
 ]
 
-{
-	#category : #'accessing - extension',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>extension [
+{ #category : #'accessing - extension' }
+Morph >> extension [
 	"answer the recevier's extension"
 	^ extension
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>extent [
+{ #category : #geometry }
+Morph >> extent [
 
 	^ bounds extent
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>extent: aPoint [
+{ #category : #geometry }
+Morph >> extent: aPoint [
 	|newExtent|	
 	newExtent := aPoint rounded.
 	(bounds extent closeTo: newExtent) ifTrue: [^ self].
@@ -3286,19 +2511,13 @@ Morph>>extent: aPoint [
 
 ]
 
-{
-	#category : #viewer,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>externalName [
+{ #category : #viewer }
+Morph >> externalName [
 	^ self assureExtension externalName ifNil: [super externalName]
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>fillStyle [
+{ #category : #'visual properties' }
+Morph >> fillStyle [
 	"Return the current fillStyle of the receiver."
 	
 	^extension
@@ -3306,11 +2525,8 @@ Morph>>fillStyle [
 		ifNotNil: [extension fillStyle ifNil: [color]]
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>fillStyle: aFillStyle [
+{ #category : #'visual properties' }
+Morph >> fillStyle: aFillStyle [
 	"Set the current fillStyle of the receiver.
 	Optimized for no change."
 	
@@ -3322,11 +2538,8 @@ Morph>>fillStyle: aFillStyle [
 	self changed
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>findA: aClass [
+{ #category : #submorphs-accessing }
+Morph >> findA: aClass [
 	"Return the first submorph of the receiver that is descended from the given class. Return nil if there is no such submorph. Clients of this code should always check for a nil return value so that the code will be robust if the user takes the morph apart."
 
 	^self submorphs
@@ -3334,22 +2547,16 @@ Morph>>findA: aClass [
 		ifNone: [nil]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>findDeepSubmorphThat: block1 ifAbsent: block2  [
+{ #category : #submorphs-accessing }
+Morph >> findDeepSubmorphThat: block1 ifAbsent: block2 [ 
 	self
 		allMorphsDo: [:m | (block1 value: m)
 				== true ifTrue: [^ m]].
 	^ block2 value
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>findDeeplyA: aClass [
+{ #category : #submorphs-accessing }
+Morph >> findDeeplyA: aClass [
 	"Return a morph in the submorph tree of the receiver that is descended from the given class. Return nil if there is no such morph. Clients of this code should always check for a nil return value so that the code will be robust if the user takes the morph apart."
 
 	^ (self allMorphs copyWithout: self)
@@ -3357,48 +2564,33 @@ Morph>>findDeeplyA: aClass [
 		ifNone: [nil]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>findSubmorphBinary: aBlock [
+{ #category : #submorphs-accessing }
+Morph >> findSubmorphBinary: aBlock [
 	"Use binary search for finding a specific submorph of the receiver. Caller must be certain that the ordering holds for the submorphs."
 	^submorphs findBinary: aBlock do: [ :found | found ] ifNone: [:a :b | ]
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>firstOwnerSuchThat: conditionBlock [
+{ #category : #structure }
+Morph >> firstOwnerSuchThat: conditionBlock [
 
 	self allOwnersDo: [:m | (conditionBlock value: m) ifTrue: [^ m]].
 	^ nil
 
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>firstSubmorph [
+{ #category : #submorphs-accessing }
+Morph >> firstSubmorph [
 	^submorphs first
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>fitInWorld [
+{ #category : #geometry }
+Morph >> fitInWorld [
 
 	self bounds: (self bounds translatedAndSquishedToBeWithin: self world bounds).
 ]
 
-{
-	#category : #macpal,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>flash [
+{ #category : #macpal }
+Morph >> flash [
 	| originalFill flashFill |
 	
 	flashFill := self flashFillStyle.
@@ -3409,31 +2601,22 @@ Morph>>flash [
 	self addAlarm: #flashFinished:original: withArguments: { flashFill . originalFill } after: 50
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>flashBounds [
+{ #category : #drawing }
+Morph >> flashBounds [
 	"Flash the receiver's bounds  -- does not use the receiver's color, thus works with StringMorphs and SketchMorphs, etc., for which #flash is useless.  No senders initially, but useful to send this from a debugger or inspector"
 
 	5 timesRepeat:
 		[Display flash: self boundsInWorld  andWait: 120]
 ]
 
-{
-	#category : #macpal,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>flashFillStyle [
+{ #category : #macpal }
+Morph >> flashFillStyle [
 
 	^Color black
 ]
 
-{
-	#category : #macpal,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>flashFinished: flashFill original: originalFill [
+{ #category : #macpal }
+Morph >> flashFinished: flashFill original: originalFill [
 
 	"if the color/fillstyle has changed while the flash is active, it will continue to use the new color/fill and not restrore the original"
 	
@@ -3442,46 +2625,31 @@ Morph>>flashFinished: flashFill original: originalFill [
 	]
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>formerOwner [
+{ #category : #dropping/grabbing }
+Morph >> formerOwner [
 	^self valueOfProperty: #formerOwner
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>formerOwner: aMorphOrNil  [
+{ #category : #dropping/grabbing }
+Morph >> formerOwner: aMorphOrNil [ 
 	aMorphOrNil ifNil: [self removeProperty: #formerOwner]
 		ifNotNil: [self setProperty: #formerOwner toValue: aMorphOrNil]
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>formerPosition [
+{ #category : #dropping/grabbing }
+Morph >> formerPosition [
 	^self valueOfProperty: #formerPosition
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>formerPosition: formerPosition  [
+{ #category : #dropping/grabbing }
+Morph >> formerPosition: formerPosition [ 
 	formerPosition 
 		ifNil: [self removeProperty: #formerPosition]
 		ifNotNil: [self setProperty: #formerPosition toValue: formerPosition]
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>fullBounds [
+{ #category : #layout }
+Morph >> fullBounds [
 	"Return the bounding box of the receiver and all its children. Recompute the layout if necessary."
 
 	fullBounds ifNotNil: [ ^ fullBounds ].	"Errors at this point can be critical so make sure we catch 'em all right"
@@ -3489,19 +2657,13 @@ Morph>>fullBounds [
 	^ fullBounds
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>fullBoundsInWorld [
+{ #category : #geometry }
+Morph >> fullBoundsInWorld [
 	^self bounds: self fullBounds in: self world
 ]
 
-{
-	#category : #'geometry testing',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>fullContainsPoint: aPoint [
+{ #category : #'geometry testing' }
+Morph >> fullContainsPoint: aPoint [
 	(self fullBounds containsPoint: aPoint)
 		ifFalse: [ ^ false ].	"quick elimination"
 	(self containsPoint: aPoint)
@@ -3509,11 +2671,8 @@ Morph>>fullContainsPoint: aPoint [
 	^ submorphs anySatisfy: [ :m | m fullContainsPoint: aPoint ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>fullDrawOn: aCanvas [
+{ #category : #drawing }
+Morph >> fullDrawOn: aCanvas [
 	"Draw the full Morphic structure on the given Canvas"
 
 	self visible ifFalse: [^ self].
@@ -3542,40 +2701,28 @@ Morph>>fullDrawOn: aCanvas [
 	]
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>fullReleaseCachedState [
+{ #category : #caching }
+Morph >> fullReleaseCachedState [
 	"Release the cached state of the receiver and its full submorph tree."
 
 	self allMorphsDo: [:m | m releaseCachedState].
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>globalPointToLocal: aPoint [
+{ #category : #geometry }
+Morph >> globalPointToLocal: aPoint [
 	^self point: aPoint from: nil
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>goBehind [
+{ #category : #submorphs-add/remove }
+Morph >> goBehind [
 
 	owner addMorphBack: self.
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>goHome [
+{ #category : #geometry }
+Morph >> goHome [
 	| box fb |
 	owner ifNil: [^ self].
 	self visible ifFalse: [^ self].
@@ -3595,29 +2742,20 @@ Morph>>goHome [
 
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>grabMorph: evt [
+{ #category : #meta-actions }
+Morph >> grabMorph: evt [
 
 	evt hand grabMorph: self
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>grabTransform [
+{ #category : #dropping/grabbing }
+Morph >> grabTransform [
 	"Return the transform for the receiver which should be applied during grabbing"
 	^owner ifNil:[IdentityTransform new] ifNotNil:[owner grabTransform]
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hResizing [
+{ #category : #layout-properties }
+Morph >> hResizing [
 	"Layout specific. This property describes how the receiver should be resized with respect to its owner and its children. Possible values are:
 		#rigid			-	do not resize the receiver
 		#spaceFill		-	resize to fill owner's available space
@@ -3628,11 +2766,8 @@ Morph>>hResizing [
 	^props ifNil:[#rigid] ifNotNil:[props hResizing].
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hResizing: aSymbol [
+{ #category : #layout-properties }
+Morph >> hResizing: aSymbol [
 	"Layout specific. This property describes how the receiver should be resized with respect to its owner and its children. Possible values are:
 		#rigid			-	do not resize the receiver
 		#spaceFill		-	resize to fill owner's available space
@@ -3643,48 +2778,33 @@ Morph>>hResizing: aSymbol [
 
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hResizingString: aSymbol [
+{ #category : #layout-properties }
+Morph >> hResizingString: aSymbol [
 	^self layoutMenuPropertyString: aSymbol from: self hResizing
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>halo [
+{ #category : #'halos and balloon help' }
+Morph >> halo [
 	^ self primaryHand halo
 		ifNotNil: [ :h | h target == self ifTrue: [ h ] ]
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>haloClass [
+{ #category : #'halos and balloon help' }
+Morph >> haloClass [
 	"Answer the name of the desired kind of HaloMorph to launch on behalf of the receiver"
 
 	^ #HaloMorph
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>halosEnabled [
+{ #category : #accessing }
+Morph >> halosEnabled [
 
 	^ self class halosEnabled
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleDropFiles: anEvent [
+{ #category : #events-processing }
+Morph >> handleDropFiles: anEvent [
 	"Handle a drop from the OS."
 	anEvent wasHandled ifTrue:[^self]. "not interested"
 	(self wantsDropFiles: anEvent) ifFalse:[^self].
@@ -3693,11 +2813,8 @@ Morph>>handleDropFiles: anEvent [
 
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleDropMorph: anEvent [
+{ #category : #events-processing }
+Morph >> handleDropMorph: anEvent [
 	"Handle a dropping morph."
 	| aMorph localPt |
 	aMorph := anEvent contents.
@@ -3715,29 +2832,20 @@ Morph>>handleDropMorph: anEvent [
 
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleEvent: anEvent [
+{ #category : #events-processing }
+Morph >> handleEvent: anEvent [
 	"Handle the given event"
 	^anEvent sentTo: self.
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleFocusEvent: anEvent [
+{ #category : #events-processing }
+Morph >> handleFocusEvent: anEvent [
 	"Handle the given event. This message is sent if the receiver currently has the focus and is therefore receiving events directly from some hand."
 	^self handleEvent: anEvent
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleKeyDown: anEvent [
+{ #category : #events-processing }
+Morph >> handleKeyDown: anEvent [
 	"System level event handling."
 	anEvent wasHandled ifTrue:[^self].
 	(self handlesKeyDown: anEvent) ifFalse:[^self].
@@ -3745,11 +2853,8 @@ Morph>>handleKeyDown: anEvent [
 	^self keyDown: anEvent
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleKeyUp: anEvent [
+{ #category : #events-processing }
+Morph >> handleKeyUp: anEvent [
 	"System level event handling."
 	anEvent wasHandled ifTrue:[^self].
 	(self handlesKeyUp: anEvent) ifFalse:[^self].
@@ -3757,11 +2862,8 @@ Morph>>handleKeyUp: anEvent [
 	^self keyUp: anEvent
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleKeystroke: anEvent  [
+{ #category : #'event handling' }
+Morph >> handleKeystroke: anEvent [ 
 	"System level event handling."
 	
 	anEvent wasHandled
@@ -3778,20 +2880,14 @@ Morph>>handleKeystroke: anEvent  [
 	^ self eventHandler ifNotNil: [:handler | handler keyStroke: anEvent fromMorph: self ].
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleListenEvent: anEvent [
+{ #category : #events-processing }
+Morph >> handleListenEvent: anEvent [
 	"Handle the given event. This message is sent if the receiver is a registered listener for the given event."
 	^anEvent sentTo: self.
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleMouseDown: anEvent [
+{ #category : #events-processing }
+Morph >> handleMouseDown: anEvent [
 	"System level event handling."
 	anEvent wasHandled ifTrue:[^self]. "not interested"
 	anEvent hand removePendingBalloonFor: self.
@@ -3817,11 +2913,8 @@ Morph>>handleMouseDown: anEvent [
 			stepTime: self mouseStillDownStepRate ].
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleMouseEnter: anEvent [
+{ #category : #events-processing }
+Morph >> handleMouseEnter: anEvent [
 	"System level event handling."
 	(anEvent isDraggingEvent) ifTrue:[
 		(self handlesMouseOverDragging: anEvent) ifTrue:[
@@ -3836,11 +2929,8 @@ Morph>>handleMouseEnter: anEvent [
 	^ self eventHandler ifNotNil: [:handler | handler mouseEnter: anEvent fromMorph: self ].
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleMouseLeave: anEvent [
+{ #category : #events-processing }
+Morph >> handleMouseLeave: anEvent [
 	"System level event handling."
 	anEvent hand removePendingBalloonFor: self.
 	anEvent isDraggingEvent ifTrue:[
@@ -3854,11 +2944,8 @@ Morph>>handleMouseLeave: anEvent [
 	^ self eventHandler ifNotNil: [:handler | handler mouseLeave: anEvent fromMorph: self ]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleMouseMove: anEvent [
+{ #category : #events-processing }
+Morph >> handleMouseMove: anEvent [
 	"System level event handling."
 	anEvent wasHandled ifTrue:[^self]. 
 	
@@ -3876,11 +2963,8 @@ Morph>>handleMouseMove: anEvent [
 
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleMouseOver: anEvent [
+{ #category : #events-processing }
+Morph >> handleMouseOver: anEvent [
 	"System level event handling."
 	anEvent hand mouseFocus == self ifTrue:[
 		"Got this directly through #handleFocusEvent: so check explicitly"
@@ -3888,11 +2972,8 @@ Morph>>handleMouseOver: anEvent [
 	anEvent hand noticeMouseOver: self event: anEvent
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleMouseStillDown: anEvent [
+{ #category : #events-processing }
+Morph >> handleMouseStillDown: anEvent [
 	"Called from the stepping mechanism for morphs wanting continuously repeated 'yes the mouse is still down, yes it is still down, yes it has not changed yet, no the mouse is still not up, yes the button is down' etc messages"
 	(anEvent hand mouseFocus == self) 
 		ifFalse:[^self stopSteppingSelector: #handleMouseStillDown:].
@@ -3901,11 +2982,8 @@ Morph>>handleMouseStillDown: anEvent [
 
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleMouseUp: anEvent [
+{ #category : #events-processing }
+Morph >> handleMouseUp: anEvent [
 	"System level event handling."
 	anEvent wasHandled ifTrue: [^self]. "not interested"
 	anEvent hand mouseFocus == self ifFalse: [^self]. "Not interested in other parties"
@@ -3921,11 +2999,8 @@ Morph>>handleMouseUp: anEvent [
 			result ].
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleMouseWheel: anEvent [
+{ #category : #events-processing }
+Morph >> handleMouseWheel: anEvent [
 	"System level event handling."
 	
 	anEvent wasHandled ifTrue:[^self].
@@ -3934,30 +3009,21 @@ Morph>>handleMouseWheel: anEvent [
 		self mouseWheel: anEvent]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleUnknownEvent: anEvent [
+{ #category : #events-processing }
+Morph >> handleUnknownEvent: anEvent [
 	"An event of an unknown type was sent to the receiver. What shall we do?!"
 	self inform: 'Unknown event: ', anEvent printString. 
 	anEvent printString displayAt: 0@0.
 	anEvent wasHandled: true.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleUpdate: aMorphChangedAnnouncement [
+{ #category : #updating }
+Morph >> handleUpdate: aMorphChangedAnnouncement [
 	^ aMorphChangedAnnouncement deliverTo: self
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handleWindowEvent: anEvent [
+{ #category : #'event handling' }
+Morph >> handleWindowEvent: anEvent [
 	"Handle an event concerning our host window"
 	anEvent wasHandled ifTrue:[^self]. "not interested"
 	(self wantsWindowEvent: anEvent) ifFalse:[^self].
@@ -3966,11 +3032,8 @@ Morph>>handleWindowEvent: anEvent [
 
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handlerForBlueButtonDown: anEvent [
+{ #category : #meta-actions }
+Morph >> handlerForBlueButtonDown: anEvent [
 	"Return the (prospective) handler for a mouse down event. The handler is temporarily installed and can be used for morphs further down the hierarchy to negotiate whether the inner or the outer morph should finally handle the event.
 	Note: Halos handle blue button events themselves so we will only be asked if there is currently no halo on top of us.
 	Check whtehr halods are enabled (for deployment)."
@@ -3987,22 +3050,16 @@ Morph>>handlerForBlueButtonDown: anEvent [
 
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handlerForMetaMenu: evt [
+{ #category : #meta-actions }
+Morph >> handlerForMetaMenu: evt [
 	"Return the prospective handler for invoking the meta menu. By default, the top-most morph in the innermost world gets this menu"
 	self isWorldMorph ifTrue:[^self].
 	evt handler ifNotNil:[evt handler isWorldMorph ifTrue:[^self]].
 	^nil
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handlerForMouseDown: anEvent  [
+{ #category : #'event handling' }
+Morph >> handlerForMouseDown: anEvent [ 
 	"Return the (prospective) handler for a mouse down event. The handler is temporarily 
 	installed and can be used for morphs further down the hierarchy to negotiate whether 
 	the inner or the outer morph should finally handle the event."
@@ -4025,11 +3082,8 @@ Morph>>handlerForMouseDown: anEvent  [
 		ifFalse: [ nil]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handlerForYellowButtonDown: anEvent  [
+{ #category : #'event handling' }
+Morph >> handlerForYellowButtonDown: anEvent [ 
 	"Return the (prospective) handler for a mouse down event with the yellow button pressed.
 	The 	handler is temporarily installed and can be used for morphs further 
 	down the hierarchy to negotiate whether the inner or the outer 
@@ -4047,56 +3101,38 @@ Morph>>handlerForYellowButtonDown: anEvent  [
 		ifTrue: [self]
 ]
 
-{
-	#category : #recategorized,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handlesDropShadowInHand [
+{ #category : #recategorized }
+Morph >> handlesDropShadowInHand [
 	"Answer whether the receiver will handle drop shadow drawing when picked up in the hand."
 
 	^false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handlesKeyDown: evt [
+{ #category : #'event handling' }
+Morph >> handlesKeyDown: evt [
 	^self handlesKeyboard: evt
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handlesKeyStroke: evt [
+{ #category : #'event handling' }
+Morph >> handlesKeyStroke: evt [
 	^self handlesKeyboard: evt
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handlesKeyUp: evt [
+{ #category : #'event handling' }
+Morph >> handlesKeyUp: evt [
 	^self handlesKeyboard: evt
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handlesKeyboard: evt [
+{ #category : #'event handling' }
+Morph >> handlesKeyboard: evt [
 	"Return true if the receiver wishes to handle the given keyboard event"
 	self eventHandler ifNotNil: [^ self eventHandler handlesKeyboard: evt].
 	^ false
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handlesMouseDown: evt [
+{ #category : #'event handling' }
+Morph >> handlesMouseDown: evt [
 	"Do I want to receive mouseDown events (mouseDown:, mouseMove:, mouseUp:)?"
 	"NOTE: The default response is false, except if you have added sensitivity to mouseDown events using the on:send:to: mechanism.  Subclasses that implement these messages directly should override this one to return true." 
 
@@ -4104,11 +3140,8 @@ Morph>>handlesMouseDown: evt [
 	^ false
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handlesMouseMove: anEvent [
+{ #category : #events-processing }
+Morph >> handlesMouseMove: anEvent [
 	"Rules say that by default a morph gets #mouseMove iff
 		* the hand is not dragging anything,
 			+ and some button is down,
@@ -4124,22 +3157,16 @@ Morph>>handlesMouseMove: anEvent [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handlesMouseOver: evt [
+{ #category : #'event handling' }
+Morph >> handlesMouseOver: evt [
 	"Do I want to receive mouseEnter: and mouseLeave: when the button is up and the hand is empty?  The default response is false, except if you have added sensitivity to mouseEnter: or mouseLeave:, using the on:send:to: mechanism." 
 
 	self eventHandler ifNotNil: [^ self eventHandler handlesMouseOver: evt].
 	^ false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handlesMouseOverDragging: evt [
+{ #category : #'event handling' }
+Morph >> handlesMouseOverDragging: evt [
 	"Return true if I want to receive mouseEnterDragging: and mouseLeaveDragging: when the hand drags something over me (button up or button down), or when the mouse button is down but there is no mouseDown recipient.  The default response is false, except if you have added sensitivity to mouseEnterLaden: or mouseLeaveLaden:, using the on:send:to: mechanism."
 	"NOTE:  If the hand state matters in these cases, it may be tested by constructs such as
 		event anyButtonPressed
@@ -4149,275 +3176,185 @@ Morph>>handlesMouseOverDragging: evt [
 	^ false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handlesMouseStillDown: evt [
+{ #category : #'event handling' }
+Morph >> handlesMouseStillDown: evt [
 	"Return true if the receiver wants to get repeated #mouseStillDown: messages between #mouseDown: and #mouseUp"
 	self eventHandler ifNotNil: [^ self eventHandler handlesMouseStillDown: evt].
 	^ false
 
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>handlesMouseWheel: evt [
+{ #category : #events-processing }
+Morph >> handlesMouseWheel: evt [
 	"Do I want to receive mouseWheel events?." 
 
 	^false
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasClipLayoutCellsString [
+{ #category : #layout-menu }
+Morph >> hasClipLayoutCellsString [
 	^ (self clipLayoutCells) -> 'clip to cell size' translated
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasClipSubmorphsString [
+{ #category : #drawing }
+Morph >> hasClipSubmorphsString [
 	"Answer a string that represents the clip-submophs checkbox"
 	^ (self clipSubmorphs) -> 'provide clipping' translated
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasDirectionHandlesString [
+{ #category : #menus }
+Morph >> hasDirectionHandlesString [
 	^ (self wantsDirectionHandles) ->  'direction handles' translated
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasDisableTableLayoutString [
+{ #category : #layout-menu }
+Morph >> hasDisableTableLayoutString [
 	^ (self disableTableLayout) -> 'disable layout in tables' translated
 ]
 
-{
-	#category : #text-anchor,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasDocumentAnchorString [
+{ #category : #text-anchor }
+Morph >> hasDocumentAnchorString [
 	^ (self textAnchorType == #document) ->  'Document' translated
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasDragAndDropEnabledString [
+{ #category : #menus }
+Morph >> hasDragAndDropEnabledString [
 	"Answer a string to characterize the drag & drop status of the  
 	receiver"
 	^ (self dragNDropEnabled) -> 'accept drops' translated
 ]
 
-{
-	#category : #'drop shadows',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasDropShadow [
+{ #category : #'drop shadows' }
+Morph >> hasDropShadow [
 	"answer whether the receiver has DropShadow"
 	^ self
 		valueOfProperty: #hasDropShadow
 		ifAbsent: [false]
 ]
 
-{
-	#category : #'drop shadows',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasDropShadow: aBool [
+{ #category : #'drop shadows' }
+Morph >> hasDropShadow: aBool [
 	aBool
 		ifTrue:[self setProperty: #hasDropShadow toValue: true]
 		ifFalse:[self removeProperty: #hasDropShadow]
 ]
 
-{
-	#category : #'drop shadows',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasDropShadowString [
+{ #category : #'drop shadows' }
+Morph >> hasDropShadowString [
 	^ (self hasDropShadow) ->  'show shadow' translated
 ]
 
-{
-	#category : #'accessing - extension',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasExtension [
+{ #category : #'accessing - extension' }
+Morph >> hasExtension [
 	"answer whether the receiver has extention"
 	^ extension notNil
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasFocus [
+{ #category : #'event handling' }
+Morph >> hasFocus [
 	^ false
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasHalo [
+{ #category : #'halos and balloon help' }
+Morph >> hasHalo [
 	^self hasProperty: #hasHalo.
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasHalo: aBool [
+{ #category : #'halos and balloon help' }
+Morph >> hasHalo: aBool [
 	aBool
 		ifTrue:[self setProperty: #hasHalo toValue: true]
 		ifFalse:[self removeProperty: #hasHalo]
 ]
 
-{
-	#category : #text-anchor,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasInlineAnchorString [
+{ #category : #text-anchor }
+Morph >> hasInlineAnchorString [
 	^ (self textAnchorType == #inline)-> 'Inline' translated
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasNoLayoutString [
+{ #category : #layout-menu }
+Morph >> hasNoLayoutString [
 	^ (self layoutPolicy isNil) -> 'no layout' translated
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasOwner: aMorph [
+{ #category : #structure }
+Morph >> hasOwner: aMorph [
 	"Return true if the receiver has aMorph in its owner chain"
 	aMorph ifNil:[^true].
 	self allOwnersDo:[:m| m = aMorph ifTrue:[^true]].
 	^false
 ]
 
-{
-	#category : #text-anchor,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasParagraphAnchorString [
+{ #category : #text-anchor }
+Morph >> hasParagraphAnchorString [
 	^ (self textAnchorType == #paragraph) -> 'Paragraph' translated
 ]
 
-{
-	#category : #'accessing - properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasProperty: aSymbol  [
+{ #category : #'accessing - properties' }
+Morph >> hasProperty: aSymbol [ 
 	"Answer whether the receiver has the property named aSymbol"
 	extension ifNil: [^ false].
 	^extension hasProperty: aSymbol
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasProportionalLayoutString [
+{ #category : #layout-menu }
+Morph >> hasProportionalLayoutString [
 	| layout |
 	^ ((layout := self layoutPolicy) notNil
 			and: [layout isProportionalLayout]) -> 'proportional layout' translated
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasReverseCellsString [
+{ #category : #layout-menu }
+Morph >> hasReverseCellsString [
 	^ (self reverseTableCells) -> 'reverse table cells' translated
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasRubberBandCellsString [
+{ #category : #layout-menu }
+Morph >> hasRubberBandCellsString [
 	^ (self rubberBandCells) -> 'rubber band cells' translated
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasSubmorphs [
+{ #category : #submorphs-accessing }
+Morph >> hasSubmorphs [
 	^submorphs notEmpty
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasTableLayoutString [
+{ #category : #layout-menu }
+Morph >> hasTableLayoutString [
 	| layout |
 	^ ((layout := self layoutPolicy) notNil
 			and: [layout isTableLayout]) ->   'table layout' translated
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hasYellowButtonMenu [
+{ #category : #menu }
+Morph >> hasYellowButtonMenu [
 	"Answer true if I have any items at all for a context (yellow button) menu."
 	^ self wantsYellowButtonMenu
 			
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>height [
+{ #category : #geometry }
+Morph >> height [
 
 	^ bounds height
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>height: aNumber [
+{ #category : #geometry }
+Morph >> height: aNumber [
 	" Set my height; my position (top-left corner) and width will remain the same "
 
 	self extent: self width@aNumber asInteger.
 
 ]
 
-{
-	#category : #Morphic-Base-Widgets,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>heightToDisplayInList: aList [
+{ #category : #Morphic-Base-Widgets }
+Morph >> heightToDisplayInList: aList [
 
 	^ self minExtent y
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>hide [
+{ #category : #drawing }
+Morph >> hide [
 	owner ifNil: [ ^ self ].
 	self visible
 		ifFalse: [ ^ self ].
@@ -4425,20 +3362,14 @@ Morph>>hide [
 	self changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>highlight [
+{ #category : #accessing }
+Morph >> highlight [
 	"The receiver is being asked to appear in a highlighted state.  Mostly used for textual morphs"
 	self color: self highlightColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>highlightColor [
+{ #category : #accessing }
+Morph >> highlightColor [
 	
 	^ (self valueOfProperty: #highlightColor)
 		ifNotNil:
@@ -4447,80 +3378,53 @@ Morph>>highlightColor [
 			[owner ifNil: [self color] ifNotNil: [owner highlightColor]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>highlightColor: aColor [
+{ #category : #accessing }
+Morph >> highlightColor: aColor [
 	self setProperty: #highlightColor toValue: aColor
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>highlightForDrop [
+{ #category : #dropping/grabbing }
+Morph >> highlightForDrop [
 	self highlightForDrop: true
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>highlightForDrop: aBoolean [
+{ #category : #dropping/grabbing }
+Morph >> highlightForDrop: aBoolean [
 	self setProperty: #highlightedForDrop toValue: aBoolean.
 	self changed
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>highlightForMouseDown [
+{ #category : #drawing }
+Morph >> highlightForMouseDown [
 	self highlightForMouseDown: true
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>highlightForMouseDown: aBoolean [
+{ #category : #drawing }
+Morph >> highlightForMouseDown: aBoolean [
 	aBoolean 
 		ifTrue:[self setProperty: #highlightedForMouseDown toValue: aBoolean]
 		ifFalse:[self removeProperty: #highlightedForMouseDown. self resetExtension].
 	self changed
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>highlightedForDrop [
+{ #category : #dropping/grabbing }
+Morph >> highlightedForDrop [
 	^(self valueOfProperty: #highlightedForDrop) == true
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>highlightedForMouseDown [
+{ #category : #drawing }
+Morph >> highlightedForMouseDown [
 	^(self valueOfProperty: #highlightedForMouseDown) == true
 ]
 
-{
-	#category : #thumbnail,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>icon [
+{ #category : #thumbnail }
+Morph >> icon [
 	"Answer a form with an icon to represent the receiver"
 	^ self valueOfProperty: #icon
 ]
 
-{
-	#category : #thumbnail,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>iconOrThumbnail [
+{ #category : #thumbnail }
+Morph >> iconOrThumbnail [
 	"Answer an appropiate form to represent the receiver"
 
 	^ self icon
@@ -4533,32 +3437,23 @@ Morph>>iconOrThumbnail [
 
 ]
 
-{
-	#category : #thumbnail,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>iconOrThumbnailOfSize: aNumberOrPoint  [
+{ #category : #thumbnail }
+Morph >> iconOrThumbnailOfSize: aNumberOrPoint [ 
 	"Answer an appropiate form to represent the receiver"
 
 	^ self iconOrThumbnail scaledIntoFormOfSize: aNumberOrPoint
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>imageForm [
+{ #category : #drawing }
+Morph >> imageForm [
 
 	^ self imageFormForRectangle: self fullBounds
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>imageForm: depth backgroundColor: aColor forRectangle: rect [
+{ #category : #drawing }
+Morph >> imageForm: depth backgroundColor: aColor forRectangle: rect [
 	| canvas |
 	canvas := Display defaultCanvasClass extent: rect extent depth: depth.
 	canvas translateBy: rect topLeft negated
@@ -4568,11 +3463,8 @@ Morph>>imageForm: depth backgroundColor: aColor forRectangle: rect [
 	^ canvas form offset: rect topLeft
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>imageForm: depth forRectangle: rect [
+{ #category : #drawing }
+Morph >> imageForm: depth forRectangle: rect [
 	| canvas |
 	canvas := Display defaultCanvasClass extent: rect extent depth: depth.
 	canvas translateBy: rect topLeft negated
@@ -4580,41 +3472,29 @@ Morph>>imageForm: depth forRectangle: rect [
 	^ canvas form offset: rect topLeft
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>imageFormDepth: depth [
+{ #category : #drawing }
+Morph >> imageFormDepth: depth [
 
 	^ self imageForm: depth forRectangle: self fullBounds
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>imageFormForRectangle: rect [
+{ #category : #drawing }
+Morph >> imageFormForRectangle: rect [
 
 	^ self imageForm: Display depth forRectangle: rect
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>initialExtent [
+{ #category : #'user interface' }
+Morph >> initialExtent [
 	
 	 ^(self valueOfProperty: #initialExtent) ifNil: [ 700@500 ] ifNotNil: [ :ext | ext ]
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>initialize [
+{ #category : #initialization }
+Morph >> initialize [
 	"initialize the state of the receiver"
 	super initialize.
 	owner := nil.
@@ -4623,39 +3503,27 @@ Morph>>initialize [
 	color := self defaultColor.
 ]
 
-{
-	#category : #'accessing - extension',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>initializeExtension [
+{ #category : #'accessing - extension' }
+Morph >> initializeExtension [
 	"private - initializes the receiver's extension"
 	extension := MorphExtension new
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>innerBounds [
+{ #category : #geometry }
+Morph >> innerBounds [
 	"Return the inner rectangle enclosed by the bounds of this morph excluding the space taken by its borders. For an unbordered morph, this is just its bounds."
 
 	^ self bounds insetBy: self borderWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>insetColor [
+{ #category : #accessing }
+Morph >> insetColor [
 	owner ifNil:[^self color].
 	^ self colorForInsets
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>inspectAt: aPoint event: evt [
+{ #category : #meta-actions }
+Morph >> inspectAt: aPoint event: evt [
 	|  morphs target |
 	morphs := self morphsAt: aPoint.
 	(morphs includes: self) ifFalse:[morphs := morphs copyWith: self].
@@ -4668,37 +3536,25 @@ Morph>>inspectAt: aPoint event: evt [
 	target inspectInMorphic: evt
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>inspectInMorphic: evt [
+{ #category : #menus }
+Morph >> inspectInMorphic: evt [
 	Smalltalk tools inspector inspect: self
 ]
 
-{
-	#category : #'debug and other',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>inspectOwnerChain [
+{ #category : #'debug and other' }
+Morph >> inspectOwnerChain [
 	self ownerChain inspectWithLabel: 'Owner chain for ', self printString
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>intersects: aRectangle [
+{ #category : #geometry }
+Morph >> intersects: aRectangle [
 	"Answer whether aRectangle, which is in World coordinates, intersects me."
 
 	^self fullBoundsInWorld intersects: aRectangle
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>intoWorld: aWorld [
+{ #category : #initialize }
+Morph >> intoWorld: aWorld [
 	"The receiver has just appeared in a new world. Note:
 		* aWorld can be nil (due to optimizations in other places)
 		* owner is already set
@@ -4710,19 +3566,13 @@ Morph>>intoWorld: aWorld [
 
 ]
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>invalidRect: damageRect [
+{ #category : #'change reporting' }
+Morph >> invalidRect: damageRect [
 	^self invalidRect: damageRect from: self
 ]
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>invalidRect: aRectangle from: aMorph [
+{ #category : #'change reporting' }
+Morph >> invalidRect: aRectangle from: aMorph [
 	| damageRect |
 	aRectangle hasPositiveExtent ifFalse: [ ^self ].
 	damageRect := aRectangle.
@@ -4733,11 +3583,8 @@ Morph>>invalidRect: aRectangle from: aMorph [
 	owner ifNotNil: [owner invalidRect: damageRect from: self].
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>invokeMetaMenu: evt [
+{ #category : #meta-actions }
+Morph >> invokeMetaMenu: evt [
 	| menu |	
 	self world ifNil: [ ^self ].
 	
@@ -4747,11 +3594,8 @@ Morph>>invokeMetaMenu: evt [
 
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>invokeMetaMenuAt: aPoint event: evt  [
+{ #category : #meta-actions }
+Morph >> invokeMetaMenuAt: aPoint event: evt [ 
 	| morphs target |
 	morphs := self morphsAt: aPoint.
 	(morphs includes: self)
@@ -4767,48 +3611,33 @@ Morph>>invokeMetaMenuAt: aPoint event: evt  [
 			target invokeMetaMenu: evt]
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isAlignmentMorph [
+{ #category : #classification }
+Morph >> isAlignmentMorph [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isDockingBar [
+{ #category : #testing }
+Morph >> isDockingBar [
 	"Return true if the receiver is a docking bar"
 	^ false
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isFlexMorph [
+{ #category : #classification }
+Morph >> isFlexMorph [
 
 	^ false
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isFlexed [
+{ #category : #testing }
+Morph >> isFlexed [
 	"Return true if the receiver is currently flexed"
 	^ owner notNil and: [owner isFlexMorph]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isFullOnScreen [
+{ #category : #testing }
+Morph >> isFullOnScreen [
 	"Answer if the receiver is full contained in the owner visible  
 	area."
 	owner ifNil: [^ true].
@@ -4816,66 +3645,45 @@ Morph>>isFullOnScreen [
 	^ owner clearArea containsRect: self fullBounds
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isHandMorph [
+{ #category : #classification }
+Morph >> isHandMorph [
 
 	^ false
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isInDockingBar [
+{ #category : #structure }
+Morph >> isInDockingBar [
 	"answer if the receiver is in a menu bar"
 	^ (owner notNil) and: [owner isDockingBar]
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isInWorld [
+{ #category : #structure }
+Morph >> isInWorld [
 	"Return true if this morph is in a world."
 
 	^self world notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isLineMorph [
+{ #category : #testing }
+Morph >> isLineMorph [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isLocked [
+{ #category : #accessing }
+Morph >> isLocked [
 	"answer whether the receiver is Locked"
 	extension ifNil: [^ false].
 	^ extension locked
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isMorph [
+{ #category : #testing }
+Morph >> isMorph [
 
 	^ true
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isRenderer [
+{ #category : #classification }
+Morph >> isRenderer [
 	"A *renderer* morph transforms the appearance of its submorph in some manner. For example, it might supply a drop shadow or scale and rotate the morph it encases. Answer true if this morph acts as a renderer. This default implementation returns false."
 	"Details: A renderer is assumed to have a single submorph. Renderers may be nested to concatenate their transformations. It is useful to be able to find the outer-most renderer. This can be done by ascending the owner chain from the rendered morph. To find the morph being rendered, one can descend through the (singleton) submorph lists of the renderer chain until a non-renderer is encountered."
 
@@ -4883,11 +3691,8 @@ Morph>>isRenderer [
 
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isStepping [
+{ #category : #'stepping and presenter' }
+Morph >> isStepping [
 	"Return true if the receiver is currently stepping in its world"
 	| aWorld |
 	^ (aWorld := self world)
@@ -4895,11 +3700,8 @@ Morph>>isStepping [
 		ifNotNil:	[aWorld isStepping: self]
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isSteppingSelector: aSelector [
+{ #category : #'stepping and presenter' }
+Morph >> isSteppingSelector: aSelector [
 	"Return true if the receiver is currently stepping in its world"
 	| aWorld |
 	^ (aWorld := self world)
@@ -4907,119 +3709,80 @@ Morph>>isSteppingSelector: aSelector [
 		ifNotNil:	[aWorld isStepping: self selector: aSelector]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isSticky [
+{ #category : #accessing }
+Morph >> isSticky [
 	"answer whether the receiver is Sticky"
 	extension ifNil: [^ false].
 	^ extension sticky
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isTextMorph [
+{ #category : #classification }
+Morph >> isTextMorph [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isTranslucentButNotTransparent [
+{ #category : #testing }
+Morph >> isTranslucentButNotTransparent [
 	"Answer true if this any of this morph is translucent but not transparent."
 
 	^ color isColor and: [ color isTranslucentButNotTransparent ]
 
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isWorldMorph [
+{ #category : #classification }
+Morph >> isWorldMorph [
 
 	^ false
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>isWorldOrHandMorph [
+{ #category : #classification }
+Morph >> isWorldOrHandMorph [
 
 	^ self isWorldMorph or: [self isHandMorph]
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>justGrabbedFrom: formerOwner [
+{ #category : #dropping/grabbing }
+Morph >> justGrabbedFrom: formerOwner [
 	"The receiver was just grabbed from its former owner and is now attached to the hand. By default, we pass this message on if we're a renderer."
 	(self isRenderer and:[self hasSubmorphs]) 
 		ifTrue:[self firstSubmorph justGrabbedFrom: formerOwner].
 ]
 
-{
-	#category : #'rotate scale and flex',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>keepsTransform [
+{ #category : #'rotate scale and flex' }
+Morph >> keepsTransform [
 	"Return true if the receiver will keep it's transform while being grabbed by a hand."
 	^false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>keyDown: anEvent [
+{ #category : #'event handling' }
+Morph >> keyDown: anEvent [
 	"Handle a key down event. The default response is to do nothing."
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>keyStroke: anEvent [
+{ #category : #'event handling' }
+Morph >> keyStroke: anEvent [
 	"Handle a keystroke event.  The default response is to let my eventHandler, if any, handle it."
 	^false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>keyUp: anEvent [
+{ #category : #'event handling' }
+Morph >> keyUp: anEvent [
 	"Handle a key up event. The default response is to do nothing."
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>keyboardFocusChange: gotFocus [
+{ #category : #'event handling' }
+Morph >> keyboardFocusChange: gotFocus [
 	"The message is sent to a morph when its keyboard focus change. The given argument indicates that the receiver is gaining keyboard focus (versus losing) the keyboard focus. Morphs that accept keystrokes should change their appearance in some way when they are the current keyboard focus. This default implementation does nothing."
 	self announceKeyboardFocusChange: gotFocus
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>lastSubmorph [
+{ #category : #submorphs-accessing }
+Morph >> lastSubmorph [
 	^submorphs last
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>layoutBounds [
+{ #category : #layout }
+Morph >> layoutBounds [
 	"Return the bounds for laying out children of the receiver"
 	| inset box |
 	inset := self layoutInset.
@@ -5028,11 +3791,8 @@ Morph>>layoutBounds [
 	^box insetBy: inset.
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>layoutBounds: aRectangle [
+{ #category : #layout }
+Morph >> layoutBounds: aRectangle [
 	"Set the bounds for laying out children of the receiver.
 	Note: written so that #layoutBounds can be changed without touching this method"
 	| outer inner |
@@ -5042,11 +3802,8 @@ Morph>>layoutBounds: aRectangle [
 				aRectangle corner + (outer corner - inner corner).
 ]
 
-{
-	#category : #recategorized,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>layoutChanged [
+{ #category : #recategorized }
+Morph >> layoutChanged [
 	"Fixed to always flush layout cache - finally tracked down
 	layout anomalies due to cached extents in layout
 	policies not being flushed, the previous (incorrect) assumption being
@@ -5061,52 +3818,37 @@ Morph>>layoutChanged [
 	"note: does not send #ownerChanged here - we'll do this when computing the new layout"
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>layoutFrame [
+{ #category : #layout-properties }
+Morph >> layoutFrame [
 	"Layout specific. Return the layout frame describing where the  
 	receiver should appear in a proportional layout"
 	^ extension ifNotNil: [extension layoutFrame]
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>layoutFrame: aLayoutFrame [
+{ #category : #layout-properties }
+Morph >> layoutFrame: aLayoutFrame [
 	"Layout specific. Return the layout frame describing where the receiver should appear in a proportional layout"
 	self layoutFrame == aLayoutFrame ifTrue: [^self].
 	self assureExtension layoutFrame: aLayoutFrame asLayoutFrame.
 	self layoutChanged.
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>layoutInset [
+{ #category : #layout-properties }
+Morph >> layoutInset [
 	"Return the extra inset for layouts"
 
 	^ self layoutProperties ifNil: [ 0 ] ifNotNil: [ :props | props layoutInset ]
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>layoutInset: aNumber [
+{ #category : #layout-properties }
+Morph >> layoutInset: aNumber [
 	"Return the extra inset for layouts"
 	self assureTableProperties layoutInset: aNumber.
 	self layoutChanged.
 ]
 
-{
-	#category : #layout-menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>layoutMenuPropertyString: aSymbol from: currentSetting  [
+{ #category : #layout-menu }
+Morph >> layoutMenuPropertyString: aSymbol from: currentSetting [ 
 	| wording |
 	wording := String
 				streamContents: [:stream | 
@@ -5121,53 +3863,38 @@ Morph>>layoutMenuPropertyString: aSymbol from: currentSetting  [
 	^ (aSymbol == currentSetting) -> wording translated
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>layoutPolicy [
+{ #category : #layout-properties }
+Morph >> layoutPolicy [
 	"Layout specific. Return the layout policy describing how children 
 	of the receiver should appear."
 	^ extension ifNotNil: [ extension layoutPolicy]
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>layoutPolicy: aLayoutPolicy [
+{ #category : #layout-properties }
+Morph >> layoutPolicy: aLayoutPolicy [
 	"Layout specific. Return the layout policy describing how children of the receiver should appear."
 	self layoutPolicy == aLayoutPolicy ifTrue:[^self].
 	self assureExtension layoutPolicy: aLayoutPolicy.
 	self layoutChanged.
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>layoutProperties [
+{ #category : #layout-properties }
+Morph >> layoutProperties [
 	"Return the current layout properties associated with the  
 	receiver"
 	^ extension ifNotNil: [ extension layoutProperties]
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>layoutProperties: newProperties [
+{ #category : #layout-properties }
+Morph >> layoutProperties: newProperties [
 	"Return the current layout properties associated with the receiver"
 	self layoutProperties == newProperties ifTrue:[^self].
 	self assureExtension layoutProperties: newProperties.
 
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>layoutProportionallyIn: newBounds [
+{ #category : #layout }
+Morph >> layoutProportionallyIn: newBounds [
 	"Layout specific. Apply the given bounds to the receiver."
 	| box frame |
 	frame := self layoutFrame ifNil:[^self].
@@ -5178,40 +3905,28 @@ Morph>>layoutProportionallyIn: newBounds [
 	^self layoutInBounds: box.
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>left [
+{ #category : #geometry }
+Morph >> left [
 	" Return the x-coordinate of my left side "
 
 	^ bounds left
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>left: aNumber [
+{ #category : #geometry }
+Morph >> left: aNumber [
 	" Move me so that my left side is at the x-coordinate aNumber. My extent (width & height) are unchanged "
 
 	self position: (aNumber @ bounds top)
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>leftCenter [
+{ #category : #geometry }
+Morph >> leftCenter [
 
 	^ bounds leftCenter
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>listCentering [
+{ #category : #layout-properties }
+Morph >> listCentering [
 	"Layout specific. This property describes how the rows/columns in a list-like layout should be centered.
 		#topLeft - center at start of primary direction
 		#bottomRight - center at end of primary direction
@@ -5223,11 +3938,8 @@ Morph>>listCentering [
 	^props ifNil:[#topLeft] ifNotNil:[props listCentering].
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>listCentering: aSymbol [
+{ #category : #layout-properties }
+Morph >> listCentering: aSymbol [
 	"Layout specific. This property describes how the rows/columns in a list-like layout should be centered.
 		#topLeft - center at start of primary direction
 		#bottomRight - center at end of primary direction
@@ -5238,19 +3950,13 @@ Morph>>listCentering: aSymbol [
 	self layoutChanged.
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>listCenteringString: aSymbol [
+{ #category : #layout-properties }
+Morph >> listCenteringString: aSymbol [
 	^self layoutMenuPropertyString: aSymbol from: self listCentering
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>listDirection [
+{ #category : #layout-properties }
+Morph >> listDirection [
 	"Layout specific. This property describes the direction in which a list-like layout should be applied. Possible values are:
 		#leftToRight
 		#rightToLeft
@@ -5262,11 +3968,8 @@ Morph>>listDirection [
 	^props ifNil:[#topToBottom] ifNotNil:[props listDirection].
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>listDirection: aSymbol [
+{ #category : #layout-properties }
+Morph >> listDirection: aSymbol [
 	"Layout specific. This property describes the direction in which a list-like layout should be applied. Possible values are:
 		#leftToRight
 		#rightToLeft
@@ -5277,19 +3980,13 @@ Morph>>listDirection: aSymbol [
 	self layoutChanged.
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>listDirectionString: aSymbol [
+{ #category : #layout-properties }
+Morph >> listDirectionString: aSymbol [
 	^self layoutMenuPropertyString: aSymbol from: self listDirection
 ]
 
-{
-	#category : #Morphic-Base-Widgets,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>listRenderOn: aCanvas atRow: aRow bounds: drawBounds color: drawColor backgroundColor: backgroundColor from: aMorph [
+{ #category : #Morphic-Base-Widgets }
+Morph >> listRenderOn: aCanvas atRow: aRow bounds: drawBounds color: drawColor backgroundColor: backgroundColor from: aMorph [
 
 	self bounds: drawBounds.
 	self fullDrawOn: aCanvas.
@@ -5297,11 +3994,8 @@ Morph>>listRenderOn: aCanvas atRow: aRow bounds: drawBounds color: drawColor bac
 		ifFalse: [ aMorph addMorph: self ]
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>listSpacing [
+{ #category : #layout-properties }
+Morph >> listSpacing [
 	"Layout specific. This property describes how the heights for different rows in a table layout should be handled.
 		#equal - all rows have the same height
 		#none - all rows may have different heights
@@ -5311,11 +4005,8 @@ Morph>>listSpacing [
 	^props ifNil:[#none] ifNotNil:[props listSpacing].
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>listSpacing: aSymbol [
+{ #category : #layout-properties }
+Morph >> listSpacing: aSymbol [
 	"Layout specific. This property describes how the heights for different rows in a table layout should be handled.
 		#equal - all rows have the same height
 		#none - all rows may have different heights
@@ -5324,95 +4015,65 @@ Morph>>listSpacing: aSymbol [
 	self layoutChanged.
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>listSpacingString: aSymbol [
+{ #category : #layout-properties }
+Morph >> listSpacingString: aSymbol [
 	^self layoutMenuPropertyString: aSymbol from: self listSpacing
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>localPointToGlobal: aPoint [
+{ #category : #geometry }
+Morph >> localPointToGlobal: aPoint [
 	^self point: aPoint in: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>lock [
+{ #category : #accessing }
+Morph >> lock [
 	self lock: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>lock: aBoolean  [
+{ #category : #accessing }
+Morph >> lock: aBoolean [ 
 	"change the receiver's lock property"
 	(extension isNil and: [aBoolean not]) ifTrue: [^ self].
 	self assureExtension locked: aBoolean
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>lockUnlockMorph [
+{ #category : #menus }
+Morph >> lockUnlockMorph [
 	"If the receiver is locked, unlock it; if unlocked, lock it"
 
 	self isLocked ifTrue: [self unlock] ifFalse: [self lock]
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>lockedString [
+{ #category : #menus }
+Morph >> lockedString [
 	"Answer the string to be shown in a menu to represent the 'locked' status"
 	^ (self isLocked) -> 'be locked' translated
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>mainDockingBars [
+{ #category : #submorphs-accessing }
+Morph >> mainDockingBars [
 	"Answer the receiver's main dockingBars"
 	^ self dockingBars
 		select: [:each | each hasProperty: #mainDockingBarTimeStamp]
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>maxCellSize [
+{ #category : #layout-properties }
+Morph >> maxCellSize [
 	"Layout specific. This property specifies the maximum size of a table cell."
 	| props |
 	props := self layoutProperties.
 	^props ifNil:[SmallInteger maxVal] ifNotNil:[props maxCellSize].
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>maxCellSize: aPoint [
+{ #category : #layout-properties }
+Morph >> maxCellSize: aPoint [
 	"Layout specific. This property specifies the maximum size of a table cell."
 	self assureTableProperties maxCellSize: aPoint.
 	self layoutChanged.
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>maybeAddCollapseItemTo: aMenu [
+{ #category : #menus }
+Morph >> maybeAddCollapseItemTo: aMenu [
 	"If appropriate, add a collapse item to the given menu"
 
 	| anOwner |
@@ -5421,102 +4082,72 @@ Morph>>maybeAddCollapseItemTo: aMenu [
 				[aMenu add: 'collapse' target: self selector: #collapse]]
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>maybeDuplicateMorph [
+{ #category : #meta-actions }
+Morph >> maybeDuplicateMorph [
 	"Maybe duplicate the morph"
 
 	^self duplicate openInHand
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>maybeDuplicateMorph: evt [
+{ #category : #meta-actions }
+Morph >> maybeDuplicateMorph: evt [
 	^self duplicateMorph: evt
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>menuKeyboardControl [
+{ #category : #settings }
+Morph >> menuKeyboardControl [
 	^ self theme settings menuKeyboardControl
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>minCellSize [
+{ #category : #layout-properties }
+Morph >> minCellSize [
 	"Layout specific. This property specifies the minimal size of a table cell."
 	| props |
 	props := self layoutProperties.
 	^props ifNil:[0] ifNotNil:[props minCellSize].
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>minCellSize: aPoint [
+{ #category : #layout-properties }
+Morph >> minCellSize: aPoint [
 	"Layout specific. This property specifies the minimal size of a table cell."
 	self assureTableProperties minCellSize: aPoint.
 	self layoutChanged.
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>minHeight [
+{ #category : #layout }
+Morph >> minHeight [
 	"answer the receiver's minHeight"
 	^ self
 		valueOfProperty: #minHeight
 		ifAbsent: [2]
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>minHeight: aNumber  [
+{ #category : #layout }
+Morph >> minHeight: aNumber [ 
 	aNumber 
 		ifNil: [self removeProperty: #minHeight]
 		ifNotNil: [self setProperty: #minHeight toValue: aNumber].
 	self layoutChanged
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>minWidth [
+{ #category : #layout }
+Morph >> minWidth [
 	"answer the receiver's minWidth"
 	^ self
 		valueOfProperty: #minWidth
 		ifAbsent: [2]
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>minWidth: aNumber  [
+{ #category : #layout }
+Morph >> minWidth: aNumber [ 
 	aNumber 
 		ifNil: [self removeProperty: #minWidth]
 		ifNotNil: [self setProperty: #minWidth toValue: aNumber].
 	self layoutChanged
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>minimumExtent [
+{ #category : #geometry }
+Morph >> minimumExtent [
 	| ext |
 	"This returns the minimum extent that the morph may be shrunk to.  Not honored in too many places yet, but respected by the resizeToFit feature, at least.  copied up from SystemWindow 6/00"
 	(ext := self valueOfProperty: #minimumExtent)
@@ -5525,30 +4156,21 @@ Morph>>minimumExtent [
 	^ 100 @ 80
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>minimumExtent: aPoint [
+{ #category : #geometry }
+Morph >> minimumExtent: aPoint [
 	"Remember a minimumExtent, for possible future use"
 
 	self setProperty: #minimumExtent toValue: aPoint
 
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>model [
+{ #category : #menus }
+Morph >> model [
 	^ nil 
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>morphPreceding: aSubmorph [
+{ #category : #structure }
+Morph >> morphPreceding: aSubmorph [
 	"Answer the morph immediately preceding aSubmorph, or nil if none"
 
 	| anIndex |
@@ -5560,11 +4182,8 @@ Morph>>morphPreceding: aSubmorph [
 			[nil]
 ]
 
-{
-	#category : #'wiw support',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>morphicLayerNumber [
+{ #category : #'wiw support' }
+Morph >> morphicLayerNumber [
 
 	"helpful for insuring some morphs always appear in front of or behind others.
 	smaller numbers are in front"
@@ -5578,20 +4197,14 @@ Morph>>morphicLayerNumber [
 	"leave lots of room for special things"
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>morphsAt: aPoint [
+{ #category : #submorphs-accessing }
+Morph >> morphsAt: aPoint [
 	"Return a collection of all morphs in this morph structure that contain the given point, possibly including the receiver itself.  The order is deepest embedding first."
 	^self morphsAt: aPoint unlocked: false
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>morphsAt: aPoint behind: aMorph unlocked: aBool  [
+{ #category : #submorphs-accessing }
+Morph >> morphsAt: aPoint behind: aMorph unlocked: aBool [ 
 	"Return all morphs at aPoint that are behind frontMorph; if aBool is true return only unlocked, visible morphs."
 
 	| isBack all tfm |
@@ -5633,11 +4246,8 @@ Morph>>morphsAt: aPoint behind: aMorph unlocked: aBool  [
 	^all ifNil: [#()] ifNotNil: [all contents]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>morphsAt: aPoint unlocked: aBool [
+{ #category : #submorphs-accessing }
+Morph >> morphsAt: aPoint unlocked: aBool [
 	"Return a collection of all morphs in this morph structure that contain the given point, possibly including the receiver itself.  The order is deepest embedding first."
 	| mList |
 	mList := Array new writeStream.
@@ -5645,11 +4255,8 @@ Morph>>morphsAt: aPoint unlocked: aBool [
 	^mList contents
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>morphsAt: aPoint unlocked: aBool do: aBlock [
+{ #category : #submorphs-accessing }
+Morph >> morphsAt: aPoint unlocked: aBool do: aBlock [
 	"Evaluate aBlock with all the morphs starting at the receiver which appear at aPoint. If aBool is true take only visible, unlocked morphs into account."
 	
 	(self fullBounds containsPoint: aPoint) ifFalse:[^self].
@@ -5660,11 +4267,8 @@ Morph>>morphsAt: aPoint unlocked: aBool do: aBlock [
 	(self containsPoint: aPoint) ifTrue:[aBlock value: self].
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>morphsInFrontOf: someMorph overlapping: aRectangle do: aBlock [
+{ #category : #submorphs-accessing }
+Morph >> morphsInFrontOf: someMorph overlapping: aRectangle do: aBlock [
 	"Evaluate aBlock with all top-level morphs in front of someMorph that overlap with the given rectangle. someMorph is either an immediate child of the receiver or nil (in which case all submorphs of the receiver are enumerated)."
 	self submorphsDo:[:m|
 		m == someMorph ifTrue:["Try getting out quickly"
@@ -5676,11 +4280,8 @@ Morph>>morphsInFrontOf: someMorph overlapping: aRectangle do: aBlock [
 	^owner morphsInFrontOf: self overlapping: aRectangle do: aBlock.
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>morphsInFrontOverlapping: aRectangle [
+{ #category : #submorphs-accessing }
+Morph >> morphsInFrontOverlapping: aRectangle [
 	"Return all top-level morphs in front of someMorph that overlap with the given rectangle."
 	| morphList |
 	morphList := Array new writeStream.
@@ -5688,20 +4289,14 @@ Morph>>morphsInFrontOverlapping: aRectangle [
 	^morphList contents
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>morphsInFrontOverlapping: aRectangle do: aBlock [
+{ #category : #submorphs-accessing }
+Morph >> morphsInFrontOverlapping: aRectangle do: aBlock [
 	"Evaluate aBlock with all top-level morphs in front of someMorph that overlap with the given rectangle."
 	^self morphsInFrontOf: nil overlapping: aRectangle do: aBlock
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>mouseDown: evt  [
+{ #category : #'event handling' }
+Morph >> mouseDown: evt [ 
 	"Handle a mouse down event. The default response is to let my 
 	eventHandler, if any, handle it."
 	self eventHandler
@@ -5709,11 +4304,8 @@ Morph>>mouseDown: evt  [
 
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>mouseDownOnHelpHandle: anEvent [
+{ #category : #'halos and balloon help' }
+Morph >> mouseDownOnHelpHandle: anEvent [
 	"The mouse went down in the show-balloon handle"
 	
 	| str |
@@ -5724,22 +4316,16 @@ Morph>>mouseDownOnHelpHandle: anEvent [
 
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>mouseDownPriority [
+{ #category : #events-processing }
+Morph >> mouseDownPriority [
 	"Return the default mouse down priority for the receiver"
 
 	^ 0
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>mouseEnter: evt [
+{ #category : #'event handling' }
+Morph >> mouseEnter: evt [
 	"Handle a mouseEnter event, meaning the mouse just entered my bounds with no button pressed. The default response is to let my eventHandler, if any, handle it."
 
 	^ self eventHandler ifNotNil:
@@ -5747,11 +4333,8 @@ Morph>>mouseEnter: evt [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>mouseEnterDragging: evt [
+{ #category : #'event handling' }
+Morph >> mouseEnterDragging: evt [
 	"Handle a mouseEnterDragging event, meaning the mouse just entered my bounds with a button pressed or laden with submorphs.  The default response is to let my eventHandler, if any, handle it, or else to do nothing."
 
 	self eventHandler ifNotNil:
@@ -5759,11 +4342,8 @@ Morph>>mouseEnterDragging: evt [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>mouseLeave: evt [
+{ #category : #'event handling' }
+Morph >> mouseLeave: evt [
 	"Handle a mouseLeave event, meaning the mouse just left my bounds with no button pressed. The default response is to let my eventHandler, if any, handle it."
 
 	^ self eventHandler ifNotNil:
@@ -5771,33 +4351,24 @@ Morph>>mouseLeave: evt [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>mouseLeaveDragging: evt [
+{ #category : #'event handling' }
+Morph >> mouseLeaveDragging: evt [
 	"Handle a mouseLeaveLaden event, meaning the mouse just left my bounds with a button pressed or laden with submorphs. The default response is to let my eventHandler, if any, handle it; else to do nothing."
 
 	self eventHandler ifNotNil:
 		[self eventHandler mouseLeaveDragging: evt fromMorph: self]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>mouseMove: evt [
+{ #category : #'event handling' }
+Morph >> mouseMove: evt [
 	"Handle a mouse move event. The default response is to let my eventHandler, if any, handle it."
 	self eventHandler ifNotNil:
 		[self eventHandler mouseMove: evt fromMorph: self].
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>mouseStillDown: evt [
+{ #category : #'event handling' }
+Morph >> mouseStillDown: evt [
 	"Handle a mouse move event. The default response is to let my eventHandler, if any, handle it."
 
 	self eventHandler ifNotNil:
@@ -5805,29 +4376,20 @@ Morph>>mouseStillDown: evt [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>mouseStillDownStepRate [
+{ #category : #'event handling' }
+Morph >> mouseStillDownStepRate [
 	"At what rate do I want to receive #mouseStillDown: notifications?"
 	^1
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>mouseStillDownThreshold [
+{ #category : #'event handling' }
+Morph >> mouseStillDownThreshold [
 	"Return the number of milliseconds after which mouseStillDown: should be sent"
 	^200
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>mouseUp: evt [
+{ #category : #'event handling' }
+Morph >> mouseUp: evt [
 	"Handle a mouse up event. The default response is to let my eventHandler, if any, handle it."
 
 	^ self eventHandler ifNotNil:
@@ -5835,19 +4397,13 @@ Morph>>mouseUp: evt [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>mouseWheel: evt  [
+{ #category : #'event handling' }
+Morph >> mouseWheel: evt [ 
 	"Handle a mouseWheel event."
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>moveOrResizeFromKeystroke: anEvent [
+{ #category : #'event handling' }
+Morph >> moveOrResizeFromKeystroke: anEvent [
 	"move or resize the receiver based on a keystroke"
 
 	| dir |
@@ -5868,56 +4424,38 @@ Morph>>moveOrResizeFromKeystroke: anEvent [
 				ifFalse: [ self position: self position + dir ] ]
 ]
 
-{
-	#category : #naming,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>name: aName  [
+{ #category : #naming }
+Morph >> name: aName [ 
 	(aName isString) ifTrue: [self setNameTo: aName]
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>nearestOwnerThat: conditionBlock [
+{ #category : #structure }
+Morph >> nearestOwnerThat: conditionBlock [
 	"Return the first enclosing morph for which aBlock evaluates to true, or nil if none"
 
 	^ self firstOwnerSuchThat: conditionBlock
 
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>noHelpString [
+{ #category : #'halos and balloon help' }
+Morph >> noHelpString [
 	^ 'Help not yet supplied' translated
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>noteNewOwner: aMorph [
+{ #category : #submorphs-accessing }
+Morph >> noteNewOwner: aMorph [
 	"I have just been added as a submorph of aMorph"
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>okayToAddDismissHandle [
+{ #category : #'halos and balloon help' }
+Morph >> okayToAddDismissHandle [
 	"Answer whether a halo on the receiver should offer a dismiss handle.  This provides a hook for making it harder to disassemble some strucures even momentarily"
 
 	^self resistsRemoval not
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>okayToBrownDragEasily [
+{ #category : #'halos and balloon help' }
+Morph >> okayToBrownDragEasily [
 	"Answer whether it it okay for the receiver to be brown-dragged easily -- i.e. repositioned within its container without extracting it.  At present this is just a hook -- nobody declines."
 
 	^ true
@@ -5929,11 +4467,8 @@ Morph>>okayToBrownDragEasily [
 		[self layoutPolicy isNil]"
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>okayToResizeEasily [
+{ #category : #'halos and balloon help' }
+Morph >> okayToResizeEasily [
 	"Answer whether it is appropriate to have the receiver be easily resized by the user from the halo"
 
 	^ true
@@ -5943,37 +4478,25 @@ Morph>>okayToResizeEasily [
 		[self layoutPolicy isNil]"
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>okayToRotateEasily [
+{ #category : #'halos and balloon help' }
+Morph >> okayToRotateEasily [
 	"Answer whether it is appropriate for a rotation handle to be shown for the receiver.  This is a hook -- at present nobody declines."
 
 	^ self respondsTo: #prepareForRotating
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>onAnnouncement: anAnnouncement do: aValuable [
+{ #category : #announcements }
+Morph >> onAnnouncement: anAnnouncement do: aValuable [
 	self announcer when: anAnnouncement do: aValuable.
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>onAnnouncement: anAnnouncement send: aMessageSelector to: anObject [
+{ #category : #announcements }
+Morph >> onAnnouncement: anAnnouncement send: aMessageSelector [ to: anObject
 	self announcer when: anAnnouncement send: aMessageSelector to: anObject.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>openCenteredInWorld [
+{ #category : #initialize }
+Morph >> openCenteredInWorld [
 	"Open me in the center of current world"
 	self 
 		fullBounds;
@@ -5981,31 +4504,22 @@ Morph>>openCenteredInWorld [
 		center: self world clearArea center
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>openInHand [
+{ #category : #initialize }
+Morph >> openInHand [
 	"Attach the receiver to the current hand in the current morphic world"
 
 	self currentHand attachMorph: self
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>openInWorld [
+{ #category : #initialize }
+Morph >> openInWorld [
         "Add this morph to the world."
 
         self openInWorld: self currentWorld
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>openInWorld: aWorld [
+{ #category : #initialize }
+Morph >> openInWorld: aWorld [
 	"Add this morph to the requested World."
 	(aWorld visibleClearArea origin ~= (0@0) and: [self position = (0@0)]) ifTrue:
 		[self position: aWorld visibleClearArea origin].
@@ -6015,20 +4529,14 @@ Morph>>openInWorld: aWorld [
 	self announceOpened.
 ]
 
-{
-	#category : #'accessing - properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>otherProperties [
+{ #category : #'accessing - properties' }
+Morph >> otherProperties [
 	"answer the receiver's otherProperties"
 	^ extension ifNotNil: [extension otherProperties]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>outOfWorld: aWorld [
+{ #category : #initialize }
+Morph >> outOfWorld: aWorld [
 	"The receiver has just appeared in a new world. Notes:
 		* aWorld can be nil (due to optimizations in other places)
 		* owner is still valid
@@ -6040,11 +4548,8 @@ Morph>>outOfWorld: aWorld [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>outerBounds [
+{ #category : #geometry }
+Morph >> outerBounds [
 	"Return the 'outer' bounds of the receiver, e.g., the bounds that need to be invalidated when the receiver changes."
 	| box |
 	box := self bounds.
@@ -6052,11 +4557,8 @@ Morph>>outerBounds [
 	^box
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>outermostMorphThat: conditionBlock [
+{ #category : #structure }
+Morph >> outermostMorphThat: conditionBlock [
 	"Return the outermost containing morph for which aBlock is true, or nil if none"
 
 	| outermost |
@@ -6064,11 +4566,8 @@ Morph>>outermostMorphThat: conditionBlock [
 	^ outermost
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>outermostOwnerWithYellowButtonMenu [
+{ #category : #menu }
+Morph >> outermostOwnerWithYellowButtonMenu [
 	"Answer me or my outermost owner that is willing to contribute menu items to a context menu.
 	Don't include the world."
 
@@ -6078,20 +4577,14 @@ Morph>>outermostOwnerWithYellowButtonMenu [
 	^outermost ifNil: [ self hasYellowButtonMenu ifTrue: [ self ] ifFalse: []] 
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>outermostWorldMorph [
+{ #category : #structure }
+Morph >> outermostWorldMorph [
 
 	^self world ifNil: [ World ].
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>overlapsShadowForm: itsShadow bounds: itsBounds [
+{ #category : #geometry }
+Morph >> overlapsShadowForm: itsShadow bounds: itsBounds [
 	"Answer true if itsShadow and my shadow overlap at all"
 	| andForm overlapExtent |
 	overlapExtent := (itsBounds intersect: self fullBounds ifNone: [ ^ false ]) extent.
@@ -6112,21 +4605,15 @@ Morph>>overlapsShadowForm: itsShadow bounds: itsBounds [
 		anySatisfy: [:w | w ~= 0]
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>owner [
+{ #category : #structure }
+Morph >> owner [
 	"Returns the owner of this morph, which may be nil."
 
 	^ owner
 ]
 
-{
-	#category : #'debug and other',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>ownerChain [
+{ #category : #'debug and other' }
+Morph >> ownerChain [
 	"Answer a list of objects representing the receiver and all of its owners.   The first element is the receiver, and the last one is typically the world in which the receiver resides"
 
 	| c next |
@@ -6136,40 +4623,28 @@ Morph>>ownerChain [
 	^c asArray
 ]
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>ownerChanged [
+{ #category : #'change reporting' }
+Morph >> ownerChanged [
 	"The receiver's owner, some kind of a pasteup, has changed its layout."
 
 	self snapToEdgeIfAppropriate
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>ownerThatIsA: aClass [
+{ #category : #structure }
+Morph >> ownerThatIsA: aClass [
 	"Return the first enclosing morph that is a kind of aClass, or nil if none"
 
 	^ self firstOwnerSuchThat: [:m | m isKindOf: aClass]
 ]
 
-{
-	#category : #Morphic-Base-Worlds,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>pasteUpMorph [
+{ #category : #Morphic-Base-Worlds }
+Morph >> pasteUpMorph [
 	"Answer the closest containing morph that is a PasteUp morph"
 	^ self ownerThatIsA: PasteUpMorph
 ]
 
-{
-	#category : #Morphic-Base-Worlds,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>pasteUpMorphHandlingTabAmongFields [
+{ #category : #Morphic-Base-Worlds }
+Morph >> pasteUpMorphHandlingTabAmongFields [
 	"Answer the nearest PasteUpMorph in my owner chain that has the tabAmongFields property, or nil if none"
 
 	| aPasteUp |
@@ -6181,66 +4656,45 @@ Morph>>pasteUpMorphHandlingTabAmongFields [
 	^ nil
 ]
 
-{
-	#category : #thumbnail,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>permitsThumbnailing [
+{ #category : #thumbnail }
+Morph >> permitsThumbnailing [
 	^ true
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>point: aPoint from: aReferenceMorph [
+{ #category : #geometry }
+Morph >> point: aPoint from: aReferenceMorph [
 
 	owner ifNil: [^ aPoint].
 	^ (owner transformFrom: aReferenceMorph) globalPointToLocal: aPoint.
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>point: aPoint in: aReferenceMorph [
+{ #category : #geometry }
+Morph >> point: aPoint [ in: aReferenceMorph
 
 	owner ifNil: [^ aPoint].
 	^ (owner transformFrom: aReferenceMorph) localPointToGlobal: aPoint.
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>pointFromWorld: aPoint [
+{ #category : #geometry }
+Morph >> pointFromWorld: aPoint [
 	^self point: aPoint from: self world
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>pointInWorld: aPoint [
+{ #category : #geometry }
+Morph >> pointInWorld: aPoint [
 	^self point: aPoint in: self world
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>position [
+{ #category : #geometry }
+Morph >> position [
 
 	^ bounds topLeft
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>position: aPoint  [
+{ #category : #geometry }
+Morph >> position: aPoint [ 
 	"Change the position of this morph and and all of its
 	submorphs. "
 	| delta box |
@@ -6264,30 +4718,21 @@ Morph>>position: aPoint  [
 		ifNotNil: [owner layoutChanged]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>positionInWorld [
+{ #category : #geometry }
+Morph >> positionInWorld [
 
 	^ self pointInWorld: self position.
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>positionSubmorphs [
+{ #category : #geometry }
+Morph >> positionSubmorphs [
 	self submorphsDo:
 		[:aMorph | aMorph snapToEdgeIfAppropriate]
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>potentialEmbeddingTargets [
+{ #category : #meta-actions }
+Morph >> potentialEmbeddingTargets [
 	"Return the potential targets for embedding the receiver"
 
 	| oneUp topRend |
@@ -6295,22 +4740,16 @@ Morph>>potentialEmbeddingTargets [
 	^ (oneUp morphsAt: topRend referencePosition behind: topRend unlocked: true) reject: [ :m | m isFlexMorph ]
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>potentialTargets [
+{ #category : #meta-actions }
+Morph >> potentialTargets [
 	"Return the potential targets for the receiver.
 	This is derived from Morph>>potentialEmbeddingTargets."
 	owner ifNil:[^#()].
 	^owner morphsAt: self referencePosition behind: self unlocked: true not
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>potentialTargetsAt: aPoint  [
+{ #category : #meta-actions }
+Morph >> potentialTargetsAt: aPoint [ 
 	"Return the potential targets for the receiver.  
 	This is derived from Morph>>potentialEmbeddingTargets."
 	| realOwner |
@@ -6322,41 +4761,29 @@ Morph>>potentialTargetsAt: aPoint  [
 		
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>preferredDuplicationHandleSelector [
+{ #category : #'halos and balloon help' }
+Morph >> preferredDuplicationHandleSelector [
 	"Answer the selector, either #addMakeSiblingHandle: or addDupHandle:, to be offered as the default in a halo open on me"
 
 	^ #addDupHandle:
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>preferredKeyboardBounds [
+{ #category : #'event handling' }
+Morph >> preferredKeyboardBounds [
 
 	^ self bounds: self bounds in: World.
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>preferredKeyboardPosition [
+{ #category : #'event handling' }
+Morph >> preferredKeyboardPosition [
 
 	^ (self bounds: self bounds in: World) topLeft.
 
 ]
 
-{
-	#category : #'rotate scale and flex',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>prepareForScaling [
+{ #category : #'rotate scale and flex' }
+Morph >> prepareForScaling [
 	"If this morph requires a flex shell to scale,
 	then wrap it in one and return it.
 	Polygons, eg, may override to return themselves."
@@ -6364,11 +4791,8 @@ Morph>>prepareForScaling [
 	^ self addFlexShell
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>prepareToBeSaved [
+{ #category : #copying }
+Morph >> prepareToBeSaved [
 	"Prepare this morph to be saved to disk. Subclasses should nil out any instance variables that holds state that should not be saved, such as cached Forms. Note that this operation may take more drastic measures than releaseCachedState; for example, it might discard the transcript of an interactive chat session."
 
 	self releaseCachedState.
@@ -6377,33 +4801,24 @@ Morph>>prepareToBeSaved [
 	fullBounds := nil
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>presentHelp [
+{ #category : #menus }
+Morph >> presentHelp [
 	"Present a help message if there is one available"
 
 	self inform: 'Sorry, no help has been
 provided here yet.'
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>primaryHand [
+{ #category : #structure }
+Morph >> primaryHand [
 
         | outer |
         outer := self outermostWorldMorph ifNil: [^ nil].
         ^ outer activeHand ifNil: [outer firstHand]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>printOn: aStream  [
+{ #category : #printing }
+Morph >> printOn: aStream [ 
 	super printOn: aStream.
 	aStream nextPutAll: '('.
 	aStream
@@ -6411,11 +4826,8 @@ Morph>>printOn: aStream  [
 		nextPutAll: ')'
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>printStructureOn: aStream indent: tabCount [
+{ #category : #printing }
+Morph >> printStructureOn: aStream indent: tabCount [
 
 	tabCount timesRepeat: [aStream tab].
 	self printOn: aStream.
@@ -6424,11 +4836,8 @@ Morph>>printStructureOn: aStream indent: tabCount [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>privateAddAllMorphs: aCollection atIndex: index [
+{ #category : #private }
+Morph >> privateAddAllMorphs: aCollection atIndex: index [
 	"Private. Add aCollection of morphs to the receiver"
 	| myWorld otherSubmorphs |
 	myWorld := self world.
@@ -6461,11 +4870,8 @@ Morph>>privateAddAllMorphs: aCollection atIndex: index [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>privateAddMorph: aMorph atIndex: index [
+{ #category : #private }
+Morph >> privateAddMorph: aMorph atIndex: index [
 	| oldIndex myWorld itsWorld oldOwner |
 	(index between: 1 and: submorphs size + 1)
 		ifFalse: [ ^ self error: 'index out of range' ].
@@ -6509,50 +4915,35 @@ Morph>>privateAddMorph: aMorph atIndex: index [
 			aMorph noteNewOwner: self ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>privateBounds: boundsRect [
+{ #category : #private }
+Morph >> privateBounds: boundsRect [
 	"Private! Use position: and/or extent: instead."
 
 	fullBounds := nil.
 	bounds := boundsRect.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>privateColor: aColor [
+{ #category : #private }
+Morph >> privateColor: aColor [
 
 	color := aColor.
 
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>privateDelete [
+{ #category : #submorphs-add/remove }
+Morph >> privateDelete [
 	"Remove the receiver as a submorph of its owner"
 	owner ifNotNil:[owner removeMorph: self].
 ]
 
-{
-	#category : #'accessing - extension',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>privateExtension: aMorphExtension [
+{ #category : #'accessing - extension' }
+Morph >> privateExtension: aMorphExtension [
 	"private - change the receiver's extension"
 	extension := aMorphExtension
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>privateFullBounds [
+{ #category : #layout }
+Morph >> privateFullBounds [
 	"Private. Compute the actual full bounds of the receiver"
 
 	| box |
@@ -6564,21 +4955,15 @@ Morph>>privateFullBounds [
 	^box origin asIntegerPoint corner: box corner asIntegerPoint
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>privateFullBounds: boundsRect [
+{ #category : #private }
+Morph >> privateFullBounds: boundsRect [
 	"Private! Computed automatically."
 
 	fullBounds := boundsRect.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>privateFullMoveBy: delta [
+{ #category : #private }
+Morph >> privateFullMoveBy: delta [
 	"Private! Relocate me and all of my subMorphs by recursion. Subclasses that implement different coordinate systems may override this method."
 
 	self privateMoveBy: delta.
@@ -6586,11 +4971,8 @@ Morph>>privateFullMoveBy: delta [
 
 ]
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>privateInvalidateMorph: aMorph [
+{ #category : #'change reporting' }
+Morph >> privateInvalidateMorph: aMorph [
 	"Private. Invalidate the given morph after adding or removing.
 	This method is private because a) we're invalidating the morph 'remotely'
 	and b) it forces a fullBounds computation which should not be necessary
@@ -6601,11 +4983,8 @@ Morph>>privateInvalidateMorph: aMorph [
 	aMorph changed
 ]
 
-{
-	#category : #recategorized,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>privateMoveBy: delta  [
+{ #category : #recategorized }
+Morph >> privateMoveBy: delta [ 
 	"Private! Use 'position:' instead."
 	| fill border|
 	bounds := bounds translateBy: delta.
@@ -6617,72 +4996,51 @@ Morph>>privateMoveBy: delta  [
 		border fillStyle origin: border fillStyle origin + delta]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>privateOwner: aMorph [
+{ #category : #private }
+Morph >> privateOwner: aMorph [
 	"Private! Should only be used by methods that maintain the ower/submorph invariant."
 
 	owner := aMorph.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>privateRemove: aMorph [
+{ #category : #private }
+Morph >> privateRemove: aMorph [
 	"Private! Should only be used by methods that maintain the ower/submorph invariant."
 
 	submorphs := submorphs copyWithout: aMorph.
 	self layoutChanged.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>privateSubmorphs [
+{ #category : #private }
+Morph >> privateSubmorphs [
 	"Private! Use 'submorphs' instead."
 
 	^ submorphs
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>privateSubmorphs: aCollection [
+{ #category : #private }
+Morph >> privateSubmorphs: aCollection [
 	"Private! Should only be used by methods that maintain the ower/submorph invariant."
 
 	submorphs := aCollection.
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>processEvent: anEvent [
+{ #category : #events-processing }
+Morph >> processEvent: anEvent [
 	"Process the given event using the default event dispatcher."
 	^self processEvent: anEvent using: self defaultEventDispatcher
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>processEvent: anEvent using: defaultDispatcher [
+{ #category : #events-processing }
+Morph >> processEvent: anEvent using: defaultDispatcher [
 	"This is the central entry for dispatching events in morphic. Given some event and a default dispatch strategy, find the right receiver and let him handle it.
 	WARNING: This is a powerful hook. If you want to use a different event dispatcher from the default, here is the place to hook it in. Depending on how the dispatcher is written (e.g., whether it calls simply #processEvent: or #processEvent:using:) you can change the dispatch strategy for entire trees of morphs. Similarly, you can disable entire trees of morphs from receiving any events whatsoever. Read the documentation in class MorphicEventDispatcher before playing with it. "
 	(self rejectsEvent: anEvent) ifTrue:[^#rejected].
 	^defaultDispatcher dispatchEvent: anEvent with: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>raisedColor [
+{ #category : #accessing }
+Morph >> raisedColor [
 	"Return the color to be used for shading raised borders. The 
 	default is my own color, but it might want to be, eg, my 
 	owner's color. Whoever's color ends up prevailing, the color 
@@ -6696,11 +5054,8 @@ Morph>>raisedColor [
 	^ color asColor raisedColor
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>referencePosition [
+{ #category : #geometry }
+Morph >> referencePosition [
 	"Return the current reference position of the receiver"
 	| box |
 	box := self bounds.
@@ -6708,11 +5063,8 @@ Morph>>referencePosition [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>referencePosition: aPosition [
+{ #category : #geometry }
+Morph >> referencePosition: aPosition [
 	"Move the receiver to match its reference position with aPosition"
 	| newPos intPos |
 	newPos := self position + (aPosition - self referencePosition).
@@ -6722,21 +5074,15 @@ Morph>>referencePosition: aPosition [
 		ifFalse:[self position: newPos].
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>referencePositionInWorld [
+{ #category : #geometry }
+Morph >> referencePositionInWorld [
 
 	^ self pointInWorld: self referencePosition
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>referencePositionInWorld: aPoint [
+{ #category : #geometry }
+Morph >> referencePositionInWorld: aPoint [
 	| localPosition |
 	localPosition := owner
 		ifNil: [aPoint]
@@ -6746,21 +5092,15 @@ Morph>>referencePositionInWorld: aPoint [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>refreshWorld [
+{ #category : #drawing }
+Morph >> refreshWorld [
 	| aWorld |
 	(aWorld := self world) ifNotNil: [aWorld displayWorldSafely]
 
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>rejectDropEvent: anEvent [
+{ #category : #events-processing }
+Morph >> rejectDropEvent: anEvent [
 	"This hook allows the receiver to repel a drop operation currently executed. The method is called prior to checking children so the receiver must validate that the event was really designated for it.
 	Note that the ordering of the tests below is designed to avoid a (possibly expensive) #fullContainsPoint: test. If the receiver doesn't want to repel the morph anyways we don't need to check after all."
 	(self repelsMorph: anEvent contents event: anEvent) ifFalse:[^self]. "not repelled"
@@ -6770,11 +5110,8 @@ Morph>>rejectDropEvent: anEvent [
 	anEvent contents rejectDropMorphEvent: anEvent.
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>rejectDropMorphEvent: evt [
+{ #category : #dropping/grabbing }
+Morph >> rejectDropMorphEvent: evt [
 	"The receiver has been rejected, and must be put back somewhere.  There are three cases:
 	(1)  It remembers its former owner and position, and goes right back there
 	(2)  It remembers its former position only, in which case it was torn off from a parts bin, and the UI is that it floats back to its donor position and then vanishes."
@@ -6786,11 +5123,8 @@ Morph>>rejectDropMorphEvent: evt [
 		ifNotNil: [^ self vanishAfterSlidingTo: self formerPosition event: evt].
 ]
 
-{
-	#category : #recategorized,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>rejectsEvent: anEvent [
+{ #category : #recategorized }
+Morph >> rejectsEvent: anEvent [
 	"Return true to reject the given event.
 	Rejecting an event means neither the receiver nor any of it's submorphs will be given any chance to handle it.
 	If the event is a mouse wheel event then only reject if the receiver is not visible."
@@ -6800,58 +5134,40 @@ Morph>>rejectsEvent: anEvent [
 	^self isLocked or: [self visible not]
 ]
 
-{
-	#category : #text-anchor,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>relativeTextAnchorPosition [
+{ #category : #text-anchor }
+Morph >> relativeTextAnchorPosition [
 	^self valueOfProperty: #relativeTextAnchorPosition
 ]
 
-{
-	#category : #text-anchor,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>relativeTextAnchorPosition: aPoint [
+{ #category : #text-anchor }
+Morph >> relativeTextAnchorPosition: aPoint [
 	^self setProperty: #relativeTextAnchorPosition toValue: aPoint
 ]
 
-{
-	#category : #events-removing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>releaseActionMap [
+{ #category : #events-removing }
+Morph >> releaseActionMap [
 	"Release the action map"
 	
  	self removeProperty: #actionMap
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>releaseCachedState [
+{ #category : #caching }
+Morph >> releaseCachedState [
 	"Release any state that can be recomputed on demand, such as the pixel values for a color gradient or the editor state for a TextMorph. This method may be called to save space when a morph becomes inaccessible. Implementations of this method should do 'super releaseCachedState'."
 	self borderStyle releaseCachedState. 
 
 ]
 
-{
-	#category : #events-alarms,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>removeAlarm: aSelector [
+{ #category : #events-alarms }
+Morph >> removeAlarm: aSelector [
 	"Remove the given alarm"
 	| scheduler |
 	scheduler := self alarmScheduler.
 	scheduler ifNotNil:[scheduler removeAlarm: aSelector for: self].
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>removeAllMorphs [
+{ #category : #submorphs-add/remove }
+Morph >> removeAllMorphs [
 	| oldMorphs myWorld |
 	myWorld := self world.
 	(fullBounds notNil or:[myWorld notNil]) ifTrue:[self invalidRect: self fullBounds].
@@ -6863,11 +5179,8 @@ Morph>>removeAllMorphs [
 
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>removeAllMorphsIn: aCollection [
+{ #category : #submorphs-add/remove }
+Morph >> removeAllMorphsIn: aCollection [
 	"greatly speeds up the removal of *lots* of submorphs"
 	| set myWorld |
 	set := IdentitySet new: aCollection size * 4 // 3.
@@ -6881,20 +5194,14 @@ Morph>>removeAllMorphsIn: aCollection [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>removeDependent: anObject [
+{ #category : #updating }
+Morph >> removeDependent: anObject [
 
 	self announcer unsubscribe: anObject
 ]
 
-{
-	#category : #'drop shadows',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>removeDropShadow [
+{ #category : #'drop shadows' }
+Morph >> removeDropShadow [
 	self hasDropShadow ifFalse:[^self].
 	self changed.
 	self hasDropShadow: false.
@@ -6903,37 +5210,25 @@ Morph>>removeDropShadow [
 	self changed.
 ]
 
-{
-	#category : #'rotate scale and flex',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>removeFlexShell [
+{ #category : #'rotate scale and flex' }
+Morph >> removeFlexShell [
 	self isFlexed ifTrue: [self owner removeFlexShell]
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>removeHalo [
+{ #category : #'halos and balloon help' }
+Morph >> removeHalo [
 	"remove the surrounding halo (if any)"
 	self primaryHand removeHaloAround: self
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>removeLink: actionCode [
+{ #category : #'event handling' }
+Morph >> removeLink: actionCode [
 	self eventHandler ifNotNil:
 		[self eventHandler on: actionCode send: nil to: nil]
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>removeMorph: aMorph [
+{ #category : #submorphs-add/remove }
+Morph >> removeMorph: aMorph [
 	"Remove the given morph from my submorphs"
 	| aWorld |
 	aMorph owner == self ifFalse:[^self].
@@ -6948,59 +5243,41 @@ Morph>>removeMorph: aMorph [
 
 ]
 
-{
-	#category : #'accessing - properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>removeProperty: aSymbol  [
+{ #category : #'accessing - properties' }
+Morph >> removeProperty: aSymbol [ 
 	"removes the property named aSymbol if it exists"
 	extension ifNil:  [^ self].
 	extension removeProperty: aSymbol
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>removedMorph: aMorph [
+{ #category : #submorphs-add/remove }
+Morph >> removedMorph: aMorph [
 	"Notify the receiver that aMorph was just removed from its children"
 
 ]
 
-{
-	#category : #naming,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>renameTo: aName  [
+{ #category : #naming }
+Morph >> renameTo: aName [ 
 	"Set The morph name."
 
 	self topRendererOrSelf setNameTo: aName.
 	^aName
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>renderedMorph [
+{ #category : #structure }
+Morph >> renderedMorph [
 	"This now  gets overridden by rendering morphs."
 
 	^self
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>repelsMorph: aMorph event: ev [
+{ #category : #dropping/grabbing }
+Morph >> repelsMorph: aMorph event: ev [
 	^ false
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>replaceSubmorph: oldMorph by: newMorph [
+{ #category : #submorphs-add/remove }
+Morph >> replaceSubmorph: oldMorph by: newMorph [
 	| index itsPosition w |
 	oldMorph stopStepping.
 	itsPosition := oldMorph referencePositionInWorld.
@@ -7012,38 +5289,26 @@ Morph>>replaceSubmorph: oldMorph by: newMorph [
 		[w startSteppingSubmorphsOf: newMorph]
 ]
 
-{
-	#category : #'accessing - extension',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>resetExtension [
+{ #category : #'accessing - extension' }
+Morph >> resetExtension [
 	"reset the extension slot if it is not needed"
 	(extension notNil and: [extension isDefault]) ifTrue: [extension := nil] 
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>resetHighlightForDrop [
+{ #category : #dropping/grabbing }
+Morph >> resetHighlightForDrop [
 	self highlightForDrop: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>resistsRemoval [
+{ #category : #accessing }
+Morph >> resistsRemoval [
 	"Answer whether the receiver is marked as resisting removal"
 
 	^ self hasProperty: #resistsRemoval
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>resistsRemoval: aBoolean [
+{ #category : #accessing }
+Morph >> resistsRemoval: aBoolean [
 	"Set the receiver's resistsRemoval property as indicated"
 
 	aBoolean
@@ -7051,31 +5316,22 @@ Morph>>resistsRemoval: aBoolean [
 		ifFalse: [ self removeProperty: #resistsRemoval ]
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>resistsRemovalString [
+{ #category : #menus }
+Morph >> resistsRemovalString [
 	"Answer the string to be shown in a menu to represent the 
 	'resistsRemoval' status"
 	^ (self resistsRemoval) -> 'resist being deleted' translated
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>resizeFromMenu [
+{ #category : #meta-actions }
+Morph >> resizeFromMenu [
 	"Commence an interaction that will resize the receiver"
 
 	self resizeMorph: ActiveEvent
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>restoreSuspendedEventHandler [
+{ #category : #'event handling' }
+Morph >> restoreSuspendedEventHandler [
 	| savedHandler |
 	(savedHandler := self valueOfProperty: #suspendedEventHandler) ifNotNil:
 		[self eventHandler: savedHandler].
@@ -7083,11 +5339,8 @@ Morph>>restoreSuspendedEventHandler [
 
 ]
 
-{
-	#category : #'debug and other',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>resumeAfterDrawError [
+{ #category : #'debug and other' }
+Morph >> resumeAfterDrawError [
 
 	self changed.
 	self removeProperty:#errorOnDraw.
@@ -7095,11 +5348,8 @@ Morph>>resumeAfterDrawError [
 	self changed.
 ]
 
-{
-	#category : #'debug and other',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>resumeAfterStepError [
+{ #category : #'debug and other' }
+Morph >> resumeAfterStepError [
 	"Resume stepping after an error has occured."
 
 	self startStepping. "Will #step"
@@ -7107,71 +5357,50 @@ Morph>>resumeAfterStepError [
 
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>reverseTableCells [
+{ #category : #layout-properties }
+Morph >> reverseTableCells [
 	"Layout specific. This property describes if the cells should be treated in reverse order of submorphs."
 	| props |
 	props := self layoutProperties.
 	^props ifNil:[false] ifNotNil:[props reverseTableCells].
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>reverseTableCells: aBool [
+{ #category : #layout-properties }
+Morph >> reverseTableCells: aBool [
 	"Layout specific. This property describes if the cells should be treated in reverse order of submorphs."
 	self assureTableProperties reverseTableCells: aBool.
 	self layoutChanged.
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>right [
+{ #category : #geometry }
+Morph >> right [
 	" Return the x-coordinate of my right side "
 	^ bounds right
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>right: aNumber [
+{ #category : #geometry }
+Morph >> right: aNumber [
 	" Move me so that my right side is at the x-coordinate aNumber. My extent (width & height) are unchanged "
 
 	self position: ((aNumber - bounds width) @ bounds top)
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>rightCenter [
+{ #category : #geometry }
+Morph >> rightCenter [
 
 	^ bounds rightCenter
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>root [
+{ #category : #structure }
+Morph >> root [
 	"Return the root of the composite morph containing the receiver. The owner of the root is either nil, a WorldMorph, or a HandMorph. If the receiver's owner is nil, the root is the receiver itself. This method always returns a morph."
 
 	(owner isNil or: [owner isWorldOrHandMorph]) ifTrue: [^self].
 	^owner root
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>rootMorphsAt: aPoint [
+{ #category : #submorphs-accessing }
+Morph >> rootMorphsAt: aPoint [
 	"Return the list of root morphs containing the given point, excluding the receiver.
 	ar 11/8/1999: Moved into morph for an incredibly ugly hack in 3D worlds"
 self flag: #arNote. "check this at some point"
@@ -7179,21 +5408,15 @@ self flag: #arNote. "check this at some point"
 		[:m | (m fullContainsPoint: aPoint) and: [m isLocked not]]
 ]
 
-{
-	#category : #'rotate scale and flex',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>rotationCenter [
+{ #category : #'rotate scale and flex' }
+Morph >> rotationCenter [
 	"Return the rotation center of the receiver. The rotation center defines the relative offset inside the receiver's bounds for locating the reference position."
 	^self valueOfProperty: #rotationCenter ifAbsent: [0.5@0.5]
 
 ]
 
-{
-	#category : #'rotate scale and flex',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>rotationCenter: aPointOrNil [
+{ #category : #'rotate scale and flex' }
+Morph >> rotationCenter: aPointOrNil [
 	"Set the new rotation center of the receiver. The rotation center defines the relative offset inside the receiver's bounds for locating the reference position."
 	aPointOrNil 
 		ifNil: [self removeProperty: #rotationCenter]
@@ -7201,11 +5424,8 @@ Morph>>rotationCenter: aPointOrNil [
 
 ]
 
-{
-	#category : #rounding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>roundedCornersString [
+{ #category : #rounding }
+Morph >> roundedCornersString [
 	"Answer the string to put in a menu that will invite the user to 
 	switch to the opposite corner-rounding mode"
 	^ (self wantsRoundedCorners
@@ -7214,79 +5434,55 @@ Morph>>roundedCornersString [
 		, ('round corners' translated)
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>rubberBandCells [
+{ #category : #layout-properties }
+Morph >> rubberBandCells [
 	"Layout specific. This property describes if a parent that is #shrinkWrapped around its children should ignore any #spaceFill children. E.g., when #rubberBandCells is true, the compound layout will always stay at the smallest available size, even though some child may be able to grow."
 	| props |
 	props := self layoutProperties.
 	^props ifNil:[false] ifNotNil:[props rubberBandCells].
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>rubberBandCells: aBool [
+{ #category : #layout-properties }
+Morph >> rubberBandCells: aBool [
 	"Layout specific. This property describes if a parent that is #shrinkWrapped around its children should ignore any #spaceFill children. E.g., when #rubberBandCells is true, the compound layout will always stay at the smallest available size, even though some child may be able to grow."
 	self assureTableProperties rubberBandCells: aBool.
 	self layoutChanged.
 ]
 
-{
-	#category : #'rotate scale and flex',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>scale: newScale [
+{ #category : #'rotate scale and flex' }
+Morph >> scale: newScale [
 	"Backstop for morphs that don't have to do something special to set their scale"
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>scaleFactor [
+{ #category : #accessing }
+Morph >> scaleFactor [
 	^self valueOfProperty: #scaleFactor ifAbsent: [ 1.0 ]
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>screenLocation [
+{ #category : #geometry }
+Morph >> screenLocation [
 	"For compatibility only"
 
 	^ self fullBounds origin
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>screenRectangle [
+{ #category : #geometry }
+Morph >> screenRectangle [
 	"For compatibility only"
 
 	^ self fullBounds
 ]
 
-{
-	#category : #'selected object',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>selectedObject [
+{ #category : #'selected object' }
+Morph >> selectedObject [
 	"answer the selected object for the hand or nil is none"
 	^ self primaryHand selectedObject
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>separateDragAndDrop [
+{ #category : #dropping/grabbing }
+Morph >> separateDragAndDrop [
 	"Conversion only. Separate the old #dragNDropEnabled into #dragEnabled and #dropEnabled and remove the old property."
 	| dnd |
 	(self hasProperty: #dragNDropEnabled) ifFalse:[^self].
@@ -7297,32 +5493,23 @@ Morph>>separateDragAndDrop [
 
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>setBalloonText: stringOrText [
+{ #category : #'halos and balloon help' }
+Morph >> setBalloonText: stringOrText [
 	"Set receiver's balloon help text. Pass nil to remove the help."
 
 	self setBalloonText: stringOrText maxLineLength: self theme settings maxBalloonHelpLineLength
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>setBalloonText: stringOrText maxLineLength: aLength  [
+{ #category : #'halos and balloon help' }
+Morph >> setBalloonText: stringOrText maxLineLength: aLength [ 
 	"Set receiver's balloon help text. Pass nil to remove the help."
 	(extension isNil and: [stringOrText isNil]) ifTrue: [^ self].
 	self assureExtension balloonText: 
 		(stringOrText ifNotNil: [stringOrText asString withNoLineLongerThan: aLength])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>setBorderStyle: aSymbol [
+{ #category : #accessing }
+Morph >> setBorderStyle: aSymbol [
 	"Set the border style of my costume"
 
 	| aStyle |
@@ -7333,19 +5520,13 @@ Morph>>setBorderStyle: aSymbol [
 			[self borderStyle: aStyle]
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>setCenteredBalloonText: aString [
+{ #category : #'halos and balloon help' }
+Morph >> setCenteredBalloonText: aString [
 	self setBalloonText: aString.
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>setConstrainedPosition: aPoint hangOut: partiallyOutside [
+{ #category : #geometry }
+Morph >> setConstrainedPosition: aPoint hangOut: partiallyOutside [
 	"Change the position of this morph and and all of its submorphs to aPoint, but don't let me go outside my owner's bounds.  Let me go within two pixels of completely outside if partiallyOutside is true."
 
 	| trialRect delta boundingMorph bRect |
@@ -7365,88 +5546,61 @@ Morph>>setConstrainedPosition: aPoint hangOut: partiallyOutside [
 
 ]
 
-{
-	#category : #naming,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>setNamePropertyTo: aName  [
+{ #category : #naming }
+Morph >> setNamePropertyTo: aName [ 
 	"change the receiver's externalName"
 	self assureExtension externalName: aName
 ]
 
-{
-	#category : #naming,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>setNameTo: aName  [
+{ #category : #naming }
+Morph >> setNameTo: aName [ 
 	| nameToUse nameString |
 	nameToUse := aName ifNotNil: 
 					[(nameString := aName asString) notEmpty ifTrue: [nameString] ifFalse: ['*']].
 	self setNamePropertyTo: nameToUse	"no Texts here!"
 ]
 
-{
-	#category : #'accessing - properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>setProperties: aList [
+{ #category : #'accessing - properties' }
+Morph >> setProperties: aList [
 	"Set many properties at once from a list of prop, value, prop, value"
 
 	1 to: aList size by: 2 do: [:ii |
 		self setProperty: (aList at: ii) toValue: (aList at: ii+1)].
 ]
 
-{
-	#category : #'accessing - properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>setProperty: aSymbol toValue: anObject  [
+{ #category : #'accessing - properties' }
+Morph >> setProperty: aSymbol toValue: anObject [ 
 	"change the receiver's property named aSymbol to anObject"
 	anObject ifNil: [^ self removeProperty: aSymbol].
 	self assureExtension setProperty: aSymbol toValue: anObject
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>setRotationCenterFrom: aPoint [
+{ #category : #menus }
+Morph >> setRotationCenterFrom: aPoint [
 	self rotationCenter: (aPoint - self bounds origin) / self bounds extent asFloatPoint.
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>setToAdhereToEdge: anEdge [
+{ #category : #menus }
+Morph >> setToAdhereToEdge: anEdge [
 	anEdge ifNil: [^ self].
 	anEdge == #none ifTrue: [^ self removeProperty: #edgeToAdhereTo].
 	self setProperty: #edgeToAdhereTo toValue: anEdge.
 
 ]
 
-{
-	#category : #'drop shadows',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>shadowColor [
+{ #category : #'drop shadows' }
+Morph >> shadowColor [
 	^self valueOfProperty: #shadowColor ifAbsent:[Color black]
 ]
 
-{
-	#category : #'drop shadows',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>shadowColor: aColor [
+{ #category : #'drop shadows' }
+Morph >> shadowColor: aColor [
 	self shadowColor = aColor ifFalse: [self changed].
 	self setProperty: #shadowColor toValue: aColor.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>shadowForm [
+{ #category : #drawing }
+Morph >> shadowForm [
 	"Return a form representing the 'shadow' of the receiver - e.g., all pixels that are occupied by the receiver are one, all others are zero."
 	| canvas |
 	canvas := (Display defaultCanvasClass extent: self fullBounds extent depth: 1)
@@ -7457,90 +5611,63 @@ Morph>>shadowForm [
 
 ]
 
-{
-	#category : #'drop shadows',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>shadowOffset [
+{ #category : #'drop shadows' }
+Morph >> shadowOffset [
 	"Return the current shadow offset"
 	
 	extension ifNil: [^0@0].
 	^self valueOfProperty: #shadowOffset ifAbsent:[0@0]
 ]
 
-{
-	#category : #'drop shadows',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>shadowOffset: aPoint [
+{ #category : #'drop shadows' }
+Morph >> shadowOffset: aPoint [
 	"Set the current shadow offset"
 	(aPoint isNil or:[ aPoint isZero ])
 		ifTrue:[ self removeProperty: #shadowOffset ]
 		ifFalse:[ self setProperty: #shadowOffset toValue: aPoint ].
 ]
 
-{
-	#category : #'drop shadows',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>shadowPoint: newPoint [
+{ #category : #'drop shadows' }
+Morph >> shadowPoint: newPoint [
 	self changed.
 	self shadowOffset: newPoint - self center // 5.
 	fullBounds ifNotNil:[fullBounds := self privateFullBounds].
 	self changed.
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>shiftSubmorphsOtherThan: listNotToShift by: delta [
+{ #category : #geometry }
+Morph >> shiftSubmorphsOtherThan: listNotToShift by: delta [
 	| rejectList |
 	rejectList := listNotToShift ifNil: [OrderedCollection new].
 	(submorphs copyWithoutAll: rejectList) do:
 		[:m | m position: (m position + delta)]
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>shortcutsHandler [
+{ #category : #shortcuts }
+Morph >> shortcutsHandler [
 
 	^ ShortcutsHandler 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>shouldDropOnMouseUp [
+{ #category : #testing }
+Morph >> shouldDropOnMouseUp [
 	| former |
 	former := self formerPosition ifNil:[^false].
 	^(former distanceTo: self position) > 10
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>shouldFlex [
+{ #category : #testing }
+Morph >> shouldFlex [
 	^ self isFlexMorph.
 ]
 
-{
-	#category : #'wiw support',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>shouldGetStepsFrom: aWorld [
+{ #category : #'wiw support' }
+Morph >> shouldGetStepsFrom: aWorld [
 	^self world == aWorld
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>show [
+{ #category : #drawing }
+Morph >> show [
 	"Make sure this morph is on-stage."
 
 	self visible
@@ -7549,11 +5676,8 @@ Morph>>show [
 	self changed
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>showActions [
+{ #category : #meta-actions }
+Morph >> showActions [
 	"Put up a message list browser of all the code that this morph  
 	would run for mouseUp, mouseDown, mouseMove, mouseEnter,  
 	mouseLeave, and mouseLinger."
@@ -7587,33 +5711,24 @@ Morph>>showActions [
 	Smalltalk tools messageList browse: list title:  'Actions of ' , self printString.
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>showBalloon: msgString [
+{ #category : #'halos and balloon help' }
+Morph >> showBalloon: msgString [
 	"Pop up a balloon containing the given string,
 	first removing any existing BalloonMorphs in the world."
 	| w |
 	self showBalloon: msgString hand: ((w := self world) ifNotNil:[w activeHand]).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>simplySetVisible: aBoolean [
+{ #category : #accessing }
+Morph >> simplySetVisible: aBoolean [
 	"Set the receiver's visibility property.  This mild circumlocution is because my TransfomationMorph #visible: method would also set the visibility flag of my flexee, which in this case is pointless because it's the flexee that calls this.
 	This appears in morph as a backstop for morphs that don't inherit from TFMorph"
 
 	self visible: aBoolean
 ]
 
-{
-	#category : #'event testing',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>simulateKeyStroke: aCharacter [
+{ #category : #'event testing' }
+Morph >> simulateKeyStroke: aCharacter [
 	| event |
 
 	event := KeyboardEvent new 
@@ -7627,20 +5742,14 @@ Morph>>simulateKeyStroke: aCharacter [
 	self keyStroke: event
 ]
 
-{
-	#category : #'event testing',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>simulateKeyStrokes: aString [
+{ #category : #'event testing' }
+Morph >> simulateKeyStrokes: aString [
 
 	aString do: [:c | self simulateKeyStroke: c ].
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>slideBackToFormerSituation: evt  [
+{ #category : #dropping/grabbing }
+Morph >> slideBackToFormerSituation: evt [ 
 	| slideForm formerOwner formerPosition aWorld startPoint endPoint trans |
 	formerOwner := self formerOwner.
 	formerPosition := self formerPosition.
@@ -7665,11 +5774,8 @@ Morph>>slideBackToFormerSituation: evt  [
 	self justDroppedInto: formerOwner event: evt
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>snapToEdgeIfAppropriate [
+{ #category : #menus }
+Morph >> snapToEdgeIfAppropriate [
 	| edgeSymbol oldBounds aWorld |
 	(edgeSymbol := self valueOfProperty: #edgeToAdhereTo) ifNotNil:
 		[oldBounds := bounds.
@@ -7678,11 +5784,8 @@ Morph>>snapToEdgeIfAppropriate [
 			[aWorld displayWorld]]]]
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>spaceFillWeight [
+{ #category : #layout-properties }
+Morph >> spaceFillWeight [
 	"Layout specific. This property describes the relative weight that 
 	should be given to the receiver when extra space is distributed 
 	between different #spaceFill cells."
@@ -7692,11 +5795,8 @@ Morph>>spaceFillWeight [
 		ifAbsent: [1]
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>spaceFillWeight: aNumber [
+{ #category : #layout-properties }
+Morph >> spaceFillWeight: aNumber [
 	"Layout specific. This property describes the relative weight that should be given to the receiver when extra space is distributed between different #spaceFill cells."
 	aNumber = 1
 		ifTrue:[self removeProperty: #spaceFillWeight]
@@ -7704,50 +5804,35 @@ Morph>>spaceFillWeight: aNumber [
 	self layoutChanged.
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>start [
+{ #category : #'stepping and presenter' }
+Morph >> start [
 	"Start running my script. For ordinary morphs, this means start stepping."
 
 	self startStepping.
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>startDrag: evt [
+{ #category : #'event handling' }
+Morph >> startDrag: evt [
 	"Handle a double-click event. This message is only sent to clients that request it by sending #waitForClicksOrDrag:event: to the initiating hand in their mouseDown: method. This default implementation does nothing."
 
 	self eventHandler ifNotNil:
 		[self eventHandler startDrag: evt fromMorph: self].
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>startDrag: anItem with: anObject [
+{ #category : #dropping/grabbing }
+Morph >> startDrag: anItem with: anObject [
 	self currentHand attachMorph: anObject
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>startStepping [
+{ #category : #'stepping and presenter' }
+Morph >> startStepping [
 	"Start getting sent the 'step' message."
 	self startStepping: #stepAt: at: Time millisecondClockValue arguments: nil stepTime: nil.
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>startStepping: aSelector at: scheduledTime arguments: args stepTime: stepTime [
+{ #category : #'stepping and presenter' }
+Morph >> startStepping: aSelector at: scheduledTime arguments: args stepTime: stepTime [
 	"Start stepping the receiver"
 	| w |
 	w := self world.
@@ -7756,29 +5841,20 @@ Morph>>startStepping: aSelector at: scheduledTime arguments: args stepTime: step
 		self changed].
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>startSteppingSelector: aSelector [
+{ #category : #'stepping and presenter' }
+Morph >> startSteppingSelector: aSelector [
 	"Start getting sent the 'step' message."
 	self startStepping: aSelector at: Time millisecondClockValue arguments: nil stepTime: nil.
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>step [
+{ #category : #'stepping and presenter' }
+Morph >> step [
 	"Do some periodic activity. Use startStepping/stopStepping to start and stop getting sent this message. The time between steps is specified by this morph's answer to the stepTime message.  The generic version dispatches control to the player, if any.  The nasty circumlocation about owner's transformation is necessitated by the flexing problem that the player remains in the properties dictionary both of the flex and the real morph.  In the current architecture, only the top renderer's pointer to the player should actually be honored for the purpose of firing."
 
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>stepAt: millisecondClockValue [
+{ #category : #'stepping and presenter' }
+Morph >> stepAt: millisecondClockValue [
 	"Do some periodic activity. Use startStepping/stopStepping to start and stop getting sent this message. The time between steps is specified by this morph's answer to the stepTime message.
 	The millisecondClockValue parameter gives the value of the millisecond clock at the moment of dispatch.
 	Default is to dispatch to the parameterless step method for the morph, but this protocol makes it possible for some morphs to do differing things depending on the clock value"
@@ -7787,41 +5863,29 @@ Morph>>stepAt: millisecondClockValue [
 
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>stickinessString [
+{ #category : #menus }
+Morph >> stickinessString [
 	"Answer the string to be shown in a menu to represent the stickiness status"
 	
 	^ (self isSticky) ->  'resist being picked up' translated
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>sticky: aBoolean  [
+{ #category : #accessing }
+Morph >> sticky: aBoolean [ 
 	"change the receiver's sticky property"
 	extension sticky: aBoolean
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>stop [
+{ #category : #'stepping and presenter' }
+Morph >> stop [
 	"Stop running my script. For ordinary morphs, this means stop stepping."
 
 	self stopStepping.
 
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>stopStepping [
+{ #category : #'stepping and presenter' }
+Morph >> stopStepping [
 	"Stop getting sent the 'step' message."
 
 	| w |
@@ -7830,11 +5894,8 @@ Morph>>stopStepping [
 
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>stopSteppingSelector: aSelector [
+{ #category : #'stepping and presenter' }
+Morph >> stopSteppingSelector: aSelector [
 	"Stop getting sent the given message."
 	| w |
 	w := self world.
@@ -7842,20 +5903,14 @@ Morph>>stopSteppingSelector: aSelector [
 
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>stopSteppingSelfAndSubmorphs [
+{ #category : #'stepping and presenter' }
+Morph >> stopSteppingSelfAndSubmorphs [
 	self allMorphsDo: [:m | m stopStepping]
 
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>submorphAfter [
+{ #category : #submorphs-accessing }
+Morph >> submorphAfter [
 	"Return the submorph after (behind) me, or nil"
 	| ii |
 	owner ifNil: [^ nil].
@@ -7866,11 +5921,8 @@ Morph>>submorphAfter [
 
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>submorphBefore [
+{ #category : #submorphs-accessing }
+Morph >> submorphBefore [
 	"Return the submorph after (behind) me, or nil"
 	| ii |
 	owner ifNil: [^ nil].
@@ -7881,11 +5933,8 @@ Morph>>submorphBefore [
 
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>submorphBounds [
+{ #category : #layout }
+Morph >> submorphBounds [
 	"Private. Compute the actual full bounds of the receiver"
 	| box |
 	submorphs do: [:m | | subBox | 
@@ -7899,56 +5948,38 @@ Morph>>submorphBounds [
 
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>submorphCount [
+{ #category : #submorphs-accessing }
+Morph >> submorphCount [
 
 	^ submorphs size
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>submorphIndexOf: aMorph [
+{ #category : #submorphs-add/remove }
+Morph >> submorphIndexOf: aMorph [
 	"Assuming aMorph to be one of my submorphs, answer where it occurs in my submorph list"
 
 	^ submorphs indexOf: aMorph ifAbsent: [nil]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>submorphThat: block1 ifNone: block2 [
+{ #category : #submorphs-accessing }
+Morph >> submorphThat: block1 ifNone: block2 [
 	^ submorphs detect: [:m | (block1 value: m) == true] ifNone: block2
 	
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>submorphWithProperty: aSymbol [
+{ #category : #submorphs-accessing }
+Morph >> submorphWithProperty: aSymbol [
 	^ submorphs detect: [:aMorph | aMorph hasProperty: aSymbol] ifNone: [nil]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>submorphs [
+{ #category : #submorphs-accessing }
+Morph >> submorphs [
 	"This method returns my actual submorphs collection. Modifying the collection directly could be dangerous; make a copy if you need to alter it."
 	^ submorphs 
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>submorphsBehind: aMorph do: aBlock [
+{ #category : #submorphs-accessing }
+Morph >> submorphsBehind: aMorph do: aBlock [
 	| behind |
 	behind := false.
 	submorphs do:
@@ -7957,19 +5988,13 @@ Morph>>submorphsBehind: aMorph do: aBlock [
 
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>submorphsDo: aBlock  [
+{ #category : #submorphs-accessing }
+Morph >> submorphsDo: aBlock [ 
 	submorphs do: aBlock
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>submorphsInFrontOf: aMorph do: aBlock [
+{ #category : #submorphs-accessing }
+Morph >> submorphsInFrontOf: aMorph do: aBlock [
 	| behind |
 	behind := false.
 	submorphs do:
@@ -7978,48 +6003,33 @@ Morph>>submorphsInFrontOf: aMorph do: aBlock [
 
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>submorphsReverseDo: aBlock [
+{ #category : #submorphs-accessing }
+Morph >> submorphsReverseDo: aBlock [
 
 	submorphs reverseDo: aBlock.
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>submorphsSatisfying: aBlock [
+{ #category : #submorphs-accessing }
+Morph >> submorphsSatisfying: aBlock [
 	^ submorphs select: [:m | (aBlock value: m) == true]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>suspendEventHandler [
+{ #category : #'event handling' }
+Morph >> suspendEventHandler [
 	self eventHandler ifNotNil:
 		[self setProperty: #suspendedEventHandler toValue: self eventHandler.
 		self eventHandler: nil].
 	submorphs do: [:m | m suspendEventHandler].  "All those rectangles"
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>tabAmongFields [
+{ #category : #'event handling' }
+Morph >> tabAmongFields [
 	^ self theme settings tabAmongFields
 		or: [self hasProperty: #tabAmongFields] 
 ]
 
-{
-	#category : #'card in a stack',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>tabHitWithEvent: anEvent [
+{ #category : #'card in a stack' }
+Morph >> tabHitWithEvent: anEvent [
 	"The tab key was hit.  The keyboard focus has referred this event to me, though this perhaps seems rather backwards.  Anyway, the assumption is that I have the property #tabAmongFields, so now the task is to tab to the next field."
 
 	| currentFocus fieldList anIndex itemToHighlight |
@@ -8038,21 +6048,15 @@ Morph>>tabHitWithEvent: anEvent [
 	itemToHighlight invalidRect: itemToHighlight bounds 
 ]
 
-{
-	#category : #accessing-backstop,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>target: aMorph [
+{ #category : #accessing-backstop }
+Morph >> target: aMorph [
 "Morphs with targets will override. This backstop does nothing."
 "This is here because targeting meta-actions are taken at morph level. 
 Do not remove."
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>targetWith: evt [
+{ #category : #meta-actions }
+Morph >> targetWith: evt [
 	"Some other morph become target of the receiver"
 	|  newTarget |
 	newTarget := UIManager default
@@ -8064,70 +6068,49 @@ Morph>>targetWith: evt [
 	self target: newTarget.
 ]
 
-{
-	#category : #text-anchor,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>textAnchorType [
+{ #category : #text-anchor }
+Morph >> textAnchorType [
 	^self valueOfProperty: #textAnchorType ifAbsent:[#document]
 ]
 
-{
-	#category : #text-anchor,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>textAnchorType: aSymbol [
+{ #category : #text-anchor }
+Morph >> textAnchorType: aSymbol [
 	aSymbol == #document
 		ifTrue:[^self removeProperty: #textAnchorType]
 		ifFalse:[^self setProperty: #textAnchorType toValue: aSymbol].
 ]
 
-{
-	#category : #rounding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>toggleCornerRounding [
+{ #category : #rounding }
+Morph >> toggleCornerRounding [
 	self cornerStyle == #rounded
 		ifTrue: [self cornerStyle: #square]
 		ifFalse: [self cornerStyle: #rounded].
 	self changed
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>toggleDragNDrop [
+{ #category : #dropping/grabbing }
+Morph >> toggleDragNDrop [
 	"Toggle this morph's ability to add and remove morphs via drag-n-drop."
 
 		self enableDragNDrop: self dragNDropEnabled not.
 
 ]
 
-{
-	#category : #'drop shadows',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>toggleDropShadow [
+{ #category : #'drop shadows' }
+Morph >> toggleDropShadow [
 	self hasDropShadow
 		ifTrue:[self removeDropShadow]
 		ifFalse:[self addDropShadow].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>toggleLocked [
+{ #category : #accessing }
+Morph >> toggleLocked [
 	
 	self lock: self isLocked not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>toggleResistsRemoval [
+{ #category : #accessing }
+Morph >> toggleResistsRemoval [
 	"Toggle the resistsRemoval property"
 
 	self resistsRemoval
@@ -8137,79 +6120,55 @@ Morph>>toggleResistsRemoval [
 			[self setProperty: #resistsRemoval toValue: true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>toggleStickiness [
+{ #category : #accessing }
+Morph >> toggleStickiness [
 	"togle the receiver's Stickiness"
 	extension ifNil: [^ self beSticky].
 	extension sticky: extension sticky not
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>top [
+{ #category : #geometry }
+Morph >> top [
 	" Return the y-coordinate of my top side "
 
 	^ bounds top
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>top: aNumber [
+{ #category : #geometry }
+Morph >> top: aNumber [
 	" Move me so that my top is at the y-coordinate aNumber. My extent (width & height) are unchanged "
 
 	self position: (bounds left @ aNumber)
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>topCenter [
+{ #category : #geometry }
+Morph >> topCenter [
 
 	^ bounds topCenter
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>topLeft [
+{ #category : #geometry }
+Morph >> topLeft [
 
 	^ bounds topLeft
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>topLeft: aPoint [
+{ #category : #geometry }
+Morph >> topLeft: aPoint [
 	" Move me so that my top left corner is at aPoint. My extent (width & height) are unchanged "
 
 	self position: aPoint
 
 ]
 
-{
-	#category : #Morphic-Base-Worlds,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>topPasteUp [
+{ #category : #Morphic-Base-Worlds }
+Morph >> topPasteUp [
 	"If the receiver is in a world, return that; otherwise return the outermost pasteup morph"
 	^ self outermostMorphThat: [:m | m isKindOf: PasteUpMorph]
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>topRendererOrSelf [
+{ #category : #structure }
+Morph >> topRendererOrSelf [
 	"Answer the topmost renderer for this morph, or this morph itself if it has no renderer. See the comment in Morph>isRenderer."
 
 	| top topsOwner |
@@ -8223,31 +6182,22 @@ Morph>>topRendererOrSelf [
 	^top
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>topRight [
+{ #category : #geometry }
+Morph >> topRight [
 
 	^ bounds topRight
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>topRight: aPoint [
+{ #category : #geometry }
+Morph >> topRight: aPoint [
 	" Move me so that my top right corner is at aPoint. My extent (width & height) are unchanged "
 
 	self position: ((aPoint x - bounds width) @ (aPoint y))
 
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>transferHalo: event from: formerHaloOwner [
+{ #category : #'halos and balloon help' }
+Morph >> transferHalo: event from: formerHaloOwner [
 	"Progressively transfer the halo to the next likely recipient"
 	| localEvt w target |
 
@@ -8291,11 +6241,8 @@ Morph>>transferHalo: event from: formerHaloOwner [
 
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>transferStateToRenderer: aRenderer [
+{ #category : #menus }
+Morph >> transferStateToRenderer: aRenderer [
 	"Transfer knownName, and visible over to aRenderer, which is being imposed above me as a transformation shell"
 
 	aRenderer simplySetVisible: self visible
@@ -8307,11 +6254,8 @@ Morph>>transferStateToRenderer: aRenderer [
 		
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>transformFrom: uberMorph  [
+{ #category : #'event handling' }
+Morph >> transformFrom: uberMorph [ 
 	"Return a transform to be used to map coordinates in a morph above me into my childrens coordinates, or vice-versa. This is used to support scrolling, scaling, and/or rotation. This default implementation just returns my owner's transform or the identity transform if my owner is nil. 
 	Note:  This method cannot be used to map into the receiver's coordinate system!"
 
@@ -8319,32 +6263,23 @@ Morph>>transformFrom: uberMorph  [
 	^owner transformFrom: uberMorph
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>transformFromOutermostWorld [
+{ #category : #'event handling' }
+Morph >> transformFromOutermostWorld [
 	"Return a transform to map world coordinates into my local coordinates"
 
 	"self isWorldMorph ifTrue: [^ MorphicTransform identity]."
 	^ self transformFrom: self outermostWorldMorph
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>transformFromWorld [
+{ #category : #'event handling' }
+Morph >> transformFromWorld [
 	"Return a transform to map world coordinates into my local coordinates"
 
 	^ self transformFrom: nil
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>transformedBy: aTransform [
+{ #category : #geometry }
+Morph >> transformedBy: aTransform [
 	aTransform isIdentity ifTrue:[^self].
 	aTransform isPureTranslation ifTrue:[
 		^self position: (aTransform localPointToGlobal: self position).
@@ -8352,56 +6287,38 @@ Morph>>transformedBy: aTransform [
 	^self addFlexShell transformedBy: aTransform
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>transformedFrom: uberMorph [
+{ #category : #events-processing }
+Morph >> transformedFrom: uberMorph [
 	"Return a transform to map coordinates of uberMorph, a morph above me in my owner chain, into the coordinates of MYSELF not any of my children."
 	"self flag: #arNote." "rename this method"
 	owner ifNil:[^IdentityTransform basicNew].
 	^ (owner transformFrom: uberMorph)
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>transparentSpacerOfSize: aPoint [
+{ #category : #utilities }
+Morph >> transparentSpacerOfSize: aPoint [
 	^ (Morph new extent: aPoint) color: Color transparent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>unlock [
+{ #category : #accessing }
+Morph >> unlock [
 	self lock: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>unlockContents [
+{ #category : #accessing }
+Morph >> unlockContents [
 	self submorphsDo:
 		[:m | m unlock]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>update: anAspect [
+{ #category : #updating }
+Morph >> update: anAspect [
 
 	^ self
 ]
 
-{
-	#category : #events-accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>updateableActionMap [
+{ #category : #events-accessing }
+Morph >> updateableActionMap [
 	"Answer an updateable action map, saving it in my #actionMap property"
 	
 	| actionMap |
@@ -8413,48 +6330,33 @@ Morph>>updateableActionMap [
 	^actionMap
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>useDefaultFill [
+{ #category : #'visual properties' }
+Morph >> useDefaultFill [
 	"Make receiver use a solid fill style (e.g., a simple color)"
 	self fillStyle: self defaultColor.
 ]
 
-{
-	#category : #rounding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>useRoundedCorners [
+{ #category : #rounding }
+Morph >> useRoundedCorners [
 	self cornerStyle: #rounded
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>useSolidFill [
+{ #category : #'visual properties' }
+Morph >> useSolidFill [
 	"Make receiver use a solid fill style (e.g., a simple color)"
 	self fillStyle isSolidFill ifTrue:[^self]. "Already done"
 	self fillStyle: self fillStyle asColor. "Try minimizing changes"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>userString [
+{ #category : #accessing }
+Morph >> userString [
 	"Do I have a text string to be searched on?"
 
 	^ nil
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>vResizeToFit: aBoolean [
+{ #category : #layout-properties }
+Morph >> vResizeToFit: aBoolean [
 	aBoolean ifTrue:[
 		self vResizing: #shrinkWrap.
 	] ifFalse:[
@@ -8462,11 +6364,8 @@ Morph>>vResizeToFit: aBoolean [
 	].
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>vResizing [
+{ #category : #layout-properties }
+Morph >> vResizing [
 	"Layout specific. This property describes how the receiver should be resized with respect to its owner and its children. Possible values are:
 		#rigid			-	do not resize the receiver
 		#spaceFill		-	resize to fill owner's available space
@@ -8477,11 +6376,8 @@ Morph>>vResizing [
 	^props ifNil:[#rigid] ifNotNil:[props vResizing].
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>vResizing: aSymbol [
+{ #category : #layout-properties }
+Morph >> vResizing: aSymbol [
 	"Layout specific. This property describes how the receiver should be resized with respect to its owner and its children. Possible values are:
 		#rigid			-	do not resize the receiver
 		#spaceFill		-	resize to fill owner's available space
@@ -8492,28 +6388,19 @@ Morph>>vResizing: aSymbol [
 
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>vResizingString: aSymbol [
+{ #category : #layout-properties }
+Morph >> vResizingString: aSymbol [
 	^self layoutMenuPropertyString: aSymbol from: self vResizing
 ]
 
-{
-	#category : #'accessing - properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>valueOfProperty: aSymbol  [
+{ #category : #'accessing - properties' }
+Morph >> valueOfProperty: aSymbol [ 
 	"answer the value of the receiver's property named aSymbol"
 	^ extension ifNotNil: [extension valueOfProperty: aSymbol]
 ]
 
-{
-	#category : #'accessing - properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>valueOfProperty: aSymbol ifAbsent: aBlock  [
+{ #category : #'accessing - properties' }
+Morph >> valueOfProperty: aSymbol ifAbsent: aBlock [ 
 	"if the receiver possesses a property of the given name, answer  
 	its value. If not then evaluate aBlock and answer the result of  
 	this block evaluation"
@@ -8522,11 +6409,8 @@ Morph>>valueOfProperty: aSymbol ifAbsent: aBlock  [
 		ifNil: [aBlock value]
 ]
 
-{
-	#category : #'accessing - properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>valueOfProperty: aSymbol ifAbsentPut: aBlock  [
+{ #category : #'accessing - properties' }
+Morph >> valueOfProperty: aSymbol ifAbsentPut: aBlock [ 
 	"If the receiver possesses a property of the given name, answer  
 	its value. If not, then create a property of the given name, give 
 	it the value obtained by evaluating aBlock, then answer that  
@@ -8534,22 +6418,16 @@ Morph>>valueOfProperty: aSymbol ifAbsentPut: aBlock  [
 	^ self assureExtension valueOfProperty: aSymbol ifAbsentPut: aBlock
 ]
 
-{
-	#category : #'accessing - properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>valueOfProperty: aSymbol ifPresentDo: aBlock  [
+{ #category : #'accessing - properties' }
+Morph >> valueOfProperty: aSymbol ifPresentDo: aBlock [ 
 	"If the receiver has a property of the given name, evaluate  
 	aBlock on behalf of the value of that property"
 	extension ifNil:  [^ self].
 	^ aBlock value: (extension valueOfProperty: aSymbol ifAbsent: [^ self])
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>vanishAfterSlidingTo: aPosition event: evt [
+{ #category : #dropping/grabbing }
+Morph >> vanishAfterSlidingTo: aPosition event: evt [
 
 	| aForm aWorld startPoint endPoint |
 	aForm := self imageForm offset: 0@0.
@@ -8561,22 +6439,16 @@ Morph>>vanishAfterSlidingTo: aPosition event: evt [
 	aForm slideFrom: startPoint  to: endPoint nSteps: 12 delay: 15.
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>veryDeepCopyWith: deepCopier [
+{ #category : #copying }
+Morph >> veryDeepCopyWith: deepCopier [
 	"Copy me and the entire tree of objects I point to.  An object in the tree twice is copied once, and both references point to him.  deepCopier holds a dictionary of objects we have seen.  See veryDeepInner:, veryDeepFixupWith:"
 
 	self prepareToBeSaved.
 	^ super veryDeepCopyWith: deepCopier
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>veryDeepFixupWith: deepCopier [
+{ #category : #copying }
+Morph >> veryDeepFixupWith: deepCopier [
 	"If some fields were weakly copied, fix new copy here."
 
 	"super veryDeepFixupWith: deepCopier.	Object has no fixups, so don't call it"
@@ -8588,11 +6460,8 @@ Morph>>veryDeepFixupWith: deepCopier [
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>veryDeepInner: deepCopier  [
+{ #category : #copying }
+Morph >> veryDeepInner: deepCopier [ 
 	"The inner loop, so it can be overridden when a field should not  
 	be traced."
 	"super veryDeepInner: deepCopier.	know Object has no inst vars"
@@ -8607,101 +6476,68 @@ Morph>>veryDeepInner: deepCopier  [
 	extension := (extension veryDeepCopyWith: deepCopier)
 ]
 
-{
-	#category : #Morphic-Base-Worlds,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>viewBox [
+{ #category : #Morphic-Base-Worlds }
+Morph >> viewBox [
 	^ self pasteUpMorph viewBox
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>visible [
+{ #category : #drawing }
+Morph >> visible [
 	"answer whether the receiver is visible"
 	extension ifNil: [^ true].
 	^ extension visible
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>visibleClearArea [
+{ #category : #accessing }
+Morph >> visibleClearArea [
 	"Answer the receiver visible clear area. The intersection 
 	between the clear area and the viewbox."
 	^ self viewBox intersect: self clearArea ifNone: [ (0@0 corner: 0@0 ) ]
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsBalloon [
+{ #category : #'halos and balloon help' }
+Morph >> wantsBalloon [
 	"Answer true if receiver wants to show a balloon help text is a few moments."
 
 	^ (self balloonText notNil) and: [self balloonHelpEnabled]
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsDirectionHandles [
+{ #category : #'halos and balloon help' }
+Morph >> wantsDirectionHandles [
 	^self valueOfProperty: #wantsDirectionHandles ifAbsent:[false]
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsDirectionHandles: aBool [
+{ #category : #'halos and balloon help' }
+Morph >> wantsDirectionHandles: aBool [
 	self setProperty: #wantsDirectionHandles toValue: aBool
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsDropFiles: anEvent [
+{ #category : #'event handling' }
+Morph >> wantsDropFiles: anEvent [
 	"Return true if the receiver wants files dropped from the OS."
 	^false
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsDroppedMorph: aMorph event: evt [
+{ #category : #dropping/grabbing }
+Morph >> wantsDroppedMorph: aMorph event: evt [
 	"Return true if the receiver wishes to accept the given morph, which is being dropped by a hand in response to the given event. Note that for a successful drop operation both parties need to agree. The symmetric check is done automatically via aMorph wantsToBeDroppedInto: self."
 
 	^self dropEnabled
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsHaloFor: aSubMorph [
+{ #category : #'halos and balloon help' }
+Morph >> wantsHaloFor: aSubMorph [
 	^ false
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsHaloFromClick [
+{ #category : #'halos and balloon help' }
+Morph >> wantsHaloFromClick [
 	^ true
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsHaloHandleWithSelector: aSelector inHalo: aHaloMorph [
+{ #category : #'halos and balloon help' }
+Morph >> wantsHaloHandleWithSelector: aSelector inHalo: aHaloMorph [
 	"Answer whether the receiver would like to offer the halo handle with the given selector (e.g. #addCollapseHandle:)"
 
 	(#(addDismissHandle:) includes: aSelector) ifTrue:
@@ -8723,20 +6559,14 @@ Morph>>wantsHaloHandleWithSelector: aSelector inHalo: aHaloMorph [
 	
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsKeyboardFocusFor: aSubmorph [
+{ #category : #'event handling' }
+Morph >> wantsKeyboardFocusFor: aSubmorph [
 	"Answer whether a plain mouse click on aSubmorph, a text-edit-capable thing, should result in a text selection there"
 	^ false
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsRecolorHandle [
+{ #category : #'halos and balloon help' }
+Morph >> wantsRecolorHandle [
 	"Answer whether the receiver would like a recoloring halo handle to be put up.  Since this handle also presently affords access to the property-sheet, it is presently always allowed, even though SketchMorphs don't like regular recoloring"
 
 	^ true
@@ -8744,20 +6574,14 @@ Morph>>wantsRecolorHandle [
 
 ]
 
-{
-	#category : #rounding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsRoundedCorners [
+{ #category : #rounding }
+Morph >> wantsRoundedCorners [
 	"Return true if the receiver wants its corners rounded"
 	^ self cornerStyle == #rounded
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsSteps [
+{ #category : #'stepping and presenter' }
+Morph >> wantsSteps [
 	"Return true if the receiver overrides the default Morph step method."
 	"Details: Find first class in superclass chain that implements #step and return true if it isn't class Morph."
 
@@ -8767,11 +6591,8 @@ Morph>>wantsSteps [
 	^ c ~= Morph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsToBeCachedByHand [
+{ #category : #accessing }
+Morph >> wantsToBeCachedByHand [
 	"Return true if the receiver wants to be cached by the hand when it is dragged around.
 	Note: The default implementation queries all submorphs since subclasses may have shapes that do not fill the receiver's bounds completely."
 
@@ -8783,29 +6604,20 @@ Morph>>wantsToBeCachedByHand [
 	^ true
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsToBeDroppedInto: aMorph [
+{ #category : #dropping/grabbing }
+Morph >> wantsToBeDroppedInto: aMorph [
 	"Return true if it's okay to drop the receiver into aMorph. This check is symmetric to #wantsDroppedMorph:event: to give both parties a chance of figuring out whether they like each other."
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsToBeTopmost [
+{ #category : #accessing }
+Morph >> wantsToBeTopmost [
 	"Answer if the receiver want to be one of the topmost objects in its owner"
 	^ false
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsYellowButtonMenu [
+{ #category : #menu }
+Morph >> wantsYellowButtonMenu [
 	"Answer true if the receiver wants a yellow button menu"
 	self
 		valueOfProperty: #wantsYellowButtonMenu
@@ -8814,112 +6626,76 @@ Morph>>wantsYellowButtonMenu [
 	^ self defaultYellowButtonMenuEnabled
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wantsYellowButtonMenu: aBoolean  [
+{ #category : #menu }
+Morph >> wantsYellowButtonMenu: aBoolean [ 
 	"Change the receiver to wants or not a yellow button menu"
 	self setProperty: #wantsYellowButtonMenu toValue: aBoolean
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>width [
+{ #category : #geometry }
+Morph >> width [
 
 	^ bounds width
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>width: aNumber [
+{ #category : #geometry }
+Morph >> width: aNumber [
 	" Set my width; my position (top-left corner) and height will remain the same "
 
 	self extent: aNumber asInteger@self height.
 
 ]
 
-{
-	#category : #Morphic-Base-Widgets,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>widthToDisplayInList: aList [
+{ #category : #Morphic-Base-Widgets }
+Morph >> widthToDisplayInList: aList [
 
 	^ self minExtent x
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>windowEvent: anEvent [
+{ #category : #'event handling' }
+Morph >> windowEvent: anEvent [
 	"Host window event"
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>withAllOwners [
+{ #category : #structure }
+Morph >> withAllOwners [
 	"Return the receiver and all its owners"
 
 	^ Array streamContents: [:strm | self withAllOwnersDo: [:m | strm nextPut: m]]
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>withAllOwnersDo: aBlock [
+{ #category : #structure }
+Morph >> withAllOwnersDo: aBlock [
 	"Evaluate aBlock with the receiver and all of its owners"
 	aBlock value: self.
 	owner ifNotNil:[^owner withAllOwnersDo: aBlock].
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>world [
+{ #category : #structure }
+Morph >> world [
 	^owner ifNotNil: [owner world]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>worldBounds [
+{ #category : #geometry }
+Morph >> worldBounds [
 	^ self world bounds
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wouldAcceptKeyboardFocus [
+{ #category : #'event handling' }
+Morph >> wouldAcceptKeyboardFocus [
 	"Answer whether a plain mouse click on the receiver should result in a text selection there"
 	^ false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wouldAcceptKeyboardFocusUponTab [
+{ #category : #'event handling' }
+Morph >> wouldAcceptKeyboardFocusUponTab [
 	"Answer whether the receiver is in the running as the new keyboard focus if the tab key were hit at a meta level.  This provides the leverage for tabbing among fields of a card, for example."
 
 	^ false
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wrapCentering [
+{ #category : #layout-properties }
+Morph >> wrapCentering [
 	"Layout specific. This property describes how the rows/columns in a list-like layout should be centered.
 		#topLeft - center at start of secondary direction
 		#bottomRight - center at end of secondary direction
@@ -8931,11 +6707,8 @@ Morph>>wrapCentering [
 	^props ifNil:[#topLeft] ifNotNil:[props wrapCentering].
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wrapCentering: aSymbol [
+{ #category : #layout-properties }
+Morph >> wrapCentering: aSymbol [
 	"Layout specific. This property describes how the rows/columns in a list-like layout should be centered.
 		#topLeft - center at start of secondary direction
 		#bottomRight - center at end of secondary direction
@@ -8946,19 +6719,13 @@ Morph>>wrapCentering: aSymbol [
 	self layoutChanged.
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wrapCenteringString: aSymbol [
+{ #category : #layout-properties }
+Morph >> wrapCenteringString: aSymbol [
 	^self layoutMenuPropertyString: aSymbol from: self wrapCentering
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wrapDirection [
+{ #category : #layout-properties }
+Morph >> wrapDirection [
 	"Layout specific. This property describes the direction along which a list-like layout should be wrapped. Possible values are:
 		#leftToRight
 		#rightToLeft
@@ -8971,11 +6738,8 @@ Morph>>wrapDirection [
 	^props ifNil:[#none] ifNotNil:[props wrapDirection].
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wrapDirection: aSymbol [
+{ #category : #layout-properties }
+Morph >> wrapDirection: aSymbol [
 	"Layout specific. This property describes the direction along which a list-like layout should be wrapped. Possible values are:
 		#leftToRight
 		#rightToLeft
@@ -8988,19 +6752,13 @@ Morph>>wrapDirection: aSymbol [
 
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>wrapDirectionString: aSymbol [
+{ #category : #layout-properties }
+Morph >> wrapDirectionString: aSymbol [
 	^self layoutMenuPropertyString: aSymbol from: self wrapDirection 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Morph>>yellowButtonActivity: shiftState  [
+{ #category : #'event handling' }
+Morph >> yellowButtonActivity: shiftState [ 
 	"Find me or my outermost owner that has items to add to a  
 	yellow button menu.  
 	shiftState is true if the shift was pressed.  

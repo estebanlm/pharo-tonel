@@ -5,23 +5,16 @@ I can be executed to perform certain operations (commit packages to their reposi
 Class {
 	#name : #VSCommitAction,
 	#superclass : #Object,
-	#category : #Versionner-Commit,
-	#timestamp : 'EstebanLorenzano 4/23/2015 15:48'
+	#category : #Versionner-Commit
 }
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>browseOn: aBrowser [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitAction >> browseOn: aBrowser [
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>commitPackage: packageName comment: comment [
+{ #category : #private }
+VSCommitAction >> commitPackage: packageName comment: comment [
 	| remoteRepository version |
 
 	remoteRepository := self remoteRepository.
@@ -31,76 +24,48 @@ VSCommitAction>>commitPackage: packageName comment: comment [
 	self retryOnCredentialRequest: [ remoteRepository storeVersion: version ]
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>currentString [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitAction >> currentString [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>displayString [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitAction >> displayString [
 	^ self subclassResponsibility
 
 ]
 
-{
-	#category : #executing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>executeOn: aUnit [
+{ #category : #executing }
+VSCommitAction >> executeOn: aUnit [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>icon [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitAction >> icon [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>isPackage [
+{ #category : #testing }
+VSCommitAction >> isPackage [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>isProject [
+{ #category : #testing }
+VSCommitAction >> isProject [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>nextVersion: aString	 [
-
+{ #category : #accessing }
+VSCommitAction >> nextVersion: aString [	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>nextVersionOn: aUnit [
+{ #category : #accessing }
+VSCommitAction >> nextVersionOn: aUnit [
 	^ nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>remoteRepository [
+{ #category : #private }
+VSCommitAction >> remoteRepository [
 	| repositoryWithoutSlash |
 	
 	repositoryWithoutSlash  := self repository last = $/
@@ -118,27 +83,18 @@ VSCommitAction>>remoteRepository [
 				password: '' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>removeOn: aUnit [
+{ #category : #accessing }
+VSCommitAction >> removeOn: aUnit [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>repository [
+{ #category : #accessing }
+VSCommitAction >> repository [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>retryOnCredentialRequest: aBlock [
+{ #category : #private }
+VSCommitAction >> retryOnCredentialRequest: aBlock [
 	aBlock on: MCPermissionDenied do: [ :e | 
 		| credentials remoteRepository | 
 	
@@ -152,18 +108,11 @@ VSCommitAction>>retryOnCredentialRequest: aBlock [
 			^ self retryOnCredentialRequest: aBlock ] ]
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>validate [
-
+{ #category : #validation }
+VSCommitAction >> validate [
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>workingCopy  [
+{ #category : #private }
+VSCommitAction >> workingCopy [ 
 	^ self subclassResponsibility
 ]

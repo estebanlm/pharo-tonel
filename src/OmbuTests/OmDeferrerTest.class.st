@@ -8,42 +8,29 @@ Class {
 		'count',
 		'deferrer'
 	],
-	#category : #OmbuTests,
-	#timestamp : '<historical>'
+	#category : #OmbuTests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmDeferrerTest>>count [
+{ #category : #accessing }
+OmDeferrerTest >> count [
 
 	^ count
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmDeferrerTest>>count: anInteger  [
+{ #category : #accessing }
+OmDeferrerTest >> count: anInteger [ 
 
 	count := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmDeferrerTest>>increase [
+{ #category : #accessing }
+OmDeferrerTest >> increase [
 
 	count := count + 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmDeferrerTest>>testExecuteOnceAfterScheduling [
+{ #category : #tests }
+OmDeferrerTest >> testExecuteOnceAfterScheduling [
 
 	self count: 0.
 	deferrer := OmDeferrer 
@@ -57,11 +44,8 @@ OmDeferrerTest>>testExecuteOnceAfterScheduling [
 	self assert: self count equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmDeferrerTest>>testExecuteOnceAfterSchedulingMultipleTimes [
+{ #category : #tests }
+OmDeferrerTest >> testExecuteOnceAfterSchedulingMultipleTimes [
 
 	self count: 0.
 	deferrer := OmDeferrer 
@@ -78,11 +62,8 @@ OmDeferrerTest>>testExecuteOnceAfterSchedulingMultipleTimes [
 	self assert: self count equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmDeferrerTest>>testExecuteWithoutDelay [
+{ #category : #tests }
+OmDeferrerTest >> testExecuteWithoutDelay [
 
 	self count: 0.
 	deferrer := OmDeferrer 

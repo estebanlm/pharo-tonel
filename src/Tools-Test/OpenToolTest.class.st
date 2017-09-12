@@ -4,114 +4,83 @@ SUnit tests for opening of tools
 Class {
 	#name : #OpenToolTest,
 	#superclass : #UITestCase,
-	#category : #Tools-Test-Base,
-	#timestamp : 'TorstenBergmann 2/4/2014 20:46'
+	#category : #Tools-Test-Base
 }
 
-{
-	#category : #'test inspect',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-OpenToolTest>>testInspectArray [
+{ #category : #'test inspect' }
+OpenToolTest >> testInspectArray [
 	| inspector |
 	inspector := (1 to: 1000) asArray inspector.
 	inspector changed.
 	inspector close.
 ]
 
-{
-	#category : #'test inspect',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-OpenToolTest>>testInspectClass [
+{ #category : #'test inspect' }
+OpenToolTest >> testInspectClass [
 	| inspector |
 	inspector := Object inspector.
 	inspector changed.
 	inspector close.
 ]
 
-{
-	#category : #'test inspect',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-OpenToolTest>>testInspectDictionary [
+{ #category : #'test inspect' }
+OpenToolTest >> testInspectDictionary [
 	| inspector |
 	inspector := (Dictionary new) inspector.
 	inspector changed.
 	inspector close.
 ]
 
-{
-	#category : #'test inspect',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-OpenToolTest>>testInspectInteger [
+{ #category : #'test inspect' }
+OpenToolTest >> testInspectInteger [
 	| inspector |
 	inspector := 1 inspector.
 	inspector changed.
 	inspector close.
 ]
 
-{
-	#category : #'test inspect',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-OpenToolTest>>testInspectTraitClass [
+{ #category : #'test inspect' }
+OpenToolTest >> testInspectTraitClass [
 	| inspector |
 	inspector := TBehavior inspector.
 	inspector changed.
 	inspector close.
 ]
 
-{
-	#category : #'test browse',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-OpenToolTest>>testOpenBrowseOnClass [
+{ #category : #'test browse' }
+OpenToolTest >> testOpenBrowseOnClass [
 	| browser |
 	browser := Object browse.
 	browser changed.
 	browser close.
 ]
 
-{
-	#category : #'test browse',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-OpenToolTest>>testOpenBrowseOnInstalledTraitMethod [
+{ #category : #'test browse' }
+OpenToolTest >> testOpenBrowseOnInstalledTraitMethod [
 	| browser |
 	browser := (Class>>#hasClassSide) browse.
 	browser changed.
 	browser close.
 ]
 
-{
-	#category : #'test browse',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-OpenToolTest>>testOpenBrowseOnMethod [
+{ #category : #'test browse' }
+OpenToolTest >> testOpenBrowseOnMethod [
 	| browser |
 	browser := (Object>>#yourself) browse.
 	browser changed.
 	browser close.
 ]
 
-{
-	#category : #'test browse',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-OpenToolTest>>testOpenBrowseOnTraitMethod [
+{ #category : #'test browse' }
+OpenToolTest >> testOpenBrowseOnTraitMethod [
 	| browser |
 	browser := (TBehavior>>#name) browse.
 	browser changed.
 	browser close.
 ]
 
-{
-	#category : #'test senders',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-OpenToolTest>>testSendersOfAt [
+{ #category : #'test senders' }
+OpenToolTest >> testSendersOfAt [
 	| senders |
 	senders := SystemNavigation default browseAllSendersOf: #name.
 	senders changed.

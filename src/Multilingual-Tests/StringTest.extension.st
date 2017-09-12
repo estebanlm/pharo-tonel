@@ -1,12 +1,7 @@
-Extension {
-	#name : #StringTest
-}
+Extension { #name : #StringTest }
 
-{
-	#category : #'*Multilingual-Tests-OtherLanguages',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-StringTest>>testUnescapePercents [
+{ #category : #'*Multilingual-Tests-OtherLanguages' }
+StringTest >> testUnescapePercents [
 	self assert: '' urlDecoded = ''.
 	self assert: 'x' urlDecoded = 'x'.
 
@@ -26,11 +21,8 @@ StringTest>>testUnescapePercents [
 	self assert: '%21@%23%24%25%5E%26*%28%29%7B%7D%5B%5D%3D%3A/%3B%3F+%27%22' urlDecoded = '!@#$%^&*(){}[]=:/;? ''"'
 ]
 
-{
-	#category : #'*Multilingual-Tests-OtherLanguages',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-StringTest>>testUnescapePercentsWithTextEncoding [
+{ #category : #'*Multilingual-Tests-OtherLanguages' }
+StringTest >> testUnescapePercentsWithTextEncoding [
 	| leading kataTe kataSu kataTo |
 	leading := JapaneseEnvironment leadingChar.
 	"Katakana letter Te"

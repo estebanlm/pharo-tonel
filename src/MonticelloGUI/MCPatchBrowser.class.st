@@ -7,32 +7,22 @@ Class {
 	#instVars : [
 		'selection'
 	],
-	#category : #MonticelloGUI,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:52'
+	#category : #MonticelloGUI
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser class>>forPatch: aPatch [
+{ #category : #'instance creation' }
+MCPatchBrowser class >> forPatch: aPatch [
 	^ self new patch: aPatch
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>buttonSpecs [
+{ #category : #'morphic ui' }
+MCPatchBrowser >> buttonSpecs [
 	^ #((Invert invert 'Show the reverse set of changes')
 		 (Export export 'Export the changes as a change set'))
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>changeSetNameForInstall [
+{ #category : #actions }
+MCPatchBrowser >> changeSetNameForInstall [
 	"Answer the name of the change set into which my selection will be installed.
 	Derive this from my label.
 	If I have no label, use the current change set."
@@ -46,19 +36,13 @@ MCPatchBrowser>>changeSetNameForInstall [
 	^'{1}-to-{2}' format: tokens 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>defaultLabel [
+{ #category : #'morphic ui' }
+MCPatchBrowser >> defaultLabel [
 	^ 'Patch Browser'
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>installSelection [
+{ #category : #actions }
+MCPatchBrowser >> installSelection [
 	| loader |
 	selection ifNotNil:
 		[loader := MCPackageLoader new.
@@ -66,44 +50,29 @@ MCPatchBrowser>>installSelection [
 		loader loadWithName: self changeSetNameForInstall ]
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>invert [
+{ #category : #selecting }
+MCPatchBrowser >> invert [
 	items := items collect: [:ea | ea inverse].
 	self changed: #list; changed: #text; changed: #selection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>items [
+{ #category : #accessing }
+MCPatchBrowser >> items [
 	^ items
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>list [
+{ #category : #accessing }
+MCPatchBrowser >> list [
 	^ self items collect: [:ea | ea summary]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>patch: aPatch [
+{ #category : #accessing }
+MCPatchBrowser >> patch: aPatch [
 	items := aPatch operations asSortedCollection
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>revertSelection [
+{ #category : #actions }
+MCPatchBrowser >> revertSelection [
 	| loader |
 	selection ifNotNil:
 		[loader := MCPackageLoader new.
@@ -111,11 +80,8 @@ MCPatchBrowser>>revertSelection [
 		loader loadWithName: self changeSetNameForInstall ]
 ]
 
-{
-	#category : #subclassresponsibility,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>selectedClass [
+{ #category : #subclassresponsibility }
+MCPatchBrowser >> selectedClass [
 	| definition |
 	selection ifNil: [ ^ nil ].
 	(definition := selection definition) ifNil: [ ^ nil ].
@@ -124,11 +90,8 @@ MCPatchBrowser>>selectedClass [
 	^ Smalltalk globals at: definition className ifAbsent: [  ]
 ]
 
-{
-	#category : #subclassresponsibility,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>selectedClassOrMetaClass [
+{ #category : #subclassresponsibility }
+MCPatchBrowser >> selectedClassOrMetaClass [
 	| definition |
 	selection ifNil: [ ^nil ].
 	(definition := selection definition) ifNil: [ ^nil ].
@@ -136,11 +99,8 @@ MCPatchBrowser>>selectedClassOrMetaClass [
 	^definition actualClass
 ]
 
-{
-	#category : #subclassresponsibility,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>selectedMessageCategoryName [
+{ #category : #subclassresponsibility }
+MCPatchBrowser >> selectedMessageCategoryName [
 	| definition |
 	selection ifNil: [ ^nil ].
 	(definition := selection definition) ifNil: [ ^nil ].
@@ -148,11 +108,8 @@ MCPatchBrowser>>selectedMessageCategoryName [
 	^definition category
 ]
 
-{
-	#category : #subclassresponsibility,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>selectedMessageName [
+{ #category : #subclassresponsibility }
+MCPatchBrowser >> selectedMessageName [
 	| definition |
 	selection ifNil: [ ^nil ].
 	(definition := selection definition) ifNil: [ ^nil ].
@@ -160,46 +117,31 @@ MCPatchBrowser>>selectedMessageName [
 	^definition  selector
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>selection [
+{ #category : #selecting }
+MCPatchBrowser >> selection [
 	^ selection 
 		ifNil: [0]
 		ifNotNil: [self items indexOf: selection]
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>selection: aNumber [
+{ #category : #selecting }
+MCPatchBrowser >> selection: aNumber [
 	selection := aNumber = 0 ifFalse: [self items at: aNumber].
 	self changed: #selection; changed: #text.
 ]
 
-{
-	#category : #text,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>text [
+{ #category : #text }
+MCPatchBrowser >> text [
 	^ selection ifNil: [''] ifNotNil: [selection source]
 ]
 
-{
-	#category : #text,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>text: aTextOrString [
+{ #category : #text }
+MCPatchBrowser >> text: aTextOrString [
 	self changed: #text
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatchBrowser>>widgetSpecs [
+{ #category : #'morphic ui' }
+MCPatchBrowser >> widgetSpecs [
 	 ^#(
 		((listMorph:selection:menu:keystroke: list selection methodListMenu: methodListKey:from:) (0 0 1 0.4) (0 0 0 0))
 		((textMorph: text) (0 0.4 1 1))

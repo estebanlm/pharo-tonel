@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #BenchmarkResultTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Chronology,
-	#timestamp : ''
+	#category : #Kernel-Tests-Chronology
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BenchmarkResultTest>>testEmpty [
+{ #category : #testing }
+BenchmarkResultTest >> testEmpty [
 	| benchmarkResult |
 	benchmarkResult := BenchmarkResult new.
 	self assert: benchmarkResult isEmpty.
@@ -24,11 +17,8 @@ BenchmarkResultTest>>testEmpty [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BenchmarkResultTest>>testOne [
+{ #category : #testing }
+BenchmarkResultTest >> testOne [
 	| benchmarkResult |
 	benchmarkResult := BenchmarkResult new.
 	benchmarkResult iterations: 1.
@@ -47,11 +37,8 @@ BenchmarkResultTest>>testOne [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BenchmarkResultTest>>testOneOverTwo [
+{ #category : #testing }
+BenchmarkResultTest >> testOneOverTwo [
 	| benchmarkResult |
 	benchmarkResult := BenchmarkResult new.
 	benchmarkResult iterations: 1.
@@ -70,11 +57,8 @@ BenchmarkResultTest>>testOneOverTwo [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BenchmarkResultTest>>testSimple [
+{ #category : #testing }
+BenchmarkResultTest >> testSimple [
 	| benchmarkResult |
 	benchmarkResult := BenchmarkResult new.
 	benchmarkResult iterations: 100.

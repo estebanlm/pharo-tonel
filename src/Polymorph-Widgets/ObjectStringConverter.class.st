@@ -12,26 +12,19 @@ Class {
 		'stringTransformBlock',
 		'objectTransformBlock'
 	],
-	#category : #Polymorph-Widgets,
-	#timestamp : 'GaryChambers 3/9/2011 13:37'
+	#category : #Polymorph-Widgets
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter class>>forClass: aClass [
+{ #category : #'as yet unclassified' }
+ObjectStringConverter class >> forClass: aClass [
 	"Answer a new instance of the receiver that converts to and from
 	the given class of object and a string."
 
 	^self new objectClass: aClass
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter>>configureForIntegers [
+{ #category : #conversion }
+ObjectStringConverter >> configureForIntegers [
 	"Configure the receiver to match/convert positive or negative integers only."
 
 	self
@@ -43,11 +36,8 @@ ObjectStringConverter>>configureForIntegers [
 				ifFalse: [s select: [:c | c isDigit]]]
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter>>configureForPositiveIntegers [
+{ #category : #conversion }
+ObjectStringConverter >> configureForPositiveIntegers [
 	"Configure the receiver to match/convert positive integers only."
 
 	self
@@ -57,11 +47,8 @@ ObjectStringConverter>>configureForPositiveIntegers [
 			s select: [:c | c isDigit]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter>>initialize [
+{ #category : #initialization }
+ObjectStringConverter >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -70,109 +57,76 @@ ObjectStringConverter>>initialize [
 		stringTransformBlock: [:string | string]
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter>>isStringValid: aString [
+{ #category : #conversion }
+ObjectStringConverter >> isStringValid: aString [
 	"Answer whether the given string is valid for conversion."
 
 	^(self regex isNil or: [self regex matches: aString]) and: [
 		[self stringAsObject: aString. true] on: Error do: [false]]
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter>>needsConversion [
+{ #category : #conversion }
+ObjectStringConverter >> needsConversion [
 	"Answer whether conversion is required for the receiver's object class."
 
 	^self objectClass notNil and: [(self objectClass includesBehavior: String) not]
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter>>objectAsString: anObject [
+{ #category : #conversion }
+ObjectStringConverter >> objectAsString: anObject [
 	"Answer the given object in string form."
 
 	^(self objectTransformBlock value: anObject)
 		ifNotNil: [:o | o asString]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter>>objectClass [
+{ #category : #accessing }
+ObjectStringConverter >> objectClass [
 	"Answer the class of object we are dealing with."
 
 	^objectClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter>>objectClass: aClass [
+{ #category : #accessing }
+ObjectStringConverter >> objectClass: aClass [
 	"Set the class of object we are dealing with."
 
 	objectClass := aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter>>objectTransformBlock [
+{ #category : #accessing }
+ObjectStringConverter >> objectTransformBlock [
 
 	^ objectTransformBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter>>objectTransformBlock: anObject [
+{ #category : #accessing }
+ObjectStringConverter >> objectTransformBlock: anObject [
 
 	objectTransformBlock := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter>>regex [
+{ #category : #accessing }
+ObjectStringConverter >> regex [
 
 	^ regex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter>>regex: anObject [
+{ #category : #accessing }
+ObjectStringConverter >> regex: anObject [
 
 	regex := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter>>regexString: aString [
+{ #category : #accessing }
+ObjectStringConverter >> regexString: aString [
 	"Setup the regex based on the given string."
 
 	self regex: aString asRegex
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter>>stringAsObject: aString [
+{ #category : #conversion }
+ObjectStringConverter >> stringAsObject: aString [
 	"Answer the given string in object form."
 
 	|transformed|
@@ -182,20 +136,14 @@ ObjectStringConverter>>stringAsObject: aString [
 		ifFalse: [transformed]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter>>stringTransformBlock [
+{ #category : #accessing }
+ObjectStringConverter >> stringTransformBlock [
 
 	^ stringTransformBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ObjectStringConverter>>stringTransformBlock: anObject [
+{ #category : #accessing }
+ObjectStringConverter >> stringTransformBlock: anObject [
 
 	stringTransformBlock := anObject
 ]

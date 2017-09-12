@@ -10,15 +10,11 @@ This class contains some tests regarding the classes
 Class {
 	#name : #BasicBehaviorClassMetaclassTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Classes,
-	#timestamp : '<historical>'
+	#category : #Kernel-Tests-Classes
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BasicBehaviorClassMetaclassTest>>testBehaviorClassClassDescriptionMetaclassHierarchy [
+{ #category : #testing }
+BasicBehaviorClassMetaclassTest >> testBehaviorClassClassDescriptionMetaclassHierarchy [
 	"self run: #testBehaviorClassClassDescriptionMetaclassHierarchy"
 	
 	self assert: Class superclass  == ClassDescription.
@@ -47,11 +43,8 @@ BasicBehaviorClassMetaclassTest>>testBehaviorClassClassDescriptionMetaclassHiera
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BasicBehaviorClassMetaclassTest>>testMetaclass [
+{ #category : #testing }
+BasicBehaviorClassMetaclassTest >> testMetaclass [
 	"self run: #testMetaclass"
 	
 	self assert: OrderedCollection class class == Metaclass.
@@ -73,11 +66,8 @@ BasicBehaviorClassMetaclassTest>>testMetaclass [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BasicBehaviorClassMetaclassTest>>testMetaclassName [
+{ #category : #testing }
+BasicBehaviorClassMetaclassTest >> testMetaclassName [
 	"self run: #testMetaclassName"
 
 	self assert: Dictionary class  name = 'Dictionary class'.
@@ -85,22 +75,16 @@ BasicBehaviorClassMetaclassTest>>testMetaclassName [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BasicBehaviorClassMetaclassTest>>testMetaclassNumberOfInstances [
+{ #category : #testing }
+BasicBehaviorClassMetaclassTest >> testMetaclassNumberOfInstances [
 	"self run: #testMetaclassNumberOfInstances"
 
 	self assert: Dictionary class allInstances size  = 1.
 	self assert: OrderedCollection class allInstances size  = 1.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BasicBehaviorClassMetaclassTest>>testMetaclassPointOfCircularity [
+{ #category : #testing }
+BasicBehaviorClassMetaclassTest >> testMetaclassPointOfCircularity [
 	"self run: #testMetaclassPointOfCircularity"
 
 	self assert: Metaclass class instanceCount = 1.
@@ -119,22 +103,16 @@ BasicBehaviorClassMetaclassTest>>testMetaclassPointOfCircularity [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BasicBehaviorClassMetaclassTest>>testMetaclassSuperclass [
+{ #category : #testing }
+BasicBehaviorClassMetaclassTest >> testMetaclassSuperclass [
 	"self run: #testMetaclassSuperclass"
 
 	self assert: Dictionary class superclass == Dictionary superclass class.
 	self assert: OrderedCollection class superclass == OrderedCollection superclass class.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BasicBehaviorClassMetaclassTest>>testMetaclassSuperclassHierarchy [
+{ #category : #testing }
+BasicBehaviorClassMetaclassTest >> testMetaclassSuperclassHierarchy [
 	"self run: #testMetaclassSuperclassHierarchy"
 
 	| s |
@@ -165,11 +143,8 @@ BasicBehaviorClassMetaclassTest>>testMetaclassSuperclassHierarchy [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BasicBehaviorClassMetaclassTest>>testObjectAllSubclasses [
+{ #category : #testing }
+BasicBehaviorClassMetaclassTest >> testObjectAllSubclasses [
 	"self run: #testObjectAllSubclasses"
 
 	| n2 |
@@ -179,11 +154,8 @@ BasicBehaviorClassMetaclassTest>>testObjectAllSubclasses [
 					or: [cls class == Metaclass]]) size
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BasicBehaviorClassMetaclassTest>>testSuperclass [
+{ #category : #testing }
+BasicBehaviorClassMetaclassTest >> testSuperclass [
 	"self debug: #testSuperclass"
 
 	| s b |

@@ -1,12 +1,7 @@
-Extension {
-	#name : #SpecLayoutFrame
-}
+Extension { #name : #SpecLayoutFrame }
 
-{
-	#category : #'*Spec-MorphicAdapters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>asMorphicLayout [
+{ #category : #'*Spec-MorphicAdapters' }
+SpecLayoutFrame >> asMorphicLayout [
 	
 	^ LayoutFrame identity
 		topFraction: self topFraction;

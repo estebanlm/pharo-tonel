@@ -15,33 +15,23 @@ Class {
 		'listModel',
 		'window'
 	],
-	#category : #Morphic-Examples-Tabs,
-	#timestamp : '<historical>'
+	#category : #Morphic-Examples-Tabs
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabExample class>>open [
+{ #category : #'instance creation' }
+TabExample class >> open [
 
 	^ self new open
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabExample>>addTabs [
+{ #category : #private }
+TabExample >> addTabs [
 
 	self tabs do: [ :tab | manager addTab: tab ]
 ]
 
-{
-	#category : #'tabs creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabExample>>blueMorphTab [
+{ #category : #'tabs creation' }
+TabExample >> blueMorphTab [
 	| tab |
 	tab := TabMorph
 		label: 'Blue Morph'
@@ -59,20 +49,14 @@ TabExample>>blueMorphTab [
 	^ tab
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabExample>>delete [
+{ #category : #private }
+TabExample >> delete [
 
 	window ifNotNil: [ window delete ]
 ]
 
-{
-	#category : #'tabs creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabExample>>freshListTab [
+{ #category : #'tabs creation' }
+TabExample >> freshListTab [
 	^ (TabMorph
 		label: 'Fresh List'
 		icon: nil
@@ -89,11 +73,8 @@ TabExample>>freshListTab [
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabExample>>initialize [
+{ #category : #initialization }
+TabExample >> initialize [
 
 	super initialize.
 
@@ -104,11 +85,8 @@ TabExample>>initialize [
 	listModel items: ((1 to: 1000) asOrderedCollection)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabExample>>open [
+{ #category : #'instance creation' }
+TabExample >> open [
 	
 	window := manager openInWindow.
 	window extent: 400@300.
@@ -117,11 +95,8 @@ TabExample>>open [
 "	listModel openWithSpec"
 ]
 
-{
-	#category : #'tabs creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabExample>>redMorphTab [
+{ #category : #'tabs creation' }
+TabExample >> redMorphTab [
 	^ (LockableTabMorph
 		label: 'Red Morph'
 		icon: (self iconNamed: #smallBackIcon)
@@ -133,22 +108,16 @@ TabExample>>redMorphTab [
 		yourself
 ]
 
-{
-	#category : #'tabs creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabExample>>storedListTab [
+{ #category : #'tabs creation' }
+TabExample >> storedListTab [
 	^ TabMorph
 		label: 'Stored List Model'
 		icon: (self iconNamed: #smallHelpIcon)
 		retrievingBlock: [ listModel buildWithSpec ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabExample>>tabs [
+{ #category : #private }
+TabExample >> tabs [
 	
 	^ OrderedCollection new
 		add: self storedListTab;
@@ -158,11 +127,8 @@ TabExample>>tabs [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabExample>>window [
+{ #category : #accessing }
+TabExample >> window [
 
 	^ window
 ]

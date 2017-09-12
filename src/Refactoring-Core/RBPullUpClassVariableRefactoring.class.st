@@ -4,23 +4,16 @@ I am a refactoring for moving a class variable up to the superclass.
 Class {
 	#name : #RBPullUpClassVariableRefactoring,
 	#superclass : #RBVariableRefactoring,
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 21:19'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpClassVariableRefactoring>>preconditions [
+{ #category : #preconditions }
+RBPullUpClassVariableRefactoring >> preconditions [
 	^(RBCondition isMetaclass: class) not
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpClassVariableRefactoring>>subclassDefiningVariable [
+{ #category : #private-accessing }
+RBPullUpClassVariableRefactoring >> subclassDefiningVariable [
 	| subclasses |
 	subclasses := class allSubclasses 
 		select: [ :each | each isMeta not and: [ each directlyDefinesClassVariable: variableName ] ].
@@ -31,11 +24,8 @@ RBPullUpClassVariableRefactoring>>subclassDefiningVariable [
 	^ subclasses asArray first
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpClassVariableRefactoring>>transform [
+{ #category : #transforming }
+RBPullUpClassVariableRefactoring >> transform [
 	| subclass |
 	subclass := self subclassDefiningVariable.
 	subclass removeClassVariable: variableName.

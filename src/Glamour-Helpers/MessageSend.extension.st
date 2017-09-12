@@ -1,12 +1,7 @@
-Extension {
-	#name : #MessageSend
-}
+Extension { #name : #MessageSend }
 
-{
-	#category : #'*glamour-helpers',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MessageSend>>glamourValueWithArgs: anArray  [
+{ #category : #'*glamour-helpers' }
+MessageSend >> glamourValueWithArgs: anArray [ 
 	"This is the same as valueWithPossibleArgs: from squeak. 
 	Unfortunately, VW's cullValue: is incompatible." 
 	

@@ -4,31 +4,21 @@ I render an icon to control the state of #doOnlyOnce:
 Class {
 	#name : #DoOnlyOnceIconStyler,
 	#superclass : #IconStyler,
-	#category : #Reflectivity-Tools-Watchpoints,
-	#timestamp : 'MarcusDenker 6/24/2016 15:54'
+	#category : #Reflectivity-Tools-Watchpoints
 }
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-DoOnlyOnceIconStyler>>iconBlock: aNode [
+{ #category : #defaults }
+DoOnlyOnceIconStyler >> iconBlock: aNode [
 	^[ :arg | self rearmOneShot]
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-DoOnlyOnceIconStyler>>iconFor: aNode [
+{ #category : #defaults }
+DoOnlyOnceIconStyler >> iconFor: aNode [
 	^ self iconNamed: #smallWarningIcon 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-DoOnlyOnceIconStyler>>iconLabelBlock: aNode [
+{ #category : #defaults }
+DoOnlyOnceIconStyler >> iconLabelBlock: aNode [
 
 	^ [Smalltalk globals 
 			at: #OneShotArmed
@@ -37,10 +27,7 @@ DoOnlyOnceIconStyler>>iconLabelBlock: aNode [
 		]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-DoOnlyOnceIconStyler>>shouldStyleNode: aNode [
+{ #category : #testing }
+DoOnlyOnceIconStyler >> shouldStyleNode: aNode [
 	^aNode isMessage and: [ aNode selector = #doOnlyOnce: ]
 ]

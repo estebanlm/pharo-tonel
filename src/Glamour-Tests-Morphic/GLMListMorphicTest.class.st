@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMListMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMListMorphicTest>>testListDoubleClick [
+{ #category : #tests }
+GLMListMorphicTest >> testListDoubleClick [
 	| browser treeMorph treeNodeMorph |
 	browser := GLMFinder new.
 	browser show: [ :a | a list ].
@@ -24,11 +17,8 @@ GLMListMorphicTest>>testListDoubleClick [
 	self assert: (browser panes first port: #strongSelection) value equals: $a
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMListMorphicTest>>testListDoubleClickWithMultipleSelection [
+{ #category : #tests }
+GLMListMorphicTest >> testListDoubleClickWithMultipleSelection [
 	| browser treeMorph treeNodeMorph lastTreeNodeMorph |
 	browser := GLMFinder new.
 	browser show: [:a | a tree beMultiple].
@@ -42,11 +32,8 @@ GLMListMorphicTest>>testListDoubleClickWithMultipleSelection [
 	self assert: (browser panes first port: #strongSelection) value asSet equals: ($a to: $d) asSet
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMListMorphicTest>>testMultipleSelectionWithChange [
+{ #category : #tests }
+GLMListMorphicTest >> testMultipleSelectionWithChange [
 	| browser firstTreeMorph secondTreeMorph treeNodeMorph lastTreeNodeMorph |
 	browser := GLMWrapper new.
 	browser show: [ :a | 
@@ -73,11 +60,8 @@ GLMListMorphicTest>>testMultipleSelectionWithChange [
 		equals: #(40 41) asOrderedCollection
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMListMorphicTest>>testMultipleSelectionWithChangeFromModel [
+{ #category : #tests }
+GLMListMorphicTest >> testMultipleSelectionWithChangeFromModel [
 	| browser firstTreeMorph secondTreeMorph |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -102,11 +86,8 @@ GLMListMorphicTest>>testMultipleSelectionWithChangeFromModel [
 	self assert: firstTreeMorph ~= secondTreeMorph
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMListMorphicTest>>testOnlyOneMorphPerRowInList [
+{ #category : #tests }
+GLMListMorphicTest >> testOnlyOneMorphPerRowInList [
 	| browser listMorph nodeMorphs|
 	"self debug: #testOnlyOneMorphPerRowInList"
 	browser := GLMTabulator new.
@@ -123,11 +104,8 @@ GLMListMorphicTest>>testOnlyOneMorphPerRowInList [
 	nodeMorphs do: [:node | "Always fails on node 43" self assert: node submorphs size equals: 1].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMListMorphicTest>>testTextBackgroundColor [
+{ #category : #tests }
+GLMListMorphicTest >> testTextBackgroundColor [
 	| browser firstTreeMorph secondTreeMorph treeNodeMorph txtMorph |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -160,11 +138,8 @@ GLMListMorphicTest>>testTextBackgroundColor [
 	self assert: txtMorph backgroundColor equals: Color green
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMListMorphicTest>>testTwoPanesMultipleSelectionWithChange [
+{ #category : #tests }
+GLMListMorphicTest >> testTwoPanesMultipleSelectionWithChange [
 	| browser treeMorphOne treeNodeMorph treeMorphTwo |
 	browser := GLMTabulator new.
 	browser
@@ -207,11 +182,8 @@ GLMListMorphicTest>>testTwoPanesMultipleSelectionWithChange [
 	self assert: ((browser paneNamed: #two) port: #selection) value asOrderedCollection equals: #(40 41)  asOrderedCollection
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMListMorphicTest>>testTypeOfMultipleSelection [
+{ #category : #tests }
+GLMListMorphicTest >> testTypeOfMultipleSelection [
 	| composer firstTreeMorph treeNodeMorph |
 	composer := GLMCompositePresentation new.
 	composer list beMultiple.
@@ -222,11 +194,8 @@ GLMListMorphicTest>>testTypeOfMultipleSelection [
 	self assert: composer selection asOrderedCollection equals: {{1} asSet} asOrderedCollection
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMListMorphicTest>>testTypeOfSingleSelection [
+{ #category : #tests }
+GLMListMorphicTest >> testTypeOfSingleSelection [
 	| composer firstTreeMorph treeNodeMorph |
 	composer := GLMCompositePresentation new.
 	composer list.
@@ -237,11 +206,8 @@ GLMListMorphicTest>>testTypeOfSingleSelection [
 	self assert: composer selection equals: {1} asSet
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMListMorphicTest>>testUpdateFromModel [
+{ #category : #tests }
+GLMListMorphicTest >> testUpdateFromModel [
 	| browser treeMorphOne1 treeMorphTwo1 treeMorphOne2 treeMorphTwo2 |
 	browser := GLMTabulator new.
 	browser

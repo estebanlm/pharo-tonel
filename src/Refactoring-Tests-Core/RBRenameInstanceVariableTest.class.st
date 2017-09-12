@@ -1,40 +1,27 @@
-"
-
-"
 Class {
 	#name : #RBRenameInstanceVariableTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameInstanceVariableTest>>testAlreadyExistingName [
+{ #category : #'failure tests' }
+RBRenameInstanceVariableTest >> testAlreadyExistingName [
 	self shouldFail: (RBRenameInstanceVariableRefactoring 
 			rename: 'classBlock'
 			to: 'name'
 			in: RBBasicLintRuleTest)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameInstanceVariableTest>>testNonExistantName [
+{ #category : #'failure tests' }
+RBRenameInstanceVariableTest >> testNonExistantName [
 	self shouldFail: (RBRenameInstanceVariableRefactoring 
 			rename: 'foo'
 			to: 'newFoo'
 			in: RBBasicLintRuleTest)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameInstanceVariableTest>>testRenameInstVar [
+{ #category : #tests }
+RBRenameInstanceVariableTest >> testRenameInstVar [
 	| refactoring class |
 	refactoring := RBRenameInstanceVariableRefactoring rename: 'classBlock' to: 'asdf' in: RBBasicLintRuleTest.
 	self executeRefactoring: refactoring.
@@ -63,11 +50,8 @@ RBRenameInstanceVariableTest>>testRenameInstVar [
 	self resultClass: RBSelectorEnvironment')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameInstanceVariableTest>>testRenameInstVarNotAccessors [
+{ #category : #tests }
+RBRenameInstanceVariableTest >> testRenameInstVarNotAccessors [
 	| refactoring class |
 	refactoring := RBRenameInstanceVariableRefactoring rename: 'result' to: 'whatever' in: RBBasicLintRuleTest renameAccessors: false.
 	self executeRefactoring: refactoring.

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #DATarjanAlgorithmTest,
 	#superclass : #TestCase,
@@ -16,15 +13,11 @@ Class {
 		'packageH',
 		'anArray'
 	],
-	#category : #Tool-DependencyAnalyser-Test,
-	#timestamp : ''
+	#category : #Tool-DependencyAnalyser-Test
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DATarjanAlgorithmTest>>setUp [
+{ #category : #running }
+DATarjanAlgorithmTest >> setUp [
 	tarjanPackage := DATarjanAlgorithm new.
 	anArray := Array new: 8.
 	packageA := DAPackage on: (RPackageSet named:'A').
@@ -45,19 +38,13 @@ DATarjanAlgorithmTest>>setUp [
 	anArray at:  8 put:packageH.
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DATarjanAlgorithmTest>>stackSize [
+{ #category : #utility }
+DATarjanAlgorithmTest >> stackSize [
 	^ (tarjanPackage instVarNamed: 'stack') size
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DATarjanAlgorithmTest>>testNoOutgoingDependenciesAfterTarjan [
+{ #category : #tests }
+DATarjanAlgorithmTest >> testNoOutgoingDependenciesAfterTarjan [
 	"test if we have 0 outgoing dependencies in each SCC after the algorithm"
 
 	| aRelation aCollection |
@@ -77,11 +64,8 @@ DATarjanAlgorithmTest>>testNoOutgoingDependenciesAfterTarjan [
 	self assert: (tarjanPackage stronglyConnectedComponents anySatisfy: [ :scc | scc outgoing isEmpty ])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DATarjanAlgorithmTest>>testPush [
+{ #category : #tests }
+DATarjanAlgorithmTest >> testPush [
 	self assert: (self stackSize = 0).
 	self deny: packageA isInStack.
 	tarjanPackage push: packageA.
@@ -90,11 +74,8 @@ DATarjanAlgorithmTest>>testPush [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DATarjanAlgorithmTest>>testRunTarjan [
+{ #category : #tests }
+DATarjanAlgorithmTest >> testRunTarjan [
 	"test the Tarjan algorithm on a simple graph with 8 nodes"
 	| aPDPackageRelation  |
 	packageA add: (DAPackageDependency from: packageA to: packageB).
@@ -122,11 +103,8 @@ DATarjanAlgorithmTest>>testRunTarjan [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DATarjanAlgorithmTest>>testRunTarjanWikipedia [
+{ #category : #tests }
+DATarjanAlgorithmTest >> testRunTarjanWikipedia [
 	"test the Tarjan algorithm on the Wikipedia graph (page Tarjan's strongly connected components algorithm"
 	| aPDPackageRelation |
 	packageA add: (DAPackageDependency from: packageA to: packageB).

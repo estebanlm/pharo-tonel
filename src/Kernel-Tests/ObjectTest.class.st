@@ -4,83 +4,55 @@ SUnit tests for objects
 Class {
 	#name : #ObjectTest,
 	#superclass : #ClassTestCase,
-	#category : #Kernel-Tests-Objects,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:41'
+	#category : #Kernel-Tests-Objects
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>a [
+{ #category : #private }
+ObjectTest >> a [
 	self b.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>a1 [
+{ #category : #private }
+ObjectTest >> a1 [
 	self b1.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>b [
+{ #category : #private }
+ObjectTest >> b [
 	self haltIf: #testHaltIf.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>b1 [
+{ #category : #private }
+ObjectTest >> b1 [
 	self haltIf: #testasdasdfHaltIf.
 ]
 
-{
-	#category : #assertions-halt,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>shouldHaltAfter: aNumber times: aBlock [
+{ #category : #assertions-halt }
+ObjectTest >> shouldHaltAfter: aNumber times: aBlock [
 	
 	self shouldHaltWhen: [ aNumber timesRepeat: aBlock ].
 ]
 
-{
-	#category : #assertions-halt,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>shouldHaltWhen: aBlock [
+{ #category : #assertions-halt }
+ObjectTest >> shouldHaltWhen: aBlock [
 
 	self should: aBlock raise: Halt.
 ]
 
-{
-	#category : #assertions-halt,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>shouldntHaltAfter: aNumber times: aBlock [
+{ #category : #assertions-halt }
+ObjectTest >> shouldntHaltAfter: aNumber times: aBlock [
 	
 	self shouldntHaltWhen: [ aNumber timesRepeat: aBlock ].
 ]
 
-{
-	#category : #assertions-halt,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>shouldntHaltWhen: aBlock [
+{ #category : #assertions-halt }
+ObjectTest >> shouldntHaltWhen: aBlock [
 
 	self shouldnt: aBlock raise: Halt.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>testBecome [
+{ #category : #tests }
+ObjectTest >> testBecome [
 	"self debug: #testBecome"
 	"this test should that all the variables pointing to an object are pointing now to another one, and all
       object pointing to the other are pointing to the object"
@@ -96,11 +68,8 @@ ObjectTest>>testBecome [
 	self assert: pt1 = (100@100).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>testBecomeForward [
+{ #category : #tests }
+ObjectTest >> testBecomeForward [
 	"self debug: #testBecomeForward"
 	"this test should that all the variables pointing to an object are pointing now to another one.
 	Not that this inverse is not true. This kind of become is called oneWayBecome in VW"
@@ -115,11 +84,8 @@ ObjectTest>>testBecomeForward [
 	self assert: pt1 = (100@100)
 ]
 
-{
-	#category : #'tests - debugging',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>testHaltIf [
+{ #category : #'tests - debugging' }
+ObjectTest >> testHaltIf [
 
 	self shouldHaltWhen: [self haltIf: true].
 	self shouldntHaltWhen: [self haltIf: false].
@@ -137,11 +103,8 @@ ObjectTest>>testHaltIf [
 	self shouldntHaltWhen: [self haltIf: [:receiver | receiver class ~= self class]].
 ]
 
-{
-	#category : #'tests - debugging',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>testHaltOnCount [
+{ #category : #'tests - debugging' }
+ObjectTest >> testHaltOnCount [
 
 	| anObject |
 	anObject := Object new.
@@ -157,11 +120,8 @@ ObjectTest>>testHaltOnCount [
 
 ]
 
-{
-	#category : #'tests - debugging',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>testHaltOnce [
+{ #category : #'tests - debugging' }
+ObjectTest >> testHaltOnce [
 	| anObject block |
 	anObject := Object new.
 	block :=  [ anObject haltOnce ]. 
@@ -170,11 +130,8 @@ ObjectTest>>testHaltOnce [
 	Halt resetOnce.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>testInstVarNamed [
+{ #category : #tests }
+ObjectTest >> testInstVarNamed [
 	| obj |
 	obj := ObjectMockForTest new.
 	self assert: (obj instVarNamed: 'variable') isNil.
@@ -190,11 +147,8 @@ ObjectTest>>testInstVarNamed [
 		equals: 'timoleon'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>testInstVarNamedPut [
+{ #category : #tests }
+ObjectTest >> testInstVarNamedPut [
 	| obj |
 	obj := ObjectMockForTest new.
 	self assert: (obj instVarNamed: 'variable') isNil.
@@ -204,27 +158,18 @@ ObjectTest>>testInstVarNamedPut [
 	self should: [ obj instVarNamed: 'timoleon' put: 1 ] raise: InstanceVariableNotFound
 ]
 
-{
-	#category : #'tests - introspection',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>testReadSlot [
+{ #category : #'tests - introspection' }
+ObjectTest >> testReadSlot [
 	self assert: (5@3 readSlot: (Point slotNamed: #x)) = 5
 ]
 
-{
-	#category : #'tests - introspection',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>testReadSlotNamed [
+{ #category : #'tests - introspection' }
+ObjectTest >> testReadSlotNamed [
 	self assert: (5@3 readSlotNamed: #x) = 5
 ]
 
-{
-	#category : #'tests - introspection',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>testWriteSlotNamedValue [
+{ #category : #'tests - introspection' }
+ObjectTest >> testWriteSlotNamedValue [
 	| object |
 	object := 5@6.
 	
@@ -232,11 +177,8 @@ ObjectTest>>testWriteSlotNamedValue [
 	self assert: object = (7@6).
 ]
 
-{
-	#category : #'tests - introspection',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ObjectTest>>testWriteSlotValue [
+{ #category : #'tests - introspection' }
+ObjectTest >> testWriteSlotValue [
 	| object |
 	object := 5@6.
 	

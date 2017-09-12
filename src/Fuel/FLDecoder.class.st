@@ -13,15 +13,11 @@ Class {
 		'objectsWriteStream',
 		'globalEnvironment'
 	],
-	#category : #Fuel-Core,
-	#timestamp : 'MartinDias 1/6/2012 16:08'
+	#category : #Fuel-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder class>>on: aStream migrations: aCollection globalEnvironment: aDictionary [
+{ #category : #'instance creation' }
+FLDecoder class >> on: aStream migrations: aCollection globalEnvironment: aDictionary [
 	
 	^self basicNew
 		initializeOn: aStream 
@@ -30,11 +26,8 @@ FLDecoder class>>on: aStream migrations: aCollection globalEnvironment: aDiction
 		yourself.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>classNamed: className  [
+{ #category : #accessing }
+FLDecoder >> classNamed: className [ 
 
 	^ (migrations
 		detect: [:m | m sourceClassName = className ]
@@ -43,11 +36,8 @@ FLDecoder>>classNamed: className  [
 		
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>decodeYourself [
+{ #category : #decoding }
+FLDecoder >> decodeYourself [
 
 	| objectCount |
 	objectCount := self nextEncodedPositiveInteger.
@@ -60,32 +50,23 @@ FLDecoder>>decodeYourself [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>globalClassNamed: className [
+{ #category : #accessing }
+FLDecoder >> globalClassNamed: className [
 
 	^ globalEnvironment 
 		at: className
 		ifAbsent: [ FLClassNotFound signalWithName: className ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>globalEnvironment [
+{ #category : #accessing }
+FLDecoder >> globalEnvironment [
 	"Answer a dictionary where the look up for global symbols will be done during materialization."
 	
 	^ globalEnvironment
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>initializeOn: aStream migrations: aCollection globalEnvironment: aDictionary  [
+{ #category : #initializing }
+FLDecoder >> initializeOn: aStream migrations: aCollection globalEnvironment: aDictionary [ 
 
 	self initialize.
 	stream := aStream.
@@ -93,53 +74,35 @@ FLDecoder>>initializeOn: aStream migrations: aCollection globalEnvironment: aDic
 	globalEnvironment := aDictionary.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>isBigEndian [
+{ #category : #accessing }
+FLDecoder >> isBigEndian [
 	^ isBigEndian
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>nextEncodedBitmap [
+{ #category : #decoding }
+FLDecoder >> nextEncodedBitmap [
 
 	^ Bitmap newFromStream: stream
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>nextEncodedByte [
+{ #category : #decoding }
+FLDecoder >> nextEncodedByte [
 	^stream next
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>nextEncodedBytesInto: aBytesObject [
+{ #category : #decoding }
+FLDecoder >> nextEncodedBytesInto: aBytesObject [
 	stream next: aBytesObject basicSize into: aBytesObject 
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>nextEncodedClusterClass [
+{ #category : #decoding }
+FLDecoder >> nextEncodedClusterClass [
 
 	^ self class environment at: self nextEncodedString asSymbol
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>nextEncodedInt24 [
+{ #category : #decoding }
+FLDecoder >> nextEncodedInt24 [
 	| n firstDigit |
 	n := firstDigit := stream next.
 	n := (n bitShift: 8) + stream next.
@@ -149,11 +112,8 @@ FLDecoder>>nextEncodedInt24 [
 
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>nextEncodedInt32 [
+{ #category : #decoding }
+FLDecoder >> nextEncodedInt32 [
 	| n firstDigit |
 	n := firstDigit := stream next.
 	n := (n bitShift: 8) + stream next.
@@ -164,11 +124,8 @@ FLDecoder>>nextEncodedInt32 [
 
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>nextEncodedPositiveInteger [
+{ #category : #decoding }
+FLDecoder >> nextEncodedPositiveInteger [
 	"Read a 32-bit signed integer from the next 4 bytes"
 	| s |
 	s := 0.
@@ -176,20 +133,14 @@ FLDecoder>>nextEncodedPositiveInteger [
 	^ s
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>nextEncodedReference  [
+{ #category : #decoding }
+FLDecoder >> nextEncodedReference [ 
 
 	^ objects at: indexStream nextIndex
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>nextEncodedString [
+{ #category : #decoding }
+FLDecoder >> nextEncodedString [
 	| length aByteArray |
 
 	"read the length in binary mode"
@@ -203,21 +154,15 @@ FLDecoder>>nextEncodedString [
 
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>nextEncodedUint16 [
+{ #category : #decoding }
+FLDecoder >> nextEncodedUint16 [
 	"Answer the next unsigned, 16-bit integer from this (binary) stream."
 	^ (stream next bitShift: 8) + (stream next).
 	
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>nextEncodedUint24 [
+{ #category : #decoding }
+FLDecoder >> nextEncodedUint24 [
 	"Answer the next unsigned, 24-bit integer from this (binary) stream."
 
 	| n |
@@ -228,11 +173,8 @@ FLDecoder>>nextEncodedUint24 [
 
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>nextEncodedUint32 [
+{ #category : #decoding }
+FLDecoder >> nextEncodedUint32 [
 	"Answer the next unsigned, 32-bit integer from this (binary) stream."
 
 	| n |
@@ -244,47 +186,32 @@ FLDecoder>>nextEncodedUint32 [
 
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>nextEncodedUint8 [
+{ #category : #decoding }
+FLDecoder >> nextEncodedUint8 [
 	"Answer the next unsigned, 16-bit integer from this (binary) stream."
 	^ stream next.
 	
 
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>nextEncodedWordsInto: aWordsObject  [
+{ #category : #decoding }
+FLDecoder >> nextEncodedWordsInto: aWordsObject [ 
 	stream fuelNextWordsInto: aWordsObject 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>objects [
+{ #category : #accessing }
+FLDecoder >> objects [
 	^ objects
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>registerAll: someObjects [
+{ #category : #accessing }
+FLDecoder >> registerAll: someObjects [
 
 	objectsWriteStream nextPutAll: someObjects.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLDecoder>>variablesMappingFor: aClass [
+{ #category : #accessing }
+FLDecoder >> variablesMappingFor: aClass [
 
 	| variables |
 	variables := FLVariablesMapping materializing: aClass from: self.

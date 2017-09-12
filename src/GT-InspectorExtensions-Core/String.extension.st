@@ -1,20 +1,12 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-String>>gtDisplayOn: aStream [
+{ #category : #'*GT-InspectorExtensions-Core' }
+String >> gtDisplayOn: aStream [
 	self printOn: aStream.
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-String>>gtInspectorTextIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+String >> gtInspectorTextIn: composite [
 	<gtInspectorPresentationOrder: -10>
 	composite text
 		title: 'String';

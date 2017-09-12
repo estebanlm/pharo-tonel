@@ -13,225 +13,146 @@ Class {
 		'source',
 		'windowIndex'
 	],
-	#category : #Morphic-Core-Events,
-	#timestamp : '<historical>'
+	#category : #Morphic-Core-Events
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>= anEvent [
+{ #category : #comparing }
+MorphicEvent >> = anEvent [
 	anEvent isMorphicEvent ifFalse:[^false].
 	^self type = anEvent type
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>copyHandlerState: anEvent [
+{ #category : #initialize }
+MorphicEvent >> copyHandlerState: anEvent [
 	"Copy the handler state from anEvent. Used for quickly transferring handler information between transformed events."
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>cursorPoint [
+{ #category : #accessing }
+MorphicEvent >> cursorPoint [
 	"Backward compatibility. Use #position instead"
 	^ self position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>hand [
+{ #category : #accessing }
+MorphicEvent >> hand [
 	"Return the source that generated the event"
 	^source
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>hash [
+{ #category : #comparing }
+MorphicEvent >> hash [
 	^self type hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>isDraggingEvent [
+{ #category : #testing }
+MorphicEvent >> isDraggingEvent [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>isDropEvent [
+{ #category : #testing }
+MorphicEvent >> isDropEvent [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>isKeyboard [
+{ #category : #testing }
+MorphicEvent >> isKeyboard [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>isKeystroke [
+{ #category : #testing }
+MorphicEvent >> isKeystroke [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>isMorphicEvent [
+{ #category : #testing }
+MorphicEvent >> isMorphicEvent [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>isMouse [
+{ #category : #testing }
+MorphicEvent >> isMouse [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>isMouseOver [
+{ #category : #testing }
+MorphicEvent >> isMouseOver [
 	^self type == #mouseOver
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>isMove [
+{ #category : #testing }
+MorphicEvent >> isMove [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>isWindowEvent [
+{ #category : #testing }
+MorphicEvent >> isWindowEvent [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>position [
+{ #category : #accessing }
+MorphicEvent >> position [
 	"Since cursorPoint is defined and refers to position it should be defined
 	here as well"
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>resetHandlerFields [
+{ #category : #initialize }
+MorphicEvent >> resetHandlerFields [
 	"Reset anything that is used to cross-communicate between two eventual handlers during event dispatch"
 ]
 
-{
-	#category : #dispatching,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>sentTo: anObject [
+{ #category : #dispatching }
+MorphicEvent >> sentTo: anObject [
 	"Dispatch the receiver into anObject"
 	^anObject handleUnknownEvent: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>setHand: aHand [
+{ #category : #private }
+MorphicEvent >> setHand: aHand [
 	source := aHand
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>setTimeStamp: stamp [
+{ #category : #private }
+MorphicEvent >> setTimeStamp: stamp [
 	timeStamp := stamp.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>timeStamp [
+{ #category : #accessing }
+MorphicEvent >> timeStamp [
 	"Return the millisecond clock value at which the event was generated"
 	^timeStamp ifNil:[timeStamp := Time millisecondClockValue]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>transformedBy: aMorphicTransform [
+{ #category : #transforming }
+MorphicEvent >> transformedBy: aMorphicTransform [
 	"Return the receiver transformed by the given transform into a local coordinate system."
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>type [
+{ #category : #accessing }
+MorphicEvent >> type [
 	"Return a symbol indicating the type this event."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>wasHandled [
+{ #category : #accessing }
+MorphicEvent >> wasHandled [
 	"Return true if this event was handled. May be ignored for some types of events."
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>wasHandled: aBool [
+{ #category : #accessing }
+MorphicEvent >> wasHandled: aBool [
 	"Determine if this event was handled. May be ignored for some types of events."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>windowIndex [
+{ #category : #accessing }
+MorphicEvent >> windowIndex [
 	^windowIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicEvent>>windowIndex: aValue [
+{ #category : #accessing }
+MorphicEvent >> windowIndex: aValue [
 	windowIndex := aValue
 ]

@@ -21,15 +21,11 @@ Class {
 	#classVars : [
 		'CopyPlusIcon'
 	],
-	#category : #Morphic-Base-Events,
-	#timestamp : 'nk 6/16/2003 16:52'
+	#category : #Morphic-Base-Events
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph class>>initIcons [
+{ #category : #initialization }
+TransferMorph class >> initIcons [
 	"TransferMorph initIcons"
 
 	CopyPlusIcon := Form
@@ -39,37 +35,25 @@ TransferMorph class>>initIcons [
 		offset: 0@0
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph class>>initialize [
+{ #category : #initialization }
+TransferMorph class >> initialize [
 	"TransferMorph initialize"
 
 	self initIcons
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph class>>withPassenger: anObject  [
+{ #category : #'instance creation' }
+TransferMorph class >> withPassenger: anObject [ 
 	^ self withPassenger: anObject from: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph class>>withPassenger: anObject from: source  [
+{ #category : #'instance creation' }
+TransferMorph class >> withPassenger: anObject from: source [ 
 	^self withPassenger: anObject from: source hand: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph class>>withPassenger: anObject from: source hand: dragHand [
+{ #category : #'instance creation' }
+TransferMorph class >> withPassenger: anObject from: source hand: dragHand [
 	| hand |
 	
 	hand := (dragHand ifNil:[ ActiveHand ]).
@@ -84,11 +68,8 @@ TransferMorph class>>withPassenger: anObject from: source hand: dragHand [
 		yourself
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>aboutToBeGrabbedBy: aHand  [
+{ #category : #dropping/grabbing }
+TransferMorph >> aboutToBeGrabbedBy: aHand [ 
 	"The receiver is being grabbed by a hand.                           
 	Perform necessary adjustments (if any) and return the actual morph    
 	     that should be added to the hand."
@@ -101,11 +82,8 @@ TransferMorph>>aboutToBeGrabbedBy: aHand  [
 	aHand newKeyboardFocus: self.
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>animationForMoveSuccess: success  [
+{ #category : #dropping/grabbing }
+TransferMorph >> animationForMoveSuccess: success [ 
 	| start stop slideForm |
 	success
 		ifTrue: [^ self]
@@ -122,20 +100,14 @@ TransferMorph>>animationForMoveSuccess: success  [
 		delay: 20
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>defaultColor [
+{ #category : #initialization }
+TransferMorph >> defaultColor [
 	"answer the default color/fill style for the receiver"
 	^ Smalltalk ui theme selectionColor
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>delete [
+{ #category : #submorphs-add/remove }
+TransferMorph >> delete [
 	"See also >>justDroppedInto:event:."
 	accepted ifFalse: [
 		self dropNotifyRecipient ifNotNil: [ self dropNotifyRecipient dropRejectedMorph: self ]].
@@ -144,78 +116,51 @@ TransferMorph>>delete [
 	super delete
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>dragHand [
+{ #category : #accessing }
+TransferMorph >> dragHand [
 	"The hand dragging this morph"
 	^dragHand
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>dragHand: aHandMorph [
+{ #category : #accessing }
+TransferMorph >> dragHand: aHandMorph [
 	"The hand dragging this morph"
 	dragHand := aHandMorph
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>dragTransferType [
+{ #category : #'drag and drop' }
+TransferMorph >> dragTransferType [
 	^transferType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>dragTransferType: aSymbol [
+{ #category : #accessing }
+TransferMorph >> dragTransferType: aSymbol [
 	transferType := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>draggedMorph [
+{ #category : #accessing }
+TransferMorph >> draggedMorph [
 	draggedMorph ifNil: [self initDraggedMorph].
 	^draggedMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>draggedMorph: aMorph [
+{ #category : #accessing }
+TransferMorph >> draggedMorph: aMorph [
 	draggedMorph := aMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>dropNotifyRecipient [
+{ #category : #accessing }
+TransferMorph >> dropNotifyRecipient [
 	^dropNotifyRecipient
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>dropNotifyRecipient: anObject [
+{ #category : #accessing }
+TransferMorph >> dropNotifyRecipient: anObject [
 	dropNotifyRecipient := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>initDraggedMorph [
+{ #category : #private }
+TransferMorph >> initDraggedMorph [
 	draggedMorph ifNotNil: [^self].
 	draggedMorph := self passenger asDraggableMorph.
 	self addMorphBack: draggedMorph.
@@ -223,11 +168,8 @@ TransferMorph>>initDraggedMorph [
 	self changed; fullBounds
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>initialize [
+{ #category : #initialization }
+TransferMorph >> initialize [
 	"initialize the state of the receiver"
 	super initialize.
 	self layoutPolicy: TableLayout new.
@@ -248,20 +190,14 @@ TransferMorph>>initialize [
 	self on: #keyStroke send: #keyStroke: to: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>isTransferable [
+{ #category : #testing }
+TransferMorph >> isTransferable [
 
 	^ true
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>justDroppedInto: targetMorph event: anEvent  [
+{ #category : #dropping/grabbing }
+TransferMorph >> justDroppedInto: targetMorph event: anEvent [ 
 	"If only world wants this TransferMorph, treat it as unaccepted (see also >>delete)."
 	| formerPosition |
 	formerPosition := self formerPosition.
@@ -275,103 +211,67 @@ TransferMorph>>justDroppedInto: targetMorph event: anEvent  [
 	self delete
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>keyStroke: evt [
+{ #category : #'event handling' }
+TransferMorph >> keyStroke: evt [
 	"Abort the drag on an escape"
 	evt keyCharacter ~= Character escape ifTrue: [ ^self ].
 	self delete.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>move [
+{ #category : #accessing }
+TransferMorph >> move [
 	copy := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>passenger [
+{ #category : #accessing }
+TransferMorph >> passenger [
 	^passenger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>passenger: anObject [
+{ #category : #accessing }
+TransferMorph >> passenger: anObject [
 	passenger := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>privateFullMoveBy: delta  [
+{ #category : #private }
+TransferMorph >> privateFullMoveBy: delta [ 
 	super privateFullMoveBy: delta.
 	self changed: #position
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>result: result  [
+{ #category : #dropping/grabbing }
+TransferMorph >> result: result [ 
 	^ self result: result from: nil
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>result: aResult from: aResultGenerator  [
+{ #category : #dropping/grabbing }
+TransferMorph >> result: aResult from: aResultGenerator [ 
 	"Send aResult of the drop operation computed by aResultGenerator to a   
 	resultRecipient, if it exists."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>shouldCopy [
+{ #category : #accessing }
+TransferMorph >> shouldCopy [
 	^copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>shouldCopy: aBoolean [
+{ #category : #accessing }
+TransferMorph >> shouldCopy: aBoolean [
 	copy := aBoolean.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>source [
+{ #category : #accessing }
+TransferMorph >> source [
 	^source
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>source: anObject [
+{ #category : #accessing }
+TransferMorph >> source: anObject [
 	source := anObject
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>step [
+{ #category : #'stepping and presenter' }
+TransferMorph >> step [
 	self shouldCopy = dragHand shiftPressed
 		ifTrue: [ ^ self ].
 	
@@ -379,19 +279,13 @@ TransferMorph>>step [
 	self updateCopyIcon.
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>stepTime [
+{ #category : #'stepping and presenter' }
+TransferMorph >> stepTime [
 	^100
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransferMorph>>updateCopyIcon [
+{ #category : #private }
+TransferMorph >> updateCopyIcon [
 
 	| copyIcon |	
 	copyIcon := self submorphWithProperty: #tmCopyIcon.

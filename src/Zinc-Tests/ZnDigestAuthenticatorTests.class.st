@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnDigestAuthenticatorTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnDigestAuthenticatorTests>>testParseEmpty [
+{ #category : #testing }
+ZnDigestAuthenticatorTests >> testParseEmpty [
 	| keys headerValue |
 	headerValue := ' Digest username="Mufasa",
                      realm="testrealm@host.com",
@@ -33,11 +26,8 @@ ZnDigestAuthenticatorTests>>testParseEmpty [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnDigestAuthenticatorTests>>testParseOK [
+{ #category : #testing }
+ZnDigestAuthenticatorTests >> testParseOK [
 	| keys headerValue |
 	headerValue := ' Digest username="Mufasa",
                      realm="testrealm@host.com",

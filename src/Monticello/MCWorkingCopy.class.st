@@ -17,23 +17,16 @@ Class {
 		'repositoryGroup',
 		'requiredPackages'
 	],
-	#category : #Monticello-Versioning,
-	#timestamp : 'StephaneDucasse 4/29/2011 20:44'
+	#category : #Monticello-Versioning
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy class>>ancestorsFromArray: anArray cache: aDictionary [
+{ #category : #private }
+MCWorkingCopy class >> ancestorsFromArray: anArray cache: aDictionary [
 	^ anArray ifNotNil: [anArray collect: [:dict | self infoFromDictionary: dict cache: aDictionary]]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy class>>hasPackageNamed: aName [
+{ #category : #querying }
+MCWorkingCopy class >> hasPackageNamed: aName [
 	" self hasPackageNamed: 'ConfigurationOfFuel' "
 	
 	^ MCWorkingCopy allManagers
@@ -41,11 +34,8 @@ MCWorkingCopy class>>hasPackageNamed: aName [
 		ifNone: [ false ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy class>>infoFromDictionary: aDictionary cache: cache [
+{ #category : #private }
+MCWorkingCopy class >> infoFromDictionary: aDictionary cache: cache [
 	| id |
 	id := (aDictionary at: #id) asString.
 	^ cache at: id ifAbsentPut:
@@ -60,21 +50,15 @@ MCWorkingCopy class>>infoFromDictionary: aDictionary cache: cache [
 			stepChildren: (self ancestorsFromArray: (aDictionary at: #stepChildren ifAbsent: []) cache: cache)]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy class>>initialize [
+{ #category : #initialize }
+MCWorkingCopy class >> initialize [
 	"self initialize"
 	registry ifNotNil: [ registry rehash ].
 	self registerForNotifications.
 ]
 
-{
-	#category : #'event registration',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy class>>registerForNotifications [
+{ #category : #'event registration' }
+MCWorkingCopy class >> registerForNotifications [
 	"self registerForNotifications"
 	<systemEventRegistration>
 	
@@ -83,46 +67,31 @@ MCWorkingCopy class>>registerForNotifications [
 	self registerInterestOnSystemChangesOnAnnouncer: SystemAnnouncer uniqueInstance.
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>adopt: aVersion [
+{ #category : #operations }
+MCWorkingCopy >> adopt: aVersion [
 	ancestry addAncestor: aVersion info.
 	self changed.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>allAncestors [
+{ #category : #accessing }
+MCWorkingCopy >> allAncestors [
 	^ self versionInfo 
 		ifNotNil: [ :versionInfo | versionInfo allAncestors ]
 		ifNil: [ #() ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>ancestors [
+{ #category : #accessing }
+MCWorkingCopy >> ancestors [
 	^ ancestry ancestors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>ancestry [
+{ #category : #accessing }
+MCWorkingCopy >> ancestry [
 	^ ancestry
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>backportChangesTo: aVersionInfo [
+{ #category : #operations }
+MCWorkingCopy >> backportChangesTo: aVersionInfo [
 	| baseVersion fullPatch currentVersionInfo currentVersion newSnapshot newAncestry |
 	currentVersionInfo := self currentVersionInfo.
 	baseVersion := self repositoryGroup versionWithInfo: aVersionInfo.
@@ -143,27 +112,18 @@ MCWorkingCopy>>backportChangesTo: aVersionInfo [
 		self modified: false; modified: true]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>changesRelativeToRepository: aRepository [
+{ #category : #operations }
+MCWorkingCopy >> changesRelativeToRepository: aRepository [
 	^ self completeSnapshot patchRelativeToBase: (self closestAncestorSnapshotIn: aRepository).
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>clearRequiredPackages [
+{ #category : #operations }
+MCWorkingCopy >> clearRequiredPackages [
 	requiredPackages := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>closestAncestorSnapshotIn: aRepository [
+{ #category : #accessing }
+MCWorkingCopy >> closestAncestorSnapshotIn: aRepository [
 	
 	"Returns a complete Snapshot including all required packages by recurisveliy walking all required package and trying to find the closes ancestor in the given repository"
 	
@@ -180,11 +140,8 @@ MCWorkingCopy>>closestAncestorSnapshotIn: aRepository [
 	^ MCSnapshot fromDefinitions: definitions
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>collectDependenciesWithMessage: messageString in: aRepository [
+{ #category : #operations }
+MCWorkingCopy >> collectDependenciesWithMessage: messageString [ in: aRepository
 	
 	^ self requiredPackages collect: [:aPackage | 
 			MCVersionDependency
@@ -195,11 +152,8 @@ MCWorkingCopy>>collectDependenciesWithMessage: messageString in: aRepository [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>completeSnapshot [
+{ #category : #accessing }
+MCWorkingCopy >> completeSnapshot [
 	"return a complete snapshot of the loaded sources in this working copy. 
 	unlike snapshot this includes also the snapshots of all packages"
 	
@@ -214,40 +168,28 @@ MCWorkingCopy>>completeSnapshot [
 	^ MCSnapshot fromDefinitions: definitions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>currentVersionInfo [
+{ #category : #accessing }
+MCWorkingCopy >> currentVersionInfo [
 	^ (self needsSaving or: [ancestry ancestors isEmpty])
 		ifTrue: [ (self newVersionIn: self repositoryGroup) 
 						ifNotNil: [ :version | version info ] ]
 		ifFalse: [ancestry ancestors first]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>currentVersionInfoWithMessage: aMessageString in: aRepository [
+{ #category : #accessing }
+MCWorkingCopy >> currentVersionInfoWithMessage: aMessageString [ in: aRepository
 	^ (self needsSaving or: [ancestry ancestors isEmpty])
 		ifTrue: [ (self newVersionWithMessage: aMessageString in: aRepository) info ]
 		ifFalse: [ancestry ancestors first]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>description [
+{ #category : #accessing }
+MCWorkingCopy >> description [
 	^ self packageNameWithStar, ' (', (ancestry ancestorStringWithout: self packageName), ')'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>findSnapshotWithVersionInfo: aVersionInfo [
+{ #category : #private }
+MCWorkingCopy >> findSnapshotWithVersionInfo: aVersionInfo [
     "when an ancestor inside the ancestor chain is not found, does not pass nil instead.
     With this change we can now browse history and delta between them without having to 
     have the complete history"
@@ -261,20 +203,14 @@ MCWorkingCopy>>findSnapshotWithVersionInfo: aVersionInfo [
             ifNotNil: [:aVersion | aVersion snapshot]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>initialize [
+{ #category : #initialization }
+MCWorkingCopy >> initialize [
 	super initialize.
 	ancestry := MCWorkingAncestry new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>loadRemoteDependenciesIn: aRepository [
+{ #category : #accessing }
+MCWorkingCopy >> loadRemoteDependenciesIn: aRepository [
 	"load the remote dependencies of all packages in parallel"
 	| dependencies |
 	dependencies := self 
@@ -285,22 +221,16 @@ MCWorkingCopy>>loadRemoteDependenciesIn: aRepository [
 
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>loaded: aVersion [
+{ #category : #operations }
+MCWorkingCopy >> loaded: aVersion [
 	ancestry := MCWorkingAncestry new addAncestor: aVersion info.
 	requiredPackages := OrderedCollection withAll: (aVersion dependencies collect: [:ea | ea package]).
 	self modified: false.
 	self changed
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>merge: targetVersion [
+{ #category : #operations }
+MCWorkingCopy >> merge: targetVersion [
 	| ancestorInfo merger ancestorSnapshot packageSnapshot |
 	targetVersion dependencies do: [:ea | ea resolve merge].
 	ancestorInfo := targetVersion info commonAncestorWith: ancestry.
@@ -329,29 +259,20 @@ MCWorkingCopy>>merge: targetVersion [
 	self changed
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>merged: aVersion [
+{ #category : #operations }
+MCWorkingCopy >> merged: aVersion [
 	ancestry addAncestor: aVersion info.
 	aVersion dependencies do: [:ea | self requirePackage: ea package].
 	self changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>needsSaving [
+{ #category : #accessing }
+MCWorkingCopy >> needsSaving [
 	^ self modified or: [self requiredPackages anySatisfy: [:ea | ea workingCopy needsSaving]]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>newVersionIn: aRepository [
+{ #category : #operations }
+MCWorkingCopy >> newVersionIn: aRepository [
 	^ (self requestVersionNameAndMessageWithSuggestion: (self uniqueVersionNameIn: aRepository)) 
 		ifNotNil: [:pair |
 			self 
@@ -361,11 +282,8 @@ MCWorkingCopy>>newVersionIn: aRepository [
 
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>newVersionWithMessage: aMessageString in: aRepository [
+{ #category : #operations }
+MCWorkingCopy >> newVersionWithMessage: aMessageString [ in: aRepository
 	^ self 
 		newVersionWithName: (self uniqueVersionNameIn: aRepository)  
 		message: aMessageString
@@ -377,11 +295,8 @@ MCWorkingCopy>>newVersionWithMessage: aMessageString in: aRepository [
 	"
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>newVersionWithName: nameString message: messageString in: aRepository [
+{ #category : #operations }
+MCWorkingCopy >> newVersionWithName: nameString message: messageString [ in: aRepository
 	
 	| info deps |
 	info := ancestry infoWithName: nameString message: messageString.
@@ -400,21 +315,15 @@ MCWorkingCopy>>newVersionWithName: nameString message: messageString in: aReposi
 		dependencies: deps
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>nextAncestors [
+{ #category : #accessing }
+MCWorkingCopy >> nextAncestors [
 	^ self versionInfo 
 		ifNotNil: [ :versionInfo | versionInfo ancestors ]
 		ifNil: [ #() ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>nextVersionName [
+{ #category : #private }
+MCWorkingCopy >> nextVersionName [
 	| branch oldName base author |
 	branch := ''.
 	ancestry ancestors isEmpty
@@ -438,11 +347,8 @@ MCWorkingCopy>>nextVersionName [
 	^ base , '-' , author , branch , '.' , counter asString
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>notifyNoCommonAncestorWith: aVersion [
+{ #category : #operations }
+MCWorkingCopy >> notifyNoCommonAncestorWith: aVersion [
 	self notify:
 'Could not find a common ancestor between (',
 aVersion info name,
@@ -451,91 +357,61 @@ ancestry ancestorString, ').
 Proceeding with this merge may cause spurious conflicts.'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>possiblyNewerVersions [
+{ #category : #private }
+MCWorkingCopy >> possiblyNewerVersions [
 
 	^Array streamContents: [:strm |
 		self repositoryGroup repositories do: [:repo |
 			strm nextPutAll: (self possiblyNewerVersionsIn: repo)]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>possiblyNewerVersionsIn: aRepository [
+{ #category : #private }
+MCWorkingCopy >> possiblyNewerVersionsIn: aRepository [
 
 	^aRepository possiblyNewerVersionsOfAnyOf: self ancestors
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>printOn: aStream [
+{ #category : #printing }
+MCWorkingCopy >> printOn: aStream [
 
 	super printOn: aStream.
 	package name ifNotNil: [ aStream nextPutAll: '(' , package name asString, ')'].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>removeRequiredPackage: aPackage [
+{ #category : #accessing }
+MCWorkingCopy >> removeRequiredPackage: aPackage [
 
 	requiredPackages remove: aPackage ifAbsent: []
 
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>repositoryGroup [
+{ #category : #repositories }
+MCWorkingCopy >> repositoryGroup [
 	^ repositoryGroup ifNil: [repositoryGroup := MCRepositoryGroup new]
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>repositoryGroup: aRepositoryGroup [
+{ #category : #repositories }
+MCWorkingCopy >> repositoryGroup: aRepositoryGroup [
 	repositoryGroup := aRepositoryGroup
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>requestVersionNameAndMessageWithSuggestion: aString [
+{ #category : #private }
+MCWorkingCopy >> requestVersionNameAndMessageWithSuggestion: aString [
 	^ (MCVersionNameAndMessageRequest new suggestedName: aString) signal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>requirePackage: aPackage [
+{ #category : #accessing }
+MCWorkingCopy >> requirePackage: aPackage [
 	(self requiredPackages includes: aPackage) ifFalse: [requiredPackages add: aPackage]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>requiredPackages [
+{ #category : #accessing }
+MCWorkingCopy >> requiredPackages [
 	^ requiredPackages ifNil: [requiredPackages := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>requiredPackagesParallelCollect: aBlock withMessage: aMessage [
+{ #category : #accessing }
+MCWorkingCopy >> requiredPackagesParallelCollect: aBlock withMessage: aMessage [
 	"load the remote dependencies of all packages in parallel"
 
 	| packages progress results maxConcurrentConnections connectionThrottle addSemaphore |
@@ -565,28 +441,19 @@ MCWorkingCopy>>requiredPackagesParallelCollect: aBlock withMessage: aMessage [
 	^ results
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>snapshot [
+{ #category : #accessing }
+MCWorkingCopy >> snapshot [
 	^ self package snapshot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>theCachedRepository [
+{ #category : #accessing }
+MCWorkingCopy >> theCachedRepository [
 
 	^ MCCacheRepository uniqueInstance.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>uniqueVersionName [
+{ #category : #private }
+MCWorkingCopy >> uniqueVersionName [
 	|versionName|
 	counter := nil.
 	'Creating unique version number' 
@@ -598,11 +465,8 @@ MCWorkingCopy>>uniqueVersionName [
 	^ versionName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>uniqueVersionNameIn: aRepository [
+{ #category : #private }
+MCWorkingCopy >> uniqueVersionNameIn: aRepository [
 	|versionName|
 	counter := nil.
 	'Creating unique version number' 
@@ -614,11 +478,8 @@ MCWorkingCopy>>uniqueVersionNameIn: aRepository [
 	^ versionName
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>unload [
+{ #category : #operations }
+MCWorkingCopy >> unload [
 	"Unloads mcpackage, rpackage, classes and method extensions from this working copy"
 	| postUnloadAction |
 	
@@ -635,28 +496,19 @@ MCWorkingCopy>>unload [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>versionInfo [
+{ #category : #accessing }
+MCWorkingCopy >> versionInfo [
 	^ self ancestors 
 		ifNotEmpty: [ :list | list first ] 
 		ifEmpty: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>versionInfo: aVersionInfo [
+{ #category : #accessing }
+MCWorkingCopy >> versionInfo: aVersionInfo [
 	ancestry := MCWorkingAncestry new addAncestor: aVersionInfo
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopy>>versionSeparator [
+{ #category : #private }
+MCWorkingCopy >> versionSeparator [
 	^ $_
 ]

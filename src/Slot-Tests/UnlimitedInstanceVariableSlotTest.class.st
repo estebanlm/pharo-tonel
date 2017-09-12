@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #UnlimitedInstanceVariableSlotTest,
 	#superclass : #SlotSilentTest,
-	#category : #Slot-Tests-Examples,
-	#timestamp : ''
+	#category : #Slot-Tests-Examples
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-UnlimitedInstanceVariableSlotTest>>testExampleIvarSlot [
+{ #category : #'as yet unclassified' }
+UnlimitedInstanceVariableSlotTest >> testExampleIvarSlot [
 
 	| object slot reader writer |
 	
@@ -53,11 +46,8 @@ UnlimitedInstanceVariableSlotTest>>testExampleIvarSlot [
 	self assert: object slot1 == false.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-UnlimitedInstanceVariableSlotTest>>testExampleTwoIvarSlots [
+{ #category : #'as yet unclassified' }
+UnlimitedInstanceVariableSlotTest >> testExampleTwoIvarSlots [
 
 	| object slot1 slot2 |
 	

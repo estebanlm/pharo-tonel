@@ -13,23 +13,16 @@ Class {
 	#instVars : [
 		'nonces'
 	],
-	#category : #Zinc-HTTP-Support,
-	#timestamp : 'SvenVanCaekenberghe 12/6/2010 12:47'
+	#category : #Zinc-HTTP-Support
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestAuthenticator class>>hasMD5Support [
+{ #category : #testing }
+ZnDigestAuthenticator class >> hasMD5Support [
 	^ (self md5Hash: 'test') isNil not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestAuthenticator class>>md5Hash: aString [
+{ #category : #accessing }
+ZnDigestAuthenticator class >> md5Hash: aString [
 	| hash |
 	"Answer hash of aString as lowercase 32 digit hex String."
 	Smalltalk at: #MD5 ifPresent: [ :cls |
@@ -47,11 +40,8 @@ ZnDigestAuthenticator class>>md5Hash: aString [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestAuthenticator class>>parseAuthRequest: headerValue [
+{ #category : #accessing }
+ZnDigestAuthenticator class >> parseAuthRequest: headerValue [
 	| data dict |
 	dict := Dictionary new.
 	"Chops off the ' Digest ' scheme name, a bit too brittle."
@@ -66,31 +56,22 @@ ZnDigestAuthenticator class>>parseAuthRequest: headerValue [
 	^ dict
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestAuthenticator>>a1for: username [
+{ #category : #private }
+ZnDigestAuthenticator >> a1for: username [
 	| password |
 	password := credentials at: username ifAbsent: [ ^ nil ].
 	^ self class md5Hash: username, ':', self realm, ':', password
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestAuthenticator>>a2forUrl: uri method: method [
+{ #category : #private }
+ZnDigestAuthenticator >> a2forUrl: uri method: method [
 	^ self class md5Hash: method, ':', uri
 	
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestAuthenticator>>authHeader [
+{ #category : #public }
+ZnDigestAuthenticator >> authHeader [
 	| nonce opaque |
 	nonce := self createNonce.
 	opaque := self createOpaque.
@@ -98,31 +79,22 @@ ZnDigestAuthenticator>>authHeader [
 	^ 'Digest realm="', self realm, '", nonce="', nonce, '", opaque="', opaque, '"'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestAuthenticator>>createNonce [
+{ #category : #private }
+ZnDigestAuthenticator >> createNonce [
 	| pt |
 	pt := DateAndTime now asString, ':', Random new next asString.
 	^ self class md5Hash: pt
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestAuthenticator>>createOpaque [
+{ #category : #private }
+ZnDigestAuthenticator >> createOpaque [
 	| pt |
 	pt := Random new next asString, ':', DateAndTime now asString.
 	^ self class md5Hash: pt
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestAuthenticator>>isRequestAuthenticated: request [
+{ #category : #testing }
+ZnDigestAuthenticator >> isRequestAuthenticated: request [
 	| authorization response cresponse a1 a2 nonce opaque |
 	authorization := self class parseAuthRequest: (request headers at: 'Authorization' ifAbsent: [ ^ false ]).
 	nonce := authorization at: 'nonce' ifAbsent: [ ^ false ].
@@ -136,10 +108,7 @@ ZnDigestAuthenticator>>isRequestAuthenticated: request [
 	^ (response = cresponse)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestAuthenticator>>nonces [
+{ #category : #accessing }
+ZnDigestAuthenticator >> nonces [ 
 	^ nonces ifNil: [ nonces := Dictionary new ]
 ]

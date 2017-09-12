@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'entity'
 	],
-	#category : #Renraku-Announcements,
-	#timestamp : 'YuriyTymchuk 8/29/2015 21:31'
+	#category : #Renraku-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReCritiqueEvent>>entity [
+{ #category : #accessing }
+ReCritiqueEvent >> entity [
 	^ entity
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReCritiqueEvent>>entity: anObject [
+{ #category : #accessing }
+ReCritiqueEvent >> entity: anObject [
 
 	entity := anObject 
 ]

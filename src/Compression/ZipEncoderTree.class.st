@@ -14,50 +14,34 @@ Class {
 		'codes',
 		'maxCode'
 	],
-	#category : #Compression-Streams,
-	#timestamp : '<historical>'
+	#category : #Compression-Streams
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderTree class>>buildTreeFrom: frequencies maxDepth: depth [
+{ #category : #'instance creation' }
+ZipEncoderTree class >> buildTreeFrom: frequencies maxDepth: depth [
 	^self new buildTreeFrom: frequencies maxDepth: depth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderTree>>bitLengthAt: index [
+{ #category : #accessing }
+ZipEncoderTree >> bitLengthAt: index [
 	^bitLengths at: index+1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderTree>>bitLengths [
+{ #category : #accessing }
+ZipEncoderTree >> bitLengths [
 	"Return an array of all bitLength values for valid codes"
 	^bitLengths
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderTree>>bitLengths: blArray codes: codeArray [
+{ #category : #private }
+ZipEncoderTree >> bitLengths: blArray codes: codeArray [
 	bitLengths := blArray as: WordArray.
 	codes := codeArray as: WordArray.
 	[(self bitLengthAt: maxCode) > 0] assert.
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderTree>>buildCodes: nodeList counts: blCounts maxDepth: depth [
+{ #category : #encoding }
+ZipEncoderTree >> buildCodes: nodeList counts: blCounts maxDepth: depth [
 	"Build the codes for all nodes"
 	| nextCode code node length |
 	nextCode := WordArray new: depth+1.
@@ -77,11 +61,8 @@ ZipEncoderTree>>buildCodes: nodeList counts: blCounts maxDepth: depth [
 	].
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderTree>>buildHierarchyFrom: aHeap [
+{ #category : #encoding }
+ZipEncoderTree >> buildHierarchyFrom: aHeap [
 	"Build the node hierarchy based on the leafs in aHeap"
 	| left right parent |
 	[aHeap size > 1] whileTrue:[
@@ -99,11 +80,8 @@ ZipEncoderTree>>buildHierarchyFrom: aHeap [
 
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderTree>>buildTree: nodeList maxDepth: depth [
+{ #category : #encoding }
+ZipEncoderTree >> buildTree: nodeList maxDepth: depth [
 	"Build either the literal or the distance tree"
 	| heap rootNode blCounts |
 	heap := Heap new: nodeList size // 3.
@@ -138,11 +116,8 @@ ZipEncoderTree>>buildTree: nodeList maxDepth: depth [
 	self setValuesFrom: nodeList.
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderTree>>buildTreeFrom: frequencies maxDepth: depth [
+{ #category : #encoding }
+ZipEncoderTree >> buildTreeFrom: frequencies maxDepth: depth [
 	"Build the receiver from the given frequency values"
 	| nodeList |
 	nodeList := Array new: frequencies size.
@@ -152,55 +127,37 @@ ZipEncoderTree>>buildTreeFrom: frequencies maxDepth: depth [
 	self buildTree: nodeList maxDepth: depth.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderTree>>codeAt: index [
+{ #category : #accessing }
+ZipEncoderTree >> codeAt: index [
 	^codes at: index+1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderTree>>codes [
+{ #category : #accessing }
+ZipEncoderTree >> codes [
 	"Return an array of all valid codes"
 	^codes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderTree>>maxCode [
+{ #category : #accessing }
+ZipEncoderTree >> maxCode [
 	^maxCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderTree>>maxCode: aNumber [
+{ #category : #accessing }
+ZipEncoderTree >> maxCode: aNumber [
 	maxCode := aNumber.
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderTree>>nodeSortBlock [
+{ #category : #encoding }
+ZipEncoderTree >> nodeSortBlock [
 	^[:n1 :n2|
 		n1 frequency = n2 frequency
 			ifTrue:[n1 height <= n2 height]
 			ifFalse:[n1 frequency <= n2 frequency]].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderTree>>reverseBits: code length: length [
+{ #category : #private }
+ZipEncoderTree >> reverseBits: code length: length [
 	"Bit reverse the given code"
 	| result bit bits |
 	result := 0.
@@ -212,11 +169,8 @@ ZipEncoderTree>>reverseBits: code length: length [
 	^result
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderTree>>setValuesFrom: nodeList [
+{ #category : #private }
+ZipEncoderTree >> setValuesFrom: nodeList [
 	self bitLengths: (nodeList
 			collect: [:n | n bitLength]
 			from: 1

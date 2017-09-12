@@ -10,44 +10,31 @@ instead of
 Class {
 	#name : #IconShortcutRule,
 	#superclass : #ReNodeRewriteRule,
-	#category : #Polymorph-Widgets-Rules,
-	#timestamp : 'YuriyTymchuk 8/29/2016 21:28'
+	#category : #Polymorph-Widgets-Rules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-IconShortcutRule>>group [
+{ #category : #accessing }
+IconShortcutRule >> group [
 
 	^ 'Style'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-IconShortcutRule>>initialize [
+{ #category : #initialization }
+IconShortcutRule >> initialize [
 	super initialize.
 	self
 		replace: 'Smalltalk ui icons iconNamed: `@iconName'
 		with: '`@iconName asIcon'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-IconShortcutRule>>name [
+{ #category : #accessing }
+IconShortcutRule >> name [
 
 	^ '#iconName asIcon shortcut available'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-IconShortcutRule>>severity [
+{ #category : #accessing }
+IconShortcutRule >> severity [
 
 	^ #information
 ]

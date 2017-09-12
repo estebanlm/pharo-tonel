@@ -16,15 +16,11 @@ Class {
 		'sourceLocations',
 		'emitNode'
 	],
-	#category : #Compiler-ParseNodes,
-	#timestamp : '<historical>'
+	#category : #Compiler-ParseNodes
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode class>>example [
+{ #category : #examples }
+BraceNode class >> example [
 	"Test the {a. b. c} syntax."
 
 	| x |
@@ -35,29 +31,20 @@ BraceNode class>>example [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode>>accept: aVisitor [
+{ #category : #visiting }
+BraceNode >> accept: aVisitor [
 	^aVisitor visitBraceNode: self
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode>>analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools "<Dictionary>" [
+{ #category : #'code generation (closures)' }
+BraceNode >> analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools [ "<Dictionary>"
 	elements do:
 		[:node|
 		node analyseTempsWithin: scopeBlock rootNode: rootNode assignmentPools: assignmentPools]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode>>blockAssociationCheck: encoder [
+{ #category : #testing }
+BraceNode >> blockAssociationCheck: encoder [
 	"If all elements are MessageNodes of the form [block]->[block], and there is at
 	 least one element, answer true.
 	 Otherwise, notify encoder of an error."
@@ -78,11 +65,8 @@ BraceNode>>blockAssociationCheck: encoder [
 	^true
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode>>casesForwardDo: aBlock [
+{ #category : #enumerating }
+BraceNode >> casesForwardDo: aBlock [
 	"For each case in forward order, evaluate aBlock with three arguments:
 	 the key block, the value block, and whether it is the last case."
 
@@ -93,11 +77,8 @@ BraceNode>>casesForwardDo: aBlock [
 		aBlock value: case receiver value: case arguments first value: i=numCases]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode>>casesReverseDo: aBlock [
+{ #category : #enumerating }
+BraceNode >> casesReverseDo: aBlock [
 	"For each case in reverse order, evaluate aBlock with three arguments:
 	 the key block, the value block, and whether it is the last case."
 
@@ -108,40 +89,28 @@ BraceNode>>casesReverseDo: aBlock [
 		aBlock value: case receiver value: case arguments first value: i=numCases]
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode>>elements [
+{ #category : #'code generation (closures)' }
+BraceNode >> elements [
 	^elements
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode>>elements: collection [
+{ #category : #initialize-release }
+BraceNode >> elements: collection [
 	"Decompile."
 
 	elements := collection
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode>>elements: collection sourceLocations: locations [
+{ #category : #initialize-release }
+BraceNode >> elements: collection sourceLocations: locations [
 	"Compile."
 
 	elements := collection.
 	sourceLocations := locations
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode>>emitCodeForValue: stack encoder: encoder [
+{ #category : #'code generation' }
+BraceNode >> emitCodeForValue: stack encoder: encoder [
 
 	(encoder supportsClosureOpcodes
 		"Hack; we have no way of knowing how much stack space is available"
@@ -155,11 +124,8 @@ BraceNode>>emitCodeForValue: stack encoder: encoder [
 	^emitNode emitCodeForValue: stack encoder: encoder
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode>>matchBraceStreamReceiver: receiver messages: messages [
+{ #category : #initialize-release }
+BraceNode >> matchBraceStreamReceiver: receiver messages: messages [
 
 	((receiver isMessage: #braceStream: receiver: nil arguments: [:arg | arg isConstantNumber])
 		and: [messages last isMessage: #braceArray receiver: nil arguments: nil])
@@ -172,11 +138,8 @@ BraceNode>>matchBraceStreamReceiver: receiver messages: messages [
 		msg arguments first])
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode>>matchBraceWithReceiver: receiver selector: selector arguments: arguments [
+{ #category : #initialize-release }
+BraceNode >> matchBraceWithReceiver: receiver selector: selector arguments: arguments [
 
 	selector = (self selectorForShortForm: arguments size)
 		ifFalse: [^ nil "no match"].
@@ -185,29 +148,20 @@ BraceNode>>matchBraceWithReceiver: receiver selector: selector arguments: argume
 	self elements: arguments
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode>>maxElementsForConsArray [
+{ #category : #'code generation (closures)' }
+BraceNode >> maxElementsForConsArray [
 	"Hack; we have no way of knowing how much stack space is available during sizing"
 	^8
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode>>numElements [
+{ #category : #testing }
+BraceNode >> numElements [
 
 	^ elements size
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode>>printOn: aStream indent: level [
+{ #category : #printing }
+BraceNode >> printOn: aStream indent: level [
 
 	aStream nextPut: ${.
 	1 to: elements size do: 
@@ -216,22 +170,16 @@ BraceNode>>printOn: aStream indent: level [
 	aStream nextPut: $}
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode>>selectorForShortForm: nElements [
+{ #category : #'code generation' }
+BraceNode >> selectorForShortForm: nElements [
 
 	nElements > 4 ifTrue: [^ nil].
 	^ #(braceWithNone braceWith: braceWith:with:
 			braceWith:with:with: braceWith:with:with:with:) at: nElements + 1
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BraceNode>>sizeCodeForValue: encoder [
+{ #category : #'code generation' }
+BraceNode >> sizeCodeForValue: encoder [
 
 	(encoder supportsClosureOpcodes
 		"Hack; we have no way of knowing how much stack space is available"

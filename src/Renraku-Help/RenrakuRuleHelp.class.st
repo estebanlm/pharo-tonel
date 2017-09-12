@@ -4,40 +4,27 @@ Rules are constraint descriptions about entities. Think of a rule as a function 
 Class {
 	#name : #RenrakuRuleHelp,
 	#superclass : #RenrakuHelp,
-	#category : #Renraku-Help,
-	#timestamp : 'YuriyTymchuk 7/10/2016 15:59'
+	#category : #Renraku-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuRuleHelp class>>bookDescription [
+{ #category : #accessing }
+RenrakuRuleHelp class >> bookDescription [
 	^ 'Rules are constraint descriptions about entities. Think of a rule as a function that consumes an entity and produces a collection of critiques about it (which can be empty if there are no violations)'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuRuleHelp class>>bookName [
+{ #category : #accessing }
+RenrakuRuleHelp class >> bookName [
 
 	^ 'Rules'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuRuleHelp class>>pages [
+{ #category : #accessing }
+RenrakuRuleHelp class >> pages [
 	^#(RenrakuRuleCreationHelp runningRules)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuRuleHelp class>>runningRules [
+{ #category : #pages }
+RenrakuRuleHelp class >> runningRules [
 
 	^ HelpTopic
 		title: 'Running Rules'

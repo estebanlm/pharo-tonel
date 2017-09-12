@@ -72,15 +72,11 @@ Class {
 		'binary',
 		'shouldSignal'
 	],
-	#category : #Network-Kernel,
-	#timestamp : 'VeronicaUquillas 6/11/2010 14:38'
+	#category : #Network-Kernel
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream class>>finger: userName [
+{ #category : #example }
+SocketStream class >> finger: userName [
 	"SocketStream finger: 'stp'"
 
 	| addr s |
@@ -94,62 +90,44 @@ SocketStream class>>finger: userName [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream class>>on: socket [
+{ #category : #'instance creation' }
+SocketStream class >> on: socket [
 	"Create a socket stream on a connected server socket."
 
 	^self basicNew initialize socket: socket
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream class>>openConnectionToHost: hostIP port: portNumber [
+{ #category : #'instance creation' }
+SocketStream class >> openConnectionToHost: hostIP port: portNumber [
 	^ self openConnectionToHost: hostIP port: portNumber timeout: Socket standardTimeout
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream class>>openConnectionToHost: hostIP port: portNumber timeout: timeout [
+{ #category : #'instance creation' }
+SocketStream class >> openConnectionToHost: hostIP port: portNumber timeout: timeout [
 	| socket |
 	socket := Socket new.
 	socket connectTo: hostIP port: portNumber waitForConnectionFor: timeout.
 	^self on: socket
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream class>>openConnectionToHostNamed: hostName port: portNumber [
+{ #category : #'instance creation' }
+SocketStream class >> openConnectionToHostNamed: hostName port: portNumber [
 	| hostIP |
 	hostIP := NetNameResolver addressForName: hostName timeout: 20.
 	^self openConnectionToHost: hostIP port: portNumber
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>><< items [
+{ #category : #private }
+SocketStream >> << items [
 
  	items putOn: self.
 	
 	^ self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>adjustInBuffer: bytesRead [
+{ #category : #private }
+SocketStream >> adjustInBuffer: bytesRead [
 	"Adjust markers and possibly grow inBuffer or move data down.
 	Currently grows through doubling when less than 1024 bytes are left.
 	Never shrinks. Returns the position in the buffer where any new
@@ -168,11 +146,8 @@ SocketStream>>adjustInBuffer: bytesRead [
 	^old
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>adjustOutBuffer: bytesToWrite [
+{ #category : #private }
+SocketStream >> adjustOutBuffer: bytesToWrite [
 	"Possibly grow outBuffer to accommodate the new data.
 	Currently grows through doubling when less
 	than 1024 bytes are left. If bytesToWrite is even
@@ -183,11 +158,8 @@ SocketStream>>adjustOutBuffer: bytesToWrite [
 						replaceFrom: 1 to: outBuffer size with: outBuffer startingAt: 1]
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>ascii [
+{ #category : #configuration }
+SocketStream >> ascii [
 	"Tell the SocketStream to send data
 	as Strings instead of ByteArrays.
 	This is default."
@@ -200,11 +172,8 @@ SocketStream>>ascii [
 			outBuffer := outBuffer asString]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>atEnd [
+{ #category : #testing }
+SocketStream >> atEnd [
 	"There is nothing more to read when
 	there is no more data in our inBuffer, the socket
 	is disconnected and there is none available on the socket.
@@ -217,11 +186,8 @@ SocketStream>>atEnd [
 		and: [self isDataAvailable not]
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>autoFlush [
+{ #category : #configuration }
+SocketStream >> autoFlush [
 	"If autoFlush is enabled data will be sent through
 	the socket (flushed) when the bufferSize is reached
 	or the SocketStream is closed. Otherwise the user
@@ -231,11 +197,8 @@ SocketStream>>autoFlush [
 	^autoFlush
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>autoFlush: aBoolean [
+{ #category : #configuration }
+SocketStream >> autoFlush: aBoolean [
 	"If autoFlush is enabled data will be sent through
 	the socket (flushed) when the bufferSize is reached
 	or the SocketStream is closed. Otherwise the user
@@ -245,11 +208,8 @@ SocketStream>>autoFlush: aBoolean [
 	autoFlush := aBoolean
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>binary [
+{ #category : #configuration }
+SocketStream >> binary [
 	"Tell the SocketStream to send data
 	as ByteArrays instead of Strings.
 	Default is ascii."
@@ -262,33 +222,24 @@ SocketStream>>binary [
 			outBuffer := outBuffer asByteArray]
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>bufferSize [
+{ #category : #configuration }
+SocketStream >> bufferSize [
 	"Default buffer size is 4kb.
 	increased from earlier 2000 bytes."
 	
 	^bufferSize
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>bufferSize: anInt [
+{ #category : #configuration }
+SocketStream >> bufferSize: anInt [
 	"Default buffer size is 4kb.
 	increased from earlier 2000 bytes."
 
 	bufferSize := anInt
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>checkFlush [
+{ #category : #private }
+SocketStream >> checkFlush [
 	"If autoFlush is true we flush if
 	we have reached the bufferSize
 	of data in the outBuffer."
@@ -297,11 +248,8 @@ SocketStream>>checkFlush [
 		ifTrue: [self flush]
 ]
 
-{
-	#category : #control,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>close [
+{ #category : #control }
+SocketStream >> close [
 	"Flush any data still not sent
 	and take care of the socket."
 
@@ -309,27 +257,18 @@ SocketStream>>close [
 	socket closeAndDestroy: 30
 ]
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>cr [
+{ #category : #'stream out' }
+SocketStream >> cr [
 	self nextPutAll: String cr
 ]
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>crlf [
+{ #category : #'stream out' }
+SocketStream >> crlf [
 	self nextPutAll: String crlf
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>debug [
+{ #category : #printing }
+SocketStream >> debug [
 	"Display debug info."
 
 	| data |
@@ -343,20 +282,14 @@ SocketStream>>debug [
 			nextPutAll: 'Out data (20):', (outBuffer copyFrom: 1 to: ((outNextToWrite - 1) min: 20)); cr]
 ]
 
-{
-	#category : #control,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>destroy [
+{ #category : #control }
+SocketStream >> destroy [
 	"Destroy the receiver and its underlying socket. Does not attempt to flush the output buffers. For a graceful close use SocketStream>>close instead."
 	socket ifNotNil: [socket destroy]
 ]
 
-{
-	#category : #control,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>flush [
+{ #category : #control }
+SocketStream >> flush [
 	"If the other end is connected and we have something
 	to send, then we send it and reset the outBuffer."
 
@@ -368,40 +301,28 @@ SocketStream>>flush [
 			outNextToWrite := 1]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>growInBuffer [
+{ #category : #private }
+SocketStream >> growInBuffer [
 	"Grows through doubling."
 
 	self resizeInBuffer: inBuffer size * 2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>ifStale: aBlock [
+{ #category : #testing }
+SocketStream >> ifStale: aBlock [
 	self isConnected
 		ifFalse: aBlock
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>inBufferSize [
+{ #category : #configuration }
+SocketStream >> inBufferSize [
 	"Answers the current size of data in the inBuffer."
 
 	^inNextToWrite - lastRead - 1
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>initialize [
+{ #category : #initialization }
+SocketStream >> initialize [
 	super initialize.
 	autoFlush := true.
 	shouldSignal := true.
@@ -410,29 +331,20 @@ SocketStream>>initialize [
 	self ascii
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>isBinary [
+{ #category : #testing }
+SocketStream >> isBinary [
 	^binary
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>isConnected [
+{ #category : #testing }
+SocketStream >> isConnected [
 	"The stream is connected if the socket is."
 
 	^socket isConnected
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>isDataAvailable [
+{ #category : #testing }
+SocketStream >> isDataAvailable [
 	"It the inbuffer is empty, we check the socket for data.
 	If it claims to have data available to read, we try to read
 	some once and recursively call this method again.
@@ -446,47 +358,32 @@ SocketStream>>isDataAvailable [
 		ifTrue: [self receiveDataIfAvailable; isDataAvailable]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>isEmpty [
+{ #category : #testing }
+SocketStream >> isEmpty [
 	"Test if there are more data to read."
 
 	^self isInBufferEmpty and: [self isDataAvailable not]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>isInBufferEmpty [
+{ #category : #testing }
+SocketStream >> isInBufferEmpty [
 	"Any data in the buffer?"
  
 	^lastRead + 1 = inNextToWrite
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>isOtherEndConnected [
+{ #category : #testing }
+SocketStream >> isOtherEndConnected [
 	^socket isOtherEndClosed not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>isStream [
+{ #category : #testing }
+SocketStream >> isStream [
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>moveInBufferDown [
+{ #category : #private }
+SocketStream >> moveInBufferDown [
 	"Move down contents of inBuffer to the start.
 	Return distance moved."
 
@@ -500,11 +397,8 @@ SocketStream>>moveInBufferDown [
 
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>next [
+{ #category : #'stream in' }
+SocketStream >> next [
 	"Return next byte, if inBuffer is empty
 	we recieve some more data and try again."
 
@@ -516,11 +410,8 @@ SocketStream>>next [
 	^inBuffer at: lastRead
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>next: anInteger [
+{ #category : #'stream in' }
+SocketStream >> next: anInteger [
 	"Read count elements and return them in a collection.
 	If the receiver is #atEnd before count elements were read, 
 	return a smaller collection and don't signal ConnectionClosed."
@@ -528,22 +419,16 @@ SocketStream>>next: anInteger [
 	^ self nextInto: (self streamBuffer: anInteger)
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>next: n into: aCollection [
+{ #category : #'stream in' }
+SocketStream >> next: n into: aCollection [
 	"Read n objects into the given collection.
 	Return aCollection or a partial copy if less than
 	n elements have been read."
 	^self next: n into: aCollection startingAt: 1
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>next: requestedCount into: collection startingAt: startIndex [
+{ #category : #'stream in' }
+SocketStream >> next: requestedCount into: collection startingAt: startIndex [
 	"Read requestedCount objects into the given collection. 
 	Return collection or a partial copy if less elements have been read."
 
@@ -554,11 +439,8 @@ SocketStream>>next: requestedCount into: collection startingAt: startIndex [
 		ifFalse: [ ^ collection copyFrom: 1 to: startIndex + readCount - 1 ]
 ]
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>next: n putAll: aCollection startingAt: startIndex [
+{ #category : #'stream out' }
+SocketStream >> next: n putAll: aCollection startingAt: startIndex [
 	"Put a String or a ByteArray onto the stream.
 	Currently a large collection will allocate a large buffer.
 	Warning: this does not work with WideString: they have to be converted first."
@@ -570,21 +452,15 @@ SocketStream>>next: n putAll: aCollection startingAt: startIndex [
 	^aCollection
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>nextAllInBuffer [
+{ #category : #'stream in' }
+SocketStream >> nextAllInBuffer [
 	"Return all data currently in the inBuffer,"
 
 	^self nextInBuffer: inNextToWrite - lastRead - 1
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>nextAvailable [
+{ #category : #'stream in' }
+SocketStream >> nextAvailable [
 	"Answer all the data currently available,
 	in buffer or in socket."
 
@@ -593,11 +469,8 @@ SocketStream>>nextAvailable [
 	^self nextAllInBuffer
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>nextAvailable: howMany [
+{ #category : #'stream in' }
+SocketStream >> nextAvailable: howMany [
 	"Answer all the data currently available,
 	in buffer or in socket - but limited to <howMany>."
 
@@ -606,11 +479,8 @@ SocketStream>>nextAvailable: howMany [
 	^self nextInBuffer: howMany
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>nextInBuffer: anInteger [
+{ #category : #'stream in' }
+SocketStream >> nextInBuffer: anInteger [
 	"Answer anInteger bytes of data at most,
 	but only from the inBuffer."
 
@@ -621,59 +491,41 @@ SocketStream>>nextInBuffer: anInteger [
 	^inBuffer copyFrom: start to: lastRead
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>nextInto: aCollection [
+{ #category : #'stream in' }
+SocketStream >> nextInto: aCollection [
 	"Read the next elements of the receiver into aCollection.
 	Return aCollection or a partial copy if less than aCollection
 	size elements have been read."
 	^self next: aCollection size into: aCollection startingAt: 1.
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>nextInto: aCollection startingAt: startIndex [
+{ #category : #'stream in' }
+SocketStream >> nextInto: aCollection startingAt: startIndex [
 	"Read the next elements of the receiver into aCollection.
 	Return aCollection or a partial copy if less than aCollection
 	size elements have been read."
 	^self next: (aCollection size - startIndex+1) into: aCollection startingAt: startIndex.
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>nextLine [
+{ #category : #'stream in' }
+SocketStream >> nextLine [
 	^self nextLineCrLf
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>nextLineCrLf [
+{ #category : #'stream in' }
+SocketStream >> nextLineCrLf [
 	^self upToAll: String crlf
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>nextLineLf [
+{ #category : #'stream in' }
+SocketStream >> nextLineLf [
 	| nextLine |
 	nextLine := self upToAll: String lf.
 	^nextLine
 ]
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>nextPut: char [
+{ #category : #'stream out' }
+SocketStream >> nextPut: char [
 	"Put a single Character or byte onto the stream."
 
 	| toPut |
@@ -686,11 +538,8 @@ SocketStream>>nextPut: char [
 	^ char
 ]
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>nextPutAll: aCollection [
+{ #category : #'stream out' }
+SocketStream >> nextPutAll: aCollection [
 	"Put a String or a ByteArray onto the stream.
 	Currently a large collection will allocate a large buffer."
 
@@ -703,11 +552,8 @@ SocketStream>>nextPutAll: aCollection [
 	^aCollection
 ]
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>nextPutAllFlush: aCollection [
+{ #category : #'stream out' }
+SocketStream >> nextPutAllFlush: aCollection [
 	"Put a String or a ByteArray onto the stream.
 	You can use this if you have very large data - it avoids
 	copying into the buffer (and avoids buffer growing)
@@ -722,31 +568,22 @@ SocketStream>>nextPutAllFlush: aCollection [
 			do: [:ex | shouldSignal ifFalse: ["swallow"]]]
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>noTimeout [
+{ #category : #configuration }
+SocketStream >> noTimeout [
 	"Do not use timeout."
 
 	timeout := 0
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>outBufferSize [
+{ #category : #configuration }
+SocketStream >> outBufferSize [
 	"Answers the current size of data in the outBuffer."
 
 	^outNextToWrite - 1
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>peek [
+{ #category : #'stream in' }
+SocketStream >> peek [
 	"Return next byte, if inBuffer is empty
 	we recieve some more data and try again.
 	Do not consume the byte."
@@ -758,11 +595,8 @@ SocketStream>>peek [
 	^inBuffer at: lastRead+1
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>peek: anInteger [
+{ #category : #'stream in' }
+SocketStream >> peek: anInteger [
 	"Answer anInteger bytes of data.
 	Do not consume data.
 
@@ -774,11 +608,8 @@ SocketStream>>peek: anInteger [
 	^inBuffer copyFrom: start to: ((lastRead + anInteger) min: inNextToWrite - 1).
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>peekFor: aCharacterOrByte [
+{ #category : #'stream in' }
+SocketStream >> peekFor: aCharacterOrByte [
 	"Read and return next character or byte
 	if it is equal to the argument.
 	Otherwise return false."
@@ -796,11 +627,8 @@ SocketStream>>peekFor: aCharacterOrByte [
 
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>peekForAll: aString [
+{ #category : #'stream in' }
+SocketStream >> peekForAll: aString [
 	"Answer whether or not the next string of characters in the receiver
 	matches aString. If a match is made, advance over that string in the receiver and
 	answer true. If no match, then leave the receiver alone and answer false.
@@ -819,27 +647,18 @@ SocketStream>>peekForAll: aString [
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>position [
+{ #category : #private }
+SocketStream >> position [
 	^lastRead
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>print: anObject [
+{ #category : #printing }
+SocketStream >> print: anObject [
 	anObject printOn: self
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>printOn: aStream [
+{ #category : #printing }
+SocketStream >> printOn: aStream [
 	"Display buffer sizes."
 
 	aStream nextPutAll: self class name.
@@ -849,11 +668,8 @@ SocketStream>>printOn: aStream [
 		(outBuffer size / 1024) rounded asString, 'kb]']
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>readInto: aCollection startingAt: startIndex count: anInteger [
+{ #category : #'stream in' }
+SocketStream >> readInto: aCollection startingAt: startIndex count: anInteger [
 	"Read n objects into the given collection starting at startIndex. 
 	Return number of elements that have been read."
 
@@ -878,11 +694,8 @@ SocketStream>>readInto: aCollection startingAt: startIndex count: anInteger [
 	^amount
 ]
 
-{
-	#category : #private-socket,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>receiveAvailableData [
+{ #category : #private-socket }
+SocketStream >> receiveAvailableData [
 	"Receive available data (as much as fits in the inBuffer)
 	but not waiting for more to arrive.
 	Return the position in the buffer where the
@@ -893,11 +706,8 @@ SocketStream>>receiveAvailableData [
 	^self adjustInBuffer: recentlyRead
 ]
 
-{
-	#category : #private-socket,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>receiveData [
+{ #category : #private-socket }
+SocketStream >> receiveData [
 	"Receive data with timeout if it has been set.
 	If shouldSignal is false we use the Socket methods
 	that swallow those Exceptions, if it is true the
@@ -926,11 +736,8 @@ SocketStream>>receiveData [
 	^self adjustInBuffer: recentlyRead
 ]
 
-{
-	#category : #control,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>receiveData: nBytes [
+{ #category : #control }
+SocketStream >> receiveData: nBytes [
 	"Keep reading the socket until we have nBytes
 	in the inBuffer or we reach the end. This method
 	does not return data, but can be used to make sure
@@ -948,11 +755,8 @@ SocketStream>>receiveData: nBytes [
 		whileTrue: [self receiveData]
 ]
 
-{
-	#category : #private-socket,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>receiveDataIfAvailable [
+{ #category : #private-socket }
+SocketStream >> receiveDataIfAvailable [
 	"Only used to check that there really is data to read
 	from the socket after it signals dataAvailable.
 	It has been known to signal true and then still
@@ -965,22 +769,16 @@ SocketStream>>receiveDataIfAvailable [
 	^self adjustInBuffer: recentlyRead
 ]
 
-{
-	#category : #control,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>recentlyRead [
+{ #category : #control }
+SocketStream >> recentlyRead [
 	"Return the number of bytes read
 	during the last socket operation."
 	
 	^recentlyRead
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>resetBuffers [
+{ #category : #private }
+SocketStream >> resetBuffers [
 	"Recreate the buffers with default start sizes."
 
 	inBuffer := self streamBuffer: bufferSize.
@@ -990,11 +788,8 @@ SocketStream>>resetBuffers [
 	outNextToWrite := 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>resizeInBuffer: newSize [
+{ #category : #private }
+SocketStream >> resizeInBuffer: newSize [
 	"Resize the inBuffer by recreating it.
 	This also has the effect of getting rid of
 	dead data above inNextToWrite.
@@ -1004,22 +799,16 @@ SocketStream>>resizeInBuffer: newSize [
 					replaceFrom: 1 to: inNextToWrite - 1 with: inBuffer startingAt: 1
 ]
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>sendCommand: aString [
+{ #category : #'stream out' }
+SocketStream >> sendCommand: aString [
 	"Sends a String ending it with CR LF and then flush
 	causing it to block until sent."
 
 	self nextPutAll: aString, String crlf; flush
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>shouldSignal [
+{ #category : #configuration }
+SocketStream >> shouldSignal [
 	"If shouldSignal is enabled the Socket Exceptions
 	ConnectionClosed and ConnectionTimedOut
 	will not be swallowed. Default is true.
@@ -1028,11 +817,8 @@ SocketStream>>shouldSignal [
 	^shouldSignal
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>shouldSignal: aBoolean [
+{ #category : #configuration }
+SocketStream >> shouldSignal: aBoolean [
 	"If shouldSignal is enabled the Socket Exceptions
 	ConnectionClosed and ConnectionTimedOut will not be swallowed.
 	Default is true. And please - don't set it to false - it is better to
@@ -1052,19 +838,13 @@ SocketStream>>shouldSignal: aBoolean [
 	shouldSignal := aBoolean
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>shouldTimeout [
+{ #category : #testing }
+SocketStream >> shouldTimeout [
 	^self timeout > 0
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>skip: anInteger [
+{ #category : #'stream in' }
+SocketStream >> skip: anInteger [
 	"Skip a number of bytes.
 	This is faster than #next: since it does not
 	have to copy and return a new String or ByteArray.
@@ -1075,35 +855,23 @@ SocketStream>>skip: anInteger [
 	lastRead := (lastRead + anInteger) min: inNextToWrite - 1
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>socket [
+{ #category : #configuration }
+SocketStream >> socket [
 	^socket
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>socket: aSocket [
+{ #category : #configuration }
+SocketStream >> socket: aSocket [
 	socket := aSocket
 ]
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>space [
+{ #category : #'stream out' }
+SocketStream >> space [
 	self nextPut: Character space
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>streamBuffer: size [
+{ #category : #private }
+SocketStream >> streamBuffer: size [
 	"Create a buffer of the correct class and given size."
 
 	^(self isBinary
@@ -1111,30 +879,21 @@ SocketStream>>streamBuffer: size [
 		ifFalse: [String]) new: size
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>timeout [
+{ #category : #configuration }
+SocketStream >> timeout [
 	"Lazily initialized unless it has been set explicitly."
 
 	timeout ifNil: [timeout := Socket standardTimeout].
 	^timeout
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>timeout: seconds [
+{ #category : #configuration }
+SocketStream >> timeout: seconds [
 	timeout := seconds
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>upTo: aCharacterOrByte [
+{ #category : #'stream in' }
+SocketStream >> upTo: aCharacterOrByte [
 	"Answer a subcollection from the current access position to the occurrence (if any, but not inclusive) of anObject in the receiver. If  anObject is not in the collection, answer the entire rest of the receiver."
 
 	"Note: The 100k limit below is compatible with the previous version though arguably incorrect. If you need unbounded behavior either up the argument or provide nil in which case we'll read until we get it or run out of memory"
@@ -1144,11 +903,8 @@ SocketStream>>upTo: aCharacterOrByte [
 		ifFalse: [ self upTo: aCharacterOrByte asCharacter limit: 100000]
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>upTo: aCharacterOrByte limit: nBytes [
+{ #category : #'stream in' }
+SocketStream >> upTo: aCharacterOrByte limit: nBytes [
 	"Return data up to, but not including given character or byte. If the character is not in the stream, or not found within nBytes answer the available contents of the stream"
 
 	| index result searchedSoFar |
@@ -1190,11 +946,8 @@ SocketStream>>upTo: aCharacterOrByte limit: nBytes [
 	^self nextAllInBuffer
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>upToAll: aStringOrByteArray [
+{ #category : #'stream in' }
+SocketStream >> upToAll: aStringOrByteArray [
 	"Answer a subcollection from the current access position to the occurrence (if any, but not inclusive) of aCollection. If aCollection is not in the stream, answer the entire rest of the stream."
 
 	"Note: The 100k limit below is compatible with the previous version though arguably incorrect. If you need unbounded behavior either up the argument or provide nil in which case we'll read until we get it or run out of memory"
@@ -1202,11 +955,8 @@ SocketStream>>upToAll: aStringOrByteArray [
 	^self upToAll: aStringOrByteArray limit: 100000
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>upToAll: aStringOrByteArray limit: nBytes [
+{ #category : #'stream in' }
+SocketStream >> upToAll: aStringOrByteArray limit: nBytes [
 	"Answer a subcollection from the current access position to the occurrence (if any, but not inclusive) of aStringOrByteArray. If aCollection is not in the stream, or not found within nBytes answer the available contents of the stream"
 
 	| index sz result searchedSoFar |
@@ -1249,11 +999,8 @@ SocketStream>>upToAll: aStringOrByteArray limit: nBytes [
 	^self nextAllInBuffer
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketStream>>upToEnd [
+{ #category : #'stream in' }
+SocketStream >> upToEnd [
 	"Answer all data coming in on the socket until the socket
 	is closed by the other end, or we get a timeout.
 	This means this method catches ConnectionClosed by itself.

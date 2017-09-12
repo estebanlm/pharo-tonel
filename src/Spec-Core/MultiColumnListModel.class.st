@@ -4,44 +4,31 @@ A MultiColumnListModel is a spec model for Multi columns list
 Class {
 	#name : #MultiColumnListModel,
 	#superclass : #ListModel,
-	#category : #Spec-Core-Widgets,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MultiColumnListModel class>>adapterName [
+{ #category : #specs }
+MultiColumnListModel class >> adapterName [
 
 	^ #MultiColumnListAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MultiColumnListModel class>>defaultSpec [
+{ #category : #specs }
+MultiColumnListModel class >> defaultSpec [
 	<spec: #default>
 	
 	^ #(MultiColumnListAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MultiColumnListModel>>listElementAt: anIndex [
+{ #category : #morphic }
+MultiColumnListModel >> listElementAt: anIndex [
 
 	^ self wrapItem: (self listItems at: anIndex) index: anIndex 
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MultiColumnListModel>>setIndex: anIndex [
+{ #category : #morphic }
+MultiColumnListModel >> setIndex: anIndex [
 
 	self allowToSelect ifFalse: [ ^ self ].
 	self okToChange ifFalse: [ ^ self ].
@@ -49,11 +36,8 @@ MultiColumnListModel>>setIndex: anIndex [
 	selectionHolder selection value: (self listItems at: anIndex ifAbsent: [ nil ]).
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MultiColumnListModel>>setSelectedIndex: anIndex [
+{ #category : #api }
+MultiColumnListModel >> setSelectedIndex: anIndex [
 	"<api: #integer min: 0 max: #listSize getter: #selectedIndex registration: #whenSelectionIndexChanged:>"
 	"Set the index of the item you want to be selected"
 	| idx selection |

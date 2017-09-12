@@ -8,25 +8,18 @@ Class {
 		'selectedColor',
 		'hsvaMorph'
 	],
-	#category : #Morphic-Widgets-ColorPicker,
-	#timestamp : 'gvc 5/18/2007 13:35'
+	#category : #Morphic-Widgets-ColorPicker
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>alpha [
+{ #category : #accessing }
+ColorSelectorDialogWindow >> alpha [
 	"Answer the alpha value of the selected color."
 
 	^(self selectedColor alpha * 255) asInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>alpha: anInteger [
+{ #category : #accessing }
+ColorSelectorDialogWindow >> alpha: anInteger [
 	"Set the alpha value of the selected color."
 
 	|c|
@@ -34,11 +27,8 @@ ColorSelectorDialogWindow>>alpha: anInteger [
 	self selectedColor: (c alpha: anInteger / 255)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>basicSelectedColor: anObject [
+{ #category : #accessing }
+ColorSelectorDialogWindow >> basicSelectedColor: anObject [
 	"Set the value of selectedColor"
 
 	selectedColor := anObject.
@@ -56,21 +46,15 @@ ColorSelectorDialogWindow>>basicSelectedColor: anObject [
 	self announcer announce: (ColorChanged to: selectedColor).
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>blue [
+{ #category : #constants }
+ColorSelectorDialogWindow >> blue [
 	"Answer the blue value of the selected color."
 
 	^(self selectedColor blue * 255) asInteger
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>blue: anInteger [
+{ #category : #coloring }
+ColorSelectorDialogWindow >> blue: anInteger [
 	"Set the blue value of the selected color."
 
 	|c|
@@ -78,21 +62,15 @@ ColorSelectorDialogWindow>>blue: anInteger [
 	self selectedColor: ((Color r: c red * 255 g: c green * 255 b: anInteger range: 255) alpha: c alpha)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>brightness [
+{ #category : #accessing }
+ColorSelectorDialogWindow >> brightness [
 	"Answer the brightness value of the selected color."
 
 	^(self selectedColor brightness * 255) asInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>brightness: anInteger [
+{ #category : #accessing }
+ColorSelectorDialogWindow >> brightness: anInteger [
 	"Set the brightness value of the selected color."
 
 	|c|
@@ -100,41 +78,29 @@ ColorSelectorDialogWindow>>brightness: anInteger [
 	self selectedColor: ((Color h: c hue s: c saturation v: anInteger / 255) alpha: c alpha)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>colorSelected: aColor [
+{ #category : #accessing }
+ColorSelectorDialogWindow >> colorSelected: aColor [
 	"A color has been selected.."
 
 	self basicSelectedColor: aColor
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>defaultLabel [
+{ #category : #actions }
+ColorSelectorDialogWindow >> defaultLabel [
 	"Answer the default label for the receiver."
 
 	^'Color Selector' translated
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>green [
+{ #category : #constants }
+ColorSelectorDialogWindow >> green [
 	"Answer the green value of the selected color."
 
 	^(self selectedColor green * 255) asInteger
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>green: anInteger [
+{ #category : #coloring }
+ColorSelectorDialogWindow >> green: anInteger [
 	"Set the green value of the selected color."
 
 	|c|
@@ -142,41 +108,29 @@ ColorSelectorDialogWindow>>green: anInteger [
 	self selectedColor: ((Color r: c red * 255 g: anInteger b: c blue * 255 range: 255) alpha: c alpha)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>hsvaMorph [
+{ #category : #accessing }
+ColorSelectorDialogWindow >> hsvaMorph [
 	"Answer the value of hsvaMorph"
 
 	^ hsvaMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>hsvaMorph: anObject [
+{ #category : #accessing }
+ColorSelectorDialogWindow >> hsvaMorph: anObject [
 	"Set the value of hsvaMorph"
 
 	hsvaMorph := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>hue [
+{ #category : #accessing }
+ColorSelectorDialogWindow >> hue [
 	"Answer the hue value of the selected color."
 
 	^(self selectedColor hue / 359 * 255) asInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>hue: anInteger [
+{ #category : #accessing }
+ColorSelectorDialogWindow >> hue: anInteger [
 	"Set the hue value of the selected color."
 
 	|c|
@@ -184,11 +138,8 @@ ColorSelectorDialogWindow>>hue: anInteger [
 	self selectedColor: ((Color h: (anInteger / 255 * 359) rounded s: c saturation v: c brightness) alpha: c alpha)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>initialize [
+{ #category : #initialization }
+ColorSelectorDialogWindow >> initialize [
 	"Initialize the receiver."
 
 	self
@@ -197,11 +148,8 @@ ColorSelectorDialogWindow>>initialize [
 	self selectedColor: self selectedColor
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>newColorComponentFieldMorph: aspect [
+{ #category : #actions }
+ColorSelectorDialogWindow >> newColorComponentFieldMorph: aspect [
 	"Answer a text entry for the specified aspect of the color."
 
 	^(self
@@ -215,11 +163,8 @@ ColorSelectorDialogWindow>>newColorComponentFieldMorph: aspect [
 		minWidth: 40
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>newColorPickerButtonMorph [
+{ #category : #actions }
+ColorSelectorDialogWindow >> newColorPickerButtonMorph [
 	"Answer a button to enable picking of colour."
 
 	^ self
@@ -234,11 +179,8 @@ ColorSelectorDialogWindow>>newColorPickerButtonMorph [
 		help: 'Pick a color from the screen' translated
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>newColorPresenterMorph [
+{ #category : #actions }
+ColorSelectorDialogWindow >> newColorPresenterMorph [
 	"Answer a color presenter."
 
 	^self
@@ -247,11 +189,8 @@ ColorSelectorDialogWindow>>newColorPresenterMorph [
 		help: 'Shows the selected color' translated
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>newContentMorph [
+{ #category : #actions }
+ColorSelectorDialogWindow >> newContentMorph [
 	"Answer a new content morph."
 
 	self hsvaMorph: self newHSVAColorSelectorMorph.
@@ -276,11 +215,8 @@ ColorSelectorDialogWindow>>newContentMorph [
 			hResizing: #shrinkWrap}
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>newHSVAColorSelectorMorph [
+{ #category : #actions }
+ColorSelectorDialogWindow >> newHSVAColorSelectorMorph [
 	"Answer a hsva color selector."
 
 	^HSVAColorSelectorMorph new
@@ -288,11 +224,8 @@ ColorSelectorDialogWindow>>newHSVAColorSelectorMorph [
 		when: #selectedColor send: #colorSelected: to: self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>pickColor [
+{ #category : #actions }
+ColorSelectorDialogWindow >> pickColor [
 	"Pick a colour from the screen."
 
 	| p c h |
@@ -320,21 +253,15 @@ ColorSelectorDialogWindow>>pickColor [
 	h showTemporaryCursor: nil
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>red [
+{ #category : #constants }
+ColorSelectorDialogWindow >> red [
 	"Answer the red value of the selected color."
 
 	^(self selectedColor red * 255) asInteger
 ]
 
-{
-	#category : #coloring,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>red: anInteger [
+{ #category : #coloring }
+ColorSelectorDialogWindow >> red: anInteger [
 	"Set the red value of the selected color."
 
 	|c|
@@ -342,21 +269,15 @@ ColorSelectorDialogWindow>>red: anInteger [
 	self selectedColor: ((Color r: anInteger g: c green * 255 b: c blue * 255 range: 255) alpha: c alpha)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>saturation [
+{ #category : #accessing }
+ColorSelectorDialogWindow >> saturation [
 	"Answer the saturation value of the selected color."
 
 	^(self selectedColor saturation * 255) asInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>saturation: anInteger [
+{ #category : #accessing }
+ColorSelectorDialogWindow >> saturation: anInteger [
 	"Set the saturation value of the selected color."
 
 	|c|
@@ -364,21 +285,15 @@ ColorSelectorDialogWindow>>saturation: anInteger [
 	self selectedColor: ((Color h: c hue s: anInteger / 255 v: c brightness) alpha: c alpha)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>selectedColor [
+{ #category : #accessing }
+ColorSelectorDialogWindow >> selectedColor [
 	"Answer the value of selectedColor"
 
 	^ selectedColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorSelectorDialogWindow>>selectedColor: aColor [
+{ #category : #accessing }
+ColorSelectorDialogWindow >> selectedColor: aColor [
 	"Set the value of selectedColor. Update the color selectors."
 
 	self basicSelectedColor: aColor.

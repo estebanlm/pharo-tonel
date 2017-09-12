@@ -21,69 +21,47 @@ Class {
 	#instVars : [
 		'isCentered'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-Basic,
-	#timestamp : 'AliakseiSyrel 3/22/2015 17:52'
+	#category : #Glamour-Morphic-Brick-Widgets-Basic
 }
 
-{
-	#category : #examples-open,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick class>>exampleFullSpaceFillCenteredOpen [
+{ #category : #examples-open }
+GLMRubTextFieldBrick class >> exampleFullSpaceFillCenteredOpen [
 
 	self gtExampleFullSpaceFillCentered openCenteredInBrickWindow
 ]
 
-{
-	#category : #examples-open,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick class>>exampleFullSpaceFillOpen [
+{ #category : #examples-open }
+GLMRubTextFieldBrick class >> exampleFullSpaceFillOpen [
 
 	self gtExampleFullSpaceFill openCenteredInBrickWindow
 ]
 
-{
-	#category : #examples-open,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick class>>exampleHSpaceFillOpen [
+{ #category : #examples-open }
+GLMRubTextFieldBrick class >> exampleHSpaceFillOpen [
 
 	self gtExampleHSpaceFill openCenteredInBrickWindow
 ]
 
-{
-	#category : #examples-open,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick class>>exampleOpen [
+{ #category : #examples-open }
+GLMRubTextFieldBrick class >> exampleOpen [
 
 	self gtExample openCenteredInBrickWindow
 ]
 
-{
-	#category : #examples-open,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick class>>exampleVSpaceFillCenteredOpen [
+{ #category : #examples-open }
+GLMRubTextFieldBrick class >> exampleVSpaceFillCenteredOpen [
 
 	self gtExampleVSpaceFillCentered openCenteredInBrickWindow
 ]
 
-{
-	#category : #examples-open,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick class>>exampleVSpaceFillOpen [
+{ #category : #examples-open }
+GLMRubTextFieldBrick class >> exampleVSpaceFillOpen [
 
 	self gtExampleVSpaceFill openCenteredInBrickWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick class>>gtExample [
+{ #category : #examples }
+GLMRubTextFieldBrick class >> gtExample [
 	<gtExample>
 	<label: 'Rubric text field that shrinks to fit height and width of the text'>
 	
@@ -92,11 +70,8 @@ GLMRubTextFieldBrick class>>gtExample [
 			yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick class>>gtExampleFullSpaceFill [
+{ #category : #examples }
+GLMRubTextFieldBrick class >> gtExampleFullSpaceFill [
 	<gtExample>
 	<label: 'Rubric centered text field that fills parent'>
 	
@@ -107,11 +82,8 @@ GLMRubTextFieldBrick class>>gtExampleFullSpaceFill [
 			yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick class>>gtExampleFullSpaceFillCentered [
+{ #category : #examples }
+GLMRubTextFieldBrick class >> gtExampleFullSpaceFillCentered [
 	<gtExample>
 	<label: 'Rubric centered text field that fills parent'>
 	
@@ -123,11 +95,8 @@ GLMRubTextFieldBrick class>>gtExampleFullSpaceFillCentered [
 			yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick class>>gtExampleHSpaceFill [
+{ #category : #examples }
+GLMRubTextFieldBrick class >> gtExampleHSpaceFill [
 	<gtExample>
 	<label: 'Rubric text field that shrinks to fit height of the text and fills parent width'>
 	
@@ -137,11 +106,8 @@ GLMRubTextFieldBrick class>>gtExampleHSpaceFill [
 			yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick class>>gtExampleVSpaceFill [
+{ #category : #examples }
+GLMRubTextFieldBrick class >> gtExampleVSpaceFill [
 	<gtExample>
 	<label: 'Rubric text field that shrinks to fit width of the text and fills parent height'>
 	
@@ -151,11 +117,8 @@ GLMRubTextFieldBrick class>>gtExampleVSpaceFill [
 			yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick class>>gtExampleVSpaceFillCentered [
+{ #category : #examples }
+GLMRubTextFieldBrick class >> gtExampleVSpaceFillCentered [
 	<gtExample>
 	<label: 'Rubric centered text field that shrinks to fit width of the text and fills parent height'>
 	
@@ -166,11 +129,8 @@ GLMRubTextFieldBrick class>>gtExampleVSpaceFillCentered [
 			yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick class>>gtExampleWithBorder [
+{ #category : #examples }
+GLMRubTextFieldBrick class >> gtExampleWithBorder [
 	<gtExample>
 	<label: 'Rubric field with support of border'>
 	
@@ -180,22 +140,16 @@ GLMRubTextFieldBrick class>>gtExampleWithBorder [
 			borderColor: Color lightGray
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick>>beCentered [
+{ #category : #brick-properties }
+GLMRubTextFieldBrick >> beCentered [
 
 	isCentered := true.
 	self isVFilling
 		ifTrue: [ self rubric forceHeight: [ self height - self vPadding ] ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick>>initialize [
+{ #category : #initialization }
+GLMRubTextFieldBrick >> initialize [
 	super initialize.
 	
 	self
@@ -203,40 +157,28 @@ GLMRubTextFieldBrick>>initialize [
 		hShrinkWrap
 ]
 
-{
-	#category : #rubric-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick>>isCentered [
+{ #category : #rubric-testing }
+GLMRubTextFieldBrick >> isCentered [
 
 	^ isCentered ifNil: [ isCentered := false ]
 ]
 
-{
-	#category : #rubric-brick-creation,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick>>newRubricMorph [
+{ #category : #rubric-brick-creation }
+GLMRubTextFieldBrick >> newRubricMorph [
 
 	^ GLMRubTextFieldMorph new
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick>>shrinkingWidth [
+{ #category : #brick-geometry }
+GLMRubTextFieldBrick >> shrinkingWidth [
 
 	self rubric width: self rubric textArea width.
 	self onLayouted.
 	^ self rubric textArea width
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubTextFieldBrick>>vSpaceFill: anInteger [
+{ #category : #brick-layout-properties }
+GLMRubTextFieldBrick >> vSpaceFill: anInteger [
 	super vSpaceFill: anInteger.
 	
 	self isCentered ifTrue: [ self beCentered ]

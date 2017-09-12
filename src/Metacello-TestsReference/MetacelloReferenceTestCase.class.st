@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloReferenceTestCase,
 	#superclass : #TestCase,
-	#category : #Metacello-TestsReference,
-	#timestamp : ''
+	#category : #Metacello-TestsReference
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloReferenceTestCase>>conditionResult: resultString  [
+{ #category : #testing }
+MetacelloReferenceTestCase >> conditionResult: resultString [ 
 	"GemStone unconditionally prints Symbols with quotes, Squeak and Pharo do not"
 
 	^((((((resultString 
@@ -26,11 +19,8 @@ MetacelloReferenceTestCase>>conditionResult: resultString  [
 								
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloReferenceTestCase>>expectedPrintString [
+{ #category : #testing }
+MetacelloReferenceTestCase >> expectedPrintString [
     ^ 'spec blessing: #''baseline''.
 spec description: ''Descriptive comment''.
 spec preLoadDoIt: #''preloadForVersion''.
@@ -113,11 +103,8 @@ spec
 	removeGroup: ''default''.'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloReferenceTestCase>>testReferenceConfig [
+{ #category : #testing }
+MetacelloReferenceTestCase >> testReferenceConfig [
 
 	| spec map string expected |
 	spec := (MetacelloReferenceConfig project version: '1.0-baseline') spec.
@@ -155,11 +142,8 @@ MetacelloReferenceTestCase>>testReferenceConfig [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MetacelloReferenceTestCase>>testReferenceConfigPrintString [
+{ #category : #testing }
+MetacelloReferenceTestCase >> testReferenceConfigPrintString [
 
 	| version string expected x y |
 	version := MetacelloReferenceConfig project version: '1.0-baseline'.

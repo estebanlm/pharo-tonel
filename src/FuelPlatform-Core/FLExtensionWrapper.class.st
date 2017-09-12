@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #FLExtensionWrapper,
 	#superclass : #Object,
@@ -10,25 +7,18 @@ Class {
 		'selector',
 		'isSource'
 	],
-	#category : #FuelPlatform-Core,
-	#timestamp : ''
+	#category : #FuelPlatform-Core
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper class>>fromPragma: aPragma [
+{ #category : #instance-creation }
+FLExtensionWrapper class >> fromPragma: aPragma [
 	^ self new
 		initializeWithPragma: aPragma;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>compileInTarget [
+{ #category : #private }
+FLExtensionWrapper >> compileInTarget [
 	| methodSelector source |
 	source := self method methodClass theNonMetaClass
 		perform: self method selector
@@ -40,11 +30,8 @@ FLExtensionWrapper>>compileInTarget [
 		under: self extensionProtocolName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>copySelector: aSelector ofMethod: aCompiledMethod toClass: aClass [
+{ #category : #private }
+FLExtensionWrapper >> copySelector: aSelector ofMethod: aCompiledMethod toClass: aClass [
 	aClass
 		addAndClassifySelector: aSelector
 		withMethod: aCompiledMethod copy
@@ -52,11 +39,8 @@ FLExtensionWrapper>>copySelector: aSelector ofMethod: aCompiledMethod toClass: a
 		notifying: nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>copyToTarget [
+{ #category : #private }
+FLExtensionWrapper >> copyToTarget [
 	self targetClass
 		addAndClassifySelector: self selector
 		withMethod: self method copy
@@ -64,19 +48,13 @@ FLExtensionWrapper>>copyToTarget [
 		notifying: nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>extensionProtocolName [
+{ #category : #private }
+FLExtensionWrapper >> extensionProtocolName [
 	^ FLPlatform extensionProtocolName
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>initializeWithPragma: aPragma [
+{ #category : #initialize-release }
+FLExtensionWrapper >> initializeWithPragma: aPragma [
 	| argumentNamesAndValues |
 	argumentNamesAndValues := self readArgumentsFrom: aPragma.
 	self
@@ -95,11 +73,8 @@ FLExtensionWrapper>>initializeWithPragma: aPragma [
 			argumentValues: argumentNamesAndValues second)
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>install [
+{ #category : #operations }
+FLExtensionWrapper >> install [
 	self targetClass ifNil: [ ^ self ].
 	
 	self isSource ifTrue: [ ^ self compileInTarget ].
@@ -108,53 +83,35 @@ FLExtensionWrapper>>install [
 	self copyToTarget
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>isSource [
+{ #category : #accessing }
+FLExtensionWrapper >> isSource [
 	^ isSource
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>isSource: aBoolean [
+{ #category : #accessing }
+FLExtensionWrapper >> isSource: aBoolean [
 	isSource := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>method [
+{ #category : #accessing }
+FLExtensionWrapper >> method [
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>method: aCompiledMethod [
+{ #category : #accessing }
+FLExtensionWrapper >> method: aCompiledMethod [
 	method := aCompiledMethod
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>readArgumentsFrom: aPragma [
+{ #category : #initialize-release }
+FLExtensionWrapper >> readArgumentsFrom: aPragma [
 	^ {
 		aPragma key keywords.
 		aPragma arguments }
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>readIsSourceFrom: aPragma argumentNames: argumentNames argumentValues: argumentValues [
+{ #category : #initialize-release }
+FLExtensionWrapper >> readIsSourceFrom: aPragma argumentNames: argumentNames argumentValues: argumentValues [
 	| index |
 	index := argumentNames
 		indexOf: 'isSource:'
@@ -163,11 +120,8 @@ FLExtensionWrapper>>readIsSourceFrom: aPragma argumentNames: argumentNames argum
 	^ argumentValues at: index
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>readSelectorFrom: aPragma argumentNames: argumentNames argumentValues: argumentValues [
+{ #category : #initialize-release }
+FLExtensionWrapper >> readSelectorFrom: aPragma argumentNames: argumentNames argumentValues: argumentValues [
 	| index |
 	index := argumentNames
 		indexOf: 'selector:'
@@ -176,11 +130,8 @@ FLExtensionWrapper>>readSelectorFrom: aPragma argumentNames: argumentNames argum
 	^ argumentValues at: index
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>readTargetClassFrom: aPragma argumentNames: argumentNames argumentValues: argumentValues [
+{ #category : #initialize-release }
+FLExtensionWrapper >> readTargetClassFrom: aPragma argumentNames: argumentNames argumentValues: argumentValues [
 	| class |
 	class := Smalltalk
 		at: (argumentValues at: (argumentNames indexOf: 'flExtensionOf:'))
@@ -192,11 +143,8 @@ FLExtensionWrapper>>readTargetClassFrom: aPragma argumentNames: argumentNames ar
 			ifFalse: [ class ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>renameAndCompileInTarget [
+{ #category : #private }
+FLExtensionWrapper >> renameAndCompileInTarget [
 	| newMethod |
 	newMethod := FLPlatform current
 		renamedMethodCopyOf: self method
@@ -210,34 +158,22 @@ FLExtensionWrapper>>renameAndCompileInTarget [
 		under: self extensionProtocolName
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>selector [
+{ #category : #initialize-release }
+FLExtensionWrapper >> selector [
 	^ selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>selector: aSymbol [
+{ #category : #accessing }
+FLExtensionWrapper >> selector: aSymbol [
 	selector := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>targetClass [
+{ #category : #accessing }
+FLExtensionWrapper >> targetClass [
 	^ targetClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLExtensionWrapper>>targetClass: aClass [
+{ #category : #accessing }
+FLExtensionWrapper >> targetClass: aClass [
 	targetClass := aClass
 ]

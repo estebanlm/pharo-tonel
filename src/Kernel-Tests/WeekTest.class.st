@@ -8,24 +8,17 @@ Class {
 		'week',
 		'restoredStartDay'
 	],
-	#category : #Kernel-Tests-Chronology,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:48'
+	#category : #Kernel-Tests-Chronology
 }
 
-{
-	#category : #coverage,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeekTest>>classToBeTested [
+{ #category : #coverage }
+WeekTest >> classToBeTested [
 
 	^ Week
 ]
 
-{
-	#category : #coverage,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeekTest>>selectorsToBeIgnored [
+{ #category : #coverage }
+WeekTest >> selectorsToBeIgnored [
 
 	| deprecated private special |
 
@@ -36,11 +29,8 @@ WeekTest>>selectorsToBeIgnored [
 	^ super selectorsToBeIgnored, deprecated, private, special.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeekTest>>setUp [
+{ #category : #running }
+WeekTest >> setUp [
 	"June 1998, 5th week"
 
 	super setUp.
@@ -49,11 +39,8 @@ WeekTest>>setUp [
 	week := Week starting: '4 July 1998' asDate
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeekTest>>tearDown [
+{ #category : #running }
+WeekTest >> tearDown [
 
 	super tearDown.
 	Week startDay: restoredStartDay.
@@ -62,11 +49,8 @@ WeekTest>>tearDown [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeekTest>>testByWeekNumber [
+{ #category : #tests }
+WeekTest >> testByWeekNumber [
 	"Check some week dates, assuming that the week starts on Sunday"
 	week := Week year: 2013 week: 1.
 	self assert: week start equals: (DateAndTime year: 2012 month: 12 day: 30).
@@ -81,28 +65,19 @@ WeekTest>>testByWeekNumber [
 	self assert: week start equals: (DateAndTime year: 2013 month: 12 day: 29).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeekTest>>testByWeekNumberInCurrentYear [
+{ #category : #tests }
+WeekTest >> testByWeekNumberInCurrentYear [
 	week := Week week: 2.
 	self assert: week year asYear equals: Year current.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeekTest>>testDayNames [
+{ #category : #tests }
+WeekTest >> testDayNames [
 	self assert: (Week dayNames) = #(#Sunday #Monday #Tuesday #Wednesday #Thursday #Friday #Saturday).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeekTest>>testEnumerating [
+{ #category : #tests }
+WeekTest >> testEnumerating [
 
 	| days |
 	days := OrderedCollection new.
@@ -114,11 +89,8 @@ WeekTest>>testEnumerating [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeekTest>>testIndexOfDay [
+{ #category : #tests }
+WeekTest >> testIndexOfDay [
 	| days |
 	days := #(#Sunday #Monday #Tuesday #Wednesday #Thursday #Friday #Saturday).
 	
@@ -132,11 +104,8 @@ WeekTest>>testIndexOfDay [
 	self assert: (Week indexOfDay: #Sunnyday) = 0.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeekTest>>testInquiries [
+{ #category : #tests }
+WeekTest >> testInquiries [
 
 	self
 		assert: week start asDate = '28 June 1998' asDate;
@@ -146,11 +115,8 @@ WeekTest>>testInquiries [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeekTest>>testNameOfDay [
+{ #category : #tests }
+WeekTest >> testNameOfDay [
 	| days |
 	days := #(#Sunday #Monday #Tuesday #Wednesday #Thursday #Friday #Saturday).
 	
@@ -161,11 +127,8 @@ WeekTest>>testNameOfDay [
 	self should: [Week nameOfDay: #Sunday] raise: self defaultTestError.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeekTest>>testPreviousNext [
+{ #category : #tests }
+WeekTest >> testPreviousNext [
 	self
 		assert: week next = (Week starting: '6 July 1998' asDate);
 		assert: week previous = (Week starting:  '22 June 1998' asDate)

@@ -7,24 +7,17 @@ See CompiledMethod for more details.
 Class {
 	#name : #CompiledMethodLayout,
 	#superclass : #ObjectLayout,
-	#category : #Slot-Layout,
-	#timestamp : '<historical>'
+	#category : #Slot-Layout
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-CompiledMethodLayout class>>extending: superLayout scope: aScope host: aClass [
+{ #category : #'instance creation' }
+CompiledMethodLayout class >> extending: superLayout scope: aScope host: aClass [
 	^ superLayout extendCompiledMethod
 		host: aClass;
 		yourself
 ]
 
-{
-	#category : #format,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-CompiledMethodLayout>>instanceSpecification [
+{ #category : #format }
+CompiledMethodLayout >> instanceSpecification [
 	 ^ 24
 ]

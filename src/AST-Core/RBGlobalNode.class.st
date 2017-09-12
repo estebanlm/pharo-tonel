@@ -12,22 +12,15 @@ The parser does not know about this type of variables until you call doSemanticA
 Class {
 	#name : #RBGlobalNode,
 	#superclass : #RBVariableNode,
-	#category : #AST-Core-Nodes,
-	#timestamp : 'MarcusDenker 11/30/2016 14:25'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBGlobalNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visiting }
+RBGlobalNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^ aProgramNodeVisitor visitGlobalNode: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBGlobalNode>>isGlobal [
+{ #category : #testing }
+RBGlobalNode >> isGlobal [
 	^true
 ]

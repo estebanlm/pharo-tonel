@@ -1,12 +1,7 @@
-Extension {
-	#name : #AbstractLayout
-}
+Extension { #name : #AbstractLayout }
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-AbstractLayout>>slotsDictionary [
+{ #category : #'*Glamour-Morphic-Brick' }
+AbstractLayout >> slotsDictionary [
 
 	^ Dictionary new
 ]

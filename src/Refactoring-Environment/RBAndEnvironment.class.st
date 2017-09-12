@@ -11,75 +11,50 @@ Class {
 	#instVars : [
 		'andedEnvironment'
 	],
-	#category : #Refactoring-Environment,
-	#timestamp : 'NicolaiHess 4/27/2015 21:23'
+	#category : #Refactoring-Environment
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBAndEnvironment class>>onEnvironment: anEnvironment and: anotherEnvironment  [
+{ #category : #'instance creation' }
+RBAndEnvironment class >> onEnvironment: anEnvironment and: anotherEnvironment [ 
 	^(self onEnvironment: anEnvironment)
 		andedEnvironment: anotherEnvironment;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBAndEnvironment>>andedEnvironment [
+{ #category : #private }
+RBAndEnvironment >> andedEnvironment [
 	^andedEnvironment
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBAndEnvironment>>andedEnvironment: aBrowserEnvironment  [
+{ #category : #initialize-release }
+RBAndEnvironment >> andedEnvironment: aBrowserEnvironment [ 
 	andedEnvironment := aBrowserEnvironment
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBAndEnvironment>>classes [
+{ #category : #testing }
+RBAndEnvironment >> classes [
 	^ environment classes & andedEnvironment classes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBAndEnvironment>>classesDo: aBlock  [
+{ #category : #accessing }
+RBAndEnvironment >> classesDo: aBlock [ 
 	environment 
 		classesDo: [:each | (self includesClass: each) ifTrue: [aBlock value: each]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBAndEnvironment>>definesClass: aClass [
+{ #category : #testing }
+RBAndEnvironment >> definesClass: aClass [
 	^ (environment definesClass: aClass) and: [ 
 		andedEnvironment definesClass: aClass ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBAndEnvironment>>includesCategory: aCategory  [
+{ #category : #testing }
+RBAndEnvironment >> includesCategory: aCategory [ 
 	^(self classNamesFor: aCategory) isEmpty not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBAndEnvironment>>includesClass: aClass  [
+{ #category : #testing }
+RBAndEnvironment >> includesClass: aClass [ 
 	| doesntHaveSelectors |
 	(environment includesClass: aClass) ifFalse: [^false].
 	(andedEnvironment includesClass: aClass) ifFalse: [^false].
@@ -92,57 +67,39 @@ RBAndEnvironment>>includesClass: aClass  [
 	^doesntHaveSelectors
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBAndEnvironment>>includesProtocol: aProtocol in: aClass  [
+{ #category : #testing }
+RBAndEnvironment >> includesProtocol: aProtocol [ in: aClass 
 	^ (environment includesProtocol: aProtocol in: aClass)
 		and: [ andedEnvironment includesProtocol: aProtocol in: aClass ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBAndEnvironment>>includesSelector: aSelector in: aClass  [
+{ #category : #testing }
+RBAndEnvironment >> includesSelector: aSelector [ in: aClass 
 	^(environment includesSelector: aSelector in: aClass) 
 		and: [andedEnvironment includesSelector: aSelector in: aClass]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBAndEnvironment>>packages [
+{ #category : #accessing }
+RBAndEnvironment >> packages [
 	^ environment packages & andedEnvironment packages
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBAndEnvironment>>printOn: aStream  [
+{ #category : #printing }
+RBAndEnvironment >> printOn: aStream [ 
 	environment printOn: aStream.
 	aStream nextPutAll: ' & '.
 	andedEnvironment printOn: aStream.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBAndEnvironment>>problemCount [
+{ #category : #accessing }
+RBAndEnvironment >> problemCount [
 	^environment isClassEnvironment 
 		ifTrue: [self numberClasses]
 		ifFalse: [super problemCount]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBAndEnvironment>>selectionIntervalFor: aString  [
+{ #category : #accessing }
+RBAndEnvironment >> selectionIntervalFor: aString [ 
 	| interval |
 	interval := super selectionIntervalFor: aString.
 	interval notNil ifTrue: [^interval].
@@ -150,11 +107,8 @@ RBAndEnvironment>>selectionIntervalFor: aString  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBAndEnvironment>>selectorsForClass: aClass do: aBlock  [
+{ #category : #accessing }
+RBAndEnvironment >> selectorsForClass: aClass do: aBlock [ 
 	environment selectorsForClass: aClass
 		do: 
 			[:each | 
@@ -162,11 +116,8 @@ RBAndEnvironment>>selectorsForClass: aClass do: aBlock  [
 				ifTrue: [aBlock value: each]]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBAndEnvironment>>storeOn: aStream  [
+{ #category : #printing }
+RBAndEnvironment >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	environment storeOn: aStream.
 	aStream nextPutAll: ' & '.

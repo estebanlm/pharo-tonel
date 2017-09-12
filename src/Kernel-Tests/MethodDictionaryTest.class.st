@@ -9,114 +9,77 @@ Class {
 	#instVars : [
 		'nonEmptyDict'
 	],
-	#category : #Kernel-Tests-Methods,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:40'
+	#category : #Kernel-Tests-Methods
 }
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>aValue [
+{ #category : #helpers }
+MethodDictionaryTest >> aValue [
 
 	^ self class >> #aValue
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>anIndex [
+{ #category : #helpers }
+MethodDictionaryTest >> anIndex [
 
 	^ #aMethodName
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>anotherElementNotIn [
+{ #category : #requirements }
+MethodDictionaryTest >> anotherElementNotIn [
 " return an element different of 'elementNotIn'  not included in 'nonEmpty' "
 	^ self class >> #anotherElementNotIn
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>anotherValue [
+{ #category : #helpers }
+MethodDictionaryTest >> anotherValue [
 
 	^ self class >> #anotherValue
 ]
 
-{
-	#category : #assertions,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>assertPreservesCapacity: oldDictionary comparedTo: rehashedDictionary [
+{ #category : #assertions }
+MethodDictionaryTest >> assertPreservesCapacity: oldDictionary comparedTo: rehashedDictionary [
 	self assert: oldDictionary capacity = rehashedDictionary capacity.
 ]
 
-{
-	#category : #assertions,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>assertPreservesElements: oldDictionary comparedTo: newDictionary [
+{ #category : #assertions }
+MethodDictionaryTest >> assertPreservesElements: oldDictionary comparedTo: newDictionary [
 	self assert: (oldDictionary keys allSatisfy: [ :key |
 		(newDictionary includesKey: key) &
 		((newDictionary at: key) == (oldDictionary at: key))
 		])
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>elementNotIn [
+{ #category : #requirements }
+MethodDictionaryTest >> elementNotIn [
 "return an element not included in 'nonEmpty' "
 
 	^ self class >> #elementNotIn
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>empty [
+{ #category : #requirements }
+MethodDictionaryTest >> empty [
 	^ MethodDictionary new
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>emptyDict [
+{ #category : #requirements }
+MethodDictionaryTest >> emptyDict [
 	^ self empty
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>keyNotIn [
+{ #category : #requirements }
+MethodDictionaryTest >> keyNotIn [
 " return a key not included in nonEmpty"
 ^ #bouba
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>keyNotInNonEmptyDict [
+{ #category : #requirements }
+MethodDictionaryTest >> keyNotInNonEmptyDict [
 " return a key not included in nonEmptyDict"
 	^ #keyNotInNonEmptyDict
 ]
 
-{
-	#category : #setUps,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>modifiedMethodDictionaryCopy [
+{ #category : #setUps }
+MethodDictionaryTest >> modifiedMethodDictionaryCopy [
 	| copy |
 	
 	copy := self class methodDict copy.
@@ -124,64 +87,43 @@ MethodDictionaryTest>>modifiedMethodDictionaryCopy [
 	^copy.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>newEmptyDict [
+{ #category : #requirements }
+MethodDictionaryTest >> newEmptyDict [
 	^ MethodDictionary new
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>nonEmpty [
+{ #category : #requirements }
+MethodDictionaryTest >> nonEmpty [
 	^ nonEmptyDict
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>nonEmptyDict [
+{ #category : #requirements }
+MethodDictionaryTest >> nonEmptyDict [
 	^ nonEmptyDict 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>nonEmptyDifferentFromNonEmptyDict [
+{ #category : #requirements }
+MethodDictionaryTest >> nonEmptyDifferentFromNonEmptyDict [
 	" return a dictionary for which all keys are not included in nonEmptyDict"
 	^ MethodDictionary new
 		at: #nonEmptyDifferentFromNonEmptyDict put: (self class >> #nonEmptyDifferentFromNonEmptyDict)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>setUp [
+{ #category : #running }
+MethodDictionaryTest >> setUp [
 	super setUp.
 	nonEmptyDict := MethodDictionary new.
 	nonEmptyDict at: #setUp put: (self class >> #setUp).
 	nonEmptyDict at: #nonEmpty put: (self class >> #nonEmpty).
 ]
 
-{
-	#category : #requirement,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>speciesClass [
+{ #category : #requirement }
+MethodDictionaryTest >> speciesClass [
 	^ MethodDictionary
 ]
 
-{
-	#category : #'tests - others',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testAssociationAtExistantKeyReturnsOkAssociation [
+{ #category : #'tests - others' }
+MethodDictionaryTest >> testAssociationAtExistantKeyReturnsOkAssociation [
 	| methodSelector association |
 	methodSelector := #testAssociationAtExistantKeyReturnsOkAssociation.
 	association := self class methodDict associationAt: methodSelector ifAbsent: [self error].
@@ -190,11 +132,8 @@ MethodDictionaryTest>>testAssociationAtExistantKeyReturnsOkAssociation [
 	self assert: association value = (self class >> methodSelector).
 ]
 
-{
-	#category : #'tests - others',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testAssociationAtNonexistantKeyExecutesFailBlock [
+{ #category : #'tests - others' }
+MethodDictionaryTest >> testAssociationAtNonexistantKeyExecutesFailBlock [
 	| methodSelector result error |
 	methodSelector := #inexistant:method:larala:.
 	error := #error.
@@ -203,11 +142,8 @@ MethodDictionaryTest>>testAssociationAtNonexistantKeyExecutesFailBlock [
 	self assert: result = error.
 ]
 
-{
-	#category : #'tests - others',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testAssociationsDoGoesOverEntireDictionary [
+{ #category : #'tests - others' }
+MethodDictionaryTest >> testAssociationsDoGoesOverEntireDictionary [
 	| associations |
 	associations := MethodDictionary new.
 	
@@ -216,11 +152,8 @@ MethodDictionaryTest>>testAssociationsDoGoesOverEntireDictionary [
 	self assertPreservesElements: self class methodDict comparedTo: associations.
 ]
 
-{
-	#category : #'tests - others',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testAtExistantKeyReturnsOkCompiledMethod [
+{ #category : #'tests - others' }
+MethodDictionaryTest >> testAtExistantKeyReturnsOkCompiledMethod [
 	| methodSelector method |
 	methodSelector := #testAssociationAtExistantKeyReturnsOkAssociation.
 	method := self class methodDict at: methodSelector ifAbsent: [self error].
@@ -228,11 +161,8 @@ MethodDictionaryTest>>testAtExistantKeyReturnsOkCompiledMethod [
 	self assert: method class = CompiledMethod.
 ]
 
-{
-	#category : #'tests - others',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testAtNonexistantKeyExecutesFailBlock [
+{ #category : #'tests - others' }
+MethodDictionaryTest >> testAtNonexistantKeyExecutesFailBlock [
 	| methodSelector result error |
 	methodSelector := #inexistant:method:larala:.
 	error := #error.
@@ -241,22 +171,16 @@ MethodDictionaryTest>>testAtNonexistantKeyExecutesFailBlock [
 	self assert: result = error.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testBehaviorLocalyDefined [
+{ #category : #tests }
+MethodDictionaryTest >> testBehaviorLocalyDefined [
 	"method not acquired from a trait or from its superclass"
 	" self debug: #testBehavior "
 	self assert: (Object methodDict isKindOf: MethodDictionary).
 	self assert: (Object selectors asSortedCollection = Object selectors asSortedCollection).
 ]
 
-{
-	#category : #'tests - others',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testGrowDoublesCapacity [
+{ #category : #'tests - others' }
+MethodDictionaryTest >> testGrowDoublesCapacity [
 	| methodDictionary oldCapacity |
 	methodDictionary := MethodDictionary new.
 	oldCapacity := methodDictionary capacity.
@@ -264,11 +188,8 @@ MethodDictionaryTest>>testGrowDoublesCapacity [
 	self assert: oldCapacity * 2 = methodDictionary capacity.
 ]
 
-{
-	#category : #'tests - others',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testGrowPreservesElements [
+{ #category : #'tests - others' }
+MethodDictionaryTest >> testGrowPreservesElements [
 	| methodDictionary oldCapacity growedMethodDictionary |
 	methodDictionary := self class methodDict copy.
 	growedMethodDictionary := methodDictionary copy; grow; yourself.
@@ -277,11 +198,8 @@ MethodDictionaryTest>>testGrowPreservesElements [
 	self assertPreservesElements: growedMethodDictionary comparedTo: methodDictionary.
 ]
 
-{
-	#category : #'tests - others',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testIdentityKeyAtExistantValueCopyReturnsFailBlock [
+{ #category : #'tests - others' }
+MethodDictionaryTest >> testIdentityKeyAtExistantValueCopyReturnsFailBlock [
 	| methodSelector result aMethod error |
 	methodSelector := #testAssociationAtExistantKeyReturnsOkAssociation.
 	error := #error.
@@ -292,11 +210,8 @@ MethodDictionaryTest>>testIdentityKeyAtExistantValueCopyReturnsFailBlock [
 	self assert: result = error.
 ]
 
-{
-	#category : #'tests - others',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testIdentityKeyAtExistantValueReturnsOkKey [
+{ #category : #'tests - others' }
+MethodDictionaryTest >> testIdentityKeyAtExistantValueReturnsOkKey [
 	| methodSelector result aMethod |
 	methodSelector := #testAssociationAtExistantKeyReturnsOkAssociation.
 	
@@ -306,11 +221,8 @@ MethodDictionaryTest>>testIdentityKeyAtExistantValueReturnsOkKey [
 	self assert: result = methodSelector.
 ]
 
-{
-	#category : #'tests - others',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testIdentityKeyAtNonExistantValueReturnsFailBlock [
+{ #category : #'tests - others' }
+MethodDictionaryTest >> testIdentityKeyAtNonExistantValueReturnsFailBlock [
 	| methodSelector result aMethod error |
 	methodSelector := #testAssociationAtExistantKeyReturnsOkAssociation.
 	error := #error.
@@ -320,20 +232,14 @@ MethodDictionaryTest>>testIdentityKeyAtNonExistantValueReturnsFailBlock [
 	self assert: result = error.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testIncludesKeyLocalyDefined [
+{ #category : #tests }
+MethodDictionaryTest >> testIncludesKeyLocalyDefined [
 	" self debug: #testIncludesKeyLocalyDefined "
 	self assert: (self class includesSelector: #testIncludesKeyLocalyDefined).
 ]
 
-{
-	#category : #'tests - others',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testKeyAtExistantValueCopyReturnsOkKey [
+{ #category : #'tests - others' }
+MethodDictionaryTest >> testKeyAtExistantValueCopyReturnsOkKey [
 	| methodSelector result aMethod |
 	methodSelector := #testAssociationAtExistantKeyReturnsOkAssociation.
 	aMethod := (self class >> methodSelector) copy.
@@ -342,11 +248,8 @@ MethodDictionaryTest>>testKeyAtExistantValueCopyReturnsOkKey [
 	self assert: result = methodSelector.
 ]
 
-{
-	#category : #'tests - others',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testKeyAtExistantValueReturnsOkKey [
+{ #category : #'tests - others' }
+MethodDictionaryTest >> testKeyAtExistantValueReturnsOkKey [
 	| methodSelector result aMethod |
 	methodSelector := #testAssociationAtExistantKeyReturnsOkAssociation.
 	aMethod := self class >> methodSelector.
@@ -355,11 +258,8 @@ MethodDictionaryTest>>testKeyAtExistantValueReturnsOkKey [
 	self assert: result = methodSelector.
 ]
 
-{
-	#category : #'tests - others',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testKeyAtNonexistantValueExecutesFailBlock [
+{ #category : #'tests - others' }
+MethodDictionaryTest >> testKeyAtNonexistantValueExecutesFailBlock [
 	| methodSelector result error |
 	methodSelector := #inexistant:method:larala:.
 	error := #error.
@@ -368,22 +268,16 @@ MethodDictionaryTest>>testKeyAtNonexistantValueExecutesFailBlock [
 	self assert: result = error.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testKeyAtValueIfAbsentLocalyDefined [
+{ #category : #tests }
+MethodDictionaryTest >> testKeyAtValueIfAbsentLocalyDefined [
 	" self debug: #testKeyAtValueIfAbsentLocalyDefined "
 	self assert: (self class methodDict keyAtValue: (self class >> #testKeyAtValueIfAbsentLocalyDefined) ifAbsent: []) == #testKeyAtValueIfAbsentLocalyDefined.
 	
 	self assert: (self class methodDict keyAtValue: (Object >> #printOn:) ifAbsent: [#notFound]) == #notFound
 ]
 
-{
-	#category : #'tests - rehashing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testRehashPreservesCapacity [
+{ #category : #'tests - rehashing' }
+MethodDictionaryTest >> testRehashPreservesCapacity [
 	| oldDictionary rehashedDictionary |
 	oldDictionary := self modifiedMethodDictionaryCopy.
 
@@ -392,11 +286,8 @@ MethodDictionaryTest>>testRehashPreservesCapacity [
 	self assertPreservesCapacity: oldDictionary comparedTo: rehashedDictionary.
 ]
 
-{
-	#category : #'tests - rehashing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testRehashPreservesElements [
+{ #category : #'tests - rehashing' }
+MethodDictionaryTest >> testRehashPreservesElements [
 	| oldDictionary rehashedDictionary |
 	oldDictionary := self modifiedMethodDictionaryCopy.
 	
@@ -406,11 +297,8 @@ MethodDictionaryTest>>testRehashPreservesElements [
 	self assertPreservesElements: rehashedDictionary comparedTo: oldDictionary.
 ]
 
-{
-	#category : #'tests - removing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MethodDictionaryTest>>testRemoveAllPreservesCapacity [
+{ #category : #'tests - removing' }
+MethodDictionaryTest >> testRemoveAllPreservesCapacity [
 	| methodSelector dictionary oldSize |
 	methodSelector := #testRemoveAllPreservesCapacity.
 	dictionary := MethodDictionary new.

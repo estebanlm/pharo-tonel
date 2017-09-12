@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #EpRevertTest,
 	#superclass : #EpLogBrowserOperationFactoryTest,
-	#category : #EpiceaBrowsersTests-Integration,
-	#timestamp : ''
+	#category : #EpiceaBrowsersTests-Integration
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>revertInputEntry [
+{ #category : #private }
+EpRevertTest >> revertInputEntry [
 
 	EpLogBrowserOperationFactory new
 		logBrowserModel: (EpLogBrowserModel newWithLog: monitor log);
@@ -21,11 +14,8 @@ EpRevertTest>>revertInputEntry [
 		revertCodeChanges
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testBehaviorCategoryChange [
+{ #category : #tests }
+EpRevertTest >> testBehaviorCategoryChange [
 
 	| aClass aCategory anotherCategory |
 	aClass := classFactory newClass.
@@ -41,11 +31,8 @@ EpRevertTest>>testBehaviorCategoryChange [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testBehaviorCommentChange [
+{ #category : #tests }
+EpRevertTest >> testBehaviorCommentChange [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -59,11 +46,8 @@ EpRevertTest>>testBehaviorCommentChange [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testBehaviorNameChange [
+{ #category : #tests }
+EpRevertTest >> testBehaviorNameChange [
 
 	| aClass className |
 	aClass := classFactory newClass.
@@ -77,11 +61,8 @@ EpRevertTest>>testBehaviorNameChange [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testCategoryAdditionWithCategoryRemoved [
+{ #category : #tests }
+EpRevertTest >> testCategoryAdditionWithCategoryRemoved [
 
 	| organization aCategory |
 	organization := self class environment organization.
@@ -95,11 +76,8 @@ EpRevertTest>>testCategoryAdditionWithCategoryRemoved [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testCategoryRemovalWithCategoryAdded [
+{ #category : #tests }
+EpRevertTest >> testCategoryRemovalWithCategoryAdded [
 
 	| organization aCategory |
 	organization := self class environment organization.
@@ -114,11 +92,8 @@ EpRevertTest>>testCategoryRemovalWithCategoryAdded [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testCategoryRename [
+{ #category : #tests }
+EpRevertTest >> testCategoryRename [
 
 	| organization aCategory anotherCategory |
 	organization := self class environment organization.
@@ -137,11 +112,8 @@ EpRevertTest>>testCategoryRename [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testClassAddition [
+{ #category : #tests }
+EpRevertTest >> testClassAddition [
 
 	| aClass className |
 	aClass := classFactory newClass.
@@ -154,11 +126,8 @@ EpRevertTest>>testClassAddition [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testClassAdditionWithClassAlreadyRemoved [
+{ #category : #tests }
+EpRevertTest >> testClassAdditionWithClassAlreadyRemoved [
 
 	| aClass className |
 	aClass := classFactory newClass.
@@ -173,11 +142,8 @@ EpRevertTest>>testClassAdditionWithClassAlreadyRemoved [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testClassModificationWithClassRemoved [
+{ #category : #tests }
+EpRevertTest >> testClassModificationWithClassRemoved [
 
 	| aClass className |
 	aClass := classFactory newClass.
@@ -199,11 +165,8 @@ EpRevertTest>>testClassModificationWithClassRemoved [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testClassRemoval [
+{ #category : #tests }
+EpRevertTest >> testClassRemoval [
 
 	| aClass className category |
 	aClass := classFactory newClass.
@@ -221,11 +184,8 @@ EpRevertTest>>testClassRemoval [
 	self assert: (self class environment classNamed: className) theMetaClass instVarNames equals: #('hey').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testClassRemovalWithClassAlreadyAdded [
+{ #category : #tests }
+EpRevertTest >> testClassRemovalWithClassAlreadyAdded [
 
 	| aClass className |
 	aClass := classFactory newClass.
@@ -243,11 +203,8 @@ EpRevertTest>>testClassRemovalWithClassAlreadyAdded [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testMethodAddition [
+{ #category : #tests }
+EpRevertTest >> testMethodAddition [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -260,11 +217,8 @@ EpRevertTest>>testMethodAddition [
 	self deny: (aClass includesSelector: #fortyTwo).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testMethodAdditionWithMethodAlreadyRemoved [
+{ #category : #tests }
+EpRevertTest >> testMethodAdditionWithMethodAlreadyRemoved [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -279,11 +233,8 @@ EpRevertTest>>testMethodAdditionWithMethodAlreadyRemoved [
 	self deny: (aClass includesSelector: #fortyTwo).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testMethodModification [
+{ #category : #tests }
+EpRevertTest >> testMethodModification [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -297,11 +248,8 @@ EpRevertTest>>testMethodModification [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testMethodModificationWithProtocolChanged [
+{ #category : #tests }
+EpRevertTest >> testMethodModificationWithProtocolChanged [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -317,11 +265,8 @@ EpRevertTest>>testMethodModificationWithProtocolChanged [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testMethodRemoval [
+{ #category : #tests }
+EpRevertTest >> testMethodRemoval [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -338,11 +283,8 @@ EpRevertTest>>testMethodRemoval [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testMethodRemovalWithMethodAlreadyAdded [
+{ #category : #tests }
+EpRevertTest >> testMethodRemovalWithMethodAlreadyAdded [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -361,11 +303,8 @@ EpRevertTest>>testMethodRemovalWithMethodAlreadyAdded [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testProtocolAddition [
+{ #category : #tests }
+EpRevertTest >> testProtocolAddition [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -379,11 +318,8 @@ EpRevertTest>>testProtocolAddition [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testProtocolRemoval [
+{ #category : #tests }
+EpRevertTest >> testProtocolRemoval [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -398,11 +334,8 @@ EpRevertTest>>testProtocolRemoval [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testTraitAddition [
+{ #category : #tests }
+EpRevertTest >> testTraitAddition [
 
 	| aTrait traitName |
 	aTrait := classFactory newTrait.
@@ -415,11 +348,8 @@ EpRevertTest>>testTraitAddition [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testTraitAdditionWithTraitAlreadyRemoved [
+{ #category : #tests }
+EpRevertTest >> testTraitAdditionWithTraitAlreadyRemoved [
 
 	| aTrait traitName |
 	aTrait := classFactory newTrait.
@@ -434,11 +364,8 @@ EpRevertTest>>testTraitAdditionWithTraitAlreadyRemoved [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testTraitRemoval [
+{ #category : #tests }
+EpRevertTest >> testTraitRemoval [
 
 	| aTrait traitName |
 	aTrait := classFactory newTrait.
@@ -452,11 +379,8 @@ EpRevertTest>>testTraitRemoval [
 	"---> Fails to create trait with Unclassified category"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpRevertTest>>testTraitRemovalWithTraitAlreadyAdded [
+{ #category : #tests }
+EpRevertTest >> testTraitRemovalWithTraitAlreadyAdded [
 
 	| aTrait traitName |
 	aTrait := classFactory newTrait.

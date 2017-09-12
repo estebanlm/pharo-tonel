@@ -39,268 +39,186 @@ Class {
 		'transferBlock',
 		'color'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 7/19/2016 11:01'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel class>>adapterName [
+{ #category : #specs }
+AbstractWidgetModel class >> adapterName [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel class>>defaultSpec [
+{ #category : #specs }
+AbstractWidgetModel class >> defaultSpec [
 
 	^ { self adapterName. #adapt:. #model }
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>acceptDropBlock [
+{ #category : #'drag and drop' }
+AbstractWidgetModel >> acceptDropBlock [
 
 	^ acceptDropBlock value
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>acceptDropBlock: aBlock [
+{ #category : #'drag and drop' }
+AbstractWidgetModel >> acceptDropBlock: aBlock [
 
 	acceptDropBlock value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>borderColor [
+{ #category : #api }
+AbstractWidgetModel >> borderColor [
 	"<api: #inspect>"
 	"Return the border color"
 	
 	^ borderColor value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>borderColor: aColor [
+{ #category : #api }
+AbstractWidgetModel >> borderColor: aColor [
 	"<api: #color getter:#borderColor registration: #whenBorderColorChanged:>"
 	"Set the border width"
 	
 	borderColor value: aColor 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>borderWidth [
+{ #category : #api }
+AbstractWidgetModel >> borderWidth [
 	"<api: #inspect>"
 	"Return the border width"
 	
 	^ borderWidth value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>borderWidth: anInteger [
+{ #category : #api }
+AbstractWidgetModel >> borderWidth: anInteger [
 	"<api: #integer min:0 max: 5 getter:#borderWidth registration: #whenBorderWidthChanged:>"
 	"Set the border width"
 	
 	borderWidth value: anInteger
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>color [
+{ #category : #api }
+AbstractWidgetModel >> color [
 
 	^ color value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>color: aColor [
+{ #category : #api }
+AbstractWidgetModel >> color: aColor [
 
 	^ color value: aColor
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>defaultColor [
+{ #category : #initialization }
+AbstractWidgetModel >> defaultColor [
 	^ Smalltalk ui theme backgroundColor
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>disable [
+{ #category : #api }
+AbstractWidgetModel >> disable [
 	"<api: #do>"
 	"Disable the label"
 	
 	self enabled: false
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>dragEnabled [
+{ #category : #'drag and drop' }
+AbstractWidgetModel >> dragEnabled [
 
 	^ dragEnabled value
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>dragEnabled: anObject [
+{ #category : #'drag and drop' }
+AbstractWidgetModel >> dragEnabled: anObject [
 
 	dragEnabled value: anObject
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>dragTransformationBlock [
+{ #category : #'drag and drop' }
+AbstractWidgetModel >> dragTransformationBlock [
 
 	^ dragTransformationBlock value
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>dragTransformationBlock: aBlock [
+{ #category : #'drag and drop' }
+AbstractWidgetModel >> dragTransformationBlock: aBlock [
 
 	dragTransformationBlock value: aBlock
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>dropEnabled [
+{ #category : #'drag and drop' }
+AbstractWidgetModel >> dropEnabled [
 
 	^ dropEnabled value
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>dropEnabled: aBoolean [
+{ #category : #'drag and drop' }
+AbstractWidgetModel >> dropEnabled: aBoolean [
 
 	dropEnabled value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>enable [
+{ #category : #api }
+AbstractWidgetModel >> enable [
 	"<api: #do>"
 	"Enable the label"
 	
 	self enabled: true
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>enabled [
+{ #category : #api }
+AbstractWidgetModel >> enabled [
 	"<api: #inspect>"
 	^ enabledHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>enabled: aBoolean [
+{ #category : #api }
+AbstractWidgetModel >> enabled: aBoolean [
 	"<api: #boolean getter: #enabled registration: #whenEnabledChanged:>"
 	"Set if the button is enabled (clickable)"
 	
 	enabledHolder value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>enabledHolder [
+{ #category : #api }
+AbstractWidgetModel >> enabledHolder [
 	
 	^ enabledHolder
 ]
 
-{
-	#category : #api-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>eventKeyStrokesForNextFocus [
+{ #category : #api-focus }
+AbstractWidgetModel >> eventKeyStrokesForNextFocus [
 	"String describing the keystroke to perform to jump to the next widget"
 	
 	^ { Character arrowRight asKeyCombination. Character tab asKeyCombination}
 ]
 
-{
-	#category : #api-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>eventKeyStrokesForPreviousFocus [
+{ #category : #api-focus }
+AbstractWidgetModel >> eventKeyStrokesForPreviousFocus [
 	"String describing the keystroke to perform to jump to the next widget"
 	
 	^ { Character arrowLeft asKeyCombination. Character tab shift asKeyCombination}
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>help [
+{ #category : #api }
+AbstractWidgetModel >> help [
 	"<api: #inspect>"
 	"Return the ballon text"
 	
 	^ helpHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>help: aString [
+{ #category : #api }
+AbstractWidgetModel >> help: aString [
 	"<api: #string getter:#help registration: #whenHelpChanged:>"
 	"Set the help string"
 	
 	helpHolder value: aString
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>initialize [
+{ #category : #initialization }
+AbstractWidgetModel >> initialize [
 
 	super initialize.
 
@@ -338,37 +256,25 @@ AbstractWidgetModel>>initialize [
 		self widget ifNotNil: [:w | w update: #dropEnabled: with: { b } ] ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>initializeWidgets  [
+{ #category : #initialization }
+AbstractWidgetModel >> initializeWidgets [ 
 	"ignore this method since there is no composition in basic widgets"
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>transferBlock [
+{ #category : #'drag and drop' }
+AbstractWidgetModel >> transferBlock [
 
 	^ transferBlock value
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>transferBlock: aBlock [
+{ #category : #'drag and drop' }
+AbstractWidgetModel >> transferBlock: aBlock [
 
 	transferBlock value: aBlock
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>transferFor: passenger from: source [
+{ #category : #'drag and drop' }
+AbstractWidgetModel >> transferFor: passenger from: source [
 
 	^ TransferModel new
 		transfer: passenger;
@@ -376,59 +282,41 @@ AbstractWidgetModel>>transferFor: passenger from: source [
 		yourself
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>wantDropBlock [
+{ #category : #'drag and drop' }
+AbstractWidgetModel >> wantDropBlock [
 
 	^ wantDropBlock value
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>wantDropBlock: aBlock [
+{ #category : #'drag and drop' }
+AbstractWidgetModel >> wantDropBlock: aBlock [
 
 	wantDropBlock value: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>whenBorderColorChanged: aBlock [
+{ #category : #api-events }
+AbstractWidgetModel >> whenBorderColorChanged: aBlock [
 	"Set a block to be performed when the brder width changed"
 	
 	borderColor whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>whenBorderWidthChanged: aBlock [
+{ #category : #api-events }
+AbstractWidgetModel >> whenBorderWidthChanged: aBlock [
 	"Set a block to be performed when the brder width changed"
 	
 	borderWidth whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>whenEnabledChanged: aBlock [
+{ #category : #api-events }
+AbstractWidgetModel >> whenEnabledChanged: aBlock [
 	"Set a block to performed when the widget is enabled or disabled"
 	
 	enabledHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractWidgetModel>>whenHelpChanged: aBlock [
+{ #category : #api-events }
+AbstractWidgetModel >> whenHelpChanged: aBlock [
 	"Set a block to be performed when the help changed"
 	
 	helpHolder whenChangedDo: aBlock

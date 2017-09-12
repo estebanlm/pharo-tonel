@@ -12,65 +12,43 @@ So we model long as a special type and we use platform speciphic settings.
 Class {
 	#name : #FFIULong,
 	#superclass : #FFIIntegerType,
-	#category : #UnifiedFFI-Types,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Types
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIULong class>>externalType  [
+{ #category : #accessing }
+FFIULong class >> externalType [ 
 	^ FFIArchitecture forCurrentArchitecture externalULongType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIULong class>>externalTypeAlignment [
+{ #category : #accessing }
+FFIULong class >> externalTypeAlignment [
 	^ OSPlatform current ffiLongAlignment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIULong class>>externalTypeSize [
+{ #category : #accessing }
+FFIULong class >> externalTypeSize [
 	^ FFIArchitecture forCurrentArchitecture longTypeSize
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIULong>>basicHandle: aHandle at: index [
+{ #category : #private }
+FFIULong >> basicHandle: aHandle at: index [
 	^ aHandle platformUnsignedLongAt: index	
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIULong>>basicHandle: aHandle at: index put: value  [
+{ #category : #private }
+FFIULong >> basicHandle: aHandle at: index put: value [ 
 	^ aHandle platformUnsignedLongAt: index put: value
 
 ]
 
-{
-	#category : #'private emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIULong>>emitSelector [
+{ #category : #'private emitting code' }
+FFIULong >> emitSelector [
 	^ 'platformUnsignedLongAt'
 ]
 
-{
-	#category : #'private emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIULong>>offsetPointerReadFieldAt: offsetVariableName [
+{ #category : #'private emitting code' }
+FFIULong >> offsetPointerReadFieldAt: offsetVariableName [
 	^ '^ExternalData 
 		fromHandle: (handle {1}: {2})
 		type: FFIArchitecture forCurrentArchitecture externalULongType asPointerType'
@@ -79,11 +57,8 @@ FFIULong>>offsetPointerReadFieldAt: offsetVariableName [
 		offsetVariableName }
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIULong>>offsetReadFieldAt: offsetVariableName [
+{ #category : #'emitting code' }
+FFIULong >> offsetReadFieldAt: offsetVariableName [
 	self isPointer ifTrue: [ 
 		^ self offsetPointerReadFieldAt: offsetVariableName ].
 	
@@ -91,11 +66,8 @@ FFIULong>>offsetReadFieldAt: offsetVariableName [
 		stream << '^handle ' << self emitSelector << ': ' << offsetVariableName ]
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIULong>>offsetWriteFieldAt: offsetVariableName with: valueName [
+{ #category : #'emitting code' }
+FFIULong >> offsetWriteFieldAt: offsetVariableName with: valueName [
 	self isPointer ifTrue: [ 
 		^ self externalTypeWithArity 
 			offsetWriteFieldAt: offsetVariableName 
@@ -107,21 +79,15 @@ FFIULong>>offsetWriteFieldAt: offsetVariableName with: valueName [
 			<< ' put: ' << valueName ]
 ]
 
-{
-	#category : #'private emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIULong>>pointerReadFieldAt: byteOffset [
+{ #category : #'private emitting code' }
+FFIULong >> pointerReadFieldAt: byteOffset [
 	"since offsetPointerReadFieldAt: receives a variable no matter what we use the trick of 
 	 just passing the offset as a string... it will work :)"
 	^ self offsetPointerReadFieldAt: byteOffset asString
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIULong>>readFieldAt: byteOffset [
+{ #category : #'emitting code' }
+FFIULong >> readFieldAt: byteOffset [
 	self isPointer ifTrue: [ 
 		^ self pointerReadFieldAt: byteOffset ].
 
@@ -130,11 +96,8 @@ FFIULong>>readFieldAt: byteOffset [
 
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIULong>>writeFieldAt: byteOffset with: valueName [
+{ #category : #'emitting code' }
+FFIULong >> writeFieldAt: byteOffset with: valueName [
 	self isPointer ifTrue: [ 
 		^ self externalTypeWithArity 
 			writeFieldAt: byteOffset

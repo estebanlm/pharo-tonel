@@ -8,15 +8,11 @@ Class {
 		'environment',
 		'rules'
 	],
-	#category : #JenkinsTools-ExtraReports,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:31'
+	#category : #JenkinsTools-ExtraReports
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDLintReport class>>runClasses: aCollectionOfClasses named: aString [
+{ #category : #running }
+HDLintReport class >> runClasses: aCollectionOfClasses named: aString [
 	| classEnvironment |
 	classEnvironment := RBBrowserEnvironment new
 		forClasses: aCollectionOfClasses.
@@ -24,21 +20,15 @@ HDLintReport class>>runClasses: aCollectionOfClasses named: aString [
 	^ self runEnvironment: classEnvironment
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDLintReport class>>runEnvironment: anEnvironment [
+{ #category : #running }
+HDLintReport class >> runEnvironment: anEnvironment [
 	^ self new 
 		initializeOn: anEnvironment; 
 		run
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDLintReport class>>runPackage: aString [
+{ #category : #running }
+HDLintReport class >> runPackage: aString [
 	| packageEnvironment |
 	packageEnvironment := RBBrowserEnvironment new
 		forPackageNames: (Array with: aString).
@@ -46,11 +36,8 @@ HDLintReport class>>runPackage: aString [
 	^ self runEnvironment: packageEnvironment
 ]
 
-{
-	#category : #generating,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDLintReport>>generateClass: aClass on: aStream [
+{ #category : #generating }
+HDLintReport >> generateClass: aClass on: aStream [
 	| sourceStream sourceName |
 	sourceStream := WriteStream on: String new.
 	sourceName := environment label , '-' , aClass name , '.st'.
@@ -62,11 +49,8 @@ HDLintReport>>generateClass: aClass on: aStream [
 		stream nextPutAll: sourceStream contents ]
 ]
 
-{
-	#category : #generating,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDLintReport>>generateClass: aClass selector: aSelector source: sourceStream on: aStream [
+{ #category : #generating }
+HDLintReport >> generateClass: aClass selector: aSelector source: sourceStream on: aStream [
 	| offset source matching |
 	offset := self
 		lineAndColumn: sourceStream contents
@@ -80,11 +64,8 @@ HDLintReport>>generateClass: aClass selector: aSelector source: sourceStream on:
 	self generateViolations: matching source: source offset: offset on: aStream
 ]
 
-{
-	#category : #generating,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDLintReport>>generateClass: aClass source: sourceStream on: aStream [
+{ #category : #generating }
+HDLintReport >> generateClass: aClass source: sourceStream on: aStream [
 	| offset source matching selectors |
 	offset := self
 		lineAndColumn: sourceStream contents
@@ -101,11 +82,8 @@ HDLintReport>>generateClass: aClass source: sourceStream on: aStream [
 		do: [ :selector | self generateClass: aClass selector: selector source: sourceStream on: aStream ]
 ]
 
-{
-	#category : #generating,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDLintReport>>generateOn: aStream [
+{ #category : #generating }
+HDLintReport >> generateOn: aStream [
 	aStream nextPutAll: '<?xml version="1.0" encoding="UTF-8"?>'; nextPut: Character lf.
 	aStream nextPutAll: '<checkstyle version="5.2">'; nextPut: Character lf.
 	(environment allClasses asSortedCollection: [ :a :b | a name <= b name ])
@@ -113,11 +91,8 @@ HDLintReport>>generateOn: aStream [
 	aStream nextPutAll: '</checkstyle>'
 ]
 
-{
-	#category : #generating,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDLintReport>>generateViolations: aCollection source: aString offset: aPoint on: aStream [
+{ #category : #generating }
+HDLintReport >> generateViolations: aCollection source: aString offset: aPoint [ on: aStream
 	aCollection do: [ :rule |
 		| interval start |
 		interval := (rule result selectionIntervalFor: aString)
@@ -139,37 +114,25 @@ HDLintReport>>generateViolations: aCollection source: aString offset: aPoint on:
 		aStream nextPutAll: '/>'; nextPut: Character lf ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDLintReport>>initializeOn: anEnvironment [
+{ #category : #initialization }
+HDLintReport >> initializeOn: anEnvironment [
 	environment := anEnvironment.
 	rules := (RBCompositeLintRule rulesFor: RBBasicLintRule)
 		reject: [ :each | each class name endsWith: 'SpellingRule' ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDLintReport>>isClassEnvironment: anEnvironment [
+{ #category : #testing }
+HDLintReport >> isClassEnvironment: anEnvironment [
 	^ #(CategoryEnvironment ClassEnvironment VariableEnvironment) includes: anEnvironment class name
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDLintReport>>isSelectorEnvironment: anEnvironment [
+{ #category : #testing }
+HDLintReport >> isSelectorEnvironment: anEnvironment [
 	^ #(SelectorEnvironment ParseTreeEnvironment VariableEnvironment) includes: anEnvironment class name
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDLintReport>>lineAndColumn: aString at: anInteger [
+{ #category : #private }
+HDLintReport >> lineAndColumn: aString at: anInteger [
 	| line last stream |
 	line := 1.
 	last := 0.
@@ -181,19 +144,13 @@ HDLintReport>>lineAndColumn: aString at: anInteger [
 		repeat
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDLintReport>>rules [
+{ #category : #accessing }
+HDLintReport >> rules [
 	^rules
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDLintReport>>run [
+{ #category : #running }
+HDLintReport >> run [
 	RBSmalllintChecker 
 		runRule: (RBCompositeLintRule rules: rules)
 		onEnvironment: environment.

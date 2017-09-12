@@ -48,15 +48,11 @@ Class {
 		'StateNewBlock',
 		'StateNoMoreData'
 	],
-	#category : #Compression-Streams,
-	#timestamp : 'MarcusDenker 2/14/2010 22:29'
+	#category : #Compression-Streams
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream class>>initialize [
+{ #category : #initialization }
+InflateStream class >> initialize [
 	"InflateStream initialize"
 	MaxBits := 16.
 	StateNewBlock := 0.
@@ -78,11 +74,8 @@ InflateStream class>>initialize [
 	FixedDistCodes := ((1 to: 32) collect:[:i| 5]).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>atEnd [
+{ #category : #testing }
+InflateStream >> atEnd [
 	"Note: It is possible that we have a few bits left,
 	representing just the EOB marker. To check for
 	this we must force decompression of the next
@@ -97,30 +90,21 @@ InflateStream>>atEnd [
 	^false
 ]
 
-{
-	#category : #'bit access',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>bitPosition [
+{ #category : #'bit access' }
+InflateStream >> bitPosition [
 	"Return the current bit position of the source"
 	sourceStream == nil
 		ifTrue:[^sourcePos * 8 + bitPos]
 		ifFalse:[^sourceStream position + sourcePos * 8 + bitPos]
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>close [
+{ #category : #open/close }
+InflateStream >> close [
 	sourceStream ifNotNil:[sourceStream close].
 ]
 
-{
-	#category : #'huffman trees',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>computeHuffmanValues: aCollection counts: counts from: minBits to: maxBits [
+{ #category : #'huffman trees' }
+InflateStream >> computeHuffmanValues: aCollection counts: counts from: minBits to: maxBits [
 	"Assign numerical values to all codes.
 	Note: The values are stored according to the bit length"
 	| offsets values baseOffset codeLength |
@@ -140,28 +124,19 @@ InflateStream>>computeHuffmanValues: aCollection counts: counts from: minBits to
 	^values
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>contents [
+{ #category : #accessing }
+InflateStream >> contents [
 
 	^ self upToEnd
 ]
 
-{
-	#category : #crc,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>crcError: aString [
+{ #category : #crc }
+InflateStream >> crcError: aString [
 	^CRCError signal: aString
 ]
 
-{
-	#category : #'huffman trees',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>createHuffmanTables: values counts: counts from: minBits to: maxBits [
+{ #category : #'huffman trees' }
+InflateStream >> createHuffmanTables: values counts: counts from: minBits to: maxBits [
 	"Create the actual tables"
 	| table tableStart tableSize tableEnd 
 	valueIndex tableStack numValues deltaBits maxEntries
@@ -242,11 +217,8 @@ InflateStream>>createHuffmanTables: values counts: counts from: minBits to: maxB
 	 ^table copyFrom: 1 to: tableEnd-1
 ]
 
-{
-	#category : #'huffman trees',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>decodeDynamicTable: nItems from: aHuffmanTable [
+{ #category : #'huffman trees' }
+InflateStream >> decodeDynamicTable: nItems from: aHuffmanTable [
 	"Decode the code length of the literal/length and distance table
 	in a block compressed with dynamic huffman trees"
 	| values index value repCount theValue |
@@ -279,11 +251,8 @@ InflateStream>>decodeDynamicTable: nItems from: aHuffmanTable [
 	^values
 ]
 
-{
-	#category : #inflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>decodeValueFrom: table [
+{ #category : #inflating }
+InflateStream >> decodeValueFrom: table [
 	"Decode the next value in the receiver using the given huffman table."
 	| bits bitsNeeded tableIndex value |
 	bitsNeeded := (table at: 1) bitShift: -24.	"Initial bits needed"
@@ -298,11 +267,8 @@ InflateStream>>decodeValueFrom: table [
 	^value
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>decompressAll [
+{ #category : #private }
+InflateStream >> decompressAll [
 	"Profile the decompression speed"
 	[self atEnd] whileFalse:[
 		position := readLimit.
@@ -310,11 +276,8 @@ InflateStream>>decompressAll [
 	].
 ]
 
-{
-	#category : #inflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>decompressBlock: llTable with: dTable [
+{ #category : #inflating }
+InflateStream >> decompressBlock: llTable with: dTable [
 	"Process the compressed data in the block.
 	llTable is the huffman table for literal/length codes
 	and dTable is the huffman table for distance codes."
@@ -356,50 +319,35 @@ InflateStream>>decompressBlock: llTable with: dTable [
 	].
 ]
 
-{
-	#category : #'huffman trees',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>distanceMap [
+{ #category : #'huffman trees' }
+InflateStream >> distanceMap [
 	"This is used by the fast decompressor"
 	^nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>getFirstBuffer [
+{ #category : #private }
+InflateStream >> getFirstBuffer [
 	"Get the first source buffer after initialization has been done"
 	sourceStream == nil ifTrue:[^self].
 	source := sourceStream next: 1 << 16. "This is more than enough..."
 	sourceLimit := source size.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>getNextBlock [
+{ #category : #private }
+InflateStream >> getNextBlock [
 	^self nextBits: 3
 ]
 
-{
-	#category : #'huffman trees',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>growHuffmanTable: table [
+{ #category : #'huffman trees' }
+InflateStream >> growHuffmanTable: table [
 	| newTable |
 	newTable := table species new: table size * 2.
 	newTable replaceFrom: 1 to: table size with: table startingAt: 1.
 	^newTable
 ]
 
-{
-	#category : #'huffman trees',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>huffmanTableFrom: aCollection mappedBy: valueMap [
+{ #category : #'huffman trees' }
+InflateStream >> huffmanTableFrom: aCollection mappedBy: valueMap [
 	"Create a new huffman table from the given code lengths.
 	Map the actual values by valueMap if it is given.
 	See the class comment for a documentation of the huffman
@@ -429,30 +377,21 @@ InflateStream>>huffmanTableFrom: aCollection mappedBy: valueMap [
 	^table
 ]
 
-{
-	#category : #'huffman trees',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>increment: value bits: nBits [
+{ #category : #'huffman trees' }
+InflateStream >> increment: value bits: nBits [
 	"Increment a value of nBits length.
 	The fast decompressor will do this differently"
 	^value+1
 ]
 
-{
-	#category : #'huffman trees',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>literalLengthMap [
+{ #category : #'huffman trees' }
+InflateStream >> literalLengthMap [
 	"This is used by the fast decompressor"
 	^nil
 ]
 
-{
-	#category : #'huffman trees',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>mapValues: values by: valueMap [
+{ #category : #'huffman trees' }
+InflateStream >> mapValues: values by: valueMap [
 	| oldValue |
 	valueMap ifNil: [^values].
 	1 to: values size do:[:i|
@@ -464,11 +403,8 @@ InflateStream>>mapValues: values by: valueMap [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>moveContentsToFront [
+{ #category : #private }
+InflateStream >> moveContentsToFront [
 	"Move the decoded contents of the receiver to the front so that we have enough space for decoding more data."
 	| delta |
 	readLimit > 32768 ifTrue:[
@@ -482,11 +418,8 @@ InflateStream>>moveContentsToFront [
 		readLimit := readLimit - delta + 1].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>moveSourceToFront [
+{ #category : #private }
+InflateStream >> moveSourceToFront [
 	"Move the encoded contents of the receiver to the front so that we have enough space for decoding more data."
 	(sourceStream == nil or:[sourceStream atEnd]) ifTrue:[^self].
 	sourcePos > 10000 ifTrue:[
@@ -503,11 +436,8 @@ InflateStream>>moveSourceToFront [
 		sourceLimit := source size].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>next [
+{ #category : #accessing }
+InflateStream >> next [
 	"Answer the next decompressed object in the Stream represented by the
 	receiver."
 
@@ -517,11 +447,8 @@ InflateStream>>next [
 		ifFalse: [^collection at: (position := position + 1)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>next: anInteger  [
+{ #category : #accessing }
+InflateStream >> next: anInteger [ 
 	"Answer the next anInteger elements of my collection.  overriden for simplicity"
 	| newArray |
 
@@ -538,11 +465,8 @@ InflateStream>>next: anInteger  [
 	^newArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>next: n into: buffer startingAt: startIndex [
+{ #category : #accessing }
+InflateStream >> next: n into: buffer startingAt: startIndex [
 	"Read n objects into the given collection. 
 	Return aCollection or a partial copy if less than
 	n elements have been read."
@@ -568,11 +492,8 @@ InflateStream>>next: n into: buffer startingAt: startIndex [
 	^buffer
 ]
 
-{
-	#category : #'bit access',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>nextBits: n [
+{ #category : #'bit access' }
+InflateStream >> nextBits: n [
 	| bits |
 	[bitPos < n] whileTrue:[
 		bitBuf := bitBuf + (self nextByte bitShift: bitPos).
@@ -583,30 +504,21 @@ InflateStream>>nextBits: n [
 	^bits
 ]
 
-{
-	#category : #'bit access',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>nextByte [
+{ #category : #'bit access' }
+InflateStream >> nextByte [
 	^source byteAt: (sourcePos := sourcePos + 1)
 ]
 
-{
-	#category : #'bit access',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>nextSingleBits: n [
+{ #category : #'bit access' }
+InflateStream >> nextSingleBits: n [
 	| out |
 	out := 0.
 	1 to: n do:[:i| out := (out bitShift: 1) + (self nextBits: 1)].
 	^out
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>on: aCollectionOrStream [
+{ #category : #initialization }
+InflateStream >> on: aCollectionOrStream [
 	aCollectionOrStream isStream 
 		ifTrue:[	aCollectionOrStream binary.
 				sourceStream := aCollectionOrStream.
@@ -615,11 +527,8 @@ InflateStream>>on: aCollectionOrStream [
 	^self on: source from: 1 to: source size.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>on: aCollection from: firstIndex to: lastIndex [
+{ #category : #initialization }
+InflateStream >> on: aCollection from: firstIndex to: lastIndex [
 	bitBuf := bitPos := 0.
 	"The decompression buffer has a size of at 64k,
 	since we may have distances up to 32k back and
@@ -633,11 +542,8 @@ InflateStream>>on: aCollection from: firstIndex to: lastIndex [
 	state := StateNewBlock.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>pastEndRead [
+{ #category : #private }
+InflateStream >> pastEndRead [
 	"A client has attempted to read beyond the read limit.
 	Check in what state we currently are and perform
 	the appropriate action"
@@ -662,27 +568,18 @@ InflateStream>>pastEndRead [
 	^self next
 ]
 
-{
-	#category : #inflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>proceedDynamicBlock [
+{ #category : #inflating }
+InflateStream >> proceedDynamicBlock [
 	self decompressBlock: litTable with: distTable
 ]
 
-{
-	#category : #inflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>proceedFixedBlock [
+{ #category : #inflating }
+InflateStream >> proceedFixedBlock [
 	self decompressBlock: litTable with: distTable
 ]
 
-{
-	#category : #inflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>proceedStoredBlock [
+{ #category : #inflating }
+InflateStream >> proceedStoredBlock [
 	"Proceed decompressing a stored (e.g., uncompressed) block"
 	| length decoded |
 	"Literal table must be nil for a stored block"
@@ -699,11 +596,8 @@ InflateStream>>proceedStoredBlock [
 	^decoded
 ]
 
-{
-	#category : #inflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>processDynamicBlock [
+{ #category : #inflating }
+InflateStream >> processDynamicBlock [
 	| nLit nDist nLen codeLength lengthTable bits |
 	nLit := (self nextBits: 5) + 257.
 	nDist := (self nextBits: 5) + 1.
@@ -727,11 +621,8 @@ InflateStream>>processDynamicBlock [
 	self proceedDynamicBlock.
 ]
 
-{
-	#category : #inflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>processFixedBlock [
+{ #category : #inflating }
+InflateStream >> processFixedBlock [
 	litTable := self 
 				huffmanTableFrom: FixedLitCodes
 				mappedBy: self literalLengthMap.
@@ -742,11 +633,8 @@ InflateStream>>processFixedBlock [
 	self proceedFixedBlock.
 ]
 
-{
-	#category : #inflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>processStoredBlock [
+{ #category : #inflating }
+InflateStream >> processStoredBlock [
 	| chkSum length |
 	"Skip to byte boundary"
 	self nextBits: (bitPos bitAnd: 7).
@@ -760,11 +648,8 @@ InflateStream>>processStoredBlock [
 	^self proceedStoredBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>readInto: buffer startingAt: startIndex count: n [
+{ #category : #accessing }
+InflateStream >> readInto: buffer startingAt: startIndex count: n [
 	"Read n objects into the given collection. 
 	Return number of elements that have been read."
 	| c numRead count |
@@ -789,11 +674,8 @@ InflateStream>>readInto: buffer startingAt: startIndex count: n [
 	^n
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>reset [
+{ #category : #positioning }
+InflateStream >> reset [
 	"Position zero - nothing decoded yet"
 	position := readLimit := 0.
 	sourcePos := 0.
@@ -801,44 +683,29 @@ InflateStream>>reset [
 	state := 0.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>size [
+{ #category : #accessing }
+InflateStream >> size [
 	"This is a compressed stream - we don't know the size beforehand"
 	^self shouldNotImplement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>sourceLimit [
+{ #category : #accessing }
+InflateStream >> sourceLimit [
 	^sourceLimit
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>sourcePosition [
+{ #category : #positioning }
+InflateStream >> sourcePosition [
 	^sourcePos
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>sourceStream [
+{ #category : #accessing }
+InflateStream >> sourceStream [
 	^sourceStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>upTo: anObject  [
+{ #category : #accessing }
+InflateStream >> upTo: anObject [ 
 	"Answer a subcollection from the current access position to the 
 	occurrence (if any, but not inclusive) of anObject in the receiver. If 
 	anObject is not in the collection, answer the entire rest of the receiver."
@@ -849,11 +716,8 @@ InflateStream>>upTo: anObject  [
 	^newStream contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>upToEnd [
+{ #category : #accessing }
+InflateStream >> upToEnd [
 	"Answer a subcollection from the current access position through the last element of the receiver."
 
 	| newStream buffer |
@@ -863,20 +727,14 @@ InflateStream>>upToEnd [
 	^ newStream contents
 ]
 
-{
-	#category : #crc,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>updateCrc: oldCrc from: start to: stop in: aCollection [
+{ #category : #crc }
+InflateStream >> updateCrc: oldCrc from: start to: stop in: aCollection [
 	"Answer an updated CRC for the range of bytes in aCollection.
 	Subclasses can implement the appropriate means for the check sum they wish to use."
 	^oldCrc
 ]
 
-{
-	#category : #crc,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-InflateStream>>verifyCrc [
+{ #category : #crc }
+InflateStream >> verifyCrc [
 	"Verify the crc checksum in the input"
 ]

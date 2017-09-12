@@ -7,25 +7,18 @@ Class {
 	#instVars : [
 		'tally'
 	],
-	#category : #Tools-Test-Profilers,
-	#timestamp : 'TorstenBergmann 2/4/2014 20:45'
+	#category : #Tools-Test-Profilers
 }
 
-{
-	#category : #'tests tally',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AndreasSystemProfilerTest>>setUp [
+{ #category : #'tests tally' }
+AndreasSystemProfilerTest >> setUp [
 	tally := QSystemTally new.
 	tally class: self class method: self class >> #testPrintingTally	
 	"tally class: Object method: Object >> #printString."
 ]
 
-{
-	#category : #'tests tally',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AndreasSystemProfilerTest>>testFullPrintOn [
+{ #category : #'tests tally' }
+AndreasSystemProfilerTest >> testFullPrintOn [
 	| stream |
 	stream := WriteStream on: String new.
 	tally 
@@ -37,11 +30,8 @@ AndreasSystemProfilerTest>>testFullPrintOn [
 '
 ]
 
-{
-	#category : #'tests tally',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AndreasSystemProfilerTest>>testGetNewTab [
+{ #category : #'tests tally' }
+AndreasSystemProfilerTest >> testGetNewTab [
 	| tabs |
 	
 	self assert: (tally getNewTabsFor: #()) = #().
@@ -53,45 +43,30 @@ AndreasSystemProfilerTest>>testGetNewTab [
 	self assert: (tally getNewTabsFor: tabs) asArray =  #('[' '[').
 ]
 
-{
-	#category : #'tests tally',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AndreasSystemProfilerTest>>testPrintingTally [
+{ #category : #'tests tally' }
+AndreasSystemProfilerTest >> testPrintingTally [
 
 	self assert: tally printString =  'AndreasSystemProfilerTest>>#testPrintingTally -- 0'
 ]
 
-{
-	#category : #'tests tally',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AndreasSystemProfilerTest>>testPrintingTallyUninitialized [
+{ #category : #'tests tally' }
+AndreasSystemProfilerTest >> testPrintingTallyUninitialized [
 	
 	self assert: QSystemTally new printString = 'nil>>nil -- nil'
 ]
 
-{
-	#category : #'tests profiler',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AndreasSystemProfilerTest>>testSimple [
+{ #category : #'tests profiler' }
+AndreasSystemProfilerTest >> testSimple [
 	AndreasSystemProfiler new spyOn: [ 200 timesRepeat: [ 1.23 printString ] ]
 ]
 
-{
-	#category : #'tests profiler',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AndreasSystemProfilerTest>>testSimpleReport [
+{ #category : #'tests profiler' }
+AndreasSystemProfilerTest >> testSimpleReport [
 	AndreasSystemProfiler new report
 ]
 
-{
-	#category : #'tests tally',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AndreasSystemProfilerTest>>testTallyTreePrint [
+{ #category : #'tests tally' }
+AndreasSystemProfilerTest >> testTallyTreePrint [
 	| stream |
 	stream := WriteStream on: String new.
 	tally 
@@ -107,11 +82,8 @@ AndreasSystemProfilerTest>>testTallyTreePrint [
 	self assert: stream contents isEmpty
 ]
 
-{
-	#category : #'tests tally',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AndreasSystemProfilerTest>>testTallyTreePrintWithTab [
+{ #category : #'tests tally' }
+AndreasSystemProfilerTest >> testTallyTreePrintWithTab [
 	| stream |
 	stream := WriteStream on: String new.
 	tally 

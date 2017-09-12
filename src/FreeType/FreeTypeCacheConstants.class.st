@@ -11,15 +11,11 @@ Class {
 		'FreeTypeCacheLinearWidth',
 		'FreeTypeCacheWidth'
 	],
-	#category : #FreeType-Cache,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:09'
+	#category : #FreeType-Cache
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheConstants class>>initialize [
+{ #category : #'class initialization' }
+FreeTypeCacheConstants class >> initialize [
 	"
 	FreeTypeCacheConstants initialize
 	"

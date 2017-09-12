@@ -14,25 +14,18 @@ Class {
 		'absent',
 		'byteArrayMapCache'
 	],
-	#category : #Collections-Support,
-	#timestamp : 'nice 8/31/2008 14:53'
+	#category : #Collections-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement class>>of: aCharacterSet [
+{ #category : #'instance creation' }
+CharacterSetComplement class >> of: aCharacterSet [
 	"answer the complement of aCharacterSet"
 	
 	^ super new complement: aCharacterSet
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>= anObject [
+{ #category : #comparing }
+CharacterSetComplement >> = anObject [
 	"Implementation note: we do not test if equal to a WideCharacterSet,
 	because it is unlikely that WideCharacterSet is as complete as self"
 	
@@ -40,11 +33,8 @@ CharacterSetComplement>>= anObject [
 		absent = anObject complement ]
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>add: aCharacter  [
+{ #category : #'collection ops' }
+CharacterSetComplement >> add: aCharacter [ 
 	"a character is present if not absent, so adding a character is removing it from the absent"
 	
 	(absent includes: aCharacter)
@@ -54,31 +44,22 @@ CharacterSetComplement>>add: aCharacter  [
 	^ aCharacter
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>byteArrayMap [
+{ #category : #private }
+CharacterSetComplement >> byteArrayMap [
 	"return a ByteArray mapping each ascii value to a 1 if that ascii value is in the set, and a 0 if it isn't.  Intended for use by primitives only"
 
 	^byteArrayMapCache ifNil: [byteArrayMapCache := absent byteArrayMap collect: [:i | 1 - i]]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>complement [
+{ #category : #converting }
+CharacterSetComplement >> complement [
 	"return a character set containing precisely the characters the receiver does not"
 	
 	^absent copy
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>complement: aCharacterSet [
+{ #category : #initialization }
+CharacterSetComplement >> complement: aCharacterSet [
 	"initialize with the complement"
 	
 	byteArrayMapCache := nil.
@@ -86,22 +67,16 @@ CharacterSetComplement>>complement: aCharacterSet [
 	
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>do: aBlock [
+{ #category : #'collection ops' }
+CharacterSetComplement >> do: aBlock [
 	"evaluate aBlock with each character in the set.
 	don't do it, there are too many..."
 
 	self shouldNotImplement
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>findFirstInByteString: aByteString startingAt: startIndex [
+{ #category : #'collection ops' }
+CharacterSetComplement >> findFirstInByteString: aByteString startingAt: startIndex [
 	"Double dispatching: since we know this is a ByteString, we can use a superfast primitive using a ByteArray map with 0 slots for byte characters not included and 1 for byte characters included in the receiver."
 	^ByteString
 		findFirstInString: aByteString
@@ -109,46 +84,31 @@ CharacterSetComplement>>findFirstInByteString: aByteString startingAt: startInde
 		startingAt: startIndex
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>hasWideCharacters [
+{ #category : #testing }
+CharacterSetComplement >> hasWideCharacters [
 	"This is a guess that absent is not holding each and every possible wideCharacter..."
 	
 	^true
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>hash [
+{ #category : #comparing }
+CharacterSetComplement >> hash [
 	^absent hash bitXor: self class hash
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>includes: aCharacter [
+{ #category : #'collection ops' }
+CharacterSetComplement >> includes: aCharacter [
 	^(absent includes: aCharacter) not
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>postCopy [
+{ #category : #copying }
+CharacterSetComplement >> postCopy [
 	super postCopy.
 	absent := absent copy
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>printOn: aStream [
+{ #category : #printing }
+CharacterSetComplement >> printOn: aStream [
 	"Print a description of the complement rather than self.
 	Rationale: self would be too long to print."
 	
@@ -157,21 +117,15 @@ CharacterSetComplement>>printOn: aStream [
 	aStream nextPut: $); space; nextPutAll: #complement.
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>reject: aBlock [
+{ #category : #'collection ops' }
+CharacterSetComplement >> reject: aBlock [
 	"Implementation note: rejecting present is selecting absent"
 	
 	^(absent select: aBlock) complement
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>remove: aCharacter [
+{ #category : #'collection ops' }
+CharacterSetComplement >> remove: aCharacter [
 	"This means aCharacter is now absent from myself.
 	It must be added to my absent."
 	
@@ -179,48 +133,33 @@ CharacterSetComplement>>remove: aCharacter [
 	^absent add: aCharacter
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>remove: aCharacter ifAbsent: aBlock [
+{ #category : #'collection ops' }
+CharacterSetComplement >> remove: aCharacter ifAbsent: aBlock [
 	(self includes: aCharacter) ifFalse: [^aBlock value].
 	^self remove: aCharacter
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>removeAll [
+{ #category : #'collection ops' }
+CharacterSetComplement >> removeAll [
 	self becomeForward: CharacterSet new
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>select: aBlock [
+{ #category : #'collection ops' }
+CharacterSetComplement >> select: aBlock [
 	"Implementation note: selecting present is rejecting absent"
 	
 	^(absent reject: aBlock) complement
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>size [
+{ #category : #'collection ops' }
+CharacterSetComplement >> size [
 	"Is this 2**32-absent size ?"
 	
 	^self shouldNotImplement
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-CharacterSetComplement>>storeOn: aStream [
+{ #category : #printing }
+CharacterSetComplement >> storeOn: aStream [
 	"Store a description of the elements of the complement rather than self."
 	
 	aStream nextPut: $(.

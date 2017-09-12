@@ -14,15 +14,11 @@ Class {
 		'compoundTextSequence',
 		'UcsTable'
 	],
-	#category : #Multilingual-Encodings,
-	#timestamp : 'yo 10/19/2004 19:08'
+	#category : #Multilingual-Encodings
 }
 
-{
-	#category : #'character classification',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>canBeGlobalVarInitial: char [
+{ #category : #'character classification' }
+EncodedCharSet class >> canBeGlobalVarInitial: char [
 
 	| leadingChar |
 	leadingChar := char leadingChar.
@@ -32,11 +28,8 @@ EncodedCharSet class>>canBeGlobalVarInitial: char [
 
 ]
 
-{
-	#category : #'character classification',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>canBeNonGlobalVarInitial: char [
+{ #category : #'character classification' }
+EncodedCharSet class >> canBeNonGlobalVarInitial: char [
 
 	| leadingChar |
 	leadingChar := char leadingChar.
@@ -46,11 +39,8 @@ EncodedCharSet class>>canBeNonGlobalVarInitial: char [
 
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>charFromUnicode: unicode [
+{ #category : #'class methods' }
+EncodedCharSet class >> charFromUnicode: unicode [
 
 	| table index |
 	unicode < 128 ifTrue: [^ Character value: unicode].
@@ -66,21 +56,15 @@ EncodedCharSet class>>charFromUnicode: unicode [
 
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>charsetAt: encoding [
+{ #category : #'class methods' }
+EncodedCharSet class >> charsetAt: encoding [
 
 	^ EncodedCharSets at: encoding + 1 ifAbsent: [Unicode].
 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>declareEncodedCharSet: anEncodedCharSetOrLanguageEnvironmentClass atIndex: aNumber [
+{ #category : #initialize }
+EncodedCharSet class >> declareEncodedCharSet: anEncodedCharSetOrLanguageEnvironmentClass atIndex: aNumber [
 	
 	EncodedCharSets at: aNumber put: anEncodedCharSetOrLanguageEnvironmentClass
 	
@@ -106,11 +90,8 @@ EncodedCharSet class>>declareEncodedCharSet: anEncodedCharSetOrLanguageEnvironme
 	
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>digitValueOf: char [
+{ #category : #'class methods' }
+EncodedCharSet class >> digitValueOf: char [
 	"Answer 0-9 if the receiver is $0-$9, 10-35 if it is $A-$Z, and < 0 
 	otherwise. This is used to parse literal numbers of radix 2-36."
 
@@ -126,11 +107,8 @@ EncodedCharSet class>>digitValueOf: char [
 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>initialize [
+{ #category : #initialize }
+EncodedCharSet class >> initialize [
 	"self initialize"
 	
 	EncodedCharSets := Array new: 256.
@@ -156,31 +134,22 @@ EncodedCharSet class>>initialize [
 
 ]
 
-{
-	#category : #'accessing - displaying',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>isBreakableAt: index in: text [
+{ #category : #'accessing - displaying' }
+EncodedCharSet class >> isBreakableAt: index [ in: text
 
 	self subclassResponsibility.
 
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>isCharset [
+{ #category : #'class methods' }
+EncodedCharSet class >> isCharset [
 
 	^ true.
 
 ]
 
-{
-	#category : #'character classification',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>isDigit: char [
+{ #category : #'character classification' }
+EncodedCharSet class >> isDigit: char [
 	"Answer whether the receiver is a digit."
 
 	| value |
@@ -189,11 +158,8 @@ EncodedCharSet class>>isDigit: char [
 
 ]
 
-{
-	#category : #'character classification',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>isLetter: char [
+{ #category : #'character classification' }
+EncodedCharSet class >> isLetter: char [
 	"Answer whether the receiver is a letter."
 
 	| value |
@@ -202,11 +168,8 @@ EncodedCharSet class>>isLetter: char [
 
 ]
 
-{
-	#category : #'character classification',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>isLowercase: char [
+{ #category : #'character classification' }
+EncodedCharSet class >> isLowercase: char [
 	"Answer whether the receiver is a lowercase letter.
 	(The old implementation answered whether the receiver is not an uppercase letter.)"
 
@@ -216,11 +179,8 @@ EncodedCharSet class>>isLowercase: char [
 
 ]
 
-{
-	#category : #'character classification',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>isUppercase: char [
+{ #category : #'character classification' }
+EncodedCharSet class >> isUppercase: char [
 	"Answer whether the receiver is an uppercase letter.
 	(The old implementation answered whether the receiver is not a lowercase letter.)"
 
@@ -230,49 +190,34 @@ EncodedCharSet class>>isUppercase: char [
 
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>leadingChar [
+{ #category : #'class methods' }
+EncodedCharSet class >> leadingChar [
 
 	self subclassResponsibility.
 
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>nextPutValue: ascii toStream: aStream withShiftSequenceIfNeededForTextConverterState: state [
+{ #category : #'class methods' }
+EncodedCharSet class >> nextPutValue: ascii toStream: aStream withShiftSequenceIfNeededForTextConverterState: state [
 
 	self subclassResponsibility.
 
 ]
 
-{
-	#category : #'accessing - displaying',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>printingDirection [
+{ #category : #'accessing - displaying' }
+EncodedCharSet class >> printingDirection [
 
 	self subclassResponsibility.
 
 ]
 
-{
-	#category : #'accessing - displaying',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>scanSelector [
+{ #category : #'accessing - displaying' }
+EncodedCharSet class >> scanSelector [
 	^ #scanMultiCharactersFrom:to:in:rightX:stopConditions:kern:
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-EncodedCharSet class>>ucsTable [
+{ #category : #'class methods' }
+EncodedCharSet class >> ucsTable [
 
 	^ UcsTable 
 

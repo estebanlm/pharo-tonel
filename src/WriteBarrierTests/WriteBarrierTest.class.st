@@ -11,89 +11,61 @@ Class {
 	#classVars : [
 		'ContextInstance'
 	],
-	#category : #WriteBarrierTests,
-	#timestamp : 'ClementBera 4/21/2016 14:12'
+	#category : #WriteBarrierTests
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest class>>initialize [
+{ #category : #initialization }
+WriteBarrierTest class >> initialize [
 	
 	ContextInstance := Context sender: nil receiver: self new method: self >> #alwaysWritableObjects arguments: #()
 ]
 
-{
-	#category : #'guinea pigs',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>alwaysReadOnlyObjects [
+{ #category : #'guinea pigs' }
+WriteBarrierTest >> alwaysReadOnlyObjects [
 	"Immediates are always immutable"
 	^ { 1 }
 ]
 
-{
-	#category : #'guinea pigs',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>alwaysWritableObjects [
+{ #category : #'guinea pigs' }
+WriteBarrierTest >> alwaysWritableObjects [
 	"Objects that currently can't be immutable"
 	^ { ContextInstance . 
 		Processor . 
 		Processor activeProcess }
 ]
 
-{
-	#category : #'guinea pigs',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>maybeReadOnlyObjects [
+{ #category : #'guinea pigs' }
+WriteBarrierTest >> maybeReadOnlyObjects [
 	"ByteObject, Variable object, fixed sized object"
 	^ { { 1 . 2 . 3 } asByteArray . { 1 . 2 . 3 } . (MessageSend receiver: 1 selector: #+ argument: 2) }
 ]
 
-{
-	#category : #'tests - proxy',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testBasicProxyReadOnly [
+{ #category : #'tests - proxy' }
+WriteBarrierTest >> testBasicProxyReadOnly [
 	self alwaysReadOnlyObjects do: [ :each |
 		self assert: (MirrorPrimitives isObjectReadOnly: each) equals: true ]
 ]
 
-{
-	#category : #'tests - proxy',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testBasicProxyWritable [
+{ #category : #'tests - proxy' }
+WriteBarrierTest >> testBasicProxyWritable [
 	self alwaysWritableObjects , self maybeReadOnlyObjects do: [ :each |
 		self assert: (MirrorPrimitives isObjectReadOnly: each) equals: false ]
 ]
 
-{
-	#category : #'tests - object',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testBasicReadOnly [
+{ #category : #'tests - object' }
+WriteBarrierTest >> testBasicReadOnly [
 	self alwaysReadOnlyObjects do: [ :each |
 		self assert: each isReadOnlyObject equals: true ]
 ]
 
-{
-	#category : #'tests - object',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testBasicWritable [
+{ #category : #'tests - object' }
+WriteBarrierTest >> testBasicWritable [
 	self alwaysWritableObjects , self maybeReadOnlyObjects do: [ :each |
 		self assert: each isReadOnlyObject equals: false ]
 ]
 
-{
-	#category : #'tests - object',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testMutateFirstInstVarOfObjectWithManyVars [
+{ #category : #'tests - object' }
+WriteBarrierTest >> testMutateFirstInstVarOfObjectWithManyVars [
 	| guineaPig failure |
 	guineaPig := WriteBarrierStub new.
 	guineaPig beReadOnlyObject.
@@ -102,11 +74,8 @@ WriteBarrierTest>>testMutateFirstInstVarOfObjectWithManyVars [
 	self assert: failure fieldIndex equals: 1
 ]
 
-{
-	#category : #'tests - object',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testMutateIVObject [
+{ #category : #'tests - object' }
+WriteBarrierTest >> testMutateIVObject [
 	| guineaPig |
 	guineaPig := MessageSend new.
 	guineaPig beReadOnlyObject.
@@ -125,11 +94,8 @@ WriteBarrierTest>>testMutateIVObject [
 	self assert: guineaPig selector == #+.
 ]
 
-{
-	#category : #'tests - object',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testMutateInstVarShouldCatchRightFailure [
+{ #category : #'tests - object' }
+WriteBarrierTest >> testMutateInstVarShouldCatchRightFailure [
 	| guineaPig failure |
 	guineaPig := MessageSend new.
 	guineaPig beReadOnlyObject.
@@ -140,11 +106,8 @@ WriteBarrierTest>>testMutateInstVarShouldCatchRightFailure [
 	self assert: failure fieldIndex equals: 1.
 ]
 
-{
-	#category : #'tests - object',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testMutateLastInstVarOfObjectWithManyVars [
+{ #category : #'tests - object' }
+WriteBarrierTest >> testMutateLastInstVarOfObjectWithManyVars [
 	| guineaPig failure |
 	guineaPig := WriteBarrierStub new.
 	guineaPig beReadOnlyObject.
@@ -153,11 +116,8 @@ WriteBarrierTest>>testMutateLastInstVarOfObjectWithManyVars [
 	self assert: failure fieldIndex equals: 10
 ]
 
-{
-	#category : #'tests - object',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testMutateVariableObject [
+{ #category : #'tests - object' }
+WriteBarrierTest >> testMutateVariableObject [
 	| guineaPigs |
 	guineaPigs := {#[1 2 3] . #(1 2 3) }.
 	guineaPigs do: [ :guineaPig | 
@@ -177,11 +137,8 @@ WriteBarrierTest>>testMutateVariableObject [
 		self assert: guineaPig third = 3 ]
 ]
 
-{
-	#category : #'tests - helper',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testObject: object initialState: initialState tuples: tuples [
+{ #category : #'tests - helper' }
+WriteBarrierTest >> testObject: object initialState: initialState tuples: tuples [
 	self 
 		testObject: object 
 		initialState: initialState 
@@ -189,11 +146,8 @@ WriteBarrierTest>>testObject: object initialState: initialState tuples: tuples [
 		setReadOnlyBlock: [ :value | object setIsReadOnlyObject: value ]
 ]
 
-{
-	#category : #'tests - helper',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testObject: object initialState: initialState tuples: tuples setReadOnlyBlock: setImmutabilityBlock [
+{ #category : #'tests - helper' }
+WriteBarrierTest >> testObject: object initialState: initialState tuples: tuples setReadOnlyBlock: setImmutabilityBlock [
 	self assert: object isReadOnlyObject equals: initialState.
 	tuples do: [ :tuple |
 		| stateToSet expectedResult expectedNewState |
@@ -206,11 +160,8 @@ WriteBarrierTest>>testObject: object initialState: initialState tuples: tuples s
 		self assert: object isReadOnlyObject equals: expectedNewState ]
 ]
 
-{
-	#category : #'tests - helper',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testProxyObject: object initialState: initialState tuples: tuples [
+{ #category : #'tests - helper' }
+WriteBarrierTest >> testProxyObject: object initialState: initialState tuples: tuples [
 	self 
 		testObject: object 
 		initialState: initialState 
@@ -219,11 +170,8 @@ WriteBarrierTest>>testProxyObject: object initialState: initialState tuples: tup
 			MirrorPrimitives makeObject: object readOnly: value ]
 ]
 
-{
-	#category : #'tests - object',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testRetryingInstVarModification [
+{ #category : #'tests - object' }
+WriteBarrierTest >> testRetryingInstVarModification [
 	| guineaPig |
 	guineaPig := MessageSend new.
 	guineaPig beReadOnlyObject.
@@ -235,11 +183,8 @@ WriteBarrierTest>>testRetryingInstVarModification [
 	self assert: guineaPig receiver equals: 1
 ]
 
-{
-	#category : #'tests - object',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testSetIsReadOnlyFailure [
+{ #category : #'tests - object' }
+WriteBarrierTest >> testSetIsReadOnlyFailure [
 	self alwaysWritableObjects do: [ :each |
 		self 
 			testObject: each 
@@ -248,11 +193,8 @@ WriteBarrierTest>>testSetIsReadOnlyFailure [
 	
 ]
 
-{
-	#category : #'tests - proxy',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testSetIsReadOnlyFailureProxy [
+{ #category : #'tests - proxy' }
+WriteBarrierTest >> testSetIsReadOnlyFailureProxy [
 	self alwaysWritableObjects do: [ :each |
 		self 
 			testProxyObject: each 
@@ -261,11 +203,8 @@ WriteBarrierTest>>testSetIsReadOnlyFailureProxy [
 	
 ]
 
-{
-	#category : #'tests - object',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testSetIsReadOnlyImmediate [
+{ #category : #'tests - object' }
+WriteBarrierTest >> testSetIsReadOnlyImmediate [
 	self alwaysReadOnlyObjects do: [ :each |
 		self 
 			testObject: each 
@@ -274,11 +213,8 @@ WriteBarrierTest>>testSetIsReadOnlyImmediate [
 	
 ]
 
-{
-	#category : #'tests - proxy',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testSetIsReadOnlyImmediateProxy [
+{ #category : #'tests - proxy' }
+WriteBarrierTest >> testSetIsReadOnlyImmediateProxy [
 	self alwaysReadOnlyObjects do: [ :each |
 		self 
 			testProxyObject: each 
@@ -287,11 +223,8 @@ WriteBarrierTest>>testSetIsReadOnlyImmediateProxy [
 	
 ]
 
-{
-	#category : #'tests - object',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testSetIsReadOnlySuccess [
+{ #category : #'tests - object' }
+WriteBarrierTest >> testSetIsReadOnlySuccess [
 	self maybeReadOnlyObjects do: [ :each |
 		self 
 			testObject: each 
@@ -300,11 +233,8 @@ WriteBarrierTest>>testSetIsReadOnlySuccess [
 	
 ]
 
-{
-	#category : #'tests - proxy',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierTest>>testSetIsReadOnlySuccessProxy [
+{ #category : #'tests - proxy' }
+WriteBarrierTest >> testSetIsReadOnlySuccessProxy [
 	self maybeReadOnlyObjects do: [ :each |
 		self 
 			testProxyObject: each 

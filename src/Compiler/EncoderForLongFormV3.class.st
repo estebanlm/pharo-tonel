@@ -44,15 +44,11 @@ I do not use the following ranges
 Class {
 	#name : #EncoderForLongFormV3,
 	#superclass : #BytecodeEncoder,
-	#category : #Compiler-Kernel,
-	#timestamp : '<historical>'
+	#category : #Compiler-Kernel
 }
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genBranchPopFalse: distance [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genBranchPopFalse: distance [
 	"See BlueBook page 596"
 	distance < 0 ifTrue:
 		[^self outOfRangeError: 'distance' index: distance range: 0 to: 1023].
@@ -65,11 +61,8 @@ EncoderForLongFormV3>>genBranchPopFalse: distance [
 	^self outOfRangeError: 'distance' index: distance range: 0 to: 1023
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genBranchPopTrue: distance [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genBranchPopTrue: distance [
 	"See BlueBook page 596"
 	distance < 0 ifTrue:
 		[^self outOfRangeError: 'distance' index: distance range: 0 to: 1023].
@@ -82,30 +75,21 @@ EncoderForLongFormV3>>genBranchPopTrue: distance [
 	^self outOfRangeError: 'distance' index: distance range: 0 to: 1023
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genDup [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genDup [
 	"See BlueBook page 596"
 	"136 	10001000 	Duplicate Stack Top"
 	stream nextPut: 136
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genJump: distance [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genJump: distance [
 	"See BlueBook page 596"
 	^self genJumpLong: distance
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genJumpLong: distance [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genJumpLong: distance [
 	"See BlueBook page 596"
 	(distance >= -1024 and: [distance < 1024]) ifTrue:
 		["160-167 	10100iii jjjjjjjj 	Jump(iii - 4) *256+jjjjjjjj"
@@ -116,21 +100,15 @@ EncoderForLongFormV3>>genJumpLong: distance [
 	^self outOfRangeError: 'distance' index: distance range: -1024 to: 1023
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genPop [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genPop [
 	"See BlueBook page 596"
 	"135 	10000111 	Pop Stack Top"
 	stream nextPut: 135
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genPushInstVar: instVarIndex [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genPushInstVar: instVarIndex [
 	"See BlueBook page 596"
 	(instVarIndex >= 0 and: [instVarIndex < 64]) ifTrue: 
 		["128 	10000000 jjkkkkkk 	Push (Receiver Variable, Temporary Location, Literal Constant, Literal Variable) [jj] #kkkkkk"
@@ -141,11 +119,8 @@ EncoderForLongFormV3>>genPushInstVar: instVarIndex [
 	self genPushInstVarLong: instVarIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genPushInstVarLong: instVarIndex [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genPushInstVarLong: instVarIndex [
 	"See BlueBook page 596"
 	"See also MaybeContextInstanceVariableNode"
 	(instVarIndex >= 0 and: [instVarIndex < 256]) ifTrue: 
@@ -158,11 +133,8 @@ EncoderForLongFormV3>>genPushInstVarLong: instVarIndex [
 	^self outOfRangeError: 'index' index: instVarIndex range: 0 to: 255
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genPushLiteral: literalIndex [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genPushLiteral: literalIndex [
 	"See BlueBook page 596"
 	literalIndex < 0 ifTrue: 
 		[^self outOfRangeError: 'index' index: literalIndex range: 0 to: 255].
@@ -182,11 +154,8 @@ EncoderForLongFormV3>>genPushLiteral: literalIndex [
 	^self outOfRangeError: 'index' index: literalIndex range: 0 to: 255
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genPushLiteralVar: literalIndex [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genPushLiteralVar: literalIndex [
 	"See BlueBook page 596"
 	literalIndex < 0 ifTrue: 
 		[^self outOfRangeError: 'index' index: literalIndex range: 0 to: 255].
@@ -206,21 +175,15 @@ EncoderForLongFormV3>>genPushLiteralVar: literalIndex [
 	^self outOfRangeError: 'index' index: literalIndex range: 0 to: 255
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genPushReceiver [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genPushReceiver [
 	"See BlueBook page 596"
 	"112-119 	01110iii 	Push (receiver, true, false, nil, -1, 0, 1, 2) [iii]"
 	stream nextPut: 112
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genPushSpecialLiteral: aLiteral [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genPushSpecialLiteral: aLiteral [
 	"112-119 	01110iii 	Push (receiver, true, false, nil, -1, 0, 1, 2) [iii]"
 	| index |
 	index := #(true false nil -1 0 1 2) indexOf: aLiteral ifAbsent: 0.
@@ -229,11 +192,8 @@ EncoderForLongFormV3>>genPushSpecialLiteral: aLiteral [
 	stream nextPut: index + 112
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genPushTemp: tempIndex [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genPushTemp: tempIndex [
 	"See BlueBook page 596"
 	tempIndex < 0 ifTrue:
 		[^self outOfRangeError: 'index' index: tempIndex range: 0 to: 63].
@@ -246,31 +206,22 @@ EncoderForLongFormV3>>genPushTemp: tempIndex [
 	^self outOfRangeError: 'index' index: tempIndex range: 0 to: 63
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genPushThisContext [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genPushThisContext [
 	"See BlueBook page 596"
 	"137 	10001001 	Push Active Context"
 	stream nextPut: 137
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genReturnReceiver [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genReturnReceiver [
 	"See BlueBook page 596"
 	"120-123 	011110ii 	Return (receiver, true, false, nil) [ii] From Message"
 	stream nextPut: 120
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genReturnSpecialLiteral: aLiteral [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genReturnSpecialLiteral: aLiteral [
 	"120-123 	011110ii 	Return (receiver, true, false, nil) [ii] From Message"
 	| index |
 	index := #(true false nil) indexOf: aLiteral ifAbsent: 0.
@@ -279,31 +230,22 @@ EncoderForLongFormV3>>genReturnSpecialLiteral: aLiteral [
 	stream nextPut: 120 + index
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genReturnTop [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genReturnTop [
 	"See BlueBook page 596"
 	"124-125 	0111110i 	Return Stack Top From (Message, Block) [i]"
 	stream nextPut: 124
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genReturnTopToCaller [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genReturnTopToCaller [
 	"See BlueBook page 596"
 	"124-125 	0111110i 	Return Stack Top From (Message, Block) [i]"
 	stream nextPut: 125
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genSend: selectorLiteralIndex numArgs: nArgs [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genSend: selectorLiteralIndex numArgs: nArgs [
 	"See BlueBook page 596 (with exceptions for 132 & 134)"
 	nArgs < 0 ifTrue:
 		[^self outOfRangeError: 'numArgs' index: nArgs range: 0 to: 31 "!!"].
@@ -343,11 +285,8 @@ EncoderForLongFormV3>>genSend: selectorLiteralIndex numArgs: nArgs [
 		[^self outOfRangeError: 'selector literal index' index: selectorLiteralIndex range: 0 to: 255]
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genSendSuper: selectorLiteralIndex numArgs: nArgs [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genSendSuper: selectorLiteralIndex numArgs: nArgs [
 	"See BlueBook page 596 (with exceptions for 132 & 134)"
 	nArgs < 0 ifTrue:
 		[^self outOfRangeError: 'numArgs' index: nArgs range: 0 to: 31 "!!"].
@@ -377,11 +316,8 @@ EncoderForLongFormV3>>genSendSuper: selectorLiteralIndex numArgs: nArgs [
 		[^self outOfRangeError: 'selector literal index' index: selectorLiteralIndex range: 0 to: 255]
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genStoreInstVar: instVarIndex [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genStoreInstVar: instVarIndex [
 	"See BlueBook page 596"
 	(instVarIndex >= 0 and: [instVarIndex < 64]) ifTrue: 
 		["129 	10000001 jjkkkkkk 	Store (Receiver Variable, Temporary Location, Illegal, Literal Variable) [jj] #kkkkkk"
@@ -392,11 +328,8 @@ EncoderForLongFormV3>>genStoreInstVar: instVarIndex [
 	self genStoreInstVarLong: instVarIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genStoreInstVarLong: instVarIndex [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genStoreInstVarLong: instVarIndex [
 	"See BlueBook page 596"
 	"See also MaybeContextInstanceVariableNode"
 	(instVarIndex >= 0 and: [instVarIndex < 256]) ifTrue: 
@@ -409,11 +342,8 @@ EncoderForLongFormV3>>genStoreInstVarLong: instVarIndex [
 	^self outOfRangeError: 'index' index: instVarIndex range: 0 to: 255
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genStoreLiteralVar: literalIndex [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genStoreLiteralVar: literalIndex [
 	"See BlueBook page 596"
 	literalIndex < 0 ifTrue:
 		[^self outOfRangeError: 'index' index: literalIndex range: 0 to: 255].
@@ -433,11 +363,8 @@ EncoderForLongFormV3>>genStoreLiteralVar: literalIndex [
 	^self outOfRangeError: 'index' index: literalIndex range: 0 to: 255
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genStorePopInstVar: instVarIndex [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genStorePopInstVar: instVarIndex [
 	"See BlueBook page 596"
 	(instVarIndex >= 0 and: [instVarIndex < 64]) ifTrue:
 		["130 	10000010 jjkkkkkk 	Pop and Store (Receiver Variable, Temporary Location, Illegal, Literal Variable) [jj] #kkkkkk"
@@ -448,11 +375,8 @@ EncoderForLongFormV3>>genStorePopInstVar: instVarIndex [
 	self genStorePopInstVarLong: instVarIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genStorePopInstVarLong: instVarIndex [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genStorePopInstVarLong: instVarIndex [
 	"See BlueBook page 596"
 	"See also MaybeContextInstanceVariableNode"
 	(instVarIndex >= 0 and: [instVarIndex < 256]) ifTrue: 
@@ -465,11 +389,8 @@ EncoderForLongFormV3>>genStorePopInstVarLong: instVarIndex [
 	^self outOfRangeError: 'index' index: instVarIndex range: 0 to: 255
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genStorePopLiteralVar: literalIndex [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genStorePopLiteralVar: literalIndex [
 	"See BlueBook page 596"
 	literalIndex < 0 ifTrue:
 		[^self outOfRangeError: 'index' index: literalIndex range: 0 to: 255].
@@ -490,11 +411,8 @@ EncoderForLongFormV3>>genStorePopLiteralVar: literalIndex [
 	^self outOfRangeError: 'index' index: literalIndex range: 0 to: 255
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genStorePopTemp: tempIndex [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genStorePopTemp: tempIndex [
 	"See BlueBook page 596"
 	tempIndex < 0 ifTrue:
 		[^self outOfRangeError: 'index' index: tempIndex range: 0 to: 63].
@@ -507,11 +425,8 @@ EncoderForLongFormV3>>genStorePopTemp: tempIndex [
 	^self outOfRangeError: 'index' index: tempIndex range: 0 to: 63
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>genStoreTemp: tempIndex [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3 >> genStoreTemp: tempIndex [
 	"See BlueBook page 596"
 	tempIndex < 0 ifTrue:
 		[^self outOfRangeError: 'index' index: tempIndex range: 0 to: 63].
@@ -524,11 +439,8 @@ EncoderForLongFormV3>>genStoreTemp: tempIndex [
 	^self outOfRangeError: 'index' index: tempIndex range: 0 to: 63
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3>>initScopeAndLiteralTables [
+{ #category : #initialize-release }
+EncoderForLongFormV3 >> initScopeAndLiteralTables [
 	super initScopeAndLiteralTables.
 	"Start with an empty selector set to avoid the special selectors."
 	selectorSet := Dictionary new: 16

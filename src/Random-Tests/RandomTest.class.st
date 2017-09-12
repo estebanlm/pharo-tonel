@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'gen'
 	],
-	#category : #Random-Tests,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:43'
+	#category : #Random-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RandomTest>>setUp [
+{ #category : #running }
+RandomTest >> setUp [
 	gen := Random seed: 112629.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RandomTest>>testDistribution [
+{ #category : #tests }
+RandomTest >> testDistribution [
 	| results occurences generator |
 	1 to: 100 do: [ :i |
 		results := Bag new.
@@ -38,11 +31,8 @@ RandomTest>>testDistribution [
 		self assert: occurences stdev < 10].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RandomTest>>testIfCompletelyBroken [
+{ #category : #tests }
+RandomTest >> testIfCompletelyBroken [
 
 	"If the results are not these values (accounting for precision of printing) 
 	then something is horribly wrong"
@@ -52,11 +42,8 @@ RandomTest>>testIfCompletelyBroken [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RandomTest>>testNext [
+{ #category : #tests }
+RandomTest >> testNext [
 
 	10000 timesRepeat: [ 
 		| next | 
@@ -66,33 +53,24 @@ RandomTest>>testNext [
 	].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RandomTest>>testNextInt [
+{ #category : #tests }
+RandomTest >> testNextInt [
 	| int |
 	int := gen nextInt: 256.
 	self assert: int isInteger.
 	self assert: (int between: 1 and: 256)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RandomTest>>testNextInto [
+{ #category : #tests }
+RandomTest >> testNextInto [
 	| array |
 	array := Array new: 8.
 	array := gen next: 8 into: array.
 	self assert: (array allSatisfy: [ :each | each isFloat and: [ each >= 0 and: [ each < 1 ] ] ])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RandomTest>>testUnixRandomGeneratorSeed [
+{ #category : #tests }
+RandomTest >> testUnixRandomGeneratorSeed [
 	gen useUnixRandomGeneratorSeed.
 	100 timesRepeat: [ | next |
 			next := gen next.

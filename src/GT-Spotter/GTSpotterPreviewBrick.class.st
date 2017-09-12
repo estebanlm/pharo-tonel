@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterPreviewBrick,
 	#superclass : #GLMBrick,
@@ -10,33 +7,23 @@ Class {
 		'asyncTask',
 		'previewObject'
 	],
-	#category : #GT-Spotter-UI,
-	#timestamp : ''
+	#category : #GT-Spotter-UI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>asyncTask [
+{ #category : #accessing }
+GTSpotterPreviewBrick >> asyncTask [
 
 	^ asyncTask ifNil: [ asyncTask := GLMAsyncTask new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>compositeBrick [
+{ #category : #accessing }
+GTSpotterPreviewBrick >> compositeBrick [
 
 	^ compositeBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>compositeBrick: aBrick [
+{ #category : #accessing }
+GTSpotterPreviewBrick >> compositeBrick: aBrick [
 
 	self compositeBrick ifNotNil: [ self removeBrick: self compositeBrick ].
 	compositeBrick := aBrick.
@@ -45,106 +32,73 @@ GTSpotterPreviewBrick>>compositeBrick: aBrick [
 	self doLayoutForce
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>defaultNotAvailableText [
+{ #category : #initialization }
+GTSpotterPreviewBrick >> defaultNotAvailableText [
 
 	^ 'Preview is not available :('
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>handleException: exception forComposite: composite  [
+{ #category : #updating }
+GTSpotterPreviewBrick >> handleException: exception forComposite: composite [ 
 
 	('[Spotter] Exception while building the preview content: ', exception asString) logCr.
 	composite removeAllBricks.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>initialize [
+{ #category : #initialization }
+GTSpotterPreviewBrick >> initialize [
 	super initialize.
 	
 	self compositeBrick: self newCompositeBrick
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>newCompositeBrick [
+{ #category : #'instance creation' }
+GTSpotterPreviewBrick >> newCompositeBrick [
 
 	^ GLMCompositeBrick new
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>onCandidateSelected: ann [
+{ #category : #'event handling' }
+GTSpotterPreviewBrick >> onCandidateSelected: ann [
 
 	self updatePreviewWith: ann selected
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>onSearchFinished [
+{ #category : #'event handling' }
+GTSpotterPreviewBrick >> onSearchFinished [
 
 	self spotterModel currentStep candidates isEmpty
 		ifTrue: [ self updatePreviewWithEmpty ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>onStepAdded [
+{ #category : #'event handling' }
+GTSpotterPreviewBrick >> onStepAdded [
 
 	previewObject := nil.
 	self updatePreviewWithLoading
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>onStepPopped [
+{ #category : #'event handling' }
+GTSpotterPreviewBrick >> onStepPopped [
 
 	self updatePreviewWith: self spotterModel steps last selected candidate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>onThemerChanged [
+{ #category : #accessing }
+GTSpotterPreviewBrick >> onThemerChanged [
 	super onThemerChanged.
 	
 	self themer spotterThemer spotterPreviewWidgetStyleFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>spotterModel [
+{ #category : #accessing }
+GTSpotterPreviewBrick >> spotterModel [
 
 	^ spotterModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>spotterModel: aSpotter [
+{ #category : #accessing }
+GTSpotterPreviewBrick >> spotterModel: aSpotter [
 	
 	spotterModel := aSpotter.
 	aSpotter announcer when: GTSpotterSelectedCandidateChanged send: #onCandidateSelected: to: self.
@@ -155,11 +109,8 @@ GTSpotterPreviewBrick>>spotterModel: aSpotter [
 	
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>updatePreviewWith: anObject [
+{ #category : #updating }
+GTSpotterPreviewBrick >> updatePreviewWith: anObject [
 	|wasNil|
 	self spotterModel isPreviewVisible ifFalse: [ ^ self ].
 	
@@ -186,11 +137,8 @@ GTSpotterPreviewBrick>>updatePreviewWith: anObject [
 		delay: 50
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>updatePreviewWithEmpty [
+{ #category : #updating }
+GTSpotterPreviewBrick >> updatePreviewWithEmpty [
 
 	self removeAllBricks.
 	self asyncTask
@@ -208,11 +156,8 @@ GTSpotterPreviewBrick>>updatePreviewWithEmpty [
 		delay: 50
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterPreviewBrick>>updatePreviewWithLoading [
+{ #category : #updating }
+GTSpotterPreviewBrick >> updatePreviewWithLoading [
 
 	self compositeBrick: (
 		GLMLabelBrick new

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #FFIExternalStructureTests,
 	#superclass : #TestCase,
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureTests>>testExternalStructWithArray [
+{ #category : #tests }
+FFIExternalStructureTests >> testExternalStructWithArray [
 	| structWithArrays structureSize |	
 
 	structureSize := FFITestArrayStructure structureSize.
@@ -31,11 +24,8 @@ FFIExternalStructureTests>>testExternalStructWithArray [
 		equals: #(1 2 3 4 5 6 7 8 9 0).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureTests>>testExternallyAllocatedNestedStructure [
+{ #category : #tests }
+FFIExternalStructureTests >> testExternallyAllocatedNestedStructure [
 	| s1 |
 	
 	s1 := FFITestNestingStructure externalNew.
@@ -44,11 +34,8 @@ FFIExternalStructureTests>>testExternallyAllocatedNestedStructure [
 	self assert: s1 nested byte = 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureTests>>testExternallyAllocatedStructure [
+{ #category : #tests }
+FFIExternalStructureTests >> testExternallyAllocatedStructure [
 	| struct struct2 |
 	
 	struct := FFITestStructure externalNew.
@@ -74,11 +61,8 @@ FFIExternalStructureTests>>testExternallyAllocatedStructure [
 	ensure: [  struct free ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureTests>>testFlatStructureLayout [
+{ #category : #tests }
+FFIExternalStructureTests >> testFlatStructureLayout [
 	| flatLayout |
 	flatLayout := FFITestStructureSmallFloatStructure flatStructureLayout.
 	self assert: flatLayout size equals: 16.
@@ -91,11 +75,8 @@ FFIExternalStructureTests>>testFlatStructureLayout [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureTests>>testFlatStructureLayout2 [
+{ #category : #tests }
+FFIExternalStructureTests >> testFlatStructureLayout2 [
 	| flatLayout |
 	flatLayout := FFITestStructureSmallIntFloatStructure flatStructureLayout.
 	self assert: flatLayout size equals: 16.
@@ -108,11 +89,8 @@ FFIExternalStructureTests>>testFlatStructureLayout2 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureTests>>testFlatStructureLayoutSysVAMD64PostProcess [
+{ #category : #tests }
+FFIExternalStructureTests >> testFlatStructureLayoutSysVAMD64PostProcess [
 	| flatLayout |
 	flatLayout := FFITestStructureSmallFloatStructure flatStructureLayout sysVAMD64PostProcess.
 	self assert: flatLayout size equals: 16.
@@ -124,11 +102,8 @@ FFIExternalStructureTests>>testFlatStructureLayoutSysVAMD64PostProcess [
 	self assert: flatLayout floatRegisterCount equals: 2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureTests>>testFlatStructureLayoutSysVAMD64PostProcess2 [
+{ #category : #tests }
+FFIExternalStructureTests >> testFlatStructureLayoutSysVAMD64PostProcess2 [
 	| flatLayout |
 	flatLayout := FFITestStructureSmallIntFloatStructure flatStructureLayout sysVAMD64PostProcess.
 	self assert: flatLayout size equals: 16.
@@ -141,11 +116,8 @@ FFIExternalStructureTests>>testFlatStructureLayoutSysVAMD64PostProcess2 [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureTests>>testNestedStructure [
+{ #category : #tests }
+FFIExternalStructureTests >> testNestedStructure [
 	| s1 |
 
 	s1 := FFITestNestingStructure new.
@@ -153,11 +125,8 @@ FFIExternalStructureTests>>testNestedStructure [
 	self assert: s1 nested byte = 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureTests>>testNestedStructureWithArray [
+{ #category : #tests }
+FFIExternalStructureTests >> testNestedStructureWithArray [
 	| nestedStruct |	
 
 	nestedStruct := FFITestNestingStructureWithArray new.
@@ -179,11 +148,8 @@ FFIExternalStructureTests>>testNestedStructureWithArray [
 		equals: #(1 2 3 4 5 6 7 8 9 0).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureTests>>testStructAccess [
+{ #category : #tests }
+FFIExternalStructureTests >> testStructAccess [
 
 	| struct |
 	
@@ -208,11 +174,8 @@ FFIExternalStructureTests>>testStructAccess [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureTests>>testStructWithArray [
+{ #category : #tests }
+FFIExternalStructureTests >> testStructWithArray [
 	| structWithArrays |	
 
 	structWithArrays := FFITestArrayStructure new.
@@ -237,11 +200,8 @@ FFIExternalStructureTests>>testStructWithArray [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureTests>>testStructWithPointerAccess [
+{ #category : #tests }
+FFIExternalStructureTests >> testStructWithPointerAccess [
 	| s1 s2 |	
 
 	s1 := FFITestPointerStructure new.

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MCMethodDefinitionTest,
 	#superclass : #MCTestCase,
@@ -8,42 +5,28 @@ Class {
 		'navigation',
 		'isModified'
 	],
-	#category : #Monticello-Tests,
-	#timestamp : ''
+	#category : #Monticello-Tests
 }
 
-{
-	#category : #mocks,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMethodDefinitionTest>>override ^ 1 [
-
+{ #category : #mocks }
+MCMethodDefinitionTest >> override [ ^ 1
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMethodDefinitionTest>>ownPackage [
+{ #category : #running }
+MCMethodDefinitionTest >> ownPackage [
 	^ MCWorkingCopy forPackage: (MCPackage named: 'Monticello')
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMethodDefinitionTest>>setUp [
+{ #category : #running }
+MCMethodDefinitionTest >> setUp [
 	navigation := (Smalltalk hasClassNamed: #SystemNavigation)
 		ifTrue: [ (Smalltalk globals at: #SystemNavigation) new ]
 		ifFalse: [ Smalltalk ].
 	isModified := self ownPackage modified
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMethodDefinitionTest>>tearDown [
+{ #category : #running }
+MCMethodDefinitionTest >> tearDown [
        self restoreMocks.
        (MCWorkingCopy forPackage: (MCPackage named: 'FooBarBaz')) unregister.
        self class compile: 'override ^ 1' classified: 'mocks'.
@@ -62,22 +45,16 @@ MCMethodDefinitionTest>>tearDown [
        "PackageOrganizer default unregisterPackageNamed: 'MonticelloMocks'."
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMethodDefinitionTest>>testCannotLoad [
+{ #category : #testing }
+MCMethodDefinitionTest >> testCannotLoad [
 	| definition |
 	definition := self mockMethod: #kjahs87 class: 'NoSuchClass' source: 'kjahs87 ^self' meta: false.
 	self should: [definition load] raise: Error.
 	self assert: (navigation allImplementorsOf: #kjahs87) isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMethodDefinitionTest>>testComparison [
+{ #category : #testing }
+MCMethodDefinitionTest >> testComparison [
 	|d1 d2 d3 d4 d5 |
 	d1 := self mockMethod: #one class: 'A' source: '1' meta: false.
 	d2 := self mockMethod: #one class: 'A' source: '2' meta: false.
@@ -94,11 +71,8 @@ MCMethodDefinitionTest>>testComparison [
 	self assert: (d4 isSameRevisionAs: d5).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMethodDefinitionTest>>testLoadAndUnload [
+{ #category : #testing }
+MCMethodDefinitionTest >> testLoadAndUnload [
 	|definition|
 	definition := self mockMethod: #one class: 'MCMockClassA' source: 'one ^2' meta: false.
 	self assert: self mockInstanceA one = 1.
@@ -108,11 +82,8 @@ MCMethodDefinitionTest>>testLoadAndUnload [
 	self deny: (self mockInstanceA respondsTo: #one)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMethodDefinitionTest>>testPartiallyRevertOverrideMethod [
+{ #category : #testing }
+MCMethodDefinitionTest >> testPartiallyRevertOverrideMethod [
 	| definition |
 	self class compile: 'override ^ 2' classified: '*foobarbaz'.
 	self class compile: 'override ^ 3' classified: self mockOverrideMethodCategory.
@@ -126,11 +97,8 @@ MCMethodDefinitionTest>>testPartiallyRevertOverrideMethod [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMethodDefinitionTest>>testRevertOldMethod [
+{ #category : #testing }
+MCMethodDefinitionTest >> testRevertOldMethod [
 	| definition changeRecord |
 	Object compile: 'yourself ^ self' classified: '*MonticelloMocks'.
 	definition := (RGMethodDefinition realClass: Object selector: #yourself) asMCMethodDefinition.
@@ -140,11 +108,8 @@ MCMethodDefinitionTest>>testRevertOldMethod [
 	changeRecord fileIn.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCMethodDefinitionTest>>testRevertOverrideMethod [
+{ #category : #testing }
+MCMethodDefinitionTest >> testRevertOverrideMethod [
 	| definition |
 	self class compile: 'override ^ 2' classified: self mockOverrideMethodCategory.
 	definition := (RGMethodDefinition realClass: self class selector: #override) asMCMethodDefinition.

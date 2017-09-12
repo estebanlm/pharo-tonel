@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloProject,
 	#superclass : #Object,
@@ -15,119 +12,79 @@ Class {
 		'projectAttributes',
 		'versionNumberClass'
 	],
-	#category : #Metacello-Core-Model,
-	#timestamp : ''
+	#category : #Metacello-Core-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject class>>new [
+{ #category : #'instance creation' }
+MetacelloProject class >> new [
 
 	| inst |
 	inst := self basicNew.
 	^inst configuration: inst; yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject class>>on: aConfig [
+{ #category : #'instance creation' }
+MetacelloProject class >> on: aConfig [
 
 	^self basicNew configuration: aConfig; yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject class>>versionConstructorClass [
+{ #category : #accessing }
+MetacelloProject class >> versionConstructorClass [
     ^ MetacelloVersionConstructor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>attributes [
+{ #category : #private }
+MetacelloProject >> attributes [
 
 	^(OrderedCollection with: #common)
 		addAll: self platformAttributes;
 		yourself
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>baselineOfProjectSpec [
+{ #category : #'spec classes' }
+MetacelloProject >> baselineOfProjectSpec [
     ^ self baselineOfProjectSpecClass for: self
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>baselineOfProjectSpecClass [
+{ #category : #'spec classes' }
+MetacelloProject >> baselineOfProjectSpecClass [
     ^ self subclassResponsibility
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>baselineOfVersionSpecClass [
+{ #category : #'spec classes' }
+MetacelloProject >> baselineOfVersionSpecClass [
     ^ self subclassResponsibility
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>bleedingEdge [
+{ #category : #versions }
+MetacelloProject >> bleedingEdge [
 
 	^self version: #bleedingEdge
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>configuration [
+{ #category : #accessing }
+MetacelloProject >> configuration [
 	^ configuration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>configuration: anObject [
+{ #category : #accessing }
+MetacelloProject >> configuration: anObject [
 	configuration := anObject
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>configurationOfProjectSpec [
+{ #category : #'spec classes' }
+MetacelloProject >> configurationOfProjectSpec [
     ^ self configurationOfProjectSpecClass for: self
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>configurationOfProjectSpecClass [
+{ #category : #'spec classes' }
+MetacelloProject >> configurationOfProjectSpecClass [
     ^ self subclassResponsibility
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>currentVersion [
+{ #category : #versions }
+MetacelloProject >> currentVersion [
 	| cacheKey cv |
 	cacheKey := self configuration class.
 	^ MetacelloPlatform current
@@ -138,11 +95,8 @@ MetacelloProject>>currentVersion [
 			^ cache at: cacheKey put: cv ]
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>currentVersionAgainst: resolvedPackageAndProjectNames [
+{ #category : #versions }
+MetacelloProject >> currentVersionAgainst: resolvedPackageAndProjectNames [
 	| cacheKey |
 	cacheKey := resolvedPackageAndProjectNames isNil
 		ifTrue: [ Array with: self configuration class with: nil ]
@@ -178,110 +132,74 @@ MetacelloProject>>currentVersionAgainst: resolvedPackageAndProjectNames [
 			^ cache at: cacheKey put: nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>defaultBlessing [
+{ #category : #accessing }
+MetacelloProject >> defaultBlessing [
 
 	^#release
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>defaultLoaderClass [
+{ #category : #'spec classes' }
+MetacelloProject >> defaultLoaderClass [
 
 	^MetacelloSpecLoader
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>defaultPlatformAttributes [
+{ #category : #private }
+MetacelloProject >> defaultPlatformAttributes [
 
 	^ MetacelloPlatform current defaultPlatformAttributes
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>development [
+{ #category : #versions }
+MetacelloProject >> development [
 
 	^self version: #development
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>errorMap [
+{ #category : #accessing }
+MetacelloProject >> errorMap [
 	^ errorMap
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>errorMap: anObject [
+{ #category : #accessing }
+MetacelloProject >> errorMap: anObject [
     errorMap ifNil: [ errorMap := Dictionary new ].
     errorMap := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>excludeFromLatestVersion [
+{ #category : #private }
+MetacelloProject >> excludeFromLatestVersion [
 
 	^#(structural development broken baseline)
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>groupSpec [
+{ #category : #'spec classes' }
+MetacelloProject >> groupSpec [
 
 	^self groupSpecClass for: self
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>groupSpecClass [
+{ #category : #'spec classes' }
+MetacelloProject >> groupSpecClass [
 
 	^MetacelloGroupSpec
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>hasVersion: versionString [
+{ #category : #versions }
+MetacelloProject >> hasVersion: versionString [
 
 	self version: versionString ifAbsent: [ ^false ].
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>label [
+{ #category : #accessing }
+MetacelloProject >> label [
 
 	^self configuration class name
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>lastVersion [
+{ #category : #versions }
+MetacelloProject >> lastVersion [
 
 	| coll |
 	coll := (self map values asArray sort: [:a :b | a <= b ]) asOrderedCollection.
@@ -289,11 +207,8 @@ MetacelloProject>>lastVersion [
 	^coll last
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>latestVersion [
+{ #category : #versions }
+MetacelloProject >> latestVersion [
 
 	| excluded |
 "	self deprecated: 'Please use #stableVersion instead.'.
@@ -303,20 +218,14 @@ MetacelloProject>>latestVersion [
 		(excluded includes: version blessing) not ]) detectMax: [:version | version ]
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>latestVersion: blessing [
+{ #category : #versions }
+MetacelloProject >> latestVersion: blessing [
 
 	^(self map values select: [:version | blessing = version blessing ]) detectMax: [:version | version ]
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>latestVersionMatching: versionPatternString [
+{ #category : #versions }
+MetacelloProject >> latestVersionMatching: versionPatternString [
 	"Answer whether the version number of the receiver matches the given pattern string.
 
 	 A Metacello version number is made up of version sequences delimited by the characters $. and $-.
@@ -337,11 +246,8 @@ MetacelloProject>>latestVersionMatching: versionPatternString [
 		excludedBlessings: self excludeFromLatestVersion
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>latestVersionMatching: versionPatternString excludedBlessings: excluded [
+{ #category : #versions }
+MetacelloProject >> latestVersionMatching: versionPatternString excludedBlessings: excluded [
 
 	^self 
 		latestVersionMatching: versionPatternString 
@@ -349,11 +255,8 @@ MetacelloProject>>latestVersionMatching: versionPatternString excludedBlessings:
 		excludedBlessings: excluded
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>latestVersionMatching: versionPatternString includedBlessings: included [
+{ #category : #versions }
+MetacelloProject >> latestVersionMatching: versionPatternString includedBlessings: included [
 
 	^self 
 		latestVersionMatching: versionPatternString 
@@ -361,11 +264,8 @@ MetacelloProject>>latestVersionMatching: versionPatternString includedBlessings:
 		excludedBlessings: self excludeFromLatestVersion
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>latestVersionMatching: versionPatternString includedBlessings: included excludedBlessings: excludedBlessings [
+{ #category : #versions }
+MetacelloProject >> latestVersionMatching: versionPatternString includedBlessings: included excludedBlessings: excludedBlessings [
 
 	| excluded |
 	excluded := excludedBlessings asSet copy.
@@ -377,78 +277,54 @@ MetacelloProject>>latestVersionMatching: versionPatternString includedBlessings:
 		detectMax: [:version | version ]
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>load: aVersionString [
+{ #category : #loading }
+MetacelloProject >> load: aVersionString [
 
 	^(self version: aVersionString) load
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>loadType [
+{ #category : #accessing }
+MetacelloProject >> loadType [
 	"#atomic or #linear"
 
 	loadType == nil ifTrue: [ ^#atomic ].
 	^loadType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>loadType: aSymbol [
+{ #category : #accessing }
+MetacelloProject >> loadType: aSymbol [
 	"#atomic or #linear"
 
 	loadType := aSymbol
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>loader [
+{ #category : #'spec classes' }
+MetacelloProject >> loader [
 
 	^loader
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>loader: aLoader [
+{ #category : #'spec classes' }
+MetacelloProject >> loader: aLoader [
 
 	loader := aLoader
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>loaderClass [
+{ #category : #'spec classes' }
+MetacelloProject >> loaderClass [
 
 	loaderClass == nil ifTrue: [ loaderClass := self defaultLoaderClass ].
 	^loaderClass
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>loaderClass: aMetacelloSpecLoader [
+{ #category : #'spec classes' }
+MetacelloProject >> loaderClass: aMetacelloSpecLoader [
 
 	loaderClass := aMetacelloSpecLoader
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>lookupVersion: aVersionString ifAbsent: aBlock [
+{ #category : #private }
+MetacelloProject >> lookupVersion: aVersionString ifAbsent: aBlock [
     "please use version:...this is a private method"
 
     ^ self map
@@ -459,65 +335,44 @@ MetacelloProject>>lookupVersion: aVersionString ifAbsent: aBlock [
                 signal ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>map [
+{ #category : #accessing }
+MetacelloProject >> map [
 	versionMap ifNil: [ ^ Dictionary new ].
 	^ versionMap
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>map: aDictionary [
+{ #category : #accessing }
+MetacelloProject >> map: aDictionary [
 
 	versionMap := aDictionary
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>packagesSpec [
+{ #category : #'spec classes' }
+MetacelloProject >> packagesSpec [
 
 	^self packagesSpecClass for: self
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>packagesSpecClass [
+{ #category : #'spec classes' }
+MetacelloProject >> packagesSpecClass [
 
 	^MetacelloPackagesSpec
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>platformAttributes [
+{ #category : #private }
+MetacelloProject >> platformAttributes [
 
 	 ^self projectPlatformAttributes
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>pragmaKeywords [
+{ #category : #private }
+MetacelloProject >> pragmaKeywords [
 
 	^#(version:attribute: blessing:attribute: description:attribute: required:attribute: groups:attribute: doits:attribute:)
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>printOn: aStream [
+{ #category : #printing }
+MetacelloProject >> printOn: aStream [
 	| label |
 	self configuration class printOn: aStream.
 	aStream nextPut: $(.
@@ -534,55 +389,37 @@ MetacelloProject>>printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>project [
+{ #category : #accessing }
+MetacelloProject >> project [
 
 	^self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>projectAttributes [
+{ #category : #private }
+MetacelloProject >> projectAttributes [
 
 	projectAttributes ~~ nil ifTrue: [ ^projectAttributes ].
 	^#()
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>projectAttributes: aList [
+{ #category : #private }
+MetacelloProject >> projectAttributes: aList [
 
 	projectAttributes := aList
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>projectForScriptEngine: aMetacelloScriptEngine [
+{ #category : #scripting }
+MetacelloProject >> projectForScriptEngine: aMetacelloScriptEngine [
     ^ self projectForScriptEngine: aMetacelloScriptEngine unconditionalLoad: false
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>projectForScriptEngine: aMetacelloScriptEngine unconditionalLoad: aBool [
+{ #category : #scripting }
+MetacelloProject >> projectForScriptEngine: aMetacelloScriptEngine unconditionalLoad: aBool [
     ^ self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>projectPlatformAttributes [
+{ #category : #private }
+MetacelloProject >> projectPlatformAttributes [
 
 	| list aBlock |
 	list := OrderedCollection new.
@@ -591,109 +428,73 @@ MetacelloProject>>projectPlatformAttributes [
 	^self defaultPlatformAttributes, list
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>projectReferenceSpec [
+{ #category : #'spec classes' }
+MetacelloProject >> projectReferenceSpec [
 
 	^self projectReferenceSpecClass for: self
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>projectReferenceSpecClass [
+{ #category : #'spec classes' }
+MetacelloProject >> projectReferenceSpecClass [
 
 	^MetacelloProjectReferenceSpec
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>projectSpec [
+{ #category : #'spec classes' }
+MetacelloProject >> projectSpec [
 
 	^self projectSpecClass for: self
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>projectSpecClass [
+{ #category : #'spec classes' }
+MetacelloProject >> projectSpecClass [
     ^ MetacelloProjectSpec
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>sortedAndFilteredVersions [
+{ #category : #private }
+MetacelloProject >> sortedAndFilteredVersions [
 
 		^(self map values asArray sort: [:a :b | a >= b ]) select: [:vrsn | (#(structural broken baseline) includes: vrsn blessing) not ].
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>stableVersion [
+{ #category : #versions }
+MetacelloProject >> stableVersion [
 
 	^self version: #stable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>symbolicVersionMap [
+{ #category : #accessing }
+MetacelloProject >> symbolicVersionMap [
 
 	^symbolicVersionMap
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>symbolicVersionMap: aDictionary [
+{ #category : #accessing }
+MetacelloProject >> symbolicVersionMap: aDictionary [
 
 	symbolicVersionMap := aDictionary
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>symbolicVersionSymbols [
+{ #category : #versions }
+MetacelloProject >> symbolicVersionSymbols [
 
 	^self symbolicVersionMap keys asArray sort: [:a :b | a <= b ]
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>valueHolderSpec [
+{ #category : #'spec classes' }
+MetacelloProject >> valueHolderSpec [
 
 	^self valueHolderSpecClass for: self
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>valueHolderSpecClass [
+{ #category : #'spec classes' }
+MetacelloProject >> valueHolderSpecClass [
 
 	^MetacelloValueHolderSpec
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>version: aVersionString [
+{ #category : #versions }
+MetacelloProject >> version: aVersionString [
     | vrsn |
     aVersionString isSymbol
         ifTrue: [ 
@@ -711,55 +512,37 @@ MetacelloProject>>version: aVersionString [
         ifAbsent: [ (MetacelloVersionDoesNotExistError project: self project versionString: aVersionString) signal ]
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>version: aVersionString ifAbsent: aBlock [
+{ #category : #versions }
+MetacelloProject >> version: aVersionString ifAbsent: aBlock [
 
 	^[ self version: aVersionString ] on: MetacelloVersionDoesNotExistError do: [:ex | aBlock value ].
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>versionNumberClass [
+{ #category : #versions }
+MetacelloProject >> versionNumberClass [
     versionNumberClass ifNil: [ versionNumberClass := MetacelloVersionNumber ].
     ^ versionNumberClass
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>versionNumberClass: aClass [
+{ #category : #versions }
+MetacelloProject >> versionNumberClass: aClass [
     versionNumberClass := aClass
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>versionSpec [
+{ #category : #'spec classes' }
+MetacelloProject >> versionSpec [
 
 	^self versionSpecClass for: self
 ]
 
-{
-	#category : #'spec classes',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>versionSpecClass [
+{ #category : #'spec classes' }
+MetacelloProject >> versionSpecClass [
 
 	^MetacelloVersionSpec
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProject>>versions [
+{ #category : #versions }
+MetacelloProject >> versions [
 
 	^self map values asArray sort: [:a :b | a <= b ]
 ]

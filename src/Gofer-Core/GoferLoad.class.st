@@ -4,15 +4,11 @@ Loading for specific packages using Gofer
 Class {
 	#name : #GoferLoad,
 	#superclass : #GoferOperation,
-	#category : #Gofer-Core,
-	#timestamp : 'TorstenBergmann 2/5/2014 09:31'
+	#category : #Gofer-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferLoad>>addResolved: aResolvedReference [
+{ #category : #private }
+GoferLoad >> addResolved: aResolvedReference [
 	| version |
 	version := aResolvedReference version.
 	(self versions includes: version)
@@ -23,41 +19,29 @@ GoferLoad>>addResolved: aResolvedReference [
 			name: dependency versionInfo name) resolveWith: self gofer) ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferLoad>>defaultModel [
+{ #category : #private }
+GoferLoad >> defaultModel [
 	^ MCVersionLoader new
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferLoad>>execute [
+{ #category : #running }
+GoferLoad >> execute [
 	self model hasVersions
 		ifTrue: [ self model load ].
 	self updateRepositories.
 	self updateCategories
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferLoad>>initializeOn: aGofer [
+{ #category : #initialization }
+GoferLoad >> initializeOn: aGofer [
 	super initializeOn: aGofer.
 	aGofer resolved
 		do: [ :each | self addResolved: each ]
 		displayingProgress: 'Loading Versions'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferLoad>>updateCategories [
+{ #category : #private }
+GoferLoad >> updateCategories [
 	"This method makes sure that the categories are ordered in load-order and as specified in the packages."
 
 	| categories |
@@ -72,11 +56,8 @@ GoferLoad>>updateCategories [
 		postloadOver: nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferLoad>>updateRepositories [
+{ #category : #private }
+GoferLoad >> updateRepositories [
 	"This code makes sure that all packages have a repository assigned, including the dependencies."
 
 	self versions do: [ :version |
@@ -85,10 +66,7 @@ GoferLoad>>updateRepositories [
 				addRepository: repository ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferLoad>>versions [
+{ #category : #accessing }
+GoferLoad >> versions [
 	^ model versions
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCDictionaryRepository
-}
+Extension { #name : #MCDictionaryRepository }
 
-{
-	#category : #'*MonticelloGUI',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCDictionaryRepository>>morphicOpen: aWorkingCopy [
+{ #category : #'*MonticelloGUI' }
+MCDictionaryRepository >> morphicOpen: aWorkingCopy [
 	| names index infos |
 	infos := self sortedVersionInfos.
 	infos isEmpty ifTrue: [^ self inform: 'No versions'].

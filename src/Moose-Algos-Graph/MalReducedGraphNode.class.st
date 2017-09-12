@@ -8,30 +8,20 @@ Class {
 	#instVars : [
 		'mergedNodes'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : 'ChristopheDemarey 3/23/2015 17:03'
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalReducedGraphNode>>label [
+{ #category : #accessing }
+MalReducedGraphNode >> label [
 	^ ''
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalReducedGraphNode>>mergedNodes [
+{ #category : #accessing }
+MalReducedGraphNode >> mergedNodes [
 	^ mergedNodes
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalReducedGraphNode>>mergedNodes: aNodeList [
+{ #category : #setting }
+MalReducedGraphNode >> mergedNodes: aNodeList [
 	mergedNodes := aNodeList
 ]

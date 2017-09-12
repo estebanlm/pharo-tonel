@@ -18,74 +18,45 @@ Class {
 		'SDL2Constants',
 		'SDL2Types'
 	],
-	#category : #OSWindow-SDL2-Examples-Gesture,
-	#timestamp : 'MerwanOuddane 4/22/2015 13:21'
+	#category : #OSWindow-SDL2-Examples-Gesture
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2 class>>example [
+{ #category : #'as yet unclassified' }
+SDL2TouchGestureExample2 class >> example [
 	^ self new open
 ]
 
-{
-	#category : #'manage swipe',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>abortedSwipe [
+{ #category : #'manage swipe' }
+SDL2TouchGestureExample2 >> abortedSwipe [
 	[ hasAbortedSwipe := true.
 	(DelayWaitTimeout forSeconds: 2) wait.
 	hasAbortedSwipe := false ] fork
 ]
 
-{
-	#category : #'manage pinch',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>beginPinch: anEvent [
-
+{ #category : #'manage pinch' }
+SDL2TouchGestureExample2 >> beginPinch: anEvent [
 ]
 
-{
-	#category : #'manage rotation',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>beginRotation: anEvent [
-
+{ #category : #'manage rotation' }
+SDL2TouchGestureExample2 >> beginRotation: anEvent [
 ]
 
-{
-	#category : #'manage scrolling',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>beginScroll: anEvent [
-
+{ #category : #'manage scrolling' }
+SDL2TouchGestureExample2 >> beginScroll: anEvent [
 ]
 
-{
-	#category : #'manage swipe',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>beginSwipe: anEvent [
-
+{ #category : #'manage swipe' }
+SDL2TouchGestureExample2 >> beginSwipe: anEvent [
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>changeColors [
+{ #category : #drawing }
+SDL2TouchGestureExample2 >> changeColors [
 	positiveColor := Color random.
 	negativeColor := Color random
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>createEventHandler [
+{ #category : #factory }
+SDL2TouchGestureExample2 >> createEventHandler [
 	^ OSWindowGestureEventHandler new
 			touchExample: self;
 			registerGesture: OSTouchTwoFingersScrollDetector new;
@@ -97,11 +68,8 @@ SDL2TouchGestureExample2>>createEventHandler [
 			yourself
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>displayAbortMessage [
+{ #category : #drawing }
+SDL2TouchGestureExample2 >> displayAbortMessage [
 	renderer athensSurface
 		drawDuring: [ :canvas | 
 			canvas pathTransform translateBy: self windowCenter x - 30 @ self windowCenter y.
@@ -113,22 +81,16 @@ SDL2TouchGestureExample2>>displayAbortMessage [
 				draw ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>drawBlackBackground [
+{ #category : #drawing }
+SDL2TouchGestureExample2 >> drawBlackBackground [
 	renderer athensSurface
 		drawDuring: [ :canvas | 
 			canvas setPaint: blackBackground.
 			canvas drawShape: (blackBackgroundPosition @ 0 extent: window extent) ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>drawCircle [
+{ #category : #drawing }
+SDL2TouchGestureExample2 >> drawCircle [
 	renderer athensSurface
 		drawDuring: [ :canvas | 
 			canvas pathTransform translateBy: circleCenter.
@@ -141,46 +103,28 @@ SDL2TouchGestureExample2>>drawCircle [
 				draw ]
 ]
 
-{
-	#category : #'manage pinch',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>endPinch: anEvent [
-
+{ #category : #'manage pinch' }
+SDL2TouchGestureExample2 >> endPinch: anEvent [
 ]
 
-{
-	#category : #'manage rotation',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>endRotation: anEvent [
-
+{ #category : #'manage rotation' }
+SDL2TouchGestureExample2 >> endRotation: anEvent [
 ]
 
-{
-	#category : #'manage scrolling',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>endScroll: anEvent [
-
+{ #category : #'manage scrolling' }
+SDL2TouchGestureExample2 >> endScroll: anEvent [
 ]
 
-{
-	#category : #'manage swipe',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>endSwipe: anEvent [
+{ #category : #'manage swipe' }
+SDL2TouchGestureExample2 >> endSwipe: anEvent [
 	blackBackgroundPosition := blackBackgroundPosition abs
 		> (window extent x / 2)
 		ifTrue: [ 0 ]
 		ifFalse: [ window extent x ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>generateCircleOfSize: anInteger [
+{ #category : #drawing }
+SDL2TouchGestureExample2 >> generateCircleOfSize: anInteger [
 	^ renderer athensSurface
 		createPath: [ :builder | 
 			builder
@@ -192,11 +136,8 @@ SDL2TouchGestureExample2>>generateCircleOfSize: anInteger [
 				ccwArcTo: anInteger negated @ 0 angle: 90 degreesToRadians ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>initialize [
+{ #category : #initialization }
+SDL2TouchGestureExample2 >> initialize [
 	super initialize.
 	circleCenter := self windowCenter.
 	circleSize := 10.
@@ -207,37 +148,25 @@ SDL2TouchGestureExample2>>initialize [
 	discoMode := false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>initializeFromSurface. [
+{ #category : #initialization }
+SDL2TouchGestureExample2 >> initializeFromSurface. [
 	super initializeFromSurface.
 	blackBackground := renderer athensSurface createSolidColorPaint: Color black
 ]
 
-{
-	#category : #'manage pinch',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>pinch: anEvent [
+{ #category : #'manage pinch' }
+SDL2TouchGestureExample2 >> pinch: anEvent [
 	circleSize := circleSize + (anEvent dDist * (self defaultExtent distanceTo: 0@0))
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>randomizeCircleColor [
+{ #category : #drawing }
+SDL2TouchGestureExample2 >> randomizeCircleColor [
 	positiveColor := Color random.
 	negativeColor := Color random.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>redraw [
+{ #category : #drawing }
+SDL2TouchGestureExample2 >> redraw [
 	discoMode ifTrue: 
 		[ self randomizeCircleColor ].
 	self clearSurface.
@@ -248,21 +177,15 @@ SDL2TouchGestureExample2>>redraw [
 		ifTrue: [ self displayAbortMessage ]
 ]
 
-{
-	#category : #'manage rotation',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>rotation: anEvent [
+{ #category : #'manage rotation' }
+SDL2TouchGestureExample2 >> rotation: anEvent [
 	circleCenter := circleCenter 
 		rotateBy: 2 * anEvent dTheta negated
 		about: self windowCenter
 ]
 
-{
-	#category : #'manage scrolling',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>scroll: anEvent [
+{ #category : #'manage scrolling' }
+SDL2TouchGestureExample2 >> scroll: anEvent [
 	| newCenter |
 	newCenter := circleCenter
 		+ (anEvent direction abs * (anEvent dDist * (window extent distanceTo: 0 @ 0))).
@@ -270,26 +193,17 @@ SDL2TouchGestureExample2>>scroll: anEvent [
 		ifTrue: [ circleCenter := newCenter ]
 ]
 
-{
-	#category : #'manage swipe',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>swipe: anEvent [
+{ #category : #'manage swipe' }
+SDL2TouchGestureExample2 >> swipe: anEvent [
 	blackBackgroundPosition := blackBackgroundPosition + (anEvent direction x * 1.5)
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>switchDiscoMode [
+{ #category : #drawing }
+SDL2TouchGestureExample2 >> switchDiscoMode [
 	discoMode := discoMode not
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample2>>windowCenter [
+{ #category : #initialization }
+SDL2TouchGestureExample2 >> windowCenter [
 	^ (self defaultExtent x / 2) asFloat @ (self defaultExtent y / 2) asFloat
 ]

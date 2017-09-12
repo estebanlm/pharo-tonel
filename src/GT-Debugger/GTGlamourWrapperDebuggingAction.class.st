@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'glamourAction'
 	],
-	#category : #GT-Debugger-Actions,
-	#timestamp : 'AndreiChis 1/11/2016 16:05'
+	#category : #GT-Debugger-Actions
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGlamourWrapperDebuggingAction class>>gtActionFor: aDebugger [
+{ #category : #registration }
+GTGlamourWrapperDebuggingAction class >> gtActionFor: aDebugger [
 	<gtContextCodeDebuggingAction>
 	|index|
 	
@@ -26,11 +22,8 @@ GTGlamourWrapperDebuggingAction class>>gtActionFor: aDebugger [
 				order: (index := index + 10) ]
 ]
 
-{
-	#category : #transformation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGlamourWrapperDebuggingAction>>asGlamourAction [
+{ #category : #transformation }
+GTGlamourWrapperDebuggingAction >> asGlamourAction [
 	|actionBlock|
 	actionBlock := glamourAction action.
 	
@@ -42,19 +35,13 @@ GTGlamourWrapperDebuggingAction>>asGlamourAction [
 				self postAction ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGlamourWrapperDebuggingAction>>glamourAction: anObject [
+{ #category : #accessing }
+GTGlamourWrapperDebuggingAction >> glamourAction: anObject [
 	glamourAction := anObject.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGlamourWrapperDebuggingAction>>initialize [
+{ #category : #initialization }
+GTGlamourWrapperDebuggingAction >> initialize [
 	super initialize.
 	self needsUpdate: false.
 	self needsValidation: false.

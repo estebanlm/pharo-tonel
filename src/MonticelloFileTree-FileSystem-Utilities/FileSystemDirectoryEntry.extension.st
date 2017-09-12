@@ -1,19 +1,11 @@
-Extension {
-	#name : #FileSystemDirectoryEntry
-}
+Extension { #name : #FileSystemDirectoryEntry }
 
-{
-	#category : #'*monticellofiletree-filesystem-utilities',
-	#timestamp : ' 8/31/2017 07:16:59'
-}
-FileSystemDirectoryEntry>>name [
+{ #category : #'*monticellofiletree-filesystem-utilities' }
+FileSystemDirectoryEntry >> name [
     ^ self basename
 ]
 
-{
-	#category : #'*monticellofiletree-filesystem-utilities',
-	#timestamp : ' 8/31/2017 07:16:59'
-}
-FileSystemDirectoryEntry>>readStreamDo: aBlock [
+{ #category : #'*monticellofiletree-filesystem-utilities' }
+FileSystemDirectoryEntry >> readStreamDo: aBlock [
     ^ reference readStreamDo: aBlock
 ]

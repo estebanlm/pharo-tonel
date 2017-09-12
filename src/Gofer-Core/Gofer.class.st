@@ -76,15 +76,11 @@ Class {
 		'packageCacheRepository',
 		'resolvedReferencesCache'
 	],
-	#category : #Gofer-Core,
-	#timestamp : 'lr 1/30/2010 14:42'
+	#category : #Gofer-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer class>>gofer [
+{ #category : #private }
+Gofer class >> gofer [
 	"Create a Gofer instance of Gofer."
 
 	^ self new
@@ -94,28 +90,19 @@ Gofer class>>gofer [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer class>>it [
+{ #category : #'instance creation' }
+Gofer class >> it [
 	^ self new
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>addPackage: aPackage [
+{ #category : #deprecated }
+Gofer >> addPackage: aPackage [
 
 	self package: aPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>allResolved [
+{ #category : #accessing }
+Gofer >> allResolved [
 	"Answer all sorted references within the configured repositories."
 	
 	| resolved |
@@ -125,89 +112,62 @@ Gofer>>allResolved [
 	^ resolved asSortedCollection asArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>allResolvedIn: aRepository [
+{ #category : #accessing }
+Gofer >> allResolvedIn: aRepository [
 	"Answer all sorted references within aRepository. For efficiency cache the references."
 
 	^ (resolvedReferencesCache ifNil: [ resolvedReferencesCache := Dictionary new ])
 		at: aRepository ifAbsentPut: [ self basicReferencesIn: aRepository ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>basicReferencesIn: aRepository [
+{ #category : #private }
+Gofer >> basicReferencesIn: aRepository [
 	^ [ aRepository goferReferences asSortedCollection asArray ] 
 		on: GoferRepositoryError
 		do: errorBlock
 ]
 
-{
-	#category : #repositories-places,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>blueplane: aString [
+{ #category : #repositories-places }
+Gofer >> blueplane: aString [
 	self url: 'http://squeaksource.blueplane.jp/' , aString
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>cleanup [
+{ #category : #operations }
+Gofer >> cleanup [
 	"Cleans the specified packages."
 	
 	^ self execute: GoferCleanup
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>commit [
+{ #category : #operations }
+Gofer >> commit [
 	"Commit the modified packages."
 
 	^ self execute: GoferCommit
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>commit: aString [
+{ #category : #operations }
+Gofer >> commit: aString [
 	"Commit the modified packages with the given commit message."
 
 	^ self execute: GoferCommit do: [ :operation | operation message: aString ]
 ]
 
-{
-	#category : #references,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>configuration [
+{ #category : #references }
+Gofer >> configuration [
 	"Add a default Configuration package by using the repository name.
 	Assumes that there has been at least one repository set"
 	^ self configurationOf: self repositories last project capitalized.
 ]
 
-{
-	#category : #references,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>configurationOf: aProjectName [
+{ #category : #references }
+Gofer >> configurationOf: aProjectName [
 	"Add a package reference to the configuration of the given project"
 	references addLast: (GoferConfigurationReference name: aProjectName)
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>directory: aDirectoryOrString [
+{ #category : #repositories }
+Gofer >> directory: aDirectoryOrString [
 	"Add a file-system repository at aDirectoryOrString."
 
 	| repository |
@@ -226,186 +186,129 @@ Gofer>>directory: aDirectoryOrString [
 	self repository: repository
 ]
 
-{
-	#category : #repositories-options,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>disablePackageCache [
+{ #category : #repositories-options }
+Gofer >> disablePackageCache [
 	"Disable the use of the package-cache repository."
 
 	packageCacheRepository := nil
 ]
 
-{
-	#category : #repositories-options,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>disableRepositoryErrors [
+{ #category : #repositories-options }
+Gofer >> disableRepositoryErrors [
 	"Silently swallow all repository errors."
 
 	errorBlock := [ :error | error resume: #() ]
 ]
 
-{
-	#category : #repositories-options,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>enablePackageCache [
+{ #category : #repositories-options }
+Gofer >> enablePackageCache [
 	"Enable the use of the package-cache repository."
 
 	packageCacheRepository := MCCacheRepository uniqueInstance.
 ]
 
-{
-	#category : #repositories-options,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>enableRepositoryErrors [
+{ #category : #repositories-options }
+Gofer >> enableRepositoryErrors [
 	"Throw an exception when repositories are not available."
 
 	errorBlock := [ :error | error pass ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>execute: anOperationClass [
+{ #category : #private }
+Gofer >> execute: anOperationClass [
 	^ self execute: anOperationClass do: nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>execute: anOperationClass do: aBlock [
+{ #category : #private }
+Gofer >> execute: anOperationClass do: aBlock [
 	| operation |
 	operation := anOperationClass on: self copy.
 	aBlock ifNotNil: [ aBlock value: operation ].
 	^ operation execute
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>fetch [
+{ #category : #operations }
+Gofer >> fetch [
 	"Download versions from remote repositories into the local cache."
 
 	^ self execute: GoferFetch
 ]
 
-{
-	#category : #repositories-places,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>gemsource: aString [
+{ #category : #repositories-places }
+Gofer >> gemsource: aString [
 	self url: 'http://seaside.gemstone.com/ss/' , aString
 ]
 
-{
-	#category : #repositories-places,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>impara: aString [
+{ #category : #repositories-places }
+Gofer >> impara: aString [
 	self url: 'http://source.impara.de/' , aString
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>initialize [
+{ #category : #initialization }
+Gofer >> initialize [
 	self enablePackageCache; enableRepositoryErrors.
 	references := OrderedCollection new.
 	repositories := OrderedCollection new
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>load [
+{ #category : #operations }
+Gofer >> load [
 	"Load the specified packages into the image."
 	
 	^ self execute: GoferLoad
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>loadBleedingEdge [
+{ #category : #operations }
+Gofer >> loadBleedingEdge [
 	"Load the baseline of the previously specifed configuration."
 	
 	^ self loadVersion: #bleedingEdge
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>loadDevelopment [
+{ #category : #operations }
+Gofer >> loadDevelopment [
 	"Load the development version of the previously specifed configuration."
 	
 	^ self loadVersion: #development
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>loadStable [
+{ #category : #operations }
+Gofer >> loadStable [
 	"Load the stable version of the previously specifed configuration."
 	
 	^ self loadVersion: #stable
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>loadVersion: anMetacelloVersionIdentifierSymbol [
+{ #category : #operations }
+Gofer >> loadVersion: anMetacelloVersionIdentifierSymbol [
 	"Load the given version name"
 	^ self execute: GoferMetacelloLoad do: [ :operation|
 		operation version: anMetacelloVersionIdentifierSymbol ]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>localChanges [
+{ #category : #operations }
+Gofer >> localChanges [
 	"Answer the changes between the base version and the working copy."
 	
 	^ self execute: GoferLocalChanges
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>merge [
+{ #category : #operations }
+Gofer >> merge [
 	"Merge the specified packages into their working copies."
 	
 	^ self execute: GoferMerge
 ]
 
-{
-	#category : #references,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>package: aString [
+{ #category : #references }
+Gofer >> package: aString [
 	"Add the package aString to the receiver. aString is a package name as it appears in the Monticello Browser, something like 'Magritte-Seaside'. Gofer will try to resolve this name to an actual version in one of the configured repositories before doing something with the package. Gofer sorts all the versions in all the repositories according to branch name (versions without a branch are preferred), version number, author name and repository priority. The top hit of this sorted list is eventually going to be loaded and used."
 
 	references addLast: (GoferPackageReference name: aString)
 ]
 
-{
-	#category : #references,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>package: aString constraint: aOneArgumentBlock [
+{ #category : #references }
+Gofer >> package: aString constraint: aOneArgumentBlock [
 	"Add the package aString to the receiver, but constraint the resulting versions further with aOneArgumentBlock. For details on the package, see #package:. The following example defines various constraints: 
 	
 		aGofer package: 'Magritte-Seaside' constraint: [ :version |
@@ -416,79 +319,55 @@ Gofer>>package: aString constraint: aOneArgumentBlock [
 	references addLast: (GoferConstraintReference name: aString constraint: aOneArgumentBlock)
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>postCopy [
+{ #category : #copying }
+Gofer >> postCopy [
 	references := references copy.
 	repositories := repositories copy.
 	resolvedReferencesCache := nil
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>push [
+{ #category : #operations }
+Gofer >> push [
 	"Upload local versions from local cache into remote repositories."
 
 	^ self execute: GoferPush
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>recompile [
+{ #category : #operations }
+Gofer >> recompile [
 	"Recompile the specified packages."
 
 	^ self execute: GoferRecompile
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>references [
+{ #category : #accessing }
+Gofer >> references [
 	"Answer the configured references."
 
 	^ Array withAll: references
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>reinitialize [
+{ #category : #operations }
+Gofer >> reinitialize [
 	"Calls the class side initializers on all package code."
 	
 	^ self execute: GoferReinitialize
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>remoteChanges [
+{ #category : #operations }
+Gofer >> remoteChanges [
 	"Display the changes between the working copy and the remote changes."
 	
 	^ self execute: GoferRemoteChanges
 ]
 
-{
-	#category : #repositories-places,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>renggli: aString [
+{ #category : #repositories-places }
+Gofer >> renggli: aString [
 	self url: 'http://source.lukas-renggli.ch/' , aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>repositories [
+{ #category : #accessing }
+Gofer >> repositories [
 	"Answer the configured monticello repositories."
 
 	|  result |
@@ -497,11 +376,8 @@ Gofer>>repositories [
 	^ result asArray
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>repository: aRepository [
+{ #category : #repositories }
+Gofer >> repository: aRepository [
 	"Add aRepository to the repository configuration. If there is already a repository defined in the global configuration with that URL take this one instead."
 	
 	| repository |
@@ -511,93 +387,63 @@ Gofer>>repository: aRepository [
 	repositories addLast: repository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>resolved [
+{ #category : #accessing }
+Gofer >> resolved [
 	"Answer the resolved references of the receiver."
 
 	^ self references collect: [ :each | each resolveWith: self ]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>revert [
+{ #category : #operations }
+Gofer >> revert [
 	"Revert the specified packages to the currently loaded version."
 	
 	^ self execute: GoferRevert
 ]
 
-{
-	#category : #repositories-places,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>smalltalkhubUser: aUserName project: aProjectName [
+{ #category : #repositories-places }
+Gofer >> smalltalkhubUser: aUserName project: aProjectName [
 	self repository: (MCSmalltalkhubRepository owner: aUserName project: aProjectName)
 ]
 
-{
-	#category : #repositories-places,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>squeakfoundation: aString [
+{ #category : #repositories-places }
+Gofer >> squeakfoundation: aString [
 	self url: 'http://source.squeakfoundation.org/' , aString
 ]
 
-{
-	#category : #repositories-places,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>squeaksource3: aProjectName [
+{ #category : #repositories-places }
+Gofer >> squeaksource3: aProjectName [
 	self repository: (MCGemstoneRepository location: 'http://ss3.gemtalksystems.com/ss/' , aProjectName)
 ]
 
-{
-	#category : #repositories-places,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>squeaksource: aProjectName [
+{ #category : #repositories-places }
+Gofer >> squeaksource: aProjectName [
 	self repository: (MCSqueaksourceRepository location: 'http://www.squeaksource.com/' , aProjectName)
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>unload [
+{ #category : #operations }
+Gofer >> unload [
 	"Unload the specified packages."
 	
 	^ self execute: GoferUnload
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>update [
+{ #category : #operations }
+Gofer >> update [
 	"Update the specified packages."
 	
 	^ self execute: GoferUpdate
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>url: anUrlString [
+{ #category : #repositories }
+Gofer >> url: anUrlString [
 	"Add anUrlString as a repository for the following package operations."
 
 	self url: anUrlString username: String new password: String new
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>url: urlString username: username password: passwordString [
+{ #category : #repositories }
+Gofer >> url: urlString username: username password: passwordString [
 	"Add urlString as a repository for the following package operations."
 	| repository |
 	repository := MCRepository fromUrl: 
@@ -609,20 +455,14 @@ Gofer>>url: urlString username: username password: passwordString [
 	self repository: repository.
 ]
 
-{
-	#category : #references,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>version: aString [
+{ #category : #references }
+Gofer >> version: aString [
 	"Add the version aString to the receiver. aString is a version name as it appears in the Monticello Repository Browser, something like 'Magritte-Seaside-lr.334'. Gofer will try to resolve this name to one of the configured repositories before loading the code."
 
 	references addLast: (GoferVersionReference name: aString)
 ]
 
-{
-	#category : #repositories-places,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Gofer>>wiresong: aString [
+{ #category : #repositories-places }
+Gofer >> wiresong: aString [
 	self url: 'http://source.wiresong.ca/' , aString
 ]

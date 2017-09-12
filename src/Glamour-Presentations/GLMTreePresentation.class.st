@@ -42,58 +42,39 @@ Class {
 		'tagsBlock',
 		'tagsFilterBlock'
 	],
-	#category : #Glamour-Presentations,
-	#timestamp : 'AndreiChis 10/3/2014 18:34'
+	#category : #Glamour-Presentations
 }
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>allDisplayedDo: aBlock [
+{ #category : #validation }
+GLMTreePresentation >> allDisplayedDo: aBlock [
 	self displayValue do: [ :eachRoot | 
 		self withChildrenOf: eachRoot do: aBlock ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>allExpanded [
+{ #category : #accessing }
+GLMTreePresentation >> allExpanded [
 	self shouldAllExpand: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>children  [
+{ #category : #accessing }
+GLMTreePresentation >> children [ 
 	 
 	^children
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>children: anObject  [
+{ #category : #accessing }
+GLMTreePresentation >> children: anObject [ 
 	 
 	children := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>childrenValueOf: anObject [
+{ #category : #accessing }
+GLMTreePresentation >> childrenValueOf: anObject [
 	^ self children glamourValue: (anObject asGlamorousMultiValue, self entity asGlamorousMultiValue)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>childrenValueOf: anObject atLevel: anInteger [
+{ #category : #accessing }
+GLMTreePresentation >> childrenValueOf: anObject atLevel: anInteger [
 	^ self children glamourValue: (
 		anObject asGlamorousMultiValue, 
 		self entity asGlamorousMultiValue,
@@ -101,11 +82,8 @@ GLMTreePresentation>>childrenValueOf: anObject atLevel: anInteger [
 		self asGlamorousMultiValue)
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>defaultValidate: anObject on: aPort [
+{ #category : #validation }
+GLMTreePresentation >> defaultValidate: anObject on: aPort [
 	"we only allow objects that are in the display value"
 	(aPort name == #selection) ifFalse: [ ^ true ].
 	self entity isNil ifTrue: [ ^ false ].
@@ -113,116 +91,74 @@ GLMTreePresentation>>defaultValidate: anObject on: aPort [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>expandLevel [
+{ #category : #accessing }
+GLMTreePresentation >> expandLevel [
 	^ expandLevel
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>renderGlamorouslyOn: aRenderer	 [
+{ #category : #rendering }
+GLMTreePresentation >> renderGlamorouslyOn: aRenderer [	
 	self registerAnnouncements.
 	^ aRenderer renderTreePresentation: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>rootsExpanded [
+{ #category : #accessing }
+GLMTreePresentation >> rootsExpanded [
 	self shouldRootsExpand: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>shouldAllExpand [
+{ #category : #accessing }
+GLMTreePresentation >> shouldAllExpand [
 	^ allExpanded ifNil: [false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>shouldAllExpand: anObject [
+{ #category : #accessing }
+GLMTreePresentation >> shouldAllExpand: anObject [
 	allExpanded := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>shouldExpandToLevel [
+{ #category : #accessing }
+GLMTreePresentation >> shouldExpandToLevel [
 	^ expandLevel isNil not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>shouldExpandToLevel: level [
+{ #category : #accessing }
+GLMTreePresentation >> shouldExpandToLevel: level [
 	^ expandLevel := level
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>shouldRootsExpand [
+{ #category : #accessing }
+GLMTreePresentation >> shouldRootsExpand [
 	^ rootsExpanded ifNil: [false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>shouldRootsExpand: anObject [
+{ #category : #accessing }
+GLMTreePresentation >> shouldRootsExpand: anObject [
 	rootsExpanded := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>tagsBlock [
+{ #category : #accessing }
+GLMTreePresentation >> tagsBlock [
 	^ tagsBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>tagsBlock: anObject [
+{ #category : #scripting }
+GLMTreePresentation >> tagsBlock: anObject [
 	tagsBlock := anObject
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>tagsFilter: aBlock [
+{ #category : #scripting }
+GLMTreePresentation >> tagsFilter: aBlock [
 	tagsFilterBlock := aBlock 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>tagsFilterBlock [
+{ #category : #accessing }
+GLMTreePresentation >> tagsFilterBlock [
 	^ tagsFilterBlock
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTreePresentation>>withChildrenOf: anObject do: aBlock [
+{ #category : #validation }
+GLMTreePresentation >> withChildrenOf: anObject do: aBlock [
 	aBlock value: anObject.
 	(self childrenValueOf: anObject) do: [ :each |
 		self withChildrenOf: each do: aBlock ]

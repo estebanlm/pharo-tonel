@@ -4,46 +4,33 @@ I hold settings for quality assistant
 Class {
 	#name : #QASettings,
 	#superclass : #Object,
-	#category : #QualityAssistant,
-	#timestamp : 'YuriyTymchuk 10/20/2015 11:57'
+	#category : #QualityAssistant
 }
 
-{
-	#category : #settings-accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QASettings class>>nautilusPlugin [
+{ #category : #settings-accessing }
+QASettings class >> nautilusPlugin [
 	
 	^ QANautilusPlugin isInstalled
 ]
 
-{
-	#category : #settings-accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QASettings class>>nautilusPlugin: aBoolean [
+{ #category : #settings-accessing }
+QASettings class >> nautilusPlugin: aBoolean [
 
 	aBoolean
 		ifTrue:  [ QANautilusPlugin install ]
 		ifFalse: [ QANautilusPlugin uninstall ]
 ]
 
-{
-	#category : #settings-definition,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QASettings class>>qaGroupSettingsOn: aBuilder [
+{ #category : #settings-definition }
+QASettings class >> qaGroupSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #qualityAssistant)
 		label: 'QualityAssistant';
 		parent: #codeBrowsing.
 ]
 
-{
-	#category : #settings-definition,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QASettings class>>qaNautilusPlugginSettingOn: aBuilder [
+{ #category : #settings-definition }
+QASettings class >> qaNautilusPlugginSettingOn: aBuilder [
 	<systemsettings>
 
 	(aBuilder setting: #nautilusPlugin)

@@ -16,15 +16,11 @@ Class {
 		'currentStrip',
 		'currentBackground'
 	],
-	#category : #Athens-Text,
-	#timestamp : 'IgorStasenko 2/6/2012 16:22'
+	#category : #Athens-Text
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>addCharacter: position [
+{ #category : #'as yet unclassified' }
+AthensTextScanner >> addCharacter: position [
 	| charWidth fnt |
 
 	currentStrip ifNil: [
@@ -50,19 +46,13 @@ AthensTextScanner>>addCharacter: position [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>addCommand: aCommand [
+{ #category : #'as yet unclassified' }
+AthensTextScanner >> addCommand: aCommand [
 	currentLine addCommand: aCommand
 ]
 
-{
-	#category : #'text attributes',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>addEmphasis: emphasis [
+{ #category : #'text attributes' }
+AthensTextScanner >> addEmphasis: emphasis [
 	| fnt |
 	
 	fnt := currentFont ifNil: [ self defaultFont ] ifNotNil: [ currentFont font ].
@@ -70,11 +60,8 @@ AthensTextScanner>>addEmphasis: emphasis [
 	self setActualFont: (fnt emphasized: emphasis)
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>applyAttributes [
+{ #category : #'as yet unclassified' }
+AthensTextScanner >> applyAttributes [
 	currentAttributes do: [:attr |
 		attr emphasizeScanner: self ]. 
 	
@@ -83,63 +70,42 @@ AthensTextScanner>>applyAttributes [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>defaultColor [
+{ #category : #'as yet unclassified' }
+AthensTextScanner >> defaultColor [
 	^ Color black
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>defaultFont [
+{ #category : #'as yet unclassified' }
+AthensTextScanner >> defaultFont [
 
 	^ self textStyle defaultFont
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>defaultTextStyle [
+{ #category : #'as yet unclassified' }
+AthensTextScanner >> defaultTextStyle [
 
 	^ TextStyle default
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>endLine: index [
+{ #category : #'as yet unclassified' }
+AthensTextScanner >> endLine: index [
 
 	currentLine  endIndex: index
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>initialize [
+{ #category : #'as yet unclassified' }
+AthensTextScanner >> initialize [
 	lines := OrderedCollection new.
 	currentAttributes := #().
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>lines [
+{ #category : #'as yet unclassified' }
+AthensTextScanner >> lines [
 	^ lines
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>newLine: startingIndex  [
+{ #category : #'as yet unclassified' }
+AthensTextScanner >> newLine: startingIndex [ 
 
 	currentLine := lines add: (AthensTextLine new text: text;
 		startIndex: startingIndex; yourself).
@@ -159,19 +125,13 @@ AthensTextScanner>>newLine: startingIndex  [
 	currentColor := currentBackground := currentFont := currentStrip := nil.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>resetBackground [
+{ #category : #'as yet unclassified' }
+AthensTextScanner >> resetBackground [
 	self textBackground: Color transparent.
 ]
 
-{
-	#category : #'text attributes',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>setActualFont: aFont [
+{ #category : #'text attributes' }
+AthensTextScanner >> setActualFont: aFont [
 
 	currentFont ifNil: [
 		
@@ -187,11 +147,8 @@ AthensTextScanner>>setActualFont: aFont [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>setAttributes: anArray  [
+{ #category : #'as yet unclassified' }
+AthensTextScanner >> setAttributes: anArray [ 
 	currentBackground := nil.
 	currentAttributes := anArray.
 	
@@ -200,30 +157,21 @@ AthensTextScanner>>setAttributes: anArray  [
 
 ]
 
-{
-	#category : #'text attributes',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>setFont: fontNumber [
+{ #category : #'text attributes' }
+AthensTextScanner >> setFont: fontNumber [
 
 	self setActualFont: (self textStyle fontAt: fontNumber).
 	
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>text: aText  [
+{ #category : #'as yet unclassified' }
+AthensTextScanner >> text: aText [ 
 	text := aText
 ]
 
-{
-	#category : #'text attributes',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>textBackground: aColor [
+{ #category : #'text attributes' }
+AthensTextScanner >> textBackground: aColor [
 
 	"background is transparent by default "
 	
@@ -237,11 +185,8 @@ AthensTextScanner>>textBackground: aColor [
 	currentLine addCommand: currentBackground.
 ]
 
-{
-	#category : #'text attributes',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>textColor: aColor [
+{ #category : #'text attributes' }
+AthensTextScanner >> textColor: aColor [
 
 	currentColor ifNil: [
 		currentColor := AthensColorChange new color: aColor.
@@ -256,10 +201,7 @@ AthensTextScanner>>textColor: aColor [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextScanner>>textStyle [
+{ #category : #'as yet unclassified' }
+AthensTextScanner >> textStyle [
 	^ textStyle ifNil: [ textStyle := self defaultTextStyle ]
 ]

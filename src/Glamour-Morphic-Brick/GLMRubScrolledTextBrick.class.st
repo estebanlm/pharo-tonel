@@ -11,33 +11,23 @@ rubricMorph
 Class {
 	#name : #GLMRubScrolledTextBrick,
 	#superclass : #GLMMorphBrick,
-	#category : #Glamour-Morphic-Brick-Widgets-Core,
-	#timestamp : 'AliakseiSyrel 1/30/2015 11:35'
+	#category : #Glamour-Morphic-Brick-Widgets-Core
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick class>>exampleBandOpen [
+{ #category : #examples }
+GLMRubScrolledTextBrick class >> exampleBandOpen [
 
 	self gtExampleBand openInBrickWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick class>>exampleOpen [
+{ #category : #examples }
+GLMRubScrolledTextBrick class >> exampleOpen [
 
 	self gtExample openInBrickWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick class>>gtExample [
+{ #category : #examples }
+GLMRubScrolledTextBrick class >> gtExample [
 	<gtExample>
 	<label: 'Two rubric text areas filling half of size'>
 	
@@ -51,11 +41,8 @@ GLMRubScrolledTextBrick class>>gtExample [
 		yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick class>>gtExampleBand [
+{ #category : #examples }
+GLMRubScrolledTextBrick class >> gtExampleBand [
 	<gtExample>
 	<label: 'Two rubric text areas in band'>
 	
@@ -67,30 +54,21 @@ GLMRubScrolledTextBrick class>>gtExampleBand [
 		yourself
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>beTransparent [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> beTransparent [
 
 	self rubricBackgroundColor: Color transparent
 ]
 
-{
-	#category : #'reflective operations',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>doesNotUnderstand: aMessage [
+{ #category : #'reflective operations' }
+GLMRubScrolledTextBrick >> doesNotUnderstand: aMessage [
 	^ self rubric
 		perform: aMessage selector 
 		withArguments: aMessage arguments
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>initialize [
+{ #category : #initialization }
+GLMRubScrolledTextBrick >> initialize [
 	super initialize.
 	
 	self rubric: self newRubricMorph.
@@ -100,198 +78,135 @@ GLMRubScrolledTextBrick>>initialize [
 		vSpaceFill
 ]
 
-{
-	#category : #rubric-brick-creation,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>newRubricMorph [
+{ #category : #rubric-brick-creation }
+GLMRubScrolledTextBrick >> newRubricMorph [
 
 	^ RubScrolledTextMorph new
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>onThemerChanged [
+{ #category : #brick-properties-events }
+GLMRubScrolledTextBrick >> onThemerChanged [
 
 	self updateStyle
 ]
 
-{
-	#category : #rubric-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>rubric [
+{ #category : #rubric-accessing }
+GLMRubScrolledTextBrick >> rubric [
 
 	^ self morph
 ]
 
-{
-	#category : #rubric-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>rubric: aMorph [
+{ #category : #rubric-accessing }
+GLMRubScrolledTextBrick >> rubric: aMorph [
 
 	self morph ifNotNil: [ self removeMorph: self morph ].
 	self on: aMorph
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>rubricBackgroundColor [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> rubricBackgroundColor [
 
 	^ self valueOfProperty: #brickRubricBackgroundColor ifAbsent: [ self themer rubricBackgroundColor ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>rubricBackgroundColor: aColor [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> rubricBackgroundColor: aColor [
 
 	self setProperty: #brickRubricBackgroundColor toValue: aColor.
 	self updateStyle
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>rubricBorderColor [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> rubricBorderColor [
 
 	^ self valueOfProperty: #brickRubricBorderColor ifAbsent: [ self themer rubricBorderColor ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>rubricBorderColor: aColor [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> rubricBorderColor: aColor [
 
 	self setProperty: #brickRubricBorderColor toValue: aColor.
 	self updateStyle
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>rubricBorderWidth [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> rubricBorderWidth [
 
 	^ self valueOfProperty: #brickRubricBorderWidth ifAbsent: [ self themer rubricBorderWidth ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>rubricBorderWidth: aColor [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> rubricBorderWidth: aColor [
 
 	self setProperty: #brickRubricBorderWidth toValue: aColor.
 	self updateStyle
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>rubricCursorColor [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> rubricCursorColor [
 
 	^ self valueOfProperty: #brickRubricCursorColor ifAbsent: [ self themer rubricCursorColor ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>rubricCursorColor: aColor [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> rubricCursorColor: aColor [
 
 	self setProperty: #brickRubricCursorColor toValue: aColor.
 	self updateStyle
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>rubricTextColor [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> rubricTextColor [
 
 	^ self valueOfProperty: #brickRubricTextColor ifAbsent: [ self themer rubricTextColor ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>rubricTextColor: aColor [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> rubricTextColor: aColor [
 
 	self setProperty: #brickRubricTextColor toValue: aColor.
 	self updateStyle
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>rubricTextFamilyName [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> rubricTextFamilyName [
 
 	^ self valueOfProperty: #brickRubricTextFamilyName ifAbsent: [ self themer rubricTextFamilyName ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>rubricTextFamilyName: aString [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> rubricTextFamilyName: aString [
 
 	self setProperty: #brickRubricTextFamilyName toValue: aString.
 	self updateStyle
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>rubricTextFontSize [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> rubricTextFontSize [
 
 	^ self valueOfProperty: #brickRubricTextFontSize ifAbsent: [ self themer rubricTextFontSize ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>rubricTextFontSize: aFloat [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> rubricTextFontSize: aFloat [
 
 	self setProperty: #brickRubricTextFontSize toValue: aFloat.
 	self updateStyle
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>takeKeyboardFocus [
+{ #category : #protocol }
+GLMRubScrolledTextBrick >> takeKeyboardFocus [
 	self rubric takeKeyboardFocus
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>text: aText [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> text: aText [
 
 	self rubric updateTextWith: aText
 ]
 
-{
-	#category : #rubric-updating,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>updateStyle [
+{ #category : #rubric-updating }
+GLMRubScrolledTextBrick >> updateStyle [
 
 	self color: self rubricBackgroundColor.
 	self rubric borderColor: self rubricBorderColor.
@@ -301,31 +216,22 @@ GLMRubScrolledTextBrick>>updateStyle [
 	self rubric cursor visibleCursorColor: self rubricCursorColor
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>withoutBackground [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> withoutBackground [
 
 	self rubric color: Color transparent.
 	self rubric textArea color: Color transparent
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>withoutBorder [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> withoutBorder [
 
 	self rubricBorderWidth: 0.
 	self rubricBorderColor: Color transparent.
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubScrolledTextBrick>>withoutMargins [
+{ #category : #brick-properties }
+GLMRubScrolledTextBrick >> withoutMargins [
 
 	self margins: (0@0 corner: 0@0)
 ]

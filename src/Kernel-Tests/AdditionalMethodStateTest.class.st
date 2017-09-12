@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'atState'
 	],
-	#category : #Kernel-Tests-Methods,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:30'
+	#category : #Kernel-Tests-Methods
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-AdditionalMethodStateTest>>setUp [
+{ #category : #running }
+AdditionalMethodStateTest >> setUp [
 
 	| pragma |
 
@@ -25,11 +21,8 @@ AdditionalMethodStateTest>>setUp [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-AdditionalMethodStateTest>>testAnalogousCodeTo [
+{ #category : #tests }
+AdditionalMethodStateTest >> testAnalogousCodeTo [
 	"create a fake traitSource association property"
 	| state |
 	state := AdditionalMethodState new: 1.
@@ -42,11 +35,8 @@ AdditionalMethodStateTest>>testAnalogousCodeTo [
 		raise: MessageNotUnderstood
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-AdditionalMethodStateTest>>testCopy [
+{ #category : #tests }
+AdditionalMethodStateTest >> testCopy [
 
 	| copy |
 	copy := atState copy.

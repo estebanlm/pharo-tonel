@@ -1,12 +1,7 @@
-Extension {
-	#name : #GoferReference
-}
+Extension { #name : #GoferReference }
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-GoferReference>>matchesMetacelloGoferPackage: aMetacelloGoferPackage [
+{ #category : #'*metacello-mc' }
+GoferReference >> matchesMetacelloGoferPackage: aMetacelloGoferPackage [
   | pFilename refFilename char |
   ((pFilename := aMetacelloGoferPackage packageFilename) == nil
     or: [ aMetacelloGoferPackage name = aMetacelloGoferPackage packageFilename ])

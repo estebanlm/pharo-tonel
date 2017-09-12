@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCModification
-}
+Extension { #name : #MCModification }
 
-{
-	#category : #'*Tool-Diff',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCModification>>diff [
+{ #category : #'*Tool-Diff' }
+MCModification >> diff [
 	"Open a diff browser on the changes."
 
 	(DiffMorph
@@ -17,11 +12,8 @@ MCModification>>diff [
 			openInWindowLabeled: 'Diff' translated
 ]
 
-{
-	#category : #'*Tool-Diff',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCModification>>diffFromSource [
+{ #category : #'*Tool-Diff' }
+MCModification >> diffFromSource [
 	"Answer fromSource of the modification. If a class patch then answer
 	the fromSource with the class-side definition and comment appended."
 	
@@ -33,11 +25,8 @@ MCModification>>diffFromSource [
 		ifFalse: [obsoletion diffSource]
 ]
 
-{
-	#category : #'*Tool-Diff',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCModification>>diffToSource [
+{ #category : #'*Tool-Diff' }
+MCModification >> diffToSource [
 	"Answer toSource of the modification. If a class patch then answer
 	the toSource with the class-side definition and comment appended."
 	

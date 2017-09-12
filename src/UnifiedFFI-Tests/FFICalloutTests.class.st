@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #FFICalloutTests,
 	#superclass : #TestCase,
@@ -11,15 +8,11 @@ Class {
 		'CLASSVAR',
 		'TYPEVAR'
 	],
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutTests>>checkType: type class: typeClass arity: ptrArity argument: arg  [
+{ #category : #private }
+FFICalloutTests >> checkType: type class: typeClass arity: ptrArity argument: arg [ 
 
 	self assert: type class equals: typeClass.
 	self assert: type pointerArity equals: ptrArity.
@@ -27,47 +20,32 @@ FFICalloutTests>>checkType: type class: typeClass arity: ptrArity argument: arg 
 	self assert: type loader argName equals: arg 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutTests>>checkType: type class: typeClass value: const [
+{ #category : #private }
+FFICalloutTests >> checkType: type class: typeClass value: const [
 	self assert: type class == typeClass.
 	self assert: type value = const
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutTests>>checkTypeSelf: type class: typeClass arity: ptrArity  [
+{ #category : #private }
+FFICalloutTests >> checkTypeSelf: type class: typeClass arity: ptrArity [ 
 
 	self assert: type class = typeClass.
 	self assert: type pointerArity = ptrArity.
 	self assert: type loader class = FFISelfArgument.
 ]
 
-{
-	#category : #binding,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutTests>>ffiBindingOf: aName [
+{ #category : #binding }
+FFICalloutTests >> ffiBindingOf: aName [
 	^ self class ffiBindingOf: aName
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutTests>>setUp [
+{ #category : #initialization }
+FFICalloutTests >> setUp [
 	architecture := FFIArchitecture forCurrentArchitecture
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutTests>>testBuildingFnSpec [
+{ #category : #tests }
+FFICalloutTests >> testBuildingFnSpec [
 	| generator type s |
 
 	generator := FFICallout new.
@@ -102,11 +80,8 @@ FFICalloutTests>>testBuildingFnSpec [
 "ByteArray" 			self checkType: s next class: FFIOop arity: 0 argument: 'arg12'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutTests>>testParseOptions [
+{ #category : #tests }
+FFICalloutTests >> testParseOptions [
 	|generator|
 	generator := FFICallout new.
 	

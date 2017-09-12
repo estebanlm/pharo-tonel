@@ -5,65 +5,43 @@ A GTSpotterRecorderActOnEvent models the action of pressing enter (or double cli
 Class {
 	#name : #GTSpotterRecorderActOnEvent,
 	#superclass : #GTSpotterRecorderEvent,
-	#category : #GT-Spotter-EventRecorder-Events,
-	#timestamp : 'AndreiChis 2/27/2015 14:35'
+	#category : #GT-Spotter-EventRecorder-Events
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderActOnEvent>>accept: aVisitor [
+{ #category : #visitor }
+GTSpotterRecorderActOnEvent >> accept: aVisitor [
 	^ aVisitor visitActOnEvent: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderActOnEvent>>closeActionSymbol [
+{ #category : #accessing }
+GTSpotterRecorderActOnEvent >> closeActionSymbol [
 	^ #actOn
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderActOnEvent>>elementName [
+{ #category : #accessing }
+GTSpotterRecorderActOnEvent >> elementName [
 	^ self infoAt: #elementName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderActOnEvent>>elementType [
+{ #category : #accessing }
+GTSpotterRecorderActOnEvent >> elementType [
 	^ self infoAt: #elementType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderActOnEvent>>eventType [
+{ #category : #accessing }
+GTSpotterRecorderActOnEvent >> eventType [
 	^ self infoAt: #eventType
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderActOnEvent>>fromAnnouncement: anAnnouncement [
+{ #category : #initialization }
+GTSpotterRecorderActOnEvent >> fromAnnouncement: anAnnouncement [
 	super fromAnnouncement: anAnnouncement.
 	self infoAt: #eventType put: anAnnouncement eventType.
 	self infoAt: #elementName putHashForText: anAnnouncement element asString.
 	self infoAt: #elementType putHashForText: anAnnouncement element class name asString.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderActOnEvent>>isCloseSpotter [
+{ #category : #testing }
+GTSpotterRecorderActOnEvent >> isCloseSpotter [
 	^ true
 ]

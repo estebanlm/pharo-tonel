@@ -10,70 +10,45 @@ Class {
 		'pointSize',
 		'emphasized'
 	],
-	#category : #System-Settings-Persistence-Ston-StoredSettings,
-	#timestamp : 'JurajKubelka 10/1/2015 14:38'
+	#category : #System-Settings-Persistence-Ston-StoredSettings
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractFontStoredSetting>>emphasized [
+{ #category : #accessing }
+AbstractFontStoredSetting >> emphasized [
 	^ emphasized
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractFontStoredSetting>>emphasized: anObject [
+{ #category : #accessing }
+AbstractFontStoredSetting >> emphasized: anObject [
 	emphasized := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractFontStoredSetting>>familyName [
+{ #category : #accessing }
+AbstractFontStoredSetting >> familyName [
 	^ familyName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractFontStoredSetting>>familyName: anObject [
+{ #category : #accessing }
+AbstractFontStoredSetting >> familyName: anObject [
 	familyName := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractFontStoredSetting>>fontClassName [
+{ #category : #accessing }
+AbstractFontStoredSetting >> fontClassName [
 	^ fontClassName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractFontStoredSetting>>fontClassName: anObject [
+{ #category : #accessing }
+AbstractFontStoredSetting >> fontClassName: anObject [
 	fontClassName := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractFontStoredSetting>>pointSize [
+{ #category : #accessing }
+AbstractFontStoredSetting >> pointSize [
 	^ pointSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractFontStoredSetting>>pointSize: anObject [
+{ #category : #accessing }
+AbstractFontStoredSetting >> pointSize: anObject [
 	pointSize := anObject
 ]

@@ -4,30 +4,20 @@ This class represents the abstract leaf structure of items stored in History tre
 Class {
 	#name : #HistoryLeaf,
 	#superclass : #Object,
-	#category : #System-History,
-	#timestamp : 'AlainPlantec 12/14/2010 23:06'
+	#category : #System-History
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryLeaf>>addItem: anHistoryItem  [
+{ #category : #adding }
+HistoryLeaf >> addItem: anHistoryItem [ 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryLeaf>>isComposite [
+{ #category : #testing }
+HistoryLeaf >> isComposite [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-HistoryLeaf>>opened [
+{ #category : #testing }
+HistoryLeaf >> opened [
 	^ false
 ]

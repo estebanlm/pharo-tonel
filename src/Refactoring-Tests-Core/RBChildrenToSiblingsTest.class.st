@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #RBChildrenToSiblingsTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBChildrenToSiblingsTest>>setUp [
+{ #category : #'set up' }
+RBChildrenToSiblingsTest >> setUp [
 	super setUp.
 	model := Smalltalk compiler evaluate: self childrenToSiblingTestData
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBChildrenToSiblingsTest>>testBadName [
+{ #category : #'failure tests' }
+RBChildrenToSiblingsTest >> testBadName [
 	self shouldFail: (RBChildrenToSiblingsRefactoring 
 			name: #'Obje ct'
 			class: RBLintRuleTest
@@ -30,11 +20,8 @@ RBChildrenToSiblingsTest>>testBadName [
 					with: RBCompositeLintRuleTest))
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBChildrenToSiblingsTest>>testExistingName [
+{ #category : #'failure tests' }
+RBChildrenToSiblingsTest >> testExistingName [
 	self
 		shouldFail: (RBChildrenToSiblingsRefactoring 
 				name: #Object
@@ -50,11 +37,8 @@ RBChildrenToSiblingsTest>>testExistingName [
 						with: RBCompositeLintRuleTest))
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBChildrenToSiblingsTest>>testInvalidSubclass [
+{ #category : #'failure tests' }
+RBChildrenToSiblingsTest >> testInvalidSubclass [
 	self shouldFail: (RBChildrenToSiblingsRefactoring 
 			name: #Foo
 			class: RBRefactoringTest
@@ -63,11 +47,8 @@ RBChildrenToSiblingsTest>>testInvalidSubclass [
 					with: RBCompositeLintRuleTest))
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBChildrenToSiblingsTest>>testMetaClassFailure [
+{ #category : #'failure tests' }
+RBChildrenToSiblingsTest >> testMetaClassFailure [
 	self shouldFail: (RBChildrenToSiblingsRefactoring 
 			name: #Foo
 			class: RBLintRuleTest class
@@ -76,11 +57,8 @@ RBChildrenToSiblingsTest>>testMetaClassFailure [
 					with: RBCompositeLintRuleTest class))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBChildrenToSiblingsTest>>testModelChildrenToSibling [
+{ #category : #tests }
+RBChildrenToSiblingsTest >> testModelChildrenToSibling [
 	| refactoring class subclass superclass |
 	class := model classNamed: #ConcreteSuperclass.
 	subclass := model classNamed: #ConcreteSubclass.

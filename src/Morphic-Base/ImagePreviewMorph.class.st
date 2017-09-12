@@ -9,26 +9,19 @@ Class {
 		'textMorph',
 		'defaultImageForm'
 	],
-	#category : #Morphic-Base-Basic,
-	#timestamp : 'gvc 5/18/2007 12:51'
+	#category : #Morphic-Base-Basic
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImagePreviewMorph>>cornerStyle: aSymbol [
+{ #category : #'as yet unclassified' }
+ImagePreviewMorph >> cornerStyle: aSymbol [
 	"Pass on to selector and content too."
 
 	super cornerStyle: aSymbol.
 	self imageMorph cornerStyle: aSymbol
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImagePreviewMorph>>defaultImageFormOfSize: aPoint [
+{ #category : #'as yet unclassified' }
+ImagePreviewMorph >> defaultImageFormOfSize: aPoint [
 	"Answer a default preview image form."
 
 	^(defaultImageForm isNil or: [defaultImageForm extent ~= aPoint])
@@ -36,11 +29,8 @@ ImagePreviewMorph>>defaultImageFormOfSize: aPoint [
 		ifFalse: [defaultImageForm]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImagePreviewMorph>>image: form size: imageSize [
+{ #category : #'as yet unclassified' }
+ImagePreviewMorph >> image: form size: imageSize [
 	"Set the image and update the description."
 	
 	form
@@ -57,31 +47,22 @@ ImagePreviewMorph>>image: form size: imageSize [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImagePreviewMorph>>imageMorph [
+{ #category : #accessing }
+ImagePreviewMorph >> imageMorph [
 	"Answer the value of imageMorph"
 
 	^ imageMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImagePreviewMorph>>imageMorph: anObject [
+{ #category : #accessing }
+ImagePreviewMorph >> imageMorph: anObject [
 	"Set the value of imageMorph"
 
 	imageMorph := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImagePreviewMorph>>initialize [
+{ #category : #initialization }
+ImagePreviewMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -97,11 +78,8 @@ ImagePreviewMorph>>initialize [
 		addMorphBack: self textMorph
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImagePreviewMorph>>newImageMorph [
+{ #category : #'as yet unclassified' }
+ImagePreviewMorph >> newImageMorph [
 	"Answer a new image morph."
 
 	^AlphaImageMorph new
@@ -110,31 +88,22 @@ ImagePreviewMorph>>newImageMorph [
 		alpha: 1.0
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImagePreviewMorph>>newTextMorph [
+{ #category : #'as yet unclassified' }
+ImagePreviewMorph >> newTextMorph [
 	"Answer a new text morph."
 
 	^StringMorph contents: ''
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImagePreviewMorph>>textMorph [
+{ #category : #accessing }
+ImagePreviewMorph >> textMorph [
 	"Answer the value of textMorph"
 
 	^ textMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImagePreviewMorph>>textMorph: anObject [
+{ #category : #accessing }
+ImagePreviewMorph >> textMorph: anObject [
 	"Set the value of textMorph"
 
 	textMorph := anObject

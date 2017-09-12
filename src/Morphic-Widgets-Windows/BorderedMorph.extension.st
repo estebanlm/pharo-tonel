@@ -1,23 +1,15 @@
-Extension {
-	#name : #BorderedMorph
-}
+Extension { #name : #BorderedMorph }
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-BorderedMorph>>addCornerGrips [
+{ #category : #'*Morphic-Widgets-Windows' }
+BorderedMorph >> addCornerGrips [
 	self addMorphBack: (TopLeftGripMorph new target: self; position: self position).
 	self addMorphBack: (TopRightGripMorph new target: self; position: self position).
 	self addMorphBack: (BottomLeftGripMorph new target: self; position: self position).
 	self addMorphBack: (BottomRightGripMorph new target: self; position: self position)
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-BorderedMorph>>addPaneSplitters [
+{ #category : #'*Morphic-Widgets-Windows' }
+BorderedMorph >> addPaneSplitters [
 	| splitter remaining target targetX sameX minY maxY targetY sameY minX maxX |
 	self removePaneSplitters.
 	self removeCornerGrips.
@@ -63,11 +55,8 @@ BorderedMorph>>addPaneSplitters [
 
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-BorderedMorph>>addPaneVSplitterBetween: leftMorph and: rightMorphs  [
+{ #category : #'*Morphic-Widgets-Windows' }
+BorderedMorph >> addPaneVSplitterBetween: leftMorph and: rightMorphs [ 
 
 	| targetX minY maxY splitter |
 	targetX := leftMorph layoutFrame rightFraction.
@@ -84,11 +73,8 @@ BorderedMorph>>addPaneVSplitterBetween: leftMorph and: rightMorphs  [
 	self addMorphBack: (splitter position: self position).
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-BorderedMorph>>linkSubmorphsToSplitters [
+{ #category : #'*Morphic-Widgets-Windows' }
+BorderedMorph >> linkSubmorphsToSplitters [
 
 	self splitters do:
 		[:each |
@@ -105,31 +91,22 @@ BorderedMorph>>linkSubmorphsToSplitters [
 					(eachMorph ~= each and: [eachMorph layoutFrame leftFraction = each layoutFrame rightFraction]) ifTrue: [each addRightOrBottom: eachMorph]]]]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-BorderedMorph>>removeCornerGrips [
+{ #category : #'*Morphic-Widgets-Windows' }
+BorderedMorph >> removeCornerGrips [
 
 	| corners |
 	corners := self submorphsSatisfying: [:each | each isKindOf: CornerGripMorph].
 	corners do: [:each | each delete]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-BorderedMorph>>removePaneSplitters [
+{ #category : #'*Morphic-Widgets-Windows' }
+BorderedMorph >> removePaneSplitters [
 
 	self splitters do: [:each | each delete]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-BorderedMorph>>splitters [
+{ #category : #'*Morphic-Widgets-Windows' }
+BorderedMorph >> splitters [
 
 	^ self submorphsSatisfying: [:each | each isKindOf: ProportionalSplitterMorph]
 ]

@@ -8,35 +8,25 @@ Class {
 		'entries',
 		'globalName'
 	],
-	#category : #Ombu-Stores,
-	#timestamp : 'MartinDias 3/13/2017 16:33'
+	#category : #Ombu-Stores
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmMemoryStore class>>named: aGlobalName [
+{ #category : #'instance creation' }
+OmMemoryStore class >> named: aGlobalName [
 
 	^ self basicNew
 		initializeWithGlobalName: aGlobalName;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmMemoryStore class>>new [
+{ #category : #'instance creation' }
+OmMemoryStore class >> new [
 
 	^ self named: UUID new asString36
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmMemoryStore class>>withAll: aCollection [
+{ #category : #'instance creation' }
+OmMemoryStore class >> withAll: aCollection [
 
 	^ self new
 		in: [:store | 
@@ -46,27 +36,18 @@ OmMemoryStore class>>withAll: aCollection [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmMemoryStore>>entries [
+{ #category : #accessing }
+OmMemoryStore >> entries [
 	^ entries
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmMemoryStore>>entriesDo: aBlockClosure  [
+{ #category : #enumerating }
+OmMemoryStore >> entriesDo: aBlockClosure [ 
 	entries do: aBlockClosure
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmMemoryStore>>entryFor: aReference ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
+{ #category : #accessing }
+OmMemoryStore >> entryFor: aReference ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
 
 	| entry |
 	(aReference isNull or: [ aReference globalName ~= self globalName])
@@ -79,19 +60,13 @@ OmMemoryStore>>entryFor: aReference ifPresent: presentBlockClosure ifAbsent: abs
 	^ presentBlockClosure cull: entry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmMemoryStore>>globalName [
+{ #category : #accessing }
+OmMemoryStore >> globalName [
 	^ globalName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmMemoryStore>>headReference [
+{ #category : #accessing }
+OmMemoryStore >> headReference [
 	"Answer a reference to the last entry added to this store, or OmNullReference uniqueInstance when empty."
 
 	^ entries
@@ -99,11 +74,8 @@ OmMemoryStore>>headReference [
 		ifNotEmpty: [ self referenceTo: entries last ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmMemoryStore>>initializeWithGlobalName: aName [
+{ #category : #accessing }
+OmMemoryStore >> initializeWithGlobalName: aName [
 
 	self initialize.
 	globalName := aName.
@@ -111,11 +83,8 @@ OmMemoryStore>>initializeWithGlobalName: aName [
 	entries := OrderedCollection new.
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmMemoryStore>>newEntry: anEntry [
+{ #category : #writing }
+OmMemoryStore >> newEntry: anEntry [
 
 	| localName newReference |
 	localName := (entries size + 1) asString.
@@ -125,21 +94,15 @@ OmMemoryStore>>newEntry: anEntry [
 
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmMemoryStore>>refresh [
+{ #category : #refreshing }
+OmMemoryStore >> refresh [
 	"Nothing to refresh"
 	
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmMemoryStore>>writingFileReference [
+{ #category : #accessing }
+OmMemoryStore >> writingFileReference [
 	"Stub"
 	
 	^ (FileSystem memory / 'store.ombu') ensureCreateFile

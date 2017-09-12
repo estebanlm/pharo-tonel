@@ -1,35 +1,22 @@
-"
-
-"
 Class {
 	#name : #WeakIdentityValueDictionaryTests,
 	#superclass : #WeakValueDictionaryTest,
-	#category : #Collections-Tests-Weak,
-	#timestamp : ''
+	#category : #Collections-Tests-Weak
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakIdentityValueDictionaryTests>>canBeUnhealthy [
+{ #category : #requirements }
+WeakIdentityValueDictionaryTests >> canBeUnhealthy [
 	^ false
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakIdentityValueDictionaryTests>>classToBeTested [
+{ #category : #requirements }
+WeakIdentityValueDictionaryTests >> classToBeTested [
 
 	^WeakIdentityValueDictionary 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakIdentityValueDictionaryTests>>testIdentity [
+{ #category : #tests }
+WeakIdentityValueDictionaryTests >> testIdentity [
 	| dict key |
 	dict := self classToBeTested new.
 	key := 'key'.

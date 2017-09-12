@@ -4,34 +4,24 @@ Aciton when the method is a test
 Class {
 	#name : #MethodIsTestAction,
 	#superclass : #AbstractMethodIconAction,
-	#category : #Nautilus-Widgets,
-	#timestamp : '<historical>'
+	#category : #Nautilus-Widgets
 }
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsTestAction>>actionOrder [
+{ #category : #order }
+MethodIsTestAction >> actionOrder [
 	"Return the priority of this action"
 	
 	^ 0
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsTestAction>>isActionHandled [
+{ #category : #order }
+MethodIsTestAction >> isActionHandled [
 
 	^ method isTestMethod and: [ method methodClass isAbstract not ]
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsTestAction>>privateActionIcon [
+{ #category : #order }
+MethodIsTestAction >> privateActionIcon [
 	"Return the icon for this action"
 	
 	^ IconicButton new

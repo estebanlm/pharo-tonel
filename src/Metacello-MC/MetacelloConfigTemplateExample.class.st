@@ -35,25 +35,18 @@ Class {
 	#classVars : [
 		'LastVersionLoad'
 	],
-	#category : #Metacello-MC-Model,
-	#timestamp : '<historical>'
+	#category : #Metacello-MC-Model
 }
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample class>>DevelopmentSupport [
+{ #category : #'development support' }
+MetacelloConfigTemplateExample class >> DevelopmentSupport [
 
 "See the methods in the 'development support' category on the class-side of MetacelloBaseConfiguration. Decide what development support methods you would like to use and copy them the the class-side of your configuration."
 	<apiDocumentation>
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample class>>baseConfigurationClassIfAbsent: aBlock [
+{ #category : #private }
+MetacelloConfigTemplateExample class >> baseConfigurationClassIfAbsent: aBlock [
 
 	^Smalltalk
 		at: #MetacelloBaseConfiguration
@@ -62,20 +55,14 @@ MetacelloConfigTemplateExample class>>baseConfigurationClassIfAbsent: aBlock [
 			Smalltalk at: #MetacelloBaseConfiguration ifAbsent: aBlock ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample class>>ensureMetacello [
+{ #category : #private }
+MetacelloConfigTemplateExample class >> ensureMetacello [
 
 	(self baseConfigurationClassIfAbsent: []) ensureMetacello
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample class>>ensureMetacelloBaseConfiguration [
+{ #category : #private }
+MetacelloConfigTemplateExample class >> ensureMetacelloBaseConfiguration [
 
 	Smalltalk
 		at: #MetacelloBaseConfiguration
@@ -90,21 +77,15 @@ MetacelloConfigTemplateExample class>>ensureMetacelloBaseConfiguration [
 					version workingCopy repositoryGroup addRepository: repository ] ]
 ]
 
-{
-	#category : #'metacello tool support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample class>>isMetacelloConfig [
+{ #category : #'metacello tool support' }
+MetacelloConfigTemplateExample class >> isMetacelloConfig [
 	"Answer true and the Metacello tools will operate on you"
 	
 	^true
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample class>>load [
+{ #category : #loading }
+MetacelloConfigTemplateExample class >> load [
 	"Load the #stable version defined for this platform. The #stable version is the version that is recommended to be used on this platform."
 
 	"self load"
@@ -113,11 +94,8 @@ MetacelloConfigTemplateExample class>>load [
 	^(self project version: #stable) load
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample class>>loadBleedingEdge [
+{ #category : #loading }
+MetacelloConfigTemplateExample class >> loadBleedingEdge [
 	"Load the latest versions of the mcz files defined for this project. It is not likely that the #bleedingEdge has been tested."
 
 	"self loadBleedingEdge"
@@ -126,11 +104,8 @@ MetacelloConfigTemplateExample class>>loadBleedingEdge [
 	^(self project version: #bleedingEdge) load
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample class>>loadDevelopment [
+{ #category : #loading }
+MetacelloConfigTemplateExample class >> loadDevelopment [
 	"Load the #development version defined for this platform. The #development version will change over time and is not expected to be stable."
 
 	"self loadDevelopment"
@@ -139,20 +114,14 @@ MetacelloConfigTemplateExample class>>loadDevelopment [
 	^(self project version: #development) load
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample class>>project [
+{ #category : #accessing }
+MetacelloConfigTemplateExample class >> project [
 
 	^self new project
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample class>>validate [
+{ #category : #'development support' }
+MetacelloConfigTemplateExample class >> validate [
 	"Check the configuration for Errors, Critical Warnings, and Warnings (see class comment for MetacelloMCVersionValidator for more information). 
 	Errors identify specification issues that will result in unexpected behaviour when you load the configuration. 
 	Critical Warnings identify specification issues that may result in unexpected behavior when you load the configuration.
@@ -165,11 +134,8 @@ MetacelloConfigTemplateExample class>>validate [
 	^ ((Smalltalk at: #MetacelloToolBox) validateConfiguration: self debug: #() recurse: false) explore
 ]
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample>>baseline10: spec [
+{ #category : #baselines }
+MetacelloConfigTemplateExample >> baseline10: spec [
 	"Baselines are used by convention in Metacello and essentially are nothing else than normal versions.
 	Name the baseline after the first version it was introduced.
 	In this case 1.0-baseline was introduced the first time with the 1.0 version defined in the #version10 method.
@@ -204,22 +170,16 @@ MetacelloConfigTemplateExample>>baseline10: spec [
 			group: 'core'    with: #('MyProject-Core')]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample>>customProjectAttributes [
+{ #category : #accessing }
+MetacelloConfigTemplateExample >> customProjectAttributes [
 	 "Edit to return a collection of any custom attributes e.g. for conditional loading: Array with: #'Condition1' with: #'Condition2.
 	For more information see: http://code.google.com/p/metacello/wiki/CustomProjectAttrributes"
 
 	^ #().
 ]
 
-{
-	#category : #tags,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample>>development: spec [
+{ #category : #tags }
+MetacelloConfigTemplateExample >> development: spec [
 	"By convention the development branch should point to a fixed version that is regularly updated and might contain unstable code.
 	The name used by Metacello is only defined by the following pragma:"
 	<symbolicVersion: #development >
@@ -229,11 +189,8 @@ MetacelloConfigTemplateExample>>development: spec [
 	spec for: #'common' version: 'dev'.
 ]
 
-{
-	#category : #'external projects',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample>>fileSystemLegacy: spec [
+{ #category : #'external projects' }
+MetacelloConfigTemplateExample >> fileSystemLegacy: spec [
 	"This is an example of an external project which does not have a configuration yet.
 	Note that the package name is only used in the Metacello configuration and does not have be exactly the same as the Monticello project/version name."
 	spec package: 'FileSystemLegacy' with: [
@@ -243,11 +200,8 @@ MetacelloConfigTemplateExample>>fileSystemLegacy: spec [
 			file:  'FileSystem-Legacy-JohanBrichau.2' ]
 ]
 
-{
-	#category : #'external projects',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample>>fuelMetalevel: spec [
+{ #category : #'external projects' }
+MetacelloConfigTemplateExample >> fuelMetalevel: spec [
 
 	"Specify a dependency on an external project which has it's own configuration.
 	The given project name can be chosen freely, for simplicity use the same name as the configuration or the conditional group you load."
@@ -259,11 +213,8 @@ MetacelloConfigTemplateExample>>fuelMetalevel: spec [
 			loads: #FuelMetalevel ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample>>project [
+{ #category : #accessing }
+MetacelloConfigTemplateExample >> project [
 
 	^ project ifNil: [ 
 		"Bootstrap Metacello if it is not already loaded"
@@ -275,11 +226,8 @@ MetacelloConfigTemplateExample>>project [
 		project ]
 ]
 
-{
-	#category : #tags,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample>>stable: spec [
+{ #category : #tags }
+MetacelloConfigTemplateExample >> stable: spec [
 	"Symbolic versions can be used to introduce an indirection to a version number.
 	The real name used by Metacello is only defined by the following pragma:"
 	<symbolicVersion: #stable >
@@ -291,11 +239,8 @@ MetacelloConfigTemplateExample>>stable: spec [
 	spec for: #'common' version: '1.0'.
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample>>version10: spec [
+{ #category : #versions }
+MetacelloConfigTemplateExample >> version10: spec [
 	"The name for this version is solely defined by the following pragma:"
 	<version: '1.0' imports: #('1.0-baseline') >
 	"Baselines are used to define more complex setups for your project.
@@ -324,11 +269,8 @@ MetacelloConfigTemplateExample>>version10: spec [
 	"If you want to specify different version on other platforms add another #for:do: block with a different version identifier."
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloConfigTemplateExample>>versionDevelopment: spec [
+{ #category : #versions }
+MetacelloConfigTemplateExample >> versionDevelopment: spec [
 	"version specification for the current development branch, see #version10 for a complete explanation of a version declaration.
 	In this case the 'dev' version uses the same baselin as version '1.0':"
 	<version: 'dev' imports: #('1.0-baseline') >

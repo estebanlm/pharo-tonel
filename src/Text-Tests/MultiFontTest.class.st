@@ -1,9 +1,5 @@
-"
-
-"
 Class {
 	#name : #MultiFontTest,
 	#superclass : #TestCase,
-	#category : #Text-Tests-Fonts,
-	#timestamp : ''
+	#category : #Text-Tests-Fonts
 }

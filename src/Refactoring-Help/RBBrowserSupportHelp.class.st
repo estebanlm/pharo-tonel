@@ -4,23 +4,16 @@ This is the chapter of  the refactoring framework help about refactoring support
 Class {
 	#name : #RBBrowserSupportHelp,
 	#superclass : #RefactoringHelp,
-	#category : #Refactoring-Help,
-	#timestamp : 'NicolaiHess 7/27/2016 21:17'
+	#category : #Refactoring-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserSupportHelp class>>bookName [
+{ #category : #accessing }
+RBBrowserSupportHelp class >> bookName [
 	^ 'System Browser Support'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserSupportHelp class>>overview [
+{ #category : #pages }
+RBBrowserSupportHelp class >> overview [
 	^HelpTopic
 		title: 'Overview'
 		contents: 
@@ -48,10 +41,7 @@ See the chapter in "RB Refactoring Engine - RBBrowserEnvironment" for more examp
 '
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserSupportHelp class>>pages [
+{ #category : #accessing }
+RBBrowserSupportHelp class >> pages [
 	^#( overview #RBBrowserClassRefactoringHelp #RBBrowserMethodRefactoringHelp #RBBrowserSourceRefactoringHelp )
 ]

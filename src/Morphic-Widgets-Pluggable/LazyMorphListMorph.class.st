@@ -4,35 +4,25 @@ Support for morph lists in PluggableMorphListMorph.
 Class {
 	#name : #LazyMorphListMorph,
 	#superclass : #LazyListMorph,
-	#category : #Morphic-Widgets-Pluggable,
-	#timestamp : 'gvc 5/18/2007 12:47'
+	#category : #Morphic-Widgets-Pluggable
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyMorphListMorph>>adjustHeight [
+{ #category : #'as yet unclassified' }
+LazyMorphListMorph >> adjustHeight [
 	"private.  Adjust our height to match the length of the underlying list.
 	Automatic with table layout."
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyMorphListMorph>>adjustWidth [
+{ #category : #'as yet unclassified' }
+LazyMorphListMorph >> adjustWidth [
 	"private.  Adjust our height to match the length of the underlying list"
 	
 	self width: (listSource innerBounds width max: self hUnadjustedScrollRange). 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyMorphListMorph>>display: item  atRow: row on: aCanvas [
+{ #category : #'as yet unclassified' }
+LazyMorphListMorph >> display: item  atRow: row on: aCanvas [
 	"Display the given item at the given row on the given canvas."
 	
 	|c frame|
@@ -46,11 +36,8 @@ LazyMorphListMorph>>display: item  atRow: row on: aCanvas [
 		 dashes: #(1 1)
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyMorphListMorph>>drawBoundsForRow: row [
+{ #category : #'as yet unclassified' }
+LazyMorphListMorph >> drawBoundsForRow: row [
 	"Calculate the bounds that row should be drawn at.  This might be outside our bounds!"
 	
 	(row between: 1 and: listItems size)
@@ -58,11 +45,8 @@ LazyMorphListMorph>>drawBoundsForRow: row [
 	^(listItems at: row) bounds
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyMorphListMorph>>drawSubmorphsOn: aCanvas  [
+{ #category : #'as yet unclassified' }
+LazyMorphListMorph >> drawSubmorphsOn: aCanvas [ 
 	"Display submorphs back to front"
 
 	| drawBlock|
@@ -76,11 +60,8 @@ LazyMorphListMorph>>drawSubmorphsOn: aCanvas  [
 		ifFalse: [drawBlock value: aCanvas]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyMorphListMorph>>hUnadjustedScrollRange [
+{ #category : #'as yet unclassified' }
+LazyMorphListMorph >> hUnadjustedScrollRange [
 	"Answer the width of the widest item."
 
 	maxWidth ifNotNil:[^maxWidth].
@@ -92,11 +73,8 @@ LazyMorphListMorph>>hUnadjustedScrollRange [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyMorphListMorph>>initialize [
+{ #category : #initialization }
+LazyMorphListMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -108,11 +86,8 @@ LazyMorphListMorph>>initialize [
 		hResizing: #rigid
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyMorphListMorph>>listChanged [
+{ #category : #'as yet unclassified' }
+LazyMorphListMorph >> listChanged [
 	"set newList to be the list of strings to display"
 	listItems := (1 to: self getListSize) collect: [:i |
 		self getListItem: i].
@@ -130,11 +105,8 @@ LazyMorphListMorph>>listChanged [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyMorphListMorph>>rowAtLocation: aPoint [
+{ #category : #'as yet unclassified' }
+LazyMorphListMorph >> rowAtLocation: aPoint [
 	"return the number of the row at aPoint"
 
 	| y |
@@ -145,21 +117,15 @@ LazyMorphListMorph>>rowAtLocation: aPoint [
 	^listItems size
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyMorphListMorph>>selectRow: index [
+{ #category : #'as yet unclassified' }
+LazyMorphListMorph >> selectRow: index [
 	"select the index-th row"
 	selectedRows add: index.
 	self invalidRect: (self drawBoundsForRow: index)
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyMorphListMorph>>selectionFrameForRow: row [
+{ #category : #'as yet unclassified' }
+LazyMorphListMorph >> selectionFrameForRow: row [
 	"Answer the selection frame rectangle."
 
 	|frame|
@@ -174,11 +140,8 @@ LazyMorphListMorph>>selectionFrameForRow: row [
 	^frame
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyMorphListMorph>>userString [
+{ #category : #'as yet unclassified' }
+LazyMorphListMorph >> userString [
 	"Do I have a text string to be searched on?"
 
 	^ String

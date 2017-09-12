@@ -8,14 +8,10 @@ The idea is that virtual slots can use hidden non-virtual slots to store their s
 Class {
 	#name : #HiddenInstanceVariableSlot,
 	#superclass : #InstanceVariableSlot,
-	#category : #Slot-Examples,
-	#timestamp : 'JurajKubelka 3/4/2015 20:15'
+	#category : #Slot-Examples
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-HiddenInstanceVariableSlot>>isVisible [
+{ #category : #testing }
+HiddenInstanceVariableSlot >> isVisible [
 	^ false
 ]

@@ -14,15 +14,11 @@ For now we impose upon you to synchronise any and all changes between these two 
 Class {
 	#name : #EncoderForLongFormV3PlusClosures,
 	#superclass : #EncoderForLongFormV3,
-	#category : #Compiler-Kernel,
-	#timestamp : '<historical>'
+	#category : #Compiler-Kernel
 }
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3PlusClosures>>genPushClosureCopyNumCopiedValues: numCopied numArgs: numArgs jumpSize: jumpSize [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3PlusClosures >> genPushClosureCopyNumCopiedValues: numCopied numArgs: numArgs jumpSize: jumpSize [
 	"143 	10001111 llllkkkk jjjjjjjj iiiiiiii	Push Closure Num Copied llll Num Args kkkk BlockSize jjjjjjjjiiiiiiii"
 	(jumpSize < 0 or: [jumpSize > 65535]) ifTrue:
 		[^self outOfRangeError: 'block size' index: jumpSize range: 0 to: 65535].
@@ -37,11 +33,8 @@ EncoderForLongFormV3PlusClosures>>genPushClosureCopyNumCopiedValues: numCopied n
 		nextPut: (jumpSize bitAnd: 16rFF)
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3PlusClosures>>genPushConsArray: size [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3PlusClosures >> genPushConsArray: size [
 	(size < 0 or: [size > 127]) ifTrue:
 		[^self outOfRangeError: 'numElements' index: size range: 0 to: 127].
 	"138 	10001010 1kkkkkkk 	Pop kkkkkkk into: (Array new: kkkkkkk)"
@@ -50,11 +43,8 @@ EncoderForLongFormV3PlusClosures>>genPushConsArray: size [
 		nextPut: size + 128
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3PlusClosures>>genPushNewArray: size [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3PlusClosures >> genPushNewArray: size [
 	(size < 0 or: [size > 127]) ifTrue:
 		[^self outOfRangeError: 'size' index: size range: 0 to: 127].
 	"138 	10001010 0kkkkkkk 	Push (Array new: kkkkkkk)"
@@ -63,11 +53,8 @@ EncoderForLongFormV3PlusClosures>>genPushNewArray: size [
 		nextPut: size
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3PlusClosures>>genPushRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3PlusClosures >> genPushRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 	(tempIndex >= 0 and: [tempIndex < 256
 	 and: [tempVectorIndex >= 0 and: [tempVectorIndex < 256]]]) ifTrue:
 		["140 	10001100 kkkkkkkk jjjjjjjj 	Push Temp At kkkkkkkk In Temp Vector At: jjjjjjjj"
@@ -82,11 +69,8 @@ EncoderForLongFormV3PlusClosures>>genPushRemoteTemp: tempIndex inVectorAt: tempV
 		[^self outOfRangeError: 'tempVectorIndex' index: tempVectorIndex range: 0 to: 255]
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3PlusClosures>>genStorePopRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3PlusClosures >> genStorePopRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 	"142 	10001110 kkkkkkkk jjjjjjjj 	Pop and Store Temp At kkkkkkkk In Temp Vector At: jjjjjjjj"
 	(tempIndex >= 0 and: [tempIndex < 256
 	 and: [tempVectorIndex >= 0 and: [tempVectorIndex < 256]]]) ifTrue:
@@ -101,11 +85,8 @@ EncoderForLongFormV3PlusClosures>>genStorePopRemoteTemp: tempIndex inVectorAt: t
 		[^self outOfRangeError: 'tempVectorIndex' index: tempVectorIndex range: 0 to: 255]
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3PlusClosures>>genStoreRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
+{ #category : #'bytecode generation' }
+EncoderForLongFormV3PlusClosures >> genStoreRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 	"141 	10001101 kkkkkkkk jjjjjjjj 	Store Temp At kkkkkkkk In Temp Vector At: jjjjjjjj"
 	(tempIndex >= 0 and: [tempIndex < 256
 	 and: [tempVectorIndex >= 0 and: [tempVectorIndex < 256]]]) ifTrue:
@@ -120,10 +101,7 @@ EncoderForLongFormV3PlusClosures>>genStoreRemoteTemp: tempIndex inVectorAt: temp
 		[^self outOfRangeError: 'tempVectorIndex' index: tempVectorIndex range: 0 to: 255]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForLongFormV3PlusClosures>>supportsClosureOpcodes [
+{ #category : #testing }
+EncoderForLongFormV3PlusClosures >> supportsClosureOpcodes [
 	^true
 ]

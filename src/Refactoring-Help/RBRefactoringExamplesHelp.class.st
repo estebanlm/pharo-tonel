@@ -4,23 +4,16 @@ This chapter of the refactoring help book is about how to manually use the refac
 Class {
 	#name : #RBRefactoringExamplesHelp,
 	#superclass : #RefactoringHelp,
-	#category : #Refactoring-Help,
-	#timestamp : 'NicolaiHess 7/27/2016 21:45'
+	#category : #Refactoring-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBRefactoringExamplesHelp class>>bookName [
+{ #category : #accessing }
+RBRefactoringExamplesHelp class >> bookName [
 	^ 'Refactoring Examples'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBRefactoringExamplesHelp class>>combineOperationsExample [
+{ #category : #pages }
+RBRefactoringExamplesHelp class >> combineOperationsExample [
 	^HelpTopic
 		title: 'Combining operations - Add class with instance variables'
 		contents: 
@@ -56,11 +49,8 @@ RBRefactoryChangeManager instance undoOperation.
 '
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBRefactoringExamplesHelp class>>firstExample [
+{ #category : #pages }
+RBRefactoringExamplesHelp class >> firstExample [
 	^HelpTopic
 		title: 'A first example'
 		contents: 
@@ -97,11 +87,8 @@ and undo, and .... :)
 '
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBRefactoringExamplesHelp class>>overview [
+{ #category : #pages }
+RBRefactoringExamplesHelp class >> overview [
 	^HelpTopic
 		title: 'Overview'
 		contents: 
@@ -121,19 +108,13 @@ These are the steps used for all of the examples:
 '
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBRefactoringExamplesHelp class>>pages [
+{ #category : #accessing }
+RBRefactoringExamplesHelp class >> pages [
 	^#( overview firstExample combineOperationsExample restrictedEnvironmentExample refactoringOptions)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBRefactoringExamplesHelp class>>refactoringOptions [
+{ #category : #pages }
+RBRefactoringExamplesHelp class >> refactoringOptions [
 	^HelpTopic
 		title: 'Refactoring Options'
 		contents: 
@@ -209,11 +190,8 @@ of the class we want to move the method, it will ask us by calling ''variableTyp
 '
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBRefactoringExamplesHelp class>>restrictedEnvironmentExample [
+{ #category : #pages }
+RBRefactoringExamplesHelp class >> restrictedEnvironmentExample [
 	^HelpTopic
 		title: 'Scoping Refactoring'
 		contents: 

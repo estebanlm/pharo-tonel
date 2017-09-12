@@ -11,32 +11,22 @@ Class {
 		'createdPackages',
 		'createdCategories'
 	],
-	#category : #RPackage-Tests,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:58'
+	#category : #RPackage-Tests
 }
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>allManagers [
+{ #category : #utils }
+RPackageTestCase >> allManagers [
 
 	^ MCWorkingCopy allManagers
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>createNewClassNamed: aName [
+{ #category : #utility }
+RPackageTestCase >> createNewClassNamed: aName [
 	^ self createNewClassNamed: aName inCategory: 'RPackageTest'
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>createNewClassNamed: aName inCategory: cat [
+{ #category : #utility }
+RPackageTestCase >> createNewClassNamed: aName inCategory: cat [
 	
 	| cls |
 	cls := Object subclass: aName
@@ -49,11 +39,8 @@ RPackageTestCase>>createNewClassNamed: aName inCategory: cat [
 	^ cls
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>createNewClassNamed: aName inPackage: p [
+{ #category : #utility }
+RPackageTestCase >> createNewClassNamed: aName inPackage: p [
 	
 	| cls |
 	cls := self createNewClassNamed: aName.
@@ -61,11 +48,8 @@ RPackageTestCase>>createNewClassNamed: aName inPackage: p [
 	^ cls
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>createNewPackageNamed: aName [
+{ #category : #utility }
+RPackageTestCase >> createNewPackageNamed: aName [
 
 	| pack |
 	self removePackage: aName.
@@ -74,19 +58,13 @@ RPackageTestCase>>createNewPackageNamed: aName [
 	^ pack
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>createNewTraitNamed: aName [
+{ #category : #utility }
+RPackageTestCase >> createNewTraitNamed: aName [
 	^ self createNewTraitNamed: aName inCategory: 'RPackageTest'
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>createNewTraitNamed: aName inCategory: cat [
+{ #category : #utility }
+RPackageTestCase >> createNewTraitNamed: aName inCategory: cat [
 	
 	| cls |
 	cls := Trait named: aName
@@ -97,11 +75,8 @@ RPackageTestCase>>createNewTraitNamed: aName inCategory: cat [
 	^ cls
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>createNewTraitNamed: aName inPackage: p [
+{ #category : #utility }
+RPackageTestCase >> createNewTraitNamed: aName inPackage: p [
 	
 	| cls |
 	cls := self createNewTraitNamed: aName.
@@ -109,66 +84,45 @@ RPackageTestCase>>createNewTraitNamed: aName inPackage: p [
 	^ cls
 ]
 
-{
-	#category : #'announcer handling',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>initializeAnnouncers [
+{ #category : #'announcer handling' }
+RPackageTestCase >> initializeAnnouncers [
 	oldSystemAnnouncer := SystemAnnouncer uniqueInstance.
 
 	SystemAnnouncer announcer: (announcerForTest := SystemAnnouncer new).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>organizer [
+{ #category : #accessing }
+RPackageTestCase >> organizer [
 	"This method will access the organizer that will temporarily swapped using the withOrganizer:do: method"
 	^ self packageClass organizer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>packageClass  [
+{ #category : #accessing }
+RPackageTestCase >> packageClass [ 
 	"returns the system class that represents Packages"
 	^ RPackage 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>packageOrganizerClass  [
+{ #category : #accessing }
+RPackageTestCase >> packageOrganizerClass [ 
 	"returns the package organizer class"
 	^ RPackageOrganizer
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>removePackage: aName [
+{ #category : #utility }
+RPackageTestCase >> removePackage: aName [
 	self packageClass organizer basicUnregisterPackageNamed: aName.
 	
 ]
 
-{
-	#category : #'announcer handling',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>restoreAnnouncers [
+{ #category : #'announcer handling' }
+RPackageTestCase >> restoreAnnouncers [
 	SystemAnnouncer announcer: oldSystemAnnouncer.
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>runCase [
+{ #category : #running }
+RPackageTestCase >> runCase [
 	[
 	self initializeAnnouncers.
 	
@@ -186,21 +140,15 @@ RPackageTestCase>>runCase [
 	]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>setUp [
+{ #category : #running }
+RPackageTestCase >> setUp [
 	
 	createdClasses := OrderedCollection new.
 	createdPackages := OrderedCollection new.
 	createdCategories := Set new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTestCase>>setupOrganizer [
+{ #category : #accessing }
+RPackageTestCase >> setupOrganizer [
 	^ self packageOrganizerClass basicNew initialize; debuggingName: 'Organizer for RPackageTest'; yourself
 ]

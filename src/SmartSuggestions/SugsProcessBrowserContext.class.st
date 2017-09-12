@@ -4,31 +4,21 @@ I know how to use a ProcessBrowser to extract the information needed for the sug
 Class {
 	#name : #SugsProcessBrowserContext,
 	#superclass : #SugsAbstractContext,
-	#category : #SmartSuggestions-Menu,
-	#timestamp : 'DenisKudryashov 2/24/2016 10:27'
+	#category : #SmartSuggestions-Menu
 }
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsProcessBrowserContext>>selectedClass [
+{ #category : #selection }
+SugsProcessBrowserContext >> selectedClass [
 	^ model selectedClass
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsProcessBrowserContext>>selectedMethod [
+{ #category : #selection }
+SugsProcessBrowserContext >> selectedMethod [
 	^ model selectedMethod
 ]
 
-{
-	#category : #refactoring,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsProcessBrowserContext>>sourceTextArea [
+{ #category : #refactoring }
+SugsProcessBrowserContext >> sourceTextArea [
 	| window |
 	window := model dependents ifEmpty: [ nil ] ifNotEmpty: [ model dependents at: 1  ].
 	

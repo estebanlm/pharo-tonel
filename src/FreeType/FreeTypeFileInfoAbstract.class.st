@@ -23,35 +23,25 @@ Class {
 		'styleNameExtracted',
 		'upright'
 	],
-	#category : #FreeType-FontManager,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:10'
+	#category : #FreeType-FontManager
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>bold [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> bold [
 	"Answer the value of bold"
 
 	^ bold
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>bold: anObject [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> bold: anObject [
 	"Set the value of bold"
 
 	bold := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>extractAttributesFromNames [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> extractAttributesFromNames [
 	"derive values for the receiver's style(italic), weight, and stretch inst vars.
 	Also set the familyGroupName and styleNameExtracted"
 
@@ -86,251 +76,173 @@ FreeTypeFileInfoAbstract>>extractAttributesFromNames [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>familyGroupName [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> familyGroupName [
 	"Answer the value of familyGroupName"
 
 	^ familyGroupName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>familyName [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> familyName [
 	"Answer the value of familyName"
 
 	^ familyName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>familyName: anObject [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> familyName: anObject [
 	"Set the value of familyName"
 
 	familyName := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>fixedWidth [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> fixedWidth [
 	"Answer the value of fixedWidth"
 
 	^ fixedWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>fixedWidth: anObject [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> fixedWidth: anObject [
 	"Set the value of fixedWidth"
 
 	fixedWidth := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>index [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> index [
 	"Answer the value of index"
 
 	^ index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>index: anObject [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> index: anObject [
 	"Set the value of index"
 
 	index := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>isBolderThan: val [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> isBolderThan: val [
 	^self weightValue >= val
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>isEmbedded [
+{ #category : #testing }
+FreeTypeFileInfoAbstract >> isEmbedded [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>isItalicOrOblique [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> isItalicOrOblique [
 	^self slantValue > 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>italic [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> italic [
 	"Answer the value of italic"
 
 	^ italic
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>italic: anObject [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> italic: anObject [
 	"Set the value of italic"
 
 	italic := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>numFaces [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> numFaces [
 	"Answer the value of numFaces"
 
 	^ numFaces
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>numFaces: anObject [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> numFaces: anObject [
 	"Set the value of numFaces"
 
 	numFaces := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>postscriptName [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> postscriptName [
 	"Answer the value of postscriptName"
 
 	^ postscriptName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>postscriptName: anObject [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> postscriptName: anObject [
 	"Set the value of postscriptName"
 
 	postscriptName := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>slant [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> slant [
 	"Answer the value of slant"
 
 	^ slant
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>slantValue [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> slantValue [
 	^slantValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>stretch [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> stretch [
 	"Answer the value of stretch"
 
 	^ stretch
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>stretchValue [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> stretchValue [
 	"Answer the value of stretchValue"
 
 	^ stretchValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>stretchValue: anObject [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> stretchValue: anObject [
 	"Set the value of stretchValue"
 
 	stretchValue := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>style [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> style [
 	"Answer the value of slant"
 
 	^ slant
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>styleName [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> styleName [
 	"Answer the value of styleName"
 
 	^ styleName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>styleName: anObject [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> styleName: anObject [
 	"Set the value of styleName"
 
 	styleName := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>styleNameExtracted [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> styleNameExtracted [
 	^styleNameExtracted
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>styleNameWithItalicForcedToBe: aString [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> styleNameWithItalicForcedToBe: aString [
 	| answer |
 	answer := ''.
 	stretch ifNotNil:[
@@ -345,11 +257,8 @@ FreeTypeFileInfoAbstract>>styleNameWithItalicForcedToBe: aString [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>styleNameWithWeightForcedToBe: aString [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> styleNameWithWeightForcedToBe: aString [
 	| answer |
 	answer := ''.
 	stretch ifNotNil:[
@@ -363,11 +272,8 @@ FreeTypeFileInfoAbstract>>styleNameWithWeightForcedToBe: aString [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>styleNameWithWeightForcedToBe: aString italicForcedToBe: aString2 [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> styleNameWithWeightForcedToBe: aString italicForcedToBe: aString2 [
 	| answer |
 	answer := ''.
 	stretch ifNotNil:[
@@ -380,11 +286,8 @@ FreeTypeFileInfoAbstract>>styleNameWithWeightForcedToBe: aString italicForcedToB
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>validFamilyName [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> validFamilyName [
 	"answer the receiver's familyName, or an alternative 
 	name to use if the familyName is invalid for some reason"
 	
@@ -406,11 +309,8 @@ FreeTypeFileInfoAbstract>>validFamilyName [
 	^familyName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>validStyleName [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> validStyleName [
 	"answer the receiver's styleName, or an alternative 
 	name to use if the styleName is invalid for some reason"
 	
@@ -428,31 +328,22 @@ FreeTypeFileInfoAbstract>>validStyleName [
 	^styleName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>weight [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> weight [
 	"Answer the value of weight"
 
 	^ weight
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>weightValue [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> weightValue [
 	"Answer the value of weightValue"
 
 	^ weightValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfoAbstract>>weightValue: anObject [
+{ #category : #accessing }
+FreeTypeFileInfoAbstract >> weightValue: anObject [
 	"Set the value of weightValue"
 
 	weightValue := anObject

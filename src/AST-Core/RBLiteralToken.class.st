@@ -13,15 +13,11 @@ Class {
 		'stopPosition',
 		'source'
 	],
-	#category : #AST-Core-Tokens,
-	#timestamp : 'md 8/9/2005 14:52'
+	#category : #AST-Core-Tokens
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralToken class>>value: anObject  [
+{ #category : #'instance creation' }
+RBLiteralToken class >> value: anObject [ 
 	| literal |
 	literal := anObject class == Array 
 				ifTrue: [anObject collect: [:each | self value: each]]
@@ -32,19 +28,13 @@ RBLiteralToken class>>value: anObject  [
 		stop: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralToken class>>value: aString start: anInteger stop: stopInteger  [
+{ #category : #'instance creation' }
+RBLiteralToken class >> value: aString start: anInteger stop: stopInteger [ 
 	^ self value: aString start: anInteger stop: stopInteger source: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralToken class>>value: aString start: anInteger stop: stopInteger source: sourceText [
+{ #category : #'instance creation' }
+RBLiteralToken class >> value: aString start: anInteger stop: stopInteger source: sourceText [
 	^(self new)
 		value: aString
 			start: anInteger
@@ -53,67 +43,43 @@ RBLiteralToken class>>value: aString start: anInteger stop: stopInteger source: 
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralToken>>isLiteralToken [
+{ #category : #testing }
+RBLiteralToken >> isLiteralToken [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralToken>>isMultiKeyword [
+{ #category : #testing }
+RBLiteralToken >> isMultiKeyword [
 	^false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralToken>>length [
+{ #category : #private }
+RBLiteralToken >> length [
 	^stopPosition - self start + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralToken>>realValue [
+{ #category : #accessing }
+RBLiteralToken >> realValue [
 	^value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralToken>>source [
+{ #category : #accessing }
+RBLiteralToken >> source [
 	^source
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralToken>>source: aString  [
+{ #category : #initialize-release }
+RBLiteralToken >> source: aString [ 
 	source := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralToken>>stop: anObject  [
+{ #category : #accessing }
+RBLiteralToken >> stop: anObject [ 
 	stopPosition := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralToken>>storeOn: aStream  [
+{ #category : #printing }
+RBLiteralToken >> storeOn: aStream [ 
 	value isSymbol 
 		ifTrue: 
 			[aStream nextPut: $#.
@@ -130,11 +96,8 @@ RBLiteralToken>>storeOn: aStream  [
 	value storeOn: aStream
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralToken>>value: aString start: anInteger stop: stopInteger  [
+{ #category : #initialize-release }
+RBLiteralToken >> value: aString start: anInteger stop: stopInteger [ 
 	value := aString.
 	sourcePointer := anInteger.
 	stopPosition := stopInteger

@@ -7,30 +7,20 @@ Class {
 	#instVars : [
 		'answer'
 	],
-	#category : #System-Identification-Tests,
-	#timestamp : 'JurajKubelka 4/17/2017 09:40'
+	#category : #System-Identification-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierPersistenceMockChecker>>answer [
+{ #category : #accessing }
+GlobalIdentifierPersistenceMockChecker >> answer [
 	^ answer ifNil: [ answer := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierPersistenceMockChecker>>answer: anObject [
+{ #category : #accessing }
+GlobalIdentifierPersistenceMockChecker >> answer: anObject [
 	answer := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierPersistenceMockChecker>>isEnabled [
+{ #category : #testing }
+GlobalIdentifierPersistenceMockChecker >> isEnabled [
 	^ self answer value
 ]

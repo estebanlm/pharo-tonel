@@ -8,23 +8,16 @@ I implement the option:  optIndirectCall
 Class {
 	#name : #FFIIndirectFunctionResolution,
 	#superclass : #FFIFunctionResolutionStrategy,
-	#category : #UnifiedFFI,
-	#timestamp : 'EstebanLorenzano 4/22/2016 14:48'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIIndirectFunctionResolution>>isApplicableFor: aRequestor [
+{ #category : #testing }
+FFIIndirectFunctionResolution >> isApplicableFor: aRequestor [
 	^ aRequestor optionAt: #optIndirectCall
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIIndirectFunctionResolution>>resolveFunction: anExternalFunction [
+{ #category : #resolving }
+FFIIndirectFunctionResolution >> resolveFunction: anExternalFunction [
 	^ (ExternalAddress 
 		loadSymbol: anExternalFunction name
 		module: anExternalFunction module)

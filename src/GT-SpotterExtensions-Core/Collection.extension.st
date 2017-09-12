@@ -1,12 +1,7 @@
-Extension {
-	#name : #Collection
-}
+Extension { #name : #Collection }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Collection>>spotterItemsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Collection >> spotterItemsFor: aStep [
 	<spotterOrder: 10>
 	| processor |
 	(self isEmpty or: [ self size > self gtCollectionSizeThreshold ]) ifTrue: [ ^ self ].

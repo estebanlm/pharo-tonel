@@ -1,12 +1,7 @@
-Extension {
-	#name : #Callback
-}
+Extension { #name : #Callback }
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Callback>>callbackEvaluator: anEvaluator   [
+{ #category : #'*UnifiedFFI' }
+Callback >> callbackEvaluator: anEvaluator [  
 	evaluator := #evaluatorValueWithContext:sp:.
 	numEvaluatorArgs := 2.
 	block := anEvaluator.
@@ -14,29 +9,20 @@ Callback>>callbackEvaluator: anEvaluator   [
 	self addToThunkTable
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Callback>>evaluator [
+{ #category : #'*UnifiedFFI' }
+Callback >> evaluator [
 	^ block
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Callback>>evaluatorValueWithContext: aContext sp: anAlien [
+{ #category : #'*UnifiedFFI' }
+Callback >> evaluatorValueWithContext: aContext sp: anAlien [
 	^ self evaluator 
 		valueWithContext: aContext 
 		sp: anAlien
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Callback class>>forAddress: address  [
+{ #category : #'*UnifiedFFI' }
+Callback class >> forAddress: address [ 
 	"Reconstructs a callback from an address (an integer). 
 	 This is useful for reading callbacks from a structure. 
 	 WARNING: Of course, the callback needs to exist before :)"
@@ -51,10 +37,7 @@ Callback class>>forAddress: address  [
 	^ callback
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Callback class>>forCallbackEvaluator: anEvaluator  [
+{ #category : #'*UnifiedFFI' }
+Callback class >> forCallbackEvaluator: anEvaluator [ 
 	^ self newForPlatform callbackEvaluator: anEvaluator
 ]

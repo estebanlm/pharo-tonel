@@ -1,46 +1,30 @@
-"
-
-"
 Class {
 	#name : #MetacelloValidationNotification,
 	#superclass : #Notification,
 	#instVars : [
 		'issue'
 	],
-	#category : #Metacello-Core-Exceptions-Notifications,
-	#timestamp : ''
+	#category : #Metacello-Core-Exceptions-Notifications
 }
 
-{
-	#category : #exceptioninstantiator,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationNotification class>>signal: aMetacelloValidationIssue [
+{ #category : #exceptioninstantiator }
+MetacelloValidationNotification class >> signal: aMetacelloValidationIssue [
 
 	^ self new signal: aMetacelloValidationIssue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationNotification>>issue [
+{ #category : #accessing }
+MetacelloValidationNotification >> issue [
 	^ issue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationNotification>>issue: anObject [
+{ #category : #accessing }
+MetacelloValidationNotification >> issue: anObject [
 	issue := anObject
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationNotification>>signal: aMetacelloValidationIssue [
+{ #category : #signaling }
+MetacelloValidationNotification >> signal: aMetacelloValidationIssue [
 
 	self issue: aMetacelloValidationIssue.
 	^ self signal

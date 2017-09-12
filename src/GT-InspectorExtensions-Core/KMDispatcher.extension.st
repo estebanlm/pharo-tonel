@@ -1,12 +1,7 @@
-Extension {
-	#name : #KMDispatcher
-}
+Extension { #name : #KMDispatcher }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-KMDispatcher>>gtAllKeyCategoryPairs [
+{ #category : #'*GT-InspectorExtensions-Core' }
+KMDispatcher >> gtAllKeyCategoryPairs [
 
 	^ ((self targets collect: #category)
 			add: self directKeymaps;
@@ -15,11 +10,8 @@ KMDispatcher>>gtAllKeyCategoryPairs [
 				category allEntries keymaps collect: [ :key | key -> category ] ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-KMDispatcher>>gtInspectorMappingsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+KMDispatcher >> gtInspectorMappingsIn: composite [
 	<gtInspectorPresentationOrder: 40>
 	composite table 
 		title: 'Keys';

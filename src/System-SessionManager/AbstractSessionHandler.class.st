@@ -6,23 +6,16 @@ On shutdown, isQuitting indicates if we save and quit the image  or if we just s
 Class {
 	#name : #AbstractSessionHandler,
 	#superclass : #Object,
-	#category : #System-SessionManager,
-	#timestamp : 'ChristopheDemarey 10/2/2015 11:03'
+	#category : #System-SessionManager
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-AbstractSessionHandler>>handledId [
+{ #category : #accessing }
+AbstractSessionHandler >> handledId [
 	self subclassResponsibility
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-AbstractSessionHandler>>printOn: aStream [
+{ #category : #printing }
+AbstractSessionHandler >> printOn: aStream [
 	super printOn: aStream.
 	aStream 
 		nextPut: $(;
@@ -30,18 +23,12 @@ AbstractSessionHandler>>printOn: aStream [
 		nextPut: $)
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-AbstractSessionHandler>>shutdown: isImageQuitting [
+{ #category : #handlers }
+AbstractSessionHandler >> shutdown: isImageQuitting [
 	self subclassResponsibility
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-AbstractSessionHandler>>startup: isImageStarting [
+{ #category : #handlers }
+AbstractSessionHandler >> startup: isImageStarting [
 	self subclassResponsibility
 ]

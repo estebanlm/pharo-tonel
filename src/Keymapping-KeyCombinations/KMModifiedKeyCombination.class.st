@@ -20,26 +20,19 @@ Class {
 		'modifier',
 		'character'
 	],
-	#category : #Keymapping-KeyCombinations,
-	#timestamp : '<historical>'
+	#category : #Keymapping-KeyCombinations
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination class>>modifier: aModifier character: aCharacter [
+{ #category : #'instance creation' }
+KMModifiedKeyCombination class >> modifier: aModifier character: aCharacter [
 	^ (self new)
 		modifier: aModifier;
 		character: aCharacter;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>= aShortcut [
+{ #category : #comparing }
+KMModifiedKeyCombination >> = aShortcut [
 	super = aShortcut
 		ifFalse: [ ^ false ]. 
 	 modifier = aShortcut modifier
@@ -49,136 +42,88 @@ KMModifiedKeyCombination>>= aShortcut [
 	^ true
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>alt [
+{ #category : #combining }
+KMModifiedKeyCombination >> alt [
 	^ self modifiedBy: KMModifier alt
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>beginsWith: aKMShortcut  [
+{ #category : #matching }
+KMModifiedKeyCombination >> beginsWith: aKMShortcut [ 
 
 	^ self = aKMShortcut 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>character [
+{ #category : #accessing }
+KMModifiedKeyCombination >> character [
 	^ character
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>character: aCharacter  [
+{ #category : #accessing }
+KMModifiedKeyCombination >> character: aCharacter [ 
 	character := aCharacter.
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>command [
+{ #category : #combining }
+KMModifiedKeyCombination >> command [
 	^ self modifiedBy: KMModifier command
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>control [
+{ #category : #combining }
+KMModifiedKeyCombination >> control [
 	^ self modifiedBy: KMModifier ctrl
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>ctrl [
+{ #category : #combining }
+KMModifiedKeyCombination >> ctrl [
 	^ self control
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>hash [
+{ #category : #comparing }
+KMModifiedKeyCombination >> hash [
 	^ character hash + modifier hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>key [
+{ #category : #accessing }
+KMModifiedKeyCombination >> key [
 
 	^ self character key.
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>matchesEvent: aKeyboardEvent [
+{ #category : #matching }
+KMModifiedKeyCombination >> matchesEvent: aKeyboardEvent [
 
 	^ (self modifier matchesEvent: aKeyboardEvent) 
 		and: [self character matchesEvent: aKeyboardEvent]
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>meta [
+{ #category : #combining }
+KMModifiedKeyCombination >> meta [
 	^ self modifiedBy: KMModifier meta
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>modifiedBy: aModifier [
+{ #category : #combining }
+KMModifiedKeyCombination >> modifiedBy: aModifier [
 	^self character asKeyCombination modifiedBy: modifier + aModifier.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>modifier [
+{ #category : #accessing }
+KMModifiedKeyCombination >> modifier [
 	^ modifier
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>modifier: aModifier [
+{ #category : #accessing }
+KMModifiedKeyCombination >> modifier: aModifier [
 	modifier := aModifier
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>printOn: aStream [
+{ #category : #printing }
+KMModifiedKeyCombination >> printOn: aStream [
 	modifier printOn: aStream.
 	aStream << ' + '.
 	character printOn: aStream.
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMModifiedKeyCombination>>shift [
+{ #category : #combining }
+KMModifiedKeyCombination >> shift [
 	^ self modifiedBy: KMModifier shift
 ]

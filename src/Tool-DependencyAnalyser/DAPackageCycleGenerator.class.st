@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'packageCycle'
 	],
-	#category : #Tool-DependencyAnalyser-Core,
-	#timestamp : 'BaptisteQuide 7/28/2014 15:12'
+	#category : #Tool-DependencyAnalyser-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleGenerator class>>newWith: aPackageCycle named: aString [
+{ #category : #'instance creation' }
+DAPackageCycleGenerator class >> newWith: aPackageCycle named: aString [
 	
 	| generator |
 	generator := self new.
@@ -26,11 +22,8 @@ DAPackageCycleGenerator class>>newWith: aPackageCycle named: aString [
 	
 ]
 
-{
-	#category : #'build items',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleGenerator>>buildEdges [
+{ #category : #'build items' }
+DAPackageCycleGenerator >> buildEdges [
 	packageCycle packages
 		do: [ :package | 
 			(packageCycle dependentPackagesFrom: package)
@@ -38,11 +31,8 @@ DAPackageCycleGenerator>>buildEdges [
 		displayingProgress: 'Building edges'
 ]
 
-{
-	#category : #'build items',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleGenerator>>buildNodes [
+{ #category : #'build items' }
+DAPackageCycleGenerator >> buildNodes [
 	
 	packageCycle packages 	
 		do: [ :package |
@@ -50,18 +40,12 @@ DAPackageCycleGenerator>>buildNodes [
 			 ] displayingProgress: 'Building nodes'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleGenerator>>packageCycle [
+{ #category : #accessing }
+DAPackageCycleGenerator >> packageCycle [
 	^ packageCycle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycleGenerator>>packageCycle: anObject [
+{ #category : #accessing }
+DAPackageCycleGenerator >> packageCycle: anObject [
 	packageCycle := anObject
 ]

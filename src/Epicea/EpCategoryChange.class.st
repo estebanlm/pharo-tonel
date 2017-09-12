@@ -8,35 +8,25 @@ Class {
 		'classCategoryName',
 		'affectedPackageName'
 	],
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 14:47'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpCategoryChange class>>named: aName [
+{ #category : #'instance creation' }
+EpCategoryChange class >> named: aName [
 
 	^ self named: aName packageName: (self packageNameFromCategoryName: aName)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpCategoryChange class>>named: aName packageName: aPackageName [
+{ #category : #'instance creation' }
+EpCategoryChange class >> named: aName packageName: aPackageName [
 
 	^ self basicNew 
 		initializeNamed: aName packageName: aPackageName;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpCategoryChange class>>packageNameFromCategoryName: aName [
+{ #category : #private }
+EpCategoryChange class >> packageNameFromCategoryName: aName [
 
 	self flag: #todo. "Is it really necessary to know the package name?"
 	^ (RPackage organizer packageMatchingExtensionName: aName) 
@@ -44,39 +34,27 @@ EpCategoryChange class>>packageNameFromCategoryName: aName [
 		ifNil: [ aName ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpCategoryChange>>affectedPackageName  [
+{ #category : #accessing }
+EpCategoryChange >> affectedPackageName [ 
 
 	^ affectedPackageName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpCategoryChange>>categoryName [
+{ #category : #accessing }
+EpCategoryChange >> categoryName [
 
 	^ classCategoryName 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpCategoryChange>>doesOverride: aCodeChange  [
+{ #category : #testing }
+EpCategoryChange >> doesOverride: aCodeChange [ 
 
 	^ aCodeChange isEpCategoryChange and: [
 		aCodeChange affectedPackageName = self affectedPackageName ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpCategoryChange>>initializeNamed: aName packageName: aPackageName [
+{ #category : #initialization }
+EpCategoryChange >> initializeNamed: aName packageName: aPackageName [
 
 	self initialize.
 	classCategoryName := aName.
@@ -84,11 +62,8 @@ EpCategoryChange>>initializeNamed: aName packageName: aPackageName [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpCategoryChange>>isEpCategoryChange [
+{ #category : #testing }
+EpCategoryChange >> isEpCategoryChange [
 
 	^ true
 ]

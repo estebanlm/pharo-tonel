@@ -15,23 +15,16 @@ Class {
 		'OFFSET_TYPE',
 		'OFFSET_WINDOWID'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'IgorStasenko 7/30/2014 18:44'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'event type',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent class>>eventType [
+{ #category : #'event type' }
+SDL_WindowEvent class >> eventType [
 	^ SDL_WINDOWEVENT
 ]
 
-{
-	#category : #'fields description',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent class>>fieldsDesc [
+{ #category : #'fields description' }
+SDL_WindowEvent class >> fieldsDesc [
 	"
 	self initializeAccessors
 	"
@@ -48,172 +41,115 @@ SDL_WindowEvent class>>fieldsDesc [
  	)
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>accept: aVisitor [
+{ #category : #visitor }
+SDL_WindowEvent >> accept: aVisitor [
 	^ aVisitor visitWindowEvent: self
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>data1 [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> data1 [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_DATA1
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>data1: anObject [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> data1: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_DATA1 put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>data2 [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> data2 [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_DATA2
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>data2: anObject [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> data2: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_DATA2 put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>event [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> event [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_EVENT
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>event: anObject [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> event: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_EVENT put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>padding1 [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> padding1 [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_PADDING1
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>padding1: anObject [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> padding1: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_PADDING1 put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>padding2 [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> padding2 [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_PADDING2
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>padding2: anObject [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> padding2: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_PADDING2 put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>padding3 [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> padding3 [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_PADDING3
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>padding3: anObject [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> padding3: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_PADDING3 put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>timestamp [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> timestamp [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_TIMESTAMP
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>timestamp: anObject [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> timestamp: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_TIMESTAMP put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>type [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> type [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_TYPE
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>type: anObject [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> type: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_TYPE put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>windowID [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> windowID [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_WINDOWID
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_WindowEvent>>windowID: anObject [
+{ #category : #'accessing structure variables' }
+SDL_WindowEvent >> windowID: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_WINDOWID put: anObject
 ]

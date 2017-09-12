@@ -12,32 +12,22 @@ Class {
 		'endPoint',
 		'lastControlPoint'
 	],
-	#category : #Athens-Cairo-Paths,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Paths
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder class>>buildPathFrom:  aPathCreatingBlock  [
+{ #category : #'as yet unclassified' }
+AthensCairoPathBuilder class >> buildPathFrom:  aPathCreatingBlock [ 
 
 	
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>absolute [
+{ #category : #'path commands' }
+AthensCairoPathBuilder >> absolute [
 	absolute := true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>angleOfVector: v [
+{ #category : #private }
+AthensCairoPathBuilder >> angleOfVector: v [
 
 	| n acos |
 	
@@ -47,11 +37,8 @@ AthensCairoPathBuilder>>angleOfVector: v [
 	^ v y < 0 ifTrue: [ Float pi * 2 - acos ] ifFalse: [ acos ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>arcCenterX: xc centerY: yc radius: radius startAngle: angle1 endAngle: angle2  [
+{ #category : #private }
+AthensCairoPathBuilder >> arcCenterX: xc centerY: yc radius: radius startAngle: angle1 endAngle: angle2 [ 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
 	self nbCall: #(void cairo_arc (AthensCairoCanvas context,
@@ -64,11 +51,8 @@ AthensCairoPathBuilder>>arcCenterX: xc centerY: yc radius: radius startAngle: an
 			
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>arcNegativeCenterX: xc centerY: yc radius: radius startAngle: angle1 endAngle: angle2  [
+{ #category : #private }
+AthensCairoPathBuilder >> arcNegativeCenterX: xc centerY: yc radius: radius startAngle: angle1 endAngle: angle2 [ 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
 	self nbCall: #(void cairo_arc_negative (AthensCairoCanvas context,
@@ -81,11 +65,8 @@ AthensCairoPathBuilder>>arcNegativeCenterX: xc centerY: yc radius: radius startA
 			
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>arcTo: newEndPoint angle: angle cw: aBool [
+{ #category : #private }
+AthensCairoPathBuilder >> arcTo: newEndPoint angle: angle cw: aBool [
 
 	" Add a clockwise arc segment, starting from current path endpoint and
 	ending at andPt. Angle should be specified in radians 
@@ -115,11 +96,8 @@ AthensCairoPathBuilder>>arcTo: newEndPoint angle: angle cw: aBool [
 		
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>calcCenter: start end: end angle: angle [
+{ #category : #private }
+AthensCairoPathBuilder >> calcCenter: start end: end angle: angle [
 
 	| v  rot  center radius len sina cosa m |	
 
@@ -136,22 +114,16 @@ AthensCairoPathBuilder>>calcCenter: start end: end angle: angle [
 	^ center
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>ccwArcTo: newEndPoint angle: angle [
+{ #category : #'path commands' }
+AthensCairoPathBuilder >> ccwArcTo: newEndPoint angle: angle [
 	" Add a counter-clockwise arc segment, starting from current path endpoint and
 	ending at andPt. Angle should be specified in radians 
 	"
 	^ self arcTo: newEndPoint angle: angle cw: false
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>close [
+{ #category : #'path commands' }
+AthensCairoPathBuilder >> close [
 
 	self closePath.
 	
@@ -159,30 +131,21 @@ AthensCairoPathBuilder>>close [
 	lastControlPoint := nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>closePath [
+{ #category : #private }
+AthensCairoPathBuilder >> closePath [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
 	self nbCall: #(void cairo_close_path (AthensCairoCanvas context))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>context: anObject [
+{ #category : #accessing }
+AthensCairoPathBuilder >> context: anObject [
 
 	context := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>copyPath  [
+{ #category : #private }
+AthensCairoPathBuilder >> copyPath [ 
 
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
@@ -191,11 +154,8 @@ AthensCairoPathBuilder>>copyPath  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>createPath: aBlock [
+{ #category : #accessing }
+AthensCairoPathBuilder >> createPath: aBlock [
 	
 	self newPath.
 	"set default to relative"
@@ -210,11 +170,8 @@ AthensCairoPathBuilder>>createPath: aBlock [
 	^ self copyPath initialize 
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>curveVia: p1 and: p2 to: aPoint [
+{ #category : #'path commands' }
+AthensCairoPathBuilder >> curveVia: p1 and: p2 to: aPoint [
 	|  pt1 |
 
 	pt1 := self toAbsolute: p1.
@@ -225,11 +182,8 @@ AthensCairoPathBuilder>>curveVia: p1 and: p2 to: aPoint [
 
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>curveVia: p1 to: aPoint [
+{ #category : #'path commands' }
+AthensCairoPathBuilder >> curveVia: p1 to: aPoint [
 	| pt0 pt1 cp1 cp2 twoThirds |
 	"Quad bezier curve"
 
@@ -257,11 +211,8 @@ The two control points for the cubic are:
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>curveViaX: x1 Y: y1 viaX: x2 Y: y2 toX: x3 Y: y3 [
+{ #category : #private }
+AthensCairoPathBuilder >> curveViaX: x1 Y: y1 viaX: x2 Y: y2 toX: x3 [ Y: y3
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
 	^ self nbCall: #(void cairo_curve_to(AthensCairoCanvas context,
@@ -275,30 +226,21 @@ AthensCairoPathBuilder>>curveViaX: x1 Y: y1 viaX: x2 Y: y2 toX: x3 Y: y3 [
 
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>cwArcTo: newEndPoint angle: angle [
+{ #category : #'path commands' }
+AthensCairoPathBuilder >> cwArcTo: newEndPoint angle: angle [
 	" Add a clockwise arc segment, starting from current path endpoint and
 	ending at andPt. Angle should be specified in radians 
 	"
 	^ self arcTo: newEndPoint angle: angle cw: true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>getCurrentPoint [
+{ #category : #private }
+AthensCairoPathBuilder >> getCurrentPoint [
 	^ context getCurrentPoint
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>glyphPath: glyphs size: numGlyphs [
+{ #category : #private }
+AthensCairoPathBuilder >> glyphPath: glyphs size: numGlyphs [
 	"void cairo_glyph_path (cairo_t *cr,
                   const cairo_glyph_t *glyphs,
                   int num_glyphs);"
@@ -312,30 +254,21 @@ AthensCairoPathBuilder>>glyphPath: glyphs size: numGlyphs [
 
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>hLineTo: x [
+{ #category : #'path commands' }
+AthensCairoPathBuilder >> hLineTo: x [
 	^ self lineTo: (absolute ifTrue: [ x @ endPoint y] ifFalse: [ x @ 0 ])
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>lineTo: aPoint [
+{ #category : #'path commands' }
+AthensCairoPathBuilder >> lineTo: aPoint [
 
 	endPoint := self toAbsolute: aPoint.
 	lastControlPoint := nil.
 	^ self lineToX: endPoint x asFloat Y: endPoint y asFloat
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>lineToX: x Y: y [
+{ #category : #private }
+AthensCairoPathBuilder >> lineToX: x Y: y [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
@@ -344,11 +277,8 @@ AthensCairoPathBuilder>>lineToX: x Y: y [
 
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>moveTo: aPoint [
+{ #category : #'path commands' }
+AthensCairoPathBuilder >> moveTo: aPoint [
 	
 	endPoint := self toAbsolute: aPoint.
 	lastControlPoint := nil.
@@ -356,11 +286,8 @@ AthensCairoPathBuilder>>moveTo: aPoint [
 	^ self moveToX: endPoint x asFloat Y: endPoint y asFloat 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>moveToX: x Y: y [
+{ #category : #private }
+AthensCairoPathBuilder >> moveToX: x Y: y [
 	" move command always starts a new contour "
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
@@ -370,22 +297,16 @@ AthensCairoPathBuilder>>moveToX: x Y: y [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>newPath [
+{ #category : #private }
+AthensCairoPathBuilder >> newPath [
  
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
 	^ self nbCall: #( void cairo_new_path ( AthensCairoCanvas context ) )
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>reflectedCurveVia: p2 to: aPoint [
+{ #category : #'path commands' }
+AthensCairoPathBuilder >> reflectedCurveVia: p2 to: aPoint [
 	|  pt1 |
 
 	pt1 := lastControlPoint
@@ -398,19 +319,13 @@ AthensCairoPathBuilder>>reflectedCurveVia: p2 to: aPoint [
 
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>relative [
+{ #category : #'path commands' }
+AthensCairoPathBuilder >> relative [
 	absolute := false
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>string: aString font: aFont [
+{ #category : #'path commands' }
+AthensCairoPathBuilder >> string: aString font: aFont [
 	"Adds closed paths for the string to the current path. The generated path if filled, achieves an effect similar to that of cairo_show_glyphs()."
 	|glyphs metricsProvider|
 	metricsProvider := CairoFontMetricsProvider new
@@ -420,19 +335,13 @@ AthensCairoPathBuilder>>string: aString font: aFont [
 	self glyphPath: glyphs getHandle size: glyphs size
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>toAbsolute: aPoint [
+{ #category : #'path commands' }
+AthensCairoPathBuilder >> toAbsolute: aPoint [
 
 	^ absolute ifTrue: [ aPoint ] ifFalse: [ endPoint + aPoint ]
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPathBuilder>>vLineTo: y [
+{ #category : #'path commands' }
+AthensCairoPathBuilder >> vLineTo: y [
 	^ self lineTo: (absolute ifTrue: [ endPoint x @ y] ifFalse: [ 0 @ y ])
 ]

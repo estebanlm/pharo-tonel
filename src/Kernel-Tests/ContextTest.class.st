@@ -19,26 +19,19 @@ Class {
 		'aMethodContext',
 		'aSender'
 	],
-	#category : #Kernel-Tests-Methods,
-	#timestamp : 'ClementBera 1/27/2017 13:23'
+	#category : #Kernel-Tests-Methods
 }
 
-{
-	#category : #'closures for testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest class>>contextWithTempForTesting  [
+{ #category : #'closures for testing' }
+ContextTest class >> contextWithTempForTesting [ 
 	| string |
 	string := 'test'.
 	^ [self class. string asUppercase] asContext.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>privRestartArgBlockTest [
+{ #category : #private }
+ContextTest >> privRestartArgBlockTest [
 	"This tests may loop endlessly if incorrect, so call it from another method testing it does not time out"
 	|firstTimeThrough |
 	firstTimeThrough := true.
@@ -54,11 +47,8 @@ ContextTest>>privRestartArgBlockTest [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>privRestartBlockArgsNoRemoteTempsTest [
+{ #category : #private }
+ContextTest >> privRestartBlockArgsNoRemoteTempsTest [
 	"This tests may loop endlessly if incorrect, so call it from another method testing it does not time out"
 	
 	self assert: 30 equals: ([:a :first | |b| 
@@ -73,11 +63,8 @@ ContextTest>>privRestartBlockArgsNoRemoteTempsTest [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>privRestartBlockTest [
+{ #category : #private }
+ContextTest >> privRestartBlockTest [
 	"This tests may loop endlessly if incorrect, so call it from another method testing it does not time out"
 	|a firstTimeThrough |
 	firstTimeThrough := true.
@@ -94,11 +81,8 @@ ContextTest>>privRestartBlockTest [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>setUp [
+{ #category : #running }
+ContextTest >> setUp [
 	super setUp.
 	aCompiledMethod := Rectangle methodDict at: #rightCenter.
 	aReceiver := 100@100 corner: 200@200.
@@ -106,20 +90,14 @@ ContextTest>>setUp [
 	aMethodContext := Context sender: aSender receiver: aReceiver method: aCompiledMethod arguments: #(). 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>testActivateReturnValue [
+{ #category : #tests }
+ContextTest >> testActivateReturnValue [
 	self assert:  ((aSender activateReturn: aMethodContext value: #()) isKindOf: Context).
 	self assert:  ((aSender activateReturn: aMethodContext value: #()) receiver = aMethodContext).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>testCannotReturn [
+{ #category : #tests }
+ContextTest >> testCannotReturn [
 	| context p |
 	p := [context := thisContext] fork.
 	[p isTerminated] whileFalse: [ 10 milliSeconds wait ].
@@ -131,11 +109,8 @@ ContextTest>>testCannotReturn [
 			self assert: err target equals: context]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>testClosureRestart [
+{ #category : #tests }
+ContextTest >> testClosureRestart [
 	"Test that various combinations of closures are restarted with the expected values"
 	"no args, no remote temps blocks are not tested, as I don't know how to do that programatically without ending up looping endlessly"
 	self should: [self privRestartBlockTest] notTakeMoreThan: 0.1 second.
@@ -143,59 +118,41 @@ ContextTest>>testClosureRestart [
 	"self should: [self privRestartBlockArgsNoRemoteTempsTest] notTakeMoreThan: 0.1 second" "FAILING!"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>testFindContextSuchThat [
+{ #category : #tests }
+ContextTest >> testFindContextSuchThat [
 	self assert: (aMethodContext findContextSuchThat: [:each| true]) printString = aMethodContext printString.
 	self assert: (aMethodContext hasContext: aMethodContext). 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>testJump [
+{ #category : #tests }
+ContextTest >> testJump [
 	#(exampleClosure exampleSend exampleStore) do: [ :selector |
 		self verifyJumpWithSelector: selector ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>testMethodContext [
+{ #category : #tests }
+ContextTest >> testMethodContext [
 
 	self assert: aMethodContext home notNil.
 	self assert: aMethodContext receiver notNil.
 	self assert: (aMethodContext method isKindOf: CompiledMethod).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>testMethodIsBottomContext [
+{ #category : #tests }
+ContextTest >> testMethodIsBottomContext [
 	self assert: aMethodContext bottomContext = aSender.
 	self assert: aMethodContext secondFromBottom = aMethodContext.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>testReturn [
+{ #category : #tests }
+ContextTest >> testReturn [
 	"Why am I overriding setUp? Because sender must be thisContext, i.e, testReturn, not setUp."
 	aMethodContext := Context sender: thisContext receiver: aReceiver method: aCompiledMethod arguments: #(). 
 	self assert: (aMethodContext return: 5) = 5.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>testSetUp [
+{ #category : #tests }
+ContextTest >> testSetUp [
 	"Note: In addition to verifying that the setUp worked the way it was expected to, testSetUp is used to illustrate the meaning of the simple access methods, methods that are not normally otherwise 'tested'"
 	
 	self deny: aMethodContext isDead.
@@ -208,22 +165,16 @@ ContextTest>>testSetUp [
 
 ]
 
-{
-	#category : #'tests - ast mapping',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>testSourceNodeExecuted [
+{ #category : #'tests - ast mapping' }
+ContextTest >> testSourceNodeExecuted [
 	| sourceNode |
 	
 	sourceNode := thisContext sender sender sourceNodeExecuted.
 	self assert: sourceNode selector = #performTest.
 ]
 
-{
-	#category : #'tests - ast mapping',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>testSourceNodeExecutedWhenContextIsJustAtStartpc [
+{ #category : #'tests - ast mapping' }
+ContextTest >> testSourceNodeExecutedWhenContextIsJustAtStartpc [
 	| sourceNode context |
 	
 	context := Context sender: thisContext receiver: self method: self class >> testSelector arguments: #().
@@ -231,11 +182,8 @@ ContextTest>>testSourceNodeExecutedWhenContextIsJustAtStartpc [
 	self assert: sourceNode equals: (self class >> testSelector) ast sendNodes first receiver
 ]
 
-{
-	#category : #'tests - ast mapping',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>testSourceNodeOptimizedBlock [
+{ #category : #'tests - ast mapping' }
+ContextTest >> testSourceNodeOptimizedBlock [
 	"When asking for the sourceNode of a block that is not there at runtime, we nevertheless what to 
 	get the corresponding ASTnode of the inlined Block"
 	
@@ -245,11 +193,8 @@ ContextTest>>testSourceNodeOptimizedBlock [
 	self assert: sourceNode isBlock.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>testTempNamed [
+{ #category : #tests }
+ContextTest >> testTempNamed [
 	| oneTemp context |
 	
 	oneTemp := 1.
@@ -260,11 +205,8 @@ ContextTest>>testTempNamed [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>testTempNamedPut [
+{ #category : #tests }
+ContextTest >> testTempNamedPut [
 	| oneTemp |
 	
 	oneTemp := 1.
@@ -273,11 +215,8 @@ ContextTest>>testTempNamedPut [
 	self assert: (thisContext tempNamed: 'oneTemp') = 2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContextTest>>verifyJumpWithSelector: selector [
+{ #category : #tests }
+ContextTest >> verifyJumpWithSelector: selector [
 	| guineaPig normalStackp readOnlyStackp |
 	guineaPig := SimulationMock new.
 	normalStackp := (guineaPig perform: selector) stackPtr.

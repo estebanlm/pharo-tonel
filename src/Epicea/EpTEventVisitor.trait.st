@@ -5,112 +5,72 @@ Trait {
 	#name : #EpTEventVisitor,
 	#traits : 'EpTCodeChangeVisitor',
 	#classTraits : 'EpTCodeChangeVisitor classTrait',
-	#category : #Epicea-Visitors,
-	#timestamp : '<historical>'
+	#category : #Epicea-Visitors
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTEventVisitor>>visitBehaviorCopy: anEvent [
+{ #category : #visitor }
+EpTEventVisitor >> visitBehaviorCopy: anEvent [
 	^ self visitEvent: anEvent
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTEventVisitor>>visitCodeChange: aChange [
+{ #category : #visitor }
+EpTEventVisitor >> visitCodeChange: aChange [
 	"Default behavior for any change."
 		
 	^ self visitEvent: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTEventVisitor>>visitEvent: aChange [
+{ #category : #visitor }
+EpTEventVisitor >> visitEvent: aChange [
 	^ self explicitRequirement
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTEventVisitor>>visitExpressionEvaluation: anExpressionEvaluation [
+{ #category : #visitor }
+EpTEventVisitor >> visitExpressionEvaluation: anExpressionEvaluation [
 	^ self visitEvent: anExpressionEvaluation
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTEventVisitor>>visitLogCommentModification: anEvent  [
+{ #category : #visitor }
+EpTEventVisitor >> visitLogCommentModification: anEvent [ 
 	^ self visitEvent: anEvent
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTEventVisitor>>visitMonticelloVersionSave: anEvent [
+{ #category : #visitor }
+EpTEventVisitor >> visitMonticelloVersionSave: anEvent [
 	^ self visitEvent: anEvent
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTEventVisitor>>visitMonticelloVersionsLoad: anEvent [
+{ #category : #visitor }
+EpTEventVisitor >> visitMonticelloVersionsLoad: anEvent [
 	^ self visitEvent: anEvent
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTEventVisitor>>visitRedo: aRedoEvent [
+{ #category : #visitor }
+EpTEventVisitor >> visitRedo: aRedoEvent [
 	^ self visitEvent: aRedoEvent
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTEventVisitor>>visitRefactoring: anEvent  [
+{ #category : #visitor }
+EpTEventVisitor >> visitRefactoring: anEvent [ 
 	^ self visitEvent: anEvent
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTEventVisitor>>visitSessionEnd: anEvent [
+{ #category : #visitor }
+EpTEventVisitor >> visitSessionEnd: anEvent [
 	^ self visitEvent: anEvent
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTEventVisitor>>visitSessionSnapshot: anEvent [
+{ #category : #visitor }
+EpTEventVisitor >> visitSessionSnapshot: anEvent [
 	^ self visitEvent: anEvent
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTEventVisitor>>visitSessionStart: anEvent  [
+{ #category : #visitor }
+EpTEventVisitor >> visitSessionStart: anEvent [ 
 	^ self visitEvent: anEvent
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTEventVisitor>>visitUndo: anUndoEvent [
+{ #category : #visitor }
+EpTEventVisitor >> visitUndo: anUndoEvent [
 	^ self visitEvent: anUndoEvent
 ]

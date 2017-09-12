@@ -3,41 +3,26 @@ A trait for test purposes
 "
 Trait {
 	#name : #TIdentityAddTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:34'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIdentityAddTest>>collection [
+{ #category : #requirements }
+TIdentityAddTest >> collection [
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIdentityAddTest>>element [
+{ #category : #requirements }
+TIdentityAddTest >> element [
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'tests - identity adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIdentityAddTest>>equalNotIdenticalElement [
+{ #category : #'tests - identity adding' }
+TIdentityAddTest >> equalNotIdenticalElement [
 	^ self element copy
 ]
 
-{
-	#category : #'tests - identity adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIdentityAddTest>>testIdentityAdd [
+{ #category : #'tests - identity adding' }
+TIdentityAddTest >> testIdentityAdd [
 	| added oldSize |
 	oldSize := self collection size.
 	self collection add: self element.

@@ -4,33 +4,23 @@ List methods that have one or more arguments and do no refer to self or an insta
 Class {
 	#name : #RBUtilityMethodsRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 20:13'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUtilityMethodsRule class>>checksMethod [
+{ #category : #testing }
+RBUtilityMethodsRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUtilityMethodsRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBUtilityMethodsRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'UtilityMethodsRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUtilityMethodsRule>>basicCheck: aMethod  [
+{ #category : #running }
+RBUtilityMethodsRule >> basicCheck: aMethod [ 
 	^ (aMethod methodClass isMeta or: 
 	 [ aMethod selector numArgs == 0 or: 
 	 [ self utilityProtocols includes: aMethod protocol ] ]) not and: [
@@ -43,36 +33,24 @@ RBUtilityMethodsRule>>basicCheck: aMethod  [
 				 	#('self' )    noneSatisfy: [ :each | aMethod ast references: each ] ] ] ] ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUtilityMethodsRule>>checkMethod: aMethod  [
+{ #category : #running }
+RBUtilityMethodsRule >> checkMethod: aMethod [ 
 	(self basicCheck: aMethod) ifTrue:  
 		[ result addMethod: aMethod ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUtilityMethodsRule>>group [
+{ #category : #accessing }
+RBUtilityMethodsRule >> group [
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUtilityMethodsRule>>name [
+{ #category : #accessing }
+RBUtilityMethodsRule >> name [
 	^ 'Utility methods'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUtilityMethodsRule>>subclassOf: aClass overrides: aSelector  [
+{ #category : #private }
+RBUtilityMethodsRule >> subclassOf: aClass overrides: aSelector [ 
 	^(aClass subclasses detect: 
 			[:each | 
 			(each includesSelector: aSelector)
@@ -80,10 +58,7 @@ RBUtilityMethodsRule>>subclassOf: aClass overrides: aSelector  [
 		ifNone: [nil]) notNil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUtilityMethodsRule>>utilityProtocols [
+{ #category : #private }
+RBUtilityMethodsRule >> utilityProtocols [
 	^ #('*utilit*')
 ]

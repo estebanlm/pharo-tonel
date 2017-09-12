@@ -17,62 +17,43 @@ Class {
 		'UseHTTPProxy',
 		'UseNetworkAuthentification'
 	],
-	#category : #Network-Kernel,
-	#timestamp : '<historical>'
+	#category : #Network-Kernel
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>addHttpProxyException: domainName [
+{ #category : #settings }
+NetworkSystemSettings class >> addHttpProxyException: domainName [
 	"Add a (partial, wildcard) domain name to the list of proxy exceptions"
 	"HTTPSocket addProxyException: '*.online.disney.com'."
 
 	self httpProxyExceptions add: domainName
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>blabEmail [
+{ #category : #settings }
+NetworkSystemSettings class >> blabEmail [
 	^ BlabEmail ifNil: [ BlabEmail := '' ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>blabEmail: aBlabEmailString [
+{ #category : #settings }
+NetworkSystemSettings class >> blabEmail: aBlabEmailString [
 	BlabEmail := aBlabEmailString
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>httpProxyExceptions [
+{ #category : #settings }
+NetworkSystemSettings class >> httpProxyExceptions [
 	"Return a list of partial, wildcard domain name strings that define which servers should not be proxied"
 
 	^ HTTPProxyExceptions ifNil: [ HTTPProxyExceptions := OrderedCollection new ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>httpProxyPort   [
+{ #category : #settings }
+NetworkSystemSettings class >> httpProxyPort [  
 	"Return the HTTP proxy port to use, an Integer"
 	
 	^ HTTPProxyPort ifNil: [ HTTPProxyPort := 80 ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>httpProxyPort: aPortNumber [
+{ #category : #settings }
+NetworkSystemSettings class >> httpProxyPort: aPortNumber [
 	"Set the HTTP Proxy port to use to aPortNumber, use nil to reset"
 	
 	aPortNumber = HTTPProxyPort ifTrue: [ ^ self ].
@@ -81,22 +62,16 @@ NetworkSystemSettings class>>httpProxyPort: aPortNumber [
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>httpProxyServer [
+{ #category : #settings }
+NetworkSystemSettings class >> httpProxyServer [
 	"Return the hostname of the HTTP proxy server to use, a String.
 	Can be empty, when no HTTP proxy should be used."
 	
 	^ HTTPProxyServer ifNil: [ '' ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>httpProxyServer: aServerName [
+{ #category : #settings }
+NetworkSystemSettings class >> httpProxyServer: aServerName [
 	"Set the hostname of the HTTP proxy server to use to aServerName.
 	Can be nil or empty, when no HTTP proxy should be used."
 
@@ -106,58 +81,40 @@ NetworkSystemSettings class>>httpProxyServer: aServerName [
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>isAnExceptionFor: url [
+{ #category : #settings }
+NetworkSystemSettings class >> isAnExceptionFor: url [
 	"Return true when the host of url matches any of our HTTP proxy exceptions, else return false"
 
 	 ^ self isHttpProxyException: url host
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>isHttpProxyException: serverName [
+{ #category : #settings }
+NetworkSystemSettings class >> isHttpProxyException: serverName [
 	"Return true when serverName matches any of our HTTP proxy exceptions, else return false"
 
 	^ self httpProxyExceptions anySatisfy: [ :domainName | domainName match: serverName ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>lastHTTPProxyPort [
+{ #category : #private }
+NetworkSystemSettings class >> lastHTTPProxyPort [
 	^ LastHTTPProxyPort ifNil: [ LastHTTPProxyPort := HTTPProxyPort ]
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>lastHTTPProxyServer [
+{ #category : #private }
+NetworkSystemSettings class >> lastHTTPProxyServer [
 	^ LastHTTPProxyServer ifNil: [ LastHTTPProxyServer := HTTPProxyServer ]
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>manageHttpProxyExceptions [
+{ #category : #settings }
+NetworkSystemSettings class >> manageHttpProxyExceptions [
 	^ LastHTTPProxyExceptions ifNil:[ LastHTTPProxyExceptions := ''].
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>manageHttpProxyExceptions: aStringWithExceptions [
+{ #category : #settings }
+NetworkSystemSettings class >> manageHttpProxyExceptions: aStringWithExceptions [
 	self removeAllHttpProxyExceptions.
 	aStringWithExceptions	ifNotNil:[
 		LastHTTPProxyExceptions := aStringWithExceptions.
@@ -168,11 +125,8 @@ NetworkSystemSettings class>>manageHttpProxyExceptions: aStringWithExceptions [
 	].
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>networkSettingsOn: aBuilder  [
+{ #category : #settings }
+NetworkSystemSettings class >> networkSettingsOn: aBuilder [ 
 	<systemsettings> 
 	(aBuilder group: #network) 
 		label: 'Network';
@@ -213,11 +167,8 @@ NetworkSystemSettings class>>networkSettingsOn: aBuilder  [
 				description: 'Enter blab email of the form ''somebody@some.where''. It can be empty']
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>proxyPassword [
+{ #category : #settings }
+NetworkSystemSettings class >> proxyPassword [
 	"Return the HTTP proxy password to use, if any. Can be empty."
 
 	^ ProxyPassword 
@@ -225,22 +176,16 @@ NetworkSystemSettings class>>proxyPassword [
 		ifNotNil: [ ProxyPassword base64Decoded ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>proxyPassword: aPassword [
+{ #category : #settings }
+NetworkSystemSettings class >> proxyPassword: aPassword [
 	"Set the HTTP proxy password. Can be empty or nil to reset"
 	
 	ProxyPassword := aPassword ifNotNil: [ aPassword base64Encoded ]
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>proxyUser [
+{ #category : #settings }
+NetworkSystemSettings class >> proxyUser [
 	"Return the HTTP proxy user to use, if any. Can be empty."
 
 	^ ProxyUser
@@ -248,11 +193,8 @@ NetworkSystemSettings class>>proxyUser [
 		ifNotNil: [ ProxyUser base64Decoded ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>proxyUser: aUser [
+{ #category : #settings }
+NetworkSystemSettings class >> proxyUser: aUser [
 	"Set the HTTP proxy user. Can be empty or nil to reset"
 	
 	ProxyUser := aUser ifNotNil: [ aUser base64Encoded ]
@@ -260,39 +202,27 @@ NetworkSystemSettings class>>proxyUser: aUser [
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>removeAllHttpProxyExceptions [
+{ #category : #settings }
+NetworkSystemSettings class >> removeAllHttpProxyExceptions [
 	HTTPProxyExceptions removeAll.
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>removeHttpProxyException: domainName [
+{ #category : #settings }
+NetworkSystemSettings class >> removeHttpProxyException: domainName [
 	"Remove a (partial, wildcard) domain name from the list of proxy exceptions"
 
 	self httpProxyExceptions remove: domainName ifAbsent: []
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>useHTTPProxy [
+{ #category : #settings }
+NetworkSystemSettings class >> useHTTPProxy [
 	"Should an HTTP proxy be used ? This is a global switch."
 
 	^ UseHTTPProxy ifNil: [ UseHTTPProxy := false ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>useHTTPProxy: aBoolean [
+{ #category : #settings }
+NetworkSystemSettings class >> useHTTPProxy: aBoolean [
 	"Set whether an HTTP proxy should be used. This is a global switch."
 
 	UseHTTPProxy = aBoolean ifTrue: [ ^ self ].
@@ -306,22 +236,16 @@ NetworkSystemSettings class>>useHTTPProxy: aBoolean [
 			self httpProxyServer: nil ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>useNetworkAuthentification [
+{ #category : #settings }
+NetworkSystemSettings class >> useNetworkAuthentification [
 	"Should authentication be used when accessing the HTTP proxy ?
 	This is a switch over username/password."
 
 	^ UseNetworkAuthentification ifNil: [ UseNetworkAuthentification := false ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-NetworkSystemSettings class>>useNetworkAuthentification: aBoolean [
+{ #category : #settings }
+NetworkSystemSettings class >> useNetworkAuthentification: aBoolean [
 	"Set whether authentication should be used when accessing the HTTP proxy.
 	This is a switch over username/password."
 

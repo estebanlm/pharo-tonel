@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCVersionReader
-}
+Extension { #name : #MCVersionReader }
 
-{
-	#category : #'*MonticelloFileServices',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCVersionReader class>>fileReaderServicesForFile: fullName suffix: suffix [
+{ #category : #'*MonticelloFileServices' }
+MCVersionReader class >> fileReaderServicesForFile: fullName suffix: suffix [
 	<fileService>
 	self subclassesDo:[:class |
 	^ ((suffix = class extension) or: [ suffix = '*' ])
@@ -15,11 +10,8 @@ MCVersionReader class>>fileReaderServicesForFile: fullName suffix: suffix [
 		
 ]
 
-{
-	#category : #'*MonticelloFileServices',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCVersionReader class>>loadVersionStream: stream fromDirectory: directory [
+{ #category : #'*MonticelloFileServices' }
+MCVersionReader class >> loadVersionStream: stream fromDirectory: directory [
 	| version repository |
 	repository := MCDirectoryRepository new directory: directory.
 	version := self versionFromStream: stream.
@@ -28,27 +20,18 @@ MCVersionReader class>>loadVersionStream: stream fromDirectory: directory [
 
 ]
 
-{
-	#category : #'*MonticelloFileServices',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCVersionReader class>>mergeVersionStream: stream [
+{ #category : #'*MonticelloFileServices' }
+MCVersionReader class >> mergeVersionStream: stream [
 	(self versionFromStream: stream) merge
 ]
 
-{
-	#category : #'*MonticelloFileServices',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCVersionReader class>>openVersionFromStream: stream [
+{ #category : #'*MonticelloFileServices' }
+MCVersionReader class >> openVersionFromStream: stream [
 	(self versionFromStream: stream) open
 ]
 
-{
-	#category : #'*MonticelloFileServices',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCVersionReader class>>serviceLoadVersion [
+{ #category : #'*MonticelloFileServices' }
+MCVersionReader class >> serviceLoadVersion [
 	^ (SimpleServiceEntry
 		provider: self
 		label: 'Load version'
@@ -58,11 +41,8 @@ MCVersionReader class>>serviceLoadVersion [
 		argumentGetter: [ :fileList | { fileList readOnlyStream . fileList directory } ]
 ]
 
-{
-	#category : #'*MonticelloFileServices',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCVersionReader class>>serviceMergeVersion [
+{ #category : #'*MonticelloFileServices' }
+MCVersionReader class >> serviceMergeVersion [
 	^ (SimpleServiceEntry
 		provider: self
 		label: 'Merge version'
@@ -72,11 +52,8 @@ MCVersionReader class>>serviceMergeVersion [
 		argumentGetter: [ :fileList | fileList readOnlyStream ]
 ]
 
-{
-	#category : #'*MonticelloFileServices',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCVersionReader class>>serviceOpenVersion [
+{ #category : #'*MonticelloFileServices' }
+MCVersionReader class >> serviceOpenVersion [
 	^ (SimpleServiceEntry
 		provider: self
 		label: 'Open version'
@@ -86,11 +63,8 @@ MCVersionReader class>>serviceOpenVersion [
 		argumentGetter: [ :fileList | fileList readOnlyStream ]
 ]
 
-{
-	#category : #'*MonticelloFileServices',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCVersionReader class>>services [
+{ #category : #'*MonticelloFileServices' }
+MCVersionReader class >> services [
 	^ Array 
 		with: self serviceLoadVersion
 		with: self serviceMergeVersion

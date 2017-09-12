@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ExampleClassVariableTest,
 	#superclass : #SlotSilentTest,
-	#category : #Slot-Tests-Examples,
-	#timestamp : ''
+	#category : #Slot-Tests-Examples
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ExampleClassVariableTest>>testCreateClassWithClassVariable [
+{ #category : #tests }
+ExampleClassVariableTest >> testCreateClassWithClassVariable [
 	"Add class variable using the builder interface"
 	
 	| classVar |
@@ -30,11 +23,8 @@ ExampleClassVariableTest>>testCreateClassWithClassVariable [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ExampleClassVariableTest>>testCreateClassWithTwoClassVariable [
+{ #category : #tests }
+ExampleClassVariableTest >> testCreateClassWithTwoClassVariable [
 	"Add class variable using the builder interface"
 	
 	| classVar1 classVar2 |
@@ -54,11 +44,8 @@ ExampleClassVariableTest>>testCreateClassWithTwoClassVariable [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ExampleClassVariableTest>>testMigrateClassVar [
+{ #category : #tests }
+ExampleClassVariableTest >> testMigrateClassVar [
 	"Add class variable using the builder interface and change it to another kind"
 	
 	| classVar |

@@ -1,58 +1,39 @@
-"
-
-"
 Class {
 	#name : #GLMMockSimpleTransmission,
 	#superclass : #GLMTransmission,
 	#instVars : [
 		'wasTransmited'
 	],
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMockSimpleTransmission class>>new [
+{ #category : #'instance creation' }
+GLMMockSimpleTransmission class >> new [
 
 	^super new initialize
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMockSimpleTransmission>>initialize [
+{ #category : #tests }
+GLMMockSimpleTransmission >> initialize [
 	super initialize.
 	wasTransmited := false
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMockSimpleTransmission>>transmit [
+{ #category : #tests }
+GLMMockSimpleTransmission >> transmit [
 
 	wasTransmited := true.
 	super transmit.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMockSimpleTransmission>>transmitIn: aContext [
+{ #category : #tests }
+GLMMockSimpleTransmission >> transmitIn: aContext [
 
 	wasTransmited := true.
 	super transmitIn: aContext
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMockSimpleTransmission>>wasTransmited [
+{ #category : #tests }
+GLMMockSimpleTransmission >> wasTransmited [
 	^wasTransmited
 ]

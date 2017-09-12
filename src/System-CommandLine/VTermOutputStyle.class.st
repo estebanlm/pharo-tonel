@@ -11,69 +11,47 @@ Class {
 		'background',
 		'styles'
 	],
-	#category : #System-CommandLine,
-	#timestamp : 'ValentinRyckewaert 8/9/2016 11:28'
+	#category : #System-CommandLine
 }
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputStyle>>= aStyle [
+{ #category : #styling }
+VTermOutputStyle >> = aStyle [
 	^ (self font = aStyle font and: [ self background = aStyle background ]) and: [ self styles = aStyle styles ]
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputStyle>>addStyle: aString [
+{ #category : #styling }
+VTermOutputStyle >> addStyle: aString [
 	self styles add:aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputStyle>>background [
+{ #category : #accessing }
+VTermOutputStyle >> background [
 	^ background
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputStyle>>font [
+{ #category : #accessing }
+VTermOutputStyle >> font [
 	
 	^ font
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputStyle>>initialize [
+{ #category : #initialization }
+VTermOutputStyle >> initialize [
 
 	styles := Set new.
 	font := VTermOutputFont new style: self.
 	background := VTermOutputBackground new style: self.
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputStyle>>postCopy [
+{ #category : #styling }
+VTermOutputStyle >> postCopy [
 	font := self font copy.
 	background := self background copy.
 	styles :=  self styles copy.
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputStyle>>setInDriver: aVTermOutputDriver [
+{ #category : #styling }
+VTermOutputStyle >> setInDriver: aVTermOutputDriver [
 	font setInDriver: aVTermOutputDriver.
 	background setInDriver: aVTermOutputDriver.
 	self styles do: [ :each | aVTermOutputDriver set: each ].
@@ -81,10 +59,7 @@ VTermOutputStyle>>setInDriver: aVTermOutputDriver [
 	
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputStyle>>styles [
+{ #category : #styling }
+VTermOutputStyle >> styles [
 	^styles
 ]

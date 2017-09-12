@@ -18,33 +18,23 @@ Class {
 		'lock',
 		'lastStreamPosition'
 	],
-	#category : #Ombu-Stores,
-	#timestamp : 'MartinDias 5/30/2014 18:00'
+	#category : #Ombu-Stores
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore class>>defaultFileSuffix [
+{ #category : #accessing }
+OmFileStore class >> defaultFileSuffix [
 
 	^ '.ombu'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore class>>defaultWritingDeferDuration [
+{ #category : #accessing }
+OmFileStore class >> defaultWritingDeferDuration [
 
 	^ 250 milliSeconds
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore class>>existsStoreNamed: aGlobalName inDirectory: aFileReference [
+{ #category : #testing }
+OmFileStore class >> existsStoreNamed: aGlobalName inDirectory: aFileReference [
 
 	^ aFileReference exists and: [
 		(self 
@@ -53,61 +43,43 @@ OmFileStore class>>existsStoreNamed: aGlobalName inDirectory: aFileReference [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore class>>fileReferenceForStoreNamed: aGlobalName inDirectory: baseDirectoryFileReference [
+{ #category : #accessing }
+OmFileStore class >> fileReferenceForStoreNamed: aGlobalName inDirectory: baseDirectoryFileReference [
 
 	^ baseDirectoryFileReference / (aGlobalName, self defaultFileSuffix)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore class>>fromFile: aFileReference [
+{ #category : #'instance creation' }
+OmFileStore class >> fromFile: aFileReference [
 
 	^ self 
 		named: aFileReference basenameWithoutExtension
 		inFile: aFileReference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore class>>globalNameFrom: directoryEntryOrFileReference [
+{ #category : #accessing }
+OmFileStore class >> globalNameFrom: directoryEntryOrFileReference [
 
 	^ directoryEntryOrFileReference asFileReference basenameWithoutExtension
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore class>>named: aGlobalName [
+{ #category : #'instance creation' }
+OmFileStore class >> named: aGlobalName [
 	^ self 
 		named: aGlobalName
 		inDirectory: FileSystem memory
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore class>>named: aGlobalName inDirectory: baseDirectoryFileReference [
+{ #category : #'instance creation' }
+OmFileStore class >> named: aGlobalName inDirectory: baseDirectoryFileReference [
 
 	^ self
 		named: aGlobalName
 		inFile: (self fileReferenceForStoreNamed: aGlobalName inDirectory: baseDirectoryFileReference)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore class>>named: aName inFile: aFileReference [
+{ #category : #'instance creation' }
+OmFileStore class >> named: aName inFile: aFileReference [
 
 	^ self basicNew 
 		initializeWithGlobalName: aName
@@ -115,38 +87,26 @@ OmFileStore class>>named: aName inFile: aFileReference [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore class>>new [
+{ #category : #'instance creation' }
+OmFileStore class >> new [
 
 	^ self named: UUID new asString36
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>checkIfMustRefresh [
+{ #category : #private }
+OmFileStore >> checkIfMustRefresh [
 
 	mustRefresh ifTrue: [ self refresh ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>copyReopened [
+{ #category : #copying }
+OmFileStore >> copyReopened [
 
 	^ self species named: globalName inFile: fileReference
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>critical: aBlock [
+{ #category : #private }
+OmFileStore >> critical: aBlock [
 
 	lock ifNil: [
 		lock := Semaphore forMutualExclusion ].
@@ -154,21 +114,15 @@ OmFileStore>>critical: aBlock [
 	^ lock critical: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>ensureDeleteFile [
+{ #category : #accessing }
+OmFileStore >> ensureDeleteFile [
 	"After execution of this method, the .ombu file this instance represents will not exist."
 	
 	^ self fileReference ensureDelete
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>entriesCount [
+{ #category : #accessing }
+OmFileStore >> entriesCount [
 	"Answer the number of entries that this store contains"
 
 	self checkIfMustRefresh.
@@ -176,11 +130,8 @@ OmFileStore>>entriesCount [
 	^ entryCount
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>entriesDo: aBlockClosure  [
+{ #category : #enumerating }
+OmFileStore >> entriesDo: aBlockClosure [ 
 	"Evaluate the closure on each entry"
 
 	self fileReference exists ifTrue: [
@@ -197,20 +148,14 @@ OmFileStore>>entriesDo: aBlockClosure  [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>entryBuffer [
+{ #category : #private }
+OmFileStore >> entryBuffer [
 
 	^ entryBuffer ifNil: [ entryBuffer := OrderedCollection new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>entryBufferDo: aBlock [
+{ #category : #accessing }
+OmFileStore >> entryBufferDo: aBlock [
 	"Iterate the entryBuffer taking care of performance (avoid triggering the lazy initialization)."
 
 	entryBuffer ifNotNil: [
@@ -218,20 +163,14 @@ OmFileStore>>entryBufferDo: aBlock [
 		entryBuffer asArray do: aBlock ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>entryByLocalName [
+{ #category : #private }
+OmFileStore >> entryByLocalName [
 
 	^ entryByLocalName ifNil: [ entryByLocalName := WeakValueDictionary new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>entryFor: aReference ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
+{ #category : #accessing }
+OmFileStore >> entryFor: aReference ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
 
 	(aReference isNull or: [ aReference globalName ~= self globalName])
 		ifTrue: [ ^ absentBlockClosure value ].
@@ -249,61 +188,43 @@ OmFileStore>>entryFor: aReference ifPresent: presentBlockClosure ifAbsent: absen
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>entryPositionsByLocalName [
+{ #category : #private }
+OmFileStore >> entryPositionsByLocalName [
 	
 	self checkIfMustRefresh.
 	
 	^ entryPositionsByLocalName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>entryReferences [
+{ #category : #accessing }
+OmFileStore >> entryReferences [
 	
 	^ (self entriesCount to: 1 by: -1) collect: [:index |
 			self referenceToLocalName: index asString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>fileReference [
+{ #category : #accessing }
+OmFileStore >> fileReference [
 
 	^ fileReference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>firstEntryIfAbsent: absentBlock [
+{ #category : #accessing }
+OmFileStore >> firstEntryIfAbsent: absentBlock [
 
 	^ [ super firstEntryIfAbsent: absentBlock ] 
 			on: Error 
 			do: absentBlock
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>flush [
+{ #category : #refreshing }
+OmFileStore >> flush [
 
 	self writingDeferrer flush
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>flushEntryBuffer [
+{ #category : #private }
+OmFileStore >> flushEntryBuffer [
 
 	self critical: [
 		| initialPosition initialLocalName |
@@ -342,31 +263,22 @@ OmFileStore>>flushEntryBuffer [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>globalName [
+{ #category : #accessing }
+OmFileStore >> globalName [
 
 	^ globalName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>headReference [
+{ #category : #accessing }
+OmFileStore >> headReference [
 
 	self checkIfMustRefresh.
 
 	^ headReference
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>initialize [
+{ #category : #initialization }
+OmFileStore >> initialize [
 
 	super initialize.
 	
@@ -375,11 +287,8 @@ OmFileStore>>initialize [
 	headReference := OmNullReference uniqueInstance.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>initializeWithGlobalName: aName fileReference: aFileReference [
+{ #category : #initialization }
+OmFileStore >> initializeWithGlobalName: aName fileReference: aFileReference [
 
 	self initialize.
 	
@@ -389,11 +298,8 @@ OmFileStore>>initializeWithGlobalName: aName fileReference: aFileReference [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>isOutdated [
+{ #category : #testing }
+OmFileStore >> isOutdated [
 	"Answer if #refresh is needed. To that end, I check if the file has different size than last time I wrote."
 
 	^ self fileReference exists
@@ -402,21 +308,15 @@ OmFileStore>>isOutdated [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>lowLevelFileStoreIfNone: aBlock [
+{ #category : #accessing }
+OmFileStore >> lowLevelFileStoreIfNone: aBlock [
 	"Needed by EpLostChangesDetector"
 	
 	^ self
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>newEntry: anEntry [
+{ #category : #writing }
+OmFileStore >> newEntry: anEntry [
 
 	self critical: [
 		| newReference localName |
@@ -439,40 +339,28 @@ OmFileStore>>newEntry: anEntry [
 		]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>newEntryReader [
+{ #category : #private }
+OmFileStore >> newEntryReader [
 	
 	^ OmSTONEntryReader newForStore: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>newEntryWriter [
+{ #category : #private }
+OmFileStore >> newEntryWriter [
 
 	^ OmSTONEntryWriter newForStore: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>nextEntryFromPosition: aFilePosition [
+{ #category : #private }
+OmFileStore >> nextEntryFromPosition: aFilePosition [
 
 	^ self readEntriesWith: [ :readStream |
 		readStream position: aFilePosition.
 		self newEntryReader stream: readStream; nextEntry ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>printOn: aStream [
+{ #category : #printing }
+OmFileStore >> printOn: aStream [
 
 	super printOn: aStream.
 	
@@ -482,11 +370,8 @@ OmFileStore>>printOn: aStream [
 		nextPut: $)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>readEntriesWith: aBlockClosure [
+{ #category : #private }
+OmFileStore >> readEntriesWith: aBlockClosure [
 
 	self fileReference readStreamDo: [ :readStream | [
 		^ aBlockClosure value: readStream ascii ]
@@ -498,11 +383,8 @@ OmFileStore>>readEntriesWith: aBlockClosure [
 					position: readStream position) signal ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>readEntryForLocalName: aString ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
+{ #category : #accessing }
+OmFileStore >> readEntryForLocalName: aString ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
 
 	^ self entryPositionsByLocalName 
 		at: aString
@@ -512,11 +394,8 @@ OmFileStore>>readEntryForLocalName: aString ifPresent: presentBlockClosure ifAbs
 
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>refresh [
+{ #category : #refreshing }
+OmFileStore >> refresh [
 
 	self flush.
 
@@ -536,11 +415,8 @@ OmFileStore>>refresh [
 		]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>refreshEntryPositionsByLocalNameStartingAt: firstStreamPosition since: initialLocalName [
+{ #category : #private }
+OmFileStore >> refreshEntryPositionsByLocalNameStartingAt: firstStreamPosition since: initialLocalName [
 	"Workaround needed because can't get real file stream position from ZnBufferedWriteStream. 
 	(+ would need special care of WideStrings)"
 
@@ -557,29 +433,20 @@ OmFileStore>>refreshEntryPositionsByLocalNameStartingAt: firstStreamPosition sin
 		].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>writingDeferDuration [
+{ #category : #accessing }
+OmFileStore >> writingDeferDuration [
 
 	^ self writingDeferrer duration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>writingDeferDuration: aDuration [
+{ #category : #accessing }
+OmFileStore >> writingDeferDuration: aDuration [
 
 	self writingDeferrer duration: aDuration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>writingDeferrer [
+{ #category : #accessing }
+OmFileStore >> writingDeferrer [
 
 	^ writingDeferrer ifNil: [
 		writingDeferrer := OmDeferrer 
@@ -588,11 +455,8 @@ OmFileStore>>writingDeferrer [
 			after: self class defaultWritingDeferDuration ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFileStore>>writingFileReference [
+{ #category : #accessing }
+OmFileStore >> writingFileReference [
 	
 	^ fileReference
 ]

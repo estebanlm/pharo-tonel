@@ -31,61 +31,42 @@ Class {
 	#instVars : [
 		'ephemeronCollection'
 	],
-	#category : #System-Finalization,
-	#timestamp : 'GuillermoPolito 5/30/2016 12:35'
+	#category : #System-Finalization
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-EphemeronRegistry>>at: key put: value [
+{ #category : #registration }
+EphemeronRegistry >> at: key put: value [
 
 	^ self registerEphemeron: (Ephemeron key: key value: value container: self)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-EphemeronRegistry>>initialize [
+{ #category : #initialization }
+EphemeronRegistry >> initialize [
 
 	super initialize.
 	ephemeronCollection := IdentitySet new.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-EphemeronRegistry>>isEmpty [
+{ #category : #testing }
+EphemeronRegistry >> isEmpty [
 
 	^ ephemeronCollection isEmpty
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-EphemeronRegistry>>registerEphemeron: anEphemeron [
+{ #category : #registration }
+EphemeronRegistry >> registerEphemeron: anEphemeron [
 
 	^ ephemeronCollection add: anEphemeron
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-EphemeronRegistry>>removeEphemeron: anEphemeron [
+{ #category : #registration }
+EphemeronRegistry >> removeEphemeron: anEphemeron [
 
 	ephemeronCollection remove: anEphemeron
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-EphemeronRegistry>>size [
+{ #category : #accessing }
+EphemeronRegistry >> size [
 
 	^ ephemeronCollection size
 ]

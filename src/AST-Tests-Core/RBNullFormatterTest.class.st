@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBNullFormatterTest,
 	#superclass : #TestCase,
-	#category : #AST-Tests-Core,
-	#timestamp : ''
+	#category : #AST-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBNullFormatterTest>>testGivenAMethodNodeWhenSourceAvailableThenSourceReturnedAsResultOfFormatting [
+{ #category : #tests }
+RBNullFormatterTest >> testGivenAMethodNodeWhenSourceAvailableThenSourceReturnedAsResultOfFormatting [
 	| ast sourceCode |
 	sourceCode := (Collection class>>#with:with:) sourceCode.
 	ast := RBParser parseMethod: sourceCode.
@@ -21,11 +14,8 @@ RBNullFormatterTest>>testGivenAMethodNodeWhenSourceAvailableThenSourceReturnedAs
 		equals: sourceCode
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBNullFormatterTest>>testGivenAMethodNodeWhenSourceNotAvailableThenSelectorWithWarningMessageReturnedAsResultOfFormatting [
+{ #category : #tests }
+RBNullFormatterTest >> testGivenAMethodNodeWhenSourceNotAvailableThenSelectorWithWarningMessageReturnedAsResultOfFormatting [
 	| ast sourceCode |
 	sourceCode := (Collection class>>#with:with:) sourceCode.
 	ast := RBParser parseMethod: sourceCode.

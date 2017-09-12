@@ -9,25 +9,18 @@ Class {
 		'labelMorph',
 		'getContentSelector'
 	],
-	#category : #Polymorph-Widgets,
-	#timestamp : 'gvc 5/18/2007 12:36'
+	#category : #Polymorph-Widgets
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>addContentMorph: aMorph [
+{ #category : #adding }
+GroupboxMorph >> addContentMorph: aMorph [
 	"Add a morph to the content."
 
 	^self contentMorph addMorphBack: aMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+GroupboxMorph >> adoptPaneColor: paneColor [
 	"Pass on to the content morph."
 	
 	|c|
@@ -41,11 +34,8 @@ GroupboxMorph>>adoptPaneColor: paneColor [
 		borderStyle: (self theme groupLabelBorderStyleFor: self)
 ]
 
-{
-	#category : #'geometry testing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>containsPoint: aPoint [
+{ #category : #'geometry testing' }
+GroupboxMorph >> containsPoint: aPoint [
 	"Override here to check the label and content instead."
 	
 	^(super containsPoint: aPoint) and: [
@@ -53,42 +43,30 @@ GroupboxMorph>>containsPoint: aPoint [
 		self contentMorph containsPoint: aPoint]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>contentFromModel [
+{ #category : #accessing }
+GroupboxMorph >> contentFromModel [
 	"Answer content from the model."
 	
 	^self getContentSelector ifNotNil: [:s |
 		self model ifNotNil: [:m | m perform: s]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>contentMorph [
+{ #category : #accessing }
+GroupboxMorph >> contentMorph [
 	"Answer the value of contentMorph"
 
 	^ contentMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>contentMorph: anObject [
+{ #category : #accessing }
+GroupboxMorph >> contentMorph: anObject [
 	"Set the value of contentMorph"
 
 	contentMorph := anObject
 ]
 
-{
-	#category : #rounding,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>cornerStyle: aSymbol [
+{ #category : #rounding }
+GroupboxMorph >> cornerStyle: aSymbol [
 	"Pass on to list too."
 
 	super cornerStyle: aSymbol.
@@ -96,59 +74,41 @@ GroupboxMorph>>cornerStyle: aSymbol [
 	self contentMorph cornerStyle: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>font [
+{ #category : #accessing }
+GroupboxMorph >> font [
 	"Answer the label font"
 
 	^self labelMorph font
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>font: aFont [
+{ #category : #accessing }
+GroupboxMorph >> font: aFont [
 	"Set the label font"
 
 	self labelMorph font: aFont
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>getContentSelector [
+{ #category : #accessing }
+GroupboxMorph >> getContentSelector [
 
 	^ getContentSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>getContentSelector: anObject [
+{ #category : #accessing }
+GroupboxMorph >> getContentSelector: anObject [
 
 	getContentSelector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>initialColorInSystemWindow: aSystemWindow [
+{ #category : #accessing }
+GroupboxMorph >> initialColorInSystemWindow: aSystemWindow [
 	"Answer the colour the receiver should be when added to a SystemWindow."
 
 	^Color transparent
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>initialize [
+{ #category : #initialization }
+GroupboxMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -165,21 +125,15 @@ GroupboxMorph>>initialize [
 		addMorphBack: self labelMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>label [
+{ #category : #accessing }
+GroupboxMorph >> label [
 	"Answer the contents of the label morph."
 
 	^self labelMorph contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>label: aString [
+{ #category : #accessing }
+GroupboxMorph >> label: aString [
 	"Set the contents of the label morph."
 
 	aString ifNil: [
@@ -191,42 +145,30 @@ GroupboxMorph>>label: aString [
 	self labelMorph contents: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>labelMorph [
+{ #category : #accessing }
+GroupboxMorph >> labelMorph [
 	"Answer the value of labelMorph"
 
 	^ labelMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>labelMorph: anObject [
+{ #category : #accessing }
+GroupboxMorph >> labelMorph: anObject [
 	"Set the value of labelMorph"
 
 	labelMorph := anObject
 ]
 
-{
-	#category : #'geometry testing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>minExtent [
+{ #category : #'geometry testing' }
+GroupboxMorph >> minExtent [
 	"Answer the minmum extent of the receiver.
 	Based on label and rounding."
 
 	^super minExtent max: self labelMorph minExtent + (8@0)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>newContentMorph [
+{ #category : #'instance creation' }
+GroupboxMorph >> newContentMorph [
 	"Answer a new content morph"
 
 	|p|
@@ -241,11 +183,8 @@ GroupboxMorph>>newContentMorph [
 	^p
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>newLabelMorph [
+{ #category : #'instance creation' }
+GroupboxMorph >> newLabelMorph [
 	"Answer a new label morph"
 
 	^TextMorph new
@@ -257,21 +196,15 @@ GroupboxMorph>>newLabelMorph [
 		lock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>paneColorOrNil [
+{ #category : #accessing }
+GroupboxMorph >> paneColorOrNil [
 	"Answer the window's pane color or nil otherwise."
 
 	^super paneColorOrNil ifNotNil: [:c | self theme subgroupColorFrom: c]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>replaceContentMorph: aMorph [
+{ #category : #updating }
+GroupboxMorph >> replaceContentMorph: aMorph [
 	"Replace the content."
 
 	self contentMorph
@@ -282,33 +215,24 @@ GroupboxMorph>>replaceContentMorph: aMorph [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>roundedCorners: anArray [
+{ #category : #accessing }
+GroupboxMorph >> roundedCorners: anArray [
 	"Set the corners to round."
 
 	super roundedCorners: anArray.
 	self contentMorph ifNotNil: [:cm | cm roundedCorners: self roundedCorners]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>selectedTab [
+{ #category : #accessing }
+GroupboxMorph >> selectedTab [
 	"Answer the label morph for compatibility with TabPanelBorder."
 	
 	^self labelMorph owner
 		ifNotNil: [self labelMorph]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-GroupboxMorph>>update: aSymbol [
+{ #category : #updating }
+GroupboxMorph >> update: aSymbol [
 	"Replace the content if appropriate."
 	
 	super update: aSymbol.

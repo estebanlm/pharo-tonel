@@ -11,15 +11,11 @@ Class {
 	#instVars : [
 		'baseSlot'
 	],
-	#category : #Slot-Examples,
-	#timestamp : 'MarcusDenker 2/7/2015 11:32'
+	#category : #Slot-Examples
 }
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PropertySlot>>emitStore: methodBuilder [
+{ #category : #'code generation' }
+PropertySlot >> emitStore: methodBuilder [
 	| tempName |
 
 	tempName := Object new.
@@ -34,11 +30,8 @@ PropertySlot>>emitStore: methodBuilder [
 	
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PropertySlot>>emitValue: methodBuilder [
+{ #category : #'code generation' }
+PropertySlot >> emitValue: methodBuilder [
 
 		methodBuilder
 			pushInstVar: baseSlot index;
@@ -49,11 +42,8 @@ PropertySlot>>emitValue: methodBuilder [
 	
 ]
 
-{
-	#category : #'class building',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PropertySlot>>layoutChanged: aClass [
+{ #category : #'class building' }
+PropertySlot >> layoutChanged: aClass [
 	super layoutChanged: aClass.
 	"we check on the slot level as the slot is hidden"
 	(baseSlot notNil and: [aClass classLayout hasSlotNamed: baseSlot name]) ifTrue: [
@@ -66,18 +56,12 @@ PropertySlot>>layoutChanged: aClass [
 	
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PropertySlot>>read: anObject [
+{ #category : #meta-object-protocol }
+PropertySlot >> read: anObject [
 	^ (baseSlot read: anObject) at: self name ifAbsent: nil
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PropertySlot>>write: aValue to: anObject [
+{ #category : #meta-object-protocol }
+PropertySlot >> write: aValue to: anObject [
 	^ (baseSlot read: anObject) at: self name put: aValue
 ]

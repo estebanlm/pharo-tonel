@@ -10,40 +10,27 @@ Class {
 	#pools : [
 		'ChronologyConstants'
 	],
-	#category : #Kernel-Chronology,
-	#timestamp : '<historical>'
+	#category : #Kernel-Chronology
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AbstractTimeZone>>abbreviation [
+{ #category : #accessing }
+AbstractTimeZone >> abbreviation [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AbstractTimeZone>>name [
+{ #category : #accessing }
+AbstractTimeZone >> name [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AbstractTimeZone>>offset [
+{ #category : #accessing }
+AbstractTimeZone >> offset [
 	"Return a duration representing the offset from UTC for this timezone"
 	self subclassResponsibility
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AbstractTimeZone>>printOn: aStream [
+{ #category : #printing }
+AbstractTimeZone >> printOn: aStream [
  
  	super printOn: aStream.
  	aStream

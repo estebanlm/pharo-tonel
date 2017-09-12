@@ -10,40 +10,27 @@ Class {
 	#classVars : [
 		'MinDistToBorder'
 	],
-	#category : #OSWindow-Core-Gestures,
-	#timestamp : 'MerwanOuddane 7/22/2015 16:17'
+	#category : #OSWindow-Core-Gestures
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeDetector class>>initialize [
+{ #category : #'class initialization' }
+OSTouchSwipeDetector class >> initialize [
 	super initialize.
 	MinDistToBorder := 0.1 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeDetector class>>minDistToBorder [
+{ #category : #accessing }
+OSTouchSwipeDetector class >> minDistToBorder [
 	^ MinDistToBorder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeDetector class>>minDistToBorder: aFloat [
+{ #category : #accessing }
+OSTouchSwipeDetector class >> minDistToBorder: aFloat [
 	MinDistToBorder := aFloat .
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeDetector class>>minDistToBorderSettingsOn: aBuilder [
+{ #category : #settings }
+OSTouchSwipeDetector class >> minDistToBorderSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #minDistToBorder)
 		target: self;
@@ -53,11 +40,8 @@ OSTouchSwipeDetector class>>minDistToBorderSettingsOn: aBuilder [
 		parent: #swipeGesture
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeDetector class>>minDistanceBeforeDetectionSettingsOn: aBuilder [
+{ #category : #settings }
+OSTouchSwipeDetector class >> minDistanceBeforeDetectionSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #minDistanceBeforeDetection)
 		target: self;
@@ -67,22 +51,16 @@ OSTouchSwipeDetector class>>minDistanceBeforeDetectionSettingsOn: aBuilder [
 		parent: #swipeGesture
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeDetector class>>touchSwipeSettingsOn: aBuilder [
+{ #category : #settings }
+OSTouchSwipeDetector class >> touchSwipeSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #swipeGesture)
 		label: 'Swipe';
 		parent: #touchGestures
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeDetector>>areFingersCloseToABorder [
+{ #category : #preconditions }
+OSTouchSwipeDetector >> areFingersCloseToABorder [
 	"0.5 represents half the screen in percentage"
 	| halfScreen fingersCenterTranslatedToScreenCenter |
 	halfScreen := 0.5.
@@ -93,19 +71,13 @@ OSTouchSwipeDetector>>areFingersCloseToABorder [
 		or: [ fingersCenterTranslatedToScreenCenter y > (halfScreen - minDistToBorder)  ]]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeDetector>>beginConditions [
+{ #category : #preconditions }
+OSTouchSwipeDetector >> beginConditions [
 	^ super beginConditions and: [ self areFingersCloseToABorder ]
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeDetector>>createEventBeginning [
+{ #category : #factory }
+OSTouchSwipeDetector >> createEventBeginning [
 	^ self eventClassBeginGesture new
 		timestamp: eventHandler lastUpdateTimestamp;
 		direction: direction;
@@ -115,11 +87,8 @@ OSTouchSwipeDetector>>createEventBeginning [
 		yourself
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeDetector>>createEventDuringMove [
+{ #category : #factory }
+OSTouchSwipeDetector >> createEventDuringMove [
 	^ self eventClassMoveGesture new
 		timestamp: eventHandler lastUpdateTimestamp;
 		direction: direction;
@@ -129,11 +98,8 @@ OSTouchSwipeDetector>>createEventDuringMove [
 		yourself
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeDetector>>createEventEnding [
+{ #category : #factory }
+OSTouchSwipeDetector >> createEventEnding [
 	| endClass |
 	endClass := self areFingersCloseToABorder ifTrue: [ self eventClassEndGesture ] ifFalse: [ self eventClassAbortGesture ].
 	^ endClass new
@@ -145,43 +111,28 @@ OSTouchSwipeDetector>>createEventEnding [
 		yourself
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeDetector>>eventClassAbortGesture [
+{ #category : #abstract }
+OSTouchSwipeDetector >> eventClassAbortGesture [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeDetector>>eventClassBeginGesture [
+{ #category : #abstract }
+OSTouchSwipeDetector >> eventClassBeginGesture [
 	self subclassResponsibility
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeDetector>>eventClassEndGesture [
+{ #category : #abstract }
+OSTouchSwipeDetector >> eventClassEndGesture [
 	self subclassResponsibility
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeDetector>>eventClassMoveGesture [
+{ #category : #abstract }
+OSTouchSwipeDetector >> eventClassMoveGesture [
 	self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeDetector>>initialize [
+{ #category : #initialization }
+OSTouchSwipeDetector >> initialize [
 	super initialize.
 	minDistToBorder := self class minDistToBorder
 ]

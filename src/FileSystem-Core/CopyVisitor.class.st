@@ -8,72 +8,50 @@ Class {
 		'source',
 		'dest'
 	],
-	#category : #FileSystem-Core-Implementation,
-	#timestamp : 'cwp 11/18/2009 12:30'
+	#category : #FileSystem-Core-Implementation
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-CopyVisitor class>>copy: source to: dest [
+{ #category : #'instance creation' }
+CopyVisitor class >> copy: source to: dest [
 	(self from: source to: dest) visit
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-CopyVisitor class>>from: srcReference to: dstReference [
+{ #category : #'instance creation' }
+CopyVisitor class >> from: srcReference to: dstReference [
 	^ self basicNew
 		initializeWithSource: srcReference 
 		dest: dstReference
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-CopyVisitor>>copyDirectory: aReference [
+{ #category : #visiting }
+CopyVisitor >> copyDirectory: aReference [
 	| directory |
 	directory := dest resolve: (aReference relativeTo: source).
 	directory createDirectory
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-CopyVisitor>>copyFile: aReference [
+{ #category : #visiting }
+CopyVisitor >> copyFile: aReference [
 	| copy |
 	copy := dest resolve: (aReference relativeTo: source).
 	aReference copyTo: copy
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-CopyVisitor>>initializeWithSource: srcReference dest: dstReference [
+{ #category : #initialize-release }
+CopyVisitor >> initializeWithSource: srcReference dest: dstReference [
 	self initialize.
 	source := srcReference.
 	dest := dstReference
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-CopyVisitor>>visit [
+{ #category : #visiting }
+CopyVisitor >> visit [
 	(PreorderGuide for: self) 
 		show: source
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-CopyVisitor>>visitDirectory: anEntry [
+{ #category : #visiting }
+CopyVisitor >> visitDirectory: anEntry [
 	| reference |
 	reference := anEntry reference.
 	reference = source
@@ -81,11 +59,8 @@ CopyVisitor>>visitDirectory: anEntry [
 		ifFalse: [self copyDirectory: reference]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-CopyVisitor>>visitFile: anEntry [
+{ #category : #visiting }
+CopyVisitor >> visitFile: anEntry [
 	| reference |
 	reference := anEntry reference.
 	reference = source

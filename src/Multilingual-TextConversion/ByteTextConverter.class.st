@@ -8,15 +8,11 @@ Class {
 		'byteToUnicode',
 		'unicodeToByte'
 	],
-	#category : #Multilingual-TextConversion,
-	#timestamp : 'michael.rueger 1/27/2009 18:00'
+	#category : #Multilingual-TextConversion
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ByteTextConverter class>>byteToUnicodeSpec [
+{ #category : #'class initialization' }
+ByteTextConverter class >> byteToUnicodeSpec [
 	"Sepcify a table mapping the entries 0x80 to 0xFF to their unicode counterparts by returning a 128 element array..
 	The entries 0x00 to 0x7F map to identical values so we don't need to specify them.
 	See #generateByteToUnicodeSpec: for an automated way to generate these mappings."
@@ -24,32 +20,23 @@ ByteTextConverter class>>byteToUnicodeSpec [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ByteTextConverter class>>byteToUnicodeTable [
+{ #category : #accessing }
+ByteTextConverter class >> byteToUnicodeTable [
 	"Return the table mapping from my byte based encoding to unicode"
 	
 	^ byteToUnicode
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ByteTextConverter class>>initialize [
+{ #category : #'class initialization' }
+ByteTextConverter class >> initialize [
 	"ByteTextConverter initialize"
 
 	self allSubclassesDo: [:subclass |
 		subclass initializeTables]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ByteTextConverter class>>initializeTables [
+{ #category : #'class initialization' }
+ByteTextConverter class >> initializeTables [
 	"Initialize the mappings to and from Unicode."
 
 	byteToUnicode := Array new: 128.
@@ -62,29 +49,20 @@ ByteTextConverter class>>initializeTables [
 		unicodeToByte at: unicodeValue put: (127 + index) asCharacter ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ByteTextConverter class>>languageEnvironment [
+{ #category : #accessing }
+ByteTextConverter class >> languageEnvironment [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ByteTextConverter class>>unicodeToByteTable [
+{ #category : #accessing }
+ByteTextConverter class >> unicodeToByteTable [
 	"Return the table mapping from unicode to my byte based encoding"
 	
 	^ unicodeToByte
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ByteTextConverter>>byteToUnicode: char [
+{ #category : #conversion }
+ByteTextConverter >> byteToUnicode: char [
 	"Map from my byte based encoding to unicode.
 	Due to the leading char encoding this is not strictly true, but hopefully at some point we can get rid of the leading char overhead."
 	| value |
@@ -97,11 +75,8 @@ ByteTextConverter>>byteToUnicode: char [
 	^self class byteToUnicodeTable at: (value - 128 + 1)
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ByteTextConverter>>nextFromStream: aStream [
+{ #category : #conversion }
+ByteTextConverter >> nextFromStream: aStream [
 	"Read the next byte (we are only dealing with byte based encodings here) character from aStream and return the result converted to unicode."
 
 	| byteOrChar |
@@ -112,11 +87,8 @@ ByteTextConverter>>nextFromStream: aStream [
 		ifNotNil: [self byteToUnicode: byteOrChar]
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ByteTextConverter>>nextPut: unicodeCharacter toStream: aStream [
+{ #category : #conversion }
+ByteTextConverter >> nextPut: unicodeCharacter toStream: aStream [
 	"Write the unicode character to aStream."
 
 	aStream isBinary
@@ -124,11 +96,8 @@ ByteTextConverter>>nextPut: unicodeCharacter toStream: aStream [
 		ifFalse: [aStream basicNextPut: (self unicodeToByte: unicodeCharacter)]
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ByteTextConverter>>unicodeToByte: unicodeChar [
+{ #category : #conversion }
+ByteTextConverter >> unicodeToByte: unicodeChar [
 
 	^unicodeChar charCode < 128
 		ifTrue: [unicodeChar]

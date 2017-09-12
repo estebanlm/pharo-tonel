@@ -7,43 +7,30 @@ Class {
 	#instVars : [
 		'configuration'
 	],
-	#category : #Versionner-Tests-Core-Model,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:13'
+	#category : #Versionner-Tests-Core-Model
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractTest class>>isAbstract [
+{ #category : #testing }
+MBAbstractTest class >> isAbstract [
 	"Override to true if a TestCase subclass is Abstract and should not have
 	TestCase instances built from it"
 	
 	^ self name = #MBAbstractTest
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractTest>>configurationName [
+{ #category : #accessing }
+MBAbstractTest >> configurationName [
 
 	^'ConfigurationOfDummyConfiguration'
 ]
 
-{
-	#category : #util,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractTest>>removeClassIfExist: aSymbol [
+{ #category : #util }
+MBAbstractTest >> removeClassIfExist: aSymbol [
 	Smalltalk globals at: aSymbol ifPresent: [ :cls | cls removeFromSystem ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractTest>>setUp [
+{ #category : #running }
+MBAbstractTest >> setUp [
 
 	(Smalltalk globals includesKey: self configurationName asSymbol) 
 		ifFalse: [ 
@@ -71,11 +58,8 @@ MBAbstractTest>>setUp [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractTest>>tearDown [
+{ #category : #running }
+MBAbstractTest >> tearDown [
 	super tearDown.
 	configuration := nil.
 	self removeClassIfExist: self configurationName asSymbol

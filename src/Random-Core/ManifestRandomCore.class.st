@@ -4,30 +4,20 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestRandomCore,
 	#superclass : #PackageManifest,
-	#category : #Random-Core,
-	#timestamp : '<historical>'
+	#category : #Random-Core
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-ManifestRandomCore class>>ignoredDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestRandomCore class >> ignoredDependencies [
 	^ #(#Transcript)
 ]
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-ManifestRandomCore class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestRandomCore class >> manuallyResolvedDependencies [
 	^ #(#Transcript)
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-ManifestRandomCore class>>packageName [
+{ #category : #'as yet unclassified' }
+ManifestRandomCore class >> packageName [
 	^ 'Random-Core'
 ]

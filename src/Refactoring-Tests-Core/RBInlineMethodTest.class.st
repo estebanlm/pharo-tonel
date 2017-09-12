@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBInlineMethodTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodTest>>testBadInterval [
+{ #category : #'failure tests' }
+RBInlineMethodTest >> testBadInterval [
 	self
 		shouldFail: (RBInlineMethodRefactoring 
 				inline: (self 
@@ -40,11 +33,8 @@ RBInlineMethodTest>>testBadInterval [
 				forClass: RBRefactoryTestDataApp)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodTest>>testInlineMethod [
+{ #category : #tests }
+RBInlineMethodTest >> testInlineMethod [
 	| refactoring |
 	refactoring := RBInlineMethodRefactoring 
 		inline: (self 
@@ -93,11 +83,8 @@ RBInlineMethodTest>>testInlineMethod [
 									^detector')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodTest>>testInlineMethod1 [
+{ #category : #tests }
+RBInlineMethodTest >> testInlineMethod1 [
 	| refactoring |
 	refactoring := RBInlineMethodRefactoring 
 		inline: (self 
@@ -119,11 +106,8 @@ RBInlineMethodTest>>testInlineMethod1 [
 									^anObject')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodTest>>testInlineMethod2 [
+{ #category : #tests }
+RBInlineMethodTest >> testInlineMethod2 [
 	| refactoring |
 	refactoring := RBInlineMethodRefactoring 
 		inline: (self 
@@ -146,11 +130,8 @@ RBInlineMethodTest>>testInlineMethod2 [
 								[:each | each printString. ^anObject] value: each1')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodTest>>testInlineMethod3 [
+{ #category : #tests }
+RBInlineMethodTest >> testInlineMethod3 [
 	| refactoring |
 	refactoring := RBInlineMethodRefactoring 
 		inline: (self 
@@ -166,11 +147,8 @@ RBInlineMethodTest>>testInlineMethod3 [
 								^(1 to: 10) inject: 1 into: [:sum :each | sum * ((1 to: 10) inject: each into: [:sum1 :each1 | sum1 + each1])]	')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodTest>>testInlineMethod4 [
+{ #category : #tests }
+RBInlineMethodTest >> testInlineMethod4 [
 	| refactoring |
 	refactoring := RBInlineMethodRefactoring 
 		inline: (self 
@@ -199,11 +177,8 @@ RBInlineMethodTest>>testInlineMethod4 [
 												baz * baz]')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodTest>>testInlineMethod5 [
+{ #category : #tests }
+RBInlineMethodTest >> testInlineMethod5 [
 	| refactoring |
 	refactoring := RBInlineMethodRefactoring 
 		inline: (self 
@@ -216,11 +191,8 @@ RBInlineMethodTest>>testInlineMethod5 [
 									5 = 3 ifTrue: [^self caller] ifFalse: [^	(1 to: 10) inject: 1 into: [:sum :each | sum * (self foo: each)]]')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodTest>>testInlineMethodForSuperSend [
+{ #category : #tests }
+RBInlineMethodTest >> testInlineMethodForSuperSend [
 	| refactoring |
 	model := Smalltalk compiler evaluate: self inlineMethodTestData.
 	(model classNamed: #RBRenameVariableChange) removeMethod: #executeNotifying:.
@@ -247,11 +219,8 @@ RBInlineMethodTest>>testInlineMethodForSuperSend [
 									^undo')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodTest>>testInlineMethodForSuperSendThatAlsoSendsSuper [
+{ #category : #'failure tests' }
+RBInlineMethodTest >> testInlineMethodForSuperSendThatAlsoSendsSuper [
 	| refactoring |
 	model := Smalltalk compiler evaluate: self inlineMethodTestData.
 	refactoring := RBInlineMethodRefactoring 
@@ -261,11 +230,8 @@ RBInlineMethodTest>>testInlineMethodForSuperSendThatAlsoSendsSuper [
 	self shouldFail: refactoring
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodTest>>testInlineRecursiveCascadedMethod [
+{ #category : #tests }
+RBInlineMethodTest >> testInlineRecursiveCascadedMethod [
 	| refactoring |
 	refactoring := RBInlineMethodRefactoring 
 		inline: (self 
@@ -282,11 +248,8 @@ RBInlineMethodTest>>testInlineRecursiveCascadedMethod [
 									^temp')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodTest>>testModelInlineRecursiveMethod [
+{ #category : #tests }
+RBInlineMethodTest >> testModelInlineRecursiveMethod [
 	| refactoring class |
 	class := model classNamed: #Object.
 	class compile: 'foo self bar. self foo. self bar' classified: #(#accessing).
@@ -301,22 +264,16 @@ RBInlineMethodTest>>testModelInlineRecursiveMethod [
 						parseMethod: 'foo self bar. self bar. self foo. self bar. self bar')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodTest>>testNonExistantSelector [
+{ #category : #'failure tests' }
+RBInlineMethodTest >> testNonExistantSelector [
 	self shouldFail: (RBInlineMethodRefactoring 
 			inline: (14 to: 17)
 			inMethod: #checkClass1:
 			forClass: RBRefactoryTestDataApp)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodTest>>testOverriden [
+{ #category : #'failure tests' }
+RBInlineMethodTest >> testOverriden [
 	self shouldWarn: (RBInlineMethodRefactoring 
 			inline: (self 
 					convertInterval: (15 to: 26)
@@ -325,11 +282,8 @@ RBInlineMethodTest>>testOverriden [
 			forClass: RBLintRuleTest)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodTest>>testPrimitive [
+{ #category : #'failure tests' }
+RBInlineMethodTest >> testPrimitive [
 	self shouldFail: (RBInlineMethodRefactoring 
 			inline: (self 
 					convertInterval: (14 to: 23)
@@ -338,11 +292,8 @@ RBInlineMethodTest>>testPrimitive [
 			forClass: RBRefactoryTestDataApp)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineMethodTest>>testReturn [
+{ #category : #'failure tests' }
+RBInlineMethodTest >> testReturn [
 	self shouldFail: (RBInlineMethodRefactoring 
 			inline: (self 
 					convertInterval: (418 to: 485)

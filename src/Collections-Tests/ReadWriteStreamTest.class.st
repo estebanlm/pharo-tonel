@@ -12,15 +12,11 @@ see:
 Class {
 	#name : #ReadWriteStreamTest,
 	#superclass : #ClassTestCase,
-	#category : #Collections-Tests-Streams,
-	#timestamp : '<historical>'
+	#category : #Collections-Tests-Streams
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadWriteStreamTest>>testConstructionUsingWith [
+{ #category : #tests }
+ReadWriteStreamTest >> testConstructionUsingWith [
 	"Use the with: constructor."
 
 	| aStream |
@@ -28,11 +24,8 @@ ReadWriteStreamTest>>testConstructionUsingWith [
 	self assert: (aStream contents = #(1 2)) description: 'Ensure correct initialization.'
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadWriteStreamTest>>testIsEmpty [
+{ #category : #'tests - testing' }
+ReadWriteStreamTest >> testIsEmpty [
 	| stream |
 	stream := ReadWriteStream on: String new.
 	self assert: stream isEmpty.
@@ -44,11 +37,8 @@ ReadWriteStreamTest>>testIsEmpty [
 	self deny: stream isEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReadWriteStreamTest>>testNew [
+{ #category : #tests }
+ReadWriteStreamTest >> testNew [
 
 	self should: [ReadWriteStream new] raise: Error.
 ]

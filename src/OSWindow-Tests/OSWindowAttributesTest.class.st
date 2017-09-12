@@ -4,15 +4,11 @@ An OSWindowAttributesTest is a test class for testing the behavior of OSWindowAt
 Class {
 	#name : #OSWindowAttributesTest,
 	#superclass : #TestCase,
-	#category : #OSWindow-Tests,
-	#timestamp : '<historical>'
+	#category : #OSWindow-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowAttributesTest>>testDefaults [
+{ #category : #tests }
+OSWindowAttributesTest >> testDefaults [
 	| attributes |
 	attributes := OSWindowAttributes new.
 	self assert: attributes position = attributes class defaultPosition.

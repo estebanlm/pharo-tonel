@@ -18,15 +18,11 @@ Class {
 		'Current',
 		'Session'
 	],
-	#category : #OSWindow-Core,
-	#timestamp : 'IgorStasenko 7/30/2014 16:33'
+	#category : #OSWindow-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowDriver class>>current [
+{ #category : #accessing }
+OSWindowDriver class >> current [
 	^ Session == Smalltalk session ifTrue: [ Current ifNil: [Current := self pickDriver ]]
 		ifFalse: [ 
 			Session := Smalltalk session.
@@ -35,45 +31,30 @@ OSWindowDriver class>>current [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowDriver class>>isSuitable [
+{ #category : #testing }
+OSWindowDriver class >> isSuitable [
 	"Answer true if receiver is most suitable for using in current session/platform"
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowDriver class>>isSupported [
+{ #category : #testing }
+OSWindowDriver class >> isSupported [
 	"Answer true if receiver is most suitable for using in current session/platform"
 	^ false
 ]
 
-{
-	#category : #'driver selection',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowDriver class>>pickDriver [
+{ #category : #'driver selection' }
+OSWindowDriver class >> pickDriver [
 	self subclassesDo: [ :s | s isSuitable ifTrue: [ ^ s new ] ].
 	^ OSNullWindowDriver new
 ]
 
-{
-	#category : #'window creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowDriver>>createWindowWithAttributes: anOSWindowAttributes osWindow: osWindow [
+{ #category : #'window creation' }
+OSWindowDriver >> createWindowWithAttributes: anOSWindowAttributes osWindow: osWindow [
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowDriver>>isNullDriver [
+{ #category : #testing }
+OSWindowDriver >> isNullDriver [
 	^ false
 ]

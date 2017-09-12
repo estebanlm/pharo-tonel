@@ -4,26 +4,19 @@ I am designed specifically for collections.
 Class {
 	#name : #CollectionValueHolder,
 	#superclass : #NewValueHolder,
-	#category : #NewValueHolder,
-	#timestamp : 'BenjaminVanRyseghem 1/23/2014 15:18'
+	#category : #NewValueHolder
 }
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>add: newObject [
+{ #category : #protocol }
+CollectionValueHolder >> add: newObject [
 	| result |
 	result := value add: newObject.
 	self valueAdded: newObject.
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>add: newObject after: oldObject  [
+{ #category : #protocol }
+CollectionValueHolder >> add: newObject after: oldObject [ 
 	
 	| result |
 	result := value add: newObject after: oldObject.
@@ -31,11 +24,8 @@ CollectionValueHolder>>add: newObject after: oldObject  [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>add: newObject afterIndex: index  [
+{ #category : #protocol }
+CollectionValueHolder >> add: newObject afterIndex: index [ 
 	
 	| result |
 	result := value add: newObject afterIndex: index.
@@ -43,11 +33,8 @@ CollectionValueHolder>>add: newObject afterIndex: index  [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>add: newObject before: oldObject [
+{ #category : #protocol }
+CollectionValueHolder >> add: newObject before: oldObject [
 	
 	| result |
 	result := value add: newObject before: oldObject.
@@ -55,11 +42,8 @@ CollectionValueHolder>>add: newObject before: oldObject [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>add: newObject beforeIndex: index  [
+{ #category : #protocol }
+CollectionValueHolder >> add: newObject beforeIndex: index [ 
 	
 	| result |
 	result := value add: newObject beforeIndex: index.
@@ -67,11 +51,8 @@ CollectionValueHolder>>add: newObject beforeIndex: index  [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>addAll: aCollection  [
+{ #category : #protocol }
+CollectionValueHolder >> addAll: aCollection [ 
 	
 	| result |
 	result := value addAll: aCollection.
@@ -79,11 +60,8 @@ CollectionValueHolder>>addAll: aCollection  [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>addAllFirst: anOrderedCollection [
+{ #category : #protocol }
+CollectionValueHolder >> addAllFirst: anOrderedCollection [
 	
 	| result |
 	result := value addAllFirst: anOrderedCollection.
@@ -91,11 +69,8 @@ CollectionValueHolder>>addAllFirst: anOrderedCollection [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>addAllFirstUnlessAlreadyPresent: anOrderedCollection [
+{ #category : #protocol }
+CollectionValueHolder >> addAllFirstUnlessAlreadyPresent: anOrderedCollection [
 	
 	| result |
 	result := value addAllFirstUnlessAlreadyPresent: anOrderedCollection.
@@ -103,11 +78,8 @@ CollectionValueHolder>>addAllFirstUnlessAlreadyPresent: anOrderedCollection [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>addAllLast: aCollection  [
+{ #category : #protocol }
+CollectionValueHolder >> addAllLast: aCollection [ 
 	
 	| result |
 	result := value addAllLast: aCollection.
@@ -115,11 +87,8 @@ CollectionValueHolder>>addAllLast: aCollection  [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>addFirst: newObject  [
+{ #category : #protocol }
+CollectionValueHolder >> addFirst: newObject [ 
 
 	| result |
 	result := value addFirst: newObject .
@@ -127,11 +96,8 @@ CollectionValueHolder>>addFirst: newObject  [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>addLast: newObject  [
+{ #category : #protocol }
+CollectionValueHolder >> addLast: newObject [ 
 
 	| result |
 	result := value addLast: newObject .
@@ -139,20 +105,14 @@ CollectionValueHolder>>addLast: newObject  [
 	^ result
 ]
 
-{
-	#category : #override,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>at: anObject [
+{ #category : #override }
+CollectionValueHolder >> at: anObject [
 
 	^ value at: anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>at: index ifAbsentPut: block [
+{ #category : #protocol }
+CollectionValueHolder >> at: index ifAbsentPut: block [
 
 	| result |
 	result := value at: index ifAbsentPut: block.
@@ -160,22 +120,16 @@ CollectionValueHolder>>at: index ifAbsentPut: block [
 	^ result
 ]
 
-{
-	#category : #override,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>at: key put: anObject [
+{ #category : #override }
+CollectionValueHolder >> at: key put: anObject [
 
 	value at: key put: anObject.
 	self valueAdded: anObject.
 	^ anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>atAll: aCollection put: anObject  [
+{ #category : #protocol }
+CollectionValueHolder >> atAll: aCollection put: anObject [ 
 	
 	| result |
 	result := value atAll: aCollection put: anObject .
@@ -183,11 +137,8 @@ CollectionValueHolder>>atAll: aCollection put: anObject  [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>atAll: indexArray putAll: valueArray [
+{ #category : #protocol }
+CollectionValueHolder >> atAll: indexArray putAll: valueArray [
 	
 	| result |
 	result := value atAll: indexArray putAll: valueArray.
@@ -195,11 +146,8 @@ CollectionValueHolder>>atAll: indexArray putAll: valueArray [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>atAllPut: anObject  [
+{ #category : #protocol }
+CollectionValueHolder >> atAllPut: anObject [ 
 	
 	| result |
 	result := value atAllPut: anObject.
@@ -207,11 +155,8 @@ CollectionValueHolder>>atAllPut: anObject  [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>atLast: indexFromEnd put: obj [
+{ #category : #protocol }
+CollectionValueHolder >> atLast: indexFromEnd put: obj [
 	
 	| result |
 	result := value atLast: indexFromEnd put: obj.
@@ -219,11 +164,8 @@ CollectionValueHolder>>atLast: indexFromEnd put: obj [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>atWrap: index put: anObject [
+{ #category : #protocol }
+CollectionValueHolder >> atWrap: index put: anObject [
 	
 	| result |
 	result := value atWrap: index put: anObject.
@@ -231,22 +173,16 @@ CollectionValueHolder>>atWrap: index put: anObject [
 	^ result
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>doesNotUnderstand: aMessage [
+{ #category : #private }
+CollectionValueHolder >> doesNotUnderstand: aMessage [
 
 	^ (value respondsTo: aMessage selector)
 		ifTrue: [ value perform: aMessage selector withEnoughArguments: aMessage arguments ]
 		ifFalse: [ super doesNotUnderstand: aMessage ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>insert: anObject before: spot [
+{ #category : #protocol }
+CollectionValueHolder >> insert: anObject before: spot [
 
 	| result |
 	result := value insert: anObject before: spot.
@@ -254,11 +190,8 @@ CollectionValueHolder>>insert: anObject before: spot [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>remove: oldObject [
+{ #category : #protocol }
+CollectionValueHolder >> remove: oldObject [
 
 	| result |
 	result := value remove: oldObject.
@@ -266,11 +199,8 @@ CollectionValueHolder>>remove: oldObject [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>remove: oldObject ifAbsent: absentBlock [
+{ #category : #protocol }
+CollectionValueHolder >> remove: oldObject ifAbsent: absentBlock [
 
 	| result |
 	result := value remove: oldObject ifAbsent: absentBlock.
@@ -278,33 +208,24 @@ CollectionValueHolder>>remove: oldObject ifAbsent: absentBlock [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>removeAll [
+{ #category : #protocol }
+CollectionValueHolder >> removeAll [
 	"Note: I'm not sure about the semantics here, because Collections normally don't return anything on #removeAll, even though one might expect the original content. Use with care."
 
 	value removeAll.
 	self valueRemoved: nil
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>removeAll: aCollection [
+{ #category : #protocol }
+CollectionValueHolder >> removeAll: aCollection [
 	| result |
 	result := value removeAll: aCollection.
 	self valueRemoved: result.
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>removeAt: index [
+{ #category : #protocol }
+CollectionValueHolder >> removeAt: index [
 
 	| result |
 	result := value removeAt: index.
@@ -312,11 +233,8 @@ CollectionValueHolder>>removeAt: index [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>removeFirst [
+{ #category : #protocol }
+CollectionValueHolder >> removeFirst [
 
 	| result |
 	result := value removeFirst.
@@ -324,11 +242,8 @@ CollectionValueHolder>>removeFirst [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>removeFirst: n  [
+{ #category : #protocol }
+CollectionValueHolder >> removeFirst: n [ 
 
 	| result |
 	result := value removeFirst: n .
@@ -336,11 +251,8 @@ CollectionValueHolder>>removeFirst: n  [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>removeIndex: removedIndex [
+{ #category : #protocol }
+CollectionValueHolder >> removeIndex: removedIndex [
 
 	| result |
 	result := value removeIndex: removedIndex.
@@ -348,11 +260,8 @@ CollectionValueHolder>>removeIndex: removedIndex [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>removeLast [
+{ #category : #protocol }
+CollectionValueHolder >> removeLast [
 
 	| result |
 	result := value removeLast.
@@ -360,11 +269,8 @@ CollectionValueHolder>>removeLast [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>removeLast: n [
+{ #category : #protocol }
+CollectionValueHolder >> removeLast: n [
 
 	| result |
 	result := value removeLast: n.
@@ -372,96 +278,66 @@ CollectionValueHolder>>removeLast: n [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>replace: aBlock [
+{ #category : #protocol }
+CollectionValueHolder >> replace: aBlock [
 	value replace: aBlock.
 	self valueChanged
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>replaceAll: oldObject with: newObject [
+{ #category : #protocol }
+CollectionValueHolder >> replaceAll: oldObject with: newObject [
 	value replaceAll: oldObject with: newObject.
 	self valueChanged: oldObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>reset [
+{ #category : #protocol }
+CollectionValueHolder >> reset [
 
 	value reset.
 	self valueChanged
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>resetTo: index [
+{ #category : #protocol }
+CollectionValueHolder >> resetTo: index [
 
 	value resetTo: index.
 	self valueChanged
 ]
 
-{
-	#category : #override,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>size  [
+{ #category : #override }
+CollectionValueHolder >> size [ 
 
 	^ value size
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>sort: aSortBlock  [
+{ #category : #protocol }
+CollectionValueHolder >> sort: aSortBlock [ 
 
 	value sort: aSortBlock .
 	self valueChanged
 ]
 
-{
-	#category : #announcing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>valueAdded: newValue [
+{ #category : #announcing }
+CollectionValueHolder >> valueAdded: newValue [
 	announcer announce: (ValueAdded newValue: newValue).
 	self valueChanged: newValue
 ]
 
-{
-	#category : #announcing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>valueRemoved: oldValue [
+{ #category : #announcing }
+CollectionValueHolder >> valueRemoved: oldValue [
 	announcer announce: (ValueRemoved oldValue: oldValue).
 	self valueChanged: oldValue
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>whenAddedDo: aBlock [
+{ #category : #announcements }
+CollectionValueHolder >> whenAddedDo: aBlock [
 	"Culled block [ :newValue :announcement | ]"
 
 	announcer when: ValueAdded do: [ :ann | aBlock cull: ann newValue cull: ann ]
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolder>>whenRemovedDo: aBlock [
+{ #category : #announcements }
+CollectionValueHolder >> whenRemovedDo: aBlock [
 	"Culled block [ :oldValue :announcement | ]"
 
 	announcer when: ValueRemoved do: [ :ann | aBlock cull: ann oldValue cull: ann ]

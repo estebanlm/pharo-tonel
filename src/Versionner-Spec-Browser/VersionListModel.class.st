@@ -11,42 +11,29 @@ Class {
 		'changedBlock',
 		'selectionVersionString'
 	],
-	#category : #Versionner-Spec-Browser,
-	#timestamp : 'ChristopheDemarey 3/18/2014 17:31'
+	#category : #Versionner-Spec-Browser
 }
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionListModel>>askConfirmationIfChanges [
+{ #category : #checking }
+VersionListModel >> askConfirmationIfChanges [
 	^ self confirm: 'There are changes made to this version.
 You will loose changes.
 Ok to continue?'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionListModel>>changedBlock: anObject [
+{ #category : #accessing }
+VersionListModel >> changedBlock: anObject [
 	changedBlock := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionListModel>>developmentVersionString [
+{ #category : #private }
+VersionListModel >> developmentVersionString [
 	^ (self listItems 
 		detect: [ :item | item isDevelopment ]) versionString
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionListModel>>initialize [
+{ #category : #initialization }
+VersionListModel >> initialize [
 	super initialize.
 	okToChange := true.
 	selectionHolder 
@@ -55,21 +42,15 @@ VersionListModel>>initialize [
 															ifNotNil: [ :item | item versionString] ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionListModel>>items: aList [
+{ #category : #api }
+VersionListModel >> items: aList [
 	self updateSelectionVersionString.
 	super items: aList.
 	self updateSelection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionListModel>>okToChange [
+{ #category : #accessing }
+VersionListModel >> okToChange [
 
 "	okToChange ifTrue: [ ^ true ]."
 	changedBlock value ifFalse: [ ^true ].
@@ -77,28 +58,19 @@ VersionListModel>>okToChange [
 	^ okToChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionListModel>>okToChange: aBoolean [
+{ #category : #accessing }
+VersionListModel >> okToChange: aBoolean [
 	okToChange := aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionListModel>>selectDevelopment [
+{ #category : #api }
+VersionListModel >> selectDevelopment [
 	selectionVersionString := self developmentVersionString.
 	self updateSelection
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionListModel>>updateSelection [
+{ #category : #updating }
+VersionListModel >> updateSelection [
 	selectionVersionString ifNil: [ ^self ].
 	self listItems 
 		detect: [ :item | item versionString = selectionVersionString ]
@@ -109,11 +81,8 @@ VersionListModel>>updateSelection [
 		ifNone: [ self resetSelection ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionListModel>>updateSelectionVersionString [
+{ #category : #updating }
+VersionListModel >> updateSelectionVersionString [
 	| selectedItem |
 	
 	selectedItem := selectionHolder selection value.

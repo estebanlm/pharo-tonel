@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloGofer,
 	#superclass : #Gofer,
-	#category : #Metacello-MC-Gofer,
-	#timestamp : ''
+	#category : #Metacello-MC-Gofer
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGofer>>basicReferencesIn: aRepository [
+{ #category : #private }
+MetacelloGofer >> basicReferencesIn: aRepository [
 	((aRepository isKindOf: MCDictionaryRepository) or: [aRepository isKindOf: MCDirectoryRepository])
 		ifTrue: [ 
 			"No need to cache references for a dictionary repository"
@@ -27,11 +20,8 @@ MetacelloGofer>>basicReferencesIn: aRepository [
 			^ cache at: aRepository put: (super basicReferencesIn: aRepository) ]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGofer>>interactiveCommit [
+{ #category : #operations }
+MetacelloGofer >> interactiveCommit [
 
 	^ self execute: MetacelloGoferCommit
 ]

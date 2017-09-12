@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #GlobalIdentifierWithFuel,
 	#superclass : #GlobalIdentifierTest,
-	#category : #System-Identification-Tests,
-	#timestamp : ''
+	#category : #System-Identification-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierWithFuel>>actualPreferencesFileName [
+{ #category : #accessing }
+GlobalIdentifierWithFuel >> actualPreferencesFileName [
 	^ 'preferences.fuel'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierWithFuel>>setUpPersistenceStrategyAndChecker [
+{ #category : #running }
+GlobalIdentifierWithFuel >> setUpPersistenceStrategyAndChecker [
 	preferences := FileLocator workingDirectory / self folderName / 'pharoX' / self actualPreferencesFileName.
 	preferences ensureDelete.
 	identifier persistenceStrategy: GlobalIdentifierPersistence fuel.

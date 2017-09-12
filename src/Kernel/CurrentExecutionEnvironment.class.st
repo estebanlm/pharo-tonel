@@ -6,15 +6,11 @@ Look at ExecutionEnvironment for details
 Class {
 	#name : #CurrentExecutionEnvironment,
 	#superclass : #ProcessLocalVariable,
-	#category : #Kernel-Processes,
-	#timestamp : 'DenisKudryashov 8/29/2016 15:52'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CurrentExecutionEnvironment class>>activate: anExecutionEnvironment for: aBlock [
+{ #category : #controlling }
+CurrentExecutionEnvironment class >> activate: anExecutionEnvironment for: aBlock [
 
 	| current |
 	self value == anExecutionEnvironment ifTrue: [ ^aBlock value ].
@@ -27,19 +23,13 @@ CurrentExecutionEnvironment class>>activate: anExecutionEnvironment for: aBlock 
 		anExecutionEnvironment deactivated]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CurrentExecutionEnvironment class>>isInheritable [
+{ #category : #testing }
+CurrentExecutionEnvironment class >> isInheritable [
 	^true
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CurrentExecutionEnvironment class>>restoreDefault [
+{ #category : #controlling }
+CurrentExecutionEnvironment class >> restoreDefault [
 
 	| current |
 	current := self value.
@@ -47,19 +37,13 @@ CurrentExecutionEnvironment class>>restoreDefault [
 	self value: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CurrentExecutionEnvironment>>default [
+{ #category : #accessing }
+CurrentExecutionEnvironment >> default [
 	^DefaultExecutionEnvironment instance
 ]
 
-{
-	#category : #inheriting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CurrentExecutionEnvironment>>installValue: anExecutionEnvironment intoForked: newProcess from: ownerProcess [
+{ #category : #inheriting }
+CurrentExecutionEnvironment >> installValue: anExecutionEnvironment intoForked: newProcess from: ownerProcess [
 	super installValue: anExecutionEnvironment intoForked: newProcess from: ownerProcess.
 	
 	anExecutionEnvironment prepareForNewProcess: newProcess

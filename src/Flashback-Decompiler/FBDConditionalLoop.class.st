@@ -9,30 +9,20 @@ Class {
 	#instVars : [
 		'exitCondition'
 	],
-	#category : #Flashback-Decompiler,
-	#timestamp : 'ClementBera 6/19/2015 14:50'
+	#category : #Flashback-Decompiler
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FBDConditionalLoop>>exitCondition [
+{ #category : #accessing }
+FBDConditionalLoop >> exitCondition [
 	^ exitCondition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FBDConditionalLoop>>exitCondition: anObject [
+{ #category : #accessing }
+FBDConditionalLoop >> exitCondition: anObject [
 	exitCondition := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FBDConditionalLoop>>isConditionalLoop [
+{ #category : #testing }
+FBDConditionalLoop >> isConditionalLoop [
 	^ true
 ]

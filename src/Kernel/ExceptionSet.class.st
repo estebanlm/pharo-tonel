@@ -7,25 +7,18 @@ Class {
 	#instVars : [
 		'exceptions'
 	],
-	#category : #Kernel-Exceptions,
-	#timestamp : '<historical>'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #exceptionselector,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ExceptionSet>>, anException [
+{ #category : #exceptionselector }
+ExceptionSet >> , anException [
 	"Return an exception set that contains the receiver and the argument exception. This is commonly used to specify a set of exception selectors for an exception handler."
 
 	self add: anException
 ]
 
-{
-	#category : #exceptionselector,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ExceptionSet>>- anotherException [
+{ #category : #exceptionselector }
+ExceptionSet >> - anotherException [
 	"Create an exception set containnig the receiver
 	and anotherException as an exclusion."
 
@@ -35,31 +28,22 @@ ExceptionSet>>- anotherException [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ExceptionSet>>add: anException [
+{ #category : #private }
+ExceptionSet >> add: anException [
 	"Add anException to the exceptions that I handle"
 	
 	^ exceptions add: anException
 ]
 
-{
-	#category : #exceptionselector,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ExceptionSet>>handles: anException [
+{ #category : #exceptionselector }
+ExceptionSet >> handles: anException [
 	"Determine whether an exception handler will accept a signaled exception."
 
 	^ exceptions anySatisfy: [ :exception | exception handles: anException ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ExceptionSet>>initialize [
+{ #category : #initialization }
+ExceptionSet >> initialize [
 
 	super initialize.
 	exceptions := OrderedCollection new

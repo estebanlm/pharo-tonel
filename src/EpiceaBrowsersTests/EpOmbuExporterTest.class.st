@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #EpOmbuExporterTest,
 	#superclass : #TestCase,
@@ -11,24 +8,17 @@ Class {
 		'logBuilder1',
 		'logBuilder2'
 	],
-	#category : #EpiceaBrowsersTests-Exporter,
-	#timestamp : ''
+	#category : #EpiceaBrowsersTests-Exporter
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpOmbuExporterTest>>outputLogNameForTest [
+{ #category : #accessing }
+EpOmbuExporterTest >> outputLogNameForTest [
 
 	^ self className, 'LogForTest'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpOmbuExporterTest>>setUp  [
+{ #category : #running }
+EpOmbuExporterTest >> setUp [ 
 	super setUp.
 	
 	logBuilder1 := EpTestLogBuilder new.
@@ -39,11 +29,8 @@ EpOmbuExporterTest>>setUp  [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpOmbuExporterTest>>tearDown [
+{ #category : #running }
+EpOmbuExporterTest >> tearDown [
 	super tearDown.
 	
 	logBuilder1 cleanUp.
@@ -52,11 +39,8 @@ EpOmbuExporterTest>>tearDown [
 	(FileSystem workingDirectory / (self outputLogNameForTest, '.ombu')) ensureDelete.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpOmbuExporterTest>>testBasicExport [
+{ #category : #tests }
+EpOmbuExporterTest >> testBasicExport [
 	| selection outputResult |
 	
 	selection := inputLog1 entries.
@@ -74,11 +58,8 @@ EpOmbuExporterTest>>testBasicExport [
 		
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpOmbuExporterTest>>testCommentExportWithDependencyFix [
+{ #category : #tests }
+EpOmbuExporterTest >> testCommentExportWithDependencyFix [
 
 	| selection oldComment newComment |
 	oldComment := nil.
@@ -106,11 +87,8 @@ EpOmbuExporterTest>>testCommentExportWithDependencyFix [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpOmbuExporterTest>>testRoundtrip [
+{ #category : #tests }
+EpOmbuExporterTest >> testRoundtrip [
 
 	| aLog anotherLog |
 	aLog := 

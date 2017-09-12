@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnChunkedStreamTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnChunkedStreamTests>>nextPutAll: collection on: stream chunked: size [
+{ #category : #private }
+ZnChunkedStreamTests >> nextPutAll: collection on: stream chunked: size [
 	| written |
 	written := 0.
 	[ written < collection size ] whileTrue: [ | chunkSize |
@@ -24,11 +17,8 @@ ZnChunkedStreamTests>>nextPutAll: collection on: stream chunked: size [
 	stream print: 0; nextPutAll: String crlf; nextPutAll: String crlf
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnChunkedStreamTests>>testBinaryWriteRead [
+{ #category : #testing }
+ZnChunkedStreamTests >> testBinaryWriteRead [
 	| data written read |
 	data := ByteArray new: 1024 streamContents: [ :out |
 		1024 timesRepeat: [ out nextPut: 256 atRandom - 1 ] ].
@@ -43,11 +33,8 @@ ZnChunkedStreamTests>>testBinaryWriteRead [
 	self assert: read equals: data
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnChunkedStreamTests>>testGzipWriteRead [
+{ #category : #testing }
+ZnChunkedStreamTests >> testGzipWriteRead [
 	| data written read |
 	data := String streamContents: [ :out |
 		{ Collection. Stream. Exception. Magnitude } do: [ :cls |
@@ -63,11 +50,8 @@ ZnChunkedStreamTests>>testGzipWriteRead [
 	self assert: read equals: data
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnChunkedStreamTests>>testReading [
+{ #category : #testing }
+ZnChunkedStreamTests >> testReading [
 	| data chunked plain |
 	data := String withAll: ($a to: $z), ($A to: $Z).
 	chunked := String streamContents: [ :stream |
@@ -76,11 +60,8 @@ ZnChunkedStreamTests>>testReading [
 	self assert: plain equals: data
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnChunkedStreamTests>>testReadingBuffered [
+{ #category : #testing }
+ZnChunkedStreamTests >> testReadingBuffered [
 	| data chunked plain buffer readStream |
 	data := String withAll: ($a to: $z), ($A to: $Z).
 	chunked := String streamContents: [ :stream |
@@ -94,11 +75,8 @@ ZnChunkedStreamTests>>testReadingBuffered [
 	self assert: plain equals: data
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnChunkedStreamTests>>testReadingGzip [
+{ #category : #testing }
+ZnChunkedStreamTests >> testReadingGzip [
 	| data gzipped chunked plain |
 	data := String withAll: ($a to: $z), ($A to: $Z).
 	gzipped := String streamContents: [ :stream |
@@ -109,11 +87,8 @@ ZnChunkedStreamTests>>testReadingGzip [
 	self assert: data equals: plain 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnChunkedStreamTests>>testReadingGzipStepped [
+{ #category : #testing }
+ZnChunkedStreamTests >> testReadingGzipStepped [
 	| data gzipped chunked unchunked ungzipped |
 	data := String withAll: ($a to: $z), ($A to: $Z).
 	gzipped := String streamContents: [ :stream |
@@ -126,11 +101,8 @@ ZnChunkedStreamTests>>testReadingGzipStepped [
 	self assert: data equals: ungzipped 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnChunkedStreamTests>>testReadingNext [
+{ #category : #testing }
+ZnChunkedStreamTests >> testReadingNext [
 	| data chunked plain |
 	data := String withAll: ($a to: $z), ($A to: $Z).
 	chunked := String streamContents: [ :stream |
@@ -139,11 +111,8 @@ ZnChunkedStreamTests>>testReadingNext [
 	self assert: plain equals: data
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnChunkedStreamTests>>testReadingNextInto [
+{ #category : #testing }
+ZnChunkedStreamTests >> testReadingNextInto [
 	| data chunked plain |
 	data := String withAll: ($a to: $z), ($A to: $Z).
 	chunked := String streamContents: [ :stream |
@@ -153,11 +122,8 @@ ZnChunkedStreamTests>>testReadingNextInto [
 	self assert: plain equals: data
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnChunkedStreamTests>>testWriting [
+{ #category : #testing }
+ZnChunkedStreamTests >> testWriting [
 	| chunks result reference |
 	chunks := #( 'ABC' 'DEF' 'GHI' 'JKL' ).
 	result := String streamContents: [ :out |
@@ -170,11 +136,8 @@ ZnChunkedStreamTests>>testWriting [
 	self assert: result equals: reference
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnChunkedStreamTests>>testWritingBuffered [
+{ #category : #testing }
+ZnChunkedStreamTests >> testWritingBuffered [
 	| data written read |
 	data := String withAll: ($a to: $z), ($A to: $Z).
 	written := String streamContents: [ :out |

@@ -11,15 +11,11 @@ Class {
 		'oldStamp',
 		'newStamp'
 	],
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 14:42'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCommentChange class>>newWith: aClassCommentedAnnouncement  [
+{ #category : #'instance creation' }
+EpBehaviorCommentChange class >> newWith: aClassCommentedAnnouncement [ 
 
 	^self
 		newWithBehavior: aClassCommentedAnnouncement classCommented asEpiceaRingDefinition
@@ -29,11 +25,8 @@ EpBehaviorCommentChange class>>newWith: aClassCommentedAnnouncement  [
 		newStamp: aClassCommentedAnnouncement newStamp
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCommentChange class>>newWithBehavior: aBehavior oldComment: anOldComment newComment: aNewComment oldStamp: anOldStamp newStamp: aNewStamp [
+{ #category : #'instance creation' }
+EpBehaviorCommentChange class >> newWithBehavior: aBehavior oldComment: anOldComment newComment: aNewComment oldStamp: anOldStamp newStamp: aNewStamp [
 
 	^ self basicNew
 		initializeWithBehavior:aBehavior
@@ -45,35 +38,23 @@ EpBehaviorCommentChange class>>newWithBehavior: aBehavior oldComment: anOldComme
 
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCommentChange>>accept: aChangeVisitor  [
+{ #category : #visitor }
+EpBehaviorCommentChange >> accept: aChangeVisitor [ 
 	^ aChangeVisitor visitBehaviorCommentChange: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCommentChange>>behaviorAffected [
+{ #category : #accessing }
+EpBehaviorCommentChange >> behaviorAffected [
 	^ behavior
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCommentChange>>behaviorAffectedName [
+{ #category : #accessing }
+EpBehaviorCommentChange >> behaviorAffectedName [
 	^ behavior name
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCommentChange>>initializeWithBehavior: aBehavior oldComment: anOldComment newComment: aNewComment oldStamp: anOldStamp newStamp: aNewStamp [
+{ #category : #initialization }
+EpBehaviorCommentChange >> initializeWithBehavior: aBehavior oldComment: anOldComment newComment: aNewComment oldStamp: anOldStamp newStamp: aNewStamp [
 
 	self initialize.
 	behavior := aBehavior.
@@ -83,34 +64,22 @@ EpBehaviorCommentChange>>initializeWithBehavior: aBehavior oldComment: anOldComm
 	newStamp := aNewStamp.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCommentChange>>newComment [
+{ #category : #accessing }
+EpBehaviorCommentChange >> newComment [
 	^ newComment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCommentChange>>newStamp [
+{ #category : #accessing }
+EpBehaviorCommentChange >> newStamp [
 	^ newStamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCommentChange>>oldComment [
+{ #category : #accessing }
+EpBehaviorCommentChange >> oldComment [
 	^ oldComment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCommentChange>>oldStamp [
+{ #category : #accessing }
+EpBehaviorCommentChange >> oldStamp [
 	^ oldStamp
 ]

@@ -11,15 +11,11 @@ Class {
 		'textModel',
 		'toolbarModel'
 	],
-	#category : #Spec-Examples,
-	#timestamp : 'Spirita 7/28/2016 14:34'
+	#category : #Spec-Examples
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MethodBrowser class>>defaultSpec [
+{ #category : #specs }
+MethodBrowser class >> defaultSpec [
 	<spec>
 	| delta |
 	delta := 15.
@@ -30,11 +26,8 @@ MethodBrowser class>>defaultSpec [
 			yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MethodBrowser class>>defaultSpec2 [
+{ #category : #specs }
+MethodBrowser class >> defaultSpec2 [
 ^{ #Panel.
 		#changeTableLayout.
 		#listDirection:. 	#bottomToTop.
@@ -44,11 +37,8 @@ MethodBrowser class>>defaultSpec2 [
 		#hResizing:.		 #spaceFill.}
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MethodBrowser class>>example [
+{ #category : #example }
+MethodBrowser class >> example [
 	| example |
 	example := MethodBrowser new.
 	example methods: Object methods;
@@ -56,47 +46,32 @@ MethodBrowser class>>example [
 	^example
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MethodBrowser class>>title [
+{ #category : #specs }
+MethodBrowser class >> title [
 
 	^ 'Method Browser'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MethodBrowser>>acceptBlock: aBlock [
+{ #category : #accessing }
+MethodBrowser >> acceptBlock: aBlock [
 
 	textModel acceptBlock: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MethodBrowser>>action [
+{ #category : #accessing }
+MethodBrowser >> action [
 
 	^ textModel actionToPerformHolder content
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MethodBrowser>>displayBlock: aBlock [
+{ #category : #api }
+MethodBrowser >> displayBlock: aBlock [
 
 	listModel displayBlock: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MethodBrowser>>initializePresenter [
+{ #category : #initialization }
+MethodBrowser >> initializePresenter [
 
 	listModel whenSelectedItemChanged: [:selection |
 		selection
@@ -113,11 +88,8 @@ MethodBrowser>>initializePresenter [
 	self wrapWith: [:item | item methodClass name,'>>#', item selector ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MethodBrowser>>initializeWidgets [
+{ #category : #initialization }
+MethodBrowser >> initializeWidgets [
 	listModel := self instantiate: ListModel .
 	textModel := self newCode.
 	toolbarModel := self instantiate: MethodToolbar.
@@ -128,66 +100,45 @@ MethodBrowser>>initializeWidgets [
 	textModel aboutToStyle: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MethodBrowser>>listModel [
+{ #category : #accessing }
+MethodBrowser >> listModel [
 
 	^ listModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MethodBrowser>>methods: aList [
+{ #category : #api }
+MethodBrowser >> methods: aList [
 
 	"Here I reroute my entry point to the list model's entry point"
 	self listModel items: aList
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MethodBrowser>>sortingBlock: aBlock  [
+{ #category : #api }
+MethodBrowser >> sortingBlock: aBlock [ 
 
 	listModel sortingBlock: aBlock 
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MethodBrowser>>takeKeyboardFocus [
+{ #category : #focus }
+MethodBrowser >> takeKeyboardFocus [
 
 	^ self listModel takeKeyboardFocus
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MethodBrowser>>textModel [
+{ #category : #accessing }
+MethodBrowser >> textModel [
 
 	^ textModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MethodBrowser>>toolbarModel [
+{ #category : #accessing }
+MethodBrowser >> toolbarModel [
 
 	^ toolbarModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MethodBrowser>>wrapWith: aBlock [
+{ #category : #api }
+MethodBrowser >> wrapWith: aBlock [
 
 	listModel displayBlock: aBlock
 ]

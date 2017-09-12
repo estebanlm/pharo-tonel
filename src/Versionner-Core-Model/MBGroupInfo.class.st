@@ -11,24 +11,17 @@ Class {
 	#instVars : [
 		'groupContents'
 	],
-	#category : #Versionner-Core-Model,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBGroupInfo class>>helpLabel [
+{ #category : #accessing }
+MBGroupInfo class >> helpLabel [
 
 	^'Group'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBGroupInfo>>groupContentsIfLoaded [
+{ #category : #accessing }
+MBGroupInfo >> groupContentsIfLoaded [
 
 	| version loadedPackageNames groupPackageNames |
 	groupContents ~~ nil ifTrue: [ ^groupContents ].
@@ -42,30 +35,21 @@ MBGroupInfo>>groupContentsIfLoaded [
 	^groupContents := self spec includes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBGroupInfo>>name [
+{ #category : #accessing }
+MBGroupInfo >> name [
 	^ self spec 
 		ifNil: [ 'nil' ]
 		ifNotNil: [ :specif | specif name ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBGroupInfo>>name: aName [
+{ #category : #accessing }
+MBGroupInfo >> name: aName [
 
 	self shouldNotImplement
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBGroupInfo>>printOn: aStream [
+{ #category : #printing }
+MBGroupInfo >> printOn: aStream [
 	| loadedPackageNames |
 	super printOn: aStream.
 	(loadedPackageNames := self groupContentsIfLoaded) isEmpty
@@ -76,11 +60,8 @@ MBGroupInfo>>printOn: aStream [
 			aStream nextPut: $] ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBGroupInfo>>typeLabel [
+{ #category : #accessing }
+MBGroupInfo >> typeLabel [
 
 	^'group'
 ]

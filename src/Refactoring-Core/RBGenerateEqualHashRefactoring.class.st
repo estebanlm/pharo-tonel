@@ -32,31 +32,21 @@ Class {
 	#instVars : [
 		'variables'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 21:35'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBGenerateEqualHashRefactoring class>>className: aClass variables: anArray [
+{ #category : #instance-creation }
+RBGenerateEqualHashRefactoring class >> className: aClass variables: anArray [
 	^ (self className: aClass) variables: anArray
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBGenerateEqualHashRefactoring class>>model: aNamespace className: aClass variables: anArray [
+{ #category : #instance-creation }
+RBGenerateEqualHashRefactoring class >> model: aNamespace className: aClass variables: anArray [
 	^ (self model: aNamespace className: aClass) variables: anArray
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBGenerateEqualHashRefactoring>>accessorForVariable: aString [
+{ #category : #transforming }
+RBGenerateEqualHashRefactoring >> accessorForVariable: aString [
 	| refactoring |
 	refactoring := RBCreateAccessorsForVariableRefactoring
 		model: self model
@@ -67,11 +57,8 @@ RBGenerateEqualHashRefactoring>>accessorForVariable: aString [
 	^ refactoring getterMethod
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBGenerateEqualHashRefactoring>>compileEqual [
+{ #category : #transforming }
+RBGenerateEqualHashRefactoring >> compileEqual [
 	| method statement comparison |
 	method := RBParser parseMethod: '= anObject
 		"Answer whether the receiver and anObject represent the same object."
@@ -103,11 +90,8 @@ RBGenerateEqualHashRefactoring>>compileEqual [
 		classified: #(comparing)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBGenerateEqualHashRefactoring>>compileHash [
+{ #category : #transforming }
+RBGenerateEqualHashRefactoring >> compileHash [
 	| method statement hash |
 	method := RBParser parseMethod: 'hash
 		"Answer an integer value that is related to the identity of the receiver."'.
@@ -129,37 +113,25 @@ RBGenerateEqualHashRefactoring>>compileHash [
 		classified: #(comparing)
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBGenerateEqualHashRefactoring>>preconditions [
+{ #category : #preconditions }
+RBGenerateEqualHashRefactoring >> preconditions [
 	^ variables
 		inject: RBCondition empty
 		into: [ :condition :variable | condition & (RBCondition definesInstanceVariable: variable in: self theClass) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBGenerateEqualHashRefactoring>>theClass [
+{ #category : #accessing }
+RBGenerateEqualHashRefactoring >> theClass [
 	^ (self classObjectFor: className) theNonMetaClass
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBGenerateEqualHashRefactoring>>transform [
+{ #category : #transforming }
+RBGenerateEqualHashRefactoring >> transform [
 	self compileHash.
 	self compileEqual
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBGenerateEqualHashRefactoring>>variables: anArray [
+{ #category : #accessing }
+RBGenerateEqualHashRefactoring >> variables: anArray [
 	variables := anArray
 ]

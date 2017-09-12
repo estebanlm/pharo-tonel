@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #DAPackageCycleTest,
 	#superclass : #TestCase,
@@ -10,26 +7,19 @@ Class {
 		'packageB',
 		'packageC'
 	],
-	#category : #Tool-DependencyAnalyser-Test,
-	#timestamp : ''
+	#category : #Tool-DependencyAnalyser-Test
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageCycleTest>>setUp [
+{ #category : #running }
+DAPackageCycleTest >> setUp [
 	aPDPackageCycle := DAPackageCycle new.
 	packageA := DAPackage on: (RPackageSet named:'A').
 	packageB := DAPackage on: (RPackageSet named:'B').
 	packageC := DAPackage on: (RPackageSet named:'C').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageCycleTest>>testIsAtLeastInCycle [
+{ #category : #tests }
+DAPackageCycleTest >> testIsAtLeastInCycle [
 	| aCollectionOfPDPackage |
 	aCollectionOfPDPackage  := OrderedCollection new.
 	aCollectionOfPDPackage 
@@ -46,20 +36,14 @@ DAPackageCycleTest>>testIsAtLeastInCycle [
 	self deny: (aPDPackageCycle isAtLeastInCycle: aCollectionOfPDPackage).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageCycleTest>>testIsInCycle [
+{ #category : #tests }
+DAPackageCycleTest >> testIsInCycle [
 	aPDPackageCycle addPackage: packageA.
 	self assert: (aPDPackageCycle isInCycle: packageA).
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageCycleTest>>testRemoveOutgoingDependencies [
+{ #category : #running }
+DAPackageCycleTest >> testRemoveOutgoingDependencies [
 	| firstPackage secondPackage outgoingPackage otherOutgoingPackage |
 	firstPackage := DAPackage on: (RPackageSet named: 'A').
 	secondPackage := DAPackage on: (RPackageSet named: 'B').
@@ -78,11 +62,8 @@ DAPackageCycleTest>>testRemoveOutgoingDependencies [
 	self deny: (aPDPackageCycle hasOutgoingDependencies: secondPackage).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageCycleTest>>testReversedCycle [
+{ #category : #tests }
+DAPackageCycleTest >> testReversedCycle [
 	aPDPackageCycle 
 			addPackage: packageA;
 			addPackage: packageB;
@@ -95,11 +76,8 @@ DAPackageCycleTest>>testReversedCycle [
 				
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-DAPackageCycleTest>>testSizeOfCycles [
+{ #category : #tests }
+DAPackageCycleTest >> testSizeOfCycles [
 	self assert: aPDPackageCycle size = 0.
 	aPDPackageCycle addPackage: (DAPackage on: (RPackageSet named:'Kernel')).
 	aPDPackageCycle addPackage: (DAPackage on: (RPackageSet named:'Collections-Abstract')).

@@ -10,82 +10,54 @@ The defined number of methods can be edited in #methodsCount.
 Class {
 	#name : #RBExcessiveMethodsRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:08'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveMethodsRule class>>checksClass [
+{ #category : #testing }
+RBExcessiveMethodsRule class >> checksClass [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveMethodsRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBExcessiveMethodsRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'ExcessiveMethodsRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveMethodsRule>>basicCheck: aClass  [
+{ #category : #running }
+RBExcessiveMethodsRule >> basicCheck: aClass [ 
 	^ aClass selectors size >= self methodsCount
 		
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveMethodsRule>>checkClass: aClass  [
+{ #category : #running }
+RBExcessiveMethodsRule >> checkClass: aClass [ 
 	(self basicCheck: aClass)
 		ifTrue: [ result addClass: aClass ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveMethodsRule>>group [
+{ #category : #accessing }
+RBExcessiveMethodsRule >> group [
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveMethodsRule>>methodsCount [
+{ #category : #private }
+RBExcessiveMethodsRule >> methodsCount [
 	^ 60
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveMethodsRule>>name [
+{ #category : #accessing }
+RBExcessiveMethodsRule >> name [
 	^ 'Excessive number of methods'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveMethodsRule>>rationale [
+{ #category : #accessing }
+RBExcessiveMethodsRule >> rationale [
 	^ 'Large classes are indications that the class may be trying to do too much.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveMethodsRule>>resultClass [
+{ #category : #accessing }
+RBExcessiveMethodsRule >> resultClass [
 	^ RBClassEnvironment
 ]

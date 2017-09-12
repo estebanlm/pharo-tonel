@@ -17,33 +17,23 @@ Class {
 		'yearType',
 		'date'
 	],
-	#category : #Kernel-Tests-Chronology,
-	#timestamp : '<historical>'
+	#category : #Kernel-Tests-Chronology
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DatePrintFormatTester class>>on: aDate [
+{ #category : #'instance creation' }
+DatePrintFormatTester class >> on: aDate [
 
 	^ self new date: aDate.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DatePrintFormatTester>>date: aDate  [
+{ #category : #accessing }
+DatePrintFormatTester >> date: aDate [ 
 
 	date := aDate.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DatePrintFormatTester>>dayPosition: dayPos monthPosition: moPos yearPosition: yrPos delimiter: aCharacter monthType: moType yearType: yrType  [
+{ #category : #private }
+DatePrintFormatTester >> dayPosition: dayPos monthPosition: moPos yearPosition: yrPos delimiter: aCharacter monthType: moType yearType: yrType [ 
 
 	dayPosition := dayPos.
 	monthPosition := moPos.
@@ -54,29 +44,20 @@ DatePrintFormatTester>>dayPosition: dayPos monthPosition: moPos yearPosition: yr
 	^ self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DatePrintFormatTester>>delimiter: aCharacter  [
+{ #category : #accessing }
+DatePrintFormatTester >> delimiter: aCharacter [ 
 
 	delimiter := aCharacter.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DatePrintFormatTester>>monthType: anInteger  [
+{ #category : #accessing }
+DatePrintFormatTester >> monthType: anInteger [ 
 
 	monthType := anInteger.
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DatePrintFormatTester>>monthType: aNumber shouldPrintAs: aString  [
+{ #category : #asserting }
+DatePrintFormatTester >> monthType: aNumber shouldPrintAs: aString [ 
 
 	| actual |
 	monthType := aNumber.
@@ -84,39 +65,27 @@ DatePrintFormatTester>>monthType: aNumber shouldPrintAs: aString  [
 	self assert: actual equals: aString.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DatePrintFormatTester>>printFormat [
+{ #category : #printing }
+DatePrintFormatTester >> printFormat [
 
 	^ date printFormat: { dayPosition. monthPosition. yearPosition. delimiter. monthType. yearType }.
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DatePrintFormatTester>>shouldEqual: expectedOutputString  [
+{ #category : #asserting }
+DatePrintFormatTester >> shouldEqual: expectedOutputString [ 
 
 	self assert: self printFormat equals: expectedOutputString.
 
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DatePrintFormatTester>>tokens [
+{ #category : #asserting }
+DatePrintFormatTester >> tokens [
 
 	^ self printFormat findTokens: { delimiter }.
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DatePrintFormatTester>>yearType: aNumber shouldPrintAs: aString  [
+{ #category : #asserting }
+DatePrintFormatTester >> yearType: aNumber shouldPrintAs: aString [ 
 
 	| actual tokens isMonthMissing yearTokenIndex |
 	yearType := aNumber.

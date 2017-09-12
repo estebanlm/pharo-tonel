@@ -10,15 +10,11 @@ Class {
 		'askBeforeDiscardingEdits',
 		'getEnabledSelector'
 	],
-	#category : #Rubric-Editing-Widgets,
-	#timestamp : 'AlainPlantec 10/5/2015 15:27'
+	#category : #Rubric-Editing-Widgets
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorph class>>on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel [
+{ #category : #'instance creation' }
+RubPluggableTextMorph class >> on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel [
 
 	^ self new on: anObject
 		text: getTextSel
@@ -28,11 +24,8 @@ RubPluggableTextMorph class>>on: anObject text: getTextSel accept: setTextSel re
 		setSelection: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorph class>>on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel setSelection: setSelectionSel [
+{ #category : #'instance creation' }
+RubPluggableTextMorph class >> on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel setSelection: setSelectionSel [
 
 	^ self new on: anObject
 		text: getTextSel
@@ -42,41 +35,29 @@ RubPluggableTextMorph class>>on: anObject text: getTextSel accept: setTextSel re
 		setSelection: setSelectionSel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorph>>askBeforeDiscardingEdits: aBoolean [
+{ #category : #accessing }
+RubPluggableTextMorph >> askBeforeDiscardingEdits: aBoolean [
 	"Set the flag that determines whether the user should be asked before discarding unaccepted edits."
 
 	askBeforeDiscardingEdits := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorph>>getEnabledSelector [
+{ #category : #accessing }
+RubPluggableTextMorph >> getEnabledSelector [
 	"Answer the value of getEnabledSelector"
 
 	^ getEnabledSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorph>>getEnabledSelector: aSymbol [
+{ #category : #accessing }
+RubPluggableTextMorph >> getEnabledSelector: aSymbol [
 	"Answer the value of getEnabledSelector"
 
 	getEnabledSelector := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorph>>hasUnacceptedEdits: aBoolean [
+{ #category : #accessing }
+RubPluggableTextMorph >> hasUnacceptedEdits: aBoolean [
 	"Set the hasUnacceptedEdits flag to the given value. "
 
 	(self model respondsTo: #hasUnacceptedEdits:)
@@ -88,31 +69,22 @@ RubPluggableTextMorph>>hasUnacceptedEdits: aBoolean [
 		ifFalse: [ hasEditingConflicts := false ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorph>>initialize [
+{ #category : #initialize-release }
+RubPluggableTextMorph >> initialize [
 	super initialize.
 	hasUnacceptedEdits := false.
 	hasEditingConflicts := false.
 	askBeforeDiscardingEdits := true
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorph>>model: anObject [
+{ #category : #'model protocol' }
+RubPluggableTextMorph >> model: anObject [
 	super model: anObject.
 	anObject addDependent: self
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorph>>on: aModel text: aGetTextSelector accept: aSetTextSelector readSelection: aReadSelectionSelector menu: aGetMenuSelector [
+{ #category : #'model protocol' }
+RubPluggableTextMorph >> on: aModel text: aGetTextSelector accept: aSetTextSelector readSelection: aReadSelectionSelector menu: aGetMenuSelector [
 	self getTextSelector: aGetTextSelector.
 	self setTextSelector: aSetTextSelector.
 	self getSelectionSelector: aReadSelectionSelector.
@@ -122,11 +94,8 @@ RubPluggableTextMorph>>on: aModel text: aGetTextSelector accept: aSetTextSelecto
 	self on: aModel
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorph>>on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel setSelection: setSelectionSel [
+{ #category : #'model protocol' }
+RubPluggableTextMorph >> on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel setSelection: setSelectionSel [
 	self
 		on: anObject
 		text: getTextSel
@@ -139,11 +108,8 @@ RubPluggableTextMorph>>on: anObject text: getTextSel accept: setTextSel readSele
 	self setSelection: self getSelectionFromModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorph>>promptForCancel [
+{ #category : #accessing }
+RubPluggableTextMorph >> promptForCancel [
 	"Ask for the appropriate action to take when unaccepted contents
 	would be overwritten."
 
@@ -165,11 +131,8 @@ RubPluggableTextMorph>>promptForCancel [
 						ifNil: [ self basicHasUnacceptedEdits: false ] ] ]
 ]
 
-{
-	#category : #'accessing scrollbars',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorph>>registerScrollChanges: aSelector [
+{ #category : #'accessing scrollbars' }
+RubPluggableTextMorph >> registerScrollChanges: aSelector [
 
 	self announcer 
 		when: PaneScrolling 
@@ -177,11 +140,8 @@ RubPluggableTextMorph>>registerScrollChanges: aSelector [
 		to: self model
 ]
 
-{
-	#category : #'accessing scrollbars',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorph>>scrollerOffsetChanged [
+{ #category : #'accessing scrollbars' }
+RubPluggableTextMorph >> scrollerOffsetChanged [
 	super scrollerOffsetChanged.
 	self announcer
 		announce:
@@ -191,11 +151,8 @@ RubPluggableTextMorph>>scrollerOffsetChanged [
 				yourself)
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorph>>update: aSymbol [
+{ #category : #updating }
+RubPluggableTextMorph >> update: aSymbol [
 	aSymbol ifNil: [ ^ self ].
 	aSymbol == #flash
 		ifTrue: [ ^ self flash ].
@@ -235,11 +192,8 @@ RubPluggableTextMorph>>update: aSymbol [
 	^ self
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubPluggableTextMorph>>updateEnabled [
+{ #category : #updating }
+RubPluggableTextMorph >> updateEnabled [
 	"Update the enablement state."
 
 	self model ifNotNil: [

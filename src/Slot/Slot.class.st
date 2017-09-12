@@ -22,32 +22,22 @@ Class {
 	#classInstVars : [
 		'slotClassDefinition'
 	],
-	#category : #Slot-Variables,
-	#timestamp : 'CyrilFerlicot 8/15/2017 1:20'
+	#category : #Slot-Variables
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot class>>asSlot [
+{ #category : #'instance creation' }
+Slot class >> asSlot [
 	^ self new
 ]
 
-{
-	#category : #validating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot class>>checkValidName: aSymbol [
+{ #category : #validating }
+Slot class >> checkValidName: aSymbol [
 	aSymbol isPseudovariableName ifTrue: [ 
 		^ InvalidSlotName signalFor: aSymbol ]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot class>>initialize [
+{ #category : #'class initialization' }
+Slot class >> initialize [
 	Properties
 		ifNil: [ self initializeProperties ]
 		ifNotNil: [ | newDict | 
@@ -56,46 +46,31 @@ Slot class>>initialize [
 			Properties := newDict ]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot class>>initializeProperties [
+{ #category : #'class initialization' }
+Slot class >> initializeProperties [
 	Properties := WeakIdentityKeyDictionary new.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot class>>named: aSymbol [
+{ #category : #'instance creation' }
+Slot class >> named: aSymbol [
 	self checkValidName: aSymbol.
 	^ self new
 		name: aSymbol;
 		yourself
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot class>>showSlotClassDefinition [
+{ #category : #settings }
+Slot class >> showSlotClassDefinition [
 	^slotClassDefinition ifNil: [ slotClassDefinition := false ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot class>>showSlotClassDefinition: aBoolean [
+{ #category : #settings }
+Slot class >> showSlotClassDefinition: aBoolean [
 	slotClassDefinition := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot class>>slotSetting: aBuilder  [
+{ #category : #settings }
+Slot class >> slotSetting: aBuilder [ 
 	<systemsettings>
 	(aBuilder setting: #showSlotClassDefinition) 
 		label: 'Class Template with Slots';
@@ -104,22 +79,16 @@ Slot class>>slotSetting: aBuilder  [
 		target: self
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>= other [
+{ #category : #comparing }
+Slot >> = other [
 	self == other
 		ifTrue: [ ^ true ].
 	^ (self species == other species) 
 			and: [ name = other name ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>addSlotInitToInitialize: aClass [
+{ #category : #private }
+Slot >> addSlotInitToInitialize: aClass [
 	|  source |
 	
 	((aClass>>#initialize) hasLiteral: #initializeSlots:)ifTrue: [^self ].
@@ -132,46 +101,31 @@ Slot>>addSlotInitToInitialize: aClass [
 	
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>asSlot [
+{ #category : #converting }
+Slot >> asSlot [
 	^ self
 ]
 
-{
-	#category : #'class building',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>changingIn: aClass [
+{ #category : #'class building' }
+Slot >> changingIn: aClass [
 	"the slot was changed. Default is to do nothing"
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>definingClass [
+{ #category : #queries }
+Slot >> definingClass [
 	^(Smalltalk globals allClasses flatCollect: [:each | {each . each classSide} ]) 
 		detect: [ :class | class classLayout definesSlot: self] 
 		ifNone: [ nil ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>definitionString [
+{ #category : #printing }
+Slot >> definitionString [
 	"for Slots, the printString is the defintion"
 	^self printString
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>emitStore: aMethodBuilder [
+{ #category : #'code generation' }
+Slot >> emitStore: aMethodBuilder [
 	| tempName |
 	tempName := Object new.
 	aMethodBuilder
@@ -184,22 +138,16 @@ Slot>>emitStore: aMethodBuilder [
 		send: #writeSlot:value:
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>emitValue: aMethodBuilder [
+{ #category : #'code generation' }
+Slot >> emitValue: aMethodBuilder [
 	aMethodBuilder
 		pushLiteralVariable: #slot -> self;
 		pushReceiver;
 		send: #read:
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>ensureInitalizeMethodExists: aClass [
+{ #category : #private }
+Slot >> ensureInitalizeMethodExists: aClass [
 	(aClass includesSelector:  #initialize) ifTrue: [ ^self ].
 	Author useAuthor: 'Generated' during: [
 		aClass compile: 'initialize
@@ -208,242 +156,161 @@ Slot>>ensureInitalizeMethodExists: aClass [
 	
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>ensureProperties [
+{ #category : #properties }
+Slot >> ensureProperties [
 	^ Properties at: self ifAbsentPut: WeakKeyDictionary new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>ensureSlotIniatializationFor: aClass [
+{ #category : #private }
+Slot >> ensureSlotIniatializationFor: aClass [
 	self ensureInitalizeMethodExists: aClass. 
 	self addSlotInitToInitialize: aClass.
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>finalize: layout [
+{ #category : #finalization }
+Slot >> finalize: layout [
 	"nothing to do here"
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>hasProperty: aKey [
+{ #category : #properties }
+Slot >> hasProperty: aKey [
 	"Test if the property aKey is present."
 	^self properties 
 		ifNil: [false]
 		ifNotNil: [:prop | prop includesKey: aKey]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>hash [
+{ #category : #comparing }
+Slot >> hash [
 	^ self species hash bitXor: self name hash
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>initialize: instance [
+{ #category : #initialization }
+Slot >> initialize: instance [
 	"nothing to do for the default slot"
 ]
 
-{
-	#category : #'class building',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>installingIn: aClass [
+{ #category : #'class building' }
+Slot >> installingIn: aClass [
 	"I am called by the class builder. This way a Slot can change the class it is installed in"
 	self wantsInitalization ifTrue: [ self ensureSlotIniatializationFor: aClass ].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>isGlobal [
+{ #category : #testing }
+Slot >> isGlobal [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>isReadIn: aCompiledCode [
+{ #category : #testing }
+Slot >> isReadIn: aCompiledCode [
 	^aCompiledCode readsSlot: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>isSelfEvaluating [
+{ #category : #testing }
+Slot >> isSelfEvaluating [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>isSpecial [
+{ #category : #testing }
+Slot >> isSpecial [
 	"I am more than just a backward compatible ivar slot"
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>isVirtual [
+{ #category : #testing }
+Slot >> isVirtual [
 	"virtual slots do not take up space in the object and have size = 0"
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>isVisible [
+{ #category : #testing }
+Slot >> isVisible [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>isWrittenIn: aCompiledCode [
+{ #category : #testing }
+Slot >> isWrittenIn: aCompiledCode [
 	^aCompiledCode writesSlot: self
 ]
 
-{
-	#category : #'class building',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>layoutChanged: aClass [
+{ #category : #'class building' }
+Slot >> layoutChanged: aClass [
 	"I am called by the class builder. This way a Slot can change the class it is installed in"
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>name [
+{ #category : #accessing }
+Slot >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>name: aSymbol [
+{ #category : #accessing }
+Slot >> name: aSymbol [
 	name := aSymbol
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>printOn: aStream [
+{ #category : #printing }
+Slot >> printOn: aStream [
 	aStream 
 		store: self name;
 		nextPutAll: ' => ';
 		nextPutAll: self class name
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>properties [
+{ #category : #properties }
+Slot >> properties [
 	^ Properties at: self ifAbsent: nil
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>propertyAt: propName [
+{ #category : #properties }
+Slot >> propertyAt: propName [
 	^ self
 		propertyAt: propName
 		ifAbsent: [ nil ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>propertyAt: propName ifAbsent: aBlock [
+{ #category : #properties }
+Slot >> propertyAt: propName ifAbsent: aBlock [
 	self properties ifNil: [^aBlock value].
 	^ self properties
 		at: propName
 		ifAbsent: aBlock
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>propertyAt: aKey ifAbsentPut: aBlock [
+{ #category : #properties }
+Slot >> propertyAt: aKey ifAbsentPut: aBlock [
 	"Answer the property associated with aKey or, if aKey isn't found store the result of evaluating aBlock as new value."
 	
 	^ self propertyAt: aKey ifAbsent: [ self propertyAt: aKey put: aBlock value ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>propertyAt: propName put: propValue [
+{ #category : #properties }
+Slot >> propertyAt: propName put: propValue [
 	^ self ensureProperties
 		at: propName
 		put: propValue
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>read: anObject [
+{ #category : #meta-object-protocol }
+Slot >> read: anObject [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>removePropertiesIfEmpty [
+{ #category : #properties }
+Slot >> removePropertiesIfEmpty [
 	^ Properties at: self ifPresent: [ :dict |
 		dict ifEmpty: [ Properties removeKey: self ] ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>removeProperty: propName [
+{ #category : #properties }
+Slot >> removeProperty: propName [
 	^ self
 		removeProperty: propName
 		ifAbsent: [ nil ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>removeProperty: propName ifAbsent: aBlock [
+{ #category : #properties }
+Slot >> removeProperty: propName ifAbsent: aBlock [
 	| property |
 	self properties ifNil: [^aBlock value].
 	property := self properties
@@ -453,64 +320,43 @@ Slot>>removeProperty: propName ifAbsent: aBlock [
 	^ property
 ]
 
-{
-	#category : #'class building',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>removingFrom: aClass [
+{ #category : #'class building' }
+Slot >> removingFrom: aClass [
 	"I am called by the class builder. This way a Slot can change the class it is installed in"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>scope: aScope [
+{ #category : #accessing }
+Slot >> scope: aScope [
 	"ignored, subclasses can override to analyze the scope they are to be installed in"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>size [
+{ #category : #accessing }
+Slot >> size [
 	"normally a slot takes one ivar. Virtual slots do not take space. 
 	 We could even have Slots that map to multiple ivars"
 	^self isVirtual ifTrue: [0] ifFalse: [1]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>storeOn: aStream [
+{ #category : #printing }
+Slot >> storeOn: aStream [
 	^self printOn: aStream
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>usingMethods [
+{ #category : #queries }
+Slot >> usingMethods [
 	"All methods that read or write the slot"
 	^self definingClass 
 		ifNil: [ #() ]
 		ifNotNil: [:class | class allMethodsAccessingSlot: self].
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>wantsInitalization [
+{ #category : #meta-object-protocol }
+Slot >> wantsInitalization [
 	"if a slot wants to hable initalization, return true here"
 	^false
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Slot>>write: aValue to: anObject [
+{ #category : #meta-object-protocol }
+Slot >> write: aValue to: anObject [
 	^self subclassResponsibility
 ]

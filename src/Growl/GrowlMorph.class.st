@@ -31,26 +31,19 @@ Class {
 		'DefaultBackgroundColor',
 		'Position'
 	],
-	#category : #Growl,
-	#timestamp : 'StephanEggermont 9/5/2014 12:12'
+	#category : #Growl
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph class>>contents: contentString [
+{ #category : #'instance creation' }
+GrowlMorph class >> contents: contentString [
 	
 	^ self new
 		label: '' contents: contentString;
 		yourself
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph class>>growlPositionChoices [
+{ #category : #settings }
+GrowlMorph class >> growlPositionChoices [
 
 	^#(topRight 'top right' 
 		bottomLeft 'bottom left'
@@ -58,11 +51,8 @@ GrowlMorph class>>growlPositionChoices [
 		topLeft 'topLeft') pairsCollect: [:a :b | b -> a]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph class>>growlSettingsOn: aBuilder [
+{ #category : #settings }
+GrowlMorph class >> growlSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #growl)
 		label: 'Popup notification';  
@@ -77,40 +67,28 @@ GrowlMorph class>>growlSettingsOn: aBuilder [
 				domainValues: self growlPositionChoices.]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph class>>label: aString contents: contentString [
+{ #category : #'instance creation' }
+GrowlMorph class >> label: aString contents: contentString [
 	
 	^ self new
 		label: aString contents: contentString;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph class>>openWithContents: contentString [
+{ #category : #'instance creation' }
+GrowlMorph class >> openWithContents: contentString [
 	
 	^ (self contents: contentString) openInWorld
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph class>>openWithLabel: aString contents: contentString [
+{ #category : #'instance creation' }
+GrowlMorph class >> openWithLabel: aString contents: contentString [
 	
 	^ (self label: aString contents: contentString) openInWorld
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph class>>openWithLabel: aString contents: contentString backgroundColor: aColor labelColor: aLabelColor [
+{ #category : #'instance creation' }
+GrowlMorph class >> openWithLabel: aString contents: contentString backgroundColor: aColor labelColor: aLabelColor [
 	
 	^ (self label: aString contents: contentString)
 			backgroundColor: aColor;
@@ -119,78 +97,54 @@ GrowlMorph class>>openWithLabel: aString contents: contentString backgroundColor
 			openInWorld
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph class>>openWithLabel: aString contents: contentString color: aColor [
+{ #category : #'instance creation' }
+GrowlMorph class >> openWithLabel: aString contents: contentString color: aColor [
 	
 	^ (self label: aString contents: contentString)
 			backgroundColor: aColor;
 			openInWorld
 ]
 
-{
-	#category : #position,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph class>>position [
+{ #category : #position }
+GrowlMorph class >> position [
 
 	^ Position ifNil: [ Position := #topRight ]
 ]
 
-{
-	#category : #position,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph class>>position: aSymbol [
+{ #category : #position }
+GrowlMorph class >> position: aSymbol [
 
 	(self possiblePositions includes: aSymbol) ifFalse: [ ^ self ].
 
 	Position := aSymbol
 ]
 
-{
-	#category : #position,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph class>>possiblePositions [
+{ #category : #position }
+GrowlMorph class >> possiblePositions [
 
 	^ #( bottomRight bottomLeft topRight topLeft )
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>actionBlock: aBlock [
+{ #category : #building }
+GrowlMorph >> actionBlock: aBlock [
 
 	actionBlock := aBlock
 ]
 
-{
-	#category : #internal,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>activeGrowlMorphs [
+{ #category : #internal }
+GrowlMorph >> activeGrowlMorphs [
 
 	^World submorphs select: [ :morph | morph isKindOf: GrowlMorph ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>alpha [
+{ #category : #accessing }
+GrowlMorph >> alpha [
 	^ alpha
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>alpha: newAlpha [
+{ #category : #accessing }
+GrowlMorph >> alpha: newAlpha [
 
 	"self alpha = newAlpha ifTrue: [^ self]."
 	alpha := newAlpha.
@@ -203,121 +157,82 @@ GrowlMorph>>alpha: newAlpha [
 	self borderColor isTransparent ifTrue: [self delete].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>backgroundColor [
+{ #category : #accessing }
+GrowlMorph >> backgroundColor [
 
 	^ backgroundColor ifNil: [ backgroundColor := self defaultBackgroundColor ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>contents: contentsString [
+{ #category : #building }
+GrowlMorph >> contents: contentsString [
 
 	self streamDo: [ :w |
 		w withAttributes: self contentsAttributes do: [w nextPutAll: contentsString asString]].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>contentsAttributes [
+{ #category : #initialization }
+GrowlMorph >> contentsAttributes [
 	^ { contentsAttr. TextAlignment centered. TextFontChange font2. }
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>contentsColor [
+{ #category : #accessing }
+GrowlMorph >> contentsColor [
 	^ contentsColor ifNil: [ contentsColor := self theme growlContentsColorFor: self ]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>contentsColor: aColor [
+{ #category : #accessing }
+GrowlMorph >> contentsColor: aColor [
 	"when you set this contentsColor, it takes precedence over theme one. In certain case (such as for green as in SUnit) it is needed, normally you do not need it."
 	contentsColor := aColor.
 	contentsAttr color: aColor.
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>createDismissHandle [
+{ #category : #initialization }
+GrowlMorph >> createDismissHandle [
 	| handle |
 	handle := self theme growlDismissHandleFor: self.
 	handle on: #mouseUp send: #delete to: self.
 	^ handle
 ]
 
-{
-	#category : #default,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>defaultBackgroundColor [
+{ #category : #default }
+GrowlMorph >> defaultBackgroundColor [
 
 	^ self theme growlFillColorFor: self
 ]
 
-{
-	#category : #default,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>defaultBorderColor [
+{ #category : #default }
+GrowlMorph >> defaultBorderColor [
 	
 	^ self theme growlBorderColorFor: self
 ]
 
-{
-	#category : #default,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>defaultTextStyle [
+{ #category : #default }
+GrowlMorph >> defaultTextStyle [
 	^ TextStyle actualTextStyles at: #Accuny
 ]
 
-{
-	#category : #default,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>defaultVanishDelay [
+{ #category : #default }
+GrowlMorph >> defaultVanishDelay [
 	
 	^ 1  seconds
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>enabled [
+{ #category : #stepping }
+GrowlMorph >> enabled [
 
 	^ false
 ]
 
-{
-	#category : #interaction,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>handlesMouseDown: evt [
+{ #category : #interaction }
+GrowlMorph >> handlesMouseDown: evt [
 	^ actionBlock notNil or: [super handlesMouseDown: evt]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>initialize [
+{ #category : #initialization }
+GrowlMorph >> initialize [
 	super initialize.
  	self  borderStyle: BorderStyle thinGray.
 	
@@ -331,39 +246,27 @@ GrowlMorph>>initialize [
 	self addMorph: dismissHandle
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>initializeContentsAttributes [
+{ #category : #initialization }
+GrowlMorph >> initializeContentsAttributes [
 	contentsAttr := TextColor color: self contentsColor.
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>initializeLabelAttributes [
+{ #category : #initialization }
+GrowlMorph >> initializeLabelAttributes [
 	labelAttr := TextColor color: self labelColor.
 	
 ]
 
-{
-	#category : #internal,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>is: rect saneWithRespectTo: morphs [
+{ #category : #internal }
+GrowlMorph >> is: rect saneWithRespectTo: morphs [
 
 	^(morphs anySatisfy: [ :morph | morph owner isNotNil and: [morph bounds intersects: rect]]) not
 
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>label: labelString contents: contentsString [
+{ #category : #building }
+GrowlMorph >> label: labelString contents: contentsString [
 
 	self streamDo: [ :w |
 		w withAttributes: self labelAttributes do: [w nextPutAll: labelString asString; cr].
@@ -371,91 +274,61 @@ GrowlMorph>>label: labelString contents: contentsString [
 		].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>labelAttributes [
+{ #category : #initialization }
+GrowlMorph >> labelAttributes [
 	^ { labelAttr. TextAlignment centered. TextFontChange font4. TextEmphasis bold. }
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>labelColor [
+{ #category : #accessing }
+GrowlMorph >> labelColor [
 	^ labelColor ifNil: [ labelColor := self theme growlLabelColorFor: self ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>labelColor: aColor [
+{ #category : #accessing }
+GrowlMorph >> labelColor: aColor [
 	"when you set this labelColor, it takes precedence over theme one. In certain case (such as for green as in SUnit) it is needed, normally you do not need it."
 	labelColor := aColor.
 	labelAttr color: self labelColor.
 ]
 
-{
-	#category : #default,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>minimumExtent [
+{ #category : #default }
+GrowlMorph >> minimumExtent [
 	^ 256@38
 ]
 
-{
-	#category : #interaction,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>mouseDown: evt [
+{ #category : #interaction }
+GrowlMorph >> mouseDown: evt [
 	super mouseDown: evt.
 	evt yellowButtonPressed ifTrue: [^ self].
 	actionBlock ifNotNil: [actionBlock valueWithPossibleArgs: { self }].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>nextColorStep: aColor [
+{ #category : #initialization }
+GrowlMorph >> nextColorStep: aColor [
 	^ aColor alpha: self alpha
 ]
 
-{
-	#category : #internal,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>openInWorld [
+{ #category : #internal }
+GrowlMorph >> openInWorld [
 
 	self position: self unoccupiedPosition.
 	super openInWorld
 ]
 
-{
-	#category : #internal,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>resetAlpha [
+{ #category : #internal }
+GrowlMorph >> resetAlpha [
 	^ self alpha: 0.9
 ]
 
-{
-	#category : #internal,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>resetVanishTimer [
+{ #category : #internal }
+GrowlMorph >> resetVanishTimer [
 
 	vanishTime := DateAndTime now + self vanishDelay.
 	self resetAlpha.
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>step [
+{ #category : #stepping }
+GrowlMorph >> step [
 
 	(self containsPoint: ActiveHand position) ifTrue: [
 		self resetAlpha.
@@ -464,19 +337,13 @@ GrowlMorph>>step [
 	self alpha: self alpha - 0.05.
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>stepTime [
+{ #category : #stepping }
+GrowlMorph >> stepTime [
 	^ 100
 ]
 
-{
-	#category : #internal,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>streamDo: aBlock [
+{ #category : #internal }
+GrowlMorph >> streamDo: aBlock [
 
 	self contentsWrapped: (Text streamContents: aBlock).
 	self extent: self minimumExtent.
@@ -485,11 +352,8 @@ GrowlMorph>>streamDo: aBlock [
 	self vanishDelay: ((((self contents size /50)seconds)+1 seconds) max: self defaultVanishDelay).
 ]
 
-{
-	#category : #position,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>unoccupiedPosition [
+{ #category : #position }
+GrowlMorph >> unoccupiedPosition [
 
 	self class position = #bottomLeft
 		ifTrue: [ ^ self unoccupiedPositionBottomLeft ].
@@ -503,11 +367,8 @@ GrowlMorph>>unoccupiedPosition [
 	
 ]
 
-{
-	#category : #position,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>unoccupiedPositionBottomLeft [
+{ #category : #position }
+GrowlMorph >> unoccupiedPositionBottomLeft [
 
 	| startPos area rect morphs |
 	
@@ -523,11 +384,8 @@ GrowlMorph>>unoccupiedPositionBottomLeft [
 	^ rect origin
 ]
 
-{
-	#category : #position,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>unoccupiedPositionBottomRight [
+{ #category : #position }
+GrowlMorph >> unoccupiedPositionBottomRight [
 
 	| startPos area rect morphs |
 	
@@ -543,11 +401,8 @@ GrowlMorph>>unoccupiedPositionBottomRight [
 	^ rect origin
 ]
 
-{
-	#category : #position,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>unoccupiedPositionTopLeft [
+{ #category : #position }
+GrowlMorph >> unoccupiedPositionTopLeft [
 
 	| startPos area rect morphs |
 	
@@ -563,11 +418,8 @@ GrowlMorph>>unoccupiedPositionTopLeft [
 	^ rect origin
 ]
 
-{
-	#category : #position,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>unoccupiedPositionTopRight [
+{ #category : #position }
+GrowlMorph >> unoccupiedPositionTopRight [
 
 	| startPos area rect morphs |
 	
@@ -584,29 +436,20 @@ GrowlMorph>>unoccupiedPositionTopRight [
 	^ rect origin
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>vanishDelay [
+{ #category : #accessing }
+GrowlMorph >> vanishDelay [
 
 	^ vanishDelay
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>vanishDelay: aDuration [
+{ #category : #accessing }
+GrowlMorph >> vanishDelay: aDuration [
 
 	vanishDelay := aDuration.
 	self resetVanishTimer
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrowlMorph>>wantsSteps [
+{ #category : #stepping }
+GrowlMorph >> wantsSteps [
 	^ true
 ]

@@ -4,15 +4,11 @@ SUnit tests for variable definitions
 Class {
 	#name : #RGVariableDefinitionTest,
 	#superclass : #TestCase,
-	#category : #Ring-Tests-Kernel,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:10'
+	#category : #Ring-Tests-Kernel
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGVariableDefinitionTest>>testClassInstanceVariable [
+{ #category : #testing }
+RGVariableDefinitionTest >> testClassInstanceVariable [
 	| instVar newClass metaClass |
 	
 	instVar:= RGClassInstanceVariableDefinition named: 'sizes'.
@@ -31,11 +27,8 @@ RGVariableDefinitionTest>>testClassInstanceVariable [
 	self assert: (metaClass instanceVariables size = 1).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGVariableDefinitionTest>>testClassVariable [
+{ #category : #testing }
+RGVariableDefinitionTest >> testClassVariable [
 	| instVar newClass |
 	
 	instVar:= RGClassVariableDefinition named: 'DependentsFields'.
@@ -56,11 +49,8 @@ RGVariableDefinitionTest>>testClassVariable [
 	self assert: (newClass classVariables size = 1).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGVariableDefinitionTest>>testInstanceVariable [
+{ #category : #testing }
+RGVariableDefinitionTest >> testInstanceVariable [
 	| instVar newClass |
 	
 	instVar:= RGInstanceVariableDefinition named: 'size'.
@@ -77,11 +67,8 @@ RGVariableDefinitionTest>>testInstanceVariable [
 	self assert: (newClass instanceVariables size = 1).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGVariableDefinitionTest>>testPoolVariable [
+{ #category : #testing }
+RGVariableDefinitionTest >> testPoolVariable [
 	| poolVar newClass |
 	
 	poolVar:= RGPoolVariableDefinition named: 'TextConstants'.
@@ -101,11 +88,8 @@ RGVariableDefinitionTest>>testPoolVariable [
 	self assert: (newClass sharedPools size = 1).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGVariableDefinitionTest>>testVariableEquality [
+{ #category : #testing }
+RGVariableDefinitionTest >> testVariableEquality [
 
 	| variable1 variable2|
 	

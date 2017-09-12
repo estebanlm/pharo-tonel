@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #MetacelloMCPackagesSpecTestCase,
 	#superclass : #MetacelloPackagesSpecTestCase,
-	#category : #Metacello-TestsMCCore,
-	#timestamp : ''
+	#category : #Metacello-TestsMCCore
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCPackagesSpecTestCase>>projectClass [
+{ #category : #accessing }
+MetacelloMCPackagesSpecTestCase >> projectClass [
     ^ MetacelloMCProject
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCPackagesSpecTestCase>>testAddPackageA [
+{ #category : #tests }
+MetacelloMCPackagesSpecTestCase >> testAddPackageA [
     "used by MetacelloAbstractVersionConstructor>>package: and MetacelloAbstractVersionConstructor>>package:overrides:"
 
     | packages package |
@@ -55,11 +45,8 @@ MetacelloMCPackagesSpecTestCase>>testAddPackageA [
     self assert: package postLoadDoIt value == nil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCPackagesSpecTestCase>>testAddPackageB [
+{ #category : #tests }
+MetacelloMCPackagesSpecTestCase >> testAddPackageB [
     "used by MetacelloAbstractVersionConstructor>>package: and MetacelloAbstractVersionConstructor>>package:overrides:"
 
     | packages package |
@@ -92,11 +79,8 @@ MetacelloMCPackagesSpecTestCase>>testAddPackageB [
     self assert: package postLoadDoIt value == nil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCPackagesSpecTestCase>>testAddPackageC [
+{ #category : #tests }
+MetacelloMCPackagesSpecTestCase >> testAddPackageC [
     "used by MetacelloAbstractVersionConstructor>>package: and MetacelloAbstractVersionConstructor>>package:overrides:"
 
     | packages |
@@ -111,11 +95,8 @@ MetacelloMCPackagesSpecTestCase>>testAddPackageC [
     packages packageNamed: 'Tests' ifAbsent: [ self assert: false ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCPackagesSpecTestCase>>testAddPackageD [
+{ #category : #tests }
+MetacelloMCPackagesSpecTestCase >> testAddPackageD [
     "used by MetacelloAbstractVersionConstructor>>package: and MetacelloAbstractVersionConstructor>>package:overrides:"
 
     | packages |
@@ -124,11 +105,8 @@ MetacelloMCPackagesSpecTestCase>>testAddPackageD [
     packages packageNamed: 'Platform' ifAbsent: [ self assert: false ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCPackagesSpecTestCase>>testCopyToPackage [
+{ #category : #tests }
+MetacelloMCPackagesSpecTestCase >> testCopyToPackage [
     "not currently used by MetacelloAbstractVersionConstructor"
 
     | packages package |
@@ -160,11 +138,8 @@ MetacelloMCPackagesSpecTestCase>>testCopyToPackage [
     self assert: package postLoadDoIt value == #'postLoadDoIt'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCPackagesSpecTestCase>>testMergePackageA [
+{ #category : #tests }
+MetacelloMCPackagesSpecTestCase >> testMergePackageA [
     "used by MetacelloAbstractVersionConstructor>>package:with:"
 
     | packages package |
@@ -201,11 +176,8 @@ MetacelloMCPackagesSpecTestCase>>testMergePackageA [
     self assert: package postLoadDoIt value == #'postLoadDoIt'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCPackagesSpecTestCase>>testMergePackageB [
+{ #category : #tests }
+MetacelloMCPackagesSpecTestCase >> testMergePackageB [
     "used by MetacelloAbstractVersionConstructor>>package:with:"
 
     | packages package |
@@ -242,11 +214,8 @@ MetacelloMCPackagesSpecTestCase>>testMergePackageB [
     self assert: package postLoadDoIt value == #'postLoadDoIt'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCPackagesSpecTestCase>>testMergePackageD [
+{ #category : #tests }
+MetacelloMCPackagesSpecTestCase >> testMergePackageD [
     "used by MetacelloAbstractVersionConstructor>>package:with:"
 
     | packages |
@@ -258,11 +227,8 @@ MetacelloMCPackagesSpecTestCase>>testMergePackageD [
     packages packageNamed: 'Tests' ifAbsent: [ self assert: false ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCPackagesSpecTestCase>>testRemovePackageA [
+{ #category : #tests }
+MetacelloMCPackagesSpecTestCase >> testRemovePackageA [
     "used by MetacelloAbstractVersionConstructor>>removePackage:"
 
     | packages removed |
@@ -288,11 +254,8 @@ MetacelloMCPackagesSpecTestCase>>testRemovePackageA [
     self assert: removed
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCPackagesSpecTestCase>>testRemovePackageB [
+{ #category : #tests }
+MetacelloMCPackagesSpecTestCase >> testRemovePackageB [
     "used by MetacelloAbstractVersionConstructor>>removePackage:"
 
     | packages removed |
@@ -318,11 +281,8 @@ MetacelloMCPackagesSpecTestCase>>testRemovePackageB [
     self assert: removed
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCPackagesSpecTestCase>>testRemovePackageC [
+{ #category : #tests }
+MetacelloMCPackagesSpecTestCase >> testRemovePackageC [
     "used by MetacelloAbstractVersionConstructor>>removePackage:"
 
     | packages removed |
@@ -344,11 +304,8 @@ MetacelloMCPackagesSpecTestCase>>testRemovePackageC [
     self assert: removed
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCPackagesSpecTestCase>>testRemovePackageD [
+{ #category : #tests }
+MetacelloMCPackagesSpecTestCase >> testRemovePackageD [
     "used by MetacelloAbstractVersionConstructor>>removePackage:"
 
     | packages removed |

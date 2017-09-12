@@ -4,33 +4,23 @@ I am the bridge between a MenuItemModel and a ToggleMenuItemMorph
 Class {
 	#name : #MorphicMenuItemAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>action [
+{ #category : #'widget API' }
+MorphicMenuItemAdapter >> action [
 
 	^ self model action
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>actionArguments [
+{ #category : #'widget API' }
+MorphicMenuItemAdapter >> actionArguments [
 
 	^ [ Array with: self ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>autoRefresh [
+{ #category : #'widget API' }
+MorphicMenuItemAdapter >> autoRefresh [
 	| autoRefresh | 
 	
 	autoRefresh := self model autoRefresh.
@@ -40,11 +30,8 @@ MorphicMenuItemAdapter>>autoRefresh [
 		ifFalse: [ autoRefresh ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>balloonText [
+{ #category : #'widget API' }
+MorphicMenuItemAdapter >> balloonText [
 	| balloonText | 
 	
 	balloonText := self model description.
@@ -55,21 +42,15 @@ MorphicMenuItemAdapter>>balloonText [
 		ifFalse: [ balloonText ]
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>buildWidget [
+{ #category : #factory }
+MorphicMenuItemAdapter >> buildWidget [
 	^ self autoRefresh
 		ifTrue: [ self buildWidgetAutoRefresh ]
 		ifFalse: [ self buildWidgetNoRefersh ]
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>buildWidgetAutoRefresh [
+{ #category : #factory }
+MorphicMenuItemAdapter >> buildWidgetAutoRefresh [
 	^ UpdatingMenuItemMorph new
 		target: self;
 		balloonTextSelector: #balloonText;
@@ -84,11 +65,8 @@ MorphicMenuItemAdapter>>buildWidgetAutoRefresh [
 		yourself
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>buildWidgetNoRefersh [
+{ #category : #factory }
+MorphicMenuItemAdapter >> buildWidgetNoRefersh [
 	^ ToggleMenuItemMorph new
 		contents: self name;
 		target: self;
@@ -103,22 +81,16 @@ MorphicMenuItemAdapter>>buildWidgetNoRefersh [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>defaultModifierShortcut [
+{ #category : #private }
+MorphicMenuItemAdapter >> defaultModifierShortcut [
 	
 	^ self shortcut first isUppercase
 		ifTrue: [ OSPlatform current defaultModifier + KMModifier shift + self shortcut first ]
 		ifFalse: [ OSPlatform current defaultModifier + self shortcut first ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>enabled [
+{ #category : #'widget API' }
+MorphicMenuItemAdapter >> enabled [
 	| enabled | 
 	
 	enabled := self model enabled.
@@ -128,11 +100,8 @@ MorphicMenuItemAdapter>>enabled [
 		ifFalse: [ enabled ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>icon [
+{ #category : #'widget API' }
+MorphicMenuItemAdapter >> icon [
 	| icon | 
 	
 	icon := self model icon.
@@ -142,11 +111,8 @@ MorphicMenuItemAdapter>>icon [
 		ifFalse: [ icon ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>name [
+{ #category : #'widget API' }
+MorphicMenuItemAdapter >> name [
 	| name | 
 	
 	name := self model name.
@@ -156,20 +122,14 @@ MorphicMenuItemAdapter>>name [
 		ifFalse: [ name ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>performMenuActionWith: arguments [
+{ #category : #'widget API' }
+MorphicMenuItemAdapter >> performMenuActionWith: arguments [
 
 	^ self model performMenuActionWith: arguments
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>shortcut [
+{ #category : #'widget API' }
+MorphicMenuItemAdapter >> shortcut [
 	| shortcut | 
 	
 	shortcut := self model shortcut.
@@ -179,11 +139,8 @@ MorphicMenuItemAdapter>>shortcut [
 		ifFalse: [ shortcut ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>shortcutText [
+{ #category : #'widget API' }
+MorphicMenuItemAdapter >> shortcutText [
 	| shortcut platform string |
 	
 	shortcut := self shortcut.
@@ -201,11 +158,8 @@ MorphicMenuItemAdapter>>shortcutText [
 		ifTrue: [ String streamContents: [:stream | shortcut shortcut prettyPrintOn: stream ] ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>state [
+{ #category : #'widget API' }
+MorphicMenuItemAdapter >> state [
 	| state | 
 	
 	state := self model state.
@@ -215,22 +169,16 @@ MorphicMenuItemAdapter>>state [
 		ifFalse: [ state ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>stateSelector [
+{ #category : #'widget API' }
+MorphicMenuItemAdapter >> stateSelector [
 
 	^ self state
 		ifNil: [ nil ]
 		ifNotNil: [ #state ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuItemAdapter>>subMenu [
+{ #category : #'widget API' }
+MorphicMenuItemAdapter >> subMenu [
 	| subMenu | 
 	
 	subMenu := self model subMenu.

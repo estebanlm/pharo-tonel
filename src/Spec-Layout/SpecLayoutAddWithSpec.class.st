@@ -4,15 +4,11 @@ A SpecLayoutAddWithSpec is an action representing an add in the spec layout with
 Class {
 	#name : #SpecLayoutAddWithSpec,
 	#superclass : #SpecLayoutAdd,
-	#category : #Spec-Layout,
-	#timestamp : '<historical>'
+	#category : #Spec-Layout
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAddWithSpec class>>subwidget: subwidget spec: aSpecSelector layoutFrame: aLayoutFrame [
+{ #category : #'instance creation' }
+SpecLayoutAddWithSpec class >> subwidget: subwidget spec: aSpecSelector layoutFrame: aLayoutFrame [
 
 	^ self new
 		subwidget: subwidget 
@@ -21,11 +17,8 @@ SpecLayoutAddWithSpec class>>subwidget: subwidget spec: aSpecSelector layoutFram
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAddWithSpec>>subwidget: sub spec: aSpecSelector layoutFrame: aFrameLayout [
+{ #category : #'instance creation' }
+SpecLayoutAddWithSpec >> subwidget: sub spec: aSpecSelector layoutFrame: aFrameLayout [
 
 	self subwidget: (sub isArray 
 						ifTrue: [ #(model), sub , {#retrieveSpec:. aSpecSelector} ]

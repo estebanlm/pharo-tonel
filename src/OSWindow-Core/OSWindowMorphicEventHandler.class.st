@@ -17,23 +17,16 @@ Class {
 	#pools : [
 		'OSKeySymbols'
 	],
-	#category : #OSWindow-Core-Morphic,
-	#timestamp : 'IgorStasenko 7/30/2014 17:46'
+	#category : #OSWindow-Core-Morphic
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler class>>for: morphicWorld [
+{ #category : #'as yet unclassified' }
+OSWindowMorphicEventHandler class >> for: morphicWorld [
 	^ self new morphicWorld: morphicWorld; yourself
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler class>>initialize [
+{ #category : #'as yet unclassified' }
+OSWindowMorphicEventHandler class >> initialize [
 	"
 	self initialize
 	"
@@ -73,29 +66,20 @@ OSWindowMorphicEventHandler class>>initialize [
 	} pairsDo: [ :key :val | SymbolCharacterMapping at: key put: val charCode ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>activeHand [
+{ #category : #private }
+OSWindowMorphicEventHandler >> activeHand [
 	^ self morphicWorld activeHand
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>convertButton: osButton [
+{ #category : #converting }
+OSWindowMorphicEventHandler >> convertButton: osButton [
 	osButton = 1 ifTrue: [ ^ MouseButtonEvent redButton ].
 	osButton = 2 ifTrue: [ ^ MouseButtonEvent blueButton ].
 	osButton = 3 ifTrue: [ ^ MouseButtonEvent yellowButton ].
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>convertModifiers: modifiers [
+{ #category : #converting }
+OSWindowMorphicEventHandler >> convertModifiers: modifiers [
 	| buttons |
 	buttons := 0.
 	
@@ -117,11 +101,8 @@ OSWindowMorphicEventHandler>>convertModifiers: modifiers [
 	^ buttons
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>dispatchMorphicEvent: anEvent [
+{ #category : #events }
+OSWindowMorphicEventHandler >> dispatchMorphicEvent: anEvent [
 	morphicWorld defer: [
 		(morphicWorld activeHand isNotNil and: [ anEvent hand isNotNil ]) ifTrue: [
 			morphicWorld activeHand handleEvent: anEvent
@@ -131,32 +112,23 @@ OSWindowMorphicEventHandler>>dispatchMorphicEvent: anEvent [
 	
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>enqueue: aMorphicEvent [
+{ #category : #events }
+OSWindowMorphicEventHandler >> enqueue: aMorphicEvent [
 	"Put morphic event into receiver's internal queue. 
 	All events in queue will be processed later, by UI process, once it will get there."
 	
 	self eventQueue nextPut: aMorphicEvent.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>eventQueue [
+{ #category : #accessing }
+OSWindowMorphicEventHandler >> eventQueue [
 	"using lazy-initialize here to deal with bootstrapping issues,
 	since existing instances originally has no queue"
 	^ eventQueue ifNil: [ eventQueue := WaitfreeQueue new ]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>handleEvent: anEvent [
+{ #category : #events }
+OSWindowMorphicEventHandler >> handleEvent: anEvent [
 	
 	"convert the event to morphic one, and dispatch it whatever..."
 	| morphicEvent |
@@ -170,45 +142,30 @@ OSWindowMorphicEventHandler>>handleEvent: anEvent [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>initialize [
+{ #category : #initialization }
+OSWindowMorphicEventHandler >> initialize [
 	eventQueue := WaitfreeQueue new.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>mapSymbolToKeyValue: symbol [
+{ #category : #visiting }
+OSWindowMorphicEventHandler >> mapSymbolToKeyValue: symbol [
 	^ SymbolCharacterMapping at: symbol ifAbsent: [
 		 "Don't allow symbol values outside the unicode range"
 		 symbol >= 16r400000 ifTrue: [ 0 ] ifFalse: [ symbol ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>morphicWorld [
+{ #category : #accessing }
+OSWindowMorphicEventHandler >> morphicWorld [
 	^ morphicWorld
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>morphicWorld: aMorphicWorld [
+{ #category : #accessing }
+OSWindowMorphicEventHandler >> morphicWorld: aMorphicWorld [
 	morphicWorld := aMorphicWorld
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>visitKeyDownEvent: anEvent [
+{ #category : #visiting }
+OSWindowMorphicEventHandler >> visitKeyDownEvent: anEvent [
 	| keyEvent keyEvent2 mods |
 
 	mods := anEvent modifiers.
@@ -251,11 +208,8 @@ OSWindowMorphicEventHandler>>visitKeyDownEvent: anEvent [
 	^ keyEvent2
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>visitKeyUpEvent: anEvent [
+{ #category : #visiting }
+OSWindowMorphicEventHandler >> visitKeyUpEvent: anEvent [
 	| keyEvent |
 	keyEvent := KeyboardEvent new
 		setType: #keyUp
@@ -269,11 +223,8 @@ OSWindowMorphicEventHandler>>visitKeyUpEvent: anEvent [
 	^ keyEvent
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>visitMouseButtonPressEvent: anEvent [
+{ #category : #visiting }
+OSWindowMorphicEventHandler >> visitMouseButtonPressEvent: anEvent [
 	anEvent isWheel ifTrue: [ 
 		^ MouseWheelEvent new 
 			setType: #mouseWheel
@@ -292,11 +243,8 @@ OSWindowMorphicEventHandler>>visitMouseButtonPressEvent: anEvent [
 		stamp: Time millisecondClockValue
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>visitMouseButtonReleaseEvent: anEvent [
+{ #category : #visiting }
+OSWindowMorphicEventHandler >> visitMouseButtonReleaseEvent: anEvent [
 	anEvent isWheel ifTrue: [ ^ nil ].
 
 	^ MouseButtonEvent new
@@ -308,11 +256,8 @@ OSWindowMorphicEventHandler>>visitMouseButtonReleaseEvent: anEvent [
 		stamp: Time millisecondClockValue
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>visitMouseMoveEvent: anEvent [
+{ #category : #visiting }
+OSWindowMorphicEventHandler >> visitMouseMoveEvent: anEvent [
 	| oldPos |
 	oldPos := morphicWorld activeHand ifNil: [ 0@0 ] ifNotNil: [:hand | hand position ].
 
@@ -326,11 +271,8 @@ OSWindowMorphicEventHandler>>visitMouseMoveEvent: anEvent [
 		stamp: Time millisecondClockValue
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>visitMouseWheelEvent: anEvent [
+{ #category : #visiting }
+OSWindowMorphicEventHandler >> visitMouseWheelEvent: anEvent [
 	| vertical |
 	vertical := anEvent scrollVertical.
 	vertical = 0 ifTrue: [ ^ nil ].
@@ -344,11 +286,8 @@ OSWindowMorphicEventHandler>>visitMouseWheelEvent: anEvent [
 		stamp: Time millisecondClockValue
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>visitTextInputEvent: anEvent [
+{ #category : #visiting }
+OSWindowMorphicEventHandler >> visitTextInputEvent: anEvent [
 	| keyEvent char mods |
 	anEvent text ifNil: [ ^ nil ].
 	char := anEvent text first.
@@ -370,31 +309,22 @@ OSWindowMorphicEventHandler>>visitTextInputEvent: anEvent [
 	^ keyEvent
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>visitUnknownEvent: anEvent [
+{ #category : #visiting }
+OSWindowMorphicEventHandler >> visitUnknownEvent: anEvent [
 	Transcript
 		show: 'Unknown event: ';
 		show: anEvent data printString;
 		cr
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>visitWindowCloseEvent: anEvent [
+{ #category : #visiting }
+OSWindowMorphicEventHandler >> visitWindowCloseEvent: anEvent [
 	anEvent suppressDefaultAction.
 	morphicWorld osWindowCloseButtonPressed
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowMorphicEventHandler>>visitWindowResizeEvent: anEvent [
+{ #category : #visiting }
+OSWindowMorphicEventHandler >> visitWindowResizeEvent: anEvent [
 
 	"window resized"
 	morphicWorld checkNewWindowSize.

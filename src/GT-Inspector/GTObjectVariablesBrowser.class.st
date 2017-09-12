@@ -7,24 +7,17 @@ self openOn: Smalltalk
 Class {
 	#name : #GTObjectVariablesBrowser,
 	#superclass : #GTRawObjectVariablesBrowser,
-	#category : #GT-Inspector,
-	#timestamp : 'TudorGirba 8/22/2011 12:52'
+	#category : #GT-Inspector
 }
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTObjectVariablesBrowser>>basicVariableNodesFor: anObject in: aCollection [
+{ #category : #'private building' }
+GTObjectVariablesBrowser >> basicVariableNodesFor: anObject in: aCollection [
 
 	^ anObject gtInspectorVariableNodesIn: aCollection 
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTObjectVariablesBrowser>>printArray: anArray [
+{ #category : #'private building' }
+GTObjectVariablesBrowser >> printArray: anArray [
 	"The #printString method of an array needs to scan through the entire array to
 	determine how to print the array. Only scan through a limited number of elements
 	for large arrays."
@@ -39,11 +32,8 @@ GTObjectVariablesBrowser>>printArray: anArray [
 	
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTObjectVariablesBrowser>>printStringOf: anObject  [
+{ #category : #'private building' }
+GTObjectVariablesBrowser >> printStringOf: anObject [ 
 	^ ["Treat arrays differently as their #printString method can be slow.
 		In the future if multiple objects need to be handled differenty,
 		dispatch through the object."

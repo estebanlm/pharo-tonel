@@ -14,62 +14,43 @@ Class {
 	#instVars : [
 		'preDebugWindow'
 	],
-	#category : #DebuggerActions,
-	#timestamp : '<historical>'
+	#category : #DebuggerActions
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugSubclassResponsabilityAction class>>actionType [
+{ #category : #registration }
+PreDebugSubclassResponsabilityAction class >> actionType [
 	<preDebuggingAction>
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugSubclassResponsabilityAction>>executeAction [
+{ #category : #actions }
+PreDebugSubclassResponsabilityAction >> executeAction [
 	
 	super executeAction.
 	self preDebugWindow openFullDebugger "Open the full debugger"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugSubclassResponsabilityAction>>id [
+{ #category : #accessing }
+PreDebugSubclassResponsabilityAction >> id [
 
 	^ #preDebugSubclassResponsability
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugSubclassResponsabilityAction>>initialize [
+{ #category : #initialization }
+PreDebugSubclassResponsabilityAction >> initialize [
 
 	super initialize.
 	self needsUpdate: false.
 	self needsValidation: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugSubclassResponsabilityAction>>preDebugWindow [
+{ #category : #accessing }
+PreDebugSubclassResponsabilityAction >> preDebugWindow [
 	
 	^ preDebugWindow
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugSubclassResponsabilityAction>>preDebugWindow: anObject [
+{ #category : #accessing }
+PreDebugSubclassResponsabilityAction >> preDebugWindow: anObject [
 	
 	preDebugWindow := anObject
 ]

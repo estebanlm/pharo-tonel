@@ -8,81 +8,53 @@ Class {
 		'tempName',
 		'tempIndex'
 	],
-	#category : #Spec-Inspector-Element,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector-Element
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ContextTempEyeElement class>>host: anObject tempName: aString tempIndex: int [
+{ #category : #'as yet unclassified' }
+ContextTempEyeElement class >> host: anObject tempName: aString tempIndex: int [
 	^ (self host: anObject) 
 		tempName: aString;
 		tempIndex: int;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ContextTempEyeElement>>accessorCode [
+{ #category : #accessing }
+ContextTempEyeElement >> accessorCode [
 	^ '(self namedTempAt: ', self tempIndex printString, ')'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ContextTempEyeElement>>label [
+{ #category : #accessing }
+ContextTempEyeElement >> label [
 	^ self tempName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ContextTempEyeElement>>save: aValue [
+{ #category : #accessing }
+ContextTempEyeElement >> save: aValue [
 	self host namedTempAt: self tempIndex put: aValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ContextTempEyeElement>>tempIndex [
+{ #category : #accessing }
+ContextTempEyeElement >> tempIndex [
 	^ tempIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ContextTempEyeElement>>tempIndex: anObject [
+{ #category : #accessing }
+ContextTempEyeElement >> tempIndex: anObject [
 	tempIndex := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ContextTempEyeElement>>tempName [
+{ #category : #accessing }
+ContextTempEyeElement >> tempName [
 	^ tempName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ContextTempEyeElement>>tempName: anObject [
+{ #category : #accessing }
+ContextTempEyeElement >> tempName: anObject [
 	tempName := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ContextTempEyeElement>>value [
+{ #category : #accessing }
+ContextTempEyeElement >> value [
 	^ self host tempNamed: self tempName
 ]

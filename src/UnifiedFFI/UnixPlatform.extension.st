@@ -1,11 +1,6 @@
-Extension {
-	#name : #UnixPlatform
-}
+Extension { #name : #UnixPlatform }
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-UnixPlatform>>ffiModuleName: aLibrary  [
+{ #category : #'*UnifiedFFI' }
+UnixPlatform >> ffiModuleName: aLibrary [ 
 	^ aLibrary unixModuleName
 ]

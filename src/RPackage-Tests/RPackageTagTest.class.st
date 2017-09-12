@@ -4,26 +4,19 @@ SUnit tests for RPackage tags
 Class {
 	#name : #RPackageTagTest,
 	#superclass : #RPackageTestCase,
-	#category : #RPackage-Tests,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:00'
+	#category : #RPackage-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTagTest>>tearDown  [
+{ #category : #running }
+RPackageTagTest >> tearDown [ 
 	super tearDown.
 	#(TestClass TestClassOther) 
 		do: [ :each | 
 			self class environment at: each ifPresent: #removeFromSystem ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTagTest>>testAddClass [
+{ #category : #tests }
+RPackageTagTest >> testAddClass [
 	| package1 package2 class |
 
 	package1 := (RPackage named: #Test1) register.
@@ -44,11 +37,8 @@ RPackageTagTest>>testAddClass [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTagTest>>testAddClassFromTag [
+{ #category : #tests }
+RPackageTagTest >> testAddClassFromTag [
 	| package1 package2 class |
 
 	package1 := (RPackage named: #Test1) register.
@@ -71,11 +61,8 @@ RPackageTagTest>>testAddClassFromTag [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTagTest>>testAsRPackage [
+{ #category : #tests }
+RPackageTagTest >> testAsRPackage [
 	| package1 tag convertedTag class |
 
 	package1 := (RPackage named: #Test1) register.
@@ -90,11 +77,8 @@ RPackageTagTest>>testAsRPackage [
 	self assert: (convertedTag includesSelector: 'foo' ofClass:  class).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTagTest>>testAsRPackageWithExtensionMethods [
+{ #category : #tests }
+RPackageTagTest >> testAsRPackageWithExtensionMethods [
 	| package1 convertedTag class  |
 
 	package1 := (RPackage named: #Test1) register.
@@ -111,11 +95,8 @@ RPackageTagTest>>testAsRPackageWithExtensionMethods [
 	self assert: (convertedTag includesExtensionSelector: 'foo' ofClass:  class).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTagTest>>testPromoteAsRPackage [
+{ #category : #tests }
+RPackageTagTest >> testPromoteAsRPackage [
 	| package1 package2 class tag1 |
 
 	package1 := (RPackage named: #Test1) register.
@@ -132,11 +113,8 @@ RPackageTagTest>>testPromoteAsRPackage [
 	self deny: (package1 classes includes: class).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTagTest>>testPromoteAsRPackageWithExtension [
+{ #category : #tests }
+RPackageTagTest >> testPromoteAsRPackageWithExtension [
 	| packageOriginal packagePromoted class classOther tag |
 
 	packageOriginal := (RPackage named: #Test1) register.

@@ -18,15 +18,11 @@ Class {
 		'shouldNestProjects',
 		'shouldCommitDirtyPackages'
 	],
-	#category : #Versionner-Commit,
-	#timestamp : 'EstebanLorenzano 4/28/2015 16:31'
+	#category : #Versionner-Commit
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitStrategy>>initialize  [
+{ #category : #initialization }
+VSCommitStrategy >> initialize [ 
 	super initialize.
 	shouldCommitDirtyPackages := true.
 	shouldCommitProjects := true.
@@ -34,11 +30,8 @@ VSCommitStrategy>>initialize  [
 	shouldNestProjects := true.
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitStrategy>>options [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitStrategy >> options [
 	^ {  
 	{ 'Nest projects?'. 				#shouldNestProjects}.
 	{ 'Commit projects?'. 			#shouldCommitProjects}.
@@ -47,66 +40,42 @@ VSCommitStrategy>>options [
 	}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitStrategy>>shouldCommitDirtyPackages [
+{ #category : #accessing }
+VSCommitStrategy >> shouldCommitDirtyPackages [
 	^ shouldCommitDirtyPackages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitStrategy>>shouldCommitDirtyPackages: anObject [
+{ #category : #accessing }
+VSCommitStrategy >> shouldCommitDirtyPackages: anObject [
 	shouldCommitDirtyPackages := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitStrategy>>shouldCommitNestedProjects [
+{ #category : #accessing }
+VSCommitStrategy >> shouldCommitNestedProjects [
 	^ shouldCommitNestedProjects
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitStrategy>>shouldCommitNestedProjects: anObject [
+{ #category : #accessing }
+VSCommitStrategy >> shouldCommitNestedProjects: anObject [
 	shouldCommitNestedProjects := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitStrategy>>shouldCommitProjects [
+{ #category : #accessing }
+VSCommitStrategy >> shouldCommitProjects [
 	^ shouldCommitProjects
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitStrategy>>shouldCommitProjects: anObject [
+{ #category : #accessing }
+VSCommitStrategy >> shouldCommitProjects: anObject [
 	shouldCommitProjects := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitStrategy>>shouldNestProjects [
+{ #category : #accessing }
+VSCommitStrategy >> shouldNestProjects [
 	^ shouldNestProjects
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitStrategy>>shouldNestProjects: anObject [
+{ #category : #accessing }
+VSCommitStrategy >> shouldNestProjects: anObject [
 	shouldNestProjects := anObject
 ]

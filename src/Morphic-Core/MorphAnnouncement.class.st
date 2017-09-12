@@ -9,32 +9,22 @@ Class {
 	#instVars : [
 		'morph'
 	],
-	#category : #Morphic-Core-Announcements,
-	#timestamp : '<historical>'
+	#category : #Morphic-Core-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphAnnouncement class>>morph: aMorph [
+{ #category : #'instance creation' }
+MorphAnnouncement class >> morph: aMorph [
 	^self new
 			morph: aMorph;
 			yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphAnnouncement>>morph [
+{ #category : #accessing }
+MorphAnnouncement >> morph [
 	^ morph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphAnnouncement>>morph: anObject [
+{ #category : #accessing }
+MorphAnnouncement >> morph: anObject [
 	morph := anObject
 ]

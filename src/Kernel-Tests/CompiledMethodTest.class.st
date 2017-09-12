@@ -11,76 +11,54 @@ Class {
 		'x',
 		'y'
 	],
-	#category : #Kernel-Tests-Methods,
-	#timestamp : '<historical>'
+	#category : #Kernel-Tests-Methods
 }
 
-{
-	#category : #'tests - performing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>a1: a1 a2: a2 a3: a3 a4: a4 a5: a5 a6: a6 a7: a7 a8: a8 a9: a9 a10: a10 a11: a11 a12: a12 a13: a13 a14: a14 a15: a15 [
+{ #category : #'tests - performing' }
+CompiledMethodTest >> a1: a1 a2: a2 a3: a3 a4: a4 a5: a5 a6: a6 a7: a7 a8: a8 a9: a9 a10: a10 a11: a11 a12: a12 a13: a13 a14: a14 a15: a15 [
 	"I'm a method with the maximum size of arguments that can be executed via normal send but crash on perform :)"
 	
 	^ a1 + a2 - a2
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>abstractMethod [
+{ #category : #examples }
+CompiledMethodTest >> abstractMethod [
 	"I am an abstract method"
 	
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>categoryNameForTemporaryClasses [
+{ #category : #running }
+CompiledMethodTest >> categoryNameForTemporaryClasses [
 	"Answer the category where to classify temporarily created classes"
 
 	^'Dummy-Tests-Class'
 ]
 
-{
-	#category : #coverage,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>classToBeTested [
+{ #category : #coverage }
+CompiledMethodTest >> classToBeTested [
 	
 	^CompiledMethod
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>deprecatedMethod [
+{ #category : #examples }
+CompiledMethodTest >> deprecatedMethod [
 	"Used to test sends of deprecation messages;
 	do not recategorize in one of the 'deprecated' categories."
 
 	self deprecated: 'example of a deprecated method'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>deprecatedMethod2 [
+{ #category : #examples }
+CompiledMethodTest >> deprecatedMethod2 [
 	"Used to test sends of deprecation messages;
 	do not recategorize in one of the 'deprecated' categories."
 
 	self deprecated: 'example of a deprecated method' on: 'date' in: 'someversion'.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>deprecatedMethod3 [
+{ #category : #examples }
+CompiledMethodTest >> deprecatedMethod3 [
 	"Used to test sends of deprecation messages;
 	do not recategorize in one of the 'deprecated' categories."
 
@@ -91,11 +69,8 @@ CompiledMethodTest>>deprecatedMethod3 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>deprecatedMethod4 [
+{ #category : #examples }
+CompiledMethodTest >> deprecatedMethod4 [
 	"Used to test sends of deprecation messages;
 	do not recategorize in one of the 'deprecated' categories."
 
@@ -109,99 +84,63 @@ CompiledMethodTest>>deprecatedMethod4 [
 
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>deprecatedMethod5 [
-
+{ #category : #deprecated }
+CompiledMethodTest >> deprecatedMethod5 [
 ]
 
-{
-	#category : #'category - deprecated',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>deprecatedMethod6 [
-
+{ #category : #'category - deprecated' }
+CompiledMethodTest >> deprecatedMethod6 [
 ]
 
-{
-	#category : #'deprecated - category',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>deprecatedMethod7 [
-
+{ #category : #'deprecated - category' }
+CompiledMethodTest >> deprecatedMethod7 [
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>nonAbstractMethod [
+{ #category : #examples }
+CompiledMethodTest >> nonAbstractMethod [
 	"I am not an abstract method"
 	
 	^ 4 + 5
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>readX [
+{ #category : #examples }
+CompiledMethodTest >> readX [
 	| tmp |
 	tmp := x.
 	^ tmp
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>readXandY [
+{ #category : #examples }
+CompiledMethodTest >> readXandY [
 	
 	^ x + y
 	
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>returnPlusOne: anInteger [
+{ #category : #examples }
+CompiledMethodTest >> returnPlusOne: anInteger [
 	^anInteger + 1. 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>returnTrue [
+{ #category : #examples }
+CompiledMethodTest >> returnTrue [
 	^true  
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>shouldNotImplementMethod [
+{ #category : #examples }
+CompiledMethodTest >> shouldNotImplementMethod [
 	"I am not an abstract method"
 	
 	^ self shouldNotImplement
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>tearDown [
+{ #category : #running }
+CompiledMethodTest >> tearDown [
 	RPackage organizer unregisterPackageNamed: self categoryNameForTemporaryClasses.
 ]
 
-{
-	#category : #'tests - slots',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testAccessesSlot [
+{ #category : #'tests - slots' }
+CompiledMethodTest >> testAccessesSlot [
 
 	"Check the source code availability to do not fail on images without sources"
 	({ Point>>#x. Point>>#setX:setY: } allSatisfy: #hasSourceCode) 
@@ -214,11 +153,8 @@ CompiledMethodTest>>testAccessesSlot [
 	
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testBytecode [
+{ #category : #'tests - accessing' }
+CompiledMethodTest >> testBytecode [
 	"The result of this test depends on the used bytecode set. 
 	
 	 Because there are multiple versions of the encoders currently depending on the compiler used, we test the class name instead of the encoder class itself"
@@ -230,11 +166,8 @@ CompiledMethodTest>>testBytecode [
 	self assertCollection: (Object>>#halt) bytecode equals: expectedResult
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testComparison [
+{ #category : #'tests - accessing' }
+CompiledMethodTest >> testComparison [
 	| method1 method2 |
 	method1 := Float class >> #nan.
 	method2 := thisContext method.
@@ -251,21 +184,15 @@ CompiledMethodTest>>testComparison [
 		self deny: each = method2 ]
 ]
 
-{
-	#category : #'tests - conversion',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testCompiledMethodAsString [
+{ #category : #'tests - conversion' }
+CompiledMethodTest >> testCompiledMethodAsString [
 	"self debug: #testCompiledMethodAsString"
 
 	thisContext method asString
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testContainsHalt [
+{ #category : #'tests - testing' }
+CompiledMethodTest >> testContainsHalt [
 	
 	| annonClass |
 	
@@ -289,11 +216,8 @@ CompiledMethodTest>>testContainsHalt [
 	
 ]
 
-{
-	#category : #'tests - comparing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testCopy [
+{ #category : #'tests - comparing' }
+CompiledMethodTest >> testCopy [
 	<pragma: #pragma>
 	| method copy |
 	method := thisContext method.
@@ -314,11 +238,8 @@ CompiledMethodTest>>testCopy [
 
 ]
 
-{
-	#category : #'tests - comparing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testCopyWithTrailerBytes [
+{ #category : #'tests - comparing' }
+CompiledMethodTest >> testCopyWithTrailerBytes [
 	<pragma: #pragma>
 	| method copy |
 	method := thisContext method.
@@ -339,11 +260,8 @@ CompiledMethodTest>>testCopyWithTrailerBytes [
 
 ]
 
-{
-	#category : #'tests - comparing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testEqualityClassSideMethod [
+{ #category : #'tests - comparing' }
+CompiledMethodTest >> testEqualityClassSideMethod [
    	| method1 method2 |
 
 	method1 := TestCase class compiler
@@ -358,11 +276,8 @@ CompiledMethodTest>>testEqualityClassSideMethod [
 
 ]
 
-{
-	#category : #'tests - comparing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testEqualityInstanceSideMethod [
+{ #category : #'tests - comparing' }
+CompiledMethodTest >> testEqualityInstanceSideMethod [
    	| method1 method2 |
 
 	method1 :=  TestCase compiler compile: 'aMethod'.
@@ -374,11 +289,8 @@ CompiledMethodTest>>testEqualityInstanceSideMethod [
 
 ]
 
-{
-	#category : #'tests - instance variable',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testHasInstVarRef [
+{ #category : #'tests - instance variable' }
+CompiledMethodTest >> testHasInstVarRef [
 	"self debug: #testHasInstVarRef"
 	
 	| method  |
@@ -396,22 +308,16 @@ CompiledMethodTest>>testHasInstVarRef [
 	
 ]
 
-{
-	#category : #'tests - abstract',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testIsAbstract [
+{ #category : #'tests - abstract' }
+CompiledMethodTest >> testIsAbstract [
 
 	self assert: (self class >> #abstractMethod) isAbstract.
 	self deny: (self class >> #nonAbstractMethod) isAbstract.
 	self deny: (self class >> #shouldNotImplementMethod) isAbstract
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testIsDeprecated [
+{ #category : #'tests - testing' }
+CompiledMethodTest >> testIsDeprecated [
 	| deprecatedSelectors |
 	deprecatedSelectors := #(deprecatedMethod deprecatedMethod2 deprecatedMethod3 deprecatedMethod4 deprecatedMethod5 deprecatedMethod6 deprecatedMethod7)
 		asSet.
@@ -422,11 +328,8 @@ CompiledMethodTest>>testIsDeprecated [
 				ifFalse: [ self deny: (self class >> each) isDeprecated ] ]
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testIsInstalled [
+{ #category : #'tests - testing' }
+CompiledMethodTest >> testIsInstalled [
 |  method cls |
 
 	method := (self class)>>#returnTrue.
@@ -448,11 +351,8 @@ CompiledMethodTest>>testIsInstalled [
 	self deny: method isInstalled. 
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testIsQuick [
+{ #category : #'tests - testing' }
+CompiledMethodTest >> testIsQuick [
 	| method  |
 
 	method := self class compiledMethodAt: #returnTrue.
@@ -464,11 +364,8 @@ CompiledMethodTest>>testIsQuick [
 	
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testMethodClass [
+{ #category : #'tests - accessing' }
+CompiledMethodTest >> testMethodClass [
 	| method cls |
 	method := self class >> #returnTrue.
 	self assert: method selector = #returnTrue.
@@ -488,11 +385,8 @@ CompiledMethodTest>>testMethodClass [
 	self assert: method methodClass = cls
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testOrigin [
+{ #category : #'tests - accessing' }
+CompiledMethodTest >> testOrigin [
 	| regularMethod methodFromTrait aliasedMethod |
 
 	"Regular method"
@@ -509,11 +403,8 @@ CompiledMethodTest>>testOrigin [
 	self assert: aliasedMethod origin == aliasedMethod originMethod methodClass.
 ]
 
-{
-	#category : #'tests - performing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testPerformCanExecutelongMethodWithTemps [
+{ #category : #'tests - performing' }
+CompiledMethodTest >> testPerformCanExecutelongMethodWithTemps [
 	"self debug: #testPerformCanExecutelongMethodWithTemps"
 	"the perform: primitive reuses the context of the method calling it. The primitive adds performed selector arguments to the context variables list. So this means that you can execute some methods but not performed them if the calling methods defined too many temps "
 	
@@ -526,11 +417,8 @@ CompiledMethodTest>>testPerformCanExecutelongMethodWithTemps [
 	self assert: (self class>>#a1:a2:a3:a4:a5:a6:a7:a8:a9:a10:a11:a12:a13:a14:a15:) frameSize = CompiledMethod fullFrameSize.
 ]
 
-{
-	#category : #'tests - performing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testPerformInSuperclassCanExecutelongMethodWithTemps [
+{ #category : #'tests - performing' }
+CompiledMethodTest >> testPerformInSuperclassCanExecutelongMethodWithTemps [
 	"self debug: #testPerformInSuperclassCanExecutelongMethodWithTemps"
 	"the perform: primitive reuses the context of the method calling it. The primitive adds performed selector arguments to the context variables list. So this means that you can execute some methods but not performed them if the calling methods defined too many temps "
 	
@@ -541,11 +429,8 @@ CompiledMethodTest>>testPerformInSuperclassCanExecutelongMethodWithTemps [
 	self assert: (self perform: #a1:a2:a3:a4:a5:a6:a7:a8:a9:a10:a11:a12:a13:a14:a15: withArguments: #(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15) inSuperclass: self class) = 1
 ]
 
-{
-	#category : #'tests - instance variable',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testReadsField [
+{ #category : #'tests - instance variable' }
+CompiledMethodTest >> testReadsField [
 	"self debug: #testReadsField"
 	
 	| method |
@@ -567,11 +452,8 @@ CompiledMethodTest>>testReadsField [
 	self deny: (method readsField: 4)
 ]
 
-{
-	#category : #'tests - slots',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testReadsSlot [
+{ #category : #'tests - slots' }
+CompiledMethodTest >> testReadsSlot [
 
 	"Check the source code availability to do not fail on images without sources"
 	({ Point>>#x. Point>>#setX:setY: } allSatisfy: #hasSourceCode) 
@@ -584,11 +466,8 @@ CompiledMethodTest>>testReadsSlot [
 	
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testSelector [
+{ #category : #'tests - accessing' }
+CompiledMethodTest >> testSelector [
 
 	Author useAuthor: 'TUTU_TEST' during: [ 
 		
@@ -620,20 +499,14 @@ CompiledMethodTest>>testSelector [
 
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testSendsSelector [
+{ #category : #'tests - testing' }
+CompiledMethodTest >> testSendsSelector [
 	self assert: ((CompiledCode >> #sendsSelector:) sendsSelector: #includes:).
 	self deny: ((CompiledCode >> #sendsSelector:) sendsSelector: #doBreakfastForMe)
 ]
 
-{
-	#category : #'tests - evaluating',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testValueWithReceiverArguments [
+{ #category : #'tests - evaluating' }
+CompiledMethodTest >> testValueWithReceiverArguments [
 	
 	| method value |
 
@@ -647,11 +520,8 @@ CompiledMethodTest>>testValueWithReceiverArguments [
 	self assert: (value = 2).	
 ]
 
-{
-	#category : #'tests - instance variable',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testWritesField [
+{ #category : #'tests - instance variable' }
+CompiledMethodTest >> testWritesField [
 	"self debug: #testWritesField"
 
 	| method |
@@ -676,11 +546,8 @@ CompiledMethodTest>>testWritesField [
 	self deny: (method writesField: 4).
 ]
 
-{
-	#category : #'tests - slots',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>testWritesSlot [
+{ #category : #'tests - slots' }
+CompiledMethodTest >> testWritesSlot [
 
 	"Check the source code availability to do not fail on images without sources"
 	({ Point>>#x. Point>>#setX:setY: } allSatisfy: #hasSourceCode) 
@@ -694,21 +561,15 @@ CompiledMethodTest>>testWritesSlot [
 	
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>writeX [
+{ #category : #examples }
+CompiledMethodTest >> writeX [
 	
 	x := 33
 	
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-CompiledMethodTest>>writeXandY [
+{ #category : #examples }
+CompiledMethodTest >> writeXandY [
 	
 	x := 33.
 	y := 66

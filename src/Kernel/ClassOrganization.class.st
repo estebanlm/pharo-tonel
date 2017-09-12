@@ -11,25 +11,18 @@ Class {
 		'protocolOrganizer',
 		'organizedClass'
 	],
-	#category : #Kernel-Protocols,
-	#timestamp : '<historical>'
+	#category : #Kernel-Protocols
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization class>>forClass: aClass [
+{ #category : #'instance creation' }
+ClassOrganization class >> forClass: aClass [
 	^ self basicNew
 		initializeClass: aClass;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>addCategory: aString [
+{ #category : #accessing }
+ClassOrganization >> addCategory: aString [
 	| oldCategories |
 	
 	(self protocolOrganizer hasProtocolNamed: aString)
@@ -43,78 +36,51 @@ ClassOrganization>>addCategory: aString [
 		to: self categories.
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>addCategory: aProtocolName before: aUselessArgument [
+{ #category : #'backward compatibility' }
+ClassOrganization >> addCategory: aProtocolName before: aUselessArgument [
 	self addCategory: aProtocolName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>allCategories [
+{ #category : #accessing }
+ClassOrganization >> allCategories [
 	^ self protocolOrganizer allProtocolsNames 
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>allMethodSelectors [
+{ #category : #'backward compatibility' }
+ClassOrganization >> allMethodSelectors [
 	
 	^ protocolOrganizer allMethods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>allProtocols [
+{ #category : #accessing }
+ClassOrganization >> allProtocols [
 	^ self protocolOrganizer allProtocols
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>allProtocolsNames [
+{ #category : #accessing }
+ClassOrganization >> allProtocolsNames [
 	^ self allProtocols collect: #name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>categories [
+{ #category : #accessing }
+ClassOrganization >> categories [
 	^ self protocolOrganizer protocolsNames
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>categoriesSorted [
+{ #category : #accessing }
+ClassOrganization >> categoriesSorted [
 
 	^ self protocolOrganizer protocolsSorted
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>categoryOfElement: aSelector [
+{ #category : #'backward compatibility' }
+ClassOrganization >> categoryOfElement: aSelector [
 
 	^ self categoryOfElement: aSelector ifAbsent: [ nil ]
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>categoryOfElement: aSelector ifAbsent: aBlock [
+{ #category : #'backward compatibility' }
+ClassOrganization >> categoryOfElement: aSelector ifAbsent: aBlock [
 
 	^ (self protocolOrganizer protocolsOfSelector: aSelector)
 		ifEmpty: [ 
@@ -124,40 +90,28 @@ ClassOrganization>>categoryOfElement: aSelector ifAbsent: aBlock [
 		ifNotEmpty: [:col | col first name ]
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>classComment [
+{ #category : #'backward compatibility' }
+ClassOrganization >> classComment [
 
 	^ self comment
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>classComment: aString [
+{ #category : #'backward compatibility' }
+ClassOrganization >> classComment: aString [
 
 	self comment: aString
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>classComment: aString stamp: aStamp [
+{ #category : #'backward compatibility' }
+ClassOrganization >> classComment: aString stamp: aStamp [
 
 	self
 		comment: aString;
 		commentStamp: aStamp
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>classify: aSymbol under: aProtocolName [
+{ #category : #'backward compatibility' }
+ClassOrganization >> classify: aSymbol under: aProtocolName [
 
 	^ self 
 		classify: aSymbol
@@ -165,11 +119,8 @@ ClassOrganization>>classify: aSymbol under: aProtocolName [
 		suppressIfDefault: true
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>classify: selector under: aProtocolName suppressIfDefault: aBoolean [
+{ #category : #'backward compatibility' }
+ClassOrganization >> classify: selector under: aProtocolName suppressIfDefault: aBoolean [
 	| oldCategory forceNotify oldProtocols |
 	forceNotify := (self protocolOrganizer includesSelector: selector) not.
 	oldCategory := self categoryOfElement: selector.
@@ -186,21 +137,15 @@ ClassOrganization>>classify: selector under: aProtocolName suppressIfDefault: aB
 	oldCategory ifNotNil: [ self notifyOfChangedSelector: selector from: oldCategory to: aProtocolName ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>comment [
+{ #category : #accessing }
+ClassOrganization >> comment [
 
 	comment ifNil: [^ ''].
 	^ comment string ifNil: ['']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>comment: aString [
+{ #category : #accessing }
+ClassOrganization >> comment: aString [
 	"Store the comment, aString, associated with the object that refers to the 
 	receiver."
 
@@ -212,106 +157,70 @@ ClassOrganization>>comment: aString [
 				ifFalse: [ SourceFiles remoteStringForNewString: aString ] ]
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>commentRemoteString [
+{ #category : #'backward compatibility' }
+ClassOrganization >> commentRemoteString [
 
 	^ comment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>commentStamp [
+{ #category : #accessing }
+ClassOrganization >> commentStamp [
 	^ commentStamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>commentStamp: anObject [
+{ #category : #accessing }
+ClassOrganization >> commentStamp: anObject [
 	commentStamp := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>extensionProtocols [
+{ #category : #accessing }
+ClassOrganization >> extensionProtocols [ 
 	^ self protocolOrganizer extensionProtocols.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>hasComment [
+{ #category : #testing }
+ClassOrganization >> hasComment [
 	^ self comment isEmptyOrNil not 
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>hasSubject [
+{ #category : #'backward compatibility' }
+ClassOrganization >> hasSubject [
 
 	^ organizedClass notNil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>initialize [
+{ #category : #initialization }
+ClassOrganization >> initialize [ 
 	super initialize.
 	protocolOrganizer := ProtocolOrganizer new.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>initializeClass: aClass [
+{ #category : #initialization }
+ClassOrganization >> initializeClass: aClass [
 	self initialize.
 	organizedClass := aClass.
 	organizedClass selectors do: [ :each | 
 		self classify: each under: Protocol unclassified ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>isEmptyCategoryNamed: categoryName [
+{ #category : #testing }
+ClassOrganization >> isEmptyCategoryNamed: categoryName [
 	^ (self protocolOrganizer protocolNamed: categoryName) isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>listAtCategoryNamed: aName [
+{ #category : #accessing }
+ClassOrganization >> listAtCategoryNamed: aName [		
 	^ (self protocolOrganizer methodsInProtocolNamed: aName) asArray
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>listAtCategoryNumber: aSmallInteger [
+{ #category : #'backward compatibility' }
+ClassOrganization >> listAtCategoryNumber: aSmallInteger [ 
 	
 	^ (protocolOrganizer allProtocols at: aSmallInteger ifAbsent: [ ^ {} ]) methods asArray
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>notifyOfAddedCategory: protocolName [
+{ #category : #notifications }
+ClassOrganization >> notifyOfAddedCategory: protocolName [
 	
 	self hasSubject ifFalse: [ ^ self ].
 	
@@ -320,20 +229,14 @@ ClassOrganization>>notifyOfAddedCategory: protocolName [
 		inClass: self subject
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>notifyOfChangedCategoriesFrom: oldCollectionOrNil to: newCollectionOrNil [
+{ #category : #notifications }
+ClassOrganization >> notifyOfChangedCategoriesFrom: oldCollectionOrNil to: newCollectionOrNil [
 	(self hasSubject and: [ oldCollectionOrNil ~= newCollectionOrNil ]) 
 		ifTrue: [ SystemAnnouncer uniqueInstance classReorganized: self subject ].
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>notifyOfChangedCategoryFrom: oldNameOrNil to: newNameOrNil [
+{ #category : #notifications }
+ClassOrganization >> notifyOfChangedCategoryFrom: oldNameOrNil to: newNameOrNil [
 	(self hasSubject and: [oldNameOrNil ~= newNameOrNil]) 
 		ifTrue: [
 			SystemAnnouncer uniqueInstance 
@@ -343,11 +246,8 @@ ClassOrganization>>notifyOfChangedCategoryFrom: oldNameOrNil to: newNameOrNil [
 			SystemAnnouncer uniqueInstance classReorganized: self subject].
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>notifyOfChangedSelector: element from: oldCategory to: newCategory [
+{ #category : #notifications }
+ClassOrganization >> notifyOfChangedSelector: element from: oldCategory [ to: newCategory
 	(self hasSubject and: [(oldCategory ~= newCategory)]) 
 		ifTrue: [
 			self subject 
@@ -356,11 +256,8 @@ ClassOrganization>>notifyOfChangedSelector: element from: oldCategory to: newCat
 				to: newCategory ].
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>notifyOfRemovedCategory: protocolName [
+{ #category : #notifications }
+ClassOrganization >> notifyOfRemovedCategory: protocolName [
 	
 	self hasSubject ifFalse: [ ^ self ].
 	
@@ -369,19 +266,13 @@ ClassOrganization>>notifyOfRemovedCategory: protocolName [
 		inClass: self subject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>organizedClass [
+{ #category : #accessing }
+ClassOrganization >> organizedClass [
 	^ organizedClass
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>ownCategories [
+{ #category : #'backward compatibility' }
+ClassOrganization >> ownCategories [
         "get all categories that are not obtained from traits. Order is random"
 
         | traitsCategories |
@@ -400,49 +291,34 @@ ClassOrganization>>ownCategories [
                 copyWithoutAll: (traitsCategories collect: #name)) asArray.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>protocolNamed: aString [
+{ #category : #accessing }
+ClassOrganization >> protocolNamed: aString [ 
 	^ self protocolOrganizer 
 		protocolNamed: aString 
 		ifAbsent: [ nil ] 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>protocolOrganizer [
+{ #category : #private }
+ClassOrganization >> protocolOrganizer [
 	
 	^ protocolOrganizer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>protocols [
+{ #category : #accessing }
+ClassOrganization >> protocols [ 
 	^ self protocolOrganizer protocols.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>removeCategory: protocolName [
+{ #category : #accessing }
+ClassOrganization >> removeCategory: protocolName [
 	(self protocolOrganizer hasProtocolNamed: protocolName)
 		ifFalse: [ ^ self ].
 	
 	self removeProtocol: (self protocolNamed: protocolName)
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>removeElement: aSymbol [
+{ #category : #'backward compatibility' }
+ClassOrganization >> removeElement: aSymbol [
 	| oldProtocol |
 	
 	oldProtocol := self categoryOfElement: aSymbol.
@@ -450,11 +326,8 @@ ClassOrganization>>removeElement: aSymbol [
 	self notifyOfChangedSelector: aSymbol from: oldProtocol to: (self categoryOfElement: aSymbol).
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>removeEmptyCategories [
+{ #category : #'backward compatibility' }
+ClassOrganization >> removeEmptyCategories [
 	| oldCategories removedProtocols |
 	
 	oldCategories := self protocolOrganizer allProtocolsNames copy.
@@ -465,11 +338,8 @@ ClassOrganization>>removeEmptyCategories [
 	self notifyOfChangedCategoriesFrom: oldCategories to: self protocolOrganizer allProtocolsNames.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>removeProtocol: aProtocol [
+{ #category : #accessing }
+ClassOrganization >> removeProtocol: aProtocol [
 	| oldCategories |
 	
 	oldCategories := self protocolOrganizer allProtocolsNames copy.
@@ -480,11 +350,8 @@ ClassOrganization>>removeProtocol: aProtocol [
 		to: self protocolOrganizer allProtocolsNames.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>removeProtocolIfEmpty: protocolName [
+{ #category : #accessing }
+ClassOrganization >> removeProtocolIfEmpty: protocolName [
 	"The protocol may already have been removed, be non empty or a special protocol which can't be removed, such as 'all'."
 
 	(self protocolNamed: protocolName)
@@ -493,11 +360,8 @@ ClassOrganization>>removeProtocolIfEmpty: protocolName [
 				ifTrue: [ self removeProtocol: protocol ] ]
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>renameCategory: oldName toBe: newName [
+{ #category : #'backward compatibility' }
+ClassOrganization >> renameCategory: oldName toBe: newName [
 	
 	self 
 		silentlyRenameCategory: oldName 
@@ -509,20 +373,14 @@ ClassOrganization>>renameCategory: oldName toBe: newName [
 		do: [ :each | self notifyOfChangedSelector: each from: oldName to: newName ]
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>setSubject: anObject [
+{ #category : #'backward compatibility' }
+ClassOrganization >> setSubject: anObject [
 	
 	organizedClass := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>silentlyRenameCategory: oldName toBe: newName [
+{ #category : #private }
+ClassOrganization >> silentlyRenameCategory: oldName toBe: newName [
 
 	self protocolOrganizer 
 		renameProtocol: oldName
@@ -530,19 +388,13 @@ ClassOrganization>>silentlyRenameCategory: oldName toBe: newName [
 
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>sortCategories [
+{ #category : #'backward compatibility' }
+ClassOrganization >> sortCategories [
 	"Do nothing"
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ClassOrganization>>subject [
+{ #category : #'backward compatibility' }
+ClassOrganization >> subject [
 
 	^organizedClass
 ]

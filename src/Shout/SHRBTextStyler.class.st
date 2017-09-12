@@ -11,118 +11,81 @@ Class {
 		'parentheseLevel',
 		'bracketLevel'
 	],
-	#category : #Shout-Styling,
-	#timestamp : '<historical>'
+	#category : #Shout-Styling
 }
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>addAttributes: attributes forNode: anRBNode [
+{ #category : #formatting }
+SHRBTextStyler >> addAttributes: attributes forNode: anRBNode [
 	self 
 		addAttributes: attributes
 		from: anRBNode start
 		to: anRBNode stop
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>addAttributes: attributes from: start to: stop [
+{ #category : #formatting }
+SHRBTextStyler >> addAttributes: attributes from: start to: stop [
 	charAttr
 		from: start
 		to: stop
 		put: attributes
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>addStyle: styleSymbol attribute: additionalAttribute forNode: anRBNode [
+{ #category : #formatting }
+SHRBTextStyler >> addStyle: styleSymbol attribute: additionalAttribute forNode: anRBNode [
 	self 
 		addStyle:styleSymbol
 		attributes: { additionalAttribute }
 		forNode: anRBNode.
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>addStyle: styleSymbol attribute: additionalAttribute from: start to: end [
+{ #category : #formatting }
+SHRBTextStyler >> addStyle: styleSymbol attribute: additionalAttribute from: start to: end [
 	self addAttributes: (self attributesFor: styleSymbol), {additionalAttribute} from: start to: end.
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>addStyle: styleSymbol attributes: additionalAttributes forNode: anRBNode [
+{ #category : #formatting }
+SHRBTextStyler >> addStyle: styleSymbol attributes: additionalAttributes forNode: anRBNode [
 	self 
 		addAttributes: (self attributesFor: styleSymbol), additionalAttributes 
 		forNode: anRBNode.
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>addStyle: styleSymbol forNode: anRBNode [
+{ #category : #formatting }
+SHRBTextStyler >> addStyle: styleSymbol forNode: anRBNode [
 	self addAttributes: (self attributesFor: styleSymbol) forNode: anRBNode.
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>addStyle: styleSymbol from: start to: end [
+{ #category : #formatting }
+SHRBTextStyler >> addStyle: styleSymbol from: start to: end [
 	self addAttributes: (self attributesFor: styleSymbol) from: start to: end.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>currentClosedBracketStyleName [
+{ #category : #private }
+SHRBTextStyler >> currentClosedBracketStyleName [
 	bracketLevel isZero ifTrue: [ ^ #blockEnd ].
 	^ (#blockEnd asString , bracketLevel asString) asSymbol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>currentClosedParenthesisStyleName [
+{ #category : #private }
+SHRBTextStyler >> currentClosedParenthesisStyleName [
 	parentheseLevel isZero ifTrue: [ ^ #rightParenthesis ].
 	^ (#rightParenthesis asString , parentheseLevel asString) asSymbol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>currentOpenedBracketStyleName [
+{ #category : #private }
+SHRBTextStyler >> currentOpenedBracketStyleName [
 	bracketLevel isZero ifTrue: [ ^ #blockStart ].
 	^ (#blockStart asString , bracketLevel asString) asSymbol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>currentOpenedParenthesisStyleName [
+{ #category : #private }
+SHRBTextStyler >> currentOpenedParenthesisStyleName [
 	parentheseLevel isZero ifTrue: [ ^ #leftParenthesis ].
 	^ (#leftParenthesis asString , parentheseLevel asString) asSymbol
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>literalStyleSymbol: aValue [
+{ #category : #formatting }
+SHRBTextStyler >> literalStyleSymbol: aValue [
 	aValue isSymbol
 		ifTrue: [ ^ #symbol ].
 	aValue isString
@@ -140,41 +103,29 @@ SHRBTextStyler>>literalStyleSymbol: aValue [
 	^ #default
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>methodOrBlockArgStyleFor: anArgumentNode [
+{ #category : #private }
+SHRBTextStyler >> methodOrBlockArgStyleFor: anArgumentNode [
 	^ anArgumentNode isBlockVar
 		ifTrue: [ #blockArg ]
 		ifFalse: [ #methodArg ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>methodOrBlockTempDeclStyleFor: aSequenceNode [
+{ #category : #private }
+SHRBTextStyler >> methodOrBlockTempDeclStyleFor: aSequenceNode [
 	^ aSequenceNode scope isBlockScope
 		ifTrue: [ #blockPatternTempVar ]
 		ifFalse: [ #patternTempVar ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>methodOrBlockTempStyleFor: aTemporaryNode [
+{ #category : #private }
+SHRBTextStyler >> methodOrBlockTempStyleFor: aTemporaryNode [
 	^ aTemporaryNode isBlockVar
 		ifTrue: [ #blockTempVar ]
 		ifFalse: [ #tempVar ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>parse: aText isMethod: isMethod [
+{ #category : #private }
+SHRBTextStyler >> parse: aText isMethod: isMethod [
 	|root|
 	
 	isMethod 
@@ -187,11 +138,8 @@ SHRBTextStyler>>parse: aText isMethod: isMethod [
 		ifFalse:[ ^RBParser parseFaultyExpression: aText asString ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>privateStyle: aText  [
+{ #category : #private }
+SHRBTextStyler >> privateStyle: aText [ 
     | ast |
 
     ast := self parse: aText isMethod: self isForWorkspace not.
@@ -204,11 +152,8 @@ SHRBTextStyler>>privateStyle: aText  [
     ^ aText
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>resolveStyleFor: aVariableNode [
+{ #category : #private }
+SHRBTextStyler >> resolveStyleFor: aVariableNode [
 	aVariableNode binding ifNil: [^#default].
 	aVariableNode isArg ifTrue: [ ^#methodArg].
 	aVariableNode isTemp ifTrue: [ ^#tempVar].
@@ -218,11 +163,8 @@ SHRBTextStyler>>resolveStyleFor: aVariableNode [
 	^#invalid.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>resolveTextLinkFor: aVariableNode [
+{ #category : #private }
+SHRBTextStyler >> resolveTextLinkFor: aVariableNode [
 
 	aVariableNode binding isGlobalVariable
 		ifTrue: [ ^ TextClassLink className: aVariableNode name ].
@@ -230,11 +172,8 @@ SHRBTextStyler>>resolveTextLinkFor: aVariableNode [
 	^ TextVariableLink variableName: aVariableNode name
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>style: aText ast: ast [
+{ #category : #private }
+SHRBTextStyler >> style: aText ast: ast [
 	text := aText.	
 	charAttr := Array new: aText size withAll: (self attributesFor: #default).
 	bracketLevel := 0.
@@ -244,21 +183,15 @@ SHRBTextStyler>>style: aText ast: ast [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>styleCloseBracket: aBlockNode [
+{ #category : #private }
+SHRBTextStyler >> styleCloseBracket: aBlockNode [
 	bracketLevel := bracketLevel - 1.
 	(aBlockNode right isZero or: [  aBlockNode value isNil ]) ifTrue:[^ self].
 	self addStyle: self currentClosedBracketStyleName from: aBlockNode right to: aBlockNode right
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>styleCloseParenthese: aMessageNode [
+{ #category : #private }
+SHRBTextStyler >> styleCloseParenthese: aMessageNode [
 	aMessageNode parentheses
 		ifNotEmpty: [ 
 			aMessageNode parentheses
@@ -269,11 +202,8 @@ SHRBTextStyler>>styleCloseParenthese: aMessageNode [
 					self addStyle: self currentClosedParenthesisStyleName from: pos to: pos ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>styleOpenBracket: aBlockNode [
+{ #category : #private }
+SHRBTextStyler >> styleOpenBracket: aBlockNode [
 	| style |
 	style := aBlockNode isFaulty
 		ifTrue: [ #invalid ]
@@ -282,11 +212,8 @@ SHRBTextStyler>>styleOpenBracket: aBlockNode [
 	bracketLevel := bracketLevel + 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>styleOpenParenthese: aMessageNode [
+{ #category : #private }
+SHRBTextStyler >> styleOpenParenthese: aMessageNode [
 	aMessageNode parentheses
 		ifNotEmpty: [ 
 			aMessageNode parentheses
@@ -297,11 +224,8 @@ SHRBTextStyler>>styleOpenParenthese: aMessageNode [
 					parentheseLevel := parentheseLevel + 1 ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>styleTempBars: aSequenceNode [
+{ #category : #private }
+SHRBTextStyler >> styleTempBars: aSequenceNode [
 	| tempBarAttribute |
 	tempBarAttribute := aSequenceNode scope isMethodScope
 		ifTrue: [ #methodTempBar ]
@@ -312,32 +236,23 @@ SHRBTextStyler>>styleTempBars: aSequenceNode [
 		ifNotNil: [ :pos | self addStyle: tempBarAttribute from: pos to: pos ]
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitArgumentNode: anArgumentNode [
+{ #category : #'visiting rb nodes' }
+SHRBTextStyler >> visitArgumentNode: anArgumentNode [
 	| blockOrMethodArgStyle |
 	blockOrMethodArgStyle := self methodOrBlockArgStyleFor: anArgumentNode.
 	self addStyle: blockOrMethodArgStyle forNode: anArgumentNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitAssignmentNode: anAssignmentNode [
+{ #category : #visiting }
+SHRBTextStyler >> visitAssignmentNode: anAssignmentNode [
 	self visitNode: anAssignmentNode variable.
 	self visitNode: anAssignmentNode value.
 	anAssignmentNode variable binding isWritable
 		ifFalse: [ self addStyle: #invalid forNode: anAssignmentNode ]
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitBlockNode: aBlockNode [
+{ #category : #'visiting rb nodes' }
+SHRBTextStyler >> visitBlockNode: aBlockNode [
 	aBlockNode comments do: [ :comment | self addStyle: #comment from: comment start to: comment stop ].
 	aBlockNode arguments do: [ :argument | self addStyle: #blockPatternArg forNode: argument ].
 	aBlockNode bar ifNotNil: [ :pos | self addStyle: #blockArgsBar from: pos to: pos ].
@@ -347,20 +262,14 @@ SHRBTextStyler>>visitBlockNode: aBlockNode [
 	self styleCloseBracket: aBlockNode
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitCascadeNode: aCascadeNode [
+{ #category : #'visiting rb nodes' }
+SHRBTextStyler >> visitCascadeNode: aCascadeNode [
 	aCascadeNode messages do: [ :each | self visitNode: each ].
 	aCascadeNode semicolons do: [ :pos | self addStyle: #cascadeSeparator from: pos to: pos ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitLiteralArrayNode: aRBLiteralArrayNode [
+{ #category : #visiting }
+SHRBTextStyler >> visitLiteralArrayNode: aRBLiteralArrayNode [
 	"in a (valid) byte array all elements are of the same type, style the whole contents
 at once, but for ordinary literal arrays, style every node"
 
@@ -377,11 +286,8 @@ at once, but for ordinary literal arrays, style every node"
 	ifFalse: [ aRBLiteralArrayNode contents do: [ :each | self visitNode: each ] ]
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitLiteralNode: aLiteralNode [
+{ #category : #'visiting rb nodes' }
+SHRBTextStyler >> visitLiteralNode: aLiteralNode [
 	| value |
 	value := aLiteralNode value.
 	self 
@@ -390,11 +296,8 @@ SHRBTextStyler>>visitLiteralNode: aLiteralNode [
 		forNode: aLiteralNode
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitMessageNode: aMessageNode [
+{ #category : #'visiting rb nodes' }
+SHRBTextStyler >> visitMessageNode: aMessageNode [
 	| style link |
 	style := #keyword.
 	(Symbol findInterned: aMessageNode selector asString)
@@ -418,11 +321,8 @@ SHRBTextStyler>>visitMessageNode: aMessageNode [
 	self styleCloseParenthese: aMessageNode
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitMethodNode: aMethodNode  [
+{ #category : #'visiting rb nodes' }
+SHRBTextStyler >> visitMethodNode: aMethodNode [ 
 aMethodNode comments do: [ :comment|
 		self 
 			addStyle: #comment
@@ -445,11 +345,8 @@ aMethodNode comments do: [ :comment|
 	self visitNode: aMethodNode body
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitNode: aNode  [
+{ #category : #'visiting rb nodes' }
+SHRBTextStyler >> visitNode: aNode [ 
 	aNode comments do: [ :comment|
 		self 
 			addStyle: #comment
@@ -459,21 +356,15 @@ SHRBTextStyler>>visitNode: aNode  [
 	^aNode acceptVisitor: self
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitParseErrorNode: anErrorNode [
+{ #category : #'visiting rb nodes' }
+SHRBTextStyler >> visitParseErrorNode: anErrorNode [
 	self 
 		addStyle: #invalid
 		forNode: anErrorNode
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitPragmaNode: aPragmaNode [
+{ #category : #'visiting rb nodes' }
+SHRBTextStyler >> visitPragmaNode: aPragmaNode [
 	aPragmaNode selectorParts with: aPragmaNode keywordsPositions do: [ :keyword : position|
 	self 
 		addStyle: #pragmaKeyword
@@ -483,11 +374,8 @@ SHRBTextStyler>>visitPragmaNode: aPragmaNode [
 	aPragmaNode arguments do: [ :each | self visitNode: each ]
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitReturnNode: aReturnNode  [
+{ #category : #'visiting rb nodes' }
+SHRBTextStyler >> visitReturnNode: aReturnNode [ 
 	self 
 		addStyle: #return
 		from: aReturnNode start
@@ -496,21 +384,15 @@ SHRBTextStyler>>visitReturnNode: aReturnNode  [
 	self visitNode: aReturnNode value
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitSelfNode: aSelfNode [
+{ #category : #'visiting rb nodes' }
+SHRBTextStyler >> visitSelfNode: aSelfNode [
 	self 
 		addStyle: #self
 		forNode: aSelfNode
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitSequenceNode: aSequenceNode [
+{ #category : #'visiting rb nodes' }
+SHRBTextStyler >> visitSequenceNode: aSequenceNode [
 	| patternTempStyle |
 	patternTempStyle := self methodOrBlockTempDeclStyleFor: aSequenceNode.
 	self styleTempBars: aSequenceNode.
@@ -520,41 +402,29 @@ SHRBTextStyler>>visitSequenceNode: aSequenceNode [
 	aSequenceNode periods do: [ :pos | self addStyle: #statementSeparator from: pos to: pos ]
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitSuperNode: aSuperNode [
+{ #category : #'visiting rb nodes' }
+SHRBTextStyler >> visitSuperNode: aSuperNode [
 	self 
 		addStyle: #super
 		forNode: aSuperNode
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitTemporaryNode: aTemporaryNode [
+{ #category : #'visiting rb nodes' }
+SHRBTextStyler >> visitTemporaryNode: aTemporaryNode [
 	| methodOrBlockTempStyle |
 	methodOrBlockTempStyle := self methodOrBlockTempStyleFor: aTemporaryNode.
 	self addStyle: methodOrBlockTempStyle forNode: aTemporaryNode
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitThisContextNode: aThisContextNode [
+{ #category : #'visiting rb nodes' }
+SHRBTextStyler >> visitThisContextNode: aThisContextNode [
 	self 
 		addStyle: #thisContext
 		forNode: aThisContextNode
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHRBTextStyler>>visitVariableNode: aVariableNode [
+{ #category : #'visiting rb nodes' }
+SHRBTextStyler >> visitVariableNode: aVariableNode [
 	self 
 		addStyle: (self resolveStyleFor: aVariableNode) 
 		attribute: (self resolveTextLinkFor:aVariableNode)

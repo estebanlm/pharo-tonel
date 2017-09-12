@@ -39,32 +39,22 @@ Class {
 		'state',
 		'keepRefreshing'
 	],
-	#category : #Athens-Morphic,
-	#timestamp : '<historical>'
+	#category : #Athens-Morphic
 }
 
-{
-	#category : #colors,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>backgroundColor [
+{ #category : #colors }
+AthensSceneView >> backgroundColor [
 	^ Color gray
 ]
 
-{
-	#category : #'session management',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>checkSession [
+{ #category : #'session management' }
+AthensSceneView >> checkSession [
 	session == Smalltalk session ifFalse: [ 
 		self initializeForNewSession ]
 ]
 
-{
-	#category : #'session management',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>createSurface [
+{ #category : #'session management' }
+AthensSceneView >> createSurface [
 	| extent |
 	extent := self extent asIntegerPoint.
 	surface := (scene respondsTo: #createSurface:) 
@@ -73,11 +63,8 @@ AthensSceneView>>createSurface [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>drawOn: canvas [
+{ #category : #drawing }
+AthensSceneView >> drawOn: canvas [
 	| px py |
 	canvas fillRectangle: bounds color: self backgroundColor.
 	self renderScene.
@@ -97,55 +84,37 @@ AthensSceneView>>drawOn: canvas [
 				color: Color white ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>handlesMouseDown: evt [
+{ #category : #'event handling' }
+AthensSceneView >> handlesMouseDown: evt [
 	^ true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>handlesMouseOver: evt [
+{ #category : #'event handling' }
+AthensSceneView >> handlesMouseOver: evt [
 	^ true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>handlesMouseWheel: event [
+{ #category : #'event handling' }
+AthensSceneView >> handlesMouseWheel: event [
 	^ true
 ]
 
-{
-	#category : #'state tracking',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>inState: stateName [
+{ #category : #'state tracking' }
+AthensSceneView >> inState: stateName [
 
 
 	^ (state at: stateName ifAbsent: nil) notNil
 ]
 
-{
-	#category : #'state tracking',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>inState: stateName do: aBlock [
+{ #category : #'state tracking' }
+AthensSceneView >> inState: stateName do: aBlock [
 
 
 	^ (state at: stateName ifAbsent: nil) ifNotNil: aBlock 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>initialize [
+{ #category : #initialize-release }
+AthensSceneView >> initialize [
 
 	super initialize.
 	keepRefreshing := false.
@@ -160,31 +129,22 @@ AthensSceneView>>initialize [
 
 ]
 
-{
-	#category : #'session management',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>initializeForNewSession [
+{ #category : #'session management' }
+AthensSceneView >> initializeForNewSession [
 	self createSurface.
 	session := Smalltalk session.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>keepRefreshing: aBoolean [
+{ #category : #accessing }
+AthensSceneView >> keepRefreshing: aBoolean [
 	keepRefreshing := aBoolean.
 	
 	keepRefreshing ifTrue: [  self startStepping ].
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>layoutChanged  [
+{ #category : #layout }
+AthensSceneView >> layoutChanged [ 
 	"react on morph resize"
 	super layoutChanged.
 	surface ifNotNil: [  
@@ -194,19 +154,13 @@ AthensSceneView>>layoutChanged  [
 	
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>minimumExtent [
+{ #category : #initialize-release }
+AthensSceneView >> minimumExtent [
 	^ 300@300
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>mouseDown: evt [
+{ #category : #'event handling' }
+AthensSceneView >> mouseDown: evt [
 
 	| pos |
 	
@@ -220,30 +174,21 @@ AthensSceneView>>mouseDown: evt [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>mouseEnter: evt [
+{ #category : #'event handling' }
+AthensSceneView >> mouseEnter: evt [
 
 	self setState: #mouseIn
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>mouseLeave: evt [
+{ #category : #'event handling' }
+AthensSceneView >> mouseLeave: evt [
 	self 
 		resetState: #mouseIn;
 		resetState: #panning.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>mouseMove: evt [
+{ #category : #'event handling' }
+AthensSceneView >> mouseMove: evt [
 
 	self inState: #panning do: [ :startPanAndPos |
 		| delta |
@@ -256,22 +201,16 @@ AthensSceneView>>mouseMove: evt [
 	] 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>mouseUp: evt [
+{ #category : #'event handling' }
+AthensSceneView >> mouseUp: evt [
 
 	"self halt."
 	
 	self resetState: #panning
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>mouseWheel: event [
+{ #category : #'event handling' }
+AthensSceneView >> mouseWheel: event [
 
 
 	"Handle a mouseWheel event."
@@ -293,11 +232,8 @@ AthensSceneView>>mouseWheel: event [
 	]  
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>renderScene [
+{ #category : #drawing }
+AthensSceneView >> renderScene [
 
 	self checkSession.
 
@@ -310,11 +246,8 @@ AthensSceneView>>renderScene [
 				ifFalse: [ scene renderOn: acanvas ] ] ]
 ]
 
-{
-	#category : #'state tracking',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>resetState: stateName [
+{ #category : #'state tracking' }
+AthensSceneView >> resetState: stateName [
 
 	state at: stateName put: nil.
 
@@ -323,30 +256,21 @@ AthensSceneView>>resetState: stateName [
 	self changed.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>scene [
+{ #category : #accessing }
+AthensSceneView >> scene [
 	^ scene
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>scene: aScene [
+{ #category : #accessing }
+AthensSceneView >> scene: aScene [
 	
 	scene := aScene.
 	
 	self changed.
 ]
 
-{
-	#category : #'state tracking',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>setState: stateName [
+{ #category : #'state tracking' }
+AthensSceneView >> setState: stateName [
 
 	state at: stateName put: true.
 
@@ -355,11 +279,8 @@ AthensSceneView>>setState: stateName [
 	self changed.
 ]
 
-{
-	#category : #'state tracking',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>setState: stateName value: aValue [
+{ #category : #'state tracking' }
+AthensSceneView >> setState: stateName value: aValue [
 
 	state at: stateName put: aValue.
 
@@ -368,19 +289,13 @@ AthensSceneView>>setState: stateName value: aValue [
 	self changed.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>showDebugInfo [
+{ #category : #drawing }
+AthensSceneView >> showDebugInfo [
 	^ true 
 ]
 
-{
-	#category : #'zoom animation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>startZooming: zoom center: center [
+{ #category : #'zoom animation' }
+AthensSceneView >> startZooming: zoom center: center [
 	| start end |
 
 		
@@ -392,11 +307,8 @@ AthensSceneView>>startZooming: zoom center: center [
 	self startStepping
 ]
 
-{
-	#category : #'zoom animation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>step [
+{ #category : #'zoom animation' }
+AthensSceneView >> step [
 
 	self inState: #zooming do: [ :zoomState |
 		| now start end center targetZoom factor |
@@ -425,28 +337,19 @@ AthensSceneView>>step [
 
 ]
 
-{
-	#category : #'zoom animation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>stepTime [
+{ #category : #'zoom animation' }
+AthensSceneView >> stepTime [
 	^ 0
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>stopStepping [
+{ #category : #'as yet unclassified' }
+AthensSceneView >> stopStepping [
 	keepRefreshing ifFalse: [
 			^ super stopStepping ]
 ]
 
-{
-	#category : #'zoom animation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSceneView>>updateZoom: zoom cursor: cursorPoint [
+{ #category : #'zoom animation' }
+AthensSceneView >> updateZoom: zoom cursor: cursorPoint [
 
 	| zoomState targetZoom start end now fraction newCenter |
 	zoomState := state at:#zooming.

@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'process'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : '<historical>'
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWatcherRenderer>>actOnMatchingPresentationsChanged: anAnnouncement [
+{ #category : #rendering }
+GLMMorphicWatcherRenderer >> actOnMatchingPresentationsChanged: anAnnouncement [
 	"whenever a relevant pane changes its presentations,
 	we override the contents from the GLMWatcherWindow"
 	
@@ -23,11 +19,8 @@ GLMMorphicWatcherRenderer>>actOnMatchingPresentationsChanged: anAnnouncement [
 		addContent: [ self renderObject: anAnnouncement pane presentations ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWatcherRenderer>>render: aPane [
+{ #category : #rendering }
+GLMMorphicWatcherRenderer >> render: aPane [
 	"we just register for the announcement"
 
 	aPane when: GLMMatchingPresentationsChanged send: #actOnMatchingPresentationsChanged: to: self

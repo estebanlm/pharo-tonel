@@ -5,34 +5,24 @@ After loading, it creates a group in Nautilus with all the loaded packages.
 Class {
 	#name : #VSLoadAndCreateNautilusGroupCommand,
 	#superclass : #VSLoadCommand,
-	#category : #Versionner-Nautilus,
-	#timestamp : 'FranckWarlouzet 8/13/2015 12:55'
+	#category : #Versionner-Nautilus
 }
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-VSLoadAndCreateNautilusGroupCommand>>createGroupWithLoadedPackages [
+{ #category : #execute }
+VSLoadAndCreateNautilusGroupCommand >> createGroupWithLoadedPackages [
 	LoadedPackagesGroupCreatingCodeProvider
 		configurationName: workflow project configurationClass asString
 		versionString: workflow project version versionString
 		projectName: workflow project name
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-VSLoadAndCreateNautilusGroupCommand>>execute [
+{ #category : #execute }
+VSLoadAndCreateNautilusGroupCommand >> execute [
 	super execute.
 	self createGroupWithLoadedPackages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-VSLoadAndCreateNautilusGroupCommand>>title [
+{ #category : #accessing }
+VSLoadAndCreateNautilusGroupCommand >> title [
 	^ 'load version and create a group in Nautilus'
 ]

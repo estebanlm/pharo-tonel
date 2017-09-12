@@ -7,34 +7,24 @@ Class {
 	#instVars : [
 		'classFactory'
 	],
-	#category : #ReleaseTests,
-	#timestamp : 'SteveFreeman 7/17/2010 11:31'
+	#category : #ReleaseTests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ObsoleteTest>>setUp [
+{ #category : #running }
+ObsoleteTest >> setUp [
 	super setUp.
 	classFactory := ClassFactoryForTestCase new
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ObsoleteTest>>tearDown [
+{ #category : #running }
+ObsoleteTest >> tearDown [
 	super tearDown.
 	classFactory cleanUp.
 	Smalltalk fixObsoleteReferences
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ObsoleteTest>>testClassObsolete [
+{ #category : #tests }
+ObsoleteTest >> testClassObsolete [
 	| aClass obj |
 	Smalltalk globals at: #ClassForObsoleteTest ifPresent: [ :cls | cls removeFromSystem ].
 	aClass := classFactory newClass.
@@ -46,11 +36,8 @@ ObsoleteTest>>testClassObsolete [
 	self assert: aClass class isObsolete
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ObsoleteTest>>testFixObsoleteSharedPools [
+{ #category : #tests }
+ObsoleteTest >> testFixObsoleteSharedPools [
 	| poolClass obsoletePoolName testClass preFixObsoleteClassNames postFixObsoleteClassNames |
 	poolClass := classFactory newClass. "provides unique name over time via class variable counter"
 	testClass := classFactory  
@@ -79,11 +66,8 @@ ObsoleteTest>>testFixObsoleteSharedPools [
 	self assert: testClass sharedPoolsString isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ObsoleteTest>>testTraitObsolete [
+{ #category : #tests }
+ObsoleteTest >> testTraitObsolete [
 	| aClass obj aTrait |
 	Smalltalk globals at: #ClassForObsoleteTest ifPresent: [ :cls | cls removeFromSystem ].
 	Smalltalk globals at: #TraitForObsoleteTest ifPresent: [ :tr | tr removeFromSystem ].

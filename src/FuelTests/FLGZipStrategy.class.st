@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'targetStrategy'
 	],
-	#category : #FuelTests-StreamStrategies,
-	#timestamp : '<historical>'
+	#category : #FuelTests-StreamStrategies
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGZipStrategy class>>newWithTarget: aStreamStrategy [
+{ #category : #'instance creation' }
+FLGZipStrategy class >> newWithTarget: aStreamStrategy [
 
 	^self basicNew
 		initializeWith: aStreamStrategy;
@@ -23,21 +19,15 @@ FLGZipStrategy class>>newWithTarget: aStreamStrategy [
 		
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGZipStrategy>>initializeWith: aStreamStrategy [
+{ #category : #initialize-release }
+FLGZipStrategy >> initializeWith: aStreamStrategy [
 
 	self initialize.
 	targetStrategy := aStreamStrategy.
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGZipStrategy>>readStreamDo: aValuable [
+{ #category : #reading }
+FLGZipStrategy >> readStreamDo: aValuable [
 	"Evaluates the argument with a read stream. Answers the result."
 	
 	targetStrategy readStreamDo: [:aStream |
@@ -45,11 +35,8 @@ FLGZipStrategy>>readStreamDo: aValuable [
 
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGZipStrategy>>writeStreamDo: aValuable [
+{ #category : #writing }
+FLGZipStrategy >> writeStreamDo: aValuable [
 	"Evaluates the argument with a write stream. Answers the result."
 	
 	targetStrategy writeStreamDo: [:aStream |

@@ -14,15 +14,11 @@ Class {
 	#instVars : [
 		'gapSize'
 	],
-	#category : #Morphic-Widgets-Pluggable,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Pluggable
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableMultiColumnListMorph class>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel wrapSelector: wrapSel [
+{ #category : #'instance creation' }
+PluggableMultiColumnListMorph class >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel wrapSelector: wrapSel [
 	"Create a 'pluggable' list view on the given model parameterized by the given message selectors."
 
 	^ self new
@@ -35,11 +31,8 @@ PluggableMultiColumnListMorph class>>on: anObject list: getListSel selected: get
 		wrapSelector: wrapSel
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableMultiColumnListMorph class>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel wrapSelector: wrapSel [
+{ #category : #'instance creation' }
+PluggableMultiColumnListMorph class >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel wrapSelector: wrapSel [
 	"Create a 'pluggable' list view on the given model parameterized by the given message selectors."
 
 	^ self new
@@ -52,56 +45,38 @@ PluggableMultiColumnListMorph class>>on: anObject list: getListSel selected: get
 		wrapSelector: wrapSel
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableMultiColumnListMorph>>basicKeyPressed: aChar [
+{ #category : #'model access' }
+PluggableMultiColumnListMorph >> basicKeyPressed: aChar [
 	"net supported for multi-column lists; which column should be used?!  The issue is that the base class implementation uses getList expecting a single collectino to come back instead of several of them"
 	^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableMultiColumnListMorph>>findSubmorphFor: ptY [
+{ #category : #accessing }
+PluggableMultiColumnListMorph >> findSubmorphFor: ptY [
 	^ scroller submorphThat: [ :item | ptY between: item top and: item bottom ] ifNone: [  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableMultiColumnListMorph>>gapSize [
+{ #category : #accessing }
+PluggableMultiColumnListMorph >> gapSize [
 
 	^ gapSize ifNil: [ gapSize := 10 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableMultiColumnListMorph>>gapSize: anInteger [
+{ #category : #accessing }
+PluggableMultiColumnListMorph >> gapSize: anInteger [
 
 	gapSize := anInteger.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableMultiColumnListMorph>>getListRow: row [
+{ #category : #accessing }
+PluggableMultiColumnListMorph >> getListRow: row [
 	"return the strings that should appear in the requested row"
 	getListElementSelector ifNotNil: [ ^model perform: getListElementSelector with: row ].
 	^self getList at: row
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableMultiColumnListMorph>>getListSize [
+{ #category : #accessing }
+PluggableMultiColumnListMorph >> getListSize [
 	| l |
 	getListSizeSelector ifNotNil: [ ^model perform: getListSizeSelector ].
 
@@ -110,28 +85,19 @@ PluggableMultiColumnListMorph>>getListSize [
 	^l size
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableMultiColumnListMorph>>listForSearching [
+{ #category : #searching }
+PluggableMultiColumnListMorph >> listForSearching [
 
 	^ super listForSearching collect: #first
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableMultiColumnListMorph>>listMorphClass [
+{ #category : #accessing }
+PluggableMultiColumnListMorph >> listMorphClass [
 	^MulticolumnLazyListMorph
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableMultiColumnListMorph>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel  wrapSelector: wrapSel [
+{ #category : #initialization }
+PluggableMultiColumnListMorph >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel  wrapSelector: wrapSel [
 	self model: anObject.
 	getListSelector := getListSel.
 	getIndexSelector := getSelectionSel.

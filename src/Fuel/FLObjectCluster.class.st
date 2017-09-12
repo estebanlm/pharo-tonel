@@ -7,75 +7,53 @@ Class {
 	#instVars : [
 		'theClass'
 	],
-	#category : #Fuel-Clusters,
-	#timestamp : 'MartinDias 8/29/2011 19:20'
+	#category : #Fuel-Clusters
 }
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLObjectCluster class>>clusterBucketIn: aClusterization [
+{ #category : #analyzing }
+FLObjectCluster class >> clusterBucketIn: aClusterization [
 
 	^aClusterization baselevelBucket 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLObjectCluster class>>newAnalyzing: aClass [
+{ #category : #'instance creation' }
+FLObjectCluster class >> newAnalyzing: aClass [
 
 	^ self basicNew
 		initializeAnalyzing: aClass;
 		yourself.
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLObjectCluster>>clusterMaterializeStepWith: aMaterialization [
+{ #category : #serialize/materialize }
+FLObjectCluster >> clusterMaterializeStepWith: aMaterialization [
 
 	super clusterMaterializeStepWith: aMaterialization.
 	theClass := aMaterialization decoder nextEncodedReference.
 
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLObjectCluster>>clusterReferencesDo: aBlock [
+{ #category : #analyzing }
+FLObjectCluster >> clusterReferencesDo: aBlock [
 
 	aBlock value: theClass
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLObjectCluster>>clusterSerializeStepWith: aSerialization [
+{ #category : #serialize/materialize }
+FLObjectCluster >> clusterSerializeStepWith: aSerialization [
 
 	super clusterSerializeStepWith: aSerialization.
 	aSerialization encoder encodeReferenceToClusterObjectClass: theClass
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLObjectCluster>>initializeAnalyzing: aClass [
+{ #category : #initialize-release }
+FLObjectCluster >> initializeAnalyzing: aClass [
 
 	self initializeAnalyzing.
 	theClass := aClass
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLObjectCluster>>printNameOn: aStream [
+{ #category : #printing }
+FLObjectCluster >> printNameOn: aStream [
 	"Append to the argument, aStream, a sequence of characters that  
 	identifies the receiver."
 	
@@ -86,10 +64,7 @@ FLObjectCluster>>printNameOn: aStream [
 	
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLObjectCluster>>theClass  [
+{ #category : #printing }
+FLObjectCluster >> theClass [ 
 	^ theClass
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCVersionHistoryBrowser
-}
+Extension { #name : #MCVersionHistoryBrowser }
 
-{
-	#category : #'*Tool-Diff',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCVersionHistoryBrowser>>viewChanges [
+{ #category : #'*Tool-Diff' }
+MCVersionHistoryBrowser >> viewChanges [
 	"View the changes between a prior version and this version."
 	
 	self
@@ -15,11 +10,8 @@ MCVersionHistoryBrowser>>viewChanges [
 		to: ancestry name
 ]
 
-{
-	#category : #'*Tool-Diff',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCVersionHistoryBrowser>>viewChanges: patch from: fromDescription to: toDescription [
+{ #category : #'*Tool-Diff' }
+MCVersionHistoryBrowser >> viewChanges: patch from: fromDescription to: toDescription [
 	"Open a browser on the patch."
 	
 	|patchLabel|

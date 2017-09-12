@@ -11,73 +11,51 @@ Class {
 		'chunkSize',
 		'defaultValue'
 	],
-	#category : #Collections-Sequenceable,
-	#timestamp : '<historical>'
+	#category : #Collections-Sequenceable
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable class>>defaultChunkSize [
+{ #category : #accessing }
+SparseLargeTable class >> defaultChunkSize [
 
 	^100
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable class>>defaultChunkSizeForFiles [
+{ #category : #accessing }
+SparseLargeTable class >> defaultChunkSizeForFiles [
 
 	^8000
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable class>>new: size [
+{ #category : #'instance creation' }
+SparseLargeTable class >> new: size [
 
 	^self new: size chunkSize: self defaultChunkSize
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable class>>new: size chunkSize: chunkSize [
+{ #category : #'instance creation' }
+SparseLargeTable class >> new: size chunkSize: chunkSize [
 
 	^self new: size chunkSize: chunkSize arrayClass: Array
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable class>>new: size chunkSize: chunkSize arrayClass: aClass [
+{ #category : #'instance creation' }
+SparseLargeTable class >> new: size chunkSize: chunkSize arrayClass: aClass [
 
 	^self new: size chunkSize: chunkSize arrayClass: Array base: 1.
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable class>>new: size chunkSize: chunkSize arrayClass: aClass base: b [
+{ #category : #'instance creation' }
+SparseLargeTable class >> new: size chunkSize: chunkSize arrayClass: aClass base: b [
 
 	^self new: size chunkSize: chunkSize arrayClass: Array base: 1 defaultValue: nil.
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable class>>new: size chunkSize: chunkSize arrayClass: aClass base: b defaultValue: d [
+{ #category : #'instance creation' }
+SparseLargeTable class >> new: size chunkSize: chunkSize arrayClass: aClass base: b defaultValue: d [
 
 	| basicSize |
 	(basicSize := ((size - 1) // chunkSize) + 1) = 0
@@ -88,11 +66,8 @@ SparseLargeTable class>>new: size chunkSize: chunkSize arrayClass: aClass base: 
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>allDefaultValueSubtableAt: index [
+{ #category : #private }
+SparseLargeTable >> allDefaultValueSubtableAt: index [
 
 	| t |
 	t := self basicAt: index.
@@ -104,11 +79,8 @@ SparseLargeTable>>allDefaultValueSubtableAt: index [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>analyzeSpaceSaving [
+{ #category : #private }
+SparseLargeTable >> analyzeSpaceSaving [
 
 	| total elems tablesTotal nonNilTables |
 	total := size - base + 1.
@@ -132,73 +104,52 @@ SparseLargeTable>>analyzeSpaceSaving [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>arrayClass [
+{ #category : #accessing }
+SparseLargeTable >> arrayClass [
 
 	^(self basicAt: 1) class
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>at: index [
+{ #category : #accessing }
+SparseLargeTable >> at: index [
 
 	self pvtCheckIndex: index.
 	^self noCheckAt: index.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>at: index put: value [
+{ #category : #accessing }
+SparseLargeTable >> at: index put: value [
 	
 	self pvtCheckIndex: index.
 	^self noCheckAt: index put: value
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>base [
+{ #category : #accessing }
+SparseLargeTable >> base [
 
 	^ base.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>chunkSize [
+{ #category : #accessing }
+SparseLargeTable >> chunkSize [
 
 	^chunkSize
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>copyEmpty [
+{ #category : #private }
+SparseLargeTable >> copyEmpty [
 	"Answer a copy of the receiver that contains no elements."
 	^self speciesNew: 0
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>initChunkSize: aChunkSize size: aSize arrayClass: aClass base: b defaultValue: d [
+{ #category : #initialization }
+SparseLargeTable >> initChunkSize: aChunkSize size: aSize arrayClass: aClass base: b defaultValue: d [
 
 	| lastChunkSize |
 	chunkSize := aChunkSize.
@@ -214,11 +165,8 @@ SparseLargeTable>>initChunkSize: aChunkSize size: aSize arrayClass: aClass base:
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>noCheckAt: index [
+{ #category : #accessing }
+SparseLargeTable >> noCheckAt: index [
 	| chunkIndex t |
 
 	chunkIndex := index - base // chunkSize + 1.
@@ -229,11 +177,8 @@ SparseLargeTable>>noCheckAt: index [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>noCheckAt: index put: value [
+{ #category : #accessing }
+SparseLargeTable >> noCheckAt: index put: value [
 
 	| chunkIndex t |
 	chunkIndex := index - base // chunkSize + 1.
@@ -244,20 +189,14 @@ SparseLargeTable>>noCheckAt: index put: value [
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>postCopy [
+{ #category : #copying }
+SparseLargeTable >> postCopy [
 	super postCopy.
 	1 to: self basicSize do: [:i | self basicAt: i put: (self basicAt: i) copy]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>printElementsOn: aStream [
+{ #category : #printing }
+SparseLargeTable >> printElementsOn: aStream [
 	| element |
 	aStream nextPut: $(.
 	base to: size do: [:index | element := self at: index. aStream print: element; space].
@@ -266,11 +205,8 @@ SparseLargeTable>>printElementsOn: aStream [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>printOn: aStream [
+{ #category : #printing }
+SparseLargeTable >> printOn: aStream [
 
 	(#(String) includes: self arrayClass name) 
 		ifTrue: [^self storeOn: aStream].
@@ -278,21 +214,15 @@ SparseLargeTable>>printOn: aStream [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>privateSize: s [
+{ #category : #private }
+SparseLargeTable >> privateSize: s [
 
 	size := s.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>pvtCheckIndex: index  [
+{ #category : #private }
+SparseLargeTable >> pvtCheckIndex: index [ 
 
 	index isInteger ifFalse: [self errorNonIntegerIndex].
 	index < 1 ifTrue: [self errorSubscriptBounds: index].
@@ -300,11 +230,8 @@ SparseLargeTable>>pvtCheckIndex: index  [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>similarInstance [
+{ #category : #private }
+SparseLargeTable >> similarInstance [
 
 	^self class
 		new: self size 
@@ -313,11 +240,8 @@ SparseLargeTable>>similarInstance [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>similarInstance: newSize [
+{ #category : #private }
+SparseLargeTable >> similarInstance: newSize [
 
 	^self class
 		new: newSize 
@@ -326,41 +250,29 @@ SparseLargeTable>>similarInstance: newSize [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>similarSpeciesInstance [
+{ #category : #private }
+SparseLargeTable >> similarSpeciesInstance [
 
 	^self similarInstance
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>similarSpeciesInstance: newSize [
+{ #category : #private }
+SparseLargeTable >> similarSpeciesInstance: newSize [
 
 	^self similarInstance: newSize
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>size [
+{ #category : #accessing }
+SparseLargeTable >> size [
 
 	^size
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>speciesNew [
+{ #category : #private }
+SparseLargeTable >> speciesNew [
 
 	^self species
 		new: self size 
@@ -369,11 +281,8 @@ SparseLargeTable>>speciesNew [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>speciesNew: newSize [
+{ #category : #private }
+SparseLargeTable >> speciesNew: newSize [
 
 	^self species
 		new: newSize 
@@ -382,11 +291,8 @@ SparseLargeTable>>speciesNew: newSize [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>storeOn: aStream [
+{ #category : #printing }
+SparseLargeTable >> storeOn: aStream [
 
 	| x |
 	(#(String) includes: self arrayClass name) ifTrue: 
@@ -402,11 +308,8 @@ SparseLargeTable>>storeOn: aStream [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeTable>>zapDefaultOnlyEntries [
+{ #category : #accessing }
+SparseLargeTable >> zapDefaultOnlyEntries [
 
 	1 to: self basicSize do: [:i |
 		(self allDefaultValueSubtableAt: i) ifTrue: [self basicAt: i put: nil].

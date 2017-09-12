@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #STONCStyleCommentsSkipStreamTests,
 	#superclass : #TestCase,
-	#category : #STON-Tests,
-	#timestamp : ''
+	#category : #STON-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONCStyleCommentsSkipStreamTests>>testCommentInString [
+{ #category : #testing }
+STONCStyleCommentsSkipStreamTests >> testCommentInString [
 	self 
 		assert: (STONCStyleCommentsSkipStream on: '''/*comment*/''' readStream) upToEnd 
 		equals: '''/*comment*/'''.
@@ -30,11 +23,8 @@ STONCStyleCommentsSkipStreamTests>>testCommentInString [
 		equals: '{"foo":"//comment\"bar"}'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONCStyleCommentsSkipStreamTests>>testMultiLineComment [
+{ #category : #testing }
+STONCStyleCommentsSkipStreamTests >> testMultiLineComment [
 	self 
 		assert: (STONCStyleCommentsSkipStream on: 'foo\//comment\bar' withCRs readStream) upToEnd 
 		equals: 'foo\bar' withCRs.
@@ -47,22 +37,16 @@ STONCStyleCommentsSkipStreamTests>>testMultiLineComment [
 	self assert: (STONCStyleCommentsSkipStream on: '//comment' readStream) atEnd.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONCStyleCommentsSkipStreamTests>>testNonComment [
+{ #category : #testing }
+STONCStyleCommentsSkipStreamTests >> testNonComment [
 	self assert: (STONCStyleCommentsSkipStream on: 'foo' readStream) upToEnd equals: 'foo'.
 	self assert: (STONCStyleCommentsSkipStream on: 'foo' readStream) nextLine equals: 'foo'.
 	self deny: (STONCStyleCommentsSkipStream on: 'foo' readStream) atEnd.
 	self assert: (STONCStyleCommentsSkipStream on: '' readStream) atEnd.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONCStyleCommentsSkipStreamTests>>testSTON [
+{ #category : #testing }
+STONCStyleCommentsSkipStreamTests >> testSTON [
 	"Comments are processed first and totally removed.
 	They are not even whitespace (not that whitespace is relevant in STON)."
 	
@@ -81,11 +65,8 @@ STONCStyleCommentsSkipStreamTests>>testSTON [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONCStyleCommentsSkipStreamTests>>testSingleLineComment [
+{ #category : #testing }
+STONCStyleCommentsSkipStreamTests >> testSingleLineComment [
 	self assert: (STONCStyleCommentsSkipStream on: 'foo/*comment*/bar' readStream) upToEnd equals: 'foobar'.
 	self assert: (STONCStyleCommentsSkipStream on: 'foo/*comment*/bar' readStream) nextLine equals: 'foobar'.
 	self deny: (STONCStyleCommentsSkipStream on: 'foo/*comment*/bar' readStream) atEnd.

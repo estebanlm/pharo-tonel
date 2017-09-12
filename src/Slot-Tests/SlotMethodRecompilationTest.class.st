@@ -1,67 +1,45 @@
-"
-
-"
 Class {
 	#name : #SlotMethodRecompilationTest,
 	#superclass : #SlotSilentTest,
 	#instVars : [
 		'class'
 	],
-	#category : #Slot-Tests,
-	#timestamp : ''
+	#category : #Slot-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMethodRecompilationTest>>method [
+{ #category : #accessing }
+SlotMethodRecompilationTest >> method [
 	^ class >> #m1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMethodRecompilationTest>>methodBinding [
+{ #category : #accessing }
+SlotMethodRecompilationTest >> methodBinding [
 	^ self method classBinding
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMethodRecompilationTest>>reshapeClass [
+{ #category : #tests }
+SlotMethodRecompilationTest >> reshapeClass [
 	^ class := self make: [ :builder | builder slots: #(#iv) ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMethodRecompilationTest>>setUp [
+{ #category : #running }
+SlotMethodRecompilationTest >> setUp [
 	class := self make: [ :builder |
 		builder traitComposition: TOne ].
 	class compile: 'm1'.
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMethodRecompilationTest>>testClassReshapeShouldKeepClassBinding [
+{ #category : #tests }
+SlotMethodRecompilationTest >> testClassReshapeShouldKeepClassBinding [
 	"Check that when a class is reshaped, the recompilation of the methods gives correct class bindings (in the literal array of the methods)"
 
 	self reshapeClass.
 	self assert: self methodBinding == class binding
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMethodRecompilationTest>>testClassReshapeShouldKeepClassBindingForTraitMethods [
+{ #category : #tests }
+SlotMethodRecompilationTest >> testClassReshapeShouldKeepClassBindingForTraitMethods [
 	"A method should have the same binding than its class even if it come from a trait"
 	self reshapeClass.
 	self assert: (self traitMethodBinding == class binding).
@@ -69,40 +47,28 @@ SlotMethodRecompilationTest>>testClassReshapeShouldKeepClassBindingForTraitMetho
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMethodRecompilationTest>>testMethodClassBindingShouldBeClassBinding [
+{ #category : #tests }
+SlotMethodRecompilationTest >> testMethodClassBindingShouldBeClassBinding [
 	"A method should have the same binding than its class"
 	self assert: (self methodBinding == class binding).
 	
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMethodRecompilationTest>>testTraitMethodClassBindingShouldBeClassBinding [
+{ #category : #tests }
+SlotMethodRecompilationTest >> testTraitMethodClassBindingShouldBeClassBinding [
 	"A method should have the same binding than its class even if it come from a trait"
 	self assert: (self traitMethodBinding == class binding).
 	
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMethodRecompilationTest>>traitMethod [
+{ #category : #accessing }
+SlotMethodRecompilationTest >> traitMethod [
 	^ class >> #one
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMethodRecompilationTest>>traitMethodBinding [
+{ #category : #accessing }
+SlotMethodRecompilationTest >> traitMethodBinding [
 	^ self traitMethod classBinding
 ]

@@ -8,41 +8,28 @@ Class {
 	#classVars : [
 		'ZeroPoint'
 	],
-	#category : #Athens-Core-Paths,
-	#timestamp : '<historical>'
+	#category : #Athens-Core-Paths
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathBuilder class>>createPath: aBlock [
+{ #category : #'instance creation' }
+AthensPathBuilder class >> createPath: aBlock [
 
 	^ self new createPath: aBlock
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathBuilder class>>initialize [
+{ #category : #'as yet unclassified' }
+AthensPathBuilder class >> initialize [
 	ZeroPoint := 0@0
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathBuilder>>absolute [
+{ #category : #'path commands' }
+AthensPathBuilder >> absolute [
 	"next commands will use absolute coordinates for all segment points"
 	self subclassResponsibility
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathBuilder>>ccwArcTo: endPt angle: rot [
+{ #category : #'path commands' }
+AthensPathBuilder >> ccwArcTo: endPt angle: rot [
 	" Add a counter-clockwise arc segment, starting from current path endpoint and
 	ending at andPt. Angle should be specified in radians "
 	
@@ -50,30 +37,21 @@ AthensPathBuilder>>ccwArcTo: endPt angle: rot [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathBuilder>>close [
+{ #category : #'path commands' }
+AthensPathBuilder >> close [
 	"close the current path controur"
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'creating path',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathBuilder>>createPath:	aBlock [
+{ #category : #'creating path' }
+AthensPathBuilder >> createPath:	aBlock [
 
 		"aBlock value: self ...."	
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathBuilder>>curveVia: cp1 and: cp2 to: aPoint [
+{ #category : #'path commands' }
+AthensPathBuilder >> curveVia: cp1 and: cp2 to: aPoint [
 	"Add a cubic bezier curve,
 	starting from current path endpoint, using control points cp1, cp2
 	and ending at aPoint "
@@ -81,11 +59,8 @@ AthensPathBuilder>>curveVia: cp1 and: cp2 to: aPoint [
 	self subclassResponsibility 	
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathBuilder>>curveVia: cp1 to: aPoint [
+{ #category : #'path commands' }
+AthensPathBuilder >> curveVia: cp1 to: aPoint [
 
 	"Add a quadric bezier curve,
 	starting from current path endpoint, using control point cp1, 
@@ -94,11 +69,8 @@ AthensPathBuilder>>curveVia: cp1 to: aPoint [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathBuilder>>cwArcTo: endPt angle: rot [
+{ #category : #'path commands' }
+AthensPathBuilder >> cwArcTo: endPt angle: rot [
 	" Add a clockwise arc segment, starting from current path endpoint and
 	ending at andPt. Angle should be specified in radians "
 	
@@ -106,30 +78,21 @@ AthensPathBuilder>>cwArcTo: endPt angle: rot [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathBuilder>>lineTo: aPoint [
+{ #category : #'path commands' }
+AthensPathBuilder >> lineTo: aPoint [
 	"add a line segment, starting from current path endpoint to aPoint"
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathBuilder>>moveTo: aPoint [
+{ #category : #'path commands' }
+AthensPathBuilder >> moveTo: aPoint [
 	" move command always starts a new contour "
 	self subclassResponsibility
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathBuilder>>reflectedCurveVia: cp2 to: aPoint [
+{ #category : #'path commands' }
+AthensPathBuilder >> reflectedCurveVia: cp2 to: aPoint [
 	"Add a reflected cubic bezier curve, starting from current path endpoint and ending at aPoint.
 	The first control point is calculated as a reflection from the current point, if the last command was also a cubic bezier curve.
 	Otherwise, the first control point is the current point. The second control point is cp2."
@@ -137,21 +100,15 @@ AthensPathBuilder>>reflectedCurveVia: cp2 to: aPoint [
 	self subclassResponsibility 	
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathBuilder>>relative [
+{ #category : #'path commands' }
+AthensPathBuilder >> relative [
 
 	"next commands will use relative coordinates for all segment points"
 	self subclassResponsibility
 ]
 
-{
-	#category : #'path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathBuilder>>string: aString font: aFont [
+{ #category : #'path commands' }
+AthensPathBuilder >> string: aString font: aFont [
 	"Adds closed paths for the string to the current path"
 	self subclassResponsibility
 ]

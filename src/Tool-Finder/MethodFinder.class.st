@@ -60,15 +60,11 @@ Class {
 		'Approved',
 		'Blocks'
 	],
-	#category : #Tool-Finder,
-	#timestamp : 'sd 4/21/2011 17:22'
+	#category : #Tool-Finder
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder class>>methodFor: dataAndAnswers [
+{ #category : #'instance creation' }
+MethodFinder class >> methodFor: dataAndAnswers [
 	"Return an expression that computes these answers."
 
 	| resultOC resultString |
@@ -78,11 +74,8 @@ MethodFinder class>>methodFor: dataAndAnswers [
 	^ resultString
 ]
 
-{
-	#category : #'find a constant',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>allNumbers [
+{ #category : #'find a constant' }
+MethodFinder >> allNumbers [
 	"Return true if all answers and all data are numbers."
 
 	answers do: [:aa | aa isNumber ifFalse: [^ false]].
@@ -91,28 +84,19 @@ MethodFinder>>allNumbers [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>answers [
+{ #category : #accessing }
+MethodFinder >> answers [
 
 	^ answers
 ]
 
-{
-	#category : #'argument permutation maps',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>argMap [
+{ #category : #'argument permutation maps' }
+MethodFinder >> argMap [
 	^ argMap 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>cleanInputs: dataAndAnswerString  [
+{ #category : #initialize }
+MethodFinder >> cleanInputs: dataAndAnswerString [ 
 	"Find and remove common mistakes.  Complain when ill formed."
 	| fixed ddd rs places |
 	ddd := dataAndAnswerString.
@@ -163,11 +147,8 @@ Next time use nil instead of #nil' ].
 	^ ddd
 ]
 
-{
-	#category : #'find a constant',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>const [
+{ #category : #'find a constant' }
+MethodFinder >> const [
 	| const |
 	"See if (^ constant) is the answer"
 
@@ -179,11 +160,8 @@ MethodFinder>>const [
 	^ true
 ]
 
-{
-	#category : #'find a constant',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>constDiv [
+{ #category : #'find a constant' }
+MethodFinder >> constDiv [
 	| const subTest got |
 	"See if (data1 // C) is the answer"
 
@@ -199,11 +177,8 @@ MethodFinder>>constDiv [
 	^ true
 ]
 
-{
-	#category : #'find a constant',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>constEquiv [
+{ #category : #'find a constant' }
+MethodFinder >> constEquiv [
 	| const subTest got jj |
 	"See if (data1 = C) or (data1 ~= C) is the answer"
 
@@ -229,11 +204,8 @@ MethodFinder>>constEquiv [
 	^ true
 ]
 
-{
-	#category : #'find a constant',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>constLinear [
+{ #category : #'find a constant' }
+MethodFinder >> constLinear [
 	| const subTest got denom num slope offset |
 	"See if (data1 * C1) + C2 is the answer.  In the form  #(C2 C1) polynomialEval: data1 "
 
@@ -256,11 +228,8 @@ MethodFinder>>constLinear [
 	^ true
 ]
 
-{
-	#category : #'find a constant',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>constMod [
+{ #category : #'find a constant' }
+MethodFinder >> constMod [
 	| subTest low |
 	"See if mod, (data1 \\ C) is the answer"
 
@@ -274,11 +243,8 @@ MethodFinder>>constMod [
 	^ false
 ]
 
-{
-	#category : #'find a constant',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>constMult [
+{ #category : #'find a constant' }
+MethodFinder >> constMult [
 	| const subTest got |
 	"See if (data1 * C) is the answer"
 
@@ -295,11 +261,8 @@ MethodFinder>>constMult [
 	^ true
 ]
 
-{
-	#category : #'find a constant',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>constPlus [
+{ #category : #'find a constant' }
+MethodFinder >> constPlus [
 	| const subTest got |
 	"See if (data1 + C) is the answer"
 
@@ -315,11 +278,8 @@ MethodFinder>>constPlus [
 	^ true
 ]
 
-{
-	#category : #'find a constant',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>constUsingData1Value [
+{ #category : #'find a constant' }
+MethodFinder >> constUsingData1Value [
 	| subTest |
 	"See if (data1 <= C) or (data1 >= C) is the answer"
 
@@ -341,11 +301,8 @@ MethodFinder>>constUsingData1Value [
 	^ false
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>copy: mthFinder addArg: aConstant [
+{ #category : #initialize }
+MethodFinder >> copy: mthFinder addArg: aConstant [
 	"Copy inputs and answers, add an additional data argument to the inputs.  The same constant for every example"
 	| more |
 	more := Array with: aConstant.
@@ -355,28 +312,19 @@ MethodFinder>>copy: mthFinder addArg: aConstant [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>data [
+{ #category : #accessing }
+MethodFinder >> data [
 
 	^ data
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>expressions [
+{ #category : #accessing }
+MethodFinder >> expressions [
 	^ expressions
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>findMessage [
+{ #category : #'public api' }
+MethodFinder >> findMessage [
 	"Control the search."
 
 	data do: [:alist |
@@ -390,11 +338,8 @@ MethodFinder>>findMessage [
  	^ expressions
 ]
 
-{
-	#category : #search,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>handleExceptionalSelectors [
+{ #category : #search }
+MethodFinder >> handleExceptionalSelectors [
 	"Handle some very slippery selectors.
 	asSymbol -- want to be able to produce it, but do not want to make every string submitted into a Symbol!"
 
@@ -419,11 +364,8 @@ MethodFinder>>handleExceptionalSelectors [
 								ifTrue: [ strm nextPutAll: ' data' , (argMap at: ind + 1) printString ] ] ])
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>initialize [
+{ #category : #initialize }
+MethodFinder >> initialize [
 	"The methods we are allowed to use.  (MethodFinder new initialize) "
 	super initialize.
 
@@ -635,11 +577,8 @@ MethodFinder new organizationFiltered: Set
 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>initialize2 [
+{ #category : #initialize }
+MethodFinder >> initialize2 [
 	"The methods we are allowed to use.  (MethodFinder new initialize) "
 
 "Set"
@@ -818,21 +757,15 @@ MethodFinder new organizationFiltered: TranslucentColor class
 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>initialize3 [
+{ #category : #initialize }
+MethodFinder >> initialize3 [
 	"additional selectors to consider"
 
 	#(asWords threeDigitName ) do: [:sel | Approved add: sel].
 ]
 
-{
-	#category : #search,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>insertConstants [
+{ #category : #search }
+MethodFinder >> insertConstants [
 	"see if one of several known expressions will do it. C is the constant we discover here."
 	"C  data1+C  data1*C  data1//C  (data1*C1 + C2) (data1 = C) (data1 ~= C) (data1 <= C) (data1 >= C) 
  (data1 mod C)"
@@ -854,11 +787,8 @@ MethodFinder>>insertConstants [
 	^ false
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>load: dataWithAnswers [
+{ #category : #'public api' }
+MethodFinder >> load: dataWithAnswers [
 	"Find a function that takes the data and gives the answers.  Odd list entries are data for it, even ones are the answers.  nil input means data and answers were supplied already."
 	"(MethodFinder new) load: #( (4 3) 7  (-10 5) -5  (-3 11) 8);
 		findMessage  "
@@ -883,11 +813,8 @@ MethodFinder>>load: dataWithAnswers [
 
 ]
 
-{
-	#category : #'argument permutation maps',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>makeAllMaps  [
+{ #category : #'argument permutation maps' }
+MethodFinder >> makeAllMaps [ 
 	"Make a giant list of all permutations of the args.  To find the function, we will try these permutations of the input data.  receiver, args."
 
 	| ii |
@@ -899,22 +826,16 @@ MethodFinder>>makeAllMaps  [
 	mapStage := 1.	"about to be bumped"
 ]
 
-{
-	#category : #'argument permutation maps',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>mapData  [
+{ #category : #'argument permutation maps' }
+MethodFinder >> mapData [ 
 	"Force the data through the map (permutation) to create the data to test."
 
 	thisData := data collect: [:realData | argMap collect: [:ind | realData at: ind]].
 		
 ]
 
-{
-	#category : #'argument permutation maps',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>permuteArgs  [
+{ #category : #'argument permutation maps' }
+MethodFinder >> permuteArgs [ 
 	"Run through ALL the permutations.  First one was as presented."
 
 	data first size <= 1 ifTrue: [^ false].	"no other way"
@@ -927,11 +848,8 @@ MethodFinder>>permuteArgs  [
 	
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>search: multi [
+{ #category : #'public api' }
+MethodFinder >> search: multi [
 	"if Multi is true, collect all selectors that work."
 	selector := OrderedCollection new.	"list of them"
 	self simpleSearch.
@@ -944,11 +862,8 @@ MethodFinder>>search: multi [
 	^ #()
 ]
 
-{
-	#category : #search,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>searchForOne [
+{ #category : #search }
+MethodFinder >> searchForOne [
 	"Look for and return just one answer"
 
 	expressions := OrderedCollection new.
@@ -957,21 +872,15 @@ MethodFinder>>searchForOne [
 			
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>selectors [
+{ #category : #accessing }
+MethodFinder >> selectors [
 	"Note the inst var does not have an S on the end"
 
 	^ selector
 ]
 
-{
-	#category : #search,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>simpleSearch [
+{ #category : #search }
+MethodFinder >> simpleSearch [
 	"Run through first arg's class' selectors, looking for one that works."
 
 	| class supers listOfLists |
@@ -1005,11 +914,8 @@ MethodFinder>>simpleSearch [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>test2: anArray [
+{ #category : #tests }
+MethodFinder >> test2: anArray [
 	"look for bad association"
 
 	anArray do: [:sub |
@@ -1037,11 +943,8 @@ MethodFinder>>test2: anArray [
 		].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>testFromTuple: nth [
+{ #category : #tests }
+MethodFinder >> testFromTuple: nth [
 	"verify that the methods allowed don't crash the system.  Try N of each of the fundamental types.  up to 4 of each kind." 
 
 	| objects nonRepeating even other aa cnt |
@@ -1083,11 +986,8 @@ MethodFinder>>testFromTuple: nth [
 		].
 ]
 
-{
-	#category : #search,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>testPerfect: aSelector [
+{ #category : #search }
+MethodFinder >> testPerfect: aSelector [
 	"Try this selector! Return true if it answers every example perfectly.  Take the args in the order they are.  Do not permute them.  Survive errors.  later cache arg lists."
 
 	| sz argList val rec activeSel perform |
@@ -1124,10 +1024,7 @@ MethodFinder>>testPerfect: aSelector [
 	^ true
 ]
 
-{
-	#category : #'argument permutation maps',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-MethodFinder>>thisData [
+{ #category : #'argument permutation maps' }
+MethodFinder >> thisData [
 	^ thisData 
 ]

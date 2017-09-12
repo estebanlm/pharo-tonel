@@ -15,41 +15,28 @@ Class {
 	#classVars : [
 		'MCVersionCache'
 	],
-	#category : #MonticelloGUI,
-	#timestamp : '<historical>'
+	#category : #MonticelloGUI
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool class>>flushMCVersionCache [
+{ #category : #'class initialization' }
+MCTool class >> flushMCVersionCache [
 	MCVersionCache := nil.
 	Smalltalk garbageCollect
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool class>>initMCVersionCache [
+{ #category : #'class initialization' }
+MCTool class >> initMCVersionCache [
 	MCVersionCache := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool class>>mcVersionCache [
+{ #category : #accessing }
+MCTool class >> mcVersionCache [
 	^ MCVersionCache
 		ifNil: [ MCVersionCache := LRUCache new maximumWeight: 32 ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool class>>newRepository [
+{ #category : #utilities }
+MCTool class >> newRepository [
 	"Create a new monticello repository"
 	| types index |
 	types := MCRepository allConcreteSubclasses asArray.
@@ -58,55 +45,37 @@ MCTool class>>newRepository [
 	^ index = 0 ifFalse: [(types at: index) morphicConfigure]
 ]
 
-{
-	#category : #'window color',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool class>>theme [
+{ #category : #'window color' }
+MCTool class >> theme [
 	"Answer the ui theme that provides controls."
 
 	^ Smalltalk ui theme 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>accept [
+{ #category : #'morphic ui' }
+MCTool >> accept [
 	" do nothing by default"
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>allManagers [
+{ #category : #utils }
+MCTool >> allManagers [
 
 	^ MCWorkingCopy allManagers 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>answer: anObject [
+{ #category : #'morphic ui' }
+MCTool >> answer: anObject [
 	modalValue := anObject.
 	self close.
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>arrowKey: aCharacter from: aPluggableListMorph  [
+{ #category : #'morphic ui' }
+MCTool >> arrowKey: aCharacter from: aPluggableListMorph [ 
 	"backstop"
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>buildWindow [
+{ #category : #'morphic ui' }
+MCTool >> buildWindow [
 	| window |
 	window := SystemWindow labelled: self label.
 	window model: self.
@@ -130,27 +99,18 @@ MCTool>>buildWindow [
 	^ window
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>buttonEnabled [
+{ #category : #'morphic ui' }
+MCTool >> buttonEnabled [
 	^ true
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>buttonRow [
+{ #category : #'morphic ui' }
+MCTool >> buttonRow [
 	^ self buttonRow: self buttonSpecs
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>buttonRow: specArray [
+{ #category : #'morphic ui' }
+MCTool >> buttonRow: specArray [
 	| aRow |
 	aRow := PanelMorph new.
 	aRow layoutPolicy: TableLayout new; listDirection: #leftToRight.
@@ -176,130 +136,85 @@ MCTool>>buttonRow: specArray [
 	^ aRow
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>buttonSelected [
+{ #category : #'morphic ui' }
+MCTool >> buttonSelected [
 	^ false
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>buttonSpecs [
+{ #category : #'morphic ui' }
+MCTool >> buttonSpecs [
 	^ #()
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>buttonState [
+{ #category : #'morphic ui' }
+MCTool >> buttonState [
 	^ false
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>close [
+{ #category : #'morphic ui' }
+MCTool >> close [
 	self window delete
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>defaultAnnotationPaneHeight  [
+{ #category : #'morphic ui' }
+MCTool >> defaultAnnotationPaneHeight [ 
 	"Answer the receiver's preferred default height for new annotation panes."
 	^ 25
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>fillMenu: aMenu fromSpecs: anArray [
+{ #category : #'morphic ui' }
+MCTool >> fillMenu: aMenu fromSpecs: anArray [
 	anArray do:
 		[:pair |
 		aMenu add: pair first target: self selector: pair second].
 	^ aMenu
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>findListMorph: aSymbol [
+{ #category : #'morphic ui' }
+MCTool >> findListMorph: aSymbol [
 	^ morph submorphs detect: [:ea | (ea respondsTo: #getListSelector) and: [ea getListSelector = aSymbol]] ifNone: []
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>findTextMorph: aSymbol [
+{ #category : #'morphic ui' }
+MCTool >> findTextMorph: aSymbol [
 	^ morph submorphs detect: [:ea | (ea respondsTo: #getTextSelector) and: [ea getTextSelector = aSymbol]] ifNone: []
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>getMenu: aMenu [
+{ #category : #'morphic ui' }
+MCTool >> getMenu: aMenu [
 	^aMenu
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>initialExtent [
+{ #category : #'morphic ui' }
+MCTool >> initialExtent [
 	^ 500@500
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>interactionModel [
+{ #category : #utils }
+MCTool >> interactionModel [
 	^ self
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>label [
+{ #category : #'morphic ui' }
+MCTool >> label [
 	^ label ifNil: [self defaultLabel]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>label: aString [
+{ #category : #'morphic ui' }
+MCTool >> label: aString [
 	label := aString
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>listMorph: listSymbol [
+{ #category : #'morphic ui' }
+MCTool >> listMorph: listSymbol [
 	^ self
 		listMorph: (listSymbol, 'List') asSymbol
 		selection: (listSymbol, 'Selection') asSymbol
 		menu: (listSymbol, 'ListMenu:') asSymbol
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>listMorph: listSymbol keystroke: keystrokeSymbol [
+{ #category : #'morphic ui' }
+MCTool >> listMorph: listSymbol keystroke: keystrokeSymbol [
 	^ (self
 		listMorph: (listSymbol, 'List') asSymbol
 		selection: (listSymbol, 'Selection') asSymbol
@@ -308,11 +223,8 @@ MCTool>>listMorph: listSymbol keystroke: keystrokeSymbol [
 		yourself
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>listMorph: listSymbol selection: selectionSymbol [
+{ #category : #'morphic ui' }
+MCTool >> listMorph: listSymbol selection: selectionSymbol [
 	^ PluggableListMorph
 		on: self
 		list: listSymbol
@@ -320,11 +232,8 @@ MCTool>>listMorph: listSymbol selection: selectionSymbol [
 		changeSelected: (selectionSymbol, ':') asSymbol
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>listMorph: listSymbol selection: selectionSymbol menu: menuSymbol [
+{ #category : #'morphic ui' }
+MCTool >> listMorph: listSymbol selection: selectionSymbol menu: menuSymbol [
 	^ PluggableListMorph
 		on: self
 		list: listSymbol
@@ -333,11 +242,8 @@ MCTool>>listMorph: listSymbol selection: selectionSymbol menu: menuSymbol [
 		menu: menuSymbol
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>listMorph: listSymbol selection: selectionSymbol menu: menuSymbol icon: iconSelector [
+{ #category : #'morphic ui' }
+MCTool >> listMorph: listSymbol selection: selectionSymbol menu: menuSymbol icon: iconSelector [
 	^ (PluggableIconListMorph
 		on: self
 		list: listSymbol
@@ -348,11 +254,8 @@ MCTool>>listMorph: listSymbol selection: selectionSymbol menu: menuSymbol icon: 
 			yourself
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>listMorph: listSymbol selection: selectionSymbol menu: menuSymbol keystroke: keystrokeSymbol [
+{ #category : #'morphic ui' }
+MCTool >> listMorph: listSymbol selection: selectionSymbol menu: menuSymbol keystroke: keystrokeSymbol [
 	^ (PluggableListMorph
 		on: self
 		list: listSymbol
@@ -363,30 +266,21 @@ MCTool>>listMorph: listSymbol selection: selectionSymbol menu: menuSymbol keystr
 		yourself
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>menu [
+{ #category : #'morphic ui' }
+MCTool >> menu [
 	" returns nil to let the editing mode offer the right menu"
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>minimumExtent [
+{ #category : #accessing }
+MCTool >> minimumExtent [
 	"Answer the minumum extent for the tool."
 	
 	^100@100
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>multiListMorph: listSymbol selection: selectionSymbol listSelection: listSelectionSymbol menu: menuSymbol [
+{ #category : #'morphic ui' }
+MCTool >> multiListMorph: listSymbol selection: selectionSymbol listSelection: listSelectionSymbol menu: menuSymbol [
 	^ PluggableListMorph
 		on: self
 		list: listSymbol
@@ -397,37 +291,25 @@ MCTool>>multiListMorph: listSymbol selection: selectionSymbol listSelection: lis
 		menu: menuSymbol
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>performButtonAction: anActionSelector enabled: anEnabledSelector [
+{ #category : #'morphic ui' }
+MCTool >> performButtonAction: anActionSelector enabled: anEnabledSelector [
 	(self perform: anEnabledSelector) 
 		ifTrue: [ self perform: anActionSelector ]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>preferredColor   [
+{ #category : #'morphic ui' }
+MCTool >> preferredColor [  
 	^ (Color r: 0.627 g: 0.69 b: 0.976)
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>setDefaultFocus [
+{ #category : #'morphic ui' }
+MCTool >> setDefaultFocus [
 	"set the default focus on the morph elements.
 	specializ this in subclasses"
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>show [
+{ #category : #opening }
+MCTool >> show [
 	"Open the tool returning the window."
 
 	modal := false.
@@ -436,11 +318,8 @@ MCTool>>show [
 	^ self window
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>showLabelled: labelString [
+{ #category : #opening }
+MCTool >> showLabelled: labelString [
 	
 	modal := false.
 	self label: labelString.
@@ -449,11 +328,8 @@ MCTool>>showLabelled: labelString [
 	^ self window.
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>showModally [
+{ #category : #'morphic ui' }
+MCTool >> showModally [
 	modal := true.
 	self window openInWorldExtent: 400 @ 400.
 	self setDefaultFocus.
@@ -462,19 +338,13 @@ MCTool>>showModally [
 	^ modalValue
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>summary: aString [
+{ #category : #'morphic ui' }
+MCTool >> summary: aString [
 	" do nothing by default"
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>textMorph: aSymbol [
+{ #category : #'morphic ui' }
+MCTool >> textMorph: aSymbol [
 	| textMorph |
 	textMorph := RubPluggableTextMorph new
 		getTextSelector: aSymbol;
@@ -489,22 +359,16 @@ MCTool>>textMorph: aSymbol [
 	^ textMorph
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>treeMorph: listSymbol [
+{ #category : #'morphic ui' }
+MCTool >> treeMorph: listSymbol [
 	^ self
 		treeMorph: (listSymbol, 'Tree') asSymbol
 		selection: (listSymbol, 'SelectionWrapper') asSymbol
 		menu: (listSymbol, 'TreeMenu:') asSymbol
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>treeMorph: listSymbol selection: selectionSymbol menu: menuSymbol [
+{ #category : #'morphic ui' }
+MCTool >> treeMorph: listSymbol selection: selectionSymbol menu: menuSymbol [
 	^ SimpleHierarchicalListMorph
 		on: self
 		list: listSymbol
@@ -514,18 +378,12 @@ MCTool>>treeMorph: listSymbol selection: selectionSymbol menu: menuSymbol [
 		keystroke: nil
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>widgetSpecs [
+{ #category : #'morphic ui' }
+MCTool >> widgetSpecs [
 	^ #()
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCTool>>window [
+{ #category : #'morphic ui' }
+MCTool >> window [
 	^ morph ifNil: [morph := self buildWindow]
 ]

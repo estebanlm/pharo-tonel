@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'newTree'
 	],
-	#category : #Renraku-Critiques,
-	#timestamp : 'YuriyTymchuk 7/10/2016 15:40'
+	#category : #Renraku-Critiques
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReTransformationCritique class>>for: anEntity by: aRule tree: newAST [
+{ #category : #'as yet unclassified' }
+ReTransformationCritique class >> for: anEntity by: aRule tree: newAST [
 
 	^ self basicNew
 		initializeRule: aRule
@@ -24,31 +20,22 @@ ReTransformationCritique class>>for: anEntity by: aRule tree: newAST [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReTransformationCritique>>change [
+{ #category : #accessing }
+ReTransformationCritique >> change [
 	"re-add the method compiled from the new AST"
 	
 	^ RBAddMethodChange compile: newTree newSource in: sourceAnchor entity methodClass
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReTransformationCritique>>initializeRule: aRule target: anEntity tree: newAST [
+{ #category : #initialization }
+ReTransformationCritique >> initializeRule: aRule target: anEntity tree: newAST [
 
 	self initializeRule: aRule target: anEntity.
 	newTree := newAST 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReTransformationCritique>>providesChange [
+{ #category : #testing }
+ReTransformationCritique >> providesChange [
 	
 	^ true
 ]

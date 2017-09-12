@@ -4,33 +4,23 @@ This rule should be updated to verify the inverse no translated messsages should
 Class {
 	#name : #RBMissingTranslationsInMenusRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 23:10'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingTranslationsInMenusRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBMissingTranslationsInMenusRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'MissingTranslationsInMenusRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingTranslationsInMenusRule>>group [
+{ #category : #accessing }
+RBMissingTranslationsInMenusRule >> group [
 	^ 'Bugs'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingTranslationsInMenusRule>>initialize [
+{ #category : #initialization }
+RBMissingTranslationsInMenusRule >> initialize [
 	super initialize.
 	self matcher
 		matchesAnyOf: #(
@@ -53,18 +43,12 @@ RBMissingTranslationsInMenusRule>>initialize [
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingTranslationsInMenusRule>>name [
+{ #category : #accessing }
+RBMissingTranslationsInMenusRule >> name [
 	^ 'Menus missing translations'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingTranslationsInMenusRule>>rationale [
+{ #category : #accessing }
+RBMissingTranslationsInMenusRule >> rationale [
 	^ 'Literal strings shown to users in menus should be translated.'
 ]

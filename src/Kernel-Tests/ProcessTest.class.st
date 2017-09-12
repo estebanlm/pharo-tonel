@@ -4,15 +4,11 @@ A ProcessTest holds test cases for generic Process-related behaviour.
 Class {
 	#name : #ProcessTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Processes,
-	#timestamp : 'GiovanniCorriga 8/30/2009 14:56'
+	#category : #Kernel-Tests-Processes
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testFork [
+{ #category : #testing }
+ProcessTest >> testFork [
 
 	| hasBlockRun block return checkAssert |
 	checkAssert := Semaphore new.
@@ -31,11 +27,8 @@ ProcessTest>>testFork [
 	self assert: hasBlockRun 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testForkAtHigherPriority [
+{ #category : #testing }
+ProcessTest >> testForkAtHigherPriority [
 
 	| hasBlockRun block return |
 	hasBlockRun := false.
@@ -46,11 +39,8 @@ ProcessTest>>testForkAtHigherPriority [
 	self assert: hasBlockRun.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testInjectingExceptionHandlerFromProcessItself [
+{ #category : #testing }
+ProcessTest >> testInjectingExceptionHandlerFromProcessItself [
 
 	| error interceptedError process interrupted |
 	DefaultExecutionEnvironment beActive.
@@ -65,11 +55,8 @@ ProcessTest>>testInjectingExceptionHandlerFromProcessItself [
 	self assert: interrupted 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testInjectingExceptionHandlerIntoNotRunningProcess [
+{ #category : #testing }
+ProcessTest >> testInjectingExceptionHandlerIntoNotRunningProcess [
 
 	| error interceptedError process interrupted |
 	DefaultExecutionEnvironment beActive.
@@ -84,11 +71,8 @@ ProcessTest>>testInjectingExceptionHandlerIntoNotRunningProcess [
 	self assert: interrupted
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testInjectingExceptionHandlerIntoProcessWithArg [
+{ #category : #testing }
+ProcessTest >> testInjectingExceptionHandlerIntoProcessWithArg [
 
 	| error interceptedError process interrupted processArg |
 	DefaultExecutionEnvironment beActive.
@@ -104,11 +88,8 @@ ProcessTest>>testInjectingExceptionHandlerIntoProcessWithArg [
 	self assert: processArg equals: #arg.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testInjectingExceptionHandlerIntoRunningProcess [
+{ #category : #testing }
+ProcessTest >> testInjectingExceptionHandlerIntoRunningProcess [
 
 	| error interceptedError process sema started interrupted |
 	DefaultExecutionEnvironment beActive.
@@ -129,11 +110,8 @@ ProcessTest>>testInjectingExceptionHandlerIntoRunningProcess [
 	self assert: interrupted
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testInjectingMultipleExceptionHandlersIntoNotRunningProcess [
+{ #category : #testing }
+ProcessTest >> testInjectingMultipleExceptionHandlersIntoNotRunningProcess [
 
 	| error process lastHandler firstHandler |
 	DefaultExecutionEnvironment beActive.
@@ -160,11 +138,8 @@ ProcessTest>>testInjectingMultipleExceptionHandlersIntoNotRunningProcess [
 	self assert: lastHandler
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testInjectingMultipleExceptionHandlersIntoRunningProcess [
+{ #category : #testing }
+ProcessTest >> testInjectingMultipleExceptionHandlersIntoRunningProcess [
 
 	| error process lastHandler firstHandler sema |
 	DefaultExecutionEnvironment beActive.
@@ -195,19 +170,13 @@ ProcessTest>>testInjectingMultipleExceptionHandlersIntoRunningProcess [
 	self assert: lastHandler
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testIsSelfEvaluating [
+{ #category : #testing }
+ProcessTest >> testIsSelfEvaluating [
 	self assert: Processor printString = 'Processor'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testIsTerminatingForcedTermination [
+{ #category : #testing }
+ProcessTest >> testIsTerminatingForcedTermination [
 	| process unwound started terminator unwindChecks terminationSemaphore |
 	unwound := false.
 	started := false.
@@ -261,11 +230,8 @@ ProcessTest>>testIsTerminatingForcedTermination [
 	self assert: terminator == process
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testIsTerminatingForcedTerminationWithoutRunning [
+{ #category : #testing }
+ProcessTest >> testIsTerminatingForcedTerminationWithoutRunning [
 	| process unwound started terminator |
 	unwound := false.
 	started := false.
@@ -302,11 +268,8 @@ ProcessTest>>testIsTerminatingForcedTerminationWithoutRunning [
 	self deny: terminator == process
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testIsTerminatingNormalTermination [
+{ #category : #testing }
+ProcessTest >> testIsTerminatingNormalTermination [
 	| sem process unwound started terminator |
 	sem := Semaphore new.
 	unwound := false.
@@ -336,11 +299,8 @@ ProcessTest>>testIsTerminatingNormalTermination [
 	self assert: terminator == process
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testNewProcess [
+{ #category : #testing }
+ProcessTest >> testNewProcess [
 
 	| hasBlockRun block return |
 	hasBlockRun := false.
@@ -357,11 +317,8 @@ ProcessTest>>testNewProcess [
 	self assert: return isSuspended.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testNewProcessWith [
+{ #category : #testing }
+ProcessTest >> testNewProcessWith [
 
 	| hasBlockRun block return passedArguments receivedArgument1 receivedArgument2 |
 	hasBlockRun := false.
@@ -387,11 +344,8 @@ ProcessTest>>testNewProcessWith [
 	self assert: { receivedArgument1. receivedArgument2 } equals: passedArguments.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testSchedulingHigherPriorityServedFirst [
+{ #category : #testing }
+ProcessTest >> testSchedulingHigherPriorityServedFirst [
     "The first process to run will pass straight through the gate
     while the other waits for the assert to whichRan."
 
@@ -414,11 +368,8 @@ ProcessTest>>testSchedulingHigherPriorityServedFirst [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testSchedulingSamePriorityFirstComeFirstServed [
+{ #category : #testing }
+ProcessTest >> testSchedulingSamePriorityFirstComeFirstServed [
     "The first process to run will pass straight through the gate
     while the other waits for the assert to whichRan."
 
@@ -439,11 +390,8 @@ ProcessTest>>testSchedulingSamePriorityFirstComeFirstServed [
 	self assert: whichRan=2 description: 'Second scheduled process should run after'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testTerminateActive [
+{ #category : #testing }
+ProcessTest >> testTerminateActive [
 
 	| lastStatementEvaluated block1HasRun block2HasRun |
 	block1HasRun := block2HasRun := lastStatementEvaluated := false.
@@ -465,11 +413,8 @@ ProcessTest>>testTerminateActive [
 	self deny: lastStatementEvaluated.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testTerminationShouldProceedAllEnsureBlocksIfSomeWasFailed [
+{ #category : #testing }
+ProcessTest >> testTerminationShouldProceedAllEnsureBlocksIfSomeWasFailed [
 
 	| ensureCalled process ensureFailure forkedFailures |
 	ensureFailure := Error new messageText: 'signalled inside ensure'.
@@ -491,11 +436,8 @@ ProcessTest>>testTerminationShouldProceedAllEnsureBlocksIfSomeWasFailed [
 	TestExecutionEnvironment resetFailures
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testTerminationShouldProceedEnsureBlocks [
+{ #category : #testing }
+ProcessTest >> testTerminationShouldProceedEnsureBlocks [
 
 	| ensureCalled process semaphore |
 	ensureCalled := false.
@@ -509,11 +451,8 @@ ProcessTest>>testTerminationShouldProceedEnsureBlocks [
 	self assert: ensureCalled
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>testYield [
+{ #category : #testing }
+ProcessTest >> testYield [
 
 	| lowerHasRun lowerPriority same1HasRun same2HasRun |
 	lowerHasRun := same1HasRun := same2HasRun := false.
@@ -530,11 +469,8 @@ ProcessTest>>testYield [
 	self deny: lowerHasRun.
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTest>>waitForProcessTermination: aProcess [
+{ #category : #helpers }
+ProcessTest >> waitForProcessTermination: aProcess [
 	aProcess priority: Processor activePriority + 1.
 	[ aProcess isTerminated ] whileFalse: [ Processor yield ]
 ]

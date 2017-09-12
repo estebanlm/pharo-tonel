@@ -5,32 +5,22 @@ A DoesNotUnderstandDebugAction is a debugging action that can create a method if
 Class {
 	#name : #DoesNotUnderstandDebugAction,
 	#superclass : #DebugAction,
-	#category : #DebuggerActions,
-	#timestamp : '<historical>'
+	#category : #DebuggerActions
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DoesNotUnderstandDebugAction class>>actionType [
+{ #category : #'as yet unclassified' }
+DoesNotUnderstandDebugAction class >> actionType [
 	<debuggingAction>
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DoesNotUnderstandDebugAction>>appliesToDebugger: aDebugger [
+{ #category : #testing }
+DoesNotUnderstandDebugAction >> appliesToDebugger: aDebugger [
 
 	^ aDebugger session isInterruptedContextDoesNotUnderstand 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DoesNotUnderstandDebugAction>>askForCategoryIn: aClass default: aString [
+{ #category : #private }
+DoesNotUnderstandDebugAction >> askForCategoryIn: aClass default: aString [
 	| categoryName |
 	categoryName := AbstractTool requestProtocolNameFor: aClass initialAnswer: aString.
 	categoryName ifNil: [^aString].
@@ -39,11 +29,8 @@ DoesNotUnderstandDebugAction>>askForCategoryIn: aClass default: aString [
 		ifFalse: [ categoryName ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DoesNotUnderstandDebugAction>>askForSuperclassOf: aClass toImplement: aSelector ifCancel: cancelBlock [
+{ #category : #private }
+DoesNotUnderstandDebugAction >> askForSuperclassOf: aClass toImplement: aSelector ifCancel: cancelBlock [
 	| classes chosenClassIndex |
 	classes := aClass withAllSuperclasses addAll: (aClass traits sort: [ :t1 :t2 | t1 asString < t2 asString ]); yourself.
 	chosenClassIndex := UIManager default 
@@ -53,29 +40,20 @@ DoesNotUnderstandDebugAction>>askForSuperclassOf: aClass toImplement: aSelector 
 	^ classes at: chosenClassIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DoesNotUnderstandDebugAction>>defaultLabel [
+{ #category : #accessing }
+DoesNotUnderstandDebugAction >> defaultLabel [
 
 	^  'Create'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DoesNotUnderstandDebugAction>>defaultOrder [
+{ #category : #accessing }
+DoesNotUnderstandDebugAction >> defaultOrder [
 
 	^ 45
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DoesNotUnderstandDebugAction>>executeAction [
+{ #category : #actions }
+DoesNotUnderstandDebugAction >> executeAction [
 	"Should only be called when the debugger was created in response to a
 	MessageNotUnderstood exception. Create a stub for the method that was
 	missing and proceed into it."
@@ -96,11 +74,8 @@ DoesNotUnderstandDebugAction>>executeAction [
 	self debugger selectTopContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DoesNotUnderstandDebugAction>>id [
+{ #category : #accessing }
+DoesNotUnderstandDebugAction >> id [
 
 	^ #doesNotUnderstand
 ]

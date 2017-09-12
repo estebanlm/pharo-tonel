@@ -4,6 +4,5 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestToolExternalBrowser,
 	#superclass : #PackageManifest,
-	#category : #Tool-ExternalBrowser,
-	#timestamp : '<historical>'
+	#category : #Tool-ExternalBrowser
 }

@@ -1,20 +1,12 @@
-Extension {
-	#name : #ExternalType
-}
+Extension { #name : #ExternalType }
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalType>>atomicSelector [
+{ #category : #'*UnifiedFFI' }
+ExternalType >> atomicSelector [
 	^ AtomicSelectors at: self atomicType
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalType>>offsetReadFieldAt: offsetVariableName [
+{ #category : #'*UnifiedFFI' }
+ExternalType >> offsetReadFieldAt: offsetVariableName [
 	"Answer a string defining the accessor to an entity of the receiver type starting at the 
 	 given byte offset. 
 	 Private. Used for field definition only.
@@ -53,11 +45,8 @@ ExternalType>>offsetReadFieldAt: offsetVariableName [
 			space; nextPutAll: offsetVariableName].
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalType>>offsetReadStructFieldAt: offsetVariableName [
+{ #category : #'*UnifiedFFI' }
+ExternalType >> offsetReadStructFieldAt: offsetVariableName [
 	^ '^ {1} fromHandle: (handle structAt: {2} length: {1} byteSize)' 
 		format: { 
 			referentClass name.
@@ -65,11 +54,8 @@ ExternalType>>offsetReadStructFieldAt: offsetVariableName [
 
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalType>>offsetWriteFieldAt: offsetVariableName with: valueName [
+{ #category : #'*UnifiedFFI' }
+ExternalType >> offsetWriteFieldAt: offsetVariableName with: valueName [
 	"Answer a string defining the accessor to an entity of the receiver type starting at the given byte offset. 
 	 Private. Used for field definition only."
 	self isPointerType ifTrue:
@@ -97,11 +83,8 @@ ExternalType>>offsetWriteFieldAt: offsetVariableName with: valueName [
 			nextPutAll: valueName].
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalType>>offsetWriteStructFieldAt: offsetVariableName with: valueName [
+{ #category : #'*UnifiedFFI' }
+ExternalType >> offsetWriteStructFieldAt: offsetVariableName with: valueName [
 	^ 'handle structAt: {1} put: {2} getHandle length: {3} byteSize' 
 		format: {
 			offsetVariableName. 
@@ -109,11 +92,8 @@ ExternalType>>offsetWriteStructFieldAt: offsetVariableName with: valueName [
 			referentClass name }
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalType>>withPointerArity: aNumber [
+{ #category : #'*UnifiedFFI' }
+ExternalType >> withPointerArity: aNumber [
 	self flag: #todo. "FFI does not understand arity>1 (for now), so I will ignore it and return 
 	 the #referencedType in case I want a pointer... this needs to be fixed."
 	^ aNumber > 0  

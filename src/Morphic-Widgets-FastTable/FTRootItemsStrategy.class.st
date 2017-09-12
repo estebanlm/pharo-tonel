@@ -32,15 +32,11 @@ Example
 Class {
 	#name : #FTRootItemsStrategy,
 	#superclass : #FTTreeFunctionStrategy,
-	#category : #Morphic-Widgets-FastTable-Tree,
-	#timestamp : 'CyrilFerlicot 11/2/2015 11:34'
+	#category : #Morphic-Widgets-FastTable-Tree
 }
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTRootItemsStrategy>>filter [
+{ #category : #action }
+FTRootItemsStrategy >> filter [
 	^ dataSource class
 		root:
 			(FTRootItem new
@@ -49,11 +45,8 @@ FTRootItemsStrategy>>filter [
 		children: dataSource childrenBlock
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTRootItemsStrategy>>realSearch [
+{ #category : #action }
+FTRootItemsStrategy >> realSearch [
 	| result index |
 	result := OrderedCollection new.
 	index := 1.

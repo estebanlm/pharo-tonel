@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'toolbar'
 	],
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #spec,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeMethodEditor class>>inspectorSpec [
+{ #category : #spec }
+EyeMethodEditor class >> inspectorSpec [
 	<spec>
 	
 	^ SpecLayout composed
@@ -23,27 +19,18 @@ EyeMethodEditor class>>inspectorSpec [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeMethodEditor class>>label [
+{ #category : #accessing }
+EyeMethodEditor class >> label [
 	^ 'Method Editor'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeMethodEditor>>method [
+{ #category : #accessing }
+EyeMethodEditor >> method [
 	^ self object
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeMethodEditor>>objectChanged [
+{ #category : #event-handling }
+EyeMethodEditor >> objectChanged [
 	self text 
 		text: self method sourceCode;
 		behavior: self method methodClass.
@@ -51,19 +38,13 @@ EyeMethodEditor>>objectChanged [
 	self toolbar method: self method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeMethodEditor>>title [
+{ #category : #accessing }
+EyeMethodEditor >> title [
 	^ self method printString 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeMethodEditor>>toolbar [
+{ #category : #accessing }
+EyeMethodEditor >> toolbar [
 	^ toolbar ifNil: [ 
 		toolbar := self instantiate: MethodToolbar. ]
 ]

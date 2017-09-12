@@ -8,15 +8,11 @@ Class {
 		'instance',
 		'selector'
 	],
-	#category : #Spec-Core,
-	#timestamp : '<historical>'
+	#category : #Spec-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapper class>>instance: instance selector: selector [
+{ #category : #'instance creation' }
+SpecWrapper class >> instance: instance selector: selector [
 
 	^ self new
 		instance: instance;
@@ -24,56 +20,38 @@ SpecWrapper class>>instance: instance selector: selector [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapper>>instance [
+{ #category : #accessing }
+SpecWrapper >> instance [
 	
 	^ instance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapper>>instance: anObject [
+{ #category : #accessing }
+SpecWrapper >> instance: anObject [
 	
 	instance := anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapper>>isRedrawable [
+{ #category : #protocol }
+SpecWrapper >> isRedrawable [
 	
 	^ self instance isRedrawable
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapper>>removeSubWidgets [
+{ #category : #protocol }
+SpecWrapper >> removeSubWidgets [
 	
 	^ self instance removeSubWidgets
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapper>>selector [
+{ #category : #accessing }
+SpecWrapper >> selector [
 	
 	^ selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapper>>selector: anObject [
+{ #category : #accessing }
+SpecWrapper >> selector: anObject [
 	
 	selector := anObject
 ]

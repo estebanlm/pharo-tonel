@@ -6,23 +6,16 @@ This affects the performance of inspector.
 Class {
 	#name : #ReInspectorPresentationsNonBlockSetup,
 	#superclass : #ReAbstractRule,
-	#category : #Renraku-Rules,
-	#timestamp : 'YuriyTymchuk 1/19/2016 11:21'
+	#category : #Renraku-Rules
 }
 
-{
-	#category : #testing-interest,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInspectorPresentationsNonBlockSetup class>>checksMethod [
+{ #category : #testing-interest }
+ReInspectorPresentationsNonBlockSetup class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInspectorPresentationsNonBlockSetup>>check: aMethod forCritiquesDo: aCriticBlock [
+{ #category : #running }
+ReInspectorPresentationsNonBlockSetup >> check: aMethod forCritiquesDo: aCriticBlock [
 
 	(aMethod hasPragmaNamed: #gtInspectorPresentationOrder:) ifFalse: [ ^ self ].
 	
@@ -42,28 +35,19 @@ ReInspectorPresentationsNonBlockSetup>>check: aMethod forCritiquesDo: aCriticBlo
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInspectorPresentationsNonBlockSetup>>group [
+{ #category : #accessing }
+ReInspectorPresentationsNonBlockSetup >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInspectorPresentationsNonBlockSetup>>name [
+{ #category : #accessing }
+ReInspectorPresentationsNonBlockSetup >> name [
 
 	^ 'Use blocks in scripting instead of plain messages'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInspectorPresentationsNonBlockSetup>>presentationScriptingMathods [
+{ #category : #private }
+ReInspectorPresentationsNonBlockSetup >> presentationScriptingMathods [
 
 	^ #(when: title: display: icon: with: send: format: sorted: tags:)
 ]

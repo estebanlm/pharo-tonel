@@ -1,12 +1,7 @@
-Extension {
-	#name : #RBProgramNode
-}
+Extension { #name : #RBProgramNode }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-RBProgramNode>>gtSpotterCodePreviewIn: aComposite [
+{ #category : #'*GT-SpotterExtensions-Core' }
+RBProgramNode >> gtSpotterCodePreviewIn: aComposite [
 	<spotterPreview: 10>
 	self source ifNil: [ ^ self ].
 		

@@ -8,23 +8,16 @@ Class {
 		'parser',
 		'interval'
 	],
-	#category : #Compiler-Exceptions,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:18'
+	#category : #Compiler-Exceptions
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-UndeclaredVariable class>>signalFor: aParser name: aString inRange: anInterval  [
+{ #category : #'as yet unclassified' }
+UndeclaredVariable class >> signalFor: aParser name: aString inRange: anInterval [ 
 	^ (self new setParser: aParser name: aString range: anInterval) signal
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-UndeclaredVariable>>openMenuIn: aBlock  [
+{ #category : #'as yet unclassified' }
+UndeclaredVariable >> openMenuIn: aBlock [ 
 	| alternatives labels actions lines caption choice |
 	alternatives := parser possibleVariablesFor: name.
 	labels := OrderedCollection new.
@@ -57,11 +50,8 @@ UndeclaredVariable>>openMenuIn: aBlock  [
 	choice ifNotNil: [self resume: (actions at: choice ifAbsent: [nil])]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-UndeclaredVariable>>setParser: aParser name: aString range: anInterval  [
+{ #category : #'as yet unclassified' }
+UndeclaredVariable >> setParser: aParser name: aString range: anInterval [ 
 	parser := aParser.
 	name := aString.
 	interval := anInterval

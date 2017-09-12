@@ -15,58 +15,39 @@ Class {
 	#instVars : [
 		'matcher'
 	],
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 20:54'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLongMethodsRule class>>checksMethod [
+{ #category : #testing }
+RBLongMethodsRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLongMethodsRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBLongMethodsRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'LongMethodsRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLongMethodsRule>>basicCheck: aMethod  [
+{ #category : #running }
+RBLongMethodsRule >> basicCheck: aMethod [ 
 	^ (matcher executeTree: aMethod ast initialAnswer: 0) >= self longMethodSize 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLongMethodsRule>>checkMethod: aMethod  [
+{ #category : #running }
+RBLongMethodsRule >> checkMethod: aMethod [ 
 	(self basicCheck: aMethod)
 		ifTrue: [ result addMethod: aMethod ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLongMethodsRule>>group [
+{ #category : #accessing }
+RBLongMethodsRule >> group [
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLongMethodsRule>>initialize [
+{ #category : #initialization }
+RBLongMethodsRule >> initialize [
 	super initialize.
 	matcher := RBParseTreeSearcher new.
 	matcher matches: '`.Stmt'
@@ -76,26 +57,17 @@ RBLongMethodsRule>>initialize [
 				into: [:sum :each | matcher executeTree: each initialAnswer: sum]) + 1].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLongMethodsRule>>longMethodSize [
+{ #category : #private }
+RBLongMethodsRule >> longMethodSize [
 	^ 20
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLongMethodsRule>>name [
+{ #category : #accessing }
+RBLongMethodsRule >> name [
 	^ 'Long methods'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLongMethodsRule>>rationale [
+{ #category : #accessing }
+RBLongMethodsRule >> rationale [
 	^ 'Returns all methods that have #longMethodSize number of statements. This check counts statements, not lines.'
 ]

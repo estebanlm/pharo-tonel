@@ -9,15 +9,11 @@ Class {
 	#classInstVars : [
 		'cachedSymbols'
 	],
-	#category : #NECompletion-Model,
-	#timestamp : 'MarcusDenker 8/10/2014 12:02'
+	#category : #NECompletion-Model
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSymbols class>>cacheInterestingSymbolsAndDo: aBlock [
+{ #category : #private }
+NECSymbols class >> cacheInterestingSymbolsAndDo: aBlock [
 	"For time issue, we collect and perform the block in only one iteration"
 	| cache |
 	cache := OrderedCollection new: 5000.
@@ -28,27 +24,18 @@ NECSymbols class>>cacheInterestingSymbolsAndDo: aBlock [
 	cachedSymbols := cache.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSymbols class>>cachedInterestingSymbolsDo: aBlock [
+{ #category : #private }
+NECSymbols class >> cachedInterestingSymbolsDo: aBlock [
 	self cachedSymbols do: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSymbols class>>cachedSymbols [
+{ #category : #accessing }
+NECSymbols class >> cachedSymbols [
 	^cachedSymbols
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSymbols class>>contains: aString caseSensitive: aBoolean do: aBlock  [
+{ #category : #query }
+NECSymbols class >> contains: aString caseSensitive: aBoolean do: aBlock [ 
 	| blockToPerform |
 
 	blockToPerform := [ :each | 
@@ -61,11 +48,8 @@ NECSymbols class>>contains: aString caseSensitive: aBoolean do: aBlock  [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSymbols class>>interestingSymbolsDo: aBlock [
+{ #category : #private }
+NECSymbols class >> interestingSymbolsDo: aBlock [
 
 	Symbol allSymbolTablesDo:[:symbol |
 		symbol isEmpty
@@ -75,19 +59,13 @@ NECSymbols class>>interestingSymbolsDo: aBlock [
 					ifFalse: [ symbol isSelectorSymbol ifTrue: [ aBlock value: symbol ]]]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSymbols class>>resetCachedSymbols [
+{ #category : #accessing }
+NECSymbols class >> resetCachedSymbols [
 	cachedSymbols := nil
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSymbols class>>startsWith: aChar caseSensitive: aBoolean do: aBlock  [
+{ #category : #query }
+NECSymbols class >> startsWith: aChar caseSensitive: aBoolean do: aBlock [ 
 	| char caseInSensitive firstChar |
 	caseInSensitive := aBoolean not.
 	firstChar := caseInSensitive 

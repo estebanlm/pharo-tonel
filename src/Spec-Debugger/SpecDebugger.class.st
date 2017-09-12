@@ -23,31 +23,21 @@ Class {
 		'FilterCommonMessageSends',
 		'LogDebuggerStackToFile'
 	],
-	#category : #Spec-Debugger,
-	#timestamp : '<historical>'
+	#category : #Spec-Debugger
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>alwaysOpenFullDebugger [
+{ #category : #settings }
+SpecDebugger class >> alwaysOpenFullDebugger [
 	^ AlwaysOpenFullDebugger ifNil: [AlwaysOpenFullDebugger := false]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>alwaysOpenFullDebugger: aBoolean [
+{ #category : #settings }
+SpecDebugger class >> alwaysOpenFullDebugger: aBoolean [
 	AlwaysOpenFullDebugger := aBoolean.
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>closeAllDebuggers [
+{ #category : #utilities }
+SpecDebugger class >> closeAllDebuggers [
 	"SpecDebugger closeAllDebuggers"
 	(MorphicWindowAdapter allInstances select: [:w | 
 		(w model isKindOf: WindowModel) and: [ 
@@ -61,20 +51,14 @@ SpecDebugger class>>closeAllDebuggers [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>defaultTitle [
+{ #category : #accessing }
+SpecDebugger class >> defaultTitle [
 
 	^ 'Spec Debugger'
 ]
 
-{
-	#category : #'menu code',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>dynamicCodeContextMenu: aBuilder [
+{ #category : #'menu code' }
+SpecDebugger class >> dynamicCodeContextMenu: aBuilder [
 	<contextMenu>
 	<specDebuggerCodeContextMenu>
 
@@ -82,27 +66,18 @@ SpecDebugger class>>dynamicCodeContextMenu: aBuilder [
 		anAction asMenuRegistrationIn: aBuilder ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>filterCommonMessageSends [
+{ #category : #settings }
+SpecDebugger class >> filterCommonMessageSends [
 	^ FilterCommonMessageSends ifNil: [FilterCommonMessageSends := false]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>filterCommonMessageSends: aBoolean [
+{ #category : #settings }
+SpecDebugger class >> filterCommonMessageSends: aBoolean [
 	FilterCommonMessageSends := aBoolean
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>initialize  [
+{ #category : #'class initialization' }
+SpecDebugger class >> initialize [ 
 	
 	ErrorRecursion := false.
 
@@ -113,46 +88,31 @@ SpecDebugger class>>initialize  [
 	Smalltalk tools registerDebugger: self withRank: 2.
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>logDebuggerStackToFile [
+{ #category : #settings }
+SpecDebugger class >> logDebuggerStackToFile [
 	^ LogDebuggerStackToFile ifNil: [LogDebuggerStackToFile := true]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>logDebuggerStackToFile: aBoolean [
+{ #category : #settings }
+SpecDebugger class >> logDebuggerStackToFile: aBoolean [
 	 LogDebuggerStackToFile := aBoolean
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>on: aDebugSession [
+{ #category : #'instance creation' }
+SpecDebugger class >> on: aDebugSession [
 
 	^ self new 	
 			session: aDebugSession
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>openOn: aDebugSession withFullView: aBool [
+{ #category : #opening }
+SpecDebugger class >> openOn: aDebugSession withFullView: aBool [
 	
 	self openOn: aDebugSession withFullView: aBool andNotification: nil
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>openOn: aDebugSession withFullView: aBool andNotification: aString [
+{ #category : #opening }
+SpecDebugger class >> openOn: aDebugSession withFullView: aBool andNotification: aString [
 	
 	| debugger |
 	debugger := self on: aDebugSession.
@@ -162,40 +122,28 @@ SpecDebugger class>>openOn: aDebugSession withFullView: aBool andNotification: a
 		ifFalse: [ debugger openWithNotification: aString]
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>register [
+{ #category : #'tools registry' }
+SpecDebugger class >> register [
 
 	self registerToolsOn: Smalltalk tools
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>registerToolsOn: registry [
+{ #category : #'tools registry' }
+SpecDebugger class >> registerToolsOn: registry [
 
 	"Add ourselves to registry. See [Smalltalk tools]" 
 	registry register: self as: #debugger
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>sessionClass [
+{ #category : #accessing }
+SpecDebugger class >> sessionClass [
 
 	^ DebugSession 
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>spec [
+{ #category : #specs }
+SpecDebugger class >> spec [
 	<spec>
 	
 	^ SpecLayout composed
@@ -212,11 +160,8 @@ SpecDebugger class>>spec [
 						add: #contextInspector ] ]
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>specOptimized [
+{ #category : #specs }
+SpecDebugger class >> specOptimized [
 	<spec: #default>
 	| toolbarHeight |
 	
@@ -237,103 +182,70 @@ SpecDebugger class>>specOptimized [
 		yourself 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>stackWidgetClass [
+{ #category : #accessing }
+SpecDebugger class >> stackWidgetClass [
 
 	^ SpecDebuggerStack 
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger class>>taskbarIconName [
+{ #category : #icons }
+SpecDebugger class >> taskbarIconName [
 
 	^#smallDebugIcon
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>browsedEnvironment [
+{ #category : #'as yet unclassified' }
+SpecDebugger >> browsedEnvironment [
 	^ browsedEnvironment ifNil: [ browsedEnvironment := RBBrowserEnvironment new ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>clear [
+{ #category : #actions }
+SpecDebugger >> clear [
 	
 	self removeActionsForSession: self session.
 	"No more code should follow after this, as the session might terminate this process."
 	self session ifNotNil: [ :aSession | aSession terminate]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>close [
+{ #category : #actions }
+SpecDebugger >> close [
 	
 	self window delete
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>code [
+{ #category : #'accessing widgets' }
+SpecDebugger >> code [
 
 	^ code
 ]
 
-{
-	#category : #'actions code',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>codeContextMenuDebuggingActions [
+{ #category : #'actions code' }
+SpecDebugger >> codeContextMenuDebuggingActions [
 
 	^ self session class 
 		debuggingActionsForPragmas: #(contextMenuCodeDebuggingAction) 
 		for: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>codeFont  [
+{ #category : #private }
+SpecDebugger >> codeFont [ 
 	^ StandardFonts codeFont
 ]
 
-{
-	#category : #'accessing context',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>context [
+{ #category : #'accessing context' }
+SpecDebugger >> context [
  
 	^ self interruptedContext
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>contextInspector [
+{ #category : #'accessing widgets' }
+SpecDebugger >> contextInspector [
 
 	^ contextInspector
 ]
 
-{
-	#category : #'accessing context',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>currentContext [
+{ #category : #'accessing context' }
+SpecDebugger >> currentContext [
 	"I answer the context on which an action should be executed.
 	This is either the selected context or if nothing is selected the interrupted context."
 	
@@ -342,11 +254,8 @@ SpecDebugger>>currentContext [
 		ifFalse: [ self selectedContext ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>initialExtent  [
+{ #category : #api }
+SpecDebugger >> initialExtent [ 
 	"This code was taken from the old debugger to get the same behavior. Fell free to refactor"
 
 	RealEstateAgent standardWindowExtent y < 400 "a tiny screen" 
@@ -360,11 +269,8 @@ SpecDebugger>>initialExtent  [
 		do: [ 850@600 ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>initialize [
+{ #category : #initialization }
+SpecDebugger >> initialize [
 
 	sessionHolder := nil asValueHolder.
 	labelHolder := nil asValueHolder.
@@ -383,11 +289,8 @@ SpecDebugger>>initialize [
 		self updateTitle ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>initializePresenter [
+{ #category : #initialization }
+SpecDebugger >> initializePresenter [
 	super initializePresenter.
 	self flag: 'some of this logic could be moved to the stack widget'.
 	self flag: 'The toolbar should not be updated when the list changes, but when an action is perormed.'.
@@ -404,11 +307,8 @@ SpecDebugger>>initializePresenter [
 		self stack updateForSelectionChanged ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>initializeWidgets [
+{ #category : #initialization }
+SpecDebugger >> initializeWidgets [
 	stack := self instantiate: SpecDebuggerStack.
 	toolbar := self instantiate: SpecDebuggerDynamicToolbar.
 	code := self newCode.
@@ -421,58 +321,40 @@ SpecDebugger>>initializeWidgets [
 	self setFocusOrder
 ]
 
-{
-	#category : #'accessing context',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>interruptedContext [
+{ #category : #'accessing context' }
+SpecDebugger >> interruptedContext [
 
 	^ self session interruptedContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>interruptedProcess [
+{ #category : #accessing }
+SpecDebugger >> interruptedProcess [
 
 	^ self session interruptedProcess
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>label [
+{ #category : #accessing }
+SpecDebugger >> label [
 
 	^ labelHolder value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>label: aString [
+{ #category : #accessing }
+SpecDebugger >> label: aString [
 
 	labelHolder value: aString
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>okToChange [
+{ #category : #api }
+SpecDebugger >> okToChange [
 	self code canDiscardEdits
 		ifTrue: [ ^ true ].
 	self code changed: #wantToChange.
 	^ self code canDiscardEdits
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>openWithFullView [
+{ #category : #opening }
+SpecDebugger >> openWithFullView [
 	"Create and schedule a full debugger with the given label. Do not
 	terminate the current active process."
 	self 
@@ -481,11 +363,8 @@ SpecDebugger>>openWithFullView [
 		updateCodeFromContext
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>openWithNotification: notificationString [
+{ #category : #opening }
+SpecDebugger >> openWithNotification: notificationString [
 	"Create and schedule a notifier view with the given label and message.
 	A notifier view shows just the message or the first several lines of the
 	stack, with a menu that allows the user to open a full debugger if so
@@ -502,20 +381,14 @@ SpecDebugger>>openWithNotification: notificationString [
 		debugger: self
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>receiverInspector [
+{ #category : #'accessing widgets' }
+SpecDebugger >> receiverInspector [
 
 	^ receiverInspector
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>recompileMethodTo: aString inContext: aContext notifying: aNotifyer [
+{ #category : #actions }
+SpecDebugger >> recompileMethodTo: aString inContext: aContext notifying: aNotifyer [
 
 	^ aContext 
 		ifNil: [ false ]
@@ -523,19 +396,13 @@ SpecDebugger>>recompileMethodTo: aString inContext: aContext notifying: aNotifye
 			self session recompileMethodTo: aString inContext: aContext notifying: aNotifyer ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>refactor [
+{ #category : #'as yet unclassified' }
+SpecDebugger >> refactor [
 	^ NautilusRefactoring model: self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>registerActionsForSession: aSession [
+{ #category : #initialization }
+SpecDebugger >> registerActionsForSession: aSession [
 
 	aSession ifNotNil: [
 		aSession
@@ -547,11 +414,8 @@ SpecDebugger>>registerActionsForSession: aSession [
 			when: #contextChanged send: #updateContextChanged to: self  ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>removeActionsForSession: aSession [
+{ #category : #initialization }
+SpecDebugger >> removeActionsForSession: aSession [
 
 	aSession ifNotNil: [ 
 		aSession  
@@ -563,90 +427,60 @@ SpecDebugger>>removeActionsForSession: aSession [
 			removeActionsForEvent:#contextChanged ]. 
 ]
 
-{
-	#category : #'accessing context',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>selectTopContext [
+{ #category : #'accessing context' }
+SpecDebugger >> selectTopContext [
 	stack setSelectedItem: stack list listItems first
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>selectedClass [
+{ #category : #'as yet unclassified' }
+SpecDebugger >> selectedClass [
 	^ self currentContext class
 ]
 
-{
-	#category : #'accessing context',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>selectedContext	 [
+{ #category : #'accessing context' }
+SpecDebugger >> selectedContext [	
 
 	^ self stack selectedItem
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>selectedMessage [
+{ #category : #'as yet unclassified' }
+SpecDebugger >> selectedMessage [
 	^ self selectedMethod
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>selectedMethod [
+{ #category : #'as yet unclassified' }
+SpecDebugger >> selectedMethod [
 	^ self currentContext method
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>selectedMethods [
+{ #category : #'as yet unclassified' }
+SpecDebugger >> selectedMethods [
 	^ self stack selectedItem asOrderedCollection 
 ]
 
-{
-	#category : #'old - public',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>send [
+{ #category : #'old - public' }
+SpecDebugger >> send [
 	
 	self okToChange ifTrue: [  
 		self session stepInto: self currentContext ]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>session [
+{ #category : #accessing }
+SpecDebugger >> session [
 
 	^ sessionHolder value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>session: aSession [
+{ #category : #accessing }
+SpecDebugger >> session: aSession [
 
 	sessionHolder value: aSession.
 	self label: aSession name asString
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>setFocusOrder [
+{ #category : #initialization }
+SpecDebugger >> setFocusOrder [
 
 	self focusOrder 
 		removeAll;
@@ -657,48 +491,33 @@ SpecDebugger>>setFocusOrder [
 		add: contextInspector
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>stack [
+{ #category : #'accessing widgets' }
+SpecDebugger >> stack [
 
 	^ stack
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>title [
+{ #category : #api }
+SpecDebugger >> title [
 
 	^ ((self session isContextPostMortem: self interruptedContext)  
 			ifTrue: [ 'PostMortem: ' ]
 			ifFalse: [ '' ]), (self label ifNil: [ '' ])
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>toolbar [
+{ #category : #'accessing widgets' }
+SpecDebugger >> toolbar [
 
 	^ toolbar
 ]
 
-{
-	#category : #'updating widgets',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>updateCodeFromContext [
+{ #category : #'updating widgets' }
+SpecDebugger >> updateCodeFromContext [
 self updateCodeFromContext:self currentContext
 ]
 
-{
-	#category : #'updating widgets',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>updateCodeFromContext: aContext  [
+{ #category : #'updating widgets' }
+SpecDebugger >> updateCodeFromContext: aContext [ 
 
 	aContext 
 		ifNil: [
@@ -718,11 +537,8 @@ SpecDebugger>>updateCodeFromContext: aContext  [
 				setSelection: selectionInterval ]
 ]
 
-{
-	#category : #'updating actions',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>updateContextChanged [
+{ #category : #'updating actions' }
+SpecDebugger >> updateContextChanged [
 	|selection|
 	
 	selection := self stack selectedItem.
@@ -730,11 +546,8 @@ SpecDebugger>>updateContextChanged [
 	self stack setSelectedItem: selection
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>updateContextInspectorFromContext: aContext [
+{ #category : #updating }
+SpecDebugger >> updateContextInspectorFromContext: aContext [
 	| oldSelection newSelectionIndex   |
 	
 	oldSelection := contextInspector list selectedItem.
@@ -750,20 +563,14 @@ SpecDebugger>>updateContextInspectorFromContext: aContext [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>updateInspectorsFromContext: aContext [
+{ #category : #updating }
+SpecDebugger >> updateInspectorsFromContext: aContext [
 	self updateContextInspectorFromContext: aContext.
 	self updateReceiverInspectorFromContext: aContext.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>updateReceiverInspectorFromContext: aContext [
+{ #category : #updating }
+SpecDebugger >> updateReceiverInspectorFromContext: aContext [
 	| receiver oldSelection newSelectionIndex   |
 
 	oldSelection := receiverInspector inspector ifNotNil: [ :inspector | inspector list selectedItem ].
@@ -781,87 +588,60 @@ SpecDebugger>>updateReceiverInspectorFromContext: aContext [
 
 ]
 
-{
-	#category : #'updating actions',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>updateRestart [
+{ #category : #'updating actions' }
+SpecDebugger >> updateRestart [
 
 	self updateStep 
 	
 ]
 
-{
-	#category : #'updating actions',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>updateResume [
+{ #category : #'updating actions' }
+SpecDebugger >> updateResume [
 
 	
 ]
 
-{
-	#category : #'updating widgets',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>updateStackFromSession: aSession [
+{ #category : #'updating widgets' }
+SpecDebugger >> updateStackFromSession: aSession [
 	
 	self stack session: aSession.
 ]
 
-{
-	#category : #'updating actions',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>updateStep [
+{ #category : #'updating actions' }
+SpecDebugger >> updateStep [
 
 	self updateStackFromSession: self session.
 	
 
 ]
 
-{
-	#category : #'updating actions',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>updateStepInto [
+{ #category : #'updating actions' }
+SpecDebugger >> updateStepInto [
 
 	self updateStep 
 ]
 
-{
-	#category : #'updating actions',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>updateStepOver [
+{ #category : #'updating actions' }
+SpecDebugger >> updateStepOver [
 
 	self updateStep 
 	
 ]
 
-{
-	#category : #'updating actions',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>updateStepThrough [
+{ #category : #'updating actions' }
+SpecDebugger >> updateStepThrough [
 
 	self updateStep 
 ]
 
-{
-	#category : #'updating widgets',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>updateToolbar [
+{ #category : #'updating widgets' }
+SpecDebugger >> updateToolbar [
 	
 	self toolbar update
 ]
 
-{
-	#category : #'updating widgets',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugger>>updateToolbarFromSession: aSession [
+{ #category : #'updating widgets' }
+SpecDebugger >> updateToolbarFromSession: aSession [
 
 	self toolbar session: aSession.
 ]

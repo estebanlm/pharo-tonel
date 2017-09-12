@@ -4,15 +4,11 @@ SUnit tests for weak announcements
 Class {
 	#name : #WeakAnnouncerTest,
 	#superclass : #AnnouncerTest,
-	#category : #Announcements-Tests-Core-Tests,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:15'
+	#category : #Announcements-Tests-Core-Tests
 }
 
-{
-	#category : #benchmarks,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-WeakAnnouncerTest>>benchManyWeakGuys [
+{ #category : #benchmarks }
+WeakAnnouncerTest >> benchManyWeakGuys [
 
 	| object ann time |
 	
@@ -33,11 +29,8 @@ WeakAnnouncerTest>>benchManyWeakGuys [
 	^ time
 ]
 
-{
-	#category : #benchmarks,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-WeakAnnouncerTest>>benchWeakSubscriptionDynamic [
+{ #category : #benchmarks }
+WeakAnnouncerTest >> benchWeakSubscriptionDynamic [
 
 	" run me to see how expensive becomeForward: is (compared to #benchWeakSubscriptionStatic ) "
 	| object ann |
@@ -50,11 +43,8 @@ WeakAnnouncerTest>>benchWeakSubscriptionDynamic [
 	] timeToRun
 ]
 
-{
-	#category : #benchmarks,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-WeakAnnouncerTest>>benchWeakSubscriptionStatic [
+{ #category : #benchmarks }
+WeakAnnouncerTest >> benchWeakSubscriptionStatic [
 
 	" run me to see how cheap object creation is (compared to #benchWeakSubscriptionDynamic ) "
 	| object ann |
@@ -67,11 +57,8 @@ WeakAnnouncerTest>>benchWeakSubscriptionStatic [
 	] timeToRun
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-WeakAnnouncerTest>>testNoDeadWeakSubscriptions [
+{ #category : #'as yet unclassified' }
+WeakAnnouncerTest >> testNoDeadWeakSubscriptions [
 
 	5 timesRepeat: [ Smalltalk garbageCollect ].
 	
@@ -80,11 +67,8 @@ WeakAnnouncerTest>>testNoDeadWeakSubscriptions [
 	self assert: (LegacyWeakSubscription allSubInstances select: [ :sub | sub subscriber isNil ]) size isZero
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-WeakAnnouncerTest>>testNoWeakBlock [
+{ #category : #testing }
+WeakAnnouncerTest >> testNoWeakBlock [
 	"There is no such thing as a weak block, these things never go away."
 
 	<expectedFailure>
@@ -103,11 +87,8 @@ WeakAnnouncerTest>>testNoWeakBlock [
 	self assert: counter = 2
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-WeakAnnouncerTest>>testWeakDoubleAnnouncer [
+{ #category : #'as yet unclassified' }
+WeakAnnouncerTest >> testWeakDoubleAnnouncer [
 
 	| a1 a2 o |
 	
@@ -142,11 +123,8 @@ WeakAnnouncerTest>>testWeakDoubleAnnouncer [
 	assert: a2 subscriptions numberOfSubscriptions isZero.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-WeakAnnouncerTest>>testWeakObject [
+{ #category : #testing }
+WeakAnnouncerTest >> testWeakObject [
 	| counter collector forwarder |
 	counter := 0.
 	collector := [ counter := counter + 1 ].
@@ -165,11 +143,8 @@ WeakAnnouncerTest>>testWeakObject [
 	self assert: counter = 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-WeakAnnouncerTest>>testWeakSubscription [
+{ #category : #testing }
+WeakAnnouncerTest >> testWeakSubscription [
 	| obj  subscription |
 	
 	obj := Object new.
@@ -180,11 +155,8 @@ WeakAnnouncerTest>>testWeakSubscription [
 	self assert: (obj == subscription subscriber).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-WeakAnnouncerTest>>testWeakSubscriptionRelease [
+{ #category : #testing }
+WeakAnnouncerTest >> testWeakSubscriptionRelease [
 	"This test shows the a problem with weak registrations not garbage collected in Spur.
 	See https://pharo.fogbugz.com/f/cases/17537/SystemAnnouncer-has-far-too-many-subscriptions for more details."
 	self benchManyWeakGuys

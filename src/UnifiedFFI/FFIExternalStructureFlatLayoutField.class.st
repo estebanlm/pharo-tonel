@@ -10,70 +10,45 @@ Class {
 		'size',
 		'alignment'
 	],
-	#category : #UnifiedFFI,
-	#timestamp : 'RonieSalgado 2/14/2017 01:54'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayoutField>>alignment [
+{ #category : #accessing }
+FFIExternalStructureFlatLayoutField >> alignment [
 	^ alignment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayoutField>>alignment: anObject [
+{ #category : #accessing }
+FFIExternalStructureFlatLayoutField >> alignment: anObject [
 	alignment := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayoutField>>offset [
+{ #category : #accessing }
+FFIExternalStructureFlatLayoutField >> offset [
 	^ offset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayoutField>>offset: anObject [
+{ #category : #accessing }
+FFIExternalStructureFlatLayoutField >> offset: anObject [
 	offset := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayoutField>>registerClass [
+{ #category : #accessing }
+FFIExternalStructureFlatLayoutField >> registerClass [
 	^ registerClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayoutField>>registerClass: anObject [
+{ #category : #accessing }
+FFIExternalStructureFlatLayoutField >> registerClass: anObject [
 	registerClass := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayoutField>>size [
+{ #category : #accessing }
+FFIExternalStructureFlatLayoutField >> size [
 	^ size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFlatLayoutField>>size: anObject [
+{ #category : #accessing }
+FFIExternalStructureFlatLayoutField >> size: anObject [
 	size := anObject
 ]

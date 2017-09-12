@@ -7,34 +7,24 @@ Class {
 	#instVars : [
 		'classAndMethod'
 	],
-	#category : #Text-Core,
-	#timestamp : 'TorstenBergmann 1/31/2014 12:18'
+	#category : #Text-Core
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextLink class>>scanFrom: strm [
+{ #category : #'as yet unclassified' }
+TextLink class >> scanFrom: strm [
 	"read a link in the funny format used by Text styles on files. LPoint +;LPoint Comment;"
 
 	^ self new classAndMethod: (strm upTo: $;)
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextLink>>= anotherObject [
+{ #category : #comparing }
+TextLink >> = anotherObject [
 
 	^self class == anotherObject class and: [ classAndMethod = anotherObject info ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextLink>>analyze: aString [
+{ #category : #testing }
+TextLink >> analyze: aString [
 
 	| list |
 	list := super analyze: aString.
@@ -42,11 +32,8 @@ TextLink>>analyze: aString [
 	^ list at: 2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextLink>>analyze: aString with: nonMethod [
+{ #category : #testing }
+TextLink >> analyze: aString with: nonMethod [
 	"Initalize this attribute holder with a piece text the user typed into a paragraph.  Returns the text to emphesize (may be different from selection)  Does not return self!.  nonMethod is what to show when clicked, i.e. the last part of specifier (Comment, Definition, or Hierarchy).  May be of the form:
 Point
 <Point>
@@ -79,53 +66,35 @@ Click Here<Point>
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextLink>>classAndMethod: aString [
+{ #category : #accessing }
+TextLink >> classAndMethod: aString [
 	classAndMethod := aString
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextLink>>hash [
+{ #category : #comparing }
+TextLink >> hash [
 
 	^(self class hash + classAndMethod hash) hashMultiply 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextLink>>info [
+{ #category : #accessing }
+TextLink >> info [
 	^ classAndMethod
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextLink>>mayActOnEvent: anEvent [
+{ #category : #testing }
+TextLink >> mayActOnEvent: anEvent [
 	^ anEvent isMouseUp and: [ anEvent commandKeyPressed ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextLink>>mayHaveExternalReferences [
+{ #category : #testing }
+TextLink >> mayHaveExternalReferences [
 	"Text links can keep references to external objects like AST nodes"
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextLink>>validate: specString [
+{ #category : #testing }
+TextLink >> validate: specString [
 	"Can this string be decoded to be Class space Method (or Comment, Definition, Hierarchy)? If so, return it in valid format, else nil"
 
 	| list first mid last |
@@ -155,11 +124,8 @@ TextLink>>validate: specString [
 	^ first , ' ' , mid , last
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextLink>>writeScanOn: strm [
+{ #category : #styling }
+TextLink >> writeScanOn: strm [
 
 	strm nextPut: $L; nextPutAll: classAndMethod; nextPut: $;
 ]

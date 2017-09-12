@@ -8,95 +8,64 @@ Class {
 		'tags',
 		'content'
 	],
-	#category : #Ombu-Entries,
-	#timestamp : 'MartinDias 4/14/2014 23:26'
+	#category : #Ombu-Entries
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntry class>>content: anObject [
+{ #category : #'instance creation' }
+OmEntry class >> content: anObject [
 	^ self basicNew 
 		initializeWithContent: anObject;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntry>>= other [
+{ #category : #comparing }
+OmEntry >> = other [
 	^ other species = self species and: [ 
 		other content = self content ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntry>>content [
+{ #category : #accessing }
+OmEntry >> content [
 	^ content
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntry>>content: anObject  [
+{ #category : #accessing }
+OmEntry >> content: anObject [ 
 	content := anObject
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntry>>hash [
+{ #category : #comparing }
+OmEntry >> hash [
 	^ self species hash bitXor: self content hash
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntry>>initializeWithContent: anObject [
+{ #category : #initialize-release }
+OmEntry >> initializeWithContent: anObject [
 	self initialize.
 	content := anObject.
 	tags := Dictionary new.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntry>>isEmpty [
+{ #category : #testing }
+OmEntry >> isEmpty [
 	^ false
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntry>>printOn: aStream [
+{ #category : #printing }
+OmEntry >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut: $(.
 	content printOn: aStream.
 	aStream nextPut: $).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntry>>tagAt: aKey [
+{ #category : #accessing }
+OmEntry >> tagAt: aKey [
 
 	^ self tags at: aKey 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntry>>tags [
+{ #category : #accessing }
+OmEntry >> tags [
 	^ tags
 ]

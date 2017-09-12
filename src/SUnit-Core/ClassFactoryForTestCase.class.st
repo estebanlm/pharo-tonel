@@ -28,15 +28,11 @@ Class {
 	#classVars : [
 		'Counter'
 	],
-	#category : #SUnit-Core-Extensions,
-	#timestamp : 'LaurentLaffont 4/15/2011 20:20'
+	#category : #SUnit-Core-Extensions
 }
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>cleanUp [
+{ #category : #cleaning }
+ClassFactoryForTestCase >> cleanUp [
 	| createdClassNames createdTraitNames |
 	createdClassNames := self createdClassNames.
 	createdTraitNames := self createdTraitNames.
@@ -47,11 +43,8 @@ ClassFactoryForTestCase>>cleanUp [
 	self cleanUpChangeSetForClassNames: createdTraitNames
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>cleanUpChangeSetForClassNames: classeNames [
+{ #category : #cleaning }
+ClassFactoryForTestCase >> cleanUpChangeSetForClassNames: classeNames [
 
 	self class environment at: #ChangeSet ifPresent: [ :aChangeSetClass |
 		| changeSet |
@@ -62,67 +55,43 @@ ClassFactoryForTestCase>>cleanUpChangeSetForClassNames: classeNames [
 				removeClassChanges: name, ' class'] ]..	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>createdClassNames [
+{ #category : #accessing }
+ClassFactoryForTestCase >> createdClassNames [
 	^self createdClasses collect: [:class| class name]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>createdClasses [
+{ #category : #accessing }
+ClassFactoryForTestCase >> createdClasses [
 	^createdClasses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>createdTraitNames [
+{ #category : #accessing }
+ClassFactoryForTestCase >> createdTraitNames [
 	^self createdTraits collect: [:trait | trait name]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>createdTraits [
+{ #category : #accessing }
+ClassFactoryForTestCase >> createdTraits [
 	^createdTraits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>defaultCategory [
+{ #category : #accessing }
+ClassFactoryForTestCase >> defaultCategory [
 	^ (self packageName , '-', self defaultCategoryPostfix) asSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>defaultCategoryPostfix [
+{ #category : #accessing }
+ClassFactoryForTestCase >> defaultCategoryPostfix [
 	^ #Default
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>defaultSuperclass  [
+{ #category : #accessing }
+ClassFactoryForTestCase >> defaultSuperclass [ 
 	^Object
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>delete: aBehavior [
+{ #category : #cleaning }
+ClassFactoryForTestCase >> delete: aBehavior [
 	aBehavior isObsolete
 		ifTrue: [ ^ self ].
 	self class environment at: #ChangeSet ifPresent: [ 
@@ -132,48 +101,33 @@ ClassFactoryForTestCase>>delete: aBehavior [
 		ifFalse: [ aBehavior removeFromSystem ].
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>deleteClass: aClass [
+{ #category : #cleaning }
+ClassFactoryForTestCase >> deleteClass: aClass [
 	self createdClasses remove: aClass.
 	self delete: aClass.
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>deleteClasses [
+{ #category : #cleaning }
+ClassFactoryForTestCase >> deleteClasses [
 	self createdClasses do: [:class|
 		self delete: class]
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>deletePackage [
+{ #category : #cleaning }
+ClassFactoryForTestCase >> deletePackage [
 	| categoriesMatchString |
 	categoriesMatchString := self packageName, '-*'.
 	SystemOrganization removeCategoriesMatching: categoriesMatchString
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>deleteTraits [
+{ #category : #cleaning }
+ClassFactoryForTestCase >> deleteTraits [
 	self createdTraits do: [:trait|
 		self delete: trait]
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>duplicateClass: aClass withNewName: name [
+{ #category : #creating }
+ClassFactoryForTestCase >> duplicateClass: aClass withNewName: name [
 	| newClass |
 	
 	newClass := aClass duplicateClassWithNewName: name.
@@ -182,33 +136,24 @@ ClassFactoryForTestCase>>duplicateClass: aClass withNewName: name [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>initialize [
+{ #category : #initialization }
+ClassFactoryForTestCase >> initialize [
 	super initialize.
 	createdClasses := IdentitySet new.
 	createdTraits := IdentitySet new.
 	createdSilently := IdentitySet new.
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>newClass [
+{ #category : #creating }
+ClassFactoryForTestCase >> newClass [
 	^ self 
 		newSubclassOf: self defaultSuperclass
 		instanceVariableNames: ''
 		classVariableNames: ''
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>newClassInCategory: category [
+{ #category : #creating }
+ClassFactoryForTestCase >> newClassInCategory: category [
 	^ self
 		newSubclassOf: self defaultSuperclass
 		instanceVariableNames: ''
@@ -216,21 +161,15 @@ ClassFactoryForTestCase>>newClassInCategory: category [
 		category: category
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>newClassName [
+{ #category : #creating }
+ClassFactoryForTestCase >> newClassName [
 	| postFix |
 	postFix := self nextCount printString.
 	^(#ClassForTestToBeDeleted, postFix) asSymbol.
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>newClassUsing: aTraitComposition [
+{ #category : #creating }
+ClassFactoryForTestCase >> newClassUsing: aTraitComposition [
 	^self 
 		newSubclassOf: self defaultSuperclass 
 		uses: aTraitComposition 
@@ -239,11 +178,8 @@ ClassFactoryForTestCase>>newClassUsing: aTraitComposition [
 		category: self defaultCategoryPostfix.
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>newSubclassOf: aClass instanceVariableNames: ivNamesString classVariableNames:  classVarsString  [
+{ #category : #creating }
+ClassFactoryForTestCase >> newSubclassOf: aClass instanceVariableNames: ivNamesString classVariableNames:  classVarsString [ 
 	^self 
 		newSubclassOf: aClass 
 		uses: { }
@@ -252,11 +188,8 @@ ClassFactoryForTestCase>>newSubclassOf: aClass instanceVariableNames: ivNamesStr
 		category: self defaultCategoryPostfix
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>newSubclassOf: aClass instanceVariableNames: ivNamesString classVariableNames:  classVarsString category: category [
+{ #category : #creating }
+ClassFactoryForTestCase >> newSubclassOf: aClass instanceVariableNames: ivNamesString classVariableNames:  classVarsString category: category [
 	^self 
 		newSubclassOf: aClass 
 		uses: { } 
@@ -265,11 +198,8 @@ ClassFactoryForTestCase>>newSubclassOf: aClass instanceVariableNames: ivNamesStr
 		category: category.
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>newSubclassOf: aClass uses: aTraitComposition instanceVariableNames: ivNamesString classVariableNames:  classVarsString category: category [
+{ #category : #creating }
+ClassFactoryForTestCase >> newSubclassOf: aClass uses: aTraitComposition instanceVariableNames: ivNamesString classVariableNames:  classVarsString category: category [
 	^self
 		newSubclassOf: aClass 
 		uses: aTraitComposition
@@ -279,11 +209,8 @@ ClassFactoryForTestCase>>newSubclassOf: aClass uses: aTraitComposition instanceV
 		category: category
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>newSubclassOf: aClass uses: aTraitComposition instanceVariableNames: ivNamesString classVariableNames:  classVarsString poolDictionaries: poolNamesString category: category [
+{ #category : #creating }
+ClassFactoryForTestCase >> newSubclassOf: aClass uses: aTraitComposition instanceVariableNames: ivNamesString classVariableNames:  classVarsString poolDictionaries: poolNamesString category: category [
 	| newClass |
 	newClass := aClass 
 		subclass: self newClassName 
@@ -296,11 +223,8 @@ ClassFactoryForTestCase>>newSubclassOf: aClass uses: aTraitComposition instanceV
 	^newClass
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>newSubclassOf: aClass using: aTraitComposition [
+{ #category : #creating }
+ClassFactoryForTestCase >> newSubclassOf: aClass using: aTraitComposition [
 	^self 
 		newSubclassOf: aClass
 		uses: aTraitComposition 
@@ -309,43 +233,31 @@ ClassFactoryForTestCase>>newSubclassOf: aClass using: aTraitComposition [
 		category: self defaultCategoryPostfix.
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>newTrait [
+{ #category : #creating }
+ClassFactoryForTestCase >> newTrait [
 	^ self
 		newTraitNamed: self newTraitName
 		uses: Array new
 		category: self defaultCategoryPostfix
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>newTraitInCategory: category [
+{ #category : #creating }
+ClassFactoryForTestCase >> newTraitInCategory: category [
 	^ self
 		newTraitNamed: self newTraitName
 		uses: Array new
 		category: category asSymbol.
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>newTraitName [
+{ #category : #creating }
+ClassFactoryForTestCase >> newTraitName [
 	| postFix |
 	postFix := (self createdTraits size + 1) printString.
 	^(#TraitForTestToBeDeleted, postFix) asSymbol
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>newTraitNamed: aTraitName uses: aTraitComposition category: aCategory [
+{ #category : #creating }
+ClassFactoryForTestCase >> newTraitNamed: aTraitName uses: aTraitComposition category: aCategory [
 	| newTrait |
 	
 	newTrait := Trait 
@@ -358,39 +270,27 @@ ClassFactoryForTestCase>>newTraitNamed: aTraitName uses: aTraitComposition categ
 	^newTrait.
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>newTraitUsing: aTraitComposition. [
+{ #category : #creating }
+ClassFactoryForTestCase >> newTraitUsing: aTraitComposition. [
 	^self 
 		newTraitNamed: self newTraitName 
 		uses: aTraitComposition 
 		category: self defaultCategoryPostfix.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>nextCount [
+{ #category : #accessing }
+ClassFactoryForTestCase >> nextCount [
 	"Global counter to avoid name clash between test runs, in case of some previous failure."
 	^Counter := (Counter ifNil: [ 0 ]) + 1.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>packageName [
+{ #category : #accessing }
+ClassFactoryForTestCase >> packageName [
 	^#CategoryForTestToBeDeleted
 ]
 
-{
-	#category : #'creating - silently',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>silentlyNewClassInCategory: category [
+{ #category : #'creating - silently' }
+ClassFactoryForTestCase >> silentlyNewClassInCategory: category [
 	^ self
 		silentlyNewSubclassOf: self defaultSuperclass
 		instanceVariableNames: ''
@@ -398,11 +298,8 @@ ClassFactoryForTestCase>>silentlyNewClassInCategory: category [
 		category: category
 ]
 
-{
-	#category : #'creating - silently',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>silentlyNewSubclassOf: aClass instanceVariableNames: ivNamesString classVariableNames: classVarsString [
+{ #category : #'creating - silently' }
+ClassFactoryForTestCase >> silentlyNewSubclassOf: aClass instanceVariableNames: ivNamesString classVariableNames: classVarsString [
 	^ self
 		silentlyNewSubclassOf: aClass
 		instanceVariableNames: ivNamesString
@@ -410,11 +307,8 @@ ClassFactoryForTestCase>>silentlyNewSubclassOf: aClass instanceVariableNames: iv
 		category: self defaultCategoryPostfix
 ]
 
-{
-	#category : #'creating - silently',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>silentlyNewSubclassOf: aClass instanceVariableNames: ivNamesString classVariableNames:  classVarsString category: category [
+{ #category : #'creating - silently' }
+ClassFactoryForTestCase >> silentlyNewSubclassOf: aClass instanceVariableNames: ivNamesString classVariableNames:  classVarsString category: category [
 
 	|  newClass |
 	SystemAnnouncer uniqueInstance suspendAllWhile: [
@@ -432,11 +326,8 @@ ClassFactoryForTestCase>>silentlyNewSubclassOf: aClass instanceVariableNames: iv
 	
 ]
 
-{
-	#category : #'creating - silently',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>silentlyNewSubclassOf: aClass instanceVariableNames: ivNamesString classVariableNames:  classVarsString package: packageName [
+{ #category : #'creating - silently' }
+ClassFactoryForTestCase >> silentlyNewSubclassOf: aClass instanceVariableNames: ivNamesString classVariableNames:  classVarsString package: packageName [
 
 	|  newClass |
 	SystemAnnouncer uniqueInstance suspendAllWhile: [
@@ -454,19 +345,13 @@ ClassFactoryForTestCase>>silentlyNewSubclassOf: aClass instanceVariableNames: iv
 	
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>withNotificationsNewClass [
+{ #category : #creating }
+ClassFactoryForTestCase >> withNotificationsNewClass [
 	^  self withNotificationsNewClassWithInstanceVariableNames: ''
 ]
 
-{
-	#category : #creating,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCase>>withNotificationsNewClassWithInstanceVariableNames: instanceVariableNames [
+{ #category : #creating }
+ClassFactoryForTestCase >> withNotificationsNewClassWithInstanceVariableNames: instanceVariableNames [
 	^ self
 		newSubclassOf: Object
 		instanceVariableNames: instanceVariableNames

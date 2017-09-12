@@ -8,25 +8,18 @@ Class {
 		'surface',
 		'session'
 	],
-	#category : #Athens-Morphic,
-	#timestamp : 'SeanDeNigris 4/26/2015 14:51'
+	#category : #Athens-Morphic
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrapMorph>>athensSurface [
+{ #category : #accessing }
+AthensWrapMorph >> athensSurface [
 	self checkSurface.
 	
 	^ surface
 ]
 
-{
-	#category : #'surface management',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrapMorph>>checkSurface [
+{ #category : #'surface management' }
+AthensWrapMorph >> checkSurface [
 
 	session == Smalltalk session ifFalse: [ 
 		self initializeForNewSession
@@ -39,40 +32,28 @@ AthensWrapMorph>>checkSurface [
 
 ]
 
-{
-	#category : #'surface management',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrapMorph>>createSurface [
+{ #category : #'surface management' }
+AthensWrapMorph >> createSurface [
 	| extent |
 	extent := bounds extent asIntegerPoint.
 	surface := AthensCairoSurface extent: extent.
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrapMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+AthensWrapMorph >> drawOn: aCanvas [
 
 	"do nothing"
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrapMorph>>drawOnAthensCanvas: aCanvas [
+{ #category : #drawing }
+AthensWrapMorph >> drawOnAthensCanvas: aCanvas [
 
 	"do nothing"
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrapMorph>>fullDrawOn: aCanvas [
+{ #category : #drawing }
+AthensWrapMorph >> fullDrawOn: aCanvas [
 
 	"Draw the full Morphic structure on the given Canvas"
 
@@ -93,11 +74,8 @@ AthensWrapMorph>>fullDrawOn: aCanvas [
 	]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrapMorph>>fullDrawOnAthensCanvas: anAthensCanvas  [
+{ #category : #drawing }
+AthensWrapMorph >> fullDrawOnAthensCanvas: anAthensCanvas [ 
 	"Draw the full Morphic structure on the given Canvas"
 
 	self visible ifFalse: [^ self].
@@ -110,29 +88,20 @@ AthensWrapMorph>>fullDrawOnAthensCanvas: anAthensCanvas  [
 
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrapMorph>>handlesMouseDown: evt [
+{ #category : #'events handling' }
+AthensWrapMorph >> handlesMouseDown: evt [
 	^ true 
 ]
 
-{
-	#category : #'surface management',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrapMorph>>initializeForNewSession [
+{ #category : #'surface management' }
+AthensWrapMorph >> initializeForNewSession [
 	self createSurface.
 	session := Smalltalk session.
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrapMorph>>render [
+{ #category : #drawing }
+AthensWrapMorph >> render [
 	surface drawDuring: [ :canvas |
 		surface clear.
 		canvas pathTransform restoreAfter: [ 

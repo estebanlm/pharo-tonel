@@ -24,15 +24,11 @@ Class {
 		'oldSelector',
 		'newSelector'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 13:20'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'intance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBDeprecateMethodRefactoring class>>model: aRBSmalltalk deprecateMethod: aSelector in: aClass using: newSelector [
+{ #category : #'intance creation' }
+RBDeprecateMethodRefactoring class >> model: aRBSmalltalk deprecateMethod: aSelector in: aClass using: newSelector [
 	^(self new)
 		model: aRBSmalltalk;
 		deprecateMethod: aSelector
@@ -41,21 +37,15 @@ RBDeprecateMethodRefactoring class>>model: aRBSmalltalk deprecateMethod: aSelect
 		yourself
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBDeprecateMethodRefactoring>>deprecateMethod: aSelector in: aClass using: newSel [
+{ #category : #transforming }
+RBDeprecateMethodRefactoring >> deprecateMethod: aSelector in: aClass using: newSel [
 	oldSelector := aSelector.
 	newSelector := newSel.
 	class := self classObjectFor: aClass
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBDeprecateMethodRefactoring>>formNameFor: aSelector [
+{ #category : #transforming }
+RBDeprecateMethodRefactoring >> formNameFor: aSelector [
 	| method keywords arguments |
 	method := class methodFor: aSelector.
 	keywords := method parseTree keywords asOrderedCollection ifNil: [ '' ].
@@ -69,27 +59,18 @@ RBDeprecateMethodRefactoring>>formNameFor: aSelector [
 
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBDeprecateMethodRefactoring>>formNewName [
+{ #category : #transforming }
+RBDeprecateMethodRefactoring >> formNewName [
 	^ self formNameFor: newSelector
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBDeprecateMethodRefactoring>>formOldName [
+{ #category : #transforming }
+RBDeprecateMethodRefactoring >> formOldName [
 	^ self formNameFor: oldSelector
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBDeprecateMethodRefactoring>>preconditions [
+{ #category : #preconditions }
+RBDeprecateMethodRefactoring >> preconditions [
 	| newCondition |
 	newCondition := (RBCondition 
 							withBlock: [oldSelector numArgs = newSelector numArgs or: [ newSelector numArgs = 0 ]]
@@ -97,11 +78,8 @@ RBDeprecateMethodRefactoring>>preconditions [
 	^newCondition
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBDeprecateMethodRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBDeprecateMethodRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream
@@ -115,11 +93,8 @@ RBDeprecateMethodRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBDeprecateMethodRefactoring>>transform [
+{ #category : #transforming }
+RBDeprecateMethodRefactoring >> transform [
 	| protocol deprecatedSource |
 	protocol := (class methodFor: newSelector) protocols.
 	deprecatedSource := self formOldName , String cr , String tab

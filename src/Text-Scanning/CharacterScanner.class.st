@@ -134,15 +134,11 @@ Class {
 	#pools : [
 		'TextConstants'
 	],
-	#category : #Text-Scanning,
-	#timestamp : 'nice 10/22/2013 20:04'
+	#category : #Text-Scanning
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner class>>initialize [
+{ #category : #'class initialization' }
+CharacterScanner class >> initialize [
 "
 	CharacterScanner initialize
 "
@@ -172,29 +168,20 @@ CharacterScanner class>>initialize [
 		yourself
 ]
 
-{
-	#category : #'text attributes',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>addEmphasis: code [
+{ #category : #'text attributes' }
+CharacterScanner >> addEmphasis: code [
 	"Set the bold-ital-under-strike emphasis."
 	emphasisCode := emphasisCode bitOr: code
 ]
 
-{
-	#category : #'text attributes',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>addKern: kernDelta [
+{ #category : #'text attributes' }
+CharacterScanner >> addKern: kernDelta [
 	"Set the current kern amount."
 	kern := kern + kernDelta
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>advanceIfFirstCharOfLine [
+{ #category : #private }
+CharacterScanner >> advanceIfFirstCharOfLine [
 	lastIndex = line first
 		ifTrue:
 			[destX := destX + pendingKernX + (font widthOf: (text at: line first)).
@@ -202,11 +189,8 @@ CharacterScanner>>advanceIfFirstCharOfLine [
 			pendingKernX := 0].
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>basicScanByteCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX  [
+{ #category : #scanning }
+CharacterScanner >> basicScanByteCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX [ 
 "this is a scanning method for
 single byte characters in a ByteString
 a font that does not do character-pair kerning"
@@ -233,21 +217,15 @@ a font that does not do character-pair kerning"
 
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>columnBreak [
+{ #category : #'stop conditions' }
+CharacterScanner >> columnBreak [
 
 	pendingKernX := 0.
 	^true
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>embeddedObject [
+{ #category : #'stop conditions' }
+CharacterScanner >> embeddedObject [
 	pendingKernX := 0.
 	text attributesAt: lastIndex do:[:attr| 
 		attr anchoredMorph ifNotNil:[
@@ -258,68 +236,47 @@ CharacterScanner>>embeddedObject [
 	^false
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>handleEndOfRunAt: stopIndex [
+{ #category : #'stop conditions' }
+CharacterScanner >> handleEndOfRunAt: stopIndex [
 	" make sure the lastIndex is set to stopIndex and then return the stopCondition for endOfRun; important for  a couple of outside users"
 
 	lastIndex := stopIndex.
 	^#endOfRun
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>handleIndentation [
+{ #category : #private }
+CharacterScanner >> handleIndentation [
 	self indentationLevel timesRepeat: [
 		destX := self plainTab]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>indentationLevel [
+{ #category : #private }
+CharacterScanner >> indentationLevel [
 	"return the number of tabs that are currently being placed at the beginning of each line"
 	^indentationLevel ifNil:[0]
 ]
 
-{
-	#category : #'text attributes',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>indentationLevel: anInteger [
+{ #category : #'text attributes' }
+CharacterScanner >> indentationLevel: anInteger [
 	"set the number of tabs to put at the beginning of each line"
 	indentationLevel := anInteger
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>initialize [
+{ #category : #initialize }
+CharacterScanner >> initialize [
 	destX := destY := leftMargin := 0.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>leadingTab [
+{ #category : #private }
+CharacterScanner >> leadingTab [
 	"return true if only tabs lie to the left"
 	line first to: lastIndex do:
 		[:i | (text at: i) == Tab ifFalse: [^ false]].
 	^ true
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>measureString: aString inFont: aFont from: startIndex to: stopIndex [
+{ #category : #scanning }
+CharacterScanner >> measureString: aString inFont: aFont from: startIndex to: stopIndex [
 	"Measure aString width in given font aFont.
 	The string shall not include line breaking, tab or other control character."
 	destX := destY := lastIndex := 0.
@@ -332,20 +289,14 @@ CharacterScanner>>measureString: aString inFont: aFont from: startIndex to: stop
 	^destX
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>placeEmbeddedObject: anchoredMorph [
+{ #category : #private }
+CharacterScanner >> placeEmbeddedObject: anchoredMorph [
 	"Place the anchoredMorph or return false if it cannot be placed"
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>plainTab [
+{ #category : #private }
+CharacterScanner >> plainTab [
 	"This is the basic method of adjusting destX for a tab.
 	Answer the next destX"
 	pendingKernX := 0.
@@ -358,11 +309,8 @@ CharacterScanner>>plainTab [
 				rightMargin: rightMargin].
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>primScanCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX stopConditions: stops kern: kernDelta [
+{ #category : #scanning }
+CharacterScanner >> primScanCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX stopConditions: stops kern: kernDelta [
 	"Primitive. This is the inner loop of text display--but see 
 	scanCharactersFrom: to:rightX: which would get the string, 
 	stopConditions and displaying from the instance. March through source 
@@ -378,11 +326,8 @@ CharacterScanner>>primScanCharactersFrom: startIndex to: stopIndex in: sourceStr
 	^self basicScanByteCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX 
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>scanByteCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX  [
+{ #category : #scanning }
+CharacterScanner >> scanByteCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX [ 
 "this is a scanning method for
 single byte characters in a ByteString
 a font that does not do character-pair kerning"
@@ -390,27 +335,18 @@ a font that does not do character-pair kerning"
 
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>scanCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX  [
+{ #category : #scanning }
+CharacterScanner >> scanCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX [ 
 	^sourceString scanCharactersFrom: startIndex to: stopIndex with: self rightX: rightX font: font
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>scanCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX stopConditions: stops kern: kernDelta  [
+{ #category : #scanning }
+CharacterScanner >> scanCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX stopConditions: stops kern: kernDelta [ 
 	^sourceString scanCharactersFrom: startIndex to: stopIndex with: self rightX: rightX font: font
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>scanKernableByteCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX  [
+{ #category : #scanning }
+CharacterScanner >> scanKernableByteCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX [ 
 "this is a scanning method for
 single byte characters in a ByteString
 a font that does do character-pair kerning via widthAndKernedWidthOfLeft:right:into:"
@@ -466,11 +402,8 @@ a font that does do character-pair kerning via widthAndKernedWidthOfLeft:right:i
 
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>scanKernableMultibyteCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX  [
+{ #category : #scanning }
+CharacterScanner >> scanKernableMultibyteCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX [ 
 "this is a scanning method for
 multibyte characters in a WideString
 a font that does do character-pair kerning via widthAndKernedWidthOfLeft:right:into:"
@@ -516,11 +449,8 @@ a font that does do character-pair kerning via widthAndKernedWidthOfLeft:right:i
 	^self handleEndOfRunAt: stopIndex
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>scanMultibyteCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX  [
+{ #category : #scanning }
+CharacterScanner >> scanMultibyteCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX [ 
 "this is a scanning method for
 multibyte characters in a WideString
 a font that does not do character-pair kerning"
@@ -544,11 +474,8 @@ a font that does not do character-pair kerning"
 	^self handleEndOfRunAt: stopIndex
 ]
 
-{
-	#category : #'text attributes',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>setActualFont: aFont [
+{ #category : #'text attributes' }
+CharacterScanner >> setActualFont: aFont [
 	"Set the basal font to an isolated font reference."
 
 	xTable := aFont xTable.
@@ -556,20 +483,14 @@ CharacterScanner>>setActualFont: aFont [
 	font := aFont.
 ]
 
-{
-	#category : #'text attributes',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>setAlignment: style [
+{ #category : #'text attributes' }
+CharacterScanner >> setAlignment: style [
 	alignment := style.
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>setFont [
+{ #category : #private }
+CharacterScanner >> setFont [
 	| priorFont |
 	"Set the font and other emphasis."
 	priorFont := font.
@@ -602,21 +523,15 @@ CharacterScanner>>setFont [
 	spaceWidth := font widthOf: Space.
 ]
 
-{
-	#category : #'text attributes',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>setFont: fontNumber [
+{ #category : #'text attributes' }
+CharacterScanner >> setFont: fontNumber [
 	"Set the font by number from the textStyle."
 
 	self setActualFont: (textStyle fontAt: fontNumber)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>setStopConditions [
+{ #category : #private }
+CharacterScanner >> setStopConditions [
 	"Set the font and the stop conditions for the current run."
 	
 	self setFont.
@@ -625,19 +540,13 @@ CharacterScanner>>setStopConditions [
 		ifFalse: [DefaultStopConditions]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>text: t textStyle: ts [
+{ #category : #private }
+CharacterScanner >> text: t textStyle: ts [
 	text := t.
 	textStyle := ts
 ]
 
-{
-	#category : #'text attributes',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterScanner>>textColor: ignored [
+{ #category : #'text attributes' }
+CharacterScanner >> textColor: ignored [
 	"Overridden in DisplayScanner"
 ]

@@ -4,6 +4,5 @@ For grouping package commands
 Class {
 	#name : #MBAbstractPackageCommand,
 	#superclass : #MBCommand,
-	#category : #Versionner-Core-Commands,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Commands
 }

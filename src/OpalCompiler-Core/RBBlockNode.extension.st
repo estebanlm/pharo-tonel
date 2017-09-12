@@ -1,54 +1,34 @@
-Extension {
-	#name : #RBBlockNode
-}
+Extension { #name : #RBBlockNode }
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBBlockNode>>enclosingMethodOrBlockNode [
+{ #category : #'*opalcompiler-core' }
+RBBlockNode >> enclosingMethodOrBlockNode [
 	^ parent ifNotNil: [ parent methodOrBlockNode ]
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBBlockNode>>hasBlockReturn [
+{ #category : #'*opalcompiler-core' }
+RBBlockNode >> hasBlockReturn [
 	^ self body lastIsReturn
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBBlockNode>>ir [
+{ #category : #'*OpalCompiler-Core' }
+RBBlockNode >> ir [
 
 	^ self propertyAt: #ir ifAbsent: [ self parent methodOrBlockNode ir ]
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBBlockNode>>ir: aIRMethodNode [
+{ #category : #'*OpalCompiler-Core' }
+RBBlockNode >> ir: aIRMethodNode [
 
 	^ self propertyAt: #ir put: aIRMethodNode.
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBBlockNode>>irInstruction [
+{ #category : #'*OpalCompiler-Core' }
+RBBlockNode >> irInstruction [
 	^ self parent methodOrBlockNode ir firstInstructionMatching: [:instr | instr sourceNode == self ]
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBBlockNode>>isClean [
+{ #category : #'*opalcompiler-core' }
+RBBlockNode >> isClean [
 	"a block is clean if it has no escaping vars, has no non local return and its children are clean"
 	self isInlined ifTrue: [ ^ false ].
 	self scope hasEscapingVars ifTrue: [ ^ false ].
@@ -57,11 +37,8 @@ RBBlockNode>>isClean [
 	
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBBlockNode>>isInlined [
+{ #category : #'*opalcompiler-core' }
+RBBlockNode >> isInlined [
 	parent isMessage ifFalse: [ ^ false ].
 	parent isInlineAndOr ifTrue: [^ true].
 	parent isInlineIf ifTrue: [^ true].
@@ -69,11 +46,8 @@ RBBlockNode>>isInlined [
 	^ self isInlinedLoop
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBBlockNode>>isInlinedLoop [
+{ #category : #'*opalcompiler-core' }
+RBBlockNode >> isInlinedLoop [
 	parent isMessage ifFalse: [ ^ false ].
 	parent isInlineToDo ifTrue: [^ true].
 	parent isInlineWhile ifTrue: [^ true].
@@ -84,47 +58,32 @@ RBBlockNode>>isInlinedLoop [
 	^ false
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBBlockNode>>lastIsReturn [
+{ #category : #'*opalcompiler-core' }
+RBBlockNode >> lastIsReturn [
 	^ false
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBBlockNode>>methodOrBlockNode [
+{ #category : #'*opalcompiler-core' }
+RBBlockNode >> methodOrBlockNode [
 	"^ self"
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBBlockNode>>owningScope [
+{ #category : #'*opalcompiler-core' }
+RBBlockNode >> owningScope [
 
 	^ self scope ifNil: ["inlined" ^ parent owningScope]
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBBlockNode>>sourceNodeExecutedForPC: anInteger [
+{ #category : #'*OpalCompiler-Core' }
+RBBlockNode >> sourceNodeExecutedForPC: anInteger [
 	self methodNode ir.
 	(self hasProperty: #ir) ifTrue: [ "FullBlockClosure"
 		^(self ir fullBlockInstructionForPC: anInteger) sourceNodeExecuted ].
 	^ self methodNode sourceNodeExecutedForPC: anInteger
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBBlockNode>>sourceNodeForPC: anInteger  [
+{ #category : #'*OpalCompiler-Core' }
+RBBlockNode >> sourceNodeForPC: anInteger [ 
 	self methodNode ir.
 	(self hasProperty: #ir) ifTrue: [ "FullBlockClosure"
 		^(self ir fullBlockInstructionForPC: anInteger) sourceNode ].

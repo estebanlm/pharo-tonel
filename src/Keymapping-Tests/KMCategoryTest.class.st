@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #KMCategoryTest,
 	#superclass : #AbstractKeymappingTest,
 	#instVars : [
 		'categoryContainer'
 	],
-	#category : #Keymapping-Tests,
-	#timestamp : ''
+	#category : #Keymapping-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMCategoryTest>>categoryContainer [
+{ #category : #accessing }
+KMCategoryTest >> categoryContainer [
 	^ KMFactory keymapContainer
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMCategoryTest>>testAddKeymapToCategory [
+{ #category : #tests }
+KMCategoryTest >> testAddKeymapToCategory [
 	| categoryToAdd entry |
 	categoryToAdd := KMCategory named: #TestCategory.
 	entry := KMKeymap named: #Foo shortcut: $a asKeyCombination, $b asKeyCombination, $c asKeyCombination action: [ "nothing" ].
@@ -33,11 +23,8 @@ KMCategoryTest>>testAddKeymapToCategory [
 	self assert: (categoryToAdd allEntries) size = 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMCategoryTest>>testCreateExistentCategoryFails [
+{ #category : #tests }
+KMCategoryTest >> testCreateExistentCategoryFails [
 	| categoryToAdd |
 	categoryToAdd := KMCategory named: #TestCategory.
 	
@@ -47,11 +34,8 @@ KMCategoryTest>>testCreateExistentCategoryFails [
 	self should: [self categoryContainer addCategory: categoryToAdd] raise: Error.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMCategoryTest>>testCreateUnexistentCategory [
+{ #category : #tests }
+KMCategoryTest >> testCreateUnexistentCategory [
 	| categoryToAdd |
 	categoryToAdd := KMCategory named: #TestCategory.
 	

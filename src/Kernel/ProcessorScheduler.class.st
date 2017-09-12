@@ -19,26 +19,19 @@ Class {
 		'UserInterruptPriority',
 		'UserSchedulingPriority'
 	],
-	#category : #Kernel-Processes,
-	#timestamp : '<historical>'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #'background process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler class>>idleProcess [
+{ #category : #'background process' }
+ProcessorScheduler class >> idleProcess [
 	"A default background process which is invisible."
 
 	[true] whileTrue:
 		[self relinquishProcessorForMicroseconds: 1000]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler class>>initialize [
+{ #category : #'class initialization' }
+ProcessorScheduler class >> initialize [
 	"ProcessorScheduler initialize."
 	     
 	SystemRockBottomPriority := 10.
@@ -55,11 +48,8 @@ ProcessorScheduler class>>initialize [
 		atPriority: 30.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler class>>new [
+{ #category : #'instance creation' }
+ProcessorScheduler class >> new [
 	"New instances of ProcessorScheduler should not be created."
 
 	self error:
@@ -67,11 +57,8 @@ ProcessorScheduler class>>new [
 the integrity of the system depends on a unique scheduler'
 ]
 
-{
-	#category : #'background process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler class>>relinquishProcessorForMicroseconds: anInteger [
+{ #category : #'background process' }
+ProcessorScheduler class >> relinquishProcessorForMicroseconds: anInteger [
 	"Platform specific. This primitive is used to return processor cycles to the host operating system when Pharo's idle process is running (i.e., when no other Pharo process is runnable). On some platforms, this primitive causes the entire Pharo application to sleep for approximately the given number of microseconds. No Pharo process can run while the Pharo application is sleeping, even if some external event makes it runnable. On the Macintosh, this primitive simply calls GetNextEvent() to give other applications a chance to run. On platforms without a host operating system, it does nothing. This primitive should not be used to add pauses to a Pharo process; use a Delay instead."
 
 	<primitive: 230>
@@ -79,11 +66,8 @@ ProcessorScheduler class>>relinquishProcessorForMicroseconds: anInteger [
 
 ]
 
-{
-	#category : #'background process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler class>>startUp [
+{ #category : #'background process' }
+ProcessorScheduler class >> startUp [
 	"Install a background process of the lowest possible priority that is always runnable."
 	"Details: The virtual machine requires that there is always some runnable process that can be scheduled; this background process ensures that this is the case."
 
@@ -96,31 +80,22 @@ ProcessorScheduler class>>startUp [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>activePriority [
+{ #category : #accessing }
+ProcessorScheduler >> activePriority [
 	"Answer the priority level of the currently running Process."
 
 	^activeProcess effectiveProcess priority
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>activeProcess [
+{ #category : #accessing }
+ProcessorScheduler >> activeProcess [
 	"Answer the currently running Process."
 
 	^activeProcess effectiveProcess
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>anyProcessesAbove: highestPriority [
+{ #category : #private }
+ProcessorScheduler >> anyProcessesAbove: highestPriority [ 
 	"Do any instances of Process exist with higher priorities?"
 
 	^(Process allInstances "allSubInstances" select: [:aProcess | 
@@ -128,20 +103,14 @@ ProcessorScheduler>>anyProcessesAbove: highestPriority [
 		"If anyone ever makes a subclass of Process, be sure to use allSubInstances."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>backgroundProcess [
+{ #category : #accessing }
+ProcessorScheduler >> backgroundProcess [
 	"Answer the background process"
 	^ BackgroundProcess
 ]
 
-{
-	#category : #'priority names',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>highIOPriority [
+{ #category : #'priority names' }
+ProcessorScheduler >> highIOPriority [
 	"Answer the priority at which the most time critical input/output 
 	processes should run. An example is the process handling input from a 
 	network."
@@ -149,21 +118,15 @@ ProcessorScheduler>>highIOPriority [
 	^HighIOPriority
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>highestPriority [
+{ #category : #accessing }
+ProcessorScheduler >> highestPriority [
 	"Answer the number of priority levels currently available for use."
 
 	^quiescentProcessLists size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>highestPriority: newHighestPriority [
+{ #category : #accessing }
+ProcessorScheduler >> highestPriority: newHighestPriority [
 	"Change the number of priority levels currently available for use."
 
 	| newProcessLists |
@@ -179,19 +142,13 @@ ProcessorScheduler>>highestPriority: newHighestPriority [
 	quiescentProcessLists := newProcessLists
 ]
 
-{
-	#category : #'self evaluating',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>isSelfEvaluating [
+{ #category : #'self evaluating' }
+ProcessorScheduler >> isSelfEvaluating [
 	^self == Processor
 ]
 
-{
-	#category : #'priority names',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>lowIOPriority [
+{ #category : #'priority names' }
+ProcessorScheduler >> lowIOPriority [
 	"Answer the priority at which most input/output processes should run. 
 	Examples are the process handling input from the user (keyboard, 
 	pointing device, etc.) and the process distributing input from a network."
@@ -199,20 +156,14 @@ ProcessorScheduler>>lowIOPriority [
 	^LowIOPriority
 ]
 
-{
-	#category : #'priority names',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>lowestPriority [
+{ #category : #'priority names' }
+ProcessorScheduler >> lowestPriority [
 	"Return the lowest priority that is allowed with the scheduler"
 	^SystemRockBottomPriority
 ]
 
-{
-	#category : #'CPU usage tally',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>nextReadyProcess [
+{ #category : #'CPU usage tally' }
+ProcessorScheduler >> nextReadyProcess [
 	quiescentProcessLists reverseDo: [ :list |
 		list isEmpty ifFalse: [ | proc |
 			proc := list first.
@@ -220,11 +171,8 @@ ProcessorScheduler>>nextReadyProcess [
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>preemptedProcess [
+{ #category : #accessing }
+ProcessorScheduler >> preemptedProcess [
 	"Return the process that the currently active process just preempted."
 	| list |
 	activeProcess priority to: 1 by: -1 do:[:priority|
@@ -236,20 +184,14 @@ ProcessorScheduler>>preemptedProcess [
 	"Processor preemptedProcess"
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>printOn: aStream [
+{ #category : #printing }
+ProcessorScheduler >> printOn: aStream [
 	self isSelfEvaluating ifFalse: [^super printOn: aStream].
 	aStream nextPutAll: #Processor
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>remove: aProcess ifAbsent: aBlock [
+{ #category : #removing }
+ProcessorScheduler >> remove: aProcess ifAbsent: aBlock [ 
 	"Remove aProcess from the list on which it is waiting for the processor 
 	and answer aProcess. If it is not waiting, evaluate aBlock."
 
@@ -258,11 +200,8 @@ ProcessorScheduler>>remove: aProcess ifAbsent: aBlock [
 	^aProcess
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>scanSchedule: aBlock startingAt: topPriority [
+{ #category : #accessing }
+ProcessorScheduler >> scanSchedule: aBlock startingAt: topPriority [
 	"Iterate over scheduled processes  list, starting from topPriority down to lowest one. "
 
 	topPriority to: 1 by: -1 do:[:priority | | list |
@@ -274,22 +213,16 @@ ProcessorScheduler>>scanSchedule: aBlock startingAt: topPriority [
 
 ]
 
-{
-	#category : #'process state change',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>suspendFirstAt: aPriority [
+{ #category : #'process state change' }
+ProcessorScheduler >> suspendFirstAt: aPriority [ 
 	"Suspend the first Process that is waiting to run with priority aPriority."
 
 	^self suspendFirstAt: aPriority
 		  ifNone: [self error: 'No Process to suspend']
 ]
 
-{
-	#category : #'process state change',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>suspendFirstAt: aPriority ifNone: noneBlock [
+{ #category : #'process state change' }
+ProcessorScheduler >> suspendFirstAt: aPriority ifNone: noneBlock [ 
 	"Suspend the first Process that is waiting to run with priority aPriority. If 
 	no Process is waiting, evaluate the argument, noneBlock."
 
@@ -300,22 +233,16 @@ ProcessorScheduler>>suspendFirstAt: aPriority ifNone: noneBlock [
 		ifFalse: [^aList first suspend]
 ]
 
-{
-	#category : #'priority names',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>systemBackgroundPriority [
+{ #category : #'priority names' }
+ProcessorScheduler >> systemBackgroundPriority [
 	"Answer the priority at which system background processes should run. 
 	Examples are an incremental garbage collector or status checker."
 
 	^SystemBackgroundPriority
 ]
 
-{
-	#category : #'CPU usage tally',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>tallyCPUUsageFor: seconds [
+{ #category : #'CPU usage tally' }
+ProcessorScheduler >> tallyCPUUsageFor: seconds [
 	"Start a high-priority process that will tally the next ready process for the given
 	number of seconds. Answer a Block that will return the tally (a Bag) after the task
 	is complete" 
@@ -323,11 +250,8 @@ ProcessorScheduler>>tallyCPUUsageFor: seconds [
 
 ]
 
-{
-	#category : #'CPU usage tally',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>tallyCPUUsageFor: seconds every: msec [
+{ #category : #'CPU usage tally' }
+ProcessorScheduler >> tallyCPUUsageFor: seconds every: msec [
 	"Start a high-priority process that will tally the next ready process for the given
 	number of seconds. Answer a Block that will return the tally (a Bag) after the task
 	is complete" 
@@ -348,42 +272,30 @@ ProcessorScheduler>>tallyCPUUsageFor: seconds every: msec [
 	^[ sem wait. tally ]
 ]
 
-{
-	#category : #'process state change',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>terminateActive [
+{ #category : #'process state change' }
+ProcessorScheduler >> terminateActive [
 	"Terminate the process that is currently running."
 
 	activeProcess effectiveProcess terminate
 ]
 
-{
-	#category : #'priority names',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>timingPriority [
+{ #category : #'priority names' }
+ProcessorScheduler >> timingPriority [
 	"Answer the priority at which the system processes keeping track of real 
 	time should run."
 
 	^TimingPriority
 ]
 
-{
-	#category : #'priority names',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>userBackgroundPriority [
+{ #category : #'priority names' }
+ProcessorScheduler >> userBackgroundPriority [
 	"Answer the priority at which user background processes should run."
 
 	^UserBackgroundPriority
 ]
 
-{
-	#category : #'priority names',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>userInterruptPriority [
+{ #category : #'priority names' }
+ProcessorScheduler >> userInterruptPriority [
 	"Answer the priority at which user processes desiring immediate service 
 	should run. Processes run at this level will preempt the window 
 	scheduler and should, therefore, not consume the processor forever."
@@ -391,30 +303,21 @@ ProcessorScheduler>>userInterruptPriority [
 	^UserInterruptPriority
 ]
 
-{
-	#category : #'priority names',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>userSchedulingPriority [
+{ #category : #'priority names' }
+ProcessorScheduler >> userSchedulingPriority [
 	"Answer the priority at which the window scheduler should run."
 
 	^UserSchedulingPriority
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>waitingProcessesAt: aPriority [
+{ #category : #accessing }
+ProcessorScheduler >> waitingProcessesAt: aPriority [
 	"Return the list of processes at the given priority level."
 	^quiescentProcessLists at: aPriority
 ]
 
-{
-	#category : #'process state change',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ProcessorScheduler>>yield [
+{ #category : #'process state change' }
+ProcessorScheduler >> yield [
 	"Give other Processes at the current priority a chance to run."
 
 	| semaphore |

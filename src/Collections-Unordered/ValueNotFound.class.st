@@ -4,15 +4,11 @@ I am ValueNotFound, an exception indicating that a value was not found in a Dict
 Class {
 	#name : #ValueNotFound,
 	#superclass : #NotFound,
-	#category : #Collections-Unordered,
-	#timestamp : 'SvenVanCaekenberghe 4/19/2011 19:42'
+	#category : #Collections-Unordered
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ValueNotFound>>standardMessageText [
+{ #category : #private }
+ValueNotFound >> standardMessageText [
 	"Generate a standard textual description"
 	
 	^ String streamContents: [ :stream |
@@ -22,18 +18,12 @@ ValueNotFound>>standardMessageText [
 		stream print: self collection class]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ValueNotFound>>value [
+{ #category : #accessing }
+ValueNotFound >> value [
 	^ self object
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ValueNotFound>>value: aValue [
+{ #category : #accessing }
+ValueNotFound >> value: aValue [
 	^ self object: aValue
 ]

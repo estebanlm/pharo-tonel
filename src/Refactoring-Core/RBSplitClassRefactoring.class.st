@@ -38,15 +38,11 @@ Class {
 		'referenceVariableName',
 		'newClass'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 12:56'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitClassRefactoring class>>class: class instanceVariables: instVars newClassName: className referenceVariableName: newVariable  [
+{ #category : #'instance creation' }
+RBSplitClassRefactoring class >> class: class instanceVariables: instVars newClassName: className referenceVariableName: newVariable [ 
 	^(self new)
 		class: class
 			instanceVariables: instVars
@@ -55,11 +51,8 @@ RBSplitClassRefactoring class>>class: class instanceVariables: instVars newClass
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitClassRefactoring class>>model: aRBSmalltalk class: class instanceVariables: instVars newClassName: className referenceVariableName: newVariable  [
+{ #category : #'instance creation' }
+RBSplitClassRefactoring class >> model: aRBSmalltalk class: class instanceVariables: instVars newClassName: className referenceVariableName: newVariable [ 
 	^(self new)
 		model: aRBSmalltalk;
 		class: class
@@ -69,11 +62,8 @@ RBSplitClassRefactoring class>>model: aRBSmalltalk class: class instanceVariable
 		yourself
 ]
 
-{
-	#category : #private-transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitClassRefactoring>>abstractReferenceTo: each  [
+{ #category : #private-transforming }
+RBSplitClassRefactoring >> abstractReferenceTo: each [ 
 	| setterMethod replacer accessorRef getterMethod |
 	accessorRef := RBCreateAccessorsForVariableRefactoring 
 				variable: each
@@ -96,19 +86,13 @@ RBSplitClassRefactoring>>abstractReferenceTo: each  [
 				from: class)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitClassRefactoring>>abstractVariableReferences [
+{ #category : #transforming }
+RBSplitClassRefactoring >> abstractVariableReferences [
 	instanceVariables do: [:each | self abstractReferenceTo: each]
 ]
 
-{
-	#category : #private-transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitClassRefactoring>>addClass [
+{ #category : #private-transforming }
+RBSplitClassRefactoring >> addClass [
 	self performComponentRefactoring: (RBAddClassRefactoring 
 				model: self model
 				addClass: newClassName
@@ -118,11 +102,8 @@ RBSplitClassRefactoring>>addClass [
 	newClass := self model classNamed: newClassName asSymbol
 ]
 
-{
-	#category : #private-transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitClassRefactoring>>addInstanceVariables [
+{ #category : #private-transforming }
+RBSplitClassRefactoring >> addInstanceVariables [
 	instanceVariables do: 
 			[:each | 
 			self performComponentRefactoring: (RBAddInstanceVariableRefactoring 
@@ -131,42 +112,30 @@ RBSplitClassRefactoring>>addInstanceVariables [
 						class: newClass)]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitClassRefactoring>>class: aClass instanceVariables: instVars newClassName: className referenceVariableName: newVariable  [
+{ #category : #initialize-release }
+RBSplitClassRefactoring >> class: aClass instanceVariables: instVars newClassName: className referenceVariableName: newVariable [ 
 	class := self model classFor: aClass.
 	instanceVariables := instVars.
 	newClassName := className.
 	referenceVariableName := newVariable
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitClassRefactoring>>createNewClass [
+{ #category : #transforming }
+RBSplitClassRefactoring >> createNewClass [
 	self
 		addClass;
 		addInstanceVariables
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitClassRefactoring>>createReference [
+{ #category : #transforming }
+RBSplitClassRefactoring >> createReference [
 	self performComponentRefactoring: (RBAddInstanceVariableRefactoring 
 				variable: referenceVariableName
 				class: class)
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitClassRefactoring>>preconditions [
+{ #category : #preconditions }
+RBSplitClassRefactoring >> preconditions [
 	^(RBCondition isValidClassName: newClassName) 
 		& (RBCondition isGlobal: newClassName in: self model) not 
 			& (RBCondition isValidInstanceVariableName: referenceVariableName for: class) 
@@ -177,11 +146,8 @@ RBSplitClassRefactoring>>preconditions [
 					not
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitClassRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBSplitClassRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream nextPutAll: ' class: '.
@@ -196,11 +162,8 @@ RBSplitClassRefactoring>>storeOn: aStream  [
 		nextPutAll: ''')'
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSplitClassRefactoring>>transform [
+{ #category : #transforming }
+RBSplitClassRefactoring >> transform [
 	self
 		createNewClass;
 		createReference;

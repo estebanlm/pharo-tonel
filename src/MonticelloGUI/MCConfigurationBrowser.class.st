@@ -9,24 +9,17 @@ Class {
 		'dependencyIndex',
 		'repositoryIndex'
 	],
-	#category : #MonticelloGUI,
-	#timestamp : 'StephaneDucasse 11/29/2011 22:23'
+	#category : #MonticelloGUI
 }
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser class>>open [
+{ #category : #opening }
+MCConfigurationBrowser class >> open [
 	<script>
 	^self new show
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>add [
+{ #category : #actions }
+MCConfigurationBrowser >> add [
 	(self pickWorkingCopiesSatisfying: [:each | (self includesPackage: each package) not])
 		do: [:wc |
 			wc ancestors isEmpty
@@ -39,11 +32,8 @@ Skipping this package']
 	self changed: #dependencyList; changed: #description
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>addDependency [
+{ #category : #dependencies }
+MCConfigurationBrowser >> addDependency [
 	(self pickWorkingCopiesSatisfying: [:each | (self includesPackage: each package) not])
 		do: [:wc |
 			wc ancestors isEmpty
@@ -56,11 +46,8 @@ Skipping this package']
 	self changed: #dependencyList; changed: #description
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>addRepository [
+{ #category : #repositories }
+MCConfigurationBrowser >> addRepository [
 	(self pickRepositorySatisfying: [:ea | (self repositories includes: ea) not])
 		ifNotNil: [:repo |
 			(repo isKindOf: MCHttpRepository)
@@ -70,11 +57,8 @@ MCConfigurationBrowser>>addRepository [
 		]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>buttonSpecs [
+{ #category : #'morphic ui' }
+MCConfigurationBrowser >> buttonSpecs [
 	^ #(('Add' addDependency 'Add a dependency')
 		('Update' updateMenu 'Update dependencies')
 		('Install' installMenu 'Load/Merge/Upgrade into image')
@@ -86,63 +70,42 @@ MCConfigurationBrowser>>buttonSpecs [
 		)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>canMoveDown [
+{ #category : #testing }
+MCConfigurationBrowser >> canMoveDown [
 	^self index between: 1 and: self maxIndex - 1 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>canMoveUp [
+{ #category : #testing }
+MCConfigurationBrowser >> canMoveUp [
 	^self index > 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>canRemove [
+{ #category : #testing }
+MCConfigurationBrowser >> canRemove [
 	^self index > 0
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>changedButtons [
+{ #category : #selection }
+MCConfigurationBrowser >> changedButtons [
 	self changed: #canMoveDown.
 	self changed: #canMoveUp.
 	self changed: #canRemove.
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>changedList [
+{ #category : #selection }
+MCConfigurationBrowser >> changedList [
 	self dependencyIndex > 0 ifTrue: [ ^ self changed: #dependencyList ].
 	self repositoryIndex > 0 ifTrue: [ ^ self repositoryListChanged ].
 	self error: 'nothing selected'
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>checkDependencies [
+{ #category : #dependencies }
+MCConfigurationBrowser >> checkDependencies [
 	^self checkModified and: [self checkMissing]
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>checkMissing [
+{ #category : #dependencies }
+MCConfigurationBrowser >> checkMissing [
 	| missing |
 	missing := (self dependencies collect: [:ea | ea versionInfo name]) asSet.
 
@@ -161,11 +124,8 @@ MCConfigurationBrowser>>checkMissing [
 	
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>checkModified [
+{ #category : #dependencies }
+MCConfigurationBrowser >> checkModified [
 	| modified |
 	modified := self dependencies select: [:dep |
 		dep isFulfilled and: [dep package workingCopy modified]].
@@ -179,11 +139,8 @@ MCConfigurationBrowser>>checkModified [
 	
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>checkRepositories [
+{ #category : #repositories }
+MCConfigurationBrowser >> checkRepositories [
 	| bad |
 	bad := self repositories reject: [:repo | repo isKindOf: MCHttpRepository].
 	^bad isEmpty or: [
@@ -196,11 +153,8 @@ MCConfigurationBrowser>>checkRepositories [
 
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>checkRepositoryTemplates [
+{ #category : #repositories }
+MCConfigurationBrowser >> checkRepositoryTemplates [
 	"unused for now - we only do HTTP"
 	| bad |
 	bad := self repositories select: [:repo | repo creationTemplate isNil].
@@ -214,54 +168,36 @@ MCConfigurationBrowser>>checkRepositoryTemplates [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>configuration [
+{ #category : #accessing }
+MCConfigurationBrowser >> configuration [
 	^configuration ifNil: [configuration := MCConfiguration new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>configuration: aConfiguration [
+{ #category : #accessing }
+MCConfigurationBrowser >> configuration: aConfiguration [
 	configuration := aConfiguration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>dependencies [
+{ #category : #accessing }
+MCConfigurationBrowser >> dependencies [
 	^self configuration dependencies
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>dependencies: aCollection [
+{ #category : #accessing }
+MCConfigurationBrowser >> dependencies: aCollection [
 	self configuration dependencies: aCollection.
 	self changed: #dependencyList; changed: #description
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>dependencyIndex [
+{ #category : #selection }
+MCConfigurationBrowser >> dependencyIndex [
 	^dependencyIndex ifNil: [0]
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>dependencyIndex: anInteger [
+{ #category : #selection }
+MCConfigurationBrowser >> dependencyIndex: anInteger [
 	dependencyIndex := anInteger.
 	dependencyIndex > 0
 		ifTrue: [self repositoryIndex: 0].
@@ -269,11 +205,8 @@ MCConfigurationBrowser>>dependencyIndex: anInteger [
 	self changedButtons.
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>dependencyList [
+{ #category : #dependencies }
+MCConfigurationBrowser >> dependencyList [
 	^self dependencies collect: [:dep | 
 		Text string: (dep isCurrent
 				ifTrue: [dep versionInfo name]
@@ -286,11 +219,8 @@ MCConfigurationBrowser>>dependencyList [
 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>dependencyMenu: aMenu [
+{ #category : #'morphic ui' }
+MCConfigurationBrowser >> dependencyMenu: aMenu [
 	self fillMenu: aMenu fromSpecs: #(('Change log...' showChangeLog)).
 	self fillMenu: aMenu fromSpecs: #(('Add dependency...' addDependency)).
 	self selectedDependency ifNotNil: [
@@ -299,11 +229,8 @@ MCConfigurationBrowser>>dependencyMenu: aMenu [
 
 ]
 
-{
-	#category : #description,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>description [
+{ #category : #description }
+MCConfigurationBrowser >> description [
 	self selectedDependency ifNotNil: [:dep | ^ ('Package: ', dep package name, String cr,
 		dep versionInfo summary) asText].
 	self selectedRepository ifNotNil: [:repo | ^repo creationTemplate
@@ -313,11 +240,8 @@ MCConfigurationBrowser>>description [
 
 ]
 
-{
-	#category : #description,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>description: aText [
+{ #category : #description }
+MCConfigurationBrowser >> description: aText [
 
 	self selectedRepository ifNotNil: [:repo | 
 		| new | 
@@ -335,11 +259,8 @@ MCConfigurationBrowser>>description: aText [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>down [
+{ #category : #actions }
+MCConfigurationBrowser >> down [
 	self canMoveDown
 		ifFalse: [ ^ self ].
 	self list swap: self index with: self index + 1.
@@ -347,45 +268,30 @@ MCConfigurationBrowser>>down [
 	self changedList
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>includesPackage: aPackage [
+{ #category : #testing }
+MCConfigurationBrowser >> includesPackage: aPackage [
 	^self dependencies anySatisfy: [:each | each package = aPackage]
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>index [
+{ #category : #selection }
+MCConfigurationBrowser >> index [
 	^self dependencyIndex max: self repositoryIndex
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>index: anInteger [
+{ #category : #selection }
+MCConfigurationBrowser >> index: anInteger [
 	self dependencyIndex > 0 ifTrue: [^self dependencyIndex: anInteger].
 	self repositoryIndex > 0 ifTrue: [^self repositoryIndex: anInteger].
 	anInteger > 0 ifTrue: [self error: 'cannot select']
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>initialExtent [
+{ #category : #'morphic ui' }
+MCConfigurationBrowser >> initialExtent [
 	^ 350@500
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>installMenu [
+{ #category : #actions }
+MCConfigurationBrowser >> installMenu [
 
 	| menu |
 	menu := UIManager default newMenuIn: self for: self.
@@ -395,31 +301,22 @@ MCConfigurationBrowser>>installMenu [
 	menu popUpInWorld.
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>list [
+{ #category : #selection }
+MCConfigurationBrowser >> list [
 	self dependencyIndex > 0 ifTrue: [^self dependencies].
 	self repositoryIndex > 0 ifTrue: [^self repositories].
 	^#()
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>load [
+{ #category : #actions }
+MCConfigurationBrowser >> load [
 	self configuration load.
 	self changed: #dependencyList; changed: #description
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>loadMenu [
+{ #category : #actions }
+MCConfigurationBrowser >> loadMenu [
 
 	| menu |
 	menu := UIManager default newMenuIn: self for: self.
@@ -429,29 +326,20 @@ MCConfigurationBrowser>>loadMenu [
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>maxIndex [
+{ #category : #selection }
+MCConfigurationBrowser >> maxIndex [
 	^ self list size
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>merge [
+{ #category : #actions }
+MCConfigurationBrowser >> merge [
 	self configuration merge.
 	self changed: #dependencyList; changed: #description
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>migrate [
+{ #category : #actions }
+MCConfigurationBrowser >> migrate [
 	"copy all packageversions in this cofiguration to a repository"
 	| versions |
 	versions := OrderedCollection new.
@@ -469,11 +357,8 @@ MCConfigurationBrowser>>migrate [
 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>pickConfig [
+{ #category : #'morphic ui' }
+MCConfigurationBrowser >> pickConfig [
 	self pickRepository ifNotNil: [:repo |
 		| configs index |
 		configs := Cursor wait showWhile: [
@@ -489,11 +374,8 @@ MCConfigurationBrowser>>pickConfig [
 	^nil
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>pickName [
+{ #category : #'morphic ui' }
+MCConfigurationBrowser >> pickName [
 	| name |
 	name := UIManager default
 		request: ('Name' translated, ' (.', self configuration writerClass extension, ' will be appended' translated, '):')
@@ -501,31 +383,22 @@ MCConfigurationBrowser>>pickName [
 	^ name isEmptyOrNil ifFalse: [name]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>pickRepository [
+{ #category : #'morphic ui' }
+MCConfigurationBrowser >> pickRepository [
 	^self pickRepositorySatisfying: [:ea | true]
 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>pickRepositorySatisfying: aBlock [
+{ #category : #'morphic ui' }
+MCConfigurationBrowser >> pickRepositorySatisfying: aBlock [
 	| index list |
 	list := MCRepositoryGroup default repositories select: aBlock.
 	index := (UIManager default chooseFrom: (list collect: [:ea | ea description]) title: 'Repository:' translated).
 	^ index = 0 ifFalse: [list at: index]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>pickWorkingCopiesSatisfying: aBlock  [
+{ #category : #'morphic ui' }
+MCConfigurationBrowser >> pickWorkingCopiesSatisfying: aBlock [ 
 	| copies item |
 	copies := (self allManagers select: aBlock)
 				asSortedCollection: [:a :b | a packageName <= b packageName].
@@ -548,11 +421,8 @@ MCConfigurationBrowser>>pickWorkingCopiesSatisfying: aBlock  [
 		ifFalse: [{copies at: item - 1}]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>remove [
+{ #category : #actions }
+MCConfigurationBrowser >> remove [
 	self canRemove
 		ifFalse: [ ^ self ].
 	self list removeAt: self index.
@@ -560,36 +430,24 @@ MCConfigurationBrowser>>remove [
 	self updateIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>repositories [
+{ #category : #accessing }
+MCConfigurationBrowser >> repositories [
 	^ self configuration repositories
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>repositories: aCollection [
+{ #category : #accessing }
+MCConfigurationBrowser >> repositories: aCollection [
 	^self configuration repositories: aCollection
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>repositoryIndex [
+{ #category : #selection }
+MCConfigurationBrowser >> repositoryIndex [
 	^repositoryIndex ifNil: [0]
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>repositoryIndex: anInteger [
+{ #category : #selection }
+MCConfigurationBrowser >> repositoryIndex: anInteger [
 	repositoryIndex := anInteger.
 	repositoryIndex > 0
 		ifTrue: [self dependencyIndex: 0].
@@ -597,70 +455,46 @@ MCConfigurationBrowser>>repositoryIndex: anInteger [
 	self changedButtons.
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>repositoryList [
+{ #category : #repositories }
+MCConfigurationBrowser >> repositoryList [
 	^self repositories collect: [:ea | ea description]
 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>repositoryMenu: aMenu [
+{ #category : #'morphic ui' }
+MCConfigurationBrowser >> repositoryMenu: aMenu [
 	^self fillMenu: aMenu fromSpecs: #(
 		('Add repository...' addRepository)
 	)
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>selectDependency: aDependency [
+{ #category : #selection }
+MCConfigurationBrowser >> selectDependency: aDependency [
 	self dependencyIndex: (self dependencies indexOf: aDependency)
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>selectRepository: aRepository [
+{ #category : #selection }
+MCConfigurationBrowser >> selectRepository: aRepository [
 	self repositoryIndex: (self repositories indexOf: aRepository)
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>selectedDependency [
+{ #category : #dependencies }
+MCConfigurationBrowser >> selectedDependency [
 	^ self dependencies at: self dependencyIndex ifAbsent: []
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>selectedPackage [
+{ #category : #dependencies }
+MCConfigurationBrowser >> selectedPackage [
 	^ self selectedDependency ifNotNil: [:dep | dep package]
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>selectedRepository [
+{ #category : #repositories }
+MCConfigurationBrowser >> selectedRepository [
 	^ self repositories at: self repositoryIndex ifAbsent: []
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>showChangeLog [
+{ #category : #actions }
+MCConfigurationBrowser >> showChangeLog [
 	self pickConfig ifNotNil: [:oldConfig |
 		Transcript dependents isEmpty
 			ifTrue: [Transcript open]
@@ -671,11 +505,8 @@ MCConfigurationBrowser>>showChangeLog [
 			Transcript flush]]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>store [
+{ #category : #actions }
+MCConfigurationBrowser >> store [
 	(self checkRepositories and: [self checkDependencies]) ifFalse: [^self].
 	self pickName ifNotNil: [:name |
 		self configuration name: name.
@@ -683,11 +514,8 @@ MCConfigurationBrowser>>store [
 			repo storeVersion: self configuration]].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>up [
+{ #category : #actions }
+MCConfigurationBrowser >> up [
 	self canMoveUp
 		ifFalse: [ ^ self ].
 	self list swap: self index with: self index - 1.
@@ -695,39 +523,27 @@ MCConfigurationBrowser>>up [
 	self changedList
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>updateFromImage [
+{ #category : #updating }
+MCConfigurationBrowser >> updateFromImage [
 	self configuration updateFromImage.
 	self changed: #dependencyList; changed: #description
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>updateFromRepositories [
+{ #category : #updating }
+MCConfigurationBrowser >> updateFromRepositories [
 	self configuration updateFromRepositories.
 	self changed: #dependencyList; changed: #description
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>updateIndex [
+{ #category : #selection }
+MCConfigurationBrowser >> updateIndex [
 	self index > 0 ifTrue: [self index: (self index min: self maxIndex)]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>updateMenu [
+{ #category : #actions }
+MCConfigurationBrowser >> updateMenu [
 
 	| menu |
 	menu := UIManager default
@@ -737,21 +553,15 @@ MCConfigurationBrowser>>updateMenu [
 	menu popUpInWorld.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>upgrade [
+{ #category : #actions }
+MCConfigurationBrowser >> upgrade [
 	self configuration upgrade.
 	self changed: #dependencyList; changed: #description
 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCConfigurationBrowser>>widgetSpecs [
+{ #category : #'morphic ui' }
+MCConfigurationBrowser >> widgetSpecs [
 	^ #(
 		((buttonRow) (0 0 1 0) (0 0 0 30))
 		((listMorph:selection:menu: dependencyList dependencyIndex dependencyMenu:) (0 0 1 1) (0 30 0 -180))

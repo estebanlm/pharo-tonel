@@ -10,59 +10,40 @@ Class {
 	#superclass : #BorderedMorph,
 	#traits : 'TAbleToRotate',
 	#classTraits : 'TAbleToRotate classTrait',
-	#category : #Morphic-Base-Basic,
-	#timestamp : 'kfr 10/27/2003 10:32'
+	#category : #Morphic-Base-Basic
 }
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EllipseMorph>>areasRemainingToFill: aRectangle [
+{ #category : #drawing }
+EllipseMorph >> areasRemainingToFill: aRectangle [
 	"Could be improved by quick check of inner rectangle"
 
 	^ Array with: aRectangle
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EllipseMorph>>bottomLeftCorner [
+{ #category : #geometry }
+EllipseMorph >> bottomLeftCorner [
 	^self intersectionWithLineSegmentFromCenterTo: bounds bottomLeft 
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EllipseMorph>>bottomRightCorner [
+{ #category : #geometry }
+EllipseMorph >> bottomRightCorner [
 	^self intersectionWithLineSegmentFromCenterTo: bounds bottomRight 
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EllipseMorph>>canDrawBorder: aBorderStyle [
+{ #category : #testing }
+EllipseMorph >> canDrawBorder: aBorderStyle [
 	^aBorderStyle style == #simple
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EllipseMorph>>closestPointTo: aPoint [
+{ #category : #geometry }
+EllipseMorph >> closestPointTo: aPoint [
 	^self intersectionWithLineSegmentFromCenterTo: aPoint
 ]
 
-{
-	#category : #'geometry testing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EllipseMorph>>containsPoint: aPoint [
+{ #category : #'geometry testing' }
+EllipseMorph >> containsPoint: aPoint [
 
 	| radius other delta xOverY |
 	(bounds containsPoint: aPoint) ifFalse: [^ false].  "quick elimination"
@@ -76,11 +57,8 @@ EllipseMorph>>containsPoint: aPoint [
 	^ (delta x asFloat / xOverY) squared + delta y squared <= radius squared
 ]
 
-{
-	#category : #rounding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EllipseMorph>>cornerStyle: aSymbol [
+{ #category : #rounding }
+EllipseMorph >> cornerStyle: aSymbol [
 	"Set the receiver's corner style.  But, in this case, do *not*"
 
 	(extension isNil or: [self cornerStyle == aSymbol]) ifTrue: [^self].
@@ -88,54 +66,36 @@ EllipseMorph>>cornerStyle: aSymbol [
 	self changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EllipseMorph>>couldHaveRoundedCorners [
+{ #category : #accessing }
+EllipseMorph >> couldHaveRoundedCorners [
 	^ false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EllipseMorph>>defaultBorderWidth [
+{ #category : #initialization }
+EllipseMorph >> defaultBorderWidth [
 	"answer the default border width for the receiver"
 	^ 1
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EllipseMorph>>defaultColor [
+{ #category : #initialization }
+EllipseMorph >> defaultColor [
 	"answer the default color/fill style for the receiver"
 	^ Color yellow
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EllipseMorph>>doesBevels [
+{ #category : #accessing }
+EllipseMorph >> doesBevels [
 	^ false
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EllipseMorph>>drawDropShadowOn: aCanvas  [
+{ #category : #drawing }
+EllipseMorph >> drawDropShadowOn: aCanvas [ 
 
 	aCanvas fillOval: bounds fillStyle: self shadowColor borderWidth: 0 borderColor: nil
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EllipseMorph>>drawOn: aCanvas  [
+{ #category : #drawing }
+EllipseMorph >> drawOn: aCanvas [ 
 	
 	aCanvas 
 		fillOval: bounds 
@@ -145,11 +105,8 @@ EllipseMorph>>drawOn: aCanvas  [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EllipseMorph>>intersectionWithLineSegmentFromCenterTo: aPoint  [
+{ #category : #geometry }
+EllipseMorph >> intersectionWithLineSegmentFromCenterTo: aPoint [ 
 	| dx aSquared bSquared m mSquared xSquared x y dy |
 	(self containsPoint: aPoint)
 		ifTrue: [ ^aPoint ].
@@ -169,20 +126,14 @@ EllipseMorph>>intersectionWithLineSegmentFromCenterTo: aPoint  [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EllipseMorph>>topLeftCorner [
+{ #category : #geometry }
+EllipseMorph >> topLeftCorner [
 	^self intersectionWithLineSegmentFromCenterTo: bounds topLeft 
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EllipseMorph>>topRightCorner [
+{ #category : #geometry }
+EllipseMorph >> topRightCorner [
 	^self intersectionWithLineSegmentFromCenterTo: bounds topRight
 
 ]

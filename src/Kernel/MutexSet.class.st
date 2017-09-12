@@ -7,42 +7,29 @@ Class {
 	#instVars : [
 		'array'
 	],
-	#category : #Kernel-Processes,
-	#timestamp : '<historical>'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MutexSet class>>withAll: mutexList [
+{ #category : #'instance creation' }
+MutexSet class >> withAll: mutexList [
 	^self new withAll: mutexList
 ]
 
-{
-	#category : #'mutual exclusion',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MutexSet>>critical: aBlock [
+{ #category : #'mutual exclusion' }
+MutexSet >> critical: aBlock [
 	"Evaluate aBlock aquiring all mutexes"
 	^self pvtCritical: aBlock startingAt: 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MutexSet>>pvtCritical: aBlock startingAt: index [
+{ #category : #private }
+MutexSet >> pvtCritical: aBlock startingAt: index [
 	| mutex |
 	index > array size ifTrue:[^aBlock value].
 	mutex := array at: index.
 	^mutex critical:[self pvtCritical: aBlock startingAt: index+1].
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MutexSet>>withAll: mutexList [
+{ #category : #initialize }
+MutexSet >> withAll: mutexList [
 	array := mutexList.
 ]

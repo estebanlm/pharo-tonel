@@ -14,15 +14,11 @@ Class {
 		'storePopToFix',
 		'retToFix'
 	],
-	#category : #OpalCompiler-Core-IR-Manipulation,
-	#timestamp : 'ClementBera 10/27/2014 10:59'
+	#category : #OpalCompiler-Core-IR-Manipulation
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRFix>>convertRet: assoc forSeq: seq  [
+{ #category : #private }
+IRFix >> convertRet: assoc forSeq: seq [ 
 	| push ret |
 	push := assoc key.
 	ret := assoc value.
@@ -30,11 +26,8 @@ IRFix>>convertRet: assoc forSeq: seq  [
 	seq remove: ret.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRFix>>convertStorePop: assoc forSeq: seq  [
+{ #category : #private }
+IRFix >> convertStorePop: assoc forSeq: seq [ 
 	| store pop |
 	store := assoc key.
 	pop := assoc value.
@@ -42,11 +35,8 @@ IRFix>>convertStorePop: assoc forSeq: seq  [
 	seq remove: pop.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRFix>>initialize [
+{ #category : #initialize }
+IRFix >> initialize [
 
 	super initialize.
 
@@ -54,20 +44,14 @@ IRFix>>initialize [
 	retToFix := OrderedCollection new.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRFix>>visitInstruction: instr [
+{ #category : #visiting }
+IRFix >> visitInstruction: instr [
 	self visitNode: instr.
 	prevInstr := instr.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRFix>>visitPop: pop [
+{ #category : #visiting }
+IRFix >> visitPop: pop [
 	prevInstr ifNil: [ ^ self ].
 	prevInstr isStore ifFalse: [ ^ self ].
 	"store then pop, however, cannot remove instr while iterating over the collection"
@@ -76,21 +60,15 @@ IRFix>>visitPop: pop [
 	
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRFix>>visitReturn: ret [
+{ #category : #visiting }
+IRFix >> visitReturn: ret [
 	prevInstr ifNil: [ ^ self ].
 	prevInstr canBeQuickReturn ifFalse: [ ^ self ].
 	retToFix add: prevInstr -> ret.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRFix>>visitSequence: instructionSequence [
+{ #category : #visiting }
+IRFix >> visitSequence: instructionSequence [
 	prevInstr := nil.
 	storePopToFix reset.
 	retToFix reset.

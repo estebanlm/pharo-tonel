@@ -1,30 +1,20 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicSpecRenderer,
 	#superclass : #GLMMorphicWidgetRenderer,
 	#instVars : [
 		'container'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpecRenderer>>actOnPresentationUpdated: ann [
+{ #category : #rendering }
+GLMMorphicSpecRenderer >> actOnPresentationUpdated: ann [
 	container removeAllMorphs.
 	container addMorphBack: (self morphFrom: ann presentation)
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpecRenderer>>render: aPresentation [
+{ #category : #rendering }
+GLMMorphicSpecRenderer >> render: aPresentation [
 	container := GLMMorphic containerMorph.
 	container
 		changeTableLayout;

@@ -4,32 +4,22 @@ ifNotNilDo: should not be used as ifNotNil: works for blocks with arguments, too
 Class {
 	#name : #RBRuleIfNotNilDo,
 	#superclass : #RBTransformationRule,
-	#category : #Refactoring-Critics-TransformationRules,
-	#timestamp : 'MarcusDenker 8/15/2015 15:24'
+	#category : #Refactoring-Critics-TransformationRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRuleIfNotNilDo class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBRuleIfNotNilDo class >> uniqueIdentifierName [
 
 	^ 'RuleIfNotNilDo'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRuleIfNotNilDo>>group [
+{ #category : #accessing }
+RBRuleIfNotNilDo >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRuleIfNotNilDo>>initialize [
+{ #category : #initialization }
+RBRuleIfNotNilDo >> initialize [
 	super initialize.
 	self rewriteRule
 		replace: '`@receiver ifNotNilDo: `@statements'
@@ -41,10 +31,7 @@ RBRuleIfNotNilDo>>initialize [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRuleIfNotNilDo>>name [
+{ #category : #accessing }
+RBRuleIfNotNilDo >> name [
 	^ 'Use "ifNotNil:" not "ifNotNilDo:"'
 ]

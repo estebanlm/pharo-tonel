@@ -1,28 +1,17 @@
-Extension {
-	#name : #ByteArray
-}
+Extension { #name : #ByteArray }
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-ByteArray class>>fromSton: stonReader [
+{ #category : #'*ston-core' }
+ByteArray class >> fromSton: stonReader [
 	^ self readHexFrom: stonReader parseListSingleton
 ]
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-ByteArray>>stonContainSubObjects  [
+{ #category : #'*ston-core' }
+ByteArray >> stonContainSubObjects [ 
 	^ false
 ]
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-ByteArray>>stonOn: stonWriter [
+{ #category : #'*ston-core' }
+ByteArray >> stonOn: stonWriter [
 	"Use a hex representation"
 	
 	stonWriter writeObject: self listSingleton: self hex

@@ -8,24 +8,17 @@ Class {
 		'SDL2Constants',
 		'SDL2Types'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'RonieSalgado 12/29/2014 18:23'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'freeing resources',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Cursor>>freeCursor [
+{ #category : #'freeing resources' }
+SDL_Cursor >> freeCursor [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	^ self nbCall: #( void SDL_FreeCursor ( self ) )
 ]
 
-{
-	#category : #'using the cursor',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_Cursor>>setCursor [
+{ #category : #'using the cursor' }
+SDL_Cursor >> setCursor [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	^ self nbCall: #( void SDL_SetCursor ( self ) )
 ]

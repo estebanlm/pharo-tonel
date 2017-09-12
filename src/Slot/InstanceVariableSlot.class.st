@@ -6,15 +6,11 @@ I add some special behavior:
 Class {
 	#name : #InstanceVariableSlot,
 	#superclass : #IndexedSlot,
-	#category : #Slot-Variables,
-	#timestamp : 'MarcusDenker 1/22/2015 17:43'
+	#category : #Slot-Variables
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-InstanceVariableSlot class>>resetIvarSlots [
+{ #category : #cleanup }
+InstanceVariableSlot class >> resetIvarSlots [
 	"when the Ivar slots need to be re-created (e.g. due to changes in the layout of the class),
 	 this method re-creates for every ivar a ivar slot"
 	"to be removed later when the system is in a stable state"
@@ -35,11 +31,8 @@ InstanceVariableSlot class>>resetIvarSlots [
 			block value: class classSide ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-InstanceVariableSlot>>definitionString [
+{ #category : #printing }
+InstanceVariableSlot >> definitionString [
 	"non special globals are defined by the symbol"
 	^self isSpecial
 		ifTrue: [super definitionString]
@@ -47,55 +40,37 @@ InstanceVariableSlot>>definitionString [
 
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-InstanceVariableSlot>>emitStore: methodBuilder [
+{ #category : #'code generation' }
+InstanceVariableSlot >> emitStore: methodBuilder [
 
 	methodBuilder storeInstVar: index
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-InstanceVariableSlot>>emitValue: methodBuilder [
+{ #category : #'code generation' }
+InstanceVariableSlot >> emitValue: methodBuilder [
 
 	methodBuilder pushInstVar: index.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-InstanceVariableSlot>>isReadIn: aCompiledCode [
+{ #category : #testing }
+InstanceVariableSlot >> isReadIn: aCompiledCode [
 	^aCompiledCode readsField: index
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-InstanceVariableSlot>>isSpecial [
+{ #category : #testing }
+InstanceVariableSlot >> isSpecial [
 	"I am just a backward compatible ivar slot. Note: my subclasses are special"
 	^(self class = InstanceVariableSlot) not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-InstanceVariableSlot>>isWrittenIn: aCompiledCode [
+{ #category : #testing }
+InstanceVariableSlot >> isWrittenIn: aCompiledCode [
 	^aCompiledCode writesField: index
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-InstanceVariableSlot>>usingMethods [
+{ #category : #queries }
+InstanceVariableSlot >> usingMethods [
 	"All methods that read or write the slot, we can do it here without having to use the AST"
 	^self definingClass 
 		ifNil: [ #() ]

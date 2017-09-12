@@ -14,52 +14,36 @@ Class {
 		'highlightSmalltalk',
 		'highlightSmalltalkContext'
 	],
-	#category : #Glamour-Presentations,
-	#timestamp : 'TudorGirba 3/5/2011 21:22'
+	#category : #Glamour-Presentations
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTextPresentation>>forSmalltalk [
+{ #category : #accessing }
+GLMTextPresentation >> forSmalltalk [
 	highlightSmalltalk := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTextPresentation>>forSmalltalk: aBlock [
+{ #category : #accessing }
+GLMTextPresentation >> forSmalltalk: aBlock [
 	"aBlock takes as parameters the entity objects and 
 	its evaluation is expected to produce a Smalltalk class"
 	highlightSmalltalk := true.
 	highlightSmalltalkContext := aBlock.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTextPresentation>>highlightSmalltalk [
+{ #category : #accessing }
+GLMTextPresentation >> highlightSmalltalk [
 	^ highlightSmalltalk ifNil: [highlightSmalltalk := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTextPresentation>>highlightSmalltalkContext [
+{ #category : #accessing }
+GLMTextPresentation >> highlightSmalltalkContext [
 	^ highlightSmalltalkContext isNil 
 		ifTrue: [nil] 
 		ifFalse: [highlightSmalltalkContext glamourValue: self entity]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTextPresentation>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMTextPresentation >> renderGlamorouslyOn: aRenderer [ 
 	self deprecated:  'Use GLMRubricTextPresentation instead.'.
 	self registerAnnouncements.
 	^ aRenderer renderTextPresentation: self

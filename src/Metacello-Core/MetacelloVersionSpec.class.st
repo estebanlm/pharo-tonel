@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloVersionSpec,
 	#superclass : #MetacelloSpec,
@@ -16,15 +13,11 @@ Class {
 		'importName',
 		'importArray'
 	],
-	#category : #Metacello-Core-Specs,
-	#timestamp : ''
+	#category : #Metacello-Core-Specs
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>author [
+{ #category : #accessing }
+MetacelloVersionSpec >> author [
 
 	author == nil 
 		ifTrue: [
@@ -34,44 +27,29 @@ MetacelloVersionSpec>>author [
 	^ author
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>author: anObject [
+{ #category : #accessing }
+MetacelloVersionSpec >> author: anObject [
 
 	anObject setAuthorInMetacelloVersion: self
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>author: aBlockOrString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> author: aBlockOrString constructor: aVersionConstructor [
     aVersionConstructor authorForVersion: aBlockOrString
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>baseline: aString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> baseline: aString constructor: aVersionConstructor [
     aVersionConstructor baselineForVersion: aString
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>baseline: aString with: aBlockOrString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> baseline: aString with: aBlockOrString constructor: aVersionConstructor [
     aVersionConstructor baselineForVersion: aString with: aBlockOrString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>blessing [
+{ #category : #accessing }
+MetacelloVersionSpec >> blessing [
 
 	blessing == nil 
 		ifTrue: [
@@ -81,28 +59,19 @@ MetacelloVersionSpec>>blessing [
 	^ blessing
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>blessing: anObject [
+{ #category : #accessing }
+MetacelloVersionSpec >> blessing: anObject [
 
 	anObject setBlessingInMetacelloVersion: self
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>blessing: aBlockOrString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> blessing: aBlockOrString constructor: aVersionConstructor [
     aVersionConstructor blessingForVersion: aBlockOrString
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>configMethodBasicOn: aStream last: last indent: indent [
+{ #category : #printing }
+MetacelloVersionSpec >> configMethodBasicOn: aStream last: last indent: indent [
     | values lastIndex lastBlock |
     last
         ifTrue: [ 
@@ -156,11 +125,8 @@ MetacelloVersionSpec>>configMethodBasicOn: aStream last: last indent: indent [
         indent: indent
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>configMethodOn: aStream for: spec selector: selector last: last indent: indent [
+{ #category : #printing }
+MetacelloVersionSpec >> configMethodOn: aStream for: spec selector: selector last: last indent: indent [
 	spec == nil
 		ifTrue: [ ^ self ].
 	aStream
@@ -173,20 +139,14 @@ MetacelloVersionSpec>>configMethodOn: aStream for: spec selector: selector last:
 		ifFalse: [ aStream cr ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>configMethodOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloVersionSpec >> configMethodOn: aStream indent: indent [
 
 	self configMethodOn: aStream last: true indent: indent
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>configMethodOn: aStream last: last indent: indent [
+{ #category : #printing }
+MetacelloVersionSpec >> configMethodOn: aStream last: last indent: indent [
     | spec hasPackageSpecs |
     hasPackageSpecs := false.
     self packagesSpec list
@@ -207,11 +167,8 @@ MetacelloVersionSpec>>configMethodOn: aStream last: last indent: indent [
         ifFalse: [ aStream cr ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>configMethodValueOn: aStream for: spec selector: selector last: last indent: indent [
+{ #category : #printing }
+MetacelloVersionSpec >> configMethodValueOn: aStream for: spec selector: selector last: last indent: indent [
 	| valuePrintString |
 	spec == nil
 		ifTrue: [ ^ self ].
@@ -225,11 +182,8 @@ MetacelloVersionSpec>>configMethodValueOn: aStream for: spec selector: selector 
 		ifFalse: [ aStream cr ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>configPackagesSpecMethodOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloVersionSpec >> configPackagesSpecMethodOn: aStream indent: indent [
 
 	| projectSpecs packageSpecs groupSpecs |
 	projectSpecs := OrderedCollection new.
@@ -265,39 +219,27 @@ MetacelloVersionSpec>>configPackagesSpecMethodOn: aStream indent: indent [
 				index ~= groupSpecs size ifTrue: [ aStream tab: indent + 1 ]]].
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>configSpawnMethodOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloVersionSpec >> configSpawnMethodOn: aStream indent: indent [
 
 	self configMethodValueOn: aStream for: self getBlessing selector: 'blessing:' last: false indent: indent.
 	self configMethodValueOn: aStream for: self getAuthor selector: 'author:' last: false indent: indent.
 	self configMethodValueOn: aStream for: self getTimestamp selector: 'timestamp:' last: false indent: indent.
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>configuration: aString with: aBlockOrString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> configuration: aString with: aBlockOrString constructor: aVersionConstructor [
     aVersionConstructor configurationForVersion: aString with: aBlockOrString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>createVersion [
+{ #category : #private }
+MetacelloVersionSpec >> createVersion [
 
 	^self versionClass fromSpec: self
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>defaultPackageNames [
+{ #category : #loading }
+MetacelloVersionSpec >> defaultPackageNames [
 	"if there is a package named 'default' (a group) then it defines the default package names,
 	 otherwise answer a list of all of the package names in this version"
 
@@ -305,21 +247,15 @@ MetacelloVersionSpec>>defaultPackageNames [
 	^#('default')
 ]
 
-{
-	#category : #'toolbox support',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>deleteSpec: aSpec [
+{ #category : #'toolbox support' }
+MetacelloVersionSpec >> deleteSpec: aSpec [
     "remove the spec from packages"
 
     self packages deleteSpec: aSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>description [
+{ #category : #accessing }
+MetacelloVersionSpec >> description [
 
 	description == nil 
 		ifTrue: [
@@ -329,28 +265,19 @@ MetacelloVersionSpec>>description [
 	^ description
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>description: anObject [
+{ #category : #accessing }
+MetacelloVersionSpec >> description: anObject [
 
 	anObject setDescriptionInMetacelloVersion: self
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>description: aBlockOrString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> description: aBlockOrString constructor: aVersionConstructor [
     aVersionConstructor descriptionForVersion: aBlockOrString
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>difference: otherVersionSpec [
+{ #category : #querying }
+MetacelloVersionSpec >> difference: otherVersionSpec [
     "Return a dictionary of additions, removals and modifications"
 
     | report myProjectSpecs otherProjectSpecs |
@@ -396,11 +323,8 @@ MetacelloVersionSpec>>difference: otherVersionSpec [
     ^ report
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>expandToLoadableSpecNames: nameList [
+{ #category : #loading }
+MetacelloVersionSpec >> expandToLoadableSpecNames: nameList [
 
 	| cacheKey names |
 	cacheKey := Array with: self label with: nameList.
@@ -412,151 +336,97 @@ MetacelloVersionSpec>>expandToLoadableSpecNames: nameList [
 			cache at: cacheKey put: names ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>getAuthor [
+{ #category : #accessing }
+MetacelloVersionSpec >> getAuthor [
 	^author
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>getBlessing [
+{ #category : #accessing }
+MetacelloVersionSpec >> getBlessing [
 	^blessing
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>getDescription [
+{ #category : #accessing }
+MetacelloVersionSpec >> getDescription [
 	^description
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>getPostLoadDoIt [
+{ #category : #accessing }
+MetacelloVersionSpec >> getPostLoadDoIt [
 	^postLoadDoIt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>getPreLoadDoIt [
+{ #category : #accessing }
+MetacelloVersionSpec >> getPreLoadDoIt [
 	^preLoadDoIt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>getTimestamp [
+{ #category : #accessing }
+MetacelloVersionSpec >> getTimestamp [
 	^timestamp
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>group: aString overrides: aStringOrCollection constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> group: aString overrides: aStringOrCollection constructor: aVersionConstructor [
     aVersionConstructor groupForVersion: aString overrides: aStringOrCollection
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>group: aString with: aStringOrCollection constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> group: aString with: aStringOrCollection constructor: aVersionConstructor [
     aVersionConstructor groupForVersion: aString with: aStringOrCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>import [
+{ #category : #accessing }
+MetacelloVersionSpec >> import [
     ^ importName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>import: aString [
+{ #category : #accessing }
+MetacelloVersionSpec >> import: aString [
   importName := aString
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>import: aString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> import: aString constructor: aVersionConstructor [
     aVersionConstructor importForVersion: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>import: aString provides: anArray [
+{ #category : #accessing }
+MetacelloVersionSpec >> import: aString provides: anArray [
   importArray := importArray
     ifNil: [ {(aString -> anArray)} ]
     ifNotNil: [ importArray , {(aString -> anArray)} ]
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>import: aString provides: anArray constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> import: aString provides: anArray constructor: aVersionConstructor [
   aVersionConstructor importForVersion: aString provides: anArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>importArray [
+{ #category : #accessing }
+MetacelloVersionSpec >> importArray [
   ^ importArray
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>isPartiallyCurrent: notLoadedMatters useEquality: useEquality [
+{ #category : #testing }
+MetacelloVersionSpec >> isPartiallyCurrent: notLoadedMatters useEquality: useEquality [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>isPossibleBaseline [
+{ #category : #testing }
+MetacelloVersionSpec >> isPossibleBaseline [
     self subclassResponsibility
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>label [
+{ #category : #printing }
+MetacelloVersionSpec >> label [
 
 	^self versionString, ' [', self projectLabel, ']'
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>mergeMap [
+{ #category : #merging }
+MetacelloVersionSpec >> mergeMap [
     | map |
     map := super mergeMap.
     map at: #'versionString' put: versionString.
@@ -570,11 +440,8 @@ MetacelloVersionSpec>>mergeMap [
     ^ map
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>mergeSpec: anotherSpec [
+{ #category : #merging }
+MetacelloVersionSpec >> mergeSpec: anotherSpec [
     | newSpec map anotherPackages |
     newSpec := super mergeSpec: anotherSpec.
     map := anotherSpec mergeMap.
@@ -588,28 +455,19 @@ MetacelloVersionSpec>>mergeSpec: anotherSpec [
     ^ newSpec
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>nonOverridable [
+{ #category : #merging }
+MetacelloVersionSpec >> nonOverridable [
     ^ super nonOverridable , #(#'packageList')
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>packageNamed: aString [
+{ #category : #querying }
+MetacelloVersionSpec >> packageNamed: aString [
 
 	^self packageNamed: aString ifAbsent: [ nil ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>packageNamed: aString forLoad: ignored forMap: map ifAbsent: absentBlock [
+{ #category : #querying }
+MetacelloVersionSpec >> packageNamed: aString forLoad: ignored forMap: map ifAbsent: absentBlock [
   "at the end of the day, I don't the forLoad arg is important ... 
    it just ends up triggering an error ... when during a real load, you would 
    not get error. After a decent period of mourning we should just scrub this 
@@ -646,11 +504,8 @@ MetacelloVersionSpec>>packageNamed: aString forLoad: ignored forMap: map ifAbsen
         ifFalse: [ absentBlock value ] ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>packageNamed: aString forMap: map ifAbsent: absentBlock [
+{ #category : #querying }
+MetacelloVersionSpec >> packageNamed: aString forMap: map ifAbsent: absentBlock [
     "import: only allowed to be used with baseline project specs"
 
     ^ self
@@ -660,65 +515,44 @@ MetacelloVersionSpec>>packageNamed: aString forMap: map ifAbsent: absentBlock [
         ifAbsent: absentBlock
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>packageNamed: aString ifAbsent: aBlock [
+{ #category : #querying }
+MetacelloVersionSpec >> packageNamed: aString ifAbsent: aBlock [
 
 	^self packageNamed: aString forMap: self packages map ifAbsent: aBlock
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>packageNames [
+{ #category : #querying }
+MetacelloVersionSpec >> packageNames [
     packageList == nil
         ifTrue: [ ^ #() ].
     ^ self packages map keys asSet
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>packageSpecsInLoadOrder [
+{ #category : #querying }
+MetacelloVersionSpec >> packageSpecsInLoadOrder [
   ^ self packages packageSpecsInLoadOrderFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>packages [
+{ #category : #accessing }
+MetacelloVersionSpec >> packages [
     packageList == nil
         ifTrue: [ packageList := self project packagesSpec ].
     ^ packageList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>packages: anObject [
+{ #category : #accessing }
+MetacelloVersionSpec >> packages: anObject [
     packageList := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>packagesSpec [
+{ #category : #accessing }
+MetacelloVersionSpec >> packagesSpec [
 
 	^self packages
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>postCopy [
+{ #category : #copying }
+MetacelloVersionSpec >> postCopy [
     super postCopy.
     blessing := blessing copy.
     description := description copy.
@@ -727,154 +561,100 @@ MetacelloVersionSpec>>postCopy [
     packageList := packageList copy
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>postLoadDoIt [
+{ #category : #querying }
+MetacelloVersionSpec >> postLoadDoIt [
 
 	^postLoadDoIt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>postLoadDoIt: anObject [
+{ #category : #accessing }
+MetacelloVersionSpec >> postLoadDoIt: anObject [
 
 	anObject setPostLoadDoItInMetacelloSpec: self
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>postLoadDoIt: aSymbol constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> postLoadDoIt: aSymbol constructor: aVersionConstructor [
     aVersionConstructor postLoadDoItForVersion: aSymbol
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>preLoadDoIt [
+{ #category : #querying }
+MetacelloVersionSpec >> preLoadDoIt [
 
 	^preLoadDoIt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>preLoadDoIt: anObject [
+{ #category : #accessing }
+MetacelloVersionSpec >> preLoadDoIt: anObject [
 
 	anObject setPreLoadDoItInMetacelloSpec: self
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>preLoadDoIt: aSymbol constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> preLoadDoIt: aSymbol constructor: aVersionConstructor [
     aVersionConstructor preLoadDoItForVersion: aSymbol
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>project: aString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> project: aString constructor: aVersionConstructor [
     aVersionConstructor projectForVersion: aString
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>project: aString copyFrom: oldSpecName with: aBlock constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> project: aString copyFrom: oldSpecName with: aBlock constructor: aVersionConstructor [
     aVersionConstructor projectForVersion: aString copyFrom: oldSpecName with: aBlock
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>project: aString overrides: aBlock constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> project: aString overrides: aBlock constructor: aVersionConstructor [
     aVersionConstructor projectForVersion: aString overrides: aBlock
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>project: aString with: aBlockOrString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> project: aString with: aBlockOrString constructor: aVersionConstructor [
     aVersionConstructor projectForVersion: aString with: aBlockOrString
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
+{ #category : #enumerating }
+MetacelloVersionSpec >> projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
 
 	self packageSpecsInLoadOrder do: [:pkgSpec |
 		pkgSpec projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>projectLabel [
+{ #category : #accessing }
+MetacelloVersionSpec >> projectLabel [
 
 	^self project label
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>removeGroup: aString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> removeGroup: aString constructor: aVersionConstructor [
     aVersionConstructor removeGroupForVersion: aString
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>removeProject: aString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> removeProject: aString constructor: aVersionConstructor [
     aVersionConstructor removeProjectForVersion: aString
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>repositories: aBlock constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> repositories: aBlock constructor: aVersionConstructor [
     aVersionConstructor repositoriesForVersion: aBlock
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>repository: anObject constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> repository: anObject constructor: aVersionConstructor [
     aVersionConstructor repositoryForVersion: anObject
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>repository: aString username: username password: password constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> repository: aString username: username password: password constructor: aVersionConstructor [
     aVersionConstructor repositoryForVersion: aString username: username password: password
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>resolveToLoadableSpec: aString forLoad: forLoad forMap: map packages: packageMap [
+{ #category : #loading }
+MetacelloVersionSpec >> resolveToLoadableSpec: aString forLoad: forLoad forMap: map packages: packageMap [
     | package |
     package := self
         packageNamed: aString
@@ -885,11 +665,8 @@ MetacelloVersionSpec>>resolveToLoadableSpec: aString forLoad: forLoad forMap: ma
     ^ {package}
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>resolveToLoadableSpecs: nameList [
+{ #category : #loading }
+MetacelloVersionSpec >> resolveToLoadableSpecs: nameList [
   "Resolves names in namelist to the  list of packages and projects in the version that would be loaded. Projects are 
 	not traversed during the transitive closure. The scope is that of the version itself.
 	   If the spec is a package, answer a list including the package and the transitive closure on 
@@ -904,11 +681,8 @@ MetacelloVersionSpec>>resolveToLoadableSpecs: nameList [
   ^ map values
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>resolveToLoadableSpecs: required forLoad: forLoad map: packageMap [
+{ #category : #loading }
+MetacelloVersionSpec >> resolveToLoadableSpecs: required forLoad: forLoad map: packageMap [
   | reqd allReqd map newReqd spec |
   reqd := required copy.
   allReqd := Set new.
@@ -936,71 +710,47 @@ MetacelloVersionSpec>>resolveToLoadableSpecs: required forLoad: forLoad map: pac
         ifFalse: [ packageMap at: pkgName put: (packageMap at: pkgName) resolveToLoadableSpec ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>setAuthor: anObject [
+{ #category : #accessing }
+MetacelloVersionSpec >> setAuthor: anObject [
 	author := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>setBlessing: anObject [
+{ #category : #accessing }
+MetacelloVersionSpec >> setBlessing: anObject [
 	blessing := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>setDescription: anObject [
+{ #category : #accessing }
+MetacelloVersionSpec >> setDescription: anObject [
 	description := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>setImport: anArray [
+{ #category : #accessing }
+MetacelloVersionSpec >> setImport: anArray [
   importArray := importArray
     ifNil: [ anArray ]
     ifNotNil: [ importArray , anArray ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>setPostLoadDoIt: aSymbol [
+{ #category : #accessing }
+MetacelloVersionSpec >> setPostLoadDoIt: aSymbol [
 
 	postLoadDoIt := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>setPreLoadDoIt: aSymbol [
+{ #category : #accessing }
+MetacelloVersionSpec >> setPreLoadDoIt: aSymbol [
 
 	preLoadDoIt := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>setTimestamp: anObject [
+{ #category : #accessing }
+MetacelloVersionSpec >> setTimestamp: anObject [
 	timestamp := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>timestamp [
+{ #category : #accessing }
+MetacelloVersionSpec >> timestamp [
 
 	timestamp == nil 
 		ifTrue: [
@@ -1010,61 +760,40 @@ MetacelloVersionSpec>>timestamp [
 	^ timestamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>timestamp: anObject [
+{ #category : #accessing }
+MetacelloVersionSpec >> timestamp: anObject [
 
 	anObject setTimestampInMetacelloVersion: self
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>timestamp: aBlockOrStringOrDateAndTime constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> timestamp: aBlockOrStringOrDateAndTime constructor: aVersionConstructor [
     aVersionConstructor timestampForVersion: aBlockOrStringOrDateAndTime
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>versionClass [
+{ #category : #private }
+MetacelloVersionSpec >> versionClass [
 
 	^MetacelloVersion
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>versionNumber [
+{ #category : #private }
+MetacelloVersionSpec >> versionNumber [
     ^ self project versionNumberClass fromString: self versionString
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>versionString [
+{ #category : #querying }
+MetacelloVersionSpec >> versionString [
 	versionString == nil ifTrue: [ ^'' ].
 	^ versionString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>versionString: anObject [
+{ #category : #accessing }
+MetacelloVersionSpec >> versionString: anObject [
 	versionString := anObject
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionSpec>>versionString: anObject constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloVersionSpec >> versionString: anObject constructor: aVersionConstructor [
     aVersionConstructor versionStringForVersion: anObject
 ]

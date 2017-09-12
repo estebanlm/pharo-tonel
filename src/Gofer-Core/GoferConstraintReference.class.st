@@ -7,31 +7,21 @@ Class {
 	#instVars : [
 		'constraintBlock'
 	],
-	#category : #Gofer-Core,
-	#timestamp : 'lr 1/30/2010 14:37'
+	#category : #Gofer-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferConstraintReference class>>name: aString constraint: aBlock [
+{ #category : #'instance creation' }
+GoferConstraintReference class >> name: aString constraint: aBlock [
 	^ self basicNew initializeName: aString constraint: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferConstraintReference>>initializeName: aString constraint: aBlock [
+{ #category : #initialization }
+GoferConstraintReference >> initializeName: aString constraint: aBlock [
 	self initializeName: aString.
 	constraintBlock := aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferConstraintReference>>matches: aResolvedReference [
+{ #category : #private }
+GoferConstraintReference >> matches: aResolvedReference [
 	^ (super matches: aResolvedReference) and: [ constraintBlock value: aResolvedReference ]
 ]

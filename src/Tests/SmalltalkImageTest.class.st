@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #SmalltalkImageTest,
 	#superclass : #TestCase,
-	#category : #Tests-System,
-	#timestamp : ''
+	#category : #Tests-System
 }
 
-{
-	#category : #tests-arguments,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SmalltalkImageTest>>testExtractAllKinds [
+{ #category : #tests-arguments }
+SmalltalkImageTest >> testExtractAllKinds [
 	| args extract keys |
 	args := #('ArgWithoutMinus1' '-ArgWithMinus1' 'ArgWithoutMinus2' 'ArgWithoutMinus3' '-ArgWithMinus2').
 	extract := SmalltalkImage current extractMinusParametersFrom: args.
@@ -27,11 +20,8 @@ SmalltalkImageTest>>testExtractAllKinds [
 	self assert: (extract at: #ArgWithMinus2) isEmpty
 ]
 
-{
-	#category : #tests-arguments,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SmalltalkImageTest>>testExtractEmpty [
+{ #category : #tests-arguments }
+SmalltalkImageTest >> testExtractEmpty [
 	| args extract |
 	args := #().
 	extract := SmalltalkImage current extractMinusParametersFrom: args.
@@ -39,11 +29,8 @@ SmalltalkImageTest>>testExtractEmpty [
 	self assert: extract isEmpty
 ]
 
-{
-	#category : #tests-arguments,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SmalltalkImageTest>>testExtractNil [
+{ #category : #tests-arguments }
+SmalltalkImageTest >> testExtractNil [
 	| args extract |
 	args := nil.
 	extract := SmalltalkImage current extractMinusParametersFrom: args.
@@ -51,11 +38,8 @@ SmalltalkImageTest>>testExtractNil [
 	self assert: extract isEmpty
 ]
 
-{
-	#category : #tests-arguments,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SmalltalkImageTest>>testExtractOneArgNoMinus [
+{ #category : #tests-arguments }
+SmalltalkImageTest >> testExtractOneArgNoMinus [
 	| args extract |
 	args := #('ArgNoMinus').
 	extract := SmalltalkImage current extractMinusParametersFrom: args.
@@ -65,11 +49,8 @@ SmalltalkImageTest>>testExtractOneArgNoMinus [
 	self assert: (extract at: #*) equals: args
 ]
 
-{
-	#category : #tests-arguments,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SmalltalkImageTest>>testExtractOneArgWithMinus [
+{ #category : #tests-arguments }
+SmalltalkImageTest >> testExtractOneArgWithMinus [
 	| args extract |
 	args := #('-ArgWithMinus').
 	extract := SmalltalkImage current extractMinusParametersFrom: args.
@@ -79,11 +60,8 @@ SmalltalkImageTest>>testExtractOneArgWithMinus [
 	self assert: (extract at: #ArgWithMinus) isEmpty
 ]
 
-{
-	#category : #tests-arguments,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SmalltalkImageTest>>testExtractOneArgWithMinusThenArgsWithout [
+{ #category : #tests-arguments }
+SmalltalkImageTest >> testExtractOneArgWithMinusThenArgsWithout [
 	| args extract |
 	args := #('-ArgWithMinus' 'ArgWithoutMinus1' 'ArgWithoutMinus2').
 	extract := SmalltalkImage current extractMinusParametersFrom: args.
@@ -93,11 +71,8 @@ SmalltalkImageTest>>testExtractOneArgWithMinusThenArgsWithout [
 	self assert: (extract at: #ArgWithMinus) equals: #('ArgWithoutMinus1' 'ArgWithoutMinus2')
 ]
 
-{
-	#category : #tests-arguments,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SmalltalkImageTest>>testExtractTwoArgsWithAndWithoutMinus [
+{ #category : #tests-arguments }
+SmalltalkImageTest >> testExtractTwoArgsWithAndWithoutMinus [
 	| args extract keys |
 	args := #('ArgWithoutMinus' '-ArgWithMinus').
 	extract := SmalltalkImage current extractMinusParametersFrom: args.
@@ -110,11 +85,8 @@ SmalltalkImageTest>>testExtractTwoArgsWithAndWithoutMinus [
 	self assert: (extract at: #ArgWithMinus) isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SmalltalkImageTest>>testOpenLog [
+{ #category : #testing }
+SmalltalkImageTest >> testOpenLog [
 	"It must be possible to write to the log even when the log file can''t be created."
 
 	"Standard case where a file can be created with this name."
@@ -126,11 +98,8 @@ SmalltalkImageTest>>testOpenLog [
 
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SmalltalkImageTest>>writeToLogWithFileNamed: filename [
+{ #category : #helpers }
+SmalltalkImageTest >> writeToLogWithFileNamed: filename [
 	| oldLogFileName |
 	oldLogFileName := Smalltalk logFileName.
 	Smalltalk logFileName: filename.

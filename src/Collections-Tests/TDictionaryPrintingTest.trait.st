@@ -3,52 +3,34 @@ A trait for test purposes
 "
 Trait {
 	#name : #TDictionaryPrintingTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Unordered,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:34'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryPrintingTest>>emptyDict [
+{ #category : #requirements }
+TDictionaryPrintingTest >> emptyDict [
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryPrintingTest>>newEmptyDict [
+{ #category : #requirements }
+TDictionaryPrintingTest >> newEmptyDict [
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryPrintingTest>>nonEmptyDict [
+{ #category : #requirements }
+TDictionaryPrintingTest >> nonEmptyDict [
 	self explicitRequirement
 ]
 
-{
-	#category : #'test - printing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryPrintingTest>>testPrintElementsOn [
+{ #category : #'test - printing' }
+TDictionaryPrintingTest >> testPrintElementsOn [
 	| str |
 	str := String new writeStream.
 	self nonEmptyDict printElementsOn: str.
 	self assert: (str contents = '(#a->1 #b->30 #c->1 #d->-2 )')
 ]
 
-{
-	#category : #'test - printing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryPrintingTest>>testStoreOn [
+{ #category : #'test - printing' }
+TDictionaryPrintingTest >> testStoreOn [
 	| str |
 	str := String new writeStream.
 	self nonEmptyDict storeOn: str.

@@ -1,12 +1,7 @@
-Extension {
-	#name : #WorldMorph
-}
+Extension { #name : #WorldMorph }
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-WorldMorph>>acceptDroppingMorph: dropped event: evt [
+{ #category : #'*Morphic-Base' }
+WorldMorph >> acceptDroppingMorph: dropped event: evt [
 	"The supplied morph, known to be acceptable to the receiver, is now to be assimilated; the precipitating event is supplied"
 
 	| aMorph |
@@ -23,11 +18,8 @@ WorldMorph>>acceptDroppingMorph: dropped event: evt [
 	self bringTopmostsToFront
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-WorldMorph>>dispatchKeystroke: anEvent [
+{ #category : #'*Morphic-Base' }
+WorldMorph >> dispatchKeystroke: anEvent [
 	"A keystroke was hit when no keyboard focus was set, so it is sent here to the world instead."
 
 	|  aChar ascii |
@@ -46,11 +38,8 @@ WorldMorph>>dispatchKeystroke: anEvent [
 	super dispatchKeystroke: anEvent
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-WorldMorph>>install [
+{ #category : #'*Morphic-Base' }
+WorldMorph >> install [
 	"this method was used to be invoked from onPrimitiveError: 
 	the problem is that it cannot be used to recreate the world instance.
 	For this have a look class side installNewWorld."
@@ -69,11 +58,8 @@ WorldMorph>>install [
 	self displayWorldSafely
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-WorldMorph>>installForUIProcessReinstall [
+{ #category : #'*Morphic-Base' }
+WorldMorph >> installForUIProcessReinstall [
 	"This method should be changed because it cannot be invoked from onPrimitiveError: as the previous PasteUpMorph 
 	method was used to."
 	
@@ -107,11 +93,8 @@ WorldMorph>>installForUIProcessReinstall [
 	self displayWorldSafely.
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-WorldMorph class>>installNewWorld [
+{ #category : #'*Morphic-Base' }
+WorldMorph class >> installNewWorld [
 	"let us play God."
 	
 	 [  |  man |

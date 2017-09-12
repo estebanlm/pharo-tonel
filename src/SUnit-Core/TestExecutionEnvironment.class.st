@@ -40,50 +40,34 @@ Class {
 		'failedProcesses',
 		'testCompleted'
 	],
-	#category : #SUnit-Core-Kernel,
-	#timestamp : 'DenisKudryashov 8/30/2016 17:01'
+	#category : #SUnit-Core-Kernel
 }
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment class>>currentFailures [
+{ #category : #controlling }
+TestExecutionEnvironment class >> currentFailures [
 
 	^CurrentExecutionEnvironment value failures
 ]
 
-{
-	#category : #'fuel support',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment class>>fuelIgnoredInstanceVariableNames [
+{ #category : #'fuel support' }
+TestExecutionEnvironment class >> fuelIgnoredInstanceVariableNames [
     ^#('watchDogProcess' 'watchDogSemaphore' 'forkedProcesses' 'failedProcesses')
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment class>>maxTimeForTest: aDuration [
+{ #category : #controlling }
+TestExecutionEnvironment class >> maxTimeForTest: aDuration [
 
 	CurrentExecutionEnvironment value maxTimeForTest: aDuration
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment class>>resetFailures [
+{ #category : #controlling }
+TestExecutionEnvironment class >> resetFailures [
 
 	^CurrentExecutionEnvironment value resetFailures
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>activated [
+{ #category : #controlling }
+TestExecutionEnvironment >> activated [
 
 	| testProcess |
 	testProcess := Processor activeProcess.
@@ -96,11 +80,8 @@ TestExecutionEnvironment>>activated [
 		resume
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>checkForkedProcesses [
+{ #category : #controlling }
+TestExecutionEnvironment >> checkForkedProcesses [
 
 	forkedProcesses reject: [:each | failedProcesses includesKey: each ] thenDo: #terminate.
 	failedProcesses ifEmpty: [ ^self].	
@@ -113,44 +94,29 @@ TestExecutionEnvironment>>checkForkedProcesses [
 	failedProcesses keys reject: #isTerminated thenDo: #resume
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>deactivated [
+{ #category : #controlling }
+TestExecutionEnvironment >> deactivated [
 
 	watchDogProcess terminate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>failures [
+{ #category : #accessing }
+TestExecutionEnvironment >> failures [
 	^failedProcesses values
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>forkedProcesses [
+{ #category : #accessing }
+TestExecutionEnvironment >> forkedProcesses [
 	^ forkedProcesses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>forkedProcesses: anObject [
+{ #category : #accessing }
+TestExecutionEnvironment >> forkedProcesses: anObject [
 	forkedProcesses := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>initialize [
+{ #category : #initialization }
+TestExecutionEnvironment >> initialize [
 	super initialize.
 	
 	forkedProcesses := WeakSet new.
@@ -158,30 +124,21 @@ TestExecutionEnvironment>>initialize [
 	testCompleted := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>maxTimeForTest [
+{ #category : #accessing }
+TestExecutionEnvironment >> maxTimeForTest [
 	^ maxTimeForTest
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>maxTimeForTest: aDuration [
+{ #category : #accessing }
+TestExecutionEnvironment >> maxTimeForTest: aDuration [
 	maxTimeForTest := aDuration.
 	watchDogSemaphore ifNotNil: [ 
 		"we need restart watch dog timer for new timeout"
 		watchDogSemaphore signal ]. 
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>prepareForNewProcess: aProcess [
+{ #category : #controlling }
+TestExecutionEnvironment >> prepareForNewProcess: aProcess [
 	| processBlock |
 	watchDogProcess ifNil: [ ^self ].  "we should not catch watchDogProcess"
 	forkedProcesses add: aProcess.
@@ -199,19 +156,13 @@ TestExecutionEnvironment>>prepareForNewProcess: aProcess [
 		err pass]
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>resetFailures [
+{ #category : #controlling }
+TestExecutionEnvironment >> resetFailures [
 	failedProcesses removeAll
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>runTestCase: aTestCase [
+{ #category : #controlling }
+TestExecutionEnvironment >> runTestCase: aTestCase [
 	testCase := aTestCase.
 	maxTimeForTest := testCase defaultTimeLimit.
 	testCompleted := false.
@@ -226,11 +177,8 @@ TestExecutionEnvironment>>runTestCase: aTestCase [
 		failedProcesses removeAll]
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>runTestCaseSafelly: aTestCase [
+{ #category : #controlling }
+TestExecutionEnvironment >> runTestCaseSafelly: aTestCase [
 	[
 		[aTestCase runCase] on: Halt do: [ :halt | 
 			"if test was halted we should resume all background failures 
@@ -243,36 +191,24 @@ TestExecutionEnvironment>>runTestCaseSafelly: aTestCase [
 		err pass  ]
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>runTestsBy: aBlock [
+{ #category : #controlling }
+TestExecutionEnvironment >> runTestsBy: aBlock [
 
 	aBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>testCase [
+{ #category : #accessing }
+TestExecutionEnvironment >> testCase [
 	^ testCase
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>testCase: anObject [
+{ #category : #accessing }
+TestExecutionEnvironment >> testCase: anObject [
 	testCase := anObject
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestExecutionEnvironment>>watchDogLoopFor: testProcess [
+{ #category : #controlling }
+TestExecutionEnvironment >> watchDogLoopFor: testProcess [
 
 	| timeIsGone |
 	[	"waiting new test case" 

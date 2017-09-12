@@ -15,15 +15,11 @@ Class {
 		'availableRows',
 		'rootItems'
 	],
-	#category : #Morphic-Widgets-FastTable-Tree-Basic,
-	#timestamp : 'HenrikNergaard 3/27/2016 14:25'
+	#category : #Morphic-Widgets-FastTable-Tree-Basic
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource class>>exampleBasicInspect: anObject [
+{ #category : #examples }
+FTBasicTreeListDataSource class >> exampleBasicInspect: anObject [
 
 	| ds ft |
 
@@ -44,11 +40,8 @@ FTBasicTreeListDataSource class>>exampleBasicInspect: anObject [
 	^ds
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource class>>exampleInspect: anObject [
+{ #category : #examples }
+FTBasicTreeListDataSource class >> exampleInspect: anObject [
 
 	| ds ft |
 
@@ -75,11 +68,8 @@ FTBasicTreeListDataSource class>>exampleInspect: anObject [
 	^ds
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource class>>exampleProtoObjectClassTree [
+{ #category : #examples }
+FTBasicTreeListDataSource class >> exampleProtoObjectClassTree [
 
 	| ds ft |
 
@@ -97,11 +87,8 @@ FTBasicTreeListDataSource class>>exampleProtoObjectClassTree [
 	ft openInWindow position: 20@10
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource class>>exampleSomeClassesSubclassesTree [
+{ #category : #examples }
+FTBasicTreeListDataSource class >> exampleSomeClassesSubclassesTree [
 
 	| ds ft |
 
@@ -119,11 +106,8 @@ FTBasicTreeListDataSource class>>exampleSomeClassesSubclassesTree [
 	ft openInWindow position: 20@10
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource class>>exampleStateTree [
+{ #category : #examples }
+FTBasicTreeListDataSource class >> exampleStateTree [
 
 	| ds ft |
 
@@ -148,11 +132,8 @@ FTBasicTreeListDataSource class>>exampleStateTree [
 	ft openInWindow position: 20@10
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource class>>exampleWorldSubmorphTree [
+{ #category : #examples }
+FTBasicTreeListDataSource class >> exampleWorldSubmorphTree [
 
 	| ds ft |
 
@@ -170,11 +151,8 @@ FTBasicTreeListDataSource class>>exampleWorldSubmorphTree [
 	ft openInWindow position: 20@10
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource>>cellColumn: column row: rowIndex [
+{ #category : #accessing }
+FTBasicTreeListDataSource >> cellColumn: column row: rowIndex [
 	| item |
 	
 	"this is a bad way for tree; maybe list too. the morph should ask for the full collection from index start to n elements. 
@@ -185,31 +163,22 @@ FTBasicTreeListDataSource>>cellColumn: column row: rowIndex [
 	^item cellMorphFor: self.
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource>>children: aBlock [
+{ #category : #construction }
+FTBasicTreeListDataSource >> children: aBlock [
 
 	"aBlock -> [ :item | aCollection ]"
 
 	childrenBlock := aBlock 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource>>childrenBlock [
+{ #category : #accessing }
+FTBasicTreeListDataSource >> childrenBlock [
 
 	^childrenBlock 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource>>childrenFor: anItem [
+{ #category : #accessing }
+FTBasicTreeListDataSource >> childrenFor: anItem [
 	
 	| children |
 	
@@ -219,20 +188,14 @@ FTBasicTreeListDataSource>>childrenFor: anItem [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource>>countAvailableRows [
+{ #category : #private }
+FTBasicTreeListDataSource >> countAvailableRows [
 
 	availableRows := rootItems inject: 0 into: [ :sum :item | sum + item availableRows ]
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource>>display: aBlock [
+{ #category : #construction }
+FTBasicTreeListDataSource >> display: aBlock [
 
 	"aBlock -> [ :item :cell | cell addMorphBack: ... ]"
 
@@ -240,20 +203,14 @@ FTBasicTreeListDataSource>>display: aBlock [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource>>displayBlock [
+{ #category : #accessing }
+FTBasicTreeListDataSource >> displayBlock [
 
 	^displayBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource>>elementAt: index [
+{ #category : #private }
+FTBasicTreeListDataSource >> elementAt: index [
 	| curr b |
 	
 	curr := 0.
@@ -266,47 +223,32 @@ FTBasicTreeListDataSource>>elementAt: index [
 	SubscriptOutOfBounds signal: index.
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource>>expand: aNumber [
+{ #category : #expanding-collapsing }
+FTBasicTreeListDataSource >> expand: aNumber [
 
 	rootItems do: [ :each | each expandToDepth: aNumber ].
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource>>expandAll [
+{ #category : #expanding-collapsing }
+FTBasicTreeListDataSource >> expandAll [
 
 	self expand: SmallInteger maxVal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource>>numberOfRows [
+{ #category : #accessing }
+FTBasicTreeListDataSource >> numberOfRows [
 	
 	^availableRows
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource>>root: anObject [
+{ #category : #construction }
+FTBasicTreeListDataSource >> root: anObject [
 
 	self roots: { anObject }
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource>>roots: aCollection [
+{ #category : #construction }
+FTBasicTreeListDataSource >> roots: aCollection [
 
 	rootItems := aCollection collect: [ :each | 
 			FTBasicTreeListItem new 
@@ -317,30 +259,21 @@ FTBasicTreeListDataSource>>roots: aCollection [
 	self countAvailableRows
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource>>sortChildrenBy: aBlock [
+{ #category : #construction }
+FTBasicTreeListDataSource >> sortChildrenBy: aBlock [
 
 	"aBLock -> [ :a :b | a something <= b something ] "
 
 	sortingBlock := aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource>>tableRefresh [
+{ #category : #private }
+FTBasicTreeListDataSource >> tableRefresh [
 	table ifNotNil: [ table refresh ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListDataSource>>updateAvailableRows: aNumber [
+{ #category : #private }
+FTBasicTreeListDataSource >> updateAvailableRows: aNumber [
 	
 	
 	availableRows := availableRows + aNumber.

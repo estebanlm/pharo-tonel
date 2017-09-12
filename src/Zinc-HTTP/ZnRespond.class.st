@@ -11,32 +11,22 @@ Class {
 	#instVars : [
 		'response'
 	],
-	#category : #Zinc-HTTP-Exceptions,
-	#timestamp : 'SvenVanCaekenberghe 7/2/2015 23:18'
+	#category : #Zinc-HTTP-Exceptions
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnRespond class>>signalWith: response [
+{ #category : #'instance creation' }
+ZnRespond class >> signalWith: response [
 	^ self new
 		response: response;
 		signal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnRespond>>response [
+{ #category : #accessing }
+ZnRespond >> response [
 	^ response
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnRespond>>response: anObject [
+{ #category : #accessing }
+ZnRespond >> response: anObject [
 	response := anObject
 ]

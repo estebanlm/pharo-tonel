@@ -1,45 +1,29 @@
-"
-
-"
 Class {
 	#name : #RubTextSegmentIconDisplayer,
 	#superclass : #RubScrolledTextSideRuler,
 	#instVars : [
 		'previouslyIn'
 	],
-	#category : #Rubric-Editing-Widgets,
-	#timestamp : ''
+	#category : #Rubric-Editing-Widgets
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer class>>key [
+{ #category : #querying }
+RubTextSegmentIconDisplayer class >> key [
 	^ #textSegmentIcons
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>backgroundColor [
+{ #category : #accessing }
+RubTextSegmentIconDisplayer >> backgroundColor [
 	^ self paragraphProvider lineNumbersBackgroundColor 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>computedWidthFrom: aRectangle [
+{ #category : #geometry }
+RubTextSegmentIconDisplayer >> computedWidthFrom: aRectangle [
 	^  (self horizontalGapBefore + self itemWidth + self horizontalGapAfter + self verticalSeparatorWidth) truncated 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>drawOn: aCanvas [
+{ #category : #drawing }
+RubTextSegmentIconDisplayer >> drawOn: aCanvas [
 	| visibleRectangle |
 	super drawOn: aCanvas.
 	self paragraph selectionStart ifNil: [ ^ self ].
@@ -72,11 +56,8 @@ RubTextSegmentIconDisplayer>>drawOn: aCanvas [
 									dashes: {1. 1} ] ] ] ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #drawing }
+RubTextSegmentIconDisplayer >> drawOnAthensCanvas: anAthensCanvas [
 	| visibleRectangle |
 	super drawOnAthensCanvas: anAthensCanvas.
 	self paragraph selectionStart ifNil: [ ^ self ].
@@ -118,19 +99,13 @@ RubTextSegmentIconDisplayer>>drawOnAthensCanvas: anAthensCanvas [
 								anAthensCanvas drawShape: path ] ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>fontToUse [
+{ #category : #accessing }
+RubTextSegmentIconDisplayer >> fontToUse [
 	^ RubAbstractTextArea lineNumbersFont 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>handleMouseOver: anEvent [
+{ #category : #'event handling' }
+RubTextSegmentIconDisplayer >> handleMouseOver: anEvent [
 	| lineIndex |
 	super handleMouseOver: anEvent.
 	lineIndex := self lineIndexForPoint: anEvent position.
@@ -143,70 +118,46 @@ RubTextSegmentIconDisplayer>>handleMouseOver: anEvent [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>handlesMouseDown: evt [
+{ #category : #'event handling' }
+RubTextSegmentIconDisplayer >> handlesMouseDown: evt [
 	^ true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>handlesMouseMove: evt [
+{ #category : #'event handling' }
+RubTextSegmentIconDisplayer >> handlesMouseMove: evt [
 	^ true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>handlesMouseOver: evt [
+{ #category : #'event handling' }
+RubTextSegmentIconDisplayer >> handlesMouseOver: evt [
 
 	^ true
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>horizontalGapAfter [
+{ #category : #geometry }
+RubTextSegmentIconDisplayer >> horizontalGapAfter [
 	^ 1
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>horizontalGapBefore [
+{ #category : #geometry }
+RubTextSegmentIconDisplayer >> horizontalGapBefore [
 	^ 1
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>iconPositionOfSegment: aSegment [
+{ #category : #drawing }
+RubTextSegmentIconDisplayer >> iconPositionOfSegment: aSegment [
 	^ (self left + self horizontalGapBefore) @ aSegment position y
 		translateBy: 0 negated @ (self offset y negated + self bounds top)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>initialize [
+{ #category : #initialize-release }
+RubTextSegmentIconDisplayer >> initialize [
 	super initialize.
 	self clipSubmorphs: false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>invokeIconMenuOfSegments: aSegmentList event: anEvent [
+{ #category : #'event handling' }
+RubTextSegmentIconDisplayer >> invokeIconMenuOfSegments: aSegmentList event: anEvent [
 	| menu |
 	aSegmentList ifEmpty: [ ^ self ].
 	menu := RubSegmentIconMenuMorph new
@@ -226,43 +177,28 @@ RubTextSegmentIconDisplayer>>invokeIconMenuOfSegments: aSegmentList event: anEve
 	menu invokeAt: (self iconPositionOfSegment: aSegmentList first) - (1 @ 4 negated) in: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>itemWidth  [
+{ #category : #accessing }
+RubTextSegmentIconDisplayer >> itemWidth [ 
 	^ 16
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>level [
+{ #category : #accessing }
+RubTextSegmentIconDisplayer >> level [
 	^ 1
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>mouseDown: anEvent [
+{ #category : #'event handling' }
+RubTextSegmentIconDisplayer >> mouseDown: anEvent [
 	super mouseDown: anEvent
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>mouseEnter: anEvent [
+{ #category : #'event handling' }
+RubTextSegmentIconDisplayer >> mouseEnter: anEvent [
 	super mouseEnter: anEvent
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>mouseEnter: anEvent in: aSegmentList [
+{ #category : #'event handling' }
+RubTextSegmentIconDisplayer >> mouseEnter: anEvent in: aSegmentList [
 	aSegmentList ifEmpty: [ ^self ].
 	previouslyIn = aSegmentList first
 		ifTrue: [ ^ self ].
@@ -271,39 +207,27 @@ RubTextSegmentIconDisplayer>>mouseEnter: anEvent in: aSegmentList [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>mouseLeave: anEvent [
+{ #category : #'event handling' }
+RubTextSegmentIconDisplayer >> mouseLeave: anEvent [
 	previouslyIn
 		ifNotNil: [ 
 			previouslyIn showMouseHasLeaved.
 			previouslyIn := nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>textColor [
+{ #category : #accessing }
+RubTextSegmentIconDisplayer >> textColor [
 	^ self textArea lineNumbersTextColor 
 
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>topRendererOrSelf [
+{ #category : #structure }
+RubTextSegmentIconDisplayer >> topRendererOrSelf [
 	^self 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>verticalSeparatorBounds [
+{ #category : #accessing }
+RubTextSegmentIconDisplayer >> verticalSeparatorBounds [
 	| bnds  |
 	bnds := self bounds.
 	^ self side = #left
@@ -311,18 +235,12 @@ RubTextSegmentIconDisplayer>>verticalSeparatorBounds [
 		ifFalse: [ (bnds topLeft corner: bnds bottomLeft + (self verticalSeparatorWidth @ 0)) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>verticalSeparatorColor [
+{ #category : #accessing }
+RubTextSegmentIconDisplayer >> verticalSeparatorColor [
 	^ (self textArea backgroundColor contrastingColor ) alpha: 0.3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentIconDisplayer>>verticalSeparatorWidth [
+{ #category : #accessing }
+RubTextSegmentIconDisplayer >> verticalSeparatorWidth [
 	^ 1
 ]

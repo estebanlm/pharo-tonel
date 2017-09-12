@@ -1,38 +1,25 @@
-"
-
-"
 Class {
 	#name : #MetacelloScriptProjectSpecNotification,
 	#superclass : #MetacelloScriptNotification,
 	#instVars : [
 		'projectSpec'
 	],
-	#category : #Metacello-Core-Scripts,
-	#timestamp : ''
+	#category : #Metacello-Core-Scripts
 }
 
-{
-	#category : #'exception description',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptProjectSpecNotification>>defaultAction [
+{ #category : #'exception description' }
+MetacelloScriptProjectSpecNotification >> defaultAction [
     "Result of signal should be the projectSpec to be used to perform the load"
 
     ^ self projectSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptProjectSpecNotification>>projectSpec [
+{ #category : #accessing }
+MetacelloScriptProjectSpecNotification >> projectSpec [
     ^ projectSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptProjectSpecNotification>>projectSpec: anObject [
+{ #category : #accessing }
+MetacelloScriptProjectSpecNotification >> projectSpec: anObject [
     projectSpec := anObject
 ]

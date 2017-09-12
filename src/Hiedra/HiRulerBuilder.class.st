@@ -11,15 +11,11 @@ Class {
 		'linkBuilders',
 		'values'
 	],
-	#category : #Hiedra-Builders,
-	#timestamp : '<historical>'
+	#category : #Hiedra-Builders
 }
 
-{
-	#category : #'accessing - building API',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>addLinkBuilder: aBlockClosure  [
+{ #category : #'accessing - building API' }
+HiRulerBuilder >> addLinkBuilder: aBlockClosure [ 
 	
 	| newLink |
 	newLink := HiLinkBuilder new.
@@ -27,11 +23,8 @@ HiRulerBuilder>>addLinkBuilder: aBlockClosure  [
 	linkBuilders add: newLink.
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>athensSurface [
+{ #category : #building }
+HiRulerBuilder >> athensSurface [
 	| athensSurface ruler |
 	ruler := HiRuler new
 		values: values;
@@ -59,51 +52,33 @@ HiRulerBuilder>>athensSurface [
 	^ athensSurface
 ]
 
-{
-	#category : #'accessing - rendering',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>bottomOfRowIndex: rowIndex [
+{ #category : #'accessing - rendering' }
+HiRulerBuilder >> bottomOfRowIndex: rowIndex [
 	^ rowIndex * self rowSize
 ]
 
-{
-	#category : #'accessing - rendering',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>centerOfColumnIndex: columnIndex [
+{ #category : #'accessing - rendering' }
+HiRulerBuilder >> centerOfColumnIndex: columnIndex [
 	^ (self leftOfColumnIndex: columnIndex) + (self columnSize // 2)
 ]
 
-{
-	#category : #'accessing - rendering',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>centerOfRowIndex: rowIndex [
+{ #category : #'accessing - rendering' }
+HiRulerBuilder >> centerOfRowIndex: rowIndex [
 	^ (self topOfRowIndex: rowIndex) + (self rowSize // 2)
 ]
 
-{
-	#category : #'accessing - building API',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>columnSize [
+{ #category : #'accessing - building API' }
+HiRulerBuilder >> columnSize [
 	^ columnSize
 ]
 
-{
-	#category : #'accessing - building API',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>columnSize: anInteger [
+{ #category : #'accessing - building API' }
+HiRulerBuilder >> columnSize: anInteger [
 	columnSize := anInteger
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>form [
+{ #category : #building }
+HiRulerBuilder >> form [
 	| surface form |
 	surface := self athensSurface.
 
@@ -118,11 +93,8 @@ HiRulerBuilder>>form [
 	^ form
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>initialize [
+{ #category : #initialization }
+HiRulerBuilder >> initialize [
 	super initialize.
 	
 	rowSize := 25.
@@ -131,66 +103,42 @@ HiRulerBuilder>>initialize [
 	linkBuilders := OrderedCollection new.
 ]
 
-{
-	#category : #'accessing - rendering',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>leftOfColumnIndex: columnIndex [
+{ #category : #'accessing - rendering' }
+HiRulerBuilder >> leftOfColumnIndex: columnIndex [
 	^ (columnIndex - 1) * self columnSize
 ]
 
-{
-	#category : #'accessing - rendering',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>linkBuilders [
+{ #category : #'accessing - rendering' }
+HiRulerBuilder >> linkBuilders [
 	^ linkBuilders
 ]
 
-{
-	#category : #'accessing - building API',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>nodeBuilder [
+{ #category : #'accessing - building API' }
+HiRulerBuilder >> nodeBuilder [
 	^ nodeBuilder
 ]
 
-{
-	#category : #'accessing - rendering',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>numberOfRows [
+{ #category : #'accessing - rendering' }
+HiRulerBuilder >> numberOfRows [
 	^ values size
 ]
 
-{
-	#category : #'accessing - building API',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>rowSize [
+{ #category : #'accessing - building API' }
+HiRulerBuilder >> rowSize [
 	^ rowSize
 ]
 
-{
-	#category : #'accessing - building API',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>rowSize: anInteger [
+{ #category : #'accessing - building API' }
+HiRulerBuilder >> rowSize: anInteger [
 	rowSize := anInteger
 ]
 
-{
-	#category : #'accessing - rendering',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>topOfRowIndex: rowIndex [
+{ #category : #'accessing - rendering' }
+HiRulerBuilder >> topOfRowIndex: rowIndex [
 	^ (rowIndex - 1) * self rowSize
 ]
 
-{
-	#category : #'accessing - building API',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerBuilder>>values: aCollection  [
+{ #category : #'accessing - building API' }
+HiRulerBuilder >> values: aCollection [ 
 	values := aCollection
 ]

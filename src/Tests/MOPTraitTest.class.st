@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MOPTraitTest,
 	#superclass : #TestCase,
-	#category : #Tests-Traits-MOP,
-	#timestamp : ''
+	#category : #Tests-Traits-MOP
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MOPTraitTest>>testClass [
+{ #category : #tests }
+MOPTraitTest >> testClass [
 	"self debug: #testClass"
 	"The class of a compiled method is the class that contains it.
 	A compiled method is shared."
@@ -30,11 +23,8 @@ MOPTraitTest>>testClass [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MOPTraitTest>>testOrigin [
+{ #category : #tests }
+MOPTraitTest >> testOrigin [
 	"self debug: #testClass"
 	"The origin of a compiledMethod is its defining class or trait."
 	
@@ -47,11 +37,8 @@ MOPTraitTest>>testOrigin [
 	self assert: (MOPTestClassD>>#c2) origin = Trait2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MOPTraitTest>>testSelector [
+{ #category : #tests }
+MOPTraitTest >> testSelector [
 	"self debug: #testSelector"
 	"The selector of a compiled method should be its name. 
 	An aliased method should have the name of its alias name."

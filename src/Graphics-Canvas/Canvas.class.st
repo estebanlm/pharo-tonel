@@ -21,31 +21,21 @@ Subclasses must implement (at least) the following methods:
 Class {
 	#name : #Canvas,
 	#superclass : #Object,
-	#category : #Graphics-Canvas,
-	#timestamp : '<historical>'
+	#category : #Graphics-Canvas
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>asShadowDrawingCanvas [
+{ #category : #converting }
+Canvas >> asShadowDrawingCanvas [
 	^self asShadowDrawingCanvas: (Color black alpha: 0.5).
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>asShadowDrawingCanvas: aColor [
+{ #category : #converting }
+Canvas >> asShadowDrawingCanvas: aColor [
 	^(ShadowDrawingCanvas on: self) shadowColor: aColor
 ]
 
-{
-	#category : #drawing-support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>cache: aRectangle using: aCache during: aBlock  [
+{ #category : #drawing-support }
+Canvas >> cache: aRectangle using: aCache during: aBlock [ 
 	"Cache the execution of aBlock by the given cache.
 	Note: At some point we may want to actually *create* the cache here;
 		for now we're only using it."
@@ -56,75 +46,51 @@ Canvas>>cache: aRectangle using: aCache during: aBlock  [
 	aBlock value: self
 ]
 
-{
-	#category : #drawing-support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>clipBy: aRectangle during: aBlock [
+{ #category : #drawing-support }
+Canvas >> clipBy: aRectangle during: aBlock [
 	"Set a clipping rectangle active only during the execution of aBlock.
 	Note: In the future we may want to have more general clip shapes - not just rectangles"
 	^self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>clipRect [
+{ #category : #accessing }
+Canvas >> clipRect [
 	"Return the currently active clipping rectangle"
 	^self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>contentsOfArea: aRectangle [
+{ #category : #accessing }
+Canvas >> contentsOfArea: aRectangle [
 	"Return the contents of the given area"
 	^self contentsOfArea: aRectangle into: (Form extent: aRectangle extent depth: self depth)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>contentsOfArea: aRectangle into: aForm [
+{ #category : #accessing }
+Canvas >> contentsOfArea: aRectangle into: aForm [
 	"Return the contents of the given area"
 	^self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>depth [
+{ #category : #accessing }
+Canvas >> depth [
 
 	^ Display depth
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>doesRoundedCorners  [
+{ #category : #testing }
+Canvas >> doesRoundedCorners [ 
 
 	^ true
 ]
 
-{
-	#category : #drawing-general,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>draw: anObject [
+{ #category : #drawing-general }
+Canvas >> draw: anObject [
 	^anObject drawOn: self
 ]
 
-{
-	#category : #drawing-images,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>drawImage: aForm at: aPoint [
+{ #category : #drawing-images }
+Canvas >> drawImage: aForm at: aPoint [
 	"Draw the given Form, which is assumed to be a Form or ColorForm"
 
 	self drawImage: aForm
@@ -132,11 +98,8 @@ Canvas>>drawImage: aForm at: aPoint [
 		sourceRect: aForm boundingBox
 ]
 
-{
-	#category : #drawing-images,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>drawImage: aForm at: aPoint sourceRect: sourceRect [
+{ #category : #drawing-images }
+Canvas >> drawImage: aForm at: aPoint sourceRect: sourceRect [
 	"Draw the given form."
 
 	^self image: aForm
@@ -145,11 +108,8 @@ Canvas>>drawImage: aForm at: aPoint sourceRect: sourceRect [
 		rule: Form over
 ]
 
-{
-	#category : #drawing-general,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>drawMorph: aMorph [
+{ #category : #drawing-general }
+Canvas >> drawMorph: aMorph [
 	"Draw the receiver morph on the receiver"
 	
 	"Changed to improve performance. Have seen a 30% improvement."	
@@ -158,190 +118,127 @@ Canvas>>drawMorph: aMorph [
 	self draw: aMorph
 ]
 
-{
-	#category : #drawing-polygons,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>drawPolygon: vertices color: aColor borderWidth: bw borderColor: bc [
+{ #category : #drawing-polygons }
+Canvas >> drawPolygon: vertices color: aColor borderWidth: bw borderColor: bc [
 	"Draw the given polygon."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #drawing-polygons,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>drawPolygon: vertices fillStyle: aFillStyle [
+{ #category : #drawing-polygons }
+Canvas >> drawPolygon: vertices fillStyle: aFillStyle [
 	"Fill the given polygon."
 	self drawPolygon: vertices fillStyle: aFillStyle borderWidth: 0 borderColor: Color transparent
 ]
 
-{
-	#category : #drawing-polygons,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>drawPolygon: vertices fillStyle: aFillStyle borderWidth: bw borderColor: bc [
+{ #category : #drawing-polygons }
+Canvas >> drawPolygon: vertices fillStyle: aFillStyle borderWidth: bw borderColor: bc [
 	"Fill the given polygon.
 	Note: The default implementation does not recognize any enhanced fill styles"
 	self drawPolygon: vertices color: aFillStyle asColor borderWidth: bw borderColor: bc
 ]
 
-{
-	#category : #drawing-text,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>drawString: s at: pt [
+{ #category : #drawing-text }
+Canvas >> drawString: s at: pt [
 
 	^ self drawString: s from: 1 to: s size at: pt font: nil color: Color black
 ]
 
-{
-	#category : #drawing-text,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>drawString: s at: pt font: aFont color: aColor [
+{ #category : #drawing-text }
+Canvas >> drawString: s at: pt font: aFont color: aColor [
 
 	^ self drawString: s from: 1 to: s size at: pt font: aFont color: aColor
 ]
 
-{
-	#category : #drawing-text,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>drawString: s from: firstIndex to: lastIndex at: pt font: font color: aColor [
+{ #category : #drawing-text }
+Canvas >> drawString: s from: firstIndex to: lastIndex at: pt font: font color: aColor [
 	self drawString: s from: firstIndex to: lastIndex in: (pt extent: 10000@10000) font: font color: aColor
 ]
 
-{
-	#category : #drawing-text,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>drawString: s from: firstIndex to: lastIndex at: pt font: font color: aColor underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc [
+{ #category : #drawing-text }
+Canvas >> drawString: s from: firstIndex to: lastIndex at: pt font: font color: aColor underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc [
 	self drawString: s from: firstIndex to: lastIndex in: (pt extent: 10000@10000) font: font color: aColor underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc
 ]
 
-{
-	#category : #drawing-text,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>drawString: s from: firstIndex to: lastIndex in: boundsRect font: fontOrNil color: c [
+{ #category : #drawing-text }
+Canvas >> drawString: s from: firstIndex to: lastIndex in: boundsRect font: fontOrNil color: c [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #drawing-text,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>drawString: s from: firstIndex to: lastIndex in: boundsRect font: fontOrNil color: c underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc [
+{ #category : #drawing-text }
+Canvas >> drawString: s from: firstIndex to: lastIndex in: boundsRect font: fontOrNil color: c underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #drawing-text,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>drawString: s in: boundsRect [
+{ #category : #drawing-text }
+Canvas >> drawString: s [ in: boundsRect
 	^self drawString: s from: 1 to: s size in: boundsRect font: nil color: Color black
 ]
 
-{
-	#category : #drawing-text,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>drawString: s in: boundsRect font: fontOrNil color: c [
+{ #category : #drawing-text }
+Canvas >> drawString: s in: boundsRect font: fontOrNil color: c [
 	^self drawString: s from: 1 to: s size in: boundsRect font: fontOrNil color: c
 ]
 
-{
-	#category : #drawing-text,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>drawString: s in: boundsRect font: fontOrNil color: c underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc [
+{ #category : #drawing-text }
+Canvas >> drawString: s in: boundsRect font: fontOrNil color: c underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc [
 	^self drawString: s from: 1 to: s size in: boundsRect font: fontOrNil color: c underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>encryptedParagraph: para bounds: bounds color: c [
+{ #category : #drawing }
+Canvas >> encryptedParagraph: para bounds: bounds color: c [
 	"Draw the given paragraph"
 	^self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>extent [
+{ #category : #accessing }
+Canvas >> extent [
 	"Return the physical extent of the output device"
 	^self subclassResponsibility
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>fillColor: aColor [
+{ #category : #drawing }
+Canvas >> fillColor: aColor [
 	"Fill the receiver with the given color.
 	Note: This method should be named differently since it is intended to fill the background and thus fills even if the color is transparent"
 	^self fillRectangle: self clipRect color: (aColor alpha: 1.0).
 ]
 
-{
-	#category : #drawing-ovals,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>fillOval: r color: c [
+{ #category : #drawing-ovals }
+Canvas >> fillOval: r color: c [
 
 	self fillOval: r color: c borderWidth: 0 borderColor: Color transparent.
 
 ]
 
-{
-	#category : #drawing-ovals,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>fillOval: r color: c borderWidth: borderWidth borderColor: borderColor [
+{ #category : #drawing-ovals }
+Canvas >> fillOval: r color: c borderWidth: borderWidth borderColor: borderColor [
 	"Fill the given oval."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #drawing-ovals,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>fillOval: aRectangle fillStyle: aFillStyle [
+{ #category : #drawing-ovals }
+Canvas >> fillOval: aRectangle fillStyle: aFillStyle [
 	"Fill the given oval."
 	^self fillOval: aRectangle fillStyle: aFillStyle borderWidth: 0 borderColor: Color transparent
 ]
 
-{
-	#category : #drawing-ovals,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>fillOval: aRectangle fillStyle: aFillStyle borderWidth: bw borderColor: bc [
+{ #category : #drawing-ovals }
+Canvas >> fillOval: aRectangle fillStyle: aFillStyle borderWidth: bw borderColor: bc [
 	"Fill the given oval.
 	Note: The default implementation does not recognize any enhanced fill styles"
 	self fillOval: aRectangle color: aFillStyle asColor borderWidth: bw borderColor: bc
 ]
 
-{
-	#category : #drawing-rectangles,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>fillRectangle: aRectangle basicFillStyle: aFillStyle [
+{ #category : #drawing-rectangles }
+Canvas >> fillRectangle: aRectangle basicFillStyle: aFillStyle [
 	"Fill the given rectangle with the given, non-composite, fill style
 	Note: The default implementation does not recognize any enhanced fill styles."
 	
 	self fillRectangle: aRectangle color: aFillStyle asColor.
 ]
 
-{
-	#category : #drawing-rectangles,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>fillRectangle: r color: c [
+{ #category : #drawing-rectangles }
+Canvas >> fillRectangle: r color: c [
 	"Fill the rectangle using the given color"
 	^self 
 		frameAndFillRectangle: r
@@ -350,21 +247,15 @@ Canvas>>fillRectangle: r color: c [
 		borderColor: Color transparent
 ]
 
-{
-	#category : #drawing-rectangles,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>fillRectangle: aRectangle fillStyle: aFillStyle [
+{ #category : #drawing-rectangles }
+Canvas >> fillRectangle: aRectangle fillStyle: aFillStyle [
 	"Fill the given rectangle. Double-dispatched via the fill style."
 	
 	aFillStyle fillRectangle: aRectangle on: self
 ]
 
-{
-	#category : #drawing-rectangles,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>fillRectangle: aRectangle fillStyle: aFillStyle borderStyle: aBorderStyle [
+{ #category : #drawing-rectangles }
+Canvas >> fillRectangle: aRectangle fillStyle: aFillStyle borderStyle: aBorderStyle [
 	"Fill the given rectangle."
        aFillStyle isTransparent ifFalse: [
                self fillRectangle: (aRectangle insetBy: aBorderStyle width) fillStyle: aFillStyle ].
@@ -373,64 +264,42 @@ Canvas>>fillRectangle: aRectangle fillStyle: aFillStyle borderStyle: aBorderStyl
        
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>finish [
+{ #category : #initialization }
+Canvas >> finish [
 	"If there are any pending operations on the receiver complete them. Do not return before all modifications have taken effect."
 	^self flush
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>flush [
-
+{ #category : #initialization }
+Canvas >> flush [
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>flushDisplay [
+{ #category : #other }
+Canvas >> flushDisplay [
 	"Empty hook method."
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>forceToScreen: rect [
+{ #category : #other }
+Canvas >> forceToScreen: rect [
 	"Empty hook method"
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>form [
+{ #category : #accessing }
+Canvas >> form [
 
 	^ Display
 
 ]
 
-{
-	#category : #drawing-rectangles,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth borderColor: borderColor [
+{ #category : #drawing-rectangles }
+Canvas >> frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth borderColor: borderColor [
 	"Draw the rectangle using the given attributes"
 	^self subclassResponsibility
 ]
 
-{
-	#category : #drawing-rectangles,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth topLeftColor: topLeftColor bottomRightColor: bottomRightColor [
+{ #category : #drawing-rectangles }
+Canvas >> frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth topLeftColor: topLeftColor bottomRightColor: bottomRightColor [
 	"Draw the rectangle using the given attributes.
 	Note: This is a *very* simple implementation"
 	| bw pt |
@@ -446,41 +315,29 @@ Canvas>>frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth t
 	].
 ]
 
-{
-	#category : #drawing-ovals,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>frameOval: r color: c [
+{ #category : #drawing-ovals }
+Canvas >> frameOval: r color: c [
 
 	self fillOval: r color: Color transparent borderWidth: 1 borderColor: c.
 
 ]
 
-{
-	#category : #drawing-ovals,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>frameOval: r width: w color: c [
+{ #category : #drawing-ovals }
+Canvas >> frameOval: r width: w color: c [
 
 	self fillOval: r color: Color transparent borderWidth: w borderColor: c.
 
 ]
 
-{
-	#category : #drawing-rectangles,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>frameRectangle: r color: c [
+{ #category : #drawing-rectangles }
+Canvas >> frameRectangle: r color: c [
 
 	self frameRectangle: r width: 1 color: c.
 
 ]
 
-{
-	#category : #drawing-rectangles,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>frameRectangle: r width: w color: c [
+{ #category : #drawing-rectangles }
+Canvas >> frameRectangle: r width: w color: c [
 	"Draw a frame around the given rectangle"
 	^self frameAndFillRectangle: r
 			fillColor: Color transparent
@@ -488,11 +345,8 @@ Canvas>>frameRectangle: r width: w color: c [
 			borderColor: c
 ]
 
-{
-	#category : #drawing-rectangles,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>frameRectangle: aRectangle width: width colors: colors dashes: dashes [
+{ #category : #drawing-rectangles }
+Canvas >> frameRectangle: aRectangle width: width colors: colors dashes: dashes [
 	"Draw a rectangle with the given width, colors and dash lengths."
 
 	self
@@ -503,11 +357,8 @@ Canvas>>frameRectangle: aRectangle width: width colors: colors dashes: dashes [
 		offset: self origin
 ]
 
-{
-	#category : #drawing-rectangles,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>frameRectangle: aRectangle width: width colors: colors dashes: dashes offset: offset [
+{ #category : #drawing-rectangles }
+Canvas >> frameRectangle: aRectangle width: width colors: colors dashes: dashes offset: offset [
 	"Draw a rectangle with the given width, colors and dash lengths.
 	The offset specifies how the coordinate system is translated from the screen origin
 	(infinite forms are 0@0 screen based)."
@@ -583,92 +434,62 @@ Canvas>>frameRectangle: aRectangle width: width colors: colors dashes: dashes of
 			color: (InfiniteForm with: vf)]
 ]
 
-{
-	#category : #drawing-general,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>fullDraw: anObject [
+{ #category : #drawing-general }
+Canvas >> fullDraw: anObject [
 	^anObject fullDrawOn: self
 ]
 
-{
-	#category : #drawing-general,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>fullDrawMorph: aMorph [
+{ #category : #drawing-general }
+Canvas >> fullDrawMorph: aMorph [
 	"Hook method for potential other canvases. In the core, this method looks supefluous but PostscriptCanvases and other canvases can specialized it for Morph rendering. Therefore it should not be merged with fullDraw:."
 
 	self fullDraw: aMorph
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>image: aForm at: aPoint sourceRect: sourceRect rule: rule [
+{ #category : #private }
+Canvas >> image: aForm at: aPoint sourceRect: sourceRect rule: rule [
 	"Note: The public use of this protocol is deprecated. It will become private. Nobody in the outside world must assume that a thing like a combination rule has any specific effect."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>image: aForm at: aPoint sourceRect: sourceRect rule: rule alpha: sourceAlpha [
+{ #category : #private }
+Canvas >> image: aForm at: aPoint sourceRect: sourceRect rule: rule alpha: sourceAlpha [
 	"Privately used for blending forms w/ constant alpha. Fall back to simpler case by defaul."
 	^self image: aForm at: aPoint sourceRect: sourceRect rule: rule
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>isBalloonCanvas [
+{ #category : #testing }
+Canvas >> isBalloonCanvas [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>isShadowDrawing [
+{ #category : #testing }
+Canvas >> isShadowDrawing [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>isVisible: aRectangle [
+{ #category : #testing }
+Canvas >> isVisible: aRectangle [
 	"Return true if the given rectangle is (partially) visible"
 	^self clipRect intersects: aRectangle
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>line: pt1 to: pt2 color: c [
+{ #category : #drawing }
+Canvas >> line: pt1 to: pt2 color: c [
 
 	self line: pt1 to: pt2 width: 1 color: c.
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>line: pt1 to: pt2 width: w color: c [
+{ #category : #drawing }
+Canvas >> line: pt1 to: pt2 width: w color: c [
 	"Draw a line using the given width and color"
 	^self subclassResponsibility
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>line: pt1 to: pt2 width: width color: color1 dashLength: s1 secondColor: color2 secondDashLength: s2 startingOffset: startingOffset  [
+{ #category : #drawing }
+Canvas >> line: pt1 to: pt2 width: width color: color1 dashLength: s1 secondColor: color2 secondDashLength: s2 startingOffset: startingOffset [ 
 	"Draw a line using the given width, colors and dash lengths.
 	Originally written by Stephan Rudlof; tweaked by Dan Ingalls
 	to use startingOffset for sliding offset as in 'ants' animations.
@@ -715,11 +536,8 @@ Canvas>>line: pt1 to: pt2 width: width color: color1 dashLength: s1 secondColor:
 	^startingOffset + dist
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>line: pt1 to: pt2 width: w1 color: c1 stepWidth: s1 secondWidth: w2 secondColor: c2 secondStepWidth: s2  [
+{ #category : #drawing }
+Canvas >> line: pt1 to: pt2 width: w1 color: c1 stepWidth: s1 secondWidth: w2 secondColor: c2 secondStepWidth: s2 [ 
 	"Draw a line using the given width, colors and steps; both steps can  
 	have different stepWidths (firstStep, secondStep), draw widths and  
 	colors."
@@ -776,11 +594,8 @@ Canvas>>line: pt1 to: pt2 width: w1 color: c1 stepWidth: s1 secondWidth: w2 seco
 				color: c2]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>line: pt1 to: pt2 width: width colors: colors dashes: dashes startingOffset: startingOffset  [
+{ #category : #drawing }
+Canvas >> line: pt1 to: pt2 width: width colors: colors dashes: dashes startingOffset: startingOffset [ 
 	"Draw a line using the given width, colors and dash lengths.
 	Dash lengths are considered as multiples of width."
 
@@ -825,20 +640,14 @@ Canvas>>line: pt1 to: pt2 width: width colors: colors dashes: dashes startingOff
 	^startingOffset + distDone
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>origin [
+{ #category : #accessing }
+Canvas >> origin [
 	"Return the current origin for drawing operations"
 	^self subclassResponsibility
 ]
 
-{
-	#category : #drawing-images,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>paintImage: aForm at: aPoint [
+{ #category : #drawing-images }
+Canvas >> paintImage: aForm at: aPoint [
 	"Draw the given Form, which is assumed to be a Form or ColorForm following the convention that zero is the transparent pixel value."
 
 	self paintImage: aForm
@@ -847,11 +656,8 @@ Canvas>>paintImage: aForm at: aPoint [
 
 ]
 
-{
-	#category : #drawing-images,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>paintImage: aForm at: aPoint sourceRect: sourceRect [
+{ #category : #drawing-images }
+Canvas >> paintImage: aForm at: aPoint sourceRect: sourceRect [
 	"Draw the given Form, which is assumed to be a Form or ColorForm following the convention that zero is the transparent pixel value."
 
 	^self image: aForm
@@ -860,96 +666,63 @@ Canvas>>paintImage: aForm at: aPoint sourceRect: sourceRect [
 		rule: Form paint
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>paragraph: paragraph bounds: bounds color: c [
+{ #category : #drawing }
+Canvas >> paragraph: paragraph bounds: bounds color: c [
 	"Draw the given paragraph"
 	^self subclassResponsibility
 ]
 
-{
-	#category : #drawing-support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>preserveStateDuring: aBlock [
+{ #category : #drawing-support }
+Canvas >> preserveStateDuring: aBlock [
 	"Preserve the full canvas state during the execution of aBlock"
 	^aBlock value: self copy
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>render: anObject [
+{ #category : #drawing }
+Canvas >> render: anObject [
 	"Do some 3D operations with the object if possible"
 ]
 
-{
-	#category : #drawing-general,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>roundCornersOf: aMorph during: aBlock [
+{ #category : #drawing-general }
+Canvas >> roundCornersOf: aMorph during: aBlock [
 	^self roundCornersOf: aMorph in: aMorph bounds during: aBlock
 ]
 
-{
-	#category : #drawing-general,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>roundCornersOf: aMorph in: bounds during: aBlock [
+{ #category : #drawing-general }
+Canvas >> roundCornersOf: aMorph in: bounds during: aBlock [
 	^aBlock value
 ]
 
-{
-	#category : #drawing-general,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>roundShadowCornersOf: aMorph during: aBlock [
+{ #category : #drawing-general }
+Canvas >> roundShadowCornersOf: aMorph during: aBlock [
 	^self roundShadowCornersOf: aMorph in: aMorph bounds during: aBlock
 ]
 
-{
-	#category : #drawing-general,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>roundShadowCornersOf: aMorph in: bounds during: aBlock [
+{ #category : #drawing-general }
+Canvas >> roundShadowCornersOf: aMorph in: bounds during: aBlock [
 	^aBlock value
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>seesNothingOutside: aRectangle [
+{ #category : #testing }
+Canvas >> seesNothingOutside: aRectangle [
 	"Return true if this canvas will not touch anything outside aRectangle"
 	^ aRectangle containsRect: self clipRect
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>shadowColor [
+{ #category : #accessing }
+Canvas >> shadowColor [
 	"Return the current override color or nil if no such color exists"
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>shadowColor: aColor [
+{ #category : #accessing }
+Canvas >> shadowColor: aColor [
 	"Set a shadow color. If set this color overrides any client-supplied color."
 ]
 
-{
-	#category : #drawing-images,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>stencil: stencilForm at: aPoint color: aColor [
+{ #category : #drawing-images }
+Canvas >> stencil: stencilForm at: aPoint color: aColor [
 	"Flood this canvas with aColor wherever stencilForm has non-zero pixels"
 	^self stencil: stencilForm
 		at: aPoint
@@ -957,78 +730,54 @@ Canvas>>stencil: stencilForm at: aPoint color: aColor [
 		color: aColor
 ]
 
-{
-	#category : #drawing-images,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>stencil: stencilForm at: aPoint sourceRect: sourceRect color: aColor [
+{ #category : #drawing-images }
+Canvas >> stencil: stencilForm at: aPoint sourceRect: sourceRect color: aColor [
 	"Flood this canvas with aColor wherever stencilForm has non-zero pixels"
 	^self subclassResponsibility
 ]
 
-{
-	#category : #drawing-support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>transformBy: aDisplayTransform clippingTo: aClipRect during: aBlock [
+{ #category : #drawing-support }
+Canvas >> transformBy: aDisplayTransform clippingTo: aClipRect during: aBlock [
 	"Transform the receiver by the given display transformation during the execution of aBlock. The given clip rectangle defines the *global* (e.g., outer) rectangle against which the receiver should clip (which would be equivalent to 'self clipRect: aClipRect; transformBy: aDisplayTransform')."
 	^ self transformBy: aDisplayTransform clippingTo: aClipRect during: aBlock smoothing: 1
 
 ]
 
-{
-	#category : #drawing-support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>transformBy: aDisplayTransform clippingTo: aClipRect during: aBlock smoothing: cellSize [
+{ #category : #drawing-support }
+Canvas >> transformBy: aDisplayTransform clippingTo: aClipRect during: aBlock smoothing: cellSize [
 	"Transform the receiver by the given display transformation during the execution of aBlock. The given clip rectangle defines the *global* (e.g., outer) rectangle against which the receiver should clip (which would be equivalent to 'self clipRect: aClipRect; transformBy: aDisplayTransform')."
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>translateBy:aPoint clippingTo:aRect during:aBlock [
+{ #category : #other }
+Canvas >> translateBy:aPoint clippingTo:aRect during:aBlock [
 	^aBlock value:(self copyOffset:aPoint clipRect:aRect).
 ]
 
-{
-	#category : #drawing-support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>translateBy: delta during: aBlock [
+{ #category : #drawing-support }
+Canvas >> translateBy: delta during: aBlock [
 	"Set a translation only during the execution of aBlock."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #drawing-support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>translateTo: newOrigin clippingTo: aRectangle during: aBlock [
+{ #category : #drawing-support }
+Canvas >> translateTo: newOrigin clippingTo: aRectangle during: aBlock [
 	"Set a new origin and clipping rectangle only during the execution of aBlock."
 	self translateBy: newOrigin - self origin 
 		clippingTo: (aRectangle translateBy: self origin negated) 
 		during: aBlock
 ]
 
-{
-	#category : #drawing-images,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>translucentImage: aForm at: aPoint [
+{ #category : #drawing-images }
+Canvas >> translucentImage: aForm at: aPoint [
 	"Draw a translucent image using the best available way of representing translucency."
 	self translucentImage: aForm
 		at: aPoint
 		sourceRect: aForm boundingBox
 ]
 
-{
-	#category : #drawing-images,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>translucentImage: aForm at: aPoint sourceRect: sourceRect [
+{ #category : #drawing-images }
+Canvas >> translucentImage: aForm at: aPoint sourceRect: sourceRect [
 	"Draw a translucent image using the best available way of representing translucency.
 	Note: This will be fixed in the future."
 
@@ -1040,30 +789,21 @@ Canvas>>translucentImage: aForm at: aPoint sourceRect: sourceRect [
 		rule: Form blend
 ]
 
-{
-	#category : #drawing-images,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>warpImage: aForm transform: aTransform [
+{ #category : #drawing-images }
+Canvas >> warpImage: aForm transform: aTransform [
 	"Warp the given form using aTransform"
 	^self warpImage: aForm transform: aTransform at: 0@0
 ]
 
-{
-	#category : #drawing-images,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>warpImage: aForm transform: aTransform at: extraOffset [
+{ #category : #drawing-images }
+Canvas >> warpImage: aForm transform: aTransform at: extraOffset [
 	"Warp the given form using aTransform.
 	TODO: Use transform to figure out appropriate cell size"
 	^self warpImage: aForm transform: aTransform at: extraOffset sourceRect: aForm boundingBox cellSize: 1
 ]
 
-{
-	#category : #drawing-images,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-Canvas>>warpImage: aForm transform: aTransform at: extraOffset sourceRect: sourceRect cellSize: cellSize [
+{ #category : #drawing-images }
+Canvas >> warpImage: aForm transform: aTransform at: extraOffset sourceRect: sourceRect cellSize: cellSize [
 	"Warp the given using the appropriate transform and offset."
 	^self subclassResponsibility
 ]

@@ -8,34 +8,24 @@ Class {
 		'origin',
 		'extent'
 	],
-	#category : #'Graphics-Display Objects',
-	#timestamp : 'gvc 5/18/2007 13:49'
+	#category : #'Graphics-Display Objects'
 }
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlphaInfiniteForm>>computeBoundingBox  [
+{ #category : #displaying }
+AlphaInfiniteForm >> computeBoundingBox [ 
 	"Refer to the comment in DisplayObject|computeBoundingBox."
 
 	^self origin extent: self extent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlphaInfiniteForm>>direction: aPoint [
+{ #category : #accessing }
+AlphaInfiniteForm >> direction: aPoint [
 	"Ignore"
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlphaInfiniteForm>>displayOnPort: aPort offsetBy: offset [
+{ #category : #displaying }
+AlphaInfiniteForm >> displayOnPort: aPort offsetBy: offset [
 
 	| targetBox patternBox savedMap top left |
 
@@ -65,41 +55,29 @@ AlphaInfiniteForm>>displayOnPort: aPort offsetBy: offset [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlphaInfiniteForm>>extent [
+{ #category : #accessing }
+AlphaInfiniteForm >> extent [
 	"Answer the extent of the repeating area."
 
 	^extent ifNil: [SmallInteger maxVal @ SmallInteger maxVal]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlphaInfiniteForm>>extent: anObject [
+{ #category : #accessing }
+AlphaInfiniteForm >> extent: anObject [
 	"Set the value of extent"
 
 	extent := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlphaInfiniteForm>>origin [
+{ #category : #accessing }
+AlphaInfiniteForm >> origin [
 	"Answer the origin."
 	
 	^origin ifNil: [0@0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlphaInfiniteForm>>origin: aPoint [
+{ #category : #accessing }
+AlphaInfiniteForm >> origin: aPoint [
 	"Set the origin."
 
 	origin := aPoint

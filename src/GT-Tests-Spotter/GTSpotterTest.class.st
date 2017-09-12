@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #GTSpotterTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'spotter'
 	],
-	#category : #GT-Tests-Spotter-Scripting,
-	#timestamp : ''
+	#category : #GT-Tests-Spotter-Scripting
 }
 
-{
-	#category : #assertions,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterTest>>assertText: aTextualObject [
+{ #category : #assertions }
+GTSpotterTest >> assertText: aTextualObject [
 	self assertText: aTextualObject do: nil
 ]
 
-{
-	#category : #assertions,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterTest>>assertText: aTextualObject do: aBlock [
+{ #category : #assertions }
+GTSpotterTest >> assertText: aTextualObject do: aBlock [
 	| result |
 	" self: emulate a view. Forget about a separate GTSpotterMockView. kiss :) "
 	self shouldnt: [ result := spotter setText: aTextualObject from: self. ] raise: Error.
@@ -37,11 +27,8 @@ GTSpotterTest>>assertText: aTextualObject do: aBlock [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterTest>>testEmptyTextInput [
+{ #category : #tests }
+GTSpotterTest >> testEmptyTextInput [
 	self testNewSpotter.
 	
 	self assertText: Text new do: [ self assert: spotter text isEmpty ].
@@ -51,11 +38,8 @@ GTSpotterTest>>testEmptyTextInput [
 	"self assertText: nil do: [ self assert: spotter text isEmpty ]."
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterTest>>testHistorizingTheSameObjectRemovesPreviousOccurences [
+{ #category : #tests }
+GTSpotterTest >> testHistorizingTheSameObjectRemovesPreviousOccurences [
 	| history |
 	history := OrderedCollection new.
 	spotter := GTSpotter new history: history.
@@ -72,11 +56,8 @@ GTSpotterTest>>testHistorizingTheSameObjectRemovesPreviousOccurences [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterTest>>testInitialText [
+{ #category : #tests }
+GTSpotterTest >> testInitialText [
 	self testNewSpotter.
 	
 	self flag: 'is this instvar still required ? we have context'.
@@ -85,12 +66,8 @@ GTSpotterTest>>testInitialText [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterTest>>"protocol: tests"
-testInstanceCreation [
+{ #category : #tests }
+GTSpotterTest >> testInstanceCreation [
 	self shouldnt: [ spotter := GTMockSpotter new ] raise: Error.
 	self shouldnt: [ 
 		spotter := GTMockSpotter new
@@ -102,11 +79,8 @@ testInstanceCreation [
 	self deny: spotter hasMultipleSteps
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterTest>>testNewSpotter [
+{ #category : #tests }
+GTSpotterTest >> testNewSpotter [
 	| step1 |
 	self testInstanceCreation.
 	

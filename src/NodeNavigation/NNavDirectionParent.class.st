@@ -4,15 +4,11 @@ I'm the one who knows how to navigate going to the parent node.
 Class {
 	#name : #NNavDirectionParent,
 	#superclass : #NNavDirection,
-	#category : #NodeNavigation-Core,
-	#timestamp : '<historical>'
+	#category : #NodeNavigation-Core
 }
 
-{
-	#category : #builder,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionParent class>>buildShortcut: aBuilder [
+{ #category : #builder }
+NNavDirectionParent class >> buildShortcut: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #parent)
@@ -25,11 +21,8 @@ NNavDirectionParent class>>buildShortcut: aBuilder [
 
 ]
 
-{
-	#category : #builder,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionParent class>>defaultKeyCombination [
+{ #category : #builder }
+NNavDirectionParent class >> defaultKeyCombination [
 	^NNavNavigation useArrowsShortcuts 
 		ifTrue: [ Character arrowLeft meta shift ]
 		ifFalse: [ $p meta shift  ]
@@ -37,22 +30,16 @@ NNavDirectionParent class>>defaultKeyCombination [
 
 ]
 
-{
-	#category : #'stand out',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionParent class>>findSelectionFor: navigationContext [
+{ #category : #'stand out' }
+NNavDirectionParent class >> findSelectionFor: navigationContext [
 	^ self
 		calculateBestSeletionFor: navigationContext bestNodeForSelection 
 		beforeSelection: navigationContext textSelection 
 		step: [ :selection :target | self selectionParentScope: selection for: target parent ]
 ]
 
-{
-	#category : #'step over',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionParent class>>selectionParentScope: selected for: node [
+{ #category : #'step over' }
+NNavDirectionParent class >> selectionParentScope: selected for: node [
 	| nodeSelection |
 
 	node ifNil: [ ^selected ].

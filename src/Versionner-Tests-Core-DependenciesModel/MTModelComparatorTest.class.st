@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #MTModelComparatorTest,
 	#superclass : #TestCase,
-	#category : #Versionner-Tests-Core-DependenciesModel,
-	#timestamp : ''
+	#category : #Versionner-Tests-Core-DependenciesModel
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTModelComparatorTest>>referenceModel [
+{ #category : #private }
+MTModelComparatorTest >> referenceModel [
 	^ MTProjectExampleBuilder projectA
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTModelComparatorTest>>testIsEqualsTo [
+{ #category : #tests }
+MTModelComparatorTest >> testIsEqualsTo [
 	| projectA projectB |
 	
 	projectA := self referenceModel.

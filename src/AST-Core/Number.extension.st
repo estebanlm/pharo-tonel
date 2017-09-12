@@ -1,12 +1,7 @@
-Extension {
-	#name : #Number
-}
+Extension { #name : #Number }
 
-{
-	#category : #'*AST-Core-Parser',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-Number class>>readFrom: stringOrStream  [
+{ #category : #'*AST-Core-Parser' }
+Number class >> readFrom: stringOrStream [ 
 	"Answer a number as described on aStream.  The number may
 	be any accepted Smalltalk literal Number format.
 	It can include a leading radix specification, as in 16rFADE.
@@ -16,22 +11,16 @@ Number class>>readFrom: stringOrStream  [
 	^(NumberParser on: stringOrStream) nextNumber
 ]
 
-{
-	#category : #'*AST-Core-Parser',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-Number class>>readFrom: stringOrStream base: base [
+{ #category : #'*AST-Core-Parser' }
+Number class >> readFrom: stringOrStream base: base [
 	"Answer a number as described on aStream in the given number base.
 	If stringOrStream does not start with a valid number description, answer 0 for backward compatibility. This is not clever and should better be changed."
 
 	^(NumberParser on: stringOrStream) nextNumberBase: base
 ]
 
-{
-	#category : #'*AST-Core-Parser',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-Number class>>readFrom: stringOrStream ifFail: aBlock [
+{ #category : #'*AST-Core-Parser' }
+Number class >> readFrom: stringOrStream ifFail: aBlock [
 	"Answer a number as described on aStream.  The number may
 	be any accepted Smalltalk literal Number format.
 	It can include a leading radix specification, as in 16rFADE.
@@ -42,11 +31,8 @@ Number class>>readFrom: stringOrStream ifFail: aBlock [
 	^(NumberParser on: stringOrStream) failBlock: aBlock; nextNumber
 ]
 
-{
-	#category : #'*AST-Core-Parser',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-Number class>>squeezeNumberOutOfString: stringOrStream [
+{ #category : #'*AST-Core-Parser' }
+Number class >> squeezeNumberOutOfString: stringOrStream [
 	"Try and find a number in this string. First, look if the string 
 	starts with a number. Then, see if it ends with a number. Then,
 	remove a character from the front and see if the remaining 
@@ -56,11 +42,8 @@ Number class>>squeezeNumberOutOfString: stringOrStream [
 	^ NumberParser squeezeNumberOutOfString: stringOrStream
 ]
 
-{
-	#category : #'*AST-Core-Parser',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-Number class>>squeezeNumberOutOfString: stringOrStream ifFail: aBlock [
+{ #category : #'*AST-Core-Parser' }
+Number class >> squeezeNumberOutOfString: stringOrStream ifFail: aBlock [
 	"Try and find a number in this string. First, look if the string 
 	starts with a number. Then, see if it ends with a number. Then,
 	remove a character from the front and see if the remaining 

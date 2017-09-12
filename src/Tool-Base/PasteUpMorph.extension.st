@@ -1,12 +1,7 @@
-Extension {
-	#name : #PasteUpMorph
-}
+Extension { #name : #PasteUpMorph }
 
-{
-	#category : #'*Tool-Base',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PasteUpMorph>>defaultDesktopCommandKeyTriplets [
+{ #category : #'*Tool-Base' }
+PasteUpMorph >> defaultDesktopCommandKeyTriplets [
 	"Answer a list of triplets of the form
 		<key> <receiver> <selector>   [+ optional fourth element, a <description> for use in desktop-command-key-help]
 that will provide the default desktop command key handlers.  If the selector takes an argument, that argument will be the command-key event"

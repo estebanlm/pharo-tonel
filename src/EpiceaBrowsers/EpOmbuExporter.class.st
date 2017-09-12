@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'outputLog'
 	],
-	#category : #EpiceaBrowsers-Exporter,
-	#timestamp : 'MartinDias 5/27/2014 14:29'
+	#category : #EpiceaBrowsers-Exporter
 }
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpOmbuExporter class>>askFileNameAndFileOut: entries in: aDirectory [
+{ #category : #convenience }
+EpOmbuExporter class >> askFileNameAndFileOut: entries in: aDirectory [
 
 	| fileNameOrNil outputLog |
 	fileNameOrNil := UIManager default
@@ -35,11 +31,8 @@ EpOmbuExporter class>>askFileNameAndFileOut: entries in: aDirectory [
 		fileOut: entries.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpOmbuExporter>>fileOut: epiceaEntries [
+{ #category : #tests }
+EpOmbuExporter >> fileOut: epiceaEntries [
 
 	| originalReference anEvent exportedReference visitor map |	
 	map := Dictionary new.
@@ -58,18 +51,12 @@ EpOmbuExporter>>fileOut: epiceaEntries [
 	outputLog store flush.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpOmbuExporter>>outputLog [
+{ #category : #accessing }
+EpOmbuExporter >> outputLog [
 	^ outputLog
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpOmbuExporter>>outputLog: anObject [
+{ #category : #accessing }
+EpOmbuExporter >> outputLog: anObject [
 	outputLog := anObject
 ]

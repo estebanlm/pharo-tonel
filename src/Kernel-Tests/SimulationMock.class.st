@@ -8,15 +8,11 @@ Class {
 	#instVars : [
 		'instVar1'
 	],
-	#category : #Kernel-Tests-Methods,
-	#timestamp : 'ClementBera 1/27/2017 13:17'
+	#category : #Kernel-Tests-Methods
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SimulationMock>>exampleClosure [
+{ #category : #example }
+SimulationMock >> exampleClosure [
 	"This is a pathological case where the method has no arguments, no temporaries, and the instance variable store is followed by the creation of a closure with no copied values."
 	instVar1 := 1.
 	[ 2 ] value.
@@ -24,11 +20,8 @@ SimulationMock>>exampleClosure [
 
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SimulationMock>>exampleSend [
+{ #category : #example }
+SimulationMock >> exampleSend [
 	"This is a pathological case where the method has no arguments, no temporaries, and the instance variable store is followed by the creation of a closure with no copied values."
 	instVar1 := 1.
 	self yourself.
@@ -36,11 +29,8 @@ SimulationMock>>exampleSend [
 
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SimulationMock>>exampleStore [
+{ #category : #example }
+SimulationMock >> exampleStore [
 	"This is a pathological case where the method has no arguments, no temporaries, and the instance variable store is followed by the creation of a closure with no copied values."
 	instVar1 := 1.
 	instVar1 := 2.

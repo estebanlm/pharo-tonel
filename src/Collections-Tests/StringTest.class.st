@@ -24,467 +24,313 @@ Class {
 		'subcollection3ElementsSorted',
 		'arrayWithCharacters'
 	],
-	#category : #Collections-Tests-Strings,
-	#timestamp : '<historical>'
+	#category : #Collections-Tests-Strings
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>aValue [
+{ #category : #requirements }
+StringTest >> aValue [
 " return a value to put into nonEmpty"
 	^ elementInNonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>anIndex [
+{ #category : #requirements }
+StringTest >> anIndex [
 " return an index in nonEmpty bounds"
 	^ 2
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>anotherElementNotIn [
+{ #category : #'tests - includes' }
+StringTest >> anotherElementNotIn [
 	^ $k
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>anotherElementOrAssociationIn [
+{ #category : #requirements }
+StringTest >> anotherElementOrAssociationIn [
 	" return an element (or an association for Dictionary ) present  in 'collection' "
 	^ self collection  anyOne
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>anotherElementOrAssociationNotIn [
+{ #category : #requirements }
+StringTest >> anotherElementOrAssociationNotIn [
 	" return an element (or an association for Dictionary )not present  in 'collection' "
 	^ notIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>anotherValue [
+{ #category : #requirements }
+StringTest >> anotherValue [
 " return a value ( not eual to 'aValue' ) to put into nonEmpty "
 	^ self nonEmpty anyOne.
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>collection [
+{ #category : #'tests - includes' }
+StringTest >> collection [
 	^ 'ghj'
 ]
 
-{
-	#category : #'test - set arithmetic',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>collectionClass [
+{ #category : #'test - set arithmetic' }
+StringTest >> collectionClass [
 
 	^ String
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>collectionMoreThan1NoDuplicates [
+{ #category : #requirements }
+StringTest >> collectionMoreThan1NoDuplicates [
 	" return a collection of size > 1 without equal elements"
 	^ withoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>collectionMoreThan5Elements [
+{ #category : #requirements }
+StringTest >> collectionMoreThan5Elements [
 " return a collection including at least 5 elements"
 	
 	^ nonEmpty5ElementsSorted 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>collectionNotIncluded [
+{ #category : #requirements }
+StringTest >> collectionNotIncluded [
 " return a collection for wich each element is not included in 'nonEmpty' "
 	^ notIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>collectionWith1TimeSubcollection [
+{ #category : #requirements }
+StringTest >> collectionWith1TimeSubcollection [
 	" return a collection including 'oldSubCollection'  only one time "
 	^ nonEmpty5ElementsSorted
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>collectionWith2TimeSubcollection [
+{ #category : #requirements }
+StringTest >> collectionWith2TimeSubcollection [
 	" return a collection including 'oldSubCollection'  two or many time "
 	^ nonEmpty5ElementsSorted , subcollection3ElementsSorted 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>collectionWithElement [
+{ #category : #requirements }
+StringTest >> collectionWithElement [
 	"Returns a collection that already includes what is returned by #element."
 	^ nonEmpty5ElementsSorted
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>collectionWithElementsToRemove [
+{ #category : #requirements }
+StringTest >> collectionWithElementsToRemove [
 " return a collection of elements included in 'nonEmpty'  "
 	^ subcollection3ElementsSorted 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>collectionWithEqualElements [
+{ #category : #requirements }
+StringTest >> collectionWithEqualElements [
 " return a collecition including atLeast two elements equal"
 
 ^ sameAtEndAndBegining 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>collectionWithSameAtEndAndBegining [
+{ #category : #requirements }
+StringTest >> collectionWithSameAtEndAndBegining [
 " return a collection with elements at end and begining equals .
 (others elements of the collection are not equal to those elements)"
 	^ sameAtEndAndBegining 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>collectionWithSortableElements [
+{ #category : #requirements }
+StringTest >> collectionWithSortableElements [
 	" return a collection only including elements that can be sorted (understanding '<' )"
 	^ nonEmpty5ElementsSorted
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>collectionWithoutEqualElements [
+{ #category : #requirements }
+StringTest >> collectionWithoutEqualElements [
 
 " return a collection not including equal elements "
 	^ withoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>collectionWithoutNilElements [
+{ #category : #requirements }
+StringTest >> collectionWithoutNilElements [
 	" return a collection that doesn't includes a nil element  and that doesn't includes equal elements'"
 	^ nonEmpty5ElementsSorted
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>element [
+{ #category : #requirements }
+StringTest >> element [
 	"Returns an object that can be added to the collection returned by #collection."
 	^ elementInNonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>elementInForElementAccessing [
+{ #category : #requirements }
+StringTest >> elementInForElementAccessing [
 " return an element inculded in 'moreThan4Elements'"
 	^ self moreThan4Elements anyOne
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>elementInForIncludesTest [
+{ #category : #requirements }
+StringTest >> elementInForIncludesTest [
 " return an element included in nonEmpty "
 	^ elementInNonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>elementInForIndexAccessing [
+{ #category : #requirements }
+StringTest >> elementInForIndexAccessing [
 " return an element included in 'accessCollection' "
 	^ withoutEqualElements anyOne
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>elementNotIn [
+{ #category : #requirements }
+StringTest >> elementNotIn [
 "return an element not included in 'nonEmpty' "
 
 	^notIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>elementNotInForElementAccessing [
+{ #category : #requirements }
+StringTest >> elementNotInForElementAccessing [
 " return an element not included in 'moreThan4Elements' "
 	^ notIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>elementNotInForIndexAccessing [
+{ #category : #requirements }
+StringTest >> elementNotInForIndexAccessing [
 " return an element not included in 'accessCollection' "
 	^ notIn 
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>elementNotInForOccurrences [
+{ #category : #'tests - includes' }
+StringTest >> elementNotInForOccurrences [
 	^ $z
 ]
 
-{
-	#category : #'test - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>elementToAdd [
+{ #category : #'test - copy' }
+StringTest >> elementToAdd [
 	^ $u
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>elementTwiceInForOccurrences [
+{ #category : #requirements }
+StringTest >> elementTwiceInForOccurrences [
 " return an element included exactly two time in # collectionWithEqualElements"
 ^ sameAtEndAndBegining first .
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>empty [
+{ #category : #requirements }
+StringTest >> empty [
 	^ emptyString
 ]
 
-{
-	#category : #'tests - indexof',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>findFirstInString: aString fromString: searchString [
+{ #category : #'tests - indexof' }
+StringTest >> findFirstInString: aString fromString: searchString [
 
 	^ String findFirstInString: aString inSet: (CharacterSet newFrom: searchString) byteArrayMap startingAt: 1
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>firstCollection [
+{ #category : #requirements }
+StringTest >> firstCollection [
 	" return a collection that will be the first part of the concatenation"
 	^ nonEmpty5ElementsSorted
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>firstIndex [
+{ #category : #requirements }
+StringTest >> firstIndex [
 " return an index between 'nonEmpty' bounds that is < to 'second index' "
 	^3
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>indexArray [
+{ #category : #requirements }
+StringTest >> indexArray [
 " return a Collection including indexes between bounds of 'nonEmpty' "
 
 	^ indexInNonEmptyArray 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>indexInForCollectionWithoutDuplicates [
+{ #category : #requirements }
+StringTest >> indexInForCollectionWithoutDuplicates [
 " return an index between 'collectionWithoutEqualsElements'  bounds"
 	^ 2
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>indexInNonEmpty [
+{ #category : #requirements }
+StringTest >> indexInNonEmpty [
 " return an index between bounds of 'nonEmpty' "
 
 	^ 2.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>integerCollectionWithoutEqualElements [
+{ #category : #requirements }
+StringTest >> integerCollectionWithoutEqualElements [
 	" return a collection of integer without equal elements"
 	^ nonEmpty5ElementsSorted
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>moreThan3Elements [
+{ #category : #requirements }
+StringTest >> moreThan3Elements [
 	" return a collection including atLeast 3 elements"
 	^ nonEmpty5ElementsSorted
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>moreThan4Elements [
+{ #category : #requirements }
+StringTest >> moreThan4Elements [
 	" return a collection including at leat 4 elements"
 	^ nonEmpty5ElementsSorted
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>newElement [
+{ #category : #requirements }
+StringTest >> newElement [
 "return an element that will be put in the collection in place of another"
 	^ elementInNonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>nonEmpty [
+{ #category : #requirements }
+StringTest >> nonEmpty [
 	^ nonEmpty5ElementsSorted
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>nonEmpty1Element [
+{ #category : #requirements }
+StringTest >> nonEmpty1Element [
 " return a collection of size 1 including one element"
 	^ nonEmpty1element 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>nonEmptyMoreThan1Element [
+{ #category : #requirements }
+StringTest >> nonEmptyMoreThan1Element [
 	" return a collection that don't includes equl elements'"
 	^ nonEmpty5ElementsSorted
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>oldSubCollection [
+{ #category : #requirements }
+StringTest >> oldSubCollection [
 " return a subCollection included in collectionWith1TimeSubcollection .
 ex :   subCollection := #( 2 3 4) and collectionWith1TimeSubcollection := #(1 2 3 4 5)"
 	^ subcollection3ElementsSorted  
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>otherCollection [
+{ #category : #requirements }
+StringTest >> otherCollection [
 	"Returns a collection that does not include what is returned by #element."
 	^ collectionNotIncluded 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>replacementCollection [
+{ #category : #requirements }
+StringTest >> replacementCollection [
 " return a collection that will be used to replace 'oldSubcollection' in ' collectionWith1TimeSubcollection'  " 
 	^ string
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>replacementCollectionSameSize [
+{ #category : #requirements }
+StringTest >> replacementCollectionSameSize [
 " return a collection of size (secondIndex - firstIndex + 1)"
 	^nonEmpty1element 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>secondCollection [
+{ #category : #requirements }
+StringTest >> secondCollection [
 " return a collection that will be the second part of the concatenation"
 	^ nonEmpty1element 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>secondIndex [
+{ #category : #requirements }
+StringTest >> secondIndex [
 " return an index between 'nonEmpty' bounds that is > to 'second index' "
 	^ self firstIndex 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>setUp [
+{ #category : #initialization }
+StringTest >> setUp [
 	string := 'Hi, I am a String'.
 	emptyString := ''.
 	subcollection3ElementsSorted := 'bcd'.
@@ -501,39 +347,27 @@ StringTest>>setUp [
 	notIn := $z
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>sizeCollection [
+{ #category : #requirements }
+StringTest >> sizeCollection [
 	"Answers a collection whose #size is 4"
 	^ 'abcd'
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>sortedInAscendingOrderCollection [
+{ #category : #requirements }
+StringTest >> sortedInAscendingOrderCollection [
 " return a collection sorted in an acsending order"
 	^nonEmpty5ElementsSorted 
 	
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>subCollectionNotIn [
+{ #category : #requirements }
+StringTest >> subCollectionNotIn [
 " return a collection for which at least one element is not included in 'moreThan4Elements' "
 	^ collectionNotIncluded 
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>test0CopyTest [
+{ #category : #'tests - fixture' }
+StringTest >> test0CopyTest [
 	self empty.
 	self assert: self empty size = 0.
 	self nonEmpty.
@@ -543,11 +377,8 @@ StringTest>>test0CopyTest [
 	self elementToAdd
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testAlike [
+{ #category : #testing }
+StringTest >> testAlike [
 
 self assert: ('test' alike: 'test') >= 8.   "twice second argument size is the best score"
 self assert: ('TEST' alike: 'test') >= 8.   "case is ignored"
@@ -556,33 +387,24 @@ self assert: ('é è à ô ü ö' alike: 'é è à ô ü ö ß ä ó ñ í á') 
 self assert: ('eeeee' alike: 'ééééé') <= 1.  "evaluation based on ascii value"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testAllRangesOfSubstring [
+{ #category : #testing }
+StringTest >> testAllRangesOfSubstring [
 
 self assert: ('aabbccbb' allRangesOfSubstring: 'bb' ) = {(3 to: 4). (7 to: 8)}.
 self assert: ('é è à ô ü ö ß ä ó ñ í á' allRangesOfSubstring: 'ö ß ä') = {(11 to: 15)}.
 self assert: ('test' allRangesOfSubstring: '') = #().
 ]
 
-{
-	#category : #'testing - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testAsCamelCase [
+{ #category : #'testing - converting' }
+StringTest >> testAsCamelCase [
 
        self assert: 'A man, a plan, a canal, panama' asCamelCase = 'AMan,APlan,ACanal,Panama'.
        self assert: 'Here 123should % be 6 the name6 of the method' asCamelCase = 'Here123should%Be6TheName6OfTheMethod'.
  
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testAsDate [
+{ #category : #testing }
+StringTest >> testAsDate [
 
 self assert: ('Jan 1 2015' asDate asString) = '1 January 2015'. 
 self assert: ('1/1/2015' asDate asString) = '1 January 2015'.
@@ -592,11 +414,8 @@ self should: ['' asDate] raise: Error.
 self should: ['1234' asDate] raise: Error. 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testAsHTMLString [
+{ #category : #testing }
+StringTest >> testAsHTMLString [
 
 self assert: ('<a>' asHTMLString) = '&lt;a&gt;'.
 self assert: ('<!DOCTYPE html>' asHTMLString) = '&lt;!DOCTYPE html&gt;'. 
@@ -604,11 +423,8 @@ self assert: ('é è à ô ü ö ß ä ó ñ í á' asHTMLString) = 'é è à ô
 self assert: ('' asHTMLString) = ''.
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testAsInteger [
+{ #category : #'tests - converting' }
+StringTest >> testAsInteger [
 
 	self assert: '1796exportFixes-tkMX' asInteger = 1796.
 	self assert: 'donald' asInteger isNil.
@@ -617,22 +433,16 @@ StringTest>>testAsInteger [
 	self assert: 'foo-bar-92' asInteger = -92
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testAsLowercase  [
+{ #category : #testing }
+StringTest >> testAsLowercase [ 
 
 self assert: ('1 2 3 É È À Ô Ü Ö ẞ t e s T' asLowercase = '1 2 3 é è à ô ü ö ß t e s t').
 self assert: ('!@#$' asLowercase = '!@#$').
 self assert: ('' asLowercase = '').
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testAsPluralBasedOn [
+{ #category : #testing }
+StringTest >> testAsPluralBasedOn [
 
 self assert: ('test' asPluralBasedOn: #(1)) = 'test'.
 self assert: ('test' asPluralBasedOn: #(1 2 3)) = 'tests'.
@@ -643,11 +453,8 @@ self assert: ('' asPluralBasedOn: 1) = ''.
 self assert: ('%' asPluralBasedOn: 10) = '%s'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testAsSignedInteger [
+{ #category : #testing }
+StringTest >> testAsSignedInteger [
 
 self assert: ('test' asSignedInteger) = nil.
 self assert: ('é è à ô ü ö ß ä ó ñ í á' asSignedInteger ) = nil.
@@ -657,11 +464,8 @@ self assert: ('1234567890-1234567890' asSignedInteger) = 1234567890.
 self assert: ('--12345' asSignedInteger) = -12345.
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testAsSmalltalkComment [
+{ #category : #'tests - converting' }
+StringTest >> testAsSmalltalkComment [
 
 	| exampleStrings  |
 	exampleStrings := #(
@@ -693,11 +497,8 @@ StringTest>>testAsSmalltalkComment [
 		
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testAsString  [
+{ #category : #testing }
+StringTest >> testAsString [ 
 
 self assert: (123 asString) = '123'.
 self assert: (#(1 2 3) asString) = '#(1 2 3)'.
@@ -707,11 +508,8 @@ self assert: ('é è à ô ü ö ß ä ó ñ í á' asString) = 'é è à ô ü 
 self assert: ('' asString) = ''.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testAsSymbol [
+{ #category : #testing }
+StringTest >> testAsSymbol [
 
 self assert: ('hel','lo' asSymbol) = #'hello'.
 self assert: ('é è à ô ü' asSymbol)  = #'é è à ô ü'.
@@ -719,11 +517,8 @@ self assert: ('' asSymbol) = #''.
 self assert: ('test' asSymbol) == #'test'. 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testAsTime  [
+{ #category : #testing }
+StringTest >> testAsTime [ 
 
 self assert: ('1:00:00' asTime asString) = '1:00 am'.
 self assert: ('1:00' asTime asString) = '1:00 am'.
@@ -732,30 +527,21 @@ self assert: ('13' asTime asString) = '1:00 pm'.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testAsUppercase  [
+{ #category : #testing }
+StringTest >> testAsUppercase [ 
 
 self assert: ('éèàôütest' asUppercase) = 'ÉÈÀÔÜTEST'.
 self assert: ('123éàôüößTEST' asUppercase) = '123ÉÀÔÜÖẞTEST'.
 self assert: ('' asUppercase) = ''.
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testAt [
+{ #category : #'tests - accessing' }
+StringTest >> testAt [
 	self assert: (string at: 1) = $H.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testBeginsWithEmptyCaseSensitive [
+{ #category : #testing }
+StringTest >> testBeginsWithEmptyCaseSensitive [
 
 self deny: ('éèàôüößäóñíá' beginsWithEmpty: 'ß' caseSensitive: true).
 self assert: ('éèàôüößäóñíá' beginsWithEmpty: 'éèàô' caseSensitive: true).
@@ -768,11 +554,8 @@ self should: ('???' beginsWithEmpty: '??' caseSensitive: false).
 "self assert: ('ÉÈÀÔÜÖ' beginsWithEmpty: 'éèà' caseSensitive: false)."
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testCapitalized [
+{ #category : #'tests - converting' }
+StringTest >> testCapitalized [
 
 	| uc lc empty |		
 	uc := 'MElViN'.
@@ -785,11 +568,8 @@ StringTest>>testCapitalized [
 	self deny: empty capitalized == empty.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testCaseInsensitiveLessOrEqual [
+{ #category : #testing }
+StringTest >> testCaseInsensitiveLessOrEqual [
 
 self assert: ('EEA' caseInsensitiveLessOrEqual: 'fgh').
 self deny: ('éèàôüößäóñíá' caseInsensitiveLessOrEqual: 'éèàôüöß').
@@ -798,11 +578,8 @@ self deny: ('ÉÈÀÔÜÖ' caseInsensitiveLessOrEqual: 'èàôüö').
 self assert: ('eea' caseInsensitiveLessOrEqual: 'ÉÈÀ').
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testCaseSensitiveLessOrEqual [
+{ #category : #testing }
+StringTest >> testCaseSensitiveLessOrEqual [
 
 self assert: ('EEA' caseSensitiveLessOrEqual: 'fgh').
 self deny: ('éèàôüößäóñíá' caseSensitiveLessOrEqual: 'éèàôüöß'). 
@@ -811,22 +588,16 @@ self assert: ('ÉÈÀÔÜÖ' caseSensitiveLessOrEqual: 'èàôüö').
 self assert: ('eea' caseSensitiveLessOrEqual: 'ÉÈÀ').
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testCharactersExactlyMatching [
+{ #category : #testing }
+StringTest >> testCharactersExactlyMatching [
 	self assert: 5 equals: ('voiture' charactersExactlyMatching: 'voituze').
 	self assert: 0 equals: ('voiture' charactersExactlyMatching: '').
 	self assert: 1 equals: ('voiture' charactersExactlyMatching: 'v').
 	self assert: 0 equals: ('voiture' charactersExactlyMatching: 'abcdef').
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testCompare [
+{ #category : #testing }
+StringTest >> testCompare [
 
 self assert: ('EEA' compare: 'fgh') = 1.
 self assert: ('ABCDEFGH' compare: 'ABCDEFGH') = 2.
@@ -838,11 +609,8 @@ self assert: ('eeao' compare: 'éèàô') = 1.
 self assert: ('!@#' compare: '123') = 1.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testCompareCaseSensitive [
+{ #category : #testing }
+StringTest >> testCompareCaseSensitive [
 
 self assert: ('EEA' compare: 'fgh' caseSensitive: true) = 1.
 self assert: ('ABCDEFGH' compare: 'abcdefgh' caseSensitive: false) = 2.
@@ -852,11 +620,8 @@ self assert: ('ÉÈÀÔÜ' compare: 'ÔÜÖ' caseSensitive: true) = 1.
 self assert: ('éèàôüöß' compare: 'ÉÈÀÔÜÖẞ' caseSensitive: false) = 1.
 ]
 
-{
-	#category : #test-comparing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testComparing [
+{ #category : #test-comparing }
+StringTest >> testComparing [
 	self assert: 'foo' < 'foo:'.
 	self assert: 'foo' < 'fooBar'.
 	self assert: 'foo' <= 'foo:'.
@@ -867,11 +632,8 @@ StringTest>>testComparing [
 	self assert: 'fooBar' >= 'foo'
 ]
 
-{
-	#category : #test-comparing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testComparingCaseInsensitiveLatin1 [
+{ #category : #test-comparing }
+StringTest >> testComparingCaseInsensitiveLatin1 [
 
 	"ascii-letter"
 	self assert: ('e' compare: 'E' caseSensitive: false) equals: 2.
@@ -893,19 +655,13 @@ StringTest>>testComparingCaseInsensitiveLatin1 [
 
 ]
 
-{
-	#category : #'tests - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testCopyNonEmptyWithoutAllNotIncluded [
+{ #category : #'tests - copy' }
+StringTest >> testCopyNonEmptyWithoutAllNotIncluded [
 	
 ]
 
-{
-	#category : #'test - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testCopyReplaceAllWith [
+{ #category : #'test - copy' }
+StringTest >> testCopyReplaceAllWith [
 	self assert: ('--A--' copyReplaceAll: 'A' with: 'ABC') equals: '--ABC--'.
 	self assert: ('--A--' copyReplaceAll: 'A' with: 'X') equals: '--X--'.
 	self assert: ('--ABC--' copyReplaceAll: 'ABC' with: 'X') equals: '--X--'.
@@ -921,11 +677,8 @@ StringTest>>testCopyReplaceAllWith [
 	self assert: ('AAAA-' copyReplaceAll: 'AA' with: 'X') equals: 'XX-'
 ]
 
-{
-	#category : #'test - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testCopyReplaceAllWithAsTokens [
+{ #category : #'test - copy' }
+StringTest >> testCopyReplaceAllWithAsTokens [
 
 self assert: ('test te str' copyReplaceAll: 'te' with: 'longone' asTokens: true) = 'test longone str'.
 self assert: ('test te str' copyReplaceAll: 'te' with: 'longone' asTokens: false) = 'longonest longone str'.
@@ -934,11 +687,8 @@ self assert: ('éèàôüößäóñíá' copyReplaceAll: 'àôüö' with: 'A' as
 self assert: ('éèàôü éèàôüt éèàôü' copyReplaceAll: ' ' with:  'ß' asTokens: false) = 'éèàôüßéèàôütßéèàôü'.
 ]
 
-{
-	#category : #test-comparing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testCorrectAgainst [
+{ #category : #test-comparing }
+StringTest >> testCorrectAgainst [
 
 | coll |
 
@@ -949,11 +699,8 @@ coll := OrderedCollection new.
 self assert: ('test' correctAgainst: coll) asArray = #().
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testEndsWith  [
+{ #category : #testing }
+StringTest >> testEndsWith [ 
 
 self deny: ('éèàôüößäóñíá' endsWith: 'ia').
 self deny: ('éèàôüößäóñíá' endsWith: '').
@@ -965,11 +712,8 @@ self deny: ('test' endsWith: 'tester').
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testEndsWithAnyOf [
+{ #category : #testing }
+StringTest >> testEndsWithAnyOf [
 
 self deny: ('éèàôüößäóñíá' endsWithAnyOf: #('ia' 'ñí' '' 'áß')).
 self assert: ('éèàôüößäóñíá' endsWithAnyOf: #('test' 'ÉÈÀ' 'äóñíá')).
@@ -977,11 +721,8 @@ self assert: ('test' endsWithAnyOf: #('tests' 'tester' 'testing' 't')).
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testEndsWithDigit [
+{ #category : #testing }
+StringTest >> testEndsWithDigit [
 
 self deny: ('éèàôüößäóñíá' endsWithDigit).
 self assert: ('éèàôüößäóñíá9' endsWithDigit).
@@ -989,11 +730,8 @@ self deny: ('99test' endsWithDigit).
 self assert: ('  999' endsWithDigit).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testEquality [
+{ #category : #testing }
+StringTest >> testEquality [
 	"self run: #testEquality"
 	
 	self assert: 'abc' = 'abc' asWideString.
@@ -1008,11 +746,8 @@ StringTest>>testEquality [
 	self assert: ('a000' asWideString sameAs: #[97 0 0 0] asString) not.
 ]
 
-{
-	#category : #'testing - formatting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testExpandMacros [
+{ #category : #'testing - formatting' }
+StringTest >> testExpandMacros [
 
 	self
 		assert: '<t><n><r>' expandMacros
@@ -1025,11 +760,8 @@ StringTest>>testExpandMacros [
 						nextPut: Character cr ])
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindAnySubstringStartingAt [
+{ #category : #testing }
+StringTest >> testFindAnySubstringStartingAt [
 
 self assert: ('tester12345' findAnySubstring: #('st' $1) startingAt: 1) = 3.
 self assert: ('éèàôüößäóñíá1234' findAnySubstring: #('st' '' 'óñ' '123') startingAt:  1) = 9.
@@ -1039,11 +771,8 @@ self assert: ('éèàôüößäóñíá' findAnySubstring: #() startingAt:  3) =
 self assert: ('test12345' findAnySubstring: #('"' '@') startingAt: 12) = 10.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindBetweenSubstrings [
+{ #category : #testing }
+StringTest >> testFindBetweenSubstrings [
  
 self assert: ('éèà ôüößäó ñíá' findBetweenSubstrings: #(' ')) asArray = #('éèà' 'ôüößäó' 'ñíá').
 self assert: ('ieaoftaaka' findBetweenSubstrings: #($a)) asArray = #('ie' 'oft' 'k').
@@ -1051,11 +780,8 @@ self assert: ('this is an issue is it not' findBetweenSubstrings: #('is' 'not'))
                                                = #('th' ' ' ' an ' 'sue ' ' it ').
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindCloseParenthesisFor [
+{ #category : #testing }
+StringTest >> testFindCloseParenthesisFor [
 
 self assert: ('(1 + 3(2 * 9) - 15)' findCloseParenthesisFor: 1) = 19.
 self assert: ('(1+(2-3))-3.14159' findCloseParenthesisFor: 1) = 9.
@@ -1063,11 +789,8 @@ self assert: ('(1+(2-3))-3.14159' findCloseParenthesisFor: 4) = 8.
 self assert: ('()' findCloseParenthesisFor: 10) = 3.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindDelimitersStartingAt [
+{ #category : #testing }
+StringTest >> testFindDelimitersStartingAt [
 
 self assert: ('this is a string' findDelimiters: ' ' startingAt: 1) = 5.
 self assert: ('this is a string' findDelimiters: 'i' startingAt: 1) = 3.
@@ -1075,11 +798,8 @@ self assert: ('this is a string' findDelimiters: #($a $e $s) startingAt: 5) = 7.
 self assert: ('éèàôüöß éèàôüöß' findDelimiters: 'ß' startingAt: 2) = 7.
 ]
 
-{
-	#category : #'tests - indexof',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindFirstInString [
+{ #category : #'tests - indexof' }
+StringTest >> testFindFirstInString [
 	
 	"These tests are more specific than thsoe in testIndexOf."
 	
@@ -1098,11 +818,8 @@ StringTest>>testFindFirstInString [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindLastOccurenceOfStringStartingAt [
+{ #category : #testing }
+StringTest >> testFindLastOccurenceOfStringStartingAt [
 
 	self assert: ('Smalltalk' findLastOccurrenceOfString: 'al' startingAt: 2) = 7.
 	self assert: ('aaa' findLastOccurrenceOfString: 'aa' startingAt: 1) = 2.
@@ -1111,11 +828,8 @@ StringTest>>testFindLastOccurenceOfStringStartingAt [
 	self assert: (('Smalltalk' copyWith: 835 asCharacter) findLastOccurrenceOfString: 'al' asWideString startingAt: 2) = 7.
 ]
 
-{
-	#category : #'tests - iterate on sequenced reable collections',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindSelector [
+{ #category : #'tests - iterate on sequenced reable collections' }
+StringTest >> testFindSelector [
 	self assert: #isSymbol equals: 'isSymbol' findSelector.
 	self assert: #between:and: equals: 'between:and:' findSelector .
 	self assert: #+ equals: '+' findSelector .
@@ -1125,11 +839,8 @@ StringTest>>testFindSelector [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindString [
+{ #category : #testing }
+StringTest >> testFindString [
 
 self assert: ('éèàôüößäóñíá' findString: 'ÉÈ') = 0.
 self assert: ('éèàôüößäóñíá' findString: 'éè') = 1.
@@ -1138,11 +849,8 @@ self assert: ('salkjsdlkgfee' findString: 'ee') = 12.
 self assert: (' ' findString: '') = 0.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindStringStartingAt [
+{ #category : #testing }
+StringTest >> testFindStringStartingAt [
 
 self assert: ('éèàôüößäóñíá' findString: 'ÉÈ' startingAt: 1) = 0.
 self assert: ('éèàôüößäóñíá' findString: 'éè' startingAt: 10) = 0.
@@ -1152,11 +860,8 @@ self assert: ('salkjsdlkgfee' findString: 'ee'startingAt: 3) = 12.
 self assert: (' ' findString: '' startingAt: 1) = 0.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindStringStartingAtCaseSensitive [
+{ #category : #testing }
+StringTest >> testFindStringStartingAtCaseSensitive [
 
 self assert: ('éèàôüößäóñíá' findString: 'Á' startingAt: 1 caseSensitive: false) = 12.
 self assert: ('éèàôüößäóñíá' findString: 'Á' startingAt: 1 caseSensitive: true) = 0.
@@ -1165,11 +870,8 @@ self assert: ('test' findString: 'T' startingAt: 3 caseSensitive: false) = 4.
 self assert: ('test' findString: '' startingAt: 1 caseSensitive: false) = 0.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokens [
+{ #category : #testing }
+StringTest >> testFindTokens [
 
 |s |
 s := OrderedCollection withAll: #( 'i' 'd toke' 's').
@@ -1185,11 +887,8 @@ s := OrderedCollection withAll: #('es' ' ' 'his').
 self assert: (('test this' findTokens: 't') = s).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy [
+{ #category : #testing }
+StringTest >> testFindTokensEscapedBy [
 
 |s|
 s := OrderedCollection withAll: #('éèà' 'üößä' 'íá').
@@ -1205,11 +904,8 @@ s := OrderedCollection withAll: #('ths , s').
 self assert: (('this , is' findTokens: ' ' escapedBy: $i) = s).
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy01 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy01 [
 
 	| tokens |
 	string := 'this, is, "a, test"'.
@@ -1217,11 +913,8 @@ StringTest>>testFindTokensEscapedBy01 [
 	self assert: tokens size = 3
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy02 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy02 [
 
 	| tokens |
 	string := ''.
@@ -1229,11 +922,8 @@ StringTest>>testFindTokensEscapedBy02 [
 	self assert: tokens isEmpty
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy03 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy03 [
 
 	| tokens |
 	string := 'this, is, a, test'.
@@ -1241,11 +931,8 @@ StringTest>>testFindTokensEscapedBy03 [
 	self assert: tokens size = 4
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy04 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy04 [
 
 	| tokens |
 	string := 'this, is, a"," test'.
@@ -1254,11 +941,8 @@ StringTest>>testFindTokensEscapedBy04 [
 	self assert: tokens third = ' a, test'
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy05 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy05 [
 
 	| tokens |
 	string := 'this, /is, a"," test/'.
@@ -1268,11 +952,8 @@ StringTest>>testFindTokensEscapedBy05 [
 	self assert: tokens second = ' is, a"," test'.
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy06 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy06 [
 
 	| tokens |
 	string := 'this, is, "a, test'.
@@ -1281,11 +962,8 @@ StringTest>>testFindTokensEscapedBy06 [
 	self assert: tokens third = ' a, test'
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy07 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy07 [
 
 	| tokens |
 	string := 'a:b::c'.
@@ -1297,11 +975,8 @@ StringTest>>testFindTokensEscapedBy07 [
 	self assert: tokens fourth = 'c'
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy08 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy08 [
 
 	| tokens |
 	string := 'this, is, ##a, test'.
@@ -1311,11 +986,8 @@ StringTest>>testFindTokensEscapedBy08 [
 	self assert: tokens fourth = ' test'
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy09 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy09 [
 
 	| tokens |
 	string := 'this, is, ###a, test#'.
@@ -1324,11 +996,8 @@ StringTest>>testFindTokensEscapedBy09 [
 	self assert: tokens third = ' #a, test'
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy10 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy10 [
 
 	| tokens |
 	string := 'this, is, ###a, test'.
@@ -1337,11 +1006,8 @@ StringTest>>testFindTokensEscapedBy10 [
 	self assert: tokens third = ' #a, test'
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy11 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy11 [
 
 	| tokens |
 	string := 'this, is, """a, test"'.
@@ -1350,11 +1016,8 @@ StringTest>>testFindTokensEscapedBy11 [
 	self assert: tokens third = ' "a, test'
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy12 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy12 [
 
 	| tokens |
 	string := 'one, two# three; four. five'.
@@ -1363,11 +1026,8 @@ StringTest>>testFindTokensEscapedBy12 [
 	self assert: tokens third = ' three'
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy13 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy13 [
 
 	| tokens |
 	string := 'one, two# three; four. five'.
@@ -1376,11 +1036,8 @@ StringTest>>testFindTokensEscapedBy13 [
 	self assert: tokens third = ' three'
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy14 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy14 [
 
 	| tokens |
 	string := 'one, "two# three"; &four. five&'.
@@ -1390,11 +1047,8 @@ StringTest>>testFindTokensEscapedBy14 [
 	self assert: tokens third = ' four. five'
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy15 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy15 [
 
 	| tokens |
 	string := 'one, "two# three"; &four. five&'.
@@ -1403,11 +1057,8 @@ StringTest>>testFindTokensEscapedBy15 [
 	self assert: tokens first = 'one, two# three; four. five'
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy16 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy16 [
 
 	| tokens |
 	string := 'one, "two# three"; &four. five&'.
@@ -1416,11 +1067,8 @@ StringTest>>testFindTokensEscapedBy16 [
 	self assert: tokens first = string
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy21 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy21 [
 
 	| tokens |
 	string := 'this, is, "a, test"'.
@@ -1428,11 +1076,8 @@ StringTest>>testFindTokensEscapedBy21 [
 	self assert: tokens size = 3
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy22 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy22 [
 
 	| tokens |
 	string := ''.
@@ -1440,11 +1085,8 @@ StringTest>>testFindTokensEscapedBy22 [
 	self assert: tokens size = 0
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy23 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy23 [
 
 	| tokens |
 	string := 'this, is, a, test'.
@@ -1452,11 +1094,8 @@ StringTest>>testFindTokensEscapedBy23 [
 	self assert: tokens size = 4
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy24 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy24 [
 
 	| tokens |
 	string := 'this, is, a"," test'.
@@ -1465,11 +1104,8 @@ StringTest>>testFindTokensEscapedBy24 [
 	self assert: tokens third = ' a, test'
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy25 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy25 [
 
 	| tokens |
 	string := 'this, /is, a"," test/'.
@@ -1479,11 +1115,8 @@ StringTest>>testFindTokensEscapedBy25 [
 	self assert: tokens second = ' is, a"," test'.
 ]
 
-{
-	#category : #'testing - tokenizing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensEscapedBy26 [
+{ #category : #'testing - tokenizing' }
+StringTest >> testFindTokensEscapedBy26 [
 
 	| tokens |
 	string := 'this, is, "a, test'.
@@ -1492,11 +1125,8 @@ StringTest>>testFindTokensEscapedBy26 [
 	self assert: tokens third = ' a, test'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindTokensIncludes [
+{ #category : #testing }
+StringTest >> testFindTokensIncludes [
 
 self assert: (('test this' findTokens: 't' includes: 'his') = 'his').
 self assert: (('test this' findTokens: 's' includes: 'HI') isNil).
@@ -1506,11 +1136,8 @@ self assert: (('éèàôüößäóñíá' findTokens: #($ô $ó) includes:'ñí'
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFindWordStartStartingAt [
+{ #category : #testing }
+StringTest >> testFindWordStartStartingAt [
 
 self assert: ('test this string' findWordStart: 'th' startingAt: 1) = 6.
 self assert: ('test this string' findWordStart: 'st' startingAt: 1) = 11.
@@ -1519,11 +1146,8 @@ self assert: ('test this string' findWordStart: '' startingAt: 1) = 0.
 
 ]
 
-{
-	#category : #'testing - formatting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFormat [
+{ #category : #'testing - formatting' }
+StringTest >> testFormat [
 
 	self
 		assert: ('This is {1} !' format: #('a test'))
@@ -1538,11 +1162,8 @@ StringTest>>testFormat [
 		self assert: each key value equals: each value ]
 ]
 
-{
-	#category : #'testing - formatting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFormatExtended [
+{ #category : #'testing - formatting' }
+StringTest >> testFormatExtended [
 
 	self
 		assert: ('This is {foo} !' format: (Dictionary with: #foo->'a test'))
@@ -1557,11 +1178,8 @@ StringTest>>testFormatExtended [
 		self assert: each key value equals: each value ]
 ]
 
-{
-	#category : #'testing - formatting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testFormatFailures [
+{ #category : #'testing - formatting' }
+StringTest >> testFormatFailures [
 
 	self
 		should: [ 'This is {foo} !' format: Dictionary new ]
@@ -1573,11 +1191,8 @@ StringTest>>testFormatFailures [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testHasWideCharacterFromTo [
+{ #category : #testing }
+StringTest >> testHasWideCharacterFromTo [
 
 self assert: ('te€st' hasWideCharacterFrom: 1 to: 3).
 self deny: ('test' hasWideCharacterFrom: 1 to: 4).  
@@ -1585,22 +1200,16 @@ self assert: ('€₤' hasWideCharacterFrom: 1 to: 2).
 self assert: ('test this string €₤' hasWideCharacterFrom: 18 to: 19).
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testIncludesElementIsNotThere [
+{ #category : #'tests - includes' }
+StringTest >> testIncludesElementIsNotThere [
 	"self debug: #testIncludesElementIsNotThere"
 	self deny: (self nonEmpty includes: self elementNotInForOccurrences).
 	self assert: (self nonEmpty includes: self nonEmpty anyOne).
 	self deny: (self empty includes: self elementNotInForOccurrences)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testIncludesSubstring [
+{ #category : #testing }
+StringTest >> testIncludesSubstring [
 
 self assert: ('testing this string' includesSubstring: 'ring'). 
 self assert: ('éèàôüößäóñíá' includesSubstring: '').
@@ -1610,11 +1219,8 @@ self deny: ('kjdsnlksjdf' includesSubstring: 'K').
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testIncludesSubstringCaseSensitive [
+{ #category : #testing }
+StringTest >> testIncludesSubstringCaseSensitive [
 
 self deny: ('test this string' includesSubstring: 'Ring' caseSensitive: true ). 
 self assert: ('test this string' includesSubstring: 'Ring' caseSensitive: false). 
@@ -1625,11 +1231,8 @@ self assert: ('123éàôüöß' includesSubstring: 'ÀÔ' caseSensitive: false).
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testIndexOf [
+{ #category : #testing }
+StringTest >> testIndexOf [
 
 self assert: ('test this string' indexOf: $k) = 0.
 self assert: ('test this string' indexOf: 't') = 0.
@@ -1639,11 +1242,8 @@ self assert: ('123éàôüöß' indexOf: $E) = 0.
  
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testIndexOfFirstUppercaseCharacter [
+{ #category : #testing }
+StringTest >> testIndexOfFirstUppercaseCharacter [
 
 self assert: ('test thiS strIng' indexOfFirstUppercaseCharacter) = 9.
 self assert: ('test this string' indexOfFirstUppercaseCharacter) = 0.
@@ -1652,11 +1252,8 @@ self assert: ('123éàôüÖẞ' indexOfFirstUppercaseCharacter) = 8.
  
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testIndexOfWideCharacterFromTo [
+{ #category : #testing }
+StringTest >> testIndexOfWideCharacterFromTo [
 
 self assert: ('123éàôüÖẞ' indexOfWideCharacterFrom: 1 to: 9)  = 9.
 self assert: ('te€st' indexOfWideCharacterFrom: 1 to: 5) = 3.
@@ -1664,11 +1261,8 @@ self assert: ('te€st this string' indexOfWideCharacterFrom: 4 to: 10) = 0.
 self assert: ('€₤' indexOfWideCharacterFrom: 1 to: 2) = 1.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testInitialIntegerOrNil [
+{ #category : #testing }
+StringTest >> testInitialIntegerOrNil [
 
 self assert: ('234Whoopie' initialIntegerOrNil) = 234.
 self assert: ('wimpy' initialIntegerOrNil) isNil.
@@ -1679,11 +1273,8 @@ self assert: ('78 92' initialIntegerOrNil) = 78.
 self assert: ('123éàôüÖẞ' initialIntegerOrNil) = 123.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testIsAllAlphaNumerics [
+{ #category : #testing }
+StringTest >> testIsAllAlphaNumerics [
 
 self assert: ('123dwef890' isAllAlphaNumerics).
 self deny: ('12 34 top &^' isAllAlphaNumerics). 
@@ -1693,11 +1284,8 @@ self deny: ('()' isAllAlphaNumerics).
 self assert: ('123éàôüÖẞ' isAllAlphaNumerics).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testIsAllDigits [
+{ #category : #testing }
+StringTest >> testIsAllDigits [
 	"self run: #testIsAllDigits"
 	self assert: '' isAllDigits = false.
 	self assert: '1.23' isAllDigits = false.
@@ -1706,11 +1294,8 @@ StringTest>>testIsAllDigits [
 	self assert: '0123456789' isAllDigits = true.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testIsAsciiString [
+{ #category : #testing }
+StringTest >> testIsAsciiString [
 	"Non-regression for https://pharo.fogbugz.com/f/cases/15232 "
 	self assert: '' isAsciiString = true.
 	self assert: 'abcdefGHIJKL 98765,./@#%$' isAsciiString = true.
@@ -1718,11 +1303,8 @@ StringTest>>testIsAsciiString [
 	self assert: 'éÀ' isAsciiString = false.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testIsLiteralSymbol [
+{ #category : #testing }
+StringTest >> testIsLiteralSymbol [
 
 	self assert: ('*+-/\~=<>&@%,|' allSatisfy: [:char | (Symbol with: char) isLiteralSymbol])
 		description: 'single letter binary symbols can be printed without string quotes'.
@@ -1731,11 +1313,8 @@ StringTest>>testIsLiteralSymbol [
 		description: 'valid ascii selector symbols can be printed without string quotes'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testIsPatternVariable [
+{ #category : #testing }
+StringTest >> testIsPatternVariable [
 
 	self assert: '`pattern' isPatternVariable.
 	self assert: '`pattern:' isPatternVariable.
@@ -1748,11 +1327,8 @@ StringTest>>testIsPatternVariable [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testIsWideString [
+{ #category : #testing }
+StringTest >> testIsWideString [
 
 self assert: ('€₤' isWideString).
 self deny: ('test this string' isWideString). 
@@ -1762,11 +1338,8 @@ self assert: ('éàôüÖẞ' isWideString).
 self deny: ('éàôüÖ' isWideString). 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testLastSpacePosition [
+{ #category : #testing }
+StringTest >> testLastSpacePosition [
 
 self assert: ('fred the bear' lastSpacePosition) = 9.
 self assert: ('ziggie' lastSpacePosition) = 0.
@@ -1776,11 +1349,8 @@ self assert: ('' lastSpacePosition) = 0.
 self assert: (' 123  éà ôüÖ ẞ' lastSpacePosition) = 13.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testLeadingCharRunLengthAt [
+{ #category : #testing }
+StringTest >> testLeadingCharRunLengthAt [
 
 self assert: ('test' leadingCharRunLengthAt: 1) = 4.
 self assert: ('éà ôüÖ ẞ' leadingCharRunLengthAt: 2) = 7.
@@ -1790,11 +1360,8 @@ self assert: (' ' leadingCharRunLengthAt: 1) = 1.
 self assert: ('te€st this string' leadingCharRunLengthAt: 10) = 8.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testLessThan [
+{ #category : #testing }
+StringTest >> testLessThan [
 
 self assert: ('@' < 'A').
 self assert: ('abcd' < 'à ô ü').
@@ -1807,11 +1374,8 @@ self deny: ('aaa' < 'AAA').
 
 ]
 
-{
-	#category : #'testing - lines',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testLineCorrespondingToIndex [
+{ #category : #'testing - lines' }
+StringTest >> testLineCorrespondingToIndex [
 	| sampleCRString sampleLFString sampleCRLFString anIndex |
 	sampleCRString := 'Fred', String cr , 'the' , String cr , 'Bear'.
 	sampleLFString := 'Fred', String lf , 'the' , String lf , 'Bear'.
@@ -1839,11 +1403,8 @@ StringTest>>testLineCorrespondingToIndex [
 	self assert: (sampleCRLFString lineCorrespondingToIndex: anIndex) = 'Fred'.
 ]
 
-{
-	#category : #'testing - lines',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testLineCount [
+{ #category : #'testing - lines' }
+StringTest >> testLineCount [
 	| sampleCRString sampleLFString sampleCRLFString |
 	sampleCRString := 'Fred', String cr , 'the' , String cr , 'Bear'.
 	sampleLFString := 'Fred', String lf , 'the' , String lf , 'Bear'.
@@ -1854,11 +1415,8 @@ StringTest>>testLineCount [
 	self assert: sampleCRLFString lineCount = 3.
 ]
 
-{
-	#category : #'testing - lines',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testLineNumber [
+{ #category : #'testing - lines' }
+StringTest >> testLineNumber [
 	| sampleCRString sampleLFString sampleCRLFString |
 	sampleCRString := 'Fred', String cr , 'the' , String cr , 'Bear'.
 	sampleLFString := 'Fred', String lf , 'the' , String lf , 'Bear'.
@@ -1869,11 +1427,8 @@ StringTest>>testLineNumber [
 	self assert: (sampleCRLFString lineNumber: 2) = 'the'.
 ]
 
-{
-	#category : #'testing - lines',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testLines [
+{ #category : #'testing - lines' }
+StringTest >> testLines [
 	| sampleCRString sampleLFString sampleCRLFString sampleMixedString sampleMixedString2 |
 	sampleCRString := 'Fred', String cr , 'the' , String cr , 'Bear'.
 	sampleLFString := 'Fred', String lf , 'the' , String lf , 'Bear'.
@@ -1888,11 +1443,8 @@ StringTest>>testLines [
 	self assert: sampleMixedString2 lines = #('Fred' 'the'  'Bear').
 ]
 
-{
-	#category : #'testing - lines',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testLinesDo [
+{ #category : #'testing - lines' }
+StringTest >> testLinesDo [
 	| sampleCRString sampleLFString sampleCRLFString lines |
 	sampleCRString := 'Fred', String cr , 'the' , String cr , 'Bear'.
 	sampleLFString := 'Fred', String lf , 'the' , String lf , 'Bear'.
@@ -1922,11 +1474,8 @@ StringTest>>testLinesDo [
 
 ]
 
-{
-	#category : #'tests - line breaking',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testLinesDoWithCr [
+{ #category : #'tests - line breaking' }
+StringTest >> testLinesDoWithCr [
 
 	| myString  |
 	myString := 'This is a test of line breaking', String cr.
@@ -1934,11 +1483,8 @@ StringTest>>testLinesDoWithCr [
 		self assert: ((line size + 1) = myString size)]
 ]
 
-{
-	#category : #'tests - line breaking',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testLinesDoWithCrBetween [
+{ #category : #'tests - line breaking' }
+StringTest >> testLinesDoWithCrBetween [
 
 	| aString |
 	aString := ' This is a test ', String cr,'of line breaking'.
@@ -1946,11 +1492,8 @@ StringTest>>testLinesDoWithCrBetween [
 		self assert: ((line size) = 16)]
 ]
 
-{
-	#category : #'tests - line breaking',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testLinesDoWithCrLf [
+{ #category : #'tests - line breaking' }
+StringTest >> testLinesDoWithCrLf [
 
 	| aString |
 	aString := 'This is a test of line breaking', String crlf.
@@ -1958,11 +1501,8 @@ StringTest>>testLinesDoWithCrLf [
 		self assert: ((line size + 2) = aString size)]
 ]
 
-{
-	#category : #'tests - line breaking',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testLinesDoWithCrLfBetween [
+{ #category : #'tests - line breaking' }
+StringTest >> testLinesDoWithCrLfBetween [
 
 	| aString |
 	aString := '-This is a test-', String crlf,'of line breaking'.
@@ -1970,11 +1510,8 @@ StringTest>>testLinesDoWithCrLfBetween [
 		self assert: ((line size) = 16)]
 ]
 
-{
-	#category : #'testing - instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testLoremIpsum [
+{ #category : #'testing - instance creation' }
+StringTest >> testLoremIpsum [
 	| fillerText |
 	fillerText := String loremIpsum.
 	self deny: fillerText isEmpty.
@@ -1985,11 +1522,8 @@ StringTest>>testLoremIpsum [
 	self assert: (Character space split: fillerText) size > 10
 ]
 
-{
-	#category : #'testing - instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testLoremIpsum2048 [
+{ #category : #'testing - instance creation' }
+StringTest >> testLoremIpsum2048 [
 	| fillerText |
 	fillerText := String loremIpsum: 2048.
 	self assert: fillerText size equals: 2048.
@@ -2001,11 +1535,8 @@ StringTest>>testLoremIpsum2048 [
 	self assert: (Character space split: fillerText) size > 75
 ]
 
-{
-	#category : #test-comparing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testMatch [
+{ #category : #test-comparing }
+StringTest >> testMatch [
 
 	#('**' 'f**'  'f**o' 'f*' '*f*' 'f#*' 'f##' '*oo' '#oo' '*o*' '#o#' '#o*' '*o#' 'fo*' 'fo#' '*foo*' '###' '*#'  'f*#' 'f*#o')
 		do: [ :each | self assert: (each match: 'foo') ].
@@ -2013,11 +1544,8 @@ StringTest>>testMatch [
 		self deny: (each match: 'foo') ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testNumArgs [
+{ #category : #testing }
+StringTest >> testNumArgs [
 	"This is about http://code.google.com/p/pharo/issues/detail?id=237"
 	
 	| binary |
@@ -2067,11 +1595,8 @@ StringTest>>testNumArgs [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testNumericSuffix [
+{ #category : #testing }
+StringTest >> testNumericSuffix [
 
 self assert: ('abc98' numericSuffix) = 98.
 self assert: ('98abc' numericSuffix) = 0.
@@ -2080,11 +1605,8 @@ self assert: ('abc456 789' numericSuffix) = 789.
 self assert: ('012éà ôüÖ ẞ123' numericSuffix) = 123.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testOccursInWithEmptyCaseSensitive [
+{ #category : #testing }
+StringTest >> testOccursInWithEmptyCaseSensitive [
 
 self assert: ('abc98def' occursInWithEmpty: 'abc' caseSensitive: true). 
 self deny: ('abc98def' occursInWithEmpty: 'Abc' caseSensitive: true). 
@@ -2094,11 +1616,8 @@ self deny: ('012éàôüÖ ẞ345' occursInWithEmpty: 'ÉÀÔÜÖ' caseSensitive
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testOnlyLetters [
+{ #category : #testing }
+StringTest >> testOnlyLetters [
 
 self assert: ('abc98def' onlyLetters) = 'abcdef'.
 self assert: ('abc 98 12 def' onlyLetters) = 'abcdef'.
@@ -2109,51 +1628,36 @@ self assert: ('' onlyLetters) = ''.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testPadLeftTo [
+{ #category : #testing }
+StringTest >> testPadLeftTo [
 	self assert: ('a' padLeftTo: 3) equals: '  a'. 
 	self assert: ('a' padLeftTo: 1) equals: 'a'. 
 	self assert: ('a' padLeftTo: 0) equals: 'a'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testPadLeftToWith [
+{ #category : #testing }
+StringTest >> testPadLeftToWith [
 	self assert: ('a' padLeftTo: 3 with: $#) equals: '##a'. 
 	self assert: ('a' padLeftTo: 1 with: $#) equals: 'a'. 
 	self assert: ('a' padLeftTo: 0 with: $#) equals: 'a'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testPadRightTo [
+{ #category : #testing }
+StringTest >> testPadRightTo [
 	self assert: ('a' padRightTo: 3) equals: 'a  '. 
 	self assert: ('a' padRightTo: 1) equals: 'a'. 
 	self assert: ('a' padRightTo: 0) equals: 'a'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testPadRightToWith [
+{ #category : #testing }
+StringTest >> testPadRightToWith [
 	self assert: ('a' padRightTo: 3 with: $#) equals: 'a##'. 
 	self assert: ('a' padRightTo: 1 with: $#) equals: 'a'. 
 	self assert: ('a' padRightTo: 0 with: $#) equals: 'a'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testReadFrom [
+{ #category : #testing }
+StringTest >> testReadFrom [
 	self 
 		assert: (String readFrom: ($' asString, 'foo', $' asString) readStream)
 		equals: 'foo'.
@@ -2168,11 +1672,8 @@ StringTest>>testReadFrom [
 		equals: 'this '' is embedded'
 ]
 
-{
-	#category : #'testing - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testRepeat [
+{ #category : #'testing - converting' }
+StringTest >> testRepeat [
 
 	self 
 	assert: ('123' repeat: 1) = '123';
@@ -2181,11 +1682,8 @@ StringTest>>testRepeat [
 	should: [('123' repeat: -1)] raise: Error.
 ]
 
-{
-	#category : #'testing - instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testSpace [
+{ #category : #'testing - instance creation' }
+StringTest >> testSpace [
 	"self debug: #testSpace"
 	
 	string := String new.
@@ -2196,11 +1694,8 @@ StringTest>>testSpace [
 	self assert: string = ' '
 ]
 
-{
-	#category : #'testing - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testSubstrings [
+{ #category : #'testing - converting' }
+StringTest >> testSubstrings [
 	| allByteCharacters substring separators |
 
 	allByteCharacters := Character allByteCharacters asString.
@@ -2232,11 +1727,8 @@ StringTest>>testSubstrings [
 		do: [:each | self assert: each key substrings = each value].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testTranslateToLowercase [
+{ #category : #testing }
+StringTest >> testTranslateToLowercase [
 
 self assert: ('test this string' translateToLowercase) = 'test this string'.
 self assert: (' Test THIS sTRing' translateToLowercase) = ' test this string'.
@@ -2245,11 +1737,8 @@ self assert: ('ÔÜÖ' translateToLowercase) = 'ôüö'.
 self assert: ('123éàôüÖẞ' translateToLowercase) = '123éàôüöẞ'. 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testTranslateToUppercase [
+{ #category : #testing }
+StringTest >> testTranslateToUppercase [
 
 self assert: ('test this string' translateToUppercase) = 'TEST THIS STRING'.
 self assert: (' Test THIS sTRing' translateToUppercase) = ' TEST THIS STRING'.
@@ -2258,11 +1747,8 @@ self assert: ('ÔÜÖ' translateToUppercase) = 'ÔÜÖ'.
 self assert: ('123éàôüÖẞ' translateToUppercase) = '123ÉÀÔÜÖẞ'.
 ]
 
-{
-	#category : #'testing - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testTrimBoth [
+{ #category : #'testing - converting' }
+StringTest >> testTrimBoth [
 	self assert: '' trimBoth = ''.
 	self assert: ' ' trimBoth = ''.
 	self assert: '	' trimBoth = ''.
@@ -2275,11 +1761,8 @@ StringTest>>testTrimBoth [
 	self assert: ('bbaabb' trimBoth: [ :each | each = $a ]) = 'bbaabb'
 ]
 
-{
-	#category : #'testing - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testTrimLeft [
+{ #category : #'testing - converting' }
+StringTest >> testTrimLeft [
 	self assert: '' trimLeft = ''.
 	self assert: ' ' trimLeft = ''.
 	self assert: '	' trimLeft = ''.
@@ -2291,11 +1774,8 @@ StringTest>>testTrimLeft [
 	self assert: ('bbaabb' trimLeft: [ :each | each = $a ]) = 'bbaabb'
 ]
 
-{
-	#category : #'testing - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testTrimLineSpaces [
+{ #category : #'testing - converting' }
+StringTest >> testTrimLineSpaces [
 	self assert: 'test     \do' withCRs trimLineSpaces equals: 'test\do' withCRs.
 	self assert: 'test     \  do' withCRs trimLineSpaces equals: 'test\  do' withCRs.
 	self assert: 'test \do\' withCRs trimLineSpaces equals: 'test\do' withCRs.
@@ -2304,11 +1784,8 @@ StringTest>>testTrimLineSpaces [
 	self assert: 'test\ \ ' withCRs trimLineSpaces equals: 'test\\' withCRs.
 ]
 
-{
-	#category : #'testing - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testTrimRight [
+{ #category : #'testing - converting' }
+StringTest >> testTrimRight [
 	self assert: '' trimRight = ''.
 	self assert: ' ' trimRight = ''.
 	self assert: '	' trimRight = ''.
@@ -2320,19 +1797,13 @@ StringTest>>testTrimRight [
 	self assert: ('bbaabb' trimRight: [ :each | each = $a ]) = 'bbaabb'
 ]
 
-{
-	#category : #'tests - copying',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testTrimmed [
+{ #category : #'tests - copying' }
+StringTest >> testTrimmed [
 	self assert: '  a  ' trimmed = 'a'.
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testUncapitalized [
+{ #category : #'tests - converting' }
+StringTest >> testUncapitalized [
 
 	| uc lc empty |		
 	uc := 'MElViN'.
@@ -2345,11 +1816,8 @@ StringTest>>testUncapitalized [
 	self deny: empty uncapitalized == empty.
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testUpTo [
+{ #category : #'tests - converting' }
+StringTest >> testUpTo [
 	"self debug: #testUpTo"
 	self assert: #up:to: keywords = #(up: to:).
 	self assert: #copy:from:to: keywords = #(copy: from: to:).
@@ -2358,11 +1826,8 @@ StringTest>>testUpTo [
 	
 ]
 
-{
-	#category : #'testing - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testWithBlanksCondensed [
+{ #category : #'testing - converting' }
+StringTest >> testWithBlanksCondensed [
 	#( 
 		'foo' 'foo'
 		'foo bar' 'foo bar'
@@ -2378,11 +1843,8 @@ StringTest>>testWithBlanksCondensed [
 	
 ]
 
-{
-	#category : #'testing - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testWithFirstCharacterDownshifted [
+{ #category : #'testing - converting' }
+StringTest >> testWithFirstCharacterDownshifted [
 
 	| uc lc empty |		
 	uc := 'MElViN'.
@@ -2395,11 +1857,8 @@ StringTest>>testWithFirstCharacterDownshifted [
 	self deny: empty uncapitalized == empty.
 ]
 
-{
-	#category : #'testing - internet',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testWithInternetLineEndings [
+{ #category : #'testing - internet' }
+StringTest >> testWithInternetLineEndings [
 
 	{
 		'abc' -> 'abc'.
@@ -2418,11 +1877,8 @@ StringTest>>testWithInternetLineEndings [
 		self assert: each key withInternetLineEndings = each value ]
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testWithNoLineLongerThan [
+{ #category : #'tests - converting' }
+StringTest >> testWithNoLineLongerThan [
 	"self run: #testWithNoLineLongerThan"
 
 	self assert: ('Hello World' withNoLineLongerThan: 5) = ('Hello' , String cr , 'World').
@@ -2438,11 +1894,8 @@ StringTest>>testWithNoLineLongerThan [
 				= ('Sample text' , String cr , 'to line break' , String cr , 'at some point')
 ]
 
-{
-	#category : #'testing - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testWithSeparatorsCompacted [
+{ #category : #'testing - converting' }
+StringTest >> testWithSeparatorsCompacted [
 	#( 
 		'foo' 'foo'
 		'foo bar' 'foo bar'
@@ -2458,11 +1911,8 @@ StringTest>>testWithSeparatorsCompacted [
 	
 ]
 
-{
-	#category : #'testing - internet',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testWithSqueakLineEndings [
+{ #category : #'testing - internet' }
+StringTest >> testWithSqueakLineEndings [
 
 	{
 		'abc' -> 'abc'.
@@ -2481,11 +1931,8 @@ StringTest>>testWithSqueakLineEndings [
 		self assert: each key withSqueakLineEndings = each value ]
 ]
 
-{
-	#category : #'testing - internet',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testWithUnixLineEndings [
+{ #category : #'testing - internet' }
+StringTest >> testWithUnixLineEndings [
 
 	{
 		'abc' -> 'abc'.
@@ -2504,11 +1951,8 @@ StringTest>>testWithUnixLineEndings [
 		self assert: each key withUnixLineEndings = each value ]
 ]
 
-{
-	#category : #'testing - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testWithoutLeadingDigits [
+{ #category : #'testing - converting' }
+StringTest >> testWithoutLeadingDigits [
 	#( 
 		'foo' 'foo'
 		'123foo' 'foo'
@@ -2523,11 +1967,8 @@ StringTest>>testWithoutLeadingDigits [
 	
 ]
 
-{
-	#category : #'testing - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testWithoutPeriodSuffix [
+{ #category : #'testing - converting' }
+StringTest >> testWithoutPeriodSuffix [
 	#( 
 		'foo' 'foo'
 		'foo.' 'foo'
@@ -2540,11 +1981,8 @@ StringTest>>testWithoutPeriodSuffix [
 	
 ]
 
-{
-	#category : #'tests - element accessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testWithoutPrefix [
+{ #category : #'tests - element accessing' }
+StringTest >> testWithoutPrefix [
 	self assert: ('UMLClass' withoutPrefix: 'UML') equals: 'Class'.
 	self assert: ('UMLClass' withoutSuffix: 'Class') equals: 'UML'.
 	
@@ -2552,11 +1990,8 @@ StringTest>>testWithoutPrefix [
 	self assert: ('UMLClass' withoutSuffix: 'UML') equals: 'UMLClass'.
 ]
 
-{
-	#category : #'testing - internet',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testWithoutQuoting [
+{ #category : #'testing - internet' }
+StringTest >> testWithoutQuoting [
  	#(
                '"foo"' 'foo'
                '''foo''' 'foo'
@@ -2569,11 +2004,8 @@ StringTest>>testWithoutQuoting [
 		self assert: before withoutQuoting = after ]
 ]
 
-{
-	#category : #'testing - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testWithoutTrailingDigits [
+{ #category : #'testing - converting' }
+StringTest >> testWithoutTrailingDigits [
 	#( 
 		'foo' 'foo'
 		'foo123' 'foo'
@@ -2587,21 +2019,15 @@ StringTest>>testWithoutTrailingDigits [
 	
 ]
 
-{
-	#category : #'tests - copying',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testWithoutTrailingNewlines [
+{ #category : #'tests - copying' }
+StringTest >> testWithoutTrailingNewlines [
 	self assert: ('123',String cr) withoutTrailingNewlines = '123'.
 	self assert: ('123',String lf) withoutTrailingNewlines = '123'.
 	self assert: ('123',String cr, String lf) withoutTrailingNewlines = '123'.
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testWriteStreamConvertsToWideString [
+{ #category : #'tests - converting' }
+StringTest >> testWriteStreamConvertsToWideString [
 	| oldWideString newString ws |
 	"test that a write stream on a ByteString is autoconverted into a WideString if a Wide character is inserted into it"
 	oldWideString := (WideString new: 1) wordAt: 1 
@@ -2613,11 +2039,8 @@ StringTest>>testWriteStreamConvertsToWideString [
 	self assert: (newString = oldWideString).
 ]
 
-{
-	#category : #'testing - lines',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testWthNoLineLongerThan [
+{ #category : #'testing - lines' }
+StringTest >> testWthNoLineLongerThan [
 	| phrases |
 	phrases := {
 		'Fred the bear went down to the brook to read his book in silence'.
@@ -2643,29 +2066,20 @@ StringTest>>testWthNoLineLongerThan [
 						lastLineSize := line size]]]]]
 ]
 
-{
-	#category : #'testing - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>testindexOfstartingAt [
+{ #category : #'testing - converting' }
+StringTest >> testindexOfstartingAt [
 
 	self assert: ('aa aa éé aa aa' indexOf: $a startingAt: 8) = 10.
 	self assert: ('aa aa éé aa aa' indexOf: $z startingAt: 8) = 0.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>unsortedCollection [
+{ #category : #requirements }
+StringTest >> unsortedCollection [
 	^ unsortedCollection 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StringTest>>withEqualElements [
+{ #category : #requirements }
+StringTest >> withEqualElements [
 	" return a collection  including equal elements (classic equality)"
 	^ sameAtEndAndBegining 	
 ]

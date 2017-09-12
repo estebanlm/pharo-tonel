@@ -10,25 +10,18 @@ Class {
 	#instVars : [
 		'hash'
 	],
-	#category : #Tests-System-Hashing,
-	#timestamp : '<historical>'
+	#category : #Tests-System-Hashing
 }
 
-{
-	#category : #'testing - examples',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SHA1Test>>testEmptyInput [
+{ #category : #'testing - examples' }
+SHA1Test >> testEmptyInput [
 	"self run: #testEmptyInput"
 
 	self assert: ((SHA1 new hashMessage: '') asInteger radix: 16) equals: 'DA39A3EE5E6B4B0D3255BFEF95601890AFD80709'
 ]
 
-{
-	#category : #'testing - examples',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SHA1Test>>testExample1 [
+{ #category : #'testing - examples' }
+SHA1Test >> testExample1 [
 	"This is the first example from the specification document (FIPS PUB 180-1)"
 
 	hash := SHA1 new hashMessage: 'abc'.
@@ -36,22 +29,16 @@ SHA1Test>>testExample1 [
 		
 ]
 
-{
-	#category : #'testing - examples',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SHA1Test>>testExample2 [
+{ #category : #'testing - examples' }
+SHA1Test >> testExample2 [
 	"This is the second example from the specification document (FIPS PUB 180-1)"
 
 	hash := SHA1 new hashMessage: 'abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq'.
 	self assert: hash equals: (ByteArray readHexFrom: '84983E441C3BD26EBAAE4AA1F95129E5E54670F1')
 ]
 
-{
-	#category : #'testing - examples',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SHA1Test>>testExample3 [
+{ #category : #'testing - examples' }
+SHA1Test >> testExample3 [
 	"This is the third example from the specification document (FIPS PUB 180-1). 
 	This example may take several minutes."
 
@@ -59,11 +46,8 @@ SHA1Test>>testExample3 [
 	self assert: hash asInteger equals: 16r34AA973CD4C4DAA4F61EEB2BDBAD27316534016F.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SHA1Test>>testLargeCharacterStream [
+{ #category : #testing }
+SHA1Test >> testLargeCharacterStream [
 	"Regression test"
 
 	| string |

@@ -75,15 +75,11 @@ Class {
 		'IfaTextFile',
 		'LocalFileHeaderSignature'
 	],
-	#category : #Compression-Archives,
-	#timestamp : '<historical>'
+	#category : #Compression-Archives
 }
 
-{
-	#category : #'pool initialization',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipFileConstants class>>initialize [
+{ #category : #'pool initialization' }
+ZipFileConstants class >> initialize [
 	"ZipFileConstants initialize"
 	
 	FaMsdos		:= 0.

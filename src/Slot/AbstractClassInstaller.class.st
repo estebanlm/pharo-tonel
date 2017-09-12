@@ -8,66 +8,44 @@ Class {
 	#instVars : [
 		'builder'
 	],
-	#category : #Slot-ClassBuilder,
-	#timestamp : '<historical>'
+	#category : #Slot-ClassBuilder
 }
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassInstaller class>>make: aBlock [
+{ #category : #building }
+AbstractClassInstaller class >> make: aBlock [
 	| builder |
 	builder := self new builder.
 	aBlock value: builder.
 	^ builder build
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassInstaller>>builder [
+{ #category : #accessing }
+AbstractClassInstaller >> builder [
 	^ builder
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassInstaller>>classAdded: aClass inCategory: aCategory [
+{ #category : #notifications }
+AbstractClassInstaller >> classAdded: aClass inCategory: aCategory [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassInstaller>>classAt: aName ifAbsent: aBlock [
+{ #category : #accessing }
+AbstractClassInstaller >> classAt: aName ifAbsent: aBlock [
 	self subclassResponsibility
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassInstaller>>classDefinitionDeeplyChangedFrom: oldClass to: newClass by: classModification [
+{ #category : #notifications }
+AbstractClassInstaller >> classDefinitionDeeplyChangedFrom: oldClass to: newClass by: classModification [
 	self subclassResponsibility
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassInstaller>>classDefinitionShallowChangedFrom: oldClass to: newClass by: classModification [
+{ #category : #notifications }
+AbstractClassInstaller >> classDefinitionShallowChangedFrom: oldClass to: newClass by: classModification [
 	self subclassResponsibility
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassInstaller>>copyTraitCompositionFrom: oldClass to: newClass [
+{ #category : #traits }
+AbstractClassInstaller >> copyTraitCompositionFrom: oldClass to: newClass [
 (oldClass traitComposition syntacticallyEquals: newClass traitComposition )ifTrue:[^ self ].
 	self 
 		installTraitComposition: oldClass traitComposition copyTraitExpression 
@@ -78,52 +56,34 @@ AbstractClassInstaller>>copyTraitCompositionFrom: oldClass to: newClass [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassInstaller>>environment [
+{ #category : #accessing }
+AbstractClassInstaller >> environment [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassInstaller>>environment: anEnvironment [
+{ #category : #accessing }
+AbstractClassInstaller >> environment: anEnvironment [
 	self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassInstaller>>initialize [
+{ #category : #initialization }
+AbstractClassInstaller >> initialize [
 	builder := SlotClassBuilder new.
 	builder installer: self
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassInstaller>>installTraitComposition: aTraitComposition on: aClass [
+{ #category : #traits }
+AbstractClassInstaller >> installTraitComposition: aTraitComposition [ on: aClass
 	self flag: 'Should probably send something else to test'.
 	aClass setTraitComposition: aTraitComposition
 ]
 
-{
-	#category : #migrating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassInstaller>>migrateClasses: old to: new using: anInstanceModification [
+{ #category : #migrating }
+AbstractClassInstaller >> migrateClasses: old to: new using: anInstanceModification [
 	self subclassResponsibility
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassInstaller>>recategorize: aClass to: aCategory [
+{ #category : #notifications }
+AbstractClassInstaller >> recategorize: aClass to: aCategory [
 	self subclassResponsibility
 ]

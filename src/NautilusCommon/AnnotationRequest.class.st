@@ -9,25 +9,18 @@ Class {
 		'annotationRequests',
 		'method'
 	],
-	#category : #NautilusCommon-Plugin,
-	#timestamp : 'MarcusDenker 11/24/2015 14:10'
+	#category : #NautilusCommon-Plugin
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationRequest class>>onClass: aClass selector: aSelector [
+{ #category : #instance-creation }
+AnnotationRequest class >> onClass: aClass selector: aSelector [
 	^ self new
 		onClass: aClass selector: aSelector;
 		yourself
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationRequest>>allChangeSets [
+{ #category : #requests }
+AnnotationRequest >> allChangeSets [
 	"A list of all change sets bearing the method."
 
 	| changeSets |
@@ -47,29 +40,20 @@ AnnotationRequest>>allChangeSets [
 		ifTrue: [ 'in no change set' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationRequest>>annotationRequests [
+{ #category : #accessing }
+AnnotationRequest >> annotationRequests [
 	
 	^ annotationRequests ifNil: [ annotationRequests := self defaultAnnotationInfo ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationRequest>>annotationRequests: annotationArray [
+{ #category : #accessing }
+AnnotationRequest >> annotationRequests: annotationArray [
 	"check defaultAnnotationInfo to know what you can pass in the array"
 	annotationRequests := annotationArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationRequest>>defaultAnnotationInfo [
+{ #category : #accessing }
+AnnotationRequest >> defaultAnnotationInfo [
 	"Answer a list of symbol characterizing all the available kinds of annotations"
 
 	^ #(#timeStamp #messageCategory #implementorsCount #allChangeSets)	"Each symbol represents the info type:
@@ -100,11 +84,8 @@ AnnotationRequest>>defaultAnnotationInfo [
 		"
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationRequest>>getAnnotations [
+{ #category : #actions }
+AnnotationRequest >> getAnnotations [
 	^ String streamContents: [ :aStream | 
 		((self annotationRequests 
 			collect: [ :request | self perform: request ]) 
@@ -113,11 +94,8 @@ AnnotationRequest>>getAnnotations [
 				separatedBy: [ aStream nextPutAll: separator ] ]
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationRequest>>implementorsCount [
+{ #category : #requests }
+AnnotationRequest >> implementorsCount [
 	"A report of how many implementors there are of the message."
 
 	| implementorsCount |
@@ -127,54 +105,36 @@ AnnotationRequest>>implementorsCount [
 		ifFalse: [ implementorsCount printString , ' implementors' ]
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationRequest>>messageCategory [
+{ #category : #requests }
+AnnotationRequest >> messageCategory [
 	"Which method category the method lies in."
 
 	^ self methodClass organization categoryOfElement: self methodSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationRequest>>method [
+{ #category : #accessing }
+AnnotationRequest >> method [
 	^ method
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationRequest>>methodClass [
+{ #category : #requests }
+AnnotationRequest >> methodClass [
 	^ method methodClass
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationRequest>>methodSelector [
+{ #category : #requests }
+AnnotationRequest >> methodSelector [
 	^ method selector
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationRequest>>onCompiledMethod: aCompiledMethod [
+{ #category : #initialization }
+AnnotationRequest >> onCompiledMethod: aCompiledMethod [
 	method := aCompiledMethod.
 	separator := ' - '
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationRequest>>sendersCount [
+{ #category : #requests }
+AnnotationRequest >> sendersCount [
 	"A report of how many senders there of the message."
 
 	| sendersCount |
@@ -184,19 +144,13 @@ AnnotationRequest>>sendersCount [
 		ifFalse: [ sendersCount printString , ' senders' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationRequest>>separator: aString [
+{ #category : #accessing }
+AnnotationRequest >> separator: aString [
 	separator := aString
 ]
 
-{
-	#category : #requests,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationRequest>>timeStamp [
+{ #category : #requests }
+AnnotationRequest >> timeStamp [
 	"The time stamp of the last submission of the method."
 
 	^ method ifNotNil: [ method timeStamp ]

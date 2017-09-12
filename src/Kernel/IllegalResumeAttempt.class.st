@@ -4,34 +4,24 @@ This class is private to the EHS implementation.  An instance of it is signaled 
 Class {
 	#name : #IllegalResumeAttempt,
 	#superclass : #Exception,
-	#category : #Kernel-Exceptions,
-	#timestamp : '<historical>'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #comment,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-IllegalResumeAttempt>>defaultAction [
+{ #category : #comment }
+IllegalResumeAttempt >> defaultAction [
 	"No one has handled this error, but now give them a chance to decide how to debug it.  If none handle this either then open debugger (see UnhandedError-defaultAction)"
 
 	UnhandledError signalForException: self
 ]
 
-{
-	#category : #comment,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-IllegalResumeAttempt>>isResumable [
+{ #category : #comment }
+IllegalResumeAttempt >> isResumable [
 	
 	^ false
 ]
 
-{
-	#category : #comment,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-IllegalResumeAttempt>>readMe [
+{ #category : #comment }
+IllegalResumeAttempt >> readMe [
 
 	"Never handle this exception!"
 ]

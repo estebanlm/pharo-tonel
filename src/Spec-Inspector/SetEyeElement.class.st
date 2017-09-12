@@ -8,58 +8,39 @@ Class {
 	#instVars : [
 		'externalIndex'
 	],
-	#category : #Spec-Inspector-Element,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector-Element
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SetEyeElement class>>host: anObject index: index externalIndex: externalIndex [
+{ #category : #'instance creation' }
+SetEyeElement class >> host: anObject index: index externalIndex: externalIndex [
 	^ (self host: anObject)
 		index: index;
 		externalIndex: externalIndex;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SetEyeElement>>accessorCode [
+{ #category : #accessing }
+SetEyeElement >> accessorCode [
 	^ '(self array at: ', self index asString, ')'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SetEyeElement>>externalIndex [
+{ #category : #accessing }
+SetEyeElement >> externalIndex [
 	^ externalIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SetEyeElement>>externalIndex: anObject [
+{ #category : #accessing }
+SetEyeElement >> externalIndex: anObject [
 	externalIndex := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SetEyeElement>>label [
+{ #category : #accessing }
+SetEyeElement >> label [
 	^ self externalIndex printString
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SetEyeElement>>save: aValue [
+{ #category : #action }
+SetEyeElement >> save: aValue [
 	| oldElement |
 	oldElement := self host array at: self index.
 	self host 
@@ -67,10 +48,7 @@ SetEyeElement>>save: aValue [
 		add: aValue.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SetEyeElement>>value [
+{ #category : #accessing }
+SetEyeElement >> value [
 	^ self host array at: self index
 ]

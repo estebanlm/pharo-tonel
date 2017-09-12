@@ -13,86 +13,58 @@ Class {
 	#instVars : [
 		'shortcuts'
 	],
-	#category : #Keymapping-KeyCombinations,
-	#timestamp : '<historical>'
+	#category : #Keymapping-KeyCombinations
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombinationSequence class>>first: aShortcut next: anotherShortcut [
+{ #category : #'instance creation' }
+KMKeyCombinationSequence class >> first: aShortcut next: anotherShortcut [
 	^ (self new)
 		first: aShortcut;
 		next: anotherShortcut;
 		yourself
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombinationSequence>>+ aCharacter  [
+{ #category : #combining }
+KMKeyCombinationSequence >> + aCharacter [ 
 	| last |
 	last := self sequence last.
 	self sequence removeLast.
 	self addShortcut: last + aCharacter.
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombinationSequence>>, aShortcut [
+{ #category : #combining }
+KMKeyCombinationSequence >> , aShortcut [
 	self addShortcut: aShortcut asKeyCombination.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombinationSequence>>= aShortcut [
+{ #category : #comparing }
+KMKeyCombinationSequence >> = aShortcut [
 	^ super = aShortcut and: [ shortcuts = aShortcut sequence ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombinationSequence>>addShortcut: aShortcut [
+{ #category : #accessing }
+KMKeyCombinationSequence >> addShortcut: aShortcut [
 	self sequence add: aShortcut
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombinationSequence>>beginsWith: aShortcut  [
+{ #category : #matching }
+KMKeyCombinationSequence >> beginsWith: aShortcut [ 
 	
 	^ self sequence first = aShortcut 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombinationSequence>>first: aShortcut [
+{ #category : #accessing }
+KMKeyCombinationSequence >> first: aShortcut [
 	self addShortcut: aShortcut
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombinationSequence>>hash [
+{ #category : #comparing }
+KMKeyCombinationSequence >> hash [
 	^ shortcuts hash
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombinationSequence>>matches: anEventBuffer [
+{ #category : #matching }
+KMKeyCombinationSequence >> matches: anEventBuffer [
 	|maxIndex|
 	maxIndex := anEventBuffer size min: shortcuts size.
 	1 to: maxIndex do: [:index|
@@ -101,39 +73,27 @@ KMKeyCombinationSequence>>matches: anEventBuffer [
 	^ true.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombinationSequence>>next: aShortcut [
+{ #category : #accessing }
+KMKeyCombinationSequence >> next: aShortcut [
 	self addShortcut: aShortcut
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombinationSequence>>prettyPrintOn: aStream [
+{ #category : #printing }
+KMKeyCombinationSequence >> prettyPrintOn: aStream [
 
 	shortcuts 
 		do: [ :e | e prettyPrintOn: aStream ]
 		separatedBy: [ aStream << ' + ' ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombinationSequence>>printOn: aStream [
+{ #category : #printing }
+KMKeyCombinationSequence >> printOn: aStream [
 	shortcuts 
 		do: [ :shortcut| shortcut printOn: aStream]
 		separatedBy: [ aStream nextPutAll: ' , '].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombinationSequence>>sequence [
+{ #category : #accessing }
+KMKeyCombinationSequence >> sequence [
 	^ shortcuts ifNil: [ shortcuts := OrderedCollection new ]
 ]

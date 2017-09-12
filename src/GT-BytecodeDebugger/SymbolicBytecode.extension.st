@@ -1,12 +1,7 @@
-Extension {
-	#name : #SymbolicBytecode
-}
+Extension { #name : #SymbolicBytecode }
 
-{
-	#category : #'*GT-BytecodeDebugger',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SymbolicBytecode>>= anObject [
+{ #category : #'*GT-BytecodeDebugger' }
+SymbolicBytecode >> = anObject [
 
 	self == anObject
 		ifTrue: [^ true].
@@ -20,11 +15,8 @@ SymbolicBytecode>>= anObject [
 				self offset = anObject offset ] ] ]
 ]
 
-{
-	#category : #'*GT-BytecodeDebugger',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SymbolicBytecode>>hash [
+{ #category : #'*GT-BytecodeDebugger' }
+SymbolicBytecode >> hash [
 
 	^ ((self bytes hash bitXor: self description hash) bitXor: 
 			self method hash) bitXor: self offset hash 

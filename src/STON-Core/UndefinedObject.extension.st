@@ -1,19 +1,11 @@
-Extension {
-	#name : #UndefinedObject
-}
+Extension { #name : #UndefinedObject }
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-UndefinedObject>>stonContainSubObjects  [
+{ #category : #'*ston-core' }
+UndefinedObject >> stonContainSubObjects [ 
 	^ false
 ]
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-UndefinedObject>>stonOn: stonWriter [
+{ #category : #'*ston-core' }
+UndefinedObject >> stonOn: stonWriter [
 	stonWriter writeNull
 ]

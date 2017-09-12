@@ -7,14 +7,10 @@ Instance Variables
 Class {
 	#name : #SettingFilter,
 	#superclass : #Object,
-	#category : #System-Settings-Filter,
-	#timestamp : 'alain.plantec 4/8/2009 12:51'
+	#category : #System-Settings-Filter
 }
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingFilter>>keepSettingTreeNode: aSettingNode  [
+{ #category : #filtering }
+SettingFilter >> keepSettingTreeNode: aSettingNode [ 
 	^ false
 ]

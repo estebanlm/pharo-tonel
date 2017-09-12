@@ -6,97 +6,66 @@ I embed a textual diff when an #assert:equals: assertion fails and provide acces
 Class {
 	#name : #GTSUnitDebugger,
 	#superclass : #GTGenericStackDebugger,
-	#category : #GT-SUnitDebugger,
-	#timestamp : 'AndreiChis 12/30/2015 10:48'
+	#category : #GT-SUnitDebugger
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger class>>availableAutomatically [
+{ #category : #testing }
+GTSUnitDebugger class >> availableAutomatically [
 	"Should this debugger be taken into account when looking for a debugger to handle an exception."
 	
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger class>>defaultTitle [
+{ #category : #accessing }
+GTSUnitDebugger class >> defaultTitle [
 
 	^ 'SUnit'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger class>>handlesContext: aContext [
+{ #category : #testing }
+GTSUnitDebugger class >> handlesContext: aContext [
 	| activationPredicate |
 	activationPredicate := self sessionClass activationPredicate.
 	^ (aContext stackOfSize: self lookupStackSize) 
 		anySatisfy: [ :ctx | activationPredicate matches: ctx ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger class>>helpClass [
+{ #category : #accessing }
+GTSUnitDebugger class >> helpClass [
 	^ GTSUnitDebuggerHelp
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger class>>lookupStackSize [
+{ #category : #testing }
+GTSUnitDebugger class >> lookupStackSize [
 	^ 512
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger class>>register [
+{ #category : #'tools registry' }
+GTSUnitDebugger class >> register [
 
 	self registerToolsOn: Smalltalk tools.
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger class>>registerToolsOn: registry [
+{ #category : #'tools registry' }
+GTSUnitDebugger class >> registerToolsOn: registry [
 
 	"Add ourselves to registry. See [Smalltalk tools]" 
 	registry registerDebugger: self withRank: 70.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger class>>sessionClass [
+{ #category : #accessing }
+GTSUnitDebugger class >> sessionClass [
 
 	^ GTSUnitDebugSession
 ]
 
-{
-	#category : #'accessing context',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger>>contextToSelectFrom: aSession [
+{ #category : #'accessing context' }
+GTSUnitDebugger >> contextToSelectFrom: aSession [
 	^ aSession assertionCallerContext ifNil: [ aSession testContext ]
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger>>inspectorDiffIn: aComposite [
+{ #category : #'building presentations' }
+GTSUnitDebugger >> inspectorDiffIn: aComposite [
 
 	^ aComposite tabulator 
 		with: [ :aTabulator |
@@ -116,11 +85,8 @@ GTSUnitDebugger>>inspectorDiffIn: aComposite [
 							startOn: self session expectedResult) ] ] ]
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger>>inspectorIn: aComposite [
+{ #category : #'building presentations' }
+GTSUnitDebugger >> inspectorIn: aComposite [
 
 	(self textualDiffIn: aComposite) title: 'Diff (actual vs. expected)'.
 	(self inspectorDiffIn: aComposite) title: 'Objects (actual vs. expected)'.
@@ -129,11 +95,8 @@ GTSUnitDebugger>>inspectorIn: aComposite [
 		aComposite last title: 'Inspector' ]
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger>>setUpCodeIn: aComposite [
+{ #category : #'building presentations' }
+GTSUnitDebugger >> setUpCodeIn: aComposite [
 
 	aComposite pharoMethod
 		title: [ self setUpPresentationTitle ];
@@ -143,11 +106,8 @@ GTSUnitDebugger>>setUpCodeIn: aComposite [
 		doItReceiver: [ self session testObject ].
 ]
 
-{
-	#category : #'accessing context',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger>>setUpPresentationTitle [
+{ #category : #'accessing context' }
+GTSUnitDebugger >> setUpPresentationTitle [
 
 	^ 'SetUp', 
 		(self session setUpMethod methodClass ~= self session testContext methodClass
@@ -155,11 +115,8 @@ GTSUnitDebugger>>setUpPresentationTitle [
 			ifFalse: [ '' ])
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger>>tearDownCodeIn: aComposite [
+{ #category : #'building presentations' }
+GTSUnitDebugger >> tearDownCodeIn: aComposite [
 
 	aComposite pharoMethod
 		title: [ self tearDownPresentationTitle ];
@@ -169,11 +126,8 @@ GTSUnitDebugger>>tearDownCodeIn: aComposite [
 		doItReceiver: [ self session testObject ].
 ]
 
-{
-	#category : #'accessing context',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger>>tearDownPresentationTitle [
+{ #category : #'accessing context' }
+GTSUnitDebugger >> tearDownPresentationTitle [
 
 	^ 'TearDown', 
 		(self session tearDownMethod methodClass ~= self session testContext methodClass
@@ -181,11 +135,8 @@ GTSUnitDebugger>>tearDownPresentationTitle [
 			ifFalse: [ '' ])
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger>>textualDiffIn: composite [
+{ #category : #'building presentations' }
+GTSUnitDebugger >> textualDiffIn: composite [
 
 	^ composite diff
 			when: [ self session supportsDiff];
@@ -193,11 +144,8 @@ GTSUnitDebugger>>textualDiffIn: composite [
 				{self session actualResult gtDebuggerSUnitPrint. self session expectedResult gtDebuggerSUnitPrint} ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger>>transmitFromStackToCodeIn: browser [
+{ #category : #building }
+GTSUnitDebugger >> transmitFromStackToCodeIn: browser [
 	browser transmit
 		from: #stack port: #selection;
 		to: #code;
@@ -207,11 +155,8 @@ GTSUnitDebugger>>transmitFromStackToCodeIn: browser [
 			self tearDownCodeIn: composite ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugger>>updateBrowser [
+{ #category : #updating }
+GTSUnitDebugger >> updateBrowser [
 
 	super updateBrowser.
 	"The transmission will select the context of the test case. 

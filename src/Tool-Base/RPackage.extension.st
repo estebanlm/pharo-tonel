@@ -1,11 +1,6 @@
-Extension {
-	#name : #RPackage
-}
+Extension { #name : #RPackage }
 
-{
-	#category : #'*Tool-Base',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RPackage>>browse [
+{ #category : #'*Tool-Base' }
+RPackage >> browse [
 	^ Smalltalk tools browser openOnPackage: self
 ]

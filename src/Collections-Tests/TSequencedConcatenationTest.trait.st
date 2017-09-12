@@ -3,54 +3,36 @@ A trait for test purposes
 "
 Trait {
 	#name : #TSequencedConcatenationTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:35'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedConcatenationTest>>empty [
+{ #category : #requirements }
+TSequencedConcatenationTest >> empty [
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedConcatenationTest>>firstCollection [
+{ #category : #requirements }
+TSequencedConcatenationTest >> firstCollection [
 " return a collection that will be the first part of the concatenation"
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedConcatenationTest>>secondCollection [
+{ #category : #requirements }
+TSequencedConcatenationTest >> secondCollection [
 " return a collection that will be the second part of the concatenation"
 	self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedConcatenationTest>>test0FixtureSequencedConcatenationTest [
+{ #category : #'tests - fixture' }
+TSequencedConcatenationTest >> test0FixtureSequencedConcatenationTest [
 	self empty.
 	self assert: self empty isEmpty.
 	self firstCollection.
 	self secondCollection
 ]
 
-{
-	#category : #'tests - concatenation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedConcatenationTest>>testConcatenation [
+{ #category : #'tests - concatenation' }
+TSequencedConcatenationTest >> testConcatenation [
 	| result index |
 	result:= self firstCollection,self secondCollection .
 	"first part : "
@@ -68,11 +50,8 @@ TSequencedConcatenationTest>>testConcatenation [
 	self assert: result size = (self firstCollection size + self secondCollection size).
 ]
 
-{
-	#category : #'tests - concatenation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedConcatenationTest>>testConcatenationWithEmpty [
+{ #category : #'tests - concatenation' }
+TSequencedConcatenationTest >> testConcatenationWithEmpty [
 	| result |
 	result:= self empty,self secondCollection .
 	
@@ -84,11 +63,8 @@ TSequencedConcatenationTest>>testConcatenationWithEmpty [
 	self assert: result size = ( self secondCollection size).
 ]
 
-{
-	#category : #'tests - streaming',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedConcatenationTest>>testNewStreamContentsReturnsCollectionOfCorrectSize [
+{ #category : #'tests - streaming' }
+TSequencedConcatenationTest >> testNewStreamContentsReturnsCollectionOfCorrectSize [
 	| result item originalSize |
 	originalSize := 10.
 	item := self firstCollection first.
@@ -100,11 +76,8 @@ TSequencedConcatenationTest>>testNewStreamContentsReturnsCollectionOfCorrectSize
 	self assert: result size equals: originalSize
 ]
 
-{
-	#category : #'tests - streaming',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedConcatenationTest>>testStreamContents [
+{ #category : #'tests - streaming' }
+TSequencedConcatenationTest >> testStreamContents [
 	| result index |
 	result:= self collectionClass streamContents: [ :s|
 		s 
@@ -113,11 +86,8 @@ TSequencedConcatenationTest>>testStreamContents [
 	self assert: result equals: self firstCollection, self secondCollection.
 ]
 
-{
-	#category : #'tests - streaming',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedConcatenationTest>>testStreamContentsProtocol [
+{ #category : #'tests - streaming' }
+TSequencedConcatenationTest >> testStreamContentsProtocol [
 	| result index |
 	result:= self collectionClass << [ :s|
 		s 
@@ -126,11 +96,8 @@ TSequencedConcatenationTest>>testStreamContentsProtocol [
 	self assert: result equals: self firstCollection, self secondCollection.
 ]
 
-{
-	#category : #'tests - streaming',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedConcatenationTest>>testStreamContentsSized [
+{ #category : #'tests - streaming' }
+TSequencedConcatenationTest >> testStreamContentsSized [
 	| result |
 	result:= self collectionClass new: 1 streamContents: [ :s|
 		s 

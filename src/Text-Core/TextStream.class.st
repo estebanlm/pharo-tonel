@@ -15,23 +15,16 @@ ex:
 Class {
 	#name : #TextStream,
 	#superclass : #WriteStream,
-	#category : #Text-Core,
-	#timestamp : '<historical>'
+	#category : #Text-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStream>>applyAttribute: att beginningAt: startPos [
+{ #category : #accessing }
+TextStream >> applyAttribute: att beginningAt: startPos [
 	collection addAttribute: att from: startPos to: self position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStream>>nextPutAll: aCollection  [
+{ #category : #accessing }
+TextStream >> nextPutAll: aCollection [ 
  	"Optimized access to get around Text at:Put: overhead"
  	| n |
  	n := aCollection size.
@@ -47,11 +40,8 @@ TextStream>>nextPutAll: aCollection  [
 	^ aCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStream>>withAttribute: att do: strmBlock [
+{ #category : #private }
+TextStream >> withAttribute: att do: strmBlock [
 	| pos1 val |
 	pos1 := self position.
 	val := strmBlock value.
@@ -59,11 +49,8 @@ TextStream>>withAttribute: att do: strmBlock [
 	^ val
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStream>>withAttributes: attributes do: streamBlock  [
+{ #category : #private }
+TextStream >> withAttributes: attributes do: streamBlock [ 
 	| pos1 val |
 	pos1 := self position.
 	val := streamBlock value.

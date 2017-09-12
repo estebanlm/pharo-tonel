@@ -1,19 +1,11 @@
-Extension {
-	#name : #MCDictionaryRepository
-}
+Extension { #name : #MCDictionaryRepository }
 
-{
-	#category : #'*gofer-core-accessing',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-MCDictionaryRepository>>goferPriority [
+{ #category : #'*gofer-core-accessing' }
+MCDictionaryRepository >> goferPriority [
 	^ 10
 ]
 
-{
-	#category : #'*gofer-core-accessing',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-MCDictionaryRepository>>goferReferences [
+{ #category : #'*gofer-core-accessing' }
+MCDictionaryRepository >> goferReferences [
 	^ self allVersionInfos collect: [ :each | GoferResolvedReference name: each name repository: self ]
 ]

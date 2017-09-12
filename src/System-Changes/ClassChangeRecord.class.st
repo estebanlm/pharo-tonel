@@ -56,15 +56,11 @@ Class {
 		'priorName',
 		'methodChanges'
 	],
-	#category : #System-Changes,
-	#timestamp : '<historical>'
+	#category : #System-Changes
 }
 
-{
-	#category : #'all changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>allChangeTypes [
+{ #category : #'all changes' }
+ClassChangeRecord >> allChangeTypes [
 	| chgs |
 	(priorName notNil and: [ changeTypes includes: #rename ])
 		ifTrue: [ 
@@ -73,11 +69,8 @@ ClassChangeRecord>>allChangeTypes [
 	^ changeTypes
 ]
 
-{
-	#category : #'all changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>assimilateAllChangesIn: otherRecord [
+{ #category : #'all changes' }
+ClassChangeRecord >> assimilateAllChangesIn: otherRecord [
 
 	
 	otherRecord isClassRemoval ifTrue: [^ self noteChangeType: #remove].
@@ -99,41 +92,29 @@ ClassChangeRecord>>assimilateAllChangesIn: otherRecord [
 
 ]
 
-{
-	#category : #'method changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>atSelector: selector ifAbsent: absentBlock [
+{ #category : #'method changes' }
+ClassChangeRecord >> atSelector: selector ifAbsent: absentBlock [
 
 	^ (methodChanges at: selector ifAbsent: absentBlock)
 		changeType
 ]
 
-{
-	#category : #'method changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>atSelector: selector put: changeType [
+{ #category : #'method changes' }
+ClassChangeRecord >> atSelector: selector put: changeType [
 
 	(self findOrMakeMethodChangeAt: selector priorMethod: nil)
 		noteChangeType: changeType
 ]
 
-{
-	#category : #'method changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>changedSelectors [
+{ #category : #'method changes' }
+ClassChangeRecord >> changedSelectors [
 	"Return a set of the changed or removed selectors."
 
 	^ methodChanges keys
 ]
 
-{
-	#category : #definition,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>checkCoherence [
+{ #category : #definition }
+ClassChangeRecord >> checkCoherence [
 	"If I recreate the class then don't remove it"
 
 	(changeTypes includes: #remove)
@@ -146,20 +127,14 @@ ClassChangeRecord>>checkCoherence [
 	changeTypes add: #add
 ]
 
-{
-	#category : #'method changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>findOrMakeMethodChangeAt: selector priorMethod: priorMethod  [
+{ #category : #'method changes' }
+ClassChangeRecord >> findOrMakeMethodChangeAt: selector priorMethod: priorMethod [ 
 	^methodChanges at: selector
 		ifAbsentPut: [MethodChangeRecord new]
 ]
 
-{
-	#category : #removal,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>forgetChangesIn: otherRecord [
+{ #category : #removal }
+ClassChangeRecord >> forgetChangesIn: otherRecord [
 	"See forgetAllChangesFoundIn:.  Used in culling changeSets."
 
 	| cls otherMethodChanges |
@@ -184,41 +159,29 @@ ClassChangeRecord>>forgetChangesIn: otherRecord [
 		ifFalse: [ changeTypes removeAllSuchThat: [ :x | x beginsWith: 'oldName: ' ] ]
 ]
 
-{
-	#category : #'all changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>hasNoChanges [
+{ #category : #'all changes' }
+ClassChangeRecord >> hasNoChanges [
 
 	^ changeTypes isEmpty and: [methodChanges isEmpty]
 ]
 
-{
-	#category : #'all changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>includesChangeType: changeType [
+{ #category : #'all changes' }
+ClassChangeRecord >> includesChangeType: changeType [
 
 	changeType == #new ifTrue: [^ changeTypes includes: #add].  "Backwd compat"
 	^ changeTypes includes: changeType
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>initFor: className [
+{ #category : #initialization }
+ClassChangeRecord >> initFor: className [
 
 	changeTypes := IdentitySet new.
 	methodChanges := IdentityDictionary new.
 	priorName := thisName := className.
 ]
 
-{
-	#category : #removal,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>isClassRemoval [
+{ #category : #removal }
+ClassChangeRecord >> isClassRemoval [
 	"NOTE: there are other removals with changeType #addedThenRemoved,
 	but this message is used to write out removals in fileOut, and those
 	cases should not be written out."
@@ -226,11 +189,8 @@ ClassChangeRecord>>isClassRemoval [
 	^ (changeTypes includes: #remove) or: [changeTypes includes: #removeClass]
 ]
 
-{
-	#category : #'method changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>methodChangeTypes [
+{ #category : #'method changes' }
+ClassChangeRecord >> methodChangeTypes [
 	"Return an old-style dictionary of method change types."
 
 	| dict |
@@ -243,29 +203,20 @@ ClassChangeRecord>>methodChangeTypes [
 	^ dict
 ]
 
-{
-	#category : #'method changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>methodChanges [
+{ #category : #'method changes' }
+ClassChangeRecord >> methodChanges [
 
 	^ methodChanges
 ]
 
-{
-	#category : #'all changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>noteChangeType: changeSymbol [
+{ #category : #'all changes' }
+ClassChangeRecord >> noteChangeType: changeSymbol [
 
 	^ self noteChangeType: changeSymbol fromClass: nil
 ]
 
-{
-	#category : #'all changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>noteChangeType: changeSymbol fromClass: class [
+{ #category : #'all changes' }
+ClassChangeRecord >> noteChangeType: changeSymbol fromClass: class [
 
 	(changeSymbol = #new or: [changeSymbol = #add]) ifTrue:
 		[changeTypes add: #add.
@@ -296,11 +247,8 @@ ClassChangeRecord>>noteChangeType: changeSymbol fromClass: class [
 	self error: 'Unrecognized changeType'
 ]
 
-{
-	#category : #'method changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>noteNewMethod: newMethod selector: selector priorMethod: methodOrNil [
+{ #category : #'method changes' }
+ClassChangeRecord >> noteNewMethod: newMethod selector: selector priorMethod: methodOrNil [
 	| methodChange |
 	methodChange := self findOrMakeMethodChangeAt: selector priorMethod: methodOrNil.
 	methodOrNil 
@@ -308,30 +256,21 @@ ClassChangeRecord>>noteNewMethod: newMethod selector: selector priorMethod: meth
 		ifNotNil: [ methodChange noteChangeType: #change ].
 ]
 
-{
-	#category : #rename,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>noteNewName: newName [
+{ #category : #rename }
+ClassChangeRecord >> noteNewName: newName [
 
 	thisName := newName
 ]
 
-{
-	#category : #definition,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>notePriorDefinition: oldClass [
+{ #category : #definition }
+ClassChangeRecord >> notePriorDefinition: oldClass [
 
 	oldClass ifNil: [^ self].
 	priorDefinition ifNil: [priorDefinition := oldClass definition]
 ]
 
-{
-	#category : #'method changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>noteRemoveSelector: selector priorMethod: priorMethod lastMethodInfo: infoOrNil [
+{ #category : #'method changes' }
+ClassChangeRecord >> noteRemoveSelector: selector priorMethod: priorMethod lastMethodInfo: infoOrNil [
 
 	| methodChange |
 	methodChange := self findOrMakeMethodChangeAt: selector priorMethod: priorMethod.
@@ -346,29 +285,20 @@ ClassChangeRecord>>noteRemoveSelector: selector priorMethod: priorMethod lastMet
 
 ]
 
-{
-	#category : #definition,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>priorDefinition [
+{ #category : #definition }
+ClassChangeRecord >> priorDefinition [
 
 	^ priorDefinition
 ]
 
-{
-	#category : #rename,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>priorName [
+{ #category : #rename }
+ClassChangeRecord >> priorName [
 
 	^ priorName
 ]
 
-{
-	#category : #'isolation layers',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>realClass [
+{ #category : #'isolation layers' }
+ClassChangeRecord >> realClass [
 	"Return the actual class (or meta), as determined from my name."
 
 	thisName ifNil: [ ^ nil ].
@@ -377,11 +307,8 @@ ClassChangeRecord>>realClass [
 		ifFalse: [ ^ Smalltalk globals at: thisName ifAbsent: [ ^ nil ] ]
 ]
 
-{
-	#category : #'method changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>removeSelector: selector [
+{ #category : #'method changes' }
+ClassChangeRecord >> removeSelector: selector [
 	"Remove all memory of changes associated with the argument, selector, in this class."
 
 	selector == #Comment
@@ -391,20 +318,14 @@ ClassChangeRecord>>removeSelector: selector [
 			[methodChanges removeKey: selector ifAbsent: []]
 ]
 
-{
-	#category : #rename,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>thisName [
+{ #category : #rename }
+ClassChangeRecord >> thisName [
 
 	^ thisName
 ]
 
-{
-	#category : #'all changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ClassChangeRecord>>trimHistory [
+{ #category : #'all changes' }
+ClassChangeRecord >> trimHistory [
 	"Drop non-essential history."
 
 	"Forget methods added and later removed"

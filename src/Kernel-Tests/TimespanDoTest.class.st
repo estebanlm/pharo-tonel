@@ -14,15 +14,11 @@ Class {
 		'aDuration',
 		'aDate'
 	],
-	#category : #Kernel-Tests-Chronology,
-	#timestamp : 'tlk 1/6/2004 17:55'
+	#category : #Kernel-Tests-Chronology
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TimespanDoTest>>setUp [
+{ #category : #running }
+TimespanDoTest >> setUp [
 	aDate := DateAndTime
 				year: 2003
 				month: 01
@@ -39,11 +35,8 @@ TimespanDoTest>>setUp [
 	aTimespan := Timespan starting: aDate duration: aDuration
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TimespanDoTest>>testDatesDo [
+{ #category : #tests }
+TimespanDoTest >> testDatesDo [
 	| dateArray |
 	dateArray := OrderedCollection new.
 	7
@@ -54,11 +47,8 @@ TimespanDoTest>>testDatesDo [
 	self assert: aTimespan dates = dateArray
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TimespanDoTest>>testDoWith [
+{ #category : #tests }
+TimespanDoTest >> testDoWith [
 	| count |
 	count := 0.
 	aTimespan
@@ -69,11 +59,8 @@ TimespanDoTest>>testDoWith [
 	self assert: count = 13
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TimespanDoTest>>testDoWithWhen [
+{ #category : #tests }
+TimespanDoTest >> testDoWithWhen [
 	| count |
 	count := 0.
 	aTimespan
@@ -84,11 +71,8 @@ TimespanDoTest>>testDoWithWhen [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TimespanDoTest>>testEveryDo [
+{ #category : #tests }
+TimespanDoTest >> testEveryDo [
 	|count  duration |
 	count := 0.
 	duration := 7 days.
@@ -99,11 +83,8 @@ TimespanDoTest>>testEveryDo [
 			
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TimespanDoTest>>testMonthsDo [
+{ #category : #tests }
+TimespanDoTest >> testMonthsDo [
 	| monthArray |
 	monthArray := Array
 				with: (Month
@@ -121,11 +102,8 @@ TimespanDoTest>>testMonthsDo [
 	self assert: aTimespan months = monthArray
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TimespanDoTest>>testNext [
+{ #category : #tests }
+TimespanDoTest >> testNext [
 	self assert: aTimespan next 
 			= (Timespan
 					starting: (DateAndTime
@@ -138,11 +116,8 @@ TimespanDoTest>>testNext [
 					duration: aDuration)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TimespanDoTest>>testWeeksDo [
+{ #category : #tests }
+TimespanDoTest >> testWeeksDo [
 	| weekArray |
 	weekArray := OrderedCollection new.
 	7
@@ -157,11 +132,8 @@ TimespanDoTest>>testWeeksDo [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TimespanDoTest>>testYearsDo [
+{ #category : #tests }
+TimespanDoTest >> testYearsDo [
 	| yearArray |
 	yearArray := Array
 				with: (Year

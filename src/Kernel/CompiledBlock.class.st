@@ -12,33 +12,23 @@ Class {
 	#name : #CompiledBlock,
 	#superclass : #CompiledCode,
 	#type : #compiledMethod,
-	#category : #Kernel-Methods,
-	#timestamp : 'ClementBera 5/23/2016 11:08'
+	#category : #Kernel-Methods
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>debuggerMap [
+{ #category : #accessing }
+CompiledBlock >> debuggerMap [
 	^self compilerClass debuggerMethodMapForMethod: self.
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>hasMethodReturn [
+{ #category : #scanning }
+CompiledBlock >> hasMethodReturn [
 	"Answer whether the receiver has a method-return ('^') in its code."
 	^ (InstructionStream on: self) scanFor: [:byte | 
 		 self encoderClass methodReturnBytecodes includes: byte]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>hash [
+{ #category : #accessing }
+CompiledBlock >> hash [
 	"CompiledMethod>>#= compares code, i.e. same literals and same bytecode.
 	 So we look at the header, methodClass and some bytes between initialPC and endPC,
 	 but /not/ the selector because the equal method does not compare selectors.
@@ -58,62 +48,41 @@ CompiledBlock>>hash [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>isTestMethod [
+{ #category : #testing }
+CompiledBlock >> isTestMethod [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>method [
+{ #category : #accessing }
+CompiledBlock >> method [
 	"answer the compiled method that I am installed in, or nil if none."
 	^self outerCode method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>methodClass [
+{ #category : #accessing }
+CompiledBlock >> methodClass [
 	"answer the compiled method that I am installed in, or nil if none."
 	^self outerCode methodClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>methodNode [
+{ #category : #accessing }
+CompiledBlock >> methodNode [
 	^ self outerCode methodNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>outerCode [
+{ #category : #accessing }
+CompiledBlock >> outerCode [
 	"answer the compiled code that I am installed in, or nil if none."
 	^self literalAt: self numLiterals
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>outerCode: aCompiledCode [
+{ #category : #accessing }
+CompiledBlock >> outerCode: aCompiledCode [
 	^self literalAt: self numLiterals put: aCompiledCode
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>pcInOuter [
+{ #category : #scanning }
+CompiledBlock >> pcInOuter [
 	| outer end instructionStream |
 	outer := self outerCode.
 	instructionStream := InstructionStream on: outer.
@@ -125,51 +94,33 @@ CompiledBlock>>pcInOuter [
 	self error: 'block not installed in outer code'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>penultimateLiteral [
+{ #category : #accessing }
+CompiledBlock >> penultimateLiteral [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>pragmas [
+{ #category : #accessing }
+CompiledBlock >> pragmas [
 	^ #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>primitive [
+{ #category : #accessing }
+CompiledBlock >> primitive [
 	^ 0
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>printOn: s [
+{ #category : #printing }
+CompiledBlock >> printOn: s [
 	s << 'compiledBlock'
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>properties [
+{ #category : #compatibility }
+CompiledBlock >> properties [
 	^ nil->nil
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>sameLiteralsAs: method [
+{ #category : #comparing }
+CompiledBlock >> sameLiteralsAs: method [
 	"Compare my literals to those of method. This is needed to compare compiled methods."
 
 	| numLits literal1 literal2 |
@@ -185,18 +136,12 @@ CompiledBlock>>sameLiteralsAs: method [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>selector [
+{ #category : #accessing }
+CompiledBlock >> selector [
 	^ self outerCode selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledBlock>>sourceCode [
+{ #category : #accessing }
+CompiledBlock >> sourceCode [
 	^ self outerCode sourceCode
 ]

@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #OCCleanBockTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'instVar'
 	],
-	#category : #OpalCompiler-Tests-AST,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-AST
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCleanBockTest>>testBlockIsClean [
+{ #category : #tests }
+OCCleanBockTest >> testBlockIsClean [
 	self assert: [  ] sourceNode isClean.
 	self assert: [ 1 + 2 ] sourceNode isClean.
 	self assert: [ :a | a + 2 ] sourceNode isClean.
@@ -24,11 +17,8 @@ OCCleanBockTest>>testBlockIsClean [
 	 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCleanBockTest>>testBlockIsNotClean [
+{ #category : #tests }
+OCCleanBockTest >> testBlockIsNotClean [
 	| escpWrite escpRead |
 	escpRead := escpWrite := 1.
 	self deny: [ self foo ] sourceNode isClean.

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBPullUpMethodTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPullUpMethodTest>>testPullUpAndCopyDown [
+{ #category : #tests }
+RBPullUpMethodTest >> testPullUpAndCopyDown [
 	| class |
 	model 
 		defineClass: 'Object subclass: #SomeClass instanceVariableNames: '''' classVariableNames: ''Foo'' poolDictionaries: '''' category: #''Refactory-Test data'''.
@@ -37,11 +30,8 @@ RBPullUpMethodTest>>testPullUpAndCopyDown [
 				= ((model classNamed: #Object) parseTreeFor: #yourself)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPullUpMethodTest>>testPullUpClassMethod [
+{ #category : #'failure tests' }
+RBPullUpMethodTest >> testPullUpClassMethod [
 	| class |
 	class := model classNamed: #Object.
 	class addClassVariable: #Foo.
@@ -54,11 +44,8 @@ RBPullUpMethodTest>>testPullUpClassMethod [
 			from: class theMetaClass)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPullUpMethodTest>>testPullUpMethodWithCopyOverriddenMethodsDown [
+{ #category : #tests }
+RBPullUpMethodTest >> testPullUpMethodWithCopyOverriddenMethodsDown [
 	| refactoring |
 	self proceedThroughWarning: 
 		[ refactoring := RBPullUpMethodRefactoring 
@@ -71,21 +58,15 @@ RBPullUpMethodTest>>testPullUpMethodWithCopyOverriddenMethodsDown [
 	self deny: ((refactoring model classNamed: #RBCompositeLintRuleTest) directlyDefinesMethod: #isComposite)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPullUpMethodTest>>testPullUpReferencesInstVar [
+{ #category : #'failure tests' }
+RBPullUpMethodTest >> testPullUpReferencesInstVar [
 	self shouldFail: (RBPullUpMethodRefactoring 
 			pullUp: #(#checkClass: )
 			from: RBBasicLintRuleTest)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPullUpMethodTest>>testPullUpWithInvalidSuperSend [
+{ #category : #'failure tests' }
+RBPullUpMethodTest >> testPullUpWithInvalidSuperSend [
 	| class |
 	model 
 		defineClass: 'Object subclass: #SomeClass instanceVariableNames: '''' classVariableNames: ''Foo'' poolDictionaries: '''' category: #''Refactory-Test data'''.
@@ -105,11 +86,8 @@ RBPullUpMethodTest>>testPullUpWithInvalidSuperSend [
 				from: class)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPullUpMethodTest>>testPullUpWithMethodThatCannotBePushedDown [
+{ #category : #'failure tests' }
+RBPullUpMethodTest >> testPullUpWithMethodThatCannotBePushedDown [
 	model 
 		defineClass: 'Object subclass: #SomeClass instanceVariableNames: '''' classVariableNames: ''Foo'' poolDictionaries: '''' category: #''Refactory-Test data'''.
 	(model classNamed: #SomeClass) compile: 'yourself ^54'
@@ -120,11 +98,8 @@ RBPullUpMethodTest>>testPullUpWithMethodThatCannotBePushedDown [
 				from: (model classNamed: #SomeClass))
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPullUpMethodTest>>testPullUpWithSuperSendThatCannotBeCopiedDown [
+{ #category : #'failure tests' }
+RBPullUpMethodTest >> testPullUpWithSuperSendThatCannotBeCopiedDown [
 	| class |
 	model 
 		defineClass: 'Object subclass: #SomeClass instanceVariableNames: '''' classVariableNames: ''Foo'' poolDictionaries: '''' category: #''Refactory-Test data'''.

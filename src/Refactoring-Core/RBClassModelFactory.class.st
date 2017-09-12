@@ -12,78 +12,53 @@ Class {
 		'RBmethod',
 		'RBnamespace'
 	],
-	#category : #Refactoring-Core-Model,
-	#timestamp : 'StephaneDucasse 9/8/2016 09:58'
+	#category : #Refactoring-Core-Model
 }
 
-{
-	#category : #'factory access',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassModelFactory class>>rbClass [
+{ #category : #'factory access' }
+RBClassModelFactory class >> rbClass [
  
 	^ RBclass ifNil: [ RBclass := RBClass ]
 ]
 
-{
-	#category : #'factory access',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassModelFactory class>>rbMetaclass [
+{ #category : #'factory access' }
+RBClassModelFactory class >> rbMetaclass [
  
 	^ RBmetaclass ifNil: [ RBmetaclass := RBMetaclass ]
 ]
 
-{
-	#category : #'factory access',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassModelFactory class>>rbMethod [
+{ #category : #'factory access' }
+RBClassModelFactory class >> rbMethod [
  
 	^ RBmethod ifNil: [ RBmethod := RBMethod ]
 ]
 
-{
-	#category : #'factory access',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassModelFactory class>>rbNamespace [
+{ #category : #'factory access' }
+RBClassModelFactory class >> rbNamespace [
  
 	^ RBnamespace ifNil: [ RBnamespace := RBNamespace ]
 ]
 
-{
-	#category : #'factory customisation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassModelFactory class>>setRBClass: aClass [
+{ #category : #'factory customisation' }
+RBClassModelFactory class >> setRBClass: aClass [
 
 	RBclass := aClass
 ]
 
-{
-	#category : #'factory customisation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassModelFactory class>>setRBMetaclass: aClass [
+{ #category : #'factory customisation' }
+RBClassModelFactory class >> setRBMetaclass: aClass [
 
 	RBmetaclass := aClass
 ]
 
-{
-	#category : #'factory customisation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassModelFactory class>>setRBMethod: aClass [
+{ #category : #'factory customisation' }
+RBClassModelFactory class >> setRBMethod: aClass [
 
 	RBmethod := aClass
 ]
 
-{
-	#category : #'factory customisation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassModelFactory class>>setRBNamespace: aClass [
+{ #category : #'factory customisation' }
+RBClassModelFactory class >> setRBNamespace: aClass [
  
 	RBnamespace := aClass
 ]

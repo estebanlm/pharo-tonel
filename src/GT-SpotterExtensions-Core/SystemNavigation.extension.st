@@ -1,12 +1,7 @@
-Extension {
-	#name : #SystemNavigation
-}
+Extension { #name : #SystemNavigation }
 
-{
-	#category : #'*GT-SpotterExtensions-Core-private',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-SystemNavigation>>allReferencesTo: aLiteral do: aBlock [
+{ #category : #'*GT-SpotterExtensions-Core-private' }
+SystemNavigation >> allReferencesTo: aLiteral do: aBlock [
 	| symbol |
 	symbol := aLiteral isSymbol.
 	self allBehaviorsDo: [ :class |
@@ -15,11 +10,8 @@ SystemNavigation>>allReferencesTo: aLiteral do: aBlock [
 			ifTrue: [ class withThorougMethodsReferTo: aLiteral do: aBlock ] ]
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core-private',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-SystemNavigation>>allReferencesToSubstring: aString do: aBlock [
+{ #category : #'*GT-SpotterExtensions-Core-private' }
+SystemNavigation >> allReferencesToSubstring: aString do: aBlock [
 	| sortedClasses |
 	aString isEmptyOrNil ifTrue: [ ^ self ].
 	sortedClasses := SortedCollection new sortBlock: [ :a :b | a name size < b name size ].
@@ -30,11 +22,8 @@ SystemNavigation>>allReferencesToSubstring: aString do: aBlock [
 		self allReferencesTo: class binding do: aBlock ]
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core-private',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-SystemNavigation>>allSendersToString: aString do: aBlock [
+{ #category : #'*GT-SpotterExtensions-Core-private' }
+SystemNavigation >> allSendersToString: aString do: aBlock [
 	aString isEmptyOrNil ifTrue: [ ^ self ].
 	aString asSymbol ifNotNil: [ :symbol |
 		self allBehaviorsDo: [ :class | 

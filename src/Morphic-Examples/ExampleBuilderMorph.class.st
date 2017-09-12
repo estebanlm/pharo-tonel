@@ -6,15 +6,11 @@ Class {
 	#superclass : #MorphicModel,
 	#traits : 'TEasilyThemed',
 	#classTraits : 'TEasilyThemed classTrait',
-	#category : #Morphic-Examples-Widgets,
-	#timestamp : 'gvc 7/19/2007 16:49'
+	#category : #Morphic-Examples-Widgets
 }
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ExampleBuilderMorph>>chooseColor: aColor title: label [
+{ #category : #services }
+ExampleBuilderMorph >> chooseColor: aColor title: label [
 	"Answer the user choice of a colour."
 	
 	^ self theme 
@@ -23,11 +19,8 @@ ExampleBuilderMorph>>chooseColor: aColor title: label [
 		color: aColor
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ExampleBuilderMorph>>openModal: aSystemWindow [
+{ #category : #'as yet unclassified' }
+ExampleBuilderMorph >> openModal: aSystemWindow [
 	"Open the given window an available position without modality.
 	Answer the system window."
 	

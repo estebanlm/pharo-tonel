@@ -4,23 +4,16 @@ I am a morphic item used to show ocompletion entries.
 Class {
 	#name : #NOCMenuMorph,
 	#superclass : #NECMenuMorph,
-	#category : #NECompletion-View,
-	#timestamp : '<historical>'
+	#category : #NECompletion-View
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCMenuMorph>>height [
+{ #category : #accessing }
+NOCMenuMorph >> height [
 	^ 7
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCMenuMorph>>narrowCompletion [
+{ #category : #actions }
+NOCMenuMorph >> narrowCompletion [
 	| model |
 	
 	self selected: 0.

@@ -25,33 +25,23 @@ aCollection reject: [ :each | ... anObject ]
 Class {
 	#name : #RBNotEliminationRule,
 	#superclass : #RBTransformationRule,
-	#category : #Refactoring-Critics-TransformationRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 18:38'
+	#category : #Refactoring-Critics-TransformationRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBNotEliminationRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBNotEliminationRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'NotEliminationRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBNotEliminationRule>>group [
+{ #category : #accessing }
+RBNotEliminationRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBNotEliminationRule>>initialize [
+{ #category : #initialization }
+RBNotEliminationRule >> initialize [
 	super initialize.
 	self rewriteRule
 		replace: '``@object not not' with: '``@object';
@@ -80,18 +70,12 @@ RBNotEliminationRule>>initialize [
 		replace: '(``@a > ``@b) not' with: '``@a <= ``@b'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBNotEliminationRule>>name [
+{ #category : #accessing }
+RBNotEliminationRule >> name [
 	^ 'Eliminate unnecessary not''s'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBNotEliminationRule>>rationale   [
+{ #category : #accessing }
+RBNotEliminationRule >> rationale [  
 	^ 'Eliminate unnecessary not''s in relation of conditionals'
 ]

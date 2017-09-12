@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #PropertySlotTest,
 	#superclass : #SlotSilentTest,
-	#category : #Slot-Tests-Examples,
-	#timestamp : ''
+	#category : #Slot-Tests-Examples
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-PropertySlotTest>>testCreateClassWithPropertySlot [
+{ #category : #tests }
+PropertySlotTest >> testCreateClassWithPropertySlot [
 	"Add instance variables using the builder interface"
 	
 	| propertySlot |
@@ -30,11 +23,8 @@ PropertySlotTest>>testCreateClassWithPropertySlot [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-PropertySlotTest>>testCreateClassWithPropertySlotAddSecond [
+{ #category : #tests }
+PropertySlotTest >> testCreateClassWithPropertySlotAddSecond [
 	"Add instance variables using the builder interface"
 	
 	| propertySlot1 propertySlot2|
@@ -65,11 +55,8 @@ PropertySlotTest>>testCreateClassWithPropertySlotAddSecond [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-PropertySlotTest>>testCreateClassWithTwoPropertySlots [
+{ #category : #tests }
+PropertySlotTest >> testCreateClassWithTwoPropertySlots [
 	"Add instance variables using the builder interface"
 	
 	| propertySlot1 propertySlot2 |
@@ -92,11 +79,8 @@ PropertySlotTest>>testCreateClassWithTwoPropertySlots [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-PropertySlotTest>>testRemovePropertySlot [
+{ #category : #tests }
+PropertySlotTest >> testRemovePropertySlot [
 	
 	| propertySlot |
 	
@@ -119,11 +103,8 @@ PropertySlotTest>>testRemovePropertySlot [
 	self deny: (aClass classLayout hasSlotNamed: #'_propertyBaseSlot').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-PropertySlotTest>>testRemovePropertySlot2 [
+{ #category : #tests }
+PropertySlotTest >> testRemovePropertySlot2 [
 	"add two property slots, remove one"
 	
 	| propertySlot1 propertySlot2 |

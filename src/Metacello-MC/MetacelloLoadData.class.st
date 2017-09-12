@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloLoadData,
 	#superclass : #Object,
@@ -9,15 +6,11 @@ Class {
 		'versionInfoMap',
 		'packageNameMap'
 	],
-	#category : #Metacello-MC-Loaders,
-	#timestamp : ''
+	#category : #Metacello-MC-Loaders
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadData>>addVersion: version versionInfo: versionInfo resolvedReference: resolvedReference packageSpec: packageSpec [
+{ #category : #accessing }
+MetacelloLoadData >> addVersion: version versionInfo: versionInfo resolvedReference: resolvedReference packageSpec: packageSpec [
 	| vis |
 	"check for duplicates and use the one that is being added"
 	(vis := self packageNameMap at: packageSpec name ifAbsent: [  ]) ~~ nil
@@ -37,11 +30,8 @@ MetacelloLoadData>>addVersion: version versionInfo: versionInfo resolvedReferenc
 	self packageNameMap at: packageSpec name put: {versionInfo}
 ]
 
-{
-	#category : #versionInfo,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadData>>ancestorsFor: packageSpec ifAbsent: aBlock [
+{ #category : #versionInfo }
+MetacelloLoadData >> ancestorsFor: packageSpec ifAbsent: aBlock [
 
 	^self versionInfoMap 
 		at: packageSpec file 
@@ -51,11 +41,8 @@ MetacelloLoadData>>ancestorsFor: packageSpec ifAbsent: aBlock [
 				ifAbsent: aBlock ]
 ]
 
-{
-	#category : #versionInfo,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadData>>currentVersionInfoFor: packageSpec ifAbsent: aBlock [
+{ #category : #versionInfo }
+MetacelloLoadData >> currentVersionInfoFor: packageSpec ifAbsent: aBlock [
 
 	^self versionInfoMap 
 		at: packageSpec file 
@@ -65,50 +52,35 @@ MetacelloLoadData>>currentVersionInfoFor: packageSpec ifAbsent: aBlock [
 				ifAbsent: aBlock ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadData>>dataMap [
+{ #category : #accessing }
+MetacelloLoadData >> dataMap [
 
 	dataMap == nil ifTrue: [ dataMap := Dictionary new ].
 	^dataMap
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadData>>do: aBlock [
+{ #category : #enumerating }
+MetacelloLoadData >> do: aBlock [
 
 	self dataMap valuesDo: [:ar |
 		aBlock value: (ar at: 1) value: (ar at: 2) value: (ar at: 3) ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadData>>isEmpty [
+{ #category : #testing }
+MetacelloLoadData >> isEmpty [
 
 	^self dataMap isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadData>>packageNameMap [
+{ #category : #accessing }
+MetacelloLoadData >> packageNameMap [
 
 	packageNameMap == nil ifTrue: [ packageNameMap := Dictionary new ].
 	^packageNameMap
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloLoadData>>versionInfoMap [
+{ #category : #accessing }
+MetacelloLoadData >> versionInfoMap [
 
 	versionInfoMap == nil ifTrue: [ versionInfoMap := Dictionary new ].
 	^versionInfoMap

@@ -12,31 +12,21 @@ Class {
 		'remote',
 		'unselectedEntities'
 	],
-	#category : #Komitter-Models,
-	#timestamp : '<historical>'
+	#category : #Komitter-Models
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitableObject>>author [
+{ #category : #accessing }
+KomitableObject >> author [
 	^ author
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitableObject>>author: anObject [
+{ #category : #accessing }
+KomitableObject >> author: anObject [
 	author := anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitableObject>>commitToMonticello [
+{ #category : #protocol }
+KomitableObject >> commitToMonticello [
 
 	Komitter resetLastMessage.
 	KomitStagingArea resetCurrent.
@@ -45,27 +35,18 @@ KomitableObject>>commitToMonticello [
 		submitCommit: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitableObject>>entities [
+{ #category : #accessing }
+KomitableObject >> entities [
 	^ entities
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitableObject>>entities: aDictionary [
+{ #category : #accessing }
+KomitableObject >> entities: aDictionary [
 	entities := aDictionary
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitableObject>>initialize [
+{ #category : #initialize }
+KomitableObject >> initialize [
 
 	super initialize.
 	author := Author fullName.
@@ -75,75 +56,48 @@ KomitableObject>>initialize [
 	timestamp := DateAndTime now.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitableObject>>message [
+{ #category : #accessing }
+KomitableObject >> message [
 	^ message
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitableObject>>message: anObject [
+{ #category : #accessing }
+KomitableObject >> message: anObject [
 	message := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitableObject>>remote [
+{ #category : #accessing }
+KomitableObject >> remote [
 	^ remote
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitableObject>>remote: anObject [
+{ #category : #accessing }
+KomitableObject >> remote: anObject [
 	remote := anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitableObject>>repository [
+{ #category : #protocol }
+KomitableObject >> repository [
 	
 	^ self remote remote
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitableObject>>timestamp [
+{ #category : #accessing }
+KomitableObject >> timestamp [
 	^ timestamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitableObject>>timestamp: anObject [
+{ #category : #accessing }
+KomitableObject >> timestamp: anObject [
 	timestamp := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitableObject>>unselectedEntities [
+{ #category : #accessing }
+KomitableObject >> unselectedEntities [
 	^ unselectedEntities
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitableObject>>unselectedEntities: anObject [
+{ #category : #accessing }
+KomitableObject >> unselectedEntities: anObject [
 	unselectedEntities := anObject
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #KMKeyCombinationChoice
-}
+Extension { #name : #KMKeyCombinationChoice }
 
-{
-	#category : #'*Spec-Core',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-KMKeyCombinationChoice>>currentCharacter [
+{ #category : #'*Spec-Core' }
+KMKeyCombinationChoice >> currentCharacter [
 	| candidates |
 	
 	candidates := shortcuts 

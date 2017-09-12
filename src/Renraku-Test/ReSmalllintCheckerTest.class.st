@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ReSmalllintCheckerTest,
 	#superclass : #ReCodeBasedTestCase,
-	#category : #Renraku-Test,
-	#timestamp : ''
+	#category : #Renraku-Test
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReSmalllintCheckerTest>>testRun [
+{ #category : #tests }
+ReSmalllintCheckerTest >> testRun [
 	| checker |
 	
 	checker := ReSmalllintChecker new

@@ -40,86 +40,58 @@ Class {
 		'blur',
 		'offset'
 	],
-	#category : #Athens-Core-Paints,
-	#timestamp : 'AliakseiSyrel 11/26/2015 19:53'
+	#category : #Athens-Core-Paints
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensShadowPaint>>asStrokePaintOn: aCanvas [
+{ #category : #converting }
+AthensShadowPaint >> asStrokePaintOn: aCanvas [
 	"receiver can be converted to stroke paint
 	presering color and width"
 	^ (aCanvas surface createStrokePaintFor: self color)
 		width: self width
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensShadowPaint>>blur [
+{ #category : #accessing }
+AthensShadowPaint >> blur [
 	^ blur
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensShadowPaint>>blur: aPoint [
+{ #category : #accessing }
+AthensShadowPaint >> blur: aPoint [
 	"Set shadpw blur"
 	blur := aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensShadowPaint>>color [
+{ #category : #accessing }
+AthensShadowPaint >> color [
 	^ color
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensShadowPaint>>color: aColor [
+{ #category : #accessing }
+AthensShadowPaint >> color: aColor [
 	color := aColor
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensShadowPaint>>initialize [
+{ #category : #initialization }
+AthensShadowPaint >> initialize [
 	super initialize.
 	
 	self setDefaults
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensShadowPaint>>offset [
+{ #category : #accessing }
+AthensShadowPaint >> offset [
 	^ offset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensShadowPaint>>offset: aPoint [
+{ #category : #accessing }
+AthensShadowPaint >> offset: aPoint [
 	"Set shadow offset"
 	offset := aPoint
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensShadowPaint>>setDefaults [
+{ #category : #initialization }
+AthensShadowPaint >> setDefaults [
 
 	"Set the default values for shadows"
 	self
@@ -132,19 +104,13 @@ AthensShadowPaint>>setDefaults [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensShadowPaint>>width [
+{ #category : #accessing }
+AthensShadowPaint >> width [
 	^ width
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensShadowPaint>>width: aNumber [
+{ #category : #accessing }
+AthensShadowPaint >> width: aNumber [
 	"Set shadow width"
 	width := aNumber
 ]

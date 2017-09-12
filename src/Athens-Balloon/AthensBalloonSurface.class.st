@@ -15,59 +15,40 @@ Class {
 		'strokeTransform',
 		'engine'
 	],
-	#category : #Athens-Balloon,
-	#timestamp : '<historical>'
+	#category : #Athens-Balloon
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface class>>extent: aPoint [
+{ #category : #'as yet unclassified' }
+AthensBalloonSurface class >> extent: aPoint [
 	"Create a new surface with given extent."
 	
 	^ self new form: (Form extent: aPoint depth: 32)
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>asAthensPaintOn: aCanvas [
+{ #category : #converting }
+AthensBalloonSurface >> asAthensPaintOn: aCanvas [
 	^ AthensBalloonImagePaint new form: self asForm; yourself
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>asForm [
+{ #category : #converting }
+AthensBalloonSurface >> asForm [
 	^ form
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>clear [
+{ #category : #drawing }
+AthensBalloonSurface >> clear [
 	^ self clearForm
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>clearForm [
+{ #category : #testing }
+AthensBalloonSurface >> clearForm [
 
 	form bits: ( Bitmap new: form bits size).
 	
 ]
 
-{
-	#category : #clipping,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>clipBy: aRectangle during: aBlock [
+{ #category : #clipping }
+AthensBalloonSurface >> clipBy: aRectangle during: aBlock [
 
 	| oldRect transformedClip|
 	transformedClip := (pathTransform transform:aRectangle origin) corner: (pathTransform transform:aRectangle corner).
@@ -77,19 +58,13 @@ AthensBalloonSurface>>clipBy: aRectangle during: aBlock [
 	aBlock ensure: [ engine clipRect: oldRect ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>clipRect [
+{ #category : #accessing }
+AthensBalloonSurface >> clipRect [
 	^ engine clipRect
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>createCircularGradient: colorRamp center: aCenter radius: aRadius [
+{ #category : #paints }
+AthensBalloonSurface >> createCircularGradient: colorRamp center: aCenter radius: aRadius [
 
 	^ AthensBalloonRadialGradient new
 		colorRamp: colorRamp;
@@ -98,20 +73,14 @@ AthensBalloonSurface>>createCircularGradient: colorRamp center: aCenter radius: 
 		yourself
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>createFormPaint: aForm   [
+{ #category : #paints }
+AthensBalloonSurface >> createFormPaint: aForm [  
 	^ AthensBalloonImagePaint new
 		form: aForm
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>createLinearGradient: colorRamp start: pt1 stop: pt2 [
+{ #category : #paints }
+AthensBalloonSurface >> createLinearGradient: colorRamp start: pt1 stop: pt2 [
  
 	^ AthensBalloonLinearGradient new
 		colorRamp: colorRamp;
@@ -120,11 +89,8 @@ AthensBalloonSurface>>createLinearGradient: colorRamp start: pt1 stop: pt2 [
 		yourself
 ]
 
-{
-	#category : #paths,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>createPath: aPathCreatingBlock [
+{ #category : #paths }
+AthensBalloonSurface >> createPath: aPathCreatingBlock [
 	"Create a path from provided path builder instance"
 	
 	| builder |
@@ -136,69 +102,45 @@ AthensBalloonSurface>>createPath: aPathCreatingBlock [
 	
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>createRadialGradient: colorRamp center: aCenter radius: aRadius focalPoint: fp [
+{ #category : #paints }
+AthensBalloonSurface >> createRadialGradient: colorRamp center: aCenter radius: aRadius focalPoint: fp [
 	^ self createCircularGradient: colorRamp center: aCenter radius: aRadius
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>createSolidColorPaint: aColor  [
+{ #category : #paints }
+AthensBalloonSurface >> createSolidColorPaint: aColor [ 
 	^ AthensBalloonSolidColorPaint new color: aColor
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>createStrokePaintFor: aPaint [
+{ #category : #paints }
+AthensBalloonSurface >> createStrokePaintFor: aPaint [
 
 	^ AthensBalloonStrokePaint new fillPaint: aPaint
 ]
 
-{
-	#category : #masking,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>disableMask [
+{ #category : #masking }
+AthensBalloonSurface >> disableMask [
 	maskEnabled := false.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>drawImage: aForm  [
+{ #category : #drawing }
+AthensBalloonSurface >> drawImage: aForm [ 
 
 	engine drawImage: aForm transform: imageTransform
 ]
 
-{
-	#category : #masking,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>enableMask [
+{ #category : #masking }
+AthensBalloonSurface >> enableMask [
 	maskEnabled := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>engine [
+{ #category : #accessing }
+AthensBalloonSurface >> engine [
 	^ engine
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>fillBezierShape: contours color: aColor  [
+{ #category : #drawing }
+AthensBalloonSurface >> fillBezierShape: contours color: aColor [ 
 
 	engine
 		prepareForRendering;
@@ -206,27 +148,18 @@ AthensBalloonSurface>>fillBezierShape: contours color: aColor  [
 		fillBezierShape: contours
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>fillBezierShape: anArray color: aColor width: aSmallInteger  [
+{ #category : #drawing }
+AthensBalloonSurface >> fillBezierShape: anArray color: aColor width: aSmallInteger [ 
 	self shouldBeImplemented.
 ]
 
-{
-	#category : #'rendering dispatch',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>fillPath: aPath withSolidColor: aColor [
+{ #category : #'rendering dispatch' }
+AthensBalloonSurface >> fillPath: aPath withSolidColor: aColor [
 	self fillBezierShape: aPath contoursForFilling color: aColor
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>fillRectangle: rect color: aColor [
+{ #category : #drawing }
+AthensBalloonSurface >> fillRectangle: rect color: aColor [
 
 	engine
 		prepareForRendering;
@@ -235,45 +168,30 @@ AthensBalloonSurface>>fillRectangle: rect color: aColor [
 
 ]
 
-{
-	#category : #'rendering dispatch',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>fillRectangle: aRectangle withSolidColor: aColor [
+{ #category : #'rendering dispatch' }
+AthensBalloonSurface >> fillRectangle: aRectangle withSolidColor: aColor [
 	self fillRectangle: aRectangle color: aColor
 ]
 
-{
-	#category : #'accessing matrices',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>fillTransform [
+{ #category : #'accessing matrices' }
+AthensBalloonSurface >> fillTransform [
 
 	^ fillTransform
 ]
 
-{
-	#category : #'accessing matrices',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>fillTransform: anObject [
+{ #category : #'accessing matrices' }
+AthensBalloonSurface >> fillTransform: anObject [
 
 	fillTransform := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>form [
+{ #category : #accessing }
+AthensBalloonSurface >> form [
 	^ form
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>form: aForm [
+{ #category : #accessing }
+AthensBalloonSurface >> form: aForm [
 
 	form := aForm.
 	mask := Form extent: form extent depth: 1. 
@@ -286,29 +204,20 @@ AthensBalloonSurface>>form: aForm [
 	engine reset.
 ]
 
-{
-	#category : #fonts,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>getFreetypeFontRendererFor: aFreeTypeFont  [
+{ #category : #fonts }
+AthensBalloonSurface >> getFreetypeFontRendererFor: aFreeTypeFont [ 
 	
 	^ (FT2GlyphRenderer forFont: aFreeTypeFont surface: self)
 ]
 
-{
-	#category : #'accessing matrices',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>imageTransform [
+{ #category : #'accessing matrices' }
+AthensBalloonSurface >> imageTransform [
 
 	^ imageTransform
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>initialize [
+{ #category : #initialize-release }
+AthensBalloonSurface >> initialize [
 	pathTransform := AthensAffineTransform new.
 	paintTransform := AthensAffineTransform new.
 	
@@ -318,46 +227,31 @@ AthensBalloonSurface>>initialize [
 	maskEnabled := false.
 ]
 
-{
-	#category : #masking,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>maskEnabled [
+{ #category : #masking }
+AthensBalloonSurface >> maskEnabled [
 	^ maskEnabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>paintTransform  [
+{ #category : #accessing }
+AthensBalloonSurface >> paintTransform [ 
 	^ paintTransform 
 ]
 
-{
-	#category : #'accessing matrices',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>pathTransform [
+{ #category : #'accessing matrices' }
+AthensBalloonSurface >> pathTransform [
 
 	^ pathTransform
 ]
 
-{
-	#category : #'accessing matrices',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>pathTransform: anObject [
+{ #category : #'accessing matrices' }
+AthensBalloonSurface >> pathTransform: anObject [
 
 	pathTransform := anObject copy.
 	engine edgeTransform: pathTransform.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>strokeBezierShape: contours color: aColor width: aWidth  [
+{ #category : #drawing }
+AthensBalloonSurface >> strokeBezierShape: contours color: aColor width: aWidth [ 
 	
 	engine
 		prepareForRendering;
@@ -365,11 +259,8 @@ AthensBalloonSurface>>strokeBezierShape: contours color: aColor width: aWidth  [
 		strokeBezierShape: contours width: aWidth
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>strokeRectangle: rect color: aColor width: aWidth [
+{ #category : #drawing }
+AthensBalloonSurface >> strokeRectangle: rect color: aColor width: aWidth [
 	 
 	engine
 		prepareForRendering;
@@ -377,20 +268,14 @@ AthensBalloonSurface>>strokeRectangle: rect color: aColor width: aWidth [
 		strokeRectangle: rect width: aWidth
 ]
 
-{
-	#category : #'accessing matrices',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>strokeTransform [
+{ #category : #'accessing matrices' }
+AthensBalloonSurface >> strokeTransform [
 
 	^ strokeTransform
 ]
 
-{
-	#category : #'accessing matrices',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonSurface>>strokeTransform: anObject [
+{ #category : #'accessing matrices' }
+AthensBalloonSurface >> strokeTransform: anObject [
 
 	strokeTransform := anObject
 ]

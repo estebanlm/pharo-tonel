@@ -4,43 +4,30 @@ This class provides the Korean support.  Unfortunately, we haven't tested this y
 Class {
 	#name : #KoreanEnvironment,
 	#superclass : #LanguageEnvironment,
-	#category : #Multilingual-OtherLanguages,
-	#timestamp : '<historical>'
+	#category : #Multilingual-OtherLanguages
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-KoreanEnvironment class>>initialize [
+{ #category : #'class initialization' }
+KoreanEnvironment class >> initialize [
 
 	EncodedCharSet declareEncodedCharSet: self atIndex: 7+1.
 ]
 
-{
-	#category : #'subclass responsibilities',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-KoreanEnvironment class>>leadingChar [
+{ #category : #'subclass responsibilities' }
+KoreanEnvironment class >> leadingChar [
 	
 	^ 7
 ]
 
-{
-	#category : #'subclass responsibilities',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-KoreanEnvironment class>>supportedLanguages [
+{ #category : #'subclass responsibilities' }
+KoreanEnvironment class >> supportedLanguages [
 	"Return the languages that this class supports. 
 	Any translations for those languages will use this class as their environment."
 	^#('ko' )
 ]
 
-{
-	#category : #'subclass responsibilities',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-KoreanEnvironment class>>systemConverterClass [
+{ #category : #'subclass responsibilities' }
+KoreanEnvironment class >> systemConverterClass [
 	| encoding |
 	Smalltalk os isWin32 
 		ifTrue: [^EUCKRTextConverter].
@@ -55,11 +42,8 @@ KoreanEnvironment class>>systemConverterClass [
 	^UTF8TextConverter
 ]
 
-{
-	#category : #'language methods',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-KoreanEnvironment class>>traditionalCharsetClass [
+{ #category : #'language methods' }
+KoreanEnvironment class >> traditionalCharsetClass [
 
 	^ KSX1001.
 

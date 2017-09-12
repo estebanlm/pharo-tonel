@@ -4,23 +4,16 @@ A MCSystemCategoryParser extracts or set a category/protocol to the correspondin
 Class {
 	#name : #MCSystemCategoryParser,
 	#superclass : #MCDoItParser,
-	#category : #'Monticello-Chunk Format',
-	#timestamp : '<historical>'
+	#category : #'Monticello-Chunk Format'
 }
 
-{
-	#category : #'factory identification hook',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSystemCategoryParser class>>pattern [
+{ #category : #'factory identification hook' }
+MCSystemCategoryParser class >> pattern [
 	^ 'SystemOrganization*'
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSystemCategoryParser>>addDefinitionsTo: aCollection [
+{ #category : #actions }
+MCSystemCategoryParser >> addDefinitionsTo: aCollection [
 	| definition |
 	definition := aCollection 
 					detect: [:ea | ea isOrganizationDefinition ] 
@@ -28,11 +21,8 @@ MCSystemCategoryParser>>addDefinitionsTo: aCollection [
 	definition categories: (definition categories copyWith: self category).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSystemCategoryParser>>category [
+{ #category : #accessing }
+MCSystemCategoryParser >> category [
 	| tokens  |
 	tokens := source parseLiterals.
 	tokens size = 3 ifFalse: [self error: 'Unrecognized category definition'].

@@ -1,12 +1,7 @@
-Extension {
-	#name : #FileStream
-}
+Extension { #name : #FileStream }
 
-{
-	#category : #'*Deprecated70',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileStream class>>writeSourceCodeFrom: aStream baseName: baseName isSt: stOrCsFlag [
+{ #category : #'*Deprecated70' }
+FileStream class >> writeSourceCodeFrom: aStream baseName: baseName isSt: stOrCsFlag [
 
 	| extension converter fileName  |
 	[ 	extension :=  stOrCsFlag ifTrue: ['.st']  ifFalse: ['.cs'].

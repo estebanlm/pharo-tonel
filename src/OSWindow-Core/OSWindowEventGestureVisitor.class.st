@@ -5,182 +5,103 @@ serving just to cover the complete gesture protocol.
 Class {
 	#name : #OSWindowEventGestureVisitor,
 	#superclass : #OSWindowEventVisitor,
-	#category : #OSWindow-Core-Gestures,
-	#timestamp : 'MerwanOuddane 7/23/2015 10:56'
+	#category : #OSWindow-Core-Gestures
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>handleGestureEvent: anEvent [
+{ #category : #visiting }
+OSWindowEventGestureVisitor >> handleGestureEvent: anEvent [
 	self handleEvent: anEvent.
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchActionPointerDownEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchActionPointerDownEvent: anEvent [
 	"This event is only send when using the gesture detector"
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchActionPointerMoveEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchActionPointerMoveEvent: anEvent [
 	"This event is only send when using the gesture detector"
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchActionPointerUpEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchActionPointerUpEvent: anEvent [
 	"This event is only send when using the gesture detector"
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchOneFingerDoubleTapEvent: anEvent [
-
+{ #category : #visiting }
+OSWindowEventGestureVisitor >> visitTouchOneFingerDoubleTapEvent: anEvent [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchOneFingerHoldEvent: anEvent [
-
+{ #category : #visiting }
+OSWindowEventGestureVisitor >> visitTouchOneFingerHoldEvent: anEvent [
 ]
 
-{
-	#category : #'visiting - three fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchThreeFingersScrollBeginEvent: anEvent [
-
+{ #category : #'visiting - three fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchThreeFingersScrollBeginEvent: anEvent [
 ]
 
-{
-	#category : #'visiting - three fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchThreeFingersScrollEndEvent: anEvent [
-
+{ #category : #'visiting - three fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchThreeFingersScrollEndEvent: anEvent [
 ]
 
-{
-	#category : #'visiting - three fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchThreeFingersScrollMoveEvent: anEvent [
-
+{ #category : #'visiting - three fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchThreeFingersScrollMoveEvent: anEvent [
 ]
 
-{
-	#category : #'visiting - three fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchThreeFingersSwipeAbortEvent: anEvent [
+{ #category : #'visiting - three fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchThreeFingersSwipeAbortEvent: anEvent [
 	
 ]
 
-{
-	#category : #'visiting - three fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchThreeFingersSwipeBeginEvent: anEvent [
-
+{ #category : #'visiting - three fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchThreeFingersSwipeBeginEvent: anEvent [
 ]
 
-{
-	#category : #'visiting - three fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchThreeFingersSwipeEndEvent: anEvent [
+{ #category : #'visiting - three fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchThreeFingersSwipeEndEvent: anEvent [
 	
 ]
 
-{
-	#category : #'visiting - three fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchThreeFingersSwipeMoveEvent: anEvent [
+{ #category : #'visiting - three fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchThreeFingersSwipeMoveEvent: anEvent [
 	
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchTwoFingersPinchBeginEvent: anEvent [
-
+{ #category : #'visiting - two fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchTwoFingersPinchBeginEvent: anEvent [
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchTwoFingersPinchEndEvent: anEvent [
-
+{ #category : #'visiting - two fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchTwoFingersPinchEndEvent: anEvent [
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchTwoFingersPinchMoveEvent: anEvent [
-
+{ #category : #'visiting - two fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchTwoFingersPinchMoveEvent: anEvent [
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchTwoFingersRotationBeginEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchTwoFingersRotationBeginEvent: anEvent [
 	
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchTwoFingersRotationEndEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchTwoFingersRotationEndEvent: anEvent [
 	
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchTwoFingersRotationMoveEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchTwoFingersRotationMoveEvent: anEvent [
 	
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchTwoFingersScrollBeginEvent: anEvent [
-
+{ #category : #'visiting - two fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchTwoFingersScrollBeginEvent: anEvent [
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchTwoFingersScrollEndEvent: anEvent [
-
+{ #category : #'visiting - two fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchTwoFingersScrollEndEvent: anEvent [
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowEventGestureVisitor>>visitTouchTwoFingersScrollMoveEvent: anEvent [
-
+{ #category : #'visiting - two fingers gestures' }
+OSWindowEventGestureVisitor >> visitTouchTwoFingersScrollMoveEvent: anEvent [
 ]

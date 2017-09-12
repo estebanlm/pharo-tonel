@@ -1,12 +1,7 @@
-Extension {
-	#name : #BitmapFillStyle
-}
+Extension { #name : #BitmapFillStyle }
 
-{
-	#category : #'*Morphic-Base-Balloon',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BitmapFillStyle>>grabNewGraphicIn: aMorph event: evt  [
+{ #category : #'*Morphic-Base-Balloon' }
+BitmapFillStyle >> grabNewGraphicIn: aMorph event: evt [ 
 	"Used by any morph that can be represented by a graphic"
 	| fill |
 	fill := Form fromUser.
@@ -18,11 +13,8 @@ BitmapFillStyle>>grabNewGraphicIn: aMorph event: evt  [
 	aMorph changed
 ]
 
-{
-	#category : #'*Morphic-Base-Balloon',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BitmapFillStyle>>newForm: aForm forMorph: aMorph [
+{ #category : #'*Morphic-Base-Balloon' }
+BitmapFillStyle >> newForm: aForm forMorph: aMorph [
 	self form: aForm.
 	self direction: (aForm width @ 0).
 	self normal: (0 @ aForm height).

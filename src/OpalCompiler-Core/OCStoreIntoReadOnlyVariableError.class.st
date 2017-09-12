@@ -5,15 +5,11 @@ Error when trying to assign to a non writeble Variable.
 Class {
 	#name : #OCStoreIntoReadOnlyVariableError,
 	#superclass : #OCSemanticError,
-	#category : #OpalCompiler-Core-Exception,
-	#timestamp : 'NicolaiHess 10/3/2014 21:25'
+	#category : #OpalCompiler-Core-Exception
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCStoreIntoReadOnlyVariableError>>description [
+{ #category : #accessing }
+OCStoreIntoReadOnlyVariableError >> description [
 	"Return a textual description of the exception."
 
 	^ String
@@ -25,11 +21,8 @@ OCStoreIntoReadOnlyVariableError>>description [
 			stream << self methodNode asString ]
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCStoreIntoReadOnlyVariableError>>signal [
+{ #category : #signaling }
+OCStoreIntoReadOnlyVariableError >> signal [
 	compilationContext interactive
 		ifFalse: [ ^ self crTrace ].
 	^ super signal

@@ -34,15 +34,11 @@ Class {
 		'OFFSET_Y_ADVANCE',
 		'OFFSET_Y_BEARING'
 	],
-	#category : #Athens-Cairo-Text,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Text
 }
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoTextExtents class>>fieldsDesc [
+{ #category : #'field definition' }
+CairoTextExtents class >> fieldsDesc [
 	"self rebuildFieldAccessors"
 	^ #(
 	double x_bearing;
@@ -54,110 +50,74 @@ CairoTextExtents class>>fieldsDesc [
 	)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoTextExtents>>height [
+{ #category : #'accessing structure variables' }
+CairoTextExtents >> height [
 	"This method was automatically generated"
 	^handle doubleAt: OFFSET_HEIGHT
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoTextExtents>>height: anObject [
+{ #category : #'accessing structure variables' }
+CairoTextExtents >> height: anObject [
 	"This method was automatically generated"
 	handle doubleAt: OFFSET_HEIGHT put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoTextExtents>>width [
+{ #category : #'accessing structure variables' }
+CairoTextExtents >> width [
 	"This method was automatically generated"
 	^handle doubleAt: OFFSET_WIDTH
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoTextExtents>>width: anObject [
+{ #category : #'accessing structure variables' }
+CairoTextExtents >> width: anObject [
 	"This method was automatically generated"
 	handle doubleAt: OFFSET_WIDTH put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoTextExtents>>x_advance [
+{ #category : #'accessing structure variables' }
+CairoTextExtents >> x_advance [
 	"This method was automatically generated"
 	^handle doubleAt: OFFSET_X_ADVANCE
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoTextExtents>>x_advance: anObject [
+{ #category : #'accessing structure variables' }
+CairoTextExtents >> x_advance: anObject [
 	"This method was automatically generated"
 	handle doubleAt: OFFSET_X_ADVANCE put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoTextExtents>>x_bearing [
+{ #category : #'accessing structure variables' }
+CairoTextExtents >> x_bearing [
 	"This method was automatically generated"
 	^handle doubleAt: OFFSET_X_BEARING
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoTextExtents>>x_bearing: anObject [
+{ #category : #'accessing structure variables' }
+CairoTextExtents >> x_bearing: anObject [
 	"This method was automatically generated"
 	handle doubleAt: OFFSET_X_BEARING put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoTextExtents>>y_advance [
+{ #category : #'accessing structure variables' }
+CairoTextExtents >> y_advance [
 	"This method was automatically generated"
 	^handle doubleAt: OFFSET_Y_ADVANCE
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoTextExtents>>y_advance: anObject [
+{ #category : #'accessing structure variables' }
+CairoTextExtents >> y_advance: anObject [
 	"This method was automatically generated"
 	handle doubleAt: OFFSET_Y_ADVANCE put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoTextExtents>>y_bearing [
+{ #category : #'accessing structure variables' }
+CairoTextExtents >> y_bearing [
 	"This method was automatically generated"
 	^handle doubleAt: OFFSET_Y_BEARING
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoTextExtents>>y_bearing: anObject [
+{ #category : #'accessing structure variables' }
+CairoTextExtents >> y_bearing: anObject [
 	"This method was automatically generated"
 	handle doubleAt: OFFSET_Y_BEARING put: anObject
 ]

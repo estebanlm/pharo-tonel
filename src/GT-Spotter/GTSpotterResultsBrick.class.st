@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterResultsBrick,
 	#superclass : #GLMStackedScrollPaneBrick,
@@ -8,15 +5,11 @@ Class {
 		'stepModel',
 		'categories'
 	],
-	#category : #GT-Spotter-UI,
-	#timestamp : ''
+	#category : #GT-Spotter-UI
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>addCategory: aCategoryBrick [
+{ #category : #adding }
+GTSpotterResultsBrick >> addCategory: aCategoryBrick [
 	"Add a category brick as one of my children including category title.
 	New category is added on position defined by spotter order of its processor.
 	If there are two categories with the same order they are arranged using FIFO order.
@@ -51,11 +44,8 @@ GTSpotterResultsBrick>>addCategory: aCategoryBrick [
 	
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>addItem: anItemBrick to: aCategoryBrick [
+{ #category : #adding }
+GTSpotterResultsBrick >> addItem: anItemBrick to: aCategoryBrick [
 	"Add new item brick to the specified category. If category brick has no items
 	it will be added to spotter ui.
 	anItemBrick must not be nil.
@@ -74,11 +64,8 @@ GTSpotterResultsBrick>>addItem: anItemBrick to: aCategoryBrick [
 	
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>addItems: aCollectionOfItems to: aCategoryBrick [
+{ #category : #adding }
+GTSpotterResultsBrick >> addItems: aCollectionOfItems to: aCategoryBrick [
 	"Add new items from a collection to the specified category. If category brick has no items
 	it will be added to spotter ui.
 	aCollectionOfItems must not be nil.
@@ -99,11 +86,8 @@ GTSpotterResultsBrick>>addItems: aCollectionOfItems to: aCategoryBrick [
 	
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>buildCategoryBrick: aProcessor [
+{ #category : #adding }
+GTSpotterResultsBrick >> buildCategoryBrick: aProcessor [
 	"Create and initialize new container brick to contain candidates for aProcessor.
 	Also creates a category title brick and assigns it to category brick to be
 	added later to results brick as soon as there is more than one candidate"
@@ -124,11 +108,8 @@ GTSpotterResultsBrick>>buildCategoryBrick: aProcessor [
 	^ categoryBrick
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>buildItemFor: aCandidateLink in: aProcessor [
+{ #category : #adding }
+GTSpotterResultsBrick >> buildItemFor: aCandidateLink [ in: aProcessor
 	|itemBrick|
 	itemBrick := (aCandidateLink renderingProcessor render: aCandidateLink value)
 			candidateLink: aCandidateLink;
@@ -138,20 +119,14 @@ GTSpotterResultsBrick>>buildItemFor: aCandidateLink in: aProcessor [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>categories [
+{ #category : #accessing }
+GTSpotterResultsBrick >> categories [
 	<return: #Dictionary>
 	^ categories
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>categoryBrickFor: aProcessor [
+{ #category : #accessing }
+GTSpotterResultsBrick >> categoryBrickFor: aProcessor [
 	"Return a container brick that contains candidates for aProcessor.
 	If category brick for aProcessor is requested for the first time
 	it gets created without being added to spotter UI"
@@ -162,11 +137,8 @@ GTSpotterResultsBrick>>categoryBrickFor: aProcessor [
 		ifAbsentPut: [ self buildCategoryBrick: aProcessor ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>categoryBrickOf: aProcessor [
+{ #category : #accessing }
+GTSpotterResultsBrick >> categoryBrickOf: aProcessor [
 	"Return a container brick that contains candidates for aProcessor.
 	If category brick for aProcessor does not exist throw an error"
 	<return: #GTSpotterCategoryBrick>
@@ -177,11 +149,8 @@ GTSpotterResultsBrick>>categoryBrickOf: aProcessor [
 		ifAbsent: [ Error signal: 'Category for ', aProcessor asString, ' does not exist' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>categoryBrickOf: aProcessor ifAbsent: aBlock [
+{ #category : #accessing }
+GTSpotterResultsBrick >> categoryBrickOf: aProcessor ifAbsent: aBlock [
 	"Return a container brick that contains candidates for aProcessor.
 	If category brick for aProcessor does not exist evaluate aBlock"
 	<return: #GTSpotterCategoryBrick>
@@ -191,20 +160,14 @@ GTSpotterResultsBrick>>categoryBrickOf: aProcessor ifAbsent: aBlock [
 		ifAbsent: aBlock
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>clipSubmorphs [
+{ #category : #drawing }
+GTSpotterResultsBrick >> clipSubmorphs [
 
 	^ true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>initialize [
+{ #category : #initialization }
+GTSpotterResultsBrick >> initialize [
 	super initialize.
 	
 	categories := Dictionary new.
@@ -212,29 +175,20 @@ GTSpotterResultsBrick>>initialize [
 	self announcer when: GLMBrickScrollPositionChanged send: #onScrolled to: self
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>newCategoryBrick [
+{ #category : #'instance creation' }
+GTSpotterResultsBrick >> newCategoryBrick [
 
 	^ GTSpotterCategoryBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>newTitleBrick [
+{ #category : #'instance creation' }
+GTSpotterResultsBrick >> newTitleBrick [
 
 	^ GTSpotterCategoryTitleBrick new
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>onAllCandidatesAdded: anAnnouncement [
+{ #category : #'event handling' }
+GTSpotterResultsBrick >> onAllCandidatesAdded: anAnnouncement [
 	"first exit if collection is empty"
 	anAnnouncement candidateLinks ifEmpty: [ ^ self ].
 	self
@@ -242,11 +196,8 @@ GTSpotterResultsBrick>>onAllCandidatesAdded: anAnnouncement [
 		to: (self categoryBrickFor: anAnnouncement category)
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>onAllCandidatesRemoved [
+{ #category : #'event handling' }
+GTSpotterResultsBrick >> onAllCandidatesRemoved [
 	
 	self removeAllBricks.
 	categories := Dictionary new.
@@ -254,21 +205,15 @@ GTSpotterResultsBrick>>onAllCandidatesRemoved [
 	
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>onCandidateAdded: anAnnouncement [
+{ #category : #'event handling' }
+GTSpotterResultsBrick >> onCandidateAdded: anAnnouncement [
 	self
 		addItem: (self buildItemFor: anAnnouncement candidateLink in: anAnnouncement category)
 		to: (self categoryBrickFor: anAnnouncement category)
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>onCandidateSelected: ann [
+{ #category : #'event handling' }
+GTSpotterResultsBrick >> onCandidateSelected: ann [
 	|processor categoryBrick itemBrick titleBrick scrollTo|
 
 	processor := ann itemBrick processor.	
@@ -281,11 +226,8 @@ GTSpotterResultsBrick>>onCandidateSelected: ann [
 	self scrollTo: scrollTo
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>onCandidatesAmountChanged: ann [
+{ #category : #'event handling' }
+GTSpotterResultsBrick >> onCandidatesAmountChanged: ann [
 	|categoryMorph|
 	
 	categoryMorph := self categoryBrickOf: ann category.
@@ -293,11 +235,8 @@ GTSpotterResultsBrick>>onCandidatesAmountChanged: ann [
 	
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>onRemovedFrom: aBrick [
+{ #category : #'event handling' }
+GTSpotterResultsBrick >> onRemovedFrom: aBrick [
 	super onRemovedFrom: aBrick.
 	
 	self stepModel spotter announcer unsubscribe: self.
@@ -305,28 +244,19 @@ GTSpotterResultsBrick>>onRemovedFrom: aBrick [
 	self stepModel candidates announcer unsubscribe: self
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>onScrolled [
+{ #category : #'event handling' }
+GTSpotterResultsBrick >> onScrolled [
 
 	self stepModel spotter announce: GTSpotterCandidateSelectedMoved new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>stepModel [
+{ #category : #accessing }
+GTSpotterResultsBrick >> stepModel [
 	^ stepModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>stepModel: aModel [
+{ #category : #accessing }
+GTSpotterResultsBrick >> stepModel: aModel [
 	stepModel := aModel.
 	
 	stepModel candidates announcer when: GTSpotterCandidateAdded send: #onCandidateAdded: to: self.
@@ -338,11 +268,8 @@ GTSpotterResultsBrick>>stepModel: aModel [
 	stepModel announcer when: GTSpotterCandidateSelected send: #onCandidateSelected: to: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterResultsBrick>>waitingText [
+{ #category : #accessing }
+GTSpotterResultsBrick >> waitingText [
 
 	^ '...'
 ]

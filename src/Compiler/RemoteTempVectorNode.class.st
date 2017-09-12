@@ -9,23 +9,16 @@ Class {
 		'readNode',
 		'writeNode'
 	],
-	#category : #Compiler-ParseNodes,
-	#timestamp : '<historical>'
+	#category : #Compiler-ParseNodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>accept: aVisitor [
+{ #category : #visiting }
+RemoteTempVectorNode >> accept: aVisitor [
 	^aVisitor visitRemoteTempVectorNode: self
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>addRemoteTemp: aTempVariableNode encoder: encoder [
+{ #category : #'code generation (closures)' }
+RemoteTempVectorNode >> addRemoteTemp: aTempVariableNode encoder: encoder [
 	remoteTemps ifNil:
 		[remoteTemps := OrderedCollection new].
 	remoteTemps addLast: aTempVariableNode.
@@ -38,21 +31,15 @@ RemoteTempVectorNode>>addRemoteTemp: aTempVariableNode encoder: encoder [
 		 writeNode := encoder encodeSelector: #at:put:]
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>emitCodeForIndexOf: aTempVariableNode stack: stack encoder: encoder [
+{ #category : #'code generation (closures)' }
+RemoteTempVectorNode >> emitCodeForIndexOf: aTempVariableNode stack: stack encoder: encoder [
 	[encoder supportsClosureOpcodes not] assert.
 	(encoder encodeLiteral: (remoteTemps indexOf: aTempVariableNode))
 		emitCodeForValue: stack encoder: encoder
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>emitCodeForLoadFor: aTempVariableNode stack: stack encoder: encoder [
+{ #category : #'code generation (closures)' }
+RemoteTempVectorNode >> emitCodeForLoadFor: aTempVariableNode stack: stack encoder: encoder [
 	encoder supportsClosureOpcodes ifTrue:
 		[^self].
 	"Need to generate the first half of
@@ -62,11 +49,8 @@ RemoteTempVectorNode>>emitCodeForLoadFor: aTempVariableNode stack: stack encoder
 	self emitCodeForIndexOf: aTempVariableNode stack: stack encoder: encoder
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>emitCodeForStoreInto: aTempVariableNode stack: stack encoder: encoder [
+{ #category : #'code generation (closures)' }
+RemoteTempVectorNode >> emitCodeForStoreInto: aTempVariableNode stack: stack encoder: encoder [
 	encoder supportsClosureOpcodes
 		ifTrue:
 			[encoder
@@ -80,11 +64,8 @@ RemoteTempVectorNode>>emitCodeForStoreInto: aTempVariableNode stack: stack encod
 				super: false]
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>emitCodeForStorePopInto: aTempVariableNode stack: stack encoder: encoder [
+{ #category : #'code generation (closures)' }
+RemoteTempVectorNode >> emitCodeForStorePopInto: aTempVariableNode stack: stack encoder: encoder [
 	encoder supportsClosureOpcodes
 		ifTrue:
 			[encoder
@@ -96,11 +77,8 @@ RemoteTempVectorNode>>emitCodeForStorePopInto: aTempVariableNode stack: stack en
 	stack pop: 1
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>emitCodeForValueOf: aTempVariableNode stack: stack encoder: encoder [
+{ #category : #'code generation (closures)' }
+RemoteTempVectorNode >> emitCodeForValueOf: aTempVariableNode stack: stack encoder: encoder [
 	encoder supportsClosureOpcodes
 		ifTrue:
 			[encoder
@@ -116,19 +94,13 @@ RemoteTempVectorNode>>emitCodeForValueOf: aTempVariableNode stack: stack encoder
 				super: false]
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>isIndirectTempVector [
+{ #category : #'code generation (closures)' }
+RemoteTempVectorNode >> isIndirectTempVector [
 	^true
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>nodeToInitialize: encoder [
+{ #category : #'code generation (closures)' }
+RemoteTempVectorNode >> nodeToInitialize: encoder [
 	^AssignmentNode new
 		variable: self
 		value: (encoder supportsClosureOpcodes
@@ -142,36 +114,24 @@ RemoteTempVectorNode>>nodeToInitialize: encoder [
 							from: encoder])
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>referenceScopesAndIndicesDo: aBinaryBlock [
+{ #category : #'code generation (closures)' }
+RemoteTempVectorNode >> referenceScopesAndIndicesDo: aBinaryBlock [
 	self shouldNotImplement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>remoteTemps [
+{ #category : #accessing }
+RemoteTempVectorNode >> remoteTemps [
 	^remoteTemps
 ]
 
-{
-	#category : #decompiler,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>remoteTemps: anArray [
+{ #category : #decompiler }
+RemoteTempVectorNode >> remoteTemps: anArray [
 	remoteTemps := anArray.
 	anArray do: [:tempNode| tempNode remoteNode: self]
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>scope [
+{ #category : #'code generation (closures)' }
+RemoteTempVectorNode >> scope [
 	"Answer scope of temporary variables.
 	 Currently only the following distinctions are made:
 		 0	outer level: args and user-declared temps
@@ -182,20 +142,14 @@ RemoteTempVectorNode>>scope [
 	^-3
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>sizeCodeForIndexOf: aTempVariableNode encoder: encoder [
+{ #category : #'code generation (closures)' }
+RemoteTempVectorNode >> sizeCodeForIndexOf: aTempVariableNode encoder: encoder [
 	[encoder supportsClosureOpcodes not] assert.
 	^(encoder encodeLiteral: (remoteTemps indexOf: aTempVariableNode)) sizeCodeForValue: encoder
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>sizeCodeForLoadFor: aTempVariableNode encoder: encoder [
+{ #category : #'code generation (closures)' }
+RemoteTempVectorNode >> sizeCodeForLoadFor: aTempVariableNode encoder: encoder [
 	encoder supportsClosureOpcodes ifTrue:
 		[^0].
 	"Need to size the first half of
@@ -205,32 +159,23 @@ RemoteTempVectorNode>>sizeCodeForLoadFor: aTempVariableNode encoder: encoder [
 	+ (self sizeCodeForIndexOf: aTempVariableNode encoder: encoder)
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>sizeCodeForStoreInto: aTempVariableNode encoder: encoder [
+{ #category : #'code generation (closures)' }
+RemoteTempVectorNode >> sizeCodeForStoreInto: aTempVariableNode encoder: encoder [
 	encoder supportsClosureOpcodes ifTrue:
 		[^encoder sizeStoreRemoteTemp: (remoteTemps indexOf: aTempVariableNode) - 1 inVectorAt: index].
 	^writeNode sizeCode: encoder args: 2 super: false
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>sizeCodeForStorePopInto: aTempVariableNode encoder: encoder [
+{ #category : #'code generation (closures)' }
+RemoteTempVectorNode >> sizeCodeForStorePopInto: aTempVariableNode encoder: encoder [
 	encoder supportsClosureOpcodes ifTrue:
 		[^encoder sizeStorePopRemoteTemp: (remoteTemps indexOf: aTempVariableNode) - 1 inVectorAt: index].
 	^(self sizeCodeForStoreInto: aTempVariableNode encoder: encoder)
 	+ encoder sizePop
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-RemoteTempVectorNode>>sizeCodeForValueOf: aTempVariableNode encoder: encoder [
+{ #category : #'code generation (closures)' }
+RemoteTempVectorNode >> sizeCodeForValueOf: aTempVariableNode encoder: encoder [
 	encoder supportsClosureOpcodes ifTrue:
 		[^encoder sizePushRemoteTemp: (remoteTemps indexOf: aTempVariableNode) - 1 inVectorAt: index].
 	^(self sizeCodeForValue: encoder)

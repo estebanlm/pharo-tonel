@@ -1,12 +1,7 @@
-Extension {
-	#name : #ArrayedCollection
-}
+Extension { #name : #ArrayedCollection }
 
-{
-	#category : #'*Glamour-Helpers',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-ArrayedCollection class>>with: anObject withAll: aCollection [
+{ #category : #'*Glamour-Helpers' }
+ArrayedCollection class >> with: anObject withAll: aCollection [
 
 	| newArray |
 	newArray := self new: aCollection size + 1.

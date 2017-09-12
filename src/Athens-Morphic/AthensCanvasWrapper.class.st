@@ -9,67 +9,45 @@ Class {
 		'currentClipRect',
 		'origin'
 	],
-	#category : #Athens-Morphic,
-	#timestamp : '<historical>'
+	#category : #Athens-Morphic
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper class>>on: anAthensCanvas [
+{ #category : #'instance creation' }
+AthensCanvasWrapper class >> on: anAthensCanvas [
 	^ self new
 		canvas: anAthensCanvas;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>allocateForm: extentPoint [
+{ #category : #accessing }
+AthensCanvasWrapper >> allocateForm: extentPoint [
 	^ Form extent: extentPoint depth:32
 ]
 
-{
-	#category : #'canvas converting',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>asShadowDrawingCanvas [
+{ #category : #'canvas converting' }
+AthensCanvasWrapper >> asShadowDrawingCanvas [
 	self flag: #todo.	"this may not work, but it
 doesn't hurt yet and HandMorph relies on this"
 	^ (ShadowDrawingCanvas on: self) shadowColor: (Color orange alpha: 0.2)
 ]
 
-{
-	#category : #'canvas drawing-support',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>cache: aRectangle using: aCache during: aBlock  [
+{ #category : #'canvas drawing-support' }
+AthensCanvasWrapper >> cache: aRectangle using: aCache during: aBlock [ 
 	self flag:#noKnownSender
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>canvas [
+{ #category : #private }
+AthensCanvasWrapper >> canvas [
 	^ athensCanvas
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>canvas: anAthensCanvas [
+{ #category : #accessing }
+AthensCanvasWrapper >> canvas: anAthensCanvas [
 	athensCanvas := anAthensCanvas
 ]
 
-{
-	#category : #'private clip transform',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>canvasClipBy: aClipRect during: aBlock [
+{ #category : #'private clip transform' }
+AthensCanvasWrapper >> canvasClipBy: aClipRect during: aBlock [
 	| oldRect |
 	oldRect := self clipRect.
 	currentClipRect := aClipRect.
@@ -77,27 +55,18 @@ AthensCanvasWrapper>>canvasClipBy: aClipRect during: aBlock [
 		ensure: [ currentClipRect := oldRect ]
 ]
 
-{
-	#category : #'canvas drawing-support',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>clipBy: aRectangle during: aBlock [
+{ #category : #'canvas drawing-support' }
+AthensCanvasWrapper >> clipBy: aRectangle during: aBlock [
 	self canvasClipBy: aRectangle during: [ aBlock value: self ]
 ]
 
-{
-	#category : #'canvas accessing',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>clipRect [
+{ #category : #'canvas accessing' }
+AthensCanvasWrapper >> clipRect [
 	^ self canvas clipRect
 ]
 
-{
-	#category : #'private clip transform',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>clipWrapperAndAthensTransformBy: aDisplayTransform clippingTo: aClipRect during: aBlock smoothing: cellSize [
+{ #category : #'private clip transform' }
+AthensCanvasWrapper >> clipWrapperAndAthensTransformBy: aDisplayTransform clippingTo: aClipRect during: aBlock smoothing: cellSize [
 "the clipTransform methods are just trial and error attemps on getting this right"
 	| rect |
 	rect := aDisplayTransform globalBoundsToLocal: aClipRect.
@@ -113,11 +82,8 @@ AthensCanvasWrapper>>clipWrapperAndAthensTransformBy: aDisplayTransform clipping
 					aBlock value: self ] ]	"]"
 ]
 
-{
-	#category : #'private clip transform',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>clipWrapperTransformBy: aDisplayTransform clippingTo: aClipRect during: aBlock smoothing: cellSize [
+{ #category : #'private clip transform' }
+AthensCanvasWrapper >> clipWrapperTransformBy: aDisplayTransform clippingTo: aClipRect during: aBlock smoothing: cellSize [
 "the clipTransform methods are just trial and error attemps on getting this right"
 	| rect |
 	rect := aDisplayTransform globalBoundsToLocal: aClipRect.
@@ -131,11 +97,8 @@ AthensCanvasWrapper>>clipWrapperTransformBy: aDisplayTransform clippingTo: aClip
 		
 ]
 
-{
-	#category : #'canvas accessing',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>contentsOfArea: aRectangle into: aForm [
+{ #category : #'canvas accessing' }
+AthensCanvasWrapper >> contentsOfArea: aRectangle into: aForm [
 	"this may conflict with current pathtransformations, but up to now"
 	"it works"
 	| bb |
@@ -152,11 +115,8 @@ AthensCanvasWrapper>>contentsOfArea: aRectangle into: aForm [
 	^ aForm
 ]
 
-{
-	#category : #'formcanvas copying',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>copyClipRect: aRectangle [
+{ #category : #'formcanvas copying' }
+AthensCanvasWrapper >> copyClipRect: aRectangle [
 "dont know why this exists, all calls with a different cliprect should go through"
 "clipBy:during: and I don't know if this properly works with athens canvases because"
 "we can not handle to different clipstates for the same canvas."
@@ -164,21 +124,15 @@ AthensCanvasWrapper>>copyClipRect: aRectangle [
 
 ]
 
-{
-	#category : #'formcanvas copying',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>copyOrigin: aPoint clipRect: aRectangle [
+{ #category : #'formcanvas copying' }
+AthensCanvasWrapper >> copyOrigin: aPoint clipRect: aRectangle [
 	^ self copy
 		setOrigin: aPoint
 		clipRect: (self clipRect intersect: aRectangle ifNone: [0@0 corner: 0@0])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>createClosedEllipsePathIn: aRectangle [
+{ #category : #private }
+AthensCanvasWrapper >> createClosedEllipsePathIn: aRectangle [
 	| radius width |
 	aRectangle area > 0
 		ifFalse: [ ^ self ].
@@ -193,11 +147,8 @@ AthensCanvasWrapper>>createClosedEllipsePathIn: aRectangle [
 				cwArcTo: width @ radius angle: Float pi ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>createClosedPolygonPathFrom: aPointsArray [
+{ #category : #private }
+AthensCanvasWrapper >> createClosedPolygonPathFrom: aPointsArray [
 	^ self canvas
 		createPath: [ :builder | 
 			aPointsArray ifEmpty: [ builder ].
@@ -208,27 +159,18 @@ AthensCanvasWrapper>>createClosedPolygonPathFrom: aPointsArray [
 			builder ]
 ]
 
-{
-	#category : #'canvas accessing',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>depth [
+{ #category : #'canvas accessing' }
+AthensCanvasWrapper >> depth [
 	^ 32
 ]
 
-{
-	#category : #'canvas drawing-general',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>draw: anObject [
+{ #category : #'canvas drawing-general' }
+AthensCanvasWrapper >> draw: anObject [
 	^anObject drawOn: self
 ]
 
-{
-	#category : #'canvas drawing-images',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>drawImage: aForm at: aPoint [
+{ #category : #'canvas drawing-images' }
+AthensCanvasWrapper >> drawImage: aForm at: aPoint [
 	"Draw the given Form, which is assumed to be a Form or ColorForm"
 
 	self drawImage: aForm
@@ -236,11 +178,8 @@ AthensCanvasWrapper>>drawImage: aForm at: aPoint [
 		sourceRect: aForm boundingBox
 ]
 
-{
-	#category : #'canvas drawing-images',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>drawImage: aForm at: aPoint sourceRect: sourceRect [
+{ #category : #'canvas drawing-images' }
+AthensCanvasWrapper >> drawImage: aForm at: aPoint sourceRect: sourceRect [
 	"Draw the given form."
 
 	^self image: aForm
@@ -249,21 +188,15 @@ AthensCanvasWrapper>>drawImage: aForm at: aPoint sourceRect: sourceRect [
 		rule: Form over
 ]
 
-{
-	#category : #'canvas drawing-general',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>drawMorph: aMorph [
+{ #category : #'canvas drawing-general' }
+AthensCanvasWrapper >> drawMorph: aMorph [
 	(self isVisible: aMorph fullBounds)
 		ifFalse: [ ^ self ].
 	self draw: aMorph
 ]
 
-{
-	#category : #'canvas drawing-polygons',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>drawPolygon: vertices color: aColor borderWidth: aBorderWidth borderColor: aBorderColor [
+{ #category : #'canvas drawing-polygons' }
+AthensCanvasWrapper >> drawPolygon: vertices color: aColor borderWidth: aBorderWidth borderColor: aBorderColor [
 	| path |
 	self canvas pathTransform
 		restoreAfter: [ 
@@ -275,11 +208,8 @@ AthensCanvasWrapper>>drawPolygon: vertices color: aColor borderWidth: aBorderWid
 	self canvas drawShape: path
 ]
 
-{
-	#category : #'canvas drawing-polygons',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>drawPolygon: vertices fillStyle: aFillStyle [
+{ #category : #'canvas drawing-polygons' }
+AthensCanvasWrapper >> drawPolygon: vertices fillStyle: aFillStyle [
 	| path |
 	self canvas pathTransform
 		restoreAfter: [ 
@@ -289,19 +219,13 @@ AthensCanvasWrapper>>drawPolygon: vertices fillStyle: aFillStyle [
 	self canvas drawShape: path
 ]
 
-{
-	#category : #'canvas drawing-polygons',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>drawPolygon: vertices fillStyle: aFillStyle borderWidth: aBorderWidth borderColor: aBorderColor [
+{ #category : #'canvas drawing-polygons' }
+AthensCanvasWrapper >> drawPolygon: vertices fillStyle: aFillStyle borderWidth: aBorderWidth borderColor: aBorderColor [
 	self drawPolygon: vertices color:  aFillStyle borderWidth:  aBorderWidth borderColor: aBorderColor
 ]
 
-{
-	#category : #'canvas drawing-text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>drawString: aString at: aPoint font: aFontOrNil color: aColor [
+{ #category : #'canvas drawing-text' }
+AthensCanvasWrapper >> drawString: aString at: aPoint font: aFontOrNil color: aColor [
 	self
 		drawString: aString
 		in: (origin + aPoint extent: self clipRect extent)
@@ -309,11 +233,8 @@ AthensCanvasWrapper>>drawString: aString at: aPoint font: aFontOrNil color: aCol
 		color: aColor
 ]
 
-{
-	#category : #'canvas drawing-text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>drawString: aString from: firstIndex to: lastIndex in: bounds font: aFontOrNil color: aColor underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc [
+{ #category : #'canvas drawing-text' }
+AthensCanvasWrapper >> drawString: aString from: firstIndex to: lastIndex in: bounds font: aFontOrNil color: aColor underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc [
 	| font |
 	font := aFontOrNil ifNil: [ TextStyle defaultFont ].
 	self canvasClipBy: (bounds intersect: self canvas clipRect) during:[ 
@@ -333,19 +254,13 @@ AthensCanvasWrapper>>drawString: aString from: firstIndex to: lastIndex in: boun
 
 ]
 
-{
-	#category : #'canvas drawing-text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>drawString: aString in: bounds [
+{ #category : #'canvas drawing-text' }
+AthensCanvasWrapper >> drawString: aString [ in: bounds
 	self drawString: aString in: bounds font:nil color: Color black
 ]
 
-{
-	#category : #'canvas drawing-text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>drawString: aString in: bounds font: aFontOrNil color: aColor [
+{ #category : #'canvas drawing-text' }
+AthensCanvasWrapper >> drawString: aString in: bounds font: aFontOrNil color: aColor [
 	| font |
 	font := aFontOrNil ifNil: [ TextStyle defaultFont ].
 	self canvasClipBy: (bounds intersect: self canvas clipRect) during:[
@@ -359,11 +274,8 @@ AthensCanvasWrapper>>drawString: aString in: bounds font: aFontOrNil color: aCol
 			self canvas drawString: aString from: 1 to: aString size ] ]
 ]
 
-{
-	#category : #'canvas drawing-text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>drawString: s in: boundsRect font: fontOrNil color: c underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc [
+{ #category : #'canvas drawing-text' }
+AthensCanvasWrapper >> drawString: s in: boundsRect font: fontOrNil color: c underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc [
 	^ self
 		drawString: s asString
 		from: 1
@@ -377,37 +289,25 @@ AthensCanvasWrapper>>drawString: s in: boundsRect font: fontOrNil color: c under
 		strikethroughColor: sc
 ]
 
-{
-	#category : #'canvas accessing',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>extent [
+{ #category : #'canvas accessing' }
+AthensCanvasWrapper >> extent [
 	^ self canvas surface extent
 ]
 
-{
-	#category : #'canvas drawing',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>fillColor: aColor [
+{ #category : #'canvas drawing' }
+AthensCanvasWrapper >> fillColor: aColor [
 	self flag:#NoKnownSender
 ]
 
-{
-	#category : #'canvas drawing-ovals',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>fillOval: r color: c [
+{ #category : #'canvas drawing-ovals' }
+AthensCanvasWrapper >> fillOval: r color: c [
 
 	self fillOval: r color: c borderWidth: 0 borderColor: Color transparent.
 
 ]
 
-{
-	#category : #'canvas drawing-ovals',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>fillOval: aRectangle color: aColor borderWidth: aBorderWidth borderColor: aBorderColor [
+{ #category : #'canvas drawing-ovals' }
+AthensCanvasWrapper >> fillOval: aRectangle color: aColor borderWidth: aBorderWidth borderColor: aBorderColor [
 	self
 		fillOval: aRectangle
 		fillStyle: aColor
@@ -415,19 +315,13 @@ AthensCanvasWrapper>>fillOval: aRectangle color: aColor borderWidth: aBorderWidt
 		borderColor: aBorderColor
 ]
 
-{
-	#category : #'canvas drawing-ovals',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>fillOval: aRectangle fillStyle: aFillStyle [
+{ #category : #'canvas drawing-ovals' }
+AthensCanvasWrapper >> fillOval: aRectangle fillStyle: aFillStyle [
 	^self fillOval: aRectangle fillStyle: aFillStyle borderWidth: 0 borderColor: Color transparent
 ]
 
-{
-	#category : #'canvas drawing-ovals',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>fillOval: aRectangle fillStyle: aFillStyle borderWidth: aBorderWidth borderColor: aBorderColor [
+{ #category : #'canvas drawing-ovals' }
+AthensCanvasWrapper >> fillOval: aRectangle fillStyle: aFillStyle borderWidth: aBorderWidth borderColor: aBorderColor [
 	self canvas setPaint: aFillStyle.
 	self canvas pathTransform
 		restoreAfter: [ 
@@ -442,28 +336,19 @@ AthensCanvasWrapper>>fillOval: aRectangle fillStyle: aFillStyle borderWidth: aBo
 			self canvas draw ]
 ]
 
-{
-	#category : #'canvas drawing-rectangles',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>fillRectangle: aRectangle color: aColor [
+{ #category : #'canvas drawing-rectangles' }
+AthensCanvasWrapper >> fillRectangle: aRectangle color: aColor [
 	self canvas setPaint: aColor.
 	self canvas drawShape: aRectangle
 ]
 
-{
-	#category : #'canvas drawing-rectangles',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>fillRectangle: aRectangle fillStyle: aFillStyle [
+{ #category : #'canvas drawing-rectangles' }
+AthensCanvasWrapper >> fillRectangle: aRectangle fillStyle: aFillStyle [
 	self fillRectangle: aRectangle color: aFillStyle
 ]
 
-{
-	#category : #'canvas drawing-rectangles',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>fillRectangle: aRectangle fillStyle: aFillStyle borderStyle: aBorderStyle [
+{ #category : #'canvas drawing-rectangles' }
+AthensCanvasWrapper >> fillRectangle: aRectangle fillStyle: aFillStyle borderStyle: aBorderStyle [
 	self
 		canvasClipBy: self clipRect
 		during: [ 
@@ -473,35 +358,23 @@ AthensCanvasWrapper>>fillRectangle: aRectangle fillStyle: aFillStyle borderStyle
 			self canvas drawShape: (aRectangle insetBy: aBorderStyle width / 2 asFloat) ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>finish [
+{ #category : #initialization }
+AthensCanvasWrapper >> finish [
 	self flush
 ]
 
-{
-	#category : #'canvas drawing-support',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>flush [
+{ #category : #'canvas drawing-support' }
+AthensCanvasWrapper >> flush [
 	^ self canvas surface flush.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>form [
+{ #category : #accessing }
+AthensCanvasWrapper >> form [
 	^ self canvas surface asForm
 ]
 
-{
-	#category : #'canvas drawing-rectangles',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>frameAndFillRectangle: aRectangle fillColor: aFillColor borderWidth: aBorderWidth borderColor: aBorderColor [
+{ #category : #'canvas drawing-rectangles' }
+AthensCanvasWrapper >> frameAndFillRectangle: aRectangle fillColor: aFillColor borderWidth: aBorderWidth borderColor: aBorderColor [
 	self
 		canvasClipBy: self clipRect
 		during: [ 
@@ -511,38 +384,26 @@ AthensCanvasWrapper>>frameAndFillRectangle: aRectangle fillColor: aFillColor bor
 			self canvas drawShape: aRectangle ]
 ]
 
-{
-	#category : #'canvas drawing-rectangles',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth topLeftColor: topLeftColor bottomRightColor: bottomRightColor [
+{ #category : #'canvas drawing-rectangles' }
+AthensCanvasWrapper >> frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth topLeftColor: topLeftColor bottomRightColor: bottomRightColor [
 	self fillRectangle: r fillStyle: fillColor.
 	topLeftColor = bottomRightColor
 		ifTrue: [ self frameRectangle: r width: borderWidth color: bottomRightColor ]
 ]
 
-{
-	#category : #'canvas drawing-rectangles',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>frameRectangle: aRectangle color: aColor [
+{ #category : #'canvas drawing-rectangles' }
+AthensCanvasWrapper >> frameRectangle: aRectangle color: aColor [
 	self frameRectangle: aRectangle width: 1 color: aColor
 ]
 
-{
-	#category : #'canvas drawing-rectangles',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>frameRectangle: aRectangle width: aBorderWidth color: aColor [
+{ #category : #'canvas drawing-rectangles' }
+AthensCanvasWrapper >> frameRectangle: aRectangle width: aBorderWidth color: aColor [
 	(self canvas setStrokePaint: aColor) width: aBorderWidth.
 	self canvas drawShape: aRectangle
 ]
 
-{
-	#category : #'canvas drawing-rectangles',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>frameRectangle: aRectangle width: width colors: colors dashes: dashes [
+{ #category : #'canvas drawing-rectangles' }
+AthensCanvasWrapper >> frameRectangle: aRectangle width: width colors: colors dashes: dashes [
 	| stroke |
 	stroke := self canvas setStrokePaint: colors first.
 	stroke width: width.
@@ -555,29 +416,20 @@ AthensCanvasWrapper>>frameRectangle: aRectangle width: width colors: colors dash
 			self canvas drawShape: aRectangle ]
 ]
 
-{
-	#category : #'canvas drawing-general',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>fullDraw: anObject [
+{ #category : #'canvas drawing-general' }
+AthensCanvasWrapper >> fullDraw: anObject [
 	^anObject fullDrawOn: self
 ]
 
-{
-	#category : #'canvas drawing-general',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>fullDrawMorph: aMorph [
+{ #category : #'canvas drawing-general' }
+AthensCanvasWrapper >> fullDrawMorph: aMorph [
 	"Hook method for potential other canvases. In the core, this method looks supefluous but PostscriptCanvases and other canvases can specialized it for Morph rendering. Therefore it should not be merged with fullDraw:."
 
 	self fullDraw: aMorph 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>image: aForm at: aPoint sourceRect: sourceRect rule: rule [
+{ #category : #private }
+AthensCanvasWrapper >> image: aForm at: aPoint sourceRect: sourceRect rule: rule [
  
     self flag: #MayBeWrong.
     self canvas pathTransform
@@ -587,11 +439,8 @@ AthensCanvasWrapper>>image: aForm at: aPoint sourceRect: sourceRect rule: rule [
             self canvas drawShape: (0 @ 0 extent: sourceRect extent) ] 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>imagePaint: aForm at: aPoint sourceRect: sourceRect [
+{ #category : #private }
+AthensCanvasWrapper >> imagePaint: aForm at: aPoint sourceRect: sourceRect [
 	self canvas pathTransform
 		restoreAfter: [ 
 			self canvas setPaint: aForm.
@@ -599,11 +448,8 @@ AthensCanvasWrapper>>imagePaint: aForm at: aPoint sourceRect: sourceRect [
 			self canvas drawShape: sourceRect]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>initialize [
+{ #category : #initialization }
+AthensCanvasWrapper >> initialize [
 
 	super initialize.
 
@@ -613,21 +459,15 @@ AthensCanvasWrapper>>initialize [
 
 ]
 
-{
-	#category : #'canvas testing',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>isVisible: aRectangle [
+{ #category : #'canvas testing' }
+AthensCanvasWrapper >> isVisible: aRectangle [
 	"Return true if the given rectangle is (partially) visible"
 
 	^ self clipRect intersects: aRectangle.
 ]
 
-{
-	#category : #'private debug',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>isVisibleDebug: aRectangle [
+{ #category : #'private debug' }
+AthensCanvasWrapper >> isVisibleDebug: aRectangle [
 	"Return true if the given rectangle is (partially) visible"
 
 	| vis canvasLocalClip |
@@ -643,11 +483,8 @@ AthensCanvasWrapper>>isVisibleDebug: aRectangle [
 	^ vis
 ]
 
-{
-	#category : #'canvas drawing',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>line: pt1 to: pt2 color: c [
+{ #category : #'canvas drawing' }
+AthensCanvasWrapper >> line: pt1 to: pt2 color: c [
 	self
 		line: pt1
 		to: pt2
@@ -655,11 +492,8 @@ AthensCanvasWrapper>>line: pt1 to: pt2 color: c [
 		color: c
 ]
 
-{
-	#category : #'canvas drawing',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>line: pt1 to: pt2 width: w color: c [
+{ #category : #'canvas drawing' }
+AthensCanvasWrapper >> line: pt1 to: pt2 width: w color: c [
 	| path |
 	path := self createClosedPolygonPathFrom: {pt1 . pt2}.
 		
@@ -668,85 +502,55 @@ AthensCanvasWrapper>>line: pt1 to: pt2 width: w color: c [
 	
 ]
 
-{
-	#category : #'canvas accessing',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>origin [
+{ #category : #'canvas accessing' }
+AthensCanvasWrapper >> origin [
 	^ origin
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>origin: aPoint [
+{ #category : #private }
+AthensCanvasWrapper >> origin: aPoint [
 	origin := aPoint
 ]
 
-{
-	#category : #'canvas drawing-images',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>paintImage: aForm at: aPoint [
+{ #category : #'canvas drawing-images' }
+AthensCanvasWrapper >> paintImage: aForm at: aPoint [
 	self paintImage: aForm at: aPoint sourceRect: aForm boundingBox
 ]
 
-{
-	#category : #'canvas drawing-images',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>paintImage: aForm at: aPoint sourceRect: sourceRect [
+{ #category : #'canvas drawing-images' }
+AthensCanvasWrapper >> paintImage: aForm at: aPoint sourceRect: sourceRect [
 	self canvas paintMode over.
 	self imagePaint: aForm at: aPoint sourceRect: sourceRect
 ]
 
-{
-	#category : #'canvas drawing',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>paragraph: aParagraph bounds: aRectangle color: aColor [
+{ #category : #'canvas drawing' }
+AthensCanvasWrapper >> paragraph: aParagraph bounds: aRectangle color: aColor [
 	aParagraph drawOnAthensCanvas: self canvas bounds: aRectangle color: aColor
 ]
 
-{
-	#category : #'canvas drawing-general',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>roundCornersOf: aMorph during: aBlock [
+{ #category : #'canvas drawing-general' }
+AthensCanvasWrapper >> roundCornersOf: aMorph during: aBlock [
 	^ self roundCornersOf: aMorph in: aMorph bounds during: aBlock
 ]
 
-{
-	#category : #'canvas drawing-general',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>roundCornersOf: aMorph in: bounds during: aBlock [
+{ #category : #'canvas drawing-general' }
+AthensCanvasWrapper >> roundCornersOf: aMorph in: bounds during: aBlock [
 	^ aBlock value
 ]
 
-{
-	#category : #'formcanvas copying',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>rubParagraph: para bounds: bounds color: c [
+{ #category : #'formcanvas copying' }
+AthensCanvasWrapper >> rubParagraph: para bounds: bounds color: c [
 	self paragraph: para bounds: bounds color: c
 ]
 
-{
-	#category : #'formcanvas copying',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>setOrigin: aPoint clipRect: aRectangle [
+{ #category : #'formcanvas copying' }
+AthensCanvasWrapper >> setOrigin: aPoint clipRect: aRectangle [
 	origin := aPoint.
 	currentClipRect := aRectangle 
 ]
 
-{
-	#category : #'canvas drawing',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>stencil: stencilForm at: aPoint sourceRect: sourceRect color: aColor [
+{ #category : #'canvas drawing' }
+AthensCanvasWrapper >> stencil: stencilForm at: aPoint sourceRect: sourceRect color: aColor [
 	|mask|
 	mask := stencilForm asFormOfDepth: 32.
 	mask mapColor:Color white to: Color transparent.
@@ -760,11 +564,8 @@ AthensCanvasWrapper>>stencil: stencilForm at: aPoint sourceRect: sourceRect colo
 
 ]
 
-{
-	#category : #'canvas drawing-support',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>transformBy: aDisplayTransform clippingTo: aClipRect during: aBlock smoothing: cellSize [
+{ #category : #'canvas drawing-support' }
+AthensCanvasWrapper >> transformBy: aDisplayTransform clippingTo: aClipRect during: aBlock smoothing: cellSize [
 	self canvas
 		transformBy: aDisplayTransform
 		withClip: aClipRect
@@ -772,11 +573,8 @@ AthensCanvasWrapper>>transformBy: aDisplayTransform clippingTo: aClipRect during
 		during: [ :v | aBlock value: self ]
 ]
 
-{
-	#category : #'canvas drawing-support',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>translateBy: offset clippingTo: aRect during: aBlock [
+{ #category : #'canvas drawing-support' }
+AthensCanvasWrapper >> translateBy: offset clippingTo: aRect during: aBlock [
 	self
 		canvasClipBy: aRect
 		during: [ 
@@ -786,27 +584,18 @@ AthensCanvasWrapper>>translateBy: offset clippingTo: aRect during: aBlock [
 					aBlock value: self ] ]
 ]
 
-{
-	#category : #'canvas drawing-support',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>translateBy: offset during: aBlock [
+{ #category : #'canvas drawing-support' }
+AthensCanvasWrapper >> translateBy: offset during: aBlock [
 	^ self copyOrigin: origin + offset clipRect: self clipRect
 ]
 
-{
-	#category : #'canvas drawing-images',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>translucentImage: aForm at: aPoint [
+{ #category : #'canvas drawing-images' }
+AthensCanvasWrapper >> translucentImage: aForm at: aPoint [
 	self translucentImage: aForm at: aPoint sourceRect: aForm boundingBox
 ]
 
-{
-	#category : #'canvas drawing-images',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCanvasWrapper>>translucentImage: aForm at: aPoint sourceRect: sourceRect [
+{ #category : #'canvas drawing-images' }
+AthensCanvasWrapper >> translucentImage: aForm at: aPoint sourceRect: sourceRect [
 	self canvas paintMode over.
 	self imagePaint: aForm at: aPoint sourceRect: sourceRect
 

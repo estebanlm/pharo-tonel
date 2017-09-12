@@ -10,50 +10,34 @@ Class {
 		'from',
 		'to'
 	],
-	#category : #Kernel-Exceptions,
-	#timestamp : '<historical>'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DomainError class>>signal: signallerText from: start [
+{ #category : #signaling }
+DomainError class >> signal: signallerText from: start [
 	^ self signal: signallerText from: start to: Float infinity
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DomainError class>>signal: signallerText from: start to: end [
+{ #category : #signaling }
+DomainError class >> signal: signallerText from: start to: end [
 	^ self new
 		from: start;
 		to: end;
 		signal: signallerText
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DomainError class>>signal: signallerText to: end [
+{ #category : #signaling }
+DomainError class >> signal: signallerText to: end [
 	^ self signal: signallerText from: Float infinity negated to: end
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DomainError class>>signalFrom: start [
+{ #category : #signaling }
+DomainError class >> signalFrom: start [
 	^ self signalFrom: start to: Float infinity
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DomainError class>>signalFrom: start to: end [
+{ #category : #signaling }
+DomainError class >> signalFrom: start to: end [
 	| msgStart msgEnd |
 	msgStart := (start isFloat and: [start isFinite not]) ifTrue: ['(-infinity'] ifFalse: ['[', start printString].
 	msgEnd := (end isFloat and: [end isFinite not]) ifTrue: ['infinity)'] ifFalse: [end printString, ']'].
@@ -62,42 +46,27 @@ DomainError class>>signalFrom: start to: end [
 		to: end
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DomainError class>>signalTo: end [
+{ #category : #signaling }
+DomainError class >> signalTo: end [
 	^ self signalFrom: Float infinity negated to: end
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DomainError>>from [
+{ #category : #accessing }
+DomainError >> from [
 	^ from
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DomainError>>from: start [
+{ #category : #accessing }
+DomainError >> from: start [
 	from := start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DomainError>>to [
+{ #category : #accessing }
+DomainError >> to [
 	^ to
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DomainError>>to: end [
+{ #category : #accessing }
+DomainError >> to: end [
 	to := end
 ]

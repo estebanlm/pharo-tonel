@@ -10,15 +10,11 @@ Class {
 		'onColor',
 		'offColor'
 	],
-	#category : #Morphic-Widgets-Basic-Buttons,
-	#timestamp : 'StephaneDucasse 3/9/2012 12:45'
+	#category : #Morphic-Widgets-Basic-Buttons
 }
 
-{
-	#category : #button,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleSwitchMorph>>doButtonAction [
+{ #category : #button }
+SimpleSwitchMorph >> doButtonAction [
 	"Perform the action of this button. The last argument of the message sent to the target is the new state of this switch."
 
 	| newState |
@@ -29,11 +25,8 @@ SimpleSwitchMorph>>doButtonAction [
 				withArguments: (arguments copyWith: newState)]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleSwitchMorph>>initialize [
+{ #category : #initialization }
+SimpleSwitchMorph >> initialize [
 
 	super initialize.
 	self borderWidth: 3.
@@ -44,28 +37,19 @@ SimpleSwitchMorph>>initialize [
 
 ]
 
-{
-	#category : #switching,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleSwitchMorph>>isOn [
+{ #category : #switching }
+SimpleSwitchMorph >> isOn [
 	^ color = onColor
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleSwitchMorph>>mouseDown: evt [
+{ #category : #'event handling' }
+SimpleSwitchMorph >> mouseDown: evt [
 
 	oldColor := self fillStyle.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleSwitchMorph>>mouseMove: evt [
+{ #category : #'event handling' }
+SimpleSwitchMorph >> mouseMove: evt [
 
 	(self containsPoint: evt cursorPoint)
 		ifTrue: [self setSwitchState: (oldColor = offColor)]
@@ -73,11 +57,8 @@ SimpleSwitchMorph>>mouseMove: evt [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleSwitchMorph>>mouseUp: evt [
+{ #category : #'event handling' }
+SimpleSwitchMorph >> mouseUp: evt [
 
 	(self containsPoint: evt cursorPoint)
 		ifTrue: [  "toggle and do action"
@@ -88,31 +69,22 @@ SimpleSwitchMorph>>mouseUp: evt [
 
 ]
 
-{
-	#category : #switching,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleSwitchMorph>>offColor: aColor [
+{ #category : #switching }
+SimpleSwitchMorph >> offColor: aColor [
 
 	offColor := aColor.
 
 ]
 
-{
-	#category : #switching,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleSwitchMorph>>onColor: aColor [
+{ #category : #switching }
+SimpleSwitchMorph >> onColor: aColor [
 
 	onColor := aColor.
 
 ]
 
-{
-	#category : #switching,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleSwitchMorph>>setSwitchState: aBoolean [
+{ #category : #switching }
+SimpleSwitchMorph >> setSwitchState: aBoolean [
 
 	aBoolean
 		ifTrue: [self turnOn]
@@ -120,30 +92,21 @@ SimpleSwitchMorph>>setSwitchState: aBoolean [
 
 ]
 
-{
-	#category : #switching,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleSwitchMorph>>toggleState [
+{ #category : #switching }
+SimpleSwitchMorph >> toggleState [
 	self isOn
 		ifTrue: [self turnOff]
 		ifFalse: [self turnOn]
 ]
 
-{
-	#category : #switching,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleSwitchMorph>>turnOff [
+{ #category : #switching }
+SimpleSwitchMorph >> turnOff [
 	self borderColor: #raised.
 	self color: offColor
 ]
 
-{
-	#category : #switching,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleSwitchMorph>>turnOn [
+{ #category : #switching }
+SimpleSwitchMorph >> turnOn [
 	self borderColor: #inset.
 	self color: onColor
 ]

@@ -1,23 +1,15 @@
-Extension {
-	#name : #SettingTree
-}
+Extension { #name : #SettingTree }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-SettingTree class>>gtExampleSettingTree [
+{ #category : #'*GT-SpotterExtensions-Core' }
+SettingTree class >> gtExampleSettingTree [
 	<gtExample>
 	<label: 'Settings tree'>
 	
 	^ SettingTree new acceptableKeywords: SettingBrowser settingsKeywords
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-SettingTree>>spotterForSettingsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+SettingTree >> spotterForSettingsFor: aStep [
 	<spotterOrder: 0>
 	aStep listProcessor
 		title: 'Settings';

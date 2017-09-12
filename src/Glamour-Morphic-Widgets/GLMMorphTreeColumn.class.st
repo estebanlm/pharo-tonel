@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #GLMMorphTreeColumn,
 	#superclass : #MorphTreeColumn,
 	#instVars : [
 		'glamourColumn'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphTreeColumn>>glamourColumn: aColumn [
+{ #category : #accessing }
+GLMMorphTreeColumn >> glamourColumn: aColumn [
 	glamourColumn := aColumn
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphTreeColumn>>rowMorphFor: aNodeMorph [
+{ #category : #'column drawing' }
+GLMMorphTreeColumn >> rowMorphFor: aNodeMorph [
 	| rowMorph cont |
 	
 	rowMorph := aNodeMorph rowMorphForColumn: glamourColumn.

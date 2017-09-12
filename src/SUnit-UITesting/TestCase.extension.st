@@ -1,21 +1,13 @@
-Extension {
-	#name : #TestCase
-}
+Extension { #name : #TestCase }
 
-{
-	#category : #'*SUnit-UITesting',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestCase>>simulateKeyStroke: aCharacterOrShortcut [
+{ #category : #'*SUnit-UITesting' }
+TestCase >> simulateKeyStroke: aCharacterOrShortcut [
 
 	ActiveHand simulateKeyStroke: aCharacterOrShortcut.
 ]
 
-{
-	#category : #'*SUnit-UITesting',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestCase>>simulateKeyStrokes: aString  [
+{ #category : #'*SUnit-UITesting' }
+TestCase >> simulateKeyStrokes: aString [ 
 
 	ActiveHand simulateKeyStrokes: aString.
 ]

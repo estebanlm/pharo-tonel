@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMTransmissionContextTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTransmissionContextTest>>testCopy [
+{ #category : #tests }
+GLMTransmissionContextTest >> testCopy [
 	| context copy |
 	context := GLMTransmissionContext new.
 	context addPort: GLMSimplePort new.
@@ -22,11 +15,8 @@ GLMTransmissionContextTest>>testCopy [
 	self assert: copy ports ~~ context ports
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTransmissionContextTest>>testForbiddenAnnouncements [
+{ #category : #tests }
+GLMTransmissionContextTest >> testForbiddenAnnouncements [
 	| context pane |
 	context := GLMTransmissionContext new.
 	pane := GLMPane new.
@@ -35,11 +25,8 @@ GLMTransmissionContextTest>>testForbiddenAnnouncements [
 	self assert: (context canAnnounceMatchingPresentationsChanged: pane) not
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTransmissionContextTest>>testInclues [
+{ #category : #tests }
+GLMTransmissionContextTest >> testInclues [
 	| context port |
 	port := GLMSimplePort new.
 	context := GLMTransmissionContext new.

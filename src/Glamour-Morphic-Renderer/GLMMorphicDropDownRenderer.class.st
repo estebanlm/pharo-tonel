@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicDropDownRenderer,
 	#superclass : #GLMMorphicBrowserRenderer,
@@ -8,25 +5,18 @@ Class {
 		'listModel',
 		'dropDownMorph'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicDropDownRenderer>>actOnContextChanged: ann  [
+{ #category : #'as yet unclassified' }
+GLMMorphicDropDownRenderer >> actOnContextChanged: ann [ 
 	ann property = #selection ifTrue: [ 
 		listModel announcer suspendAllWhile: [
 			dropDownMorph listSelectionIndex: (listModel glamourPresentation displayValue indexOf: ann value) ] ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicDropDownRenderer>>actOnPresentationUpdated: ann [
+{ #category : #'as yet unclassified' }
+GLMMorphicDropDownRenderer >> actOnPresentationUpdated: ann [
 
 	listModel resetData.
 	dropDownMorph 
@@ -35,11 +25,8 @@ GLMMorphicDropDownRenderer>>actOnPresentationUpdated: ann [
 	 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicDropDownRenderer>>render: aDropListPresentation [
+{ #category : #'as yet unclassified' }
+GLMMorphicDropDownRenderer >> render: aDropListPresentation [
 	listModel := GLMDropListModel new glamourPresentation: aDropListPresentation.	"When the morph changes, we want to update the glamour model"
 	listModel announcer
 		when: GLMDropDownListMorphSelectionChanged

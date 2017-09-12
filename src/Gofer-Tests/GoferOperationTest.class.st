@@ -4,74 +4,49 @@ SUnit tests for Gofer operations
 Class {
 	#name : #GoferOperationTest,
 	#superclass : #GoferTest,
-	#category : #Gofer-Tests,
-	#timestamp : 'TorstenBergmann 2/5/2014 09:36'
+	#category : #Gofer-Tests
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>allManagers [
+{ #category : #utilities }
+GoferOperationTest >> allManagers [
 
 	^ MCWorkingCopy allManagers 
 	
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>hasClass: aSymbol [
+{ #category : #utilities }
+GoferOperationTest >> hasClass: aSymbol [
 	^ Smalltalk globals includesKey: aSymbol
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>hasClass: aSymbol selector: aSelector [
+{ #category : #utilities }
+GoferOperationTest >> hasClass: aSymbol selector: aSelector [
 	^ (Smalltalk globals classNamed: aSymbol) includesSelector: aSelector
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>hasPackage: aString [
+{ #category : #utilities }
+GoferOperationTest >> hasPackage: aString [
 	^ self allManagers anySatisfy: [ :package | package packageName = aString ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>hasVersion: aString [
+{ #category : #utilities }
+GoferOperationTest >> hasVersion: aString [
 	^ self allManagers anySatisfy: [ :version | version ancestry ancestorString = aString ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>runCase [
+{ #category : #running }
+GoferOperationTest >> runCase [
 	^ "SystemAnnouncer uniqueInstance suspendAllWhile: [ "super runCase "]"
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>setUp [
+{ #category : #running }
+GoferOperationTest >> setUp [
 	super setUp.
 	gofer repository: self monticelloRepository
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>tearDown [
+{ #category : #running }
+GoferOperationTest >> tearDown [
 	(self hasPackage: 'GoferFoo')
 		ifTrue: [ Gofer new package: 'GoferFoo'; unload ].
 	(self hasPackage: 'GoferBar')
@@ -80,11 +55,8 @@ GoferOperationTest>>tearDown [
 		ifTrue: [ Gofer new package: 'ConfigurationOfGoferFoo'; unload ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>testCleanup [
+{ #category : #testing }
+GoferOperationTest >> testCleanup [
 	| class |
 	gofer
 		package: 'GoferFoo';
@@ -99,11 +71,8 @@ GoferOperationTest>>testCleanup [
 	self deny: (class class organization categories includes: #'GoferFoo-Empty')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>testCommit [
+{ #category : #testing }
+GoferOperationTest >> testCommit [
 	| repository |
 	repository := MCDictionaryRepository new.
 	gofer
@@ -117,31 +86,22 @@ GoferOperationTest>>testCommit [
 	self assert: repository allVersionInfos size = 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>testFetch [
+{ #category : #testing }
+GoferOperationTest >> testFetch [
 	gofer package: 'GoferFoo'.
 	gofer fetch
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>testLoad [
+{ #category : #testing }
+GoferOperationTest >> testLoad [
 	gofer version: 'GoferFoo-lr.1'.
 	gofer load.
 	self assert: (self hasVersion: 'GoferFoo-lr.1').
 	self assert: (self hasClass: #GoferFoo)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>testLocalChanges [
+{ #category : #testing }
+GoferOperationTest >> testLocalChanges [
 	| changes |
 	gofer
 		package: 'GoferBar';
@@ -151,11 +111,8 @@ GoferOperationTest>>testLocalChanges [
 	self assert: changes operations size = 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>testMerge [
+{ #category : #testing }
+GoferOperationTest >> testMerge [
 	| initial |
 	initial := gofer copy.
 	initial
@@ -171,11 +128,8 @@ GoferOperationTest>>testMerge [
 	self assert: (self hasClass: #GoferBar selector: #foo)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>testPush [
+{ #category : #testing }
+GoferOperationTest >> testPush [
 	| repository |
 	gofer := Gofer new.
 	gofer disablePackageCache.
@@ -184,20 +138,14 @@ GoferOperationTest>>testPush [
 	gofer push
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>testRecompile [
+{ #category : #testing }
+GoferOperationTest >> testRecompile [
 	gofer package: 'Gofer-Core'.
 	gofer recompile
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>testReinitialize [
+{ #category : #testing }
+GoferOperationTest >> testReinitialize [
 	| class |
 	gofer
 		package: 'GoferFoo';
@@ -215,11 +163,8 @@ GoferOperationTest>>testReinitialize [
 	self assert: (class classPool at: #ClassSide)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>testRemoteChanges [
+{ #category : #testing }
+GoferOperationTest >> testRemoteChanges [
 	| changes |
 	gofer
 		package: 'GoferBar';
@@ -229,11 +174,8 @@ GoferOperationTest>>testRemoteChanges [
 	self assert: changes operations size = 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>testRevert [
+{ #category : #testing }
+GoferOperationTest >> testRevert [
 	gofer
 		package: 'GoferFoo';
 		package: 'GoferBar';
@@ -244,11 +186,8 @@ GoferOperationTest>>testRevert [
 	self assert: (Smalltalk globals classNamed: #GoferBar) category asSymbol = #GoferBar
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>testUnload [
+{ #category : #testing }
+GoferOperationTest >> testUnload [
 	gofer
 		package: 'GoferFoo';
 		load.
@@ -257,11 +196,8 @@ GoferOperationTest>>testUnload [
 	self deny: (self hasClass: #GoferFoo)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferOperationTest>>testUpdate [
+{ #category : #testing }
+GoferOperationTest >> testUpdate [
 	| initial |
 	initial := gofer copy.
 	initial

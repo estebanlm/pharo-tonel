@@ -7,26 +7,19 @@ Class {
 	#instVars : [
 		'groups'
 	],
-	#category : #Nautilus-GroupManager,
-	#timestamp : '<historical>'
+	#category : #Nautilus-GroupManager
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>add: aCollection into: aGroup [
+{ #category : #adding }
+GroupHolder >> add: aCollection into: aGroup [
 
 	aGroup
 		ifAllowed: [ aGroup addAll: aCollection ]
 		ifNot: [ self openReadOnlyError ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>addAGroup: aGroup [
+{ #category : #adding }
+GroupHolder >> addAGroup: aGroup [
 
 	(self includesAGroupNamed: aGroup name)
 		ifTrue: [ 
@@ -36,11 +29,8 @@ GroupHolder>>addAGroup: aGroup [
 	GroupAnnouncer uniqueInstance announce: ( AGroupHasBeenAdded group: aGroup into: self ).
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>addAMethodGroupSilentlyNamed: entry methods: aCollectionOfMethods [
+{ #category : #adding }
+GroupHolder >> addAMethodGroupSilentlyNamed: entry methods: aCollectionOfMethods [
 	(self includesAGroupNamed: entry)
 		ifTrue: [ ^ nil ]
 		ifFalse: [ 
@@ -49,11 +39,8 @@ GroupHolder>>addAMethodGroupSilentlyNamed: entry methods: aCollectionOfMethods [
 			^ group ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>addAPackageGroupSilentlyNamed: entry packages: aCollectionOfPackages [
+{ #category : #adding }
+GroupHolder >> addAPackageGroupSilentlyNamed: entry packages: aCollectionOfPackages [
 	(self includesAGroupNamed: entry)
 		ifTrue: [ ^ self openError: entry name ]
 		ifFalse: [ 
@@ -62,22 +49,16 @@ GroupHolder>>addAPackageGroupSilentlyNamed: entry packages: aCollectionOfPackage
 			^ group ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>addAnEmptyDynamicGroupNamed: aName [
+{ #category : #adding }
+GroupHolder >> addAnEmptyDynamicGroupNamed: aName [
 
 	^ (self addAPackageGroupSilentlyNamed: aName packages: OrderedCollection new)
 			isFillable: true;
 			yourself
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>createAnEmptyStaticGroup [
+{ #category : #adding }
+GroupHolder >> createAnEmptyStaticGroup [
 
 	| entry |
 	entry := UIManager default request: 'Name of the new group:' initialAnswer: '' title: 'Create a new group'.
@@ -85,109 +66,73 @@ GroupHolder>>createAnEmptyStaticGroup [
 		ifFalse: [ self addAnEmptyDynamicGroupNamed: entry ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>groupNamed: aString [
+{ #category : #protocol }
+GroupHolder >> groupNamed: aString [
 	^ self groups detect: [:each | each name = aString]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>groups [
+{ #category : #protocol }
+GroupHolder >> groups [
 
 	^  groups ifNil: [ groups := OrderedCollection new ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>groups: aCollectionOfGroups [
+{ #category : #protocol }
+GroupHolder >> groups: aCollectionOfGroups [
 	groups  := aCollectionOfGroups 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>groupsNames [
+{ #category : #protocol }
+GroupHolder >> groupsNames [
 
 	^ self groups collect: [:group | group name ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>includes: aGroup [
+{ #category : #protocol }
+GroupHolder >> includes: aGroup [
 
 	^ self groups includes: aGroup
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>includesAGroupNamed: aName [
+{ #category : #protocol }
+GroupHolder >> includesAGroupNamed: aName [
 
 	^ self groupsNames includes: aName
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>isEmpty [
+{ #category : #protocol }
+GroupHolder >> isEmpty [
 
 	^ self groups isEmpty.
 ]
 
-{
-	#category : #windows,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>openError: name [
+{ #category : #windows }
+GroupHolder >> openError: name [
 
 	(GroupAlreadyExists groupName: name) signal
 ]
 
-{
-	#category : #windows,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>openReadOnlyError [
+{ #category : #windows }
+GroupHolder >> openReadOnlyError [
 
 	UIManager default  alert: 'This group is read only' title: 'Access error'
 ]
 
-{
-	#category : #windows,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>openRemoveDialogOn: aGroup [
+{ #category : #windows }
+GroupHolder >> openRemoveDialogOn: aGroup [
 	^ UIManager default confirm: 'Do you really want to delete the group named ' , aGroup name , ' ?'
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>remove: aPackage from: aGroup [
+{ #category : #protocol }
+GroupHolder >> remove: aPackage from: aGroup [
 
 	^ aGroup
 		ifAllowed: [ aGroup removePackages: { aPackage } ]
 		ifNot: [ self openReadOnlyError ]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>removeAGroup: aGroup [
+{ #category : #removing }
+GroupHolder >> removeAGroup: aGroup [
 
 	| yesIWantToRemoveTheGroup |
 	yesIWantToRemoveTheGroup := self openRemoveDialogOn: aGroup.
@@ -197,11 +142,8 @@ GroupHolder>>removeAGroup: aGroup [
 
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>removeAGroupSilently: aGroup [
+{ #category : #removing }
+GroupHolder >> removeAGroupSilently: aGroup [
 
 	| group |
 	aGroup ifNil: [ ^ self ].
@@ -212,11 +154,8 @@ GroupHolder>>removeAGroupSilently: aGroup [
 	^ group
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>renameAGroup: aGroup [
+{ #category : #removing }
+GroupHolder >> renameAGroup: aGroup [
 
 	| entry |
 	entry := UIManager default request: 'New name of the group' initialAnswer: aGroup name title: 'Rename a group'.
@@ -231,11 +170,8 @@ GroupHolder>>renameAGroup: aGroup [
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupHolder>>sort: aBlock [
+{ #category : #protocol }
+GroupHolder >> sort: aBlock [
 
 	^ groups := self groups sort: aBlock
 ]

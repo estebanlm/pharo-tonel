@@ -8,40 +8,27 @@ Class {
 	#classInstVars : [
 		'enabled'
 	],
-	#category : #Kernel-Tests-Processes,
-	#timestamp : 'DenisKudryashov 5/24/2016 17:14'
+	#category : #Kernel-Tests-Processes
 }
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TestInheritableVariable class>>disable [
+{ #category : #controlling }
+TestInheritableVariable class >> disable [
 	enabled := false.
 	Process updateInheritableKeys
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TestInheritableVariable class>>enable [
+{ #category : #controlling }
+TestInheritableVariable class >> enable [
 	enabled := true.
 	Process updateInheritableKeys
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TestInheritableVariable class>>enabled [
+{ #category : #testing }
+TestInheritableVariable class >> enabled [
 	^enabled ifNil: [ enabled := false ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TestInheritableVariable class>>isInheritable [
+{ #category : #testing }
+TestInheritableVariable class >> isInheritable [
 	^self enabled
 ]

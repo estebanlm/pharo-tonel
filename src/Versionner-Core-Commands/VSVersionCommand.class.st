@@ -4,14 +4,10 @@ A command that apply to a project version.
 Class {
 	#name : #VSVersionCommand,
 	#superclass : #VSCommand,
-	#category : #Versionner-Core-Commands,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSVersionCommand>>configurationClass [
+{ #category : #accessing }
+VSVersionCommand >> configurationClass [
 	^ target configurationClass
 ]

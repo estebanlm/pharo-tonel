@@ -15,15 +15,11 @@ Class {
 		'doubleClickSelector',
 		'keystrokeActionSelector'
 	],
-	#category : #Morphic-Widgets-FastTable-PluggableAdaptor,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-FastTable-PluggableAdaptor
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor class>>on: anObject list: listSel primarySelection: getSelectionSel changePrimarySelection: setSelectionSel listSelection: getListSel changeListSelection: setListSel menu: getMenuSel [
+{ #category : #'instance creation' }
+FTPluggableIconListMorphAdaptor class >> on: anObject list: listSel primarySelection: getSelectionSel changePrimarySelection: setSelectionSel listSelection: getListSel changeListSelection: setListSel menu: getMenuSel [
 	^ self new
 		on: anObject
 		list: listSel
@@ -35,11 +31,8 @@ FTPluggableIconListMorphAdaptor class>>on: anObject list: listSel primarySelecti
 		keystroke: #arrowKey:from:		"default"
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor class>>on: anObject list: listSel primarySelection: getSelectionSel changePrimarySelection: setSelectionSel listSelection: getListSel changeListSelection: setListSel menu: getMenuSel keystroke: keyActionSel [
+{ #category : #'instance creation' }
+FTPluggableIconListMorphAdaptor class >> on: anObject list: listSel primarySelection: getSelectionSel changePrimarySelection: setSelectionSel listSelection: getListSel changeListSelection: setListSel menu: getMenuSel keystroke: keyActionSel [ 
 	^ self new
 		on: anObject
 		list: listSel
@@ -51,11 +44,8 @@ FTPluggableIconListMorphAdaptor class>>on: anObject list: listSel primarySelecti
 		keystroke: keyActionSel
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor class>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel [
+{ #category : #'instance creation' }
+FTPluggableIconListMorphAdaptor class >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel [
 	"Create a 'pluggable' list view on the given model parameterized by the given message selectors."
 
 	^ self new
@@ -67,11 +57,8 @@ FTPluggableIconListMorphAdaptor class>>on: anObject list: getListSel selected: g
 		keystroke: #arrowKey:from:		"default"
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor class>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel [
+{ #category : #'instance creation' }
+FTPluggableIconListMorphAdaptor class >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel [
 	"Create a 'pluggable' list view on the given model parameterized by the given message selectors."
 
 	^ self new
@@ -84,11 +71,8 @@ FTPluggableIconListMorphAdaptor class>>on: anObject list: getListSel selected: g
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor class>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel [
+{ #category : #'instance creation' }
+FTPluggableIconListMorphAdaptor class >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel [
 	"Create a 'pluggable' list view on the given model parameterized by the given message selectors."
 
 	^ self new
@@ -101,11 +85,8 @@ FTPluggableIconListMorphAdaptor class>>on: anObject list: getListSel selected: g
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor class>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel wrapSelector: wrapSel [
+{ #category : #'instance creation' }
+FTPluggableIconListMorphAdaptor class >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel wrapSelector: wrapSel [
 	"Create a 'pluggable' list view on the given model parameterized by the given message selectors."
 
 	^ self new
@@ -118,11 +99,8 @@ FTPluggableIconListMorphAdaptor class>>on: anObject list: getListSel selected: g
 		wrapSelector: wrapSel
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor class>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel wrapSelector: wrapSel [
+{ #category : #'instance creation' }
+FTPluggableIconListMorphAdaptor class >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel wrapSelector: wrapSel [
 	"Create a 'pluggable' list view on the given model parameterized by the given message selectors."
 
 	^ self new
@@ -135,11 +113,8 @@ FTPluggableIconListMorphAdaptor class>>on: anObject list: getListSel selected: g
 		wrapSelector: wrapSel
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>acceptDroppingMorph: aMorph event: event [
+{ #category : #'drag and drop' }
+FTPluggableIconListMorphAdaptor >> acceptDroppingMorph: aMorph event: event [
 	"I need to more or less copy this from old pluggable list because there 
 	 is much bad code around :("
 
@@ -153,38 +128,26 @@ FTPluggableIconListMorphAdaptor>>acceptDroppingMorph: aMorph event: event [
 	self refresh
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>autoDeselect [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptor >> autoDeselect [
 	^ self resetListSelector 
 		ifNotNil: [ true ]
 		ifNil: [ self allowsDeselection ]
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>autoDeselect: aBoolean [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptor >> autoDeselect: aBoolean [
 	self allowsDeselection: aBoolean
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>basicGetListElementSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> basicGetListElementSelector: aSelector [
 	self getListElementSelector: aSelector
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>basicUpdateSelectionIndex [
+{ #category : #updating }
+FTPluggableIconListMorphAdaptor >> basicUpdateSelectionIndex [
 	| rowIndex |
 	self getIndexSelector ifNil: [ ^ self ].
 	
@@ -195,142 +158,91 @@ FTPluggableIconListMorphAdaptor>>basicUpdateSelectionIndex [
 		ifFalse: [ self basicSelectRowIndexes: { rowIndex } ]
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>basicWrapSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> basicWrapSelector: aSelector [
 	self dataSource wrapSelector: aSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>doubleClickSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> doubleClickSelector [
 	^ doubleClickSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>doubleClickSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> doubleClickSelector: aSelector [
 	doubleClickSelector := aSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>dropItemSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> dropItemSelector: aSelector [
 	self dataSource dropItemSelector: aSelector
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>getCurrentSelectionIndex [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptor >> getCurrentSelectionIndex [
 	"Answer the index of the current selection."
 	self getIndexSelector ifNil: [ ^0 ].
 	^self model perform: self getIndexSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>getIconSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> getIconSelector: aSelector [
 	self dataSource getIconSelector: aSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>getIndexSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> getIndexSelector [
 	^ getIndexSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>getIndexSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> getIndexSelector: aSelector [
 	getIndexSelector := aSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>getListElementSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> getListElementSelector [
 	^ self dataSource getListElementSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>getListElementSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> getListElementSelector: aSelector [
 	self dataSource getListElementSelector: aSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>getListSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> getListSelector [
 	^ self dataSource getListSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>getListSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> getListSelector: aSelector [
 	self dataSource getListSelector: aSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>getListSizeSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> getListSizeSelector: aSelector [
 	self dataSource getListSizeSelector: aSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>getMenuSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> getMenuSelector: aSelector [
 	self dataSource getMenuSelector: aSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>getSelectionListSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> getSelectionListSelector [
 	^ getSelectionListSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>getSelectionListSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> getSelectionListSelector: aSelector [
 	getSelectionListSelector := aSelector
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>initialize [
+{ #category : #initialization }
+FTPluggableIconListMorphAdaptor >> initialize [
 	super initialize.
 	self initializeSelections.
 	self hideColumnHeaders.
@@ -338,11 +250,8 @@ FTPluggableIconListMorphAdaptor>>initialize [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>initializeKeyBindings [
+{ #category : #initialization }
+FTPluggableIconListMorphAdaptor >> initializeKeyBindings [ 
 	super initializeKeyBindings.
 	self 
 		bindKeyCombination: Character space asKeyCombination
@@ -350,11 +259,8 @@ FTPluggableIconListMorphAdaptor>>initializeKeyBindings [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>initializeSelections [
+{ #category : #initialization }
+FTPluggableIconListMorphAdaptor >> initializeSelections [
 	self 
 		onAnnouncement: FTSelectionChanged  
 		send: #selectionChanged: 
@@ -365,11 +271,8 @@ FTPluggableIconListMorphAdaptor>>initializeSelections [
 		to: self.	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>interactWithSelection [
+{ #category : #private }
+FTPluggableIconListMorphAdaptor >> interactWithSelection [
 	| cell |
 	
 	self hasSelection ifFalse: [ ^ self ].
@@ -378,11 +281,8 @@ FTPluggableIconListMorphAdaptor>>interactWithSelection [
 	cell submorphsDo: [ :each | each update: #interact ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>keyStroke: event [
+{ #category : #'event handling' }
+FTPluggableIconListMorphAdaptor >> keyStroke: event [
 	(super keyStroke: event) ifTrue: [ ^ true ].
 	self keystrokeSelector 
 		ifNotNil: [ (self keyStrokeAction: event) ifTrue: [ ^ true ] ].
@@ -393,11 +293,8 @@ FTPluggableIconListMorphAdaptor>>keyStroke: event [
 	^ false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>keyStrokeAction: event [
+{ #category : #'event handling' }
+FTPluggableIconListMorphAdaptor >> keyStrokeAction: event [
 	| result |
 	
 	result := self model
@@ -407,11 +304,8 @@ FTPluggableIconListMorphAdaptor>>keyStrokeAction: event [
 	^ result = true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>keyStrokeModifierAction: event [
+{ #category : #'event handling' }
+FTPluggableIconListMorphAdaptor >> keyStrokeModifierAction: event [
 	| args character |
 	character := event keyCharacter.
 	args := self keystrokeActionSelector numArgs.
@@ -427,51 +321,33 @@ FTPluggableIconListMorphAdaptor>>keyStrokeModifierAction: event [
 
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>keystrokeActionSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> keystrokeActionSelector [
 	^ keystrokeActionSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>keystrokeActionSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> keystrokeActionSelector: aSelector [
 	keystrokeActionSelector := aSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>keystrokeSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> keystrokeSelector [
 	^ keystrokeSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>keystrokeSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> keystrokeSelector: aSelector [
 	keystrokeSelector := aSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>model [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptor >> model [
 	^ self dataSource model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>model: anObject [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptor >> model: anObject [ 
 	| oldModel |
 	oldModel := self dataSource model. 
 	oldModel ifNotNil: [ oldModel removeDependent: self ].
@@ -479,11 +355,8 @@ FTPluggableIconListMorphAdaptor>>model: anObject [
 	self dataSource model: anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>on: anObject list: listSel primarySelection: getSelectionSel changePrimarySelection: setSelectionSel listSelection: getListSel changeListSelection: setListSel menu: getMenuSel keystroke: keyActionSel [
+{ #category : #initialization }
+FTPluggableIconListMorphAdaptor >> on: anObject list: listSel primarySelection: getSelectionSel changePrimarySelection: setSelectionSel listSelection: getListSel changeListSelection: setListSel menu: getMenuSel keystroke: keyActionSel [
 	"setup a whole load of pluggability options"
 	
 	self getSelectionListSelector: getListSel.
@@ -498,11 +371,8 @@ FTPluggableIconListMorphAdaptor>>on: anObject list: listSel primarySelection: ge
 	self beMultipleSelection
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel [
+{ #category : #initialization }
+FTPluggableIconListMorphAdaptor >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel [ 
 	self model: anObject.
 	self getListSelector: getListSel.
 	self getIndexSelector: getSelectionSel.
@@ -511,11 +381,8 @@ FTPluggableIconListMorphAdaptor>>on: anObject list: getListSel selected: getSele
 	self keystrokeActionSelector: keyActionSel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel wrapSelector: wrapSel [
+{ #category : #initialization }
+FTPluggableIconListMorphAdaptor >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel menu: getMenuSel keystroke: keyActionSel wrapSelector: wrapSel [
 	self model: anObject.
 	self getListSelector: getListSel.
 	self getIndexSelector: getSelectionSel.
@@ -526,65 +393,44 @@ FTPluggableIconListMorphAdaptor>>on: anObject list: getListSel selected: getSele
 
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>resetListSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> resetListSelector [
 	^ resetListSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>resetListSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> resetListSelector: aSelector [
 	resetListSelector := aSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>scrollValue [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptor >> scrollValue [
 	self flag: #todo. "x is always zero because horizontal scroll bar is not yet implemented"
 	^ 0@(self verticalScrollBar value)
 ]
 
-{
-	#category : #ignored,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>searchedElement: index [
+{ #category : #ignored }
+FTPluggableIconListMorphAdaptor >> searchedElement: index [
 	self highlightRowIndex: index
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>selectionChanged: ann [
+{ #category : #private }
+FTPluggableIconListMorphAdaptor >> selectionChanged: ann [
 	self selectionChangedUpdateStatus: ann.
 	self selectionChangedUpdateIndex: ann.
 	self selectionChangedResetIfEmpty: ann
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>selectionChangedResetIfEmpty: ann [
+{ #category : #private }
+FTPluggableIconListMorphAdaptor >> selectionChangedResetIfEmpty: ann [
 	self resetListSelector  ifNil: [ ^ self ].
 	ann newSelectedRowIndexes ifNotEmpty: [ ^ self ].
 
 	self model perform: self resetListSelector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>selectionChangedUpdateIndex: ann [
+{ #category : #private }
+FTPluggableIconListMorphAdaptor >> selectionChangedUpdateIndex: ann [
 	self setIndexSelector ifNil: [ ^ self ].
 
 	self model
@@ -594,11 +440,8 @@ FTPluggableIconListMorphAdaptor>>selectionChangedUpdateIndex: ann [
 			ifEmpty: [ 0 ])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>selectionChangedUpdateStatus: ann [
+{ #category : #private }
+FTPluggableIconListMorphAdaptor >> selectionChangedUpdateStatus: ann [
 	"Updates the status of selection (informs new selections and deselections)"
 	self setSelectionListSelector ifNil: [ ^ self ].	
 	
@@ -616,53 +459,35 @@ FTPluggableIconListMorphAdaptor>>selectionChangedUpdateStatus: ann [
 
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>setIndexSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> setIndexSelector [
 	^ setIndexSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>setIndexSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> setIndexSelector: aSelector [
 	setIndexSelector := aSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>setSelectionListSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> setSelectionListSelector [
 	^ setSelectionListSelector
 ]
 
-{
-	#category : #'accessing selectors',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>setSelectionListSelector: aSelector [
+{ #category : #'accessing selectors' }
+FTPluggableIconListMorphAdaptor >> setSelectionListSelector: aSelector [
 	setSelectionListSelector := aSelector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>strongSelectionChanged: ann [
+{ #category : #private }
+FTPluggableIconListMorphAdaptor >> strongSelectionChanged: ann [
 	self doubleClickSelector ifNil: [ ^ self ].
 	
 	self model perform: self doubleClickSelector withEnoughArguments: { ann }
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>update: symbol [
+{ #category : #updating }
+FTPluggableIconListMorphAdaptor >> update: symbol [
 	(symbol == self getListSelector or: [ symbol == self getListElementSelector ]) 
 		ifTrue: [ ^ self updateList ].
 		
@@ -670,11 +495,8 @@ FTPluggableIconListMorphAdaptor>>update: symbol [
 		ifTrue: [ ^ self updateSelectionIndex ].
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>updateList [
+{ #category : #updating }
+FTPluggableIconListMorphAdaptor >> updateList [
 	(showIndex < self dataSource numberOfRows and: [ self isRowIndexVisible: showIndex ])
 		ifFalse: [ self resetPosition ].
 	self basicUpdateSelectionIndex.
@@ -684,28 +506,19 @@ FTPluggableIconListMorphAdaptor>>updateList [
 	self refresh
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>updateSelectionIndex [
+{ #category : #updating }
+FTPluggableIconListMorphAdaptor >> updateSelectionIndex [
 	self basicUpdateSelectionIndex.
 	self refresh
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>vScrollValue: aNumber [
+{ #category : #accessing }
+FTPluggableIconListMorphAdaptor >> vScrollValue: aNumber [
 	self verticalScrollBar setValue: aNumber
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTPluggableIconListMorphAdaptor>>wantsDroppedMorph: aMorph event: anEvent [
+{ #category : #'drag and drop' }
+FTPluggableIconListMorphAdaptor >> wantsDroppedMorph: aMorph event: anEvent [
 	"I need to more or less copy this from old pluggable list because there 
 	 is much bad code around :("
 

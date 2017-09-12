@@ -8,15 +8,11 @@ This is the unit test for the class Boolean. Unit tests are a good way to exerci
 Class {
 	#name : #BooleanTest,
 	#superclass : #ClassTestCase,
-	#category : #Kernel-Tests-Objects,
-	#timestamp : '<historical>'
+	#category : #Kernel-Tests-Objects
 }
 
-{
-	#category : #'tests instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BooleanTest>>testNew [
+{ #category : #'tests instance creation' }
+BooleanTest >> testNew [
 
 	self should: [Boolean new] raise: self defaultTestError 
 ]

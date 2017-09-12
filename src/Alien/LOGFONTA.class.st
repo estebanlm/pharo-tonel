@@ -21,15 +21,11 @@ Class {
 	#name : #LOGFONTA,
 	#superclass : #Alien,
 	#type : #bytes,
-	#category : #Alien-Win32,
-	#timestamp : ''
+	#category : #Alien-Win32
 }
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-LOGFONTA class>>DEFAULTCHARSET "actually DEFAULT_CHARSET" [
+{ #category : #constants }
+LOGFONTA class >> DEFAULTCHARSET [ "actually DEFAULT_CHARSET"
 	^1
 	
 "
@@ -56,11 +52,8 @@ LOGFONTA class>>DEFAULTCHARSET "actually DEFAULT_CHARSET" [
 "
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-LOGFONTA class>>dataSize [
+{ #category : #'instance creation' }
+LOGFONTA class >> dataSize [
 	^60
 
 "
@@ -83,26 +76,17 @@ typedef struct tagLOGFONT {
 } LOGFONT, *PLOGFONT;"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-LOGFONTA>>lfCharset "^<Integer>" [
+{ #category : #accessing }
+LOGFONTA >> lfCharset [ "^<Integer>"
 	self unsignedByteAt: 24
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-LOGFONTA>>lfCharset: charset "<Integer>" [
+{ #category : #accessing }
+LOGFONTA >> lfCharset: charset [ "<Integer>"
 	self unsignedByteAt: 24 put: charset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-LOGFONTA>>lfFaceName [
+{ #category : #accessing }
+LOGFONTA >> lfFaceName [
 	^self strcpyFrom: 29
 ]

@@ -14,23 +14,16 @@ Class {
 	#instVars : [
 		'dispatcherDictionary'
 	],
-	#category : #Zinc-HTTP-Client-Server,
-	#timestamp : 'SvenVanCaekenberghe 5/15/2012 16:03'
+	#category : #Zinc-HTTP-Client-Server
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDispatcherDelegate>>dispatcherDictionary [
+{ #category : #accessing }
+ZnDispatcherDelegate >> dispatcherDictionary [
 	^ dispatcherDictionary ifNil: [ dispatcherDictionary := Dictionary new ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDispatcherDelegate>>handleRequest: request [
+{ #category : #public }
+ZnDispatcherDelegate >> handleRequest: request [
 	| handler |
 	handler := self dispatcherDictionary 
 		at: request uri pathPrintString 
@@ -45,10 +38,7 @@ ZnDispatcherDelegate>>handleRequest: request [
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDispatcherDelegate>>map: relativeUrlString to: handler [
+{ #category : #public }
+ZnDispatcherDelegate >> map: relativeUrlString to: handler [
 	self dispatcherDictionary at: relativeUrlString put: handler
 ]

@@ -18,15 +18,11 @@ Class {
 		'lastActivePresentation',
 		'firstTransmission'
 	],
-	#category : #Glamour-Browsers-Other,
-	#timestamp : 'TudorGirba 7/9/2011 18:16'
+	#category : #Glamour-Browsers-Other
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>addPaneFromInner: aPort  [
+{ #category : #private }
+GLMFinder >> addPaneFromInner: aPort [ 
 	"This method adds a new pane at the end of the finder. Data comes from a port that is in a pane inside the current browser."
 	| newPane lastActive |
 	"the lastActivePresentation is needed for knowing what presentation to show by default"
@@ -57,11 +53,8 @@ GLMFinder>>addPaneFromInner: aPort  [
 		do: [:each | each transmit]. "
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>addPaneFromOuter: aPort  [
+{ #category : #private }
+GLMFinder >> addPaneFromOuter: aPort [ 
 	"This method adds a new pane at the end of the finder."
 	|newPane |
 	newPane := self panes addLast: (GLMPane named: (self panes size + 1) asString in: self).
@@ -71,62 +64,41 @@ GLMFinder>>addPaneFromOuter: aPort  [
 		transmit
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>firstTransmission [
+{ #category : #scripting }
+GLMFinder >> firstTransmission [
 	^ firstTransmission ifNil: [
 		firstTransmission := GLMTransmission new ensureReplacePresentationsStrategy ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>fixedSizePanes [
+{ #category : #scripting }
+GLMFinder >> fixedSizePanes [
 	^ fixedSizePanes ifNil: [fixedSizePanes := 2]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>fixedSizePanes: anInteger [
+{ #category : #scripting }
+GLMFinder >> fixedSizePanes: anInteger [
 	self hasFixedSizePanes: true.
 	fixedSizePanes := anInteger
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>fromPrevious: aPortSymbol [
+{ #category : #scripting }
+GLMFinder >> fromPrevious: aPortSymbol [
 	self flag: 'needs revisiting. it does not work anymore'.
 	self scriptTransmission addActiveOrigin: (GLMPort new name: aPortSymbol)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>hasFixedSizePanes [
+{ #category : #accessing }
+GLMFinder >> hasFixedSizePanes [
 	^ hasFixedSizePanes ifNil: [hasFixedSizePanes := true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>hasFixedSizePanes: aBoolean [
+{ #category : #accessing }
+GLMFinder >> hasFixedSizePanes: aBoolean [
 	hasFixedSizePanes := aBoolean
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>innerPortEvent: aPortEvent  [
+{ #category : #events }
+GLMFinder >> innerPortEvent: aPortEvent [ 
 	aPortEvent isEntityPort ifFalse: [
 		"We don't want to resend the transmission, but use a new SimpleTransmission." 
 		(self pane port: aPortEvent portName) value: aPortEvent value]. 
@@ -157,38 +129,26 @@ GLMFinder>>innerPortEvent: aPortEvent  [
 	]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>lastActivePresentation [
+{ #category : #private }
+GLMFinder >> lastActivePresentation [
 	^ lastActivePresentation ifNil: [ 
 		self panes last lastActivePresentation ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>lastActivePresentation: aPresentation [
+{ #category : #private }
+GLMFinder >> lastActivePresentation: aPresentation [
 	lastActivePresentation := aPresentation
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>newFirstTransmission [
+{ #category : #scripting }
+GLMFinder >> newFirstTransmission [
 	^ firstTransmission 
 		ifNil: [ self newTransmission ]
 		ifNotNil: [ self firstTransmission copy ]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>outerPortEvent: aPortEvent  [
+{ #category : #events }
+GLMFinder >> outerPortEvent: aPortEvent [ 
 	 
 	| toReplace |
 	super outerPortEvent: aPortEvent.
@@ -211,35 +171,23 @@ GLMFinder>>outerPortEvent: aPortEvent  [
 					inBrowser: self)]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>passivelyFromPrevious: aPortSymbol [
+{ #category : #scripting }
+GLMFinder >> passivelyFromPrevious: aPortSymbol [
 	self flag: 'needs revisiting. it does not work anymore'.
 	self scriptTransmission addPassiveOrigin: (GLMPort new name: aPortSymbol)
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMFinder >> renderGlamorouslyOn: aRenderer [ 
 	^ aRenderer renderFinder: self
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>showFirst: aBlock [
+{ #category : #scripting }
+GLMFinder >> showFirst: aBlock [
 	^ self firstTransmission transmissionStrategy presentationsFactory: aBlock 
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFinder>>variableSizePanes [
+{ #category : #scripting }
+GLMFinder >> variableSizePanes [
 	self hasFixedSizePanes: false
 ]

@@ -25,15 +25,11 @@ Class {
 		'workingCopySearchList',
 		'repositorySearchList'
 	],
-	#category : #MonticelloGUI,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:53'
+	#category : #MonticelloGUI
 }
 
-{
-	#category : #'world menu',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser class>>menuCommandOn: aBuilder [
+{ #category : #'world menu' }
+MCWorkingCopyBrowser class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'Monticello Browser')
 		parent: #MostUsedTools;
@@ -43,94 +39,64 @@ MCWorkingCopyBrowser class>>menuCommandOn: aBuilder [
 		icon: Smalltalk tools monticelloBrowser taskbarIcon
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser class>>open [
+{ #category : #'instance creation' }
+MCWorkingCopyBrowser class >> open [
 	<script>
 	self new show
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser class>>order [
+{ #category : #settings }
+MCWorkingCopyBrowser class >> order [
 	"
 	anInteger represents the order of the mcworkingcopies in the MCBrowser. Its value is between 0 and the number of entries in MCFileRepositoryInspector >> orderSpecs
 	"
 	^ Order ifNil: [ Order := 2 ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser class>>order: anInteger [
+{ #category : #settings }
+MCWorkingCopyBrowser class >> order: anInteger [
 	"
 	anInteger represents the order of the mcworkingcopies in the MCBrowser. Its value is between 0 and the number of entries in MCFileRepositoryInspector >> orderSpecs
 	"
 	Order := anInteger
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser class>>registerToolsOn: registry [
+{ #category : #'tools registry' }
+MCWorkingCopyBrowser class >> registerToolsOn: registry [
 	registry register: self as: #monticelloBrowser
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser class>>repositorySearchList [
+{ #category : #settings }
+MCWorkingCopyBrowser class >> repositorySearchList [
 	^ repositorySearchList ifNil: [ repositorySearchList := OrderedCollection new ].
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser class>>repositorySearchMaxSize [
+{ #category : #settings }
+MCWorkingCopyBrowser class >> repositorySearchMaxSize [
 	^ repositorySearchMaxSize ifNil: [repositorySearchMaxSize := 15]
 
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser class>>taskbarIconName [
+{ #category : #icons }
+MCWorkingCopyBrowser class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^#versionControlIcon
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser class>>workingCopySearchList [
+{ #category : #settings }
+MCWorkingCopyBrowser class >> workingCopySearchList [
 	^ workingCopySearchList ifNil: [ workingCopySearchList := OrderedCollection new ].
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser class>>workingCopySearchMaxSize [
+{ #category : #settings }
+MCWorkingCopyBrowser class >> workingCopySearchMaxSize [
 	^ workingCopySearchMaxSize ifNil: [workingCopySearchMaxSize := 15]
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>addMetacelloConfiguration [
+{ #category : #actions }
+MCWorkingCopyBrowser >> addMetacelloConfiguration [
 	|name|
 	name := UIManager default 
 				request: 'Name of the new Metacello configuration (e.g., ConfigurationOfYourSoftware)' translated 
@@ -169,32 +135,23 @@ MCWorkingCopyBrowser>>addMetacelloConfiguration [
 	self changedButtons.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>addRepository [
+{ #category : #actions }
+MCWorkingCopyBrowser >> addRepository [
 	self class newRepository ifNotNil: [:repos | 
 		self addRepository: repos.
 		workingCopy ifNil: [ repos morphicOpen: nil ]].
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>addRepository: aRepository [
+{ #category : #actions }
+MCWorkingCopyBrowser >> addRepository: aRepository [
 	self repository: aRepository.
 	self repositoryGroup addRepository: aRepository.
 	self updateRepositoryList.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>addRepositoryToPackage [
+{ #category : #actions }
+MCWorkingCopyBrowser >> addRepositoryToPackage [
 	| selectedPackages |
 	self repository
 		ifNotNil: [ :repos | 
@@ -211,11 +168,8 @@ MCWorkingCopyBrowser>>addRepositoryToPackage [
 					self changedButtons ] ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>addRepositoryToWorkingCopy [
+{ #category : #actions }
+MCWorkingCopyBrowser >> addRepositoryToWorkingCopy [
 	workingCopy ifNotNil:
 		[:wc |
 			workingCopy repositoryGroup addRepository: self repository.
@@ -226,11 +180,8 @@ MCWorkingCopyBrowser>>addRepositoryToWorkingCopy [
 			self changedButtons]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>addRequiredDirtyPackage [
+{ #category : #actions }
+MCWorkingCopyBrowser >> addRequiredDirtyPackage [
 	| dirtyPackages |
 	
 	dirtyPackages := self dirtyPackages.
@@ -243,11 +194,8 @@ MCWorkingCopyBrowser>>addRequiredDirtyPackage [
 	self workingCopyListChanged
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>addRequiredPackage [
+{ #category : #actions }
+MCWorkingCopyBrowser >> addRequiredPackage [
 	| chosen |
 	workingCopy
 		ifNotNil: [ :wc | 
@@ -259,11 +207,8 @@ MCWorkingCopyBrowser>>addRequiredPackage [
 					self workingCopyListChanged ] ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>addSlice [
+{ #category : #actions }
+MCWorkingCopyBrowser >> addSlice [
 	(MCSliceMaker openFor: self window)
 		ifNotNil: [:sliceInfo | workingCopy := sliceInfo makeSlice.
 			workingCopy ifNotNil: [
@@ -277,11 +222,8 @@ MCWorkingCopyBrowser>>addSlice [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>addWorkingCopy [
+{ #category : #actions }
+MCWorkingCopyBrowser >> addWorkingCopy [
 	| name |
 	
 	name := UIManager default request: 'Name of package:'.
@@ -298,11 +240,8 @@ MCWorkingCopyBrowser>>addWorkingCopy [
 	self changedButtons.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>backportChanges [
+{ #category : #actions }
+MCWorkingCopyBrowser >> backportChanges [
 	self canBackport ifFalse: [^self].
 	workingCopy ifNotNil:
 		[workingCopy needsSaving ifTrue: [^ self inform: 'You must save the working copy before backporting.'].
@@ -311,11 +250,8 @@ MCWorkingCopyBrowser>>backportChanges [
 			workingCopy backportChangesTo: baseVersionInfo]]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>basicSaveVersionIn: aRepository [
+{ #category : #actions }
+MCWorkingCopyBrowser >> basicSaveVersionIn: aRepository [
 	| newVersion waitForVersion |
 	waitForVersion := Semaphore new.
 	
@@ -334,22 +270,16 @@ MCWorkingCopyBrowser>>basicSaveVersionIn: aRepository [
 			ensure: [ (MCVersionInspector new version: newVersion) show ]]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>browseWorkingCopy [
+{ #category : #actions }
+MCWorkingCopyBrowser >> browseWorkingCopy [
 	workingCopy ifNotNil:
 		[(MCSnapshotBrowser forSnapshot: workingCopy completeSnapshot)
 			label: 'Snapshot Browser: ', workingCopy packageName;
 			show]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>buildWindow 	 [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> buildWindow [ 	
 
 	|window|
 	window := super buildWindow.
@@ -357,11 +287,8 @@ MCWorkingCopyBrowser>>buildWindow 	 [
 	^window
 ]
 
-{
-	#category : #'menu spec',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>buttonSpecs [
+{ #category : #'menu spec' }
+MCWorkingCopyBrowser >> buttonSpecs [
 	^ #(#('+Package' #addWorkingCopy 'Add a new package and make it the working copy')
 		#('+Config' #addMetacelloConfiguration 'Add a new metacello configuration')
 		#('+Slice' #addSlice 'Add a slice to cleaning and nicely propose a bug fix')
@@ -372,27 +299,18 @@ MCWorkingCopyBrowser>>buttonSpecs [
 		#('Open' #openRepository 'Open a browser on the selected repository' #hasRepository))
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>canBackport [
+{ #category : #actions }
+MCWorkingCopyBrowser >> canBackport [
 	^ self hasWorkingCopy and: [workingCopy needsSaving not]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>canSave [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> canSave [
 	^ self hasWorkingCopy and: [self hasRepository]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>changedButtons [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> changedButtons [
 	self changed: #hasWorkingCopy.
 	self changed: #canSave.
 	self changed: #canBackport.
@@ -400,22 +318,16 @@ MCWorkingCopyBrowser>>changedButtons [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>clearRequiredPackages [
+{ #category : #actions }
+MCWorkingCopyBrowser >> clearRequiredPackages [
 	workingCopy ifNotNil:
 		[:wc |
 		wc clearRequiredPackages.
 		self workingCopyListChanged]
 ]
 
-{
-	#category : #'menu spec',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>collectConfigurationMenuSpecs [
+{ #category : #'menu spec' }
+MCWorkingCopyBrowser >> collectConfigurationMenuSpecs [
 	| menuSpecs | 
 	menuSpecs := (Pragma allNamed: #'contextMenu:' in: self class)
 		select: [ :each | (each argumentAt: 1) = #configuration ].
@@ -426,55 +338,37 @@ MCWorkingCopyBrowser>>collectConfigurationMenuSpecs [
 	
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>currentShowOnlyRepositoriesFromWorkingCopy [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> currentShowOnlyRepositoriesFromWorkingCopy [
 	^showOnlyRepositoriesFromWorkingCopy ifTrue: [ 2] 
 	ifFalse: [ 1] 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>defaultLabel [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> defaultLabel [
 	^ 'Monticello Browser'
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>defaults [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> defaults [
 	^ defaults ifNil: [defaults := Dictionary new]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>deleteWorkingCopy [
+{ #category : #actions }
+MCWorkingCopyBrowser >> deleteWorkingCopy [
 	workingCopy unregister.
 	self workingCopySelection: 0.
 	self workingCopyListChanged.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>dirtyPackages [
+{ #category : #actions }
+MCWorkingCopyBrowser >> dirtyPackages [
 	^ self workingCopies select: [:copy | copy needsSaving].
 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>editLoadScripts [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> editLoadScripts [
 
 	| menu |
 	self hasWorkingCopy ifFalse: [^self].
@@ -486,11 +380,8 @@ MCWorkingCopyBrowser>>editLoadScripts [
 	menu popUpInWorld.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>editRepository [
+{ #category : #actions }
+MCWorkingCopyBrowser >> editRepository [
 	| newRepo |
 	newRepo := self repository openAndEditTemplateCopy.
 	newRepo ifNotNil: [ 
@@ -502,22 +393,16 @@ MCWorkingCopyBrowser>>editRepository [
 	self repositoryListChanged
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>editScript: scriptSymbol [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> editScript: scriptSymbol [
 
 	| script |
 	script := workingCopy packageSet perform: scriptSymbol.
 	script openLabel: scriptSymbol asString, ' of the Package ', workingCopy package name.
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>enterIssueNumber [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> enterIssueNumber [
 	| issue |
 	issue := UIManager default request: 'Please give the issue number' initialAnswer: '00000'.
 	issue isEmptyOrNil ifFalse: [
@@ -528,11 +413,8 @@ MCWorkingCopyBrowser>>enterIssueNumber [
 	
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>enterSliceName [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> enterSliceName [
 	| name |
 	name := UIManager default request: 'Please describe the fix' initialAnswer: 'OneSentenceSummary'.
 		name isEmptyOrNil ifFalse: [
@@ -542,11 +424,8 @@ MCWorkingCopyBrowser>>enterSliceName [
 	^ name
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>flushAllCaches [
+{ #category : #actions }
+MCWorkingCopyBrowser >> flushAllCaches [
 	| beforeBytes afterBytes beforeVersions afterVersions |
 	Cursor wait showWhile: [
 		beforeBytes := Smalltalk garbageCollect.
@@ -559,35 +438,23 @@ MCWorkingCopyBrowser>>flushAllCaches [
  		(afterBytes - beforeBytes) asStringWithCommas, ' bytes reclaimed'
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>getShowOnlyRepositoriesFromWorkingCopySettings [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> getShowOnlyRepositoriesFromWorkingCopySettings [
 	^#('All' 'Package')
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>hasRepository [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> hasRepository [
 	^ self repository notNil
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>hasWorkingCopy [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> hasWorkingCopy [
 	^ workingCopy notNil
 ]
 
-{
-	#category : #'menu spec',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>historyMenuSpec [
+{ #category : #'menu spec' }
+MCWorkingCopyBrowser >> historyMenuSpec [
 
 	^ #(#('Browse package' #browseWorkingCopy)
 		#('View changes' #viewChanges) 
@@ -595,19 +462,13 @@ MCWorkingCopyBrowser>>historyMenuSpec [
 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>initialExtent [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> initialExtent [
 	^ 650.0 @ 420.0
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>initialize [
+{ #category : #initialization }
+MCWorkingCopyBrowser >> initialize [
 	super initialize.
 	order := self class order.
 	showOnlyRepositoriesFromWorkingCopy := true.
@@ -616,39 +477,27 @@ MCWorkingCopyBrowser>>initialize [
 	repositoryPattern := ''
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>inspectWorkingCopy [
+{ #category : #actions }
+MCWorkingCopyBrowser >> inspectWorkingCopy [
 	workingCopy ifNotNil: [workingCopy inspect]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>loadRepositories [
+{ #category : #actions }
+MCWorkingCopyBrowser >> loadRepositories [
 	FileStream fileIn: 'MCRepositories.st'.
 	self repositoryListChanged.
 	self changedButtons.
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>openRepository [
+{ #category : #actions }
+MCWorkingCopyBrowser >> openRepository [
 	self repository ifNotNil: [:repos | 
 		repos morphicOpen: workingCopy ]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>order: anInteger [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> order: anInteger [
 	"
 	Set the order of the listed working copies
 	anInteger represents the order of the mcworkingcopies in the MCBrowser. Its value is between 0 and the number of entries in MCFileRepositoryInspector >> orderSpecs
@@ -658,11 +507,8 @@ MCWorkingCopyBrowser>>order: anInteger [
 	self changed: #workingCopyList; changed: #workingCopyTree
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>orderSpecs [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> orderSpecs [
 	^ {
 		'Sort alphabetically' -> [ :a :b | a package name <= b package name ].
 		'Sort dirty first' -> [ :a :b | 
@@ -677,11 +523,8 @@ MCWorkingCopyBrowser>>orderSpecs [
 	}
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>orderString: anIndex [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> orderString: anIndex [
 	^ String streamContents: [ :stream |
 		order = anIndex
 			ifTrue: [ stream nextPutAll: '<yes>' ]
@@ -689,11 +532,8 @@ MCWorkingCopyBrowser>>orderString: anIndex [
 		stream nextPutAll: (self orderSpecs at: anIndex) key ]
 ]
 
-{
-	#category : #'menu spec',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>packageMenuSpec [
+{ #category : #'menu spec' }
+MCWorkingCopyBrowser >> packageMenuSpec [
 
 	^ #(#('Add required package' #addRequiredPackage)
 		#('Add all dirty packages as required' #addRequiredDirtyPackage)
@@ -703,11 +543,8 @@ MCWorkingCopyBrowser>>packageMenuSpec [
 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>pickAncestorVersionInfo [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> pickAncestorVersionInfo [
 	| ancestors index |
 	ancestors := workingCopy ancestry breadthFirstAncestors.
 	index := UIManager default chooseFrom: (ancestors collect: [:ea | ea name])
@@ -715,19 +552,13 @@ MCWorkingCopyBrowser>>pickAncestorVersionInfo [
 	^ index = 0 ifFalse: [ ancestors at: index]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>pickWorkingCopy [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> pickWorkingCopy [
 	^self pickWorkingCopySatisfying: [ :c | true ]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>pickWorkingCopySatisfying: aBlock [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> pickWorkingCopySatisfying: aBlock [
 	| copies index |
 	copies := self workingCopies select: aBlock.
 	copies isEmpty ifTrue: [ ^nil ].
@@ -736,21 +567,15 @@ MCWorkingCopyBrowser>>pickWorkingCopySatisfying: aBlock [
 	^ index = 0 ifFalse: [ copies at: index]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>recompilePackage [
+{ #category : #actions }
+MCWorkingCopyBrowser >> recompilePackage [
 	workingCopy package packageSet methods
 		do: [:ea | ea actualClass recompile: ea selector]
 		displayingProgress: 'Recompiling...'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>registerToAnnouncer [
+{ #category : #initialization }
+MCWorkingCopyBrowser >> registerToAnnouncer [
 	SystemAnnouncer uniqueInstance weak
 		when: MCPackageModified send: #update: to: self;
 		when: MCWorkingCopyCreated send: #update: to: self;
@@ -759,11 +584,8 @@ MCWorkingCopyBrowser>>registerToAnnouncer [
 		when: MCRepositoryRemoved send: #updateRepositoryList to: self.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>removeRepository [
+{ #category : #actions }
+MCWorkingCopyBrowser >> removeRepository [
 	self repository ifNotNil:
 		[:repos |
 		self repositoryGroup removeRepository: repos.
@@ -773,11 +595,8 @@ MCWorkingCopyBrowser>>removeRepository [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>removeRequiredPackage [
+{ #category : #actions }
+MCWorkingCopyBrowser >> removeRequiredPackage [
 
 	| allRequiredPackages |
 	workingCopy ifNil: [^ self].
@@ -790,11 +609,8 @@ MCWorkingCopyBrowser>>removeRequiredPackage [
 			self workingCopyListChanged]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>repositories [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> repositories [
 	"Return the list of MCRepository, typically SmalltalkHubRepository. This methods drives what is displayed on the list on the right hand side of the working copy browser.
 	It contains at least one cache repository, corresponding to the local package cache"
 	| repositories |
@@ -806,47 +622,32 @@ MCWorkingCopyBrowser>>repositories [
 	^ repositories
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>repository [
+{ #category : #actions }
+MCWorkingCopyBrowser >> repository [
 	^ repository
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>repository: aRepository [
+{ #category : #actions }
+MCWorkingCopyBrowser >> repository: aRepository [
 	repository := aRepository.
 	workingCopy ifNotNil: [self defaults at: workingCopy put: aRepository]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>repositoryGroup [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> repositoryGroup [
 	"Return the group of repository displayed in the monticello browser"
 	(showOnlyRepositoriesFromWorkingCopy and: [ workingCopy isNotNil ])
 		ifTrue: [ ^ workingCopy repositoryGroup ].
 	^ MCRepositoryGroup default
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>repositoryIcon: a [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> repositoryIcon: a [
 	^ self iconNamed: #monticelloPackageIcon
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>repositoryList [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> repositoryList [
 	"Return the list of repository names. Only String are returned"
 	| repositories |
 	repositories := self repositories.
@@ -854,38 +655,26 @@ MCWorkingCopyBrowser>>repositoryList [
 	^ repositories collect: [:ea | ea description]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>repositoryListChanged [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> repositoryListChanged [
 	self changed: #repositoryList.
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>repositoryListMenu: aMenu [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> repositoryListMenu: aMenu [
 	self repository ifNil: [^ aMenu].
 	self fillMenu: aMenu fromSpecs: self repositoryMenuSpec.
 	^ aMenu
 				
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>repositoryMaxSearchSize [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> repositoryMaxSearchSize [
 	^self class repositoryMaxSearchSize
 ]
 
-{
-	#category : #'menu spec',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>repositoryMenuSpec [
+{ #category : #'menu spec' }
+MCWorkingCopyBrowser >> repositoryMenuSpec [
 	^ 	#(('Open repository' #openRepository)
 		   ('Edit repository info' #editRepository)
 		   ('Add to package...' #addRepositoryToPackage)
@@ -896,11 +685,8 @@ MCWorkingCopyBrowser>>repositoryMenuSpec [
 		
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>repositorySearchAccept: string [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> repositorySearchAccept: string [
 	| aString |
 
 	aString := string ifNil: [ '' ].
@@ -911,11 +697,8 @@ MCWorkingCopyBrowser>>repositorySearchAccept: string [
 	repositoryProcess := [ self repositoryListChanged ] fork.
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>repositorySearchField [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> repositorySearchField [
 	^ SearchMorph new
 		model: self;
 		setIndexSelector: #repositorySearchAccept:; 
@@ -924,29 +707,20 @@ MCWorkingCopyBrowser>>repositorySearchField [
 		yourself
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>repositorySearchMaxSize [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> repositorySearchMaxSize [
 	^self class repositorySearchMaxSize
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>repositorySelection [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> repositorySelection [
 	"Return the index of the selected repository.
 	May return 0, which means that no repository is selected"
 	^ self repositories indexOf: self repository
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>repositorySelection: aNumber [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> repositorySelection: aNumber [
 	aNumber = 0
 		ifTrue: [self repository: nil]
 		ifFalse: [self repository: (self repositories at: aNumber)].
@@ -955,22 +729,16 @@ MCWorkingCopyBrowser>>repositorySelection: aNumber [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>revertPackage [
+{ #category : #actions }
+MCWorkingCopyBrowser >> revertPackage [
 	self pickAncestorVersionInfo ifNotNil: [:info |
 		(self repositoryGroup versionWithInfo: info
 			ifNone: [^self inform: 'No repository found for ', info name]
 		) load]
 ]
 
-{
-	#category : #'menu spec',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>revertPackageMenuSpec [
+{ #category : #'menu spec' }
+MCWorkingCopyBrowser >> revertPackageMenuSpec [
 
 	^ #(#('Revert package...' #revertPackage) 
 			   #('Recompile package' #recompilePackage)
@@ -979,11 +747,8 @@ MCWorkingCopyBrowser>>revertPackageMenuSpec [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>saveRepositories [
+{ #category : #actions }
+MCWorkingCopyBrowser >> saveRepositories [
 
 	FileStream forceNewFileNamed: 'MCRepositories.st' do: [:f |
 		MCRepositoryGroup default repositoriesDo: [:r |
@@ -991,32 +756,23 @@ MCWorkingCopyBrowser>>saveRepositories [
 				f nextPutAll: 'MCRepositoryGroup default addRepository: (', template , ')!'; cr]]]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>saveVersion [
+{ #category : #actions }
+MCWorkingCopyBrowser >> saveVersion [
 	self canSave ifFalse: [ ^ self ].
 	"fork the whole version creation "
 	[ self basicSaveVersionIn: self repository ] fork
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>setShowOnlyRepositoriesFromWorkingCopy: anIndex [
+{ #category : #actions }
+MCWorkingCopyBrowser >> setShowOnlyRepositoriesFromWorkingCopy: anIndex [
 	showOnlyRepositoriesFromWorkingCopy  := (anIndex = 2).
 	self repositorySelection: 0.
 	self repositoryListChanged.
 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>showOnlyRepositoriesFromWorkingCopyField [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> showOnlyRepositoriesFromWorkingCopyField [
 	^(DropListMorph
 		on: self 
 		list: #getShowOnlyRepositoriesFromWorkingCopySettings
@@ -1027,73 +783,49 @@ MCWorkingCopyBrowser>>showOnlyRepositoriesFromWorkingCopyField [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>storeDependencies: newVersion in: aRepository [
+{ #category : #actions }
+MCWorkingCopyBrowser >> storeDependencies: newVersion in: aRepository [
 	aRepository storeDependencies: newVersion 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>storeVersion: newVersion in: aRepository [
+{ #category : #actions }
+MCWorkingCopyBrowser >> storeVersion: newVersion in: aRepository [
 	aRepository storeVersion: newVersion
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>unloadPackage [
+{ #category : #actions }
+MCWorkingCopyBrowser >> unloadPackage [
 	workingCopy unload.
 	self workingCopySelection: 0.
 	self workingCopyListChanged.
 ]
 
-{
-	#category : #'menu spec',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>unloadPackageMenuSpec [
+{ #category : #'menu spec' }
+MCWorkingCopyBrowser >> unloadPackageMenuSpec [
 
 	^ #(#('Unload package' #unloadPackage)
 		#('Delete working copy' #deleteWorkingCopy))
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>unsortedWorkingCopies [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> unsortedWorkingCopies [
 	^ self allManagers 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>update: anAnnouncement [
+{ #category : #updating }
+MCWorkingCopyBrowser >> update: anAnnouncement [
 	self workingCopyListChanged.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>updateRepositoryList [
+{ #category : #updating }
+MCWorkingCopyBrowser >> updateRepositoryList [
 	self repositoryListChanged.
 	self changed: #repositorySelection.
 	self changedButtons.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>viewHistory [
+{ #category : #actions }
+MCWorkingCopyBrowser >> viewHistory [
 	workingCopy ifNotNil:
 		[(MCWorkingHistoryBrowser new
 				ancestry: workingCopy ancestry;
@@ -1102,11 +834,8 @@ MCWorkingCopyBrowser>>viewHistory [
 			show]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>viewPastComments [
+{ #category : #actions }
+MCWorkingCopyBrowser >> viewPastComments [
 	"Visualize past comments on a package."
 
        workingCopy ifNotNil:
@@ -1121,11 +850,8 @@ MCWorkingCopyBrowser>>viewPastComments [
                        label: 'Version History: ',  workingCopy packageName) ]
 ]
 
-{
-	#category : #'menu spec',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>widgetSpecs [
+{ #category : #'menu spec' }
+MCWorkingCopyBrowser >> widgetSpecs [
 	| searchBarOffset |
 	
 	searchBarOffset := 30 + StandardFonts defaultFont height + 10.
@@ -1143,42 +869,30 @@ MCWorkingCopyBrowser>>widgetSpecs [
 		}.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>windowIsClosing [
+{ #category : #updating }
+MCWorkingCopyBrowser >> windowIsClosing [
 	
 	SystemAnnouncer uniqueInstance unsubscribe: self.
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopies [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopies [
 	^ (self orderSpecs size = order
 		ifTrue: [ self allManagers select: [ :each | each modified ] ]
 		ifFalse: [ self allManagers ])
 			asSortedCollection: (self orderSpecs at: order) value.
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopy: wc [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopy: wc [
 	workingCopy := wc.
 	self changed: #workingCopySelection; repositoryListChanged.
 	self changedButtons.
 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopyList [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopyList [
 	^ self workingCopies collect:
 		[:ea |
 		(workingCopy notNil and: [workingCopy requiredPackages includes: ea package])
@@ -1186,11 +900,8 @@ MCWorkingCopyBrowser>>workingCopyList [
 			ifFalse: [ea description]]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopyListChanged [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopyListChanged [
 	self changed: #workingCopyList.
 	self changed: #workingCopyTree.
 	self changed: #workingCopyTreePath.
@@ -1198,11 +909,8 @@ MCWorkingCopyBrowser>>workingCopyListChanged [
 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopyListMenu: aMenu [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopyListMenu: aMenu [
 
 	workingCopy ifNil: [ ^ aMenu ].
 	(workingCopy package name beginsWith: 'ConfigurationOf') ifTrue: [
@@ -1225,11 +933,8 @@ MCWorkingCopyBrowser>>workingCopyListMenu: aMenu [
 	^ aMenu 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopySearchAccept: string [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopySearchAccept: string [
 	| aString |
 
 	aString := string ifNil: [ '' ].
@@ -1240,11 +945,8 @@ MCWorkingCopyBrowser>>workingCopySearchAccept: string [
 	packageProcess := [ self workingCopyListChanged ] fork.
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopySearchAdd: aString  [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopySearchAdd: aString [ 
 	self workingCopySearchList: (self workingCopySearchList
 			remove: aString
 			ifAbsent: [];
@@ -1254,11 +956,8 @@ MCWorkingCopyBrowser>>workingCopySearchAdd: aString  [
 	self workingCopySearchList addFirst: aString 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopySearchField [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopySearchField [
 	^ SearchMorph new
 		model: self;
 		setIndexSelector: #workingCopySearchAccept:; 
@@ -1268,56 +967,38 @@ MCWorkingCopyBrowser>>workingCopySearchField [
 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopySearchMaxSize [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopySearchMaxSize [
 	^self class workingCopySearchMaxSize
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopySelection [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopySelection [
 	^ self workingCopies indexOf: workingCopy
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopySelection: aNumber [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopySelection: aNumber [
 	self workingCopy: 
 		(aNumber = 0 
 			ifTrue: [nil]
 			ifFalse: [self workingCopies at: aNumber]).	
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopySelectionWrapper [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopySelectionWrapper [
 	^workingCopyWrapper
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopySelectionWrapper: aWrapper [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopySelectionWrapper: aWrapper [
 	workingCopyWrapper := aWrapper.
 	self changed: #workingCopySelectionWrapper.
 	self workingCopy: (aWrapper ifNotNil:[aWrapper item])
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopyTree [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopyTree [
 	| workingCopies |
 	workingCopies := self workingCopies.
 	
@@ -1328,43 +1009,28 @@ MCWorkingCopyBrowser>>workingCopyTree [
 	^ workingCopies collect: [:each| MCDependentsWrapper with: each model: self].
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopyTreeChildren: aWrapper [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopyTreeChildren: aWrapper [
 	^ aWrapper contents
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopyTreeHasChildren: aWrapper [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopyTreeHasChildren: aWrapper [
 	^ aWrapper hasContents
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopyTreeLabel: aWrapper [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopyTreeLabel: aWrapper [
 	^ aWrapper asString
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopyTreeMenu: aMenu [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopyTreeMenu: aMenu [
 	^ self workingCopyListMenu: aMenu
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopyTreeMorph [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopyTreeMorph [
 	^ SimpleHierarchicalListMorph
 		on: self
 		list: #workingCopyTree
@@ -1373,11 +1039,8 @@ MCWorkingCopyBrowser>>workingCopyTreeMorph [
 		menu: #workingCopyListMenu:
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCWorkingCopyBrowser>>workingCopyTreePath [
+{ #category : #'morphic ui' }
+MCWorkingCopyBrowser >> workingCopyTreePath [
 	workingCopy ifNil: [^ OrderedCollection new].
 	^ OrderedCollection with: workingCopyWrapper.
 ]

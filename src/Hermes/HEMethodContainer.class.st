@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #HEMethodContainer,
 	#superclass : #HEAbstractExported,
@@ -11,63 +8,41 @@ Class {
 		'classTraitComposition',
 		'category'
 	],
-	#category : #Hermes-Model,
-	#timestamp : ''
+	#category : #Hermes-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>category [
+{ #category : #accessing }
+HEMethodContainer >> category [
 	^ category
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>category: anObject [
+{ #category : #accessing }
+HEMethodContainer >> category: anObject [
 	category := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>classSideMethods [
+{ #category : #accessing }
+HEMethodContainer >> classSideMethods [
 	^ classSideMethods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>classSideMethods: anObject [
+{ #category : #accessing }
+HEMethodContainer >> classSideMethods: anObject [
 	classSideMethods := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>classTraitComposition [
+{ #category : #accessing }
+HEMethodContainer >> classTraitComposition [
 	^ classTraitComposition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>classTraitComposition: anObject [
+{ #category : #accessing }
+HEMethodContainer >> classTraitComposition: anObject [
 	classTraitComposition := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>doFromMethodContainer: aMethodContainer [
+{ #category : #initialization }
+HEMethodContainer >> doFromMethodContainer: aMethodContainer [
 	category := aMethodContainer category.
 	traitComposition := aMethodContainer traitComposition asExportedLiteral.
 	classTraitComposition := aMethodContainer theMetaClass traitComposition
@@ -82,19 +57,13 @@ HEMethodContainer>>doFromMethodContainer: aMethodContainer [
 		thenCollect: [ :e | HEMethod for: e ]
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>doReadHeaderFrom: aReader [
+{ #category : #reading }
+HEMethodContainer >> doReadHeaderFrom: aReader [
 	self subclassResponsibility
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>doReadMethodsFrom: aReader [
+{ #category : #reading }
+HEMethodContainer >> doReadMethodsFrom: aReader [
 	| numberOfMethods numberOfClassMethods |
 	category := aReader readByteSymbol.
 	numberOfMethods := aReader readInt.
@@ -108,19 +77,13 @@ HEMethodContainer>>doReadMethodsFrom: aReader [
 	classTraitComposition := HEExportedLiteral readFrom: aReader
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>doWriteHeaderInto: aWriter  [
+{ #category : #writing }
+HEMethodContainer >> doWriteHeaderInto: aWriter [ 
 	self subclassResponsibility
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>doWriteMethods: aWriter [
+{ #category : #writing }
+HEMethodContainer >> doWriteMethods: aWriter [
 	aWriter writeByteString: category.
 
 	aWriter writeInt: methods size.
@@ -133,52 +96,34 @@ HEMethodContainer>>doWriteMethods: aWriter [
 	classTraitComposition writeInto: aWriter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>methods [
+{ #category : #accessing }
+HEMethodContainer >> methods [
 	^ methods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>methods: anObject [
+{ #category : #accessing }
+HEMethodContainer >> methods: anObject [
 	methods := anObject
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>readFrom: aReader [
+{ #category : #reading }
+HEMethodContainer >> readFrom: aReader [
 	self doReadHeaderFrom: aReader.
 	self doReadMethodsFrom: aReader
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>traitComposition [
+{ #category : #accessing }
+HEMethodContainer >> traitComposition [
 	^ traitComposition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>traitComposition: anObject [
+{ #category : #accessing }
+HEMethodContainer >> traitComposition: anObject [
 	traitComposition := anObject
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethodContainer>>writeInto: aWriter [
+{ #category : #writing }
+HEMethodContainer >> writeInto: aWriter [
 	self doWriteHeaderInto: aWriter.
 	self doWriteMethods: aWriter
 ]

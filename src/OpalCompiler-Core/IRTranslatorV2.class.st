@@ -11,123 +11,83 @@ Class {
 		'tempVectorStack',
 		'compilationContext'
 	],
-	#category : #OpalCompiler-Core-IR-Manipulation,
-	#timestamp : 'ClementBer 10/14/2014 13:34'
+	#category : #OpalCompiler-Core-IR-Manipulation
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2 class>>context: aCompilationContext trailer: aCompiledMethodTrailer [
+{ #category : #'instance creation' }
+IRTranslatorV2 class >> context: aCompilationContext trailer: aCompiledMethodTrailer [
 	^self basicNew 
 		initialize;
 		compilationContext: aCompilationContext;
 		trailer: aCompiledMethodTrailer
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2 class>>new [
+{ #category : #'instance creation' }
+IRTranslatorV2 class >> new [
 	^self context: CompilationContext default trailer: CompiledMethodTrailer empty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>compilationContext [
+{ #category : #accessing }
+IRTranslatorV2 >> compilationContext [
 	^ compilationContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>compilationContext: aContext [
+{ #category : #accessing }
+IRTranslatorV2 >> compilationContext: aContext [
 	compilationContext := aContext.
 	gen := compilationContext bytecodeGeneratorClass newWithEncoderClass: compilationContext encoderClass
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>compiledBlock [
+{ #category : #results }
+IRTranslatorV2 >> compiledBlock [
 	^ gen compiledBlockWith: trailer
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>compiledMethod [
+{ #category : #results }
+IRTranslatorV2 >> compiledMethod [
 	^ gen compiledMethodWith: trailer
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>compiledMethodWith: aTrailer [
+{ #category : #results }
+IRTranslatorV2 >> compiledMethodWith: aTrailer [
 
 	^ gen compiledMethodWith: aTrailer
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>currentScope  [
+{ #category : #private }
+IRTranslatorV2 >> currentScope [ 
 	^currentScope top
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>initialize [
+{ #category : #initialize }
+IRTranslatorV2 >> initialize [
 	currentScope := Stack new.
 	tempVectorStack := Stack new.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>label: seqNum [
+{ #category : #private }
+IRTranslatorV2 >> label: seqNum [
 
 	gen label: seqNum.
 	
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>popScope [
+{ #category : #private }
+IRTranslatorV2 >> popScope [
 
 	currentScope size = 1 ifFalse: [currentScope pop]
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>pragmas: aCollection [
+{ #category : #private }
+IRTranslatorV2 >> pragmas: aCollection [
 	gen pragmas: aCollection
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>pushOuterVectors: scope [
+{ #category : #results }
+IRTranslatorV2 >> pushOuterVectors: scope [
 	| scopesWithVector sc |
 	scopesWithVector := OrderedCollection new.
 	sc := scope.
@@ -141,59 +101,41 @@ IRTranslatorV2>>pushOuterVectors: scope [
 	gen inBlock: true.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>pushScope: anIRBlockOrMethod [
+{ #category : #private }
+IRTranslatorV2 >> pushScope: anIRBlockOrMethod [
 
 	currentScope push: anIRBlockOrMethod
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>trailer: aTrailer [
+{ #category : #initialize }
+IRTranslatorV2 >> trailer: aTrailer [
 
 	trailer := aTrailer
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitBlockReturnTop: blockReturnTop [
+{ #category : #visiting }
+IRTranslatorV2 >> visitBlockReturnTop: blockReturnTop [
 
 	gen blockReturnTop
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitInstruction: instr [
+{ #category : #visiting }
+IRTranslatorV2 >> visitInstruction: instr [
 	gen mapBytesTo: instr.
 	self visitNode: instr.
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitJump: jump [
+{ #category : #visiting }
+IRTranslatorV2 >> visitJump: jump [
 
 	gen goto: jump destination orderNumber
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitJumpIf: jumpIf [
+{ #category : #visiting }
+IRTranslatorV2 >> visitJumpIf: jumpIf [
 
 	gen 
 		if: jumpIf boolean 
@@ -202,11 +144,8 @@ IRTranslatorV2>>visitJumpIf: jumpIf [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitMethod: anIr [
+{ #category : #visiting }
+IRTranslatorV2 >> visitMethod: anIr [
 	IRFix new visitNode: anIr.
 	self pushScope: anIr.
 	gen irPrimitive: anIr irPrimitive.
@@ -218,39 +157,27 @@ IRTranslatorV2>>visitMethod: anIr [
 	self visitSequences: anIr allSequences.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitPop: pop [
+{ #category : #visiting }
+IRTranslatorV2 >> visitPop: pop [
 
 	gen popTop
 
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitPopIntoInstVar: instVar [
+{ #category : #visiting }
+IRTranslatorV2 >> visitPopIntoInstVar: instVar [
 	gen storePopInstVar: instVar index
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitPopIntoLiteralVariable: var [
+{ #category : #visiting }
+IRTranslatorV2 >> visitPopIntoLiteralVariable: var [
 
 	gen storePopIntoLiteralVariable: var association
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitPopIntoRemoteTemp: remoteTemp [
+{ #category : #visiting }
+IRTranslatorV2 >> visitPopIntoRemoteTemp: remoteTemp [
 	| tempIndex tempVectorIndex tempVector |
 
 	tempVector := tempVectorStack detect: [ :each | each name = remoteTemp tempVectorName ].
@@ -260,20 +187,14 @@ IRTranslatorV2>>visitPopIntoRemoteTemp: remoteTemp [
 	gen storePopRemoteTemp: tempVectorIndex inVectorAt: tempIndex
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitPopIntoTemp: tmp [
+{ #category : #visiting }
+IRTranslatorV2 >> visitPopIntoTemp: tmp [
 
    	gen storePopTemp: (self currentScope indexForVarNamed: tmp name)
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitPushArray: array [
+{ #category : #visiting }
+IRTranslatorV2 >> visitPushArray: array [
 
 	array cons 
 		ifTrue: [  
@@ -282,11 +203,8 @@ IRTranslatorV2>>visitPushArray: array [
 			gen pushNewArray: array size ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitPushClosureCopy: closure [
+{ #category : #visiting }
+IRTranslatorV2 >> visitPushClosureCopy: closure [
 
 	closure copiedValues do: [:name | 	
 		gen pushTemp: (self currentScope indexForVarNamed: name).
@@ -301,11 +219,8 @@ IRTranslatorV2>>visitPushClosureCopy: closure [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitPushDup: dup [
+{ #category : #visiting }
+IRTranslatorV2 >> visitPushDup: dup [
 	
 	gen pushDup
 
@@ -313,11 +228,8 @@ IRTranslatorV2>>visitPushDup: dup [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitPushFullClosure: fullBlock [
+{ #category : #visiting }
+IRTranslatorV2 >> visitPushFullClosure: fullBlock [
 
 	fullBlock copiedValues do: [:name | 	
 		gen pushTemp: (self currentScope indexForVarNamed: name)].
@@ -326,39 +238,27 @@ IRTranslatorV2>>visitPushFullClosure: fullBlock [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitPushInstVar: instVar [
+{ #category : #visiting }
+IRTranslatorV2 >> visitPushInstVar: instVar [
 	
 	gen pushInstVar: instVar index
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitPushLiteral: lit [
+{ #category : #visiting }
+IRTranslatorV2 >> visitPushLiteral: lit [
 
 	gen pushLiteral: lit literal
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitPushLiteralVariable: var [
+{ #category : #visiting }
+IRTranslatorV2 >> visitPushLiteralVariable: var [
 
 	gen pushLiteralVariable: var association
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitPushReceiver: receiver [
+{ #category : #visiting }
+IRTranslatorV2 >> visitPushReceiver: receiver [
 
 	gen pushReceiver
 
@@ -366,11 +266,8 @@ IRTranslatorV2>>visitPushReceiver: receiver [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitPushRemoteTemp: remoteTemp [
+{ #category : #visiting }
+IRTranslatorV2 >> visitPushRemoteTemp: remoteTemp [
 	| tempIndex tempVectorIndex tempVector |
 
 	tempVector := tempVectorStack detect: [:each | each name = remoteTemp tempVectorName].
@@ -381,11 +278,8 @@ IRTranslatorV2>>visitPushRemoteTemp: remoteTemp [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitPushTemp: tmp [
+{ #category : #visiting }
+IRTranslatorV2 >> visitPushTemp: tmp [
 
 	gen pushTemp: (self currentScope indexForVarNamed: tmp name)
 
@@ -394,22 +288,16 @@ IRTranslatorV2>>visitPushTemp: tmp [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitPushThisContext: ctxt [
+{ #category : #visiting }
+IRTranslatorV2 >> visitPushThisContext: ctxt [
 
 	gen pushThisContext
 
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitReturn: ret [
+{ #category : #visiting }
+IRTranslatorV2 >> visitReturn: ret [
 	
 	gen returnTop
 
@@ -417,30 +305,21 @@ IRTranslatorV2>>visitReturn: ret [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitReturnInstVar: instVar [
+{ #category : #visiting }
+IRTranslatorV2 >> visitReturnInstVar: instVar [
 
 	gen returnInstVar: instVar index
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitReturnLiteral: lit [
+{ #category : #visiting }
+IRTranslatorV2 >> visitReturnLiteral: lit [
 
 	gen returnConstant: lit literal
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitReturnReceiver: rec [
+{ #category : #visiting }
+IRTranslatorV2 >> visitReturnReceiver: rec [
 
 	gen returnReceiver
 
@@ -448,11 +327,8 @@ IRTranslatorV2>>visitReturnReceiver: rec [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitSend: send [
+{ #category : #visiting }
+IRTranslatorV2 >> visitSend: send [
 
 	send superOf
 		ifNil: [ gen send: send selector ]
@@ -460,11 +336,8 @@ IRTranslatorV2>>visitSend: send [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitSequence: instructionSequence [
+{ #category : #visiting }
+IRTranslatorV2 >> visitSequence: instructionSequence [
 	self currentScope isPushClosureCopy ifTrue: [ 
 		self currentScope destination = instructionSequence ifTrue: [ self popScope ] ].
 	self label: instructionSequence orderNumber.
@@ -472,38 +345,26 @@ IRTranslatorV2>>visitSequence: instructionSequence [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitSequences:  irSequences [
+{ #category : #visiting }
+IRTranslatorV2 >> visitSequences:  irSequences [
 	irSequences withIndexDo: [ :seq :i | seq orderNumber: i].
 	self visitNodes: irSequences.
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitStoreInstVar: instVar [
+{ #category : #visiting }
+IRTranslatorV2 >> visitStoreInstVar: instVar [
 	gen storeInstVar: instVar index
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitStoreLiteralVariable: var [
+{ #category : #visiting }
+IRTranslatorV2 >> visitStoreLiteralVariable: var [
 
 	gen storeIntoLiteralVariable: var association
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitStoreRemoteTemp: remoteTemp [
+{ #category : #visiting }
+IRTranslatorV2 >> visitStoreRemoteTemp: remoteTemp [
 	| tempIndex tempVectorIndex tempVector |
 
 	tempVector := tempVectorStack detect: [:each | each name = remoteTemp tempVectorName].
@@ -513,20 +374,14 @@ IRTranslatorV2>>visitStoreRemoteTemp: remoteTemp [
 	gen storeRemoteTemp: tempVectorIndex inVectorAt: tempIndex
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitStoreTemp: tmp [
+{ #category : #visiting }
+IRTranslatorV2 >> visitStoreTemp: tmp [
 
    	gen storeTemp: (self currentScope indexForVarNamed: tmp name)
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTranslatorV2>>visitTempVector: tempVector [
+{ #category : #visiting }
+IRTranslatorV2 >> visitTempVector: tempVector [
 
 	tempVectorStack push: tempVector.
 	gen pushNewArray: tempVector vars size. 

@@ -8,34 +8,24 @@ Class {
 		'versionReferences',
 		'monticelloRepository'
 	],
-	#category : #Gofer-Tests,
-	#timestamp : 'TorstenBergmann 2/5/2014 09:30'
+	#category : #Gofer-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferResource>>monticelloRepository [
+{ #category : #accessing }
+GoferResource >> monticelloRepository [
 	^ monticelloRepository
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferResource>>setUp [
+{ #category : #running }
+GoferResource >> setUp [
 	super setUp.
 	self
 		setUpVersionReferences;
 		setUpMonticelloRepository
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferResource>>setUpMonticelloRepository [
+{ #category : #running }
+GoferResource >> setUpMonticelloRepository [
 	"This method builds a fake repository with the version references from #buildReferences."
 	| packages |
 	
@@ -60,11 +50,8 @@ GoferResource>>setUpMonticelloRepository [
 			dependencies: #()) ].
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferResource>>setUpVersionReferences [
+{ #category : #running }
+GoferResource >> setUpVersionReferences [
 	"This method answers a set of Gofer references in the order they should be sorted. It includes two different packages (Gofer-Foo, Gofer-Bar), linear series of packages (Gofer-Foo-lr.1, Gofer-Foo-lr.2, Gofer-Foo-lr.4), packages with a branch (Gofer-Bar.branch-lr.1,Gofer.branch-Bar-lr.2), and packages with the same version but different authors (Gofer-Bar-jf.1, Gofer-Bar-lr.1)."
 
 	versionReferences := OrderedCollection new.
@@ -78,10 +65,7 @@ GoferResource>>setUpVersionReferences [
 		add: (GoferVersionReference name: 'GoferFoo-lr.4')
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferResource>>versionReferences [
+{ #category : #accessing }
+GoferResource >> versionReferences [
 	^ versionReferences
 ]

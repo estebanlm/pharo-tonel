@@ -14,81 +14,56 @@ Class {
 	#classVars : [
 		'ShowHandles'
 	],
-	#category : #Morphic-Widgets-Windows-Resizing,
-	#timestamp : 'jmv 1/29/2006 17:16'
+	#category : #Morphic-Widgets-Windows-Resizing
 }
 
-{
-	#category : #preferences,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph class>>fastSplitterResize [
+{ #category : #preferences }
+ProportionalSplitterMorph class >> fastSplitterResize [
 	
 	^ self theme settings fastDragging
 ]
 
-{
-	#category : #preferences,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph class>>showSplitterHandles [
+{ #category : #preferences }
+ProportionalSplitterMorph class >> showSplitterHandles [
 
 	^ ShowHandles ifNil: [ShowHandles := false]
 ]
 
-{
-	#category : #preferences,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph class>>showSplitterHandles: aBoolean [
+{ #category : #preferences }
+ProportionalSplitterMorph class >> showSplitterHandles: aBoolean [
 
 	ShowHandles := aBoolean
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph class>>splitterWidth [
+{ #category : #'as yet unclassified' }
+ProportionalSplitterMorph class >> splitterWidth [
 
 	^ 4
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>addLeftOrTop: aMorph [
+{ #category : #operations }
+ProportionalSplitterMorph >> addLeftOrTop: aMorph [
 
 	leftOrTop add: aMorph
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>addRightOrBottom: aMorph [
+{ #category : #operations }
+ProportionalSplitterMorph >> addRightOrBottom: aMorph [
 
 	rightOrBottom add: aMorph.
 	
 	
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>beSplitsTopAndBottom [
+{ #category : #operations }
+ProportionalSplitterMorph >> beSplitsTopAndBottom [
 
 	splitsTopAndBottom := true.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>bottomBoundary [
+{ #category : #accessing }
+ProportionalSplitterMorph >> bottomBoundary [
 	"Answer the bottom boundary position by calculating the minimum
 	of the minimum heights of the bottom morphs."
 	
@@ -106,11 +81,8 @@ ProportionalSplitterMorph>>bottomBoundary [
 			(self layoutFrame bottomOffset ifNil: [0])]) min - self class splitterWidth
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>drawOn: aCanvas  [
+{ #category : #drawing }
+ProportionalSplitterMorph >> drawOn: aCanvas [ 
 
 	| dotBounds size alphaCanvas dotSize |
 	self shouldDraw ifFalse: [^self].
@@ -129,19 +101,13 @@ ProportionalSplitterMorph>>drawOn: aCanvas  [
 	alphaCanvas fillRectangle: dotBounds color: self dotColor]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>getOldColor [
+{ #category : #accessing }
+ProportionalSplitterMorph >> getOldColor [
 	^ oldColor ifNil: [Color transparent]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>handleRect [
+{ #category : #accessing }
+ProportionalSplitterMorph >> handleRect [
 
 	^ Rectangle
 		center: self bounds center 
@@ -150,20 +116,14 @@ ProportionalSplitterMorph>>handleRect [
 			ifFalse: [self handleSize])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>handleSize [
+{ #category : #accessing }
+ProportionalSplitterMorph >> handleSize [
 
 	^ self class splitterWidth @ 30
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>initialize [
+{ #category : #initialization }
+ProportionalSplitterMorph >> initialize [
 
 	super initialize.
 	
@@ -175,19 +135,13 @@ ProportionalSplitterMorph>>initialize [
 	rightOrBottom := OrderedCollection new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>isCursorOverHandle [
+{ #category : #testing }
+ProportionalSplitterMorph >> isCursorOverHandle [
 	^ self class showSplitterHandles not or: [self handleRect containsPoint: ActiveHand cursorPoint]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>leftBoundary [
+{ #category : #accessing }
+ProportionalSplitterMorph >> leftBoundary [
 	"Answer the left boundary position by calculating the minimum
 	of the minimum widths of the left morphs."
 	
@@ -205,11 +159,8 @@ ProportionalSplitterMorph>>leftBoundary [
 			(m layoutFrame rightOffset ifNil: [0])]) max
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>mouseDown: anEvent  [
+{ #category : #'event handling' }
+ProportionalSplitterMorph >> mouseDown: anEvent [ 
 	"A mouse button has been pressed.
 	Update the color for feedback and store the mouse
 	position and relative offset to the receiver."
@@ -223,11 +174,8 @@ ProportionalSplitterMorph>>mouseDown: anEvent  [
 	lastMouse := {cp. cp - self position}
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>mouseMove: anEvent  [
+{ #category : #'event handling' }
+ProportionalSplitterMorph >> mouseMove: anEvent [ 
 	anEvent hand temporaryCursor
 		ifNil: [^ self].
 	self class fastSplitterResize
@@ -242,29 +190,20 @@ ProportionalSplitterMorph>>mouseMove: anEvent  [
 				ifFalse: [traceMorph position: (self normalizedX: anEvent cursorPoint x) @ traceMorph position y]]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>normalizedX: x [
+{ #category : #operations }
+ProportionalSplitterMorph >> normalizedX: x [
 
 	^ (x max: self leftBoundary) min: self rightBoundary
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>normalizedY: y [
+{ #category : #operations }
+ProportionalSplitterMorph >> normalizedY: y [
 
 	^ (y max: self topBoundary) min: self bottomBoundary
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>resizeCursor [
+{ #category : #actions }
+ProportionalSplitterMorph >> resizeCursor [
 
 	^ Cursor resizeForEdge: (splitsTopAndBottom
 		ifTrue: [#top]
@@ -272,11 +211,8 @@ ProportionalSplitterMorph>>resizeCursor [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>rightBoundary [
+{ #category : #accessing }
+ProportionalSplitterMorph >> rightBoundary [
 	"Answer the right boundary position by calculating the minimum
 	of the minimum widths of the right morphs."
 	
@@ -294,31 +230,22 @@ ProportionalSplitterMorph>>rightBoundary [
 			(self layoutFrame rightOffset ifNil: [0])]) min - self class splitterWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>siblingSplitters [
+{ #category : #accessing }
+ProportionalSplitterMorph >> siblingSplitters [
 
 	^ self owner 
 		submorphsSatisfying: [:each | (each isKindOf: self class) 
 									and: [self splitsTopAndBottom = each splitsTopAndBottom and: [each ~= self]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>splitsTopAndBottom [
+{ #category : #accessing }
+ProportionalSplitterMorph >> splitsTopAndBottom [
 
 	^ splitsTopAndBottom
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>splitterAbove [
+{ #category : #accessing }
+ProportionalSplitterMorph >> splitterAbove [
 	"Answer the splitter above the receiver that overlaps in its horizontal range."
 	
 	|splitters|
@@ -329,11 +256,8 @@ ProportionalSplitterMorph>>splitterAbove [
 		ifNotEmpty: [:s | s first ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>splitterBelow [
+{ #category : #accessing }
+ProportionalSplitterMorph >> splitterBelow [
 	"Answer the splitter below the receiver that overlaps in its horizontal range."
 
 	|splitters|
@@ -345,11 +269,8 @@ ProportionalSplitterMorph>>splitterBelow [
 		ifNotEmpty: [:s | s first ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>splitterLeft [
+{ #category : #accessing }
+ProportionalSplitterMorph >> splitterLeft [
 	"Answer the splitter to the left of the receiver that overlaps in its vertical range."
 	
 	|splitters|
@@ -361,11 +282,8 @@ ProportionalSplitterMorph>>splitterLeft [
 		ifNotEmpty: [:s | s first ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>splitterRight [
+{ #category : #accessing }
+ProportionalSplitterMorph >> splitterRight [
 	"Answer the splitter to the right of the receiver that overlaps in its vertical range."
 	
 	|splitters|
@@ -377,11 +295,8 @@ ProportionalSplitterMorph>>splitterRight [
 		ifNotEmpty: [:s | s first ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>topBoundary [
+{ #category : #accessing }
+ProportionalSplitterMorph >> topBoundary [
 	"Answer the top boundary position by calculating the minimum
 	of the minimum heights of the top morphs."
 	
@@ -399,11 +314,8 @@ ProportionalSplitterMorph>>topBoundary [
 			(m layoutFrame bottomOffset ifNil: [0])]) max
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProportionalSplitterMorph>>updateFromEvent: anEvent [
+{ #category : #'event handling' }
+ProportionalSplitterMorph >> updateFromEvent: anEvent [
 	"Update the splitter and attached morph positions from the mouse event.
 	Take into account the mouse down offset."
 	

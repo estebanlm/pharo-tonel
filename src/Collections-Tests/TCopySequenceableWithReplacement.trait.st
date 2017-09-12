@@ -3,35 +3,23 @@ A trait for test purposes
 "
 Trait {
 	#name : #TCopySequenceableWithReplacement,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:33'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacement>>collectionWith1TimeSubcollection [
+{ #category : #requirements }
+TCopySequenceableWithReplacement >> collectionWith1TimeSubcollection [
 " return a collection including 'oldSubCollection'  only one time "
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacement>>collectionWith2TimeSubcollection [
+{ #category : #requirements }
+TCopySequenceableWithReplacement >> collectionWith2TimeSubcollection [
 " return a collection including 'oldSubCollection'  two or many time "
 	self explicitRequirement
 ]
 
-{
-	#category : #'tests - copying with replacement',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacement>>firstIndexesOf: aSubCollection in: collection [
+{ #category : #'tests - copying with replacement' }
+TCopySequenceableWithReplacement >> firstIndexesOf: aSubCollection in: collection [
 " return an OrderedCollection with the first indexes of the occurrences of subCollection in  collection "
 	| tmp result currentIndex |
 	tmp:= collection.
@@ -58,11 +46,8 @@ TCopySequenceableWithReplacement>>firstIndexesOf: aSubCollection in: collection 
 	
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacement>>howMany: aSubCollection in: collection [
+{ #category : #'tests - fixture' }
+TCopySequenceableWithReplacement >> howMany: aSubCollection in: collection [
 " return an integer representing how many time 'subCollection'  appears in 'collection'  "
 	| tmp nTime |
 	tmp := collection.
@@ -82,41 +67,29 @@ TCopySequenceableWithReplacement>>howMany: aSubCollection in: collection [
 	
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacement>>oldSubCollection [
+{ #category : #requirements }
+TCopySequenceableWithReplacement >> oldSubCollection [
 " return a subCollection included in collectionWith1TimeSubcollection .
 ex :   subCollection := #( 2 3 4) and collectionWith1TimeSubcollection := #(1 2 3 4 5)"
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacement>>replacementCollection [
+{ #category : #requirements }
+TCopySequenceableWithReplacement >> replacementCollection [
 " return a collection that will be used to replace 'oldSubcollection' in ' collectionWith1TimeSubcollection'  " 
 	self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacement>>test0FixtureCopyWithReplacementTest [
+{ #category : #'tests - fixture' }
+TCopySequenceableWithReplacement >> test0FixtureCopyWithReplacementTest [
 	self replacementCollection.
 	self oldSubCollection.
 	self collectionWith1TimeSubcollection.
 	self assert: (self howMany: self oldSubCollection in: self collectionWith1TimeSubcollection) = 1
 ]
 
-{
-	#category : #'tests - copying with replacement',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacement>>testCopyReplaceAllWith1Occurence [
+{ #category : #'tests - copying with replacement' }
+TCopySequenceableWithReplacement >> testCopyReplaceAllWith1Occurence [
 	| result  firstIndexesOfOccurrence index endPartIndexResult endPartIndexCollection |
 	
 	result := self collectionWith1TimeSubcollection  copyReplaceAll: self oldSubCollection with: self replacementCollection .
@@ -157,11 +130,8 @@ TCopySequenceableWithReplacement>>testCopyReplaceAllWith1Occurence [
 	
 ]
 
-{
-	#category : #'tests - copying with replacement',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacement>>testCopyReplaceAllWithManyOccurence [
+{ #category : #'tests - copying with replacement' }
+TCopySequenceableWithReplacement >> testCopyReplaceAllWithManyOccurence [
 	| result firstIndexesOfOccurrence resultBetweenPartIndex collectionBetweenPartIndex diff |
 	" testing fixture here as this method may be not used for collection that can't contain equals element :"
 	self collectionWith2TimeSubcollection.
@@ -192,11 +162,8 @@ TCopySequenceableWithReplacement>>testCopyReplaceAllWithManyOccurence [
 					= (self collectionWith2TimeSubcollection at: firstIndexesOfOccurrence last + self oldSubCollection size - 1 + i) ]
 ]
 
-{
-	#category : #'tests - copying with replacement',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacement>>testCopyReplaceFromToWith [
+{ #category : #'tests - copying with replacement' }
+TCopySequenceableWithReplacement >> testCopyReplaceFromToWith [
 	| result  indexOfSubcollection lastIndexOfOldSubcollection lastIndexOfReplacementCollection |
 	
 	indexOfSubcollection := (self firstIndexesOf: self oldSubCollection  in:  self collectionWith1TimeSubcollection) at: 1. 
@@ -236,11 +203,8 @@ TCopySequenceableWithReplacement>>testCopyReplaceFromToWith [
 	
 ]
 
-{
-	#category : #'tests - copying with replacement',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacement>>testCopyReplaceFromToWithInsertion [
+{ #category : #'tests - copying with replacement' }
+TCopySequenceableWithReplacement >> testCopyReplaceFromToWithInsertion [
 	| result  indexOfSubcollection |
 	
 	indexOfSubcollection := (self firstIndexesOf: self oldSubCollection  in:  self collectionWith1TimeSubcollection) at: 1. 

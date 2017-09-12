@@ -10,24 +10,17 @@ Instead of
 Class {
 	#name : #IconHardcodedMessageRule,
 	#superclass : #ReNodeRewriteRule,
-	#category : #Polymorph-Widgets-Rules,
-	#timestamp : 'YuriyTymchuk 8/29/2016 21:30'
+	#category : #Polymorph-Widgets-Rules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-IconHardcodedMessageRule>>group [
+{ #category : #accessing }
+IconHardcodedMessageRule >> group [
 
 	^ 'API Change'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-IconHardcodedMessageRule>>initialize [
+{ #category : #initialization }
+IconHardcodedMessageRule >> initialize [
 	super initialize.
 	self
 		replace: 'Smalltalk ui icons `iconName'
@@ -36,20 +29,14 @@ IconHardcodedMessageRule>>initialize [
 				parseExpression: '#' , (matchMap at: #'`iconName') , ' asIcon' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-IconHardcodedMessageRule>>name [
+{ #category : #accessing }
+IconHardcodedMessageRule >> name [
 
 	^ 'Use #iconName asIcon'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-IconHardcodedMessageRule>>severity [
+{ #category : #accessing }
+IconHardcodedMessageRule >> severity [
 
 	^ #error
 ]

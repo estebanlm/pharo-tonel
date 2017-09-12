@@ -1,17 +1,10 @@
-"
-
-"
 Class {
 	#name : #TextInputFieldModelTest,
 	#superclass : #TextModelTest,
-	#category : #Spec-Tests-Core-Widgets,
-	#timestamp : ''
+	#category : #Spec-Tests-Core-Widgets
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TextInputFieldModelTest>>classToTest [
+{ #category : #running }
+TextInputFieldModelTest >> classToTest [
 	^ TextInputFieldModel
 ]

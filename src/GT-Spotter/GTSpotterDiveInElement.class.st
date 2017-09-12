@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterDiveInElement,
 	#superclass : #Announcement,
@@ -8,38 +5,25 @@ Class {
 		'element',
 		'eventType'
 	],
-	#category : #GT-Spotter-Announcements,
-	#timestamp : ''
+	#category : #GT-Spotter-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDiveInElement>>element [
+{ #category : #accessing }
+GTSpotterDiveInElement >> element [
 	^ element
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDiveInElement>>element: anObject [
+{ #category : #accessing }
+GTSpotterDiveInElement >> element: anObject [
 	element := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDiveInElement>>eventType [
+{ #category : #accessing }
+GTSpotterDiveInElement >> eventType [
 	^ eventType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDiveInElement>>eventType: anObject [
+{ #category : #accessing }
+GTSpotterDiveInElement >> eventType: anObject [
 	eventType := anObject
 ]

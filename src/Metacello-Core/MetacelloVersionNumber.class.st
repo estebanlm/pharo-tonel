@@ -42,15 +42,11 @@ Class {
 	#name : #MetacelloVersionNumber,
 	#superclass : #Magnitude,
 	#type : #variable,
-	#category : #Metacello-Core-Model,
-	#timestamp : 'dkh 6/22/2012 12:00'
+	#category : #Metacello-Core-Model
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber class>>extractNumericComponent: subString [
+{ #category : #private }
+MetacelloVersionNumber class >> extractNumericComponent: subString [
 	"$. separated components are integers"
 
 	| number |
@@ -62,11 +58,8 @@ MetacelloVersionNumber class>>extractNumericComponent: subString [
 		ifFalse: [ subString ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber class>>fromString: aString [
+{ #category : #'instance creation' }
+MetacelloVersionNumber class >> fromString: aString [
 
 	| new components |
 	components := OrderedCollection new.
@@ -83,11 +76,8 @@ MetacelloVersionNumber class>>fromString: aString [
 	^new
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>< aMetacelloVersionNumber [
+{ #category : #comparing }
+MetacelloVersionNumber >> < aMetacelloVersionNumber [
 
 	| condensed aCondensed |
 	aMetacelloVersionNumber species = self species
@@ -99,11 +89,8 @@ MetacelloVersionNumber>>< aMetacelloVersionNumber [
 	^ self compareLessThan: aMetacelloVersionNumber
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>= aMetacelloVersionNumber [
+{ #category : #comparing }
+MetacelloVersionNumber >> = aMetacelloVersionNumber [
 
 	| condensed aCondensed |
 	aMetacelloVersionNumber species = self species
@@ -115,11 +102,8 @@ MetacelloVersionNumber>>= aMetacelloVersionNumber [
 	^ self compareEqualTo: aMetacelloVersionNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>approximateBase [
+{ #category : #accessing }
+MetacelloVersionNumber >> approximateBase [
 
 	| base |
 	base := self copyFrom: 1 to: self size - 1.
@@ -127,30 +111,21 @@ MetacelloVersionNumber>>approximateBase [
 	^base
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>asMetacelloVersionNumber [
+{ #category : #converting }
+MetacelloVersionNumber >> asMetacelloVersionNumber [
 
 	^self
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>asString [
+{ #category : #printing }
+MetacelloVersionNumber >> asString [
 	"Answer a string that represents the receiver."
 
 	^ self printString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>collapseZeros [
+{ #category : #private }
+MetacelloVersionNumber >> collapseZeros [
 	"the rule must be that zeros can be collapsed as long as the series of zeros ends in a string term"
 
 	| collection newSize new j lastElementIsStringOrZero canCollapse |
@@ -183,11 +158,8 @@ MetacelloVersionNumber>>collapseZeros [
 	^ new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>compareEqualTo: aMetacelloVersionNumber [
+{ #category : #private }
+MetacelloVersionNumber >> compareEqualTo: aMetacelloVersionNumber [
 
 	| mySize |
 	aMetacelloVersionNumber species = self species ifFalse: [ ^false ].
@@ -199,11 +171,8 @@ MetacelloVersionNumber>>compareEqualTo: aMetacelloVersionNumber [
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>compareLessThan: aMetacelloVersionNumber [
+{ #category : #private }
+MetacelloVersionNumber >> compareLessThan: aMetacelloVersionNumber [
 
 	| mySize aSize commonSize count more |
 	mySize := self size.
@@ -239,11 +208,8 @@ MetacelloVersionNumber>>compareLessThan: aMetacelloVersionNumber [
 			 ^(self at: commonSize+1) isString]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>copyFrom: start to: stop  [
+{ #category : #copying }
+MetacelloVersionNumber >> copyFrom: start to: stop [ 
 	"Answer a copy of a subset of the receiver, starting from element at 
 	index start until element at index stop."
 
@@ -257,29 +223,20 @@ MetacelloVersionNumber>>copyFrom: start to: stop  [
 	^new
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>decrementMajorVersion [
+{ #category : #operations }
+MetacelloVersionNumber >> decrementMajorVersion [
   self decrementVersionAt: 1
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>decrementMinorVersion [
+{ #category : #operations }
+MetacelloVersionNumber >> decrementMinorVersion [
   self size < 2
     ifTrue: [ self at: 2 put: 0 ].
   self decrementVersionAt: 2
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>decrementMinorVersionNumber [
+{ #category : #operations }
+MetacelloVersionNumber >> decrementMinorVersionNumber [
 	| int |
 	self size to: 1 by: -1 do: [ :index | 
 		(int := self at: index) isString
@@ -289,11 +246,8 @@ MetacelloVersionNumber>>decrementMinorVersionNumber [
 				^ self ] ]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>decrementPatchVersion [
+{ #category : #operations }
+MetacelloVersionNumber >> decrementPatchVersion [
   self size < 2
     ifTrue: [ self at: 2 put: 0 ].
   self size < 3
@@ -301,11 +255,8 @@ MetacelloVersionNumber>>decrementPatchVersion [
   self decrementVersionAt: 3
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>decrementVersionAt: index [
+{ #category : #private }
+MetacelloVersionNumber >> decrementVersionAt: index [
   | int |
   int := self at: index.
   (int := self at: index) isString
@@ -314,21 +265,15 @@ MetacelloVersionNumber>>decrementVersionAt: index [
         ifTrue: [ self at: index put: int - 1 ] ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>do: aBlock  [
+{ #category : #enumerating }
+MetacelloVersionNumber >> do: aBlock [ 
 	"Refer to the comment in Collection|do:."
 	1 to: self size do:
 		[:index | aBlock value: (self at: index)]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>do: elementBlock separatedBy: separatorBlock [
+{ #category : #enumerating }
+MetacelloVersionNumber >> do: elementBlock separatedBy: separatorBlock [
 	"Evaluate the elementBlock for all elements in the receiver,
 	and evaluate the separatorBlock between."
 
@@ -342,11 +287,8 @@ MetacelloVersionNumber>>do: elementBlock separatedBy: separatorBlock [
 		elementBlock value: each]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>hash [
+{ #category : #comparing }
+MetacelloVersionNumber >> hash [
 
 "Returns a numeric hash key for the receiver."
 
@@ -373,29 +315,20 @@ hashValue := 4459.
 ^ hashValue abs
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>incrementMajorVersion [
+{ #category : #operations }
+MetacelloVersionNumber >> incrementMajorVersion [
   self incrementVersionAt: 1
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>incrementMinorVersion [
+{ #category : #operations }
+MetacelloVersionNumber >> incrementMinorVersion [
   self size < 2
     ifTrue: [ self at: 2 put: 0 ].
   self incrementVersionAt: 2
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>incrementMinorVersionNumber [
+{ #category : #operations }
+MetacelloVersionNumber >> incrementMinorVersionNumber [
 
 	| int |
 	self size to: 1 by: -1 do: [:index | 
@@ -405,11 +338,8 @@ MetacelloVersionNumber>>incrementMinorVersionNumber [
 				^self ]].
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>incrementPatchVersion [
+{ #category : #operations }
+MetacelloVersionNumber >> incrementPatchVersion [
   self size < 2
     ifTrue: [ self at: 2 put: 0 ].
   self size < 3
@@ -417,22 +347,16 @@ MetacelloVersionNumber>>incrementPatchVersion [
   self incrementVersionAt: 3
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>incrementVersionAt: index [
+{ #category : #private }
+MetacelloVersionNumber >> incrementVersionAt: index [
   | int |
   int := self at: index.
   (int := self at: index) isString
     ifFalse: [ self at: index put: int + 1 ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>match: aVersionPattern [
+{ #category : #comparing }
+MetacelloVersionNumber >> match: aVersionPattern [
 	"Answer whether the version number of the receiver matches the given pattern string.
 
 	 A Metacello version number is made up of version sequences delimited by the characters $. and $-.
@@ -478,11 +402,8 @@ MetacelloVersionNumber>>match: aVersionPattern [
 "
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>printOn: aStream [
+{ #category : #printing }
+MetacelloVersionNumber >> printOn: aStream [
 
 	| beforeFirst | 
 	beforeFirst := true.
@@ -497,11 +418,8 @@ MetacelloVersionNumber>>printOn: aStream [
 		aStream nextPutAll: each asString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>versionString [
+{ #category : #accessing }
+MetacelloVersionNumber >> versionString [
 
 	| strm |
 	strm := WriteStream on: String new.
@@ -509,11 +427,8 @@ MetacelloVersionNumber>>versionString [
 	^strm contents
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionNumber>>~> aMetacelloVersionNumber [
+{ #category : #comparing }
+MetacelloVersionNumber >> ~> aMetacelloVersionNumber [
 
 	aMetacelloVersionNumber size == 1 ifTrue: [ ^false ].
 	^self >= aMetacelloVersionNumber and: [ self < aMetacelloVersionNumber approximateBase ]

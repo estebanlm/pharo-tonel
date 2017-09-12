@@ -4,14 +4,10 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestSystemModel,
 	#superclass : #PackageManifest,
-	#category : #System-Model,
-	#timestamp : '<historical>'
+	#category : #System-Model
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:36'
-}
-ManifestSystemModel class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestSystemModel class >> manuallyResolvedDependencies [
 	^ #(#'Collections-Abstract')
 ]

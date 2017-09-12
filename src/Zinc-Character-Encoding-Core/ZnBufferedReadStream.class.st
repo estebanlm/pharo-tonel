@@ -18,89 +18,61 @@ Class {
 		'position',
 		'limit'
 	],
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : '<historical>'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream class>>on: readStream [
+{ #category : #'instance creation' }
+ZnBufferedReadStream class >> on: readStream [
 	^ self new
 		on: readStream;
 		yourself
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream class>>on: readStream do: block [
+{ #category : #convenience }
+ZnBufferedReadStream class >> on: readStream do: block [
 	"Execute block with as argument a ZnBufferedReadStream on readStream.
 	Return the value of block."
 
 	^ block value: (self on: readStream)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>atEnd [
+{ #category : #testing }
+ZnBufferedReadStream >> atEnd [
 	^ position > limit and: [ stream atEnd ]
 	
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>close [
+{ #category : #initialize-release }
+ZnBufferedReadStream >> close [
 	stream close
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>collectionSpecies [
+{ #category : #accessing }
+ZnBufferedReadStream >> collectionSpecies [
 	^ stream isBinary
 		ifTrue: [ ByteArray ]
 		ifFalse: [ String ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>defaultBufferSize [
+{ #category : #accessing }
+ZnBufferedReadStream >> defaultBufferSize [
 	^ 2 raisedToInteger: 16
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>initialize [
+{ #category : #initialization }
+ZnBufferedReadStream >> initialize [
 	super initialize.
 	position := 1.
 	limit := 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>isBinary [
+{ #category : #accessing }
+ZnBufferedReadStream >> isBinary [
 	^ stream isBinary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>next [
+{ #category : #accessing }
+ZnBufferedReadStream >> next [
 	"Return the next element and move over it"
 	
 	position > limit
@@ -114,11 +86,8 @@ ZnBufferedReadStream>>next [
 		ifFalse: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>next: requestedCount  [
+{ #category : #accessing }
+ZnBufferedReadStream >> next: requestedCount [ 
 	"Read requestedCount elements and return them as a collection.
 	If less are available, a smaller collection will be returned."
 
@@ -127,11 +96,8 @@ ZnBufferedReadStream>>next: requestedCount  [
 		into: (self collectionSpecies new: requestedCount)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>next: requestedCount into: collection [
+{ #category : #accessing }
+ZnBufferedReadStream >> next: requestedCount into: collection [
 	"Read requestedCount elements into collection,
 	returning a copy if less elements are available"
 	
@@ -141,11 +107,8 @@ ZnBufferedReadStream>>next: requestedCount into: collection [
 		startingAt: 1   
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>next: requestedCount into: collection startingAt: offset [
+{ #category : #accessing }
+ZnBufferedReadStream >> next: requestedCount into: collection startingAt: offset [
 	"Read requestedCount elements into collection starting at offset,
 	returning a copy if less elements are available"
 	
@@ -159,20 +122,14 @@ ZnBufferedReadStream>>next: requestedCount into: collection startingAt: offset [
 		ifFalse: [ collection copyFrom: 1 to: offset + read - 1 ]     
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>nextBuffer [
+{ #category : #private }
+ZnBufferedReadStream >> nextBuffer [
 	limit := stream readInto: buffer startingAt: 1 count: buffer size.
 	position := 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>nextInto: collection [
+{ #category : #accessing }
+ZnBufferedReadStream >> nextInto: collection [
 	"Read the next elements of the receiver into collection,
 	returning a copy if less elements are available"
 	
@@ -181,20 +138,14 @@ ZnBufferedReadStream>>nextInto: collection [
 		into: collection
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>on: readStream [
+{ #category : #initialize-release }
+ZnBufferedReadStream >> on: readStream [
 	stream := readStream.
 	self sizeBuffer: self defaultBufferSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>peek [
+{ #category : #accessing }
+ZnBufferedReadStream >> peek [
 	"Return the next element but do not move over it"
 	
 	position > limit
@@ -204,11 +155,8 @@ ZnBufferedReadStream>>peek [
 		ifFalse: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>peekFor: object [
+{ #category : #accessing }
+ZnBufferedReadStream >> peekFor: object [
 	"Answer false and do not move over the next element if it is not equal to object, or if the receiver is at the end. 
 	Answer true and move over the next element when it is equal to object."
 
@@ -219,11 +167,8 @@ ZnBufferedReadStream>>peekFor: object [
 		ifFalse: [ false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>readInto: collection startingAt: offset count: requestedCount [
+{ #category : #accessing }
+ZnBufferedReadStream >> readInto: collection startingAt: offset count: requestedCount [
 	"Read requestedCount elements into collection starting at offset,
 	returning the number of elements read, there could be less elements available."
 
@@ -248,30 +193,21 @@ ZnBufferedReadStream>>readInto: collection startingAt: offset count: requestedCo
 				ifFalse: [ stream readInto: collection startingAt: offset + read count: requestedCount - read ])
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>sizeBuffer: size [
+{ #category : #initialize-release }
+ZnBufferedReadStream >> sizeBuffer: size [
 	buffer := self collectionSpecies new: size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>skip: count [
+{ #category : #accessing }
+ZnBufferedReadStream >> skip: count [
 	"Skip over count elements.
 	This could be further optimzed."
 	
 	count timesRepeat: [ self next ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>upTo: value  [
+{ #category : #accessing }
+ZnBufferedReadStream >> upTo: value [ 
 	"Read upto but not including value and return them as a collection.
 	If value is not found, return the entire contents of the stream.
 	This could be further optimzed."
@@ -282,11 +218,8 @@ ZnBufferedReadStream>>upTo: value  [
 				writeStream nextPut: element ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>upToEnd [
+{ #category : #accessing }
+ZnBufferedReadStream >> upToEnd [
 	"Read elements until the stream is atEnd and return them as a collection."
 
 	^ self collectionSpecies
@@ -298,10 +231,7 @@ ZnBufferedReadStream>>upToEnd [
 				position := limit + 1 ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnBufferedReadStream>>wrappedStream [
+{ #category : #accessing }
+ZnBufferedReadStream >> wrappedStream [
 	^ stream
 ]

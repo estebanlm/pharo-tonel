@@ -9,54 +9,38 @@ Class {
 	#instVars : [
 		'token'
 	],
-	#category : #Spec-Core-Widgets-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Widgets-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TokenTreeFilter class>>token: token [
+{ #category : #'instance creation' }
+TokenTreeFilter class >> token: token [
 
 	^ self new
 		token: token;
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TokenTreeFilter>>initialize [
+{ #category : #initialization }
+TokenTreeFilter >> initialize [
 
 	super initialize.
 
 	token := ''.
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TokenTreeFilter>>keepTreeNode: aNode [
+{ #category : #filtering }
+TokenTreeFilter >> keepTreeNode: aNode [
 
 	^ aNode matchTokenFilter: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TokenTreeFilter>>token [
+{ #category : #accessing }
+TokenTreeFilter >> token [
 	^ token
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TokenTreeFilter>>token: anObject [
+{ #category : #accessing }
+TokenTreeFilter >> token: anObject [
 	
 	token := anObject
 ]

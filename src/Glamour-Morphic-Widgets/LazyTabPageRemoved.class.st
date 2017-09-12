@@ -1,28 +1,18 @@
-"
-
-"
 Class {
 	#name : #LazyTabPageRemoved,
 	#superclass : #LazyTabPageAnnouncement,
 	#instVars : [
 		'newIndex'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPageRemoved>>newIndex [
+{ #category : #accessing }
+LazyTabPageRemoved >> newIndex [
 	^ newIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPageRemoved>>newIndex: anObject [
+{ #category : #accessing }
+LazyTabPageRemoved >> newIndex: anObject [
 	newIndex := anObject
 ]

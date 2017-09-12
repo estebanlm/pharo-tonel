@@ -4,15 +4,11 @@ Settings for the fonts
 Class {
 	#name : #GraphicFontSettings,
 	#superclass : #Model,
-	#category : #Settings-Graphics,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:27'
+	#category : #Settings-Graphics
 }
 
-{
-	#category : #fonts,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-GraphicFontSettings class>>fontChoiceButtonForStyle: aSymbol label: aLabel [
+{ #category : #fonts }
+GraphicFontSettings class >> fontChoiceButtonForStyle: aSymbol label: aLabel [
 	| label |
 	label := StringMorph 
 				contents: aLabel asString 
@@ -31,11 +27,8 @@ GraphicFontSettings class>>fontChoiceButtonForStyle: aSymbol label: aLabel [
 
 ]
 
-{
-	#category : #fonts,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-GraphicFontSettings class>>fontSizeRow [
+{ #category : #fonts }
+GraphicFontSettings class >> fontSizeRow [
 	^ self theme newRowIn: World for: {
 			self theme buttonLabelForText: 'Predefined styles: ' translated.
 			self fontChoiceButtonForStyle: #small label: 'Small' translated.
@@ -46,11 +39,8 @@ GraphicFontSettings class>>fontSizeRow [
 	}
 ]
 
-{
-	#category : #fonts,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-GraphicFontSettings class>>resetAllFontToDefault [
+{ #category : #fonts }
+GraphicFontSettings class >> resetAllFontToDefault [
 	StandardFonts setAllStandardFontsTo: StandardFonts defaultFont.
 	SettingBrowser refreshAllSettingBrowsers.
 	EditorFindReplaceDialogWindow cleanUp.
@@ -58,11 +48,8 @@ GraphicFontSettings class>>resetAllFontToDefault [
 
 ]
 
-{
-	#category : #fonts,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-GraphicFontSettings class>>resetAllFontToDefaultButton [
+{ #category : #fonts }
+GraphicFontSettings class >> resetAllFontToDefaultButton [
 	^ (self theme
 		newButtonIn: World
 		for: self
@@ -82,21 +69,15 @@ GraphicFontSettings class>>resetAllFontToDefaultButton [
 		yourself
 ]
 
-{
-	#category : #fonts,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-GraphicFontSettings class>>setFontsToStyleNamed: aSymbol [
+{ #category : #fonts }
+GraphicFontSettings class >> setFontsToStyleNamed: aSymbol [
 	StandardFonts setFontsToStyleNamed: aSymbol.
 	SettingBrowser refreshAllSettingBrowsers.
 	EditorFindReplaceDialogWindow cleanUp.
 ]
 
-{
-	#category : #fonts,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-GraphicFontSettings class>>standardFontsSettingsOn: aBuilder [
+{ #category : #fonts }
+GraphicFontSettings class >> standardFontsSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #standardFonts)
 		label: 'Standard fonts';
@@ -135,10 +116,7 @@ GraphicFontSettings class>>standardFontsSettingsOn: aBuilder [
 				
 ]
 
-{
-	#category : #fonts,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-GraphicFontSettings class>>theme  [
+{ #category : #fonts }
+GraphicFontSettings class >> theme [ 
 	^ Smalltalk ui theme
 ]

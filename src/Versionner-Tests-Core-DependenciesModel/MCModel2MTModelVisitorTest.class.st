@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #MCModel2MTModelVisitorTest,
 	#superclass : #RPackageTestCase,
 	#instVars : [
 		'classFactory'
 	],
-	#category : #Versionner-Tests-Core-DependenciesModel,
-	#timestamp : ''
+	#category : #Versionner-Tests-Core-DependenciesModel
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MCModel2MTModelVisitorTest>>checkGroups: project [
+{ #category : #private }
+MCModel2MTModelVisitorTest >> checkGroups: project [
 	| groups group |
 	
 	groups := project groups sorted: [ :a :b | a name <= b name].
@@ -40,11 +33,8 @@ MCModel2MTModelVisitorTest>>checkGroups: project [
 	self assert: (group dependencies hasEqualElements: #('Core' 'Tests')).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MCModel2MTModelVisitorTest>>checkPackages: project [
+{ #category : #private }
+MCModel2MTModelVisitorTest >> checkPackages: project [
 	| packages proj |
 	
 	packages := project packages.
@@ -61,11 +51,8 @@ MCModel2MTModelVisitorTest>>checkPackages: project [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MCModel2MTModelVisitorTest>>checkRequiredProjects: project [
+{ #category : #private }
+MCModel2MTModelVisitorTest >> checkRequiredProjects: project [
 	| requiredProjects proj |
 	
 	requiredProjects := project requiredProjects.
@@ -84,29 +71,20 @@ MCModel2MTModelVisitorTest>>checkRequiredProjects: project [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MCModel2MTModelVisitorTest>>setUp [
+{ #category : #tests }
+MCModel2MTModelVisitorTest >> setUp [
 	super setUp.
 	classFactory := ClassFactoryForTestCase new.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MCModel2MTModelVisitorTest>>tearDown [
+{ #category : #tests }
+MCModel2MTModelVisitorTest >> tearDown [
 	super tearDown.
 	classFactory cleanUp.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MCModel2MTModelVisitorTest>>testVisitXMLParserConfigurationWithVersion101 [
+{ #category : #tests }
+MCModel2MTModelVisitorTest >> testVisitXMLParserConfigurationWithVersion101 [
 	"test the visitor with the 1.38 version of the Versionner configuration "
 
 	| visitor config project version |

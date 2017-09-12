@@ -8,15 +8,11 @@ Class {
 		'gofer',
 		'configurationRoot'
 	],
-	#category : #Versionner-Tests-Core-Model,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:16'
+	#category : #Versionner-Tests-Core-Model
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>expectedFailures  [
+{ #category : #tests }
+MBConfigurationRootTest >> expectedFailures [ 
 	^ #(
 		test0021ConfigurationInfoCreated
 		test0030BasicVersionLoad 
@@ -38,11 +34,8 @@ MBConfigurationRootTest>>expectedFailures  [
 	) 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>hasPackage: aString [
+{ #category : #running }
+MBConfigurationRootTest >> hasPackage: aString [
 	| package |
 	package := MCWorkingCopy allManagers
 		detect: [ :each | each packageName = aString ]
@@ -50,11 +43,8 @@ MBConfigurationRootTest>>hasPackage: aString [
 	^ package notNil
 ]
 
-{
-	#category : #scenarios,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>scenariosForTests [
+{ #category : #scenarios }
+MBConfigurationRootTest >> scenariosForTests [
 	"
 	1. select a configuration, then unload the configuration ... in OB you gtt an error because the 
 		project was undefined .... simulate by creating a ConfigurationOf class that is not a real configuration
@@ -64,11 +54,8 @@ MBConfigurationRootTest>>scenariosForTests [
 	"
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>setUp [
+{ #category : #running }
+MBConfigurationRootTest >> setUp [
 
 	| repo |
 	super setUp.
@@ -82,11 +69,8 @@ MBConfigurationRootTest>>setUp [
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>tearDown [
+{ #category : #running }
+MBConfigurationRootTest >> tearDown [
 	configurationRoot ifNotNil: [ configurationRoot unregister ].
 	Smalltalk removeKey: #'MB_Foo_Test_Repository' ifAbsent: [].
 	gofer := Gofer new.
@@ -95,20 +79,14 @@ MBConfigurationRootTest>>tearDown [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>tearDownPackages [
+{ #category : #running }
+MBConfigurationRootTest >> tearDownPackages [
 
 	^#('MBFooTests' 'ConfigurationOfMBFooTests')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0010BasicLoad [
+{ #category : #tests }
+MBConfigurationRootTest >> test0010BasicLoad [
 	"First test: 
 		- make sure that the configuration can be loaded without error
 		- make sure that version 1.0 can be loaded without error"
@@ -122,11 +100,8 @@ MBConfigurationRootTest>>test0010BasicLoad [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0020BasicConfigurationLoad [
+{ #category : #tests }
+MBConfigurationRootTest >> test0020BasicConfigurationLoad [
 	"Second test:
 		- load configuration version dkh.1
 		- verify that config info added to root
@@ -189,11 +164,8 @@ MBConfigurationRootTest>>test0020BasicConfigurationLoad [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0021ConfigurationInfoCreated [
+{ #category : #tests }
+MBConfigurationRootTest >> test0021ConfigurationInfoCreated [
 	| createdValuable configClassName configInfoCreated configInfoChanged changedValuable configInfoDeleted deletedValuable |
 	configInfoDeleted := configInfoChanged := configInfoCreated := false.
 	createdValuable := [ :ann | configInfoCreated := true ].
@@ -220,11 +192,8 @@ MBConfigurationRootTest>>test0021ConfigurationInfoCreated [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0030BasicVersionLoad [
+{ #category : #tests }
+MBConfigurationRootTest >> test0030BasicVersionLoad [
 	"Third test: 
 		- load configuration version dkh.1
 		- verfy that the target data structures are as expected
@@ -276,11 +245,8 @@ MBConfigurationRootTest>>test0030BasicVersionLoad [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0031ConfigurationInfoChanged [
+{ #category : #tests }
+MBConfigurationRootTest >> test0031ConfigurationInfoChanged [
 	"If you don't touch the currentVersion of a configurationInfo, then no changed event is signaled on load."
 	| createdValuable configClassName configInfoCreated configInfoChanged changedValuable configInfoDeleted deletedValuable |
 	configInfoDeleted := configInfoChanged := configInfoCreated := false.
@@ -316,11 +282,8 @@ MBConfigurationRootTest>>test0031ConfigurationInfoChanged [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0032InfoListChanged [
+{ #category : #tests }
+MBConfigurationRootTest >> test0032InfoListChanged [
 
 	| infoListChanged changedValuable |
 	infoListChanged := false.
@@ -344,11 +307,8 @@ MBConfigurationRootTest>>test0032InfoListChanged [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0040BasicVersionLoad [
+{ #category : #tests }
+MBConfigurationRootTest >> test0040BasicVersionLoad [
 	"Fourth test:
 	 	- load configuration dkh.1
 		- send currentVersion to configInfo ... which record currentVersion
@@ -370,11 +330,8 @@ MBConfigurationRootTest>>test0040BasicVersionLoad [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0050BasicVersionLoad [
+{ #category : #tests }
+MBConfigurationRootTest >> test0050BasicVersionLoad [
 	"Fifth test:
 	 	- load configuration dkh.2(no events when loading version 1.1!)
 		- send currentVersion to configInfo ... which record currentVersion
@@ -402,11 +359,8 @@ MBConfigurationRootTest>>test0050BasicVersionLoad [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0060BasicVersionLoad [
+{ #category : #tests }
+MBConfigurationRootTest >> test0060BasicVersionLoad [
 	"Sixth test:
 	 	- load configuration dkh.3
 		- send currentVersion to configInfo ... which record currentVersion
@@ -434,11 +388,8 @@ MBConfigurationRootTest>>test0060BasicVersionLoad [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0061ConfigurationInfoChanged [
+{ #category : #tests }
+MBConfigurationRootTest >> test0061ConfigurationInfoChanged [
 	"Touch the currentVersion of a configurationInfo, expect a changed event on load"
 	| createdValuable configClassName configInfoCreated configInfoChanged changedValuable configInfoDeleted deletedValuable configInfo configClass |
 	configInfoDeleted := configInfoChanged := configInfoCreated := false.
@@ -489,11 +440,8 @@ MBConfigurationRootTest>>test0061ConfigurationInfoChanged [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0062InfoListChanged [
+{ #category : #tests }
+MBConfigurationRootTest >> test0062InfoListChanged [
 	| infoListChanged changedValuable configClassName configClass configInfo |
 	infoListChanged := false.
 	changedValuable := [ :ann | infoListChanged := true ].
@@ -530,11 +478,8 @@ MBConfigurationRootTest>>test0062InfoListChanged [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0070BasicVersionLoad [
+{ #category : #tests }
+MBConfigurationRootTest >> test0070BasicVersionLoad [
 	"Seventh test:
 	 	- load configuration dkh.3
 		- load version 1.0.
@@ -604,11 +549,8 @@ MBConfigurationRootTest>>test0070BasicVersionLoad [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0080BasicVersionLoad [
+{ #category : #tests }
+MBConfigurationRootTest >> test0080BasicVersionLoad [
 	"Eighth test:
 	 	- load configuration dkh.3
 		- load version 1.2
@@ -662,11 +604,8 @@ MBConfigurationRootTest>>test0080BasicVersionLoad [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0081BasicVersionLoad [
+{ #category : #tests }
+MBConfigurationRootTest >> test0081BasicVersionLoad [
 	"8.1:
 	 	- load configuration dkh.3
 		- load version 1.2
@@ -699,11 +638,8 @@ MBConfigurationRootTest>>test0081BasicVersionLoad [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0082ConfigurationInfoChanged [
+{ #category : #tests }
+MBConfigurationRootTest >> test0082ConfigurationInfoChanged [
 
 	| configInfoDeleted configInfoChanged configInfoCreated createdValuable changedValuable deletedValuable configClassName configClass configInfo |
 	configInfoDeleted := configInfoChanged := configInfoCreated := false.
@@ -755,11 +691,8 @@ MBConfigurationRootTest>>test0082ConfigurationInfoChanged [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0083InfoListChanged [
+{ #category : #tests }
+MBConfigurationRootTest >> test0083InfoListChanged [
 	| infoListChanged changedValuable configClassName configClass configInfo |
 	infoListChanged := false.
 	changedValuable := [ :ann | infoListChanged := true ].
@@ -797,11 +730,8 @@ MBConfigurationRootTest>>test0083InfoListChanged [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0090BasicVersionLoad [
+{ #category : #tests }
+MBConfigurationRootTest >> test0090BasicVersionLoad [
 	"9:
 	 	- load configuration dkh.3
 		- load version 1.2
@@ -858,11 +788,8 @@ MBConfigurationRootTest>>test0090BasicVersionLoad [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0091PackageMismatch [
+{ #category : #tests }
+MBConfigurationRootTest >> test0091PackageMismatch [
 	"
 	 	- load configuration dkh.3
 		- load version 1.2
@@ -906,11 +833,8 @@ MBConfigurationRootTest>>test0091PackageMismatch [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0100BasicConfigurationUnload [
+{ #category : #tests }
+MBConfigurationRootTest >> test0100BasicConfigurationUnload [
 	"10:
 	 	- load configuration dkh.3
 		- unload configuration"
@@ -932,11 +856,8 @@ MBConfigurationRootTest>>test0100BasicConfigurationUnload [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0101ConfigurationInfoDeleted [
+{ #category : #tests }
+MBConfigurationRootTest >> test0101ConfigurationInfoDeleted [
 	| createdValuable configClassName configInfoCreated configInfoChanged changedValuable configInfoDeleted deletedValuable configClass configInfo |
 	configInfoDeleted := configInfoChanged := configInfoCreated := false.
 	createdValuable := [ :ann | configInfoCreated := true ].
@@ -979,11 +900,8 @@ MBConfigurationRootTest>>test0101ConfigurationInfoDeleted [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0110BasicPackageUnload [
+{ #category : #tests }
+MBConfigurationRootTest >> test0110BasicPackageUnload [
 
 	"load dkh.3"
 	| configClassName configClass configInfo unloadGofer infos |
@@ -1012,11 +930,8 @@ MBConfigurationRootTest>>test0110BasicPackageUnload [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0111InfoListChanged [
+{ #category : #tests }
+MBConfigurationRootTest >> test0111InfoListChanged [
 	| infoListChanged changedValuable configClassName configClass configInfo unloadGofer |
 	infoListChanged := false.
 	changedValuable := [ :ann | infoListChanged := true ].
@@ -1056,11 +971,8 @@ MBConfigurationRootTest>>test0111InfoListChanged [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRootTest>>test0120ConfigPackageSave [
+{ #category : #tests }
+MBConfigurationRootTest >> test0120ConfigPackageSave [
 	"Issue 125 test
 	 	- load configuration dkh.3
 		- load version 1.2

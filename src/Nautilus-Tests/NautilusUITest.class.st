@@ -9,37 +9,27 @@ Class {
 		'nautilusUI2',
 		'nautilusUI3'
 	],
-	#category : #Nautilus-Tests,
-	#timestamp : '<historical>'
+	#category : #Nautilus-Tests
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusUITest>>setUp [
+{ #category : #initialization }
+NautilusUITest >> setUp [
 	"Setting up code for NautilusUITest"
 
 
 	nautilusUI := NautilusUI on: Nautilus new.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusUITest>>tearDown [
+{ #category : #initialization }
+NautilusUITest >> tearDown [
 	"Tearing down code for NautilusUITest"
 
 
 	nautilusUI := nil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusUITest>>testBuildTestSelectorFor [
+{ #category : #tests }
+NautilusUITest >> testBuildTestSelectorFor [
 
 	| method selector |
 	method := MorphicEventHandler >> #keyStroke:fromMorph:.
@@ -47,11 +37,8 @@ NautilusUITest>>testBuildTestSelectorFor [
 	self assert: selector equals: 'testKeyStrokeFromMorph'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusUITest>>testMethodSortBlock [
+{ #category : #tests }
+NautilusUITest >> testMethodSortBlock [
 	"Test that the default sort block sorts binary methods ahead of
 	non-binary methods and sorts using Character values otherwise."
 

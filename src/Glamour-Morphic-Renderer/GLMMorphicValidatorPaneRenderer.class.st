@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicValidatorPaneRenderer,
 	#superclass : #GLMMorphicWidgetRenderer,
@@ -9,25 +6,18 @@ Class {
 		'paneMorph',
 		'buttons'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicValidatorPaneRenderer>>actOnMatchingPresentationsChanged: anAnnouncement  [
+{ #category : #rendering }
+GLMMorphicValidatorPaneRenderer >> actOnMatchingPresentationsChanged: anAnnouncement [ 
 	paneMorph	removeAllMorphs.
 	self renderMorphFor: anAnnouncement pane.
 	self renderer window fullBounds
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicValidatorPaneRenderer>>buttonRowFrom: aCollectionOfButtons [
+{ #category : #rendering }
+GLMMorphicValidatorPaneRenderer >> buttonRowFrom: aCollectionOfButtons [
 	"Answer a new ok/cancel button row."
 
 	|answer curentButtons e|
@@ -49,29 +39,20 @@ GLMMorphicValidatorPaneRenderer>>buttonRowFrom: aCollectionOfButtons [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicValidatorPaneRenderer>>buttons [
+{ #category : #accessing }
+GLMMorphicValidatorPaneRenderer >> buttons [
 
 	^ buttons
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicValidatorPaneRenderer>>buttons: aCollectionOfButtons [
+{ #category : #accessing }
+GLMMorphicValidatorPaneRenderer >> buttons: aCollectionOfButtons [
 
 	buttons := aCollectionOfButtons
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicValidatorPaneRenderer>>newColumnWith: aCollectionOfMorphElements [
+{ #category : #rendering }
+GLMMorphicValidatorPaneRenderer >> newColumnWith: aCollectionOfMorphElements [
 	"use this method to create a new column in your block"
 	<lint: 'Utility methods' rationale: 'defined here to facilate the use of the library' author: 'cyrille.delaunay'>
 	
@@ -86,22 +67,16 @@ GLMMorphicValidatorPaneRenderer>>newColumnWith: aCollectionOfMorphElements [
 	^answer
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicValidatorPaneRenderer>>render: aPane [
+{ #category : #rendering }
+GLMMorphicValidatorPaneRenderer >> render: aPane [
 	paneMorph := GLMMorphic containerMorph.
 	aPane when: GLMMatchingPresentationsChanged send: #actOnMatchingPresentationsChanged: to: self.
 	self renderMorphFor: aPane.
 	^ paneMorph
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicValidatorPaneRenderer>>renderCompositiePresentation: aCompositePresentation [
+{ #category : #rendering }
+GLMMorphicValidatorPaneRenderer >> renderCompositiePresentation: aCompositePresentation [
 	
 	paneMorph := GLMMorphic containerMorph.
 	paneMorph
@@ -115,11 +90,8 @@ GLMMorphicValidatorPaneRenderer>>renderCompositiePresentation: aCompositePresent
 	^ paneMorph
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicValidatorPaneRenderer>>renderMorphFor: aPane [
+{ #category : #rendering }
+GLMMorphicValidatorPaneRenderer >> renderMorphFor: aPane [
 
 	paneMorph
 		addMorph: 

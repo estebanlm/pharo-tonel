@@ -6,24 +6,17 @@ I provide a different view of all variables from  a Context suitable for a bytec
 Class {
 	#name : #GTBytecodeDebuggerVariablesBrowser,
 	#superclass : #GTDebuggerVariablesBrowser,
-	#category : #GT-BytecodeDebugger-UI,
-	#timestamp : 'AndreiChis 12/30/2015 11:03'
+	#category : #GT-BytecodeDebugger-UI
 }
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebuggerVariablesBrowser>>buildVariablesFromContext: aContext  [
+{ #category : #'private building' }
+GTBytecodeDebuggerVariablesBrowser >> buildVariablesFromContext: aContext [ 
 
 	^ aContext gtBytecodeDebuggerRetrieveContextValues
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebuggerVariablesBrowser>>variablesIn: aComposite [
+{ #category : #'private building' }
+GTBytecodeDebuggerVariablesBrowser >> variablesIn: aComposite [
 
 	^ (super variablesIn: aComposite)
 		sorted: nil

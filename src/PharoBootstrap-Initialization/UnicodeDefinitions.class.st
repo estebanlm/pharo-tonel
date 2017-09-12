@@ -11,15 +11,11 @@ Initialization is done with:
 Class {
 	#name : #UnicodeDefinitions,
 	#superclass : #Object,
-	#category : #PharoBootstrap-Initialization,
-	#timestamp : 'ChristopheDemarey 1/5/2016 20:31'
+	#category : #PharoBootstrap-Initialization
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-UnicodeDefinitions class>>caseFolding [
+{ #category : #accessing }
+UnicodeDefinitions class >> caseFolding [
 	^ '# CaseFolding-8.0.0.txt
 # Date: 2015-01-13, 18:16:36 GMT [MD]
 #
@@ -1437,11 +1433,8 @@ FF3A; C; FF5A; # FULLWIDTH LATIN CAPITAL LETTER Z
 '
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-UnicodeDefinitions class>>data [
+{ #category : #accessing }
+UnicodeDefinitions class >> data [
 	^ '0000;<control>;Cc;0;BN;;;;;N;NULL;;;;
 0001;<control>;Cc;0;BN;;;;;N;START OF HEADING;;;;
 0002;<control>;Cc;0;BN;;;;;N;START OF TEXT;;;;
@@ -30660,11 +30653,8 @@ FFFFD;<Plane 15 Private Use, Last>;Co;0;L;;;;;N;;;;;
 '
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-UnicodeDefinitions class>>initializeUnicodeClass [
+{ #category : #initializing }
+UnicodeDefinitions class >> initializeUnicodeClass [
 	"self initializeUnicodeClass"
 	Unicode 
 		parseUnicodeDataFrom: self data readStream;

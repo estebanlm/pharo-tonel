@@ -14,59 +14,40 @@ Class {
 	#instVars : [
 		'announcer'
 	],
-	#category : #Announcements-Tests-Core-Tests,
-	#timestamp : 'Tbn 11/12/2010 10:55'
+	#category : #Announcements-Tests-Core-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest class>>shouldInheritSelectors [
+{ #category : #testing }
+AnnouncerTest class >> shouldInheritSelectors [
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>newAnnouncer [
+{ #category : #private }
+AnnouncerTest >> newAnnouncer [
 	^ Announcer new
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>setUp [
+{ #category : #running }
+AnnouncerTest >> setUp [
 	super setUp.
 	announcer := self newAnnouncer
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testAnnounceClass [
+{ #category : #testing }
+AnnouncerTest >> testAnnounceClass [
 	self assert: (announcer announce: AnnouncementMockA) 
 		class = AnnouncementMockA
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testAnnounceInstance [
+{ #category : #testing }
+AnnouncerTest >> testAnnounceInstance [
 	| instance |
 	instance := AnnouncementMockA new.
 	self assert: (announcer announce: instance) = instance
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testAnnouncingReentrant [
+{ #category : #testing }
+AnnouncerTest >> testAnnouncingReentrant [
 	" Test that it is safe to announce when handling announcement,
 	so announcer are reentrant "
 
@@ -88,11 +69,8 @@ AnnouncerTest>>testAnnouncingReentrant [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testNoArgBlock [
+{ #category : #testing }
+AnnouncerTest >> testNoArgBlock [
 	"we are supposed to accept zero-argument blocks as actions "
 
 	| counter |
@@ -102,11 +80,8 @@ AnnouncerTest>>testNoArgBlock [
 	self assert: counter = 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testPreparationAnnouncementDelivery [
+{ #category : #testing }
+AnnouncerTest >> testPreparationAnnouncementDelivery [
 	| announcement |
 	
 	announcer when: AnnouncementMockC send: #value: to: [ :ann | #firstBlock ].
@@ -123,11 +98,8 @@ AnnouncerTest>>testPreparationAnnouncementDelivery [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testPreparationAnnouncementDeliveryWhenNoSubscriptions [
+{ #category : #testing }
+AnnouncerTest >> testPreparationAnnouncementDeliveryWhenNoSubscriptions [
 
 	| instance |
 	announcer when: AnnouncementMockA send: #value: to: [ :ann | ].
@@ -137,11 +109,8 @@ AnnouncerTest>>testPreparationAnnouncementDeliveryWhenNoSubscriptions [
 	self assert: instance announcingCounter equals: 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testSubscribeBlock [
+{ #category : #testing }
+AnnouncerTest >> testSubscribeBlock [
 	| announcement instance |
 	announcer
 		subscribe: AnnouncementMockA
@@ -156,11 +125,8 @@ AnnouncerTest>>testSubscribeBlock [
 	self assert: announcement isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testSubscribeClassWithExclusion [
+{ #category : #testing }
+AnnouncerTest >> testSubscribeClassWithExclusion [
 	| announcement instance |
 	announcer
 		subscribe: AnnouncementMockB - AnnouncementMockC
@@ -175,11 +141,8 @@ AnnouncerTest>>testSubscribeClassWithExclusion [
 	self assert: announcement isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testSubscribeOnSpecificAnnouncer [
+{ #category : #testing }
+AnnouncerTest >> testSubscribeOnSpecificAnnouncer [
 	| announcement instance |
 	announcer
 		subscribe: (AnnouncementMockB where: [:ann | ann parameter = #expectedParam] )
@@ -206,11 +169,8 @@ AnnouncerTest>>testSubscribeOnSpecificAnnouncer [
 	self assert: announcement equals: instance.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testSubscribeSend [
+{ #category : #testing }
+AnnouncerTest >> testSubscribeSend [
 	| announcement instance |
 	announcer when: AnnouncementMockA send: #value: to: [ :ann | announcement := ann ].
 		
@@ -223,11 +183,8 @@ AnnouncerTest>>testSubscribeSend [
 	self assert: announcement isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testSubscribeSet [
+{ #category : #testing }
+AnnouncerTest >> testSubscribeSet [
 	| announcement instance |
 	announcer
 		subscribe: AnnouncementMockA , AnnouncementMockC
@@ -246,11 +203,8 @@ AnnouncerTest>>testSubscribeSet [
 	self assert: announcement = instance
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testSubscribeSetWithExclusion [
+{ #category : #testing }
+AnnouncerTest >> testSubscribeSetWithExclusion [
 	| announcement instance |
 	announcer
 		subscribe: AnnouncementMockA , AnnouncementMockB - AnnouncementMockC
@@ -269,11 +223,8 @@ AnnouncerTest>>testSubscribeSetWithExclusion [
 	self assert: announcement isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testSubscribeSetWithExclusionOfMultipleAnnouncements [
+{ #category : #testing }
+AnnouncerTest >> testSubscribeSetWithExclusionOfMultipleAnnouncements [
 	| announcement instance |
 	announcer
 		subscribe: AnnouncementMockA , AnnouncementMockB - AnnouncementMockC - AnnouncementMockA
@@ -292,11 +243,8 @@ AnnouncerTest>>testSubscribeSetWithExclusionOfMultipleAnnouncements [
 	self assert: announcement isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testSubscribeSetWithExclusionOfSetItem [
+{ #category : #testing }
+AnnouncerTest >> testSubscribeSetWithExclusionOfSetItem [
 	| announcement instance |
 	announcer
 		subscribe: AnnouncementMockA , AnnouncementMockC - AnnouncementMockA
@@ -311,11 +259,8 @@ AnnouncerTest>>testSubscribeSetWithExclusionOfSetItem [
 	self assert: announcement = instance
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testSubscribeSubclass [
+{ #category : #testing }
+AnnouncerTest >> testSubscribeSubclass [
 	| announcement instance |
 	announcer
 		subscribe: AnnouncementMockB
@@ -334,11 +279,8 @@ AnnouncerTest>>testSubscribeSubclass [
 	self assert: announcement = instance.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testSymbolIdentifier [
+{ #category : #testing }
+AnnouncerTest >> testSymbolIdentifier [
 	| passed |
 	passed := false.
 	
@@ -351,11 +293,8 @@ AnnouncerTest>>testSymbolIdentifier [
 	self assert: passed 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testTwoArgBlock [
+{ #category : #testing }
+AnnouncerTest >> testTwoArgBlock [
 	"we are supposed to accept two-argument blocks as actions "
 
 	| flag |
@@ -365,11 +304,8 @@ AnnouncerTest>>testTwoArgBlock [
 	self assert: flag
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testUnsubscribeBlock [
+{ #category : #testing }
+AnnouncerTest >> testUnsubscribeBlock [
 	| announcement |
 	announcer
 		subscribe: AnnouncementMockA
@@ -382,11 +318,8 @@ AnnouncerTest>>testUnsubscribeBlock [
 	self assert: announcement isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testUnsubscribeSend [
+{ #category : #testing }
+AnnouncerTest >> testUnsubscribeSend [
 	| announcement receiver |
 	announcer when: AnnouncementMockA send: #value: to: (receiver := [ :ann | announcement := ann ]).
 	announcer unsubscribe: receiver.
@@ -396,11 +329,8 @@ AnnouncerTest>>testUnsubscribeSend [
 	self assert: announcement isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncerTest>>testUnsubscribeSet [
+{ #category : #testing }
+AnnouncerTest >> testUnsubscribeSet [
 	| announcement |
 	announcer
 		subscribe: AnnouncementMockA , AnnouncementMockB

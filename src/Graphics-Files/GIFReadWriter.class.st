@@ -38,15 +38,11 @@ Class {
 		'ImageSeparator',
 		'Terminator'
 	],
-	#category : #Graphics-Files,
-	#timestamp : '<historical>'
+	#category : #Graphics-Files
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter class>>exampleAnim [
+{ #category : #examples }
+GIFReadWriter class >> exampleAnim [
 	"GIFReadWriter exampleAnim"
 
 	| writer extent center |
@@ -65,11 +61,8 @@ GIFReadWriter class>>exampleAnim [
 		]	ensure: [writer close]].
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter class>>grabScreenAndSaveOnDisk [
+{ #category : #examples }
+GIFReadWriter class >> grabScreenAndSaveOnDisk [
 	"GIFReadWriter grabScreenAndSaveOnDisk"
 	| form fileName |
 	
@@ -86,22 +79,16 @@ GIFReadWriter class>>grabScreenAndSaveOnDisk [
 				onFileNamed: fileName ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter class>>initialize [
+{ #category : #initialization }
+GIFReadWriter class >> initialize [
 	"GIFReadWriter initialize"
 	ImageSeparator := $, asInteger.
 	Extension := $! asInteger.
 	Terminator := $; asInteger
 ]
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter class>>typicalFileExtensions [
+{ #category : #'image reading/writing' }
+GIFReadWriter class >> typicalFileExtensions [
 	"Answer a collection of file extensions (lowercase) which files that I can 
 	read might commonly have"
 
@@ -113,97 +100,67 @@ GIFReadWriter class>>typicalFileExtensions [
 			#('gif') ]
 ]
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter class>>wantsToHandleGIFs [
+{ #category : #'image reading/writing' }
+GIFReadWriter class >> wantsToHandleGIFs [
 	^ false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>checkCodeSize [
+{ #category : #private }
+GIFReadWriter >> checkCodeSize [
 	(freeCode > maxCode and: [ codeSize < 12 ]) ifTrue: 
 		[ codeSize := codeSize + 1.
 		maxCode := (1 bitShift: codeSize) - 1 ]
 ]
 
-{
-	#category : #'stream access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>close [
+{ #category : #'stream access' }
+GIFReadWriter >> close [
 	"Write terminator"
 	self nextPut: Terminator.
 	^super close
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>delay: aNumberOrNil [
+{ #category : #accessing }
+GIFReadWriter >> delay: aNumberOrNil [
 	"Set delay for next image in hundredth (1/100) of seconds"
 	delay := aNumberOrNil
 ]
 
-{
-	#category : #private-packing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>fillBuffer [
+{ #category : #private-packing }
+GIFReadWriter >> fillBuffer [
 	| packSize |
 	packSize := self next.
 	bufStream := (self next: packSize) readStream
 ]
 
-{
-	#category : #'private-bits access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>flushBits [
+{ #category : #'private-bits access' }
+GIFReadWriter >> flushBits [
 	remainBitCount = 0 ifFalse: 
 		[ self nextBytePut: bufByte.
 		remainBitCount := 0 ].
 	self flushBuffer
 ]
 
-{
-	#category : #private-packing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>flushBuffer [
+{ #category : #private-packing }
+GIFReadWriter >> flushBuffer [
 	bufStream isEmpty ifTrue: [ ^ self ].
 	self nextPut: bufStream size.
 	self nextPutAll: bufStream contents.
 	bufStream := (ByteArray new: 256) writeStream.
 ]
 
-{
-	#category : #private-encoding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>flushCode [
+{ #category : #private-encoding }
+GIFReadWriter >> flushCode [
 	self flushBits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>loopCount: aNumber [
+{ #category : #accessing }
+GIFReadWriter >> loopCount: aNumber [
 	"Set looping. This must be done before any image is written!"
 	loopCount := aNumber
 ]
 
-{
-	#category : #'private-bits access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>nextBits [
+{ #category : #'private-bits access' }
+GIFReadWriter >> nextBits [
 	| integer readBitCount shiftCount byte |
 	integer := 0.
 	remainBitCount = 0 
@@ -226,11 +183,8 @@ GIFReadWriter>>nextBits [
 	^ integer + (byte bitShift: shiftCount) bitAnd: maxCode
 ]
 
-{
-	#category : #'private-bits access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>nextBitsPut: anInteger  [
+{ #category : #'private-bits access' }
+GIFReadWriter >> nextBitsPut: anInteger [ 
 	| integer writeBitCount shiftCount |
 	shiftCount := 0.
 	remainBitCount = 0 
@@ -250,11 +204,8 @@ GIFReadWriter>>nextBitsPut: anInteger  [
 	^ anInteger
 ]
 
-{
-	#category : #private-packing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>nextByte [
+{ #category : #private-packing }
+GIFReadWriter >> nextByte [
 	bufStream atEnd
 		ifTrue:
 			[self atEnd ifTrue: [^nil].
@@ -262,20 +213,14 @@ GIFReadWriter>>nextByte [
 	^bufStream next
 ]
 
-{
-	#category : #private-packing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>nextBytePut: aByte [
+{ #category : #private-packing }
+GIFReadWriter >> nextBytePut: aByte [
 	bufStream nextPut: aByte.
 	bufStream size >= 254 ifTrue: [self flushBuffer]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>nextImage [
+{ #category : #accessing }
+GIFReadWriter >> nextImage [
 	"Read in the next GIF image from the stream. Read it all into
 memory first for speed."
 	| f thisImageColorTable |
@@ -300,11 +245,8 @@ memory first for speed."
 	^ f
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>nextPutImage: aForm [
+{ #category : #accessing }
+GIFReadWriter >> nextPutImage: aForm [
 
 	| reduced tempForm |
 	aForm unhibernate.
@@ -344,11 +286,8 @@ GIFReadWriter>>nextPutImage: aForm [
 
 ]
 
-{
-	#category : #private-packing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>peekByte [
+{ #category : #private-packing }
+GIFReadWriter >> peekByte [
 	bufStream atEnd
 		ifTrue:
 			[self atEnd ifTrue: [^nil].
@@ -356,11 +295,8 @@ GIFReadWriter>>peekByte [
 	^bufStream peek
 ]
 
-{
-	#category : #private-decoding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>readBitData [
+{ #category : #private-decoding }
+GIFReadWriter >> readBitData [
 	"using modified Lempel-Ziv Welch algorithm."
 	| outCodes outCount bitMask initCodeSize code curCode oldCode inCode finChar i bytes f c packedBits hasLocalColor localColorSize maxOutCodes |
 	maxOutCodes := 4096.
@@ -466,11 +402,8 @@ GIFReadWriter>>readBitData [
 	^ c
 ]
 
-{
-	#category : #private-decoding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>readBody [
+{ #category : #private-decoding }
+GIFReadWriter >> readBody [
 	"Read the GIF blocks. Modified to return a form.  "
 	| form extype block blocksize packedFields delay1 |
 	form := nil.
@@ -509,19 +442,13 @@ GIFReadWriter>>readBody [
 							self next: blocksize ] ] ] ]
 ]
 
-{
-	#category : #private-decoding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>readCode [
+{ #category : #private-decoding }
+GIFReadWriter >> readCode [
 	^self nextBits
 ]
 
-{
-	#category : #private-decoding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>readColorTable: numberOfEntries  [
+{ #category : #private-decoding }
+GIFReadWriter >> readColorTable: numberOfEntries [ 
 	| array r g b |
 	array := Array new: numberOfEntries.
 	1 
@@ -541,11 +468,8 @@ GIFReadWriter>>readColorTable: numberOfEntries  [
 	^ array
 ]
 
-{
-	#category : #private-decoding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>readHeader [
+{ #category : #private-decoding }
+GIFReadWriter >> readHeader [
 	| is89 byte hasColorMap |
 	(self hasMagicNumber: 'GIF87a' asByteArray) 
 		ifTrue: [ is89 := false ]
@@ -568,11 +492,8 @@ GIFReadWriter>>readHeader [
 			colorPalette := nil	"Palette monochromeDefault" ]
 ]
 
-{
-	#category : #private-encoding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>readPixelFrom: bits  [
+{ #category : #private-encoding }
+GIFReadWriter >> readPixelFrom: bits [ 
 	"Since bits is a Bitmap with 32 bit values, watch out for the
 padding at the end of each row.  But, GIF format already wants padding to
 32 bit boundary!  OK as is.  tk 9/14/97"
@@ -583,19 +504,13 @@ padding at the end of each row.  But, GIF format already wants padding to
 	^ pixel
 ]
 
-{
-	#category : #private-decoding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>readWord [
+{ #category : #private-decoding }
+GIFReadWriter >> readWord [
 	^self next + (self next bitShift: 8)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>setParameters: initCodeSize  [
+{ #category : #private }
+GIFReadWriter >> setParameters: initCodeSize [ 
 	clearCode := 1 bitShift: initCodeSize.
 	eoiCode := clearCode + 1.
 	freeCode := clearCode + 2.
@@ -603,20 +518,14 @@ GIFReadWriter>>setParameters: initCodeSize  [
 	maxCode := (1 bitShift: codeSize) - 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>setStream: aStream  [
+{ #category : #accessing }
+GIFReadWriter >> setStream: aStream [ 
 	"Feed it in from an existing source"
 	stream := aStream
 ]
 
-{
-	#category : #private-decoding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>skipBitData [
+{ #category : #private-decoding }
+GIFReadWriter >> skipBitData [
 	| misc blocksize |
 	self readWord.	"skip Image Left"
 	self readWord.	"skip Image Top"
@@ -637,19 +546,13 @@ GIFReadWriter>>skipBitData [
 	[ (blocksize := self next) > 0 ] whileTrue: [ self next: blocksize ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>understandsImageFormat [
+{ #category : #accessing }
+GIFReadWriter >> understandsImageFormat [
 	^('abc' collect: [:x | stream next asCharacter]) = 'GIF'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>updatePixelPosition [
+{ #category : #private }
+GIFReadWriter >> updatePixelPosition [
 	(xpos := xpos + 1) >= width ifFalse: [ ^ self ].
 	xpos := 0.
 	interlace ifFalse: 
@@ -676,11 +579,8 @@ GIFReadWriter>>updatePixelPosition [
 	^ self error: 'can''t happen'
 ]
 
-{
-	#category : #private-encoding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>writeBitData: bits  [
+{ #category : #private-encoding }
+GIFReadWriter >> writeBitData: bits [ 
 	"using modified Lempel-Ziv Welch algorithm."
 	| maxBits maxMaxCode tSize initCodeSize ent tShift fCode pixel index disp nomatch |
 	pass := 0.
@@ -765,28 +665,19 @@ GIFReadWriter>>writeBitData: bits  [
 	self nextPut: 0	"zero-length packet"
 ]
 
-{
-	#category : #private-encoding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>writeCode: aCode [
+{ #category : #private-encoding }
+GIFReadWriter >> writeCode: aCode [
 	self nextBitsPut: aCode
 ]
 
-{
-	#category : #private-encoding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>writeCodeAndCheckCodeSize: aCode [
+{ #category : #private-encoding }
+GIFReadWriter >> writeCodeAndCheckCodeSize: aCode [
 	self writeCode: aCode.
 	self checkCodeSize
 ]
 
-{
-	#category : #private-encoding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>writeHeader [
+{ #category : #private-encoding }
+GIFReadWriter >> writeHeader [
 	| byte |
 	stream position = 0 ifTrue: 
 		[ "For first image only"
@@ -848,11 +739,8 @@ GIFReadWriter>>writeHeader [
 	self nextPut: byte
 ]
 
-{
-	#category : #private-encoding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GIFReadWriter>>writeWord: aWord [
+{ #category : #private-encoding }
+GIFReadWriter >> writeWord: aWord [
 	self nextPut: (aWord bitAnd: 255).
 	self nextPut: ((aWord bitShift: -8) bitAnd: 255).
 	^aWord

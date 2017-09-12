@@ -8,61 +8,42 @@ Class {
 	#pools : [
 		'ChronologyConstants'
 	],
-	#category : #Kernel-Chronology,
-	#timestamp : '<historical>'
+	#category : #Kernel-Chronology
 }
 
-{
-	#category : #'accessing constant',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>dayNames [
+{ #category : #'accessing constant' }
+Date class >> dayNames [
 	"Return a collection of english day names"
 	^ DayNames copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>dayOfWeek: dayName [
+{ #category : #accessing }
+Date class >> dayOfWeek: dayName [ 
 
 	^ Week indexOfDay: dayName
 ]
 
-{
-	#category : #'accessing constant',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>daysInMonth [
+{ #category : #'accessing constant' }
+Date class >> daysInMonth [
 	"Return a collection representing the days in each month"
 	^ DaysInMonth copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>daysInMonth: monthName forYear: yearInteger [
+{ #category : #accessing }
+Date class >> daysInMonth: monthName forYear: yearInteger [ 
 
 	^ Month daysInMonth: monthName forYear: yearInteger.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>daysInYear: yearInteger [
+{ #category : #accessing }
+Date class >> daysInYear: yearInteger [ 
 
 	^ Year daysInYear: yearInteger.
 ]
 
-{
-	#category : #'specific inquiries',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>easterDateFor: year [
+{ #category : #'specific inquiries' }
+Date class >> easterDateFor: year [
 
  "  compute the easter date.
     source: Physikalisch-Technische Bundesanstalt Braunschweig.
@@ -91,126 +72,87 @@ Date class>>easterDateFor: year [
     ifFalse: [ Date year: year month: 4 day: day - 31 ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>firstWeekdayOfMonth: month year: year [
+{ #category : #accessing }
+Date class >> firstWeekdayOfMonth: month year: year [
 	"Answer the weekday index of the first day in <month> in the <year>."
 
 	^ (self year: year month: month day: 1) weekdayIndex
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>fromDays: dayCount [
+{ #category : #'instance creation' }
+Date class >> fromDays: dayCount [ 
 	"Days since 1 January 1901"
 
 	^ self julianDayNumber: SqueakEpoch + dayCount
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>fromSeconds: seconds [
+{ #category : #'instance creation' }
+Date class >> fromSeconds: seconds [
 	"Answer an instance of me which is 'seconds' seconds after January 1, 1901."
 
 	^ self starting: (DateAndTime fromSeconds: seconds)
 ]
 
-{
-	#category : #importing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>fromString: aString [
+{ #category : #importing }
+Date class >> fromString: aString [
 	"Answer an instance of created from a string with format mm.dd.yyyy or mm-dd-yyyy or mm/dd/yyyy"
 
 	^ self readFrom: aString readStream.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>indexOfMonth: aMonthName [
+{ #category : #accessing }
+Date class >> indexOfMonth: aMonthName [ 
 
 	^ Month indexOfMonth: aMonthName.
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>julianDayNumber: aJulianDayNumber [
+{ #category : #'instance creation' }
+Date class >> julianDayNumber: aJulianDayNumber [
 
 	^ self starting: (DateAndTime julianDayNumber: aJulianDayNumber)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>julianDayNumber: aJulianDayNumber offset: aTimeZoneOffset [
+{ #category : #'instance creation' }
+Date class >> julianDayNumber: aJulianDayNumber offset: aTimeZoneOffset [
 
 	^ self starting: (DateAndTime julianDayNumber: aJulianDayNumber offset: aTimeZoneOffset)
 ]
 
-{
-	#category : #'accessing constant',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>monthNames [
+{ #category : #'accessing constant' }
+Date class >> monthNames [
 	"Return a collection of english month names"
 	^ MonthNames copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>nameOfDay: dayIndex [
+{ #category : #accessing }
+Date class >> nameOfDay: dayIndex [ 
 
 	^ Week nameOfDay: dayIndex 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>nameOfMonth: anIndex [
+{ #category : #accessing }
+Date class >> nameOfMonth: anIndex [ 
 
 	^ Month nameOfMonth: anIndex.
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>newDay: day month: month year: year [
+{ #category : #'instance creation' }
+Date class >> newDay: day month: month year: year [ 
 
 	^ self year: year month: month day: day
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>newDay: dayCount year: yearInteger [
+{ #category : #'instance creation' }
+Date class >> newDay: dayCount year: yearInteger [
 
 	^ self year: yearInteger day: dayCount
 ]
 
-{
-	#category : #'specific inquiries',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>orthodoxEasterDateFor: year [
+{ #category : #'specific inquiries' }
+Date class >> orthodoxEasterDateFor: year [
 
  "  compute the easter date according to the rules of the orthodox calendar.
     source: 
@@ -230,11 +172,8 @@ Date class>>orthodoxEasterDateFor: year [
     ^date addDays: rc.
 ]
 
-{
-	#category : #importing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>readFrom: aStream [
+{ #category : #importing }
+Date class >> readFrom: aStream [ 
 	"Read a Date from the stream in any of the forms:  
 		<day> <month> <year>		(15 April 1982; 15-APR-82; 15.4.82; 15APR82)  
 		<month> <day> <year>		(April 15, 1982; 4/15/82)
@@ -298,11 +237,8 @@ Date class>>readFrom: aStream [
 
 ]
 
-{
-	#category : #importing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>readFrom: aStringOrStream pattern: pattern [
+{ #category : #importing }
+Date class >> readFrom: aStringOrStream pattern: pattern [
 	"See 
 	DateParser comment"
 
@@ -310,95 +246,65 @@ Date class>>readFrom: aStringOrStream pattern: pattern [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>starting: aDateAndTime [
+{ #category : #'instance creation' }
+Date class >> starting: aDateAndTime [
 
 	^ super starting: (aDateAndTime midnight) duration: (Duration days: 1)
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>today [
+{ #category : #'instance creation' }
+Date class >> today [
 
 	^ self current
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>tomorrow [
+{ #category : #'instance creation' }
+Date class >> tomorrow [
 
 	^ self today next
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>week: week day: dayOfWeek [
+{ #category : #'instance creation' }
+Date class >> week: week day: dayOfWeek [
 
 	^ self starting: (Week week: week) start + (dayOfWeek - 1) days
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>year: year day: dayOfYear [
+{ #category : #'instance creation' }
+Date class >> year: year day: dayOfYear [
 
 	^ self starting: (DateAndTime year: year day: dayOfYear)
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>year: year month: month day: day [
+{ #category : #'instance creation' }
+Date class >> year: year month: month day: day [
 
 	^ self starting: (DateAndTime year: year month: month day: day)
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>year: year week: week day: dayOfWeek [
+{ #category : #'instance creation' }
+Date class >> year: year week: week day: dayOfWeek [
 
 	^ self starting: (Week year: year week: week) start + (dayOfWeek - 1) days
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date class>>yesterday [
+{ #category : #'instance creation' }
+Date class >> yesterday [
 
 	^ self today previous
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>addDays: dayCount [
+{ #category : #adding }
+Date >> addDays: dayCount [ 
 
 	^ (self asDateAndTime + (dayCount days)) asDate
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>addMonths: monthCount [
+{ #category : #utils }
+Date >> addMonths: monthCount [ 
 	|year month maxDaysInMonth day |
 	year := self year + (monthCount + self monthIndex - 1 // 12).
 	month := self monthIndex + monthCount - 1 \\ 12 + 1.
@@ -407,41 +313,29 @@ Date>>addMonths: monthCount [
 	^ Date year: year month: month day: day
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>asDate [
+{ #category : #accessing }
+Date >> asDate [
 
 	^ self
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>dayMonthYearDo: aBlock [
+{ #category : #enumerating }
+Date >> dayMonthYearDo: aBlock [ 
 	"Supply integers for day, month and year to aBlock and return the result"
 
 	^ start dayMonthYearDo: aBlock
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>ddmmyyyy [
+{ #category : #printing }
+Date >> ddmmyyyy [
 	"Print the receiver  in standard French format dd/mm/yyyy."
 
 	^ self printFormat: #(1 2 3 $/ 1 1)
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>mmddyyyy [
+{ #category : #printing }
+Date >> mmddyyyy [
 	"Print the receiver in standard U.S.A format mm/dd/yyyy.
 	Note that the name here is slightly misleading -- the month and day numbers don't show leading zeros, 
 	so that for example February 1 1996 is 2/1/96"
@@ -449,47 +343,32 @@ Date>>mmddyyyy [
 	^ self printFormat: #(2 1 3 $/ 1 1)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>month [
+{ #category : #accessing }
+Date >> month [
 	^ self asMonth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>monthIndex [
+{ #category : #accessing }
+Date >> monthIndex [
 	^ super month
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>onNextMonth [
+{ #category : #utils }
+Date >> onNextMonth [
 
 	^ self addMonths: 1
 
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>onPreviousMonth [
+{ #category : #utils }
+Date >> onPreviousMonth [
 
 	^ self addMonths: -1
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>previous: dayName [
+{ #category : #accessing }
+Date >> previous: dayName [ 
 	"Answer the previous date whose weekday name is dayName."
 
 	| days |
@@ -499,31 +378,22 @@ Date>>previous: dayName [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>printFormat: formatArray [
+{ #category : #printing }
+Date >> printFormat: formatArray [ 
 	"Answer a String describing the receiver using the argument formatArray."
 
 	^ String new: 16 streamContents: [ :aStream |
 		self printOn: aStream format: formatArray ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>printOn: aStream [
+{ #category : #printing }
+Date >> printOn: aStream [
  
  	self printOn: aStream format: #(1 2 3 $  3 1 )
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>printOn: aStream format: formatArray [
+{ #category : #printing }
+Date >> printOn: aStream format: formatArray [ 
 	"Print a description of the receiver on aStream using the format 
 	denoted the argument, formatArray: 
 	
@@ -573,59 +443,41 @@ Date>>printOn: aStream format: formatArray [
 					ifTrue: [ aStream nextPut: (formatArray at: 4) asCharacter ] ] ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>storeOn: aStream [
+{ #category : #printing }
+Date >> storeOn: aStream [
  
  	aStream print: self printString; nextPutAll: ' asDate'
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>subtractDate: aDate [
+{ #category : #adding }
+Date >> subtractDate: aDate [ 
 	"Answer the number of days between self and aDate"
 
 	^ (self start - aDate asDateAndTime) days
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>subtractDays: dayCount [
+{ #category : #adding }
+Date >> subtractDays: dayCount [ 
 
 	^ (self asDateAndTime - (dayCount days)) asDate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>weekday [
+{ #category : #accessing }
+Date >> weekday [
 	"Answer the name of the day of the week on which the receiver falls."
 
 	^ self dayOfWeekName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>weekdayIndex [
+{ #category : #accessing }
+Date >> weekdayIndex [
 	"Sunday=1, ... , Saturday=7"
 
 	^ self dayOfWeek
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Date>>yyyymmdd [
+{ #category : #printing }
+Date >> yyyymmdd [
  	"Format the date in ISO 8601 standard like '2002-10-22'
 	The result is of fixed size 10 characters long.."
  

@@ -1,12 +1,7 @@
-Extension {
-	#name : #DefaultExternalDropHandler
-}
+Extension { #name : #DefaultExternalDropHandler }
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-DefaultExternalDropHandler>>handle: dropStream in: pasteUp dropEvent: anEvent  [
+{ #category : #'*Morphic-Base' }
+DefaultExternalDropHandler >> handle: dropStream in: pasteUp dropEvent: anEvent [ 
 	"the file was just droped, let's do our job"
 	| fileName services theOne |
 	fileName := dropStream name.

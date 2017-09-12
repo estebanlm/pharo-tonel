@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicDashboardRenderer,
 	#superclass : #GLMMorphicBrowserRenderer,
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicDashboardRenderer>>render: aBrowser [
+{ #category : #private }
+GLMMorphicDashboardRenderer >> render: aBrowser [
 	| container |
 	container := GLMPanelMorph new.
 	container
@@ -25,10 +18,7 @@ GLMMorphicDashboardRenderer>>render: aBrowser [
 	^ container
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicDashboardRenderer>>renderPane: aPane inUI: aMorph from: aDashboard [
+{ #category : #private }
+GLMMorphicDashboardRenderer >> renderPane: aPane inUI: aMorph from: aDashboard [
 	aMorph addMorph: (self renderObject: aPane) fullFrame: (aDashboard layoutOfPaneNamed: aPane name)
 ]

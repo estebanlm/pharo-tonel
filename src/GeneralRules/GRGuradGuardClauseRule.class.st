@@ -21,23 +21,16 @@ foo
 Class {
 	#name : #GRGuradGuardClauseRule,
 	#superclass : #ReNodeRewriteRule,
-	#category : #GeneralRules,
-	#timestamp : 'YuriyTymchuk 9/7/2016 10:42'
+	#category : #GeneralRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRGuradGuardClauseRule>>group [
+{ #category : #accessing }
+GRGuradGuardClauseRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRGuradGuardClauseRule>>initialize [
+{ #category : #initialization }
+GRGuradGuardClauseRule >> initialize [
 	super initialize.
 	self 
 		addMatchingMethod: '`@methodName: `@args 
@@ -64,10 +57,7 @@ GRGuradGuardClauseRule>>initialize [
 					`@.Statements1'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRGuradGuardClauseRule>>name [
+{ #category : #accessing }
+GRGuradGuardClauseRule >> name [
 	^ 'Replace single branch conditional with guard clause'
 ]

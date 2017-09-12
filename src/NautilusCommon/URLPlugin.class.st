@@ -4,33 +4,23 @@ An URLPlugin is a plugin which shows the URL of the current navigation
 Class {
 	#name : #URLPlugin,
 	#superclass : #InformationLinePlugin,
-	#category : #NautilusCommon-Plugin,
-	#timestamp : '<historical>'
+	#category : #NautilusCommon-Plugin
 }
 
-{
-	#category : #position,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-URLPlugin class>>defaultPosition [
+{ #category : #position }
+URLPlugin class >> defaultPosition [
 
 	^ #middle
 ]
 
-{
-	#category : #information,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-URLPlugin class>>description [
+{ #category : #information }
+URLPlugin class >> description [
 
 	^ 'Display the URI of the selected element'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-URLPlugin>>buildString [
+{ #category : #private }
+URLPlugin >> buildString [
 
 	| first  separator |
 	separator := ' > '.

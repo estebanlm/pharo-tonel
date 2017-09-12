@@ -1,12 +1,7 @@
-Extension {
-	#name : #TraitDescription
-}
+Extension { #name : #TraitDescription }
 
-{
-	#category : #'*Nautilus',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-TraitDescription>>buildAnalyzeSubMenu: aBuilder [
+{ #category : #'*Nautilus' }
+TraitDescription >> buildAnalyzeSubMenu: aBuilder [
 
 	| target |
 	target := aBuilder model.

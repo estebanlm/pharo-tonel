@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #TextComposer,
 	#superclass : #Object,
@@ -25,24 +22,17 @@ Class {
 		'actualHeight',
 		'wantsColumnBreaks'
 	],
-	#category : #'Morphic-Base-Text Support',
-	#timestamp : ''
+	#category : #'Morphic-Base-Text Support'
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextComposer class>>characterForColumnBreak [
+{ #category : #'as yet unclassified' }
+TextComposer class >> characterForColumnBreak [
 
 	^Character value: 12
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextComposer>>addNullLineForIndex: index [
+{ #category : #adding }
+TextComposer >> addNullLineForIndex: index [
 "This awful bit is to ensure that if we have scanned all the text and the last character is a CR that there is a null line at the end of lines. Sometimes this was not happening which caused anomalous selections when selecting all the text. This is implemented as a post-composition fixup because I couldn't figure out where to put it in the main logic."
 
 	| oldLastLine r |
@@ -60,11 +50,8 @@ TextComposer>>addNullLineForIndex: index [
 
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextComposer>>addNullLineWithIndex: index andRectangle: r [
+{ #category : #adding }
+TextComposer >> addNullLineWithIndex: index andRectangle: r [
 
 	lines addLast: (
 		(
@@ -80,11 +67,8 @@ TextComposer>>addNullLineWithIndex: index andRectangle: r [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextComposer>>checkIfReadyToSlide [
+{ #category : #testing }
+TextComposer >> checkIfReadyToSlide [
 
 	"Check whether we are now in sync with previously composed lines"
 
@@ -107,11 +91,8 @@ TextComposer>>checkIfReadyToSlide [
 	]
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextComposer>>composeAllLines [
+{ #category : #composition }
+TextComposer >> composeAllLines [
 
 	[ currCharIndex <= theText size and: [ (currentY + defaultLineHeight) <= theContainer bottom ]] 
 		whileTrue: [
@@ -121,11 +102,8 @@ TextComposer>>composeAllLines [
 					ifNil: [ ^ nil ]].
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextComposer>>composeAllRectangles: rectangles [
+{ #category : #composition }
+TextComposer >> composeAllRectangles: rectangles [
 
 	| charIndexBeforeLine numberOfLinesBefore reasonForStopping |
 
@@ -158,11 +136,8 @@ TextComposer>>composeAllRectangles: rectangles [
 	
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextComposer>>composeEachRectangleIn: rectangles [
+{ #category : #composition }
+TextComposer >> composeEachRectangleIn: rectangles [
 
 	| myLine lastChar |
 
@@ -190,11 +165,8 @@ TextComposer>>composeEachRectangleIn: rectangles [
 	^false
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextComposer>>composeLinesFrom: argStart to: argStop delta: argDelta into: argLinesCollection priorLines: argPriorLines atY: argStartY textStyle: argTextStyle text: argText container: argContainer wantsColumnBreaks: argWantsColumnBreaks  [
+{ #category : #composition }
+TextComposer >> composeLinesFrom: argStart to: argStop delta: argDelta into: argLinesCollection priorLines: argPriorLines atY: argStartY textStyle: argTextStyle text: argText container: argContainer wantsColumnBreaks: argWantsColumnBreaks [ 
 	wantsColumnBreaks := argWantsColumnBreaks.
 	lines := argLinesCollection.
 	theTextStyle := argTextStyle.
@@ -224,11 +196,8 @@ TextComposer>>composeLinesFrom: argStart to: argStop delta: argDelta into: argLi
 	^ {lines asArray. maxRightX}
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextComposer>>composeOneLine [
+{ #category : #composition }
+TextComposer >> composeOneLine [
 	| rectangles |
 	
 	rectangles := theContainer 
@@ -243,11 +212,8 @@ TextComposer>>composeOneLine [
 	self checkIfReadyToSlide
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextComposer>>fixupLastLineIfCR [
+{ #category : #private }
+TextComposer >> fixupLastLineIfCR [
 "This awful bit is to ensure that if we have scanned all the text and the last character is a CR that there is a null line at the end of lines. Sometimes this was not happening which caused anomalous selections when selecting all the text. This is implemented as a post-composition fixup because I couldn't figure out where to put it in the main logic."
 
 	(theText size > 0 and: [ CharacterSet crlf includes: theText last ]) ifFalse: [ ^ self ].
@@ -256,11 +222,8 @@ TextComposer>>fixupLastLineIfCR [
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextComposer>>multiComposeLinesFrom: argStart to: argStop delta: argDelta into: argLinesCollection priorLines: argPriorLines atY: argStartY textStyle: argTextStyle text: argText container: argContainer wantsColumnBreaks: argWantsColumnBreaks  [
+{ #category : #protocol }
+TextComposer >> multiComposeLinesFrom: argStart to: argStop delta: argDelta into: argLinesCollection priorLines: argPriorLines atY: argStartY textStyle: argTextStyle text: argText container: argContainer wantsColumnBreaks: argWantsColumnBreaks [ 
 	wantsColumnBreaks := argWantsColumnBreaks.
 	lines := argLinesCollection.
 	theTextStyle := argTextStyle.
@@ -290,11 +253,8 @@ TextComposer>>multiComposeLinesFrom: argStart to: argStop delta: argDelta into: 
 	^ {lines asArray. maxRightX}
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextComposer>>slideOneLineDown [
+{ #category : #private }
+TextComposer >> slideOneLineDown [
 
 	| priorLine |
 

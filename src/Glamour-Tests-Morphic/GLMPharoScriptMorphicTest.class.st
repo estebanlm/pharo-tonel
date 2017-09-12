@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMPharoScriptMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPharoScriptMorphicTest>>testDefault [
+{ #category : #tests }
+GLMPharoScriptMorphicTest >> testDefault [
 	| browser textMorph |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -23,11 +16,8 @@ GLMPharoScriptMorphicTest>>testDefault [
 	self assert: (textMorph isKindOf: RubScrolledTextMorph)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPharoScriptMorphicTest>>testExplicitAcceptDoesNotAffectTextPort [
+{ #category : #tests }
+GLMPharoScriptMorphicTest >> testExplicitAcceptDoesNotAffectTextPort [
 	| composite textMorph |
 	composite := GLMCompositePresentation new with: [ :a | a pharoScript display: '123' ].
 	window := composite openOn: 4.
@@ -46,11 +36,8 @@ GLMPharoScriptMorphicTest>>testExplicitAcceptDoesNotAffectTextPort [
 	self assert: (composite pane port: #text) value = '123456'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPharoScriptMorphicTest>>testForSmalltalkWorkspace [
+{ #category : #tests }
+GLMPharoScriptMorphicTest >> testForSmalltalkWorkspace [
 	| browser textMorph |
 	browser := GLMTabulator new.
 	browser column: #one.

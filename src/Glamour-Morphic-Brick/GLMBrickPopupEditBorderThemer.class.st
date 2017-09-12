@@ -1,33 +1,20 @@
-"
-
-"
 Class {
 	#name : #GLMBrickPopupEditBorderThemer,
 	#superclass : #GLMBrickPopupEditThemer,
-	#category : #Glamour-Morphic-Brick-Widgets-UI-Popup-Themer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Widgets-UI-Popup-Themer
 }
 
-{
-	#category : #brick-popup,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPopupEditBorderThemer>>backgroundColor [
+{ #category : #brick-popup }
+GLMBrickPopupEditBorderThemer >> backgroundColor [
 	^ self borderColor muchLighter darker
 ]
 
-{
-	#category : #brick-popup,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPopupEditBorderThemer>>contentBackgroundColor [
+{ #category : #brick-popup }
+GLMBrickPopupEditBorderThemer >> contentBackgroundColor [
 	^ Smalltalk ui theme backgroundColor "delegate to current Pharo theme"
 ]
 
-{
-	#category : #brick-popup,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPopupEditBorderThemer>>contentPadding [
+{ #category : #brick-popup }
+GLMBrickPopupEditBorderThemer >> contentPadding [
 	^ 5
 ]

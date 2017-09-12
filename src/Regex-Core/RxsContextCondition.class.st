@@ -12,94 +12,66 @@ Class {
 	#instVars : [
 		'kind'
 	],
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:14'
+	#category : #Regex-Core
 }
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsContextCondition>>beAny [
+{ #category : #initialize-release }
+RxsContextCondition >> beAny [
 	"Matches anything but a newline."
 
 	kind := #syntaxAny
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsContextCondition>>beBeginningOfLine [
+{ #category : #initialize-release }
+RxsContextCondition >> beBeginningOfLine [
 	"Matches empty string at the beginning of a line."
 
 	kind := #syntaxBeginningOfLine
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsContextCondition>>beBeginningOfWord [
+{ #category : #initialize-release }
+RxsContextCondition >> beBeginningOfWord [
 	"Matches empty string at the beginning of a word."
 
 	kind := #syntaxBeginningOfWord
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsContextCondition>>beEndOfLine [
+{ #category : #initialize-release }
+RxsContextCondition >> beEndOfLine [
 	"Matches empty string at the end of a line."
 
 	kind := #syntaxEndOfLine
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsContextCondition>>beEndOfWord [
+{ #category : #initialize-release }
+RxsContextCondition >> beEndOfWord [
 	"Matches empty string at the end of a word."
 
 	kind := #syntaxEndOfWord
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsContextCondition>>beNonWordBoundary [
+{ #category : #initialize-release }
+RxsContextCondition >> beNonWordBoundary [
 	"Analog of \B."
 
 	kind := #syntaxNonWordBoundary
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsContextCondition>>beWordBoundary [
+{ #category : #initialize-release }
+RxsContextCondition >> beWordBoundary [
 	"Analog of \w (alphanumeric plus _)."
 
 	kind := #syntaxWordBoundary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsContextCondition>>dispatchTo: aBuilder [
+{ #category : #accessing }
+RxsContextCondition >> dispatchTo: aBuilder [
 
 	^aBuilder perform: kind
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsContextCondition>>isNullable [
+{ #category : #testing }
+RxsContextCondition >> isNullable [
 
 	^#syntaxAny ~~ kind
 ]

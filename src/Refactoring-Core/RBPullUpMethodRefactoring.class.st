@@ -14,34 +14,24 @@ Class {
 		'removeDuplicates',
 		'selectors'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 13:46'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring class>>model: aRBSmalltalk pullUp: selectorCollection from: aClass  [
+{ #category : #'instance creation' }
+RBPullUpMethodRefactoring class >> model: aRBSmalltalk pullUp: selectorCollection from: aClass [ 
 	^(self new)
 		model: aRBSmalltalk;
 		pullUp: selectorCollection from: aClass;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring class>>pullUp: selectorCollection from: aClass  [
+{ #category : #'instance creation' }
+RBPullUpMethodRefactoring class >> pullUp: selectorCollection from: aClass [ 
 	^self new pullUp: selectorCollection from: aClass
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>checkBackReferencesTo: aSelector  [
+{ #category : #preconditions }
+RBPullUpMethodRefactoring >> checkBackReferencesTo: aSelector [ 
 	| definingClass pushUpParseTree |
 	definingClass := class superclass whoDefinesMethod: aSelector.
 	definingClass isNil ifTrue: [^self].
@@ -66,19 +56,13 @@ RBPullUpMethodRefactoring>>checkBackReferencesTo: aSelector  [
 													with: definingClass)]]]]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>checkClassVars [
+{ #category : #preconditions }
+RBPullUpMethodRefactoring >> checkClassVars [
 	selectors do: [:each | self checkClassVarsFor: each]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>checkClassVarsFor: aSelector  [
+{ #category : #preconditions }
+RBPullUpMethodRefactoring >> checkClassVarsFor: aSelector [ 
 	class theNonMetaClass classVariableNames do: 
 		[ :each | 
 		((class whichSelectorsReferToClassVariable: each) includes: aSelector) ifTrue: 
@@ -88,19 +72,13 @@ RBPullUpMethodRefactoring>>checkClassVarsFor: aSelector  [
 					with: class) ] ]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>checkInstVars [
+{ #category : #preconditions }
+RBPullUpMethodRefactoring >> checkInstVars [
 	selectors do: [:each | self checkInstVarsFor: each]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>checkInstVarsFor: aSelector  [
+{ #category : #preconditions }
+RBPullUpMethodRefactoring >> checkInstVarsFor: aSelector [ 
 	class instanceVariableNames do: 
 			[:each | 
 			((class whichSelectorsReferToInstanceVariable: each) includes: aSelector) ifTrue: 
@@ -110,11 +88,8 @@ RBPullUpMethodRefactoring>>checkInstVarsFor: aSelector  [
 								with: class)]]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>checkSiblingSuperSendsFrom: aRBClass  [
+{ #category : #preconditions }
+RBPullUpMethodRefactoring >> checkSiblingSuperSendsFrom: aRBClass [ 
 	aRBClass selectors do: 
 			[:each | 
 			| tree |
@@ -137,20 +112,14 @@ RBPullUpMethodRefactoring>>checkSiblingSuperSendsFrom: aRBClass  [
 	aRBClass allSubclasses do: [:each | self checkSiblingSuperSendsFrom: each]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>checkSuperMessages [
+{ #category : #preconditions }
+RBPullUpMethodRefactoring >> checkSuperMessages [
 	self checkSuperSendsFromPushedUpMethods.
 	self checkSuperSendsFromSiblings
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>checkSuperSendsFromPushedUpMethods [
+{ #category : #preconditions }
+RBPullUpMethodRefactoring >> checkSuperSendsFromPushedUpMethods [
 	selectors do: 
 			[:each | 
 			| parseTree |
@@ -164,21 +133,15 @@ RBPullUpMethodRefactoring>>checkSuperSendsFromPushedUpMethods [
 								expandMacrosWith: each)]]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>checkSuperSendsFromSiblings [
+{ #category : #preconditions }
+RBPullUpMethodRefactoring >> checkSuperSendsFromSiblings [
 	| siblings |
 	siblings := class superclass subclasses reject: [:each | each = class].
 	siblings do: [:aRBClass | self checkSiblingSuperSendsFrom: aRBClass]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>checkSuperclass [
+{ #category : #preconditions }
+RBPullUpMethodRefactoring >> checkSuperclass [
 	| overrideSelectors |
 	overrideSelectors := selectors 
 				select: [:each | class superclass definesMethod: each].
@@ -197,11 +160,8 @@ RBPullUpMethodRefactoring>>checkSuperclass [
 	overrideSelectors do: [:each | self checkBackReferencesTo: each]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>copyDownMethod: aSelector  [
+{ #category : #private }
+RBPullUpMethodRefactoring >> copyDownMethod: aSelector [ 
 	| oldProtocol oldSource superclassDefiner subclasses refactoring |
 	superclassDefiner := class superclass whoDefinesMethod: aSelector.
 	superclassDefiner isNil ifTrue: [^self].
@@ -235,19 +195,13 @@ RBPullUpMethodRefactoring>>copyDownMethod: aSelector  [
 	subclasses do: [:each | each compile: oldSource classified: oldProtocol]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>copyDownMethods [
+{ #category : #transforming }
+RBPullUpMethodRefactoring >> copyDownMethods [
 	selectors do: [:each | self copyDownMethod: each]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>preconditions [
+{ #category : #preconditions }
+RBPullUpMethodRefactoring >> preconditions [
 	^(selectors inject: (RBCondition hasSuperclass: class)
 		into: [:cond :each | cond & (RBCondition definesSelector: each in: class)]) 
 			& (RBCondition withBlock: 
@@ -258,11 +212,8 @@ RBPullUpMethodRefactoring>>preconditions [
 						true])
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>pullUp: aSelector  [
+{ #category : #transforming }
+RBPullUpMethodRefactoring >> pullUp: aSelector [ 
 	| source refactoring |
 	source := class sourceCodeFor: aSelector.
 	source isNil 
@@ -277,37 +228,25 @@ RBPullUpMethodRefactoring>>pullUp: aSelector  [
 		classified: (class protocolsFor: aSelector)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>pullUp: selectorCollection from: aClass  [
+{ #category : #initialize-release }
+RBPullUpMethodRefactoring >> pullUp: selectorCollection from: aClass [ 
 	class := self classObjectFor: aClass.
 	selectors := selectorCollection.
 	removeDuplicates := false
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>pullUpMethods [
+{ #category : #transforming }
+RBPullUpMethodRefactoring >> pullUpMethods [
 	selectors do: [:each | self pullUp: each]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>removeDuplicateMethods [
+{ #category : #transforming }
+RBPullUpMethodRefactoring >> removeDuplicateMethods [
 	selectors do: [:each | self removeDuplicatesOf: each]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>removeDuplicatesOf: aSelector  [
+{ #category : #transforming }
+RBPullUpMethodRefactoring >> removeDuplicatesOf: aSelector [ 
 	| tree |
 	tree := class superclass parseTreeFor: aSelector.
 	class superclass allSubclasses do: 
@@ -325,19 +264,13 @@ RBPullUpMethodRefactoring>>removeDuplicatesOf: aSelector  [
 					each removeMethod: aSelector]]]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>removePulledUpMethods [
+{ #category : #transforming }
+RBPullUpMethodRefactoring >> removePulledUpMethods [
 	selectors do: [:each | class removeMethod: each]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBPullUpMethodRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream nextPutAll: ' pullUp: '.
@@ -347,11 +280,8 @@ RBPullUpMethodRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPullUpMethodRefactoring>>transform [
+{ #category : #transforming }
+RBPullUpMethodRefactoring >> transform [
 	self
 		copyDownMethods;
 		pullUpMethods;

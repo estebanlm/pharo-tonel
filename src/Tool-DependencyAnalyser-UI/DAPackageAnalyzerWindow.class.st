@@ -12,44 +12,31 @@ Class {
 		'packageAnalyzerTreeModel',
 		'nautilus'
 	],
-	#category : #Tool-DependencyAnalyser-UI-Core,
-	#timestamp : 'BaptisteQuide 7/11/2014 11:53'
+	#category : #Tool-DependencyAnalyser-UI-Core
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerWindow class>>onPackagesNamed: aCollection [
+{ #category : #instance-creation }
+DAPackageAnalyzerWindow class >> onPackagesNamed: aCollection [
 	^ self new 
 		initializeWithPackageNames: aCollection;
 		yourself
 ]
 
-{
-	#category : #accesing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerWindow class>>selectedPackagesFrom: aBuilder [
+{ #category : #accesing }
+DAPackageAnalyzerWindow class >> selectedPackagesFrom: aBuilder [
 	| target selectedPackages |
 	target := aBuilder model.
 	selectedPackages := target selectedPackages collect: [ :rpackage | rpackage packageName asString ].
 	^ selectedPackages
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerWindow class>>systemPackages [
+{ #category : #examples }
+DAPackageAnalyzerWindow class >> systemPackages [
 	^ RPackageOrganizer default packages collect: [ :package | package packageName asString ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerWindow>>addAllMorph [
+{ #category : #adding }
+DAPackageAnalyzerWindow >> addAllMorph [
 	| windowNautilus  windowTreeModel |
 	windowNautilus := self buildNautilusWindow.	
 	windowTreeModel := self buildMorphWindowForTreeModel.
@@ -59,11 +46,8 @@ DAPackageAnalyzerWindow>>addAllMorph [
 		addMorph:  (self panelMorphFrom: windowTreeModel) frame: (0 @ 0 corner: 0.4 @ 1).
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerWindow>>buildMorphWindowForTreeModel [
+{ #category : #building }
+DAPackageAnalyzerWindow >> buildMorphWindowForTreeModel [
 	| specWindow |
 	packageAnalyzerTreeModel
 		open;
@@ -73,11 +57,8 @@ DAPackageAnalyzerWindow>>buildMorphWindowForTreeModel [
 	^ specWindow
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerWindow>>buildNautilusWindow [
+{ #category : #building }
+DAPackageAnalyzerWindow >> buildNautilusWindow [
 	| nautilusUI nautilusWindow |
 
 	nautilusUI := NautilusUI on: nautilus.
@@ -90,78 +71,51 @@ DAPackageAnalyzerWindow>>buildNautilusWindow [
 	^ nautilusWindow
 ]
 
-{
-	#category : #initialization-filter,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerWindow>>buildandAddAllMorph [
+{ #category : #initialization-filter }
+DAPackageAnalyzerWindow >> buildandAddAllMorph [
 	nautilus := packageAnalyzerTreeModel packageTreeNautilus.
 	self addAllMorph
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerWindow>>defaultLabel [
+{ #category : #'morphic ui' }
+DAPackageAnalyzerWindow >> defaultLabel [
 	^ 'Package Dependencies Analysis'
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerWindow>>delete [
+{ #category : #open/close }
+DAPackageAnalyzerWindow >> delete [
 	self packageAnalyzerTreeModel close.
 	^ super delete
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerWindow>>initialExtent [
+{ #category : #'morphic ui' }
+DAPackageAnalyzerWindow >> initialExtent [
 	^ (1500@800)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerWindow>>nautilus [
+{ #category : #accessing }
+DAPackageAnalyzerWindow >> nautilus [
 	^ nautilus
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerWindow>>nautilusUI [
+{ #category : #accessing }
+DAPackageAnalyzerWindow >> nautilusUI [
 	^ nautilus ui
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerWindow>>open [
+{ #category : #accessing }
+DAPackageAnalyzerWindow >> open [
 	^ self openInWorld.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerWindow>>packageAnalyzerTreeModel [
+{ #category : #accessing }
+DAPackageAnalyzerWindow >> packageAnalyzerTreeModel [
 	^ packageAnalyzerTreeModel
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerWindow>>panelMorphFrom: aSpecWindow [
+{ #category : #adding }
+DAPackageAnalyzerWindow >> panelMorphFrom: aSpecWindow [
 	aSpecWindow submorphs
 		do: [ :submorph | 
 			(submorph isKindOf: PanelMorph)
@@ -169,11 +123,8 @@ DAPackageAnalyzerWindow>>panelMorphFrom: aSpecWindow [
 	^ nil
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageAnalyzerWindow>>specWindowFrom: aSpec [
+{ #category : #building }
+DAPackageAnalyzerWindow >> specWindowFrom: aSpec [
 	| windowModel specWindow |
 	windowModel := aSpec window.
 	specWindow := windowModel window.

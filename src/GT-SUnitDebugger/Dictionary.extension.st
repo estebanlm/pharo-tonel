@@ -1,12 +1,7 @@
-Extension {
-	#name : #Dictionary
-}
+Extension { #name : #Dictionary }
 
-{
-	#category : #'*GT-SUnitDebugger',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-Dictionary>>gtDebuggerSUnitPrint [
+{ #category : #'*GT-SUnitDebugger' }
+Dictionary >> gtDebuggerSUnitPrint [
 
 	^ String streamContents: [ :aStream | 
 		self keysSortedSafely

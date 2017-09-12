@@ -13,75 +13,50 @@ Class {
 		'Replacements',
 		'Singleton'
 	],
-	#category : #Text-Edition,
-	#timestamp : 'TorstenBergmann 1/31/2014 12:21'
+	#category : #Text-Edition
 }
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow class>>cleanUp [
+{ #category : #initializing }
+EditorFindReplaceDialogWindow class >> cleanUp [
 	Singleton ifNotNil: [ 
 			Singleton close.
 			Singleton := nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow class>>finds [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow class >> finds [
 	^ Finds ifNil: [Finds := OrderedCollection new]
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow class>>initialize [
+{ #category : #initializing }
+EditorFindReplaceDialogWindow class >> initialize [
 	"EditorFindReplaceDialogWindow initialize"
 	Singleton := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow class>>maxPreviousListSize [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow class >> maxPreviousListSize [
 	^ 15
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow class>>on: aTextView [
+{ #category : #'instance creation' }
+EditorFindReplaceDialogWindow class >> on: aTextView [
 	^ self singleton on: aTextView
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow class>>replacements [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow class >> replacements [
 	^ Replacements ifNil: [Replacements := OrderedCollection new]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow class>>singleton  [
+{ #category : #'instance creation' }
+EditorFindReplaceDialogWindow class >> singleton [ 
 	^ Singleton ifNil: [Singleton := self new].
 
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>buildWindowMenu [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> buildWindowMenu [
 	"Build and answer the window menu."
 
 	| aMenu |
@@ -99,37 +74,25 @@ EditorFindReplaceDialogWindow>>buildWindowMenu [
 	^ aMenu
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>cancel [
+{ #category : #action }
+EditorFindReplaceDialogWindow >> cancel [
 	self state findText: ''.
 	super cancel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>caseSensitive [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> caseSensitive [
 	^ self state caseSensitive
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>caseSensitive: aBoolean [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> caseSensitive: aBoolean [
 	self state caseSensitive: aBoolean.
 
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>defaultButton [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> defaultButton [
 	"Answer the default button."
 	^self
 		findDeepSubmorphThat: [:m |
@@ -137,61 +100,40 @@ EditorFindReplaceDialogWindow>>defaultButton [
 		ifAbsent: [] 
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>defaultFocusMorph [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> defaultFocusMorph [
 	^ self findTextFieldMorph textMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>entireWordsOnly [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> entireWordsOnly [
 	^ self state entireWordsOnly
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>entireWordsOnly: aBoolean [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> entireWordsOnly: aBoolean [
 	self state entireWordsOnly: aBoolean.
 
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>extent: anExtent [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> extent: anExtent [
 	^ super extent: anExtent x @ self initialExtent y
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>find [
+{ #category : #action }
+EditorFindReplaceDialogWindow >> find [
 	self newFinding.
 	^ self state findInTextMorph: self model
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>findEnabled [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> findEnabled [
 	^ self findString isEmptyOrNil not 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>findPolicyChanged [
+{ #category : #updating }
+EditorFindReplaceDialogWindow >> findPolicyChanged [
 	self changed: #findText.
 	self findTextFieldMorph textColor: Color  black.
 	self changed: #caseSensitive.
@@ -205,98 +147,65 @@ EditorFindReplaceDialogWindow>>findPolicyChanged [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>findString [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> findString [
 	^ self state findString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>findText [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> findText [
 	^ self state findText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>findText: aStringOrText [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> findText: aStringOrText [
 	self state findText: aStringOrText.
 	^ true
 
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>findTextFieldMorph [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> findTextFieldMorph [
 	^ textFieldMorph
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>initialExtent  [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> initialExtent [ 
 	^ 400 @ super initialExtent y
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>isRegex [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> isRegex [
 	^ self state isRegex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>isRegex: aBoolean [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> isRegex: aBoolean [
 	self state isRegex: aBoolean.
 
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>isResizeable [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> isResizeable [
 	"Answer whether we are not we can be resized."
 
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>maxPreviousListSize [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> maxPreviousListSize [
 	^ self class maxPreviousListSize
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>newButtons [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> newButtons [
 	"Answer new buttons as appropriate."
 
 	^{self newFindButton isDefault: true. self newReplaceButton. self newReplaceAllButton. self newCancelButton}
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>newContentMorph [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> newContentMorph [
 	^(self newColumn: {	
 			(self newGroupbox: nil for: 
 				(self newColumn: {
@@ -320,11 +229,8 @@ EditorFindReplaceDialogWindow>>newContentMorph [
 
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>newFindButton [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> newFindButton [
 	^(self theme
 			newButtonIn: self
 			for: self
@@ -338,11 +244,8 @@ EditorFindReplaceDialogWindow>>newFindButton [
 		vResizing: #rigid
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>newFindTextEntryMorph [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> newFindTextEntryMorph [
 	| entryCompletion pt |
 	entryCompletion := EntryCompletion new
 				dataSourceBlock: [:currText | self prevFinds ];
@@ -369,11 +272,8 @@ EditorFindReplaceDialogWindow>>newFindTextEntryMorph [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>newFinding [
+{ #category : #updating }
+EditorFindReplaceDialogWindow >> newFinding [
 	| t |
 	(t := self findText asString) ifEmpty: [^ self ].
 	(self prevFinds includes: t)
@@ -382,11 +282,8 @@ EditorFindReplaceDialogWindow>>newFinding [
 		ifTrue: [self prevFinds removeLast]
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>newReplaceAllButton [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> newReplaceAllButton [
 	^ (self theme
 		newButtonIn: self
 		for: self
@@ -399,11 +296,8 @@ EditorFindReplaceDialogWindow>>newReplaceAllButton [
 		 vResizing: #rigid
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>newReplaceButton [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> newReplaceButton [
 	^ (self theme
 		newButtonIn: self
 		for: self
@@ -416,11 +310,8 @@ EditorFindReplaceDialogWindow>>newReplaceButton [
 		 vResizing: #rigid
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>newReplaceTextEntryMorph [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> newReplaceTextEntryMorph [
 	| entryCompletion pt |
 	entryCompletion := EntryCompletion new
 				dataSourceBlock: [:currText | self prevReplacements ];
@@ -447,11 +338,8 @@ EditorFindReplaceDialogWindow>>newReplaceTextEntryMorph [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>newReplacement [
+{ #category : #updating }
+EditorFindReplaceDialogWindow >> newReplacement [
 	| t |
 	(t := self replaceText asString) ifEmpty: [^ self ].
 	(self prevReplacements includes: t)
@@ -460,11 +348,8 @@ EditorFindReplaceDialogWindow>>newReplacement [
 		ifTrue: [self prevReplacements removeLast]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>on: aTextView [
+{ #category : #updating }
+EditorFindReplaceDialogWindow >> on: aTextView [
 	(model isNil or: [model  ~= aTextView])
 		ifTrue: [self findText: self findText.
 			self model: aTextView.
@@ -475,157 +360,106 @@ EditorFindReplaceDialogWindow>>on: aTextView [
 
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>open [
+{ #category : #action }
+EditorFindReplaceDialogWindow >> open [
 	self openAsIsIn: World.
 	self extent: self extent.
 	self activate
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>prevFinds [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> prevFinds [
 	^ self class finds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>prevReplacements [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> prevReplacements [
 	^ self class replacements
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>replace [
+{ #category : #action }
+EditorFindReplaceDialogWindow >> replace [
 	self newReplacement.
 	self state replaceInTextMorph: self model.
 	self find
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>replaceAll [
+{ #category : #action }
+EditorFindReplaceDialogWindow >> replaceAll [
 	self model takeKeyboardFocus.
 	self state replaceAllInTextMorph: self model
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>replaceAllEnabled [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> replaceAllEnabled [
 	^ self model notNil
 		and: [self findText notEmpty]
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>replaceEnabled [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> replaceEnabled [
 	^ self model notNil
 		and: [self findText notEmpty]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>replaceText [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> replaceText [
 	^ self state replaceText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>replaceText: aStringOrText [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> replaceText: aStringOrText [
 	self state replaceText: aStringOrText asString.
 	^ true
 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>searchBackwards [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> searchBackwards [
 	^ self state searchBackwards
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>searchBackwards: aBoolean [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> searchBackwards: aBoolean [
 	self searchBackwards = aBoolean
 		ifFalse: [self state searchBackwards: aBoolean.
 			self state updateFindStartIndexForTextMorph: self model]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>state [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> state [
 	^ state ifNil: [self state: FindReplaceService new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>state: aFindReplaceService [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> state: aFindReplaceService [
 	state ifNotNil: [state removeDependent: self].
 	state := aFindReplaceService.
 	state ifNotNil: [state addDependent: self].
 
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>taskbarButtonFor: aTaskBar [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> taskbarButtonFor: aTaskBar [
 	"No taskbar button because always on top"
 	^nil
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>taskbarIcon [
+{ #category : #icons }
+EditorFindReplaceDialogWindow >> taskbarIcon [
 	^ self iconNamed: #smallFindIcon
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>title [
+{ #category : #user-interface }
+EditorFindReplaceDialogWindow >> title [
 	^ 'Find & Replace' translated.
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>update: aSymbol [
+{ #category : #updating }
+EditorFindReplaceDialogWindow >> update: aSymbol [
 	| si |
 	model ifNotNil: [
 		aSymbol = #regexError
@@ -640,19 +474,13 @@ EditorFindReplaceDialogWindow>>update: aSymbol [
 	super update: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>wrapAround [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> wrapAround [
 	^ self state wrapAround 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-EditorFindReplaceDialogWindow>>wrapAround: aBoolean [
+{ #category : #accessing }
+EditorFindReplaceDialogWindow >> wrapAround: aBoolean [
 	self state wrapAround: aBoolean.
 
 ]

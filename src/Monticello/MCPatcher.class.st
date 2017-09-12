@@ -7,65 +7,43 @@ Class {
 	#instVars : [
 		'definitions'
 	],
-	#category : #Monticello-Patching,
-	#timestamp : 'LaurentLaffont 3/31/2011 21:05'
+	#category : #Monticello-Patching
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatcher class>>apply: aPatch to: aSnapshot [
+{ #category : #public }
+MCPatcher class >> apply: aPatch to: aSnapshot [
 	| loader |
 	loader := self snapshot: aSnapshot.
 	aPatch applyTo: loader.
 	^ loader patchedSnapshot
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatcher class>>snapshot: aSnapshot [
+{ #category : #instance-creation }
+MCPatcher class >> snapshot: aSnapshot [
 	^ self new initializeWithSnapshot: aSnapshot
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatcher>>addDefinition: aDefinition [
+{ #category : #adding }
+MCPatcher >> addDefinition: aDefinition [
 	definitions add: aDefinition
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatcher>>initializeWithSnapshot: aSnapshot [
+{ #category : #initialize-release }
+MCPatcher >> initializeWithSnapshot: aSnapshot [
 	definitions := MCDefinitionIndex definitions: aSnapshot definitions
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatcher>>modifyDefinition: baseDefinition to: targetDefinition [
+{ #category : #operations }
+MCPatcher >> modifyDefinition: baseDefinition to: targetDefinition [
 	self addDefinition: targetDefinition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatcher>>patchedSnapshot [
+{ #category : #accessing }
+MCPatcher >> patchedSnapshot [
 	^ MCSnapshot fromDefinitions: definitions definitions
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatcher>>removeDefinition: aDefinition [
+{ #category : #operations }
+MCPatcher >> removeDefinition: aDefinition [
 	definitions remove: aDefinition
 ]

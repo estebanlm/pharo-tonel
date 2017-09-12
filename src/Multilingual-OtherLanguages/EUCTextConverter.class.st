@@ -4,35 +4,25 @@ Text converter for Extended Unix Character.  This is an abstract class.  The CJK
 Class {
 	#name : #EUCTextConverter,
 	#superclass : #TextConverter,
-	#category : #Multilingual-OtherLanguages,
-	#timestamp : '<historical>'
+	#category : #Multilingual-OtherLanguages
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EUCTextConverter>>languageEnvironment [
+{ #category : #private }
+EUCTextConverter >> languageEnvironment [
 
 	self subclassResponsibility
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EUCTextConverter>>leadingChar [
+{ #category : #private }
+EUCTextConverter >> leadingChar [
 
 	^ self subclassResponsibility
 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EUCTextConverter>>nextFromStream: aStream [
+{ #category : #conversion }
+EUCTextConverter >> nextFromStream: aStream [
 
 	| encodedCharacter character1 character2 offset value1 value2 codePoint |
 	aStream isBinary ifTrue: [^ aStream basicNext].
@@ -50,11 +40,8 @@ EUCTextConverter>>nextFromStream: aStream [
 	^ Character codePoint: codePoint
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EUCTextConverter>>nextPut: aCharacter toStream: aStream  [
+{ #category : #conversion }
+EUCTextConverter >> nextPut: aCharacter toStream: aStream [ 
 	| value leadingChar nonUnicodeChar value1 value2 |
 	aStream isBinary ifTrue: [^aCharacter storeBinaryOn: aStream].
 	value := aCharacter charCode.
@@ -77,11 +64,8 @@ EUCTextConverter>>nextPut: aCharacter toStream: aStream  [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EUCTextConverter>>nonUnicodeClass [
+{ #category : #private }
+EUCTextConverter >> nonUnicodeClass [
 
 	^ (EncodedCharSet charsetAt: self leadingChar).
 

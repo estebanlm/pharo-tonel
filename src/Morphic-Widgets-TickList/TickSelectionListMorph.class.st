@@ -11,15 +11,11 @@ Class {
 	#instVars : [
 		'storeValue'
 	],
-	#category : #Morphic-Widgets-TickList,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-TickList
 }
 
-{
-	#category : #event,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionListMorph>>basicKeyPressed: aCharacter [
+{ #category : #event }
+TickSelectionListMorph >> basicKeyPressed: aCharacter [
 
 	aCharacter == Character space
 		ifTrue: [ ^ self model toogleSelectionValue ].
@@ -27,39 +23,27 @@ TickSelectionListMorph>>basicKeyPressed: aCharacter [
 	^ super basicKeyPressed: aCharacter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionListMorph>>indentingItemClass [
+{ #category : #accessing }
+TickSelectionListMorph >> indentingItemClass [
 	
 	^ TickSelectionListNodeMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionListMorph>>mouseUp: event  [
+{ #category : #accessing }
+TickSelectionListMorph >> mouseUp: event [ 
 
 	self storeValue: nil.
 	super mouseUp: event 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionListMorph>>storeValue [
+{ #category : #accessing }
+TickSelectionListMorph >> storeValue [
 
 	^ storeValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TickSelectionListMorph>>storeValue: anObject [
+{ #category : #accessing }
+TickSelectionListMorph >> storeValue: anObject [
 	
 	storeValue := anObject
 ]

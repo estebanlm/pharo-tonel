@@ -16,15 +16,11 @@ Class {
 	#classInstVars : [
 		'specialKeys'
 	],
-	#category : #Keymapping-KeyCombinations,
-	#timestamp : '<historical>'
+	#category : #Keymapping-KeyCombinations
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMSingleKeyCombination class>>from: aCharacterOrInteger [
+{ #category : #'instance creation' }
+KMSingleKeyCombination class >> from: aCharacterOrInteger [
 	| aCharacter |
 	aCharacter := aCharacterOrInteger asCharacter.
 	
@@ -38,11 +34,8 @@ KMSingleKeyCombination class>>from: aCharacterOrInteger [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMSingleKeyCombination class>>specialKeys [
+{ #category : #accessing }
+KMSingleKeyCombination class >> specialKeys [
 	^specialKeys
 		ifNil: [ specialKeys :=
 				{1->'home'.
@@ -61,84 +54,54 @@ KMSingleKeyCombination class>>specialKeys [
 				} asDictionary.]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMSingleKeyCombination>>= aShortcut [
+{ #category : #comparing }
+KMSingleKeyCombination >> = aShortcut [
 	^ super = aShortcut and: [ aShortcut key sameAs: key ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMSingleKeyCombination>>hash [
+{ #category : #comparing }
+KMSingleKeyCombination >> hash [
 	^ key hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMSingleKeyCombination>>key [
+{ #category : #accessing }
+KMSingleKeyCombination >> key [
 	^ key
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMSingleKeyCombination>>key: aKeyString [
+{ #category : #accessing }
+KMSingleKeyCombination >> key: aKeyString [
 	key := aKeyString.
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMSingleKeyCombination>>matchesEvent: aKeyboardEvent [
+{ #category : #matching }
+KMSingleKeyCombination >> matchesEvent: aKeyboardEvent [
 	^ self key asLowercase = aKeyboardEvent modifiedCharacter asLowercase
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMSingleKeyCombination>>modifiedBy: aModifier [
+{ #category : #combining }
+KMSingleKeyCombination >> modifiedBy: aModifier [
 	^ KMModifiedKeyCombination modifier: aModifier character: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMSingleKeyCombination>>modifier [
+{ #category : #accessing }
+KMSingleKeyCombination >> modifier [
 
 	^ KMNoModifier new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMSingleKeyCombination>>name [
+{ #category : #accessing }
+KMSingleKeyCombination >> name [
 	^ self key asString
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMSingleKeyCombination>>prettyPrintOn: aStream [
+{ #category : #printing }
+KMSingleKeyCombination >> prettyPrintOn: aStream [
 
 	self printOn: aStream
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMSingleKeyCombination>>printOn: aStream [
+{ #category : #printing }
+KMSingleKeyCombination >> printOn: aStream [
 	aStream nextPutAll: self name
 ]

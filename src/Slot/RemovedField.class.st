@@ -7,38 +7,25 @@ Class {
 	#instVars : [
 		'originalSlot'
 	],
-	#category : #Slot-ClassBuilder,
-	#timestamp : '<historical>'
+	#category : #Slot-ClassBuilder
 }
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RemovedField>>installOn: aModification [
+{ #category : #installing }
+RemovedField >> installOn: aModification [
 	aModification installRemovedSlot: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RemovedField>>oldFieldIndex [
+{ #category : #accessing }
+RemovedField >> oldFieldIndex [
 	^ originalSlot index + fieldIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RemovedField>>originalSlot [
+{ #category : #accessing }
+RemovedField >> originalSlot [
 	^ originalSlot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RemovedField>>originalSlot: anObject [
+{ #category : #accessing }
+RemovedField >> originalSlot: anObject [
 	originalSlot := anObject
 ]

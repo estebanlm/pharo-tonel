@@ -4,15 +4,11 @@ SUnit tests for numbers
 Class {
 	#name : #NumberTest,
 	#superclass : #ClassTestCase,
-	#category : #Kernel-Tests-Numbers,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:41'
+	#category : #Kernel-Tests-Numbers
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-NumberTest>>testFractionPart [
+{ #category : #tests }
+NumberTest >> testFractionPart [
 
 	self 
 		assert: 2 fractionPart = 0;
@@ -24,11 +20,8 @@ NumberTest>>testFractionPart [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-NumberTest>>testIntegerPart [
+{ #category : #tests }
+NumberTest >> testIntegerPart [
 
 	self 
 		assert: 2 integerPart = 2;
@@ -40,11 +33,8 @@ NumberTest>>testIntegerPart [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-NumberTest>>testOne [
+{ #category : #tests }
+NumberTest >> testOne [
 
 	self 
 		assert: Integer one = 1;
@@ -52,20 +42,14 @@ NumberTest>>testOne [
 		assert: Fraction one = 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-NumberTest>>testPercent [
+{ #category : #tests }
+NumberTest >> testPercent [
 
 	self assert: (20 / 40) = 50 percent
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-NumberTest>>testPrintShowingDecimalPlaces [
+{ #category : #tests }
+NumberTest >> testPrintShowingDecimalPlaces [
 	self assert: (111.2 printShowingDecimalPlaces: 2) = '111.20'.
 	self assert: (111.2 printShowingDecimalPlaces: 0) = '111'.
 	self assert: (111 printShowingDecimalPlaces: 0) = '111'.
@@ -79,11 +63,8 @@ NumberTest>>testPrintShowingDecimalPlaces [
 	self assert: (-0.001 printShowingDecimalPlaces: 2) = '0.00'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-NumberTest>>testPrintShowingDecimalPlaces2 [
+{ #category : #tests }
+NumberTest >> testPrintShowingDecimalPlaces2 [
 	"This tests problems related to Float>>rounded and Float>>roundTo::
 	- Float>>#rounded is inexact
 	- Float>>#roundTo: might overflow"
@@ -100,11 +81,8 @@ NumberTest>>testPrintShowingDecimalPlaces2 [
 	1.0e306 printShowingDecimalPlaces: 3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-NumberTest>>testPrintShowingDecimalPlaces3 [
+{ #category : #tests }
+NumberTest >> testPrintShowingDecimalPlaces3 [
 	"This problem were reported at http://bugs.squeak.org/view.php?id=7028
 	unfortunate inversion of left / right padding"
 
@@ -113,22 +91,16 @@ NumberTest>>testPrintShowingDecimalPlaces3 [
 	self assert: (-0.097 printShowingDecimalPlaces: 3) = '-0.097'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-NumberTest>>testRaisedTo [
+{ #category : #tests }
+NumberTest >> testRaisedTo [
 	"this is a test related to http://bugs.squeak.org/view.php?id=6781"
 	
 	self should: [0 raisedTo: -1] raise: ZeroDivide.
 	self should: [0 raisedTo: -1.0] raise: ZeroDivide.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-NumberTest>>testRaisedToInteger [
+{ #category : #tests }
+NumberTest >> testRaisedToInteger [
 
 	self 
 		assert: (2 raisedToInteger: 0) = 1;
@@ -150,11 +122,8 @@ NumberTest>>testRaisedToInteger [
 	self should: [ 0 raisedTo: -1 ] raise: ZeroDivide
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-NumberTest>>testRaisedToIntegerWithFloats [
+{ #category : #tests }
+NumberTest >> testRaisedToIntegerWithFloats [
 
 	self 
 		assert: (2.0 raisedToInteger: 0) = 1.0;
@@ -176,22 +145,16 @@ NumberTest>>testRaisedToIntegerWithFloats [
 	self should: [ 0.0 raisedTo: -1 ] raise: ZeroDivide
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-NumberTest>>testReadFrom [
+{ #category : #tests }
+NumberTest >> testReadFrom [
 	
 	self assert: 1.0e-14	= (Number readFrom: '1.0e-14').
 	self assert: 2r1e26	= (Number readFrom: '2r1e26').
 	self should: [Number readFrom: 'foo'] raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-NumberTest>>testReciprocal [
+{ #category : #tests }
+NumberTest >> testReciprocal [
 
 	self 
 		assert: 1 reciprocal = 1;

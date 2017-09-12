@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicActionListRenderer,
 	#superclass : #GLMMorphicWidgetRenderer,
@@ -8,32 +5,22 @@ Class {
 		'labelMorph',
 		'container'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicActionListRenderer class>>defaultWidth  [
+{ #category : #defaults }
+GLMMorphicActionListRenderer class >> defaultWidth [ 
 	^100
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicActionListRenderer>>actOnPresentationUpdated: ann [
+{ #category : #rendering }
+GLMMorphicActionListRenderer >> actOnPresentationUpdated: ann [
 	container removeAllMorphs.
 	container addMorphBack: (self morphFrom: ann presentation)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicActionListRenderer>>buttonMorph: aModel [
+{ #category : #private }
+GLMMorphicActionListRenderer >> buttonMorph: aModel [
 	^UITheme current 
 		newButtonIn: nil 
 		for: aModel 
@@ -45,11 +32,8 @@ GLMMorphicActionListRenderer>>buttonMorph: aModel [
 		help: nil
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicActionListRenderer>>morphFrom: anActionListPresentation  [
+{ #category : #rendering }
+GLMMorphicActionListRenderer >> morphFrom: anActionListPresentation [ 
 	| buttonsContainer buttonModel button |
 	
 	buttonsContainer := self rectangleMorphFrom: anActionListPresentation.
@@ -66,11 +50,8 @@ GLMMorphicActionListRenderer>>morphFrom: anActionListPresentation  [
 	^ buttonsContainer
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicActionListRenderer>>rectangleMorphFrom: anActionListPresentation [
+{ #category : #private }
+GLMMorphicActionListRenderer >> rectangleMorphFrom: anActionListPresentation [
 	^ BorderedMorph new
 		borderWidth: 0;
 		color: Color transparent;
@@ -87,11 +68,8 @@ GLMMorphicActionListRenderer>>rectangleMorphFrom: anActionListPresentation [
 		yourself
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicActionListRenderer>>render: anActionListPresentation [
+{ #category : #rendering }
+GLMMorphicActionListRenderer >> render: anActionListPresentation [
 	container := GLMMorphic containerMorph.
 	container
 		changeTableLayout;

@@ -4,15 +4,11 @@ SUnit tests for PointerFinder
 Class {
 	#name : #PointerFinderTest,
 	#superclass : #TestCase,
-	#category : #Tools-Test-PointerFinder,
-	#timestamp : 'TorstenBergmann 2/4/2014 20:46'
+	#category : #Tools-Test-PointerFinder
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-PointerFinderTest>>testBasic1 [
+{ #category : #'as yet unclassified' }
+PointerFinderTest >> testBasic1 [
 
 	| myObject myArray |
 	myObject := Object new.
@@ -20,11 +16,8 @@ PointerFinderTest>>testBasic1 [
 	self assert: (myObject pointersTo) asArray = {myArray}
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-PointerFinderTest>>testCycle [
+{ #category : #'as yet unclassified' }
+PointerFinderTest >> testCycle [
 
 	| myObject myArray myArray2 pointingObjects |
 	myObject := Object new.
@@ -42,11 +35,8 @@ PointerFinderTest>>testCycle [
 "
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-PointerFinderTest>>testNoPointingObject [
+{ #category : #'as yet unclassified' }
+PointerFinderTest >> testNoPointingObject [
 
 	| myObject |
 	myObject := Object new.

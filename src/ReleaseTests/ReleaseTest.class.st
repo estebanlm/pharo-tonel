@@ -4,23 +4,16 @@ I contain tests that validate the integrity of the system.
 Class {
 	#name : #ReleaseTest,
 	#superclass : #TestCase,
-	#category : #ReleaseTests,
-	#timestamp : '<historical>'
+	#category : #ReleaseTests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest class>>actualProcesses [
+{ #category : #accessing }
+ReleaseTest class >> actualProcesses [
 	^ Process allSubInstances reject: [ :each | each isTerminated ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest class>>knownProcesses [
+{ #category : #accessing }
+ReleaseTest class >> knownProcesses [
 	"Return a dynamic list of know processes"
 	
 	"(self actualProcesses difference: self knownProcesses) do: [ :each | each suspend; terminate ]."
@@ -35,38 +28,26 @@ ReleaseTest class>>knownProcesses [
 		Delay schedulingProcess } asSet
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>actualProcesses [
+{ #category : #accessing }
+ReleaseTest >> actualProcesses [
 	^ self class actualProcesses
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>hasStartUpOrShutDownMethod: aClass [
+{ #category : #testing }
+ReleaseTest >> hasStartUpOrShutDownMethod: aClass [
 	| keySelectors |
 	keySelectors := #(#startUp #startUp: #shutDown #shutDown:).
 	^ (aClass selectors includesAny: keySelectors)
 		or: [ aClass class selectors includesAny: keySelectors ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>knownProcesses [
+{ #category : #accessing }
+ReleaseTest >> knownProcesses [
 	^ self class knownProcesses
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>testAllClassPoolBindingAreClassVariables [
+{ #category : #testing }
+ReleaseTest >> testAllClassPoolBindingAreClassVariables [
 	| wrong |
 	wrong := OrderedCollection new.
 	Smalltalk globals allClasses do: [:class | 
@@ -75,21 +56,15 @@ ReleaseTest>>testAllClassPoolBindingAreClassVariables [
 	self assert: wrong isEmpty.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>testAllGlobalBindingAreGlobalVariables [
+{ #category : #testing }
+ReleaseTest >> testAllGlobalBindingAreGlobalVariables [
 	| wrong |
 	wrong := Smalltalk globals associations reject: [ :each | each isKindOf:  GlobalVariable].
 	self assert: wrong isEmpty.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>testInstalledMethodsWithIncorrectTrailerKind [
+{ #category : #testing }
+ReleaseTest >> testInstalledMethodsWithIncorrectTrailerKind [
 	| incorrectMethods |
 	
 	incorrectMethods := SystemNavigation new installedMethodsWithIncorrectTrailerKind.
@@ -103,11 +78,8 @@ ReleaseTest>>testInstalledMethodsWithIncorrectTrailerKind [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>testInstanceSideMethodsWithNilKeyInLastLiteral [
+{ #category : #testing }
+ReleaseTest >> testInstanceSideMethodsWithNilKeyInLastLiteral [
 	| instanceSideMethodsWithNilKeyInLastLiteral |
 	
 	instanceSideMethodsWithNilKeyInLastLiteral := SystemNavigation new instanceSideMethodsWithNilKeyInLastLiteral.
@@ -121,11 +93,8 @@ ReleaseTest>>testInstanceSideMethodsWithNilKeyInLastLiteral [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>testKeyClassesArePresentInStartupList [
+{ #category : #testing }
+ReleaseTest >> testKeyClassesArePresentInStartupList [
 	| keyClasses registeredHandlers |
 	keyClasses := #(#Delay #ProcessorScheduler #InputEventFetcher #Stdio #OSPlatform #UUIDGenerator #DiskStore #WeakArray #BasicCommandLineHandler).
 	registeredHandlers := SessionManager default startupList
@@ -138,21 +107,15 @@ ReleaseTest>>testKeyClassesArePresentInStartupList [
 	self assert: (registeredHandlers includes: #UIManagerSessionHandler).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>testLayoutIntegrity [
+{ #category : #testing }
+ReleaseTest >> testLayoutIntegrity [
 	SystemNavigation default allClassesDo: [ :class |
 		class theNonMetaClass classLayout checkIntegrity.
 		class theMetaClass classLayout checkIntegrity ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>testMethodsWithUnboundGlobals [
+{ #category : #testing }
+ReleaseTest >> testMethodsWithUnboundGlobals [
 	| methodsWithUnboundGlobals |
 	"Ensure the environment is clean"
 	3 timesRepeat: [ Smalltalk garbageCollect ].
@@ -168,11 +131,8 @@ ReleaseTest>>testMethodsWithUnboundGlobals [
 				print: methodsWithUnboundGlobals ]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>testObsoleteClasses [
+{ #category : #testing }
+ReleaseTest >> testObsoleteClasses [
 	| obsoleteClasses |
 	
 	Smalltalk fixObsoleteReferences.
@@ -189,11 +149,8 @@ ReleaseTest>>testObsoleteClasses [
 					print: obsoleteClasses ]]
 ]
 
-{
-	#category : #'testing - rpackage',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>testRPackageOrganizer [
+{ #category : #'testing - rpackage' }
+ReleaseTest >> testRPackageOrganizer [
 	"Ensure other tests temporary created organizers are collected"
 	3 timesRepeat: [ Smalltalk garbageCollect ].
 
@@ -207,11 +164,8 @@ ReleaseTest>>testRPackageOrganizer [
 		description: 'The default package organizer is the not the only instance of RPackageOrganizer'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>testShouldFileLocatorBeBeforeSystemSettingsPersistenceInStartupList [
+{ #category : #testing }
+ReleaseTest >> testShouldFileLocatorBeBeforeSystemSettingsPersistenceInStartupList [
 	"This test documents issue https://pharo.fogbugz.com/f/cases/17721/Starting-Image-50617-raises-MNU"
 	| startupList settingsIndex |
 	
@@ -222,11 +176,8 @@ ReleaseTest>>testShouldFileLocatorBeBeforeSystemSettingsPersistenceInStartupList
 		ifTrue: [ self should: [ (startupList indexOf: #FileLocator) < (startupList indexOf: #SystemSettingsPersistence) ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>testShouldWorldMorphBeAfterFontClassesInStartupList [
+{ #category : #testing }
+ReleaseTest >> testShouldWorldMorphBeAfterFontClassesInStartupList [
 	"This test documents issue https://pharo.fogbugz.com/f/cases/17834/World-Morph-is-started-up-before-Fonts"
 	| startupList |
 	
@@ -237,11 +188,8 @@ ReleaseTest>>testShouldWorldMorphBeAfterFontClassesInStartupList [
 			self should: [ (startupList indexOf: #WorldMorph) > (startupList indexOf: #SystemSettingsPersistence) ] ]
 ]
 
-{
-	#category : #'testing - rpackage',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>testThatAllMethodsArePackaged [
+{ #category : #'testing - rpackage' }
+ReleaseTest >> testThatAllMethodsArePackaged [
     | classes instanceMethods classMethods allMethods methodsWithoutPackageInfo|
     classes := Smalltalk allClassesAndTraits.
     instanceMethods := classes flatCollect: #methods.
@@ -251,11 +199,8 @@ ReleaseTest>>testThatAllMethodsArePackaged [
     self assert: methodsWithoutPackageInfo isEmpty.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>testUndeclared [
+{ #category : #testing }
+ReleaseTest >> testUndeclared [
 	| undeclaredReferences |
 	
 	Smalltalk cleanOutUndeclared. 
@@ -270,11 +215,8 @@ ReleaseTest>>testUndeclared [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>testUnknownProcesses [
+{ #category : #testing }
+ReleaseTest >> testUnknownProcesses [
 	"Make sure that there are no other processes running except the known processes"
 	
 	| unknownProcesses |
@@ -288,11 +230,8 @@ ReleaseTest>>testUnknownProcesses [
 				separatedBy: [ out << ', ' ] ])
 ]
 
-{
-	#category : #'testing - rpackage',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ReleaseTest>>testUnpackagedClasses [
+{ #category : #'testing - rpackage' }
+ReleaseTest >> testUnpackagedClasses [
 	| unpackagedClasses |
 	unpackagedClasses := Smalltalk allClassesAndTraits select: [:each | 
 		(RPackageOrganizer default packageOf: each) packageName = RPackage defaultPackageName ].

@@ -1,12 +1,7 @@
-Extension {
-	#name : #MBAbstractVersionInfo
-}
+Extension { #name : #MBAbstractVersionInfo }
 
-{
-	#category : #'*Versionner-Nautilus',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-MBAbstractVersionInfo>>cmdLoadAndCreateGroup [
+{ #category : #'*Versionner-Nautilus' }
+MBAbstractVersionInfo >> cmdLoadAndCreateGroup [
 	<command>
 	^ VSLoadAndCreateNautilusGroupCommand
 ]

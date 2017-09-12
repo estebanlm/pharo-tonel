@@ -10,15 +10,11 @@ Class {
 		'categoryName',
 		'stamp'
 	],
-	#category : #CodeImport,
-	#timestamp : '<historical>'
+	#category : #CodeImport
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunk class>>contents: someContents behaviorName: behaviorName isMeta: isMeta category: categoryName stamp: stamp [
+{ #category : #'instance creation' }
+MethodChunk class >> contents: someContents behaviorName: behaviorName isMeta: isMeta category: categoryName stamp: stamp [
 	^self new
 			contents: someContents;
 			behaviorName: behaviorName;
@@ -28,45 +24,30 @@ MethodChunk class>>contents: someContents behaviorName: behaviorName isMeta: isM
 			yourself
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunk>>accept: aVisitor [
+{ #category : #visiting }
+MethodChunk >> accept: aVisitor [
 
 	^ aVisitor visitMethodChunk: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunk>>category [
+{ #category : #accessing }
+MethodChunk >> category [
 	^ categoryName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunk>>category: aCategoryName [
+{ #category : #accessing }
+MethodChunk >> category: aCategoryName [
 	categoryName := aCategoryName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunk>>description [
+{ #category : #accessing }
+MethodChunk >> description [
 
 	^ 'Method ( ', behaviorName , ' >> ' , (contents first: (20 min: contents size)), ' )' , stamp asString
 ]
 
-{
-	#category : #importing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunk>>handleMissingBehavior [
+{ #category : #importing }
+MethodChunk >> handleMissingBehavior [
 	"self error: ('Cannot install method in unexistent behavior {1}' format: {(behaviorName asString)})"
 	
 	(MissingClassError 
@@ -74,11 +55,8 @@ MethodChunk>>handleMissingBehavior [
 		signal: 'Cannot install method in non-existent behavior ', behaviorName asString
 ]
 
-{
-	#category : #importing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunk>>importFor: requestor logSource: logSource [
+{ #category : #importing }
+MethodChunk >> importFor: requestor logSource: logSource [
 	self existsBehavior
 		ifFalse: [ self handleMissingBehavior ].
 	^ [ self targetClass
@@ -93,20 +71,14 @@ MethodChunk>>importFor: requestor logSource: logSource [
 			self importFor: requestor logSource: logSource ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunk>>isMethodDeclaration [
+{ #category : #testing }
+MethodChunk >> isMethodDeclaration [
 
 	^ true
 ]
 
-{
-	#category : #importing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunk>>methodCompileRequestorFor: aRequestor [
+{ #category : #importing }
+MethodChunk >> methodCompileRequestorFor: aRequestor [
 	aRequestor ifNotNil: [ aRequestor contents ifNil: [ aRequestor contents: contents ] ].
 	^ MethodChunkCompilerRequestor new
 		methodChunk: self;
@@ -114,27 +86,18 @@ MethodChunk>>methodCompileRequestorFor: aRequestor [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunk>>methodSelector [
+{ #category : #accessing }
+MethodChunk >> methodSelector [
 	
 	^ RBParser parseMethodPattern: self contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunk>>stamp [
+{ #category : #accessing }
+MethodChunk >> stamp [
 	^ stamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunk>>stamp: aMethodStamp [
+{ #category : #accessing }
+MethodChunk >> stamp: aMethodStamp [
 	stamp := aMethodStamp
 ]

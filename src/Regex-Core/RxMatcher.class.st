@@ -37,26 +37,19 @@ Class {
 		'Cr',
 		'Lf'
 	],
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:13'
+	#category : #Regex-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher class>>for: aRegex [
+{ #category : #'instance creation' }
+RxMatcher class >> for: aRegex [
 	"Create and answer a matcher that will match a regular expression
 	specified by the syntax tree of which `aRegex' is a root."
 
 	^self for: aRegex ignoreCase: false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher class>>for: aRegex ignoreCase: aBoolean [
+{ #category : #'instance creation' }
+RxMatcher class >> for: aRegex ignoreCase: aBoolean [
 	"Create and answer a matcher that will match a regular expression
 	specified by the syntax tree of which `aRegex' is a root."
 
@@ -65,111 +58,78 @@ RxMatcher class>>for: aRegex ignoreCase: aBoolean [
 		ignoreCase: aBoolean
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher class>>forString: aString [
+{ #category : #'instance creation' }
+RxMatcher class >> forString: aString [
 	"Create and answer a matcher that will match the regular expression
 	`aString'."
 
 	^self for: (RxParser new parse: aString)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher class>>forString: aString ignoreCase: aBoolean [
+{ #category : #'instance creation' }
+RxMatcher class >> forString: aString ignoreCase: aBoolean [
 	"Create and answer a matcher that will match the regular expression
 	`aString'."
 
 	^self for: (RxParser new parse: aString) ignoreCase: aBoolean
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher class>>initialize [
+{ #category : #'class initialization' }
+RxMatcher class >> initialize [
 	"RxMatcher initialize"
 	Cr := Character cr.
 	Lf := Character lf.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>allocateMarker [
+{ #category : #private }
+RxMatcher >> allocateMarker [
 	"Answer an integer to use as an index of the next marker."
 
 	markerCount := markerCount + 1.
 	^markerCount
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>atBeginningOfLine [
+{ #category : #testing }
+RxMatcher >> atBeginningOfLine [
 
 	^self position = 0 or: [self lastChar = Cr]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>atBeginningOfWord [
+{ #category : #testing }
+RxMatcher >> atBeginningOfWord [
 
 	^(self isWordChar: self lastChar) not
 		and: [self isWordChar: stream peek]
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>atEnd [
+{ #category : #streaming }
+RxMatcher >> atEnd [
 
 	^stream atEnd
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>atEndOfLine [
+{ #category : #testing }
+RxMatcher >> atEndOfLine [
 
 	^self atEnd or: [stream peek = Cr]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>atEndOfWord [
+{ #category : #testing }
+RxMatcher >> atEndOfWord [
 
 	^(self isWordChar: self lastChar)
 		and: [(self isWordChar: stream peek) not]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>atWordBoundary [
+{ #category : #testing }
+RxMatcher >> atWordBoundary [
 
 	^(self isWordChar: self lastChar)
 		xor: (self isWordChar: stream peek)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>buildFrom: aSyntaxTreeRoot [
+{ #category : #accessing }
+RxMatcher >> buildFrom: aSyntaxTreeRoot [
 	"Private - Entry point of matcher build process."
 
 	markerCount := 0.  "must go before #dispatchTo: !"
@@ -177,11 +137,8 @@ RxMatcher>>buildFrom: aSyntaxTreeRoot [
 	matcher terminateWith: RxmTerminator new
 ]
 
-{
-	#category : #'match enumeration',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>copy: aString replacingMatchesWith: replacementString [
+{ #category : #'match enumeration' }
+RxMatcher >> copy: aString replacingMatchesWith: replacementString [
 	"Copy <aString>, except for the matches. Replace each match with <aString>."
 
 	| answer |
@@ -193,11 +150,8 @@ RxMatcher>>copy: aString replacingMatchesWith: replacementString [
 	^answer contents
 ]
 
-{
-	#category : #'match enumeration',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>copy: aString translatingMatchesUsing: aBlock [
+{ #category : #'match enumeration' }
+RxMatcher >> copy: aString translatingMatchesUsing: aBlock [
 	"Copy <aString>, except for the matches. For each match, evaluate <aBlock> passing the matched substring as the argument.  Expect the block to answer a String, and replace the match with the answer."
 
 	| answer |
@@ -206,11 +160,8 @@ RxMatcher>>copy: aString translatingMatchesUsing: aBlock [
 	^answer contents
 ]
 
-{
-	#category : #'match enumeration',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>copyStream: aStream to: writeStream replacingMatchesWith: aString [
+{ #category : #'match enumeration' }
+RxMatcher >> copyStream: aStream to: writeStream replacingMatchesWith: aString [
 	"Copy the contents of <aStream> on the <writeStream>, except for the matches. Replace each match with <aString>."
 
 	| searchStart matchStart matchEnd |
@@ -235,11 +186,8 @@ RxMatcher>>copyStream: aStream to: writeStream replacingMatchesWith: aString [
 	[aStream atEnd] whileFalse: [writeStream nextPut: aStream next]
 ]
 
-{
-	#category : #'match enumeration',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>copyStream: aStream to: writeStream translatingMatchesUsing: aBlock [
+{ #category : #'match enumeration' }
+RxMatcher >> copyStream: aStream to: writeStream translatingMatchesUsing: aBlock [
 	"Copy the contents of <aStream> on the <writeStream>, except for the matches. For each match, evaluate <aBlock> passing the matched substring as the argument.  Expect the block to answer a String, and write the answer to <writeStream> in place of the match."
 
 	| searchStart matchStart matchEnd match |
@@ -266,11 +214,8 @@ RxMatcher>>copyStream: aStream to: writeStream translatingMatchesUsing: aBlock [
 	[aStream atEnd] whileFalse: [writeStream nextPut: aStream next]
 ]
 
-{
-	#category : #privileged,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>currentState [
+{ #category : #privileged }
+RxMatcher >> currentState [
 	"Answer an opaque object that can later be used to restore the
 	matcher's state (for backtracking)."
 
@@ -279,11 +224,8 @@ RxMatcher>>currentState [
 	^	[stream position: origPosition]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>hookBranchOf: regexNode onto: endMarker [
+{ #category : #private }
+RxMatcher >> hookBranchOf: regexNode onto: endMarker [
 	"Private - Recurse down the chain of regexes starting at
 	regexNode, compiling their branches and hooking their tails 
 	to the endMarker node."
@@ -300,11 +242,8 @@ RxMatcher>>hookBranchOf: regexNode onto: endMarker [
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>initialize: syntaxTreeRoot ignoreCase: aBoolean [
+{ #category : #initialize-release }
+RxMatcher >> initialize: syntaxTreeRoot ignoreCase: aBoolean [
 	"Compile thyself for the regex with the specified syntax tree.
 	See comment and `building' protocol in this class and 
 	#dispatchTo: methods in syntax tree components for details 
@@ -316,11 +255,8 @@ RxMatcher>>initialize: syntaxTreeRoot ignoreCase: aBoolean [
 	startOptimizer := RxMatchOptimizer new initialize: syntaxTreeRoot ignoreCase: aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>isWordChar: aCharacterOrNil [
+{ #category : #private }
+RxMatcher >> isWordChar: aCharacterOrNil [
 	"Answer whether the argument is a word constituent character:
 	alphanumeric or _."
 
@@ -328,29 +264,20 @@ RxMatcher>>isWordChar: aCharacterOrNil [
 		and: [aCharacterOrNil isAlphaNumeric]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>lastChar [
+{ #category : #accessing }
+RxMatcher >> lastChar [
 	^ stream position = 0
 		ifFalse: [ stream skip: -1; next ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>lastResult [
+{ #category : #accessing }
+RxMatcher >> lastResult [
 
 	^lastResult
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>makeOptional: aMatcher [
+{ #category : #private }
+RxMatcher >> makeOptional: aMatcher [
 	"Private - Wrap this matcher so that the result would match 0 or 1
 	occurrences of the matcher."
 
@@ -363,11 +290,8 @@ RxMatcher>>makeOptional: aMatcher [
 	^branch
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>makePlus: aMatcher [
+{ #category : #private }
+RxMatcher >> makePlus: aMatcher [
 	"Private - Wrap this matcher so that the result would match 1 and more
 	occurrences of the matcher."
 
@@ -378,11 +302,8 @@ RxMatcher>>makePlus: aMatcher [
 	^aMatcher
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>makeQuantified: anRxmLink min: min max: max  [
+{ #category : #private }
+RxMatcher >> makeQuantified: anRxmLink min: min max: max [ 
 	"Perform recursive poor-man's transformation of the {<min>,<max>} quantifiers."
 	| aMatcher |
 	
@@ -408,11 +329,8 @@ RxMatcher>>makeQuantified: anRxmLink min: min max: max  [
 	^ (self makeQuantified: anRxmLink min: min max: min) pointTailTo: aMatcher
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>makeStar: aMatcher [
+{ #category : #private }
+RxMatcher >> makeStar: aMatcher [
 	"Private - Wrap this matcher so that the result would match 0 and more
 	occurrences of the matcher."
 
@@ -428,32 +346,23 @@ RxMatcher>>makeStar: aMatcher [
 	^detour
 ]
 
-{
-	#category : #privileged,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>markerPositionAt: anIndex add: position [
+{ #category : #privileged }
+RxMatcher >> markerPositionAt: anIndex add: position [
 	"Remember position of another instance of the given marker."
 
 	(markerPositions at: anIndex) addFirst: position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>matches: aString [
+{ #category : #accessing }
+RxMatcher >> matches: aString [
 	"Match against a string. Return true if the complete String matches.
 	If you want to search for occurences anywhere in the String see #search:"
 
 	^self matchesStream: aString readStream
 ]
 
-{
-	#category : #'match enumeration',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>matchesIn: aString [
+{ #category : #'match enumeration' }
+RxMatcher >> matchesIn: aString [
 	"Search aString repeatedly for the matches of the receiver.  Answer an OrderedCollection of all matches (substrings)."
 
 	| result |
@@ -464,11 +373,8 @@ RxMatcher>>matchesIn: aString [
 	^result
 ]
 
-{
-	#category : #'match enumeration',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>matchesIn: aString collect: aBlock [
+{ #category : #'match enumeration' }
+RxMatcher >> matchesIn: aString collect: aBlock [
 	"Search aString repeatedly for the matches of the receiver.  Evaluate aBlock for each match passing the matched substring as the argument, collect evaluation results in an OrderedCollection, and return in. The following example shows how to use this message to split a string into words."
 	"'\w+' asRegex matchesIn: 'Now is the Time' collect: [:each | each asLowercase]"
 
@@ -480,11 +386,8 @@ RxMatcher>>matchesIn: aString collect: aBlock [
 	^result
 ]
 
-{
-	#category : #'match enumeration',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>matchesIn: aString do: aBlock [
+{ #category : #'match enumeration' }
+RxMatcher >> matchesIn: aString do: aBlock [
 	"Search aString repeatedly for the matches of the receiver.
 	Evaluate aBlock for each match passing the matched substring
 	as the argument."
@@ -494,11 +397,8 @@ RxMatcher>>matchesIn: aString do: aBlock [
 		do: aBlock
 ]
 
-{
-	#category : #'match enumeration',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>matchesOnStream: aStream [
+{ #category : #'match enumeration' }
+RxMatcher >> matchesOnStream: aStream [
 
 	| result |
 	result := OrderedCollection new.
@@ -508,11 +408,8 @@ RxMatcher>>matchesOnStream: aStream [
 	^result
 ]
 
-{
-	#category : #'match enumeration',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>matchesOnStream: aStream collect: aBlock [
+{ #category : #'match enumeration' }
+RxMatcher >> matchesOnStream: aStream collect: aBlock [
 
 	| result |
 	result := OrderedCollection new.
@@ -522,11 +419,8 @@ RxMatcher>>matchesOnStream: aStream collect: aBlock [
 	^result
 ]
 
-{
-	#category : #'match enumeration',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>matchesOnStream: aStream do: aBlock [
+{ #category : #'match enumeration' }
+RxMatcher >> matchesOnStream: aStream do: aBlock [
 	"Be extra careful about successful matches which consume no input.
 	After those, make sure to advance or finish if already at end."
 
@@ -543,11 +437,8 @@ RxMatcher>>matchesOnStream: aStream do: aBlock [
 				ifFalse: [aStream next]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>matchesPrefix: aString [
+{ #category : #accessing }
+RxMatcher >> matchesPrefix: aString [
 	"Match against a string. Return true if a prefix matches.
 	If you want to match 
 		- the full string use #matches:
@@ -556,22 +447,16 @@ RxMatcher>>matchesPrefix: aString [
 	^self matchesStreamPrefix: aString readStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>matchesStream: theStream [
+{ #category : #accessing }
+RxMatcher >> matchesStream: theStream [
 	"Match thyself against a positionable stream."
 
 	^(self matchesStreamPrefix: theStream)
 		and: [stream atEnd]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>matchesStreamPrefix: theStream [
+{ #category : #accessing }
+RxMatcher >> matchesStreamPrefix: theStream [
 	"Match thyself against a positionable stream."
 
 	stream := theStream.
@@ -579,11 +464,8 @@ RxMatcher>>matchesStreamPrefix: theStream [
 	^self tryMatch
 ]
 
-{
-	#category : #'match enumeration',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>matchingRangesIn: aString [
+{ #category : #'match enumeration' }
+RxMatcher >> matchingRangesIn: aString [
 	"Search aString repeatedly for the matches of the receiver.  Answer an OrderedCollection of ranges of each match (index of first character to: index of last character)."
 
 	| result |
@@ -594,37 +476,25 @@ RxMatcher>>matchingRangesIn: aString [
 	^result
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>next [
+{ #category : #streaming }
+RxMatcher >> next [
 	^ stream next
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>notAtWordBoundary [
+{ #category : #testing }
+RxMatcher >> notAtWordBoundary [
 
 	^self atWordBoundary not
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>position [
+{ #category : #streaming }
+RxMatcher >> position [
 
 	^stream position
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>proceedSearchingStream: aStream [
+{ #category : #private }
+RxMatcher >> proceedSearchingStream: aStream [
 
 	| position |
 	position := aStream position.
@@ -637,20 +507,14 @@ RxMatcher>>proceedSearchingStream: aStream [
 	^false
 ]
 
-{
-	#category : #privileged,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>restoreState: aBlock [
+{ #category : #privileged }
+RxMatcher >> restoreState: aBlock [
 
 	aBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>search: aString [
+{ #category : #accessing }
+RxMatcher >> search: aString [
 	"Search anywhere in the String for occurrence of something matching myself.
 	If you want to match the full String see #matches:
 	Answer a Boolean indicating success."
@@ -658,11 +522,8 @@ RxMatcher>>search: aString [
 	^self searchStream: aString readStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>searchStream: aStream [
+{ #category : #accessing }
+RxMatcher >> searchStream: aStream [
 	"Search the stream for occurrence of something matching myself.
 	After the search has occurred, stop positioned after the end of the
 	matched substring. Answer a Boolean indicating success."
@@ -680,11 +541,8 @@ RxMatcher>>searchStream: aStream [
 	^false
 ]
 
-{
-	#category : #splitjoin,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>split: aString indicesDo: aBlock [
+{ #category : #splitjoin }
+RxMatcher >> split: aString indicesDo: aBlock [
 	| lastPosition |
 
 	stream := aString readStream.
@@ -698,29 +556,20 @@ RxMatcher>>split: aString indicesDo: aBlock [
 	aBlock value: lastPosition + 1 value: aString size.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>subBeginning: subIndex [
+{ #category : #accessing }
+RxMatcher >> subBeginning: subIndex [
 
 	^markerPositions at: subIndex * 2 - 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>subEnd: subIndex [
+{ #category : #accessing }
+RxMatcher >> subEnd: subIndex [
 
 	^markerPositions at: subIndex * 2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>subexpression: subIndex [
+{ #category : #accessing }
+RxMatcher >> subexpression: subIndex [
 	"Answer a string that matched the subexpression at the given index.
 	If there are multiple matches, answer the last one.
 	If there are no matches, answer nil. 
@@ -731,20 +580,14 @@ RxMatcher>>subexpression: subIndex [
 	^matches isEmpty ifTrue: [nil] ifFalse: [matches last]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>subexpressionCount [
+{ #category : #accessing }
+RxMatcher >> subexpressionCount [
 
 	^markerCount // 2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>subexpressions: subIndex [
+{ #category : #accessing }
+RxMatcher >> subexpressions: subIndex [
 	"Answer an array of all matches of the subexpression at the given index.
 	The answer is always an array; it is empty if there are no matches."
 
@@ -762,20 +605,14 @@ RxMatcher>>subexpressions: subIndex [
 	^reply asArray
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>supportsSubexpressions [
+{ #category : #testing }
+RxMatcher >> supportsSubexpressions [
 
 	^true
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>syntaxAny [
+{ #category : #'double dispatch' }
+RxMatcher >> syntaxAny [
 	"Double dispatch from the syntax tree. 
 	Create a matcher for any non-null character."
 
@@ -783,33 +620,24 @@ RxMatcher>>syntaxAny [
 		predicate: [:char | char asInteger ~= 0]
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>syntaxBeginningOfLine [
+{ #category : #'double dispatch' }
+RxMatcher >> syntaxBeginningOfLine [
 	"Double dispatch from the syntax tree. 
 	Create a matcher for beginning-of-line condition."
 
 	^RxmSpecial new beBeginningOfLine
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>syntaxBeginningOfWord [
+{ #category : #'double dispatch' }
+RxMatcher >> syntaxBeginningOfWord [
 	"Double dispatch from the syntax tree. 
 	Create a matcher for beginning-of-word condition."
 
 	^RxmSpecial new beBeginningOfWord
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>syntaxBranch: branchNode [
+{ #category : #'double dispatch' }
+RxMatcher >> syntaxBranch: branchNode [
 	"Double dispatch from the syntax tree. 
 	Branch node is a link in a chain of concatenated pieces.
 	First build the matcher for the rest of the chain, then make 
@@ -835,11 +663,8 @@ RxMatcher>>syntaxBranch: branchNode [
 		yourself
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>syntaxCharSet: charSetNode [
+{ #category : #'double dispatch' }
+RxMatcher >> syntaxCharSet: charSetNode [
 	"Double dispatch from the syntax tree. 
 	A character set is a few characters, and we either match any of them,
 	or match any that is not one of them."
@@ -847,11 +672,8 @@ RxMatcher>>syntaxCharSet: charSetNode [
 	^RxmPredicate with: (charSetNode predicateIgnoringCase: ignoreCase)
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>syntaxCharacter: charNode [
+{ #category : #'double dispatch' }
+RxMatcher >> syntaxCharacter: charNode [
 	"Double dispatch from the syntax tree. 
 	We get here when no merging characters into strings was possible."
 
@@ -863,33 +685,24 @@ RxMatcher>>syntaxCharacter: charNode [
 			ifFalse: [[:char | char = wanted]])
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>syntaxEndOfLine [
+{ #category : #'double dispatch' }
+RxMatcher >> syntaxEndOfLine [
 	"Double dispatch from the syntax tree. 
 	Create a matcher for end-of-line condition."
 
 	^RxmSpecial new beEndOfLine
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>syntaxEndOfWord [
+{ #category : #'double dispatch' }
+RxMatcher >> syntaxEndOfWord [
 	"Double dispatch from the syntax tree. 
 	Create a matcher for end-of-word condition."
 
 	^RxmSpecial new beEndOfWord
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>syntaxEpsilon [
+{ #category : #'double dispatch' }
+RxMatcher >> syntaxEpsilon [
 	"Double dispatch from the syntax tree. Match empty string. This is unlikely
 	to happen in sane expressions, so we'll live without special epsilon-nodes."
 
@@ -898,11 +711,8 @@ RxMatcher>>syntaxEpsilon [
 		ignoreCase: ignoreCase
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>syntaxLookaround: lookaroundNode [
+{ #category : #'double dispatch' }
+RxMatcher >> syntaxLookaround: lookaroundNode [
 	"Double dispatch from the syntax tree. 
 	Special link can handle lookarounds (look ahead, positive and negative)."
 	| piece |
@@ -910,11 +720,8 @@ RxMatcher>>syntaxLookaround: lookaroundNode [
 	^ RxmLookahaed with: piece
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>syntaxMessagePredicate: messagePredicateNode [
+{ #category : #'double dispatch' }
+RxMatcher >> syntaxMessagePredicate: messagePredicateNode [
 	"Double dispatch from the syntax tree. 
 	Special link can handle predicates."
 
@@ -923,22 +730,16 @@ RxMatcher>>syntaxMessagePredicate: messagePredicateNode [
 		ifFalse: [RxmPredicate new bePerform: messagePredicateNode selector]
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>syntaxNonWordBoundary [
+{ #category : #'double dispatch' }
+RxMatcher >> syntaxNonWordBoundary [
 	"Double dispatch from the syntax tree. 
 	Create a matcher for the word boundary condition."
 
 	^RxmSpecial new beNotWordBoundary
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>syntaxPiece: pieceNode [
+{ #category : #'double dispatch' }
+RxMatcher >> syntaxPiece: pieceNode [
 	"Double dispatch from the syntax tree. 
 	Piece is an atom repeated a few times. Take care of a special
 	case when the atom is repeated just once."
@@ -956,11 +757,8 @@ RxMatcher>>syntaxPiece: pieceNode [
 					ifFalse: [self makeQuantified: atom min: pieceNode min max: pieceNode max]]]]
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>syntaxPredicate: predicateNode [
+{ #category : #'double dispatch' }
+RxMatcher >> syntaxPredicate: predicateNode [
 	"Double dispatch from the syntax tree. 
 	A character set is a few characters, and we either match any of them,
 	or match any that is not one of them."
@@ -968,11 +766,8 @@ RxMatcher>>syntaxPredicate: predicateNode [
 	^RxmPredicate with: predicateNode predicate
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>syntaxRegex: regexNode [
+{ #category : #'double dispatch' }
+RxMatcher >> syntaxRegex: regexNode [
 	"Double dispatch from the syntax tree. 
 	Regex node is a chain of branches to be tried. Should compile this 
 	into a bundle of parallel branches, between two marker nodes." 
@@ -987,22 +782,16 @@ RxMatcher>>syntaxRegex: regexNode [
 		yourself
 ]
 
-{
-	#category : #'double dispatch',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>syntaxWordBoundary [
+{ #category : #'double dispatch' }
+RxMatcher >> syntaxWordBoundary [
 	"Double dispatch from the syntax tree. 
 	Create a matcher for the word boundary condition."
 
 	^RxmSpecial new beWordBoundary
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxMatcher>>tryMatch [
+{ #category : #private }
+RxMatcher >> tryMatch [
 	"Match thyself against the current stream."
 
 	| oldMarkerPositions |

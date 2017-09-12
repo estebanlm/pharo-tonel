@@ -4,24 +4,17 @@ MetacelloValidationError indicates that errors are to be expected if an attempt 
 Class {
 	#name : #MetacelloValidationError,
 	#superclass : #MetacelloValidationIssue,
-	#category : #Metacello-Core-Validation,
-	#timestamp : '<historical>'
+	#category : #Metacello-Core-Validation
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationError>>isError [
+{ #category : #testing }
+MetacelloValidationError >> isError [
 
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloValidationError>>label [
+{ #category : #accessing }
+MetacelloValidationError >> label [
 
 	^'Error'
 ]

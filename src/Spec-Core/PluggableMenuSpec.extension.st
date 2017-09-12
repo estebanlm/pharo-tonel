@@ -1,12 +1,7 @@
-Extension {
-	#name : #PluggableMenuSpec
-}
+Extension { #name : #PluggableMenuSpec }
 
-{
-	#category : #'*Spec-Core',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PluggableMenuSpec>>addToMenuModel: aMenuModel [
+{ #category : #'*Spec-Core' }
+PluggableMenuSpec >> addToMenuModel: aMenuModel [
 	| groups tmp |
 	
 	groups := OrderedCollection new.

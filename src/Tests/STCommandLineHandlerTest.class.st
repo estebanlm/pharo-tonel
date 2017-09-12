@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #STCommandLineHandlerTest,
 	#superclass : #ClassTestCase,
-	#category : #Tests-System-CommandLine,
-	#timestamp : ''
+	#category : #Tests-System-CommandLine
 }
 
-{
-	#category : #coverage,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-STCommandLineHandlerTest>>classToBeTested [
+{ #category : #coverage }
+STCommandLineHandlerTest >> classToBeTested [
 	^ STCommandLineHandler
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-STCommandLineHandlerTest>>testCommandLineHandlerCondition [
+{ #category : #tests }
+STCommandLineHandlerTest >> testCommandLineHandlerCondition [
 	| commandLine reference |
 	
 	commandLine := CommandLineArguments withArguments: {'/non/existing/file.st'}. 
@@ -35,11 +25,8 @@ STCommandLineHandlerTest>>testCommandLineHandlerCondition [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-STCommandLineHandlerTest>>testInstallSourceFilesFail [
+{ #category : #tests }
+STCommandLineHandlerTest >> testInstallSourceFilesFail [
 	| codeLoader |
 	
 	codeLoader := STCommandLineHandler new.
@@ -50,11 +37,8 @@ STCommandLineHandlerTest>>testInstallSourceFilesFail [
 	self should: [ codeLoader installSourceFiles ] raise: Error.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-STCommandLineHandlerTest>>testLoadSourceFiles [
+{ #category : #tests }
+STCommandLineHandlerTest >> testLoadSourceFiles [
 	| codeLoader |
 	
 	codeLoader := STCommandLineHandler new.
@@ -68,11 +52,8 @@ STCommandLineHandlerTest>>testLoadSourceFiles [
 	self assert: ((codeLoader instVarNamed: 'sourceFiles') allSatisfy: [ :each | each isKindOf: File ]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-STCommandLineHandlerTest>>testSelectSourceFiles [
+{ #category : #tests }
+STCommandLineHandlerTest >> testSelectSourceFiles [
 	| codeLoader commandLine |
 
 	commandLine := CommandLineArguments withArguments: {'does-not-exist.st'. '--host=localhost'}.	

@@ -14,46 +14,33 @@ Class {
 		'loopback',
 		'alternative'
 	],
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:14'
+	#category : #Regex-Core
 }
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmBranch>>alternative: aBranch [
+{ #category : #initialize-release }
+RxmBranch >> alternative: aBranch [
 	"See class comment for instance variable description."
 
 	alternative := aBranch
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmBranch>>beLoopback [
+{ #category : #initialize-release }
+RxmBranch >> beLoopback [
 	"See class comment for instance variable description."
 
 	loopback := true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmBranch>>initialize [
+{ #category : #initialization }
+RxmBranch >> initialize [
 	"See class comment for instance variable description."
 
 	super initialize.
 	loopback := false
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmBranch>>matchAgainst: aMatcher [
+{ #category : #matching }
+RxmBranch >> matchAgainst: aMatcher [
 	"Match either `next' or `alternative'. Fail if the alternative is nil."
 
 	^(next matchAgainst: aMatcher)
@@ -61,11 +48,8 @@ RxmBranch>>matchAgainst: aMatcher [
 			and: [alternative matchAgainst: aMatcher]]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmBranch>>pointTailTo: aNode [
+{ #category : #building }
+RxmBranch >> pointTailTo: aNode [
 	"See superclass for explanations."
 
 	loopback
@@ -76,11 +60,8 @@ RxmBranch>>pointTailTo: aNode [
 		ifFalse: [super pointTailTo: aNode]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmBranch>>terminateWith: aNode [
+{ #category : #building }
+RxmBranch >> terminateWith: aNode [
 	"See superclass for explanations."
 
 	loopback

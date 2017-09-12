@@ -4,63 +4,41 @@ I am an abstract renderer that provides a generic API for native window renderin
 Class {
 	#name : #OSWindowGenericRenderer,
 	#superclass : #OSWindowRenderer,
-	#category : #OSWindow-Core,
-	#timestamp : 'RonieSalgado 4/10/2016 02:05'
+	#category : #OSWindow-Core
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGenericRenderer>>clear [
+{ #category : #rendering }
+OSWindowGenericRenderer >> clear [
 	self subclassResponsibility
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGenericRenderer>>color: aColor [
+{ #category : #rendering }
+OSWindowGenericRenderer >> color: aColor [
 	self subclassResponsibility
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGenericRenderer>>drawLine: startPoint end: endPoint [
+{ #category : #rendering }
+OSWindowGenericRenderer >> drawLine: startPoint end: endPoint [
 	self subclassResponsibility
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGenericRenderer>>drawPoint: aPoint [
+{ #category : #rendering }
+OSWindowGenericRenderer >> drawPoint: aPoint [
 	self subclassResponsibility
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGenericRenderer>>drawRectangle: aRectangle [
+{ #category : #rendering }
+OSWindowGenericRenderer >> drawRectangle: aRectangle [
 	self subclassResponsibility
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGenericRenderer>>fillRectangle: aRectangle [
+{ #category : #rendering }
+OSWindowGenericRenderer >> fillRectangle: aRectangle [
 	self subclassResponsibility
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGenericRenderer>>present [
+{ #category : #rendering }
+OSWindowGenericRenderer >> present [
 	"This should present the content of an internal draw buffer"
 	self subclassResponsibility
 ]

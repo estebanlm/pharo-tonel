@@ -16,15 +16,11 @@ Class {
 		'x4',
 		'y4'
 	],
-	#category : #Athens-Core-PathsGeometry,
-	#timestamp : '<historical>'
+	#category : #Athens-Core-PathsGeometry
 }
 
-{
-	#category : #subdivision,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>recursiveSubDiv: flattener level: level [
+{ #category : #subdivision }
+AthensCubicBezier >> recursiveSubDiv: flattener level: level [
 
 	| dx dy d2 d3 da1 da2 k f1 f2 |
 	
@@ -164,11 +160,8 @@ AthensCubicBezier>>recursiveSubDiv: flattener level: level [
 	
 ]
 
-{
-	#category : #subdivision,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>subdivideAt: t do: aBinaryBlock [
+{ #category : #subdivision }
+AthensCubicBezier >> subdivideAt: t do: aBinaryBlock [
 	| x12 y12 x23 y23 x34 y34 x1223 y1223 x2334 y2334 xsplit ysplit |
 	
 	x12 := x1 interpolateTo: x2 at: t.
@@ -209,146 +202,98 @@ AthensCubicBezier>>subdivideAt: t do: aBinaryBlock [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>x1 [
+{ #category : #accessing }
+AthensCubicBezier >> x1 [
 	
 	^ x1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>x1: anObject [
+{ #category : #accessing }
+AthensCubicBezier >> x1: anObject [
 	
 	x1 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>x2 [
+{ #category : #accessing }
+AthensCubicBezier >> x2 [
 	
 	^ x2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>x2: anObject [
+{ #category : #accessing }
+AthensCubicBezier >> x2: anObject [
 	
 	x2 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>x3 [
+{ #category : #accessing }
+AthensCubicBezier >> x3 [
 	
 	^ x3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>x3: anObject [
+{ #category : #accessing }
+AthensCubicBezier >> x3: anObject [
 	
 	x3 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>x4 [
+{ #category : #accessing }
+AthensCubicBezier >> x4 [
 	
 	^ x4
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>x4: anObject [
+{ #category : #accessing }
+AthensCubicBezier >> x4: anObject [
 	
 	x4 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>y1 [
+{ #category : #accessing }
+AthensCubicBezier >> y1 [
 	
 	^ y1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>y1: anObject [
+{ #category : #accessing }
+AthensCubicBezier >> y1: anObject [
 	
 	y1 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>y2 [
+{ #category : #accessing }
+AthensCubicBezier >> y2 [
 	
 	^ y2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>y2: anObject [
+{ #category : #accessing }
+AthensCubicBezier >> y2: anObject [
 	
 	y2 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>y3 [
+{ #category : #accessing }
+AthensCubicBezier >> y3 [
 	
 	^ y3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>y3: anObject [
+{ #category : #accessing }
+AthensCubicBezier >> y3: anObject [
 	
 	y3 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>y4 [
+{ #category : #accessing }
+AthensCubicBezier >> y4 [
 	
 	^ y4
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCubicBezier>>y4: anObject [
+{ #category : #accessing }
+AthensCubicBezier >> y4: anObject [
 	
 	y4 := anObject
 ]

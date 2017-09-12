@@ -9,15 +9,11 @@ Class {
 		'errorHandlerBlock',
 		'logBrowserModel'
 	],
-	#category : #EpiceaBrowsers-Integration,
-	#timestamp : 'MartinDias 2/21/2017 01:03'
+	#category : #EpiceaBrowsers-Integration
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>applyCodeChanges [
+{ #category : #public }
+EpLogBrowserOperationFactory >> applyCodeChanges [
 
 	self
 		trigger: [ 
@@ -27,11 +23,8 @@ EpLogBrowserOperationFactory>>applyCodeChanges [
 		with: self newApplyEvent
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>applyCompleteRefactoring [
+{ #category : #public }
+EpLogBrowserOperationFactory >> applyCompleteRefactoring [
 
 	| refactoringEntry refactoring |
 	refactoringEntry := self entries first entries first. "TODO: only first?"
@@ -41,11 +34,8 @@ EpLogBrowserOperationFactory>>applyCompleteRefactoring [
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>applyPropagateRefactoring [
+{ #category : #public }
+EpLogBrowserOperationFactory >> applyPropagateRefactoring [
 
 	| refactoringEntry refactoring |
 	refactoringEntry := self entries first entries first. "TODO: only first?"
@@ -55,11 +45,8 @@ EpLogBrowserOperationFactory>>applyPropagateRefactoring [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>applyRBRefactoring: aRBRefactoring [
+{ #category : #private }
+EpLogBrowserOperationFactory >> applyRBRefactoring: aRBRefactoring [
 
 	self 
 		trigger: [
@@ -70,43 +57,28 @@ EpLogBrowserOperationFactory>>applyRBRefactoring: aRBRefactoring [
 		with: self newApplyEvent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>entries [
+{ #category : #accessing }
+EpLogBrowserOperationFactory >> entries [
 	^ entries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>entries: aCollection [
+{ #category : #accessing }
+EpLogBrowserOperationFactory >> entries: aCollection [
 	entries := aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>errorHandlerBlock [
+{ #category : #accessing }
+EpLogBrowserOperationFactory >> errorHandlerBlock [
 	^ errorHandlerBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>errorHandlerBlock: aBlock [
+{ #category : #accessing }
+EpLogBrowserOperationFactory >> errorHandlerBlock: aBlock [
 	errorHandlerBlock := aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>handleErrorDuring: aBlock [
+{ #category : #private }
+EpLogBrowserOperationFactory >> handleErrorDuring: aBlock [
 	"TODO: do not catch *all* Errors.
 	This error handler exists as a workaround to skip any unexpected error when applying or reverting a code change from GUI.
 	For example, when user reverts the protocol addition of a protocol that is already not present, and such action signals an unexpected error. The error in such case should be avoided via testing API."
@@ -117,37 +89,25 @@ EpLogBrowserOperationFactory>>handleErrorDuring: aBlock [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>logBrowserModel [
+{ #category : #accessing }
+EpLogBrowserOperationFactory >> logBrowserModel [
 	^ logBrowserModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>logBrowserModel: aBrowser [
+{ #category : #accessing }
+EpLogBrowserOperationFactory >> logBrowserModel: aBrowser [
 	logBrowserModel := aBrowser
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>newApplyEvent [
+{ #category : #private }
+EpLogBrowserOperationFactory >> newApplyEvent [
 
 	^ EpRedo forAll: (self theLog referencesToAll: self entries)
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>newApplyPreviewLog [
+{ #category : #public }
+EpLogBrowserOperationFactory >> newApplyPreviewLog [
 
 	| events |
 	events := self entries flatCollect: [:each | 
@@ -157,11 +117,8 @@ EpLogBrowserOperationFactory>>newApplyPreviewLog [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>newPreviewLogFor: rawEvents [
+{ #category : #private }
+EpLogBrowserOperationFactory >> newPreviewLogFor: rawEvents [
 
 	| aLog filter latestEvents |
 	self flag: #fix.
@@ -176,21 +133,15 @@ EpLogBrowserOperationFactory>>newPreviewLogFor: rawEvents [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>newRevertEvent [
+{ #category : #private }
+EpLogBrowserOperationFactory >> newRevertEvent [
 
 	^ EpUndo forAll: (self theLog referencesToAll: self entries)
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>newRevertPreviewLog [
+{ #category : #public }
+EpLogBrowserOperationFactory >> newRevertPreviewLog [
 
 	| events |
 	events := self entries reversed flatCollect: [:each | 
@@ -200,11 +151,8 @@ EpLogBrowserOperationFactory>>newRevertPreviewLog [
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>revertCodeChanges [
+{ #category : #public }
+EpLogBrowserOperationFactory >> revertCodeChanges [
 
 	self
 		trigger: [ 
@@ -214,11 +162,8 @@ EpLogBrowserOperationFactory>>revertCodeChanges [
 		with: self newRevertEvent
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>revertCodeChangesInPreviewMode [
+{ #category : #public }
+EpLogBrowserOperationFactory >> revertCodeChangesInPreviewMode [
 
 	self
 		trigger: [ 
@@ -228,20 +173,14 @@ EpLogBrowserOperationFactory>>revertCodeChangesInPreviewMode [
 		with: self newRevertEvent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>theLog [
+{ #category : #accessing }
+EpLogBrowserOperationFactory >> theLog [
 
 	^ logBrowserModel theLog
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperationFactory>>trigger: aBlock with: anEpLogBrowserOperation [
+{ #category : #private }
+EpLogBrowserOperationFactory >> trigger: aBlock with: anEpLogBrowserOperation [
 
 	^ anEpLogBrowserOperation doInJob: aBlock
 ]

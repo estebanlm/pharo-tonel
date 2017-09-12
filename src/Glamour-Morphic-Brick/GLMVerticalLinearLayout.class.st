@@ -1,49 +1,33 @@
-"
-
-"
 Class {
 	#name : #GLMVerticalLinearLayout,
 	#superclass : #GLMLinearLayout,
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #Glamour-Morphic-Brick-Layouts,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Layouts
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVerticalLinearLayout class>>cleanUp [
+{ #category : #cleanup }
+GLMVerticalLinearLayout class >> cleanUp [
 
 	self reset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVerticalLinearLayout class>>reset [
+{ #category : #accessing }
+GLMVerticalLinearLayout class >> reset [
 	"
 	self reset
 	"
 	uniqueInstance := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVerticalLinearLayout class>>uniqueInstance [
+{ #category : #accessing }
+GLMVerticalLinearLayout class >> uniqueInstance [
 	^ uniqueInstance ifNil: [ uniqueInstance := self new ]
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVerticalLinearLayout>>align: aBrick in: parentBrick anchorPoint: aPoint inContext: aContext [
+{ #category : #layout }
+GLMVerticalLinearLayout >> align: aBrick in: parentBrick anchorPoint: aPoint inContext: aContext [
 	|align|
 	
 	self = aContext ifTrue: [ ^ self ].
@@ -60,28 +44,19 @@ GLMVerticalLinearLayout>>align: aBrick in: parentBrick anchorPoint: aPoint inCon
 		^ aBrick translateX: ((parentBrick innerBounds width - aBrick outerBounds width)) asInteger ].
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVerticalLinearLayout>>asString [
+{ #category : #converting }
+GLMVerticalLinearLayout >> asString [
 	^ 'vertical'
 ]
 
-{
-	#category : #height,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVerticalLinearLayout>>heightChildrenDependency: aBrick [
+{ #category : #height }
+GLMVerticalLinearLayout >> heightChildrenDependency: aBrick [
 	"returns the height of aBrick when it depends on children"
 	^ aBrick paddingTop + aBrick paddingBottom + ((self nonFloatSubbricks: aBrick) detectSum: [ :each | each outerBounds height ])
 ]
 
-{
-	#category : #width,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVerticalLinearLayout>>heightParentDependency: aBrick [
+{ #category : #width }
+GLMVerticalLinearLayout >> heightParentDependency: aBrick [
 	| allowedHeight |
 	aBrick owner ifNil: [ Exception signal: 'My height depends on parent, but it is nil' ].
 	allowedHeight := aBrick owner subbricks inject: aBrick owner innerBounds height into: [ :height :each |
@@ -93,11 +68,8 @@ GLMVerticalLinearLayout>>heightParentDependency: aBrick [
 	^ (allowedHeight * aBrick layout vPercent / 100) ceiling
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVerticalLinearLayout>>layout: aBrick in: newBounds [
+{ #category : #layout }
+GLMVerticalLinearLayout >> layout: aBrick in: newBounds [
 
 	self
 		layout: aBrick
@@ -108,11 +80,8 @@ GLMVerticalLinearLayout>>layout: aBrick in: newBounds [
 			0@each outerBounds height ]
 ]
 
-{
-	#category : #width,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVerticalLinearLayout>>widthChildrenDependency: aBrick [
+{ #category : #width }
+GLMVerticalLinearLayout >> widthChildrenDependency: aBrick [
 	"returns the height of aBrick when it depends on children"
 	"in case of horizontal linear layout it is the height of the highest subbrick + corresponding paddings"
 	^ aBrick paddingLeft + aBrick paddingRight + (((self nonFloatSubbricks: aBrick) detectMax: [ :each | each outerBounds width ])
@@ -120,11 +89,8 @@ GLMVerticalLinearLayout>>widthChildrenDependency: aBrick [
 		ifNotNil: [ :m | m outerBounds width ])
 ]
 
-{
-	#category : #width,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMVerticalLinearLayout>>widthParentDependency: aBrick [
+{ #category : #width }
+GLMVerticalLinearLayout >> widthParentDependency: aBrick [
 	
 	aBrick owner ifNil: [ Exception signal: 'My width depends on parent, but it is nil' ].
 	^ (aBrick owner innerBounds width * aBrick layout hPercent / 100) ceiling

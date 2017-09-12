@@ -4,15 +4,11 @@ Each rule has a few fundamental features to implement in this book with will wal
 Class {
 	#name : #RenrakuRuleCreationHelp,
 	#superclass : #RenrakuRuleHelp,
-	#category : #Renraku-Help,
-	#timestamp : 'YuriyTymchuk 7/10/2016 15:59'
+	#category : #Renraku-Help
 }
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuRuleCreationHelp class>>advancedChecking [
+{ #category : #pages }
+RenrakuRuleCreationHelp class >> advancedChecking [
 
 	^ HelpTopic
 		title: 'Advanced Checking'
@@ -26,30 +22,21 @@ The block which should be evaluated for each critique may accept one argument: t
 will return ReTrivialCritique about the entity. Later you can update your code to create other kinds of critiques more suitable for your case.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuRuleCreationHelp class>>bookDescription [
+{ #category : #accessing }
+RenrakuRuleCreationHelp class >> bookDescription [
 	^ 'Each rule has a few fundamental features to implement in this book with will walk through all the steps of rule creation.
 	
 Make sure to RESET the CACHE after you add a rule. (last chapter)'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuRuleCreationHelp class>>bookName [
+{ #category : #accessing }
+RenrakuRuleCreationHelp class >> bookName [
 
 	^ 'Creating Rules'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuRuleCreationHelp class>>checking [
+{ #category : #pages }
+RenrakuRuleCreationHelp class >> checking [
 
 	^ HelpTopic
 		title: 'Checking'
@@ -57,11 +44,8 @@ RenrakuRuleCreationHelp class>>checking [
 'The easiest way to check an entity is to override the #basicCheck: method. The method accepts an entity as a parameter and returns true if there is a violation and false otherwise.'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuRuleCreationHelp class>>groupSeverity [
+{ #category : #pages }
+RenrakuRuleCreationHelp class >> groupSeverity [
 
 	^ HelpTopic
 		title: 'Group and Severity'
@@ -72,11 +56,8 @@ RenrakuRuleCreationHelp class>>groupSeverity [
 You can also specify the severity of your rue by returning one of: #information, #warning, or #error symbols from the #severity method.'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuRuleCreationHelp class>>interestInEntities [
+{ #category : #pages }
+RenrakuRuleCreationHelp class >> interestInEntities [
 
 	^ HelpTopic
 		title: 'Specifying an Interest in Entities'
@@ -84,11 +65,8 @@ RenrakuRuleCreationHelp class>>interestInEntities [
 'The class-side methods #checksMethod, #checksClass, #checksPackage and #checksNode return true is the rule checks methods, classes or traits, packages and AST nodes respectively. Tools will pass entities of the specified type to the rule for checking. A rule may check multiple types of entities but please avoid checks for types inside of rules. E.g. if a rule checks whether an entity is named with a swearing word and does this by obtaining the name of the entity and matching substrings. It is completely fine to specify that the rule checks classes and packages as you don''t have to distinguish which entity was passed to you.'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuRuleCreationHelp class>>nameRationale [
+{ #category : #pages }
+RenrakuRuleCreationHelp class >> nameRationale [
 
 	^ HelpTopic
 		title: 'Name and Rationale'
@@ -96,19 +74,13 @@ RenrakuRuleCreationHelp class>>nameRationale [
 'Each rule should provide a short name string returned from the #name method. You also have to override the #rationale method to return a detailed description about the rule. You may also put the rationale in the class comment, as by default #rationale method returns the comment of the rule''s class.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuRuleCreationHelp class>>pages [
+{ #category : #accessing }
+RenrakuRuleCreationHelp class >> pages [
 	^ #(subclass nameRationale interestInEntities checking advancedChecking testing groupSeverity resetCache)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuRuleCreationHelp class>>resetCache [
+{ #category : #pages }
+RenrakuRuleCreationHelp class >> resetCache [
 
 	^ HelpTopic
 		title: '! Reset Cache'
@@ -125,11 +97,8 @@ ReRuleManager reset
 When you load complete rules into the system, the cache will be reset automatically. But as you are creating a new rule and it is in the incomplete state you have to reset the cache once you are ready.'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuRuleCreationHelp class>>subclass [
+{ #category : #pages }
+RenrakuRuleCreationHelp class >> subclass [
 
 	^ HelpTopic
 		title: 'Subclass'
@@ -137,11 +106,8 @@ RenrakuRuleCreationHelp class>>subclass [
 'Subclass ReAbstractRule or one of the special rule classes that will be discussed. Most of tools rely on the classes hierarchy to select the rules for checking.'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuRuleCreationHelp class>>testing [
+{ #category : #pages }
+RenrakuRuleCreationHelp class >> testing [
 
 	^ HelpTopic
 		title: 'Testing'

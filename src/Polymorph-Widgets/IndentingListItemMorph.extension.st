@@ -1,12 +1,7 @@
-Extension {
-	#name : #IndentingListItemMorph
-}
+Extension { #name : #IndentingListItemMorph }
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IndentingListItemMorph>>changed [
+{ #category : #'*Polymorph-Widgets' }
+IndentingListItemMorph >> changed [
 	"Need to invalidate the selection frame."
 
 	container ifNil: [^super changed].
@@ -14,11 +9,8 @@ IndentingListItemMorph>>changed [
 	super changed
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IndentingListItemMorph>>drawMouseDownHighlightOn: aCanvas [
+{ #category : #'*Polymorph-Widgets' }
+IndentingListItemMorph >> drawMouseDownHighlightOn: aCanvas [
 	"Draw with a dotted border."
 	
 	|frame|
@@ -32,11 +24,8 @@ IndentingListItemMorph>>drawMouseDownHighlightOn: aCanvas [
 			 dashes: #(1 1)]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IndentingListItemMorph>>lastChild [
+{ #category : #'*Polymorph-Widgets' }
+IndentingListItemMorph >> lastChild [
 	"Answer the last child."
 
 	|c|
@@ -45,11 +34,8 @@ IndentingListItemMorph>>lastChild [
 	^c
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IndentingListItemMorph>>measureContents [
+{ #category : #'*Polymorph-Widgets' }
+IndentingListItemMorph >> measureContents [
 	"Round up in case fractional."
 
 	| f iconWidth |
@@ -61,11 +47,8 @@ IndentingListItemMorph>>measureContents [
 		@ ((contents heightToDisplayInTree: self) max: f height) + (self layoutInset * 2)) ceiling
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IndentingListItemMorph>>openItemPath: anArray [
+{ #category : #'*Polymorph-Widgets' }
+IndentingListItemMorph >> openItemPath: anArray [
 	"Open a path based on wrapper item equivalence. Generally more specific
 	than #openPath: (string based)."
 	
@@ -91,11 +74,8 @@ IndentingListItemMorph>>openItemPath: anArray [
 	^container setSelectedMorph: nil
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IndentingListItemMorph>>outerBounds [
+{ #category : #'*Polymorph-Widgets' }
+IndentingListItemMorph >> outerBounds [
 	"Return the 'outer' bounds of the receiver, e.g., the bounds that need to be invalidated when the receiver changes."
 	
 	|box|
@@ -104,11 +84,8 @@ IndentingListItemMorph>>outerBounds [
 	^box left: (box left min: self selectionFrame left)
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IndentingListItemMorph>>selectionFrame [
+{ #category : #'*Polymorph-Widgets' }
+IndentingListItemMorph >> selectionFrame [
 	"Answer the selection frame rectangle."
 
 	|frame|
@@ -119,11 +96,8 @@ IndentingListItemMorph>>selectionFrame [
 	^frame
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-IndentingListItemMorph>>theme [
+{ #category : #'*Polymorph-Widgets' }
+IndentingListItemMorph >> theme [
 	"Answer the ui theme that provides controls.
 	Done directly here to avoid performance hit of
 	looking up in window."

@@ -4,15 +4,11 @@ SUnit tests for fuels pluggable substitutions
 Class {
 	#name : #FLPluggableSubstitutionTest,
 	#superclass : #FLSerializationTest,
-	#category : #FuelTests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:31'
+	#category : #FuelTests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPluggableSubstitutionTest>>testAvoidRecursion [
+{ #category : #tests }
+FLPluggableSubstitutionTest >> testAvoidRecursion [
 
 	| result |
 	self analyzer when: [:x | x < 10 ] substituteBy: [:x | x + 1 ].
@@ -22,11 +18,8 @@ FLPluggableSubstitutionTest>>testAvoidRecursion [
 	self assert: result = 2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPluggableSubstitutionTest>>testLowercaseSomeSymbols [
+{ #category : #tests }
+FLPluggableSubstitutionTest >> testLowercaseSomeSymbols [
 
 	| result |
 	self analyzer when: [:x | #A = x] substituteBy: [:x | #a].
@@ -37,11 +30,8 @@ FLPluggableSubstitutionTest>>testLowercaseSomeSymbols [
 	self assert: #(a b C) = result.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPluggableSubstitutionTest>>testPrivateExcluded [
+{ #category : #tests }
+FLPluggableSubstitutionTest >> testPrivateExcluded [
 
 	| result |
 	self analyzer when: [:x | x isBehavior ] substituteBy: [:x | FLWeakClassMock ].
@@ -52,11 +42,8 @@ FLPluggableSubstitutionTest>>testPrivateExcluded [
 	self assert: result second == FLWeakClassMock.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPluggableSubstitutionTest>>testPrivateExcludedAndWithConflicts [
+{ #category : #tests }
+FLPluggableSubstitutionTest >> testPrivateExcludedAndWithConflicts [
 	"Tests issue #209"
 	| result |
 	self analyzer when: [:x | FLPair == x ] substituteBy: [:x | FLWeakClassMock ].
@@ -67,11 +54,8 @@ FLPluggableSubstitutionTest>>testPrivateExcludedAndWithConflicts [
 	self assert: result second == FLWeakClassMock
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPluggableSubstitutionTest>>testSimple [
+{ #category : #tests }
+FLPluggableSubstitutionTest >> testSimple [
 
 	| result |
 	self analyzer when: [:x | x < 0 ] substituteBy: [:x | 0 ].
@@ -81,11 +65,8 @@ FLPluggableSubstitutionTest>>testSimple [
 	self assert: result = 0.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPluggableSubstitutionTest>>testSubstitute: anObject inPresenceOf: anotherObject [
+{ #category : #running }
+FLPluggableSubstitutionTest >> testSubstitute: anObject inPresenceOf: anotherObject [
 
 	| result |
 	self analyzer when: [:x | x == anObject ] substituteBy: [:x | 424242 ].
@@ -97,11 +78,8 @@ FLPluggableSubstitutionTest>>testSubstitute: anObject inPresenceOf: anotherObjec
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPluggableSubstitutionTest>>testSubstituteByItself [
+{ #category : #tests }
+FLPluggableSubstitutionTest >> testSubstituteByItself [
 
 	| result |
 	self analyzer when: [:x | true ] substituteBy: [:x | x ].
@@ -111,44 +89,32 @@ FLPluggableSubstitutionTest>>testSubstituteByItself [
 	self assert: result = 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPluggableSubstitutionTest>>testSubstituteCharacterInPresenceOfSomeCharacter [
+{ #category : #tests }
+FLPluggableSubstitutionTest >> testSubstituteCharacterInPresenceOfSomeCharacter [
 	"See issues #209 and #217"
 
 	self testSubstitute: Character inPresenceOf: $c
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPluggableSubstitutionTest>>testSubstituteTrueInPresenceOfTheTrueInstance [
+{ #category : #tests }
+FLPluggableSubstitutionTest >> testSubstituteTrueInPresenceOfTheTrueInstance [
 	"See issues #209 and #217"
 
 	self testSubstitute: True inPresenceOf: true
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPluggableSubstitutionTest>>testSubstituteUndefinedObjectInPresenceOfNil [
+{ #category : #tests }
+FLPluggableSubstitutionTest >> testSubstituteUndefinedObjectInPresenceOfNil [
 	"See issues #209 and #217"
 
 	self testSubstitute: UndefinedObject inPresenceOf: nil
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPluggableSubstitutionTest>>testTransientPair [
+{ #category : #tests }
+FLPluggableSubstitutionTest >> testTransientPair [
 
 	| result |
 	self analyzer when: [:x | FLPair = x class] substituteBy: [:x | nil].
@@ -158,11 +124,8 @@ FLPluggableSubstitutionTest>>testTransientPair [
 	self assert: result isNil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPluggableSubstitutionTest>>testTransientPairLeft [
+{ #category : #tests }
+FLPluggableSubstitutionTest >> testTransientPairLeft [
 
 	| result |
 	self analyzer when: [:x | FLPair = x class and: [x left isNil not]] substituteBy: [:x | x copy left: nil].
@@ -172,11 +135,8 @@ FLPluggableSubstitutionTest>>testTransientPairLeft [
 	self assert: result left isNil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPluggableSubstitutionTest>>testUniqueSubstitution [
+{ #category : #tests }
+FLPluggableSubstitutionTest >> testUniqueSubstitution [
 	"Tests that an object with two occurrences in the graph is substituted to the *same* object."
 
 	| result |

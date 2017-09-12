@@ -11,32 +11,22 @@ Class {
 		'morph',
 		'world'
 	],
-	#category : #Morphic-Tests-Kernel,
-	#timestamp : '<historical>'
+	#category : #Morphic-Tests-Kernel
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphTest>>setUp [
+{ #category : #running }
+MorphTest >> setUp [
 	morph := Morph new
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphTest>>tearDown [
+{ #category : #running }
+MorphTest >> tearDown [
 	morph delete.
 	
 ]
 
-{
-	#category : #'testing - geometry',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphTest>>testBoundingBoxOfSubmorphs [
+{ #category : #'testing - geometry' }
+MorphTest >> testBoundingBoxOfSubmorphs [
 
 	| subMorph |
 	subMorph := morph copy
@@ -49,11 +39,8 @@ MorphTest>>testBoundingBoxOfSubmorphs [
 		
 ]
 
-{
-	#category : #'testing - geometry',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphTest>>testExtent [
+{ #category : #'testing - geometry' }
+MorphTest >> testExtent [
 	"
 	self debug: #testExtent
 	"
@@ -75,11 +62,8 @@ MorphTest>>testExtent [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphTest>>testHaloIsDisable [
+{ #category : #'as yet unclassified' }
+MorphTest >> testHaloIsDisable [
 	| isHaloEnable |
 	isHaloEnable := Morph halosEnabled.
 	Morph halosEnabled: false.
@@ -87,11 +71,8 @@ MorphTest>>testHaloIsDisable [
 	Morph halosEnabled: isHaloEnable
 ]
 
-{
-	#category : #'testing - into/outof world',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphTest>>testIntoWorldCollapseOutOfWorld [
+{ #category : #'testing - into/outof world' }
+MorphTest >> testIntoWorldCollapseOutOfWorld [
 	| m1 m2 collapsed |
 	"Create the guys"
 	m1 := TestInWorldMorph new.
@@ -139,11 +120,8 @@ MorphTest>>testIntoWorldCollapseOutOfWorld [
 
 ]
 
-{
-	#category : #'testing - into/outof world',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphTest>>testIntoWorldDeleteOutOfWorld [
+{ #category : #'testing - into/outof world' }
+MorphTest >> testIntoWorldDeleteOutOfWorld [
 	| m1 m2 |
 	"Create the guys"
 	m1 := TestInWorldMorph new.
@@ -174,11 +152,8 @@ MorphTest>>testIntoWorldDeleteOutOfWorld [
 	
 ]
 
-{
-	#category : #'testing - into/outof world',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphTest>>testIntoWorldTransferToNewGuy [
+{ #category : #'testing - into/outof world' }
+MorphTest >> testIntoWorldTransferToNewGuy [
 	| m1 m2 |
 	"Create the guys"
 	m1 := TestInWorldMorph new.
@@ -227,18 +202,12 @@ MorphTest>>testIntoWorldTransferToNewGuy [
 
 ]
 
-{
-	#category : #'testing - classification',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphTest>>testIsMorph [
+{ #category : #'testing - classification' }
+MorphTest >> testIsMorph [
 	self assert: (morph isMorph).
 ]
 
-{
-	#category : #'testing - initialization',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MorphTest>>testOpenInWorld [
+{ #category : #'testing - initialization' }
+MorphTest >> testOpenInWorld [
 	morph openInWorld
 ]

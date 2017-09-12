@@ -14,53 +14,37 @@ todo
 Class {
 	#name : #CheckBoxModel,
 	#superclass : #AbstractFormButtonModel,
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 6/29/2016 11:33'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-CheckBoxModel class>>adapterName [
+{ #category : #specs }
+CheckBoxModel class >> adapterName [
 
 	^ #CheckBoxAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-CheckBoxModel class>>defaultSpec [
+{ #category : #specs }
+CheckBoxModel class >> defaultSpec [
 	<spec>
 	
 	^ #(CheckBoxAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-CheckBoxModel class>>title [
+{ #category : #specs }
+CheckBoxModel class >> title [
 
 	^ 'Checkbox Button'
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-CheckBoxModel>>labelOnLeft [
+{ #category : #api }
+CheckBoxModel >> labelOnLeft [
 
 	^ self changed: #labelOnLeft with: #()
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-CheckBoxModel>>labelOnRight [
+{ #category : #api }
+CheckBoxModel >> labelOnRight [
 
 	^ self changed: #labelOnRight with: #()
 ]

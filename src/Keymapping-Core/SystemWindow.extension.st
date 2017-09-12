@@ -1,12 +1,7 @@
-Extension {
-	#name : #SystemWindow
-}
+Extension { #name : #SystemWindow }
 
-{
-	#category : #'*Keymapping-Core',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SystemWindow class>>buildShortcutsOn: aBuilder [
+{ #category : #'*Keymapping-Core' }
+SystemWindow class >> buildShortcutsOn: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #close)
@@ -16,21 +11,15 @@ SystemWindow class>>buildShortcutsOn: aBuilder [
 		description: 'Close this window'.
 ]
 
-{
-	#category : #'*Keymapping-Core',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SystemWindow>>closeWindowAction [
+{ #category : #'*Keymapping-Core' }
+SystemWindow >> closeWindowAction [
 "closed by a shortcut action. 
  subclasses may overwrite this to do a different action (for example, cancel edits)"
 	self close
 ]
 
-{
-	#category : #'*Keymapping-Core',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SystemWindow>>initializeShortcuts: aKMDispatcher  [
+{ #category : #'*Keymapping-Core' }
+SystemWindow >> initializeShortcuts: aKMDispatcher [ 
 	"Where we may attach keymaps or even on:do: local shortcuts if needed."
 
 	super initializeShortcuts: aKMDispatcher.

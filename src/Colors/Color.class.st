@@ -85,15 +85,11 @@ Class {
 		'MaskingMap',
 		'RedShift'
 	],
-	#category : #Colors,
-	#timestamp : '<historical>'
+	#category : #Colors
 }
 
-{
-	#category : #colormaps,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>aaFontsColormapDepth [
+{ #category : #colormaps }
+Color class >> aaFontsColormapDepth [
 	"Adjust balance between colored AA text quality (especially if subpixel AA is used) and space / performance.
 	5 is optimal quality. Each colorMap takes 128kB of RAM, and takes several seconds to build.
 	4 is a reasonable balance. Each colorMap takes 16kB of RAM and builds fast on a fast machine.
@@ -101,35 +97,23 @@ Color class>>aaFontsColormapDepth [
 	^ 4
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>black [
+{ #category : #defaults }
+Color class >> black [
 	^ ColorRegistry at: #black
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>blue [
+{ #category : #defaults }
+Color class >> blue [
 	^ ColorRegistry at: #blue
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>brown [
+{ #category : #defaults }
+Color class >> brown [
 	^ ColorRegistry at: #brown
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>colorFrom: parm [
+{ #category : #'instance creation' }
+Color class >> colorFrom: parm [
 	"Return an instantiated color from parm.  If parm is already a color, return it, else return the result of my performing it if it's a symbol or, if it is a list, it can either be an array of three numbers, which will be interpreted as RGB values, or a list of symbols, the first of which is sent to me and then the others of which are in turn sent to the prior result, thus allowing entries of the form #(blue darker).  Else just return the thing"
 
 	| aColor firstParm |
@@ -156,11 +140,8 @@ Color colorFrom: #(0.0 0.0 1.0)
 "
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>colorFromPixelValue: p depth: d  [
+{ #category : #'instance creation' }
+Color class >> colorFromPixelValue: p depth: d [ 
 	"Convert a pixel value for the given display depth into a color."
 	"Details: For depths of 8 or less, the pixel value is simply looked up in a table. For greater depths, the color components are extracted and converted into a color."
 	| r g b alpha |
@@ -224,27 +205,18 @@ Color class>>colorFromPixelValue: p depth: d  [
 	self error: 'unknown pixel depth: ' , d printString
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>cyan [
+{ #category : #defaults }
+Color class >> cyan [
 	^ ColorRegistry at: #cyan
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>darkGray [
+{ #category : #defaults }
+Color class >> darkGray [
 	^ ColorRegistry at: #darkGray
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>defaultColors [
+{ #category : #defaults }
+Color class >> defaultColors [
 	^{ #black. 0. 0. 0.
 		#veryVeryDarkGray. 0.125. 0.125. 0.125.
 		#veryDarkGray. 0.25. 0.25. 0.25.
@@ -258,11 +230,8 @@ Color class>>defaultColors [
 		
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>defaultColors2 [
+{ #category : #defaults }
+Color class >> defaultColors2 [
 	^{	#red. 1.0. 0. 0.
 		#yellow. 1.0. 1.0. 0.
 		#green. 0. 1.0. 0.
@@ -277,11 +246,8 @@ Color class>>defaultColors2 [
 	
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>defaultColors3  [
+{ #category : #defaults }
+Color class >> defaultColors3 [ 
 	^{
 	#lightYellow. 1.0. 1.0. 0.8.
 	#lightGreen. 0.8. 1.0. 0.6.
@@ -299,11 +265,8 @@ Color class>>defaultColors3  [
 	}
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>defaultColors4 [
+{ #category : #defaults }
+Color class >> defaultColors4 [
 	^{
 	#paleRed. 1.0. 0.901. 0.901.
 	#palePeach. 1.0. 0.929. 0.835.
@@ -315,11 +278,8 @@ Color class>>defaultColors4 [
 		}
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>fromArray: colorDef [
+{ #category : #'instance creation' }
+Color class >> fromArray: colorDef [
 	colorDef size = 3
 			ifTrue: [^self r: (colorDef at: 1) g: (colorDef at: 2) b: (colorDef at: 3)].
 	colorDef size = 0
@@ -329,11 +289,8 @@ Color class>>fromArray: colorDef [
 	self error: 'Undefined color definition'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>fromHexString: aColorHex [
+{ #category : #'instance creation' }
+Color class >> fromHexString: aColorHex [
 	| green red blue |
 	red := (Integer readFrom: (aColorHex first: 2) base: 16) / 255.
 	green := (Integer readFrom: (aColorHex copyFrom: 3 to: 4) base: 16) / 255.
@@ -341,19 +298,13 @@ Color class>>fromHexString: aColorHex [
 	^self r: red g: green b: blue
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>fromRgbTriplet: list [
+{ #category : #'instance creation' }
+Color class >> fromRgbTriplet: list [
 	^ self r: list first g: list second b: list last
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>fromString: aString [
+{ #category : #'instance creation' }
+Color class >> fromString: aString [
 	"for HTML color spec: #FFCCAA or white/black"
 
 	"Color fromString: '#FFCCAA'.
@@ -374,38 +325,26 @@ Color class>>fromString: aString [
 				ifFalse: [ self white ] ]
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>gray [
+{ #category : #defaults }
+Color class >> gray [
 	^ ColorRegistry at: #gray
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>gray: brightness [
+{ #category : #'instance creation' }
+Color class >> gray: brightness [
 	"Return a gray shade with the given brightness in the range [0.0..1.0]."
 
 	^ self r: brightness g: brightness b: brightness
 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>green [
+{ #category : #defaults }
+Color class >> green [
 	^ ColorRegistry at: #green
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>h: hue s: saturation l: lightness [
+{ #category : #'instance creation' }
+Color class >> h: hue s: saturation l: lightness [
 	"Create a color with the given hue, saturation, and lightness. Hue is given as the angle in degrees of the color on the color circle where red is zero degrees. Saturation and lightness are numbers in [0.0..1.0] where larger values are more saturated or lighter colors. The difference with brightness in the HSV coordinates is that colors go from black at lightness 0, through vivid hues at lightness 0.5, to white at lightness 1. For example, (Color h: 0 s: 1 l: 0.5) is pure red."
 
 	^ self
@@ -415,11 +354,8 @@ Color class>>h: hue s: saturation l: lightness [
 		alpha: 1.0
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>h: hue s: saturation l: lightness alpha: alpha [
+{ #category : #'instance creation' }
+Color class >> h: hue s: saturation l: lightness alpha: alpha [
 	^ self basicNew
 		initializeHue: hue
 			saturation: saturation
@@ -428,33 +364,24 @@ Color class>>h: hue s: saturation l: lightness alpha: alpha [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>h: hue s: saturation v: brightness [
+{ #category : #'instance creation' }
+Color class >> h: hue s: saturation v: brightness [
 	"Create a color with the given hue, saturation, and brightness. Hue is given as the angle in degrees of the color on the color circle where red is zero degrees. Saturation and brightness are numbers in [0.0..1.0] where larger values are more saturated or brighter colors. For example, (Color h: 0 s: 1 v: 1) is pure red."
 	"Note: By convention, brightness is abbreviated 'v' to to avoid confusion with blue."
 
 	^ self h: hue s: saturation v: brightness alpha: 1.0
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>h: hue s: saturation v: brightness alpha: alpha [
+{ #category : #'instance creation' }
+Color class >> h: hue s: saturation v: brightness alpha: alpha [
 	^ self basicNew
 		initializeHue: hue saturation: saturation brightness: brightness alpha: alpha ;
 		yourself 
 	
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>hex: aFloat [
+{ #category : #other }
+Color class >> hex: aFloat [
 	"Return an hexadecimal two-digits string between 00 and FF
 	for a float between 0.0 and 1.0"
 	| str |
@@ -462,20 +389,14 @@ Color class>>hex: aFloat [
 	str size = 1 ifTrue: [^'0',str] ifFalse: [^str]
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>indexedColors [
+{ #category : #other }
+Color class >> indexedColors [
 
 	^ IndexedColors
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>initialize [
+{ #category : #initialize-release }
+Color class >> initialize [
 	"self initialize
 	
 	Details: Externally, the red, green, and blue components of color
@@ -502,11 +423,8 @@ Color class>>initialize [
 	SessionManager default registerGuiClassNamed: self name
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>initializeColorRegistry  [
+{ #category : #initialize-release }
+Color class >> initializeColorRegistry [ 
 	| values|
 	ColorRegistry := IdentityDictionary new.
 	values := self defaultColors, self defaultColors2, self defaultColors3, self defaultColors4.
@@ -521,11 +439,8 @@ Color class>>initializeColorRegistry  [
 	self registerColor: (self r: 0 g: 0 b: 0 alpha: 0.0) named: #transparent. 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>initializeGrayToIndexMap [
+{ #category : #initialize-release }
+Color class >> initializeGrayToIndexMap [
 	"Build an array of gray values available in the 8-bit colormap. This array is indexed by a gray level between black (1) and white (256) and returns the pixel value for the corresponding gray level."
 	"Note: This method must be called after initializeIndexedColors, since it uses IndexedColors."
 	"Color initializeGrayToIndexMap"
@@ -566,11 +481,8 @@ Color class>>initializeGrayToIndexMap [
 				put: indexOfClosest ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>initializeIndexedColors [
+{ #category : #initialize-release }
+Color class >> initializeIndexedColors [
 	"Build an array of colors corresponding to the fixed colormap used
 	 for display depths of 1, 2, 4, or 8 bits."
 	"Color initializeIndexedColors"
@@ -725,226 +637,145 @@ Color class>>initializeIndexedColors [
 	IndexedColors := a
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>lightBlue [
+{ #category : #defaults }
+Color class >> lightBlue [
 	^ ColorRegistry at: #lightBlue
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>lightBrown [
+{ #category : #defaults }
+Color class >> lightBrown [
 	^ ColorRegistry at: #lightBrown
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>lightCyan [
+{ #category : #defaults }
+Color class >> lightCyan [
 	^  ColorRegistry at: #lightCyan
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>lightGray [
+{ #category : #defaults }
+Color class >> lightGray [
 	^  ColorRegistry at: #lightGray
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>lightGreen [
+{ #category : #defaults }
+Color class >> lightGreen [
 	^ ColorRegistry at: #lightGreen
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>lightMagenta [
+{ #category : #defaults }
+Color class >> lightMagenta [
 	^  ColorRegistry at: #lightMagenta
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>lightOrange [
+{ #category : #defaults }
+Color class >> lightOrange [
 	^ ColorRegistry at: #lightOrange
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>lightRed [
+{ #category : #defaults }
+Color class >> lightRed [
 	^  ColorRegistry at: #lightRed
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>lightYellow [
+{ #category : #defaults }
+Color class >> lightYellow [
 	^  ColorRegistry at: #lightYellow
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>magenta [
+{ #category : #defaults }
+Color class >> magenta [
 	^ ColorRegistry at: #magenta
 ]
 
-{
-	#category : #accesing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>named: aColorName [
+{ #category : #accesing }
+Color class >> named: aColorName [
 	
 	^ ColorRegistry  at: aColorName asSymbol ifAbsent: nil 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>new [
+{ #category : #'instance creation' }
+Color class >> new [
 
 	^ self r: 0.0 g: 0.0 b: 0.0
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>orange [
+{ #category : #defaults }
+Color class >> orange [
 	^ ColorRegistry at: #orange
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>paleBlue [
+{ #category : #defaults }
+Color class >> paleBlue [
 	^  ColorRegistry at: #paleBlue 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>paleBuff [
+{ #category : #defaults }
+Color class >> paleBuff [
 	^  ColorRegistry at: #paleBuff
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>paleGreen [
+{ #category : #defaults }
+Color class >> paleGreen [
 	^  ColorRegistry at: #paleGreen
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>paleMagenta [
+{ #category : #defaults }
+Color class >> paleMagenta [
 	^  ColorRegistry at: #paleMagenta
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>paleOrange [
+{ #category : #defaults }
+Color class >> paleOrange [
 	^  ColorRegistry at: #paleOrange
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>palePeach [
+{ #category : #defaults }
+Color class >> palePeach [
 	^  ColorRegistry at: #palePeach 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>paleRed [
+{ #category : #defaults }
+Color class >> paleRed [
 	^  ColorRegistry at: #paleRed
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>paleTan [
+{ #category : #defaults }
+Color class >> paleTan [
 	^  ColorRegistry at: #paleTan
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>paleYellow [
+{ #category : #defaults }
+Color class >> paleYellow [
 	^  ColorRegistry at: #paleYellow.
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>pink [
+{ #category : #defaults }
+Color class >> pink [
  	^  ColorRegistry at: #pink.
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>purple [
+{ #category : #defaults }
+Color class >> purple [
  	^  ColorRegistry at: #purple
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>r: r g: g b: b [
+{ #category : #'instance creation' }
+Color class >> r: r g: g b: b [
 	"Return a color with the given r, g, and b components in the range [0.0..1.0]."
 
 	^ self r: r g: g b: b alpha: 1.0
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>r: r g: g b: b alpha: alpha [
+{ #category : #'instance creation' }
+Color class >> r: r g: g b: b alpha: alpha [
 "Return a color with the given r, g, and b components in the range [0.0..1.0]."
 	^ self basicNew
 		initializeRed: r green: g blue: b alpha: alpha ;
 		yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>r: r g: g b: b range: range [
+{ #category : #'instance creation' }
+Color class >> r: r g: g b: b range: range [
 	"Return a color with the given r, g, and b components specified as integers in the range [0..r]. This avoids the floating point arithmetic in the red:green:blue: message and is thus a bit faster for certain applications (such as computing a sequence of colors for a palette)."
 
 	^ self basicNew
@@ -952,121 +783,79 @@ Color class>>r: r g: g b: b range: range [
 		yourself 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>red [
+{ #category : #defaults }
+Color class >> red [
 	^  ColorRegistry at: #red
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>registerColor: aColor named: aName [
+{ #category : #initialize-release }
+Color class >> registerColor: aColor named: aName [
 	ColorRegistry at: aName put: aColor.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>registeredColorNames [
+{ #category : #accessing }
+Color class >> registeredColorNames [
 	^ ColorRegistry keys collect: #asString 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>registeredNameOf: aColor  [
+{ #category : #accessing }
+Color class >> registeredNameOf: aColor [ 
 	| colorName |
 	colorName := #unnamed.
 	ColorRegistry keysAndValuesDo: [:key :value|  value = aColor ifTrue: [ colorName := key ] ].
 	^ colorName 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>shutDown [
+{ #category : #'system startup' }
+Color class >> shutDown [
 	"Color shutDown"
 	CachedColormaps := nil.	"Maps to translate between color depths"
 	MaskingMap := nil	"Maps all colors except transparent to black for creating a mask"
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>tan [
+{ #category : #defaults }
+Color class >> tan [
 	^  ColorRegistry at: #tan
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>transparent [
+{ #category : #defaults }
+Color class >> transparent [
   ^   ColorRegistry at: #transparent 
 ]
 
-{
-	#category : #accesing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>unregisterColorNamed: aName [
+{ #category : #accesing }
+Color class >> unregisterColorNamed: aName [
 	ColorRegistry removeKey: aName ifAbsent: nil
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>veryDarkGray [
+{ #category : #defaults }
+Color class >> veryDarkGray [
 	^ ColorRegistry at: #veryDarkGray
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>veryLightGray [
+{ #category : #defaults }
+Color class >> veryLightGray [
 	^ ColorRegistry at: #veryLightGray
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>veryPaleRed [
+{ #category : #defaults }
+Color class >> veryPaleRed [
 	^  ColorRegistry at: #veryPaleRed
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>veryVeryDarkGray [
+{ #category : #defaults }
+Color class >> veryVeryDarkGray [
 	^ ColorRegistry at: #veryVeryDarkGray 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>veryVeryLightGray [
+{ #category : #defaults }
+Color class >> veryVeryLightGray [
 	^  ColorRegistry at: #veryVeryLightGray
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>wheel: thisMany [
+{ #category : #examples }
+Color class >> wheel: thisMany [
 	"Return a collection of thisMany colors evenly spaced around the color wheel."
 	"(Color wheel: 12) inspect"
 
@@ -1074,11 +863,8 @@ Color class>>wheel: thisMany [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>wheel: thisMany saturation: s brightness: v [
+{ #category : #examples }
+Color class >> wheel: thisMany saturation: s brightness: v [
 	"Return a collection of thisMany colors evenly spaced around the color wheel, all of the given saturation and brightness."
 	"(Color wheel: 12 saturation: 0.4 brightness: 1.0) inspect"
 	"(Color wheel: 12 saturation: 0.8 brightness: 0.5) inspect"
@@ -1087,27 +873,18 @@ Color class>>wheel: thisMany saturation: s brightness: v [
 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>white [
+{ #category : #defaults }
+Color class >> white [
 	^  ColorRegistry at: #white
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color class>>yellow [
+{ #category : #defaults }
+Color class >> yellow [
 	 ^  ColorRegistry at: #yellow
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>* aNumberOrArray [
+{ #category : #transformations }
+Color >> * aNumberOrArray [
 	"Answer this color with its RGB multiplied by the given number, or
 	 multiply this color's RGB values by the corresponding entries in the
 	given array."
@@ -1129,11 +906,8 @@ Color>>* aNumberOrArray [
 		setAlpha: self alpha
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>+ aColor [
+{ #category : #transformations }
+Color >> + aColor [
 	"Answer this color mixed with the given color in an additive color space.  "
 
 	^ self class basicNew
@@ -1144,11 +918,8 @@ Color>>+ aColor [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>- aColor [
+{ #category : #transformations }
+Color >> - aColor [
 	"Answer aColor is subtracted from the given color in an additive color space.  "
 	"(Color white - Color red) display"
 
@@ -1160,11 +931,8 @@ Color>>- aColor [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>/ aNumber [
+{ #category : #transformations }
+Color >> / aNumber [
 	"Answer this color with its RGB divided by the given number. "
 	"(Color red / 2) display"
 
@@ -1176,11 +944,8 @@ Color>>/ aNumber [
 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>= aColor [
+{ #category : #comparing }
+Color >> = aColor [
 	"Return true if the receiver equals the given color. This method handles translucent colors, too."
 
 	aColor isColor ifFalse: [^ false].
@@ -1189,11 +954,8 @@ Color>>= aColor [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>adjustBrightness: brightness [
+{ #category : #transformations }
+Color >> adjustBrightness: brightness [
 	"Adjust the relative brightness of this color. (lowest value is 0.005 so that hue information is not lost)"
 
 	^ self class
@@ -1203,11 +965,8 @@ Color>>adjustBrightness: brightness [
 		alpha: self alpha
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>adjustSaturation: saturation brightness: brightness [
+{ #category : #transformations }
+Color >> adjustSaturation: saturation brightness: brightness [
 	"Adjust the relative saturation and brightness of this color. (lowest value is 0.005 so that hue information is not lost)"
 
 	^ self class
@@ -1217,31 +976,22 @@ Color>>adjustSaturation: saturation brightness: brightness [
 		alpha: self alpha
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>alpha [
+{ #category : #accessing }
+Color >> alpha [
 	"Return my alpha value, a number between 0.0 and 1.0 where 0.0 is completely transparent and 1.0 is completely opaque."
 
 	^ alpha asFloat / 255.0
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>alpha: aFloat  [
+{ #category : #transformations }
+Color >> alpha: aFloat [ 
 	"Answer a new Color with the given amount of opacity ('alpha')."
 
 	^ self class r: self red g: self green b: self blue alpha: aFloat 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>alphaMixed: proportion with: aColor  [
+{ #category : #transformations }
+Color >> alphaMixed: proportion with: aColor [ 
 	"Answer this color mixed with the given color. The proportion, a number 
 	between 0.0 and 1.0, determines what what fraction of the receiver to  
 	use in the mix. For example, 0.9 would yield a color close to the  
@@ -1259,29 +1009,20 @@ Color>>alphaMixed: proportion with: aColor  [
 		alpha: self alpha * frac1 + (aColor alpha * frac2)
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>asColor [
+{ #category : #conversions }
+Color >> asColor [
 	"Convert the receiver into a color"
 	^self
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>asColorref [
+{ #category : #conversions }
+Color >> asColorref [
 	"Convert the receiver into a colorref"
 	^(self red * 255) asInteger + ((self green * 255) asInteger << 8) + ((self blue * 255) asInteger << 16)
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>asHexString [
+{ #category : #conversions }
+Color >> asHexString [
 	| s |
 	s := '000000' copy.
 	s at: 1 put: (Character digitValue: ((rgb bitShift: -6 - RedShift) bitAnd: 15)).
@@ -1293,52 +1034,37 @@ Color>>asHexString [
 	^ s
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>asNontranslucentColor [
+{ #category : #conversions }
+Color >> asNontranslucentColor [
 	^ self alpha: 1.0.
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>atLeastAsLuminentAs: aFloat  [
+{ #category : #transformations }
+Color >> atLeastAsLuminentAs: aFloat [ 
 	| revisedColor |
 	revisedColor := self.
 	[ revisedColor luminance < aFloat ] whileTrue: [ revisedColor := revisedColor slightlyLighter ].
 	^ revisedColor
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>atMostAsLuminentAs: aFloat  [
+{ #category : #transformations }
+Color >> atMostAsLuminentAs: aFloat [ 
 	| revisedColor |
 	revisedColor := self.
 	[ revisedColor luminance > aFloat ] whileTrue: [ revisedColor := revisedColor slightlyDarker ].
 	^ revisedColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>attemptToMutateError [
+{ #category : #private }
+Color >> attemptToMutateError [
 	"A color is immutable. Once a color's red, green, and blue have been initialized, you cannot change them. Instead, create a new Color and use it."
 
 	self error: 'Color objects are immutable once created'
 
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>basicPixelValueForDepth: d  [
+{ #category : #conversions }
+Color >> basicPixelValueForDepth: d [ 
 	"Returns an integer representing the bits that appear in a single pixel of this color in a Form of the given depth. The depth must be one of 1, 2, 4, 8, 16, or 32. Contrast with pixelWordForDepth: and bitPatternForDepth:, which return either a 32-bit word packed with the given pixel value or a multiple-word Bitmap containing a pattern. The inverse is the class message colorFromPixelValue:depth:"
 	"Details: For depths of 8 or less, the result is a colorMap index. For depths of 16 and 32, it is a direct color value with 5 or 8 bits per color component."
 	"Transparency: The pixel value zero is reserved for transparent. For depths greater than 8, black maps to the darkest possible blue."
@@ -1386,52 +1112,37 @@ Color>>basicPixelValueForDepth: d  [
 	self error: 'unknown pixel depth: ' , d printString
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>blacker [
+{ #category : #transformations }
+Color >> blacker [
 	
 	^ self alphaMixed: 0.8333 with: self class black
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>blue [
+{ #category : #accessing }
+Color >> blue [
 	"Return the blue component of this color, a float in the range [0.0..1.0]."
 
 	^ self privateBlue asFloat / ComponentMax
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>brightness [
+{ #category : #accessing }
+Color >> brightness [
 	"Return the HSV brightness of this color, a float in the range [0.0..1.0]."
 
 	^ self privateMaxComponent asFloat / ComponentMax
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>chroma [
+{ #category : #accessing }
+Color >> chroma [
 	"Return the chroma of this color, a float in the range [0.0..1.0].
 	Some combinations of chroma and brightness (or lightness) are meaningless in RGB; therefore, HSL and HSV each define a specific saturation by scaling chroma to the full [0..1] range."
 
 	^ (self privateMaxComponent - self privateMinComponent) asFloat / ComponentMax
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>closestPixelValue1 [
+{ #category : #conversions }
+Color >> closestPixelValue1 [
 	"Return the nearest approximation to this color for a monochrome Form."
 
 	"fast special cases"
@@ -1444,11 +1155,8 @@ Color>>closestPixelValue1 [
 
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>closestPixelValue2 [
+{ #category : #conversions }
+Color >> closestPixelValue2 [
 	"Return the nearest approximation to this color for a 2-bit deep Form."
 	"fast special cases"
 	| lum |
@@ -1460,11 +1168,8 @@ Color>>closestPixelValue2 [
 	^ 3	"50% gray"
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>closestPixelValue4 [
+{ #category : #conversions }
+Color >> closestPixelValue4 [
 	"Return the nearest approximation to this color for a 4-bit deep Form."
 	"fast special cases"
 	| bIndex |
@@ -1480,11 +1185,8 @@ Color>>closestPixelValue4 [
 	^ #(1 10 11 12 3 13 14 15 2 ) at: bIndex + 1	"black"	"1/8 gray"	"2/8 gray"	"3/8 gray"	"4/8 gray"	"5/8 gray"	"6/8 gray"	"7/8 gray"	"opaque white"
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>closestPixelValue8 [
+{ #category : #conversions }
+Color >> closestPixelValue8 [
 	"Return the nearest approximation to this color for an 8-bit deep Form."
 
 	"fast special cases"
@@ -1502,19 +1204,13 @@ Color>>closestPixelValue8 [
 
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>colorForInsets [
+{ #category : #other }
+Color >> colorForInsets [
 	^ self
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>contrastingColor [
+{ #category : #conversions }
+Color >> contrastingColor [
 	"Answer black or white depending on the luminance."
 
 	self isTransparent ifTrue: [ ^ self class black].
@@ -1523,11 +1219,8 @@ Color>>contrastingColor [
 		ifFalse: [self class white]
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>contrastingColorAdjustment [
+{ #category : #conversions }
+Color >> contrastingColorAdjustment [
 	"Answer darker or lighter color depending on the luminance."
 
 	self isTransparent ifTrue: [ ^ self ].
@@ -1537,22 +1230,16 @@ Color>>contrastingColorAdjustment [
 		ifFalse:  [ self lighter ]
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>contrastingForegroundColor [
+{ #category : #conversions }
+Color >> contrastingForegroundColor [
         "Make a foreground color contrasting with me"
         ^self luminance >= 0.5
                 ifTrue: [self class black]
                 ifFalse: [self class white]
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>dansDarker [
+{ #category : #transformations }
+Color >> dansDarker [
 	"Return a darker shade of the same color.
 	An attempt to do better than the current darker method.
 	(now obsolete, since darker has been changed to do this. -dew)"
@@ -1560,11 +1247,8 @@ Color>>dansDarker [
 		h: self hue s: self saturation v: (self brightness - 0.16 max: 0.0)
 ]
 
-{
-	#category : #'groups of shades',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>darkShades: thisMany [
+{ #category : #'groups of shades' }
+Color >> darkShades: thisMany [
 	"An array of thisMany colors from black to the receiver.  Array is of length num. Very useful for displaying color based on a variable in your program.  "
 	"(Color red darkShades: 12) inspect"
 
@@ -1572,21 +1256,15 @@ Color>>darkShades: thisMany [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>darker [
+{ #category : #transformations }
+Color >> darker [
 	"Answer a darker shade of this color."
 
 	^ self adjustBrightness: -0.08
 ]
 
-{
-	#category : #equality,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>diff: theOther [
+{ #category : #equality }
+Color >> diff: theOther [
 	"Returns a number between 0.0 and 1.0"
 
 	^ ((self privateRed - theOther privateRed) abs
@@ -1595,19 +1273,13 @@ Color>>diff: theOther [
 		/ 3.0 / ComponentMax
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>dominantColor [
+{ #category : #conversions }
+Color >> dominantColor [
 	^ self
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>duller [
+{ #category : #transformations }
+Color >> duller [
 	"Answer a darker, desaturated color.  If the original color isn't very saturated, desaturate it by less (otherwise will just end up with grey)."
 	
 	| sat adjust |
@@ -1619,40 +1291,28 @@ Color>>duller [
 	"^ self adjustSaturation: -0.03 brightness: -0.2"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>flushCache [
+{ #category : #private }
+Color >> flushCache [
 	"Flush my cached bit pattern."
 	cachedDepth := nil.
 	cachedBitPattern := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>green [
+{ #category : #accessing }
+Color >> green [
 	"Return the green component of this color, a float in the range [0.0..1.0]."
 
 	^ self privateGreen asFloat / ComponentMax
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>hash [
+{ #category : #comparing }
+Color >> hash [
 
 	^ rgb bitXor: alpha 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>hslSaturation [
+{ #category : #accessing }
+Color >> hslSaturation [
 	"Return the HSL saturation of this color, a value between 0.0 and 1.0."
 
 	| chroma |
@@ -1663,11 +1323,8 @@ Color>>hslSaturation [
 	^ chroma / (1.0 - (self lightness * 2.0 - 1.0) abs)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>hsvSaturation [
+{ #category : #accessing }
+Color >> hsvSaturation [
 	"Return the HSV saturation of this color, a value between 0.0 and 1.0."
 
 	| max |
@@ -1677,11 +1334,8 @@ Color>>hsvSaturation [
 		ifFalse: [ ^ (max - self privateMinComponent) asFloat / max asFloat ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>hue [
+{ #category : #accessing }
+Color >> hue [
 	"Return the hue of this color, an angle in the range [0.0..360.0]."
 	| r g b max min span h |
 	r := self privateRed.
@@ -1701,11 +1355,8 @@ Color>>hue [
 	^ h
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>indexInMap: aColorMap [
+{ #category : #conversions }
+Color >> indexInMap: aColorMap [
 	"Return the index corresponding to this color in the given color map. RGB colors are truncated to 3-, 4-, or 5-bits per color component when indexing into such a colorMap.  "
 
 	aColorMap size = 2 ifTrue: [^ (self pixelValueForDepth: 1) + 1].
@@ -1719,11 +1370,8 @@ Color>>indexInMap: aColorMap [
 
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>initializeHue: hue saturation: saturation brightness: brightness alpha: anAlpha [
+{ #category : #conversions }
+Color >> initializeHue: hue saturation: saturation brightness: brightness alpha: anAlpha [
 	"Initialize this color to the given hue, saturation, and brightness. See the comment in the instance creation method for details."
 
 	| s v hf i f p q t |
@@ -1793,11 +1441,8 @@ Color>>initializeHue: hue saturation: saturation brightness: brightness alpha: a
 	self error: 'implementation error'
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>initializeHue: hue saturation: saturation lightness: lightness alpha: anAlpha [
+{ #category : #conversions }
+Color >> initializeHue: hue saturation: saturation lightness: lightness alpha: anAlpha [
 	"Initialize this color to the given hue, saturation, and lightness. See the comment in the instance creation method for details."
 
 	| s l hf i f lo hi up dn |
@@ -1829,11 +1474,8 @@ Color>>initializeHue: hue saturation: saturation lightness: lightness alpha: anA
 	self error: 'implementation error'
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>initializePrivateRed: r green: g blue: b  [
+{ #category : #conversions }
+Color >> initializePrivateRed: r green: g blue: b [ 
 	"Initialize this color's r, g, and b components to the given values in the range [0..ComponentMax].  Encoded in a single variable as 3 integers in [0..1023]."
 	rgb == nil ifFalse: [ self attemptToMutateError ].
 	rgb := ((r 
@@ -1847,11 +1489,8 @@ Color>>initializePrivateRed: r green: g blue: b  [
 	cachedBitPattern := nil
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>initializeRed: r green: g blue: b alpha: anAlpha  [
+{ #category : #conversions }
+Color >> initializeRed: r green: g blue: b alpha: anAlpha [ 
 	"Initialize this color's r, g, and b components to the given values in the range [0.0..1.0].  Encoded in a single variable as 3 integers in [0..1023]."
 	rgb == nil ifFalse: [ self attemptToMutateError ].
 	rgb := (((r * ComponentMax) rounded bitAnd: ComponentMask) bitShift: RedShift) + (((g * ComponentMax) rounded bitAnd: ComponentMask) bitShift: GreenShift) + ((b * ComponentMax) rounded bitAnd: ComponentMask).
@@ -1860,11 +1499,8 @@ Color>>initializeRed: r green: g blue: b alpha: anAlpha  [
 	self setAlpha: anAlpha.
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>initializeRed: r green: g blue: b range: range  [
+{ #category : #conversions }
+Color >> initializeRed: r green: g blue: b range: range [ 
 	"Initialize this color's r, g, and b components to the given values in the range [0..r]."
 	rgb == nil ifFalse: [ self attemptToMutateError ].
 	rgb := ((r * ComponentMask // range bitAnd: ComponentMask) bitShift: RedShift) + ((g * ComponentMask // range bitAnd: ComponentMask) bitShift: GreenShift) + (b * ComponentMask // range bitAnd: ComponentMask).
@@ -1873,126 +1509,84 @@ Color>>initializeRed: r green: g blue: b range: range  [
 	self setAlpha: 1.0.
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>isBitmapFill [
+{ #category : #queries }
+Color >> isBitmapFill [
 	^false
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>isBlack [
+{ #category : #queries }
+Color >> isBlack [
 	"Return true if the receiver represents black"
 	^rgb = 0
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>isColor [
+{ #category : #queries }
+Color >> isColor [
 
 	^ true
 
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>isGradientFill [
+{ #category : #queries }
+Color >> isGradientFill [
 	^false
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>isGray [
+{ #category : #queries }
+Color >> isGray [
 	"Return true if the receiver represents a shade of gray"
 	^(self privateRed = self privateGreen) and: [self privateRed = self privateBlue]
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>isOpaque [
+{ #category : #queries }
+Color >> isOpaque [
 	^ alpha = 255 
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>isOrientedFill [
+{ #category : #queries }
+Color >> isOrientedFill [
 	"Return true if the receiver keeps an orientation (e.g., origin, direction, and normal)"
 	^false
 ]
 
-{
-	#category : #'self evaluating',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>isSelfEvaluating [
+{ #category : #'self evaluating' }
+Color >> isSelfEvaluating [
 	^ true
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>isSolidFill [
+{ #category : #queries }
+Color >> isSolidFill [
 	^true
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>isTranslucent [
+{ #category : #queries }
+Color >> isTranslucent [
 
 	^ alpha < 255 
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>isTranslucentButNotTransparent [
+{ #category : #queries }
+Color >> isTranslucentButNotTransparent [
 	"Answer true if this any of this morph is translucent but not transparent."
 	
 	^ self isTranslucent and: [ self isTransparent not ]
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>isTranslucentColor [
+{ #category : #queries }
+Color >> isTranslucentColor [
 	"This means: self isTranslucent, but isTransparent not"
 	self flag: #toremove.
 	^ false
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>isTransparent [
+{ #category : #queries }
+Color >> isTransparent [
 
 	^ alpha = 0
 ]
 
-{
-	#category : #'groups of shades',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>lightShades: thisMany [
+{ #category : #'groups of shades' }
+Color >> lightShades: thisMany [
 	"An array of thisMany colors from white to self. Very useful for displaying color based on a variable in your program.  "
 	"(Color red lightShades: 12) inspect"
 
@@ -2000,32 +1594,23 @@ Color>>lightShades: thisMany [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>lighter [
+{ #category : #transformations }
+Color >> lighter [
 	"Answer a lighter shade of this color."
 
 	^ self adjustSaturation: -0.03 brightness: 0.08
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>lightness [
+{ #category : #accessing }
+Color >> lightness [
 	"Return the HSL lightness of this color, a float in the range [0.0..1.0]."
 
 	^ (self privateMaxComponent + self privateMinComponent) asFloat
 		/ ComponentMax / 2.0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>luminance [
+{ #category : #accessing }
+Color >> luminance [
 	"Return the luminance of this color, a brightness value weighted by the human eye's color sensitivity."
 
 	^ ((299 * self privateRed) +
@@ -2034,11 +1619,8 @@ Color>>luminance [
 
 ]
 
-{
-	#category : #'groups of shades',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>mix: color2 shades: thisMany  [
+{ #category : #'groups of shades' }
+Color >> mix: color2 shades: thisMany [ 
 	"Return an array of thisMany colors from self to color2. Very useful for displaying color based on a variable in your program.  "
 	"(Color red mix: Color green shades: 12) inspect"
 	| redInc greenInc blueInc out rr gg bb |
@@ -2065,11 +1647,8 @@ Color>>mix: color2 shades: thisMany  [
 	^ out
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>mixed: proportion with: aColor  [
+{ #category : #transformations }
+Color >> mixed: proportion with: aColor [ 
 	"Mix with another color and do not preserve transpareny.  Only use this for extracting the RGB value and mixing it.  All other callers should use instead: 
 	aColor alphaMixed: proportion with: anotherColor
 	"
@@ -2084,39 +1663,27 @@ Color>>mixed: proportion with: aColor  [
 		b: self blue * frac1 + (aColor blue * frac2)
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>muchDarker [
+{ #category : #transformations }
+Color >> muchDarker [
 
 	^ self alphaMixed: 0.5 with: (ColorRegistry at: #black)
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>muchLighter [
+{ #category : #transformations }
+Color >> muchLighter [
 
 	^ self alphaMixed: 0.233 with: Color white
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>name [
+{ #category : #accessing }
+Color >> name [
 	^ self class registeredNameOf: self   
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>negated [
+{ #category : #transformations }
+Color >> negated [
 	"Return an RGB inverted color"
 	^Color
 		r: 1.0 - self red
@@ -2124,11 +1691,8 @@ Color>>negated [
 		b: 1.0 - self blue
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>orColorUnlike: theOther [
+{ #category : #transformations }
+Color >> orColorUnlike: theOther [
 	"If this color is a lot like theOther, then return its complement, otherwide, return self"
 
 	^ (self diff: theOther) < 0.3
@@ -2136,22 +1700,16 @@ Color>>orColorUnlike: theOther [
 		ifFalse: [ self ]
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>paler [
+{ #category : #transformations }
+Color >> paler [
 	"Answer a paler shade of this color."
 
 	^ self adjustSaturation: -0.09 brightness: 0.09
 
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>pixelValueForDepth: d  [
+{ #category : #conversions }
+Color >> pixelValueForDepth: d [ 
 		 
 		"Return the pixel value for this color at the given depth. Translucency only works in RGB; this color will appear either opaque or transparent at all other depths."
 	| basicPixelWord |
@@ -2162,11 +1720,8 @@ Color>>pixelValueForDepth: d  [
 		ifFalse: [ (basicPixelWord bitAnd: 16777215) bitOr: (alpha bitShift: 24) ]
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>pixelWordFor: depth filledWith: pixelValue  [
+{ #category : #conversions }
+Color >> pixelWordFor: depth filledWith: pixelValue [ 
 	"Return to a 32-bit word that concatenates enough copies of the given pixel value to fill the word (i.e., 32/depth copies). Depth should be one of 1, 2, 4, 8, 16, or 32. The pixel value should be an integer in 0..2^depth-1."
 	| halfword |
 	depth = 32 ifTrue: [ ^ pixelValue ].
@@ -2186,11 +1741,8 @@ Color>>pixelWordFor: depth filledWith: pixelValue  [
 	^ halfword bitOr: (halfword bitShift: 16)
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>pixelWordForDepth: depth  [
+{ #category : #conversions }
+Color >> pixelWordForDepth: depth [ 
 	"Return to a 32-bit word that concatenates enough copies of the receiver's pixel value to fill the word (i.e., 32/depth copies). Depth should be one of 1, 2, 4, 8, 16, or 32. The pixel value should be an integer in 0..2^depth-1."
 	| pixelValue basicPixelWord |
 	self isTransparent ifTrue: [ ^ 0 ].
@@ -2201,11 +1753,8 @@ Color>>pixelWordForDepth: depth  [
 		ifFalse: [ (basicPixelWord bitAnd: 16777215) bitOr: (alpha bitShift: 24) ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>printOn: aStream [
+{ #category : #printing }
+Color >> printOn: aStream [
 	| name |
 	(name := self name).
 	name = #unnamed
@@ -2216,114 +1765,78 @@ Color>>printOn: aStream [
 	self storeOn: aStream
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>privateAlpha [
+{ #category : #private }
+Color >> privateAlpha [
 	"Private! Return the raw alpha value for opaque. Used only for equality testing."
 
 	^ alpha 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>privateBlue [
+{ #category : #private }
+Color >> privateBlue [
 	"Private! Return the internal representation of my blue component."
 
 	^ rgb bitAnd: ComponentMask
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>privateGreen [
+{ #category : #private }
+Color >> privateGreen [
 	"Private! Return the internal representation of my green component."
 
 	^ (rgb bitShift: 0 - GreenShift) bitAnd: ComponentMask
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>privateMaxComponent [
+{ #category : #private }
+Color >> privateMaxComponent [
 	^ (self privateRed max: self privateGreen) max: self privateBlue
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>privateMinComponent [
+{ #category : #private }
+Color >> privateMinComponent [
 	^ (self privateRed min: self privateGreen) min: self privateBlue
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>privateRGB [
+{ #category : #private }
+Color >> privateRGB [
 	"Private! Return the internal representation of my RGB components."
 
 	^ rgb
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>privateRed [
+{ #category : #private }
+Color >> privateRed [
 	"Private! Return the internal representation of my red component."
 
 	^ (rgb bitShift: 0 - RedShift) bitAnd: ComponentMask
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>quiteBlacker [
+{ #category : #transformations }
+Color >> quiteBlacker [
 
 	^ self alphaMixed: 0.8 with: (ColorRegistry at: #black)
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>quiteWhiter [
+{ #category : #transformations }
+Color >> quiteWhiter [
 
 	^ self alphaMixed: 0.6 with: (ColorRegistry at: #white)
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>raisedColor [
+{ #category : #other }
+Color >> raisedColor [
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>red [
+{ #category : #accessing }
+Color >> red [
 	"Return the red component of this color, a float in the range [0.0..1.0]."
 
 	^ self privateRed asFloat / ComponentMax
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>rgbTriplet [
+{ #category : #other }
+Color >> rgbTriplet [
 	"Color fromUser rgbTriplet"
 
 	^ Array
@@ -2333,11 +1846,8 @@ Color>>rgbTriplet [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>saturation [
+{ #category : #accessing }
+Color >> saturation [
 	"Return the saturation of this color, a value between 0.0 and 1.0.
 	
 	Saturation is a scaling of chroma so that the whole [0..1] range is acceptable for any value of brightness/lightness.
@@ -2346,11 +1856,8 @@ Color>>saturation [
 	^ self hsvSaturation
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>scaledPixelValue32 [
+{ #category : #conversions }
+Color >> scaledPixelValue32 [
 	"Return the alpha scaled pixel value for depth 32"
 	| pv32 a b g r |
 
@@ -2362,20 +1869,14 @@ Color>>scaledPixelValue32 [
 	^ b + (g bitShift: 8) + (r bitShift: 16) + (a bitShift: 24)
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>setAlpha: aFloat [
+{ #category : #conversions }
+Color >> setAlpha: aFloat [
 	alpha := ((255.0 * aFloat) asInteger  min: 255) max: 0.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>setHue: hue saturation: saturation brightness: brightness  [
+{ #category : #private }
+Color >> setHue: hue saturation: saturation brightness: brightness [ 
 	"Initialize this color to the given hue, saturation, and brightness. See the comment in the instance creation method for details."
 	| s v hf i f p q t |
 	s := (saturation asFloat max: 0.0) min: 1.0.
@@ -2428,11 +1929,8 @@ Color>>setHue: hue saturation: saturation brightness: brightness  [
 	self error: 'implementation error'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>setPrivateRed: r green: g blue: b  [
+{ #category : #private }
+Color >> setPrivateRed: r green: g blue: b [ 
 	"Initialize this color's r, g, and b components to the given values in the range [0..ComponentMax].  Encoded in a single variable as 3 integers in [0..1023]."
 	rgb == nil ifFalse: [ self attemptToMutateError ].
 	rgb := ((r 
@@ -2446,20 +1944,14 @@ Color>>setPrivateRed: r green: g blue: b  [
 	cachedBitPattern := nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>setRGB: rgb0  [
+{ #category : #private }
+Color >> setRGB: rgb0 [ 
 	rgb == nil ifFalse: [ self attemptToMutateError ].
 	rgb := rgb0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>setRed: r green: g blue: b  [
+{ #category : #private }
+Color >> setRed: r green: g blue: b [ 
 	"Initialize this color's r, g, and b components to the given values in the range [0.0..1.0].  Encoded in a single variable as 3 integers in [0..1023]."
 	rgb == nil ifFalse: [ self attemptToMutateError ].
 	rgb := (((r * ComponentMax) rounded bitAnd: ComponentMask) bitShift: RedShift) + (((g * ComponentMax) rounded bitAnd: ComponentMask) bitShift: GreenShift) + ((b * ComponentMax) rounded bitAnd: ComponentMask).
@@ -2467,11 +1959,8 @@ Color>>setRed: r green: g blue: b  [
 	cachedBitPattern := nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>setRed: r green: g blue: b range: range  [
+{ #category : #private }
+Color >> setRed: r green: g blue: b range: range [ 
 	"Initialize this color's r, g, and b components to the given values in the range [0..r]."
 	rgb == nil ifFalse: [ self attemptToMutateError ].
 	rgb := ((r * ComponentMask // range bitAnd: ComponentMask) bitShift: RedShift) + ((g * ComponentMask // range bitAnd: ComponentMask) bitShift: GreenShift) + (b * ComponentMask // range bitAnd: ComponentMask).
@@ -2479,11 +1968,8 @@ Color>>setRed: r green: g blue: b range: range  [
 	cachedBitPattern := nil
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>shortPrintString [
+{ #category : #printing }
+Color >> shortPrintString [
 	"Return a short (but less precise) print string for use where space is tight."
 
 	| s |
@@ -2501,40 +1987,28 @@ Color>>shortPrintString [
 	^ s contents
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>slightlyDarker [
+{ #category : #transformations }
+Color >> slightlyDarker [
 
 	^ self adjustBrightness: -0.03
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>slightlyLighter [
+{ #category : #transformations }
+Color >> slightlyLighter [
 
 	^ self adjustSaturation: -0.01 brightness: 0.03
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>slightlyWhiter [
+{ #category : #transformations }
+Color >> slightlyWhiter [
 
 	^ self alphaMixed: 0.85 with: (ColorRegistry at: #white)
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>storeArrayOn: aStream [
+{ #category : #printing }
+Color >> storeArrayOn: aStream [
 
 	aStream nextPutAll: '#('.
 	self storeArrayValuesOn: aStream.
@@ -2542,11 +2016,8 @@ Color>>storeArrayOn: aStream [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>storeArrayValuesOn: aStream [
+{ #category : #printing }
+Color >> storeArrayValuesOn: aStream [
 	self isTransparent ifTrue: [ ^ aStream space. ].
 
 	(self red roundTo: 0.001) storeOn: aStream.
@@ -2560,11 +2031,8 @@ Color>>storeArrayValuesOn: aStream [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>storeOn: aStream [
+{ #category : #printing }
+Color >> storeOn: aStream [
 	self isTransparent ifTrue: [^ aStream nextPutAll: '(Color transparent)'].
 
 	aStream
@@ -2577,49 +2045,34 @@ Color>>storeOn: aStream [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>twiceDarker [
+{ #category : #transformations }
+Color >> twiceDarker [
 	"Answer a significantly darker shade of this color."
 
 	^ self adjustBrightness: -0.15
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>twiceLighter [
+{ #category : #transformations }
+Color >> twiceLighter [
 	"Answer a significantly lighter shade of this color."
 
 	^ self adjustSaturation: -0.06 brightness: 0.15
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>veryDeepCopyWith: deepCopier [
+{ #category : #copying }
+Color >> veryDeepCopyWith: deepCopier [
 	"Return self.  I am immutable in the Morphic world.  Do not record me."
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>veryMuchLighter [
+{ #category : #transformations }
+Color >> veryMuchLighter [
 
 	^ self alphaMixed: 0.1165 with: (ColorRegistry at: #white)
 
 ]
 
-{
-	#category : #'groups of shades',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>wheel: thisMany  [
+{ #category : #'groups of shades' }
+Color >> wheel: thisMany [ 
 	"An array of thisMany colors around the color wheel starting at self and ending all the way around the hue space just before self.  Array is of length thisMany.  Very useful for displaying color based on a variable in your program.  "
 	| sat bri step hue |
 	sat := self saturation.
@@ -2639,11 +2092,8 @@ Color>>wheel: thisMany  [
 "
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Color>>whiter [
+{ #category : #transformations }
+Color >> whiter [
 
 	^ self alphaMixed: 0.8333 with: (ColorRegistry at: #white)
 

@@ -9,38 +9,25 @@ Class {
 	#instVars : [
 		'announcements'
 	],
-	#category : #Glamour-Helpers,
-	#timestamp : 'tg 5/24/2010 16:59'
+	#category : #Glamour-Helpers
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMMemoryLogger>>announcements [
+{ #category : #accessing }
+GLMMemoryLogger >> announcements [
 	^ announcements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMMemoryLogger>>announcements: anObject [
+{ #category : #accessing }
+GLMMemoryLogger >> announcements: anObject [
 	announcements := anObject
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMMemoryLogger>>initialize  [
+{ #category : #initialize-release }
+GLMMemoryLogger >> initialize [ 
 	announcements := OrderedCollection new
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMMemoryLogger>>logAnnouncement: anAnnouncement from: aGLMObject  [
+{ #category : #logging }
+GLMMemoryLogger >> logAnnouncement: anAnnouncement from: aGLMObject [ 
 	announcements add: anAnnouncement
 ]

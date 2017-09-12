@@ -31,58 +31,37 @@ To remember the options I keep some values inside a Dictionary. This dictionary 
 "
 Trait {
 	#name : #TGLMFastTableFunctionsPresentation,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Glamour-FastTable-Presentations,
-	#timestamp : 'CyrilFerlicot 11/10/2015 10:31'
+	#category : #Glamour-FastTable-Presentations
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation classSide>>defaultRowHeight [
+{ #category : #accessing }
+TGLMFastTableFunctionsPresentation classSide >> defaultRowHeight [
 	^ StandardFonts defaultFont pixelSize + 7
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>actionBlock [
+{ #category : #accessing }
+TGLMFastTableFunctionsPresentation >> actionBlock [
 	^ self parameters at: 'actionBlock'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>actionName [
+{ #category : #accessing }
+TGLMFastTableFunctionsPresentation >> actionName [
 	^ self parameters at: 'actionName' ifAbsent: 'Validate'
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>enableElementIndex [
+{ #category : #'public api' }
+TGLMFastTableFunctionsPresentation >> enableElementIndex [
 	self parameters at: 'withRowIndex' put: true
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>enableFilter [
+{ #category : #'public api' }
+TGLMFastTableFunctionsPresentation >> enableFilter [
 	self parameters at: 'isFilterable' put: true
 	
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>enableFilter: aBlock [
+{ #category : #'public api' }
+TGLMFastTableFunctionsPresentation >> enableFilter: aBlock [
 	"aBlock receives two parameters: 
 		- an item
 		- a pattern.
@@ -92,156 +71,102 @@ TGLMFastTableFunctionsPresentation>>enableFilter: aBlock [
 	
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>enableFilterWithAction: aBlock [
+{ #category : #'public api' }
+TGLMFastTableFunctionsPresentation >> enableFilterWithAction: aBlock [
 	self enableFilter.
 	self parameters at: 'actionBlock' put: aBlock
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>enableFilterWithAction: aBlock named: aString [
+{ #category : #'public api' }
+TGLMFastTableFunctionsPresentation >> enableFilterWithAction: aBlock named: aString [
 	self enableFilter.
 	self parameters
 		at: 'actionBlock' put: aBlock;
 		at: 'actionName' put: aString
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>enableSearch [
+{ #category : #'public api' }
+TGLMFastTableFunctionsPresentation >> enableSearch [
 	self parameters at: 'isSearchable' put: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>filterBlock [
+{ #category : #accessing }
+TGLMFastTableFunctionsPresentation >> filterBlock [
 	^ self parameters at: 'filterBlock'
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>filterOn: aBlock [
+{ #category : #'public api' }
+TGLMFastTableFunctionsPresentation >> filterOn: aBlock [
 	self error: 'This presentation does not allow filtering with a block for now. In the futur we should have a new filter with FastTable to do that. If you want to give it a try look FTFunction and his subclasses.'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>hasFilterBlock [
+{ #category : #testing }
+TGLMFastTableFunctionsPresentation >> hasFilterBlock [
 	^ self parameters at: 'filterBlock' ifPresent: [ true ] ifAbsent: [ false ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>isFilterable [
+{ #category : #testing }
+TGLMFastTableFunctionsPresentation >> isFilterable [
 	^ self parameters at: 'isFilterable' ifAbsent: [ false ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>isSearchable [
+{ #category : #testing }
+TGLMFastTableFunctionsPresentation >> isSearchable [
 	^ self parameters at: 'isSearchable' ifAbsent: [ false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>isWithElementIndex [
+{ #category : #accessing }
+TGLMFastTableFunctionsPresentation >> isWithElementIndex [
 	^ self parameters at: 'withRowIndex' ifAbsent: [ false ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>needActionButton [
+{ #category : #testing }
+TGLMFastTableFunctionsPresentation >> needActionButton [
 	^ self parameters at: 'actionBlock' ifPresent: [ true ] ifAbsent: [ false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>parameters [
+{ #category : #accessing }
+TGLMFastTableFunctionsPresentation >> parameters [
 	self explicitRequirement
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>rowHeight [
+{ #category : #'public api' }
+TGLMFastTableFunctionsPresentation >> rowHeight [
 	^ self rowHeightBlock glamourValue: self asGlamorousMultiValue, self entity asGlamorousMultiValue
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>rowHeight: aNumber [
+{ #category : #'public api' }
+TGLMFastTableFunctionsPresentation >> rowHeight: aNumber [
 	self parameters at: 'rowHeight' put: aNumber
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>rowHeightBlock [
+{ #category : #'public api' }
+TGLMFastTableFunctionsPresentation >> rowHeightBlock [
 	^ self parameters 
 		at: 'rowHeight'
 		ifAbsent: [ self class defaultRowHeight ]
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>searchOn: aBlock [
+{ #category : #'public api' }
+TGLMFastTableFunctionsPresentation >> searchOn: aBlock [
 	self error: 'This presentation does not allow searching with a block for now. In the futur we should have a new filter with FastTable to do that. If you want to give it a try look FTFunction and his subclasses.'
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>shouldUseCache [
+{ #category : #'public api' }
+TGLMFastTableFunctionsPresentation >> shouldUseCache [
 	^ self parameters 
 		at: 'shouldUseCache'
 		ifAbsent: [ false ]
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>shouldUseCache: aBoolean [
+{ #category : #'public api' }
+TGLMFastTableFunctionsPresentation >> shouldUseCache: aBoolean [
 	^ self parameters 
 		at: 'shouldUseCache'
 		put: aBoolean
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTableFunctionsPresentation>>useCache [
+{ #category : #'public api' }
+TGLMFastTableFunctionsPresentation >> useCache [
 	self parameters at: 'shouldUseCache' put: true
 ]

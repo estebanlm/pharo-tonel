@@ -12,96 +12,62 @@ Class {
 	#instVars : [
 		'window'
 	],
-	#category : #Morphic-Widgets-Windows-Announcements,
-	#timestamp : 'HenrikNergaard 11/8/2015 13:51'
+	#category : #Morphic-Widgets-Windows-Announcements
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowAnnouncement>>isActivated [
+{ #category : #testing }
+WindowAnnouncement >> isActivated [
 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowAnnouncement>>isClosed [
+{ #category : #testing }
+WindowAnnouncement >> isClosed [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowAnnouncement>>isCollapsed [
+{ #category : #testing }
+WindowAnnouncement >> isCollapsed [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowAnnouncement>>isDeActivated [
+{ #category : #testing }
+WindowAnnouncement >> isDeActivated [
 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowAnnouncement>>isExpanded [
+{ #category : #testing }
+WindowAnnouncement >> isExpanded [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowAnnouncement>>isLabelled [
+{ #category : #testing }
+WindowAnnouncement >> isLabelled [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowAnnouncement>>isMoved [
+{ #category : #testing }
+WindowAnnouncement >> isMoved [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowAnnouncement>>isResized [
+{ #category : #testing }
+WindowAnnouncement >> isResized [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowAnnouncement>>isScrolled [
+{ #category : #testing }
+WindowAnnouncement >> isScrolled [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowAnnouncement>>window [
+{ #category : #accessing }
+WindowAnnouncement >> window [
 	^ window
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowAnnouncement>>window: anObject [
+{ #category : #accessing }
+WindowAnnouncement >> window: anObject [
 	window := anObject
 ]

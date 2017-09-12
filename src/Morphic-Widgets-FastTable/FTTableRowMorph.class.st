@@ -8,50 +8,34 @@ Class {
 	#instVars : [
 		'selectionColor'
 	],
-	#category : #Morphic-Widgets-FastTable,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-FastTable
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableRowMorph class>>new [
+{ #category : #'instance creation' }
+FTTableRowMorph class >> new [
 	self error: 'Use #table:'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableRowMorph class>>table: aTableMorph [
+{ #category : #'instance creation' }
+FTTableRowMorph class >> table: aTableMorph [
 	^ self basicNew
 		initializeTable: aTableMorph;
 		yourself
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableRowMorph>>defaultColor [
+{ #category : #initialize }
+FTTableRowMorph >> defaultColor [
 	^Color transparent 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableRowMorph>>handlesMouseOver: evt [
+{ #category : #'event handling' }
+FTTableRowMorph >> handlesMouseOver: evt [
 
 	^true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableRowMorph>>initialize [
+{ #category : #initialization }
+FTTableRowMorph >> initialize [ 
 	super initialize.
 	self
 		clipSubmorphs:true;
@@ -61,11 +45,8 @@ FTTableRowMorph>>initialize [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableRowMorph>>initializeTable: tableMorph [
+{ #category : #initialization }
+FTTableRowMorph >> initializeTable: tableMorph [ 
 	self initialize.
 	self 
 		cellInset: tableMorph intercellSpacing";
@@ -73,11 +54,8 @@ FTTableRowMorph>>initializeTable: tableMorph [
 	self flag: #todo. "Check if layout inset works better"
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableRowMorph>>mouseEnter: evt [
+{ #category : #'event handling' }
+FTTableRowMorph >> mouseEnter: evt [
 
 	self color: (
 		selectionColor isTransparent 
@@ -86,37 +64,25 @@ FTTableRowMorph>>mouseEnter: evt [
 	)
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableRowMorph>>mouseLeave: evt [
+{ #category : #'event handling' }
+FTTableRowMorph >> mouseLeave: evt [
 	
 	self color: self selectionColor 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableRowMorph>>mouseOverColor [
+{ #category : #initialize }
+FTTableRowMorph >> mouseOverColor [
 	^ Smalltalk ui theme lightBackgroundColor
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableRowMorph>>selectionColor [
+{ #category : #initialize }
+FTTableRowMorph >> selectionColor [
 
 	^selectionColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTableRowMorph>>selectionColor: aColor [
+{ #category : #accessing }
+FTTableRowMorph >> selectionColor: aColor [
 
 	selectionColor := aColor.
 	self color: selectionColor

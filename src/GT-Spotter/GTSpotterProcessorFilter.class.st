@@ -8,26 +8,19 @@ Subclasses can return a configuration block from #configurationBlockForProcessor
 Class {
 	#name : #GTSpotterProcessorFilter,
 	#superclass : #Object,
-	#category : #GT-Spotter-Model,
-	#timestamp : 'AndreiChis 9/24/2015 18:16'
+	#category : #GT-Spotter-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessorFilter>>configurationBlockForProcessorsCreatedBy: aMethod [
+{ #category : #accessing }
+GTSpotterProcessorFilter >> configurationBlockForProcessorsCreatedBy: aMethod [
 	"Return a block that takes one parameter (i.e., the processor) and
 	can configure that processor before being used in Spotter."
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessorFilter>>shouldEnableProcessorsCreateBy: aMethod [
+{ #category : #testing }
+GTSpotterProcessorFilter >> shouldEnableProcessorsCreateBy: aMethod [
 	"Return weather or not the processor created by the given method
 	should be enabled in Spotter."
 	

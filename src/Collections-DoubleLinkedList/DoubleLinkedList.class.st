@@ -12,26 +12,19 @@ Class {
 		'head',
 		'tail'
 	],
-	#category : #Collections-DoubleLinkedList,
-	#timestamp : 'SvenVanCaekenberghe 5/26/2015 15:32'
+	#category : #Collections-DoubleLinkedList
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>add: anObjectOrLink [
+{ #category : #adding }
+DoubleLinkedList >> add: anObjectOrLink [
 	"Add anObjectOrLink at the end of me.
 	Return the internal link object."
 	
 	^ self addLast: anObjectOrLink
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>add: anObjectOrLink afterLink: otherLink [
+{ #category : #adding }
+DoubleLinkedList >> add: anObjectOrLink afterLink: otherLink [
 	"Add anObjectOrLink right after otherLink in me.
 	When otherLink is not part of me, the result is undefined.
 	Return the internal link object."
@@ -48,11 +41,8 @@ DoubleLinkedList>>add: anObjectOrLink afterLink: otherLink [
 	^ link
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>add: anObjectOrLink beforeLink: otherLink [
+{ #category : #adding }
+DoubleLinkedList >> add: anObjectOrLink beforeLink: otherLink [
 	"Add anObjectOrLink right before otherLink in me.
 	When otherLink is not part of me, the result is undefined.
 	Return the internal link object."
@@ -69,22 +59,16 @@ DoubleLinkedList>>add: anObjectOrLink beforeLink: otherLink [
 	^ link
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>addAll: collection [
+{ #category : #adding }
+DoubleLinkedList >> addAll: collection [
 	"Add all elements of collection to me, in order.
 	Each can be either a value object or a link."
 	
 	collection do: [ :each | self add: each ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>addFirst: anObjectOrLink [
+{ #category : #adding }
+DoubleLinkedList >> addFirst: anObjectOrLink [
 	"Add anObjectOrLink to me, so that it becomes the first one.
 	Return the internal link object."
 	
@@ -97,11 +81,8 @@ DoubleLinkedList>>addFirst: anObjectOrLink [
 	^ link
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>addLast: anObjectOrLink [
+{ #category : #adding }
+DoubleLinkedList >> addLast: anObjectOrLink [
 	"Add anObjectOrLink to me, so that it becomes the last one.
 	Return the internal link object."
 
@@ -114,22 +95,16 @@ DoubleLinkedList>>addLast: anObjectOrLink [
 	^ link
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>asArray [
+{ #category : #converting }
+DoubleLinkedList >> asArray [
 	"Return a new Array containing my elements"
 	
 	^ Array streamContents: [ :out |
 		self do: [ :each | out nextPut: each ] ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>collect: block [
+{ #category : #enumerating }
+DoubleLinkedList >> collect: block [
 	"Execute block for each of my elements and return a new instance of me containing the results."
 	
 	| result |
@@ -139,30 +114,21 @@ DoubleLinkedList>>collect: block [
 	^ result
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>do: block [
+{ #category : #enumerating }
+DoubleLinkedList >> do: block [
 	"Execute block for each of my elements."
 
 	self linksDo: [ :each | block value: each value ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>emptyCheck [
+{ #category : #private }
+DoubleLinkedList >> emptyCheck [
 	self isEmpty
 		ifTrue: [ CollectionIsEmpty signalWith: self ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>first [
+{ #category : #accessing }
+DoubleLinkedList >> first [
 	"Returnt the first element that I hold, also known as my head value.
 	Signal a CollectionIsEmpty excpetion when I am empty."
 	
@@ -170,11 +136,8 @@ DoubleLinkedList>>first [
 	^ head value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>firstLink [
+{ #category : #accessing }
+DoubleLinkedList >> firstLink [
 	"Returnt the first link that I hold, also known as my head.
 	Signal a CollectionIsEmpty excpetion when I am empty."
 	
@@ -182,11 +145,8 @@ DoubleLinkedList>>firstLink [
 	^ head
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>includes: object [
+{ #category : #testing }
+DoubleLinkedList >> includes: object [
 	"Return true when I hold object as a value, false otherwise."
 	
 	self do: [ :each |
@@ -194,21 +154,15 @@ DoubleLinkedList>>includes: object [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>isEmpty [
+{ #category : #testing }
+DoubleLinkedList >> isEmpty [
 	"Return true when I contain no elements, false otherwise."
 
 	^ head isNil and: [ tail isNil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>last [
+{ #category : #accessing }
+DoubleLinkedList >> last [
 	"Returnt the last element that I hold, also known as my tail value.
 	Signal a CollectionIsEmpty excpetion when I am empty."
 	
@@ -216,11 +170,8 @@ DoubleLinkedList>>last [
 	^ tail value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>lastLink [
+{ #category : #accessing }
+DoubleLinkedList >> lastLink [
 	"Returnt the last link that I hold, also known as my tail.
 	Signal a CollectionIsEmpty excpetion when I am empty."
 	
@@ -228,11 +179,8 @@ DoubleLinkedList>>lastLink [
 	^ tail
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>linksDo: block [
+{ #category : #enumerating }
+DoubleLinkedList >> linksDo: block [
 	"Execute block for each of the links that I hold internally."
 	
 	| current |
@@ -243,11 +191,8 @@ DoubleLinkedList>>linksDo: block [
 			current := current nextLink ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>reject: block [
+{ #category : #enumerating }
+DoubleLinkedList >> reject: block [
 	"Execute block for each of my elements and return a new instance of me 
 	containing those elements for which the block returned false."
 
@@ -259,21 +204,15 @@ DoubleLinkedList>>reject: block [
 	^ result
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>removeAll [
+{ #category : #removing }
+DoubleLinkedList >> removeAll [
 	"Remove all the elements that I hold."
 	
 	head := tail := nil
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>removeFirst [
+{ #category : #removing }
+DoubleLinkedList >> removeFirst [
 	"Remove my first element.
 	Signal a CollectionIsEmpty excpetion when I am empty.
 	Return the removed internal link."
@@ -289,11 +228,8 @@ DoubleLinkedList>>removeFirst [
 	^ link
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>removeLast [
+{ #category : #removing }
+DoubleLinkedList >> removeLast [
 	"Remove my last element.
 	Signal a CollectionIsEmpty excpetion when I am empty.
 	Return the removed internal link."
@@ -309,11 +245,8 @@ DoubleLinkedList>>removeLast [
 	^ link
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>removeLink: link [
+{ #category : #removing }
+DoubleLinkedList >> removeLink: link [
 	"Remove the specified link.
 	When otherLink is not part of me, the result is undefined.
 	Return the removed internal link."
@@ -331,21 +264,15 @@ DoubleLinkedList>>removeLink: link [
 	^ link
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>reverseDo: block [
+{ #category : #enumerating }
+DoubleLinkedList >> reverseDo: block [
 	"Execute block for each of my elements, in reverse order."
 
 	self reverseLinksDo: [ :each | block value: each value ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>reverseLinksDo: block [
+{ #category : #enumerating }
+DoubleLinkedList >> reverseLinksDo: block [
 	"Execute block for each of the links that I hold internally, in reverse order."
 
 	| current |
@@ -356,11 +283,8 @@ DoubleLinkedList>>reverseLinksDo: block [
 			current := current previousLink ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLinkedList>>select: block [
+{ #category : #enumerating }
+DoubleLinkedList >> select: block [
 	"Execute block for each of my elements and return a new instance of me 
 	containing those elements for which the block returned true."
 

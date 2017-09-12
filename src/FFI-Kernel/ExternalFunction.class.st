@@ -23,80 +23,55 @@ Class {
 	#pools : [
 		'FFIConstants'
 	],
-	#category : #FFI-Kernel,
-	#timestamp : '<historical>'
+	#category : #FFI-Kernel
 }
 
-{
-	#category : #'compiler support',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction class>>atomicTypeNamed: aString [
+{ #category : #'compiler support' }
+ExternalFunction class >> atomicTypeNamed: aString [
 	^ExternalType atomicTypeNamed: aString
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction class>>callTypeAPI [
+{ #category : #constants }
+ExternalFunction class >> callTypeAPI [
 	^FFICallTypeApi
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction class>>callTypeCDecl [
+{ #category : #constants }
+ExternalFunction class >> callTypeCDecl [
 	^FFICallTypeCDecl
 ]
 
-{
-	#category : #'compiler support',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction class>>callingConventionFor: aString [
+{ #category : #'compiler support' }
+ExternalFunction class >> callingConventionFor: aString [
 	"Return the constant describing the calling convention for the given string specification or nil if unknown."
 	aString = 'cdecl:' ifTrue:[^self callTypeCDecl].
 	aString = 'apicall:' ifTrue:[^self callTypeAPI].
 	^nil
 ]
 
-{
-	#category : #'compiler support',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction class>>callingConventionModifierFor: aString [
+{ #category : #'compiler support' }
+ExternalFunction class >> callingConventionModifierFor: aString [
 	"Return the constant describing the calling convention modifier for the given string specification or nil if unknown."
 	aString = 'threaded' ifTrue:[^FFICallFlagThreaded].
 	^nil
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction class>>errorMessageFor: code [
+{ #category : #'error handling' }
+ExternalFunction class >> errorMessageFor: code [
 	"Return the error message for the given error code from the foreign function interface"
 	^FFIErrorMessages at: code ifAbsent:['Call to external function failed'].
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction class>>externalCallFailed [
+{ #category : #'error handling' }
+ExternalFunction class >> externalCallFailed [
 	"Raise an error after a failed call to an external function"
 	| errCode |
 	errCode := self getLastError. "this allows us to look at the actual error code"
 	^self error: (self errorMessageFor: errCode).
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction class>>externalCallFailedWith: primErrorCode [
+{ #category : #'error handling' }
+ExternalFunction class >> externalCallFailedWith: primErrorCode [
 	"Raise an error after a failed call to an external function.
 	 The primFailCode could be any of:
 		- a symbol; one of the standard primitive errors defined in Smalltalk primitiveErrorTable
@@ -110,30 +85,21 @@ ExternalFunction class>>externalCallFailedWith: primErrorCode [
 								ifFalse: [primErrorCode]])
 ]
 
-{
-	#category : #'compiler support',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction class>>forceTypeNamed: aString [
+{ #category : #'compiler support' }
+ExternalFunction class >> forceTypeNamed: aString [
 	^ExternalType forceTypeNamed: aString
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction class>>getLastError [
+{ #category : #'error handling' }
+ExternalFunction class >> getLastError [
 	"Return the last error from an external call.
 	Only valid immediately after the external call failed."
 	<primitive: 'primitiveFFIGetLastError' module:'SqueakFFIPrims'>
 	^-1
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction class>>initialize [
+{ #category : #'class initialization' }
+ExternalFunction class >> initialize [
 	"ExternalFunction initialize"
 	FFIConstants initialize. "ensure proper initialization"
 	self initializeErrorMessages.
@@ -142,11 +108,8 @@ ExternalFunction class>>initialize [
 
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction class>>initializeErrorMessages [
+{ #category : #'class initialization' }
+ExternalFunction class >> initializeErrorMessages [
 	"ExternalFunction initializeErrorMessages"
 	FFIErrorMessages := Dictionary new.
 	FFIErrorMessages
@@ -174,162 +137,105 @@ ExternalFunction class>>initializeErrorMessages [
 	yourself
 ]
 
-{
-	#category : #'compiler support',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction class>>isValidType: anObject [
+{ #category : #'compiler support' }
+ExternalFunction class >> isValidType: anObject [
 	^anObject isBehavior and:[anObject includesBehavior: ExternalStructure]
 ]
 
-{
-	#category : #'compiler support',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction class>>structTypeNamed: aString [
+{ #category : #'compiler support' }
+ExternalFunction class >> structTypeNamed: aString [
 	^ExternalType structTypeNamed: aString
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction class>>unload [
+{ #category : #'class initialization' }
+ExternalFunction class >> unload [
 	"Clean out the splObj array"
 	Smalltalk specialObjectsArray from: 44 to: 48 put: nil.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>argTypes [
+{ #category : #accessing }
+ExternalFunction >> argTypes [
 	^argTypes
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>callingConventionString [
+{ #category : #printing }
+ExternalFunction >> callingConventionString [
 	(flags allMask: FFICallTypeApi) 
 		ifTrue:[^'apicall']
 		ifFalse:[^'cdecl']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>errorCodeName [
+{ #category : #accessing }
+ExternalFunction >> errorCodeName [
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>flags [
+{ #category : #accessing }
+ExternalFunction >> flags [
 	^flags
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>initialize [
+{ #category : #initialize-release }
+ExternalFunction >> initialize [
 	"Initialize the receiver"
 	handle := ExternalAddress new.
 ]
 
-{
-	#category : #invoking,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>invoke [
+{ #category : #invoking }
+ExternalFunction >> invoke [
 	^self invokeWithArguments: #()
 ]
 
-{
-	#category : #invoking,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>invokeWith: arg1 [
+{ #category : #invoking }
+ExternalFunction >> invokeWith: arg1 [
 	^self invokeWithArguments: (Array with: arg1)
 ]
 
-{
-	#category : #invoking,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>invokeWith: arg1 with: arg2 [
+{ #category : #invoking }
+ExternalFunction >> invokeWith: arg1 with: arg2 [
 	^self invokeWithArguments: (Array with: arg1 with: arg2)
 ]
 
-{
-	#category : #invoking,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>invokeWith: arg1 with: arg2 with: arg3 [
+{ #category : #invoking }
+ExternalFunction >> invokeWith: arg1 with: arg2 [ with: arg3
 	^self invokeWithArguments: (Array with: arg1 with: arg2 with: arg3)
 ]
 
-{
-	#category : #invoking,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>invokeWith: arg1 with: arg2 with: arg3 with: arg4 [
+{ #category : #invoking }
+ExternalFunction >> invokeWith: arg1 with: arg2 [ with: arg3 with: arg4
 	^self invokeWithArguments: (Array with: arg1 with: arg2 with: arg3 with: arg4)
 ]
 
-{
-	#category : #invoking,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>invokeWith: arg1 with: arg2 with: arg3 with: arg4 with: arg5 [
+{ #category : #invoking }
+ExternalFunction >> invokeWith: arg1 with: arg2 [ with: arg3 with: arg4 with: arg5
 	^self invokeWithArguments: (Array with: arg1 with: arg2 with: arg3 with: arg4 with: arg5)
 ]
 
-{
-	#category : #invoking,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>invokeWith: arg1 with: arg2 with: arg3 with: arg4 with: arg5 with: arg6 [
+{ #category : #invoking }
+ExternalFunction >> invokeWith: arg1 with: arg2 [ with: arg3 with: arg4 with: arg5 with: arg6
 	^self invokeWithArguments: (Array with: arg1 with: arg2 with: arg3 with: arg4 with: arg5 with: arg6)
 ]
 
-{
-	#category : #invoking,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>invokeWithArguments: argArray [
+{ #category : #invoking }
+ExternalFunction >> invokeWithArguments: argArray [
 	"Manually invoke the receiver, representing an external function."
 	<primitive: 'primitiveCalloutWithArgs' module:'SqueakFFIPrims'>
 	^self externalCallFailed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>module [
+{ #category : #accessing }
+ExternalFunction >> module [
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>name [
+{ #category : #accessing }
+ExternalFunction >> name [
 	^nil
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>printOn: aStream [
+{ #category : #printing }
+ExternalFunction >> printOn: aStream [
 	aStream
 		nextPut:$<;
 		nextPutAll: self callingConventionString; nextPutAll:': '.
@@ -355,11 +261,8 @@ ExternalFunction>>printOn: aStream [
 	aStream nextPut:$>
 ]
 
-{
-	#category : #invoking,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalFunction>>tryInvokeWithArguments: argArray [
+{ #category : #invoking }
+ExternalFunction >> tryInvokeWithArguments: argArray [
 	"Sent from the debugger to simulate an FFI call."
 	<primitive: 'primitiveCalloutWithArgs' module: 'SqueakFFIPrims' error: ec>
 	

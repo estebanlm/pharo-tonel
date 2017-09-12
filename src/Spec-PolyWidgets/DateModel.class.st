@@ -21,31 +21,21 @@ Class {
 		'chooseDateButton',
 		'dateModel'
 	],
-	#category : #Spec-PolyWidgets-Widgets,
-	#timestamp : '<historical>'
+	#category : #Spec-PolyWidgets-Widgets
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DateModel class>>example [
+{ #category : #example }
+DateModel class >> example [
 	^ self new openDialogWithSpec
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DateModel class>>exampleModal [
+{ #category : #example }
+DateModel class >> exampleModal [
 	^ self new openDialogWithSpec modalRelativeTo: self currentWorld
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DateModel class>>spec [
+{ #category : #accessing }
+DateModel class >> spec [
 	<spec: #default>
 
 	^ SpecLayout composed
@@ -60,11 +50,8 @@ DateModel class>>spec [
 			yourself.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DateModel>>chooseDate [
+{ #category : #private }
+DateModel >> chooseDate [
 
 	| calendar |
 	calendar := CalendarMorph openOn: Date today.
@@ -74,56 +61,38 @@ DateModel>>chooseDate [
 		onChoiceSend: #onDateChosen: to: self.
 ]
 
-{
-	#category : #accessing-widgets,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DateModel>>chooseDateButton [
+{ #category : #accessing-widgets }
+DateModel >> chooseDateButton [
 
 	^ chooseDateButton.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DateModel>>date [
+{ #category : #accessing }
+DateModel >> date [
 
 	^ self dateModel getText asDate.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DateModel>>date: aDate [
+{ #category : #accessing }
+DateModel >> date: aDate [
 
 	^ self dateModel text: aDate asString.
 ]
 
-{
-	#category : #accessing-widgets,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DateModel>>dateLabel [
+{ #category : #accessing-widgets }
+DateModel >> dateLabel [
 
 	^ dateLabel.
 ]
 
-{
-	#category : #accessing-widgets,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DateModel>>dateModel [
+{ #category : #accessing-widgets }
+DateModel >> dateModel [
 
 	^ dateModel.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DateModel>>displayBlock [
+{ #category : #api }
+DateModel >> displayBlock [
 	"<api: #inspect>"
 	"Return the one argument block used to wrap your domain specific items.
 	The block should return something that can be displayed in a list - like a String or a Text"
@@ -131,42 +100,30 @@ DateModel>>displayBlock [
 	^ displayBlockHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DateModel>>displayBlock: aBlock [
+{ #category : #api }
+DateModel >> displayBlock: aBlock [
 	"<api: #block getter:#displayBlock registration: #whenDisplayBlockChanged:>"
 	"Set the one argument block used to transfrom your date into a string"
 	
 	displayBlockHolder value: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DateModel>>iconMorph [
+{ #category : #private }
+DateModel >> iconMorph [
 
 	^ ImageMorph new form: (self iconNamed: #calendarIcon)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DateModel>>initialize [
+{ #category : #initialization }
+DateModel >> initialize [
 
 	displayBlockHolder := [ :object | object asStringOrText ] asValueHolder.
 	displayBlockHolder whenChangedDo: [ self date: self date ].
 	super initialize. "do this last so default will be set after displayBlock"
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DateModel>>initializeWidgets [
+{ #category : #initialization }
+DateModel >> initializeWidgets [
 
 	dateLabel := self newLabel.
 	dateModel := self newTextInput.
@@ -185,21 +142,15 @@ DateModel>>initializeWidgets [
 		extent: self iconMorph extent.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DateModel>>onDateChosen: aChoseDate [
+{ #category : #private }
+DateModel >> onDateChosen: aChoseDate [
 
 	aChoseDate calendar delete.
 	dateModel text: aChoseDate date asString.
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DateModel>>whenDateChanged: aBlock [
+{ #category : #api-events }
+DateModel >> whenDateChanged: aBlock [
 
 	dateModel whenTextChanged: [:newText :oldText :announcement :anAnnouncer || newDate oldDate |
 		newDate := Date readFrom: newText readStream.

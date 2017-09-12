@@ -18,15 +18,11 @@ Class {
 	#instVars : [
 		'value'
 	],
-	#category : #Kernel-Chronology,
-	#timestamp : '<historical>'
+	#category : #Kernel-Chronology
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DosTimestamp class>>dateValueFrom: aDate [
+{ #category : #private }
+DosTimestamp class >> dateValueFrom: aDate [
 
 	| dosYear dosMonth dosDay |
 	dosYear := aDate year - DateAndTime dosEpoch year << 9.
@@ -35,20 +31,14 @@ DosTimestamp class>>dateValueFrom: aDate [
 	^ dosYear + dosMonth + dosDay.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DosTimestamp class>>epoch [
+{ #category : #accessing }
+DosTimestamp class >> epoch [
 
 	^ DateAndTime dosEpoch
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DosTimestamp class>>fromDateAndTime: aDateAndTime [
+{ #category : #'instance creation' }
+DosTimestamp class >> fromDateAndTime: aDateAndTime [ 
 
 	| dateValue timeValue local |
 	local := aDateAndTime asLocal.
@@ -57,20 +47,14 @@ DosTimestamp class>>fromDateAndTime: aDateAndTime [
 	^ self on: (dateValue << 16) + timeValue.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DosTimestamp class>>on: anInteger [
+{ #category : #'instance creation' }
+DosTimestamp class >> on: anInteger [
 
 	^ self new initializeValue: anInteger.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DosTimestamp class>>timeValueFrom: aTime [
+{ #category : #private }
+DosTimestamp class >> timeValueFrom: aTime [
 
 	| dosHours dosMinutes dosSeconds |
 	dosHours := aTime hour << 11.
@@ -79,29 +63,20 @@ DosTimestamp class>>timeValueFrom: aTime [
 	^ dosHours + dosMinutes + dosSeconds.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DosTimestamp>>= rhs [
+{ #category : #comparing }
+DosTimestamp >> = rhs [
 
 	^ self value = rhs value.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DosTimestamp>>asDateAndTime [
+{ #category : #converting }
+DosTimestamp >> asDateAndTime [
 
 	^ DateAndTime date: self date time: self time.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DosTimestamp>>date [
+{ #category : #private }
+DosTimestamp >> date [
 	"See class comment for format details"
 
 	| encodedDate yearsSinceDosEpoch month day year |
@@ -113,57 +88,39 @@ DosTimestamp>>date [
 	^ Date year: year month: month day: day. 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DosTimestamp>>epoch [
+{ #category : #private }
+DosTimestamp >> epoch [
 
 	^ self class epoch.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DosTimestamp>>hash [
+{ #category : #comparing }
+DosTimestamp >> hash [
 
 	^ self value hash.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DosTimestamp>>high16Bits [
+{ #category : #private }
+DosTimestamp >> high16Bits [
 
 	^ value >> 16.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DosTimestamp>>initializeValue: anInteger [
+{ #category : #private }
+DosTimestamp >> initializeValue: anInteger [ 
 
 	value := anInteger.
 	^ self.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DosTimestamp>>low16Bits [
+{ #category : #private }
+DosTimestamp >> low16Bits [
 	
 	^ value & 2r1111111111111111.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DosTimestamp>>printOn: aStream [
+{ #category : #printing }
+DosTimestamp >> printOn: aStream [
 
 	aStream
 		nextPutAll: self asDateAndTime printString;
@@ -172,11 +129,8 @@ DosTimestamp>>printOn: aStream [
 		nextPut: $).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DosTimestamp>>time [
+{ #category : #private }
+DosTimestamp >> time [
 	"See class comment for format details"
 	
 	| encodedTime hours minutes secondsHalved seconds |
@@ -188,11 +142,8 @@ DosTimestamp>>time [
 	^ Time hour: hours minute: minutes second: seconds.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DosTimestamp>>value [
+{ #category : #accessing }
+DosTimestamp >> value [
 
 	^ value.
 ]

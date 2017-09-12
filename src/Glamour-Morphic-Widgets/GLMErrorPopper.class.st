@@ -6,15 +6,11 @@ GLMErrorPopper simpleErrorPopper
 Class {
 	#name : #GLMErrorPopper,
 	#superclass : #GLMPopper,
-	#category : #Glamour-Morphic-Widgets-Popper,
-	#timestamp : 'AndreiChis 10/1/2014 13:03'
+	#category : #Glamour-Morphic-Widgets-Popper
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMErrorPopper class>>simpleErrorPopper [
+{ #category : #examples }
+GLMErrorPopper class >> simpleErrorPopper [
 	"
 	self simpleErrorPopper
 	"
@@ -24,20 +20,14 @@ GLMErrorPopper class>>simpleErrorPopper [
 		from: RubScrolledTextMorph new) openInWorld
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMErrorPopper>>initialize [
+{ #category : #initialization }
+GLMErrorPopper >> initialize [
 	super initialize.
 	self initializeTextMorph
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMErrorPopper>>initializeTextMorph [
+{ #category : #initialization }
+GLMErrorPopper >> initializeTextMorph [
 	textMorph := RubScrolledTextMorph new.
 	textMorph
 		beReadOnly;
@@ -51,11 +41,8 @@ GLMErrorPopper>>initializeTextMorph [
 		addMorph: textMorph fullFrame: (LayoutFrame identity)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMErrorPopper>>withString: string from: aMorph [
+{ #category : #initialization }
+GLMErrorPopper >> withString: string from: aMorph [
 
 	aMorph textArea removeHighlightSegment.
 	super withString: string from: aMorph

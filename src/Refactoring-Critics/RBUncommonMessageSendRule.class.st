@@ -7,42 +7,29 @@ Class {
 	#instVars : [
 		'literalNames'
 	],
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 20:19'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUncommonMessageSendRule class>>checksMethod [
+{ #category : #testing }
+RBUncommonMessageSendRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUncommonMessageSendRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBUncommonMessageSendRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'UncommonMessageSendRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUncommonMessageSendRule>>basicCheck: aMethod  [
+{ #category : #running }
+RBUncommonMessageSendRule >> basicCheck: aMethod [ 
 	^ aMethod messages anySatisfy: [ :each |
 		(each isEmpty or: [ each first isUppercase or: [ literalNames includes: each ] ]) ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUncommonMessageSendRule>>checkMethod: aMethod  [
+{ #category : #running }
+RBUncommonMessageSendRule >> checkMethod: aMethod [ 
 	aMethod messages do: [ :each |
 		(each isEmpty or: [ (self isUnknownCapitalizedMessage: each) or: [ literalNames includes: each ] ]) ifTrue: [
 			result 
@@ -50,44 +37,29 @@ RBUncommonMessageSendRule>>checkMethod: aMethod  [
 				addSearchString: each ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUncommonMessageSendRule>>commonLiterals [
+{ #category : #accessing }
+RBUncommonMessageSendRule >> commonLiterals [
 
 	^ #(#self #super #thisContext #true #false #nil) asIdentitySet
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUncommonMessageSendRule>>group [
+{ #category : #accessing }
+RBUncommonMessageSendRule >> group [
 	^ 'Potential Bugs'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUncommonMessageSendRule>>initialize [
+{ #category : #initialization }
+RBUncommonMessageSendRule >> initialize [
 	super initialize.
 	literalNames := self commonLiterals.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUncommonMessageSendRule>>isUnknownCapitalizedMessage: aSelector [
+{ #category : #private }
+RBUncommonMessageSendRule >> isUnknownCapitalizedMessage: aSelector [
 	^ aSelector first isUppercase and: [ aSelector isSelectorSymbol not ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUncommonMessageSendRule>>name [
+{ #category : #accessing }
+RBUncommonMessageSendRule >> name [
 	^ 'Uncommon message send'
 ]

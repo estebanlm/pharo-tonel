@@ -13,15 +13,11 @@ Class {
 	#instVars : [
 		'token'
 	],
-	#category : #System-Settings-Filter,
-	#timestamp : 'alain.plantec 4/8/2009 13:03'
+	#category : #System-Settings-Filter
 }
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTokenFilter>>keepSettingDeclaration: aSettingDeclaration [
+{ #category : #filtering }
+SettingTokenFilter >> keepSettingDeclaration: aSettingDeclaration [
 	| selector |
 	selector := (aSettingDeclaration respondsTo: #getSelector) 
 		ifTrue: [aSettingDeclaration getSelector] ifFalse: [''].
@@ -34,32 +30,23 @@ SettingTokenFilter>>keepSettingDeclaration: aSettingDeclaration [
 
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTokenFilter>>keepSettingTreeNode: aSettingNode  [
+{ #category : #filtering }
+SettingTokenFilter >> keepSettingTreeNode: aSettingNode [ 
 	^ (({aSettingNode methodClass name asUppercase. aSettingNode selector asUppercase}
 			collect: [:e | e ifNil: ['']])
 			includesSubstringAnywhere: self token asUppercase)
 		or: [self keepSettingDeclaration: aSettingNode settingDeclaration]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTokenFilter>>token [
+{ #category : #accessing }
+SettingTokenFilter >> token [
 	"Answer the value of token"
 
 	^ token
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTokenFilter>>token: aString [
+{ #category : #accessing }
+SettingTokenFilter >> token: aString [
 	"Set the value of token"
 
 	token := aString

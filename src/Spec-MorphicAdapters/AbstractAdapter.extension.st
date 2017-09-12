@@ -1,12 +1,7 @@
-Extension {
-	#name : #AbstractAdapter
-}
+Extension { #name : #AbstractAdapter }
 
-{
-	#category : #'*Spec-MorphicAdapters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractAdapter>>isMorphicAdapter [
+{ #category : #'*Spec-MorphicAdapters' }
+AbstractAdapter >> isMorphicAdapter [
 
 	^ false
 ]

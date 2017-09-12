@@ -1,56 +1,37 @@
-"
-
-"
 Class {
 	#name : #OmSessionStoreTest,
 	#superclass : #OmStoreTest,
-	#category : #OmbuTests,
-	#timestamp : ''
+	#category : #OmbuTests
 }
 
-{
-	#category : #resources,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmSessionStoreTest>>directoryForTests [
+{ #category : #resources }
+OmSessionStoreTest >> directoryForTests [
 
 	^ FileSystem workingDirectory
 ]
 
-{
-	#category : #resources,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmSessionStoreTest>>setUpOtherStore [
+{ #category : #resources }
+OmSessionStoreTest >> setUpOtherStore [
 
 	^ OmSessionStore newWithBaseLocator: (self directoryForTests / 'test-sessions-other') ensureCreateDirectory
 ]
 
-{
-	#category : #resources,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmSessionStoreTest>>setUpStore	 [
+{ #category : #resources }
+OmSessionStoreTest >> setUpStore [	
 
 	^ OmSessionStore newWithBaseLocator: (self directoryForTests / 'test-sessions-main') ensureCreateDirectory
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmSessionStoreTest>>tearDown [
+{ #category : #running }
+OmSessionStoreTest >> tearDown [
 	super tearDown.
 	
 	(self directoryForTests / 'test-sessions-main') ensureDeleteAll.
 	(self directoryForTests / 'test-sessions-other') ensureDeleteAll.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmSessionStoreTest>>testResetWithNextStoreNameWithRandomSuffix [
+{ #category : #tests }
+OmSessionStoreTest >> testResetWithNextStoreNameWithRandomSuffix [
 
 	| aFileReference anotherFileReference |
 	store storeNameStrategy: OmRandomSuffixStrategy new.
@@ -63,11 +44,8 @@ OmSessionStoreTest>>testResetWithNextStoreNameWithRandomSuffix [
 	self deny: aFileReference = anotherFileReference
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmSessionStoreTest>>testResetWithNextStoreNameWithSequentialSuffix [
+{ #category : #tests }
+OmSessionStoreTest >> testResetWithNextStoreNameWithSequentialSuffix [
 	"The sequencial suffix doesn't change unless the file is created"
 	
 	| aFileReference anotherFileReference |
@@ -87,11 +65,8 @@ OmSessionStoreTest>>testResetWithNextStoreNameWithSequentialSuffix [
 	self deny: aFileReference = anotherFileReference.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmSessionStoreTest>>testResetWithNextStoreNameWithTimeStampSuffix [
+{ #category : #tests }
+OmSessionStoreTest >> testResetWithNextStoreNameWithTimeStampSuffix [
 
 	| aFileReference anotherFileReference |
 	store storeNameStrategy: OmTimeStampSuffixStrategy new.
@@ -105,11 +80,8 @@ OmSessionStoreTest>>testResetWithNextStoreNameWithTimeStampSuffix [
 	self deny: aFileReference = anotherFileReference
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmSessionStoreTest>>testResetWithStoreNamedDoesAnnounce [
+{ #category : #tests }
+OmSessionStoreTest >> testResetWithStoreNamedDoesAnnounce [
 
 	| wasAnnounced |
 	wasAnnounced := false.
@@ -125,11 +97,8 @@ OmSessionStoreTest>>testResetWithStoreNamedDoesAnnounce [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmSessionStoreTest>>testResetWithStoreNamedSignalsErrorIfFileAlreadyExists [
+{ #category : #tests }
+OmSessionStoreTest >> testResetWithStoreNamedSignalsErrorIfFileAlreadyExists [
 	
 	store resetWithStoreNamed: 'pepe'.
 	store newEntry: (OmEntry content: 42).

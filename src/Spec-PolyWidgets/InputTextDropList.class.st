@@ -12,15 +12,11 @@ Class {
 		'dropList',
 		'input'
 	],
-	#category : #Spec-PolyWidgets-Elementary,
-	#timestamp : 'Spirita 7/22/2016 16:24'
+	#category : #Spec-PolyWidgets-Elementary
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList class>>defaultSpec [
+{ #category : #specs }
+InputTextDropList class >> defaultSpec [
 	<spec: #default>
 	^ SpecLayout composed
 		newRow: [ :row | 
@@ -30,11 +26,8 @@ InputTextDropList class>>defaultSpec [
 			yourself
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList class>>example [
+{ #category : #example }
+InputTextDropList class >> example [
 	| ex |
 	ex := self new.
 	ex
@@ -47,75 +40,48 @@ InputTextDropList class>>example [
 	^ ex
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>acceptOnCR: aBoolean [
+{ #category : #api-shortcuts }
+InputTextDropList >> acceptOnCR: aBoolean [
 	self input acceptOnCR: aBoolean
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>beEncrypted [
+{ #category : #api-shortcuts }
+InputTextDropList >> beEncrypted [
 	self input beEncrypted
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>displayBlock: aBlock [
+{ #category : #api-shortcuts }
+InputTextDropList >> displayBlock: aBlock [
 	self dropList displayBlock: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>dropList [
+{ #category : #accessing }
+InputTextDropList >> dropList [
 	^ dropList
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>emptyList [
+{ #category : #api-shortcuts }
+InputTextDropList >> emptyList [
 	self dropList emptyList
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>encrypted: aBoolean [
+{ #category : #api-shortcuts }
+InputTextDropList >> encrypted: aBoolean [
 	self input encrypted: aBoolean
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>entryCompletion: anEntryCompletion [
+{ #category : #api-shortcuts }
+InputTextDropList >> entryCompletion: anEntryCompletion [
 	self input entryCompletion: anEntryCompletion
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>ghostText: aText [
+{ #category : #api-shortcuts }
+InputTextDropList >> ghostText: aText [
 	self input ghostText: aText
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>initializeWidgets [
+{ #category : #initialization }
+InputTextDropList >> initializeWidgets [
 	input := self instantiate: TextInputFieldModel.
 	dropList := self instantiate: DropListModel.
 	self focusOrder
@@ -123,90 +89,57 @@ InputTextDropList>>initializeWidgets [
 		add: dropList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>input [
+{ #category : #accessing }
+InputTextDropList >> input [
 	^ input
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>items: aList [
+{ #category : #api-shortcuts }
+InputTextDropList >> items: aList [
 	self dropList items: aList
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>listSize [
+{ #category : #api-shortcuts }
+InputTextDropList >> listSize [
 	self dropList listSize
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>resetSelection [
+{ #category : #api-shortcuts }
+InputTextDropList >> resetSelection [
 	self dropList resetSelection
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>selectedItem [
+{ #category : #api-shortcuts }
+InputTextDropList >> selectedItem [
 	self dropList selectedItem
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>setIndex: anIndex [
+{ #category : #api-shortcuts }
+InputTextDropList >> setIndex: anIndex [
 	self dropList setIndex: anIndex
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>text [
+{ #category : #api-shortcuts }
+InputTextDropList >> text [
 	self input text
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>text: aText [
+{ #category : #api-shortcuts }
+InputTextDropList >> text: aText [
 	self input text: aText
 ]
 
-{
-	#category : #events-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>whenSelectedItemChanged: aBlock [
+{ #category : #events-shortcuts }
+InputTextDropList >> whenSelectedItemChanged: aBlock [
 	self dropList whenSelectedItemChanged: aBlock
 ]
 
-{
-	#category : #events-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>whenSelectionChanged: aBlock [
+{ #category : #events-shortcuts }
+InputTextDropList >> whenSelectionChanged: aBlock [
 	self dropList whenSelectionChanged: aBlock
 ]
 
-{
-	#category : #events-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-InputTextDropList>>whenSelectionIndexChanged: aBlock [
+{ #category : #events-shortcuts }
+InputTextDropList >> whenSelectionIndexChanged: aBlock [
 	self dropList whenSelectionIndexChanged: aBlock
 ]

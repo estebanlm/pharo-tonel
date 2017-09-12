@@ -4,15 +4,11 @@ I am an abstract superclass for some visitors that answer Strings describing EpE
 Class {
 	#name : #EpContentStringVisitor,
 	#superclass : #EpEntryContentVisitor,
-	#category : #EpiceaBrowsers-Visitors,
-	#timestamp : 'MartinDias 10/27/2014 18:05'
+	#category : #EpiceaBrowsers-Visitors
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpContentStringVisitor>>displayBrowserOperation: aBrowserOperationEvent [
+{ #category : #private }
+EpContentStringVisitor >> displayBrowserOperation: aBrowserOperationEvent [
 
 	^ String streamContents: [ :stream |
 		stream 
@@ -20,11 +16,8 @@ EpContentStringVisitor>>displayBrowserOperation: aBrowserOperationEvent [
 			nextPutAll: ' code changes produced' ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpContentStringVisitor>>printProtocol: protocol sourceCode: sourceCode [
+{ #category : #private }
+EpContentStringVisitor >> printProtocol: protocol sourceCode: sourceCode [
 
 	^ String streamContents: [ :stream |
 		stream
@@ -34,11 +27,8 @@ EpContentStringVisitor>>printProtocol: protocol sourceCode: sourceCode [
 			nextPutAll: sourceCode ]	
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpContentStringVisitor>>stringForBehavior: aClassOrTrait [
+{ #category : #visitor }
+EpContentStringVisitor >> stringForBehavior: aClassOrTrait [
 
 	^ String streamContents: [ :stream |
 		stream
@@ -48,11 +38,8 @@ EpContentStringVisitor>>stringForBehavior: aClassOrTrait [
 			nextPutAll: aClassOrTrait theMetaClass definitionSource ]
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpContentStringVisitor>>visitEvent: anEvent [
+{ #category : #visitor }
+EpContentStringVisitor >> visitEvent: anEvent [
 	"By default display an empty string"
 
 	^ ''

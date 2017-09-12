@@ -4,25 +4,18 @@ I am the adapter used to bridge a TabModel and a Tab
 Class {
 	#name : #MorphicTabAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : 'PeterUhnak 3/16/2015 23:29'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTabAdapter>>adapt: aComposableModel [
+{ #category : #initialization }
+MorphicTabAdapter >> adapt: aComposableModel [
 	widget := self buildWidgetWith: aComposableModel.
 	aComposableModel addDependent: widget.
 	self bindModel: aComposableModel andWidget: widget
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTabAdapter>>bindModel: aTabModel andWidget: aWidget [
+{ #category : #updating }
+MorphicTabAdapter >> bindModel: aTabModel andWidget: aWidget [
 	"bind change propagation between Spec TabModel and Morphic Tab"
 
 	aWidget when: #tabSelected send: #tabSelected to: aTabModel.
@@ -36,11 +29,8 @@ MorphicTabAdapter>>bindModel: aTabModel andWidget: aWidget [
 	aTabModel selectedHolder whenChangedDo: [ :new | aWidget selected: new ]
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTabAdapter>>buildWidgetWith: aTabModel [
+{ #category : #factory }
+MorphicTabAdapter >> buildWidgetWith: aTabModel [
 	^ TabMorph new
 		model: aTabModel;
 		label: aTabModel label;

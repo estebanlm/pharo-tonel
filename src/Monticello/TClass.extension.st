@@ -1,19 +1,11 @@
-Extension {
-	#name : #TClass
-}
+Extension { #name : #TClass }
 
-{
-	#category : #'*Monticello',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-TClass>>asClassDefinition [
+{ #category : #'*Monticello' }
+TClass >> asClassDefinition [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'*Monticello',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-TClass>>classDefinitions [
+{ #category : #'*Monticello' }
+TClass >> classDefinitions [
 	^self explicitRequirement.
 ]

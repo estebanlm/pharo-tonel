@@ -8,15 +8,11 @@ Class {
 		'keys',
 		'values'
 	],
-	#category : #Fuel-Collections,
-	#timestamp : '<historical>'
+	#category : #Fuel-Collections
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentityDictionary>>at: key [
+{ #category : #accessing }
+FLLargeIdentityDictionary >> at: key [
 
 	| hash |
 	(keys at: (hash := key largeIdentityHash \\ 4096 + 1)) ifNotNil: [ :keyList | 
@@ -26,11 +22,8 @@ FLLargeIdentityDictionary>>at: key [
 	self errorKeyNotFound: key
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentityDictionary>>at: key ifAbsent: aBlock [
+{ #category : #accessing }
+FLLargeIdentityDictionary >> at: key ifAbsent: aBlock [
 
 	| hash |
 	(keys at: (hash := key largeIdentityHash \\ 4096 + 1)) ifNotNil: [ :keyList | 
@@ -40,11 +33,8 @@ FLLargeIdentityDictionary>>at: key ifAbsent: aBlock [
 	^aBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentityDictionary>>at: key ifAbsentPut: aBlock  [
+{ #category : #accessing }
+FLLargeIdentityDictionary >> at: key ifAbsentPut: aBlock [ 
 	"Return the value at the given key. 
 	If key is not included in the receiver store the result 
 	of evaluating aBlock as new value."
@@ -52,11 +42,8 @@ FLLargeIdentityDictionary>>at: key ifAbsentPut: aBlock  [
 	^ self at: key ifAbsent: [self at: key put: aBlock value]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentityDictionary>>at: key ifPresent: presentBlock ifAbsent: absentBlock [
+{ #category : #accessing }
+FLLargeIdentityDictionary >> at: key ifPresent: presentBlock ifAbsent: absentBlock [
 
 	| hash |
 	(keys at: (hash := key largeIdentityHash + 1)) ifNotNil: [ :keyList | 
@@ -66,11 +53,8 @@ FLLargeIdentityDictionary>>at: key ifPresent: presentBlock ifAbsent: absentBlock
 	^absentBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentityDictionary>>at: key put: value [
+{ #category : #accessing }
+FLLargeIdentityDictionary >> at: key put: value [
 
 	| hash |
 	(keys at: (hash := key largeIdentityHash \\ 4096 + 1))
@@ -109,29 +93,20 @@ FLLargeIdentityDictionary>>at: key put: value [
 	^value
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentityDictionary>>do: aBlock [
+{ #category : #enumerating }
+FLLargeIdentityDictionary >> do: aBlock [
 
 	^self valuesDo: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentityDictionary>>errorKeyNotFound: aKey [
+{ #category : #private }
+FLLargeIdentityDictionary >> errorKeyNotFound: aKey [
 
 	KeyNotFound signalFor: aKey
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentityDictionary>>includesKey: key [
+{ #category : #testing }
+FLLargeIdentityDictionary >> includesKey: key [
 
 	| hash |
 	^(keys at: (hash := key largeIdentityHash \\ 4096 + 1))
@@ -145,32 +120,23 @@ FLLargeIdentityDictionary>>includesKey: key [
 					false ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentityDictionary>>initialize [
+{ #category : #initialization }
+FLLargeIdentityDictionary >> initialize [
 
 	super initialize.
 	keys := Array new: 4096.
 	values := Array new: 4096
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentityDictionary>>keys [
+{ #category : #accessing }
+FLLargeIdentityDictionary >> keys [
 
 	^Array new: tally streamContents: [ :stream |
 		self keysDo: [ :key | stream nextPut: key ] ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentityDictionary>>keysAndValuesDo: aBlock [
+{ #category : #enumerating }
+FLLargeIdentityDictionary >> keysAndValuesDo: aBlock [
 
 	tally = 0 ifTrue: [ ^self ].
 	1 to: 4096 do: [ :arrayIndex |
@@ -183,11 +149,8 @@ FLLargeIdentityDictionary>>keysAndValuesDo: aBlock [
 				value: (valueArray at: index) ] ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentityDictionary>>keysDo: aBlock [
+{ #category : #enumerating }
+FLLargeIdentityDictionary >> keysDo: aBlock [
 
 	tally = 0 ifTrue: [ ^self ].
 	1 to: 4096 do: [ :arrayIndex |
@@ -197,11 +160,8 @@ FLLargeIdentityDictionary>>keysDo: aBlock [
 			aBlock value: (keyArray at: index) ] ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentityDictionary>>postCopy [
+{ #category : #copying }
+FLLargeIdentityDictionary >> postCopy [
 
 	super postCopy.
 	keys := keys copy.
@@ -212,11 +172,8 @@ FLLargeIdentityDictionary>>postCopy [
 			values at: index put: (values at: index) copy ] ]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentityDictionary>>removeKey: key ifAbsent: aBlock [
+{ #category : #removing }
+FLLargeIdentityDictionary >> removeKey: key ifAbsent: aBlock [
 
 	| hash |
 	(keys at: (hash := key largeIdentityHash \\ 4096 + 1)) ifNotNil: [ :keyList |
@@ -252,21 +209,15 @@ FLLargeIdentityDictionary>>removeKey: key ifAbsent: aBlock [
 	^aBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentityDictionary>>values [
+{ #category : #accessing }
+FLLargeIdentityDictionary >> values [
 
 	^Array new: tally streamContents: [ :stream |
 		self valuesDo: [ :value | stream nextPut: value ] ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentityDictionary>>valuesDo: aBlock [
+{ #category : #enumerating }
+FLLargeIdentityDictionary >> valuesDo: aBlock [
 
 	tally = 0 ifTrue: [ ^self ].
 	1 to: 4096 do: [ :arrayIndex |

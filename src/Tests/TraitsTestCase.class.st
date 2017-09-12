@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #TraitsTestCase,
 	#superclass : #TestCase,
@@ -8,136 +5,87 @@ Class {
 		'createdClassesAndTraits',
 		'oldAnnouncer'
 	],
-	#category : #Tests-Traits,
-	#timestamp : ''
+	#category : #Tests-Traits
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase class>>isUnitTest [
+{ #category : #testing }
+TraitsTestCase class >> isUnitTest [
 	^false
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase class>>resources [
+{ #category : #'as yet unclassified' }
+TraitsTestCase class >> resources [
 	^ super resources copyWith: TraitsResource
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>assertPrints: aString like: anotherString  [
+{ #category : #utility }
+TraitsTestCase >> assertPrints: aString like: anotherString [ 
 	self assert: (aString copyWithout: $ )
 		= (anotherString copyWithout: $ )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>c1 [
+{ #category : #accessing }
+TraitsTestCase >> c1 [
 	^TraitsResource current c1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>c10 [
+{ #category : #accessing }
+TraitsTestCase >> c10 [
 	^TraitsResource current c10
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>c11 [
+{ #category : #accessing }
+TraitsTestCase >> c11 [
 	^TraitsResource current c11
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>c2 [
+{ #category : #accessing }
+TraitsTestCase >> c2 [
 	^TraitsResource current c2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>c3 [
+{ #category : #accessing }
+TraitsTestCase >> c3 [
 	^TraitsResource current c3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>c4 [
+{ #category : #accessing }
+TraitsTestCase >> c4 [
 	^TraitsResource current c4
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>c5 [
+{ #category : #accessing }
+TraitsTestCase >> c5 [
 	^TraitsResource current c5
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>c6 [
+{ #category : #accessing }
+TraitsTestCase >> c6 [
 	^TraitsResource current c6
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>c7 [
+{ #category : #accessing }
+TraitsTestCase >> c7 [
 	^TraitsResource current c7
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>c8 [
+{ #category : #accessing }
+TraitsTestCase >> c8 [
 	^TraitsResource current c8
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>c9 [
+{ #category : #accessing }
+TraitsTestCase >> c9 [
 	^TraitsResource current c9
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>categoryName [
+{ #category : #running }
+TraitsTestCase >> categoryName [
 	^self class category
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>createClassNamed: aSymbol superclass: aClass uses: aTraitComposition [
+{ #category : #utility }
+TraitsTestCase >> createClassNamed: aSymbol superclass: aClass uses: aTraitComposition [
 	| class |
 	class := aClass
 		subclass: aSymbol
@@ -150,11 +98,8 @@ TraitsTestCase>>createClassNamed: aSymbol superclass: aClass uses: aTraitComposi
 	^class
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>createTraitNamed: aSymbol uses: aTraitComposition [
+{ #category : #utility }
+TraitsTestCase >> createTraitNamed: aSymbol uses: aTraitComposition [
 	| trait |
 	trait := Trait
 		named: aSymbol
@@ -164,29 +109,20 @@ TraitsTestCase>>createTraitNamed: aSymbol uses: aTraitComposition [
 	^trait
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>createdClassesAndTraits [
+{ #category : #utility }
+TraitsTestCase >> createdClassesAndTraits [
 	createdClassesAndTraits ifNil: [
 		createdClassesAndTraits := OrderedCollection new].
 	^createdClassesAndTraits
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>resourceClassesAndTraits [
+{ #category : #utility }
+TraitsTestCase >> resourceClassesAndTraits [
 	^TraitsResource current createdClassesAndTraits
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>setUp [
+{ #category : #running }
+TraitsTestCase >> setUp [
 
 	super setUp.
 	oldAnnouncer := SystemAnnouncer uniqueInstance.
@@ -194,99 +130,63 @@ TraitsTestCase>>setUp [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>t1 [
+{ #category : #accessing }
+TraitsTestCase >> t1 [
 	^TraitsResource current t1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>t10 [
+{ #category : #accessing }
+TraitsTestCase >> t10 [
 	^TraitsResource current t10
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>t11 [
+{ #category : #accessing }
+TraitsTestCase >> t11 [
 	^TraitsResource current t11
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>t12 [
+{ #category : #accessing }
+TraitsTestCase >> t12 [
 	^TraitsResource current t12
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>t2 [
+{ #category : #accessing }
+TraitsTestCase >> t2 [
 	^TraitsResource current t2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>t3 [
+{ #category : #accessing }
+TraitsTestCase >> t3 [
 	^TraitsResource current t3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>t4 [
+{ #category : #accessing }
+TraitsTestCase >> t4 [
 	^TraitsResource current t4
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>t5 [
+{ #category : #accessing }
+TraitsTestCase >> t5 [
 	^TraitsResource current t5
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>t6 [
+{ #category : #accessing }
+TraitsTestCase >> t6 [
 	^TraitsResource current t6
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>t8 [
+{ #category : #accessing }
+TraitsTestCase >> t8 [
 	^TraitsResource current t8
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>t9 [
+{ #category : #accessing }
+TraitsTestCase >> t9 [
 	^TraitsResource current t9
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsTestCase>>tearDown [
+{ #category : #running }
+TraitsTestCase >> tearDown [
 	TraitsResource reset.
 	self createdClassesAndTraits
 		do: [ :aClassOrTrait || behaviorName |

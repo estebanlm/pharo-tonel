@@ -8,15 +8,11 @@ Class {
 		'event',
 		'source'
 	],
-	#category : #Keymapping-Core-Announcements,
-	#timestamp : '<historical>'
+	#category : #Keymapping-Core-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCompleteMatch class>>event: event from: source [
+{ #category : #'instance creation' }
+KMCompleteMatch class >> event: event from: source [
 
 	^ self new
 		event: event;
@@ -24,34 +20,22 @@ KMCompleteMatch class>>event: event from: source [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCompleteMatch>>event [
+{ #category : #accessing }
+KMCompleteMatch >> event [
 	^ event
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCompleteMatch>>event: anObject [
+{ #category : #accessing }
+KMCompleteMatch >> event: anObject [
 	event := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCompleteMatch>>source [
+{ #category : #accessing }
+KMCompleteMatch >> source [
 	^ source
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCompleteMatch>>source: anObject [
+{ #category : #accessing }
+KMCompleteMatch >> source: anObject [
 	source := anObject
 ]

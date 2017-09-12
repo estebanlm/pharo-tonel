@@ -14,907 +14,600 @@ NEXT Steps: Allow one to configure the shortcuts and to define several shortcut 
 Class {
 	#name : #PharoShortcuts,
 	#superclass : #Object,
-	#category : #Tool-Base,
-	#timestamp : 'GuillermoPolito 8/10/2014 14:16'
+	#category : #Tool-Base
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts class>>current [
+{ #category : #accessing }
+PharoShortcuts class >> current [
 
 	^ self new
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>acceptShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> acceptShortcut [
 
 	^ $s meta
 ]
 
-{
-	#category : #'keymaps - code',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>argAdvanceShortcut [
+{ #category : #'keymaps - code' }
+PharoShortcuts >> argAdvanceShortcut [
 	^ $a meta shift
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>backspaceShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> backspaceShortcut [
 
 	^ Character backspace asShortcut
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>backwardCharShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> backwardCharShortcut [
 
 	^ Character arrowLeft asShortcut
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>backwardLineShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> backwardLineShortcut [
 
 	^ Character arrowUp asShortcut
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>backwardWordDeleteShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> backwardWordDeleteShortcut [
 
 	^ Character backspace shift
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>backwardWordShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> backwardWordShortcut [
 	^ Character arrowLeft meta
 ]
 
-{
-	#category : #'keymaps - code search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>browseClassReferencesShortcut [
+{ #category : #'keymaps - code search' }
+PharoShortcuts >> browseClassReferencesShortcut [
 
 	^ $n meta shift
 ]
 
-{
-	#category : #'keymaps - code search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>browseImplementorsShortcut [
+{ #category : #'keymaps - code search' }
+PharoShortcuts >> browseImplementorsShortcut [
 
 	^ $m meta
 ]
 
-{
-	#category : #'keymaps - code search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>browseMethodHierarchyShortcut [
+{ #category : #'keymaps - code search' }
+PharoShortcuts >> browseMethodHierarchyShortcut [
 
 	^ $i meta
 ]
 
-{
-	#category : #'keymaps - code search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>browseReferencesShortcut [
+{ #category : #'keymaps - code search' }
+PharoShortcuts >> browseReferencesShortcut [
 
 	^ $b meta shift
 ]
 
-{
-	#category : #'keymaps - code search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>browseSendersShortcut [
+{ #category : #'keymaps - code search' }
+PharoShortcuts >> browseSendersShortcut [
 
 	^ $n meta
 ]
 
-{
-	#category : #'keymaps - code search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>browseShortcut [
+{ #category : #'keymaps - code search' }
+PharoShortcuts >> browseShortcut [
 
 	^ $b meta
 ]
 
-{
-	#category : #'keymaps - code search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>browseVersionsShortcut [
+{ #category : #'keymaps - code search' }
+PharoShortcuts >> browseVersionsShortcut [
 
 	^ $v meta
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>cancelShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> cancelShortcut [
 
 	^ $l meta
 ]
 
-{
-	#category : #'keymaps - editor style',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>changeStyleShortcut [
+{ #category : #'keymaps - editor style' }
+PharoShortcuts >> changeStyleShortcut [
 
 	^ $k meta shift
 ]
 
-{
-	#category : #'keymaps - window',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>closeWindowShortcut [
+{ #category : #'keymaps - window' }
+PharoShortcuts >> closeWindowShortcut [
 
 	^ $w meta
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>compareToClipboardShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> compareToClipboardShortcut [
 
 	^ $c meta shift
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>copySelectionShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> copySelectionShortcut [
 
 	^ $c meta
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>cursorEndShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> cursorEndShortcut [
 
 	^ Character end meta
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>cursorHomeShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> cursorHomeShortcut [
 
 	^ Character home meta
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>cutShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> cutShortcut [
 
 	^ $x meta
 ]
 
-{
-	#category : #'keymaps - code',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>debugItShortcut [
+{ #category : #'keymaps - code' }
+PharoShortcuts >> debugItShortcut [
 
 	^  $d meta shift
 ]
 
-{
-	#category : #'keymaps - editor style',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>decreaseKerningShortcut [
+{ #category : #'keymaps - editor style' }
+PharoShortcuts >> decreaseKerningShortcut [
 
 	^ $9 meta
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>delShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> delShortcut [
 
 	^ Character delete asShortcut
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>delWordShortcut [
+{ #category : #'as yet unclassified' }
+PharoShortcuts >> delWordShortcut [
 
 	^ Character delete shift asShortcut
 ]
 
-{
-	#category : #'keymaps - code',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>displayIfFalseShortcut [
+{ #category : #'keymaps - code' }
+PharoShortcuts >> displayIfFalseShortcut [
 
 	^ $f alt
 ]
 
-{
-	#category : #'keymaps - code',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>displayIfTrueShortcut [
+{ #category : #'keymaps - code' }
+PharoShortcuts >> displayIfTrueShortcut [
 
 	^ $t alt win | $t alt unix | $t option mac
 ]
 
-{
-	#category : #'keymaps - code',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>doItShortcut [
+{ #category : #'keymaps - code' }
+PharoShortcuts >> doItShortcut [
 
 	^ $d meta
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>duplicateFromSelectionShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> duplicateFromSelectionShortcut [
 
 	^ $d meta shift
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>escapeShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> escapeShortcut [
 
 	^ Character escape asShortcut
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>exchangeSelectionShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> exchangeSelectionShortcut [
 
 	^ $e meta
 ]
 
-{
-	#category : #'keymaps - code',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>fileItInShortcut [
+{ #category : #'keymaps - code' }
+PharoShortcuts >> fileItInShortcut [
 
 	^ $g alt win | $g alt unix | $g option mac
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>findAgainShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> findAgainShortcut [
 	^ $g meta
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>findShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> findShortcut [
 	^ $f meta
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>formatCodeShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> formatCodeShortcut [
 
 	^ $f meta shift
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>forwardCharShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> forwardCharShortcut [
 
 	^ Character arrowRight asShortcut
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>forwardLineShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> forwardLineShortcut [
 
 	^ Character arrowDown asShortcut
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>forwardWordShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> forwardWordShortcut [
 	^ Character arrowRight meta
 ]
 
-{
-	#category : #'keymaps - editor style',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>increaseKerningShortcut [
+{ #category : #'keymaps - editor style' }
+PharoShortcuts >> increaseKerningShortcut [
 
 	^ $= meta
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>indentShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> indentShortcut [
 
 	^ $r meta shift
 ]
 
-{
-	#category : #'keymaps - code',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>inspectItShortcut [
+{ #category : #'keymaps - code' }
+PharoShortcuts >> inspectItShortcut [
 
 	^ $i meta
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>lineEndShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> lineEndShortcut [
 
 	^ Character end asShortcut
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>lineStartShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> lineStartShortcut [
 
 	^ Character home asShortcut
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>makeCapitalizedShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> makeCapitalizedShortcut [
 
 	^ $z meta shift
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>makeLowercaseShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> makeLowercaseShortcut [
 
 	^ $x meta shift
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>makeUppercaseShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> makeUppercaseShortcut [
 
 	^ $y meta shift
 ]
 
-{
-	#category : #'keymaps - code search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>methodNamesContainingItShortcut [
+{ #category : #'keymaps - code search' }
+PharoShortcuts >> methodNamesContainingItShortcut [
 
 	^  $w meta shift
 ]
 
-{
-	#category : #'keymaps - code search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>methodStringContainingItShortcut [
+{ #category : #'keymaps - code search' }
+PharoShortcuts >> methodStringContainingItShortcut [
 
 	^  $e meta shift
 ]
 
-{
-	#category : #'keymaps - editor style',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>normalEmphasisShortcut [
+{ #category : #'keymaps - editor style' }
+PharoShortcuts >> normalEmphasisShortcut [
 
 	^ $0 meta
 ]
 
-{
-	#category : #'keymaps - editor style',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>openFontAlignmentMenuShortcut [
+{ #category : #'keymaps - editor style' }
+PharoShortcuts >> openFontAlignmentMenuShortcut [
 
 	^ $u meta
 ]
 
-{
-	#category : #'keymaps - editor style',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>openFontColorMenuShortcut [
+{ #category : #'keymaps - editor style' }
+PharoShortcuts >> openFontColorMenuShortcut [
 
 	^ $6 meta
 ]
 
-{
-	#category : #'keymaps - editor style',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>openFontMenuShortcut [
+{ #category : #'keymaps - editor style' }
+PharoShortcuts >> openFontMenuShortcut [
 
 	^ $k meta shift
 ]
 
-{
-	#category : #'keymaps - Tools',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>openKomitterShortcut [
+{ #category : #'keymaps - Tools' }
+PharoShortcuts >> openKomitterShortcut [
 	^ $o meta, $k meta
 ]
 
-{
-	#category : #'keymaps - Tools',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>openMonticielloShortcut [
+{ #category : #'keymaps - Tools' }
+PharoShortcuts >> openMonticielloShortcut [
 	^ $o meta, $p meta
 ]
 
-{
-	#category : #'keymaps - Tools',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>openPlaygroundShortcut [
+{ #category : #'keymaps - Tools' }
+PharoShortcuts >> openPlaygroundShortcut [
 	^ $o meta, $w meta
 ]
 
-{
-	#category : #'keymaps - Tools',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>openSettingsShortcut [
+{ #category : #'keymaps - Tools' }
+PharoShortcuts >> openSettingsShortcut [
 	^ $o meta, $s meta
 ]
 
-{
-	#category : #'keymaps - Tools',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>openSystemBrowserShortcut [
+{ #category : #'keymaps - Tools' }
+PharoShortcuts >> openSystemBrowserShortcut [
 	^ $o meta , $b meta
 ]
 
-{
-	#category : #'keymaps - Tools',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>openTestRunnerShortcut [
+{ #category : #'keymaps - Tools' }
+PharoShortcuts >> openTestRunnerShortcut [
 	^ $o meta , $u meta
 ]
 
-{
-	#category : #'keymaps - Tools',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>openTranscriptShortcut [
+{ #category : #'keymaps - Tools' }
+PharoShortcuts >> openTranscriptShortcut [
 	^ $o meta , $t meta
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>outdentShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> outdentShortcut [
 
 	^ $l meta shift
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>pageDownShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> pageDownShortcut [
 
 	^ Character pageDown asShortcut
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>pageUpShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> pageUpShortcut [
 
 	^ Character pageUp asShortcut
 ]
 
-{
-	#category : #'keymaps - code',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>pasteInitialsShortcut [
+{ #category : #'keymaps - code' }
+PharoShortcuts >> pasteInitialsShortcut [
 
 	^ $v alt win | $v alt unix | $v option mac
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>pasteShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> pasteShortcut [
 
 	^ $v meta
 ]
 
-{
-	#category : #'keymaps - code',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>printItShortcut [
+{ #category : #'keymaps - code' }
+PharoShortcuts >> printItShortcut [
 
 	^ $p meta
 ]
 
-{
-	#category : #'keymaps - code search',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>querySymbolShortcut [
+{ #category : #'keymaps - code search' }
+PharoShortcuts >> querySymbolShortcut [
 
 	^  $q meta shift
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>redoShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> redoShortcut [
 
 	^ $z meta shift
 ]
 
-{
-	#category : #'keymaps - code',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>removeShortcut [
+{ #category : #'keymaps - code' }
+PharoShortcuts >> removeShortcut [
 
 	^ $x meta
 ]
 
-{
-	#category : #'keymaps - debugger',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>restartExecutionShortcut [
+{ #category : #'keymaps - debugger' }
+PharoShortcuts >> restartExecutionShortcut [
 
 	^ $a meta shift
 ]
 
-{
-	#category : #'keymaps - debugger',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>resumeExecutionShortcut [
+{ #category : #'keymaps - debugger' }
+PharoShortcuts >> resumeExecutionShortcut [
 
 	^ $r meta
 ]
 
-{
-	#category : #'keymaps - Tools',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>saveImageShortcut [
+{ #category : #'keymaps - Tools' }
+PharoShortcuts >> saveImageShortcut [
 	^ $s meta shift
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>searchShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> searchShortcut [
 	^ $s meta
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>selectAllShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> selectAllShortcut [
 
 	^ $a meta
 ]
 
-{
-	#category : #'keymaps - editor selection',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>selectBackwardCharShortcut [
+{ #category : #'keymaps - editor selection' }
+PharoShortcuts >> selectBackwardCharShortcut [
 
 	^ Character arrowLeft shift
 ]
 
-{
-	#category : #'keymaps - editor selection',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>selectBackwardLineShortcut [
+{ #category : #'keymaps - editor selection' }
+PharoShortcuts >> selectBackwardLineShortcut [
 
 	^ Character arrowUp shift
 ]
 
-{
-	#category : #'keymaps - editor selection',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>selectBackwardWordShortcut [
+{ #category : #'keymaps - editor selection' }
+PharoShortcuts >> selectBackwardWordShortcut [
 	^ Character arrowLeft meta shift
 ]
 
-{
-	#category : #'keymaps - editor selection',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>selectForwardCharShortcut [
+{ #category : #'keymaps - editor selection' }
+PharoShortcuts >> selectForwardCharShortcut [
 
 	^ Character arrowRight shift
 ]
 
-{
-	#category : #'keymaps - editor selection',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>selectForwardLineShortcut [
+{ #category : #'keymaps - editor selection' }
+PharoShortcuts >> selectForwardLineShortcut [
 
 	^ Character arrowDown shift
 ]
 
-{
-	#category : #'keymaps - editor selection',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>selectForwardWordShortcut [
+{ #category : #'keymaps - editor selection' }
+PharoShortcuts >> selectForwardWordShortcut [
 	^ Character arrowRight shift meta
 ]
 
-{
-	#category : #'keymaps - editor selection',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>selectLineEndShortcut [
+{ #category : #'keymaps - editor selection' }
+PharoShortcuts >> selectLineEndShortcut [
 	^ Character end shift
 ]
 
-{
-	#category : #'keymaps - editor selection',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>selectLineStartShortcut [
+{ #category : #'keymaps - editor selection' }
+PharoShortcuts >> selectLineStartShortcut [
 	^ Character home shift
 ]
 
-{
-	#category : #'keymaps - editor selection',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>selectPageDownShortcut [
+{ #category : #'keymaps - editor selection' }
+PharoShortcuts >> selectPageDownShortcut [
 
 	^ Character pageDown shift
 ]
 
-{
-	#category : #'keymaps - editor selection',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>selectPageUpShortcut [
+{ #category : #'keymaps - editor selection' }
+PharoShortcuts >> selectPageUpShortcut [
 
 	^ Character pageUp shift
 ]
 
-{
-	#category : #'keymaps - editor selection',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>selectTextEndShortcut [
+{ #category : #'keymaps - editor selection' }
+PharoShortcuts >> selectTextEndShortcut [
 
 	^ Character end shift meta
 	 
 ]
 
-{
-	#category : #'keymaps - editor selection',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>selectTextStartShortcut [
+{ #category : #'keymaps - editor selection' }
+PharoShortcuts >> selectTextStartShortcut [
 	^ Character home shift meta
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>selectUndoShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> selectUndoShortcut [
 
 	^ $m meta shift
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>selectWordShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> selectWordShortcut [
 
 	^ Character space meta
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>setSearchStringShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> setSearchStringShortcut [
 	^ $h meta
 ]
 
-{
-	#category : #'keymaps - debugger',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>stepIntoShortcut [
+{ #category : #'keymaps - debugger' }
+PharoShortcuts >> stepIntoShortcut [
 
 	^ $e meta 
 ]
 
-{
-	#category : #'keymaps - debugger',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>stepOverShortcut [
+{ #category : #'keymaps - debugger' }
+PharoShortcuts >> stepOverShortcut [
 
 	^ $o meta shift
 ]
 
-{
-	#category : #'keymaps - debugger',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>stepThroughShortcut [
+{ #category : #'keymaps - debugger' }
+PharoShortcuts >> stepThroughShortcut [
 
 	^ $t meta shift
 ]
 
-{
-	#category : #'keymaps - editor style',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>strokethroughShortcut [
+{ #category : #'keymaps - editor style' }
+PharoShortcuts >> strokethroughShortcut [
 
 	^ $= meta
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>swapCharsShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> swapCharsShortcut [
 
 	^ $y meta
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>textEndShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> textEndShortcut [
 
 	^ Character end meta
 	 
 ]
 
-{
-	#category : #'keymaps - editor navigation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>textStartShortcut [
+{ #category : #'keymaps - editor navigation' }
+PharoShortcuts >> textStartShortcut [
 
 	^ Character home meta
 
 ]
 
-{
-	#category : #'keymaps - editor style',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>toggleBoldEmphasisShortcut [
+{ #category : #'keymaps - editor style' }
+PharoShortcuts >> toggleBoldEmphasisShortcut [
 
 	^ $7 meta
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>toggleCommentOnSelectionOrLine [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> toggleCommentOnSelectionOrLine [
 
 	^ $/ meta
 ]
 
-{
-	#category : #'keymaps - editor style',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>toggleItalicEmphasisShortcut [
+{ #category : #'keymaps - editor style' }
+PharoShortcuts >> toggleItalicEmphasisShortcut [
 
 	^ $8 meta
 ]
 
-{
-	#category : #'keymaps - editor style',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>underlineShortcut [
+{ #category : #'keymaps - editor style' }
+PharoShortcuts >> underlineShortcut [
 
 	^ $_ meta
 ]
 
-{
-	#category : #'keymaps - editor edit',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PharoShortcuts>>undoShortcut [
+{ #category : #'keymaps - editor edit' }
+PharoShortcuts >> undoShortcut [
 
 	^ $z meta
 ]

@@ -15,26 +15,19 @@ WidgetExamples exampleWindowWithToolbars.
 Class {
 	#name : #WidgetExamples,
 	#superclass : #Model,
-	#category : #Morphic-Examples-Widgets,
-	#timestamp : 'HenrikNergaard 11/15/2015 14:11'
+	#category : #Morphic-Examples-Widgets
 }
 
-{
-	#category : #'examples - cleanup',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-WidgetExamples class>>closeExampleDialogs [
+{ #category : #'examples - cleanup' }
+WidgetExamples class >> closeExampleDialogs [
 	"Close the example dialogs."
 	"self closeExampleDialogs"
 	<script>
 	DialogWindow allSubInstances do: [:d | d cancel]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-WidgetExamples class>>exampleBasicControls [
+{ #category : #examples }
+WidgetExamples class >> exampleBasicControls [
 	"Open a window with examples of each of the basic controls."
 	"self exampleBasicControls"
 	
@@ -118,11 +111,8 @@ WidgetExamples class>>exampleBasicControls [
 	builder openModal: dialog
 ]
 
-{
-	#category : #'private - accessing',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-WidgetExamples class>>exampleBuilder [
+{ #category : #'private - accessing' }
+WidgetExamples class >> exampleBuilder [
 	"Answer a morph that implements TEasilyThemed but without honouring modality
 	for the example dialogs."
 	"self exampleBuilder"
@@ -130,11 +120,8 @@ WidgetExamples class>>exampleBuilder [
 	^ExampleBuilderMorph new
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-WidgetExamples class>>exampleColorControls [
+{ #category : #examples }
+WidgetExamples class >> exampleColorControls [
 	"Open a window with examples of each of the color controls."
 	"self exampleColorControls"
 
@@ -160,11 +147,8 @@ WidgetExamples class>>exampleColorControls [
 	builder openModal: dialog
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-WidgetExamples class>>exampleDialogs [
+{ #category : #examples }
+WidgetExamples class >> exampleDialogs [
 	"Open an example of each services dialog"
 	"self exampleDialogs"
 
@@ -184,11 +168,8 @@ WidgetExamples class>>exampleDialogs [
 		questionWithoutCancel: 'Save image as well?' title: 'Exiting application'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-WidgetExamples class>>exampleGroups [
+{ #category : #examples }
+WidgetExamples class >> exampleGroups [
 	"Open a window with examples of each of the group type morphs."
 
 	"self exampleGroups"
@@ -269,11 +250,8 @@ WidgetExamples class>>exampleGroups [
 	builder openModal: dialog
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-WidgetExamples class>>exampleOtherControls [
+{ #category : #examples }
+WidgetExamples class >> exampleOtherControls [
 	"Open a window with examples of each of the other controls."
 	"self exampleOtherControls"
 	
@@ -341,11 +319,8 @@ WidgetExamples class>>exampleOtherControls [
 	builder openModal: dialog
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-WidgetExamples class>>exampleTextEntryWithCompletionDialog [
+{ #category : #examples }
+WidgetExamples class >> exampleTextEntryWithCompletionDialog [
 	"self exampleTextEntryWithCompletionDialog"
 	| applicants entryCompletion |
 	applicants := (Array
@@ -365,11 +340,8 @@ WidgetExamples class>>exampleTextEntryWithCompletionDialog [
 		entryCompletion: entryCompletion
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-WidgetExamples class>>exampleWindowWithToolbars [
+{ #category : #examples }
+WidgetExamples class >> exampleWindowWithToolbars [
 	"Open an example window with toolbars."
 
 	"self exampleWindowWithToolbars"

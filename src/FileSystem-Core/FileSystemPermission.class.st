@@ -7,186 +7,119 @@ Class {
 	#instVars : [
 		'posixPermission'
 	],
-	#category : #FileSystem-Core-Public,
-	#timestamp : '<historical>'
+	#category : #FileSystem-Core-Public
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission class>>default [
+{ #category : #'instance creation' }
+FileSystemPermission class >> default [
 	^ self posixPermissions: 8r777
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission class>>new  [
+{ #category : #'instance creation' }
+FileSystemPermission class >> new [ 
 	self error: 'Should not be called. Use #posixPermission: instead'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission class>>posixPermissions: aNumber [
+{ #category : #'instance creation' }
+FileSystemPermission class >> posixPermissions: aNumber [
 	^self basicNew 
 		initialize: aNumber;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>< other [
+{ #category : #comparing }
+FileSystemPermission >> < other [
 	^ posixPermission < other posixPermission
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>><= other [
+{ #category : #comparing }
+FileSystemPermission >> <= other [
 	^ (posixPermission > other posixPermission) not
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>> other [
+{ #category : #comparing }
+FileSystemPermission >> > other [
 	^ other posixPermission < posixPermission
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>>= other [
+{ #category : #comparing }
+FileSystemPermission >> >= other [
 	^ other posixPermission <= posixPermission
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>groupExecute [
+{ #category : #accessing }
+FileSystemPermission >> groupExecute [
 	^ self permissionBitAt: 4
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>groupRead [
+{ #category : #accessing }
+FileSystemPermission >> groupRead [
 	^ self permissionBitAt: 6
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>groupWrite [
+{ #category : #accessing }
+FileSystemPermission >> groupWrite [
 	^ self permissionBitAt: 5
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>initialize: aNumber [
+{ #category : #initialization }
+FileSystemPermission >> initialize: aNumber [
 	posixPermission := aNumber.
 	self initialize.	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>isReadable [
+{ #category : #testing }
+FileSystemPermission >> isReadable [
 	^ self ownerRead
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>isWritable [
+{ #category : #testing }
+FileSystemPermission >> isWritable [
 	^ self ownerWrite
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>otherExecute [
+{ #category : #accessing }
+FileSystemPermission >> otherExecute [
 	^ self permissionBitAt: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>otherRead [
+{ #category : #accessing }
+FileSystemPermission >> otherRead [
 	^ self permissionBitAt: 3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>otherWrite [
+{ #category : #accessing }
+FileSystemPermission >> otherWrite [
 	^ self permissionBitAt: 2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>ownerExecute [
+{ #category : #accessing }
+FileSystemPermission >> ownerExecute [
 	^ self permissionBitAt: 7
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>ownerRead [
+{ #category : #accessing }
+FileSystemPermission >> ownerRead [
 	^ self permissionBitAt: 9
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>ownerWrite [
+{ #category : #accessing }
+FileSystemPermission >> ownerWrite [
 	^ self permissionBitAt: 8
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>permissionBitAt: bitIndex [
+{ #category : #accessing }
+FileSystemPermission >> permissionBitAt: bitIndex [
 	^ (posixPermission bitAt: bitIndex) == 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>posixPermission [
+{ #category : #private }
+FileSystemPermission >> posixPermission [
 	^ posixPermission
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemPermission>>printOn: aStream [
+{ #category : #printing }
+FileSystemPermission >> printOn: aStream [
 	aStream 
 		"Owner"
 		nextPut: (self ownerRead ifTrue: [ $r ] ifFalse: [ $- ]);

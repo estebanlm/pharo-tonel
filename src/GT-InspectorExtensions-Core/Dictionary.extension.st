@@ -1,12 +1,7 @@
-Extension {
-	#name : #Dictionary
-}
+Extension { #name : #Dictionary }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Dictionary>>gtInspectorItemsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Dictionary >> gtInspectorItemsIn: composite [
 	^ (composite fastTable)
 		title: 'Items';
 		display: [ self associations ];
@@ -39,11 +34,8 @@ Dictionary>>gtInspectorItemsIn: composite [
 		helpMessage: 'Quick selection field. Given your INPUT, it executes: self select: [:each | INPUT ]'"
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Dictionary>>gtInspectorKeysIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Dictionary >> gtInspectorKeysIn: composite [
 	<gtInspectorPresentationOrder: 1>
 
 	^ composite fastList

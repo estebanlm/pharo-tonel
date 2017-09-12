@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'store'
 	],
-	#category : #Ombu-Persistence,
-	#timestamp : 'MartinDias 12/12/2014 16:10'
+	#category : #Ombu-Persistence
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntryWriter class>>newForStore: aFileStore [
+{ #category : #'instance creation' }
+OmEntryWriter class >> newForStore: aFileStore [
 	
 	^ self basicNew
 		initializeWithStore: aFileStore;
@@ -23,30 +19,21 @@ OmEntryWriter class>>newForStore: aFileStore [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntryWriter>>initializeWithStore: aFileStore [
+{ #category : #initialization }
+OmEntryWriter >> initializeWithStore: aFileStore [
 
 	self initialize.
 	store := aFileStore.
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntryWriter>>on: aStream nextEntryPut: anEntry  [
+{ #category : #writing }
+OmEntryWriter >> on: aStream nextEntryPut: anEntry [ 
 	"Write the entry on the stream."
 	
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntryWriter>>store [
+{ #category : #accessing }
+OmEntryWriter >> store [
 	^ store
 ]

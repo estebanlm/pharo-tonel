@@ -14,15 +14,11 @@ Class {
 		'direction',
 		'normal'
 	],
-	#category : #Balloon-Fills,
-	#timestamp : '<historical>'
+	#category : #Balloon-Fills
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-OrientedFillStyle>>= anOrientedFillStyle [
+{ #category : #comparing }
+OrientedFillStyle >> = anOrientedFillStyle [
 	"Answer whether equal."
 
 	^self species = anOrientedFillStyle species
@@ -31,27 +27,18 @@ OrientedFillStyle>>= anOrientedFillStyle [
 		and: [self normal = anOrientedFillStyle normal]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-OrientedFillStyle>>direction [
+{ #category : #accessing }
+OrientedFillStyle >> direction [
 	^direction ifNil:[direction := normal y @ normal x negated]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-OrientedFillStyle>>direction: aPoint [
+{ #category : #accessing }
+OrientedFillStyle >> direction: aPoint [
 	direction := aPoint
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-OrientedFillStyle>>hash [
+{ #category : #comparing }
+OrientedFillStyle >> hash [
 	"Hash is implemented because #= is implemented."
 	
 	^self species hash
@@ -60,43 +47,28 @@ OrientedFillStyle>>hash [
 		bitXor: (self normal hash)))
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-OrientedFillStyle>>isOrientedFill [
+{ #category : #testing }
+OrientedFillStyle >> isOrientedFill [
 	"Return true if the receiver keeps an orientation (e.g., origin, direction, and normal)"
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-OrientedFillStyle>>normal [
+{ #category : #accessing }
+OrientedFillStyle >> normal [
 	^normal ifNil:[normal := direction y negated @ direction x]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-OrientedFillStyle>>normal: aPoint [
+{ #category : #accessing }
+OrientedFillStyle >> normal: aPoint [
 	normal := aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-OrientedFillStyle>>origin [
+{ #category : #accessing }
+OrientedFillStyle >> origin [
 	^origin
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-OrientedFillStyle>>origin: aPoint [
+{ #category : #accessing }
+OrientedFillStyle >> origin: aPoint [
 	origin := aPoint.
 ]

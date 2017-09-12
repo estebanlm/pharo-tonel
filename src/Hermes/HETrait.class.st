@@ -1,56 +1,37 @@
-"
-
-"
 Class {
 	#name : #HETrait,
 	#superclass : #HEMethodContainer,
 	#instVars : [
 		'traitName'
 	],
-	#category : #Hermes-Model,
-	#timestamp : ''
+	#category : #Hermes-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HETrait class>>for: aTrait [
+{ #category : #'instance creation' }
+HETrait class >> for: aTrait [
 	^ self new
 		fromTrait: aTrait;
 		yourself
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HETrait>>doReadHeaderFrom: aReader [
+{ #category : #reading }
+HETrait >> doReadHeaderFrom: aReader [
 	traitName := aReader readByteSymbol.
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HETrait>>doWriteHeaderInto: aWriter [
+{ #category : #writing }
+HETrait >> doWriteHeaderInto: aWriter [
 	aWriter writeByteString: traitName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HETrait>>fromTrait: aTrait [
+{ #category : #accessing }
+HETrait >> fromTrait: aTrait [
 	traitName := aTrait name.
 
 	self doFromMethodContainer: aTrait
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HETrait>>traitName [
+{ #category : #accessing }
+HETrait >> traitName [
 	^ traitName
 ]

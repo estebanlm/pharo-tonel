@@ -13,25 +13,18 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #Renraku-Announcements,
-	#timestamp : 'YuriyTymchuk 11/20/2015 16:43'
+	#category : #Renraku-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSystemAnnouncer class>>uniqueInstance [
+{ #category : #'instance creation' }
+ReSystemAnnouncer class >> uniqueInstance [
 	"I'm a singleton…"
 	
 	^ uniqueInstance ifNil: [ uniqueInstance := self new ]
 ]
 
-{
-	#category : #announce,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSystemAnnouncer>>notifyCritique: aCritique descriptionViewedFor: anEntity [
+{ #category : #announce }
+ReSystemAnnouncer >> notifyCritique: aCritique descriptionViewedFor: anEntity [
 
 	self announce: (
 		ReCritiqueDescriptionViewed new 
@@ -41,11 +34,8 @@ ReSystemAnnouncer>>notifyCritique: aCritique descriptionViewedFor: anEntity [
   
 ]
 
-{
-	#category : #announce,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSystemAnnouncer>>notifyCritique: aCritique of: anEntity bannedOn: anEntityBanLevel [
+{ #category : #announce }
+ReSystemAnnouncer >> notifyCritique: aCritique of: anEntity bannedOn: anEntityBanLevel [
 
 	self announce: (
 		ReCritiqueBanned new
@@ -56,11 +46,8 @@ ReSystemAnnouncer>>notifyCritique: aCritique of: anEntity bannedOn: anEntityBanL
 
 ]
 
-{
-	#category : #announce,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSystemAnnouncer>>notifyEntity: anEntity criticizedWith: critiques [
+{ #category : #announce }
+ReSystemAnnouncer >> notifyEntity: anEntity criticizedWith: critiques [
 
 	self announce: (
 		ReEntityCriticized new 

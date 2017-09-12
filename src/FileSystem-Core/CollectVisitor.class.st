@@ -6,70 +6,45 @@ I can use any guide, and the objects in the array I produce will reflect the ord
 Class {
 	#name : #CollectVisitor,
 	#superclass : #AbstractEnumerationVisitor,
-	#category : #FileSystem-Core-Implementation,
-	#timestamp : 'cwp 11/18/2009 12:32'
+	#category : #FileSystem-Core-Implementation
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-CollectVisitor class>>breadthFirst: aReference [
+{ #category : #'instance creation' }
+CollectVisitor class >> breadthFirst: aReference [
 	^ self breadthFirst: aReference collect: [:entry | entry]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-CollectVisitor class>>breadthFirst: aReference collect: aBlock [
+{ #category : #'instance creation' }
+CollectVisitor class >> breadthFirst: aReference collect: aBlock [
 	^ (self collect: aBlock) breadthFirst: aReference
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-CollectVisitor class>>collect: aBlock [
+{ #category : #'instance creation' }
+CollectVisitor class >> collect: aBlock [
 	^ self basicNew initializeWithBlock: aBlock
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-CollectVisitor class>>postorder: aReference [
+{ #category : #'instance creation' }
+CollectVisitor class >> postorder: aReference [
 	^ self postorder: aReference collect: [:entry | entry]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-CollectVisitor class>>postorder: aReference collect: aBlock [
+{ #category : #'instance creation' }
+CollectVisitor class >> postorder: aReference collect: aBlock [
 	^ (self collect: aBlock) postorder: aReference
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-CollectVisitor class>>preorder: aReference [
+{ #category : #'instance creation' }
+CollectVisitor class >> preorder: aReference [
 	^ self preorder: aReference collect: [:entry | entry]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-CollectVisitor class>>preorder: aReference collect: aBlock [
+{ #category : #'instance creation' }
+CollectVisitor class >> preorder: aReference collect: aBlock [
 	^ (self collect: aBlock) preorder: aReference
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-CollectVisitor>>visitReference: anEntry [
+{ #category : #visiting }
+CollectVisitor >> visitReference: anEntry [
 	out nextPut: (block value: anEntry)
 ]

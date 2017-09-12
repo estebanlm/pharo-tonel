@@ -17,47 +17,31 @@ Class {
 	#classInstVars : [
 		'commentCache'
 	],
-	#category : #Versionner-Commit-UI,
-	#timestamp : '<historical>'
+	#category : #Versionner-Commit-UI
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser class>>cleanUp  [
+{ #category : #cleanup }
+VSCommitBrowser class >> cleanUp [ 
 	commentCache := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser class>>commentCache [
+{ #category : #accessing }
+VSCommitBrowser class >> commentCache [
 	^ commentCache ifNil: [ commentCache := HistoryCollection new maxSize: self maxCommentCache ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser class>>maxCommentCache [
+{ #category : #accessing }
+VSCommitBrowser class >> maxCommentCache [
 	^ 10
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser class>>openOn: aCommitUnit [
+{ #category : #'instance creation' }
+VSCommitBrowser class >> openOn: aCommitUnit [
 	^ self new openOn: aCommitUnit
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>action: action nextVersion: value [
+{ #category : #actions }
+VSCommitBrowser >> action: action nextVersion: value [
 	self 
 		assert: action isProject 
 		description: 'Not a project!'. 
@@ -68,19 +52,13 @@ VSCommitBrowser>>action: action nextVersion: value [
 	action nextVersion: value
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>actionBrowse: anAction [
+{ #category : #actions }
+VSCommitBrowser >> actionBrowse: anAction [
 	anAction browseOn: self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>actionRemove: anAction [
+{ #category : #actions }
+VSCommitBrowser >> actionRemove: anAction [
 	(UIManager default confirm: ('Exclude {1} from this release/commit?' format: { anAction displayString })) ifFalse: [ ^ self ].
 	
 	anAction removeOn: self unit.
@@ -88,30 +66,21 @@ VSCommitBrowser>>actionRemove: anAction [
 	 recalculation of commit unit"
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>browsePackage: aPackage [
+{ #category : #actions }
+VSCommitBrowser >> browsePackage: aPackage [
 	| package |
 	package := RPackageOrganizer default packageNamed: aPackage packageName.
 	Smalltalk tools browser openOnPackage: package
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>browseProject: aProject [
+{ #category : #actions }
+VSCommitBrowser >> browseProject: aProject [
 	Smalltalk tools browser openOnClass: aProject configurationClass
 	
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>buildBrowser [
+{ #category : #building }
+VSCommitBrowser >> buildBrowser [
 	| browser |
 	browser := GLMTabulator new
 		title: [ self title ];
@@ -174,11 +143,8 @@ VSCommitBrowser>>buildBrowser [
 	^ browser
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>buildCommentOn: a [
+{ #category : #building }
+VSCommitBrowser >> buildCommentOn: a [
 	a text
 		title: 'Comment';
 		onChangeOfPort: #text act: [ :presenter | self comment: presenter text ];	
@@ -190,22 +156,16 @@ VSCommitBrowser>>buildCommentOn: a [
 				ifFalse: [  self unit comment ifNil: [ '' ] ] ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>comment: comment [
+{ #category : #actions }
+VSCommitBrowser >> comment: comment [
 	| commentString |
 	commentString := comment asString trimBoth.
 	commentString ifEmpty: [ ^ self ].
 	self unit comment: commentString
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>commit [
+{ #category : #actions }
+VSCommitBrowser >> commit [
 	[  
 		UIManager default 
 			informUser: 'Executing ', self title 
@@ -221,27 +181,18 @@ VSCommitBrowser>>commit [
 	self refresh
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>commitVersionKind [
+{ #category : #accessing }
+VSCommitBrowser >> commitVersionKind [
 	^ self unit commitVersion label asUppercase
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>configurationName [
+{ #category : #accessing }
+VSCommitBrowser >> configurationName [
 	^ self unit configurationClass name
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>configure [
+{ #category : #actions }
+VSCommitBrowser >> configure [
 	| strategy options result |
 
 	strategy := self unit commitStrategy copy. 
@@ -260,11 +211,8 @@ VSCommitBrowser>>configure [
 	self unit commitStrategy: strategy
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>informValidationError: anError [
+{ #category : #private }
+VSCommitBrowser >> informValidationError: anError [
 	UIManager default inform: (String streamContents: [ :stream |
 		stream 
 			<< anError project name << ' has errors:'; cr. 
@@ -273,43 +221,28 @@ VSCommitBrowser>>informValidationError: anError [
 			separatedBy: [ stream cr ] ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>oldComments [
+{ #category : #accessing }
+VSCommitBrowser >> oldComments [
 	^ self class commentCache elements
 ]
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>openOn: anObject [
+{ #category : #showing }
+VSCommitBrowser >> openOn: anObject [
 	unit := anObject.
 	window := self buildBrowser openOn: anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>refresh [
+{ #category : #actions }
+VSCommitBrowser >> refresh [
 	self unit refresh
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>title [
+{ #category : #accessing }
+VSCommitBrowser >> title [
 	^ '{1} commit for {2}' format: { self commitVersionKind. self configurationName }
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitBrowser>>unit [
+{ #category : #accessing }
+VSCommitBrowser >> unit [
 	^ unit
 ]

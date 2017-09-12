@@ -10,42 +10,29 @@ Class {
 		'selector',
 		'arguments'
 	],
-	#category : #Glamour-FastTable-Model,
-	#timestamp : '<historical>'
+	#category : #Glamour-FastTable-Model
 }
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTableColumn>>execute  [
+{ #category : #execute }
+GLMFastTableColumn >> execute [ 
 	target ifNil: [ ^ self ].
 	selector ifNil: [ ^ self ].
 	
 	target perform: selector withArguments: arguments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTableColumn>>glamourColumn [
+{ #category : #accessing }
+GLMFastTableColumn >> glamourColumn [
 	^ glamourColumn
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTableColumn>>glamourColumn: anObject [
+{ #category : #accessing }
+GLMFastTableColumn >> glamourColumn: anObject [
 	glamourColumn := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTableColumn>>target: aTarget actionSelector: aSelector arguments: aCollection  [
+{ #category : #accessing }
+GLMFastTableColumn >> target: aTarget actionSelector: aSelector arguments: aCollection [ 
 	target := aTarget. 
 	selector := aSelector.
 	arguments := aCollection

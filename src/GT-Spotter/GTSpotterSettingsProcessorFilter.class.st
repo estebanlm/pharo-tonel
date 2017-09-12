@@ -4,25 +4,18 @@ I implement a filtering strategy for processors that takes into account the GTSp
 Class {
 	#name : #GTSpotterSettingsProcessorFilter,
 	#superclass : #GTSpotterProcessorFilter,
-	#category : #GT-Spotter-Model,
-	#timestamp : 'TudorGirba 1/21/2016 23:01'
+	#category : #GT-Spotter-Model
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterSettingsProcessorFilter>>configurationBlockForProcessorsCreatedBy: aMethod [
+{ #category : #testing }
+GTSpotterSettingsProcessorFilter >> configurationBlockForProcessorsCreatedBy: aMethod [
 	"No need to configure anything."
 	
 	^ [ :processor | ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterSettingsProcessorFilter>>shouldEnableProcessorsCreateBy: aMethod [
+{ #category : #testing }
+GTSpotterSettingsProcessorFilter >> shouldEnableProcessorsCreateBy: aMethod [
 	"Enable everything."
 	
 	^ (GTSpotterExtensionSettings shouldSpotterIgnoreProcessorDefinedInMethod: aMethod) not

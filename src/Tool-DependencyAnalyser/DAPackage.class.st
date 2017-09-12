@@ -24,145 +24,93 @@ Class {
 		'seen',
 		'rPackageSet'
 	],
-	#category : #Tool-DependencyAnalyser-Core,
-	#timestamp : 'BaptisteQuide 8/1/2014 14:25'
+	#category : #Tool-DependencyAnalyser-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage class>>new [
+{ #category : #'instance creation' }
+DAPackage class >> new [
 	self shouldNotImplement
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage class>>on: aRPackageSet [
+{ #category : #'instance creation' }
+DAPackage class >> on: aRPackageSet [
 	^ self basicNew initializeWithPackage: aRPackageSet; yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage class>>onPackageNamed: aString [
+{ #category : #'instance creation' }
+DAPackage class >> onPackageNamed: aString [
 	^ self on: (RPackageSet named: aString)
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>><= aPackage [
+{ #category : #comparing }
+DAPackage >> <= aPackage [
 	^ (self packageName asString) <= (aPackage packageName asString)
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>= aPackage [
+{ #category : #comparing }
+DAPackage >> = aPackage [
 	(aPackage isKindOf: self class)
 		ifFalse: [ ^ false ].
 	^ self packageName = aPackage packageName
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>add: aDependency [
+{ #category : #adding }
+DAPackage >> add: aDependency [
 	^ dependencies add: aDependency
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>asDependentPackageWrapperOn: relationGraph [
+{ #category : #converting }
+DAPackage >> asDependentPackageWrapperOn: relationGraph [
 	^ DADependentPackageWrapper newWith: self on: relationGraph
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>asPackageDependencyWrapper [
+{ #category : #converting }
+DAPackage >> asPackageDependencyWrapper [
 	^ DAPackageDependencyWrapper newWith: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>beIncluded [
+{ #category : #accessing }
+DAPackage >> beIncluded [
 	included := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>beSeen [
+{ #category : #accessing }
+DAPackage >> beSeen [
 	seen := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>bfsParent [
+{ #category : #accessing }
+DAPackage >> bfsParent [
 	^ bfsParent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>bfsParent: aBfsParent [
+{ #category : #accessing }
+DAPackage >> bfsParent: aBfsParent [
 	bfsParent := aBfsParent
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>clearDependencies [
+{ #category : #initialization }
+DAPackage >> clearDependencies [
 	dependencies := OrderedCollection new
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>compositeDependencyTo: aPackage [
+{ #category : #dependencies }
+DAPackage >> compositeDependencyTo: aPackage [
 	^ self dependencies detect: [ :dependency | dependency target = aPackage ] ifNone: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>dependencies [
+{ #category : #accessing }
+DAPackage >> dependencies [
 	^ dependencies
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>dependencies: anObject [
+{ #category : #accessing }
+DAPackage >> dependencies: anObject [
 	dependencies := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>dependenciesFrom: aClass [
+{ #category : #accessing }
+DAPackage >> dependenciesFrom: aClass [
 	| dependenciesFrom |
 	dependenciesFrom := OrderedCollection new.
 	self dependencies
@@ -171,11 +119,8 @@ DAPackage>>dependenciesFrom: aClass [
 	^ dependenciesFrom
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>dependenciesSize [
+{ #category : #accessing }
+DAPackage >> dependenciesSize [
 
 	^ self dependencies 
 			inject: 0
@@ -184,47 +129,32 @@ DAPackage>>dependenciesSize [
 				]
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>dependenciesSizeTo: aPackage [
+{ #category : #dependencies }
+DAPackage >> dependenciesSizeTo: aPackage [
 	| dependency |
 	dependency := dependencies detect: [ :each | each target packageName = aPackage packageName ].
 	^ dependency ifNotNil: [ dependency numberOfDependencies ] ifNil: [ 0 ]
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>dependenciesTo: aPackage [
+{ #category : #dependencies }
+DAPackage >> dependenciesTo: aPackage [
 	^ dependencies select: [ :each | each target packageName = aPackage ].
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>dependentPackages [
+{ #category : #dependencies }
+DAPackage >> dependentPackages [
 	^ self dependencies 
 			inject: Set new 
 			into: [ :dependents :each | dependents add: each target; yourself ].
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>dependentPackagesSize [
+{ #category : #dependencies }
+DAPackage >> dependentPackagesSize [
 	^ dependencies size
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>displayString [
+{ #category : #printing }
+DAPackage >> displayString [
 	| numberOfExtension |
 	numberOfExtension := self extensionDependenciesSize.
 	^ String streamContents: [ :stream | 
@@ -239,53 +169,35 @@ DAPackage>>displayString [
 			nextPutAll: ' extension dependencies)' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>extensionDependenciesSize [
+{ #category : #accessing }
+DAPackage >> extensionDependenciesSize [
 	^ self dependencies
 		inject: 0
 		into: [ :sum :each | sum + each extensionDependenciesSize ]
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>extensionDependenciesSizeTo: aPackage [
+{ #category : #dependencies }
+DAPackage >> extensionDependenciesSizeTo: aPackage [
 	^ (self compositeDependencyTo: aPackage) extensionDependenciesSize 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>hash [
+{ #category : #comparing }
+DAPackage >> hash [
 	^ self packageName hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>inStack: aBoolean [
+{ #category : #accessing }
+DAPackage >> inStack: aBoolean [
 	inStack := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>included: anObject [
+{ #category : #accessing }
+DAPackage >> included: anObject [
 	included := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>initializeWithPackage: aRPackageSet [
+{ #category : #initialization }
+DAPackage >> initializeWithPackage: aRPackageSet [
 	self initialize.
 	self clearDependencies.
 	rPackageSet := aRPackageSet.
@@ -297,134 +209,86 @@ DAPackage>>initializeWithPackage: aRPackageSet [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>isInStack [
+{ #category : #testing }
+DAPackage >> isInStack [
 	^ inStack
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>isIncluded [
+{ #category : #testing }
+DAPackage >> isIncluded [
 	^ included
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>isSeen [
+{ #category : #testing }
+DAPackage >> isSeen [
 
 	^ seen
 ]
 
-{
-	#category : #tarjan,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>isTarjanUndefined [
+{ #category : #tarjan }
+DAPackage >> isTarjanUndefined [
 	^ tarjanIndex = -1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>packageName [
+{ #category : #accessing }
+DAPackage >> packageName [
 	^ self rPackageSet packageName
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>printOn: aStream [
+{ #category : #printing }
+DAPackage >> printOn: aStream [
 	aStream
 		nextPutAll: 'Dependencies on: ';
 		nextPutAll: self packageName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>rPackage [
+{ #category : #accessing }
+DAPackage >> rPackage [
 	^ self rPackageSet packages first
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>rPackageSet [
+{ #category : #accessing }
+DAPackage >> rPackageSet [
 	^ rPackageSet
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>rPackageSet: anObject [
+{ #category : #accessing }
+DAPackage >> rPackageSet: anObject [
 	rPackageSet := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>referenceDependenciesFrom: aClass [
+{ #category : #accessing }
+DAPackage >> referenceDependenciesFrom: aClass [
 
 	^ (self dependenciesFrom: aClass) select: [ :each | each isReferenceDependency ]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>remove: aDependency [
+{ #category : #removing }
+DAPackage >> remove: aDependency [
 	^ dependencies remove: aDependency
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>removeAllInternal [
+{ #category : #dependencies }
+DAPackage >> removeAllInternal [
 	dependencies := dependencies reject: [ :each | each isInternal ]
 ]
 
-{
-	#category : #tarjan,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>tarjanIndex [
+{ #category : #tarjan }
+DAPackage >> tarjanIndex [
 	^ tarjanIndex 
 ]
 
-{
-	#category : #tarjan,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>tarjanIndex: aTarjanIndex [
+{ #category : #tarjan }
+DAPackage >> tarjanIndex: aTarjanIndex [
 	tarjanIndex := aTarjanIndex
 ]
 
-{
-	#category : #tarjan,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>tarjanLowLink [
+{ #category : #tarjan }
+DAPackage >> tarjanLowLink [
 	^ tarjanLowLink
 ]
 
-{
-	#category : #tarjan,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackage>>tarjanLowLink: aTarjanLowLink [
+{ #category : #tarjan }
+DAPackage >> tarjanLowLink: aTarjanLowLink [
 	tarjanLowLink := aTarjanLowLink.
 ]

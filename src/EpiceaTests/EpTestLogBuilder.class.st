@@ -8,52 +8,36 @@ Class {
 		'log',
 		'directory'
 	],
-	#category : #EpiceaTests-Resources,
-	#timestamp : '<historical>'
+	#category : #EpiceaTests-Resources
 }
 
-{
-	#category : #releasing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>cleanUp [
+{ #category : #releasing }
+EpTestLogBuilder >> cleanUp [
 
 	self directory ensureDeleteAll
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>directory [
+{ #category : #accessing }
+EpTestLogBuilder >> directory [
 
 	^ directory ifNil: [ directory := self newDirectory ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>log [
+{ #category : #accessing }
+EpTestLogBuilder >> log [
 
 	^ log ifNil: [ log := self newLog ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>logChildren: anInteger  [
+{ #category : #building }
+EpTestLogBuilder >> logChildren: anInteger [ 
 	self
 		logChildren: anInteger 
 		triggerReference: self logHeadReference
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>logChildren: anInteger triggerReference: triggerReference [
+{ #category : #building }
+EpTestLogBuilder >> logChildren: anInteger triggerReference: triggerReference [
 
 	1 to: anInteger do: [ :index |
 		self 
@@ -61,22 +45,16 @@ EpTestLogBuilder>>logChildren: anInteger triggerReference: triggerReference [
 			triggerReference: triggerReference ].
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>logEvent: anEvent [
+{ #category : #building }
+EpTestLogBuilder >> logEvent: anEvent [
 
 	^ self 
 		logEvent: anEvent 
 		triggerReference: self log nullReference
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>logEvent: anEvent triggerReference: triggerReference [
+{ #category : #building }
+EpTestLogBuilder >> logEvent: anEvent triggerReference: triggerReference [
 	self log 
 		addEntryWith: anEvent 
 		tags: [ :tags |
@@ -90,76 +68,52 @@ EpTestLogBuilder>>logEvent: anEvent triggerReference: triggerReference [
 	self log store flush.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>logHeadReference [
+{ #category : #accessing }
+EpTestLogBuilder >> logHeadReference [
 	^ self log headReference
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>logInitial [
+{ #category : #building }
+EpTestLogBuilder >> logInitial [
 	self
 		logEvent: (EpExpressionEvaluation expression: '0')
 		triggerReference: self log nullReference
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>newDirectory [
+{ #category : #initialization }
+EpTestLogBuilder >> newDirectory [
 
 	^ ('epicea-tests-', UUID new asString36) asFileReference
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>newLog [
+{ #category : #initialization }
+EpTestLogBuilder >> newLog [
 
 	^ EpLog newWithStore: self newStore
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>newLogWithSessionStore [
+{ #category : #initialization }
+EpTestLogBuilder >> newLogWithSessionStore [
 
 	^ EpLog newWithStore: self newSessionStore
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>newSessionStore [
+{ #category : #initialization }
+EpTestLogBuilder >> newSessionStore [
 
 	^ OmSessionStore newWithBaseLocator: self directory ensureCreateDirectory
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>newStore [
+{ #category : #initialization }
+EpTestLogBuilder >> newStore [
 
 	^ OmFileStore 
 		named: 'tmp', UUID new asString36
 		inDirectory: self directory ensureCreateDirectory
 ]
 
-{
-	#category : #samples,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>oneTriggerWithFourChildrenLog [
+{ #category : #samples }
+EpTestLogBuilder >> oneTriggerWithFourChildrenLog [
 
 	| triggerReference |
 	self logInitial.
@@ -181,11 +135,8 @@ EpTestLogBuilder>>oneTriggerWithFourChildrenLog [
 	^ self log
 ]
 
-{
-	#category : #samples,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>oneTriggerWithOneChildLog [
+{ #category : #samples }
+EpTestLogBuilder >> oneTriggerWithOneChildLog [
 
 	| triggerReference |
 	self logInitial.
@@ -207,11 +158,8 @@ EpTestLogBuilder>>oneTriggerWithOneChildLog [
 	^ self log
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTestLogBuilder>>useLogWithSessionStore [
+{ #category : #initialization }
+EpTestLogBuilder >> useLogWithSessionStore [
 
 	log := self newLogWithSessionStore
 ]

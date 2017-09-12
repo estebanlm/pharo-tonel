@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterSearchFinished,
 	#superclass : #Announcement,
@@ -8,38 +5,25 @@ Class {
 		'processors',
 		'query'
 	],
-	#category : #GT-Spotter-Announcements,
-	#timestamp : ''
+	#category : #GT-Spotter-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterSearchFinished>>processors [
+{ #category : #accessing }
+GTSpotterSearchFinished >> processors [
 	^ processors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterSearchFinished>>processors: anObject [
+{ #category : #accessing }
+GTSpotterSearchFinished >> processors: anObject [
 	processors := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterSearchFinished>>query [
+{ #category : #accessing }
+GTSpotterSearchFinished >> query [
 	^ query
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterSearchFinished>>query: anObject [
+{ #category : #accessing }
+GTSpotterSearchFinished >> query: anObject [
 	query := anObject
 ]

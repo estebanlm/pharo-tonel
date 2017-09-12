@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #StreamBugsTest,
 	#superclass : #TestCase,
-	#category : #Collections-Tests-Streams,
-	#timestamp : ''
+	#category : #Collections-Tests-Streams
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StreamBugsTest>>testReadWriteStreamNextNBug [
+{ #category : #accessing }
+StreamBugsTest >> testReadWriteStreamNextNBug [
 	| aStream |
 	aStream := ReadWriteStream on: String new.
 	aStream nextPutAll: 'Hello World'.

@@ -7,22 +7,15 @@ This class absorb the difference of internal and external representation of the 
 Class {
 	#name : #FilePathEncoder,
 	#superclass : #Object,
-	#category : #Files-Directories,
-	#timestamp : 'yo 10/19/2004 21:36'
+	#category : #Files-Directories
 }
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-FilePathEncoder class>>decode: aString [
+{ #category : #encoding }
+FilePathEncoder class >> decode: aString [
 	^ aString convertFromWithConverter: LanguageEnvironment defaultFileNameConverter.
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-FilePathEncoder class>>encode: pathString [
+{ #category : #encoding }
+FilePathEncoder class >> encode: pathString [
 	^ pathString convertToWithConverter: LanguageEnvironment defaultFileNameConverter.
 ]

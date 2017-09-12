@@ -1,12 +1,7 @@
-Extension {
-	#name : #Metaclass
-}
+Extension { #name : #Metaclass }
 
-{
-	#category : #'*Epicea-Ring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-Metaclass>>asEpiceaRingDefinition [
+{ #category : #'*Epicea-Ring' }
+Metaclass >> asEpiceaRingDefinition [
 
 	| baseClassDefinition |
 	baseClassDefinition  := self theNonMetaClass asEpiceaRingDefinition.

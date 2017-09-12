@@ -5,24 +5,17 @@ the concrete ""instance variable"" renaming.
 Class {
 	#name : #RBRenameInstanceVariableChange,
 	#superclass : #RBRenameVariableChange,
-	#category : #Refactoring-Changes,
-	#timestamp : 'NicolaiHess 9/8/2016 23:50'
+	#category : #Refactoring-Changes
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameInstanceVariableChange>>addNewVariable [
+{ #category : #private }
+RBRenameInstanceVariableChange >> addNewVariable [
 	(RBAddInstanceVariableChange add: newName to: self changeClass)
 		execute
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameInstanceVariableChange>>copyOldValuesToNewVariable [
+{ #category : #private }
+RBRenameInstanceVariableChange >> copyOldValuesToNewVariable [
 	| newIndex oldIndex |
 	oldIndex := self changeClass allInstVarNames indexOf: oldName asString.
 	newIndex := self changeClass allInstVarNames indexOf: newName asString.
@@ -31,11 +24,8 @@ RBRenameInstanceVariableChange>>copyOldValuesToNewVariable [
 			do: [ :each | each instVarAt: newIndex put: (each instVarAt: oldIndex) ] ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameInstanceVariableChange>>printOn: aStream [
+{ #category : #printing }
+RBRenameInstanceVariableChange >> printOn: aStream [
 	aStream
 		nextPutAll: self displayClassName;
 		nextPutAll: ' removeInstVarName: ';
@@ -48,11 +38,8 @@ RBRenameInstanceVariableChange>>printOn: aStream [
 		nextPut: $!
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameInstanceVariableChange>>removeOldVariable [
+{ #category : #private }
+RBRenameInstanceVariableChange >> removeOldVariable [
 	(RBRemoveInstanceVariableChange remove: oldName from: self changeClass) 
 		execute
 ]

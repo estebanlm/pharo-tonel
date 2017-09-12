@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloVersionDiffReport,
 	#superclass : #Object,
@@ -12,81 +9,53 @@ Class {
 		'from',
 		'to'
 	],
-	#category : #Metacello-Core-Model,
-	#timestamp : ''
+	#category : #Metacello-Core-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDiffReport>>additions [
+{ #category : #accessing }
+MetacelloVersionDiffReport >> additions [
 	additions ifNil: [ additions := Dictionary new ].
 	^ additions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDiffReport>>additions: anObject [
+{ #category : #accessing }
+MetacelloVersionDiffReport >> additions: anObject [
 	additions := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDiffReport>>configuration [
+{ #category : #accessing }
+MetacelloVersionDiffReport >> configuration [
 	^ configuration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDiffReport>>configuration: anObject [
+{ #category : #accessing }
+MetacelloVersionDiffReport >> configuration: anObject [
 	configuration := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDiffReport>>from [
+{ #category : #accessing }
+MetacelloVersionDiffReport >> from [
 	^ from
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDiffReport>>from: anObject [
+{ #category : #accessing }
+MetacelloVersionDiffReport >> from: anObject [
 	from := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDiffReport>>modifications [
+{ #category : #accessing }
+MetacelloVersionDiffReport >> modifications [
 	modifications ifNil: [ modifications := Dictionary new ].
 	^ modifications
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDiffReport>>modifications: anObject [
+{ #category : #accessing }
+MetacelloVersionDiffReport >> modifications: anObject [
 	modifications := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDiffReport>>printOn: aStream [
+{ #category : #printing }
+MetacelloVersionDiffReport >> printOn: aStream [
 	| printBlock |
 	printBlock := [ :pkgName :ar | 
 	aStream
@@ -123,35 +92,23 @@ MetacelloVersionDiffReport>>printOn: aStream [
 	self removals keysAndValuesDo: printBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDiffReport>>removals [
+{ #category : #accessing }
+MetacelloVersionDiffReport >> removals [
 	removals ifNil: [ removals := Dictionary new ].
 	^ removals
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDiffReport>>removals: anObject [
+{ #category : #accessing }
+MetacelloVersionDiffReport >> removals: anObject [
 	removals := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDiffReport>>to [
+{ #category : #accessing }
+MetacelloVersionDiffReport >> to [
 	^ to
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDiffReport>>to: anObject [
+{ #category : #accessing }
+MetacelloVersionDiffReport >> to: anObject [
 	to := anObject
 ]

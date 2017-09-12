@@ -1,47 +1,31 @@
-"
-
-"
 Class {
 	#name : #GLMTestPane,
 	#superclass : #GLMPane,
 	#instVars : [
 		'seenTransmissions'
 	],
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTestPane class>>new [
+{ #category : #private }
+GLMTestPane class >> new [
 
 	^super new initialize
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTestPane class>>portClass  [
+{ #category : #private }
+GLMTestPane class >> portClass [ 
 	 
 	^GLMTestPort
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTestPane>>browser [
+{ #category : #accessing }
+GLMTestPane >> browser [
 	browser isNil ifTrue: [ ^ GLMNoBrowser new ].
 	^ browser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTestPane>>browser: aBrowser  [
+{ #category : #accessing }
+GLMTestPane >> browser: aBrowser [ 
 	browser := aBrowser
 ]

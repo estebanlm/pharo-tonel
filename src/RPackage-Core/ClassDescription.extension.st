@@ -1,101 +1,66 @@
-Extension {
-	#name : #ClassDescription
-}
+Extension { #name : #ClassDescription }
 
-{
-	#category : #'*rpackage-core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ClassDescription>>compileSilently: code  [
+{ #category : #'*rpackage-core' }
+ClassDescription >> compileSilently: code [ 
 	"Compile the code and classify the resulting method in the given category, leaving no trail in the system log, nor in any change set, nor in the 'recent submissions' list. This should only be used when you know for sure that the compilation will succeed."
 
 	^ self compileSilently: code classified: 'not defined category' notifying: nil.
 ]
 
-{
-	#category : #'*rpackage-core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ClassDescription>>definedSelectors [
+{ #category : #'*rpackage-core' }
+ClassDescription >> definedSelectors [
 	^ self package definedSelectorsForClass: self
 ]
 
-{
-	#category : #'*rpackage-core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ClassDescription>>extendingPackages [
+{ #category : #'*rpackage-core' }
+ClassDescription >> extendingPackages [
 	"the extending packages of a class are the packages that extend it."
 	^ RPackage organizer extendingPackagesOf: self
 ]
 
-{
-	#category : #'*rpackage-core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ClassDescription>>extensionSelectors [
+{ #category : #'*rpackage-core' }
+ClassDescription >> extensionSelectors [
 	^ self extendingPackages flatCollect: [ :each | each extensionSelectorsForClass: self ]
 ]
 
-{
-	#category : #'*rpackage-core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ClassDescription>>isDefinedInPackage: aPackage [
+{ #category : #'*rpackage-core' }
+ClassDescription >> isDefinedInPackage: aPackage [
 	"returns true if aPackage contains the definitino of this class"
 	
 	^ aPackage includesClass: self.
 ]
 
-{
-	#category : #'*rpackage-core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ClassDescription>>isExtended [
+{ #category : #'*rpackage-core' }
+ClassDescription >> isExtended [
 
 	^ self extendingPackages isEmpty
 ]
 
-{
-	#category : #'*rpackage-core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ClassDescription>>isExtendedInPackage: aPackage [
+{ #category : #'*rpackage-core' }
+ClassDescription >> isExtendedInPackage: aPackage [
 	"returns true if aPackage defines an extension to this class"
 	^ aPackage extendsClass: self.
 ]
 
-{
-	#category : #'*rpackage-core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ClassDescription>>package [
+{ #category : #'*rpackage-core' }
+ClassDescription >> package [
 	^ RPackage organizer packageOf: self.	
 ]
 
-{
-	#category : #'*rpackage-core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ClassDescription>>packageFromOrganizer: anOrganizer [
+{ #category : #'*rpackage-core' }
+ClassDescription >> packageFromOrganizer: anOrganizer [
 	"returns the package that defines this class"
 	^ anOrganizer packageOf: self.
 ]
 
-{
-	#category : #'*rpackage-core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ClassDescription>>packageOrganizer [
+{ #category : #'*rpackage-core' }
+ClassDescription >> packageOrganizer [
 	"Returns the organizer of this class"
 	^ RPackage organizer 
 ]
 
-{
-	#category : #'*rpackage-core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ClassDescription>>packages [
+{ #category : #'*rpackage-core' }
+ClassDescription >> packages [
 	"the extending packages of a class are the packages that extend it."
 	
 	^  self extendingPackages asSet copy add: self package; yourself

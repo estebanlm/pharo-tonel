@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #OCBytecodeDecompilerTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'currentCompiler'
 	],
-	#category : #OpalCompiler-Tests-Bytecode,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-Bytecode
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>pushClosureCopyNoCopied [
+{ #category : #examples }
+OCBytecodeDecompilerTest >> pushClosureCopyNoCopied [
 	^ IRBuilder new
 		pushReceiver;
 		pushClosureCopyCopiedValues: #() args: #() jumpTo: #block;
@@ -29,11 +22,8 @@ OCBytecodeDecompilerTest>>pushClosureCopyNoCopied [
 		ir
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>pushClosureCopyNoCopiedArg [
+{ #category : #examples }
+OCBytecodeDecompilerTest >> pushClosureCopyNoCopiedArg [
 	^ IRBuilder new
 		pushReceiver;
 		pushClosureCopyCopiedValues: #() args: #(#d) jumpTo: #block;
@@ -48,11 +38,8 @@ OCBytecodeDecompilerTest>>pushClosureCopyNoCopiedArg [
 		ir
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>pushClosureCopyOneCopiedArg [
+{ #category : #examples }
+OCBytecodeDecompilerTest >> pushClosureCopyOneCopiedArg [
 	^ IRBuilder new
 		addTemps: #(#a);
 		pushReceiver;
@@ -71,11 +58,8 @@ OCBytecodeDecompilerTest>>pushClosureCopyOneCopiedArg [
 		ir
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>pushClosureCopyOneCopiedTemp [
+{ #category : #examples }
+OCBytecodeDecompilerTest >> pushClosureCopyOneCopiedTemp [
 
 	^IRBuilder new
 		addTemps: #(a);
@@ -99,11 +83,8 @@ OCBytecodeDecompilerTest>>pushClosureCopyOneCopiedTemp [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>remoteTemp [
+{ #category : #examples }
+OCBytecodeDecompilerTest >> remoteTemp [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -131,11 +112,8 @@ OCBytecodeDecompilerTest>>remoteTemp [
 	
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>remoteTempNested [
+{ #category : #examples }
+OCBytecodeDecompilerTest >> remoteTempNested [
 
 	| iRMethod aCompiledMethod |
 
@@ -172,28 +150,19 @@ OCBytecodeDecompilerTest>>remoteTempNested [
 	
 ]
 
-{
-	#category : #'setUp - tearDown',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>setUp [
+{ #category : #'setUp - tearDown' }
+OCBytecodeDecompilerTest >> setUp [
 	currentCompiler := SmalltalkImage compilerClass.
 	SmalltalkImage compilerClass: OpalCompiler.
 ]
 
-{
-	#category : #'setUp - tearDown',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>tearDown [
+{ #category : #'setUp - tearDown' }
+OCBytecodeDecompilerTest >> tearDown [
 	SmalltalkImage compilerClass: currentCompiler.
 ]
 
-{
-	#category : #'tests - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testBlockWithTemp [
+{ #category : #'tests - blocks' }
+OCBytecodeDecompilerTest >> testBlockWithTemp [
 	| method ir |
 	method := ClassTestCase>>#targetClass.
 	
@@ -204,11 +173,8 @@ OCBytecodeDecompilerTest>>testBlockWithTemp [
 	self assert: (ir allSequences at: 5) first isPushLiteral not.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testBugOffset [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testBugOffset [
 	| iRMethod aCompiledMethod ir method |
 	iRMethod := IRBuilder new
 		addTemps: #(#a #b);
@@ -222,11 +188,8 @@ OCBytecodeDecompilerTest>>testBugOffset [
 	self assert: aCompiledMethod symbolic equals: method symbolic
 ]
 
-{
-	#category : #'tests - examples',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testDecompileBytecodeDecompilerTestClass [
+{ #category : #'tests - examples' }
+OCBytecodeDecompilerTest >> testDecompileBytecodeDecompilerTestClass [
 	| decompiledIR aCompiledMethod |
 	self class methods
 		do: [ :each | 
@@ -234,11 +197,8 @@ OCBytecodeDecompilerTest>>testDecompileBytecodeDecompilerTestClass [
 			aCompiledMethod := decompiledIR compiledMethod ]
 ]
 
-{
-	#category : #'tests - examples',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testDecompileBytecodeGeneratorTest [
+{ #category : #'tests - examples' }
+OCBytecodeDecompilerTest >> testDecompileBytecodeGeneratorTest [
 	| decompiledIR aCompiledMethod |
 	OCBytecodeGeneratorTest methods
 		do: [ :each | 
@@ -246,11 +206,8 @@ OCBytecodeDecompilerTest>>testDecompileBytecodeGeneratorTest [
 			aCompiledMethod := decompiledIR compiledMethod ]
 ]
 
-{
-	#category : #'tests - examples',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testDecompileIRBuilderTestClass [
+{ #category : #'tests - examples' }
+OCBytecodeDecompilerTest >> testDecompileIRBuilderTestClass [
 	| decompiledIR aCompiledMethod |
 	IRBuilderTest methods
 		do: [ :each | 
@@ -258,22 +215,16 @@ OCBytecodeDecompilerTest>>testDecompileIRBuilderTestClass [
 			aCompiledMethod := decompiledIR compiledMethod ]
 ]
 
-{
-	#category : #'tests - examples',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testDecompilerOrderedCollectionDo [
+{ #category : #'tests - examples' }
+OCBytecodeDecompilerTest >> testDecompilerOrderedCollectionDo [
 	| cm decompiledIR |
 	cm := OrderedCollection >> #do:.
 	decompiledIR := IRBytecodeDecompiler new decompile: cm.
 	decompiledIR compiledMethod
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testDup [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testDup [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testDup.
 	method := ir1 compiledMethod.
@@ -282,11 +233,8 @@ OCBytecodeDecompilerTest>>testDup [
 	self assert: ir2 compiledMethod symbolic equals: method symbolic
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testInstVar [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testInstVar [
 	| ir1 ir2 method method2 |
 	ir1 := IRBuilderTest new testInstVar.
 	method := ir1 compiledMethod.
@@ -297,11 +245,8 @@ OCBytecodeDecompilerTest>>testInstVar [
 	self assert: method2 equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testJumpAheadTo [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testJumpAheadTo [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testJumpAheadTo.
 	method := ir1 compiledMethod.
@@ -310,11 +255,8 @@ OCBytecodeDecompilerTest>>testJumpAheadTo [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testJumpAheadToIf [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testJumpAheadToIf [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testJumpAheadToIf.
 	method := ir1 compiledMethod.
@@ -324,11 +266,8 @@ OCBytecodeDecompilerTest>>testJumpAheadToIf [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testJumpBackTo [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testJumpBackTo [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testJumpBackTo.
 	method := ir1 compiledMethod.
@@ -338,11 +277,8 @@ OCBytecodeDecompilerTest>>testJumpBackTo [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testLiteralArray [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testLiteralArray [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testLiteralArray.
 	method := ir1 compiledMethod.
@@ -352,11 +288,8 @@ OCBytecodeDecompilerTest>>testLiteralArray [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testLiteralBoolean [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testLiteralBoolean [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testLiteralBoolean.
 	method := ir1 compiledMethod.
@@ -366,11 +299,8 @@ OCBytecodeDecompilerTest>>testLiteralBoolean [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testLiteralCharacter [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testLiteralCharacter [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testLiteralCharacter.
 	method := ir1 compiledMethod.
@@ -380,11 +310,8 @@ OCBytecodeDecompilerTest>>testLiteralCharacter [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testLiteralFloat [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testLiteralFloat [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testLiteralFloat.
 	method := ir1 compiledMethod.
@@ -394,11 +321,8 @@ OCBytecodeDecompilerTest>>testLiteralFloat [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testLiteralInteger [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testLiteralInteger [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testLiteralInteger.
 	method := ir1 compiledMethod.
@@ -408,11 +332,8 @@ OCBytecodeDecompilerTest>>testLiteralInteger [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testLiteralNil [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testLiteralNil [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testLiteralNil.
 	method := ir1 compiledMethod.
@@ -422,11 +343,8 @@ OCBytecodeDecompilerTest>>testLiteralNil [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testLiteralString [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testLiteralString [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testLiteralString.
 	method := ir1 compiledMethod.
@@ -436,11 +354,8 @@ OCBytecodeDecompilerTest>>testLiteralString [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testLiteralSymbol [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testLiteralSymbol [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testLiteralSymbol.
 	method := ir1 compiledMethod.
@@ -450,11 +365,8 @@ OCBytecodeDecompilerTest>>testLiteralSymbol [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testLiteralVariableClass [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testLiteralVariableClass [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testLiteralVariableClass.
 	method := ir1 compiledMethod.
@@ -464,11 +376,8 @@ OCBytecodeDecompilerTest>>testLiteralVariableClass [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testLiteralVariableClassVariable [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testLiteralVariableClassVariable [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testLiteralVariableClassVariable.
 	method := ir1 compiledMethod.
@@ -478,11 +387,8 @@ OCBytecodeDecompilerTest>>testLiteralVariableClassVariable [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testLiteralVariableGlobale [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testLiteralVariableGlobale [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testLiteralVariableGlobale.
 	method := ir1 compiledMethod.
@@ -492,11 +398,8 @@ OCBytecodeDecompilerTest>>testLiteralVariableGlobale [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testPopTop [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testPopTop [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testPopTop.
 	method := ir1 compiledMethod.
@@ -506,11 +409,8 @@ OCBytecodeDecompilerTest>>testPopTop [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #'tests - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testPushClosureCopyNoCopied [
+{ #category : #'tests - blocks' }
+OCBytecodeDecompilerTest >> testPushClosureCopyNoCopied [
 	| ir1 ir2 method |
 	ir1 := self pushClosureCopyNoCopied.
 	method := ir1 compiledMethod.
@@ -520,11 +420,8 @@ OCBytecodeDecompilerTest>>testPushClosureCopyNoCopied [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #'tests - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testPushClosureCopyNoCopiedArg [
+{ #category : #'tests - blocks' }
+OCBytecodeDecompilerTest >> testPushClosureCopyNoCopiedArg [
 	| ir1 ir2 method |
 	ir1 := self pushClosureCopyNoCopiedArg.
 	method := ir1 compiledMethod.
@@ -534,11 +431,8 @@ OCBytecodeDecompilerTest>>testPushClosureCopyNoCopiedArg [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #'tests - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testPushClosureCopyOneCopiedArg [
+{ #category : #'tests - blocks' }
+OCBytecodeDecompilerTest >> testPushClosureCopyOneCopiedArg [
 	| ir1 ir2 method |
 	ir1 := self pushClosureCopyOneCopiedArg.
 	method := ir1 compiledMethod.
@@ -548,11 +442,8 @@ OCBytecodeDecompilerTest>>testPushClosureCopyOneCopiedArg [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #'tests - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testPushClosureCopyOneCopiedTemp [
+{ #category : #'tests - blocks' }
+OCBytecodeDecompilerTest >> testPushClosureCopyOneCopiedTemp [
 	| ir1 ir2 method |
 	ir1 := self pushClosureCopyOneCopiedTemp.
 	method := ir1 compiledMethod.
@@ -562,11 +453,8 @@ OCBytecodeDecompilerTest>>testPushClosureCopyOneCopiedTemp [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testPushConsArray [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testPushConsArray [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testPushConsArray.
 	method := ir1 compiledMethod.
@@ -576,11 +464,8 @@ OCBytecodeDecompilerTest>>testPushConsArray [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testPushConsArray2 [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testPushConsArray2 [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testPushConsArray2.
 	method := ir1 compiledMethod.
@@ -590,11 +475,8 @@ OCBytecodeDecompilerTest>>testPushConsArray2 [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testPushSelf [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testPushSelf [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testPushSelf.
 	method := ir1 compiledMethod.
@@ -604,11 +486,8 @@ OCBytecodeDecompilerTest>>testPushSelf [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testPushTempArgument [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testPushTempArgument [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testPushTempArgument.
 	method := ir1 compiledMethod.
@@ -618,11 +497,8 @@ OCBytecodeDecompilerTest>>testPushTempArgument [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testPushTempTemp [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testPushTempTemp [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testPushTempTemp.
 	method := ir1 compiledMethod.
@@ -632,11 +508,8 @@ OCBytecodeDecompilerTest>>testPushTempTemp [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testPushThisContext [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testPushThisContext [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testPushThisContext.
 	method := ir1 compiledMethod.
@@ -646,11 +519,8 @@ OCBytecodeDecompilerTest>>testPushThisContext [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testRemoteTemp [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testRemoteTemp [
 	| ir1 ir2 method |
 	ir1 := self remoteTemp.
 	method := ir1 compiledMethod.
@@ -660,11 +530,8 @@ OCBytecodeDecompilerTest>>testRemoteTemp [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testRemoteTempNested [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testRemoteTempNested [
 	| ir1 ir2 method |
 	ir1 := self remoteTempNested.
 	method := ir1 compiledMethod.
@@ -674,11 +541,8 @@ OCBytecodeDecompilerTest>>testRemoteTempNested [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testReturnTop [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testReturnTop [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testReturnTop.
 	method := ir1 compiledMethod.
@@ -688,11 +552,8 @@ OCBytecodeDecompilerTest>>testReturnTop [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testSendSuper [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testSendSuper [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testSendSuper.
 	method := ir1 compiledMethod.
@@ -702,11 +563,8 @@ OCBytecodeDecompilerTest>>testSendSuper [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testStoreIntoVariable [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testStoreIntoVariable [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testStoreIntoVariable.
 	method := ir1 compiledMethod.
@@ -716,11 +574,8 @@ OCBytecodeDecompilerTest>>testStoreIntoVariable [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testStoreTemp [
+{ #category : #tests }
+OCBytecodeDecompilerTest >> testStoreTemp [
 	| ir1 ir2 method |
 	ir1 := IRBuilderTest new testStoreTemp.
 	method := ir1 compiledMethod.
@@ -730,11 +585,8 @@ OCBytecodeDecompilerTest>>testStoreTemp [
 	self assert: ir2 compiledMethod equals: method
 ]
 
-{
-	#category : #'tests - examples',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeDecompilerTest>>testWhileTrue [
+{ #category : #'tests - examples' }
+OCBytecodeDecompilerTest >> testWhileTrue [
 	| cm decompiledIR aCompiledMethod |
 	cm := self class >> #testWhileTrue.
 	decompiledIR := IRBytecodeDecompiler new decompile: cm.

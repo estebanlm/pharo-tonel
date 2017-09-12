@@ -33,35 +33,25 @@ Class {
 		'entryCompletion',
 		'isEncrypted'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 7/19/2016 11:19'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel class>>adapterName [
+{ #category : #specs }
+TextInputFieldModel class >> adapterName [
 
 	^ #TextInputFieldAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel class>>defaultSpec [
+{ #category : #specs }
+TextInputFieldModel class >> defaultSpec [
 	<spec: #default>
 	
 	^ #(TextInputFieldAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel class>>example [
+{ #category : #example }
+TextInputFieldModel class >> example [
 	^ self new
 	 extent: 300 @ 25;
 	 openWithSpec;
@@ -69,11 +59,8 @@ TextInputFieldModel class>>example [
 	 text: 'This is a text'
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>accept: aText [
+{ #category : #morphic }
+TextInputFieldModel >> accept: aText [
 
 	textHolder value: aText.
 	actionToPerformHolder value cull: aText.
@@ -83,154 +70,109 @@ TextInputFieldModel>>accept: aText [
 	self changed: #clearUserEdits.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>acceptOnCR [
+{ #category : #api }
+TextInputFieldModel >> acceptOnCR [
 	"<api: #inspect>"
 	"Return true if the text is accepted when the Enter key is stroked"
 
 	^ acceptOnCR value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>acceptOnCR: aBoolean [
+{ #category : #api }
+TextInputFieldModel >> acceptOnCR: aBoolean [
 	"<api: #boolean getter: #acceptOnCR registration: #whenAcceptOnCRChanged:>"
 	"Set if the text is accepted when the Enter key is stroked or not"
 
 	acceptOnCR value: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>actionToPerformHolder [
+{ #category : #accessing }
+TextInputFieldModel >> actionToPerformHolder [
 
 	^ actionToPerformHolder
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>beDecrypted [
+{ #category : #api }
+TextInputFieldModel >> beDecrypted [
 	"<api: #do>"
 	"Decrypt the entered text"
 	
 	self encrypted: false
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>beEncrypted [
+{ #category : #api }
+TextInputFieldModel >> beEncrypted [
 "	<api: #do>"
 	"Encrypt the entered text"
 	
 	self encrypted: true
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>enableGlobalsCompletion [
+{ #category : #api }
+TextInputFieldModel >> enableGlobalsCompletion [
 	self entryCompletion: self globalsEntryCompletion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>encrypted [
+{ #category : #accessing }
+TextInputFieldModel >> encrypted [
 
 	^ isEncrypted value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>encrypted: aBoolean [
+{ #category : #accessing }
+TextInputFieldModel >> encrypted: aBoolean [
 
 	isEncrypted value: aBoolean 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>entryCompletion [
+{ #category : #api }
+TextInputFieldModel >> entryCompletion [
 	"<api: #st getter: #entryCompletion registration: #whenEntryCompletionChanged:>"
 	"Return an entry completion used to suggest text while typing"
 
 	^ entryCompletion value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>entryCompletion: anEntryCompletion [
+{ #category : #api }
+TextInputFieldModel >> entryCompletion: anEntryCompletion [
 	"<api: #st getter: #entryCompletion registration: #whenEntryCompletionChanged:>"
 	"Set an entry completion used to suggest text while typing"
 
 	entryCompletion value: anEntryCompletion.
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>eventKeyStrokesForNextFocus [
+{ #category : #focus }
+TextInputFieldModel >> eventKeyStrokesForNextFocus [
 	"String describing the keystroke to perform to jump to the next widget"	
 		
 	^ { Character tab asKeyCombination }
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>eventKeyStrokesForPreviousFocus [
+{ #category : #focus }
+TextInputFieldModel >> eventKeyStrokesForPreviousFocus [
 	"String describing the keystroke to perform to jump to the previous widget"
 	
 	^ { Character tab shift asKeyCombination }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>ghostText [
+{ #category : #api }
+TextInputFieldModel >> ghostText [
 	"<api: #inspect>"
 	"Return the ghost text of the text zone"
 
 	^ ghostText value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>ghostText: aText [
+{ #category : #api }
+TextInputFieldModel >> ghostText: aText [
 	"<api: #string getter: #ghostText registration: #whenGhostTextChanged:>"
 	"Set the ghost text of the text zone"
 
 	ghostText value: aText translated.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>globalsEntryCompletion [
+{ #category : #private }
+TextInputFieldModel >> globalsEntryCompletion [
 
 	| applicants |
 	applicants := (Array
@@ -246,11 +188,8 @@ TextInputFieldModel>>globalsEntryCompletion [
 						and: [currApplicant asUppercase includesSubstring: currText asString asUppercase]].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>initialize [
+{ #category : #initialization }
+TextInputFieldModel >> initialize [
 
 	super initialize.
 	
@@ -264,60 +203,42 @@ TextInputFieldModel>>initialize [
 	isEncrypted whenChangedDo: [ :bool | self changed: #encrypted: with: { bool } ].
 ]
 
-{
-	#category : #NOCompletion,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>isCodeCompletionAllowed [
+{ #category : #NOCompletion }
+TextInputFieldModel >> isCodeCompletionAllowed [
 	
 	^ false
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>removeEntryCompletion [
+{ #category : #api }
+TextInputFieldModel >> removeEntryCompletion [
 	"< api:#do>"
 	"Remove the entry completion"
 	
 	self entryCompletion: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>textHolder [
+{ #category : #accessing }
+TextInputFieldModel >> textHolder [
 
 	^ textHolder
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>whenAcceptOnCRChanged: aBlock [
+{ #category : #api-events }
+TextInputFieldModel >> whenAcceptOnCRChanged: aBlock [
 	"aBlock will be performed when acceptOnCR changed"
 	
 	acceptOnCR whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>whenEntryCompletionChanged: aBlock [
+{ #category : #api-events }
+TextInputFieldModel >> whenEntryCompletionChanged: aBlock [
 	"aBlock will be performed when entryCompletion changed"
 	
 	entryCompletion whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TextInputFieldModel>>whenGhostTextChanged: aBlock [
+{ #category : #api-events }
+TextInputFieldModel >> whenGhostTextChanged: aBlock [
 	"aBlock will be performed when ghostText changed"
 	
 	ghostText whenChangedDo: aBlock

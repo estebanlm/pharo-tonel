@@ -14,33 +14,23 @@ Class {
 	#instVars : [
 		'className'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 21:33'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassRefactoring class>>className: aName [
+{ #category : #'instance creation' }
+RBClassRefactoring class >> className: aName [
 	^self new className: aName
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassRefactoring class>>model: aRBSmalltalk className: aName  [
+{ #category : #'instance creation' }
+RBClassRefactoring class >> model: aRBSmalltalk className: aName [ 
 	^(self new)
 		model: aRBSmalltalk;
 		className: aName;
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClassRefactoring>>className: aName [
+{ #category : #initialize-release }
+RBClassRefactoring >> className: aName [
 	className := aName
 ]

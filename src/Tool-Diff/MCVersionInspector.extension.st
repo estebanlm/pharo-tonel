@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCVersionInspector
-}
+Extension { #name : #MCVersionInspector }
 
-{
-	#category : #'*Tool-Diff',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCVersionInspector>>viewChanges: patch from: fromDescription to: toDescription [
+{ #category : #'*Tool-Diff' }
+MCVersionInspector >> viewChanges: patch from: fromDescription to: toDescription [
 	"Open a patch morph for the changes."
 	
 	|title|

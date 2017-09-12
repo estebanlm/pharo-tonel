@@ -7,41 +7,28 @@ Class {
 	#instVars : [
 		'target'
 	],
-	#category : #Morphic-Widgets-Windows-Resizing,
-	#timestamp : 'jmv 1/29/2006 17:15'
+	#category : #Morphic-Widgets-Windows-Resizing
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CornerGripMorph>>defaultHeight [
+{ #category : #accessing }
+CornerGripMorph >> defaultHeight [
 	^ 22
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CornerGripMorph>>defaultWidth [
+{ #category : #accessing }
+CornerGripMorph >> defaultWidth [
 	^ 22
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CornerGripMorph>>initialize [
+{ #category : #initialization }
+CornerGripMorph >> initialize [
 	super initialize.
 	self extent: self defaultWidth @ self defaultHeight.
 	self layoutFrame: self gripLayoutFrame
 ]
 
-{
-	#category : #event,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CornerGripMorph>>mouseDown: anEvent [
+{ #category : #event }
+CornerGripMorph >> mouseDown: anEvent [
 	"Remember the receiver and target offsets too."
 	
 	|cp|
@@ -49,11 +36,8 @@ CornerGripMorph>>mouseDown: anEvent [
 	lastMouse := {cp. cp - self position. cp - self targetPoint}
 ]
 
-{
-	#category : #event,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CornerGripMorph>>mouseMove: anEvent [
+{ #category : #event }
+CornerGripMorph >> mouseMove: anEvent [
 	"Track the mouse for resizing."
 	
 	target ifNil: [^ self].
@@ -65,42 +49,30 @@ CornerGripMorph>>mouseMove: anEvent [
 			self position: (lastMouse first - lastMouse second)].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CornerGripMorph>>target [
+{ #category : #accessing }
+CornerGripMorph >> target [
 	"Answer the target."
 
 	^target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CornerGripMorph>>target: aMorph [
+{ #category : #accessing }
+CornerGripMorph >> target: aMorph [
 
 	target := aMorph.
 	aMorph ifNotNil: [
 		self fillStyle: (aMorph theme resizerGripNormalFillStyleFor: self)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CornerGripMorph>>targetPoint [
+{ #category : #accessing }
+CornerGripMorph >> targetPoint [
 	"Answer the reference point of the target."
 
 	^self target bounds pointAtSideOrCorner: self ptName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CornerGripMorph>>targetPoint: aPoint [
+{ #category : #accessing }
+CornerGripMorph >> targetPoint: aPoint [
 	"Set the reference point of the target."
 
 	|minExt rect|

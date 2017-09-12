@@ -4,41 +4,28 @@ Specific context inspector for the bottom right of the debugger
 Class {
 	#name : #EyeDebuggerContextInspector,
 	#superclass : #EyeMethodContextInspector,
-	#category : #Spec-Debugger,
-	#timestamp : '<historical>'
+	#category : #Spec-Debugger
 }
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeDebuggerContextInspector>>addAllInstVars: elements [
+{ #category : #list }
+EyeDebuggerContextInspector >> addAllInstVars: elements [
 	"Do nothing"
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeDebuggerContextInspector>>addInstancesVariable: elements [
+{ #category : #list }
+EyeDebuggerContextInspector >> addInstancesVariable: elements [
 	"Do nothing"
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeDebuggerContextInspector>>addSelf: elements [
+{ #category : #list }
+EyeDebuggerContextInspector >> addSelf: elements [
 	"Add self to the list of elements you can access in the inspector with the label thisContext"
 
 	elements add: (ThisContextEyeElement host: self object).
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeDebuggerContextInspector>>addSpecialFields: elements [
+{ #category : #list }
+EyeDebuggerContextInspector >> addSpecialFields: elements [
 	
 	elements add: (DynamicEyeElement 
 		host: self object 
@@ -54,11 +41,8 @@ EyeDebuggerContextInspector>>addSpecialFields: elements [
 							nextPut: Character lf ] ] ]).
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeDebuggerContextInspector>>addStackTop: elements [
+{ #category : #list }
+EyeDebuggerContextInspector >> addStackTop: elements [
 
 	elements add: (DynamicEyeElement 
 			host: self object 
@@ -66,11 +50,8 @@ EyeDebuggerContextInspector>>addStackTop: elements [
 			value: [ self object stackPtr > 0 ifTrue: [ self object top ] ifFalse: [ #emptyStack ] ] ).
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeDebuggerContextInspector>>generateElements [
+{ #category : #list }
+EyeDebuggerContextInspector >> generateElements [
 	"generate the collection of elements to show in the inspector for the object inspected"
 
 	| elements |

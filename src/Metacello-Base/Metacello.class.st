@@ -308,15 +308,11 @@ Class {
 		'executorSpec',
 		'statements'
 	],
-	#category : #Metacello-Base,
-	#timestamp : 'dkh 7/28/2012 20:04'
+	#category : #Metacello-Base
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello class>>classic [
+{ #category : #'instance creation' }
+Metacello class >> classic [
     "set the options such that the load performed will be identical to the classic ConfigurationOf load:
 	(ConfigurationOfExample project version: '1.0') load
 	
@@ -332,73 +328,49 @@ Metacello class>>classic [
         yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello class>>image [
+{ #category : #'instance creation' }
+Metacello class >> image [
     ^ self new
         executorSpec: #'MetacelloScriptImageExecutor' -> 'batch';
         yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello class>>registrations [
+{ #category : #'instance creation' }
+Metacello class >> registrations [
   ^ MetacelloProjectRegistration registry registrations
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello class>>registry [
+{ #category : #'instance creation' }
+Metacello class >> registry [
     ^ self new
         executorSpec: #'MetacelloScriptRegistryExecutor' -> 'batch';
         yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello class>>scriptExecutorClass [
+{ #category : #private }
+Metacello class >> scriptExecutorClass [
     ^ self scriptExecutorClass: {(#'MetacelloScriptApiExecutor' -> 'batch')}
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello class>>scriptExecutorClass: anExecutorSpec [
+{ #category : #private }
+Metacello class >> scriptExecutorClass: anExecutorSpec [
     Smalltalk at: anExecutorSpec key ifAbsent: [ ConfigurationOf ensureMetacello: anExecutorSpec value ].
     ^ Smalltalk at: anExecutorSpec key
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>addStatement: selector args: args [
+{ #category : #private }
+Metacello >> addStatement: selector args: args [
     self statements add: selector -> args
 
 ]
 
-{
-	#category : #'api projectSpec',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>baseline: projectName [
+{ #category : #'api projectSpec' }
+Metacello >> baseline: projectName [
     self addStatement: #'baselineArg:' args: {projectName}
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>bitbucketUser: userName project: projectName commitish: commitish path: path [
+{ #category : #'api repository shortcuts' }
+Metacello >> bitbucketUser: userName project: projectName commitish: commitish path: path [
   | branchOrCommitOrTag |
   branchOrCommitOrTag := commitish.
   branchOrCommitOrTag isEmpty
@@ -409,121 +381,79 @@ Metacello>>bitbucketUser: userName project: projectName commitish: commitish pat
         , path
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>blueplane: projectName [
+{ #category : #'api repository shortcuts' }
+Metacello >> blueplane: projectName [
     self repository: 'http://squeaksource.blueplane.jp/' , projectName
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>cacheRepository: aRepositoryDescription [
+{ #category : #'api options' }
+Metacello >> cacheRepository: aRepositoryDescription [
     self addStatement: #'cacheRepository:' args: {aRepositoryDescription}
 ]
 
-{
-	#category : #'api projectSpec',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>className: className [
+{ #category : #'api projectSpec' }
+Metacello >> className: className [
     self addStatement: #'classNameArg:' args: {className}
 ]
 
-{
-	#category : #'api projectSpec',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>configuration: projectName [
+{ #category : #'api projectSpec' }
+Metacello >> configuration: projectName [
     self addStatement: #'configurationArg:' args: {projectName}
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>croquet: projectName [
+{ #category : #'api repository shortcuts' }
+Metacello >> croquet: projectName [
     self repository: 'http://hedgehog.software.umn.edu:8888/' , projectName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>execute: selector args: args [
+{ #category : #private }
+Metacello >> execute: selector args: args [
   | script |
   script := self statements copy.
   script add: selector -> args.
   ^ self scriptExecutor execute: script
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>executorSpec [
+{ #category : #accessing }
+Metacello >> executorSpec [
     executorSpec ifNil: [ executorSpec := #'MetacelloScriptApiExecutor' -> 'batch' ].
     ^ executorSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>executorSpec: anAssoc [
+{ #category : #accessing }
+Metacello >> executorSpec: anAssoc [
     executorSpec := anAssoc
 ]
 
-{
-	#category : #'api actions',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>fetch [
+{ #category : #'api actions' }
+Metacello >> fetch [
   ^ self execute: #'fetch:' args: #(#())
 ]
 
-{
-	#category : #'api actions',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>fetch: required [
+{ #category : #'api actions' }
+Metacello >> fetch: required [
   ^ self execute: #'fetch:' args: {required}
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>filetreeDirectory: directoryName [
+{ #category : #'api repository shortcuts' }
+Metacello >> filetreeDirectory: directoryName [
   self repository: 'filetree://' , directoryName
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>gemsource: projectName [
+{ #category : #'api repository shortcuts' }
+Metacello >> gemsource: projectName [
   self repository: 'http://seaside.gemtalksystems.com/ss/' , projectName
 ]
 
-{
-	#category : #'api actions',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>get [
+{ #category : #'api actions' }
+Metacello >> get [
   "resolve project name in given repository and return an instance of MetacelloProject resolved from a ConfigurationOf or BaselineOf"
 
   ^ self execute: #'get' args: #()
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>githubUser: userName project: projectName commitish: commitish path: path [
+{ #category : #'api repository shortcuts' }
+Metacello >> githubUser: userName project: projectName commitish: commitish path: path [
   | branchOrCommitOrTag |
   branchOrCommitOrTag := commitish.
   branchOrCommitOrTag isEmpty
@@ -534,65 +464,44 @@ Metacello>>githubUser: userName project: projectName commitish: commitish path: 
         , path
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>ignoreImage [
+{ #category : #'api options' }
+Metacello >> ignoreImage [
     "ignore image state"
 
     self addStatement: #'ignoreImage:' args: {true}
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>impara: projectName [
+{ #category : #'api repository shortcuts' }
+Metacello >> impara: projectName [
     self repository: 'http://source.impara.de/' , projectName
 ]
 
-{
-	#category : #'api actions',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>list [
+{ #category : #'api actions' }
+Metacello >> list [
   "list projects in registry"
 
   ^ self execute: #'list' args: #()
 ]
 
-{
-	#category : #'api actions',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>load [
+{ #category : #'api actions' }
+Metacello >> load [
   ^ self execute: #'load:' args: #(#())
 ]
 
-{
-	#category : #'api actions',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>load: required [
+{ #category : #'api actions' }
+Metacello >> load: required [
   ^ self execute: #'load:' args: {required}
 ]
 
-{
-	#category : #'api actions',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>lock [
+{ #category : #'api actions' }
+Metacello >> lock [
   "lock projects in registry"
 
   ^ self execute: #'lock' args: #()
 ]
 
-{
-	#category : #'api actions',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>locked [
+{ #category : #'api actions' }
+Metacello >> locked [
   "list of locked projects in registry"
 
   ^ self
@@ -600,27 +509,18 @@ Metacello>>locked [
     list
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>onConflict: aBlock [
+{ #category : #'api options' }
+Metacello >> onConflict: aBlock [
     self addStatement: #'onConflict:' args: {aBlock}
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>onConflictUseIncoming [
+{ #category : #'api options' }
+Metacello >> onConflictUseIncoming [
   self onConflict: [ :ex :loaded :incoming | ex useIncoming ]
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>onConflictUseIncoming: incomingProjects useLoaded: loadedProjects [
+{ #category : #'api options' }
+Metacello >> onConflictUseIncoming: incomingProjects useLoaded: loadedProjects [
   self
     onConflict: [ :ex :loaded :incoming | 
       (incomingProjects includes: incoming baseName)
@@ -631,35 +531,23 @@ Metacello>>onConflictUseIncoming: incomingProjects useLoaded: loadedProjects [
       ex pass ]
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>onConflictUseLoaded [
+{ #category : #'api options' }
+Metacello >> onConflictUseLoaded [
   self onConflict: [ :ex :loaded :incoming | ex useLoaded ]
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>onDowngrade: aBlock [
+{ #category : #'api options' }
+Metacello >> onDowngrade: aBlock [
     self addStatement: #'onDowngrade:' args: {aBlock}
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>onDowngradeUseIncoming [
+{ #category : #'api options' }
+Metacello >> onDowngradeUseIncoming [
   self onDowngrade: [ :ex :loaded :incoming | ex useIncoming ]
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>onDowngradeUseIncoming: projectNames [
+{ #category : #'api options' }
+Metacello >> onDowngradeUseIncoming: projectNames [
   self
     onDowngrade: [ :ex :loaded :incoming | 
       (projectNames includes: loaded baseName)
@@ -667,27 +555,18 @@ Metacello>>onDowngradeUseIncoming: projectNames [
         ifFalse: [ ex useLoaded ] ]
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>onLock: aBlock [
+{ #category : #'api options' }
+Metacello >> onLock: aBlock [
   self addStatement: #'onLock:' args: {aBlock}
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>onLockBreak [
+{ #category : #'api options' }
+Metacello >> onLockBreak [
   self onLock: [ :ex :loaded :incoming | ex break ]
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>onLockBreak: projectNames [
+{ #category : #'api options' }
+Metacello >> onLockBreak: projectNames [
   self
     onLock: [ :ex :loaded :incoming | 
       (projectNames includes: loaded baseName)
@@ -695,27 +574,18 @@ Metacello>>onLockBreak: projectNames [
         ifFalse: [ ex honor ] ]
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>onUpgrade: aBlock [
+{ #category : #'api options' }
+Metacello >> onUpgrade: aBlock [
     self addStatement: #'onUpgrade:' args: {aBlock}
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>onUpgradeUseLoaded [
+{ #category : #'api options' }
+Metacello >> onUpgradeUseLoaded [
   self onUpgrade: [ :ex :loaded :incoming | ex useLoaded ]
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>onUpgradeUseLoaded: projectNames [
+{ #category : #'api options' }
+Metacello >> onUpgradeUseLoaded: projectNames [
   self
     onUpgrade: [ :ex :loaded :incoming | 
       (projectNames includes: loaded baseName)
@@ -723,19 +593,13 @@ Metacello>>onUpgradeUseLoaded: projectNames [
         ifFalse: [ ex useIncoming ] ]
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>onWarning: aBlock [
+{ #category : #'api options' }
+Metacello >> onWarning: aBlock [
   self addStatement: #'onWarning:' args: {aBlock}
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>onWarningLog [
+{ #category : #'api options' }
+Metacello >> onWarningLog [
   self
     onWarning: [ :ex | 
       Transcript
@@ -744,197 +608,128 @@ Metacello>>onWarningLog [
       ex resume ]
 ]
 
-{
-	#category : #'api projectSpec',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>project: projectName [
+{ #category : #'api projectSpec' }
+Metacello >> project: projectName [
     self addStatement: #'projectArg:' args: {projectName}
 ]
 
-{
-	#category : #'api actions',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>record [
+{ #category : #'api actions' }
+Metacello >> record [
   ^ self execute: #'record:' args: #(#())
 ]
 
-{
-	#category : #'api actions',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>record: required [
+{ #category : #'api actions' }
+Metacello >> record: required [
   ^ self execute: #'record:' args: {required}
 ]
 
-{
-	#category : #'api actions',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>register [
+{ #category : #'api actions' }
+Metacello >> register [
   "change registered project"
 
   ^ self execute: #'register' args: #()
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>renggli: projectName [
+{ #category : #'api repository shortcuts' }
+Metacello >> renggli: projectName [
     self repository: 'http://source.lukas-renggli.ch/' , projectName
 ]
 
-{
-	#category : #'api projectSpec',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>repository: repositoryDescription [
+{ #category : #'api projectSpec' }
+Metacello >> repository: repositoryDescription [
     self addStatement: #'repositoryArg:' args: {repositoryDescription}
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>repositoryOverrides: aRepositoryDescriptionCollection [
+{ #category : #'api options' }
+Metacello >> repositoryOverrides: aRepositoryDescriptionCollection [
     self addStatement: #'repositoryOverrides:' args: {aRepositoryDescriptionCollection}
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>saltypickle: projectName [
+{ #category : #'api repository shortcuts' }
+Metacello >> saltypickle: projectName [
     self repository: 'http://squeak.saltypickle.com/' , projectName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>scriptExecutor [
+{ #category : #accessing }
+Metacello >> scriptExecutor [
     ^ (self class scriptExecutorClass: self executorSpec) new
 ]
 
-{
-	#category : #'api options',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>silently [
+{ #category : #'api options' }
+Metacello >> silently [
     "no progress bars"
 
     self addStatement: #'silently:' args: {true}
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>smalltalkhubUser: userName project: projectName [
+{ #category : #'api repository shortcuts' }
+Metacello >> smalltalkhubUser: userName project: projectName [
   self
     repository:
       'http://smalltalkhub.com/mc/' , userName , '/' , projectName , '/main'
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>squeakfoundation: projectName [
+{ #category : #'api repository shortcuts' }
+Metacello >> squeakfoundation: projectName [
     self repository: 'http://source.squeakfoundation.org/' , projectName
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>squeaksource3: projectName [
+{ #category : #'api repository shortcuts' }
+Metacello >> squeaksource3: projectName [
   self repository: 'http://ss3.gemtalksystems.com/ss/' , projectName
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>squeaksource: projectName [
+{ #category : #'api repository shortcuts' }
+Metacello >> squeaksource: projectName [
     self repository: 'http://www.squeaksource.com/' , projectName
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>ss3: projectName [
+{ #category : #'api repository shortcuts' }
+Metacello >> ss3: projectName [
     self squeaksource3: projectName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>statements [
+{ #category : #accessing }
+Metacello >> statements [
     statements ifNil: [ statements := OrderedCollection new ].
     ^ statements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>statements: anObject [
+{ #category : #accessing }
+Metacello >> statements: anObject [
 	statements := anObject
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>swa: projectName [
+{ #category : #'api repository shortcuts' }
+Metacello >> swa: projectName [
     self swasource: projectName
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>swasource: projectName [
+{ #category : #'api repository shortcuts' }
+Metacello >> swasource: projectName [
     self repository: 'http://www.hpi.uni-potsdam.de/hirschfeld/squeaksource/' , projectName
 ]
 
-{
-	#category : #'api actions',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>unlock [
+{ #category : #'api actions' }
+Metacello >> unlock [
   "unlock projects in registry"
 
   ^ self execute: #'unlock' args: #()
 ]
 
-{
-	#category : #'api actions',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>unregister [
+{ #category : #'api actions' }
+Metacello >> unregister [
   "unlock projects in registry"
 
   ^ self execute: #'unregister' args: #()
 ]
 
-{
-	#category : #'api projectSpec',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>version: versionString [
+{ #category : #'api projectSpec' }
+Metacello >> version: versionString [
     self addStatement: #'versionArg:' args: {versionString}
 ]
 
-{
-	#category : #'api repository shortcuts',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Metacello>>wiresong: projectName [
+{ #category : #'api repository shortcuts' }
+Metacello >> wiresong: projectName [
     self repository: 'http://source.wiresong.ca/' , projectName
 ]

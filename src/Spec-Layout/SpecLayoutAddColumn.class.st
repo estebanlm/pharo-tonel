@@ -4,15 +4,11 @@ A SpecLayoutAddColumn is an action representing the addition of a column to a la
 Class {
 	#name : #SpecLayoutAddColumn,
 	#superclass : #SpecLayoutAdd,
-	#category : #Spec-Layout,
-	#timestamp : '<historical>'
+	#category : #Spec-Layout
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAddColumn class>>block: aBlock layoutFrame: aLayoutFrame [
+{ #category : #'instance creation' }
+SpecLayoutAddColumn class >> block: aBlock layoutFrame: aLayoutFrame [
 
 	^ self new
 			block: aBlock 
@@ -20,11 +16,8 @@ SpecLayoutAddColumn class>>block: aBlock layoutFrame: aLayoutFrame [
 			yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAddColumn>>block: aBlock layoutFrame: aLayoutFrame [
+{ #category : #'instance creation' }
+SpecLayoutAddColumn >> block: aBlock layoutFrame: aLayoutFrame [
 
 	| row |
 	row := SpecColumnLayout composed.

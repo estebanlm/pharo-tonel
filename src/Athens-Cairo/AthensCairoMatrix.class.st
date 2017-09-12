@@ -17,15 +17,11 @@ Class {
 	#pools : [
 		'AthensCairoDefs'
 	],
-	#category : #Athens-Cairo-Transforms,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Transforms
 }
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix class>>fieldsDesc [
+{ #category : #'field definition' }
+AthensCairoMatrix class >> fieldsDesc [
 	"self rebuildFieldAccessors"
 	^ #(
    double sx; double shx;
@@ -34,40 +30,28 @@ AthensCairoMatrix class>>fieldsDesc [
 	)
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>clearTranslation [
+{ #category : #transformations }
+AthensCairoMatrix >> clearTranslation [
 	"reset a translation from matrix, leaving only scale and rotation"
 	
 	self x: 0.
 	self y: 0.
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>copy [
+{ #category : #copying }
+AthensCairoMatrix >> copy [
 	^ self class new loadAffineTransform: self
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>copyFromMatrix: m [
+{ #category : #private }
+AthensCairoMatrix >> copyFromMatrix: m [
 	self assert: [ m getHandle ~= self getHandle ].
 	LibC memCopy: m getHandle to: self getHandle size: self class byteSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>getMatrix [
+{ #category : #accessing }
+AthensCairoMatrix >> getMatrix [
 	
 	"Shall we answer an AthensAffineMatrix instead?
 	
@@ -77,21 +61,15 @@ AthensCairoMatrix>>getMatrix [
 	^ self copy
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>initialize [
+{ #category : #initialize-release }
+AthensCairoMatrix >> initialize [
 	super initialize.
 	self loadIdentity
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>initx: x y: y sx: sx sy: sy shx: shx shy: shy [
+{ #category : #private }
+AthensCairoMatrix >> initx: x y: y sx: sx sy: sy shx: shx shy: shy [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
@@ -107,20 +85,14 @@ AthensCairoMatrix>>initx: x y: y sx: sx sy: sy shx: shx shy: shy [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>inverseTransform: aPoint  [
+{ #category : #transformations }
+AthensCairoMatrix >> inverseTransform: aPoint [ 
 
 	^ self inverted transform: aPoint
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>invert [
+{ #category : #transformations }
+AthensCairoMatrix >> invert [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
@@ -129,22 +101,16 @@ AthensCairoMatrix>>invert [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>inverted [
+{ #category : #transformations }
+AthensCairoMatrix >> inverted [
  	| m |
 	m := self copy.
 	m invert.
 	^ m
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>loadAffineTransform: m [
+{ #category : #transformations }
+AthensCairoMatrix >> loadAffineTransform: m [
 	self 
 		initx: m x 
 		y: m y 
@@ -154,40 +120,28 @@ AthensCairoMatrix>>loadAffineTransform: m [
 		shy: m shy
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>loadIdentity [
+{ #category : #transformations }
+AthensCairoMatrix >> loadIdentity [
 	"initialize with identity transform"
 	
 	self primLoadIdentity 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>multiplyBy: anAthensAffineTransform [
+{ #category : #transformations }
+AthensCairoMatrix >> multiplyBy: anAthensAffineTransform [
 	
 	self primMultiplyBy: (
 		self class new loadAffineTransform: anAthensAffineTransform)
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>postCopy [
+{ #category : #copying }
+AthensCairoMatrix >> postCopy [
 	self setHandle: self getHandle copy.
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>primLoadIdentity [
+{ #category : #private }
+AthensCairoMatrix >> primLoadIdentity [
 	"initialize with identity transform"
 	
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
@@ -195,11 +149,8 @@ AthensCairoMatrix>>primLoadIdentity [
 	^ self nbCall: #( void cairo_matrix_init_identity (AthensCairoMatrix * self ) )
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>primMultiplyBy: m [
+{ #category : #transformations }
+AthensCairoMatrix >> primMultiplyBy: m [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 
 	^self nbCall: #(void   cairo_matrix_multiply
@@ -210,11 +161,8 @@ AthensCairoMatrix>>primMultiplyBy: m [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>primTransformX: x Y: y [
+{ #category : #private }
+AthensCairoMatrix >> primTransformX: x Y: y [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
@@ -223,11 +171,8 @@ AthensCairoMatrix>>primTransformX: x Y: y [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>restoreAfter: aBlock [
+{ #category : #transformations }
+AthensCairoMatrix >> restoreAfter: aBlock [
 	|previous|
 	previous := self copy.
 	aBlock ensure: [ 
@@ -235,21 +180,15 @@ AthensCairoMatrix>>restoreAfter: aBlock [
 		"self loadAffineTransform: previous ]
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>rotateByDegrees: angle [
+{ #category : #transformations }
+AthensCairoMatrix >> rotateByDegrees: angle [
 
 
 	^ self rotateByRadians: angle degreesToRadians
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>rotateByRadians: angle [
+{ #category : #transformations }
+AthensCairoMatrix >> rotateByRadians: angle [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
@@ -260,11 +199,8 @@ AthensCairoMatrix>>rotateByRadians: angle [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>scaleBy: factor [
+{ #category : #transformations }
+AthensCairoMatrix >> scaleBy: factor [
 
 	"if factor is number, do a uniform scale, 
 	if not, then factor is assument to be an instance of Point containing non-uniform scale for each axis"
@@ -274,11 +210,8 @@ AthensCairoMatrix>>scaleBy: factor [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>scaleX: fx Y: fy [
+{ #category : #transformations }
+AthensCairoMatrix >> scaleX: fx Y: fy [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
@@ -290,11 +223,8 @@ AthensCairoMatrix>>scaleX: fx Y: fy [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>setRotationInRadians: radians [
+{ #category : #transformations }
+AthensCairoMatrix >> setRotationInRadians: radians [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
@@ -303,11 +233,8 @@ AthensCairoMatrix>>setRotationInRadians: radians [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>setScaleX: x Y: y [
+{ #category : #transformations }
+AthensCairoMatrix >> setScaleX: x Y: y [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
@@ -316,11 +243,8 @@ AthensCairoMatrix>>setScaleX: x Y: y [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>setTranslateX: x Y: y [
+{ #category : #transformations }
+AthensCairoMatrix >> setTranslateX: x Y: y [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
@@ -329,83 +253,56 @@ AthensCairoMatrix>>setTranslateX: x Y: y [
 
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>shx [
+{ #category : #'accessing structure variables' }
+AthensCairoMatrix >> shx [
 	"This method was automatically generated"
 	^handle doubleAt: OFFSET_SHX
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>shx: anObject [
+{ #category : #'accessing structure variables' }
+AthensCairoMatrix >> shx: anObject [
 	"This method was automatically generated"
 	handle doubleAt: OFFSET_SHX put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>shy [
+{ #category : #'accessing structure variables' }
+AthensCairoMatrix >> shy [
 	"This method was automatically generated"
 	^handle doubleAt: OFFSET_SHY
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>shy: anObject [
+{ #category : #'accessing structure variables' }
+AthensCairoMatrix >> shy: anObject [
 	"This method was automatically generated"
 	handle doubleAt: OFFSET_SHY put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>sx [
+{ #category : #'accessing structure variables' }
+AthensCairoMatrix >> sx [
 	"This method was automatically generated"
 	^handle doubleAt: OFFSET_SX
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>sx: anObject [
+{ #category : #'accessing structure variables' }
+AthensCairoMatrix >> sx: anObject [
 	"This method was automatically generated"
 	handle doubleAt: OFFSET_SX put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>sy [
+{ #category : #'accessing structure variables' }
+AthensCairoMatrix >> sy [
 	"This method was automatically generated"
 	^handle doubleAt: OFFSET_SY
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>sy: anObject [
+{ #category : #'accessing structure variables' }
+AthensCairoMatrix >> sy: anObject [
 	"This method was automatically generated"
 	handle doubleAt: OFFSET_SY put: anObject
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>transform: aPoint [
+{ #category : #transformations }
+AthensCairoMatrix >> transform: aPoint [
 	| x y |
 	x := ByteArray new: 8.
 	y := ByteArray new: 8.
@@ -415,19 +312,13 @@ AthensCairoMatrix>>transform: aPoint [
 	^ (x doubleAt: 1) @ (y doubleAt: 1)
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>translateBy: aPoint [
+{ #category : #transformations }
+AthensCairoMatrix >> translateBy: aPoint [
 	self translateX: aPoint x Y: aPoint y
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>translateX: px Y: py [
+{ #category : #transformations }
+AthensCairoMatrix >> translateX: px Y: py [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
@@ -439,38 +330,26 @@ AthensCairoMatrix>>translateX: px Y: py [
 
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>x [
+{ #category : #'accessing structure variables' }
+AthensCairoMatrix >> x [
 	"This method was automatically generated"
 	^handle doubleAt: OFFSET_X
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>x: anObject [
+{ #category : #'accessing structure variables' }
+AthensCairoMatrix >> x: anObject [
 	"This method was automatically generated"
 	handle doubleAt: OFFSET_X put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>y [
+{ #category : #'accessing structure variables' }
+AthensCairoMatrix >> y [
 	"This method was automatically generated"
 	^handle doubleAt: OFFSET_Y
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrix>>y: anObject [
+{ #category : #'accessing structure variables' }
+AthensCairoMatrix >> y: anObject [
 	"This method was automatically generated"
 	handle doubleAt: OFFSET_Y put: anObject
 ]

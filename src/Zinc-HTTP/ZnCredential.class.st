@@ -10,23 +10,16 @@ Class {
 		'domain',
 		'realm'
 	],
-	#category : #Zinc-HTTP-Support,
-	#timestamp : 'SvenVanCaekenberghe 12/6/2010 12:56'
+	#category : #Zinc-HTTP-Support
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCredential class>>authName [
+{ #category : #accessing }
+ZnCredential class >> authName [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCredential class>>findHandlerFor: anAuthHeader [
+{ #category : #'accessing class hierarchy' }
+ZnCredential class >> findHandlerFor: anAuthHeader [
 	| type i |
 	i := anAuthHeader indexOf: Character space.
 	type := anAuthHeader copyFrom: 1 to: i - 1.
@@ -35,11 +28,8 @@ ZnCredential class>>findHandlerFor: anAuthHeader [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCredential class>>findRealmFor: anAuthHeader [
+{ #category : #accessing }
+ZnCredential class >> findRealmFor: anAuthHeader [
 	(anAuthHeader substrings: ',') do: [ :token |
 		"String>>trimBoth: is a grease method, so not sure if we should be using it."
 		(token includesSubstring: 'realm=') 
@@ -47,77 +37,50 @@ ZnCredential class>>findRealmFor: anAuthHeader [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCredential>>authToken [
+{ #category : #accessing }
+ZnCredential >> authToken [
 	^ self authTokenForUrl: nil method: nil 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCredential>>authTokenForUrl: urlObject method: method [
+{ #category : #accessing }
+ZnCredential >> authTokenForUrl: urlObject method: method [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCredential>>domain [
+{ #category : #accessing }
+ZnCredential >> domain [
 	^ domain
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCredential>>domain: anObject [
+{ #category : #accessing }
+ZnCredential >> domain: anObject [
 	domain := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCredential>>isComplete [
+{ #category : #testing }
+ZnCredential >> isComplete [
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCredential>>linkToAuthRequest: aHeader [
+{ #category : #operations }
+ZnCredential >> linkToAuthRequest: aHeader [
 	"Link this credential to the WWW-Authenticate request in the provided header. 
 	Used for authentication methods which require parameters provided by the server
 	(e.g. Digest authentication)."
 	realm := self class findRealmFor: aHeader
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCredential>>realm [
+{ #category : #accessing }
+ZnCredential >> realm [
 	^ realm ifNil: [ realm := '' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCredential>>realm: anObject [
+{ #category : #accessing }
+ZnCredential >> realm: anObject [
 	realm := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCredential>>setAuthorizationHeader: headers for: urlObject method: method [
+{ #category : #accessing }
+ZnCredential >> setAuthorizationHeader: headers for: urlObject method: method [
 	headers at: 'Authorization' put: self authToken
 ]

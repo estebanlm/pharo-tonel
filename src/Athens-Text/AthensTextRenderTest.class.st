@@ -4,23 +4,16 @@ Visual tests for correct rendering of text using Athens
 Class {
 	#name : #AthensTextRenderTest,
 	#superclass : #Object,
-	#category : #Athens-Text,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:20'
+	#category : #Athens-Text
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderTest class>>surfaceClass [
+{ #category : #'as yet unclassified' }
+AthensTextRenderTest class >> surfaceClass [
 	^ AthensCairoSurface
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderTest class>>test1 [
+{ #category : #'as yet unclassified' }
+AthensTextRenderTest class >> test1 [
 	|  t  c  |
 
 t := '
@@ -59,11 +52,8 @@ asText .
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderTest class>>test2 [
+{ #category : #'as yet unclassified' }
+AthensTextRenderTest class >> test2 [
 	|  t  c surf |
 	t := self testText. 
 	t addAttribute: (AthensTextBackground new color: (Color green alpha: 0.3 )) from: 1 to: 267.
@@ -90,11 +80,8 @@ AthensTextRenderTest class>>test2 [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderTest class>>test3 [
+{ #category : #'as yet unclassified' }
+AthensTextRenderTest class >> test3 [
 	|  t  c surf |
 
 "t := '12345 pi kl mn op gj the text must flow' "
@@ -135,11 +122,8 @@ LogicalFont
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderTest class>>test4 [
+{ #category : #'as yet unclassified' }
+AthensTextRenderTest class >> test4 [
 	|  t  c surf |
 
 "t := '12345 pi kl mn op gj the text must flow' "
@@ -174,11 +158,8 @@ LogicalFont
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderTest class>>test5 [
+{ #category : #'as yet unclassified' }
+AthensTextRenderTest class >> test5 [
 	|  t  c surf |
 
 "t := '12345 pi kl mn op gj the text must flow' "
@@ -209,11 +190,8 @@ LogicalFont
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderTest class>>testBlitting [
+{ #category : #'as yet unclassified' }
+AthensTextRenderTest class >> testBlitting [
 	| fnt form blt |
 
 	fnt := LogicalFont
@@ -255,11 +233,8 @@ AthensTextRenderTest class>>testBlitting [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderTest class>>testText [
+{ #category : #'as yet unclassified' }
+AthensTextRenderTest class >> testText [
 	|  t  |
 
 t := 'The safety Dconstraint is that the garbage collector 
@@ -296,11 +271,8 @@ LogicalFont
 	^ t
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderTest class>>testWindow [
+{ #category : #'as yet unclassified' }
+AthensTextRenderTest class >> testWindow [
 
 	^ (AthensPluggableTextMorph
 		on: self
@@ -309,11 +281,8 @@ AthensTextRenderTest class>>testWindow [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderTest class>>testWindowRender [
+{ #category : #'as yet unclassified' }
+AthensTextRenderTest class >> testWindowRender [
 	| surf |
 	surf := self surfaceClass extent: Display extent.
 

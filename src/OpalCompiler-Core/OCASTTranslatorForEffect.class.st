@@ -4,25 +4,18 @@ I override some methods in my super to generate instructions for effect only.
 Class {
 	#name : #OCASTTranslatorForEffect,
 	#superclass : #OCASTTranslator,
-	#category : #OpalCompiler-Core-Translator,
-	#timestamp : 'ajh 3/24/2003 22:20'
+	#category : #OpalCompiler-Core-Translator
 }
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForEffect>>emitAnd: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslatorForEffect >> emitAnd: aMessageNode [
 	
 	super emitAnd: aMessageNode.
 	methodBuilder popTop.
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForEffect>>emitIfFalse: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslatorForEffect >> emitIfFalse: aMessageNode [
 
 	valueTranslator visitNode: aMessageNode receiver.
 	methodBuilder jumpAheadTo: #else if: true.
@@ -31,11 +24,8 @@ OCASTTranslatorForEffect>>emitIfFalse: aMessageNode [
 
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForEffect>>emitIfNotNil: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslatorForEffect >> emitIfNotNil: aMessageNode [
 	| args |
 	valueTranslator visitNode: aMessageNode receiver.
 	args := aMessageNode arguments.
@@ -48,11 +38,8 @@ OCASTTranslatorForEffect>>emitIfNotNil: aMessageNode [
 	
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForEffect>>emitIfTrue: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslatorForEffect >> emitIfTrue: aMessageNode [
 
 	valueTranslator visitNode: aMessageNode receiver.
 	methodBuilder jumpAheadTo: #else if: false.	
@@ -60,32 +47,23 @@ OCASTTranslatorForEffect>>emitIfTrue: aMessageNode [
 	methodBuilder jumpAheadTarget: #else.
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForEffect>>emitMessageNode: aMessageNode  [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslatorForEffect >> emitMessageNode: aMessageNode [ 
 
 	super emitMessageNode: aMessageNode.
 	methodBuilder popTop.
 
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForEffect>>emitOr: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslatorForEffect >> emitOr: aMessageNode [
 
 	super emitOr: aMessageNode.
 	methodBuilder popTop.
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForEffect>>visitArrayNode: anArrayNode  [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslatorForEffect >> visitArrayNode: anArrayNode [ 
 	"An arrayNode may have side effect, for example: '{self foo}'. So we cannot just generate nothing for this node."
 
 	super visitArrayNode: anArrayNode.
@@ -93,68 +71,47 @@ OCASTTranslatorForEffect>>visitArrayNode: anArrayNode  [
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForEffect>>visitAssignmentNode: anAssignmentNode  [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslatorForEffect >> visitAssignmentNode: anAssignmentNode [ 
 
 	super visitAssignmentNode: anAssignmentNode .
 	methodBuilder popTop. 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForEffect>>visitBlockNode: aBlockNode  [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslatorForEffect >> visitBlockNode: aBlockNode [ 
 
 	"A block has no side effect, so a block translated for effect just doesn't generate anything" 
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForEffect>>visitLiteralArrayNode: aLiteralNode [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslatorForEffect >> visitLiteralArrayNode: aLiteralNode [
 	"when visiting a literal array for effect, we could push it and then pop it, but we do nothing"
 	methodBuilder addLiteral: aLiteralNode value
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForEffect>>visitLiteralNode: aLiteralNode [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslatorForEffect >> visitLiteralNode: aLiteralNode [
 	"when visiting a literal for effect, we could push it and then pop it, but we do nothing"
 	methodBuilder addLiteral: aLiteralNode value
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForEffect>>visitParseErrorNode: anErrorNode   [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslatorForEffect >> visitParseErrorNode: anErrorNode [  
 
 	super visitParseErrorNode: anErrorNode.
 	methodBuilder popTop.
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForEffect>>visitSequenceNode: aSequenceNode  [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslatorForEffect >> visitSequenceNode: aSequenceNode [ 
 	aSequenceNode statements do: [:each | self visitNode: each].
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForEffect>>visitVariableNode: aVariableNode [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslatorForEffect >> visitVariableNode: aVariableNode [
 	"when visiting a variable for effect, we could push it and then pop it, but we do nothing"
 	| binding |
 	binding := aVariableNode binding.

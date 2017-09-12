@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMDropDownMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMDropDownMorphicTest>>testSelectionTriggeredOnSelectedIndex [
+{ #category : #'as yet unclassified' }
+GLMDropDownMorphicTest >> testSelectionTriggeredOnSelectedIndex [
 	| browser dropdown text dropdownMorph textMorph |
 	browser := GLMTabulator new.
  	browser row: #one; row: #two.

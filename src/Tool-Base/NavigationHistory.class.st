@@ -10,53 +10,37 @@ Class {
 		'maxSize',
 		'paused'
 	],
-	#category : #Tool-Base,
-	#timestamp : '<historical>'
+	#category : #Tool-Base
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory class>>defaultMaxSize [
+{ #category : #accessing }
+NavigationHistory class >> defaultMaxSize [
 
 	^ 15
 ]
 
-{
-	#category : #'collection compatibility',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>add: anEntry [
+{ #category : #'collection compatibility' }
+NavigationHistory >> add: anEntry [
 
 	self addEntry: anEntry
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>addEntry: anEntry [
+{ #category : #protocol }
+NavigationHistory >> addEntry: anEntry [
 	
 	self isPaused ifTrue: [ ^ self ].
 	
 	self basicAdd: anEntry
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>back [
+{ #category : #protocol }
+NavigationHistory >> back [
 
 	index := ((index - 1) max: 0)
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>basicAdd: anEntry [
+{ #category : #protocol }
+NavigationHistory >> basicAdd: anEntry [
 	
 	( storage isEmpty not and: [ storage last = anEntry ] ) ifTrue: [ ^ self ].
 	anEntry = self current key ifTrue: [ ^ self ].
@@ -69,11 +53,8 @@ NavigationHistory>>basicAdd: anEntry [
 			storage at: index put: (anEntry -> DateAndTime now)]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>checkSize [
+{ #category : #private }
+NavigationHistory >> checkSize [
 	
 	[ storage size >= self maxSize ]
 		whileTrue: [ 
@@ -81,103 +62,70 @@ NavigationHistory>>checkSize [
 			index := index -1].
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>current [
+{ #category : #protocol }
+NavigationHistory >> current [
 
 	^ storage at: index ifAbsent: [ nil -> nil ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>entries [
+{ #category : #protocol }
+NavigationHistory >> entries [
 
 	^ storage
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>hasNext [
+{ #category : #testing }
+NavigationHistory >> hasNext [
 
 	^ index < storage size
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>hasPrevious [
+{ #category : #testing }
+NavigationHistory >> hasPrevious [
 
 	^ index > 1
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>initialize [
+{ #category : #initialization }
+NavigationHistory >> initialize [
 
 	storage := OrderedCollection new.
 	index := 0.
 	paused := false.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>isPaused [
+{ #category : #testing }
+NavigationHistory >> isPaused [
 	^ paused
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>last [
+{ #category : #protocol }
+NavigationHistory >> last [
 
 	^ storage last
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>maxSize [
+{ #category : #protocol }
+NavigationHistory >> maxSize [
 
 	^ maxSize ifNil: [ maxSize := self class defaultMaxSize ].
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>maxSize: anInteger [
+{ #category : #protocol }
+NavigationHistory >> maxSize: anInteger [
 
 	maxSize := anInteger
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>next [
+{ #category : #protocol }
+NavigationHistory >> next [
 
 	index := ((index + 1) min: storage size).
 	^ storage at: index
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>pauseDuring: aBlock [
+{ #category : #protocol }
+NavigationHistory >> pauseDuring: aBlock [
 	| previousPausedValue |
 	"Don't accept any new entries while executing aBlock"
 	previousPausedValue := paused.
@@ -185,21 +133,15 @@ NavigationHistory>>pauseDuring: aBlock [
 	aBlock ensure: [ paused := previousPausedValue ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>previous [
+{ #category : #protocol }
+NavigationHistory >> previous [
 
 	index := index-1 max: 1.
 	^ storage at: index
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>removeEntry: anEntry [
+{ #category : #protocol }
+NavigationHistory >> removeEntry: anEntry [
 	| toRemove |
 	
 	"we know that toRemove will always contains one element"
@@ -210,11 +152,8 @@ NavigationHistory>>removeEntry: anEntry [
 	storage addLast: toRemove
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>removeLastEntry [
+{ #category : #protocol }
+NavigationHistory >> removeLastEntry [
 
 	self isPaused ifTrue: [ ^ self ].
 	storage ifEmpty: [ ^ self ].
@@ -223,11 +162,8 @@ NavigationHistory>>removeLastEntry [
 	index := index -1
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-NavigationHistory>>replaceCurrentWith: anEntry [
+{ #category : #protocol }
+NavigationHistory >> replaceCurrentWith: anEntry [
 	"Change the current history item to the given object"
 	storage at: index put: (anEntry -> DateAndTime now)
 ]

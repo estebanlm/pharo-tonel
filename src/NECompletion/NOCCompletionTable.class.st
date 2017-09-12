@@ -15,39 +15,26 @@ Class {
 		'classTable',
 		'table'
 	],
-	#category : #NECompletion-OCompletion,
-	#timestamp : '<historical>'
+	#category : #NECompletion-OCompletion
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable class>>classes [
+{ #category : #accessing }
+NOCCompletionTable class >> classes [
 	^ classTable ifNil: [classTable := self new entriesPerPrefix: 40]
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable class>>cleanUp [
+{ #category : #cleanup }
+NOCCompletionTable class >> cleanUp [
 	self reset.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable class>>default [
+{ #category : #'instance creation' }
+NOCCompletionTable class >> default [
 	^ table ifNil: [table := self new entriesPerPrefix: 40]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable class>>initialize [
+{ #category : #'class initialization' }
+NOCCompletionTable class >> initialize [
 	
 	self registerInterestToSystemAnnouncement.
 			
@@ -55,21 +42,15 @@ NOCCompletionTable class>>initialize [
 		registerToolClassNamed: self name
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable class>>methodChanged: event [
+{ #category : #events }
+NOCCompletionTable class >> methodChanged: event [
 	self default totalNumberOfEntries < 200 ifTrue: [self default quickFillWithCategoryOf: event methodClass].
 	self default totalNumberOfEntries < 500 ifTrue: [self default quickFillWithClass: event methodClass].
 	self default justCompiled: event selector in: event methodClass.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable class>>registerInterestToSystemAnnouncement [
+{ #category : #'class initialization' }
+NOCCompletionTable class >> registerInterestToSystemAnnouncement [
 	<systemEventRegistration>
 	
 	SystemAnnouncer uniqueInstance 
@@ -81,28 +62,19 @@ NOCCompletionTable class>>registerInterestToSystemAnnouncement [
 		
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable class>>reset [
+{ #category : #'instance creation' }
+NOCCompletionTable class >> reset [
 	classTable := nil.
 	table := nil.
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable class>>shutDown [
+{ #category : #'system startup' }
+NOCCompletionTable class >> shutDown [
 	self reset
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>addEntry: aString  [
+{ #category : #protocol }
+NOCCompletionTable >> addEntry: aString [ 
 	| d |
 	d := DateAndTime now.
 	self 
@@ -110,11 +82,8 @@ NOCCompletionTable>>addEntry: aString  [
 		date: d
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>addEntry: aString date: d  [
+{ #category : #protocol }
+NOCCompletionTable >> addEntry: aString date: d [ 
 	| lists |
 	lists := self listsForPrefix: aString.
 	lists do: [:e | e
@@ -122,11 +91,8 @@ NOCCompletionTable>>addEntry: aString date: d  [
 		date: d] 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>compiled: selector in: class date: date [
+{ #category : #protocol }
+NOCCompletionTable >> compiled: selector in: class date: date [
 
 	| method |
 	self addEntry: selector date: date.
@@ -142,46 +108,31 @@ NOCCompletionTable>>compiled: selector in: class date: date [
 						self class classes addEntry: each key date: date ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>entriesMatching: prefix [
+{ #category : #accessing }
+NOCCompletionTable >> entriesMatching: prefix [
 	| list |
 	
 	list := self listForPrefix: prefix.
 	^ list entriesMatching: prefix
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>entriesPerPrefix: n [
+{ #category : #accessing }
+NOCCompletionTable >> entriesPerPrefix: n [
 	numberofEntries := n
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>fillRate [
+{ #category : #accessing }
+NOCCompletionTable >> fillRate [
 	^ self totalNumberOfEntries / self maxNumberOfEntries 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>initialize [
+{ #category : #initialization }
+NOCCompletionTable >> initialize [
 	table := Dictionary new.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>justCompiled: selector in: class  [
+{ #category : #protocol }
+NOCCompletionTable >> justCompiled: selector in: class [ 
 	| date |
 	date := DateAndTime now.
 	self 
@@ -190,11 +141,8 @@ NOCCompletionTable>>justCompiled: selector in: class  [
 		date: date
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>listForPrefix: aString  [
+{ #category : #accessing }
+NOCCompletionTable >> listForPrefix: aString [ 
 	| prefix |
 	aString isEmpty ifTrue: [^ NOCEntryList ofSize: numberofEntries].
 	prefix := aString size = 1 
@@ -206,11 +154,8 @@ NOCCompletionTable>>listForPrefix: aString  [
 		ifAbsentPut: [ NOCEntryList ofSize: numberofEntries ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>listsForPrefix: aString  [
+{ #category : #accessing }
+NOCCompletionTable >> listsForPrefix: aString [ 
 	|  prefixes |
 	aString isEmpty ifTrue: [^ Array with: (NOCEntryList ofSize: numberofEntries)].
 	prefixes := OrderedCollection with: aString first asLowercase asString.
@@ -222,60 +167,39 @@ NOCCompletionTable>>listsForPrefix: aString  [
 		ifAbsentPut: [ NOCEntryList ofSize: numberofEntries ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>maxNumberOfEntries [
+{ #category : #accessing }
+NOCCompletionTable >> maxNumberOfEntries [
 	^ 26 * 26 * numberofEntries 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>numberOfEntries [
+{ #category : #accessing }
+NOCCompletionTable >> numberOfEntries [
 	^ numberofEntries
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>quickFillWithCategoriesMatching: pattern [
+{ #category : #protocol }
+NOCCompletionTable >> quickFillWithCategoriesMatching: pattern [
 	(Smalltalk organization categoriesMatching: pattern) do: [:category | 
 		(Smalltalk organization classesInCategory: category) do: [:e | self quickFillWithClass: e]]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>quickFillWithCategoryOf: cls [
+{ #category : #protocol }
+NOCCompletionTable >> quickFillWithCategoryOf: cls [
 	(Smalltalk organization classesInCategory: cls theNonMetaClass category) do: [:e | self quickFillWithClass: e]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>quickFillWithClass: cls [
+{ #category : #protocol }
+NOCCompletionTable >> quickFillWithClass: cls [
 	cls methodsDo: [:e | self justCompiled: e selector in: cls]
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>reset [
+{ #category : #accessing }
+NOCCompletionTable >> reset [
 	table := Dictionary new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NOCCompletionTable>>totalNumberOfEntries [
+{ #category : #accessing }
+NOCCompletionTable >> totalNumberOfEntries [
 	^ table inject: 0 into: [:total :list | total + list numEntries]
 ]

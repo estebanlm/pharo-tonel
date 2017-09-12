@@ -11,71 +11,49 @@ Class {
 	#instVars : [
 		'classNames'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 12:33'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'error messages',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveClassRefactoring class>>cannotRemoveTopLevelClassErrorMesssage [
+{ #category : #'error messages' }
+RBRemoveClassRefactoring class >> cannotRemoveTopLevelClassErrorMesssage [
 	^ 'Cannot remove top level class', Character cr asString ,'when it has subclasses'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveClassRefactoring class>>classNames: aClassNameCollection  [
+{ #category : #'instance creation' }
+RBRemoveClassRefactoring class >> classNames: aClassNameCollection [ 
 	^self new classNames: aClassNameCollection
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveClassRefactoring class>>model: aRBSmalltalk classNames: aClassNameCollection  [
+{ #category : #'instance creation' }
+RBRemoveClassRefactoring class >> model: aRBSmalltalk classNames: aClassNameCollection [ 
 	^(self new)
 		model: aRBSmalltalk;
 		classNames: aClassNameCollection;
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveClassRefactoring>>classNames: aClassNameCollection  [
+{ #category : #initialize-release }
+RBRemoveClassRefactoring >> classNames: aClassNameCollection [ 
 	classNames := aClassNameCollection
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveClassRefactoring>>environmentWithReferencesTo: aClass [
+{ #category : #preconditions }
+RBRemoveClassRefactoring >> environmentWithReferencesTo: aClass [
 	^ RBBrowserEnvironment new 
 		referencesTo: (Smalltalk globals 
 			associationAt: aClass 
 			ifAbsent: [ aClass ])
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveClassRefactoring>>environmentWithUsersOf: aTrait [
+{ #category : #preconditions }
+RBRemoveClassRefactoring >> environmentWithUsersOf: aTrait [
 	^ RBClassEnvironment 
 		onEnvironment: RBBrowserEnvironment new
 		classes: aTrait realClass users
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveClassRefactoring>>preconditionEmptyOrHasNoSubclasses: aClass [
+{ #category : #preconditions }
+RBRemoveClassRefactoring >> preconditionEmptyOrHasNoSubclasses: aClass [
 	^ (RBCondition hasSubclasses: aClass) not
 		|
 			((RBCondition isEmptyClass: aClass)
@@ -85,11 +63,8 @@ RBRemoveClassRefactoring>>preconditionEmptyOrHasNoSubclasses: aClass [
 						yourself))
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveClassRefactoring>>preconditionHasNoReferences: aClass [
+{ #category : #preconditions }
+RBRemoveClassRefactoring >> preconditionHasNoReferences: aClass [
 
 	| env |
 	
@@ -100,30 +75,21 @@ RBRemoveClassRefactoring>>preconditionHasNoReferences: aClass [
 		yourself
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveClassRefactoring>>preconditionHasNoUsers: aClassOrTrait [
+{ #category : #preconditions }
+RBRemoveClassRefactoring >> preconditionHasNoUsers: aClassOrTrait [
 	^ (RBCondition withBlock: [ aClassOrTrait realClass users isEmpty ])
 		errorMacro: aClassOrTrait name , ' Trait is used.<n>Browse classes using it?';
 		errorBlock: [ self openBrowserOn: (self environmentWithUsersOf: aClassOrTrait) ];
 		yourself
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveClassRefactoring>>preconditionIsNotMetaclass: aClass [
+{ #category : #preconditions }
+RBRemoveClassRefactoring >> preconditionIsNotMetaclass: aClass [
 	^ ((RBCondition isMetaclass: aClass) errorMacro: 'Cannot remove just the metaclass') not
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveClassRefactoring>>preconditions [
+{ #category : #preconditions }
+RBRemoveClassRefactoring >> preconditions [
 	^ classNames
 		inject: RBCondition empty
 		into: [ :sum :each | 
@@ -138,19 +104,13 @@ RBRemoveClassRefactoring>>preconditions [
 					& (self preconditionHasNoUsers: aClassOrTrait ) ) ]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveClassRefactoring>>removeClasses [
+{ #category : #transforming }
+RBRemoveClassRefactoring >> removeClasses [
 	classNames do: [:each | self model removeClassNamed: each]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveClassRefactoring>>reparentSubclasses [
+{ #category : #transforming }
+RBRemoveClassRefactoring >> reparentSubclasses [
 	classNames do: 
 			[:each | 
 			| class |
@@ -158,11 +118,8 @@ RBRemoveClassRefactoring>>reparentSubclasses [
 			self model reparentClasses: class subclasses copy to: class superclass]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveClassRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBRemoveClassRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream nextPutAll: ' classNames: '.
@@ -170,11 +127,8 @@ RBRemoveClassRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveClassRefactoring>>transform [
+{ #category : #transforming }
+RBRemoveClassRefactoring >> transform [
 	self
 		reparentSubclasses;
 		removeClasses

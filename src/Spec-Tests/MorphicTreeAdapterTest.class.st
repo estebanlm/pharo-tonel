@@ -1,38 +1,25 @@
-"
-
-"
 Class {
 	#name : #MorphicTreeAdapterTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'treeWithItems'
 	],
-	#category : #Spec-Tests,
-	#timestamp : ''
+	#category : #Spec-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-MorphicTreeAdapterTest>>modelClass [
+{ #category : #accessing }
+MorphicTreeAdapterTest >> modelClass [
 	^ TreeModel
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-MorphicTreeAdapterTest>>setUp [
+{ #category : #running }
+MorphicTreeAdapterTest >> setUp [
 	treeWithItems := self modelClass new.
 	treeWithItems roots: #(#first #second #third #fourth #fifth)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-MorphicTreeAdapterTest>>testDefaultRowColors [
+{ #category : #running }
+MorphicTreeAdapterTest >> testDefaultRowColors [
 	| defaultColor |
 	defaultColor := Smalltalk ui theme backgroundColor.
 	treeWithItems buildWithSpec.
@@ -41,11 +28,8 @@ MorphicTreeAdapterTest>>testDefaultRowColors [
 		equals: (Array with: defaultColor with: defaultColor)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-MorphicTreeAdapterTest>>testRowColorsAfterBuild [
+{ #category : #running }
+MorphicTreeAdapterTest >> testRowColorsAfterBuild [
 	treeWithItems buildWithSpec.
 	treeWithItems oddRowColor: Color red.
 	treeWithItems evenRowColor: Color green.
@@ -54,11 +38,8 @@ MorphicTreeAdapterTest>>testRowColorsAfterBuild [
 		equals: (Array with: Color green with: Color red)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-MorphicTreeAdapterTest>>testRowColorsBeforeBuild [
+{ #category : #running }
+MorphicTreeAdapterTest >> testRowColorsBeforeBuild [
 	treeWithItems oddRowColor: Color red.
 	treeWithItems evenRowColor: Color green.
 	treeWithItems buildWithSpec.

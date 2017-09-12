@@ -7,30 +7,20 @@ Class {
 	#instVars : [
 		'dDist'
 	],
-	#category : #OSWindow-Core-Events-Touch,
-	#timestamp : 'MerwanOuddane 4/2/2015 15:02'
+	#category : #OSWindow-Core-Events-Touch
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchEvent class>>id [
+{ #category : #'as yet unclassified' }
+OSTouchPinchEvent class >> id [
 	^ #pinch
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchEvent>>dDist [
+{ #category : #accessing }
+OSTouchPinchEvent >> dDist [
 	^ dDist
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchPinchEvent>>dDist: anObject [
+{ #category : #accessing }
+OSTouchPinchEvent >> dDist: anObject [
 	dDist := anObject
 ]

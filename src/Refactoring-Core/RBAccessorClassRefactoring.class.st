@@ -14,25 +14,18 @@ If the class already contains that accessor, I will create another one with a nu
 Class {
 	#name : #RBAccessorClassRefactoring,
 	#superclass : #RBClassRefactoring,
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 21:34'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAccessorClassRefactoring>>preconditions [
+{ #category : #preconditions }
+RBAccessorClassRefactoring >> preconditions [
 	^ self refactorings
 		inject: RBCondition empty
 		into: [ :result :each | result & each preconditions ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAccessorClassRefactoring>>refactorings [
+{ #category : #accessing }
+RBAccessorClassRefactoring >> refactorings [
 	| class |
 	class := self classObjectFor: className asSymbol.
 	^  class instanceVariableNames collect: [ :each | 
@@ -40,10 +33,7 @@ RBAccessorClassRefactoring>>refactorings [
 			variable: each class: class classVariable: false ]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAccessorClassRefactoring>>transform [
+{ #category : #transforming }
+RBAccessorClassRefactoring >> transform [
 	self refactorings do: [ :each | self performComponentRefactoring: each ]
 ]

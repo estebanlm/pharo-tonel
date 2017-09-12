@@ -4,15 +4,11 @@ I am SubclassResponsibility, an exception signaled when an inherited method shou
 Class {
 	#name : #SubclassResponsibility,
 	#superclass : #SelectorException,
-	#category : #Kernel-Exceptions,
-	#timestamp : 'SvenVanCaekenberghe 4/21/2011 12:35'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SubclassResponsibility>>standardMessageText [
+{ #category : #printing }
+SubclassResponsibility >> standardMessageText [
 	"Generate a standard textual description"
 	
 	^ String streamContents: [ :stream |

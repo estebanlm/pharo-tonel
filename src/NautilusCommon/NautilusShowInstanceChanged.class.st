@@ -4,6 +4,5 @@ A NautilusShowInstanceChanged is raised when the value of showInstances is chang
 Class {
 	#name : #NautilusShowInstanceChanged,
 	#superclass : #NautilusBooleanAnnouncement,
-	#category : #NautilusCommon-Announcements,
-	#timestamp : '<historical>'
+	#category : #NautilusCommon-Announcements
 }

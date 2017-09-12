@@ -33,24 +33,17 @@ Class {
 	#instVars : [
 		'newline'
 	],
-	#category : #Network-MIME,
-	#timestamp : '<historical>'
+	#category : #Network-MIME
 }
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-QuotedPrintableMimeConverter>>initialize [
+{ #category : #initialize }
+QuotedPrintableMimeConverter >> initialize [
 	super initialize.
 	newline := String cr
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-QuotedPrintableMimeConverter>>mimeDecode [
+{ #category : #conversion }
+QuotedPrintableMimeConverter >> mimeDecode [
 	| char outChar previousChar |
 	previousChar := nil.
 	[ mimeStream atEnd ] whileFalse: [
@@ -74,11 +67,8 @@ QuotedPrintableMimeConverter>>mimeDecode [
 				previousChar := outChar ] ]
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-QuotedPrintableMimeConverter>>mimeEncode [
+{ #category : #conversion }
+QuotedPrintableMimeConverter >> mimeEncode [
 	| char charValue lineLength |
 	lineLength := 0.
 	[ dataStream atEnd ] whileFalse: [
@@ -105,11 +95,8 @@ QuotedPrintableMimeConverter>>mimeEncode [
 						lineLength := lineLength + 3 ] ] ]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-QuotedPrintableMimeConverter>>newline: string [
+{ #category : #initialize }
+QuotedPrintableMimeConverter >> newline: string [
 	"Set another newline convention, like CRLF or LF that I should use.
 	By default I use CR."
 	

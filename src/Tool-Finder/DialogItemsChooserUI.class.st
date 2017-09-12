@@ -30,53 +30,37 @@ Class {
 		'alreadySearchedSelectedItemsListMaxSize',
 		'alreadySearchedUnselectedItemsListMaxSize'
 	],
-	#category : #Tool-Finder,
-	#timestamp : 'BenjaminVanRyseghem 9/17/2010 00:20'
+	#category : #Tool-Finder
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI class>>alreadySearchedSelectedItemsListMaxSize [
+{ #category : #accessing }
+DialogItemsChooserUI class >> alreadySearchedSelectedItemsListMaxSize [
 
 	^ alreadySearchedSelectedItemsListMaxSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI class>>alreadySearchedSelectedItemsListMaxSize: anObject [
+{ #category : #accessing }
+DialogItemsChooserUI class >> alreadySearchedSelectedItemsListMaxSize: anObject [
 	anObject ifNil: [^self].
 	alreadySearchedSelectedItemsListMaxSize := anObject.
 	self allInstancesDo: [:each | each alreadySearchedSelectedItemsListMaxSize: anObject]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI class>>alreadySearchedUnselectedItemsListMaxSize [
+{ #category : #accessing }
+DialogItemsChooserUI class >> alreadySearchedUnselectedItemsListMaxSize [
 
 	^ alreadySearchedUnselectedItemsListMaxSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI class>>alreadySearchedUnselectedItemsListMaxSize: anObject [
+{ #category : #accessing }
+DialogItemsChooserUI class >> alreadySearchedUnselectedItemsListMaxSize: anObject [
 	anObject ifNil: [^self].
 	alreadySearchedUnselectedItemsListMaxSize := anObject.
 	self allInstancesDo: [:each | each alreadySearchedUnselectedItemsListMaxSize: anObject]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI class>>dialogItemsChooserSettingsOn: aBuilder [
+{ #category : #settings }
+DialogItemsChooserUI class >> dialogItemsChooserSettingsOn: aBuilder [
 	<systemsettings>
 		(aBuilder group: #dialogItemsChooser)
 		target: self;
@@ -90,21 +74,15 @@ DialogItemsChooserUI class>>dialogItemsChooserSettingsOn: aBuilder [
 					label: 'Number of the Selected Items in History'.]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI class>>initialize [
+{ #category : #initialize-release }
+DialogItemsChooserUI class >> initialize [
 	super initialize.
 	alreadySearchedUnselectedItemsListMaxSize := 15.
 	alreadySearchedSelectedItemsListMaxSize := 15
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI class>>on: aDialogItemsChooser [
+{ #category : #'instance creation' }
+DialogItemsChooserUI class >> on: aDialogItemsChooser [
 	^self basicNew 
 		unselectedItems: aDialogItemsChooser unselectedItems;
 		selectedItems: aDialogItemsChooser selectedItems;
@@ -112,35 +90,23 @@ DialogItemsChooserUI class>>on: aDialogItemsChooser [
 		initialize.
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>addAllButtonAction [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> addAllButtonAction [
 	self addAllItems.
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>addAllButtonLabel [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> addAllButtonLabel [
 	^'>>'
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>addAllButtonState [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> addAllButtonState [
 	^false
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>addAllItems [
+{ #category : #'buttons behavior' }
+DialogItemsChooserUI >> addAllItems [
 
 	| selection |
 	selection := self unselectedItemsProbablyRestricted.
@@ -157,35 +123,23 @@ DialogItemsChooserUI>>addAllItems [
 		changed: #hasUnselectedSelections
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>addButtonAction [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> addButtonAction [
 	self addSelectedItems.
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>addButtonLabel [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> addButtonLabel [
 	^'>'
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>addButtonState [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> addButtonState [
 	^false
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>addSelectedItems [
+{ #category : #'buttons behavior' }
+DialogItemsChooserUI >> addSelectedItems [
 
 	| selection |
 	selection := self unselectedSelectionItems.
@@ -202,91 +156,61 @@ DialogItemsChooserUI>>addSelectedItems [
 		changed: #hasUnselectedSelections
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>addToAlreadySearchedSelectedItemsList: aString [
+{ #category : #accessing }
+DialogItemsChooserUI >> addToAlreadySearchedSelectedItemsList: aString [
 	self alreadySearchedSelectedItemsList size = self alreadySearchedSelectedItemsListMaxSize
 		ifTrue: [self alreadySearchedSelectedItemsList removeLast ].
 	self alreadySearchedSelectedItemsList addFirst: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>addToAlreadySearchedUnselectedItemsList: aString [
+{ #category : #accessing }
+DialogItemsChooserUI >> addToAlreadySearchedUnselectedItemsList: aString [
 	self alreadySearchedUnselectedItemsList size = self alreadySearchedUnselectedItemsListMaxSize
 		ifTrue: [self alreadySearchedUnselectedItemsList removeLast ].
 	self alreadySearchedUnselectedItemsList addFirst: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>alreadySearchedSelectedItemsList [
+{ #category : #accessing }
+DialogItemsChooserUI >> alreadySearchedSelectedItemsList [
 	^AlreadySearchedSelectedItemsList ifNil: [AlreadySearchedSelectedItemsList := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>alreadySearchedSelectedItemsListMaxSize [
+{ #category : #accessing }
+DialogItemsChooserUI >> alreadySearchedSelectedItemsListMaxSize [
 	^self class alreadySearchedSelectedItemsListMaxSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>alreadySearchedSelectedItemsListMaxSize: anInteger [
+{ #category : #accessing }
+DialogItemsChooserUI >> alreadySearchedSelectedItemsListMaxSize: anInteger [
 
 	[self alreadySearchedSelectedItemsList size > anInteger]
 		whileTrue: [self alreadySearchedSelectedItemsList removeLast]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>alreadySearchedUnselectedItemsList [
+{ #category : #accessing }
+DialogItemsChooserUI >> alreadySearchedUnselectedItemsList [
 	^AlreadySearchedUnselectedItemsList ifNil: [AlreadySearchedUnselectedItemsList := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>alreadySearchedUnselectedItemsListMaxSize [
+{ #category : #accessing }
+DialogItemsChooserUI >> alreadySearchedUnselectedItemsListMaxSize [
 	^self class alreadySearchedUnselectedItemsListMaxSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>alreadySearchedUnselectedItemsListMaxSize: anInteger [
+{ #category : #accessing }
+DialogItemsChooserUI >> alreadySearchedUnselectedItemsListMaxSize: anInteger [
 
 	[self alreadySearchedUnselectedItemsList size > anInteger]
 		whileTrue: [self alreadySearchedUnselectedItemsList removeLast]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>applyChanges [
+{ #category : #private }
+DialogItemsChooserUI >> applyChanges [
 	self valid
 ]
 
-{
-	#category : #'build items',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>buildAddAllButton [
+{ #category : #'build items' }
+DialogItemsChooserUI >> buildAddAllButton [
 	"Answer a new button for removing all items
 	form the unslected list and adding to the selected list."
 	
@@ -301,11 +225,8 @@ DialogItemsChooserUI>>buildAddAllButton [
 		hResizing: #spaceFill
 ]
 
-{
-	#category : #'build items',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>buildAddButton [
+{ #category : #'build items' }
+DialogItemsChooserUI >> buildAddButton [
 	"Answer a new button for removing selected items
 	from the unselected list and adding to the selected list."
 	
@@ -320,11 +241,8 @@ DialogItemsChooserUI>>buildAddButton [
 		hResizing: #spaceFill
 ]
 
-{
-	#category : #'build items',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>buildRemoveAllButton [
+{ #category : #'build items' }
+DialogItemsChooserUI >> buildRemoveAllButton [
 	"Answer a new button for removing all items from the
 	selected list and adding to the unselected list."
 	
@@ -339,11 +257,8 @@ DialogItemsChooserUI>>buildRemoveAllButton [
 		hResizing: #spaceFill
 ]
 
-{
-	#category : #'build items',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>buildRemoveButton [
+{ #category : #'build items' }
+DialogItemsChooserUI >> buildRemoveButton [
 	"Answer a new button for removing selected items
 	from the selected list and adding to the unselected list."
 	
@@ -358,11 +273,8 @@ DialogItemsChooserUI>>buildRemoveButton [
 		hResizing: #spaceFill
 ]
 
-{
-	#category : #'build items',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>buildSelectedItemsList [
+{ #category : #'build items' }
+DialogItemsChooserUI >> buildSelectedItemsList [
 
 	^(PluggableListMorph
 		on: self 
@@ -376,11 +288,8 @@ DialogItemsChooserUI>>buildSelectedItemsList [
 			vResizing: #spaceFill.
 ]
 
-{
-	#category : #'build items',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>buildSelectedItemsSearchingTextArea: aWindow [
+{ #category : #'build items' }
+DialogItemsChooserUI >> buildSelectedItemsSearchingTextArea: aWindow [
 
 	^aWindow
 		newAutoAcceptTextEntryFor: self
@@ -391,11 +300,8 @@ DialogItemsChooserUI>>buildSelectedItemsSearchingTextArea: aWindow [
 		help: 'Enter the name of a package' translated
 ]
 
-{
-	#category : #'build items',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>buildUnselectedItemsList [
+{ #category : #'build items' }
+DialogItemsChooserUI >> buildUnselectedItemsList [
 
 	^(PluggableListMorph
 		on: self 
@@ -409,11 +315,8 @@ DialogItemsChooserUI>>buildUnselectedItemsList [
 			vResizing: #spaceFill.
 ]
 
-{
-	#category : #'build items',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>buildUnselectedItemsSearchingTextArea: aWindow [
+{ #category : #'build items' }
+DialogItemsChooserUI >> buildUnselectedItemsSearchingTextArea: aWindow [
 
 	^aWindow
 		newAutoAcceptTextEntryFor: self
@@ -424,92 +327,62 @@ DialogItemsChooserUI>>buildUnselectedItemsSearchingTextArea: aWindow [
 		help: 'Enter the name of a package' translated
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>cancelButtonLabel [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> cancelButtonLabel [
 	^'Cancel'
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>cancelButtonState [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> cancelButtonState [
 	^false
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>centering [
+{ #category : #display }
+DialogItemsChooserUI >> centering [
 	self left: ((World width / 2) - (self width /2)) rounded.
 	self top: ((World height / 2) - (self height /2)) rounded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>dialogItemsChooser [
+{ #category : #accessing }
+DialogItemsChooserUI >> dialogItemsChooser [
 	^ dialogItemsChooser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>dialogItemsChooser: aDialogItemsChooser [
+{ #category : #accessing }
+DialogItemsChooserUI >> dialogItemsChooser: aDialogItemsChooser [
 	dialogItemsChooser := aDialogItemsChooser
 ]
 
-{
-	#category : #selectedList,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>hasSelectedItems [
+{ #category : #selectedList }
+DialogItemsChooserUI >> hasSelectedItems [
 	"Answer whether the selected list has items."
 
 	^self selectedItems notEmpty
 ]
 
-{
-	#category : #selectedList,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>hasSelectedSelections [
+{ #category : #selectedList }
+DialogItemsChooserUI >> hasSelectedSelections [
 	"Answer whether the selected list has selected items."
 
 	^selectedSelectionList anySatisfy: [:selected | selected]
 ]
 
-{
-	#category : #unselectedList,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>hasUnselectedItems [
+{ #category : #unselectedList }
+DialogItemsChooserUI >> hasUnselectedItems [
 	"Answer whether the unselected list has items."
 
 	^self unselectedItems notEmpty
 ]
 
-{
-	#category : #unselectedList,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>hasUnselectedSelections [
+{ #category : #unselectedList }
+DialogItemsChooserUI >> hasUnselectedSelections [
 	"Answer whether the unselected list has selected items."
 
 	^unselectedSelectionList anySatisfy: [:selected | selected]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>initialize [
+{ #category : #initialization }
+DialogItemsChooserUI >> initialize [
 
 	unselectedItemsSearchingString := String new.
 	selectedItemsSearchingString := String new.
@@ -522,19 +395,13 @@ DialogItemsChooserUI>>initialize [
 	self hResizing: #shrinkWrap.
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>isResizeable [
+{ #category : #display }
+DialogItemsChooserUI >> isResizeable [
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>msgPaneMenu: aMenu shifted: shifted [
+{ #category : #private }
+DialogItemsChooserUI >> msgPaneMenu: aMenu shifted: shifted [
 	| donorMenu |
 	
 	donorMenu := shifted
@@ -543,11 +410,8 @@ DialogItemsChooserUI>>msgPaneMenu: aMenu shifted: shifted [
 	^ aMenu addAllFrom: donorMenu
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>newContentMorph [
+{ #category : #display }
+DialogItemsChooserUI >> newContentMorph [
 	| trees unselectedItemsCol selectedItemsCol buttons |
 	buttons := (self newGroupboxFor: (
 		(self newColumn: {
@@ -573,35 +437,23 @@ DialogItemsChooserUI>>newContentMorph [
 
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>okButtonAction [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> okButtonAction [
 	self valid.
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>okButtonLabel [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> okButtonLabel [
 	^'Ok'
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>okButtonState [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> okButtonState [
 	^false
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>openInWorld [
+{ #category : #display }
+DialogItemsChooserUI >> openInWorld [
 
 	super openInWorld.
 	self width: 500.
@@ -610,35 +462,23 @@ DialogItemsChooserUI>>openInWorld [
 
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>removeAllButtonAction [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> removeAllButtonAction [
 	self removeAllItems.
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>removeAllButtonLabel [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> removeAllButtonLabel [
 	^'<<'
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>removeAllButtonState [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> removeAllButtonState [
 	^false
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>removeAllItems [
+{ #category : #'buttons behavior' }
+DialogItemsChooserUI >> removeAllItems [
 
 	| selection |
 	selection := self selectedItemsProbablyRestricted.
@@ -655,35 +495,23 @@ DialogItemsChooserUI>>removeAllItems [
 		changed: #hasUnselectedItems
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>removeButtonAction [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> removeButtonAction [
 	self removeSelectedItems.
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>removeButtonLabel [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> removeButtonLabel [
 	^'<'
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>removeButtonState [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> removeButtonState [
 	^false
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>removeSelectedItems [
+{ #category : #'buttons behavior' }
+DialogItemsChooserUI >> removeSelectedItems [
 
 	| selection |
 	selection := self selectedSelectionItems.
@@ -700,72 +528,48 @@ DialogItemsChooserUI>>removeSelectedItems [
 		changed: #hasUnselectedItems
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>roots: aTree [
+{ #category : #private }
+DialogItemsChooserUI >> roots: aTree [
 	aTree == unselectedItemsModel
 		ifTrue: [ ^ self unselectedItemsProbablyRestricted].
 	aTree == selectedItemsModel
 		ifTrue:[ ^ self selectedItemsProbablyRestricted].
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>searchButtonLabel [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> searchButtonLabel [
 	^'Search'
 ]
 
-{
-	#category : #'buttons creations',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>searchButtonState [
+{ #category : #'buttons creations' }
+DialogItemsChooserUI >> searchButtonState [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>selectedItems [
+{ #category : #accessing }
+DialogItemsChooserUI >> selectedItems [
 	^ selectedItems
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>selectedItems: aList [
+{ #category : #accessing }
+DialogItemsChooserUI >> selectedItems: aList [
 	selectedItems := aList.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>selectedItemsModel [
+{ #category : #accessing }
+DialogItemsChooserUI >> selectedItemsModel [
 
 	^ selectedItemsModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>selectedItemsModel: anObject [
+{ #category : #accessing }
+DialogItemsChooserUI >> selectedItemsModel: anObject [
 
 	selectedItemsModel := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>selectedItemsProbablyRestricted [
+{ #category : #private }
+DialogItemsChooserUI >> selectedItemsProbablyRestricted [
 
 	| matcher string |
 	string := self selectedItemsSearchingString.
@@ -778,20 +582,14 @@ DialogItemsChooserUI>>selectedItemsProbablyRestricted [
 	^self selectedItems select: [:each | matcher match: each].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>selectedItemsSearchingString [
+{ #category : #accessing }
+DialogItemsChooserUI >> selectedItemsSearchingString [
 
 	^ selectedItemsSearchingString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>selectedItemsSearchingString: anObject [
+{ #category : #accessing }
+DialogItemsChooserUI >> selectedItemsSearchingString: anObject [
 
 	selectedItemsSearchingString := anObject.
 	selectedSelectionList removeAll.
@@ -803,78 +601,54 @@ DialogItemsChooserUI>>selectedItemsSearchingString: anObject [
 		changed: #hasSelectedSelections
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>selectedItemsTextArea [
+{ #category : #accessing }
+DialogItemsChooserUI >> selectedItemsTextArea [
 
 	^ selectedItemsTextArea
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>selectedItemsTextArea: anObject [
+{ #category : #accessing }
+DialogItemsChooserUI >> selectedItemsTextArea: anObject [
 
 	selectedItemsTextArea := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>selectedLabel [
+{ #category : #accessing }
+DialogItemsChooserUI >> selectedLabel [
 	^self dialogItemsChooser isNil
 		ifTrue: ['Selected Items' translated]
 		ifFalse: [self dialogItemsChooser selectedLabel]
 ]
 
-{
-	#category : #selectedList,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>selectedSelectionAt: index [
+{ #category : #selectedList }
+DialogItemsChooserUI >> selectedSelectionAt: index [
 
 	^selectedSelectionList at: index ifAbsent: [false]
 ]
 
-{
-	#category : #selectedList,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>selectedSelectionAt: index put: aBoolean [
+{ #category : #selectedList }
+DialogItemsChooserUI >> selectedSelectionAt: index put: aBoolean [
 	"Mark the item as selected or not."
 	
 	selectedSelectionList at: index put: aBoolean.
 	self changed: #hasSelectedSelections
 ]
 
-{
-	#category : #selectedList,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>selectedSelectionIndex [
+{ #category : #selectedList }
+DialogItemsChooserUI >> selectedSelectionIndex [
 	selectedSelectionIndex ifNil: [selectedSelectionIndex := 0].
 	^selectedSelectionIndex
 ]
 
-{
-	#category : #selectedList,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>selectedSelectionIndex: anObject [
+{ #category : #selectedList }
+DialogItemsChooserUI >> selectedSelectionIndex: anObject [
 
 	selectedSelectionIndex := anObject.
 	self changed: #selectedSelectionIndex
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>selectedSelectionItems [
+{ #category : #'buttons behavior' }
+DialogItemsChooserUI >> selectedSelectionItems [
 
 	| result |
 	result := OrderedCollection new.
@@ -884,46 +658,31 @@ DialogItemsChooserUI>>selectedSelectionItems [
 	^result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedItems [
+{ #category : #accessing }
+DialogItemsChooserUI >> unselectedItems [
 	^unselectedItems
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedItems: anOrderedCollection  [
+{ #category : #accessing }
+DialogItemsChooserUI >> unselectedItems: anOrderedCollection [ 
 	
 	unselectedItems := anOrderedCollection.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedItemsModel [
+{ #category : #accessing }
+DialogItemsChooserUI >> unselectedItemsModel [
 
 	^ unselectedItemsModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedItemsModel: anObject [
+{ #category : #accessing }
+DialogItemsChooserUI >> unselectedItemsModel: anObject [
 
 	unselectedItemsModel := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedItemsProbablyRestricted [
+{ #category : #private }
+DialogItemsChooserUI >> unselectedItemsProbablyRestricted [
 
 	| matcher string |
 	string := self unselectedItemsSearchingString.
@@ -936,20 +695,14 @@ DialogItemsChooserUI>>unselectedItemsProbablyRestricted [
 	^self unselectedItems select: [:each | matcher match: each].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedItemsSearchingString [
+{ #category : #accessing }
+DialogItemsChooserUI >> unselectedItemsSearchingString [
 
 	^ unselectedItemsSearchingString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedItemsSearchingString: anObject [
+{ #category : #accessing }
+DialogItemsChooserUI >> unselectedItemsSearchingString: anObject [
 
 	unselectedItemsSearchingString := anObject.
 	unselectedSelectionList removeAll.
@@ -961,103 +714,70 @@ DialogItemsChooserUI>>unselectedItemsSearchingString: anObject [
 		changed: #hasUnselectedSelections
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedItemsTextArea [
+{ #category : #accessing }
+DialogItemsChooserUI >> unselectedItemsTextArea [
 	^unselectedItemsTextArea
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedItemsTextArea: anObject [
+{ #category : #accessing }
+DialogItemsChooserUI >> unselectedItemsTextArea: anObject [
 
 	unselectedItemsTextArea := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedLabel [
+{ #category : #accessing }
+DialogItemsChooserUI >> unselectedLabel [
 	^self dialogItemsChooser isNil
 		ifTrue: ['Unselected Items' translated]
 		ifFalse: [self dialogItemsChooser unselectedLabel]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedSelection [
+{ #category : #accessing }
+DialogItemsChooserUI >> unselectedSelection [
 	unselectedSelection ifNil: [unselectedSelection := 0].
 	^unselectedSelection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedSelection: anObject [
+{ #category : #accessing }
+DialogItemsChooserUI >> unselectedSelection: anObject [
 
 	unselectedSelection := anObject
 ]
 
-{
-	#category : #unselectedList,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedSelectionAt: index [
+{ #category : #unselectedList }
+DialogItemsChooserUI >> unselectedSelectionAt: index [
 
 	^unselectedSelectionList at: index ifAbsent: [false]
 ]
 
-{
-	#category : #unselectedList,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedSelectionAt: index Put: anObject [
+{ #category : #unselectedList }
+DialogItemsChooserUI >> unselectedSelectionAt: index Put: anObject [
 	unselectedSelectionList at: index put: anObject
 ]
 
-{
-	#category : #unselectedList,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedSelectionAt: index put: aBoolean [
+{ #category : #unselectedList }
+DialogItemsChooserUI >> unselectedSelectionAt: index put: aBoolean [
 	"Mark the item as selected or not."
 	
 	unselectedSelectionList at: index put: aBoolean.
 	self changed: #hasUnselectedSelections
 ]
 
-{
-	#category : #unselectedList,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedSelectionIndex [
+{ #category : #unselectedList }
+DialogItemsChooserUI >> unselectedSelectionIndex [
 	unselectedSelectionIndex ifNil: [unselectedSelectionIndex := 0].
 	^unselectedSelectionIndex
 ]
 
-{
-	#category : #unselectedList,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedSelectionIndex: anObject [
+{ #category : #unselectedList }
+DialogItemsChooserUI >> unselectedSelectionIndex: anObject [
 
 	unselectedSelectionIndex := anObject.
 	self changed: #unselectedSelectionIndex
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>unselectedSelectionItems [
+{ #category : #'buttons behavior' }
+DialogItemsChooserUI >> unselectedSelectionItems [
 
 	| result |
 	result := OrderedCollection new.
@@ -1067,10 +787,7 @@ DialogItemsChooserUI>>unselectedSelectionItems [
 	^result
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-DialogItemsChooserUI>>valid [
+{ #category : #private }
+DialogItemsChooserUI >> valid [
 	self dialogItemsChooser sendSelection
 ]

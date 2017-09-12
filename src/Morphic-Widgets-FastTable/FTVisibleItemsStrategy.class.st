@@ -32,15 +32,11 @@ Example
 Class {
 	#name : #FTVisibleItemsStrategy,
 	#superclass : #FTTreeFunctionStrategy,
-	#category : #Morphic-Widgets-FastTable-Tree,
-	#timestamp : 'CyrilFerlicot 11/2/2015 11:35'
+	#category : #Morphic-Widgets-FastTable-Tree
 }
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTVisibleItemsStrategy>>filter [
+{ #category : #action }
+FTVisibleItemsStrategy >> filter [
 	| items |
 	items := OrderedCollection new.
 	dataSource rootsItems do: [ :item | (self matchingFilter: item) ifNotNil: [ :itemNew | items add: itemNew ] ] displayingProgress: [ :each | 'Looking inside ' , each name ].
@@ -53,11 +49,8 @@ FTVisibleItemsStrategy>>filter [
 		children: dataSource childrenBlock
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTVisibleItemsStrategy>>matchingFilter: anItem [
+{ #category : #action }
+FTVisibleItemsStrategy >> matchingFilter: anItem [
 	anItem isExpanded
 		ifTrue:
 			[ ((anItem children collect: [ :each | self matchingFilter: each ]) reject: #isNil)
@@ -73,11 +66,8 @@ FTVisibleItemsStrategy>>matchingFilter: anItem [
 		ifEmpty: [ nil ]
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTVisibleItemsStrategy>>newStaticItemFrom: anItem [
+{ #category : #action }
+FTVisibleItemsStrategy >> newStaticItemFrom: anItem [
 	^ FTStaticBasicItem new
 		data: anItem data;
 		depth: anItem depth;
@@ -85,11 +75,8 @@ FTVisibleItemsStrategy>>newStaticItemFrom: anItem [
 		yourself
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTVisibleItemsStrategy>>realSearch [
+{ #category : #action }
+FTVisibleItemsStrategy >> realSearch [
 	| result cpt |
 	result := OrderedCollection new.
 	cpt := 0.

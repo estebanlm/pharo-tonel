@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBRenameTemporaryTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameTemporaryTest>>testBadInterval [
+{ #category : #'failure tests' }
+RBRenameTemporaryTest >> testBadInterval [
 	self shouldFail: (RBRenameTemporaryRefactoring 
 			renameTemporaryFrom: (self 
 					convertInterval: (14 to: 17)
@@ -22,11 +15,8 @@ RBRenameTemporaryTest>>testBadInterval [
 			selector: #testMethod)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameTemporaryTest>>testBadName [
+{ #category : #'failure tests' }
+RBRenameTemporaryTest >> testBadName [
 	self
 		shouldFail: (RBRenameTemporaryRefactoring 
 				renameTemporaryFrom: (self 
@@ -58,11 +48,8 @@ RBRenameTemporaryTest>>testBadName [
 				selector: #openEditor)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameTemporaryTest>>testModelBadName [
+{ #category : #'failure tests' }
+RBRenameTemporaryTest >> testModelBadName [
 	| class |
 	model := RBClassModelFactory rbNamespace new.
 	class := model classNamed: #Object.
@@ -82,11 +69,8 @@ RBRenameTemporaryTest>>testModelBadName [
 					selector: #aMethod:)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameTemporaryTest>>testRenameTemporary [
+{ #category : #tests }
+RBRenameTemporaryTest >> testRenameTemporary [
 	| refactoring |
 	refactoring := RBRenameTemporaryRefactoring 
 		renameTemporaryFrom: (self 

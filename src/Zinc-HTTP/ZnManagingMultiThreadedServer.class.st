@@ -14,15 +14,11 @@ Class {
 		'lock',
 		'connections'
 	],
-	#category : #Zinc-HTTP-Client-Server,
-	#timestamp : '<historical>'
+	#category : #Zinc-HTTP-Client-Server
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnManagingMultiThreadedServer>>closeConnections [
+{ #category : #private }
+ZnManagingMultiThreadedServer >> closeConnections [
 	self connections isEmpty ifTrue: [ ^ self ].
 	self lock critical: [
 		self connections do: [ :each | 
@@ -33,37 +29,25 @@ ZnManagingMultiThreadedServer>>closeConnections [
 		self connections removeAll ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnManagingMultiThreadedServer>>closeSocketStream: socketStream [
+{ #category : #private }
+ZnManagingMultiThreadedServer >> closeSocketStream: socketStream [
 	super closeSocketStream: socketStream.
 	self lock critical: [ 
 		self connections remove: socketStream ifAbsent: [ ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnManagingMultiThreadedServer>>connections [
+{ #category : #accessing }
+ZnManagingMultiThreadedServer >> connections [
 	^ connections ifNil: [ connections := OrderedCollection new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnManagingMultiThreadedServer>>lock [
+{ #category : #accessing }
+ZnManagingMultiThreadedServer >> lock [
 	^ lock ifNil: [ lock := Mutex new ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnManagingMultiThreadedServer>>socketStreamOn: socket [
+{ #category : #private }
+ZnManagingMultiThreadedServer >> socketStreamOn: socket [
 	| socketStream |
 	socketStream := super socketStreamOn: socket.
 	self lock critical: [ 
@@ -71,11 +55,8 @@ ZnManagingMultiThreadedServer>>socketStreamOn: socket [
 	^ socketStream
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnManagingMultiThreadedServer>>stop: unregister [
+{ #category : #public }
+ZnManagingMultiThreadedServer >> stop: unregister [
 	super stop: unregister.
 	self closeConnections
 ]

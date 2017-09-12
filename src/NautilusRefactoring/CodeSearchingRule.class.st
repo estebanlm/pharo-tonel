@@ -8,41 +8,28 @@ use #matcher: for setting the parse tree searcher.
 Class {
 	#name : #CodeSearchingRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #NautilusRefactoring,
-	#timestamp : 'NicolaiHess 11/30/2014 22:27'
+	#category : #NautilusRefactoring
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-CodeSearchingRule class>>isVisible [
+{ #category : #testing }
+CodeSearchingRule class >> isVisible [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-CodeSearchingRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+CodeSearchingRule class >> uniqueIdentifierName [
 	
 	^ 'CodeSearchingRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-CodeSearchingRule>>matcher: aRule [
+{ #category : #accessing }
+CodeSearchingRule >> matcher: aRule [
 
 	matcher := aRule
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-CodeSearchingRule>>name [
+{ #category : #accessing }
+CodeSearchingRule >> name [
 
 	^ 'Code Searching'
 ]

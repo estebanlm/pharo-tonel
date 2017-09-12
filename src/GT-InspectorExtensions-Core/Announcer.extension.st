@@ -1,12 +1,7 @@
-Extension {
-	#name : #Announcer
-}
+Extension { #name : #Announcer }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Announcer>>gtInspectorAnnouncementsIn: composite context: aGTContext [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Announcer >> gtInspectorAnnouncementsIn: composite context: aGTContext [
 	<gtInspectorPresentationOrder: 40>
 	| recordedAnnouncements messageSend |
 	
@@ -34,11 +29,8 @@ Announcer>>gtInspectorAnnouncementsIn: composite context: aGTContext [
 			entitled: 'Reset'
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Announcer>>gtInspectorSubscriptionsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Announcer >> gtInspectorSubscriptionsIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	composite table
 		title: 'Subscriptions';

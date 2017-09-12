@@ -58,24 +58,17 @@ Class {
 		'CaseFlag',
 		'IfNilFlag'
 	],
-	#category : #Compiler-Kernel,
-	#timestamp : 'nice 2/3/2011 22:54'
+	#category : #Compiler-Kernel
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler class>>decompile: aCompiledMethod [
+{ #category : #public }
+Decompiler class >> decompile: aCompiledMethod [
 	"Answers a decompiled AST for the compiled method"
 	^ self new decompileMethod: aCompiledMethod
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler class>>initialize [
+{ #category : #initialization }
+Decompiler class >> initialize [
 
 	CascadeFlag := 'cascade'.  "A unique object"
 	CaseFlag := 'case'. "Ditto"
@@ -85,11 +78,8 @@ Decompiler class>>initialize [
 	"Decompiler initialize"
 ]
 
-{
-	#category : #control,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>blockForCaseTo: end [
+{ #category : #control }
+Decompiler >> blockForCaseTo: end [
 	"Decompile a range of code as in statementsForCaseTo:, but return a block node."
 	| exprs block oldBase |
 	oldBase := blockStackBase.
@@ -101,29 +91,20 @@ Decompiler>>blockForCaseTo: end [
 	^block
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>blockReturnConstant: value  [
+{ #category : #'instruction decoding' }
+Decompiler >> blockReturnConstant: value [ 
 	self pushConstant: value;
 		 blockReturnTop
 
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>blockReturnTop [
+{ #category : #'instruction decoding' }
+Decompiler >> blockReturnTop [
 	"No action needed"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>blockScopeRefersOnlyOnceToTemp: offset [
+{ #category : #private }
+Decompiler >> blockScopeRefersOnlyOnceToTemp: offset [
 	| nRefs byteCode extension scanner scan |
 	scanner := InstructionStream on: method.
 	nRefs := 0.
@@ -144,11 +125,8 @@ Decompiler>>blockScopeRefersOnlyOnceToTemp: offset [
 	^nRefs = 1
 ]
 
-{
-	#category : #control,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>blockTo: end [
+{ #category : #control }
+Decompiler >> blockTo: end [
 	"Decompile a range of code as in statementsTo:, but return a block node."
 	| exprs block oldBase |
 	oldBase := blockStackBase.
@@ -160,11 +138,8 @@ Decompiler>>blockTo: end [
 	^block
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>case: dist [
+{ #category : #'instruction decoding' }
+Decompiler >> case: dist [
 	"statements = keyStmts CascadeFlag keyValueBlock ... keyStmts"
 
 	| nextCase thenJump stmtStream elements b node cases otherBlock myExits |
@@ -210,20 +185,14 @@ Decompiler>>case: dist [
 					arguments: (Array with: cases with: otherBlock))].
 ]
 
-{
-	#category : #control,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>checkForBlock: receiver selector: selector arguments: arguments [
+{ #category : #control }
+Decompiler >> checkForBlock: receiver selector: selector arguments: arguments [
 	[selector == #closureCopy:copiedValues:] assert.
 	^self checkForClosureCopy: receiver arguments: arguments
 ]
 
-{
-	#category : #control,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>checkForClosureCopy: receiver arguments: arguments [
+{ #category : #control }
+Decompiler >> checkForClosureCopy: receiver arguments: arguments [
 	"We just saw a closureCopy:copiedValues: message. Check for and construct a following block."
 
 	| savePc jump |
@@ -239,19 +208,13 @@ Decompiler>>checkForClosureCopy: receiver arguments: arguments [
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>constructorForMethod: aMethod [
+{ #category : #private }
+Decompiler >> constructorForMethod: aMethod [
 	^DecompilerConstructorForClosures new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>convertToDoLoop [
+{ #category : #private }
+Decompiler >> convertToDoLoop [
 	"If statements contains the pattern
 		var := startExpr.
 		[var <= limit] whileTrue: [...statements... var := var + incConst]
@@ -284,11 +247,8 @@ Decompiler>>convertToDoLoop [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>decompile: aSelector in: aClass method: aMethod [
+{ #category : #private }
+Decompiler >> decompile: aSelector in: aClass method: aMethod [
 
 	^self
 		decompile: aSelector
@@ -297,11 +257,8 @@ Decompiler>>decompile: aSelector in: aClass method: aMethod [
 		using: (self constructorForMethod: aMethod)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>decompile: aSelector in: aClass method: aMethod using: aConstructor [
+{ #category : #private }
+Decompiler >> decompile: aSelector in: aClass method: aMethod using: aConstructor [
 
 	| block node |
 	constructor := aConstructor.
@@ -333,11 +290,8 @@ Decompiler>>decompile: aSelector in: aClass method: aMethod using: aConstructor 
 	^node preen
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>decompileMethod: aMethod [
+{ #category : #'public access' }
+Decompiler >> decompileMethod: aMethod [
 
 	^self
 		decompile: aMethod selector
@@ -345,11 +299,8 @@ Decompiler>>decompileMethod: aMethod [
 		method: aMethod
 ]
 
-{
-	#category : #control,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>doClosureCopyCopiedValues: blockCopiedValues numArgs: numArgs blockSize: blockSize [
+{ #category : #control }
+Decompiler >> doClosureCopyCopiedValues: blockCopiedValues numArgs: numArgs blockSize: blockSize [
 	| startpc savedTemps savedTempVarCount savedNumLocalTemps
 	  jump blockArgs blockTemps blockTempsOffset block |
 	savedTemps := tempVars.
@@ -389,11 +340,8 @@ Decompiler>>doClosureCopyCopiedValues: blockCopiedValues numArgs: numArgs blockS
 	numLocalTemps := savedNumLocalTemps
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>doDup [
+{ #category : #'instruction decoding' }
+Decompiler >> doDup [
 
 	stack last == CascadeFlag
 		ifFalse:
@@ -403,20 +351,14 @@ Decompiler>>doDup [
 	stack addLast: CascadeFlag
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>doNop [
+{ #category : #'instruction decoding' }
+Decompiler >> doNop [
 
 	"do nothing"
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>doPop [
+{ #category : #'instruction decoding' }
+Decompiler >> doPop [
 
 	stack isEmpty ifTrue:
 		["Ignore pop in first leg of ifNil for value"
@@ -426,11 +368,8 @@ Decompiler>>doPop [
 		ifFalse: [statements addLast: stack removeLast].
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>doStore: stackOrBlock [
+{ #category : #'instruction decoding' }
+Decompiler >> doStore: stackOrBlock [
 	"Only called internally, not from InstructionStream. StackOrBlock is stack
 	for store, statements for storePop."
 
@@ -442,11 +381,8 @@ Decompiler>>doStore: stackOrBlock [
 		ifFalse: [constructor codeAssignTo: var value: expr])
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>initSymbols: aClass [
+{ #category : #initialize-release }
+Decompiler >> initSymbols: aClass [
 	constructor method: method class: aClass literals: method literals.
 	constTable := constructor codeConstants.
 	instVars := Array new: aClass instSize.
@@ -472,11 +408,8 @@ Decompiler>>initSymbols: aClass [
 		(tempVars at: i) beMethodArg]
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>jump: dist [
+{ #category : #'instruction decoding' }
+Decompiler >> jump: dist [
 	| blockBody destPc nextPC |
 	destPc := pc + dist.
 	(lastJumpIfPcStack isEmpty or: [dist < 0 and: [destPc > lastJumpIfPcStack last]])
@@ -500,11 +433,8 @@ Decompiler>>jump: dist [
 			lastJumpPc := lastPc]
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>jump: dist if: condition [
+{ #category : #'instruction decoding' }
+Decompiler >> jump: dist if: condition [
 
 	| savePc sign elsePc elseStart end cond ifExpr thenBlock elseBlock
 	  thenJump elseJump condHasValue isIfNil saveStack blockBody |
@@ -583,11 +513,8 @@ Decompiler>>jump: dist if: condition [
 	lastJumpIfPcStack removeLast.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>mapFromBlockStartsIn: aMethod toTempVarsFrom: schematicTempNamesString constructor: aDecompilerConstructor [
+{ #category : #initialize-release }
+Decompiler >> mapFromBlockStartsIn: aMethod toTempVarsFrom: schematicTempNamesString constructor: aDecompilerConstructor [
 	| map |
 	map := aMethod debuggerMap
 				mapFromBlockKeys: (aMethod debuggerMap startpcsToBlockExtents: aMethod) keys asArray sort
@@ -643,29 +570,20 @@ Decompiler>>mapFromBlockStartsIn: aMethod toTempVarsFrom: schematicTempNamesStri
 	^map
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>methodReturnConstant: value [
+{ #category : #'instruction decoding' }
+Decompiler >> methodReturnConstant: value [
 
 	self pushConstant: value; methodReturnTop
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>methodReturnReceiver [
+{ #category : #'instruction decoding' }
+Decompiler >> methodReturnReceiver [
 
 	self pushReceiver; methodReturnTop
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>methodReturnTop [
+{ #category : #'instruction decoding' }
+Decompiler >> methodReturnTop [
 	| last |
 	last := stack removeLast "test test" asReturnNode.
 	stack size > blockStackBase  "get effect of elided pop before return"
@@ -675,38 +593,26 @@ Decompiler>>methodReturnTop [
 	statements addLast: last
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>popIntoLiteralVariable: value [
+{ #category : #'instruction decoding' }
+Decompiler >> popIntoLiteralVariable: value [
 
 	self pushLiteralVariable: value; doStore: statements
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>popIntoReceiverVariable: offset [
+{ #category : #'instruction decoding' }
+Decompiler >> popIntoReceiverVariable: offset [
 
 	self pushReceiverVariable: offset; doStore: statements
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>popIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
+{ #category : #'instruction decoding' }
+Decompiler >> popIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
 	self sawClosureBytecode.
 	self pushRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex; doStore: statements
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>popIntoTemporaryVariable: offset [
+{ #category : #'instruction decoding' }
+Decompiler >> popIntoTemporaryVariable: offset [
 	| maybeTVTag tempVector start |
 	maybeTVTag := stack last.
 	((maybeTVTag isMemberOf: Association)
@@ -742,11 +648,8 @@ Decompiler>>popIntoTemporaryVariable: offset [
 	self pushTemporaryVariable: offset; doStore: statements
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>popTo: oldPos [
+{ #category : #private }
+Decompiler >> popTo: oldPos [
 
 	| t |
 	t := Array new: statements size - oldPos.
@@ -755,31 +658,22 @@ Decompiler>>popTo: oldPos [
 	^t
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>pushActiveContext [
+{ #category : #'instruction decoding' }
+Decompiler >> pushActiveContext [
 
 	stack addLast: constructor codeThisContext
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>pushClosureCopyNumCopiedValues: numCopied numArgs: numArgs blockSize: blockSize [
+{ #category : #'instruction decoding' }
+Decompiler >> pushClosureCopyNumCopiedValues: numCopied numArgs: numArgs blockSize: blockSize [
 	| copiedValues |
 	self sawClosureBytecode.
 	copiedValues := ((1 to: numCopied) collect: [:ign| stack removeLast]) reversed.
 	self doClosureCopyCopiedValues: copiedValues numArgs: numArgs blockSize: blockSize
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>pushConsArrayWithElements: numElements  [
+{ #category : #'instruction decoding' }
+Decompiler >> pushConsArrayWithElements: numElements [ 
 	| array |
 	self sawClosureBytecode.
 	array := Array new: numElements.
@@ -789,11 +683,8 @@ Decompiler>>pushConsArrayWithElements: numElements  [
 	stack addLast: (constructor codeBrace: array)
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>pushConstant: value [
+{ #category : #'instruction decoding' }
+Decompiler >> pushConstant: value [
 
 	| node |
 	node := value == true ifTrue: [constTable at: 2]
@@ -803,38 +694,26 @@ Decompiler>>pushConstant: value [
 	stack addLast: node
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>pushLiteralVariable: assoc [
+{ #category : #'instruction decoding' }
+Decompiler >> pushLiteralVariable: assoc [
 
 	stack addLast: (constructor codeAnyLitInd: assoc)
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>pushNewArrayOfSize: size [
+{ #category : #'instruction decoding' }
+Decompiler >> pushNewArrayOfSize: size [
 	self sawClosureBytecode.
 	stack addLast: #pushNewArray -> (Array new: size)
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>pushReceiver [
+{ #category : #'instruction decoding' }
+Decompiler >> pushReceiver [
 
 	stack addLast: (constTable at: 1)
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>pushReceiverVariable: offset [
+{ #category : #'instruction decoding' }
+Decompiler >> pushReceiverVariable: offset [
 
 	| var |
 	(var := instVars at: offset + 1 ifAbsent: []) == nil
@@ -848,29 +727,20 @@ Decompiler>>pushReceiverVariable: offset [
 	stack addLast: var
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>pushRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
+{ #category : #'instruction decoding' }
+Decompiler >> pushRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
 	self sawClosureBytecode.
 	stack addLast: ((tempVars at: tempVectorIndex + 1) remoteTemps at: remoteTempIndex + 1)
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>pushTemporaryVariable: offset [
+{ #category : #'instruction decoding' }
+Decompiler >> pushTemporaryVariable: offset [
 
 	stack addLast: (tempVars at: offset + 1)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>quickMethod [
+{ #category : #private }
+Decompiler >> quickMethod [
 	| |
 	method isReturnSpecial
 		ifTrue: [^ constructor codeBlock:
@@ -881,20 +751,14 @@ Decompiler>>quickMethod [
 	self error: 'improper short method'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>sawClosureBytecode [
+{ #category : #private }
+Decompiler >> sawClosureBytecode [
 	constructor isForClosures ifFalse:
 		[constructor primitiveChangeClassTo: DecompilerConstructorForClosures new]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>scanBlockScopeFor: refpc from: startpc to: endpc with: scan scanner: scanner [
+{ #category : #private }
+Decompiler >> scanBlockScopeFor: refpc from: startpc to: endpc with: scan scanner: scanner [
 	| bsl maybeBlockSize |
 	bsl := BlockStartLocator new.
 	scanner pc: startpc.
@@ -913,11 +777,8 @@ Decompiler>>scanBlockScopeFor: refpc from: startpc to: endpc with: scan scanner:
 				ifFalse: [scanner pc: scanner pc + maybeBlockSize]]]
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>send: selector super: superFlag numArgs: numArgs [
+{ #category : #'instruction decoding' }
+Decompiler >> send: selector super: superFlag numArgs: numArgs [
 
 	| args rcvr selNode msgNode messages |
 	args := Array new: numArgs.
@@ -977,11 +838,8 @@ Decompiler>>send: selector super: superFlag numArgs: numArgs [
 		stack addLast: msgNode]
 ]
 
-{
-	#category : #control,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>statementsForCaseTo: end [
+{ #category : #control }
+Decompiler >> statementsForCaseTo: end [
 	"Decompile the method from pc up to end and return an array of
 	expressions. If at run time this block will leave a value on the stack,
 	set hasValue to true. If the block ends with a jump or return, set exit
@@ -1008,11 +866,8 @@ Decompiler>>statementsForCaseTo: end [
 	^self popTo: blockPos
 ]
 
-{
-	#category : #control,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>statementsTo: end [
+{ #category : #control }
+Decompiler >> statementsTo: end [
 	"Decompile the method from pc up to end and return an array of
 	expressions. If at run time this block will leave a value on the stack,
 	set hasValue to true. If the block ends with a jump or return, set exit
@@ -1035,47 +890,32 @@ Decompiler>>statementsTo: end [
 	^self popTo: blockPos
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>storeIntoLiteralVariable: assoc [
+{ #category : #'instruction decoding' }
+Decompiler >> storeIntoLiteralVariable: assoc [
 
 	self pushLiteralVariable: assoc; doStore: stack
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>storeIntoReceiverVariable: offset [
+{ #category : #'instruction decoding' }
+Decompiler >> storeIntoReceiverVariable: offset [
 
 	self pushReceiverVariable: offset; doStore: stack
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>storeIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
+{ #category : #'instruction decoding' }
+Decompiler >> storeIntoRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex [
 	self sawClosureBytecode.
 	self pushRemoteTemp: remoteTempIndex inVectorAt: tempVectorIndex; doStore: stack
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>storeIntoTemporaryVariable: offset [
+{ #category : #'instruction decoding' }
+Decompiler >> storeIntoTemporaryVariable: offset [
 
 	self pushTemporaryVariable: offset; doStore: stack
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Decompiler>>tempAt: offset [
+{ #category : #'public access' }
+Decompiler >> tempAt: offset [
 	"Needed by BraceConstructor<PopIntoTemporaryVariable"
 
 	^tempVars at: offset + 1

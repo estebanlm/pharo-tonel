@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMTreePresentationTest,
 	#superclass : #TestCase,
@@ -8,15 +5,11 @@ Class {
 		'pane',
 		'presentation'
 	],
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreePresentationTest>>setUp [
+{ #category : #tests }
+GLMTreePresentationTest >> setUp [
 	pane := GLMPane named: 'test'.
 	presentation := GLMTreePresentation new.
 	pane addPresentation: presentation.
@@ -25,21 +18,15 @@ GLMTreePresentationTest>>setUp [
 	presentation shouldValidate: true.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreePresentationTest>>testValidateOn [
+{ #category : #tests }
+GLMTreePresentationTest >> testValidateOn [
 	self assert: (presentation validate: #($e $f) on: (pane port: #selection)).
 	self assert: (presentation validate: $a on: (pane port: #selection)).
 	self deny: (presentation validate: $h on: (pane port: #selection))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreePresentationTest>>testValidatePorts [
+{ #category : #tests }
+GLMTreePresentationTest >> testValidatePorts [
 	presentation selection: #($e $f).
 	self assert: presentation selection equals: #($e $f).
 	presentation selection: $a.

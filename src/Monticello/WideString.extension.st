@@ -1,12 +1,7 @@
-Extension {
-	#name : #WideString
-}
+Extension { #name : #WideString }
 
-{
-	#category : #'*Monticello',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-WideString class>>newFromStream: s [
+{ #category : #'*Monticello' }
+WideString class >> newFromStream: s [
 	"Only meant for my subclasses that are raw bits and word-like.  For quick unpack form the disk."
 	| len |
 

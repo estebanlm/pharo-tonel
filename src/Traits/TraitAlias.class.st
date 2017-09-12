@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'aliases'
 	],
-	#category : #Traits-Composition,
-	#timestamp : '<historical>'
+	#category : #Traits-Composition
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias class>>assertValidAliasDefinition: anArrayOfAssociations [
+{ #category : #'instance creation' }
+TraitAlias class >> assertValidAliasDefinition: anArrayOfAssociations [
 	"Throw an exceptions if the alias definition is not valid.
 	It is expected to be a collection of associations and
 	the number of arguments of the alias selector has to
@@ -32,11 +28,8 @@ TraitAlias class>>assertValidAliasDefinition: anArrayOfAssociations [
 		TraitCompositionException signal: 'Invalid alias definition: Alias and original selector have to have the same number of arguments.']
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias class>>with: aTraitComposition aliases: anArrayOfAssociations [
+{ #category : #'instance creation' }
+TraitAlias class >> with: aTraitComposition aliases: anArrayOfAssociations [
 	self assertValidAliasDefinition: anArrayOfAssociations.
 	^self new
 		subject: aTraitComposition;
@@ -44,52 +37,37 @@ TraitAlias class>>with: aTraitComposition aliases: anArrayOfAssociations [
 		yourself
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias>>- anArrayOfSelectors [
+{ #category : #composition }
+TraitAlias >> - anArrayOfSelectors [
 	^TraitExclusion
 		with: self
 		exclusions: anArrayOfSelectors
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias>>@ anArrayOfAssociations  [
+{ #category : #composition }
+TraitAlias >> @ anArrayOfAssociations [ 
 	^TraitAlias 
 		with: subject
 		aliases: (anArrayOfAssociations, self aliases)
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias>>aliasNamed: aSymbol ifAbsent: aBlock [
+{ #category : #enumeration }
+TraitAlias >> aliasNamed: aSymbol ifAbsent: aBlock [
 	^self aliases
 		detect: [:association |  association key = aSymbol]
 		ifNone: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias>>aliases [
+{ #category : #accessing }
+TraitAlias >> aliases [
 	"Collection of associations where key is the
 	alias and value the original selector."
 	
 	^aliases
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias>>aliases: anArrayOfAssociations [
+{ #category : #accessing }
+TraitAlias >> aliases: anArrayOfAssociations [
 	| newNames |
 	newNames := (anArrayOfAssociations collect: [:each | each key]) asIdentitySet.
 	newNames size < anArrayOfAssociations size ifTrue: [
@@ -100,11 +78,8 @@ TraitAlias>>aliases: anArrayOfAssociations [
 	aliases := anArrayOfAssociations
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias>>aliasesForSelector: aSymbol [
+{ #category : #enquiries }
+TraitAlias >> aliasesForSelector: aSymbol [
 	| selectors |
 	selectors := self aliases
 		select: [:association | association value = aSymbol]
@@ -115,11 +90,8 @@ TraitAlias>>aliasesForSelector: aSymbol [
 		 
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias>>allAliasesDict [
+{ #category : #enquiries }
+TraitAlias >> allAliasesDict [
 	| dict |
 	dict := super allAliasesDict.
 	self aliases do: [:assoc |
@@ -127,21 +99,15 @@ TraitAlias>>allAliasesDict [
 	^dict
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias>>allSelectors [
+{ #category : #enquiries }
+TraitAlias >> allSelectors [
 	^self subject allSelectors
 		addAll: (self aliases collect: [:each | each key]) asSet;
 		yourself
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias>>collectMethodsFor: aSelector into: methodDescription [
+{ #category : #enquiries }
+TraitAlias >> collectMethodsFor: aSelector into: methodDescription [
 	| originalSelector association |
 	self subject
 		collectMethodsFor: aSelector
@@ -154,38 +120,26 @@ TraitAlias>>collectMethodsFor: aSelector into: methodDescription [
 			into: methodDescription]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias>>copyTraitExpression [
+{ #category : #copying }
+TraitAlias >> copyTraitExpression [
 	^super copyTraitExpression
 		aliases: self aliases deepCopy;
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias>>isEmpty [
+{ #category : #testing }
+TraitAlias >> isEmpty [
 	^self aliases isEmpty
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias>>postCopy [
+{ #category : #copying }
+TraitAlias >> postCopy [
 	super postCopy.
 	aliases := self aliases copy
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias>>printOn: aStream [
+{ #category : #printing }
+TraitAlias >> printOn: aStream [
 	super printOn: aStream.
 	aStream
 		space;
@@ -197,20 +151,14 @@ TraitAlias>>printOn: aStream [
 	aStream nextPut: $}
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias>>removeAlias: aSymbol [
+{ #category : #composition }
+TraitAlias >> removeAlias: aSymbol [
 	self aliases: (self aliases
 		reject: [:each | each key = aSymbol])
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitAlias>>syntacticallyEquals: aTraitTransformation [
+{ #category : #comparing }
+TraitAlias >> syntacticallyEquals: aTraitTransformation [
 	"Test syntactic equivalence of this trait transformation with another. 
 	The order of aliases is taken into account. For example, A @ { #x -> #y. #z -> #w } ~= A @ { #z -> #w. #x -> #y }."
 

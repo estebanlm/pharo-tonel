@@ -23,43 +23,30 @@ Class {
 	#instVars : [
 		'storedSettings'
 	],
-	#category : #System-Settings-Persistence-Ston-StoredSettings-Builder,
-	#timestamp : 'JurajKubelka 10/1/2015 14:29'
+	#category : #System-Settings-Persistence-Ston-StoredSettings-Builder
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsMerger>>addStoredSetting: aSettingNode  [
+{ #category : #adding }
+StoredSettingsMerger >> addStoredSetting: aSettingNode [ 
 	self storedSettings withIndexDo: [ :eachStoredNode :index | 
 		eachStoredNode = aSettingNode ifTrue: [ ^ self storedSettings at: index put: aSettingNode ] ].
 	^ self storedSettings add: aSettingNode
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsMerger>>addStoredSettings: aCollectionOfStoredSettings [
+{ #category : #adding }
+StoredSettingsMerger >> addStoredSettings: aCollectionOfStoredSettings [
 	aCollectionOfStoredSettings do: [ :eachStoredSetting |
 		self addStoredSetting: eachStoredSetting ].
 	^ aCollectionOfStoredSettings
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsMerger>>initialize [
+{ #category : #initialization }
+StoredSettingsMerger >> initialize [
 	super initialize.
 	storedSettings := OrderedCollection new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsMerger>>storedSettings [
+{ #category : #accessing }
+StoredSettingsMerger >> storedSettings [
 	^ storedSettings
 ]

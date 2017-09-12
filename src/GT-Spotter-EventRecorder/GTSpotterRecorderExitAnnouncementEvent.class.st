@@ -11,49 +11,33 @@ timestamp
 Class {
 	#name : #GTSpotterRecorderExitAnnouncementEvent,
 	#superclass : #GTSpotterRecorderEvent,
-	#category : #GT-Spotter-EventRecorder-Events,
-	#timestamp : 'AndreiChis 2/27/2015 14:37'
+	#category : #GT-Spotter-EventRecorder-Events
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderExitAnnouncementEvent>>accept: aVisitor [
+{ #category : #visitor }
+GTSpotterRecorderExitAnnouncementEvent >> accept: aVisitor [
 	^ aVisitor visitExitEvent: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderExitAnnouncementEvent>>closeActionSymbol [
+{ #category : #accessing }
+GTSpotterRecorderExitAnnouncementEvent >> closeActionSymbol [
 	^ self eventType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderExitAnnouncementEvent>>eventType [
+{ #category : #accessing }
+GTSpotterRecorderExitAnnouncementEvent >> eventType [
 	^ self infoAt: #eventType ifAbsent: [ #missing ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderExitAnnouncementEvent>>fromAnnouncement: anAnnouncement [
+{ #category : #initialization }
+GTSpotterRecorderExitAnnouncementEvent >> fromAnnouncement: anAnnouncement [
 	super fromAnnouncement: anAnnouncement.
 	self infoAt: #eventType put: anAnnouncement eventType.
 
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderExitAnnouncementEvent>>isCloseSpotter [
+{ #category : #testing }
+GTSpotterRecorderExitAnnouncementEvent >> isCloseSpotter [
 	^ true
 ]

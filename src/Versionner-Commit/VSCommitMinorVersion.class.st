@@ -4,23 +4,16 @@ I'm a minor version.
 Class {
 	#name : #VSCommitMinorVersion,
 	#superclass : #VSCommitVersion,
-	#category : #Versionner-Commit,
-	#timestamp : '<historical>'
+	#category : #Versionner-Commit
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitMinorVersion class>>label [
+{ #category : #accessing }
+VSCommitMinorVersion class >> label [
 	^ 'Minor'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitMinorVersion>>nextVersionOf: aProject [
+{ #category : #accessing }
+VSCommitMinorVersion >> nextVersionOf: aProject [
 	| version |
 	version := self semanticVersionFor: aProject.
 	^ '{1}.{2}' format: {

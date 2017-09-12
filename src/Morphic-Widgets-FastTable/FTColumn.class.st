@@ -20,82 +20,54 @@ Class {
 		'id',
 		'width'
 	],
-	#category : #Morphic-Widgets-FastTable,
-	#timestamp : 'CyrilFerlicot 11/17/2015 14:21'
+	#category : #Morphic-Widgets-FastTable
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumn class>>id: anObject [
+{ #category : #'instance creation' }
+FTColumn class >> id: anObject [
 	^ self new
 		id: anObject;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumn class>>undefinedColumnWidth [
+{ #category : #accessing }
+FTColumn class >> undefinedColumnWidth [
 	"This is a contant that defines a column width is undefined, then the layout will try to arrange 
 	 it by itself."
 	^ 0
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumn>>acquireWidth: anOwnerWidth [
+{ #category : #layout }
+FTColumn >> acquireWidth: anOwnerWidth [
 	^ self widthOrUndefined min: anOwnerWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumn>>id [
+{ #category : #accessing }
+FTColumn >> id [
 	^ id
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumn>>id: anObject [
+{ #category : #initialization }
+FTColumn >> id: anObject [
 	id := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumn>>transform: anObject [
+{ #category : #accessing }
+FTColumn >> transform: anObject [
 	^ anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumn>>width [
+{ #category : #accessing }
+FTColumn >> width [
 	^ width
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumn>>width: anObject [
+{ #category : #accessing }
+FTColumn >> width: anObject [
 	width := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTColumn>>widthOrUndefined [
+{ #category : #accessing }
+FTColumn >> widthOrUndefined [
 	^ self width ifNil: [ self class undefinedColumnWidth ]
 ]

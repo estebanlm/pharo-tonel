@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #GLMCompositePresentationMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>compositeMorph [
+{ #category : #private }
+GLMCompositePresentationMorphicTest >> compositeMorph [
 	^ window submorphs last submorphs last submorphs last
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>compositePanel [
+{ #category : #private }
+GLMCompositePresentationMorphicTest >> compositePanel [
 	|composite|
 	composite := self compositeMorph.
 	self assert: (composite isKindOf: PanelMorph).
@@ -29,11 +19,8 @@ GLMCompositePresentationMorphicTest>>compositePanel [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>compositeTabGroup [
+{ #category : #private }
+GLMCompositePresentationMorphicTest >> compositeTabGroup [
 	|composite|
 	composite := self compositeMorph.
 	self assert: (composite isKindOf: LazyTabGroupMorph).
@@ -41,11 +28,8 @@ GLMCompositePresentationMorphicTest>>compositeTabGroup [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>testAccordion [
+{ #category : #tests }
+GLMCompositePresentationMorphicTest >> testAccordion [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -62,11 +46,8 @@ GLMCompositePresentationMorphicTest>>testAccordion [
 	self assert: self compositePanel submorphs last class equals: ExpanderMorph
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>testAccordionExpanded [
+{ #category : #tests }
+GLMCompositePresentationMorphicTest >> testAccordionExpanded [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -79,11 +60,8 @@ GLMCompositePresentationMorphicTest>>testAccordionExpanded [
 	self assert: self compositePanel submorphs last expanded not.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>testAccordionWithTitle [
+{ #category : #tests }
+GLMCompositePresentationMorphicTest >> testAccordionWithTitle [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -102,11 +80,8 @@ GLMCompositePresentationMorphicTest>>testAccordionWithTitle [
 	self assert: self compositeTabGroup contentMorph submorphs first submorphs first class equals: ExpanderMorph
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>testFinder [
+{ #category : #tests }
+GLMCompositePresentationMorphicTest >> testFinder [
 	| finder |
 	finder := GLMFinder new.
 	finder
@@ -123,11 +98,8 @@ GLMCompositePresentationMorphicTest>>testFinder [
 	self find: LazyTabGroupMorph in: window.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>testOneStackedVerticallyWithTitle [
+{ #category : #tests }
+GLMCompositePresentationMorphicTest >> testOneStackedVerticallyWithTitle [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -147,11 +119,8 @@ GLMCompositePresentationMorphicTest>>testOneStackedVerticallyWithTitle [
 	self assert: self compositeTabGroup contentMorph submorphs first submorphs first class equals: LazyTabGroupMorph
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>testOneTabWithActions [
+{ #category : #tests }
+GLMCompositePresentationMorphicTest >> testOneTabWithActions [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -163,11 +132,8 @@ GLMCompositePresentationMorphicTest>>testOneTabWithActions [
 	self assert: self compositeMorph submorphs size equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>testStackedVertically [
+{ #category : #tests }
+GLMCompositePresentationMorphicTest >> testStackedVertically [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -184,11 +150,8 @@ GLMCompositePresentationMorphicTest>>testStackedVertically [
 	self assert: self compositeMorph submorphs first class equals: LazyTabGroupMorph
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>testStackedVerticallyWithTitle [
+{ #category : #tests }
+GLMCompositePresentationMorphicTest >> testStackedVerticallyWithTitle [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -209,11 +172,8 @@ GLMCompositePresentationMorphicTest>>testStackedVerticallyWithTitle [
 	self assert: self compositeTabGroup contentMorph submorphs first submorphs first class equals: LazyTabGroupMorph
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>testTabs [
+{ #category : #tests }
+GLMCompositePresentationMorphicTest >> testTabs [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -226,11 +186,8 @@ GLMCompositePresentationMorphicTest>>testTabs [
 	self assert: self compositeTabGroup pages size equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>testTabsLastActivePresentation [
+{ #category : #tests }
+GLMCompositePresentationMorphicTest >> testTabsLastActivePresentation [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -245,11 +202,8 @@ GLMCompositePresentationMorphicTest>>testTabsLastActivePresentation [
 	self assert: (browser panes first lastActivePresentation isKindOf: GLMRubricTextPresentation)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>testTabsWithActions [
+{ #category : #tests }
+GLMCompositePresentationMorphicTest >> testTabsWithActions [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -266,11 +220,8 @@ GLMCompositePresentationMorphicTest>>testTabsWithActions [
 	self assert: self compositeTabGroup toolbarMorph submorphs notEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>testTabsWithTitle [
+{ #category : #tests }
+GLMCompositePresentationMorphicTest >> testTabsWithTitle [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -288,11 +239,8 @@ GLMCompositePresentationMorphicTest>>testTabsWithTitle [
 	self assert: self compositeTabGroup submorphs first submorphs first pages size equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>testTabsWithTitleIconWithoutTitle [
+{ #category : #tests }
+GLMCompositePresentationMorphicTest >> testTabsWithTitleIconWithoutTitle [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -310,11 +258,8 @@ GLMCompositePresentationMorphicTest>>testTabsWithTitleIconWithoutTitle [
 	self assert: self compositeTabGroup submorphs first submorphs first pages size equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMCompositePresentationMorphicTest>>testTabsWithUpdate [
+{ #category : #tests }
+GLMCompositePresentationMorphicTest >> testTabsWithUpdate [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.

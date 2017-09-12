@@ -11,26 +11,19 @@ Class {
 		'hi',
 		'low'
 	],
-	#category : #System-Hashing-Core,
-	#timestamp : '<historical>'
+	#category : #System-Hashing-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister class>>new [
+{ #category : #'instance creation' }
+ThirtyTwoBitRegister class >> new [
 	"Answer a new instance whose initial contents is zero."
 
 	^ super new load: 0
 
 ]
 
-{
-	#category : #'accumulator ops',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>+= aThirtTwoBitRegister [
+{ #category : #'accumulator ops' }
+ThirtyTwoBitRegister >> += aThirtTwoBitRegister [
 	"Replace my contents with the sum of the given register and my current contents."
 
 	| lowSum |
@@ -40,30 +33,21 @@ ThirtyTwoBitRegister>>+= aThirtTwoBitRegister [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>asByteArray [
+{ #category : #converting }
+ThirtyTwoBitRegister >> asByteArray [
 	^ ByteArray with: (low bitAnd: 16rFF) with: (low bitShift: -8) with: (hi bitAnd: 16rFF) with: (hi bitShift: -8)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>asInteger [
+{ #category : #accessing }
+ThirtyTwoBitRegister >> asInteger [
 	"Answer the integer value of my current contents."
 
 	^ (hi bitShift: 16) + low
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>asReverseInteger [
+{ #category : #converting }
+ThirtyTwoBitRegister >> asReverseInteger [
 	"Answer the byte-swapped integer value of my current contents."
 
 	^ ((low bitAnd: 16rFF) bitShift: 24) +
@@ -73,11 +57,8 @@ ThirtyTwoBitRegister>>asReverseInteger [
 
 ]
 
-{
-	#category : #'accumulator ops',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>bitAnd: aThirtTwoBitRegister [
+{ #category : #'accumulator ops' }
+ThirtyTwoBitRegister >> bitAnd: aThirtTwoBitRegister [
 	"Replace my contents with the bitwise AND of the given register and my current contents."
 
 	hi := hi bitAnd: aThirtTwoBitRegister hi.
@@ -85,11 +66,8 @@ ThirtyTwoBitRegister>>bitAnd: aThirtTwoBitRegister [
 
 ]
 
-{
-	#category : #'accumulator ops',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>bitInvert [
+{ #category : #'accumulator ops' }
+ThirtyTwoBitRegister >> bitInvert [
 	"Replace my contents with the bitwise inverse my current contents."
 
 	hi := hi bitXor: 16rFFFF.
@@ -97,11 +75,8 @@ ThirtyTwoBitRegister>>bitInvert [
 
 ]
 
-{
-	#category : #'accumulator ops',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>bitOr: aThirtTwoBitRegister [
+{ #category : #'accumulator ops' }
+ThirtyTwoBitRegister >> bitOr: aThirtTwoBitRegister [
 	"Replace my contents with the bitwise OR of the given register and my current contents."
 
 	hi := hi bitOr: aThirtTwoBitRegister hi.
@@ -109,20 +84,14 @@ ThirtyTwoBitRegister>>bitOr: aThirtTwoBitRegister [
 
 ]
 
-{
-	#category : #'accumulator ops',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>bitShift: anInteger [
+{ #category : #'accumulator ops' }
+ThirtyTwoBitRegister >> bitShift: anInteger [
 	"Replace my contents with the bitShift of anInteger."
 	self load: (self asInteger bitShift: anInteger). 
 ]
 
-{
-	#category : #'accumulator ops',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>bitXor: aThirtTwoBitRegister [
+{ #category : #'accumulator ops' }
+ThirtyTwoBitRegister >> bitXor: aThirtTwoBitRegister [
 	"Replace my contents with the bitwise exclusive OR of the given register and my current contents."
 
 	hi := hi bitXor: aThirtTwoBitRegister hi.
@@ -130,31 +99,22 @@ ThirtyTwoBitRegister>>bitXor: aThirtTwoBitRegister [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>byte1: hi1 byte2: hi2 byte3: low1 byte4: low2 [
+{ #category : #accessing }
+ThirtyTwoBitRegister >> byte1: hi1 byte2: hi2 byte3: low1 byte4: low2 [
 	hi := (hi1 bitShift: 8) + hi2.
 	low := (low1 bitShift: 8) + low2.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>byteAt: anInteger [
+{ #category : #accessing }
+ThirtyTwoBitRegister >> byteAt: anInteger [
 	anInteger = 1 ifTrue: [^ hi bitShift: -8].
 	anInteger = 2 ifTrue: [^ hi bitAnd: 16rFF].
 	anInteger = 3 ifTrue: [^ low bitShift: -8].
 	anInteger = 4 ifTrue: [^ low bitAnd: 16rFF]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>copy [
+{ #category : #copying }
+ThirtyTwoBitRegister >> copy [
 	"Use the clone primitive for speed."
 
 	<primitive: 148>
@@ -162,21 +122,15 @@ ThirtyTwoBitRegister>>copy [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>hi [
+{ #category : #accessing }
+ThirtyTwoBitRegister >> hi [
 
 	^ hi
 
 ]
 
-{
-	#category : #'accumulator ops',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>leftRotateBy: bits [
+{ #category : #'accumulator ops' }
+ThirtyTwoBitRegister >> leftRotateBy: bits [
 	"Rotate my contents left by the given number of bits, retaining exactly 32 bits."
 	"Details: Perform this operation with as little LargeInteger arithmetic as possible."
 
@@ -201,11 +155,8 @@ ThirtyTwoBitRegister>>leftRotateBy: bits [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>load: anInteger [
+{ #category : #accessing }
+ThirtyTwoBitRegister >> load: anInteger [
 	"Set my contents to the value of given integer."
 
 	low := anInteger bitAnd: 16rFFFF.
@@ -215,11 +166,8 @@ ThirtyTwoBitRegister>>load: anInteger [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>loadFrom: aByteArray at: index [
+{ #category : #accessing }
+ThirtyTwoBitRegister >> loadFrom: aByteArray at: index [
 	"Load my 32-bit value from the four bytes of the given ByteArray starting at the given index. Consider the first byte to contain the most significant bits of the word (i.e., use big-endian byte ordering)."
 
 	hi := ((aByteArray at: index) bitShift: 8) + ( aByteArray at: index + 1).
@@ -227,20 +175,14 @@ ThirtyTwoBitRegister>>loadFrom: aByteArray at: index [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>low [
+{ #category : #accessing }
+ThirtyTwoBitRegister >> low [
 
 	^ low
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>printOn: aStream [
+{ #category : #printing }
+ThirtyTwoBitRegister >> printOn: aStream [
 	"Print my contents in hex with a leading 'R' to show that it is a register object being printed."
 
 	aStream nextPutAll: 'R:'.
@@ -248,11 +190,8 @@ ThirtyTwoBitRegister>>printOn: aStream [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>reverseLoadFrom: aByteArray at: index [
+{ #category : #accessing }
+ThirtyTwoBitRegister >> reverseLoadFrom: aByteArray at: index [
 	"Load my 32-bit value from the four bytes of the given ByteArray
 starting at the given index. Consider the first byte to contain the most
 significant bits of the word (i.e., use big-endian byte ordering)."
@@ -262,11 +201,8 @@ significant bits of the word (i.e., use big-endian byte ordering)."
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ThirtyTwoBitRegister>>storeInto: aByteArray at: index [
+{ #category : #accessing }
+ThirtyTwoBitRegister >> storeInto: aByteArray at: index [
 	"Store my 32-bit value into the four bytes of the given ByteArray starting at the given index. Consider the first byte to contain the most significant bits of the word (i.e., use big-endian byte ordering)."
 
 	aByteArray at: index put: (hi bitShift: -8).

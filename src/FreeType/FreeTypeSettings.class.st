@@ -29,33 +29,23 @@ Class {
 	#classInstVars : [
 		'current'
 	],
-	#category : #FreeType-Settings,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:11'
+	#category : #FreeType-Settings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings class>>current [
+{ #category : #'instance creation' }
+FreeTypeSettings class >> current [
 	current == nil ifFalse:[^current].
 	^current := self new
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings class>>initialize [
+{ #category : #'class initialization' }
+FreeTypeSettings class >> initialize [
 	SessionManager default 
 		registerGuiClassNamed: self name 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings class>>shutDown: quitting  [
+{ #category : #'system startup' }
+FreeTypeSettings class >> shutDown: quitting [ 
 	quitting ifFalse: [ ^ self ]. 
 
 	self current 
@@ -68,35 +58,23 @@ FreeTypeSettings class>>shutDown: quitting  [
 	EmbeddedFreeTypeFontInstaller resetCurrent."
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings class>>startUp: resuming [
+{ #category : #'system startup' }
+FreeTypeSettings class >> startUp: resuming [
 	resuming ifTrue:[ self updateFreeType ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings class>>updateFontsAtImageStartup [
+{ #category : #settings }
+FreeTypeSettings class >> updateFontsAtImageStartup [
 	^ UpdateFontsAtImageStartup ifNil: [UpdateFontsAtImageStartup := false]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings class>>updateFontsAtImageStartup: aBoolean [
+{ #category : #settings }
+FreeTypeSettings class >> updateFontsAtImageStartup: aBoolean [
 	UpdateFontsAtImageStartup := aBoolean
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings class>>updateFreeType [
+{ #category : #'system startup' }
+FreeTypeSettings class >> updateFreeType [
 	self current 
 		clearBitBltSubPixelAvailable;
 		clearForceNonSubPixelCount.
@@ -106,11 +84,8 @@ FreeTypeSettings class>>updateFreeType [
 		ifTrue: [ FreeTypeFontProvider current updateFromSystem ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>bitBltSubPixelAvailable	 [
+{ #category : #accessing }
+FreeTypeSettings >> bitBltSubPixelAvailable [	
 	"Answer true if the the subPixel combination rule is available, false otherwise.
 	to test :-
 	bitBltSubPixelAvailable := false. 
@@ -138,95 +113,62 @@ FreeTypeSettings>>bitBltSubPixelAvailable	 [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>clearBitBltSubPixelAvailable	 [
+{ #category : #accessing }
+FreeTypeSettings >> clearBitBltSubPixelAvailable [	
 	
 	bitBltSubPixelAvailable := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>clearForceNonSubPixelCount [
+{ #category : #accessing }
+FreeTypeSettings >> clearForceNonSubPixelCount [
 	
 	forceNonSubPixelCount := nil. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>defaultSubPixelFilterRatios [
+{ #category : #accessing }
+FreeTypeSettings >> defaultSubPixelFilterRatios [
 	^#((1 3 5 3 1) (1 3 5 3 1) (1 3 5 3 1))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>forceAutoHinting [
+{ #category : #accessing }
+FreeTypeSettings >> forceAutoHinting [
 	^forceAutoHinting ifNil:[forceAutoHinting := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>forceNonSubPixelCount [
+{ #category : #accessing }
+FreeTypeSettings >> forceNonSubPixelCount [
 	^forceNonSubPixelCount ifNil:[forceNonSubPixelCount := 0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>forceNonSubPixelDuring: aBlock [
+{ #category : #accessing }
+FreeTypeSettings >> forceNonSubPixelDuring: aBlock [
 	forceNonSubPixelCount ifNil:[forceNonSubPixelCount := 0].
 	forceNonSubPixelCount := forceNonSubPixelCount + 1.
 	aBlock ensure:[forceNonSubPixelCount := forceNonSubPixelCount - 1]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>gamma [
+{ #category : #accessing }
+FreeTypeSettings >> gamma [
 	^gamma ifNil:[gamma := 1.0] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>gammaInverseTable [
+{ #category : #accessing }
+FreeTypeSettings >> gammaInverseTable [
 	^gammaInverseTable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>gammaTable [
+{ #category : #accessing }
+FreeTypeSettings >> gammaTable [
 	^gammaTable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>glyphContrast [
+{ #category : #accessing }
+FreeTypeSettings >> glyphContrast [
 	^ 100 - ((self gamma  sqrt * 100) - 50)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>glyphContrast: aContrastValue [
+{ #category : #accessing }
+FreeTypeSettings >> glyphContrast: aContrastValue [
 	" value between 1 and 100.
 	100 is highest contrast and maps to gamma 0.25
 	1 is lowest contrast and maps to gamma 2.22"
@@ -240,19 +182,13 @@ FreeTypeSettings>>glyphContrast: aContrastValue [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>hinting [
+{ #category : #accessing }
+FreeTypeSettings >> hinting [
 	^hinting ifNil:[hinting := true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>hintingFlags [
+{ #category : #accessing }
+FreeTypeSettings >> hintingFlags [
 	| answer |
 	answer := 0. 	
 	self hinting 
@@ -266,11 +202,8 @@ FreeTypeSettings>>hintingFlags [
 	^answer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>hintingSymbol [
+{ #category : #accessing }
+FreeTypeSettings >> hintingSymbol [
 	"#Full, #Light, #Normal or #None"
 	^ self monoHinting 
 		ifTrue: [#Full]
@@ -284,11 +217,8 @@ FreeTypeSettings>>hintingSymbol [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>hintingSymbol: aSymbol [
+{ #category : #accessing }
+FreeTypeSettings >> hintingSymbol: aSymbol [
 	"#Full, #Light, #Normal or #None"
 	monoHinting := aSymbol = #Full.
 	lightHinting := aSymbol = #Light.
@@ -301,63 +231,42 @@ FreeTypeSettings>>hintingSymbol: aSymbol [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>lcdHinting [
+{ #category : #accessing }
+FreeTypeSettings >> lcdHinting [
 	^lcdHinting ifNil:[lcdHinting := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>lcdvHinting [
+{ #category : #accessing }
+FreeTypeSettings >> lcdvHinting [
 	^lcdvHinting ifNil:[lcdvHinting := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>lightHinting [
+{ #category : #accessing }
+FreeTypeSettings >> lightHinting [
 	^lightHinting ifNil:[lightHinting := true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>monitorType [
+{ #category : #accessing }
+FreeTypeSettings >> monitorType [
   "#LCD or #CRT"
   ^ self subPixelAntiAliasing ifTrue: [#LCD] ifFalse: [#CRT]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>monitorType: aSymbol [
+{ #category : #accessing }
+FreeTypeSettings >> monitorType: aSymbol [
 	"#LCD or #CRT"
 	subPixelAntiAliasing := aSymbol = #LCD.
 	World restoreMorphicDisplay.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>monoHinting [
+{ #category : #accessing }
+FreeTypeSettings >> monoHinting [
 	^monoHinting ifNil:[monoHinting := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>pretendBitBltSubPixelUnavailableDuring: aBlock	 [
+{ #category : #accessing }
+FreeTypeSettings >> pretendBitBltSubPixelUnavailableDuring: aBlock [	
 	"
 	For testing/profiling only. 
 	
@@ -380,11 +289,8 @@ FreeTypeSettings>>pretendBitBltSubPixelUnavailableDuring: aBlock	 [
 		FreeTypeCache current removeAll.]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>setGamma: aFloat [
+{ #category : #accessing }
+FreeTypeSettings >> setGamma: aFloat [
 
 	(aFloat closeTo: self gamma)
 		ifFalse:[
@@ -405,11 +311,8 @@ FreeTypeSettings>>setGamma: aFloat [
 				World restoreMorphicDisplay]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>setSubPixelFilter: ratiosArray [
+{ #category : #accessing }
+FreeTypeSettings >> setSubPixelFilter: ratiosArray [
 	"Set the subPixelFilters from ratiosArray.
 	the ratiosArray can specify the red, green, and blue filter ratios separately.
 	e.g. #((1 3 5 3 1) (1 4 7 4 1) (1 2 3 2 1))
@@ -427,35 +330,23 @@ FreeTypeSettings>>setSubPixelFilter: ratiosArray [
 			World restoreMorphicDisplay]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>subPixelAntiAliasing [
+{ #category : #accessing }
+FreeTypeSettings >> subPixelAntiAliasing [
 	^ self useSubPixelAntiAliasing and: [ subPixelAntiAliasing ifNil: [ false ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>subPixelAntiAliasing: aBoolean [
+{ #category : #accessing }
+FreeTypeSettings >> subPixelAntiAliasing: aBoolean [
 	subPixelAntiAliasing := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>subPixelFilters [
+{ #category : #accessing }
+FreeTypeSettings >> subPixelFilters [
 	^subPixelFilters ifNil:[subPixelFilters := self subPixelFiltersFromRatios: self defaultSubPixelFilterRatios]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>subPixelFiltersFromRatios: anArray [
+{ #category : #accessing }
+FreeTypeSettings >> subPixelFiltersFromRatios: anArray [
 	"Convert the ratios in anArray to a similar array containing the filter proportions as floats.
 	Example:
 	if <array3ofArrays5> = #((1 3 5 3 1) (1 3 5 3 1) (1 3 5 3 1))
@@ -484,10 +375,7 @@ FreeTypeSettings>>subPixelFiltersFromRatios: anArray [
 	^{rfilter. gfilter. bfilter}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSettings>>useSubPixelAntiAliasing [
+{ #category : #accessing }
+FreeTypeSettings >> useSubPixelAntiAliasing [
 	^ self forceNonSubPixelCount == 0 and: [ self bitBltSubPixelAvailable ]
 ]

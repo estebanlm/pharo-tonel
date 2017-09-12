@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RubTextSelectionColor,
 	#superclass : #TextAttribute,
@@ -15,15 +12,11 @@ Class {
 		'PrimarySelection',
 		'SecondarySelection'
 	],
-	#category : #Rubric-Editing-Core,
-	#timestamp : ''
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #'default accessing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSelectionColor class>>findReplaceSelection [
+{ #category : #'default accessing' }
+RubTextSelectionColor class >> findReplaceSelection [
 	^ FindReplaceSelection
 		ifNil: [ 
 			FindReplaceSelection := self new
@@ -35,11 +28,8 @@ RubTextSelectionColor class>>findReplaceSelection [
 				yourself ]
 ]
 
-{
-	#category : #'default accessing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSelectionColor class>>oppositeDelimiterSelection [
+{ #category : #'default accessing' }
+RubTextSelectionColor class >> oppositeDelimiterSelection [
 	^ OppositeDelimiterSelection
 		ifNil: [ 
 			OppositeDelimiterSelection := self new
@@ -48,11 +38,8 @@ RubTextSelectionColor class>>oppositeDelimiterSelection [
 				yourself ]
 ]
 
-{
-	#category : #'default accessing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSelectionColor class>>primarySelection [
+{ #category : #'default accessing' }
+RubTextSelectionColor class >> primarySelection [
 	^ PrimarySelection
 		ifNil: [ 
 			PrimarySelection := self new
@@ -61,11 +48,8 @@ RubTextSelectionColor class>>primarySelection [
 				yourself ]
 ]
 
-{
-	#category : #'default accessing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSelectionColor class>>secondarySelection [
+{ #category : #'default accessing' }
+RubTextSelectionColor class >> secondarySelection [
 	^ SecondarySelection
 		ifNil: [ 
 			SecondarySelection := self new
@@ -77,106 +61,70 @@ RubTextSelectionColor class>>secondarySelection [
 				yourself ]
 ]
 
-{
-	#category : #'default accessing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSelectionColor class>>theme [
+{ #category : #'default accessing' }
+RubTextSelectionColor class >> theme [
 	^ UITheme current 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSelectionColor>>backgroundColor [
+{ #category : #accessing }
+RubTextSelectionColor >> backgroundColor [
 	^ self backgroundColorBlock ifNotNil: [:bcb | bcb value]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSelectionColor>>backgroundColorBlock [
+{ #category : #accessing }
+RubTextSelectionColor >> backgroundColorBlock [
 
 	^ backgroundColorBlock 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSelectionColor>>backgroundColorBlock: aBlock [
+{ #category : #accessing }
+RubTextSelectionColor >> backgroundColorBlock: aBlock [
 
 	 backgroundColorBlock := aBlock 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSelectionColor>>colorBlock [
+{ #category : #accessing }
+RubTextSelectionColor >> colorBlock [
 
 	^ colorBlock ifNil: [colorBlock := [self theme currentSettings selectionTextColor]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSelectionColor>>colorBlock: aBlock [
+{ #category : #accessing }
+RubTextSelectionColor >> colorBlock: aBlock [
 	"aBlock value gives the text color"
 	colorBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSelectionColor>>dominates: other [
+{ #category : #accessing }
+RubTextSelectionColor >> dominates: other [
 	"There can be only one..."
 	^self class == other class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSelectionColor>>emphasisCode [
+{ #category : #accessing }
+RubTextSelectionColor >> emphasisCode [
 	^ emphasisCode ifNil: [ 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSelectionColor>>emphasisCode: anInteger [
+{ #category : #accessing }
+RubTextSelectionColor >> emphasisCode: anInteger [
 	emphasisCode := anInteger
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSelectionColor>>emphasizeScanner: scanner [
+{ #category : #styling }
+RubTextSelectionColor >> emphasizeScanner: scanner [
 	"Set the emphasis for text display"
 	"self backgroundColor ifNotNil: [ :bc | scanner backgroundColor: bc ]."
 	self textColor ifNotNil: [:c | scanner textColor: c].
 	emphasisCode ifNotNil: [ scanner addEmphasis: emphasisCode ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSelectionColor>>textColor [
+{ #category : #accessing }
+RubTextSelectionColor >> textColor [
 	^ self colorBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSelectionColor>>theme [
+{ #category : #accessing }
+RubTextSelectionColor >> theme [
 	^ UITheme current 
 ]

@@ -1,52 +1,33 @@
-"
-
-"
 Class {
 	#name : #RBRemoveClassTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveClassTest>>resumeOnCannotRemoveTopLevelClassError: error [
+{ #category : #private }
+RBRemoveClassTest >> resumeOnCannotRemoveTopLevelClassError: error [
 	^ error messageText = RBRemoveClassRefactoring cannotRemoveTopLevelClassErrorMesssage
 		ifTrue: [ error resume ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveClassTest>>testRaisesRBRefactoringErrorWhenRemovingNonEmptySuperclass [
+{ #category : #tests }
+RBRemoveClassTest >> testRaisesRBRefactoringErrorWhenRemovingNonEmptySuperclass [
 	self shouldFail: (RBRemoveClassRefactoring classNames: (Array with: ('RBFoo' , 'LintRuleTest') asSymbol))
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveClassTest>>testRemoveClassWithBadNameRaisesRBRefactoringError  [
+{ #category : #'failure tests' }
+RBRemoveClassTest >> testRemoveClassWithBadNameRaisesRBRefactoringError [ 
 	self 
 		shouldFail: (RBRemoveClassRefactoring classNames: #(#RecursiveSelfRule))
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveClassTest>>testRemoveClassWithReferencesRaisesRBRefactoringError [
+{ #category : #'failure tests' }
+RBRemoveClassTest >> testRemoveClassWithReferencesRaisesRBRefactoringError [
 	self shouldFail: (RBRemoveClassRefactoring classNames: #(#RBBasicLintRuleTest ))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveClassTest>>testRemoveEmptySuperclass [
+{ #category : #tests }
+RBRemoveClassTest >> testRemoveEmptySuperclass [
 	| refactoring |
 	refactoring := RBRemoveClassRefactoring classNames: (Array with: ('RBFoo' , 'LintRuleTest1') asSymbol).
 	self executeRefactoring: refactoring.

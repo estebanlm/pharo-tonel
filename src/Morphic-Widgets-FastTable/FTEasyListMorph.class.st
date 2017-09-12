@@ -14,56 +14,37 @@ FTEasyListMorph new
 Class {
 	#name : #FTEasyListMorph,
 	#superclass : #FTTableMorph,
-	#category : #Morphic-Widgets-FastTable-Easy,
-	#timestamp : 'EstebanLorenzano 6/3/2015 15:01'
+	#category : #Morphic-Widgets-FastTable-Easy
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTEasyListMorph>>display: aBlock [
+{ #category : #accessing }
+FTEasyListMorph >> display: aBlock [
 	self dataSource display: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTEasyListMorph>>elements: aSequenceableCollection [
+{ #category : #accessing }
+FTEasyListMorph >> elements: aSequenceableCollection [
 	self dataSource elements: aSequenceableCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTEasyListMorph>>header: aString [
+{ #category : #accessing }
+FTEasyListMorph >> header: aString [
 	self ensureAtLeastOneColumn.
 	self columns first id: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTEasyListMorph>>icon: aBlock [
+{ #category : #accessing }
+FTEasyListMorph >> icon: aBlock [
 	self dataSource icon: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTEasyListMorph>>initialize [
+{ #category : #initialization }
+FTEasyListMorph >> initialize [
 	super initialize.
 	self dataSource: FTEasyListDataSource new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTEasyListMorph>>menu: aBlock [
+{ #category : #accessing }
+FTEasyListMorph >> menu: aBlock [
 	self dataSource menu: aBlock
 ]

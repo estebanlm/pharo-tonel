@@ -10,15 +10,11 @@ Class {
 		'searchPattern',
 		'updateProcess'
 	],
-	#category : #NautilusRefactoring-Utilities,
-	#timestamp : '<historical>'
+	#category : #NautilusRefactoring-Utilities
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser class>>defaultSpec [
+{ #category : #specs }
+PackageAndClassChooser class >> defaultSpec [
 	<spec: #default>
 	
 	^ SpecLayout composed
@@ -30,11 +26,8 @@ PackageAndClassChooser class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #'accessing - tree',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>childrenFor: aPackageOrClass [
+{ #category : #'accessing - tree' }
+PackageAndClassChooser >> childrenFor: aPackageOrClass [
 	| result name |
 	name := aPackageOrClass name.
 	aPackageOrClass isBehavior 
@@ -56,19 +49,13 @@ PackageAndClassChooser>>childrenFor: aPackageOrClass [
 					
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>choose [
+{ #category : #actions }
+PackageAndClassChooser >> choose [
 	^ self chooseModalTo: World
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>chooseModalTo: parentWindow [
+{ #category : #actions }
+PackageAndClassChooser >> chooseModalTo: parentWindow [
 	"Open this this package class chooser as a dialog modal to the given window"
 	| dialog result |
 	
@@ -81,11 +68,8 @@ PackageAndClassChooser>>chooseModalTo: parentWindow [
 	^ result
 ]
 
-{
-	#category : #'accessing - tree',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>filteredRoots [
+{ #category : #'accessing - tree' }
+PackageAndClassChooser >> filteredRoots [
 	|  roots |
 	roots := RPackageOrganizer default packages 
 		select: [ :package | searchPattern search: package name ].
@@ -96,19 +80,13 @@ PackageAndClassChooser>>filteredRoots [
 	^ roots
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>hasSearch [
+{ #category : #testing }
+PackageAndClassChooser >> hasSearch [
 	^ self searchPattern isNil not
 ]
 
-{
-	#category : #'accessing - tree',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>iconFor: anRPackageOrClass [
+{ #category : #'accessing - tree' }
+PackageAndClassChooser >> iconFor: anRPackageOrClass [
 	anRPackageOrClass isBehavior
 		ifTrue: [ ^ self iconNamed: #classIcon ].
 	RPackageOrganizer default
@@ -117,22 +95,16 @@ PackageAndClassChooser>>iconFor: anRPackageOrClass [
 	^ self iconNamed: #packageIcon
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>initializeWidgets [
+{ #category : #initialization }
+PackageAndClassChooser >> initializeWidgets [
 
 	self
 		setFocus;
 		update.
 ]
 
-{
-	#category : #'accessing - tree',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>labelFor: aPackageOrClass  [
+{ #category : #'accessing - tree' }
+PackageAndClassChooser >> labelFor: aPackageOrClass [ 
 
 	self hasSearch
 		ifTrue: [ ^ aPackageOrClass name ].
@@ -141,11 +113,8 @@ PackageAndClassChooser>>labelFor: aPackageOrClass  [
 		ifEmpty: [ aPackageOrClass name ]
 ]
 
-{
-	#category : #'accessing - tree',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>roots [
+{ #category : #'accessing - tree' }
+PackageAndClassChooser >> roots [
 	| rootNames organizer|
 	
 	self hasSearch 
@@ -161,11 +130,8 @@ PackageAndClassChooser>>roots [
 			ifAbsent: [ RPackage named: name ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>searchField [
+{ #category : #accessing }
+PackageAndClassChooser >> searchField [
 	^ searchField ifNil: [ 
 		searchField := SearchMorph new
 			model: self;
@@ -176,19 +142,13 @@ PackageAndClassChooser>>searchField [
 		searchField := searchField asSpecAdapter ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>searchPattern [
+{ #category : #accessing }
+PackageAndClassChooser >> searchPattern [
 	^ searchPattern
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>searchUpdate: aString [
+{ #category : #updating }
+PackageAndClassChooser >> searchUpdate: aString [
 	searchPattern := nil.
 	
 	aString isEmptyOrNil ifFalse: [
@@ -197,35 +157,23 @@ PackageAndClassChooser>>searchUpdate: aString [
 	self update.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>selectedItem [
+{ #category : #accessing }
+PackageAndClassChooser >> selectedItem [
 	^ self tree selectedItem
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>selectedItems [
+{ #category : #accessing }
+PackageAndClassChooser >> selectedItems [
 	^ self tree selectedItems
 ]
 
-{
-	#category : #'accessing - tree',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>selectionChanged [
+{ #category : #'accessing - tree' }
+PackageAndClassChooser >> selectionChanged [
 	"Synchronize the selected items"
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>setFocus [
+{ #category : #initialization }
+PackageAndClassChooser >> setFocus [
 	
 	self focusOrder
 		add: self searchField;
@@ -233,11 +181,8 @@ PackageAndClassChooser>>setFocus [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>tree [
+{ #category : #accessing }
+PackageAndClassChooser >> tree [
 	^ tree ifNil: [ 
 		tree := self instantiate: TreeModel.
 		tree
@@ -259,11 +204,8 @@ PackageAndClassChooser>>tree [
 				 Nautilus openOnPackage: tree selectedItem ]]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PackageAndClassChooser>>update [
+{ #category : #updating }
+PackageAndClassChooser >> update [
 	updateProcess ifNotNil: [ updateProcess terminate ].
 	updateProcess := [ |roots| 
 			roots := self roots.

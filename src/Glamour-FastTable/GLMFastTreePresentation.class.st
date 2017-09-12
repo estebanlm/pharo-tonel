@@ -51,88 +51,57 @@ Class {
 	#instVars : [
 		'parameters'
 	],
-	#category : #Glamour-FastTable-Presentations,
-	#timestamp : 'CyrilFerlicot 11/10/2015 14:06'
+	#category : #Glamour-FastTable-Presentations
 }
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreePresentation>>expandedUntil: anInteger [
+{ #category : #'public api' }
+GLMFastTreePresentation >> expandedUntil: anInteger [
 	self shouldExpandToLevel: anInteger
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreePresentation>>hasChildren: aBlock [
+{ #category : #'public api' }
+GLMFastTreePresentation >> hasChildren: aBlock [
 	self parameters at: 'hasChildrenBlock' put: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreePresentation>>hasChildrenBlock  [
+{ #category : #accessing }
+GLMFastTreePresentation >> hasChildrenBlock [ 
 	^ self parameters at: 'hasChildrenBlock' ifAbsent: [ nil ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreePresentation>>initialize [
+{ #category : #initialize-release }
+GLMFastTreePresentation >> initialize [
 	super initialize.
 	parameters := Dictionary new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreePresentation>>maxDepth [
+{ #category : #accessing }
+GLMFastTreePresentation >> maxDepth [
 	^ self parameters at: 'maxDepth' ifAbsent: [ nil ]
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreePresentation>>maxDepth: anInteger [
+{ #category : #'public api' }
+GLMFastTreePresentation >> maxDepth: anInteger [
 	self parameters at: 'maxDepth' put: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreePresentation>>parameters [
+{ #category : #accessing }
+GLMFastTreePresentation >> parameters [
 	^ parameters
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreePresentation>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMFastTreePresentation >> renderGlamorouslyOn: aRenderer [ 
 	self registerAnnouncements.
 	^ aRenderer renderFastTreePresentation: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreePresentation>>strategy [
+{ #category : #accessing }
+GLMFastTreePresentation >> strategy [
 	^ self parameters at: 'strategy' ifAbsent: [ #default ]
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreePresentation>>strategy: aSymbole [
+{ #category : #'public api' }
+GLMFastTreePresentation >> strategy: aSymbole [
 	self parameters at: 'strategy' put: aSymbole
 ]

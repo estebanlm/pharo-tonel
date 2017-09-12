@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloProjectRegistry,
 	#superclass : #Object,
@@ -8,15 +5,11 @@ Class {
 		'baselineRegistry',
 		'configurationRegistry'
 	],
-	#category : #Metacello-Core-Scripts,
-	#timestamp : ''
+	#category : #Metacello-Core-Scripts
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>baselineProjectSpecs [
+{ #category : #accessing }
+MetacelloProjectRegistry >> baselineProjectSpecs [
     "MetacelloProjectRegistration baselineProjectSpecs"
 
     | projectSpecs |
@@ -26,20 +19,14 @@ MetacelloProjectRegistry>>baselineProjectSpecs [
     ^ projectSpecs asArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>baselineRegistry [
+{ #category : #accessing }
+MetacelloProjectRegistry >> baselineRegistry [
     baselineRegistry ifNil: [ baselineRegistry := Dictionary new ].
     ^ baselineRegistry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>configurationProjectSpecs [
+{ #category : #accessing }
+MetacelloProjectRegistry >> configurationProjectSpecs [
     "MetacelloProjectRegistration configurationProjectSpecs"
 
     | projectSpecs |
@@ -49,39 +36,27 @@ MetacelloProjectRegistry>>configurationProjectSpecs [
     ^ projectSpecs asArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>configurationRegistry [
+{ #category : #accessing }
+MetacelloProjectRegistry >> configurationRegistry [
     configurationRegistry ifNil: [ configurationRegistry := Dictionary new ].
     ^ configurationRegistry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>isEmpty [
+{ #category : #accessing }
+MetacelloProjectRegistry >> isEmpty [
   ^ self configurationProjectSpecs isEmpty
     and: [ self baselineProjectSpecs isEmpty ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>postCopy [
+{ #category : #copying }
+MetacelloProjectRegistry >> postCopy [
     super postCopy.
     baselineRegistry := self baselineRegistry copy.
     configurationRegistry := self configurationRegistry copy
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>primeRegisterLoadedProjectSpec: projectSpec [
+{ #category : #initialization }
+MetacelloProjectRegistry >> primeRegisterLoadedProjectSpec: projectSpec [
   MetacelloProjectRegistration
     registrationForProjectSpec: projectSpec
     ifAbsent: [ :new | 
@@ -98,11 +73,8 @@ MetacelloProjectRegistry>>primeRegisterLoadedProjectSpec: projectSpec [
               existingCopy merge: new ] ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>primeRegistryCurrentVersionFor: cl [
+{ #category : #initialization }
+MetacelloProjectRegistry >> primeRegistryCurrentVersionFor: cl [
   ^ [ cl project currentVersion ]
     on: Error
     do: [ :ex | 
@@ -113,21 +85,15 @@ MetacelloProjectRegistry>>primeRegistryCurrentVersionFor: cl [
       nil ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>primeRegistryFromImage [
+{ #category : #initialization }
+MetacelloProjectRegistry >> primeRegistryFromImage [
   "MetacelloProjectRegistration primeRegistryFromImage"
 
   self primeRegistryFromImage: false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>primeRegistryFromImage: prioritizeConfiguration [
+{ #category : #initialization }
+MetacelloProjectRegistry >> primeRegistryFromImage: prioritizeConfiguration [
   "MetacelloProjectRegistration primeRegistryFromImage"
 
   self
@@ -136,11 +102,8 @@ MetacelloProjectRegistry>>primeRegistryFromImage: prioritizeConfiguration [
     prioritizeConfiguration: prioritizeConfiguration
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>primeRegistryFromImage: configurationClasses baselineClasses: baselineClasses [
+{ #category : #initialization }
+MetacelloProjectRegistry >> primeRegistryFromImage: configurationClasses baselineClasses: baselineClasses [
   "MetacelloProjectRegistration primeRegistryFromImage"
 
   self
@@ -149,11 +112,8 @@ MetacelloProjectRegistry>>primeRegistryFromImage: configurationClasses baselineC
     prioritizeConfiguration: false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>primeRegistryFromImage: configurationClasses baselineClasses: baselineClasses prioritizeConfiguration: prioritizeConfiguration [
+{ #category : #initialization }
+MetacelloProjectRegistry >> primeRegistryFromImage: configurationClasses baselineClasses: baselineClasses prioritizeConfiguration: prioritizeConfiguration [
   "MetacelloProjectRegistration primeRegistryFromImage"
 
   baselineClasses
@@ -195,43 +155,31 @@ MetacelloProjectRegistry>>primeRegistryFromImage: configurationClasses baselineC
                   self primeRegisterLoadedProjectSpec: projectSpec ] ] ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>primeRegistryProjectSpecRegistered: projectSpec [
+{ #category : #initialization }
+MetacelloProjectRegistry >> primeRegistryProjectSpecRegistered: projectSpec [
   MetacelloProjectRegistration
     registrationForProjectSpec: projectSpec
     ifAbsent: [ :new | ^ false ]
     ifPresent: [ :existing :new | ^ true ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>projectSpecForClassNamed: aClassName ifAbsent: absentBlock [
+{ #category : #querying }
+MetacelloProjectRegistry >> projectSpecForClassNamed: aClassName ifAbsent: absentBlock [
     ^ (self configurationRegistry
         at: aClassName
         ifAbsent: [ ^ (self baselineRegistry at: aClassName ifAbsent: [^absentBlock value]) baselineProjectSpec ])
         configurationProjectSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>projectSpecs [
+{ #category : #accessing }
+MetacelloProjectRegistry >> projectSpecs [
     "MetacelloProjectRegistration projectSpecs"
 
     ^ self configurationProjectSpecs , self baselineProjectSpecs
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>registerProjectRegistration: aMetacelloProjectRegistration [
+{ #category : #registration }
+MetacelloProjectRegistry >> registerProjectRegistration: aMetacelloProjectRegistration [
   "unconditionally register <newRegistration> ... use with care"
 
   aMetacelloProjectRegistration configurationProjectSpec copy
@@ -282,11 +230,8 @@ MetacelloProjectRegistry>>registerProjectRegistration: aMetacelloProjectRegistra
   aMetacelloProjectRegistration immutable
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>registrationFor: aMetacelloProjectRegistration ifPresent: presentBlock ifAbsent: absentBlock [
+{ #category : #registration }
+MetacelloProjectRegistry >> registrationFor: aMetacelloProjectRegistration ifPresent: presentBlock ifAbsent: absentBlock [
     | baseName |
     baseName := aMetacelloProjectRegistration baseName.
     aMetacelloProjectRegistration configurationProjectSpec
@@ -300,11 +245,8 @@ MetacelloProjectRegistry>>registrationFor: aMetacelloProjectRegistration ifPrese
     ^ absentBlock value
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>registrationForClassNamed: aClassName ifAbsent: absentBlock [
+{ #category : #querying }
+MetacelloProjectRegistry >> registrationForClassNamed: aClassName ifAbsent: absentBlock [
   ^ self
     registrationForExactClassNamed: aClassName
     ifAbsent: [ 
@@ -319,11 +261,8 @@ MetacelloProjectRegistry>>registrationForClassNamed: aClassName ifAbsent: absent
       absentBlock value ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>registrationForExactClassNamed: aClassName ifAbsent: absentBlock [
+{ #category : #querying }
+MetacelloProjectRegistry >> registrationForExactClassNamed: aClassName ifAbsent: absentBlock [
   self configurationRegistry
     at: aClassName
     ifPresent: [ :registration | ^ registration ].
@@ -333,19 +272,13 @@ MetacelloProjectRegistry>>registrationForExactClassNamed: aClassName ifAbsent: a
   ^ absentBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>registrations [
+{ #category : #accessing }
+MetacelloProjectRegistry >> registrations [
   ^ self baselineRegistry values , self configurationRegistry values
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistry>>unregisterProjectRegistration: aMetacelloProjectRegistration [
+{ #category : #registration }
+MetacelloProjectRegistry >> unregisterProjectRegistration: aMetacelloProjectRegistration [
     aMetacelloProjectRegistration configurationProjectSpec
         ifNotNil: [ :spec | 
             self configurationRegistry

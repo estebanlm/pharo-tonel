@@ -4,15 +4,11 @@ A writer for Smalltalk code
 Class {
 	#name : #MCFileTreeStWriter,
 	#superclass : #MCFileTreeAbstractStWriter,
-	#category : #MonticelloFileTree-Core,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:58'
+	#category : #MonticelloFileTree-Core
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStWriter>>visitClassDefinition: definition [
+{ #category : #visiting }
+MCFileTreeStWriter >> visitClassDefinition: definition [
     orderedClassNames add: definition className.
     self
         writeInDirectoryName: definition className
@@ -21,11 +17,8 @@ MCFileTreeStWriter>>visitClassDefinition: definition [
         visit: [ self writeClassDefinition: definition ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStWriter>>visitClassTraitDefinition: definition [
+{ #category : #visiting }
+MCFileTreeStWriter >> visitClassTraitDefinition: definition [
     orderedTraitNames add: definition className, ' classTrait'.
     self
         writeInDirectoryName: definition className
@@ -34,11 +27,8 @@ MCFileTreeStWriter>>visitClassTraitDefinition: definition [
         visit: [ self writeClassTraitDefinition: definition ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStWriter>>visitMethodDefinition: definition [
+{ #category : #visiting }
+MCFileTreeStWriter >> visitMethodDefinition: definition [
     | filename directoryname |
     directoryname := definition classIsMeta
         ifTrue: [ definition className , '_class' ]
@@ -51,11 +41,8 @@ MCFileTreeStWriter>>visitMethodDefinition: definition [
         visit: [ self writeMethodDefinition: definition ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeStWriter>>visitTraitDefinition: definition [
+{ #category : #visiting }
+MCFileTreeStWriter >> visitTraitDefinition: definition [
     orderedTraitNames add: definition className.
     self
         writeInDirectoryName: definition className

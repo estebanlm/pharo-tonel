@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMPagerButtonsPaneBrick,
 	#superclass : #GLMBrick,
@@ -8,15 +5,11 @@ Class {
 		'pagerModel',
 		'buttons'
 	],
-	#category : #Glamour-Morphic-Pager-Brick,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Pager-Brick
 }
 
-{
-	#category : #buttons-adding,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>addButton: aBrick [
+{ #category : #buttons-adding }
+GLMPagerButtonsPaneBrick >> addButton: aBrick [
 
 	self buttons add: aBrick.
 	
@@ -38,50 +31,35 @@ GLMPagerButtonsPaneBrick>>addButton: aBrick [
 	self updateButtons.
 ]
 
-{
-	#category : #buttons-calculations,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>buttonCenterByIndex: aNumber [
+{ #category : #buttons-calculations }
+GLMPagerButtonsPaneBrick >> buttonCenterByIndex: aNumber [
 	| width |
 	width := self pagerModel circleButtonSize.
 	^ ( ( aNumber - 1 ) * ( width ) ) + ( width / 2 ).
 ]
 
-{
-	#category : #buttons-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>buttons [
+{ #category : #buttons-accessing }
+GLMPagerButtonsPaneBrick >> buttons [
 
 	^ buttons ifNil: [ buttons := OrderedCollection new ]
 ]
 
-{
-	#category : #buttons-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>buttons: anObject [
+{ #category : #buttons-accessing }
+GLMPagerButtonsPaneBrick >> buttons: anObject [
 
 	buttons := anObject
 ]
 
-{
-	#category : #buttons-testing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>isScrollMustBeChecked: anIndex withLeft: leftBound andRight: rightBound [
+{ #category : #buttons-testing }
+GLMPagerButtonsPaneBrick >> isScrollMustBeChecked: anIndex withLeft: leftBound andRight: rightBound [
 	| buttonCenter |
 	
 	buttonCenter := self buttonCenterByIndex: anIndex.
 	^ (leftBound <= buttonCenter ) & (rightBound > buttonCenter)
 ]
 
-{
-	#category : #buttons-updating,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>markButtonsInside: aBounds [
+{ #category : #buttons-updating }
+GLMPagerButtonsPaneBrick >> markButtonsInside: aBounds [
 	|index boundsLeft boundsRight firstFound lastFound |	
 	self flag: 'refactor me'.
 	
@@ -121,49 +99,34 @@ GLMPagerButtonsPaneBrick>>markButtonsInside: aBounds [
 
 ]
 
-{
-	#category : #buttons-instance-creation,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>newButton [
+{ #category : #buttons-instance-creation }
+GLMPagerButtonsPaneBrick >> newButton [
 
 	^ GLMPagerScrollButtonBrick new
 ]
 
-{
-	#category : #buttons-event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>onButtonClicked: ann [
+{ #category : #buttons-event-handling }
+GLMPagerButtonsPaneBrick >> onButtonClicked: ann [
 
 	self pagerModel switchPaneTo: ann buttonModel index
 ]
 
-{
-	#category : #buttons-event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>onButtonDeselected [
+{ #category : #buttons-event-handling }
+GLMPagerButtonsPaneBrick >> onButtonDeselected [
 
 	GLMPagerPanePreviewMorph uniqueInstance hideFromWorld
 ]
 
-{
-	#category : #buttons-event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>onButtonSelected: ann [
+{ #category : #buttons-event-handling }
+GLMPagerButtonsPaneBrick >> onButtonSelected: ann [
 
 	"notify adapter that we need to update pane preview"
 	GLMPagerPanePreviewMorph uniqueInstance showAt: (self buttons at: ann buttonModel index) globalBounds topCenter.
 	self pagerModel updatePreview: ann buttonModel index
 ]
 
-{
-	#category : #buttons-event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>onFocusedPageChanged [
+{ #category : #buttons-event-handling }
+GLMPagerButtonsPaneBrick >> onFocusedPageChanged [
 
 	self
 		updateButtonsFocus;
@@ -171,11 +134,8 @@ GLMPagerButtonsPaneBrick>>onFocusedPageChanged [
 
 ]
 
-{
-	#category : #buttons-event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>onPagePoped [
+{ #category : #buttons-event-handling }
+GLMPagerButtonsPaneBrick >> onPagePoped [
 	|button|
 	
 	button := self buttons removeLast.
@@ -186,48 +146,33 @@ GLMPagerButtonsPaneBrick>>onPagePoped [
 	self updateButtons
 ]
 
-{
-	#category : #buttons-event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>onPagePushed: addedAnnouncement [
+{ #category : #buttons-event-handling }
+GLMPagerButtonsPaneBrick >> onPagePushed: addedAnnouncement [
 	
 	self addButton: self newButton
 ]
 
-{
-	#category : #buttons-event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>onPageSwitched [
+{ #category : #buttons-event-handling }
+GLMPagerButtonsPaneBrick >> onPageSwitched [
 
 	self updateButtons
 ]
 
-{
-	#category : #buttons-event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>onScrollBoundsChanged: boundsChangedAnnouncement [
+{ #category : #buttons-event-handling }
+GLMPagerButtonsPaneBrick >> onScrollBoundsChanged: boundsChangedAnnouncement [
 
 	self markButtonsInside: boundsChangedAnnouncement bounds.
 	
 ]
 
-{
-	#category : #buttons-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>pagerModel [
+{ #category : #buttons-accessing }
+GLMPagerButtonsPaneBrick >> pagerModel [
 
 	^ pagerModel
 ]
 
-{
-	#category : #buttons-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>pagerModel: aModel [
+{ #category : #buttons-accessing }
+GLMPagerButtonsPaneBrick >> pagerModel: aModel [
 	
 	pagerModel := aModel.
 		
@@ -238,11 +183,8 @@ GLMPagerButtonsPaneBrick>>pagerModel: aModel [
 	self updateButtons
 ]
 
-{
-	#category : #buttons-updating,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>updateButtons [
+{ #category : #buttons-updating }
+GLMPagerButtonsPaneBrick >> updateButtons [
 	"first we uncheck all buttons"
 	self buttons select: #isFocused thenDo: #uncheck.
 	"then check only necessary"
@@ -250,11 +192,8 @@ GLMPagerButtonsPaneBrick>>updateButtons [
 		self buttons from: self pagerModel firstVisiblePageIndex to: self pagerModel lastVisiblePageIndex do: #check ]
 ]
 
-{
-	#category : #buttons-updating,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerButtonsPaneBrick>>updateButtonsFocus [
+{ #category : #buttons-updating }
+GLMPagerButtonsPaneBrick >> updateButtonsFocus [
 	"unfocus all"
 	self buttons do: #setNotFocused.
 	"because it's possible when nothing has focus"

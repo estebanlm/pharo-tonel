@@ -4,51 +4,35 @@ A MCDirectoryRepository that looks in subdirectories too.
 Class {
 	#name : #MCSubDirectoryRepository,
 	#superclass : #MCDirectoryRepository,
-	#category : #Monticello-Repositories,
-	#timestamp : 'nk 6/11/2004 18:56'
+	#category : #Monticello-Repositories
 }
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSubDirectoryRepository class>>description [
+{ #category : #'user interface' }
+MCSubDirectoryRepository class >> description [
 	^ 'directory with subdirectories'
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSubDirectoryRepository>>allDirectories [
+{ #category : #enumeration }
+MCSubDirectoryRepository >> allDirectories [
 	^directory allDirectories 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSubDirectoryRepository>>description [
+{ #category : #'user interface' }
+MCSubDirectoryRepository >> description [
 	^ (directory / '*') fullName
 
 ]
 
-{
-	#category : #i/o,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSubDirectoryRepository>>findFullNameForReading: aBaseName [
+{ #category : #i/o }
+MCSubDirectoryRepository >> findFullNameForReading: aBaseName [
 	"Answer the latest version of aBaseName"
 	^((directory glob: [ :each | each basename = aBaseName])
 		sorted: [ :a :b | a modificationTime < b modificationTime ])
 		first.
 ]
 
-{
-	#category : #i/o,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSubDirectoryRepository>>findFullNameForWriting: aBaseName [
+{ #category : #i/o }
+MCSubDirectoryRepository >> findFullNameForWriting: aBaseName [
 	| possible split prefix fpattern now |
 	split := self splitNameVersionExtensionFor: aBaseName.
 	fpattern := split first, '*'.
@@ -74,11 +58,8 @@ MCSubDirectoryRepository>>findFullNameForWriting: aBaseName [
 	^ (possible first third) / aBaseName
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSubDirectoryRepository>>loadAllFileNames [
+{ #category : #interface }
+MCSubDirectoryRepository >> loadAllFileNames [
 	"sorting {entry. dirName. name}"
 
 	| sorted |
@@ -92,11 +73,8 @@ MCSubDirectoryRepository>>loadAllFileNames [
 		collect: [:ea | ea third ]
 ]
 
-{
-	#category : #i/o,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSubDirectoryRepository>>readStreamForFileNamed: aString do: aBlock [
+{ #category : #i/o }
+MCSubDirectoryRepository >> readStreamForFileNamed: aString do: aBlock [
 	| file val |
 	file := FileStream readOnlyFileNamed: (self findFullNameForReading: aString).
 	val := aBlock value: file.
@@ -104,11 +82,8 @@ MCSubDirectoryRepository>>readStreamForFileNamed: aString do: aBlock [
 	^ val
 ]
 
-{
-	#category : #i/o,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSubDirectoryRepository>>splitNameVersionExtensionFor: aBaseName [
+{ #category : #i/o }
+MCSubDirectoryRepository >> splitNameVersionExtensionFor: aBaseName [
 
 	| file version |
 	file := aBaseName asFileReference.
@@ -119,11 +94,8 @@ MCSubDirectoryRepository>>splitNameVersionExtensionFor: aBaseName [
 	
 ]
 
-{
-	#category : #i/o,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSubDirectoryRepository>>writeStreamForFileNamed: aString replace: aBoolean do: aBlock  [
+{ #category : #i/o }
+MCSubDirectoryRepository >> writeStreamForFileNamed: aString replace: aBoolean do: aBlock [ 
 	| file |
 	file := aBoolean
 				ifTrue: [FileStream

@@ -45,114 +45,77 @@ Class {
 		'requestor',
 		'logSource'
 	],
-	#category : #CodeImport,
-	#timestamp : '<historical>'
+	#category : #CodeImport
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter class>>chunksFromFileNamed: aFileName [
+{ #category : #'instance creation' }
+CodeImporter class >> chunksFromFileNamed: aFileName [
 	^ (self fileNamed: aFileName)
 			parseChunks;
 			codeDeclarations.
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter class>>chunksFromStream: aStream [
+{ #category : #'instance creation' }
+CodeImporter class >> chunksFromStream: aStream [
 	^ (self fileStream: aStream)
 			parseChunks;
 			codeDeclarations.
 
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter class>>evaluateFileNamed: aFileName [
+{ #category : #evaluating }
+CodeImporter class >> evaluateFileNamed: aFileName [
 	^(self fileNamed: aFileName) evaluateDeclarations
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter class>>evaluateFileStream: aFileStream [
+{ #category : #evaluating }
+CodeImporter class >> evaluateFileStream: aFileStream [
 	^(self fileStream: aFileStream) evaluateDeclarations
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter class>>evaluateReadStream: aReadStream [
+{ #category : #evaluating }
+CodeImporter class >> evaluateReadStream: aReadStream [
 	^(self readStream: aReadStream) evaluateDeclarations
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter class>>evaluateString: aString [
+{ #category : #evaluating }
+CodeImporter class >> evaluateString: aString [
 	^(self fromString: aString) evaluateDeclarations
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter class>>fileNamed: aFileName [
+{ #category : #'instance creation' }
+CodeImporter class >> fileNamed: aFileName [
 	^ self new file: (FileStream readOnlyFileNamed: aFileName).
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter class>>fileStream: aFileStream [
+{ #category : #'instance creation' }
+CodeImporter class >> fileStream: aFileStream [
 	^self new
 		file: aFileStream;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter class>>fromString: aByteString  [
+{ #category : #'instance creation' }
+CodeImporter class >> fromString: aByteString [ 
 	^self readStream: aByteString readStream
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter class>>readStream: aReadStream [
+{ #category : #'instance creation' }
+CodeImporter class >> readStream: aReadStream [
 	^self new
 		readStream: aReadStream;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter>>codeDeclarations [
+{ #category : #accessing }
+CodeImporter >> codeDeclarations [
 	^codeDeclarations
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter>>evaluate [
+{ #category : #'public access' }
+CodeImporter >> evaluate [
 	" stripped down version of evaluateDeclarations"
 	| value |
 	self codeDeclarations do: [ :declaration |
@@ -164,91 +127,61 @@ CodeImporter>>evaluate [
 	^value
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter>>evaluateDeclarations [
+{ #category : #evaluating }
+CodeImporter >> evaluateDeclarations [
 	"Evaluates the declarations from the text in the file and answers the last result"
 
 	self parseChunks.
 	^ self evaluate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter>>file: aFileStream [
+{ #category : #accessing }
+CodeImporter >> file: aFileStream [
 	self readStream: aFileStream.
 	self requestor: FileCompilerRequestor new
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter>>flushChangesFile [
+{ #category : #evaluating }
+CodeImporter >> flushChangesFile [
 	"Yes, we need to do this in order to flush the file, puaj"
 	ChangesLog default logChange: '----End fileIn----'.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter>>initialize [
+{ #category : #initialization }
+CodeImporter >> initialize [
 	codeDeclarations := OrderedCollection new.
 	parserClass := ChunkFileFormatParser.
 	logSource := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter>>logSource: aBoolean [
+{ #category : #accessing }
+CodeImporter >> logSource: aBoolean [
 
 	logSource := aBoolean
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter>>parseChunks [
+{ #category : #evaluating }
+CodeImporter >> parseChunks [
 	^ codeDeclarations := (parserClass for: readStream) parseChunks.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter>>readStream: aReadStream [
+{ #category : #accessing }
+CodeImporter >> readStream: aReadStream [
 	readStream := aReadStream.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter>>requestor [
+{ #category : #accessing }
+CodeImporter >> requestor [
 	^ requestor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter>>requestor: anObject [
+{ #category : #accessing }
+CodeImporter >> requestor: anObject [
 	requestor := anObject
 ]
 
-{
-	#category : #fileHandling,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeImporter>>selectTextConverterForCode [
+{ #category : #fileHandling }
+CodeImporter >> selectTextConverterForCode [
 	self flag: #fix.  "This should not be here probably."
 	
 	"We need to see the first three bytes in order to see the origin of the file"

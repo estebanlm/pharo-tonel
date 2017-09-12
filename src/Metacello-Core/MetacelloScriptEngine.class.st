@@ -13,15 +13,11 @@ Class {
 		'DefaultRepositoryDescription',
 		'DefaultVersionString'
 	],
-	#category : #Metacello-Core-Scripts,
-	#timestamp : 'dkh 7/12/2012 14:48'
+	#category : #Metacello-Core-Scripts
 }
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine class>>baseNameOf: className [
+{ #category : #utility }
+MetacelloScriptEngine class >> baseNameOf: className [
   ^ (className beginsWith: 'BaselineOf')
     ifTrue: [ className copyFrom: 'BaselineOf' size + 1 to: className size ]
     ifFalse: [ 
@@ -30,11 +26,8 @@ MetacelloScriptEngine class>>baseNameOf: className [
         ifFalse: [ className ] ]
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine class>>baselineNameFrom: baseName [
+{ #category : #utility }
+MetacelloScriptEngine class >> baselineNameFrom: baseName [
     "Return the fully-qualified configuration class name."
 
     ^ (baseName indexOfSubCollection: 'BaselineOf') > 0
@@ -42,11 +35,8 @@ MetacelloScriptEngine class>>baselineNameFrom: baseName [
         ifFalse: [ 'BaselineOf' , baseName ]
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine class>>configurationNameFrom: baseName [
+{ #category : #utility }
+MetacelloScriptEngine class >> configurationNameFrom: baseName [
     "Return the fully-qualified configuration class name."
 
     ^ (baseName indexOfSubCollection: 'ConfigurationOf') > 0
@@ -54,63 +44,42 @@ MetacelloScriptEngine class>>configurationNameFrom: baseName [
         ifFalse: [ 'ConfigurationOf' , baseName ]
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine class>>defaultRepositoryDescription [
+{ #category : #defaults }
+MetacelloScriptEngine class >> defaultRepositoryDescription [
     DefaultRepositoryDescription
         ifNil: [ DefaultRepositoryDescription := MetacelloPlatform current defaultRepositoryDescription ].
     ^ DefaultRepositoryDescription
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine class>>defaultRepositoryDescription: descriptionOrNil [
+{ #category : #defaults }
+MetacelloScriptEngine class >> defaultRepositoryDescription: descriptionOrNil [
   DefaultRepositoryDescription := descriptionOrNil
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine class>>defaultVersionString [
+{ #category : #defaults }
+MetacelloScriptEngine class >> defaultVersionString [
     DefaultVersionString ifNil: [ DefaultVersionString := #'stable' ].
     ^ DefaultVersionString
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>cacheRepository [
+{ #category : #options }
+MetacelloScriptEngine >> cacheRepository [
     ^ (MetacelloMCProject new repositorySpec description: (self options at: #'cacheRepository' ifAbsent: [ ^ nil ]))
         createRepository
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>defaultRepositoryDescription [
+{ #category : #defaults }
+MetacelloScriptEngine >> defaultRepositoryDescription [
     ^ self class defaultRepositoryDescription
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>defaultVersionString [
+{ #category : #defaults }
+MetacelloScriptEngine >> defaultVersionString [
     ^ self class defaultVersionString
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>fetch: required [
+{ #category : #'actions api' }
+MetacelloScriptEngine >> fetch: required [
     self
         fetchRecord: [ :version | 
             required isEmpty
@@ -119,11 +88,8 @@ MetacelloScriptEngine>>fetch: required [
         required: required
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>fetchRecord: fetchRecordBlock required: required [
+{ #category : #'actions api' }
+MetacelloScriptEngine >> fetchRecord: fetchRecordBlock required: required [
   MetacelloProjectRegistration
     copyRegistryWhile: [ 
       self
@@ -140,11 +106,8 @@ MetacelloScriptEngine>>fetchRecord: fetchRecordBlock required: required [
           self root: (fetchRecordBlock value: version) loadDirective ] ]
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>get [
+{ #category : #'actions api' }
+MetacelloScriptEngine >> get [
   " load a fresh copy from repo"
 
   | spec projectPackage |
@@ -173,22 +136,16 @@ MetacelloScriptEngine>>get [
                     ifNotNil: [ specCopy mergeScriptRepository: spec ] ] ] ] ]
 ]
 
-{
-	#category : #'project lookup',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>getBaselineProjectUnconditionalLoad: unconditionalLoad [
+{ #category : #'project lookup' }
+MetacelloScriptEngine >> getBaselineProjectUnconditionalLoad: unconditionalLoad [
     | project |
     project := (self getBaselineUnconditionalLoad: unconditionalLoad) project.
     project version spec repositories: self repositories copy.
     ^ project
 ]
 
-{
-	#category : #'project lookup',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>getBaselineUnconditionalLoad: unconditionalLoad [
+{ #category : #'project lookup' }
+MetacelloScriptEngine >> getBaselineUnconditionalLoad: unconditionalLoad [
   | spec |
   spec := self projectSpec.
   Smalltalk
@@ -206,19 +163,13 @@ MetacelloScriptEngine>>getBaselineUnconditionalLoad: unconditionalLoad [
   ^ Smalltalk at: spec className asSymbol
 ]
 
-{
-	#category : #'project lookup',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>getConfigurationProjectUnconditionalLoad: unconditionalLoad [
+{ #category : #'project lookup' }
+MetacelloScriptEngine >> getConfigurationProjectUnconditionalLoad: unconditionalLoad [
     ^ (self getConfigurationUnconditionalLoad: unconditionalLoad) project
 ]
 
-{
-	#category : #'project lookup',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>getConfigurationUnconditionalLoad: unconditionalLoad [
+{ #category : #'project lookup' }
+MetacelloScriptEngine >> getConfigurationUnconditionalLoad: unconditionalLoad [
     | spec |
     spec := self projectSpec.
     Smalltalk
@@ -230,54 +181,39 @@ MetacelloScriptEngine>>getConfigurationUnconditionalLoad: unconditionalLoad [
     ^ Smalltalk at: spec className asSymbol
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>handleConflict: exception [
+{ #category : #handlers }
+MetacelloScriptEngine >> handleConflict: exception [
     ^ (self options at: #'onConflict' ifAbsent: [ ^ exception pass ])
         cull: exception
         cull: exception existingProjectRegistration
         cull: exception newProjectRegistration
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>handleDowngrade: exception [
+{ #category : #handlers }
+MetacelloScriptEngine >> handleDowngrade: exception [
     ^ (self options at: #'onDowngrade' ifAbsent: [ ^ exception pass ])
         cull: exception
         cull: exception existingProjectRegistration
         cull: exception newProjectRegistration
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>handleEnsureProjectLoadedForDevelopment: exception [
+{ #category : #handlers }
+MetacelloScriptEngine >> handleEnsureProjectLoadedForDevelopment: exception [
     "if useCurrentVersion resume with true, else resume with false"
 
     ^ exception resume: self useCurrentVersion
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>handleLock: exception [
+{ #category : #handlers }
+MetacelloScriptEngine >> handleLock: exception [
   ^ (self options at: #'onLock' ifAbsent: [ ^ exception pass ])
     cull: exception
     cull: exception existingProjectRegistration
     cull: exception newProjectRegistration
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>handleLookupBaselineSpecForEnsureLoad: exception [
+{ #category : #handlers }
+MetacelloScriptEngine >> handleLookupBaselineSpecForEnsureLoad: exception [
   "if requested and registered don't compare equal, then ensure the new baseline is loaded"
 
   | requested registered |
@@ -286,21 +222,15 @@ MetacelloScriptEngine>>handleLookupBaselineSpecForEnsureLoad: exception [
   ^ exception resume: (registered compareEqual: requested) not
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>handleLookupProjectSpec: exception [
+{ #category : #handlers }
+MetacelloScriptEngine >> handleLookupProjectSpec: exception [
     ^ exception
         resume:
             ((self lookupProjectSpecFor: exception projectSpec) ifNil: [ ^ exception resume: exception projectSpec ])
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>handleLookupProjectSpecForLoad: exception [
+{ #category : #handlers }
+MetacelloScriptEngine >> handleLookupProjectSpecForLoad: exception [
   "if overrideProjectSpec is nil, use currentVersion in image, ignoreImage is false"
 
   | requested override |
@@ -325,11 +255,8 @@ MetacelloScriptEngine>>handleLookupProjectSpecForLoad: exception [
         yourself)
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>handleNotificationsForAction: actionBlock [
+{ #category : #handlers }
+MetacelloScriptEngine >> handleNotificationsForAction: actionBlock [
   [ 
   [ 
   [ 
@@ -358,11 +285,8 @@ MetacelloScriptEngine>>handleNotificationsForAction: actionBlock [
       self handleWarning: ex ]
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>handleProjectSpecLoaded: exception [
+{ #category : #handlers }
+MetacelloScriptEngine >> handleProjectSpecLoaded: exception [
     MetacelloProjectRegistration
         registrationForProjectSpec: exception projectSpec
         ifAbsent: [ :new | 
@@ -379,59 +303,41 @@ MetacelloScriptEngine>>handleProjectSpecLoaded: exception [
     exception resume
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>handleUpgrade: exception [
+{ #category : #handlers }
+MetacelloScriptEngine >> handleUpgrade: exception [
     ^ (self options at: #'onUpgrade' ifAbsent: [ ^ exception pass ])
         cull: exception
         cull: exception existingProjectRegistration
         cull: exception newProjectRegistration
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>handleWarning: exception [
+{ #category : #handlers }
+MetacelloScriptEngine >> handleWarning: exception [
   ^ (self options at: #'onWarning' ifAbsent: [ ^ exception pass ])
     cull: exception
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>ignoreImage [
+{ #category : #options }
+MetacelloScriptEngine >> ignoreImage [
     ^ self options at: #'ignoreImage' ifAbsent: [ false ]
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>list [
+{ #category : #'actions api' }
+MetacelloScriptEngine >> list [
   self setDefaultsAndValidateProjectSpec.
   self root: self projectSpec
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>load: required [
+{ #category : #'actions api' }
+MetacelloScriptEngine >> load: required [
     self
         load: required
         onProjectDownGrade: [ :ex :existing :new | ex allowEvenIfLocked ]
         onProjectUpgrade: [ :ex :existing :new | ex allowEvenIfLocked ]
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>load: required onProjectDownGrade: onDownGradeBlock onProjectUpgrade: onUpgradeBlock [
+{ #category : #'actions api' }
+MetacelloScriptEngine >> load: required onProjectDownGrade: onDownGradeBlock onProjectUpgrade: onUpgradeBlock [
   MetacelloProjectRegistration
     copyRegistryRestoreOnErrorWhile: [ 
       self
@@ -462,11 +368,8 @@ MetacelloScriptEngine>>load: required onProjectDownGrade: onDownGradeBlock onPro
                     merge: new ] ] ] ]
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>lock [
+{ #category : #'actions api' }
+MetacelloScriptEngine >> lock [
   | spec |
   MetacelloProjectRegistration
     copyRegistryRestoreOnErrorWhile: [ 
@@ -493,11 +396,8 @@ MetacelloScriptEngine>>lock [
       self root: spec ]
 ]
 
-{
-	#category : #'project lookup',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>lookupProjectSpecFor: aProjectSpec [
+{ #category : #'project lookup' }
+MetacelloScriptEngine >> lookupProjectSpecFor: aProjectSpec [
   "if there is no conflict, choose new spec"
 
   | registration loadedSpec |
@@ -520,52 +420,34 @@ MetacelloScriptEngine>>lookupProjectSpecFor: aProjectSpec [
   ^ registration projectSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>options [
+{ #category : #accessing }
+MetacelloScriptEngine >> options [
     options ifNil: [ options := Dictionary new ].
     ^ options
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>options: aDictionary [
+{ #category : #accessing }
+MetacelloScriptEngine >> options: aDictionary [
     options := aDictionary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>projectName [
+{ #category : #accessing }
+MetacelloScriptEngine >> projectName [
     ^ self projectSpec name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>projectSpec [
+{ #category : #accessing }
+MetacelloScriptEngine >> projectSpec [
     ^ projectSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>projectSpec: aProjectSpec [
+{ #category : #accessing }
+MetacelloScriptEngine >> projectSpec: aProjectSpec [
     projectSpec := aProjectSpec
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>record: required [
+{ #category : #'actions api' }
+MetacelloScriptEngine >> record: required [
     self
         fetchRecord: [ :version | 
             required isEmpty
@@ -574,11 +456,8 @@ MetacelloScriptEngine>>record: required [
         required: required
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>register [
+{ #category : #'actions api' }
+MetacelloScriptEngine >> register [
   | spec |
   self setDefaultsAndValidate: self projectSpec copy.	"don't add defaults"
   spec := self projectSpec.
@@ -589,44 +468,29 @@ MetacelloScriptEngine>>register [
   self root: spec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>repositories [
+{ #category : #accessing }
+MetacelloScriptEngine >> repositories [
     ^ self projectSpec repositories
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>repositoryOverrides [
+{ #category : #options }
+MetacelloScriptEngine >> repositoryOverrides [
     ^ (self options at: #'repositoryOverrides' ifAbsent: [ ^ nil ])
         collect: [ :description | (MetacelloMCProject new repositorySpec description: description) createRepository ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>root [
+{ #category : #accessing }
+MetacelloScriptEngine >> root [
 	^ root
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>root: anObject [
+{ #category : #accessing }
+MetacelloScriptEngine >> root: anObject [
 	root := anObject
 ]
 
-{
-	#category : #'project lookup',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>setDefaultsAndValidate: aProjectSpec [
+{ #category : #'project lookup' }
+MetacelloScriptEngine >> setDefaultsAndValidate: aProjectSpec [
   "NOTE: aProjectSpec has defaults assigned if versionString or repository missing"
 
   | issues |
@@ -641,29 +505,20 @@ MetacelloScriptEngine>>setDefaultsAndValidate: aProjectSpec [
     message: 'Project spec validation failure') signal
 ]
 
-{
-	#category : #'project lookup',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>setDefaultsAndValidateProjectSpec [
+{ #category : #'project lookup' }
+MetacelloScriptEngine >> setDefaultsAndValidateProjectSpec [
   "NOTE: projectSpec has defaults assigned if versionString or repository missing"
 
   self setDefaultsAndValidate: self projectSpec
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>silently [
+{ #category : #options }
+MetacelloScriptEngine >> silently [
     ^ self options at: #'silently' ifAbsent: [ false ]
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>unlock [
+{ #category : #'actions api' }
+MetacelloScriptEngine >> unlock [
   | spec |
   MetacelloProjectRegistration
     copyRegistryRestoreOnErrorWhile: [ 
@@ -676,11 +531,8 @@ MetacelloScriptEngine>>unlock [
       self root: spec ]
 ]
 
-{
-	#category : #'actions api',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>unregister [
+{ #category : #'actions api' }
+MetacelloScriptEngine >> unregister [
   | spec |
   self setDefaultsAndValidate: self projectSpec copy.	"don't add defaults"
   spec := self projectSpec.
@@ -691,11 +543,8 @@ MetacelloScriptEngine>>unregister [
   self root: spec
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptEngine>>useCurrentVersion [
+{ #category : #options }
+MetacelloScriptEngine >> useCurrentVersion [
     "private option used to implement the classic mode"
 
     ^ self options at: #'useCurrentVersion' ifAbsent: [ false ]

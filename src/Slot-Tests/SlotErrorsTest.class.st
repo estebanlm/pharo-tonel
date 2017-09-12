@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #SlotErrorsTest,
 	#superclass : #SlotSilentTest,
-	#category : #Slot-Tests,
-	#timestamp : ''
+	#category : #Slot-Tests
 }
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotErrorsTest>>assertInvalidClassName: aName [
+{ #category : #helpers }
+SlotErrorsTest >> assertInvalidClassName: aName [
 
 	self should: [
 		self make: [ :builder | 
@@ -26,20 +19,14 @@ SlotErrorsTest>>assertInvalidClassName: aName [
 		raise: InvalidGlobalName
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotErrorsTest>>expectedFailures  [
+{ #category : #running }
+SlotErrorsTest >> expectedFailures [ 
 
 	^ #(testCannotBeRecompiled)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotErrorsTest>>testCannotBeRecompiled [
+{ #category : #tests }
+SlotErrorsTest >> testCannotBeRecompiled [
 
 	| superclass |
 	superclass := self make: [ :builder | 
@@ -63,38 +50,26 @@ SlotErrorsTest>>testCannotBeRecompiled [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotErrorsTest>>testClassNameMustBeCapitalized [
+{ #category : #tests }
+SlotErrorsTest >> testClassNameMustBeCapitalized [
 
 	self assertInvalidClassName: #aNotCapitalizedClassName
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotErrorsTest>>testClassNameMustBeSymbol [
+{ #category : #tests }
+SlotErrorsTest >> testClassNameMustBeSymbol [
 
 	self assertInvalidClassName: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotErrorsTest>>testClassNameWithInvalidCharacter [
+{ #category : #tests }
+SlotErrorsTest >> testClassNameWithInvalidCharacter [
 
 	self assertInvalidClassName: #'Invalid-ClassName'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotErrorsTest>>testClassSlotDuplicationConflict [
+{ #category : #tests }
+SlotErrorsTest >> testClassSlotDuplicationConflict [
 
 	aClass := self make: [ :builder | 
 		builder classSlots: { #a } ].
@@ -108,11 +83,8 @@ SlotErrorsTest>>testClassSlotDuplicationConflict [
 		raise: DuplicatedSlotName 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotErrorsTest>>testClassSlotWithReservedName [
+{ #category : #tests }
+SlotErrorsTest >> testClassSlotWithReservedName [
 
 	#(#self #super #thisContext #true #false #nil) do: [:reservedName |
 		self should: [ 
@@ -121,11 +93,8 @@ SlotErrorsTest>>testClassSlotWithReservedName [
 			raise: InvalidSlotName ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotErrorsTest>>testDangerousClassesConditions [
+{ #category : #tests }
+SlotErrorsTest >> testDangerousClassesConditions [
 
 	| specialObjectsArrayItem |
 	
@@ -135,11 +104,8 @@ SlotErrorsTest>>testDangerousClassesConditions [
 	self assert: (DangerousClassNotifier shouldNotBeRedefined: specialObjectsArrayItem). 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotErrorsTest>>testDangerousClassesEnabling [
+{ #category : #tests }
+SlotErrorsTest >> testDangerousClassesEnabling [
 
 	| savedExistingSystemSetting myExpectedError |
 
@@ -171,11 +137,8 @@ SlotErrorsTest>>testDangerousClassesEnabling [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotErrorsTest>>testDirectCircularHierarchyError [
+{ #category : #tests }
+SlotErrorsTest >> testDirectCircularHierarchyError [
 	"Tests an error is raised when trying to create a heirarchy A<-A"
 	
 	| classA |
@@ -192,11 +155,8 @@ SlotErrorsTest>>testDirectCircularHierarchyError [
 		raise: CircularHierarchyError 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotErrorsTest>>testIndirectCircularHierarchyError [
+{ #category : #tests }
+SlotErrorsTest >> testIndirectCircularHierarchyError [
 	"Tests an error is raised when trying to create a heirarchy A<-B<-A"
 	
 	| classA classB |
@@ -218,11 +178,8 @@ SlotErrorsTest>>testIndirectCircularHierarchyError [
 		raise: CircularHierarchyError 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotErrorsTest>>testSlotDuplicationConflict [
+{ #category : #tests }
+SlotErrorsTest >> testSlotDuplicationConflict [
 
 	aClass := self make: [ :builder | 
 		builder slots: { #a } ].
@@ -236,11 +193,8 @@ SlotErrorsTest>>testSlotDuplicationConflict [
 		raise: DuplicatedSlotName 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotErrorsTest>>testSlotWithReservedName [
+{ #category : #tests }
+SlotErrorsTest >> testSlotWithReservedName [
 
 	#(#self #super #thisContext #true #false #nil) do: [:reservedName |
 		self should: [ 
@@ -249,11 +203,8 @@ SlotErrorsTest>>testSlotWithReservedName [
 			raise: InvalidSlotName ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotErrorsTest>>testValidateClassName		 [
+{ #category : #tests }
+SlotErrorsTest >> testValidateClassName [		
 		
 	PharoClassInstaller 
 		validateClassName: #GoodClassNameThatShouldNotExist

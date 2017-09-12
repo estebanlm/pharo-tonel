@@ -20,58 +20,39 @@ Class {
 	#classVars : [
 		'Singleton'
 	],
-	#category : #Rubric-Editing-FindReplaceService,
-	#timestamp : 'StephaneDucasse 6/13/2015 14:25'
+	#category : #Rubric-Editing-FindReplaceService
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService class>>cleanUp [
+{ #category : #cleanup }
+RubFindReplaceService class >> cleanUp [
 
 	Singleton := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService class>>default [
+{ #category : #accessing }
+RubFindReplaceService class >> default [
 	^ Singleton ifNil: [ Singleton := self new ]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService class>>dialog [
+{ #category : #accessing }
+RubFindReplaceService class >> dialog [
 	^ self default dialog
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>caseSensitive [
+{ #category : #accessing }
+RubFindReplaceService >> caseSensitive [
 	^ caseSensitive ifNil: [caseSensitive := TextEditor caseSensitiveFinds]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>caseSensitive: aBoolean [
+{ #category : #accessing }
+RubFindReplaceService >> caseSensitive: aBoolean [
 	caseSensitive := aBoolean.
 	self findPolicyChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>convertedFindString [
+{ #category : #accessing }
+RubFindReplaceService >> convertedFindString [
 	| specials |
 	specials := '^$:\+*[]()?'.
 	^String 
@@ -80,45 +61,30 @@ RubFindReplaceService>>convertedFindString [
 				s nextPut: c]]
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>dialog [
+{ #category : #user-interface }
+RubFindReplaceService >> dialog [
 	^ dialog ifNil: [ dialog := self newDialog ]
 	
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>dialogIsActiveFor: aTextArea [
+{ #category : #user-interface }
+RubFindReplaceService >> dialogIsActiveFor: aTextArea [
 	^ self dialog world notNil and: [ self textArea = aTextArea  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>entireWordsOnly [
+{ #category : #accessing }
+RubFindReplaceService >> entireWordsOnly [
 	^ entireWordsOnly ifNil: [entireWordsOnly := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>entireWordsOnly: aBoolean [
+{ #category : #accessing }
+RubFindReplaceService >> entireWordsOnly: aBoolean [
 	entireWordsOnly := aBoolean.
 	self findPolicyChanged
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>find [
+{ #category : #services }
+RubFindReplaceService >> find [
 	| where |
 	self setStartIndex.
 	where := self findAndSelectRegex.
@@ -126,11 +92,8 @@ RubFindReplaceService>>find [
 	^ where
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>findAndSelect [
+{ #category : #private }
+RubFindReplaceService >> findAndSelect [
 	| where |
 	findStartIndex > 0
 		ifTrue: [ where := self textArea
@@ -149,19 +112,13 @@ RubFindReplaceService>>findAndSelect [
 	^ where
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>findAndSelectRegex [
+{ #category : #private }
+RubFindReplaceService >> findAndSelectRegex [
 	^ self findRegex ifNotNil: [ self findAndSelect ]
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>findNext [
+{ #category : #services }
+RubFindReplaceService >> findNext [
 	| where  |
 	findStartIndex 
 		ifNil: [findStartIndex := self textArea editor startIndex].
@@ -173,20 +130,14 @@ RubFindReplaceService>>findNext [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>findPolicyChanged [
+{ #category : #updating }
+RubFindReplaceService >> findPolicyChanged [
 	self changed: #findPolicy.
 	self textArea whenFindTextChanged: RubFindTextChanged new
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>findRegex [
+{ #category : #services }
+RubFindReplaceService >> findRegex [
 	| s |
 	self regexString ifEmpty: [ ^nil ].
 	s := self entireWordsOnly
@@ -201,123 +152,84 @@ RubFindReplaceService>>findRegex [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>findStartIndex [
+{ #category : #accessing }
+RubFindReplaceService >> findStartIndex [
 	^ findStartIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>findStartIndex: anInteger [
+{ #category : #accessing }
+RubFindReplaceService >> findStartIndex: anInteger [
 	findStartIndex := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>findString [
+{ #category : #accessing }
+RubFindReplaceService >> findString [
 	^ self findText asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>findText [
+{ #category : #accessing }
+RubFindReplaceService >> findText [
 	^ (findText ifNil: [findText := '' asText. findText]) asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>findText: aStringOrText [
+{ #category : #accessing }
+RubFindReplaceService >> findText: aStringOrText [
 	findText := aStringOrText asText.
 	self findPolicyChanged.
 	self textArea whenFindTextChanged: RubFindTextChanged new.
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>findText: aStringOrText isRegex: aBoolean [
+{ #category : #accessing }
+RubFindReplaceService >> findText: aStringOrText isRegex: aBoolean [
 		self isRegex: aBoolean.
 		self findText: aStringOrText.
 		self replaceText: ''.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>findText: aStringOrText isRegex: isReg caseSensitive: isCaseSensitive entireWordsOnly: forEntireWordsOnly [
+{ #category : #accessing }
+RubFindReplaceService >> findText: aStringOrText isRegex: isReg caseSensitive: isCaseSensitive entireWordsOnly: forEntireWordsOnly [
 		self isRegex: isReg.
 		self findText: aStringOrText.
 		self entireWordsOnly: forEntireWordsOnly.
 		self caseSensitive: isCaseSensitive
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>findText: aStringOrText isRegex: aBoolean entireWordsOnly: forEntireWordsOnly [
+{ #category : #accessing }
+RubFindReplaceService >> findText: aStringOrText isRegex: aBoolean entireWordsOnly: forEntireWordsOnly [
 		self isRegex: aBoolean.
 		self findText: aStringOrText.
 		self entireWordsOnly: forEntireWordsOnly
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>findTextSilently: aStringOrText [
+{ #category : #accessing }
+RubFindReplaceService >> findTextSilently: aStringOrText [
 	findText := aStringOrText asText.
 	self findPolicyChanged
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>initialize [
+{ #category : #initialization }
+RubFindReplaceService >> initialize [
 	super initialize.
 	
 	textAreaHolder := WeakArray new: 1 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>isRegex [
+{ #category : #accessing }
+RubFindReplaceService >> isRegex [
 	^ isRegex ifNil: [isRegex := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>isRegex: aBoolean [
+{ #category : #accessing }
+RubFindReplaceService >> isRegex: aBoolean [
 	isRegex := aBoolean.
 	self findPolicyChanged
 
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>newDialog [
+{ #category : #user-interface }
+RubFindReplaceService >> newDialog [
 	| d |
 	d := RubFindReplaceDialogWindow new model: self.
 	d findPolicyChanged.
@@ -326,22 +238,16 @@ RubFindReplaceService>>newDialog [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>regexString [
+{ #category : #accessing }
+RubFindReplaceService >> regexString [
 	^ self isRegex 
 		ifTrue: [self findString]
 		ifFalse: [self convertedFindString]
 
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>replace [
+{ #category : #services }
+RubFindReplaceService >> replace [
 	findStartIndex := self searchBackwards 
 		ifTrue: [self textArea editor stopIndex] 
 		ifFalse: [self textArea editor startIndex].
@@ -349,98 +255,68 @@ RubFindReplaceService>>replace [
 		ifNotNil: [self textArea replaceSelectionWith: self replaceText]
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>replaceAll [
+{ #category : #services }
+RubFindReplaceService >> replaceAll [
 	| startIdx |
 	startIdx := self wrapAround ifTrue: [1] ifFalse: [self textArea editor selectionInterval first].
 	self textArea replaceAll: self findRegex with: self replaceText startingAt: startIdx
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>replaceText [
+{ #category : #accessing }
+RubFindReplaceService >> replaceText [
 	^ replaceText ifNil: [replaceText := '']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>replaceText: aStringOrText [
+{ #category : #accessing }
+RubFindReplaceService >> replaceText: aStringOrText [
 	replaceText := aStringOrText asString.
 	self findPolicyChanged
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>searchBackwards [
+{ #category : #accessing }
+RubFindReplaceService >> searchBackwards [
 	^ searchBackwards ifNil: [searchBackwards := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>searchBackwards: aBoolean [
+{ #category : #accessing }
+RubFindReplaceService >> searchBackwards: aBoolean [
 	searchBackwards := aBoolean.
 	self updateFindStartIndex.
 	self findPolicyChanged
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>selectionRegexString [
+{ #category : #accessing }
+RubFindReplaceService >> selectionRegexString [
 	^ self convertedFindString
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>setStartIndex [
+{ #category : #private }
+RubFindReplaceService >> setStartIndex [
 	findStartIndex
 		ifNil: [ findStartIndex := self searchBackwards
 				ifTrue: [ self textArea editor stopIndex ]
 				ifFalse: [ self textArea editor startIndex ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>textArea [
+{ #category : #accessing }
+RubFindReplaceService >> textArea [
 	^ textAreaHolder at: 1 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>textArea: aTextArea [
+{ #category : #accessing }
+RubFindReplaceService >> textArea: aTextArea [
 	textAreaHolder at: 1 put: aTextArea.
 	aTextArea announcer 
 		when: RubFindReplaceWindowRequired send: #whenFindReplaceWindowRequired: to: self. 
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>updateFindStartIndex [
+{ #category : #updating }
+RubFindReplaceService >> updateFindStartIndex [
 	| si |
 	self textArea 
 		ifNil: [ ^self ]
@@ -451,20 +327,14 @@ RubFindReplaceService>>updateFindStartIndex [
 			self findStartIndex: (self searchBackwards ifTrue: [si first - 1] ifFalse: [si last + 1]) ]
 ]
 
-{
-	#category : #user-interface,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>whenDialogDeleted [
+{ #category : #user-interface }
+RubFindReplaceService >> whenDialogDeleted [
 	dialog := nil.
 
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>whenFindReplaceWindowRequired: anAnnouncement [
+{ #category : #'events handling' }
+RubFindReplaceService >> whenFindReplaceWindowRequired: anAnnouncement [
 	self findText
 		ifEmpty: [ 
 			self textArea hasSelection
@@ -472,11 +342,8 @@ RubFindReplaceService>>whenFindReplaceWindowRequired: anAnnouncement [
 	self dialog open
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>whenTextAreaGotFocus: anAnnounce [
+{ #category : #'events handling' }
+RubFindReplaceService >> whenTextAreaGotFocus: anAnnounce [
 	self textArea: anAnnounce morph.
 	self findText: self findText.
 	self changed: #findText.
@@ -485,37 +352,25 @@ RubFindReplaceService>>whenTextAreaGotFocus: anAnnounce [
 
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>whenTextAreaLostFocus: anAnnounce [
+{ #category : #'events handling' }
+RubFindReplaceService >> whenTextAreaLostFocus: anAnnounce [
 	self dialog isInWorld ifFalse: [ ^self ].
 	self textArea whenFindTextChanged: RubFindTextChanged new
 
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>whenTextAreaSelectionChanged: anAnnouncement  [
+{ #category : #'events handling' }
+RubFindReplaceService >> whenTextAreaSelectionChanged: anAnnouncement [ 
 	self updateFindStartIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>wrapAround [
+{ #category : #accessing }
+RubFindReplaceService >> wrapAround [
 	^ wrapAround ifNil: [wrapAround := true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFindReplaceService>>wrapAround: aBoolean [
+{ #category : #accessing }
+RubFindReplaceService >> wrapAround: aBoolean [
 	wrapAround := aBoolean.
 	self findPolicyChanged
 

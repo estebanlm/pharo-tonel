@@ -25,44 +25,31 @@ Class {
 	#classVars : [
 		'FloodFillTolerance'
 	],
-	#category : #'Graphics-Display Objects',
-	#timestamp : 'ls 1/4/2004 17:16'
+	#category : #'Graphics-Display Objects'
 }
 
-{
-	#category : #'mode constants',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>and [
+{ #category : #'mode constants' }
+Form class >> and [
 	"Answer the integer denoting the logical 'and' combination rule."
 
 	^1
 ]
 
-{
-	#category : #'mode constants',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>blend [
+{ #category : #'mode constants' }
+Form class >> blend [
 	"Answer the integer denoting BitBlt's alpha blend combination rule."
 	^24
 ]
 
-{
-	#category : #'mode constants',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>blendAlpha [
+{ #category : #'mode constants' }
+Form class >> blendAlpha [
 	"Answer the integer denoting BitBlt's blend-with-constant-alpha rule."
 
 	^ 30
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>dotOfSize: diameter [
+{ #category : #'instance creation' }
+Form class >> dotOfSize: diameter [
 	"Create a form which contains a round black dot."
 	| radius form bb rect centerX centerY centerYBias centerXBias radiusSquared xOverY maxy dx |
 	radius := diameter//2.
@@ -98,63 +85,45 @@ Time millisecondsToRun:
 "
 ]
 
-{
-	#category : #'mode constants',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>erase [
+{ #category : #'mode constants' }
+Form class >> erase [
 	"Answer the integer denoting mode erase."
 
 	^4
 ]
 
-{
-	#category : #'mode constants',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>erase1bitShape [
+{ #category : #'mode constants' }
+Form class >> erase1bitShape [
 	"Answer the integer denoting mode erase."
 
 	^ 26
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>extent: extentPoint [
+{ #category : #'instance creation' }
+Form class >> extent: extentPoint [
 	"Answer an instance of me with a blank bitmap of depth 1."
 
 	^ self extent: extentPoint depth: 1
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>extent: extentPoint depth: bitsPerPixel [
+{ #category : #'instance creation' }
+Form class >> extent: extentPoint depth: bitsPerPixel [
 	"Answer an instance of me with blank bitmap of the given dimensions and depth."
 
 	^ self basicNew setExtent: extentPoint depth: bitsPerPixel
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>extent: extentPoint depth: bitsPerPixel bits: aBitmap [
+{ #category : #'instance creation' }
+Form class >> extent: extentPoint depth: bitsPerPixel [ bits: aBitmap
 	"Answer an instance of me with blank bitmap of the given dimensions and depth."
 
 	^ self basicNew setExtent: extentPoint depth: bitsPerPixel bits: aBitmap
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>extent: extentPoint depth: bitsPerPixel fromArray: anArray offset: offsetPoint  [
+{ #category : #'instance creation' }
+Form class >> extent: extentPoint depth: bitsPerPixel fromArray: anArray offset: offsetPoint [ 
 	"Answer an instance of me with a pixmap of the given depth initialized from anArray."
 
 	^ (self extent: extentPoint depth: bitsPerPixel)
@@ -163,11 +132,8 @@ Form class>>extent: extentPoint depth: bitsPerPixel fromArray: anArray offset: o
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>extent: extentPoint fromArray: anArray offset: offsetPoint  [
+{ #category : #'instance creation' }
+Form class >> extent: extentPoint fromArray: anArray offset: offsetPoint [ 
 	"Answer an instance of me of depth 1 with bitmap initialized from anArray."
 
 	^ (self extent: extentPoint depth: 1)
@@ -176,11 +142,8 @@ Form class>>extent: extentPoint fromArray: anArray offset: offsetPoint  [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>extent: extentPoint fromStipple: fourNibbles [
+{ #category : #'instance creation' }
+Form class >> extent: extentPoint fromStipple: fourNibbles [
 	"Answer an instance of me with bitmap initialized from
 	a repeating 4x4 bit stipple encoded in a 16-bit constant."
 	
@@ -191,32 +154,23 @@ Form class>>extent: extentPoint fromStipple: fourNibbles [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>extent: extentPoint offset: offsetPoint  [
+{ #category : #'instance creation' }
+Form class >> extent: extentPoint offset: offsetPoint [ 
 	"Answer an instance of me with a blank bitmap of depth 1."
 
 	^ (self extent: extentPoint depth: 1) offset: offsetPoint
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>floodFillTolerance: aFloat [
+{ #category : #settings }
+Form class >> floodFillTolerance: aFloat [
 	(aFloat >= 0.0 and: [aFloat < 0.3])
 		ifTrue: [FloodFillTolerance := aFloat]
 		ifFalse: [FloodFillTolerance := 0.0]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>fromDisplay: aRectangle  [
+{ #category : #'instance creation' }
+Form class >> fromDisplay: aRectangle [ 
 	"Answer an instance of me with bitmap initialized from the area of the 
 	display screen defined by aRectangle."
 
@@ -224,11 +178,8 @@ Form class>>fromDisplay: aRectangle  [
 		fromDisplay: aRectangle
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>fromDisplay: aRectangle using: oldForm [
+{ #category : #'instance creation' }
+Form class >> fromDisplay: aRectangle using: oldForm [
 	"Like fromDisplay: only if oldForm is the right size, copy into it and answer it instead."
 
 	((oldForm ~~ nil) and: [oldForm extent = aRectangle extent])
@@ -239,11 +190,8 @@ Form class>>fromDisplay: aRectangle using: oldForm [
 			[^ self fromDisplay: aRectangle]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>fromUser [
+{ #category : #'instance creation' }
+Form class >> fromUser [
 	"Answer an instance of me with bitmap initialized from the area of the 
 	display screen designated by the user. The grid for selecting an area is 
 	1@1."
@@ -252,11 +200,8 @@ Form class>>fromUser [
 	^self fromUser: 1 @ 1
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>fromUser: gridPoint [
+{ #category : #'instance creation' }
+Form class >> fromUser: gridPoint [
 	"Answer an instance of me with bitmap initialized from the area of the 
 	display screen designated by the user. The grid for selecting an area is 
 	aPoint. Ensures that the returned form has positive extent."
@@ -265,108 +210,75 @@ Form class>>fromUser: gridPoint [
 	^ self fromDisplay: (rect origin extent: (rect extent max: gridPoint))
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>initialize [
+{ #category : #initialize-release }
+Form class >> initialize [
 	SessionManager default registerGuiClassNamed: self name
 ]
 
-{
-	#category : #'mode constants',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>oldErase1bitShape [
+{ #category : #'mode constants' }
+Form class >> oldErase1bitShape [
 	"Answer the integer denoting mode erase."
 
 	^ 17
 ]
 
-{
-	#category : #'mode constants',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>oldPaint [
+{ #category : #'mode constants' }
+Form class >> oldPaint [
 	"Answer the integer denoting the 'paint' combination rule."
 
 	^16
 ]
 
-{
-	#category : #'mode constants',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>over [
+{ #category : #'mode constants' }
+Form class >> over [
 	"Answer the integer denoting mode over."
 
 	^3
 ]
 
-{
-	#category : #'mode constants',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>paint [
+{ #category : #'mode constants' }
+Form class >> paint [
 	"Answer the integer denoting the 'paint' combination rule."
 
 	^25
 ]
 
-{
-	#category : #'mode constants',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>paintAlpha [
+{ #category : #'mode constants' }
+Form class >> paintAlpha [
 	"Answer the integer denoting BitBlt's paint-with-constant-alpha rule."
 
 	^ 31
 ]
 
-{
-	#category : #'mode constants',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>reverse [
+{ #category : #'mode constants' }
+Form class >> reverse [
 	"Answer the integer denoting mode reverse."
 
 	^6
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>shutDown  "Form shutDown" [
+{ #category : #'system startup' }
+Form class >> shutDown [  "Form shutDown"
 	"Compress all instances in the system.  Will decompress on demand..."
 	Form allInstancesDo: [:f | f hibernate].
 	ColorForm allInstancesDo: [:f | f hibernate].
 ]
 
-{
-	#category : #'mode constants',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form class>>under [
+{ #category : #'mode constants' }
+Form class >> under [
 	"Answer the integer denoting mode under."
 
 	^7
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>allocateForm: extentPoint [
+{ #category : #initialization }
+Form >> allocateForm: extentPoint [
 	"Allocate a new form which is similar to the receiver and can be used for accelerated blts"
 	^Form extent: extentPoint depth: self nativeDepth
 ]
 
-{
-	#category : #filling,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>anyShapeFill [
+{ #category : #filling }
+Form >> anyShapeFill [
 	"Fill the interior of the outermost outlined region in the receiver, a 1-bit deep form.  Typically the resulting form is used with fillShape:fillColor: to paint a solid color.  See also convexShapeFill:"
 
 	| shape |
@@ -379,11 +291,8 @@ Form>>anyShapeFill [
 	^ shape
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>as8BitColorForm [
+{ #category : #converting }
+Form >> as8BitColorForm [
 	"Simple conversion of zero pixels to transparent.  Force it to 8 bits."
 
 	| f map |
@@ -397,20 +306,14 @@ Form>>as8BitColorForm [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>asCursorForm [
+{ #category : #converting }
+Form >> asCursorForm [
 
 	^ Form newFrom: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>asFormOfDepth: d [
+{ #category : #converting }
+Form >> asFormOfDepth: d [
 	| newForm |
 	d = self depth ifTrue:[^self].
 	newForm := Form extent: self extent depth: d.
@@ -424,11 +327,8 @@ Form>>asFormOfDepth: d [
 	^newForm
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>asGrayScale [
+{ #category : #converting }
+Form >> asGrayScale [
 	"Assume the receiver is a grayscale image. Return a grayscale ColorForm computed by extracting the brightness levels of one color component. This technique allows a 32-bit Form to be converted to an 8-bit ColorForm to save space while retaining a full 255 levels of gray. (The usual colormapping technique quantizes to 8, 16, or 32 levels, which loses information.)"
 	| f32 srcForm result map bb grays |
 	self depth = 32 ifFalse: [
@@ -469,41 +369,29 @@ Form>>asGrayScale [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>asGrayScaleWithAlpha [
+{ #category : #converting }
+Form >> asGrayScaleWithAlpha [
 	"Unlike asGrayScale, this method fully preserves the alpha channel and only desaturates the form(makes grayscale)."
 	^ (self asFormOfDepth: 32) collectColors: [ :c |  |l|
 		l := c luminance.
 		Color r:l g: l b: l alpha: c alpha ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>asSourceForm [
+{ #category : #converting }
+Form >> asSourceForm [
 	^self
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>balancedPatternFor: aColor [
+{ #category : #'color mapping' }
+Form >> balancedPatternFor: aColor [
 	"Return the pixel word for representing the given color on the receiver"
 	self hasNonStandardPalette
 		ifTrue:[ ^ self bitPatternFor: aColor]
 		ifFalse:[^ self balancedPatternFor: aColor depth: self depth]
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>balancedPatternFor: aColor depth: aDepth  [
+{ #category : #'color mapping' }
+Form >> balancedPatternFor: aColor depth: aDepth [ 
 	 
 	"A generalization of bitPatternForDepth: as it exists.  Generates a 2x2 stipple of color.
 	The topLeft and bottomRight pixel are closest approx to this color"
@@ -575,11 +463,8 @@ Form>>balancedPatternFor: aColor depth: aDepth  [
 	
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>bitPatternFor: aColor [
+{ #category : #'color mapping' }
+Form >> bitPatternFor: aColor [
 	"Return the pixel word for representing the given color on the receiver"
 	aColor isColor ifFalse:[^aColor bitPatternForDepth: self depth].
 	self hasNonStandardPalette
@@ -587,62 +472,44 @@ Form>>bitPatternFor: aColor [
 		ifFalse:[^aColor bitPatternForDepth: self depth]
 ]
 
-{
-	#category : #filling,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>bitPatternForDepth: suspectedDepth [
+{ #category : #filling }
+Form >> bitPatternForDepth: suspectedDepth [
 	"Only called when a Form is being used as a fillColor.  Use a Pattern or InfiniteForm instead for this purpose.
 	Interpret me as an array of (32/depth) Color pixelValues.  BitBlt aligns the first element of this array with the top scanline of the destinationForm, the second with the second, and so on, cycling through the color array as necessary."
 
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>bits [
+{ #category : #accessing }
+Form >> bits [
 	"Answer the receiver's Bitmap containing its bits."
 
 	^ bits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>bits: aBitmap  [
+{ #category : #accessing }
+Form >> bits: aBitmap [ 
 	"Reset the Bitmap containing the receiver's bits."
 
 	bits := aBitmap
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>bitsSize [
+{ #category : #accessing }
+Form >> bitsSize [
 	| pixPerWord |
 	depth == nil ifTrue: [depth := 1].
 	pixPerWord := 32 // self depth.
 	^ width + pixPerWord - 1 // pixPerWord * height
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>blankCopyOf: aRectangle scaledBy: scale [
+{ #category : #copying }
+Form >> blankCopyOf: aRectangle scaledBy: scale [
 
         ^ self class extent: (aRectangle extent * scale) truncated depth: depth
 ]
 
-{
-	#category : #bordering,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>border: rect width: borderWidth rule: rule fillColor: fillColor [
+{ #category : #bordering }
+Form >> border: rect width: borderWidth rule: rule fillColor: fillColor [
         "Paint a border whose rectangular area is defined by rect. The
 width of the border of each side is borderWidth. Uses fillColor for drawing
 the border."
@@ -658,11 +525,8 @@ borderWidth; copyBits.
         blt destX: rect corner x - borderWidth; copyBits
 ]
 
-{
-	#category : #bordering,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>borderWidth: anInteger  [
+{ #category : #bordering }
+Form >> borderWidth: anInteger [ 
 	"Set the width of the border for the receiver to be anInteger and paint it 
 	using black as the border color."
 
@@ -672,51 +536,36 @@ Form>>borderWidth: anInteger  [
 		fillColor: Smalltalk ui theme borderColor
 ]
 
-{
-	#category : #bordering,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>borderWidth: anInteger color: aMask [
+{ #category : #bordering }
+Form >> borderWidth: anInteger color: aMask [
 	"Set the width of the border for the receiver to be anInteger and paint it 
 	using aMask as the border color."
 
 	self border: self boundingBox width: anInteger fillColor: aMask
 ]
 
-{
-	#category : #bordering,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>borderWidth: anInteger fillColor: aMask [
+{ #category : #bordering }
+Form >> borderWidth: anInteger fillColor: aMask [
 	"Set the width of the border for the receiver to be anInteger and paint it 
 	using aMask as the border color."
 
 	self border: self boundingBox width: anInteger fillColor: aMask
 ]
 
-{
-	#category : #'display box access',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>boundingBox [
+{ #category : #'display box access' }
+Form >> boundingBox [
 	^ Rectangle origin: 0 @ 0
 			corner: width @ height
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>center [
+{ #category : #accessing }
+Form >> center [
 	"Note that offset is ignored here.  Are we really going to embrace offset?  "
 	^ (width @ height) // 2
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>collectColors: aBlock [
+{ #category : #converting }
+Form >> collectColors: aBlock [
 	"Create a new copy of the receiver with all the colors transformed by aBlock"
 	^self collectPixels:[:pv|
 		(aBlock value: (Color colorFromPixelValue: pv depth: self depth)) 
@@ -724,11 +573,8 @@ Form>>collectColors: aBlock [
 	].
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>collectPixels: aBlock [
+{ #category : #converting }
+Form >> collectPixels: aBlock [
 	"Create a new copy of the receiver with all the pixels transformed by aBlock"
 	self depth = 32 ifFalse:[
 		"Perform the operation in 32bpp"
@@ -740,11 +586,8 @@ Form>>collectPixels: aBlock [
 		bits: (self bits collect: aBlock)
 ]
 
-{
-	#category : #'pixel access',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>colorAt: aPoint [
+{ #category : #'pixel access' }
+Form >> colorAt: aPoint [
 	"Return the color in the pixel at the given point.  "
 
 	^ Color 
@@ -753,11 +596,8 @@ Form>>colorAt: aPoint [
 
 ]
 
-{
-	#category : #'pixel access',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>colorAt: aPoint put: aColor [
+{ #category : #'pixel access' }
+Form >> colorAt: aPoint put: aColor [
 	"Store a Color into the pixel at coordinate aPoint.  "
 
 	self pixelValueAt: aPoint put: (self pixelValueFor: aColor).
@@ -767,11 +607,8 @@ Form>>colorAt: aPoint put: aColor [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>colorReduced [
+{ #category : #converting }
+Form >> colorReduced [
 	"Return a color-reduced ColorForm version of the receiver, if possible, or the receiver itself if not."
 
 	| tally tallyDepth colorCount newForm cm oldPixelValues newFormColors nextColorIndex c |
@@ -813,11 +650,8 @@ Form>>colorReduced [
 
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>colormapFromARGB [
+{ #category : #'color mapping' }
+Form >> colormapFromARGB [
 	"Return a ColorMap mapping from canonical ARGB space into the receiver.
 	Note: This version is optimized for Squeak forms."
 	| map nBits |
@@ -851,22 +685,16 @@ Form>>colormapFromARGB [
 	self error:'Bad depth'
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>colormapIfNeededFor: destForm [
+{ #category : #'color mapping' }
+Form >> colormapIfNeededFor: destForm [
 	"Return a ColorMap mapping from the receiver to destForm."
 	(self hasNonStandardPalette or:[destForm hasNonStandardPalette]) 
 		ifTrue:[^self colormapFromARGB mappingTo: destForm colormapFromARGB]
 		ifFalse:[^self colormapIfNeededForDepth: destForm depth]
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>colormapIfNeededForDepth: destDepth [
+{ #category : #'color mapping' }
+Form >> colormapIfNeededForDepth: destDepth [
 	"Return a colormap for displaying the receiver at the given depth, or nil if no colormap is needed."
 
 	self depth = destDepth ifTrue: [^ nil].  "not needed if depths are the same"
@@ -874,11 +702,8 @@ Form>>colormapIfNeededForDepth: destDepth [
 
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>colormapToARGB [
+{ #category : #'color mapping' }
+Form >> colormapToARGB [
 	"Return a ColorMap mapping from the receiver into canonical ARGB space."
 	self hasNonStandardPalette 
 		ifTrue:[^self colormapFromARGB inverseMap].
@@ -898,11 +723,8 @@ Form>>colormapToARGB [
 	self error:'Bad depth'
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>colorsUsed [
+{ #category : #analyzing }
+Form >> colorsUsed [
 	"Return a list of the Colors this form uses."
 
 	| tallies tallyDepth usedColors |
@@ -916,40 +738,28 @@ Form>>colorsUsed [
 
 ]
 
-{
-	#category : #'display box access',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>computeBoundingBox [
+{ #category : #'display box access' }
+Form >> computeBoundingBox [
 	^ Rectangle origin: 0 @ 0
 			corner: width @ height
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>contentsOfArea: aRect [
+{ #category : #copying }
+Form >> contentsOfArea: aRect [
  	"Return a new form which derives from the portion of the original form delineated by aRect."
 	^self contentsOfArea: aRect 
 		into: (self class extent: aRect extent depth: depth).
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>contentsOfArea: aRect into: newForm [
+{ #category : #copying }
+Form >> contentsOfArea: aRect into: newForm [
  	"Return a new form which derives from the portion of the original form delineated by aRect."
 	^ newForm copyBits: aRect from: self at: 0@0
 		clippingBox: newForm boundingBox rule: Form over fillColor: nil
 ]
 
-{
-	#category : #filling,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>convexShapeFill: aMask  [
+{ #category : #filling }
+Form >> convexShapeFill: aMask [ 
 	"Fill the interior of the outtermost outlined region in the receiver.  The outlined region must not be concave by more than 90 degrees.  Typically aMask is Color black, to produce a solid fill. then the resulting form is used with fillShape: to paint a solid color.  See also anyShapeFill"
 	| destForm tempForm |
 	destForm := Form extent: self extent.  destForm fillBlack.
@@ -966,11 +776,8 @@ Form>>convexShapeFill: aMask  [
 		rule: Form over fillColor: aMask
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>copy: aRect [
+{ #category : #copying }
+Form >> copy: aRect [
  	"Return a new form which derives from the portion of the original form delineated by aRect."
 	| newForm |
 	newForm := self class extent: aRect extent depth: depth.
@@ -978,11 +785,8 @@ Form>>copy: aRect [
 		clippingBox: newForm boundingBox rule: Form over fillColor: nil
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>copy: destRectangle from: sourcePt in: sourceForm rule: rule  [
+{ #category : #copying }
+Form >> copy: destRectangle from: sourcePt in: sourceForm rule: rule [ 
 	"Make up a BitBlt table and copy the bits."
 	(BitBlt toForm: self)
 		copy: destRectangle
@@ -990,20 +794,14 @@ Form>>copy: destRectangle from: sourcePt in: sourceForm rule: rule  [
 		fillColor: nil rule: rule
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>copy: sourceRectangle from: sourceForm to: destPt rule: rule [
+{ #category : #copying }
+Form >> copy: sourceRectangle from: sourceForm to: destPt rule: rule [
 	^ self copy: (destPt extent: sourceRectangle extent)
 		from: sourceRectangle topLeft in: sourceForm rule: rule
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>copyBits: sourceForm at: destOrigin translucent: factor [
+{ #category : #copying }
+Form >> copyBits: sourceForm at: destOrigin translucent: factor [
 	"Make up a BitBlt table and copy the bits with the given colorMap."
 	(BitBlt  
 		destForm: self
@@ -1023,11 +821,8 @@ Form>>copyBits: sourceForm at: destOrigin translucent: factor [
 "
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>copyBits: sourceRect from: sourceForm at: destOrigin clippingBox: clipRect rule: rule fillColor: aForm  [
+{ #category : #copying }
+Form >> copyBits: sourceRect from: sourceForm at: destOrigin clippingBox: clipRect rule: rule fillColor: aForm [ 
 	"Make up a BitBlt table and copy the bits."
 
 	(BitBlt  
@@ -1041,11 +836,8 @@ Form>>copyBits: sourceRect from: sourceForm at: destOrigin clippingBox: clipRect
 		clipRect: clipRect) copyBits
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>copyBits: sourceRect from: sourceForm at: destOrigin clippingBox: clipRect rule: rule fillColor: aForm map: map [
+{ #category : #copying }
+Form >> copyBits: sourceRect from: sourceForm at: destOrigin clippingBox: clipRect rule: rule fillColor: aForm map: map [
 	"Make up a BitBlt table and copy the bits.  Use a colorMap."
 
 	((BitBlt  
@@ -1059,11 +851,8 @@ Form>>copyBits: sourceRect from: sourceForm at: destOrigin clippingBox: clipRect
 		clipRect: clipRect) colorMap: map) copyBits
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>copyBits: sourceRect from: sourceForm at: destOrigin colorMap: map  [
+{ #category : #copying }
+Form >> copyBits: sourceRect from: sourceForm at: destOrigin colorMap: map [ 
 	"Make up a BitBlt table and copy the bits with the given colorMap."
 	((BitBlt  
 		destForm: self
@@ -1076,11 +865,8 @@ Form>>copyBits: sourceRect from: sourceForm at: destOrigin colorMap: map  [
 		clipRect: self boundingBox) colorMap: map) copyBits
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>copyWithColorsReducedTo: nColors [
+{ #category : #converting }
+Form >> copyWithColorsReducedTo: nColors [
 	"Note: this has not been engineered.
 	There are better solutions in the literature."
 	| palette colorMap |
@@ -1093,21 +879,15 @@ Form>>copyWithColorsReducedTo: nColors [
 		
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>darker [
+{ #category : #converting }
+Form >> darker [
 	"Answer a darker variant of this form."
 	
 	^ self darker: 0.16
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>darker: aFactor [
+{ #category : #converting }
+Form >> darker: aFactor [
 	"Answer a darker variant of this form. aFactor is a float between 0 and 1 representing the strength of 
 	the darkening."
 	"(Form fromUser darker: 0.08) asMorph openInWorld"
@@ -1117,11 +897,8 @@ Form>>darker: aFactor [
 				color adjustBrightness: aFactor negated]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>deepCopy [
+{ #category : #copying }
+Form >> deepCopy [
 
 	^ self shallowCopy
 		bits: bits copy;
@@ -1129,51 +906,36 @@ Form>>deepCopy [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>depth [
+{ #category : #accessing }
+Form >> depth [
 	^ depth < 0 ifTrue:[0-depth] ifFalse:[depth]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>depth: bitsPerPixel [
+{ #category : #accessing }
+Form >> depth: bitsPerPixel [
 	(bitsPerPixel > 32 or:
 		[(bitsPerPixel bitAnd: bitsPerPixel-1) ~= 0])
 		ifTrue: [self error: 'bitsPerPixel must be 1, 2, 4, 8, 16 or 32'].
 	depth := bitsPerPixel
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>dimmed [
+{ #category : #converting }
+Form >> dimmed [
 	"Answer a dimmed variant of this form."
 	"Form fromUser dimmed asMorph openInWorld"
 	^ self dimmed: 0.5
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>dimmed: factor [
+{ #category : #converting }
+Form >> dimmed: factor [
 	"Answer a dimmed variant of this form. factor in a float between 0 and 1"
 	"(Form fromUser dimmed: 0.6) asMorph openInWorld"
 	^ self collectColors: [ :color |
 			color alpha: (color alpha min: factor)]
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>displayOn: aDisplayMedium at: aDisplayPoint clippingBox: clipRectangle rule: rule fillColor: aForm [
+{ #category : #displaying }
+Form >> displayOn: aDisplayMedium at: aDisplayPoint clippingBox: clipRectangle rule: rule fillColor: aForm [
 
 	aDisplayMedium copyBits: self boundingBox
 		from: self
@@ -1185,19 +947,13 @@ Form>>displayOn: aDisplayMedium at: aDisplayPoint clippingBox: clipRectangle rul
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>displayOnPort: port at: location [
+{ #category : #displaying }
+Form >> displayOnPort: port at: location [
 	port copyForm: self to: location rule: Form over
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>displayResourceFormOn: aForm [
+{ #category : #displaying }
+Form >> displayResourceFormOn: aForm [
 	"a special display method for blowing up resource thumbnails"
 	
 	self extent = aForm extent
@@ -1212,11 +968,8 @@ Form>>displayResourceFormOn: aForm [
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>displayScaledOn: aForm [
+{ #category : #displaying }
+Form >> displayScaledOn: aForm [
 	"Display the receiver on aForm, scaling if necessary.
 		Form fromUser displayScaledOn: Display.
 	"
@@ -1228,21 +981,15 @@ Form>>displayScaledOn: aForm [
 		warpBits.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>displayScreen [
+{ #category : #accessing }
+Form >> displayScreen [
 	"Return the display screen the receiver is allocated on. 
 	Forms in general are Squeak internal and not allocated on any particular display."
 	^nil
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>dominantColor [
+{ #category : #analyzing }
+Form >> dominantColor [
 	| tally max maxi |
 	self depth > 16 ifTrue:
 		[^(self asFormOfDepth: 16) dominantColor].
@@ -1252,11 +999,8 @@ Form>>dominantColor [
 	^ Color colorFromPixelValue: maxi - 1 depth: self depth
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>drawLine: sourceForm from: beginPoint to: endPoint clippingBox: clipRect rule: anInteger fillColor: aForm  [
+{ #category : #displaying }
+Form >> drawLine: sourceForm from: beginPoint to: endPoint clippingBox: clipRect rule: anInteger fillColor: aForm [ 
 	"Refer to the comment in 
 	DisplayMedium|drawLine:from:to:clippingBox:rule:mask:." 
 	
@@ -1274,11 +1018,8 @@ Form>>drawLine: sourceForm from: beginPoint to: endPoint clippingBox: clipRect r
 	dotSetter drawFrom: beginPoint to: endPoint
 ]
 
-{
-	#category : #filling,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>eraseShape: bwForm [
+{ #category : #filling }
+Form >> eraseShape: bwForm [
 	"use bwForm as a mask to clear all pixels where bwForm has 1's"
 	((BitBlt  destForm: self sourceForm: bwForm 
 		fillColor: nil
@@ -1291,19 +1032,13 @@ Form>>eraseShape: bwForm [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>extent [
+{ #category : #accessing }
+Form >> extent [
 	^ width @ height
 ]
 
-{
-	#category : #transitions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>fadeImage: otherImage at: topLeft
+{ #category : #transitions }
+Form >> fadeImage: otherImage at: topLeft
 	indexAndMaskDo: indexAndMaskBlock [
 	
 	"This fade uses halftones as a blending hack.
@@ -1330,11 +1065,8 @@ Form>>fadeImage: otherImage at: topLeft
 		Display forceDisplayUpdate]
 ]
 
-{
-	#category : #transitions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>fadeImageCoarse: otherImage at: topLeft [
+{ #category : #transitions }
+Form >> fadeImageCoarse: otherImage at: topLeft [
 	"Display fadeImageCoarse: (Form fromDisplay: (40@40 extent: 300@300)) reverse at: 40@40"
 	| d pix|
 	d := self depth.
@@ -1351,11 +1083,8 @@ Form>>fadeImageCoarse: otherImage at: topLeft [
 		ifFalse: [false]]
 ]
 
-{
-	#category : #transitions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>fadeImageFine: otherImage at: topLeft [
+{ #category : #transitions }
+Form >> fadeImageFine: otherImage at: topLeft [
 	"Display fadeImageFine: (Form fromDisplay: (40@40 extent: 300@300)) reverse at: 40@40"
 	| d pix|
 	d := self depth.
@@ -1374,11 +1103,8 @@ Form>>fadeImageFine: otherImage at: topLeft [
 		ifFalse: [false]]
 ]
 
-{
-	#category : #transitions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>fadeImageHor: otherImage at: topLeft [
+{ #category : #transitions }
+Form >> fadeImageHor: otherImage at: topLeft [
 	"Display fadeImageHor: (Form fromDisplay: (10@10 extent: 300@300)) reverse at: 10@10"
 	^ self fadeImage: otherImage at: topLeft indexAndMaskDo:
 		[:i :mask |
@@ -1386,11 +1112,8 @@ Form>>fadeImageHor: otherImage at: topLeft [
 		(i*2) <= mask width]
 ]
 
-{
-	#category : #transitions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>fadeImageHorFine: otherImage at: topLeft [
+{ #category : #transitions }
+Form >> fadeImageHorFine: otherImage at: topLeft [
 	"Display fadeImageHorFine: (Form fromDisplay: (10@10 extent: 300@300)) reverse at: 10@10"
 	^ self fadeImage: otherImage at: topLeft indexAndMaskDo:
 		[:i :mask |
@@ -1399,11 +1122,8 @@ Form>>fadeImageHorFine: otherImage at: topLeft [
 		(i*2) <= mask width]
 ]
 
-{
-	#category : #transitions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>fadeImageSquares: otherImage at: topLeft  [
+{ #category : #transitions }
+Form >> fadeImageSquares: otherImage at: topLeft [ 
 	"Display fadeImageSquares: (Form fromDisplay: (40@40 extent: 300@300)) reverse at: 40@40"
 	^ self fadeImage: otherImage at: topLeft indexAndMaskDo:
 		[:i :mask |
@@ -1411,11 +1131,8 @@ Form>>fadeImageSquares: otherImage at: topLeft  [
 		i <= 16]
 ]
 
-{
-	#category : #transitions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>fadeImageVert: otherImage at: topLeft [
+{ #category : #transitions }
+Form >> fadeImageVert: otherImage at: topLeft [
 	"Display fadeImageVert: (Form fromDisplay: (10@10 extent: 300@300)) reverse at: 10@10"
 	| d |
 	d := self depth.
@@ -1425,11 +1142,8 @@ Form>>fadeImageVert: otherImage at: topLeft [
 		i <= (mask width//d)]
 ]
 
-{
-	#category : #filling,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>fill: aRectangle rule: anInteger fillColor: aForm  [
+{ #category : #filling }
+Form >> fill: aRectangle rule: anInteger fillColor: aForm [ 
 	"Replace a rectangular area of the receiver with the pattern described by aForm 
 	according to the rule anInteger."
 	(BitBlt toForm: self)
@@ -1438,11 +1152,8 @@ Form>>fill: aRectangle rule: anInteger fillColor: aForm  [
 		fillColor: aForm rule: anInteger
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>fillAlpha: alphaValue [
+{ #category : #other }
+Form >> fillAlpha: alphaValue [
 	"Fill a 32bit form with a constant alpha value"
 	| bb |
 	self depth = 32 ifFalse:[^self error: 'Only valid for 32 bit forms'].
@@ -1453,11 +1164,8 @@ Form>>fillAlpha: alphaValue [
 
 ]
 
-{
-	#category : #filling,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>fillFromXColorBlock: colorBlock [
+{ #category : #filling }
+Form >> fillFromXColorBlock: colorBlock [
 	"Horizontal Gradient Fill.
 	Supply relative x in [0.0 ... 1.0] to colorBlock,
 	and paint each pixel with the color that comes back"
@@ -1472,11 +1180,8 @@ Form>>fillFromXColorBlock: colorBlock [
 "
 ]
 
-{
-	#category : #filling,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>fillFromXYColorBlock: colorBlock [
+{ #category : #filling }
+Form >> fillFromXYColorBlock: colorBlock [
 	"General Gradient Fill.
 	Supply relative x and y in [0.0 ... 1.0] to colorBlock,
 	and paint each pixel with the color that comes back"
@@ -1497,11 +1202,8 @@ Form>>fillFromXYColorBlock: colorBlock [
 "
 ]
 
-{
-	#category : #filling,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>fillFromYColorBlock: colorBlock [
+{ #category : #filling }
+Form >> fillFromYColorBlock: colorBlock [
 	"Vertical Gradient Fill.
 	Supply relative y in [0.0 ... 1.0] to colorBlock,
 	and paint each pixel with the color that comes back"
@@ -1516,11 +1218,8 @@ Form>>fillFromYColorBlock: colorBlock [
 "
 ]
 
-{
-	#category : #filling,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>findShapeAroundSeedBlock: seedBlock [
+{ #category : #filling }
+Form >> findShapeAroundSeedBlock: seedBlock [
 	"Build a shape that is black in any region marked by seedBlock. 
 	SeedBlock will be supplied a form, in which to blacken various
 	pixels as 'seeds'.  Then the seeds are smeared until 
@@ -1555,19 +1254,13 @@ Form>>findShapeAroundSeedBlock: seedBlock [
 	^ smearForm
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>finish [
+{ #category : #initialization }
+Form >> finish [
 	"If there are any pending operations on the receiver complete them. Do not return before all modifications have taken effect."
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>fixAlpha [
+{ #category : #other }
+Form >> fixAlpha [
 	"Fix the alpha channel if the receiver is 32bit"
 	| bb |
 	self depth = 32 ifFalse:[^self].
@@ -1576,11 +1269,8 @@ Form>>fixAlpha [
 	bb copyBits.
 ]
 
-{
-	#category : #'scaling, rotation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>flipBy: direction centerAt: aPoint [
+{ #category : #'scaling, rotation' }
+Form >> flipBy: direction centerAt: aPoint [
 	"Return a copy of the receiver flipped either #vertical or #horizontal."
 	| newForm quad |
 	newForm := self class extent: self extent depth: depth.
@@ -1609,11 +1299,8 @@ Form>>flipBy: direction centerAt: aPoint [
 
 ]
 
-{
-	#category : #'scaling, rotation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>flipHorizontally [
+{ #category : #'scaling, rotation' }
+Form >> flipHorizontally [
 	"Flip the image around the x axis. Flip the form upside/down"
 	| rowLen row topIndex botIndex |
 	self unhibernate.
@@ -1630,29 +1317,20 @@ Form>>flipHorizontally [
 		 botIndex := botIndex - rowLen ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>flush [
+{ #category : #initialization }
+Form >> flush [
 	"If there are any pending operations on the receiver start doing them. In time, they will show up on the receiver but not necessarily immediately after this method returns."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>form [
+{ #category : #accessing }
+Form >> form [
 	"Answer the receiver's form.  For vanilla Forms, this degenerates to self.  Makes several methods that operate on both Forms and MaskedForms much more straightforward."
 
 	^ self
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>formForColorCount: colorCount [
+{ #category : #other }
+Form >> formForColorCount: colorCount [
 	"Return a ColorForm of sufficient depth to represent the given number of colors. The maximum number of colors is 256."
 
 	colorCount > 256 ifTrue: [^ self error: 'too many colors'].
@@ -1664,11 +1342,8 @@ Form>>formForColorCount: colorCount [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>fromDisplay: aRectangle  [
+{ #category : #initialization }
+Form >> fromDisplay: aRectangle [ 
 	"Create a virtual bit map from a user specified rectangular area on the 
 	display screen. Reallocates bitmap only if aRectangle ~= the receiver's 
 	extent."
@@ -1684,11 +1359,8 @@ Form>>fromDisplay: aRectangle  [
 		fillColor: nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>hackBits: bitThing [
+{ #category : #private }
+Form >> hackBits: bitThing [
 	"This method provides an initialization so that BitBlt may be used, eg, to 
 	copy ByteArrays and other non-pointer objects efficiently.
 	The resulting form looks 4 wide, 8 deep, and bitThing-size-in-words high."
@@ -1701,22 +1373,16 @@ Form>>hackBits: bitThing [
 	bits := bitThing
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>hasBeenModified [
+{ #category : #accessing }
+Form >> hasBeenModified [
 	"Return true if something *might* have been drawn into the receiver"
 	^(bits == nil or:[bits class == ByteArray]) not
 	"Read the above as: If the receiver has forgotten its contents (bits == nil) 
 	or is still hibernated it can't be modified."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>hasBeenModified: aBool [
+{ #category : #accessing }
+Form >> hasBeenModified: aBool [
 	"Change the receiver to reflect the modification state"
 	aBool ifTrue:[^self unhibernate].
 	self shouldPreserveContents
@@ -1724,11 +1390,8 @@ Form>>hasBeenModified: aBool [
 		ifFalse:[bits := nil]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>hasNonStandardPalette [
+{ #category : #testing }
+Form >> hasNonStandardPalette [
 	"Return true if the receiver has a non-standard palette.
 	Non-standard means that RGBA components may be located
 	at positions differing from the standard Squeak RGBA layout
@@ -1736,19 +1399,13 @@ Form>>hasNonStandardPalette [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>height [
+{ #category : #accessing }
+Form >> height [
 	^ height
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>hibernate [
+{ #category : #filein/out }
+Form >> hibernate [
 	"Replace my bitmap with a compactly encoded representation (a ByteArray).  It is vital that BitBlt and any other access to the bitmap (such as writing to a file) not be used when in this state.  Since BitBlt will fail if the bitmap size is wrong (not = bitsSize), we do not allow replacement by a byteArray of the same (or larger) size."
 
 	"NOTE: This method copies code from Bitmap compressToByteArray so that it can
@@ -1762,11 +1419,8 @@ Form>>hibernate [
 		bits := compactBits copyFrom: 1 to: lastByte]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>initFromArray: array [
+{ #category : #private }
+Form >> initFromArray: array [
 	"Fill the bitmap from array.  If the array is shorter,
 	then cycle around in its contents until the bitmap is filled."
 	| ax aSize array32 i j word16 |
@@ -1788,11 +1442,8 @@ Form>>initFromArray: array [
 		bits at: index put: (array at: ax)]
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>innerPixelRectFor: pv orNot: not [
+{ #category : #analyzing }
+Form >> innerPixelRectFor: pv orNot: not [
 	"Return a rectangle describing the smallest part of me that includes 
 	all pixels of value pv.
 	Note:  If orNot is true, then produce a copy that includes all pixels
@@ -1806,11 +1457,8 @@ Form>>innerPixelRectFor: pv orNot: not [
 			(xTally findLast: [:t | t>0])@(yTally findLast: [:t | t>0])
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>isAllWhite [
+{ #category : #testing }
+Form >> isAllWhite [
 	"Answer whether all bits in the receiver are white"
 	| word |
 	self unhibernate.
@@ -1819,89 +1467,59 @@ Form>>isAllWhite [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>isBigEndian [
+{ #category : #testing }
+Form >> isBigEndian [
 	"Return true if the receiver contains big endian pixels, meaning the left-most pixel is stored in the most significant bits of a word."
 	^depth > 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>isBltAccelerated: ruleInteger for: sourceForm [
+{ #category : #testing }
+Form >> isBltAccelerated: ruleInteger for: sourceForm [
 	"Return true if the receiver can perform accelerated blts operations by itself"
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>isDisplayScreen [
+{ #category : #testing }
+Form >> isDisplayScreen [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>isExternalForm [
+{ #category : #testing }
+Form >> isExternalForm [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>isFillAccelerated: ruleInteger for: aColor [
+{ #category : #testing }
+Form >> isFillAccelerated: ruleInteger for: aColor [
 	"Return true if the receiver can perform accelerated fill operations by itself"
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>isForm [
+{ #category : #testing }
+Form >> isForm [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>isLittleEndian [
+{ #category : #testing }
+Form >> isLittleEndian [
 	"Return true if the receiver contains little endian pixels, meaning the left-most pixel is stored in the least significant bits of a word."
 	^depth < 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>isStatic [
+{ #category : #testing }
+Form >> isStatic [
 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>isTranslucent [
+{ #category : #testing }
+Form >> isTranslucent [
 	"Answer whether this form may be translucent"
 	^self depth = 32
 ]
 
-{
-	#category : #'pixel access',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>isTransparentAt: aPoint  [
+{ #category : #'pixel access' }
+Form >> isTransparentAt: aPoint [ 
 	"Return true if the receiver is transparent at the given point."
 
 	self depth = 1 ifTrue: [^ false].  "no transparency at depth 1"
@@ -1909,21 +1527,15 @@ Form>>isTransparentAt: aPoint  [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>lighter [
+{ #category : #converting }
+Form >> lighter [
 	"Answer a lighter variant of this form"
 
 	^ self lighter: 0.16
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>lighter: aFactor [
+{ #category : #converting }
+Form >> lighter: aFactor [
 	"Answer a lighter variant of this form. aFactor is a float from 0 to 1 representing the strength of 
 	the lightening."
 	"(Form fromUser lighter: 0.16) asMorph openInWorld"
@@ -1932,11 +1544,8 @@ Form>>lighter: aFactor [
 			color adjustSaturation: -0.03 brightness: aFactor]
 ]
 
-{
-	#category : #'scaling, rotation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>magnify: aRectangle by: scale  [
+{ #category : #'scaling, rotation' }
+Form >> magnify: aRectangle by: scale [ 
 	"Answer a Form created as a scaling of the receiver.
 	Scale may be a Float, and may be greater or less than 1.0."
 	^ self magnify: aRectangle by: scale smoothing: 1
@@ -1962,11 +1571,8 @@ Display restoreAfter: [Sensor waitNoButton.
 
 ]
 
-{
-	#category : #'scaling, rotation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>magnify: aRectangle by: scale smoothing: cellSize [
+{ #category : #'scaling, rotation' }
+Form >> magnify: aRectangle by: scale smoothing: cellSize [
 	"Answer a Form created as a scaling of the receiver.
         Scale may be a Float or even a Point, and may be greater or less than 1.0."
 
@@ -1994,11 +1600,8 @@ Display restoreAfter: [Sensor waitNoButton.
 "
 ]
 
-{
-	#category : #'scaling, rotation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>magnifyBy: scale  [
+{ #category : #'scaling, rotation' }
+Form >> magnifyBy: scale [ 
 	"Answer a Form created as a scaling of the receiver.
 	Scale may be a Float, and may be greater or less than 1.0."
 
@@ -2006,11 +1609,8 @@ Form>>magnifyBy: scale  [
 			smoothing: (scale < 1 ifTrue: [2] ifFalse: [1])
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>makeBWForm: foregroundColor [
+{ #category : #'color mapping' }
+Form >> makeBWForm: foregroundColor [
 	"Map this form into a B/W form with 1's in the foreground regions."
 	| bwForm map |
 	bwForm := Form extent: self extent.
@@ -2020,11 +1620,8 @@ Form>>makeBWForm: foregroundColor [
 	^ bwForm
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>mapColor: oldColor to: newColor [
+{ #category : #'color mapping' }
+Form >> mapColor: oldColor to: newColor [
 	"Make all pixels of the given color in this Form to the given new color."
 	"Warnings: This method modifies the receiver. It may lose some color accuracy on 32-bit Forms, since the transformation uses a color map with only 15-bit resolution."
 
@@ -2041,11 +1638,8 @@ Form>>mapColor: oldColor to: newColor [
 
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>mapColors: oldColorBitsCollection to: newColorBits [
+{ #category : #'color mapping' }
+Form >> mapColors: oldColorBitsCollection to: newColorBits [
 	"Make all pixels of the given color in this Form to the given new color."
 	"Warnings: This method modifies the receiver. It may lose some color accuracy on 32-bit Forms, since the transformation uses a color map with only 15-bit resolution."
 
@@ -2068,66 +1662,45 @@ Form>>mapColors: oldColorBitsCollection to: newColorBits [
 
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>maskingMap [
+{ #category : #'color mapping' }
+Form >> maskingMap [
 	"Return a color map that maps all colors except transparent to words of all ones. Used to create a mask for a Form whose transparent pixel value is zero."
 	^Color maskingMap: self depth
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>mightBeTranslucent [
+{ #category : #testing }
+Form >> mightBeTranslucent [
 	"Answer whether this form may be translucent"
 	^self depth = 32
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>nativeDepth [
+{ #category : #accessing }
+Form >> nativeDepth [
 	"Return the 'native' depth of the receiver, e.g., including the endianess"
 	^depth
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>newColorMap  [
+{ #category : #'color mapping' }
+Form >> newColorMap [ 
 	"Return an uninitialized color map array appropriate to this Form's depth."
 
 	^ Bitmap new: (1 bitShift: (self depth min: 15))
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>offset [
+{ #category : #accessing }
+Form >> offset [
 	^offset ifNil:[0@0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>offset: aPoint [
+{ #category : #accessing }
+Form >> offset: aPoint [
 
 	offset := aPoint
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>orderedDither32To16 [
+{ #category : #converting }
+Form >> orderedDither32To16 [
 	"Do an ordered dithering for converting from 32 to 16 bit depth."
 	| ditherMatrix ii out inBits outBits index pv dmv r di dmi dmo g b pvOut outIndex |
 	self depth = 32 ifFalse:[^self error:'Must be 32bit for this'].
@@ -2167,11 +1740,8 @@ Form>>orderedDither32To16 [
 	^out
 ]
 
-{
-	#category : #transitions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>pageWarp: otherImage at: topLeft forward: forward [
+{ #category : #transitions }
+Form >> pageWarp: otherImage at: topLeft forward: forward [
 	"Produce a page-turning illusion that gradually reveals otherImage
 	located at topLeft in this form.
 	forward == true means turn pages toward you, else away. [ignored for now]"
@@ -2223,11 +1793,8 @@ Form>>pageWarp: otherImage at: topLeft forward: forward [
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>paintBits: sourceForm at: destOrigin translucent: factor [
+{ #category : #displaying }
+Form >> paintBits: sourceForm at: destOrigin translucent: factor [
 	"Make up a BitBlt table and copy the bits with the given colorMap."
 	(BitBlt destForm: self
 		sourceForm: sourceForm
@@ -2247,11 +1814,8 @@ f2 := Form fromDisplay: (0@0 extent: f extent). f3 := f2 deepCopy.
 "
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>pixelCompare: aRect with: otherForm at: otherLoc [
+{ #category : #analyzing }
+Form >> pixelCompare: aRect with: otherForm at: otherLoc [
 	"Compare the selected bits of this form (those within aRect) against
 	those in a similar rectangle of otherFrom.  Return the sum of the
 	absolute value of the differences of the color values of every pixel.
@@ -2278,44 +1842,32 @@ Form>>pixelCompare: aRect with: otherForm at: otherLoc [
 "
 ]
 
-{
-	#category : #'pixel access',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>pixelValueAt: aPoint  [
+{ #category : #'pixel access' }
+Form >> pixelValueAt: aPoint [ 
 	"Return the raw pixel value at the given point. This pixel value depends on the receiver's depth. Typical clients use colorAt: to get a Color.  "
 
 	^ (BitBlt bitPeekerFromForm: self) pixelAt: aPoint
 
 ]
 
-{
-	#category : #'pixel access',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>pixelValueAt: aPoint put: pixelValue [
+{ #category : #'pixel access' }
+Form >> pixelValueAt: aPoint put: pixelValue [
 	"Store the given raw pixel value at the given point. Typical clients use colorAt:put: to store a color. "
 
 	(BitBlt bitPokerToForm: self) pixelAt: aPoint put: pixelValue.
 
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>pixelValueFor: aColor [
+{ #category : #'color mapping' }
+Form >> pixelValueFor: aColor [
 	"Return the pixel word for representing the given color on the receiver"
 	self hasNonStandardPalette
 		ifTrue:[^self colormapFromARGB mapPixel: (aColor pixelValueForDepth: 32)]
 		ifFalse:[^aColor pixelValueForDepth: self depth]
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>pixelWordFor: aColor [
+{ #category : #'color mapping' }
+Form >> pixelWordFor: aColor [
 	"Return the pixel word for representing the given color on the receiver"
 	| basicPattern |
 	self hasNonStandardPalette 
@@ -2326,11 +1878,8 @@ Form>>pixelWordFor: aColor [
 		ifFalse:[^aColor pixelWordFor: self depth filledWith: basicPattern]
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>preMultiplyAlpha [
+{ #category : #other }
+Form >> preMultiplyAlpha [
 	"Pre-multiply each pixel by its alpha, for proper alpha compositing (BitBlt rule 34).
 	E.g., half-transparent green 16r7F00FF00 becomes 16r7F007F00"
 
@@ -2345,11 +1894,8 @@ Form>>preMultiplyAlpha [
 		bits at: i put: (a bitShift: 24) + (r bitShift: 16) + (g bitShift: 8) + b].
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>primCountBits [
+{ #category : #analyzing }
+Form >> primCountBits [
 	"Count the non-zero pixels of this form."
 	self depth > 8 ifTrue:
 		[^(self asFormOfDepth: 8) primCountBits].
@@ -2360,11 +1906,8 @@ Form>>primCountBits [
 		copyBits
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>primPrintHScale: hScale vScale: vScale landscape: aBoolean [
+{ #category : #other }
+Form >> primPrintHScale: hScale vScale: vScale landscape: aBoolean [
 	"On platforms that support it, this primitive prints the receiver, assumed to be a Form, to the default printer."
 	"(Form extent: 10@10) primPrintHScale: 1.0 vScale: 1.0 landscape: true"
 
@@ -2373,11 +1916,8 @@ Form>>primPrintHScale: hScale vScale: vScale landscape: aBoolean [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>printOn: aStream [
+{ #category : #printing }
+Form >> printOn: aStream [
     aStream
         nextPutAll: self class name;
         nextPut: $(; print: width;
@@ -2387,11 +1927,8 @@ Form>>printOn: aStream [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>privateFloodFillValue: aColor [
+{ #category : #private }
+Form >> privateFloodFillValue: aColor [
 	"Private. Compute the pixel value in the receiver's depth but take into account implicit color conversions by BitBlt."
 	| f1 f2 bb |
 	f1 := Form extent: 1@1 depth: depth.
@@ -2410,11 +1947,8 @@ Form>>privateFloodFillValue: aColor [
 	^f2 pixelValueAt: 0@0.
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>readAttributesFrom: aBinaryStream [
+{ #category : #filein/out }
+Form >> readAttributesFrom: aBinaryStream [
 	| offsetX offsetY |
 	depth := aBinaryStream next.
 	(self depth isPowerOfTwo and: [self depth between: 1 and: 32])
@@ -2430,11 +1964,8 @@ Form>>readAttributesFrom: aBinaryStream [
 
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>readBitsFrom: aBinaryStream [
+{ #category : #filein/out }
+Form >> readBitsFrom: aBinaryStream [
 	
 	bits := Bitmap newFromStream: aBinaryStream.
 	bits size = self bitsSize ifFalse: [self error: 'wrong bitmap size; bad Form file?'].
@@ -2442,22 +1973,16 @@ Form>>readBitsFrom: aBinaryStream [
 
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>readFrom: aBinaryStream [
+{ #category : #filein/out }
+Form >> readFrom: aBinaryStream [
 	"Reads the receiver from the given binary stream with the format:
 		depth, extent, offset, bits."
 	self readAttributesFrom: aBinaryStream.
 	self readBitsFrom: aBinaryStream
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>readFromOldFormat: aBinaryStream [
+{ #category : #filein/out }
+Form >> readFromOldFormat: aBinaryStream [
 	"Read a Form in the original ST-80 format."
 
 	| w h offsetX offsetY newForm theBits pos |
@@ -2479,11 +2004,8 @@ Form>>readFromOldFormat: aBinaryStream [
 
 ]
 
-{
-	#category : #resources,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>readResourceFrom: aStream  [
+{ #category : #resources }
+Form >> readResourceFrom: aStream [ 
 	"Store a resource representation of the receiver on aStream.
 	Must be specific to the receiver so that no code is filed out."
 
@@ -2515,11 +2037,8 @@ Form>>readResourceFrom: aStream  [
 				to: bits size]
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>rectangleEnclosingPixelsNotOfColor: aColor [
+{ #category : #analyzing }
+Form >> rectangleEnclosingPixelsNotOfColor: aColor [
 	"Answer the smallest rectangle enclosing all the pixels of me that are different from the given color. Useful for extracting a foreground graphic from its background."
 
 	| cm slice copyBlt countBlt top bottom newH left right |
@@ -2590,11 +2109,8 @@ Form>>rectangleEnclosingPixelsNotOfColor: aColor [
 	^ left @ top corner: (right + 1) @ (bottom + 1)
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>reducedPaletteOfSize: nColors [
+{ #category : #'color mapping' }
+Form >> reducedPaletteOfSize: nColors [
 	"Return an array of colors of size nColors, such that those colors
 	represent well the pixel values actually found in this form."
 	| threshold tallies colorTallies dist delta palette cts top cluster |
@@ -2627,31 +2143,22 @@ Form>>reducedPaletteOfSize: nColors [
 
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>relativeTextAnchorPosition [
+{ #category : #other }
+Form >> relativeTextAnchorPosition [
 
 	^nil		"so forms can be in TextAnchors"
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>replaceByResource: aForm [
+{ #category : #filein/out }
+Form >> replaceByResource: aForm [
 	"Replace the receiver by some resource that just got loaded"
 	(self extent = aForm extent and:[self depth = aForm depth]) ifTrue:[
 		bits := aForm bits.
 	].
 ]
 
-{
-	#category : #'image manipulation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>replaceColor: oldColor withColor: newColor [
+{ #category : #'image manipulation' }
+Form >> replaceColor: oldColor withColor: newColor [
 	"Replace one color with another everywhere is this form"
 
 	| cm newInd target ff |
@@ -2676,19 +2183,13 @@ Form>>replaceColor: oldColor withColor: newColor [
 		ifTrue: [target displayOn: self].
 ]
 
-{
-	#category : #resources,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>resourceTag [
+{ #category : #resources }
+Form >> resourceTag [
 	^'FORM'
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>rgbaBitMasks [
+{ #category : #'color mapping' }
+Form >> rgbaBitMasks [
 	"Return the masks for specifying the R,G,B, and A components in the receiver"
 	self depth <= 8
 		ifTrue:[^#(16rFF0000 16rFF00 16rFF 16rFF000000)].
@@ -2699,11 +2200,8 @@ Form>>rgbaBitMasks [
 	self error:'Bad depth for form'
 ]
 
-{
-	#category : #'scaling, rotation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>rotateBy: deg [
+{ #category : #'scaling, rotation' }
+Form >> rotateBy: deg [
 	"Rotate the receiver by the indicated number of degrees."
 	"rot is the destination form, bit enough for any angle."
 
@@ -2717,11 +2215,8 @@ f display
 "
 ]
 
-{
-	#category : #'scaling, rotation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>rotateBy: direction centerAt: aPoint [
+{ #category : #'scaling, rotation' }
+Form >> rotateBy: direction centerAt: aPoint [
 	"Return a rotated copy of the receiver. 
 	direction = #none, #right, #left, or #pi"
 	| newForm quad rot scale |
@@ -2753,11 +2248,8 @@ Form>>rotateBy: direction centerAt: aPoint [
 
 ]
 
-{
-	#category : #'scaling, rotation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>rotateBy: deg magnify: scale smoothing: cellSize [
+{ #category : #'scaling, rotation' }
+Form >> rotateBy: deg magnify: scale smoothing: cellSize [
 	"Rotate the receiver by the indicated number of degrees and magnify. scale can be a Point to make for interesting 3D effects "
 	"rot is the destination form, big enough for any angle."
 
@@ -2788,11 +2280,8 @@ f display
 "
 ]
 
-{
-	#category : #'scaling, rotation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>rotateBy: deg smoothing: cellSize [
+{ #category : #'scaling, rotation' }
+Form >> rotateBy: deg smoothing: cellSize [
 	"Rotate the receiver by the indicated number of degrees."
 	^self rotateBy: deg magnify: 1 smoothing: cellSize
 "
@@ -2804,11 +2293,8 @@ f display
 "
 ]
 
-{
-	#category : #'scaling, rotation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>scaledToSize: newExtent [
+{ #category : #'scaling, rotation' }
+Form >> scaledToSize: newExtent [
 
 	| scale |
 
@@ -2818,11 +2304,8 @@ Form>>scaledToSize: newExtent [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>setExtent: extent depth: bitsPerPixel [
+{ #category : #private }
+Form >> setExtent: extent depth: bitsPerPixel [
 	"Create a virtual bit map with the given extent and bitsPerPixel."
 
 	width := extent x asInteger.
@@ -2833,11 +2316,8 @@ Form>>setExtent: extent depth: bitsPerPixel [
 	bits := Bitmap new: self bitsSize
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>setExtent: extent depth: bitsPerPixel bits: bitmap [
+{ #category : #private }
+Form >> setExtent: extent depth: bitsPerPixel [ bits: bitmap
 	"Create a virtual bit map with the given extent and bitsPerPixel."
 
 	width := extent x asInteger.
@@ -2849,48 +2329,33 @@ Form>>setExtent: extent depth: bitsPerPixel bits: bitmap [
 	bits := bitmap
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>setResourceBits: aForm [
+{ #category : #private }
+Form >> setResourceBits: aForm [
 	"Private. Really. Used for setting the 'resource bits' when externalizing some form"
 	bits := aForm.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>shouldPreserveContents [
+{ #category : #testing }
+Form >> shouldPreserveContents [
 	"Return true if the receiver should preserve it's contents when flagged to be clean. Most forms can not be trivially restored by some drawing operation but some may."
 	^true
 ]
 
-{
-	#category : #'scaling, rotation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>shrink: aRectangle by: scale  [
+{ #category : #'scaling, rotation' }
+Form >> shrink: aRectangle by: scale [ 
 	| scalePt |
 	scalePt := scale asPoint.
 	^ self magnify: aRectangle by: (1.0 / scalePt x asFloat) @ (1.0 / scalePt y asFloat)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>shutDown [
+{ #category : #initialization }
+Form >> shutDown [
 	"The system is going down. Try to preserve some space"
 	self hibernate
 ]
 
-{
-	#category : #transitions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>slideImage: otherImage at: topLeft delta: delta [
+{ #category : #transitions }
+Form >> slideImage: otherImage at: topLeft delta: delta [
 	"Display slideImage: (Form fromDisplay: (40@40 extent: 300@300)) reverse
 		at: 40@40 delta: 3@-4"
 	| bb nSteps clipRect |
@@ -2906,11 +2371,8 @@ Form>>slideImage: otherImage at: topLeft delta: delta [
 			Display forceDisplayUpdate]
 ]
 
-{
-	#category : #'image manipulation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>smear: dir distance: dist [
+{ #category : #'image manipulation' }
+Form >> smear: dir distance: dist [
 	"Smear any black pixels in this form in the direction dir in Log N steps"
 	| skew bb |
 	bb := BitBlt destForm: self sourceForm: self fillColor: nil
@@ -2922,11 +2384,8 @@ Form>>smear: dir distance: dist [
 		skew := skew+skew]
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>store15To24HexBitsOn:aStream [
+{ #category : #filein/out }
+Form >> store15To24HexBitsOn:aStream [
 
 	| buf lineWidth |
 
@@ -2963,27 +2422,18 @@ Form>>store15To24HexBitsOn:aStream [
 	].
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>store32To24HexBitsOn:aStream [
+{ #category : #filein/out }
+Form >> store32To24HexBitsOn:aStream [
 	^self storeBits:20 to:0 on:aStream.
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>storeBits:startBit to:stopBit on:aStream [
+{ #category : #filein/out }
+Form >> storeBits:startBit to:stopBit on:aStream [
 	bits storeBits:startBit to:stopBit on:aStream.
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>storeBitsOn:aStream base:anInteger [
+{ #category : #filein/out }
+Form >> storeBitsOn:aStream base:anInteger [
 	bits do: [:word | 
 		anInteger = 10
 			ifTrue: [aStream space]
@@ -2992,28 +2442,19 @@ Form>>storeBitsOn:aStream base:anInteger [
 
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>storeHexBitsOn:aStream [
+{ #category : #filein/out }
+Form >> storeHexBitsOn:aStream [
 	^self storeBits:28 to:0 on:aStream.
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>storeOn: aStream [
+{ #category : #filein/out }
+Form >> storeOn: aStream [
 
 	self storeOn: aStream base: 10
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>storeOn: aStream base: anInteger  [
+{ #category : #filein/out }
+Form >> storeOn: aStream base: anInteger [ 
 	"Store the receiver out as an expression that can be evaluated to recreate a Form with the same contents as the original."
 
 	self unhibernate.
@@ -3036,11 +2477,8 @@ Form>>storeOn: aStream base: anInteger  [
 
 ]
 
-{
-	#category : #resources,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>storeResourceOn: aStream [
+{ #category : #resources }
+Form >> storeResourceOn: aStream [
 	"Store a resource representation of the receiver on aStream.
 	Must be specific to the receiver so that no code is filed out."
 	self hibernate.
@@ -3057,20 +2495,14 @@ Form>>storeResourceOn: aStream [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>swapEndianness [
+{ #category : #initialization }
+Form >> swapEndianness [
 	"Swap from big to little endian pixels and vice versa"
 	depth := 0 - depth.
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>tallyPixelValues [
+{ #category : #analyzing }
+Form >> tallyPixelValues [
 	"Answer a Bitmap whose elements contain the number of pixels in this Form with the pixel value corresponding to their index. Note that the pixels of multiple Forms can be tallied together using tallyPixelValuesInRect:into:."
 
 	^ self tallyPixelValuesInRect: self boundingBox
@@ -3091,11 +2523,8 @@ Cursor blank showWhile: [
 
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>tallyPixelValuesInRect: destRect into: valueTable [
+{ #category : #analyzing }
+Form >> tallyPixelValuesInRect: destRect into: valueTable [
 	"Tally the selected pixels of this Form into valueTable, a Bitmap of depth 2^depth similar to a color map. Answer valueTable."
 
 	(BitBlt toForm: self)
@@ -3122,11 +2551,8 @@ Cursor blank showWhile: [
 "
 ]
 
-{
-	#category : #'image manipulation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>trimBordersOfColor: aColor [
+{ #category : #'image manipulation' }
+Form >> trimBordersOfColor: aColor [
 	"Answer a copy of this Form with each edge trimmed in to the first pixel that is not of the given color. (That is, border strips of the given color are removed)."
 
 	| r |
@@ -3135,11 +2561,8 @@ Form>>trimBordersOfColor: aColor [
 
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>unhibernate [
+{ #category : #filein/out }
+Form >> unhibernate [
 	"If my bitmap has been compressed into a ByteArray,
 	then expand it now, and return true."
 	| resBits |
@@ -3154,28 +2577,19 @@ Form>>unhibernate [
 	^ false
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>veryDeepCopyWith: deepCopier [
+{ #category : #copying }
+Form >> veryDeepCopyWith: deepCopier [
 	"Return self.  I am immutable in the Morphic world.  Do not record me."
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>width [
+{ #category : #accessing }
+Form >> width [
 	^ width
 ]
 
-{
-	#category : #transitions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>wipeImage: otherImage at: topLeft clippingBox: clipBox rectForIndex: rectForIndexBlock [
+{ #category : #transitions }
+Form >> wipeImage: otherImage at: topLeft clippingBox: clipBox rectForIndex: rectForIndexBlock [
 
 	| i clipRect t rectOrList waitTime |
 	i := 0.
@@ -3195,11 +2609,8 @@ Form>>wipeImage: otherImage at: topLeft clippingBox: clipBox rectForIndex: rectF
 
 ]
 
-{
-	#category : #transitions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>wipeImage: otherImage at: topLeft delta: delta [
+{ #category : #transitions }
+Form >> wipeImage: otherImage at: topLeft delta: delta [
 	"Display wipeImage: (Form fromDisplay: (40@40 extent: 300@300)) reverse
 		at: 40@40 delta: 0@-2"
 
@@ -3207,11 +2618,8 @@ Form>>wipeImage: otherImage at: topLeft delta: delta [
 
 ]
 
-{
-	#category : #transitions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>wipeImage: otherImage at: topLeft delta: delta clippingBox: clipBox [
+{ #category : #transitions }
+Form >> wipeImage: otherImage at: topLeft delta: delta clippingBox: clipBox [
 
 	| wipeRect bb nSteps |
 	bb := otherImage boundingBox.
@@ -3233,11 +2641,8 @@ Form>>wipeImage: otherImage at: topLeft delta: delta clippingBox: clipBox [
 			ifFalse: [nil]]
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>writeAttributesOn: file [
+{ #category : #filein/out }
+Form >> writeAttributesOn: file [
 	self unhibernate.
 	file nextPut: depth.
 	file nextWordPut: width.
@@ -3251,30 +2656,21 @@ Form>>writeAttributesOn: file [
 	
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>writeBitsOn: file [
+{ #category : #filein/out }
+Form >> writeBitsOn: file [
 	bits writeOn: file
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>writeOn: file [
+{ #category : #filein/out }
+Form >> writeOn: file [
 	"Write the receiver on the file in the format
 		depth, extent, offset, bits."
 	self writeAttributesOn: file.
 	self writeBitsOn: file
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>writeUncompressedOn: file [
+{ #category : #filein/out }
+Form >> writeUncompressedOn: file [
 	"Write the receiver on the file in the format depth, extent, offset, bits.  Warning:  Caller must put header info on file!  Use writeUncompressedOnFileNamed: instead."
 	self unhibernate.
 	file binary.
@@ -3290,11 +2686,8 @@ Form>>writeUncompressedOn: file [
 	bits writeUncompressedOn: file
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>xTallyPixelValue: pv orNot: not [
+{ #category : #analyzing }
+Form >> xTallyPixelValue: pv orNot: not [
 	"Return an array of the number of pixels with value pv by x-value.
 	Note that if not is true, then this will tally those different from pv."
 	| cm slice countBlt copyBlt |
@@ -3316,11 +2709,8 @@ Form>>xTallyPixelValue: pv orNot: not [
 		countBlt copyBits]
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>yTallyPixelValue: pv orNot: not [
+{ #category : #analyzing }
+Form >> yTallyPixelValue: pv orNot: not [
 	"Return an array of the number of pixels with value pv by y-value.
 	Note that if not is true, then this will tally those different from pv."
 	| cm slice copyBlt countBlt |
@@ -3342,11 +2732,8 @@ Form>>yTallyPixelValue: pv orNot: not [
 		countBlt copyBits]
 ]
 
-{
-	#category : #transitions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>zoomIn: goingIn orOutTo: otherImage at: topLeft vanishingPoint: vp  [
+{ #category : #transitions }
+Form >> zoomIn: goingIn orOutTo: otherImage at: topLeft vanishingPoint: vp [ 
 	"Display zoomInTo: (Form fromDisplay: (40@40 extent: 300@300)) reverse at: 40@40.
 	Display zoomOutTo: (Form fromDisplay: (40@40 extent: 300@300)) reverse at: 40@40."
 	| nSteps minTime startTime |
@@ -3371,21 +2758,15 @@ Form>>zoomIn: goingIn orOutTo: otherImage at: topLeft vanishingPoint: vp  [
 			bigR areasOutside: lilR]]
 ]
 
-{
-	#category : #transitions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>zoomInTo: otherImage at: topLeft [
+{ #category : #transitions }
+Form >> zoomInTo: otherImage at: topLeft [
 	"Display zoomInTo: (Form fromDisplay: (40@40 extent: 300@300)) reverse at: 40@40"
 	^ self zoomIn: true orOutTo: otherImage at: topLeft
 		vanishingPoint: otherImage extent//2+topLeft
 ]
 
-{
-	#category : #transitions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Form>>zoomOutTo: otherImage at: topLeft [
+{ #category : #transitions }
+Form >> zoomOutTo: otherImage at: topLeft [
 	"Display zoomOutTo: (Form fromDisplay: (40@40 extent: 300@300)) reverse at: 40@40"
 	^ self zoomIn: false orOutTo: otherImage at: topLeft
 		vanishingPoint: otherImage extent//2+topLeft

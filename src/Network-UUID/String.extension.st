@@ -1,12 +1,7 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*Network-UUID',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-String>>asAlphaNumeric: totalSize extraChars: additionallyAllowed mergeUID: minimalSizeOfRandomPart  [
+{ #category : #'*Network-UUID' }
+String >> asAlphaNumeric: totalSize extraChars: additionallyAllowed mergeUID: minimalSizeOfRandomPart [ 
 	"Generates a String with unique identifier ( UID ) qualities, the difference to a
 	 UUID is that its beginning is derived from the receiver, so that it has a meaning
 	 for a human reader.

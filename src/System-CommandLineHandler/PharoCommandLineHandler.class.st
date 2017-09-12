@@ -19,51 +19,35 @@ It first checks if another handler is available. If so it will activate the foun
 Class {
 	#name : #PharoCommandLineHandler,
 	#superclass : #BasicCommandLineHandler,
-	#category : #System-CommandLineHandler,
-	#timestamp : 'AlistairGrant 4/17/2017 22:06'
+	#category : #System-CommandLineHandler
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PharoCommandLineHandler class>>activateWith: aCommandLine	 [
+{ #category : #'instance creation' }
+PharoCommandLineHandler class >> activateWith: aCommandLine [	
 	"Make sure that the PharoCommandLineHandler starts at the top of the stack in the main UI thread."
 	UIManager default defer:  [ 
 		super activateWith: aCommandLine ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PharoCommandLineHandler class>>description [
+{ #category : #accessing }
+PharoCommandLineHandler class >> description [
 	^ 'responsible for the default options and activating other commands'
 ]
 
-{
-	#category : #'handler selection',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PharoCommandLineHandler class>>isResponsibleFor: aCommandLine [
+{ #category : #'handler selection' }
+PharoCommandLineHandler class >> isResponsibleFor: aCommandLine [
 	"I do not match ever, because my activation is manual"
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PharoCommandLineHandler class>>priority  [
+{ #category : #accessing }
+PharoCommandLineHandler class >> priority [ 
 	"Highest priority"
 	^ Float infinity
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PharoCommandLineHandler>>activate [
+{ #category : #activation }
+PharoCommandLineHandler >> activate [
 
 	self isChangingPreferences
 		ifTrue: [ self changePreferences ]
@@ -72,11 +56,8 @@ PharoCommandLineHandler>>activate [
 	^ super activate.
 ]
 
-{
-	#category : #'private - preferences',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PharoCommandLineHandler>>changePreferences	 [
+{ #category : #'private - preferences' }
+PharoCommandLineHandler >> changePreferences [	
 	| preferenceFile |
 	
 	self isOmittingPreferences
@@ -90,49 +71,34 @@ PharoCommandLineHandler>>changePreferences	 [
 	StartupPreferencesLoader default load: { preferenceFile }.
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PharoCommandLineHandler>>default [
+{ #category : #commands }
+PharoCommandLineHandler >> default [
 	Smalltalk isHeadless 
 		ifFalse: [ ^ self noQuit ].
 	
 	^ super default
 ]
 
-{
-	#category : #'private - preferences',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PharoCommandLineHandler>>isChangingPreferences [
+{ #category : #'private - preferences' }
+PharoCommandLineHandler >> isChangingPreferences [
 
 	^ self isOverridingPreferences or: [ self isOmittingPreferences ]
 ]
 
-{
-	#category : #'private - preferences',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PharoCommandLineHandler>>isOmittingPreferences [
+{ #category : #'private - preferences' }
+PharoCommandLineHandler >> isOmittingPreferences [
 
 	^ self hasOption: 'no-default-preferences'
 ]
 
-{
-	#category : #'private - preferences',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PharoCommandLineHandler>>isOverridingPreferences [
+{ #category : #'private - preferences' }
+PharoCommandLineHandler >> isOverridingPreferences [
 
 	^ self hasOption: 'preferences-file'
 ]
 
-{
-	#category : #'private - preferences',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-PharoCommandLineHandler>>runPreferences [
+{ #category : #'private - preferences' }
+PharoCommandLineHandler >> runPreferences [
 
 	Smalltalk at: #SystemSettingsPersistence ifPresent: [:persistence | 
 		persistence resumeSystemSettings].

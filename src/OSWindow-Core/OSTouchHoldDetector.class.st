@@ -13,41 +13,28 @@ Class {
 		'MaxDistanceTravelled',
 		'WaitingTime'
 	],
-	#category : #OSWindow-Core-Gestures,
-	#timestamp : 'MerwanOuddane 7/22/2015 16:08'
+	#category : #OSWindow-Core-Gestures
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchHoldDetector class>>initialize [
+{ #category : #'class initialization' }
+OSTouchHoldDetector class >> initialize [
 	super initialize.
 	MaxDistanceTravelled := 0.02.
 	WaitingTime := 1000
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchHoldDetector class>>maxDistanceTravelled [
+{ #category : #accessing }
+OSTouchHoldDetector class >> maxDistanceTravelled [
 	^ MaxDistanceTravelled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchHoldDetector class>>maxDistanceTravelled: anObject [
+{ #category : #accessing }
+OSTouchHoldDetector class >> maxDistanceTravelled: anObject [
 	MaxDistanceTravelled := anObject
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchHoldDetector class>>maxDistanceTravelledSettingsOn: aBuilder [
+{ #category : #settings }
+OSTouchHoldDetector class >> maxDistanceTravelledSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #maxDistanceTravelled)
 		target: self;
@@ -57,38 +44,26 @@ OSTouchHoldDetector class>>maxDistanceTravelledSettingsOn: aBuilder [
 		parent: #holdGesture
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchHoldDetector class>>touchHoldSettingsOn: aBuilder [
+{ #category : #settings }
+OSTouchHoldDetector class >> touchHoldSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #holdGesture)
 		label: 'Hold';
 		parent: #touchGestures
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchHoldDetector class>>waitingTime [
+{ #category : #accessing }
+OSTouchHoldDetector class >> waitingTime [
 	^ WaitingTime
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchHoldDetector class>>waitingTime: anObject [
+{ #category : #accessing }
+OSTouchHoldDetector class >> waitingTime: anObject [
 	WaitingTime := anObject
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchHoldDetector class>>waitingTimeSettingsOn: aBuilder [
+{ #category : #settings }
+OSTouchHoldDetector class >> waitingTimeSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #waitingTime)
 		target: self;
@@ -98,60 +73,42 @@ OSTouchHoldDetector class>>waitingTimeSettingsOn: aBuilder [
 		parent: #holdGesture
 ]
 
-{
-	#category : #creation,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchHoldDetector>>createHoldEvent [
+{ #category : #creation }
+OSTouchHoldDetector >> createHoldEvent [
 	self subclassResponsibility
 ]
 
-{
-	#category : #creation,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchHoldDetector>>createWaitingProcess [
+{ #category : #creation }
+OSTouchHoldDetector >> createWaitingProcess [
 	^ [ 
 	(Delay forMilliseconds: waitingTime) wait.
 	(self activeFingers allSatisfy: [ :each | each totalDistanceTravelled < maxDistanceTravelled ])
 		ifTrue: [ self sendToEventHandler: self createHoldEvent ] ] fork
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchHoldDetector>>initialize [
+{ #category : #initialization }
+OSTouchHoldDetector >> initialize [
 	super initialize.
 	waitingTime := self class waitingTime.
 	maxDistanceTravelled := self class maxDistanceTravelled.
 	process := Process new terminate.
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchHoldDetector>>necessaryFingers [
+{ #category : #preconditions }
+OSTouchHoldDetector >> necessaryFingers [
 	self subclassResponsibility
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchHoldDetector>>visitTouchPointerDownEvent: anEvent [
+{ #category : #visiting }
+OSTouchHoldDetector >> visitTouchPointerDownEvent: anEvent [
 	super visitTouchPointerDownEvent: anEvent.
 	eventHandler fingerCount = self necessaryFingers
 		ifTrue: [  process := self createWaitingProcess ]
 		ifFalse: [ process terminate ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchHoldDetector>>visitTouchPointerUpEvent: anEvent [
+{ #category : #visiting }
+OSTouchHoldDetector >> visitTouchPointerUpEvent: anEvent [
 	super visitTouchPointerUpEvent: anEvent.
 	process terminate
 ]

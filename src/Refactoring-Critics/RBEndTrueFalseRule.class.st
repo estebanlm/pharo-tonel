@@ -15,33 +15,23 @@ test
 Class {
 	#name : #RBEndTrueFalseRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:29'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEndTrueFalseRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBEndTrueFalseRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'EndTrueFalseRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEndTrueFalseRule>>group [
+{ #category : #accessing }
+RBEndTrueFalseRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEndTrueFalseRule>>initialize [
+{ #category : #initialization }
+RBEndTrueFalseRule >> initialize [
 	super initialize.
 	self matcher
 		matchesAnyOf: #(
@@ -68,26 +58,17 @@ RBEndTrueFalseRule>>initialize [
 					ifFalse: [ answer ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEndTrueFalseRule>>name [
+{ #category : #accessing }
+RBEndTrueFalseRule >> name [
 	^ 'Check for same statements at end of ifTrue:ifFalse: blocks'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEndTrueFalseRule>>rationale [
+{ #category : #accessing }
+RBEndTrueFalseRule >> rationale [
 	^ 'Checks for ifTrue:ifFalse: blocks that have the same code at the beginning or end.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEndTrueFalseRule>>severity [
+{ #category : #accessing }
+RBEndTrueFalseRule >> severity [
 	^ #information
 ]

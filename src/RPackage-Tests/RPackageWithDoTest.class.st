@@ -7,63 +7,44 @@ Class {
 	#instVars : [
 		'x'
 	],
-	#category : #RPackage-Tests,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:01'
+	#category : #RPackage-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageWithDoTest>>announcer [
+{ #category : #accessing }
+RPackageWithDoTest >> announcer [
 	^ SystemAnnouncer uniqueInstance private
 ]
 
-{
-	#category : #'simple ensure tests',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageWithDoTest>>do: aBlock  [
+{ #category : #'simple ensure tests' }
+RPackageWithDoTest >> do: aBlock [ 
 
 	x := 5.
 	[aBlock value] ensure: [x :=3.]
 ]
 
-{
-	#category : #'simple ensure tests',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageWithDoTest>>doC: aBlock  [
+{ #category : #'simple ensure tests' }
+RPackageWithDoTest >> doC: aBlock [ 
 	
 	x := 5.
 	[aBlock value] ifCurtailed: [x :=3]
 ]
 
-{
-	#category : #'simple ensure tests',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageWithDoTest>>doOnDo: aBlock  [
+{ #category : #'simple ensure tests' }
+RPackageWithDoTest >> doOnDo: aBlock [ 
 	
 	x := 5.
 	[aBlock value.
 	self ensure] on: Error do:  [:ex | self ensure].
 ]
 
-{
-	#category : #'simple ensure tests',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageWithDoTest>>ensure [
+{ #category : #'simple ensure tests' }
+RPackageWithDoTest >> ensure [
 
 	x := 3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageWithDoTest>>info [
+{ #category : #tests }
+RPackageWithDoTest >> info [
 	
 	
 	self announcer hasSubscriber: RPackageOrganizer default.
@@ -71,27 +52,18 @@ RPackageWithDoTest>>info [
 	RPackageOrganizer allInstances collect: [:each | self announcer hasSubscriber: each ] 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageWithDoTest>>packageClass [
+{ #category : #tests }
+RPackageWithDoTest >> packageClass [
 	^ RPackage
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageWithDoTest>>packageOrganizerClass [
+{ #category : #tests }
+RPackageWithDoTest >> packageOrganizerClass [
 	^ RPackageOrganizer
 ]
 
-{
-	#category : #'simple ensure tests',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageWithDoTest>>testDo [
+{ #category : #'simple ensure tests' }
+RPackageWithDoTest >> testDo [
 	"self run: #testDo"
 	
 	[self do: [ Error signal]] on:Error do: [:ex|].
@@ -100,11 +72,8 @@ RPackageWithDoTest>>testDo [
 
 ]
 
-{
-	#category : #'simple ensure tests',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageWithDoTest>>testDo2 [
+{ #category : #'simple ensure tests' }
+RPackageWithDoTest >> testDo2 [
 	"self run: #testDo2"
 	
 	[self do: [ self error]
@@ -113,11 +82,8 @@ RPackageWithDoTest>>testDo2 [
 
 ]
 
-{
-	#category : #'simple ensure tests',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageWithDoTest>>testDoC [
+{ #category : #'simple ensure tests' }
+RPackageWithDoTest >> testDoC [
 	"self run: #testDoC"
 	
 	[self doC: [ self error]] on: Error do: [:e|].
@@ -126,11 +92,8 @@ RPackageWithDoTest>>testDoC [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageWithDoTest>>testInvariant [
+{ #category : #tests }
+RPackageWithDoTest >> testInvariant [
 	"The default invariant"
 	"self run: #testInvariant"
 	
@@ -146,11 +109,8 @@ RPackageWithDoTest>>testInvariant [
 	"To debug..."
 ]
 
-{
-	#category : #'simple ensure tests',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageWithDoTest>>testOnDo [
+{ #category : #'simple ensure tests' }
+RPackageWithDoTest >> testOnDo [
 	"self run: #testOnDo"
 	
 	self doOnDo: [ self error].
@@ -161,11 +121,8 @@ RPackageWithDoTest>>testOnDo [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageWithDoTest>>testWithDoIsCorrectlyReinstallingDefault [
+{ #category : #tests }
+RPackageWithDoTest >> testWithDoIsCorrectlyReinstallingDefault [
 	"self debug: #testWithDoIsCorrectlyReinstallingDefault"
 	
 	| current empty |
@@ -182,11 +139,8 @@ RPackageWithDoTest>>testWithDoIsCorrectlyReinstallingDefault [
 	self deny: (self announcer hasSubscriber: empty)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageWithDoTest>>testWithDoIsCorrectlyReinstallingDefaultEvenIfHalt [
+{ #category : #tests }
+RPackageWithDoTest >> testWithDoIsCorrectlyReinstallingDefaultEvenIfHalt [
 	"self debug: #testWithDoIsCorrectlyReinstallingDefaultEvenIfHalt"
 	
 	| current empty |

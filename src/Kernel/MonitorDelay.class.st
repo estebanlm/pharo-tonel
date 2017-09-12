@@ -8,24 +8,17 @@ Class {
 		'monitor',
 		'queue'
 	],
-	#category : #Kernel-Processes,
-	#timestamp : 'NS 4/13/2004 16:51'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MonitorDelay class>>signalLock: aSemaphore afterMSecs: anInteger inMonitor: aMonitor queue: anOrderedCollection [
+{ #category : #'instance creation' }
+MonitorDelay class >> signalLock: aSemaphore afterMSecs: anInteger inMonitor: aMonitor queue: anOrderedCollection [
 	anInteger < 0 ifTrue: [self error: 'delay times cannot be negative'].
 	^ (self new setDelay: anInteger forSemaphore: aSemaphore monitor: aMonitor queue: anOrderedCollection) schedule; yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MonitorDelay>>schedulerSignalWaitingProcess [
+{ #category : #private }
+MonitorDelay >> schedulerSignalWaitingProcess [
 	"The delay time has elapsed; signal the waiting process."
 
 	beingWaitedOn := false.
@@ -33,11 +26,8 @@ MonitorDelay>>schedulerSignalWaitingProcess [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-MonitorDelay>>setDelay: anInteger forSemaphore: aSemaphore monitor: aMonitor queue: anOrderedCollection [
+{ #category : #private }
+MonitorDelay >> setDelay: anInteger forSemaphore: aSemaphore monitor: aMonitor queue: anOrderedCollection [
 	monitor := aMonitor.
 	queue := anOrderedCollection.
 	self setDelay: anInteger forSemaphore: aSemaphore.

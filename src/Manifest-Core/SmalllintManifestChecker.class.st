@@ -16,33 +16,23 @@ Class {
 	#instVars : [
 		'manifestClassCache'
 	],
-	#category : #Manifest-Core,
-	#timestamp : '<historical>'
+	#category : #Manifest-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>builderManifestClass [
+{ #category : #accessing }
+SmalllintManifestChecker >> builderManifestClass [
 	^ TheManifestBuilder
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>cleanAllManifest [
+{ #category : #manifest }
+SmalllintManifestChecker >> cleanAllManifest [
 	| manifests |
 	manifests := environment packages collect: [ :cl | self builderManifestClass of: cl ] as: Set.
 	manifests do: [ :each | each cleanUp ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>criticsOf: aRule [
+{ #category : #accessing }
+SmalllintManifestChecker >> criticsOf: aRule [
 
 	| rules |	
 	rules := rule leaves 
@@ -51,11 +41,8 @@ SmalllintManifestChecker>>criticsOf: aRule [
 	^ rules critics
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>falsePositiveOf: aRule [
+{ #category : #manifest }
+SmalllintManifestChecker >> falsePositiveOf: aRule [
 	
 	|critics rId rV  mb |
 	critics := self criticsOf: aRule. 
@@ -68,22 +55,16 @@ SmalllintManifestChecker>>falsePositiveOf: aRule [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>initialize [
+{ #category : #initialization }
+SmalllintManifestChecker >> initialize [
 
 	super initialize.
 	manifestClassCache := Dictionary new.
 
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>isFalsePositive: aCritic forRuleId: ruleId versionId: versionId [
+{ #category : #manifest }
+SmalllintManifestChecker >> isFalsePositive: aCritic forRuleId: ruleId versionId: versionId [
 	| mb |
 	mb := self manifestBuilderOf: aCritic.
 	^  mb isNil 
@@ -92,11 +73,8 @@ SmalllintManifestChecker>>isFalsePositive: aCritic forRuleId: ruleId versionId: 
 
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>isToDo: aCritic forRuleId: ruleId versionId: versionId  [
+{ #category : #manifest }
+SmalllintManifestChecker >> isToDo: aCritic forRuleId: ruleId versionId: versionId [ 
 	
 	| mb |
 	mb := self manifestBuilderOf: aCritic.
@@ -106,32 +84,23 @@ SmalllintManifestChecker>>isToDo: aCritic forRuleId: ruleId versionId: versionId
 
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>isTruePositive: aCritic forRuleId: ruleId versionId: versionId  [
+{ #category : #manifest }
+SmalllintManifestChecker >> isTruePositive: aCritic forRuleId: ruleId versionId: versionId [ 
 	
 	^ (self manifestBuilderOf: aCritic)
 			containsTruePositive: aCritic onRule:  ruleId version: versionId
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>manifestBuilderOf: aPackage [
+{ #category : #accessing }
+SmalllintManifestChecker >> manifestBuilderOf: aPackage [
 
 	^ aPackage manifestBuilderForRuleChecker: self
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>manifestBuilderOfClass: aClass [
+{ #category : #accessing }
+SmalllintManifestChecker >> manifestBuilderOfClass: aClass [
 	| key |
 	key := aClass theNonMetaClass category.
 	^ manifestClassCache
@@ -142,11 +111,8 @@ SmalllintManifestChecker>>manifestBuilderOfClass: aClass [
 				ifFalse: [ nil ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>manifestBuilderOfMethod: aMethod [
+{ #category : #accessing }
+SmalllintManifestChecker >> manifestBuilderOfMethod: aMethod [
 	| key cl |
 	cl := aMethod methodClass.
 	key := cl name , aMethod category asString.
@@ -158,11 +124,8 @@ SmalllintManifestChecker>>manifestBuilderOfMethod: aMethod [
 				ifFalse: [ nil ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>manifestBuilderOfPackage: aPackage [
+{ #category : #accessing }
+SmalllintManifestChecker >> manifestBuilderOfPackage: aPackage [
 	| key |
 	key := aPackage packageName.
 	^ manifestClassCache
@@ -173,11 +136,8 @@ SmalllintManifestChecker>>manifestBuilderOfPackage: aPackage [
 				ifFalse: [ nil ] ]
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>rejectClassesOf: aPackage [
+{ #category : #manifest }
+SmalllintManifestChecker >> rejectClassesOf: aPackage [
 		
 	| mb |
 	mb := self manifestBuilderOf: aPackage.
@@ -187,11 +147,8 @@ SmalllintManifestChecker>>rejectClassesOf: aPackage [
 
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>rejectRulesOf: aPackage [
+{ #category : #manifest }
+SmalllintManifestChecker >> rejectRulesOf: aPackage [
 		
 	| mb |
 	mb := self manifestBuilderOf: aPackage.
@@ -201,30 +158,21 @@ SmalllintManifestChecker>>rejectRulesOf: aPackage [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>rule [
+{ #category : #accessing }
+SmalllintManifestChecker >> rule [
 	^ rule
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>runRules: aCompositeRule onPackage: aPackage [
+{ #category : #actions }
+SmalllintManifestChecker >> runRules: aCompositeRule onPackage: aPackage [
 
 	rule := aCompositeRule.
 	environment := RBPackageEnvironment package: aPackage.
 	self run.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>runRules: aCompositeRule onPackage: aPackage withoutTestCase: avoidTestCases [
+{ #category : #actions }
+SmalllintManifestChecker >> runRules: aCompositeRule onPackage: aPackage withoutTestCase: avoidTestCases [
 	rule := aCompositeRule.
 	environment := RBPackageEnvironment package: aPackage.
 	
@@ -234,11 +182,8 @@ SmalllintManifestChecker>>runRules: aCompositeRule onPackage: aPackage withoutTe
 	self run
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmalllintManifestChecker>>toDoOf: aRule [
+{ #category : #manifest }
+SmalllintManifestChecker >> toDoOf: aRule [
 	
 	|critics rId rV mb |
 	critics := self criticsOf: aRule. 

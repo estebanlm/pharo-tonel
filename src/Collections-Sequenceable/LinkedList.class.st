@@ -73,61 +73,42 @@ Class {
 		'firstLink',
 		'lastLink'
 	],
-	#category : #Collections-Sequenceable,
-	#timestamp : 'VincentBlondeau 4/1/2016 18:10'
+	#category : #Collections-Sequenceable
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList class>>new: anInt [
+{ #category : #'instance creation' }
+LinkedList class >> new: anInt [
 	"LinkedList don't need capacity"
 	^self new
 ]
 
-{
-	#category : #'stream creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList class>>new: size streamContents: aBlock [
+{ #category : #'stream creation' }
+LinkedList class >> new: size streamContents: aBlock [
 	^ self withAll: (super new: size streamContents: aBlock)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList class>>newFrom: aCollection [
+{ #category : #'instance creation' }
+LinkedList class >> newFrom: aCollection [
 	"Answer an instance with same elements as aCollection."
 	^self new
 		addAll: aCollection;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList class>>streamSpecies [
+{ #category : #accessing }
+LinkedList class >> streamSpecies [
 	^ Array
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>add: aLinkOrObject [
+{ #category : #adding }
+LinkedList >> add: aLinkOrObject [
 	"Add aLink to the end of the receiver's list. Answer aLink."
 
 	^self addLast: aLinkOrObject
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>add: link after: otherLinkOrObject [
+{ #category : #adding }
+LinkedList >> add: link after: otherLinkOrObject [
 	"Add otherLink  after link in the list. Answer aLink."
 
 	| otherLink |
@@ -135,11 +116,8 @@ LinkedList>>add: link after: otherLinkOrObject [
 	^ self add: link afterLink: otherLink
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>add: aLinkOrObject afterLink: otherLink [
+{ #category : #adding }
+LinkedList >> add: aLinkOrObject afterLink: otherLink [
 
 	"Add otherLink  after link in the list. Answer aLink."
 
@@ -152,11 +130,8 @@ LinkedList>>add: aLinkOrObject afterLink: otherLink [
 	^aLink.
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>add: link before: otherLinkOrObject [
+{ #category : #adding }
+LinkedList >> add: link before: otherLinkOrObject [
 	"Add otherLink  after link in the list. Answer aLink."
 
 	| otherLink |
@@ -164,11 +139,8 @@ LinkedList>>add: link before: otherLinkOrObject [
 	^ self add: link beforeLink: otherLink
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>add: aLinkOrObject beforeLink: otherLink [
+{ #category : #adding }
+LinkedList >> add: aLinkOrObject beforeLink: otherLink [
 
 	| currentLink|
 
@@ -188,11 +160,8 @@ LinkedList>>add: aLinkOrObject beforeLink: otherLink [
 	^ self errorNotFound: otherLink
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>addFirst: aLinkOrObject  [
+{ #category : #adding }
+LinkedList >> addFirst: aLinkOrObject [ 
 	"Add aLink to the beginning of the receiver's list. Answer aLink."
 	|aLink|
 	aLink := aLinkOrObject asLink.
@@ -202,11 +171,8 @@ LinkedList>>addFirst: aLinkOrObject  [
 	^aLink
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>addLast: aLinkOrObject [
+{ #category : #adding }
+LinkedList >> addLast: aLinkOrObject [
 	"Add aLink to the end of the receiver's list. Answer aLink."
 	|aLink|
 	aLink := aLinkOrObject asLink.
@@ -217,29 +183,20 @@ LinkedList>>addLast: aLinkOrObject [
 	^aLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>at: index [
+{ #category : #accessing }
+LinkedList >> at: index [
 
 	^(self linkAt: index) value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>at: index put: anObject [
+{ #category : #accessing }
+LinkedList >> at: index put: anObject [
 
 	^self at: index putLink: (self linkOf: anObject ifAbsent: [anObject asLink])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>at: index putLink: aLink  [
+{ #category : #accessing }
+LinkedList >> at: index putLink: aLink [ 
 	| previousLink nextLink |
 	"Please don't put a link which is already in the list, or you will create an infinite loop"
 	(self validIndex: index)
@@ -268,11 +225,8 @@ LinkedList>>at: index putLink: aLink  [
 	^ aLink
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>collect: aBlock  [
+{ #category : #enumerating }
+LinkedList >> collect: aBlock [ 
 	"Evaluate aBlock with each of the receiver's elements as the argument.  
 	Collect the resulting values into a collection like the receiver. Answer  
 	the new collection."
@@ -286,11 +240,8 @@ LinkedList>>collect: aBlock  [
 	^ newCollection
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>collect: collectBlock thenReject: rejectBlock [
+{ #category : #enumerating }
+LinkedList >> collect: collectBlock thenReject: rejectBlock [
 	"Optimized version of SequenceableCollection>>#collect:#thenReject:"
 
 	| newCollection newElement |
@@ -303,11 +254,8 @@ LinkedList>>collect: collectBlock thenReject: rejectBlock [
 	^ newCollection
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>collect: collectBlock thenSelect: selectBlock [
+{ #category : #enumerating }
+LinkedList >> collect: collectBlock thenSelect: selectBlock [
 	"Optimized version of SequenceableCollection>>#collect:#thenSelect:"
 
 	| newCollection newElement |
@@ -320,30 +268,21 @@ LinkedList>>collect: collectBlock thenSelect: selectBlock [
 	^ newCollection
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>copyWith: newElement [
+{ #category : #copying }
+LinkedList >> copyWith: newElement [
 	^self copy add: newElement; yourself
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>copyWithout: oldElement [
+{ #category : #copying }
+LinkedList >> copyWithout: oldElement [
 	|newInst| 
 	newInst := self class new.
 	self do: [:each | each = oldElement ifFalse: [newInst add: each]].
 	^newInst
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>do: aBlock [
+{ #category : #enumerating }
+LinkedList >> do: aBlock [
 
 	| aLink |
 	aLink := firstLink.
@@ -352,21 +291,15 @@ LinkedList>>do: aBlock [
 		 aLink := aLink nextLink]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>first [
+{ #category : #accessing }
+LinkedList >> first [
 	"Answer the first link. Create an error notification if the receiver is 
 	empty."
 ^self firstLink value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>firstLink [
+{ #category : #accessing }
+LinkedList >> firstLink [
 	"Answer the first link. Create an error notification if the receiver is 
 	empty."
 
@@ -374,11 +307,8 @@ LinkedList>>firstLink [
 	^firstLink 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>indexOf: anElement startingAt: start ifAbsent: exceptionBlock [
+{ #category : #private }
+LinkedList >> indexOf: anElement startingAt: start ifAbsent: exceptionBlock [
 	"Answer the index of the first occurence of anElement after start
 	within the receiver. If the receiver does not contain anElement, 
 	answer the 	result of evaluating the argument, exceptionBlock."
@@ -393,20 +323,14 @@ LinkedList>>indexOf: anElement startingAt: start ifAbsent: exceptionBlock [
 	^exceptionBlock value
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>isEmpty [
+{ #category : #testing }
+LinkedList >> isEmpty [
 
 	^firstLink isNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>last [
+{ #category : #accessing }
+LinkedList >> last [
 	"Answer the last link. Create an error notification if the receiver is 
 	empty."
 
@@ -414,11 +338,8 @@ LinkedList>>last [
 	^self lastLink value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>lastLink [
+{ #category : #accessing }
+LinkedList >> lastLink [
 	"Answer the last link. Create an error notification if the receiver is 
 	empty."
 
@@ -426,20 +347,14 @@ LinkedList>>lastLink [
 	^lastLink
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>linkAt: index [
+{ #category : #private }
+LinkedList >> linkAt: index [
 
 	^self linkAt: index ifAbsent: [ self errorSubscriptBounds: index]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>linkAt: index ifAbsent: errorBlock [
+{ #category : #private }
+LinkedList >> linkAt: index ifAbsent: errorBlock [
 
 	| i |
 	i := 0.
@@ -448,21 +363,15 @@ LinkedList>>linkAt: index ifAbsent: errorBlock [
 	^ errorBlock value
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>linkOf: anObject  [
+{ #category : #private }
+LinkedList >> linkOf: anObject [ 
 	^ self
 		linkOf: anObject
 		ifAbsent: [self error: 'No such element']
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>linkOf: anObject ifAbsent: errorBlock  [
+{ #category : #private }
+LinkedList >> linkOf: anObject ifAbsent: errorBlock [ 
 	
 	self
 		linksDo: [:el | el value = anObject
@@ -470,11 +379,8 @@ LinkedList>>linkOf: anObject ifAbsent: errorBlock  [
 	^ errorBlock value
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>linksDo: aBlock [
+{ #category : #enumerating }
+LinkedList >> linksDo: aBlock [
 
 	| aLink |
 	aLink := firstLink.
@@ -484,11 +390,8 @@ LinkedList>>linksDo: aBlock [
 		aLink := aLink nextLink]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>postCopy [
+{ #category : #copying }
+LinkedList >> postCopy [
 	| aLink |
 	super postCopy.
 	firstLink ifNotNil: [
@@ -497,11 +400,8 @@ LinkedList>>postCopy [
 		lastLink := aLink].
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>remove: aLinkOrObject ifAbsent: aBlock  [
+{ #category : #removing }
+LinkedList >> remove: aLinkOrObject ifAbsent: aBlock [ 
 	"Remove aLink from the receiver. If it is not there, answer the result of evaluating aBlock."
 	
 	| link |
@@ -510,32 +410,23 @@ LinkedList>>remove: aLinkOrObject ifAbsent: aBlock  [
 	^aLinkOrObject
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>removeAll [
+{ #category : #removing }
+LinkedList >> removeAll [
 	"Implementation note: this has to be fast"
 
 	firstLink := lastLink := nil
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>removeAllSuchThat: aBlock  [
+{ #category : #removing }
+LinkedList >> removeAllSuchThat: aBlock [ 
 	"Evaluate aBlock for each element and remove all that elements from
 	the receiver for that aBlock evaluates to true.  For LinkedLists, it's safe to use do:."
 
 	self do: [:each | (aBlock value: each) ifTrue: [self remove: each]]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>removeFirst [
+{ #category : #removing }
+LinkedList >> removeFirst [
 	"Remove the first element and answer it. If the receiver is empty, create 
 	an error notification."
 
@@ -549,11 +440,8 @@ LinkedList>>removeFirst [
 	^oldLink value
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>removeLast [
+{ #category : #removing }
+LinkedList >> removeLast [
 	"Remove the receiver's last element and answer it. If the receiver is 
 	empty, create an error notification."
 
@@ -571,19 +459,13 @@ LinkedList>>removeLast [
 	^oldLink value
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>removeLink: aLink [
+{ #category : #removing }
+LinkedList >> removeLink: aLink [
 	^self removeLink: aLink ifAbsent: [self error: 'no such method!']
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>removeLink: aLink ifAbsent: aBlock   [
+{ #category : #removing }
+LinkedList >> removeLink: aLink ifAbsent: aBlock [  
 	"Remove aLink from the receiver. If it is not there, answer the result of
 	evaluating aBlock."
 
@@ -604,11 +486,8 @@ LinkedList>>removeLink: aLink ifAbsent: aBlock   [
 	^aLink
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>select: aBlock  [
+{ #category : #enumerating }
+LinkedList >> select: aBlock [ 
 	"Reimplemennt #select: for speedup on linked lists. 
 	The super implemention accesses the linkes by index, thus causing an O(n^2)"
 	
@@ -620,11 +499,8 @@ LinkedList>>select: aBlock  [
 	^newCollection
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>select: selectBlock thenCollect: collectBlock [
+{ #category : #enumerating }
+LinkedList >> select: selectBlock thenCollect: collectBlock [
 	"Optimized version of SequenceableCollection>>#select:thenCollect:"
 
 	| newCollection |
@@ -636,11 +512,8 @@ LinkedList>>select: selectBlock thenCollect: collectBlock [
 	^ newCollection
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>select: selectBlock thenDo: doBlock [
+{ #category : #enumerating }
+LinkedList >> select: selectBlock thenDo: doBlock [
 	"Optimized version of SequenceableCollection>>#select:thenDo:"
 
 	self
@@ -649,11 +522,8 @@ LinkedList>>select: selectBlock thenDo: doBlock [
 					ifTrue: [ doBlock value: each ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>size [
+{ #category : #accessing }
+LinkedList >> size [
 	"Answer how many elements the receiver contains."
 
 	| tally |
@@ -662,31 +532,22 @@ LinkedList>>size [
 	^ tally
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>sort: aBlock [
+{ #category : #accessing }
+LinkedList >> sort: aBlock [
 	|aLinkedList|
 	aLinkedList := LinkedList newFrom: (self asArray sort: aBlock).
 	firstLink := aLinkedList firstLink.
 	lastLink := aLinkedList lastLink.
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>species [
+{ #category : #enumerating }
+LinkedList >> species [
 
 	^ Array
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>swap: ix1 with: ix2 [
+{ #category : #accessing }
+LinkedList >> swap: ix1 with: ix2 [
 	"Reimplemented, super would create an infinite loop"
 	| minIx maxIx link1Prev link2Prev link1 link2 link1Next link2Next newLink2Next |
 	((self validIndex: ix1) and: [self validIndex: ix2])	ifFalse: [^ self errorOutOfBounds].
@@ -718,11 +579,8 @@ LinkedList>>swap: ix1 with: ix2 [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-LinkedList>>validIndex: index [
+{ #category : #private }
+LinkedList >> validIndex: index [
 	 ^index > 0
 			and: [index <= self size]
 ]

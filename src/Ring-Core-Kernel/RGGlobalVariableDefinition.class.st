@@ -7,70 +7,48 @@ Class {
 	#instVars : [
 		'value'
 	],
-	#category : #Ring-Core-Kernel,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:08'
+	#category : #Ring-Core-Kernel
 }
 
-{
-	#category : #'managing container',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGGlobalVariableDefinition>>addInContainer: aRGContainer [
+{ #category : #'managing container' }
+RGGlobalVariableDefinition >> addInContainer: aRGContainer [
 
 	aRGContainer addGlobalVariable: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGGlobalVariableDefinition>>isGlobalVariable [
+{ #category : #testing }
+RGGlobalVariableDefinition >> isGlobalVariable [
 
 	^true
 ]
 
-{
-	#category : #'managing container',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGGlobalVariableDefinition>>isIncludedInContainer: aRGContainer [
+{ #category : #'managing container' }
+RGGlobalVariableDefinition >> isIncludedInContainer: aRGContainer [
 
 	^aRGContainer includesGlobalVariable: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGGlobalVariableDefinition>>isVariable [
+{ #category : #testing }
+RGGlobalVariableDefinition >> isVariable [
 
 	^true
 ]
 
-{
-	#category : #'managing container',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGGlobalVariableDefinition>>removeFromContainer: aRGContainer [
+{ #category : #'managing container' }
+RGGlobalVariableDefinition >> removeFromContainer: aRGContainer [
 
 	aRGContainer removeGlobalVariable: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGGlobalVariableDefinition>>value [
+{ #category : #accessing }
+RGGlobalVariableDefinition >> value [
 	"Retrieves the current value of the global variable"
 
 	^ value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGGlobalVariableDefinition>>value: anObject [
+{ #category : #accessing }
+RGGlobalVariableDefinition >> value: anObject [
 
 	value := anObject
 ]

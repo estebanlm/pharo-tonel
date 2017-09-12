@@ -6,33 +6,23 @@ Furthermore, the methods #new and #initialize are ignored once they are often ov
 Class {
 	#name : #RBEquivalentSuperclassMethodsRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:10'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEquivalentSuperclassMethodsRule class>>checksMethod [
+{ #category : #testing }
+RBEquivalentSuperclassMethodsRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEquivalentSuperclassMethodsRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBEquivalentSuperclassMethodsRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'EquivalentSuperclassMethodsRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEquivalentSuperclassMethodsRule>>basicCheck: aMethod [
+{ #category : #running }
+RBEquivalentSuperclassMethodsRule >> basicCheck: aMethod [
 	(self ignoredSelectors includes: aMethod selector)
 		ifTrue: [ ^ false ].
 	aMethod methodClass superclass
@@ -44,45 +34,30 @@ RBEquivalentSuperclassMethodsRule>>basicCheck: aMethod [
 				^ aMethod ast = overridenMethod ast ] ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEquivalentSuperclassMethodsRule>>checkMethod: aMethod [
+{ #category : #running }
+RBEquivalentSuperclassMethodsRule >> checkMethod: aMethod [
 	(self basicCheck: aMethod)
 		ifTrue: [ result addMethod: aMethod ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEquivalentSuperclassMethodsRule>>group [
+{ #category : #accessing }
+RBEquivalentSuperclassMethodsRule >> group [
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEquivalentSuperclassMethodsRule>>ignoredSelectors [
+{ #category : #accessing }
+RBEquivalentSuperclassMethodsRule >> ignoredSelectors [
 	"These methods are often overridden for compatilbity with other platforms."
 
 	^ #(new initialize)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEquivalentSuperclassMethodsRule>>name [
+{ #category : #accessing }
+RBEquivalentSuperclassMethodsRule >> name [
 	^ 'Methods equivalently defined in superclass'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEquivalentSuperclassMethodsRule>>rationale [
+{ #category : #accessing }
+RBEquivalentSuperclassMethodsRule >> rationale [
 	^ 'Check for methods that are equivalent to their superclass methods.'
 ]

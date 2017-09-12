@@ -1,20 +1,12 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*Multilingual-TextConversion',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-String>>convertFromEncoding: encodingName [
+{ #category : #'*Multilingual-TextConversion' }
+String >> convertFromEncoding: encodingName [
 	^self convertFromWithConverter: (TextConverter newForEncoding: encodingName)
 ]
 
-{
-	#category : #'*Multilingual-TextConversion',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-String>>convertFromWithConverter: converter [
+{ #category : #'*Multilingual-TextConversion' }
+String >> convertFromWithConverter: converter [
 
 	| readStream c |
 	readStream := self readStream.
@@ -28,19 +20,13 @@ String>>convertFromWithConverter: converter [
 
 ]
 
-{
-	#category : #'*Multilingual-TextConversion',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-String>>convertToEncoding: encodingName [
+{ #category : #'*Multilingual-TextConversion' }
+String >> convertToEncoding: encodingName [
 	^self convertToWithConverter: (TextConverter newForEncoding: encodingName).
 ]
 
-{
-	#category : #'*Multilingual-TextConversion',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-String>>convertToWithConverter: converter  [
+{ #category : #'*Multilingual-TextConversion' }
+String >> convertToWithConverter: converter [ 
 	converter
 		ifNil: [^ self].
 	^ String new: self size streamContents: [:writeStream | 

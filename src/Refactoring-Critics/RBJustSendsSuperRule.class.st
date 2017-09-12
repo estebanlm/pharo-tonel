@@ -7,85 +7,57 @@ Class {
 	#instVars : [
 		'matcher'
 	],
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 20:57'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBJustSendsSuperRule class>>checksMethod [
+{ #category : #testing }
+RBJustSendsSuperRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBJustSendsSuperRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBJustSendsSuperRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'JustSendsSuperRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBJustSendsSuperRule>>basicCheck: aMethod  [
+{ #category : #running }
+RBJustSendsSuperRule >> basicCheck: aMethod [ 
 	^ (aMethod ast isPrimitive not and: 
 		[ matcher 
 			executeMethod: aMethod ast
 			initialAnswer: false ])
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBJustSendsSuperRule>>checkMethod: aMethod  [
+{ #category : #running }
+RBJustSendsSuperRule >> checkMethod: aMethod [ 
 	(self basicCheck: aMethod) ifTrue: 
 		[ result addMethod: aMethod ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBJustSendsSuperRule>>group [
+{ #category : #accessing }
+RBJustSendsSuperRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBJustSendsSuperRule>>initialize [
+{ #category : #initialization }
+RBJustSendsSuperRule >> initialize [
 	super initialize.
 	matcher := RBParseTreeSearcher justSendsSuper
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBJustSendsSuperRule>>name [
+{ #category : #accessing }
+RBJustSendsSuperRule >> name [
 	^ 'Method just sends super message'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBJustSendsSuperRule>>rationale [
+{ #category : #accessing }
+RBJustSendsSuperRule >> rationale [
 	^ 'Check for methods that just forward the message to its superclass.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBJustSendsSuperRule>>severity [
+{ #category : #accessing }
+RBJustSendsSuperRule >> severity [
 	^ #information
 ]

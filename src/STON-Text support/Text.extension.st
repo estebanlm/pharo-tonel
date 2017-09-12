@@ -1,19 +1,11 @@
-Extension {
-	#name : #Text
-}
+Extension { #name : #Text }
 
-{
-	#category : #'*STON-Text support',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-Text>>fromSton: stonReader [
+{ #category : #'*STON-Text support' }
+Text >> fromSton: stonReader [
 	stonReader parseNamedInstVarsFor: self
 ]
 
-{
-	#category : #'*STON-Text support',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-Text>>stonOn: stonWriter [
+{ #category : #'*STON-Text support' }
+Text >> stonOn: stonWriter [
 	stonWriter writeObject: self
 ]

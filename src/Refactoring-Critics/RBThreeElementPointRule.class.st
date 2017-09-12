@@ -4,33 +4,23 @@ Checks arithmetic statements for possible three element points (i.e., a point th
 Class {
 	#name : #RBThreeElementPointRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 22:58'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBThreeElementPointRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBThreeElementPointRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'ThreeElementPointRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBThreeElementPointRule>>group [
+{ #category : #accessing }
+RBThreeElementPointRule >> group [
 	^ 'Potential Bugs'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBThreeElementPointRule>>initialize [
+{ #category : #initialization }
+RBThreeElementPointRule >> initialize [
 	super initialize.
 	self matcher
 		matches: '``@x @ ``@y'
@@ -47,18 +37,12 @@ RBThreeElementPointRule>>initialize [
 				ifFalse: [ answer ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBThreeElementPointRule>>name [
+{ #category : #accessing }
+RBThreeElementPointRule >> name [
 	^ 'Possible three element point (e.g., x @ y + q @ r)'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBThreeElementPointRule>>rationale [
+{ #category : #accessing }
+RBThreeElementPointRule >> rationale [
 	^ 'Checks arithmetic statements for possible three element points (i.e., a point that has another point in its x or y part).'
 ]

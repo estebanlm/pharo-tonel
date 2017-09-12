@@ -11,70 +11,45 @@ These ABI details are very important to keep in mind for receiving callbacks.
 Class {
 	#name : #FFI_x86_64_Windows,
 	#superclass : #FFI_x86_64,
-	#category : #UnifiedFFI,
-	#timestamp : 'RonieSalgado 2/13/2017 21:14'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFI_x86_64_Windows class>>isActive [
+{ #category : #testing }
+FFI_x86_64_Windows class >> isActive [
 	^ Smalltalk vm wordSize = 8 and: [ OSPlatform current isWindows ]
 ]
 
-{
-	#category : #types,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFI_x86_64_Windows>>externalLongType [
+{ #category : #types }
+FFI_x86_64_Windows >> externalLongType [
 	^ ExternalType long
 ]
 
-{
-	#category : #types,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFI_x86_64_Windows>>externalULongType [
+{ #category : #types }
+FFI_x86_64_Windows >> externalULongType [
 	^ ExternalType ulong
 ]
 
-{
-	#category : #'default abi',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFI_x86_64_Windows>>floatRegisterCountForParameterPassing [
+{ #category : #'default abi' }
+FFI_x86_64_Windows >> floatRegisterCountForParameterPassing [
 	^ 4
 ]
 
-{
-	#category : #'default abi',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFI_x86_64_Windows>>integerRegisterCountForParameterPassing [
+{ #category : #'default abi' }
+FFI_x86_64_Windows >> integerRegisterCountForParameterPassing [
 	^ 4
 ]
 
-{
-	#category : #types,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFI_x86_64_Windows>>longType [
+{ #category : #types }
+FFI_x86_64_Windows >> longType [
 	^ FFIInt32
 ]
 
-{
-	#category : #'default abi',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFI_x86_64_Windows>>shadowCallSpaceSize [
+{ #category : #'default abi' }
+FFI_x86_64_Windows >> shadowCallSpaceSize [
 	^ 32
 ]
 
-{
-	#category : #types,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFI_x86_64_Windows>>ulongType [
+{ #category : #types }
+FFI_x86_64_Windows >> ulongType [
 	^ FFIUInt32
 ]

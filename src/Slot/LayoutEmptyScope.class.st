@@ -7,102 +7,63 @@ Class {
 	#classInstVars : [
 		'instance'
 	],
-	#category : #Slot-Layout,
-	#timestamp : '<historical>'
+	#category : #Slot-Layout
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutEmptyScope class>>instance [
+{ #category : #accessing }
+LayoutEmptyScope class >> instance [
 	^ instance ifNil: [ instance := self new ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutEmptyScope>>allSlotsDo: aBlock [
-
+{ #category : #enumerating }
+LayoutEmptyScope >> allSlotsDo: aBlock [
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutEmptyScope>>allSlotsReverseDo: aBlock [
-
+{ #category : #enumerating }
+LayoutEmptyScope >> allSlotsReverseDo: aBlock [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutEmptyScope>>allVisibleSlots [
+{ #category : #accessing }
+LayoutEmptyScope >> allVisibleSlots [
 	^ OrderedCollection new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutEmptyScope>>fieldSize [
+{ #category : #accessing }
+LayoutEmptyScope >> fieldSize [
 	^ 0
 ]
 
-{
-	#category : #flattening,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutEmptyScope>>flatten [
+{ #category : #flattening }
+LayoutEmptyScope >> flatten [
 	^ OrderedCollection new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutEmptyScope>>hasFields [
+{ #category : #testing }
+LayoutEmptyScope >> hasFields [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutEmptyScope>>hasSlots [
+{ #category : #testing }
+LayoutEmptyScope >> hasSlots [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutEmptyScope>>ifNotEmpty: aBlock [
+{ #category : #testing }
+LayoutEmptyScope >> ifNotEmpty: aBlock [
 	"This scope is empty so we do nothing"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutEmptyScope>>ownFieldSize [
+{ #category : #accessing }
+LayoutEmptyScope >> ownFieldSize [
 	^ 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutEmptyScope>>visibleSlots [
+{ #category : #accessing }
+LayoutEmptyScope >> visibleSlots [
 	^ #()
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutEmptyScope>>withParentScopesDo: aBlock [
+{ #category : #enumerating }
+LayoutEmptyScope >> withParentScopesDo: aBlock [
 	aBlock value: self.
 ]

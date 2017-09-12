@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #ClassRenameFixTest,
 	#superclass : #TestCase,
@@ -10,15 +7,11 @@ Class {
 		'newClassName',
 		'originalName'
 	],
-	#category : #Tests-System,
-	#timestamp : ''
+	#category : #Tests-System
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ClassRenameFixTest>>newUniqueClassName [
+{ #category : #private }
+ClassRenameFixTest >> newUniqueClassName [
 	"Return a class name that is not used in the system."
 
 	"self new newClassName"
@@ -34,11 +27,8 @@ ClassRenameFixTest>>newUniqueClassName [
 		error: 'Can no longer find a new and unique class name for the SystemChangeTest !'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ClassRenameFixTest>>removeEverythingInSetFromSystem: aChangeSet  [
+{ #category : #private }
+ClassRenameFixTest >> removeEverythingInSetFromSystem: aChangeSet [ 
 
 	aChangeSet changedMessageList
 		do: [:methodRef | methodRef actualClass removeSelector: methodRef selector].
@@ -47,11 +37,8 @@ ClassRenameFixTest>>removeEverythingInSetFromSystem: aChangeSet  [
 				ifFalse: [each removeFromSystemUnlogged]]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ClassRenameFixTest>>renameClassUsing: aBlock [
+{ #category : #tests }
+ClassRenameFixTest >> renameClassUsing: aBlock [
 	| createdClass foundClasses |
 	originalName := self newUniqueClassName.
 	createdClass := Object
@@ -70,11 +57,8 @@ ClassRenameFixTest>>renameClassUsing: aBlock [
 	self assert: createdClass name = newClassName
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ClassRenameFixTest>>setUp [
+{ #category : #running }
+ClassRenameFixTest >> setUp [
 
 	previousChangeSet := ChangeSet current.
 	testsChangeSet := ChangeSet new.
@@ -86,11 +70,8 @@ ClassRenameFixTest>>setUp [
 	super setUp
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ClassRenameFixTest>>tearDown [
+{ #category : #running }
+ClassRenameFixTest >> tearDown [
 
 	self removeEverythingInSetFromSystem: testsChangeSet.
 	ChangeSet newChanges: previousChangeSet.
@@ -101,21 +82,15 @@ ClassRenameFixTest>>tearDown [
 	super tearDown.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ClassRenameFixTest>>testRenameClassUsingClass [
+{ #category : #tests }
+ClassRenameFixTest >> testRenameClassUsingClass [
 	"self run: #testRenameClassUsingClass"
 
 	self renameClassUsing: [:class :newName | class rename: newName].
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ClassRenameFixTest>>verifyRenameEvent: aRenamedEvent [
+{ #category : #running }
+ClassRenameFixTest >> verifyRenameEvent: aRenamedEvent [
 	| renamedClass |
 	renamedClass := aRenamedEvent classRenamed.
 	self assert: (Smalltalk globals classNamed: newClassName) name = newClassName.

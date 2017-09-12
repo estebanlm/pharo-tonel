@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #OSWindowBench,
 	#superclass : #TestCase,
-	#category : #OSWindow-Tests,
-	#timestamp : ''
+	#category : #OSWindow-Tests
 }
 
-{
-	#category : #benchmarking,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowBench>>benchEventProcessing [
+{ #category : #benchmarking }
+OSWindowBench >> benchEventProcessing [
 	"self new benchEventProcessing"
 	| window sema |
 	

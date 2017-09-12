@@ -3,57 +3,36 @@ I contain common actions for inspectors and inspector elements/wrappers
 "
 Trait {
 	#name : #TInspectorActions,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TInspectorActions>>browseSelectedObject [
+{ #category : #actions }
+TInspectorActions >> browseSelectedObject [
 	self selectedObjectDo: [ :anObject | anObject browse ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TInspectorActions>>browseSelectedObjectClass [
+{ #category : #actions }
+TInspectorActions >> browseSelectedObjectClass [
 	self selectedObjectDo: [ :anObject | Smalltalk tools browser openOnClass: anObject class ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TInspectorActions>>browseSelectedObjectClassHierarchy [
+{ #category : #actions }
+TInspectorActions >> browseSelectedObjectClassHierarchy [
 	self selectedObjectDo: [ :anObject | anObject class browseHierarchy ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TInspectorActions>>exploreSelectedObject [
+{ #category : #actions }
+TInspectorActions >> exploreSelectedObject [
 	self selectedObjectDo: [ :anObject | anObject explore ].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TInspectorActions>>inspectInNewWindow: anObject [
+{ #category : #actions }
+TInspectorActions >> inspectInNewWindow: anObject [
 
 	anObject inspect
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TInspectorActions>>inspectSelectedObjectInNewWindow [
+{ #category : #actions }
+TInspectorActions >> inspectSelectedObjectInNewWindow [
 	self selectedObjectDo: [ :anObject | self inspectInNewWindow: anObject ].
 ]

@@ -4,31 +4,21 @@ This tests the OSEnvironment. The tests assume that there is at least 1 environm
 Class {
 	#name : #OSEnvironmentTest,
 	#superclass : #TestCase,
-	#category : #Tests-System,
-	#timestamp : '<historical>'
+	#category : #Tests-System
 }
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-OSEnvironmentTest>>instance [
+{ #category : #helper }
+OSEnvironmentTest >> instance [
 	^ Smalltalk os environment
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-OSEnvironmentTest>>testAsDictionary [
+{ #category : #tests }
+OSEnvironmentTest >> testAsDictionary [
 	self assert: self instance asDictionary isDictionary
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-OSEnvironmentTest>>testAssociations [
+{ #category : #tests }
+OSEnvironmentTest >> testAssociations [
 	| associations |
 	associations := self instance associations.
 	self deny: associations isEmpty.
@@ -36,11 +26,8 @@ OSEnvironmentTest>>testAssociations [
 	self assert: associations anyOne value isString.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-OSEnvironmentTest>>testAtPut [
+{ #category : #tests }
+OSEnvironmentTest >> testAtPut [
 	| key value env |
 	
 	env := self instance.
@@ -54,11 +41,8 @@ OSEnvironmentTest>>testAtPut [
 	self deny: (env includesKey: key)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-OSEnvironmentTest>>testEnvironmentFor [
+{ #category : #tests }
+OSEnvironmentTest >> testEnvironmentFor [
 	
 	| compareDictionary |
 	
@@ -80,11 +64,8 @@ OSEnvironmentTest>>testEnvironmentFor [
 			equals: envClassName ] 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-OSEnvironmentTest>>testKeys [
+{ #category : #tests }
+OSEnvironmentTest >> testKeys [
 	| env keys |
 	
 	env := self instance.
@@ -95,11 +76,8 @@ OSEnvironmentTest>>testKeys [
 	self assert: (env includesKey: keys anyOne)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-OSEnvironmentTest>>testValues [
+{ #category : #tests }
+OSEnvironmentTest >> testValues [
 	| env values |
 	
 	env := self instance.

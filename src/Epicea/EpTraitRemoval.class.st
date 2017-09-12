@@ -7,63 +7,44 @@ Class {
 	#instVars : [
 		'trait'
 	],
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 14:46'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTraitRemoval class>>trait: aTrait [
+{ #category : #'instance creation' }
+EpTraitRemoval class >> trait: aTrait [
 
 	^ self basicNew 
 		initializeWithTrait: aTrait;
 		yourself
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTraitRemoval>>accept: aVisitor [
+{ #category : #visitor }
+EpTraitRemoval >> accept: aVisitor [
 
 	^ aVisitor visitTraitRemoval: self 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTraitRemoval>>behaviorAffected [
+{ #category : #accessing }
+EpTraitRemoval >> behaviorAffected [
 
 	^ self traitRemoved
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTraitRemoval>>behaviorAffectedName [
+{ #category : #accessing }
+EpTraitRemoval >> behaviorAffectedName [
 
 	^ self traitRemoved name
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTraitRemoval>>initializeWithTrait: aTrait [
+{ #category : #initialization }
+EpTraitRemoval >> initializeWithTrait: aTrait [
 
 	self initialize.
 	trait := aTrait asEpiceaRingDefinition.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTraitRemoval>>traitRemoved [
+{ #category : #accessing }
+EpTraitRemoval >> traitRemoved [
 
 	^ trait
 ]

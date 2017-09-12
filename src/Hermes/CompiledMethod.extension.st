@@ -1,11 +1,6 @@
-Extension {
-	#name : #CompiledMethod
-}
+Extension { #name : #CompiledMethod }
 
-{
-	#category : #'*Hermes',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-CompiledMethod>>asExportedLiteral [
+{ #category : #'*Hermes' }
+CompiledMethod >> asExportedLiteral [
 	^ HEMethodLiteral for:self.
 ]

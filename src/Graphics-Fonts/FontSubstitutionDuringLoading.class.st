@@ -8,26 +8,19 @@ Class {
 		'familyName',
 		'pixelSize'
 	],
-	#category : #Graphics-Fonts,
-	#timestamp : '<historical>'
+	#category : #Graphics-Fonts
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FontSubstitutionDuringLoading class>>forFamilyName: aName pixelSize: aSize [
+{ #category : #'instance creation' }
+FontSubstitutionDuringLoading class >> forFamilyName: aName pixelSize: aSize [
 	^(self new)
 		familyName: aName;
 		pixelSize: aSize;
 		yourself.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FontSubstitutionDuringLoading>>defaultAction [
+{ #category : #accessing }
+FontSubstitutionDuringLoading >> defaultAction [
 	familyName ifNil: [ familyName := 'NoName' ].
 	pixelSize ifNil: [ pixelSize := 12 ].
 
@@ -36,51 +29,36 @@ FontSubstitutionDuringLoading>>defaultAction [
 		ifFalse: [ TextStyle default ]) fontOfSize: pixelSize.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FontSubstitutionDuringLoading>>familyName [
+{ #category : #accessing }
+FontSubstitutionDuringLoading >> familyName [
 	"Answer the value of familyName"
 
 	^ familyName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FontSubstitutionDuringLoading>>familyName: anObject [
+{ #category : #accessing }
+FontSubstitutionDuringLoading >> familyName: anObject [
 	"Set the value of familyName"
 
 	familyName := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FontSubstitutionDuringLoading>>pixelSize [
+{ #category : #accessing }
+FontSubstitutionDuringLoading >> pixelSize [
 	"Answer the value of pixelSize"
 
 	^ pixelSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FontSubstitutionDuringLoading>>pixelSize: anObject [
+{ #category : #accessing }
+FontSubstitutionDuringLoading >> pixelSize: anObject [
 	"Set the value of pixelSize"
 
 	pixelSize := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FontSubstitutionDuringLoading>>printOn: aStream [
+{ #category : #printing }
+FontSubstitutionDuringLoading >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut: $(;
 		nextPutAll: familyName;

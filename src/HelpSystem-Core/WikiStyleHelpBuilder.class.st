@@ -24,51 +24,35 @@ MyClass class>>aMethod
 Class {
 	#name : #WikiStyleHelpBuilder,
 	#superclass : #HelpBuilder,
-	#category : #HelpSystem-Core-Builders,
-	#timestamp : 'LaurentLaffont 2/13/2011 16:53'
+	#category : #HelpSystem-Core-Builders
 }
 
-{
-	#category : #'private accessing',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WikiStyleHelpBuilder class>>allHelpPragmas [
+{ #category : #'private accessing' }
+WikiStyleHelpBuilder class >> allHelpPragmas [
 	 ^(PragmaCollector filter: [:pragma | self pragmaKeywords includes: pragma keyword]) reset collected
 
 ]
 
-{
-	#category : #help,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WikiStyleHelpBuilder class>>help [
+{ #category : #help }
+WikiStyleHelpBuilder class >> help [
         <wikiStyleHelp: #'Write documentation with wiki like syntax'>
         ^ 'From WikiStyleHelpBuilder comment: ', String cr, self comment
 ]
 
-{
-	#category : #'private accessing',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WikiStyleHelpBuilder class>>pragmaKeyword [
+{ #category : #'private accessing' }
+WikiStyleHelpBuilder class >> pragmaKeyword [
 	 ^#wikiStyleHelp:
 
 ]
 
-{
-	#category : #'private accessing',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WikiStyleHelpBuilder class>>pragmaKeywords [
+{ #category : #'private accessing' }
+WikiStyleHelpBuilder class >> pragmaKeywords [
 	 ^#(wikiStyleHelp: wikiStyleHelp:syntax:)
 
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WikiStyleHelpBuilder>>build [
+{ #category : #building }
+WikiStyleHelpBuilder >> build [
 	| text extract topic |
 	topicToBuild title: 'Wiki style help' translated.
 	self class allHelpPragmas
@@ -82,19 +66,13 @@ WikiStyleHelpBuilder>>build [
 			topicToBuild addSubtopic: topic ]
 ]
 
-{
-	#category : #'private accessing',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WikiStyleHelpBuilder>>defaultSyntax [
+{ #category : #'private accessing' }
+WikiStyleHelpBuilder >> defaultSyntax [
 	^#pier
 ]
 
-{
-	#category : #'private extraction',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WikiStyleHelpBuilder>>extractHelpContentFromString: aString [
+{ #category : #'private extraction' }
+WikiStyleHelpBuilder >> extractHelpContentFromString: aString [
 	| start stop |
 	start := aString findString: self helpStartMarker.
 	start := start = 0
@@ -107,11 +85,8 @@ WikiStyleHelpBuilder>>extractHelpContentFromString: aString [
 	^ (aString copyFrom: start to: stop) trimBoth
 ]
 
-{
-	#category : #'private accessing',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WikiStyleHelpBuilder>>helpContentFromString: aString [
+{ #category : #'private accessing' }
+WikiStyleHelpBuilder >> helpContentFromString: aString [
 	| start stop |
 	start := aString findString: self helpStartMarker.
 	start := start = 0
@@ -124,35 +99,23 @@ WikiStyleHelpBuilder>>helpContentFromString: aString [
 	^ (aString copyFrom: start to: stop) trimBoth
 ]
 
-{
-	#category : #'private extraction',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WikiStyleHelpBuilder>>helpStartMarker [
+{ #category : #'private extraction' }
+WikiStyleHelpBuilder >> helpStartMarker [
 	^  '<', self helpTag, '>'
 ]
 
-{
-	#category : #'private extraction',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WikiStyleHelpBuilder>>helpStopMarker [
+{ #category : #'private extraction' }
+WikiStyleHelpBuilder >> helpStopMarker [
 	^  '</', self helpTag, '>'
 ]
 
-{
-	#category : #'private extraction',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WikiStyleHelpBuilder>>helpTag [
+{ #category : #'private extraction' }
+WikiStyleHelpBuilder >> helpTag [
 	^  #help
 ]
 
-{
-	#category : #'private conversion',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WikiStyleHelpBuilder>>helpTopicFromFormattedString: aString title: aTitle [
+{ #category : #'private conversion' }
+WikiStyleHelpBuilder >> helpTopicFromFormattedString: aString title: aTitle [
 	| helpString currentLevel section topicStack topic |
 	helpString := aString.
 	topicStack := Stack new.
@@ -194,18 +157,12 @@ WikiStyleHelpBuilder>>helpTopicFromFormattedString: aString title: aTitle [
 
 ]
 
-{
-	#category : #'private accessing',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WikiStyleHelpBuilder>>sectionStartChar [
+{ #category : #'private accessing' }
+WikiStyleHelpBuilder >> sectionStartChar [
 	^ $!
 ]
 
-{
-	#category : #'private accessing',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WikiStyleHelpBuilder>>supportedSyntaxes [
+{ #category : #'private accessing' }
+WikiStyleHelpBuilder >> supportedSyntaxes [
 	^#(pier) 
 ]

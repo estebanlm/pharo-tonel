@@ -15,33 +15,23 @@ Class {
 	#pools : [
 		'AthensCairoDefs'
 	],
-	#category : #Athens-Cairo,
-	#timestamp : 'IgorStasenko 12/20/2011 15:58'
+	#category : #Athens-Cairo
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas class>>asExternalTypeOn: generator [
+{ #category : #converting }
+AthensCairoCanvas class >> asExternalTypeOn: generator [
 	"use handle ivar to hold my instance (cairo_t)"
 	^ FFIExternalObjectType objectClass: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas class>>on: cairoSurface [
+{ #category : #private }
+AthensCairoCanvas class >> on: cairoSurface [
 
 	^ (self primCreate: cairoSurface) surface: cairoSurface
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas class>>primCreate: cairoSurface [
+{ #category : #primitives }
+AthensCairoCanvas class >> primCreate: cairoSurface [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
@@ -49,11 +39,8 @@ AthensCairoCanvas class>>primCreate: cairoSurface [
 		AthensCairoCanvas cairo_create (AthensCairoSurface cairoSurface) )
 ]
 
-{
-	#category : #clipping,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>clipBy: aRectangle during: aBlock [
+{ #category : #clipping }
+AthensCairoCanvas >> clipBy: aRectangle during: aBlock [
 	| oldClip newClip |
 
 	oldClip := currentClipRect.
@@ -73,30 +60,21 @@ AthensCairoCanvas>>clipBy: aRectangle during: aBlock [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>clipRect [
+{ #category : #accessing }
+AthensCairoCanvas >> clipRect [
 	^ currentClipRect ifNil: [ 0 @ 0 extent: self surface extent ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>destroy [
+{ #category : #private }
+AthensCairoCanvas >> destroy [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^self nbCall: #( 	void cairo_destroy (self) )
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>draw [
+{ #category : #drawing }
+AthensCairoCanvas >> draw [
 	"Fill the shape (anObject) using currently selected paint
 	an object should implement double-dispatch to currently selected paint"
 	
@@ -108,11 +86,8 @@ AthensCairoCanvas>>draw [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>drawWithAlpha: alpha [
+{ #category : #drawing }
+AthensCairoCanvas >> drawWithAlpha: alpha [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
@@ -121,22 +96,16 @@ AthensCairoCanvas>>drawWithAlpha: alpha [
 	)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>fill [
+{ #category : #private }
+AthensCairoCanvas >> fill [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^ self nbCall: #(void cairo_fill (self))
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>getCurrentPoint [
+{ #category : #private }
+AthensCairoCanvas >> getCurrentPoint [
 
 	| x y |
 	"since we use pointers to floats we must create a copy of original values to not scratch them"
@@ -147,11 +116,8 @@ AthensCairoCanvas>>getCurrentPoint [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>getScaledFont [
+{ #category : #private }
+AthensCairoCanvas >> getScaledFont [
 	"Returns the current scaled font. This object is owned by cairo. To keep a reference to it, you must call cairo_scaled_font_reference().
  "
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
@@ -159,28 +125,19 @@ AthensCairoCanvas>>getScaledFont [
 	^ self nbCall: #( CairoScaledFont cairo_get_scaled_font ( self ))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>handle [
+{ #category : #accessing }
+AthensCairoCanvas >> handle [
 	^ handle value
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>initializeWithSurface: anAthensSurface	 [
+{ #category : #initialize-release }
+AthensCairoCanvas >> initializeWithSurface: anAthensSurface [	
 	super initializeWithSurface: anAthensSurface.
 	self paintMode default.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>loadPath: aPath [
+{ #category : #private }
+AthensCairoCanvas >> loadPath: aPath [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	 
@@ -188,11 +145,8 @@ AthensCairoCanvas>>loadPath: aPath [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>moveToX: x Y: y [
+{ #category : #private }
+AthensCairoCanvas >> moveToX: x Y: y [
 	" move command always starts a new contour "
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
@@ -201,71 +155,50 @@ AthensCairoCanvas>>moveToX: x Y: y [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>newPath [
+{ #category : #private }
+AthensCairoCanvas >> newPath [
  
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
 	^ self nbCall: #( void cairo_new_path ( self ) )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>paintTransform [
+{ #category : #accessing }
+AthensCairoCanvas >> paintTransform [
 	^ paintTransform
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>pathTransform [
+{ #category : #accessing }
+AthensCairoCanvas >> pathTransform [
 	^ pathTransform
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>primClip [
+{ #category : #private }
+AthensCairoCanvas >> primClip [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^ self nbCall: #(void cairo_clip (self))
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>primGetCurrentPointX: x Y: y [
+{ #category : #private }
+AthensCairoCanvas >> primGetCurrentPointX: x Y: y [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
 	^self nbCall: #( void cairo_get_current_point (self, double * x, double * y))
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>primGetSource [
+{ #category : #private }
+AthensCairoCanvas >> primGetSource [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
 	self nbCall: #( cairo_pattern_t cairo_get_source ( self ) )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>primPaint [
+{ #category : #private }
+AthensCairoCanvas >> primPaint [
 	"A drawing operator that paints the current source everywhere within the current clip region."
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
@@ -273,11 +206,8 @@ AthensCairoCanvas>>primPaint [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>primResetDashes: anOffset [
+{ #category : #private }
+AthensCairoCanvas >> primResetDashes: anOffset [
 "	void                cairo_set_dash                      (cairo_t *cr,
                                                          double *dashes,
                                                          int num_dashes,
@@ -292,11 +222,8 @@ AthensCairoCanvas>>primResetDashes: anOffset [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>primSetDashesLengths: dashesLengths count: dashesCount offset: anOffset [
+{ #category : #private }
+AthensCairoCanvas >> primSetDashesLengths: dashesLengths count: dashesCount offset: anOffset [
 	
 	self ffiCall: #(void cairo_set_dash (self,
 			double * dashesLengths,
@@ -304,48 +231,33 @@ AthensCairoCanvas>>primSetDashesLengths: dashesLengths count: dashesCount offset
 			double anOffset ) )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>primSetLineCap: capStyle [
+{ #category : #private }
+AthensCairoCanvas >> primSetLineCap: capStyle [
 	
 	^ self ffiCall: #(void cairo_set_line_cap ( self, cairo_line_cap_t capStyle ) )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>primSetLineJoin: joinStyle [
+{ #category : #private }
+AthensCairoCanvas >> primSetLineJoin: joinStyle [
 
 	self ffiCall: #(void cairo_set_line_join ( self, cairo_line_join_t joinStyle) )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>primSetLineWidth: width [
+{ #category : #private }
+AthensCairoCanvas >> primSetLineWidth: width [
 	
 	self ffiCall: #(void cairo_set_line_width (self, double width) )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>primSetSource: aPattern [
+{ #category : #private }
+AthensCairoCanvas >> primSetSource: aPattern [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^ self nbCall: #(void cairo_set_source ( self, AthensCairoPatternPaint aPattern))
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>rectangleX: x y: y width: aWidth height: aHeight [
+{ #category : #private }
+AthensCairoCanvas >> rectangleX: x y: y width: aWidth height: aHeight [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^ self nbCall: #(void cairo_rectangle (self,
@@ -354,30 +266,21 @@ AthensCairoCanvas>>rectangleX: x y: y width: aWidth height: aHeight [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>resetClip [
+{ #category : #private }
+AthensCairoCanvas >> resetClip [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^ self nbCall: #(void cairo_reset_clip (self))
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>resetDash [
+{ #category : #private }
+AthensCairoCanvas >> resetDash [
 	self primResetDashes: 0.0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>setAA: antiAlias [
+{ #category : #private }
+AthensCairoCanvas >> setAA: antiAlias [
 
 	"cairo_set_antialias ()
 
@@ -395,11 +298,8 @@ Note that this option does not affect text rendering, instead see cairo_font_opt
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>setClipRect: aRectOrNil [
+{ #category : #private }
+AthensCairoCanvas >> setClipRect: aRectOrNil [
 	
 
 	aRectOrNil 
@@ -414,11 +314,8 @@ AthensCairoCanvas>>setClipRect: aRectOrNil [
 			]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>setFontMatrix: aMatrix [
+{ #category : #private }
+AthensCairoCanvas >> setFontMatrix: aMatrix [
 	"
 void                cairo_set_font_matrix               (cairo_t *cr,
                                                          const cairo_matrix_t *matrix);
@@ -429,11 +326,8 @@ void                cairo_set_font_matrix               (cairo_t *cr,
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>setFontSize: aSize [
+{ #category : #private }
+AthensCairoCanvas >> setFontSize: aSize [
 	"
 	void                cairo_set_font_size                 (cairo_t *cr,
                                                          double size);
@@ -444,11 +338,8 @@ AthensCairoCanvas>>setFontSize: aSize [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>setPathMatrix [
+{ #category : #private }
+AthensCairoCanvas >> setPathMatrix [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^ self nbCall: #(void cairo_set_matrix (self,
@@ -456,11 +347,8 @@ AthensCairoCanvas>>setPathMatrix [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>setPathMatrix: aMatrix [
+{ #category : #private }
+AthensCairoCanvas >> setPathMatrix: aMatrix [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^ self nbCall: #(void cairo_set_matrix (self,
@@ -468,11 +356,8 @@ AthensCairoCanvas>>setPathMatrix: aMatrix [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>setScaledFont: aFont [
+{ #category : #private }
+AthensCairoCanvas >> setScaledFont: aFont [
 	"Replaces the current font face, font matrix, and font options in the cairo_t with those of the cairo_scaled_font_t. Except for some translation, the current CTM of the cairo_t should be the same as that of the cairo_scaled_font_t, which can be accessed using cairo_scaled_font_get_ctm().
  "
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
@@ -481,11 +366,8 @@ AthensCairoCanvas>>setScaledFont: aFont [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>setSourceR: red g: green b: blue a: alpha [
+{ #category : #private }
+AthensCairoCanvas >> setSourceR: red g: green b: blue a: alpha [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
@@ -497,11 +379,8 @@ AthensCairoCanvas>>setSourceR: red g: green b: blue a: alpha [
 			double alpha) )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>showGlyphs: glyphs size: numGlyphs [
+{ #category : #private }
+AthensCairoCanvas >> showGlyphs: glyphs size: numGlyphs [
 
 	"A drawing operator that generates the shape from a string of UTF-8 characters, rendered according to the current font_face, font_size (font_matrix), and font_options. "
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
@@ -514,11 +393,8 @@ AthensCairoCanvas>>showGlyphs: glyphs size: numGlyphs [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>showText: anUTF8String [
+{ #category : #private }
+AthensCairoCanvas >> showText: anUTF8String [
 	"A drawing operator that generates the shape from a string of UTF-8 characters, rendered according to the current font_face, font_size (font_matrix), and font_options. "
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
@@ -526,22 +402,16 @@ AthensCairoCanvas>>showText: anUTF8String [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>stroke [
+{ #category : #private }
+AthensCairoCanvas >> stroke [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^ self nbCall: #(void cairo_stroke (self))
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>surface: aCairoSurface [
+{ #category : #accessing }
+AthensCairoCanvas >> surface: aCairoSurface [
 	
 	"initialize for given surface"
 	surface := aCairoSurface.
@@ -553,11 +423,8 @@ AthensCairoCanvas>>surface: aCairoSurface [
 	self setAA: CAIRO_ANTIALIAS_SUBPIXEL.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>text: utf8String extents: extentsObj  [
+{ #category : #private }
+AthensCairoCanvas >> text: utf8String extents: extentsObj [ 
 "cairo_text_extents ()
 
 void                cairo_text_extents                  (cairo_t *cr,
@@ -570,19 +437,13 @@ void                cairo_text_extents                  (cairo_t *cr,
 	
 ]
 
-{
-	#category : #'path segments visitor',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>visitCloseSegment: closeSegment [
+{ #category : #'path segments visitor' }
+AthensCairoCanvas >> visitCloseSegment: closeSegment [
 	self closePath
 ]
 
-{
-	#category : #'path segments visitor',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>visitCubicSegment: anAthensCubicSegment [
+{ #category : #'path segments visitor' }
+AthensCairoCanvas >> visitCubicSegment: anAthensCubicSegment [
 	|  destination controlPoint controlPoint2 |
 	destination := anAthensCubicSegment to.
 	controlPoint := anAthensCubicSegment via1.
@@ -595,28 +456,19 @@ AthensCairoCanvas>>visitCubicSegment: anAthensCubicSegment [
 
 ]
 
-{
-	#category : #'path segments visitor',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>visitLineSegment: line [
+{ #category : #'path segments visitor' }
+AthensCairoCanvas >> visitLineSegment: line [
 
 	^ self lineToX: line endPoint x Y: line endPoint y
 ]
 
-{
-	#category : #'path segments visitor',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>visitMoveSegment: mov  [
+{ #category : #'path segments visitor' }
+AthensCairoCanvas >> visitMoveSegment: mov [ 
 	^ self moveToX: mov endPoint x Y: mov endPoint y
 ]
 
-{
-	#category : #'path segments visitor',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoCanvas>>visitQuadSegment: anAthensCubicSegment [
+{ #category : #'path segments visitor' }
+AthensCairoCanvas >> visitQuadSegment: anAthensCubicSegment [
 	| destination controlPoint |
 	destination := anAthensCubicSegment to.
 	controlPoint := anAthensCubicSegment via.

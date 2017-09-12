@@ -8,15 +8,11 @@ Class {
 		'before',
 		'after'
 	],
-	#category : #Renraku-Rules,
-	#timestamp : 'YuriyTymchuk 3/2/2016 10:46'
+	#category : #Renraku-Rules
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRuleSequence class>>before: beforeSymbol after: afterSymbol [
+{ #category : #'instance creation' }
+ReInvocationSequenceRuleSequence class >> before: beforeSymbol after: afterSymbol [
 
 	^ self new
 		initializeBefore: beforeSymbol
@@ -24,72 +20,48 @@ ReInvocationSequenceRuleSequence class>>before: beforeSymbol after: afterSymbol 
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRuleSequence>>after [
+{ #category : #accessing }
+ReInvocationSequenceRuleSequence >> after [
 	^ after
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRuleSequence>>afterDescriptionString [
+{ #category : #printing }
+ReInvocationSequenceRuleSequence >> afterDescriptionString [
 
 	^ self descriptionStringFor: after
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRuleSequence>>afterMatches: aSymbol [
+{ #category : #accessing }
+ReInvocationSequenceRuleSequence >> afterMatches: aSymbol [
 	^ after includes: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRuleSequence>>before [
+{ #category : #accessing }
+ReInvocationSequenceRuleSequence >> before [
 	^ before
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRuleSequence>>beforeDescriptionString [
+{ #category : #printing }
+ReInvocationSequenceRuleSequence >> beforeDescriptionString [
 
 	^ self descriptionStringFor: before
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRuleSequence>>beforeMatches: aSymbol [
+{ #category : #accessing }
+ReInvocationSequenceRuleSequence >> beforeMatches: aSymbol [
 	^ before includes: aSymbol
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRuleSequence>>descriptionStringFor: aSet [
+{ #category : #printing }
+ReInvocationSequenceRuleSequence >> descriptionStringFor: aSet [
 
 	^ aSet size = 1
 		ifTrue: [ '#', aSet anyOne, ' message' ]
 		ifFalse: [ 'any one of #', (aSet joinUsing: ', #'), ' messages' ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRuleSequence>>initializeBefore: beforeSymols after: afterSymbols [
+{ #category : #initialization }
+ReInvocationSequenceRuleSequence >> initializeBefore: beforeSymols after: afterSymbols [
 
 	before :=
 		 (beforeSymols isCollection and:

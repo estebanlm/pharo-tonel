@@ -4,42 +4,29 @@ SUnit tests for pluggable dictionaries
 Class {
 	#name : #PluggableDictionaryTest,
 	#superclass : #DictionaryTest,
-	#category : #Collections-Tests-Unordered,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:21'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #'building suites',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-PluggableDictionaryTest class>>classToBeTested [
+{ #category : #'building suites' }
+PluggableDictionaryTest class >> classToBeTested [
 
 ^ IdentitySet
 ]
 
-{
-	#category : #'building suites',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-PluggableDictionaryTest class>>shouldInheritSelectors [
+{ #category : #'building suites' }
+PluggableDictionaryTest class >> shouldInheritSelectors [
 
 ^true
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-PluggableDictionaryTest>>classToBeTested [
+{ #category : #requirements }
+PluggableDictionaryTest >> classToBeTested [
 
 ^ PluggableDictionary
 ]
 
-{
-	#category : #'tests - copy - clone',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-PluggableDictionaryTest>>testCopyEmpty [
+{ #category : #'tests - copy - clone' }
+PluggableDictionaryTest >> testCopyEmpty [
 	| pluggableDict copiedPluggableDict |
 
 	super testCopyEmpty.
@@ -53,11 +40,8 @@ PluggableDictionaryTest>>testCopyEmpty [
 	self assert: copiedPluggableDict hashBlock == pluggableDict hashBlock.
 ]
 
-{
-	#category : #'test - comparing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-PluggableDictionaryTest>>testEqualBlock [
+{ #category : #'test - comparing' }
+PluggableDictionaryTest >> testEqualBlock [
 	| pluggableDict assoc |
 
 	pluggableDict := self emptyDict.
@@ -79,11 +63,8 @@ PluggableDictionaryTest>>testEqualBlock [
 	self assert: (pluggableDict includesAssociation: assoc).
 ]
 
-{
-	#category : #'test - comparing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-PluggableDictionaryTest>>testEqualBlockEquality [
+{ #category : #'test - comparing' }
+PluggableDictionaryTest >> testEqualBlockEquality [
 	| pluggableDict pluggableDict2 equalBlock |
 
 	pluggableDict := self nonEmptyDict.
@@ -99,11 +80,8 @@ PluggableDictionaryTest>>testEqualBlockEquality [
 	self assert: pluggableDict2 = pluggableDict.
 ]
 
-{
-	#category : #'test - comparing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-PluggableDictionaryTest>>testHashBlock [
+{ #category : #'test - comparing' }
+PluggableDictionaryTest >> testHashBlock [
 	| pluggableDict keys |
 
 	pluggableDict := self nonEmptyDict.
@@ -115,11 +93,8 @@ PluggableDictionaryTest>>testHashBlock [
 	self deny: (pluggableDict includesKey: self keyNotIn).
 ]
 
-{
-	#category : #'test - comparing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-PluggableDictionaryTest>>testHashBlockEquality [
+{ #category : #'test - comparing' }
+PluggableDictionaryTest >> testHashBlockEquality [
 	| pluggableDict pluggableDict2 hashBlock |
 
 	pluggableDict := self nonEmptyDict.

@@ -22,45 +22,32 @@ Class {
 	#instVars : [
 		'next'
 	],
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:14'
+	#category : #Regex-Core
 }
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmLink>>matchAgainst: aMatcher [
+{ #category : #matching }
+RxmLink >> matchAgainst: aMatcher [
 	"If a link does not match the contents of the matcher's stream,
 	answer false. Otherwise, let the next matcher in the chain match."
 
 	^next matchAgainst: aMatcher
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmLink>>next [
+{ #category : #accessing }
+RxmLink >> next [
 	
 	^next
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmLink>>next: aLink [
+{ #category : #accessing }
+RxmLink >> next: aLink [
 	"Set the next link, either an RxmLink or an RxmTerminator."
 
 	next := aLink
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmLink>>pointTailTo: anRxmLink [
+{ #category : #building }
+RxmLink >> pointTailTo: anRxmLink [
 	"Propagate this message along the chain of links.
 	Point `next' reference of the last link to <anRxmLink>.
 	If the chain is already terminated, blow up."
@@ -70,20 +57,14 @@ RxmLink>>pointTailTo: anRxmLink [
 		ifFalse: [next pointTailTo: anRxmLink]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmLink>>postCopy [
+{ #category : #copying }
+RxmLink >> postCopy [
 	super postCopy.
 	next := next copy
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmLink>>terminateWith: aTerminator [
+{ #category : #building }
+RxmLink >> terminateWith: aTerminator [
 	"Propagate this message along the chain of links, and
 	make aTerminator the `next' link of the last link in the chain.
 	If the chain is already reminated with the same terminator, 

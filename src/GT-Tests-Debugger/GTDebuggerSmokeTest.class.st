@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTDebuggerSmokeTest,
 	#superclass : #TestCase,
@@ -9,23 +6,16 @@ Class {
 		'window',
 		'debugger'
 	],
-	#category : #GT-Tests-Debugger,
-	#timestamp : ''
+	#category : #GT-Tests-Debugger
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTDebuggerSmokeTest class>>isAbstract [
+{ #category : #testing }
+GTDebuggerSmokeTest class >> isAbstract [
 	^ self name = #GTDebuggerSmokeTest
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTDebuggerSmokeTest>>assertDebuggerClosing [
+{ #category : #asserting }
+GTDebuggerSmokeTest >> assertDebuggerClosing [
 	
  	debugger close.
 
@@ -34,11 +24,8 @@ GTDebuggerSmokeTest>>assertDebuggerClosing [
 	self assert: debugger session interruptedProcess equals: nil.
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTDebuggerSmokeTest>>assertDebuggerInitialization [
+{ #category : #asserting }
+GTDebuggerSmokeTest >> assertDebuggerInitialization [
 	
 	self assert: (debugger class handlesContext: session interruptedContext).
 	
@@ -50,11 +37,8 @@ GTDebuggerSmokeTest>>assertDebuggerInitialization [
 	
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTDebuggerSmokeTest>>assertDebuggerInitializationForContext: aContext andStepBlock: aBlock [
+{ #category : #asserting }
+GTDebuggerSmokeTest >> assertDebuggerInitializationForContext: aContext andStepBlock: aBlock [
 
 	self 
 		initializeSessionForContext: aContext
@@ -63,19 +47,13 @@ GTDebuggerSmokeTest>>assertDebuggerInitializationForContext: aContext andStepBlo
 	self assertDebuggerInitialization.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTDebuggerSmokeTest>>debuggerToTest [
+{ #category : #accessing }
+GTDebuggerSmokeTest >> debuggerToTest [
 	self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTDebuggerSmokeTest>>initializeSessionForContext: aContext withStepBlock: aBlock [
+{ #category : #initialization }
+GTDebuggerSmokeTest >> initializeSessionForContext: aContext withStepBlock: aBlock [
 	| process |
 
 	process := Process 
@@ -86,19 +64,13 @@ GTDebuggerSmokeTest>>initializeSessionForContext: aContext withStepBlock: aBlock
 	session := self debuggerToTest spanNewSessionLabeled:  'test session' forContext: process suspendedContext fromProcess: process
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTDebuggerSmokeTest>>setUp [
+{ #category : #running }
+GTDebuggerSmokeTest >> setUp [
 	debugger := self debuggerToTest new.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTDebuggerSmokeTest>>tearDown  [
+{ #category : #running }
+GTDebuggerSmokeTest >> tearDown [ 
 	debugger ifNotNil: [ debugger close].
 	window := nil.
 	debugger := nil.

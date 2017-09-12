@@ -24,26 +24,19 @@ Class {
 		'labelHolder',
 		'actionWhenDeactivatedHolder'
 	],
-	#category : #Spec-Core-Widgets-Support,
-	#timestamp : 'Spirita 6/29/2016 11:11'
+	#category : #Spec-Core-Widgets-Support
 }
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>activationAction: aBlock [
+{ #category : #api }
+AbstractFormButtonModel >> activationAction: aBlock [
 	"<api: #block getter: #activationAction registration: #whenActivationActionChanged:>"
 	"This method is used to set the action to perform when I am activated"
 	
 	actionWhenActivatedHolder value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>click [
+{ #category : #api }
+AbstractFormButtonModel >> click [
 	"<api: #do>"
 	"Simulate a click on the checkbox
 	Used when the checkboc is a list item"
@@ -51,22 +44,16 @@ AbstractFormButtonModel>>click [
 	self toggleState
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>deactivationAction: aBlock [
+{ #category : #'as yet unclassified' }
+AbstractFormButtonModel >> deactivationAction: aBlock [
 	"<api: #block getter: #desactivationAction registration: #whenDeactivationActionChanged:>"
 	"This method is used to set the action to perform when I am deactivated"
 	
 	actionWhenDeactivatedHolder value: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>initialize [
+{ #category : #initialization }
+AbstractFormButtonModel >> initialize [
 
 	super initialize.
 	actionWhenActivatedHolder := [] asValueHolder.
@@ -85,62 +72,44 @@ AbstractFormButtonModel>>initialize [
 	labelHolder whenChangedDo: [:label | self changed: { #label: . label } ].
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>label [
+{ #category : #api }
+AbstractFormButtonModel >> label [
 	"<api: #inspect>"
 	^ labelHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>label: aString [
+{ #category : #api }
+AbstractFormButtonModel >> label: aString [
 	"<api: #string getter: #label>"
 	"Set the label of the checkbox"
 
 	labelHolder value: aString
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>labelClickable [
+{ #category : #api }
+AbstractFormButtonModel >> labelClickable [
 "	<api: #inspect>"
 	"Return true if the label can be clicked to select the checkbox"
 
 	^ labelClickableHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>labelClickable: aBoolean [
+{ #category : #api }
+AbstractFormButtonModel >> labelClickable: aBoolean [
 	"<api: #boolean getter: #labelClickable registration: #whenLabelClickableChanged:>"
 	"Set if the label can be clicked to select the checkbox"
 	
 	labelClickableHolder value: aBoolean
 ]
 
-{
-	#category : #api-valueHolder,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>labelHolder [
+{ #category : #api-valueHolder }
+AbstractFormButtonModel >> labelHolder [
 
 	^ labelHolder
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>state [
+{ #category : #api }
+AbstractFormButtonModel >> state [
 	"<api: #inspect>"
 
 	"Return the current state of the form button"
@@ -148,80 +117,56 @@ AbstractFormButtonModel>>state [
 	^ stateHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>state: aBoolean [
+{ #category : #api }
+AbstractFormButtonModel >> state: aBoolean [
 	"Set if the checkbox is activated or not"
 	"<api: #boolean getter: #state>"
 	stateHolder value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>toggleState [
+{ #category : #api }
+AbstractFormButtonModel >> toggleState [
 	"<api: #do>"
 	"Toogle the current state of the checkbox"
 
 	self state: self state not
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>whenActivatedDo: aBlock [
+{ #category : #api-events }
+AbstractFormButtonModel >> whenActivatedDo: aBlock [
 	"This method is used to propagate the event that I have been activated" 
 	
 	stateHolder whenChangedDo: [:bool | bool ifTrue: aBlock ]
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>whenActivationActionChanged: aBlock [
+{ #category : #api-events }
+AbstractFormButtonModel >> whenActivationActionChanged: aBlock [
 	"A block performed when the activation action changed"
 	actionWhenActivatedHolder whenChangedDo: aBlock 
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>whenChangedDo: aBlock [
+{ #category : #api-events }
+AbstractFormButtonModel >> whenChangedDo: aBlock [
 	"This method is used to propagate the event that I have changed"
 	
 	stateHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>whenDeactivatedDo: aBlock [
+{ #category : #'as yet unclassified' }
+AbstractFormButtonModel >> whenDeactivatedDo: aBlock [
 	"This method is used to propagate the event that I have been deactivated"
 	
 	stateHolder whenChangedDo: [:bool | bool ifFalse: aBlock ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>whenDeactivationActionChanged: aBlock [
+{ #category : #'as yet unclassified' }
+AbstractFormButtonModel >> whenDeactivationActionChanged: aBlock [
 	"A block performed when the deactivation action changed"
 	actionWhenDeactivatedHolder whenChangedDo:  aBlock 
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractFormButtonModel>>whenLabelClickableChanged: aBlock [
+{ #category : #api-events }
+AbstractFormButtonModel >> whenLabelClickableChanged: aBlock [
 	"A block performed when the label click is activated or descativated"
 	
 	labelClickableHolder whenChangedDo:  aBlock 

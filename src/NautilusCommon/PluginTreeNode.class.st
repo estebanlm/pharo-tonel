@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'selectedPosition'
 	],
-	#category : #NautilusCommon-Plugin-Manager,
-	#timestamp : '<historical>'
+	#category : #NautilusCommon-Plugin-Manager
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PluginTreeNode>>buildDropListFor: aSelector [
+{ #category : #private }
+PluginTreeNode >> buildDropListFor: aSelector [
 
 	| dropList |
 	dropList :=  self theme
@@ -33,53 +29,38 @@ PluginTreeNode>>buildDropListFor: aSelector [
 	^ dropList
 ]
 
-{
-	#category : #morphs,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PluginTreeNode>>firstMorph [
+{ #category : #morphs }
+PluginTreeNode >> firstMorph [
 
 	^ self item 
 		ifNotNil: [:it | it first pluginName asStringMorph ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PluginTreeNode>>getPositionsList [
+{ #category : #private }
+PluginTreeNode >> getPositionsList [
 
 	^ self item 
 		ifNil: [ {} ]
 		ifNotNil: [:it | it first possiblePositions ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PluginTreeNode>>getSelectedPosition [
+{ #category : #private }
+PluginTreeNode >> getSelectedPosition [
 
 	^ selectedPosition ifNil: [| it |
 		it := self item ifNotNil: [ self item second ].
 		selectedPosition := self getPositionsList indexOf: it ]
 ]
 
-{
-	#category : #morphs,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PluginTreeNode>>secondMorph [
+{ #category : #morphs }
+PluginTreeNode >> secondMorph [
 	
 	^ self item 
 		ifNotNil: [:it |	self buildDropListFor: it second ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PluginTreeNode>>setSelectedPosition: anIndex [
+{ #category : #private }
+PluginTreeNode >> setSelectedPosition: anIndex [
 
 	| position |
 	selectedPosition := anIndex.

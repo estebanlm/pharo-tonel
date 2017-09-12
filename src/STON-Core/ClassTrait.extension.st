@@ -1,20 +1,12 @@
-Extension {
-	#name : #ClassTrait
-}
+Extension { #name : #ClassTrait }
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-ClassTrait>>stonName [
+{ #category : #'*ston-core' }
+ClassTrait >> stonName [
 	^ #Class
 ]
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-ClassTrait>>stonOn: stonWriter [
+{ #category : #'*ston-core' }
+ClassTrait >> stonOn: stonWriter [
 	stonWriter
 		writeObject: self 
 		listSingleton: self theNonMetaClass name asSymbol

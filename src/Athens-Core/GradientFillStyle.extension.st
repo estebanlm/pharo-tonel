@@ -1,12 +1,7 @@
-Extension {
-	#name : #GradientFillStyle
-}
+Extension { #name : #GradientFillStyle }
 
-{
-	#category : #'*Athens-Core',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-GradientFillStyle>>asAthensPaintOn: anAthensCanvas [
+{ #category : #'*Athens-Core' }
+GradientFillStyle >> asAthensPaintOn: anAthensCanvas [
 
 	^ AthensMorphicGradientPaint new gradient: self.
 	"^ radial ifTrue: [

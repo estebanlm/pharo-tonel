@@ -9,144 +9,95 @@ Class {
 	#instVars : [
 		'modifiers'
 	],
-	#category : #Keymapping-KeyCombinations,
-	#timestamp : '<historical>'
+	#category : #Keymapping-KeyCombinations
 }
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMComposedModifier>>+ modified [
+{ #category : #combining }
+KMComposedModifier >> + modified [
 	^ modified asKeyCombination modifiedBy: self
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMComposedModifier>>= aShortcut [
+{ #category : #comparing }
+KMComposedModifier >> = aShortcut [
 	(aShortcut isKindOf: self class)
 		ifFalse: [^ false].
 	^ (aShortcut modifiers includesAll: modifiers) and: [ modifiers includesAll: aShortcut modifiers ]
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMComposedModifier>>alt [
+{ #category : #combining }
+KMComposedModifier >> alt [
 	modifiers add: KMModifier alt
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMComposedModifier>>command [
+{ #category : #combining }
+KMComposedModifier >> command [
 	modifiers add: KMModifier command
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMComposedModifier>>control [
+{ #category : #combining }
+KMComposedModifier >> control [
 	modifiers add: KMModifier ctrl
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMComposedModifier>>ctrl [
+{ #category : #combining }
+KMComposedModifier >> ctrl [
 	self control
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMComposedModifier>>hash [
+{ #category : #comparing }
+KMComposedModifier >> hash [
 	^ modifiers hash
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMComposedModifier>>initialize [
+{ #category : #initialization }
+KMComposedModifier >> initialize [
 	super initialize.
 	modifiers := OrderedCollection new.
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMComposedModifier>>matchesEvent: aKeyboardEvent [
+{ #category : #matching }
+KMComposedModifier >> matchesEvent: aKeyboardEvent [
 	^ modifiers allSatisfy: [:modifier|
 		modifier matchesEvent: aKeyboardEvent]
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMComposedModifier>>meta [
+{ #category : #combining }
+KMComposedModifier >> meta [
 	modifiers add: KMModifier meta
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMComposedModifier>>modifiedBy: modifier [
+{ #category : #combining }
+KMComposedModifier >> modifiedBy: modifier [
 	modifiers add: modifier.
 	self updateIdentifier.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMComposedModifier>>modifiers [
+{ #category : #accessing }
+KMComposedModifier >> modifiers [
 	^ modifiers
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMComposedModifier>>printOn: aStream [
+{ #category : #printing }
+KMComposedModifier >> printOn: aStream [
 	modifiers
 		do: [ :modifier| modifier printOn: aStream ]
 		separatedBy: [ aStream << ' + ' ].
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMComposedModifier>>shift [
+{ #category : #combining }
+KMComposedModifier >> shift [
 	modifiers add: KMModifier shift
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMComposedModifier>>symbol [
+{ #category : #printing }
+KMComposedModifier >> symbol [
 	^ String streamContents: [ :stream | 
 		self modifiers do: [ :e | 
 			stream << e symbol ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMComposedModifier>>updateIdentifier [
+{ #category : #accessing }
+KMComposedModifier >> updateIdentifier [
 	identifier := String streamContents: [ :aStream|
 			modifiers do: [ :modifier| 
 				aStream << modifier identifier]].

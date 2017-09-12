@@ -30,47 +30,34 @@ Class {
 	#pools : [
 		'EventSensorConstants'
 	],
-	#category : #System-VMEvents,
-	#timestamp : 'michael.rueger 4/22/2009 11:59'
+	#category : #System-VMEvents
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor class>>default [
+{ #category : #public }
+InputEventSensor class >> default [
 	"Answer the default system InputEventSensor, Sensor."
 
 	^ Sensor
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor class>>defaultCrossPlatformKeys [
+{ #category : #'class initialization' }
+InputEventSensor class >> defaultCrossPlatformKeys [
 	"Answer a list of key letters that are used for common editing operations
 	on different platforms."
 	^{ $c . $x . $v . $a . $s . $f . $g . $z }
 
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor class>>installEventSensorFramework [
+{ #category : #'class initialization' }
+InputEventSensor class >> installEventSensorFramework [
 	"Installs the new sensor framework."
 	"InputEventSensor installEventSensorFramework"
 
 	self installEventSensorFramework: InputEventFetcher
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor class>>installEventSensorFramework: fetcherClass [
+{ #category : #'class initialization' }
+InputEventSensor class >> installEventSensorFramework: fetcherClass [
 	"Installs the new sensor framework."
 
 	| newSensor |
@@ -98,11 +85,8 @@ InputEventSensor class>>installEventSensorFramework: fetcherClass [
 	"Project spawnNewProcessAndTerminateOld: true"
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor class>>installMouseDecodeTable [
+{ #category : #'class initialization' }
+InputEventSensor class >> installMouseDecodeTable [
 	"Create a decode table that swaps the lowest-order 2 bits"
 	ButtonDecodeTable := self swapMouseButtons
 				ifTrue: [ByteArray withAll:
@@ -113,56 +97,38 @@ InputEventSensor class>>installMouseDecodeTable [
 				ifFalse: [ByteArray withAll: (0 to: 255)]
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor class>>shutDown [
+{ #category : #'system startup' }
+InputEventSensor class >> shutDown [
 	self default shutDown.
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor class>>startUp	 [
+{ #category : #'system startup' }
+InputEventSensor class >> startUp [	
 	self installMouseDecodeTable.
 	self default startUp
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor class>>swapMouseButtons [
+{ #category : #settings }
+InputEventSensor class >> swapMouseButtons [
 	^ Smalltalk os isWindows not
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>anyButtonPressed [
+{ #category : #mouse }
+InputEventSensor >> anyButtonPressed [
 	"Answer whether at least one mouse button is currently being pressed."
 
 	^self mouseButtons anyMask: 7
 ]
 
-{
-	#category : #'modifier keys',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>anyModifierKeyPressed [
+{ #category : #'modifier keys' }
+InputEventSensor >> anyModifierKeyPressed [
 	"ignore, however, the shift keys 'cause that's not REALLY a command key"
 
 	^self modifiers anyMask: 16r0E	"cmd | opt | ctrl"
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>blueButtonPressed [
+{ #category : #mouse }
+InputEventSensor >> blueButtonPressed [
 	"Answer whether only the blue mouse button is being pressed. 
 	This is the third mouse button or cmd+click on the Mac."
 
@@ -170,11 +136,8 @@ InputEventSensor>>blueButtonPressed [
 
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>characterForEvent: evtBuf [
+{ #category : #'private events' }
+InputEventSensor >> characterForEvent: evtBuf [
 
 	| keycode |
 	evtBuf ifNil: [^nil].
@@ -183,31 +146,22 @@ InputEventSensor>>characterForEvent: evtBuf [
 		ifNotNil: [Unicode value: keycode]
 ]
 
-{
-	#category : #'modifier keys',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>commandKeyPressed [
+{ #category : #'modifier keys' }
+InputEventSensor >> commandKeyPressed [
 	"Answer whether the command key on the keyboard is being held down."
 
 	^self modifiers anyMask: 16r08
 ]
 
-{
-	#category : #'modifier keys',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>controlKeyPressed [
+{ #category : #'modifier keys' }
+InputEventSensor >> controlKeyPressed [
 	"Answer whether the control key on the keyboard is being held down."
 
 	^self modifiers anyMask: 16r02
 ]
 
-{
-	#category : #cursor,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>cursorPoint [
+{ #category : #cursor }
+InputEventSensor >> cursorPoint [
 	"Answer a Point indicating the cursor location."
 
 	"Fetch the next event if any to update state.
@@ -217,68 +171,46 @@ InputEventSensor>>cursorPoint [
 	^ mousePosition
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>flushAllButDandDEvents [
-
+{ #category : #events }
+InputEventSensor >> flushAllButDandDEvents [
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>flushEvents [
+{ #category : #events }
+InputEventSensor >> flushEvents [
 	eventQueue ifNotNil:[eventQueue flush]
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>flushKeyboard [
+{ #category : #keyboard }
+InputEventSensor >> flushKeyboard [
 	"Remove all characters from the keyboard buffer."
 
 	[self keyboardPressed]
 		whileTrue: [self keyboard]
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>flushNonKbdEvents [
+{ #category : #'private events' }
+InputEventSensor >> flushNonKbdEvents [
 	eventQueue ifNil: [^ self].
 	eventQueue flushAllSuchThat:
 		[:buf | (self isKbdEvent: buf) not]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>handleEvent: evt [
+{ #category : #events }
+InputEventSensor >> handleEvent: evt [
 
 	self queueEvent: evt shallowCopy
 ]
 
-{
-	#category : #tablet,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>hasTablet [
+{ #category : #tablet }
+InputEventSensor >> hasTablet [
 	"Answer true if there is a pen tablet available on this computer."
 
 	^ (self primTabletGetParameters: 1) notNil
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>initialize [
+{ #category : #initialization }
+InputEventSensor >> initialize [
         "Initialize the receiver"
         super initialize.
         eventQueue := WaitfreeQueue new.
@@ -287,31 +219,22 @@ InputEventSensor>>initialize [
         modifiers := 0
 ]
 
-{
-	#category : #joystick,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>joystickButtons: index [
+{ #category : #joystick }
+InputEventSensor >> joystickButtons: index [
 
 	^ ((self primReadJoystick: index) bitShift: -22) bitAnd: 16r71F
 	
 ]
 
-{
-	#category : #joystick,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>joystickOn: index [
+{ #category : #joystick }
+InputEventSensor >> joystickOn: index [
 
 	^ (((self primReadJoystick: index) bitShift: -27) bitAnd: 1) ~= 0
 	
 ]
 
-{
-	#category : #joystick,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>joystickXY: index [
+{ #category : #joystick }
+InputEventSensor >> joystickXY: index [
 
 	| inputWord x y |
 	inputWord := self primReadJoystick: index.
@@ -321,41 +244,29 @@ InputEventSensor>>joystickXY: index [
 	
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>keyboard [
+{ #category : #keyboard }
+InputEventSensor >> keyboard [
 	"Answer the next character from the keyboard."
 
 	^self characterForEvent: self nextKeyboardEvent
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>keyboardPeek [
+{ #category : #keyboard }
+InputEventSensor >> keyboardPeek [
 	"Answer the next character in the keyboard buffer without removing it, or nil if it is empty."
 
 	^ self characterForEvent: self peekKeyboardEvent
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>keyboardPressed [
+{ #category : #keyboard }
+InputEventSensor >> keyboardPressed [
 	"Answer true if keystrokes are available."
 
 	^self peekKeyboardEvent notNil
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>mapButtons: buttons modifiers: anInteger [
+{ #category : #'private events' }
+InputEventSensor >> mapButtons: buttons modifiers: anInteger [
 	"Map the buttons to yellow or blue based on the given modifiers.
 	If only the red button is pressed, then map
 		Ctrl-RedButton -> BlueButton.
@@ -370,11 +281,8 @@ InputEventSensor>>mapButtons: buttons modifiers: anInteger [
 	^buttons
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>modifiers [
+{ #category : #'private events' }
+InputEventSensor >> modifiers [
 	"modifier keys; bitfield with the following entries:
 		1	-	shift key
 		2	-	ctrl key
@@ -390,11 +298,8 @@ InputEventSensor>>modifiers [
 	^modifiers
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>mouseButtons [
+{ #category : #'private events' }
+InputEventSensor >> mouseButtons [
 	"button state; bitfield with the following entries:
 		1	-	yellow (e.g., right) button
 		2	-	blue (e.g., middle) button
@@ -408,11 +313,8 @@ InputEventSensor>>mouseButtons [
 	^mouseButtons
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>nextEvent [
+{ #category : #events }
+InputEventSensor >> nextEvent [
 	"Return the next event from the receiver."
 	| evt |
 
@@ -421,11 +323,8 @@ InputEventSensor>>nextEvent [
 
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>nextKeyboardEvent [
+{ #category : #'private events' }
+InputEventSensor >> nextKeyboardEvent [
 	"Allows for use of old Sensor protocol to get at the keyboard,
 	as when running kbdTest or the InterpreterSimulator in Morphic"
 
@@ -435,22 +334,16 @@ InputEventSensor>>nextKeyboardEvent [
 	^evtBuf
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>noButtonPressed [
+{ #category : #mouse }
+InputEventSensor >> noButtonPressed [
 	"Answer whether any mouse button is not being pressed."
 
 	^self anyButtonPressed not
 
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>peekEvent [
+{ #category : #events }
+InputEventSensor >> peekEvent [
 	"Look ahead at the next event."
 	| nextEvent |
 	nextEvent := eventQueue peek.
@@ -458,22 +351,16 @@ InputEventSensor>>peekEvent [
 		ifTrue: [self processEvent: nextEvent]
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>peekKeyboardEvent [
+{ #category : #'private events' }
+InputEventSensor >> peekKeyboardEvent [
 	"Allows for use of old Sensor protocol to get at the keyboard,
 	as when running kbdTest or the InterpreterSimulator in Morphic"
 
 	^eventQueue findFirst: [:buf | self isKbdEvent: buf]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>primReadJoystick: index [
+{ #category : #private }
+InputEventSensor >> primReadJoystick: index [
 	"Return the joystick input word for the joystick with the given index in the range [1..16]. Returns zero if the index does not correspond to a currently installed joystick."
 
 	<primitive: 'primitiveReadJoystick' module: 'JoystickTabletPlugin'>
@@ -482,11 +369,8 @@ InputEventSensor>>primReadJoystick: index [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>primTabletGetParameters: cursorIndex [
+{ #category : #private }
+InputEventSensor >> primTabletGetParameters: cursorIndex [
 	"Answer the pen tablet parameters. For parameters that differ from cursor to cursor, answer those associated with the cursor having the given index. Answer nil if there is no pen tablet. The parameters are:
 	1. tablet width, in tablet units
 	2. tablet height, in tablet units
@@ -504,11 +388,8 @@ InputEventSensor>>primTabletGetParameters: cursorIndex [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>primTabletRead: cursorIndex [
+{ #category : #private }
+InputEventSensor >> primTabletRead: cursorIndex [
 	"Answer the pen tablet data for the cursor having the given index. Answer nil if there is no pen tablet. The data is:
 	1. index of the cursor to which this data applies
 	2. timestamp of the last state chance for this cursor
@@ -525,11 +406,8 @@ InputEventSensor>>primTabletRead: cursorIndex [
 
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>processEvent: evt  [
+{ #category : #'private events' }
+InputEventSensor >> processEvent: evt [ 
 	"Process a single event. This method is run at high priority."
 	| type |
 		
@@ -569,11 +447,8 @@ InputEventSensor>>processEvent: evt  [
 	
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>processMenuEvent: evt [
+{ #category : #'private events' }
+InputEventSensor >> processMenuEvent: evt [
 	| handler localCopyOfEvt |
 
 	Smalltalk globals at: #HostSystemMenus ifPresent: [ :menus |		
@@ -584,20 +459,14 @@ InputEventSensor>>processMenuEvent: evt [
 		handler handler value: localCopyOfEvt ]
 ]
 
-{
-	#category : #'private events',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>queueEvent: evt [
+{ #category : #'private events' }
+InputEventSensor >> queueEvent: evt [
 	"Queue the given event in the event queue"
 	eventQueue nextPut: evt
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>redButtonPressed [
+{ #category : #mouse }
+InputEventSensor >> redButtonPressed [
 	"Answer true if only the red mouse button is being pressed.
 	This is the first mouse button, usually the left one."
 
@@ -605,46 +474,30 @@ InputEventSensor>>redButtonPressed [
 
 ]
 
-{
-	#category : #'modifier keys',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>shiftPressed [
+{ #category : #'modifier keys' }
+InputEventSensor >> shiftPressed [
 	"Answer whether the shift key on the keyboard is being held down."
 
 	^self modifiers anyMask: 16r01
 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>shutDown [
-
+{ #category : #'system startup' }
+InputEventSensor >> shutDown [
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>someEventInQueue [
+{ #category : #events }
+InputEventSensor >> someEventInQueue [
 	^eventQueue isEmpty not
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>startUp [
+{ #category : #'system startup' }
+InputEventSensor >> startUp [
 	self initialize
 ]
 
-{
-	#category : #tablet,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>tabletExtent [
+{ #category : #tablet }
+InputEventSensor >> tabletExtent [
 	"Answer the full tablet extent in tablet coordinates."
 
 	| params |
@@ -654,11 +507,8 @@ InputEventSensor>>tabletExtent [
 
 ]
 
-{
-	#category : #tablet,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>tabletPoint [
+{ #category : #tablet }
+InputEventSensor >> tabletPoint [
 	"Answer the current position of the first tablet pointing device (pen, puck, or eraser) in tablet coordinates."
 
 	| data |
@@ -667,11 +517,8 @@ InputEventSensor>>tabletPoint [
 
 ]
 
-{
-	#category : #tablet,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>tabletPressure [
+{ #category : #tablet }
+InputEventSensor >> tabletPressure [
 	"Answer the current pressure of the first tablet pointing device (pen, puck, or eraser), a number between 0.0 (no pressure) and 1.0 (max pressure)"
 
 	| params data |
@@ -682,11 +529,8 @@ InputEventSensor>>tabletPressure [
 
 ]
 
-{
-	#category : #tablet,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>tabletTimestamp [
+{ #category : #tablet }
+InputEventSensor >> tabletTimestamp [
 	"Answer the time (in tablet clock ticks) at which the tablet's primary pen last changed state. This can be used in polling loops; if this timestamp hasn't changed, then the pen state hasn't changed either."
 
 	| data |
@@ -695,11 +539,8 @@ InputEventSensor>>tabletTimestamp [
 
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>waitButton [
+{ #category : #mouse }
+InputEventSensor >> waitButton [
 	"Wait for the user to press any mouse button and then answer with the 
 	current location of the cursor."
 
@@ -710,11 +551,8 @@ InputEventSensor>>waitButton [
 
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>waitButtonOrKeyboard [
+{ #category : #mouse }
+InputEventSensor >> waitButtonOrKeyboard [
 	"Wait for the user to press either any mouse button or any key. 
 	Answer the current cursor location or nil if a keypress occured."
 
@@ -728,11 +566,8 @@ InputEventSensor>>waitButtonOrKeyboard [
 
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>waitClickButton [
+{ #category : #mouse }
+InputEventSensor >> waitClickButton [
 	"Wait for the user to click (press and then release) any mouse button and 
 	then answer with the current location of the cursor."
 
@@ -740,11 +575,8 @@ InputEventSensor>>waitClickButton [
 	^self waitNoButton
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>waitNoButton [
+{ #category : #mouse }
+InputEventSensor >> waitNoButton [
 	"Wait for the user to release any mouse button and then answer the current location of the cursor."
 
 	| delay |
@@ -754,11 +586,8 @@ InputEventSensor>>waitNoButton [
 
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventSensor>>yellowButtonPressed [
+{ #category : #mouse }
+InputEventSensor >> yellowButtonPressed [
 	"Answer whether only the yellow mouse button is being pressed. 
 	This is the second mouse button or option+click on the Mac."
 

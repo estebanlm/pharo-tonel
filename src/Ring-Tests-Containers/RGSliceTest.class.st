@@ -4,15 +4,11 @@ SUnit tests for slices
 Class {
 	#name : #RGSliceTest,
 	#superclass : #TestCase,
-	#category : #Ring-Tests-Containers,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:08'
+	#category : #Ring-Tests-Containers
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RGSliceTest>>testAddingClasses [
+{ #category : #testing }
+RGSliceTest >> testAddingClasses [
 	| newSlice newClass newTrait  |
 	
 	newSlice:= RGSlice named: 'Foo'.
@@ -36,11 +32,8 @@ RGSliceTest>>testAddingClasses [
 	self assert: (newClass rootEnvironment = newSlice environment)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RGSliceTest>>testNestingContainers [
+{ #category : #testing }
+RGSliceTest >> testNestingContainers [
 	| newSlice newSlice2 newClass newTrait newClass2 |
 	
 	newSlice:= RGSlice named: #Root.
@@ -60,11 +53,8 @@ RGSliceTest>>testNestingContainers [
 	self assert: (newSlice2 rootEnvironment = newSlice environment)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RGSliceTest>>testNewSlice [
+{ #category : #testing }
+RGSliceTest >> testNewSlice [
 	| newSlice |
 	
 	newSlice:= RGSlice named: 'Foo'.

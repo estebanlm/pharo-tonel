@@ -8,15 +8,11 @@ Class {
 		'startPoint',
 		'trail'
 	],
-	#category : #Morphic-Core-Events,
-	#timestamp : 'TorstenBergmann 2/20/2014 18:30'
+	#category : #Morphic-Core-Events
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseMoveEvent>>= aMorphicEvent [
+{ #category : #comparing }
+MouseMoveEvent >> = aMorphicEvent [
 	super = aMorphicEvent ifFalse:[^false].
 	position = aMorphicEvent position ifFalse: [^ false].
 	startPoint = aMorphicEvent startPoint ifFalse: [^ false].
@@ -25,36 +21,24 @@ MouseMoveEvent>>= aMorphicEvent [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseMoveEvent>>endPoint [
+{ #category : #accessing }
+MouseMoveEvent >> endPoint [
 	"Return the point where the movement ended."
 	^position
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseMoveEvent>>hash [
+{ #category : #comparing }
+MouseMoveEvent >> hash [
 	^ position hash + startPoint hash + buttons hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseMoveEvent>>isMove [
+{ #category : #testing }
+MouseMoveEvent >> isMove [
 	^true
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseMoveEvent>>printOn: aStream [
+{ #category : #printing }
+MouseMoveEvent >> printOn: aStream [
 
 	aStream nextPut: $[.
 	aStream nextPutAll: self startPoint printString; space.
@@ -67,22 +51,16 @@ MouseMoveEvent>>printOn: aStream [
 	aStream nextPut: $].
 ]
 
-{
-	#category : #dispatching,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseMoveEvent>>sentTo: anObject [
+{ #category : #dispatching }
+MouseMoveEvent >> sentTo: anObject [
 	"Dispatch the receiver into anObject"
 	type == #mouseMove ifTrue:[^anObject handleMouseMove: self].
 	^super sentTo: anObject.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseMoveEvent>>setType: evtType startPoint: evtStart endPoint: evtEnd trail: evtTrail buttons: evtButtons hand: evtHand stamp: stamp [
+{ #category : #private }
+MouseMoveEvent >> setType: evtType startPoint: evtStart endPoint: evtEnd trail: evtTrail buttons: evtButtons hand: evtHand stamp: stamp [
 	type := evtType.
 	startPoint := evtStart.
 	position := evtEnd.
@@ -93,20 +71,14 @@ MouseMoveEvent>>setType: evtType startPoint: evtStart endPoint: evtEnd trail: ev
 	timeStamp := stamp.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseMoveEvent>>startPoint [
+{ #category : #accessing }
+MouseMoveEvent >> startPoint [
 	"Return the point where the movement started."
 	^startPoint
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseMoveEvent>>storeOn: aStream [
+{ #category : #printing }
+MouseMoveEvent >> storeOn: aStream [
 	super storeOn: aStream.
 	aStream space.
 	self startPoint x storeOn: aStream.
@@ -116,30 +88,21 @@ MouseMoveEvent>>storeOn: aStream [
 	"trail storeOn: aStream."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseMoveEvent>>trail [
+{ #category : #accessing }
+MouseMoveEvent >> trail [
 	"Return any immediate points that have been assembled along the move"
 	^trail ifNil:[#()]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseMoveEvent>>transformBy: aMorphicTransform [
+{ #category : #transforming }
+MouseMoveEvent >> transformBy: aMorphicTransform [
 	"Transform the receiver into a local coordinate system."
 	position :=  aMorphicTransform globalPointToLocal: position.
 	startPoint :=  aMorphicTransform globalPointToLocal: startPoint.
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MouseMoveEvent>>translateBy: delta [
+{ #category : #transforming }
+MouseMoveEvent >> translateBy: delta [
 	"add delta to cursorPoint, and return the new event"
 	position := position + delta.
 	startPoint := startPoint + delta.

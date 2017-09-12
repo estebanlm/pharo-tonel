@@ -22,60 +22,41 @@ Class {
 		'cacheActive',
 		'cachePackages'
 	],
-	#category : #RPackage-Core,
-	#timestamp : '<historical>'
+	#category : #RPackage-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet class>>basicNamed: aString [
+{ #category : #private }
+RPackageSet class >> basicNamed: aString [
 	^ self basicNew 
 		initialize: aString;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet class>>cacheActive: aBoolean  [
+{ #category : #private }
+RPackageSet class >> cacheActive: aBoolean [ 
 	cacheActive := aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet class>>cachePackageAt: aString ifAbsentPut: aBlock [
+{ #category : #private }
+RPackageSet class >> cachePackageAt: aString ifAbsentPut: aBlock [
 	"self addCount: aString."
 	^ self cachePackages 
 		at: aString asSymbol
 		ifAbsentPut: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet class>>cachePackages  [
+{ #category : #private }
+RPackageSet class >> cachePackages [ 
 	^ cachePackages ifNil: [ cachePackages := IdentityDictionary new ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet class>>isCacheActive  [
+{ #category : #testing }
+RPackageSet class >> isCacheActive [ 
 	^ cacheActive ifNil: [ cacheActive := false ].
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet class>>named: aString [
+{ #category : #'instance creation' }
+RPackageSet class >> named: aString [
 
 	^ self isCacheActive 
 		ifTrue: [ 
@@ -86,19 +67,13 @@ RPackageSet class>>named: aString [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet class>>resetCache  [
+{ #category : #private }
+RPackageSet class >> resetCache [ 
 	cachePackages := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet class>>withCacheDo: aBlock  [
+{ #category : #accessing }
+RPackageSet class >> withCacheDo: aBlock [ 
 	| oldActive |
 	
 	oldActive := self isCacheActive.
@@ -108,37 +83,25 @@ RPackageSet class>>withCacheDo: aBlock  [
 		self isCacheActive ifFalse: [ self resetCache ] ].
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>asRPackageSet [
+{ #category : #'system compatibility' }
+RPackageSet >> asRPackageSet [
 	^self
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>category: categoryName matches: prefix [
+{ #category : #'system compatibility' }
+RPackageSet >> category: categoryName matches: prefix [
 	^ RPackageOrganizer default category: categoryName matches: prefix
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>categoryNames [
+{ #category : #accessing }
+RPackageSet >> categoryNames [
 	^  self packages 	
 		inject:  #()
 		into: [ :all :each | all, (each classTagCategoryNames asArray) ]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>changeRecordForOverriddenMethod: aMethodDefinition [
+{ #category : #'system compatibility' }
+RPackageSet >> changeRecordForOverriddenMethod: aMethodDefinition [
 	^ SourceFiles
 		changeRecordsFor: aMethodDefinition 
 		detect: [ :protocol | 
@@ -147,116 +110,77 @@ RPackageSet>>changeRecordForOverriddenMethod: aMethodDefinition [
 				ofClass: aMethodDefinition actualClass ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>classes [
+{ #category : #accessing }
+RPackageSet >> classes [
 	^classes ifNil: [ classes := self collectFromAllPackages: #definedClasses ]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>classesAndMetaClasses [
+{ #category : #'system compatibility' }
+RPackageSet >> classesAndMetaClasses [
 	^classesAndMetaClasses ifNil: [ 
 		classesAndMetaClasses := self collectFromAllPackages: #classesAndMetaClasses ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>collectFromAllPackages: selector [
+{ #category : #private }
+RPackageSet >> collectFromAllPackages: selector [
 	^self packages
 		inject: #()
 		into: [ :all :each | all, (each perform: selector) asArray ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>collectFromAllPackages: selector with: anObject [
+{ #category : #private }
+RPackageSet >> collectFromAllPackages: selector with: anObject [
 	^self packages
 		inject: #()
 		into: [ :all :each | all, (each perform: selector with: anObject) asArray ]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>coreCategoriesForClass: aClass [
+{ #category : #'system compatibility' }
+RPackageSet >> coreCategoriesForClass: aClass [
 	^self collectFromAllPackages: #coreCategoriesForClass: with: aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>definedClasses [
+{ #category : #accessing }
+RPackageSet >> definedClasses [
 	^definedClasses ifNil: [ definedClasses := self collectFromAllPackages: #definedClasses ]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>extensionCategoriesForClass: aClass [
+{ #category : #'system compatibility' }
+RPackageSet >> extensionCategoriesForClass: aClass [
 	^ aClass organization categories select: [:cat | self isYourClassExtension: cat]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>extensionClasses [
+{ #category : #'system compatibility' }
+RPackageSet >> extensionClasses [
 	^extensionClasses ifNil: [ extensionClasses := self collectFromAllPackages: #extensionClasses ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>extensionMethods [
+{ #category : #accessing }
+RPackageSet >> extensionMethods [
 	^extensionMethods ifNil: [
 		extensionMethods := ((self collectFromAllPackages: #extensionMethods) collect: #asRingDefinition) asSet asArray ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>includesClass: aClass [
+{ #category : #testing }
+RPackageSet >> includesClass: aClass [
 	^self packages anySatisfy: [ :each | each includesClass: aClass ]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>includesMethodCategory: categoryName ofClass: aClass [
+{ #category : #'system compatibility' }
+RPackageSet >> includesMethodCategory: categoryName ofClass: aClass [
 	^ (self isYourClassExtension: categoryName)
 		or: [(self includesClass: aClass)
 				and: [(self isForeignClassExtension: categoryName) not ]]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>includesSystemCategory: categoryName [
+{ #category : #'system compatibility' }
+RPackageSet >> includesSystemCategory: categoryName [
 	^self packages anySatisfy: [ :each | 
 		each includesSystemCategory: categoryName ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>initialize: aString [
+{ #category : #initialization }
+RPackageSet >> initialize: aString [
 	self initialize.
 	packageName := aString asSymbol.
 	packages := (RPackage organizer packageNamed: aString ifAbsent: [  nil ])
@@ -265,75 +189,48 @@ RPackageSet>>initialize: aString [
 
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>isForeignClassExtension: categoryName [
+{ #category : #'system compatibility' }
+RPackageSet >> isForeignClassExtension: categoryName [
 	^ categoryName first = $* and: [(self isYourClassExtension: categoryName) not]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>isYourClassExtension: categoryName [
+{ #category : #'system compatibility' }
+RPackageSet >> isYourClassExtension: categoryName [
 	^ categoryName notNil and: [self category: categoryName asLowercase matches: self methodCategoryPrefix]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>methodCategoryPrefix [
+{ #category : #'system compatibility' }
+RPackageSet >> methodCategoryPrefix [
 	^ '*', self packageName asLowercase
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>methods [
+{ #category : #accessing }
+RPackageSet >> methods [
 	^methods ifNil: [ methods := (self collectFromAllPackages: #methods) collect: #asRingDefinition ]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>overriddenMethods [
+{ #category : #'system compatibility' }
+RPackageSet >> overriddenMethods [
 	^overriddenMethods ifNil: [ overriddenMethods := self collectFromAllPackages: #overriddenMethods ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>packageName [
+{ #category : #accessing }
+RPackageSet >> packageName [
 	^packageName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>packages [
+{ #category : #accessing }
+RPackageSet >> packages [
 	^packages
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>systemCategories [
+{ #category : #'system compatibility' }
+RPackageSet >> systemCategories [
 	^systemCategories ifNil: [ systemCategories := (self collectFromAllPackages: #systemCategories) asSet asArray].
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageSet>>unregister [
+{ #category : #accessing }
+RPackageSet >> unregister [
 	self packages do: #unregister
 ]

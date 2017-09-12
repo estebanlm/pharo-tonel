@@ -4,15 +4,11 @@ self example1
 Class {
 	#name : #AthensCairoSurfaceExamples,
 	#superclass : #AthensSurfaceExamples,
-	#category : #Athens-Examples,
-	#timestamp : 'FernandoOlivero 4/18/2012 13:59'
+	#category : #Athens-Examples
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCairoSurfaceExamples class>>exampleInterop [
+{ #category : #'as yet unclassified' }
+AthensCairoSurfaceExamples class >> exampleInterop [
 
 "
 self exampleInterop
@@ -40,11 +36,8 @@ A cairo image surface bits are exposed to bitblt operations via surface plugin.
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCairoSurfaceExamples class>>newSurface: extent [
+{ #category : #'as yet unclassified' }
+AthensCairoSurfaceExamples class >> newSurface: extent [
 	
 	^ AthensCairoSurface extent: extent
 ]

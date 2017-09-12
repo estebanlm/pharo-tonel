@@ -1,12 +1,7 @@
-Extension {
-	#name : #Set
-}
+Extension { #name : #Set }
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-Set>>parseOptions: anArray [
+{ #category : #'*OpalCompiler-Core' }
+Set >> parseOptions: anArray [
 
 	"parse an array, which is a sequence of options in a form of: 
 	

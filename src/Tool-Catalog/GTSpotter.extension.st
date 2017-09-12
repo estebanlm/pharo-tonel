@@ -1,12 +1,7 @@
-Extension {
-	#name : #GTSpotter
-}
+Extension { #name : #GTSpotter }
 
-{
-	#category : #'*Tool-Catalog',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterCatalogProjectsFor: aStep [
+{ #category : #'*Tool-Catalog' }
+GTSpotter >> spotterCatalogProjectsFor: aStep [
 	<spotterOrder: 90>
 	
 	CatalogSettings displayCatalogProjectsInSpotter ifFalse: [ ^self ].

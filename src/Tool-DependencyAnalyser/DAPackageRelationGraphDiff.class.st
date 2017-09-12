@@ -14,34 +14,24 @@ Class {
 		'packagesDiff',
 		'dependentPackagesDiff'
 	],
-	#category : #Tool-DependencyAnalyser-Diff,
-	#timestamp : 'BaptisteQuide 8/7/2014 15:09'
+	#category : #Tool-DependencyAnalyser-Diff
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff class>>loadFrom: aSerializeFile  [
+{ #category : #private }
+DAPackageRelationGraphDiff class >> loadFrom: aSerializeFile [ 
 	^ self new
 		oldRelationGraph: (FLMaterializer materializationFromFileNamed: aSerializeFile).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff class>>loadFrom: aSerializeFile with: newRelationGraph [
+{ #category : #private }
+DAPackageRelationGraphDiff class >> loadFrom: aSerializeFile with: newRelationGraph [
 	^ self new
 		oldRelationGraph: (FLMaterializer materializationFromFileNamed: aSerializeFile);
 		newRelationGraph: newRelationGraph
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>addNewDependentPackage: package from: parent [
+{ #category : #adding }
+DAPackageRelationGraphDiff >> addNewDependentPackage: package from: parent [
 	^ dependentPackagesDiff
 		add:
 			((DADependentPackageItemDiff
@@ -52,11 +42,8 @@ DAPackageRelationGraphDiff>>addNewDependentPackage: package from: parent [
 		yourself
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>addNewPackage: seenPackage [
+{ #category : #adding }
+DAPackageRelationGraphDiff >> addNewPackage: seenPackage [
 	^ packagesDiff
 		add:
 			((DAPackageItemDiff newWith: seenPackage)
@@ -65,11 +52,8 @@ DAPackageRelationGraphDiff>>addNewPackage: seenPackage [
 		yourself
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>addRemovedDependentPackage: package from: parent [
+{ #category : #adding }
+DAPackageRelationGraphDiff >> addRemovedDependentPackage: package from: parent [
 	^ dependentPackagesDiff
 		add:
 			((DADependentPackageItemDiff
@@ -80,11 +64,8 @@ DAPackageRelationGraphDiff>>addRemovedDependentPackage: package from: parent [
 		yourself
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>addRemovedPackage: seenPackage [
+{ #category : #adding }
+DAPackageRelationGraphDiff >> addRemovedPackage: seenPackage [
 	^ packagesDiff
 		add:
 			((DAPackageItemDiff newWith: seenPackage)
@@ -93,11 +74,8 @@ DAPackageRelationGraphDiff>>addRemovedPackage: seenPackage [
 		yourself
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>addUndeterminateDependentPackage: aPackage from: parent [
+{ #category : #adding }
+DAPackageRelationGraphDiff >> addUndeterminateDependentPackage: aPackage from: parent [
 	^ dependentPackagesDiff
 		add:
 				((DADependentPackageItemDiff newWith: aPackage)
@@ -107,11 +85,8 @@ DAPackageRelationGraphDiff>>addUndeterminateDependentPackage: aPackage from: par
 		yourself
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>addUndeterminatePackage: aPackage [
+{ #category : #adding }
+DAPackageRelationGraphDiff >> addUndeterminatePackage: aPackage [
 	^ packagesDiff
 		add:
 			((DAPackageItemDiff newWith: aPackage)
@@ -120,85 +95,58 @@ DAPackageRelationGraphDiff>>addUndeterminatePackage: aPackage [
 				yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>dependentPackagesDiff [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> dependentPackagesDiff [
 	^ dependentPackagesDiff
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>dependentPackagesDiffNew [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> dependentPackagesDiffNew [
 	^ dependentPackagesDiff select: [ :each | each isNew ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>dependentPackagesDiffRemoved [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> dependentPackagesDiffRemoved [
 	^ dependentPackagesDiff select: [ :each | each isRemoved ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>dependentPackagesDiffUnderteminate [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> dependentPackagesDiffUnderteminate [
 	^ dependentPackagesDiff select: [ :each | each isUnderteminate ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>initialize [
+{ #category : #initialization }
+DAPackageRelationGraphDiff >> initialize [
 	packagesDiff := OrderedCollection new.
 	dependentPackagesDiff := OrderedCollection new.
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>lookUpForNewDependentPackages: newDependentPackages with: oldDependentPackages from: aPackage [
+{ #category : #searching }
+DAPackageRelationGraphDiff >> lookUpForNewDependentPackages: newDependentPackages with: oldDependentPackages from: aPackage [
 	
 	| newDependent |
 	newDependent := newDependentPackages reject: [ :package | oldDependentPackages includes: package ].
 	newDependent do: [ :each | self addNewDependentPackage: each from: aPackage ].
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>lookUpForNewPackages [
+{ #category : #searching }
+DAPackageRelationGraphDiff >> lookUpForNewPackages [
 			
 	| newPackages |
 	newPackages := newRelationGraph seenPackages reject: [ :package | oldRelationGraph includesSeenPackage: package ].
 	newPackages do: [ :each | self addNewPackage: each ].
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>lookUpForRemovedDependentPackages: oldDependentPackages with: newDependentPackages from: aPackage [
+{ #category : #searching }
+DAPackageRelationGraphDiff >> lookUpForRemovedDependentPackages: oldDependentPackages with: newDependentPackages from: aPackage [
 
 	| removed |
 	removed := oldDependentPackages reject: [ :package | newDependentPackages includes: package ].
 	removed do: [ :each | self addRemovedDependentPackage: each from: aPackage ].
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>lookUpForRemovedPackages [
+{ #category : #searching }
+DAPackageRelationGraphDiff >> lookUpForRemovedPackages [
 	| old |
 	old := oldRelationGraph seenPackages reject: [ :each |  newRelationGraph includesSeenPackage: each ].	
 	old do: [ :each |
@@ -206,11 +154,8 @@ DAPackageRelationGraphDiff>>lookUpForRemovedPackages [
 		 ]
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>lookUpForUndeterminateDependentPackagesFrom: parent [
+{ #category : #searching }
+DAPackageRelationGraphDiff >> lookUpForUndeterminateDependentPackagesFrom: parent [
 	| oldDependentPackages undeterminates |
 	oldDependentPackages := (oldRelationGraph packageAt: parent packageName) dependentPackages.
 	undeterminates := oldDependentPackages reject: [ :package | self removedDependentPackagesIncludes: package from: parent ].
@@ -220,40 +165,27 @@ DAPackageRelationGraphDiff>>lookUpForUndeterminateDependentPackagesFrom: parent 
 
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>lookUpForUndeterminatePackages [
+{ #category : #searching }
+DAPackageRelationGraphDiff >> lookUpForUndeterminatePackages [
 	| undeterminates |
 	undeterminates := oldRelationGraph seenPackages reject: [ :package | self removedPackagesIncludes: package ].
 	undeterminates do: [ :each | self addUndeterminatePackage: each ]
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>make [
+{ #category : #searching }
+DAPackageRelationGraphDiff >> make [
 	self 
 		makePackagesDiff;	
 		makeDependentPackagesDiff
 		
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>makeDependenciesDiff [
-
+{ #category : #searching }
+DAPackageRelationGraphDiff >> makeDependenciesDiff [
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>makeDependentPackagesDiff [
+{ #category : #searching }
+DAPackageRelationGraphDiff >> makeDependentPackagesDiff [
 	"we're just looking at the package undeterminate"
 	"every dependent packages are removed or new in older or new packages"
 	self packagesDiffUnderteminate do: [ :item |
@@ -262,11 +194,8 @@ DAPackageRelationGraphDiff>>makeDependentPackagesDiff [
 	
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>makeDependentPackagesDiffOn: aPackage [
+{ #category : #searching }
+DAPackageRelationGraphDiff >> makeDependentPackagesDiffOn: aPackage [
 	
 	| oldDependentPackages newDependentPackages  |
 	
@@ -278,11 +207,8 @@ DAPackageRelationGraphDiff>>makeDependentPackagesDiffOn: aPackage [
 	self lookUpForUndeterminateDependentPackagesFrom: aPackage.
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>makePackagesDiff [
+{ #category : #searching }
+DAPackageRelationGraphDiff >> makePackagesDiff [
 	"lookUp for new and remove packages"
 
 	self
@@ -291,126 +217,81 @@ DAPackageRelationGraphDiff>>makePackagesDiff [
 		 lookUpForUndeterminatePackages.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>newRelationGraph [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> newRelationGraph [
 	^ newRelationGraph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>newRelationGraph: anObject [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> newRelationGraph: anObject [
 	newRelationGraph := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>oldRelationGraph [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> oldRelationGraph [
 	^ oldRelationGraph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>oldRelationGraph: anObject [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> oldRelationGraph: anObject [
 	oldRelationGraph := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>packageDiffNamed: aName [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> packageDiffNamed: aName [
 	^ self packagesDiff detect: [ :item | item content packageName = aName ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>packagesDiff [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> packagesDiff [
 	^ packagesDiff
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>packagesDiffNew [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> packagesDiffNew [
 	^ packagesDiff select: [ :each | each isNew ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>packagesDiffNewSize [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> packagesDiffNewSize [
 	^ self packagesDiffNew size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>packagesDiffRemoved [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> packagesDiffRemoved [
 	^ packagesDiff select: [ :each | each isRemoved ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>packagesDiffRemovedSize [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> packagesDiffRemovedSize [
 	^ self packagesDiffRemoved size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>packagesDiffToDisplay [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> packagesDiffToDisplay [
 	^ packagesDiff select: [ :each | each canBeDisplay ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>packagesDiffUnderteminate [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> packagesDiffUnderteminate [
 	^ packagesDiff select: [ :each | each isUnderteminate  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>packagesDiffUnderteminateSize [
+{ #category : #accessing }
+DAPackageRelationGraphDiff >> packagesDiffUnderteminateSize [
 	^ self packagesDiffUnderteminate size
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>removedDependentPackagesIncludes: aPackage from: parent [
+{ #category : #testing }
+DAPackageRelationGraphDiff >> removedDependentPackagesIncludes: aPackage from: parent [
 	^ self dependentPackagesDiffRemoved
 		detect: [ :package | package content = aPackage and: [ package parent = parent ] ]
 		ifFound: [ true ]
 		ifNone: [ false ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageRelationGraphDiff>>removedPackagesIncludes: seenPackage [
+{ #category : #testing }
+DAPackageRelationGraphDiff >> removedPackagesIncludes: seenPackage [
 
 	^ self packagesDiffRemoved detect: [ :each | each content = seenPackage ]
 			ifFound: [ true ]

@@ -9,25 +9,18 @@ Class {
 		'position',
 		'readLimit'
 	],
-	#category : #Collections-Streams,
-	#timestamp : '<historical>'
+	#category : #Collections-Streams
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream class>>on: aCollection  [
+{ #category : #'instance creation' }
+PositionableStream class >> on: aCollection [ 
 	"Answer an instance of me, streaming over the elements of aCollection."
 
 	^self basicNew on: aCollection
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream class>>on: aCollection from: firstIndex to: lastIndex  [
+{ #category : #'instance creation' }
+PositionableStream class >> on: aCollection from: firstIndex to: lastIndex [ 
 	"Answer an instance of me on a copy of the argument, aCollection, 
 	determined by the indices firstIndex and lastIndex. Position the instance 
 	at the beginning of the collection."
@@ -38,11 +31,8 @@ PositionableStream class>>on: aCollection from: firstIndex to: lastIndex  [
 		to: lastIndex
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>atEnd [
+{ #category : #testing }
+PositionableStream >> atEnd [
 	"Primitive. Answer whether the receiver can access any more objects.
 	Optional. See Object documentation whatIsAPrimitive."
 
@@ -50,11 +40,8 @@ PositionableStream>>atEnd [
 	^position >= readLimit
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>back [
+{ #category : #accessing }
+PositionableStream >> back [
 	"Go back one element and return it."
 
 	self position = 0 ifTrue: [self positionError].
@@ -62,11 +49,8 @@ PositionableStream>>back [
 	^ self peek
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>backUpTo: subCollection  [
+{ #category : #positioning }
+PositionableStream >> backUpTo: subCollection [ 
 	"Back up the position to he subCollection.  Position must be somewhere within the stream initially.  Leave it just after it.  Return true if succeeded.  No wildcards, and case does matter."
 	"Example:
 	| strm | strm := ReadStream on: 'zabc abdc'.
@@ -90,62 +74,44 @@ PositionableStream>>backUpTo: subCollection  [
 	^ true
 ]
 
-{
-	#category : #'accessing - data',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>boolean [
+{ #category : #'accessing - data' }
+PositionableStream >> boolean [
 	"Answer the next boolean value from this (binary) stream."
 
 	^ self next ~= 0
 
 ]
 
-{
-	#category : #'accessing - data',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>boolean: aBoolean [
+{ #category : #'accessing - data' }
+PositionableStream >> boolean: aBoolean [
 	"Store the given boolean value on this (binary) stream."
 
 	self nextPut: (aBoolean ifTrue: [1] ifFalse: [0]).
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>collectionSpecies [
+{ #category : #private }
+PositionableStream >> collectionSpecies [
 	"Answer the species of collection into which the receiver can stream"
 	
 	^collection species
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>contents [
+{ #category : #accessing }
+PositionableStream >> contents [
 	"Answer with a copy of my collection from 1 to readLimit."
 
 	^collection copyFrom: 1 to: readLimit
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>contentsOfEntireFile [
+{ #category : #accessing }
+PositionableStream >> contentsOfEntireFile [
 	"For non-file streams"
 	^ self contents
 ]
 
-{
-	#category : #'accessing - data',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>int16 [
+{ #category : #'accessing - data' }
+PositionableStream >> int16 [
 	"Answer the next signed, 16-bit integer from this (binary) stream."
 
 	| n |
@@ -156,11 +122,8 @@ PositionableStream>>int16 [
 
 ]
 
-{
-	#category : #'accessing - data',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>int16: anInteger [
+{ #category : #'accessing - data' }
+PositionableStream >> int16: anInteger [
 	"Store the given signed, 16-bit integer on this (binary) stream."
 
 	| n |
@@ -173,11 +136,8 @@ PositionableStream>>int16: anInteger [
 	self nextPut: (n digitAt: 1)
 ]
 
-{
-	#category : #'accessing - data',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>int32 [
+{ #category : #'accessing - data' }
+PositionableStream >> int32 [
 	"Answer the next signed, 32-bit integer from this (binary) stream."
 	"Details: As a fast check for negative number, check the high bit of the first digit"
 
@@ -191,11 +151,8 @@ PositionableStream>>int32 [
 
 ]
 
-{
-	#category : #'accessing - data',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>int32: anInteger [
+{ #category : #'accessing - data' }
+PositionableStream >> int32: anInteger [
 	"Store the given signed, 32-bit integer on this (binary) stream."
 
 	| n |
@@ -210,20 +167,14 @@ PositionableStream>>int32: anInteger [
 	self nextPut: (n digitAt: 1)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>isBinary [
+{ #category : #testing }
+PositionableStream >> isBinary [
 	"Return true if the receiver is a binary byte stream"
 	^collection class == ByteArray
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>isEmpty [
+{ #category : #testing }
+PositionableStream >> isEmpty [
 	"Answer whether the receiver's contents has no elements."
 
 	"Returns true if both the set of past and future sequence values of
@@ -232,11 +183,8 @@ the receiver are empty. Otherwise returns false"
 	^ self atEnd and: [position = 0]
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>match: subCollection  [
+{ #category : #positioning }
+PositionableStream >> match: subCollection [ 
 	"Set the access position of the receiver to be past the next occurrence of the subCollection. Answer whether subCollection is found.  No wildcards, and case does matter."
 	| pattern startMatch |
 	pattern := subCollection readStream.
@@ -253,11 +201,8 @@ PositionableStream>>match: subCollection  [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>next: anInteger  [
+{ #category : #accessing }
+PositionableStream >> next: anInteger [ 
 	"Answer the next anInteger elements of my collection. Must override 
 	because default uses self contents species, which might involve a large 
 	collection."
@@ -268,22 +213,16 @@ PositionableStream>>next: anInteger  [
 	^newArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>next: n into: aCollection [
+{ #category : #accessing }
+PositionableStream >> next: n into: aCollection [
 	"Read n objects into the given collection.
 	Return aCollection or a partial copy if less than
 	n elements have been read."
 	^self next: n into: aCollection startingAt: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>next: requestedCount into: aCollection startingAt: startIndex [
+{ #category : #accessing }
+PositionableStream >> next: requestedCount into: aCollection startingAt: startIndex [
 	"Read requestedCount objects into the given collection. 
 	Return aCollection or a partial copy if less elements have been read."
 
@@ -294,20 +233,14 @@ PositionableStream>>next: requestedCount into: aCollection startingAt: startInde
 		ifFalse: [ ^ aCollection copyFrom: 1 to: startIndex + readCount - 1 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>next: anInteger putAll: aCollection [
+{ #category : #accessing }
+PositionableStream >> next: anInteger putAll: aCollection [
 	"Store the next anInteger elements from the given collection."
 	^self next: anInteger putAll: aCollection startingAt: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>nextDelimited: terminator [
+{ #category : #accessing }
+PositionableStream >> nextDelimited: terminator [
 	"Answer the contents of the receiver, up to the next terminator character. Doubled terminators indicate an embedded terminator character.  For example: 'this '' was a quote'. Start postioned before the initial terminator."
 
 	| out ch |
@@ -327,11 +260,8 @@ PositionableStream>>nextDelimited: terminator [
 	^ out contents
 ]
 
-{
-	#category : #'accessing - nonhomogeneous',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>nextInt32 [
+{ #category : #'accessing - nonhomogeneous' }
+PositionableStream >> nextInt32 [
 	"Read a 32-bit signed integer from the next 4 bytes"
 	| s |
 	s := 0.
@@ -341,11 +271,8 @@ PositionableStream>>nextInt32 [
 		ifFalse: [^ -1 - s bitInvert32]
 ]
 
-{
-	#category : #'accessing - nonhomogeneous',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>nextInt32Put: int32 [
+{ #category : #'accessing - nonhomogeneous' }
+PositionableStream >> nextInt32Put: int32 [
 	"Write a signed integer to the next 4 bytes"
 	| pos |
 	pos := int32 < 0
@@ -355,33 +282,24 @@ PositionableStream>>nextInt32Put: int32 [
 	^ int32
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>nextInto: aCollection [
+{ #category : #accessing }
+PositionableStream >> nextInto: aCollection [
 	"Read the next elements of the receiver into aCollection.
 	Return aCollection or a partial copy if less than aCollection
 	size elements have been read."
 	^self next: aCollection size into: aCollection startingAt: 1.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>nextInto: aCollection startingAt: startIndex [
+{ #category : #accessing }
+PositionableStream >> nextInto: aCollection startingAt: startIndex [
 	"Read the next elements of the receiver into aCollection.
 	Return aCollection or a partial copy if less than aCollection
 	size elements have been read."
 	^self next: (aCollection size - startIndex+1) into: aCollection startingAt: startIndex.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>nextLine [
+{ #category : #accessing }
+PositionableStream >> nextLine [
 	"Answer next line (may be empty) without line end delimiters, or nil if at end.
 	Let the stream positioned after the line delimiter(s).
 	Handle a zoo of line delimiters CR, LF, or CR-LF pair"
@@ -390,11 +308,8 @@ PositionableStream>>nextLine [
 	^self upToAnyOf: CharacterSet crlf do: [:char | char = Character cr ifTrue: [self peekFor: Character lf]]
 ]
 
-{
-	#category : #'accessing - nonhomogeneous',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>nextLittleEndianNumber: n  [
+{ #category : #'accessing - nonhomogeneous' }
+PositionableStream >> nextLittleEndianNumber: n [ 
 	"Answer the next n bytes as a positive Integer or LargePositiveInteger, where the bytes are ordered from least significant to most significant."
 
 	| bytes s |
@@ -405,11 +320,8 @@ PositionableStream>>nextLittleEndianNumber: n  [
 
 ]
 
-{
-	#category : #'accessing - nonhomogeneous',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>nextLittleEndianNumber: n put: value [
+{ #category : #'accessing - nonhomogeneous' }
+PositionableStream >> nextLittleEndianNumber: n put: value [
 	"Answer the next n bytes as a positive Integer or LargePositiveInteger, where the bytes are ordered from least significant to most significant."
 	| bytes |
 	bytes := ByteArray new: n.
@@ -417,11 +329,8 @@ PositionableStream>>nextLittleEndianNumber: n put: value [
 	self nextPutAll: bytes
 ]
 
-{
-	#category : #'accessing - nonhomogeneous',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>nextNumber: n  [
+{ #category : #'accessing - nonhomogeneous' }
+PositionableStream >> nextNumber: n [ 
 	"Answer the next n bytes as a positive Integer or LargePositiveInteger."
 	| s |
 	s := 0.
@@ -430,11 +339,8 @@ PositionableStream>>nextNumber: n  [
 	^ s normalize
 ]
 
-{
-	#category : #'accessing - nonhomogeneous',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>nextNumber: n put: v  [
+{ #category : #'accessing - nonhomogeneous' }
+PositionableStream >> nextNumber: n put: v [ 
 	"Append to the receiver the argument, v, which is a positive 
 	SmallInteger or a LargePositiveInteger, as the next n bytes.
 	Possibly pad with leading zeros."
@@ -444,11 +350,8 @@ PositionableStream>>nextNumber: n put: v  [
 
 ]
 
-{
-	#category : #'accessing - nonhomogeneous',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>nextString [
+{ #category : #'accessing - nonhomogeneous' }
+PositionableStream >> nextString [
 	"Read a string from the receiver. The first byte is the length of the string, unless it is greater than 192, in which case the first four bytes encode the length.  I expect to be in ascii mode when called (caller puts back to binary)."
 
 	| length aByteArray |
@@ -465,11 +368,8 @@ PositionableStream>>nextString [
 
 ]
 
-{
-	#category : #'accessing - nonhomogeneous',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>nextStringOld [
+{ #category : #'accessing - nonhomogeneous' }
+PositionableStream >> nextStringOld [
 	"Read a string from the receiver. The first byte is the length of the 
 	string, unless it is greater than 192, in which case the first *two* bytes 
 	encode the length.  Max size 16K. "
@@ -482,11 +382,8 @@ PositionableStream>>nextStringOld [
 	^aString
 ]
 
-{
-	#category : #'accessing - nonhomogeneous',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>nextStringPut: s  [
+{ #category : #'accessing - nonhomogeneous' }
+PositionableStream >> nextStringPut: s [ 
 	"Append the string, s, to the receiver.  Only used by DataStream.  Max size of 64*256*256*256."
 
 	| length |
@@ -501,11 +398,8 @@ PositionableStream>>nextStringPut: s  [
 	^s
 ]
 
-{
-	#category : #'accessing - nonhomogeneous',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>nextWord [
+{ #category : #'accessing - nonhomogeneous' }
+PositionableStream >> nextWord [
 	"Answer the next two bytes from the receiver as an Integer."
 
 	| high low |
@@ -516,11 +410,8 @@ PositionableStream>>nextWord [
 	^(high asInteger bitShift: 8) + low asInteger
 ]
 
-{
-	#category : #'accessing - nonhomogeneous',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>nextWordPut: aWord  [
+{ #category : #'accessing - nonhomogeneous' }
+PositionableStream >> nextWordPut: aWord [ 
 	"Append to the receiver an Integer as the next two bytes."
 
 	self nextPut: ((aWord bitShift: -8) bitAnd: 255).
@@ -528,11 +419,8 @@ PositionableStream>>nextWordPut: aWord  [
 	^aWord
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>oldBack [
+{ #category : #accessing }
+PositionableStream >> oldBack [
 	"Go back one element and return it.  Use indirect messages in case I am a StandardFileStream"
 	"The method is a misconception about what a stream is. A stream contains a pointer *between* elements with past and future elements. This method considers that the pointer is *on* an element. Please consider unit tests which verifies #back and #oldBack behavior. (Damien Cassou - 1 August 2007)"
 	self position = 0 ifTrue: [self positionError].
@@ -542,11 +430,8 @@ PositionableStream>>oldBack [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>oldPeekBack [
+{ #category : #accessing }
+PositionableStream >> oldPeekBack [
 	"Return the element at the previous position, without changing position.  Use indirect messages in case self is a StandardFileStream."
 	"The method is a misconception about what a stream is. A stream contains a pointer *between* elements with past and future elements. This method considers that the pointer is *on* an element. Please consider unit tests which verifies #peekBack and #oldPeekBack behavior. (Damien Cassou - 1 August 2007)"
 	| element |
@@ -556,11 +441,8 @@ PositionableStream>>oldPeekBack [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>on: aCollection [
+{ #category : #initialization }
+PositionableStream >> on: aCollection [
 
 	collection := aCollection.
 	readLimit := aCollection size.
@@ -568,29 +450,20 @@ PositionableStream>>on: aCollection [
 	self reset
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>on: aCollection from: firstIndex to: lastIndex [
+{ #category : #initialization }
+PositionableStream >> on: aCollection from: firstIndex to: lastIndex [
 	self on: (aCollection copyFrom: firstIndex to: lastIndex)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>originalContents [
+{ #category : #accessing }
+PositionableStream >> originalContents [
 	"Answer the receiver's actual contents collection, NOT a copy."
 
 	^ collection
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>padTo: nBytes put: aCharacter  [
+{ #category : #positioning }
+PositionableStream >> padTo: nBytes put: aCharacter [ 
 	"Pad using the argument, aCharacter, to the next boundary of nBytes characters."
 	| rem |
 	rem := nBytes - (self position \\ nBytes).
@@ -598,22 +471,16 @@ PositionableStream>>padTo: nBytes put: aCharacter  [
 	self next: rem put: aCharacter.
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>padToNextLongPut: char  [
+{ #category : #positioning }
+PositionableStream >> padToNextLongPut: char [ 
 	"Make position be on long word boundary, writing the padding 
 	character, char, if necessary."
 	[self position \\ 4 = 0]
 		whileFalse: [self nextPut: char]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>peek [
+{ #category : #accessing }
+PositionableStream >> peek [
 	"Answer what would be returned if the message next were sent to the 
 	receiver. If the receiver is at the end, answer nil."
 
@@ -624,11 +491,8 @@ PositionableStream>>peek [
 	^nextObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>peekBack [
+{ #category : #accessing }
+PositionableStream >> peekBack [
 	"Return the element at the previous position, without changing position.  Use indirect messages in case self is a StandardFileStream."
 
 	| element |
@@ -637,11 +501,8 @@ PositionableStream>>peekBack [
 	^ element
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>peekFor: anObject  [
+{ #category : #accessing }
+PositionableStream >> peekFor: anObject [ 
 	"Answer false and do not move over the next element if it is not equal to 
 	the argument, anObject, or if the receiver is at the end. Answer true 
 	and increment the position for accessing elements, if the next element is 
@@ -657,21 +518,15 @@ PositionableStream>>peekFor: anObject  [
 	^false
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>position [
+{ #category : #positioning }
+PositionableStream >> position [
 	"Answer the current position of accessing the sequence of objects."
 
 	^position
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>position: anInteger [
+{ #category : #positioning }
+PositionableStream >> position: anInteger [
 	"Set the current position for accessing the objects to be anInteger, as long 
 	as anInteger is within the bounds of the receiver's contents. If it is not, 
 	create an error notification."
@@ -681,33 +536,24 @@ PositionableStream>>position: anInteger [
 		ifFalse: [ self positionError ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>positionError [
+{ #category : #private }
+PositionableStream >> positionError [
 	"Since I am not necessarily writable, it is up to my subclasses to override 
 	position: if expanding the collection is preferrable to giving this error."
 
 	self error: 'Attempt to set the position of a PositionableStream out of bounds'
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>positionOfSubCollection: subCollection [
+{ #category : #positioning }
+PositionableStream >> positionOfSubCollection: subCollection [
 	"Return a position such that that element at the new position equals the first element of sub, and the next elements equal the rest of the elements of sub. Begin the search at the current position.
 	If no such match is found, answer 0."
 
 	^self positionOfSubCollection: subCollection ifAbsent: [0]
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>positionOfSubCollection: subCollection ifAbsent: exceptionBlock  [
+{ #category : #positioning }
+PositionableStream >> positionOfSubCollection: subCollection ifAbsent: exceptionBlock [ 
 	"Return a position such that that element at the new position equals the first element of sub, and the next elements equal the rest of the elements of sub. Begin the search at the current position.
 	If no such match is found, answer the result of evaluating argument, exceptionBlock."
 	| pattern startPosition currentPosition |
@@ -725,20 +571,14 @@ PositionableStream>>positionOfSubCollection: subCollection ifAbsent: exceptionBl
 		ifFalse: [ exceptionBlock value ]
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>pushBack: aString [
+{ #category : #positioning }
+PositionableStream >> pushBack: aString [
 	"Compatibility with SocketStreams"
 	self skip: aString size negated
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>readInto: aCollection startingAt: startIndex count: n [
+{ #category : #accessing }
+PositionableStream >> readInto: aCollection startingAt: startIndex count: n [
 	"Read n objects into the given collection. 
 	Return number of elements that have been read."
 	
@@ -749,52 +589,37 @@ PositionableStream>>readInto: aCollection startingAt: startIndex count: n [
 	^ n
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>reset [
+{ #category : #positioning }
+PositionableStream >> reset [
 	"Set the receiver's position to the beginning of the sequence of objects."
 
 	position := 0
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>resetContents [
+{ #category : #positioning }
+PositionableStream >> resetContents [
 	"Set the position and limits to 0."
 
 	position := 0.
 	readLimit := 0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>setFrom: newStart to: newStop [
+{ #category : #private }
+PositionableStream >> setFrom: newStart to: newStop [
 
 	position := newStart - 1.
 	readLimit := newStop
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>setToEnd [
+{ #category : #positioning }
+PositionableStream >> setToEnd [
 	"Set the position of the receiver to the end of the sequence of objects."
 
 	position := readLimit
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>skip: anInteger  [
+{ #category : #positioning }
+PositionableStream >> skip: anInteger [ 
 	"Set the receiver's position to be the current position+anInteger. A 
 	subclass might choose to be more helpful and select the minimum of the 
 	receiver's size and position+anInteger, or the maximum of 1 and 
@@ -803,21 +628,15 @@ PositionableStream>>skip: anInteger  [
 	self position: position + anInteger
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>skipSeparators [
+{ #category : #positioning }
+PositionableStream >> skipSeparators [
 	[self atEnd]
 		whileFalse:
 		[self next isSeparator ifFalse: [^ self position: self position-1]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>skipSeparatorsAndPeekNext [
+{ #category : #accessing }
+PositionableStream >> skipSeparatorsAndPeekNext [
 	"A special function to make nextChunk fast"
 	| peek |
 	[self atEnd]
@@ -826,11 +645,8 @@ PositionableStream>>skipSeparatorsAndPeekNext [
 			ifFalse: [self position: self position-1. ^ peek]]
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>skipTo: anObject  [
+{ #category : #positioning }
+PositionableStream >> skipTo: anObject [ 
 	"Set the access position of the receiver to be past the next occurrence of 
 	anObject. Answer whether anObject is found."
 
@@ -839,11 +655,8 @@ PositionableStream>>skipTo: anObject  [
 	^false
 ]
 
-{
-	#category : #'accessing - data',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>string [
+{ #category : #'accessing - data' }
+PositionableStream >> string [
 	"Answer the next string from this (binary) stream."
 
 	| size |
@@ -852,11 +665,8 @@ PositionableStream>>string [
 
 ]
 
-{
-	#category : #'accessing - data',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>string: aString [
+{ #category : #'accessing - data' }
+PositionableStream >> string: aString [
 	"Store the given string on this (binary) stream. The string must contain 65535 or fewer characters."
 
 	aString size > 16rFFFF ifTrue: [self error: 'string too long for this format'].
@@ -865,11 +675,8 @@ PositionableStream>>string: aString [
 
 ]
 
-{
-	#category : #'accessing - data',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>uint16 [
+{ #category : #'accessing - data' }
+PositionableStream >> uint16 [
 	"Answer the next unsigned, 16-bit integer from this (binary) stream."
 
 	| n |
@@ -879,11 +686,8 @@ PositionableStream>>uint16 [
 
 ]
 
-{
-	#category : #'accessing - data',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>uint16: anInteger [
+{ #category : #'accessing - data' }
+PositionableStream >> uint16: anInteger [
 	"Store the given unsigned, 16-bit integer on this (binary) stream."
 
 	(anInteger < 0 or: [ anInteger >= 16r10000 ])
@@ -894,11 +698,8 @@ PositionableStream>>uint16: anInteger [
 
 ]
 
-{
-	#category : #'accessing - data',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>uint24 [
+{ #category : #'accessing - data' }
+PositionableStream >> uint24 [
 	"Answer the next unsigned, 24-bit integer from this (binary) stream."
 
 	| n |
@@ -909,11 +710,8 @@ PositionableStream>>uint24 [
 
 ]
 
-{
-	#category : #'accessing - data',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>uint24: anInteger [
+{ #category : #'accessing - data' }
+PositionableStream >> uint24: anInteger [
 	"Store the given unsigned, 24-bit integer on this (binary) stream."
 
 	(anInteger < 0 or: [ anInteger >= 16r1000000 ])
@@ -925,11 +723,8 @@ PositionableStream>>uint24: anInteger [
 
 ]
 
-{
-	#category : #'accessing - data',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>uint32 [
+{ #category : #'accessing - data' }
+PositionableStream >> uint32 [
 	"Answer the next unsigned, 32-bit integer from this (binary) stream."
 
 	| n |
@@ -941,11 +736,8 @@ PositionableStream>>uint32 [
 
 ]
 
-{
-	#category : #'accessing - data',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>uint32: anInteger [
+{ #category : #'accessing - data' }
+PositionableStream >> uint32: anInteger [
 	"Store the given unsigned, 32-bit integer on this (binary) stream."
 
 	(anInteger < 0 or: [ anInteger >= 16r100000000 ])
@@ -958,11 +750,8 @@ PositionableStream>>uint32: anInteger [
 
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>untilEnd: aBlock displayingProgress: aString [
+{ #category : #positioning }
+PositionableStream >> untilEnd: aBlock displayingProgress: aString [
 	aString
 		displayProgressFrom: 0 to: self size
 		during:
@@ -972,11 +761,8 @@ PositionableStream>>untilEnd: aBlock displayingProgress: aString [
 				aBlock value]].
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>untilEndWithFork: aBlock displayingProgress: aString [
+{ #category : #positioning }
+PositionableStream >> untilEndWithFork: aBlock displayingProgress: aString [
 	| sem done result |
 	sem := Semaphore new.
 	done := false.
@@ -995,11 +781,8 @@ PositionableStream>>untilEndWithFork: aBlock displayingProgress: aString [
 	^ result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>upTo: anObject  [
+{ #category : #accessing }
+PositionableStream >> upTo: anObject [ 
 	"Answer a subcollection from the current access position to the 
 	occurrence (if any, but not inclusive) of anObject in the receiver. If 
 	anObject is not in the collection, answer the entire rest of the receiver."
@@ -1010,11 +793,8 @@ PositionableStream>>upTo: anObject  [
 	^newStream contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>upToAll: aCollection [
+{ #category : #accessing }
+PositionableStream >> upToAll: aCollection [
 	"Answer a subcollection from the current access position to the occurrence (if any, but not inclusive) of aCollection. If aCollection is not in the stream, answer the entire rest of the stream."
 
 	| startPos endMatch result |
@@ -1029,11 +809,8 @@ PositionableStream>>upToAll: aCollection [
 			^ self upToEnd]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>upToAny: aCollection  [
+{ #category : #accessing }
+PositionableStream >> upToAny: aCollection [ 
 	"Answer a subcollection from the current access position to the 
 	occurrence (if any, but not inclusive) of any objects in the given collection in the receiver. If 
 	any of these is not in the collection, answer the entire rest of the receiver."
@@ -1045,22 +822,16 @@ PositionableStream>>upToAny: aCollection  [
 	^newStream contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>upToAnyOf: aCollection  [
+{ #category : #accessing }
+PositionableStream >> upToAnyOf: aCollection [ 
 	"Answer a subcollection from the current access position to the 
 	occurrence (if any, but not inclusive) of any object in the collection. If 
 	no matching object is found, answer the entire rest of the receiver."
 	^self upToAnyOf: aCollection do: [:matchingObject | ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>upToAnyOf: subcollection do: aBlock [
+{ #category : #accessing }
+PositionableStream >> upToAnyOf: subcollection do: aBlock [
 	"Answer a subcollection from the current access position to the occurrence (if any, but not inclusive) of any object in the collection.
 	Evaluate aBlock with this occurence as argument.
 	If no matching object is found, don't evaluate aBlock and answer the entire rest of the receiver."
@@ -1071,11 +842,8 @@ PositionableStream>>upToAnyOf: subcollection do: aBlock [
 			whileFalse: [ stream nextPut: ch ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-PositionableStream>>upToEnd [
+{ #category : #accessing }
+PositionableStream >> upToEnd [
 	"Answer a subcollection from the current access position through the last element of the receiver."
 
 	| newStream |

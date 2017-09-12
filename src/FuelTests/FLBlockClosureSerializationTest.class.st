@@ -10,33 +10,23 @@ Class {
 	#classInstVars : [
 		'interval'
 	],
-	#category : #FuelTests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:26'
+	#category : #FuelTests
 }
 
-{
-	#category : #'closures for testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLBlockClosureSerializationTest class>>blockClosureWithSelfSend [
+{ #category : #'closures for testing' }
+FLBlockClosureSerializationTest class >> blockClosureWithSelfSend [
 	^ [ self printString ]
 ]
 
-{
-	#category : #'closures for testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLBlockClosureSerializationTest class>>blockClosureWithTempVariableRead [
+{ #category : #'closures for testing' }
+FLBlockClosureSerializationTest class >> blockClosureWithTempVariableRead [
 	| string |
 	string := 'test'.
 	^ [ string asUppercase ].
 ]
 
-{
-	#category : #tests-change,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLBlockClosureSerializationTest>>testBlockClosureChangeDifferentBytecodes [
+{ #category : #tests-change }
+FLBlockClosureSerializationTest >> testBlockClosureChangeDifferentBytecodes [
 	"Raise an error when materializing a closure whose method has changed bytecodes."
 
 	| aClass aClosure |
@@ -49,11 +39,8 @@ FLBlockClosureSerializationTest>>testBlockClosureChangeDifferentBytecodes [
 	self should: [ self materialized ] raise: FLMethodChanged
 ]
 
-{
-	#category : #tests-change,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLBlockClosureSerializationTest>>testBlockClosureChangeSameBytecodes [
+{ #category : #tests-change }
+FLBlockClosureSerializationTest >> testBlockClosureChangeSameBytecodes [
 	"Tolerate materializing a closure whose method has changed but not the bytecodes."
 
 	| aClass aClosure materializedClosure |
@@ -68,11 +55,8 @@ FLBlockClosureSerializationTest>>testBlockClosureChangeSameBytecodes [
 	self assert: materializedClosure value = 42
 ]
 
-{
-	#category : #tests-change,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLBlockClosureSerializationTest>>testBlockClosureRemoved [
+{ #category : #tests-change }
+FLBlockClosureSerializationTest >> testBlockClosureRemoved [
 	"Raise an error when materializing a closure whose method was removed."
 
 	| aClass aClosure |
@@ -85,11 +69,8 @@ FLBlockClosureSerializationTest>>testBlockClosureRemoved [
 	self should: [ self materialized ] raise: FLMethodNotFound
 ]
 
-{
-	#category : #tests-clean,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLBlockClosureSerializationTest>>testBlockClosureWithClassVariableRead [
+{ #category : #tests-clean }
+FLBlockClosureSerializationTest >> testBlockClosureWithClassVariableRead [
 	| closure materializedClosure |
 	ClassVariableForTesting := nil.
 	closure := [ ClassVariableForTesting ].
@@ -102,11 +83,8 @@ FLBlockClosureSerializationTest>>testBlockClosureWithClassVariableRead [
 	self deny: materializedClosure value
 ]
 
-{
-	#category : #tests-unclean,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLBlockClosureSerializationTest>>testBlockClosureWithSelfSend [
+{ #category : #tests-unclean }
+FLBlockClosureSerializationTest >> testBlockClosureWithSelfSend [
 	| closure materializedClosure |
 	closure := self class blockClosureWithSelfSend.
 	materializedClosure := self resultOfSerializeAndMaterialize: closure.
@@ -114,11 +92,8 @@ FLBlockClosureSerializationTest>>testBlockClosureWithSelfSend [
 	self assert: materializedClosure value = closure value
 ]
 
-{
-	#category : #tests-clean,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLBlockClosureSerializationTest>>testBlockClosureWithTempVariableRead [
+{ #category : #tests-clean }
+FLBlockClosureSerializationTest >> testBlockClosureWithTempVariableRead [
 	| closure materializedClosure |
 	closure := self class blockClosureWithTempVariableRead.
 	materializedClosure := self resultOfSerializeAndMaterialize: closure.
@@ -127,11 +102,8 @@ FLBlockClosureSerializationTest>>testBlockClosureWithTempVariableRead [
 
 ]
 
-{
-	#category : #tests-clean,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLBlockClosureSerializationTest>>testBlockClosureWithThreeArguments [
+{ #category : #tests-clean }
+FLBlockClosureSerializationTest >> testBlockClosureWithThreeArguments [
 	| closure materializedClosure |
 	closure := [ :a :b :c | a + b + c ].
 	materializedClosure := self resultOfSerializeAndMaterialize: closure.
@@ -139,11 +111,8 @@ FLBlockClosureSerializationTest>>testBlockClosureWithThreeArguments [
 	self assert: (materializedClosure value: 1 value: 2 value: 3) = 6
 ]
 
-{
-	#category : #tests-clean,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLBlockClosureSerializationTest>>testNestedBlockClosure [
+{ #category : #tests-clean }
+FLBlockClosureSerializationTest >> testNestedBlockClosure [
 	| closure materializedClosure |
 	closure := [ [ 42 ] ].
 	materializedClosure := self resultOfSerializeAndMaterialize: closure.

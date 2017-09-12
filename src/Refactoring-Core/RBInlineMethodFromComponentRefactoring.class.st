@@ -8,15 +8,11 @@ If the method implementation has some direct variable references, accessor for t
 Class {
 	#name : #RBInlineMethodFromComponentRefactoring,
 	#superclass : #RBInlineMethodRefactoring,
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 14:50'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodFromComponentRefactoring>>abstractVariableReferences [
+{ #category : #transforming }
+RBInlineMethodFromComponentRefactoring >> abstractVariableReferences [
 	| refactoring |
 	refactoring := RBAbstractVariablesRefactoring 
 				model: self model
@@ -27,21 +23,15 @@ RBInlineMethodFromComponentRefactoring>>abstractVariableReferences [
 	inlineParseTree := refactoring parseTree
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodFromComponentRefactoring>>addArgumentToSelector: aSymbol  [
+{ #category : #transforming }
+RBInlineMethodFromComponentRefactoring >> addArgumentToSelector: aSymbol [ 
 	^aSymbol isInfix 
 		ifTrue: [#value:value:]
 		ifFalse: [(aSymbol , 'value:') asSymbol]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodFromComponentRefactoring>>addSelfReferenceToInlineParseTree [
+{ #category : #transforming }
+RBInlineMethodFromComponentRefactoring >> addSelfReferenceToInlineParseTree [
 	| variableName rewriter newArguments |
 	variableName := self newNameForSelf.
 	rewriter := RBParseTreeRewriter rename: 'self' to: variableName.
@@ -55,33 +45,24 @@ RBInlineMethodFromComponentRefactoring>>addSelfReferenceToInlineParseTree [
 	sourceMessage receiver replaceWith: (RBVariableNode named: variableName)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodFromComponentRefactoring>>addSelfReferenceToSourceMessage [
+{ #category : #transforming }
+RBInlineMethodFromComponentRefactoring >> addSelfReferenceToSourceMessage [
 	| newArguments |
 	newArguments := sourceMessage arguments asOrderedCollection.
 	newArguments addFirst: sourceMessage receiver copy.
 	sourceMessage renameSelector: (self addArgumentToSelector: sourceMessage selector) andArguments: newArguments
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodFromComponentRefactoring>>checkSuperMessages [
+{ #category : #transforming }
+RBInlineMethodFromComponentRefactoring >> checkSuperMessages [
 	inlineParseTree superMessages isEmpty 
 		ifFalse: 
 			[self 
 				refactoringError: 'Cannot inline method since it sends a super message']
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodFromComponentRefactoring>>findSelectedMessage [
+{ #category : #transforming }
+RBInlineMethodFromComponentRefactoring >> findSelectedMessage [
 	sourceParseTree := class parseTreeFor: sourceSelector.
 	sourceParseTree isNil 
 		ifTrue: [self refactoringFailure: 'Could not parse sources'].
@@ -98,11 +79,8 @@ RBInlineMethodFromComponentRefactoring>>findSelectedMessage [
 				refactoringFailure: 'The selection doesn''t appear to be a message send']
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodFromComponentRefactoring>>inlineClass [
+{ #category : #transforming }
+RBInlineMethodFromComponentRefactoring >> inlineClass [
 	| imps |
 	inlineClass notNil ifTrue: [^inlineClass].
 	imps := (self model allImplementorsOf: self inlineSelector) 
@@ -118,11 +96,8 @@ RBInlineMethodFromComponentRefactoring>>inlineClass [
 	^inlineClass
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodFromComponentRefactoring>>isOverridden [
+{ #category : #testing }
+RBInlineMethodFromComponentRefactoring >> isOverridden [
 	| selector| 
 	selector := self inlineSelector.
 	self inlineClass allSubclassesDo: [:each | 
@@ -131,11 +106,8 @@ RBInlineMethodFromComponentRefactoring>>isOverridden [
 	^ false
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodFromComponentRefactoring>>newNameForSelf [
+{ #category : #transforming }
+RBInlineMethodFromComponentRefactoring >> newNameForSelf [
 	| variableName index originalName nonMetaClass |
 	nonMetaClass := inlineClass theNonMetaClass.
 	variableName := originalName := (nonMetaClass name first isVowel 
@@ -150,20 +122,14 @@ RBInlineMethodFromComponentRefactoring>>newNameForSelf [
 	^ variableName
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodFromComponentRefactoring>>renameSelfReferences [
+{ #category : #transforming }
+RBInlineMethodFromComponentRefactoring >> renameSelfReferences [
 	self addSelfReferenceToSourceMessage.
 	self addSelfReferenceToInlineParseTree.
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodFromComponentRefactoring>>safeVariableNameBasedOn: aString  [
+{ #category : #transforming }
+RBInlineMethodFromComponentRefactoring >> safeVariableNameBasedOn: aString [ 
 	"Creates an unused variable name containing aString"
 
 	| baseString newString i allTempVars |
@@ -181,11 +147,8 @@ RBInlineMethodFromComponentRefactoring>>safeVariableNameBasedOn: aString  [
 	^newString
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodFromComponentRefactoring>>transform [
+{ #category : #transforming }
+RBInlineMethodFromComponentRefactoring >> transform [
 	self abstractVariableReferences.
 	self renameSelfReferences.
 	super transform

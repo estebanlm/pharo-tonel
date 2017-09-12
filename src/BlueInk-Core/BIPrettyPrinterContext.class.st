@@ -35,63 +35,41 @@ Class {
 		'useBasicCommentFormat',
 		'traditionalBinaryPrecedenceArray'
 	],
-	#category : #BlueInk-Core,
-	#timestamp : 'StephaneDucasse 3/31/2015 15:43'
+	#category : #BlueInk-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>formatCommentWithStatements [
+{ #category : #accessing }
+BIPrettyPrinterContext >> formatCommentWithStatements [
 	^ formatCommentWithStatements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>formatCommentWithStatements: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> formatCommentWithStatements: anObject [
 	formatCommentWithStatements := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>indentString [
+{ #category : #accessing }
+BIPrettyPrinterContext >> indentString [
 	^ indentString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>indentString: aString [
+{ #category : #accessing }
+BIPrettyPrinterContext >> indentString: aString [
 	indentString := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>indentsForKeywords [
+{ #category : #accessing }
+BIPrettyPrinterContext >> indentsForKeywords [
 	^ indentsForKeywords
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>indentsForKeywords: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> indentsForKeywords: anObject [
 	indentsForKeywords := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>initialize [
+{ #category : #initialization }
+BIPrettyPrinterContext >> initialize [
 	useBasicCommentFormat := true.
 	formatCommentWithStatements := true.
 	indentString := String with: Character tab.
@@ -122,402 +100,252 @@ BIPrettyPrinterContext>>initialize [
 	useTraditionalBinaryPrecedenceForParentheses := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>keepBlockInMessage [
+{ #category : #accessing }
+BIPrettyPrinterContext >> keepBlockInMessage [
 	^ keepBlockInMessage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>keepBlockInMessage: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> keepBlockInMessage: anObject [
 	keepBlockInMessage := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>lineUpBlockBrackets [
+{ #category : #accessing }
+BIPrettyPrinterContext >> lineUpBlockBrackets [
 	^ lineUpBlockBrackets
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>lineUpBlockBrackets: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> lineUpBlockBrackets: anObject [
 	lineUpBlockBrackets := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>maxLineLength [
+{ #category : #accessing }
+BIPrettyPrinterContext >> maxLineLength [
 	^ maxLineLength
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>maxLineLength: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> maxLineLength: anObject [
 	maxLineLength := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>methodSignatureOnMultipleLines [
+{ #category : #accessing }
+BIPrettyPrinterContext >> methodSignatureOnMultipleLines [
 	^ methodSignatureOnMultipleLines
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>methodSignatureOnMultipleLines: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> methodSignatureOnMultipleLines: anObject [
 	methodSignatureOnMultipleLines := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>minimumNewLinesBetweenStatements [
+{ #category : #accessing }
+BIPrettyPrinterContext >> minimumNewLinesBetweenStatements [
 	^ minimumNewLinesBetweenStatements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>minimumNewLinesBetweenStatements: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> minimumNewLinesBetweenStatements: anObject [
 	minimumNewLinesBetweenStatements := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>multiLineMessages [
+{ #category : #accessing }
+BIPrettyPrinterContext >> multiLineMessages [
 	^ multiLineMessages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>multiLineMessages: anArray [
+{ #category : #accessing }
+BIPrettyPrinterContext >> multiLineMessages: anArray [
 	multiLineMessages := (self class compiler evaluate: anArray asString)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>newLineAfterCascade [
+{ #category : #accessing }
+BIPrettyPrinterContext >> newLineAfterCascade [
 	^ newLineAfterCascade
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>newLineAfterCascade: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> newLineAfterCascade: anObject [
 	newLineAfterCascade := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>newLineBeforeFirstCascade [
+{ #category : #accessing }
+BIPrettyPrinterContext >> newLineBeforeFirstCascade [
 	^ newLineBeforeFirstCascade
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>newLineBeforeFirstCascade: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> newLineBeforeFirstCascade: anObject [
 	newLineBeforeFirstCascade := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>newLineBeforeFirstKeyword [
+{ #category : #accessing }
+BIPrettyPrinterContext >> newLineBeforeFirstKeyword [
 	^ newLineBeforeFirstKeyword
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>newLineBeforeFirstKeyword: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> newLineBeforeFirstKeyword: anObject [
 	newLineBeforeFirstKeyword := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>newLinesAfterMethodComment [
+{ #category : #accessing }
+BIPrettyPrinterContext >> newLinesAfterMethodComment [
 	^ newLinesAfterMethodComment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>newLinesAfterMethodComment: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> newLinesAfterMethodComment: anObject [
 	newLinesAfterMethodComment := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>newLinesAfterMethodPattern [
+{ #category : #accessing }
+BIPrettyPrinterContext >> newLinesAfterMethodPattern [
 	^ newLinesAfterMethodPattern
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>newLinesAfterMethodPattern: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> newLinesAfterMethodPattern: anObject [
 	newLinesAfterMethodPattern := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>newLinesAfterTemporaries [
+{ #category : #accessing }
+BIPrettyPrinterContext >> newLinesAfterTemporaries [
 	^ newLinesAfterTemporaries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>newLinesAfterTemporaries: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> newLinesAfterTemporaries: anObject [
 	newLinesAfterTemporaries := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>numberOfArgumentsForMultiLine [
+{ #category : #accessing }
+BIPrettyPrinterContext >> numberOfArgumentsForMultiLine [
 	^ numberOfArgumentsForMultiLine
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>numberOfArgumentsForMultiLine: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> numberOfArgumentsForMultiLine: anObject [
 	numberOfArgumentsForMultiLine := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>oneLineMessages [
+{ #category : #accessing }
+BIPrettyPrinterContext >> oneLineMessages [
 	^ oneLineMessages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>oneLineMessages: anArray [
+{ #category : #accessing }
+BIPrettyPrinterContext >> oneLineMessages: anArray [
 	oneLineMessages := (self class compiler evaluate: anArray asString)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>periodsAtEndOfBlock [
+{ #category : #accessing }
+BIPrettyPrinterContext >> periodsAtEndOfBlock [
 	^ periodsAtEndOfBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>periodsAtEndOfBlock: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> periodsAtEndOfBlock: anObject [
 	periodsAtEndOfBlock := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>periodsAtEndOfMethod [
+{ #category : #accessing }
+BIPrettyPrinterContext >> periodsAtEndOfMethod [
 	^ periodsAtEndOfMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>periodsAtEndOfMethod: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> periodsAtEndOfMethod: anObject [
 	periodsAtEndOfMethod := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>retainBlankLinesBeforeComments [
+{ #category : #accessing }
+BIPrettyPrinterContext >> retainBlankLinesBeforeComments [
 	^ retainBlankLinesBeforeComments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>retainBlankLinesBeforeComments: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> retainBlankLinesBeforeComments: anObject [
 	retainBlankLinesBeforeComments := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>retainBlankLinesBetweenStatements [
+{ #category : #accessing }
+BIPrettyPrinterContext >> retainBlankLinesBetweenStatements [
 	^ retainBlankLinesBetweenStatements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>retainBlankLinesBetweenStatements: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> retainBlankLinesBetweenStatements: anObject [
 	retainBlankLinesBetweenStatements := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>selectorAndArgumentCombinedMaxSize [
+{ #category : #accessing }
+BIPrettyPrinterContext >> selectorAndArgumentCombinedMaxSize [
 	^ selectorAndArgumentCombinedMaxSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>selectorAndArgumentCombinedMaxSize: anInteger [
+{ #category : #accessing }
+BIPrettyPrinterContext >> selectorAndArgumentCombinedMaxSize: anInteger [
 	selectorAndArgumentCombinedMaxSize := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>stringFollowingReturn [
+{ #category : #accessing }
+BIPrettyPrinterContext >> stringFollowingReturn [
 	^ stringFollowingReturn
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>stringFollowingReturn: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> stringFollowingReturn: anObject [
 	stringFollowingReturn := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>stringInsideBlocks [
+{ #category : #accessing }
+BIPrettyPrinterContext >> stringInsideBlocks [
 	^ stringInsideBlocks
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>stringInsideBlocks: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> stringInsideBlocks: anObject [
 	stringInsideBlocks := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>stringInsideParentheses [
+{ #category : #accessing }
+BIPrettyPrinterContext >> stringInsideParentheses [
 	^ stringInsideParentheses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>stringInsideParentheses: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> stringInsideParentheses: anObject [
 	stringInsideParentheses := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>traditionalBinaryPrecedenceArray [
+{ #category : #accessing }
+BIPrettyPrinterContext >> traditionalBinaryPrecedenceArray [
 	^ traditionalBinaryPrecedenceArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>traditionalBinaryPrecedenceArray: anArray [
+{ #category : #accessing }
+BIPrettyPrinterContext >> traditionalBinaryPrecedenceArray: anArray [
 	traditionalBinaryPrecedenceArray := (self class compiler evaluate: anArray asString)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>useBasicCommentFormat [
+{ #category : #accessing }
+BIPrettyPrinterContext >> useBasicCommentFormat [
 	^ useBasicCommentFormat
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>useBasicCommentFormat: aBoolean [
+{ #category : #accessing }
+BIPrettyPrinterContext >> useBasicCommentFormat: aBoolean [
 	useBasicCommentFormat := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>useTraditionalBinaryPrecedenceForParentheses [
+{ #category : #accessing }
+BIPrettyPrinterContext >> useTraditionalBinaryPrecedenceForParentheses [
 	^ useTraditionalBinaryPrecedenceForParentheses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIPrettyPrinterContext>>useTraditionalBinaryPrecedenceForParentheses: anObject [
+{ #category : #accessing }
+BIPrettyPrinterContext >> useTraditionalBinaryPrecedenceForParentheses: anObject [
 	useTraditionalBinaryPrecedenceForParentheses := anObject
 ]

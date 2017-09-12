@@ -7,30 +7,20 @@ Class {
 	#instVars : [
 		'stopPosition'
 	],
-	#category : #AST-Core-Tokens,
-	#timestamp : 'md 8/9/2005 14:52'
+	#category : #AST-Core-Tokens
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBKeywordToken>>isKeyword [
+{ #category : #testing }
+RBKeywordToken >> isKeyword [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBKeywordToken>>isPatternVariable [
+{ #category : #testing }
+RBKeywordToken >> isPatternVariable [
 	^value first = RBScanner patternVariableCharacter
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBKeywordToken>>isPrimitiveKeyword [
+{ #category : #testing }
+RBKeywordToken >> isPrimitiveKeyword [
 	^ self value = #primitive:
 ]

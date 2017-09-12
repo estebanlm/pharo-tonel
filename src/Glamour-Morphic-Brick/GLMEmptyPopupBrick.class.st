@@ -16,15 +16,11 @@ Class {
 		'inset',
 		'spacing'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-UI-Popup,
-	#timestamp : 'AliakseiSyrel 2/28/2017 08:56'
+	#category : #Glamour-Morphic-Brick-Widgets-UI-Popup
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick class>>createButton: hoverAction [
+{ #category : #examples }
+GLMEmptyPopupBrick class >> createButton: hoverAction [
 
 	^ (GLMActionButtonBrick new
 			color: Color white;
@@ -34,11 +30,8 @@ GLMEmptyPopupBrick class>>createButton: hoverAction [
 			height: [ :b | b icon height * 2 ])
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick class>>createLabel: hoverAction [
+{ #category : #examples }
+GLMEmptyPopupBrick class >> createLabel: hoverAction [
 	| label |
 
 	label := GLMLabelBrick new
@@ -55,11 +48,8 @@ GLMEmptyPopupBrick class>>createLabel: hoverAction [
 	^ label
 ]
 
-{
-	#category : #'popup - listeners',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>addCloserListener [
+{ #category : #'popup - listeners' }
+GLMEmptyPopupBrick >> addCloserListener [
 
 	self
 		assert: [ self closer isNotNil ]
@@ -69,40 +59,28 @@ GLMEmptyPopupBrick>>addCloserListener [
 	self activeHand addEventListener: self closer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>addContentBricks [
+{ #category : #accessing }
+GLMEmptyPopupBrick >> addContentBricks [
 	
 	self onCreated.
 	self announce: #onCreated event: self triggerBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>anchorBrick [
+{ #category : #accessing }
+GLMEmptyPopupBrick >> anchorBrick [
 
 	^ anchorBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>anchorBrick: aBrick [
+{ #category : #accessing }
+GLMEmptyPopupBrick >> anchorBrick: aBrick [
 
 	anchorBrick := aBrick.	
 	self updateTriggerBrick
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>area [
+{ #category : #brick-geometry }
+GLMEmptyPopupBrick >> area [
 	| firstBounds secondBounds |
 
 	firstBounds := self subbricks first outerBounds.
@@ -124,21 +102,15 @@ GLMEmptyPopupBrick>>area [
 		}
 ]
 
-{
-	#category : #'popup - layout',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>beDownward [
+{ #category : #'popup - layout' }
+GLMEmptyPopupBrick >> beDownward [
 	"Make popup layout to be downward"
 
 	self popupLayout: GLMPopupBrickDownwardLayout new
 ]
 
-{
-	#category : #'popup - opening',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>beRightToLeftWithOffset: anOffset [
+{ #category : #'popup - opening' }
+GLMEmptyPopupBrick >> beRightToLeftWithOffset: anOffset [
 
 	self invalidateWith: [
 		self triggerBrick hAlign: #right.
@@ -146,41 +118,29 @@ GLMEmptyPopupBrick>>beRightToLeftWithOffset: anOffset [
 		self foundationBrick bounds: (self foundationBrick bounds translateBy: (self width - self triggerBrick width - anOffset - inset left @ 0) negated) ]
 ]
 
-{
-	#category : #'popup - layout',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>beUpward [
+{ #category : #'popup - layout' }
+GLMEmptyPopupBrick >> beUpward [
 	"Make popup layout to be upward"
 
 	self popupLayout: GLMPopupBrickUpwardLayout new
 ]
 
-{
-	#category : #'popup - opening',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>close [
+{ #category : #'popup - opening' }
+GLMEmptyPopupBrick >> close [
 	"Close popup and remove it from the world"
 	
 	self foundationBrick delete.
 	self onClosed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>closer [
+{ #category : #accessing }
+GLMEmptyPopupBrick >> closer [
 	"Return a current popup closer"
 	^ closer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>closer: aPopupCloser [
+{ #category : #accessing }
+GLMEmptyPopupBrick >> closer: aPopupCloser [
 	"Change current popup closer to a given one"
 	
 	self removeCloserListener.
@@ -188,32 +148,23 @@ GLMEmptyPopupBrick>>closer: aPopupCloser [
 	self addCloserListener
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>contentBrick [
+{ #category : #accessing }
+GLMEmptyPopupBrick >> contentBrick [
 
 	^ contentBrick
 
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>contentBrick: aBrick [
+{ #category : #accessing }
+GLMEmptyPopupBrick >> contentBrick: aBrick [
 
 	contentBrick := aBrick.
 	self addBrickBack: contentBrick
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>defaultCloser [
+{ #category : #initialization }
+GLMEmptyPopupBrick >> defaultCloser [
 	"Return a default popup closer responsible for hiding a popup"
 	<return: #GLMPopupBrickCloser>
 
@@ -222,38 +173,26 @@ GLMEmptyPopupBrick>>defaultCloser [
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>defaultPopupLayout [
+{ #category : #initialization }
+GLMEmptyPopupBrick >> defaultPopupLayout [
 	^ GLMPopupBrickDownwardLayout new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>defaultRenderer [
+{ #category : #initialization }
+GLMEmptyPopupBrick >> defaultRenderer [
 	^ GLMBrickAreaRenderer new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>foundationBrick [
+{ #category : #accessing }
+GLMEmptyPopupBrick >> foundationBrick [
 
 	^ (self owner isKindOf: GLMFoundationBrick)
 		ifTrue: [ self owner ]
 		ifFalse: [ self ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>initialize [
+{ #category : #initialization }
+GLMEmptyPopupBrick >> initialize [
 	super initialize.
 	
 	anchorBrick := Morph new extent: 1@1.
@@ -271,11 +210,8 @@ GLMEmptyPopupBrick>>initialize [
 		initializeLayout
 ]
 
-{
-	#category : #'popup - layout',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>initializeLayout [
+{ #category : #'popup - layout' }
+GLMEmptyPopupBrick >> initializeLayout [
 	"Create trigger and content bricks and let my popup layout
 	to build a popup out of them"
 	
@@ -285,118 +221,82 @@ GLMEmptyPopupBrick>>initializeLayout [
 		content: self newContentBrick
 ]
 
-{
-	#category : #'popup - listeners',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>initializeListeners [
+{ #category : #'popup - listeners' }
+GLMEmptyPopupBrick >> initializeListeners [
 	"using the most general event subscribtion for all events spawned by the hand"
 	
 	self addCloserListener
 ]
 
-{
-	#category : #'popup - properties',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>inset [
+{ #category : #'popup - properties' }
+GLMEmptyPopupBrick >> inset [
 	^ inset
 ]
 
-{
-	#category : #'popup - properties',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>inset: aMargin [
+{ #category : #'popup - properties' }
+GLMEmptyPopupBrick >> inset: aMargin [
 
 	inset := aMargin asMargin.
 	self updateInsetAndSpacing
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>isInsideOfContentBrick: anEvent [
+{ #category : #events-processing }
+GLMEmptyPopupBrick >> isInsideOfContentBrick: anEvent [
 	self contentBrick 
 		ifNil: [^ false]
 		ifNotNil: [:aBrick | 
 			anEvent withHandPositionDo: [ :position | ^ aBrick boundsInWorld containsPoint: position ]]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>isInsideOfPopupBrick: anEvent [
+{ #category : #events-processing }
+GLMEmptyPopupBrick >> isInsideOfPopupBrick: anEvent [
 	^ (self isInsideOfTriggerBrick: anEvent) | (self isInsideOfContentBrick: anEvent)
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>isInsideOfTriggerBrick: anEvent [
+{ #category : #events-processing }
+GLMEmptyPopupBrick >> isInsideOfTriggerBrick: anEvent [
 	self triggerBrick 
 		ifNil: [^ false]
 		ifNotNil: [:aBrick | 
 			anEvent withHandPositionDo: [ :position | ^ aBrick globalBounds containsPoint: position ] ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>newContentBrick [
+{ #category : #'instance creation' }
+GLMEmptyPopupBrick >> newContentBrick [
 	^ GLMBandBrick new
 		hShrinkWrap;
 		vShrinkWrap;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>newTriggerBrick [
+{ #category : #'instance creation' }
+GLMEmptyPopupBrick >> newTriggerBrick [
 	^ GLMActionButtonBrick new
 		hShrinkWrap;
 		vShrinkWrap;
 		yourself
 ]
 
-{
-	#category : #'popup - hooks',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>onClosed [
+{ #category : #'popup - hooks' }
+GLMEmptyPopupBrick >> onClosed [
 	"I am send after popup is closed and removed from the world.
 	Override me to perform additional actions, for example restore keyboard or mouse focus"
 ]
 
-{
-	#category : #'popup - hooks',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>onCreated [
+{ #category : #'popup - hooks' }
+GLMEmptyPopupBrick >> onCreated [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'popup - hooks',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>onOpened [
+{ #category : #'popup - hooks' }
+GLMEmptyPopupBrick >> onOpened [
 	"I am send after popup is opened in the world and became visible to the user.
 	Override me to perform additional actions, for example give keyboard or mouse focus
 	to me or any of my content elements"
 ]
 
-{
-	#category : #'popup - hooks',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>onThemerChanged [
+{ #category : #'popup - hooks' }
+GLMEmptyPopupBrick >> onThemerChanged [
 	| aThemer |
 	super onThemerChanged.
 	
@@ -419,11 +319,8 @@ GLMEmptyPopupBrick>>onThemerChanged [
 	self updateTriggerBrick
 ]
 
-{
-	#category : #'popup - opening dispatch',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>openAbove: aRectangle [
+{ #category : #'popup - opening dispatch' }
+GLMEmptyPopupBrick >> openAbove: aRectangle [
 	"aRectangle must be in global coordinates"
 	| anOrigin |
 	
@@ -431,11 +328,8 @@ GLMEmptyPopupBrick>>openAbove: aRectangle [
 	^ self openAt: anOrigin
 ]
 
-{
-	#category : #'popup - opening',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>openAt: aPoint [
+{ #category : #'popup - opening' }
+GLMEmptyPopupBrick >> openAt: aPoint [
 	"Open me in the world at a given position provided in global coordinates.
 	Return a morphic foundation brick that is used to wrap a popup"
 	<return: #GLMFoundationBrick>
@@ -452,20 +346,14 @@ GLMEmptyPopupBrick>>openAt: aPoint [
 	^ aFoundationBrick
 ]
 
-{
-	#category : #'popup - opening dispatch',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>openBelow: aRectangle [
+{ #category : #'popup - opening dispatch' }
+GLMEmptyPopupBrick >> openBelow: aRectangle [
 	"aRectangle must be in global coordinates"
 	^ self openAt: aRectangle origin
 ]
 
-{
-	#category : #'popup - opening',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>openOn: aBrick [
+{ #category : #'popup - opening' }
+GLMEmptyPopupBrick >> openOn: aBrick [
 	"Open popup for a given brick playing a role of my anchor"
 
 	self
@@ -479,21 +367,15 @@ GLMEmptyPopupBrick>>openOn: aBrick [
 	^ self popupLayout open: self with: (aBrick boundsInWorld expandBy: self inset)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>outOfWorld: aWorld [
+{ #category : #initialization }
+GLMEmptyPopupBrick >> outOfWorld: aWorld [
 	super outOfWorld: aWorld.
 	
 	self unsubscribeListeners
 ]
 
-{
-	#category : #'popup - layout',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>popupLayout [
+{ #category : #'popup - layout' }
+GLMEmptyPopupBrick >> popupLayout [
 	"Return my current popup layout.
 	popupLayout can not be nil"
 	<return: #GLMPopupBrickLayout>
@@ -505,11 +387,8 @@ GLMEmptyPopupBrick>>popupLayout [
 	^ popupLayout
 ]
 
-{
-	#category : #'popup - layout',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>popupLayout: aPopupLayout [
+{ #category : #'popup - layout' }
+GLMEmptyPopupBrick >> popupLayout: aPopupLayout [
 	"Change my popup layout to a given one rebuilding popup"
 
 	popupLayout := aPopupLayout.
@@ -520,11 +399,8 @@ GLMEmptyPopupBrick>>popupLayout: aPopupLayout [
 		content: self contentBrick
 ]
 
-{
-	#category : #'popup - listeners',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>removeCloserListener [
+{ #category : #'popup - listeners' }
+GLMEmptyPopupBrick >> removeCloserListener [
 
 	self
 		assert: [ self closer isNotNil ]
@@ -534,30 +410,21 @@ GLMEmptyPopupBrick>>removeCloserListener [
 	self closer popup: nil
 ]
 
-{
-	#category : #'popup - properties',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>spacing [
+{ #category : #'popup - properties' }
+GLMEmptyPopupBrick >> spacing [
 	^ spacing
 ]
 
-{
-	#category : #'popup - properties',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>spacing: aNumber [
+{ #category : #'popup - properties' }
+GLMEmptyPopupBrick >> spacing: aNumber [
 	"Set amount of free space between trigger and content bricks"
 	
 	spacing := aNumber.
 	self updateInsetAndSpacing
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>triggerBrick [
+{ #category : #accessing }
+GLMEmptyPopupBrick >> triggerBrick [
 	"Return an interactable trigger brick.
 	triggerBrick can not be nil"
 	<return: #GLMInteractableBrick>
@@ -569,11 +436,8 @@ GLMEmptyPopupBrick>>triggerBrick [
 	^ triggerBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>triggerBrick: aBrick [
+{ #category : #accessing }
+GLMEmptyPopupBrick >> triggerBrick: aBrick [
 	"Add a given interractable brick as my trigger brick.
 	Trigger brick is a visual element that should be located exactly above original
 	anchor brick and should have the same (visual) content.
@@ -592,20 +456,14 @@ GLMEmptyPopupBrick>>triggerBrick: aBrick [
 	self addBrickBack: self triggerBrick
 ]
 
-{
-	#category : #'popup - listeners',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>unsubscribeListeners [
+{ #category : #'popup - listeners' }
+GLMEmptyPopupBrick >> unsubscribeListeners [
 
 	self removeCloserListener
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>updateInsetAndSpacing [
+{ #category : #private }
+GLMEmptyPopupBrick >> updateInsetAndSpacing [
 
 	self triggerBrick margin: {
 		self inset top.
@@ -620,11 +478,8 @@ GLMEmptyPopupBrick>>updateInsetAndSpacing [
 		self inset left }
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEmptyPopupBrick>>updateTriggerBrick [
+{ #category : #private }
+GLMEmptyPopupBrick >> updateTriggerBrick [
 	| aTriggerImage |
 	
 	aTriggerImage := self anchorBrick brickImageForm: self themer popupThemer backgroundColor.

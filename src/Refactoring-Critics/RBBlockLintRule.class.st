@@ -4,32 +4,22 @@ I am a special kind of rule where the verification is specified using a block. T
 Class {
 	#name : #RBBlockLintRule,
 	#superclass : #RBBasicLintRule,
-	#category : #Refactoring-Critics,
-	#timestamp : '<historical>'
+	#category : #Refactoring-Critics
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBlockLintRule class>>isVisible [
+{ #category : #testing }
+RBBlockLintRule class >> isVisible [
 	^ self name ~= #RBBlockLintRule
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBlockLintRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBBlockLintRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'BlockLintRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBlockLintRule>>resultClass [
+{ #category : #accessing }
+RBBlockLintRule >> resultClass [
 	^ RBSelectorEnvironment
 ]

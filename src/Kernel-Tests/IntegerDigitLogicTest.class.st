@@ -4,24 +4,17 @@ SUnit test to test digit logic of integers
 Class {
 	#name : #IntegerDigitLogicTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Numbers,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:37'
+	#category : #Kernel-Tests-Numbers
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerDigitLogicTest>>testAndSingleBitWithMinusOne [
+{ #category : #tests }
+IntegerDigitLogicTest >> testAndSingleBitWithMinusOne [
 	"And a single bit with -1 and test for same value"
 	1 to: 100 do: [:i | self assert: ((1 bitShift: i) bitAnd: -1) = (1 bitShift: i)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerDigitLogicTest>>testLargeShift [
+{ #category : #tests }
+IntegerDigitLogicTest >> testLargeShift [
 	"A sanity check for LargeInteger bitShifts"
 	"self debug: #testLargeShift"
 	| suite |
@@ -45,52 +38,37 @@ IntegerDigitLogicTest>>testLargeShift [
 			self assert: rs = (bits copyFrom: 1 to: bits size - shift).]]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerDigitLogicTest>>testMixedSignDigitLogic [
+{ #category : #tests }
+IntegerDigitLogicTest >> testMixedSignDigitLogic [
 	"Verify that mixed sign logic with large integers works."
 	self assert: (-2 bitAnd: 16rFFFFFFFF) = 16rFFFFFFFE
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerDigitLogicTest>>testNBitAndNNegatedEqualsN [
+{ #category : #tests }
+IntegerDigitLogicTest >> testNBitAndNNegatedEqualsN [
 	"Verify that (n bitAnd: n negated) = n for single bits"
 	| n |
 	1 to: 100 do: [:i | n := 1 bitShift: i.
 				self assert: (n bitAnd: n negated) = n]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerDigitLogicTest>>testNNegatedEqualsNComplementedPlusOne [
+{ #category : #tests }
+IntegerDigitLogicTest >> testNNegatedEqualsNComplementedPlusOne [
 	"Verify that n negated = (n complemented + 1) for single bits"
 	| n |
 	1 to: 100 do: [:i | n := 1 bitShift: i.
 				self assert: n negated = ((n bitXor: -1) + 1)]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerDigitLogicTest>>testShiftMinusOne1LeftThenRight [
+{ #category : #tests }
+IntegerDigitLogicTest >> testShiftMinusOne1LeftThenRight [
 	"Shift -1 left then right and test for 1"
 	1 to: 100 do: [:i | self assert: ((-1 bitShift: i) bitShift: i negated) = -1].
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IntegerDigitLogicTest>>testShiftOneLeftThenRight [
+{ #category : #tests }
+IntegerDigitLogicTest >> testShiftOneLeftThenRight [
 	"Shift 1 bit left then right and test for 1"
 	1 to: 100 do: [:i | self assert: ((1 bitShift: i) bitShift: i negated) = 1].
 

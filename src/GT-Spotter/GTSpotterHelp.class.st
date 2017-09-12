@@ -4,15 +4,11 @@ A helper class containing the help for GT Spotter.
 Class {
 	#name : #GTSpotterHelp,
 	#superclass : #CustomHelp,
-	#category : #GT-Spotter-Help,
-	#timestamp : 'TudorGirba 1/20/2016 16:49'
+	#category : #GT-Spotter-Help
 }
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHelp class>>basicExamples [
+{ #category : #documentation }
+GTSpotterHelp class >> basicExamples [
 	^ HelpTopic 
 		title: 'Basic Examples'
 		contents: 
@@ -35,19 +31,13 @@ Searching for a published playground page:
 '
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHelp class>>bookName  [
+{ #category : #accessing }
+GTSpotterHelp class >> bookName [ 
 	^'GT Spotter'
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHelp class>>categoryFilterExamples [
+{ #category : #documentation }
+GTSpotterHelp class >> categoryFilterExamples [
 	^ HelpTopic 
 		title: 'Category Filter Examples'
 		contents: 
@@ -81,11 +71,8 @@ In this situation, it is possible to specify the scoping by ignoring the whitesp
 	#playgrounds'
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHelp class>>diveInCategoryExamples [
+{ #category : #documentation }
+GTSpotterHelp class >> diveInCategoryExamples [
 	^ HelpTopic 
 		title: 'Dive-in Category Examples'
 		contents:
@@ -105,11 +92,8 @@ Then you dive-in category (Meta+Shift+ArrowRight, or click on the arrow button n
 '
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHelp class>>diveInExamples [
+{ #category : #documentation }
+GTSpotterHelp class >> diveInExamples [
 	^ HelpTopic 
 		title: 'Dive-in Examples'
 		contents: 
@@ -128,11 +112,8 @@ We then ensure that the preview is open (Meta+p), and we can browse the methods 
 The dive-in activity is useful when the search involves multiple steps.'
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHelp class>>extensionExamples [
+{ #category : #documentation }
+GTSpotterHelp class >> extensionExamples [
 
 	^ HelpTopic 
 		title: 'Understanding Spotter extensions'
@@ -175,11 +156,8 @@ Now, imagine that you want to search methods inside a known class. To achieve th
 To understand the option of specifying search processors in more details, take a look at the extentions present in the image and at the API of GTSpotterCandidatesListProcessor.'
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHelp class>>extensions [
+{ #category : #documentation }
+GTSpotterHelp class >> extensions [
 		
 	^ HelpTopic 
 		title: 'Extensions installed in the image'
@@ -192,11 +170,8 @@ The list is computed automatically. You can also browse it by inspecting:
 ', self extensionsString
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHelp class>>extensionsString [
+{ #category : #documentation }
+GTSpotterHelp class >> extensionsString [
 	| methods title |
 	^ String streamContents: [ :s |
 		((GTSpotter spotterExtendingMethods groupedBy: #methodClass) 
@@ -220,19 +195,13 @@ GTSpotterHelp class>>extensionsString [
 			s cr ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHelp class>>key [
+{ #category : #accessing }
+GTSpotterHelp class >> key [
 	^ self name
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHelp class>>keybindings [
+{ #category : #documentation }
+GTSpotterHelp class >> keybindings [
 	^ HelpTopic 
 		title: 'Keybindings'
 		contents: 
@@ -253,11 +222,8 @@ Cmd+Left / Cmd+Shift+Left - dive out from an object into the previous step
 Cmd+Shift+Right - dive in a category to see its elements'
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHelp class>>overview [
+{ #category : #documentation }
+GTSpotterHelp class >> overview [
 	^ HelpTopic 
 		title: 'Overview'
 		contents: 
@@ -266,19 +232,13 @@ GTSpotterHelp class>>overview [
 Its goal is to help developers find and navigate through all sorts of objects, including packages, classes, methods, code snippets, or menus.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHelp class>>pages [
+{ #category : #accessing }
+GTSpotterHelp class >> pages [
 	^#(overview keybindings basicExamples categoryFilterExamples diveInExamples diveInCategoryExamples extensionExamples extensions resettingSpotter)
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterHelp class>>resettingSpotter [
+{ #category : #documentation }
+GTSpotterHelp class >> resettingSpotter [
 
 	^ HelpTopic 
 		title: 'Resetting Spotter'

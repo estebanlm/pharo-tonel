@@ -1,35 +1,22 @@
-"
-
-"
 Class {
 	#name : #HETraitComposition,
 	#superclass : #HEArray,
-	#category : #Hermes-Model,
-	#timestamp : ''
+	#category : #Hermes-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HETraitComposition class>>tag [
+{ #category : #accessing }
+HETraitComposition class >> tag [
 	^18
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HETraitComposition>>asLiteralIn: env [
+{ #category : #converting }
+HETraitComposition >> asLiteralIn: env [
 	^ TraitComposition new
 		transformations: (value collect: [ :e | e asLiteralIn: env ]) asOrderedCollection;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HETraitComposition>>value: aTraitComposition [
+{ #category : #accessing }
+HETraitComposition >> value: aTraitComposition [
 	value := aTraitComposition transformations asArray collect:#asExportedLiteral.
 ]

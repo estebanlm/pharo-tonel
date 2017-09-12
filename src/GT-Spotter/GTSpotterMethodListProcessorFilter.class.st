@@ -14,15 +14,11 @@ Class {
 		'selectedMethodSignatures',
 		'configurationBlocks'
 	],
-	#category : #GT-Spotter-Model,
-	#timestamp : 'AndreiChis 9/24/2015 18:17'
+	#category : #GT-Spotter-Model
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMethodListProcessorFilter>>allowProcessorsFrom: aMethod [
+{ #category : #adding }
+GTSpotterMethodListProcessorFilter >> allowProcessorsFrom: aMethod [
 	|signature|
 	
 	signature := self signatureFor: aMethod.
@@ -30,70 +26,49 @@ GTSpotterMethodListProcessorFilter>>allowProcessorsFrom: aMethod [
 	
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMethodListProcessorFilter>>allowProcessorsFrom: aMethod configuredWith: aBlock [
+{ #category : #adding }
+GTSpotterMethodListProcessorFilter >> allowProcessorsFrom: aMethod configuredWith: aBlock [
 	
 	self allowProcessorsFrom: aMethod.
 	configurationBlocks at: aMethod printString put: aBlock.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMethodListProcessorFilter>>configurationBlockForProcessorsCreatedBy: aMethod [
+{ #category : #accessing }
+GTSpotterMethodListProcessorFilter >> configurationBlockForProcessorsCreatedBy: aMethod [
 	
 	^ configurationBlocks at: aMethod printString ifAbsent: [ self nullConfigurationBlock ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMethodListProcessorFilter>>initialize [
+{ #category : #initialization }
+GTSpotterMethodListProcessorFilter >> initialize [
 	super initialize.
 
 	selectedMethodSignatures := OrderedCollection new.
 	configurationBlocks := Dictionary new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMethodListProcessorFilter>>nullConfigurationBlock [
+{ #category : #accessing }
+GTSpotterMethodListProcessorFilter >> nullConfigurationBlock [
 
 	^ [ :processor | ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMethodListProcessorFilter>>printSignature: aSignature [
+{ #category : #printing }
+GTSpotterMethodListProcessorFilter >> printSignature: aSignature [
 
 	^ aSignature first name, '>>', aSignature second asString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMethodListProcessorFilter>>shouldEnableProcessorsCreateBy: aMethod [
+{ #category : #testing }
+GTSpotterMethodListProcessorFilter >> shouldEnableProcessorsCreateBy: aMethod [
 
 	^ selectedMethodSignatures anySatisfy: [ :aSignature | 
 		aSignature first = aMethod methodClass and: [ aSignature second = aMethod selector ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMethodListProcessorFilter>>signatureFor: aMethod [
+{ #category : #accessing }
+GTSpotterMethodListProcessorFilter >> signatureFor: aMethod [
 
 	^ {aMethod methodClass . aMethod selector}
 ]

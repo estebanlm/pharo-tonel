@@ -8,23 +8,16 @@ Class {
 		'start',
 		'stop'
 	],
-	#category : #Athens-Text,
-	#timestamp : 'IgorStasenko 2/6/2012 16:17'
+	#category : #Athens-Text
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCharacterSpan>>renderOn: renderer [
+{ #category : #rendering }
+AthensCharacterSpan >> renderOn: renderer [
 	renderer renderCharactersFrom: start to: stop
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCharacterSpan>>splitAt: position [
+{ #category : #accessing }
+AthensCharacterSpan >> splitAt: position [
 	| newSpan |
 	"split receiver on two character spans "
 	" position points to first character which should be included in newly created span "
@@ -40,38 +33,26 @@ AthensCharacterSpan>>splitAt: position [
 	self insert: newSpan.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCharacterSpan>>start [
+{ #category : #accessing }
+AthensCharacterSpan >> start [
 
 	^ start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCharacterSpan>>start: anObject [
+{ #category : #accessing }
+AthensCharacterSpan >> start: anObject [
 
 	start := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCharacterSpan>>stop [
+{ #category : #accessing }
+AthensCharacterSpan >> stop [
 
 	^ stop
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensCharacterSpan>>stop: anObject [
+{ #category : #accessing }
+AthensCharacterSpan >> stop: anObject [
 
 	stop := anObject
 ]

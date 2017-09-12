@@ -25,23 +25,16 @@ Class {
 		'compilationContext',
 		'compilationContextClass'
 	],
-	#category : #OpalCompiler-Core-FrontEnd,
-	#timestamp : 'MarcusDenker 4/3/2017 10:31'
+	#category : #OpalCompiler-Core-FrontEnd
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler class>>debuggerMethodMapForMethod: aMethod [
+{ #category : #public }
+OpalCompiler class >> debuggerMethodMapForMethod: aMethod [
 	^ DebuggerMethodMapOpal forMethod: aMethod
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler class>>defaultOptions [
+{ #category : #options }
+OpalCompiler class >> defaultOptions [
 	^ #(
 	"by default we inline all optimized constructs"
 	+ optionInlineIf
@@ -61,22 +54,16 @@ OpalCompiler class>>defaultOptions [
 	)
 ]
 
-{
-	#category : #'old - public',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler class>>evaluate: textOrString  [
+{ #category : #'old - public' }
+OpalCompiler class >> evaluate: textOrString [ 
 	
 	^self new
 		source: textOrString;
 		evaluate
 ]
 
-{
-	#category : #'old - public',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler class>>evaluate: textOrString for: anObject logged: logFlag  [
+{ #category : #'old - public' }
+OpalCompiler class >> evaluate: textOrString for: anObject logged: logFlag [ 
 	"See Compiler|evaluate:for:notifying:logged:. If a compilation error occurs, 
 	a Syntax Error view is created rather than notifying any requestor."
 
@@ -87,11 +74,8 @@ OpalCompiler class>>evaluate: textOrString for: anObject logged: logFlag  [
 		evaluate
 ]
 
-{
-	#category : #'old - public',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler class>>evaluate: textOrString for: anObject notifying: aController logged: logFlag [
+{ #category : #'old - public' }
+OpalCompiler class >> evaluate: textOrString for: anObject notifying: aController logged: logFlag [
 	"Compile and execute the argument, textOrString with respect to the class 
 	of anObject. If a compilation error occurs, notify aController. If both 
 	compilation and execution are successful then, if logFlag is true, log 
@@ -108,11 +92,8 @@ OpalCompiler class>>evaluate: textOrString for: anObject notifying: aController 
 			
 ]
 
-{
-	#category : #'old - public',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler class>>evaluate: textOrString logged: logFlag  [
+{ #category : #'old - public' }
+OpalCompiler class >> evaluate: textOrString logged: logFlag [ 
 	"See Compiler|evaluate:for:notifying:logged:. If a compilation error occurs, 
 	a Syntax Error view is created rather than notifying any requestor. 
 	Compilation is carried out with respect to nil, i.e., no object."
@@ -125,11 +106,8 @@ OpalCompiler class>>evaluate: textOrString logged: logFlag  [
 			
 ]
 
-{
-	#category : #'old - public',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler class>>evaluate: textOrString notifying: aController logged: logFlag  [
+{ #category : #'old - public' }
+OpalCompiler class >> evaluate: textOrString notifying: aController logged: logFlag [ 
 	"See Compiler|evaluate:for:notifying:logged:. Compilation is carried out 
 	with respect to nil, i.e., no object."
 
@@ -142,11 +120,8 @@ OpalCompiler class>>evaluate: textOrString notifying: aController logged: logFla
 			
 ]
 
-{
-	#category : #'old - public',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler class>>format: textOrStream in: aClass notifying: aRequestor [
+{ #category : #'old - public' }
+OpalCompiler class >> format: textOrStream in: aClass notifying: aRequestor [
 	^self new
 		source: textOrStream;
 		class: aClass;
@@ -155,19 +130,13 @@ OpalCompiler class>>format: textOrStream in: aClass notifying: aRequestor [
 		
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler class>>isActive [
+{ #category : #public }
+OpalCompiler class >> isActive [
 	^Smalltalk compilerClass == self
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler class>>recompileAll [
+{ #category : #public }
+OpalCompiler class >> recompileAll [
 	"Recompile all classes and traits in the system."
 
 	Smalltalk image recompile
@@ -176,19 +145,13 @@ OpalCompiler class>>recompileAll [
 
 ]
 
-{
-	#category : #plugins,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>addPlugin: aClass  [
+{ #category : #plugins }
+OpalCompiler >> addPlugin: aClass [ 
 	compilationContext addASTTransformationPlugin: aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>bindings: aDictionary [
+{ #category : #accessing }
+OpalCompiler >> bindings: aDictionary [
 	"for now we abuse the requestor infrastructure...we should rewrite the requestor to use bindings
 	instead"
 	self compilationContext 
@@ -196,11 +159,8 @@ OpalCompiler>>bindings: aDictionary [
 		interactive: false.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>callPlugins [
+{ #category : #private }
+OpalCompiler >> callPlugins [
 	| plugins  |
 	plugins := compilationContext astTransformPlugins ifEmpty: [ ^self ].
 	plugins sort: [:a :b | a priority > b priority]. "priority 0 is sorted last"
@@ -208,51 +168,33 @@ OpalCompiler>>callPlugins [
 	plugins do: [ :each | ast := each transform: ast]. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>class: aClass [
+{ #category : #accessing }
+OpalCompiler >> class: aClass [
 	self compilationContext class: aClass.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>compilationContext [
+{ #category : #accessing }
+OpalCompiler >> compilationContext [
 	^ compilationContext ifNil: [ compilationContext := self compilationContextClass default ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>compilationContext: anObject [
+{ #category : #accessing }
+OpalCompiler >> compilationContext: anObject [
 	compilationContext := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>compilationContextClass [
+{ #category : #accessing }
+OpalCompiler >> compilationContextClass [
 	^compilationContextClass ifNil: [ CompilationContext  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>compilationContextClass: aClass [
+{ #category : #accessing }
+OpalCompiler >> compilationContextClass: aClass [
 	compilationContextClass := aClass.
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>compile [
+{ #category : #'public access' }
+OpalCompiler >> compile [
 	| cm |
 	[ 	[	ast := self parse.
 			self doSemanticAnalysis. 
@@ -277,38 +219,26 @@ OpalCompiler>>compile [
 	^cm
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>compile: textOrString  [
+{ #category : #'public access' }
+OpalCompiler >> compile: textOrString [ 
 	
 	^self
 		source: textOrString;
 		compile.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>compiledMethodTrailer: bytes [
+{ #category : #accessing }
+OpalCompiler >> compiledMethodTrailer: bytes [
 	self compilationContext compiledMethodTrailer: bytes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>context: aContext [
+{ #category : #accessing }
+OpalCompiler >> context: aContext [
 	context  := aContext
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>decompileMethod: aCompiledMethod [
+{ #category : #'public access' }
+OpalCompiler >> decompileMethod: aCompiledMethod [
 	^ Smalltalk globals 
 		at: #FBDDecompiler  
 		ifPresent: [ :decompilerClass | [ decompilerClass new decompile: aCompiledMethod ]
@@ -319,29 +249,20 @@ OpalCompiler>>decompileMethod: aCompiledMethod [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>doSemanticAnalysis [
+{ #category : #private }
+OpalCompiler >> doSemanticAnalysis [
 	^[ast doSemanticAnalysisInContext: self compilationContext] 
 		on: OCSemanticError 
 		do: [ :ex | ex defaultAction. ^ self compilationContext failBlock value ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>environment: anSmallTalkImage [
+{ #category : #accessing }
+OpalCompiler >> environment: anSmallTalkImage [
 	self compilationContext environment: anSmallTalkImage 
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>evaluate [
+{ #category : #'public access' }
+OpalCompiler >> evaluate [
 	"Compiles the sourceStream into a parse tree, then generates code into
 	 a method. If aContext is not nil, the text can refer to temporaries in that
 	 context (the Debugger uses this). If aRequestor is not nil, then it will receive
@@ -370,63 +291,42 @@ OpalCompiler>>evaluate [
 	^ value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>failBlock: aBlock [
+{ #category : #accessing }
+OpalCompiler >> failBlock: aBlock [
 	self compilationContext failBlock: aBlock.
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>format [
+{ #category : #'public access' }
+OpalCompiler >> format [
 	^self parse formattedCode.
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>format: textOrString  [
+{ #category : #'public access' }
+OpalCompiler >> format: textOrString [ 
 	
 	^self
 		source: textOrString;
 		format
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>logged: aBoolean [
+{ #category : #accessing }
+OpalCompiler >> logged: aBoolean [
 	self compilationContext logged:  aBoolean.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>noPattern: aBoolean [
+{ #category : #accessing }
+OpalCompiler >> noPattern: aBoolean [
 	self compilationContext noPattern: aBoolean.
 	
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>options: anOptionsArray [
+{ #category : #'public access' }
+OpalCompiler >> options: anOptionsArray [
 	self compilationContext parseOptions: anOptionsArray
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>parse [
+{ #category : #'public access' }
+OpalCompiler >> parse [
 	| expression selector arguments method |
 	self compilationContext noPattern ifFalse: [ ^ self parseMethod ].
 	expression := self parseExpression asSequenceNode transformLastToReturn.
@@ -442,22 +342,16 @@ OpalCompiler>>parse [
 	^ method
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>parse: textOrString  [
+{ #category : #'public access' }
+OpalCompiler >> parse: textOrString [ 
 	
 	^self
 		source: textOrString;
 		parse
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>parseExpression [
+{ #category : #private }
+OpalCompiler >> parseExpression [
 	| parseClass |
 	
 	parseClass := self compilationContext parserClass.
@@ -467,19 +361,13 @@ OpalCompiler>>parseExpression [
 		ifFalse: [parseClass parseExpression: source contents]
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>parseLiterals: aString [
+{ #category : #'public access' }
+OpalCompiler >> parseLiterals: aString [
 	^RBParser parseLiterals: aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>parseMethod [
+{ #category : #private }
+OpalCompiler >> parseMethod [
 	| parseClass |
 	
 	parseClass := self compilationContext parserClass.
@@ -489,46 +377,31 @@ OpalCompiler>>parseMethod [
 		ifFalse: [parseClass parseMethod: source contents]
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>parseSelector: aString  [
+{ #category : #'public access' }
+OpalCompiler >> parseSelector: aString [ 
 	"Answer the message selector for the argument, aString, which should parse successfully up to the temporary declaration or the end of the method header."
 	
 	^[RBParser parseMethodPattern: aString] on: Error do: [nil].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>receiver: anObject [
+{ #category : #accessing }
+OpalCompiler >> receiver: anObject [
 	receiver := anObject.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>requestor: aRequestor [
+{ #category : #accessing }
+OpalCompiler >> requestor: aRequestor [
 	self compilationContext requestor: aRequestor.
 	self compilationContext interactive: (UIManager default interactiveParserFor: aRequestor).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>source: aString [
+{ #category : #accessing }
+OpalCompiler >> source: aString [
 	source := aString readStream.
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OpalCompiler>>translate [
+{ #category : #'public access' }
+OpalCompiler >> translate [
 	[ self compile ] on: ReparseAfterSourceEditing do: [ :ex |
 		self source: ex newSource readStream.
 		self compile

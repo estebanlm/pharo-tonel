@@ -3,34 +3,22 @@ A trait for test purposes
 "
 Trait {
 	#name : #TPrintTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:35'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPrintTest>>nonEmpty [
+{ #category : #requirements }
+TPrintTest >> nonEmpty [
  self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPrintTest>>test0FixturePrintTest [
+{ #category : #'tests - fixture' }
+TPrintTest >> test0FixturePrintTest [
 	self nonEmpty.
 	self deny: self nonEmpty isEmpty
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPrintTest>>testPrintElementsOn [
+{ #category : #'tests - printing' }
+TPrintTest >> testPrintElementsOn [
 
 	| aStream result allElementsAsString tmp |
 	result:=''.
@@ -46,11 +34,8 @@ TPrintTest>>testPrintElementsOn [
 			].
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPrintTest>>testPrintNameOn [
+{ #category : #'tests - printing' }
+TPrintTest >> testPrintNameOn [
 
 	| aStream result |
 	result:=''.
@@ -61,11 +46,8 @@ TPrintTest>>testPrintNameOn [
 		ifFalse:[self assert: aStream contents =('a ',self nonEmpty class name)].
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPrintTest>>testPrintOn [
+{ #category : #'tests - printing' }
+TPrintTest >> testPrintOn [
 	| aStream result allElementsAsString tmp |
 	result:=''.
 	aStream:= ReadWriteStream on: result.
@@ -88,11 +70,8 @@ TPrintTest>>testPrintOn [
 			].
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPrintTest>>testPrintOnDelimiter [
+{ #category : #'tests - printing' }
+TPrintTest >> testPrintOnDelimiter [
 	| aStream result allElementsAsString tmp |
 	result:=''.
 	aStream:= ReadWriteStream on: result.
@@ -110,11 +89,8 @@ TPrintTest>>testPrintOnDelimiter [
 			].
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPrintTest>>testPrintOnDelimiterLast [
+{ #category : #'tests - printing' }
+TPrintTest >> testPrintOnDelimiterLast [
 
 	| aStream result allElementsAsString tmp |
 	result:=''.
@@ -136,11 +112,8 @@ TPrintTest>>testPrintOnDelimiterLast [
 			].
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPrintTest>>testStoreOn [
+{ #category : #'tests - printing' }
+TPrintTest >> testStoreOn [
 " for the moment work only for collection that include simple elements such that Integer"
 
 "| string str result cuttedResult index elementsAsStringExpected elementsAsStringObtained tmp |

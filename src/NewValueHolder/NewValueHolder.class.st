@@ -19,35 +19,25 @@ Class {
 		'lock',
 		'value'
 	],
-	#category : #NewValueHolder,
-	#timestamp : 'PeterUhnak 3/5/2016 11:16'
+	#category : #NewValueHolder
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-NewValueHolder class>>value: contents [
+{ #category : #'instance creation' }
+NewValueHolder class >> value: contents [
 
 	^ self new
 		rawValue: contents;
 		yourself
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-NewValueHolder>>addDependent: aDependent [
+{ #category : #announcements }
+NewValueHolder >> addDependent: aDependent [
 
 	self error: 'Former API, should be changed'.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-NewValueHolder>>handleCircularReferencesWhile: aBlock [
+{ #category : #private }
+NewValueHolder >> handleCircularReferencesWhile: aBlock [
 	"Used to handle circular references as explained in the class comment"
 
 	lock ifTrue: [ ^ self ].
@@ -56,11 +46,8 @@ NewValueHolder>>handleCircularReferencesWhile: aBlock [
 	aBlock ensure: [ lock := false ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-NewValueHolder>>initialize [
+{ #category : #initialization }
+NewValueHolder >> initialize [
 
 	super initialize.
 	
@@ -68,11 +55,8 @@ NewValueHolder>>initialize [
 	lock := false.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-NewValueHolder>>printOn: aStream [
+{ #category : #printing }
+NewValueHolder >> printOn: aStream [
 	super printOn: aStream.
 	
 	aStream 
@@ -81,29 +65,20 @@ NewValueHolder>>printOn: aStream [
 		nextPutAll: ' ]'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-NewValueHolder>>rawValue: aValue [
+{ #category : #accessing }
+NewValueHolder >> rawValue: aValue [
 
 	value := aValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-NewValueHolder>>value [
+{ #category : #accessing }
+NewValueHolder >> value [
 
 	^ value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-NewValueHolder>>value: anObject [
+{ #category : #accessing }
+NewValueHolder >> value: anObject [
 	
 	self handleCircularReferencesWhile: [ | oldValue |
 		oldValue := value.
@@ -113,38 +88,26 @@ NewValueHolder>>value: anObject [
 	^ value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-NewValueHolder>>valueChanged [
+{ #category : #accessing }
+NewValueHolder >> valueChanged [
 	
 	announcer announce: (ValueChanged newValue: value)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-NewValueHolder>>valueChanged: oldValue [
+{ #category : #accessing }
+NewValueHolder >> valueChanged: oldValue [
 	
 	announcer announce: (ValueChanged oldValue: oldValue newValue: value)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-NewValueHolder>>valueChanged: oldValue to: newValue [
+{ #category : #accessing }
+NewValueHolder >> valueChanged: oldValue to: newValue [
 	
 	announcer announce: (ValueChanged oldValue: oldValue newValue: newValue)
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-NewValueHolder>>whenChangedDo: aBlock [
+{ #category : #announcements }
+NewValueHolder >> whenChangedDo: aBlock [
 	"Culled block [ :newValue :oldValue :announcement :announcer | ]"
 
 	| block |
@@ -157,11 +120,8 @@ NewValueHolder>>whenChangedDo: aBlock [
 	announcer when: ValueChanged do: block
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-NewValueHolder>>whenChangedSend: aSelector to: aReceiver [
+{ #category : #announcements }
+NewValueHolder >> whenChangedSend: aSelector [ to: aReceiver
 
 	announcer when: ValueChanged send: aSelector to: aReceiver
 ]

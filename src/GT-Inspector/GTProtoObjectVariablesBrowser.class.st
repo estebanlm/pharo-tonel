@@ -7,15 +7,11 @@ self openOn: ProtoObject new
 Class {
 	#name : #GTProtoObjectVariablesBrowser,
 	#superclass : #GTRawObjectVariablesBrowser,
-	#category : #GT-Inspector,
-	#timestamp : 'TudorGirba 1/4/2016 20:48'
+	#category : #GT-Inspector
 }
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTProtoObjectVariablesBrowser>>basicVariableNodesFor: anObject in: aCollection [
+{ #category : #'private building' }
+GTProtoObjectVariablesBrowser >> basicVariableNodesFor: anObject in: aCollection [
 
 	aCollection addAll: ((anObject class allInstVarNames 
 			collectWithIndex: [ :ivName :index | 
@@ -24,11 +20,8 @@ GTProtoObjectVariablesBrowser>>basicVariableNodesFor: anObject in: aCollection [
 			
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTProtoObjectVariablesBrowser>>printStringOf: anObject [
+{ #category : #'private building' }
+GTProtoObjectVariablesBrowser >> printStringOf: anObject [
 	| className |
 	className := anObject class name.
 	^ (String streamContents: [ :s |

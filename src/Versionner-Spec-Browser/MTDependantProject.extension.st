@@ -1,12 +1,7 @@
-Extension {
-	#name : #MTDependantProject
-}
+Extension { #name : #MTDependantProject }
 
-{
-	#category : #'*Versionner-Spec-Browser',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProject>>editRepositories [
+{ #category : #'*Versionner-Spec-Browser' }
+MTDependantProject >> editRepositories [
 	| packageName repoManager |
 	
 	packageName := configurationClass package name.
@@ -20,11 +15,8 @@ MTDependantProject>>editRepositories [
 		yourself.
 ]
 
-{
-	#category : #'*Versionner-Spec-Browser',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProject>>editVersion [
+{ #category : #'*Versionner-Spec-Browser' }
+MTDependantProject >> editVersion [
 	| availableVersions  index |
 	
 	configurationClass ifNil: [ UIManager inform: 'Cannot find the configuration class for ' , name.
@@ -43,10 +35,7 @@ MTDependantProject>>editVersion [
 				self version: (MTVersion fromVersionString:  versionString) ]
 ]
 
-{
-	#category : #'*Versionner-Spec-Browser',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProject>>treeNodeClass [
+{ #category : #'*Versionner-Spec-Browser' }
+MTDependantProject >> treeNodeClass [
 	^ VSProjectLeafNode
 ]

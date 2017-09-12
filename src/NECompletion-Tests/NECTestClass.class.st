@@ -26,24 +26,17 @@ Class {
 	#classVars : [
 		'ClassVar'
 	],
-	#category : #NECompletion-Tests,
-	#timestamp : '<historical>'
+	#category : #NECompletion-Tests
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECTestClass class>>initialize [
+{ #category : #initialization }
+NECTestClass class >> initialize [
 	super initialize.
 	ClassVar := 'Any string'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECTestClass>>initialize: aRectangle  [
+{ #category : #initialization }
+NECTestClass >> initialize: aRectangle [ 
 	constantInteger := 15.
 	constantLargeInteger := 1073741824.
 	constantString := 'Ruben'.
@@ -64,20 +57,14 @@ NECTestClass>>initialize: aRectangle  [
 	complexInit2 := Dictionary new: aRectangle origin x. 
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECTestClass>>lowPriorityOverrides: aRectangle  [
+{ #category : #utils }
+NECTestClass >> lowPriorityOverrides: aRectangle [ 
 	messageSend := aRectangle.
 	typeSuggestingParameter2 := aRectangle. 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECTestClass>>testIt: anArgument  [
+{ #category : #tests }
+NECTestClass >> testIt: anArgument [ 
 	| loc1 x2 t |
 	x2 := [:bar :var | var < bar].
 	loc1 := constantArray.

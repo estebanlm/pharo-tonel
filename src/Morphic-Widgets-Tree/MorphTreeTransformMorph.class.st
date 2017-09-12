@@ -4,46 +4,33 @@ A custom transform morph for a morphic based tree
 Class {
 	#name : #MorphTreeTransformMorph,
 	#superclass : #TransformMorph,
-	#category : #Morphic-Widgets-Tree,
-	#timestamp : 'TorstenBergmann 9/5/2014 15:29'
+	#category : #Morphic-Widgets-Tree
 }
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeTransformMorph>>addAllMorphs: aCollection after: anotherMorph [
+{ #category : #submorphs-add/remove }
+MorphTreeTransformMorph >> addAllMorphs: aCollection after: anotherMorph [
 	^self privateAddAllMorphs: aCollection 
 			atIndex: (anotherMorph index ifNil: [submorphs size])
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeTransformMorph>>bottomVisibleRowForCanvas: aCanvas [
+{ #category : #drawing }
+MorphTreeTransformMorph >> bottomVisibleRowForCanvas: aCanvas [
      "return the bottom visible row in aCanvas's clip rectangle"
 	
 	^ self rowAtLocation: (aCanvas clipRect  bottomRight).
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeTransformMorph>>bottomVisibleRowForCanvas: aCanvas startingAt: aPos [
+{ #category : #drawing }
+MorphTreeTransformMorph >> bottomVisibleRowForCanvas: aCanvas startingAt: aPos [
      "return the bottom visible row in aCanvas's clip rectangle"
 	
 	^ self rowAtLocation: (aCanvas clipRect  bottomRight)  startingAt: aPos
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeTransformMorph>>drawRawColorOn: aCanvas forSubmorph: aSubMorph [
+{ #category : #drawing }
+MorphTreeTransformMorph >> drawRawColorOn: aCanvas forSubmorph: aSubMorph [
 	| c frame |
 	frame := (aSubMorph fullBounds withWidth: owner scroller innerBounds width) translateBy:(owner scroller offset x)@0.
 	aSubMorph = owner listManager searchedElement
@@ -76,11 +63,8 @@ MorphTreeTransformMorph>>drawRawColorOn: aCanvas forSubmorph: aSubMorph [
 					aCanvas fillRectangle: frame basicFillStyle: c ] ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeTransformMorph>>drawSubmorphsOn: aCanvas [
+{ #category : #drawing }
+MorphTreeTransformMorph >> drawSubmorphsOn: aCanvas [
 	submorphs ifEmpty: [^ self].
 	aCanvas transformBy: transform
 		clippingTo: (aCanvas clipRect intersect: (owner clippingBounds) ifNone: ["we're done here" ^ self ])
@@ -100,11 +84,8 @@ MorphTreeTransformMorph>>drawSubmorphsOn: aCanvas [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeTransformMorph>>fullBounds [
+{ #category : #geometry }
+MorphTreeTransformMorph >> fullBounds [
 	"Overridden to clip submorph hit detection to my bounds."
 	"It might be better to override doLayoutIn:, and remove this method"
 
@@ -113,20 +94,14 @@ MorphTreeTransformMorph>>fullBounds [
 	^ fullBounds
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeTransformMorph>>initialize [
+{ #category : #initialization }
+MorphTreeTransformMorph >> initialize [
 	super initialize.
 	self smoothingOn
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeTransformMorph>>localSubmorphBounds [
+{ #category : #layout }
+MorphTreeTransformMorph >> localSubmorphBounds [
 	"Answer, in my coordinate system, the bounds of all my visible submorphs (or nil if no visible submorphs)"
 	localBounds ifNil: [ 
 		self hasSubmorphs ifFalse: [^ nil].
@@ -135,11 +110,8 @@ MorphTreeTransformMorph>>localSubmorphBounds [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeTransformMorph>>privateAddAllMorphs: aCollection atIndex: index [
+{ #category : #private }
+MorphTreeTransformMorph >> privateAddAllMorphs: aCollection atIndex: index [
 	"Private. Add aCollection of morphs to the receiver"
 	submorphs := Array 
 		new: submorphs size + aCollection size
@@ -154,19 +126,13 @@ MorphTreeTransformMorph>>privateAddAllMorphs: aCollection atIndex: index [
 
 ]
 
-{
-	#category : #'change reporting',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeTransformMorph>>privateInvalidateMorph: aMorph [
+{ #category : #'change reporting' }
+MorphTreeTransformMorph >> privateInvalidateMorph: aMorph [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeTransformMorph>>rowAtLocation: aPoint [
+{ #category : #drawing }
+MorphTreeTransformMorph >> rowAtLocation: aPoint [
 	"return the number of the row at aPoint"
 	| y |
 	y := aPoint y.
@@ -175,11 +141,8 @@ MorphTreeTransformMorph>>rowAtLocation: aPoint [
 	^ submorphs size
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeTransformMorph>>rowAtLocation: aPoint startingAt: aPosition [
+{ #category : #drawing }
+MorphTreeTransformMorph >> rowAtLocation: aPoint startingAt: aPosition [
 	"return the number of the row at aPoint"
 	| y |
 	y := aPoint y.
@@ -190,43 +153,31 @@ MorphTreeTransformMorph>>rowAtLocation: aPoint startingAt: aPosition [
 	^ submorphs size
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeTransformMorph>>submorphBounds [
+{ #category : #layout }
+MorphTreeTransformMorph >> submorphBounds [
 	"Private. Compute the actual full bounds of the receiver, optimized for speed"
 	self hasSubmorphs ifFalse: [^ nil].
 	^ self firstSubmorph topLeft corner: owner scroller bounds bottomLeft + (0@ owner extraScrollRange)
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeTransformMorph>>topVisibleRowForCanvas: aCanvas [
+{ #category : #drawing }
+MorphTreeTransformMorph >> topVisibleRowForCanvas: aCanvas [
      "return the top visible row in aCanvas's clip rectangle"
 
         ^ self rowAtLocation: (aCanvas clipRect topLeft).
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeTransformMorph>>topVisibleRowForCanvas: aCanvas startingAt: aPos [
+{ #category : #drawing }
+MorphTreeTransformMorph >> topVisibleRowForCanvas: aCanvas startingAt: aPos [
      "return the top visible row in aCanvas's clip rectangle"
 
         ^ self rowAtLocation: (aCanvas clipRect topLeft) startingAt: aPos.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeTransformMorph>>wantsSteps [
+{ #category : #testing }
+MorphTreeTransformMorph >> wantsSteps [
 	^ false
 ]

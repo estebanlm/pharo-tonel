@@ -8,33 +8,23 @@ Class {
 		'color',
 		'width'
 	],
-	#category : #Hiedra-Builders,
-	#timestamp : '<historical>'
+	#category : #Hiedra-Builders
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodeBuilder>>color [
+{ #category : #accessing }
+HiNodeBuilder >> color [
 	
 	^ color
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodeBuilder>>color: anObject [
+{ #category : #accessing }
+HiNodeBuilder >> color: anObject [
 	
 	color := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodeBuilder>>initialize [
+{ #category : #initialization }
+HiNodeBuilder >> initialize [
 
 	super initialize.
 
@@ -43,29 +33,20 @@ HiNodeBuilder>>initialize [
 
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodeBuilder>>renderer [
+{ #category : #building }
+HiNodeBuilder >> renderer [
 	^ HiNodeRenderer new
 		nodeBuilder: self;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodeBuilder>>width [
+{ #category : #accessing }
+HiNodeBuilder >> width [
 	^ width
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodeBuilder>>width: anObject [
+{ #category : #accessing }
+HiNodeBuilder >> width: anObject [
 	
 	width := anObject
 ]

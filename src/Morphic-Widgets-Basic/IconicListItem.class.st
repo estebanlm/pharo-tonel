@@ -19,15 +19,11 @@ Class {
 		'morph',
 		'originalObject'
 	],
-	#category : #Morphic-Widgets-Basic,
-	#timestamp : 'StephaneDucasse 7/16/2014 22:25'
+	#category : #Morphic-Widgets-Basic
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicListItem class>>text: aText icon: form [
+{ #category : #'instance creation' }
+IconicListItem class >> text: aText icon: form [
 	| morph |
 	
 	aText ifNotNil: [ morph := aText asMorph 
@@ -40,29 +36,20 @@ IconicListItem class>>text: aText icon: form [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicListItem>>enabled: aBoolean [
+{ #category : #accessing }
+IconicListItem >> enabled: aBoolean [
 
 	self submorphs do: [ :each |
 			each enabled: aBoolean ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicListItem>>icon [
+{ #category : #accessing }
+IconicListItem >> icon [
 	^ icon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicListItem>>icon: anObject [
+{ #category : #accessing }
+IconicListItem >> icon: anObject [
 
 	icon ifNotNil: [ self removeMorph: icon ].
 	
@@ -73,11 +60,8 @@ IconicListItem>>icon: anObject [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicListItem>>initialize [
+{ #category : #initialization }
+IconicListItem >> initialize [
 
 	super initialize.
 
@@ -93,19 +77,13 @@ IconicListItem>>initialize [
 		extent: 20@16.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicListItem>>morph [
+{ #category : #accessing }
+IconicListItem >> morph [
 	^ morph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicListItem>>morph: anObject [
+{ #category : #accessing }
+IconicListItem >> morph: anObject [
 	
 	morph ifNotNil: [ self removeMorph: morph ].
 	morph := anObject.
@@ -115,20 +93,14 @@ IconicListItem>>morph: anObject [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicListItem>>originalObject [
+{ #category : #accessing }
+IconicListItem >> originalObject [
 
 	^ originalObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IconicListItem>>originalObject: anObject [
+{ #category : #accessing }
+IconicListItem >> originalObject: anObject [
 	
 	originalObject := anObject
 ]

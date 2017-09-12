@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #LazyTabPage,
 	#superclass : #BorderedMorph,
@@ -10,15 +7,11 @@ Class {
 		'lazyPageMorphCreation',
 		'toolbar'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPage>>actualPageMorph [
+{ #category : #accessing }
+LazyTabPage >> actualPageMorph [
 	^ actualPageMorph ifNil: 
 		[actualPageMorph := 
 			self lazyPageMorphCreation value
@@ -27,66 +20,42 @@ LazyTabPage>>actualPageMorph [
 				yourself]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPage>>actualPageMorph: anObject [
+{ #category : #accessing }
+LazyTabPage >> actualPageMorph: anObject [
 	actualPageMorph := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPage>>isRendered [
+{ #category : #testing }
+LazyTabPage >> isRendered [
 	^ actualPageMorph notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPage>>labelMorph [
+{ #category : #accessing }
+LazyTabPage >> labelMorph [
 	^ labelMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPage>>labelMorph: anObject [
+{ #category : #accessing }
+LazyTabPage >> labelMorph: anObject [
 	labelMorph := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPage>>lazyPageMorphCreation [
+{ #category : #accessing }
+LazyTabPage >> lazyPageMorphCreation [
 	^ lazyPageMorphCreation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPage>>lazyPageMorphCreation: anObject [
+{ #category : #accessing }
+LazyTabPage >> lazyPageMorphCreation: anObject [
 	lazyPageMorphCreation := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPage>>toolbar [
+{ #category : #accessing }
+LazyTabPage >> toolbar [
 	^ toolbar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPage>>toolbar: anObject [
+{ #category : #accessing }
+LazyTabPage >> toolbar: anObject [
 	toolbar := anObject
 ]

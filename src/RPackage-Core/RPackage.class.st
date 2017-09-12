@@ -82,23 +82,16 @@ Class {
 		'PackageGlobalOrganizer',
 		'Properties'
 	],
-	#category : #RPackage-Core,
-	#timestamp : 'StephaneDucasse 7/25/2011 21:55'
+	#category : #RPackage-Core
 }
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage class>>defaultPackageName [
+{ #category : #constants }
+RPackage class >> defaultPackageName [
 	^ #'_UnpackagedPackage'
 ]
 
-{
-	#category : #help,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage class>>help [
+{ #category : #help }
+RPackage class >> help [
 	<wikiStyleHelp: 'RPackage'>	
 	|stream|
 	stream := String new writeStream.
@@ -117,11 +110,8 @@ RPackage class>>help [
 	
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage class>>initialize [
+{ #category : #'class initialization' }
+RPackage class >> initialize [
 	"self initialize"
 	
 	"Ensure the organizer will be the RPackageOrganizer default"
@@ -134,56 +124,38 @@ RPackage class>>initialize [
 			Properties := newDict ]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage class>>initializeProperties [
+{ #category : #'class initialization' }
+RPackage class >> initializeProperties [
 	Properties := WeakIdentityKeyDictionary new.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage class>>named: aString [
+{ #category : #'instance creation' }
+RPackage class >> named: aString [
 
 	| newPackage |
 	newPackage := self new name: aString ;yourself.
 	^ newPackage
 ]
 
-{
-	#category : #'protected only for tests',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage class>>organizer [
+{ #category : #'protected only for tests' }
+RPackage class >> organizer [
 	^ PackageGlobalOrganizer ifNil: [ RPackageOrganizer default ].
 ]
 
-{
-	#category : #'protected only for tests',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage class>>organizer: aPackageOrganizer [
+{ #category : #'protected only for tests' }
+RPackage class >> organizer: aPackageOrganizer [
 
 	PackageGlobalOrganizer := aPackageOrganizer
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage class>>packageOrganizerClass [
+{ #category : #'class initialization' }
+RPackage class >> packageOrganizerClass [
 	^ RPackageOrganizer
 
 ]
 
-{
-	#category : #'protected only for tests',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage class>>withOrganizer: aNewOrganizer do: aBlock [
+{ #category : #'protected only for tests' }
+RPackage class >> withOrganizer: aNewOrganizer do: aBlock [
 	"Perform an action locally to aNewOrganizer. Does not impact any other organizers."
 	
 	| old |
@@ -197,31 +169,22 @@ RPackage class>>withOrganizer: aNewOrganizer do: aBlock [
 		aNewOrganizer unregister] 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>><= aRPackage  [
+{ #category : #comparing }
+RPackage >> <= aRPackage [ 
 
 	^ self name <= aRPackage name
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>actualClassTags [
+{ #category : #'class tags' }
+RPackage >> actualClassTags [
 	
 	(classTags size = 1 and: [classTags anyOne isRoot]) ifTrue: [ ^#() ].
 	
 	^classTags
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>addClass: aClass [
+{ #category : #accessing }
+RPackage >> addClass: aClass [
 	"TODO: deprecate system category / replace this with a direct call to moveClass:fromPackage:toTag:"
 	
 	"This does two things:
@@ -232,32 +195,23 @@ RPackage>>addClass: aClass [
 	aClass category: (self addClassTag: self categoryName) categoryName
 ]
 
-{
-	#category : #'class addition',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>addClassDefinition: aClass [
+{ #category : #'class addition' }
+RPackage >> addClassDefinition: aClass [
 	"Add only the class definition of aClass, as a class defined by the receiver. The term classdefinition denotes the fact that we do not treat its methods. aClass methods are not added to the package. aClass can be either a class or a metaclass"
 	
 	self addClassDefinitionName: aClass theNonMetaClass name.
 	
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>addClassDefinition: aClass toClassTag: aSymbol [
+{ #category : #'class tags' }
+RPackage >> addClassDefinition: aClass toClassTag: aSymbol [
 	"Tags the class aClass with the tag aSymbol"
 	
 	self addClassDefinitionName: aClass name toClassTag: aSymbol
 ]
 
-{
-	#category : #'class addition',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>addClassDefinitionName: aClassName [
+{ #category : #'class addition' }
+RPackage >> addClassDefinitionName: aClassName [
 	"aClassName should only be a class (and not a metaclass name)"
 
 	| aClassNameSymbol |
@@ -271,21 +225,15 @@ RPackage>>addClassDefinitionName: aClassName [
 	self registerClassName: aClassNameSymbol
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>addClassDefinitionName: aClassName toClassTag: aSymbol [
+{ #category : #'class tags' }
+RPackage >> addClassDefinitionName: aClassName toClassTag: aSymbol [
 	"Tags the class aClass with the tag aSymbol"
 	
 	(self addClassTag: aSymbol) addClassNamed: aClassName.
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>addClassTag: aSymbol [
+{ #category : #'class tags' }
+RPackage >> addClassTag: aSymbol [
 	"Add the class tag from the receiver, if already added do nothing."
 	| tagName newTag |
 
@@ -303,11 +251,8 @@ RPackage>>addClassTag: aSymbol [
 			^newTag]
 ]
 
-{
-	#category : #'compiled method handling',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>addMethod: aCompiledMethod  [
+{ #category : #'compiled method handling' }
+RPackage >> addMethod: aCompiledMethod [ 
 	"Add the method to the receiver as a defined method if the class is  defined in it, else as an extension."
 	| methodClass |
 	
@@ -343,11 +288,8 @@ RPackage>>addMethod: aCompiledMethod  [
 	^ aCompiledMethod.
 ]
 
-{
-	#category : #'selector handling',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>addSelector: aSelector ofClassName: aClassName [
+{ #category : #'selector handling' }
+RPackage >> addSelector: aSelector ofClassName: aClassName [
 	"Add the method to the receiver. If the class is not locally defined in that package then the method is defined as a method extension: ie extending another package. Note that this method does not add the method to the class, it just records in the package that the method is packaged."
 	
 	( self includesClassNamed: aClassName)
@@ -356,11 +298,8 @@ RPackage>>addSelector: aSelector ofClassName: aClassName [
 	^ aSelector.
 ]
 
-{
-	#category : #'selector handling',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>addSelector: aSelector ofMetaclassName: aClassName [
+{ #category : #'selector handling' }
+RPackage >> addSelector: aSelector ofMetaclassName: aClassName [
 	"Add the method to the receiver. If the class is not locally defined in that package then the method is defined as a method extension: ie extending another package. Note that this method does not add the method to the class, it just records in the package that the method is packaged. aClassName is the sole instance class name and not its metaclass one: i.e. adding Point class>>new is done as addSelector: #new ofMetaclassName: #Point"
 	
 	( self includesClassNamed: aClassName) 
@@ -369,22 +308,16 @@ RPackage>>addSelector: aSelector ofMetaclassName: aClassName [
 	^ aSelector.
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>allOverriddenMethodsDo: aBlock [
+{ #category : #'system compatibility' }
+RPackage >> allOverriddenMethodsDo: aBlock [
 	"Evaluates aBlock with all the overridden methods in the system"
 	^ ProtoObject withAllSubclassesDo: [:class | 
 		self overriddenMethodsInClass: class do: aBlock]
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>basicAddClassTag: tagName [
+{ #category : #private }
+RPackage >> basicAddClassTag: tagName [
 	| packageTag |
 			
 	packageTag := RPackageTag package: self name: tagName.
@@ -394,11 +327,8 @@ RPackage>>basicAddClassTag: tagName [
 	^ packageTag 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>basicImportClass: aClass [
+{ #category : #private }
+RPackage >> basicImportClass: aClass [
 	"Add the class definition and all the selectors which are not extensions of other packages. If the class had an extension to us, then all methods in that extension are moved to 'as yet unclassified' and the extension protocol is deleted (should I use silently or not?)."
 	
 	"Note: Protocol defaultName is #'as yet unclassified'"
@@ -415,11 +345,8 @@ RPackage>>basicImportClass: aClass [
 	protocols do: [ :each | self importProtocol: each forClass: aClass ]
 ]
 
-{
-	#category : #'selector handling',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>basicRemoveSelector: aSelector ofClassName: aClassName [
+{ #category : #'selector handling' }
+RPackage >> basicRemoveSelector: aSelector ofClassName: aClassName [
 	"Remove the method in the package but does not propagate to the class itself.  Note that this method does not remove the method from the class, it just records in the package that the method is not in the package anymore."
 	
 	( self includesClassNamed: aClassName)
@@ -429,11 +356,8 @@ RPackage>>basicRemoveSelector: aSelector ofClassName: aClassName [
 	
 ]
 
-{
-	#category : #'selector handling',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>basicRemoveSelector: aSelector ofMetaclassName: aClassName [
+{ #category : #'selector handling' }
+RPackage >> basicRemoveSelector: aSelector ofMetaclassName: aClassName [
 	"Remove the method in the package. Note that this method does not remove the method from the class, it just records in the package that the method is not in the package anymore. aClassName is the sole instance class name and not its metaclass one: i.e. adding Point class>>new is done as removeSelector: #new ofMetaclassName: #Point"
 	
 	( self includesClassNamed: aClassName)
@@ -443,22 +367,16 @@ RPackage>>basicRemoveSelector: aSelector ofMetaclassName: aClassName [
 	
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>basicRemoveTag: tag [
+{ #category : #'class tags' }
+RPackage >> basicRemoveTag: tag [
 	classTags remove: tag ifAbsent: [].
 	
 	SystemAnnouncer uniqueInstance 
 		classTagRemoved: tag name fromPackage: self
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>category: categoryName matches: prefix [
+{ #category : #'system compatibility' }
+RPackage >> category: categoryName matches: prefix [
 	"self default category: 'Compression-Archives' matches: 'Compression'"
 	"self default category: 'Compression' matches: 'Compression-Archives'"
 	"self default category: 'Compression' matches: 'Compression'"
@@ -473,19 +391,13 @@ RPackage>>category: categoryName matches: prefix [
 	^(categoryName at: prefix size + 1 ifAbsent: [ ^true ]) = $-
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>categoryName [
+{ #category : #accessing }
+RPackage >> categoryName [
 	^ self name
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>changeRecordForOverriddenMethod: aMethodDefinition [
+{ #category : #'system compatibility' }
+RPackage >> changeRecordForOverriddenMethod: aMethodDefinition [
 	^ SourceFiles
 		changeRecordsFor: aMethodDefinition 
 		detect: [ :protocol | 
@@ -494,39 +406,27 @@ RPackage>>changeRecordForOverriddenMethod: aMethodDefinition [
 				ofClass: aMethodDefinition actualClass ]
 ]
 
-{
-	#category : #slices,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>classDefinedSlicesDo: aBlock [
+{ #category : #slices }
+RPackage >> classDefinedSlicesDo: aBlock [
 	"This method iterates over the defined class and their associated selectors. a slice is a class * list of selectors. aBlock will be applied to all the extensions slices of the receiver. aBlok first argument is the class and the second argument a list of method selectors"
 	
 	classDefinedSelectors keysAndValuesDo: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>classExtensionSelectors [
+{ #category : #private }
+RPackage >> classExtensionSelectors [
 	^ classExtensionSelectors
 ]
 
-{
-	#category : #slices,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>classExtensionSlicesDo: aBlock [
+{ #category : #slices }
+RPackage >> classExtensionSlicesDo: aBlock [
 	"This method iterates over the class extensions and their associated selectors. A slice is a class * list of selectors. aBlock will be applied to all the extensions slices of the receiver. aBlock first argument is the class and the second argument a list of method selectors"
 	
 	classExtensionSelectors keysAndValuesDo: aBlock
 ]
 
-{
-	#category : #slices,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>classNamesAndExtensionSelectorsDo: aBlock [
+{ #category : #slices }
+RPackage >> classNamesAndExtensionSelectorsDo: aBlock [
 	"Iterate over the extended methods grouped by classes and apply the argument.
 	The block will be passed a class name and each individual selectors.
 	Only classes with methods are paired with their methods"
@@ -540,11 +440,8 @@ RPackage>>classNamesAndExtensionSelectorsDo: aBlock [
 									value: sel]].	
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>classNamesForClassTag: aSymbol [
+{ #category : #'class tags' }
+RPackage >> classNamesForClassTag: aSymbol [
 	"Returns the classes tagged using aSymbol"
 	
 	^ (self 
@@ -553,80 +450,56 @@ RPackage>>classNamesForClassTag: aSymbol [
 
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>classTagCategoryNames [
+{ #category : #'class tags' }
+RPackage >> classTagCategoryNames [
 	^ (Set with: self packageName), (self classTags collect: #categoryName).
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>classTagForClass: aClass  [
+{ #category : #'class tags' }
+RPackage >> classTagForClass: aClass [ 
 	^ self 
 		classTagNamed: (self toTagName: aClass category) 
 		ifAbsent: [ nil ]
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>classTagNamed: aSymbol [
+{ #category : #'class tags' }
+RPackage >> classTagNamed: aSymbol [
 
 	^ classTags detect: [ :each | each name = aSymbol ]
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>classTagNamed: aSymbol ifAbsent: aBlock  [
+{ #category : #'class tags' }
+RPackage >> classTagNamed: aSymbol ifAbsent: aBlock [ 
 	^ classTags 
 		detect: [ :each | each name = aSymbol ]
 		ifNone: aBlock
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>classTagNamed: aSymbol ifPresent: aBlock [
+{ #category : #'class tags' }
+RPackage >> classTagNamed: aSymbol ifPresent: aBlock [
 	^ classTags 
 		detect: [ :each | each name = aSymbol ] 
 		ifFound: [ :tag | aBlock cull: tag ] 
 		ifNone: [ nil ]
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>classTags [
+{ #category : #'class tags' }
+RPackage >> classTags [
 	"Returns the tags of the receiver"
 	
 	^ classTags
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>classes [
+{ #category : #accessing }
+RPackage >> classes [
 	"Return all the classes"
 	^ self definedClasses, self extendedClasses 
 	
 	
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>classesAndMetaClasses [
+{ #category : #'system compatibility' }
+RPackage >> classesAndMetaClasses [
 	"Return a Set with all classes and metaclasses belonging to this package"
 	self flag: #stef. "only used by goferCleanUp"
 	^ OrderedCollection new
@@ -635,11 +508,8 @@ RPackage>>classesAndMetaClasses [
 		yourself.
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>classesForClassTag: aSymbol [
+{ #category : #'class tags' }
+RPackage >> classesForClassTag: aSymbol [
 	"Returns the classes tagged using aSymbol"
 	
 	^ (self 
@@ -648,43 +518,31 @@ RPackage>>classesForClassTag: aSymbol [
 		classes
 ]
 
-{
-	#category : #'simple symbol tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>classesTaggedWith: aSymbol [
+{ #category : #'simple symbol tags' }
+RPackage >> classesTaggedWith: aSymbol [
 	"Any class could be tagged for user purpose.
 	This method select all classes which are tagged by given symbol"
 	
 	^(self classTagNamed: aSymbol) classes
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>coreCategoriesForClass: aClass [
+{ #category : #'system compatibility' }
+RPackage >> coreCategoriesForClass: aClass [
 
 	self flag: #stef. "only used by goferCleanUp"
 	^ aClass organization categories 
 		reject: [ :cat | self isForeignClassExtension: cat ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>definedClassNames  [
+{ #category : #accessing }
+RPackage >> definedClassNames [ 
 	"Return the class names having methods defined in the receiver."
 	
 	^ classes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>definedClasses  [
+{ #category : #accessing }
+RPackage >> definedClasses [ 
 	| definedClasses |
 	definedClasses := Set new.
 	classes do: [:each | 
@@ -695,21 +553,15 @@ RPackage>>definedClasses  [
 	
 ]
 
-{
-	#category : #iteration,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>definedClassesDo: aBlock [
+{ #category : #iteration }
+RPackage >> definedClassesDo: aBlock [
 
 	classDefinedSelectors keysDo: aBlock.
 	metaclassDefinedSelectors keysDo: aBlock.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>definedMethodsBecomeExtendedForClass: aClassName [
+{ #category : #private }
+RPackage >> definedMethodsBecomeExtendedForClass: aClassName [
 	"the package may contain defined methods and their class is removed to the receiver. The status of such methods should now be extended"
 	"Precondition: aClassName is in the defined list"
 	
@@ -721,11 +573,8 @@ RPackage>>definedMethodsBecomeExtendedForClass: aClassName [
 	classExtensionSelectors at: aClassName put: ext.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>definedMethodsBecomeExtendedForMetaclass: aClassName [
+{ #category : #private }
+RPackage >> definedMethodsBecomeExtendedForMetaclass: aClassName [
 	"the package may contain defined methods and their class is removed to the receiver. The status of such methods should now be extended"
 	"Precondition: aClassName is in the defined list"
 	
@@ -737,52 +586,37 @@ RPackage>>definedMethodsBecomeExtendedForMetaclass: aClassName [
 	metaclassDefinedSelectors at: aClassName put: ext.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>definedMethodsForClass: aClass [
+{ #category : #accessing }
+RPackage >> definedMethodsForClass: aClass [
 
 	^ (self definedSelectorsForClass: aClass) asOrderedCollection collect: [ :each | aClass >> each ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>definedMethodsShouldBecomeExtensionWhenRemovingClass: aClassName [
+{ #category : #private }
+RPackage >> definedMethodsShouldBecomeExtensionWhenRemovingClass: aClassName [
 	"the package may contain defined methods and their class is removed from the receiver. The status of such methods should now be extensions"
 	
 	self definedMethodsBecomeExtendedForClass: aClassName.
 	self definedMethodsBecomeExtendedForMetaclass: aClassName.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>definedSelectorsForClass: aClass [
+{ #category : #accessing }
+RPackage >> definedSelectorsForClass: aClass [
 
 	^ aClass isMeta
 		ifTrue: [ metaclassDefinedSelectors at: aClass theNonMetaClass originalName ifAbsent: [ #() ] ]
 		ifFalse: [ classDefinedSelectors at: aClass originalName ifAbsent: [ #() ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>definesClass: aClass [
+{ #category : #testing }
+RPackage >> definesClass: aClass [
 	"Returns true if the class, aClass, is one of the locally defined classes"
 	"should be probably removed since this is the same as includesClass: or the inverse"
 	^ self includesClass: aClass
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>definesOrExtendsClass: aClass [
+{ #category : #testing }
+RPackage >> definesOrExtendsClass: aClass [
 	"Returns true whether the class, aClass, is one of the locally defined classes of the receiver or 
 	if the receiver extends such class (that is defined in another package)"
 	
@@ -793,11 +627,8 @@ RPackage>>definesOrExtendsClass: aClass [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>demoteToRPackageNamed: aString  [
+{ #category : #converting }
+RPackage >> demoteToRPackageNamed: aString [ 
 	| newRPackage |
 
 	self unregister.
@@ -813,29 +644,20 @@ RPackage>>demoteToRPackageNamed: aString  [
 			to: newRPackage ].
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>ensureProperties [
+{ #category : #properties }
+RPackage >> ensureProperties [
 	^ Properties at: self ifAbsentPut: WeakKeyDictionary new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>extendedClassNames  [
+{ #category : #accessing }
+RPackage >> extendedClassNames [ 
 	"Return the name of the classes which are extended by the receiver package. if a metaclass is extended, just get its sole instance class name."
 	
 	^ classExtensionSelectors keys union: metaclassExtensionSelectors keys
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>extendedClasses  [
+{ #category : #accessing }
+RPackage >> extendedClasses [ 
 	"Return classes and metaclasses that are extended in the receiver. They represent the classes of method extensions"
 	^ (metaclassExtensionSelectors keys 
 		select: [ :each| Smalltalk globals includesKey: each ]
@@ -845,11 +667,8 @@ RPackage>>extendedClasses  [
 						thenCollect: [:each | Smalltalk globals at: each])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>extendedMethodsBecomeDefinedForClass: aClassName [
+{ #category : #private }
+RPackage >> extendedMethodsBecomeDefinedForClass: aClassName [
 	"the package may contain extension methods and their class is added to the receiver. The status of such methods should now be defined"
 	"Precondition: aClassName is in the defined list"
 	
@@ -861,11 +680,8 @@ RPackage>>extendedMethodsBecomeDefinedForClass: aClassName [
 	classDefinedSelectors at: aClassName put: ext.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>extendedMethodsBecomeDefinedForMetaclass: aClassName [
+{ #category : #private }
+RPackage >> extendedMethodsBecomeDefinedForMetaclass: aClassName [
 	"the package may contain extension methods and their class is added to the receiver. The status of such methods should now be defined"
 	"Precondition: aClassName is in the defined list"
 	
@@ -878,11 +694,8 @@ RPackage>>extendedMethodsBecomeDefinedForMetaclass: aClassName [
 	metaclassDefinedSelectors at: aClassName put: ext.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>extendedMethodsShouldBecomeDefinedWhenAddingClassName: aClassName [
+{ #category : #private }
+RPackage >> extendedMethodsShouldBecomeDefinedWhenAddingClassName: aClassName [
 	"the package may contain extension methods and their class is added to the receiver. The status of such methods should now be defined"
 	"Precondition: aClassName is in the defined list"
 	
@@ -891,11 +704,8 @@ RPackage>>extendedMethodsShouldBecomeDefinedWhenAddingClassName: aClassName [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>extendsClass: aClass [
+{ #category : #testing }
+RPackage >> extendsClass: aClass [
 	"Returns true if the receiver extends aClass (that is defined in another package)"
 	
 	| canonizedName |
@@ -903,30 +713,21 @@ RPackage>>extendsClass: aClass [
 	^ self extendedClassNames includes:  canonizedName
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>extensionCategoriesForClass: aClass [
+{ #category : #'system compatibility' }
+RPackage >> extensionCategoriesForClass: aClass [
 	self flag: #stef. "only used by goferCleanUp and PackageEnvironment of RB"
 	^ aClass organization categories 
 		select: [ :cat | self isYourClassExtension: cat ]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>extensionClasses [
+{ #category : #'system compatibility' }
+RPackage >> extensionClasses [
 	self flag: #stef. "only used by RB and Gofer"
 	^ self extendedClasses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>extensionMethods [
+{ #category : #accessing }
+RPackage >> extensionMethods [
 	"Extension methods are methods defined on classes that are not defined in the receiver"
 	| allExtensionMethods |
 	
@@ -939,21 +740,15 @@ RPackage>>extensionMethods [
 	^ allExtensionMethods				
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>extensionMethodsForClass: aClass [
+{ #category : #accessing }
+RPackage >> extensionMethodsForClass: aClass [
 	"Change the set of extensions selectors to an Array to avoid compiled methods collisions in the resulting set."
 
 	^ (self extensionSelectorsForClass: aClass) asArray collect: [ :each | aClass >> each ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>extensionSelectors [
+{ #category : #accessing }
+RPackage >> extensionSelectors [
 	"Extension methods are methods defined on classes that are not defined in the receiver"
 
 	| classSels |
@@ -963,33 +758,24 @@ RPackage>>extensionSelectors [
 	^ classSels
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>extensionSelectorsForClass: aClass [
+{ #category : #accessing }
+RPackage >> extensionSelectorsForClass: aClass [
 
 	^ aClass isMeta
 		ifTrue: [ metaclassExtensionSelectors at: aClass theNonMetaClass originalName ifAbsent: [ #() ] ]
 		ifFalse: [ classExtensionSelectors at: aClass originalName ifAbsent: [ #() ] ]
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>extensionsForTag: aRPackageTag [
+{ #category : #'class tags' }
+RPackage >> extensionsForTag: aRPackageTag [
 
 	^ self extensionMethods select: [ :extensionMethod | | category |
 		category := extensionMethod protocol allButFirst.
 		self category:  category matches: aRPackageTag categoryName ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>importClass: aClass [
+{ #category : #private }
+RPackage >> importClass: aClass [
 	"import a class already created but not attached to a package to the receiver. 
 	Handle also *- convention. Methods defined in *category are not added to the package.
 	Pay attention that it will not import anything from the metaClass side"
@@ -1001,11 +787,8 @@ RPackage>>importClass: aClass [
 		toClassTag: (self toTagName: aClass category)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>importClass: aClass inTag: aTag [
+{ #category : #private }
+RPackage >> importClass: aClass inTag: aTag [
 	"import a class already created but not attached to a package to the receiver. 
 	Handle also *- convention. Methods defined in *category are not added to the package.
 	Pay attention that it will not import anything from the metaClass side"
@@ -1017,11 +800,8 @@ RPackage>>importClass: aClass inTag: aTag [
 		toClassTag: aTag name
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>importPackage: anRPackage  [
+{ #category : #private }
+RPackage >> importPackage: anRPackage [ 
 	anRPackage definedClasses  
 		do: [ :className | self importClass: className ].
 	"new rpackage inherits the extentions"
@@ -1030,11 +810,8 @@ RPackage>>importPackage: anRPackage  [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>importProtocol: aProtocol forClass: aClass  [
+{ #category : #private }
+RPackage >> importProtocol: aProtocol forClass: aClass [ 
 	"import all the methods of a protocol as defined in the receiver." 
 	
 		(aClass organization listAtCategoryNamed: aProtocol)
@@ -1046,40 +823,28 @@ RPackage>>importProtocol: aProtocol forClass: aClass  [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>includesClass: aClass	 [
+{ #category : #testing }
+RPackage >> includesClass: aClass [	
 	"Returns true if the receiver includes aClass in the classes that are defined within it: only class definition are considered - not class extensions"
 	
 	^ self includesClassNamed: aClass theNonMetaClass name
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>includesClassNamed: aSymbol [
+{ #category : #testing }
+RPackage >> includesClassNamed: aSymbol [
 	"Returns true if the receiver includes class named aSymbol in the classes that are defined within it: only class definition are considered - not class extensions"
 	
 	^ classes includes: aSymbol asSymbol
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>includesClassTagNamed: aString [
+{ #category : #testing }
+RPackage >> includesClassTagNamed: aString [
 	^ self classTags anySatisfy: [ :each | each name = aString ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>includesDefinedSelector: aSelector ofClass: aClass [
+{ #category : #testing }
+RPackage >> includesDefinedSelector: aSelector ofClass: aClass [
 	"Return true if the receiver includes the method of selector aSelector. Only checks methods defined in this package"
 	
 	| sels |
@@ -1087,11 +852,8 @@ RPackage>>includesDefinedSelector: aSelector ofClass: aClass [
 	^ sels includes: aSelector.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>includesDefinedSelector: aSelector ofClassName: aClassName [
+{ #category : #testing }
+RPackage >> includesDefinedSelector: aSelector ofClassName: aClassName [
 	"Return true if the receiver includes the method of selector aSelector. Only checks methods defined (not extended by other packages or package extensions)"
 	
 	| sels |
@@ -1099,11 +861,8 @@ RPackage>>includesDefinedSelector: aSelector ofClassName: aClassName [
 	^ sels includes: aSelector.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>includesDefinedSelector: aSelector ofMetaclassName: aClassName [
+{ #category : #testing }
+RPackage >> includesDefinedSelector: aSelector ofMetaclassName: aClassName [
 	"Return true if the receiver includes the method of selector aSelector. Only checks methods defined (not extended by other packages or package extensions)"
 	
 	| sels |
@@ -1111,11 +870,8 @@ RPackage>>includesDefinedSelector: aSelector ofMetaclassName: aClassName [
 	^ sels includes: aSelector.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>includesExtensionSelector: aSelector ofClass: aClass [
+{ #category : #testing }
+RPackage >> includesExtensionSelector: aSelector ofClass: aClass [
 	"Return true if the receiver includes the method of selector aSelector. Only checks methods extending other packages"
 	
 	| sels |
@@ -1123,11 +879,8 @@ RPackage>>includesExtensionSelector: aSelector ofClass: aClass [
 	^ sels includes: aSelector.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>includesExtensionSelector: aSelector ofClassName: aClassName [
+{ #category : #testing }
+RPackage >> includesExtensionSelector: aSelector ofClassName: aClassName [
 	"Return true if the receiver includes the method of selector aSelector. Only checks methods extending other packages"
 	
 	| sels |
@@ -1135,11 +888,8 @@ RPackage>>includesExtensionSelector: aSelector ofClassName: aClassName [
 	^ sels includes: aSelector.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>includesExtensionSelector: aSelector ofMetaclassName: aClassName [
+{ #category : #testing }
+RPackage >> includesExtensionSelector: aSelector ofMetaclassName: aClassName [
 	"Return true if the receiver includes the method of selector aSelector. Only checks methods extending other packages"
 	
 	| sels |
@@ -1147,11 +897,8 @@ RPackage>>includesExtensionSelector: aSelector ofMetaclassName: aClassName [
 	^ sels includes: aSelector.
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>includesMethod: aSymbol ofClass: aClass [
+{ #category : #'system compatibility' }
+RPackage >> includesMethod: aSymbol ofClass: aClass [
 
 	self flag: #stef. "only used by RB"
 	self flag: #cyrille. "looks like a bogus implementation because category have nothing to do with the fact that a method is in package or not."
@@ -1165,21 +912,15 @@ RPackage>>includesMethod: aSymbol ofClass: aClass [
 		ofClass: aClass
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>includesMethodCategory: categoryName ofClass: aClass [
+{ #category : #'system compatibility' }
+RPackage >> includesMethodCategory: categoryName ofClass: aClass [
 	^ (self isYourClassExtension: categoryName)
 		or: [(self includesClass: aClass)
 				and: [(self isForeignClassExtension: categoryName) not]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>includesSelector: aSelector ofClass: aClass [
+{ #category : #testing }
+RPackage >> includesSelector: aSelector ofClass: aClass [
 	"Return true if the receiver includes the method of selector aSelector. Checks methods defined locally as well as extending other packages"
 	
 	^ aClass isMeta
@@ -1189,41 +930,29 @@ RPackage>>includesSelector: aSelector ofClass: aClass [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>includesSelector: aSelector ofClassName: aClassName [
+{ #category : #testing }
+RPackage >> includesSelector: aSelector ofClassName: aClassName [
 	"Return true if the receiver includes the method of selector aSelector. Checks methods defined locally as well as extending other packages"
 	
 	^ (self includesDefinedSelector: aSelector ofClassName: aClassName)
 		or: [(self includesExtensionSelector: aSelector ofClassName: aClassName)]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>includesSelector: aSelector ofMetaclassName: aClassName [
+{ #category : #testing }
+RPackage >> includesSelector: aSelector ofMetaclassName: aClassName [
 	"Return true if the receiver includes the method of selector aSelector. Checks methods defined locally as well as extending other packages"
 	
 	^ (self includesDefinedSelector: aSelector ofMetaclassName: aClassName)
 		or: [(self includesExtensionSelector: aSelector ofMetaclassName: aClassName)]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>includesSystemCategory: categoryName [
+{ #category : #'system compatibility' }
+RPackage >> includesSystemCategory: categoryName [
 	^ self category: categoryName matches: self systemCategoryPrefix
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>initialize [
+{ #category : #initialization }
+RPackage >> initialize [
 	super initialize.	
 	classes := Set new.
 	metaclassExtensionSelectors := Dictionary new.
@@ -1233,92 +962,62 @@ RPackage>>initialize [
 	classTags := Set new.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>isDefault [
+{ #category : #testing }
+RPackage >> isDefault [
 	"Return whether the receiver is the default package, i.e. the one used when nothing else is specified."
 	^ self name = self class defaultPackageName
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>isEmpty [
+{ #category : #testing }
+RPackage >> isEmpty [
 	self name = self class defaultPackageName ifTrue: [ ^false ].
 	^self classes isEmpty and: [ self extensionSelectors isEmpty]
 		
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>isForeignClassExtension: categoryName [
+{ #category : #'system compatibility' }
+RPackage >> isForeignClassExtension: categoryName [
 	^ categoryName first = $* and: [(self isYourClassExtension: categoryName) not]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>isOverrideCategory: aString [
+{ #category : #'system compatibility' }
+RPackage >> isOverrideCategory: aString [
 	^ aString endsWith: '-override'
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>isOverrideOfYourMethod: aMethodReference [
+{ #category : #'system compatibility' }
+RPackage >> isOverrideOfYourMethod: aMethodReference [
 	"Answers true if the argument overrides a method in this package"
 	^ (self isYourClassExtension: aMethodReference category) not and:
 		[(self changeRecordForOverriddenMethod: aMethodReference) notNil]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>isYourClassExtension: categoryName [
+{ #category : #'system compatibility' }
+RPackage >> isYourClassExtension: categoryName [
 	^ categoryName notNil and: [self category: categoryName asLowercase matches: self methodCategoryPrefix]
 ]
 
-{
-	#category : #statistics,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>linesOfCode [
+{ #category : #statistics }
+RPackage >> linesOfCode [
 	"An approximate measure of lines of code.
 	Includes comments, but excludes blank lines."
 	^self methods inject: 0 into: [:sum :each | sum + each linesOfCode]
 ]
 
-{
-	#category : #slices,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>metaclassDefinedSlicesDo: aBlock [
+{ #category : #slices }
+RPackage >> metaclassDefinedSlicesDo: aBlock [
 	"This method iterates over the defined class and their associated selectors. a slice is a class * list of selectors. aBlock will be applied to all the extensions slices of the receiver. aBlok first argument is the class and the second argument a list of method selectors"
 	
 	metaclassDefinedSelectors keysAndValuesDo: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>metaclassExtensionSelectors [
+{ #category : #private }
+RPackage >> metaclassExtensionSelectors [
 	^ metaclassExtensionSelectors
 ]
 
-{
-	#category : #slices,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>metaclassExtensionSlicesDo: aBlock [
+{ #category : #slices }
+RPackage >> metaclassExtensionSlicesDo: aBlock [
 	"This method iterates over the metaclass extensions and their associated selectors. A slice is a class * list of selectors. aBlock will be applied to all the extensions slices of the receiver. aBlok first argument is the class and second argument a list of selectors"
 	
 	metaclassExtensionSelectors keysAndValuesDo: aBlock
@@ -1326,28 +1025,19 @@ RPackage>>metaclassExtensionSlicesDo: aBlock [
 
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>methodCategoryPrefix [
+{ #category : #'system compatibility' }
+RPackage >> methodCategoryPrefix [
 	^ '*', self name asLowercase
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>methodReferences [
+{ #category : #'system compatibility' }
+RPackage >> methodReferences [
 	
 	^ self methods collect: [:each | each methodReference] thenSelect: [:each| each isValid and: [each isLocalSelector]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>methods [
+{ #category : #accessing }
+RPackage >> methods [
 	"Return all the methods defined in this package. Including extension methods (i.e., methods defined on a class that is not defined by me)"
 	| methods |
 	
@@ -1366,11 +1056,8 @@ RPackage>>methods [
 	^ methods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>methodsForClass: aClass [
+{ #category : #accessing }
+RPackage >> methodsForClass: aClass [
 	"Returns all compiled methods for a class in the receiver without distinction of extensions or not"
 	
 	^ (self includesClass: aClass)
@@ -1379,20 +1066,14 @@ RPackage>>methodsForClass: aClass [
 	
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>methodsInCategory: aString ofClass: aClass do: aBlock [
+{ #category : #'system compatibility' }
+RPackage >> methodsInCategory: aString ofClass: aClass do: aBlock [
 	((aClass organization listAtCategoryNamed: aString) ifNil: [^self])
 		do: [:sel | aBlock value: (self referenceForMethod: sel ofClass: aClass)]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>moveClass: aClass fromPackage: oldPackage toTag: aTag  [
+{ #category : #private }
+RPackage >> moveClass: aClass fromPackage: oldPackage toTag: aTag [ 
 
 	oldPackage removeClass: aClass.
 	self importClass: aClass inTag: aTag.
@@ -1403,11 +1084,8 @@ RPackage>>moveClass: aClass fromPackage: oldPackage toTag: aTag  [
 		to: self.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>moveClass: aClass toTag: aTag [
+{ #category : #private }
+RPackage >> moveClass: aClass toTag: aTag [
 	"TODO: deprecate system categories / replace this with a direct call to moveClass:fromPackage:toTag:"
 	
 	"This change the class category as appropriate.
@@ -1416,30 +1094,21 @@ RPackage>>moveClass: aClass toTag: aTag [
 	aClass category: aTag categoryName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>name [
+{ #category : #accessing }
+RPackage >> name [
 
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>name: aSymbol [
+{ #category : #accessing }
+RPackage >> name: aSymbol [
 	"Set the name of a package. This method is private and should not be used.
 	If you wish to rename a package, use #renameTo: instead"
 	name := aSymbol asSymbol.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>orderedClasses [
+{ #category : #accessing }
+RPackage >> orderedClasses [
 
 	| tmp |
 	tmp := self definedClasses asArray sort: [:a :b | a name <= b name].
@@ -1448,204 +1117,141 @@ RPackage>>orderedClasses [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>organizer [
+{ #category : #accessing }
+RPackage >> organizer [
 	^ self class organizer
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>overriddenMethods [
+{ #category : #'system compatibility' }
+RPackage >> overriddenMethods [
 	^ Array streamContents: [:stream |
 		self overriddenMethodsDo: [:each | stream nextPut: each]]
 
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>overriddenMethodsDo: aBlock [
+{ #category : #'system compatibility' }
+RPackage >> overriddenMethodsDo: aBlock [
 	"Enumerates the methods the receiver contains which have been overridden by other packages"
 	^ self allOverriddenMethodsDo: [:ea |
 		(self isOverrideOfYourMethod: ea)
 			ifTrue: [aBlock value: ea]]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>overriddenMethodsInClass: aClass do: aBlock [
+{ #category : #'system compatibility' }
+RPackage >> overriddenMethodsInClass: aClass do: aBlock [
 	"Evaluates aBlock with the overridden methods in aClass"
 	^ self overrideCategoriesForClass: aClass do: [:cat |
 		self methodsInCategory: cat ofClass: aClass do: aBlock]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>overrideCategoriesForClass: aClass do: aBlock [
+{ #category : #'system compatibility' }
+RPackage >> overrideCategoriesForClass: aClass do: aBlock [
 	"Evaluates aBlock with all the *foo-override categories in aClass"
 	^ aClass organization categories do: [:cat |
 		(self isOverrideCategory: cat) ifTrue: [aBlock value: cat]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>packageComment [
+{ #category : #accessing }
+RPackage >> packageComment [
 	^ self packageManifestOrNil ifNil: [ '' ] ifNotNil: [ :manifest | manifest description ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>packageComment: aDescription [
+{ #category : #accessing }
+RPackage >> packageComment: aDescription [
 	^ self packageManifest theMetaClass
 		ifNil: [ '' ]
 		ifNotNil: [ :manifest | manifest compile: 'description ^ ' , aDescription classified: 'meta-data' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>packageManifestOrNil [
+{ #category : #accessing }
+RPackage >> packageManifestOrNil [
 	^ self definedClasses
 		detect: [ :each | each isManifest ]
 		ifNone: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>packageName [
+{ #category : #accessing }
+RPackage >> packageName [
 
 	^ name
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>packages  [
+{ #category : #'system compatibility' }
+RPackage >> packages [ 
 	"Compatibility with monticello and old PackageInfo"
 	^ self classTags
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>printOn: aStream [
+{ #category : #printing }
+RPackage >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut: $(.
 	aStream nextPutAll: self name.
 	aStream nextPut: $)
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>properties [
+{ #category : #properties }
+RPackage >> properties [
 	^ Properties at: self ifAbsent: nil
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>propertyAt: propName [
+{ #category : #properties }
+RPackage >> propertyAt: propName [
 	^ self
 		propertyAt: propName
 		ifAbsent: [ nil ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>propertyAt: propName ifAbsent: aBlock [
+{ #category : #properties }
+RPackage >> propertyAt: propName ifAbsent: aBlock [
 	self properties ifNil: [^aBlock value].
 	^ self properties
 		at: propName
 		ifAbsent: aBlock
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>propertyAt: aKey ifAbsentPut: aBlock [
+{ #category : #properties }
+RPackage >> propertyAt: aKey ifAbsentPut: aBlock [
 	"Answer the property associated with aKey or, if aKey isn't found store the result of evaluating aBlock as new value."
 	
 	^ self propertyAt: aKey ifAbsent: [ self propertyAt: aKey put: aBlock value ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>propertyAt: propName put: propValue [
+{ #category : #properties }
+RPackage >> propertyAt: propName put: propValue [
 	^ self ensureProperties
 		at: propName
 		put: propValue
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>referenceForMethod: aSymbol ofClass: aClass [
+{ #category : #'system compatibility' }
+RPackage >> referenceForMethod: aSymbol ofClass: aClass [
 	^ (aClass >> aSymbol) asRingDefinition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>register [
+{ #category : #accessing }
+RPackage >> register [
 	self organizer registerPackage: self
 ]
 
-{
-	#category : #private-register,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>registerClass: aClass [
+{ #category : #private-register }
+RPackage >> registerClass: aClass [
 	"Private method that declares the mapping between a class and its package."
 	self organizer
 		registerPackage: self forClass: aClass
 	
 ]
 
-{
-	#category : #private-register,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>registerClassName: aClassNameSymbol [
+{ #category : #private-register }
+RPackage >> registerClassName: aClassNameSymbol [
 	"Private method that declares the mapping between a class and its package."
 	self organizer
 		registerPackage: self forClassName: aClassNameSymbol
 	
 ]
 
-{
-	#category : #private-register,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeAllMethodsFromClassNamed: aClassNameSymbol [
+{ #category : #private-register }
+RPackage >> removeAllMethodsFromClassNamed: aClassNameSymbol [
 	"Remove all the methods (defined and extensions) that are related to class aClassNameSymbol. aClassNameSymbol is the name of a class and not a metaclass - see class comment."
 
 	classDefinedSelectors removeKey: aClassNameSymbol ifAbsent: [nil].
@@ -1654,11 +1260,8 @@ RPackage>>removeAllMethodsFromClassNamed: aClassNameSymbol [
 	metaclassExtensionSelectors removeKey: aClassNameSymbol ifAbsent: [nil].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeClass: aClass [
+{ #category : #accessing }
+RPackage >> removeClass: aClass [
 	"Remove the class and all its methods from the receiver. If we have a protocol which looks like an extension of us, rename it to 'as yet unclassified' to avoid breaking things afterwards."
 
 	aClass organization categories
@@ -1672,20 +1275,14 @@ RPackage>>removeClass: aClass [
 	self removeClassTagsForClassNamed: aClass name
 ]
 
-{
-	#category : #'class addition',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeClassDefinition: aClass [
+{ #category : #'class addition' }
+RPackage >> removeClassDefinition: aClass [
 	"Remove the class definition from the package but not its methods."
 	^ self removeClassDefinitionName: aClass theNonMetaClass originalName.
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeClassDefinition: aClass fromClassTag: aSymbol [
+{ #category : #'class tags' }
+RPackage >> removeClassDefinition: aClass fromClassTag: aSymbol [
 	"Detags the class aClass with the tag aSymbol"
 	
 	self 
@@ -1693,11 +1290,8 @@ RPackage>>removeClassDefinition: aClass fromClassTag: aSymbol [
 		fromClassTag: aSymbol
 ]
 
-{
-	#category : #'class addition',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeClassDefinitionName: aClassName [
+{ #category : #'class addition' }
+RPackage >> removeClassDefinitionName: aClassName [
 	"remove the class definition from the package but not its method"
 	
 	| removed aClassNameSymbol |
@@ -1714,11 +1308,8 @@ RPackage>>removeClassDefinitionName: aClassName [
 		self unregisterClassName: aClassNameSymbol ] 
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeClassDefinitionName: aClassName fromClassTag: aSymbol [
+{ #category : #'class tags' }
+RPackage >> removeClassDefinitionName: aClassName fromClassTag: aSymbol [
 	"Detags the class aClass with the tag aSymbol"
 	| tag |
 	
@@ -1729,11 +1320,8 @@ RPackage>>removeClassDefinitionName: aClassName fromClassTag: aSymbol [
 
 ]
 
-{
-	#category : #private-register,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeClassDefinitionNamed: aClassNameSymbol [
+{ #category : #private-register }
+RPackage >> removeClassDefinitionNamed: aClassNameSymbol [
 	"aClassNameSymbol should be the name of a class and not a metaclass to be coherent with the class invariant that classes are only class names and not metaclass ones. 
 	
 	This method removes the class definition from the receiver and its organizer"
@@ -1744,11 +1332,8 @@ RPackage>>removeClassDefinitionNamed: aClassNameSymbol [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeClassDefinitionWithoutCheckingMethods: aClass [
+{ #category : #private }
+RPackage >> removeClassDefinitionWithoutCheckingMethods: aClass [
 	"Same than 'removeClassDefinition', excepts that it does not make any check to set defined methods as extensions"
 	
 	| removed aClassName|
@@ -1759,21 +1344,15 @@ RPackage>>removeClassDefinitionWithoutCheckingMethods: aClass [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeClassNamed: className [
+{ #category : #accessing }
+RPackage >> removeClassNamed: className [
 	self removeClassDefinitionName: className.
 	self removeAllMethodsFromClassNamed: className. 
 	self removeClassTagsForClassNamed: className.
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeClassTag: aSymbol [
+{ #category : #'class tags' }
+RPackage >> removeClassTag: aSymbol [
 	"Remove the class tag from the receiver."
 	
 	self basicRemoveTag: (self 
@@ -1781,11 +1360,8 @@ RPackage>>removeClassTag: aSymbol [
 		ifAbsent: [ ^ self ])
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeClassTagsForClassNamed: aString  [
+{ #category : #'class tags' }
+RPackage >> removeClassTagsForClassNamed: aString [ 
 	(self classTags 
 		select: [ :eachTag | eachTag hasClassNamed: aString ])
 		do: [ :eachTag |	
@@ -1794,20 +1370,14 @@ RPackage>>removeClassTagsForClassNamed: aString  [
 				fromClassTag: eachTag name ]
 ]
 
-{
-	#category : #'class tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeClassesMatchingTag: aTag [
+{ #category : #'class tags' }
+RPackage >> removeClassesMatchingTag: aTag [
 	
 	aTag classes do: [ :class | self removeClassDefinition: class ]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeFromSystem [
+{ #category : #removing }
+RPackage >> removeFromSystem [
 	| extendedClasses |
 
 	extendedClasses := self extendedClasses.
@@ -1819,11 +1389,8 @@ RPackage>>removeFromSystem [
 	self unregister.
 ]
 
-{
-	#category : #'compiled method handling',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeMethod: aCompiledMethod  [
+{ #category : #'compiled method handling' }
+RPackage >> removeMethod: aCompiledMethod [ 
 	"Remove the method to the receiver as a defined method."
 	|  methodClass |
 	
@@ -1841,39 +1408,27 @@ RPackage>>removeMethod: aCompiledMethod  [
 	^ aCompiledMethod.
 ]
 
-{
-	#category : #'compiled method handling',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeMethods: aCollection  [
+{ #category : #'compiled method handling' }
+RPackage >> removeMethods: aCollection [ 
 	aCollection do: [ :each | self removeMethod: each ]
 	
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removePropertiesIfEmpty [
+{ #category : #properties }
+RPackage >> removePropertiesIfEmpty [
 	^ Properties at: self ifPresent: [ :dict |
 		dict ifEmpty: [ Properties removeKey: self ] ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeProperty: propName [
+{ #category : #properties }
+RPackage >> removeProperty: propName [
 	^ self
 		removeProperty: propName
 		ifAbsent: [ nil ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeProperty: propName ifAbsent: aBlock [
+{ #category : #properties }
+RPackage >> removeProperty: propName ifAbsent: aBlock [
 	| property |
 	self properties ifNil: [^aBlock value].
 	property := self properties
@@ -1883,11 +1438,8 @@ RPackage>>removeProperty: propName ifAbsent: aBlock [
 	^ property
 ]
 
-{
-	#category : #'selector handling',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeSelector: aSelector ofClassName: aClassName [
+{ #category : #'selector handling' }
+RPackage >> removeSelector: aSelector ofClassName: aClassName [
 	"Remove the method in the package but does not propagate to the class itself.  Note that this method does not remove the method from the class, it just records in the package that the method is not in the package anymore."
 	
 	self basicRemoveSelector: aSelector ofClassName: aClassName.
@@ -1904,11 +1456,8 @@ RPackage>>removeSelector: aSelector ofClassName: aClassName [
 	]
 ]
 
-{
-	#category : #'selector handling',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>removeSelector: aSelector ofMetaclassName: aClassName [
+{ #category : #'selector handling' }
+RPackage >> removeSelector: aSelector ofMetaclassName: aClassName [
 	"Remove the method in the package. Note that this method does not remove the method from the class, it just records in the package that the method is not in the package anymore. aClassName is the sole instance class name and not its metaclass one: i.e. adding Point class>>new is done as removeSelector: #new ofMetaclassName: #Point"
 	
 	self basicRemoveSelector: aSelector ofMetaclassName: aClassName.
@@ -1925,11 +1474,8 @@ RPackage>>removeSelector: aSelector ofMetaclassName: aClassName [
 	]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>renameExtensionsPrefixedWith: oldName to: newName [
+{ #category : #private }
+RPackage >> renameExtensionsPrefixedWith: oldName to: newName [
 	| protocols |
 	
 	protocols := self extensionMethods 
@@ -1940,11 +1486,8 @@ RPackage>>renameExtensionsPrefixedWith: oldName to: newName [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>renameTagsPrefixedWith: oldName to: newName [
+{ #category : #private }
+RPackage >> renameTagsPrefixedWith: oldName to: newName [
 	| oldPrefix newPrefix |
 	
 	oldName ifNil: [ ^ self ].
@@ -1963,11 +1506,8 @@ RPackage>>renameTagsPrefixedWith: oldName to: newName [
 				category: newPrefix, (each name) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>renameTo: aSymbol [
+{ #category : #accessing }
+RPackage >> renameTo: aSymbol [
 	"Rename a package with a different name, provided as a symbol"
 	| oldName newName oldCategoryNames repositoryGroup |
 
@@ -2002,20 +1542,14 @@ RPackage>>renameTo: aSymbol [
 			newName: newName).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>reportBogusBehaviorOf: aSelector [
+{ #category : #private }
+RPackage >> reportBogusBehaviorOf: aSelector [
 
 	self logCr: 'RPackage log: Something wrong around ', aSelector asString , 'since the removeKey: is called on not present information.'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>selectors [
+{ #category : #accessing }
+RPackage >> selectors [
 
 	| sel |
 	sel := Set new.
@@ -2027,11 +1561,8 @@ RPackage>>selectors [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>selectorsForClass: aClass [
+{ #category : #accessing }
+RPackage >> selectorsForClass: aClass [
 	"Returns all selectors for a class in the receiver without distinction of extensions or not"
 	
 	^ (self includesClass: aClass)
@@ -2040,87 +1571,60 @@ RPackage>>selectorsForClass: aClass [
 	
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>systemCategories [
+{ #category : #'system compatibility' }
+RPackage >> systemCategories [
 
 	"(RPackageOrganizer default packageNamed: 'HelpSystem-Core' asSymbol) systemCategories"
 	"(PackageInfo named: 'HelpSystem-Core' asSymbol) systemCategories"
 	^ self systemOrganization categories select: [:cat | self includesSystemCategory: cat]
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>systemCategoryPrefix [
+{ #category : #'system compatibility' }
+RPackage >> systemCategoryPrefix [
 	^ self name
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>systemOrganization  [
+{ #category : #'system compatibility' }
+RPackage >> systemOrganization [ 
 
 	^ Smalltalk globals organization
 ]
 
-{
-	#category : #'simple symbol tags',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>tagsForClasses [
+{ #category : #'simple symbol tags' }
+RPackage >> tagsForClasses [
 	"Any class could be tagged for user purpose.
 	Now we implement it on top of RPackageTag"
 	
 	^self classTags reject: #isRoot thenCollect: #name
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>toTagName: aSymbol [
+{ #category : #private }
+RPackage >> toTagName: aSymbol [
 	^ (aSymbol beginsWith: self name, '-')
 		ifTrue: [ (aSymbol allButFirst: self name size + 1) asSymbol ]
 		ifFalse: [ aSymbol ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>unregister [
+{ #category : #accessing }
+RPackage >> unregister [
 	self organizer unregisterPackage: self
 ]
 
-{
-	#category : #private-register,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>unregisterClass: aClass [
+{ #category : #private-register }
+RPackage >> unregisterClass: aClass [
 	"Private method that declares the mapping between a class and its package."
 	self organizer
 		unregisterPackage: self forClass: aClass.
 ]
 
-{
-	#category : #private-register,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>unregisterClassName: aClassNameSymbol [
+{ #category : #private-register }
+RPackage >> unregisterClassName: aClassNameSymbol [
 	"Private method that declares the mapping between a class and its package."
 	self organizer unregisterPackage: self forClassName: aClassNameSymbol
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>updateDefinedClassNamed: oldString withNewName: newString [
+{ #category : #updating }
+RPackage >> updateDefinedClassNamed: oldString withNewName: newString [
 	"this method should only be used with class names , and not metaclass names"
 
 	(oldString substrings size > 1 or: [ newString substrings size > 1 ])
@@ -2144,11 +1648,8 @@ RPackage>>updateDefinedClassNamed: oldString withNewName: newString [
 				ifAbsent: [ self reportBogusBehaviorOf: #updateDefinedClassNamed:withNewName: ] ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>updateDefinedSelector: oldSelector inClass: aClass withNewSelector: newSelector [
+{ #category : #updating }
+RPackage >> updateDefinedSelector: oldSelector inClass: aClass withNewSelector: newSelector [
 
 	aClass isMeta
 		ifTrue: [
@@ -2159,11 +1660,8 @@ RPackage>>updateDefinedSelector: oldSelector inClass: aClass withNewSelector: ne
 			(classDefinedSelectors  at: aClass name asSymbol) add: newSelector. ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>updateExtensionForClassNamed: oldString withNewName: newString [
+{ #category : #updating }
+RPackage >> updateExtensionForClassNamed: oldString withNewName: newString [
 
 	"=> update the 'classExtensionsSelectors' dictionary (replace the old key by the new one)
         => update the 'metaclassclassExtensionsSelectors' dictionary (replace the old key by the new one)"
@@ -2181,11 +1679,8 @@ RPackage>>updateExtensionForClassNamed: oldString withNewName: newString [
 		].
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>updateExtensionSelector: oldSelector inClass: aClass withNewSelector: newSelector [
+{ #category : #updating }
+RPackage >> updateExtensionSelector: oldSelector inClass: aClass withNewSelector: newSelector [
 
 	aClass isMeta
 		ifTrue: [
@@ -2198,11 +1693,8 @@ RPackage>>updateExtensionSelector: oldSelector inClass: aClass withNewSelector: 
 			]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackage>>updateSelector: oldSelector inClass: aClass withNewSelector: newSelector [
+{ #category : #updating }
+RPackage >> updateSelector: oldSelector inClass: aClass withNewSelector: newSelector [
 
 	"here we check if the old seletor is defined in the package or if it is an extension. Then we dispatch the work to the corresponding method.
 	For one specific class, a selector is either a defined selector or an extension selector, there is no way to have a couple of class->selector present in both dictionary"

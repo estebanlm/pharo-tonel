@@ -6,83 +6,55 @@ The defined number of instance variables can be edited in #variablesCount.
 Class {
 	#name : #RBExcessiveVariablesRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:07'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveVariablesRule class>>checksClass [
+{ #category : #testing }
+RBExcessiveVariablesRule class >> checksClass [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveVariablesRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBExcessiveVariablesRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'ExcessiveVariablesRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveVariablesRule>>basicCheck: aClass [
+{ #category : #running }
+RBExcessiveVariablesRule >> basicCheck: aClass [
 	^ (aClass instVarNames size >= self variablesCount
 		or: [ aClass classVarNames size >= self variablesCount ])
 			
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveVariablesRule>>checkClass: aClass [
+{ #category : #running }
+RBExcessiveVariablesRule >> checkClass: aClass [
 	(self basicCheck: aClass)
 			ifTrue: [ result addClass: aClass ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveVariablesRule>>group [
+{ #category : #accessing }
+RBExcessiveVariablesRule >> group [
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveVariablesRule>>name [
+{ #category : #accessing }
+RBExcessiveVariablesRule >> name [
 	^ 'Excessive number of variables'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveVariablesRule>>rationale [
+{ #category : #accessing }
+RBExcessiveVariablesRule >> rationale [
 	^ 'Classes that have too many instance variables (10+) could be redesigned to have fewer fields, possibly through some nested object grouping.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveVariablesRule>>resultClass [
+{ #category : #accessing }
+RBExcessiveVariablesRule >> resultClass [
 	^ RBClassEnvironment
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBExcessiveVariablesRule>>variablesCount [
+{ #category : #private }
+RBExcessiveVariablesRule >> variablesCount [
 	^ 10
 ]

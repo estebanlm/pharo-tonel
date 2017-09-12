@@ -1,12 +1,7 @@
-Extension {
-	#name : #ClassDescription
-}
+Extension { #name : #ClassDescription }
 
-{
-	#category : #'*Slot',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassDescription>>superclass: aSuperclass layout: aLayout [
+{ #category : #'*Slot' }
+ClassDescription >> superclass: aSuperclass layout: aLayout [
 	layout := aLayout. 
 	
 	self
@@ -15,11 +10,8 @@ ClassDescription>>superclass: aSuperclass layout: aLayout [
 		format: aLayout format.
 ]
 
-{
-	#category : #'*Slot',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassDescription>>superclass: aSuperclass withLayoutType: layoutType slots: slotArray [
+{ #category : #'*Slot' }
+ClassDescription >> superclass: aSuperclass withLayoutType: layoutType slots: slotArray [
 	| superLayout newScope newLayout |
 	superLayout := aSuperclass
 						ifNil: [ EmptyLayout instance ]

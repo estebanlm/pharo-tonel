@@ -1,23 +1,15 @@
-Extension {
-	#name : #RPackage
-}
+Extension { #name : #RPackage }
 
-{
-	#category : #'*Tool-DependencyAnalyser',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RPackage>>ignoredDependencies [
+{ #category : #'*Tool-DependencyAnalyser' }
+RPackage >> ignoredDependencies [
 
 	^ self packageManifestOrNil
 		ifNil: [ #() ]
 		ifNotNil: #ignoredDependencies
 ]
 
-{
-	#category : #'*Tool-DependencyAnalyser',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RPackage>>manuallyResolvedDependencies [
+{ #category : #'*Tool-DependencyAnalyser' }
+RPackage >> manuallyResolvedDependencies [
 
 	^ self packageManifestOrNil
 		ifNil: [ #() ]

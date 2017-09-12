@@ -12,15 +12,11 @@ Class {
 		'environmentsHolder',
 		'environmentHolder'
 	],
-	#category : #NautilusRefactoring-Utilities,
-	#timestamp : '<historical>'
+	#category : #NautilusRefactoring-Utilities
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser class>>defaultSpec [
+{ #category : #specs }
+EnvironmentChooser class >> defaultSpec [
 	<spec>
 	
 	^ SpecLayout composed
@@ -30,11 +26,8 @@ EnvironmentChooser class>>defaultSpec [
 				add: #environmentsView ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>chooseNewEnvironment [
+{ #category : #actions }
+EnvironmentChooser >> chooseNewEnvironment [
 	| packagesAndClasses packages classes packageEnvironment classEnvironment |
 	
 	packagesAndClasses := PackageAndClassChooser new chooseModalTo: self window.
@@ -58,85 +51,55 @@ EnvironmentChooser>>chooseNewEnvironment [
 	^ packageEnvironment | classEnvironment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>enableCustom [
+{ #category : #accessing }
+EnvironmentChooser >> enableCustom [
 	^ enableCustom value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>enableCustom: aBoolean [
+{ #category : #accessing }
+EnvironmentChooser >> enableCustom: aBoolean [
 	^ enableCustom value: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>enableGlobal [
+{ #category : #accessing }
+EnvironmentChooser >> enableGlobal [
 	^ enableGlobal value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>enableGlobal: aBoolean [
+{ #category : #accessing }
+EnvironmentChooser >> enableGlobal: aBoolean [
 	^ enableGlobal value: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>environment [
+{ #category : #accessing }
+EnvironmentChooser >> environment [
 	^ environmentHolder value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>environment: anEnvironment [
+{ #category : #accessing }
+EnvironmentChooser >> environment: anEnvironment [
 	self environment = anEnvironment 
 		ifFalse: [ environmentHolder value: anEnvironment ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>environments [
+{ #category : #accessing }
+EnvironmentChooser >> environments [
 	^ environmentsHolder value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>environments: aCollection [
+{ #category : #accessing }
+EnvironmentChooser >> environments: aCollection [
 	environmentsHolder value: aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>environmentsView [
+{ #category : #accessing }
+EnvironmentChooser >> environmentsView [
 	^ environmentsView ifNil: [ 
 		environmentsView := self instantiate: DropListModel. ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>initialize [
+{ #category : #initialization }
+EnvironmentChooser >> initialize [
 	enableCustom := true asValueHolder.
 	enableGlobal := true asValueHolder.
 	environmentsHolder := #() asValueHolder.
@@ -144,48 +107,33 @@ EnvironmentChooser>>initialize [
 	super initialize.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>initializeWidgets [
+{ #category : #initialization }
+EnvironmentChooser >> initializeWidgets [
 	environmentsHolder whenChangedDo: [ self update ].
 	enableCustom whenChangedDo: [ self update ].
 	enableGlobal whenChangedDo: [ self update ].
 	self update.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>label [
+{ #category : #accessing }
+EnvironmentChooser >> label [
 	^ self labelView label
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>label: aString [
+{ #category : #accessing }
+EnvironmentChooser >> label: aString [
 	self labelView label: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>labelView [
+{ #category : #accessing }
+EnvironmentChooser >> labelView [
 	^ labelView ifNil: [ 
 		labelView := self instantiate: LabelModel.
 		labelView label: 'Environment:' ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>update [
+{ #category : #updating }
+EnvironmentChooser >> update [
 	self environmentsView
 		emptyList.
 		
@@ -205,10 +153,7 @@ EnvironmentChooser>>update [
 				self environment: newEnvironment ]]].
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EnvironmentChooser>>whenEnvironmentChanged: aBlock [
+{ #category : #events }
+EnvironmentChooser >> whenEnvironmentChanged: aBlock [
 	environmentHolder whenChangedDo: aBlock
 ]

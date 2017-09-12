@@ -16,34 +16,24 @@ Class {
 		'loops',
 		'currentPC'
 	],
-	#category : #Flashback-Decompiler,
-	#timestamp : 'ClementBera 6/19/2015 14:49'
+	#category : #Flashback-Decompiler
 }
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FBDLoopScanner class>>scan: method [
+{ #category : #'public api' }
+FBDLoopScanner class >> scan: method [
 	^ self new scan: method
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FBDLoopScanner>>interpretMethod: method [
+{ #category : #'instruction decoding' }
+FBDLoopScanner >> interpretMethod: method [
 	[ instructionStream pc > method endPC ]
 		whileFalse: [ 
 			currentPC := self pc.
 			instructionStream interpretNextInstructionFor: self ]
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FBDLoopScanner>>jump: offset [
+{ #category : #'instruction decoding' }
+FBDLoopScanner >> jump: offset [
 	| loop backjumpTarget |
 	offset < 0 ifFalse: [ ^ self ].
 	loop := (branchTargets at: self pc)
@@ -56,27 +46,18 @@ FBDLoopScanner>>jump: offset [
 		ifNotNil: [ :col | col add: loop ].
 ]
 
-{
-	#category : #'instruction decoding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FBDLoopScanner>>jump: offset if: bool [
+{ #category : #'instruction decoding' }
+FBDLoopScanner >> jump: offset if: bool [
 	branchTargets at: self pc + offset put: currentPC
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FBDLoopScanner>>pc [
+{ #category : #accessing }
+FBDLoopScanner >> pc [
 	^ instructionStream pc
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FBDLoopScanner>>scan: method [
+{ #category : #'public api' }
+FBDLoopScanner >> scan: method [
 	loops := Array new: method endPC.
 	branchTargets := Array new: method endPC.
 	instructionStream := InstructionStream on: method.

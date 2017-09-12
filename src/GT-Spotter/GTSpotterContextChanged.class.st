@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterContextChanged,
 	#superclass : #Announcement,
@@ -8,78 +5,50 @@ Class {
 		'previous',
 		'current'
 	],
-	#category : #GT-Spotter-Announcements,
-	#timestamp : ''
+	#category : #GT-Spotter-Announcements
 }
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContextChanged>>context [
+{ #category : #compatibility }
+GTSpotterContextChanged >> context [
 	^ self current
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContextChanged>>context: aSpotterContext [
+{ #category : #compatibility }
+GTSpotterContextChanged >> context: aSpotterContext [
 	self current: aSpotterContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContextChanged>>current [
+{ #category : #accessing }
+GTSpotterContextChanged >> current [
 	^ current
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContextChanged>>current: anObject [
+{ #category : #accessing }
+GTSpotterContextChanged >> current: anObject [
 	current := anObject
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContextChanged>>currentText [
+{ #category : #accessing-dynamic }
+GTSpotterContextChanged >> currentText [
 	^ self current ifNil: [''] ifNotNil: [ self current text ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContextChanged>>previous [
+{ #category : #accessing }
+GTSpotterContextChanged >> previous [
 	^ previous
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContextChanged>>previous: anObject [
+{ #category : #accessing }
+GTSpotterContextChanged >> previous: anObject [
 	previous := anObject
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContextChanged>>previousText [
+{ #category : #accessing-dynamic }
+GTSpotterContextChanged >> previousText [
 	^ self previous ifNil: ['']  ifNotNil: [ self previous text ]
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContextChanged>>text [
+{ #category : #compatibility }
+GTSpotterContextChanged >> text [
 	^ self currentText
 ]

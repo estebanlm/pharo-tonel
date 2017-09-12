@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GlamourousBenchmark,
 	#superclass : #Object,
@@ -8,15 +5,11 @@ Class {
 		'progressBarSize',
 		'progress'
 	],
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GlamourousBenchmark>>defaultBrowser  [
+{ #category : #utilities }
+GlamourousBenchmark >> defaultBrowser [ 
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one; column: #two.
@@ -34,11 +27,8 @@ GlamourousBenchmark>>defaultBrowser  [
 	^ browser
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GlamourousBenchmark>>defaultFinderBrowser  [
+{ #category : #utilities }
+GlamourousBenchmark >> defaultFinderBrowser [ 
 	"
 	self new defaultFinderBrowser openOn: 10
 	"
@@ -52,11 +42,8 @@ GlamourousBenchmark>>defaultFinderBrowser  [
 	^ finder
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GlamourousBenchmark>>measureOpeningTime [
+{ #category : #utilities }
+GlamourousBenchmark >> measureOpeningTime [
 	| browser numberOfOpenings time |
 	numberOfOpenings := 15.
 
@@ -65,22 +52,16 @@ GlamourousBenchmark>>measureOpeningTime [
 	^ {numberOfOpenings . time}
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GlamourousBenchmark>>measureSelectionTime [
+{ #category : #utilities }
+GlamourousBenchmark >> measureSelectionTime [
 	"
 	self new measureSelectionTime 
 	"
 	^ self measureSelectionTimeForSize: 1000
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GlamourousBenchmark>>measureSelectionTimeForSize: size [
+{ #category : #utilities }
+GlamourousBenchmark >> measureSelectionTimeForSize: size [
 	"
 	self new measureSelectionTime 
 	"
@@ -95,11 +76,8 @@ GlamourousBenchmark>>measureSelectionTimeForSize: size [
 	^ {size . time}
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GlamourousBenchmark>>measureSelectionTimeInFinderForSize: size [
+{ #category : #utilities }
+GlamourousBenchmark >> measureSelectionTimeInFinderForSize: size [
 	"
 	self new measureSelectionTimeInFinderForSize: 20 
 	"
@@ -115,11 +93,8 @@ GlamourousBenchmark>>measureSelectionTimeInFinderForSize: size [
 	^ {size . time}
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GlamourousBenchmark>>showOnlyBrowser  [
+{ #category : #utilities }
+GlamourousBenchmark >> showOnlyBrowser [ 
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one; column: #two.
@@ -140,11 +115,8 @@ GlamourousBenchmark>>showOnlyBrowser  [
 	^ browser
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GlamourousBenchmark>>showOnlyFinderBrowser  [
+{ #category : #utilities }
+GlamourousBenchmark >> showOnlyFinderBrowser [ 
 	"
 	self new showOnlyFinderBrowser openOn: 10
 	"

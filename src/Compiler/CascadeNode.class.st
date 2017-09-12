@@ -8,32 +8,22 @@ Class {
 		'receiver',
 		'messages'
 	],
-	#category : #Compiler-ParseNodes,
-	#timestamp : '<historical>'
+	#category : #Compiler-ParseNodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CascadeNode>>accept: aVisitor [
+{ #category : #visiting }
+CascadeNode >> accept: aVisitor [
 	^aVisitor visitCascadeNode: self
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CascadeNode>>analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools "<Dictionary>" [
+{ #category : #'code generation (closures)' }
+CascadeNode >> analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools [ "<Dictionary>"
 	{ receiver }, messages do:
 		[:node| node analyseTempsWithin: scopeBlock rootNode: rootNode assignmentPools: assignmentPools]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CascadeNode>>emitCodeForValue: stack encoder: encoder [
+{ #category : #'code generation' }
+CascadeNode >> emitCodeForValue: stack encoder: encoder [
 	receiver emitCodeForValue: stack encoder: encoder.
 	1 to: messages size - 1 do: 
 		[:i | 
@@ -45,27 +35,18 @@ CascadeNode>>emitCodeForValue: stack encoder: encoder [
 	messages last emitCodeForValue: stack encoder: encoder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CascadeNode>>messages [
+{ #category : #accessing }
+CascadeNode >> messages [
 	^messages
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CascadeNode>>printOn: aStream indent: level [
+{ #category : #printing }
+CascadeNode >> printOn: aStream indent: level [
 	self printOn: aStream indent: level precedence: 0
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CascadeNode>>printOn: aStream indent: level precedence: p  [
+{ #category : #printing }
+CascadeNode >> printOn: aStream indent: level precedence: p [ 
 
 	p > 0 ifTrue: [aStream nextPut: $(].
 	messages first printReceiver: receiver on: aStream indent: level.
@@ -77,30 +58,21 @@ CascadeNode>>printOn: aStream indent: level precedence: p  [
 	p > 0 ifTrue: [aStream nextPut: $)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CascadeNode>>receiver [
+{ #category : #accessing }
+CascadeNode >> receiver [
 	^receiver
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CascadeNode>>receiver: receivingObject messages: msgs [
+{ #category : #initialize-release }
+CascadeNode >> receiver: receivingObject messages: msgs [
 	" Transcript show: 'abc'; cr; show: 'def' "
 
 	receiver := receivingObject.
 	messages := msgs
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CascadeNode>>sizeCodeForValue: encoder [
+{ #category : #'code generation' }
+CascadeNode >> sizeCodeForValue: encoder [
 	| size |
 	size := (receiver sizeCodeForValue: encoder)
 			 + (messages size - 1 * (encoder sizeDup + encoder sizePop)).

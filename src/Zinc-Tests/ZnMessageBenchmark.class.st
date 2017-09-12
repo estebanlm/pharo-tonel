@@ -33,15 +33,11 @@ Class {
 		'representation',
 		'buffer'
 	],
-	#category : #Zinc-Tests,
-	#timestamp : '<historical>'
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark class>>bench: messages [
+{ #category : #accessing }
+ZnMessageBenchmark class >> bench: messages [
 	| results |
 	results := Dictionary new.
 	messages 
@@ -55,35 +51,23 @@ ZnMessageBenchmark class>>bench: messages [
 	^ results
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark class>>benchAll [
+{ #category : #accessing }
+ZnMessageBenchmark class >> benchAll [
 	^ self bench: self messages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark class>>messages [
+{ #category : #accessing }
+ZnMessageBenchmark class >> messages [
 	^ self requests , self responses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark class>>requests [
+{ #category : #accessing }
+ZnMessageBenchmark class >> requests [
 	^ #( simpleRequest standardRequest postRequest )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark class>>responses [
+{ #category : #accessing }
+ZnMessageBenchmark class >> responses [
 	^ #( 
 		simpleResponse 
 		textResponse8k textResponse64k textResponse256k
@@ -92,100 +76,67 @@ ZnMessageBenchmark class>>responses [
 		binaryResponse8k binaryResponse64k binaryResponse256k )
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>asciiResponse256k [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> asciiResponse256k [
 	message := ZnResponse ok: 
 		(ZnEntity 
 			with: (self randomAsciiString: 256 * 1024) 
 			type: 'text/plain;charset=ascii')
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>asciiResponse64k [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> asciiResponse64k [
 	message := ZnResponse ok: 
 		(ZnEntity 
 			with: (self randomAsciiString: 64 * 1024) 
 			type: 'text/plain;charset=ascii')
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>asciiResponse8k [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> asciiResponse8k [
 	message := ZnResponse ok: 
 		(ZnEntity 
 			with: (self randomAsciiString: 8 * 1024) 
 			type: 'text/plain;charset=ascii')
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>benchRead [
+{ #category : #accessing }
+ZnMessageBenchmark >> benchRead [
 	^ [ self read ] bench
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>benchWrite [
+{ #category : #accessing }
+ZnMessageBenchmark >> benchWrite [
 	^ [ self write ] bench
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>binaryResponse256k [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> binaryResponse256k [
 	message := ZnResponse ok: (ZnEntity with: (self randomBytes: 256 * 1024))
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>binaryResponse64k [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> binaryResponse64k [
 	message := ZnResponse ok: (ZnEntity with: (self randomBytes: 64 * 1024))
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>binaryResponse8k [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> binaryResponse8k [
 	message := ZnResponse ok: (ZnEntity with: (self randomBytes: 8 * 1024))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>buffer [
+{ #category : #accessing }
+ZnMessageBenchmark >> buffer [
 	^ buffer ifNil: [  buffer := ByteArray new: ZnUtils streamingBufferSize ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>message [
+{ #category : #accessing }
+ZnMessageBenchmark >> message [
 	^ message
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>postRequest [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> postRequest [
 	message := (ZnRequest post: 'http://zn.stfx.eu/echo/one/two/three?param1=123&param2=foobar')
 		setAcceptEncodingGzip;
 		setBasicAuthenticationUsername: 'john' password: 'secret';
@@ -193,22 +144,16 @@ ZnMessageBenchmark>>postRequest [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>randomAsciiString: count [
+{ #category : #private }
+ZnMessageBenchmark >> randomAsciiString: count [
 	^ String
 		new: count
 		streamContents: [ :stream | 
 			count timesRepeat: [ stream nextPut: '0123456789ABCDEF' atRandom ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>randomBytes: count [
+{ #category : #private }
+ZnMessageBenchmark >> randomBytes: count [
 	| bytes |
 	bytes := ByteArray new: count.
 	1 to: count do: [ :each | 
@@ -216,11 +161,8 @@ ZnMessageBenchmark>>randomBytes: count [
 	^ bytes
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>randomUnicodeString: count [
+{ #category : #private }
+ZnMessageBenchmark >> randomUnicodeString: count [
 	^ String
 		new: count
 		streamContents: [ :stream | 
@@ -228,11 +170,8 @@ ZnMessageBenchmark>>randomUnicodeString: count [
 			count timesRepeat: [ stream nextPut: '0123456789ABCDEF-élève en Français-0123456789ABCDEF' atRandom ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>randomUnicodeWideString: count [
+{ #category : #private }
+ZnMessageBenchmark >> randomUnicodeWideString: count [
 	| alphabet |
 	"This is about 6% non-ASCII characters, 6% non-octet characters, always a WideString"
 	alphabet := '0123456789ABCDEF-élève en Français-0123456789ABCDEF', 
@@ -243,140 +182,92 @@ ZnMessageBenchmark>>randomUnicodeWideString: count [
 			count timesRepeat: [ stream nextPut: alphabet atRandom ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>read [
+{ #category : #accessing }
+ZnMessageBenchmark >> read [
 	| readStream |
 	readStream := representation readStream.
 	^ message class readFrom: readStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>read: count [
+{ #category : #accessing }
+ZnMessageBenchmark >> read: count [
 	count timesRepeat: [ self read ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>simpleRequest [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> simpleRequest [
 	message := ZnRequest get: 'http://zn.stfx.eu/dw-bench'
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>simpleResponse [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> simpleResponse [
 	message := ZnResponse ok: (ZnEntity html: ZnDefaultServerDelegate new generateDWBench)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>sizeBuffer: size [
+{ #category : #private }
+ZnMessageBenchmark >> sizeBuffer: size [
 	buffer := ByteArray new: size
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>standardRequest [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> standardRequest [
 	message := (ZnRequest get: 'http://zn.stfx.eu/echo/one/two/three?param1=123&param2=foobar')
 		setAcceptEncodingGzip;
 		setBasicAuthenticationUsername: 'john' password: 'secret';
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>textResponse256k [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> textResponse256k [
 	message := ZnResponse ok: (ZnEntity with: (self randomUnicodeString: 256 * 1024))
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>textResponse64k [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> textResponse64k [
 	message := ZnResponse ok: (ZnEntity with: (self randomUnicodeString: 64 * 1024))
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>textResponse8k [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> textResponse8k [
 	message := ZnResponse ok: (ZnEntity with: (self randomUnicodeString: 8 * 1024))
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>textResponseWide256k [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> textResponseWide256k [
 	message := ZnResponse ok: (ZnEntity with: (self randomUnicodeWideString: 256 * 1024))
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>textResponseWide64k [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> textResponseWide64k [
 	message := ZnResponse ok: (ZnEntity with: (self randomUnicodeWideString: 64 * 1024))
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>textResponseWide8k [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> textResponseWide8k [
 	message := ZnResponse ok: (ZnEntity with: (self randomUnicodeWideString: 8 * 1024))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>write [
+{ #category : #accessing }
+ZnMessageBenchmark >> write [
 	| writeStream |
 	writeStream := self buffer writeStream.
 	message writeOn: writeStream.
 	^ writeStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>write: count [
+{ #category : #accessing }
+ZnMessageBenchmark >> write: count [
 	count timesRepeat: [ self write ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>writeRepresentation [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> writeRepresentation [
 	representation := self write contents.
 	self sizeBuffer: representation size + 1024 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMessageBenchmark>>writeUsingGzipEncodingAndChunkingRepresentation [
+{ #category : #initialize-release }
+ZnMessageBenchmark >> writeUsingGzipEncodingAndChunkingRepresentation [
 	message
 		setContentEncodingGzip;
 		setTransferEncodingChunked.

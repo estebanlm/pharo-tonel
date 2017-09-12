@@ -9,15 +9,11 @@ Class {
 		'position',
 		'event'
 	],
-	#category : #Rubric-Tests,
-	#timestamp : '<historical>'
+	#category : #Rubric-Tests
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RubEditingAreaTest>>newCharacterBlockIndex: anInteger text: aText [
+{ #category : #'instance creation' }
+RubEditingAreaTest >> newCharacterBlockIndex: anInteger text: aText [
 	| line |
 	line := (RubTextLine start: 1 stop: 33 internalSpaces: 0 paddingWidth: 0) rectangle: (0 @ 0 corner: 0 @ 0).
 	^ (CharacterBlock new stringIndex: anInteger text: aText topLeft: 0@0 extent: 0 @ 0)
@@ -25,11 +21,8 @@ RubEditingAreaTest>>newCharacterBlockIndex: anInteger text: aText [
 			yourself
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RubEditingAreaTest>>sendDoubleClickAt: index withShift: aBoolean [
+{ #category : #convenience }
+RubEditingAreaTest >> sendDoubleClickAt: index withShift: aBoolean [
 	| buttons |
 	position := (area paragraph characterBlockForIndex: index) surface leftCenter.
 	buttons := (aBoolean ifTrue: [8] ifFalse: [0]).
@@ -44,11 +37,8 @@ RubEditingAreaTest>>sendDoubleClickAt: index withShift: aBoolean [
 	^ area doubleClick: event
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RubEditingAreaTest>>sendMouseClickAt: index withShift: aBoolean [
+{ #category : #convenience }
+RubEditingAreaTest >> sendMouseClickAt: index withShift: aBoolean [
 	| buttons |
 	position := (area paragraph characterBlockForIndex: index) surface leftCenter.
 	buttons := (aBoolean ifTrue: [8] ifFalse: [0]).
@@ -57,61 +47,43 @@ RubEditingAreaTest>>sendMouseClickAt: index withShift: aBoolean [
 	
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RubEditingAreaTest>>setSelectionFrom: startIndex to: stopIndex text: aText [
+{ #category : #convenience }
+RubEditingAreaTest >> setSelectionFrom: startIndex to: stopIndex text: aText [
 	area markIndex: stopIndex pointIndex: startIndex
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RubEditingAreaTest>>setUp [
+{ #category : #running }
+RubEditingAreaTest >> setUp [
 	super setUp.
 	area := RubEditingArea new.
 	area setTextWith: 'one two three four'.
 ]
 
-{
-	#category : #'tests-accessing selection',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RubEditingAreaTest>>testMarkBlockPointBlock [
+{ #category : #'tests-accessing selection' }
+RubEditingAreaTest >> testMarkBlockPointBlock [
 	self setSelectionFrom: 3 to: 6 text: area text.
 	self assert: area pointBlock stringIndex equals: 3.
 	self assert: area markBlock stringIndex equals: 6
 ]
 
-{
-	#category : #'tests-accessing selection',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RubEditingAreaTest>>testModifySelection [
+{ #category : #'tests-accessing selection' }
+RubEditingAreaTest >> testModifySelection [
 	self testMarkBlockPointBlock.
 	area modifySelection: (self newCharacterBlockIndex: 8 text: area text).
 	self assert: area markBlock stringIndex equals: 3.
 	self assert: area pointBlock stringIndex equals: 8.
 ]
 
-{
-	#category : #'tests-accessing selection',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RubEditingAreaTest>>testMouseClickShiftClick [
+{ #category : #'tests-accessing selection' }
+RubEditingAreaTest >> testMouseClickShiftClick [
 	self sendMouseClickAt: 3 withShift: false.
 	self sendMouseClickAt: 6 withShift: true.
 	self assert: area markBlock stringIndex equals: 3.
 	self assert: area pointBlock stringIndex equals: 6
 ]
 
-{
-	#category : #'tests-accessing selection',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RubEditingAreaTest>>testMouseMoveAfterDoubleClick [
+{ #category : #'tests-accessing selection' }
+RubEditingAreaTest >> testMouseMoveAfterDoubleClick [
 	self sendMouseClickAt: 11 withShift: false.
 	self sendDoubleClickAt: 11 withShift: false.
 	self sendMouseClickAt: 17 withShift: true.

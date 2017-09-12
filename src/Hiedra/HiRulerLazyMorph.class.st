@@ -8,37 +8,27 @@ Class {
 		'model',
 		'key'
 	],
-	#category : #Hiedra-Spec,
-	#timestamp : 'MartinDias 7/8/2015 14:59'
+	#category : #Hiedra-Spec
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerLazyMorph class>>model: aModel key: anObject  [
+{ #category : #'instance creation' }
+HiRulerLazyMorph class >> model: aModel key: anObject [ 
 	^ self basicNew
 		initializeWithModel: aModel 
 		key: anObject;
 		yourself
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerLazyMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+HiRulerLazyMorph >> drawOn: aCanvas [
 	aCanvas 
 		translucentImage: self sourceForm
 		at: self bounds origin 
 		sourceRect: self sourceRectangle
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerLazyMorph>>initializeWithModel: aModel key: anObject [
+{ #category : #initialization }
+HiRulerLazyMorph >> initializeWithModel: aModel key: anObject [
 	self initialize.
 	
 	model := aModel.
@@ -47,26 +37,17 @@ HiRulerLazyMorph>>initializeWithModel: aModel key: anObject [
 	self syncExtent.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerLazyMorph>>sourceForm [
+{ #category : #accessing }
+HiRulerLazyMorph >> sourceForm [
 	^ model rulerForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerLazyMorph>>sourceRectangle [
+{ #category : #accessing }
+HiRulerLazyMorph >> sourceRectangle [
 	^ model rulerMorphBoundsFor: key
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerLazyMorph>>syncExtent [
+{ #category : #initialization }
+HiRulerLazyMorph >> syncExtent [
 	self extent: self sourceRectangle extent
 ]

@@ -11,35 +11,25 @@ Class {
 		'packageRules',
 		'critiques'
 	],
-	#category : #Renraku-CriticBrowser,
-	#timestamp : 'YuriyTymchuk 7/7/2016 19:08'
+	#category : #Renraku-CriticBrowser
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSmalllintChecker>>addCritique: aCritique [
+{ #category : #adding }
+ReSmalllintChecker >> addCritique: aCritique [
 
 	^ critiques add: aCritique
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSmalllintChecker>>checkClass: aClass [
+{ #category : #private }
+ReSmalllintChecker >> checkClass: aClass [
 
 	(environment includesClass: aClass) ifFalse: [ ^ self ].
 
 	self getCritiquesAbout: aClass by: classRules
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSmalllintChecker>>checkMethodsForClass: aClass [
+{ #category : #private }
+ReSmalllintChecker >> checkMethodsForClass: aClass [
 	environment
 		selectorsForClass: aClass
 		do: [ :selector | | method |
@@ -54,31 +44,22 @@ ReSmalllintChecker>>checkMethodsForClass: aClass [
 							self addCritique: crit ] ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSmalllintChecker>>checkPackage: aPackage [
+{ #category : #private }
+ReSmalllintChecker >> checkPackage: aPackage [
 
 	(environment includesPackage: aPackage) ifTrue: [
 		self getCritiquesAbout: aPackage by: packageRules ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSmalllintChecker>>criticsOf: aRule [
+{ #category : #accessing }
+ReSmalllintChecker >> criticsOf: aRule [
 
 	^ critiques
 		select: [ :c | c rule class = aRule class ]
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSmalllintChecker>>falsePositiveOf: aRule [
+{ #category : #manifest }
+ReSmalllintChecker >> falsePositiveOf: aRule [
 	
 	| ruleCritiques rId rV  mb |
 	ruleCritiques := self criticsOf: aRule. 
@@ -94,11 +75,8 @@ ReSmalllintChecker>>falsePositiveOf: aRule [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSmalllintChecker>>getCritiquesAbout: anEntity by: rules [
+{ #category : #private }
+ReSmalllintChecker >> getCritiquesAbout: anEntity by: rules [
 
 	rules do: [ :r |
 		[ r
@@ -110,20 +88,14 @@ ReSmalllintChecker>>getCritiquesAbout: anEntity by: rules [
 			do: [ :er | ReSettings showErrors ifTrue: [ er pass ]  ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSmalllintChecker>>initialize [
+{ #category : #initialization }
+ReSmalllintChecker >> initialize [
 	super initialize.
 	self resetResult 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSmalllintChecker>>reParseRule [
+{ #category : #private }
+ReSmalllintChecker >> reParseRule [
 
 	methodRules  := Set new.
 	nodeRules    := Set new.
@@ -137,40 +109,28 @@ ReSmalllintChecker>>reParseRule [
 		r class checksPackage ifTrue: [ packageRules add: r ] ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSmalllintChecker>>resetResult [
+{ #category : #running }
+ReSmalllintChecker >> resetResult [
 
 	critiques := Set new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSmalllintChecker>>rule [
+{ #category : #accessing }
+ReSmalllintChecker >> rule [
 	
 	^ (rule isKindOf: RBCompositeLintRule)
 		ifTrue: [ rule leaves ]
 		ifFalse: [ rule ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSmalllintChecker>>run [
+{ #category : #actions }
+ReSmalllintChecker >> run [
 	self reParseRule.
 	super run
 ]
 
-{
-	#category : #manifest,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSmalllintChecker>>toDoOf: aRule [
+{ #category : #manifest }
+ReSmalllintChecker >> toDoOf: aRule [
 	
 	| ruleCritiques rId rV mb |
 	ruleCritiques := self criticsOf: aRule. 

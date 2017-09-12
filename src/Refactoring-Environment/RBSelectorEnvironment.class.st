@@ -10,25 +10,18 @@ Class {
 		'classSelectors',
 		'metaClassSelectors'
 	],
-	#category : #Refactoring-Environment,
-	#timestamp : 'NicolaiHess 4/27/2015 21:24'
+	#category : #Refactoring-Environment
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment class>>implementorsMatching: aString [
+{ #category : #'instance creation' }
+RBSelectorEnvironment class >> implementorsMatching: aString [
 	^ self 
 		implementorsMatching: aString 
 		in: self default
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment class>>implementorsMatching: aString in: anEnvironment  [
+{ #category : #'instance creation' }
+RBSelectorEnvironment class >> implementorsMatching: aString [ in: anEnvironment 
 	| classDict metaDict |
 	classDict := IdentityDictionary new.
 	metaDict := IdentityDictionary new.
@@ -47,21 +40,15 @@ RBSelectorEnvironment class>>implementorsMatching: aString in: anEnvironment  [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment class>>implementorsOf: aSelector [
+{ #category : #'instance creation' }
+RBSelectorEnvironment class >> implementorsOf: aSelector [
 	^ self
 		implementorsOf: aSelector
 		in: self default 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment class>>implementorsOf: aSelector in: anEnvironment  [
+{ #category : #'instance creation' }
+RBSelectorEnvironment class >> implementorsOf: aSelector in: anEnvironment [ 
 	| classDict metaDict selectors |
 	classDict := IdentityDictionary new.
 	metaDict := IdentityDictionary new.
@@ -78,21 +65,15 @@ RBSelectorEnvironment class>>implementorsOf: aSelector in: anEnvironment  [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment class>>matches: aString [
+{ #category : #'instance creation' }
+RBSelectorEnvironment class >> matches: aString [
 	^ self
 		matches: aString
 		in: self default
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment class>>matches: aString in: anEnvironment  [
+{ #category : #'instance creation' }
+RBSelectorEnvironment class >> matches: aString [ in: anEnvironment 
 	| newEnvironment |
 	newEnvironment := (self onEnvironment: anEnvironment)
 		label: 'Matching: ' , aString;
@@ -108,43 +89,31 @@ RBSelectorEnvironment class>>matches: aString in: anEnvironment  [
 	^ newEnvironment
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment class>>onMethods: selectorCollection forClass: aClass [
+{ #category : #'instance creation' }
+RBSelectorEnvironment class >> onMethods: selectorCollection forClass: aClass [
 	^ self
 		onMethods: selectorCollection
 		forClass: aClass
 		in: self default 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment class>>onMethods: selectorCollection forClass: aClass in: anEnvironment  [
+{ #category : #'instance creation' }
+RBSelectorEnvironment class >> onMethods: selectorCollection forClass: aClass in: anEnvironment [ 
 	| environemnt |
 	environemnt := self onEnvironment: anEnvironment.
 	selectorCollection do: [ :each | environemnt addClass: aClass selector: each ].
 	^ environemnt
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment class>>referencesTo: aLiteral [
+{ #category : #'instance creation' }
+RBSelectorEnvironment class >> referencesTo: aLiteral [
 	^ self
 		referencesTo: aLiteral
 		in: self default 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment class>>referencesTo: aLiteral in: anEnvironment  [
+{ #category : #'instance creation' }
+RBSelectorEnvironment class >> referencesTo: aLiteral in: anEnvironment [ 
 	| classDict literalPrintString |
 	literalPrintString := aLiteral isVariableBinding
 		ifTrue: [ aLiteral key asString ]
@@ -166,70 +135,49 @@ RBSelectorEnvironment class>>referencesTo: aLiteral in: anEnvironment  [
 		yourself
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>addClass: aClass  [
+{ #category : #adding }
+RBSelectorEnvironment >> addClass: aClass [ 
 	aClass isMeta 
 		ifTrue: [ metaClassSelectors at: aClass soleInstance name put: aClass selectors asIdentitySet ]
 		ifFalse: [ classSelectors at: aClass name put: aClass selectors asIdentitySet ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>addClass: aClass selector: aSymbol  [
+{ #category : #adding }
+RBSelectorEnvironment >> addClass: aClass selector: aSymbol [ 
 	(aClass isMeta 
 		ifTrue: [ metaClassSelectors at: aClass soleInstance name ifAbsentPut: [ IdentitySet new ] ]
 		ifFalse: [ classSelectors at: aClass name ifAbsentPut: [ IdentitySet new ] ])
 			add: aSymbol
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>addMethod: aMethod [
+{ #category : #adding }
+RBSelectorEnvironment >> addMethod: aMethod [
 	"this is a method to improve addition of methods, as class and selector data can be retrieved from a single compiled method"
 	
 	self addClass: aMethod methodClass selector: aMethod selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>asSelectorEnvironment [
+{ #category : #accessing }
+RBSelectorEnvironment >> asSelectorEnvironment [
 	^ self
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>classNames [
+{ #category : #accessing-classes }
+RBSelectorEnvironment >> classNames [
 	^ IdentitySet new
 		addAll: classSelectors keys;
 		addAll: metaClassSelectors keys;
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>classSelectors: classSelectorDictionary metaClassSelectors: metaClassSelectorDictionary  [
+{ #category : #initialize-release }
+RBSelectorEnvironment >> classSelectors: classSelectorDictionary metaClassSelectors: metaClassSelectorDictionary [ 
 	classSelectors := classSelectorDictionary.
 	metaClassSelectors := metaClassSelectorDictionary
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>classes: classArray metaClasses: metaArray  [
+{ #category : #initialize-release }
+RBSelectorEnvironment >> classes: classArray metaClasses: metaArray [ 
 	"Used to recreate an environment from its storeString"
 
 	classSelectors := IdentityDictionary new.
@@ -240,11 +188,8 @@ RBSelectorEnvironment>>classes: classArray metaClasses: metaArray  [
 		do: [ :each | metaClassSelectors at: each first put: each last asIdentitySet ]
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>classesDo: aBlock  [
+{ #category : #accessing-classes }
+RBSelectorEnvironment >> classesDo: aBlock [ 
 	classSelectors keysDo: [ :each | 
 		| class |
 		class := self systemDictionary at: each ifAbsent: [ nil ].
@@ -257,19 +202,13 @@ RBSelectorEnvironment>>classesDo: aBlock  [
 			ifTrue: [ aBlock value: class class ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>defaultLabel [
+{ #category : #private }
+RBSelectorEnvironment >> defaultLabel [
 	^'some methods'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>includesCategory: aCategory  [
+{ #category : #testing }
+RBSelectorEnvironment >> includesCategory: aCategory [ 
 	^(super includesCategory: aCategory) and: 
 			[(self classNamesFor: aCategory) anySatisfy: 
 					[:className | 
@@ -277,76 +216,52 @@ RBSelectorEnvironment>>includesCategory: aCategory  [
 						or: [metaClassSelectors includesKey: className]]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>includesClass: aClass  [
+{ #category : #testing }
+RBSelectorEnvironment >> includesClass: aClass [ 
 	^(self privateSelectorsForClass: aClass) isEmpty not 
 		and: [super includesClass: aClass]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>includesProtocol: aProtocol in: aClass  [
+{ #category : #testing }
+RBSelectorEnvironment >> includesProtocol: aProtocol [ in: aClass 
 	^(super includesProtocol: aProtocol in: aClass)
 		and: [(environment selectorsFor: aProtocol in: aClass)
 				anySatisfy: [:aSelector | self privateIncludesSelector: aSelector inClass: aClass]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>includesSelector: aSelector in: aClass  [
+{ #category : #testing }
+RBSelectorEnvironment >> includesSelector: aSelector [ in: aClass 
 	^(environment includesSelector: aSelector in: aClass)
 		and: [self privateIncludesSelector: aSelector inClass: aClass]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>initialize [
+{ #category : #initialization }
+RBSelectorEnvironment >> initialize [
 	super initialize.
 	classSelectors := IdentityDictionary new.
 	metaClassSelectors := IdentityDictionary new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>isEmpty [
+{ #category : #testing }
+RBSelectorEnvironment >> isEmpty [
 	^classSelectors isEmpty and: [metaClassSelectors isEmpty]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>isSelectorEnvironment [
+{ #category : #testing }
+RBSelectorEnvironment >> isSelectorEnvironment [
 	^ true
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>on: aDictionary  [
+{ #category : #initialize-release }
+RBSelectorEnvironment >> on: aDictionary [ 
 	aDictionary keysAndValuesDo: [ :class :selectors | 
 		class isMeta 
 			ifTrue: [ metaClassSelectors at: class soleInstance name put: selectors asIdentitySet ]
 			ifFalse: [ classSelectors at: class name put: selectors asIdentitySet ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>packages [
+{ #category : #accessing }
+RBSelectorEnvironment >> packages [
 	"Check that packages have really class and selector included."
 
 	| pSet |
@@ -363,11 +278,8 @@ RBSelectorEnvironment>>packages [
 	^ pSet
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>postCopy [
+{ #category : #copying }
+RBSelectorEnvironment >> postCopy [
 	| newDict |
 	super postCopy.
 	newDict := classSelectors copy.
@@ -378,39 +290,27 @@ RBSelectorEnvironment>>postCopy [
 	metaClassSelectors := newDict
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>privateIncludesSelector: aSelector inClass: aClass  [
+{ #category : #private }
+RBSelectorEnvironment >> privateIncludesSelector: aSelector inClass: aClass [ 
 	^(self privateSelectorsForClass: aClass) includes: aSelector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>privateSelectorsForClass: aClass  [
+{ #category : #private }
+RBSelectorEnvironment >> privateSelectorsForClass: aClass [ 
 	^aClass isMeta 
 		ifTrue: [metaClassSelectors at: aClass soleInstance name ifAbsent: [#()]]
 		ifFalse: [classSelectors at: aClass name ifAbsent: [#()]]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>removeClass: aClass  [
+{ #category : #removing }
+RBSelectorEnvironment >> removeClass: aClass [ 
 	aClass isMeta 
 		ifTrue: [metaClassSelectors removeKey: aClass soleInstance name ifAbsent: []]
 		ifFalse: [classSelectors removeKey: aClass name ifAbsent: []]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>removeClass: aClass selector: aSelector  [
+{ #category : #removing }
+RBSelectorEnvironment >> removeClass: aClass selector: aSelector [ 
 	(aClass isMeta 
 		ifTrue: [metaClassSelectors at: aClass soleInstance name ifAbsent: [^self]]
 		ifFalse: [classSelectors at: aClass name ifAbsent: [^self]]) 
@@ -418,20 +318,14 @@ RBSelectorEnvironment>>removeClass: aClass selector: aSelector  [
 			ifAbsent: []
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>selectorsForClass: aClass do: aBlock  [
+{ #category : #accessing }
+RBSelectorEnvironment >> selectorsForClass: aClass do: aBlock [ 
 	^(self privateSelectorsForClass: aClass) 
 		do: [:each | (aClass includesSelector: each) ifTrue: [aBlock value: each]]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBSelectorEnvironment>>storeOn: aStream  [
+{ #category : #printing }
+RBSelectorEnvironment >> storeOn: aStream [ 
 	| classBlock |
 	aStream
 		nextPutAll: '((';

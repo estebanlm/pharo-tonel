@@ -5,15 +5,11 @@ Class category changes are not being properly added to the default changeset in 
 Class {
 	#name : #ChangeSetClassChangesTest,
 	#superclass : #TestCase,
-	#category : #Tests-System,
-	#timestamp : 'dtl 2/19/2005 13:21'
+	#category : #Tests-System
 }
 
-{
-	#category : #support,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChangeSetClassChangesTest>>isDefinition: firstString equivalentTo: secondString  [
+{ #category : #support }
+ChangeSetClassChangesTest >> isDefinition: firstString equivalentTo: secondString [ 
 	"When a class definition is reconstructed with #fatDefForClass, it may 
 	contain extra trailing space characters in parts of the definition. This 
 	is probably a minor bug, but it should be overlooked for purposes of 
@@ -25,22 +21,16 @@ ChangeSetClassChangesTest>>isDefinition: firstString equivalentTo: secondString 
 				= (secondString copyReplaceAll: ' ''' with: '''')]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChangeSetClassChangesTest>>tearDown [
+{ #category : #running }
+ChangeSetClassChangesTest >> tearDown [
 	(Smalltalk globals classNamed: #JunkClass) ifNotNil: [ :c | c removeFromSystem: true ].
 	SystemOrganization removeCategory: #'DeleteMe-1'.
 	SystemOrganization removeCategory: #'DeleteMe-2'.
 	ChangeSet current removeClassChanges: 'JunkClass'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChangeSetClassChangesTest>>testAddInstanceVariable [
+{ #category : #testing }
+ChangeSetClassChangesTest >> testAddInstanceVariable [
 	"Adding an instance variable to the class should result in a change
 	record being added to the current change set."
 
@@ -82,11 +72,8 @@ ChangeSetClassChangesTest>>testAddInstanceVariable [
 				equivalentTo: saveClassDefinition)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChangeSetClassChangesTest>>testAddInstanceVariableAddsNewChangeRecord  [
+{ #category : #testing }
+ChangeSetClassChangesTest >> testAddInstanceVariableAddsNewChangeRecord [ 
 	"Changing the class category for a class should result in a change
 	record being updated in the current change set."
 
@@ -121,11 +108,8 @@ ChangeSetClassChangesTest>>testAddInstanceVariableAddsNewChangeRecord  [
 	category: ''DeleteMe-1''')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChangeSetClassChangesTest>>testChangeClassCategory [
+{ #category : #testing }
+ChangeSetClassChangesTest >> testChangeClassCategory [
 	"Changing the class category for a class should result in a change
 	record being added to the current change set."
 
@@ -168,11 +152,8 @@ ChangeSetClassChangesTest>>testChangeClassCategory [
 	category: ''DeleteMe-2''')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChangeSetClassChangesTest>>testChangeClassCategoryAddsNewChangeRecord [
+{ #category : #testing }
+ChangeSetClassChangesTest >> testChangeClassCategoryAddsNewChangeRecord [
 	"Changing the class category for a class should result in a change
 	record being updated in the current change set."
 
@@ -207,11 +188,8 @@ ChangeSetClassChangesTest>>testChangeClassCategoryAddsNewChangeRecord [
 	category: ''DeleteMe-2''')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ChangeSetClassChangesTest>>testInitialChangeSet [
+{ #category : #testing }
+ChangeSetClassChangesTest >> testInitialChangeSet [
 	"Run this to assure the initial changeset is named. Checks bug found in 3.9 7052."
 	"self new testInitialChangeSet"
 	"self run:  #testInitialChangeSet"

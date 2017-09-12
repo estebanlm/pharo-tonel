@@ -9,63 +9,44 @@ Class {
 		'textFont',
 		'iconMorph'
 	],
-	#category : #Polymorph-Widgets-Windows,
-	#timestamp : 'gvc 5/18/2007 13:27'
+	#category : #Polymorph-Widgets-Windows
 }
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow class>>taskbarIconName [
+{ #category : #icons }
+MessageDialogWindow class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^#smallInfoIcon
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>defaultTextFont [
+{ #category : #initialization }
+MessageDialogWindow >> defaultTextFont [
 	^self theme textFont
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>icon [
+{ #category : #'visual properties' }
+MessageDialogWindow >> icon [
 	"Answer an icon for the receiver."
 
 	^ self iconNamed: #infoIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>iconMorph [
+{ #category : #accessing }
+MessageDialogWindow >> iconMorph [
 	"Answer the value of iconMorph"
 
 	^ iconMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>iconMorph: anObject [
+{ #category : #accessing }
+MessageDialogWindow >> iconMorph: anObject [
 	"Set the value of iconMorph"
 
 	iconMorph := anObject
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>initialExtent [
+{ #category : #open/close }
+MessageDialogWindow >> initialExtent [
 	"Answer the initial extent for the receiver.
 	Adjust the text if the text	would be wider than 1/4 the display width."
 	
@@ -80,48 +61,33 @@ MessageDialogWindow>>initialExtent [
 	^ext
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>initialize [
+{ #category : #initialization }
+MessageDialogWindow >> initialize [
 	super initialize.
 	textFont:= self defaultTextFont
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>lineLengths [
+{ #category : #private }
+MessageDialogWindow >> lineLengths [
 
 	^ self textLines collect: [ :line | self textFont widthOfString: line ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>minimumWidth [
+{ #category : #accessing }
+MessageDialogWindow >> minimumWidth [
 	
 	^ (self lineLengths max + 100) min: Display width.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>newButtons [
+{ #category : #actions }
+MessageDialogWindow >> newButtons [
 	"Answer new buttons as appropriate."
 
 	^{self newOKButton isDefault: true}
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>newContentMorph [
+{ #category : #actions }
+MessageDialogWindow >> newContentMorph [
 	"Answer a new content morph."
 
 	self iconMorph: self newIconMorph.
@@ -129,39 +95,27 @@ MessageDialogWindow>>newContentMorph [
 	^self newGroupboxFor: (self newRow: {self iconMorph. self textMorph})
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>newIconMorph [
+{ #category : #private }
+MessageDialogWindow >> newIconMorph [
 	"Answer an icon for the receiver."
 	
 	^ImageMorph new form: self icon
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>newTextMorph [
+{ #category : #private }
+MessageDialogWindow >> newTextMorph [
 	"Answer a text morph."
 	^self newText: ' '
 ]
 
-{
-	#category : #theme,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>playOpenSound [
+{ #category : #theme }
+MessageDialogWindow >> playOpenSound [
 	"Play the themed sound for opening.
 	Do nothing at present, done by the UIManager."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>text: aStringOrText [
+{ #category : #accessing }
+MessageDialogWindow >> text: aStringOrText [
 	"Set the text."
 	
 	|t|
@@ -175,61 +129,43 @@ MessageDialogWindow>>text: aStringOrText [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>textFont [
+{ #category : #accessing }
+MessageDialogWindow >> textFont [
 	"Answer the text font."
 	
 	^textFont
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>textFont: aFont [
+{ #category : #accessing }
+MessageDialogWindow >> textFont: aFont [
 	"Set the text font."
 	
 	textFont :=  aFont.
 	self textMorph ifNotNil: [:m | m font: aFont]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>textLines [
+{ #category : #private }
+MessageDialogWindow >> textLines [
 
 	^ self textMorph text asString lines.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>textMorph [
+{ #category : #accessing }
+MessageDialogWindow >> textMorph [
 	"Answer the value of textMorph"
 
 	^ textMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>textMorph: anObject [
+{ #category : #accessing }
+MessageDialogWindow >> textMorph: anObject [
 	"Set the value of textMorph"
 
 	textMorph := anObject
 ]
 
-{
-	#category : #theme,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MessageDialogWindow>>themeChanged [
+{ #category : #theme }
+MessageDialogWindow >> themeChanged [
 	"Update the icon."
 
 	super themeChanged.

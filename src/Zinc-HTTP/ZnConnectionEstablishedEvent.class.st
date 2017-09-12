@@ -11,79 +11,51 @@ Class {
 		'duration',
 		'proxy'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 14:35'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConnectionEstablishedEvent>>address [
+{ #category : #accessing }
+ZnConnectionEstablishedEvent >> address [
 	^ address
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConnectionEstablishedEvent>>address: anObject [
+{ #category : #accessing }
+ZnConnectionEstablishedEvent >> address: anObject [
 	address := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConnectionEstablishedEvent>>duration [
+{ #category : #accessing }
+ZnConnectionEstablishedEvent >> duration [
 	^ duration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConnectionEstablishedEvent>>duration: anObject [
+{ #category : #accessing }
+ZnConnectionEstablishedEvent >> duration: anObject [
 	duration := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConnectionEstablishedEvent>>hostname [
+{ #category : #accessing }
+ZnConnectionEstablishedEvent >> hostname [
 	^ hostname
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConnectionEstablishedEvent>>hostname: anObject [
+{ #category : #accessing }
+ZnConnectionEstablishedEvent >> hostname: anObject [
 	hostname := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConnectionEstablishedEvent>>port [
+{ #category : #accessing }
+ZnConnectionEstablishedEvent >> port [
 	^ port
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConnectionEstablishedEvent>>port: anObject [
+{ #category : #accessing }
+ZnConnectionEstablishedEvent >> port: anObject [
 	port := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConnectionEstablishedEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnConnectionEstablishedEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream << ' Connection Established '; nextPutAll: hostname; nextPut: $:; print: port; space. 
 	proxy ifNotNil: [ stream << 'via proxy '; print: proxy; space ].
@@ -91,18 +63,12 @@ ZnConnectionEstablishedEvent>>printContentsOn: stream [
 	stream space; print: duration; << 'ms '.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConnectionEstablishedEvent>>proxy [
+{ #category : #accessing }
+ZnConnectionEstablishedEvent >> proxy [
 	^ proxy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnConnectionEstablishedEvent>>proxy: anObject [
+{ #category : #accessing }
+ZnConnectionEstablishedEvent >> proxy: anObject [
 	proxy := anObject
 ]

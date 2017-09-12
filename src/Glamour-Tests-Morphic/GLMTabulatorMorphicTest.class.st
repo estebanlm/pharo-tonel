@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMTabulatorMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTabulatorMorphicTest>>testMultipleInitialSelection [
+{ #category : #tests }
+GLMTabulatorMorphicTest >> testMultipleInitialSelection [
 	| browser firstTreeMorph secondTreeMorph |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -29,11 +22,8 @@ GLMTabulatorMorphicTest>>testMultipleInitialSelection [
 	self assert: firstTreeMorph model selection selectedItemOrItemsOrNil size equals: 3.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTabulatorMorphicTest>>testSpawnTabulator [
+{ #category : #tests }
+GLMTabulatorMorphicTest >> testSpawnTabulator [
 
 	| browser |
 	browser := GLMTabulator new.
@@ -47,11 +37,8 @@ GLMTabulatorMorphicTest>>testSpawnTabulator [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTabulatorMorphicTest>>testStatusbar [
+{ #category : #tests }
+GLMTabulatorMorphicTest >> testStatusbar [
 	| browser statusMorph |
 	browser := GLMTabulator new.
 	browser addStatusbar.

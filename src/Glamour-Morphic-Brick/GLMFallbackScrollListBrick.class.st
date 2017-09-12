@@ -8,33 +8,23 @@ Class {
 		'adaptor',
 		'emptyBrick'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-Scrollpane,
-	#timestamp : 'AliakseiSyrel 1/24/2015 18:21'
+	#category : #Glamour-Morphic-Brick-Widgets-Scrollpane
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFallbackScrollListBrick>>emptyBrick [
+{ #category : #accessing }
+GLMFallbackScrollListBrick >> emptyBrick [
 
 	^ emptyBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFallbackScrollListBrick>>emptyBrick: aBrick [
+{ #category : #accessing }
+GLMFallbackScrollListBrick >> emptyBrick: aBrick [
 	
 	emptyBrick := aBrick
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFallbackScrollListBrick>>initializeItems [
+{ #category : #initialization }
+GLMFallbackScrollListBrick >> initializeItems [
 	
 	self band layoutAfter: [
 		1 to: self model count do: [ :index |
@@ -44,11 +34,8 @@ GLMFallbackScrollListBrick>>initializeItems [
 	self band hasSubbricks ifFalse: [ self emptyBrick ifNotNil: [ :b | self band addBrickBack: b ] ].
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFallbackScrollListBrick>>invalidate [
+{ #category : #scrolling }
+GLMFallbackScrollListBrick >> invalidate [
 
 	self band removeAllBricks.
 	self initializeItems.
@@ -57,20 +44,14 @@ GLMFallbackScrollListBrick>>invalidate [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFallbackScrollListBrick>>model [
+{ #category : #accessing }
+GLMFallbackScrollListBrick >> model [
 
 	^ adaptor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFallbackScrollListBrick>>model: anAdaptor [
+{ #category : #accessing }
+GLMFallbackScrollListBrick >> model: anAdaptor [
 
 	adaptor := anAdaptor.
 	self initializeItems

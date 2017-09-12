@@ -4,48 +4,32 @@ I am not a test! I provide usage examples for the SUnit debugger.
 Class {
 	#name : #GTSUnitExampleFailingTest,
 	#superclass : #TestCase,
-	#category : #GT-SUnitDebugger,
-	#timestamp : 'AndreiChis 12/30/2015 10:39'
+	#category : #GT-SUnitDebugger
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleFailingTest class>>isAbstract [
+{ #category : #testing }
+GTSUnitExampleFailingTest class >> isAbstract [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleFailingTest class>>isUnitTest [
+{ #category : #testing }
+GTSUnitExampleFailingTest class >> isUnitTest [
 	^ false
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleFailingTest>>checkWithFailure [
+{ #category : #tests }
+GTSUnitExampleFailingTest >> checkWithFailure [
 	self assert: false description: 'A failure'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleFailingTest>>intermediaryCheckWithFailure [
+{ #category : #tests }
+GTSUnitExampleFailingTest >> intermediaryCheckWithFailure [
 	40 + 2.
 	self checkWithFailure
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleFailingTest>>testArrays [
+{ #category : #tests }
+GTSUnitExampleFailingTest >> testArrays [
 	 self
            assert: #(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22
 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 
@@ -57,11 +41,8 @@ GTSUnitExampleFailingTest>>testArrays [
 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleFailingTest>>testDictionary [
+{ #category : #tests }
+GTSUnitExampleFailingTest >> testDictionary [
 	 self
 		assert: (#(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22
 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 
@@ -77,20 +58,14 @@ GTSUnitExampleFailingTest>>testDictionary [
 			dict ])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleFailingTest>>testFailingAssestionThroughAHelperMethod [
+{ #category : #tests }
+GTSUnitExampleFailingTest >> testFailingAssestionThroughAHelperMethod [
 
 	self intermediaryCheckWithFailure
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleFailingTest>>testFailingDate [
+{ #category : #tests }
+GTSUnitExampleFailingTest >> testFailingDate [
 	|aDateAndTime|
 
 	aDateAndTime :=  DateAndTime localTimeZone: TimeZone default; dosEpoch.
@@ -99,11 +74,8 @@ GTSUnitExampleFailingTest>>testFailingDate [
 		equals: '1 January 1980 1:00 pm' asDateAndTime
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleFailingTest>>testFailingText [
+{ #category : #tests }
+GTSUnitExampleFailingTest >> testFailingText [
 
 	self assert: 'I like pie  
 pizza pie 
@@ -117,11 +89,8 @@ rad squared pi
 and other PIes'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleFailingTest>>testMultiValuedStreaming [
+{ #category : #tests }
+GTSUnitExampleFailingTest >> testMultiValuedStreaming [
 	| headers keysAndValues |
 	headers := ZnHeaders new.
 	headers at: 'Set-Cookie' put: 'foo=1'.
@@ -136,20 +105,14 @@ GTSUnitExampleFailingTest>>testMultiValuedStreaming [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleFailingTest>>testSimpleFailingAssestion [
+{ #category : #tests }
+GTSUnitExampleFailingTest >> testSimpleFailingAssestion [
 
 	self assert: false
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitExampleFailingTest>>testWithHalt [
+{ #category : #tests }
+GTSUnitExampleFailingTest >> testWithHalt [
 
 	self assert: true.
 	self halt

@@ -17,15 +17,11 @@ Installs:
 Class {
 	#name : #BaselineOfUI,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfUI,
-	#timestamp : 'PavelKrivanek 11/7/2016 12:34'
+	#category : #BaselineOfUI
 }
 
-{
-	#category : #baseline,
-	#timestamp : ' 8/31/2017 05:26:06'
-}
-BaselineOfUI>>baseline: spec  [
+{ #category : #baseline }
+BaselineOfUI >> baseline: spec [ 
     
 	<baseline>
 
@@ -74,11 +70,8 @@ BaselineOfUI>>baseline: spec  [
 	].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:06'
-}
-BaselineOfUI>>postload: loader package: packageSpec [
+{ #category : #actions }
+BaselineOfUI >> postload: loader package: packageSpec [
 
 	Smalltalk tools register: Workspace as: #browser.
 	Smalltalk tools register: Workspace as: #monticelloBrowser.
@@ -89,11 +82,8 @@ BaselineOfUI>>postload: loader package: packageSpec [
 
 ]
 
-{
-	#category : #baseline,
-	#timestamp : ' 8/31/2017 05:26:06'
-}
-BaselineOfUI>>project [
+{ #category : #baseline }
+BaselineOfUI >> project [
 	
 	| aProject |
 	

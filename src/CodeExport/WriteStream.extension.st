@@ -1,12 +1,7 @@
-Extension {
-	#name : #WriteStream
-}
+Extension { #name : #WriteStream }
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-WriteStream>>nextChunkPut: aString [
+{ #category : #'*CodeExport' }
+WriteStream >> nextChunkPut: aString [
 	"Append the argument, aString, to the receiver, doubling embedded terminators."
  
 	| i remainder terminator | 
@@ -26,11 +21,8 @@ WriteStream>>nextChunkPut: aString [
 	self flush.
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-WriteStream>>timeStamp [
+{ #category : #'*CodeExport' }
+WriteStream >> timeStamp [
 	"Append the current time to the receiver as a String."
 	self nextChunkPut:	"double string quotes and !s"
 		(String streamContents: [:s | Smalltalk timeStamp: s]) printString.

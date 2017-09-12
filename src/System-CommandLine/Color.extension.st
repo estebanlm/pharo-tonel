@@ -1,30 +1,19 @@
-Extension {
-	#name : #Color
-}
+Extension { #name : #Color }
 
-{
-	#category : #'*System-CommandLine',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-Color>>asTerminfoCharacterBackground [
+{ #category : #'*System-CommandLine' }
+Color >> asTerminfoCharacterBackground [
 
 	^ '48;5;', self closestXTermPixelValue asString
 ]
 
-{
-	#category : #'*System-CommandLine',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-Color>>asTerminfoCharacterFont [
+{ #category : #'*System-CommandLine' }
+Color >> asTerminfoCharacterFont [
 
 	^ '38;5;', self closestXTermPixelValue asString
 ]
 
-{
-	#category : #'*System-CommandLine',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-Color>>closestXTermPixelValue [
+{ #category : #'*System-CommandLine' }
+Color >> closestXTermPixelValue [
 	| index |
 	"Return the nearest approximation to this color for 256 xterm color."
 
@@ -39,11 +28,8 @@ Color>>closestXTermPixelValue [
 	^ 16 + (self red * 6*6*5) asInteger + (self green * 6*5) asInteger + (self blue * 5) asInteger
 ]
 
-{
-	#category : #'*System-CommandLine',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-Color>>isVTermDefaultColor [
+{ #category : #'*System-CommandLine' }
+Color >> isVTermDefaultColor [
 
 	^ false
 ]

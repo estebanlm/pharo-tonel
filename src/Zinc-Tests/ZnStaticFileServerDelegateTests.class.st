@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnStaticFileServerDelegateTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStaticFileServerDelegateTests>>largeHtml [
+{ #category : #private }
+ZnStaticFileServerDelegateTests >> largeHtml [
 	^ String streamContents: [ :out |
 		out << '<html><body>'.
 		out << 'Les élèves Français'.
@@ -20,11 +13,8 @@ ZnStaticFileServerDelegateTests>>largeHtml [
 		out << '</html></body>' ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStaticFileServerDelegateTests>>setUp [
+{ #category : #running }
+ZnStaticFileServerDelegateTests >> setUp [
 	self tearDown.
 	ZnFileSystemUtils
 		newFileNamed: 'small.html' 
@@ -40,11 +30,8 @@ ZnStaticFileServerDelegateTests>>setUp [
 			stream nextPutAll: self wideHtml ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStaticFileServerDelegateTests>>smallHtml [
+{ #category : #private }
+ZnStaticFileServerDelegateTests >> smallHtml [
 	^ '<html>
 <head><title>Small</title></head>
 <body><h1>Small</h1><p>This is a small HTML document</p></body>
@@ -52,11 +39,8 @@ ZnStaticFileServerDelegateTests>>smallHtml [
 '
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStaticFileServerDelegateTests>>tearDown [
+{ #category : #running }
+ZnStaticFileServerDelegateTests >> tearDown [
 	ZnFileSystemUtils 
 		deleteIfExists: 'small.html'; 
 		deleteIfExists: 'large.html'; 
@@ -64,11 +48,8 @@ ZnStaticFileServerDelegateTests>>tearDown [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStaticFileServerDelegateTests>>testBasicGet [
+{ #category : #tests }
+ZnStaticFileServerDelegateTests >> testBasicGet [
 	self withServerDo: [ :server | | client |
 		(client := ZnClient new) 
 			beOneShot;
@@ -88,11 +69,8 @@ ZnStaticFileServerDelegateTests>>testBasicGet [
 			equals: (server delegate maxAgeFor: ZnMimeType textHtml) ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStaticFileServerDelegateTests>>testBasicGetLarge [
+{ #category : #tests }
+ZnStaticFileServerDelegateTests >> testBasicGetLarge [
 	self withServerDo: [ :server | | client |
 		(client := ZnClient new) 
 			beOneShot;
@@ -112,11 +90,8 @@ ZnStaticFileServerDelegateTests>>testBasicGetLarge [
 			equals: (server delegate maxAgeFor: ZnMimeType textHtml) ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStaticFileServerDelegateTests>>testBasicGetWide [
+{ #category : #tests }
+ZnStaticFileServerDelegateTests >> testBasicGetWide [
 	self withServerDo: [ :server | | client |
 		(client := ZnClient new) 
 			beOneShot;
@@ -136,11 +111,8 @@ ZnStaticFileServerDelegateTests>>testBasicGetWide [
 			equals: (server delegate maxAgeFor: ZnMimeType textHtml) ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStaticFileServerDelegateTests>>testBasicHead [
+{ #category : #tests }
+ZnStaticFileServerDelegateTests >> testBasicHead [
 	self withServerDo: [ :server | | client |
 		(client := ZnClient new) 
 			beOneShot;
@@ -160,11 +132,8 @@ ZnStaticFileServerDelegateTests>>testBasicHead [
 			equals: (server delegate maxAgeFor: ZnMimeType textHtml) ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStaticFileServerDelegateTests>>testIfModifiedSinceNotModified [
+{ #category : #tests }
+ZnStaticFileServerDelegateTests >> testIfModifiedSinceNotModified [
 	self withServerDo: [ :server | | client |
 		(client := ZnClient new) 
 			beOneShot;
@@ -178,19 +147,13 @@ ZnStaticFileServerDelegateTests>>testIfModifiedSinceNotModified [
 		self deny: client response hasEntity ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStaticFileServerDelegateTests>>wideHtml [
+{ #category : #private }
+ZnStaticFileServerDelegateTests >> wideHtml [
 	^ '<html><h1>Czech is in Czech {1}e{2}tina.</h1></html>' format: { 269 asCharacter. 353 asCharacter}.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnStaticFileServerDelegateTests>>withServerDo: block [
+{ #category : #private }
+ZnStaticFileServerDelegateTests >> withServerDo: block [
 	| server staticFileServerDelegate |
 	server := ZnServer on: 1700 + 32 atRandom.
 	[ 

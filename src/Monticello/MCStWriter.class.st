@@ -17,61 +17,42 @@ Class {
 		'initializers',
 		'writeInitializers'
 	],
-	#category : #Monticello-Storing,
-	#timestamp : 'LaurentLaffont 3/31/2011 21:07'
+	#category : #Monticello-Storing
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter class>>readerClass [
+{ #category : #accessing }
+MCStWriter class >> readerClass [
 	^ MCStReader
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>basicChunkContents: aBlock [
+{ #category : #writing }
+MCStWriter >> basicChunkContents: aBlock [
 	stream nextPut: (String streamContents: aBlock)
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>chunkContents: aBlock [
+{ #category : #writing }
+MCStWriter >> chunkContents: aBlock [
 	stream
 		cr;
 		nextPut: (String streamContents: aBlock);
 		cr
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>stream: aStream [
+{ #category : #initialize-release }
+MCStWriter >> stream: aStream [
 
 	stream := ChunkWriteStream on: aStream
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>visitClassDefinition: definition [
+{ #category : #visiting }
+MCStWriter >> visitClassDefinition: definition [
 	self writeClassDefinition: definition.
 	definition hasClassInstanceVariables ifTrue: [self writeMetaclassDefinition: definition].
 	definition hasComment ifTrue: [self writeClassComment: definition].
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>visitClassTraitDefinition: definition [
+{ #category : #visiting }
+MCStWriter >> visitClassTraitDefinition: definition [
 	self chunkContents: [:s | s
 		nextPutAll: definition baseTrait;
 		nextPutAll: ' classTrait';
@@ -81,19 +62,13 @@ MCStWriter>>visitClassTraitDefinition: definition [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>visitMetaclassDefinition: definition [
+{ #category : #visiting }
+MCStWriter >> visitMetaclassDefinition: definition [
 	self writeMetaclassDefinition: definition
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>visitMethodDefinition: definition [
+{ #category : #visiting }
+MCStWriter >> visitMethodDefinition: definition [
 	self writeMethodPreamble: definition.
 	self writeMethodSource: definition.
 	self writeMethodPostscript.
@@ -101,48 +76,33 @@ MCStWriter>>visitMethodDefinition: definition [
 		self writeMethodInitializer: definition ].
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>visitOrganizationDefinition: defintion [
+{ #category : #visiting }
+MCStWriter >> visitOrganizationDefinition: defintion [
 	defintion categories do: [:cat | self writeCategory: cat].
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>visitScriptDefinition: definition [
+{ #category : #visiting }
+MCStWriter >> visitScriptDefinition: definition [
 	self writeScriptDefinition: definition
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>visitTraitDefinition: definition [
+{ #category : #visiting }
+MCStWriter >> visitTraitDefinition: definition [
 	self writeClassDefinition: definition.
 	definition hasComment ifTrue: [self writeClassComment: definition].
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>writeCategory: categoryName [
+{ #category : #writing }
+MCStWriter >> writeCategory: categoryName [
 	stream
 		nextChunkPut: 'SystemOrganization addCategory: ', categoryName printString;
 		cr
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>writeClassComment: definition [
+{ #category : #writing }
+MCStWriter >> writeClassComment: definition [
 
 	self chunkContents: [ :str |
 		stream bang.
@@ -154,19 +114,13 @@ MCStWriter>>writeClassComment: definition [
 	stream cr.
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>writeClassDefinition: definition [
+{ #category : #writing }
+MCStWriter >> writeClassDefinition: definition [
 	self chunkContents: [:s | definition printDefinitionOn: s].
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>writeDefinitions: aCollection [
+{ #category : #writing }
+MCStWriter >> writeDefinitions: aCollection [
 	
 	"the correct initialization order is unknown if some classes are missing in the image"
 	
@@ -191,31 +145,22 @@ MCStWriter>>writeDefinitions: aCollection [
 		self chunkContents: [ :str | str  nextPutAll: association value contents ] ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>writeInitializers [
+{ #category : #accessing }
+MCStWriter >> writeInitializers [
 
 	"answer if class initializers should be written"
 
 	^ writeInitializers ifNil: [ writeInitializers := true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>writeInitializers: aBoolean [
+{ #category : #accessing }
+MCStWriter >> writeInitializers: aBoolean [
 
 	writeInitializers := aBoolean
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>writeMetaclassDefinition: definition [
+{ #category : #writing }
+MCStWriter >> writeMetaclassDefinition: definition [
 	self chunkContents: [:str |
 		str	 nextPutAll: definition className;
 			nextPutAll: ' class';
@@ -229,11 +174,8 @@ MCStWriter>>writeMetaclassDefinition: definition [
 				nextPut: $']
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>writeMethodInitializer: aMethodDefinition [
+{ #category : #writing }
+MCStWriter >> writeMethodInitializer: aMethodDefinition [
 	
 	aMethodDefinition isInitializer ifTrue: [ 
 		self chunkContents: [ :str |
@@ -242,20 +184,14 @@ MCStWriter>>writeMethodInitializer: aMethodDefinition [
 		].
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>writeMethodPostscript [
+{ #category : #writing }
+MCStWriter >> writeMethodPostscript [
 	self basicChunkContents: [:str | str space ].
 	stream cr.
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>writeMethodPreamble: definition [
+{ #category : #writing }
+MCStWriter >> writeMethodPreamble: definition [
 	self chunkContents: [:str |
 		stream bang.
 		str nextPutAll: definition fullClassName;
@@ -266,19 +202,13 @@ MCStWriter>>writeMethodPreamble: definition [
 		]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>writeMethodSource: definition [
+{ #category : #writing }
+MCStWriter >> writeMethodSource: definition [
 	self basicChunkContents: [:str | str nextPutAll: definition source ].
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>writeScriptDefinition: definition [
+{ #category : #writing }
+MCStWriter >> writeScriptDefinition: definition [
 	self chunkContents: [:str | 
 		str nextPutAll: (
 			'(PackageInfo named: {1}) {2}: {3}'
@@ -289,10 +219,7 @@ MCStWriter>>writeScriptDefinition: definition [
 			}) ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCStWriter>>writeSnapshot: aSnapshot [
+{ #category : #writing }
+MCStWriter >> writeSnapshot: aSnapshot [
 	self writeDefinitions: aSnapshot definitions
 ]

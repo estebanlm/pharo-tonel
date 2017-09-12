@@ -1,12 +1,7 @@
-Extension {
-	#name : #ByteString
-}
+Extension { #name : #ByteString }
 
-{
-	#category : #'*Multilingual-Languages',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-ByteString>>convertFromSystemString [
+{ #category : #'*Multilingual-Languages' }
+ByteString >> convertFromSystemString [
 
 	| readStream |
 	readStream := self readStream.

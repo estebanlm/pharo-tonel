@@ -4,51 +4,35 @@ I'm  an opaque object type (see ==FFIOpaqueObject== comment)
 Class {
 	#name : #FFIOpaqueObjectType,
 	#superclass : #FFIExternalReferenceType,
-	#category : #UnifiedFFI-Types,
-	#timestamp : 'EstebanLorenzano 3/17/2016 13:43'
+	#category : #UnifiedFFI-Types
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIOpaqueObjectType class>>naturalPointerArity [
+{ #category : #private }
+FFIOpaqueObjectType class >> naturalPointerArity [
 	^ 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIOpaqueObjectType>>instanceVariableName [
+{ #category : #accessing }
+FFIOpaqueObjectType >> instanceVariableName [
 	^ #handle
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIOpaqueObjectType>>needsArityPacking [
+{ #category : #testing }
+FFIOpaqueObjectType >> needsArityPacking [
 	">1 because first is this object, who is a reference (even if not a pointer, is 
 	 represented like that because he lives in the C heap. So, we 'roll' if it is 
 	 a 'type**' or bigger"
 	^ self pointerArity > 1
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIOpaqueObjectType>>prepareAsSelfFromCalloutDeclaration [
+{ #category : #initialization }
+FFIOpaqueObjectType >> prepareAsSelfFromCalloutDeclaration [
 	"self starts with pointer arity 1 (regardless how is declared later)"
 	self pointerArity: 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIOpaqueObjectType>>validateAfterParse: typeAndArityTuple [
+{ #category : #testing }
+FFIOpaqueObjectType >> validateAfterParse: typeAndArityTuple [
 	"external objects have a natural arity of zero but they MUST be called with some arity, 
 	 because they are actually external addresses (pointers). 
 	 That means, you need to always declare external objects as this example:

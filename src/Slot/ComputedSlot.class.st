@@ -17,39 +17,26 @@ Class {
 	#instVars : [
 		'block'
 	],
-	#category : #Slot-Examples,
-	#timestamp : 'PavelKrivanek 2/15/2017 11:51'
+	#category : #Slot-Examples
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ComputedSlot>>= other [
+{ #category : #comparing }
+ComputedSlot >> = other [
 	^ super = other and: [block = other block]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ComputedSlot>>block [
+{ #category : #accessing }
+ComputedSlot >> block [
 	^block
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ComputedSlot>>hash [
+{ #category : #comparing }
+ComputedSlot >> hash [
 	^super hash bitXor: block hash
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ComputedSlot>>printOn: aStream [
+{ #category : #printing }
+ComputedSlot >> printOn: aStream [
 	aStream 
 		store: self name;
 		nextPutAll: ' => ';
@@ -58,27 +45,18 @@ ComputedSlot>>printOn: aStream [
 		nextPutAll: block printString
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ComputedSlot>>read: anObject [
+{ #category : #meta-object-protocol }
+ComputedSlot >> read: anObject [
 	^block value: anObject
 	
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ComputedSlot>>with: aBlock [
+{ #category : #'instance creation' }
+ComputedSlot >> with: aBlock [
 	block := aBlock
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ComputedSlot>>write: aValue to: anObject [
+{ #category : #meta-object-protocol }
+ComputedSlot >> write: aValue to: anObject [
 	"ignored"
 ]

@@ -9,33 +9,23 @@ Class {
 	#pools : [
 		'AthensCairoDefs'
 	],
-	#category : #Athens-Cairo-Text,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Text
 }
 
-{
-	#category : #finalizing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions class>>finalizeResourceData: aData [
+{ #category : #finalizing }
+CairoFontOptions class >> finalizeResourceData: aData [
 	"finalize the external resource data, returned by #resourceData on instance side"
 	
 	self primDestroy: aData
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions class>>new [
+{ #category : #'instance creation' }
+CairoFontOptions class >> new [
 	^ self primCreate initialize
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions class>>primCreate [
+{ #category : #private }
+CairoFontOptions class >> primCreate [
 "cairo_font_options_t * cairo_font_options_create        (void);
 
 Allocates a new font options object with all options initialized to default values.
@@ -49,11 +39,8 @@ Returns :
 	^ self nbCall: #(CairoFontOptions cairo_font_options_create ())
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions class>>primDestroy: anOptions [
+{ #category : #private }
+CairoFontOptions class >> primDestroy: anOptions [
 "void                cairo_font_options_destroy          (cairo_font_options_t *options);
 
 Destroys a cairo_font_options_t object created with cairo_font_options_create() or cairo_font_options_copy().
@@ -66,156 +53,102 @@ options :
 	^ self nbCall: #(void cairo_font_options_destroy (size_t anOptions))
 ]
 
-{
-	#category : #antialiasing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>aaBest [
+{ #category : #antialiasing }
+CairoFontOptions >> aaBest [
 
 	^ self setAA: CAIRO_ANTIALIAS_BEST.
 ]
 
-{
-	#category : #antialiasing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>aaDefault [
+{ #category : #antialiasing }
+CairoFontOptions >> aaDefault [
 
 	^ self setAA: CAIRO_ANTIALIAS_DEFAULT.
 ]
 
-{
-	#category : #antialiasing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>aaFast [
+{ #category : #antialiasing }
+CairoFontOptions >> aaFast [
 
 	^ self setAA: CAIRO_ANTIALIAS_FAST.
 ]
 
-{
-	#category : #antialiasing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>aaGood [
+{ #category : #antialiasing }
+CairoFontOptions >> aaGood [
 
 	^ self setAA: CAIRO_ANTIALIAS_GOOD.
 ]
 
-{
-	#category : #antialiasing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>aaGray [
+{ #category : #antialiasing }
+CairoFontOptions >> aaGray [
 
 	^ self setAA: CAIRO_ANTIALIAS_GRAY.
 ]
 
-{
-	#category : #antialiasing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>aaNone [
+{ #category : #antialiasing }
+CairoFontOptions >> aaNone [
 
 	^ self setAA: CAIRO_ANTIALIAS_NONE.
 ]
 
-{
-	#category : #antialiasing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>aaSubpixel [
+{ #category : #antialiasing }
+CairoFontOptions >> aaSubpixel [
 
 	^ self setAA: CAIRO_ANTIALIAS_SUBPIXEL.
 ]
 
-{
-	#category : #'hint options',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>hintMetricsDefault [
+{ #category : #'hint options' }
+CairoFontOptions >> hintMetricsDefault [
 	^ self setHintMetrics: CAIRO_HINT_METRICS_DEFAULT
 ]
 
-{
-	#category : #'hint options',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>hintMetricsOff [
+{ #category : #'hint options' }
+CairoFontOptions >> hintMetricsOff [
 	^ self setHintMetrics: CAIRO_HINT_METRICS_OFF
 ]
 
-{
-	#category : #'hint options',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>hintMetricsOn [
+{ #category : #'hint options' }
+CairoFontOptions >> hintMetricsOn [
 	^ self setHintMetrics: CAIRO_HINT_METRICS_ON
 ]
 
-{
-	#category : #'hint options',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>hintStyleDefault [
+{ #category : #'hint options' }
+CairoFontOptions >> hintStyleDefault [
 	^ self setHintStyle: CAIRO_HINT_STYLE_DEFAULT
 ]
 
-{
-	#category : #'hint options',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>hintStyleFull [
+{ #category : #'hint options' }
+CairoFontOptions >> hintStyleFull [
 	^ self setHintStyle: CAIRO_HINT_STYLE_FULL
 ]
 
-{
-	#category : #'hint options',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>hintStyleMedium [
+{ #category : #'hint options' }
+CairoFontOptions >> hintStyleMedium [
 	^ self setHintStyle: CAIRO_HINT_STYLE_MEDIUM
 ]
 
-{
-	#category : #'hint options',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>hintStyleNone [
+{ #category : #'hint options' }
+CairoFontOptions >> hintStyleNone [
 	^ self setHintStyle: CAIRO_HINT_STYLE_NONE
 ]
 
-{
-	#category : #'hint options',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>hintStyleSlight [
+{ #category : #'hint options' }
+CairoFontOptions >> hintStyleSlight [
 	^ self setHintStyle: CAIRO_HINT_STYLE_SLIGHT
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>initialize  [
+{ #category : #initialize-release }
+CairoFontOptions >> initialize [ 
 	self autoRelease.
 	self setDefaults
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>resourceData [
+{ #category : #initialize-release }
+CairoFontOptions >> resourceData [
 
 	^ handle value
 ]
 
-{
-	#category : #antialiasing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>setAA: antialias [
+{ #category : #antialiasing }
+CairoFontOptions >> setAA: antialias [
 
 "cairo_font_options_set_antialias ()
 
@@ -236,20 +169,14 @@ antialias :
 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>setDefaults [
+{ #category : #defaults }
+CairoFontOptions >> setDefaults [
 
 	self hintStyleSlight; hintMetricsOff; subpixelOrderRGB; aaSubpixel
 ]
 
-{
-	#category : #'hint options',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>setHintMetrics: hintMetrics [
+{ #category : #'hint options' }
+CairoFontOptions >> setHintMetrics: hintMetrics [
 "
 	void	cairo_font_options_set_hint_metrics (cairo_font_options_t *options,
 		cairo_hint_metrics_t hint_metrics);
@@ -264,11 +191,8 @@ CairoFontOptions>>setHintMetrics: hintMetrics [
  
 ]
 
-{
-	#category : #'hint options',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>setHintStyle: aStyle [
+{ #category : #'hint options' }
+CairoFontOptions >> setHintStyle: aStyle [
 	"cairo_font_options_set_hint_style ()
 
 void                cairo_font_options_set_hint_style   (cairo_font_options_t *options,
@@ -283,11 +207,8 @@ Sets the hint style for font outlines for the font options object. This controls
  
 ]
 
-{
-	#category : #'subpixel order',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>setSubpixelOrder: order [
+{ #category : #'subpixel order' }
+CairoFontOptions >> setSubpixelOrder: order [
 	"void cairo_font_options_set_subpixel_order
 		(cairo_font_options_t *options,
 		cairo_subpixel_order_t subpixel_order)"
@@ -298,42 +219,27 @@ CairoFontOptions>>setSubpixelOrder: order [
  
 ]
 
-{
-	#category : #'subpixel order',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>subpixelOrderBGR [
+{ #category : #'subpixel order' }
+CairoFontOptions >> subpixelOrderBGR [
 	^ self setSubpixelOrder: CAIRO_SUBPIXEL_ORDER_BGR
 ]
 
-{
-	#category : #'subpixel order',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>subpixelOrderDefault [
+{ #category : #'subpixel order' }
+CairoFontOptions >> subpixelOrderDefault [
 	^ self setSubpixelOrder: CAIRO_SUBPIXEL_ORDER_DEFAULT
 ]
 
-{
-	#category : #'subpixel order',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>subpixelOrderRGB [
+{ #category : #'subpixel order' }
+CairoFontOptions >> subpixelOrderRGB [
 	^ self setSubpixelOrder: CAIRO_SUBPIXEL_ORDER_RGB
 ]
 
-{
-	#category : #'subpixel order',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>subpixelOrderVBGR [
+{ #category : #'subpixel order' }
+CairoFontOptions >> subpixelOrderVBGR [
 	^ self setSubpixelOrder: CAIRO_SUBPIXEL_ORDER_VBGR
 ]
 
-{
-	#category : #'subpixel order',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontOptions>>subpixelOrderVRGB [
+{ #category : #'subpixel order' }
+CairoFontOptions >> subpixelOrderVRGB [
 	^ self setSubpixelOrder: CAIRO_SUBPIXEL_ORDER_VRGB
 ]

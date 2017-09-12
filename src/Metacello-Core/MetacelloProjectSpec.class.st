@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloProjectSpec,
 	#superclass : #MetacelloSpec,
@@ -13,15 +10,11 @@ Class {
 		'preLoadDoIt',
 		'postLoadDoIt'
 	],
-	#category : #Metacello-Core-Specs,
-	#timestamp : ''
+	#category : #Metacello-Core-Specs
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>addToMetacelloPackages: aMetacelloPackagesSpec [
+{ #category : #adding }
+MetacelloProjectSpec >> addToMetacelloPackages: aMetacelloPackagesSpec [
 
 	| spec |
 	spec := (aMetacelloPackagesSpec project projectReferenceSpec)
@@ -35,11 +28,8 @@ MetacelloProjectSpec>>addToMetacelloPackages: aMetacelloPackagesSpec [
 			yourself)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>canDowngradeTo: aMetacelloProjectSpec [
+{ #category : #scripting }
+MetacelloProjectSpec >> canDowngradeTo: aMetacelloProjectSpec [
   (self className = aMetacelloProjectSpec className
     and: [ self operator == aMetacelloProjectSpec operator ])
     ifFalse: [ ^ false ].
@@ -51,11 +41,8 @@ MetacelloProjectSpec>>canDowngradeTo: aMetacelloProjectSpec [
     not
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>canUpgradeTo: aMetacelloProjectSpec [
+{ #category : #scripting }
+MetacelloProjectSpec >> canUpgradeTo: aMetacelloProjectSpec [
   (self className = aMetacelloProjectSpec className
     and: [ self operator == aMetacelloProjectSpec operator ])
     ifFalse: [ ^ false ].
@@ -66,37 +53,25 @@ MetacelloProjectSpec>>canUpgradeTo: aMetacelloProjectSpec [
   ^ self compareVersions: aMetacelloProjectSpec usingOperator: self operator
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>className [
+{ #category : #querying }
+MetacelloProjectSpec >> className [
     className ifNil: [ self name ifNotNil: [ self className: self constructClassName ] ].
     ^ className
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>className: aString [
+{ #category : #accessing }
+MetacelloProjectSpec >> className: aString [
     self shouldBeMutable.
     className := aString
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>className: aString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloProjectSpec >> className: aString constructor: aVersionConstructor [
     aVersionConstructor classNameForProject: aString
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>compareEqual: aMetacelloProjectSpec [
+{ #category : #scripting }
+MetacelloProjectSpec >> compareEqual: aMetacelloProjectSpec [
   "name className versionString operator loads preLoadDoIt postLoadDoIt"
 
   ^ self className = aMetacelloProjectSpec className
@@ -111,11 +86,8 @@ MetacelloProjectSpec>>compareEqual: aMetacelloProjectSpec [
                     and: [ self postLoadDoIt value == aMetacelloProjectSpec postLoadDoIt value ] ] ] ] ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>compareVersions: aMetacelloProjectSpec usingOperator: anOperator [
+{ #category : #scripting }
+MetacelloProjectSpec >> compareVersions: aMetacelloProjectSpec usingOperator: anOperator [
   ^ aMetacelloProjectSpec versionOrNil == nil
     ifTrue: [ 
       "https://github.com/dalehenrich/metacello-work/issues/199#issuecomment-21739622"
@@ -125,11 +97,8 @@ MetacelloProjectSpec>>compareVersions: aMetacelloProjectSpec usingOperator: anOp
     ifFalse: [ ^ aMetacelloProjectSpec version perform: anOperator with: self version ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>compareVersionsEqual: aMetacelloProjectSpec [
+{ #category : #scripting }
+MetacelloProjectSpec >> compareVersionsEqual: aMetacelloProjectSpec [
   | vrsn otherVrsn |
   vrsn := self versionOrNil.
   otherVrsn := aMetacelloProjectSpec versionOrNil.
@@ -138,27 +107,18 @@ MetacelloProjectSpec>>compareVersionsEqual: aMetacelloProjectSpec [
   ^ vrsn versionNumber = otherVrsn versionNumber
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>configHasVersionString [
+{ #category : #printing }
+MetacelloProjectSpec >> configHasVersionString [
   ^ self versionString ~~ nil
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>configMethodBodyOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloProjectSpec >> configMethodBodyOn: aStream indent: indent [
   ^ self configMethodBodyOn: aStream indent: indent fromShortCut: false
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>configMethodBodyOn: aStream indent: indent fromShortCut: fromShortCut [
+{ #category : #printing }
+MetacelloProjectSpec >> configMethodBodyOn: aStream indent: indent fromShortCut: fromShortCut [
   | hasVersionString hasOperator hasProjectPackage hasLoads hasClassName hasPreLoadDoIt hasPostLoadDoIt |
   hasClassName := self hasClassName.
   hasVersionString := self configHasVersionString.
@@ -300,11 +260,8 @@ MetacelloProjectSpec>>configMethodBodyOn: aStream indent: indent fromShortCut: f
               self repositories configMethodCascadeOn: aStream indent: indent ] ] ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>configMethodOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloProjectSpec >> configMethodOn: aStream indent: indent [
 
 	aStream 
 		tab: indent;
@@ -315,11 +272,8 @@ MetacelloProjectSpec>>configMethodOn: aStream indent: indent [
 	aStream nextPut: $.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>configShortCutMethodOn: aStream member: aMember indent: indent [
+{ #category : #printing }
+MetacelloProjectSpec >> configShortCutMethodOn: aStream member: aMember indent: indent [
   | hasVersionString hasOperator hasProjectPackage hasLoads hasClassName hasPreLoadDoIt hasPostLoadDoIt |
   hasClassName := self hasClassName.
   hasVersionString := self configHasVersionString.
@@ -358,109 +312,73 @@ MetacelloProjectSpec>>configShortCutMethodOn: aStream member: aMember indent: in
       aStream nextPutAll: vs asString printString ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>constructClassName [
+{ #category : #private }
+MetacelloProjectSpec >> constructClassName [
     ^ nil
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>currentlyLoadedClassesInVersion [
+{ #category : #querying }
+MetacelloProjectSpec >> currentlyLoadedClassesInVersion [
     self versionOrNil ifNotNil: [ :vrsn | ^ vrsn currentlyLoadedClassesInVersion ].
     ^ #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>file [
+{ #category : #accessing }
+MetacelloProjectSpec >> file [
     ^ self className
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>getClassName [
+{ #category : #accessing }
+MetacelloProjectSpec >> getClassName [
     "raw access to iv"
 
     ^ className
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>getFile [
+{ #category : #accessing }
+MetacelloProjectSpec >> getFile [
     "raw access to iv"
 
     ^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>getOperator [
+{ #category : #accessing }
+MetacelloProjectSpec >> getOperator [
 
 	^operator
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>getPostLoadDoIt [
+{ #category : #querying }
+MetacelloProjectSpec >> getPostLoadDoIt [
 
 	^postLoadDoIt
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>getPreLoadDoIt [
+{ #category : #querying }
+MetacelloProjectSpec >> getPreLoadDoIt [
 
 	^preLoadDoIt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>getRepositories [
+{ #category : #accessing }
+MetacelloProjectSpec >> getRepositories [
     "raw access to iv"
 
     ^ nil
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>hasClassName [
+{ #category : #printing }
+MetacelloProjectSpec >> hasClassName [
     ^ className ~~ nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>hasLoadConflicts: aMetacelloProjectSpec [
+{ #category : #testing }
+MetacelloProjectSpec >> hasLoadConflicts: aMetacelloProjectSpec [
   ^ (self hasNoLoadConflicts: aMetacelloProjectSpec) not
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>hasNoLoadConflicts: aMetacelloProjectSpec [
+{ #category : #scripting }
+MetacelloProjectSpec >> hasNoLoadConflicts: aMetacelloProjectSpec [
   "same as compareEqual:, except if versionString and/or repositories are not 
 	specified for either one, then there are not conflicts"
 
@@ -470,11 +388,8 @@ MetacelloProjectSpec>>hasNoLoadConflicts: aMetacelloProjectSpec [
         and: [ self operator == aMetacelloProjectSpec operator ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>hasNonVersionStringField [
+{ #category : #testing }
+MetacelloProjectSpec >> hasNonVersionStringField [
     | hasVersionString hasOperator hasProjectPackage hasLoads hasClassName hasPreLoadDoIt hasPostLoadDoIt |
     hasClassName := self hasClassName.
     hasVersionString := self versionString ~~ nil.
@@ -487,45 +402,30 @@ MetacelloProjectSpec>>hasNonVersionStringField [
     ^ hasClassName | hasOperator | hasProjectPackage | hasLoads | hasPreLoadDoIt | hasPostLoadDoIt
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>hasRepository [
+{ #category : #testing }
+MetacelloProjectSpec >> hasRepository [
     ^ false
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>isLocked [
+{ #category : #scripting }
+MetacelloProjectSpec >> isLocked [
   ^ self registration locked
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>label [
+{ #category : #printing }
+MetacelloProjectSpec >> label [
 
 	^self name
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>load [
+{ #category : #loading }
+MetacelloProjectSpec >> load [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>loadListForVersion: vrsn  [
+{ #category : #private }
+MetacelloProjectSpec >> loadListForVersion: vrsn [ 
 
 	^ (self loads == nil
 			or: [self loads isEmpty])
@@ -533,36 +433,24 @@ MetacelloProjectSpec>>loadListForVersion: vrsn  [
 		ifFalse: [self loads]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>loads [
+{ #category : #querying }
+MetacelloProjectSpec >> loads [
 	^ loads
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>loads: aCollection [
+{ #category : #accessing }
+MetacelloProjectSpec >> loads: aCollection [
 
 	aCollection setLoadsInMetacelloProject: self
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>loads: anObject constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloProjectSpec >> loads: anObject constructor: aVersionConstructor [
     aVersionConstructor loadsForProject: anObject
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>mergeMap [
+{ #category : #merging }
+MetacelloProjectSpec >> mergeMap [
 
 	| map |
 	map := super mergeMap.
@@ -576,22 +464,16 @@ MetacelloProjectSpec>>mergeMap [
 	^map
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>mergeScriptLoads: aSpec [
+{ #category : #scripting }
+MetacelloProjectSpec >> mergeScriptLoads: aSpec [
     self shouldBeMutable.
     aSpec loads
         ifNotNil: [ :otherLoads | self loads ifNil: [ loads := otherLoads ] ifNotNil: [ loads := (loads , otherLoads) asSet asArray ] ].
     self loader: aSpec loader
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>metacelloRegistrationHash [
+{ #category : #scripting }
+MetacelloProjectSpec >> metacelloRegistrationHash [
     "name className versionString operator loads preLoadDoIt postLoadDoIt"
 
     | hash |
@@ -604,274 +486,184 @@ MetacelloProjectSpec>>metacelloRegistrationHash [
     ^ hash bitXor: loads hash
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>name [
+{ #category : #querying }
+MetacelloProjectSpec >> name [
 
 	^name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>name: aString [
+{ #category : #accessing }
+MetacelloProjectSpec >> name: aString [
     ((aString at: 1) isSeparator or: [ (aString at: aString size) isSeparator ])
         ifTrue: [ self error: 'Names are not allowed to have leading or trailing blanks: ' , aString printString ].
     self shouldBeMutable.
     name := aString
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>name: aString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloProjectSpec >> name: aString constructor: aVersionConstructor [
     aVersionConstructor nameForProject: aString
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>operator [
+{ #category : #querying }
+MetacelloProjectSpec >> operator [
 
 	operator == nil ifTrue: [ ^#>= ].
 	^ operator
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>operator: anObject [
+{ #category : #accessing }
+MetacelloProjectSpec >> operator: anObject [
     " #= #~= #> #< #>= #<= #~> "
 
     self shouldBeMutable.
     operator := anObject
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>operator: anObject constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloProjectSpec >> operator: anObject constructor: aVersionConstructor [
     aVersionConstructor operatorForProject: anObject
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>postLoadDoIt [
+{ #category : #querying }
+MetacelloProjectSpec >> postLoadDoIt [
 
 	^postLoadDoIt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>postLoadDoIt: anObject [
+{ #category : #accessing }
+MetacelloProjectSpec >> postLoadDoIt: anObject [
 
 	anObject setPostLoadDoItInMetacelloSpec: self
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>postLoadDoIt: aSymbol constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloProjectSpec >> postLoadDoIt: aSymbol constructor: aVersionConstructor [
     aVersionConstructor postLoadDoItForProject: aSymbol
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>preLoadDoIt [
+{ #category : #querying }
+MetacelloProjectSpec >> preLoadDoIt [
 
 	^preLoadDoIt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>preLoadDoIt: anObject [
+{ #category : #accessing }
+MetacelloProjectSpec >> preLoadDoIt: anObject [
 
 	anObject setPreLoadDoItInMetacelloSpec: self
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>preLoadDoIt: aSymbol constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloProjectSpec >> preLoadDoIt: aSymbol constructor: aVersionConstructor [
     aVersionConstructor preLoadDoItForProject: aSymbol
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
+{ #category : #visiting }
+MetacelloProjectSpec >> projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
     projectBlock value: self
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>projectLabel [
+{ #category : #printing }
+MetacelloProjectSpec >> projectLabel [
     ^ 'project'
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>projectPackage [
+{ #category : #querying }
+MetacelloProjectSpec >> projectPackage [
 
 	^nil
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>registration [
+{ #category : #scripting }
+MetacelloProjectSpec >> registration [
     ^ MetacelloProjectRegistration
         registrationForProjectSpec: self
         ifAbsent: [ :ignored |  ]
         ifPresent: [ :existing :new | existing ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>registrationsCompareEqual: aMetacelloProjectSpec [
+{ #category : #scripting }
+MetacelloProjectSpec >> registrationsCompareEqual: aMetacelloProjectSpec [
     "name className versionString operator loads preLoadDoIt postLoadDoIt"
 
     ^ self className = aMetacelloProjectSpec className
         and: [ self versionString = aMetacelloProjectSpec versionString and: [ self operator == aMetacelloProjectSpec operator ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>resolveToLoadableSpec [
+{ #category : #private }
+MetacelloProjectSpec >> resolveToLoadableSpec [
 
 	^self copy
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>setLoads: aCollection [
+{ #category : #private }
+MetacelloProjectSpec >> setLoads: aCollection [
     self shouldBeMutable.
     loads := aCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>setName: aStringOrNil [
+{ #category : #private }
+MetacelloProjectSpec >> setName: aStringOrNil [
     self shouldBeMutable.
     name := aStringOrNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>setPostLoadDoIt: aSymbol [
+{ #category : #accessing }
+MetacelloProjectSpec >> setPostLoadDoIt: aSymbol [
     self shouldBeMutable.
     postLoadDoIt := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>setPreLoadDoIt: aSymbol [
+{ #category : #accessing }
+MetacelloProjectSpec >> setPreLoadDoIt: aSymbol [
     self shouldBeMutable.
     preLoadDoIt := aSymbol
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>unregisterProject [
+{ #category : #scripting }
+MetacelloProjectSpec >> unregisterProject [
     ^ MetacelloProjectRegistration
         registrationForProjectSpec: self
         ifAbsent: [  ]
         ifPresent: [ :existing :new | existing unregisterProject ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>version [
+{ #category : #querying }
+MetacelloProjectSpec >> version [
     self subclassResponsibility
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>version: anObject constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloProjectSpec >> version: anObject constructor: aVersionConstructor [
     aVersionConstructor versionForProject: anObject
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>versionKey [
+{ #category : #querying }
+MetacelloProjectSpec >> versionKey [
 	"suitable for using as a unique key for the receiver's version in a dictionary"
 
 	^ self version versionKey
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>versionOrNil [
+{ #category : #querying }
+MetacelloProjectSpec >> versionOrNil [
 
 	^[ self version ] on: MetacelloVersionDoesNotExistError do: [:ex | ^nil ].
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>versionString [
+{ #category : #querying }
+MetacelloProjectSpec >> versionString [
 	^ versionString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>versionString: anObject [
+{ #category : #accessing }
+MetacelloProjectSpec >> versionString: anObject [
     self shouldBeMutable.
     versionString := anObject
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpec>>versionString: anObject constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloProjectSpec >> versionString: anObject constructor: aVersionConstructor [
     aVersionConstructor versionStringForProject: anObject
 ]

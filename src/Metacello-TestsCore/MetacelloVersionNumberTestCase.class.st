@@ -1,45 +1,29 @@
-"
-
-"
 Class {
 	#name : #MetacelloVersionNumberTestCase,
 	#superclass : #MetacelloCommonVersionNumberTestCase,
-	#category : #Metacello-TestsCore,
-	#timestamp : ''
+	#category : #Metacello-TestsCore
 }
 
-{
-	#category : #'test approximately greater than',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testApproxVersion01 [
+{ #category : #'test approximately greater than' }
+MetacelloVersionNumberTestCase >> testApproxVersion01 [
 
 	self assert: '1.1.1' asMetacelloVersionNumber ~> '1.1' asMetacelloVersionNumber
 ]
 
-{
-	#category : #'test approximately greater than',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testApproxVersion02 [
+{ #category : #'test approximately greater than' }
+MetacelloVersionNumberTestCase >> testApproxVersion02 [
 
 	self deny: '1.1' asMetacelloVersionNumber ~> '1' asMetacelloVersionNumber
 ]
 
-{
-	#category : #'test approximately greater than',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testApproxVersion03 [
+{ #category : #'test approximately greater than' }
+MetacelloVersionNumberTestCase >> testApproxVersion03 [
 
 	self assert: '1.1' asMetacelloVersionNumber ~> '1.1' asMetacelloVersionNumber
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testCollapseZeros [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testCollapseZeros [
 
 	self assert: (MetacelloVersionNumber fromString: '1.0-beta.24.0.1') collapseZeros printString = '1-beta.24.0.1'.
 	self assert: (MetacelloVersionNumber fromString: '1.0-beta.24.0.0.1') collapseZeros printString = '1-beta.24.0.0.1'.
@@ -47,11 +31,8 @@ MetacelloVersionNumberTestCase>>testCollapseZeros [
 
 ]
 
-{
-	#category : #'tests version increment/decrement',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testIncrementDecrementVersionNumber [
+{ #category : #'tests version increment/decrement' }
+MetacelloVersionNumberTestCase >> testIncrementDecrementVersionNumber [
   | version |
   super testIncrementDecrementVersionNumber.
   version := '1' asMetacelloVersionNumber.
@@ -68,11 +49,8 @@ MetacelloVersionNumberTestCase>>testIncrementDecrementVersionNumber [
   self assert: version decrementMinorVersionNumber asString = '1.0.0.0'
 ]
 
-{
-	#category : #'test matching',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testInvalidSpecialMatch [
+{ #category : #'test matching' }
+MetacelloVersionNumberTestCase >> testInvalidSpecialMatch [
 
 	self 
 		should: [ ((self versionClass fromString: '1.1') match: '?.?') ]
@@ -80,11 +58,8 @@ MetacelloVersionNumberTestCase>>testInvalidSpecialMatch [
 
 ]
 
-{
-	#category : #'test matching',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testSpecialMatch [
+{ #category : #'test matching' }
+MetacelloVersionNumberTestCase >> testSpecialMatch [
 
 	self assert: ((self versionClass fromString: '1.1') match: '?').
 	self assert: ((self versionClass fromString: 'alpha') match: '?').
@@ -98,11 +73,8 @@ MetacelloVersionNumberTestCase>>testSpecialMatch [
 
 ]
 
-{
-	#category : #'test matching',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testStandardMatch [
+{ #category : #'test matching' }
+MetacelloVersionNumberTestCase >> testStandardMatch [
 
 	self assert: ((self versionClass fromString: '1.1.1') match: '*.*.*').
 	self deny: ((self versionClass fromString: '1.1.1') match: '*.*').
@@ -116,11 +88,8 @@ MetacelloVersionNumberTestCase>>testStandardMatch [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion03 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion03 [
 
 	| v1 v2 |
 	v1 := self versionClass fromString: '1.0.0.1'.
@@ -128,11 +97,8 @@ MetacelloVersionNumberTestCase>>testVersion03 [
 	self assert: (v1 > v2)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion05 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion05 [
 
 	| v1 v2 |
 	v1 := self versionClass fromString: '3'.
@@ -140,11 +106,8 @@ MetacelloVersionNumberTestCase>>testVersion05 [
 	self assert: (v1 > v2)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion06 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion06 [
 
 	| v1 v2 |
 	v1 := self versionClass fromString: '3.'.
@@ -152,11 +115,8 @@ MetacelloVersionNumberTestCase>>testVersion06 [
 	self assert: (v1 > v2)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion07 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion07 [
 
 	| v1 v2 |
 	v1 := self versionClass fromString: '3.0.0'.
@@ -164,11 +124,8 @@ MetacelloVersionNumberTestCase>>testVersion07 [
 	self assert: (v1 > v2)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion08 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion08 [
 
 	| v1 v2 |
 	v1 := self versionClass fromString: '1.0a6'.
@@ -176,11 +133,8 @@ MetacelloVersionNumberTestCase>>testVersion08 [
 	self assert: (v1 > v2)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion09 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion09 [
 
 	| v1 v2 |
 	v1 := self versionClass fromString: '1.0'.
@@ -189,11 +143,8 @@ MetacelloVersionNumberTestCase>>testVersion09 [
 	self assert: (v2 <= v1)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion10 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion10 [
 
 	| x y |
 	self assert: ((x := (({
@@ -205,11 +156,8 @@ MetacelloVersionNumberTestCase>>testVersion10 [
 	} sort: [:a :b | a <= b ]) collect: [:each | each versionString ]) asArray) = (y := #( '0.7' '0.8' '0.9' '1.0' '1.0.1')))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion11 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion11 [
 
 	| v1 v2 |
 	v1 := self versionClass fromString: '1.0.1b'.
@@ -218,51 +166,36 @@ MetacelloVersionNumberTestCase>>testVersion11 [
 	self assert: (v2 <= v1)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion12 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion12 [
 
 	self deny: ((self versionClass fromString: '1.0') <= (self versionClass fromString: '0.7'))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion13 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion13 [
 
 	self deny: ((self versionClass fromString: '0.8') <= (self versionClass fromString: '0.7')).
 	self deny: ((self versionClass fromString: '0.8.1.8') <= (self versionClass fromString: '0.7.0.5')).
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion15 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion15 [
 
 	self assert: ((self versionClass fromString: '1.0-beta.0') < (self versionClass fromString: '1.0-beta.1')).
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion16 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion16 [
     self assert: (self versionClass fromString: '1.0-beta.0') < (self versionClass fromString: '1.0').
     self assert: (self versionClass fromString: '1.0-beta.0') < (self versionClass fromString: '1.0.0').
     self assert: (self versionClass fromString: '1.0-beta.0') < (self versionClass fromString: '1.0.0.0')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion17 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion17 [
 
 	self assert: ((self versionClass fromString: '1.0') = (self versionClass fromString: '1.0.0')).
 	self assert: ((self versionClass fromString: '1') = (self versionClass fromString: '1.0')).
@@ -273,42 +206,30 @@ MetacelloVersionNumberTestCase>>testVersion17 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion18 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion18 [
 
 	self deny: ((self versionClass fromString: '1.0') < (self versionClass fromString: '1')).
 	self deny: ((self versionClass fromString: '1.0') < (self versionClass fromString: '1-0')).
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion19 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion19 [
 
 	self assert: ((self versionClass fromString: '1.0-beta.0') < (self versionClass fromString: '1')).
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion20 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion20 [
 
 	self assert: (MetacelloVersionNumber fromString: '') printString = ''.
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion21 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion21 [
 
 	self deny: (MetacelloVersionNumber fromString: '') > (MetacelloVersionNumber fromString: '0').
 	self assert: (MetacelloVersionNumber fromString: '') < (MetacelloVersionNumber fromString: '0').
@@ -317,11 +238,8 @@ MetacelloVersionNumberTestCase>>testVersion21 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>testVersion24 [
+{ #category : #tests }
+MetacelloVersionNumberTestCase >> testVersion24 [
 
 	self assert: (MetacelloVersionNumber fromString: '3.0.3.-rc.1') ~= (MetacelloVersionNumber fromString: '3.0.0.3-rc.1').
 	self assert: (MetacelloVersionNumber fromString: '1.0.0.1.0.0') = (MetacelloVersionNumber fromString: '1.0.0.1').
@@ -330,11 +248,8 @@ MetacelloVersionNumberTestCase>>testVersion24 [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionNumberTestCase>>versionClass [
+{ #category : #private }
+MetacelloVersionNumberTestCase >> versionClass [
 
 	^MetacelloVersionNumber
 ]

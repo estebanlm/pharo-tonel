@@ -1,12 +1,7 @@
-Extension {
-	#name : #ByteArray
-}
+Extension { #name : #ByteArray }
 
-{
-	#category : #'*Alien-Core',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ByteArray>>utf8ToIso [
+{ #category : #'*Alien-Core' }
+ByteArray >> utf8ToIso [
 	| s i v1 v2 v3 v4 |
 	s := WriteStream on: (String new: self size).
 	i := 1.

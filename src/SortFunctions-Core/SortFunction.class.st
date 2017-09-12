@@ -41,33 +41,23 @@ Class {
 		'collator',
 		'undefinedDirection'
 	],
-	#category : #SortFunctions-Core,
-	#timestamp : 'SvenVanCaekenberghe 3/2/2017 13:00'
+	#category : #SortFunctions-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction class>>ascend [
+{ #category : #'instance creation' }
+SortFunction class >> ascend [
 
 	^self new ascend
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction class>>descend [
+{ #category : #'instance creation' }
+SortFunction class >> descend [
 
 	^self new descend
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>, aSortFunction [
+{ #category : #converting }
+SortFunction >> , aSortFunction [
 	"Return a new SortFunction which is the concatenation of aSortFunction to me, I will be the primary sort, but if I compare equal, I will defer to the argument."
 
 	^(ChainedSortFunction new)
@@ -76,29 +66,20 @@ SortFunction>>, aSortFunction [
 		next: aSortFunction asSortFunction
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>asSortFunction [
+{ #category : #converting }
+SortFunction >> asSortFunction [
 
 	^self
 ]
 
-{
-	#category : #initailize-release,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>ascend [
+{ #category : #initailize-release }
+SortFunction >> ascend [
 
 	direction := 1
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>collate: aValue with: bValue [
+{ #category : #evaluating }
+SortFunction >> collate: aValue with: bValue [
 	^ self hasUndefinedDirection
 		ifTrue: [ 
 			aValue isNil
@@ -110,132 +91,90 @@ SortFunction>>collate: aValue with: bValue [
 		ifFalse: [ aValue threeWayCompareTo: bValue ]
 ]
 
-{
-	#category : #initailize-release,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>collator: a2ArgBlock [
+{ #category : #initailize-release }
+SortFunction >> collator: a2ArgBlock [
 	"a2ArgBlock MUST return the collation order, -1, 0, or 1"
 
 	collator := a2ArgBlock
 ]
 
-{
-	#category : #initailize-release,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>descend [
+{ #category : #initailize-release }
+SortFunction >> descend [
 
 	direction := -1
 ]
 
-{
-	#category : #initailize-release,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>direction: anInteger [
+{ #category : #initailize-release }
+SortFunction >> direction: anInteger [
 
 	direction := anInteger
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>hasUndefinedDirection [
+{ #category : #testing }
+SortFunction >> hasUndefinedDirection [
 
 	^undefinedDirection notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>isAscending [
+{ #category : #testing }
+SortFunction >> isAscending [
 
 	^direction = 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>isDescending [
+{ #category : #testing }
+SortFunction >> isDescending [
 
 	^direction = -1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>isUndefinedFirst [
+{ #category : #testing }
+SortFunction >> isUndefinedFirst [
 
 	^undefinedDirection = -1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>isUndefinedLast [
+{ #category : #testing }
+SortFunction >> isUndefinedLast [
 
 	^undefinedDirection = 1
 ]
 
-{
-	#category : #initailize-release,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>monadicBlock: aSingleArgBlock [
+{ #category : #initailize-release }
+SortFunction >> monadicBlock: aSingleArgBlock [
 	"Initialze the receiver's collation block to compare the results of evaluating aSingleArgBlock with each argument, and then collate the return values with the <=> method."
 
 	collator := [:a :b | self collate: (aSingleArgBlock value: a) with: (aSingleArgBlock value: b)]
 ]
 
-{
-	#category : #initailize-release,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>sendMessage: aUnarySymbol [
+{ #category : #initailize-release }
+SortFunction >> sendMessage: aUnarySymbol [
 	"Initialze the receiver's collation block to compare the results of sending aUnarySymbol to each argument, and then collate them with the <=> method."
 
 	collator := [ :a :b | self collate: (a perform: aUnarySymbol) with: (b perform: aUnarySymbol) ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>toggleDirection [
+{ #category : #converting }
+SortFunction >> toggleDirection [
 	"Invert my current direction, if I'm currently ascending, this will cause me to be descending now, and vice-versa."
 
 	direction := direction * -1
 ]
 
-{
-	#category : #initailize-release,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>undefinedFirst [
+{ #category : #initailize-release }
+SortFunction >> undefinedFirst [
 
 	undefinedDirection := -1
 ]
 
-{
-	#category : #initailize-release,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>undefinedLast [
+{ #category : #initailize-release }
+SortFunction >> undefinedLast [
 
 	undefinedDirection := 1
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunction>>value: anObject value: bObject [
+{ #category : #evaluating }
+SortFunction >> value: anObject [ value: bObject
 	"Masquerade as a two argument block, used by many of the sorting APIs, by returning whether anObject should be placed before bObject or not."
 
 	| result |

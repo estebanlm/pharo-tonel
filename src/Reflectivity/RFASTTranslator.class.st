@@ -4,31 +4,21 @@ subclass of Opal that takes links into account
 Class {
 	#name : #RFASTTranslator,
 	#superclass : #OCASTTranslator,
-	#category : #Reflectivity-Compiler,
-	#timestamp : 'MarcusDenker 6/23/2015 17:38'
+	#category : #Reflectivity-Compiler
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>classForEffect [
+{ #category : #initialization }
+RFASTTranslator >> classForEffect [
 	^RFASTTranslatorForEffect
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>classForValue [
+{ #category : #initialization }
+RFASTTranslator >> classForValue [
 	^RFASTTranslatorForValue
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>emitMessageNode: aMessageNode [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslator >> emitMessageNode: aMessageNode [
 	self emitPrepareLinkAfter: aMessageNode.
 	aMessageNode isCascaded
 		ifFalse: [ valueTranslator visitNode: aMessageNode receiver ].
@@ -43,11 +33,8 @@ RFASTTranslator>>emitMessageNode: aMessageNode [
 	self emitMetaLinkAfter: aMessageNode.
 ]
 
-{
-	#category : #reflectivity,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>emitMetaLinkAfter: aNode [
+{ #category : #reflectivity }
+RFASTTranslator >> emitMetaLinkAfter: aNode [
 	aNode hasMetalinkAfter ifFalse: [ ^self ].
 	aNode allAfterAreWeak ifTrue: [ ^self emitMetaLinkAfterNoEnsure: aNode ].
 	
@@ -57,49 +44,34 @@ RFASTTranslator>>emitMetaLinkAfter: aNode [
 	methodBuilder send: #ensure:.
 ]
 
-{
-	#category : #reflectivity,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>emitMetaLinkAfterNoEnsure: aNode [
+{ #category : #reflectivity }
+RFASTTranslator >> emitMetaLinkAfterNoEnsure: aNode [
 
 	aNode hasMetalinkAfter ifFalse: [ ^self ].
 	self emitPreamble: aNode.
 	aNode afterHooks do: [ :each | effectTranslator visitNode: each body ].
 ]
 
-{
-	#category : #reflectivity,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>emitMetaLinkBefore: aNode [
+{ #category : #reflectivity }
+RFASTTranslator >> emitMetaLinkBefore: aNode [
 	aNode hasMetalinkBefore ifFalse: [ ^self ].
 	self emitPreamble: aNode.
 	aNode beforeHooks do: [ :hook | effectTranslator visitNode: hook ].
 ]
 
-{
-	#category : #reflectivity,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>emitMetaLinkInstead: aNode [
+{ #category : #reflectivity }
+RFASTTranslator >> emitMetaLinkInstead: aNode [
 	self emitPreamble: aNode.
 	valueTranslator visitNode: aNode insteadHooks.
 ]
 
-{
-	#category : #reflectivity,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>emitPreamble: aNode [
+{ #category : #reflectivity }
+RFASTTranslator >> emitPreamble: aNode [
 	aNode preambles do: [ :pre | valueTranslator visitNode: pre].
 ]
 
-{
-	#category : #reflectivity,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>emitPrepareLinkAfter: aNode [
+{ #category : #reflectivity }
+RFASTTranslator >> emitPrepareLinkAfter: aNode [
 	"We need to emit the first part of the block for the ensure: wrap here"
 	| copied |
 	copied := #().
@@ -113,11 +85,8 @@ RFASTTranslator>>emitPrepareLinkAfter: aNode [
 		jumpTo: #block
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>visitArrayNode: anArrayNode  [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslator >> visitArrayNode: anArrayNode [ 
 
 	| elementNodes |
 	
@@ -133,11 +102,8 @@ RFASTTranslator>>visitArrayNode: anArrayNode  [
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>visitAssignmentNode: anAssignmentNode  [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslator >> visitAssignmentNode: anAssignmentNode [ 
 	valueTranslator visitNode: anAssignmentNode value.
 	self emitMetaLinkBefore: anAssignmentNode.
 	self emitMetaLinkBefore: anAssignmentNode variable.
@@ -154,11 +120,8 @@ RFASTTranslator>>visitAssignmentNode: anAssignmentNode  [
 	
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>visitBlockNode: aBlockNode [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslator >> visitBlockNode: aBlockNode [
 	| tempNames argumentNames copiedNames |
 	aBlockNode arguments size >15 ifTrue: [self backendError: 'Too many arguments' forNode: aBlockNode ].
 	
@@ -192,11 +155,8 @@ RFASTTranslator>>visitBlockNode: aBlockNode [
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>visitInlinedBlockNode: anOptimizedBlockNode [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslator >> visitInlinedBlockNode: anOptimizedBlockNode [
 
 	"We are visiting a scope that is not a block, but inlined in the outer context.
 	This means: 
@@ -229,11 +189,8 @@ RFASTTranslator>>visitInlinedBlockNode: anOptimizedBlockNode [
 	self visitNode: anOptimizedBlockNode body.
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>visitLiteralArrayNode: aRBLiteralArrayNode [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslator >> visitLiteralArrayNode: aRBLiteralArrayNode [
 	self emitMetaLinkBefore: aRBLiteralArrayNode.
 	aRBLiteralArrayNode hasMetalinkInstead
 		ifTrue: [ self emitMetaLinkInstead: aRBLiteralArrayNode ]
@@ -243,11 +200,8 @@ RFASTTranslator>>visitLiteralArrayNode: aRBLiteralArrayNode [
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>visitLiteralNode: aLiteralNode [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslator >> visitLiteralNode: aLiteralNode [
 	self emitMetaLinkBefore: aLiteralNode.
 	aLiteralNode hasMetalinkInstead
 		ifTrue: [ self emitMetaLinkInstead: aLiteralNode ]
@@ -258,19 +212,13 @@ RFASTTranslator>>visitLiteralNode: aLiteralNode [
 
 ]
 
-{
-	#category : #reflectivity,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>visitLiteralVariableNode: aLiteralVariableNode [
+{ #category : #reflectivity }
+RFASTTranslator >> visitLiteralVariableNode: aLiteralVariableNode [
 	 methodBuilder pushLiteralVariable: aLiteralVariableNode binding
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>visitMethodNode: aMethodNode [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslator >> visitMethodNode: aMethodNode [
 	"I ignore all links when I am primitive as ReflectiveMethod compiles a wrapper"
 	
 	aMethodNode arguments size > 15 ifTrue: [self backendError: 'Too many arguments' forNode: aMethodNode ].
@@ -303,11 +251,8 @@ RFASTTranslator>>visitMethodNode: aMethodNode [
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>visitReturnNode: aReturnNode  [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslator >> visitReturnNode: aReturnNode [ 
 
 	valueTranslator visitNode: aReturnNode value.
 	self emitMetaLinkBefore: aReturnNode.
@@ -316,33 +261,24 @@ RFASTTranslator>>visitReturnNode: aReturnNode  [
 
 ]
 
-{
-	#category : #reflectivity,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>visitStoreIntoTempNode: aNode [
+{ #category : #reflectivity }
+RFASTTranslator >> visitStoreIntoTempNode: aNode [
 	"we store the TOS into the temp defined by the reification node"
 
 	aNode binding emitStore: methodBuilder.
 
 ]
 
-{
-	#category : #reflectivity,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>visitStorePopIntoTempNode: aNode [
+{ #category : #reflectivity }
+RFASTTranslator >> visitStorePopIntoTempNode: aNode [
 	"we store the TOS into the temp defined by the reification node"
 
 	aNode binding emitStore: methodBuilder.
 	methodBuilder popTop.
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>visitVariableNode: aVariableNode [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslator >> visitVariableNode: aVariableNode [
 	self emitMetaLinkBefore: aVariableNode.
 	aVariableNode hasMetalinkInstead
 				ifTrue: [ self emitMetaLinkInstead: aVariableNode ]
@@ -352,11 +288,8 @@ RFASTTranslator>>visitVariableNode: aVariableNode [
 	
 ]
 
-{
-	#category : #reflectivity,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslator>>visitVariableValue: aVariable [
+{ #category : #reflectivity }
+RFASTTranslator >> visitVariableValue: aVariable [
 	self flag: #TBD. "needs to be extendend to other kinds of variables and cleaned"
 	((aVariable isKindOf: LiteralVariable) or: [ (aVariable isKindOf: Slot) ]) ifTrue: [ self emitMetaLinkBefore: aVariable. ].
 	aVariable emitValue: methodBuilder.

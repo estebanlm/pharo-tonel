@@ -8,40 +8,27 @@ Class {
 		'suspendAll',
 		'suspendedAnnouncemets'
 	],
-	#category : #Glamour-Helpers,
-	#timestamp : 'TudorGirba 1/23/2011 00:58'
+	#category : #Glamour-Helpers
 }
 
-{
-	#category : #announce,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAnnouncer>>announce: anAnnouncement [
+{ #category : #announce }
+GLMAnnouncer >> announce: anAnnouncement [
 	(self isAnnouncementSuspended: anAnnouncement) ifTrue: [ ^ anAnnouncement asAnnouncement ].
 	^ super announce: anAnnouncement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAnnouncer>>announcer  [
+{ #category : #accessing }
+GLMAnnouncer >> announcer [ 
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAnnouncer>>glmSubscriptions [
+{ #category : #accessing }
+GLMAnnouncer >> glmSubscriptions [
 	^ registry glmSubscriptions
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAnnouncer>>isAnnouncementSuspended: anAnnouncement [
+{ #category : #testing }
+GLMAnnouncer >> isAnnouncementSuspended: anAnnouncement [
 	^ self suspendAll or: [ |announcementType|
 		announcementType := anAnnouncement isClass 
 			ifTrue: [ anAnnouncement ] ifFalse: [ anAnnouncement class ].
@@ -50,47 +37,32 @@ GLMAnnouncer>>isAnnouncementSuspended: anAnnouncement [
 			announcementType = anAnnouncementType or: [ announcementType  inheritsFrom: anAnnouncementType ]  ] ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAnnouncer>>postCopy [
+{ #category : #copying }
+GLMAnnouncer >> postCopy [
 	super postCopy.
 	registry := registry copy.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAnnouncer>>resetAnnouncer [
+{ #category : #accessing }
+GLMAnnouncer >> resetAnnouncer [
 	registry reset
 ]
 
-{
-	#category : #suspending,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAnnouncer>>suspendAll [
+{ #category : #suspending }
+GLMAnnouncer >> suspendAll [
 	^ suspendAll ifNil: [ suspendAll := false ].
 ]
 
-{
-	#category : #suspending,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAnnouncer>>suspendAll: aCollection while: aBlock [
+{ #category : #suspending }
+GLMAnnouncer >> suspendAll: aCollection while: aBlock [
 	| previousSuspendedAnnouncemets |
 	previousSuspendedAnnouncemets := suspendedAnnouncemets.
 	suspendedAnnouncemets := aCollection copy.
 	aBlock ensure: [suspendedAnnouncemets := previousSuspendedAnnouncemets] 
 ]
 
-{
-	#category : #suspending,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAnnouncer>>suspendAllWhile: aBlock [
+{ #category : #suspending }
+GLMAnnouncer >> suspendAllWhile: aBlock [
 	| previousSuspensionState |
 	previousSuspensionState := suspendAll.
 	suspendAll := true.
@@ -98,10 +70,7 @@ GLMAnnouncer>>suspendAllWhile: aBlock [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAnnouncer>>suspendedAnnouncemets [
+{ #category : #accessing }
+GLMAnnouncer >> suspendedAnnouncemets [
 	^ suspendedAnnouncemets ifNil: [ suspendedAnnouncemets := OrderedCollection new ].
 ]

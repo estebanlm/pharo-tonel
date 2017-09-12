@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #ZnImageExampleDelegateTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnImageExampleDelegateTests>>image [
+{ #category : #private }
+ZnImageExampleDelegateTests >> image [
 	^ ZnClient new
 		beOneShot;
 		get: 'http://zn.stfx.eu/zn/Hot-Air-Balloon.gif';
 		entity
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnImageExampleDelegateTests>>testDefaultImage [
+{ #category : #testing }
+ZnImageExampleDelegateTests >> testDefaultImage [
 	self withServerDo: [ :server |
 		| client |
 		client := ZnClient new.
@@ -35,11 +25,8 @@ ZnImageExampleDelegateTests>>testDefaultImage [
 		client close ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnImageExampleDelegateTests>>testMainPage [
+{ #category : #testing }
+ZnImageExampleDelegateTests >> testMainPage [
 	self withServerDo: [ :server |
 		| client |
 		client := ZnClient new.
@@ -51,11 +38,8 @@ ZnImageExampleDelegateTests>>testMainPage [
 		client close ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnImageExampleDelegateTests>>testUpload [
+{ #category : #testing }
+ZnImageExampleDelegateTests >> testUpload [
 	self withServerDo: [ :server |
 		| image client |
 		image := self image.
@@ -71,11 +55,8 @@ ZnImageExampleDelegateTests>>testUpload [
 		client close ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnImageExampleDelegateTests>>withServerDo: block [
+{ #category : #private }
+ZnImageExampleDelegateTests >> withServerDo: block [
 	| server |
 	server := ZnServer on: 1700 + 32 atRandom.
 	[ 

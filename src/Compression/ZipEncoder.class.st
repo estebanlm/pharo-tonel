@@ -12,58 +12,39 @@ Class {
 	#pools : [
 		'ZipConstants'
 	],
-	#category : #Compression-Streams,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:04'
+	#category : #Compression-Streams
 }
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoder>>bitPosition [
+{ #category : #positioning }
+ZipEncoder >> bitPosition [
 	^encodedStream position + position * 8 + bitPosition.
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoder>>close [
+{ #category : #open/close }
+ZipEncoder >> close [
 	self flush.
 	encodedStream close.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoder>>commit [
+{ #category : #initialization }
+ZipEncoder >> commit [
 	encodedStream next: position putAll: collection.
 	position := readLimit := 0.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoder>>encodedStream [
+{ #category : #accessing }
+ZipEncoder >> encodedStream [
 	^encodedStream
 ]
 
-{
-	#category : #flushing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoder>>flush [
+{ #category : #flushing }
+ZipEncoder >> flush [
 	self flushBits.
 	self commit.
 ]
 
-{
-	#category : #flushing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoder>>flushBits [
+{ #category : #flushing }
+ZipEncoder >> flushBits [
 	"Flush currently unsent bits"
 	[bitPosition > 0] whileTrue:[
 		self nextBytePut: (bitBuffer bitAnd: 255).
@@ -72,11 +53,8 @@ ZipEncoder>>flushBits [
 	bitPosition := 0.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoder>>nextBits: nBits put: value [
+{ #category : #accessing }
+ZipEncoder >> nextBits: nBits put: value [
 	"Store a value of nBits"
 	"self assert:[value >= 0 and:[(1 bitShift: nBits) > value]]."
 	bitBuffer := bitBuffer bitOr: (value bitShift: bitPosition).
@@ -87,11 +65,8 @@ ZipEncoder>>nextBits: nBits put: value [
 		bitPosition := bitPosition - 8].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoder>>nextBytePut: anObject  [
+{ #category : #accessing }
+ZipEncoder >> nextBytePut: anObject [ 
 	"Primitive. Insert the argument at the next position in the Stream
 	represented by the receiver. Fail if the collection of this stream is not an
 	Array or a String. Fail if the stream is positioned at its end, or if the
@@ -107,11 +82,8 @@ ZipEncoder>>nextBytePut: anObject  [
 			^collection byteAt: position put: anObject]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoder>>on: aCollectionOrStream [
+{ #category : #initialization }
+ZipEncoder >> on: aCollectionOrStream [
 	aCollectionOrStream isStream 
 		ifTrue:[encodedStream := aCollectionOrStream]
 		ifFalse:[	encodedStream := aCollectionOrStream writeStream].
@@ -121,21 +93,15 @@ ZipEncoder>>on: aCollectionOrStream [
 	bitPosition := bitBuffer := 0.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoder>>pastEndPut: anObject [
+{ #category : #private }
+ZipEncoder >> pastEndPut: anObject [
 	"Flush the current buffer and store the new object at the beginning"
 	self commit.
 	^self nextBytePut: anObject asInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoder>>privateSendBlock: literalStream with: distanceStream with: litTree with: distTree [
+{ #category : #private }
+ZipEncoder >> privateSendBlock: literalStream with: distanceStream [ with: litTree with: distTree
 	"Send the current block using the encodings from the given literal/length and distance tree"
 	| lit dist code extra sum |
 	<primitive: 'primitiveZipSendBlock' module: 'ZipPlugin'>
@@ -174,11 +140,8 @@ ZipEncoder>>privateSendBlock: literalStream with: distanceStream with: litTree w
 	^sum
 ]
 
-{
-	#category : #'block encoding',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoder>>sendBlock: literalStream with: distanceStream with: litTree with: distTree [
+{ #category : #'block encoding' }
+ZipEncoder >> sendBlock: literalStream with: distanceStream [ with: litTree with: distTree
 	"Send the current block using the encodings from the given literal/length and distance tree"
 	| result |
 	result := 0.

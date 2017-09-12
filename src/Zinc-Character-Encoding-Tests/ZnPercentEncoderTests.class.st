@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnPercentEncoderTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Character-Encoding-Tests,
-	#timestamp : ''
+	#category : #Zinc-Character-Encoding-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnPercentEncoderTests>>testDecodePlusAsSpace [
+{ #category : #testing }
+ZnPercentEncoderTests >> testDecodePlusAsSpace [
 	| encoder |
 	encoder := ZnPercentEncoder new.
 	self assert: (encoder decode: '+') equals: ' '.
@@ -22,11 +15,8 @@ ZnPercentEncoderTests>>testDecodePlusAsSpace [
 	self deny: encoder decodePlusAsSpace
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnPercentEncoderTests>>testDecodingErrors [
+{ #category : #testing }
+ZnPercentEncoderTests >> testDecodingErrors [
 	| encoder |
 	encoder := ZnPercentEncoder new.
 	self should: [ encoder decode: 'foo%%bar' ] raise: ZnCharacterEncodingError.
@@ -36,11 +26,8 @@ ZnPercentEncoderTests>>testDecodingErrors [
 	self should: [ encoder decode: 'foo%F' ] raise: ZnCharacterEncodingError
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnPercentEncoderTests>>testLeadingZero [
+{ #category : #testing }
+ZnPercentEncoderTests >> testLeadingZero [
 	| encoder |
 	encoder := ZnPercentEncoder new.
 	self assert: (encoder encode: 'foo', Character tab asString, 'bar') equals: 'foo%09bar'.
@@ -49,11 +36,8 @@ ZnPercentEncoderTests>>testLeadingZero [
 	self assert: (encoder decode: 'foo%0Abar') equals: 'foo', Character lf asString, 'bar'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnPercentEncoderTests>>testNonAscii [
+{ #category : #testing }
+ZnPercentEncoderTests >> testNonAscii [
 	| encoder |
 	encoder := ZnPercentEncoder new.
 	self 
@@ -67,11 +51,8 @@ ZnPercentEncoderTests>>testNonAscii [
 		equals: 'élève en Français'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnPercentEncoderTests>>testSimple [
+{ #category : #testing }
+ZnPercentEncoderTests >> testSimple [
 	| encoder |
 	encoder := ZnPercentEncoder new.
 	self assert: (encoder encode: 'foo bar') equals: 'foo%20bar'.
@@ -82,18 +63,12 @@ ZnPercentEncoderTests>>testSimple [
 	self assert: (encoder decode: 'foo+bar') equals: 'foo bar'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnPercentEncoderTests>>testStringUrlDecoded [
+{ #category : #testing }
+ZnPercentEncoderTests >> testStringUrlDecoded [
 	self assert: ('foo%20bar' urlDecoded) equals: 'foo bar' 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnPercentEncoderTests>>testStringUrlEncoded [
+{ #category : #testing }
+ZnPercentEncoderTests >> testStringUrlEncoded [
 	self assert: ('foo bar' urlEncoded) equals: 'foo%20bar'
 ]

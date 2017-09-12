@@ -14,31 +14,21 @@ Class {
 		'realDisplay',
 		'wrapMorph'
 	],
-	#category : #Athens-Morphic,
-	#timestamp : 'NicolaiHess 1/4/2015 18:29'
+	#category : #Athens-Morphic
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrappedWorldDisplay class>>on: aWorldWrapMorph [
+{ #category : #'instance creation' }
+AthensWrappedWorldDisplay class >> on: aWorldWrapMorph [
 	^ self new wrapMorph:aWorldWrapMorph
 ]
 
-{
-	#category : #'display protocol',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrappedWorldDisplay>>boundingBox [
+{ #category : #'display protocol' }
+AthensWrappedWorldDisplay >> boundingBox [
 	^ wrapMorph ifNotNil: [ wrapMorph fullBounds ] ifNil: [ 0 @ 0 extent: 0 @ 0 ]
 ]
 
-{
-	#category : #'display protocol',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrappedWorldDisplay>>doesNotUnderstand: aMessage [
+{ #category : #'display protocol' }
+AthensWrappedWorldDisplay >> doesNotUnderstand: aMessage [
 	"delegate all not implemented methods to the real display"
 
 	^ (realDisplay respondsTo: aMessage selector)
@@ -46,19 +36,13 @@ AthensWrappedWorldDisplay>>doesNotUnderstand: aMessage [
 		ifFalse: [ super doesNotUnderstand: aMessage ]
 ]
 
-{
-	#category : #'display protocol',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrappedWorldDisplay>>extent [
+{ #category : #'display protocol' }
+AthensWrappedWorldDisplay >> extent [
 	^ wrapMorph ifNotNil: [ wrapMorph extent ] ifNil: [ 0 @ 0 ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrappedWorldDisplay>>initialize [
+{ #category : #initialization }
+AthensWrappedWorldDisplay >> initialize [
 
 	super initialize.
 
@@ -66,18 +50,12 @@ AthensWrappedWorldDisplay>>initialize [
 	wrapMorph := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrappedWorldDisplay>>wrapMorph [
+{ #category : #accessing }
+AthensWrappedWorldDisplay >> wrapMorph [
 	^ wrapMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrappedWorldDisplay>>wrapMorph: anObject [
+{ #category : #accessing }
+AthensWrappedWorldDisplay >> wrapMorph: anObject [
 	wrapMorph := anObject
 ]

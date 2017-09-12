@@ -32,199 +32,126 @@ Class {
 		'c11',
 		't12'
 	],
-	#category : #Tests-Traits,
-	#timestamp : 'MartinDias 1/22/2014 15:40'
+	#category : #Tests-Traits
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c1 [
+{ #category : #accessing }
+TraitsResource >> c1 [
 	^c1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c10 [
+{ #category : #accessing }
+TraitsResource >> c10 [
 	^c10.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c10: anObject [
+{ #category : #accessing }
+TraitsResource >> c10: anObject [
 	^c10 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c11 [
+{ #category : #accessing }
+TraitsResource >> c11 [
 	^c11.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c11: anObject [
+{ #category : #accessing }
+TraitsResource >> c11: anObject [
 	^c11 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c1: anObject [
+{ #category : #accessing }
+TraitsResource >> c1: anObject [
 	^c1 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c2 [
+{ #category : #accessing }
+TraitsResource >> c2 [
 	^c2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c2: anObject [
+{ #category : #accessing }
+TraitsResource >> c2: anObject [
 	^c2 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c3 [
+{ #category : #accessing }
+TraitsResource >> c3 [
 	^c3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c3: anObject [
+{ #category : #accessing }
+TraitsResource >> c3: anObject [
 	^c3 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c4 [
+{ #category : #accessing }
+TraitsResource >> c4 [
 	^c4
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c4: anObject [
+{ #category : #accessing }
+TraitsResource >> c4: anObject [
 	^c4 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c5 [
+{ #category : #accessing }
+TraitsResource >> c5 [
 	^c5
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c5: anObject [
+{ #category : #accessing }
+TraitsResource >> c5: anObject [
 	^c5 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c6 [
+{ #category : #accessing }
+TraitsResource >> c6 [
 	^c6
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c6: anObject [
+{ #category : #accessing }
+TraitsResource >> c6: anObject [
 	^c6 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c7 [
+{ #category : #accessing }
+TraitsResource >> c7 [
 	^c7
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c7: anObject [
+{ #category : #accessing }
+TraitsResource >> c7: anObject [
 	^c7 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c8 [
+{ #category : #accessing }
+TraitsResource >> c8 [
 	^c8
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c8: anObject [
+{ #category : #accessing }
+TraitsResource >> c8: anObject [
 	^c8 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c9 [
+{ #category : #accessing }
+TraitsResource >> c9 [
 	^c9
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>c9: anObject [
+{ #category : #accessing }
+TraitsResource >> c9: anObject [
 	^c9 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>categoryName [
+{ #category : #accessing }
+TraitsResource >> categoryName [
 	^self class category
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>createClassNamed: aSymbol superclass: aClass uses: aTraitComposition [
+{ #category : #utility }
+TraitsResource >> createClassNamed: aSymbol superclass: aClass uses: aTraitComposition [
 	| class |
 	class := aClass
 		subclass: aSymbol
@@ -237,11 +164,8 @@ TraitsResource>>createClassNamed: aSymbol superclass: aClass uses: aTraitComposi
 	^class
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>createTraitNamed: aSymbol uses: aTraitComposition [
+{ #category : #utility }
+TraitsResource >> createTraitNamed: aSymbol uses: aTraitComposition [
 	| trait |
 	trait := Trait
 		named: aSymbol
@@ -251,21 +175,15 @@ TraitsResource>>createTraitNamed: aSymbol uses: aTraitComposition [
 	^trait
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>createdClassesAndTraits [
+{ #category : #accessing }
+TraitsResource >> createdClassesAndTraits [
 	createdClassesAndTraits ifNil: [
 		createdClassesAndTraits := OrderedCollection new].
 	^createdClassesAndTraits
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>setUp [
+{ #category : #running }
+TraitsResource >> setUp [
 	"Please note, that most tests rely on this setup of traits and
 	classes - and that especially the order of the definitions matters."
 	"SetUpCount := SetUpCount + 1."
@@ -351,11 +269,8 @@ TraitsResource>>setUp [
 			self setUpTranslatingRequiresFixture].
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>setUpTranslatingRequiresFixture [
+{ #category : #running }
+TraitsResource >> setUpTranslatingRequiresFixture [
 	self c6: (self 
 				createClassNamed: #C6
 				superclass: ProtoObject
@@ -376,11 +291,8 @@ TraitsResource>>setUpTranslatingRequiresFixture [
 	self c8 compile: 'bar ^self blah' classified: #accessing
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>setUpTrivialRequiresFixture [
+{ #category : #running }
+TraitsResource >> setUpTrivialRequiresFixture [
 	self c3: (self 
 				createClassNamed: #C3
 				superclass: ProtoObject
@@ -390,11 +302,8 @@ TraitsResource>>setUpTrivialRequiresFixture [
 	self c3 compile: 'foo ^self bla' classified: #accessing
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>setUpTwoLevelRequiresFixture [
+{ #category : #running }
+TraitsResource >> setUpTwoLevelRequiresFixture [
 	self c4: (self 
 				createClassNamed: #C4
 				superclass: ProtoObject
@@ -409,187 +318,118 @@ TraitsResource>>setUpTwoLevelRequiresFixture [
 	self c5 compile: 'foo ^self blah' classified: #accessing
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t1 [
+{ #category : #accessing }
+TraitsResource >> t1 [
 	^t1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t10 [
+{ #category : #accessing }
+TraitsResource >> t10 [
 	^t10.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t10: anObject [
+{ #category : #accessing }
+TraitsResource >> t10: anObject [
 	^t10 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t11 [
+{ #category : #accessing }
+TraitsResource >> t11 [
 	^t11.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t11: anObject [
+{ #category : #accessing }
+TraitsResource >> t11: anObject [
 	^t11 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t12 [
+{ #category : #accessing }
+TraitsResource >> t12 [
 	^t12.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t12: anObject [
+{ #category : #accessing }
+TraitsResource >> t12: anObject [
 	^t12 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t1: anObject [
+{ #category : #accessing }
+TraitsResource >> t1: anObject [
 	^t1 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t2 [
+{ #category : #accessing }
+TraitsResource >> t2 [
 	^t2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t2: anObject [
+{ #category : #accessing }
+TraitsResource >> t2: anObject [
 	^t2 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t3 [
+{ #category : #accessing }
+TraitsResource >> t3 [
 	^t3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t3: anObject [
+{ #category : #accessing }
+TraitsResource >> t3: anObject [
 	^t3 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t4 [
+{ #category : #accessing }
+TraitsResource >> t4 [
 	^t4
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t4: anObject [
+{ #category : #accessing }
+TraitsResource >> t4: anObject [
 	^t4 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t5 [
+{ #category : #accessing }
+TraitsResource >> t5 [
 	^t5
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t5: anObject [
+{ #category : #accessing }
+TraitsResource >> t5: anObject [
 	^t5 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t6 [
+{ #category : #accessing }
+TraitsResource >> t6 [
 	^t6
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t6: anObject [
+{ #category : #accessing }
+TraitsResource >> t6: anObject [
 	^t6 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t8 [
+{ #category : #accessing }
+TraitsResource >> t8 [
 	^t8
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t8: anObject [
+{ #category : #accessing }
+TraitsResource >> t8: anObject [
 	^t8 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t9 [
+{ #category : #accessing }
+TraitsResource >> t9 [
 	^t9
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>t9: anObject [
+{ #category : #accessing }
+TraitsResource >> t9: anObject [
 	^t9 := anObject
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitsResource>>tearDown [
+{ #category : #running }
+TraitsResource >> tearDown [
 	self createdClassesAndTraits
 		do: [ :aClassOrTrait | 
 			| behaviorName |

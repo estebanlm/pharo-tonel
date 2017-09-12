@@ -3,53 +3,35 @@ A trait for test purposes
 "
 Trait {
 	#name : #TGrowableTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:34'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TGrowableTest>>element [
+{ #category : #requirements }
+TGrowableTest >> element [
 
 	^ self explicitRequirement 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TGrowableTest>>elementNotIn [
+{ #category : #requirements }
+TGrowableTest >> elementNotIn [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TGrowableTest>>empty  [
+{ #category : #requirements }
+TGrowableTest >> empty [ 
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TGrowableTest>>nonEmpty  [
+{ #category : #requirements }
+TGrowableTest >> nonEmpty [ 
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TGrowableTest>>test0FixtureRequirementsOfTGrowableTest [
+{ #category : #'tests - fixture' }
+TGrowableTest >> test0FixtureRequirementsOfTGrowableTest [
 	self empty.
 	self nonEmpty.
 	self element.
@@ -60,11 +42,8 @@ TGrowableTest>>test0FixtureRequirementsOfTGrowableTest [
 	self deny: (self nonEmpty includes: self elementNotIn)
 ]
 
-{
-	#category : #'tests - growable',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TGrowableTest>>testAddEmptyGrows [
+{ #category : #'tests - growable' }
+TGrowableTest >> testAddEmptyGrows [
 	"self debug: #testAddEmptyGrows"
 	
 	| oldSize |
@@ -73,11 +52,8 @@ TGrowableTest>>testAddEmptyGrows [
 	self assert: (self empty size) = (oldSize + 1).
 ]
 
-{
-	#category : #'tests - growable',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TGrowableTest>>testAddNonEmptyGrowsWhenNewElement [
+{ #category : #'tests - growable' }
+TGrowableTest >> testAddNonEmptyGrowsWhenNewElement [
 	"self debug: #testAddNonEmptyGrowsWhenNewElement"
 	
 	| oldSize |

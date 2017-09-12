@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #InlineTextDiffBuilder,
 	#superclass : #TextDiffBuilder,
-	#category : #Tool-Diff,
-	#timestamp : ''
+	#category : #Tool-Diff
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-InlineTextDiffBuilder>>split: aString [
+{ #category : #'as yet unclassified' }
+InlineTextDiffBuilder >> split: aString [
 	"Answer the split 'lines' by splitting on whitespace."
 	
 	|str lines sep|

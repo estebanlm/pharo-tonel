@@ -6,23 +6,16 @@ See class side for selectors.
 Class {
 	#name : #SpecExamples,
 	#superclass : #SpecHelpTopics,
-	#category : #Spec-Help,
-	#timestamp : 'IgnacioSniechowski 2/25/2015 08:32'
+	#category : #Spec-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SpecExamples class>>bookName [
+{ #category : #accessing }
+SpecExamples class >> bookName [
 	^ 'Examples'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SpecExamples class>>firstExample [
+{ #category : #pages }
+SpecExamples class >> firstExample [
 	^HelpTopic 
 		title: 'A first example: ModelList'
 		contents: 'Creating a specific UI always starts with the subclassing of Composable-Model. Each sub widget is stored into an instance variable of the newly created class. All the code presented here is already in the image so you can simply do: 
@@ -73,11 +66,8 @@ The first UI is now done. The result can be seen by executing the following snip
 '
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SpecExamples class>>moreExamples [
+{ #category : #pages }
+SpecExamples class >> moreExamples [
 	^HelpTopic 
 		title: 'More Examples'
 		contents: 'If you browse the Spec-Examples package you will find a lot more examples that will help you understand Spec a little more.
@@ -113,19 +103,13 @@ TabsExample new openWithSpec
 TextFieldExample new openWithSpec'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SpecExamples class>>pages [
+{ #category : #accessing }
+SpecExamples class >> pages [
 	^#(firstExample secondExample moreExamples)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SpecExamples class>>secondExample [
+{ #category : #pages }
+SpecExamples class >> secondExample [
 	^HelpTopic 
 		title: 'A second example: Protocol List'
 		contents: 'The next user interface is the protocol list. This UI combines two sub widgets: 

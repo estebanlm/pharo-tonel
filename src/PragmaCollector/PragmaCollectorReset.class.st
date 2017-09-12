@@ -15,30 +15,20 @@ Class {
 	#instVars : [
 		'collector'
 	],
-	#category : #PragmaCollector,
-	#timestamp : 'alain.plantec 10/20/2009 11:14'
+	#category : #PragmaCollector
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollectorReset class>>collector: aCollector [
+{ #category : #'instance creation' }
+PragmaCollectorReset class >> collector: aCollector [
 	^ self new collector: aCollector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollectorReset>>collector [
+{ #category : #accessing }
+PragmaCollectorReset >> collector [
 	^collector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-PragmaCollectorReset>>collector: aCollector [
+{ #category : #accessing }
+PragmaCollectorReset >> collector: aCollector [
 	collector := aCollector
 ]

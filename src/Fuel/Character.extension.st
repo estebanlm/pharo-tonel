@@ -1,39 +1,25 @@
-Extension {
-	#name : #Character
-}
+Extension { #name : #Character }
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-Character>>fuelAccept: aGeneralMapper [
+{ #category : #'*Fuel' }
+Character >> fuelAccept: aGeneralMapper [
 
 	^aGeneralMapper visitHookPrimitive: self
 ]
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-Character>>largeIdentityHash [
+{ #category : #'*Fuel' }
+Character >> largeIdentityHash [
 
 	^ self identityHash
 ]
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-Character class>>materializeFrom: aDecoder [
+{ #category : #'*Fuel' }
+Character class >> materializeFrom: aDecoder [
 
 	^self value: aDecoder nextEncodedUint32
 ]
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-Character>>serializeOn: anEncoder [
+{ #category : #'*Fuel' }
+Character >> serializeOn: anEncoder [
 
 	anEncoder encodeUint32: self asInteger
 ]

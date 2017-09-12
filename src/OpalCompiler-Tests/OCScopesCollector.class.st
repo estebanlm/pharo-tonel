@@ -15,41 +15,28 @@ Class {
 	#instVars : [
 		'scopes'
 	],
-	#category : #OpalCompiler-Tests-AST,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Tests-AST
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCScopesCollector>>initialize  [
+{ #category : #initialization }
+OCScopesCollector >> initialize [ 
 	scopes := OrderedCollection new.
 	super initialize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCScopesCollector>>scopes  [
+{ #category : #accessing }
+OCScopesCollector >> scopes [ 
 	^scopes
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCScopesCollector>>visitBlockNode: aBlockNode [
+{ #category : #'as yet unclassified' }
+OCScopesCollector >> visitBlockNode: aBlockNode [
 	scopes add: aBlockNode owningScope.
 	super visitBlockNode: aBlockNode
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCScopesCollector>>visitMethodNode: aMethodNode [
+{ #category : #'as yet unclassified' }
+OCScopesCollector >> visitMethodNode: aMethodNode [
 	scopes add: aMethodNode owningScope.
 	super visitMethodNode: aMethodNode
 ]

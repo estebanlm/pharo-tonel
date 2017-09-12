@@ -9,15 +9,11 @@ Class {
 	#instVars : [
 		'cancelled'
 	],
-	#category : #Morphic-Widgets-Windows-Widgets,
-	#timestamp : 'gvc 5/18/2007 13:26'
+	#category : #Morphic-Widgets-Windows-Widgets
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>acceptTextMorphs [
+{ #category : #actions }
+DialogWindow >> acceptTextMorphs [
 	"Accept any text morphs except for those that have no edits."
 
 	self allMorphs do: [:p |
@@ -26,11 +22,8 @@ DialogWindow>>acceptTextMorphs [
 				p hasUnacceptedEdits]]) ifTrue: [p accept]]
 ]
 
-{
-	#category : #'top window',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>activate [
+{ #category : #'top window' }
+DialogWindow >> activate [
 	"Set the default focus for now, will want to
 	remember it at some point."
 	
@@ -41,69 +34,48 @@ DialogWindow>>activate [
 				m takeKeyboardFocus]]
 ]
 
-{
-	#category : #theme,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>activeFillStyle [
+{ #category : #theme }
+DialogWindow >> activeFillStyle [
 	"Return the active fillStyle for the receiver."
 	
 	^self theme dialogWindowActiveFillStyleFor: self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>addInitialPanel [
+{ #category : #actions }
+DialogWindow >> addInitialPanel [
 	"Add the panel."
 
 	self addMainPanel
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>addMainPanel [
+{ #category : #actions }
+DialogWindow >> addMainPanel [
 	"Add the main panel."
 
 	self addMorph: self newMainPanel frame: (0@0 corner: 1@1)
 ]
 
-{
-	#category : #theme,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>animateClose [
+{ #category : #theme }
+DialogWindow >> animateClose [
 	"Animate closing."
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>applyChanges [
+{ #category : #actions }
+DialogWindow >> applyChanges [
 	"Apply the changes."
 
 	self acceptTextMorphs
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>buttons [
+{ #category : #actions }
+DialogWindow >> buttons [
 	"Answer the buttons in the button row"
 
 	^self paneMorphs last lastSubmorph submorphs
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>canBeMaximized [
+{ #category : #testing }
+DialogWindow >> canBeMaximized [
 	"Answer whether we are not we can be maximised."
 
 	^self isResizeable
@@ -111,51 +83,36 @@ DialogWindow>>canBeMaximized [
 		ifFalse: [false]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>cancel [
+{ #category : #actions }
+DialogWindow >> cancel [
 	"Cancel and close."
 
 	self close
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>cancelled [
+{ #category : #accessing }
+DialogWindow >> cancelled [
 	"Answer the value of cancelled"
 
 	^ cancelled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>cancelled: anObject [
+{ #category : #accessing }
+DialogWindow >> cancelled: anObject [
 	"Set the value of cancelled"
 
 	cancelled := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>close [
+{ #category : #actions }
+DialogWindow >> close [
 	"Close the window."
 
 	self delete
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>defaultButton [
+{ #category : #actions }
+DialogWindow >> defaultButton [
 	"Answer the default button."
 
 	^self
@@ -164,11 +121,8 @@ DialogWindow>>defaultButton [
 		ifAbsent: [] 
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>defaultFocusMorph [
+{ #category : #'focus handling' }
+DialogWindow >> defaultFocusMorph [
 	"Answer the morph that should have the keyboard
 	focus by default when the dialog is opened."
 	
@@ -178,51 +132,36 @@ DialogWindow>>defaultFocusMorph [
 		ifNotNil: [:b | b enabled ifTrue: [b]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>defaultIsResizeable [
+{ #category : #testing }
+DialogWindow >> defaultIsResizeable [
 
 	^ false
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>defaultLabel [
+{ #category : #actions }
+DialogWindow >> defaultLabel [
 	"Answer the default label for the receiver."
 
 	^'Dialog' translated
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>doubleClick: event [
+{ #category : #'event handling' }
+DialogWindow >> doubleClick: event [
 	"Handle a double click. Maximize/restore the window.
 	Not for dialogs if not resizeable..."
 	
 	self isResizeable ifTrue: [super doubleClick: event]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>escapePressed [
+{ #category : #actions }
+DialogWindow >> escapePressed [
 	"Default is to cancel."
 
 	self cancel
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>handlesKeyboard: evt [
+{ #category : #'event handling' }
+DialogWindow >> handlesKeyboard: evt [
 	"Return true if the receiver wishes to handle the given keyboard event"
 	
 	(super handlesKeyboard: evt) ifTrue: [^true].
@@ -232,21 +171,15 @@ DialogWindow>>handlesKeyboard: evt [
 	
 ]
 
-{
-	#category : #theme,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>inactiveFillStyle [
+{ #category : #theme }
+DialogWindow >> inactiveFillStyle [
 	"Return the active fillStyle for the receiver."
 	
 	^self theme dialogWindowInactiveFillStyleFor: self
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>initialExtent [
+{ #category : #open/close }
+DialogWindow >> initialExtent [
 	"Answer the default extent for the receiver."
 
 	|rl paneExt ext|
@@ -262,11 +195,8 @@ DialogWindow>>initialExtent [
 	^ext
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>initialize [
+{ #category : #initialization }
+DialogWindow >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -275,11 +205,8 @@ DialogWindow>>initialize [
 		addInitialPanel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>initializeLabelArea [
+{ #category : #initialization }
+DialogWindow >> initializeLabelArea [
 	"Initialize the label area (titlebar) for the window."
 	
 	super initializeLabelArea.
@@ -287,11 +214,8 @@ DialogWindow>>initializeLabelArea [
 	self replaceBoxes
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>keyStroke: evt [
+{ #category : #'event handling' }
+DialogWindow >> keyStroke: evt [
 	"Check for return and escape keys."
 
 	super keyStroke: evt.
@@ -300,11 +224,8 @@ DialogWindow>>keyStroke: evt [
 	^false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>keyboardFocusChange: aBoolean [
+{ #category : #'event handling' }
+DialogWindow >> keyboardFocusChange: aBoolean [
 	"Set the focus to the default button."
 	super keyboardFocusChange: aBoolean.
 	aBoolean ifTrue: [
@@ -312,22 +233,16 @@ DialogWindow>>keyboardFocusChange: aBoolean [
 			b takeKeyboardFocus]]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>mainPanel [
+{ #category : #actions }
+DialogWindow >> mainPanel [
 	"Anwer the main panel morph or nil if not yet present."
 
 	^self paneMorphs isEmpty
 		ifFalse: [self paneMorphs first]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>newButtonRow [
+{ #category : #actions }
+DialogWindow >> newButtonRow [
 	"Answer a new ok/cancel button row."
 
 	|answer buttons e|
@@ -347,21 +262,15 @@ DialogWindow>>newButtonRow [
 	^answer
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>newButtons [
+{ #category : #actions }
+DialogWindow >> newButtons [
 	"Answer new buttons as appropriate."
 
 	^{self newOKButton isDefault: true. self newCancelButton}
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>newContentMorph [
+{ #category : #actions }
+DialogWindow >> newContentMorph [
 	"Answer a new content morph."
 
 	^Morph new
@@ -370,11 +279,8 @@ DialogWindow>>newContentMorph [
 		vResizing: #spaceFill
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>newMainPanel [
+{ #category : #actions }
+DialogWindow >> newMainPanel [
 	"Answer a new main panel."
 
 	^self newDialogPanel
@@ -383,11 +289,8 @@ DialogWindow>>newMainPanel [
 		yourself
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>ok [
+{ #category : #actions }
+DialogWindow >> ok [
 	"Apply the changes and close."
 
 	self
@@ -396,31 +299,22 @@ DialogWindow>>ok [
 		delete
 ]
 
-{
-	#category : #theme,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>preferredCornerStyle [
+{ #category : #theme }
+DialogWindow >> preferredCornerStyle [
 	"Answer the preferred corner style."
 
 	^self theme dialogWindowPreferredCornerStyleFor: self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>returnPressed [
+{ #category : #actions }
+DialogWindow >> returnPressed [
 	"Default is to do the default button."
 
 	(self defaultButton ifNil: [^self]) performAction
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>setButtonFont: aFont [
+{ #category : #actions }
+DialogWindow >> setButtonFont: aFont [
 	"Set the font for the buttons."
 
 	| buttons e|
@@ -440,32 +334,23 @@ DialogWindow>>setButtonFont: aFont [
 	buttons do: [:b | b extent: e]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>setFramesForLabelArea [
+{ #category : #initialization }
+DialogWindow >> setFramesForLabelArea [
 	"Delegate to theme."
 	
 	self theme configureDialogWindowLabelAreaFrameFor: self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>setLabelWidgetAllowance [
+{ #category : #actions }
+DialogWindow >> setLabelWidgetAllowance [
 	"Set the extra space required, in general, apart from the label.
 	No extra needed for dialogs."
 	
 	^labelWidgetAllowance :=  0
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>title: aString [
+{ #category : #controls }
+DialogWindow >> title: aString [
 	"Set the window title."
 	
 	super title: aString.
@@ -473,11 +358,8 @@ DialogWindow>>title: aString [
 	self minimumExtent: (((label width + 20 min: (Display width // 2)) max: self minimumExtent x)@ self minimumExtent y)
 ]
 
-{
-	#category : #theme,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-DialogWindow>>wantsRoundedCorners [
+{ #category : #theme }
+DialogWindow >> wantsRoundedCorners [
 	"Answer whether rounded corners are wanted."
 	
 	^(self theme dialogWindowPreferredCornerStyleFor: self) == #rounded

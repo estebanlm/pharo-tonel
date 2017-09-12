@@ -4,15 +4,11 @@ I am a simple test case to check that HashTester works correctly
 Class {
 	#name : #HashTesterTest,
 	#superclass : #TestCase,
-	#category : #SUnit-Core-Utilities,
-	#timestamp : 'mjr 8/20/2003 12:48'
+	#category : #SUnit-Core-Utilities
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-HashTesterTest>>testBasicBehaviour [
+{ #category : #'as yet unclassified' }
+HashTesterTest >> testBasicBehaviour [
 	self
 		should: [(HashTester with: 1)
 				resultFor: 100].

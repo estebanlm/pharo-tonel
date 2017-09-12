@@ -14,34 +14,24 @@ Class {
 	#instVars : [
 		'debuggingAction'
 	],
-	#category : #DebuggerActions,
-	#timestamp : 'AndreiChis 11/19/2015 20:13'
+	#category : #DebuggerActions
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugActionExecuted class>>forDebuggingAction: anAction [
+{ #category : #'as yet unclassified' }
+DebugActionExecuted class >> forDebuggingAction: anAction [
 
 	^ self new
 		action: anAction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugActionExecuted>>action [
+{ #category : #accessing }
+DebugActionExecuted >> action [
 
 	^ debuggingAction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DebugActionExecuted>>action: aDebuggingAction [
+{ #category : #accessing }
+DebugActionExecuted >> action: aDebuggingAction [
 
 	debuggingAction := aDebuggingAction
 ]

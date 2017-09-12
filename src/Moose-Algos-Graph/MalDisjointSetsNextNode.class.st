@@ -1,40 +1,27 @@
-"
-
-"
 Class {
 	#name : #MalDisjointSetsNextNode,
 	#superclass : #MalDisjointSetNode,
 	#instVars : [
 		'nextNodes'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDisjointSetsNextNode>>initialize [
+{ #category : #accessing }
+MalDisjointSetsNextNode >> initialize [
 
 	self flag: #refactor.
 	self makeSet. "should be called in super initialize"
 	nextNodes := OrderedCollection new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDisjointSetsNextNode>>nextNodes [
+{ #category : #accessing }
+MalDisjointSetsNextNode >> nextNodes [
 
 	^ nextNodes 
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDisjointSetsNextNode>>to: targetNode [
+{ #category : #adding }
+MalDisjointSetsNextNode >> to: targetNode [
 	self nextNodes add: targetNode
 ]

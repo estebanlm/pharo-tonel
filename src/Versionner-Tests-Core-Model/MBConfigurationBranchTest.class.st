@@ -8,15 +8,11 @@ Class {
 		'gofer',
 		'configurationRoot'
 	],
-	#category : #Versionner-Tests-Core-Model,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:16'
+	#category : #Versionner-Tests-Core-Model
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationBranchTest>>hasPackage: aString [
+{ #category : #running }
+MBConfigurationBranchTest >> hasPackage: aString [
 	| package |
 	package := MCWorkingCopy allManagers
 		detect: [ :each | each packageName = aString ]
@@ -24,11 +20,8 @@ MBConfigurationBranchTest>>hasPackage: aString [
 	^ package notNil
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationBranchTest>>setUp [
+{ #category : #running }
+MBConfigurationBranchTest >> setUp [
 
 	| repo |
 	super setUp.
@@ -42,11 +35,8 @@ MBConfigurationBranchTest>>setUp [
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationBranchTest>>tearDown [
+{ #category : #running }
+MBConfigurationBranchTest >> tearDown [
 	configurationRoot ifNotNil: [ configurationRoot unregister ].
 	Smalltalk removeKey: #'MB_Foo_Test_Repository' ifAbsent: [].
 	gofer := Gofer new.
@@ -55,20 +45,14 @@ MBConfigurationBranchTest>>tearDown [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationBranchTest>>tearDownPackages [
+{ #category : #running }
+MBConfigurationBranchTest >> tearDownPackages [
 
 	^#('MBFooTests' 'ConfigurationOfMBBranchTests')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationBranchTest>>test0010BasicLoad [
+{ #category : #tests }
+MBConfigurationBranchTest >> test0010BasicLoad [
 	"
 		- make sure that the configuration can be loaded without error
 		- make sure that version 1.0 can be loaded without error"
@@ -82,11 +66,8 @@ MBConfigurationBranchTest>>test0010BasicLoad [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationBranchTest>>test0011BasicLoad [
+{ #category : #tests }
+MBConfigurationBranchTest >> test0011BasicLoad [
 	"
 		- make sure that the branch configuration can be loaded without error
 		- make sure that version 1.0 can be loaded without error"
@@ -100,11 +81,8 @@ MBConfigurationBranchTest>>test0011BasicLoad [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationBranchTest>>test002ConfigurationReferences [
+{ #category : #tests }
+MBConfigurationBranchTest >> test002ConfigurationReferences [
 	"Make sure that the project and project branches show up in configuration references (for load configuration command)"
 
 	| referenceMap |

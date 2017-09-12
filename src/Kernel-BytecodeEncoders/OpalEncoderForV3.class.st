@@ -44,26 +44,19 @@ Bytecode set specification:
 Class {
 	#name : #OpalEncoderForV3,
 	#superclass : #OpalBytecodeEncoder,
-	#category : #Kernel-BytecodeEncoders,
-	#timestamp : 'ClementBera 6/10/2016 10:47'
+	#category : #Kernel-BytecodeEncoders
 }
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3 class>>supportsClosures [
+{ #category : #'compiled method support' }
+OpalEncoderForV3 class >> supportsClosures [
 	"Answer if the instruction set supports closures (contains
 	 closure creation and indirect temp access bytecodes)."
 
 	^ false
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genBranchPopFalse: distance [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genBranchPopFalse: distance [
 	"See BlueBook page 596"
 	distance < 0 ifTrue:
 		[^self outOfRangeError: 'distance' index: distance range: 0 to: 1023].
@@ -80,11 +73,8 @@ OpalEncoderForV3>>genBranchPopFalse: distance [
 	^self outOfRangeError: 'distance' index: distance range: 0 to: 1023
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genBranchPopTrue: distance [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genBranchPopTrue: distance [
 	"See BlueBook page 596"
 	distance < 0 ifTrue:
 		[^self outOfRangeError: 'distance' index: distance range: 0 to: 1023].
@@ -97,21 +87,15 @@ OpalEncoderForV3>>genBranchPopTrue: distance [
 	^self outOfRangeError: 'distance' index: distance range: 0 to: 1023
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genDup [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genDup [
 	"See BlueBook page 596"
 	"136 	10001000 	Duplicate Stack Top"
 	stream nextPut: 136
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genJump: distance [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genJump: distance [
 	"See BlueBook page 596"
 	(distance > 0 and: [distance < 9]) ifTrue:
 		["144-151 	10010iii 	Jump iii + 1 (i.e., 1 through 8)"
@@ -121,11 +105,8 @@ OpalEncoderForV3>>genJump: distance [
 	^self genJumpLong: distance
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genJumpLong: distance [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genJumpLong: distance [
 	"See BlueBook page 596"
 	(distance >= -1024 and: [distance < 1024]) ifTrue:
 		["160-167 	10100iii jjjjjjjj 	Jump(iii - 4) *256+jjjjjjjj"
@@ -136,21 +117,15 @@ OpalEncoderForV3>>genJumpLong: distance [
 	^self outOfRangeError: 'distance' index: distance range: -1024 to: 1023
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genPop [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genPop [
 	"See BlueBook page 596"
 	"135 	10000111 	Pop Stack Top"
 	stream nextPut: 135
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genPushInstVar: instVarIndex [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genPushInstVar: instVarIndex [
 	"See BlueBook page 596"
 	instVarIndex >= 0 ifTrue:
 		[instVarIndex < 16 ifTrue:
@@ -166,11 +141,8 @@ OpalEncoderForV3>>genPushInstVar: instVarIndex [
 	self genPushInstVarLong: instVarIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genPushInstVarLong: instVarIndex [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genPushInstVarLong: instVarIndex [
 	"See BlueBook page 596"
 	"See also MaybeContextInstanceVariableNode"
 	(instVarIndex >= 0 and: [instVarIndex < 256]) ifTrue: 
@@ -183,11 +155,8 @@ OpalEncoderForV3>>genPushInstVarLong: instVarIndex [
 	^self outOfRangeError: 'index' index: instVarIndex range: 0 to: 255
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genPushLiteral: literalIndex [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genPushLiteral: literalIndex [
 	"See BlueBook page 596"
 	literalIndex < 0 ifTrue: 
 		[^self outOfRangeError: 'index' index: literalIndex range: 0 to: 255].
@@ -211,11 +180,8 @@ OpalEncoderForV3>>genPushLiteral: literalIndex [
 	^self outOfRangeError: 'index' index: literalIndex range: 0 to: 255
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genPushLiteralVar: literalIndex [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genPushLiteralVar: literalIndex [
 	"See BlueBook page 596"
 	literalIndex < 0 ifTrue: 
 		[^self outOfRangeError: 'index' index: literalIndex range: 0 to: 255].
@@ -239,21 +205,15 @@ OpalEncoderForV3>>genPushLiteralVar: literalIndex [
 	^self outOfRangeError: 'index' index: literalIndex range: 0 to: 255
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genPushReceiver [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genPushReceiver [
 	"See BlueBook page 596"
 	"112-119 	01110iii 	Push (receiver, true, false, nil, -1, 0, 1, 2) [iii]"
 	stream nextPut: 112
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genPushSpecialLiteral: aLiteral [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genPushSpecialLiteral: aLiteral [
 	"112-119 	01110iii 	Push (receiver, true, false, nil, -1, 0, 1, 2) [iii]"
 	| index |
 	index := #(true false nil -1 0 1 2) indexOf: aLiteral ifAbsent: 0.
@@ -262,11 +222,8 @@ OpalEncoderForV3>>genPushSpecialLiteral: aLiteral [
 	stream nextPut: index + 112
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genPushTemp: tempIndex [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genPushTemp: tempIndex [
 	"See BlueBook page 596"
 	tempIndex < 0 ifTrue:
 		[^self outOfRangeError: 'index' index: tempIndex range: 0 to: 63].
@@ -283,31 +240,22 @@ OpalEncoderForV3>>genPushTemp: tempIndex [
 	^self outOfRangeError: 'index' index: tempIndex range: 0 to: 63
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genPushThisContext [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genPushThisContext [
 	"See BlueBook page 596"
 	"137 	10001001 	Push Active Context"
 	stream nextPut: 137
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genReturnReceiver [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genReturnReceiver [
 	"See BlueBook page 596"
 	"120-123 	011110ii 	Return (receiver, true, false, nil) [ii] From Message"
 	stream nextPut: 120
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genReturnSpecialLiteral: aLiteral [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genReturnSpecialLiteral: aLiteral [
 	"120-123 	011110ii 	Return (receiver, true, false, nil) [ii] From Message"
 	| index |
 	index := #(true false nil) indexOf: aLiteral ifAbsent: 0.
@@ -316,31 +264,22 @@ OpalEncoderForV3>>genReturnSpecialLiteral: aLiteral [
 	stream nextPut: 120 + index
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genReturnTop [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genReturnTop [
 	"See BlueBook page 596"
 	"124-125 	0111110i 	Return Stack Top From (Message, Block) [i]"
 	stream nextPut: 124
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genReturnTopToCaller [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genReturnTopToCaller [
 	"See BlueBook page 596"
 	"124-125 	0111110i 	Return Stack Top From (Message, Block) [i]"
 	stream nextPut: 125
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genSend: selectorLiteralIndex numArgs: nArgs [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genSend: selectorLiteralIndex numArgs: nArgs [
 	"See BlueBook page 596 (with exceptions for 132 & 134)"
 	nArgs < 0 ifTrue:
 		[^self outOfRangeError: 'numArgs' index: nArgs range: 0 to: 31 "!!"].
@@ -391,11 +330,8 @@ OpalEncoderForV3>>genSend: selectorLiteralIndex numArgs: nArgs [
 		[^self outOfRangeError: 'selector literal index' index: selectorLiteralIndex range: 0 to: 255]
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genSendSpecial: specialSelectorIndex numArgs: nArgs [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genSendSpecial: specialSelectorIndex numArgs: nArgs [
 	self assert: (specialSelectorIndex between: 1 and: Smalltalk specialSelectorSize).
 	self assert: nArgs = (Smalltalk specialNargsAt: specialSelectorIndex).
 	"Special selector sends.
@@ -405,11 +341,8 @@ OpalEncoderForV3>>genSendSpecial: specialSelectorIndex numArgs: nArgs [
 	stream nextPut: specialSelectorIndex + 175
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genSendSuper: selectorLiteralIndex numArgs: nArgs [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genSendSuper: selectorLiteralIndex numArgs: nArgs [
 	"See BlueBook page 596 (with exceptions for 132 & 134)"
 	nArgs < 0 ifTrue:
 		[^self outOfRangeError: 'numArgs' index: nArgs range: 0 to: 31 "!!"].
@@ -439,11 +372,8 @@ OpalEncoderForV3>>genSendSuper: selectorLiteralIndex numArgs: nArgs [
 		[^self outOfRangeError: 'selector literal index' index: selectorLiteralIndex range: 0 to: 255]
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genStoreInstVar: instVarIndex [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genStoreInstVar: instVarIndex [
 	"See BlueBook page 596"
 	(instVarIndex >= 0 and: [instVarIndex < 64]) ifTrue: 
 		["129 	10000001 jjkkkkkk 	Store (Receiver Variable, Temporary Location, Illegal, Literal Variable) [jj] #kkkkkk"
@@ -454,11 +384,8 @@ OpalEncoderForV3>>genStoreInstVar: instVarIndex [
 	self genStoreInstVarLong: instVarIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genStoreInstVarLong: instVarIndex [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genStoreInstVarLong: instVarIndex [
 	"See BlueBook page 596"
 	"See also MaybeContextInstanceVariableNode"
 	(instVarIndex >= 0 and: [instVarIndex < 256]) ifTrue: 
@@ -471,11 +398,8 @@ OpalEncoderForV3>>genStoreInstVarLong: instVarIndex [
 	^self outOfRangeError: 'index' index: instVarIndex range: 0 to: 255
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genStoreLiteralVar: literalIndex [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genStoreLiteralVar: literalIndex [
 	"See BlueBook page 596"
 	literalIndex < 0 ifTrue:
 		[^self outOfRangeError: 'index' index: literalIndex range: 0 to: 255].
@@ -495,11 +419,8 @@ OpalEncoderForV3>>genStoreLiteralVar: literalIndex [
 	^self outOfRangeError: 'index' index: literalIndex range: 0 to: 255
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genStorePopInstVar: instVarIndex [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genStorePopInstVar: instVarIndex [
 	"See BlueBook page 596"
 	instVarIndex >= 0 ifTrue:
 		[instVarIndex < 8 ifTrue:
@@ -515,11 +436,8 @@ OpalEncoderForV3>>genStorePopInstVar: instVarIndex [
 	self genStorePopInstVarLong: instVarIndex
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genStorePopInstVarLong: instVarIndex [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genStorePopInstVarLong: instVarIndex [
 	"See BlueBook page 596"
 	"See also MaybeContextInstanceVariableNode"
 	(instVarIndex >= 0 and: [instVarIndex < 256]) ifTrue: 
@@ -532,11 +450,8 @@ OpalEncoderForV3>>genStorePopInstVarLong: instVarIndex [
 	^self outOfRangeError: 'index' index: instVarIndex range: 0 to: 255
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genStorePopLiteralVar: literalIndex [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genStorePopLiteralVar: literalIndex [
 	"See BlueBook page 596"
 	literalIndex < 0 ifTrue:
 		[^self outOfRangeError: 'index' index: literalIndex range: 0 to: 255].
@@ -557,11 +472,8 @@ OpalEncoderForV3>>genStorePopLiteralVar: literalIndex [
 	^self outOfRangeError: 'index' index: literalIndex range: 0 to: 255
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genStorePopTemp: tempIndex [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genStorePopTemp: tempIndex [
 	"See BlueBook page 596"
 	tempIndex < 0 ifTrue:
 		[^self outOfRangeError: 'index' index: tempIndex range: 0 to: 63].
@@ -578,11 +490,8 @@ OpalEncoderForV3>>genStorePopTemp: tempIndex [
 	^self outOfRangeError: 'index' index: tempIndex range: 0 to: 63
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>genStoreTemp: tempIndex [
+{ #category : #'bytecode generation' }
+OpalEncoderForV3 >> genStoreTemp: tempIndex [
 	"See BlueBook page 596"
 	tempIndex < 0 ifTrue:
 		[^self outOfRangeError: 'index' index: tempIndex range: 0 to: 63].
@@ -595,11 +504,8 @@ OpalEncoderForV3>>genStoreTemp: tempIndex [
 	^self outOfRangeError: 'index' index: tempIndex range: 0 to: 63
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalEncoderForV3>>isSpecialLiteralForPush: literal [
+{ #category : #testing }
+OpalEncoderForV3 >> isSpecialLiteralForPush: literal [
 	^ literal == false
 		or:
 			[ 

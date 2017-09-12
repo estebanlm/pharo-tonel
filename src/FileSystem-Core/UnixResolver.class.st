@@ -4,91 +4,60 @@ I am an expert on Unix filesystem conventions. I resolve origins according to th
 Class {
 	#name : #UnixResolver,
 	#superclass : #PlatformResolver,
-	#category : #FileSystem-Core-Implementation,
-	#timestamp : '<historical>'
+	#category : #FileSystem-Core-Implementation
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-UnixResolver class>>platformName [
+{ #category : #accessing }
+UnixResolver class >> platformName [
 	^  'unix'
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-UnixResolver>>cache [
+{ #category : #origins }
+UnixResolver >> cache [
 	"http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html"
 
 	^ self directoryFromEnvVariableNamed: 'XDG_CACHE_HOME' or: [ self home / '.cache' ]
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-UnixResolver>>desktop [
+{ #category : #origins }
+UnixResolver >> desktop [
 	^ (self xdgUserDir: 'DESKTOP') ifNil: [ self home / 'Desktop' ]
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-UnixResolver>>documents [
+{ #category : #origins }
+UnixResolver >> documents [
 	^ (self xdgUserDir: 'DOCUMENTS') ifNil: [ self home / 'Documents' ]
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-UnixResolver>>home [
+{ #category : #origins }
+UnixResolver >> home [
 	^ self directoryFromEnvVariableNamed: 'HOME'
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-UnixResolver>>preferences [
+{ #category : #origins }
+UnixResolver >> preferences [
 	"http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html"
 
 	^ self directoryFromEnvVariableNamed: 'XDG_CONFIG_HOME' or: [ self home / '.config' ]
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-UnixResolver>>supportedOrigins [
+{ #category : #resolving }
+UnixResolver >> supportedOrigins [
 	^ super supportedOrigins , #( userData )
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-UnixResolver>>temp [
+{ #category : #origins }
+UnixResolver >> temp [
 	^ '/tmp' asFileReference
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-UnixResolver>>userData [
+{ #category : #origins }
+UnixResolver >> userData [
 	^ self directoryFromEnvVariableNamed: 'XDG_DATA_HOME' or: [ self home / '.local' / 'share' ]
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-UnixResolver>>xdgParseUserDirLine: aStream [
+{ #category : #helpers }
+UnixResolver >> xdgParseUserDirLine: aStream [
 	"Format is XDG_xxx_DIR=""$HOME/yyy"", where yyy is a shell-escaped homedir-relative path, or XDG_xxx_DIR=""/yyy"", where /yyy is an absolute path. No other format is supported."
 	| path firstChar |
 	(aStream next = $") ifFalse: [ ^ nil ].
@@ -101,11 +70,8 @@ UnixResolver>>xdgParseUserDirLine: aStream [
 	^ path
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-UnixResolver>>xdgUserDir: userDirName [
+{ #category : #helpers }
+UnixResolver >> xdgUserDir: userDirName [
 	"Read ~/.config/user-dirs.dirs to find the directory of userDirName (e.g., 'DESKTOP')"
 	"http://freedesktop.org/wiki/Software/xdg-user-dirs"
 	"This file is written by xdg-user-dirs-update If you want to change or add directories, just edit the line you're interested in. All local changes will be retained on the next run Format is XDG_xxx_DIR=""$HOME/yyy"", where yyy is a shell-escaped homedir-relative path, or XDG_xxx_DIR=""/yyy"", where /yyy is an absolute path. No other format is supported."

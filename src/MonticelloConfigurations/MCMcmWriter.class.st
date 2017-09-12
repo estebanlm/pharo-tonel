@@ -4,15 +4,11 @@ Writer for Metacello MCM
 Class {
 	#name : #MCMcmWriter,
 	#superclass : #MCWriter,
-	#category : #MonticelloConfigurations,
-	#timestamp : 'TorstenBergmann 2/20/2014 16:24'
+	#category : #MonticelloConfigurations
 }
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCMcmWriter class>>fileOut: aConfiguration on: aStream [
+{ #category : #writing }
+MCMcmWriter class >> fileOut: aConfiguration [ on: aStream
 	| inst |
 	inst := self on: aStream.
 	inst writeConfiguration: aConfiguration.
@@ -21,27 +17,18 @@ MCMcmWriter class>>fileOut: aConfiguration on: aStream [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCMcmWriter class>>readerClass [
+{ #category : #accessing }
+MCMcmWriter class >> readerClass [
 	^ MCMcmReader
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCMcmWriter>>close [
+{ #category : #writing }
+MCMcmWriter >> close [
 	stream close
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCMcmWriter>>writeConfiguration: aConfiguration [
+{ #category : #writing }
+MCMcmWriter >> writeConfiguration: aConfiguration [
 
 	stream nextPut: $(.
 

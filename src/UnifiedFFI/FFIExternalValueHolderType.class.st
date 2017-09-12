@@ -7,96 +7,62 @@ Class {
 	#instVars : [
 		'representationType'
 	],
-	#category : #UnifiedFFI-Types,
-	#timestamp : 'EstebanLorenzano 3/17/2016 13:43'
+	#category : #UnifiedFFI-Types
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolderType class>>objectClass: aClass [
+{ #category : #'instance creation' }
+FFIExternalValueHolderType class >> objectClass: aClass [
 	^ self objectClass: aClass representationType: FFIUInt32 new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolderType class>>objectClass: aClass representationType: anIntegerType [
+{ #category : #'instance creation' }
+FFIExternalValueHolderType class >> objectClass: aClass representationType: anIntegerType [
 	^ self new
 		objectClass: aClass;
 		representationType: anIntegerType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolderType>>externalType [
+{ #category : #accessing }
+FFIExternalValueHolderType >> externalType [
 	^ self representationType externalType asPointerType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolderType>>externalTypeSize  [
+{ #category : #accessing }
+FFIExternalValueHolderType >> externalTypeSize [ 
 	^ self pointerSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolderType>>instanceVariableName [
+{ #category : #accessing }
+FFIExternalValueHolderType >> instanceVariableName [
 	^ #data
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolderType>>offsetReadFieldAt: offsetVariableName [
+{ #category : #'emitting code' }
+FFIExternalValueHolderType >> offsetReadFieldAt: offsetVariableName [
 	^ self notYetImplemented
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolderType>>offsetWriteFieldAt: offsetVariableName with: valueName [
+{ #category : #'emitting code' }
+FFIExternalValueHolderType >> offsetWriteFieldAt: offsetVariableName with: valueName [
 	^ self notYetImplemented
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolderType>>readFieldAt: byteOffset	 [
+{ #category : #'emitting code' }
+FFIExternalValueHolderType >> readFieldAt: byteOffset [	
 	^ self notYetImplemented
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolderType>>representationType [
+{ #category : #accessing }
+FFIExternalValueHolderType >> representationType [
 	^ representationType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolderType>>representationType: anObject [
+{ #category : #accessing }
+FFIExternalValueHolderType >> representationType: anObject [
 	representationType := anObject
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolderType>>writeFieldAt: byteOffset with: valueName [
+{ #category : #'emitting code' }
+FFIExternalValueHolderType >> writeFieldAt: byteOffset with: valueName [
 	^ self notYetImplemented
 ]

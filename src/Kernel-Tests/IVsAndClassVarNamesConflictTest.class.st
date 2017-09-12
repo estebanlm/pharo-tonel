@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'classFactory'
 	],
-	#category : #Kernel-Tests-Classes,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:36'
+	#category : #Kernel-Tests-Classes
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IVsAndClassVarNamesConflictTest>>setUp [
+{ #category : #running }
+IVsAndClassVarNamesConflictTest >> setUp [
 	super setUp.
 	classFactory := ClassFactoryForTestCase new
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IVsAndClassVarNamesConflictTest>>tearDown [
+{ #category : #running }
+IVsAndClassVarNamesConflictTest >> tearDown [
 	super tearDown.
 	classFactory cleanUp
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IVsAndClassVarNamesConflictTest>>testOneCanProceedWhenIntroducingCapitalizedInstanceVariables [
+{ #category : #tests }
+IVsAndClassVarNamesConflictTest >> testOneCanProceedWhenIntroducingCapitalizedInstanceVariables [
 	| class |
 	[ 
 		class := classFactory
@@ -46,11 +36,8 @@ IVsAndClassVarNamesConflictTest>>testOneCanProceedWhenIntroducingCapitalizedInst
 	self assert: (Smalltalk keys includes: class name)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-IVsAndClassVarNamesConflictTest>>testOneCanProceedWhenIntroducingClasseVariablesBeginingWithLowerCaseCharacters [
+{ #category : #tests }
+IVsAndClassVarNamesConflictTest >> testOneCanProceedWhenIntroducingClasseVariablesBeginingWithLowerCaseCharacters [
 	| class |
 	[ 
 		class := classFactory

@@ -8,15 +8,11 @@ Class {
 		'repository',
 		'workingCopy'
 	],
-	#category : #Spec-Tools-Monticello,
-	#timestamp : '<historical>'
+	#category : #Spec-Tools-Monticello
 }
 
-{
-	#category : #metacello,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ConfigurationGenerator>>addMetacelloBaseline [
+{ #category : #metacello }
+ConfigurationGenerator >> addMetacelloBaseline [
 	| baselineNumber existingBaselines msg selectorName addedPackages package stream packagePattern |
 	"0 -- must have a repository selected"
 	repository isNil
@@ -91,59 +87,41 @@ ConfigurationGenerator>>addMetacelloBaseline [
 		classified: 'baselines'
 ]
 
-{
-	#category : #metacello,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ConfigurationGenerator>>baseLines  [
+{ #category : #metacello }
+ConfigurationGenerator >> baseLines [ 
 	| existingBaselines |
 	existingBaselines := self configurationClass methods select: [:cm | cm selector beginsWith: 'baseline'].
 	existingBaselines := (existingBaselines collect: [:m | m pragmas first argumentAt: 1]) asSortedCollection.
 	^ existingBaselines
 ]
 
-{
-	#category : #metacello,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ConfigurationGenerator>>browseConfiguration [
+{ #category : #metacello }
+ConfigurationGenerator >> browseConfiguration [
 	self configurationClass browse
 ]
 
-{
-	#category : #metacello,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ConfigurationGenerator>>configurationClass [
+{ #category : #metacello }
+ConfigurationGenerator >> configurationClass [
 	^ Smalltalk globals at: workingCopy package name asSymbol 
 ]
 
-{
-	#category : #metacello,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ConfigurationGenerator>>createDevelopmentVersion [
+{ #category : #metacello }
+ConfigurationGenerator >> createDevelopmentVersion [
 	self hasAnyBaseline 
 		ifFalse: [ UIManager default inform: 'Please, define a baseline first'. ^ self ].
 	^ self createVersionForBlessing: #development
 ]
 
-{
-	#category : #metacello,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ConfigurationGenerator>>createReleaseVersion [
+{ #category : #metacello }
+ConfigurationGenerator >> createReleaseVersion [
 	self hasAnyBaseline 
 		ifFalse: [ UIManager default inform: 'Please, define a baseline first'. ^ self ].
 		
 	^ self createVersionForBlessing: #release
 ]
 
-{
-	#category : #metacello,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ConfigurationGenerator>>createVersionForBlessing: blessingSelector [
+{ #category : #metacello }
+ConfigurationGenerator >> createVersionForBlessing: blessingSelector [
 	"blessingSelector = #release or #development"
 
 	| existingVersions msg initialAnswer newVersionNumber selectorName stream mcWorkingCopy |
@@ -209,11 +187,8 @@ ConfigurationGenerator>>createVersionForBlessing: blessingSelector [
 		classified: 'versions'
 ]
 
-{
-	#category : #metacello,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ConfigurationGenerator>>dependentPackages [
+{ #category : #metacello }
+ConfigurationGenerator >> dependentPackages [
 	"Return the list of dependent packages for the last baseline"
 
 	"This method must be rewritten. It is a shame..."
@@ -257,18 +232,12 @@ ConfigurationGenerator>>dependentPackages [
 	
 ]
 
-{
-	#category : #metacello,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ConfigurationGenerator>>hasAnyBaseline  [
+{ #category : #metacello }
+ConfigurationGenerator >> hasAnyBaseline [ 
 	^ self baseLines notEmpty
 ]
 
-{
-	#category : #metacello,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-ConfigurationGenerator>>lastBaseLine [
+{ #category : #metacello }
+ConfigurationGenerator >> lastBaseLine [
 	^ self baseLines last
 ]

@@ -1,50 +1,34 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicVariablePanesFinderRenderer,
 	#superclass : #GLMMorphicFinderRenderer,
 	#instVars : [
 		'scrollPane'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicVariablePanesFinderRenderer>>actOnPaneAdded: ann [
+{ #category : #rendering }
+GLMMorphicVariablePanesFinderRenderer >> actOnPaneAdded: ann [
 	self addMorphFromObject: ann pane toContainer: container.
 	scrollPane hScrollbar glmAnimateValue: 1.0 duration: 2000
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicVariablePanesFinderRenderer>>actOnPaneRemoved: ann [
+{ #category : #rendering }
+GLMMorphicVariablePanesFinderRenderer >> actOnPaneRemoved: ann [
 	container removeMorph: container submorphs last.
 	container removeMorph: container submorphs last
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicVariablePanesFinderRenderer>>actOnPaneReplaced: ann [
+{ #category : #rendering }
+GLMMorphicVariablePanesFinderRenderer >> actOnPaneReplaced: ann [
 	container removeMorph: container submorphs last.
 	container removeMorph: container submorphs last.
 	self addMorphFromObject: ann newPane toContainer: container.
 	scrollPane hScrollbar glmAnimateValue: 1.0 duration: 200
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicVariablePanesFinderRenderer>>addMorphFromObject: anObject toContainer: aContainerMorph [
+{ #category : #rendering }
+GLMMorphicVariablePanesFinderRenderer >> addMorphFromObject: anObject toContainer: aContainerMorph [
 	| renderedMorph |
 	renderedMorph := (self renderObject: anObject)
 				vResizing: #spaceFill;
@@ -59,11 +43,8 @@ GLMMorphicVariablePanesFinderRenderer>>addMorphFromObject: anObject toContainer:
 		target: renderedMorph)
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicVariablePanesFinderRenderer>>render: aBrowser [
+{ #category : #rendering }
+GLMMorphicVariablePanesFinderRenderer >> render: aBrowser [
 	container := GLMMorphic containerMorph.
 	container 
 		changeTableLayout;

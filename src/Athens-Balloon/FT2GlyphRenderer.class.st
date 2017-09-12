@@ -25,41 +25,28 @@ Class {
 	#pools : [
 		'FT2Constants'
 	],
-	#category : #Athens-Balloon,
-	#timestamp : '<historical>'
+	#category : #Athens-Balloon
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FT2GlyphRenderer class>>forFont: aFont surface: aSurface [
+{ #category : #'as yet unclassified' }
+FT2GlyphRenderer class >> forFont: aFont surface: aSurface [
 	^ self new initForFont: aFont surface: aSurface
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FT2GlyphRenderer>>clearBitmap [
+{ #category : #private }
+FT2GlyphRenderer >> clearBitmap [
 	
 	form bits atAllPut: 0.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FT2GlyphRenderer>>form [
+{ #category : #accessing }
+FT2GlyphRenderer >> form [
 	^ form
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FT2GlyphRenderer>>getAdvance [
+{ #category : #accessing }
+FT2GlyphRenderer >> getAdvance [
 	"aPoint is a text origin in user's coordinate system,
 	and anvance is accumulated advance came from another renderer instance, expressed in surface's coordinate system"
 
@@ -69,11 +56,8 @@ FT2GlyphRenderer>>getAdvance [
 	^ pt
 ]
 
-{
-	#category : #initailize-release,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FT2GlyphRenderer>>initForFont: aFont surface: aSurface [
+{ #category : #initailize-release }
+FT2GlyphRenderer >> initForFont: aFont surface: aSurface [
 
 	self assert: (aFont class == FreeTypeFont).
 	
@@ -106,19 +90,13 @@ FT2GlyphRenderer>>initForFont: aFont surface: aSurface [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FT2GlyphRenderer>>loadSlotInfo [
+{ #category : #private }
+FT2GlyphRenderer >> loadSlotInfo [
 	slot loadFrom: font face.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FT2GlyphRenderer>>loadSurfaceTransform [
+{ #category : #private }
+FT2GlyphRenderer >> loadSurfaceTransform [
 	| m mt org xaxis yaxis sum xmin xmax ymin ymax formW formH fix face bbox |
 	
 	face := font face.
@@ -176,11 +154,8 @@ FT2GlyphRenderer>>loadSurfaceTransform [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FT2GlyphRenderer>>loadUnicode: unicode [
+{ #category : #private }
+FT2GlyphRenderer >> loadUnicode: unicode [
 
 	| ext hintingFlags flags arr face |
 	
@@ -195,19 +170,13 @@ FT2GlyphRenderer>>loadUnicode: unicode [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FT2GlyphRenderer>>pixelValue32Of: aColor  [
+{ #category : #private }
+FT2GlyphRenderer >> pixelValue32Of: aColor [ 
 	^ aColor pixelWordForDepth: 32
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FT2GlyphRenderer>>renderGlyphsIn: text from: start to: stop [
+{ #category : #rendering }
+FT2GlyphRenderer >> renderGlyphsIn: text from: start to: stop [
 	| face |
 	face := font face.
 "	face
@@ -244,11 +213,8 @@ FT2GlyphRenderer>>renderGlyphsIn: text from: start to: stop [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FT2GlyphRenderer>>setColor: color [
+{ #category : #accessing }
+FT2GlyphRenderer >> setColor: color [
 	"Set the color which will be used to render glyphs."
 	
 	| clr rgb alpha |
@@ -267,11 +233,8 @@ FT2GlyphRenderer>>setColor: color [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FT2GlyphRenderer>>setPosition: aPoint advance: advancePt baseline: baselineOffset [
+{ #category : #private }
+FT2GlyphRenderer >> setPosition: aPoint advance: advancePt baseline: baselineOffset [
 	"aPoint is a text origin in user's coordinate system,
 	and andvance is accumulated advance came from another renderer instance, expressed in surface's coordinate system"
 

@@ -10,24 +10,17 @@ because they do not take into account an environment. Instead use `self class en
 Class {
 	#name : #AsClassRule,
 	#superclass : #ReNodeRewriteRule,
-	#category : #System-Support-Rules,
-	#timestamp : 'YuriyTymchuk 9/1/2016 23:22'
+	#category : #System-Support-Rules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AsClassRule>>group [
+{ #category : #accessing }
+AsClassRule >> group [
 
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AsClassRule>>initialize [
+{ #category : #initialization }
+AsClassRule >> initialize [
 	super initialize.
 	self
 		replace: '`@expr asClass'
@@ -40,20 +33,14 @@ AsClassRule>>initialize [
 		with: 'self class environment at: `@expr ifPresent: `@block'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AsClassRule>>name [
+{ #category : #accessing }
+AsClassRule >> name [
 
 	^ 'Do not use #asClass & similar'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-AsClassRule>>severity [
+{ #category : #accessing }
+AsClassRule >> severity [
 
 	^ #error
 ]

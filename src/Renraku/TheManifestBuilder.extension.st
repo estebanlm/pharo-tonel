@@ -1,12 +1,7 @@
-Extension {
-	#name : #TheManifestBuilder
-}
+Extension { #name : #TheManifestBuilder }
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-TheManifestBuilder>>banRule: aRule for: anEntity [
+{ #category : #'*renraku' }
+TheManifestBuilder >> banRule: aRule for: anEntity [
 	| name number |
 	  name := aRule class name.
 	number := aRule class identifierMinorVersionNumber.
@@ -20,11 +15,8 @@ TheManifestBuilder>>banRule: aRule for: anEntity [
 		version: number
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-TheManifestBuilder>>bansRule: aRule for: anEntity [
+{ #category : #'*renraku' }
+TheManifestBuilder >> bansRule: aRule for: anEntity [
 	| name number |
 	  name := aRule class name.
 	number := aRule class identifierMinorVersionNumber.

@@ -32,33 +32,23 @@ Class {
 		'stops',
 		'colorRamp'
 	],
-	#category : #Athens-Core-Paints,
-	#timestamp : '<historical>'
+	#category : #Athens-Core-Paints
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-GradientPaint>>atStop: anOffset put: aColor [
+{ #category : #accessing }
+GradientPaint >> atStop: anOffset put: aColor [
 
 	colorRamp add: (anOffset -> aColor).
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-GradientPaint>>colorRamp [
+{ #category : #accessing }
+GradientPaint >> colorRamp [
 	^ colorRamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-GradientPaint>>colorRamp: aRamp [
+{ #category : #accessing }
+GradientPaint >> colorRamp: aRamp [
 "The color ramp is a collection of associations with keys - floating point values between 0 and 1
 and values with Colors, for example:
 
@@ -67,11 +57,8 @@ and values with Colors, for example:
 	colorRamp := aRamp copy.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-GradientPaint>>initialize [
+{ #category : #initialize-release }
+GradientPaint >> initialize [
 	super initialize.
 	colorRamp := OrderedCollection new.
 ]

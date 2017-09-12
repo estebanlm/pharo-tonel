@@ -25,24 +25,17 @@ Class {
 		'ArrowImagesCache',
 		'BoxesImagesCache'
 	],
-	#category : #Morphic-Widgets-Scrolling,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Scrolling
 }
 
-{
-	#category : #images,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar class>>arrowOfDirection: aSymbol size: finalSizeInteger color: aColor  [
+{ #category : #images }
+ScrollBar class >> arrowOfDirection: aSymbol size: finalSizeInteger color: aColor [ 
 	"answer a form with an arrow based on the parameters"
 	^ ArrowImagesCache at: {aSymbol. finalSizeInteger. aColor}
 ]
 
-{
-	#category : #'images - samples',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar class>>arrowSamples [
+{ #category : #'images - samples' }
+ScrollBar class >> arrowSamples [
 	"create a set of arrow with different sizes, colors and directions"
 	" 
 	ScrollBar arrowSamples.  
@@ -79,20 +72,14 @@ ScrollBar class>>arrowSamples [
 	column openInHand
 ]
 
-{
-	#category : #images,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar class>>boxOfSize: finalSizeInteger color: aColor  [
+{ #category : #images }
+ScrollBar class >> boxOfSize: finalSizeInteger color: aColor [ 
 	"answer a form with an box based on the parameters"
 	^ BoxesImagesCache at: {finalSizeInteger. aColor}
 ]
 
-{
-	#category : #'images - samples',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar class>>boxSamples [
+{ #category : #'images - samples' }
+ScrollBar class >> boxSamples [
 	"create a set of box with different sizes and colors"
 	" 
 	ScrollBar boxSamples.  
@@ -125,31 +112,22 @@ ScrollBar class>>boxSamples [
 	column openInHand
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar class>>cleanUp [
+{ #category : #cleanup }
+ScrollBar class >> cleanUp [
 	"Re-initialize the image cache"
 
 	self initializeImagesCache
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar class>>initialize [
+{ #category : #initialization }
+ScrollBar class >> initialize [
 	"ScrollBar initialize"
 
 	self initializeImagesCache
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar class>>initializeImagesCache [
+{ #category : #initialization }
+ScrollBar class >> initializeImagesCache [
 	"initialize the receiver's ImagesCache. 
 	 
 	normally this method is not evaluated more than in the class 
@@ -163,30 +141,21 @@ ScrollBar class>>initializeImagesCache [
 	BoxesImagesCache := self theme createBoxImagesCache
 ]
 
-{
-	#category : #'images - samples',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar class>>sampleColors [
+{ #category : #'images - samples' }
+ScrollBar class >> sampleColors [
 	"private"
 	^ (Color lightCyan wheel: 5)
 ]
 
-{
-	#category : #'images - samples',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar class>>sampleSizes [
+{ #category : #'images - samples' }
+ScrollBar class >> sampleSizes [
 	
 "private"
 	^ #(10 12 14 16 18 32 64 )
 ]
 
-{
-	#category : #update,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>adoptGradientColor: aColor [
+{ #category : #update }
+ScrollBar >> adoptGradientColor: aColor [
 	"Adopt the given pane color."
 
 	|c fs bfs bs bbs|
@@ -210,21 +179,15 @@ ScrollBar>>adoptGradientColor: aColor [
 	self updateDownButtonImage
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>adoptPaneColor: aColor [
+{ #category : #access }
+ScrollBar >> adoptPaneColor: aColor [
 	"Adopt the given pane color"
 	aColor ifNil:[^self].
 	self sliderColor: aColor.
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>buttonExtent [
+{ #category : #geometry }
+ScrollBar >> buttonExtent [
 	| size |
 	size := self theme scrollbarThickness.
 	
@@ -237,21 +200,15 @@ ScrollBar>>buttonExtent [
 			ifNotNil: [ downButton extent ] ]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>buttonImageColor [
+{ #category : #access }
+ScrollBar >> buttonImageColor [
 	"Answer the color to use for the arrow image of a button."
 
 	^self theme scrollbarImageColorFor: self
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>doScrollByPage [
+{ #category : #scrolling }
+ScrollBar >> doScrollByPage [
 	"Scroll automatically while mouse is down"
 	(self waitForDelay1: 300 delay2: 100) ifFalse: [^ self].
 	nextPageDirection
@@ -260,31 +217,22 @@ ScrollBar>>doScrollByPage [
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>doScrollDown [
+{ #category : #scrolling }
+ScrollBar >> doScrollDown [
 	"Scroll automatically while mouse is down"
 	(self waitForDelay1: 200 delay2: 40) ifFalse: [^ self].
 	self setValue: (value + scrollDelta + 0.000001 min: 1.0)
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>doScrollUp [
+{ #category : #scrolling }
+ScrollBar >> doScrollUp [
 	"Scroll automatically while mouse is down"
 	(self waitForDelay1: 200 delay2: 40) ifFalse: [^ self].
 	self setValue: (value - scrollDelta - 0.000001 max: 0.0)
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>downImage [
+{ #category : #initialize }
+ScrollBar >> downImage [
 	"answer a form to be used in the down button"
 	^ self class
 		arrowOfDirection: (bounds isWide
@@ -294,11 +242,8 @@ ScrollBar>>downImage [
 		color: self buttonImageColor
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>expandSlider [
+{ #category : #geometry }
+ScrollBar >> expandSlider [
 	"Compute the new size of the slider (use the old sliderThickness as a minimum)."
 	| r |
 	r := self totalSliderArea.
@@ -307,11 +252,8 @@ ScrollBar>>expandSlider [
 		ifFalse: [slider width @ ((r height * interval) asInteger max: self sliderThickness)])
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>extent: p  [
+{ #category : #geometry }
+ScrollBar >> extent: p [ 
 	p x > p y
 		ifTrue: [super
 				extent: (p max: 42 @ 8)]
@@ -320,11 +262,8 @@ ScrollBar>>extent: p  [
 	
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>finishedScrolling [
+{ #category : #access }
+ScrollBar >> finishedScrolling [
 	"Scrolling has finished (button or paging area)."
 	
 	|bcu bcd|
@@ -341,11 +280,8 @@ ScrollBar>>finishedScrolling [
 		borderStyle: self normalBorderStyle
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>finishedScrolling: event [
+{ #category : #access }
+ScrollBar >> finishedScrolling: event [
 	"Scrolling has finished for a button."
 	
 	self finishedScrolling.
@@ -380,22 +316,16 @@ ScrollBar>>finishedScrolling: event [
 							borderStyle: self normalButtonBorderStyle]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>initialize [
+{ #category : #initialization }
+ScrollBar >> initialize [
 	super initialize.
 	scrollDelta := 0.02.
 	pageDelta := 0.2.
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>initializeDownButton [
+{ #category : #initialization }
+ScrollBar >> initializeDownButton [
 	"initialize the receiver's downButton"
 
 	downButton := self theme newScrollBarDownButtonFor: self.
@@ -421,11 +351,8 @@ ScrollBar>>initializeDownButton [
 	self addMorph: downButton
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>initializePagingArea [
+{ #category : #initialization }
+ScrollBar >> initializePagingArea [
 	"Initialize the receiver's pagingArea."
 	
 	pagingArea := Morph
@@ -449,11 +376,8 @@ ScrollBar>>initializePagingArea [
 	self on: #mouseLeave send: #mouseLeavePagingArea: to: self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>initializeSlider [
+{ #category : #initialization }
+ScrollBar >> initializeSlider [
 	"Initialize the receiver's slider."
 	
 	self initializeUpButton; initializeDownButton; initializePagingArea.
@@ -467,11 +391,8 @@ ScrollBar>>initializeSlider [
 	slider on: #mouseLeave send: #mouseLeaveThumb: to: self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>initializeUpButton [
+{ #category : #initialization }
+ScrollBar >> initializeUpButton [
 	"initialize the receiver's upButton"
 	upButton := self theme newScrollBarUpButtonFor: self.
 	upButton color: self thumbColor.
@@ -495,11 +416,8 @@ ScrollBar>>initializeUpButton [
 	self addMorph: upButton
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>interval: d [
+{ #category : #access }
+ScrollBar >> interval: d [
 	"Supply an optional floating fraction so slider can expand to indicate range.
 	Update the fill style for the tumb (may have extent-based elements)."
 	
@@ -512,38 +430,26 @@ ScrollBar>>interval: d [
 		ifFalse: [slider fillStyle: self normalThumbFillStyle]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>lastPaneColor [
+{ #category : #accessing }
+ScrollBar >> lastPaneColor [
 	^ lastPaneColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>lastPaneColor: anObject [
+{ #category : #accessing }
+ScrollBar >> lastPaneColor: anObject [
 	lastPaneColor := anObject
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>menuImage [
+{ #category : #initialize }
+ScrollBar >> menuImage [
 	"answer a form to be used in the menu button"
 	^ self class
 		boxOfSize: (self buttonExtent x min: self buttonExtent y)
 		color: self thumbColor
 ]
 
-{
-	#category : #'other events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseDownInSlider: event [
+{ #category : #'other events' }
+ScrollBar >> mouseDownInSlider: event [
 	"The mouse has been pressed in the slider area."
 	
 	interval = 1.0 ifTrue:
@@ -561,11 +467,8 @@ ScrollBar>>mouseDownInSlider: event [
 			show]
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseEnterDownButton: event [
+{ #category : #mouse }
+ScrollBar >> mouseEnterDownButton: event [
 	"The mouse has entered the down button."
 	
 	downButton
@@ -574,11 +477,8 @@ ScrollBar>>mouseEnterDownButton: event [
 		changed
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseEnterPagingArea: event [
+{ #category : #mouse }
+ScrollBar >> mouseEnterPagingArea: event [
 	"The mouse has entered the paging area."
 	
 	pagingArea
@@ -599,11 +499,8 @@ ScrollBar>>mouseEnterPagingArea: event [
 		changed
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseEnterThumb: event [
+{ #category : #mouse }
+ScrollBar >> mouseEnterThumb: event [
 	"The mouse has entered the thumb."
 	
 	slider
@@ -620,11 +517,8 @@ ScrollBar>>mouseEnterThumb: event [
 		changed
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseEnterUpButton: event [
+{ #category : #mouse }
+ScrollBar >> mouseEnterUpButton: event [
 	"The mouse has entered the up button."
 	
 	upButton
@@ -633,11 +527,8 @@ ScrollBar>>mouseEnterUpButton: event [
 		changed
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseLeaveDownButton: event [
+{ #category : #mouse }
+ScrollBar >> mouseLeaveDownButton: event [
 	"The mouse has left the down button."
 
 	event redButtonPressed
@@ -648,11 +539,8 @@ ScrollBar>>mouseLeaveDownButton: event [
 				changed ]
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseLeavePagingArea: event [
+{ #category : #mouse }
+ScrollBar >> mouseLeavePagingArea: event [
 	"The mouse has left the paging area."
 	
 	pagingArea
@@ -673,11 +561,8 @@ ScrollBar>>mouseLeavePagingArea: event [
 		changed
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseLeaveThumb: event [
+{ #category : #mouse }
+ScrollBar >> mouseLeaveThumb: event [
 	"The mouse has left the thumb."
 
 	| buttonFillStyle buttonBorderStyle |
@@ -703,11 +588,8 @@ ScrollBar>>mouseLeaveThumb: event [
 		borderStyle: buttonBorderStyle.
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseLeaveUpButton: event [
+{ #category : #mouse }
+ScrollBar >> mouseLeaveUpButton: event [
 	"The mouse has left the up button."
 
 	event redButtonPressed
@@ -718,136 +600,97 @@ ScrollBar>>mouseLeaveUpButton: event [
 				changed ]
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseOverBorderStyle [
+{ #category : #style }
+ScrollBar >> mouseOverBorderStyle [
 	"Return the mouse over borderStyle for the receiver."
 	
 	^self theme scrollbarMouseOverBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseOverButtonBorderStyle [
+{ #category : #style }
+ScrollBar >> mouseOverButtonBorderStyle [
 	"Return the mouse over button borderStyle for the receiver."
 	
 	^self theme scrollbarMouseOverButtonBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseOverButtonFillStyle [
+{ #category : #style }
+ScrollBar >> mouseOverButtonFillStyle [
 	"Return the mouse over button fillStyle for the receiver."
 	
 	^self theme scrollbarMouseOverButtonFillStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseOverFillStyle [
+{ #category : #style }
+ScrollBar >> mouseOverFillStyle [
 	"Return the mouse over fillStyle for the receiver."
 	
 	^self theme scrollbarMouseOverFillStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseOverPagingAreaButtonBorderStyle [
+{ #category : #style }
+ScrollBar >> mouseOverPagingAreaButtonBorderStyle [
 	"Return the button borderStyle for the receiver when the mouse
 	is over the paging area."
 	
 	^self theme scrollbarMouseOverBarButtonBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseOverPagingAreaButtonFillStyle [
+{ #category : #style }
+ScrollBar >> mouseOverPagingAreaButtonFillStyle [
 	"Return the button fillStyle for the receiver when the mouse
 	is over the paging area."
 	
 	^self theme scrollbarMouseOverBarButtonFillStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseOverPagingAreaThumbBorderStyle [
+{ #category : #style }
+ScrollBar >> mouseOverPagingAreaThumbBorderStyle [
 	"Return the thumb borderStyle for the receiver when the mouse
 	is over the paging area."
 	
 	^self theme scrollbarMouseOverBarThumbBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseOverPagingAreaThumbFillStyle [
+{ #category : #style }
+ScrollBar >> mouseOverPagingAreaThumbFillStyle [
 	"Return the thumb fillStyle for the receiver when the mouse
 	is over the paging area."
 	
 	^self theme scrollbarMouseOverBarThumbFillStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseOverThumbBorderStyle [
+{ #category : #style }
+ScrollBar >> mouseOverThumbBorderStyle [
 	"Return the mouse over thumb borderStyle for the receiver."
 	
 	^self theme scrollbarMouseOverThumbBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseOverThumbButtonBorderStyle [
+{ #category : #style }
+ScrollBar >> mouseOverThumbButtonBorderStyle [
 	"Return the button borderStyle for the receiver when the mouse
 	is over the thumb."
 	
 	^self theme scrollbarMouseOverThumbButtonBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseOverThumbButtonFillStyle [
+{ #category : #style }
+ScrollBar >> mouseOverThumbButtonFillStyle [
 	"Return the mouse over thumb fillStyle for the receiver."
 	
 	^self theme scrollbarMouseOverThumbButtonFillStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseOverThumbFillStyle [
+{ #category : #style }
+ScrollBar >> mouseOverThumbFillStyle [
 	"Return the mouse over thumb fillStyle for the receiver."
 	
 	^self theme scrollbarMouseOverThumbFillStyleFor: self
 ]
 
-{
-	#category : #mouse,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>mouseUpInSlider: event [
+{ #category : #mouse }
+ScrollBar >> mouseUpInSlider: event [
 	"The mouse button has been released."
 	
 	sliderShadow hide.
@@ -859,203 +702,140 @@ ScrollBar>>mouseUpInSlider: event [
 	slider changed
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>normalBorderStyle [
+{ #category : #style }
+ScrollBar >> normalBorderStyle [
 	"Return the normal borderStyle for the receiver."
 	
 	^self theme scrollbarNormalBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>normalButtonBorderStyle [
+{ #category : #style }
+ScrollBar >> normalButtonBorderStyle [
 	"Return the normal button borderStyle for the receiver."
 	
 	^self theme scrollbarNormalButtonBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>normalButtonFillStyle [
+{ #category : #style }
+ScrollBar >> normalButtonFillStyle [
 	"Return the normal button fillStyle for the receiver."
 	
 	^self theme scrollbarNormalButtonFillStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>normalFillStyle [
+{ #category : #style }
+ScrollBar >> normalFillStyle [
 	"Return the normal fillStyle for the receiver."
 	
 	^self theme scrollbarNormalFillStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>normalThumbBorderStyle [
+{ #category : #style }
+ScrollBar >> normalThumbBorderStyle [
 	"Return the normal thumb borderStyle for the receiver."
 	
 	^self theme scrollbarNormalThumbBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>normalThumbFillStyle [
+{ #category : #style }
+ScrollBar >> normalThumbFillStyle [
 	"Return the normal thumb fillStyle for the receiver."
 	
 	^self theme scrollbarNormalThumbFillStyleFor: self
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>pagingArea [
+{ #category : #access }
+ScrollBar >> pagingArea [
 	^pagingArea
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>pressedBorderStyle [
+{ #category : #style }
+ScrollBar >> pressedBorderStyle [
 	"Return the pressed borderStyle for the receiver."
 	
 	^self theme scrollbarPressedBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>pressedButtonBorderStyle [
+{ #category : #style }
+ScrollBar >> pressedButtonBorderStyle [
 	"Return the pressed button borderStyle for the receiver."
 	
 	^self theme scrollbarPressedButtonBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>pressedButtonFillStyle [
+{ #category : #style }
+ScrollBar >> pressedButtonFillStyle [
 	"Return the pressed button fillStyle for the receiver."
 	
 	^self theme scrollbarPressedButtonFillStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>pressedFillStyle [
+{ #category : #style }
+ScrollBar >> pressedFillStyle [
 	"Return the pressed fillStyle for the receiver."
 	
 	^self theme scrollbarPressedFillStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>pressedThumbBorderStyle [
+{ #category : #style }
+ScrollBar >> pressedThumbBorderStyle [
 	"Return the pressed thumb borderStyle for the receiver."
 	
 	^self theme scrollbarPressedThumbBorderStyleFor: self
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>pressedThumbFillStyle [
+{ #category : #style }
+ScrollBar >> pressedThumbFillStyle [
 	"Return the pressed thumb fillStyle for the receiver."
 	
 	^self theme scrollbarPressedThumbFillStyleFor: self
 ]
 
-{
-	#category : #'scroll timing',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>resetTimer [
+{ #category : #'scroll timing' }
+ScrollBar >> resetTimer [
 	timeOfMouseDown := Time millisecondClockValue.
 	timeOfLastScroll := timeOfMouseDown - 1000 max: 0.
 	nextPageDirection := nil.
 	currentScrollDelay := nil
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>scrollAbsolute: event [
+{ #category : #scrolling }
+ScrollBar >> scrollAbsolute: event [
 	"Just don't if it is not the red button and we are drawing gradients."
 	
 	event redButtonPressed ifFalse: [^self].
 	^super scrollAbsolute: event
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>scrollBarAction [
+{ #category : #scrolling }
+ScrollBar >> scrollBarAction [
 	^self valueOfProperty: #scrollBarAction
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>scrollBarAction: aSymbol [
+{ #category : #scrolling }
+ScrollBar >> scrollBarAction: aSymbol [
 	self setProperty: #scrollBarAction toValue: aSymbol
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>scrollDelta [
+{ #category : #access }
+ScrollBar >> scrollDelta [
 	^ scrollDelta
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>scrollDelta: d1 pageDelta: d2 [
+{ #category : #access }
+ScrollBar >> scrollDelta: d1 pageDelta: d2 [
 	"Supply optional increments for better scrolling of, eg, text"
 	scrollDelta := d1.
 	pageDelta := d2.
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>scrollDown: count [
+{ #category : #scrolling }
+ScrollBar >> scrollDown: count [
 	self setValue: (value + (scrollDelta * count) + 0.000001 min: 1.0)
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>scrollDownInit [
+{ #category : #access }
+ScrollBar >> scrollDownInit [
 	"Initialize a scroll down (from button) operation.
 	Fixed to perform immediately with deferred 
 	stepping for subsequent hold of button."
@@ -1075,19 +855,13 @@ ScrollBar>>scrollDownInit [
 	downButton borderStyle: self pressedButtonBorderStyle
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>scrollLeft: count [
+{ #category : #scrolling }
+ScrollBar >> scrollLeft: count [
 	self scrollUp: count
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>scrollPageInit: evt [
+{ #category : #access }
+ScrollBar >> scrollPageInit: evt [
 	"Scroll initiated by the paging area."
 	
 	self resetTimer.
@@ -1101,27 +875,18 @@ ScrollBar>>scrollPageInit: evt [
 	self startStepping: #stepAt: at: Time millisecondClockValue + self stepTime arguments: nil stepTime: nil
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>scrollRight: count [
+{ #category : #scrolling }
+ScrollBar >> scrollRight: count [
 	self scrollDown: count
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>scrollUp: count [
+{ #category : #scrolling }
+ScrollBar >> scrollUp: count [
 	self setValue: (value - (scrollDelta * count) - 0.000001 max: 0.0)
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>scrollUpInit [
+{ #category : #access }
+ScrollBar >> scrollUpInit [
 	"Initialize a scroll up (from button) operation.
 	Fixed to perform immediately with deferred 
 	stepping for subsequent hold of button."
@@ -1141,11 +906,8 @@ ScrollBar>>scrollUpInit [
 	upButton borderStyle: self pressedButtonBorderStyle
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>setNextDirectionFromEvent: event [
+{ #category : #scrolling }
+ScrollBar >> setNextDirectionFromEvent: event [
 
 	nextPageDirection := bounds isWide ifTrue: [
 		event cursorPoint x >= slider center x
@@ -1157,11 +919,8 @@ ScrollBar>>setNextDirectionFromEvent: event [
 
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>setValue: newValue [
+{ #category : #'model access' }
+ScrollBar >> setValue: newValue [
 	"Using roundTo: instead of truncateTo: ensures that scrollUp will scroll the same distance as scrollDown.
 	Fix for >= 1.0 since, when close the roundTo may round down and not allow the value to reach
 	the full range."
@@ -1171,21 +930,15 @@ ScrollBar>>setValue: newValue [
 	^ super setValue: (newValue roundTo: scrollDelta)
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>slider [
+{ #category : #access }
+ScrollBar >> slider [
 	"Answer the slider."
 
 	^slider
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>sliderColor: aColor  [
+{ #category : #access }
+ScrollBar >> sliderColor: aColor [ 
 	"Change the color of the scrollbar to go with aColor."
 	| buttonColor |
 	super sliderColor: aColor.
@@ -1204,48 +957,33 @@ ScrollBar>>sliderColor: aColor  [
 	^self adoptGradientColor: aColor
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>sliderExtent [
+{ #category : #geometry }
+ScrollBar >> sliderExtent [
 	"The sliderExtent is now stored in the slider itself, not hardcoded as it is in the superclass."
 	^slider extent
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>sliderThickness [
+{ #category : #geometry }
+ScrollBar >> sliderThickness [
 	"Answer the minimum width/height of the scrollbar thumb. Refer to the theme."
 	
 	^self theme scrollbarMinimumThumbThickness
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>step [
+{ #category : #'stepping and presenter' }
+ScrollBar >> step [
 	| action |
 	action := self scrollBarAction.
 	action ifNotNil:[self perform: action].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>stepTime [
+{ #category : #testing }
+ScrollBar >> stepTime [
 	^ currentScrollDelay ifNil: [300]
 ]
 
-{
-	#category : #update,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>themeChanged [
+{ #category : #update }
+ScrollBar >> themeChanged [
 	"Update the buttons, slider and paging area."
 
 	self
@@ -1254,21 +992,15 @@ ScrollBar>>themeChanged [
 	super themeChanged
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>thumbColor [
+{ #category : #access }
+ScrollBar >> thumbColor [
 	"Problem: Part of the ScrollBar/Slider code uses 'slider' to mean the entire scrollbar/slider widget, and part of it uses 'slider' to mean only the draggable 'thumb'.  This should be cleaned up so that 'thumb' is used instead of 'slider' where appropriate.  For now, the meaning of thumbColor is clear, at least."
 
 	^self class imageColorFor: self
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>totalSliderArea [
+{ #category : #geometry }
+ScrollBar >> totalSliderArea [
 	| upperBoundsButton |
 	upperBoundsButton := upButton.
 	bounds isWide
@@ -1283,11 +1015,8 @@ ScrollBar>>totalSliderArea [
 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>upImage [
+{ #category : #initialize }
+ScrollBar >> upImage [
 	"answer a form to be used in the up button"
 	^ self class
 		arrowOfDirection: (bounds isWide
@@ -1297,42 +1026,30 @@ ScrollBar>>upImage [
 		color: self buttonImageColor
 ]
 
-{
-	#category : #update,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>updateDownButtonBounds [
+{ #category : #update }
+ScrollBar >> updateDownButtonBounds [
 	"update the receiver's downButton bounds"
 	
 	downButton bounds: (self theme scrollBarDownButtonBoundsFor: self)
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>updateDownButtonImage [
+{ #category : #initialize }
+ScrollBar >> updateDownButtonImage [
 	"update the receiver's downButton.  put a new image inside"
 	downButton removeAllMorphs.
 	downButton
 		addMorphCentered: (ImageMorph new form: self downImage)
 ]
 
-{
-	#category : #update,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>updatePagingAreaBounds [
+{ #category : #update }
+ScrollBar >> updatePagingAreaBounds [
 	"Initialize the receiver's pagingArea."
 	
 	pagingArea bounds: self totalSliderArea
 ]
 
-{
-	#category : #update,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>updateSliderBounds [
+{ #category : #update }
+ScrollBar >> updateSliderBounds [
 	"Initialize the receiver's slider."
 	
 	self 
@@ -1343,32 +1060,23 @@ ScrollBar>>updateSliderBounds [
 	
 ]
 
-{
-	#category : #update,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>updateUpButtonBounds [
+{ #category : #update }
+ScrollBar >> updateUpButtonBounds [
 	"update the receiver's upButton bounds"
 
 	upButton bounds: (self theme scrollBarUpButtonBoundsFor: self)
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>updateUpButtonImage [
+{ #category : #initialize }
+ScrollBar >> updateUpButtonImage [
 "update the receiver's upButton. put a new image inside"
 	upButton removeAllMorphs.
 	upButton
 		addMorphCentered: (ImageMorph new form: self upImage)
 ]
 
-{
-	#category : #'scroll timing',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>waitForDelay1: delay1 delay2: delay2  [
+{ #category : #'scroll timing' }
+ScrollBar >> waitForDelay1: delay1 delay2: delay2 [ 
 	"Return true if an appropriate delay has passed since the last scroll operation.
 	The delay decreases exponentially from delay1 to delay2."
 
@@ -1381,10 +1089,7 @@ ScrollBar>>waitForDelay1: delay1 delay2: delay2  [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollBar>>wantsSteps [
+{ #category : #testing }
+ScrollBar >> wantsSteps [
 	^self scrollBarAction notNil
 ]

@@ -11,26 +11,19 @@ Class {
 		'model',
 		'disabledStyle'
 	],
-	#category : #Morphic-Widgets-Basic,
-	#timestamp : 'gvc 5/18/2007 12:48'
+	#category : #Morphic-Widgets-Basic
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph class>>example [
+{ #category : #examples }
+LabelMorph class >> example [
 	"self example"
 
 	<exampleWidget>
 	^ (self newLabel: 'A Label') openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph class>>exampleDisable [
+{ #category : #examples }
+LabelMorph class >> exampleDisable [
 	"self exampleDisable"
 
 	<exampleWidget>
@@ -39,11 +32,8 @@ LabelMorph class>>exampleDisable [
 		openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph class>>exampleDisableInset [
+{ #category : #examples }
+LabelMorph class >> exampleDisableInset [
 	"self exampleDisable"
 
 	<exampleWidget>
@@ -54,21 +44,15 @@ LabelMorph class>>exampleDisableInset [
 		openInWindow
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph class>>labelFont [
+{ #category : #'instance creation' }
+LabelMorph class >> labelFont [
 	"in the future should access an instance variable"
 		
 	^StandardFonts defaultFont
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph class>>newLabel: aString [
+{ #category : #'instance creation' }
+LabelMorph class >> newLabel: aString [
 	"Answer a new text label morph."
 
 	^self
@@ -77,11 +61,8 @@ LabelMorph class>>newLabel: aString [
 		getEnabled: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph class>>newLabelFor: aModel label: aString getEnabled: enabledSel [
+{ #category : #'instance creation' }
+LabelMorph class >> newLabelFor: aModel label: aString getEnabled: enabledSel [
 	"Answer a new text label whose model is aModel"
 
 	^ ( self contents: aString font: self labelFont )
@@ -89,50 +70,34 @@ LabelMorph class>>newLabelFor: aModel label: aString getEnabled: enabledSel [
 		getEnabledSelector: enabledSel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>adoptPaneColor: aColor [
-
+{ #category : #accessing }
+LabelMorph >> adoptPaneColor: aColor [
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>disable [
+{ #category : #protocol }
+LabelMorph >> disable [
 	"Disable the receiver."
 	
 	self enabled: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>disabledStyle [
+{ #category : #accessing }
+LabelMorph >> disabledStyle [
 	"Answer the value of disabledStyle"
 
 	^ disabledStyle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>disabledStyle: anObject [
+{ #category : #accessing }
+LabelMorph >> disabledStyle: anObject [
 	"Set the value of disabledStyle"
 
 	disabledStyle := anObject.
 	self changed
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+LabelMorph >> drawOn: aCanvas [
 	"Draw based on enablement."
 
 	super drawOn: aCanvas.
@@ -152,31 +117,22 @@ LabelMorph>>drawOn: aCanvas [
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>enable [
+{ #category : #protocol }
+LabelMorph >> enable [
 	"Enable the receiver."
 	
 	self enabled: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>enabled [
+{ #category : #accessing }
+LabelMorph >> enabled [
 	"Answer the value of enabled"
 
 	^enabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>enabled: aBoolean [
+{ #category : #accessing }
+LabelMorph >> enabled: aBoolean [
 	"Set the value of enabled"
 
 	enabled == aBoolean ifFalse: [
@@ -186,51 +142,36 @@ LabelMorph>>enabled: aBoolean [
 			changed]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>getEnabledSelector [
+{ #category : #accessing }
+LabelMorph >> getEnabledSelector [
 	"Answer the value of getEnabledSelector"
 
 	^ getEnabledSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>getEnabledSelector: anObject [
+{ #category : #accessing }
+LabelMorph >> getEnabledSelector: anObject [
 	"Set the value of getEnabledSelector"
 
 	getEnabledSelector := anObject.
 	self updateEnabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>getTextSelector [
+{ #category : #accessing }
+LabelMorph >> getTextSelector [
 
 	^ getTextSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>getTextSelector: aSymbol [
+{ #category : #accessing }
+LabelMorph >> getTextSelector: aSymbol [
 
 	getTextSelector := aSymbol.
 	self updateText
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>initWithContents: aString font: aFont emphasis: emphasisCode [
+{ #category : #initialization }
+LabelMorph >> initWithContents: aString font: aFont emphasis: emphasisCode [
 	"Grrr, why do they do basicNew?"
 	
 	super initWithContents: aString font: aFont emphasis: emphasisCode.
@@ -239,19 +180,13 @@ LabelMorph>>initWithContents: aString font: aFont emphasis: emphasisCode [
 		enabled: true
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>initialColorInSystemWindow: aSystemWindow [
+{ #category : #'as yet unclassified' }
+LabelMorph >> initialColorInSystemWindow: aSystemWindow [
 	^ self theme textColor
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>initialize [
+{ #category : #initialization }
+LabelMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -260,60 +195,42 @@ LabelMorph>>initialize [
 		enabled: true
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>interactionState: aSymbol [
+{ #category : #protocol }
+LabelMorph >> interactionState: aSymbol [
 	"Backstop here to prevent 'legacy' color handling being applied from
 	pluggable buttons."
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>isMorphicModel [
+{ #category : #compatibility }
+LabelMorph >> isMorphicModel [
 	^true
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>minHeight [
+{ #category : #layout }
+LabelMorph >> minHeight [
 	"Answer the receiver's minimum height.
 	based on font height."
 	
 	^self fontToUse height rounded max: super minHeight
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>minWidth [
+{ #category : #layout }
+LabelMorph >> minWidth [
 	"Answer the minmum width of the receiver.
 	Based on font and contents."
 
 	^self valueOfProperty: #minWidth ifAbsent: [self measureContents x] "allow override"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>model [
+{ #category : #accessing }
+LabelMorph >> model [
 	"Answer the value of model"
 
 	^model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>model: anObject [
+{ #category : #accessing }
+LabelMorph >> model: anObject [
 	"Set my model and make me me a dependent of the given object."
 
 	model ifNotNil: [model removeDependent: self].
@@ -321,22 +238,16 @@ LabelMorph>>model: anObject [
 	model := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>stringColor [
+{ #category : #accessing }
+LabelMorph >> stringColor [
 
 	^ self enabled
 		ifTrue: [ self color ]
 		ifFalse: [ self theme labelDisabledColorFor: self ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>update: aSymbol  [
+{ #category : #updating }
+LabelMorph >> update: aSymbol [ 
 	"Refer to the comment in View|update:."
 
 	aSymbol == self getEnabledSelector ifTrue:
@@ -347,11 +258,8 @@ LabelMorph>>update: aSymbol  [
 		^ self]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>updateEnabled [
+{ #category : #updating }
+LabelMorph >> updateEnabled [
 	"Update the enablement state."
 
 	self model ifNotNil: [
@@ -359,11 +267,8 @@ LabelMorph>>updateEnabled [
 			self enabled: (self model perform: self getEnabledSelector)]]
 ]
 
-{
-	#category : #update,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LabelMorph>>updateText [
+{ #category : #update }
+LabelMorph >> updateText [
 	"Update the text contents."
 
 	self model ifNotNil: [

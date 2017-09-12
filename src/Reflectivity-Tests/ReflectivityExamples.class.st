@@ -12,162 +12,107 @@ Class {
 		'ClassVar',
 		'singleton'
 	],
-	#category : #Reflectivity-Tests,
-	#timestamp : 'MarcusDenker 3/8/2015 09:28'
+	#category : #Reflectivity-Tests
 }
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples class>>exampleMethodWithMetaLinkOptionsViaClass [
+{ #category : #options }
+ReflectivityExamples class >> exampleMethodWithMetaLinkOptionsViaClass [
 	^ 2 + 3
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples class>>metaLinkOptions [
+{ #category : #options }
+ReflectivityExamples class >> metaLinkOptions [
 	^{
 	#exampleMethodWithMetaLinkOptionsViaClass -> #( + optionCompileOnLinkInstallation)
 	}
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleArray [
+{ #category : #examples }
+ReflectivityExamples >> exampleArray [
 	^ {3}
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleAssignment [
+{ #category : #examples }
+ReflectivityExamples >> exampleAssignment [
 	| temp |
 	temp := (1 + 2).
 	^temp
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleBlock [
+{ #category : #examples }
+ReflectivityExamples >> exampleBlock [
 	^ [2 + 3] value
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleBlockNoValue [
+{ #category : #examples }
+ReflectivityExamples >> exampleBlockNoValue [
 	^ [2 + 3]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleClassVarRead [
+{ #category : #examples }
+ReflectivityExamples >> exampleClassVarRead [
 	^ClassVar
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleGlobalRead [
+{ #category : #examples }
+ReflectivityExamples >> exampleGlobalRead [
 	^GlobalForTesting
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleIfTrueIfFalse [
+{ #category : #examples }
+ReflectivityExamples >> exampleIfTrueIfFalse [
 	| t |
 	t := false.
 	t ifTrue: [ self bar ] ifFalse: [ 'hello' ].
 	^ 5 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleIvarRead [
+{ #category : #examples }
+ReflectivityExamples >> exampleIvarRead [
 	^ivar 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleLazyInit [
+{ #category : #examples }
+ReflectivityExamples >> exampleLazyInit [
 	^ singleton ifNil: [singleton := self new initialize]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleLiteral [
+{ #category : #examples }
+ReflectivityExamples >> exampleLiteral [
 	^ 2
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleLiteralArray [
+{ #category : #examples }
+ReflectivityExamples >> exampleLiteralArray [
 	^ #(1)
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleMethod [
+{ #category : #examples }
+ReflectivityExamples >> exampleMethod [
 	^ 2 + 3
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleMethodMultipleSites [
+{ #category : #examples }
+ReflectivityExamples >> exampleMethodMultipleSites [
 	Transcript show: Object new.
 	^ 2 + 3
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleMethodWithMetaLinkOptions [
+{ #category : #examples }
+ReflectivityExamples >> exampleMethodWithMetaLinkOptions [
 	<metaLinkOptions: #( +optionCompileOnLinkInstallation)>
 	^ 2 + 3
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>examplePrimitiveMethod [
+{ #category : #examples }
+ReflectivityExamples >> examplePrimitiveMethod [
 	"returns image path"
 	<primitive: 121>
 	^ 2 + 3
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleSendNoReturn [
+{ #category : #examples }
+ReflectivityExamples >> exampleSendNoReturn [
 	"just an example method that calls a mutation outside of a assignment or return node.
 (needed for before link test with receiver reification"
 
@@ -176,52 +121,34 @@ ReflectivityExamples>>exampleSendNoReturn [
 	collection removeAt:1.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleSendTwoArgs [
+{ #category : #examples }
+ReflectivityExamples >> exampleSendTwoArgs [
 	^ Array with: 1 with: 2.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleTwoSends [
+{ #category : #examples }
+ReflectivityExamples >> exampleTwoSends [
 	3 + 4.
 	^ 2 + 3
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>exampleWithArg: anArg [
+{ #category : #examples }
+ReflectivityExamples >> exampleWithArg: anArg [
 	^ 2 + anArg
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>initialize [
+{ #category : #initialization }
+ReflectivityExamples >> initialize [
 	ivar := 33.
 	ClassVar := #AClassVar.
 ]
 
-{
-	#category : #tagging,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>tag [
+{ #category : #tagging }
+ReflectivityExamples >> tag [
 	^tag
 ]
 
-{
-	#category : #tagging,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityExamples>>tagExec: anObject [
+{ #category : #tagging }
+ReflectivityExamples >> tagExec: anObject [
 	tag := anObject
 ]

@@ -10,56 +10,37 @@ Class {
 		'size',
 		'cons'
 	],
-	#category : #OpalCompiler-Core-IR-Nodes,
-	#timestamp : 'MarcusDenker 8/11/2014 10:16'
+	#category : #OpalCompiler-Core-IR-Nodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushArray>>accept: aVisitor [
+{ #category : #visiting }
+IRPushArray >> accept: aVisitor [
 	^ aVisitor visitPushArray: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushArray>>cons [
+{ #category : #accessing }
+IRPushArray >> cons [
 	^ cons
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushArray>>cons: aBool [
+{ #category : #accessing }
+IRPushArray >> cons: aBool [
 	cons := aBool.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushArray>>initialize [
+{ #category : #initialization }
+IRPushArray >> initialize [
 	size := 0.
 	cons := false.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushArray>>size  [
+{ #category : #accessing }
+IRPushArray >> size [ 
 	^ size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushArray>>size: aSmallInteger  [
+{ #category : #accessing }
+IRPushArray >> size: aSmallInteger [ 
 	size := aSmallInteger
 ]

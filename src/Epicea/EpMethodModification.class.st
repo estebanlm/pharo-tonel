@@ -8,15 +8,11 @@ Class {
 		'oldMethod',
 		'newMethod'
 	],
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 14:49'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodModification class>>oldMethod: anOldMethod newMethod: aNewMethod [
+{ #category : #'instance creation' }
+EpMethodModification class >> oldMethod: anOldMethod newMethod: aNewMethod [
 
 	^ self basicNew
 		initializeWithOldMethod: anOldMethod
@@ -24,94 +20,64 @@ EpMethodModification class>>oldMethod: anOldMethod newMethod: aNewMethod [
 		yourself
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodModification>>accept: aVisitor [
+{ #category : #visitor }
+EpMethodModification >> accept: aVisitor [
 
 	^ aVisitor visitMethodModification: self 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodModification>>affectedPackageName [
+{ #category : #accessing }
+EpMethodModification >> affectedPackageName [
 
 	^ self newMethod package
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodModification>>initializeWithOldMethod: anOldMethod newMethod: aNewMethod [
+{ #category : #initialization }
+EpMethodModification >> initializeWithOldMethod: anOldMethod newMethod: aNewMethod [
 
 	self initialize.
 	oldMethod := anOldMethod asEpiceaRingDefinition.
 	newMethod := aNewMethod asEpiceaRingDefinition.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodModification>>methodAffected [
+{ #category : #accessing }
+EpMethodModification >> methodAffected [
 	
 	^ newMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodModification>>newMethod [
+{ #category : #accessing }
+EpMethodModification >> newMethod [
 
 	^ newMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodModification>>newProtocol [
+{ #category : #accessing }
+EpMethodModification >> newProtocol [
 
 	^ newMethod protocol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodModification>>newSourceCode [
+{ #category : #accessing }
+EpMethodModification >> newSourceCode [
 
 	^ newMethod sourceCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodModification>>oldMethod [
+{ #category : #accessing }
+EpMethodModification >> oldMethod [
 
 	^ oldMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodModification>>oldProtocol [
+{ #category : #accessing }
+EpMethodModification >> oldProtocol [
 
 	^ oldMethod protocol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodModification>>oldSourceCode [
+{ #category : #accessing }
+EpMethodModification >> oldSourceCode [
 
 	^ oldMethod sourceCode
 ]

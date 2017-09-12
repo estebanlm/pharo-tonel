@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'exclusions'
 	],
-	#category : #Traits-Composition,
-	#timestamp : '<historical>'
+	#category : #Traits-Composition
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitExclusion class>>with: aTraitComposition exclusions: anArrayOfSelectors [
+{ #category : #'instance creation' }
+TraitExclusion class >> with: aTraitComposition exclusions: anArrayOfSelectors [
 	^self new
 		subject: aTraitComposition;
 		exclusions: anArrayOfSelectors;
@@ -23,29 +19,20 @@ TraitExclusion class>>with: aTraitComposition exclusions: anArrayOfSelectors [
 
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitExclusion>>- anArrayOfSelectors [
+{ #category : #composition }
+TraitExclusion >> - anArrayOfSelectors [
 	^TraitExclusion
 		with: subject
 		exclusions: (anArrayOfSelectors, exclusions asArray)
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitExclusion>>addExclusionOf: aSymbol [
+{ #category : #composition }
+TraitExclusion >> addExclusionOf: aSymbol [
 	self exclusions: (self exclusions copyWith: aSymbol)
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitExclusion>>allSelectors [
+{ #category : #enquiries }
+TraitExclusion >> allSelectors [
 	| selectors |
 	selectors := self subject allSelectors.
 	self exclusions do: [:each |
@@ -53,65 +40,44 @@ TraitExclusion>>allSelectors [
 	^selectors
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitExclusion>>collectMethodsFor: aSelector into: methodDescription [
+{ #category : #enquiries }
+TraitExclusion >> collectMethodsFor: aSelector into: methodDescription [
 	(self exclusions includes: aSelector) ifFalse: [
 		self subject
 			collectMethodsFor: aSelector
 			into: methodDescription]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitExclusion>>copyTraitExpression [
+{ #category : #copying }
+TraitExclusion >> copyTraitExpression [
 	^super copyTraitExpression 
 		exclusions: self exclusions deepCopy;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitExclusion>>exclusions [
+{ #category : #accessing }
+TraitExclusion >> exclusions [
 	^exclusions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitExclusion>>exclusions: aCollection [
+{ #category : #accessing }
+TraitExclusion >> exclusions: aCollection [
 	exclusions := aCollection
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitExclusion>>isEmpty [
+{ #category : #testing }
+TraitExclusion >> isEmpty [
 	^self exclusions isEmpty
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitExclusion>>postCopy [
+{ #category : #copying }
+TraitExclusion >> postCopy [
 	super postCopy.
 	exclusions := exclusions copy
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitExclusion>>printOn: aStream [
+{ #category : #printing }
+TraitExclusion >> printOn: aStream [
 	super printOn: aStream. 
 	aStream
 		space;
@@ -123,11 +89,8 @@ TraitExclusion>>printOn: aStream [
 	aStream nextPut: $}
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitExclusion>>syntacticallyEquals: aTraitTransformation [
+{ #category : #comparing }
+TraitExclusion >> syntacticallyEquals: aTraitTransformation [
 	"Test syntactic equivalence of this trait transformation with another. 
 	The order of the exclusions is taken into account. For example, A - { #x. #y } ~= A - { #y. #x }."
 

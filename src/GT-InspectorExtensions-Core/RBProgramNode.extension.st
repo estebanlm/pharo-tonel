@@ -1,12 +1,7 @@
-Extension {
-	#name : #RBProgramNode
-}
+Extension { #name : #RBProgramNode }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-RBProgramNode>>gtInspectorSourceCodeIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+RBProgramNode >> gtInspectorSourceCodeIn: composite [
 	<gtInspectorPresentationOrder: 30> 
 
 	^ composite pharoMethod 
@@ -20,11 +15,8 @@ RBProgramNode>>gtInspectorSourceCodeIn: composite [
 		act: [ self methodNode method compiledMethod browse ] icon: GLMUIThemeExtraIcons glamorousBrowse entitled: 'Browse'
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-RBProgramNode>>gtInspectorTreeIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+RBProgramNode >> gtInspectorTreeIn: composite [
 	<gtInspectorPresentationOrder: 30> 
 	^ (GTSimpleRBTreeBrowser new treeIn: composite)
 		title: 'Tree'

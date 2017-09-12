@@ -1,20 +1,12 @@
-Extension {
-	#name : #Trait
-}
+Extension { #name : #Trait }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Trait>>spotterActDefault [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Trait >> spotterActDefault [
 	^ self browse
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Trait>>spotterClassMethodsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Trait >> spotterClassMethodsFor: aStep [
 	<spotterOrder: 15>
 	aStep listProcessor
 			title: 'Class methods';
@@ -23,11 +15,8 @@ Trait>>spotterClassMethodsFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Trait>>spotterMethodsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Trait >> spotterMethodsFor: aStep [
 	<spotterOrder: 10>
 	aStep listProcessor
 			title: 'Instance methods';
@@ -36,11 +25,8 @@ Trait>>spotterMethodsFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Trait>>spotterPreviewCodeIn: aComposite [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Trait >> spotterPreviewCodeIn: aComposite [
 	<spotterPreview: 10>
 	aComposite pharoMethod
 		title: [self name];
@@ -51,11 +37,8 @@ Trait>>spotterPreviewCodeIn: aComposite [
 	self flag: 'move "entity: self" somewhere else, maybe'
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Trait>>spotterReferenceFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Trait >> spotterReferenceFor: aStep [
 	<spotterOrder: 30>
 	aStep listProcessor
 			title: 'References';
@@ -64,11 +47,8 @@ Trait>>spotterReferenceFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Trait>>spotterSuperClassMethodsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Trait >> spotterSuperClassMethodsFor: aStep [
 	<spotterOrder: 16>
 	|superclasses|
 	superclasses := self class withAllSuperclasses select: #isMeta.
@@ -78,11 +58,8 @@ Trait>>spotterSuperClassMethodsFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Trait>>spotterSuperMethodsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Trait >> spotterSuperMethodsFor: aStep [
 	<spotterOrder: 11>
 	aStep listProcessor
 			title: 'Super instance methods';

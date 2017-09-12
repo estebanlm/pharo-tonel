@@ -7,131 +7,88 @@ Class {
 	#instVars : [
 		'modeActivated'
 	],
-	#category : #OSWindow-Core-Gestures,
-	#timestamp : 'MerwanOuddane 7/22/2015 16:11'
+	#category : #OSWindow-Core-Gestures
 }
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchStateGestureDetector>>beginConditions [
+{ #category : #preconditions }
+OSTouchStateGestureDetector >> beginConditions [
 	^ self hasGoodNumberOfFingers
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchStateGestureDetector>>createEventBeginning [
+{ #category : #factory }
+OSTouchStateGestureDetector >> createEventBeginning [
 	self subclassResponsibility
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchStateGestureDetector>>createEventDuringMove [
+{ #category : #factory }
+OSTouchStateGestureDetector >> createEventDuringMove [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchStateGestureDetector>>createEventEnding [
+{ #category : #factory }
+OSTouchStateGestureDetector >> createEventEnding [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchStateGestureDetector>>hasGoodNumberOfFingers  [
+{ #category : #preconditions }
+OSTouchStateGestureDetector >> hasGoodNumberOfFingers [ 
 	^ eventHandler fingerCount = self necessaryFingers
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchStateGestureDetector>>initialize [
+{ #category : #initialization }
+OSTouchStateGestureDetector >> initialize [
 	super initialize.
 	modeActivated := false.
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchStateGestureDetector>>necessaryFingers [
+{ #category : #preconditions }
+OSTouchStateGestureDetector >> necessaryFingers [
 	self subclassResponsibility
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchStateGestureDetector>>stayActiveConditions [
+{ #category : #preconditions }
+OSTouchStateGestureDetector >> stayActiveConditions [
 	^ self hasGoodNumberOfFingers
 ]
 
-{
-	#category : #'changing state',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchStateGestureDetector>>tryToEndGesture [
+{ #category : #'changing state' }
+OSTouchStateGestureDetector >> tryToEndGesture [
 	self stayActiveConditions
 		ifTrue: [ ^ self ].
 	modeActivated := false.
 	self sendToEventHandler: self createEventEnding
 ]
 
-{
-	#category : #'changing state',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchStateGestureDetector>>tryToGoThroughNextState [
+{ #category : #'changing state' }
+OSTouchStateGestureDetector >> tryToGoThroughNextState [
 	modeActivated
 		ifTrue: [ self tryToEndGesture ]
 		ifFalse: [ self tryToStartGesture ]
 ]
 
-{
-	#category : #'changing state',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchStateGestureDetector>>tryToStartGesture [
+{ #category : #'changing state' }
+OSTouchStateGestureDetector >> tryToStartGesture [
 	self beginConditions ifFalse: [ ^self ].
 	modeActivated := true.
 	self sendToEventHandler: self createEventBeginning
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchStateGestureDetector>>visitTouchPointerDownEvent: anEvent [
+{ #category : #visiting }
+OSTouchStateGestureDetector >> visitTouchPointerDownEvent: anEvent [
 	super visitTouchPointerDownEvent: anEvent.
 	self tryToGoThroughNextState
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchStateGestureDetector>>visitTouchPointerMoveEvent: anEvent [
+{ #category : #visiting }
+OSTouchStateGestureDetector >> visitTouchPointerMoveEvent: anEvent [
 	super visitTouchPointerMoveEvent: anEvent.
 	self tryToGoThroughNextState.
 	(modeActivated and: [ self beginConditions ])
 		ifTrue: [ self sendToEventHandler: self createEventDuringMove ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchStateGestureDetector>>visitTouchPointerUpEvent: anEvent [
+{ #category : #visiting }
+OSTouchStateGestureDetector >> visitTouchPointerUpEvent: anEvent [
 	super visitTouchPointerUpEvent: anEvent.
 	self tryToGoThroughNextState
 ]

@@ -14,73 +14,51 @@ Class {
 	#classInstVars : [
 		'packages'
 	],
-	#category : #Komitter-Models,
-	#timestamp : '<historical>'
+	#category : #Komitter-Models
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage class>>initialize [
+{ #category : #initialization }
+KomitPackage class >> initialize [
 
 	packages := Dictionary new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage class>>package: package [
+{ #category : #'instance creation' }
+KomitPackage class >> package: package [
 
 	^ self new
 		package: package;
 		yourself
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage class>>removePackage: package [
+{ #category : #removing }
+KomitPackage class >> removePackage: package [
 
 	(packages 
 		removeKey: package package name
 		ifAbsent: [ ^ self ]) flush
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>><= aKomitObject  [
+{ #category : #comparing }
+KomitPackage >> <= aKomitObject [ 
 
 	^ self package name <= aKomitObject package name
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>= another [
+{ #category : #comparing }
+KomitPackage >> = another [
 
 	^ self species = another species and: [ self package = another package ]
 ]
 
-{
-	#category : #accesing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>classNamed: aString  [
+{ #category : #accesing }
+KomitPackage >> classNamed: aString [ 
 	
 	^ classes at: aString ifAbsentPut: [ KomitClass new trackedClass: aString  ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>classes [
+{ #category : #protocol }
+KomitPackage >> classes [
 
 	classes ifNil: [
 		classes := Dictionary new.
@@ -96,11 +74,8 @@ KomitPackage>>classes [
 	^ classes values
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>flush [
+{ #category : #protocol }
+KomitPackage >> flush [
 	super flush.
 	
 	classes ifNotNil: [ classes do: [ :each | each flush ] ].
@@ -108,20 +83,14 @@ KomitPackage>>flush [
 	isFullyCommited := true
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>hash [
+{ #category : #comparing }
+KomitPackage >> hash [
 
 	^ self package hash
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>initialize [
+{ #category : #initialize }
+KomitPackage >> initialize [
 
 	super initialize.
 
@@ -129,86 +98,56 @@ KomitPackage>>initialize [
 	isFullyCommited := true.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>isEmpty [
+{ #category : #testing }
+KomitPackage >> isEmpty [
 
 	^ self package isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>isFullyCommited [
+{ #category : #accessing }
+KomitPackage >> isFullyCommited [
 	^ isFullyCommited
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>isFullyCommited: anObject [
+{ #category : #accessing }
+KomitPackage >> isFullyCommited: anObject [
 	isFullyCommited := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>isPackage [
+{ #category : #testing }
+KomitPackage >> isPackage [
 
 	^ true
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>koDestinationText [
+{ #category : #'*Komitter-UI' }
+KomitPackage >> koDestinationText [
 	^ ''
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>koSourceText [
+{ #category : #'*Komitter-UI' }
+KomitPackage >> koSourceText [
 	^ 'No changes'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>package [
+{ #category : #accessing }
+KomitPackage >> package [
 	^ package
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>package: aPackage [
+{ #category : #accessing }
+KomitPackage >> package: aPackage [
 
 	package := aPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>patch [
+{ #category : #accessing }
+KomitPackage >> patch [
 	^ patch ifNil: [ patch := self package patch ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>printOn: aStream [
+{ #category : #printing }
+KomitPackage >> printOn: aStream [
 
 	super printOn: aStream.
 	aStream << '[ '.
@@ -216,11 +155,8 @@ KomitPackage>>printOn: aStream [
 	aStream << ' ]'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>remotes [
+{ #category : #accessing }
+KomitPackage >> remotes [
 
 	^ self package remotes
 ]

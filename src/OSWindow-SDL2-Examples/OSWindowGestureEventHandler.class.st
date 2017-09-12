@@ -8,166 +8,105 @@ Class {
 	#instVars : [
 		'touchExample'
 	],
-	#category : #OSWindow-SDL2-Examples-Gesture,
-	#timestamp : 'MerwanOuddane 7/23/2015 10:56'
+	#category : #OSWindow-SDL2-Examples-Gesture
 }
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>touchExample: renderer [
+{ #category : #api }
+OSWindowGestureEventHandler >> touchExample: renderer [
 	touchExample := renderer
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchActionPointerDownEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowGestureEventHandler >> visitTouchActionPointerDownEvent: anEvent [
 	touchExample beginMove: anEvent fingerId at: anEvent position
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchActionPointerMoveEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowGestureEventHandler >> visitTouchActionPointerMoveEvent: anEvent [
 	touchExample move: anEvent fingerId at: anEvent position.
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchActionPointerUpEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowGestureEventHandler >> visitTouchActionPointerUpEvent: anEvent [
 	touchExample endMove: anEvent fingerId at: anEvent position.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchOneFingerDoubleTapEvent: anEvent [
+{ #category : #visiting }
+OSWindowGestureEventHandler >> visitTouchOneFingerDoubleTapEvent: anEvent [
 	touchExample changeColors
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchOneFingerHoldEvent: anEvent [
+{ #category : #visiting }
+OSWindowGestureEventHandler >> visitTouchOneFingerHoldEvent: anEvent [
 	touchExample switchDiscoMode
 ]
 
-{
-	#category : #'visiting - three fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchThreeFingersSwipeAbortEvent: anEvent [
+{ #category : #'visiting - three fingers gestures' }
+OSWindowGestureEventHandler >> visitTouchThreeFingersSwipeAbortEvent: anEvent [
 	touchExample abortedSwipe.
 ]
 
-{
-	#category : #'visiting - three fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchThreeFingersSwipeBeginEvent: anEvent [
+{ #category : #'visiting - three fingers gestures' }
+OSWindowGestureEventHandler >> visitTouchThreeFingersSwipeBeginEvent: anEvent [
 	touchExample beginSwipe: anEvent
 ]
 
-{
-	#category : #'visiting - three fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchThreeFingersSwipeEndEvent: anEvent [
+{ #category : #'visiting - three fingers gestures' }
+OSWindowGestureEventHandler >> visitTouchThreeFingersSwipeEndEvent: anEvent [
 	touchExample endSwipe: anEvent
 ]
 
-{
-	#category : #'visiting - three fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchThreeFingersSwipeMoveEvent: anEvent [
+{ #category : #'visiting - three fingers gestures' }
+OSWindowGestureEventHandler >> visitTouchThreeFingersSwipeMoveEvent: anEvent [
 	touchExample swipe: anEvent
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchTwoFingersPinchBeginEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowGestureEventHandler >> visitTouchTwoFingersPinchBeginEvent: anEvent [
 	touchExample beginPinch: anEvent
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchTwoFingersPinchEndEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowGestureEventHandler >> visitTouchTwoFingersPinchEndEvent: anEvent [
 	touchExample endPinch: anEvent
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchTwoFingersPinchMoveEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowGestureEventHandler >> visitTouchTwoFingersPinchMoveEvent: anEvent [
 	touchExample pinch: anEvent
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchTwoFingersRotationBeginEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowGestureEventHandler >> visitTouchTwoFingersRotationBeginEvent: anEvent [
 	touchExample beginRotation: anEvent
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchTwoFingersRotationEndEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowGestureEventHandler >> visitTouchTwoFingersRotationEndEvent: anEvent [
 	touchExample endRotation: anEvent
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchTwoFingersRotationMoveEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowGestureEventHandler >> visitTouchTwoFingersRotationMoveEvent: anEvent [
 	touchExample rotation: anEvent
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchTwoFingersScrollBeginEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowGestureEventHandler >> visitTouchTwoFingersScrollBeginEvent: anEvent [
 	touchExample beginScroll: anEvent
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchTwoFingersScrollEndEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowGestureEventHandler >> visitTouchTwoFingersScrollEndEvent: anEvent [
 	touchExample endScroll: anEvent
 ]
 
-{
-	#category : #'visiting - two fingers gestures',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitTouchTwoFingersScrollMoveEvent: anEvent [
+{ #category : #'visiting - two fingers gestures' }
+OSWindowGestureEventHandler >> visitTouchTwoFingersScrollMoveEvent: anEvent [
 	touchExample scroll: anEvent
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGestureEventHandler>>visitWindowCloseEvent: anEvent [
+{ #category : #visiting }
+OSWindowGestureEventHandler >> visitWindowCloseEvent: anEvent [
 	touchExample destroy
 ]

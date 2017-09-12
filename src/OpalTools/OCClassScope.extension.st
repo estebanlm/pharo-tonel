@@ -1,12 +1,7 @@
-Extension {
-	#name : #OCClassScope
-}
+Extension { #name : #OCClassScope }
 
-{
-	#category : #'*OpalTools',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OCClassScope>>gtInspectorSourceCodeIn: composite [
+{ #category : #'*OpalTools' }
+OCClassScope >> gtInspectorSourceCodeIn: composite [
 	<gtInspectorPresentationOrder: 30> 
 
 	^ composite text 

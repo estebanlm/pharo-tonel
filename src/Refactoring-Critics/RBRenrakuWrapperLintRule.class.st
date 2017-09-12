@@ -7,24 +7,17 @@ Class {
 	#instVars : [
 		'renrakuRule'
 	],
-	#category : #Refactoring-Critics,
-	#timestamp : 'YuriyTymchuk 9/5/2016 14:30'
+	#category : #Refactoring-Critics
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRenrakuWrapperLintRule class>>new [
+{ #category : #'instance creation' }
+RBRenrakuWrapperLintRule class >> new [
 
 	^ Error signal: 'Please use #new: and provide a renraku rule instance'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRenrakuWrapperLintRule class>>new: aRule [
+{ #category : #'instance creation' }
+RBRenrakuWrapperLintRule class >> new: aRule [
 
 	| annotatedClass |
 	
@@ -38,19 +31,13 @@ RBRenrakuWrapperLintRule class>>new: aRule [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRenrakuWrapperLintRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBRenrakuWrapperLintRule class >> uniqueIdentifierName [
 	^ 'WrapperRule'
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRenrakuWrapperLintRule>>addSearchStringFrom: aCritique in: aSourceCode [
+{ #category : #adding }
+RBRenrakuWrapperLintRule >> addSearchStringFrom: aCritique [ in: aSourceCode
 
 	aCritique sourceAnchor providesInterval ifTrue: [
 		| interval |
@@ -61,11 +48,8 @@ RBRenrakuWrapperLintRule>>addSearchStringFrom: aCritique in: aSourceCode [
 				to: interval last)  ].
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRenrakuWrapperLintRule>>byNodeCheckMethod: aMethod [
+{ #category : #running }
+RBRenrakuWrapperLintRule >> byNodeCheckMethod: aMethod [
 
 	aMethod ast nodesDo: [ :node |
 		renrakuRule
@@ -79,11 +63,8 @@ RBRenrakuWrapperLintRule>>byNodeCheckMethod: aMethod [
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRenrakuWrapperLintRule>>checkClass: aClass [
+{ #category : #running }
+RBRenrakuWrapperLintRule >> checkClass: aClass [
 	renrakuRule class checksClass ifFalse: [ ^ self ].
 	renrakuRule
 		check: aClass
@@ -95,11 +76,8 @@ RBRenrakuWrapperLintRule>>checkClass: aClass [
 			^ self ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRenrakuWrapperLintRule>>checkMethod: aMethod [
+{ #category : #running }
+RBRenrakuWrapperLintRule >> checkMethod: aMethod [
 
 	renrakuRule class checksNode ifTrue: [ 
 		^ self byNodeCheckMethod: aMethod ].
@@ -115,11 +93,8 @@ RBRenrakuWrapperLintRule>>checkMethod: aMethod [
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRenrakuWrapperLintRule>>checkPackage: aPackage [
+{ #category : #running }
+RBRenrakuWrapperLintRule >> checkPackage: aPackage [
 	renrakuRule class checksPackage ifFalse: [ ^ self ].
 	renrakuRule
 		check: aPackage
@@ -127,56 +102,38 @@ RBRenrakuWrapperLintRule>>checkPackage: aPackage [
 			^ result addPackage: aPackage ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRenrakuWrapperLintRule>>group [
+{ #category : #accessing }
+RBRenrakuWrapperLintRule >> group [
 
 	^ renrakuRule group
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRenrakuWrapperLintRule>>initialize: aRule [
+{ #category : #initialization }
+RBRenrakuWrapperLintRule >> initialize: aRule [
 	renrakuRule := aRule.
 	self initialize.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRenrakuWrapperLintRule>>longDescription [
+{ #category : #accessing }
+RBRenrakuWrapperLintRule >> longDescription [
 	
 	^ renrakuRule rationale
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRenrakuWrapperLintRule>>name [
+{ #category : #accessing }
+RBRenrakuWrapperLintRule >> name [
 
 	^ renrakuRule name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRenrakuWrapperLintRule>>rationale [
+{ #category : #accessing }
+RBRenrakuWrapperLintRule >> rationale [
 
 	^ renrakuRule rationale
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRenrakuWrapperLintRule>>resultClass [
+{ #category : #accessing }
+RBRenrakuWrapperLintRule >> resultClass [
 
 	renrakuRule class checksNode    ifTrue: [ ^ RBSelectorEnvironment ].
 	renrakuRule class checksMethod  ifTrue: [ ^ RBSelectorEnvironment ].

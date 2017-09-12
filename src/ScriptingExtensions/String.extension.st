@@ -1,50 +1,33 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*ScriptingExtensions',
-	#timestamp : ' 8/31/2017 07:16:39'
-}
-String>>asClass [
+{ #category : #'*ScriptingExtensions' }
+String >> asClass [
 	"returns a global class with my name"
 	^ self asClassInEnvironment: Smalltalk globals
 ]
 
-{
-	#category : #'*ScriptingExtensions',
-	#timestamp : ' 8/31/2017 07:16:39'
-}
-String>>asClassIfAbsent: absentBlock [
+{ #category : #'*ScriptingExtensions' }
+String >> asClassIfAbsent: absentBlock [
 	"returns a global class with my name"
 	^ self asClassInEnvironment: Smalltalk globals ifAbsent: absentBlock
 ]
 
-{
-	#category : #'*ScriptingExtensions',
-	#timestamp : ' 8/31/2017 07:16:39'
-}
-String>>asClassIfPresent: presentBlock [
+{ #category : #'*ScriptingExtensions' }
+String >> asClassIfPresent: presentBlock [
 	"returns a global class with my name"
 	^ presentBlock cull: (self asClassIfAbsent: [ ^ nil ])
 ]
 
-{
-	#category : #'*ScriptingExtensions',
-	#timestamp : ' 8/31/2017 07:16:39'
-}
-String>>asClassInEnvironment: anEnvironment [
+{ #category : #'*ScriptingExtensions' }
+String >> asClassInEnvironment: anEnvironment [
 	"I return class named after myself from anEnvironment"
 	^ self 
 		asClassInEnvironment: anEnvironment 
 		ifAbsent: [ NotFound signalFor: self in: anEnvironment  ]
 ]
 
-{
-	#category : #'*ScriptingExtensions',
-	#timestamp : ' 8/31/2017 07:16:39'
-}
-String>>asClassInEnvironment: anEnvironment ifAbsent: absentBlock [
+{ #category : #'*ScriptingExtensions' }
+String >> asClassInEnvironment: anEnvironment ifAbsent: absentBlock [
 	^  anEnvironment 
 			at: self asSymbol 
 			ifPresent: [ :aClass| 

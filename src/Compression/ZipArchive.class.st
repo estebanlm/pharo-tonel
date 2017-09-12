@@ -16,47 +16,31 @@ Class {
 	#pools : [
 		'ZipFileConstants'
 	],
-	#category : #Compression-Archives,
-	#timestamp : '<historical>'
+	#category : #Compression-Archives
 }
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive class>>compressionDeflated [
+{ #category : #constants }
+ZipArchive class >> compressionDeflated [
 	^CompressionDeflated
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive class>>compressionLevelDefault [
+{ #category : #constants }
+ZipArchive class >> compressionLevelDefault [
 	^CompressionLevelDefault
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive class>>compressionLevelNone [
+{ #category : #constants }
+ZipArchive class >> compressionLevelNone [
 	^CompressionLevelNone 
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive class>>compressionStored [
+{ #category : #constants }
+ZipArchive class >> compressionStored [
 	^CompressionStored
 ]
 
-{
-	#category : #fileIn/Out,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive class>>extractAllIn: aFileName [
+{ #category : #fileIn/Out }
+ZipArchive class >> extractAllIn: aFileName [
 	"Service method to extract all contents of a zip."
 	| directory |
 	directory := (UIManager default chooseDirectoryFrom: aFileName asFileReference) ifNil: [^ self].
@@ -65,11 +49,8 @@ ZipArchive class>>extractAllIn: aFileName [
 		extractAllTo: directory.
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive class>>findEndOfCentralDirectoryFrom: stream [
+{ #category : #constants }
+ZipArchive class >> findEndOfCentralDirectoryFrom: stream [
 	"Seek in the given stream to the end, then read backwards until we find the
 	signature of the central directory record. Leave the file positioned right
 	before the signature.
@@ -100,11 +81,8 @@ ZipArchive class>>findEndOfCentralDirectoryFrom: stream [
 		ifFalse: [0]
 ]
 
-{
-	#category : #'file format',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive class>>isZipArchive: aStreamOrFileName [
+{ #category : #'file format' }
+ZipArchive class >> isZipArchive: aStreamOrFileName [
 	"Answer whether the given filename represents a valid zip file."
 
 	| stream eocdPosition |
@@ -120,11 +98,8 @@ ZipArchive class>>isZipArchive: aStreamOrFileName [
 	^ eocdPosition > 0
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive class>>validSignatures [
+{ #category : #constants }
+ZipArchive class >> validSignatures [
 	"Return the valid signatures for a zip file"
 	^Array 
 		with: LocalFileHeaderSignature
@@ -132,11 +107,8 @@ ZipArchive class>>validSignatures [
 		with: EndOfCentralDirectorySignature
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>addDeflateString: aString as: aFileName [
+{ #category : #'archive operations' }
+ZipArchive >> addDeflateString: aString as: aFileName [
 	"Add a verbatim string under the given file name"
 	| mbr |
 	mbr := self addString: aString as: aFileName.
@@ -144,19 +116,13 @@ ZipArchive>>addDeflateString: aString as: aFileName [
 	^mbr
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>close [
+{ #category : #initialization }
+ZipArchive >> close [
 	self members do:[:m| m close].
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>extractAllTo: aDirectory [
+{ #category : #'archive operations' }
+ZipArchive >> extractAllTo: aDirectory [
 	"Extract all elements to the given directory"
 
 	UIManager default
@@ -165,20 +131,14 @@ ZipArchive>>extractAllTo: aDirectory [
 			self extractAllTo: aDirectory informing: bar ]
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>extractAllTo: aDirectory informing: bar [
+{ #category : #'archive operations' }
+ZipArchive >> extractAllTo: aDirectory informing: bar [
 	"Extract all elements to the given directory"
 	^self extractAllTo: aDirectory informing: bar overwrite: false
 ]
 
-{
-	#category : #'archive operations',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>extractAllTo: aDirectory informing: bar overwrite: allOverwrite [
+{ #category : #'archive operations' }
+ZipArchive >> extractAllTo: aDirectory informing: bar overwrite: allOverwrite [
 	"Extract all elements to the given directory"
 
 	| overwriteAll lastUpdate barValue shouldUpdateInfos |
@@ -221,39 +181,27 @@ ZipArchive>>extractAllTo: aDirectory informing: bar overwrite: allOverwrite [
 					lastUpdate := Time millisecondClockValue ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>hasMemberSuchThat: aBlock [
+{ #category : #accessing }
+ZipArchive >> hasMemberSuchThat: aBlock [
 	"Answer whether we have a member satisfying the given condition"
 	^self members anySatisfy: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>initialize [
+{ #category : #initialization }
+ZipArchive >> initialize [
 	super initialize.
 	writeEOCDOffset := writeCentralDirectoryOffset := 0.
 	zipFileComment := ''.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>memberClass [
+{ #category : #private }
+ZipArchive >> memberClass [
 	^ZipArchiveMember
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>prependedDataSize [
+{ #category : #accessing }
+ZipArchive >> prependedDataSize [
 	"Answer the size of whatever data exists before my first member.
 	Assumes that I was read from a file or stream (i.e. the first member is a ZipFileMember)"
 	^members isEmpty
@@ -261,11 +209,8 @@ ZipArchive>>prependedDataSize [
 		ifTrue: [ centralDirectoryOffsetWRTStartingDiskNumber ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>readEndOfCentralDirectoryFrom: aStream [
+{ #category : #private }
+ZipArchive >> readEndOfCentralDirectoryFrom: aStream [
 	"Read EOCD, starting from position before signature."
 	| signature zipFileCommentLength |
 	signature := self readSignatureFrom: aStream.
@@ -282,11 +227,8 @@ ZipArchive>>readEndOfCentralDirectoryFrom: aStream [
 
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>readFrom: aStreamOrFileName [
+{ #category : #reading }
+ZipArchive >> readFrom: aStreamOrFileName [
 	| stream name eocdPosition |
 	stream := aStreamOrFileName isStream
 		ifTrue: [name := aStreamOrFileName printString. aStreamOrFileName]
@@ -299,11 +241,8 @@ ZipArchive>>readFrom: aStreamOrFileName [
 	self readMembersFrom: stream named: name
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>readMembersFrom: stream named: fileName [
+{ #category : #private }
+ZipArchive >> readMembersFrom: stream named: fileName [
 	
 	[ | signature newMember |
 		newMember := self memberClass newFromZipFile: stream named: fileName.
@@ -317,11 +256,8 @@ ZipArchive>>readMembersFrom: stream named: fileName [
 	] repeat.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>readSignatureFrom: stream [
+{ #category : #private }
+ZipArchive >> readSignatureFrom: stream [
 	"Returns next signature from given stream, leaves stream positioned afterwards."
 
 	| signatureData | 
@@ -334,11 +270,8 @@ ZipArchive>>readSignatureFrom: stream [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>writeCentralDirectoryTo: aStream [
+{ #category : #private }
+ZipArchive >> writeCentralDirectoryTo: aStream [
 	| offset |
 	offset := writeCentralDirectoryOffset.
 	members do: [ :member |
@@ -351,11 +284,8 @@ ZipArchive>>writeCentralDirectoryTo: aStream [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>writeEndOfCentralDirectoryTo: aStream [
+{ #category : #private }
+ZipArchive >> writeEndOfCentralDirectoryTo: aStream [
 
 	aStream nextPutAll: EndOfCentralDirectorySignature.
 	aStream nextLittleEndianNumber: 2 put: 0. "diskNumber"
@@ -370,11 +300,8 @@ ZipArchive>>writeEndOfCentralDirectoryTo: aStream [
 
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>writeTo: stream [
+{ #category : #writing }
+ZipArchive >> writeTo: stream [
 	stream binary.
 	members do: [ :member |
 		member writeTo: stream.
@@ -385,11 +312,8 @@ ZipArchive>>writeTo: stream [
 	
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>writeTo: stream prepending: aString [
+{ #category : #writing }
+ZipArchive >> writeTo: stream prepending: aString [
 	stream binary.
 	stream nextPutAll: aString.
 	members do: [ :member |
@@ -401,11 +325,8 @@ ZipArchive>>writeTo: stream prepending: aString [
 	
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>writeTo: stream prependingFileNamed: aFileName [
+{ #category : #writing }
+ZipArchive >> writeTo: stream prependingFileNamed: aFileName [
 	| prepended buffer |
 	stream binary.
 	prepended := StandardFileStream readOnlyFileNamed: aFileName.
@@ -424,11 +345,8 @@ ZipArchive>>writeTo: stream prependingFileNamed: aFileName [
 	
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>writeToFileNamed: aFileName prepending: aString [
+{ #category : #writing }
+ZipArchive >> writeToFileNamed: aFileName prepending: aString [
 	
 	"Catch attempts to overwrite existing zip file"
 	(self canWriteToFileNamed: aFileName)
@@ -439,11 +357,8 @@ ZipArchive>>writeToFileNamed: aFileName prepending: aString [
 	
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>writeToFileNamed: aFileName prependingFileNamed: anotherFileName [
+{ #category : #writing }
+ZipArchive >> writeToFileNamed: aFileName prependingFileNamed: anotherFileName [
 	
 	"Catch attempts to overwrite existing zip file"
 	(self canWriteToFileNamed: aFileName)
@@ -455,18 +370,12 @@ ZipArchive>>writeToFileNamed: aFileName prependingFileNamed: anotherFileName [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>zipFileComment [
+{ #category : #accessing }
+ZipArchive >> zipFileComment [
 	^zipFileComment asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipArchive>>zipFileComment: aString [
+{ #category : #accessing }
+ZipArchive >> zipFileComment: aString [
 	zipFileComment := aString
 ]

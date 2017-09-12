@@ -25,80 +25,55 @@ Class {
 		'stdout',
 		'stderr'
 	],
-	#category : #System-BasicCommandLineHandler,
-	#timestamp : '<historical>'
+	#category : #System-BasicCommandLineHandler
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler class>>activateWith: aCommandLine  [
+{ #category : #'instance creation' }
+CommandLineHandler class >> activateWith: aCommandLine [ 
 	
 	^ self new 
 		commandLine: (self prepareSubcommand: aCommandLine);
 		activate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler class>>allHandlers [
+{ #category : #accessing }
+CommandLineHandler class >> allHandlers [
 	^ self allSubclasses reject: [ :handler| handler isAbstract ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler class>>commandLine: aCommandLine  [
+{ #category : #'instance creation' }
+CommandLineHandler class >> commandLine: aCommandLine [ 
 	
 	^ self new 
 		commandLine: aCommandLine;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler class>>commandName [
+{ #category : #accessing }
+CommandLineHandler class >> commandName [
 	" Overwrite this method to provide a short name for this command handler.
 	You may pass the commandName as first argument to the image to select this handler"
 	^ self name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler class>>description [
+{ #category : #accessing }
+CommandLineHandler class >> description [
 	"This method should return a short one-line description of the command"
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler class>>isAbstract [
+{ #category : #accessing }
+CommandLineHandler class >> isAbstract [
 	^ self = CommandLineHandler
 ]
 
-{
-	#category : #'handler selection',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler class>>isResponsibleFor: aCommandLineArguments [
+{ #category : #'handler selection' }
+CommandLineHandler class >> isResponsibleFor: aCommandLineArguments [
 	^ aCommandLineArguments includesSubCommand: self commandName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler class>>prepareSubcommand: commandLineArguments [
+{ #category : #private }
+CommandLineHandler class >> prepareSubcommand: commandLineArguments [
 
 	"strip the subcommand name from the arguments"
 	commandLineArguments withFirstArgument: [ :arg|
@@ -109,47 +84,32 @@ CommandLineHandler class>>prepareSubcommand: commandLineArguments [
 	^ commandLineArguments
 ]
 
-{
-	#category : #'handler selection',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler class>>priority [
+{ #category : #'handler selection' }
+CommandLineHandler class >> priority [
 	^ 0
 ]
 
-{
-	#category : #'handler selection',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler class>>selectHandlersFor: aCommandLine [
+{ #category : #'handler selection' }
+CommandLineHandler class >> selectHandlersFor: aCommandLine [
 
 	^ self allHandlers select: [ :handlerClass|
 		handlerClass isResponsibleFor: aCommandLine ]
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>><< aString [
+{ #category : #utility }
+CommandLineHandler >> << aString [
 	^ self stdout 
 		nextPutAll: aString;
 		yourself
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>activate [
+{ #category : #activation }
+CommandLineHandler >> activate [
 	 self subclassResponsibility
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>activateHelp [
+{ #category : #activation }
+CommandLineHandler >> activateHelp [
 	"Default help implementation, running #help if the only argument is --help "
 	((self hasOption: 'help') and: [ self arguments size = 1 ])
 		ifTrue: [ 
@@ -158,11 +118,8 @@ CommandLineHandler>>activateHelp [
 	^ false
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>activateHelpWithoutArguments [
+{ #category : #activation }
+CommandLineHandler >> activateHelpWithoutArguments [
 	"Default help implementation, running #help if the there is no argument or a single one which is --help "
 	((self hasOption: 'help') or: [ self arguments isEmpty ])
 		ifTrue: [ 
@@ -171,132 +128,87 @@ CommandLineHandler>>activateHelpWithoutArguments [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>allHandlers  [
+{ #category : #accessing }
+CommandLineHandler >> allHandlers [ 
 	^ CommandLineHandler allHandlers 
 ]
 
-{
-	#category : #'accessing arguments',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>argumentAt: anInteger [
+{ #category : #'accessing arguments' }
+CommandLineHandler >> argumentAt: anInteger [
 	^ self commandLine argumentAt: anInteger
 ]
 
-{
-	#category : #'accessing arguments',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>arguments [
+{ #category : #'accessing arguments' }
+CommandLineHandler >> arguments [
 	^ self commandLine arguments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>commandLine [
+{ #category : #accessing }
+CommandLineHandler >> commandLine [
 	^ commandLine
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>commandLine: aCommandLine  [
+{ #category : #accessing }
+CommandLineHandler >> commandLine: aCommandLine [ 
 	commandLine := aCommandLine
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>commandName [
+{ #category : #accessing }
+CommandLineHandler >> commandName [
 	^ self class commandName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>description [
+{ #category : #accessing }
+CommandLineHandler >> description [
 	^ self class description
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>exitFailure [
+{ #category : #utility }
+CommandLineHandler >> exitFailure [
 	 ^ self exitFailure: 'Command line handler failed'
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>exitFailure: aMessage  [
+{ #category : #utility }
+CommandLineHandler >> exitFailure: aMessage [ 
 	self hasSessionChanged
 		ifTrue: [ ^ self ].
 	Exit signalFailure: aMessage 
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>exitSuccess [
+{ #category : #utility }
+CommandLineHandler >> exitSuccess [
 	self hasSessionChanged
 		ifTrue: [ ^ self ].
 	Exit signalSuccess 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>hasArguments [
+{ #category : #testing }
+CommandLineHandler >> hasArguments [
 	^ self commandLine hasArguments
 ]
 
-{
-	#category : #'accessing arguments',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>hasOption: aString [
+{ #category : #'accessing arguments' }
+CommandLineHandler >> hasOption: aString [
 	^ self commandLine hasOption: aString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>hasSessionChanged [
+{ #category : #testing }
+CommandLineHandler >> hasSessionChanged [
 	"check whether the session has changed since the commandline handler as been created"
 
 	^ session ~~ Smalltalk session
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>help [
+{ #category : #actions }
+CommandLineHandler >> help [
 	"This is a crude default help implementation."
 	self printHelp.
 	Smalltalk isInteractive 
 		ifFalse: [ self exitSuccess ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>initialize [
+{ #category : #initialization }
+CommandLineHandler >> initialize [
 	super initialize.
 	session := Smalltalk session.
 	self 
@@ -305,96 +217,63 @@ CommandLineHandler>>initialize [
 	
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>initializeStderr [
+{ #category : #initialize-release }
+CommandLineHandler >> initializeStderr [
 	"install the line end conversion and initialize the converter"
 	stderr := VTermOutputDriver stderr.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>initializeStdout [
+{ #category : #initialize-release }
+CommandLineHandler >> initializeStdout [
 	"install the line end conversion and initialize the converter"
 	stdout := VTermOutputDriver stdout.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>name [
+{ #category : #accessing }
+CommandLineHandler >> name [
 	^ self printString
 ]
 
-{
-	#category : #'accessing arguments',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>optionAt: aString [
+{ #category : #'accessing arguments' }
+CommandLineHandler >> optionAt: aString [
 	^ self commandLine optionAt: aString
 ]
 
-{
-	#category : #'accessing arguments',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>optionAt: aString ifAbsent: absentBlock [
+{ #category : #'accessing arguments' }
+CommandLineHandler >> optionAt: aString ifAbsent: absentBlock [
 	^ self commandLine 
 		optionAt: aString ifAbsent: absentBlock
 ]
 
-{
-	#category : #'accessing arguments',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>optionAt: aString ifPresent: absentBlock [
+{ #category : #'accessing arguments' }
+CommandLineHandler >> optionAt: aString ifPresent: absentBlock [
 	^ self commandLine 
 		optionAt: aString ifPresent: absentBlock
 ]
 
-{
-	#category : #'accessing arguments',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>optionAt: aString ifPresent: presentBlock ifAbsent: absentBlock [
+{ #category : #'accessing arguments' }
+CommandLineHandler >> optionAt: aString ifPresent: presentBlock ifAbsent: absentBlock [
 	^ self commandLine 
 		optionAt: aString ifPresent: presentBlock ifAbsent: absentBlock
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>printHelp [
+{ #category : #printing }
+CommandLineHandler >> printHelp [
 	self stderr
 		nextPutAll: self class comment; lf
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>quit [
+{ #category : #utility }
+CommandLineHandler >> quit [
 	self exitSuccess
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>stderr [
+{ #category : #accessing }
+CommandLineHandler >> stderr [
 	^ stderr
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-CommandLineHandler>>stdout [
+{ #category : #accessing }
+CommandLineHandler >> stdout [
 	^ stdout
 ]

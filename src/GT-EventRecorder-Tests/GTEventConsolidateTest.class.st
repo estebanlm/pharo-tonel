@@ -13,15 +13,11 @@ Class {
 		'consolidated',
 		'data'
 	],
-	#category : #GT-EventRecorder-Tests-Support,
-	#timestamp : '<historical>'
+	#category : #GT-EventRecorder-Tests-Support
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventConsolidateTest>>setUp [
+{ #category : #running }
+GTEventConsolidateTest >> setUp [
 	super setUp.
 	data := { 42. 'string'. Float pi }.
 	consolidate := GTEventConsolidate new.
@@ -32,11 +28,8 @@ GTEventConsolidateTest>>setUp [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventConsolidateTest>>testConsolidated [
+{ #category : #tests }
+GTEventConsolidateTest >> testConsolidated [
 	"Test that all collectors are consolidated into one."
 	collector1 add: data first.
 	collector2 add: data second.
@@ -47,11 +40,8 @@ GTEventConsolidateTest>>testConsolidated [
 	self assert: consolidated first bundle asArray equals: data.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventConsolidateTest>>testConsolidated2 [
+{ #category : #tests }
+GTEventConsolidateTest >> testConsolidated2 [
 	"Test that all collectors are consolidated into one."
 	collector1 add: data first.
 	collector1 add: data second.
@@ -62,11 +52,8 @@ GTEventConsolidateTest>>testConsolidated2 [
 	self assert: consolidated first bundle asArray equals: data.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventConsolidateTest>>testConsolidated3 [
+{ #category : #tests }
+GTEventConsolidateTest >> testConsolidated3 [
 	"Test that all collectors are consolidated according to URL."
 	collector1 add: data first; url: 'http://localhost/1' asZnUrl.
 	collector2 add: data second; url: 'http://localhost/2' asZnUrl.
@@ -79,11 +66,8 @@ GTEventConsolidateTest>>testConsolidated3 [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventConsolidateTest>>testConsolidated4 [
+{ #category : #tests }
+GTEventConsolidateTest >> testConsolidated4 [
 	"Test that all collectors are consolidated according to URL."
 	collector1 add: data first; category: #c1.
 	collector2 add: data second; category: #c2.

@@ -4,15 +4,11 @@ SUnit tests for monitors
 Class {
 	#name : #MonitorTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Processes,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:41'
+	#category : #Kernel-Tests-Processes
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MonitorTest>>testExample1 [
+{ #category : #examples }
+MonitorTest >> testExample1 [
 
 	| producer1 producer2  monitor goal work counter goalReached finished |
 	goal := (1 to: 1000) asOrderedCollection.
@@ -53,11 +49,8 @@ MonitorTest>>testExample1 [
 	self assert: goal = work
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MonitorTest>>testExample2 [
+{ #category : #examples }
+MonitorTest >> testExample2 [
 	"Here is a second version that does not use a semaphore to inform the 
 	forking process about termination of both forked processes"
 
@@ -113,11 +106,8 @@ MonitorTest>>testExample2 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-MonitorTest>>testWaitMaxMilliseconds [
+{ #category : #tests }
+MonitorTest >> testWaitMaxMilliseconds [
 	| monitor |
 	monitor := Monitor new.
 	monitor critical: [ monitor waitMaxMilliseconds: 10 ].

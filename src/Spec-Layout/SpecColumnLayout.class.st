@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'height'
 	],
-	#category : #Spec-Layout,
-	#timestamp : '<historical>'
+	#category : #Spec-Layout
 }
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecColumnLayout>>add: aSpec height: aNumber [
+{ #category : #commands }
+SpecColumnLayout >> add: aSpec height: aNumber [
 	
 	self add: aSpec origin: 0@0 corner: 1@1 offsetOrigin: 0@0 offsetCorner: 0@aNumber 
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecColumnLayout>>addSplitter [
+{ #category : #commands }
+SpecColumnLayout >> addSplitter [
 
 	self commands add: (SpecSplitterHorizontal commands: self commands)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecColumnLayout>>autoFractionComputation [
+{ #category : #private }
+SpecColumnLayout >> autoFractionComputation [
 	| delta |
 	delta := numberOfProportionals isZero
 		ifTrue: [ 0 ]
@@ -45,11 +35,8 @@ SpecColumnLayout>>autoFractionComputation [
 				ifFalse: [ self setWidgetLayoutWithOffset: e at: idx ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecColumnLayout>>countNumberOfProportionals [
+{ #category : #private }
+SpecColumnLayout >> countNumberOfProportionals [
 
 	self commands	do: [ :e | 
 		e layoutFrame hasNoOffsets
@@ -59,11 +46,8 @@ SpecColumnLayout>>countNumberOfProportionals [
 				numberOfProportionals := numberOfProportionals + 1 ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecColumnLayout>>manualFractionComputation [
+{ #category : #private }
+SpecColumnLayout >> manualFractionComputation [
 	
 	self commands	doWithIndex: [ :e :idx | 
 		e layoutFrame hasNoOffsets
@@ -73,11 +57,8 @@ SpecColumnLayout>>manualFractionComputation [
 			ifFalse: [ self setWidgetLayoutWithOffset: e at: idx ] ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecColumnLayout>>privateAsArray [
+{ #category : #converting }
+SpecColumnLayout >> privateAsArray [
 
 	self resetArrayComputation.
 	self countNumberOfProportionals.
@@ -92,11 +73,8 @@ SpecColumnLayout>>privateAsArray [
 	^ result asArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecColumnLayout>>resetArrayComputation [
+{ #category : #private }
+SpecColumnLayout >> resetArrayComputation [
 
 	super resetArrayComputation.
 	
@@ -108,11 +86,8 @@ SpecColumnLayout>>resetArrayComputation [
 	currentProportional := 0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecColumnLayout>>setWidgetLayoutWithNoOffset: widget at: index delta: delta [
+{ #category : #private }
+SpecColumnLayout >> setWidgetLayoutWithNoOffset: widget at: index delta: delta [
 
 	widget layoutFrame:
 		((0 @ currentProportional corner: 1 @ (currentProportional + delta)) asLayoutFrame 
@@ -125,11 +100,8 @@ SpecColumnLayout>>setWidgetLayoutWithNoOffset: widget at: index delta: delta [
 	lastFractionIndex := index
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecColumnLayout>>setWidgetLayoutWithOffset: widget at: index [
+{ #category : #private }
+SpecColumnLayout >> setWidgetLayoutWithOffset: widget at: index [
 
 	height := widget bottomOffset - widget topOffset.
 	
@@ -147,11 +119,8 @@ SpecColumnLayout>>setWidgetLayoutWithOffset: widget at: index [
 			currentOffset := currentOffset + height ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecColumnLayout>>shiftLastWidgets [
+{ #category : #private }
+SpecColumnLayout >> shiftLastWidgets [
 	| index ante |	
 	
 	(lastFractionIndex > 0 and: [ lastFractionIndex < size ]) ifFalse: [ ^ self ].

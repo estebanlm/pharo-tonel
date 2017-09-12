@@ -35,51 +35,35 @@ be avoided.
 Class {
 	#name : #RBShouldntRaiseErrorRule,
 	#superclass : #RBTransformationRule,
-	#category : #Refactoring-Critics-TransformationRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 18:39'
+	#category : #Refactoring-Critics-TransformationRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBShouldntRaiseErrorRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBShouldntRaiseErrorRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'ShouldntRaiseErrorRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBShouldntRaiseErrorRule>>group [
+{ #category : #accessing }
+RBShouldntRaiseErrorRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBShouldntRaiseErrorRule>>initialize [
+{ #category : #initialization }
+RBShouldntRaiseErrorRule >> initialize [
 	super initialize.
 	self rewriteRule
 		replace: 'self shouldnt: [ `@statements ] raise: Error' with: '`@statements';
 		replace: 'self shouldnt: [ `@statements ] raise: Exception' with: '`@statements'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBShouldntRaiseErrorRule>>name [
+{ #category : #accessing }
+RBShouldntRaiseErrorRule >> name [
 	^ 'Do not use  `shouldnt: [ ... ] raise: Error` '
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBShouldntRaiseErrorRule>>rationale  [
+{ #category : #accessing }
+RBShouldntRaiseErrorRule >> rationale [ 
 	^ 'Replaces `shouldnt: [ ... ] raise: Error` with  `[ ... ]`'
 ]

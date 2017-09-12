@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RBSearchTest,
 	#superclass : #TestCase,
@@ -8,37 +5,27 @@ Class {
 		'classSearches',
 		'currentSelector'
 	],
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBSearchTest>>buildArgumentSearch [
+{ #category : #accessing }
+RBSearchTest >> buildArgumentSearch [
 	self 
 		createArgumentSearchWith: 'aSmalllintContext'
 		selectors: #(#checkMethod: #checkClass: )
 		inClass: RBBasicLintRuleTest
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBSearchTest>>buildMessageSearch [
+{ #category : #accessing }
+RBSearchTest >> buildMessageSearch [
 	self 
 		createSearchWith: '``@receiver -> ``@arg'
 		selectors: #(#superSends #superSends )
 		inClass: RBTransformationRuleTest
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBSearchTest>>buildMethodArgumentSearch [
+{ #category : #accessing }
+RBSearchTest >> buildMethodArgumentSearch [
 	"Two argument methods"
 	self 
 		createMethodSearchWith: '`arg1: `arg1 `arg2: `arg2 | `@temps | `@.Stmts'
@@ -50,11 +37,8 @@ RBSearchTest>>buildMethodArgumentSearch [
 		inClass: RBBasicLintRuleTest class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBSearchTest>>buildMethodSearch [
+{ #category : #accessing }
+RBSearchTest >> buildMethodSearch [
 	"Simple forwarders"
 	self 
 		createMethodSearchWith: '`@methodName: `@args ^`@object `@methodName: `@args'
@@ -62,22 +46,16 @@ RBSearchTest>>buildMethodSearch [
 		inClass: RBTransformationRuleTest
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBSearchTest>>buildMethodTitleSearch [
+{ #category : #accessing }
+RBSearchTest >> buildMethodTitleSearch [
 	self 
 		createMethodSearchWith: 'initialize | `@temps | `@.Stmts'
 		selectors: #(#initialize )
 		inClass: RBBasicLintRuleTest
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBSearchTest>>buildSimpleLiteralSearch [
+{ #category : #accessing }
+RBSearchTest >> buildSimpleLiteralSearch [
 	| search |
 	search := RBParseTreeSearcher new.
 	search 
@@ -94,11 +72,8 @@ RBSearchTest>>buildSimpleLiteralSearch [
 		ifAbsentPut: [ Set new ]) add: search
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBSearchTest>>buildSimpleVariableSearch [
+{ #category : #accessing }
+RBSearchTest >> buildSimpleVariableSearch [
 	self 
 		createSearchWith: 'result'
 		selectors: #(
@@ -118,11 +93,8 @@ RBSearchTest>>buildSimpleVariableSearch [
 		inClass: RBBasicLintRuleTest
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBSearchTest>>buildStatementSearch [
+{ #category : #accessing }
+RBSearchTest >> buildStatementSearch [
 	"Two or more statements"
 	self 
 		createSearchWith: '| `@temps | ``@.Stmts1. ``.Stmt1. ``@.Stmts2. ``.Stmt2. ``@.Stmts3'
@@ -135,11 +107,8 @@ RBSearchTest>>buildStatementSearch [
 		inClass: RBTransformationRuleTest
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBSearchTest>>createArgumentSearchWith: aCodeString selectors: selectorCollection inClass: aClass  [
+{ #category : #accessing }
+RBSearchTest >> createArgumentSearchWith: aCodeString selectors: selectorCollection inClass: aClass [ 
 	| search |
 	search := RBParseTreeSearcher new.
 	search matchesAnyArgumentOf: (Array with: aCodeString)
@@ -152,11 +121,8 @@ RBSearchTest>>createArgumentSearchWith: aCodeString selectors: selectorCollectio
 	(classSearches at: aClass ifAbsentPut: [Set new]) add: search
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBSearchTest>>createMethodSearchWith: aCodeString selectors: selectorCollection inClass: aClass  [
+{ #category : #accessing }
+RBSearchTest >> createMethodSearchWith: aCodeString selectors: selectorCollection inClass: aClass [ 
 	| search |
 	search := RBParseTreeSearcher new.
 	search matchesAnyMethodOf: (Array with: aCodeString)
@@ -169,11 +135,8 @@ RBSearchTest>>createMethodSearchWith: aCodeString selectors: selectorCollection 
 	(classSearches at: aClass ifAbsentPut: [Set new]) add: search
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBSearchTest>>createSearchWith: aCodeString selectors: selectorCollection inClass: aClass  [
+{ #category : #accessing }
+RBSearchTest >> createSearchWith: aCodeString selectors: selectorCollection inClass: aClass [ 
 	| search |
 	search := RBParseTreeSearcher new.
 	search matches: aCodeString
@@ -186,19 +149,13 @@ RBSearchTest>>createSearchWith: aCodeString selectors: selectorCollection inClas
 	(classSearches at: aClass ifAbsentPut: [Set new]) add: search
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBSearchTest>>currentSelector [
+{ #category : #accessing }
+RBSearchTest >> currentSelector [
 	^ currentSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBSearchTest>>setUp [
+{ #category : #accessing }
+RBSearchTest >> setUp [
 	super setUp.
 	classSearches := Dictionary new.
 	self
@@ -212,11 +169,8 @@ RBSearchTest>>setUp [
 		buildMethodArgumentSearch
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBSearchTest>>testAllSearches [
+{ #category : #tests }
+RBSearchTest >> testAllSearches [
 	classSearches keysAndValuesDo: 
 			[:class :searches | 
 			class selectors do: 

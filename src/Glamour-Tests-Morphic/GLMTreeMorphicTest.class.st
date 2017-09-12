@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMTreeMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTreeMorphicTest>>testChildrenBlock [
+{ #category : #tests }
+GLMTreeMorphicTest >> testChildrenBlock [
 	| browser check |
 	browser := GLMFinder new.
 	check := false.
@@ -25,11 +18,8 @@ GLMTreeMorphicTest>>testChildrenBlock [
 	self repeatAssert: [ check ] equals: true
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTreeMorphicTest>>testChildrenBlockTakesEntity [
+{ #category : #tests }
+GLMTreeMorphicTest >> testChildrenBlockTakesEntity [
 	| browser receivedEntity |
 	browser := GLMFinder new.
 	receivedEntity := nil.
@@ -41,11 +31,8 @@ GLMTreeMorphicTest>>testChildrenBlockTakesEntity [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTreeMorphicTest>>testExplicitSelectionDoesNotUpdate [
+{ #category : #tests }
+GLMTreeMorphicTest >> testExplicitSelectionDoesNotUpdate [
 	| composite |
 	composite := GLMCompositePresentation new
 		with: [ :c | c tree 
@@ -58,11 +45,8 @@ GLMTreeMorphicTest>>testExplicitSelectionDoesNotUpdate [
 	self assert:  self tree selectedMorph equals: nil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTreeMorphicTest>>testTreeAllowDeseletion [
+{ #category : #tests }
+GLMTreeMorphicTest >> testTreeAllowDeseletion [
 	| browser treeNodeMorph |	
 	browser := GLMFinder new.
 	browser show: [:a | a list allowDeselection].
@@ -73,11 +57,8 @@ GLMTreeMorphicTest>>testTreeAllowDeseletion [
 	self assert: (browser panes first port: #selection) value isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTreeMorphicTest>>testTreeDefaultAllowDeseletion [
+{ #category : #tests }
+GLMTreeMorphicTest >> testTreeDefaultAllowDeseletion [
 	| browser treeNodeMorph |
 	browser := GLMFinder new.
 	browser show: [:a | a tree].
@@ -88,11 +69,8 @@ GLMTreeMorphicTest>>testTreeDefaultAllowDeseletion [
 	self assert: (browser panes first port: #selection) value equals: $a
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTreeMorphicTest>>testTreeMultipleSelection [
+{ #category : #tests }
+GLMTreeMorphicTest >> testTreeMultipleSelection [
 	| browser treeNodeMorph lastTreeNodeMorph |
 	browser := GLMFinder new.
 	browser show: [:a | a tree beMultiple].
@@ -105,11 +83,8 @@ GLMTreeMorphicTest>>testTreeMultipleSelection [
 	self assert: (browser panes first port: #selection) value asSet equals: ($a to: $d) asSet
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTreeMorphicTest>>testTreeMultipleSelectionWithCancellation [
+{ #category : #tests }
+GLMTreeMorphicTest >> testTreeMultipleSelectionWithCancellation [
 	| browser treeNodeMorph lastTreeNodeMorph |
 	browser := GLMFinder new.
 	browser show: [:a | a tree beMultiple allowDeselection].
@@ -123,11 +98,8 @@ GLMTreeMorphicTest>>testTreeMultipleSelectionWithCancellation [
 	self assert: (browser panes first port: #selection) value isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTreeMorphicTest>>testTreeSelection [
+{ #category : #tests }
+GLMTreeMorphicTest >> testTreeSelection [
 	| browser treeNodeMorph |
 	browser := GLMFinder new.
 	browser show: [:a | a tree].
@@ -137,11 +109,8 @@ GLMTreeMorphicTest>>testTreeSelection [
 	self assert: (browser panes first port: #selection) value equals: $a
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTreeMorphicTest>>testTreeSelectionCancellation [
+{ #category : #tests }
+GLMTreeMorphicTest >> testTreeSelectionCancellation [
 	| browser treeNodeMorph |
 	browser := GLMFinder new.
 	browser show: [:a | a tree allowDeselection].
@@ -152,11 +121,8 @@ GLMTreeMorphicTest>>testTreeSelectionCancellation [
 	self assert: (browser panes first port: #selection) value isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTreeMorphicTest>>testTreeWithDisplay [
+{ #category : #tests }
+GLMTreeMorphicTest >> testTreeWithDisplay [
 	| browser treeCollection |
 	treeCollection := { #root1->{#child1->{} . #child2->{}} . #root2 ->{} }.
 	browser := GLMTabulator new.
@@ -169,11 +135,8 @@ GLMTreeMorphicTest>>testTreeWithDisplay [
 	self assert: browser panes first presentations first displayValue == treeCollection
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTreeMorphicTest>>testTreeWithTags [
+{ #category : #tests }
+GLMTreeMorphicTest >> testTreeWithTags [
 	"Creates a tree and tag some nodes. Then click on a tag and see if the unmatched nodes disappear"
 
 	| browser model oddNode lineWithNumber3 someNode secondSome |
@@ -216,19 +179,13 @@ GLMTreeMorphicTest>>testTreeWithTags [
 	self assert: secondSome text asString equals: '3'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTreeMorphicTest>>tree [
+{ #category : #private }
+GLMTreeMorphicTest >> tree [
 	^ self find: MorphTreeMorph in: window
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTreeMorphicTest>>treeVisibleItems [
+{ #category : #private }
+GLMTreeMorphicTest >> treeVisibleItems [
 	"Returns the roots of the tree included in the current window. It looks like morphic creates new collections when the tree is refreshed which means different calls to this method may return different objects."
 	^ self tree scroller submorphs
 ]

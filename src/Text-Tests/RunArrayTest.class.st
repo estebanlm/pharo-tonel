@@ -4,15 +4,11 @@ SUnit tests for class RunArray
 Class {
 	#name : #RunArrayTest,
 	#superclass : #TestCase,
-	#category : #Text-Tests,
-	#timestamp : 'TorstenBergmann 1/31/2014 12:22'
+	#category : #Text-Tests
 }
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RunArrayTest>>testANewRunArrayIsEmpty [
+{ #category : #'tests - instance creation' }
+RunArrayTest >> testANewRunArrayIsEmpty [
 
 	| t |
 	t := RunArray new.
@@ -20,11 +16,8 @@ RunArrayTest>>testANewRunArrayIsEmpty [
 
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RunArrayTest>>testAt [
+{ #category : #'tests - accessing' }
+RunArrayTest >> testAt [
 	"self debug: #testAt"
 	| array |
 	array := RunArray new: 5 withAll: 2.
@@ -35,11 +28,8 @@ RunArrayTest>>testAt [
 
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RunArrayTest>>testAtPut [
+{ #category : #'tests - accessing' }
+RunArrayTest >> testAtPut [
 	"self debug: #testAtPut"
 	| array |
 	array := RunArray new: 5 withAll: 2.
@@ -51,11 +41,8 @@ RunArrayTest>>testAtPut [
 	self assert: array asArray = #(1 2 5 2 2).
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RunArrayTest>>testAtPut2 [
+{ #category : #'tests - accessing' }
+RunArrayTest >> testAtPut2 [
 	"self debug: #testAtPut2"
 	| array |
 	array := RunArray new: 5 withAll: 2.
@@ -65,11 +52,8 @@ RunArrayTest>>testAtPut2 [
 	self should: [array at: $b put: 5] raise: Error.
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RunArrayTest>>testFirst [
+{ #category : #'tests - accessing' }
+RunArrayTest >> testFirst [
 	"self debug: #testFirst"
 	| array |
 	array := RunArray new: 5 withAll: 2.
@@ -79,11 +63,8 @@ RunArrayTest>>testFirst [
 	self assert: array first = $a.
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RunArrayTest>>testIsSelfEvaluating [
+{ #category : #'tests - instance creation' }
+RunArrayTest >> testIsSelfEvaluating [
 	| array array2 |
 	array := RunArray new: 5 withAll: 2.
 	self assert: array isSelfEvaluating.
@@ -93,11 +74,8 @@ RunArrayTest>>testIsSelfEvaluating [
 		description: 'a self evaluating should evaluate as self'].
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RunArrayTest>>testLast [
+{ #category : #'tests - accessing' }
+RunArrayTest >> testLast [
 	"self debug: #testLast"
 	| array |
 	array := RunArray new: 5 withAll: 2.
@@ -107,22 +85,16 @@ RunArrayTest>>testLast [
 	self assert: array last = $d.
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RunArrayTest>>testNew [
+{ #category : #'tests - instance creation' }
+RunArrayTest >> testNew [
 	"self debug: #testNew"
 	| array |
 	array := RunArray new.
 	self assert: array size = 0.
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RunArrayTest>>testNewFrom [
+{ #category : #'tests - instance creation' }
+RunArrayTest >> testNewFrom [
 	"self debug: #testNewFrom"
 	| array |
 	array := RunArray newFrom: #($a $b $b $b $b $c $c $a).
@@ -130,11 +102,8 @@ RunArrayTest>>testNewFrom [
 	self assert: array asArray = #($a $b $b $b $b $c $c $a).
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RunArrayTest>>testNewWithAll [
+{ #category : #'tests - instance creation' }
+RunArrayTest >> testNewWithAll [
 	"self debug: #testNewWithAll"
 	| array |
 	array := RunArray new: 5 withAll: 2.
@@ -142,22 +111,16 @@ RunArrayTest>>testNewWithAll [
 	self assert: array asArray = #(2 2 2 2 2)
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RunArrayTest>>testNewWithSize [
+{ #category : #'tests - instance creation' }
+RunArrayTest >> testNewWithSize [
 	|array|
 	array := RunArray new: 5.
 	self assert: array size = 5.
 	1 to: 5 do: [:index | self assert: (array at: index) isNil]
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RunArrayTest>>testRunLengthAt [
+{ #category : #'tests - accessing' }
+RunArrayTest >> testRunLengthAt [
 	"self debug: #testRunLengthAt"
 	| array |
 	array := #($a $b $b $c $c $c $d $d) as: RunArray.
@@ -171,11 +134,8 @@ RunArrayTest>>testRunLengthAt [
 	self assert: (array runLengthAt: 8) = 1.
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RunArrayTest>>testRunsValues [
+{ #category : #'tests - instance creation' }
+RunArrayTest >> testRunsValues [
 	"self debug: #testRunsValues"
 	| array |
 	array := RunArray runs: #(1 4 2 1) values: #($a $b $c $a).
@@ -183,22 +143,16 @@ RunArrayTest>>testRunsValues [
 	self assert: array asArray = #($a $b $b $b $b $c $c $a).
 ]
 
-{
-	#category : #'tests - instance creation',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RunArrayTest>>testScanFromANSICompatibility [
+{ #category : #'tests - instance creation' }
+RunArrayTest >> testScanFromANSICompatibility [
 	"self run: #testScanFromANSICompatibility"
 	RunArray scanFrom: '()f1dNumber new;;' readStream.
 	RunArray scanFrom: '()a1death;;' readStream.
 	RunArray scanFrom: '()F1death;;' readStream
 ]
 
-{
-	#category : #'tests - accessing',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RunArrayTest>>testWithStartStopAndValueDo [
+{ #category : #'tests - accessing' }
+RunArrayTest >> testWithStartStopAndValueDo [
 	"self debug: #testWithStartStopAndValueDo"
 	| array elements startStops |
 	array := #($a $b $b $c $c $c $d $d) as: RunArray.

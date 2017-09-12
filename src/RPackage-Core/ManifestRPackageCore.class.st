@@ -4,14 +4,10 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestRPackageCore,
 	#superclass : #PackageManifest,
-	#category : #RPackage-Core,
-	#timestamp : '<historical>'
+	#category : #RPackage-Core
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ManifestRPackageCore class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestRPackageCore class >> manuallyResolvedDependencies [
 	^ #(#'Ring-Core-Kernel' #UIManager #'System-Sources')
 ]

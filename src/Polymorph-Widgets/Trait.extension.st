@@ -1,12 +1,7 @@
-Extension {
-	#name : #Trait
-}
+Extension { #name : #Trait }
 
-{
-	#category : #'*Polymorph-Widgets-Themes',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Trait>>systemIconName [
+{ #category : #'*Polymorph-Widgets-Themes' }
+Trait >> systemIconName [
 
 	<localTraitMethod> 
     "This method is supposed to be local in Trait because of a good reason.

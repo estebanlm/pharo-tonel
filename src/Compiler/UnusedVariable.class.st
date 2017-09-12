@@ -4,15 +4,11 @@ Notify about an unused temporary variable
 Class {
 	#name : #UnusedVariable,
 	#superclass : #ParserNotification,
-	#category : #Compiler-Exceptions,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:17'
+	#category : #Compiler-Exceptions
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-UnusedVariable>>openMenuIn: aBlock [
+{ #category : #'as yet unclassified' }
+UnusedVariable >> openMenuIn: aBlock [
 	| index |
 	index := aBlock value: #('yes' 'no')
 					value: #()

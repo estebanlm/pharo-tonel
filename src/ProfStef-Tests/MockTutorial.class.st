@@ -4,39 +4,26 @@ Mocking a tutorial for test purposes
 Class {
 	#name : #MockTutorial,
 	#superclass : #AbstractTutorial,
-	#category : #ProfStef-Tests,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:49'
+	#category : #ProfStef-Tests
 }
 
-{
-	#category : #lesson,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-MockTutorial>>firstLesson [
+{ #category : #lesson }
+MockTutorial >> firstLesson [
 	^ Lesson title: 'first' lesson: 'First lesson'.
 ]
 
-{
-	#category : #lesson,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-MockTutorial>>secondLesson [
+{ #category : #lesson }
+MockTutorial >> secondLesson [
 	^ Lesson title: 'second' lesson: 'Second lesson'.
 ]
 
-{
-	#category : #lesson,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-MockTutorial>>thirdLesson [
+{ #category : #lesson }
+MockTutorial >> thirdLesson [
 	^ Lesson title: 'third' lesson: 'Third lesson'.
 ]
 
-{
-	#category : #tutorial,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-MockTutorial>>tutorial  [
+{ #category : #tutorial }
+MockTutorial >> tutorial [ 
 	^ #(
 firstLesson
 secondLesson

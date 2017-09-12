@@ -5,62 +5,40 @@ A SugsMorphicTextAdapterContext is a context that know how to work with the Morp
 Class {
 	#name : #SugsMorphicTextAdapterContext,
 	#superclass : #SugsAbstractContext,
-	#category : #SmartSuggestions-Menu,
-	#timestamp : '<historical>'
+	#category : #SmartSuggestions-Menu
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsMorphicTextAdapterContext>>code [
+{ #category : #accessing }
+SugsMorphicTextAdapterContext >> code [
 	^ model getText .
 ]
 
-{
-	#category : #refactoring,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsMorphicTextAdapterContext>>contentSelection [
+{ #category : #refactoring }
+SugsMorphicTextAdapterContext >> contentSelection [
 	^model widget textArea selection
 ]
 
-{
-	#category : #refactoring,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsMorphicTextAdapterContext>>selectedClass [
+{ #category : #refactoring }
+SugsMorphicTextAdapterContext >> selectedClass [
 	^model behavior
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsMorphicTextAdapterContext>>selectedInterval [
+{ #category : #selection }
+SugsMorphicTextAdapterContext >> selectedInterval [
 	^ model selectionInterval
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsMorphicTextAdapterContext>>selectedMethod [
+{ #category : #selection }
+SugsMorphicTextAdapterContext >> selectedMethod [
 	^model model owner selectedMessage
 ]
 
-{
-	#category : #refactoring,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsMorphicTextAdapterContext>>selectionInterval [
+{ #category : #refactoring }
+SugsMorphicTextAdapterContext >> selectionInterval [
 	^self selectedInterval 
 ]
 
-{
-	#category : #refactoring,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsMorphicTextAdapterContext>>sourceTextArea [
+{ #category : #refactoring }
+SugsMorphicTextAdapterContext >> sourceTextArea [
 	^model widget  
 ]

@@ -14,15 +14,11 @@ Class {
 		'firstPosition',
 		'lastPosition'
 	],
-	#category : #OSWindow-Core-Gestures,
-	#timestamp : 'MerwanOuddane 4/14/2015 10:00'
+	#category : #OSWindow-Core-Gestures
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker class>>for: anEvent [
+{ #category : #'instance creation' }
+OSTouchFingerTracker class >> for: anEvent [
 	^ self new deviceId: anEvent deviceId;
 		fingerId: anEvent fingerId;
 		delta: anEvent delta;
@@ -31,64 +27,43 @@ OSTouchFingerTracker class>>for: anEvent [
 		timestamp: anEvent timestamp
 ]
 
-{
-	#category : #moves,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>addToMove: aPoint [
+{ #category : #moves }
+OSTouchFingerTracker >> addToMove: aPoint [
 	move add: aPoint.
 	lastPosition := aPoint
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>delta [
+{ #category : #accessing }
+OSTouchFingerTracker >> delta [
 	^ delta
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>delta: anObject [
+{ #category : #accessing }
+OSTouchFingerTracker >> delta: anObject [
 	delta := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>deviceId [
+{ #category : #accessing }
+OSTouchFingerTracker >> deviceId [
 	^ deviceId
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>deviceId: anObject [
+{ #category : #accessing }
+OSTouchFingerTracker >> deviceId: anObject [
 	deviceId := anObject
 ]
 
-{
-	#category : #calculating,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>direction [
+{ #category : #calculating }
+OSTouchFingerTracker >> direction [
 	"Only returns noth, east, west, south"
 	^ delta x abs > delta y abs
 		ifTrue: [ delta x sign @ 0 ]
 		ifFalse: [ 0 @ delta y sign ]
 ]
 
-{
-	#category : #calculating,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>distanceFromLineFormedByFinger: aFingerTracker [
+{ #category : #calculating }
+OSTouchFingerTracker >> distanceFromLineFormedByFinger: aFingerTracker [
 	| otherLast |
 	otherLast := aFingerTracker lastPosition.
 
@@ -99,135 +74,87 @@ OSTouchFingerTracker>>distanceFromLineFormedByFinger: aFingerTracker [
 			otherLast)
 ]
 
-{
-	#category : #calculating,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>distanceTravelled [
+{ #category : #calculating }
+OSTouchFingerTracker >> distanceTravelled [
 	^ firstPosition distanceTo: lastPosition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>fingerId [
+{ #category : #accessing }
+OSTouchFingerTracker >> fingerId [
 	^ fingerId
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>fingerId: anObject [
+{ #category : #accessing }
+OSTouchFingerTracker >> fingerId: anObject [
 	fingerId := anObject
 ]
 
-{
-	#category : #moves,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>firstPosition [
+{ #category : #moves }
+OSTouchFingerTracker >> firstPosition [
 	^ firstPosition
 ]
 
-{
-	#category : #moves,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>firstPosition: anObject [
+{ #category : #moves }
+OSTouchFingerTracker >> firstPosition: anObject [
 	move removeAll.
 	firstPosition := anObject.
 	self addToMove: firstPosition.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>initialize [
+{ #category : #initialization }
+OSTouchFingerTracker >> initialize [
 	move := OrderedCollection new.
 ]
 
-{
-	#category : #calculating,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>isGettingCloserToPoint: aPoint [
+{ #category : #calculating }
+OSTouchFingerTracker >> isGettingCloserToPoint: aPoint [
 	| rectangle |
 	rectangle := lastPosition rectangle: aPoint.
 	^ (rectangle containsPoint: lastPosition + delta)
 ]
 
-{
-	#category : #moves,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>lastPosition [
+{ #category : #moves }
+OSTouchFingerTracker >> lastPosition [
 	^ lastPosition
 ]
 
-{
-	#category : #moves,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>lastPosition: anObject [
+{ #category : #moves }
+OSTouchFingerTracker >> lastPosition: anObject [
 	lastPosition := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>move [
+{ #category : #accessing }
+OSTouchFingerTracker >> move [
 	^ move
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>move: anObject [
+{ #category : #accessing }
+OSTouchFingerTracker >> move: anObject [
 	move := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>pressure [
+{ #category : #accessing }
+OSTouchFingerTracker >> pressure [
 	^ pressure
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>pressure: anObject [
+{ #category : #accessing }
+OSTouchFingerTracker >> pressure: anObject [
 	pressure := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>timestamp [
+{ #category : #accessing }
+OSTouchFingerTracker >> timestamp [
 	^ timestamp 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>timestamp: anObject [
+{ #category : #accessing }
+OSTouchFingerTracker >> timestamp: anObject [
 	timestamp := anObject
 ]
 
-{
-	#category : #calculating,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>totalDistanceTravelled [
+{ #category : #calculating }
+OSTouchFingerTracker >> totalDistanceTravelled [
 	| previous sum |
 	previous := firstPosition.
 	sum := 0.
@@ -238,19 +165,13 @@ OSTouchFingerTracker>>totalDistanceTravelled [
 	^ sum
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>updateDelta: aPoint [
+{ #category : #updating }
+OSTouchFingerTracker >> updateDelta: aPoint [
 	delta := (delta + (2 * aPoint)) / 3
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchFingerTracker>>updateWithEvent: anEvent [
+{ #category : #updating }
+OSTouchFingerTracker >> updateWithEvent: anEvent [
 	self updateDelta: anEvent delta;
 		addToMove: anEvent position;
 		pressure: anEvent pressure;

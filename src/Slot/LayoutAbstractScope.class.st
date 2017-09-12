@@ -4,84 +4,56 @@ Layout scopes reify how classes extend the layout of their superclass.
 Class {
 	#name : #LayoutAbstractScope,
 	#superclass : #Object,
-	#category : #Slot-Layout,
-	#timestamp : '<historical>'
+	#category : #Slot-Layout
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>= other [
+{ #category : #comparing }
+LayoutAbstractScope >> = other [
 	^ self class = other class
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>allSlotsDo: aBlock [
+{ #category : #enumerating }
+LayoutAbstractScope >> allSlotsDo: aBlock [
 	self subclassResponsibility
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>allSlotsReverseDo: aBlock [
+{ #category : #enumerating }
+LayoutAbstractScope >> allSlotsReverseDo: aBlock [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>atName: aName [
+{ #category : #accessing }
+LayoutAbstractScope >> atName: aName [
 	^ self atName: aName ifAbsent: [ SlotNotFound signalForName: aName ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>atName: aName ifAbsent: aBlock [
+{ #category : #accessing }
+LayoutAbstractScope >> atName: aName ifAbsent: aBlock [
 	self allSlotsDo: [ :slot | 
 		slot name == aName ifTrue: [ ^ slot ]].
 	^ aBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>atName: aName ifFound: foundBlock ifNone: exceptionBlock [
+{ #category : #accessing }
+LayoutAbstractScope >> atName: aName ifFound: foundBlock ifNone: exceptionBlock [
 	self allSlotsDo: [ :slot | 
 		slot name == aName ifTrue: [ ^ foundBlock cull: slot ]].
 	^ exceptionBlock value
 	
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>extend [
+{ #category : #extending }
+LayoutAbstractScope >> extend [
 	^ self extend: { }
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>extend: someSlots [
+{ #category : #extending }
+LayoutAbstractScope >> extend: someSlots [
 	^ self extend: someSlots as: LayoutClassScope
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>extend: someSlots as: type [
+{ #category : #extending }
+LayoutAbstractScope >> extend: someSlots as: type [
 	| scope fieldIndex  |
 	scope := type new: someSlots size.
 	fieldIndex := self firstFieldIndex.
@@ -96,78 +68,51 @@ LayoutAbstractScope>>extend: someSlots as: type [
 	^ scope
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>fieldSize [
+{ #category : #accessing }
+LayoutAbstractScope >> fieldSize [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>firstFieldIndex [
+{ #category : #accessing }
+LayoutAbstractScope >> firstFieldIndex [
 	^ self fieldSize + 1
 ]
 
-{
-	#category : #flattening,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>flatten [
+{ #category : #flattening }
+LayoutAbstractScope >> flatten [
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>hasFields [
+{ #category : #testing }
+LayoutAbstractScope >> hasFields [
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>hasSlots [
+{ #category : #testing }
+LayoutAbstractScope >> hasSlots [
 	self subclassResponsibility
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>hash [
+{ #category : #comparing }
+LayoutAbstractScope >> hash [
 	^ self class hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>ifNotEmpty: aBlock [
+{ #category : #testing }
+LayoutAbstractScope >> ifNotEmpty: aBlock [
 	self subclassResponsibility
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>indexOf: anElement [
+{ #category : #enumerating }
+LayoutAbstractScope >> indexOf: anElement [
 	"Answer the index of the first occurrence of anElement within the  
 	receiver. If the receiver does not contain anElement, answer 0."
 
 	^ self indexOf: anElement ifAbsent: 0
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>indexOf: anElement ifAbsent: exceptionBlock [
+{ #category : #enumerating }
+LayoutAbstractScope >> indexOf: anElement ifAbsent: exceptionBlock [
 	"Answer the index of the first occurence of anElement within the  
 	receiver. If the receiver does not contain anElement, answer the 
 	result of evaluating the argument, exceptionBlock."
@@ -178,42 +123,27 @@ LayoutAbstractScope>>indexOf: anElement ifAbsent: exceptionBlock [
 	^ exceptionBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>ownFieldSize [
+{ #category : #accessing }
+LayoutAbstractScope >> ownFieldSize [
 	self subclassResponsibility
 ]
 
-{
-	#category : #reshaping,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>rebase: originalScope to: newScope [
+{ #category : #reshaping }
+LayoutAbstractScope >> rebase: originalScope to: newScope [
 	self error: 'Should not happen'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>visibleSlotNames [
+{ #category : #accessing }
+LayoutAbstractScope >> visibleSlotNames [
 	^self visibleSlots collect: [:each | each name ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>visibleSlots [
+{ #category : #accessing }
+LayoutAbstractScope >> visibleSlots [
 	self subclassResponsibility
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutAbstractScope>>withParentScopesDo: aBlock [
+{ #category : #enumerating }
+LayoutAbstractScope >> withParentScopesDo: aBlock [
 	self subclassResponsibility
 ]

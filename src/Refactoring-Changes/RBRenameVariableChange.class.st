@@ -14,15 +14,11 @@ Class {
 		'oldName',
 		'newName'
 	],
-	#category : #Refactoring-Changes,
-	#timestamp : 'NicolaiHess 9/8/2016 23:48'
+	#category : #Refactoring-Changes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange class>>rename: oldName to: newName in: aClass  [
+{ #category : #'instance creation' }
+RBRenameVariableChange class >> rename: oldName to: newName in: aClass [ 
 	^ self new
 		oldName: oldName;
 		newName: newName;
@@ -30,11 +26,8 @@ RBRenameVariableChange class>>rename: oldName to: newName in: aClass  [
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>= aRenameVariableChange  [
+{ #category : #comparing }
+RBRenameVariableChange >> = aRenameVariableChange [ 
 	self class = aRenameVariableChange class 
 		ifFalse: [ ^ false ].
 	^ className = aRenameVariableChange changeClassName 
@@ -43,84 +36,57 @@ RBRenameVariableChange>>= aRenameVariableChange  [
 		and: [ newName = aRenameVariableChange newName ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>addNewVariable [
+{ #category : #private }
+RBRenameVariableChange >> addNewVariable [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>changeClass [
+{ #category : #accessing }
+RBRenameVariableChange >> changeClass [
 	| class |
 	class := Smalltalk globals at: self changeClassName ifAbsent: [ ^ nil ].
 	^ isMeta ifTrue: [ class class ] ifFalse: [ class ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>changeClass: aBehavior [
+{ #category : #accessing }
+RBRenameVariableChange >> changeClass: aBehavior [
 	isMeta := aBehavior isMeta.
 	className := isMeta
 		ifTrue: [ aBehavior soleInstance name ]
 		ifFalse: [ aBehavior name ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>changeClassName [
+{ #category : #accessing }
+RBRenameVariableChange >> changeClassName [
 	^ className
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>changeClassName: aSymbol [
+{ #category : #accessing }
+RBRenameVariableChange >> changeClassName: aSymbol [
 	className := aSymbol.
 	isMeta isNil
 		ifTrue: [ isMeta := false ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>changeString [
+{ #category : #printing }
+RBRenameVariableChange >> changeString [
 	^ 'Rename ' , oldName , ' to ' , newName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>copyOldValuesToNewVariable [
+{ #category : #private }
+RBRenameVariableChange >> copyOldValuesToNewVariable [
 	self subclassResponsibility
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>displayClassName [
+{ #category : #printing }
+RBRenameVariableChange >> displayClassName [
 	^ isMeta
 		ifTrue: [ self changeClassName , ' class' ]
 		ifFalse: [ self changeClassName asString ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>executeNotifying: aBlock  [
+{ #category : #private }
+RBRenameVariableChange >> executeNotifying: aBlock [ 
 	| undo |
 	self addNewVariable.
 	self copyOldValuesToNewVariable.
@@ -132,66 +98,42 @@ RBRenameVariableChange>>executeNotifying: aBlock  [
 	^ undo
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>hash [
+{ #category : #comparing }
+RBRenameVariableChange >> hash [
 	^ (self class hash bitXor: self oldName hash) bitXor: self newName hash
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>isMeta [
+{ #category : #private }
+RBRenameVariableChange >> isMeta [
 	^ isMeta
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>newName [
+{ #category : #accessing }
+RBRenameVariableChange >> newName [
 	^ newName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>newName: aString  [
+{ #category : #private }
+RBRenameVariableChange >> newName: aString [ 
 	newName := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>oldName [
+{ #category : #accessing }
+RBRenameVariableChange >> oldName [
 	^ oldName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>oldName: aString [
+{ #category : #private }
+RBRenameVariableChange >> oldName: aString [
 	oldName := aString
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>printOn: aStream [
+{ #category : #printing }
+RBRenameVariableChange >> printOn: aStream [
 	aStream nextPutAll: self displayString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameVariableChange>>removeOldVariable [
+{ #category : #private }
+RBRenameVariableChange >> removeOldVariable [
 	self subclassResponsibility
 ]

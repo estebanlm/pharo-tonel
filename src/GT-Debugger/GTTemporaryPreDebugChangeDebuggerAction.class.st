@@ -7,50 +7,34 @@ Class {
 	#instVars : [
 		'preDebugWindow'
 	],
-	#category : #GT-Debugger-Actions,
-	#timestamp : 'TudorGirba 1/10/2016 23:45'
+	#category : #GT-Debugger-Actions
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTTemporaryPreDebugChangeDebuggerAction class>>actionType [
+{ #category : #registration }
+GTTemporaryPreDebugChangeDebuggerAction class >> actionType [
 	<preDebuggingAction>
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTTemporaryPreDebugChangeDebuggerAction>>appliesToDebugger: aDebugger [
+{ #category : #testing }
+GTTemporaryPreDebugChangeDebuggerAction >> appliesToDebugger: aDebugger [
 
 	^ (aDebugger class inheritsFrom: GTMoldableDebugger) not 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTTemporaryPreDebugChangeDebuggerAction>>defaultLabel [
+{ #category : #accessing }
+GTTemporaryPreDebugChangeDebuggerAction >> defaultLabel [
 
 	^ 'Debug Glamorously'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTTemporaryPreDebugChangeDebuggerAction>>defaultOrder [
+{ #category : #accessing }
+GTTemporaryPreDebugChangeDebuggerAction >> defaultOrder [
 
 	^ 200
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTTemporaryPreDebugChangeDebuggerAction>>executeAction [
+{ #category : #actions }
+GTTemporaryPreDebugChangeDebuggerAction >> executeAction [
 	| currentDebugger currentSession |
 	
 	"Close the spec PreDebugWindow and debugger"
@@ -64,29 +48,20 @@ GTTemporaryPreDebugChangeDebuggerAction>>executeAction [
 	GTGenericStackDebugger debugSession: currentSession
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTTemporaryPreDebugChangeDebuggerAction>>id [
+{ #category : #accessing }
+GTTemporaryPreDebugChangeDebuggerAction >> id [
 
 	^ #gtChangeDebuggerPreDebug
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTTemporaryPreDebugChangeDebuggerAction>>preDebugWindow [
+{ #category : #accessing }
+GTTemporaryPreDebugChangeDebuggerAction >> preDebugWindow [
 	
 	^ preDebugWindow
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTTemporaryPreDebugChangeDebuggerAction>>preDebugWindow: anObject [
+{ #category : #accessing }
+GTTemporaryPreDebugChangeDebuggerAction >> preDebugWindow: anObject [
 	
 	preDebugWindow := anObject
 ]

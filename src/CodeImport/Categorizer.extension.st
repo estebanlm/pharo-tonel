@@ -1,12 +1,7 @@
-Extension {
-	#name : #Categorizer
-}
+Extension { #name : #Categorizer }
 
-{
-	#category : #'*CodeImport',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Categorizer>>changeFromString: aString  [
+{ #category : #'*CodeImport' }
+Categorizer >> changeFromString: aString [ 
 	"Parse the argument, aString, and make this be the receiver's structure."
 
 	| categorySpecs |

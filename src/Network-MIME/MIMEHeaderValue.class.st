@@ -16,15 +16,11 @@ Class {
 		'mainValue',
 		'parameters'
 	],
-	#category : #Network-MIME,
-	#timestamp : '<historical>'
+	#category : #Network-MIME
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-MIMEHeaderValue class>>forField: aFName fromString: aString [
+{ #category : #'instance creation' }
+MIMEHeaderValue class >> forField: aFName fromString: aString [
 	"Create a MIMEHeaderValue from aString.  How it is parsed depends on whether it is a MIME specific field or a generic header field."
 
 	(aFName beginsWith: 'content-') 
@@ -33,11 +29,8 @@ MIMEHeaderValue class>>forField: aFName fromString: aString [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-MIMEHeaderValue class>>fromMIMEHeader: aString  [
+{ #category : #'instance creation' }
+MIMEHeaderValue class >> fromMIMEHeader: aString [ 
 	"This is the value of a MIME header field and so is parsed to extract the various parts"
 	| parts newValue parms |
 	newValue := self new.
@@ -63,11 +56,8 @@ MIMEHeaderValue class>>fromMIMEHeader: aString  [
 	^ newValue
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-MIMEHeaderValue class>>fromTraditionalHeader: aString [
+{ #category : #'instance creation' }
+MIMEHeaderValue class >> fromTraditionalHeader: aString [
 	"This is a traditional non-MIME header (like Subject:) and so should be stored whole"
 
 	| newValue |
@@ -79,11 +69,8 @@ MIMEHeaderValue class>>fromTraditionalHeader: aString [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-MIMEHeaderValue>>asHeaderValue [
+{ #category : #printing }
+MIMEHeaderValue >> asHeaderValue [
 	| strm |
 	strm := (String new: 20) writeStream.
 	strm nextPutAll: mainValue.
@@ -98,51 +85,33 @@ MIMEHeaderValue>>asHeaderValue [
 	^ strm contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-MIMEHeaderValue>>mainValue [
+{ #category : #accessing }
+MIMEHeaderValue >> mainValue [
 	^mainValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-MIMEHeaderValue>>mainValue: anObject [
+{ #category : #accessing }
+MIMEHeaderValue >> mainValue: anObject [
 	mainValue := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-MIMEHeaderValue>>parameterAt: aParameter put: value [
+{ #category : #accessing }
+MIMEHeaderValue >> parameterAt: aParameter put: value [
 	parameters at: aParameter put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-MIMEHeaderValue>>parameters [
+{ #category : #accessing }
+MIMEHeaderValue >> parameters [
 	^parameters
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-MIMEHeaderValue>>parameters: anObject [
+{ #category : #accessing }
+MIMEHeaderValue >> parameters: anObject [
 	parameters := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:37'
-}
-MIMEHeaderValue>>printOn: aStream [
+{ #category : #printing }
+MIMEHeaderValue >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPutAll: ': '.
 	aStream nextPutAll: self asHeaderValue

@@ -4,23 +4,16 @@ Help for Epicea project.
 Class {
 	#name : #EpHelp,
 	#superclass : #CustomHelp,
-	#category : #EpiceaBrowsers-Integration,
-	#timestamp : 'MartinDias 9/30/2016 18:14'
+	#category : #EpiceaBrowsers-Integration
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHelp class>>bookName [
+{ #category : #accessing }
+EpHelp class >> bookName [
 	^ 'Epicea'
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHelp class>>browsers [
+{ #category : #documentation }
+EpHelp class >> browsers [
 	^ HelpTopic
 		title: 'Browsers'
 		contents: '
@@ -44,11 +37,8 @@ This window visually connects the logs to help user to understand how the ombu f
 '
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHelp class>>monitor [
+{ #category : #documentation }
+EpHelp class >> monitor [
 	^ HelpTopic
 		title: 'Monitor & Ombu Files'
 		contents: '
@@ -60,11 +50,8 @@ Logging the code changes into different files can have a negative consequence: t
 '
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHelp class>>overview [
+{ #category : #documentation }
+EpHelp class >> overview [
 	^ HelpTopic
 		title: 'Overview'
 		contents: '
@@ -75,10 +62,7 @@ Epicea is a tool that records code changes enriched with IDE events.
 Epicea extends and could replace the traditional .changes logging mechanism, where the recorded code changes are incomplete and are not properly reified and thus it can be difficult to recover lost code after an image crash.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHelp class>>pages [
+{ #category : #accessing }
+EpHelp class >> pages [
 	^ #(overview monitor browsers)
 ]

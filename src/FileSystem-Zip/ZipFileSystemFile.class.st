@@ -7,42 +7,29 @@ Class {
 	#instVars : [
 		'member'
 	],
-	#category : #FileSystem-Zip,
-	#timestamp : 'MaxLeske 9/27/2014 07:52'
+	#category : #FileSystem-Zip
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-ZipFileSystemFile>>bytes [
+{ #category : #accessing }
+ZipFileSystemFile >> bytes [
 	| uncompressed |
 	uncompressed := self readFromMember.
 	self updateSize: uncompressed size.
 	^ uncompressed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-ZipFileSystemFile>>member [
+{ #category : #accessing }
+ZipFileSystemFile >> member [
 	^ member
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-ZipFileSystemFile>>member: aZipArchiveMember [
+{ #category : #accessing }
+ZipFileSystemFile >> member: aZipArchiveMember [
 	member := aZipArchiveMember
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-ZipFileSystemFile>>readFromMember [
+{ #category : #private }
+ZipFileSystemFile >> readFromMember [
 	^ ByteArray 
 		new: self member uncompressedSize
 		streamContents: [ :stream |		

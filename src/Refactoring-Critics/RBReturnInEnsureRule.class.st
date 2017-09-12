@@ -4,33 +4,23 @@ Checks for return statements within ensure: blocks that can have unintended side
 Class {
 	#name : #RBReturnInEnsureRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 23:06'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBReturnInEnsureRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBReturnInEnsureRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'ReturnInEnsureRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBReturnInEnsureRule>>group [
+{ #category : #accessing }
+RBReturnInEnsureRule >> group [
 	^ 'Potential Bugs'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBReturnInEnsureRule>>initialize [
+{ #category : #initialization }
+RBReturnInEnsureRule >> initialize [
 	| returnMatcher |
 	super initialize.
 	returnMatcher := RBParseTreeSearcher new.
@@ -50,10 +40,7 @@ RBReturnInEnsureRule>>initialize [
 				ifFalse: [ answer ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBReturnInEnsureRule>>name [
+{ #category : #accessing }
+RBReturnInEnsureRule >> name [
 	^ 'Contains a return in an ensure: block'
 ]

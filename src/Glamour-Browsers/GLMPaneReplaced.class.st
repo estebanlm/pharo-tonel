@@ -18,49 +18,33 @@ Class {
 		'oldPane',
 		'newPane'
 	],
-	#category : #Glamour-Browsers-Announcements,
-	#timestamp : 'TorstenBergmann 3/10/2015 21:59'
+	#category : #Glamour-Browsers-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPaneReplaced class>>oldPane: oldPane newPane: newPane fromBrowser: aBrowser [
+{ #category : #'instance creation' }
+GLMPaneReplaced class >> oldPane: oldPane newPane: newPane fromBrowser: aBrowser [
 	^ self new 
 		oldPane: oldPane;
 		newPane: newPane;
 		browser: aBrowser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPaneReplaced>>newPane [
+{ #category : #accessing }
+GLMPaneReplaced >> newPane [
 	^ newPane
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPaneReplaced>>newPane: anObject [
+{ #category : #accessing }
+GLMPaneReplaced >> newPane: anObject [
 	newPane := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPaneReplaced>>oldPane [
+{ #category : #accessing }
+GLMPaneReplaced >> oldPane [
 	^ oldPane
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPaneReplaced>>oldPane: anObject [
+{ #category : #accessing }
+GLMPaneReplaced >> oldPane: anObject [
 	oldPane := anObject
 ]

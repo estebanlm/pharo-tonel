@@ -6,31 +6,21 @@ My precondition verifies that there is no reference to this instance  variable.
 Class {
 	#name : #RBRemoveInstanceVariableRefactoring,
 	#superclass : #RBVariableRefactoring,
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 21:23'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveInstanceVariableRefactoring class>>model: aNamespace remove: variable from: class [
+{ #category : #'as yet unclassified' }
+RBRemoveInstanceVariableRefactoring class >> model: aNamespace remove: variable from: class [
 	^ self model: aNamespace variable: variable class: class
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveInstanceVariableRefactoring class>>remove: variable from: class [
+{ #category : #'as yet unclassified' }
+RBRemoveInstanceVariableRefactoring class >> remove: variable from: class [
 	^ self variable: variable class: class
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveInstanceVariableRefactoring>>preconditions [
+{ #category : #preconditions }
+RBRemoveInstanceVariableRefactoring >> preconditions [
 	| references |
 	references := RBCondition hierarchyOf: class
 				referencesInstanceVariable: variableName.
@@ -49,10 +39,7 @@ RBRemoveInstanceVariableRefactoring>>preconditions [
 		& references not
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRemoveInstanceVariableRefactoring>>transform [
+{ #category : #transforming }
+RBRemoveInstanceVariableRefactoring >> transform [
 	class removeInstanceVariable: variableName
 ]

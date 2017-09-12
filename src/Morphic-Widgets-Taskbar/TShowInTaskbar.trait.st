@@ -9,17 +9,11 @@ For mouseOver action, #taskbarCanShowThumbnail must be implemented to return tru
 "
 Trait {
 	#name : #TShowInTaskbar,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Morphic-Widgets-Taskbar,
-	#timestamp : 'HenrikNergaard 4/15/2016 11:51'
+	#category : #Morphic-Widgets-Taskbar
 }
 
-{
-	#category : #taskbar-private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TShowInTaskbar>>customizeTaskbarButton: aButton [
+{ #category : #taskbar-private }
+TShowInTaskbar >> customizeTaskbarButton: aButton [
 
 	self taskbarCanShowThumbnail ifFalse: [ ^ self ].
 	
@@ -36,29 +30,20 @@ TShowInTaskbar>>customizeTaskbarButton: aButton [
 		withValue: aButton.
 ]
 
-{
-	#category : #taskbar-public,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TShowInTaskbar>>taskbarButtonClicked [
+{ #category : #taskbar-public }
+TShowInTaskbar >> taskbarButtonClicked [
 
 	"Do something"
 ]
 
-{
-	#category : #taskbar-thumbnail,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TShowInTaskbar>>taskbarButtonEntered: aButton event: evt in: aMorph [
+{ #category : #taskbar-thumbnail }
+TShowInTaskbar >> taskbarButtonEntered: aButton event: evt in: aMorph [
 	"The mouse has entered out taskbar button.
 	Show a thumbnail."
 ]
 
-{
-	#category : #taskbar-private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TShowInTaskbar>>taskbarButtonFor: aTaskbar [
+{ #category : #taskbar-private }
+TShowInTaskbar >> taskbarButtonFor: aTaskbar [
 	"Answer a new task bar button for the receiver.
 	Answer nil if not required."
 	
@@ -73,71 +58,50 @@ TShowInTaskbar>>taskbarButtonFor: aTaskbar [
 	^ taskbarButton
 ]
 
-{
-	#category : #taskbar-required,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TShowInTaskbar>>taskbarButtonIsActive [
+{ #category : #taskbar-required }
+TShowInTaskbar >> taskbarButtonIsActive [
 
 	"true/false"
 	
 	^self explicitRequirement
 ]
 
-{
-	#category : #taskbar-thumbnail,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TShowInTaskbar>>taskbarButtonLeft: aButton event: evt in: aMorph [
+{ #category : #taskbar-thumbnail }
+TShowInTaskbar >> taskbarButtonLeft: aButton event: evt in: aMorph [
 	"The mouse has left our taskbar button.
 	Remove our thumbnail."
 ]
 
-{
-	#category : #taskbar-public,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TShowInTaskbar>>taskbarButtonMenu: aMenu [
+{ #category : #taskbar-public }
+TShowInTaskbar >> taskbarButtonMenu: aMenu [
 
 	"default is to show no menu"
 		
 	^aMenu
 ]
 
-{
-	#category : #taskbar-thumbnail,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TShowInTaskbar>>taskbarCanShowThumbnail [
+{ #category : #taskbar-thumbnail }
+TShowInTaskbar >> taskbarCanShowThumbnail [
 
 	^ false
 ]
 
-{
-	#category : #taskbar-required,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TShowInTaskbar>>taskbarLabel [
+{ #category : #taskbar-required }
+TShowInTaskbar >> taskbarLabel [
 	"Answer the label to use for a taskbar button for the receiver."
 	
 	^self explicitRequirement
 ]
 
-{
-	#category : #taskbar-required,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TShowInTaskbar>>taskbarState [
+{ #category : #taskbar-required }
+TShowInTaskbar >> taskbarState [
 	"Answer one of #minimized, #restored, #maximized or #active."
 	
 	^self explicitRequirement
 ]
 
-{
-	#category : #taskbar-private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TShowInTaskbar>>taskbarTask [
+{ #category : #taskbar-private }
+TShowInTaskbar >> taskbarTask [
 
 	^ TaskbarTask
 		morph: self

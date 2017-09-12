@@ -1,19 +1,12 @@
-"
-
-"
 Class {
 	#name : #MetacelloMethodSectionPath,
 	#superclass : #Array,
 	#type : #variable,
-	#category : #Metacello-Core-Constructors,
-	#timestamp : ''
+	#category : #Metacello-Core-Constructors
 }
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSectionPath>>asAttributeOrPath [
+{ #category : #conversion }
+MetacelloMethodSectionPath >> asAttributeOrPath [
     self size = 1
         ifTrue: [ 
             | attribute |
@@ -24,10 +17,7 @@ MetacelloMethodSectionPath>>asAttributeOrPath [
     ^ self
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSectionPath>>asMetacelloAttributePath [
+{ #category : #conversion }
+MetacelloMethodSectionPath >> asMetacelloAttributePath [
     ^ self
 ]

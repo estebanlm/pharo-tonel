@@ -10,15 +10,11 @@ Class {
 		'project',
 		'methodSpec'
 	],
-	#category : #Metacello-ToolBox,
-	#timestamp : '<historical>'
+	#category : #Metacello-ToolBox
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>appendDescription: aString to: versionSpec [
+{ #category : #private }
+MetacelloToolBox class >> appendDescription: aString to: versionSpec [
 	aString isEmpty
 		ifTrue: [ ^ self ].
 	^ versionSpec description value isEmpty
@@ -33,11 +29,8 @@ MetacelloToolBox class>>appendDescription: aString to: versionSpec [
 			versionSpec description: strm contents ]
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>baseNameOf: configurationClassName [
+{ #category : #utility }
+MetacelloToolBox class >> baseNameOf: configurationClassName [
   "Return the baseName for the given configuration class name."
 
   <apiDocumentation>
@@ -49,43 +42,31 @@ MetacelloToolBox class>>baseNameOf: configurationClassName [
     ifFalse: [ configurationClassName ]
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>baseNameOfConfiguration: aConfigurationClass [
+{ #category : #utility }
+MetacelloToolBox class >> baseNameOfConfiguration: aConfigurationClass [
 	"Return the baseName for the given configuration class."
 
 	<apiDocumentation>
 	^self baseNameOf: aConfigurationClass name asString
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>baselineNameFrom: baseName [
+{ #category : #utility }
+MetacelloToolBox class >> baselineNameFrom: baseName [
   "Return the fully-qualified baseline class name."
 
   <apiDocumentation>
   ^ MetacelloScriptEngine baselineNameFrom: baseName
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>baselineNamed: baseName [
+{ #category : #'instance creation' }
+MetacelloToolBox class >> baselineNamed: baseName [
   ^ self new
     baselineNamed: baseName;
     yourself
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>checkForCriticalValidationIssues: configurationBasename [
+{ #category : #utility }
+MetacelloToolBox class >> checkForCriticalValidationIssues: configurationBasename [
 	"Validate the named configuration and filter out all non-critical issues."
 	<apiDocumentation>
 	^ (MetacelloMCVersionValidator
@@ -93,11 +74,8 @@ MetacelloToolBox class>>checkForCriticalValidationIssues: configurationBasename 
 		select: [ :issue | issue isCritical ]
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>compareVersion: fromVersionString for: configurationBasename to: toVersionString [
+{ #category : #scripts }
+MetacelloToolBox class >> compareVersion: fromVersionString for: configurationBasename to: toVersionString [
 	"Return a MetacelloMCVersionDiffReport that whose fields 
 		#additions
 		#removals
@@ -123,11 +101,8 @@ MetacelloToolBox class>>compareVersion: fromVersionString for: configurationBase
 	^ report
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>compareVersionsIn: aConfigurationClass [
+{ #category : #'development support' }
+MetacelloToolBox class >> compareVersionsIn: aConfigurationClass [
 	"Compare the current #stable version to current #development version"
 
 	<apiDocumentation>
@@ -141,11 +116,8 @@ MetacelloToolBox class>>compareVersionsIn: aConfigurationClass [
 	
 ]
 
-{
-	#category : #'tool support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>compiledMethodForVersion: aMetacelloVersion [
+{ #category : #'tool support' }
+MetacelloToolBox class >> compiledMethodForVersion: aMetacelloVersion [
 
 	| toolbox pragma |
 	toolbox := MetacelloToolBox new project: aMetacelloVersion project.
@@ -153,44 +125,32 @@ MetacelloToolBox class>>compiledMethodForVersion: aMetacelloVersion [
 	^pragma method
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>configurationClasses [
+{ #category : #utility }
+MetacelloToolBox class >> configurationClasses [
     "Return a set of the Metacello configuration classes that have been loaded into the image."
 
     <apiDocumentation>
     ^ MetacelloProjectRegistration configurationClasses
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>configurationNameFrom: baseName [
+{ #category : #utility }
+MetacelloToolBox class >> configurationNameFrom: baseName [
     "Return the fully-qualified configuration class name."
 
     <apiDocumentation>
     ^ MetacelloScriptEngine configurationNameFrom: baseName
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>configurationNamed: baseName [
+{ #category : #'instance creation' }
+MetacelloToolBox class >> configurationNamed: baseName [
 
 	^self new 
 		configurationNamed: baseName;
 		yourself
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>copyConfiguration: aConfigurationClass to: metacelloRepositoryString [
+{ #category : #validation }
+MetacelloToolBox class >> copyConfiguration: aConfigurationClass to: metacelloRepositoryString [
 	"Copy the current configuration mcz file to the given repository (i.e., http: //... or directory://, etc.)"
 
 	<apiDocumentation>
@@ -203,11 +163,8 @@ MetacelloToolBox class>>copyConfiguration: aConfigurationClass to: metacelloRepo
 				yourself)
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>createBaseline: baselineVersionString for: configurationBasename from: existingBaselineVersionString description: aString [
+{ #category : #scripts }
+MetacelloToolBox class >> createBaseline: baselineVersionString for: configurationBasename from: existingBaselineVersionString description: aString [
 	"Create a new baseline version based on the specification in an existing baseline"
 
 	<apiDocumentation>
@@ -219,11 +176,8 @@ MetacelloToolBox class>>createBaseline: baselineVersionString for: configuration
 		versionSpecsDo: [ :attribute :versionSpec | true ]
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>createBaseline: baselineVersionString for: configurationBasename from: existingBaselineVersionString description: aString versionSpecsDo: versionSpecBlock [
+{ #category : #scripts }
+MetacelloToolBox class >> createBaseline: baselineVersionString for: configurationBasename from: existingBaselineVersionString description: aString versionSpecsDo: versionSpecBlock [
 	"Create a new baseline version based on the specification in an existing baseline. Evaluate <versionSpecBlock> for each section."
 
 	<apiDocumentation>
@@ -246,11 +200,8 @@ MetacelloToolBox class>>createBaseline: baselineVersionString for: configuration
 	^ toolbox
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>createBaseline: baselineVersionString for: configurationBasename repository: repositoryDescription requiredProjects: projectList packages: packageList dependencies: dependencies includes: includes files: files repositories: repositories preLoadDoIts: preLoadDoIts postLoadDoIts: postLoadDoIts supplyingAnswers: supplyingAnswers groups: groups [
+{ #category : #scripts }
+MetacelloToolBox class >> createBaseline: baselineVersionString for: configurationBasename repository: repositoryDescription requiredProjects: projectList packages: packageList dependencies: dependencies includes: includes files: files repositories: repositories preLoadDoIts: preLoadDoIts postLoadDoIts: postLoadDoIts supplyingAnswers: supplyingAnswers groups: groups [
 	"Create a new baseline version based on the specified project structure.
 		repositoryDescription - metacello repository string
 		projectList - collection of project base names (without ConfigurationOf prefix)
@@ -288,11 +239,8 @@ MetacelloToolBox class>>createBaseline: baselineVersionString for: configuration
 	^ toolbox
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>createBaseline: baselineVersionString for: configurationBasename repository: repositoryDescription requiredProjects: projectList packages: packageList repositories: repositories dependencies: dependencies groups: groups [
+{ #category : #scripts }
+MetacelloToolBox class >> createBaseline: baselineVersionString for: configurationBasename repository: repositoryDescription requiredProjects: projectList packages: packageList repositories: repositories dependencies: dependencies groups: groups [
     "Create a new baseline version based on the specified project structure.
 		repositoryDescription - metacello repository string
 		projectList - collection of project base names (without ConfigurationOf prefix)
@@ -320,11 +268,8 @@ MetacelloToolBox class>>createBaseline: baselineVersionString for: configuration
     ^ toolbox
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>createBaselineOf: baselineBasename requiredProjects: projectList packages: packageList repositories: repositories dependencies: dependencies groups: groups [
+{ #category : #scripts }
+MetacelloToolBox class >> createBaselineOf: baselineBasename requiredProjects: projectList packages: packageList repositories: repositories dependencies: dependencies groups: groups [
   "Create a new baseline in a BaselinOf based on the specified project structure.
 		repositoryDescription - metacello repository string
 		projectList - collection of project base names (without ConfigurationOf prefix)
@@ -349,11 +294,8 @@ MetacelloToolBox class>>createBaselineOf: baselineBasename requiredProjects: pro
   ^ toolbox
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>createBranch: branchName for: configurationBasename description: commitMessage [
+{ #category : #scripts }
+MetacelloToolBox class >> createBranch: branchName for: configurationBasename description: commitMessage [
 	"Create a new branch for the project and save the configuration to it's repository."
 	
 	<apiDocumentation>
@@ -368,11 +310,8 @@ MetacelloToolBox class>>createBranch: branchName for: configurationBasename desc
 	^nil
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>createDevelopment: developmentVersionString for: configurationBasename from: existingDevelopmentVersionString description: aString [
+{ #category : #scripts }
+MetacelloToolBox class >> createDevelopment: developmentVersionString for: configurationBasename from: existingDevelopmentVersionString description: aString [
 	"Create a new development version based on the specifications in an existing development version. Modify the #development symbolic version to reference the new version."
 
 	<apiDocumentation>
@@ -403,11 +342,8 @@ MetacelloToolBox class>>createDevelopment: developmentVersionString for: configu
 	^ toolbox
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>createDevelopment: developmentVersionString for: configurationBasename from: existingDevelopmentVersionString imports: imports description: aString [
+{ #category : #scripts }
+MetacelloToolBox class >> createDevelopment: developmentVersionString for: configurationBasename from: existingDevelopmentVersionString imports: imports description: aString [
 	"Create a new development version based on the specifications in an existing version, but override the imports for the new version. Modify the #development symbolic version to reference the new version."
 
 	<apiDocumentation>
@@ -424,11 +360,8 @@ MetacelloToolBox class>>createDevelopment: developmentVersionString for: configu
 	^ toolbox
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>createDevelopment: developmentVersionString for: configurationBasename importFromBaseline: baselineVersionString description: aString [
+{ #category : #scripts }
+MetacelloToolBox class >> createDevelopment: developmentVersionString for: configurationBasename importFromBaseline: baselineVersionString description: aString [
 	"Create a new development version based on the specifications in an existing baseline version. Modify the #development symbolic version to reference the new version."
 
 	<apiDocumentation>
@@ -459,11 +392,8 @@ MetacelloToolBox class>>createDevelopment: developmentVersionString for: configu
 
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>createNewBaselineVersionIn: aConfigurationClass description: creationMessage [
+{ #category : #'development support' }
+MetacelloToolBox class >> createNewBaselineVersionIn: aConfigurationClass description: creationMessage [
 	"Create a new baseline version based upon #stable version's baseline.
 	 A new baseline should be created if new packages or projects have been added or package dependencies have changed."
 
@@ -479,11 +409,8 @@ MetacelloToolBox class>>createNewBaselineVersionIn: aConfigurationClass descript
 		description: creationMessage
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>createNewBaselineVersionIn: aConfigurationClass description: creationMessage versionSpecsDo: versionSpecBlock [
+{ #category : #'development support' }
+MetacelloToolBox class >> createNewBaselineVersionIn: aConfigurationClass description: creationMessage versionSpecsDo: versionSpecBlock [
 	"Create a new baseline version based upon #stable version's baseline. Evaluate <versionSpecBlock> for each section.
 	 A new baseline should be created if new packages or projects have been added or package dependencies have changed."
 
@@ -500,11 +427,8 @@ MetacelloToolBox class>>createNewBaselineVersionIn: aConfigurationClass descript
 		versionSpecsDo: versionSpecBlock
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>createNewBaselineVersionIn: aConfigurationClass requiredProjects: projectList packages: packageList dependencies: dependencies  groups: groups [
+{ #category : #'development support' }
+MetacelloToolBox class >> createNewBaselineVersionIn: aConfigurationClass requiredProjects: projectList packages: packageList dependencies: dependencies  groups: groups [
 	"Create a new baseline version based upon #stable version's baseline, modify the baseline based on the provided structural additions:
 		projectList - collection of project base names (without ConfigurationOf prefix)
 		packageList - collection of package base names
@@ -539,11 +463,8 @@ MetacelloToolBox class>>createNewBaselineVersionIn: aConfigurationClass required
 		groups: groups
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>createNewDevelopmentVersionIn: aConfigurationClass description: creationMessage [
+{ #category : #'development support' }
+MetacelloToolBox class >> createNewDevelopmentVersionIn: aConfigurationClass description: creationMessage [
 	"Create a new development version using the #stable version as model."
 
 	<apiDocumentation>
@@ -558,11 +479,8 @@ MetacelloToolBox class>>createNewDevelopmentVersionIn: aConfigurationClass descr
 		description: creationMessage
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>createVersion: targetVersionString for: configurationBasename from: sourceVersionString description: aString [
+{ #category : #scripts }
+MetacelloToolBox class >> createVersion: targetVersionString for: configurationBasename from: sourceVersionString description: aString [
 	"Create a new version based on the specifications in the given version. 
 	 If the new version string contains 'baseline', then create a new baseline version.
 	 If the given version is a baseline, then create a new version based on the given baseline.
@@ -604,11 +522,8 @@ MetacelloToolBox class>>createVersion: targetVersionString for: configurationBas
 						description: aString ] ]
 ]
 
-{
-	#category : #help,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>defaultTopic: pageSelector for: aConfigurationClass [
+{ #category : #help }
+MetacelloToolBox class >> defaultTopic: pageSelector for: aConfigurationClass [
 	| topic stream helpTopicClass |
 	(helpTopicClass := self helpTopicClass) ifNil: [^self error: 'Help system not installed'].
 	stream := WriteStream on: String new.
@@ -636,31 +551,22 @@ MetacelloToolBox class>>defaultTopic: pageSelector for: aConfigurationClass [
 
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>descriptionForValidationReasonCode: reasonCode [
+{ #category : #validation }
+MetacelloToolBox class >> descriptionForValidationReasonCode: reasonCode [
 	"Description of validation reasonCode"
 
 	<apiDocumentation>
 	^MetacelloMCVersionValidator descriptionForReasonCode: reasonCode
 ]
 
-{
-	#category : #help,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>helpTopicClass [
+{ #category : #help }
+MetacelloToolBox class >> helpTopicClass [
 
 	^Smalltalk at: #HelpTopic ifAbsent: []
 ]
 
-{
-	#category : #help,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>helpTopicFor: aConfigurationClass [
+{ #category : #help }
+MetacelloToolBox class >> helpTopicFor: aConfigurationClass [
 	| topic pages page helpTopicClass |
 	(helpTopicClass := self helpTopicClass) ifNil: [^self error: 'Help system not installed'].
 	topic := helpTopicClass named: (self baseNameOfConfiguration: aConfigurationClass).
@@ -679,11 +585,8 @@ MetacelloToolBox class>>helpTopicFor: aConfigurationClass [
 	^ topic
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>modifyBaselineVersionIn: aConfigurationClass repository: repositoryDescription requiredProjects: projectList packages: packageList dependencies: dependencies includes: includes files: files repositories: repositories preLoadDoIts: preLoadDoIts postLoadDoIts: postLoadDoIts supplyingAnswers: supplyingAnswers groups: groups [
+{ #category : #'development support' }
+MetacelloToolBox class >> modifyBaselineVersionIn: aConfigurationClass repository: repositoryDescription requiredProjects: projectList packages: packageList dependencies: dependencies includes: includes files: files repositories: repositories preLoadDoIts: preLoadDoIts postLoadDoIts: postLoadDoIts supplyingAnswers: supplyingAnswers groups: groups [
 	"Modify #development version's baseline version based on the given structure
 		repositoryDescription - metacello repository string
 		projectList - collection of project base names (without ConfigurationOf prefix)
@@ -719,11 +622,8 @@ MetacelloToolBox class>>modifyBaselineVersionIn: aConfigurationClass repository:
 		groups: groups
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>modifyDevelopmentVersionIn: aConfigurationClass imports: imports requiredProjects: projectList packages: packageList description: message [
+{ #category : #'development support' }
+MetacelloToolBox class >> modifyDevelopmentVersionIn: aConfigurationClass imports: imports requiredProjects: projectList packages: packageList description: message [
 	"Modify #development version's baseline version based on the given structure
 		imports - imports array
 		projectList - collection of project base names (without ConfigurationOf prefix)
@@ -761,11 +661,8 @@ MetacelloToolBox class>>modifyDevelopmentVersionIn: aConfigurationClass imports:
 		description: message
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>modifySymbolicVersion: symbolicVersionSymbol for: configurationBasename attribute: attribute to: versionString [
+{ #category : #scripts }
+MetacelloToolBox class >> modifySymbolicVersion: symbolicVersionSymbol for: configurationBasename attribute: attribute to: versionString [
 	"Set the value of the symbolic version for the given attribute to the given version string"
 
 	<apiDocumentation>
@@ -777,11 +674,8 @@ MetacelloToolBox class>>modifySymbolicVersion: symbolicVersionSymbol for: config
 	^ toolbox
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>modifyVersion: sourceVersionString for: configurationBasename projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
+{ #category : #scripts }
+MetacelloToolBox class >> modifyVersion: sourceVersionString for: configurationBasename projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
 	"Modify the project, package and/or group specifications for the given version"
 
 	<apiDocumentation>
@@ -796,11 +690,8 @@ MetacelloToolBox class>>modifyVersion: sourceVersionString for: configurationBas
 			true ]
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>modifyVersion: sourceVersionString for: configurationBasename versionSpecsDo: aBlock [
+{ #category : #scripts }
+MetacelloToolBox class >> modifyVersion: sourceVersionString for: configurationBasename versionSpecsDo: aBlock [
 	"Modify the version specifications for the given version"
 
 	<apiDocumentation>
@@ -809,11 +700,8 @@ MetacelloToolBox class>>modifyVersion: sourceVersionString for: configurationBas
 		commitMethod
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>modifyVersion: sourceVersionString section: sectionAttributeOrPath for: configurationBasename repository: repositoryDescription requiredProjects: projectList packages: packageList dependencies: dependencies includes: includes files: files repositories: repositories preLoadDoIts: preLoadDoIts postLoadDoIts: postLoadDoIts supplyingAnswers: supplyingAnswers groups: groups [
+{ #category : #scripts }
+MetacelloToolBox class >> modifyVersion: sourceVersionString section: sectionAttributeOrPath for: configurationBasename repository: repositoryDescription requiredProjects: projectList packages: packageList dependencies: dependencies includes: includes files: files repositories: repositories preLoadDoIts: preLoadDoIts postLoadDoIts: postLoadDoIts supplyingAnswers: supplyingAnswers groups: groups [
 	"Modify a new version based on the specified project structure.
 		repositoryDescription - metacello repository string
 		projectList - collection of project base names (without ConfigurationOf prefix)
@@ -849,21 +737,15 @@ MetacelloToolBox class>>modifyVersion: sourceVersionString section: sectionAttri
 	^ toolbox
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>platformAttributes [
+{ #category : #utility }
+MetacelloToolBox class >> platformAttributes [
 	"Answer the list of platform attributes for the current platform"
 	<apiDocumentation>
 	^MetacelloPlatform current defaultPlatformAttributes
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>releaseDevelopmentVersionIn: aConfigurationClass description: commitMessage [
+{ #category : #'development support' }
+MetacelloToolBox class >> releaseDevelopmentVersionIn: aConfigurationClass description: commitMessage [
 	"Release #development version: set version blessing to #release, update the #development and #stable symbolic version methods and save the configuration."
 
 	<apiDocumentation>
@@ -874,11 +756,8 @@ MetacelloToolBox class>>releaseDevelopmentVersionIn: aConfigurationClass descrip
 		saveConfigurationPackageFor: aConfigurationClass name asString description: commitMessage
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>releaseEarlyAccessVersion: earlyAccessVersionString for: configurationBasename from: developmentVersionString [
+{ #category : #scripts }
+MetacelloToolBox class >> releaseEarlyAccessVersion: earlyAccessVersionString for: configurationBasename from: developmentVersionString [
 	"Update the #development and #earlyAccess symbolic versions."
 
 	<apiDocumentation>
@@ -931,11 +810,8 @@ MetacelloToolBox class>>releaseEarlyAccessVersion: earlyAccessVersionString for:
 	^ toolbox
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>releaseVersion: developmentVersionString for: configurationBasename [
+{ #category : #scripts }
+MetacelloToolBox class >> releaseVersion: developmentVersionString for: configurationBasename [
 	"Set the #common blessing to #release and set the #common #stable symbolic version to the given version."
 
 	<apiDocumentation>
@@ -946,11 +822,8 @@ MetacelloToolBox class>>releaseVersion: developmentVersionString for: configurat
 		platformAttribute: #common
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>releaseVersion: developmentVersionString for: configurationBasename blessingAttribute: attribute platformAttribute: platformAttribute [
+{ #category : #scripts }
+MetacelloToolBox class >> releaseVersion: developmentVersionString for: configurationBasename blessingAttribute: attribute platformAttribute: platformAttribute [
 	<apiDocumentation>
 	"Set the blessing to #release and set the #stable symbolic version to the given version, using the given attributes for each."
 	
@@ -971,11 +844,8 @@ MetacelloToolBox class>>releaseVersion: developmentVersionString for: configurat
 	^ toolbox
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>saveConfigurationPackageFor: configurationBasename description: commitMessage [
+{ #category : #scripts }
+MetacelloToolBox class >> saveConfigurationPackageFor: configurationBasename description: commitMessage [
 	"Save mcz file that contains the configuration to it's repository."
 	
 	<apiDocumentation>
@@ -989,11 +859,8 @@ MetacelloToolBox class>>saveConfigurationPackageFor: configurationBasename descr
 	^nil
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>saveModifiedDevelopmentPackages: developmentVersionString for: configurationBasename description: commitMessage [
+{ #category : #scripts }
+MetacelloToolBox class >> saveModifiedDevelopmentPackages: developmentVersionString for: configurationBasename description: commitMessage [
   "Save modified mcz files associated with the project. Then update given version to reflect the new mcz file versions."
 
   <apiDocumentation>
@@ -1047,11 +914,8 @@ MetacelloToolBox class>>saveModifiedDevelopmentPackages: developmentVersionStrin
   ^ modifiedPackages
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>saveModifiedPackagesAndConfigurationIn: aConfigurationClass description: commitMessage [
+{ #category : #'development support' }
+MetacelloToolBox class >> saveModifiedPackagesAndConfigurationIn: aConfigurationClass description: commitMessage [
 	"Save modified mcz files, update and then save the configuration."
 
 	<apiDocumentation>
@@ -1070,11 +934,8 @@ MetacelloToolBox class>>saveModifiedPackagesAndConfigurationIn: aConfigurationCl
 	self saveConfigurationPackageFor: aConfigurationClass name asString description: commitMessage
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>saveModifiedPackagesIn: aConfigurationClass description: commitMessage [
+{ #category : #'development support' }
+MetacelloToolBox class >> saveModifiedPackagesIn: aConfigurationClass description: commitMessage [
 	"Save modified mcz files and update the configuration."
 
 	| version |
@@ -1087,11 +948,8 @@ MetacelloToolBox class>>saveModifiedPackagesIn: aConfigurationClass description:
 			description: commitMessage
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>stableVersion: stableVersionString for: configurationBasename platformAttribute: platformAttribute [
+{ #category : #scripts }
+MetacelloToolBox class >> stableVersion: stableVersionString for: configurationBasename platformAttribute: platformAttribute [
 	<apiDocumentation>
 	"Set the #stable symbolic version to the given version, using the given platformAttribute."
 	
@@ -1102,22 +960,16 @@ MetacelloToolBox class>>stableVersion: stableVersionString for: configurationBas
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>stripVersionStringForSelector: versionString [
+{ #category : #private }
+MetacelloToolBox class >> stripVersionStringForSelector: versionString [
 
 	^((versionString copyWithout: $.) copyWithout: $-) 
 		copyReplaceAll: 'baseline' with: '' 
 
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>updateDescription: developmentVersionString for: configurationBasename description: message [
+{ #category : #scripts }
+MetacelloToolBox class >> updateDescription: developmentVersionString for: configurationBasename description: message [
 	"Update description"
 
 	<apiDocumentation>
@@ -1137,11 +989,8 @@ MetacelloToolBox class>>updateDescription: developmentVersionString for: configu
 		commitMethod
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>updateDevelopment: developmentVersionString for: configurationBasename updatePackages: updatePackages description: message [
+{ #category : #scripts }
+MetacelloToolBox class >> updateDevelopment: developmentVersionString for: configurationBasename updatePackages: updatePackages description: message [
 	"Update project specs and (conditionally) the package specs in the given version to reflect the new mcz file and project versions."
 
 	<apiDocumentation>
@@ -1165,11 +1014,8 @@ MetacelloToolBox class>>updateDevelopment: developmentVersionString for: configu
 	^ updatedSpecs
 ]
 
-{
-	#category : #scripts,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>updateDevelopment: developmentVersionString for: configurationBasename updateProjects: updateProjects description: message [
+{ #category : #scripts }
+MetacelloToolBox class >> updateDevelopment: developmentVersionString for: configurationBasename updateProjects: updateProjects description: message [
 	"Update packageSpecs and (conditionally) the project specs in the given version to reflect the new mcz file and project versions."
 
 	<apiDocumentation>
@@ -1193,11 +1039,8 @@ MetacelloToolBox class>>updateDevelopment: developmentVersionString for: configu
 	^ updatedSpecs
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>updateToLatestPackageVersionsIn: aConfigurationClass description: descriptionString [
+{ #category : #'development support' }
+MetacelloToolBox class >> updateToLatestPackageVersionsIn: aConfigurationClass description: descriptionString [
 	"Update the #development version to match currently loaded mcz files."
 
 	"self updateToLatestPackageVersions: '- fixed a bug'"
@@ -1210,22 +1053,16 @@ MetacelloToolBox class>>updateToLatestPackageVersionsIn: aConfigurationClass des
 		description: descriptionString
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>validateBaseline: baselineClass [
+{ #category : #validation }
+MetacelloToolBox class >> validateBaseline: baselineClass [
   "Check the baseline for Errors, Critical Warnings, and Warnings (see class comment for MetacelloMCVersionValidator for more information). "
 
   <apiDocumentation>
   ^ self validateBaseline: baselineClass debug: #() recurse: false
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>validateBaseline: baselineClass debug: debugList recurse: aBool [
+{ #category : #validation }
+MetacelloToolBox class >> validateBaseline: baselineClass debug: debugList recurse: aBool [
   "Check the baseline for Errors, Critical Warnings, and Warnings (see class comment for MetacelloMCVersionValidator for more information). "
 
   <apiDocumentation>
@@ -1235,33 +1072,24 @@ MetacelloToolBox class>>validateBaseline: baselineClass debug: debugList recurse
     recurse: aBool
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>validateConfiguration: configurationClass [
+{ #category : #validation }
+MetacelloToolBox class >> validateConfiguration: configurationClass [
 	"Check the configuration for Errors, Critical Warnings, and Warnings (see class comment for MetacelloMCVersionValidator for more information). "
 
 	<apiDocumentation>
 	^ self validateConfiguration: configurationClass debug: #() recurse: false
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>validateConfiguration: configurationClass debug: debugList recurse: aBool [
+{ #category : #validation }
+MetacelloToolBox class >> validateConfiguration: configurationClass debug: debugList recurse: aBool [
 	"Check the configuration for Errors, Critical Warnings, and Warnings (see class comment for MetacelloMCVersionValidator for more information). "
 
 	<apiDocumentation>
 	^ MetacelloMCVersionValidator validateConfiguration: configurationClass debug: debugList recurse: aBool
 ]
 
-{
-	#category : #'load validation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>validatePlatformLoad: platformAttribute for: configurationBasename [
+{ #category : #'load validation' }
+MetacelloToolBox class >> validatePlatformLoad: platformAttribute [ for: configurationBasename
 	"Validate, Load, and run tests for all versions of the given configuration. Return list of issues."
 
 	<apiDocumentation>
@@ -1316,11 +1144,8 @@ MetacelloToolBox class>>validatePlatformLoad: platformAttribute for: configurati
 	^ issues
 ]
 
-{
-	#category : #'load validation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>validatePlatformLoad: platformAttribute for: configurationBasename version: versionString [
+{ #category : #'load validation' }
+MetacelloToolBox class >> validatePlatformLoad: platformAttribute for: configurationBasename version: versionString [
 	"Load, and run tests for the given version of the configuration. Mark as #stable, if load and tests are clean. Return list of issues."
 
 	<apiDocumentation>
@@ -1355,11 +1180,8 @@ MetacelloToolBox class>>validatePlatformLoad: platformAttribute for: configurati
 	^ issues
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>validateProject: aMetacelloProject version: versionString [
+{ #category : #validation }
+MetacelloToolBox class >> validateProject: aMetacelloProject version: versionString [
 	"Check a specific version in the configuration for Errors, Critical Warnings, and Warnings (see class comment for MetacelloMCVersionValidator for more information). "
 
 	<apiDocumentation>
@@ -1367,11 +1189,8 @@ MetacelloToolBox class>>validateProject: aMetacelloProject version: versionStrin
 
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox class>>validateProject: aMetacelloProject version: versionString debug: debugList recurse: aBool [
+{ #category : #validation }
+MetacelloToolBox class >> validateProject: aMetacelloProject version: versionString debug: debugList recurse: aBool [
 	"Check a specific version in the configuration for Errors, Critical Warnings, and Warnings (see class comment for MetacelloMCVersionValidator for more information). "
 
 	<apiDocumentation>
@@ -1382,22 +1201,16 @@ MetacelloToolBox class>>validateProject: aMetacelloProject version: versionStrin
 		recurse: aBool
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>abortMethod [
+{ #category : #api-configuration }
+MetacelloToolBox >> abortMethod [
 
 	project := project configuration class project.	"recalculate project"
 	methodSpec := nil
 	
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>addBaselineOfSection: sectionAttributeOrPath requiredProjects: projectList packages: packageList dependencies: dependecies groups: groups versionSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> addBaselineOfSection: sectionAttributeOrPath requiredProjects: projectList packages: packageList dependencies: dependecies groups: groups versionSpecsDo: aBlock [
   "
 		repositoryDescription - metacello repository string
 		projectList - collection of project base names (without ConfigurationOf prefix)
@@ -1421,11 +1234,8 @@ MetacelloToolBox>>addBaselineOfSection: sectionAttributeOrPath requiredProjects:
     versionSpecsDo: aBlock
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>addBaselineOfSection: sectionAttributeOrPath requiredProjects: projectList packages: packageList dependencies: dependecies includes: includes files: files repositories: repositories preLoadDoIts: preLoadDoIts postLoadDoIts: postLoadDoIts supplyingAnswers: supplyingAnswers groups: groups versionSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> addBaselineOfSection: sectionAttributeOrPath requiredProjects: projectList packages: packageList dependencies: dependecies includes: includes files: files repositories: repositories preLoadDoIts: preLoadDoIts postLoadDoIts: postLoadDoIts supplyingAnswers: supplyingAnswers groups: groups versionSpecsDo: aBlock [
   "
 		projectList - collection of project base names (without ConfigurationOf prefix)
 		packageList - collection of package base names
@@ -1494,11 +1304,8 @@ MetacelloToolBox>>addBaselineOfSection: sectionAttributeOrPath requiredProjects:
     versionSpec: versionSpec
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>addBaselineOfSection: sectionAttributeOrPath requiredProjects: projectList packages: packageList repositories: repositories dependencies: dependecies groups: groups versionSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> addBaselineOfSection: sectionAttributeOrPath requiredProjects: projectList packages: packageList repositories: repositories dependencies: dependecies groups: groups versionSpecsDo: aBlock [
   "
 		repositoryDescription - metacello repository string
 		projectList - collection of project base names (without ConfigurationOf prefix)
@@ -1523,11 +1330,8 @@ MetacelloToolBox>>addBaselineOfSection: sectionAttributeOrPath requiredProjects:
     versionSpecsDo: aBlock
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>addSection: sectionAttributeOrPath repository: repositoryDescription requiredProjects: projectList packages: packageList dependencies: dependecies groups: groups versionSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> addSection: sectionAttributeOrPath repository: repositoryDescription requiredProjects: projectList packages: packageList dependencies: dependecies groups: groups versionSpecsDo: aBlock [
 	"
 		repositoryDescription - metacello repository string
 		projectList - collection of project base names (without ConfigurationOf prefix)
@@ -1551,11 +1355,8 @@ MetacelloToolBox>>addSection: sectionAttributeOrPath repository: repositoryDescr
 		versionSpecsDo: aBlock
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>addSection: sectionAttributeOrPath repository: repositoryDescription requiredProjects: projectList packages: packageList dependencies: dependecies includes: includes files: files repositories: repositories preLoadDoIts: preLoadDoIts postLoadDoIts: postLoadDoIts supplyingAnswers: supplyingAnswers groups: groups versionSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> addSection: sectionAttributeOrPath repository: repositoryDescription requiredProjects: projectList packages: packageList dependencies: dependecies includes: includes files: files repositories: repositories preLoadDoIts: preLoadDoIts postLoadDoIts: postLoadDoIts supplyingAnswers: supplyingAnswers groups: groups versionSpecsDo: aBlock [
     "
 		repositoryDescription - metacello repository string
 		projectList - collection of project base names (without ConfigurationOf prefix)
@@ -1613,11 +1414,8 @@ MetacelloToolBox>>addSection: sectionAttributeOrPath repository: repositoryDescr
     self methodSpec addMethodSection: sectionAttributeOrPath asMetacelloAttributePath versionSpec: versionSpec
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>addSection: sectionAttributeOrPath repository: repositoryDescription requiredProjects: projectList packages: packageList repositories: repositories dependencies: dependecies groups: groups versionSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> addSection: sectionAttributeOrPath repository: repositoryDescription requiredProjects: projectList packages: packageList repositories: repositories dependencies: dependecies groups: groups versionSpecsDo: aBlock [
     "
 		repositoryDescription - metacello repository string
 		projectList - collection of project base names (without ConfigurationOf prefix)
@@ -1643,11 +1441,8 @@ MetacelloToolBox>>addSection: sectionAttributeOrPath repository: repositoryDescr
         versionSpecsDo: aBlock
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>addSectionsFrom: inputVersionStringOrSymbol forBaseline: forBaseline updateProjects: updateProjects updatePackages: updatePackages versionSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> addSectionsFrom: inputVersionStringOrSymbol forBaseline: forBaseline updateProjects: updateProjects updatePackages: updatePackages versionSpecsDo: aBlock [
     | constructor updatedSpecs projectAttributes fullVersionSpec version coll pragma imports visitedSpecs fromVersionString |
     constructor := self constructor.
     updatedSpecs := Set new.
@@ -1686,11 +1481,8 @@ MetacelloToolBox>>addSectionsFrom: inputVersionStringOrSymbol forBaseline: forBa
                 ifTrue: [ self methodSpec addMethodSection: methodSection attributePath versionSpec: versionSpec ] ]
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>addSymbolicSection: attribute version: versionString [
+{ #category : #api-configuration }
+MetacelloToolBox >> addSymbolicSection: attribute version: versionString [
     self methodSpec methodSections
         do: [ :methodSection | 
             methodSection attributes = {attribute}
@@ -1700,19 +1492,13 @@ MetacelloToolBox>>addSymbolicSection: attribute version: versionString [
     self methodSpec addMethodSection: attribute versionString: versionString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>baselineNameFrom: baseName [
+{ #category : #private }
+MetacelloToolBox >> baselineNameFrom: baseName [
   ^ self class baselineNameFrom: baseName
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>baselineNamed: baseName [
+{ #category : #api-configuration }
+MetacelloToolBox >> baselineNamed: baseName [
   | baselineName |
   "Check if the class does not exist"
   baselineName := self baselineNameFrom: baseName.
@@ -1734,11 +1520,8 @@ MetacelloToolBox>>baselineNamed: baseName [
     project
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>buildMapFrom: mapList for: packageList [
+{ #category : #private }
+MetacelloToolBox >> buildMapFrom: mapList for: packageList [
 	| map |
 	map := Dictionary new.
 	mapList
@@ -1751,11 +1534,8 @@ MetacelloToolBox>>buildMapFrom: mapList for: packageList [
 	^ map
 ]
 
-{
-	#category : #'spec creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>classicCreateProjectReferenceSpec: projectBaseName [
+{ #category : #'spec creation' }
+MetacelloToolBox >> classicCreateProjectReferenceSpec: projectBaseName [
   | configurationName projectReferenceProject versionString |
   configurationName := self configurationNameFrom: projectBaseName.
   projectReferenceProject := (MetacelloPlatform current
@@ -1781,11 +1561,8 @@ MetacelloToolBox>>classicCreateProjectReferenceSpec: projectBaseName [
     yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>clearVersionSpec: versionSpec fullVersionSpec: fullVersionSpec updateProjects: updateProjects updatePackages: updatePackages [
+{ #category : #private }
+MetacelloToolBox >> clearVersionSpec: versionSpec fullVersionSpec: fullVersionSpec updateProjects: updateProjects updatePackages: updatePackages [
 	versionSpec
 		specListProjectDo: [ :spec | 
 			updateProjects
@@ -1804,11 +1581,8 @@ MetacelloToolBox>>clearVersionSpec: versionSpec fullVersionSpec: fullVersionSpec
 		groupDo: [ :ignored |  ]
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>commitBaselineOfMethod [
+{ #category : #api-configuration }
+MetacelloToolBox >> commitBaselineOfMethod [
   | skipValidation isues |
   skipValidation := false.
   self methodSpec ifNil: [ ^ self ].
@@ -1824,19 +1598,12 @@ MetacelloToolBox>>commitBaselineOfMethod [
   methodSpec := nil
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>commitConfiguration: commitComment [
-
+{ #category : #api-configuration }
+MetacelloToolBox >> commitConfiguration: commitComment [
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>commitMethod [
+{ #category : #api-configuration }
+MetacelloToolBox >> commitMethod [
 	| skipValidation isues |
 	skipValidation := false.
 	self methodSpec ifNil: [ ^self ].
@@ -1852,19 +1619,13 @@ MetacelloToolBox>>commitMethod [
 	methodSpec := nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>configurationNameFrom: baseName	 [
+{ #category : #private }
+MetacelloToolBox >> configurationNameFrom: baseName [	
 	^self class configurationNameFrom: baseName
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>configurationNamed: baseName [
+{ #category : #api-configuration }
+MetacelloToolBox >> configurationNamed: baseName [
   | configurationName |
   "Check if the class does not exist"
   configurationName := self configurationNameFrom: baseName.
@@ -1881,11 +1642,8 @@ MetacelloToolBox>>configurationNamed: baseName [
     project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>constructor [
+{ #category : #accessing }
+MetacelloToolBox >> constructor [
 
 	| constructor |
 	constructor := MetacelloToolBoxConstructor new.
@@ -1893,11 +1651,8 @@ MetacelloToolBox>>constructor [
 	^constructor
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>createBaselineOfMethod: selector inCategory: category [
+{ #category : #api-configuration }
+MetacelloToolBox >> createBaselineOfMethod: selector inCategory: category [
   methodSpec := MetacelloBaselineOfMethodSpec new
     project: project;
     selector: selector;
@@ -1905,11 +1660,8 @@ MetacelloToolBox>>createBaselineOfMethod: selector inCategory: category [
     yourself
 ]
 
-{
-	#category : #'spec creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>createConfiguration: baseName [
+{ #category : #'spec creation' }
+MetacelloToolBox >> createConfiguration: baseName [
   | configurationName |
   "Check if the class does not exist"
   configurationName := (baseName beginsWith: 'ConfigurationOf')
@@ -1927,31 +1679,22 @@ MetacelloToolBox>>createConfiguration: baseName [
   ^ (MetacelloPlatform current globalNamed: configurationName asSymbol) project
 ]
 
-{
-	#category : #'spec creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>createGroupSpec: baseName [
+{ #category : #'spec creation' }
+MetacelloToolBox >> createGroupSpec: baseName [
 	^ (self project groupSpec)
 		name: baseName;
 		yourself
 ]
 
-{
-	#category : #'spec creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>createPackageSpec: baseName [
+{ #category : #'spec creation' }
+MetacelloToolBox >> createPackageSpec: baseName [
 	^ (project packageSpec)
 		name: baseName;
 		yourself
 ]
 
-{
-	#category : #'spec creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>createProjectReferenceSpec: projectBaseName [
+{ #category : #'spec creation' }
+MetacelloToolBox >> createProjectReferenceSpec: projectBaseName [
   | projectSpec |
   projectSpec := (Metacello image
     project: projectBaseName;
@@ -1964,11 +1707,8 @@ MetacelloToolBox>>createProjectReferenceSpec: projectBaseName [
     yourself
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>createSymbolicVersionMethod: selector inCategory: category forVersion: versionSymbol [
+{ #category : #api-configuration }
+MetacelloToolBox >> createSymbolicVersionMethod: selector inCategory: category forVersion: versionSymbol [
 	| constructor |
 	methodSpec := (MetacelloSymbolicVersionMethodSpec new)
 		project: project;
@@ -1981,11 +1721,8 @@ MetacelloToolBox>>createSymbolicVersionMethod: selector inCategory: category for
 
 ]
 
-{
-	#category : #'spec creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>createVersion: versionString [
+{ #category : #'spec creation' }
+MetacelloToolBox >> createVersion: versionString [
 	| version  |
 	[ version := project version: versionString ]
 		on: MetacelloVersionDoesNotExistError
@@ -1999,11 +1736,8 @@ MetacelloToolBox>>createVersion: versionString [
 	^version
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>createVersionMethod: selector inCategory: category forVersion: versionString [
+{ #category : #api-configuration }
+MetacelloToolBox >> createVersionMethod: selector inCategory: category forVersion: versionString [
 	
 	methodSpec := (MetacelloVersionMethodSpec new)
 		project: project;
@@ -2013,22 +1747,16 @@ MetacelloToolBox>>createVersionMethod: selector inCategory: category forVersion:
 		yourself.
 ]
 
-{
-	#category : #'spec creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>createVersionSpec: versionString [
+{ #category : #'spec creation' }
+MetacelloToolBox >> createVersionSpec: versionString [
 	| versionSpec |
 	versionSpec := project versionSpec.
 	versionSpec versionString: versionString.
 	^ versionSpec
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>editVersionSpecsForImport: constructor projectAttributes: projectAttributes active: activeSection fullVersionSpec: fullVersionSpec updateProjects: updateProjects updatePackages: updatePackages visited: visitedSpecs updated: updatedSpecs [
+{ #category : #private }
+MetacelloToolBox >> editVersionSpecsForImport: constructor projectAttributes: projectAttributes active: activeSection fullVersionSpec: fullVersionSpec updateProjects: updateProjects updatePackages: updatePackages visited: visitedSpecs updated: updatedSpecs [
     | fileSpecified encounteredPackageSpecs |
     fileSpecified := Bag new.
     encounteredPackageSpecs := Bag new.
@@ -2092,29 +1820,20 @@ MetacelloToolBox>>editVersionSpecsForImport: constructor projectAttributes: proj
                         updatePackages: updatePackages ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>ensureMetacello [
+{ #category : #private }
+MetacelloToolBox >> ensureMetacello [
 	"noop for now"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>hasMethodForSymbolicVersion: versionSymbol [
+{ #category : #testing }
+MetacelloToolBox >> hasMethodForSymbolicVersion: versionSymbol [
 
 	^(self constructor extractSymbolicVersionPragmas at: versionSymbol ifAbsent: [ ^ false ]) size > 0
 
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>importFrom: inputVersionStringOrSymbol projectAttributes: projectAttributes inactiveAttributes: inactiveAttributesList updateProjects: updateProjects updatePackages: updatePackages versionSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> importFrom: inputVersionStringOrSymbol projectAttributes: projectAttributes inactiveAttributes: inactiveAttributesList updateProjects: updateProjects updatePackages: updatePackages versionSpecsDo: aBlock [
     | constructor updatedSpecs fullVersionSpec version visitedSpecs fromVersionString attributeSet |
     constructor := self constructor.
     updatedSpecs := Set new.
@@ -2168,11 +1887,8 @@ MetacelloToolBox>>importFrom: inputVersionStringOrSymbol projectAttributes: proj
                 ifTrue: [ self methodSpec addMethodSection: attributePath versionSpec: versionSpec ] ]
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>importFrom: inputVersionStringOrSymbol updateProjects: updateProjects updatePackages: updatePackages versionSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> importFrom: inputVersionStringOrSymbol updateProjects: updateProjects updatePackages: updatePackages versionSpecsDo: aBlock [
     ^ self
         importFrom: inputVersionStringOrSymbol
         projectAttributes: project attributes
@@ -2182,20 +1898,14 @@ MetacelloToolBox>>importFrom: inputVersionStringOrSymbol updateProjects: updateP
         versionSpecsDo: aBlock
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>imports: importList [
+{ #category : #api-configuration }
+MetacelloToolBox >> imports: importList [
 
 	self methodSpec imports: importList
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>methodSectionsFrom: inputVersionStringOrSymbol do: methodSectionBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> methodSectionsFrom: inputVersionStringOrSymbol do: methodSectionBlock [
   | constructor version fromVersionString |
   constructor := self constructor.
   version := project version: inputVersionStringOrSymbol.
@@ -2204,20 +1914,14 @@ MetacelloToolBox>>methodSectionsFrom: inputVersionStringOrSymbol do: methodSecti
   constructor methodSectionsDo: methodSectionBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>methodSpec [
+{ #category : #accessing }
+MetacelloToolBox >> methodSpec [
 
 	^methodSpec
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>modifiedPackageSpecs: versionStringOrSymbol packageSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> modifiedPackageSpecs: versionStringOrSymbol packageSpecsDo: aBlock [
 	| versionSpec |
 	versionSpec := (self project version: versionStringOrSymbol) spec.
 	versionSpec
@@ -2232,11 +1936,8 @@ MetacelloToolBox>>modifiedPackageSpecs: versionStringOrSymbol packageSpecsDo: aB
 		groupDo: [ :ignored |  ]
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>modifySection: sectionAttributeOrPath repository: repositoryDescription requiredProjects: newProjectList packages: newPackageList dependencies: dependecies includes: includes files: files repositories: repositories preLoadDoIts: preLoadDoIts postLoadDoIts: postLoadDoIts supplyingAnswers: supplyingAnswers groups: newGroups versionSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> modifySection: sectionAttributeOrPath repository: repositoryDescription requiredProjects: newProjectList packages: newPackageList dependencies: dependecies includes: includes files: files repositories: repositories preLoadDoIts: preLoadDoIts postLoadDoIts: postLoadDoIts supplyingAnswers: supplyingAnswers groups: newGroups versionSpecsDo: aBlock [
     "
 		repositoryDescription - metacello repository string
 		newProjectList - collection of project base names (without ConfigurationOf prefix)
@@ -2268,11 +1969,8 @@ MetacelloToolBox>>modifySection: sectionAttributeOrPath repository: repositoryDe
         versionSpecsDo: aBlock
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>modifySection: sectionAttributeOrPath sectionIndex: sectionIndex repository: repositoryDescription requiredProjects: newProjectList packages: newPackageList dependencies: dependecies includes: includes files: files repositories: repositories preLoadDoIts: preLoadDoIts postLoadDoIts: postLoadDoIts supplyingAnswers: supplyingAnswers groups: newGroups versionSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> modifySection: sectionAttributeOrPath sectionIndex: sectionIndex repository: repositoryDescription requiredProjects: newProjectList packages: newPackageList dependencies: dependecies includes: includes files: files repositories: repositories preLoadDoIts: preLoadDoIts postLoadDoIts: postLoadDoIts supplyingAnswers: supplyingAnswers groups: newGroups versionSpecsDo: aBlock [
     "
 		repositoryDescription - metacello repository string
 		newProjectList - collection of project base names (without ConfigurationOf prefix)
@@ -2354,21 +2052,15 @@ MetacelloToolBox>>modifySection: sectionAttributeOrPath sectionIndex: sectionInd
     aBlock value: versionSpec
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>modifySymbolicVersionMethodFor: versionSymbol [
+{ #category : #api-configuration }
+MetacelloToolBox >> modifySymbolicVersionMethodFor: versionSymbol [
 
 	^self modifySymbolicVersionMethodFor: versionSymbol symbolicVersionSpecsDo: [:symbolicVersionSpec | true ].
 
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>modifySymbolicVersionMethodFor: versionSymbol symbolicVersionSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> modifySymbolicVersionMethodFor: versionSymbol symbolicVersionSpecsDo: aBlock [
     | constructor coll pragma |
     constructor := self constructor.
     coll := constructor extractSymbolicVersionPragmas at: versionSymbol ifAbsent: [ ^ nil ].
@@ -2387,19 +2079,13 @@ MetacelloToolBox>>modifySymbolicVersionMethodFor: versionSymbol symbolicVersionS
                 ifTrue: [ self methodSpec addMethodSection: symbolicVersionSpec attributes versionString: symbolicVersionSpec versionString ] ]
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>modifyVersionMethodForVersion: inputVersionStringOrSymbol [
+{ #category : #api-configuration }
+MetacelloToolBox >> modifyVersionMethodForVersion: inputVersionStringOrSymbol [
 	^ self modifyVersionMethodForVersion: inputVersionStringOrSymbol versionSpecsDo: [ :attribute :versionSpec | true ]
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>modifyVersionMethodForVersion: inputVersionStringOrSymbol versionSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> modifyVersionMethodForVersion: inputVersionStringOrSymbol versionSpecsDo: aBlock [
 	^ self
 		updateVersionMethodForVersion: inputVersionStringOrSymbol
 		updateProjects: false
@@ -2407,29 +2093,20 @@ MetacelloToolBox>>modifyVersionMethodForVersion: inputVersionStringOrSymbol vers
 		versionSpecsDo: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>project [
+{ #category : #accessing }
+MetacelloToolBox >> project [
 
 	^project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>project: aMetacelloProject [
+{ #category : #accessing }
+MetacelloToolBox >> project: aMetacelloProject [
 
 	project := aMetacelloProject
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>symbolicVersionMethod: versionSymbol [
+{ #category : #api-configuration }
+MetacelloToolBox >> symbolicVersionMethod: versionSymbol [
 	(self hasMethodForSymbolicVersion: versionSymbol)
 		ifTrue: [ self modifySymbolicVersionMethodFor: versionSymbol ]
 		ifFalse: [ 
@@ -2440,11 +2117,8 @@ MetacelloToolBox>>symbolicVersionMethod: versionSymbol [
 
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>updateVersionMethodForVersion: inputVersionStringOrSymbol projectAttributes: projectAttributes updateProjects: updateProjects updatePackages: updatePackages versionSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> updateVersionMethodForVersion: inputVersionStringOrSymbol projectAttributes: projectAttributes updateProjects: updateProjects updatePackages: updatePackages versionSpecsDo: aBlock [
 	| constructor updatedSpecs fullVersionSpec version coll pragma imports blessing reversed addedSections visitedSpecs sourceVersionString keptSections |
 	updatedSpecs := Set new.
 	version := project version: inputVersionStringOrSymbol.
@@ -2504,11 +2178,8 @@ MetacelloToolBox>>updateVersionMethodForVersion: inputVersionStringOrSymbol proj
 	^ updatedSpecs
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>updateVersionMethodForVersion: inputVersionStringOrSymbol updateProjects: updateProjects updatePackages: updatePackages versionSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> updateVersionMethodForVersion: inputVersionStringOrSymbol updateProjects: updateProjects updatePackages: updatePackages versionSpecsDo: aBlock [
     ^ self
         updateVersionMethodForVersion: inputVersionStringOrSymbol
         projectAttributes: project attributes
@@ -2517,11 +2188,8 @@ MetacelloToolBox>>updateVersionMethodForVersion: inputVersionStringOrSymbol upda
         versionSpecsDo: aBlock
 ]
 
-{
-	#category : #api-configuration,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>updateVersionMethodForVersion: inputVersionStringOrSymbol versionSpecsDo: aBlock [
+{ #category : #api-configuration }
+MetacelloToolBox >> updateVersionMethodForVersion: inputVersionStringOrSymbol versionSpecsDo: aBlock [
 	^ self
 		updateVersionMethodForVersion: inputVersionStringOrSymbol
 		updateProjects: true
@@ -2529,11 +2197,8 @@ MetacelloToolBox>>updateVersionMethodForVersion: inputVersionStringOrSymbol vers
 		versionSpecsDo: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>updateVersionSpec: versionSpec fullVersionSpec: fullVersionSpec updateProjects: updateProjects updatePackages: updatePackages visited: visitedSpecs updated: updatedSpecs [
+{ #category : #private }
+MetacelloToolBox >> updateVersionSpec: versionSpec fullVersionSpec: fullVersionSpec updateProjects: updateProjects updatePackages: updatePackages visited: visitedSpecs updated: updatedSpecs [
     versionSpec
         specListProjectDo: [ :spec | 
             (updateProjects and: [ (visitedSpecs includes: spec name) not ])
@@ -2573,11 +2238,8 @@ MetacelloToolBox>>updateVersionSpec: versionSpec fullVersionSpec: fullVersionSpe
         groupDo: [ :ignored |  ]
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>validateConfiguration [
+{ #category : #validation }
+MetacelloToolBox >> validateConfiguration [
     | issues |
     issues := (MetacelloMCVersionValidator validateConfiguration: project configuration class recurse: false)
         select: [ :issue | issue isCritical ].
@@ -2585,11 +2247,8 @@ MetacelloToolBox>>validateConfiguration [
         ifTrue: [ MetacelloValidationFailure issues: issues message: 'There are critical issues in the configuration' ]
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-MetacelloToolBox>>validateVersion: versionStringOrSymbol [
+{ #category : #validation }
+MetacelloToolBox >> validateVersion: versionStringOrSymbol [
     | issues |
     issues := (MetacelloMCVersionValidator validateProject: project version: versionStringOrSymbol)
         select: [ :issue | issue isError ].

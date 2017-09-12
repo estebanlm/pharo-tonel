@@ -5,33 +5,23 @@ I'm the simplest mechanism and then, the default.
 Class {
 	#name : #ToggleMenuItemShortcutWithText,
 	#superclass : #ToggleMenuItemShortcut,
-	#category : #Morphic-Base-Menus,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-Menus
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemShortcutWithText class>>canBeUsed [
+{ #category : #testing }
+ToggleMenuItemShortcutWithText class >> canBeUsed [
 	"this is the default and is available as default to all platforms"
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemShortcutWithText class>>priority [
+{ #category : #accessing }
+ToggleMenuItemShortcutWithText class >> priority [
 	"Lowest priority... last to be choosen"
 	^ 999
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemShortcutWithText>>drawOn: aCanvas [
+{ #category : #drawing }
+ToggleMenuItemShortcutWithText >> drawOn: aCanvas [
 	| keyBounds |
 	
 	keyBounds := self boundsForKeyText: self keyText font: self owner fontToUse.
@@ -42,11 +32,8 @@ ToggleMenuItemShortcutWithText>>drawOn: aCanvas [
 		color: self owner stringColorToUse
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemShortcutWithText>>text [
+{ #category : #accessing }
+ToggleMenuItemShortcutWithText >> text [
 
 	^ keyText
 ]

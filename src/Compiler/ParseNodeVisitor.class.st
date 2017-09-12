@@ -21,93 +21,57 @@ I am an abstract superclass for ParseNode visitors that functions as a null visi
 Class {
 	#name : #ParseNodeVisitor,
 	#superclass : #Object,
-	#category : #Compiler-Support,
-	#timestamp : '<historical>'
+	#category : #Compiler-Support
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitAssignmentNode: anAssignmentNode [
+{ #category : #visiting }
+ParseNodeVisitor >> visitAssignmentNode: anAssignmentNode [
 	"N.B.  since assigment happens after the value is evaluated the value is visited first."
 	anAssignmentNode value accept: self.
 	anAssignmentNode variable accept: self
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitBlockNode: aBlockNode [
+{ #category : #visiting }
+ParseNodeVisitor >> visitBlockNode: aBlockNode [
 	aBlockNode statements do:
 		[:statement| statement accept: self]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitBraceNode: aBraceNode [
+{ #category : #visiting }
+ParseNodeVisitor >> visitBraceNode: aBraceNode [
 	aBraceNode elements do:
 		[:element| element accept: self]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitCascadeNode: aCascadeNode [
+{ #category : #visiting }
+ParseNodeVisitor >> visitCascadeNode: aCascadeNode [
 	aCascadeNode receiver accept: self.
 	aCascadeNode messages do:
 		[:message| self visitMessageNodeInCascade: message]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitCommentNode: aCommentNode [
-
+{ #category : #visiting }
+ParseNodeVisitor >> visitCommentNode: aCommentNode [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitFieldNode: aFieldNode [
-
+{ #category : #visiting }
+ParseNodeVisitor >> visitFieldNode: aFieldNode [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitInstanceVariableNode: anInstanceVariableNode [
-
+{ #category : #visiting }
+ParseNodeVisitor >> visitInstanceVariableNode: anInstanceVariableNode [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitLiteralNode: aLiteralNode [
-
+{ #category : #visiting }
+ParseNodeVisitor >> visitLiteralNode: aLiteralNode [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitLiteralVariableNode: aLiteralVariableNode [
-
+{ #category : #visiting }
+ParseNodeVisitor >> visitLiteralVariableNode: aLiteralVariableNode [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitMessageNode: aMessageNode [
+{ #category : #visiting }
+ParseNodeVisitor >> visitMessageNode: aMessageNode [
 	aMessageNode receiver accept: self.
 	"receiver notNil ifTrue: ''receiver is nil for cascades''
 		[receiver accept: self]."
@@ -116,69 +80,40 @@ ParseNodeVisitor>>visitMessageNode: aMessageNode [
 		[:argument| argument accept: self]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitMessageNodeInCascade: aMessageNode [
+{ #category : #visiting }
+ParseNodeVisitor >> visitMessageNodeInCascade: aMessageNode [
 	"receiver is nil for cascades"
 	aMessageNode selector accept: self.
 	aMessageNode argumentsInEvaluationOrder do:
 		[:argument| argument accept: self]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitMethodNode: aMethodNode [
+{ #category : #visiting }
+ParseNodeVisitor >> visitMethodNode: aMethodNode [
 	aMethodNode block accept: self
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitNewArrayNode: aNewArrayNode [
-
+{ #category : #visiting }
+ParseNodeVisitor >> visitNewArrayNode: aNewArrayNode [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitRemoteTempVectorNode: aRemoteTempVectorNode [
-
+{ #category : #visiting }
+ParseNodeVisitor >> visitRemoteTempVectorNode: aRemoteTempVectorNode [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitReturnNode: aReturnNode [
+{ #category : #visiting }
+ParseNodeVisitor >> visitReturnNode: aReturnNode [
 	aReturnNode expr accept: self
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitSelectorNode: aSelectorNode [
-
+{ #category : #visiting }
+ParseNodeVisitor >> visitSelectorNode: aSelectorNode [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitTempVariableNode: aTempVariableNode [
-
+{ #category : #visiting }
+ParseNodeVisitor >> visitTempVariableNode: aTempVariableNode [
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNodeVisitor>>visitVariableNode: aVariableNode [
-
+{ #category : #visiting }
+ParseNodeVisitor >> visitVariableNode: aVariableNode [
 ]

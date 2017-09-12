@@ -16,23 +16,16 @@ Class {
 		'preConditions',
 		'postConditions'
 	],
-	#category : #Renraku-Rules,
-	#timestamp : 'YuriyTymchuk 3/4/2016 15:27'
+	#category : #Renraku-Rules
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRule class>>checksNode [
+{ #category : #example }
+ReInvocationSequenceRule class >> checksNode [
 	^ true
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRule class>>exampleSequenceMethods [
+{ #category : #example }
+ReInvocationSequenceRule class >> exampleSequenceMethods [
 	<gtExample>
 	<label: 'You should not do this. Instead subclass and call #add:… in the initialization method'>
 	
@@ -42,31 +35,22 @@ ReInvocationSequenceRule class>>exampleSequenceMethods [
 		add: #edges requiresPreSend: #nodes
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRule class>>isVisible [
+{ #category : #'as yet unclassified' }
+ReInvocationSequenceRule class >> isVisible [
 
 	^ self name ~= #ReInvocationSequenceRule and: [ 
 		super isVisible ]
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRule class>>noteCompilationOf: aSelector meta: isMeta [
+{ #category : #compiling }
+ReInvocationSequenceRule class >> noteCompilationOf: aSelector meta: isMeta [
 
 	 aSelector == #initialize & isMeta not ifTrue: [ 
 		ReRuleManager reset ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRule>>add: preSelectors requiresPostSend: postSelectors [
+{ #category : #adding }
+ReInvocationSequenceRule >> add: preSelectors requiresPostSend: postSelectors [
 
 	postConditions add: (
 		ReInvocationSequenceRuleSequence
@@ -74,11 +58,8 @@ ReInvocationSequenceRule>>add: preSelectors requiresPostSend: postSelectors [
 			after: postSelectors)
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRule>>add: postSelectors requiresPreSend: preSelectors [
+{ #category : #adding }
+ReInvocationSequenceRule >> add: postSelectors requiresPreSend: preSelectors [
 
 	preConditions add: (
 		ReInvocationSequenceRuleSequence
@@ -86,11 +67,8 @@ ReInvocationSequenceRule>>add: postSelectors requiresPreSend: preSelectors [
 			after: postSelectors)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRule>>check: aNode forCritiquesDo: aCriticBlock [
+{ #category : #running }
+ReInvocationSequenceRule >> check: aNode forCritiquesDo: aCriticBlock [
 
 	aNode isMethod ifFalse: [ ^ self ].
 	
@@ -98,11 +76,8 @@ ReInvocationSequenceRule>>check: aNode forCritiquesDo: aCriticBlock [
 	(self postCheck: aNode forCriticsDo: aCriticBlock)
 ]
 
-{
-	#category : #'critic creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRule>>critic: aCriticClass for: ast at: node regarding: sequence [
+{ #category : #'critic creation' }
+ReInvocationSequenceRule >> critic: aCriticClass for: ast at: node regarding: sequence [
 
 	^ aCriticClass 
 		withAnchor: (
@@ -115,31 +90,22 @@ ReInvocationSequenceRule>>critic: aCriticClass for: ast at: node regarding: sequ
 		
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRule>>initialize [
+{ #category : #initialization }
+ReInvocationSequenceRule >> initialize [
 	super initialize.
 	
 	preConditions := Set new.
 	postConditions := Set new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRule>>name [
+{ #category : #accessing }
+ReInvocationSequenceRule >> name [
 
 	^ 'invocation order incorect'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRule>>postCheck: anAST forCriticsDo: aCriticBlock [
+{ #category : #running }
+ReInvocationSequenceRule >> postCheck: anAST forCriticsDo: aCriticBlock [
 	| remainingPostConditions encounteredCritics |	
 	postConditions ifEmpty: [ ^ false ].
 	encounteredCritics := false.
@@ -166,20 +132,14 @@ ReInvocationSequenceRule>>postCheck: anAST forCriticsDo: aCriticBlock [
 	^ encounteredCritics
 ]
 
-{
-	#category : #'critic creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRule>>postCriticFor: ast at: node regarding: sequence [
+{ #category : #'critic creation' }
+ReInvocationSequenceRule >> postCriticFor: ast at: node regarding: sequence [
 
 	^ self critic: ReLaterInvocationCritique for: ast at: node regarding: sequence 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRule>>preCheck: anAST forCriticsDo: aCriticBlock [
+{ #category : #running }
+ReInvocationSequenceRule >> preCheck: anAST forCriticsDo: aCriticBlock [
 	| remainingPreConditions encounteredCritics |	
 		
 	preConditions ifEmpty: [ ^ false ].
@@ -206,11 +166,8 @@ ReInvocationSequenceRule>>preCheck: anAST forCriticsDo: aCriticBlock [
 	^ encounteredCritics
 ]
 
-{
-	#category : #'critic creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationSequenceRule>>preCriticFor: ast at: node regarding: sequence [
+{ #category : #'critic creation' }
+ReInvocationSequenceRule >> preCriticFor: ast at: node regarding: sequence [
 
 	^ self critic: RePriorInvocationCritique for: ast at: node regarding: sequence 
 ]

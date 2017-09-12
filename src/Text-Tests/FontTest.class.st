@@ -5,15 +5,11 @@ FontTest buildSuite run
 Class {
 	#name : #FontTest,
 	#superclass : #TestCase,
-	#category : #Text-Tests-Fonts,
-	#timestamp : 'tak 3/11/2005 14:31'
+	#category : #Text-Tests-Fonts
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FontTest>>testDisplay [
+{ #category : #testing }
+FontTest >> testDisplay [
 	"self debug: #testDisplay"
 	| text font bb destPoint width |
 	text := 'test' asText.
@@ -31,11 +27,8 @@ FontTest>>testDisplay [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FontTest>>testParagraph [
+{ #category : #testing }
+FontTest >> testParagraph [
 	"self debug: #testParagraph"
 	| text p style height width |
 	text := 'test' asText.

@@ -4,57 +4,38 @@ I extend SHTextStylerST80 and replace the links for methdos, classes and variabl
 Class {
 	#name : #RubSHTextStylerST80,
 	#superclass : #SHRBTextStyler,
-	#category : #Rubric-Styling,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:11'
+	#category : #Rubric-Styling
 }
 
-{
-	#category : #'style table',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubSHTextStylerST80 class>>initialTextAttributesForPixelHeight: aNumber  [
+{ #category : #'style table' }
+RubSHTextStylerST80 class >> initialTextAttributesForPixelHeight: aNumber [ 
 	^ SHTextStylerST80 initialTextAttributesForPixelHeight: aNumber 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubSHTextStylerST80 class>>initialize [
+{ #category : #initialization }
+RubSHTextStylerST80 class >> initialize [
 	"self initialize"
 	styleTable := nil.
 	textAttributesByPixelHeight := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubSHTextStylerST80 class>>styleTable [
+{ #category : #accessing }
+RubSHTextStylerST80 class >> styleTable [
 	^ SHTextStylerST80 styleTable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubSHTextStylerST80 class>>styleTable: anArray  [
+{ #category : #accessing }
+RubSHTextStylerST80 class >> styleTable: anArray [ 
 	SHTextStylerST80 styleTable: anArray 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubSHTextStylerST80 class>>textAttributesByPixelHeight   [
+{ #category : #accessing }
+RubSHTextStylerST80 class >> textAttributesByPixelHeight [  
 	^ SHTextStylerST80 textAttributesByPixelHeight 
 ]
 
-{
-	#category : #'visiting rb nodes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-RubSHTextStylerST80>>visitMessageNode: aMessageNode [
+{ #category : #'visiting rb nodes' }
+RubSHTextStylerST80 >> visitMessageNode: aMessageNode [
 	| style link |
 	style := #keyword.
 	(Symbol findInternedSelector: aMessageNode selector asString)

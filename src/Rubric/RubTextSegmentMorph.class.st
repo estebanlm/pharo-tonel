@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RubTextSegmentMorph,
 	#superclass : #RubSegmentMorph,
@@ -13,31 +10,21 @@ Class {
 		'label',
 		'changeable'
 	],
-	#category : #Rubric-Editing-Core,
-	#timestamp : ''
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph class>>from: aFirstCharIndex to: aLastCharIndex [
+{ #category : #'instance creation' }
+RubTextSegmentMorph class >> from: aFirstCharIndex to: aLastCharIndex [
 	^ self new from: aFirstCharIndex to: aLastCharIndex
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph class>>inTextArea: aTextArea from: aFirstCharIndex to: aLastCharIndex [
+{ #category : #'instance creation' }
+RubTextSegmentMorph class >> inTextArea: aTextArea from: aFirstCharIndex to: aLastCharIndex [
 	^ self new inTextArea: aTextArea from: aFirstCharIndex to: aLastCharIndex
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>addItemToMenu: aMenu [
+{ #category : #ui }
+RubTextSegmentMorph >> addItemToMenu: aMenu [
 
 |item|
 	item := RubSegmentIconMenuItemMorph new
@@ -51,61 +38,40 @@ RubTextSegmentMorph>>addItemToMenu: aMenu [
 		^ aMenu addMenuItem: item
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>beChangeable [
+{ #category : #accessing }
+RubTextSegmentMorph >> beChangeable [
 	self changeable: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>beExtendable [
+{ #category : #accessing }
+RubTextSegmentMorph >> beExtendable [
 	self changeable: false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>beSmoothCurve [
+{ #category : #initialization }
+RubTextSegmentMorph >> beSmoothCurve [
 	super beSmoothCurve.
 	self textArea ifNotNil: [ self computeVertices ].
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>changeable [
+{ #category : #accessing }
+RubTextSegmentMorph >> changeable [
 	^ changeable ifNil: [ changeable := true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>changeable: aBoolean [
+{ #category : #accessing }
+RubTextSegmentMorph >> changeable: aBoolean [
 	changeable := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>characterBlockForIndex: anIndex [
+{ #category : #accessing }
+RubTextSegmentMorph >> characterBlockForIndex: anIndex [
 	^ self textArea paragraph characterBlockForIndex: anIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>computeSmoothVertices [
+{ #category : #private }
+RubTextSegmentMorph >> computeSmoothVertices [
 	| firstCB lastCB firstLineIndex lastLineIndex firstLine lastLine verts |
 	firstLineIndex := self lineIndexOfCharacterIndex: firstIndex.
 	lastLineIndex := self lineIndexOfCharacterIndex: lastIndex.
@@ -148,11 +114,8 @@ RubTextSegmentMorph>>computeSmoothVertices [
 	self setVertices: verts
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>computeStraightVertices [
+{ #category : #private }
+RubTextSegmentMorph >> computeStraightVertices [
 	| firstCB lastCB firstLineIndex lastLineIndex firstLine lastLine verts secondLine thirdLine |
 	firstCB := self characterBlockForIndex: firstIndex.
 	lastCB := self characterBlockForIndex: lastIndex.
@@ -185,48 +148,33 @@ RubTextSegmentMorph>>computeStraightVertices [
 	self setVertices: verts
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>computeVertices [
+{ #category : #drawing }
+RubTextSegmentMorph >> computeVertices [
 	self isCurve
 		ifTrue: [ self computeSmoothVertices ]
 		ifFalse: [ self computeStraightVertices ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>defaultColor [
+{ #category : #initialization }
+RubTextSegmentMorph >> defaultColor [
 	^ Color red
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>delete [
+{ #category : #submorphs-add/remove }
+RubTextSegmentMorph >> delete [
 	textArea ifNotNil: [ :ta | ta removeSegment: self ].
 	textArea := nil.
 	super delete
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>displayIconAt: aPosition on: aCanvas [
+{ #category : #drawing }
+RubTextSegmentMorph >> displayIconAt: aPosition [ on: aCanvas
 	self icon ifNil: [ ^self ].
 	aCanvas translucentImage: self icon at: aPosition
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>displayIconAt: aPosition onAthensCanvas: aCanvas [
+{ #category : #drawing }
+RubTextSegmentMorph >> displayIconAt: aPosition onAthensCanvas: aCanvas [
 	self icon ifNil: [ ^self ].
 	aCanvas pathTransform
 		restoreAfter: [ 
@@ -236,112 +184,73 @@ RubTextSegmentMorph>>displayIconAt: aPosition onAthensCanvas: aCanvas [
 			aCanvas drawShape: self icon boundingBox]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>firstIndex [
+{ #category : #accessing }
+RubTextSegmentMorph >> firstIndex [
 	^ firstIndex 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>firstIndex: anInteger [
+{ #category : #accessing }
+RubTextSegmentMorph >> firstIndex: anInteger [
 	firstIndex := anInteger.
 	self computeVertices 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>firstLineIndex [
+{ #category : #accessing }
+RubTextSegmentMorph >> firstLineIndex [
 	^  self lineIndexOfCharacterIndex: firstIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>from: aFirstCharIndex to: aLastCharIndex [
+{ #category : #accessing }
+RubTextSegmentMorph >> from: aFirstCharIndex to: aLastCharIndex [
 	lastIndex := aFirstCharIndex max: aLastCharIndex.
 	firstIndex := aFirstCharIndex min: aLastCharIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>getText  [
+{ #category : #accessing }
+RubTextSegmentMorph >> getText [ 
 	^ self textArea text copyFrom: self firstIndex to: self lastIndex - 1
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>handlesMouseOver: evt [
+{ #category : #'event handling' }
+RubTextSegmentMorph >> handlesMouseOver: evt [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>icon [
+{ #category : #accessing }
+RubTextSegmentMorph >> icon [
 	^ icon 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>icon: aForm [
+{ #category : #accessing }
+RubTextSegmentMorph >> icon: aForm [
 	icon := aForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>iconBlock [
+{ #category : #accessing }
+RubTextSegmentMorph >> iconBlock [
 	^ iconBlock ifNil: [ iconBlock := [ :seg :evt | ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>iconBlock: aBlock [
+{ #category : #accessing }
+RubTextSegmentMorph >> iconBlock: aBlock [
 	iconBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>inTextArea: aTextArea  [
+{ #category : #accessing }
+RubTextSegmentMorph >> inTextArea: aTextArea [ 
 	textArea := aTextArea.
 	self computeVertices
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>inTextArea: aTextArea from: aFirstCharIndex to: aLastCharIndex [
+{ #category : #accessing }
+RubTextSegmentMorph >> inTextArea: aTextArea from: aFirstCharIndex to: aLastCharIndex [
 	self from: aFirstCharIndex to: aLastCharIndex.
 	self inTextArea:  aTextArea
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>initialize [
+{ #category : #initialization }
+RubTextSegmentMorph >> initialize [
 	super initialize.
 	self borderWidth: 0.
 	self beStraightSegments.
@@ -349,128 +258,83 @@ RubTextSegmentMorph>>initialize [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>interval [
+{ #category : #accessing }
+RubTextSegmentMorph >> interval [
 	^ self firstIndex to: self lastIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>label [
+{ #category : #accessing }
+RubTextSegmentMorph >> label [
 	^ label value ifNil: [ label := '']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>label: aStringOrBlock [
+{ #category : #accessing }
+RubTextSegmentMorph >> label: aStringOrBlock [
 	label := aStringOrBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>lastIndex [
+{ #category : #accessing }
+RubTextSegmentMorph >> lastIndex [
 	^ lastIndex 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>lastIndex: anInteger [
+{ #category : #accessing }
+RubTextSegmentMorph >> lastIndex: anInteger [
 	lastIndex := anInteger.
 	self computeVertices 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>lastLineIndex [
+{ #category : #accessing }
+RubTextSegmentMorph >> lastLineIndex [
 	^ self lineIndexOfCharacterIndex: lastIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>lineIndexOfCharacterIndex: anIndex [
+{ #category : #accessing }
+RubTextSegmentMorph >> lineIndexOfCharacterIndex: anIndex [
 	^ self textArea paragraph lineIndexOfCharacterIndex: anIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>lines [
+{ #category : #accessing }
+RubTextSegmentMorph >> lines [
 	^ self textArea paragraph lines
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>margins [
+{ #category : #accessing }
+RubTextSegmentMorph >> margins [
 	^ self textArea margins
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>mouseDownOnIcon: anEvent [
+{ #category : #accessing }
+RubTextSegmentMorph >> mouseDownOnIcon: anEvent [
 	^ self iconBlock value: anEvent
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>mouseEnter: anEvent [
+{ #category : #'event handling' }
+RubTextSegmentMorph >> mouseEnter: anEvent [
 	self showMouseHasEntered.
 	super mouseEnter: anEvent
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>mouseLeave: anEvent [
+{ #category : #'event handling' }
+RubTextSegmentMorph >> mouseLeave: anEvent [
 	self showMouseHasLeaved.
 	super mouseLeave: anEvent
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>noteNewOwner: aMorph [
+{ #category : #submorphs-accessing }
+RubTextSegmentMorph >> noteNewOwner: aMorph [
 	super noteNewOwner: aMorph.
 	self registerTextArea
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>privateMoveBy: aPoint [
+{ #category : #private }
+RubTextSegmentMorph >> privateMoveBy: aPoint [
 	super privateMoveBy: aPoint.
 	self computeVertices
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>readOnlyView [
+{ #category : #ui }
+RubTextSegmentMorph >> readOnlyView [
 	^ RubScrolledTextMorph new
 		setTextWith: self getText;
 		wrapped: self textArea wrapped;
@@ -478,73 +342,49 @@ RubTextSegmentMorph>>readOnlyView [
 		yourself
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>readWriteView [
+{ #category : #ui }
+RubTextSegmentMorph >> readWriteView [
 	^ self readOnlyView on: self
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>registerTextArea  [
+{ #category : #'event handling' }
+RubTextSegmentMorph >> registerTextArea [ 
 	textArea announcer  
 	when: RubExtentChanged send: #whenExtentChanged: to: self;
 	when: RubTextChanged send: #whenTextChanged: to: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>replaceTextWith: aText [
+{ #category : #accessing }
+RubTextSegmentMorph >> replaceTextWith: aText [
 	self textArea replaceFrom: self firstIndex  to: self lastIndex with: aText asText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>setText: aText from: aView [
+{ #category : #accessing }
+RubTextSegmentMorph >> setText: aText from: aView [
 	self replaceTextWith: aText.
 	self announcer announce: RubTextUpdatedInModel.
 	^ true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>showMouseHasEntered [
+{ #category : #'event handling' }
+RubTextSegmentMorph >> showMouseHasEntered [
 	self borderWidth: 1.
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>showMouseHasLeaved [
+{ #category : #'event handling' }
+RubTextSegmentMorph >> showMouseHasLeaved [
 	self borderWidth: 0.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>textArea [
+{ #category : #accessing }
+RubTextSegmentMorph >> textArea [
 	^ textArea
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>textChangedFrom: begin to: end delta: delta [
+{ #category : #'event handling' }
+RubTextSegmentMorph >> textChangedFrom: begin to: end delta: delta [
 	| changeInterval |
 	self flag: 'Dirty code, that does not work well, to be reviewed'.
 	((self interval rangeIncludes: begin) or: [ self interval rangeIncludes: end ])
@@ -578,29 +418,20 @@ RubTextSegmentMorph>>textChangedFrom: begin to: end delta: delta [
 			^ self computeVertices ]
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>topRendererOrSelf [
+{ #category : #structure }
+RubTextSegmentMorph >> topRendererOrSelf [
 	^owner
 		ifNotNil: [ owner topRendererOrSelf ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>whenExtentChanged: anAnnouncement  [
+{ #category : #'event handling' }
+RubTextSegmentMorph >> whenExtentChanged: anAnnouncement [ 
 	self computeVertices.
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextSegmentMorph>>whenTextChanged: anAnnouncement  [
+{ #category : #'event handling' }
+RubTextSegmentMorph >> whenTextChanged: anAnnouncement [ 
 	| beg end delta |
 	textArea ifNil: [ ^self ].
 	beg := anAnnouncement start.

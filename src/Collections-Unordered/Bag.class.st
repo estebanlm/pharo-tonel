@@ -9,39 +9,26 @@ Class {
 	#instVars : [
 		'contents'
 	],
-	#category : #Collections-Unordered,
-	#timestamp : '<historical>'
+	#category : #Collections-Unordered
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag class>>contentsClass [
+{ #category : #'instance creation' }
+Bag class >> contentsClass [
 	^Dictionary
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag class>>new [
+{ #category : #'instance creation' }
+Bag class >> new [
 	^ self new: 4
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag class>>new: nElements [
+{ #category : #'instance creation' }
+Bag class >> new: nElements [
 	^ super new setContents: (self contentsClass new: nElements)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag class>>newFrom: aCollection  [
+{ #category : #'instance creation' }
+Bag class >> newFrom: aCollection [ 
 	"Answer an instance of me containing the same elements as aCollection."
 
 	^ self withAll: aCollection
@@ -52,11 +39,8 @@ Bag class>>newFrom: aCollection  [
 "
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>= aBag [
+{ #category : #comparing }
+Bag >> = aBag [
 	"Two bags are equal if
 	 (a) they are the same 'kind' of thing.
 	 (b) they have the same size.
@@ -72,66 +56,45 @@ Bag>>= aBag [
 
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>add: newObject  [
+{ #category : #adding }
+Bag >> add: newObject [ 
 	"Include newObject as one of the receiver's elements. Answer newObject."
 
 	^ self add: newObject withOccurrences: 1
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>add: newObject withOccurrences: anInteger  [
+{ #category : #adding }
+Bag >> add: newObject withOccurrences: anInteger [ 
 	"Add newObject anInteger times to the receiver. Answer newObject."
 
 	contents at: newObject put: (contents at: newObject ifAbsent: [0]) + anInteger.
 	^ newObject
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>asBag [
+{ #category : #converting }
+Bag >> asBag [
 	^ self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>asSet [
+{ #category : #converting }
+Bag >> asSet [
 	"Answer a set with the elements of the receiver."
 
 	^ contents keys asSet
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>at: index  [
+{ #category : #accessing }
+Bag >> at: index [ 
 	self errorNotKeyed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>at: index put: anObject  [
+{ #category : #accessing }
+Bag >> at: index put: anObject [ 
 	self errorNotKeyed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>cumulativeCounts [
+{ #category : #accessing }
+Bag >> cumulativeCounts [
 	"Answer with a collection of cumulative percents covered by elements so far."
 	| s n |
 	s := self size / 100.0. n := 0.
@@ -139,51 +102,36 @@ Bag>>cumulativeCounts [
 		[:a | n := n + a key. (n / s roundTo: 0.1) -> a value]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>do: aBlock  [
+{ #category : #enumerating }
+Bag >> do: aBlock [ 
 	"Evaluate aBlock with each of the receiver's elements as the argument."
 
 	contents associationsDo: [:assoc | assoc value timesRepeat: [aBlock value: assoc key]]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>doWithOccurrences: aTwoArgBlock  [
+{ #category : #enumerating }
+Bag >> doWithOccurrences: aTwoArgBlock [ 
     "Iterate over the receiver and apply a two argument block on the element and its occurrences."
         
     contents associationsDo: [:assoc | aTwoArgBlock value: assoc key value: assoc value ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>includes: anObject  [
+{ #category : #testing }
+Bag >> includes: anObject [ 
 	"Refer to the comment in Collection|includes:."
 
 	^contents includesKey: anObject
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>keysAndValuesDo: aTwoArgBlock  [
+{ #category : #enumerating }
+Bag >> keysAndValuesDo: aTwoArgBlock [ 
     "Iterate over the receiver and apply a two argument block on the element and its occurrences."
      
     contents associationsDo: [:assoc | aTwoArgBlock value: assoc key value: assoc value ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>occurrencesOf: anObject  [
+{ #category : #testing }
+Bag >> occurrencesOf: anObject [ 
 	"Refer to the comment in Collection|occurrencesOf:."
 
 	(self includes: anObject)
@@ -191,20 +139,14 @@ Bag>>occurrencesOf: anObject  [
 		ifFalse: [^0]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>postCopy [
+{ #category : #copying }
+Bag >> postCopy [
 	super postCopy.
 	contents := contents copy
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>remove: oldObject ifAbsent: exceptionBlock  [
+{ #category : #removing }
+Bag >> remove: oldObject ifAbsent: exceptionBlock [ 
 	"Refer to the comment in Collection|remove:ifAbsent:."
 
 	| count |
@@ -215,11 +157,8 @@ Bag>>remove: oldObject ifAbsent: exceptionBlock  [
 	^ oldObject
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>removeAll [
+{ #category : #removing }
+Bag >> removeAll [
 	"Implementation Note: as contents will be overwritten, a shallowCopy of self would be modified.
 	An alternative implementation preserving capacity would be to create a new contents:
 	self setContents: (self class contentsClass new: contents size)."
@@ -227,19 +166,13 @@ Bag>>removeAll [
 	contents removeAll
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>setContents: aDictionary [
+{ #category : #private }
+Bag >> setContents: aDictionary [
 	contents := aDictionary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>size [
+{ #category : #accessing }
+Bag >> size [
 	"Answer how many elements the receiver contains."
 
 	| tally |
@@ -248,11 +181,8 @@ Bag>>size [
 	^ tally
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>sortedCounts [
+{ #category : #accessing }
+Bag >> sortedCounts [
 	"Answer with a collection of counts with elements, sorted by decreasing
 	count."
 	"Suggested by l. Uzonyi"
@@ -264,11 +194,8 @@ Bag>>sortedCounts [
  		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>sortedElements [
+{ #category : #accessing }
+Bag >> sortedElements [
 	"Answer with a collection of elements with counts, sorted by element."
 	"Suggested by l. Uzonyi"
 	
@@ -277,11 +204,8 @@ Bag>>sortedElements [
  		yourself
 ]
 
-{
-	#category : #'math functions',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>sum [
+{ #category : #'math functions' }
+Bag >> sum [
 	"Faster than the superclass implementation when you hold many instances of the same value (which you probably do, otherwise you wouldn't be using a Bag)."
 	
 	| sum first |
@@ -294,11 +218,8 @@ Bag>>sum [
 	^sum
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Bag>>valuesAndCounts [
+{ #category : #accessing }
+Bag >> valuesAndCounts [
 
 	^ contents
 ]

@@ -29,31 +29,21 @@ Class {
 		'prefixMap',
 		'byteArray'
 	],
-	#category : #Zinc-HTTP-Client-Server,
-	#timestamp : 'SvenVanCaekenberghe 6/9/2015 15:36'
+	#category : #Zinc-HTTP-Client-Server
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate class>>empty [
+{ #category : #'instance creation' }
+ZnDefaultServerDelegate class >> empty [
 	^ self basicNew
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate class>>new [
+{ #category : #'instance creation' }
+ZnDefaultServerDelegate class >> new [
 	^ super new initialize
 ]
 
-{
-	#category : #responses,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>bytes: request [
+{ #category : #responses }
+ZnDefaultServerDelegate >> bytes: request [
 	"Answer a number of bytes according to a pattern as an application/octet-stream.
 	Optionally take the size from the URI, as in /bytes/32 for 32 bytes, default to 64 bytes.
 	The main goal is to be efficient, esp. in benchmarks, that's why we cache (non-thread-safe)"
@@ -69,21 +59,15 @@ ZnDefaultServerDelegate>>bytes: request [
 	^ ZnResponse ok: (ZnEntity bytes: byteArray)
 ]
 
-{
-	#category : #responses,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>dwbench: request [
+{ #category : #responses }
+ZnDefaultServerDelegate >> dwbench: request [
 	"Reply with the dynamic DW-Bench HTML page"
 
 	^ ZnResponse ok: (ZnEntity html: self generateDWBench)
 ]
 
-{
-	#category : #responses,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>echoRequest: request [
+{ #category : #responses }
+ZnDefaultServerDelegate >> echoRequest: request [	
 	"Echo request by generating a plain text response useful for debugging purposes"
 	
 	| delay info entity |
@@ -94,11 +78,8 @@ ZnDefaultServerDelegate>>echoRequest: request [
 	^ ZnResponse ok: entity
 ]
 
-{
-	#category : #responses,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>errorResponse: request [
+{ #category : #responses }
+ZnDefaultServerDelegate >> errorResponse: request [
 	"Here we artificially signal an Error at the Smalltalk level,
 	optionally with a user defined message."
 	
@@ -107,11 +88,8 @@ ZnDefaultServerDelegate>>errorResponse: request [
 	Error signal: message
 ]
 
-{
-	#category : #responses,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>favicon: request [
+{ #category : #responses }
+ZnDefaultServerDelegate >> favicon: request [
 	"Answer a nice favicon for browsers to display"
 
 	| entity |
@@ -119,11 +97,8 @@ ZnDefaultServerDelegate>>favicon: request [
 	^ ZnResponse ok: entity
 ]
 
-{
-	#category : #responses,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>formTest1: request [
+{ #category : #responses }
+ZnDefaultServerDelegate >> formTest1: request [
 	| input page |
 	input := request uri queryAt: #input ifAbsent: [ 'input' ].
 	page := ZnHtmlOutputStream streamContents: [ :html |
@@ -140,11 +115,8 @@ ZnDefaultServerDelegate>>formTest1: request [
 	^ ZnResponse ok: (ZnEntity html: page)
 ]
 
-{
-	#category : #responses,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>formTest2: request [
+{ #category : #responses }
+ZnDefaultServerDelegate >> formTest2: request [
 	| input page |
 	input := 'input'.
 	(request hasEntity and: [ request contentType matches: ZnMimeType applicationFormUrlEncoded  ])
@@ -163,11 +135,8 @@ ZnDefaultServerDelegate>>formTest2: request [
 	^ ZnResponse ok: (ZnEntity html: page)
 ]
 
-{
-	#category : #responses,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>formTest3: request [
+{ #category : #responses }
+ZnDefaultServerDelegate >> formTest3: request [
 	| contents filename contentType page |
 	contents := filename := contentType := ''.
 	(request hasEntity and: [ request contentType matches: ZnMimeType multiPartFormData ])
@@ -195,11 +164,8 @@ ZnDefaultServerDelegate>>formTest3: request [
 	^ ZnResponse ok: (ZnEntity html: page)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>generateDWBench [
+{ #category : #private }
+ZnDefaultServerDelegate >> generateDWBench [
 	"Generate the dynamic DW-Bench HTML page.
 	Although the date/time is variable, the page size is constant."
 	
@@ -214,11 +180,8 @@ ZnDefaultServerDelegate>>generateDWBench [
 				html << Date today yyyymmdd; space; << Time now print24 ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>generateEchoRequestString: request [
+{ #category : #private }
+ZnDefaultServerDelegate >> generateEchoRequestString: request [
 	"Generate a string echoing the request"
 	
 	^ String streamContents: [ :stream |
@@ -233,11 +196,8 @@ ZnDefaultServerDelegate>>generateEchoRequestString: request [
 			stream nextPutAll: ' containing '; print: request entity ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>generateHelp [
+{ #category : #private }
+ZnDefaultServerDelegate >> generateHelp [
 	"Generate an HTML page with links to all pages I support"
 	
 	^ ZnHtmlOutputStream streamContents: [ :html |
@@ -249,11 +209,8 @@ ZnDefaultServerDelegate>>generateHelp [
 						html tag: #a attributes: { #href. each } with: each ] ] ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>generateSessionRequest: session [
+{ #category : #private }
+ZnDefaultServerDelegate >> generateSessionRequest: session [
 	"Generate an HTML page using a session"
 	
 	^ ZnHtmlOutputStream streamContents: [ :html |
@@ -263,11 +220,8 @@ ZnDefaultServerDelegate>>generateSessionRequest: session [
 			html tag: #p do: [ html << 'Session hit count ' << (session attributeAt: #hitCount) ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>generateStatus [
+{ #category : #private }
+ZnDefaultServerDelegate >> generateStatus [
 	"Generate an HTML page with the state of the server"
 	
 	^ ZnHtmlOutputStream streamContents: [ :html |
@@ -284,11 +238,8 @@ ZnDefaultServerDelegate>>generateStatus [
 							tag: #br; str: each printString ] ] ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>generateUnicodeTest [
+{ #category : #private }
+ZnDefaultServerDelegate >> generateUnicodeTest [
 	"Generate an HTML page containing all Unicode characters with code points between 0 and 16r024F in a nice table"
 	
 	^ ZnHtmlOutputStream streamContents: [ :html |
@@ -303,11 +254,8 @@ ZnDefaultServerDelegate>>generateUnicodeTest [
 								nextPut: $=; nextPut: each asCharacter ] ] ] ] ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>generateWelcomePage [
+{ #category : #private }
+ZnDefaultServerDelegate >> generateWelcomePage [
 	^ ZnHtmlOutputStream streamContents: [ :html |
 		html html5; tag: #html do: [
 			html tag: #head do: [
@@ -321,11 +269,8 @@ ZnDefaultServerDelegate>>generateWelcomePage [
 			html tag: #h4 with: 'May the Source be with you!' ] ] ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>handleRequest: request [
+{ #category : #public }
+ZnDefaultServerDelegate >> handleRequest: request [
 	| prefix prefixHandler |
 	prefix := request uri isSlash
 		ifTrue: [ prefixMap at: '/' ifAbsent: [ nil ] ]
@@ -339,22 +284,16 @@ ZnDefaultServerDelegate>>handleRequest: request [
 	^ ZnResponse notFound: request uri
 ]
 
-{
-	#category : #responses,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>help: request [
+{ #category : #responses }
+ZnDefaultServerDelegate >> help: request [
 	"Reply with a dynamic HTML page containing links to all pages I support"
 
 	^ ZnResponse ok: (ZnEntity html: self generateHelp)
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>initialize [
+{ #category : #initialization }
+ZnDefaultServerDelegate >> initialize [
 	self
 		map: 'welcome' to: #welcome:;
 		map: 'help' to: #help:;
@@ -374,11 +313,8 @@ ZnDefaultServerDelegate>>initialize [
 		map: '/' to: 'welcome'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>map: prefix to: handler [
+{ #category : #accessing }
+ZnDefaultServerDelegate >> map: prefix to: handler [
 	"Arrange for the receiver to dispatch requests matching prefix to handler.
 	Handler can be a symbol naming a method in the receiver, 
 	or a block accepting the request and producing the response.
@@ -390,29 +326,20 @@ ZnDefaultServerDelegate>>map: prefix to: handler [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>prefixMap [
+{ #category : #accessing }
+ZnDefaultServerDelegate >> prefixMap [
 	^ prefixMap ifNil: [ prefixMap := Dictionary new ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>processes [
+{ #category : #private }
+ZnDefaultServerDelegate >> processes [
 	^ (Process allSubInstances
 		reject: [ :each | each isTerminated or: [ each = Processor activeProcess ] ])
 		sorted: [ :a :b | a priority >= b priority ] 
 ]
 
-{
-	#category : #responses,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>random: request [
+{ #category : #responses }
+ZnDefaultServerDelegate >> random: request [
 	"Answer a text plain UTF-8 encoded string of random hex characters.
 	Optionally take the size from the URI, as in /random/32 for 32 characters.
 	Default to 64 characters with a newline at the end"
@@ -425,11 +352,8 @@ ZnDefaultServerDelegate>>random: request [
 	^ ZnResponse ok: (ZnEntity text: hexString)
 ]
 
-{
-	#category : #responses,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>sessionRequest: request [
+{ #category : #responses }
+ZnDefaultServerDelegate >> sessionRequest: request [	
 	"An HTML response that uses a session"
 	
 	| session hitCount |
@@ -440,11 +364,8 @@ ZnDefaultServerDelegate>>sessionRequest: request [
 	^ ZnResponse ok: (ZnEntity html: (self generateSessionRequest: session))
 ]
 
-{
-	#category : #responses,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>small: request [
+{ #category : #responses }
+ZnDefaultServerDelegate >> small: request [
 	| page |
 	page := ZnHtmlOutputStream streamContents: [ :html |
 		html page: #Small do: [ 
@@ -452,22 +373,16 @@ ZnDefaultServerDelegate>>small: request [
 	^ ZnResponse ok: (ZnEntity html: page)
 ]
 
-{
-	#category : #responses,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>status: request [
+{ #category : #responses }
+ZnDefaultServerDelegate >> status: request [
 	"Reply with a dynamic HTML page describing the state of the server"
 
 	^ ZnResponse ok: (ZnEntity html: self generateStatus)
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>systemVersionInfo [
+{ #category : #private }
+ZnDefaultServerDelegate >> systemVersionInfo [
 	^ String streamContents: [ :stream |
 			stream 
 				print: SystemVersion current; 
@@ -476,39 +391,27 @@ ZnDefaultServerDelegate>>systemVersionInfo [
 	
 ]
 
-{
-	#category : #responses,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>unicode: request [
+{ #category : #responses }
+ZnDefaultServerDelegate >> unicode: request [
 	"Answer a Unicode Test HTML page"
 	
 	^ ZnResponse ok: (ZnEntity html: self generateUnicodeTest)
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>value: request [
+{ #category : #public }
+ZnDefaultServerDelegate >> value: request [
 	"I implement the generic #value: message as equivalent to #handleRequest:"
 	
 	^ self handleRequest: request
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>vmStats [
+{ #category : #private }
+ZnDefaultServerDelegate >> vmStats [
 	^ SmalltalkImage current vm statisticsReport
 ]
 
-{
-	#category : #responses,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>welcome: request [
+{ #category : #responses }
+ZnDefaultServerDelegate >> welcome: request [
 	"Answer a nice HTML welcome page"
 	
 	| page entity |
@@ -517,11 +420,8 @@ ZnDefaultServerDelegate>>welcome: request [
 	^ ZnResponse ok: entity
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>welcomePageCss [
+{ #category : #private }
+ZnDefaultServerDelegate >> welcomePageCss [
 	^ Character space join: 
 	'body { color: black; background: white; width: 900px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px }
 p { width: 600px; padding: 0 20px 10px 20px }
@@ -529,19 +429,13 @@ ul, ol { width: 600px; padding: 0 5px 5px 30px }
 #logo { color: orange; font-family: Helvetica, sans-serif; font-weight: bold; font-size: 100px }' lines
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>welcomePageGreeting [
+{ #category : #private }
+ZnDefaultServerDelegate >> welcomePageGreeting [
 	^ 'Welcome to Zinc HTTP Components, a modern, open-source Smalltalk framework to deal with the HTTP networking protocol.'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDefaultServerDelegate>>welcomePageLinksOn: html [
+{ #category : #private }
+ZnDefaultServerDelegate >> welcomePageLinksOn: html [
 	html tag: #ul do: [ 
 		html tag: #li do: [ 
 			html 

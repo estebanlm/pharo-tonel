@@ -9,15 +9,11 @@ Class {
 		'removeTestPackageModel',
 		'testPackage'
 	],
-	#category : #Tool-CriticBrowser,
-	#timestamp : '<historical>'
+	#category : #Tool-CriticBrowser
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser class>>defaultSpec [
+{ #category : #specs }
+SelectPackageBrowser class >> defaultSpec [
 
 		<spec>
 	
@@ -42,29 +38,20 @@ SelectPackageBrowser class>>defaultSpec [
 					add: #nextButtonModel ] height: 25]	
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser class>>open [
+{ #category : #'instance creation' }
+SelectPackageBrowser class >> open [
 	
 	self new items: RPackageOrganizer default packages;
 		openWithSpec 
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser class>>title [
+{ #category : #specs }
+SelectPackageBrowser class >> title [
 	^ 'Select packages'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser>>addAllItems [
+{ #category : #private }
+SelectPackageBrowser >> addAllItems [
 	| tmp |
 	tmp := self 
 		sort: selectedModel listItems
@@ -75,11 +62,8 @@ SelectPackageBrowser>>addAllItems [
 	selectedModel updateList.  	  
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser>>addItems [
+{ #category : #private }
+SelectPackageBrowser >> addItems [
 	toSelectModel selectedItems
 		ifNotNil: [ :items |  
 			selectedModel items: (self sort: selectedModel listItems withAll: items).
@@ -88,20 +72,14 @@ SelectPackageBrowser>>addItems [
 	selectedModel updateList.  	  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser>>addTestCaseClasses [
+{ #category : #accessing }
+SelectPackageBrowser >> addTestCaseClasses [
 	^ addTestCaseClassesModel
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser>>initialize [
+{ #category : #initialization }
+SelectPackageBrowser >> initialize [
 
 	| wrappingBlock |
 	super initialize.	
@@ -115,11 +93,8 @@ SelectPackageBrowser>>initialize [
 	selectedModel displayBlock: wrappingBlock.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser>>initializeWidgets [
+{ #category : #initialization }
+SelectPackageBrowser >> initializeWidgets [
 
 	super initializeWidgets.	
 	addTestCaseClassesModel := self newCheckBox.
@@ -129,11 +104,8 @@ SelectPackageBrowser>>initializeWidgets [
 	addTestCaseClassesModel state: true.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser>>nextAction [
+{ #category : #api }
+SelectPackageBrowser >> nextAction [
 
 	| env packages |	
 		
@@ -146,11 +118,8 @@ SelectPackageBrowser>>nextAction [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser>>removeAllItems [
+{ #category : #private }
+SelectPackageBrowser >> removeAllItems [
 	| tmp |
 	tmp := self 
 		sort: toSelectModel listItems
@@ -161,11 +130,8 @@ SelectPackageBrowser>>removeAllItems [
 	selectedModel updateList.  	  
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser>>removeItems [
+{ #category : #private }
+SelectPackageBrowser >> removeItems [
 	selectedModel selectedItems
 		ifNotNil: [:items | 
 			toSelectModel items: (self sort: toSelectModel listItems withAll: items).
@@ -174,11 +140,8 @@ SelectPackageBrowser>>removeItems [
 	selectedModel updateList.  	  
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser>>removeTestPackage [
+{ #category : #initialization }
+SelectPackageBrowser >> removeTestPackage [
 
 	| matchText  |
 	testPackage isEmpty
@@ -196,22 +159,16 @@ SelectPackageBrowser>>removeTestPackage [
 	selectedModel updateList.  	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser>>removeTestPackageModel [
+{ #category : #initialization }
+SelectPackageBrowser >> removeTestPackageModel [
 
 	^ removeTestPackageModel
 	
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser>>setRemoveTestPackageModel [
+{ #category : #initialization }
+SelectPackageBrowser >> setRemoveTestPackageModel [
 
 	removeTestPackageModel
 		state: false;
@@ -220,30 +177,21 @@ SelectPackageBrowser>>setRemoveTestPackageModel [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser>>sort: aCollection [
+{ #category : #private }
+SelectPackageBrowser >> sort: aCollection [
 	^ aCollection asOrderedCollection sort: [:e1 :e2 | (e1 asString) < (e2 asString)].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser>>sort: aCollection withAll: anotherCollection [
+{ #category : #private }
+SelectPackageBrowser >> sort: aCollection withAll: anotherCollection [
 	^ self sort: 
 		(aCollection asOrderedCollection 
 			addAll: (anotherCollection);
 			yourself).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectPackageBrowser>>sort: aCollection withoutAll: anotherCollection [
+{ #category : #private }
+SelectPackageBrowser >> sort: aCollection withoutAll: anotherCollection [
 	^ self sort: 
 		(aCollection asOrderedCollection 
 			removeAll: (anotherCollection);

@@ -8,25 +8,18 @@ Class {
 		'conflicts',
 		'merger'
 	],
-	#category : #MonticelloGUI,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:52'
+	#category : #MonticelloGUI
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser class>>resolveConflictsInMerger: aMerger [
+{ #category : #'as yet unclassified' }
+MCMergeBrowser class >> resolveConflictsInMerger: aMerger [
 	| inst |
 	inst := self new merger: aMerger.
 	^ inst showModally ifNil: [false]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>buttonSpecs [
+{ #category : #'morphic ui' }
+MCMergeBrowser >> buttonSpecs [
 	^ #((Merge merge 'Proceed with the merge' canMerge)
 		 (Cancel cancel 'Cancel the merge')
 		('All Newer' chooseAllNewerConflicts 'Choose all newer conflict versions')
@@ -36,71 +29,50 @@ MCMergeBrowser>>buttonSpecs [
 )
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>canMerge [
+{ #category : #actions }
+MCMergeBrowser >> canMerge [
 	^ merger isMerged
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>cancel [
+{ #category : #actions }
+MCMergeBrowser >> cancel [
 	self answer: false
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>chooseAllNewerConflicts [
+{ #category : #actions }
+MCMergeBrowser >> chooseAllNewerConflicts [
 	"Notify the potential new state of canMerge."
 	
 	conflicts do: [ :ea | ea chooseNewer ].
 	self changed: #text; changed: #list; changed: #canMerge
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>chooseAllOlderConflicts [
+{ #category : #actions }
+MCMergeBrowser >> chooseAllOlderConflicts [
 	"Notify the potential new state of canMerge."
 	
 	conflicts do: [ :ea | ea chooseOlder ].
 	self changed: #text; changed: #list; changed: #canMerge
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>chooseAllUnchosenLocal [
+{ #category : #actions }
+MCMergeBrowser >> chooseAllUnchosenLocal [
 	"Notify the potential new state of canMerge."
 	
 	conflicts do: [ :ea | ea isResolved ifFalse: [ ea chooseLocal ] ].
 	self changed: #text; changed: #list; changed: #canMerge
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>chooseAllUnchosenRemote [
+{ #category : #actions }
+MCMergeBrowser >> chooseAllUnchosenRemote [
 	"Notify the potential new state of canMerge."
 	
 	conflicts do: [ :ea | ea isResolved ifFalse: [ ea chooseRemote ] ].
 	self changed: #text; changed: #list; changed: #canMerge
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>chooseLocal [
+{ #category : #actions }
+MCMergeBrowser >> chooseLocal [
 	"Notify the potential new state of canMerge."
 	
 	self conflictSelectionDo:
@@ -108,11 +80,8 @@ MCMergeBrowser>>chooseLocal [
 		self changed: #text; changed: #list; changed: #canMerge]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>chooseRemote [
+{ #category : #actions }
+MCMergeBrowser >> chooseRemote [
 	"Notify the potential new state of canMerge."
 	
 	self conflictSelectionDo:
@@ -120,39 +89,27 @@ MCMergeBrowser>>chooseRemote [
 		self changed: #text; changed: #list; changed: #canMerge]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>clearChoice [
+{ #category : #actions }
+MCMergeBrowser >> clearChoice [
 	self conflictSelectionDo:
 		[selection clearChoice.
 		self changed: #text; changed: #list]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>conflictSelectionDo: aBlock [
+{ #category : #actions }
+MCMergeBrowser >> conflictSelectionDo: aBlock [
 	self selectionIsConflicted
 		ifTrue: aBlock
 		ifFalse: [self inform: 'You must have a conflict selected']
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>defaultLabel [
+{ #category : #'morphic ui' }
+MCMergeBrowser >> defaultLabel [
 	^ 'Merge Browser'
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>getConflictMenu: aMenu [
+{ #category : #actions }
+MCMergeBrowser >> getConflictMenu: aMenu [
 	selection remoteChosen
 		ifTrue: [aMenu add: 'Undo keep change' target: self selector: #clearChoice]
 		ifFalse: [aMenu add: 'Keep change' target: self selector: #chooseRemote].
@@ -162,88 +119,61 @@ MCMergeBrowser>>getConflictMenu: aMenu [
 	^ aMenu
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>getMenu: aMenu [
+{ #category : #'morphic ui' }
+MCMergeBrowser >> getMenu: aMenu [
 	selection ifNil: [^ aMenu].
 	^ self selectionIsConflicted
 		ifTrue: [self getConflictMenu: aMenu]
 		ifFalse: [self getOperationMenu: aMenu]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>getOperationMenu: aMenu [
+{ #category : #actions }
+MCMergeBrowser >> getOperationMenu: aMenu [
 	^ aMenu
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>innerButtonRow [
+{ #category : #actions }
+MCMergeBrowser >> innerButtonRow [
 	^ self buttonRow:
 		#((Keep chooseRemote 'keep the selected change' selectionIsConflicted)
 		  (Reject chooseLocal 'reject the selected change' selectionIsConflicted))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>items [
+{ #category : #accessing }
+MCMergeBrowser >> items [
 	^ conflicts, items
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>merge [
+{ #category : #actions }
+MCMergeBrowser >> merge [
 	merger isMerged
 		ifFalse: [self inform: 'You must resolve all the conflicts first']
 		ifTrue: [self answer: true] 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>merger: aMerger [
+{ #category : #actions }
+MCMergeBrowser >> merger: aMerger [
 	merger := aMerger.
 	items := aMerger operations asSortedCollection.
 	conflicts := aMerger conflicts sort: [:a :b | a operation <= b operation].
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>selection: aNumber [
+{ #category : #'morphic ui' }
+MCMergeBrowser >> selection: aNumber [
 	"Notify change of conflicts too."
 	
 	super selection: aNumber.
 	self changed: #selectionIsConflicted
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>selectionIsConflicted [
+{ #category : #actions }
+MCMergeBrowser >> selectionIsConflicted [
 	selection ifNil: [ ^ false ].
 	^ selection isConflict
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCMergeBrowser>>widgetSpecs [
+{ #category : #'morphic ui' }
+MCMergeBrowser >> widgetSpecs [
 	"ToolBuilder doesn't know about innerButtonRow. Made explicit here."
 
 	^#(

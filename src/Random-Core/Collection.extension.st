@@ -1,12 +1,7 @@
-Extension {
-	#name : #Collection
-}
+Extension { #name : #Collection }
 
-{
-	#category : #'*Random-Core',
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Collection>>atRandom [
+{ #category : #'*Random-Core' }
+Collection >> atRandom [
 	"Answer a random element of the receiver.  Uses a shared random 
 	number generator owned by class Collection.  If you use this a lot, 
 	define your own instance of Random and use #atRandom:.  Causes 
@@ -22,11 +17,8 @@ Collection>>atRandom [
 "
 ]
 
-{
-	#category : #'*Random-Core',
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Collection>>atRandom: aGenerator [
+{ #category : #'*Random-Core' }
+Collection >> atRandom: aGenerator [
 	"Answer a random element of the receiver. Uses aGenerator which
     should be kept by the user in a variable and used every time. Use
     this instead of #atRandom for better uniformity of random numbers because 

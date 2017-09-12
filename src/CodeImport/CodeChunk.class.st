@@ -7,102 +7,68 @@ Class {
 	#instVars : [
 		'contents'
 	],
-	#category : #CodeImport,
-	#timestamp : '<historical>'
+	#category : #CodeImport
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeChunk class>>contents: someContents [
+{ #category : #'instance creation' }
+CodeChunk class >> contents: someContents [
 	^self new
 			contents: someContents;
 			yourself
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeChunk>>accept: aVisitor [
+{ #category : #visiting }
+CodeChunk >> accept: aVisitor [
 
 	^ aVisitor visitCodeChunk: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeChunk>>contents [
+{ #category : #accessing }
+CodeChunk >> contents [
 	^ contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeChunk>>contents: anObject [
+{ #category : #accessing }
+CodeChunk >> contents: anObject [
 	contents := anObject
 ]
 
-{
-	#category : #importing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeChunk>>import [
+{ #category : #importing }
+CodeChunk >> import [
 	self importFor: nil logSource: true
 ]
 
-{
-	#category : #importing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeChunk>>importFor: aRequestor logSource: logSource [
+{ #category : #importing }
+CodeChunk >> importFor: aRequestor logSource: logSource [
 	self import
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeChunk>>isClassCommentDeclaration [
+{ #category : #testing }
+CodeChunk >> isClassCommentDeclaration [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeChunk>>isClassOrganizationDeclaration [
+{ #category : #testing }
+CodeChunk >> isClassOrganizationDeclaration [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeChunk>>isDoItDeclaration [
+{ #category : #testing }
+CodeChunk >> isDoItDeclaration [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeChunk>>isMethodDeclaration [
+{ #category : #testing }
+CodeChunk >> isMethodDeclaration [
 
 	^ false
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-CodeChunk>>printOn: aStream [
+{ #category : #printing }
+CodeChunk >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut: $(.
 	aStream nextPutAll: contents.

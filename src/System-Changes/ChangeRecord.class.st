@@ -15,45 +15,32 @@ Class {
 		'meta',
 		'stamp'
 	],
-	#category : #System-Changes,
-	#timestamp : '<historical>'
+	#category : #System-Changes
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>><= anotherOne [
+{ #category : #testing }
+ChangeRecord >> <= anotherOne [
 
 	self stamp ifNil: [ ^ false ].
 	anotherOne stamp ifNil: [ ^ true ].
 	^ self timeStamp <= anotherOne timeStamp 
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>category [
+{ #category : #access }
+ChangeRecord >> category [
 	^category
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>classIncludesSelector [
+{ #category : #testing }
+ChangeRecord >> classIncludesSelector [
 	
 	| aClass | 
 	^ (aClass := self methodClass) notNil
 			and: [aClass includesSelector: self methodSelector]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>commentClass  [
+{ #category : #access }
+ChangeRecord >> commentClass [ 
 	| commentClass |
 	type == #classComment ifFalse: [^ nil].
 	(Smalltalk includesKey: class asSymbol) ifFalse: [^ nil].
@@ -63,21 +50,15 @@ ChangeRecord>>commentClass  [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>file: f position: p type: t [
+{ #category : #initialization }
+ChangeRecord >> file: f position: p type: t [
 	file := f.
 	position := p.
 	type := t
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>file: f position: p type: t class: c category: cat meta: m stamp: s [
+{ #category : #initialization }
+ChangeRecord >> file: f position: p type: t class: c category: cat meta: m stamp: s [
 	self file: f position: p type: t.
 	class := c.
 	category := cat.
@@ -85,11 +66,8 @@ ChangeRecord>>file: f position: p type: t class: c category: cat meta: m stamp: 
 	stamp := s
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>fileIn [
+{ #category : #initialization }
+ChangeRecord >> fileIn [
 	"File the receiver in.  If I represent a method or a class-comment, file the method in and make a note of it in the recent-submissions list; if I represent a do-it, then, well, do it."
 
 	UIManager default
@@ -114,20 +92,14 @@ ChangeRecord>>fileIn [
 					[ (Smalltalk globals at: class asSymbol) comment: self text stamp: stamp ] ]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>fileName [
+{ #category : #access }
+ChangeRecord >> fileName [
 	^(file ifNotNil: [ file name ]) 
 			ifNil: [ '<no file>' ]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>fileOutOn: aFileStream [
+{ #category : #access }
+ChangeRecord >> fileOutOn: aFileStream [
 	"File the receiver out on the given file stream"
 
 	| aString |
@@ -156,30 +128,21 @@ ChangeRecord>>fileOutOn: aFileStream [
 	aFileStream cr
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>isMetaClassChange [
+{ #category : #access }
+ChangeRecord >> isMetaClassChange [
 	^meta
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>isMethodDefinedInImage [
+{ #category : #testing }
+ChangeRecord >> isMethodDefinedInImage [
 	"answer whether the method represented by the receiver is present in the image"
 	
 	^ self type = #method
 		and: [self classIncludesSelector]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>isMethodNotDefinedInImage [
+{ #category : #testing }
+ChangeRecord >> isMethodNotDefinedInImage [
 	"answer whether the method represented by the receiver is not present in the image.
 	pay attention is it not just isMethodDefinedInImage not"
 	
@@ -189,22 +152,16 @@ ChangeRecord>>isMethodNotDefinedInImage [
 				[(aClass includesSelector: self methodSelector) not]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>isUnchangedMethod [
+{ #category : #testing }
+ChangeRecord >> isUnchangedMethod [
 
 	^ self isMethodDefinedInImage 
 		and: [self string withBlanksCondensed 
 				= (self methodClass sourceCodeAt: self methodSelector) asString withBlanksCondensed ]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>methodClass [
+{ #category : #access }
+ChangeRecord >> methodClass [
 	| methodClass |
 	type == #method
 		ifFalse: [ ^ nil ].
@@ -216,49 +173,34 @@ ChangeRecord>>methodClass [
 		ifFalse: [ methodClass ]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>methodClassName [
+{ #category : #access }
+ChangeRecord >> methodClassName [
 	^ meta
 		ifTrue: [ class , ' class' ]
 		ifFalse: [ class ]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>methodSelector [
+{ #category : #access }
+ChangeRecord >> methodSelector [
 	^ type == #method
 		ifTrue: [ (Smalltalk globals at: class ifAbsent: [ Object ]) compiler parseSelector: self string ]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>position [
+{ #category : #access }
+ChangeRecord >> position [
 	^ position
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>printOn: aStream [
+{ #category : #printing }
+ChangeRecord >> printOn: aStream [
 
 	aStream 
 		nextPutAll: self type printString.
 	self stamp ifNotNil: [ aStream nextPutAll: self stamp ]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>sourceCode [
+{ #category : #access }
+ChangeRecord >> sourceCode [
 	
 	self type= #preamble ifTrue: [ ^ #preamble printString ].
 	self type= #doIt ifTrue: [ ^ #preamble printString ].
@@ -267,28 +209,19 @@ ChangeRecord>>sourceCode [
 	^ self string
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>stamp [
+{ #category : #access }
+ChangeRecord >> stamp [
 	^ stamp
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>stamp: threePartString [
+{ #category : #access }
+ChangeRecord >> stamp: threePartString [
 
 	stamp := threePartString
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>string  [
+{ #category : #access }
+ChangeRecord >> string [ 
 	| string |
 	file openReadOnly.
 	file position: position.
@@ -297,11 +230,8 @@ ChangeRecord>>string  [
 	^ string
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>timeStamp [
+{ #category : #access }
+ChangeRecord >> timeStamp [
 	"Answer a TimeStamp that corresponds to my (text) stamp"
 
 	| tokens |
@@ -318,10 +248,7 @@ ChangeRecord>>timeStamp [
 		ifFalse: [ DateAndTime new ]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>type [
+{ #category : #access }
+ChangeRecord >> type [
 	^ type
 ]

@@ -8,92 +8,61 @@ Class {
 		'tutorialPosition',
 		'tutorial'
 	],
-	#category : #ProfStef-Core,
-	#timestamp : 'LaurentLaffont 1/21/2010 20:34'
+	#category : #ProfStef-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-TutorialPlayer>>currentLesson [
+{ #category : #accessing }
+TutorialPlayer >> currentLesson [
 	^ self tutorial lessonAt: self tutorialPosition.
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-TutorialPlayer>>first [
+{ #category : #navigating }
+TutorialPlayer >> first [
 	self rewind.
 	^ self currentLesson
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-TutorialPlayer>>last [
+{ #category : #navigating }
+TutorialPlayer >> last [
 	tutorialPosition := self size.
 	^ self currentLesson
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-TutorialPlayer>>next [
+{ #category : #navigating }
+TutorialPlayer >> next [
 	self tutorialPosition < self size
 		ifTrue: [tutorialPosition := tutorialPosition + 1].
 	^ self currentLesson
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-TutorialPlayer>>previous [
+{ #category : #navigating }
+TutorialPlayer >> previous [
 	tutorialPosition >  1 ifTrue: [tutorialPosition := tutorialPosition  - 1].
 	^ self currentLesson
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-TutorialPlayer>>rewind [
+{ #category : #navigating }
+TutorialPlayer >> rewind [
 	tutorialPosition := 1.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-TutorialPlayer>>size [
+{ #category : #accessing }
+TutorialPlayer >> size [
 	^ self tutorial size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-TutorialPlayer>>tutorial [
+{ #category : #accessing }
+TutorialPlayer >> tutorial [
 	^ tutorial  ifNil: [tutorial := PharoSyntaxTutorial new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-TutorialPlayer>>tutorial: aTutorial [
+{ #category : #accessing }
+TutorialPlayer >> tutorial: aTutorial [
 	tutorial := aTutorial
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-TutorialPlayer>>tutorialPosition  [
+{ #category : #accessing }
+TutorialPlayer >> tutorialPosition [ 
 	^ tutorialPosition  ifNil: [
 		self rewind.
 		tutorialPosition.
@@ -101,11 +70,8 @@ TutorialPlayer>>tutorialPosition  [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-TutorialPlayer>>tutorialPosition: aTutorialPosition  [
+{ #category : #accessing }
+TutorialPlayer >> tutorialPosition: aTutorialPosition [ 
 	tutorialPosition := aTutorialPosition 
 	
 ]

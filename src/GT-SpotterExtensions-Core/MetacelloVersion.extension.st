@@ -1,12 +1,7 @@
-Extension {
-	#name : #MetacelloVersion
-}
+Extension { #name : #MetacelloVersion }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MetacelloVersion>>spotterForGroupsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MetacelloVersion >> spotterForGroupsFor: aStep [
 	<spotterOrder: 2>
 	aStep listProcessor
 		title: 'Groups';
@@ -16,11 +11,8 @@ MetacelloVersion>>spotterForGroupsFor: aStep [
 		wantsToDisplayOnEmptyQuery: true
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MetacelloVersion>>spotterForPackagesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MetacelloVersion >> spotterForPackagesFor: aStep [
 	<spotterOrder: 3>
 	aStep listProcessor
 		title: 'Packages';

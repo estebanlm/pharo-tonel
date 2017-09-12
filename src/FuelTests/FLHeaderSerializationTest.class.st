@@ -4,15 +4,11 @@ SUnit tests for header serialization in fuel
 Class {
 	#name : #FLHeaderSerializationTest,
 	#superclass : #FLSerializationTest,
-	#category : #FuelTests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:32'
+	#category : #FuelTests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLHeaderSerializationTest>>testAdditionalObjects [
+{ #category : #tests }
+FLHeaderSerializationTest >> testAdditionalObjects [
 
 	| materialization |
 	self serializer at: #test putAdditionalObject: 'test'.
@@ -25,11 +21,8 @@ FLHeaderSerializationTest>>testAdditionalObjects [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLHeaderSerializationTest>>testJustMaterializeHeader [
+{ #category : #tests }
+FLHeaderSerializationTest >> testJustMaterializeHeader [
 
 	self serializer at: #test putAdditionalObject: 'test'.
 	self serializer at: 42 putAdditionalObject: 68.
@@ -41,11 +34,8 @@ FLHeaderSerializationTest>>testJustMaterializeHeader [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLHeaderSerializationTest>>testPostMaterializationActions [
+{ #category : #tests }
+FLHeaderSerializationTest >> testPostMaterializationActions [
 
 	| aClass |
 	aClass := self 
@@ -69,11 +59,8 @@ FLHeaderSerializationTest>>testPostMaterializationActions [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLHeaderSerializationTest>>testPreMaterializationActions [
+{ #category : #tests }
+FLHeaderSerializationTest >> testPreMaterializationActions [
 
 	| aClass |
 	aClass := self 

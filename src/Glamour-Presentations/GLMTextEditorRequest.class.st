@@ -7,31 +7,21 @@ Class {
 	#instVars : [
 		'action'
 	],
-	#category : #Glamour-Presentations-Announcements,
-	#timestamp : 'AndreiChis 10/4/2014 22:49'
+	#category : #Glamour-Presentations-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTextEditorRequest class>>for: aSelector [
+{ #category : #'instance creation' }
+GLMTextEditorRequest class >> for: aSelector [
 
 	^ self new action: [ :editor | editor perform: aSelector ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTextEditorRequest>>action [
+{ #category : #accessing }
+GLMTextEditorRequest >> action [
 	^ action
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTextEditorRequest>>action: anObject [
+{ #category : #accessing }
+GLMTextEditorRequest >> action: anObject [
 	action := anObject
 ]

@@ -20,40 +20,27 @@ Class {
 		'size',
 		'duration'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 15:18'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedClientTransactionEvent>>duration [
+{ #category : #accessing }
+ZnSimplifiedClientTransactionEvent >> duration [
 	^ duration
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedClientTransactionEvent>>initialize [
+{ #category : #initialize }
+ZnSimplifiedClientTransactionEvent >> initialize [
 	super initialize.
 	duration := 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedClientTransactionEvent>>method [
+{ #category : #accessing }
+ZnSimplifiedClientTransactionEvent >> method [
 	^ method
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedClientTransactionEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnSimplifiedClientTransactionEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream space; nextPutAll: method.
 	stream space.
@@ -64,61 +51,40 @@ ZnSimplifiedClientTransactionEvent>>printContentsOn: stream [
 	stream space; print: duration; nextPutAll: 'ms'
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedClientTransactionEvent>>request: aZnRequest [
+{ #category : #initialize }
+ZnSimplifiedClientTransactionEvent >> request: aZnRequest [
 	method := aZnRequest method.
 	url := aZnRequest url
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedClientTransactionEvent>>requestDuration: requestDuration [
+{ #category : #initialize }
+ZnSimplifiedClientTransactionEvent >> requestDuration: requestDuration [
 	duration := duration + requestDuration 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedClientTransactionEvent>>response: aZnResponse [
+{ #category : #initialize }
+ZnSimplifiedClientTransactionEvent >> response: aZnResponse [
 	response := aZnResponse code.
 	aZnResponse hasEntity
 		ifTrue: [ size := aZnResponse entity contentLength ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedClientTransactionEvent>>responseCode [
+{ #category : #accessing }
+ZnSimplifiedClientTransactionEvent >> responseCode [
 	^ response
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedClientTransactionEvent>>responseDuration: responseDuration [
+{ #category : #initialize }
+ZnSimplifiedClientTransactionEvent >> responseDuration: responseDuration [
 	duration := duration + responseDuration 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedClientTransactionEvent>>size [
+{ #category : #accessing }
+ZnSimplifiedClientTransactionEvent >> size [
 	^ size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedClientTransactionEvent>>url [
+{ #category : #accessing }
+ZnSimplifiedClientTransactionEvent >> url [
 	^ url
 ]

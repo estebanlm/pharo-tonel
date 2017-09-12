@@ -3,35 +3,23 @@ A trait for test purposes
 "
 Trait {
 	#name : #TCopySequenceableWithOrWithoutSpecificElements,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:33'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithOrWithoutSpecificElements>>indexInNonEmpty [
+{ #category : #requirements }
+TCopySequenceableWithOrWithoutSpecificElements >> indexInNonEmpty [
 " return an index between bounds of 'nonEmpty' "
 
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithOrWithoutSpecificElements>>nonEmpty [
+{ #category : #requirements }
+TCopySequenceableWithOrWithoutSpecificElements >> nonEmpty [
 	self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithOrWithoutSpecificElements>>test0FixtureCopyWithOrWithoutSpecificElementsTest [
+{ #category : #'tests - fixture' }
+TCopySequenceableWithOrWithoutSpecificElements >> test0FixtureCopyWithOrWithoutSpecificElementsTest [
 	self nonEmpty.
 	self deny: self nonEmpty isEmpty.
 	self indexInNonEmpty.
@@ -39,11 +27,8 @@ TCopySequenceableWithOrWithoutSpecificElements>>test0FixtureCopyWithOrWithoutSpe
 	self assert: self indexInNonEmpty <= self nonEmpty size
 ]
 
-{
-	#category : #'tests - copying with or without',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithOrWithoutSpecificElements>>testCopyWithFirst [
+{ #category : #'tests - copying with or without' }
+TCopySequenceableWithOrWithoutSpecificElements >> testCopyWithFirst [
 
 	| index element result |
 	index:= self indexInNonEmpty .
@@ -59,11 +44,8 @@ TCopySequenceableWithOrWithoutSpecificElements>>testCopyWithFirst [
 	self assert: (result at: i) = ( self nonEmpty at: ( i - 1 ))].
 ]
 
-{
-	#category : #'tests - copying with or without',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithOrWithoutSpecificElements>>testCopyWithSequenceable [
+{ #category : #'tests - copying with or without' }
+TCopySequenceableWithOrWithoutSpecificElements >> testCopyWithSequenceable [
 
 	| result index element |
 	index := self indexInNonEmpty .
@@ -78,11 +60,8 @@ TCopySequenceableWithOrWithoutSpecificElements>>testCopyWithSequenceable [
 	self assert: (result at: i) = ( self nonEmpty at: ( i  ))].
 ]
 
-{
-	#category : #'tests - copying with or without',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithOrWithoutSpecificElements>>testCopyWithoutFirst [
+{ #category : #'tests - copying with or without' }
+TCopySequenceableWithOrWithoutSpecificElements >> testCopyWithoutFirst [
 
 	| result |
 	result := self nonEmpty copyWithoutFirst.
@@ -94,11 +73,8 @@ TCopySequenceableWithOrWithoutSpecificElements>>testCopyWithoutFirst [
 		self assert: (result at: i)= (self nonEmpty at: (i + 1))].
 ]
 
-{
-	#category : #'tests - copying with or without',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithOrWithoutSpecificElements>>testCopyWithoutIndex [
+{ #category : #'tests - copying with or without' }
+TCopySequenceableWithOrWithoutSpecificElements >> testCopyWithoutIndex [
 	| result index |
 	index := self indexInNonEmpty .
 	result := self nonEmpty copyWithoutIndex: index .
@@ -113,11 +89,8 @@ TCopySequenceableWithOrWithoutSpecificElements>>testCopyWithoutIndex [
 	self assert: result size=(self nonEmpty size -1).
 ]
 
-{
-	#category : #'tests - copying with or without',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithOrWithoutSpecificElements>>testForceToPaddingStartWith [
+{ #category : #'tests - copying with or without' }
+TCopySequenceableWithOrWithoutSpecificElements >> testForceToPaddingStartWith [
 
 	| result element |
 	element := self nonEmpty at: self indexInNonEmpty .
@@ -134,11 +107,8 @@ TCopySequenceableWithOrWithoutSpecificElements>>testForceToPaddingStartWith [
 	self assert: result size = (self nonEmpty size + 2).
 ]
 
-{
-	#category : #'tests - copying with or without',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithOrWithoutSpecificElements>>testForceToPaddingWith [
+{ #category : #'tests - copying with or without' }
+TCopySequenceableWithOrWithoutSpecificElements >> testForceToPaddingWith [
 
 	| result element |
 	element := self nonEmpty at: self indexInNonEmpty .

@@ -57,24 +57,17 @@ Class {
 	#pools : [
 		'TextConstants'
 	],
-	#category : #Compiler-ParseNodes,
-	#timestamp : '<historical>'
+	#category : #Compiler-ParseNodes
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode class>>blockReturnCode [
+{ #category : #accessing }
+ParseNode class >> blockReturnCode [
 
 	^ EndRemote
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode class>>initialize [
+{ #category : #'class initialization' }
+ParseNode class >> initialize [
 	"ParseNode initialize. VariableNode initialize"
 	LdInstType := 1.
 	LdTempType := 2.
@@ -111,29 +104,20 @@ ParseNode class>>initialize [
 	SendLimit := 16
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode class>>popCode [
+{ #category : #accessing }
+ParseNode class >> popCode [
 
 	^ Pop
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode class>>pushNilCode [
+{ #category : #accessing }
+ParseNode class >> pushNilCode [
 
 	^LdNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode class>>tempSortBlock [
+{ #category : #accessing }
+ParseNode class >> tempSortBlock [
 	"Answer a block that can sort a set of temporaries into a stable
 	 order so that different compilations produce the same results."
 	^[:t1 :t2| | be1 be2 bs1 bs2 |
@@ -150,78 +134,54 @@ ParseNode class>>tempSortBlock [
 							 or: [bs1 = bs2 and: [t1 name < t2 name]]]]]]] "only have the name left to go on"
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>accept: aVisitor [
+{ #category : #visiting }
+ParseNode >> accept: aVisitor [
 	"Accept a visitor by double-dispatching to a type-specific method on the visitor, e.g. visitBlockNode:.
 	 All such implementations under ParseNode should answer the result of the dispatch, e.g.
 		^aVisitor visitBlockNode: self"
 	^self subclassResponsibility
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>asReturnNode [
+{ #category : #converting }
+ParseNode >> asReturnNode [
 
 	^ReturnNode new expr: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>assignmentCheck: encoder at: location [
+{ #category : #testing }
+ParseNode >> assignmentCheck: encoder at: location [
 	"For messageNodes masquerading as variables for the debugger.
 	For now we let this through - ie we allow stores ev
 	into args.  Should check against numArgs, though."
 	^ -1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>canCascade [
+{ #category : #testing }
+ParseNode >> canCascade [
 
 	^false
 ]
 
-{
-	#category : #comment,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>comment [
+{ #category : #comment }
+ParseNode >> comment [
 
 	^comment
 ]
 
-{
-	#category : #comment,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>comment: newComment [
+{ #category : #comment }
+ParseNode >> comment: newComment [
 
 	comment := newComment
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>emitCodeForBlockValue: stack encoder: encoder [
+{ #category : #'code generation' }
+ParseNode >> emitCodeForBlockValue: stack encoder: encoder [
 	"Generate code for evaluating the last statement in a block"
 	^self emitCodeForValue: stack encoder: encoder
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>emitCodeForBranchOn: condition dist: dist pop: stack encoder: encoder [
+{ #category : #'code generation' }
+ParseNode >> emitCodeForBranchOn: condition dist: dist pop: stack encoder: encoder [
 	stack pop: 1.
 	dist = 0 ifTrue: [^encoder genPop].
 	condition
@@ -229,162 +189,107 @@ ParseNode>>emitCodeForBranchOn: condition dist: dist pop: stack encoder: encoder
 		ifFalse: [encoder genBranchPopFalse: dist]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>emitCodeForEffect: stack encoder: encoder [
+{ #category : #'code generation' }
+ParseNode >> emitCodeForEffect: stack encoder: encoder [
 
 	self emitCodeForValue: stack encoder: encoder.
 	encoder genPop.
 	stack pop: 1
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>emitCodeForJump: dist encoder: encoder [
+{ #category : #'code generation' }
+ParseNode >> emitCodeForJump: dist encoder: encoder [
 
 	dist = 0 ifFalse: [encoder genJump: dist]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>emitCodeForReturn: stack encoder: encoder [
+{ #category : #'code generation' }
+ParseNode >> emitCodeForReturn: stack encoder: encoder [
 
 	self emitCodeForValue: stack encoder: encoder.
 	encoder genReturnTop
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>encodeSelector: aSelector [
+{ #category : #encoding }
+ParseNode >> encodeSelector: aSelector [
 
 	^nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>ensureCanCascade: encoder [
-
+{ #category : #testing }
+ParseNode >> ensureCanCascade: encoder [
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>ifNilReceiver [
+{ #category : #private }
+ParseNode >> ifNilReceiver [
 	"assuming this object is the receiver of an ifNil:, what object is being asked about?"
 	^self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isArg [
+{ #category : #testing }
+ParseNode >> isArg [
 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isAssignmentNode [
+{ #category : #testing }
+ParseNode >> isAssignmentNode [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isBlockNode [
+{ #category : #testing }
+ParseNode >> isBlockNode [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isComplex [
+{ #category : #testing }
+ParseNode >> isComplex [
 	"Used for pretty printing to determine whether to start a new line"
 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isConstantNumber  "Overridden in LiteralNode" [
+{ #category : #testing }
+ParseNode >> isConstantNumber [  "Overridden in LiteralNode"
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isDoIt [
+{ #category : #testing }
+ParseNode >> isDoIt [
 	"polymorphic with RBNodes; called by debugger"
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isJust: node [
+{ #category : #testing }
+ParseNode >> isJust: node [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isLiteralNode [
+{ #category : #testing }
+ParseNode >> isLiteralNode [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isMessage [
+{ #category : #testing }
+ParseNode >> isMessage [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isMessage: selSymbol receiver: rcvrPred arguments: argsPred [
+{ #category : #testing }
+ParseNode >> isMessage: selSymbol receiver: rcvrPred arguments: argsPred [
 	"See comment in MessageNode."
 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isMessageNode [
+{ #category : #testing }
+ParseNode >> isMessageNode [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isOnlySubnodeOf: aSubtree "<ParseNode>" in: aParseTree "<ParseNode>" [
+{ #category : #testing }
+ParseNode >> isOnlySubnodeOf: aSubtree "<ParseNode>" in: aParseTree [ "<ParseNode>"
 	"Answer if the receiver only occurs within aSubtree of aParseTree, not in the rest of aParseTree.
 	 Assumes that aSubtree is in fact a subnode of aParseTree."
 	| isSubnode |
@@ -399,95 +304,62 @@ ParseNode>>isOnlySubnodeOf: aSubtree "<ParseNode>" in: aParseTree "<ParseNode>" 
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isReturn [
+{ #category : #testing }
+ParseNode >> isReturn [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isReturnSelf [
+{ #category : #testing }
+ParseNode >> isReturnSelf [
 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isReturningIf [
+{ #category : #testing }
+ParseNode >> isReturningIf [
 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isSelfPseudoVariable	 [
+{ #category : #testing }
+ParseNode >> isSelfPseudoVariable [	
 	"Overridden in VariableNode."
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isSpecialConstant [
+{ #category : #testing }
+ParseNode >> isSpecialConstant [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isTemp [
+{ #category : #testing }
+ParseNode >> isTemp [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isUndefTemp [
+{ #category : #testing }
+ParseNode >> isUndefTemp [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isUnusedTemp [
+{ #category : #testing }
+ParseNode >> isUnusedTemp [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isVariableNode [
+{ #category : #testing }
+ParseNode >> isVariableNode [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>isVariableReference [
+{ #category : #testing }
+ParseNode >> isVariableReference [
 
 	^false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>nextWordFrom: aStream setCharacter: aBlock [
+{ #category : #private }
+ParseNode >> nextWordFrom: aStream setCharacter: aBlock [
 	| outStream char |
 	outStream := (String new: 16) writeStream.
 	[(aStream peekFor: Character space) 
@@ -501,11 +373,8 @@ ParseNode>>nextWordFrom: aStream setCharacter: aBlock [
 	^ outStream contents
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>nodePrintOn: aStrm indent: nn [
+{ #category : #printing }
+ParseNode >> nodePrintOn: aStrm indent: nn [
 	| var aaStrm myLine |
 	"Show just the sub nodes and the code."
 
@@ -528,66 +397,43 @@ ParseNode>>nodePrintOn: aStrm indent: nn [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>nodesDo: aBlock [
+{ #category : #visiting }
+ParseNode >> nodesDo: aBlock [
 	self accept: (ParseNodeEnumerator ofBlock: aBlock)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>nowHasDef  "Ignored in all but VariableNode" [
-
+{ #category : #testing }
+ParseNode >> nowHasDef [  "Ignored in all but VariableNode"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>nowHasRef  "Ignored in all but VariableNode" [
-
+{ #category : #testing }
+ParseNode >> nowHasRef [  "Ignored in all but VariableNode"
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>pc [
+{ #category : #'code generation' }
+ParseNode >> pc [
 	"Used by encoder source mapping."
 
 	^pc ifNil: [ 0 ]
 
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>pc: anInteger [
+{ #category : #'code generation' }
+ParseNode >> pc: anInteger [
 	"Used by encoder source mapping."
 
 	pc := anInteger
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>printAsIfCompiledOn: aStream  [
+{ #category : #printing }
+ParseNode >> printAsIfCompiledOn: aStream [ 
 	"Refer to the comment in Object|printOn:."
 	self printOn: aStream indent: 0.
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>printCommentOn: aStream indent: indent  [
+{ #category : #printing }
+ParseNode >> printCommentOn: aStream indent: indent [ 
 	| thisComment |
 	self comment == nil ifTrue: [^ self].
 	1 to: self comment size
@@ -601,11 +447,8 @@ ParseNode>>printCommentOn: aStream indent: indent  [
 		aStream nextPut: $"]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>printOn: aStream  [
+{ #category : #printing }
+ParseNode >> printOn: aStream [ 
 	"Refer to the comment in Object|printOn:."
 
 	aStream nextPut: ${.
@@ -613,30 +456,21 @@ ParseNode>>printOn: aStream  [
 	aStream nextPut: $}.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>printOn: aStream indent: anInteger  [
+{ #category : #printing }
+ParseNode >> printOn: aStream indent: anInteger [ 
 	"If control gets here, avoid recursion loop."
 
 	super printOn: aStream
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>printOn: aStream indent: level precedence: p [
+{ #category : #printing }
+ParseNode >> printOn: aStream indent: level precedence: p [
 
 	self printOn: aStream indent: level
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>printSingleComment: aString on: aStream indent: indent  [
+{ #category : #private }
+ParseNode >> printSingleComment: aString on: aStream indent: indent [ 
 	"Print the comment string, assuming it has been indented indent tabs.
 	Break the string at word breaks, given the widths in the default
 	font, at 450 points."
@@ -672,66 +506,45 @@ ParseNode>>printSingleComment: aString on: aStream indent: indent  [
 							[readStream peekFor: Character tab] whileTrue]]]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>shortPrintOn: aStream  [
+{ #category : #printing }
+ParseNode >> shortPrintOn: aStream [ 
 	self printOn: aStream indent: 0
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>sizeCode: encoder forBranchOn: condition dist: dist [
+{ #category : #'code generation' }
+ParseNode >> sizeCode: encoder forBranchOn: condition dist: dist [
 	dist = 0 ifTrue: [^encoder sizePop].
 	^condition
 		ifTrue: [encoder sizeBranchPopTrue: dist]
 		ifFalse: [encoder sizeBranchPopFalse: dist]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>sizeCode: encoder forJump: dist [
+{ #category : #'code generation' }
+ParseNode >> sizeCode: encoder forJump: dist [
 
 	^dist = 0 ifTrue: [0] ifFalse: [encoder sizeJump: dist]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>sizeCodeForBlockValue: encoder [
+{ #category : #'code generation' }
+ParseNode >> sizeCodeForBlockValue: encoder [
 	"Answer the size for evaluating the last statement in a block"
 	^self sizeCodeForValue: encoder
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>sizeCodeForEffect: encoder [
+{ #category : #'code generation' }
+ParseNode >> sizeCodeForEffect: encoder [
 
 	^(self sizeCodeForValue: encoder) + encoder sizePop
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>sizeCodeForReturn: encoder [
+{ #category : #'code generation' }
+ParseNode >> sizeCodeForReturn: encoder [
 
 	^(self sizeCodeForValue: encoder) + encoder sizeReturnTop
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParseNode>>toDoIncrement: ignored [
+{ #category : #testing }
+ParseNode >> toDoIncrement: ignored [
 	"Only meant for Messages or Assignments - else return nil"
 	^ nil
 ]

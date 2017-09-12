@@ -4,15 +4,11 @@ SUnit test for TestCase class
 Class {
 	#name : #TestCaseTest,
 	#superclass : #TestCase,
-	#category : #SUnit-Tests-Core,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:14'
+	#category : #SUnit-Tests-Core
 }
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestCaseTest>>testAnnouncement [
+{ #category : #events }
+TestCaseTest >> testAnnouncement [
 	| collection oldCollection suite unitTest |
 	unitTest := ClassFactoryForTestCaseTest.
 	collection := OrderedCollection new.
@@ -42,11 +38,8 @@ TestCaseTest>>testAnnouncement [
 	self assert: (collection = oldCollection)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestCaseTest>>testAssertEqualsActualAndExpectedOrder [
+{ #category : #testing }
+TestCaseTest >> testAssertEqualsActualAndExpectedOrder [
 	self 
 		should: [
 			self assert: 'actual' equals: 'expected with fairly long print string'
@@ -56,11 +49,8 @@ TestCaseTest>>testAssertEqualsActualAndExpectedOrder [
 		description: 'In #assert:equals: the first argument is the actual value and the second one is the expected.'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestCaseTest>>testIsUnitTest [
+{ #category : #testing }
+TestCaseTest >> testIsUnitTest [
 
 	self assert: TestCase isUnitTest
 ]

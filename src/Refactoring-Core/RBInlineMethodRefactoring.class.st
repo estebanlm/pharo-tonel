@@ -19,26 +19,19 @@ Class {
 		'sourceMessage',
 		'inlineClass'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 14:34'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring class>>inline: anInterval inMethod: aSelector forClass: aClass  [
+{ #category : #'instance creation' }
+RBInlineMethodRefactoring class >> inline: anInterval inMethod: aSelector forClass: aClass [ 
 	^self new 
 		inline: anInterval
 		inMethod: aSelector
 		forClass: aClass
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring class>>model: aRBSmalltalk inline: anInterval inMethod: aSelector forClass: aClass  [
+{ #category : #'instance creation' }
+RBInlineMethodRefactoring class >> model: aRBSmalltalk inline: anInterval inMethod: aSelector forClass: aClass [ 
 	^(self new)
 		model: aRBSmalltalk;
 		inline: anInterval
@@ -47,19 +40,13 @@ RBInlineMethodRefactoring class>>model: aRBSmalltalk inline: anInterval inMethod
 		yourself
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>addSelfReturn [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> addSelfReturn [
 	inlineParseTree addSelfReturn
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>addTemporary: sourceNode assignedTo: replacementNode  [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> addTemporary: sourceNode assignedTo: replacementNode [ 
 	| newName |
 	newName := self renameConflictingTemporary: sourceNode name.
 	(inlineParseTree body)
@@ -68,11 +55,8 @@ RBInlineMethodRefactoring>>addTemporary: sourceNode assignedTo: replacementNode 
 					value: replacementNode)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>checkSuperMessages [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> checkSuperMessages [
 	self inlineClass = class ifTrue: [^self].
 	self inlineClass superclass isNil ifTrue: [^self].
 	inlineParseTree superMessages do: 
@@ -85,19 +69,13 @@ RBInlineMethodRefactoring>>checkSuperMessages [
 									expandMacrosWith: each)]]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>compileMethod [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> compileMethod [
 	class compileTree: sourceParseTree
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>findSelectedMessage [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> findSelectedMessage [
 	sourceParseTree := class parseTreeFor: sourceSelector.
 	sourceParseTree isNil 
 		ifTrue: [self refactoringFailure: 'Could not parse sources'].
@@ -117,11 +95,8 @@ RBInlineMethodRefactoring>>findSelectedMessage [
 			ifFalse: [self refactoringError: 'Cannot inline non-self messages']
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>hasMultipleReturns [
+{ #category : #testing }
+RBInlineMethodRefactoring >> hasMultipleReturns [
 	"Do we have multiple returns? If the last statement isn't a return, then we have an implicit return of self."
 
 	| searcher |
@@ -136,21 +111,15 @@ RBInlineMethodRefactoring>>hasMultipleReturns [
 	^false
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>inline: anInterval inMethod: aSelector forClass: aClass  [
+{ #category : #initialize-release }
+RBInlineMethodRefactoring >> inline: anInterval inMethod: aSelector forClass: aClass [ 
 	sourceSelector := aSelector.
 	class := self classObjectFor: aClass.
 	sourceInterval := anInterval
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>inlineClass [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> inlineClass [
 	^inlineClass isNil 
 		ifTrue: 
 			[inlineClass := (sourceMessage receiver name = 'super' 
@@ -159,20 +128,14 @@ RBInlineMethodRefactoring>>inlineClass [
 		ifFalse: [inlineClass]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>inlineSelector [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> inlineSelector [
 	sourceMessage isNil ifTrue: [self findSelectedMessage].
 	^sourceMessage selector
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>inlineSourceReplacing: aParseTree  [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> inlineSourceReplacing: aParseTree [ 
 	| statements nodeUnderSequence |
 	statements := inlineParseTree body statements.
 	(statements size > 1 and: [aParseTree isEvaluatedFirst not]) 
@@ -193,11 +156,8 @@ RBInlineMethodRefactoring>>inlineSourceReplacing: aParseTree  [
 				ifFalse: [statements last])
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>insertInlinedMethod [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> insertInlinedMethod [
 	| node |
 	node := sourceMessage.
 	self moveComments.
@@ -215,11 +175,8 @@ RBInlineMethodRefactoring>>insertInlinedMethod [
 	self removeImmediateBlocks
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>isOverridden [
+{ #category : #testing }
+RBInlineMethodRefactoring >> isOverridden [
 	| selector| 
 	selector := self inlineSelector.
 	class allSubclassesDo: [:each | 
@@ -230,19 +187,13 @@ RBInlineMethodRefactoring>>isOverridden [
 		
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>isPrimitive [
+{ #category : #testing }
+RBInlineMethodRefactoring >> isPrimitive [
 	^inlineParseTree isPrimitive
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>moveComments [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> moveComments [
 	inlineParseTree nodesDo: 
 			[:each | 
 			each 
@@ -257,11 +208,8 @@ RBInlineMethodRefactoring>>moveComments [
 							RBComment with: aComment contents at: start])]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>normalizeIfTrues [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> normalizeIfTrues [
 	| rewriter |
 	rewriter := RBParseTreeRewriter new.
 	rewriter
@@ -273,11 +221,8 @@ RBInlineMethodRefactoring>>normalizeIfTrues [
 		whileTrue: [inlineParseTree := rewriter tree]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>normalizeReturns [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> normalizeReturns [
 	| rewriter |
 	rewriter := RBParseTreeRewriter new.
 	rewriter
@@ -301,11 +246,8 @@ RBInlineMethodRefactoring>>normalizeReturns [
 		whileTrue: [inlineParseTree := rewriter tree]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>parseInlineMethod [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> parseInlineMethod [
 	self inlineClass isNil 
 		ifTrue: 
 			[self 
@@ -318,11 +260,8 @@ RBInlineMethodRefactoring>>parseInlineMethod [
 	inlineParseTree lastIsReturn ifFalse: [inlineParseTree addSelfReturn]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>preconditions [
+{ #category : #preconditions }
+RBInlineMethodRefactoring >> preconditions [
 	^(RBCondition definesSelector: sourceSelector in: class) 
 		& (RBCondition withBlock: 
 					[self findSelectedMessage.
@@ -344,11 +283,8 @@ RBInlineMethodRefactoring>>preconditions [
 					true])
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>removeEmptyIfTrues [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> removeEmptyIfTrues [
 	| rewriter |
 	rewriter := RBParseTreeRewriter new.
 	rewriter
@@ -364,11 +300,8 @@ RBInlineMethodRefactoring>>removeEmptyIfTrues [
 		ifTrue: [sourceParseTree := rewriter tree]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>removeImmediateBlocks [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> removeImmediateBlocks [
 	| rewriter |
 	rewriter := RBParseTreeRewriter new.
 	rewriter 
@@ -382,11 +315,8 @@ RBInlineMethodRefactoring>>removeImmediateBlocks [
 		ifTrue: [sourceParseTree := rewriter tree]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>removeReturns [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> removeReturns [
 	| rewriter |
 	rewriter := RBParseTreeRewriter new.
 	rewriter replace: '^``@object' with: '``@object'.
@@ -394,20 +324,14 @@ RBInlineMethodRefactoring>>removeReturns [
 		ifTrue: [inlineParseTree := rewriter tree]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>renameConflictingTemporaries [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> renameConflictingTemporaries [
 	inlineParseTree allDefinedVariables 
 		do: [:each | self renameConflictingTemporary: each]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>renameConflictingTemporary: aName  [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> renameConflictingTemporary: aName [ 
 	| allNames newName index seqNode |
 	allNames := (Set new)
 				addAll: inlineParseTree allDefinedVariables;
@@ -429,11 +353,8 @@ RBInlineMethodRefactoring>>renameConflictingTemporary: aName  [
 	^newName
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>renameTemporary: oldName to: newName  [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> renameTemporary: oldName to: newName [ 
 	| rewriter |
 	rewriter := RBParseTreeRewriter new.
 	rewriter
@@ -443,11 +364,8 @@ RBInlineMethodRefactoring>>renameTemporary: oldName to: newName  [
 		ifTrue: [inlineParseTree := rewriter tree]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>replaceArgument: sourceNode with: replacementNode  [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> replaceArgument: sourceNode with: replacementNode [ 
 	| rewriter |
 	rewriter := RBParseTreeRewriter new.
 	rewriter replaceTree: sourceNode withTree: replacementNode.
@@ -455,11 +373,8 @@ RBInlineMethodRefactoring>>replaceArgument: sourceNode with: replacementNode  [
 		ifTrue: [inlineParseTree body: rewriter tree]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>replaceArguments [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> replaceArguments [
 	sourceMessage arguments reversed
 		with: inlineParseTree arguments reversed
 		do: [ :replacement :source | 
@@ -468,11 +383,8 @@ RBInlineMethodRefactoring>>replaceArguments [
 				ifFalse: [ self addTemporary: source assignedTo: replacement ] ]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>rewriteCascadedMessage [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> rewriteCascadedMessage [
 	| index messages |
 	messages := sourceMessage parent messages.
 	index := (1 to: messages size) 
@@ -485,11 +397,8 @@ RBInlineMethodRefactoring>>rewriteCascadedMessage [
 	inlineParseTree addReturn
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>rewriteInlinedTree [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> rewriteInlinedTree [
 	sourceMessage parent isReturn 
 		ifTrue: 
 			[(sourceParseTree isLast: sourceMessage parent) 
@@ -502,11 +411,8 @@ RBInlineMethodRefactoring>>rewriteInlinedTree [
 				addSelfReturn]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBInlineMethodRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream nextPutAll: ' inline: '.
@@ -519,22 +425,16 @@ RBInlineMethodRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>transform [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> transform [
 	self
 		renameConflictingTemporaries;
 		insertInlinedMethod;
 		compileMethod
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBInlineMethodRefactoring>>writeGuardClauses [
+{ #category : #transforming }
+RBInlineMethodRefactoring >> writeGuardClauses [
 	| rewriter |
 	rewriter := RBParseTreeRewriter new.
 	rewriter

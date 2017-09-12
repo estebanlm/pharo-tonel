@@ -23,15 +23,11 @@ Class {
 	#classInstVars : [
 		'lastMessage'
 	],
-	#category : #Komitter-Models,
-	#timestamp : 'StephaneDucasse 11/24/2015 19:16'
+	#category : #Komitter-Models
 }
 
-{
-	#category : #'world menu',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter class>>komitterMenuOn: aBuilder [
+{ #category : #'world menu' }
+Komitter class >> komitterMenuOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #Komitter)
 		action: [ self openAndCommitToMonticello ];
@@ -43,29 +39,20 @@ Komitter class>>komitterMenuOn: aBuilder [
 	aBuilder withSeparatorAfter
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter class>>lastMessage [
+{ #category : #protocol }
+Komitter class >> lastMessage [
 
 	^ lastMessage ifNil: [ MCSaveVersionDialog previousMessages first ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter class>>lastMessage: aString [
+{ #category : #protocol }
+Komitter class >> lastMessage: aString [
 
 	lastMessage := aString
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter class>>openAndCommitToMonticello [
+{ #category : #protocol }
+Komitter class >> openAndCommitToMonticello [
 
 	KomitStagingArea resetCurrent.
 	^ self new
@@ -74,11 +61,8 @@ Komitter class>>openAndCommitToMonticello [
 		yourself
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter class>>openAndCommitToMonticelloWorkingCopiesFilteredBy: aFilterBlock [
+{ #category : #protocol }
+Komitter class >> openAndCommitToMonticelloWorkingCopiesFilteredBy: aFilterBlock [
 	| stagingArea |
 
 	KomitStagingArea resetCurrent.
@@ -89,28 +73,19 @@ Komitter class>>openAndCommitToMonticelloWorkingCopiesFilteredBy: aFilterBlock [
 		yourself
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter class>>resetLastMessage [
+{ #category : #protocol }
+Komitter class >> resetLastMessage [
 
 	lastMessage := nil
 ]
 
-{
-	#category : #icon,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter class>>taskbarIconName [
+{ #category : #icon }
+Komitter class >> taskbarIconName [
 	^#komitterIcon
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>initialize [
+{ #category : #initialize }
+Komitter >> initialize [
 
 	super initialize.
 	self registerToAnnouncements.
@@ -118,38 +93,26 @@ Komitter>>initialize [
 	lastCommit := nil asValueHolder.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>lastCommit [
+{ #category : #private }
+Komitter >> lastCommit [
 
 	^ lastCommit value
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>lastCommit: aKomit [
+{ #category : #private }
+Komitter >> lastCommit: aKomit [
 
 	lastCommit value: aKomit
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>lastMessage [
+{ #category : #protocol }
+Komitter >> lastMessage [
 
 	^ self class lastMessage
 ]
 
-{
-	#category : #announcement,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>mcPackageModified: anAnnouncement [
+{ #category : #announcement }
+Komitter >> mcPackageModified: anAnnouncement [
 	| package |
 
 	package := anAnnouncement package koPackage.
@@ -165,46 +128,30 @@ Komitter>>mcPackageModified: anAnnouncement [
 		ifFalse: [ view addRoot: package ]
 ]
 
-{
-	#category : #announcement,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>methodModified: anAnnouncement	 [
+{ #category : #announcement }
+Komitter >> methodModified: anAnnouncement [	
 
 	self rebuildStagingArea.
 ]
 
-{
-	#category : #announcement,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>methodMoved: anAnnouncement [
-
+{ #category : #announcement }
+Komitter >> methodMoved: anAnnouncement [
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>newSlice [
+{ #category : #private }
+Komitter >> newSlice [
 
 	^ KomitNewSlice new
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>openAndCommitToMonticello [
+{ #category : #opening }
+Komitter >> openAndCommitToMonticello [
 
 	self openAndDo: [ self lastCommit ifNotNil: [ self lastCommit commitToMonticello ]]
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>openAndDo: aBlock [
+{ #category : #opening }
+Komitter >> openAndDo: aBlock [
 	
 	self stagingArea packages
 		ifEmpty: [ ^ self inform: 'No changes to commit' ].
@@ -225,21 +172,15 @@ Komitter>>openAndDo: aBlock [
 		centered
 ]
 
-{
-	#category : #rebuilding,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>rebuildStagingArea [
+{ #category : #rebuilding }
+Komitter >> rebuildStagingArea [
 
 	self stagingArea flush.
 	view model: self
 ]
 
-{
-	#category : #announcement,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>registerToAnnouncements [
+{ #category : #announcement }
+Komitter >> registerToAnnouncements [
 
 	SystemAnnouncer uniqueInstance weak	
 		when: MCPackageModified send: #rebuildStagingArea to: self;
@@ -251,50 +192,35 @@ Komitter>>registerToAnnouncements [
 		when: MethodRemoved send: #rebuildStagingArea to: self
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>remotes [
+{ #category : #protocol }
+Komitter >> remotes [
 
 	^ self stagingArea remotes asOrderedCollection
 		add: self newSlice;
 		yourself
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>remotesFor: aCollection [
+{ #category : #protocol }
+Komitter >> remotesFor: aCollection [
 
 	^ (self stagingArea remotesFor: aCollection) asOrderedCollection
 		add: self newSlice;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>stagingArea [
+{ #category : #accessing }
+Komitter >> stagingArea [
 
 	^ stagingArea value 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>stagingArea: anObject [
+{ #category : #accessing }
+Komitter >> stagingArea: anObject [
 
 	stagingArea value: anObject
 ]
 
-{
-	#category : #announcement,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-Komitter>>unsubscribe [
+{ #category : #announcement }
+Komitter >> unsubscribe [
 	SystemAnnouncer uniqueInstance unsubscribe: self
 ]

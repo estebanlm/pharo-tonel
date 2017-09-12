@@ -4,48 +4,35 @@ An EmbeddedFreeTypeFontInstallerTest is a test class for testing the behavior of
 Class {
 	#name : #EmbeddedFreeTypeFontInstallerTest,
 	#superclass : #TestCase,
-	#category : #EmbeddedFreeType-Tests,
-	#timestamp : '<historical>'
+	#category : #EmbeddedFreeType-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-EmbeddedFreeTypeFontInstallerTest>>currentInstallerOrError [
+{ #category : #accessing }
+EmbeddedFreeTypeFontInstallerTest >> currentInstallerOrError [
 	| installer |
 	installer := EmbeddedFreeTypeFontInstaller readSlotNamed: #current.
 	self assert: installer notNil.
 	^ installer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-EmbeddedFreeTypeFontInstallerTest>>currentProviderOrError [
+{ #category : #accessing }
+EmbeddedFreeTypeFontInstallerTest >> currentProviderOrError [
 	| provider |
 	provider := FreeTypeFontProvider readSlotNamed: #current.
 	self assert: provider notNil.
 	^ provider
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-EmbeddedFreeTypeFontInstallerTest>>testIsRegistred [
+{ #category : #tests }
+EmbeddedFreeTypeFontInstallerTest >> testIsRegistred [
 	| installer provider |
 	installer := self currentInstallerOrError.
 	provider := self currentProviderOrError.
 	self assert: (provider includesInstaller: installer)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-EmbeddedFreeTypeFontInstallerTest>>testinstallAllFontsIn [
+{ #category : #tests }
+EmbeddedFreeTypeFontInstallerTest >> testinstallAllFontsIn [
 
 	| provider fileInfos families |
 	provider := self currentProviderOrError 

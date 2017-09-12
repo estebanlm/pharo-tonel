@@ -6,23 +6,16 @@ Note: Metacello allows to describe external dependencies. In this case, transiti
 Class {
 	#name : #MTPackage,
 	#superclass : #MTDependency,
-	#category : #Versionner-Core-DependenciesModel,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-DependenciesModel
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTPackage>>acceptVisitor: anMTProjectVisitor [
+{ #category : #visiting }
+MTPackage >> acceptVisitor: anMTProjectVisitor [
 	anMTProjectVisitor visitPackage: self
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTPackage>>displayString [
+{ #category : #displaying }
+MTPackage >> displayString [
 	^ version ifNil:
 		[ name ]
 			   ifNotNil:

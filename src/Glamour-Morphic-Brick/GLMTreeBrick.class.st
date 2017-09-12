@@ -1,28 +1,18 @@
-"
-
-"
 Class {
 	#name : #GLMTreeBrick,
 	#superclass : #GLMBandBrick,
-	#category : #Glamour-Morphic-Brick-Widgets-UI,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Widgets-UI
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeBrick class>>exampleOpen [
+{ #category : #examples }
+GLMTreeBrick class >> exampleOpen [
 	
 	self gtExample openInBrickWindowLabeled: 'Tree Example'
 	
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeBrick class>>gtExample [
+{ #category : #examples }
+GLMTreeBrick class >> gtExample [
 	<gtExample>
 	<label: 'Simple tree with a few elements'>
 	
@@ -38,11 +28,8 @@ GLMTreeBrick class>>gtExample [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeBrick>>collapsableFor: anObject [
+{ #category : #'as yet unclassified' }
+GLMTreeBrick >> collapsableFor: anObject [
 	|collapsable|
 	
 	collapsable := GLMCollapsableBrick new.
@@ -62,11 +49,8 @@ GLMTreeBrick>>collapsableFor: anObject [
 	^ collapsable
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeBrick>>hasChildren: anObject [
+{ #category : #protocol }
+GLMTreeBrick >> hasChildren: anObject [
 
 	anObject ifNil: [ ^ false ].
 	anObject isVariableBinding ifFalse: [ ^ false ].
@@ -75,11 +59,8 @@ GLMTreeBrick>>hasChildren: anObject [
 	^ true
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeBrick>>headerFor: anObject in: aCollapsable [
+{ #category : #'as yet unclassified' }
+GLMTreeBrick >> headerFor: anObject in: aCollapsable [
 	|header|
 	
 	header := GLMBrick new.
@@ -99,11 +80,8 @@ GLMTreeBrick>>headerFor: anObject in: aCollapsable [
 	^ header
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeBrick>>newToggleButtonFor: aCollapsable [
+{ #category : #'instance creation' }
+GLMTreeBrick >> newToggleButtonFor: aCollapsable [
 
 	^ (GLMActionButtonBrick new
 			icon: GLMUIThemeExtraIcons glamorousRight;
@@ -117,11 +95,8 @@ GLMTreeBrick>>newToggleButtonFor: aCollapsable [
 					ifFalse: [ b uncheck ] ])
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeBrick>>on: anObject [
+{ #category : #'instance creation' }
+GLMTreeBrick >> on: anObject [
 	"{ 'first'-> { 'sub 1' -> '11' . 'sub 2' -> '12' } }"
 	
 	self removeAllBricks.

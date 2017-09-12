@@ -1,12 +1,7 @@
-Extension {
-	#name : #Dictionary
-}
+Extension { #name : #Dictionary }
 
-{
-	#category : #'*Slot',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Dictionary>>declareVariable: newGlobal from: aDictionary  [
+{ #category : #'*Slot' }
+Dictionary >> declareVariable: newGlobal from: aDictionary [ 
 	"Add aGlobal to the receiver. If key already exists, do nothing. If aDictionary 
 	includes key, then remove it from aDictionary and use its association as 
 	the element of the receiver."

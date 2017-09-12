@@ -10,25 +10,18 @@ Class {
 	#instVars : [
 		'combinedChar'
 	],
-	#category : #Multilingual-TextConversion,
-	#timestamp : 'michael.rueger 3/2/2009 13:51'
+	#category : #Multilingual-TextConversion
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF8DecomposedTextConverter class>>encodingNames [
+{ #category : #utilities }
+UTF8DecomposedTextConverter class >> encodingNames [
 
 	^Array new
 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF8DecomposedTextConverter>>nextFromStream: aStream [
+{ #category : #conversion }
+UTF8DecomposedTextConverter >> nextFromStream: aStream [
 
 	| char resultChar |
 	char := super nextFromStream: aStream.

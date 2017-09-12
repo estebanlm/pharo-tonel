@@ -7,23 +7,16 @@ Class {
 	#classVars : [
 		'UserLocalDirectory'
 	],
-	#category : #FileSystem-Core-Implementation,
-	#timestamp : 'cwp 11/18/2009 11:58'
+	#category : #FileSystem-Core-Implementation
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-SystemResolver class>>defaultLocalDirectoryName [
+{ #category : #accessing }
+SystemResolver class >> defaultLocalDirectoryName [
 	^ 'pharo-local'
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-SystemResolver class>>settingsOn: aBuilder [
+{ #category : #settings }
+SystemResolver class >> settingsOn: aBuilder [
 	<systemsettings>  
 
 	(aBuilder setting: #userLocalDirectory)
@@ -34,98 +27,65 @@ SystemResolver class>>settingsOn: aBuilder [
 		label: 'Local directory'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-SystemResolver class>>userLocalDirectory [
+{ #category : #accessing }
+SystemResolver class >> userLocalDirectory [
 	^ UserLocalDirectory ifNil: [ 
 		FileLocator workingDirectory / self defaultLocalDirectoryName  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-SystemResolver class>>userLocalDirectory: aFileReference [
+{ #category : #accessing }
+SystemResolver class >> userLocalDirectory: aFileReference [
 	UserLocalDirectory := aFileReference
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-SystemResolver>>changes [
+{ #category : #origins }
+SystemResolver >> changes [
 	^ self image withExtension: Smalltalk changesSuffix
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-SystemResolver>>image [
+{ #category : #origins }
+SystemResolver >> image [
 	^ self resolveString: self primImagePath
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-SystemResolver>>imageDirectory [
+{ #category : #origins }
+SystemResolver >> imageDirectory [
 	^ self image parent
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-SystemResolver>>localDirectory  [
+{ #category : #origins }
+SystemResolver >> localDirectory [ 
 	^ self class userLocalDirectory 
 		ifNil: [ (self imageDirectory / self class defaultLocalDirectoryName) ensureCreateDirectory ]
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-SystemResolver>>primImagePath [
+{ #category : #primitives }
+SystemResolver >> primImagePath [
 	"Answer the full path name for the current image."
 
 	<primitive: 121>
 	self primitiveFailed
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-SystemResolver>>primVmDirectoryPath [
+{ #category : #primitives }
+SystemResolver >> primVmDirectoryPath [
 	"Answer the full path name for the current virtual machine."
 
 	<primitive: 142>
 	self primitiveFailed
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-SystemResolver>>supportedOrigins [
+{ #category : #resolving }
+SystemResolver >> supportedOrigins [
 	^ #(image imageDirectory changes vmBinary vmDirectory workingDirectory localDirectory)
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-SystemResolver>>vmBinary [
+{ #category : #origins }
+SystemResolver >> vmBinary [
 	^ self resolveString: (Smalltalk vm fullPath)
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-SystemResolver>>vmDirectory [
+{ #category : #origins }
+SystemResolver >> vmDirectory [
 	^ self resolveString: self primVmDirectoryPath
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #RGMethodDefinition
-}
+Extension { #name : #RGMethodDefinition }
 
-{
-	#category : #'*Text-Core',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RGMethodDefinition>>asStringOrText [
+{ #category : #'*Text-Core' }
+RGMethodDefinition >> asStringOrText [
 
 	| text |
 	self realClass ifNil: [ ^self fullName ].

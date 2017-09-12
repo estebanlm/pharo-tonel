@@ -16,70 +16,48 @@ Class {
 	#classInstVars : [
 		'current'
 	],
-	#category : #FreeType-Cache,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:09'
+	#category : #FreeType-Cache
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache class>>cleanUp [
+{ #category : #cleanup }
+FreeTypeCache class >> cleanUp [
 	self clearCurrent
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache class>>clearCacheOnShutdown [
+{ #category : #'system startup' }
+FreeTypeCache class >> clearCacheOnShutdown [
 	"answer true if the cache should be cleared on image shutdown"
 	
 	^true
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache class>>clearCurrent [
+{ #category : #cleanup }
+FreeTypeCache class >> clearCurrent [
 	"
 	self clearCurrent.
 	"
 	current := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache class>>current [
+{ #category : #accessing }
+FreeTypeCache class >> current [
 	^ current ifNil: [  current := self new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache class>>defaultMaximumSize [
+{ #category : #accessing }
+FreeTypeCache class >> defaultMaximumSize [
 	"answer the default maximumSize in bytes"
 	^1024*5000 "5 Megabytes"
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache class>>initialize [
+{ #category : #initialize-release }
+FreeTypeCache class >> initialize [
 	SessionManager default 
 		registerGuiClassNamed: self name
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache class>>shutDown: isImageQuitting  [
+{ #category : #'system startup' }
+FreeTypeCache class >> shutDown: isImageQuitting [ 
 	isImageQuitting ifFalse: [ ^ self ].
 	(current notNil and: [ self clearCacheOnShutdown ])
 		ifTrue:[ 
@@ -87,11 +65,8 @@ FreeTypeCache class>>shutDown: isImageQuitting  [
 			current := nil ]
 ]
 
-{
-	#category : #add-remove,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>atFont: aFreeTypeFont charCode: charCodeInteger type: typeFlag  [
+{ #category : #add-remove }
+FreeTypeCache >> atFont: aFreeTypeFont charCode: charCodeInteger type: typeFlag [ 
 	| entry charCodeTable typeTable |
 	(charCodeTable := fontTable at: aFreeTypeFont ifAbsent:[])
 		ifNotNil:[
@@ -104,11 +79,8 @@ FreeTypeCache>>atFont: aFreeTypeFont charCode: charCodeInteger type: typeFlag  [
 	self error: 'Not found'
 ]
 
-{
-	#category : #add-remove,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>atFont: aFreeTypeFont charCode: charCodeInteger type: typeFlag ifAbsentPut: aBlock  [
+{ #category : #add-remove }
+FreeTypeCache >> atFont: aFreeTypeFont charCode: charCodeInteger type: typeFlag ifAbsentPut: aBlock [ 
 	| charCodeTable typeTable entry v vSize |
 	
 	charCodeTable := fontTable at: aFreeTypeFont ifAbsentPut:[self dictionaryClass new: 60].
@@ -136,11 +108,8 @@ FreeTypeCache>>atFont: aFreeTypeFont charCode: charCodeInteger type: typeFlag if
 	
 ]
 
-{
-	#category : #add-remove,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>atFont: aFreeTypeFont charCode: charCodeInteger type: typeFlag put: anObject  [
+{ #category : #add-remove }
+FreeTypeCache >> atFont: aFreeTypeFont charCode: charCodeInteger type: typeFlag put: anObject [ 
 	| charCodeTable typeTable anObjectSize oldEntry oldEntrySize entry |
 	
 	anObjectSize := self sizeOf: anObject.
@@ -169,51 +138,33 @@ FreeTypeCache>>atFont: aFreeTypeFont charCode: charCodeInteger type: typeFlag pu
 	
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>cacheSize [
+{ #category : #public }
+FreeTypeCache >> cacheSize [
 	^ self maximumSize / 1024
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>cacheSize: anInteger [
+{ #category : #public }
+FreeTypeCache >> cacheSize: anInteger [
 	self maximumSize: (anInteger * 1024)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>dictionaryClass [
+{ #category : #private }
+FreeTypeCache >> dictionaryClass [
 	^Dictionary
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>fifoClass [
+{ #category : #private }
+FreeTypeCache >> fifoClass [
 	^FreeTypeCacheLinkedList
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>fifoEntryClass [
+{ #category : #private }
+FreeTypeCache >> fifoEntryClass [
 	^FreeTypeCacheEntry
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>initialize [
+{ #category : #initialization }
+FreeTypeCache >> initialize [
 	super initialize.
 	maximumSize := self class defaultMaximumSize.
 	fontTable := self dictionaryClass new: 100.
@@ -222,20 +173,14 @@ FreeTypeCache>>initialize [
 	
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>maximumSize [
+{ #category : #public }
+FreeTypeCache >> maximumSize [
 
 	^ maximumSize 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>maximumSize: anIntegerOrNil [
+{ #category : #public }
+FreeTypeCache >> maximumSize: anIntegerOrNil [
 
 	maximumSize := anIntegerOrNil.
 	maximumSize ifNotNil:[
@@ -244,11 +189,8 @@ FreeTypeCache>>maximumSize: anIntegerOrNil [
 				self shrinkTo: maximumSize]]
 ]
 
-{
-	#category : #add-remove,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>removeAll [
+{ #category : #add-remove }
+FreeTypeCache >> removeAll [
 	fontTable := self dictionaryClass new: 100.
 	fifo := self fifoClass new.
 	used := 0.
@@ -256,11 +198,8 @@ FreeTypeCache>>removeAll [
 	
 ]
 
-{
-	#category : #add-remove,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>removeAllForFont: aFreeTypeFont [
+{ #category : #add-remove }
+FreeTypeCache >> removeAllForFont: aFreeTypeFont [
 	| toRemove |
 	
 	(fontTable includesKey: aFreeTypeFont) ifFalse:[^self].
@@ -277,11 +216,8 @@ FreeTypeCache>>removeAllForFont: aFreeTypeFont [
 	
 ]
 
-{
-	#category : #add-remove,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>removeAllForType: typeFlag [
+{ #category : #add-remove }
+FreeTypeCache >> removeAllForType: typeFlag [
 	| toRemove |
 	
 	toRemove := IdentitySet new.
@@ -297,11 +233,8 @@ FreeTypeCache>>removeAllForType: typeFlag [
 	
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>report [
+{ #category : #public }
+FreeTypeCache >> report [
 	"answer a description of the current state of the cache"
 	| usedPercent |
 	usedPercent := maximumSize 
@@ -310,21 +243,15 @@ FreeTypeCache>>report [
 	^usedPercent asString,'% Full (maximumSize: ', maximumSize asString, ' , used: ', used asString,')'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>shrinkTo: newSize [
+{ #category : #private }
+FreeTypeCache >> shrinkTo: newSize [
 	"if the used size is greater than newSize, then remove all the receiver's entries"
 	
 	used > newSize ifTrue:[self removeAll]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCache>>sizeOf: anObject [
+{ #category : #public }
+FreeTypeCache >> sizeOf: anObject [
 	^(anObject isKindOf: Form)
 		ifTrue:[(anObject bitsSize * 4) + 32]
 		ifFalse:[4]

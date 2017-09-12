@@ -11,42 +11,29 @@ Class {
 	#classVars : [
 		'Primitives'
 	],
-	#category : #FileSystem-Core-Kernel,
-	#timestamp : 'cwp 11/18/2009 11:11'
+	#category : #FileSystem-Core-Kernel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle class>>on: aReference writable: aBoolean [
+{ #category : #'instance creation' }
+FileSystemHandle class >> on: aReference writable: aBoolean [
 	^ self new setReference: aReference writable: aBoolean
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle class>>open: aReference writable: aBoolean [
+{ #category : #'instance creation' }
+FileSystemHandle class >> open: aReference writable: aBoolean [
 	^ (self on: aReference writable: aBoolean) open
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>at: index [
+{ #category : #public }
+FileSystemHandle >> at: index [
 	| buffer |
 	buffer := ByteArray new: 1.
 	self at: index read: buffer startingAt: 1 count: 1.
 	^ buffer at: 1
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>at: index put: anObject [
+{ #category : #public }
+FileSystemHandle >> at: index put: anObject [
 	| buffer |
 	buffer := ByteArray with: (anObject isCharacter
 		ifTrue: [ anObject codePoint ]
@@ -55,151 +42,97 @@ FileSystemHandle>>at: index put: anObject [
 	
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>at: offset read: buffer startingAt: start count: count [
+{ #category : #public }
+FileSystemHandle >> at: offset read: buffer startingAt: start count: count [
 	self subclassResponsibility
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>at: offset write: buffer startingAt: start count: count [
+{ #category : #public }
+FileSystemHandle >> at: offset write: buffer startingAt: start count: count [
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>basicOpen [
+{ #category : #private }
+FileSystemHandle >> basicOpen [
 	"get the raw stream description from the filesystem's store"
 	^ self fileSystem 
 		openStreamDescription: reference path
 		writable: writable
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>close [
+{ #category : #public }
+FileSystemHandle >> close [
 	self subclassResponsibility
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>ensureClosed [
+{ #category : #public }
+FileSystemHandle >> ensureClosed [
 	reference exists ifTrue: [self close]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>fileSystem [
+{ #category : #accessing }
+FileSystemHandle >> fileSystem [
 	^ reference fileSystem 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>flush [
+{ #category : #public }
+FileSystemHandle >> flush [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>fullName [
+{ #category : #accessing }
+FileSystemHandle >> fullName [
 	^ reference fullName
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>isOpen [
+{ #category : #testing }
+FileSystemHandle >> isOpen [
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>isWritable [
+{ #category : #testing }
+FileSystemHandle >> isWritable [
 	^ writable
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>open [
+{ #category : #public }
+FileSystemHandle >> open [
 	self subclassResponsibility
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>readStream [
+{ #category : #public }
+FileSystemHandle >> readStream [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>reference [
+{ #category : #accessing }
+FileSystemHandle >> reference [
 	^ reference
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>reopen [
+{ #category : #public }
+FileSystemHandle >> reopen [
 	self close.
 	self open
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>setReference: aReference writable: aBoolean [
+{ #category : #initialize-release }
+FileSystemHandle >> setReference: aReference writable: aBoolean [
 	reference := aReference resolve.
 	writable := aBoolean
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>sync [
+{ #category : #public }
+FileSystemHandle >> sync [
 	self subclassResponsibility
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>truncateTo: anInteger [
+{ #category : #public }
+FileSystemHandle >> truncateTo: anInteger [
 	self subclassResponsibility
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemHandle>>writeStream [
+{ #category : #public }
+FileSystemHandle >> writeStream [
 	self subclassResponsibility
 ]

@@ -23,15 +23,11 @@ Class {
 		'stream',
 		'storedSettings'
 	],
-	#category : #System-Settings-Persistence-Ston-StoredSettings-Builder,
-	#timestamp : 'JurajKubelka 10/1/2015 14:16'
+	#category : #System-Settings-Persistence-Ston-StoredSettings-Builder
 }
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingsStonReader>>load [
+{ #category : #loading }
+SettingsStonReader >> load [
 	"It loads all instances of StoredSetting from a stream."
 	stream ifNil: [ ^ #() ].
 	stream atEnd ifTrue: [ ^ #() ].
@@ -42,35 +38,23 @@ SettingsStonReader>>load [
 	^ storedSettings
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingsStonReader>>secureLoad [
+{ #category : #loading }
+SettingsStonReader >> secureLoad [
 	[ self load ] on: STONReaderError do: [ :ex | "ignore" ].
 	^ self storedSettings ifNil: [ #() ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingsStonReader>>storedSettings [
+{ #category : #accessing }
+SettingsStonReader >> storedSettings [
 	^ storedSettings
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingsStonReader>>stream [
+{ #category : #accessing }
+SettingsStonReader >> stream [
 	^ stream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingsStonReader>>stream: anObject [
+{ #category : #accessing }
+SettingsStonReader >> stream: anObject [
 	stream := anObject
 ]

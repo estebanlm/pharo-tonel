@@ -1,12 +1,7 @@
-Extension {
-	#name : #IdentitySet
-}
+Extension { #name : #IdentitySet }
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-IdentitySet>>fuelReplacement [
+{ #category : #'*Fuel' }
+IdentitySet >> fuelReplacement [
 	| copy |
 	copy := self copyEmpty addAll: self.
 	^ (self size ~= copy size)

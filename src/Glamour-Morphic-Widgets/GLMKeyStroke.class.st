@@ -1,9 +1,5 @@
-"
-
-"
 Class {
 	#name : #GLMKeyStroke,
 	#superclass : #GLMActionAnnouncement,
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }

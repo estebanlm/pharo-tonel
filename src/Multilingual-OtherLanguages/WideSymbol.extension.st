@@ -1,12 +1,7 @@
-Extension {
-	#name : #WideSymbol
-}
+Extension { #name : #WideSymbol }
 
-{
-	#category : #'*Multilingual-OtherLanguages',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WideSymbol>>mutateJISX0208StringToUnicode [
+{ #category : #'*Multilingual-OtherLanguages' }
+WideSymbol >> mutateJISX0208StringToUnicode [
 
 	| c |
 	1 to: self size do: [:i |

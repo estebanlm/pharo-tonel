@@ -8,15 +8,11 @@ Class {
 	#superclass : #SystemWindow,
 	#traits : 'TEasilyThemed - {#theme}',
 	#classTraits : 'TEasilyThemed classTrait',
-	#category : #Morphic-Widgets-Windows-Widgets,
-	#timestamp : 'AlainPlantec 10/17/2009 18:59'
+	#category : #Morphic-Widgets-Windows-Widgets
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow class>>newWithTheme: aUITheme [
+{ #category : #'instance creation' }
+StandardWindow class >> newWithTheme: aUITheme [
 	"Answer a new window with the given theme."
 
 	^ self basicNew
@@ -24,31 +20,22 @@ StandardWindow class>>newWithTheme: aUITheme [
 		initialize
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>defaultColor [
+{ #category : #initialize }
+StandardWindow >> defaultColor [
 	"Answer the default color/fill style for the receiver"
 	
 	^self theme windowColor
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>defaultLabel [
+{ #category : #'morphic ui' }
+StandardWindow >> defaultLabel [
 	"Answer the default label for the receiver."
 
 	^'Window' translated
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>delete [
+{ #category : #open/close }
+StandardWindow >> delete [
 	"If fullscreen remove the owner too."
 	
 	self mustNotClose ifTrue: [^ self].
@@ -60,11 +47,8 @@ StandardWindow>>delete [
 		ifFalse: [super delete]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>flash [
+{ #category : #operations }
+StandardWindow >> flash [
 	"Flash the window."
 	
 	(self hasProperty: #activeModalFlash) ifTrue: [ ^self ].
@@ -100,11 +84,8 @@ StandardWindow>>flash [
 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>initialize [
+{ #category : #initialize }
+StandardWindow >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -113,32 +94,23 @@ StandardWindow>>initialize [
 		setWindowColor: self defaultColor
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>isActive [
+{ #category : #testing }
+StandardWindow >> isActive [
 	"Answer active if fullscreen too."
 	
 	^self isFullscreen or: [super isActive]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>isFullscreen [
+{ #category : #testing }
+StandardWindow >> isFullscreen [
 	"Answer whether the window should be draw as fullscreen, i.e.
 	no title bar or borders."
 
 	^self owner isKindOf: FullscreenMorph
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>layoutBounds [
+{ #category : #layout }
+StandardWindow >> layoutBounds [
 	"Bounds of pane area only."
 	
 	^self isFullscreen
@@ -146,33 +118,24 @@ StandardWindow>>layoutBounds [
 		ifFalse: [super layoutBounds]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>model: anObject [
+{ #category : #accessing }
+StandardWindow >> model: anObject [
 	"Reset the minimum extent."
 
 	super model: anObject.
 	self title: self title
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>mouseMove: evt [
+{ #category : #'morphic ui' }
+StandardWindow >> mouseMove: evt [
 	"Handle a mouse-move event"
 
 	self isFullscreen ifTrue: [^self]. "do nothing if fullscreen"
 	^super mouseMove: evt
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>newTextEntryFor: aModel getText: getSel setText: setSel help: helpText [
+{ #category : #controls }
+StandardWindow >> newTextEntryFor: aModel getText: getSel setText: setSel help: helpText [
 	"Answer a text entry for the given model."
 
 	^self theme
@@ -185,11 +148,8 @@ StandardWindow>>newTextEntryFor: aModel getText: getSel setText: setSel help: he
 		help: helpText
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>noteNewOwner: aMorph  [
+{ #category : #submorphs-accessing }
+StandardWindow >> noteNewOwner: aMorph [ 
 	"Go fullscreen if needed."
 
 	super noteNewOwner: aMorph.
@@ -202,32 +162,23 @@ StandardWindow>>noteNewOwner: aMorph  [
 			ifTrue: [self submorphs first roundedCorners: #()]]
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>open [
+{ #category : #open/close }
+StandardWindow >> open [
 	"Where else would you want to open it?."
 
 	self openInWorld
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>openAsIsIn: aWorld [
+{ #category : #open/close }
+StandardWindow >> openAsIsIn: aWorld [
 	"Sad fixup for dodgy layout."
 
 	super openAsIsIn: aWorld.
 	self allMorphs do: [:m | m layoutChanged]
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>openFullscreen [
+{ #category : #open/close }
+StandardWindow >> openFullscreen [
 	"Open the receiver in a FullscreenMorph."
 
 	^FullscreenMorph new
@@ -235,41 +186,29 @@ StandardWindow>>openFullscreen [
 		openInWorld
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>openedFullscreen [
+{ #category : #testing }
+StandardWindow >> openedFullscreen [
 	"Should activate and update the layout."
 
 	self allMorphs do: [:m | m layoutChanged].
 	self activate
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>title [
+{ #category : #controls }
+StandardWindow >> title [
 	
 	^self label
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>title: aString [
+{ #category : #controls }
+StandardWindow >> title: aString [
 	
 	self setLabel: aString
 	
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>wantsRoundedCorners [
+{ #category : #'morphic ui' }
+StandardWindow >> wantsRoundedCorners [
 	"Check to see if the property is set first."
 	
 	^self isFullscreen
@@ -277,11 +216,8 @@ StandardWindow>>wantsRoundedCorners [
 		ifFalse: [^super wantsRoundedCorners]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>withText: aStringOrText label: title  [
+{ #category : #initialize }
+StandardWindow >> withText: aStringOrText label: title [ 
 	
 	self title: title.
 	self 
@@ -293,11 +229,8 @@ StandardWindow>>withText: aStringOrText label: title  [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-StandardWindow>>yellowButtonActivity: shiftState  [
+{ #category : #'event handling' }
+StandardWindow >> yellowButtonActivity: shiftState [ 
 	"Do nothing."
 	^ false
 ]

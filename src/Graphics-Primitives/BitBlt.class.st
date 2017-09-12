@@ -67,15 +67,11 @@ Class {
 		'CachedFontColorMaps',
 		'ColorConvertingMaps'
 	],
-	#category : #Graphics-Primitives,
-	#timestamp : '<historical>'
+	#category : #Graphics-Primitives
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt class>>bitPeekerFromForm: sourceForm  [
+{ #category : #'instance creation' }
+BitBlt class >> bitPeekerFromForm: sourceForm [ 
 	"Answer an instance to be used extract individual pixels from the given Form. The destination for a 1x1 copyBits will be the low order bits of (bits at: 1)."
 	| pixPerWord |
 	pixPerWord := 32 // sourceForm depth.
@@ -93,11 +89,8 @@ BitBlt class>>bitPeekerFromForm: sourceForm  [
 		clipRect: (0 @ 0 extent: pixPerWord @ 1)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt class>>bitPokerToForm: destForm  [
+{ #category : #'instance creation' }
+BitBlt class >> bitPokerToForm: destForm [ 
 	"Answer an instance to be used for valueAt: aPoint put: pixValue.
 	The source for a 1x1 copyBits will be the low order of (bits at: 1)"
 	| pixPerWord |
@@ -116,21 +109,15 @@ BitBlt class>>bitPokerToForm: destForm  [
 		clipRect: (0 @ 0 extent: destForm extent)
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt class>>cleanUp [
+{ #category : #cleanup }
+BitBlt class >> cleanUp [
 	"Flush caches"
 
 	self recreateColorMaps.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt class>>destForm: df sourceForm: sf fillColor: hf combinationRule: cr destOrigin: destOrigin sourceOrigin: sourceOrigin extent: extent clipRect: clipRect  [
+{ #category : #'instance creation' }
+BitBlt class >> destForm: df sourceForm: sf fillColor: hf combinationRule: cr destOrigin: destOrigin sourceOrigin: sourceOrigin extent: extent clipRect: clipRect [ 
 	"Answer an instance of me with values set according to the arguments."
 
 	^ self new
@@ -144,11 +131,8 @@ BitBlt class>>destForm: df sourceForm: sf fillColor: hf combinationRule: cr dest
 		clipRect: clipRect
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt class>>destForm: df sourceForm: sf halftoneForm: hf combinationRule: cr destOrigin: destOrigin sourceOrigin: sourceOrigin extent: extent clipRect: clipRect  [
+{ #category : #'instance creation' }
+BitBlt class >> destForm: df sourceForm: sf halftoneForm: hf combinationRule: cr destOrigin: destOrigin sourceOrigin: sourceOrigin extent: extent clipRect: clipRect [ 
 	"Answer an instance of me with values set according to the arguments."
 
 	^ self new
@@ -162,35 +146,23 @@ BitBlt class>>destForm: df sourceForm: sf halftoneForm: hf combinationRule: cr d
 		clipRect: clipRect
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt class>>initialize [
+{ #category : #'class initialization' }
+BitBlt class >> initialize [
 	self recreateColorMaps
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt class>>recreateColorMaps [
+{ #category : #private }
+BitBlt class >> recreateColorMaps [
 	CachedFontColorMaps := ColorConvertingMaps := nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt class>>toForm: aForm [
+{ #category : #'instance creation' }
+BitBlt class >> toForm: aForm [
 	^ self new setDestForm: aForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>clipBy: aRectangle  [
+{ #category : #accessing }
+BitBlt >> clipBy: aRectangle [ 
 	| aPoint right bottom |
 	right := clipX + clipWidth.
 	bottom := clipY + clipHeight.
@@ -206,11 +178,8 @@ BitBlt>>clipBy: aRectangle  [
 	clipHeight < 0 ifTrue: [ clipHeight := 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>clipByX1: x1 y1: y1 x2: x2 y2: y2  [
+{ #category : #accessing }
+BitBlt >> clipByX1: x1 y1: y1 x2: x2 y2: y2 [ 
 	| right bottom |
 	right := clipX + clipWidth.
 	bottom := clipY + clipHeight.
@@ -224,28 +193,19 @@ BitBlt>>clipByX1: x1 y1: y1 x2: x2 y2: y2  [
 	clipHeight < 0 ifTrue: [ clipHeight := 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>clipHeight [
+{ #category : #accessing }
+BitBlt >> clipHeight [
 	^clipHeight
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>clipHeight: anInteger  [
+{ #category : #accessing }
+BitBlt >> clipHeight: anInteger [ 
 	"Set the receiver's clipping area height to be the argument, anInteger."
 	clipHeight := anInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>clipRange [
+{ #category : #private }
+BitBlt >> clipRange [
 	"clip and adjust source origin and extent appropriately"
 	"first in x"
 	"fill in the lazy state if needed"
@@ -307,21 +267,15 @@ BitBlt>>clipRange [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>clipRect [
+{ #category : #accessing }
+BitBlt >> clipRect [
 	"Answer the receiver's clipping area rectangle."
 
 	^clipX @ clipY extent: clipWidth @ clipHeight
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>clipRect: aRectangle  [
+{ #category : #accessing }
+BitBlt >> clipRect: aRectangle [ 
 	"Set the receiver's clipping area rectangle to be the argument, aRectangle."
 	clipX := aRectangle left truncated.
 	clipY := aRectangle top truncated.
@@ -329,64 +283,43 @@ BitBlt>>clipRect: aRectangle  [
 	clipHeight := aRectangle bottom truncated - clipY
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>clipWidth [
+{ #category : #accessing }
+BitBlt >> clipWidth [
 	^clipWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>clipWidth: anInteger  [
+{ #category : #accessing }
+BitBlt >> clipWidth: anInteger [ 
 	"Set the receiver's clipping area width to be the argument, anInteger."
 	clipWidth := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>clipX [
+{ #category : #accessing }
+BitBlt >> clipX [
 	^clipX
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>clipX: anInteger  [
+{ #category : #accessing }
+BitBlt >> clipX: anInteger [ 
 	"Set the receiver's clipping area top left x coordinate to be the argument, 
 	anInteger."
 	clipX := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>clipY [
+{ #category : #accessing }
+BitBlt >> clipY [
 	^clipY
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>clipY: anInteger  [
+{ #category : #accessing }
+BitBlt >> clipY: anInteger [ 
 	"Set the receiver's clipping area top left y coordinate to be the argument, 
 	anInteger."
 	clipY := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>color [
+{ #category : #accessing }
+BitBlt >> color [
 	"Return the current fill color as a Color.  
 	 Gives the wrong answer if the halftoneForm is a complex pattern of more than one word."
 
@@ -394,11 +327,8 @@ BitBlt>>color [
 	^ Color colorFromPixelValue: halftoneForm first depth: destForm depth
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>colorConvertingMap: targetColor from: sourceDepth to: destDepth keepSubPixelAA: keepSubPix  [
+{ #category : #private }
+BitBlt >> colorConvertingMap: targetColor from: sourceDepth to: destDepth keepSubPixelAA: keepSubPix [ 
 	| srcIndex map mapsForSource mapsForSourceAndDest |
 	ColorConvertingMaps class == Array ifFalse: [ ColorConvertingMaps := (1 to: 10) collect: [ :i | Array new: 32 ] ].
 	srcIndex := sourceDepth.
@@ -422,38 +352,26 @@ BitBlt>>colorConvertingMap: targetColor from: sourceDepth to: destDepth keepSubP
 	^ map
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>colorMap [
+{ #category : #accessing }
+BitBlt >> colorMap [
 	^ colorMap
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>colorMap: map  [
+{ #category : #accessing }
+BitBlt >> colorMap: map [ 
 	"See last part of BitBlt comment."
 	colorMap := map
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>combinationRule: anInteger  [
+{ #category : #accessing }
+BitBlt >> combinationRule: anInteger [ 
 	"Set the receiver's combination rule to be the argument, anInteger, a 
 	number in the range 0-15."
 	combinationRule := anInteger
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>copy: destRectangle from: sourcePt in: srcForm  [
+{ #category : #copying }
+BitBlt >> copy: destRectangle from: sourcePt in: srcForm [ 
 	| destOrigin |
 	sourceForm := srcForm.
 	halftoneForm := nil.
@@ -468,11 +386,8 @@ BitBlt>>copy: destRectangle from: sourcePt in: srcForm  [
 	self copyBits
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>copy: destRectangle from: sourcePt in: srcForm fillColor: hf rule: rule  [
+{ #category : #copying }
+BitBlt >> copy: destRectangle from: sourcePt in: srcForm fillColor: hf rule: rule [ 
 	"Specify a Color to fill, not a Form."
 	| destOrigin |
 	sourceForm := srcForm.
@@ -489,11 +404,8 @@ BitBlt>>copy: destRectangle from: sourcePt in: srcForm fillColor: hf rule: rule 
 	^ self copyBits
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>copy: destRectangle from: sourcePt in: srcForm halftoneForm: hf rule: rule  [
+{ #category : #copying }
+BitBlt >> copy: destRectangle from: sourcePt in: srcForm halftoneForm: hf rule: rule [ 
 	| destOrigin |
 	sourceForm := srcForm.
 	self fillColor: hf.	"sets halftoneForm"
@@ -508,11 +420,8 @@ BitBlt>>copy: destRectangle from: sourcePt in: srcForm halftoneForm: hf rule: ru
 	self copyBits
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>copyBits [
+{ #category : #copying }
+BitBlt >> copyBits [
 	"Primitive. Perform the movement of bits from the source form to the 
 	destination form. Fail if any variables are not of the right type (Integer, 
 	Float, or Form) or if the combination rule is not implemented. 
@@ -561,11 +470,8 @@ BitBlt>>copyBits [
 	^ self copyBitsAgain
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>copyBitsAgain [
+{ #category : #private }
+BitBlt >> copyBitsAgain [
 	"Primitive. See BitBlt|copyBits, also a Primitive. Essential. See Object
 	documentation whatIsAPrimitive."
 
@@ -573,11 +479,8 @@ BitBlt>>copyBitsAgain [
 	self primitiveFailed
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>copyBitsFrom: x0 to: x1 at: y  [
+{ #category : #private }
+BitBlt >> copyBitsFrom: x0 to: x1 at: y [ 
 	destX := x0.
 	destY := y.
 	sourceX := x0.
@@ -585,11 +488,8 @@ BitBlt>>copyBitsFrom: x0 to: x1 at: y  [
 	self copyBits
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>copyBitsTranslucent: factor [
+{ #category : #copying }
+BitBlt >> copyBitsTranslucent: factor [
 	"This entry point to BitBlt supplies an extra argument to specify translucency
 	for operations 30 and 31.  The argument must be an integer between 0 and 255."
 
@@ -606,20 +506,14 @@ BitBlt>>copyBitsTranslucent: factor [
 	self primitiveFailed  "Later do nicer error recovery -- share copyBits recovery"
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>copyForm: srcForm to: destPt rule: rule [
+{ #category : #copying }
+BitBlt >> copyForm: srcForm to: destPt rule: rule [
 	^ self copyForm: srcForm to: destPt rule: rule
 		colorMap: (srcForm colormapIfNeededFor: destForm)
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>copyForm: srcForm to: destPt rule: rule color: color  [
+{ #category : #copying }
+BitBlt >> copyForm: srcForm to: destPt rule: rule color: color [ 
 	sourceForm := srcForm.
 	halftoneForm := color.
 	combinationRule := rule.
@@ -632,11 +526,8 @@ BitBlt>>copyForm: srcForm to: destPt rule: rule color: color  [
 	self copyBits
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>copyForm: srcForm to: destPt rule: rule colorMap: map  [
+{ #category : #copying }
+BitBlt >> copyForm: srcForm to: destPt rule: rule colorMap: map [ 
 	sourceForm := srcForm.
 	halftoneForm := nil.
 	combinationRule := rule.
@@ -650,11 +541,8 @@ BitBlt>>copyForm: srcForm to: destPt rule: rule colorMap: map  [
 	self copyBits
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>copyForm: srcForm to: destPt rule: rule fillColor: color  [
+{ #category : #copying }
+BitBlt >> copyForm: srcForm to: destPt rule: rule fillColor: color [ 
 	sourceForm := srcForm.
 	self fillColor: color.	"sets halftoneForm"
 	combinationRule := rule.
@@ -667,11 +555,8 @@ BitBlt>>copyForm: srcForm to: destPt rule: rule fillColor: color  [
 	self copyBits
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>copyFrom: sourceRectangle in: srcForm to: destPt  [
+{ #category : #copying }
+BitBlt >> copyFrom: sourceRectangle in: srcForm to: destPt [ 
 	| sourceOrigin |
 	sourceForm := srcForm.
 	halftoneForm := nil.
@@ -687,40 +572,28 @@ BitBlt>>copyFrom: sourceRectangle in: srcForm to: destPt  [
 	self copyBits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>destForm [
+{ #category : #accessing }
+BitBlt >> destForm [
 	^ destForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>destOrigin: aPoint  [
+{ #category : #accessing }
+BitBlt >> destOrigin: aPoint [ 
 	"Set the receiver's destination top left coordinates to be those of the 
 	argument, aPoint."
 	destX := aPoint x.
 	destY := aPoint y
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>destRect [
+{ #category : #accessing }
+BitBlt >> destRect [
 	"The rectangle we are about to blit to or just blitted to.  "
 
 	^ destX @ destY extent: width @ height
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>destRect: aRectangle  [
+{ #category : #accessing }
+BitBlt >> destRect: aRectangle [ 
 	"Set the receiver's destination form top left coordinates to be the origin of 
 	the argument, aRectangle, and set the width and height of the receiver's 
 	destination form to be the width and height of aRectangle."
@@ -730,21 +603,15 @@ BitBlt>>destRect: aRectangle  [
 	height := aRectangle height
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>destX: anInteger  [
+{ #category : #accessing }
+BitBlt >> destX: anInteger [ 
 	"Set the top left x coordinate of the receiver's destination form to be the 
 	argument, anInteger."
 	destX := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>destX: x destY: y width: w height: h  [
+{ #category : #accessing }
+BitBlt >> destX: x destY: y width: w height: h [ 
 	"Combined init message saves 3 sends from DisplayScanner"
 	destX := x.
 	destY := y.
@@ -752,30 +619,21 @@ BitBlt>>destX: x destY: y width: w height: h  [
 	height := h
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>destY: anInteger  [
+{ #category : #accessing }
+BitBlt >> destY: anInteger [ 
 	"Set the top left y coordinate of the receiver's destination form to be the 
 	argument, anInteger."
 	destY := anInteger
 ]
 
-{
-	#category : #'line drawing',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>drawFrom: startPoint to: stopPoint  [
+{ #category : #'line drawing' }
+BitBlt >> drawFrom: startPoint to: stopPoint [ 
 	
 	 ^ self drawFrom: startPoint to: stopPoint withFirstPoint: true
 ]
 
-{
-	#category : #'line drawing',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>drawFrom: startPoint to: stopPoint withFirstPoint: drawFirstPoint  [
+{ #category : #'line drawing' }
+BitBlt >> drawFrom: startPoint to: stopPoint withFirstPoint: drawFirstPoint [ 
 	"Draw a line whose end points are startPoint and stopPoint.
 	The line is formed by repeatedly calling copyBits at every
 	point along the line.  If drawFirstPoint is false, then omit
@@ -812,11 +670,8 @@ BitBlt>>drawFrom: startPoint to: stopPoint withFirstPoint: drawFirstPoint  [
 		forwards ]) ifTrue: [ self copyBits ]
 ]
 
-{
-	#category : #'line drawing',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>drawLoopX: xDelta Y: yDelta  [
+{ #category : #'line drawing' }
+BitBlt >> drawLoopX: xDelta Y: yDelta [ 
 	"Primitive. Implements the Bresenham plotting algorithm (IBM Systems
 	Journal, Vol. 4 No. 1, 1965). It chooses a principal direction, and
 	maintains a potential, P. When P's sign changes, it is time to move in
@@ -857,11 +712,8 @@ BitBlt>>drawLoopX: xDelta Y: yDelta  [
 					i < px ifTrue: [ self copyBits ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>eraseBits [
+{ #category : #private }
+BitBlt >> eraseBits [
 	"Perform the erase operation, which puts 0's in the destination
 	wherever the source (which is assumed to be just 1 bit deep)
 	has a 1.  This requires the colorMap to be set in order to AND
@@ -879,11 +731,8 @@ BitBlt>>eraseBits [
 	colorMap := oldMap
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>fill: destRect fillColor: grayForm rule: rule  [
+{ #category : #copying }
+BitBlt >> fill: destRect fillColor: grayForm rule: rule [ 
 	"Fill with a Color, not a Form."
 	sourceForm := nil.
 	self fillColor: grayForm.	"sets halftoneForm"
@@ -897,19 +746,13 @@ BitBlt>>fill: destRect fillColor: grayForm rule: rule  [
 	self copyBits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>fillColor [
+{ #category : #accessing }
+BitBlt >> fillColor [
 	^ halftoneForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>fillColor: aColorOrPattern  [
+{ #category : #accessing }
+BitBlt >> fillColor: aColorOrPattern [ 
 	"The destForm will be filled with this color or pattern of colors.  May be an old Color, a new type Color, a Bitmap (see BitBlt comment), a Pattern, or a Form."
 	aColorOrPattern == nil ifTrue: 
 		[ halftoneForm := nil.
@@ -918,31 +761,22 @@ BitBlt>>fillColor: aColorOrPattern  [
 	halftoneForm := destForm bitPatternFor: aColorOrPattern
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>getPluginName [
+{ #category : #private }
+BitBlt >> getPluginName [
 	"Private. Return the name of the plugin representing BitBlt.
 	Used for dynamically switching between different BB representations only."
 	^'BitBltPlugin'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>halftoneForm [
+{ #category : #accessing }
+BitBlt >> halftoneForm [
 	"Returns the receivers half tone form. See class commment."
 	
 	^halftoneForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>halftoneForm: aBitmap [
+{ #category : #accessing }
+BitBlt >> halftoneForm: aBitmap [
 	"Sets the receivers half tone form. See class commment."
 	
 	halftoneForm := aBitmap
@@ -950,20 +784,14 @@ BitBlt>>halftoneForm: aBitmap [
  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>height: anInteger  [
+{ #category : #accessing }
+BitBlt >> height: anInteger [ 
 	"Set the receiver's destination form height to be the argument, anInteger."
 	height := anInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>paintBits [
+{ #category : #private }
+BitBlt >> paintBits [
 	"Perform the paint operation, which requires two calls to BitBlt."
 	| color oldMap saveRule |
 	sourceForm depth = 1 ifFalse: 
@@ -997,11 +825,8 @@ dot := Form dotOfSize: 32.
 		colorMap: (Bitmap with: 0 with: 16rFFFFFFFF)) copyBits"
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>pixelAt: aPoint  [
+{ #category : #copying }
+BitBlt >> pixelAt: aPoint [ 
 	"Assumes this BitBlt has been set up specially (see the init message,
 	BitBlt bitPeekerFromForm:.  Returns the pixel at aPoint."
 	sourceX := aPoint x.
@@ -1014,11 +839,8 @@ BitBlt>>pixelAt: aPoint  [
 	^ destForm bits at: 1
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>pixelAt: aPoint put: pixelValue  [
+{ #category : #copying }
+BitBlt >> pixelAt: aPoint put: pixelValue [ 
 	"Assumes this BitBlt has been set up specially (see the init message,
 	BitBlt bitPokerToForm:.  Overwrites the pixel at aPoint."
 	destX := aPoint x.
@@ -1036,11 +858,8 @@ bb := (BitBlt bitPokerToForm: Display).
 "
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>primDisplayString: aString from: startIndex to: stopIndex map: glyphMap xTable: xTable kern: kernDelta  [
+{ #category : #private }
+BitBlt >> primDisplayString: aString from: startIndex to: stopIndex map: glyphMap xTable: xTable kern: kernDelta [ 
 	| ascii |
 	<primitive:'primitiveDisplayString' module:'BitBltPlugin'>
 	startIndex 
@@ -1055,11 +874,8 @@ BitBlt>>primDisplayString: aString from: startIndex to: stopIndex map: glyphMap 
 			destX := destX + width + kernDelta ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>roundVariables [
+{ #category : #private }
+BitBlt >> roundVariables [
 	| maxVal minVal |
 	maxVal := SmallInteger maxVal.
 	minVal := SmallInteger minVal.
@@ -1095,11 +911,8 @@ BitBlt>>roundVariables [
 		max: minVal
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>setDestForm: df  [
+{ #category : #private }
+BitBlt >> setDestForm: df [ 
 	| bb |
 	bb := df boundingBox.
 	destForm := df.
@@ -1109,11 +922,8 @@ BitBlt>>setDestForm: df  [
 	clipHeight := bb height
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>setDestForm: df sourceForm: sf fillColor: hf combinationRule: cr destOrigin: destOrigin sourceOrigin: sourceOrigin extent: extent clipRect: clipRect  [
+{ #category : #private }
+BitBlt >> setDestForm: df sourceForm: sf fillColor: hf combinationRule: cr destOrigin: destOrigin sourceOrigin: sourceOrigin extent: extent clipRect: clipRect [ 
 	| aPoint |
 	destForm := df.
 	sourceForm := sf.
@@ -1134,40 +944,28 @@ BitBlt>>setDestForm: df sourceForm: sf fillColor: hf combinationRule: cr destOri
 	sourceForm == nil ifFalse: [ colorMap := sourceForm colormapIfNeededFor: destForm ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>sourceForm [
+{ #category : #accessing }
+BitBlt >> sourceForm [
 
 	^ sourceForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>sourceForm: aForm  [
+{ #category : #accessing }
+BitBlt >> sourceForm: aForm [ 
 	"Set the receiver's source form to be the argument, aForm."
 	sourceForm := aForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>sourceOrigin: aPoint  [
+{ #category : #accessing }
+BitBlt >> sourceOrigin: aPoint [ 
 	"Set the receiver's source form coordinates to be those of the argument, 
 	aPoint."
 	sourceX := aPoint x.
 	sourceY := aPoint y
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>sourceRect: aRectangle  [
+{ #category : #accessing }
+BitBlt >> sourceRect: aRectangle [ 
 	"Set the receiver's source form top left x and y, width and height to be 
 	the top left coordinate and extent of the argument, aRectangle."
 	sourceX := aRectangle left.
@@ -1176,47 +974,32 @@ BitBlt>>sourceRect: aRectangle  [
 	height := aRectangle height
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>sourceX: anInteger  [
+{ #category : #accessing }
+BitBlt >> sourceX: anInteger [ 
 	"Set the receiver's source form top left x to be the argument, anInteger."
 	sourceX := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>sourceY: anInteger  [
+{ #category : #accessing }
+BitBlt >> sourceY: anInteger [ 
 	"Set the receiver's source form top left y to be the argument, anInteger."
 	sourceY := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>tallyMap [
+{ #category : #accessing }
+BitBlt >> tallyMap [
 	"Return the map used for tallying pixels"
 	^colorMap
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>tallyMap: aBitmap  [
+{ #category : #accessing }
+BitBlt >> tallyMap: aBitmap [ 
 	"Install the map used for tallying pixels"
 	colorMap := aBitmap
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-BitBlt>>width: anInteger  [
+{ #category : #accessing }
+BitBlt >> width: anInteger [ 
 	"Set the receiver's destination form width to be the argument, anInteger."
 	width := anInteger
 ]

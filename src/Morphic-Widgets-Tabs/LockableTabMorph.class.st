@@ -4,26 +4,19 @@ I am a tab which can be locked/unlocked with according action and icon
 Class {
 	#name : #LockableTabMorph,
 	#superclass : #TabMorph,
-	#category : #Morphic-Widgets-Tabs,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Tabs
 }
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LockableTabMorph class>>lockedIcon [
+{ #category : #icons }
+LockableTabMorph class >> lockedIcon [
 
 	^ Icons
 		at: #lockedIcon
 		ifAbsentPut: [ self lockedIconContents ]
 ]
 
-{
-	#category : #icons-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LockableTabMorph class>>lockedIconContents [
+{ #category : #icons-contents }
+LockableTabMorph class >> lockedIconContents [
 
 	^ Form
 		extent: 12@12
@@ -32,11 +25,8 @@ LockableTabMorph class>>lockedIconContents [
 		offset: 0@0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LockableTabMorph>>closeable: anObject [
+{ #category : #accessing }
+LockableTabMorph >> closeable: anObject [
 
 	closeable := anObject.
 	anObject 
@@ -44,29 +34,20 @@ LockableTabMorph>>closeable: anObject [
 		ifFalse: [ self setLockedIcon ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LockableTabMorph>>setLockedIcon [
+{ #category : #private }
+LockableTabMorph >> setLockedIcon [
 
 	closeIcon image: self class lockedIcon.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LockableTabMorph>>setUnlockedIcon [
+{ #category : #private }
+LockableTabMorph >> setUnlockedIcon [
 
 	closeIcon image: self class closeIcon.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LockableTabMorph>>showCloseIcon [
+{ #category : #protocol }
+LockableTabMorph >> showCloseIcon [
 
 	closeIcon show
 ]

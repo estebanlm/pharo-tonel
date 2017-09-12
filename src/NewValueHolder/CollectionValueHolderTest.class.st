@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #CollectionValueHolderTest,
 	#superclass : #TestCase,
@@ -9,25 +6,18 @@ Class {
 		'withItems',
 		'fired'
 	],
-	#category : #NewValueHolder-Tests,
-	#timestamp : ''
+	#category : #NewValueHolder-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolderTest>>setUp [
+{ #category : #running }
+CollectionValueHolderTest >> setUp [
 	empty := OrderedCollection new asValueHolder.
 	withItems := #(1 2 3) asOrderedCollection asValueHolder.
 	fired := false
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolderTest>>testAddMany [
+{ #category : #tests }
+CollectionValueHolderTest >> testAddMany [
 	empty
 		whenAddedDo:
 			[ :addedValue :ann | 
@@ -38,11 +28,8 @@ CollectionValueHolderTest>>testAddMany [
 	self assert: fired
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolderTest>>testAddOne [
+{ #category : #tests }
+CollectionValueHolderTest >> testAddOne [
 	empty
 		whenAddedDo:
 			[ :addedValue :ann | 
@@ -53,11 +40,8 @@ CollectionValueHolderTest>>testAddOne [
 	self assert: fired
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolderTest>>testChangeAddMany [
+{ #category : #tests }
+CollectionValueHolderTest >> testChangeAddMany [
 	empty
 		whenChangedDo:
 			[ :col :changed | 
@@ -68,11 +52,8 @@ CollectionValueHolderTest>>testChangeAddMany [
 	self assert: fired
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolderTest>>testChangeAddOne [
+{ #category : #tests }
+CollectionValueHolderTest >> testChangeAddOne [
 	empty
 		whenChangedDo:
 			[ :col :changed | 
@@ -83,11 +64,8 @@ CollectionValueHolderTest>>testChangeAddOne [
 	self assert: fired
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolderTest>>testChangeRemoveMany [
+{ #category : #tests }
+CollectionValueHolderTest >> testChangeRemoveMany [
 	withItems
 		whenChangedDo:
 			[ :col :changed | 
@@ -98,11 +76,8 @@ CollectionValueHolderTest>>testChangeRemoveMany [
 	self assert: fired
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolderTest>>testChangeRemoveOne [
+{ #category : #tests }
+CollectionValueHolderTest >> testChangeRemoveOne [
 	withItems
 		whenChangedDo:
 			[ :col :changed | 
@@ -113,11 +88,8 @@ CollectionValueHolderTest>>testChangeRemoveOne [
 	self assert: fired
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolderTest>>testRemoveMany [
+{ #category : #tests }
+CollectionValueHolderTest >> testRemoveMany [
 	withItems
 		whenRemovedDo:
 			[ :removedValue :ann | 
@@ -129,11 +101,8 @@ CollectionValueHolderTest>>testRemoveMany [
 	self assert: fired
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollectionValueHolderTest>>testRemoveOne [
+{ #category : #tests }
+CollectionValueHolderTest >> testRemoveOne [
 	withItems
 		whenRemovedDo:
 			[ :removedValue :ann | 

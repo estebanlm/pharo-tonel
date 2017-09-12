@@ -1,12 +1,7 @@
-Extension {
-	#name : #Slot
-}
+Extension { #name : #Slot }
 
-{
-	#category : #'*OpalTools',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-Slot>>gtInspectorUsersIn: composite [
+{ #category : #'*OpalTools' }
+Slot >> gtInspectorUsersIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	| users |
 	users := self usingMethods.

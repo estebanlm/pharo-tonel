@@ -1,45 +1,29 @@
-"
-
-"
 Class {
 	#name : #GLMBrickMorphWrapper,
 	#superclass : #GLMBrickGeneralWrapper,
-	#category : #Glamour-Morphic-Brick-Layouts-Utils,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Layouts-Utils
 }
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickMorphWrapper>>hState [
+{ #category : #api }
+GLMBrickMorphWrapper >> hState [
 
 	^ GLMBrickLayoutDummState new
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickMorphWrapper>>isBrick [
+{ #category : #api }
+GLMBrickMorphWrapper >> isBrick [
 
 	^ false
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickMorphWrapper>>subbricks [
+{ #category : #api }
+GLMBrickMorphWrapper >> subbricks [
 
 	^ self brick submorphs
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickMorphWrapper>>vState [
+{ #category : #api }
+GLMBrickMorphWrapper >> vState [
 
 	^ GLMBrickLayoutDummState new
 ]

@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'varIndex'
 	],
-	#category : #NECompletion-Model,
-	#timestamp : '<historical>'
+	#category : #NECompletion-Model
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECInstVarTypeGuesser>>methodRefs [
+{ #category : #public }
+NECInstVarTypeGuesser >> methodRefs [
 	| theClass selectors |
 	theClass := receiverClass classThatDefinesInstanceVariable: variableName.
 	theClass ifNil: [ ^ nil ].
@@ -24,21 +20,15 @@ NECInstVarTypeGuesser>>methodRefs [
 		RGMethodDefinition realClass: theClass selector: each]
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECInstVarTypeGuesser>>popIntoReceiverVariable: offset  [
+{ #category : #'bytecode decoding' }
+NECInstVarTypeGuesser >> popIntoReceiverVariable: offset [ 
 	varIndex = offset 
 		ifTrue: [ found := true ]
 		ifFalse: [ self reset ]
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECInstVarTypeGuesser>>prepare: aCompiledMethod  [
+{ #category : #'bytecode decoding' }
+NECInstVarTypeGuesser >> prepare: aCompiledMethod [ 
 	| theClass |
 	super prepare: aCompiledMethod.
 	theClass := aCompiledMethod realClass.

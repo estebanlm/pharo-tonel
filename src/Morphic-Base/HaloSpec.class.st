@@ -11,39 +11,26 @@ Class {
 		'color',
 		'iconSymbol'
 	],
-	#category : #Morphic-Base-Widgets,
-	#timestamp : 'kfr 10/27/2003 16:23'
+	#category : #Morphic-Base-Widgets
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloSpec>>addHandleSelector [
+{ #category : #actions }
+HaloSpec >> addHandleSelector [
 	^ addHandleSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloSpec>>color [
+{ #category : #accessing }
+HaloSpec >> color [
 	^ color
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloSpec>>horizontalPlacement [
+{ #category : #accessing }
+HaloSpec >> horizontalPlacement [
 	^ horizontalPlacement
 ]
 
-{
-	#category : #setter,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloSpec>>horizontalPlacement: hp verticalPlacement: vp color: col iconSymbol: is addHandleSelector: sel [
+{ #category : #setter }
+HaloSpec >> horizontalPlacement: hp verticalPlacement: vp color: col iconSymbol: is addHandleSelector: sel [
 	horizontalPlacement := hp.
 	verticalPlacement := vp.
 	color:= col.
@@ -51,29 +38,20 @@ HaloSpec>>horizontalPlacement: hp verticalPlacement: vp color: col iconSymbol: i
 	addHandleSelector := sel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloSpec>>iconSymbol [
+{ #category : #accessing }
+HaloSpec >> iconSymbol [
 	^ iconSymbol
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloSpec>>printOn: aStream [
+{ #category : #printing }
+HaloSpec >> printOn: aStream [
 	"Add a textual printout representing the receiver to a stream"
 
 	super printOn: aStream.
 	aStream nextPutAll: ' (', addHandleSelector asString, ' ', iconSymbol asString, ')'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-HaloSpec>>verticalPlacement [
+{ #category : #accessing }
+HaloSpec >> verticalPlacement [
 	^ verticalPlacement
 ]

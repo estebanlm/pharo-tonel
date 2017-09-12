@@ -1,12 +1,7 @@
-Extension {
-	#name : #UIManager
-}
+Extension { #name : #UIManager }
 
-{
-	#category : #'*Regex-Core',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-UIManager>>request: aTitleString regex: initialRegexString [
+{ #category : #'*Regex-Core' }
+UIManager >> request: aTitleString regex: initialRegexString [
 	"Prompt the user for a valid regex.
 	Return nil on cancel or a valid RxMatcher"
 	| regex |

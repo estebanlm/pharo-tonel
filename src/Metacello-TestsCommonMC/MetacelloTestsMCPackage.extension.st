@@ -1,34 +1,23 @@
-Extension {
-	#name : #MetacelloTestsMCPackage
-}
+Extension { #name : #MetacelloTestsMCPackage }
 
-{
-	#category : #'*metacello-testscommonmc',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloTestsMCPackage>>packageInfo [
+{ #category : #'*metacello-testscommonmc' }
+MetacelloTestsMCPackage >> packageInfo [
 	"Aiming for speeding up the running of the tests"
 
 	^ MetacelloTestsPackageSet named: name
 
 ]
 
-{
-	#category : #'*metacello-testscommonmc',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloTestsMCPackage>>packageSet [
+{ #category : #'*metacello-testscommonmc' }
+MetacelloTestsMCPackage >> packageSet [
 	"Aiming for speeding up the running of the tests"
 
 	^ MetacelloTestsPackageSet named: name
 
 ]
 
-{
-	#category : #'*metacello-testscommonmc',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloTestsMCPackage>>species [
+{ #category : #'*metacello-testscommonmc' }
+MetacelloTestsMCPackage >> species [
 	^ MCPackage
 
 ]

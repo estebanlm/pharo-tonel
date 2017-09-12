@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #KomitterUI,
 	#superclass : #ComposableModel,
@@ -22,15 +19,11 @@ Class {
 	#classInstVars : [
 		'manageRemotesIcon'
 	],
-	#category : #Komitter-UI,
-	#timestamp : ''
+	#category : #Komitter-UI
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI class>>defaultSpec [
+{ #category : #specs }
+KomitterUI class >> defaultSpec [
 	<spec: #default>
 
 	^ SpecLayout composed
@@ -65,55 +58,37 @@ KomitterUI class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI class>>historyIcon [
+{ #category : #icons }
+KomitterUI class >> historyIcon [
 	^ self iconNamed: #historyIcon
 ]
 
-{
-	#category : #private-icons,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI class>>historyIconData [
+{ #category : #private-icons }
+KomitterUI class >> historyIconData [
 
 	^ #(0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4286673726 4286673726 4286673726 4286673726 4286673726 0 0 0 4278217148 4278217148 4278217148 4278217148 4286673726 4286673726 0 0 4288516712 4294967295 4294967295 4294967295 4294967295 4286673726 4286673726 4278217148 4286104319 4286104319 4286104319 4278217148 4294967295 4288516712 4284839308 0 4288516712 4294967295 4294967295 4294967295 4294967295 4294967295 4294967295 4278217148 4286104319 4286104319 4286104319 4278217148 4294967295 4288516712 4284839308 0 4288253803 4294967295 4291942109 4291482074 4294967295 4294967295 4294967295 4278217148 4286104319 4286104319 4286104319 4278217148 4294967295 4288253803 4284839308 0 4287925358 4294967295 4294967295 4294967295 4290759126 4290759126 4294967295 4278217148 4286038527 4286038527 4286039039 4278217148 4294967295 4287925358 4284707465 0 4287465586 4294705151 4291942109 4291482074 4294705151 4294705151 4294705151 4278216120 4285971967 4285971967 4285971967 4278216633 4294705151 4287465586 4284444294 0 4287005814 4294376959 4294376959 4294376959 4290759126 4290759126 4294376959 4278215349 4285840127 4285840127 4285840127 4278215862 4294376959 4287005814 4284115330 0 4286480763 4294114047 4291942109 4291482074 4294114047 4294114047 4294114047 4278214064 4285708287 4285643519 4285708799 4278214319 4294114047 4286480763 4283786365 0 4286086271 4293785343 4293785343 4293785343 4290759126 4290759126 4293785343 4278213034 4285641983 4285641983 4285641983 4278213034 4293785343 4286086271 4283391608 0 4285626499 4293522687 4293522687 4293522687 4293522687 4293522687 4293522687 4278211492 4285444351 4285378815 4285378815 4278212003 4293457151 4285626499 4283062642 0 4285298055 4285298055 4285298055 4285298055 4285298055 4293325311 4293325311 4278210466 4285116671 4285116671 4285181951 4278210465 4285298055 4285298055 4282733421 0 0 4282207077 4282207077 4282207077 4285035401 4285035401 4285035401 4278209949 4284918783 4284786943 4284787455 4278209949 4282141286 4282207077 4282207078 0 0 0 0 0 4282141542 4282009699 4282009699 4278209949 4284721919 4278209949 4284525311 4278209949 0 0 0 0 0 0 0 0 0 0 0 4278209949 4278209949 0 4278209949 4278209949 0 0 0 0 0 0 0 0 0 0 0 0 4278209949 0 0 4278209949 0 0 0)
 ]
 
-{
-	#category : #private-icons,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI class>>manageRemotesData [
+{ #category : #private-icons }
+KomitterUI class >> manageRemotesData [
 
 	^ #(0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4289496358 4289430823 0 0 0 0 0 0 0 0 0 0 0 0 0 4288970530 4294967295 4294957713 4289035810 0 0 0 0 0 0 0 0 4290811960 4290811960 4292065140 4288509724 4294832859 4294957713 4291666516 4289035810 0 0 0 0 0 0 0 4290549045 4294967295 4294957713 4287918102 4294832859 4294957713 4291666516 4287983638 0 0 0 0 0 0 0 4290285617 4294832859 4294957713 4287523346 4294832859 4294957713 4291666516 4287523089 0 0 0 0 0 0 0 4289956651 4294832859 4294957713 4291473003 4287194382 4294957713 4291666516 4287194382 4290811960 0 0 0 0 0 0 4289561893 4294832859 4294957713 4289562149 0 0 4287194382 4287194382 4294832859 4288706584 0 0 0 0 0 4289232928 4294832859 4294957713 4290946659 0 0 0 4290811960 4294832859 4294957713 4288706584 0 0 0 0 0 4288903963 4294957713 4289496358 4289430823 0 0 4290482995 4294832859 4294957713 4288706584 0 0 0 0 0 0 4290617694 4288970530 4294967295 4294957713 4289035810 4290022444 4294832859 4294957713 4288706584 0 0 0 0 0 0 0 4288509724 4294832859 4294957713 4291666516 4289035810 4294832859 4294957713 4288706584 0 0 0 0 0 0 0 4287918102 4294832859 4294957713 4291666516 4287983638 4294832859 4294957713 4288706584 0 0 0 0 0 0 0 4287523346 4294832859 4294957713 4291666516 4287523089 4288706584 4288706584 4288706584 0 0 0 0 0 0 0 0 4287194382 4294957713 4291666516 4287194382 0 0 0 0 0 0 0 0 0 0 0 0 0 4287194382 4287194382 0 0 0 0 0 0 0 0 0 0 0 0)
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI class>>manageRemotesIcon [
+{ #category : #icons }
+KomitterUI class >> manageRemotesIcon [
 
 	^ manageRemotesIcon ifNil: [ manageRemotesIcon := Smalltalk ui icons form16x16FromContents: self manageRemotesData ]
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI class>>taskbarIconName [
+{ #category : #icons }
+KomitterUI class >> taskbarIconName [
 
 	^ Komitter taskbarIconName
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>addRoot: aPackage [
+{ #category : #api }
+KomitterUI >> addRoot: aPackage [
 	| aPackageNode |
 	
 	aPackageNode := KomitTreeBuilder buildRootForPackage: aPackage.
@@ -123,45 +98,30 @@ KomitterUI>>addRoot: aPackage [
 		sorted)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>author [
+{ #category : #accessing }
+KomitterUI >> author [
 	^ author
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>authorName [
+{ #category : #accessing }
+KomitterUI >> authorName [
 	^ authorName
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>cancel [
+{ #category : #api }
+KomitterUI >> cancel [
 
 	message accept.
 	Komitter lastMessage: message text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>checkCommit [
+{ #category : #accessing }
+KomitterUI >> checkCommit [
 	^ checkCommit
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>chooseFromPreviousMessages [
+{ #category : #private }
+KomitterUI >> chooseFromPreviousMessages [
 	| list index |
 	
 	list := MCSaveVersionDialog previousMessages collect: [:s | s truncateWithElipsisTo: 80 ].
@@ -179,20 +139,14 @@ KomitterUI>>chooseFromPreviousMessages [
 		takeKeyboardFocus
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>commitMessage [
+{ #category : #accessing }
+KomitterUI >> commitMessage [
 
 	^ commitMessage
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>commitableEntities [
+{ #category : #private }
+KomitterUI >> commitableEntities [
 	| map |
 	
 	map := Dictionary new.
@@ -207,37 +161,25 @@ KomitterUI>>commitableEntities [
 	^ map
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>diff [
+{ #category : #accessing }
+KomitterUI >> diff [
 	^ diff
 ]
 
-{
-	#category : #private-icons,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>historyIcon [
+{ #category : #private-icons }
+KomitterUI >> historyIcon [
 
 	^ self class historyIcon
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>initialExtent [
+{ #category : #api }
+KomitterUI >> initialExtent [
 
 	^ (980@740)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>initialize [
+{ #category : #initialization }
+KomitterUI >> initialize [
 
 	model := nil asValueHolder.
 	canCommit := false asValueHolder.
@@ -250,11 +192,8 @@ KomitterUI>>initialize [
 			self populateRemotes ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>initializeDialogWindow: aWindow [
+{ #category : #initialization }
+KomitterUI >> initializeDialogWindow: aWindow [
 
 	self bindKeyCombination: (Character cr control unix | $m control mac) toAction: [ aWindow triggerOkAction ].
 
@@ -271,11 +210,8 @@ KomitterUI>>initializeDialogWindow: aWindow [
 		add: previousMessages
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>initializeLatelyPresenter [
+{ #category : #initialization }
+KomitterUI >> initializeLatelyPresenter [
 	tree
 		whenHighlightedItemChanged:
 			[ :node | 
@@ -285,11 +221,8 @@ KomitterUI>>initializeLatelyPresenter [
 	tree whenSelectedItemsChanged: [ self updateRemotes ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>initializeWidgets [
+{ #category : #initialization }
+KomitterUI >> initializeWidgets [
 
 	tree := self newTree.
 	diff := self instantiate: DiffModel.
@@ -353,75 +286,51 @@ KomitterUI>>initializeWidgets [
 		self updateRemotes ].
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>komit [
+{ #category : #api }
+KomitterUI >> komit [
 	"Gather all the data and create a Komit object out of them"
 	
 	^ remotes selectedItem komitOn: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>leftTextFor: aKOObject [
+{ #category : #private }
+KomitterUI >> leftTextFor: aKOObject [
 
 	aKOObject ifNil: [ ^ '' ].
 	^ aKOObject koSourceText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>manageRemotes [
+{ #category : #accessing }
+KomitterUI >> manageRemotes [
 	^ manageRemotes
 ]
 
-{
-	#category : #private-icons,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>manageRemotesIcon [
+{ #category : #private-icons }
+KomitterUI >> manageRemotesIcon [
 
 	^ self class manageRemotesIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>message [
+{ #category : #accessing }
+KomitterUI >> message [
 
 	^ message
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>model [
+{ #category : #api }
+KomitterUI >> model [
 
 	^ model value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>model: aModel [
+{ #category : #api }
+KomitterUI >> model: aModel [
 
 	model value: aModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>newKomitFor: aRemote [
+{ #category : #api }
+KomitterUI >> newKomitFor: aRemote [
 	"Gather all the data and create a Komit object out of them"
 	
 	^ Komit new
@@ -434,11 +343,8 @@ KomitterUI>>newKomitFor: aRemote [
 		yourself
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>newSliceFor: aRemote [
+{ #category : #api }
+KomitterUI >> newSliceFor: aRemote [
 	"Gather all the data and create a Komit object out of them"
 	
 	^ Slice new
@@ -451,11 +357,8 @@ KomitterUI>>newSliceFor: aRemote [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>openRemoteManager [
+{ #category : #private }
+KomitterUI >> openRemoteManager [
 	| view |
 	
 	view := PackageRemotesManager new packages: (tree roots collect: [ :e | self remoteNodeFor: e ]).
@@ -464,11 +367,8 @@ KomitterUI>>openRemoteManager [
 		modalRelativeTo: self window
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>populateRemotes [
+{ #category : #initialization }
+KomitterUI >> populateRemotes [
 	
 	remotes 
 		items: self model remotes asOrderedCollection;
@@ -476,11 +376,8 @@ KomitterUI>>populateRemotes [
 		iconHolder: [ :each | each icon ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>populateRemotesFor: aCollection [
+{ #category : #initialization }
+KomitterUI >> populateRemotesFor: aCollection [
 	
 	remotes 
 		items: (self model remotesFor: aCollection) asOrderedCollection;
@@ -488,11 +385,8 @@ KomitterUI>>populateRemotesFor: aCollection [
 		iconHolder: [ :each | each icon ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>populateTreeFor: newModel [
+{ #category : #initialization }
+KomitterUI >> populateTreeFor: newModel [
 	| roots |
 	roots := (KomitTreeBuilder rootsForStagingArea: newModel stagingArea) asOrderedCollection
 		sorted.
@@ -506,20 +400,14 @@ KomitterUI>>populateTreeFor: newModel [
 	canCommit value: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>previousMessages [
+{ #category : #accessing }
+KomitterUI >> previousMessages [
 
 	^ previousMessages
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>refreshDiffForItem: item [
+{ #category : #private }
+KomitterUI >> refreshDiffForItem: item [
 	diff
 		contextClass:
 			(item
@@ -539,39 +427,27 @@ KomitterUI>>refreshDiffForItem: item [
 				ifFalse: [ diff showBoth ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>remoteLabel [
+{ #category : #accessing }
+KomitterUI >> remoteLabel [
 
 	^ remoteLabel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>remoteNodeFor: e [
+{ #category : #private }
+KomitterUI >> remoteNodeFor: e [
 
 	^ TreeNodeModel new
 		content: e content package workingCopy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>remotes [
+{ #category : #accessing }
+KomitterUI >> remotes [
 
 	^ remotes
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>removeRoot: aKomitPackage [
+{ #category : #api }
+KomitterUI >> removeRoot: aKomitPackage [
 	| roots highlight |
 	
 	highlight := tree highlightedItem.
@@ -586,47 +462,32 @@ KomitterUI>>removeRoot: aKomitPackage [
 	highlight takeHighlight
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>rightTextFor: aKOObject [
+{ #category : #private }
+KomitterUI >> rightTextFor: aKOObject [
 
 	aKOObject ifNil: [ ^ '' ].
 	^ aKOObject koDestinationText
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>roots: aCollection [
+{ #category : #api }
+KomitterUI >> roots: aCollection [
 
 	tree roots: aCollection
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>title [
+{ #category : #api }
+KomitterUI >> title [
 
 	^ 'Commit changes'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>tree [
+{ #category : #accessing }
+KomitterUI >> tree [
 	^ tree
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>uncommittedCommitableEntitied [
+{ #category : #private }
+KomitterUI >> uncommittedCommitableEntitied [
 	| map |
 	
 	map := Dictionary new.
@@ -642,11 +503,8 @@ KomitterUI>>uncommittedCommitableEntitied [
 	^ map
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>updateRemotes [
+{ #category : #private }
+KomitterUI >> updateRemotes [
 	| roots |
 	
 	roots := tree roots 
@@ -658,11 +516,8 @@ KomitterUI>>updateRemotes [
 		ifNotEmpty: [ self populateRemotesFor: roots ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>validate [
+{ #category : #api }
+KomitterUI >> validate [
 
 	self commitableEntities 
 		ifEmpty: [ 
@@ -675,11 +530,8 @@ KomitterUI>>validate [
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterUI>>windowIsClosing [
+{ #category : #private }
+KomitterUI >> windowIsClosing [
 	super windowIsClosing.
 	self model unsubscribe
 ]

@@ -8,47 +8,31 @@ Class {
 	#instVars : [
 		'nextNodes'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : 'ChristopheDemarey 3/26/2015 11:49'
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalNodeWithNext>>initialize [
+{ #category : #initialization }
+MalNodeWithNext >> initialize [
 	super initialize.
 	nextNodes := OrderedCollection new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalNodeWithNext>>isLeaf [
+{ #category : #testing }
+MalNodeWithNext >> isLeaf [
 	^ self nextNodes isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalNodeWithNext>>nextNodes [
+{ #category : #accessing }
+MalNodeWithNext >> nextNodes [
 	^ nextNodes
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalNodeWithNext>>nextNodes: aNodeList [
+{ #category : #setting }
+MalNodeWithNext >> nextNodes: aNodeList [
 	nextNodes := aNodeList
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalNodeWithNext>>to: targetNode [
+{ #category : #adding }
+MalNodeWithNext >> to: targetNode [
 	self nextNodes add: targetNode 
 ]

@@ -13,68 +13,46 @@ Class {
 		'subscriber',
 		'action'
 	],
-	#category : #Announcements-Core,
-	#timestamp : 'IgorStasenko 3/12/2011 20:23'
+	#category : #Announcements-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSubscription>>action [
+{ #category : #accessing }
+AnnouncementSubscription >> action [
 
 	^ action
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSubscription>>action: anObject [
+{ #category : #accessing }
+AnnouncementSubscription >> action: anObject [
 
 	action := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSubscription>>announcementClass [
+{ #category : #accessing }
+AnnouncementSubscription >> announcementClass [
 
 	^ announcementClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSubscription>>announcementClass: anObject [
+{ #category : #accessing }
+AnnouncementSubscription >> announcementClass: anObject [
 
 	announcementClass := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSubscription>>announcer [
+{ #category : #accessing }
+AnnouncementSubscription >> announcer [
 
 	^ announcer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSubscription>>announcer: anAnnouncer [
+{ #category : #accessing }
+AnnouncementSubscription >> announcer: anAnnouncer [
 	announcer := anAnnouncer
 ]
 
-{
-	#category : #announcing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSubscription>>deliver: anAnnouncement [
+{ #category : #announcing }
+AnnouncementSubscription >> deliver: anAnnouncement [
 	" deliver an announcement to receiver. In case of failure, it will be handled in separate process"
 
 	^ (self handlesAnnouncement: anAnnouncement ) ifTrue: [
@@ -82,28 +60,19 @@ AnnouncementSubscription>>deliver: anAnnouncement [
 			on: UnhandledError fork: [:ex | ex pass ]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSubscription>>handlesAnnouncement: anAnnouncement [
+{ #category : #testing }
+AnnouncementSubscription >> handlesAnnouncement: anAnnouncement [
 
 	^ announcementClass handlesAnnouncement: anAnnouncement
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSubscription>>makeStrong [
+{ #category : #converting }
+AnnouncementSubscription >> makeStrong [
 	" i am already strong. Do nothing "
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSubscription>>makeWeak [
+{ #category : #converting }
+AnnouncementSubscription >> makeWeak [
 	
 	action isBlock ifTrue: [
 		self error: 'Not currently available due to missing ephemerons support'
@@ -117,27 +86,18 @@ AnnouncementSubscription>>makeWeak [
 			announcementClass: announcementClass)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSubscription>>subscriber [
+{ #category : #accessing }
+AnnouncementSubscription >> subscriber [
 	^ subscriber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSubscription>>subscriber: aSubscriber [
+{ #category : #accessing }
+AnnouncementSubscription >> subscriber: aSubscriber [
 	subscriber := aSubscriber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSubscription>>valuable: aValuable [
+{ #category : #accessing }
+AnnouncementSubscription >> valuable: aValuable [
 	"Used when subscriber should be extracted from valuable object"
 	self action:  aValuable.
 	self subscriber: aValuable receiver.

@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'classOrMetaclass'
 	],
-	#category : #Rubric-Editing-Code,
-	#timestamp : 'FranckWarlouzet 7/29/2015 12:56'
+	#category : #Rubric-Editing-Code
 }
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode class>>editingModeMenuOn: aBuilder [
+{ #category : #menu }
+RubSmalltalkCodeMode class >> editingModeMenuOn: aBuilder [
 	"Specify the menu used to select an editing mode"
 
 	<contextMenu>
@@ -24,27 +20,18 @@ RubSmalltalkCodeMode class>>editingModeMenuOn: aBuilder [
 		action: [:model | model textArea editingMode: self new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode class>>label [
+{ #category : #accessing }
+RubSmalltalkCodeMode class >> label [
 	^ 'Smalltalk code'
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode class>>menuKeyword [
+{ #category : #menu }
+RubSmalltalkCodeMode class >> menuKeyword [
 	^ 'RubSmalltalkCodeMenu'
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode class>>menuOn: aBuilder [
+{ #category : #menu }
+RubSmalltalkCodeMode class >> menuOn: aBuilder [
 	"Specify the menu used when writing code."
 
 	<contextMenu>
@@ -134,29 +121,20 @@ RubSmalltalkCodeMode class>>menuOn: aBuilder [
 						iconName: #smallCancelIcon ] ]
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode>>bindingOf: varName [
+{ #category : #shout }
+RubSmalltalkCodeMode >> bindingOf: varName [
 	^ self model bindingOf: varName
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode>>classOrMetaClass: aBehavior [
+{ #category : #shout }
+RubSmalltalkCodeMode >> classOrMetaClass: aBehavior [
 	"set the classOrMetaClass in the receiver's styler to aBehavior"
 	classOrMetaclass := aBehavior.
 	self updateStyler
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode>>formatMethodCode [
+{ #category : #initialize-release }
+RubSmalltalkCodeMode >> formatMethodCode [
 	| source tree formatted |
 	source := self textArea text asString.
 	tree := RBParser parseMethod: source onError: [ :msg :pos | ^ self ].
@@ -166,98 +144,68 @@ RubSmalltalkCodeMode>>formatMethodCode [
 	self textArea updateTextWith: formatted
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode>>hasBindingOf: aString [
+{ #category : #shout }
+RubSmalltalkCodeMode >> hasBindingOf: aString [
 	" For the shout styler "
 	^ self model notNil and: [ self model hasBindingOf: aString ]
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode>>hasBindingThatBeginsWith: aString  [
+{ #category : #shout }
+RubSmalltalkCodeMode >> hasBindingThatBeginsWith: aString [ 
 	" For the shout styler "
 	^ self model notNil and: [ self model hasBindingThatBeginsWith: aString ]
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode>>maxFormatterLineLength [
+{ #category : #formatting }
+RubSmalltalkCodeMode >> maxFormatterLineLength [
 	^ self textArea wrapped
 		ifTrue: [ (self textArea innerBounds width / 9) integerPart ]
 		ifFalse: [ 70 ]
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode>>shoutAboutToStyle: myShoutStyler [
+{ #category : #shout }
+RubSmalltalkCodeMode >> shoutAboutToStyle: myShoutStyler [
 	^ self model isNil
 		or: [ 
 			(self model interactionModel respondsTo: #shoutAboutToStyle:) not
 				or: [ self model interactionModel shoutAboutToStyle: self ] ] 
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode>>shoutStyler [
+{ #category : #shout }
+RubSmalltalkCodeMode >> shoutStyler [
 	^ self textArea decoratorNamed: #shoutStyler
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode>>updateStyler [
+{ #category : #shout }
+RubSmalltalkCodeMode >> updateStyler [
 
 	self textArea ifNil: [ ^ self ].
 	self textArea shoutStyler ifNotNil: [ :s | s classOrMetaClass: classOrMetaclass ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode>>updateTextAreaWhenPlugged [
+{ #category : #initialize-release }
+RubSmalltalkCodeMode >> updateTextAreaWhenPlugged [
 	self withShoutStyler.
 	super updateTextAreaWhenPlugged
 
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode>>updateTextAreaWhenUnplugged [
+{ #category : #initialize-release }
+RubSmalltalkCodeMode >> updateTextAreaWhenUnplugged [
 	self textArea withoutShoutStyler.
 	super updateTextAreaWhenUnplugged
 
 
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode>>withShoutStyler [
+{ #category : #shout }
+RubSmalltalkCodeMode >> withShoutStyler [
 	self textArea withDecoratorNamed: #shoutStyler.
 	self updateStyler.
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSmalltalkCodeMode>>withoutShoutStyler [
+{ #category : #shout }
+RubSmalltalkCodeMode >> withoutShoutStyler [
 	self textArea withoutDecoratorNamed: #shoutStyler
 ]

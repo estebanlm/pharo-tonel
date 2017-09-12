@@ -4,41 +4,28 @@ Handling changes
 Class {
 	#name : #GoferChanges,
 	#superclass : #GoferWorking,
-	#category : #Gofer-Core,
-	#timestamp : 'TorstenBergmann 2/5/2014 09:33'
+	#category : #Gofer-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferChanges>>addReference: aReference [
+{ #category : #private }
+GoferChanges >> addReference: aReference [
 	super addReference: aReference.
 	self model operations 
 		addAll: (self patchsetOf: aReference) operations
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferChanges>>defaultModel [
+{ #category : #private }
+GoferChanges >> defaultModel [
 	^ MCPatch operations: OrderedCollection new
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferChanges>>execute [
+{ #category : #running }
+GoferChanges >> execute [
 	^ self model
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferChanges>>patchsetOf: aReference [
+{ #category : #queries }
+GoferChanges >> patchsetOf: aReference [
 	"Answer the source snapshot of aReference."
 	
 	| source target |
@@ -47,21 +34,15 @@ GoferChanges>>patchsetOf: aReference [
 	^ target patchRelativeToBase: source
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferChanges>>sourceSnapshotOf: aReference [
+{ #category : #queries }
+GoferChanges >> sourceSnapshotOf: aReference [
 	"Answer the source snapshot of aReference."
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferChanges>>targetSnapshotOf: aReference [
+{ #category : #queries }
+GoferChanges >> targetSnapshotOf: aReference [
 	"Answer the source snapshot of aReference."
 	
 	self subclassResponsibility

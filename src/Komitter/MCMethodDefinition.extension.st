@@ -1,21 +1,13 @@
-Extension {
-	#name : #MCMethodDefinition
-}
+Extension { #name : #MCMethodDefinition }
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCMethodDefinition>>addOperation: aMCAddition on: aKOClass  [
+{ #category : #'*Komitter-UI' }
+MCMethodDefinition >> addOperation: aMCAddition [ on: aKOClass 
 	
 	aKOClass addMethodDefinition: aMCAddition
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCMethodDefinition>>koClass [
+{ #category : #'*Komitter-UI' }
+MCMethodDefinition >> koClass [
 	^ self className 
 		ifNil: [ nil ] 
 		ifNotNil: [ :cname |

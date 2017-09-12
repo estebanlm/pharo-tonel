@@ -4,33 +4,23 @@ Floating point types are imprecise. Using the operators = or ~= might not yield 
 Class {
 	#name : #RBFloatEqualityComparisonRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:42'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBFloatEqualityComparisonRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBFloatEqualityComparisonRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'FloatEqualityComparisonRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBFloatEqualityComparisonRule>>group [
+{ #category : #accessing }
+RBFloatEqualityComparisonRule >> group [
 	^ 'Potential Bugs'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBFloatEqualityComparisonRule>>initialize [
+{ #category : #initialization }
+RBFloatEqualityComparisonRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyOf: #(
@@ -41,10 +31,7 @@ RBFloatEqualityComparisonRule>>initialize [
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBFloatEqualityComparisonRule>>name [
+{ #category : #accessing }
+RBFloatEqualityComparisonRule >> name [
 	^ 'Float equality comparison'
 ]

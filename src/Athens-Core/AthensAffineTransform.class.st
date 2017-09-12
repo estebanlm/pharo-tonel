@@ -15,33 +15,23 @@ Class {
 		'sy',
 		'y'
 	],
-	#category : #Athens-Core-Matrices,
-	#timestamp : '<historical>'
+	#category : #Athens-Core-Matrices
 }
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>clearTranslation [
+{ #category : #transformations }
+AthensAffineTransform >> clearTranslation [
 	"reset a translation from matrix, leaving only scale and rotation"
 	
 	x := y := 0.0
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>initialize [
+{ #category : #initialize-release }
+AthensAffineTransform >> initialize [
 	self loadIdentity
 ]
 
-{
-	#category : #vector-transform,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>inverseTransform: aPoint  [
+{ #category : #vector-transform }
+AthensAffineTransform >> inverseTransform: aPoint [ 
 "  (we assume matrix is never degenerate)"
 	| px py y0 x0 |
 	
@@ -86,11 +76,8 @@ AthensAffineTransform>>inverseTransform: aPoint  [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>inverseTransformHalfPi: aPoint [
+{ #category : #private }
+AthensAffineTransform >> inverseTransformHalfPi: aPoint [
 	"assume sx,sy = 0
 		
 	px := y0*shx + x.
@@ -109,11 +96,8 @@ AthensAffineTransform>>inverseTransformHalfPi: aPoint [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>inverseTransformPiOrZero: aPoint [
+{ #category : #private }
+AthensAffineTransform >> inverseTransformPiOrZero: aPoint [
 	"assume shx,shy = 0
 		
 	px := x0*sx + x.
@@ -132,11 +116,8 @@ AthensAffineTransform>>inverseTransformPiOrZero: aPoint [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>inverted [
+{ #category : #accessing }
+AthensAffineTransform >> inverted [
 	"answer an inverse transformation of receiver"
 	| det |
 	det := sx * sy - (shx * shy).
@@ -150,11 +131,8 @@ AthensAffineTransform>>inverted [
 		yourself
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>loadAffineTransform: m [
+{ #category : #transformations }
+AthensAffineTransform >> loadAffineTransform: m [
 
 	x := m x.
 	y := m y.
@@ -164,11 +142,8 @@ AthensAffineTransform>>loadAffineTransform: m [
 	shy := m shy.
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>loadIdentity [
+{ #category : #transformations }
+AthensAffineTransform >> loadIdentity [
 	"initialize with identity transform"
 	sx := sy := 1.0.
 	shx := shy := x := y := 0.0.
@@ -176,11 +151,8 @@ AthensAffineTransform>>loadIdentity [
 	
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>multiplyBy: m [
+{ #category : #transformations }
+AthensAffineTransform >> multiplyBy: m [
 
 	"multiply receiver by given affine matrix"
 "
@@ -208,31 +180,22 @@ AthensAffineTransform>>multiplyBy: m [
 	y := ny.		
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>restoreAfter: aBlock [
+{ #category : #transformations }
+AthensAffineTransform >> restoreAfter: aBlock [
 	|previous|
 	previous := self copy.
 	aBlock ensure: [ 	self loadAffineTransform: previous ]
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>rotateByDegrees: angle [
+{ #category : #transformations }
+AthensAffineTransform >> rotateByDegrees: angle [
 
 
 	^ self rotateByRadians: angle degreesToRadians
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>rotateByRadians: angle [
+{ #category : #transformations }
+AthensAffineTransform >> rotateByRadians: angle [
 
 	"multiply receiver by rotation matrix
 
@@ -257,19 +220,13 @@ AthensAffineTransform>>rotateByRadians: angle [
 	sy := newSy.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>scale [
+{ #category : #accessing }
+AthensAffineTransform >> scale [
 	^ sx@sy
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>scaleBy: factor [
+{ #category : #transformations }
+AthensAffineTransform >> scaleBy: factor [
 
 	"multiply receiver by uniform scale matrix
 
@@ -291,11 +248,8 @@ AthensAffineTransform>>scaleBy: factor [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>scaleX: fx Y: fy [
+{ #category : #transformations }
+AthensAffineTransform >> scaleX: fx Y: fy [
 
 	"multiply receiver by scale matrix
 
@@ -311,75 +265,48 @@ AthensAffineTransform>>scaleX: fx Y: fy [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>shx [
+{ #category : #accessing }
+AthensAffineTransform >> shx [
 	^ shx
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>shx: number [
+{ #category : #accessing }
+AthensAffineTransform >> shx: number [
 	shx := number
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>shy [
+{ #category : #accessing }
+AthensAffineTransform >> shy [
 	^ shy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>shy: number [
+{ #category : #accessing }
+AthensAffineTransform >> shy: number [
 	shy := number
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>sx [
+{ #category : #accessing }
+AthensAffineTransform >> sx [
 	^ sx
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>sx: number [
+{ #category : #accessing }
+AthensAffineTransform >> sx: number [
 	sx := number
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>sy [
+{ #category : #accessing }
+AthensAffineTransform >> sy [
 	^ sy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>sy: number [
+{ #category : #accessing }
+AthensAffineTransform >> sy: number [
 	sy := number
 ]
 
-{
-	#category : #vector-transform,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>transform: aPoint  [
+{ #category : #vector-transform }
+AthensAffineTransform >> transform: aPoint [ 
 	| px py |
 	
 	px := aPoint x.
@@ -389,31 +316,22 @@ AthensAffineTransform>>transform: aPoint  [
 		y: (shy*px + (sy*py) + y) 
 ]
 
-{
-	#category : #vector-transform,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>transformX: px Y: py [
+{ #category : #vector-transform }
+AthensAffineTransform >> transformX: px Y: py [
 	" transform x and y coordinates by receiver. Answer a Point"
 	^ Point 
 		x: (sx*px +(shx*py) + x)
 		y: (shy*px + (sy*py) + y) 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>translateBy: aPoint [
+{ #category : #transformations }
+AthensAffineTransform >> translateBy: aPoint [
 
 	^ self translateX: aPoint x Y: aPoint y
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>translateX: px Y: py [
+{ #category : #transformations }
+AthensAffineTransform >> translateX: px Y: py [
 
 
 " multiply receiver by translation matrix :
@@ -428,11 +346,8 @@ AthensAffineTransform>>translateX: px Y: py [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>translateX: px y: py [
+{ #category : #transformations }
+AthensAffineTransform >> translateX: px y: py [
 
 " multiply receiver by translation matrix :
 
@@ -446,28 +361,19 @@ AthensAffineTransform>>translateX: px y: py [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>translation [
+{ #category : #accessing }
+AthensAffineTransform >> translation [
 	^ x@y
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>translation: aPoint [
+{ #category : #accessing }
+AthensAffineTransform >> translation: aPoint [
 	x := aPoint x.
 	y := aPoint y.
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>transposed [
+{ #category : #transformations }
+AthensAffineTransform >> transposed [
 	
 	| s |
 	s := shx.
@@ -475,34 +381,22 @@ AthensAffineTransform>>transposed [
 	shy := s.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>x [
+{ #category : #accessing }
+AthensAffineTransform >> x [
 	^ x
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>x: number [
+{ #category : #accessing }
+AthensAffineTransform >> x: number [
 	x := number
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>y [
+{ #category : #accessing }
+AthensAffineTransform >> y [
 	^ y
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAffineTransform>>y: number [
+{ #category : #accessing }
+AthensAffineTransform >> y: number [
 	y := number
 ]

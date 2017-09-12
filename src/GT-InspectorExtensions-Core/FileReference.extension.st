@@ -1,20 +1,12 @@
-Extension {
-	#name : #FileReference
-}
+Extension { #name : #FileReference }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-FileReference>>gtDisplayOn: stream [
+{ #category : #'*GT-InspectorExtensions-Core' }
+FileReference >> gtDisplayOn: stream [
 	filesystem printPath: path on: stream
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-FileReference>>gtInspectorActionMaterializeFuel [
+{ #category : #'*GT-InspectorExtensions-Core' }
+FileReference >> gtInspectorActionMaterializeFuel [
 	<gtInspectorAction>
 	^ GLMGenericAction new
 		action: [ :composite | 
@@ -26,11 +18,8 @@ FileReference>>gtInspectorActionMaterializeFuel [
 		title: 'Materialize'
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-FileReference>>gtInspectorContentsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+FileReference >> gtInspectorContentsIn: composite [
 	<gtInspectorPresentationOrder: 5>
 	composite text
 			title: 'Contents';
@@ -52,11 +41,8 @@ FileReference>>gtInspectorContentsIn: composite [
 			when: [ self isFile ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-FileReference>>gtInspectorFuelIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+FileReference >> gtInspectorFuelIn: composite [
 	<gtInspectorPresentationOrder: 40>
 	"(FileSystem disk workingDirectory / 'GTtest.fuel') writeStreamDo: [ :stream |
 	FLSerializer newDefault
@@ -76,11 +62,8 @@ FLMaterializer materializeFromFileNamed: 'GTtest.fuel'"
 			when: [ self isFile and: [self extension = 'fuel' ] ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-FileReference>>gtInspectorGifIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+FileReference >> gtInspectorGifIn: composite [
 	<gtInspectorPresentationOrder: 0>
 	composite morph
 			title: 'Picture';
@@ -88,11 +71,8 @@ FileReference>>gtInspectorGifIn: composite [
 			when: [ self isFile and: [self mimeTypes notNil and: [ self mimeTypes first matches: ZnMimeType imageGif ] ] ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-FileReference>>gtInspectorItemsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+FileReference >> gtInspectorItemsIn: composite [
 	<gtInspectorPresentationOrder: 0>
 	^ composite fastTable 
 		title: 'Items';
@@ -133,11 +113,8 @@ FileReference>>gtInspectorItemsIn: composite [
 		act: [ :table | table update ] icon: GLMUIThemeExtraIcons glamorousRefresh entitled: 'Refresh'
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-FileReference>>gtInspectorJpegIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+FileReference >> gtInspectorJpegIn: composite [
 	<gtInspectorPresentationOrder: 0>
 	composite morph
 			title: 'Picture';
@@ -145,11 +122,8 @@ FileReference>>gtInspectorJpegIn: composite [
 			when: [ self isFile and: [self mimeTypes notNil and: [ self mimeTypes first matches: ZnMimeType imageJpeg ] ] ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-FileReference>>gtInspectorPngIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+FileReference >> gtInspectorPngIn: composite [
 	<gtInspectorPresentationOrder: 0>
 	composite morph
 			title: 'Picture';
@@ -157,11 +131,8 @@ FileReference>>gtInspectorPngIn: composite [
 			when: [ self isFile and: [ self mimeTypes notNil and: [ self mimeTypes first matches: ZnMimeType imagePng ] ] ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-FileReference>>gtInspectorStScriptIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+FileReference >> gtInspectorStScriptIn: composite [
 	<gtInspectorPresentationOrder: 0>
 	composite pharoScript
 			title: 'Script';
@@ -181,11 +152,8 @@ FileReference>>gtInspectorStScriptIn: composite [
 			when: [ self isFile and: [ self extension = 'st' or: [self extension = 'ph'] ] ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-FileReference>>gtInspectorZipItemsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+FileReference >> gtInspectorZipItemsIn: composite [
 	<gtInspectorPresentationOrder: 0>
 	^ composite table 
 		title: 'Items';

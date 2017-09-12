@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloVersionMethodSection,
 	#superclass : #MetacelloMethodSection,
@@ -10,25 +7,18 @@ Class {
 		'parent',
 		'methodSections'
 	],
-	#category : #Metacello-Core-Constructors,
-	#timestamp : ''
+	#category : #Metacello-Core-Constructors
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSection>>addMethodSection: methodSection [
+{ #category : #accessing }
+MetacelloVersionMethodSection >> addMethodSection: methodSection [
 
 	methodSection parent: self.
 	self methodSections add: methodSection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSection>>attributeOrPath [
+{ #category : #accessing }
+MetacelloVersionMethodSection >> attributeOrPath [
     ^ self parent == nil
         ifTrue: [ 
             self attributes size == 1
@@ -37,11 +27,8 @@ MetacelloVersionMethodSection>>attributeOrPath [
         ifFalse: [ self attributePath ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSection>>attributePath [
+{ #category : #accessing }
+MetacelloVersionMethodSection >> attributePath [
     | path |
     path := MetacelloMethodSectionPath with: self attributes.
     ^ self parent == nil
@@ -49,53 +36,35 @@ MetacelloVersionMethodSection>>attributePath [
         ifFalse: [ self parent attributePath , path ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSection>>block [
+{ #category : #accessing }
+MetacelloVersionMethodSection >> block [
 	^ block
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSection>>block: anObject [
+{ #category : #accessing }
+MetacelloVersionMethodSection >> block: anObject [
 	block := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSection>>methodSections [
+{ #category : #accessing }
+MetacelloVersionMethodSection >> methodSections [
 
 	methodSections ifNil: [ methodSections := OrderedCollection new ].
 	^methodSections
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSection>>parent [
+{ #category : #accessing }
+MetacelloVersionMethodSection >> parent [
 	^ parent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSection>>parent: anObject [
+{ #category : #accessing }
+MetacelloVersionMethodSection >> parent: anObject [
 	parent := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSection>>printOn: aStream [
+{ #category : #accessing }
+MetacelloVersionMethodSection >> printOn: aStream [
   aStream
     nextPutAll: self class name asString;
     nextPut: $(.
@@ -103,28 +72,19 @@ MetacelloVersionMethodSection>>printOn: aStream [
   aStream nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSection>>topParent [
+{ #category : #accessing }
+MetacelloVersionMethodSection >> topParent [
 	self parent == nil
 		ifTrue: [ ^ self ].
 	^ self parent topParent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSection>>versionSpec [
+{ #category : #accessing }
+MetacelloVersionMethodSection >> versionSpec [
 	^ versionSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSection>>versionSpec: anObject [
+{ #category : #accessing }
+MetacelloVersionMethodSection >> versionSpec: anObject [
 	versionSpec := anObject
 ]

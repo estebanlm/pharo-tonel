@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'instVar'
 	],
-	#category : #Tools-Test-Debugger,
-	#timestamp : 'TorstenBergmann 2/4/2014 20:46'
+	#category : #Tools-Test-Debugger
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-DynamicMessageImplementorTest>>testBinaryMessage [
+{ #category : #testing }
+DynamicMessageImplementorTest >> testBinaryMessage [
 
 	| messageImplementor sourceCode |		
 	
@@ -24,11 +20,8 @@ DynamicMessageImplementorTest>>testBinaryMessage [
 	self assert: sourceCode withSeparatorsCompacted equals: '+ anInteger self shouldBeImplemented.' withSeparatorsCompacted
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-DynamicMessageImplementorTest>>testConflictingArgumentNames [
+{ #category : #testing }
+DynamicMessageImplementorTest >> testConflictingArgumentNames [
 
 	| messageImplementor sourceCode |		
 	
@@ -37,11 +30,8 @@ DynamicMessageImplementorTest>>testConflictingArgumentNames [
 	self assert: sourceCode withSeparatorsCompacted equals: 'm1: anInteger m2: anInteger2 m3: anInteger3 self shouldBeImplemented.' withSeparatorsCompacted
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-DynamicMessageImplementorTest>>testGenerateGetter [
+{ #category : #testing }
+DynamicMessageImplementorTest >> testGenerateGetter [
 
 	| messageImplementor sourceCode |		
 	
@@ -54,11 +44,8 @@ DynamicMessageImplementorTest>>testGenerateGetter [
 		equals: 'instVar	^ instVar' withSeparatorsCompacted
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-DynamicMessageImplementorTest>>testGenerateSetter [
+{ #category : #testing }
+DynamicMessageImplementorTest >> testGenerateSetter [
 
 	| messageImplementor sourceCode |		
 	
@@ -71,11 +58,8 @@ DynamicMessageImplementorTest>>testGenerateSetter [
 		equals: 'instVar: anInteger instVar := anInteger' withSeparatorsCompacted
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-DynamicMessageImplementorTest>>testNonConflictingArgumentNames [
+{ #category : #testing }
+DynamicMessageImplementorTest >> testNonConflictingArgumentNames [
 
 	| messageImplementor sourceCode |		
 	
@@ -84,11 +68,8 @@ DynamicMessageImplementorTest>>testNonConflictingArgumentNames [
 	self assert: sourceCode withSeparatorsCompacted equals: 'm1: anInteger m2: aCharacter m3: aString self shouldBeImplemented.' withSeparatorsCompacted
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-DynamicMessageImplementorTest>>testOneArgumentNotMatchingAnInstanceVariable [
+{ #category : #testing }
+DynamicMessageImplementorTest >> testOneArgumentNotMatchingAnInstanceVariable [
 
 	| messageImplementor sourceCode |		
 	
@@ -97,11 +78,8 @@ DynamicMessageImplementorTest>>testOneArgumentNotMatchingAnInstanceVariable [
 	self assert: sourceCode withSeparatorsCompacted equals: 'm1: anInteger self shouldBeImplemented.' withSeparatorsCompacted
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-DynamicMessageImplementorTest>>testUnaryMessageNotMatchingAnInstanceVariable [
+{ #category : #testing }
+DynamicMessageImplementorTest >> testUnaryMessageNotMatchingAnInstanceVariable [
 
 	| messageImplementor sourceCode |		
 	

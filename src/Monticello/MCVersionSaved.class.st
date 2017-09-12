@@ -8,15 +8,11 @@ Class {
 		'version',
 		'repository'
 	],
-	#category : #Monticello-Announcements,
-	#timestamp : 'MartinDias 6/10/2015 19:18'
+	#category : #Monticello-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSaved class>>version: aMCVersion repository: aMCRepository [
+{ #category : #'instance creation' }
+MCVersionSaved class >> version: aMCVersion repository: aMCRepository [
 
 	^ self basicNew
 		initializeWithVersion: aMCVersion
@@ -24,33 +20,24 @@ MCVersionSaved class>>version: aMCVersion repository: aMCRepository [
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSaved>>= another [
+{ #category : #comparing }
+MCVersionSaved >> = another [
 
 	^ (self class = another class
 		and: [ self version = another version ])
 		and: [ self repository = another repository ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSaved>>hash [
+{ #category : #comparing }
+MCVersionSaved >> hash [
 
 	^ (self class hash
 		bitXor: self version hash)
 		bitXor: self repository hash
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSaved>>initializeWithVersion: aMCVersion repository: aMCRepository [
+{ #category : #initialize-release }
+MCVersionSaved >> initializeWithVersion: aMCVersion repository: aMCRepository [
 
 	self initialize.
 	
@@ -58,11 +45,8 @@ MCVersionSaved>>initializeWithVersion: aMCVersion repository: aMCRepository [
 	repository := aMCRepository.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSaved>>printOn: aStream [
+{ #category : #printing }
+MCVersionSaved >> printOn: aStream [
 
 	super printOn: aStream.
 	
@@ -74,20 +58,14 @@ MCVersionSaved>>printOn: aStream [
 		nextPut: $).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSaved>>repository [
+{ #category : #accessing }
+MCVersionSaved >> repository [
 
 	^ repository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSaved>>version [
+{ #category : #accessing }
+MCVersionSaved >> version [
 
 	^ version
 ]

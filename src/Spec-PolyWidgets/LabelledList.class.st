@@ -11,15 +11,11 @@ I provide shortcuts for the most common methods of the list api to avoid the use
 Class {
 	#name : #LabelledList,
 	#superclass : #LabelledContainer,
-	#category : #Spec-PolyWidgets-Labelled,
-	#timestamp : 'Spirita 7/22/2016 16:39'
+	#category : #Spec-PolyWidgets-Labelled
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledList class>>example [
+{ #category : #example }
+LabelledList class >> example [
 	| example |
 	example := self abstractExample.
 	example
@@ -28,115 +24,73 @@ LabelledList class>>example [
 	^ example
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledList>>beMultipleSelection [
+{ #category : #api-shortcuts }
+LabelledList >> beMultipleSelection [
 	^ self list beMultipleSelection
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledList>>displayBlock: aBlock [
+{ #category : #api-shortcuts }
+LabelledList >> displayBlock: aBlock [
 	^self list displayBlock: aBlock
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledList>>filteringBlock: aBlock [
+{ #category : #api-shortcuts }
+LabelledList >> filteringBlock: aBlock [
 	^ self list filteringBlock: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledList>>initializeWidgets [
+{ #category : #initialization }
+LabelledList >> initializeWidgets [
 super initializeWidgets.
 	self content: ListModel
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledList>>items: aList [
+{ #category : #api-shortcuts }
+LabelledList >> items: aList [
 	^ self list items: aList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledList>>list [
+{ #category : #accessing }
+LabelledList >> list [
 	^ self subwidget
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledList>>listSize [
+{ #category : #api-shortcuts }
+LabelledList >> listSize [
 	^ self list listSize
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledList>>selectAll [
+{ #category : #api-shortcuts }
+LabelledList >> selectAll [
 	^ self list selectAll
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledList>>selectedItem [
+{ #category : #api-shortcuts }
+LabelledList >> selectedItem [
 	^ self list selectedItem
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledList>>selectedItems [
+{ #category : #api-shortcuts }
+LabelledList >> selectedItems [
 	^ self list selectedItems
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledList>>sortingBlock: aBlock [
+{ #category : #api-shortcuts }
+LabelledList >> sortingBlock: aBlock [
 	^self list sortingBlock: aBlock
 ]
 
-{
-	#category : #events-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledList>>whenSelectedItemChanged: aBlock [
+{ #category : #events-shortcuts }
+LabelledList >> whenSelectedItemChanged: aBlock [
 self list whenSelectedItemChanged: aBlock
 ]
 
-{
-	#category : #events-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledList>>whenSelectionChanged: aBlock [
+{ #category : #events-shortcuts }
+LabelledList >> whenSelectionChanged: aBlock [
 	self list whenSelectionChanged: aBlock
 ]
 
-{
-	#category : #events-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledList>>whenSelectionIndexChanged: aBlock [
+{ #category : #events-shortcuts }
+LabelledList >> whenSelectionIndexChanged: aBlock [
 	self list whenSelectionIndexChanged: aBlock
 ]

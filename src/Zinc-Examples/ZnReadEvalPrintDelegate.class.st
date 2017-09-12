@@ -60,15 +60,11 @@ Part of Zinc HTTP Components.
 Class {
 	#name : #ZnReadEvalPrintDelegate,
 	#superclass : #Object,
-	#category : #Zinc-Examples,
-	#timestamp : '<historical>'
+	#category : #Zinc-Examples
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnReadEvalPrintDelegate class>>startInServerOn: port [
+{ #category : #public }
+ZnReadEvalPrintDelegate class >> startInServerOn: port [
 	"Start a new server bound to port on the local network running a REPL web service"
 
 	"self startInServerOn: 1701"
@@ -80,11 +76,8 @@ ZnReadEvalPrintDelegate class>>startInServerOn: port [
 			yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnReadEvalPrintDelegate>>evaluate: string [
+{ #category : #private }
+ZnReadEvalPrintDelegate >> evaluate: string [
 	| output |
 	output := String streamContents: [ :out | 
 		[ 	| compiler result |
@@ -102,27 +95,18 @@ ZnReadEvalPrintDelegate>>evaluate: string [
 	^ String lf join: output lines
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnReadEvalPrintDelegate>>handleGetRequest: request [
+{ #category : #'request handling' }
+ZnReadEvalPrintDelegate >> handleGetRequest: request [
 	^ ZnResponse ok: (ZnEntity text: (self helpText format: { request server port })) 
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnReadEvalPrintDelegate>>handlePostRequest: request [
+{ #category : #'request handling' }
+ZnReadEvalPrintDelegate >> handlePostRequest: request [
 	^ ZnResponse ok: (ZnEntity text: (self evaluate: request entity contents))
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnReadEvalPrintDelegate>>handleRequest: request [
+{ #category : #public }
+ZnReadEvalPrintDelegate >> handleRequest: request [
 	request uri firstPathSegment = #repl
 		ifTrue: [ 
 			request method = #GET
@@ -134,22 +118,16 @@ ZnReadEvalPrintDelegate>>handleRequest: request [
 	^ ZnResponse notFound: request uri
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnReadEvalPrintDelegate>>helpText [
+{ #category : #private }
+ZnReadEvalPrintDelegate >> helpText [
 	^ '# Pharo Smalltalk REPL. POST expressions to evaluate\# Here is one way (type ctrl-d to end input)\curl -X POST -H''Content-Type:text/plain'' --data-binary @- http://localhost:{1}/repl\' 
 			withCRs 
 				replaceAll: Character cr with: Character lf; 
 				yourself
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnReadEvalPrintDelegate>>value: request [
+{ #category : #public }
+ZnReadEvalPrintDelegate >> value: request [
 	"I implement the generic #value: message as equivalent to #handleRequest:"
 	
 	^ self handleRequest: request

@@ -9,24 +9,17 @@ Class {
 		'previousEditorClass',
 		'acceptAllowed'
 	],
-	#category : #Rubric-Editing-Core,
-	#timestamp : 'FranckWarlouzet 7/29/2015 12:55'
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #keymap,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode class>>buildTabKeymapOn: aBuilder [
+{ #category : #keymap }
+RubEditingMode class >> buildTabKeymapOn: aBuilder [
 	<keymap>
 	
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode class>>extendedSearchMenuOn: aBuilder [
+{ #category : #menu }
+RubEditingMode class >> extendedSearchMenuOn: aBuilder [
 	(aBuilder item: #'extendedSearch' translated)
 		label: 'Code search...' translated;
 		withSeparatorAfter;
@@ -60,114 +53,75 @@ RubEditingMode class>>extendedSearchMenuOn: aBuilder [
 					(aBuilder item: #'class comments with it' translated) selector: #classCommentsContainingIt ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode class>>menuKeyword [
+{ #category : #menu }
+RubEditingMode class >> menuKeyword [
 	"Returns the name of the pragma to use to build the menu"
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>acceptAllowed [
+{ #category : #accessing }
+RubEditingMode >> acceptAllowed [
 	^ acceptAllowed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>acceptAllowed: anObject [
+{ #category : #accessing }
+RubEditingMode >> acceptAllowed: anObject [
 	acceptAllowed := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>editor [
+{ #category : #accessing }
+RubEditingMode >> editor [
 	^self textArea editor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>editorClass [
+{ #category : #accessing }
+RubEditingMode >> editorClass [
 	^ RubTextEditor 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>initialize [
+{ #category : #initialize-release }
+RubEditingMode >> initialize [
 	super initialize.
 	acceptAllowed := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>interactive [
+{ #category : #accessing }
+RubEditingMode >> interactive [
 
 	"when returning true, it avoids that we can assign to class, i.e., Array := 55."
 	
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>isCodeCompletionAllowed [
+{ #category : #testing }
+RubEditingMode >> isCodeCompletionAllowed [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>label [
+{ #category : #accessing }
+RubEditingMode >> label [
 	^ self class label
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>menu  [
+{ #category : #menu }
+RubEditingMode >> menu [ 
 		"Answer the menu to be presented "
 
 	^ (PragmaMenuBuilder pragmaKeyword: self menuKeyword  model: self textArea ) menu
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>menuKeyword [
+{ #category : #menu }
+RubEditingMode >> menuKeyword [
 	^ self class menuKeyword
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>model [
+{ #category : #accessing }
+RubEditingMode >> model [
 	^ self textArea model
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>plugin: aTextArea  [
+{ #category : #initialize-release }
+RubEditingMode >> plugin: aTextArea [ 
 	textArea := aTextArea.
 	previousEditorClass := self textArea editorClass.
 	previousEditorClass = self editorClass
@@ -177,45 +131,30 @@ RubEditingMode>>plugin: aTextArea  [
 	self updateTextAreaWhenPlugged
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>shiftMenu  [
+{ #category : #menu }
+RubEditingMode >> shiftMenu [ 
 		"Answer the menu to be presented with the shift key pressed"
 
 	^ self menu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>textArea [
+{ #category : #accessing }
+RubEditingMode >> textArea [
 	^ textArea
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>textArea: aTextArea [
+{ #category : #accessing }
+RubEditingMode >> textArea: aTextArea [
 	textArea := aTextArea
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>textStyle [
+{ #category : #accessing }
+RubEditingMode >> textStyle [
 	^ self textArea textStyle
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>unplug [
+{ #category : #initialize-release }
+RubEditingMode >> unplug [
 	previousEditorClass = self textArea editor class
 		ifFalse: [ 
 			self textArea editorClass: previousEditorClass.
@@ -225,11 +164,8 @@ RubEditingMode>>unplug [
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>updateTextAreaWhenPlugged [
+{ #category : #initialize-release }
+RubEditingMode >> updateTextAreaWhenPlugged [
 	self textArea
 		restoreSelectionIndexesAfter: [ 
 			| t |
@@ -238,10 +174,7 @@ RubEditingMode>>updateTextAreaWhenPlugged [
 			self textArea updateTextWith: t ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEditingMode>>updateTextAreaWhenUnplugged [
+{ #category : #initialize-release }
+RubEditingMode >> updateTextAreaWhenUnplugged [
 
 ]

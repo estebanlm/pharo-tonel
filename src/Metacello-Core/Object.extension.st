@@ -1,54 +1,34 @@
-Extension {
-	#name : #Object
-}
+Extension { #name : #Object }
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-Object>>metacelloIntegerLessThanSelf: anInteger [
+{ #category : #'*Metacello-Core' }
+Object >> metacelloIntegerLessThanSelf: anInteger [
 
 	^self error: 'Invalid Metacello verson component - should be String or Integer.'
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-Object>>metacelloSemanticIntegerLessThanSelf: anInteger [
+{ #category : #'*Metacello-Core' }
+Object >> metacelloSemanticIntegerLessThanSelf: anInteger [
     ^ self error: 'Invalid Metacello verson component - should be String or Integer.'
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-Object>>metacelloSemanticStringLessThanSelf: anInteger [
+{ #category : #'*Metacello-Core' }
+Object >> metacelloSemanticStringLessThanSelf: anInteger [
     ^ self error: 'Invalid Metacello verson component - should be String or Integer.'
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-Object>>metacelloSemanticVersionComponentLessThan: aMetacelloVersonComponent [
+{ #category : #'*Metacello-Core' }
+Object >> metacelloSemanticVersionComponentLessThan: aMetacelloVersonComponent [
     ^ self error: 'Invalid Metacello verson component - should be String or Integer.'
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-Object>>metacelloStringLessThanSelf: anInteger [
+{ #category : #'*Metacello-Core' }
+Object >> metacelloStringLessThanSelf: anInteger [
 
 	^self error: 'Invalid Metacello verson component - should be String or Integer.'
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-Object>>metacelloVersionComponentLessThan: aMetacelloVersonComponent [
+{ #category : #'*Metacello-Core' }
+Object >> metacelloVersionComponentLessThan: aMetacelloVersonComponent [
 
 	^self error: 'Invalid Metacello verson component - should be String or Integer.'
 ]

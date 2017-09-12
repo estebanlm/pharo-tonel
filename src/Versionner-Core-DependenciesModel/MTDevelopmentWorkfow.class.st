@@ -8,15 +8,11 @@ Class {
 	#instVars : [
 		'project'
 	],
-	#category : #Versionner-Core-DependenciesModel,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-DependenciesModel
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow class>>newWithProject: project [
+{ #category : #initialization }
+MTDevelopmentWorkfow class >> newWithProject: project [
 	"Create a new instance dedicated to the project given as parameter."
 
 	^ self new
@@ -24,11 +20,8 @@ MTDevelopmentWorkfow class>>newWithProject: project [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>createBaseline [
+{ #category : #private }
+MTDevelopmentWorkfow >> createBaseline [
 	"Create a new baseline with information given by the project" 
 	|lastBaseline baselineVersionString|
 	
@@ -38,11 +31,8 @@ MTDevelopmentWorkfow>>createBaseline [
 	^ self createBaseline: baselineVersionString.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>createBaseline: baselineVersionString [
+{ #category : #private }
+MTDevelopmentWorkfow >> createBaseline: baselineVersionString [
 	"Create a new baseline with information given by the project"
 	MetacelloToolBox
 		createBaseline: baselineVersionString
@@ -56,21 +46,15 @@ MTDevelopmentWorkfow>>createBaseline: baselineVersionString [
 		requiredProjectSpecs: self requiredProjectSpecs
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>createInitialDevelopment [
+{ #category : #protocol }
+MTDevelopmentWorkfow >> createInitialDevelopment [
 	"Create an initial development version for an empty configuration."
 
 	^ self createInitialDevelopment: '0.1-baseline'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>createInitialDevelopment: versionString [
+{ #category : #private }
+MTDevelopmentWorkfow >> createInitialDevelopment: versionString [
 	"Create an initial development version with an empty configuration and return the configuration class."
 
 	| toolbox |
@@ -95,11 +79,8 @@ MTDevelopmentWorkfow>>createInitialDevelopment: versionString [
 	^toolbox project configuration class
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>createNextDevelopment: newDevVersionString [
+{ #category : #protocol }
+MTDevelopmentWorkfow >> createNextDevelopment: newDevVersionString [
 	"Create the next baseline that will be used as development version."
 
 	self createBaseline: newDevVersionString.
@@ -108,19 +89,13 @@ MTDevelopmentWorkfow>>createNextDevelopment: newDevVersionString [
 		platformAttribute: #common.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>developmentVersion [
+{ #category : #protocol }
+MTDevelopmentWorkfow >> developmentVersion [
 	^ project configurationClass project version: #development
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>developmentVersion: devVersionString platformAttribute: platformAttribute [
+{ #category : #private }
+MTDevelopmentWorkfow >> developmentVersion: devVersionString platformAttribute: platformAttribute [
 	"Set the #development symbolic version to the given version, using the given platformAttribute."
 	
 	(MetacelloToolBox configurationNamed: project name)
@@ -130,22 +105,16 @@ MTDevelopmentWorkfow>>developmentVersion: devVersionString platformAttribute: pl
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>developmentVersionNumber: aDevelopmentVersionString [
+{ #category : #private }
+MTDevelopmentWorkfow >> developmentVersionNumber: aDevelopmentVersionString [
 	| versionNumber |
 	versionNumber := aDevelopmentVersionString copyReplaceAll: 'baseline' with: ''.
 	versionNumber  :=  versionNumber copyReplaceAll: '-' with: ''.
 	^ versionNumber
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>isDevelopmentUsedInRelease [
+{ #category : #private }
+MTDevelopmentWorkfow >> isDevelopmentUsedInRelease [
 	| devVersion allProjectVersions |
 	
 	devVersion := self developmentVersion.
@@ -159,11 +128,8 @@ MTDevelopmentWorkfow>>isDevelopmentUsedInRelease [
 		ifNone: [ false ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>nextDevelopmentVersionString [
+{ #category : #protocol }
+MTDevelopmentWorkfow >> nextDevelopmentVersionString [
 	| newVersionString |
 	
 	newVersionString := self developmentVersion versionString.
@@ -172,11 +138,8 @@ MTDevelopmentWorkfow>>nextDevelopmentVersionString [
 	^ newVersionString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>nextDevelopmentVersionString: aDevelopmentVersionString [
+{ #category : #private }
+MTDevelopmentWorkfow >> nextDevelopmentVersionString: aDevelopmentVersionString [
 	| versionNumber lastPointIndex newVersionNumber |
 	versionNumber := self developmentVersionNumber: aDevelopmentVersionString.
 	lastPointIndex := versionNumber 
@@ -191,36 +154,24 @@ MTDevelopmentWorkfow>>nextDevelopmentVersionString: aDevelopmentVersionString [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>notifyConfigurationModified [
+{ #category : #private }
+MTDevelopmentWorkfow >> notifyConfigurationModified [
 	(MBConfigurationRoot current configurationInfoFor: project configurationClass class) 
 		configurationClassModified
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>project [
+{ #category : #accessing }
+MTDevelopmentWorkfow >> project [
 	^ project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>project: anObject [
+{ #category : #accessing }
+MTDevelopmentWorkfow >> project: anObject [
 	project := anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>releaseDevelopment: versionName [
+{ #category : #protocol }
+MTDevelopmentWorkfow >> releaseDevelopment: versionName [
 	"Release the development baseline (will give a version method) with the given version name."
 
 	| devVersionString |
@@ -242,20 +193,14 @@ MTDevelopmentWorkfow>>releaseDevelopment: versionName [
 	self notifyConfigurationModified
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>requiredProjectSpecs [
+{ #category : #private }
+MTDevelopmentWorkfow >> requiredProjectSpecs [
 	^ project requiredProjects 
 		collect: [ :requiredProject |  VersionnerToolBox projectSpecFromRequiredProject: requiredProject ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>setStableBlessingFor: versionName [
+{ #category : #private }
+MTDevelopmentWorkfow >> setStableBlessingFor: versionName [
 	(MetacelloToolBox configurationNamed: project name)
 		modifyVersionMethodForVersion: versionName
 			versionSpecsDo: [ :attr :versionSpec | 
@@ -265,11 +210,8 @@ MTDevelopmentWorkfow>>setStableBlessingFor: versionName [
 		commitMethod
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>standardizeDevVersionString: aDevVersionString [
+{ #category : #private }
+MTDevelopmentWorkfow >> standardizeDevVersionString: aDevVersionString [
 	| versionString |
 	
 	versionString := aDevVersionString copyReplaceAll: 'baseline-' with: ''.
@@ -278,11 +220,8 @@ MTDevelopmentWorkfow>>standardizeDevVersionString: aDevVersionString [
 	^ versionString , '-baseline'
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>updateDevelopment [
+{ #category : #protocol }
+MTDevelopmentWorkfow >> updateDevelopment [
 	"Update development baseline with information present in the project."
 
 	| baseline versionString |
@@ -295,10 +234,7 @@ MTDevelopmentWorkfow>>updateDevelopment [
 	self notifyConfigurationModified
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDevelopmentWorkfow>>version: versionString [
+{ #category : #private }
+MTDevelopmentWorkfow >> version: versionString [
 	^ project configurationClass project version: versionString
 ]

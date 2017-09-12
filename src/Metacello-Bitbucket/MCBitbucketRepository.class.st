@@ -1,61 +1,39 @@
-"
-
-"
 Class {
 	#name : #MCBitbucketRepository,
 	#superclass : #MCGitBasedNetworkRepository,
-	#category : #Metacello-Bitbucket,
-	#timestamp : ''
+	#category : #Metacello-Bitbucket
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MCBitbucketRepository class>>basicDescription [
+{ #category : #accessing }
+MCBitbucketRepository class >> basicDescription [
   ^ 'bitbucket'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MCBitbucketRepository class>>cacheDirectoryPath [
+{ #category : #accessing }
+MCBitbucketRepository class >> cacheDirectoryPath [
   <preference: 'BitBucket Cache' category: 'Metacello' description: '' type:
     #'String'>
   ^ super cacheDirectoryPath
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MCBitbucketRepository class>>isEnabled [
+{ #category : #testing }
+MCBitbucketRepository class >> isEnabled [
 
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MCBitbucketRepository class>>projectTagsUrlFor: projectPath [
+{ #category : #private }
+MCBitbucketRepository class >> projectTagsUrlFor: projectPath [
   ^ 'https://bitbucket.org/api/1.0/repositories/' , projectPath , '/tags'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MCBitbucketRepository class>>projectZipUrlFor: projectPath versionString: versionString [
+{ #category : #private }
+MCBitbucketRepository class >> projectZipUrlFor: projectPath versionString: versionString [
   ^ 'https://bitbucket.org/' , projectPath , '/get/' , versionString , '.zip'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MCBitbucketRepository>>normalizeTagsData: jsonObject [
+{ #category : #private }
+MCBitbucketRepository >> normalizeTagsData: jsonObject [
   "return a dictionay mapping the tag name to the commit SHA."
 
   | tagDict |

@@ -7,123 +7,83 @@ Class {
 	#instVars : [
 		'cell'
 	],
-	#category : #Glamour-Browsers-Tabulator,
-	#timestamp : '<historical>'
+	#category : #Glamour-Browsers-Tabulator
 }
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>addColumn: aBlockOrSymbol  [
+{ #category : #layout }
+GLMTabulator >> addColumn: aBlockOrSymbol [ 
 	 
 	^self cellOrRow addColumn: aBlockOrSymbol
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>addColumn: aBlockOrSymbol size: anInteger  [
+{ #category : #layout }
+GLMTabulator >> addColumn: aBlockOrSymbol size: anInteger [ 
 	 
 	^(self addColumn: aBlockOrSymbol) size: anInteger; span: 0
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>addColumn: aBlockOrSymbol span: anInteger  [
+{ #category : #layout }
+GLMTabulator >> addColumn: aBlockOrSymbol span: anInteger [ 
 	 
 	^(self addColumn: aBlockOrSymbol) span: anInteger
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>addRow: aBlockOrSymbol  [
+{ #category : #layout }
+GLMTabulator >> addRow: aBlockOrSymbol [ 
 	 
 	^self cellOrColumn addRow: aBlockOrSymbol
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>addRow: aBlockOrSymbol size: anInteger  [
+{ #category : #layout }
+GLMTabulator >> addRow: aBlockOrSymbol size: anInteger [ 
 	 
 	^(self addRow: aBlockOrSymbol) size: anInteger; span: 0
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>addRow: aBlockOrSymbol span: anInteger  [
+{ #category : #layout }
+GLMTabulator >> addRow: aBlockOrSymbol span: anInteger [ 
 	 
 	^(self addRow: aBlockOrSymbol) span: anInteger
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>cell  [
+{ #category : #layout }
+GLMTabulator >> cell [ 
 	 
 	^cell
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>cellOrColumn  [
+{ #category : #private }
+GLMTabulator >> cellOrColumn [ 
 	 
 	^cell ifNil: [cell := GLMCustomColumn new browser: self]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>cellOrRow  [
+{ #category : #private }
+GLMTabulator >> cellOrRow [ 
 	 
 	^cell ifNil: [cell := GLMCustomRow new browser: self]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>column: aBlockOrSymbol  [
+{ #category : #scripting }
+GLMTabulator >> column: aBlockOrSymbol [ 
 	 
 	^self addColumn: aBlockOrSymbol
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>column: aBlockOrSymbol size: anInteger  [
+{ #category : #scripting }
+GLMTabulator >> column: aBlockOrSymbol size: anInteger [ 
 	 
 	^self addColumn: aBlockOrSymbol size: anInteger
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>column: aBlockOrSymbol span: anInteger  [
+{ #category : #scripting }
+GLMTabulator >> column: aBlockOrSymbol span: anInteger [ 
 	 
 	^self addColumn: aBlockOrSymbol span: anInteger
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>initializeScriptingDefaults [
+{ #category : #scripting }
+GLMTabulator >> initializeScriptingDefaults [
 	super initializeScriptingDefaults.
 	self cell isNil
 		ifTrue: [ self addColumn: #pane ].
@@ -137,38 +97,26 @@ GLMTabulator>>initializeScriptingDefaults [
 				andShow: [ :a | a custom: GLMFlexiblePresentation new ] ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMTabulator >> renderGlamorouslyOn: aRenderer [ 
 	 
 	^aRenderer renderTabulator: self
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>row: aBlockOrSymbol  [
+{ #category : #scripting }
+GLMTabulator >> row: aBlockOrSymbol [ 
 	 
 	^self addRow: aBlockOrSymbol
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>row: aBlockOrSymbol size: anInteger  [
+{ #category : #scripting }
+GLMTabulator >> row: aBlockOrSymbol size: anInteger [ 
 	 
 	^self addRow: aBlockOrSymbol size: anInteger
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMTabulator>>row: aBlockOrSymbol span: anInteger  [
+{ #category : #scripting }
+GLMTabulator >> row: aBlockOrSymbol span: anInteger [ 
 	 
 	^self addRow: aBlockOrSymbol span: anInteger
 ]

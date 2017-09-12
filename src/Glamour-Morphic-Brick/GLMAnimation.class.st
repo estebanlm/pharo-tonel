@@ -24,15 +24,11 @@ Class {
 		'ensureLogic',
 		'stamp'
 	],
-	#category : #Glamour-Morphic-Brick-Async,
-	#timestamp : 'AliakseiSyrel 2/17/2015 21:04'
+	#category : #Glamour-Morphic-Brick-Async
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation class>>borderColor [
+{ #category : #'instance creation' }
+GLMAnimation class >> borderColor [
 
 	^ GLMAnimation new
 		step: [ :brick :from :to :delta |
@@ -45,11 +41,8 @@ GLMAnimation class>>borderColor [
 		animation: [ :b :v | b borderColor: v. b changed ]
 ]
 
-{
-	#category : #sources,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation class>>exampleSimple [
+{ #category : #sources }
+GLMAnimation class >> exampleSimple [
 	|brick|
 
 	brick := GLMLabelBrick new
@@ -71,11 +64,8 @@ GLMAnimation class>>exampleSimple [
 		openInWindow
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation class>>swipeLeft [
+{ #category : #'instance creation' }
+GLMAnimation class >> swipeLeft [
 
 	^ GLMAnimation new
 		linear;
@@ -85,11 +75,8 @@ GLMAnimation class>>swipeLeft [
 		animation: [ :b :v | b changed. b translateXTo: (v * b width). b changed ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>animate: anObject [
+{ #category : #scripting }
+GLMAnimation >> animate: anObject [
 
 	self asyncTask terminate.
 	animatedObject := anObject.
@@ -107,29 +94,20 @@ GLMAnimation>>animate: anObject [
 		execute
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>animatedObject [
+{ #category : #accessing }
+GLMAnimation >> animatedObject [
 
 	^ animatedObject
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>animation: anObject [
+{ #category : #scripting }
+GLMAnimation >> animation: anObject [
 
 	animationLogic := anObject
 ]
 
-{
-	#category : #animating,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>animationStep [
+{ #category : #animating }
+GLMAnimation >> animationStep [
 	|delta stepValue currentTime stop stepStamp|
 	self needsStep: false.
 	currentTime := Time millisecondClockValue.
@@ -156,136 +134,91 @@ GLMAnimation>>animationStep [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>asyncTask [
+{ #category : #accessing }
+GLMAnimation >> asyncTask [
 
 	^ asyncTask ifNil: [ asyncTask := GLMAsyncTask new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>asyncTask: anObject [
+{ #category : #accessing }
+GLMAnimation >> asyncTask: anObject [
 	asyncTask := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>duration [
+{ #category : #accessing }
+GLMAnimation >> duration [
 
 	^ duration ifNil: [ duration := 0 ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>duration: anInteger [
+{ #category : #scripting }
+GLMAnimation >> duration: anInteger [
 
 	duration := anInteger
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>ensure: aBlock [
+{ #category : #scripting }
+GLMAnimation >> ensure: aBlock [
 
 	ensureLogic := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>finishTime [
+{ #category : #accessing }
+GLMAnimation >> finishTime [
 
 	^ self startTime + self duration
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>from: anObject [
+{ #category : #scripting }
+GLMAnimation >> from: anObject [
 
 	fromLogic := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>fromValue [
+{ #category : #accessing }
+GLMAnimation >> fromValue [
 
 	^ fromValue ifNil: [ fromValue := fromLogic brickValue: self animatedObject ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>isCompleted [
+{ #category : #accessing }
+GLMAnimation >> isCompleted [
 
 	^ isCompleted ifNil: [ isCompleted := false ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>linear [
+{ #category : #scripting }
+GLMAnimation >> linear [
 
 	self step: [ :b :from :to :delta | (to - from) * delta + from ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>needsStep [
+{ #category : #accessing }
+GLMAnimation >> needsStep [
 
 	^ doStep ifNil: [ doStep := true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>needsStep: aBoolean [
+{ #category : #accessing }
+GLMAnimation >> needsStep: aBoolean [
 
 	doStep := aBoolean
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>onCompleted: aBlock [
+{ #category : #scripting }
+GLMAnimation >> onCompleted: aBlock [
 
 	callback := aBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>onStepped: aBlock [
+{ #category : #scripting }
+GLMAnimation >> onStepped: aBlock [
 
 	steppedLogic := aBlock
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>reset [
+{ #category : #actions }
+GLMAnimation >> reset [
 
 	isCompleted := false.
 	shouldStop := false.
@@ -296,67 +229,46 @@ GLMAnimation>>reset [
 	startTime := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>shouldStop [
+{ #category : #accessing }
+GLMAnimation >> shouldStop [
 
 	 ^ shouldStop ifNil: [ shouldStop := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>shouldStop: aBoolean [
+{ #category : #accessing }
+GLMAnimation >> shouldStop: aBoolean [
 
 	shouldStop := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>startTime [
+{ #category : #accessing }
+GLMAnimation >> startTime [
 
 	^ startTime ifNil: [ startTime := Time millisecondClockValue ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>step: anObject [
+{ #category : #scripting }
+GLMAnimation >> step: anObject [
 
 	stepLogic := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>terminate [
+{ #category : #actions }
+GLMAnimation >> terminate [
 
 	self asyncTask terminate.
 	(self isCompleted not & self animatedObject isNotNil) ifTrue: [
 		ensureLogic brickValue: self animatedObject ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>to: anObject [
+{ #category : #scripting }
+GLMAnimation >> to: anObject [
 
 	toLogic := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnimation>>toValue [
+{ #category : #accessing }
+GLMAnimation >> toValue [
 
 	^ toValue ifNil: [ toValue := toLogic brickValue: self animatedObject ]
 ]

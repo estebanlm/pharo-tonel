@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'bytes'
 	],
-	#category : #FreeType-Base,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:06'
+	#category : #FreeType-Base
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeExternalMemory class>>bytes: aByteArray [
+{ #category : #'instance creation' }
+FreeTypeExternalMemory class >> bytes: aByteArray [
 	| answer |
 	answer := self basicNew
 		bytes: aByteArray;
@@ -23,47 +19,32 @@ FreeTypeExternalMemory class>>bytes: aByteArray [
 	^answer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeExternalMemory>>bytes [
+{ #category : #accessing }
+FreeTypeExternalMemory >> bytes [
 	^bytes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeExternalMemory>>bytes: aByteArray [
+{ #category : #accessing }
+FreeTypeExternalMemory >> bytes: aByteArray [
 	bytes := aByteArray
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeExternalMemory>>primCopyToExternalMemory: aByteArray [
+{ #category : #primitives }
+FreeTypeExternalMemory >> primCopyToExternalMemory: aByteArray [
 	"copy aByteArray into newly allocated, external memory, and store the
 	address of that memory in the receiver's handle"
 	<primitive: 'primitiveCopyToExternalMemory' module: 'FT2Plugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeExternalMemory>>primDestroyHandle [
+{ #category : #primitives }
+FreeTypeExternalMemory >> primDestroyHandle [
 	<primitive: 'primitiveFreeExternalMemory' module: 'FT2Plugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeExternalMemory>>validate [
+{ #category : #validation }
+FreeTypeExternalMemory >> validate [
 	self isValid ifTrue: [ ^ self ].
 	bytes ifNil: [ ^ self  ].
 	

@@ -98,15 +98,11 @@ Class {
 		'runMethodSelector',
 		'lowestByteShift'
 	],
-	#category : #System-Hashing-Checksums,
-	#timestamp : '<historical>'
+	#category : #System-Hashing-Checksums
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC class>>crc16FromCollection: aCollection [
+{ #category : #'instance creation' }
+CRC class >> crc16FromCollection: aCollection [
 	| instance |
 	instance := 
 		self new
@@ -117,11 +113,8 @@ CRC class>>crc16FromCollection: aCollection [
 	^ instance runRefInRefOut
 ]
 
-{
-	#category : #accessing-tables,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC class>>crc16Table [
+{ #category : #accessing-tables }
+CRC class >> crc16Table [
 	^ #(	16r0000	16rC0C1	16rC181	16r0140	16rC301	16r03C0	16r0280	16rC241
 			16rC601	16r06C0	16r0780	16rC741	16r0500	16rC5C1	16rC481	16r0440
 			16rCC01	16r0CC0	16r0D80	16rCD41	16r0F00	16rCFC1	16rCE81	16r0E40
@@ -156,11 +149,8 @@ CRC class>>crc16Table [
 			16r8201	16r42C0	16r4380	16r8341	16r4100	16r81C1	16r8081	16r4040)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC class>>crc32FromCollection: aCollection [
+{ #category : #'instance creation' }
+CRC class >> crc32FromCollection: aCollection [
 	| instance |
 	instance := 
 		self new
@@ -171,11 +161,8 @@ CRC class>>crc32FromCollection: aCollection [
 	^ instance runRefInRefOut
 ]
 
-{
-	#category : #accessing-tables,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC class>>crc32Table [
+{ #category : #accessing-tables }
+CRC class >> crc32Table [
 	^ #(	 16r00000000	 16r77073096	 16rEE0E612C	 16r990951BA	
 			 16r076DC419	 16r706AF48F	 16rE963A535	 16r9E6495A3	
 			 16r0EDB8832	 16r79DCB8A4	 16rE0D5E91E	 16r97D2D988	
@@ -242,11 +229,8 @@ CRC class>>crc32Table [
 			 16rB40BBE37	 16rC30C8EA1	 16r5A05DF1B	 16r2D02EF8D)
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC class>>update: oldCrc from: start to: stop in: aCollection [
+{ #category : #primitives }
+CRC class >> update: oldCrc from: start to: stop in: aCollection [
 	| newCrc |
 	<primitive: 'primitiveUpdateGZipCrc32' module: 'ZipPlugin'>
 	newCrc := oldCrc.
@@ -256,11 +240,8 @@ CRC class>>update: oldCrc from: start to: stop in: aCollection [
 	^newCrc
 ]
 
-{
-	#category : #accessing-implementations,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>beCrc16 [
+{ #category : #accessing-implementations }
+CRC >> beCrc16 [
 	self
 		width: 16;
 		lookupTable: self class crc16Table;
@@ -271,11 +252,8 @@ CRC>>beCrc16 [
 		finallyXorWith: 16r0
 ]
 
-{
-	#category : #accessing-implementations,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>beCrc32 [
+{ #category : #accessing-implementations }
+CRC >> beCrc32 [
 	self
 		width: 32;
 		lookupTable: self class crc32Table;
@@ -286,82 +264,55 @@ CRC>>beCrc32 [
 		finallyXorWith: 16rFFFFFFFF
 ]
 
-{
-	#category : #private-bit-manipulation,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>bitMaskAt: anInteger [
+{ #category : #private-bit-manipulation }
+CRC >> bitMaskAt: anInteger [
 	^ 0 bitAt: anInteger put: 1
 ]
 
-{
-	#category : #accessing-parameters,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>finallyXorWith: anInteger [
+{ #category : #accessing-parameters }
+CRC >> finallyXorWith: anInteger [
 	"The final XOR of the output will be performed with this value"
 	finalXorBytes := anInteger
 ]
 
-{
-	#category : #private-tables,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>generateLookupTable [
+{ #category : #private-tables }
+CRC >> generateLookupTable [
 	"lookup tables have 256 entries"
 	^ Array 
 		new: 256
 		streamContents: [ :aStream | self printLookupTableOn: aStream ]
 ]
 
-{
-	#category : #private-bit-manipulation,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>invertedBitMaskAt: anInteger [
+{ #category : #private-bit-manipulation }
+CRC >> invertedBitMaskAt: anInteger [
 	anInteger < 1 ifTrue: [ ^ 16rFFFFFFFF ].
 	^ 16rFFFFFFFF bitAt: anInteger put: 0
 ]
 
-{
-	#category : #accessing-parameters,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>lookupTable: anArray [
+{ #category : #accessing-parameters }
+CRC >> lookupTable: anArray [
 	lookupTable := anArray
 ]
 
-{
-	#category : #private-bit-manipulation,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>lowestByteShift [
+{ #category : #private-bit-manipulation }
+CRC >> lowestByteShift [
 	^ lowestByteShift ifNil: [ lowestByteShift := width - 8 ]
 ]
 
-{
-	#category : #accessing-parameters,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>message: anObject [
+{ #category : #accessing-parameters }
+CRC >> message: anObject [
 	message := anObject asByteArray
 ]
 
-{
-	#category : #accessing-parameters,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>polynome: anInteger [
+{ #category : #accessing-parameters }
+CRC >> polynome: anInteger [
 	"The polynome used for polynomial division.
 	It should be of the same length as the register width (see #width:)."
 	polynome := anInteger
 ]
 
-{
-	#category : #private-tables,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>printLookupTableOn: aStream [
+{ #category : #private-tables }
+CRC >> printLookupTableOn: aStream [
 	| topBit |
 	topBit := self bitMaskAt: width.
 	0 to: 255 do: [ :index || register indexByte |
@@ -379,11 +330,8 @@ CRC>>printLookupTableOn: aStream [
 		aStream nextPut: register ]
 ]
 
-{
-	#category : #private-bit-manipulation,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>reflect: anInteger onLowerBits: anotherInteger [
+{ #category : #private-bit-manipulation }
+CRC >> reflect: anInteger onLowerBits: anotherInteger [
 	| register test |
 	register := anInteger.
 	test := anInteger.
@@ -397,49 +345,34 @@ CRC>>reflect: anInteger onLowerBits: anotherInteger [
 	^ register
 ]
 
-{
-	#category : #accessing-parameters,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>reflectInput: aBoolean [
+{ #category : #accessing-parameters }
+CRC >> reflectInput: aBoolean [
 	"Determines if each byte should be reflected before processing.
 	If false, bit 7 will be treated as most significant bit.
 	If true, each byte will be reflected (bit 0 will be most significant)."
 	shouldReflectInput := aBoolean
 ]
 
-{
-	#category : #accessing-parameters,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>reflectOutput: aBoolean [
+{ #category : #accessing-parameters }
+CRC >> reflectOutput: aBoolean [
 	"Determines if the output is reflected before the final XOR."
 	shouldReflectOutput := aBoolean
 ]
 
-{
-	#category : #accessing-parameters,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>registerFill: anInteger [
+{ #category : #accessing-parameters }
+CRC >> registerFill: anInteger [
 	"The initial value of the CRC register"
 	registerFill := anInteger
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>run [
+{ #category : #public }
+CRC >> run [
 	lookupTable ifNil: [ lookupTable := self generateLookupTable ].
 	^ self perform: self runMethodSelector
 ]
 
-{
-	#category : #private-run-methods,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>runMethodSelector [
+{ #category : #private-run-methods }
+CRC >> runMethodSelector [
 	^ runMethodSelector ifNil: [ 
 		runMethodSelector := 
 			shouldReflectInput
@@ -453,11 +386,8 @@ CRC>>runMethodSelector [
 						ifFalse: [ #runNonRefInNonRefOut ] ] ]
 ]
 
-{
-	#category : #private-run-methods,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>runNonRefInNonRefOut [
+{ #category : #private-run-methods }
+CRC >> runNonRefInNonRefOut [
 	theRegister := registerFill.
 	1 to: message size do: [ :byteIndex | 
 		theRegister := 
@@ -467,11 +397,8 @@ CRC>>runNonRefInNonRefOut [
 	^ finalXorBytes bitXor: theRegister
 ]
 
-{
-	#category : #private-run-methods,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>runNonRefInRefOut [
+{ #category : #private-run-methods }
+CRC >> runNonRefInRefOut [
 	Warning signal: 'unverified implementation'.
 	theRegister := registerFill.
 	1 to: message size do: [ :byteIndex | 
@@ -482,11 +409,8 @@ CRC>>runNonRefInRefOut [
 	^ finalXorBytes bitXor: theRegister
 ]
 
-{
-	#category : #private-run-methods,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>runRefInNonRefOut [
+{ #category : #private-run-methods }
+CRC >> runRefInNonRefOut [
 	Warning signal: 'unverified implementation'.
 	theRegister := registerFill.
 	1 to: message size do: [ :byteIndex | 
@@ -497,11 +421,8 @@ CRC>>runRefInNonRefOut [
 	^ finalXorBytes bitXor: theRegister
 ]
 
-{
-	#category : #private-run-methods,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>runRefInRefOut [
+{ #category : #private-run-methods }
+CRC >> runRefInRefOut [
 	theRegister := registerFill.
 	1 to: message size do: [ :byteIndex | 
 		theRegister := 
@@ -511,21 +432,15 @@ CRC>>runRefInRefOut [
 	^ finalXorBytes bitXor: theRegister
 ]
 
-{
-	#category : #accessing-parameters,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>width: anInteger [
+{ #category : #accessing-parameters }
+CRC >> width: anInteger [
 	"width of the register (on how many bits the CRC is calculated).
 	usually 16 or 32"
 	width := anInteger
 ]
 
-{
-	#category : #private-bit-manipulation,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-CRC>>widthMask 	 [
+{ #category : #private-bit-manipulation }
+CRC >> widthMask [ 	
 	"bit mask (all ones)"
 	^ widthMask ifNil: [ widthMask := (2 raisedTo: width) - 1 ]
 ]

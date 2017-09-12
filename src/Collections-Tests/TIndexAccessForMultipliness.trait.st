@@ -3,37 +3,25 @@ A trait for test purposes
 "
 Trait {
 	#name : #TIndexAccessForMultipliness,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:34'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccessForMultipliness>>collectionWithNonIdentitySameAtEndAndBegining [
+{ #category : #requirements }
+TIndexAccessForMultipliness >> collectionWithNonIdentitySameAtEndAndBegining [
 	" return a collection with elements at end and begining equals only with classic equality (they are not the same object).
 (others elements of the collection are not equal to those elements)"
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccessForMultipliness>>collectionWithSameAtEndAndBegining [
+{ #category : #requirements }
+TIndexAccessForMultipliness >> collectionWithSameAtEndAndBegining [
 	" return a collection with elements at end and begining equals .
 (others elements of the collection are not equal to those elements)"
 	self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccessForMultipliness>>test0FixtureIndexAccessFotMultipliness [
+{ #category : #'tests - fixture' }
+TIndexAccessForMultipliness >> test0FixtureIndexAccessFotMultipliness [
 	self collectionWithSameAtEndAndBegining.
 	self assert: self collectionWithSameAtEndAndBegining first = self collectionWithSameAtEndAndBegining last.
 	self assert: self collectionWithSameAtEndAndBegining size > 1.
@@ -42,11 +30,8 @@ TIndexAccessForMultipliness>>test0FixtureIndexAccessFotMultipliness [
 			ifTrue: [ self deny: (self collectionWithSameAtEndAndBegining at: i) = self collectionWithSameAtEndAndBegining first ] ]
 ]
 
-{
-	#category : #'tests - index accessing for multipliness',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccessForMultipliness>>testIdentityIndexOfDuplicate [
+{ #category : #'tests - index accessing for multipliness' }
+TIndexAccessForMultipliness >> testIdentityIndexOfDuplicate [
 	"self debug: #testIdentityIndexOf"
 
 	| collection element |
@@ -62,11 +47,8 @@ TIndexAccessForMultipliness>>testIdentityIndexOfDuplicate [
 	self assert: (collection identityIndexOf: element) = collection size
 ]
 
-{
-	#category : #'tests - index accessing for multipliness',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccessForMultipliness>>testIdentityIndexOfIAbsentDuplicate [
+{ #category : #'tests - index accessing for multipliness' }
+TIndexAccessForMultipliness >> testIdentityIndexOfIAbsentDuplicate [
 	"self debug: #testIdentityIndexOfIfAbsent"
 	| collection element elementCopy |
 	collection := self collectionWithNonIdentitySameAtEndAndBegining .
@@ -81,11 +63,8 @@ TIndexAccessForMultipliness>>testIdentityIndexOfIAbsentDuplicate [
 			ifAbsent: [ 55 ]) = 55
 ]
 
-{
-	#category : #'tests - index accessing for multipliness',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccessForMultipliness>>testIndexOfDuplicate [
+{ #category : #'tests - index accessing for multipliness' }
+TIndexAccessForMultipliness >> testIndexOfDuplicate [
 	"self debug: #testIndexOf"
 	| collection element |
 	collection := self collectionWithSameAtEndAndBegining.
@@ -96,11 +75,8 @@ TIndexAccessForMultipliness>>testIndexOfDuplicate [
 	self assert: (collection indexOf: element) = 1
 ]
 
-{
-	#category : #'tests - index accessing for multipliness',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccessForMultipliness>>testIndexOfIfAbsentDuplicate [
+{ #category : #'tests - index accessing for multipliness' }
+TIndexAccessForMultipliness >> testIndexOfIfAbsentDuplicate [
 	"self debug: #testIndexOfIfAbsent"
 	| collection element |
 	collection := self collectionWithSameAtEndAndBegining.
@@ -113,11 +89,8 @@ TIndexAccessForMultipliness>>testIndexOfIfAbsentDuplicate [
 			ifAbsent: [ 55 ]) = 1
 ]
 
-{
-	#category : #'tests - index accessing for multipliness',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccessForMultipliness>>testIndexOfStartingAtDuplicate [
+{ #category : #'tests - index accessing for multipliness' }
+TIndexAccessForMultipliness >> testIndexOfStartingAtDuplicate [
 	"self debug: #testLastIndexOf"
 	| collection element |
 	collection := self collectionWithSameAtEndAndBegining.
@@ -135,11 +108,8 @@ TIndexAccessForMultipliness>>testIndexOfStartingAtDuplicate [
 			ifAbsent: [ 55 ]) = collection size
 ]
 
-{
-	#category : #'tests - index accessing for multipliness',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccessForMultipliness>>testLastIndexOfDuplicate [
+{ #category : #'tests - index accessing for multipliness' }
+TIndexAccessForMultipliness >> testLastIndexOfDuplicate [
 	"self debug: #testLastIndexOf"
 	| collection element |
 	collection := self collectionWithSameAtEndAndBegining.
@@ -150,11 +120,8 @@ TIndexAccessForMultipliness>>testLastIndexOfDuplicate [
 	self assert: (collection lastIndexOf: element) = collection size
 ]
 
-{
-	#category : #'tests - index accessing for multipliness',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccessForMultipliness>>testLastIndexOfIfAbsentDuplicate [
+{ #category : #'tests - index accessing for multipliness' }
+TIndexAccessForMultipliness >> testLastIndexOfIfAbsentDuplicate [
 	"self debug: #testIndexOfIfAbsent"
 	"self debug: #testLastIndexOf"
 	| collection element |
@@ -168,11 +135,8 @@ TIndexAccessForMultipliness>>testLastIndexOfIfAbsentDuplicate [
 			ifAbsent: [ 55 ]) = collection size
 ]
 
-{
-	#category : #'tests - index accessing for multipliness',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccessForMultipliness>>testLastIndexOfStartingAtDuplicate [
+{ #category : #'tests - index accessing for multipliness' }
+TIndexAccessForMultipliness >> testLastIndexOfStartingAtDuplicate [
 	"self debug: #testLastIndexOf"
 	| collection element |
 	collection := self collectionWithSameAtEndAndBegining.

@@ -4,31 +4,21 @@ Action when the method is a explicitRequired
 Class {
 	#name : #MethodIsATraitExplicitRequirementAction,
 	#superclass : #AbstractMethodIconAction,
-	#category : #Nautilus-Widgets,
-	#timestamp : '<historical>'
+	#category : #Nautilus-Widgets
 }
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsATraitExplicitRequirementAction>>actionOrder [
+{ #category : #order }
+MethodIsATraitExplicitRequirementAction >> actionOrder [
 	^150.
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsATraitExplicitRequirementAction>>isActionHandled [
+{ #category : #order }
+MethodIsATraitExplicitRequirementAction >> isActionHandled [
 	^method isRequired and: [ method methodClass ~= method origin ]
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsATraitExplicitRequirementAction>>privateActionIcon [
+{ #category : #order }
+MethodIsATraitExplicitRequirementAction >> privateActionIcon [
 	"Return the icon for this action"
 	"^ Smalltalk ui icons iconNamed: #traitRequiredMethodIcon"
 	^ IconicButton new 

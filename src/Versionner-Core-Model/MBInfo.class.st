@@ -14,114 +14,77 @@ Class {
 	#classVars : [
 		'ValidateAll'
 	],
-	#category : #Versionner-Core-Model,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:11'
+	#category : #Versionner-Core-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo class>>helpLabel [
+{ #category : #accessing }
+MBInfo class >> helpLabel [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo class>>validateAll [
+{ #category : #accessing }
+MBInfo class >> validateAll [
 
 	ValidateAll == nil ifTrue: [ ValidateAll := false ].
 	^ValidateAll
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo class>>validateAll: aBool [
+{ #category : #accessing }
+MBInfo class >> validateAll: aBool [
 
 	ValidateAll := aBool
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>announcer  [
+{ #category : #accessing }
+MBInfo >> announcer [ 
 
 	^self configurationRoot announcer
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>asStringOrText [
+{ #category : #converting }
+MBInfo >> asStringOrText [
 
 	^self text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>browseValidationResults [
+{ #category : #accessing }
+MBInfo >> browseValidationResults [
 
 	self validate explore
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>buildStringOrText [
+{ #category : #accessing }
+MBInfo >> buildStringOrText [
 	^self printString
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>clearValidationIcon [
+{ #category : #actions }
+MBInfo >> clearValidationIcon [
 
 	validationIcon := nil
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>commands [
+{ #category : #commands }
+MBInfo >> commands [
 	^ (self class allSelectors select:
 		[ :k | k beginsWith: 'cmd'  ]) collect: [ :k | self perform: k ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>configurationInfo [
+{ #category : #accessing }
+MBInfo >> configurationInfo [
 
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>configurationRoot [
+{ #category : #accessing }
+MBInfo >> configurationRoot [
 
 	^self configurationInfo configurationRoot
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>extractPackageSignatureFrom: aWorkingCopy [
+{ #category : #utils }
+MBInfo >> extractPackageSignatureFrom: aWorkingCopy [
 	| ref |
 	(aWorkingCopy isNil or: [ aWorkingCopy ancestors isEmpty ])
 		ifTrue: [ ^ '' ].
@@ -129,110 +92,74 @@ MBInfo>>extractPackageSignatureFrom: aWorkingCopy [
 	^ ref author , '.' , ref versionNumber asString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>interestedInPackageNamed: packageName [
+{ #category : #testing }
+MBInfo >> interestedInPackageNamed: packageName [
 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>isDirty [
+{ #category : #testing }
+MBInfo >> isDirty [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>name [
+{ #category : #accessing }
+MBInfo >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>name: aName [
+{ #category : #accessing }
+MBInfo >> name: aName [
 	name := aName
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>printOn: aStream [
+{ #category : #printing }
+MBInfo >> printOn: aStream [
 	self name ifNil: [ aStream nextPutAll: '' . ^ self ].
 	aStream nextPutAll: self name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>project [
+{ #category : #accessing }
+MBInfo >> project [
 	"Answer the MetacelloProject associated with the receiver."
 	
 	^nil
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>repositories [
+{ #category : #utils }
+MBInfo >> repositories [
 	"Return the repositories associated with the receiver."
 
 	^#()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>text [
+{ #category : #accessing }
+MBInfo >> text [
 	text ifNil: [ text := self buildStringOrText ].
 	^text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>text: anObject [
+{ #category : #accessing }
+MBInfo >> text: anObject [
 	text := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>validate [
+{ #category : #accessing }
+MBInfo >> validate [
 	"Returns by default an empty collection of problems"
 	
 	^#()
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>validateFull [
+{ #category : #actions }
+MBInfo >> validateFull [
 
 	self  validationResult: nil.
 	^self validate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBInfo>>validationResult: anObject [
+{ #category : #accessing }
+MBInfo >> validationResult: anObject [
 
 	validationResult := anObject
 ]

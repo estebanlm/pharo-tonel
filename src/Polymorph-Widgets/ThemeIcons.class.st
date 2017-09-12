@@ -31,15 +31,11 @@ Class {
 	#classVars : [
 		'Current'
 	],
-	#category : #Polymorph-Widgets-Themes,
-	#timestamp : 'EstebanLorenzano 10/1/2015 12:27'
+	#category : #Polymorph-Widgets-Themes
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons class>>availablePacks [
+{ #category : #accessing }
+ThemeIcons class >> availablePacks [
 	"Retrieve all packs available in local disk"
 	^ { self current }, (self destinationPath exists
 		ifTrue: [  
@@ -49,19 +45,13 @@ ThemeIcons class>>availablePacks [
 		ifFalse: [ #() ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons class>>baseUrl [
+{ #category : #accessing }
+ThemeIcons class >> baseUrl [
 	^ 'https://github.com/pharo-project/pharo-icon-packs/archive' asUrl
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons class>>createFetchButtonUpdating: listMorph [
+{ #category : #settings }
+ThemeIcons class >> createFetchButtonUpdating: listMorph [
 	^ (Smalltalk ui theme 
 		newButtonIn: World
 		for: self
@@ -78,11 +68,8 @@ ThemeIcons class>>createFetchButtonUpdating: listMorph [
 		yourself
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons class>>createIconPackList [
+{ #category : #settings }
+ThemeIcons class >> createIconPackList [
 	^ (Smalltalk ui theme 
 		newDropListIn: World
 		for: self
@@ -98,11 +85,8 @@ ThemeIcons class>>createIconPackList [
 		yourself
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons class>>createSettingRow [
+{ #category : #settings }
+ThemeIcons class >> createSettingRow [
 	| list |
 	^ Smalltalk ui theme 
 		newRowIn: World 
@@ -111,20 +95,14 @@ ThemeIcons class>>createSettingRow [
 			self createFetchButtonUpdating: list }
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons class>>current  [
+{ #category : #'instance creation' }
+ThemeIcons class >> current [ 
 	"WARNING: Direct access to this method is ill-adviced, use Smalltalk ui icons instead."
 	^ Current ifNil: [ Current := self loadDefault ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons class>>current: aPack [
+{ #category : #'instance creation' }
+ThemeIcons class >> current: aPack [
 	aPack hasIcons ifFalse: [ aPack loadIconsFromUrl ].
 	Current := aPack.
 	"Polymorph depends on Morphic, so coupling with WorldState is ok, the problem is with 
@@ -133,19 +111,13 @@ ThemeIcons class>>current: aPack [
 	SystemAnnouncer uniqueInstance announce: IconSetChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons class>>destinationPath [
+{ #category : #accessing }
+ThemeIcons class >> destinationPath [
 	^ 'icon-packs' asFileReference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons class>>fetchPacks [
+{ #category : #accessing }
+ThemeIcons class >> fetchPacks [
 	"Retrieve all packs available from repository"
 	| jsonList |
 	
@@ -166,30 +138,21 @@ ThemeIcons class>>fetchPacks [
 		as: Array
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons class>>loadDefault [
+{ #category : #private }
+ThemeIcons class >> loadDefault [
 	^ self new 
 	name: 'idea11';
 	loadIconsFromUrl;
 	yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons class>>named: aString  [
+{ #category : #'instance creation' }
+ThemeIcons class >> named: aString [ 
 	^ self new name: aString
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons class>>settingsOn: aBuilder  [
+{ #category : #settings }
+ThemeIcons class >> settingsOn: aBuilder [ 
 	<systemsettings>
 
 	(aBuilder setting: #current)
@@ -200,11 +163,8 @@ ThemeIcons class>>settingsOn: aBuilder  [
 		dialog: [ self createSettingRow ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons class>>uiFetchPacks [
+{ #category : #settings }
+ThemeIcons class >> uiFetchPacks [
 	| choosenPacks remotePacks |
 
 	UIManager default 
@@ -224,99 +184,66 @@ ThemeIcons class>>uiFetchPacks [
 			each downloadFromUrl ]] 	
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons class>>wrapIconPack: aPack [
+{ #category : #settings }
+ThemeIcons class >> wrapIconPack: aPack [
 	^ aPack name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>allIconNames [
+{ #category : #accessing }
+ThemeIcons >> allIconNames [
 	"Returns the names of all the available icons"
 	^ self icons keys
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>beCurrent [
+{ #category : #accessing }
+ThemeIcons >> beCurrent [
 	self class current: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>beNotReportNotFound [
+{ #category : #accessing }
+ThemeIcons >> beNotReportNotFound [
 	reportNotFound := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>beReportNotFound [
+{ #category : #accessing }
+ThemeIcons >> beReportNotFound [
 	reportNotFound := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>blankIcon [
+{ #category : #accessing }
+ThemeIcons >> blankIcon [
 	^ self blankIconOfWidth: 16
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>blankIconOfWidth: aNumber  [
+{ #category : #utils }
+ThemeIcons >> blankIconOfWidth: aNumber [ 
 	^ self icons
 		at: ('blank-' , aNumber asString) asSymbol
 		ifAbsentPut: [Form extent: aNumber @ 1 depth: 8]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>defaultUrl [
+{ #category : #private }
+ThemeIcons >> defaultUrl [
 	^ self class baseUrl / (self name, '.zip')
 ]
 
-{
-	#category : #'reflective operations',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>doesNotUnderstand: aMessage [
+{ #category : #'reflective operations' }
+ThemeIcons >> doesNotUnderstand: aMessage [
 	"WARNING: This is "
 	aMessage selector isUnary 
 		ifTrue: [ ^ self iconNamed: aMessage selector ].	
 	^ super doesNotUnderstand: aMessage
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>downloadFromUrl [
+{ #category : #loading }
+ThemeIcons >> downloadFromUrl [
 	| dir |
 	dir := self class destinationPath ensureCreateDirectory. 
 	^ self downloadTo: dir
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>downloadTo: dir [
+{ #category : #private }
+ThemeIcons >> downloadTo: dir [
 	| zipArchive |
 	
 	zipArchive := self class destinationPath / (self name, '.zip').
@@ -329,11 +256,8 @@ ThemeIcons>>downloadTo: dir [
 	^ zipArchive
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>form16x16FromContents: aByteArray  [
+{ #category : #utils }
+ThemeIcons >> form16x16FromContents: aByteArray [ 
 	^ Form
 	extent: 16@16
 	depth: 32
@@ -341,19 +265,13 @@ ThemeIcons>>form16x16FromContents: aByteArray  [
 	offset: 0@0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>hasIcons [
+{ #category : #testing }
+ThemeIcons >> hasIcons [
 	^ self icons notEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>iconNamed: aSymbol [
+{ #category : #accessing }
+ThemeIcons >> iconNamed: aSymbol [
 	^ self 
 		iconNamed: aSymbol 
 		ifNone: [ 
@@ -364,11 +282,8 @@ ThemeIcons>>iconNamed: aSymbol [
 				ifFalse: [ self blankIcon ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>iconNamed: aSymbol ifNone: aBlock [
+{ #category : #accessing }
+ThemeIcons >> iconNamed: aSymbol ifNone: aBlock [
 
 	self icons at: aSymbol asSymbol ifPresent: [ :icon | ^ icon ].
 	"Trying the old way"
@@ -382,27 +297,18 @@ ThemeIcons>>iconNamed: aSymbol ifNone: aBlock [
 	^ aBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>icons  [
+{ #category : #accessing }
+ThemeIcons >> icons [ 
 	^ icons ifNil: [ icons := Dictionary new: 0 ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>isReportingNotFound [
+{ #category : #testing }
+ThemeIcons >> isReportingNotFound [
 	^ reportNotFound ifNil: [ reportNotFound := false ]
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>loadIconsFromUrl [
+{ #category : #loading }
+ThemeIcons >> loadIconsFromUrl [
 	| newIcons zipArchive |
 	
 	newIcons := IdentityDictionary new.
@@ -417,62 +323,41 @@ ThemeIcons>>loadIconsFromUrl [
 	icons := newIcons.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>name [
+{ #category : #accessing }
+ThemeIcons >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>name: aName [
+{ #category : #accessing }
+ThemeIcons >> name: aName [
 	name := aName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>notFoundIcon [
+{ #category : #accessing }
+ThemeIcons >> notFoundIcon [
 	^ self icons
 		at: #notFoundIcon
 		ifAbsentPut: [ Color red iconOrThumbnailOfSize: 16 ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>printOn: stream  [
+{ #category : #printing }
+ThemeIcons >> printOn: stream [ 
 	super printOn: stream.
 	stream << $( << self name << $)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>readPNGFrom: aReference [
+{ #category : #private }
+ThemeIcons >> readPNGFrom: aReference [
 	^ aReference binaryReadStreamDo: [ :stream | 
 		PNGReadWriter formFromStream: stream ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>url [
+{ #category : #accessing }
+ThemeIcons >> url [
 	^ url ifNil: [ url := self defaultUrl ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ThemeIcons>>url: aStringOrUrl [
+{ #category : #accessing }
+ThemeIcons >> url: aStringOrUrl [
 	url := aStringOrUrl ifNotNil: [ aStringOrUrl asUrl ]
 ]

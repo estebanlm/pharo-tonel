@@ -16,36 +16,26 @@ Class {
 	#instVars : [
 		'method'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'MarkRizun 7/24/2014 14:17'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodToClassRefactoring class>>method: aMethod class: aClass [
+{ #category : #'instance creation' }
+RBMoveMethodToClassRefactoring class >> method: aMethod class: aClass [
 	^ self new
 		method: aMethod class: aClass;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodToClassRefactoring class>>model: aRBSmalltalk method: aMethod class: aClass [
+{ #category : #'instance creation' }
+RBMoveMethodToClassRefactoring class >> model: aRBSmalltalk method: aMethod class: aClass [
 	^ self new
 		model: aRBSmalltalk;
 		method: aMethod class: aClass;
 		yourself
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodToClassRefactoring>>classModelOf: aClass [
+{ #category : #transforming }
+RBMoveMethodToClassRefactoring >> classModelOf: aClass [
 	| classModel |
 	classModel := aClass isMeta 
 		ifTrue: [ RBClassModelFactory rbMetaclass named: aClass name ]
@@ -54,28 +44,19 @@ RBMoveMethodToClassRefactoring>>classModelOf: aClass [
 	^classModel
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodToClassRefactoring>>method: aMethod class: aClass [
+{ #category : #initialize-release }
+RBMoveMethodToClassRefactoring >> method: aMethod class: aClass [
 	method := aMethod.
 	class := self classObjectFor: aClass.
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodToClassRefactoring>>preconditions [
+{ #category : #preconditions }
+RBMoveMethodToClassRefactoring >> preconditions [
 	^(RBCondition definesSelector: method selector in: class) not
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodToClassRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBMoveMethodToClassRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream
@@ -87,11 +68,8 @@ RBMoveMethodToClassRefactoring>>storeOn: aStream  [
 		nextPutAll: ''')'
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMoveMethodToClassRefactoring>>transform [
+{ #category : #transforming }
+RBMoveMethodToClassRefactoring >> transform [
 	| oldClass newClass rbMethod originalProtocol |
 	oldClass := self classModelOf: method methodClass.
 	newClass := self classModelOf: class.

@@ -1,23 +1,15 @@
-Extension {
-	#name : #MCPatchBrowser
-}
+Extension { #name : #MCPatchBrowser }
 
-{
-	#category : #'*Tool-Diff',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCPatchBrowser>>diffSelection [
+{ #category : #'*Tool-Diff' }
+MCPatchBrowser >> diffSelection [
 	"Open a diff browser on the selection."
 	
 	selection ifNotNil:
 		[selection diff]
 ]
 
-{
-	#category : #'*Tool-Diff',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MCPatchBrowser>>methodListMenu: aMenu [
+{ #category : #'*Tool-Diff' }
+MCPatchBrowser >> methodListMenu: aMenu [
 
 	selection 
 		ifNotNil: [ 

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #NECContextTest,
 	#superclass : #TestCase,
-	#category : #NECompletion-Tests,
-	#timestamp : ''
+	#category : #NECompletion-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>checkUntypedVariablesOnly: aString  [
+{ #category : #private }
+NECContextTest >> checkUntypedVariablesOnly: aString [ 
 	| context model |
 	context := self 
 		createContextFor: aString
@@ -26,11 +19,8 @@ NECContextTest>>checkUntypedVariablesOnly: aString  [
 	self assert: (model entriesOfType: #selector) isEmpty
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>createContextFor: aString at: anInteger  [
+{ #category : #private }
+NECContextTest >> createContextFor: aString [ at: anInteger 
 	^ NECContext
 		controller: NECController new
 		class: NECTestClass
@@ -38,11 +28,8 @@ NECContextTest>>createContextFor: aString at: anInteger  [
 		position: anInteger
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testBlockTemporaries [
+{ #category : #tests }
+NECContextTest >> testBlockTemporaries [
 	| text temps context |
 	text := 'testIt
 	| a b c |
@@ -60,11 +47,8 @@ NECContextTest>>testBlockTemporaries [
 	self assert: temps fifth = 'd'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testBlockTemporariesBoxed [
+{ #category : #tests }
+NECContextTest >> testBlockTemporariesBoxed [
 	| text temps context |
 	text := 'testIt
 	| a b c |
@@ -83,11 +67,8 @@ NECContextTest>>testBlockTemporariesBoxed [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testCompletionToken [
+{ #category : #tests }
+NECContextTest >> testCompletionToken [
 	| text context |
 	text := 'testIt: aRectangle
 	| abc |
@@ -97,11 +78,8 @@ NECContextTest>>testCompletionToken [
 	self assert: context completionToken = 'daf'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testCompletionTokenEmpty [
+{ #category : #tests }
+NECContextTest >> testCompletionTokenEmpty [
 	| text context |
 	text := 'testIt: aRectangle
 	| abc |
@@ -111,11 +89,8 @@ NECContextTest>>testCompletionTokenEmpty [
 	self assert: context completionToken = ''
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testCreateModel [
+{ #category : #tests }
+NECContextTest >> testCreateModel [
 	| text context |
 	text := 'testIt: aRectangle
 	aRectangle printS'.
@@ -132,19 +107,13 @@ NECContextTest>>testCreateModel [
 	self assert: context createModel class = NECUntypedModel
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testEmpty [
+{ #category : #tests }
+NECContextTest >> testEmpty [
 	self createContextFor: '' at: 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testInTheMiddelOfAWord [
+{ #category : #tests }
+NECContextTest >> testInTheMiddelOfAWord [
 	| text context |
 	text := 'hagada'.
 	context := self 
@@ -153,11 +122,8 @@ NECContextTest>>testInTheMiddelOfAWord [
 	self assert: context completionToken = 'haga'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testReceiverArgument [
+{ #category : #tests }
+NECContextTest >> testReceiverArgument [
 	| text context |
 	text := 'testIt: aRectangle
 	aRectangle printS'.
@@ -173,11 +139,8 @@ NECContextTest>>testReceiverArgument [
 	self assert: context receiverClass isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testReceiverCascade [
+{ #category : #tests }
+NECContextTest >> testReceiverCascade [
 	| text context |
 	text := 'testIt
 	| b |
@@ -213,11 +176,8 @@ NECContextTest>>testReceiverCascade [
 	self assert: context receiverClass == Stream
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testReceiverClassVar [
+{ #category : #tests }
+NECContextTest >> testReceiverClassVar [
 	| text context |
 	text := 'testIt
 	ClassVar '.
@@ -227,11 +187,8 @@ NECContextTest>>testReceiverClassVar [
 	self assert: context receiverClass == ByteString
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testReceiverConstant [
+{ #category : #tests }
+NECContextTest >> testReceiverConstant [
 	| text context |
 	text := 'testIt
 	15r16 printS'.
@@ -278,11 +235,8 @@ NECContextTest>>testReceiverConstant [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testReceiverGlobal [
+{ #category : #tests }
+NECContextTest >> testReceiverGlobal [
 	| text context |
 	text := 'testIt
 	Dictionary n'.
@@ -291,11 +245,8 @@ NECContextTest>>testReceiverGlobal [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testReceiverGlobalVarNew [
+{ #category : #tests }
+NECContextTest >> testReceiverGlobalVarNew [
 	| text context |
 	text := 'testIt
 	Dictionary new a'.
@@ -304,11 +255,8 @@ NECContextTest>>testReceiverGlobalVarNew [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testReceiverTempVar [
+{ #category : #tests }
+NECContextTest >> testReceiverTempVar [
 	| text context |
 	text := 'testIt
 	| aha |
@@ -398,11 +346,8 @@ NECContextTest>>testReceiverTempVar [
 	self assert: context receiverClass = LargePositiveInteger.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testReceiverTempVar2 [
+{ #category : #tests }
+NECContextTest >> testReceiverTempVar2 [
 	| text context |
 	text := 'openMenuFor: aParagraphEditor 
 	| theMenu |
@@ -421,11 +366,8 @@ NECContextTest>>testReceiverTempVar2 [
 	self assert: context receiverClass == NECMenuMorph
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testReceiverTempVar3 [
+{ #category : #tests }
+NECContextTest >> testReceiverTempVar3 [
 "if tempvar assignment is from a keyword message send (case 3), the guessed type should be 'nil' as in case for simple messages. Don't move over to other var assignments (smallint for var b)"
 	| text context |
 	"case 1 guess from constant"
@@ -461,11 +403,8 @@ NECContextTest>>testReceiverTempVar3 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testTemporaries [
+{ #category : #tests }
+NECContextTest >> testTemporaries [
 	| text temps context |
 	text := 'testIt: aRectangle
 	| a b c |
@@ -482,11 +421,8 @@ NECContextTest>>testTemporaries [
 	self assert: temps fourth = 'c'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testUnfinishedString [
+{ #category : #tests }
+NECContextTest >> testUnfinishedString [
 	| text context |
 	text := 'testIt: aRectangle
 	| a b c |
@@ -497,11 +433,8 @@ NECContextTest>>testUnfinishedString [
 	self assert: context completionToken = 'so'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testUntypedSelectorsOnly [
+{ #category : #tests }
+NECContextTest >> testUntypedSelectorsOnly [
 	| text context model |
 	text := 'testIt: aRectangle
 	| ab bc bd |
@@ -518,11 +451,8 @@ NECContextTest>>testUntypedSelectorsOnly [
 	self assert: (model entriesOfType: #instance) isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECContextTest>>testUntypedVarsOnly [
+{ #category : #tests }
+NECContextTest >> testUntypedVarsOnly [
 	self checkUntypedVariablesOnly: 'testIt
 	'.
 	self checkUntypedVariablesOnly: '+ aTest

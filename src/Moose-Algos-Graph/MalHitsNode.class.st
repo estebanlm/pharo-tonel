@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MalHitsNode,
 	#superclass : #MalNodeWithPreviousAndNext,
@@ -8,56 +5,37 @@ Class {
 		'auth',
 		'hub'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHitsNode>>auth [
+{ #category : #accessing }
+MalHitsNode >> auth [
 	^ auth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHitsNode>>auth: anObject [
+{ #category : #accessing }
+MalHitsNode >> auth: anObject [
 	auth := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHitsNode>>hub [
+{ #category : #accessing }
+MalHitsNode >> hub [
 	^ hub
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHitsNode>>hub: anObject [
+{ #category : #accessing }
+MalHitsNode >> hub: anObject [
 	hub := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHitsNode>>label [
+{ #category : #printing }
+MalHitsNode >> label [
 
 	^ 'H '
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalHitsNode>>printString [
+{ #category : #printing }
+MalHitsNode >> printString [
 
 	^ 	'(',
 		self model printString,

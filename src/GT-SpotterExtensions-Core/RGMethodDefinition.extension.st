@@ -1,12 +1,7 @@
-Extension {
-	#name : #RGMethodDefinition
-}
+Extension { #name : #RGMethodDefinition }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-RGMethodDefinition>>spotterPreviewCodeIn: aComposite [
+{ #category : #'*GT-SpotterExtensions-Core' }
+RGMethodDefinition >> spotterPreviewCodeIn: aComposite [
 	<spotterPreview: 10>
 	aComposite pharoMethod
 		title: [ self gtDisplayString ];

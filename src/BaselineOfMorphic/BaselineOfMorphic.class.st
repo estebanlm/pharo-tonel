@@ -21,15 +21,11 @@ Class {
 	#instVars : [
 		'initializersEnabled'
 	],
-	#category : #BaselineOfMorphic,
-	#timestamp : 'PavelKrivanek 11/7/2016 12:13'
+	#category : #BaselineOfMorphic
 }
 
-{
-	#category : #baseline,
-	#timestamp : ' 8/31/2017 05:26:06'
-}
-BaselineOfMorphic>>baseline: spec  [
+{ #category : #baseline }
+BaselineOfMorphic >> baseline: spec [ 
     
 	<baseline>
         
@@ -111,11 +107,8 @@ BaselineOfMorphic>>baseline: spec  [
 	].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:06'
-}
-BaselineOfMorphic>>cleanUpAfterMorphicInitialization [
+{ #category : #actions }
+BaselineOfMorphic >> cleanUpAfterMorphicInitialization [
 
 	Author fullName: self class name.
 	MCDataStream initialize.
@@ -156,11 +149,8 @@ BaselineOfMorphic>>cleanUpAfterMorphicInitialization [
 	Author reset.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:06'
-}
-BaselineOfMorphic>>postload: loader package: packageSpec [
+{ #category : #actions }
+BaselineOfMorphic >> postload: loader package: packageSpec [
 
 	| dejavu array |
 
@@ -244,11 +234,8 @@ BaselineOfMorphic>>postload: loader package: packageSpec [
 	UIManager default restoreDisplay. 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:06'
-}
-BaselineOfMorphic>>preload: loader package: packageSpec [
+{ #category : #actions }
+BaselineOfMorphic >> preload: loader package: packageSpec [
 
 	'Starting preload action' logCr.
 	
@@ -260,11 +247,8 @@ BaselineOfMorphic>>preload: loader package: packageSpec [
 
 ]
 
-{
-	#category : #baseline,
-	#timestamp : ' 8/31/2017 05:26:06'
-}
-BaselineOfMorphic>>project [
+{ #category : #baseline }
+BaselineOfMorphic >> project [
 	
 	| aProject |
 	

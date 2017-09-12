@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'color'
 	],
-	#category : #Balloon-Simulation,
-	#timestamp : '<historical>'
+	#category : #Balloon-Simulation
 }
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonSolidFillSimulation>>computeFillFrom: minX to: maxX at: yValue in: form [
+{ #category : #computing }
+BalloonSolidFillSimulation >> computeFillFrom: minX to: maxX at: yValue [ in: form
 	| bb |
 	color isTransparent ifFalse:[
 		bb := BitBlt toForm: form.
@@ -25,10 +21,7 @@ BalloonSolidFillSimulation>>computeFillFrom: minX to: maxX at: yValue in: form [
 		bb copyBits].
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonSolidFillSimulation>>computeInitialStateFrom: source with: aColorTransform [
+{ #category : #computing }
+BalloonSolidFillSimulation >> computeInitialStateFrom: source with: aColorTransform [
 	color := source asColor.
 ]

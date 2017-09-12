@@ -1,12 +1,7 @@
-Extension {
-	#name : #Array
-}
+Extension { #name : #Array }
 
-{
-	#category : #'*Spec-Core',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Array>>generateSpec [
+{ #category : #'*Spec-Core' }
+Array >> generateSpec [
 	| str spec |
 	str := self readStream.	
 	

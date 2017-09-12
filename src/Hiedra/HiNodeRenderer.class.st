@@ -11,15 +11,11 @@ Class {
 		'nodeShape',
 		'nodeBuilder'
 	],
-	#category : #Hiedra-Rendering,
-	#timestamp : '<historical>'
+	#category : #Hiedra-Rendering
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodeRenderer>>initializeShape [
+{ #category : #initialization }
+HiNodeRenderer >> initializeShape [
 	nodeShape := athensCanvas createPath: [ :builder | 
 		builder
 			absolute;
@@ -32,27 +28,18 @@ HiNodeRenderer>>initializeShape [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodeRenderer>>location: aPoint  [
+{ #category : #accessing }
+HiNodeRenderer >> location: aPoint [ 
 	location := aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodeRenderer>>nodeBuilder: aNodeBuilder  [
+{ #category : #accessing }
+HiNodeRenderer >> nodeBuilder: aNodeBuilder [ 
 	nodeBuilder := aNodeBuilder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodeRenderer>>nodeModel: aNodeBuilder  [
+{ #category : #accessing }
+HiNodeRenderer >> nodeModel: aNodeBuilder [ 
 	self 
 		deprecated: 'Use nodeBuilder: instead'
 		on: 	'17 March 2016' 
@@ -60,11 +47,8 @@ HiNodeRenderer>>nodeModel: aNodeBuilder  [
 	^ self nodeBuilder: aNodeBuilder 
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodeRenderer>>render [
+{ #category : #rendering }
+HiNodeRenderer >> render [
 	"Render this node in the athensCanvas"
 
 	self initializeShape.

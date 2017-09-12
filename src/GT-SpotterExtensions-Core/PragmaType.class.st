@@ -16,15 +16,11 @@ Class {
 		'keyword',
 		'pragmas'
 	],
-	#category : #GT-SpotterExtensions-Core,
-	#timestamp : 'TudorGirba 11/16/2014 12:57'
+	#category : #GT-SpotterExtensions-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-PragmaType class>>all [
+{ #category : #accessing }
+PragmaType class >> all [
 	| pragmas |
 	pragmas := OrderedCollection new.
 	Object withAllSubclassesDo: [:each |
@@ -36,20 +32,14 @@ PragmaType class>>all [
 			pragmas: association value ] 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-PragmaType class>>gtExampleAnyOne [
+{ #category : #examples }
+PragmaType class >> gtExampleAnyOne [
 	<gtExample>
 	^ self all anyOne
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-PragmaType>>gtInspectorPragmasIn: composite [
+{ #category : #ui }
+PragmaType >> gtInspectorPragmasIn: composite [
 	<gtInspectorPresentationOrder: 0>
 	composite list
 		title: 'Pragmas';
@@ -57,11 +47,8 @@ PragmaType>>gtInspectorPragmasIn: composite [
 		format: #gtDisplayString
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-PragmaType>>gtInspectorUsersIn: composite [
+{ #category : #ui }
+PragmaType >> gtInspectorUsersIn: composite [
 	<gtInspectorPresentationOrder: 1>
 	composite list
 		title: 'Users';
@@ -69,27 +56,18 @@ PragmaType>>gtInspectorUsersIn: composite [
 		format: #gtDisplayString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-PragmaType>>keyword [
+{ #category : #accessing }
+PragmaType >> keyword [
 	^ keyword
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-PragmaType>>keyword: anObject [
+{ #category : #accessing }
+PragmaType >> keyword: anObject [
 	keyword := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-PragmaType>>pragmas [
+{ #category : #accessing }
+PragmaType >> pragmas [
 	^ pragmas ifNil: [
 		pragmas := OrderedCollection new.
 		SystemNavigation new allBehaviorsDo: [ :each |
@@ -99,27 +77,18 @@ PragmaType>>pragmas [
 		pragmas ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-PragmaType>>pragmas: aCollection [
+{ #category : #accessing }
+PragmaType >> pragmas: aCollection [
 	pragmas := aCollection
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-PragmaType>>printOn: stream [
+{ #category : #ui }
+PragmaType >> printOn: stream [
 	stream nextPutAll: self keyword
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-PragmaType>>spotterPragmasFor: aStep [
+{ #category : #ui }
+PragmaType >> spotterPragmasFor: aStep [
 	<spotterOrder: 40>
 	^ aStep listProcessor
 		title: 'Pragmas';
@@ -128,11 +97,8 @@ PragmaType>>spotterPragmasFor: aStep [
 		filter: GTFilterSubstring
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-PragmaType>>spotterPreviewItemsIn: aComposite [
+{ #category : #ui }
+PragmaType >> spotterPreviewItemsIn: aComposite [
 	<spotterPreview: 10>
 	
 	aComposite list
@@ -142,11 +108,8 @@ PragmaType>>spotterPreviewItemsIn: aComposite [
 		entity: self pragmas asArray.
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-PragmaType>>spotterUsersFor: aStep [
+{ #category : #ui }
+PragmaType >> spotterUsersFor: aStep [
 	<spotterOrder: 50>
 	^ aStep listProcessor
 		title: 'Users';
@@ -154,10 +117,7 @@ PragmaType>>spotterUsersFor: aStep [
 			self users do: [ :sender | filter value: sender ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-PragmaType>>users [
+{ #category : #accessing }
+PragmaType >> users [
 	^ (self keyword senders collect: [ :each | each compiledMethod ]) \ (self pragmas collect: [ :each | each method ])
 ]

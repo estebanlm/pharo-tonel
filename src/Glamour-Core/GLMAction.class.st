@@ -20,15 +20,11 @@ Class {
 		'separatorBefore',
 		'shouldShowTitle'
 	],
-	#category : #Glamour-Core,
-	#timestamp : '<historical>'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #'public interface',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>actOn: aPresentation  [
+{ #category : #'public interface' }
+GLMAction >> actOn: aPresentation [ 
 	 
 	^ self action 
 		glamourValueWithArgs: 
@@ -37,21 +33,15 @@ GLMAction>>actOn: aPresentation  [
 				withAll: aPresentation entity asGlamorousArray)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>action  [
+{ #category : #accessing }
+GLMAction >> action [ 
 	"The code that should be executed when this action is triggered." 
 	 
 	^action
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>action: aBlock  [
+{ #category : #accessing }
+GLMAction >> action: aBlock [ 
 	"The code that should be executed when this action is triggered. 
  
 	The block can take optional arguments, the first will always be the 
@@ -60,63 +50,42 @@ GLMAction>>action: aBlock  [
 	action := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>category  [
+{ #category : #accessing }
+GLMAction >> category [ 
 	"The name of the category that should be used when this action is displayed in a context menu." 
 	 
 	^category
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>category: aString  [
+{ #category : #accessing }
+GLMAction >> category: aString [ 
 	"The name of the category that should be used when this action is displayed in a context menu." 
 	 
 	category := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>condition [
+{ #category : #accessing }
+GLMAction >> condition [
 	^ condition ifNil: [ true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>condition: anObject [
+{ #category : #accessing }
+GLMAction >> condition: anObject [
 	condition := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>enabledCondition [
+{ #category : #accessing }
+GLMAction >> enabledCondition [
 	^ enabledCondition ifNil: [ true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>enabledCondition: anObject [
+{ #category : #accessing }
+GLMAction >> enabledCondition: anObject [
 	enabledCondition := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>gtDisplayOn: stream [
+{ #category : #printing }
+GLMAction >> gtDisplayOn: stream [
 	self hasTitle ifTrue: [
 		stream nextPutAll: self title; space ].
 	self hasShortcut ifTrue: [
@@ -125,208 +94,139 @@ GLMAction>>gtDisplayOn: stream [
 	self action gtDisplayOn: stream
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>hasIcon [
+{ #category : #testing }
+GLMAction >> hasIcon [
 	 
 	^self icon notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>hasShortcut  [
+{ #category : #testing }
+GLMAction >> hasShortcut [ 
 	 
 	^self keymap notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>hasTitle  [
+{ #category : #testing }
+GLMAction >> hasTitle [ 
 	 
 	^self title notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>help [
+{ #category : #accessing }
+GLMAction >> help [
 	^ help 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>help: aString  [
+{ #category : #accessing }
+GLMAction >> help: aString [ 
 	help := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>icon [
+{ #category : #accessing }
+GLMAction >> icon [
 	^ icon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>icon: anObject [
+{ #category : #accessing }
+GLMAction >> icon: anObject [
 	icon := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>iconName: aSymbol [
+{ #category : #accessing }
+GLMAction >> iconName: aSymbol [
 	"Set the icon whose name is given by the aSymbol"
 	self icon: (Smalltalk ui icons iconNamed: aSymbol)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>isAvailableOn: aPresentation [
+{ #category : #testing }
+GLMAction >> isAvailableOn: aPresentation [
 	^ self condition glamourValueWithArgs: 
 			(Array 
 				with: aPresentation 
 				withAll: aPresentation entity asGlamorousArray)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>isButton [
+{ #category : #testing }
+GLMAction >> isButton [
 	^self hasIcon
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>isCategorized [
+{ #category : #testing }
+GLMAction >> isCategorized [
 	 
 	^self category notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>isEnabledOn: aPresentation [
+{ #category : #testing }
+GLMAction >> isEnabledOn: aPresentation [
 	^ self enabledCondition glamourValueWithArgs: 
 			(Array 
 				with: aPresentation 
 				withAll: aPresentation entity asGlamorousArray)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>isMenu [
+{ #category : #testing }
+GLMAction >> isMenu [
 	^self hasTitle and: [ self hasIcon not]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>keymap [
+{ #category : #accessing }
+GLMAction >> keymap [
 
 	^ keymap
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>keymap: aKeymap [
+{ #category : #accessing }
+GLMAction >> keymap: aKeymap [
 
 	keymap := aKeymap
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>position  [
+{ #category : #accessing }
+GLMAction >> position [ 
 	"The relative position within a context menu." 
 	 
 	^position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>position: anInteger  [
+{ #category : #accessing }
+GLMAction >> position: anInteger [ 
 	"The relative position within a context menu." 
 	 
 	position := anInteger
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>renderGlamorouslyOn: aRenderer [
+{ #category : #rendering }
+GLMAction >> renderGlamorouslyOn: aRenderer [
 	^aRenderer renderAction: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>separatorAfter [
+{ #category : #accessing }
+GLMAction >> separatorAfter [
 	
 	^ separatorAfter ifNil: [ false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>separatorAfter: aBoolean [
+{ #category : #accessing }
+GLMAction >> separatorAfter: aBoolean [
 	
 	separatorAfter := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>separatorBefore [
+{ #category : #accessing }
+GLMAction >> separatorBefore [
 	
 	^ separatorBefore ifNil: [ false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>separatorBefore: aBoolean [
+{ #category : #accessing }
+GLMAction >> separatorBefore: aBoolean [
 	
 	separatorBefore := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>shortcut  [
+{ #category : #accessing }
+GLMAction >> shortcut [ 
 	"Shortcut character that this action should be triggered with when the focus rests on the corresponding presentation. 
 	Modifiers are platform specific an can not be defined." 
 	 
@@ -334,11 +234,8 @@ GLMAction>>shortcut  [
 		ifNotNil: [ self keymap currentCharacter ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>shortcut: aCharacter  [
+{ #category : #accessing }
+GLMAction >> shortcut: aCharacter [ 
 	"Shortcut character that this action should be triggered with when the focus rests on the corresponding presentation. 
 	Modifiers are platform specific an can not be defined." 
 	 
@@ -351,11 +248,8 @@ GLMAction>>shortcut: aCharacter  [
 			ifFalse: [ aCharacter meta ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>shortcutAsString  [
+{ #category : #accessing }
+GLMAction >> shortcutAsString [ 
 	"Answers a string explaining shortcut"
 	self shortcut ifNil: [ ^ '' ].
 	^ String streamContents: [ :stream |
@@ -365,64 +259,43 @@ GLMAction>>shortcutAsString  [
 		stream << self shortcut asLowercase asString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>shouldShowTitle [
+{ #category : #accessing }
+GLMAction >> shouldShowTitle [
 	^ shouldShowTitle ifNil: [ shouldShowTitle := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>shouldShowTitle: anObject [
+{ #category : #accessing }
+GLMAction >> shouldShowTitle: anObject [
 	shouldShowTitle := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>showTitle [
+{ #category : #accessing }
+GLMAction >> showTitle [
 	shouldShowTitle := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>title  [
+{ #category : #accessing }
+GLMAction >> title [ 
 	"Title that this action should use in a context menu." 
 	 
 	^title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>title: anObject  [
+{ #category : #accessing }
+GLMAction >> title: anObject [ 
 	"Title that this action should use in a context menu." 
 	 
 	title := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>withSeparatorAfter [
+{ #category : #accessing }
+GLMAction >> withSeparatorAfter [
 
 	self separatorAfter: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAction>>withSeparatorBefore [
+{ #category : #accessing }
+GLMAction >> withSeparatorBefore [
 
 	self separatorBefore: true
 ]

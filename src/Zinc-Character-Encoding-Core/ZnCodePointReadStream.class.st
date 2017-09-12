@@ -10,22 +10,15 @@ Part of Zinc HTTP Components.
 Class {
 	#name : #ZnCodePointReadStream,
 	#superclass : #ZnEncodedReadStream,
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : 'SvenVanCaekenberghe 1/26/2016 11:09'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCodePointReadStream>>collectionSpecies [
+{ #category : #accessing }
+ZnCodePointReadStream >> collectionSpecies [
 	^ Array
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCodePointReadStream>>nextElement [
+{ #category : #private }
+ZnCodePointReadStream >> nextElement [
 	^ self encoder nextCodePointFromStream: stream
 ]

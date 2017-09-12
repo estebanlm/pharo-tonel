@@ -12,15 +12,11 @@ Class {
 		'charSize',
 		'streamPosition'
 	],
-	#category : #Multilingual-TextConversion,
-	#timestamp : '<historical>'
+	#category : #Multilingual-TextConversion
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CompoundTextConverterState class>>g0Size: g0 g1Size: g1 g0Leading: g0l g1Leading: g1l charSize: cSize streamPosition: pos [
+{ #category : #'instance creation' }
+CompoundTextConverterState class >> g0Size: g0 g1Size: g1 g0Leading: g0l g1Leading: g1l charSize: cSize streamPosition: pos [
 
 	^ (self new)
 		g0Size: g0
@@ -33,71 +29,50 @@ CompoundTextConverterState class>>g0Size: g0 g1Size: g1 g0Leading: g0l g1Leading
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CompoundTextConverterState>>charSize [
+{ #category : #accessing }
+CompoundTextConverterState >> charSize [
 
 	^ charSize
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CompoundTextConverterState>>charSize: s [
+{ #category : #accessing }
+CompoundTextConverterState >> charSize: s [
 
 	charSize := s.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CompoundTextConverterState>>g0Leading [
+{ #category : #accessing }
+CompoundTextConverterState >> g0Leading [
 
 	^ g0Leading
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CompoundTextConverterState>>g0Leading: l [
+{ #category : #accessing }
+CompoundTextConverterState >> g0Leading: l [
 
 	g0Leading := l.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CompoundTextConverterState>>g0Size [
+{ #category : #accessing }
+CompoundTextConverterState >> g0Size [
 
 	^ g0Size
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CompoundTextConverterState>>g0Size: s [
+{ #category : #accessing }
+CompoundTextConverterState >> g0Size: s [
 
 	g0Size := s.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CompoundTextConverterState>>g0Size: g0 g1Size: g1 g0Leading: g0l g1Leading: g1l charSize: cSize streamPosition: pos [
+{ #category : #accessing }
+CompoundTextConverterState >> g0Size: g0 g1Size: g1 g0Leading: g0l g1Leading: g1l charSize: cSize streamPosition: pos [
 
 	g0Size := g0.
 	g1Size := g1.
@@ -108,51 +83,36 @@ CompoundTextConverterState>>g0Size: g0 g1Size: g1 g0Leading: g0l g1Leading: g1l 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CompoundTextConverterState>>g1Leading [
+{ #category : #accessing }
+CompoundTextConverterState >> g1Leading [
 
 	^ g1Leading
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CompoundTextConverterState>>g1Leading: l [
+{ #category : #accessing }
+CompoundTextConverterState >> g1Leading: l [
 
 	g1Leading := l.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CompoundTextConverterState>>g1Size [
+{ #category : #accessing }
+CompoundTextConverterState >> g1Size [
 
 	^ g1Size
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CompoundTextConverterState>>g1Size: s [
+{ #category : #accessing }
+CompoundTextConverterState >> g1Size: s [
 
 	g1Size := s.
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CompoundTextConverterState>>printOn: aStream [
+{ #category : #printing }
+CompoundTextConverterState >> printOn: aStream [
 
 	aStream nextPut: $(;
 		nextPutAll: g0Size printString; space;
@@ -165,21 +125,15 @@ CompoundTextConverterState>>printOn: aStream [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CompoundTextConverterState>>streamPosition [
+{ #category : #accessing }
+CompoundTextConverterState >> streamPosition [
 
 	^ streamPosition
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CompoundTextConverterState>>streamPosition: pos [
+{ #category : #accessing }
+CompoundTextConverterState >> streamPosition: pos [
 
 	streamPosition := pos.
 

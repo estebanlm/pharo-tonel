@@ -11,26 +11,19 @@ Class {
 		'hasKerning',
 		'session'
 	],
-	#category : #FreeType-Fonts,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:06'
+	#category : #FreeType-Fonts
 }
 
-{
-	#category : #'font dirs',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace class>>fontPathFor: aFilename [
+{ #category : #'font dirs' }
+FreeTypeFace class >> fontPathFor: aFilename [
 	"aFilename is local. Try hard to return a valid path to be handed to freetype library"
 	
 	"temporary solution ;-)"
 	^ (FileSystem disk workingDirectory / 'Fonts' / aFilename) fullName
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace class>>fromBytes: aByteArray index: anInteger [
+{ #category : #'instance creation' }
+FreeTypeFace class >> fromBytes: aByteArray index: anInteger [
 	"share alike instances"
 	| newFace |
 	
@@ -45,11 +38,8 @@ FreeTypeFace class>>fromBytes: aByteArray index: anInteger [
 	^ newFace
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace class>>fromFile: aFileName index: anInteger [
+{ #category : #'instance creation' }
+FreeTypeFace class >> fromFile: aFileName index: anInteger [
 	"share alike instances"
 	| file |
 	file := aFileName asFileReference.
@@ -65,28 +55,18 @@ FreeTypeFace class>>fromFile: aFileName index: anInteger [
 		yourself
 ]
 
-{
-	#category : #'font dirs',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace class>>rememberFontDir: aDirecory [
-
+{ #category : #'font dirs' }
+FreeTypeFace class >> rememberFontDir: aDirecory [
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace>>actAsExecutor [
+{ #category : #initialize-release }
+FreeTypeFace >> actAsExecutor [
 	super actAsExecutor.
 	filename := '<finalizer>'.
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace>>create [
+{ #category : #validation }
+FreeTypeFace >> create [
 	"create me in the FT2Plugin. This gets my handle, and loads the fields"
 	
 	fileContentsExternalMemory 
@@ -96,112 +76,73 @@ FreeTypeFace>>create [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace>>familyName [
+{ #category : #accessing }
+FreeTypeFace >> familyName [
 	^super familyName ifNil:['?']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace>>fileContentsExternalMemory: aFreeTypeExternalMemory [
+{ #category : #accessing }
+FreeTypeFace >> fileContentsExternalMemory: aFreeTypeExternalMemory [
 	fileContentsExternalMemory := aFreeTypeExternalMemory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace>>fileContentsExternalMemoryBytes [
+{ #category : #accessing }
+FreeTypeFace >> fileContentsExternalMemoryBytes [
 	^fileContentsExternalMemory ifNotNil:[fileContentsExternalMemory bytes]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace>>filename [
+{ #category : #accessing }
+FreeTypeFace >> filename [
 	^filename
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace>>filename: aString [
+{ #category : #accessing }
+FreeTypeFace >> filename: aString [
 	filename := aString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace>>hasFamilyName [
+{ #category : #testing }
+FreeTypeFace >> hasFamilyName [
 	^super familyName notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace>>hasKerning [
+{ #category : #testing }
+FreeTypeFace >> hasKerning [
 	^hasKerning ifNil:[
 		[hasKerning := self primHasKerning = 64] 
 			on: Error do:[:e | hasKerning := false].
 		hasKerning]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace>>hasStyleName [
+{ #category : #testing }
+FreeTypeFace >> hasStyleName [
 	^super styleName notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace>>index [
+{ #category : #accessing }
+FreeTypeFace >> index [
 	^index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace>>index: anInteger [
+{ #category : #accessing }
+FreeTypeFace >> index: anInteger [
 	index := anInteger
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace>>releaseCachedState [
+{ #category : #caching }
+FreeTypeFace >> releaseCachedState [
 
 	hasKerning := nil.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace>>styleName [
+{ #category : #accessing }
+FreeTypeFace >> styleName [
 	^super styleName ifNil:['']
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFace>>validate [
+{ #category : #validation }
+FreeTypeFace >> validate [
 	"If the receiver is not valid (has a nil handle), then create the 
 	receiver to obtain a handle and load the receiver's fields"
 	

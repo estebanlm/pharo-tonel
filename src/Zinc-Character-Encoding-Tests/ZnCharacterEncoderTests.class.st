@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnCharacterEncoderTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Character-Encoding-Tests,
-	#timestamp : ''
+	#category : #Zinc-Character-Encoding-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>decodeBytes: bytes with: encoder [
+{ #category : #private }
+ZnCharacterEncoderTests >> decodeBytes: bytes with: encoder [
 	| input |
 	input := bytes readStream.
 	^ String streamContents: [ :stream |
@@ -20,21 +13,15 @@ ZnCharacterEncoderTests>>decodeBytes: bytes with: encoder [
 			stream nextPut: (encoder nextFromStream: input) ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>encodeString: string with: encoder [
+{ #category : #private }
+ZnCharacterEncoderTests >> encodeString: string with: encoder [
 	^ ByteArray streamContents: [ :stream |
 		string do: [ :each |
 			encoder nextPut: each toStream: stream ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testAllByteEncoderDomains [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testAllByteEncoderDomains [
 	| encoder characterDomain byteDomain encoded |
 	ZnByteEncoder knownEncodingIdentifiers do: [ :identifier |
 		encoder := ZnCharacterEncoder newForEncoding: identifier.
@@ -54,11 +41,8 @@ ZnCharacterEncoderTests>>testAllByteEncoderDomains [
 			self assert: (characterDomain includes: (encoder nextFromStream: (ByteArray with: each) readStream)) ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testBeLenient [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testBeLenient [
 	| encoder unmapped |
 	encoder := ZnCharacterEncoder newForEncoding: 'iso-8859-1'.
 	unmapped := (128 to: 159) asByteArray.
@@ -69,11 +53,8 @@ ZnCharacterEncoderTests>>testBeLenient [
 	self assert: (encoder decodeBytes: unmapped) equals: unmapped asString.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testByteDecoding [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testByteDecoding [
 	| encoder bytes |
 	encoder := ZnUTF8Encoder new.
 	bytes := encoder encodeString: 'élève en Français'.
@@ -82,11 +63,8 @@ ZnCharacterEncoderTests>>testByteDecoding [
 	self assert: bytes utf8Decoded equals: (encoder decodeBytes: bytes)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testByteEncoderFromUrl [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testByteEncoderFromUrl [
 	| encoderFromUrl iso88592 bytes characters |
 	encoderFromUrl := ZnByteEncoder newFromUrl: 'http://files.pharo.org/extra/unicode/8859-2.TXT'.
 	iso88592 := ZnCharacterEncoder newForEncoding: #iso88592.
@@ -103,11 +81,8 @@ ZnCharacterEncoderTests>>testByteEncoderFromUrl [
 		
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testCodePointEncodingDecoding [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testCodePointEncodingDecoding [
 	| encoder input output |
 	input := 'Düsseldorf Königsallee' collect: #codePoint as: Array.
 	self assert: input isCollection.
@@ -121,11 +96,8 @@ ZnCharacterEncoderTests>>testCodePointEncodingDecoding [
 		self assert: (encoder decodeAsCodePoints: output) equals: input ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testCodePointStreams [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testCodePointStreams [
 	| string codePoints bytes result |
 	string := 'Düsseldorf Königsallee'.
 	codePoints := string collect: #codePoint as: Array.
@@ -141,11 +113,8 @@ ZnCharacterEncoderTests>>testCodePointStreams [
 		self assert: (codePoints collect: #asCharacter as: String) equals: string ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testConvencienceMethods [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testConvencienceMethods [
 	| encoder string |
 	encoder := ZnUTF8Encoder new.
 	string := 'élève en Français'.
@@ -156,11 +125,8 @@ ZnCharacterEncoderTests>>testConvencienceMethods [
 		self assert: (encoder decodeBytes: (encoder encodeString: each)) equals: each ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testDefault [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testDefault [
 	| string bytes |
 	self assert: ZnCharacterEncoder default equals: ZnUTF8Encoder new.
 	string := 'Der Weg zur Hölle ist mit guten Vorsätzen gepflastert.'.
@@ -179,11 +145,8 @@ ZnCharacterEncoderTests>>testDefault [
 				equals: string ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testDetectEncoding [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testDetectEncoding [
 	| bytes |
 	bytes := 'abc' asByteArray.
 	self assert: (ZnCharacterEncoder detectEncoding: bytes) equals: ZnCharacterEncoder ascii.
@@ -194,11 +157,8 @@ ZnCharacterEncoderTests>>testDetectEncoding [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testKnownEncodingIdentifiers [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testKnownEncodingIdentifiers [
 	| all minimal asciiString |
 	all := ZnCharacterEncoder knownEncodingIdentifiers asSet.
 	minimal := #(utf8 latin1 null ascii iso88591) asSet.
@@ -214,11 +174,8 @@ ZnCharacterEncoderTests>>testKnownEncodingIdentifiers [
 		self assert: (encoder decodeBytes: bytes) equals: asciiString ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testLatin1Encoder [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testLatin1Encoder [
 	| encoder string bytes |
 	encoder := ZnCharacterEncoder newForEncoding: 'latin1'.
 	string := 'élève en Français'.
@@ -227,11 +184,8 @@ ZnCharacterEncoderTests>>testLatin1Encoder [
 	self assert: (encoder decodeBytes: bytes) equals: string
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testLatin2Encoder [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testLatin2Encoder [
 	"Example characters taken from http://en.wikipedia.org/wiki/Latin2"
 	
 	| encoder inputBytes outputBytes inputString outputString |
@@ -246,11 +200,8 @@ ZnCharacterEncoderTests>>testLatin2Encoder [
 	self assert: outputString = inputString 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testNextPutAllStartingAtToStream [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testNextPutAllStartingAtToStream [
 	| encoder |
 	encoder := ZnUTF8Encoder new.
 	#( 'ccc' 'ççç' 'c' 'ç' 'çc' 'cç' 'çç' ) do: [ :each |
@@ -267,11 +218,8 @@ ZnCharacterEncoderTests>>testNextPutAllStartingAtToStream [
 				self assert: (encoder decodeBytes: bytes) equals: each ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testNullEncoder [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testNullEncoder [
 	| encoder bytes string |
 	encoder := ZnNullEncoder new.
 	bytes := self encodeString: 'abc' with: encoder.
@@ -280,11 +228,8 @@ ZnCharacterEncoderTests>>testNullEncoder [
 	self assert: string = 'ABC' 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testReadIntoStartingAtCountFromStream [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testReadIntoStartingAtCountFromStream [
 	| encoder |
 	encoder := ZnUTF8Encoder new.
 	#( 'ccc' 'ççç' 'c' 'ç' 'çc' 'cç' 'çç' ) do: [ :each |
@@ -302,11 +247,8 @@ ZnCharacterEncoderTests>>testReadIntoStartingAtCountFromStream [
 				self assert: buffer equals: string ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testReadIntoStartingAtCountFromStreamWide [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testReadIntoStartingAtCountFromStreamWide [
 	| encoder |
 	encoder := ZnUTF8Encoder new.
 	{ 'abc', (WideString withAll: { 300 asCharacter. 400 asCharacter. 500 asCharacter}), 'xyz' } do: [ :each |
@@ -325,11 +267,8 @@ ZnCharacterEncoderTests>>testReadIntoStartingAtCountFromStreamWide [
 			self assert: buffer equals: each ] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testReadIntoStartingAtCountFromStreamWithOffset [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testReadIntoStartingAtCountFromStreamWithOffset [
 	| input encoder bytes readStream string |
 	encoder := ZnUTF8Encoder new.
 	input := '_élève_'.
@@ -348,11 +287,8 @@ ZnCharacterEncoderTests>>testReadIntoStartingAtCountFromStreamWithOffset [
 	self assert: string equals: input
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testStringEncoding [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testStringEncoding [
 	| encoder string |
 	encoder := ZnUTF8Encoder new.
 	string := 'élève en Français'.
@@ -362,11 +298,8 @@ ZnCharacterEncoderTests>>testStringEncoding [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF16Back [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF16Back [
 	| encoder stream |
 	encoder := ZnUTF16Encoder new.
 	stream := (encoder encodeString: 'Les élèves Françaises') readStream.
@@ -380,11 +313,8 @@ ZnCharacterEncoderTests>>testUTF16Back [
 	self assert: (encoder nextFromStream: stream) equals: $s
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF16EncoderBigEndian [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF16EncoderBigEndian [
 	| string bytes encoder |
 	string := 'élève en Français'.
 	bytes := ByteArray readHexFrom:
@@ -395,11 +325,8 @@ ZnCharacterEncoderTests>>testUTF16EncoderBigEndian [
 	self assert: (encoder decodeBytes: bytes) equals: string
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF16EncoderByteOrderMark [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF16EncoderByteOrderMark [
 	| string bytes encoder encoded |
 	string := 'foo'.
 	bytes := ByteArray readHexFrom: 'FEFF0066006f006f'.
@@ -420,11 +347,8 @@ ZnCharacterEncoderTests>>testUTF16EncoderByteOrderMark [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF16EncoderLittleEndian [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF16EncoderLittleEndian [
 	| string bytes encoder |
 	string := 'élève en Français'.
 	bytes := ByteArray readHexFrom:
@@ -436,11 +360,8 @@ ZnCharacterEncoderTests>>testUTF16EncoderLittleEndian [
 	self assert: (encoder decodeBytes: bytes) equals: string
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF16EncoderWide1 [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF16EncoderWide1 [
 	| string bytes encoder |
 	string := (Character codePoint: 16r1d11e) asString. "MUSICAL SYMBOL G CLEF"
 	bytes := ByteArray readHexFrom: 'D834DD1E'.
@@ -450,11 +371,8 @@ ZnCharacterEncoderTests>>testUTF16EncoderWide1 [
 	self assert: (encoder decodeBytes: bytes) equals: string
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF32EncoderExampleFromD100 [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF32EncoderExampleFromD100 [
 	| string bytes encoder |
 	string := #(16r0000004D 16r00000430 16r00004E8C 16r00010302) collect: #asCharacter as: String.
 	bytes := ByteArray readHexFrom: '4D000000300400008C4E000002030100'.
@@ -465,11 +383,8 @@ ZnCharacterEncoderTests>>testUTF32EncoderExampleFromD100 [
 	self assert: (encoder decodeBytes: bytes) equals: string
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF32EncoderExampleFromD101 [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF32EncoderExampleFromD101 [
 	| string encoder bytesBigEndianWithBom bytesLittleEndianWithBom |
 	string := #(16r0000004D 16r00000430 16r00004E8C 16r00010302) collect: #asCharacter as: String.
 	encoder := #utf32 asZnCharacterEncoder.
@@ -487,11 +402,8 @@ ZnCharacterEncoderTests>>testUTF32EncoderExampleFromD101 [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF32EncoderExampleFromD99 [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF32EncoderExampleFromD99 [
 	| string bytes encoder |
 	string := #(16r0000004D 16r00000430 16r00004E8C 16r00010302) collect: #asCharacter as: String.
 	bytes := ByteArray readHexFrom: '0000004D0000043000004E8C00010302'.
@@ -502,11 +414,8 @@ ZnCharacterEncoderTests>>testUTF32EncoderExampleFromD99 [
 	self assert: (encoder decodeBytes: bytes) equals: string
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF32EncoderSimple [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF32EncoderSimple [
 	| string bytes encoder |
 	string := 'élève en Français'.
 	bytes := ByteArray readHexFrom: '000000e90000006c000000e8000000760000006500000020000000650000006e000000200000004600000072000000610000006e000000e7000000610000006900000073'.
@@ -517,11 +426,8 @@ ZnCharacterEncoderTests>>testUTF32EncoderSimple [
 	self assert: (encoder decodeBytes: bytes) equals: string
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF32EncoderWide [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF32EncoderWide [
 	| encoder |
 	encoder := ZnUTF32Encoder new.
 	{ 
@@ -535,11 +441,8 @@ ZnCharacterEncoderTests>>testUTF32EncoderWide [
 			self assert: (encoder decodeBytesIntoWideString: bytes) equals: each ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF8Back [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF8Back [
 	| encoder stream |
 	encoder := ZnUTF8Encoder new.
 	stream := (encoder encodeString: 'Les élèves Françaises') readStream.
@@ -553,11 +456,8 @@ ZnCharacterEncoderTests>>testUTF8Back [
 	self assert: (encoder nextFromStream: stream) equals: $s
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF8Boundaries [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF8Boundaries [
 	"Test encoding and decoding of the characters at the boundaries between 1, 2, 3, and 4 multi-byte sequences.
 	Values taken from http://en.wikipedia.org/wiki/Utf8#Description with the new RFC 3629 limit"
 	
@@ -575,11 +475,8 @@ ZnCharacterEncoderTests>>testUTF8Boundaries [
 			self assert: encoded size equals: byteCount ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF8ByteOrderMark [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF8ByteOrderMark [
 	"The Unicode Byte Order Mark (BOM) should be skipped."
 	
 	| bom string bytes encoder |
@@ -591,11 +488,8 @@ ZnCharacterEncoderTests>>testUTF8ByteOrderMark [
 	self should: [ encoder decodeBytes: bom ] raise: ZnInvalidUTF8 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF8Encoder [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF8Encoder [
 	"The examples are taken from http://en.wikipedia.org/wiki/UTF-8#Description"
 	
 	| encoder inputBytes outputBytes inputString outputString |
@@ -608,11 +502,8 @@ ZnCharacterEncoderTests>>testUTF8Encoder [
 	self assert: outputString = inputString 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF8EncoderAuto [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF8EncoderAuto [
 	| encoder inputString bytes outputString |
 	encoder := ZnUTF8Encoder new.
 	inputString := String withAll: ((1 to: 3072) collect: [ :each | Character value: each ]).
@@ -621,11 +512,8 @@ ZnCharacterEncoderTests>>testUTF8EncoderAuto [
 	self assert: inputString = outputString 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF8EncoderByteCount	 [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF8EncoderByteCount [	
 	| encoder |
 	encoder := ZnUTF8Encoder new.
 	self assert: (encoder encodedByteCountFor: $$) = 1.
@@ -634,11 +522,8 @@ ZnCharacterEncoderTests>>testUTF8EncoderByteCount	 [
 	self assert: (encoder encodedByteCountFor: (16r024B62 asCharacter)) = 4
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF8EncoderIncomplete [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF8EncoderIncomplete [
 	"The examples are taken from http://en.wikipedia.org/wiki/UTF-8#Description"
 	
 	| encoder |
@@ -650,11 +535,8 @@ ZnCharacterEncoderTests>>testUTF8EncoderIncomplete [
 				raise: ZnInvalidUTF8 ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF8EncoderWide [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF8EncoderWide [
 	| encoder |
 	encoder := ZnUTF8Encoder new.
 	{ 'abc'. 'élève en Français'. 'Pra-ská' copy at: 4 put: (Character value: 382); yourself. '' }
@@ -663,11 +545,8 @@ ZnCharacterEncoderTests>>testUTF8EncoderWide [
 			self assert: (encoder decodeBytesIntoWideString: bytes) equals: each ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF8Overlong [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF8Overlong [
 	"Overlong encoding, aka Non shortest form characters should be rejected.
 	See http://en.wikipedia.org/wiki/UTF-8#Overlong_encodings"
 	
@@ -681,11 +560,8 @@ ZnCharacterEncoderTests>>testUTF8Overlong [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterEncoderTests>>testUTF8SurrogateCodePointsShouldFail [
+{ #category : #testing }
+ZnCharacterEncoderTests >> testUTF8SurrogateCodePointsShouldFail [
 	| encoder surrogateCodePoint |
 	encoder := #utf8 asZnCharacterEncoder.
 	surrogateCodePoint := 16rD801.

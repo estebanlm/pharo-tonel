@@ -4,31 +4,21 @@ I am a class refactoring change for removing a class. On execution, my class wil
 Class {
 	#name : #RBRemoveClassChange,
 	#superclass : #RBRefactoryClassChange,
-	#category : #Refactoring-Changes,
-	#timestamp : 'NicolaiHess 9/9/2016 20:42'
+	#category : #Refactoring-Changes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRemoveClassChange class>>remove: aClass [
+{ #category : #'instance creation' }
+RBRemoveClassChange class >> remove: aClass [
 	^ self new changeClass: aClass
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRemoveClassChange class>>removeClassName: aSymbol [
+{ #category : #'instance creation' }
+RBRemoveClassChange class >> removeClassName: aSymbol [
 	^ self new changeClassName: aSymbol
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRemoveClassChange>>asUndoOperation [
+{ #category : #converting }
+RBRemoveClassChange >> asUndoOperation [
 	| classChanges |
 	classChanges := RBRefactoryChangeManager changeFactory compositeRefactoryChange.
 	self changeClass withAllSubclasses do: [ :each | 
@@ -42,36 +32,24 @@ RBRemoveClassChange>>asUndoOperation [
 	^ classChanges
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRemoveClassChange>>changeClass: aBehavior [
+{ #category : #accessing }
+RBRemoveClassChange >> changeClass: aBehavior [
 	super changeClass: aBehavior.
 	isMeta := false
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRemoveClassChange>>changeString [
+{ #category : #printing }
+RBRemoveClassChange >> changeString [
 	^ 'Remove ' , self displayClassName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRemoveClassChange>>primitiveExecute [
+{ #category : #private }
+RBRemoveClassChange >> primitiveExecute [
 	self changeClass removeFromSystem
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRemoveClassChange>>printOn: aStream  [
+{ #category : #printing }
+RBRemoveClassChange >> printOn: aStream [ 
 	aStream
 		nextPutAll: self displayClassName;
 		nextPutAll: ' removeFromSystem';

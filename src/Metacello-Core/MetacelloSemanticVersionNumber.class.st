@@ -98,15 +98,11 @@ Class {
 		'preReleaseVersion',
 		'buildVersion'
 	],
-	#category : #Metacello-Core-Model,
-	#timestamp : 'dkh 6/24/2012 18:20'
+	#category : #Metacello-Core-Model
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber class>>extractNumericComponent: subString forPattern: forPattern [
+{ #category : #private }
+MetacelloSemanticVersionNumber class >> extractNumericComponent: subString forPattern: forPattern [
     "$. separated components are integers"
 
     | number |
@@ -120,19 +116,13 @@ MetacelloSemanticVersionNumber class>>extractNumericComponent: subString forPatt
         ifFalse: [ subString ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber class>>fromString: aString [
+{ #category : #'instance creation' }
+MetacelloSemanticVersionNumber class >> fromString: aString [
     ^ self fromString: aString forPattern: false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber class>>fromString: aString forPattern: forPattern [
+{ #category : #'instance creation' }
+MetacelloSemanticVersionNumber class >> fromString: aString forPattern: forPattern [
     | new tokens preRelease build versionString identifierCount normalEnd preReleaseEnd normalComponents preReleaseComponents buildComponents |
     normalComponents := OrderedCollection new.
     preReleaseComponents := OrderedCollection new.
@@ -188,11 +178,8 @@ MetacelloSemanticVersionNumber class>>fromString: aString forPattern: forPattern
         yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber class>>isSemanticIdentifier: aString [
+{ #category : #private }
+MetacelloSemanticVersionNumber class >> isSemanticIdentifier: aString [
     "whether the receiver is composed entirely of alphanumerics"
 
     aString
@@ -204,31 +191,22 @@ MetacelloSemanticVersionNumber class>>isSemanticIdentifier: aString [
     ^ true
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>< aMetacelloVersionNumber [
+{ #category : #comparing }
+MetacelloSemanticVersionNumber >> < aMetacelloVersionNumber [
     aMetacelloVersionNumber species = self species
         ifFalse: [ ^ false ].
     ^ self compareLessThan: aMetacelloVersionNumber
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>= aMetacelloVersionNumber [
+{ #category : #comparing }
+MetacelloSemanticVersionNumber >> = aMetacelloVersionNumber [
     aMetacelloVersionNumber species = self species
         ifFalse: [ ^ false ].
     ^ self compareEqualTo: aMetacelloVersionNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>approximateBase [
+{ #category : #accessing }
+MetacelloSemanticVersionNumber >> approximateBase [
 
 	| base |
 	base := self copyFrom: 1 to: self size - 1.
@@ -236,46 +214,31 @@ MetacelloSemanticVersionNumber>>approximateBase [
 	^base
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>asMetacelloSemanticVersionNumber [
+{ #category : #converting }
+MetacelloSemanticVersionNumber >> asMetacelloSemanticVersionNumber [
     ^ self
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>asString [
+{ #category : #printing }
+MetacelloSemanticVersionNumber >> asString [
 	"Answer a string that represents the receiver."
 
 	^ self printString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>buildVersion [
+{ #category : #accessing }
+MetacelloSemanticVersionNumber >> buildVersion [
     buildVersion ifNil: [ buildVersion := #() ].
     ^ buildVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>buildVersion: anObject [
+{ #category : #accessing }
+MetacelloSemanticVersionNumber >> buildVersion: anObject [
 	buildVersion := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>compareEqualTo: aMetacelloVersionNumber [
+{ #category : #private }
+MetacelloSemanticVersionNumber >> compareEqualTo: aMetacelloVersionNumber [
     aMetacelloVersionNumber species = self species
         ifFalse: [ ^ false ].
     (self compareEqualTo: self normalVersion other: aMetacelloVersionNumber normalVersion)
@@ -285,11 +248,8 @@ MetacelloSemanticVersionNumber>>compareEqualTo: aMetacelloVersionNumber [
     ^ self compareEqualTo: self buildVersion other: aMetacelloVersionNumber buildVersion
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>compareEqualTo: myComponents other: otherComponents [
+{ #category : #private }
+MetacelloSemanticVersionNumber >> compareEqualTo: myComponents other: otherComponents [
     | mySize |
     mySize := myComponents size.
     mySize = otherComponents size
@@ -300,11 +260,8 @@ MetacelloSemanticVersionNumber>>compareEqualTo: myComponents other: otherCompone
     ^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>compareLessThan: aMetacelloVersionNumber [
+{ #category : #private }
+MetacelloSemanticVersionNumber >> compareLessThan: aMetacelloVersionNumber [
     | myComponents otherComponents defaultResult |
     aMetacelloVersionNumber species = self species
         ifFalse: [ ^ false ].
@@ -330,11 +287,8 @@ MetacelloSemanticVersionNumber>>compareLessThan: aMetacelloVersionNumber [
         ifFalse: [ self compareLessThan: myComponents other: otherComponents version: #'build' ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>compareLessThan: myComponents other: otherComponents version: version [
+{ #category : #private }
+MetacelloSemanticVersionNumber >> compareLessThan: myComponents other: otherComponents version: version [
     | mySize aSize commonSize count more |
     mySize := myComponents size.
     aSize := otherComponents size.
@@ -371,11 +325,8 @@ MetacelloSemanticVersionNumber>>compareLessThan: myComponents other: otherCompon
             ^ true ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>copyFrom: start to: stop  [
+{ #category : #copying }
+MetacelloSemanticVersionNumber >> copyFrom: start to: stop [ 
 	"Answer a copy of a subset of the receiver, starting from element at 
 	index start until element at index stop."
 
@@ -389,35 +340,23 @@ MetacelloSemanticVersionNumber>>copyFrom: start to: stop  [
 	^new
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>decrementMajorVersion [
+{ #category : #operations }
+MetacelloSemanticVersionNumber >> decrementMajorVersion [
   self decrementNormalVersionAt: 1
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>decrementMinorVersion [
+{ #category : #operations }
+MetacelloSemanticVersionNumber >> decrementMinorVersion [
   self decrementNormalVersionAt: 2
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>decrementMinorVersionNumber [
+{ #category : #operations }
+MetacelloSemanticVersionNumber >> decrementMinorVersionNumber [
   self decrementNormalVersionAt: 3
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>decrementNormalVersionAt: index [
+{ #category : #private }
+MetacelloSemanticVersionNumber >> decrementNormalVersionAt: index [
   | int col |
   col := self normalVersion.
   int := col at: index.
@@ -425,29 +364,20 @@ MetacelloSemanticVersionNumber>>decrementNormalVersionAt: index [
     ifTrue: [ col at: index put: int - 1 ]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>decrementPatchVersion [
+{ #category : #operations }
+MetacelloSemanticVersionNumber >> decrementPatchVersion [
   self decrementNormalVersionAt: 3
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>do: aBlock  [
+{ #category : #enumerating }
+MetacelloSemanticVersionNumber >> do: aBlock [ 
 	"Refer to the comment in Collection|do:."
 	1 to: self size do:
 		[:index | aBlock value: (self at: index)]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>do: elementBlock separatedBy: separatorBlock [
+{ #category : #enumerating }
+MetacelloSemanticVersionNumber >> do: elementBlock separatedBy: separatorBlock [
 	"Evaluate the elementBlock for all elements in the receiver,
 	and evaluate the separatorBlock between."
 
@@ -461,62 +391,41 @@ MetacelloSemanticVersionNumber>>do: elementBlock separatedBy: separatorBlock [
 		elementBlock value: each]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>hash [
+{ #category : #comparing }
+MetacelloSemanticVersionNumber >> hash [
     ^ self versionComponents hash
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>incrementMajorVersion [
+{ #category : #operations }
+MetacelloSemanticVersionNumber >> incrementMajorVersion [
   self incrementNormalVersionAt: 1
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>incrementMinorVersion [
+{ #category : #operations }
+MetacelloSemanticVersionNumber >> incrementMinorVersion [
   self incrementNormalVersionAt: 2
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>incrementMinorVersionNumber [
+{ #category : #operations }
+MetacelloSemanticVersionNumber >> incrementMinorVersionNumber [
   self incrementNormalVersionAt: 3
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>incrementNormalVersionAt: index [
+{ #category : #private }
+MetacelloSemanticVersionNumber >> incrementNormalVersionAt: index [
   | int col |
   col := self normalVersion.
   int := col at: index.
   col at: index put: int + 1
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>incrementPatchVersion [
+{ #category : #operations }
+MetacelloSemanticVersionNumber >> incrementPatchVersion [
   self incrementNormalVersionAt: 3
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>match: aVersionPattern [
+{ #category : #comparing }
+MetacelloSemanticVersionNumber >> match: aVersionPattern [
     "Answer whether the version number of the receiver matches the given pattern string.
 
 	 A Metacello version number is made up of version sequences delimited by the characters $. and $-.
@@ -556,55 +465,37 @@ MetacelloSemanticVersionNumber>>match: aVersionPattern [
     ^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>normalVersion [
+{ #category : #accessing }
+MetacelloSemanticVersionNumber >> normalVersion [
     normalVersion ifNil: [ normalVersion := #() ].
     ^ normalVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>normalVersion: anObject [
+{ #category : #accessing }
+MetacelloSemanticVersionNumber >> normalVersion: anObject [
 	normalVersion := anObject
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>postCopy [
+{ #category : #copying }
+MetacelloSemanticVersionNumber >> postCopy [
   normalVersion := normalVersion copy.
   preReleaseVersion := preReleaseVersion copy.
   buildVersion := buildVersion copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>preReleaseVersion [
+{ #category : #accessing }
+MetacelloSemanticVersionNumber >> preReleaseVersion [
     preReleaseVersion ifNil: [ preReleaseVersion := #() ].
     ^ preReleaseVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>preReleaseVersion: anObject [
+{ #category : #accessing }
+MetacelloSemanticVersionNumber >> preReleaseVersion: anObject [
 	preReleaseVersion := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>print: components prefix: prefixChar on: aStream [
+{ #category : #printing }
+MetacelloSemanticVersionNumber >> print: components prefix: prefixChar [ on: aStream
     | beforeFirst |
     beforeFirst := true.
     components
@@ -617,29 +508,20 @@ MetacelloSemanticVersionNumber>>print: components prefix: prefixChar on: aStream
             aStream nextPutAll: component asString ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>printOn: aStream [
+{ #category : #printing }
+MetacelloSemanticVersionNumber >> printOn: aStream [
     self print: self normalVersion prefix: nil on: aStream.
     self print: self preReleaseVersion prefix: $- on: aStream.
     self print: self buildVersion prefix: $+ on: aStream
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>versionComponents [
+{ #category : #private }
+MetacelloSemanticVersionNumber >> versionComponents [
     ^ self normalVersion , self preReleaseVersion , self buildVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>versionString [
+{ #category : #accessing }
+MetacelloSemanticVersionNumber >> versionString [
 
 	| strm |
 	strm := WriteStream on: String new.
@@ -647,11 +529,8 @@ MetacelloSemanticVersionNumber>>versionString [
 	^strm contents
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSemanticVersionNumber>>~> aMetacelloVersionNumber [
+{ #category : #comparing }
+MetacelloSemanticVersionNumber >> ~> aMetacelloVersionNumber [
 
 	aMetacelloVersionNumber size == 1 ifTrue: [ ^false ].
 	^self >= aMetacelloVersionNumber and: [ self < aMetacelloVersionNumber approximateBase ]

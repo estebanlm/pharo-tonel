@@ -4,14 +4,10 @@ This error is signalled whenever there is a non recoverable error during refacto
 Class {
 	#name : #RBRefactoringFailure,
 	#superclass : #RBRefactoringError,
-	#category : #Refactoring-Core-Support,
-	#timestamp : '<historical>'
+	#category : #Refactoring-Core-Support
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoringFailure>>isResumable [
+{ #category : #testing }
+RBRefactoringFailure >> isResumable [
 	^ false
 ]

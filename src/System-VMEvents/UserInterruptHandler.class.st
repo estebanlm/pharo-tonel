@@ -21,39 +21,26 @@ Class {
 	#pools : [
 		'EventSensorConstants'
 	],
-	#category : #System-VMEvents,
-	#timestamp : 'michael.rueger 4/22/2009 12:01'
+	#category : #System-VMEvents
 }
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-UserInterruptHandler class>>cmdDotEnabled  [
+{ #category : #setting }
+UserInterruptHandler class >> cmdDotEnabled [ 
 	^ CmdDotEnabled ifNil: [CmdDotEnabled := true]
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-UserInterruptHandler class>>cmdDotEnabled: aBoolean [
+{ #category : #setting }
+UserInterruptHandler class >> cmdDotEnabled: aBoolean [
 	CmdDotEnabled := aBoolean
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-UserInterruptHandler class>>new [
+{ #category : #'instance creation' }
+UserInterruptHandler class >> new [
 	^ super new setInterruptKeyValue: $. asciiValue
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-UserInterruptHandler>>handleEvent: evt [
+{ #category : #events }
+UserInterruptHandler >> handleEvent: evt [
 	"Interrupt event... evt is shared, so make a copy of it."
 
 	| buf |
@@ -73,11 +60,8 @@ UserInterruptHandler>>handleEvent: evt [
 			^ self ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-UserInterruptHandler>>handleUserInterrupt [
+{ #category : #private }
+UserInterruptHandler >> handleUserInterrupt [
 	"This will be called from the event-fetcher process. 
 	Assume no system-vital processes have a lower priority than this, and are thus ok to interrupt"
 	UserInterruptHandler cmdDotEnabled ifFalse: [ ^ self ]. 
@@ -91,11 +75,8 @@ UserInterruptHandler>>handleUserInterrupt [
 	] on: Error fork: [:ex | ex pass].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-UserInterruptHandler>>processToInterrupt  [
+{ #category : #private }
+UserInterruptHandler >> processToInterrupt [ 
 	"Look for best candidate to interrupt: 
 		- any scheduled non-finalization process of lower priority 
 		- the weak-finalization process, if scheduled 
@@ -115,11 +96,8 @@ UserInterruptHandler>>processToInterrupt  [
 	^fallback
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-UserInterruptHandler>>setInterruptKeyValue: anInt [
+{ #category : #initialize-release }
+UserInterruptHandler >> setInterruptKeyValue: anInt [
 	interruptKey := anInt
 
 ]

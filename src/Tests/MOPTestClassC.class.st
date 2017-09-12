@@ -1,20 +1,13 @@
-"
-
-"
 Class {
 	#name : #MOPTestClassC,
 	#superclass : #Object,
 	#traits : 'Trait2',
 	#classTraits : 'Trait2 classTrait',
-	#category : #Tests-Traits-MOP,
-	#timestamp : ''
+	#category : #Tests-Traits-MOP
 }
 
-{
-	#category : #local,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MOPTestClassC>>c [
+{ #category : #local }
+MOPTestClassC >> c [
 
 	^ 'C>>c'
 ]

@@ -17,15 +17,11 @@ Class {
 		'toClasses',
 		'ignore'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 00:59'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring class>>model: aRBSmalltalk abstractVariablesIn: aBRProgramNode from: fromBehavior toAll: behaviorCollection  [
+{ #category : #'instance creation' }
+RBAbstractVariablesRefactoring class >> model: aRBSmalltalk abstractVariablesIn: aBRProgramNode from: fromBehavior toAll: behaviorCollection [ 
 	^self 
 		model: aRBSmalltalk
 		abstractVariablesIn: aBRProgramNode
@@ -34,11 +30,8 @@ RBAbstractVariablesRefactoring class>>model: aRBSmalltalk abstractVariablesIn: a
 		ignoring: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring class>>model: aRBSmalltalk abstractVariablesIn: aBRProgramNode from: fromBehavior toAll: behaviorCollection ignoring: aVariableName  [
+{ #category : #'instance creation' }
+RBAbstractVariablesRefactoring class >> model: aRBSmalltalk abstractVariablesIn: aBRProgramNode from: fromBehavior toAll: behaviorCollection ignoring: aVariableName [ 
 	^(self new)
 		model: aRBSmalltalk;
 		abstractVariablesIn: aBRProgramNode
@@ -48,11 +41,8 @@ RBAbstractVariablesRefactoring class>>model: aRBSmalltalk abstractVariablesIn: a
 		yourself
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring>>abstractClassVariable: aString  [
+{ #category : #transforming }
+RBAbstractVariablesRefactoring >> abstractClassVariable: aString [ 
 	| refactoring rewriter nonMetaClass |
 	nonMetaClass := fromClass theNonMetaClass.
 	refactoring := RBCreateAccessorsForVariableRefactoring 
@@ -78,11 +68,8 @@ RBAbstractVariablesRefactoring>>abstractClassVariable: aString  [
 	(rewriter executeTree: tree) ifTrue: [ tree := rewriter tree ]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring>>abstractClassVariables [
+{ #category : #transforming }
+RBAbstractVariablesRefactoring >> abstractClassVariables [
 	| variables |
 	(classVarReaders isEmpty and: [ classVarWriters isEmpty ])
 		ifTrue: [ ^ self ].
@@ -93,11 +80,8 @@ RBAbstractVariablesRefactoring>>abstractClassVariables [
 	variables do: [ :each | self abstractClassVariable: each ]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring>>abstractInstanceVariable: aString  [
+{ #category : #transforming }
+RBAbstractVariablesRefactoring >> abstractInstanceVariable: aString [ 
 	| refactoring rewriter |
 	refactoring := RBCreateAccessorsForVariableRefactoring 
 				model: self model
@@ -113,11 +97,8 @@ RBAbstractVariablesRefactoring>>abstractInstanceVariable: aString  [
 	(rewriter executeTree: tree) ifTrue: [tree := rewriter tree]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring>>abstractInstanceVariables [
+{ #category : #transforming }
+RBAbstractVariablesRefactoring >> abstractInstanceVariables [
 	| variables |
 	(instVarReaders isEmpty and: [ instVarWriters isEmpty ])
 		ifTrue: [ ^ self].
@@ -128,11 +109,8 @@ RBAbstractVariablesRefactoring>>abstractInstanceVariables [
 	variables do: [ :each | self abstractInstanceVariable: each ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring>>abstractVariablesIn: aBRProgramNode from: fromBehavior toAll: behaviorCollection ignoring: aVariableName  [
+{ #category : #initialize-release }
+RBAbstractVariablesRefactoring >> abstractVariablesIn: aBRProgramNode from: fromBehavior toAll: behaviorCollection ignoring: aVariableName [ 
 	| poolRefactoring |
 	tree := aBRProgramNode.
 	fromClass := self classObjectFor: fromBehavior.
@@ -148,21 +126,15 @@ RBAbstractVariablesRefactoring>>abstractVariablesIn: aBRProgramNode from: fromBe
 	self computeVariablesToAbstract
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring>>classVariableNames [
+{ #category : #transforming }
+RBAbstractVariablesRefactoring >> classVariableNames [
 	| nonMetaClass |
 	nonMetaClass := fromClass theNonMetaClass.
 	^ (nonMetaClass allClassVariableNames collect: [ :each | each asString ]) asSet
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring>>computeVariablesToAbstract [
+{ #category : #transforming }
+RBAbstractVariablesRefactoring >> computeVariablesToAbstract [
 	| searcher |
 	instVarReaders := Set new.
 	instVarWriters := Set new.
@@ -177,43 +149,28 @@ RBAbstractVariablesRefactoring>>computeVariablesToAbstract [
 	self removeDefinedClassVariables
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring>>hasVariablesToAbstract [
+{ #category : #testing }
+RBAbstractVariablesRefactoring >> hasVariablesToAbstract [
 	^ instVarReaders notEmpty or: [ instVarWriters notEmpty or: [ classVarReaders notEmpty or: [ classVarWriters notEmpty ] ] ]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring>>instanceVariableNames [
+{ #category : #transforming }
+RBAbstractVariablesRefactoring >> instanceVariableNames [
 	^fromClass allInstanceVariableNames asSet
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring>>parseTree [
+{ #category : #accessing }
+RBAbstractVariablesRefactoring >> parseTree [
 	^tree
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring>>preconditions [
+{ #category : #preconditions }
+RBAbstractVariablesRefactoring >> preconditions [
 	^RBCondition empty
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring>>processAssignmentNode: aNode  [
+{ #category : #transforming }
+RBAbstractVariablesRefactoring >> processAssignmentNode: aNode [ 
 	| varName |
 	varName := aNode variable name.
 	ignore = varName ifTrue: [^self].
@@ -224,11 +181,8 @@ RBAbstractVariablesRefactoring>>processAssignmentNode: aNode  [
 		ifTrue: [classVarWriters add: varName]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring>>processReferenceNode: aNode  [
+{ #category : #transforming }
+RBAbstractVariablesRefactoring >> processReferenceNode: aNode [ 
 	| varName |
 	varName := aNode name.
 	ignore = varName ifTrue: [^self].
@@ -239,11 +193,8 @@ RBAbstractVariablesRefactoring>>processReferenceNode: aNode  [
 		ifTrue: [classVarReaders add: varName]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring>>removeDefinedClassVariables [
+{ #category : #transforming }
+RBAbstractVariablesRefactoring >> removeDefinedClassVariables [
 	| selectionBlock nonMetaClass |
 	nonMetaClass := fromClass theNonMetaClass.
 	selectionBlock := 
@@ -257,11 +208,8 @@ RBAbstractVariablesRefactoring>>removeDefinedClassVariables [
 	classVarWriters := classVarWriters select: selectionBlock
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAbstractVariablesRefactoring>>transform [
+{ #category : #transforming }
+RBAbstractVariablesRefactoring >> transform [
 	self hasVariablesToAbstract 
 		ifTrue: 
 			[self 

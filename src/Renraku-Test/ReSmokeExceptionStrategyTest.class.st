@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #ReSmokeExceptionStrategyTest,
 	#superclass : #ReExceptionStrategyBaseTest,
 	#instVars : [
 		'brokenRule'
 	],
-	#category : #Renraku-Test,
-	#timestamp : ''
+	#category : #Renraku-Test
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReSmokeExceptionStrategyTest>>setUp [
+{ #category : #initialization }
+ReSmokeExceptionStrategyTest >> setUp [
 	super setUp.
 
 	brokenRule := ReAbstractRule
@@ -36,22 +29,16 @@ ReSmokeExceptionStrategyTest>>setUp [
 	ReRuleManager reset
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReSmokeExceptionStrategyTest>>tearDown [
+{ #category : #initialization }
+ReSmokeExceptionStrategyTest >> tearDown [
 
 	brokenRule removeFromSystem.
 	brokenRule := nil.
 	super tearDown.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReSmokeExceptionStrategyTest>>testIgnore [
+{ #category : #tests }
+ReSmokeExceptionStrategyTest >> testIgnore [
 	| critiques |
 
 	ReExceptionStrategy current: ReIgnoreExceptionStrategy.
@@ -61,11 +48,8 @@ ReSmokeExceptionStrategyTest>>testIgnore [
 		raise: MyTestError.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReSmokeExceptionStrategyTest>>testLog [
+{ #category : #tests }
+ReSmokeExceptionStrategyTest >> testLog [
 	| critiques method |
 	method := thisContext method.
 
@@ -83,11 +67,8 @@ ReSmokeExceptionStrategyTest>>testLog [
 			context method = method ] ] ] ] ])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReSmokeExceptionStrategyTest>>testPass [
+{ #category : #tests }
+ReSmokeExceptionStrategyTest >> testPass [
 
 	ReExceptionStrategy current: RePassExceptionStrategy.
 	

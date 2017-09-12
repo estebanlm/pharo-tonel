@@ -9,15 +9,11 @@ Class {
 		'username',
 		'password'
 	],
-	#category : #MonticelloRemoteRepositories,
-	#timestamp : '<historical>'
+	#category : #MonticelloRemoteRepositories
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCServerCredentials class>>user: nameString password: passwordString [
+{ #category : #'instance creation' }
+MCServerCredentials class >> user: nameString password: passwordString [
 
 	^ self new
 			username: nameString;
@@ -25,38 +21,26 @@ MCServerCredentials class>>user: nameString password: passwordString [
 			yourself.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCServerCredentials>>password [
+{ #category : #accessing }
+MCServerCredentials >> password [
 
 	^ password.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCServerCredentials>>password: aString  [
+{ #category : #private }
+MCServerCredentials >> password: aString [ 
 
 	password := aString.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCServerCredentials>>username [
+{ #category : #accessing }
+MCServerCredentials >> username [
 
 	^ username.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCServerCredentials>>username: aString  [
+{ #category : #private }
+MCServerCredentials >> username: aString [ 
 
 	username := aString.
 ]

@@ -34,23 +34,16 @@ TURN <CRLF>
 Class {
 	#name : #SMTPClient,
 	#superclass : #TelnetProtocolClient,
-	#category : #Network-Protocols,
-	#timestamp : 'mir 2/21/2002 16:57'
+	#category : #Network-Protocols
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient class>>defaultPortNumber [
+{ #category : #accessing }
+SMTPClient class >> defaultPortNumber [
 	^25
 ]
 
-{
-	#category : #'sending mail',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient class>>deliverMailFrom: fromAddress to: recipientList text: messageText usingServer: aString [
+{ #category : #'sending mail' }
+SMTPClient class >> deliverMailFrom: fromAddress to: recipientList text: messageText usingServer: aString [
 	"Deliver a single email to a list of users and then close the connection.  For delivering multiple messages, it is best to create a single connection and send all mail over it
 	recipientList - a collection of simple internet style addresses -- no '<>' or '()' stuff
 	aString - can be
@@ -66,11 +59,8 @@ SMTPClient class>>deliverMailFrom: fromAddress to: recipientList text: messageTe
 
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient class>>example [
+{ #category : #example }
+SMTPClient class >> example [
 	"SMTPClient example"
 
 	self deliverMailFrom: 'm.rueger@acm.org' to: #('m.rueger@acm.org') text:
@@ -82,11 +72,8 @@ Hello from Pharo!
 '	usingServer: 'smtp.concentric.net'
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient class>>example2 [
+{ #category : #example }
+SMTPClient class >> example2 [
 	"SMTPClient example2"
 
 	self deliverMailFrom: 'm.rueger@acm.org' to: #('m.rueger@acm.org') text:
@@ -96,19 +83,13 @@ Hello from Pharo!
 '	usingServer: 'smtp.concentric.net'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient class>>logFlag [
+{ #category : #accessing }
+SMTPClient class >> logFlag [
 	^#smtp
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient>>data: messageData [
+{ #category : #'private protocol' }
+SMTPClient >> data: messageData [
 	"send the data of a message"
 	"DATA <CRLF>"
 
@@ -131,11 +112,8 @@ SMTPClient>>data: messageData [
 	self checkResponse.
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient>>encodeString: aString  [
+{ #category : #utility }
+SMTPClient >> encodeString: aString [ 
 	| str dec out |
 	str := String new: (aString size * 4 / 3 + 3) ceiling.
 	dec := Base64MimeConverter new.
@@ -146,11 +124,8 @@ SMTPClient>>encodeString: aString  [
 	^out contents
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient>>initiateSession [
+{ #category : #'private protocol' }
+SMTPClient >> initiateSession [
 	"EHLO <SP> <domain> <CRLF>"
 
 	self sendCommand: (self useHelo ifTrue:['HELO '] ifFalse: ['EHLO ']) , NetNameResolver localHostName.
@@ -158,33 +133,24 @@ SMTPClient>>initiateSession [
 
 ]
 
-{
-	#category : #'public protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient>>localHostName [
+{ #category : #'public protocol' }
+SMTPClient >> localHostName [
 	"The local host name for purposes of identifying the the server.
  	If nil, NetNameResolver localHostName will be used."
  
  	^self connectionInfo at: #localHostName ifAbsent: [NetNameResolver localHostName]
 ]
 
-{
-	#category : #'public protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient>>localHostName: aString [
+{ #category : #'public protocol' }
+SMTPClient >> localHostName: aString [
 	"The local host name for purposes of identifying the the server.
  	If nil, NetNameResolver localHostName will be used."
  
  	^self connectionInfo at: #localHostName put: aString
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient>>login [
+{ #category : #'private protocol' }
+SMTPClient >> login [
 	self initiateSession. "send EHLO first"
 	self user ifNil: [^self].
 	self sendCommand: 'AUTH LOGIN ' , (self encodeString: self user).
@@ -195,11 +161,8 @@ SMTPClient>>login [
 	self checkResponse
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient>>mailFrom: fromAddress [
+{ #category : #'private protocol' }
+SMTPClient >> mailFrom: fromAddress [
 	" MAIL <SP> FROM:<reverse-path> <CRLF>"
 
 	| address |
@@ -209,11 +172,8 @@ SMTPClient>>mailFrom: fromAddress [
 	self checkResponse.
 ]
 
-{
-	#category : #'public protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient>>mailFrom: sender to: recipientList text: messageText [
+{ #category : #'public protocol' }
+SMTPClient >> mailFrom: sender to: recipientList text: messageText [
 	"deliver this mail to a list of users.  NOTE: the recipient list should be a collection of simple internet style addresses -- no '<>' or '()' stuff"
 
 	self mailFrom: sender.
@@ -223,11 +183,8 @@ SMTPClient>>mailFrom: sender to: recipientList text: messageText [
 
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient>>quit [
+{ #category : #'private protocol' }
+SMTPClient >> quit [
 	"send a QUIT command.  This is polite to do, and indeed some servers might drop messages that don't have an associated QUIT"
 	"QUIT <CRLF>"
 
@@ -235,11 +192,8 @@ SMTPClient>>quit [
 	self checkResponse.
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient>>recipient: aRecipient [
+{ #category : #'private protocol' }
+SMTPClient >> recipient: aRecipient [
 	"specify a recipient for the message.  aRecipient should be a bare email address"
 	"RCPT <SP> TO:<forward-path> <CRLF>"
 
@@ -247,22 +201,16 @@ SMTPClient>>recipient: aRecipient [
 	self checkResponse.
 ]
 
-{
-	#category : #'public protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient>>useHelo [
+{ #category : #'public protocol' }
+SMTPClient >> useHelo [
 	"If client use HELO instead of EHLO. HELO is the old protocol and
 	an old server may require it instead of EHLO."
 
 	^self connectionInfo at: #useHelo ifAbsent: [false]
 ]
 
-{
-	#category : #'public protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-SMTPClient>>useHelo: aBoolean [
+{ #category : #'public protocol' }
+SMTPClient >> useHelo: aBoolean [
 	"Tell client to use HELO instead of EHLO. HELO is the old protocol and
 	an old server may require it instead of EHLO."
 

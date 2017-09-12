@@ -21,15 +21,11 @@ Class {
 	#classVars : [
 		'ModelForShout'
 	],
-	#category : #Rubric-Editing-Core-Examples,
-	#timestamp : '<historical>'
+	#category : #Rubric-Editing-Core-Examples
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>autoReactingText [
+{ #category : #examples }
+RubTextAreaExamples class >> autoReactingText [
 	"self autoReactingText"
 
 	| area seg blk |
@@ -47,11 +43,8 @@ RubTextAreaExamples class>>autoReactingText [
 	area openInWorld
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>blueTextOnGrayBacgroundNotWrapped [
+{ #category : #examples }
+RubTextAreaExamples class >> blueTextOnGrayBacgroundNotWrapped [
 	"self blueTextOnGrayBacgroundNotWrapped"
 
 	RubEditingArea new
@@ -63,11 +56,8 @@ RubTextAreaExamples class>>blueTextOnGrayBacgroundNotWrapped [
 		openInWorld
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>blueTextOnGrayBacgroundWrappedTo400 [
+{ #category : #examples }
+RubTextAreaExamples class >> blueTextOnGrayBacgroundWrappedTo400 [
 	"self blueTextOnGrayBacgroundWrappedTo400"
 
 	RubEditingArea new
@@ -80,11 +70,8 @@ RubTextAreaExamples class>>blueTextOnGrayBacgroundWrappedTo400 [
 		openInWorld
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>blueTextOnGrayBacgroundWrappedTo400Version2 [
+{ #category : #examples }
+RubTextAreaExamples class >> blueTextOnGrayBacgroundWrappedTo400Version2 [
 	"self blueTextOnGrayBacgroundWrappedTo400Version2"
 
 	RubEditingArea new
@@ -95,11 +82,8 @@ RubTextAreaExamples class>>blueTextOnGrayBacgroundWrappedTo400Version2 [
 		openInWorld
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>centered [
+{ #category : #examples }
+RubTextAreaExamples class >> centered [
 	"self centered"
 
 	RubEditingArea new
@@ -111,53 +95,35 @@ RubTextAreaExamples class>>centered [
 		openInWorld
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>hasBindingOf: aString [
+{ #category : #shout }
+RubTextAreaExamples class >> hasBindingOf: aString [
 	^ (self bindingOf: aString) notNil
 	
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>hasBindingThatBeginsWith: aString [
+{ #category : #shout }
+RubTextAreaExamples class >> hasBindingThatBeginsWith: aString [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>interactionModel [
+{ #category : #accessing }
+RubTextAreaExamples class >> interactionModel [
 	^ ModelForShout 
 ]
 
-{
-	#category : #NOcompletion,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>isCodeCompletionAllowed [
+{ #category : #NOcompletion }
+RubTextAreaExamples class >> isCodeCompletionAllowed [
 
 	^ true.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>menu [
+{ #category : #accessing }
+RubTextAreaExamples class >> menu [
 	^ nil
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>nicolaiAttributeFix [
+{ #category : #examples }
+RubTextAreaExamples class >> nicolaiAttributeFix [
 	<example>
 	"self nicolaiAttributeFix"
 	| font1 font2 tMorph |
@@ -188,11 +154,8 @@ RubTextAreaExamples class>>nicolaiAttributeFix [
 			tMorph openInWorld ]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>presentationInput [
+{ #category : #examples }
+RubTextAreaExamples class >> presentationInput [
 	"
 	
 	self presentationInput.
@@ -222,11 +185,8 @@ RubTextAreaExamples class>>presentationInput [
 								openCenteredInWorld ]))
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>profileSourcesFileViewing [
+{ #category : #examples }
+RubTextAreaExamples class >> profileSourcesFileViewing [
 	"The big test to check that a TextArea is able to compose and ''quickly'' show
 	 a big file content "
 
@@ -251,11 +211,8 @@ RubTextAreaExamples class>>profileSourcesFileViewing [
 	]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>rightFlushed [
+{ #category : #examples }
+RubTextAreaExamples class >> rightFlushed [
 	"self rightFlushed"
 
 	RubEditingArea new
@@ -266,28 +223,19 @@ RubTextAreaExamples class>>rightFlushed [
 		openInWorld
 ]
 
-{
-	#category : #NOcompletion,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>selectedClassOrMetaClass [
+{ #category : #NOcompletion }
+RubTextAreaExamples class >> selectedClassOrMetaClass [
 	^ ModelForShout class
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>shoutAboutToStyle: aStyler [
+{ #category : #shout }
+RubTextAreaExamples class >> shoutAboutToStyle: aStyler [
 	aStyler classOrMetaClass: ModelForShout.
 	^ true
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>shoutedScriptingTextArea [
+{ #category : #examples }
+RubTextAreaExamples class >> shoutedScriptingTextArea [
 	"self shoutedScriptingTextArea" 
 
 	ModelForShout := nil.
@@ -300,11 +248,8 @@ RubTextAreaExamples class>>shoutedScriptingTextArea [
 		openInWorld
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>show: aMessage while: aBlock [
+{ #category : #private }
+RubTextAreaExamples class >> show: aMessage while: aBlock [
 	| m |
 	m := RubEditingArea new
 		backgroundColor: Color black;
@@ -321,11 +266,8 @@ RubTextAreaExamples class>>show: aMessage while: aBlock [
 	[ aBlock ensure: [ m delete ] ] fork.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>simplestEmptyNotWrapped [
+{ #category : #examples }
+RubTextAreaExamples class >> simplestEmptyNotWrapped [
 	"self simplestEmptyNotWrapped"
 
 	RubEditingArea new
@@ -333,11 +275,8 @@ RubTextAreaExamples class>>simplestEmptyNotWrapped [
 		openInWorld
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>simplestEmptyTextField [
+{ #category : #examples }
+RubTextAreaExamples class >> simplestEmptyTextField [
 	"self simplestEmptyTextField"
 
 	RubTextFieldArea new
@@ -345,11 +284,8 @@ RubTextAreaExamples class>>simplestEmptyTextField [
 		openInWorld
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>simplestEmptyWrappedTo400 [
+{ #category : #examples }
+RubTextAreaExamples class >> simplestEmptyWrappedTo400 [
 	"self simplestEmptyWrappedTo400"
 
 	RubEditingArea new
@@ -358,11 +294,8 @@ RubTextAreaExamples class>>simplestEmptyWrappedTo400 [
 		openInWorld
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>simplestWrappedTo400 [
+{ #category : #examples }
+RubTextAreaExamples class >> simplestWrappedTo400 [
 	"self simplestWrappedTo400"
 
 	RubEditingArea new
@@ -372,19 +305,13 @@ RubTextAreaExamples class>>simplestWrappedTo400 [
 		openInWorld
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>smallLoremIpsum [
+{ #category : #accessing }
+RubTextAreaExamples class >> smallLoremIpsum [
 	^'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. '
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>smallLoremIpsumWrappedTo400 [
+{ #category : #examples }
+RubTextAreaExamples class >> smallLoremIpsumWrappedTo400 [
 	"self smallLoremIpsumWrappedTo400"
 
 	RubEditingArea new
@@ -394,11 +321,8 @@ RubTextAreaExamples class>>smallLoremIpsumWrappedTo400 [
 		openInWorld
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>smalltalkCodeWithStabilo [
+{ #category : #examples }
+RubTextAreaExamples class >> smalltalkCodeWithStabilo [
 	"self smalltalkCodeWithStabilo"
 	| area seg code |
 	area := RubEditingArea new
@@ -412,11 +336,8 @@ RubTextAreaExamples class>>smalltalkCodeWithStabilo [
 	area openInWorld
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>smalltalkCodeWrappedTo400 [
+{ #category : #examples }
+RubTextAreaExamples class >> smalltalkCodeWrappedTo400 [
 	"self smalltalkCodeWrappedTo400"
 	| area |
 	ModelForShout := self.
@@ -430,11 +351,8 @@ RubTextAreaExamples class>>smalltalkCodeWrappedTo400 [
 	^ area
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>smalltalkCodeWrappedWithSegments [
+{ #category : #examples }
+RubTextAreaExamples class >> smalltalkCodeWrappedWithSegments [
 	"self smalltalkCodeWrappedWithSegments"
 
 	| area s |
@@ -456,11 +374,8 @@ RubTextAreaExamples class>>smalltalkCodeWrappedWithSegments [
 	area openInWorld
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>someSmallSmalltalkCode. [
+{ #category : #examples }
+RubTextAreaExamples class >> someSmallSmalltalkCode. [
 	^ '
 WorldState
 	addDeferredUIMessage: [ 
@@ -471,19 +386,13 @@ WorldState
 					ensure: [ m delete ] ] ]'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>someSmalltalkCode [
+{ #category : #accessing }
+RubTextAreaExamples class >> someSmalltalkCode [
 	^ self class sourceCodeAt: #show:while:
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>someSmalltalkScript [
+{ #category : #accessing }
+RubTextAreaExamples class >> someSmalltalkScript [
 	^ '" Enter some code here as in a workspace"' , String cr , 'RubTextArea new
 		beWrapped;
 		smalltalkScriptingModel: self;
@@ -492,11 +401,8 @@ RubTextAreaExamples class>>someSmalltalkScript [
 		openInWorld'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>sourceCodeTemplateWrappedTo400 [
+{ #category : #examples }
+RubTextAreaExamples class >> sourceCodeTemplateWrappedTo400 [
 	"self sourceCodeTemplateWrappedTo400"
 	ModelForShout := self.
 	RubEditingArea new
@@ -508,11 +414,8 @@ RubTextAreaExamples class>>sourceCodeTemplateWrappedTo400 [
 		openInWorld
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>textAreaWithBiggerFont [
+{ #category : #examples }
+RubTextAreaExamples class >> textAreaWithBiggerFont [
 	" self textAreaWithBiggerFont "
 
 	RubEditingArea new
@@ -525,11 +428,8 @@ RubTextAreaExamples class>>textAreaWithBiggerFont [
 		openCenteredInWorld
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>textFieldWithCRAction [
+{ #category : #examples }
+RubTextAreaExamples class >> textFieldWithCRAction [
 	"self textFieldWithCRAction"
 
 	| s |
@@ -541,11 +441,8 @@ RubTextAreaExamples class>>textFieldWithCRAction [
 	s announcer when: RubReturnEntered send: #value to:  [ Transcript show: s text asString ]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>withOnlyThePrimarySelection [
+{ #category : #examples }
+RubTextAreaExamples class >> withOnlyThePrimarySelection [
 	"self withOnlyThePrimarySelection"
 
 	ModelForShout := nil.
@@ -560,11 +457,8 @@ RubTextAreaExamples class>>withOnlyThePrimarySelection [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextAreaExamples class>>wrappedTo400WithMarginsOf40 [
+{ #category : #examples }
+RubTextAreaExamples class >> wrappedTo400WithMarginsOf40 [
 	"self wrappedTo400WithMarginsOf40"
 
 	RubEditingArea new

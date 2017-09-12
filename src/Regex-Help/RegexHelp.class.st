@@ -5,23 +5,16 @@ This is a custom help book for the regular expression framework.
 Class {
 	#name : #RegexHelp,
 	#superclass : #CustomHelp,
-	#category : #Regex-Help,
-	#timestamp : 'Tbn 11/12/2010 22:15'
+	#category : #Regex-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RegexHelp class>>bookName [
+{ #category : #accessing }
+RegexHelp class >> bookName [
 	^'Regular expressions framework'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RegexHelp class>>implementationNotes [
+{ #category : #pages }
+RegexHelp class >> implementationNotes [
 	"This method was automatically generated. Edit it using:"
 	"RegexHelp edit: #implementationNotes"
 	^HelpTopic
@@ -88,11 +81,8 @@ As of today (December 20, 2000), you can contact me at
 comp.lang.smalltalk or comp.lang.lisp.  !' readStream nextChunkText
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RegexHelp class>>introduction [
+{ #category : #pages }
+RegexHelp class >> introduction [
 	"This method was automatically generated. Edit it using:"
 	"RegexHelp edit: #introduction"
 	^HelpTopic
@@ -135,11 +125,8 @@ August 6, 1996
 April 4, 1999!' readStream nextChunkText
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RegexHelp class>>license [
+{ #category : #pages }
+RegexHelp class >> license [
 	"This method was automatically generated. Edit it using:"
 	"RegexHelp edit: #license"
 	^HelpTopic
@@ -180,19 +167,13 @@ It is provided to the Smalltalk community in hope it will be useful.
    copyright notices of any modified version.  !' readStream nextChunkText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RegexHelp class>>pages [
+{ #category : #accessing }
+RegexHelp class >> pages [
 	^#(introduction whatsNew syntax usage implementationNotes license)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RegexHelp class>>syntax [
+{ #category : #pages }
+RegexHelp class >> syntax [
 	"This method was automatically generated. Edit it using:"
 	"RegexHelp edit: #syntax"
 	^HelpTopic
@@ -452,11 +433,8 @@ general number format: anything like 999, or 999.999, or -999.999e+21.
 !' readStream nextChunkText
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RegexHelp class>>usage [
+{ #category : #pages }
+RegexHelp class >> usage [
 	"This method was automatically generated. Edit it using:"
 	"RegexHelp edit: #usage"
 	^HelpTopic
@@ -746,11 +724,8 @@ VisualAge:
 !' readStream nextChunkText
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RegexHelp class>>whatsNew [
+{ #category : #pages }
+RegexHelp class >> whatsNew [
 	"This method was automatically generated. Edit it using:"
 	"RegexHelp edit: #whatsNew"
 	^HelpTopic

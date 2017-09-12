@@ -1,28 +1,18 @@
-"
-
-"
 Class {
 	#name : #GLMPagePushed,
 	#superclass : #Announcement,
 	#instVars : [
 		'morph'
 	],
-	#category : #Glamour-Morphic-Pager-Announcement,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Pager-Announcement
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagePushed>>morph [
+{ #category : #accessing }
+GLMPagePushed >> morph [
 	^ morph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagePushed>>morph: aMorph [
+{ #category : #accessing }
+GLMPagePushed >> morph: aMorph [
 	morph := aMorph
 ]

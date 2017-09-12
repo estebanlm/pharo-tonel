@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnEntityReaderTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityReaderTests>>testChunked [
+{ #category : #testing }
+ZnEntityReaderTests >> testChunked [
 	| input headers reader entity |
 	input := '3', String crlf,
 		'con', String crlf,
@@ -29,11 +22,8 @@ ZnEntityReaderTests>>testChunked [
 	self assert: entity contents = 'consequence'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityReaderTests>>testChunkedWithExtraHeaders [
+{ #category : #testing }
+ZnEntityReaderTests >> testChunkedWithExtraHeaders [
 	| input headers reader entity |
 	input := '3', String crlf,
 		'con', String crlf,
@@ -53,11 +43,8 @@ ZnEntityReaderTests>>testChunkedWithExtraHeaders [
 	self assert: (headers at: 'X-Foo') = 'bar'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityReaderTests>>testReadStreaming [
+{ #category : #testing }
+ZnEntityReaderTests >> testReadStreaming [
 	| data headers reader entity |
 	data := ((1 to: 32) collect: [ :each | (0 to: 9) atRandom ]) asByteArray.
 	(headers := ZnHeaders new)
@@ -73,11 +60,8 @@ ZnEntityReaderTests>>testReadStreaming [
 	self assert: entity contents = data
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityReaderTests>>testReadStreamingWriting [
+{ #category : #testing }
+ZnEntityReaderTests >> testReadStreamingWriting [
 	| data headers reader entity output |
 	data := ((1 to: 32) collect: [ :each | (0 to: 9) atRandom ]) asByteArray.
 	(headers := ZnHeaders new)

@@ -15,15 +15,11 @@ Class {
 		'instanceModification',
 		'methodUpdateStrategy'
 	],
-	#category : #Slot-ClassBuilder,
-	#timestamp : '<historical>'
+	#category : #Slot-ClassBuilder
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller class>>example [
+{ #category : #example }
+PharoClassInstaller class >> example [
 	^ PharoClassInstaller make: [ :aSlotClassBuilder |
 		aSlotClassBuilder
 			superclass: Object;
@@ -32,21 +28,15 @@ PharoClassInstaller class>>example [
 			category: 'My-Category' ].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller class>>validateClassName: aString [
+{ #category : #testing }
+PharoClassInstaller class >> validateClassName: aString [
 	"Validate if a string can be the name of a new class. Raise an error if not."
 	
 	self new builder name: aString.
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>basicClassDefinitionChangedFrom: oldClass to: newClass using: classModification [
+{ #category : #notifications }
+PharoClassInstaller >> basicClassDefinitionChangedFrom: oldClass to: newClass using: classModification [
 
 	" Copy over the trait composition "
 	self copyTraitCompositionFrom: oldClass to: newClass.		
@@ -61,11 +51,8 @@ PharoClassInstaller>>basicClassDefinitionChangedFrom: oldClass to: newClass usin
 		self systemAnnouncer classDefinitionChangedFrom: oldClass to: newClass ].
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>classAdded: aClass inCategory: aCategory [
+{ #category : #notifications }
+PharoClassInstaller >> classAdded: aClass inCategory: aCategory [
 	" Install the new class in the system "
 	environment at: aClass name put: aClass.
 	environment flushClassNameCache.
@@ -80,20 +67,14 @@ PharoClassInstaller>>classAdded: aClass inCategory: aCategory [
 	self systemAnnouncer classAdded: aClass inCategory: aCategory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>classAt: aName ifAbsent: aBlock [
+{ #category : #accessing }
+PharoClassInstaller >> classAt: aName ifAbsent: aBlock [
 	^ (environment at: aName ifAbsent: aBlock)
 		ifNil: aBlock
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>classDefinitionChangedFrom: oldClass to: newClass by: classModification [
+{ #category : #notifications }
+PharoClassInstaller >> classDefinitionChangedFrom: oldClass to: newClass by: classModification [
 	
 	self
 		copyMethodsFrom: oldClass to: newClass using: classModification;
@@ -102,46 +83,31 @@ PharoClassInstaller>>classDefinitionChangedFrom: oldClass to: newClass by: class
 	
 ]
 
-{
-	#category : #migrating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>copyMethodsFrom: oldClass to: newClass using: classModification [
+{ #category : #migrating }
+PharoClassInstaller >> copyMethodsFrom: oldClass to: newClass using: classModification [
 	methodUpdateStrategy
 		transform: oldClass
 		to: newClass
 		using: classModification methodModification
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>environment [
+{ #category : #accessing }
+PharoClassInstaller >> environment [
 	^ environment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>environment: anEnvironment [
+{ #category : #accessing }
+PharoClassInstaller >> environment: anEnvironment [
 	environment := anEnvironment
 ]
 
-{
-	#category : #migrating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>fixClassBindings: newClass [
+{ #category : #migrating }
+PharoClassInstaller >> fixClassBindings: newClass [
 	methodUpdateStrategy updateClassLiteralKeysIn: newClass
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>formatChangedFrom: oldClass to: newClass by: classModification [
+{ #category : #notifications }
+PharoClassInstaller >> formatChangedFrom: oldClass to: newClass by: classModification [
 
 	self 
 		classDefinitionChangedFrom: oldClass 
@@ -150,21 +116,15 @@ PharoClassInstaller>>formatChangedFrom: oldClass to: newClass by: classModificat
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>initialize [
+{ #category : #initialization }
+PharoClassInstaller >> initialize [
 	super initialize.
 	environment := nil environment.
 	methodUpdateStrategy := MethodRecompileStrategy new.
 ]
 
-{
-	#category : #migrating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>migrateClasses: old to: new using: anInstanceModification [
+{ #category : #migrating }
+PharoClassInstaller >> migrateClasses: old to: new using: anInstanceModification [
 	instanceModification := anInstanceModification.
 	old ifEmpty:  [ ^ self ].
 	[
@@ -178,11 +138,8 @@ PharoClassInstaller>>migrateClasses: old to: new using: anInstanceModification [
 	] valueUnpreemptively
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>recategorize: aClass to: newCategory [
+{ #category : #notifications }
+PharoClassInstaller >> recategorize: aClass to: newCategory [
 	| oldCategory |
 	
 	oldCategory := aClass category.
@@ -199,11 +156,8 @@ PharoClassInstaller>>recategorize: aClass to: newCategory [
 		to: newCategory
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>shallowClassDefinitionChangedFrom: oldClass to: newClass by: classModification [
+{ #category : #notifications }
+PharoClassInstaller >> shallowClassDefinitionChangedFrom: oldClass to: newClass by: classModification [
 	" Copy over the method organization "
 	" Update the superclass links "
 	self 
@@ -211,19 +165,13 @@ PharoClassInstaller>>shallowClassDefinitionChangedFrom: oldClass to: newClass by
 		basicClassDefinitionChangedFrom: oldClass to: newClass using: classModification
 ]
 
-{
-	#category : #migrating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>shallowCopyMethodsFrom: oldClass to: newClass using: classModification [
+{ #category : #migrating }
+PharoClassInstaller >> shallowCopyMethodsFrom: oldClass to: newClass using: classModification [
 	newClass methodDict: oldClass methodDict
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>sharedVariableOrSharedPoolChangedFrom: oldClass to: newClass by: classModification  [
+{ #category : #notifications }
+PharoClassInstaller >> sharedVariableOrSharedPoolChangedFrom: oldClass to: newClass by: classModification [ 
 
 	self 
 		classDefinitionChangedFrom: oldClass 
@@ -242,11 +190,8 @@ PharoClassInstaller>>sharedVariableOrSharedPoolChangedFrom: oldClass to: newClas
 		each classLayout slotScope ifNotEmpty: [ :scope | scope parentScope: newClass classLayout slotScope ] ].
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>slotsChangedFrom: oldClass to: newClass by: classModification [
+{ #category : #notifications }
+PharoClassInstaller >> slotsChangedFrom: oldClass to: newClass by: classModification [
 	
 	self
 		classDefinitionChangedFrom: oldClass 
@@ -254,11 +199,8 @@ PharoClassInstaller>>slotsChangedFrom: oldClass to: newClass by: classModificati
 		by: classModification
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>superclassChangedFrom: oldClass to: newClass by: classModification [
+{ #category : #notifications }
+PharoClassInstaller >> superclassChangedFrom: oldClass to: newClass by: classModification [
 
 	self 
 		shallowClassDefinitionChangedFrom: oldClass
@@ -266,18 +208,12 @@ PharoClassInstaller>>superclassChangedFrom: oldClass to: newClass by: classModif
 		by: classModification 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>systemAnnouncer [
+{ #category : #private }
+PharoClassInstaller >> systemAnnouncer [
 	^ SystemAnnouncer uniqueInstance
 ]
 
-{
-	#category : #migrating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoClassInstaller>>updateClass: oldClass to: newClass [
+{ #category : #migrating }
+PharoClassInstaller >> updateClass: oldClass to: newClass [
 	newClass updateInstancesFrom: oldClass
 ]

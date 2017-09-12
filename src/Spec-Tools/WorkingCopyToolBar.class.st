@@ -10,15 +10,11 @@ Class {
 		'packageButton',
 		'sliceButton'
 	],
-	#category : #Spec-Tools-Monticello,
-	#timestamp : '<historical>'
+	#category : #Spec-Tools-Monticello
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WorkingCopyToolBar class>>defaultSpec  [
+{ #category : #specs }
+WorkingCopyToolBar class >> defaultSpec [ 
 
 	^ {#ContainerModel.
 			#add: . {{#model . #packageButton.} . #layout: .  #(FrameLayout
@@ -48,28 +44,19 @@ WorkingCopyToolBar class>>defaultSpec  [
 		}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WorkingCopyToolBar>>browseButton [
+{ #category : #accessing }
+WorkingCopyToolBar >> browseButton [
 	^ browseButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WorkingCopyToolBar>>configButton [
+{ #category : #accessing }
+WorkingCopyToolBar >> configButton [
 	
 	^ configButton
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WorkingCopyToolBar>>createPackage [
+{ #category : #initialization }
+WorkingCopyToolBar >> createPackage [
 	| name |
 	name := UIManager default request: 'Name of package:'.
 	name isEmptyOrNil
@@ -78,11 +65,8 @@ WorkingCopyToolBar>>createPackage [
 	MCWorkingCopy forPackage: (MCPackage new name: name)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WorkingCopyToolBar>>initializeWidgets [
+{ #category : #initialization }
+WorkingCopyToolBar >> initializeWidgets [
 
 	browseButton := self newButton.
 	configButton := self newButton.
@@ -94,20 +78,14 @@ WorkingCopyToolBar>>initializeWidgets [
 	self setSliceButton.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WorkingCopyToolBar>>packageButton [
+{ #category : #accessing }
+WorkingCopyToolBar >> packageButton [
 
 	^ packageButton
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WorkingCopyToolBar>>setBrowseButton [
+{ #category : #initialization }
+WorkingCopyToolBar >> setBrowseButton [
 
 	browseButton
 		state: false;
@@ -117,11 +95,8 @@ WorkingCopyToolBar>>setBrowseButton [
 		action: [ self browseWorkingCopy ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WorkingCopyToolBar>>setConfigButton [
+{ #category : #initialization }
+WorkingCopyToolBar >> setConfigButton [
 
 	configButton
 		state: false;
@@ -130,11 +105,8 @@ WorkingCopyToolBar>>setConfigButton [
 		action: [ self createConfiguration ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WorkingCopyToolBar>>setPackageButton [
+{ #category : #initialization }
+WorkingCopyToolBar >> setPackageButton [
 
 	packageButton
 		state: false;
@@ -143,11 +115,8 @@ WorkingCopyToolBar>>setPackageButton [
 		action: [ self createPackage ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WorkingCopyToolBar>>setSliceButton [
+{ #category : #initialization }
+WorkingCopyToolBar >> setSliceButton [
 	sliceButton := self instantiate: ButtonModel.
 	sliceButton
 		state: false;
@@ -156,11 +125,8 @@ WorkingCopyToolBar>>setSliceButton [
 		action: [ self createSlice ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WorkingCopyToolBar>>sliceButton [
+{ #category : #accessing }
+WorkingCopyToolBar >> sliceButton [
 	
 	^ sliceButton
 ]

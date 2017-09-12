@@ -11,88 +11,60 @@ Class {
 		'className',
 		'isMeta'
 	],
-	#category : #Refactoring-Changes,
-	#timestamp : 'NicolaiHess 9/9/2016 20:01'
+	#category : #Refactoring-Changes
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryClassChange>>= aRefactoryClassChange  [
+{ #category : #comparing }
+RBRefactoryClassChange >> = aRefactoryClassChange [ 
 	self class = aRefactoryClassChange class
 		ifFalse: [ ^ false ].
 	^ className = aRefactoryClassChange changeClassName 
 		and: [ isMeta = aRefactoryClassChange isMeta ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryClassChange>>asUndoOperation [
+{ #category : #converting }
+RBRefactoryClassChange >> asUndoOperation [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryClassChange>>changeClass [
+{ #category : #accessing }
+RBRefactoryClassChange >> changeClass [
 	| class |
 	class := Smalltalk globals at: self changeClassName ifAbsent: [ ^ nil ].
 	^ isMeta ifTrue: [ class classSide ] ifFalse: [ class ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryClassChange>>changeClass: aBehavior  [
+{ #category : #accessing }
+RBRefactoryClassChange >> changeClass: aBehavior [ 
 	isMeta := aBehavior isMeta.
 	className := aBehavior theNonMetaClass name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryClassChange>>changeClassName [
+{ #category : #accessing }
+RBRefactoryClassChange >> changeClassName [
 	^ className
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryClassChange>>changeClassName: aSymbol  [
+{ #category : #accessing }
+RBRefactoryClassChange >> changeClassName: aSymbol [ 
 	className := aSymbol.
 	isMeta isNil ifTrue: [ isMeta := false ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryClassChange>>changeString [
+{ #category : #printing }
+RBRefactoryClassChange >> changeString [
 	^ self displayClassName
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryClassChange>>displayClassName [
+{ #category : #printing }
+RBRefactoryClassChange >> displayClassName [
 	^ isMeta
 		ifTrue: [ self changeClassName , ' class' ]
 		ifFalse: [ self changeClassName asString ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryClassChange>>executeNotifying: aBlock [
+{ #category : #private }
+RBRefactoryClassChange >> executeNotifying: aBlock [
 	| undo |
 	undo := self asUndoOperation.
 	undo name: self name.
@@ -101,52 +73,34 @@ RBRefactoryClassChange>>executeNotifying: aBlock [
 	^ undo
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryClassChange>>hash [
+{ #category : #comparing }
+RBRefactoryClassChange >> hash [
 	^ self changeClassName hash
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryClassChange>>isMeta [
+{ #category : #private }
+RBRefactoryClassChange >> isMeta [
 	^ isMeta
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryClassChange>>methodSourceFor: aSymbol [
+{ #category : #accessing }
+RBRefactoryClassChange >> methodSourceFor: aSymbol [
 	^ (self changeClass includesSelector: aSymbol)
 		ifTrue: [ self changeClass sourceCodeAt: aSymbol ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryClassChange>>primitiveExecute [
+{ #category : #private }
+RBRefactoryClassChange >> primitiveExecute [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryClassChange>>printOn: aStream [
+{ #category : #printing }
+RBRefactoryClassChange >> printOn: aStream [
 	aStream nextPutAll: self displayString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryClassChange>>renameChangesForClass: oldClassName to: newClassName [
+{ #category : #accessing }
+RBRefactoryClassChange >> renameChangesForClass: oldClassName to: newClassName [
 	^ self changeClassName = oldClassName
 		ifFalse: [ self ]
 		ifTrue: [

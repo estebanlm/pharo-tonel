@@ -13,15 +13,11 @@ Class {
 		'isByteArray',
 		'contents'
 	],
-	#category : #AST-Core-Nodes,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode class>>startPosition: startInteger contents: anArray stopPosition: stopInteger isByteArray: aBoolean  [
+{ #category : #'instance creation' }
+RBLiteralArrayNode class >> startPosition: startInteger contents: anArray stopPosition: stopInteger isByteArray: aBoolean [ 
 	^(self new)
 		startPosition: startInteger
 			contents: anArray
@@ -30,11 +26,8 @@ RBLiteralArrayNode class>>startPosition: startInteger contents: anArray stopPosi
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode class>>value: aValue  [
+{ #category : #'instance creation' }
+RBLiteralArrayNode class >> value: aValue [ 
 	^(self new)
 		startPosition: 0
 			contents: (aValue asArray collect: [:each | RBLiteralNode value: each])
@@ -43,11 +36,8 @@ RBLiteralArrayNode class>>value: aValue  [
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode>>= anObject  [
+{ #category : #comparing }
+RBLiteralArrayNode >> = anObject [ 
 	super = anObject ifFalse: [^false].
 	self isForByteArray = anObject isForByteArray ifFalse: [^false].
 	self contents size = anObject contents size ifFalse: [^false].
@@ -57,44 +47,29 @@ RBLiteralArrayNode>>= anObject  [
 	^true
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visiting }
+RBLiteralArrayNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^aProgramNodeVisitor visitLiteralArrayNode: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode>>children [
+{ #category : #accessing }
+RBLiteralArrayNode >> children [
 	^contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode>>contents [
+{ #category : #accessing }
+RBLiteralArrayNode >> contents [
 	^contents
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode>>contents: aRBLiteralNodeCollection  [
+{ #category : #initialize-release }
+RBLiteralArrayNode >> contents: aRBLiteralNodeCollection [ 
 	contents := aRBLiteralNodeCollection.
 	contents do: [:each | each parent: self]
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode>>copyInContext: aDictionary  [
+{ #category : #matching }
+RBLiteralArrayNode >> copyInContext: aDictionary [ 
 	^ self class 
 		startPosition: 0
 		contents: (self copyList: self contents inContext: aDictionary)
@@ -102,11 +77,8 @@ RBLiteralArrayNode>>copyInContext: aDictionary  [
 		isByteArray: isByteArray
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode>>equalTo: anObject withMapping: aDictionary  [
+{ #category : #comparing }
+RBLiteralArrayNode >> equalTo: anObject withMapping: aDictionary [ 
 	self class = anObject class ifFalse: [^false].
 	self isForByteArray = anObject isForByteArray ifFalse: [^false].
 	self contents size = anObject contents size ifFalse: [^false].
@@ -116,35 +88,23 @@ RBLiteralArrayNode>>equalTo: anObject withMapping: aDictionary  [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode>>isFaulty [
+{ #category : #testing }
+RBLiteralArrayNode >> isFaulty [
 	^self contents anySatisfy: #isFaulty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode>>isForByteArray [
+{ #category : #testing }
+RBLiteralArrayNode >> isForByteArray [
 	^isByteArray
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode>>isLiteralArray [
+{ #category : #testing }
+RBLiteralArrayNode >> isLiteralArray [
 	^true
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode>>match: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBLiteralArrayNode >> match: aNode inContext: aDictionary [ 
 	aNode class = self class ifFalse: [^false].
 	self isForByteArray = aNode isForByteArray ifFalse: [^false].
 	^self 
@@ -153,29 +113,20 @@ RBLiteralArrayNode>>match: aNode inContext: aDictionary  [
 		inContext: aDictionary
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode>>postCopy [
+{ #category : #copying }
+RBLiteralArrayNode >> postCopy [
 	super postCopy.
 	self contents: (self contents collect: [ :each | each copy ])
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode>>replaceNode: aNode withNode: anotherNode  [
+{ #category : #replacing }
+RBLiteralArrayNode >> replaceNode: aNode withNode: anotherNode [ 
 	self contents: (contents 
 				collect: [:each | each == aNode ifTrue: [anotherNode] ifFalse: [each]])
 ]
 
-{
-	#category : #private-replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode>>replaceSourceWith: aNode  [
+{ #category : #private-replacing }
+RBLiteralArrayNode >> replaceSourceWith: aNode [ 
 	(self class = aNode class and: 
 			[self isForByteArray = aNode isForByteArray 
 				and: [self contents size = aNode contents size]]) 
@@ -185,22 +136,16 @@ RBLiteralArrayNode>>replaceSourceWith: aNode  [
 		do: [:first :second | first = second ifFalse: [ first replaceSourceWith: second]]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode>>startPosition: startInteger contents: anArray stopPosition: stopInteger isByteArray: aBoolean  [
+{ #category : #initialize-release }
+RBLiteralArrayNode >> startPosition: startInteger contents: anArray stopPosition: stopInteger isByteArray: aBoolean [ 
 	start := startInteger.
 	self contents: anArray.
 	stop := stopInteger.
 	isByteArray := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayNode>>value [
+{ #category : #accessing }
+RBLiteralArrayNode >> value [
 	| array |
 	array := (isByteArray ifTrue: [ByteArray] ifFalse: [Array]) 
 				new: contents size.

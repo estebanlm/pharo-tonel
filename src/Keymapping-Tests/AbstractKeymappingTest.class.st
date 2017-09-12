@@ -14,15 +14,11 @@ Class {
 	#instVars : [
 		'default'
 	],
-	#category : #Keymapping-Tests,
-	#timestamp : 'HenrikNergaard 6/4/2016 16:14'
+	#category : #Keymapping-Tests
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-AbstractKeymappingTest>>eventKey: character  [
+{ #category : #utilities }
+AbstractKeymappingTest >> eventKey: character [ 
 	^ self eventKey: character
 		alt: false
 		ctrl: false
@@ -30,11 +26,8 @@ AbstractKeymappingTest>>eventKey: character  [
 		shift: false
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-AbstractKeymappingTest>>eventKey: character alt: aBoolean [
+{ #category : #utilities }
+AbstractKeymappingTest >> eventKey: character alt: aBoolean [
 	^ self eventKey: character
 		alt: aBoolean
 		ctrl: false
@@ -42,11 +35,8 @@ AbstractKeymappingTest>>eventKey: character alt: aBoolean [
 		shift: false
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-AbstractKeymappingTest>>eventKey: character alt: useAlt ctrl: useCtrl command: useCommand shift: useShift [
+{ #category : #utilities }
+AbstractKeymappingTest >> eventKey: character alt: useAlt ctrl: useCtrl command: useCommand shift: useShift [
 	| event modifier code |
 	event := KeyboardEvent new.
 	modifier := 0.
@@ -72,11 +62,8 @@ AbstractKeymappingTest>>eventKey: character alt: useAlt ctrl: useCtrl command: u
 	^ event 	
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-AbstractKeymappingTest>>eventKey: character command: aBoolean [
+{ #category : #utilities }
+AbstractKeymappingTest >> eventKey: character command: aBoolean [
 	^ self eventKey: character
 		alt: false
 		ctrl: false
@@ -84,11 +71,8 @@ AbstractKeymappingTest>>eventKey: character command: aBoolean [
 		shift: false
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-AbstractKeymappingTest>>eventKey: character ctrl: aBoolean [
+{ #category : #utilities }
+AbstractKeymappingTest >> eventKey: character ctrl: aBoolean [
 	^ self eventKey: character
 		alt: false
 		ctrl: aBoolean
@@ -96,11 +80,8 @@ AbstractKeymappingTest>>eventKey: character ctrl: aBoolean [
 		shift: false
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-AbstractKeymappingTest>>eventKey: character shift: aBoolean [
+{ #category : #utilities }
+AbstractKeymappingTest >> eventKey: character shift: aBoolean [
 	^ self eventKey: character
 		alt: false
 		ctrl: false
@@ -108,19 +89,13 @@ AbstractKeymappingTest>>eventKey: character shift: aBoolean [
 		shift: aBoolean
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-AbstractKeymappingTest>>setUp [
+{ #category : #running }
+AbstractKeymappingTest >> setUp [
 	default := KMRepository default.
 	KMRepository default: KMRepository new
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-AbstractKeymappingTest>>tearDown [
+{ #category : #running }
+AbstractKeymappingTest >> tearDown [
 	KMRepository default: default
 ]

@@ -4,39 +4,26 @@ The interim record of ancestry for a working copy, gets merged version added to 
 Class {
 	#name : #MCWorkingAncestry,
 	#superclass : #MCAncestry,
-	#category : #Monticello-Versioning,
-	#timestamp : '<historical>'
+	#category : #Monticello-Versioning
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingAncestry>>addAncestor: aNode [
+{ #category : #adding }
+MCWorkingAncestry >> addAncestor: aNode [
 	ancestors := (self ancestors reject: [ :each | aNode hasAncestor: each ]) copyWith: aNode lazy
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingAncestry>>addStepChild: aVersionInfo [
+{ #category : #adding }
+MCWorkingAncestry >> addStepChild: aVersionInfo [
 	stepChildren := stepChildren copyWith: aVersionInfo lazy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingAncestry>>ancestors: anObject [
+{ #category : #accessing }
+MCWorkingAncestry >> ancestors: anObject [
 	ancestors := anObject collect: [ :a | a lazy ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingAncestry>>infoWithName: nameString message: messageString [
+{ #category : #accessing }
+MCWorkingAncestry >> infoWithName: nameString message: messageString [
 	^ MCVersionInfo
 		name: nameString
 		id: UUID new
@@ -48,26 +35,17 @@ MCWorkingAncestry>>infoWithName: nameString message: messageString [
 		stepChildren: self stepChildren asArray
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingAncestry>>lazy [
+{ #category : #initialization }
+MCWorkingAncestry >> lazy [
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingAncestry>>name [
+{ #category : #accessing }
+MCWorkingAncestry >> name [
 	^ '<working copy>'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingAncestry>>summary [
+{ #category : #accessing }
+MCWorkingAncestry >> summary [
 	^ 'Ancestors: ', self ancestorString
 ]

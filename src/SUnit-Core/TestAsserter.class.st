@@ -11,15 +11,11 @@ Override my class-side #isLogging in subclasses to have failed assertion descrip
 Class {
 	#name : #TestAsserter,
 	#superclass : #Object,
-	#category : #SUnit-Core-Kernel,
-	#timestamp : '<historical>'
+	#category : #SUnit-Core-Kernel
 }
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter class>>assert: aBoolean description: aString [
+{ #category : #asserting }
+TestAsserter class >> assert: aBoolean description: aString [
 	"Minimal clone of the instance-side assert protocol so that class-side methods can use it."
 
 	aBoolean ifFalse:
@@ -27,92 +23,62 @@ TestAsserter class>>assert: aBoolean description: aString [
 		self classForTestResult failure signal: aString].
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter class>>classForTestResult [
+{ #category : #asserting }
+TestAsserter class >> classForTestResult [
 	"Returns the class of the test result"
 	^ TestResult
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter class>>classForTestSuite [
+{ #category : #factory }
+TestAsserter class >> classForTestSuite [
 	^ TestSuite
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter class>>failureLog [
+{ #category : #logging }
+TestAsserter class >> failureLog [
 	^Transcript
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter class>>isLogging [
+{ #category : #logging }
+TestAsserter class >> isLogging [
 	"By default, we're not logging failures. Override in subclasses as desired."
 
 	^false
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter class>>logFailure: aString [
+{ #category : #logging }
+TestAsserter class >> logFailure: aString [
 	self isLogging ifTrue:
 		[self failureLog cr; nextPutAll: aString; flush].
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter class>>methodPassed: aSelector [
+{ #category : #factory }
+TestAsserter class >> methodPassed: aSelector [
 
 	^ false
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter class>>suiteClass [
+{ #category : #factory }
+TestAsserter class >> suiteClass [
 	^TestSuite
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>assert: aBoolean [
+{ #category : #asserting }
+TestAsserter >> assert: aBoolean [
 	aBoolean ifFalse:
 		[self logFailure: 'Assertion failed'.
 		self defaultTestFailure signal: 'Assertion failed'].
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>assert: actualNumber closeTo: expectedNumber [
+{ #category : #asserting }
+TestAsserter >> assert: actualNumber closeTo: expectedNumber [
 	^ self
 		assert: (actualNumber closeTo: expectedNumber)
 		description: [self comparingStringBetween: actualNumber and: expectedNumber]
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>assert: aBooleanOrBlock description: aStringOrBlock [
+{ #category : #asserting }
+TestAsserter >> assert: aBooleanOrBlock description: aStringOrBlock [
 	aBooleanOrBlock value ifFalse: [
 		| aString |
 		aString := aStringOrBlock value.
@@ -121,11 +87,8 @@ TestAsserter>>assert: aBooleanOrBlock description: aStringOrBlock [
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>assert: aBooleanOrBlock description: aStringOrBlock resumable: resumableBoolean  [
+{ #category : #asserting }
+TestAsserter >> assert: aBooleanOrBlock description: aStringOrBlock resumable: resumableBoolean [ 
 	| exception |
 	aBooleanOrBlock value
 		ifFalse: 
@@ -139,32 +102,23 @@ TestAsserter>>assert: aBooleanOrBlock description: aStringOrBlock resumable: res
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>assert: actual equals: expected [
+{ #category : #asserting }
+TestAsserter >> assert: actual equals: expected [
 	^ self
 		assert: expected = actual
 		description: [self comparingStringBetween: actual and: expected]
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>assertCollection: actual equals: expected [
+{ #category : #asserting }
+TestAsserter >> assertCollection: actual equals: expected [
 	"Specialized test method that generates a proper error message for collection"
 	^ self
 		assert: expected = actual
 		description: [ self comparingCollectionBetween: actual and: expected ]
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>assertCollection: actual hasSameElements: expected [
+{ #category : #asserting }
+TestAsserter >> assertCollection: actual hasSameElements: expected [
 	"Assert that a collection contains the same elements as the given collection. Order is not checked, only the presence/absence of elements."
 	| missingElements additionalElements |
 	
@@ -180,41 +134,29 @@ TestAsserter>>assertCollection: actual hasSameElements: expected [
 				tab; nextPutAll: 'missing: '; print: missingElements asArray; lf ])
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>classForTestResource [
+{ #category : #factory }
+TestAsserter >> classForTestResource [
 	^ TestResource
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>classForTestResult [
+{ #category : #factory }
+TestAsserter >> classForTestResult [
 	"Returns the class of the test result"
 	
 	"note that we did not name this method testResultClass because it is considered by tools as a test method."
 	^ self class classForTestResult
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>classForTestSuite [
+{ #category : #factory }
+TestAsserter >> classForTestSuite [
 	"Returns the class of the test suite"
 	
 	"note that we did not name this method testSuiteClass because it is considered by tools as a test method. it could be suiteClass"
 	^ self class classForTestSuite
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>comparingCollectionBetween: left and: right [
+{ #category : #private }
+TestAsserter >> comparingCollectionBetween: left and: right [
 	| additionalLeft additionalRight sortBlock|
 	
 	"use a very slow sort block"
@@ -251,11 +193,8 @@ TestAsserter>>comparingCollectionBetween: left and: right [
 					tab; print: additionalRight  ]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>comparingStringBetween: actual and: expected [
+{ #category : #private }
+TestAsserter >> comparingStringBetween: actual and: expected [
 
 	^ String streamContents: [:stream |
 			stream
@@ -266,48 +205,33 @@ TestAsserter>>comparingStringBetween: actual and: expected [
 				nextPutAll: '.']
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>defaultTestError [
+{ #category : #factory }
+TestAsserter >> defaultTestError [
 
 	^ self classForTestResult error
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>defaultTestFailure [
+{ #category : #factory }
+TestAsserter >> defaultTestFailure [
 
 	^ self classForTestResult failure
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>deny: aBooleanOrBlock [
+{ #category : #asserting }
+TestAsserter >> deny: aBooleanOrBlock [
 
 	self assert: aBooleanOrBlock value not
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>deny: aBooleanOrBlock description: aString [
+{ #category : #asserting }
+TestAsserter >> deny: aBooleanOrBlock description: aString [
 	self assert: aBooleanOrBlock value not description: aString
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>deny: aBooleanOrBlock description: aString resumable: resumableBoolean  [
+{ #category : #asserting }
+TestAsserter >> deny: aBooleanOrBlock description: aString resumable: resumableBoolean [ 
 	self
 		assert: aBooleanOrBlock value not
 		description: aString
@@ -315,33 +239,24 @@ TestAsserter>>deny: aBooleanOrBlock description: aString resumable: resumableBoo
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>executeShould: aBlock inScopeOf: anExceptionalEvent  [
+{ #category : #asserting }
+TestAsserter >> executeShould: aBlock inScopeOf: anExceptionalEvent [ 
 	^[aBlock value.
  	false] on: anExceptionalEvent
 		do: [:ex | ex return: true]
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>executeShould: aBlock inScopeOf: anExceptionalEvent withDescriptionNotContaining: aString [
+{ #category : #asserting }
+TestAsserter >> executeShould: aBlock inScopeOf: anExceptionalEvent withDescriptionNotContaining: aString [
 	^[aBlock value.
  	false] on: anExceptionalEvent
 		do: [:ex | ex return: (ex description includesSubstring: aString) not ]
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>executeShould: aBlock inScopeOf: anException withExceptionDo: anotherBlock [
+{ #category : #asserting }
+TestAsserter >> executeShould: aBlock inScopeOf: anException withExceptionDo: anotherBlock [
 
 	^[aBlock value.
  	false] 
@@ -351,55 +266,37 @@ TestAsserter>>executeShould: aBlock inScopeOf: anException withExceptionDo: anot
 			exception return: true]
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>fail [
+{ #category : #asserting }
+TestAsserter >> fail [
 
 	^self assert: false
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>fail: aDescriptionString [
+{ #category : #asserting }
+TestAsserter >> fail: aDescriptionString [
 
 	^self assert: false description: aDescriptionString
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>logFailure: aString [
+{ #category : #logging }
+TestAsserter >> logFailure: aString [
 	self class logFailure: aString.
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>should: aBlock [
+{ #category : #asserting }
+TestAsserter >> should: aBlock [
 	self assert: aBlock value
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>should: aBlock description: aString [
+{ #category : #asserting }
+TestAsserter >> should: aBlock description: aString [
 	self assert: aBlock value description: aString
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>should: aBlock notTakeMoreThan: aDuration [
+{ #category : #asserting }
+TestAsserter >> should: aBlock notTakeMoreThan: aDuration [
     "Evaluate aBlock and if it takes more than given duration
     to run we report a test failure. "
 
@@ -412,106 +309,73 @@ TestAsserter>>should: aBlock notTakeMoreThan: aDuration [
 
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>should: aBlock notTakeMoreThanMilliseconds: anInteger [
+{ #category : #asserting }
+TestAsserter >> should: aBlock notTakeMoreThanMilliseconds: anInteger [
     "For compatibility with other Smalltalks"
 
    self should: aBlock notTakeMoreThan: (Duration milliSeconds: anInteger).
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>should: aBlock raise: anExceptionalEvent  [
+{ #category : #asserting }
+TestAsserter >> should: aBlock raise: anExceptionalEvent [ 
 	^self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent)
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>should: aBlock raise: anExceptionalEvent description: aString  [
+{ #category : #asserting }
+TestAsserter >> should: aBlock raise: anExceptionalEvent description: aString [ 
 	^self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent)
 		description: aString
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>should: aBlock raise: anExceptionalEvent whoseDescriptionDoesNotInclude: substring description: aString  [
+{ #category : #asserting }
+TestAsserter >> should: aBlock raise: anExceptionalEvent whoseDescriptionDoesNotInclude: substring description: aString [ 
 	^self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent withDescriptionNotContaining: substring)
 		description: aString
 
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>should: aBlock raise: anExceptionalEvent whoseDescriptionIncludes: substring description: aString  [
+{ #category : #asserting }
+TestAsserter >> should: aBlock raise: anExceptionalEvent whoseDescriptionIncludes: substring description: aString [ 
 	^self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent withDescriptionContaining: substring)
 		description: aString
 
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>should: aBlock raise: anException withExceptionDo: anotherBlock  [
+{ #category : #asserting }
+TestAsserter >> should: aBlock raise: anException withExceptionDo: anotherBlock [ 
 
 	^self assert: (self executeShould: aBlock inScopeOf: anException withExceptionDo: anotherBlock)
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>shouldFix: aBlock  [
+{ #category : #asserting }
+TestAsserter >> shouldFix: aBlock [ 
 	"Run the block expecting an Exception. Throw an assertion failure if the block does NOT throw an exception."
 	^self should: aBlock raise: Exception
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>shouldnt: aBlock [
+{ #category : #asserting }
+TestAsserter >> shouldnt: aBlock [
 	self deny: aBlock value
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>shouldnt: aBlock description: aString [
+{ #category : #asserting }
+TestAsserter >> shouldnt: aBlock description: aString [
 	self deny: aBlock value description: aString
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>shouldnt: aBlock raise: anExceptionalEvent   [
+{ #category : #asserting }
+TestAsserter >> shouldnt: aBlock raise: anExceptionalEvent [  
 	 
 	^self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent) not
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>shouldnt: aBlock raise: anExceptionalEvent description: aString   [
+{ #category : #asserting }
+TestAsserter >> shouldnt: aBlock raise: anExceptionalEvent description: aString [  
  
 	^self
 		assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent) not
@@ -519,11 +383,8 @@ TestAsserter>>shouldnt: aBlock raise: anExceptionalEvent description: aString   
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>shouldnt: aBlock raise: anExceptionalEvent whoseDescriptionDoesNotInclude: substring description: aString  [
+{ #category : #asserting }
+TestAsserter >> shouldnt: aBlock raise: anExceptionalEvent whoseDescriptionDoesNotInclude: substring description: aString [ 
 	 
 	^self
 		assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent withDescriptionNotContaining: substring) not
@@ -531,11 +392,8 @@ TestAsserter>>shouldnt: aBlock raise: anExceptionalEvent whoseDescriptionDoesNot
 
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>shouldnt: aBlock raise: anExceptionalEvent whoseDescriptionIncludes: substring description: aString   [
+{ #category : #asserting }
+TestAsserter >> shouldnt: aBlock raise: anExceptionalEvent whoseDescriptionIncludes: substring description: aString [  
 	 
 	^self 
 		assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent withDescriptionContaining: substring) not
@@ -543,28 +401,19 @@ TestAsserter>>shouldnt: aBlock raise: anExceptionalEvent whoseDescriptionInclude
 
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>signalFailure: aString [
+{ #category : #asserting }
+TestAsserter >> signalFailure: aString [
 	self classForTestResult failure signal: aString
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>skip [
+{ #category : #asserting }
+TestAsserter >> skip [
 	"Don't run this test, and don't mark it as failure"
 	TestSkip signal
 ]
 
-{
-	#category : #extensions,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestAsserter>>skip: aComment [
+{ #category : #extensions }
+TestAsserter >> skip: aComment [
 	"Don't run this test, and don't mark it as failure"
 	TestSkip signal: aComment
 ]

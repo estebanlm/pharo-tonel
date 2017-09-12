@@ -11,74 +11,49 @@ Class {
 		'navigator',
 		'oldSystemAnnouncer'
 	],
-	#category : #Tests-System,
-	#timestamp : 'LucFabresse 10/24/2010 20:26'
+	#category : #Tests-System
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest class>>isUnitTest [
+{ #category : #testing }
+SystemNavigationTest class >> isUnitTest [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>classFactory [
+{ #category : #accessing }
+SystemNavigationTest >> classFactory [
 	^classFactory
 ]
 
-{
-	#category : #setUp-tearDown,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>createClassFactory [
+{ #category : #setUp-tearDown }
+SystemNavigationTest >> createClassFactory [
 	^ ClassFactoryWithOrganization newWithOrganization: self organizationToTest
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>createMethodNamed: selector realParent: class [
+{ #category : #utils }
+SystemNavigationTest >> createMethodNamed: selector realParent: class [
 
 	^ RGMethodDefinition realClass: class selector: selector
 ]
 
-{
-	#category : #setUp-tearDown,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>createSystemNavigationToTest [
+{ #category : #setUp-tearDown }
+SystemNavigationTest >> createSystemNavigationToTest [
 	^SystemNavigation new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>environmentToTest [
+{ #category : #accessing }
+SystemNavigationTest >> environmentToTest [
 	^self systemNavigationToTest environment
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>organizationToTest [
+{ #category : #accessing }
+SystemNavigationTest >> organizationToTest [
 	^self environmentToTest organization
 	
 ]
 
-{
-	#category : #setUp-tearDown,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>setUp [
+{ #category : #setUp-tearDown }
+SystemNavigationTest >> setUp [
 	super setUp. 
 	
 	oldSystemAnnouncer := SystemAnnouncer uniqueInstance.
@@ -88,31 +63,22 @@ SystemNavigationTest>>setUp [
 	classFactory := self createClassFactory.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>systemNavigationToTest [
+{ #category : #accessing }
+SystemNavigationTest >> systemNavigationToTest [
 	^navigator
 	
 ]
 
-{
-	#category : #setUp-tearDown,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>tearDown [
+{ #category : #setUp-tearDown }
+SystemNavigationTest >> tearDown [
 	super tearDown.
 	self classFactory cleanUp. 
 	SystemAnnouncer announcer: oldSystemAnnouncer.
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>testAllClassesUsingSharedPool [
+{ #category : #testing }
+SystemNavigationTest >> testAllClassesUsingSharedPool [
 	"self debug: #testAllClassesUsingSharedPool"
 
 	| res |
@@ -120,11 +86,8 @@ SystemNavigationTest>>testAllClassesUsingSharedPool [
 	self assert: ({Date. DateAndTime. Duration. Month. Time. TimeZone. Week} difference: res) isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>testAllExistingProtocolsFor [
+{ #category : #testing }
+SystemNavigationTest >> testAllExistingProtocolsFor [
 
 	| instSideProtocols classSideProtocols |
 
@@ -137,33 +100,24 @@ SystemNavigationTest>>testAllExistingProtocolsFor [
 	self assert: (classSideProtocols includesAll: (Object class protocols)).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>testAllReferencesToPool [
+{ #category : #testing }
+SystemNavigationTest >> testAllReferencesToPool [
 	| result |
 	
 	result := self systemNavigationToTest allReferencesToPool: FooSharedPool.
 	self assert: result size = 1.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>testAllReferencesToPoolWhenNoRefences [
+{ #category : #testing }
+SystemNavigationTest >> testAllReferencesToPoolWhenNoRefences [
 	| result |
 	
 	result := self systemNavigationToTest allReferencesToPool: UnreferencedSharedPool.
 	self assert: result size = 0.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>testAllSendersOfASelector [
+{ #category : #testing }
+SystemNavigationTest >> testAllSendersOfASelector [
 	| senders selector class otherClass callers |
 	selector := ('aMethod', 'WithSenders') asSymbol.
 	
@@ -179,11 +133,8 @@ SystemNavigationTest>>testAllSendersOfASelector [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>testAllSendersOfReturnsExistingMethods [
+{ #category : #testing }
+SystemNavigationTest >> testAllSendersOfReturnsExistingMethods [
 	"Non-regression test for
 	http://code.google.com/p/pharo/issues/detail?id=2593 "
 	| senders |
@@ -193,11 +144,8 @@ SystemNavigationTest>>testAllSendersOfReturnsExistingMethods [
 				assert: (aReference actualClass canUnderstand: aReference selector)]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>testIsMessageSentInSystemAnswersMethodReference [
+{ #category : #testing }
+SystemNavigationTest >> testIsMessageSentInSystemAnswersMethodReference [
 	| classesSendingMessage sentMessageSelector anyOne |
 	sentMessageSelector := 'MessageSentOnlyByTestClassesXXXShouldNotBeRealyDefined' asSymbol.
 	5 timesRepeat: [self classFactory newClassInCategory: #One].
@@ -210,11 +158,8 @@ SystemNavigationTest>>testIsMessageSentInSystemAnswersMethodReference [
 	self assert: (anyOne isKindOf: RGMethodDefinition) 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>testIsMessageSentInSystemWithClassesActuallySendngTheMessage [
+{ #category : #testing }
+SystemNavigationTest >> testIsMessageSentInSystemWithClassesActuallySendngTheMessage [
 	| classesSendingMessage sentMessageSelector|
 	sentMessageSelector := 'MessageSentOnlyByTestClassesXXXShouldNotBeRealyDefined' asSymbol.
 	5 timesRepeat: [self classFactory newClassInCategory: #One].
@@ -225,11 +170,8 @@ SystemNavigationTest>>testIsMessageSentInSystemWithClassesActuallySendngTheMessa
 	self assert: (self systemNavigationToTest allSendersOf: sentMessageSelector) size = 5
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>testIsMessageSentInSystemWithTheSelectorInsideAnArray [
+{ #category : #testing }
+SystemNavigationTest >> testIsMessageSentInSystemWithTheSelectorInsideAnArray [
 	| classesSendingMessage sentMessageSelector |
 	sentMessageSelector := 'MessageSentOnlyByTestClassesXXXShouldNotBeRealyDefined' asSymbol.
 	5 timesRepeat: [self classFactory newClassInCategory: #One].
@@ -240,22 +182,16 @@ SystemNavigationTest>>testIsMessageSentInSystemWithTheSelectorInsideAnArray [
 	self assert: (self systemNavigationToTest allSendersOf: sentMessageSelector) size = 5
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>testIsUnsentMessage [
+{ #category : #testing }
+SystemNavigationTest >> testIsUnsentMessage [
 	| class |
 	class := self classFactory newClass.
 	class compileSilently: 'messageNeverSentInTheSystemXXXXThisIsForTest ^self'.
 	self assert: (self systemNavigationToTest isUnsentMessage: class selectors anyOne)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationTest>>testRetrievingCategoriesInAPackage [
+{ #category : #testing }
+SystemNavigationTest >> testRetrievingCategoriesInAPackage [
 	| retrievedCategories |
 	
 	#(#CategoryForTest #'CategoryForTest-Core' #'CategoryForTest-Tests' #CategoryForTest #ForTestCategory #'ForTestCategory-Core') do: [ :catName | 

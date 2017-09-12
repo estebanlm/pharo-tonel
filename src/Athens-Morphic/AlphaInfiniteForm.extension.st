@@ -1,12 +1,7 @@
-Extension {
-	#name : #AlphaInfiniteForm
-}
+Extension { #name : #AlphaInfiniteForm }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AlphaInfiniteForm>>asAthensPaintOn: canvas [
+{ #category : #'*Athens-Morphic' }
+AlphaInfiniteForm >> asAthensPaintOn: canvas [
 	^ (canvas surface createFormPaint: self asForm)
 		repeat;
 		origin: self origin;

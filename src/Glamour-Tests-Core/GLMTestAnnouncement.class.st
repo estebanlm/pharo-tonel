@@ -1,28 +1,18 @@
-"
-
-"
 Class {
 	#name : #GLMTestAnnouncement,
 	#superclass : #Announcement,
 	#instVars : [
 		'parameter'
 	],
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTestAnnouncement>>parameter [
+{ #category : #accessing }
+GLMTestAnnouncement >> parameter [
 	^ parameter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTestAnnouncement>>parameter: anObject [
+{ #category : #accessing }
+GLMTestAnnouncement >> parameter: anObject [
 	parameter := anObject
 ]

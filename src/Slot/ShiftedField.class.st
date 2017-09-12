@@ -10,32 +10,22 @@ Class {
 	#instVars : [
 		'shift'
 	],
-	#category : #Slot-ClassBuilder,
-	#timestamp : '<historical>'
+	#category : #Slot-ClassBuilder
 }
 
-{
-	#category : #migrating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ShiftedField>>migrateAt: index to: newInstance from: oldInstance [
+{ #category : #migrating }
+ShiftedField >> migrateAt: index to: newInstance from: oldInstance [
 	newInstance 
 		instVarAt: index 
 		put: (oldInstance instVarAt: index - shift)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ShiftedField>>shift [
+{ #category : #accessing }
+ShiftedField >> shift [
 	^ shift
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ShiftedField>>shift: anObject [
+{ #category : #accessing }
+ShiftedField >> shift: anObject [
 	shift := anObject
 ]

@@ -1,47 +1,30 @@
-Extension {
-	#name : #Object
-}
+Extension { #name : #Object }
 
-{
-	#category : #'*Spec-Core',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Object>>asWidget [
+{ #category : #'*Spec-Core' }
+Object >> asWidget [
 
 	^ self
 ]
 
-{
-	#category : #'*Spec-Core',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Object>>isSpecAdapter [
+{ #category : #'*Spec-Core' }
+Object >> isSpecAdapter [
 
 	^ false
 ]
 
-{
-	#category : #'*Spec-Core',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Object>>isSpecContainer [
+{ #category : #'*Spec-Core' }
+Object >> isSpecContainer [
 	^ false
 ]
 
-{
-	#category : #'*Spec-Core',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Object>>isSpecLayout [
+{ #category : #'*Spec-Core' }
+Object >> isSpecLayout [
 
 	^ false
 ]
 
-{
-	#category : #'*Spec-Core',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Object>>isTreeNodeModel [
+{ #category : #'*Spec-Core' }
+Object >> isTreeNodeModel [
 
 	^ false
 ]

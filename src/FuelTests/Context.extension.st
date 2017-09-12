@@ -1,12 +1,7 @@
-Extension {
-	#name : #Context
-}
+Extension { #name : #Context }
 
-{
-	#category : #'*FuelTests',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-Context>>assertWellMaterializedInto: aMethodContext in: aTestCase [
+{ #category : #'*FuelTests' }
+Context >> assertWellMaterializedInto: aMethodContext in: aTestCase [
 
 	aTestCase assert: self ~~ aMethodContext. 
 	aTestCase assert: (self class == aMethodContext class).
@@ -23,11 +18,8 @@ Context>>assertWellMaterializedInto: aMethodContext in: aTestCase [
 		ifFalse: [ sender assertWellMaterializedInto: aMethodContext sender in: aTestCase ]
 ]
 
-{
-	#category : #'*FuelTests',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-Context>>initializeWith: aPc stackPtr: aStackPtr method: aMethod receiver: aReceiver sender: aSender [
+{ #category : #'*FuelTests' }
+Context >> initializeWith: aPc stackPtr: aStackPtr method: aMethod receiver: aReceiver sender: aSender [
 	pc := aPc.
 	stackp := aStackPtr.
 	method := aMethod.

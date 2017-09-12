@@ -1,20 +1,12 @@
-Extension {
-	#name : #Object
-}
+Extension { #name : #Object }
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-Object>>asLiteralNode [
+{ #category : #'*Reflectivity' }
+Object >> asLiteralNode [
 	^RBLiteralNode value: self
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-Object>>asMethodConstant [
+{ #category : #'*Reflectivity' }
+Object >> asMethodConstant [
 	| const constNode link |
 	"this method will replace full sender message send of sender with me (or my value which usefull for block). So following sender method execution will not evaluate my receiver expresion but instead push precomputed literal with me"
 	const := self value.

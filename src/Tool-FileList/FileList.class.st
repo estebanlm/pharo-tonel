@@ -32,25 +32,18 @@ Class {
 	#classInstVars : [
 		'searchList'
 	],
-	#category : #Tool-FileList,
-	#timestamp : 'StephaneDucasse 3/28/2010 20:44'
+	#category : #Tool-FileList
 }
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>addFullPanesTo: window from: aCollection [
+{ #category : #utility }
+FileList class >> addFullPanesTo: window from: aCollection [
 
 	aCollection do: [ :each | 
 		window addMorph: each first fullFrame: each second ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>contentMenu: aBuilder [
+{ #category : #menu }
+FileList class >> contentMenu: aBuilder [
 	<contextMenu>
 	<fileListContentMenu>
 	
@@ -123,31 +116,22 @@ FileList class>>contentMenu: aBuilder [
 
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>itemsForDirectory: aFileDirectory [
+{ #category : #utility }
+FileList class >> itemsForDirectory: aFileDirectory [
 	"Answer a list of services appropriate when no file is selected."
 
 	^ FileServices itemsForDirectory: aFileDirectory
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>itemsForFile: file [
+{ #category : #utility }
+FileList class >> itemsForFile: file [
 	"Answer a list of services appropriate for a file of the given full name"
 
 	^ FileServices itemsForFile: file fullName
 ]
 
-{
-	#category : #'world menu',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>menuCommandOn: aBuilder  [
+{ #category : #'world menu' }
+FileList class >> menuCommandOn: aBuilder [ 
 	<worldMenu> 
 	(aBuilder item: #'File Browser')
 		parent: #Tools;
@@ -157,11 +141,8 @@ FileList class>>menuCommandOn: aBuilder  [
 	aBuilder withSeparatorAfter.		
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>morphicViewOnDirectory: aFileDirectory [
+{ #category : #'morphic ui' }
+FileList class >> morphicViewOnDirectory: aFileDirectory [
 
 	^ self 
 		morphicViewOnFile: aFileDirectory 
@@ -169,11 +150,8 @@ FileList class>>morphicViewOnDirectory: aFileDirectory [
 		fileList: (self new directory: aFileDirectory).
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>morphicViewOnFile: aFile contents: contents fileList: aFileList [
+{ #category : #'morphic ui' }
+FileList class >> morphicViewOnFile: aFile contents: contents fileList: aFileList [
 	|  window fileListBottom midLine fileListTopOffset buttonPane fileContentsView |
 
 	window := (SystemWindow labelled: aFile fullName) model: aFileList.
@@ -199,29 +177,20 @@ FileList class>>morphicViewOnFile: aFile contents: contents fileList: aFileList 
 	^ window 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>newOnDirectory: aFileReference [
+{ #category : #'instance creation' }
+FileList class >> newOnDirectory: aFileReference [
 	
 	^ self newOnDirectory: aFileReference baseLabel: ''
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>newOnDirectory: aFileReference baseLabel: aTitle [
+{ #category : #'instance creation' }
+FileList class >> newOnDirectory: aFileReference baseLabel: aTitle [
 	
 	^ self newOnDirectory: aFileReference baseLabel: aTitle contents: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>newOnDirectory: aFileReference baseLabel: aTitle contents: someContents [
+{ #category : #'instance creation' }
+FileList class >> newOnDirectory: aFileReference baseLabel: aTitle contents: someContents [
 	
 	^ self new
 			directory: aFileReference;
@@ -230,49 +199,34 @@ FileList class>>newOnDirectory: aFileReference baseLabel: aTitle contents: someC
 			yourself
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>open [
+{ #category : #'morphic ui' }
+FileList class >> open [
 	"Open a view of an instance of me on the default directory."
 	"FileList open openInWorld"
 	^ self new morphicView openInWorld
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>openEditorOn: aFileStream editString: editString  [
+{ #category : #'morphic ui' }
+FileList class >> openEditorOn: aFileStream editString: editString [ 
 	"Open an editor on the given FileStream."
 	^ (self openMorphOn: aFileStream editString: editString) openInWorld
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>openMorphOn: aFileStream editString: editString  [
+{ #category : #'morphic ui' }
+FileList class >> openMorphOn: aFileStream editString: editString [ 
 	"Open a morphic view of a FileList on the given file."
 	^ (self new setFileStream: aFileStream)
 		contents: editString;
 		morphicViewOnFile: aFileStream fullName asFileReference
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>openOn: aFileReference [
+{ #category : #'morphic ui' }
+FileList class >> openOn: aFileReference [
 	^self openOn: aFileReference titled: '' 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>openOn: aFileReference titled: aTitle [
+{ #category : #'morphic ui' }
+FileList class >> openOn: aFileReference titled: aTitle [
 	
 	| listView |
 	listView := self newOnDirectory: aFileReference baseLabel: aTitle.
@@ -280,58 +234,40 @@ FileList class>>openOn: aFileReference titled: aTitle [
 	^ listView
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>registerToolsOn: registry [
+{ #category : #'tools registry' }
+FileList class >> registerToolsOn: registry [
 	"Add ourselves to registry. See [Smalltalk tools]" 
 	registry register: self as: #fileList
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>searchList [
+{ #category : #accessing }
+FileList class >> searchList [
 	^ searchList ifNil: [ searchList := OrderedCollection new ].
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>suffixOf: aName [
+{ #category : #utility }
+FileList class >> suffixOf: aName [
 	"Answer the file extension of the given file"
 	^ aName
 		ifNil: ['']
 		ifNotNil: [ aName asFileReference extension asLowercase]
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>taskbarIconName [
+{ #category : #icons }
+FileList class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^#smallOpenIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList class>>theme [
+{ #category : #accessing }
+FileList class >> theme [
 	^ Smalltalk ui theme 
 ]
 
-{
-	#category : #'drag\'n\'drop',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>acceptDroppingMorph: aTransferMorph event: evt inMorph: dest [
+{ #category : #'drag\'n\'drop' }
+FileList >> acceptDroppingMorph: aTransferMorph event: evt inMorph: dest [
 	| oldEntry destDirectory newEntry response |
 	destDirectory := self dropDestinationDirectory: dest event: evt.
 	oldEntry := FileSystem disk referenceTo: aTransferMorph passenger.
@@ -370,21 +306,15 @@ FileList>>acceptDroppingMorph: aTransferMorph event: evt inMorph: dest [
 	^true
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>addFullPanesTo: window from: aCollection [
+{ #category : #utility }
+FileList >> addFullPanesTo: window from: aCollection [
 
 	aCollection do: [ :each | 
 		window addMorph: each first fullFrame: each second ]
 ]
 
-{
-	#category : #'file menu action',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>addNew: aString byEvaluating: aBlock [
+{ #category : #'file menu action' }
+FileList >> addNew: aString byEvaluating: aBlock [
 	"A parameterization of earlier versions of #addNewDirectory and
 	#addNewFile.  Fixes the bug in each that pushing the cancel button
 	in the FillInTheBlank dialog gave a walkback."
@@ -408,11 +338,8 @@ FileList>>addNew: aString byEvaluating: aBlock [
 
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>addNewDirectory [
+{ #category : #'own services' }
+FileList >> addNewDirectory [
 	self 
 		addNew: 'Directory'
 		byEvaluating: [:newName | 
@@ -420,22 +347,16 @@ FileList>>addNewDirectory [
 
 ]
 
-{
-	#category : #'file menu action',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>addNewFile [
+{ #category : #'file menu action' }
+FileList >> addNewFile [
 	self 
 		addNew: 'File'
 		byEvaluating: [:newName | (self directory / newName) ensureCreateFile ]
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>addPath: aString [
+{ #category : #private }
+FileList >> addPath: aString [
 	"Add the given string to the list of recently visited directories."
 
 	| full |
@@ -447,20 +368,14 @@ FileList>>addPath: aString [
 	full := full, aString.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>baseLabel: aString  [
+{ #category : #accessing }
+FileList >> baseLabel: aString [ 
 
 	baseLabel := aString
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>basicDeleteDirectory [
+{ #category : #'own services' }
+FileList >> basicDeleteDirectory [
 	"Remove the currently selected directory"
 	reference entries isEmpty
 		 ifFalse:[^self inform:'Directory must be empty'].
@@ -474,58 +389,40 @@ FileList>>basicDeleteDirectory [
 	self directory: reference parent
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>buttonSelectorsToSuppress [
+{ #category : #initialization }
+FileList >> buttonSelectorsToSuppress [
 	"Answer a list of action selectors whose corresponding services we would prefer *not* to have appear in the filelist's button pane; this can be hand-jimmied to suit personal taste."
 
 	^ #(removeLineFeeds: addFileToNewZip: compressFile:)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>cancelHit [
+{ #category : #private }
+FileList >> cancelHit [
 
 	modalView delete.
 ]
 
-{
-	#category : #'volume list and pattern',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>changeDirectoryTo: aFileDirectory [
+{ #category : #'volume list and pattern' }
+FileList >> changeDirectoryTo: aFileDirectory [
 	"Change directory as requested."
 	self directory: aFileDirectory.
 	self updateDirectory
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>changedContents [
+{ #category : #updating }
+FileList >> changedContents [
 
 	self sourceTextModel setText: self contents.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>configuredServices [
+{ #category : #accessing }
+FileList >> configuredServices [
 
 	^ configuredServices
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>confirmOverwriteOrCreateNewFileOrAbort [
+{ #category : #private }
+FileList >> confirmOverwriteOrCreateNewFileOrAbort [
 	| choice  chooseList |
 	chooseList := {'overwrite that file' translated.
 	               'choose another name' translated . 
@@ -536,11 +433,8 @@ FileList>>confirmOverwriteOrCreateNewFileOrAbort [
 	^ choice
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>contents [
+{ #category : #accessing }
+FileList >> contents [
 	"Answer the contents of the file, reading it first if needed."
 	"Possible brevityState values:
 		FileList,
@@ -563,31 +457,22 @@ FileList>>contents [
 	self error: 'unknown state ' , brevityState printString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>contents: someContents [
+{ #category : #accessing }
+FileList >> contents: someContents [
 	
 	contents := someContents
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>copyName [
+{ #category : #'menu messages' }
+FileList >> copyName [
 
 	listIndex = 0 ifTrue: [^ self].
 	Clipboard clipboardText: self fullName asText.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>defaultContents [
+{ #category : #private }
+FileList >> defaultContents [
 	contents := list isNil
 		ifTrue: [String new]
 		ifFalse: [
@@ -599,22 +484,16 @@ FileList>>defaultContents [
 	^ contents
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>deleteDirectory [
+{ #category : #'own services' }
+FileList >> deleteDirectory [
 	self basicDeleteDirectory.
 	self updateFileList.
 	self updateDirectory.
 
 ]
 
-{
-	#category : #'file menu action',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>deleteFile [
+{ #category : #'file menu action' }
+FileList >> deleteFile [
 	"Delete the currently selected file"
 	listIndex = 0 ifTrue: [^ self].
 	
@@ -629,11 +508,8 @@ FileList>>deleteFile [
 	self get
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>directoriesFor: directory [
+{ #category : #private }
+FileList >> directoriesFor: directory [
 	"item may be file directory or server directory"
 	| entries |
 	entries := directory directories.
@@ -641,72 +517,48 @@ FileList>>directoriesFor: directory [
 	^entries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>directory [
+{ #category : #accessing }
+FileList >> directory [
 	
 	^ reference isFile 
 		ifTrue: [ reference parent ]
 		ifFalse: [ reference ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>directory: dir [
+{ #category : #accessing }
+FileList >> directory: dir [
 	^ self reference: dir
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>doItContext [
+{ #category : #accessing }
+FileList >> doItContext [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>doItReceiver [
+{ #category : #accessing }
+FileList >> doItReceiver [
 	^ nil
 ]
 
-{
-	#category : #'drag\'n\'drop',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>dragPassengerFor: item inMorph: dragSource [
+{ #category : #'drag\'n\'drop' }
+FileList >> dragPassengerFor: item inMorph: dragSource [
 	^ item contents copy
 
 ]
 
-{
-	#category : #'drag\'n\'drop',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>dragTransferTypeForMorph: aMorph [
+{ #category : #'drag\'n\'drop' }
+FileList >> dragTransferTypeForMorph: aMorph [
 	^#file
 ]
 
-{
-	#category : #'drag\'n\'drop',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>dropDestinationDirectory: dest event: evt [
+{ #category : #'drag\'n\'drop' }
+FileList >> dropDestinationDirectory: dest event: evt [
 	"Answer a FileDirectory representing the drop destination in the directory hierarchy morph dest"
 	^ (dest itemFromPoint: evt position) withoutListWrapper
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>dynamicButtonServices [
+{ #category : #initialization }
+FileList >> dynamicButtonServices [
 	"Answer services for buttons that may come and go in the button pane, depending on selection"
 
 	^ reference isDirectory 
@@ -718,11 +570,8 @@ FileList>>dynamicButtonServices [
 					[:svc | toReject includes: svc selector]]
 ]
 
-{
-	#category : #'file list menu',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>fileContentsMenu: aMenu shifted: shifted [
+{ #category : #'file list menu' }
+FileList >> fileContentsMenu: aMenu shifted: shifted [
 	"Construct aMenu to have items appropriate for the file browser's code pane, given the shift state provided"
 
 	| shiftMenu services |
@@ -751,40 +600,28 @@ FileList>>fileContentsMenu: aMenu shifted: shifted [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>fileEncoding: aByteSymbol  [
+{ #category : #private }
+FileList >> fileEncoding: aByteSymbol [ 
 	fileEncoding := aByteSymbol.
 	brevityState := #needToGetBrief.
 	self changedContents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>fileList [
+{ #category : #accessing }
+FileList >> fileList [
 	"Answer the list of files in the current volume."
 
 	^ list
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>fileListIndex [
+{ #category : #accessing }
+FileList >> fileListIndex [
 	"Answer the index of the currently selected file."
 	^ listIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>fileListIndex: anInteger [
+{ #category : #accessing }
+FileList >> fileListIndex: anInteger [
 	"Select the file name having the given index, and display its contents."
 
 	| item |
@@ -807,11 +644,8 @@ FileList>>fileListIndex: anInteger [
 	self updateButtonRow
 ]
 
-{
-	#category : #'file list menu',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>fileListMenu: aMenu [
+{ #category : #'file list menu' }
+FileList >> fileListMenu: aMenu [
 
 	reference
 		ifNil: [^ self noFileSelectedMenu: aMenu]
@@ -819,11 +653,8 @@ FileList>>fileListMenu: aMenu [
 
 ]
 
-{
-	#category : #'file list menu',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>fileSelectedMenu: aMenu [
+{ #category : #'file list menu' }
+FileList >> fileSelectedMenu: aMenu [
 	| n1 n2 n3 services |
 	services := OrderedCollection withAll: (self itemsForFile: reference).
 	n1 := services size.
@@ -840,21 +671,15 @@ FileList>>fileSelectedMenu: aMenu [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>fileSystem [
+{ #category : #accessing }
+FileList >> fileSystem [
 	^ reference 
 		ifNil: [ FileSystem disk ]
 		ifNotNil: [ reference fileSystem ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>filesMatching: aPattern [
+{ #category : #private }
+FileList >> filesMatching: aPattern [
 	"Answer a list of directory entries which match the patternString.
 	The patternString may consist of multiple patterns separated by ';'.
 	Each pattern can include a '*' or '#' as wildcards - see String>>match:"
@@ -867,11 +692,8 @@ FileList>>filesMatching: aPattern [
 	^ files select: [:entry | (aRegex search: entry basename)]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>findFileListIndex: aMorphTreeSelectionChanged  [
+{ #category : #private }
+FileList >> findFileListIndex: aMorphTreeSelectionChanged [ 
 	| node selectedPath |
 	
 	selectedPath := aMorphTreeSelectionChanged selection selectedNodePath.
@@ -881,11 +703,8 @@ FileList>>findFileListIndex: aMorphTreeSelectionChanged  [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>folderSelectButtonRow [
+{ #category : #initialization }
+FileList >> folderSelectButtonRow [
 	"Answer the button row used for folder selection"
 
 	| aRow |
@@ -897,20 +716,14 @@ FileList>>folderSelectButtonRow [
 	^ aRow
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>fullName [
+{ #category : #private }
+FileList >> fullName [
 	"Answer the full name for the currently selected file; answer nil if no file is selected."
 	^ reference fullName
 ]
 
-{
-	#category : #'file menu action',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>get [
+{ #category : #'file menu action' }
+FileList >> get [
 	"Get contents of file again, it may have changed. Do this by making the cancel string be the contents, and doing a cancel."
 
 	Cursor read
@@ -924,11 +737,8 @@ FileList>>get [
 			 ]
 ]
 
-{
-	#category : #'file menu action',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>getEncodedText [
+{ #category : #'file menu action' }
+FileList >> getEncodedText [
 
 	Cursor read showWhile: [
 		self selectEncoding.
@@ -936,21 +746,15 @@ FileList>>getEncodedText [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>getEncoding [
+{ #category : #accessing }
+FileList >> getEncoding [
 	^ fileEncoding
 		ifNil: [ 'utf-8' ]
 		
 ]
 
-{
-	#category : #'file menu action',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>getHex [
+{ #category : #'file menu action' }
+FileList >> getHex [
 	"Get contents of file again, and display in Hex. Do this by making the cancel string be the contents, and doing a cancel."
 
 	Cursor read showWhile: [
@@ -959,38 +763,26 @@ FileList>>getHex [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>getListIndex [
+{ #category : #accessing }
+FileList >> getListIndex [
 	^ list indexOf: reference ifAbsent: [ 0 ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>getSelectedFolder [
+{ #category : #private }
+FileList >> getSelectedFolder [
 	"Answer the selected folder or nil if dialog was canceled"
 
 	ok ifFalse: [ ^ nil ].
 	^ self directory
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>grid [
+{ #category : #'user interface' }
+FileList >> grid [
 	^ grid ifNil: [ grid := self morphicGrid ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>initialDirectoryList [
+{ #category : #initialization }
+FileList >> initialDirectoryList [
 
 	| dirList |
 	dirList := self fileSystem root directories collect: [ :each |
@@ -1005,11 +797,8 @@ FileList>>initialDirectoryList [
 	^dirList
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>initialize [
+{ #category : #initialization }
+FileList >> initialize [
 
 	super initialize.
 	ok := false.
@@ -1020,29 +809,20 @@ FileList>>initialize [
 	self directory: FileSystem workingDirectory.
 ]
 
-{
-	#category : #'drag\'n\'drop',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>isDirectoryList: aMorph [
+{ #category : #'drag\'n\'drop' }
+FileList >> isDirectoryList: aMorph [
 	^aMorph isKindOf: SimpleHierarchicalListMorph
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>isFileSelected [
+{ #category : #private }
+FileList >> isFileSelected [
 	"return if a file is currently selected"
 
 	^ reference notNil and: [ reference isFile ].
 ]
 
-{
-	#category : #'file list menu',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>itemsForAnyFile [
+{ #category : #'file list menu' }
+FileList >> itemsForAnyFile [
 	"Answer a list of universal services that could apply to any file"
 	
 	| services |
@@ -1055,11 +835,8 @@ FileList>>itemsForAnyFile [
 	^ services
 ]
 
-{
-	#category : #'file list menu',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>itemsForDirectory: dir  [
+{ #category : #'file list menu' }
+FileList >> itemsForDirectory: dir [ 
 	| services |
 	services := OrderedCollection new.
 	dir ifNotNil: [
@@ -1072,20 +849,14 @@ FileList>>itemsForDirectory: dir  [
 	^ services
 ]
 
-{
-	#category : #'file list menu',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>itemsForFile: file [
+{ #category : #'file list menu' }
+FileList >> itemsForFile: file [
 	"Answer a list of services appropriate for a file"
 	^ (self class itemsForFile: file).
 ]
 
-{
-	#category : #'file list menu',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>itemsForNoFile [
+{ #category : #'file list menu' }
+FileList >> itemsForNoFile [
 
 	| services |
 	services := OrderedCollection new.
@@ -1095,28 +866,19 @@ FileList>>itemsForNoFile [
 		
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>knownEncodingIdentifiers [
+{ #category : #private }
+FileList >> knownEncodingIdentifiers [
 	^ ZnCharacterEncoder knownEncodingIdentifiers sort
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>labelString [
+{ #category : #initialization }
+FileList >> labelString [
 	reference ifNil: [ ^ '[]' ].
 	^ baseLabel, reference basename contractTo: 50
 ]
 
-{
-	#category : #'volume list and pattern',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>listForPattern: aPattern [
+{ #category : #'volume list and pattern' }
+FileList >> listForPattern: aPattern [
 	"Make the list be those file names which match the pattern."
 
 	| newList |
@@ -1125,30 +887,21 @@ FileList>>listForPattern: aPattern [
 	^ newList 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>modalView: aSystemWindowOrSuch [
+{ #category : #private }
+FileList >> modalView: aSystemWindowOrSuch [
 
 	modalView := aSystemWindowOrSuch
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>morphicDirectoryTreePane [
+{ #category : #'user interface' }
+FileList >> morphicDirectoryTreePane [
 
 	^self morphicDirectoryTreePaneFiltered: #initialDirectoryList
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>morphicDirectoryTreePaneFiltered: aSymbol [
+{ #category : #'user interface' }
+FileList >> morphicDirectoryTreePaneFiltered: aSymbol [
 	^(SimpleHierarchicalListMorph 
 		on: self
 		list: aSymbol
@@ -1164,11 +917,8 @@ FileList>>morphicDirectoryTreePaneFiltered: aSymbol [
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>morphicFileContentsPane [
+{ #category : #'user interface' }
+FileList >> morphicFileContentsPane [
 	| scrolledText |
 	scrolledText := self sourceTextModel newScrolledText
 		beWrapped;
@@ -1180,20 +930,14 @@ FileList>>morphicFileContentsPane [
 	^ scrolledText
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>morphicFileListPane [
+{ #category : #'user interface' }
+FileList >> morphicFileListPane [
 	^ grid ifNil: [ grid := self morphicGrid ].
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>morphicGrid [
+{ #category : #'user interface' }
+FileList >> morphicGrid [
 	grid := FileListGrid new
 		parent: self.
 	grid
@@ -1203,11 +947,8 @@ FileList>>morphicGrid [
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>morphicPatternPane [
+{ #category : #'user interface' }
+FileList >> morphicPatternPane [
 	"Remove the vertical scrollbar since the minHeight would otherwise
 	be too large to fit the layout frame. Added here for Pharo since
 	FileList2 has been merged into FileList."
@@ -1222,20 +963,14 @@ FileList>>morphicPatternPane [
 		yourself
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>morphicView [
+{ #category : #'morphic ui' }
+FileList >> morphicView [
 
 	^ self morphicViewOnDirectory: self directory
 ]
 
-{
-	#category : #'modal dialogs',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>morphicViewFolderSelector: aDir [
+{ #category : #'modal dialogs' }
+FileList >> morphicViewFolderSelector: aDir [
 	"Answer a tool that allows the user to select a folder"
 	|  window buttonRow fileListTopOffset |
 	self directory: aDir.
@@ -1257,31 +992,22 @@ FileList>>morphicViewFolderSelector: aDir [
 	^ window 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>morphicViewOnDirectory: aFileDirectory [
+{ #category : #'morphic ui' }
+FileList >> morphicViewOnDirectory: aFileDirectory [
 
 	^ self morphicViewOnDirectory: aFileDirectory baseLabel: ''
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>morphicViewOnDirectory: aFileDirectory baseLabel: aString [
+{ #category : #'morphic ui' }
+FileList >> morphicViewOnDirectory: aFileDirectory baseLabel: aString [
 
 	^ self
 		contents: nil;
 		morphicViewOnFile: aFileDirectory
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>morphicViewOnFile: aFile [
+{ #category : #'morphic ui' }
+FileList >> morphicViewOnFile: aFile [
 	|  window fileListBottom midLine fileListTopOffset buttonPane fileContentsView |
 
 	window := (SystemWindow labelled: self labelString) model: self.
@@ -1307,11 +1033,8 @@ FileList>>morphicViewOnFile: aFile [
 	^ window 
 ]
 
-{
-	#category : #'file list menu',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>noFileSelectedMenu: aMenu [
+{ #category : #'file list menu' }
+FileList >> noFileSelectedMenu: aMenu [
 
 	^ aMenu
 		addServices: self itemsForNoFile 
@@ -1321,32 +1044,23 @@ FileList>>noFileSelectedMenu: aMenu [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>okHit [
+{ #category : #private }
+FileList >> okHit [
 	ok := true.
 	self directory
 		ifNil: [self inform: 'Missing directory']
 		ifNotNil: [modalView delete]
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>okayAndCancelServices [
+{ #category : #'own services' }
+FileList >> okayAndCancelServices [
 	"Answer ok and cancel services"
 
 	^ {self serviceOkay. self serviceCancel}
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>openImageInWindow [
+{ #category : #'own services' }
+FileList >> openImageInWindow [
 	"Handle five file formats: GIF, JPG, PNG, Form stoteOn: (run coded), and
 	BMP. Fail if file format is not recognized."
 	| image |
@@ -1356,11 +1070,8 @@ FileList>>openImageInWindow [
 	(World drawingClass withForm: image) openInWorld
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>optionalButtonRow [
+{ #category : #initialization }
+FileList >> optionalButtonRow [
 	"Answer the button row associated with a file list"
 
 	| aRow |
@@ -1373,36 +1084,24 @@ FileList>>optionalButtonRow [
 	^ aRow
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>optionalButtonSpecs [
+{ #category : #'user interface' }
+FileList >> optionalButtonSpecs [
 	^ optionalButtonSpecs
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>optionalButtonSpecs: aSpecArray [
+{ #category : #'user interface' }
+FileList >> optionalButtonSpecs: aSpecArray [
 	optionalButtonSpecs := aSpecArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>pattern [
+{ #category : #accessing }
+FileList >> pattern [
 	^ pattern 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>pattern: aStringOrNil [
+{ #category : #accessing }
+FileList >> pattern: aStringOrNil [
 	pattern := aStringOrNil
 		ifNotNil: [ :aString | 
 			aString asString trimBoth
@@ -1411,11 +1110,8 @@ FileList>>pattern: aStringOrNil [
 	self updateFileList
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>perform: selector orSendTo: otherTarget  [
+{ #category : #'menu messages' }
+FileList >> perform: selector orSendTo: otherTarget [ 
 	"Selector was just chosen from a menu by a user.
 	If it's one of the three sort-by items, handle it specially.
 	If I can respond myself, then perform it on myself. 
@@ -1426,11 +1122,8 @@ FileList>>perform: selector orSendTo: otherTarget  [
 				ifFalse: [super perform: selector orSendTo: otherTarget]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>postOpen [
+{ #category : #private }
+FileList >> postOpen [
 
 	reference ifNotNil: [
 		self changed: #(openPath) , reference pathSegments. 
@@ -1438,11 +1131,8 @@ FileList>>postOpen [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>put: aText [
+{ #category : #private }
+FileList >> put: aText [
 	"Private - put the supplied text onto the file"
 
 	|  type |
@@ -1467,11 +1157,8 @@ meaningfully be saved at present.' translated format:{type translated}).
 	^ false  "failed"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>readContentsBrief: brevityFlag [
+{ #category : #private }
+FileList >> readContentsBrief: brevityFlag [
 	"Read the contents of the receiver's selected file, unless it is too long, in which case show just the first 5000 characters. Don't create a file if it doesn't already exist."
 	| fileSize first5000 |
 	self reference binaryReadStreamDo: [:stream |	
@@ -1492,11 +1179,8 @@ FileList>>readContentsBrief: brevityFlag [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>readContentsHex: brevity [
+{ #category : #private }
+FileList >> readContentsHex: brevity [
 	"retrieve the contents from the external file unless it is too long.
 	  Don't create a file here.  Check if exists."
 	| size data hexData s |
@@ -1525,28 +1209,19 @@ FileList>>readContentsHex: brevity [
 
 ]
 
-{
-	#category : #'file list',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>readOnlyStream [
+{ #category : #'file list' }
+FileList >> readOnlyStream [
 	"Answer a read-only stream on the selected file. For the various stream-reading services."
 	^ FileStream readOnlyFileNamed: self reference fullName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>reference [
+{ #category : #accessing }
+FileList >> reference [
 	^ reference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>reference: dir [
+{ #category : #accessing }
+FileList >> reference: dir [
 	| tmpReference |
 	"Set the path of the volume to be displayed."
 	self okToChange ifFalse: [^ self].
@@ -1568,11 +1243,8 @@ FileList>>reference: dir [
 	self updateFileList.
 ]
 
-{
-	#category : #'file menu action',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>renameFile [
+{ #category : #'file menu action' }
+FileList >> renameFile [
 	"Rename the currently selected file"
 	| newName response |
 	listIndex = 0 ifTrue: [^ self].
@@ -1592,11 +1264,8 @@ FileList>>renameFile [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>requestNewFileNameAndSave [
+{ #category : #private }
+FileList >> requestNewFileNameAndSave [
 	| newName |
 	newName := UIManager default request: 'Enter a new file name' initialAnswer: reference fullName.
 	newName ifNil: [ ^ self].
@@ -1606,11 +1275,8 @@ FileList>>requestNewFileNameAndSave [
 	self updateFileList
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>selectEncoding [
+{ #category : #private }
+FileList >> selectEncoding [
 	"self new selectEncoding"
 
 	| ui |
@@ -1624,19 +1290,13 @@ FileList>>selectEncoding [
 	(ui chooseFromOwner: World) ifNotNil: [ :encoding | self fileEncoding: encoding ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>selectedDirectory [
+{ #category : #private }
+FileList >> selectedDirectory [
 	^ self directory
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>selectedDirectory: aFileDirectoryWrapper [
+{ #category : #private }
+FileList >> selectedDirectory: aFileDirectoryWrapper [
 	| file |
 
 	file := aFileDirectoryWrapper withoutListWrapper.
@@ -1655,11 +1315,8 @@ FileList>>selectedDirectory: aFileDirectoryWrapper [
 	self changedContents
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>serviceAddNewDirectory [
+{ #category : #'own services' }
+FileList >> serviceAddNewDirectory [
 	"Answer a service entry characterizing the 'add new directory' command"
 
 	^ SimpleServiceEntry 
@@ -1669,11 +1326,8 @@ FileList>>serviceAddNewDirectory [
 		description: 'Adds a new, empty directory (folder)' 
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>serviceAddNewFile [
+{ #category : #'own services' }
+FileList >> serviceAddNewFile [
 	"Answer a service entry characterizing the 'add new file' command"
 
 	^(SimpleServiceEntry 
@@ -1684,11 +1338,8 @@ FileList>>serviceAddNewFile [
 		usingLineAfter: false
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>serviceCancel [
+{ #category : #'own services' }
+FileList >> serviceCancel [
 	"Answer a service for hitting the cancel button"
 
 	^ (SimpleServiceEntry new
@@ -1698,11 +1349,8 @@ FileList>>serviceCancel [
 		buttonLabel: 'Cancel'
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>serviceCopyName [
+{ #category : #'own services' }
+FileList >> serviceCopyName [
 
 	^ (SimpleServiceEntry 
 		provider: self 
@@ -1711,11 +1359,8 @@ FileList>>serviceCopyName [
 		description: 'Copy name to clipboard' )
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>serviceDeleteFile [
+{ #category : #'own services' }
+FileList >> serviceDeleteFile [
 
 	^ (SimpleServiceEntry 
 		provider: self 
@@ -1724,11 +1369,8 @@ FileList>>serviceDeleteFile [
 		description: 'Delete the seleted item'
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>serviceGet [
+{ #category : #'own services' }
+FileList >> serviceGet [
 	"Answer a service for getting the entire file"
 
 	^  (SimpleServiceEntry 
@@ -1738,11 +1380,8 @@ FileList>>serviceGet [
 			description: 'If the file has only been partially read in, because it is very large, read the entire file in at this time.')
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>serviceGetEncodedText [
+{ #category : #'own services' }
+FileList >> serviceGetEncodedText [
 
 	^  (SimpleServiceEntry 
 			provider: self 
@@ -1753,11 +1392,8 @@ FileList>>serviceGetEncodedText [
 
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>serviceGetHex [
+{ #category : #'own services' }
+FileList >> serviceGetHex [
 
 	^  (SimpleServiceEntry 
 			provider: self 
@@ -1768,11 +1404,8 @@ FileList>>serviceGetHex [
 
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>serviceOkay [
+{ #category : #'own services' }
+FileList >> serviceOkay [
 	"Answer a service for hitting the okay button"
 
 	^ (SimpleServiceEntry new
@@ -1783,11 +1416,8 @@ FileList>>serviceOkay [
 		buttonLabel: 'Ok'
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>serviceRenameFile [
+{ #category : #'own services' }
+FileList >> serviceRenameFile [
 
 	^ (SimpleServiceEntry 
 		provider: self 
@@ -1796,11 +1426,8 @@ FileList>>serviceRenameFile [
 		description: 'Rename file')
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>serviceViewContents [
+{ #category : #'own services' }
+FileList >> serviceViewContents [
 	"Answer a service for viewing the contents of a file in a workspace"
 	
 	^ (SimpleServiceEntry 
@@ -1810,11 +1437,8 @@ FileList>>serviceViewContents [
 		description: 'Open a text window whose contents are set to the contents of this file'
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>serviceViewContentsInWorkspace [
+{ #category : #'own services' }
+FileList >> serviceViewContentsInWorkspace [
 	"Answer a service for viewing the contents of a file in a workspace"
 	
 	^ (SimpleServiceEntry 
@@ -1824,21 +1448,15 @@ FileList>>serviceViewContentsInWorkspace [
 		description: 'Open a new Workspace whose contents are set to the contents of this file'
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>servicesForFolderSelector [
+{ #category : #'own services' }
+FileList >> servicesForFolderSelector [
 	"Answer the ok and cancel servies for the folder selector"
 
 	^ self okayAndCancelServices
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>setFileStream: aStream [
+{ #category : #initialization }
+FileList >> setFileStream: aStream [
 	"Used to initialize a spawned file editor.  Sets directory too."
 	self directory: aStream name asFileReference.
 	pattern := nil.
@@ -1851,11 +1469,8 @@ FileList>>setFileStream: aStream [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>setSelectedDirectoryTo: aFileDirectoryWrapper [
+{ #category : #private }
+FileList >> setSelectedDirectoryTo: aFileDirectoryWrapper [
 	self directory: aFileDirectoryWrapper withoutListWrapper.
 	brevityState := #FileList.
 	"self addPath: path."
@@ -1864,38 +1479,26 @@ FileList>>setSelectedDirectoryTo: aFileDirectoryWrapper [
 	self changed: #selectedDirectory.
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>setSortSelector: aByteSymbol  [
+{ #category : #'user interface' }
+FileList >> setSortSelector: aByteSymbol [ 
 	self sortBlock: (self perform: aByteSymbol).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>sortBlock [
+{ #category : #private }
+FileList >> sortBlock [
 	"Answer block to decide what order to display the directory entries."
 
 	^ sortBlock ifNil: [ sortBlock := self sortBlockBasename ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>sortBlock: aBlockClosure  [
+{ #category : #private }
+FileList >> sortBlock: aBlockClosure [ 
 	sortBlock := aBlockClosure.
 	self updateFileList
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>sortBlockBasename [
+{ #category : #private }
+FileList >> sortBlockBasename [
 	"Answer block to decide what order to display the directory entries."
 
 	^ [ :x :y | |xIsDir|
@@ -1906,11 +1509,8 @@ FileList>>sortBlockBasename [
 					xIsDir ]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>sortBlockFilesize [
+{ #category : #private }
+FileList >> sortBlockFilesize [
 	"Answer block to decide what order to display the directory entries."
 
 	^ [ :x :y | |xIsDir|
@@ -1921,11 +1521,8 @@ FileList>>sortBlockFilesize [
 					xIsDir ]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>sortBlockPermissions [
+{ #category : #private }
+FileList >> sortBlockPermissions [
 	"Answer block to decide what order to display the directory entries."
 
 	^ [ :x :y | |xIsDir|
@@ -1936,11 +1533,8 @@ FileList>>sortBlockPermissions [
 					xIsDir ]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>sortBlockTimestamp [
+{ #category : #private }
+FileList >> sortBlockTimestamp [
 	"Answer block to decide what order to display the directory entries."
 
 	^ [ :x :y | |xIsDir|
@@ -1951,93 +1545,63 @@ FileList>>sortBlockTimestamp [
 					xIsDir ]]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>sourceTextModel [
+{ #category : #'user interface' }
+FileList >> sourceTextModel [
 	^ sourceTextModel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>streamFirst5000BytesFrom: aBinaryReadStream [
+{ #category : #private }
+FileList >> streamFirst5000BytesFrom: aBinaryReadStream [
 	^ [ self streamFirst5000BytesWithEncodingFrom: aBinaryReadStream ]
 		on: Error
 		do: [ :ex |(aBinaryReadStream next: 5000) asString ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>streamFirst5000BytesWithEncodingFrom: aBinaryReadStream [
+{ #category : #private }
+FileList >> streamFirst5000BytesWithEncodingFrom: aBinaryReadStream [
 	^ (ZnCharacterReadStream on: aBinaryReadStream encoding: self getEncoding) next: 5000
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>streamFullContentsFrom: aBinaryReadStream [
+{ #category : #private }
+FileList >> streamFullContentsFrom: aBinaryReadStream [
 	^ [ self streamFullContentsWithEncodingFrom: aBinaryReadStream ]
 		on: Error
 		do: [ :ex | aBinaryReadStream contents asString ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>streamFullContentsWithEncodingFrom: aBinaryReadStream [
+{ #category : #private }
+FileList >> streamFullContentsWithEncodingFrom: aBinaryReadStream [
 	^ (ZnCharacterReadStream on: aBinaryReadStream encoding: self getEncoding) upToEnd
 ]
 
-{
-	#category : #'file list menu',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>suffixOfSelectedFile [
+{ #category : #'file list menu' }
+FileList >> suffixOfSelectedFile [
 	"Answer the file extension of the receiver's selected file"
 	^ self class suffixOf: self fullName.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>truncatedAndOverwriteFilecontents [
+{ #category : #private }
+FileList >> truncatedAndOverwriteFilecontents [
 	self put: self sourceTextModel getText asString
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>universalButtonServices [
+{ #category : #initialization }
+FileList >> universalButtonServices [
 	"Answer the services to be reflected in the receiver's buttons"
 
 	^ self optionalButtonSpecs
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>update: aParameter [
+{ #category : #updating }
+FileList >> update: aParameter [
 	"Receive a change notice from an object of whom the receiver is a dependent"
 
 	(aParameter == #fileListChanged) ifTrue: [self updateFileList].
 	super update: aParameter
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>updateButtonRow [
+{ #category : #initialization }
+FileList >> updateButtonRow [
 	"Dynamically update the contents of the button row, if any."
 
 	self dependents
@@ -2052,11 +1616,8 @@ FileList>>updateButtonRow [
 					service addDependent: self ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>updateDirectory [
+{ #category : #initialization }
+FileList >> updateDirectory [
 	"directory has been changed externally, by calling directory:.
 	Now change the view to reflect the change."
 	self changed: #directory.
@@ -2064,11 +1625,8 @@ FileList>>updateDirectory [
 	self postOpen.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>updateFileContents [
+{ #category : #private }
+FileList >> updateFileContents [
 	| choice |
 	choice := self confirmOverwriteOrCreateNewFileOrAbort.
 	
@@ -2077,11 +1635,8 @@ FileList>>updateFileContents [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>updateFileList [
+{ #category : #private }
+FileList >> updateFileList [
 	"Update my files list with file names in the current directory  
 	that match the pattern.
 	The pattern string may have embedded newlines or semicolons; these separate different patterns."
@@ -2097,22 +1652,16 @@ FileList>>updateFileList [
 	self updateButtonRow
 ]
 
-{
-	#category : #'volume list and pattern',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>veryDeepFixupWith: deepCopier [
+{ #category : #'volume list and pattern' }
+FileList >> veryDeepFixupWith: deepCopier [
 	super veryDeepFixupWith: deepCopier.
 	volumeListIndex := 1.
 	self directory: FileSystem disk workingDirectory.
 	self updateFileList
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>viewContents [
+{ #category : #'own services' }
+FileList >> viewContents [
 	"View the contents of my selected file in a new text window"
 	
 	| aString |
@@ -2123,11 +1672,8 @@ FileList>>viewContents [
 	UIManager default edit: aString label: 'Contents from ', self reference basename
 ]
 
-{
-	#category : #'own services',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>viewContentsInWorkspace [
+{ #category : #'own services' }
+FileList >> viewContentsInWorkspace [
 	"View the contents of my selected file in a new workspace"
 	
 	| aString |
@@ -2138,33 +1684,24 @@ FileList>>viewContentsInWorkspace [
 	Smalltalk tools workspace openContents: aString label: 'Workspace from ', self reference basename
 ]
 
-{
-	#category : #'volume list and pattern',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>volumeList [
+{ #category : #'volume list and pattern' }
+FileList >> volumeList [
 	"Answer the current list of volumes."
 
 	^ volumeList
 
 ]
 
-{
-	#category : #'volume list and pattern',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>volumeListIndex [
+{ #category : #'volume list and pattern' }
+FileList >> volumeListIndex [
 	"Answer the index of the currently selected volume."
 
 	^ volumeListIndex
 
 ]
 
-{
-	#category : #'volume list and pattern',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>volumeListIndex: index [
+{ #category : #'volume list and pattern' }
+FileList >> volumeListIndex: index [
 	"Select the volume name having the given index."
 
 	| delim path |
@@ -2184,11 +1721,8 @@ FileList>>volumeListIndex: index [
 	self updateButtonRow
 ]
 
-{
-	#category : #'volume menu',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>volumeMenu: aMenu [
+{ #category : #'volume menu' }
+FileList >> volumeMenu: aMenu [
 	aMenu
 		add: 'Delete directory...' translated
 		selector: #deleteDirectory.
@@ -2200,11 +1734,8 @@ FileList>>volumeMenu: aMenu [
 	^aMenu.
 ]
 
-{
-	#category : #'drag\'n\'drop',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>wantsDroppedMorph: aTransferMorph event: evt inMorph: dest [
+{ #category : #'drag\'n\'drop' }
+FileList >> wantsDroppedMorph: aTransferMorph event: evt inMorph: dest [
 	| retval |
 	retval := (aTransferMorph isTransferable)
 		and: [ (aTransferMorph dragTransferType == #file)
@@ -2212,10 +1743,7 @@ FileList>>wantsDroppedMorph: aTransferMorph event: evt inMorph: dest [
 	^retval
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileList>>whenTextAccepted: anAnnouncement  [
+{ #category : #updating }
+FileList >> whenTextAccepted: anAnnouncement [ 
 	self updateFileContents 
 ]

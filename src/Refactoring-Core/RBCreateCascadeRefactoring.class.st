@@ -15,36 +15,26 @@ Class {
 		'statementNodes',
 		'transformedNode'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 14:22'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateCascadeRefactoring class>>combine: anInterval from: aSelector in: aClass [
+{ #category : #instance-creation }
+RBCreateCascadeRefactoring class >> combine: anInterval from: aSelector [ in: aClass
 	^ self new 
 		combine: anInterval from: aSelector in: aClass;
 		yourself
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateCascadeRefactoring class>>model: aNamespace combine: anInterval from: aSelector in: aClass [
+{ #category : #instance-creation }
+RBCreateCascadeRefactoring class >> model: aNamespace combine: anInterval from: aSelector [ in: aClass
 	^ self new 
 		model: aNamespace; 
 		combine: anInterval from: aSelector in: aClass;
 		yourself
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateCascadeRefactoring>>addStatementNode: aNode [
+{ #category : #preconditions }
+RBCreateCascadeRefactoring >> addStatementNode: aNode [
 	aNode isMessage
 		ifTrue: [ ^ statementNodes add: aNode ].
 	aNode isCascade
@@ -52,21 +42,15 @@ RBCreateCascadeRefactoring>>addStatementNode: aNode [
 	self refactoringFailure: aNode formattedCode , ' is not a valid message'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateCascadeRefactoring>>combine: anInterval from: aSelector in: aClass [
+{ #category : #initialization }
+RBCreateCascadeRefactoring >> combine: anInterval from: aSelector [ in: aClass
 	class := self classObjectFor: aClass.
 	selector := aSelector.
 	selectedInterval := anInterval
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateCascadeRefactoring>>combineMessages [
+{ #category : #transforming }
+RBCreateCascadeRefactoring >> combineMessages [
 	"This combines the messages and adds the assignements of the last statement to the cascade. This is not necessary if there is a return, because the refactoring engine automatically compensates for that."
 
 	| expression |
@@ -80,11 +64,8 @@ RBCreateCascadeRefactoring>>combineMessages [
 		expression := expression parent ]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateCascadeRefactoring>>compileCode [
+{ #category : #transforming }
+RBCreateCascadeRefactoring >> compileCode [
 	class compileTree: (RBParseTreeRewriter
 		replaceStatements: sequenceNode formattedCode
 		with: transformedNode formattedCode
@@ -92,11 +73,8 @@ RBCreateCascadeRefactoring>>compileCode [
 		onInterval: selectedInterval)
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateCascadeRefactoring>>findReceiverNode [
+{ #category : #preconditions }
+RBCreateCascadeRefactoring >> findReceiverNode [
 	"Find the sequence to be combined."
 
 	| receiverNodes |
@@ -108,11 +86,8 @@ RBCreateCascadeRefactoring>>findReceiverNode [
 		ifFalse: [ self refactoringWarning: 'The receiver is an expression. Proceed with caution' ]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateCascadeRefactoring>>findSequenceNode [
+{ #category : #preconditions }
+RBCreateCascadeRefactoring >> findSequenceNode [
 	"Find the sequence to be combined."
 
 	sequenceNode := RBParser
@@ -122,11 +97,8 @@ RBCreateCascadeRefactoring>>findSequenceNode [
 		ifFalse: [ self refactoringFailure: 'You must select two or more statements' ]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateCascadeRefactoring>>findStatementNodes [
+{ #category : #preconditions }
+RBCreateCascadeRefactoring >> findStatementNodes [
 	"Find the sequence to be combined."
 
 	statementNodes := OrderedCollection new.
@@ -141,11 +113,8 @@ RBCreateCascadeRefactoring>>findStatementNodes [
 				self addStatementNode: current ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateCascadeRefactoring>>parseTree [
+{ #category : #accessing }
+RBCreateCascadeRefactoring >> parseTree [
 	parseTree isNil ifTrue: [
 		parseTree := class parseTreeFor: selector.
 		parseTree isNil
@@ -153,29 +122,20 @@ RBCreateCascadeRefactoring>>parseTree [
 	^ parseTree
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateCascadeRefactoring>>preconditions [
+{ #category : #preconditions }
+RBCreateCascadeRefactoring >> preconditions [
 	^ (RBCondition definesSelector: selector in: class) & (RBCondition withBlock: [ 
 		self findSequenceNode; findStatementNodes; findReceiverNode.
 		true ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateCascadeRefactoring>>selectedSource [
+{ #category : #accessing }
+RBCreateCascadeRefactoring >> selectedSource [
 	^  self parseTree source copyFrom: selectedInterval first to: selectedInterval last
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCreateCascadeRefactoring>>transform [
+{ #category : #transforming }
+RBCreateCascadeRefactoring >> transform [
 	self combineMessages.
 	self compileCode
 ]

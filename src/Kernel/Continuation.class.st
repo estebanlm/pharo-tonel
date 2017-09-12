@@ -20,39 +20,26 @@ Class {
 	#instVars : [
 		'values'
 	],
-	#category : #Kernel-Methods,
-	#timestamp : '<historical>'
+	#category : #Kernel-Methods
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Continuation class>>current [
+{ #category : #'instance creation' }
+Continuation class >> current [
 	^ self fromContext: thisContext sender
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Continuation class>>currentDo: aBlock [
+{ #category : #'instance creation' }
+Continuation class >> currentDo: aBlock [
 	^ aBlock value: (self fromContext: thisContext sender)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Continuation class>>fromContext: aStack [
+{ #category : #'instance creation' }
+Continuation class >> fromContext: aStack [
 	^self new initializeFromContext: aStack
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Continuation>>initializeFromContext: aContext [
+{ #category : #private }
+Continuation >> initializeFromContext: aContext [
 	| valueStream context |
 	valueStream := WriteStream on: (Array new: 20).
 	context := aContext.
@@ -64,19 +51,13 @@ Continuation>>initializeFromContext: aContext [
 	values := valueStream contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Continuation>>numArgs [
+{ #category : #accessing }
+Continuation >> numArgs [
 	^ 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Continuation>>restoreValues [
+{ #category : #private }
+Continuation >> restoreValues [
 	| valueStream context |
 	valueStream := values readStream.
 	[valueStream atEnd] whileFalse:
@@ -85,29 +66,20 @@ Continuation>>restoreValues [
 		1 to: context size do: [:i | context at: i put: valueStream next]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Continuation>>terminate: aContext [
+{ #category : #private }
+Continuation >> terminate: aContext [
 	| context |
 	context := aContext.
 	[context notNil] whileTrue: [context := context swapSender: nil]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Continuation>>value [
+{ #category : #evaluating }
+Continuation >> value [
 	self value: nil
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Continuation>>value: anObject [
+{ #category : #evaluating }
+Continuation >> value: anObject [
 	"Invoke the continuation and answer anObject as return value."
 
 	self terminate: thisContext.
@@ -116,11 +88,8 @@ Continuation>>value: anObject [
 	^ anObject
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Continuation>>valueWithArguments: anArray [
+{ #category : #evaluating }
+Continuation >> valueWithArguments: anArray [
 	anArray size = 1
 		ifFalse: [ ^ self error: 'continuations can only be resumed with one argument' ].
 	self value: anArray first

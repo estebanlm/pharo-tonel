@@ -14,44 +14,31 @@ I use my work instance variable as a stack. I push messages that cause nodes to 
 Class {
 	#name : #PostorderGuide,
 	#superclass : #FileSystemGuide,
-	#category : #FileSystem-Core-Implementation,
-	#timestamp : 'cwp 11/18/2009 12:16'
+	#category : #FileSystem-Core-Implementation
 }
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PostorderGuide>>pushTraverse: aReference  [
+{ #category : #showing }
+PostorderGuide >> pushTraverse: aReference [ 
 	self push: (Message 
 				selector: #traverse:
 				argument: aReference)
 ]
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PostorderGuide>>pushVisit: aReference  [
+{ #category : #showing }
+PostorderGuide >> pushVisit: aReference [ 
 	self push: (Message 
 				selector: #visit:
 				argument: aReference)
 ]
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PostorderGuide>>show: aReference  [
+{ #category : #showing }
+PostorderGuide >> show: aReference [ 
 	self pushTraverse: aReference entry.
 	self whileNotDoneDo: [ self pop sendTo: self ]
 ]
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PostorderGuide>>traverse: anEntry  [
+{ #category : #showing }
+PostorderGuide >> traverse: anEntry [ 
 		
 	self pushVisit: anEntry.
 	
@@ -62,11 +49,8 @@ PostorderGuide>>traverse: anEntry  [
 			self pushTraverse: each ]]
 ]
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-PostorderGuide>>visit: anEntry [
+{ #category : #showing }
+PostorderGuide >> visit: anEntry [
 	anEntry isDirectory
 		ifTrue: [ visitor visitDirectory: anEntry ]
 		ifFalse: [ visitor visitFile: anEntry ]

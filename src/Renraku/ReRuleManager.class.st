@@ -17,26 +17,19 @@ Class {
 		'managers',
 		'default'
 	],
-	#category : #Renraku-Utility,
-	#timestamp : 'YuriyTymchuk 11/20/2015 16:41'
+	#category : #Renraku-Utility
 }
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>availableRuleGroups [
+{ #category : #utility }
+ReRuleManager class >> availableRuleGroups [
 	^ (self visibleRuleClasses
 		collect: [ :r | r new group ]
 		as: Set)
 			asArray sorted
 ]
 
-{
-	#category : #'event subscriptions',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>classAddedOrRemoved: aClassAddedAnnouncement  [
+{ #category : #'event subscriptions' }
+ReRuleManager class >> classAddedOrRemoved: aClassAddedAnnouncement [ 
 	| class |
 	class := aClassAddedAnnouncement classAffected.
 
@@ -45,20 +38,14 @@ ReRuleManager class>>classAddedOrRemoved: aClassAddedAnnouncement  [
 		ifTrue: [ self reset ] 
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>cleanUp [
+{ #category : #cleanup }
+ReRuleManager class >> cleanUp [
 
 	self reset
 ]
 
-{
-	#category : #'event subscriptions',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>critiqueBanned: aReCritiqueBanned [
+{ #category : #'event subscriptions' }
+ReRuleManager class >> critiqueBanned: aReCritiqueBanned [
 	| baner |
 	baner := aReCritiqueBanned entityBanLevel.
 	
@@ -66,19 +53,13 @@ ReRuleManager class>>critiqueBanned: aReCritiqueBanned [
 		ifTrue: [ self removeManagerFor: baner ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>default [
+{ #category : #'instance creation' }
+ReRuleManager class >> default [
 	^ default ifNil: [ default := self newWithRules: self defaultRules ]
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>defaultRules [
+{ #category : #helpers }
+ReRuleManager class >> defaultRules [
 	^ self visibleRuleClasses
 			reject: [ :ruleClass |
 				"lint rules suck again…"
@@ -87,20 +68,14 @@ ReRuleManager class>>defaultRules [
 			thenCollect: #new
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>excludedRuleNames [
+{ #category : #helpers }
+ReRuleManager class >> excludedRuleNames [
 
 	^ #(RBImplementedNotSentRule)
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>initialize [
+{ #category : #'class initialization' }
+ReRuleManager class >> initialize [
 	self allInstances do: [ :inst |
 		self flag: 'remove in future. this is just to stop
 		            the announcements from choaking old instances'.
@@ -110,29 +85,20 @@ ReRuleManager class>>initialize [
 	self subscribe.
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>managerFor: aCodeEntity  [
+{ #category : #instance-creation }
+ReRuleManager class >> managerFor: aCodeEntity [ 
 	^ self managers
 		at: aCodeEntity package
 		ifAbsentPut: [ self newManagerForPackage: aCodeEntity package ]
 ]
 
-{
-	#category : #acccessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>managers [
+{ #category : #acccessing }
+ReRuleManager class >> managers [
 	^ managers ifNil: [ managers := WeakKeyDictionary new ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>newManagerForPackage: aRPackage  [
+{ #category : #'instance creation' }
+ReRuleManager class >> newManagerForPackage: aRPackage [ 
 	| builder manifest defaultRules rules |
 	aRPackage ifNil: [ ^ self default ].
 	builder := TheManifestBuilder new.
@@ -153,21 +119,15 @@ ReRuleManager class>>newManagerForPackage: aRPackage  [
 	^ self newWithRules: rules
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>newWithRules: aCollection  [
+{ #category : #'instance creation' }
+ReRuleManager class >> newWithRules: aCollection [ 
 	^ self basicNew
 		initializeRules: aCollection;
 		yourself
 ]
 
-{
-	#category : #'event subscriptions',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>removeManagerFor: anRPackage [
+{ #category : #'event subscriptions' }
+ReRuleManager class >> removeManagerFor: anRPackage [
 
 	self managers
 		removeKey: anRPackage 
@@ -175,40 +135,28 @@ ReRuleManager class>>removeManagerFor: anRPackage [
 	
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>reset [
+{ #category : #utility }
+ReRuleManager class >> reset [
 	<script>
 	managers := nil.
 	default := nil.
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>resetWithInform [
+{ #category : #utility }
+ReRuleManager class >> resetWithInform [
 
 	self reset.
 	self inform: 'Cache of the Renraku rule manager has been reset'
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>ruleToggleGroupID [
+{ #category : #settings }
+ReRuleManager class >> ruleToggleGroupID [
 
 	^ #ruleToggle
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>ruleToggleSettingsOn: aBuilder  [
+{ #category : #settings }
+ReRuleManager class >> ruleToggleSettingsOn: aBuilder [ 
 	<systemsettings>
 	(aBuilder group: self ruleToggleGroupID)
 		order: 1;
@@ -228,11 +176,8 @@ ReRuleManager class>>ruleToggleSettingsOn: aBuilder  [
 					description: inst rationale ] ]
 ]
 
-{
-	#category : #'event subscriptions',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>subscribe [
+{ #category : #'event subscriptions' }
+ReRuleManager class >> subscribe [
 	<systemEventRegistration>
 	self unsubscribe.
 	
@@ -246,113 +191,77 @@ ReRuleManager class>>subscribe [
 		to: self
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>uniqueInstance [
+{ #category : #'instance creation' }
+ReRuleManager class >> uniqueInstance [
 	"Not a singleton anymore"
 	^ self default
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>unload [
+{ #category : #initialize-release }
+ReRuleManager class >> unload [
 
 	self reset
 ]
 
-{
-	#category : #'event subscriptions',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>unsubscribe [
+{ #category : #'event subscriptions' }
+ReRuleManager class >> unsubscribe [
 
 	SystemAnnouncer uniqueInstance unsubscribe: self.
 	ReSystemAnnouncer uniqueInstance unsubscribe: self
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>visibleLintRuleClasses [
+{ #category : #utility }
+ReRuleManager class >> visibleLintRuleClasses [
 
 	^ RBLintRule withAllSubclasses select: #isVisible
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager class>>visibleRuleClasses [
+{ #category : #utility }
+ReRuleManager class >> visibleRuleClasses [
 
 	^ (ReAbstractRule withAllSubclasses select: #isVisible)
 	"remove this in the future ->", self visibleLintRuleClasses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager>>allRules [
+{ #category : #accessing }
+ReRuleManager >> allRules [
 
 	^ rules
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager>>classAdded: aClassAddedAnnouncement  [
+{ #category : #'announcement handling' }
+ReRuleManager >> classAdded: aClassAddedAnnouncement [ 
 
 	(aClassAddedAnnouncement classAdded isKindOf: RBLintRule) 
 		ifTrue: [ self reset ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager>>classRules [
+{ #category : #accessing }
+ReRuleManager >> classRules [
 
 	^ self allRules select: [ :rule | rule class checksClass ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager>>initializeRules: aCollection [
+{ #category : #initialization }
+ReRuleManager >> initializeRules: aCollection [
 
 	rules := aCollection copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager>>methodRules [
+{ #category : #accessing }
+ReRuleManager >> methodRules [
 
 	^ self allRules select: [ :rule | rule class checksMethod ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager>>nodeRules [
+{ #category : #accessing }
+ReRuleManager >> nodeRules [
 	
 	^ self allRules select: [ :rule | rule class checksNode ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRuleManager>>packageRules [
+{ #category : #accessing }
+ReRuleManager >> packageRules [
 
 	^ self allRules select: [ :rule | rule class checksPackage ]
 ]

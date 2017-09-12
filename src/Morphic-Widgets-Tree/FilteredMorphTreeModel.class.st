@@ -53,15 +53,11 @@ Class {
 		'initialRootItems',
 		'autoAccept'
 	],
-	#category : #Morphic-Widgets-Tree,
-	#timestamp : 'AlainPlantec 6/19/2015 09:18'
+	#category : #Morphic-Widgets-Tree
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FilteredMorphTreeModel class>>example [
+{ #category : #example }
+FilteredMorphTreeModel class >> example [
 	"self example"
 
 	| window row m |
@@ -76,20 +72,14 @@ FilteredMorphTreeModel class>>example [
 	window openInWorld
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FilteredMorphTreeModel>>autoAccept: aBoolean [
+{ #category : #accessing }
+FilteredMorphTreeModel >> autoAccept: aBoolean [
 	"If true (default) the filter acts immediately on the list, else, the user has to enter a carriage return or to accept with cms-s"
 	autoAccept := aBoolean
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FilteredMorphTreeModel>>defaultMorphIn: aThemable [
+{ #category : #view }
+FilteredMorphTreeModel >> defaultMorphIn: aThemable [
 	| treeMorph patternMorph |
 	treeMorph := self defaultTreeMorph buildContents.
 	patternMorph := patternModel newTextField
@@ -105,48 +95,33 @@ FilteredMorphTreeModel>>defaultMorphIn: aThemable [
 		for: {patternMorph. treeMorph}
 ]
 
-{
-	#category : #'accessing pattern',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FilteredMorphTreeModel>>ensureSafePattern: aPattern [
+{ #category : #'accessing pattern' }
+FilteredMorphTreeModel >> ensureSafePattern: aPattern [
 	" do not throw an error if the pattern is bad - important in case of auto-accepting"
 	^ [ aPattern asRegexIgnoringCase ]
 		on: RegexSyntaxError
 		do: [ :ex | ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FilteredMorphTreeModel>>ghostString [
+{ #category : #accessing }
+FilteredMorphTreeModel >> ghostString [
 	^ ghostString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FilteredMorphTreeModel>>ghostString: aString [
+{ #category : #accessing }
+FilteredMorphTreeModel >> ghostString: aString [
 	"set the help text that is displayed in the filter text field when empty"
 	ghostString := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FilteredMorphTreeModel>>initialRootItems [
+{ #category : #accessing }
+FilteredMorphTreeModel >> initialRootItems [
 	"contains the full list, the filtered list is in rootItems"
 	^ initialRootItems ifNil: [ initialRootItems := #() ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FilteredMorphTreeModel>>initialize [
+{ #category : #initialization }
+FilteredMorphTreeModel >> initialize [
 	super initialize.
 	patternModel := RubScrolledTextModel new.
 	patternModel announcer 
@@ -157,60 +132,42 @@ FilteredMorphTreeModel>>initialize [
 	ghostString := ''
 ]
 
-{
-	#category : #'accessing pattern',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FilteredMorphTreeModel>>pattern [
+{ #category : #'accessing pattern' }
+FilteredMorphTreeModel >> pattern [
 	" the pattern to use to filter the list"
 	^ self ensureSafePattern: patternModel getText asString trimBoth
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FilteredMorphTreeModel>>patternModel [
+{ #category : #accessing }
+FilteredMorphTreeModel >> patternModel [
 	"The filter model"
 	^ patternModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FilteredMorphTreeModel>>rootItems: aListOfItems [
+{ #category : #accessing }
+FilteredMorphTreeModel >> rootItems: aListOfItems [
 	"set the root items as in superclass with a copy + keep the list locally"
 	initialRootItems := aListOfItems.
 	super rootItems: initialRootItems copy.
 	self updateList
 ]
 
-{
-	#category : #'accessing pattern',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FilteredMorphTreeModel>>updateList [
+{ #category : #'accessing pattern' }
+FilteredMorphTreeModel >> updateList [
 	"update the list by applying the pattern on the initial root item list"
 	super rootItems: (self initialRootItems select: [ :p | (self pattern matchesIn: p name) notEmpty ]).
 	super updateList
 ]
 
-{
-	#category : #'accessing pattern',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FilteredMorphTreeModel>>whenPatternChanged: anAnnouncement [
+{ #category : #'accessing pattern' }
+FilteredMorphTreeModel >> whenPatternChanged: anAnnouncement [
 	"just update the list"
 	self updateList
 ]
 
-{
-	#category : #'accessing pattern',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FilteredMorphTreeModel>>whenReturnInFilter: anAnnouncement  [
+{ #category : #'accessing pattern' }
+FilteredMorphTreeModel >> whenReturnInFilter: anAnnouncement [ 
 	"needed if auto-accept is false"
 	patternModel acceptEditsInView  
 ]

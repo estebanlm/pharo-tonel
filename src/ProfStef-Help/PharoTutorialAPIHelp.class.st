@@ -4,30 +4,20 @@ I'm a PharoTutorial which builds a HelpSystem book by collecting comment from cl
 Class {
 	#name : #PharoTutorialAPIHelp,
 	#superclass : #PharoTutorialHelp,
-	#category : #ProfStef-Help,
-	#timestamp : 'CamilloBruni 2/22/2014 18:59'
+	#category : #ProfStef-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-PharoTutorialAPIHelp class>>bookName  [
+{ #category : #accessing }
+PharoTutorialAPIHelp class >> bookName [ 
 	^ 'Reference'
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-PharoTutorialAPIHelp class>>builder  [
+{ #category : #defaults }
+PharoTutorialAPIHelp class >> builder [ 
 	^ PackageAPIHelpBuilder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-PharoTutorialAPIHelp class>>helpPackages [
+{ #category : #accessing }
+PharoTutorialAPIHelp class >> helpPackages [
 	^ #('ProfStef-Core')
 ]

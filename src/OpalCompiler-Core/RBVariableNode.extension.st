@@ -1,78 +1,49 @@
-Extension {
-	#name : #RBVariableNode
-}
+Extension { #name : #RBVariableNode }
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBVariableNode>>binding [
+{ #category : #'*opalcompiler-core' }
+RBVariableNode >> binding [
 	^self propertyAt: #binding ifAbsent: [nil].
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBVariableNode>>binding: aSemVar [
+{ #category : #'*opalcompiler-core' }
+RBVariableNode >> binding: aSemVar [
 	aSemVar ifNil: [^self removeProperty: #binding ifAbsent: []].
 	self propertyAt: #binding put: aSemVar.
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBVariableNode>>isArg [
+{ #category : #'*opalcompiler-core' }
+RBVariableNode >> isArg [
 
 	^self binding isArg
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBVariableNode>>isClean [
+{ #category : #'*opalcompiler-core' }
+RBVariableNode >> isClean [
 	^ (self isInstance | self isSpecialVariable) not
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBVariableNode>>isGlobal [
+{ #category : #'*opalcompiler-core' }
+RBVariableNode >> isGlobal [
 	^self binding isGlobal
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBVariableNode>>isInstance [
+{ #category : #'*opalcompiler-core' }
+RBVariableNode >> isInstance [
 	^self binding isInstance
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBVariableNode>>isSpecialVariable [
+{ #category : #'*opalcompiler-core' }
+RBVariableNode >> isSpecialVariable [
 	^ self binding isSpecialVariable
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBVariableNode>>isTemp [
+{ #category : #'*opalcompiler-core' }
+RBVariableNode >> isTemp [
 	^self binding isTemp
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBVariableNode>>isUndeclared [
+{ #category : #'*opalcompiler-core' }
+RBVariableNode >> isUndeclared [
 
 	^self binding isUndeclared
 ]

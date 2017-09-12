@@ -7,22 +7,15 @@ Class {
 	#instVars : [
 		'presentation'
 	],
-	#category : #Glamour-Announcements,
-	#timestamp : 'AndreiChis 2/27/2017 10:21'
+	#category : #Glamour-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentationRefreshRequest>>presentation [
+{ #category : #accessing }
+GLMPresentationRefreshRequest >> presentation [
 	^ presentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentationRefreshRequest>>presentation: anObject [
+{ #category : #accessing }
+GLMPresentationRefreshRequest >> presentation: anObject [
 	presentation := anObject
 ]

@@ -7,24 +7,17 @@ Class {
 	#instVars : [
 		'count'
 	],
-	#category : #Collections-Tests-Atomic,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:29'
+	#category : #Collections-Tests-Atomic
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FIFOQueueTests>>newQueue [
+{ #category : #'instance creation' }
+FIFOQueueTests >> newQueue [
 
 	^ WaitfreeQueue new
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FIFOQueueTests>>runValidationTest [
+{ #category : #tests }
+FIFOQueueTests >> runValidationTest [
 	| q sema prio pusher feeder
 		feeders r crit done |
 
@@ -62,11 +55,8 @@ FIFOQueueTests>>runValidationTest [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FIFOQueueTests>>runValidationTest2 [
+{ #category : #tests }
+FIFOQueueTests >> runValidationTest2 [
 	| q sema prio pusher r cnt |
 
 	r := Random new.
@@ -100,11 +90,8 @@ FIFOQueueTests>>runValidationTest2 [
 "
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FIFOQueueTests>>testBasics [
+{ #category : #tests }
+FIFOQueueTests >> testBasics [
 	| q |
 	q := self newQueue.
 	
@@ -123,11 +110,8 @@ FIFOQueueTests>>testBasics [
 	self assert: q nextOrNil == nil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FIFOQueueTests>>testContention1 [
+{ #category : #tests }
+FIFOQueueTests >> testContention1 [
 	"here is a test case that breaks the standard SharedQueue from Squeak 3.8"
 
 	| q r1 r2 |
@@ -150,11 +134,8 @@ FIFOQueueTests>>testContention1 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FIFOQueueTests>>testFlush [
+{ #category : #tests }
+FIFOQueueTests >> testFlush [
 	| q v sema |
 	q := self newQueue.
 	sema := Semaphore new.
@@ -170,11 +151,8 @@ FIFOQueueTests>>testFlush [
 	self assert: v = 10	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FIFOQueueTests>>testFlushAllSuchThat [
+{ #category : #tests }
+FIFOQueueTests >> testFlushAllSuchThat [
 	| q |
 	q := self newQueue.
 
@@ -188,11 +166,8 @@ FIFOQueueTests>>testFlushAllSuchThat [
 	self assert: q nextOrNil == nil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FIFOQueueTests>>testHeavyContention [
+{ #category : #tests }
+FIFOQueueTests >> testHeavyContention [
 	"run 10 threads, pushing new values to queue,
 	and 10 threads pullung values from queue,
 	at random priorities"
@@ -234,11 +209,8 @@ FIFOQueueTests>>testHeavyContention [
 	self assert: q nextOrNil == nil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FIFOQueueTests>>testHeavyContention2 [
+{ #category : #tests }
+FIFOQueueTests >> testHeavyContention2 [
 	"run 10 threads, pushing new values to queue,
 	and 10 threads pullung values from queue,
 	at random priorities"
@@ -280,11 +252,8 @@ FIFOQueueTests>>testHeavyContention2 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FIFOQueueTests>>testNextOrNilSuchThat [
+{ #category : #tests }
+FIFOQueueTests >> testNextOrNilSuchThat [
 	| q item |
 	q := self newQueue.
 	q nextPut: 5.
@@ -298,11 +267,8 @@ FIFOQueueTests>>testNextOrNilSuchThat [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FIFOQueueTests>>testSize [
+{ #category : #tests }
+FIFOQueueTests >> testSize [
 	| q |
 	q := self newQueue.
 	
@@ -312,11 +278,8 @@ FIFOQueueTests>>testSize [
 	self assert: (q size = 10)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FIFOQueueTests>>testSuchThat [
+{ #category : #tests }
+FIFOQueueTests >> testSuchThat [
 	| q |
 	q := self newQueue.
 	

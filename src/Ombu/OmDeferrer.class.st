@@ -11,15 +11,11 @@ Class {
 		'selector',
 		'object'
 	],
-	#category : #Ombu-Common,
-	#timestamp : 'MartinDias 1/31/2017 03:11'
+	#category : #Ombu-Common
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmDeferrer class>>initialize [
+{ #category : #initialization }
+OmDeferrer class >> initialize [
 	"
 	self initialize
 	"
@@ -27,20 +23,14 @@ OmDeferrer class>>initialize [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmDeferrer class>>new [
+{ #category : #'instance creation' }
+OmDeferrer class >> new [
 
 	^ self shouldNotImplement
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmDeferrer class>>send: selector to: object after: aDuration [
+{ #category : #'instance creation' }
+OmDeferrer class >> send: selector to: object after: aDuration [
 
 	^ self basicNew
 		initializeWithSelector: selector
@@ -48,38 +38,26 @@ OmDeferrer class>>send: selector to: object after: aDuration [
 		duration: aDuration
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmDeferrer class>>shutDown: quitting [
+{ #category : #'system startup' }
+OmDeferrer class >> shutDown: quitting [
 	"Force my instances to flush before image quits"
 
 	self allInstancesDo: [:each | each flush ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmDeferrer>>duration [
+{ #category : #accessing }
+OmDeferrer >> duration [
 	^ duration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmDeferrer>>duration: aDuration [
+{ #category : #accessing }
+OmDeferrer >> duration: aDuration [
 
 	duration := aDuration
 ]
 
-{
-	#category : #scheduling,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmDeferrer>>flush [
+{ #category : #scheduling }
+OmDeferrer >> flush [
 
 	process ifNotNil: [
 		"Execute deferred action and clean up"
@@ -87,11 +65,8 @@ OmDeferrer>>flush [
 	].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmDeferrer>>initializeWithSelector: aSelector object: anObject duration: aDuration  [
+{ #category : #initialization }
+OmDeferrer >> initializeWithSelector: aSelector object: anObject duration: aDuration [ 
 	
 	self initialize.
 	selector := aSelector.
@@ -99,27 +74,18 @@ OmDeferrer>>initializeWithSelector: aSelector object: anObject duration: aDurati
 	duration := aDuration.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmDeferrer>>object [
+{ #category : #accessing }
+OmDeferrer >> object [
 	^ object
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmDeferrer>>object: anObject [
+{ #category : #accessing }
+OmDeferrer >> object: anObject [
 	object := anObject
 ]
 
-{
-	#category : #scheduling,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmDeferrer>>runMessageProcess [
+{ #category : #scheduling }
+OmDeferrer >> runMessageProcess [
 	process := [ 
 		"Loop until enough time passed since last #schedule"
 		[ DateAndTime now < (lastSchedule + duration) ]
@@ -130,11 +96,8 @@ OmDeferrer>>runMessageProcess [
 	] fork
 ]
 
-{
-	#category : #scheduling,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmDeferrer>>schedule [
+{ #category : #scheduling }
+OmDeferrer >> schedule [
 	lastSchedule := DateAndTime now.
 
 	process ifNil: [ 
@@ -143,27 +106,18 @@ OmDeferrer>>schedule [
 		DefaultExecutionEnvironment beActiveDuring: [ self runMessageProcess ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmDeferrer>>selector [
+{ #category : #accessing }
+OmDeferrer >> selector [
 	^ selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmDeferrer>>selector: anObject [
+{ #category : #accessing }
+OmDeferrer >> selector: anObject [
 	selector := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmDeferrer>>sendMessage [
+{ #category : #private }
+OmDeferrer >> sendMessage [
 	
 	object perform: selector
 ]

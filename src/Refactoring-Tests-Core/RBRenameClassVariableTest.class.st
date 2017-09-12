@@ -1,51 +1,35 @@
-"
-
-"
 Class {
 	#name : #RBRenameClassVariableTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameClassVariableTest>>testAlreadyExistingName [
+{ #category : #'failure tests' }
+RBRenameClassVariableTest >> testAlreadyExistingName [
 	self shouldFail: (RBRenameClassVariableRefactoring 
 			rename: #RecursiveSelfRule
 			to: self objectClassVariable
 			in: RBTransformationRuleTest)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameClassVariableTest>>testMetaClassFailure [
+{ #category : #'failure tests' }
+RBRenameClassVariableTest >> testMetaClassFailure [
 	self shouldFail: (RBRenameClassVariableRefactoring 
 			rename: #RecursiveSelfRule
 			to: #Foo
 			in: RBTransformationRuleTest class)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameClassVariableTest>>testNonExistantName [
+{ #category : #'failure tests' }
+RBRenameClassVariableTest >> testNonExistantName [
 	self shouldFail: (RBRenameClassVariableRefactoring 
 			rename: #foo
 			to: #newFoo
 			in: RBBasicLintRuleTest)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameClassVariableTest>>testRenameClassVar [
+{ #category : #tests }
+RBRenameClassVariableTest >> testRenameClassVar [
 	| refactoring class |
 	refactoring := RBRenameClassVariableRefactoring 
 		rename: #RecursiveSelfRule

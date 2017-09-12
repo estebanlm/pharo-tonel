@@ -8,15 +8,11 @@ Class {
 		'layoutFrame',
 		'subwidget'
 	],
-	#category : #Spec-Layout,
-	#timestamp : '<historical>'
+	#category : #Spec-Layout
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd class>>subwidget: subwidget layoutFrame: aLayoutFrame [
+{ #category : #'instance creation' }
+SpecLayoutAdd class >> subwidget: subwidget layoutFrame: aLayoutFrame [
 
 	^ self new
 		subwidget: subwidget 
@@ -24,64 +20,43 @@ SpecLayoutAdd class>>subwidget: subwidget layoutFrame: aLayoutFrame [
 		yourself
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>bottomFraction [
+{ #category : #protocol }
+SpecLayoutAdd >> bottomFraction [
 
 	^ layoutFrame bottomFraction
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>bottomFraction: aNumber [
+{ #category : #protocol }
+SpecLayoutAdd >> bottomFraction: aNumber [
 
 	layoutFrame bottomFraction: aNumber 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>bottomOffset [
+{ #category : #protocol }
+SpecLayoutAdd >> bottomOffset [
 
 	^ layoutFrame bottomOffset 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>bottomOffset: aNumber [
+{ #category : #protocol }
+SpecLayoutAdd >> bottomOffset: aNumber [
 
 	layoutFrame bottomOffset: aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>fractions [
+{ #category : #accessing }
+SpecLayoutAdd >> fractions [
 	^ layoutFrame fractionRectangle
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>generateArguments [
+{ #category : #'instance creation' }
+SpecLayoutAdd >> generateArguments [
 	
 	self arguments: {{subwidget .#layout:. layoutFrame generateSpec}}.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>initialize [
+{ #category : #initialization }
+SpecLayoutAdd >> initialize [
 
 	super initialize.
 	self selector: #add:.
@@ -89,129 +64,87 @@ SpecLayoutAdd>>initialize [
 	subwidget := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>layoutFrame [
+{ #category : #accessing }
+SpecLayoutAdd >> layoutFrame [
 
 	^ layoutFrame
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>layoutFrame: newFrame [
+{ #category : #accessing }
+SpecLayoutAdd >> layoutFrame: newFrame [
 
 	layoutFrame := newFrame asLayoutFrame
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>leftFraction [
+{ #category : #protocol }
+SpecLayoutAdd >> leftFraction [
 
 	^ layoutFrame leftFraction 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>leftFraction: aNumber [
+{ #category : #protocol }
+SpecLayoutAdd >> leftFraction: aNumber [
 
 	layoutFrame leftFraction: aNumber
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>leftOffset [
+{ #category : #protocol }
+SpecLayoutAdd >> leftOffset [
 
 	^ layoutFrame leftOffset
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>leftOffset: aNumber [
+{ #category : #protocol }
+SpecLayoutAdd >> leftOffset: aNumber [
 
 	^ layoutFrame leftOffset: aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>offsets [
+{ #category : #accessing }
+SpecLayoutAdd >> offsets [
 	"to deprecate 
 	"
 	self flag: #fix.
 	^ layoutFrame leftOffset  @ layoutFrame topOffset corner:  layoutFrame rightOffset  @ layoutFrame bottomOffset 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>rightFraction [
+{ #category : #protocol }
+SpecLayoutAdd >> rightFraction [
 
 	^ layoutFrame rightFraction
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>rightFraction: aNumber [
+{ #category : #protocol }
+SpecLayoutAdd >> rightFraction: aNumber [
 
 	^ layoutFrame rightFraction: aNumber
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>rightOffset [
+{ #category : #protocol }
+SpecLayoutAdd >> rightOffset [
 
 	^ layoutFrame rightOffset
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>rightOffset: aNumber [
+{ #category : #protocol }
+SpecLayoutAdd >> rightOffset: aNumber [
 
 	layoutFrame rightOffset: aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>subwidget [
+{ #category : #accessing }
+SpecLayoutAdd >> subwidget [
 	^ subwidget
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>subwidget: anObject [
+{ #category : #accessing }
+SpecLayoutAdd >> subwidget: anObject [
 	subwidget := anObject
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>subwidget: aSpec fractions: frac offsets: off [
+{ #category : #'instance creation' }
+SpecLayoutAdd >> subwidget: aSpec fractions: frac offsets: off [
 
 	subwidget := aSpec isSymbol
 				ifTrue: [{#model. aSpec}]
@@ -232,11 +165,8 @@ SpecLayoutAdd>>subwidget: aSpec fractions: frac offsets: off [
 	self generateArguments
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>subwidget: aSpec layoutFrame: aLayoutFrame [
+{ #category : #'instance creation' }
+SpecLayoutAdd >> subwidget: aSpec layoutFrame: aLayoutFrame [
 	
 	subwidget := aSpec isSymbol
 				ifTrue: [{#model. aSpec}]
@@ -256,38 +186,26 @@ SpecLayoutAdd>>subwidget: aSpec layoutFrame: aLayoutFrame [
 	self generateArguments
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>topFraction [
+{ #category : #protocol }
+SpecLayoutAdd >> topFraction [
 
 	^ layoutFrame topFraction
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>topFraction: aNumber [
+{ #category : #protocol }
+SpecLayoutAdd >> topFraction: aNumber [
 
 	layoutFrame topFraction: aNumber
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>topOffset [
+{ #category : #protocol }
+SpecLayoutAdd >> topOffset [
 
 	^ layoutFrame topOffset
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutAdd>>topOffset: aNumber [
+{ #category : #protocol }
+SpecLayoutAdd >> topOffset: aNumber [
 
 	layoutFrame topOffset: aNumber
 ]

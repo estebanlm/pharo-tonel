@@ -8,32 +8,22 @@ Class {
 	#instVars : [
 		'categoryName'
 	],
-	#category : #System-Announcements-System-Categories,
-	#timestamp : 'cyrilledelaunay 1/18/2011 12:28'
+	#category : #System-Announcements-System-Categories
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-CategoryRemoved class>>categoryName: aCategoryName [
+{ #category : #'instance creation' }
+CategoryRemoved class >> categoryName: aCategoryName [
 	^self new
 			categoryName: aCategoryName;
 			yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-CategoryRemoved>>categoryName [
+{ #category : #accessing }
+CategoryRemoved >> categoryName [
 	^categoryName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-CategoryRemoved>>categoryName: aCategoryName [
+{ #category : #accessing }
+CategoryRemoved >> categoryName: aCategoryName [
 	categoryName := aCategoryName
 ]

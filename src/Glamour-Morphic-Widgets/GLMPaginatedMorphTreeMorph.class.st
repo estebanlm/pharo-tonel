@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #GLMPaginatedMorphTreeMorph,
 	#superclass : #PaginatedMorphTreeMorph,
 	#instVars : [
 		'stopStepping'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaginatedMorphTreeMorph>>step [
+{ #category : #stepping }
+GLMPaginatedMorphTreeMorph >> step [
 
 	self window ifNil: [ ^ self ].
 	self window isActive ifFalse: [ ^ self ].
@@ -25,18 +18,12 @@ GLMPaginatedMorphTreeMorph>>step [
 	self updateList
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaginatedMorphTreeMorph>>stepTime [
+{ #category : #stepping }
+GLMPaginatedMorphTreeMorph >> stepTime [
 	^ self model stepTime
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaginatedMorphTreeMorph>>wantsSteps [
+{ #category : #testing }
+GLMPaginatedMorphTreeMorph >> wantsSteps [
 	^ self model wantsSteps
 ]

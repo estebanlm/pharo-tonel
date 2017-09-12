@@ -1,12 +1,7 @@
-Extension {
-	#name : #LiteralVariable
-}
+Extension { #name : #LiteralVariable }
 
-{
-	#category : #'*OpalTools',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-LiteralVariable>>gtInspectorUsersIn: composite [
+{ #category : #'*OpalTools' }
+LiteralVariable >> gtInspectorUsersIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	| users |
 	users := self usingMethods.

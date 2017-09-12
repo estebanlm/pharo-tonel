@@ -11,15 +11,11 @@ Class {
 		'object',
 		'previousLink'
 	],
-	#category : #FreeType-Cache,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:09'
+	#category : #FreeType-Cache
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheEntry>>= aFreeTypeCacheEntry [
+{ #category : #comparing }
+FreeTypeCacheEntry >> = aFreeTypeCacheEntry [
 	"equailty based on font,charcode, type, object, but not nextLink"
 	
 	(aFreeTypeCacheEntry isKindOf: FreeTypeCacheEntry) 
@@ -30,109 +26,76 @@ FreeTypeCacheEntry>>= aFreeTypeCacheEntry [
 				and:[object = aFreeTypeCacheEntry object]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheEntry>>charCode [
+{ #category : #accessing }
+FreeTypeCacheEntry >> charCode [
 	"Answer the value of charCode"
 
 	^ charCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheEntry>>charCode: anObject [
+{ #category : #accessing }
+FreeTypeCacheEntry >> charCode: anObject [
 	"Set the value of charCode"
 
 	charCode := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheEntry>>font [
+{ #category : #accessing }
+FreeTypeCacheEntry >> font [
 	"Answer the value of font"
 
 	^ font
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheEntry>>font: anObject [
+{ #category : #accessing }
+FreeTypeCacheEntry >> font: anObject [
 	"Set the value of font"
 
 	font := anObject
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheEntry>>hash [
+{ #category : #comparing }
+FreeTypeCacheEntry >> hash [
 	^charCode hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheEntry>>object [
+{ #category : #accessing }
+FreeTypeCacheEntry >> object [
 	"Answer the value of object"
 
 	^ object
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheEntry>>object: anObject [
+{ #category : #accessing }
+FreeTypeCacheEntry >> object: anObject [
 	"Set the value of object"
 
 	object := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheEntry>>previousLink [
+{ #category : #accessing }
+FreeTypeCacheEntry >> previousLink [
 	"Answer the value of previousLink"
 
 	^ previousLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheEntry>>previousLink: anObject [
+{ #category : #accessing }
+FreeTypeCacheEntry >> previousLink: anObject [
 	"Set the value of previousLink"
 
 	previousLink := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheEntry>>type [
+{ #category : #accessing }
+FreeTypeCacheEntry >> type [
 	"Answer the value of type"
 
 	^ type
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeCacheEntry>>type: anObject [
+{ #category : #accessing }
+FreeTypeCacheEntry >> type: anObject [
 	"Set the value of type"
 
 	type := anObject

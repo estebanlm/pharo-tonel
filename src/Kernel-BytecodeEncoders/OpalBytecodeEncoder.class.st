@@ -10,15 +10,11 @@ Class {
 		'rootNode',
 		'blockExtentsToLocals'
 	],
-	#category : #Kernel-BytecodeEncoders,
-	#timestamp : '<historical>'
+	#category : #Kernel-BytecodeEncoders
 }
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder class>>nonExtensionBytecodeAt: pc in: method [
+{ #category : #'bytecode decoding' }
+OpalBytecodeEncoder class >> nonExtensionBytecodeAt: pc in: method [
 	"Answer the actual bytecode at pc in method, skipping past any preceeding extensions."
 	| thePC bytecode |
 	thePC := pc.
@@ -27,29 +23,20 @@ OpalBytecodeEncoder class>>nonExtensionBytecodeAt: pc in: method [
 	^bytecode
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder class>>specialSelectors	 [
+{ #category : #'bytecode decoding' }
+OpalBytecodeEncoder class >> specialSelectors [	
 	^ #(#+ #- #< #> #'<=' #'>=' #= #'~=' #* #/ #'\\' #@ #bitShift: #'//' #bitAnd: #bitOr: #at: #at:put: #size #next #nextPut: #atEnd #'==' nil "class" nil "blockCopy:" #value #value: #do: #new #new: #x #y)
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder class>>stackDeltaForPrimitive: primitiveIndex in: method  [
+{ #category : #'bytecode decoding' }
+OpalBytecodeEncoder class >> stackDeltaForPrimitive: primitiveIndex in: method [ 
 	"This is the default implementation. Subclasses with inline primitives
 	will need to override."
 	^ 0
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>bindAndJuggle: name [
+{ #category : #temps }
+OpalBytecodeEncoder >> bindAndJuggle: name [
 	"This is used to insert a new temp and reorcder temps on editing.
 	 It doesn't really work for closure compilation since we have multiple
 	 locations for temps.  Simply signal a reparse is necessary."
@@ -57,11 +44,8 @@ OpalBytecodeEncoder>>bindAndJuggle: name [
 	ReparseAfterSourceEditing signal
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>blockExtentsToTempsMap [
+{ #category : #temps }
+OpalBytecodeEncoder >> blockExtentsToTempsMap [
 	"Answer a Dictionary of blockExtent to temp locations for the current method.
 	 This is used by the debugger to locate temp vars in contexts.  A temp map
 	 entry is a pair of the temp's name and its index, where an index is either an
@@ -86,410 +70,263 @@ OpalBytecodeEncoder>>blockExtentsToTempsMap [
 	^blockExtentsToTempsMap
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>genPushNClosureTemps: numTemps [
+{ #category : #'bytecode generation' }
+OpalBytecodeEncoder >> genPushNClosureTemps: numTemps [
 	numTemps timesRepeat: [ self genPushSpecialLiteral: nil ]
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>genPushSpecialLiteral: aLiteral [
+{ #category : #'bytecode generation' }
+OpalBytecodeEncoder >> genPushSpecialLiteral: aLiteral [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>hasGeneratedMethod [
+{ #category : #testing }
+OpalBytecodeEncoder >> hasGeneratedMethod [
 	^blockExtentsToLocals notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>methodStreamPosition [
+{ #category : #accessing }
+OpalBytecodeEncoder >> methodStreamPosition [
 	^stream position
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>nextPut: aByte [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> nextPut: aByte [
 	"For sizing make the encoder its own stream and
 	 keep track of position with this version of nextPut:"
 	position := position + 1
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>noteBlockExtent: blockExtent hasLocals: tempNodes [
+{ #category : #temps }
+OpalBytecodeEncoder >> noteBlockExtent: blockExtent hasLocals: tempNodes [
 	blockExtentsToLocals ifNil:
 		[blockExtentsToLocals := Dictionary new].
 	blockExtentsToLocals at: blockExtent put: tempNodes asArray
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>outOfRangeError: string index: index range: rangeStart to: rangeEnd [
+{ #category : #'bytecode generation' }
+OpalBytecodeEncoder >> outOfRangeError: string index: index range: rangeStart to: rangeEnd [
 	"For now..."
 	^self error: thisContext sender method selector, ' ', string
 				, ' index ', index printString
 				, ' is out of range ', rangeStart printString, ' to ', rangeEnd printString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>rootNode "^<BlockNode>" [
+{ #category : #accessing }
+OpalBytecodeEncoder >> rootNode [ "^<BlockNode>"
 	^rootNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>rootNode: node "<BlockNode>" [
+{ #category : #accessing }
+OpalBytecodeEncoder >> rootNode: node [ "<BlockNode>"
 	rootNode := node
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeBranchPopFalse: distance [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeBranchPopFalse: distance [
 	^self sizeOpcodeSelector: #genBranchPopFalse: withArguments: {distance}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeBranchPopTrue: distance [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeBranchPopTrue: distance [
 	^self sizeOpcodeSelector: #genBranchPopTrue: withArguments: {distance}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeCallPrimitive: primitiveIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeCallPrimitive: primitiveIndex [
 	^self sizeOpcodeSelector: #genCallPrimitive: withArguments: {primitiveIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeDup [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeDup [
 	^self sizeOpcodeSelector: #genDup withArguments: #()
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeJump: distance [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeJump: distance [
 	^self sizeOpcodeSelector: #genJump: withArguments: {distance}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeJumpLong: distance [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeJumpLong: distance [
 	^self sizeOpcodeSelector: #genJumpLong: withArguments: {distance}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeOpcodeSelector: genSelector withArguments: args [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeOpcodeSelector: genSelector withArguments: args [
 	stream := self.
 	position := 0.
 	self perform: genSelector withArguments: args.
 	^position
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizePop [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizePop [
 	^self sizeOpcodeSelector: #genPop withArguments: #()
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizePushClosureCopyNumCopiedValues: numCopied numArgs: numArgs jumpSize: jumpSize [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizePushClosureCopyNumCopiedValues: numCopied numArgs: numArgs jumpSize: jumpSize [
 	^self
 		sizeOpcodeSelector: #genPushClosureCopyNumCopiedValues:numArgs:jumpSize:
 		withArguments: {numCopied. numArgs. jumpSize}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizePushConsArray: numElements [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizePushConsArray: numElements [
 	^self sizeOpcodeSelector: #genPushConsArray: withArguments: {numElements}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizePushInstVar: instVarIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizePushInstVar: instVarIndex [
 	^self sizeOpcodeSelector: #genPushInstVar: withArguments: {instVarIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizePushInstVarLong: instVarIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizePushInstVarLong: instVarIndex [
 	^self sizeOpcodeSelector: #genPushInstVarLong: withArguments: {instVarIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizePushLiteral: literalIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizePushLiteral: literalIndex [
 	^self sizeOpcodeSelector: #genPushLiteral: withArguments: {literalIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizePushLiteralVar: literalIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizePushLiteralVar: literalIndex [
 	^self sizeOpcodeSelector: #genPushLiteralVar: withArguments: {literalIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizePushNewArray: size [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizePushNewArray: size [
 	^self sizeOpcodeSelector: #genPushNewArray: withArguments: {size}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizePushReceiver [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizePushReceiver [
 	^self sizeOpcodeSelector: #genPushReceiver withArguments: #()
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizePushRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizePushRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 	^self sizeOpcodeSelector: #genPushRemoteTemp:inVectorAt: withArguments: {tempIndex. tempVectorIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizePushSpecialLiteral: specialLiteral [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizePushSpecialLiteral: specialLiteral [
 	^self sizeOpcodeSelector: #genPushSpecialLiteral: withArguments: {specialLiteral}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizePushTemp: tempIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizePushTemp: tempIndex [
 	^self sizeOpcodeSelector: #genPushTemp: withArguments: {tempIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizePushThisContext [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizePushThisContext [
 	^self sizeOpcodeSelector: #genPushThisContext withArguments: #()
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeReturnReceiver [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeReturnReceiver [
 	^self sizeOpcodeSelector: #genReturnReceiver withArguments: #()
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeReturnSpecialLiteral: specialLiteral [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeReturnSpecialLiteral: specialLiteral [
 	^self sizeOpcodeSelector: #genReturnSpecialLiteral: withArguments: {specialLiteral}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeReturnTop [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeReturnTop [
 	^self sizeOpcodeSelector: #genReturnTop withArguments: #()
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeReturnTopToCaller [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeReturnTopToCaller [
 	^self sizeOpcodeSelector: #genReturnTopToCaller withArguments: #()
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeSend: selectorLiteralIndex numArgs: nArgs [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeSend: selectorLiteralIndex numArgs: nArgs [
 	^self sizeOpcodeSelector: #genSend:numArgs: withArguments: {selectorLiteralIndex. nArgs}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeSendSuper: selectorLiteralIndex numArgs: nArgs [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeSendSuper: selectorLiteralIndex numArgs: nArgs [
 	^self sizeOpcodeSelector: #genSendSuper:numArgs: withArguments: {selectorLiteralIndex. nArgs}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeStoreInstVar: instVarIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeStoreInstVar: instVarIndex [
 	^self sizeOpcodeSelector: #genStoreInstVar: withArguments: {instVarIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeStoreInstVarLong: instVarIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeStoreInstVarLong: instVarIndex [
 	^self sizeOpcodeSelector: #genStoreInstVarLong: withArguments: {instVarIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeStoreLiteralVar: literalIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeStoreLiteralVar: literalIndex [
 	^self sizeOpcodeSelector: #genStoreLiteralVar: withArguments: {literalIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeStorePopInstVar: instVarIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeStorePopInstVar: instVarIndex [
 	^self sizeOpcodeSelector: #genStorePopInstVar: withArguments: {instVarIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeStorePopInstVarLong: instVarIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeStorePopInstVarLong: instVarIndex [
 	^self sizeOpcodeSelector: #genStorePopInstVarLong: withArguments: {instVarIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeStorePopLiteralVar: literalIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeStorePopLiteralVar: literalIndex [
 	^self sizeOpcodeSelector: #genStorePopLiteralVar: withArguments: {literalIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeStorePopRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeStorePopRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 	^self sizeOpcodeSelector: #genStorePopRemoteTemp:inVectorAt: withArguments: {tempIndex. tempVectorIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeStorePopTemp: tempIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeStorePopTemp: tempIndex [
 	^self sizeOpcodeSelector: #genStorePopTemp: withArguments: {tempIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeStoreRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeStoreRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 	^self sizeOpcodeSelector: #genStoreRemoteTemp:inVectorAt: withArguments: {tempIndex. tempVectorIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeStoreTemp: tempIndex [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeStoreTemp: tempIndex [
 	^self sizeOpcodeSelector: #genStoreTemp: withArguments: {tempIndex}
 ]
 
-{
-	#category : #'opcode sizing',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>sizeTrapIfNotInstanceOf: litIndex  [
+{ #category : #'opcode sizing' }
+OpalBytecodeEncoder >> sizeTrapIfNotInstanceOf: litIndex [ 
 	^ self sizeOpcodeSelector: #genTrapIfNotInstanceOf: withArguments: {litIndex}
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>stream: s [
+{ #category : #accessing }
+OpalBytecodeEncoder >> stream: s [
 	stream := s
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>streamToMethod: aCompiledMethod [
+{ #category : #initialize-release }
+OpalBytecodeEncoder >> streamToMethod: aCompiledMethod [
 	stream := WriteStream with: aCompiledMethod.
 	stream position: aCompiledMethod initialPC - 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-OpalBytecodeEncoder>>supportsClosureOpcodes [
+{ #category : #testing }
+OpalBytecodeEncoder >> supportsClosureOpcodes [
 	"Answer if the receiver supports the
 		genPushNewArray:/genPushConsArray:
 		genPushRemoteTemp:inVectorAt:

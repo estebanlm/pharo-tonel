@@ -32,57 +32,41 @@ Class {
 		'icon',
 		'autoRefresh'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 6/28/2016 11:30'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel class>>adapterName [
+{ #category : #specs }
+MenuModel class >> adapterName [
 
 	^ #MenuAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel class>>defaultSpec [
+{ #category : #specs }
+MenuModel class >> defaultSpec [
 	<spec: #default>
 	
 	^ #(MenuAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel class>>popup [
+{ #category : #specs }
+MenuModel class >> popup [
 	<spec>
 	
 	^ #(MenuAdapter
 		adaptAsPopup: #(model))
 ]
 
-{
-	#category : #api-building,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>addAllFromPragma: pragma target: target [
+{ #category : #api-building }
+MenuModel >> addAllFromPragma: pragma target: target [
 
 	self fromSpec: (PragmaMenuBuilder 
 		pragmaKeyword: pragma
 		model: target) menuSpec
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>addGroup: aBlock [
+{ #category : #api }
+MenuModel >> addGroup: aBlock [
 	| group |
 	
 	group := MenuGroupModel new.
@@ -90,102 +74,69 @@ MenuModel>>addGroup: aBlock [
 	self addMenuGroup: group
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>addMenuGroup: aMenuGroup [
+{ #category : #private }
+MenuModel >> addMenuGroup: aMenuGroup [
 
 	groups add: aMenuGroup.
 	self autoRefresh 
 		ifNotNil: [ aMenuGroup autoRefresh: self autoRefresh ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>addTitle: aString [
+{ #category : #api }
+MenuModel >> addTitle: aString [
 	title value: aString translated
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>applyTo: aModel [
+{ #category : #api }
+MenuModel >> applyTo: aModel [
 
 	aModel applyMenuModel: self
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>autoRefresh [
+{ #category : #api }
+MenuModel >> autoRefresh [
 
 	^ autoRefresh value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>autoRefresh: aBoolean [
+{ #category : #api }
+MenuModel >> autoRefresh: aBoolean [
 
 	autoRefresh value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>buildWithSpecAsPopup [
+{ #category : #api }
+MenuModel >> buildWithSpecAsPopup [
 
 	^ self buildWithSpec: #popup
 ]
 
-{
-	#category : #api-building,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>fromSpec: aSpec [
+{ #category : #api-building }
+MenuModel >> fromSpec: aSpec [
 
 	aSpec addToMenuModel: self
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>icon [
+{ #category : #api }
+MenuModel >> icon [
 
 	^ icon value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>icon: anIcon [
+{ #category : #api }
+MenuModel >> icon: anIcon [
 
 	icon value: anIcon
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>iconName: aSymbol [
+{ #category : #api }
+MenuModel >> iconName: aSymbol [
 
 	icon value: (self iconNamed: aSymbol)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>initialize [
+{ #category : #initialization }
+MenuModel >> initialize [
 
 	super initialize.
 	groups := OrderedCollection new asValueHolder.
@@ -195,39 +146,27 @@ MenuModel>>initialize [
 	autoRefresh whenChangedDo: [ :aBoolean | self menuGroups do: [ :each | each autoRefresh: aBoolean ] ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>menuGroups [
+{ #category : #api }
+MenuModel >> menuGroups [
 
 	^ groups value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>neglect: aModel [
+{ #category : #api }
+MenuModel >> neglect: aModel [
 
 	aModel neglectMenuModel: self
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>openWithSpecAt: aPosition [
+{ #category : #api }
+MenuModel >> openWithSpecAt: aPosition [
 
 	self buildWithSpecAsPopup.
 	self changed: #openAt: with: { aPosition }
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>printOn: aStream [
+{ #category : #printing }
+MenuModel >> printOn: aStream [
 	super printOn: aStream.
 	self title value
 		ifNotNil: [ :t | 
@@ -237,20 +176,14 @@ MenuModel>>printOn: aStream [
 				nextPutAll: '''' ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>title [
+{ #category : #api }
+MenuModel >> title [
 
 	^ title value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuModel>>title: aString [
+{ #category : #api }
+MenuModel >> title: aString [
 
 	title value: aString
 ]

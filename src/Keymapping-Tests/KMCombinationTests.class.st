@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #KMCombinationTests,
 	#superclass : #AbstractKeymappingTest,
-	#category : #Keymapping-Tests,
-	#timestamp : ''
+	#category : #Keymapping-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMCombinationTests>>testCombinationOfSimpleShortcuts [
+{ #category : #tests }
+KMCombinationTests >> testCombinationOfSimpleShortcuts [
 	| shortcut otherShortcut combination |
 	shortcut := $a command.
 	otherShortcut := $b ctrl.
@@ -25,11 +18,8 @@ KMCombinationTests>>testCombinationOfSimpleShortcuts [
 	self assert: ((combination collect: #platform) allSatisfy: [ :p | p = #all ]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMCombinationTests>>testCombinationSeveralShortcuts [
+{ #category : #tests }
+KMCombinationTests >> testCombinationSeveralShortcuts [
 	| shortcut platforms |
 	platforms := Set new.
 	
@@ -41,11 +31,8 @@ KMCombinationTests>>testCombinationSeveralShortcuts [
 	self assert: (platforms includes: #all).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMCombinationTests>>testMacDependentShortcut [
+{ #category : #tests }
+KMCombinationTests >> testMacDependentShortcut [
 	| shortcut |
 	shortcut := $a ctrl mac.
 	
@@ -54,11 +41,8 @@ KMCombinationTests>>testMacDependentShortcut [
 	self assert: shortcut platform equals: #MacOSX.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMCombinationTests>>testMacMetaShouldBeCmd [
+{ #category : #tests }
+KMCombinationTests >> testMacMetaShouldBeCmd [
 	OSPlatform current isMacOS ifFalse: [ ^ self skip ].
 	self assert: $n meta equals: $n command.
 	self assert: $n command equals: $n meta.
@@ -66,11 +50,8 @@ KMCombinationTests>>testMacMetaShouldBeCmd [
 	self assert: $n command shift equals: $n meta shift
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMCombinationTests>>testPlatformDependentShortcut [
+{ #category : #tests }
+KMCombinationTests >> testPlatformDependentShortcut [
 	| shortcut |
 	shortcut := $a ctrl win.
 	
@@ -79,22 +60,16 @@ KMCombinationTests>>testPlatformDependentShortcut [
 	self assert: shortcut platform equals: #Windows.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMCombinationTests>>testShortcutIsSimpleCombination [
+{ #category : #tests }
+KMCombinationTests >> testShortcutIsSimpleCombination [
 	| shortcut |
 	shortcut := $a command.
 	self assert: (shortcut includes: shortcut).
 	self assert: shortcut shortcut equals: shortcut.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMCombinationTests>>testUnixDependentShortcut [
+{ #category : #tests }
+KMCombinationTests >> testUnixDependentShortcut [
 	| shortcut |
 	shortcut := $a ctrl unix.
 	
@@ -103,11 +78,8 @@ KMCombinationTests>>testUnixDependentShortcut [
 	self assert: shortcut platform equals: #Unix.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMCombinationTests>>testWindowsAndUnixMetaShouldBeCtrl [
+{ #category : #tests }
+KMCombinationTests >> testWindowsAndUnixMetaShouldBeCtrl [
 	OSPlatform current isMacOS ifTrue: [ ^ self skip ].
 	self assert: $n meta equals: $n ctrl.
 	self assert: $n ctrl equals: $n meta.
@@ -115,11 +87,8 @@ KMCombinationTests>>testWindowsAndUnixMetaShouldBeCtrl [
 	self assert: $n ctrl shift equals: $n meta shift
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMCombinationTests>>testWindowsDependentShortcut [
+{ #category : #tests }
+KMCombinationTests >> testWindowsDependentShortcut [
 	| shortcut |
 	shortcut := $a ctrl win.
 	

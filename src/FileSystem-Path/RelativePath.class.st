@@ -5,31 +5,21 @@ Class {
 	#name : #RelativePath,
 	#superclass : #Path,
 	#type : #variable,
-	#category : #FileSystem-Path,
-	#timestamp : '<historical>'
+	#category : #FileSystem-Path
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-RelativePath>>isAbsolute [
+{ #category : #testing }
+RelativePath >> isAbsolute [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-RelativePath>>isRoot [
+{ #category : #testing }
+RelativePath >> isRoot [
 	^ false
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-RelativePath>>printOn: aStream [
+{ #category : #printing }
+RelativePath >> printOn: aStream [
 	aStream nextPutAll: 'Path '.
 	self isWorkingDirectory
 		ifTrue: [aStream nextPutAll: 'workingDirectory']
@@ -48,11 +38,8 @@ RelativePath>>printOn: aStream [
 			
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-RelativePath>>printOn: aStream delimiter: aCharacter [
+{ #category : #printing }
+RelativePath >> printOn: aStream delimiter: aCharacter [
 	self isWorkingDirectory ifTrue: [aStream nextPut: $.. ^ self].
 	super printOn: aStream delimiter: aCharacter
 ]

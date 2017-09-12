@@ -4,24 +4,17 @@ A SourceMessageConverter is a wrapper wich display the source code of the provid
 Class {
 	#name : #SourceMethodConverter,
 	#superclass : #AbstractMethodConverter,
-	#category : #Tool-Base,
-	#timestamp : '<historical>'
+	#category : #Tool-Base
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SourceMethodConverter>>internalGetText [
+{ #category : #private }
+SourceMethodConverter >> internalGetText [
 
 	^ method sourceCode
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SourceMethodConverter>>shouldShout [
+{ #category : #initialization }
+SourceMethodConverter >> shouldShout [
 
 	^ true.
 ]

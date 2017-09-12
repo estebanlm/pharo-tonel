@@ -1,40 +1,26 @@
-Extension {
-	#name : #MCHttpRepository
-}
+Extension { #name : #MCHttpRepository }
 
-{
-	#category : #'*Komitter-Models',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCHttpRepository>>isPrivatePharoRepository [
+{ #category : #'*Komitter-Models' }
+MCHttpRepository >> isPrivatePharoRepository [
 	
 	^ self class pharoLocations includes: self location
 ]
 
-{
-	#category : #'*Komitter-Models',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCHttpRepository>>isRemote [
+{ #category : #'*Komitter-Models' }
+MCHttpRepository >> isRemote [
 	^ self isPrivatePharoRepository not
 ]
 
-{
-	#category : #'*Komitter-Models',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCHttpRepository>>koRemote [
+{ #category : #'*Komitter-Models' }
+MCHttpRepository >> koRemote [
 
 	^ KomitHttpRemote new
 		remote: self;
 		yourself
 ]
 
-{
-	#category : #'*Komitter-Models',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCHttpRepository class>>pharoLocations [
+{ #category : #'*Komitter-Models' }
+MCHttpRepository class >> pharoLocations [
 	"Answer the locations for both pharo and pharo inbox repositories.
 	No commit should actually be pushed directly there"
 

@@ -41,336 +41,221 @@ Class {
 	#classVars : [
 		'Resolver'
 	],
-	#category : #FileSystem-Core-Public,
-	#timestamp : '<historical>'
+	#category : #FileSystem-Core-Public
 }
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>A [
+{ #category : #windows-origins }
+FileLocator class >> A [
 	^ self driveNamed: #A 
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>B [
+{ #category : #windows-origins }
+FileLocator class >> B [
 	^ self driveNamed: #B
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>C [
+{ #category : #windows-origins }
+FileLocator class >> C [
 	^ self driveNamed: #C
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>D [
+{ #category : #windows-origins }
+FileLocator class >> D [
 	^ self driveNamed: #D
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>E [
+{ #category : #windows-origins }
+FileLocator class >> E [
 	^ self driveNamed: #E
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>F [
+{ #category : #windows-origins }
+FileLocator class >> F [
 	^ self driveNamed: #F
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>G [
+{ #category : #windows-origins }
+FileLocator class >> G [
 	^ self driveNamed: #G
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>H [
+{ #category : #windows-origins }
+FileLocator class >> H [
 	^ self driveNamed: #H
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>I [
+{ #category : #windows-origins }
+FileLocator class >> I [
 	^ self driveNamed: #I
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>J [
+{ #category : #windows-origins }
+FileLocator class >> J [
 	^ self driveNamed: #J
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>K [
+{ #category : #windows-origins }
+FileLocator class >> K [
 	^ self driveNamed: #K
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>L [
+{ #category : #windows-origins }
+FileLocator class >> L [
 	^ self driveNamed: #L
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>M [
+{ #category : #windows-origins }
+FileLocator class >> M [
 	^ self driveNamed: #M
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>N [
+{ #category : #windows-origins }
+FileLocator class >> N [
 	^ self driveNamed: #N
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>O [
+{ #category : #windows-origins }
+FileLocator class >> O [
 	^ self driveNamed: #O
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>P [
+{ #category : #windows-origins }
+FileLocator class >> P [
 	^ self driveNamed: #P
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>Q [
+{ #category : #windows-origins }
+FileLocator class >> Q [
 	^ self driveNamed: #Q
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>R [
+{ #category : #windows-origins }
+FileLocator class >> R [
 	^ self driveNamed: #R
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>S [
+{ #category : #windows-origins }
+FileLocator class >> S [
 	^ self driveNamed: #S
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>T [
+{ #category : #windows-origins }
+FileLocator class >> T [
 	^ self driveNamed: #T
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>U [
+{ #category : #windows-origins }
+FileLocator class >> U [
 	^ self driveNamed: #U
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>V [
+{ #category : #windows-origins }
+FileLocator class >> V [
 	^ self driveNamed: #V
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>W [
+{ #category : #windows-origins }
+FileLocator class >> W [
 	^ self driveNamed: #W
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>X [
+{ #category : #windows-origins }
+FileLocator class >> X [
 	^ self driveNamed: #X
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>Y [
+{ #category : #windows-origins }
+FileLocator class >> Y [
 	^ self driveNamed: #Y
 
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>Z [
+{ #category : #windows-origins }
+FileLocator class >> Z [
 	^ self driveNamed: #Z
 
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>addResolver: aResolver [
+{ #category : #adding }
+FileLocator class >> addResolver: aResolver [
 	Resolver addResolver: aResolver
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>cache [
+{ #category : #origins }
+FileLocator class >> cache [
 	^ self origin: #cache
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>changes [
+{ #category : #origins }
+FileLocator class >> changes [
 	^ self origin: #changes 
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>cwd [
+{ #category : #origins }
+FileLocator class >> cwd [
 	^ self workingDirectory
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>desktop [
+{ #category : #origins }
+FileLocator class >> desktop [
 	^ self origin: #desktop
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>documents [
+{ #category : #origins }
+FileLocator class >> documents [
 	^ self origin: #documents
 ]
 
-{
-	#category : #windows-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>driveNamed: driveName [
+{ #category : #windows-origins }
+FileLocator class >> driveNamed: driveName [
 	^ FileReference fileSystem: (FileSystem disk) path: Path / (driveName, ':')
 ]
 
-{
-	#category : #flushing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>flushCaches [
+{ #category : #flushing }
+FileLocator class >> flushCaches [
 	Resolver flushCaches
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>home [
+{ #category : #origins }
+FileLocator class >> home [
 	^ self origin: #home
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>image [
+{ #category : #origins }
+FileLocator class >> image [
 	^ self origin: #image 
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>imageDirectory [
+{ #category : #origins }
+FileLocator class >> imageDirectory [
 	^ self origin: #imageDirectory 
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>initialize [
+{ #category : #'class initialization' }
+FileLocator class >> initialize [
 	"FileLocator is needed to initialize SystemSettingsPersistence (call to FileLocator>>#preferences),
 	and could be useful for other classes.
 	Let initialize FileLocator before other standard system classes."
@@ -379,52 +264,34 @@ FileLocator class>>initialize [
 	self startUp: true
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>localDirectory [
+{ #category : #origins }
+FileLocator class >> localDirectory [
 	^ self origin: #localDirectory 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>origin: aSymbol  [
+{ #category : #'instance creation' }
+FileLocator class >> origin: aSymbol [ 
 	^ self origin: aSymbol path: Path workingDirectory
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>origin: aSymbol path: aPath [
+{ #category : #'instance creation' }
+FileLocator class >> origin: aSymbol path: aPath [
 	^ self basicNew 
 			initializeWithOrigin: aSymbol path: aPath
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>preferences [
+{ #category : #origins }
+FileLocator class >> preferences [
 	^ self origin: #preferences
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>root [
+{ #category : #origins }
+FileLocator class >> root [
 	^ FileSystem disk root
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>startUp: resuming [
+{ #category : #'system startup' }
+FileLocator class >> startUp: resuming [
 	resuming
 		ifFalse: [ ^ self ].
 	Resolver := InteractiveResolver new.
@@ -432,11 +299,8 @@ FileLocator class>>startUp: resuming [
 	Resolver addResolver: PlatformResolver forCurrentPlatform
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>supportedOrigins [
+{ #category : #accessing }
+FileLocator class >> supportedOrigins [
 	| origins current |
 	origins := IdentitySet new.
 	current := Resolver.
@@ -446,134 +310,86 @@ FileLocator class>>supportedOrigins [
 	^ origins
 ]
 
-{
-	#category : #mac-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>systemApplicationSupport [
+{ #category : #mac-origins }
+FileLocator class >> systemApplicationSupport [
 	^ self origin: #systemApplicationSupport
 ]
 
-{
-	#category : #mac-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>systemLibrary [
+{ #category : #mac-origins }
+FileLocator class >> systemLibrary [
 	^ self origin: #systemLibrary
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>temp [
+{ #category : #origins }
+FileLocator class >> temp [
 	^ self origin: #temp
 ]
 
-{
-	#category : #mac-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>userApplicationSupport [
+{ #category : #mac-origins }
+FileLocator class >> userApplicationSupport [
 	^ self origin: #userApplicationSupport
 ]
 
-{
-	#category : #unix-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>userData [
+{ #category : #unix-origins }
+FileLocator class >> userData [
 	^ self origin: #userData
 ]
 
-{
-	#category : #mac-origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>userLibrary [
+{ #category : #mac-origins }
+FileLocator class >> userLibrary [
 	^ self origin: #userLibrary
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>vmBinary [
+{ #category : #origins }
+FileLocator class >> vmBinary [
 	^ self origin: #vmBinary
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>vmDirectory [
+{ #category : #origins }
+FileLocator class >> vmDirectory [
 	^ self origin: #vmDirectory
 ]
 
-{
-	#category : #origins,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator class>>workingDirectory [
+{ #category : #origins }
+FileLocator class >> workingDirectory [
 	^ FileSystem disk referenceTo: RelativePath new
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>= other [
+{ #category : #comparing }
+FileLocator >> = other [
 	^ self species = other species
 		and: [origin = other origin
 			and: [path = other path]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>absolutePath [
+{ #category : #accessing }
+FileLocator >> absolutePath [
 	"Return the absolute path"
 	^ self resolve path
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>asAbsolute [
+{ #category : #converting }
+FileLocator >> asAbsolute [
 	^ self 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>asFileReference [
+{ #category : #converting }
+FileLocator >> asFileReference [
 	^ self resolve
 ]
 
-{
-	#category : #streams-compatibility,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>binaryReadStream [
+{ #category : #streams-compatibility }
+FileLocator >> binaryReadStream [
 	^ self resolve binaryReadStream
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>copyWithPath: newPath [
+{ #category : #copying }
+FileLocator >> copyWithPath: newPath [
 	^ self class origin: origin path: newPath
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>doesNotUnderstand: aMessage [
+{ #category : #'error handling' }
+FileLocator >> doesNotUnderstand: aMessage [
 	"Redirect message to the resolved version of this FileLocator.
 	If FileReference won't understand the message send a normal DNU."
 
@@ -586,69 +402,45 @@ FileLocator>>doesNotUnderstand: aMessage [
 	^ super doesNotUnderstand: aMessage.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>fullPath [
+{ #category : #accessing }
+FileLocator >> fullPath [
 	^ self resolve path
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>hash [
+{ #category : #comparing }
+FileLocator >> hash [
 	^ origin hash bitXor: path hash
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>initializeWithOrigin: aSymbol path: aPath [
+{ #category : #initialize-release }
+FileLocator >> initializeWithOrigin: aSymbol path: aPath [
 	self initialize.
 	origin := aSymbol.
 	path := aPath.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>isAbsolute [
+{ #category : #testing }
+FileLocator >> isAbsolute [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>isRelative [
+{ #category : #testing }
+FileLocator >> isRelative [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>origin [
+{ #category : #accessing }
+FileLocator >> origin [
 	^ origin
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>path [
+{ #category : #accessing }
+FileLocator >> path [
 	^ path
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>printOn: aStream [
+{ #category : #printing }
+FileLocator >> printOn: aStream [
 	| fs |
 	aStream
 		nextPut: ${;
@@ -661,19 +453,13 @@ FileLocator>>printOn: aStream [
 	fs printPath: path on: aStream
 ]
 
-{
-	#category : #streams,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>readStream [
+{ #category : #streams }
+FileLocator >> readStream [
 	^ self resolve readStream 
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>renameTo: newBasename [
+{ #category : #operations }
+FileLocator >> renameTo: newBasename [
 	
 	| result |
 	result := self resolve renameTo: newBasename.
@@ -682,29 +468,20 @@ FileLocator>>renameTo: newBasename [
 		ifFalse: [ path := result path ]
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>resolve [
+{ #category : #navigating }
+FileLocator >> resolve [
 	^ (Resolver resolve: origin) resolve: path
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>resolveString: aString [
+{ #category : #navigating }
+FileLocator >> resolveString: aString [
 	| filesystem thePath |
 	filesystem := (Resolver resolve: origin) fileSystem.
 	thePath := filesystem pathFromString: aString.
 	^ self withPath: (path resolvePath: thePath)
 ]
 
-{
-	#category : #streams,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileLocator>>writeStream [
+{ #category : #streams }
+FileLocator >> writeStream [
 	^ self resolve writeStream 
 ]

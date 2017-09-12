@@ -8,15 +8,11 @@ Class {
 		'left',
 		'right'
 	],
-	#category : #FuelTests-Mocks,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:23'
+	#category : #FuelTests-Mocks
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPair>>= anObject [
+{ #category : #comparing }
+FLPair >> = anObject [
 	"Answer whether the receiver and anObject represent the same object."
 
 	self == anObject
@@ -26,56 +22,38 @@ FLPair>>= anObject [
 	^ self right = anObject right and: [ self left = anObject left ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPair>>hash [
+{ #category : #comparing }
+FLPair >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
 
 	^ self right hash bitXor: self left hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPair>>left [
+{ #category : #accessing }
+FLPair >> left [
 	^ left
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPair>>left: anObject [
+{ #category : #accessing }
+FLPair >> left: anObject [
 	left := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPair>>method1 [
+{ #category : #accessing }
+FLPair >> method1 [
 	self name.
 	self printString.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPair>>method2 [
+{ #category : #accessing }
+FLPair >> method2 [
 	self name.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPair>>methodWithTemp [
+{ #category : #accessing }
+FLPair >> methodWithTemp [
 	| string |
 	string := 'test'.
 	self name.
@@ -83,11 +61,8 @@ FLPair>>methodWithTemp [
 	
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPair>>printOn: aStream [
+{ #category : #printing }
+FLPair >> printOn: aStream [
 	"Append a sequence of characters to aStream that identify the receiver."
 
 	super printOn: aStream.
@@ -99,18 +74,12 @@ FLPair>>printOn: aStream [
 		nextPutAll: ')'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPair>>right [
+{ #category : #accessing }
+FLPair >> right [
 	^ right
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPair>>right: anObject [
+{ #category : #accessing }
+FLPair >> right: anObject [
 	right := anObject
 ]

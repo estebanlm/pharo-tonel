@@ -47,57 +47,38 @@ Class {
 	#instVars : [
 		'columns'
 	],
-	#category : #Glamour-FastTable-Presentations,
-	#timestamp : 'AndreiChis 2/6/2017 14:28'
+	#category : #Glamour-FastTable-Presentations
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeTablePresentation>>columns [
+{ #category : #accessing }
+GLMFastTreeTablePresentation >> columns [
 	^ columns ifNil: [ columns := OrderedCollection new ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeTablePresentation>>hideHeader [
+{ #category : #scripting }
+GLMFastTreeTablePresentation >> hideHeader [
 	^ self parameters at: 'shouldShowHeader' put: [ false ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeTablePresentation>>intercellSpacing [
+{ #category : #scripting }
+GLMFastTreeTablePresentation >> intercellSpacing [
 	^ self parameters 
 		at: 'intercellSpacing' 
 		ifAbsent: [ self class defaultIntercellSpacing ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeTablePresentation>>intercellSpacing: aNumber [
+{ #category : #scripting }
+GLMFastTreeTablePresentation >> intercellSpacing: aNumber [
 	self parameters at: 'intercellSpacing' put: aNumber
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeTablePresentation>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMFastTreeTablePresentation >> renderGlamorouslyOn: aRenderer [ 
 	self registerAnnouncements.
 	^ aRenderer renderFastTreeWithColumnsPresentation: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeTablePresentation>>shouldShowHeader [
+{ #category : #accessing }
+GLMFastTreeTablePresentation >> shouldShowHeader [
 	^ self parameters at: 'shouldShowHeader' ifAbsent: [ true ]
 ]

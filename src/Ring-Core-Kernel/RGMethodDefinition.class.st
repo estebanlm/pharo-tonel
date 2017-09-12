@@ -82,15 +82,11 @@ Class {
 		'stamp',
 		'package'
 	],
-	#category : #Ring-Core-Kernel,
-	#timestamp : 'VeronicaUquillas 9/18/2011 16:00'
+	#category : #Ring-Core-Kernel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition class>>class: aRGBehaviorDefinition selector: aString [
+{ #category : #'instance creation' }
+RGMethodDefinition class >> class: aRGBehaviorDefinition selector: aString [
 	"Create a ring method definition from a ring class and a selector"
 
 	^(self class: aRGBehaviorDefinition)
@@ -98,49 +94,34 @@ RGMethodDefinition class>>class: aRGBehaviorDefinition selector: aString [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition class>>className: aString selector: aSelector isMetaSide: aBoolean [
+{ #category : #'instance creation' }
+RGMethodDefinition class >> className: aString selector: aSelector isMetaSide: aBoolean [
 
 	^ (self class: (RGClassDefinition named: aString) selector: aSelector) isMetaSide: aBoolean; yourself
 ]
 
-{
-	#category : #elements-annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition class>>isExtensionKey  [
+{ #category : #elements-annotations }
+RGMethodDefinition class >> isExtensionKey [ 
 
 	^#isExtension
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition class>>realClass: aClass selector: aString [
+{ #category : #'instance creation' }
+RGMethodDefinition class >> realClass: aClass selector: aString [
 	"Creates a ring method definition from a Smalltalk class and a selector <compiledMethod>"
 
 	^(aClass>>aString asSymbol) asActiveRingDefinition
 ]
 
-{
-	#category : #categories,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition class>>unclassifiedProtocolName [
+{ #category : #categories }
+RGMethodDefinition class >> unclassifiedProtocolName [
 	"Return the string labeling the unclassified protocol."
 
 	^ 'as yet unclassified'
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>><= aRGMethodDefinition [
+{ #category : #comparing }
+RGMethodDefinition >> <= aRGMethodDefinition [
 	"Sort method definitions according to: 1. class name - 2. class comment - 3. method selector - 4. timestamp"
 
 	self parentName < aRGMethodDefinition parentName ifTrue: [^true].
@@ -155,11 +136,8 @@ RGMethodDefinition>><= aRGMethodDefinition [
     			  self timeStamp <= aRGMethodDefinition timeStamp ]]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>= aRGMethodDefinition [
+{ #category : #comparing }
+RGMethodDefinition >> = aRGMethodDefinition [
 	"This method look for equality of the key properties of the receiver"
 
 
@@ -167,21 +145,15 @@ RGMethodDefinition>>= aRGMethodDefinition [
 		and: [ self selector == aRGMethodDefinition selector]
 ]
 
-{
-	#category : #'managing container',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>addInContainer: aRGContainer [
+{ #category : #'managing container' }
+RGMethodDefinition >> addInContainer: aRGContainer [
 
 	aRGContainer addMethod: self
 	
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>argumentNames [
+{ #category : #traits }
+RGMethodDefinition >> argumentNames [
 	"Return an array with the argument names of the method's selector"
 
 	self isActive
@@ -189,21 +161,15 @@ RGMethodDefinition>>argumentNames [
 	^ self ast ifNotNil:[:ast | ast arguments collect: #name ]
 ]
 
-{
-	#category : #'type of methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>asActive [
+{ #category : #'type of methods' }
+RGMethodDefinition >> asActive [
 
 	"Sets the receiver as active object, which will allow itself to retrieve its data from the compiled method"
 	self annotationNamed: self class statusKey put: #active
 ]
 
-{
-	#category : #'type of methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>asHistorical [
+{ #category : #'type of methods' }
+RGMethodDefinition >> asHistorical [
 
 	"Sets the receiver as historical object, which will allow itself to retrieve its data using the sourcePointer"
 	self annotationNamed: self class statusKey put: #historical.
@@ -216,77 +182,53 @@ RGMethodDefinition>>asHistorical [
 			ifFalse:[ self sourcePointer: pointer ] ]
 ]
 
-{
-	#category : #'type of methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>asPassive [
+{ #category : #'type of methods' }
+RGMethodDefinition >> asPassive [
 
 	"Sets the receiver as passive object, which will allow itself to retrieve its data that was assigned in its creation"
 	self annotationNamed: self class statusKey put: #passive
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>ast [
+{ #category : #accessing }
+RGMethodDefinition >> ast [
 	self isActive
 		ifTrue: [ ^ self compiledMethod ast ].
 	^  self sourceCode ifNotNil: [ ^ self astFromSource ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>astFromSource [
+{ #category : #private }
+RGMethodDefinition >> astFromSource [
 	^ RBParser parseMethod: self sourceCode
 ]
 
-{
-	#category : #'stamp values',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>author  [
+{ #category : #'stamp values' }
+RGMethodDefinition >> author [ 
 
 	^self 
 		annotationNamed: self class authorKey
 		ifAbsentPut: [ self class parseAuthorAliasFrom: self stamp ]
 ]
 
-{
-	#category : #'stamp values',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>author: aString  [
+{ #category : #'stamp values' }
+RGMethodDefinition >> author: aString [ 
 
 	self annotationNamed: self class authorKey put: aString 
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>category [
+{ #category : #'backward compatibility' }
+RGMethodDefinition >> category [
 
 	^ self protocol
 ]
 
-{
-	#category : #'to remove as soon as possible',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>classIsMeta [
+{ #category : #'to remove as soon as possible' }
+RGMethodDefinition >> classIsMeta [
 
 	^self isMetaSide
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>compiledMethod [
+{ #category : #accessing }
+RGMethodDefinition >> compiledMethod [
 	"Retrieves the compiled method of this definition if exists"
 	
 	| rClass |
@@ -297,31 +239,22 @@ RGMethodDefinition>>compiledMethod [
 	^nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>containsHalt [
+{ #category : #testing }
+RGMethodDefinition >> containsHalt [
 	
 	^ self method containsHalt
 ]
 
-{
-	#category : #'type of methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>fromActiveToHistorical [
+{ #category : #'type of methods' }
+RGMethodDefinition >> fromActiveToHistorical [
 	"If the receiver was generated as an active method, it can be converted to a historical one by reading the data of the compiled method (if exists)"
 	
 	self isActive ifTrue: [
 		self asHistorical ]
 ]
 
-{
-	#category : #'type of methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>fromActiveToPassive [
+{ #category : #'type of methods' }
+RGMethodDefinition >> fromActiveToPassive [
 	"If the receiver was generated as an active method, it can be converted to a passive one by reading the data of the compiled method (if exists)"
 
 	| compiledMethod |
@@ -336,58 +269,40 @@ RGMethodDefinition>>fromActiveToPassive [
 	self asPassive
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>fullName [
+{ #category : #accessing }
+RGMethodDefinition >> fullName [
 	"Keeps a unique description for the receiver. As annotation to avoid converting each time is invoked"
 	
 	^self annotationNamed: self class fullNameKey
 		ifAbsentPut: [ (self parentName, '>>', self selector) asSymbol ]
 ]
 
-{
-	#category : #'source pointers',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>getPreambleFrom: aFileStream at: position [
+{ #category : #'source pointers' }
+RGMethodDefinition >> getPreambleFrom: aFileStream at: position [
 	^ SourceFiles getPreambleFrom: aFileStream at: position
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>hasStamp [
+{ #category : #testing }
+RGMethodDefinition >> hasStamp [
 
 	^stamp isEmptyOrNil not
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>hash [
+{ #category : #comparing }
+RGMethodDefinition >> hash [
 
 	^super hash bitXor: self selector hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isAbstract [
+{ #category : #testing }
+RGMethodDefinition >> isAbstract [
 	self isActive
 		ifTrue: [ ^ self compiledMethod isAbstract ].
 	^ false
 ]
 
-{
-	#category : #'type of methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isActive [
+{ #category : #'type of methods' }
+RGMethodDefinition >> isActive [
 
 	"A ring method isActive when it needs to access the compiledMethod for retrieving its data"
 	^(self annotationNamed: self class statusKey) 
@@ -395,20 +310,14 @@ RGMethodDefinition>>isActive [
 		ifNotNil:[ :status| status == #active ]
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isBinarySelector [
+{ #category : #traits }
+RGMethodDefinition >> isBinarySelector [
 	^self selector
 		allSatisfy: [:each | each isSpecial]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isDefined [
+{ #category : #testing }
+RGMethodDefinition >> isDefined [
 	"Answer whether the receiver exists in the environment"
 	
 	| rClass |
@@ -417,22 +326,16 @@ RGMethodDefinition>>isDefined [
 	^rClass notNil and: [ rClass includesSelector: self selector ]
 ]
 
-{
-	#category : #SUnit-support,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isErrorTest [
+{ #category : #SUnit-support }
+RGMethodDefinition >> isErrorTest [
 	"Is the receiver a test method that raised an error?"
 
 	^ self methodClass isTestCase
 		and: [ self methodClass methodRaisedError: self selector ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isExtension [
+{ #category : #accessing }
+RGMethodDefinition >> isExtension [
 	"The receiver is an extension when is defined in a different package to the one of its parent.
 	Ring allows to set this property. If not assigned tries to find its value "
 	
@@ -447,42 +350,30 @@ RGMethodDefinition>>isExtension [
 				ifFalse: [ self protocol ifNil:[ false ] ifNotNil:[ :prot|  prot beginsWith: '*' ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isExtension: aBoolean [
+{ #category : #accessing }
+RGMethodDefinition >> isExtension: aBoolean [
 	"Explicitily set that the receiver is an extension"
 	
 	self annotationNamed: self class isExtensionKey put: aBoolean 
 ]
 
-{
-	#category : #SUnit-support,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isFailedTest [
+{ #category : #SUnit-support }
+RGMethodDefinition >> isFailedTest [
 	"Is the receiver a test method that failed?"
 
 	^ self methodClass isTestCase
 		and: [ self methodClass methodFailed: self selector ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isFromTrait [
+{ #category : #testing }
+RGMethodDefinition >> isFromTrait [
 
 	"Return true for methods that have been included from Traits"
 	^ self origin isTrait and: [ self origin ~= self methodClass ]
 ]
 
-{
-	#category : #'type of methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isHistorical [
+{ #category : #'type of methods' }
+RGMethodDefinition >> isHistorical [
 
 	"A ring method can be used to point an old version of the receiver, in this case it will use the sourcePointer to retrieve its information"
 	^(self annotationNamed: self class statusKey) 
@@ -490,20 +381,14 @@ RGMethodDefinition>>isHistorical [
 		ifNotNil:[ :status| status == #historical ]
 ]
 
-{
-	#category : #'managing container',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isIncludedInContainer: aRGContainer [
+{ #category : #'managing container' }
+RGMethodDefinition >> isIncludedInContainer: aRGContainer [
 
 	^aRGContainer includesMethod: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isLocalSelector [
+{ #category : #testing }
+RGMethodDefinition >> isLocalSelector [
 	"Answer whether the receiver exists in the environment as a local implementation"
 	
 	| rClass |
@@ -511,41 +396,29 @@ RGMethodDefinition>>isLocalSelector [
 	^rClass notNil and: [ rClass includesLocalSelector: self selector ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isMethod [
+{ #category : #testing }
+RGMethodDefinition >> isMethod [
 
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isOverridden [
+{ #category : #testing }
+RGMethodDefinition >> isOverridden [
 	self isActive
 		ifTrue: [ ^ self compiledMethod isOverridden ].
 	^ false
 ]
 
-{
-	#category : #SUnit-support,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isPassedTest [
+{ #category : #SUnit-support }
+RGMethodDefinition >> isPassedTest [
 	"Is the receiver a test method that passed?"
 
 	^ self methodClass isTestCase
 		and: [ self methodClass methodPassed: self selector ]
 ]
 
-{
-	#category : #'type of methods',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isPassive [
+{ #category : #'type of methods' }
+RGMethodDefinition >> isPassive [
 
 	"A ring method isPassive when it retrieves the data that was assigned in its creation.
 	By default is passive"
@@ -554,11 +427,8 @@ RGMethodDefinition>>isPassive [
 		ifNotNil:[ :status| status == #passive ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isSameRevisionAs: aRGMethodDefinition [
+{ #category : #testing }
+RGMethodDefinition >> isSameRevisionAs: aRGMethodDefinition [
 	"This method look for equality of the properties of the receiver"
 	"Stamp is ignored as in many cases a method is saved without containing any change. However it appears as changed due to a different stamp"
 	self flag: 'needs to be evaluated'.
@@ -569,11 +439,8 @@ RGMethodDefinition>>isSameRevisionAs: aRGMethodDefinition [
 				and: [ self sourceCode = aRGMethodDefinition sourceCode ] ] ]
 ]
 
-{
-	#category : #SUnit-support,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isTestMethod [
+{ #category : #SUnit-support }
+RGMethodDefinition >> isTestMethod [
 	"Is the receiver a TestCase test method?"
 
 	| selectorString |
@@ -588,21 +455,15 @@ RGMethodDefinition>>isTestMethod [
 	^ (selectorString beginsWith: 'test') or: [ selectorString beginsWith: 'should' ]
 ]
 
-{
-	#category : #'to remove as soon as possible',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>isValid [
+{ #category : #'to remove as soon as possible' }
+RGMethodDefinition >> isValid [
 	"verifies that the receiver is locally defined in the class and that is not a DoIt"
 
 	^self isDefined
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>literals [
+{ #category : #literals }
+RGMethodDefinition >> literals [
 	
 	"bad code but I do not know how to properly retrieve the good compiled method using a RGMethodDefinition"
 
@@ -610,87 +471,60 @@ RGMethodDefinition>>literals [
 	^ self compiledMethod literals.
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>messages [
+{ #category : #'backward compatibility' }
+RGMethodDefinition >> messages [
 	self isActive
 		ifTrue: [ ^ self method messages ].
 	^ self ast ifNotNil: [ :ast | ast sentMessages ] ifNil: [ #() ]
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>method [
+{ #category : #'backward compatibility' }
+RGMethodDefinition >> method [
 
 	^self compiledMethod
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>methodClass [
+{ #category : #'backward compatibility' }
+RGMethodDefinition >> methodClass [
 	"Return the class to which the receiver belongs to."
 	
 	^ self realClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>numArgs [
+{ #category : #accessing }
+RGMethodDefinition >> numArgs [
 	^ self selector asString numArgs
 ]
 
-{
-	#category : #metrics,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>numberOfLinesOfCode [
+{ #category : #metrics }
+RGMethodDefinition >> numberOfLinesOfCode [
 
 	^ self annotationNamed: #numberOfLinesOfCode ifAbsentPut: [ self sourceCode lineCount ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>origin [
+{ #category : #accessing }
+RGMethodDefinition >> origin [
 	"Return the real oring of this method."
 	^ self compiledMethod 
 		ifNil: [ self methodClass ]
 		ifNotNil: [ :compileMethod| compileMethod origin ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>package [
+{ #category : #accessing }
+RGMethodDefinition >> package [
 	"Retrieves the package in which this class is contained, if exists"
 	
 	^package
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>package: aRGPackage [
+{ #category : #accessing }
+RGMethodDefinition >> package: aRGPackage [
 
 	package:= aRGPackage
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>printOn: aStream  [
+{ #category : #printing }
+RGMethodDefinition >> printOn: aStream [ 
 
 	self parentName ifNotNil: [
 		aStream nextPutAll: self parentName;
@@ -698,11 +532,8 @@ RGMethodDefinition>>printOn: aStream  [
 	aStream print: self selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>protocol [
+{ #category : #accessing }
+RGMethodDefinition >> protocol [
 
 	self isActive 
 		ifTrue: [ ^ self compiledMethod ifNil: [ protocol ] ifNotNil: [ self compiledMethod protocol ]].
@@ -711,20 +542,14 @@ RGMethodDefinition>>protocol [
 	^ protocol			
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>protocol: anObject [
+{ #category : #accessing }
+RGMethodDefinition >> protocol: anObject [
 
 	protocol := anObject
 ]
 
-{
-	#category : #'source pointers',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>protocolAtPointer [
+{ #category : #'source pointers' }
+RGMethodDefinition >> protocolAtPointer [
 
 	"A RGMethodDefinition that was set as historical will retrieve the protocol using the sourcePointer"
 
@@ -733,48 +558,33 @@ RGMethodDefinition>>protocolAtPointer [
 		ifFalse:[ nil ]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>recompile [
+{ #category : #operations }
+RGMethodDefinition >> recompile [
 	self method recompile
 ]
 
-{
-	#category : #'managing container',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>removeFromContainer: aRGContainer [
+{ #category : #'managing container' }
+RGMethodDefinition >> removeFromContainer: aRGContainer [
 
 	aRGContainer removeMethod: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>selector [
+{ #category : #accessing }
+RGMethodDefinition >> selector [
 	"Retrieves the name of the method"
 
 	^name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>selector: aSymbol [
+{ #category : #accessing }
+RGMethodDefinition >> selector: aSymbol [
 	"The name of a method is known as #selector"
 
 	name := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>sourceCode [
+{ #category : #accessing }
+RGMethodDefinition >> sourceCode [
 
 	self isActive 
 		ifTrue: [ ^ self compiledMethod ifNil:[ sourceCode ] ifNotNil: [ self compiledMethod sourceCode ]].
@@ -783,20 +593,14 @@ RGMethodDefinition>>sourceCode [
 	^ sourceCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>sourceCode: anObject [
+{ #category : #accessing }
+RGMethodDefinition >> sourceCode: anObject [
 
 	sourceCode := anObject
 ]
 
-{
-	#category : #'source pointers',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>sourceCodeAtPointer [
+{ #category : #'source pointers' }
+RGMethodDefinition >> sourceCodeAtPointer [
 
 	"A RGMethodDefinition that was set as historical will retrieve the sourceCode using the sourcePointer"
 
@@ -805,11 +609,8 @@ RGMethodDefinition>>sourceCodeAtPointer [
 		ifFalse:[ nil ]
 ]
 
-{
-	#category : #'source pointers',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>sourcePointer [
+{ #category : #'source pointers' }
+RGMethodDefinition >> sourcePointer [
 	"Retrieves the sourcePointer for this definition if exists"
 	
 	^ self isActive 
@@ -817,20 +618,14 @@ RGMethodDefinition>>sourcePointer [
 		ifFalse: [ self annotationNamed: self class sourcePointerKey ]
 ]
 
-{
-	#category : #'source pointers',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>sourcePointer: aNumber [
+{ #category : #'source pointers' }
+RGMethodDefinition >> sourcePointer: aNumber [
 
 	self annotationNamed:  self class sourcePointerKey put: aNumber 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>stamp [
+{ #category : #accessing }
+RGMethodDefinition >> stamp [
 
 	self isActive 
 		ifTrue: [ ^ self compiledMethod timeStamp ].
@@ -839,21 +634,15 @@ RGMethodDefinition>>stamp [
 	^ stamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>stamp: anObject [
+{ #category : #accessing }
+RGMethodDefinition >> stamp: anObject [
 	"stores an author alias and a timestamp"
 	
 	stamp := anObject
 ]
 
-{
-	#category : #'source pointers',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>stampAtPointer	 [
+{ #category : #'source pointers' }
+RGMethodDefinition >> stampAtPointer [	
 
 	"A RGMethodDefinition that was set as historical will retrieve the stamp using the sourcePointer"
 
@@ -862,20 +651,14 @@ RGMethodDefinition>>stampAtPointer	 [
 		ifFalse:[ nil ]
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>symbolic [
+{ #category : #'backward compatibility' }
+RGMethodDefinition >> symbolic [
 
 	^ self method symbolic
 ]
 
-{
-	#category : #'stamp values',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>timeStamp  [
+{ #category : #'stamp values' }
+RGMethodDefinition >> timeStamp [ 
 
 	^self annotationNamed: self class timeStampKey 
 		ifAbsentPut: [ self class 
@@ -883,11 +666,8 @@ RGMethodDefinition>>timeStamp  [
 							default: (DateAndTime epoch) ]
 ]
 
-{
-	#category : #'stamp values',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGMethodDefinition>>timeStamp: aTimestamp  [
+{ #category : #'stamp values' }
+RGMethodDefinition >> timeStamp: aTimestamp [ 
 
 	self annotationNamed: self class timeStampKey put: aTimestamp 
 ]

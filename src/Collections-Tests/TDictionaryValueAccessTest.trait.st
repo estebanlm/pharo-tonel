@@ -3,43 +3,28 @@ A trait for test purposes
 "
 Trait {
 	#name : #TDictionaryValueAccessTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Unordered,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:34'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryValueAccessTest>>keyNotIn [
+{ #category : #requirements }
+TDictionaryValueAccessTest >> keyNotIn [
 " return a key not included in nonEmpty"
 ^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryValueAccessTest>>nonEmpty [
+{ #category : #requirements }
+TDictionaryValueAccessTest >> nonEmpty [
 
 ^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryValueAccessTest>>supportsNilKey [
+{ #category : #requirements }
+TDictionaryValueAccessTest >> supportsNilKey [
 	^ true
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryValueAccessTest>>test0FixtureDictionaryElementAccess [
+{ #category : #'tests - fixture' }
+TDictionaryValueAccessTest >> test0FixtureDictionaryElementAccess [
 	| in |
 	self nonEmpty.
 	self deny: self nonEmpty isEmpty.
@@ -49,11 +34,8 @@ TDictionaryValueAccessTest>>test0FixtureDictionaryElementAccess [
 	self assert: in = false
 ]
 
-{
-	#category : #'tests - DictionaryIndexAccessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryValueAccessTest>>testAt [
+{ #category : #'tests - DictionaryIndexAccessing' }
+TDictionaryValueAccessTest >> testAt [
 	"self run: #testAt"
 
 	| collection association |
@@ -63,11 +45,8 @@ TDictionaryValueAccessTest>>testAt [
 	self should: [ collection at: self keyNotIn ] raise: Error
 ]
 
-{
-	#category : #'tests - DictionaryIndexAccessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryValueAccessTest>>testAtIfAbsent [
+{ #category : #'tests - DictionaryIndexAccessing' }
+TDictionaryValueAccessTest >> testAtIfAbsent [
 	"self run: #testAtIfAbsent"
 
 	| collection association |
@@ -83,11 +62,8 @@ TDictionaryValueAccessTest>>testAtIfAbsent [
 				= self valueNotIn
 ]
 
-{
-	#category : #'tests - DictionaryIndexAccessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryValueAccessTest>>testAtIfAbsentPut [
+{ #category : #'tests - DictionaryIndexAccessing' }
+TDictionaryValueAccessTest >> testAtIfAbsentPut [
 	"self run: #testAtIfAbsentPut"
 
 	| collection association |
@@ -105,11 +81,8 @@ TDictionaryValueAccessTest>>testAtIfAbsentPut [
 	self assert: (collection at: self keyNotIn) = self valueNotIn
 ]
 
-{
-	#category : #'tests - DictionaryIndexAccessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryValueAccessTest>>testAtIfPresent [
+{ #category : #'tests - DictionaryIndexAccessing' }
+TDictionaryValueAccessTest >> testAtIfPresent [
 	"self run: #testAtIfPresent"
 
 	| collection association arg |
@@ -135,11 +108,8 @@ TDictionaryValueAccessTest>>testAtIfPresent [
 				ifPresent: [ :value | Error signal ]) isNil
 ]
 
-{
-	#category : #'tests - DictionaryIndexAccessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryValueAccessTest>>testAtIfPresentIfAbsent [
+{ #category : #'tests - DictionaryIndexAccessing' }
+TDictionaryValueAccessTest >> testAtIfPresentIfAbsent [
 	"self run: #testAtIfPresentIfAbsent"
 
 	| collection association arg |
@@ -171,11 +141,8 @@ TDictionaryValueAccessTest>>testAtIfPresentIfAbsent [
 				ifAbsent: [ self valueNotIn ]) = self valueNotIn
 ]
 
-{
-	#category : #'tests - DictionaryIndexAccessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryValueAccessTest>>testAtIfPresentIfAbsentPut [
+{ #category : #'tests - DictionaryIndexAccessing' }
+TDictionaryValueAccessTest >> testAtIfPresentIfAbsentPut [
 	"self run: #testAtIfPresentIfAbsentPut"
 
 	| collection association arg |
@@ -208,11 +175,8 @@ TDictionaryValueAccessTest>>testAtIfPresentIfAbsentPut [
 	self assert: (collection at: self keyNotIn) = self valueNotIn
 ]
 
-{
-	#category : #'tests - DictionaryIndexAccessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryValueAccessTest>>testAtPutDict [
+{ #category : #'tests - DictionaryIndexAccessing' }
+TDictionaryValueAccessTest >> testAtPutDict [
 	"Do not rename to testAtPut, will conflict with TPutBasicTest>>#testAtPut"
 
 	"self run: #testAtPutDict"
@@ -239,11 +203,8 @@ TDictionaryValueAccessTest>>testAtPutDict [
 	self assert: (collection at: self keyNotIn) == newValue
 ]
 
-{
-	#category : #'tests - DictionaryIndexAccessing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryValueAccessTest>>testAtPutNil [
+{ #category : #'tests - DictionaryIndexAccessing' }
+TDictionaryValueAccessTest >> testAtPutNil [
 	"self run: #testAtPutNil"
 
 	"self debug: #testAtPutNil"
@@ -266,10 +227,7 @@ TDictionaryValueAccessTest>>testAtPutNil [
 		ifFalse: [ self deny: (collection includesKey: nil) ]
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryValueAccessTest>>valueNotIn [
+{ #category : #requirements }
+TDictionaryValueAccessTest >> valueNotIn [
 	self explicitRequirement
 ]

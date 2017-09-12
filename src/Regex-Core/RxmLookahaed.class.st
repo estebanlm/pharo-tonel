@@ -11,49 +11,33 @@ Class {
 		'lookahead',
 		'positive'
 	],
-	#category : #Regex-Core,
-	#timestamp : '<historical>'
+	#category : #Regex-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmLookahaed class>>with: aPiece [
+{ #category : #'instance creation' }
+RxmLookahaed class >> with: aPiece [
 
 	^self new lookahead: aPiece
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmLookahaed>>initialize [
+{ #category : #initialization }
+RxmLookahaed >> initialize [
 	super initialize.
 	positive := true.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmLookahaed>>lookahead [
+{ #category : #accessing }
+RxmLookahaed >> lookahead [
 	^ lookahead
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmLookahaed>>lookahead: anRxmLink [
+{ #category : #accessing }
+RxmLookahaed >> lookahead: anRxmLink [
 	lookahead := anRxmLink
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmLookahaed>>matchAgainst: aMatcher [
+{ #category : #matching }
+RxmLookahaed >> matchAgainst: aMatcher [
 	"Match if the predicate block evaluates to true when given the
 	current stream character as the argument."
 
@@ -65,11 +49,8 @@ RxmLookahaed>>matchAgainst: aMatcher [
 		and: [ next matchAgainst: aMatcher ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxmLookahaed>>terminateWith: aNode [
+{ #category : #building }
+RxmLookahaed >> terminateWith: aNode [
 	lookahead terminateWith: aNode.
 	super terminateWith: aNode.
 ]

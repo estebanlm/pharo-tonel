@@ -20,15 +20,11 @@ Class {
 		'stretchValue',
 		'pointSizeList'
 	],
-	#category : #FontChooser,
-	#timestamp : 'StephaneDucasse 1/1/2010 18:00'
+	#category : #FontChooser
 }
 
-{
-	#category : #open,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser class>>openWithWindowTitle: titleString for: anObject setSelector: setSelector getSelector: getSelector [
+{ #category : #open }
+FontChooser class >> openWithWindowTitle: titleString for: anObject setSelector: setSelector getSelector: getSelector [
 	"FontChooser openWithWindowTitle: 'Choose the Menu Font' for: StandardFonts setSelector: #menuFont: getSelector: #menuFont"
 	
 	| instance windowMorph world |
@@ -48,11 +44,8 @@ FontChooser class>>openWithWindowTitle: titleString for: anObject setSelector: s
  
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser class>>windowTitle: titleString for: anObject setSelector: setSelector getSelector: getSelector [
+{ #category : #'instance creation' }
+FontChooser class >> windowTitle: titleString for: anObject setSelector: setSelector getSelector: getSelector [
 	
 	| instance answer |
 	instance := self new.
@@ -68,30 +61,21 @@ FontChooser class>>windowTitle: titleString for: anObject setSelector: setSelect
 	^answer
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>apply [
+{ #category : #action }
+FontChooser >> apply [
 
 	(target isNil or: [ setSelector isNil ]) ifTrue: [ ^ self ].			
 	self selectedFont ifNotNil: [ :font | target perform: setSelector with: font ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>fontList [
+{ #category : #accessing }
+FontChooser >> fontList [
 	
 	^ fontList ifNil: [ self refreshFontList ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>fontListStrings [
+{ #category : #accessing }
+FontChooser >> fontListStrings [
 
 	| isUpdateRequired |
 	isUpdateRequired := fontListStrings isNil or: [fontList size ~= fontListStrings size].
@@ -100,22 +84,16 @@ FontChooser>>fontListStrings [
 	^ fontListStrings
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>fontStyleList [
+{ #category : #accessing }
+FontChooser >> fontStyleList [
 
 	^ self selectedFontFamily
 		ifNil: [ #() ]
 		ifNotNil: [ :family | fontStyleList := family members asSortedCollection ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>fontStyleListStrings [
+{ #category : #accessing }
+FontChooser >> fontStyleListStrings [
 	"names of simulated styles are enclosed in parenthesis"
 
 	^ self fontStyleList collect: [:fontFamilyMember | | styleName |
@@ -125,76 +103,52 @@ FontChooser>>fontStyleListStrings [
 			ifFalse: [styleName]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>getSelector [
+{ #category : #accessing }
+FontChooser >> getSelector [
 
 	^ getSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>getSelector: aSelectorSymbolOrFont [
+{ #category : #accessing }
+FontChooser >> getSelector: aSelectorSymbolOrFont [
 
 	getSelector := aSelectorSymbolOrFont
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>initialize [
+{ #category : #initialization }
+FontChooser >> initialize [
 	super initialize.
 	title := 'Choose A Font'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>pointSize [
+{ #category : #accessing }
+FontChooser >> pointSize [
 
 	^ pointSize ifNil: [pointSize := 10.0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>pointSize: aNumber [
+{ #category : #accessing }
+FontChooser >> pointSize: aNumber [
 
 	pointSize := aNumber.
 	self announcer announce: #pointSizeChanged.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>pointSizeList [
+{ #category : #accessing }
+FontChooser >> pointSizeList [
 
 	pointSizeList ifNotNil: [ ^ pointSizeList ].
 	^ pointSizeList := (1 to: 256) collect: [ :each | each asString padLeftTo: 3 ].
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>refreshFontList [
+{ #category : #action }
+FontChooser >> refreshFontList [
 	
 	^fontList := LogicalFontManager current allFamilies
 ]
 
-{
-	#category : #selected,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>selectedFont [
+{ #category : #selected }
+FontChooser >> selectedFont [
 	| font style |
 
 	font := self unemphasizedSelectedFont.
@@ -213,22 +167,16 @@ FontChooser>>selectedFont [
 	
 ]
 
-{
-	#category : #selected,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>selectedFontFamily [
+{ #category : #selected }
+FontChooser >> selectedFontFamily [
 
 	^ self fontList at: self selectedFontIndex ifAbsent: [nil].
 	
 	
 ]
 
-{
-	#category : #selected,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>selectedFontIndex [
+{ #category : #selected }
+FontChooser >> selectedFontIndex [
 	| font textStyleName family |
 	
 	selectedFontIndex ifNotNil: [^selectedFontIndex].
@@ -247,11 +195,8 @@ FontChooser>>selectedFontIndex [
 	^selectedFontIndex
 ]
 
-{
-	#category : #selected,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>selectedFontIndex: anIndex [
+{ #category : #selected }
+FontChooser >> selectedFontIndex: anIndex [
 
 	| family member newStyleIndex |
 	anIndex = 0 ifTrue: [^self].
@@ -270,11 +215,8 @@ FontChooser>>selectedFontIndex: anIndex [
 	
 ]
 
-{
-	#category : #selected,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>selectedFontStyleIndex [
+{ #category : #selected }
+FontChooser >> selectedFontStyleIndex [
 	| family member |
 	selectedFontStyleIndex ifNotNil: [
 		^selectedFontStyleIndex := selectedFontStyleIndex min: self fontStyleList size].
@@ -284,11 +226,8 @@ FontChooser>>selectedFontStyleIndex [
 	^selectedFontStyleIndex
 ]
 
-{
-	#category : #selected,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>selectedFontStyleIndex: anIndex [
+{ #category : #selected }
+FontChooser >> selectedFontStyleIndex: anIndex [
 	| familyMember |
 	anIndex = 0
 		ifTrue: [^self].
@@ -298,28 +237,19 @@ FontChooser>>selectedFontStyleIndex: anIndex [
 	self announcer announce:  #selectedFontStyleIndex.
 ]
 
-{
-	#category : #selected,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>selectedPointSize [
+{ #category : #selected }
+FontChooser >> selectedPointSize [
 	^self selectedFont pointSize
 ]
 
-{
-	#category : #selected,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>selectedPointSizeIndex [
+{ #category : #selected }
+FontChooser >> selectedPointSizeIndex [
 
 	^self pointSizeList indexOf: (pointSize reduce asString padLeftTo: 3)
 ]
 
-{
-	#category : #selected,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>selectedPointSizeIndex: anIndex [
+{ #category : #selected }
+FontChooser >> selectedPointSizeIndex: anIndex [
 
 	anIndex = 0 ifTrue: [^self].
 	pointSize := (self pointSizeList at: anIndex) trimBoth asNumber.
@@ -327,11 +257,8 @@ FontChooser>>selectedPointSizeIndex: anIndex [
 	
 ]
 
-{
-	#category : #selected,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>setPointSizeListFrom: aFontFamilyMember [
+{ #category : #selected }
+FontChooser >> setPointSizeListFrom: aFontFamilyMember [
 	| style old new |
 	old := pointSizeList.
 	(aFontFamilyMember isKindOf: FontFamilyMemberAbstract)
@@ -347,20 +274,14 @@ FontChooser>>setPointSizeListFrom: aFontFamilyMember [
 	old ~= new ifTrue: [ self announcer announce: #pointSizeListChanged]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>setSelector: selector [
+{ #category : #accessing }
+FontChooser >> setSelector: selector [
 
 	setSelector := selector
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>setStyleValuesFrom: aFont [
+{ #category : #action }
+FontChooser >> setStyleValuesFrom: aFont [
 	((aFont isKindOf: LogicalFont) or:[aFont isKindOf: FontFamilyMemberAbstract])
 		ifTrue:[
 			weightValue := aFont weightValue.
@@ -372,38 +293,26 @@ FontChooser>>setStyleValuesFrom: aFont [
 			stretchValue := 5 "normal"]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>target [
+{ #category : #accessing }
+FontChooser >> target [
 
 	^ target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>target: anObject [
+{ #category : #accessing }
+FontChooser >> target: anObject [
 
 	target := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>title: aString [
+{ #category : #accessing }
+FontChooser >> title: aString [
 
 	title := aString
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>unemphasizedSelectedFont [
+{ #category : #action }
+FontChooser >> unemphasizedSelectedFont [
 	|name font family |
 	family := self fontList at: self selectedFontIndex ifAbsent:[nil].
 	family ifNil:[^nil].
@@ -422,20 +331,14 @@ FontChooser>>unemphasizedSelectedFont [
 
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>updateFontList [
+{ #category : #action }
+FontChooser >> updateFontList [
 	FreeTypeFontProvider current updateFromSystem.
 	self refreshFontList.
 	self changed:#fontListStrings.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FontChooser>>windowTitle [
+{ #category : #accessing }
+FontChooser >> windowTitle [
 	^ title translated
 ]

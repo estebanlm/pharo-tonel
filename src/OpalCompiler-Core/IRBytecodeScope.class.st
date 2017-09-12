@@ -10,102 +10,68 @@ Class {
 		'ownTempVectors',
 		'copiedValues'
 	],
-	#category : #OpalCompiler-Core-Bytecode,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-Bytecode
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeScope>>args [
+{ #category : #accessing }
+IRBytecodeScope >> args [
 	| args |
 	args := Array new: numArgs.
 	1 to: numArgs do: [ :idx | args at: idx put: self -> (idx - 1)].
 	^ args
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeScope>>copiedValues [
+{ #category : #accessing }
+IRBytecodeScope >> copiedValues [
 	^ copiedValues
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeScope>>copiedValues: someCopiedValues [
+{ #category : #accessing }
+IRBytecodeScope >> copiedValues: someCopiedValues [
 	copiedValues := someCopiedValues
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeScope>>initialize [
+{ #category : #initialization }
+IRBytecodeScope >> initialize [
 	temps := 0.
 	ownTempVectors := OrderedCollection new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeScope>>newTempVector: aTempVector at: offset [
+{ #category : #accessing }
+IRBytecodeScope >> newTempVector: aTempVector at: offset [
 	ownTempVectors add: aTempVector.
 	self tempAt: offset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeScope>>numArgs [
+{ #category : #accessing }
+IRBytecodeScope >> numArgs [
 	^ numArgs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeScope>>numArgs: anInteger [
+{ #category : #accessing }
+IRBytecodeScope >> numArgs: anInteger [
 	numArgs := anInteger.
 	temps := temps max: numArgs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeScope>>ownTempVectors [
+{ #category : #accessing }
+IRBytecodeScope >> ownTempVectors [
 	^ ownTempVectors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeScope>>tempAt: zeroBasedIndex [
+{ #category : #accessing }
+IRBytecodeScope >> tempAt: zeroBasedIndex [
 	temps := temps max: zeroBasedIndex + 1.
 	^ self -> zeroBasedIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeScope>>tempAt: remoteIndex inRemote: remoteArray [
+{ #category : #accessing }
+IRBytecodeScope >> tempAt: remoteIndex inRemote: remoteArray [
 	^ remoteIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBytecodeScope>>temps [
+{ #category : #accessing }
+IRBytecodeScope >> temps [
 	| result tempOffset numTemps |
 	tempOffset := copiedValues size + numArgs.
 	numTemps := temps - tempOffset.

@@ -10,78 +10,53 @@ Class {
 		'classRemoved',
 		'ownerPackage'
 	],
-	#category : #System-Announcements-System-Classes,
-	#timestamp : 'cyrilledelaunay 1/18/2011 11:43'
+	#category : #System-Announcements-System-Classes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRemoved class>>class: aClass category: aCategoryName [
+{ #category : #'instance creation' }
+ClassRemoved class >> class: aClass category: aCategoryName [
 	^self new
 			classRemoved: aClass;
 			categoryName: aCategoryName;
 			yourself.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRemoved>>categoryName [
+{ #category : #accessing }
+ClassRemoved >> categoryName [
 	
 	^ categoryName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRemoved>>categoryName: anObject [
+{ #category : #accessing }
+ClassRemoved >> categoryName: anObject [
 	
 	categoryName := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRemoved>>classAffected [
+{ #category : #accessing }
+ClassRemoved >> classAffected [
 	^self classRemoved
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRemoved>>classRemoved [
+{ #category : #accessing }
+ClassRemoved >> classRemoved [
 	
 	^ classRemoved
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRemoved>>classRemoved: aClass [
+{ #category : #accessing }
+ClassRemoved >> classRemoved: aClass [
 	
 	classRemoved := aClass.
 	ownerPackage := aClass package
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRemoved>>classTagAffected [
+{ #category : #accessing }
+ClassRemoved >> classTagAffected [
 	^ownerPackage toTagName: categoryName 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRemoved>>packageAffected [
+{ #category : #accessing }
+ClassRemoved >> packageAffected [
 	^ownerPackage
 ]

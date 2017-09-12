@@ -6,15 +6,11 @@ My precondition verifies that the variable name is valid, not yet used in the wh
 Class {
 	#name : #RBAddClassVariableRefactoring,
 	#superclass : #RBVariableRefactoring,
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 19:55'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddClassVariableRefactoring>>preconditions [
+{ #category : #preconditions }
+RBAddClassVariableRefactoring >> preconditions [
 	^(RBCondition isMetaclass: class) not 
 		& (RBCondition isValidClassVarName: variableName for: class) 
 			& (RBCondition hierarchyOf: class definesVariable: variableName asString) 
@@ -22,10 +18,7 @@ RBAddClassVariableRefactoring>>preconditions [
 			& (RBCondition isGlobal: variableName in: self model) not
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddClassVariableRefactoring>>transform [
+{ #category : #transforming }
+RBAddClassVariableRefactoring >> transform [
 	class addClassVariable: variableName
 ]

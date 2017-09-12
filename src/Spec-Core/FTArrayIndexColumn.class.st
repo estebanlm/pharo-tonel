@@ -18,116 +18,76 @@ Class {
 		'width',
 		'index'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'PavelKrivanek 11/14/2016 18:43'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FTArrayIndexColumn class>>id: anObject [
+{ #category : #'instance creation' }
+FTArrayIndexColumn class >> id: anObject [
 	^ self new
 		id: anObject;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FTArrayIndexColumn class>>index: aNumber [
+{ #category : #'instance creation' }
+FTArrayIndexColumn class >> index: aNumber [
 	^ self new 
 		index: aNumber
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FTArrayIndexColumn class>>index: aNumber width: aNumber2 [
+{ #category : #'instance creation' }
+FTArrayIndexColumn class >> index: aNumber width: aNumber2 [
 	^ (self index: aNumber) 
 		width: aNumber2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FTArrayIndexColumn class>>undefinedColumnWidth [
+{ #category : #accessing }
+FTArrayIndexColumn class >> undefinedColumnWidth [
 	"This is a contant that defines a column width is undefined, then the layout will try to arrange 
 	 it by itself."
 	^ 0
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FTArrayIndexColumn>>acquireWidth: anOwnerWidth [
+{ #category : #layout }
+FTArrayIndexColumn >> acquireWidth: anOwnerWidth [
 	^ self widthOrUndefined min: anOwnerWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FTArrayIndexColumn>>id [
+{ #category : #accessing }
+FTArrayIndexColumn >> id [
 	^ id
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FTArrayIndexColumn>>id: anObject [
+{ #category : #accessing }
+FTArrayIndexColumn >> id: anObject [
 	id := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FTArrayIndexColumn>>index [
+{ #category : #accessing }
+FTArrayIndexColumn >> index [
 	^ index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FTArrayIndexColumn>>index: anObject [
+{ #category : #accessing }
+FTArrayIndexColumn >> index: anObject [
 	index := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FTArrayIndexColumn>>transform: anArray [
+{ #category : #accessing }
+FTArrayIndexColumn >> transform: anArray [
 	^ anArray at: self index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FTArrayIndexColumn>>width [
+{ #category : #accessing }
+FTArrayIndexColumn >> width [
 	^ width
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FTArrayIndexColumn>>width: anObject [
+{ #category : #accessing }
+FTArrayIndexColumn >> width: anObject [
 	width := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FTArrayIndexColumn>>widthOrUndefined [
+{ #category : #accessing }
+FTArrayIndexColumn >> widthOrUndefined [
 	^ self width ifNil: [ self class undefinedColumnWidth ]
 ]

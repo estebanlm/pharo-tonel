@@ -1,12 +1,7 @@
-Extension {
-	#name : #PasteUpMorph
-}
+Extension { #name : #PasteUpMorph }
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>fitAllVisibleWindows [
+{ #category : #'*Morphic-Widgets-Windows' }
+PasteUpMorph >> fitAllVisibleWindows [
 	"Fit all windows as visible"
 	|allowedArea|
 	allowedArea := RealEstateAgent maximumUsableAreaInWorld: World.
@@ -18,22 +13,16 @@ PasteUpMorph>>fitAllVisibleWindows [
 	self displayWorld
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>isWindowActive: aSystemWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+PasteUpMorph >> isWindowActive: aSystemWindow [
 	"Answer whether the given window is active.
 	True if the current top window."
 	
 	^self currentWindow == aSystemWindow
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>modalLockTo: aSystemWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+PasteUpMorph >> modalLockTo: aSystemWindow [
 	"Don't lock the world nor the aSystemWindow! Lock the submorphs."
 	
 	|lockStates|
@@ -52,11 +41,8 @@ PasteUpMorph>>modalLockTo: aSystemWindow [
 		toValue: lockStates
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>modalUnlockFrom: aSystemWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+PasteUpMorph >> modalUnlockFrom: aSystemWindow [
 	"Don't unlock the world! Unlock the submorphs
 	that were not originally locked."
 	
@@ -69,21 +55,15 @@ PasteUpMorph>>modalUnlockFrom: aSystemWindow [
 		locked ifFalse: [m unlock]]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>modelWakeUpIn: aWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+PasteUpMorph >> modelWakeUpIn: aWindow [
 	"I am the model of a SystemWindow, that has just been activated"
 
 	self viewBox = aWindow panelRect ifFalse: [self viewBox: aWindow panelRect]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>navigateVisibleWindowForward [
+{ #category : #'*Morphic-Widgets-Windows' }
+PasteUpMorph >> navigateVisibleWindowForward [
 	"Change the active window to the next visible and not collapsed window."
  
 	self nextVisibleWindow
@@ -92,11 +72,8 @@ PasteUpMorph>>navigateVisibleWindowForward [
  
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>navigateWindowBackward [
+{ #category : #'*Morphic-Widgets-Windows' }
+PasteUpMorph >> navigateWindowBackward [
 	"Change the active window to the previous window."
 
 	self previousWindow ifNotNil: [:m |
@@ -104,11 +81,8 @@ PasteUpMorph>>navigateWindowBackward [
 		m activate]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>navigateWindowForward [
+{ #category : #'*Morphic-Widgets-Windows' }
+PasteUpMorph >> navigateWindowForward [
 	"Change the active window to the next window."
 
 	self nextWindow ifNotNil: [:m |
@@ -117,11 +91,8 @@ PasteUpMorph>>navigateWindowForward [
 		m activate]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>nextVisibleWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+PasteUpMorph >> nextVisibleWindow [
 	"Answer the next (visible) window to navigate to."
 
 	^self visibleSystemWindows 
@@ -132,11 +103,8 @@ PasteUpMorph>>nextVisibleWindow [
 
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>nextWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+PasteUpMorph >> nextWindow [
 	"Answer the next window to navigate to."
 
 	|sys|
@@ -145,11 +113,8 @@ PasteUpMorph>>nextWindow [
 	^sys after: self currentWindow ifAbsent: [sys first]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>openModal: aSystemWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+PasteUpMorph >> openModal: aSystemWindow [
 	"Open the given window locking the receiver until it is dismissed.
 	Set the pane color to match the current theme.
 	Answer the system window."
@@ -158,11 +123,8 @@ PasteUpMorph>>openModal: aSystemWindow [
 	^ super openModal: aSystemWindow
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>previousWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+PasteUpMorph >> previousWindow [
 	"Answer the previous window to navigate to."
 
 	|sys|
@@ -171,21 +133,15 @@ PasteUpMorph>>previousWindow [
 	^sys before: self currentWindow ifAbsent: [sys last]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>systemWindows [
+{ #category : #'*Morphic-Widgets-Windows' }
+PasteUpMorph >> systemWindows [
 	"Answer the system windows in the world."
 	
 	^self submorphsSatisfying: [:m | m isSystemWindow]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>visibleSystemWindows [
+{ #category : #'*Morphic-Widgets-Windows' }
+PasteUpMorph >> visibleSystemWindows [
 	"Answer the visible system windows in the world."
 	
 	^self submorphsSatisfying: [:m | m isSystemWindow and: [m visible]]

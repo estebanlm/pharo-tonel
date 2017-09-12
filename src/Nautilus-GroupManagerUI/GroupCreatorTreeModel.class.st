@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'model'
 	],
-	#category : #Nautilus-GroupManagerUI,
-	#timestamp : 'TorstenBergmann 2/4/2014 21:13'
+	#category : #Nautilus-GroupManagerUI
 }
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupCreatorTreeModel>>acceptDroppingMorph: transferMorph event: evt inMorph: listMorph [
+{ #category : #'drag and drop' }
+GroupCreatorTreeModel >> acceptDroppingMorph: transferMorph event: evt inMorph: listMorph [
 	"transferMorph passenger complexContents item pour récupérer le package"
 
 	| group package target |
@@ -33,82 +29,55 @@ GroupCreatorTreeModel>>acceptDroppingMorph: transferMorph event: evt inMorph: li
 	self model groupManager patternModel acceptEditsInView
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupCreatorTreeModel>>dropEnabled [
+{ #category : #'drag and drop' }
+GroupCreatorTreeModel >> dropEnabled [
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupCreatorTreeModel>>groups [
+{ #category : #private }
+GroupCreatorTreeModel >> groups [
 
 	^ self model groups
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupCreatorTreeModel>>groupsManager [
+{ #category : #accessing }
+GroupCreatorTreeModel >> groupsManager [
 
 	^ self model groupsManager
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupCreatorTreeModel>>hardlySelectItem: anItem [
+{ #category : #private }
+GroupCreatorTreeModel >> hardlySelectItem: anItem [
 
 	self selectNodePath: ((self setSelectedNodeItem: anItem)collect:#complexContents)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupCreatorTreeModel>>model [
+{ #category : #accessing }
+GroupCreatorTreeModel >> model [
 
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupCreatorTreeModel>>model: anObject [
+{ #category : #accessing }
+GroupCreatorTreeModel >> model: anObject [
 
 	model := anObject
 ]
 
-{
-	#category : #'t - accessing',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupCreatorTreeModel>>rootItems [
+{ #category : #'t - accessing' }
+GroupCreatorTreeModel >> rootItems [
 	
 	^ self groups
 ]
 
-{
-	#category : #'t - accessing',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupCreatorTreeModel>>rootNodeClassFromItem: anItem [
+{ #category : #'t - accessing' }
+GroupCreatorTreeModel >> rootNodeClassFromItem: anItem [
 
 	^ GroupNode
 ]
 
-{
-	#category : #'t - accessing',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupCreatorTreeModel>>selection [
+{ #category : #'t - accessing' }
+GroupCreatorTreeModel >> selection [
 
 	| list |
 	list := self rootItems.
@@ -117,29 +86,20 @@ GroupCreatorTreeModel>>selection [
 	^ super selection
 ]
 
-{
-	#category : #'t - accessing',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupCreatorTreeModel>>selection: aNode [
+{ #category : #'t - accessing' }
+GroupCreatorTreeModel >> selection: aNode [
 	super selection: aNode.
 	self model updateSelectedNode
 ]
 
-{
-	#category : #'t - accessing',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupCreatorTreeModel>>setSelectedNodeItem: anItem [
+{ #category : #'t - accessing' }
+GroupCreatorTreeModel >> setSelectedNodeItem: anItem [
 
 	^ self model setSelectedNodeItem: anItem
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-GroupCreatorTreeModel>>wantsDroppedMorph: transferMorph event: evt inMorph: listMorph [
+{ #category : #'drag and drop' }
+GroupCreatorTreeModel >> wantsDroppedMorph: transferMorph event: evt inMorph: listMorph [
 	(transferMorph isKindOf: TransferMorph)
 		ifFalse: [ ^ false ].
 	(self model groupManager dragTransferTypeForMorph: listMorph) = #SelectedPackage

@@ -14,73 +14,48 @@ One pattern proposed by Kent Beck in Best Smalltalk Practices is to define hash 
 Class {
 	#name : #RBDefinesEqualNotHashRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:10'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefinesEqualNotHashRule class>>checksClass [
+{ #category : #testing }
+RBDefinesEqualNotHashRule class >> checksClass [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefinesEqualNotHashRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBDefinesEqualNotHashRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'DefinesEqualNotHashRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefinesEqualNotHashRule>>basicCheck: aClass  [
+{ #category : #running }
+RBDefinesEqualNotHashRule >> basicCheck: aClass [ 
 	^ ((aClass includesSelector: #=) and: [ (aClass includesSelector: #hash) not ])
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefinesEqualNotHashRule>>checkClass: aClass  [
+{ #category : #running }
+RBDefinesEqualNotHashRule >> checkClass: aClass [ 
 	(self basicCheck: aClass) ifTrue: [
 		result addClass: aClass ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefinesEqualNotHashRule>>group [
+{ #category : #accessing }
+RBDefinesEqualNotHashRule >> group [
 	^ 'Potential Bugs'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefinesEqualNotHashRule>>name [
+{ #category : #accessing }
+RBDefinesEqualNotHashRule >> name [
 	^ 'Defines = but not hash'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefinesEqualNotHashRule>>rationale [
+{ #category : #accessing }
+RBDefinesEqualNotHashRule >> rationale [
 	^ 'Checks that all classes that define = also define hash.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefinesEqualNotHashRule>>resultClass [
+{ #category : #accessing }
+RBDefinesEqualNotHashRule >> resultClass [
 	^ RBClassEnvironment
 ]

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MalBfsNode,
 	#superclass : #MalGraphNode,
@@ -10,59 +7,40 @@ Class {
 		'nextEdges',
 		'firstDepth'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalBfsNode>>firstDepth [
+{ #category : #accessing }
+MalBfsNode >> firstDepth [
 	^ firstDepth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalBfsNode>>firstDepth: anObject [
+{ #category : #accessing }
+MalBfsNode >> firstDepth: anObject [
 	firstDepth := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalBfsNode>>initialize  [
+{ #category : #initialization }
+MalBfsNode >> initialize [ 
 
 	nextEdges := OrderedCollection new.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalBfsNode>>nextEdges [
+{ #category : #accessing }
+MalBfsNode >> nextEdges [
 
 	^ nextEdges 
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalBfsNode>>notVisited [
+{ #category : #setting }
+MalBfsNode >> notVisited [
 
 	firstDepth := nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalBfsNode>>visited [
+{ #category : #testing }
+MalBfsNode >> visited [
 
 	^ firstDepth notNil
 ]

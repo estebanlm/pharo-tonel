@@ -4,23 +4,16 @@ testing ListComposableModel
 Class {
 	#name : #ListModelTest,
 	#superclass : #SpecTestCase,
-	#category : #Spec-Tests-Core-Widgets,
-	#timestamp : '<historical>'
+	#category : #Spec-Tests-Core-Widgets
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ListModelTest>>classToTest [
+{ #category : #running }
+ListModelTest >> classToTest [
 	^ ListModel
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ListModelTest>>testSelectAll [
+{ #category : #tests }
+ListModelTest >> testSelectAll [
 	| items |
 	items := #(#AAA #BBB #CCC).
 	testedInstance items: items.
@@ -30,11 +23,8 @@ ListModelTest>>testSelectAll [
 	self assert: testedInstance selectedItems equals: items
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ListModelTest>>testWhenListChanged [
+{ #category : #tests }
+ListModelTest >> testWhenListChanged [
 	"Two stages list changed notification."
 
 	50
@@ -45,11 +35,8 @@ ListModelTest>>testWhenListChanged [
 			self assert: ok ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-ListModelTest>>testWhenListChangedOldContents [
+{ #category : #tests }
+ListModelTest >> testWhenListChangedOldContents [
 	"access to old and new contents in whenListChanged."
 
 	| oldL newL |

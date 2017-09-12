@@ -8,39 +8,26 @@ Class {
 		'filePath',
 		'timestamp'
 	],
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'IgorStasenko 7/30/2014 17:31'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowDropEvent>>accept: aVisitor [
+{ #category : #visitor }
+OSWindowDropEvent >> accept: aVisitor [
 	^ aVisitor visitWindowDropEvent: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowDropEvent>>filePath [
+{ #category : #accessing }
+OSWindowDropEvent >> filePath [
 	^ filePath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowDropEvent>>filePath: anObject [
+{ #category : #accessing }
+OSWindowDropEvent >> filePath: anObject [
 	filePath := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowDropEvent>>printOn: aStream [
+{ #category : #printing }
+OSWindowDropEvent >> printOn: aStream [
 	super printOn: aStream.
 	aStream
 		nextPutAll: ' filePath: ''';
@@ -48,18 +35,12 @@ OSWindowDropEvent>>printOn: aStream [
 		nextPut: $'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowDropEvent>>timestamp [
+{ #category : #accessing }
+OSWindowDropEvent >> timestamp [
 	^ timestamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowDropEvent>>timestamp: anObject [
+{ #category : #accessing }
+OSWindowDropEvent >> timestamp: anObject [
 	timestamp := anObject
 ]

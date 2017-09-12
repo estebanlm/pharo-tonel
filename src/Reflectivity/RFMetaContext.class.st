@@ -7,65 +7,43 @@ Class {
 	#instVars : [
 		'level'
 	],
-	#category : #Reflectivity-Contexts,
-	#timestamp : 'MarcusDenker 3/11/2015 08:44'
+	#category : #Reflectivity-Contexts
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFMetaContext class>>current  [
+{ #category : #accessing }
+RFMetaContext class >> current [ 
 	ActiveMetaContext value ifNil:[ActiveMetaContext value: self new].
 	^ActiveMetaContext value
 
 ]
 
-{
-	#category : #reset,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFMetaContext class>>reset [
+{ #category : #reset }
+RFMetaContext class >> reset [
 	ActiveMetaContext value: self new.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFMetaContext>>initialize [
+{ #category : #initialization }
+RFMetaContext >> initialize [
  level := 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFMetaContext>>isActive: n [
+{ #category : #testing }
+RFMetaContext >> isActive: n [
 	^level = n
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFMetaContext>>isMeta [
+{ #category : #testing }
+RFMetaContext >> isMeta [
 	^level > 0
 ]
 
-{
-	#category : #level,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFMetaContext>>shiftLevelDown [
+{ #category : #level }
+RFMetaContext >> shiftLevelDown [
 	level := (level - 1) max: 0.
 	self assert: level >=0
 ]
 
-{
-	#category : #level,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFMetaContext>>shiftLevelUp [
+{ #category : #level }
+RFMetaContext >> shiftLevelUp [
 	level := level + 1
 ]

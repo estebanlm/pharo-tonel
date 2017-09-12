@@ -14,44 +14,31 @@ Class {
 		'displayBlock',
 		'iconHolder'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel class>>adapterName [
+{ #category : #specs }
+DropListModel class >> adapterName [
 
 	^ #DropListAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel class>>defaultSpec [
+{ #category : #specs }
+DropListModel class >> defaultSpec [
 	<spec>
 	
 	^ #(DropListAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel class>>title [
+{ #category : #specs }
+DropListModel class >> title [
 
 	^ 'Drop List'
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>addItemLabeled: aString do: aBlock [
+{ #category : #api }
+DropListModel >> addItemLabeled: aString do: aBlock [
 
 	| item |
 	item := DropListItem named: aString do: aBlock.
@@ -60,11 +47,8 @@ DropListModel>>addItemLabeled: aString do: aBlock [
 	listHolder add: item.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>addItemLabeled: aString do: aBlock icon: anIcon [
+{ #category : #api }
+DropListModel >> addItemLabeled: aString do: aBlock icon: anIcon [
 
 	| item |
 	item := DropListItem named: aString do: aBlock.
@@ -73,94 +57,64 @@ DropListModel>>addItemLabeled: aString do: aBlock icon: anIcon [
 	listHolder add: item.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>displayBlock [
+{ #category : #api }
+DropListModel >> displayBlock [
 	
 	^ displayBlock value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>displayBlock: aBlock [
+{ #category : #api }
+DropListModel >> displayBlock: aBlock [
 	
 	displayBlock value: aBlock 
 	"listHolder replace: [ :e | e display: aBlock; yourself  ]."
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>displayForItem: anItem [
+{ #category : #api }
+DropListModel >> displayForItem: anItem [
 	"The order of the arguments may look weird, but then it seems more natural while using the widget"
 	
 	^ self displayBlock cull: anItem model cull: anItem
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>emptyList [
+{ #category : #api }
+DropListModel >> emptyList [
 	
 	listHolder value: OrderedCollection new
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>getIconFor: anItem [
+{ #category : #api }
+DropListModel >> getIconFor: anItem [
 
 	^ self iconHolder cull: anItem
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>getIndex [
+{ #category : #api }
+DropListModel >> getIndex [
 
 	^ selectionHolder index value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>getList [
+{ #category : #api }
+DropListModel >> getList [
 
 	^ listHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>iconHolder [
+{ #category : #api }
+DropListModel >> iconHolder [
 
 	^ iconHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>iconHolder: aBlock [
+{ #category : #api }
+DropListModel >> iconHolder: aBlock [
 	
 	iconHolder value: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>initialize [
+{ #category : #initialization }
+DropListModel >> initialize [
 
 	super initialize.
 
@@ -179,21 +133,15 @@ DropListModel>>initialize [
 	self whenSelectedItemChanged: [:item | item value ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>internalResetSelection [
+{ #category : #private }
+DropListModel >> internalResetSelection [
 
 	selectionHolder reset.
 	self getList ifNotEmpty: [ self silentlySetSelectedIndex: 1 ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>items: aList [
+{ #category : #api }
+DropListModel >> items: aList [
 	"Populate the drop list with a list of ui specific items"
 	"aList is a list of domain specific objects. If you want to specify more precisely the item actions, see #addItemLabeled:do:"
 	"<api: #st getter: #listItems>"
@@ -203,83 +151,59 @@ DropListModel>>items: aList [
 	listHolder value: dropListItems
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>listItems [
+{ #category : #api }
+DropListModel >> listItems [
 	"<api: #inspect>"
 	"Return the list used to populate the drop list"
 	
 	^ listHolder value collect: [ :e | e model ].
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>listSize [
+{ #category : #api }
+DropListModel >> listSize [
 	"<api: #inspect>"
 	"Return the size of the list of choices"
 
 	^ self listItems size
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>resetSelection [
+{ #category : #api }
+DropListModel >> resetSelection [
 	"<api: #do>"
 	"Reset the current selection state"
 
 	selectionHolder reset
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>selectedIndex [
+{ #category : #api }
+DropListModel >> selectedIndex [
 	"<api: #inspect>"
 	"Useless method but it provides a better and more consistent API"
 
 	^ self getIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>selectedIndexHolder [
+{ #category : #private }
+DropListModel >> selectedIndexHolder [
 
 	^ selectionHolder index
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>selectedItem [
+{ #category : #api }
+DropListModel >> selectedItem [
 	"<api: #inspect>"
 
 	^ self selectedItemHolder value model
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>selectedItemHolder [
+{ #category : #private }
+DropListModel >> selectedItemHolder [
 
 	^ selectionHolder selection
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>setIndex: anIndex [
+{ #category : #api }
+DropListModel >> setIndex: anIndex [
 	| item |
 
 	selectionHolder index value: anIndex.
@@ -289,11 +213,8 @@ DropListModel>>setIndex: anIndex [
 	self changed: #getIndex
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>setSelectedIndex: anIndex [
+{ #category : #api }
+DropListModel >> setSelectedIndex: anIndex [
 	"<api: #integer min:1 max:#listSize getter: #selectedIndex>"
 	"Force the selection of the item at index anIndex"
 	| selection |
@@ -304,11 +225,8 @@ DropListModel>>setSelectedIndex: anIndex [
 	selectionHolder selection value: selection
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>setSelectedItem: anItem [
+{ #category : #api }
+DropListModel >> setSelectedItem: anItem [
 	"Force the selection of the item anItem"
 	"<api: #st getter: #selectedItem>"
 	| index realItem |
@@ -318,11 +236,8 @@ DropListModel>>setSelectedItem: anItem [
 	selectionHolder selection value: realItem.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>silentlySetSelectedIndex: anIndex [
+{ #category : #private }
+DropListModel >> silentlySetSelectedIndex: anIndex [
 	"Force the selection of the item at index anIndex"
 	| selection |
 
@@ -331,22 +246,16 @@ DropListModel>>silentlySetSelectedIndex: anIndex [
 	selectionHolder selection value: selection.
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>whenSelectedItemChanged: aBlock [
+{ #category : #api-events }
+DropListModel >> whenSelectedItemChanged: aBlock [
 	"Set a block to perform when the selected item is changed"
 
 	selectionHolder selection whenChangedDo: [ :new :old :announcement :ann | 
 		aBlock cull: (new ifNotNil: [ :item | item model ]) cull: old cull: announcement cull: ann ]
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>whenSelectionChanged: aBlock [
+{ #category : #api-events }
+DropListModel >> whenSelectionChanged: aBlock [
 	"Set a block to perform when the selection is changed"
 	
 	"The method should be used only if you are interested in the fact that there was a change, without caring about what has changed
@@ -356,11 +265,8 @@ DropListModel>>whenSelectionChanged: aBlock [
 	selectionHolder whenChangedDo: aBlock.
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DropListModel>>whenSelectionIndexChanged: aBlock [
+{ #category : #api-events }
+DropListModel >> whenSelectionIndexChanged: aBlock [
 	"Set a block to perform when the selected index is changed"
 
 	selectionHolder index whenChangedDo: aBlock

@@ -4,15 +4,11 @@ Display a morph in a SimpleHierarchicalListMorph, and arrange to recursively dis
 Class {
 	#name : #MorphWithSubmorphsWrapper,
 	#superclass : #ListItemWrapper,
-	#category : #Morphic-Widgets-List,
-	#timestamp : 'ls 3/1/2004 17:32'
+	#category : #Morphic-Widgets-List
 }
 
-{
-	#category : #hierarchy,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-MorphWithSubmorphsWrapper>>contents [
+{ #category : #hierarchy }
+MorphWithSubmorphsWrapper >> contents [
 	^item submorphs collect: [ :m |
 		self class with: m ]
 ]

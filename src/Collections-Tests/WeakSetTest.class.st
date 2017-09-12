@@ -4,32 +4,22 @@ A trait for test purposes
 Class {
 	#name : #WeakSetTest,
 	#superclass : #TestCase,
-	#category : #Collections-Tests-Weak,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:36'
+	#category : #Collections-Tests-Weak
 }
 
-{
-	#category : #'building suites',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakSetTest class>>shouldInheritSelectors [
+{ #category : #'building suites' }
+WeakSetTest class >> shouldInheritSelectors [
 
 ^true
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakSetTest>>classToBeTested [
+{ #category : #requirements }
+WeakSetTest >> classToBeTested [
 	^ WeakSet
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakSetTest>>testAddIncludesSizeReclaim [
+{ #category : #testing }
+WeakSetTest >> testAddIncludesSizeReclaim [
 	| ws o2 o3 |
 	o2 := 1/2.
 	o3 := '123' copy.
@@ -58,22 +48,16 @@ WeakSetTest>>testAddIncludesSizeReclaim [
 	self assert: ws slowSize = 0.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakSetTest>>testAddNil [
+{ #category : #testing }
+WeakSetTest >> testAddNil [
 	| ws |
 	ws := WeakSet new.
 	ws add: nil.
 	self assert: (ws includes: nil)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakSetTest>>testAnyOneWhenAllContentsWasGarbaged [
+{ #category : #testing }
+WeakSetTest >> testAnyOneWhenAllContentsWasGarbaged [
 	| ws o |
 	o := Object new.
 	ws := WeakSet with: o.
@@ -82,11 +66,8 @@ WeakSetTest>>testAnyOneWhenAllContentsWasGarbaged [
 	self assert: ws anyOne equals: nil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakSetTest>>testAsArray [
+{ #category : #tests }
+WeakSetTest >> testAsArray [
 
 	| item set |
 
@@ -106,11 +87,8 @@ WeakSetTest>>testAsArray [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakSetTest>>testCollisions [
+{ #category : #testing }
+WeakSetTest >> testCollisions [
 
 	| ws o1 o2 o5 on remember forget |
 
@@ -160,11 +138,8 @@ WeakSetTest>>testCollisions [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakSetTest>>testDoAfter [
+{ #category : #tests }
+WeakSetTest >> testDoAfter [
 	"self debug: #testDoAfter"
 	| input weakSet array |
 	input := (1 to: 11) collect: [ :each | each asString asSymbol ]. "Some symbols might be garbage collected without this variable"
@@ -180,11 +155,8 @@ WeakSetTest>>testDoAfter [
 		self assert: result sort = (array allButFirst: index) sort ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakSetTest>>testDoDontIterateOnReclaimedObjects [
+{ #category : #testing }
+WeakSetTest >> testDoDontIterateOnReclaimedObjects [
 
 	| ws o1 o2 size |
 	ws := WeakSet new.
@@ -205,11 +177,8 @@ WeakSetTest>>testDoDontIterateOnReclaimedObjects [
 	self assert: size = 2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakSetTest>>testDontGrowWhenUnecessary [
+{ #category : #testing }
+WeakSetTest >> testDontGrowWhenUnecessary [
 	| ws objs initialSize |
 	objs := (2 to: 20) collect: [:i | 1 / i].
 	
@@ -227,11 +196,8 @@ WeakSetTest>>testDontGrowWhenUnecessary [
 		description: 'The WeakSet did not have to grow because slots of reclaimed objects were recycled'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakSetTest>>testGrowWhenNecessary [
+{ #category : #testing }
+WeakSetTest >> testGrowWhenNecessary [
 	| ws objs initialSize |
 	objs := (2 to: 20) collect: [:i | 1 / i].
 	ws := WeakSet new: 5.
@@ -241,11 +207,8 @@ WeakSetTest>>testGrowWhenNecessary [
 		description: 'The WeakSet grown because not enough room were preallocated'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakSetTest>>testIncludes [
+{ #category : #tests }
+WeakSetTest >> testIncludes [
 	"self debug: #testIncludes"
 	
 	| weakSet transientFakeNilObject |
@@ -264,11 +227,8 @@ WeakSetTest>>testIncludes [
 	self deny: (weakSet includes: nil)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakSetTest>>testIncludesNil [
+{ #category : #testing }
+WeakSetTest >> testIncludesNil [
 
 	| ws |
 	ws := WeakSet new.

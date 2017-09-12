@@ -4,141 +4,95 @@ I am an abstract class that represents a system event.
 Class {
 	#name : #EpEvent,
 	#superclass : #Object,
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 14:37'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEvent class>>handlesAnnouncement: anAnnouncement [
+{ #category : #announcements }
+EpEvent class >> handlesAnnouncement: anAnnouncement [
 	"The receiver acts as a filter to determine whether subscribers who used the receiver as signaling tag (event identifier class or symbol) should receive incoming announcement. In particular, registering to a superclass will receive the announcements from all subclasses."
 
 	^ anAnnouncement class == self or: [ anAnnouncement class inheritsFrom: self ]
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEvent>>accept: aVisitor [
+{ #category : #visitor }
+EpEvent >> accept: aVisitor [
 
 	self subclassResponsibility 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEvent>>isCodeChange [
+{ #category : #testing }
+EpEvent >> isCodeChange [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEvent>>isEpBehaviorChange [
+{ #category : #testing }
+EpEvent >> isEpBehaviorChange [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEvent>>isEpCategoryChange [
+{ #category : #testing }
+EpEvent >> isEpCategoryChange [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEvent>>isEpClassChange [
+{ #category : #testing }
+EpEvent >> isEpClassChange [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEvent>>isEpEvent [
+{ #category : #testing }
+EpEvent >> isEpEvent [
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEvent>>isEpLogEntriesComment [
+{ #category : #testing }
+EpEvent >> isEpLogEntriesComment [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEvent>>isEpMethodChange [
+{ #category : #testing }
+EpEvent >> isEpMethodChange [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEvent>>isEpProtocolChange [
+{ #category : #testing }
+EpEvent >> isEpProtocolChange [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEvent>>isEpRefactoring [
+{ #category : #testing }
+EpEvent >> isEpRefactoring [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEvent>>isEpTestResultSet [
+{ #category : #testing }
+EpEvent >> isEpTestResultSet [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEvent>>isEpTraitChange [
+{ #category : #testing }
+EpEvent >> isEpTraitChange [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEvent>>isMonticelloVersionSave [
+{ #category : #testing }
+EpEvent >> isMonticelloVersionSave [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEvent>>isMonticelloVersionsLoad [
+{ #category : #testing }
+EpEvent >> isMonticelloVersionsLoad [
 
 	^ false
 ]

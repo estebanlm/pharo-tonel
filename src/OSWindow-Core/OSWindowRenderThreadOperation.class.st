@@ -10,39 +10,26 @@ Class {
 		'blocking',
 		'failed'
 	],
-	#category : #OSWindow-Core-Extras,
-	#timestamp : '<historical>'
+	#category : #OSWindow-Core-Extras
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThreadOperation class>>new: anOperation [
+{ #category : #'instance creation' }
+OSWindowRenderThreadOperation class >> new: anOperation [
 	^ self new: anOperation blocking: false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThreadOperation class>>new: anOperation blocking: isBlocking [
+{ #category : #'instance creation' }
+OSWindowRenderThreadOperation class >> new: anOperation blocking: isBlocking [
 	^ self basicNew initWithOperation: anOperation blocking: isBlocking; yourself
 ]
 
-{
-	#category : #waiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThreadOperation>>blocking [
+{ #category : #waiting }
+OSWindowRenderThreadOperation >> blocking [
 	^ blocking
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThreadOperation>>execute [
+{ #category : #execute }
+OSWindowRenderThreadOperation >> execute [
 	[ 
 		[
 			failed := false.
@@ -55,30 +42,21 @@ OSWindowRenderThreadOperation>>execute [
 	] ensure: [ semaphore signal ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThreadOperation>>failed [
+{ #category : #accessing }
+OSWindowRenderThreadOperation >> failed [
 	^ failed
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThreadOperation>>initWithOperation: anOperation [
+{ #category : #initialize }
+OSWindowRenderThreadOperation >> initWithOperation: anOperation [
 	semaphore := Semaphore new.
 	operation := anOperation.
 	
 	
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThreadOperation>>initWithOperation: anOperation blocking: isBlocking [
+{ #category : #initialize }
+OSWindowRenderThreadOperation >> initWithOperation: anOperation blocking: isBlocking [
 	semaphore := Semaphore new.
 	operation := anOperation.
 	blocking := isBlocking
@@ -86,10 +64,7 @@ OSWindowRenderThreadOperation>>initWithOperation: anOperation blocking: isBlocki
 	
 ]
 
-{
-	#category : #waiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThreadOperation>>wait [
+{ #category : #waiting }
+OSWindowRenderThreadOperation >> wait [
 	semaphore wait
 ]

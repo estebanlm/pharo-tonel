@@ -6,25 +6,18 @@ Part of Zinc HTTP Components.
 Class {
 	#name : #ZnUtils,
 	#superclass : #Object,
-	#category : #Zinc-HTTP-Support,
-	#timestamp : 'SvenVanCaekenberghe 1/18/2011 11:03'
+	#category : #Zinc-HTTP-Support
 }
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUtils class>>bufferedWriteStreamOn: stream [
+{ #category : #streaming }
+ZnUtils class >> bufferedWriteStreamOn: stream [
 	^ (ZnBufferedWriteStream on: stream)
 		sizeBuffer: self streamingBufferSize;
 		yourself
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUtils class>>capitalizeString: string [
+{ #category : #conversions }
+ZnUtils class >> capitalizeString: string [
 	| capitalExpected |
 	capitalExpected := true.
 	^ String new: string size streamContents: [ :stream |
@@ -42,50 +35,35 @@ ZnUtils class>>capitalizeString: string [
 					capitalExpected := true ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUtils class>>currentProcessID [
+{ #category : #accessing }
+ZnUtils class >> currentProcessID [
 	"Return a integer of at most 6 digits that can be used as a description for the current active process.
 	This is a reduced hash that is not necessarily unique (but uniqueness is very probably)"
 	
 	^ Processor activeProcess hash \\ 999999
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUtils class>>decodeBase64: string [
+{ #category : #conversions }
+ZnUtils class >> decodeBase64: string [
 	| bytes |
 	bytes := ZnBase64Encoder new decode: string.
 	^ ZnNullEncoder new decodeBytes: bytes
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUtils class>>encodeBase64: string [
+{ #category : #conversions }
+ZnUtils class >> encodeBase64: string [
 	| bytes |
 	bytes := ZnNullEncoder new encodeString: string.
 	^ ZnBase64Encoder new encode: bytes
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUtils class>>httpDate [
+{ #category : #conversions }
+ZnUtils class >> httpDate [
 	^ self httpDate: DateAndTime now
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUtils class>>httpDate: object [
+{ #category : #conversions }
+ZnUtils class >> httpDate: object [
 	"Answers a string formatting object as time stamp for HTTP1.1 (RFC 1123). 
 	Eg. Sun, 06 Nov 1994 08:49:37 GMT"
 
@@ -101,11 +79,8 @@ ZnUtils class>>httpDate: object [
 		stream nextPutAll: ' GMT' ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUtils class>>isCapitalizedString: string [
+{ #category : #testing }
+ZnUtils class >> isCapitalizedString: string [
 	| capitalExpected |
 	capitalExpected := true.
 	string do: [ :each |
@@ -123,11 +98,8 @@ ZnUtils class>>isCapitalizedString: string [
 
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUtils class>>nextPutAll: collection on: stream [
+{ #category : #streaming }
+ZnUtils class >> nextPutAll: collection [ on: stream
 	| totalWritten toWrite total |
 	total := collection size.
 	"Do not enter the loop for small sizes"
@@ -141,11 +113,8 @@ ZnUtils class>>nextPutAll: collection on: stream [
 		self signalProgress: totalWritten total: total ]
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUtils class>>parseHttpDate: string [
+{ #category : #conversions }
+ZnUtils class >> parseHttpDate: string [
 	"self parseHttpDate: 'Tue, 13 Sep 2011 08:04:49 GMT'."
 	"self parseHttpDate: 'Tue, 13-Sep-2011 08:04:51 GMT'."
 	"self parseHttpDate: 'Tue Jan 01 00:00:01 2036 GMT'."
@@ -176,11 +145,8 @@ ZnUtils class>>parseHttpDate: string [
 	^ DateAndTime year: year month: month day: day hour: hour minute: minute second: second offset: Duration zero
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUtils class>>readUpToEnd: inputStream limit: limit [
+{ #category : #streaming }
+ZnUtils class >> readUpToEnd: inputStream limit: limit [
 	| species bufferSize buffer totalRead outputStream |
 	bufferSize := limit ifNil: [ self streamingBufferSize ] ifNotNil: [ self streamingBufferSize min: limit ].
 	species := inputStream isBinary ifTrue: [ ByteArray ] ifFalse: [ String ].
@@ -201,11 +167,8 @@ ZnUtils class>>readUpToEnd: inputStream limit: limit [
 	^ outputStream ifNil: [ species new ] ifNotNil: [ outputStream contents ]
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUtils class>>signalProgress: amount total: total [
+{ #category : #streaming }
+ZnUtils class >> signalProgress: amount total: total [
 	ZnSignalProgress enabled
 		ifTrue: [ 
 			total 
@@ -219,11 +182,8 @@ ZnUtils class>>signalProgress: amount total: total [
 						signal: 'Transferring...' ] ]
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUtils class>>streamFrom: inputStream to: outputStream [
+{ #category : #streaming }
+ZnUtils class >> streamFrom: inputStream to: outputStream [
 	| buffer totalRead |
 	buffer := (inputStream isBinary ifTrue: [ ByteArray ] ifFalse: [ String ]) new: self streamingBufferSize.
 	totalRead := 0.
@@ -240,11 +200,8 @@ ZnUtils class>>streamFrom: inputStream to: outputStream [
 					outputStream flush ] ]
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUtils class>>streamFrom: inputStream to: outputStream size: totalSize [
+{ #category : #streaming }
+ZnUtils class >> streamFrom: inputStream to: outputStream size: totalSize [
 	| bufferSize buffer leftToRead |
 	bufferSize := self streamingBufferSize min: totalSize.
 	buffer := (inputStream isBinary ifTrue: [ ByteArray ] ifFalse: [ String ]) new: bufferSize.
@@ -261,21 +218,15 @@ ZnUtils class>>streamFrom: inputStream to: outputStream size: totalSize [
 					outputStream flush ] ]
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUtils class>>streamingBufferSize [
+{ #category : #streaming }
+ZnUtils class >> streamingBufferSize [
 	"Return the byte count used as buffer size when streaming"
 	
 	^ 16384
 ]
 
-{
-	#category : #conversions,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUtils class>>trimString: string [
+{ #category : #conversions }
+ZnUtils class >> trimString: string [
 	"Until String>>#trimBoth is available everywhere"
 	
 	| left right |

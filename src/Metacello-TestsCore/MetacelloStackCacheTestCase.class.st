@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloStackCacheTestCase,
 	#superclass : #TestCase,
-	#category : #Metacello-TestsCore,
-	#timestamp : ''
+	#category : #Metacello-TestsCore
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloStackCacheTestCase>>cacheNil [
+{ #category : #tests }
+MetacelloStackCacheTestCase >> cacheNil [
 
 	^MetacelloPlatform current 
 		stackCacheFor: #cacheNil
@@ -23,11 +16,8 @@ MetacelloStackCacheTestCase>>cacheNil [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloStackCacheTestCase>>cachedReturnOfValue [
+{ #category : #tests }
+MetacelloStackCacheTestCase >> cachedReturnOfValue [
 
 	^MetacelloPlatform current 
 		stackCacheFor: #cached
@@ -43,11 +33,8 @@ MetacelloStackCacheTestCase>>cachedReturnOfValue [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloStackCacheTestCase>>collectionCacheKey [
+{ #category : #tests }
+MetacelloStackCacheTestCase >> collectionCacheKey [
 
 	| key |
 	key := Array with: self class with: (Array with: #x with: #y).
@@ -65,11 +52,8 @@ MetacelloStackCacheTestCase>>collectionCacheKey [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloStackCacheTestCase>>directReturnOfValue [
+{ #category : #tests }
+MetacelloStackCacheTestCase >> directReturnOfValue [
 
 	^MetacelloPlatform current 
 		stackCacheFor: #direct
@@ -83,11 +67,8 @@ MetacelloStackCacheTestCase>>directReturnOfValue [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloStackCacheTestCase>>mixedStack [
+{ #category : #tests }
+MetacelloStackCacheTestCase >> mixedStack [
 
 	^MetacelloPlatform current 
 		stackCacheFor: #mixed
@@ -103,11 +84,8 @@ MetacelloStackCacheTestCase>>mixedStack [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloStackCacheTestCase>>mixedStackCall [
+{ #category : #tests }
+MetacelloStackCacheTestCase >> mixedStackCall [
 
 	^MetacelloPlatform current 
 		stackCacheFor: #mixedStack
@@ -122,31 +100,22 @@ MetacelloStackCacheTestCase>>mixedStackCall [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloStackCacheTestCase>>testCacheNil [
+{ #category : #tests }
+MetacelloStackCacheTestCase >> testCacheNil [
 
 	| x |
 	self assert: (x := self cacheNil) == nil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloStackCacheTestCase>>testCachedReturn [
+{ #category : #tests }
+MetacelloStackCacheTestCase >> testCachedReturn [
 
 	| x |
 	self assert: (x := self cachedReturnOfValue) == 6
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloStackCacheTestCase>>testClearCache [
+{ #category : #tests }
+MetacelloStackCacheTestCase >> testClearCache [
 
 	MetacelloPlatform current 
 		stackCacheFor: #cached
@@ -159,11 +128,8 @@ MetacelloStackCacheTestCase>>testClearCache [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloStackCacheTestCase>>testCollectionCacheKey [
+{ #category : #tests }
+MetacelloStackCacheTestCase >> testCollectionCacheKey [
 
 	| x |
 	self assert: 
@@ -176,11 +142,8 @@ MetacelloStackCacheTestCase>>testCollectionCacheKey [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloStackCacheTestCase>>testDefaultDictionary [
+{ #category : #tests }
+MetacelloStackCacheTestCase >> testDefaultDictionary [
 
 	| defaultDictionary |
 	defaultDictionary := Dictionary new.
@@ -203,31 +166,22 @@ MetacelloStackCacheTestCase>>testDefaultDictionary [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloStackCacheTestCase>>testDirectReturn [
+{ #category : #tests }
+MetacelloStackCacheTestCase >> testDirectReturn [
 
 	| x |
 	self assert: (x := self directReturnOfValue) == 6
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloStackCacheTestCase>>testMixedStack [
+{ #category : #tests }
+MetacelloStackCacheTestCase >> testMixedStack [
 
 	| x |
 	self assert: (x := self mixedStack) == 4
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloStackCacheTestCase>>testPrimeStackCache [
+{ #category : #tests }
+MetacelloStackCacheTestCase >> testPrimeStackCache [
 
 	| cached collection cacheNil direct mixed mixedStack block defaultDictionary |
 	defaultDictionary := Dictionary new.

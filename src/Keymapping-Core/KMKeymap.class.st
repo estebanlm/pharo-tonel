@@ -11,15 +11,11 @@ Class {
 		'defaultShortcut',
 		'description'
 	],
-	#category : #Keymapping-Core,
-	#timestamp : 'GuillermoPolito 12/14/2010 21:33'
+	#category : #Keymapping-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap class>>named: keymapName shortcut: aShortcut action: anAction [
+{ #category : #'instance creation' }
+KMKeymap class >> named: keymapName shortcut: aShortcut action: anAction [
 	^ (self new)
 		name: keymapName;
 		defaultShortcut: aShortcut;
@@ -28,11 +24,8 @@ KMKeymap class>>named: keymapName shortcut: aShortcut action: anAction [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap class>>named: keymapName shortcut: aShortcut action: anAction description: aDescription [
+{ #category : #'instance creation' }
+KMKeymap class >> named: keymapName shortcut: aShortcut action: anAction description: aDescription [
 	^ (self new)
 		name: keymapName;
 		defaultShortcut: aShortcut;
@@ -42,11 +35,8 @@ KMKeymap class>>named: keymapName shortcut: aShortcut action: anAction descripti
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap class>>shortcut: aShortcut action: anAction [
+{ #category : #'instance creation' }
+KMKeymap class >> shortcut: aShortcut action: anAction [
 	^ (self new)
 		defaultShortcut: aShortcut;
 		shortcut: aShortcut;
@@ -54,11 +44,8 @@ KMKeymap class>>shortcut: aShortcut action: anAction [
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>= aKeymap [
+{ #category : #comparing }
+KMKeymap >> = aKeymap [
 	self == aKeymap
 		ifTrue: [ ^ true ].
 	self species = aKeymap species
@@ -66,155 +53,101 @@ KMKeymap>>= aKeymap [
 	^action = aKeymap action and: [ shortcut = aKeymap shortcut and: [ name = aKeymap name ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>action [
+{ #category : #accessing }
+KMKeymap >> action [
 	^ action
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>action: anAction [
+{ #category : #accessing }
+KMKeymap >> action: anAction [
 	action := anAction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>defaultShortcut [
+{ #category : #accessing }
+KMKeymap >> defaultShortcut [
 	^defaultShortcut
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>defaultShortcut: aShortcut [
+{ #category : #accessing }
+KMKeymap >> defaultShortcut: aShortcut [
 	defaultShortcut := aShortcut.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>description [
+{ #category : #accessing }
+KMKeymap >> description [
 	^description ifNil: [ '' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>description: aDescription [
+{ #category : #accessing }
+KMKeymap >> description: aDescription [
 	description := aDescription asString
 ]
 
-{
-	#category : #enabling/disabling,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>disable [
+{ #category : #enabling/disabling }
+KMKeymap >> disable [
 
 	self shortcut: KMNoShortcut new.
 ]
 
-{
-	#category : #executing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>executeActionTargetting: target [
+{ #category : #executing }
+KMKeymap >> executeActionTargetting: target [
 	^ self action cull: target cull: target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>hasName [
+{ #category : #accessing }
+KMKeymap >> hasName [
 	^name notNil
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>hash [
+{ #category : #comparing }
+KMKeymap >> hash [
 	^action hash bitXor: (shortcut hash bitXor: name hash)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>key [
+{ #category : #accessing }
+KMKeymap >> key [
 	^ name
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>matches: anEventBuffer [
+{ #category : #matching }
+KMKeymap >> matches: anEventBuffer [
 
 	^ anEventBuffer
 		ifEmpty: [ false ]
 		ifNotEmpty: [ self shortcut matches: anEventBuffer ]
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>matchesCompletely: aShortcut [
+{ #category : #matching }
+KMKeymap >> matchesCompletely: aShortcut [
 	^ self shortcut matchesCompletely: aShortcut
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>name [
+{ #category : #accessing }
+KMKeymap >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>name: aName [
+{ #category : #accessing }
+KMKeymap >> name: aName [
 	name := aName
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>notifyCompleteMatchTo: aListener buffer: aBuffer [
+{ #category : #matching }
+KMKeymap >> notifyCompleteMatchTo: aListener buffer: aBuffer [
 	| listeners |
 	aListener isCollection ifTrue: [ listeners := aListener ] ifFalse: [ listeners := { aListener } ].
 	listeners do: [ :l | l completeMatch: self buffer: aBuffer ].
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>notifyPartialMatchTo: aListener [
+{ #category : #matching }
+KMKeymap >> notifyPartialMatchTo: aListener [
 	| listeners |
 	aListener isCollection ifTrue: [ listeners := aListener ] ifFalse: [ { aListener } ].
 	listeners do: [ :l | l partialMatch ].
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>onMatchWith: anEventBuffer notify: aMatchListener andDo: anAction [
+{ #category : #matching }
+KMKeymap >> onMatchWith: anEventBuffer notify: aMatchListener andDo: anAction [
 	(self matches: anEventBuffer)
 			ifTrue: [ 
 				(self matchesCompletely: anEventBuffer)
@@ -224,11 +157,8 @@ KMKeymap>>onMatchWith: anEventBuffer notify: aMatchListener andDo: anAction [
 				] 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>printOn: aStream [
+{ #category : #printing }
+KMKeymap >> printOn: aStream [
 	aStream 
 		nextPutAll: self name printString;
 		nextPutAll: ' on ';
@@ -238,36 +168,24 @@ KMKeymap>>printOn: aStream [
 		cr.    
 ]
 
-{
-	#category : #enabling/disabling,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>reset [
+{ #category : #enabling/disabling }
+KMKeymap >> reset [
 
 	self shortcut: self defaultShortcut.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>shortcut [
+{ #category : #accessing }
+KMKeymap >> shortcut [
 	^ shortcut
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>shortcut: aShortcut [
+{ #category : #accessing }
+KMKeymap >> shortcut: aShortcut [
 	shortcut := aShortcut.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeymap>>shortcutHasChangedBy: aShortcut [
+{ #category : #accessing }
+KMKeymap >> shortcutHasChangedBy: aShortcut [
 	self defaultShortcut = self shortcut ifTrue: [ self shortcut: aShortcut ].
 	self defaultShortcut: aShortcut
 ]

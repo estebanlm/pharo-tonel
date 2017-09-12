@@ -11,33 +11,23 @@ If the new method is not defined in the class, you should probably rewrite this 
 Class {
 	#name : #RBSendsDifferentSuperRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 20:25'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSendsDifferentSuperRule class>>checksMethod [
+{ #category : #testing }
+RBSendsDifferentSuperRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSendsDifferentSuperRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBSendsDifferentSuperRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'SendsDifferentSuperRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSendsDifferentSuperRule>>basicCheck: aMethod  [
+{ #category : #running }
+RBSendsDifferentSuperRule >> basicCheck: aMethod [ 
 
 	^ aMethod superMessages anySatisfy: [ :message |
 		message ~= aMethod selector ]
@@ -45,11 +35,8 @@ RBSendsDifferentSuperRule>>basicCheck: aMethod  [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSendsDifferentSuperRule>>checkMethod: aMethod  [
+{ #category : #running }
+RBSendsDifferentSuperRule >> checkMethod: aMethod [ 
 	| message |
 	(message := (aMethod superMessages)
 		detect: [ :each | each ~= aMethod selector ]
@@ -59,26 +46,17 @@ RBSendsDifferentSuperRule>>checkMethod: aMethod  [
 			addMethod: aMethod ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSendsDifferentSuperRule>>group [
+{ #category : #accessing }
+RBSendsDifferentSuperRule >> group [
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSendsDifferentSuperRule>>name [
+{ #category : #accessing }
+RBSendsDifferentSuperRule >> name [
 	^ 'Sends different super message'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSendsDifferentSuperRule>>rationale [
+{ #category : #accessing }
+RBSendsDifferentSuperRule >> rationale [
 	^ 'Checks for methods whose source sends a different super message.'
 ]

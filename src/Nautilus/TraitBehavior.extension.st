@@ -1,12 +1,7 @@
-Extension {
-	#name : #TraitBehavior
-}
+Extension { #name : #TraitBehavior }
 
-{
-	#category : #'*Nautilus',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-TraitBehavior>>hierarchyClassTree [
+{ #category : #'*Nautilus' }
+TraitBehavior >> hierarchyClassTree [
 
 ^{
 	self . 

@@ -22,26 +22,19 @@ Class {
 		'MonotonSubdivisions',
 		'OverflowSubdivisions'
 	],
-	#category : #Balloon-Simulation,
-	#timestamp : '<historical>'
+	#category : #Balloon-Simulation
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation class>>initialize [
+{ #category : #initialization }
+BalloonBezierSimulation class >> initialize [
 	HeightSubdivisions := 0.
 	LineConversions := 0.
 	MonotonSubdivisions := 0.
 	OverflowSubdivisions := 0.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>absoluteSquared8Dot24: value [
+{ #category : #private }
+BalloonBezierSimulation >> absoluteSquared8Dot24: value [
 	"Compute the squared value of a 8.24 number with 0.0 <= value < 1.0,
 	e.g., compute (value * value) bitShift: -24"
 	| halfWord1 halfWord2 result |
@@ -61,22 +54,16 @@ BalloonBezierSimulation>>absoluteSquared8Dot24: value [
 	^result bitShift: -8
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>computeInitialStateFrom: source with: transformation [
+{ #category : #computing }
+BalloonBezierSimulation >> computeInitialStateFrom: source with: transformation [
 	"Compute the initial state in the receiver."
 	start := (transformation localPointToGlobal: source start) asIntegerPoint.
 	end := (transformation localPointToGlobal: source end) asIntegerPoint.
 	via := (transformation localPointToGlobal: source via) asIntegerPoint.
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>computeSplitAt: t [
+{ #category : #computing }
+BalloonBezierSimulation >> computeSplitAt: t [
 	"Split the receiver at the parametric value t"
 	| left right newVia1 newVia2 newPoint |
 	left := self shallowCopy.
@@ -93,11 +80,8 @@ BalloonBezierSimulation>>computeSplitAt: t [
 	^Array with: left with: right
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>debugDraw [
+{ #category : #private }
+BalloonBezierSimulation >> debugDraw [
 	| entry minY maxY lX lY canvas |
 	entry := BalloonEdgeData new.
 	canvas := Display getCanvas.
@@ -116,11 +100,8 @@ BalloonBezierSimulation>>debugDraw [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>debugDraw2 [
+{ #category : #private }
+BalloonBezierSimulation >> debugDraw2 [
 	| canvas last max t next |
 	canvas := Display getCanvas.
 	max := 100.
@@ -135,11 +116,8 @@ BalloonBezierSimulation>>debugDraw2 [
 	].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>debugDrawWide: n [
+{ #category : #private }
+BalloonBezierSimulation >> debugDrawWide: n [
 	| entry minY maxY canvas curve p1 p2 entry2 y |
 	curve := self class new.
 	curve start: start + (0@n).
@@ -172,27 +150,18 @@ BalloonBezierSimulation>>debugDrawWide: n [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>end [
+{ #category : #accessing }
+BalloonBezierSimulation >> end [
 	^end
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>end: aPoint [
+{ #category : #accessing }
+BalloonBezierSimulation >> end: aPoint [
 	end := aPoint
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>floatStepToFirstScanLineAt: yValue in: edgeTableEntry [
+{ #category : #computing }
+BalloonBezierSimulation >> floatStepToFirstScanLineAt: yValue [ in: edgeTableEntry
 	"Float version of forward differencing"
 	|  startX endX startY endY deltaY fwX1 fwX2 fwY1 fwY2 
 	steps scaledStepSize squaredStepSize |
@@ -242,11 +211,8 @@ BalloonBezierSimulation>>floatStepToFirstScanLineAt: yValue in: edgeTableEntry [
 	].
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>floatStepToNextScanLineAt: yValue in: edgeTableEntry [
+{ #category : #computing }
+BalloonBezierSimulation >> floatStepToNextScanLineAt: yValue [ in: edgeTableEntry
 	"Float version of forward differencing"
 	[yValue asFloat > lastY] whileTrue:[
 		self assert: [fwDx < -50.0 or:[fwDx > 50.0]].
@@ -261,48 +227,33 @@ BalloonBezierSimulation>>floatStepToNextScanLineAt: yValue in: edgeTableEntry [
 	edgeTableEntry zValue: 0.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>inTangent [
+{ #category : #accessing }
+BalloonBezierSimulation >> inTangent [
 	"Return the tangent at the start point"
 	^via - start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>initialX [
+{ #category : #accessing }
+BalloonBezierSimulation >> initialX [
 	^start y <= end y
 		ifTrue:[start x]
 		ifFalse:[end x]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>initialY [
+{ #category : #accessing }
+BalloonBezierSimulation >> initialY [
 	^start y <= end y
 		ifTrue:[start y]
 		ifFalse:[end y]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>initialZ [
+{ #category : #accessing }
+BalloonBezierSimulation >> initialZ [
 	^0 "Assume no depth given"
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>intStepToFirstScanLineAt: yValue in: edgeTableEntry [
+{ #category : #computing }
+BalloonBezierSimulation >> intStepToFirstScanLineAt: yValue [ in: edgeTableEntry
 	"Scaled integer version of forward differencing"
 	|  startX endX startY endY deltaY fwX1 fwX2 fwY1 fwY2 
 	 scaledStepSize squaredStepSize |
@@ -355,11 +306,8 @@ BalloonBezierSimulation>>intStepToFirstScanLineAt: yValue in: edgeTableEntry [
 	].
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>intStepToNextScanLineAt: yValue in: edgeTableEntry [
+{ #category : #computing }
+BalloonBezierSimulation >> intStepToNextScanLineAt: yValue [ in: edgeTableEntry
 	"Scaled integer version of forward differencing"
 	[maxSteps >= 0 and:[yValue * 256 > lastY]] whileTrue:[
 		self validateIntegerRange.
@@ -373,30 +321,21 @@ BalloonBezierSimulation>>intStepToNextScanLineAt: yValue in: edgeTableEntry [
 	edgeTableEntry zValue: 0.
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>isMonoton [
+{ #category : #computing }
+BalloonBezierSimulation >> isMonoton [
 	"Return true if the receiver is monoton along the y-axis,
 	e.g., check if the tangents have the same sign"
 	^(via y - start y) * (end y - via y) >= 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>outTangent [
+{ #category : #accessing }
+BalloonBezierSimulation >> outTangent [
 	"Return the tangent at the end point"
 	^end - via
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>printOn: aStream [
+{ #category : #printing }
+BalloonBezierSimulation >> printOn: aStream [
 	aStream 
 		nextPutAll: self class name;
 		nextPut:$(;
@@ -408,11 +347,8 @@ BalloonBezierSimulation>>printOn: aStream [
 		nextPut:$)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>quickPrint: curve [
+{ #category : #private }
+BalloonBezierSimulation >> quickPrint: curve [
 	Transcript nextPut:$(;
 		print: curve start;
 		space;
@@ -422,11 +358,8 @@ BalloonBezierSimulation>>quickPrint: curve [
 		nextPut:$).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>quickPrint: curve first: aBool [
+{ #category : #private }
+BalloonBezierSimulation >> quickPrint: curve first: aBool [
 	aBool ifTrue:[Transcript cr].
 	Transcript nextPut:$(;
 		print: curve start;
@@ -438,27 +371,18 @@ BalloonBezierSimulation>>quickPrint: curve first: aBool [
 	Transcript endEntry.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>start [
+{ #category : #accessing }
+BalloonBezierSimulation >> start [
 	^start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>start: aPoint [
+{ #category : #accessing }
+BalloonBezierSimulation >> start: aPoint [
 	start := aPoint
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>stepToFirst [
+{ #category : #private }
+BalloonBezierSimulation >> stepToFirst [
 	|  startX endX startY endY deltaY fwX1 fwX2 fwY1 fwY2 
 	steps scaledStepSize squaredStepSize |
 	(end y) >= (start y) ifTrue:[
@@ -493,11 +417,8 @@ BalloonBezierSimulation>>stepToFirst [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>stepToFirstInt [
+{ #category : #private }
+BalloonBezierSimulation >> stepToFirstInt [
 	"Scaled integer version of forward differencing"
 	|  startX endX startY endY deltaY fwX1 fwX2 fwY1 fwY2 
 	 scaledStepSize squaredStepSize |
@@ -536,31 +457,22 @@ BalloonBezierSimulation>>stepToFirstInt [
 
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>stepToFirstScanLineAt: yValue in: edgeTableEntry [
+{ #category : #computing }
+BalloonBezierSimulation >> stepToFirstScanLineAt: yValue [ in: edgeTableEntry
 	"Compute the initial x value for the scan line at yValue"
 	^self intStepToFirstScanLineAt: yValue in: edgeTableEntry
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>stepToNext [
+{ #category : #private }
+BalloonBezierSimulation >> stepToNext [
 		lastX := lastX + fwDx.
 		lastY := lastY + fwDy.
 		fwDx := fwDx + fwDDx.
 		fwDy := fwDy + fwDDy.
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>stepToNextScanLineAt: yValue in: edgeTableEntry [
+{ #category : #computing }
+BalloonBezierSimulation >> stepToNextScanLineAt: yValue [ in: edgeTableEntry
 	"Compute the next x value for the scan line at yValue.
 	This message is sent during incremental updates. 
 	The yValue parameter is passed in here for edges
@@ -568,11 +480,8 @@ BalloonBezierSimulation>>stepToNextScanLineAt: yValue in: edgeTableEntry [
 	^self intStepToNextScanLineAt: yValue in: edgeTableEntry
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>subdivide [
+{ #category : #computing }
+BalloonBezierSimulation >> subdivide [
 	"Subdivide the receiver"
 	| dy dx |
 	"Test 1: If the bezier curve is not monoton in Y, we need a subdivision"
@@ -607,11 +516,8 @@ BalloonBezierSimulation>>subdivide [
 	^nil
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>subdivideAt: parameter [
+{ #category : #computing }
+BalloonBezierSimulation >> subdivideAt: parameter [
 	"Subdivide the receiver at the given parameter"
 	| both |
 	self assert: [parameter <= 0.0 or:[parameter >= 1.0]].
@@ -628,11 +534,8 @@ BalloonBezierSimulation>>subdivideAt: parameter [
 	^both last
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>subdivideToBeLine [
+{ #category : #computing }
+BalloonBezierSimulation >> subdivideToBeLine [
 	"Not a true subdivision.
 	Just return a line representing the receiver and fake me to be of zero height"
 	| line |
@@ -645,11 +548,8 @@ BalloonBezierSimulation>>subdivideToBeLine [
 	 ^line
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>subdivideToBeMonoton [
+{ #category : #computing }
+BalloonBezierSimulation >> subdivideToBeMonoton [
 	"Subdivide the receiver at it's extreme point"
 	| v1 v2 t other |
 	v1 := (via - start).
@@ -661,11 +561,8 @@ BalloonBezierSimulation>>subdivideToBeMonoton [
 	^other
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>validateIntegerRange [
+{ #category : #private }
+BalloonBezierSimulation >> validateIntegerRange [
 	self assert: [fwDx class == SmallInteger].
 	self assert: [fwDy class == SmallInteger].
 	self assert: [fwDDx class == SmallInteger].
@@ -673,11 +570,8 @@ BalloonBezierSimulation>>validateIntegerRange [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>valueAt: parameter [
+{ #category : #private }
+BalloonBezierSimulation >> valueAt: parameter [
 	"Return the point at the value parameter:
 		p(t) =	(1-t)^2 * p1 + 
 				2*t*(1-t) * p2 + 
@@ -690,18 +584,12 @@ BalloonBezierSimulation>>valueAt: parameter [
 	^(start * t1) + (via * t2) + (end * t3)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>via [
+{ #category : #accessing }
+BalloonBezierSimulation >> via [
 	^via
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBezierSimulation>>via: aPoint [
+{ #category : #accessing }
+BalloonBezierSimulation >> via: aPoint [
 	via := aPoint
 ]

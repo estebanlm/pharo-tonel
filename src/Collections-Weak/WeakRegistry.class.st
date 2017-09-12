@@ -15,23 +15,16 @@ Class {
 	#classVars : [
 		'Default'
 	],
-	#category : #Collections-Weak,
-	#timestamp : 'Igor.Stasenko 3/8/2010 23:04'
+	#category : #Collections-Weak
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry class>>default [
+{ #category : #accessing }
+WeakRegistry class >> default [
 	^Default ifNil:[Default := self new]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry class>>new [
+{ #category : #'instance creation' }
+WeakRegistry class >> new [
 	| registry |
 	registry := super new.
 	WeakArray addWeakDependent: registry.
@@ -39,29 +32,20 @@ WeakRegistry class>>new [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry class>>new: n [
+{ #category : #'instance creation' }
+WeakRegistry class >> new: n [
 	^ self new
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry>>add: anObject [
+{ #category : #adding }
+WeakRegistry >> add: anObject [
 	"Add anObject to the receiver. Store the object as well as the associated executor."
 	
 	^self add: anObject executor: anObject executor
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry>>add: anObject executor: anExecutor [
+{ #category : #adding }
+WeakRegistry >> add: anObject executor: anExecutor [
 " with new finalization, we can simply override associations with key == nil in valueDictionary "
 	self protected: [ | finItem |
 		finItem := valueDictionary at: anObject ifAbsent: [
@@ -76,22 +60,16 @@ WeakRegistry>>add: anObject executor: anExecutor [
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry>>do: aBlock [
+{ #category : #enumerating }
+WeakRegistry >> do: aBlock [
 	^self protected: [
 		valueDictionary keysDo: aBlock.
 	].
 
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry>>finalizeValues [
+{ #category : #finalization }
+WeakRegistry >> finalizeValues [
 	"Finalize any values, which happen to stocked in our list, due to some weak references become garbage"
 	
 	| finalizer |
@@ -122,42 +100,30 @@ WeakRegistry>>finalizeValues [
 	].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry>>initialize [
+{ #category : #initialization }
+WeakRegistry >> initialize [
 	valueDictionary := WeakIdentityKeyDictionary new.
 	list := WeakFinalizationList new.
 	sema := Semaphore forMutualExclusion.
 	self installFinalizer.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry>>installFinalizer [
+{ #category : #initialize-release }
+WeakRegistry >> installFinalizer [
 	" do nothing, pharo does not supports it right now
 	valueDictionary finalizer: #finalizeValues
 	"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry>>keys [
+{ #category : #accessing }
+WeakRegistry >> keys [
 
 	^self protected: [ valueDictionary keys ]
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry>>postCopy [
+{ #category : #copying }
+WeakRegistry >> postCopy [
 	"should we prohibit any attempts to copy receiver?"
 	self protected: [ | oldDict |
 		sema := Semaphore forMutualExclusion.
@@ -172,20 +138,14 @@ WeakRegistry>>postCopy [
 	]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry>>printElementsOn: aStream [
+{ #category : #printing }
+WeakRegistry >> printElementsOn: aStream [
 	sema ifNil: [^super printElementsOn: aStream].
 	aStream nextPutAll: '(<this WeakRegistry is locked>)'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry>>protected: aBlock [
+{ #category : #private }
+WeakRegistry >> protected: aBlock [
 	"Execute aBlock protected by the accessLock"
 
 	^ sema
@@ -194,11 +154,8 @@ WeakRegistry>>protected: aBlock [
 		rcvr error: msg ] 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry>>remove: oldObject ifAbsent: exceptionBlock [
+{ #category : #printing }
+WeakRegistry >> remove: oldObject ifAbsent: exceptionBlock [
 	"Remove oldObject as one of the receiver's elements."
 	
 	oldObject ifNil: [ ^nil ].
@@ -206,11 +163,8 @@ WeakRegistry>>remove: oldObject ifAbsent: exceptionBlock [
 		ifNil: [ exceptionBlock value ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry>>removeAll [
+{ #category : #printing }
+WeakRegistry >> removeAll [
 	"See super"
 	
 	self protected:[
@@ -219,18 +173,12 @@ WeakRegistry>>removeAll [
 	].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry>>size [
+{ #category : #accessing }
+WeakRegistry >> size [
 	^ self protected: [valueDictionary slowSize]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakRegistry>>species [
+{ #category : #private }
+WeakRegistry >> species [
 	^Set
 ]

@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #FLProcessSerializationTest,
 	#superclass : #FLBasicSerializationTest,
-	#category : #FuelTests,
-	#timestamp : ''
+	#category : #FuelTests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLProcessSerializationTest>>setUpSerializer [
+{ #category : #running }
+FLProcessSerializationTest >> setUpSerializer [
 	^ serializer := FLDelayedSerializerMock newDefault
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLProcessSerializationTest>>testSerializingShortDelay [
+{ #category : #tests }
+FLProcessSerializationTest >> testSerializingShortDelay [
 	| process |
 	process := [ 2 timesRepeat: [ | d |
 		d := Delay forMilliseconds: 50.

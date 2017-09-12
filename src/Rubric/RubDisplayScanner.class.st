@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RubDisplayScanner,
 	#superclass : #RubCharacterScanner,
@@ -16,32 +13,22 @@ Class {
 		'ignoreColorChanges',
 		'defaultTextColor'
 	],
-	#category : #Rubric-TextScanning,
-	#timestamp : ''
+	#category : #Rubric-TextScanning
 }
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner class>>defaultFont [
+{ #category : #queries }
+RubDisplayScanner class >> defaultFont [
 	^ TextStyle defaultFont
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>backgroundColor: aColor [
+{ #category : #private }
+RubDisplayScanner >> backgroundColor: aColor [
 	ignoreColorChanges ifTrue: [^ self].
 	backgroundColor := aColor
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>cr [
+{ #category : #'stop conditions' }
+RubDisplayScanner >> cr [
 	"When a carriage return is encountered, simply increment the pointer 
 	into the paragraph."
 
@@ -52,11 +39,8 @@ RubDisplayScanner>>cr [
 	^false
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>crossedX [
+{ #category : #'stop conditions' }
+RubDisplayScanner >> crossedX [
 	"This condition will sometimes be reached 'legally' during display, when, 
 	for instance the space that caused the line to wrap actually extends over 
 	the right boundary. This character is allowed to display, even though it 
@@ -67,20 +51,14 @@ RubDisplayScanner>>crossedX [
 	^ true 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>defaultTextColor [
+{ #category : #private }
+RubDisplayScanner >> defaultTextColor [
 	defaultTextColor ifNil: [ defaultTextColor := Smalltalk ui theme textColor ].
 	^ defaultTextColor
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>displayEmbeddedForm: aForm [
+{ #category : #displaying }
+RubDisplayScanner >> displayEmbeddedForm: aForm [
 
 	aForm 
 		displayOn: bitBlt destForm 
@@ -90,11 +68,8 @@ RubDisplayScanner>>displayEmbeddedForm: aForm [
 		fillColor: Color white
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>displayLine: textLine offset: offset leftInRun: leftInRun [
+{ #category : #scanning }
+RubDisplayScanner >> displayLine: textLine offset: offset leftInRun: leftInRun [
 	"The call on the primitive (scanCharactersFrom:to:in:rightX:) will be interrupted according to an array of stop conditions passed to the scanner at which time the code to handle the stop condition is run and the call on the primitive continued until a stop condition returns true (which means the line has terminated).  leftInRun is the # of characters left to scan in the current run; when 0, it is time to call setStopConditions."
 	| stopCondition nowLeftInRun startIndex string lastPos |
 	line := textLine.
@@ -149,22 +124,16 @@ RubDisplayScanner>>displayLine: textLine offset: offset leftInRun: leftInRun [
 	^ runStopIndex - lastIndex   "Number of characters remaining in the current run"
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>displayString: string from: startIndex to: stopIndex at: aPoint [
+{ #category : #displaying }
+RubDisplayScanner >> displayString: string from: startIndex to: stopIndex at: aPoint [
 	font displayString: string on: bitBlt 
 		from: startIndex 
 		to: stopIndex 
 		at: aPoint kern: kern
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>endOfRun [
+{ #category : #'stop conditions' }
+RubDisplayScanner >> endOfRun [
 	"The end of a run in the display case either means that there is actually 
 	a change in the style (run code) to be associated with the string or the 
 	end of this line has been reached."
@@ -177,32 +146,23 @@ RubDisplayScanner>>endOfRun [
 	^ false
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>fillTextBackground [
+{ #category : #displaying }
+RubDisplayScanner >> fillTextBackground [
 	fillBlt == nil ifFalse:
 		["Not right"
 		fillBlt destX: line left destY: lineY
 			width: line width left height: line lineHeight; copyBits].
 ]
 
-{
-	#category : #'multilingual scanning',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>isBreakableAt: index in: sourceString in: encodingClass [
+{ #category : #'multilingual scanning' }
+RubDisplayScanner >> isBreakableAt: index [ in: sourceString in: encodingClass
 
 	^ false.
 
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>paddedSpace [
+{ #category : #'stop conditions' }
+RubDisplayScanner >> paddedSpace [
 	"Each space is a stop condition when the alignment is right justified. 
 	Padding must be added to the base width of the space according to 
 	which space in the line this space is and according to the amount of 
@@ -215,11 +175,8 @@ RubDisplayScanner>>paddedSpace [
 	^ false
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>placeEmbeddedObject: anchoredMorph [
+{ #category : #scanning }
+RubDisplayScanner >> placeEmbeddedObject: anchoredMorph [
 	anchoredMorph relativeTextAnchorPosition ifNotNil:[
 		anchoredMorph position: 
 			anchoredMorph relativeTextAnchorPosition +
@@ -244,11 +201,8 @@ RubDisplayScanner>>placeEmbeddedObject: anchoredMorph [
 	^ true
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>plainTab [
+{ #category : #'stop conditions' }
+RubDisplayScanner >> plainTab [
 	| nextDestX |
  	nextDestX := super plainTab.
 	fillBlt == nil ifFalse:
@@ -256,29 +210,20 @@ RubDisplayScanner>>plainTab [
 	^nextDestX
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>presentationText: t [
+{ #category : #private }
+RubDisplayScanner >> presentationText: t [
 
 	text := t.
 
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>setDestForm: df [
+{ #category : #'stop conditions' }
+RubDisplayScanner >> setDestForm: df [
 	bitBlt setDestForm: df.
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>setFont  [
+{ #category : #'stop conditions' }
+RubDisplayScanner >> setFont [ 
 	foregroundColor := self defaultTextColor.
 	super setFont.  "Sets font and emphasis bits, and maybe foregroundColor"
 	font installOn: bitBlt foregroundColor: foregroundColor backgroundColor: Color transparent.
@@ -288,11 +233,8 @@ RubDisplayScanner>>setFont  [
 
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>setPort: aBitBlt [
+{ #category : #'stop conditions' }
+RubDisplayScanner >> setPort: aBitBlt [
 	"Install the BitBlt to use"
 	bitBlt := aBitBlt.
 	bitBlt sourceX: 0; width: 0.	"Init BitBlt so that the first call to a primitive will not fail"
@@ -300,11 +242,8 @@ RubDisplayScanner>>setPort: aBitBlt [
 
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>setStopConditions [
+{ #category : #'stop conditions' }
+RubDisplayScanner >> setStopConditions [
 	"Set the font and the stop conditions for the current run."
 	
 	self setFont.
@@ -318,21 +257,15 @@ RubDisplayScanner>>setStopConditions [
 "
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>tab [
+{ #category : #'stop conditions' }
+RubDisplayScanner >> tab [
 	self plainTab.
 	lastIndex := lastIndex + 1.
 	^ false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>text: t textStyle: ts foreground: foreColor background: backColor fillBlt: blt ignoreColorChanges: shadowMode [
+{ #category : #private }
+RubDisplayScanner >> text: t textStyle: ts foreground: foreColor background: backColor fillBlt: blt ignoreColorChanges: shadowMode [
 	text := t.
 	textStyle := ts. 
 	foregroundColor := foreColor.
@@ -342,11 +275,8 @@ RubDisplayScanner>>text: t textStyle: ts foreground: foreColor background: backC
 	ignoreColorChanges := shadowMode
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubDisplayScanner>>textColor: textColor [
+{ #category : #private }
+RubDisplayScanner >> textColor: textColor [
 	ignoreColorChanges ifTrue: [^ self].
 	foregroundColor := textColor
 ]

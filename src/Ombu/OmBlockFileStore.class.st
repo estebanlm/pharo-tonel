@@ -7,34 +7,24 @@ Class {
 	#instVars : [
 		'blocks'
 	],
-	#category : #Ombu-Stores,
-	#timestamp : 'MartinDias 4/13/2017 20:24'
+	#category : #Ombu-Stores
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlockFileStore>>blockForLocalNameAsInteger: anIndex [
+{ #category : #private }
+OmBlockFileStore >> blockForLocalNameAsInteger: anIndex [
 	
 	blocks reverseDo: [:each | each firstLocalNameAsInteger <= anIndex ifTrue: [ ^each ] ].
 	^ self error: 'block not found'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlockFileStore>>blockSize [
+{ #category : #accessing }
+OmBlockFileStore >> blockSize [
 
 	^  131072 "2 ** 17"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlockFileStore>>entryPositionsStartingAt: startPosition upTo: endPosition [
+{ #category : #accessing }
+OmBlockFileStore >> entryPositionsStartingAt: startPosition upTo: endPosition [
 
 	self readEntriesWith: [:readStream |
 		readStream position: startPosition.
@@ -43,11 +33,8 @@ OmBlockFileStore>>entryPositionsStartingAt: startPosition upTo: endPosition [
 			entryPositionsUpTo: endPosition ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlockFileStore>>initialize [
+{ #category : #initialization }
+OmBlockFileStore >> initialize [
 
 	super initialize.
 	
@@ -59,11 +46,8 @@ OmBlockFileStore>>initialize [
 			firstEntryReference: (self referenceToLocalName: '1')).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlockFileStore>>readEntryForLocalName: aString ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
+{ #category : #accessing }
+OmBlockFileStore >> readEntryForLocalName: aString ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
 
 	^ (self blockForLocalNameAsInteger: aString asInteger)
 			atLocalName: aString
@@ -73,11 +57,8 @@ OmBlockFileStore>>readEntryForLocalName: aString ifPresent: presentBlockClosure 
 
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlockFileStore>>refresh [
+{ #category : #refreshing }
+OmBlockFileStore >> refresh [
 
 	self flush.
 
@@ -92,11 +73,8 @@ OmBlockFileStore>>refresh [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlockFileStore>>refreshEntryPositionsByLocalNameStartingAt: firstStreamPosition since: initialLocalName [
+{ #category : #private }
+OmBlockFileStore >> refreshEntryPositionsByLocalNameStartingAt: firstStreamPosition since: initialLocalName [
 	"AKA: Refresh blocks after new entries were written."
 
 	| lastBlock |
@@ -112,22 +90,16 @@ OmBlockFileStore>>refreshEntryPositionsByLocalNameStartingAt: firstStreamPositio
 
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlockFileStore>>refreshHeadReferenceAndEntryCountFrom: readStream [
+{ #category : #refreshing }
+OmBlockFileStore >> refreshHeadReferenceAndEntryCountFrom: readStream [
 
 	entryCount := blocks last lastLocalNameAsInteger.
 	headReference := self referenceToLocalName: entryCount asString.
 
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlockFileStore>>refreshNewBlocksFrom: readStream [
+{ #category : #refreshing }
+OmBlockFileStore >> refreshNewBlocksFrom: readStream [
 
 	| reader blockPosition blockFirstEntry |
 	reader := self newEntryReader.

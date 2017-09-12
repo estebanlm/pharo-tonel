@@ -10,23 +10,16 @@ Motivation example: Often the UI is built after/independently from the model. Yo
 Class {
 	#name : #AnnouncementSet,
 	#superclass : #Set,
-	#category : #Announcements-Core,
-	#timestamp : '<historical>'
+	#category : #Announcements-Core
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSet>>, anAnnouncementClass [
+{ #category : #adding }
+AnnouncementSet >> , anAnnouncementClass [
 	self add: anAnnouncementClass
 ]
 
-{
-	#category : #exclusion,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSet>>- anotherAnnouncement [
+{ #category : #exclusion }
+AnnouncementSet >> - anotherAnnouncement [
 	"Create an announcement set containnig the receiver
 	and anotherAnnouncement as an exclusion."
 
@@ -36,11 +29,8 @@ AnnouncementSet>>- anotherAnnouncement [
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementSet>>handlesAnnouncement: anAnnouncement [
+{ #category : #testing }
+AnnouncementSet >> handlesAnnouncement: anAnnouncement [
 	"If any of the set handles the announcements, subscribers should receive it."
 	^ self anySatisfy: [ :each | each handlesAnnouncement: anAnnouncement ]
 ]

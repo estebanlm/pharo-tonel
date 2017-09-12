@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicExpanderRenderer,
 	#superclass : #GLMMorphicBrowserRenderer,
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicExpanderRenderer>>render: aBrowser [
+{ #category : #rendering }
+GLMMorphicExpanderRenderer >> render: aBrowser [
 	^ self renderWithExpanders: aBrowser   
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicExpanderRenderer>>renderWithExpanders: aBrowser [
+{ #category : #rendering }
+GLMMorphicExpanderRenderer >> renderWithExpanders: aBrowser [
 	| morph scroll panel expander |
 	panel := GLMPanelMorph new.
 	panel 
@@ -44,11 +34,8 @@ GLMMorphicExpanderRenderer>>renderWithExpanders: aBrowser [
 	^ scroll
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicExpanderRenderer>>renderWithTree: aBrowser [
+{ #category : #rendering }
+GLMMorphicExpanderRenderer >> renderWithTree: aBrowser [
 	| treeMorph treeModel |
 	treeModel := GLMExpanderTreeMorphModel new glamourExpander: aBrowser.
 	treeMorph := MorphTreeMorph new.

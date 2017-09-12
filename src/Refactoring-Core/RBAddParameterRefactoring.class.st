@@ -17,26 +17,19 @@ Class {
 		'initializer',
 		'senders'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 13:33'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddParameterRefactoring class>>addParameterToMethod: aSelector in: aClass newSelector: newSelector initializer: init  [
+{ #category : #'instance creation' }
+RBAddParameterRefactoring class >> addParameterToMethod: aSelector in: aClass newSelector: newSelector initializer: init [ 
 	^self new addParameterToMethod: aSelector
 		in: aClass
 		newSelector: newSelector
 		initializer: init
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddParameterRefactoring class>>model: aRBSmalltalk addParameterToMethod: aSelector in: aClass newSelector: newSelector initializer: init  [
+{ #category : #'instance creation' }
+RBAddParameterRefactoring class >> model: aRBSmalltalk addParameterToMethod: aSelector in: aClass newSelector: newSelector initializer: init [ 
 	^(self new)
 		model: aRBSmalltalk;
 		addParameterToMethod: aSelector
@@ -46,11 +39,8 @@ RBAddParameterRefactoring class>>model: aRBSmalltalk addParameterToMethod: aSele
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddParameterRefactoring>>addParameterToMethod: aSelector in: aClass newSelector: newSel initializer: init  [
+{ #category : #initialize-release }
+RBAddParameterRefactoring >> addParameterToMethod: aSelector in: aClass newSelector: newSel initializer: init [ 
 	self 
 		renameMethod: aSelector
 		in: aClass
@@ -59,11 +49,8 @@ RBAddParameterRefactoring>>addParameterToMethod: aSelector in: aClass newSelecto
 	initializer := init
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddParameterRefactoring>>checkSendersAccessTo: name  [
+{ #category : #preconditions }
+RBAddParameterRefactoring >> checkSendersAccessTo: name [ 
 	| violatorClass |
 	(#('self' 'super') includes: name) ifTrue: [^self].
 	violatorClass := self senders 
@@ -76,11 +63,8 @@ RBAddParameterRefactoring>>checkSendersAccessTo: name  [
 						with: violatorClass)]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddParameterRefactoring>>checkVariableReferencesIn: aParseTree  [
+{ #category : #preconditions }
+RBAddParameterRefactoring >> checkVariableReferencesIn: aParseTree [ 
 	| searcher |
 	searcher := RBParseTreeSearcher new.
 	searcher matches: '`var'
@@ -92,11 +76,8 @@ RBAddParameterRefactoring>>checkVariableReferencesIn: aParseTree  [
 	searcher executeTree: aParseTree
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddParameterRefactoring>>modifyImplementorParseTree: parseTree in: aClass  [
+{ #category : #private }
+RBAddParameterRefactoring >> modifyImplementorParseTree: parseTree in: aClass [ 
 	| name newArg allTempVars |
 	allTempVars := parseTree allDefinedVariables.
 	name := self safeVariableNameFor: aClass temporaries: allTempVars.
@@ -106,11 +87,8 @@ RBAddParameterRefactoring>>modifyImplementorParseTree: parseTree in: aClass  [
 		andArguments: parseTree arguments , (Array with: newArg)
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddParameterRefactoring>>myConditions [
+{ #category : #preconditions }
+RBAddParameterRefactoring >> myConditions [
 	^RBCondition withBlock: 
 			[oldSelector numArgs + 1 = newSelector numArgs 
 				ifFalse: 
@@ -120,11 +98,8 @@ RBAddParameterRefactoring>>myConditions [
 			true]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddParameterRefactoring>>newSelectorString [
+{ #category : #private }
+RBAddParameterRefactoring >> newSelectorString [
 	| stream keywords |
 	stream := WriteStream on: String new.
 	keywords := newSelector keywords.
@@ -146,11 +121,8 @@ RBAddParameterRefactoring>>newSelectorString [
 	^stream contents
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddParameterRefactoring>>parseTreeRewriter [
+{ #category : #private }
+RBAddParameterRefactoring >> parseTreeRewriter [
 	| rewriteRule oldString newString |
 	rewriteRule := RBParseTreeRewriter new.
 	oldString := self buildSelectorString: oldSelector.
@@ -160,11 +132,8 @@ RBAddParameterRefactoring>>parseTreeRewriter [
 	^rewriteRule
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddParameterRefactoring>>safeVariableNameFor: aClass temporaries: allTempVars  [
+{ #category : #private }
+RBAddParameterRefactoring >> safeVariableNameFor: aClass temporaries: allTempVars [ 
 	| baseString i newString |
 	newString := baseString := 'anObject'.
 	i := 0.
@@ -177,11 +146,8 @@ RBAddParameterRefactoring>>safeVariableNameFor: aClass temporaries: allTempVars 
 	^newString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddParameterRefactoring>>senders [
+{ #category : #private }
+RBAddParameterRefactoring >> senders [
 	senders isNil 
 		ifTrue: 
 			[senders := Set new.
@@ -190,11 +156,8 @@ RBAddParameterRefactoring>>senders [
 	^senders
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddParameterRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBAddParameterRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream
@@ -210,11 +173,8 @@ RBAddParameterRefactoring>>storeOn: aStream  [
 		nextPutAll: ''')'
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddParameterRefactoring>>verifyInitializationExpression [
+{ #category : #preconditions }
+RBAddParameterRefactoring >> verifyInitializationExpression [
 	| tree |
 	tree := RBParser parseExpression: initializer
 				onError: 

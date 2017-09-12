@@ -4,15 +4,11 @@ A MCTraitDefinition represents a trait.
 Class {
 	#name : #MCTraitDefinition,
 	#superclass : #MCClassDefinition,
-	#category : #Monticello-Modeling,
-	#timestamp : '<historical>'
+	#category : #Monticello-Modeling
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCTraitDefinition class>>name: classNameString traitComposition:  traitCompositionString category:  categoryString comment:  commentString commentStamp:   commentStamp [
+{ #category : #instance-creation }
+MCTraitDefinition class >> name: classNameString traitComposition:  traitCompositionString category:  categoryString comment:  commentString commentStamp:   commentStamp [
 	^ self instanceLike:
 		(self new initializeWithName: classNameString 
 			traitComposition:  traitCompositionString
@@ -22,11 +18,8 @@ MCTraitDefinition class>>name: classNameString traitComposition:  traitCompositi
 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCTraitDefinition>>= aDefinition [
+{ #category : #comparing }
+MCTraitDefinition >> = aDefinition [
 	self flag: #traits. "Ugly we harcoded the super superclass method.  We will have to refactor the definition hierarchy"
 	
 	^ (aDefinition isKindOf: MCDefinition)
@@ -36,20 +29,14 @@ MCTraitDefinition>>= aDefinition [
 		and: [comment = aDefinition comment]]]]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCTraitDefinition>>accept: aVisitor [
+{ #category : #visiting }
+MCTraitDefinition >> accept: aVisitor [
 	^ aVisitor visitTraitDefinition: self
 
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCTraitDefinition>>createClass [
+{ #category : #installing }
+MCTraitDefinition >> createClass [
 	| trait |
 	trait := Trait
 		named: name
@@ -59,21 +46,15 @@ MCTraitDefinition>>createClass [
 	^trait
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCTraitDefinition>>hasClassInstanceVariables [
+{ #category : #testing }
+MCTraitDefinition >> hasClassInstanceVariables [
 	^ false
 
 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCTraitDefinition>>hash [
+{ #category : #comparing }
+MCTraitDefinition >> hash [
 	| hash |
 	hash := String stringHash: name initialHash: 0.
 	hash := String stringHash: self traitCompositionString initialHash: hash.
@@ -82,11 +63,8 @@ MCTraitDefinition>>hash [
 
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCTraitDefinition>>initializeWithName: classNameString 
+{ #category : #initializing }
+MCTraitDefinition >> initializeWithName: classNameString 
 	traitComposition:  traitCompositionString
 	category:  categoryString
 	comment:  commentString  
@@ -100,20 +78,14 @@ MCTraitDefinition>>initializeWithName: classNameString
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCTraitDefinition>>printClassDefinitionOn: stream [
+{ #category : #printing }
+MCTraitDefinition >> printClassDefinitionOn: stream [
 
 	^ self printMetaDefinitionOn: stream
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCTraitDefinition>>printDefinitionOn: stream [
+{ #category : #printing }
+MCTraitDefinition >> printDefinitionOn: stream [
 	stream nextPutAll: 'Trait named: #', self className;
 		 cr;
 		 tab;
@@ -126,11 +98,8 @@ MCTraitDefinition>>printDefinitionOn: stream [
 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCTraitDefinition>>requirements [
+{ #category : #comparing }
+MCTraitDefinition >> requirements [
 	"Assuming that traits in a composition can be identified by
 	testing for the first character beeing an uppercase character
 	(and thus not a special character such as {, # etc.)"

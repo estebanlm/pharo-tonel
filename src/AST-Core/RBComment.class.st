@@ -30,69 +30,47 @@ Class {
 		'contents',
 		'start'
 	],
-	#category : #AST-Core-Nodes,
-	#timestamp : 'NicolaiHess 11/8/2016 11:15'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBComment class>>with: aString at: startPosition [
+{ #category : #'instance creation' }
+RBComment class >> with: aString at: startPosition [
 	^ self new
 		with: aString at: startPosition;
 		yourself. 
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBComment>>contents [
+{ #category : #accessing }
+RBComment >> contents [
 	^ contents
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBComment>>printOn: aStream [
+{ #category : #printing }
+RBComment >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPutAll: ' "'.
 	aStream nextPutAll: contents.
 	aStream nextPutAll: '" '.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBComment>>size [
+{ #category : #accessing }
+RBComment >> size [
 	^ contents size + 2 "must take into account quotation marks"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBComment>>start [
+{ #category : #accessing }
+RBComment >> start [
 	^ start.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBComment>>stop [
+{ #category : #accessing }
+RBComment >> stop [
 	^ start + self size - 1
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBComment>>with: aString at: startPosition [
+{ #category : #initialize-release }
+RBComment >> with: aString at: startPosition [
 	start := startPosition.
 	contents := aString.
 

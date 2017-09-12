@@ -20,15 +20,11 @@ Class {
 		'variables',
 		'selectors'
 	],
-	#category : #NECompletion-Model,
-	#timestamp : '<historical>'
+	#category : #NECompletion-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext class>>controller: aECController class: aClass source: aString position: anInteger  [
+{ #category : #'instance creation' }
+NECContext class >> controller: aECController class: aClass source: aString position: anInteger [ 
 	^ self basicNew initialize
 		setController: aECController
 		class: aClass
@@ -36,11 +32,8 @@ NECContext class>>controller: aECController class: aClass source: aString positi
 		position: anInteger
 ]
 
-{
-	#category : #private-temporaries,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>blockTemporaries [
+{ #category : #private-temporaries }
+NECContext >> blockTemporaries [
 	| blocks range vars |
 	blocks := OrderedCollection new.
 	1 
@@ -57,22 +50,16 @@ NECContext>>blockTemporaries [
 	^ self convertBlocksToVariables: blocks
 ]
 
-{
-	#category : #private-compute-index,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>checkForZeroPosition [
+{ #category : #private-compute-index }
+NECContext >> checkForZeroPosition [
 	^ (position = 0
 			or: [ranges isEmpty])
 		and: [self insertEmptyRangeAt: 1 start: 0 end: 1.
 			true]
 ]
 
-{
-	#category : #private-receiver-guessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>checkImpossibleReceiver [
+{ #category : #private-receiver-guessing }
+NECContext >> checkImpossibleReceiver [
 	^ self isSelectorsAndVariables
 		ifTrue: [self configureSelectorsAndVariables]
 		ifFalse: [self isVariablesOnly
@@ -81,11 +68,8 @@ NECContext>>checkImpossibleReceiver [
 						and: [self configureSelectorsOnly]]]. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>completionToken [
+{ #category : #accessing }
+NECContext >> completionToken [
 	completionToken
 		ifNil:
 			[ self isPositionAtPatternArg
@@ -94,48 +78,33 @@ NECContext>>completionToken [
 	^ completionToken
 ]
 
-{
-	#category : #private-type-guessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>completionTokenIsComment [
+{ #category : #private-type-guessing }
+NECContext >> completionTokenIsComment [
 	| currentRange |
 	currentRange := (ranges at: completionIndex).
 	^  currentRange isComment
 ]
 
-{
-	#category : #private-type-guessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>completionTokenIsLiteral [
+{ #category : #private-type-guessing }
+NECContext >> completionTokenIsLiteral [
 	| currentRange |
 	currentRange := (ranges at: completionIndex).
 	^  currentRange isConstant or:[ currentRange isUnfinished ]
 ]
 
-{
-	#category : #private-type-guessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>completionTokenIsLiteralOrComment [
+{ #category : #private-type-guessing }
+NECContext >> completionTokenIsLiteralOrComment [
 	^ self completionTokenIsLiteral or:[ self completionTokenIsComment]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>compute [
+{ #category : #private }
+NECContext >> compute [
 	completionIndex := self computeIndexOfPosition.
 	receiverClass := self computeReceiverClass
 ]
 
-{
-	#category : #private-compute-index,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>computeIndexOfPosition [
+{ #category : #private-compute-index }
+NECContext >> computeIndexOfPosition [
 	| current |
 	self checkForZeroPosition ifTrue: [ ^ 1 ].
 	1 
@@ -150,11 +119,8 @@ NECContext>>computeIndexOfPosition [
 	^ self createEmptyRangeAtTail
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>computeReceiverClass [
+{ #category : #private }
+NECContext >> computeReceiverClass [
 	| previous found |
 	recurseCount := 0.
 	completionIndex = 1 ifTrue: [^nil].
@@ -175,41 +141,29 @@ NECContext>>computeReceiverClass [
 	^self guessTypeOf: completionIndex - 1
 ]
 
-{
-	#category : #private-configure,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>configureSelectorsAndVariables [
+{ #category : #private-configure }
+NECContext >> configureSelectorsAndVariables [
 	variables := true.
 	selectors := true.
 	^true
 ]
 
-{
-	#category : #private-configure,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>configureSelectorsOnly [
+{ #category : #private-configure }
+NECContext >> configureSelectorsOnly [
 	variables := false.
 	selectors := true.
 	^true
 ]
 
-{
-	#category : #private-configure,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>configureVariablesOnly [
+{ #category : #private-configure }
+NECContext >> configureVariablesOnly [
 	variables := true.
 	selectors := false.
 	^true
 ]
 
-{
-	#category : #private-temporaries,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>convertBlocksToVariables: anOrderedCollection  [
+{ #category : #private-temporaries }
+NECContext >> convertBlocksToVariables: anOrderedCollection [ 
 	| result blockStack |
 	blockStack := anOrderedCollection.
 	result := OrderedCollection new.
@@ -217,11 +171,8 @@ NECContext>>convertBlocksToVariables: anOrderedCollection  [
 	^ result
 ]
 
-{
-	#category : #private-compute-index,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>createEmptyRangeAtTail [
+{ #category : #private-compute-index }
+NECContext >> createEmptyRangeAtTail [
 	| previous |
 	previous := ranges last.
 	ranges add: (SHRange 
@@ -231,11 +182,8 @@ NECContext>>createEmptyRangeAtTail [
 	^ ranges size
 ]
 
-{
-	#category : #private-compute-index,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>createEmptyRangeForGapAt: index  [
+{ #category : #private-compute-index }
+NECContext >> createEmptyRangeForGapAt: index [ 
 	| current previous |
 	current := ranges at: index.
 	previous := ranges at: (index - 1 max: 1).
@@ -246,11 +194,8 @@ NECContext>>createEmptyRangeForGapAt: index  [
 	^ index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>createModel [
+{ #category : #accessing }
+NECContext >> createModel [
 	| modelClass |
 	
 	self receiverClass
@@ -277,11 +222,8 @@ NECContext>>createModel [
 		selectors: selectors
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>createRanges [
+{ #category : #private }
+NECContext >> createRanges [
 	| parser |
 	parser := SHParserST80 new on: controller model.
 	ranges := parser 
@@ -294,19 +236,13 @@ NECContext>>createRanges [
 	ranges := ranges select: [ :each | each type ~= #comment or: [ each includesPosition: position ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>currentRange [
+{ #category : #private }
+NECContext >> currentRange [
 	^ ranges detect: [ :each | position between: each start and: each end ] ifNone: [ nil ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>findSourceRangeFor: aNumber  [
+{ #category : #private }
+NECContext >> findSourceRangeFor: aNumber [ 
 	aNumber
 		to: ranges size
 		by: 2
@@ -322,11 +258,8 @@ NECContext>>findSourceRangeFor: aNumber  [
 										ifFalse: [^ nil]]]]]
 ]
 
-{
-	#category : #private-type-guessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>guessArgument: aSHRange  [
+{ #category : #private-type-guessing }
+NECContext >> guessArgument: aSHRange [ 
 	| name |
 	name := self sourceOf: aSHRange.
 	(name = 'html') ifTrue: [
@@ -335,11 +268,8 @@ NECContext>>guessArgument: aSHRange  [
 	^ NECInstVarTypeGuesser getClassFromTypeSuggestingName: name
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>guessCascadeReceiver: aNumber  [
+{ #category : #private }
+NECContext >> guessCascadeReceiver: aNumber [ 
 	| type |
 	aNumber 
 		to: 1
@@ -351,11 +281,8 @@ NECContext>>guessCascadeReceiver: aNumber  [
 	^ nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>guessClassVarClass: aSHRange  [
+{ #category : #private }
+NECContext >> guessClassVarClass: aSHRange [ 
 	| aClass name |
 	name := self sourceOf: aSHRange.
 	aClass := controller guessTypeFor: name.
@@ -366,11 +293,8 @@ NECContext>>guessClassVarClass: aSHRange  [
 		class: theClass theMetaClass) perform
 ]
 
-{
-	#category : #private-type-guessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>guessGlobal: aNumber  [
+{ #category : #private-type-guessing }
+NECContext >> guessGlobal: aNumber [ 
 	| aClass |
 	aClass := Smalltalk 
 		at: (self sourceOf: (ranges at: aNumber)) asSymbol
@@ -386,11 +310,8 @@ NECContext>>guessGlobal: aNumber  [
 	^ aClass
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>guessInstVarClass: aSHRange  [
+{ #category : #private }
+NECContext >> guessInstVarClass: aSHRange [ 
 	| aClass name |
 	name := self sourceOf: aSHRange.
 	aClass := controller guessTypeFor: name.
@@ -400,20 +321,14 @@ NECContext>>guessInstVarClass: aSHRange  [
 		class: theClass) perform
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>guessTempVarClass: aSHRange  [
+{ #category : #private }
+NECContext >> guessTempVarClass: aSHRange [ 
 	^self guessTempVarClass: (self sourceOf: aSHRange) type: aSHRange type.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>guessTempVarClass: aString type: aSymbol  [
+{ #category : #private }
+NECContext >> guessTempVarClass: aString type: aSymbol [ 
 	| current type varName varType sourceIndex aClass |
 	aClass := controller guessTypeFor: aString.
 	aClass ifNotNil: [ ^ aClass ].
@@ -431,11 +346,8 @@ NECContext>>guessTempVarClass: aString type: aSymbol  [
 	^ nil
 ]
 
-{
-	#category : #private-type-guessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>guessTypeOf: aNumber  [
+{ #category : #private-type-guessing }
+NECContext >> guessTypeOf: aNumber [ 
 	| range |
 	self configureSelectorsOnly.
 	recurseCount > 10 ifTrue: [ ^ nil ].
@@ -454,11 +366,8 @@ NECContext>>guessTypeOf: aNumber  [
 	^nil
 ]
 
-{
-	#category : #private-temporaries,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>handleBlockStack: aCollection with: aSHRange  [
+{ #category : #private-temporaries }
+NECContext >> handleBlockStack: aCollection with: aSHRange [ 
 	| range blockStack |
 	range := aSHRange.
 	blockStack := aCollection.
@@ -467,11 +376,8 @@ NECContext>>handleBlockStack: aCollection with: aSHRange  [
 		ifFalse: [ range isBlockEnd ifTrue: [ blockStack removeLast ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>initialize [
+{ #category : #initialization }
+NECContext >> initialize [
 	super initialize.
 	source := String new.
 	position := 0.
@@ -483,11 +389,8 @@ NECContext>>initialize [
 	completionToken := nil
 ]
 
-{
-	#category : #private-compute-index,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>insertEmptyRangeAt: index start: start end: end  [
+{ #category : #private-compute-index }
+NECContext >> insertEmptyRangeAt: index start: start end: end [ 
 	ranges
 		add: (SHRange
 				start: start
@@ -496,49 +399,34 @@ NECContext>>insertEmptyRangeAt: index start: start end: end  [
 		beforeIndex: index
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>isPositionAtPatternArg [
+{ #category : #private }
+NECContext >> isPositionAtPatternArg [
 	| currentRange |
 	currentRange := self currentRange.
 	^ currentRange notNil and: [ currentRange type = #patternArg ]
 ]
 
-{
-	#category : #private-receiver-guessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>isSelectorsAndVariables [
+{ #category : #private-receiver-guessing }
+NECContext >> isSelectorsAndVariables [
 	| current |
 	current := ranges at: completionIndex.
 	^current isUnfinished
 ]
 
-{
-	#category : #private-receiver-guessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>isSelectorsOnly [
+{ #category : #private-receiver-guessing }
+NECContext >> isSelectorsOnly [
 	| previous |
 	previous := ranges at: completionIndex - 1.
 	^previous isOpening
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>isStartOfMethodDefinition [
+{ #category : #private }
+NECContext >> isStartOfMethodDefinition [
 	^ completionIndex = 1 or: [ self isPositionAtPatternArg ]
 ]
 
-{
-	#category : #private-receiver-guessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>isVariablesOnly [
+{ #category : #private-receiver-guessing }
+NECContext >> isVariablesOnly [
 	| current previous |
 	current := ranges at: completionIndex.
 	^ current isVariablesOnly or: 
@@ -549,29 +437,20 @@ NECContext>>isVariablesOnly [
 					[ previous isKeyword or: [ previous isAssignment or: [ previous isBinary ] ] ] ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>model [
+{ #category : #accessing }
+NECContext >> model [
 	model isNil ifTrue: [ model := self createModel ].
 	^ model
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>narrowWith: aString  [
+{ #category : #action }
+NECContext >> narrowWith: aString [ 
 	completionToken := aString.
 	model ifNotNil: [ model narrowWith: aString ]
 ]
 
-{
-	#category : #private-type-guessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>nonAbstractTypeOf: aRange [
+{ #category : #private-type-guessing }
+NECContext >> nonAbstractTypeOf: aRange [
 	| cls |
 	cls := aRange asType.
 	cls hasAbstractMethods
@@ -579,19 +458,13 @@ NECContext>>nonAbstractTypeOf: aRange [
 	^ [(cls readFromString: (aRange textIn: source)) class] on: Error do: [ cls ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>receiverClass [
+{ #category : #private }
+NECContext >> receiverClass [
 	^ receiverClass
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>setController: aECController class: aClass source: aString position: anInteger  [
+{ #category : #initialize-release }
+NECContext >> setController: aECController class: aClass source: aString position: anInteger [ 
 	controller := aECController.
 	theClass := aClass.
 	source := aString.
@@ -600,41 +473,29 @@ NECContext>>setController: aECController class: aClass source: aString position:
 	self compute
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>sourceOf: aSHRange  [
+{ #category : #private }
+NECContext >> sourceOf: aSHRange [ 
 	^aSHRange isString
 		ifTrue: [aSHRange]
 		ifFalse: [self sourceOf: aSHRange stopAt: aSHRange end]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>sourceOf: aSHRange stopAt: aNumber [
+{ #category : #private }
+NECContext >> sourceOf: aSHRange stopAt: aNumber [
 	^ aSHRange type = #empty
 		ifTrue: [String new]
 		ifFalse: [source copyFrom: aSHRange start to: aNumber]
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>switchToUntyped [
+{ #category : #action }
+NECContext >> switchToUntyped [
 	receiverClass := nil.
 	self configureSelectorsAndVariables.
 	model := self createModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>temporaries [
+{ #category : #accessing }
+NECContext >> temporaries [
 	| tempRanges |
 	tempRanges := ranges select: [ :each | #(#patternTempVar #patternArg ) includes: each type ].
 	tempRanges addAll: self blockTemporaries.
@@ -645,29 +506,20 @@ NECContext>>temporaries [
 			type: each type ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>theClass [
+{ #category : #accessing }
+NECContext >> theClass [
 	^theClass
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>tokenAtCurrentRange [
+{ #category : #private }
+NECContext >> tokenAtCurrentRange [
 	| range token |
 	range := ranges at: completionIndex.
 	token := self sourceOf: range stopAt: position.
 	^ token wordBefore: token size
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECContext>>tokenForMethodDefinition [
+{ #category : #private }
+NECContext >> tokenForMethodDefinition [
 	^ self sourceOf: ranges first stopAt: position
 ]

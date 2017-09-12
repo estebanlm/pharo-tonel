@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMExplicitBrowserCopyTest,
 	#superclass : #TestCase,
@@ -8,15 +5,11 @@ Class {
 		'browser',
 		'copiedBrowser'
 	],
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExplicitBrowserCopyTest>>setUp [
+{ #category : #tests }
+GLMExplicitBrowserCopyTest >> setUp [
 	| pane1 pane2 transmission1 transmission2 | 
 	browser := GLMExplicitBrowser new. 
 	
@@ -37,19 +30,13 @@ GLMExplicitBrowserCopyTest>>setUp [
 	copiedBrowser := browser copy
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExplicitBrowserCopyTest>>testEquality [
+{ #category : #tests }
+GLMExplicitBrowserCopyTest >> testEquality [
 	self assert: (copiedBrowser = browser) not
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExplicitBrowserCopyTest>>testPanes [
+{ #category : #tests }
+GLMExplicitBrowserCopyTest >> testPanes [
 	self assert: copiedBrowser panes size equals: 2.
 	self assert: copiedBrowser panes first ~~ browser panes first.
 	self assert: copiedBrowser panes last ~~ browser panes last.
@@ -63,11 +50,8 @@ GLMExplicitBrowserCopyTest>>testPanes [
 	self assert: copiedBrowser panes last ports last name equals: #entity
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExplicitBrowserCopyTest>>testTrasmissions [
+{ #category : #tests }
+GLMExplicitBrowserCopyTest >> testTrasmissions [
 	self assert: copiedBrowser transmissions size equals: 2.
 	self assert: copiedBrowser transmissions first ~~ browser transmissions first.
 	self assert: copiedBrowser transmissions last ~~ browser transmissions last.

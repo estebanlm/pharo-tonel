@@ -4,6 +4,5 @@ I am an event of an entity being criticized by the rules. Happens when #critics 
 Class {
 	#name : #ReEntityCriticized,
 	#superclass : #ReMultipleCritiquesEvent,
-	#category : #Renraku-Announcements,
-	#timestamp : 'YuriyTymchuk 8/23/2015 13:42'
+	#category : #Renraku-Announcements
 }

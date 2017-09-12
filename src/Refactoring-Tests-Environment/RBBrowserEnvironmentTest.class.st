@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RBBrowserEnvironmentTest,
 	#superclass : #TestCase,
@@ -11,33 +8,23 @@ Class {
 		'ClassSideOnlyVariable',
 		'ClassVariable'
 	],
-	#category : #Refactoring-Tests-Environment,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Environment
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest class>>accessFromClassSideOnlyVariable [
+{ #category : #accessing }
+RBBrowserEnvironmentTest class >> accessFromClassSideOnlyVariable [
 	"testing method. This class variable is only accessed from this class side method"
 
 	^ ClassSideOnlyVariable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest class>>packageNamesUnderTest [
+{ #category : #accessing }
+RBBrowserEnvironmentTest class >> packageNamesUnderTest [
 	^ #('Refactoring-Environment')
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>categoriesFor: anEnvironment  [
+{ #category : #private }
+RBBrowserEnvironmentTest >> categoriesFor: anEnvironment [ 
 	| allCategories |
 	allCategories := IdentitySet withAll: universalEnvironment categories.
 	allCategories removeAll: anEnvironment categories.
@@ -47,11 +34,8 @@ RBBrowserEnvironmentTest>>categoriesFor: anEnvironment  [
 		do: [ :each | self assert: (universalEnvironment classNamesFor: each) isEmpty ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>classNamesFor: anEnvironment  [
+{ #category : #private }
+RBBrowserEnvironmentTest >> classNamesFor: anEnvironment [ 
 	| classNames allClassNames |
 	classNames := IdentitySet new
 		addAll: anEnvironment classNames asSet;
@@ -63,27 +47,18 @@ RBBrowserEnvironmentTest>>classNamesFor: anEnvironment  [
 	self assert: (anEnvironment | anEnvironment not) classNames asSortedCollection = allClassNames
 ]
 
-{
-	#category : #mockup,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>classVariableReader [
+{ #category : #mockup }
+RBBrowserEnvironmentTest >> classVariableReader [
 	^ ClassVariable
 ]
 
-{
-	#category : #mockup,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>classVariableWriter [
+{ #category : #mockup }
+RBBrowserEnvironmentTest >> classVariableWriter [
 	ClassVariable := nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>classesFor: aBrowserEnvironment  [
+{ #category : #private }
+RBBrowserEnvironmentTest >> classesFor: aBrowserEnvironment [ 
 	| allClasses |
 	allClasses := aBrowserEnvironment classes asSet.
 	allClasses addAll: aBrowserEnvironment not classes.
@@ -91,22 +66,16 @@ RBBrowserEnvironmentTest>>classesFor: aBrowserEnvironment  [
 	self assert: allClasses isEmpty
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>copyFor: aBrowserEnvironment  [
+{ #category : #private }
+RBBrowserEnvironmentTest >> copyFor: aBrowserEnvironment [ 
 	| newEnvironment |
 	newEnvironment := aBrowserEnvironment copy.
 	self assert: newEnvironment numberSelectors = aBrowserEnvironment numberSelectors.
 	self assert: (newEnvironment not & aBrowserEnvironment) numberSelectors = 0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>keysFor: aBrowserEnvironment  [
+{ #category : #private }
+RBBrowserEnvironmentTest >> keysFor: aBrowserEnvironment [ 
 	| allKeys |
 	allKeys := IdentitySet withAll: aBrowserEnvironment keys.
 	allKeys addAll: aBrowserEnvironment not keys.
@@ -114,22 +83,16 @@ RBBrowserEnvironmentTest>>keysFor: aBrowserEnvironment  [
 	self assert: allKeys isEmpty
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>labelFor: aBrowserEnvironment  [
+{ #category : #private }
+RBBrowserEnvironmentTest >> labelFor: aBrowserEnvironment [ 
 	self deny: aBrowserEnvironment label isNil.
 	self deny: aBrowserEnvironment label isEmpty.
 	self deny: aBrowserEnvironment defaultLabel isNil.
 	self deny: aBrowserEnvironment defaultLabel isEmpty
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>numberSelectorsFor: aBrowserEnvironment [
+{ #category : #private }
+RBBrowserEnvironmentTest >> numberSelectorsFor: aBrowserEnvironment [
 	| numberSelectors numberSelectorsNot |
 	numberSelectors := aBrowserEnvironment numberSelectors.
 	numberSelectorsNot := aBrowserEnvironment not numberSelectors.
@@ -139,31 +102,22 @@ RBBrowserEnvironmentTest>>numberSelectorsFor: aBrowserEnvironment [
 	self assert: (aBrowserEnvironment & universalEnvironment) numberSelectors = numberSelectors
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>protocolsFor: aBrowserEnvironment  [
+{ #category : #private }
+RBBrowserEnvironmentTest >> protocolsFor: aBrowserEnvironment [ 
 	aBrowserEnvironment classesAndSelectorsDo: [ :class :selector |
 		| protocol |
 		protocol := aBrowserEnvironment whichProtocolIncludes: selector in: class.
 		self assert: (aBrowserEnvironment includesProtocol: protocol in: class) ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>setUp [
+{ #category : #running }
+RBBrowserEnvironmentTest >> setUp [
 	super setUp.
 	universalEnvironment := RBBrowserEnvironment new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>storeStringFor: aBrowserEnvironment [
+{ #category : #private }
+RBBrowserEnvironmentTest >> storeStringFor: aBrowserEnvironment [
 	| newEnvironment |
 	newEnvironment := Smalltalk compiler evaluate: aBrowserEnvironment storeString.
 	self assert: newEnvironment numberSelectors = aBrowserEnvironment numberSelectors.
@@ -171,11 +125,8 @@ RBBrowserEnvironmentTest>>storeStringFor: aBrowserEnvironment [
 	
 ]
 
-{
-	#category : #testing-environments,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testAndEnvironment [
+{ #category : #testing-environments }
+RBBrowserEnvironmentTest >> testAndEnvironment [
 	| originalEnvironment objectPrintStringEnvironment andEnvironment |
 	originalEnvironment := universalEnvironment referencesTo: #printOn:.
 	objectPrintStringEnvironment := universalEnvironment forClass: Object
@@ -195,11 +146,8 @@ RBBrowserEnvironmentTest>>testAndEnvironment [
 						asSortedCollection
 ]
 
-{
-	#category : #testing-environments,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testAndEnvironmentWithStoreOn [
+{ #category : #testing-environments }
+RBBrowserEnvironmentTest >> testAndEnvironmentWithStoreOn [
 	| originalEnvironment objectPrintStringEnvironment andEnvironment |
 	originalEnvironment := universalEnvironment referencesTo: #storeOn:.
 	objectPrintStringEnvironment := universalEnvironment forClass: Object
@@ -219,19 +167,13 @@ RBBrowserEnvironmentTest>>testAndEnvironmentWithStoreOn [
 						asSortedCollection
 ]
 
-{
-	#category : #testing-environments,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testBrowserEnvironment [
+{ #category : #testing-environments }
+RBBrowserEnvironmentTest >> testBrowserEnvironment [
 	self universalTestFor: RBBrowserEnvironment new
 ]
 
-{
-	#category : #testing-environments,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testCategoryEnvironment [
+{ #category : #testing-environments }
+RBBrowserEnvironmentTest >> testCategoryEnvironment [
 	| aCategoryEnvironment |
 	self skip: 'Use RBPackageEnvironment instead.'.
 	aCategoryEnvironment := RBCategoryEnvironment 
@@ -241,11 +183,8 @@ RBBrowserEnvironmentTest>>testCategoryEnvironment [
 	self assert: (aCategoryEnvironment implementorsOf: #printString) numberSelectors equals: 1
 ]
 
-{
-	#category : #testing-environments,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testClassEnvironment [
+{ #category : #testing-environments }
+RBBrowserEnvironmentTest >> testClassEnvironment [
 	| aClassEnvironment |
 	aClassEnvironment := RBClassEnvironment 
 		onEnvironment: universalEnvironment 
@@ -262,11 +201,8 @@ RBBrowserEnvironmentTest>>testClassEnvironment [
     	  equals: TBehavior methods size.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testConstructedClassEnvironment [
+{ #category : #testing }
+RBBrowserEnvironmentTest >> testConstructedClassEnvironment [
 	| environment |
 	environment := RBClassEnvironment new.
 	environment
@@ -289,11 +225,8 @@ RBBrowserEnvironmentTest>>testConstructedClassEnvironment [
 	self assert: environment numberClasses = 2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testConstructedSelectorEnvironment [
+{ #category : #testing }
+RBBrowserEnvironmentTest >> testConstructedSelectorEnvironment [
 	| environment newEnvironment |
 	environment := RBSelectorEnvironment new.
 	environment
@@ -327,11 +260,8 @@ RBBrowserEnvironmentTest>>testConstructedSelectorEnvironment [
 	self assert: newEnvironment numberClasses = 2
 ]
 
-{
-	#category : #testing-environments,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testEnvironmentWrapper [
+{ #category : #testing-environments }
+RBBrowserEnvironmentTest >> testEnvironmentWrapper [
 	| printString wrapper |
 	printString := RBBrowserEnvironment new referencesTo: #printString.
 	wrapper := RBBrowserEnvironmentWrapper onEnvironment: printString.
@@ -340,11 +270,8 @@ RBBrowserEnvironmentTest>>testEnvironmentWrapper [
 	self assert: wrapper environment == printString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testImplementorsMatching [
+{ #category : #testing }
+RBBrowserEnvironmentTest >> testImplementorsMatching [
 	| print |
 	print := RBBrowserEnvironment new implementorsMatching: '*print*'.
 	self universalTestFor: print.
@@ -354,11 +281,8 @@ RBBrowserEnvironmentTest>>testImplementorsMatching [
 		classesAndSelectorsDo: [:class :sel | self assert: ('*print*' match: sel)]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testMatches [
+{ #category : #testing }
+RBBrowserEnvironmentTest >> testMatches [
 	| envEnvironment environmentEnvironment |
 	envEnvironment := RBBrowserEnvironment new matches: '*env*'.
 	environmentEnvironment := RBBrowserEnvironment new 
@@ -367,11 +291,8 @@ RBBrowserEnvironmentTest>>testMatches [
 				= environmentEnvironment numberSelectors
 ]
 
-{
-	#category : #testing-environments,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testNotEnvironment [
+{ #category : #testing-environments }
+RBBrowserEnvironmentTest >> testNotEnvironment [
 	| notPrintStringEnvironment printStringEnvironment kernelEnvironment notKernelEnvironment|
 	printStringEnvironment := universalEnvironment referencesTo: #printString.
 	notPrintStringEnvironment := printStringEnvironment not.
@@ -388,11 +309,8 @@ RBBrowserEnvironmentTest>>testNotEnvironment [
 	self assert: (notKernelEnvironment & kernelEnvironment) packages isEmpty
 ]
 
-{
-	#category : #testing-environments,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testNotEnvironmentWithClassEnvironments [
+{ #category : #testing-environments }
+RBBrowserEnvironmentTest >> testNotEnvironmentWithClassEnvironments [
 	| numberEnvironment notNumberEnvironment |
 	numberEnvironment := (RBBrowserEnvironment new) forClasses: Number withAllSubclasses.
 	notNumberEnvironment := numberEnvironment not.
@@ -403,11 +321,8 @@ RBBrowserEnvironmentTest>>testNotEnvironmentWithClassEnvironments [
 	self assert: (notNumberEnvironment not includesClass: Number)
 ]
 
-{
-	#category : #testing-environments,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testOrEnvironment [
+{ #category : #testing-environments }
+RBBrowserEnvironmentTest >> testOrEnvironment [
 	| env1 env2 orEnvironment |
 	env2 := #printOn:.
 	env2 := universalEnvironment forClass: Object selectors: #(#fullPrintString).
@@ -428,11 +343,8 @@ RBBrowserEnvironmentTest>>testOrEnvironment [
 
 ]
 
-{
-	#category : #testing-environments,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testPackageEnvironment [
+{ #category : #testing-environments }
+RBBrowserEnvironmentTest >> testPackageEnvironment [
 	| aPackageEnvironment |
 	aPackageEnvironment := universalEnvironment
 		forPackageNames: (Array with: 'Refactoring-Tests-Environment' with: 'Refactoring-Tests-Critics').
@@ -440,21 +352,15 @@ RBBrowserEnvironmentTest>>testPackageEnvironment [
 	self assert: (aPackageEnvironment implementorsOf: #testPackageEnvironment) numberSelectors equals: 1
 ]
 
-{
-	#category : #testing-environments,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testPragmaEnvironment [
+{ #category : #testing-environments }
+RBBrowserEnvironmentTest >> testPragmaEnvironment [
 	| aPragmaEnvironment |
 	aPragmaEnvironment := universalEnvironment forPragmas: #(primitive:).
 	self universalTestFor: aPragmaEnvironment
 ]
 
-{
-	#category : #testing-environments,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testProtocolEnvironment [
+{ #category : #testing-environments }
+RBBrowserEnvironmentTest >> testProtocolEnvironment [
 	| aProtocolEnvironment size |
 	aProtocolEnvironment := RBProtocolEnvironment 
 				onEnvironment: RBBrowserEnvironment new
@@ -474,11 +380,8 @@ RBBrowserEnvironmentTest>>testProtocolEnvironment [
 						includes: (RBBrowserEnvironment new whichProtocolIncludes: each in: Object))]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testRemoveSelectorByAndAndNot [
+{ #category : #testing }
+RBBrowserEnvironmentTest >> testRemoveSelectorByAndAndNot [
 	| aBrowserEnvironment objectPrintString |
 	aBrowserEnvironment := RBBrowserEnvironment new.
 	objectPrintString := RBSelectorEnvironment 
@@ -489,11 +392,8 @@ RBBrowserEnvironmentTest>>testRemoveSelectorByAndAndNot [
 	self universalTestFor: aBrowserEnvironment & objectPrintString not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testSelectMethods [
+{ #category : #testing }
+RBBrowserEnvironmentTest >> testSelectMethods [
 	| environment |
 	environment := RBBrowserEnvironment new selectMethods: [:each | false].
 	self assert: environment numberSelectors = 0.
@@ -507,11 +407,8 @@ RBBrowserEnvironmentTest>>testSelectMethods [
 				= (RBBrowserEnvironment new referencesTo: #environment) numberSelectors
 ]
 
-{
-	#category : #testing-environments,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testSelectorEnvironment [
+{ #category : #testing-environments }
+RBBrowserEnvironmentTest >> testSelectorEnvironment [
 	| printString |
 	printString := RBBrowserEnvironment new referencesTo: #printString.
 	self universalTestFor: printString.
@@ -521,11 +418,8 @@ RBBrowserEnvironmentTest>>testSelectorEnvironment [
 	self assert: printString numberClasses = (printString referencesTo: #printString) numberClasses
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testSystemIntegrity [
+{ #category : #testing }
+RBBrowserEnvironmentTest >> testSystemIntegrity [
 	| classes environment |
 	classes := IdentitySet new.
 	environment := RBBrowserEnvironment new.
@@ -535,11 +429,8 @@ RBBrowserEnvironmentTest>>testSystemIntegrity [
 			ifTrue: [ self error: 'The class ' , class name , ' that is available under two or more names. This causes problems with the refactoring browser.' ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testVariableEnvironmentAddRemove [
+{ #category : #testing }
+RBBrowserEnvironmentTest >> testVariableEnvironmentAddRemove [
 	| refs |
 	refs := RBVariableEnvironment new.
 	refs addClass: self class instanceVariable: 'universalEnvironment'.
@@ -569,11 +460,8 @@ RBBrowserEnvironmentTest>>testVariableEnvironmentAddRemove [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testVariableEnvironmentClassVars [
+{ #category : #testing }
+RBBrowserEnvironmentTest >> testVariableEnvironmentClassVars [
 "test variable environment for class vars, refered on the class side only"
 	| classRefs |
 	classRefs := RBVariableEnvironment
@@ -584,11 +472,8 @@ RBBrowserEnvironmentTest>>testVariableEnvironmentClassVars [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testVariableEnvironmentInstVars [
+{ #category : #testing }
+RBBrowserEnvironmentTest >> testVariableEnvironmentInstVars [
 	| refs writers readers classRefs |
 	refs := RBVariableEnvironment
 		referencesToInstanceVariable: 'universalEnvironment'
@@ -611,11 +496,8 @@ RBBrowserEnvironmentTest>>testVariableEnvironmentInstVars [
 	self assert: refs numberSelectors = (writers | readers) numberSelectors
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>testWithoutClassesRemovesClassesFromSender [
+{ #category : #testing }
+RBBrowserEnvironmentTest >> testWithoutClassesRemovesClassesFromSender [
 	| environment newEnvironment |
 	environment := (RBBrowserEnvironment new) forClasses: Number withAllSubclasses.
 	
@@ -626,11 +508,8 @@ RBBrowserEnvironmentTest>>testWithoutClassesRemovesClassesFromSender [
 		equals: environment classes size - 2
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>uniqueClassesIn: aBrowserEnvironment  [
+{ #category : #private }
+RBBrowserEnvironmentTest >> uniqueClassesIn: aBrowserEnvironment [ 
 	| allClasses |
 	allClasses := IdentitySet new.
 	aBrowserEnvironment classesDo: [ :each | 
@@ -638,11 +517,8 @@ RBBrowserEnvironmentTest>>uniqueClassesIn: aBrowserEnvironment  [
 		allClasses add: each ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBBrowserEnvironmentTest>>universalTestFor: aBrowserEnvironment  [
+{ #category : #private }
+RBBrowserEnvironmentTest >> universalTestFor: aBrowserEnvironment [ 
 	self labelFor: aBrowserEnvironment.
 	self uniqueClassesIn: aBrowserEnvironment.
 	self numberSelectorsFor: aBrowserEnvironment.

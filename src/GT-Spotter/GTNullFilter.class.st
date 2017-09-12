@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #GTNullFilter,
 	#superclass : #GTStringFilter,
-	#category : #GT-Spotter-Filters,
-	#timestamp : ''
+	#category : #GT-Spotter-Filters
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTNullFilter class>>gtListFilter [
+{ #category : #public }
+GTNullFilter class >> gtListFilter [
 	^ GTFilterSubstring new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTNullFilter>>applyFilterWithQuery [
+{ #category : #private }
+GTNullFilter >> applyFilterWithQuery [
 	self streamed 
 		ifTrue: [
 			" this will be more responsive (faster) for very large collections and/or expensive filters "
@@ -36,10 +26,7 @@ GTNullFilter>>applyFilterWithQuery [
 			self addItems: (self allItems first: (self itemsLimit min: self allItems size)) ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTNullFilter>>gtListFilter [
+{ #category : #public }
+GTNullFilter >> gtListFilter [
 	^ GTFilterSubstring new
 ]

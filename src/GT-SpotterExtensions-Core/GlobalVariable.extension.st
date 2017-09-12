@@ -1,20 +1,12 @@
-Extension {
-	#name : #GlobalVariable
-}
+Extension { #name : #GlobalVariable }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalVariable>>spotterActDefault [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GlobalVariable >> spotterActDefault [
 	self value inspect
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalVariable>>spotterClassFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GlobalVariable >> spotterClassFor: aStep [
 	<spotterOrder: 50>
 	aStep listProcessor
 			title: 'Class';
@@ -23,11 +15,8 @@ GlobalVariable>>spotterClassFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalVariable>>spotterForReferencesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GlobalVariable >> spotterForReferencesFor: aStep [
 	<spotterOrder: 130>
 	aStep listProcessor
 			title: 'References';

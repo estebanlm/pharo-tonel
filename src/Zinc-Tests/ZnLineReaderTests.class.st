@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnLineReaderTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnLineReaderTests>>testBinary [
+{ #category : #testing }
+ZnLineReaderTests >> testBinary [
 	| input reader |
 	input := ('Foo', String crlf, 'Bar', String crlf) asByteArray.
 	reader := ZnLineReader on: input readStream.
@@ -21,33 +14,24 @@ ZnLineReaderTests>>testBinary [
 	self assert: reader nextLine isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnLineReaderTests>>testLineTooLong [
+{ #category : #testing }
+ZnLineReaderTests >> testLineTooLong [
 	| input reader |
 	input := (String new: 128) atAllPut: $X.
 	reader := (ZnLineReader on: input readStream) limit: 64.
 	self should: [ reader nextLine ] raise: ZnLineTooLong  
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnLineReaderTests>>testLineTooLongDefault [
+{ #category : #testing }
+ZnLineReaderTests >> testLineTooLongDefault [
 	| input reader |
 	input := (String new: ZnConstants maximumLineLength + 1) atAllPut: $X.
 	reader := ZnLineReader on: input readStream.
 	self should: [ reader nextLine ] raise: ZnLineTooLong  
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnLineReaderTests>>testSimple [
+{ #category : #testing }
+ZnLineReaderTests >> testSimple [
 	| input reader |
 	input := 'Foo', String crlf, 'Bar', String crlf.
 	reader := ZnLineReader on: input readStream.

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloSpec,
 	#superclass : #Object,
@@ -9,88 +6,59 @@ Class {
 		'loader',
 		'mutable'
 	],
-	#category : #Metacello-Core-Specs,
-	#timestamp : ''
+	#category : #Metacello-Core-Specs
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec class>>for: aVersionMap [
+{ #category : #'instance creation' }
+MetacelloSpec class >> for: aVersionMap [
 
 	^(self platformClass new)
 		for: aVersionMap;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec class>>platformClass [
+{ #category : #accessing }
+MetacelloSpec class >> platformClass [
 
 	^self
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>aboutToCopy [
-
+{ #category : #merging }
+MetacelloSpec >> aboutToCopy [
 ]
 
-{
-	#category : #'spec creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>addMember [
+{ #category : #'spec creation' }
+MetacelloSpec >> addMember [
 
 	^MetacelloAddMemberSpec for: self project
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>answers [
+{ #category : #querying }
+MetacelloSpec >> answers [
 
 	^#()
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>configMethodOn: aStream [
+{ #category : #printing }
+MetacelloSpec >> configMethodOn: aStream [
 
 	self configMethodOn: aStream indent: 0
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>configMethodOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloSpec >> configMethodOn: aStream indent: indent [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #'spec creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>copyMember [
+{ #category : #'spec creation' }
+MetacelloSpec >> copyMember [
 
 	^MetacelloCopyMemberSpec for: self project
 ]
 
-{
-	#category : #mutability,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>copyOnWrite: aBlock [
+{ #category : #mutability }
+MetacelloSpec >> copyOnWrite: aBlock [
     "assume that only registered projects are immutable ... otherwise you'll get an error"
 
     | copy |
@@ -99,11 +67,8 @@ MetacelloSpec>>copyOnWrite: aBlock [
     ^ copy
 ]
 
-{
-	#category : #doits,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>doItBlock: selector [
+{ #category : #doits }
+MetacelloSpec >> doItBlock: selector [
 
 	selector == nil ifTrue: [ ^nil ].
 	selector numArgs = 0
@@ -115,46 +80,31 @@ MetacelloSpec>>doItBlock: selector [
 	^nil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>for: aProject [
+{ #category : #initialization }
+MetacelloSpec >> for: aProject [
     self shouldBeMutable.
     project := aProject
 ]
 
-{
-	#category : #mutability,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>immutable [
+{ #category : #mutability }
+MetacelloSpec >> immutable [
     mutable := false
 ]
 
-{
-	#category : #mutability,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>isMutable [
+{ #category : #mutability }
+MetacelloSpec >> isMutable [
     mutable ifNil: [ ^ true ].
     ^ mutable
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>label [
+{ #category : #printing }
+MetacelloSpec >> label [
 
 	^self printString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>loader [
+{ #category : #accessing }
+MetacelloSpec >> loader [
 
 	loader == nil 
 		ifTrue: [ | prjctLoader |
@@ -164,11 +114,8 @@ MetacelloSpec>>loader [
 	^loader
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>loader: aLoader [
+{ #category : #accessing }
+MetacelloSpec >> loader: aLoader [
     "We're interested in propogating the loader state, _except_ for the spec"
 
     self shouldBeMutable.
@@ -176,37 +123,25 @@ MetacelloSpec>>loader: aLoader [
     loader spec: self
 ]
 
-{
-	#category : #importing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>mergeImportLoads: aLoadList [
+{ #category : #importing }
+MetacelloSpec >> mergeImportLoads: aLoadList [
     self error: 'import: can only be used with baseline project specs'
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>mergeMap [
+{ #category : #merging }
+MetacelloSpec >> mergeMap [
 
 	^Dictionary new.
 ]
 
-{
-	#category : #'spec creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>mergeMember [
+{ #category : #'spec creation' }
+MetacelloSpec >> mergeMember [
 
 	^MetacelloMergeMemberSpec for: self project
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>mergeSpec: aSpec [
+{ #category : #merging }
+MetacelloSpec >> mergeSpec: aSpec [
     | newSpec nonOverridable |
     self validateMergeForSpec: aSpec.
     newSpec := self copy.
@@ -220,114 +155,78 @@ MetacelloSpec>>mergeSpec: aSpec [
     ^ newSpec
 ]
 
-{
-	#category : #mutability,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>mutable [
+{ #category : #mutability }
+MetacelloSpec >> mutable [
     mutable := true
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>nonOverridable [
+{ #category : #merging }
+MetacelloSpec >> nonOverridable [
 
 	^#()
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>postCopy [
+{ #category : #copying }
+MetacelloSpec >> postCopy [
     super postCopy.
     mutable := nil.
     loader ~~ nil
         ifTrue: [ self loader: loader ].
 ]
 
-{
-	#category : #doits,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>postLoadDoIt [
+{ #category : #doits }
+MetacelloSpec >> postLoadDoIt [
 	"noop unless non-nil value returned"
 
 	^nil
 ]
 
-{
-	#category : #doits,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>postLoadDoItBlock [
+{ #category : #doits }
+MetacelloSpec >> postLoadDoItBlock [
 
 	^self doItBlock: self postLoadDoIt value
 ]
 
-{
-	#category : #doits,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>preLoadDoIt [
+{ #category : #doits }
+MetacelloSpec >> preLoadDoIt [
 	"noop unless non-nil value returned"
 	
 	^nil
 ]
 
-{
-	#category : #doits,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>preLoadDoItBlock [
+{ #category : #doits }
+MetacelloSpec >> preLoadDoItBlock [
 
 	^self doItBlock: self preLoadDoIt value
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>printOn: aStream [
+{ #category : #printing }
+MetacelloSpec >> printOn: aStream [
 
 	self configMethodOn: aStream indent: 0
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>project [
+{ #category : #querying }
+MetacelloSpec >> project [
 
 	^project
 ]
 
-{
-	#category : #'spec creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>removeMember [
+{ #category : #'spec creation' }
+MetacelloSpec >> removeMember [
 
 	^MetacelloRemoveMemberSpec for: self project
 ]
 
-{
-	#category : #mutability,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>shouldBeMutable [
+{ #category : #mutability }
+MetacelloSpec >> shouldBeMutable [
     self isMutable
         ifTrue: [ ^ self ].
     self error: 'Not allowed to modify an immutable object'
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSpec>>validateMergeForSpec: aSpec [
+{ #category : #merging }
+MetacelloSpec >> validateMergeForSpec: aSpec [
     aSpec class = self class
         ifFalse: [ 
             self

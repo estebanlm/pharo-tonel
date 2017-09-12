@@ -1,21 +1,13 @@
-Extension {
-	#name : #MCAddition
-}
+Extension { #name : #MCAddition }
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCAddition>>isMethodPatch [
+{ #category : #'*Komitter-UI' }
+MCAddition >> isMethodPatch [
 
 	^ definition isMethodDefinition
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCAddition>>koClass [
+{ #category : #'*Komitter-UI' }
+MCAddition >> koClass [
 	| klass |
 	klass := definition koClass.
 	klass ifNil: [ ^ nil ].
@@ -25,11 +17,8 @@ MCAddition>>koClass [
 	^ klass
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCAddition>>koDefinition [
+{ #category : #'*Komitter-UI' }
+MCAddition >> koDefinition [
 	
 	^ (KomitDefinition definition: self definition)
 		operation: self;
@@ -37,20 +26,14 @@ MCAddition>>koDefinition [
 		yourself
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCAddition>>koDestinationText [
+{ #category : #'*Komitter-UI' }
+MCAddition >> koDestinationText [
 	
 	^ definition koDestinationText
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCAddition>>koMethod [
+{ #category : #'*Komitter-UI' }
+MCAddition >> koMethod [
 	
 	^ (KomitMethod method: self definition)
 		operation: self;
@@ -58,20 +41,14 @@ MCAddition>>koMethod [
 		yourself
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCAddition>>koSourceText [
+{ #category : #'*Komitter-UI' }
+MCAddition >> koSourceText [
 	
 	^ ''
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCAddition>>selector [
+{ #category : #'*Komitter-UI' }
+MCAddition >> selector [
 
 	^ definition selector
 ]

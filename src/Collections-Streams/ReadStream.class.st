@@ -4,31 +4,20 @@ I represent an accessor for a sequence of objects that can only read objects fro
 Class {
 	#name : #ReadStream,
 	#superclass : #PositionableStream,
-	#category : #Collections-Streams,
-	#timestamp : '<historical>'
+	#category : #Collections-Streams
 }
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadStream>>ascii [
-
+{ #category : #modes }
+ReadStream >> ascii [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadStream>>localName [
+{ #category : #accessing }
+ReadStream >> localName [
 	^'ReadStream'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadStream>>next [
+{ #category : #accessing }
+ReadStream >> next [
 	"Primitive. Answer the next object in the Stream represented by the
 	receiver. Fail if the collection of this stream is not an Array or a String.
 	Fail if the stream is positioned at its end, or if the position is out of
@@ -41,11 +30,8 @@ ReadStream>>next [
 		ifFalse: [^collection at: (position := position + 1)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadStream>>next: anInteger  [
+{ #category : #accessing }
+ReadStream >> next: anInteger [ 
 	"Answer the next anInteger elements of my collection.  overriden for efficiency"
 
 	| ans endPosition |
@@ -57,19 +43,13 @@ ReadStream>>next: anInteger  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadStream>>nextPut: anObject [
+{ #category : #accessing }
+ReadStream >> nextPut: anObject [
 	self shouldNotImplement
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadStream>>on: aCollection from: firstIndex to: lastIndex [
+{ #category : #initialization }
+ReadStream >> on: aCollection from: firstIndex to: lastIndex [
 
 	| len |
 	collection := aCollection.
@@ -81,11 +61,8 @@ ReadStream>>on: aCollection from: firstIndex to: lastIndex [
 				ifFalse: [firstIndex - 1]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadStream>>readInto: aCollection startingAt: startIndex count: n [
+{ #category : #accessing }
+ReadStream >> readInto: aCollection startingAt: startIndex count: n [
 	"Read n objects into the given collection. 
 	Return number of elements that have been read."
 	
@@ -100,30 +77,21 @@ ReadStream>>readInto: aCollection startingAt: startIndex count: n [
 	^ max
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadStream>>readStream [
+{ #category : #accessing }
+ReadStream >> readStream [
 	"polymorphic with SequenceableCollection.  Return self"
 
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadStream>>size [
+{ #category : #accessing }
+ReadStream >> size [
 	"Compatibility with other streams (e.g., FileStream)"
 	^readLimit
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadStream>>upTo: anObject [
+{ #category : #accessing }
+ReadStream >> upTo: anObject [
 	"fast version using indexOf:"
 	| start end |
 
@@ -138,11 +106,8 @@ ReadStream>>upTo: anObject [
 	^collection copyFrom: start to: (end-1)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadStream>>upToAnyOf: aCollection do: aBlock [
+{ #category : #accessing }
+ReadStream >> upToAnyOf: aCollection do: aBlock [
 	"Overriden for speed"
 	| end result |
 	end := collection indexOfAnyOf: aCollection startingAt: 1 + position ifAbsent: [0].
@@ -153,11 +118,8 @@ ReadStream>>upToAnyOf: aCollection do: aBlock [
 	^result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadStream>>upToEnd [
+{ #category : #accessing }
+ReadStream >> upToEnd [
 	| start |
 	start := 1 + position.
 	position := readLimit.

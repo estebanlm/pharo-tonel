@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #HEPackage,
 	#superclass : #HEAbstractExported,
@@ -11,73 +8,48 @@ Class {
 		'extensionMethods',
 		'traits'
 	],
-	#category : #Hermes-Model,
-	#timestamp : ''
+	#category : #Hermes-Model
 }
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage class>>for: aPackage [
+{ #category : #formatting }
+HEPackage class >> for: aPackage [
 	^ self new
 		fromPackage: aPackage;
 		yourself
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage class>>formatVersion [
+{ #category : #formatting }
+HEPackage class >> formatVersion [
 	^ 0
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage>>addClass: anExportedClass [
+{ #category : #adding }
+HEPackage >> addClass: anExportedClass [
 	classes add: anExportedClass.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage>>classes [
+{ #category : #accessing }
+HEPackage >> classes [
 	^ classes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage>>classes: anObject [
+{ #category : #accessing }
+HEPackage >> classes: anObject [
 	classes := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage>>extensionMethods [
+{ #category : #accessing }
+HEPackage >> extensionMethods [
 	^ extensionMethods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage>>extensionMethods: anObject [
+{ #category : #accessing }
+HEPackage >> extensionMethods: anObject [
 	extensionMethods := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage>>fromPackage: aPackage [
+{ #category : #initialization }
+HEPackage >> fromPackage: aPackage [
 	| classDefinedSorted |
 	packageName := aPackage name.
 
@@ -89,11 +61,8 @@ HEPackage>>fromPackage: aPackage [
 	aPackage extensionMethods do: [ :e | extensionMethods add: (HEMethod for: e) ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage>>initialize [
+{ #category : #initialization }
+HEPackage >> initialize [
 	version := self class formatVersion.
 	classes := OrderedCollection new.
 	traits := OrderedCollection new.
@@ -101,47 +70,32 @@ HEPackage>>initialize [
 	extensionMethods := OrderedCollection new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage>>packageName [
+{ #category : #accessing }
+HEPackage >> packageName [
 	^ packageName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage>>packageName: anObject [
+{ #category : #accessing }
+HEPackage >> packageName: anObject [
 	packageName := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage>>printOn: aStream [
+{ #category : #printing }
+HEPackage >> printOn: aStream [
 	aStream
 		nextPutAll: 'HEPackage ( ';
 		nextPutAll: packageName asString;
 		nextPutAll: ' )'
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage>>readClassFrom: aReader [
+{ #category : #reading }
+HEPackage >> readClassFrom: aReader [
 	classes add: (HEClass readFrom: aReader).
 	
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage>>readFrom: aReader [
+{ #category : #reading }
+HEPackage >> readFrom: aReader [
 	| numberOfTraits numberOfClasses numberOfExtensionMethods |
 	version := aReader readInt.
 	packageName := aReader readByteSymbol.
@@ -156,35 +110,23 @@ HEPackage>>readFrom: aReader [
 	1 to: numberOfExtensionMethods do: [ :idx | extensionMethods add: (HEMethod readFrom: aReader) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage>>traits [
+{ #category : #accessing }
+HEPackage >> traits [
 	^ traits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage>>traits: anObject [
+{ #category : #accessing }
+HEPackage >> traits: anObject [
 	traits := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage>>version [
+{ #category : #accessing }
+HEPackage >> version [
 	^ version
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEPackage>>writeInto: aWriter [
+{ #category : #writing }
+HEPackage >> writeInto: aWriter [
 	aWriter writeInt: version.
 	aWriter writeByteString: packageName.
 

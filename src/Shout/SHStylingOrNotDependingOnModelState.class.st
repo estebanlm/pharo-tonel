@@ -16,51 +16,35 @@ Class {
 		'code',
 		'codeEditing'
 	],
-	#category : #Shout-Examples,
-	#timestamp : 'AlainPlantec 9/20/2011 17:26'
+	#category : #Shout-Examples
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStylingOrNotDependingOnModelState>>code [
+{ #category : #accessing }
+SHStylingOrNotDependingOnModelState >> code [
 	^ code ifNil: [code := '' asText]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStylingOrNotDependingOnModelState>>code: someText [
+{ #category : #accessing }
+SHStylingOrNotDependingOnModelState >> code: someText [
 	code := someText.
 	self changed: #code
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStylingOrNotDependingOnModelState>>codeEditing [
+{ #category : #accessing }
+SHStylingOrNotDependingOnModelState >> codeEditing [
 	^ codeEditing ifNil: [codeEditing := true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStylingOrNotDependingOnModelState>>codeEditing: aBoolean [
+{ #category : #accessing }
+SHStylingOrNotDependingOnModelState >> codeEditing: aBoolean [
 	codeEditing = aBoolean ifTrue: [^self].
 	codeEditing := aBoolean.
 	self changed: #code.
 
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStylingOrNotDependingOnModelState>>open [
+{ #category : #view }
+SHStylingOrNotDependingOnModelState >> open [
 	| window editor bar |
 	window := (StandardWindow labelled: 'Code and text editor') model: self.
 	bar := window newRow: {
@@ -76,10 +60,7 @@ SHStylingOrNotDependingOnModelState>>open [
 	^ window openInWorld
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStylingOrNotDependingOnModelState>>shoutAboutToStyle: aTextView [
+{ #category : #shout }
+SHStylingOrNotDependingOnModelState >> shoutAboutToStyle: aTextView [
 	^ self codeEditing
 ]

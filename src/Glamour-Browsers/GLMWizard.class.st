@@ -84,15 +84,11 @@ Class {
 		'stepsDictionary',
 		'stepsAndPanes'
 	],
-	#category : #Glamour-Browsers-Wizards,
-	#timestamp : 'TorstenBergmann 3/10/2015 22:01'
+	#category : #Glamour-Browsers-Wizards
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard class>>genericStepWithGenericSizeExample [
+{ #category : #examples }
+GLMWizard class >> genericStepWithGenericSizeExample [
 
 	"self genericStepWithGenericSizeExample"
 	| wizard |
@@ -108,11 +104,8 @@ GLMWizard class>>genericStepWithGenericSizeExample [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard class>>linkedStepsExample [
+{ #category : #examples }
+GLMWizard class >> linkedStepsExample [
 
 	"self linkedStepsExample"
 	| wizard |
@@ -139,11 +132,8 @@ GLMWizard class>>linkedStepsExample [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard class>>simpleExample [
+{ #category : #examples }
+GLMWizard class >> simpleExample [
 
 	"self simpleExample"
 	| wizard |
@@ -159,11 +149,8 @@ GLMWizard class>>simpleExample [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>addPaneFrom: aPort  [
+{ #category : #private }
+GLMWizard >> addPaneFrom: aPort [ 
 	self panes addLast: self computePane.
 	self newTransmission
 		addActiveOrigin: aPort; 
@@ -172,51 +159,36 @@ GLMWizard>>addPaneFrom: aPort  [
 		transmit
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>atBeginning [
+{ #category : #testing }
+GLMWizard >> atBeginning [
 
 	^ self currentIndex = 1 and: [
 		self stepToUse atBeginning
 		]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>atEnd [
+{ #category : #testing }
+GLMWizard >> atEnd [
 
 	^ self currentIndex = self steps size and: [
 		self stepToUse atEnd
 		]
 ]
 
-{
-	#category : #'building internal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>backSign [
+{ #category : #'building internal' }
+GLMWizard >> backSign [
 	^ '<< Back'
 ]
 
-{
-	#category : #'accessing - buttons actions ',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>cancelButtonAction [
+{ #category : #'accessing - buttons actions ' }
+GLMWizard >> cancelButtonAction [
 
 	self externalCancelButtonAction value: self entity.
 	self announce: (GLMBrowserClosed new)		
 ]
 
-{
-	#category : #'building internal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>computeFirstPaneValidator [
+{ #category : #'building internal' }
+GLMWizard >> computeFirstPaneValidator [
 
 	|tmpValidator|
 	tmpValidator := self computePaneValidator.
@@ -225,11 +197,8 @@ GLMWizard>>computeFirstPaneValidator [
 
 ]
 
-{
-	#category : #'building internal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>computeLastPaneValidator [
+{ #category : #'building internal' }
+GLMWizard >> computeLastPaneValidator [
 
 	|tmpValidator|
 	tmpValidator := self computePaneValidator.
@@ -238,11 +207,8 @@ GLMWizard>>computeLastPaneValidator [
 
 ]
 
-{
-	#category : #'building internal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>computeMiddlePaneValidator [
+{ #category : #'building internal' }
+GLMWizard >> computeMiddlePaneValidator [
 
 	|tmpValidator|
 	tmpValidator := self computePaneValidator.
@@ -251,11 +217,8 @@ GLMWizard>>computeMiddlePaneValidator [
 
 ]
 
-{
-	#category : #'building pane',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>computePane [
+{ #category : #'building pane' }
+GLMWizard >> computePane [
 
 	self hasUniquePane ifTrue: [^ self computePaneWith: self computeSinglePaneValidator].
 	self atBeginning ifTrue: [^ self computePaneWith: self computeFirstPaneValidator].
@@ -265,11 +228,8 @@ GLMWizard>>computePane [
 
 ]
 
-{
-	#category : #'building internal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>computePaneValidator [
+{ #category : #'building internal' }
+GLMWizard >> computePaneValidator [
 
 	|tmpPresentation tmpValidator|
 	tmpPresentation := (self stepToUse presentationBlock glamourValue: self transmission transmissionStrategy presentations).
@@ -280,11 +240,8 @@ GLMWizard>>computePaneValidator [
 
 ]
 
-{
-	#category : #'building pane',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>computePaneWith: aValidator [
+{ #category : #'building pane' }
+GLMWizard >> computePaneWith: aValidator [
 	| tmpPane |
 	tmpPane := GLMPane in: self.
 	tmpPane addPresentation: aValidator.
@@ -293,11 +250,8 @@ GLMWizard>>computePaneWith: aValidator [
 	^ tmpPane
 ]
 
-{
-	#category : #'building internal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>computeSinglePaneValidator [
+{ #category : #'building internal' }
+GLMWizard >> computeSinglePaneValidator [
 
 	|tmpValidator|
 	tmpValidator := self computePaneValidator.
@@ -306,137 +260,92 @@ GLMWizard>>computeSinglePaneValidator [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>currentIndex [
+{ #category : #accessing }
+GLMWizard >> currentIndex [
 
 	^ currentIndex ifNil: [currentIndex := 1]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>currentIndex: anInteger [
+{ #category : #accessing }
+GLMWizard >> currentIndex: anInteger [
 
 	currentIndex := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>currentStep  [
+{ #category : #accessing }
+GLMWizard >> currentStep [ 
 
 	^ self steps at: self currentIndex
 ]
 
-{
-	#category : #'accessing - scripting',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>defaultStepName [
+{ #category : #'accessing - scripting' }
+GLMWizard >> defaultStepName [
 
 	^'default_step_name'
 ]
 
-{
-	#category : #'accessing ports',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>entity: anObject [
+{ #category : #'accessing ports' }
+GLMWizard >> entity: anObject [
 
 	super entity: anObject.
 	self updateWhenNext
 ]
 
-{
-	#category : #'accessing - buttons actions ',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>externalCancelButtonAction [
+{ #category : #'accessing - buttons actions ' }
+GLMWizard >> externalCancelButtonAction [
 
 	^ externalCancelButtonAction ifNil: [externalCancelButtonAction := [:input | ]]
 ]
 
-{
-	#category : #'accessing - buttons actions ',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>externalCancelButtonAction: aBlock [
+{ #category : #'accessing - buttons actions ' }
+GLMWizard >> externalCancelButtonAction: aBlock [
 
 	externalCancelButtonAction := aBlock
 ]
 
-{
-	#category : #'accessing - buttons actions ',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>externalNextButtonAction [
+{ #category : #'accessing - buttons actions ' }
+GLMWizard >> externalNextButtonAction [
 
 	^ externalNextButtonAction ifNil: [externalNextButtonAction := [:input | ]]
 ]
 
-{
-	#category : #'accessing - buttons actions ',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>externalNextButtonAction: aBlock [
+{ #category : #'accessing - buttons actions ' }
+GLMWizard >> externalNextButtonAction: aBlock [
 
 	externalNextButtonAction := aBlock 
 ]
 
-{
-	#category : #'accessing - buttons actions ',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>externalPreviousButtonAction [
+{ #category : #'accessing - buttons actions ' }
+GLMWizard >> externalPreviousButtonAction [
 
 	^ externalPreviousButtonAction ifNil: [externalPreviousButtonAction := [:input | ]]
 ]
 
-{
-	#category : #'accessing - buttons actions ',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>externalPreviousButtonAction: aBlock [
+{ #category : #'accessing - buttons actions ' }
+GLMWizard >> externalPreviousButtonAction: aBlock [
 
 	externalPreviousButtonAction := aBlock
 ]
 
-{
-	#category : #'accessing - buttons actions ',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>externalTerminateButtonAction [
+{ #category : #'accessing - buttons actions ' }
+GLMWizard >> externalTerminateButtonAction [
 
 	^ externalTerminateButtonAction ifNil: [externalTerminateButtonAction := [:input | ]]
 ]
 
-{
-	#category : #'accessing - buttons actions ',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>externalTerminateButtonAction: aBlock [
+{ #category : #'accessing - buttons actions ' }
+GLMWizard >> externalTerminateButtonAction: aBlock [
 
 	externalTerminateButtonAction := aBlock
 ]
 
-{
-	#category : #'building internal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>forwardSign [
+{ #category : #'building internal' }
+GLMWizard >> forwardSign [
 	^ 'Next >>'
 ]
 
-{
-	#category : #'accessing - scripting',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>genericStep [
+{ #category : #'accessing - scripting' }
+GLMWizard >> genericStep [
 
 	|tmpSymbol|
 	tmpSymbol := (self defaultStepName, self steps size asString) asSymbol.
@@ -444,50 +353,35 @@ GLMWizard>>genericStep [
 	^ self stepsDictionary at: tmpSymbol put: GLMWizardGenericStep new.
 ]
 
-{
-	#category : #'accessing - scripting',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>genericStep: aSymbol  [
+{ #category : #'accessing - scripting' }
+GLMWizard >> genericStep: aSymbol [ 
 
 	self steps add: (aSymbol).
 	^ self stepsDictionary at: aSymbol put: GLMWizardGenericStep new.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>hasUniquePane [
+{ #category : #testing }
+GLMWizard >> hasUniquePane [
 
 	^ self steps size = 1 and: [self stepToUse size = 1]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>initialize [
+{ #category : #initialize-release }
+GLMWizard >> initialize [
 
 	super initialize.
 ]
 
-{
-	#category : #'accessing - buttons actions ',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>nextButtonAction [
+{ #category : #'accessing - buttons actions ' }
+GLMWizard >> nextButtonAction [
 
 		self externalNextButtonAction value: self entity. 
 		self updateWhenNext.
 		
 ]
 
-{
-	#category : #'building pane',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>notifyAndAddNewPane: aGLMPane [
+{ #category : #'building pane' }
+GLMWizard >> notifyAndAddNewPane: aGLMPane [
 
 	(self stepsAndPanes at: self currentStep ifAbsentPut: [OrderedCollection new])
 		addLast: aGLMPane.  
@@ -498,11 +392,8 @@ GLMWizard>>notifyAndAddNewPane: aGLMPane [
 	
 ]
 
-{
-	#category : #'building pane',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>notifyAndRemoveCurrentPane [
+{ #category : #'building pane' }
+GLMWizard >> notifyAndRemoveCurrentPane [
 
 	|oldPane   tmpPanes|
 	tmpPanes := self stepsAndPanes at: self currentStep ifAbsentPut: [OrderedCollection new].
@@ -515,11 +406,8 @@ GLMWizard>>notifyAndRemoveCurrentPane [
 	
 ]
 
-{
-	#category : #'building pane',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>notifyAndSetAsCurrentPane: aGLMPane [
+{ #category : #'building pane' }
+GLMWizard >> notifyAndSetAsCurrentPane: aGLMPane [
 
 	|oldPane   tmpPanes|
 	tmpPanes := self stepsAndPanes at: self currentStep ifAbsentPut: [OrderedCollection new].
@@ -533,56 +421,38 @@ GLMWizard>>notifyAndSetAsCurrentPane: aGLMPane [
 	
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>on: anAnnouncementClass send: aSelector [
+{ #category : #announcements }
+GLMWizard >> on: anAnnouncementClass send: aSelector [
 
 	self specificAnnouncementActions at: anAnnouncementClass  put: aSelector 
 ]
 
-{
-	#category : #'accessing - buttons actions ',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>onCancelDo: aBlock [
+{ #category : #'accessing - buttons actions ' }
+GLMWizard >> onCancelDo: aBlock [
 
 	self externalCancelButtonAction: aBlock
 ]
 
-{
-	#category : #'accessing - buttons actions ',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>onNextDo: aBlock [
+{ #category : #'accessing - buttons actions ' }
+GLMWizard >> onNextDo: aBlock [
 
 	self externalNextButtonAction: aBlock
 ]
 
-{
-	#category : #'accessing - buttons actions ',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>onPreviousDo: aBlock [
+{ #category : #'accessing - buttons actions ' }
+GLMWizard >> onPreviousDo: aBlock [
 
 	self externalPreviousButtonAction: aBlock
 ]
 
-{
-	#category : #'accessing - buttons actions ',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>onTerminateDo: aBlock [
+{ #category : #'accessing - buttons actions ' }
+GLMWizard >> onTerminateDo: aBlock [
 
 	self externalTerminateButtonAction: aBlock
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>populateInputOfStep: aGLMWiizardStep [
+{ #category : #events }
+GLMWizard >> populateInputOfStep: aGLMWiizardStep [
 
 	self stepToUse previousStep isEmpty
 		ifTrue: [
@@ -605,30 +475,21 @@ GLMWizard>>populateInputOfStep: aGLMWiizardStep [
 			
 ]
 
-{
-	#category : #'accessing - buttons actions ',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>previousButtonAction [
+{ #category : #'accessing - buttons actions ' }
+GLMWizard >> previousButtonAction [
 
 		self externalPreviousButtonAction value: self entity.
 		self updateWhenPrevious
 		
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMWizard >> renderGlamorouslyOn: aRenderer [ 
 	^ aRenderer renderWizard: self
 ]
 
-{
-	#category : #'building internal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>setFirstPaneButtonsTo: aValidator [
+{ #category : #'building internal' }
+GLMWizard >> setFirstPaneButtonsTo: aValidator [
 
 	aValidator validator: 'Cancel' act:  [:input |
 		self cancelButtonAction
@@ -638,11 +499,8 @@ GLMWizard>>setFirstPaneButtonsTo: aValidator [
 		] populatePorts: #(#selection).
 ]
 
-{
-	#category : #'building internal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>setLastPaneButtonsTo: aValidator [
+{ #category : #'building internal' }
+GLMWizard >> setLastPaneButtonsTo: aValidator [
 
 	aValidator validator:  'Cancel' act:  [:input |
 		self cancelButtonAction
@@ -655,11 +513,8 @@ GLMWizard>>setLastPaneButtonsTo: aValidator [
 		].
 ]
 
-{
-	#category : #'building internal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>setMiddlePaneButtonsTo: aValidator [
+{ #category : #'building internal' }
+GLMWizard >> setMiddlePaneButtonsTo: aValidator [
 
 	aValidator validator: 'Cancel' act: [:input |
 		self cancelButtonAction 
@@ -673,11 +528,8 @@ GLMWizard>>setMiddlePaneButtonsTo: aValidator [
 	
 ]
 
-{
-	#category : #'building internal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>setSinglePaneButtonsTo: aValidator [
+{ #category : #'building internal' }
+GLMWizard >> setSinglePaneButtonsTo: aValidator [
 
 	aValidator validator: 'Cancel' act: [:input |
 		self cancelButtonAction
@@ -688,31 +540,22 @@ GLMWizard>>setSinglePaneButtonsTo: aValidator [
 	
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>setSpecificAnnouncementActionsTo: aRenderer [
+{ #category : #announcements }
+GLMWizard >> setSpecificAnnouncementActionsTo: aRenderer [
 
 	self specificAnnouncementActions keysAndValuesDo: [:anAnnouncementClass :aSymbol |
 		self when: anAnnouncementClass send: aSymbol to: aRenderer.
 		]
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>specificAnnouncementActions [
+{ #category : #announcements }
+GLMWizard >> specificAnnouncementActions [
 
 	^ specificAnnouncementActions ifNil: [specificAnnouncementActions := Dictionary new]
 ]
 
-{
-	#category : #'accessing - scripting',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>step [
+{ #category : #'accessing - scripting' }
+GLMWizard >> step [
 
 
 	|tmpSymbol|
@@ -721,97 +564,67 @@ GLMWizard>>step [
 	^ self stepsDictionary at: tmpSymbol put: GLMWizardStep new.
 ]
 
-{
-	#category : #'accessing - scripting',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>step: aSymbol  [
+{ #category : #'accessing - scripting' }
+GLMWizard >> step: aSymbol [ 
 
 	self steps add: (aSymbol).
 	^ self stepsDictionary at: aSymbol put: GLMWizardStep new.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>stepToUse [
+{ #category : #private }
+GLMWizard >> stepToUse [
 
 	^ self stepsDictionary at: (self steps at: self currentIndex) 
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>steps [
+{ #category : #accessing }
+GLMWizard >> steps [
 
 	^ steps ifNil: [steps := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>stepsAndPanes [
+{ #category : #accessing }
+GLMWizard >> stepsAndPanes [
 
 	^ stepsAndPanes ifNil: [stepsAndPanes := Dictionary new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>stepsAndPanesDictionary [
+{ #category : #accessing }
+GLMWizard >> stepsAndPanesDictionary [
 
 	^ stepsDictionary ifNil: [stepsDictionary := Dictionary new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>stepsDictionary [
+{ #category : #accessing }
+GLMWizard >> stepsDictionary [
 
 	^ stepsDictionary ifNil: [stepsDictionary := Dictionary new]
 ]
 
-{
-	#category : #'accessing - buttons actions ',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>terminateButtonAction [
+{ #category : #'accessing - buttons actions ' }
+GLMWizard >> terminateButtonAction [
 
 	self externalTerminateButtonAction value: self entity.
 	self announce: (GLMBrowserClosed new)
 		
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>updateBrowserTitle [
+{ #category : #events }
+GLMWizard >> updateBrowserTitle [
 	self title: self stepToUse name.
 	self update
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>updatePane [
+{ #category : #events }
+GLMWizard >> updatePane [
 
 	|tmpPane|
 	self notifyAndSetAsCurrentPane: self computePane.
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>updateWhenNext [
+{ #category : #events }
+GLMWizard >> updateWhenNext [
 
 	|tmpPane|
 	self populateInputOfStep: self stepToUse.  
@@ -827,11 +640,8 @@ GLMWizard>>updateWhenNext [
 	
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>updateWhenPrevious [
+{ #category : #events }
+GLMWizard >> updateWhenPrevious [
 
 	|tmpPane|
 	self notifyAndRemoveCurrentPane.
@@ -845,11 +655,8 @@ GLMWizard>>updateWhenPrevious [
 	self updateBrowserTitle.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWizard>>valueOf: anObject [
+{ #category : #private }
+GLMWizard >> valueOf: anObject [
 
 	^ anObject moValue: (self pane port: #entity) value
 ]

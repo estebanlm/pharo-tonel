@@ -17,37 +17,27 @@ Class {
 	#classVars : [
 		'CommonHeaders'
 	],
-	#category : #Zinc-HTTP-Core,
-	#timestamp : 'SvenVanCaekenberghe 1/18/2011 10:57'
+	#category : #Zinc-HTTP-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders class>>defaultRequestHeaders [
+{ #category : #'instance creation' }
+ZnHeaders class >> defaultRequestHeaders [
 	^ self new
 		at: 'User-Agent' put: ZnConstants defaultUserAgent;
 		at: 'Accept' put: '*/*';
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders class>>defaultResponseHeaders [
+{ #category : #'instance creation' }
+ZnHeaders class >> defaultResponseHeaders [
 	^ self new
 		at: 'Server' put: ZnConstants defaultServerString;
 		at: 'Date' put: ZnUtils httpDate;
 		yourself
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders class>>initialize [
+{ #category : #'class initialization' }
+ZnHeaders class >> initialize [
 	CommonHeaders := (
 		#(
 			'Content-Length' 'Content-Type' 'Date' 'Server' 'Connection' 'User-Agent' 'Host'
@@ -60,51 +50,36 @@ ZnHeaders class>>initialize [
 			collect: [ :each | ZnUtils capitalizeString: each ]) asSet
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders class>>readFrom: stream [
+{ #category : #'instance creation' }
+ZnHeaders class >> readFrom: stream [
 	^ self new
 		readFrom: stream;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders class>>requestHeadersFor: url [
+{ #category : #'instance creation' }
+ZnHeaders class >> requestHeadersFor: url [
 	| headers |
 	headers := self defaultRequestHeaders.
 	headers request: url.
 	^ headers
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders class>>withAll: keyedCollection [
+{ #category : #'instance creation' }
+ZnHeaders class >> withAll: keyedCollection [
 	^ self new
 		addAll: keyedCollection;
 		yourself 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>= other [
+{ #category : #comparing }
+ZnHeaders >> = other [
 	self class = other class ifFalse: [ ^ false ].
 	^ self headers = other headers
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>acceptEntityDescription: entity [
+{ #category : #accessing }
+ZnHeaders >> acceptEntityDescription: entity [
 	"Take over the content type and length from entity"
 	
 	entity 
@@ -118,11 +93,8 @@ ZnHeaders>>acceptEntityDescription: entity [
 				clearContentLength ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>addAll: keyedCollection [
+{ #category : #accessing }
+ZnHeaders >> addAll: keyedCollection [
 	"Note that we use #addAllMulti:"
 
 	keyedCollection isEmpty
@@ -130,22 +102,16 @@ ZnHeaders>>addAll: keyedCollection [
 	^ keyedCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>at: headerName [
+{ #category : #accessing }
+ZnHeaders >> at: headerName [
 	"Return the value stored under headerName,
 	a String for single-valued headers, an Array of Strings for multi-valued headers"
 	
 	^ self headers at: (self normalizeHeaderKey: headerName)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>at: headerName add: value [
+{ #category : #accessing }
+ZnHeaders >> at: headerName add: value [
 	"Store value under headerName, optionally turning it into a multi-valued header 
 	when a value was already present"
 	
@@ -154,42 +120,30 @@ ZnHeaders>>at: headerName add: value [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>at: headerName ifAbsent: block [
+{ #category : #accessing }
+ZnHeaders >> at: headerName ifAbsent: block [
 	"Like #at: but executes block when the headerName is not found"
 	
 	self isEmpty ifTrue: [ ^ block value ].
 	^ self headers at: (self normalizeHeaderKey: headerName) ifAbsent: block
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>at: headerName ifPresent: block [
+{ #category : #accessing }
+ZnHeaders >> at: headerName ifPresent: block [
 	"Like #at: but executes block when the headerName is found"
 
 	^ self headers at: (self normalizeHeaderKey: headerName) ifPresent: block
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>at: headerName put: value [
+{ #category : #accessing }
+ZnHeaders >> at: headerName put: value [
 	"Store value under headerName, replace existing entries"
 	
 	^ self headers at: (self normalizeHeaderKey: headerName) put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>at: headerName put: value ifPresentMerge: binaryBlock [
+{ #category : #accessing }
+ZnHeaders >> at: headerName put: value ifPresentMerge: binaryBlock [
 	"Store value under headerName, when there is an existing entry,
 	stored the result of evaluating binaryBlock with old and new value"
 	
@@ -205,27 +159,18 @@ ZnHeaders>>at: headerName put: value ifPresentMerge: binaryBlock [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>clearContentLength [
+{ #category : #accessing }
+ZnHeaders >> clearContentLength [
 	self removeKey: 'Content-Length' ifAbsent: [] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>clearContentType [
+{ #category : #accessing }
+ZnHeaders >> clearContentType [
 	self removeKey: 'Content-Type' ifAbsent: [] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>contentLength [
+{ #category : #accessing }
+ZnHeaders >> contentLength [
 	"We allow multiple content-length headers provided they are identical."
 	
 	| value |
@@ -237,38 +182,26 @@ ZnHeaders>>contentLength [
 	^ Integer readFrom: value ifFail: [ self error: 'Illegal HTTP Content Length' ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>contentLength: object [
+{ #category : #accessing }
+ZnHeaders >> contentLength: object [
 	self at: 'Content-Length' put: object asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>contentType [
+{ #category : #accessing }
+ZnHeaders >> contentType [
 	| headerValue |
 	headerValue := (self headers at: 'Content-Type') trimBoth.
 	headerValue isEmpty ifTrue: [ ^ ZnMimeType default ].
 	^ ZnMimeType fromString: headerValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>contentType: object [
+{ #category : #accessing }
+ZnHeaders >> contentType: object [
 	self at: 'Content-Type' put: object asString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>extendHeaderAt: key from: line [
+{ #category : #private }
+ZnHeaders >> extendHeaderAt: key from: line [
 	"The value of a continuation header line is concatenated, 
 	keeping the whitespace, but without the CRLF"
 
@@ -283,44 +216,29 @@ ZnHeaders>>extendHeaderAt: key from: line [
 	self at: key put: newValue
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>hasContentLength [
+{ #category : #testing }
+ZnHeaders >> hasContentLength [
 	^ self includesKey: 'Content-Length'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>hasContentType [
+{ #category : #testing }
+ZnHeaders >> hasContentType [
 	^ self includesKey: 'Content-Type'
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>hash [
+{ #category : #comparing }
+ZnHeaders >> hash [
 	^ self headers hash
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>headers [
+{ #category : #private }
+ZnHeaders >> headers [
 	headers isNil ifTrue: [ headers := ZnMultiValueDictionary new ].
 	^ headers
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>headersDo: block [
+{ #category : #enumerating }
+ZnHeaders >> headersDo: block [
 	"Execute a two argument (key, value) block for each header.
 	Multi-valued headers are handled transparently."
 
@@ -334,20 +252,14 @@ ZnHeaders>>headersDo: block [
 				block value: headerKey value: headerValue ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>includesKey: headerName [
+{ #category : #testing }
+ZnHeaders >> includesKey: headerName [
 	^ self isEmpty not and: [ self headers includesKey: (self normalizeHeaderKey: headerName) ]
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>isDescribingEntity [
+{ #category : #testing }
+ZnHeaders >> isDescribingEntity [
 	"Do I include enough information to describe an entity (i.e. content length and type) ?"
 	
 	^ (self headers includesKey: 'Content-Type') 
@@ -355,30 +267,21 @@ ZnHeaders>>isDescribingEntity [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>isEmpty [
+{ #category : #testing }
+ZnHeaders >> isEmpty [ 
 	^ headers isNil or: [ self headers isEmpty ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>keysAndValuesDo: block [
+{ #category : #enumerating }
+ZnHeaders >> keysAndValuesDo: block [
 	"Execute a two argument (key, value) block for each header.
 	Multi-valued headers are handled transparently."
 
 	self headersDo: block
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>normalizeHeaderKey: string [
+{ #category : #private }
+ZnHeaders >> normalizeHeaderKey: string [
 	"Test string to see if it has proper header key capitalization,
 	if true, return string, if not, return a properly capitalized copy"
 	
@@ -390,29 +293,20 @@ ZnHeaders>>normalizeHeaderKey: string [
 		ifFalse: [ ZnUtils capitalizeString: string ] 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>postCopy [
+{ #category : #copying }
+ZnHeaders >> postCopy [
 	headers := headers copy
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>printOn: stream [
+{ #category : #printing }
+ZnHeaders >> printOn: stream [
 	super printOn: stream.
 	self isEmpty ifFalse: [ self headers printElementsOn: stream ]
 	
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>readFrom: stream [
+{ #category : #initialize-release }
+ZnHeaders >> readFrom: stream [
 	| line reader |
 	reader := ZnLineReader on: stream.
 	[ (line := reader nextLine) isEmpty ] whileFalse: [ | key |
@@ -423,11 +317,8 @@ ZnHeaders>>readFrom: stream [
 				self extendHeaderAt: key from: reader nextLine ] ] 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>readOneHeaderFrom: stream [
+{ #category : #private }
+ZnHeaders >> readOneHeaderFrom: stream [
 	| key value |
 	key := stream upTo: $:.
 	[ stream peek == Character space ] whileTrue: [ stream next ].
@@ -436,28 +327,19 @@ ZnHeaders>>readOneHeaderFrom: stream [
 	^ key
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>removeKey: headerName [
+{ #category : #accessing }
+ZnHeaders >> removeKey: headerName [	
 	^ self headers removeKey: (self normalizeHeaderKey: headerName)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>removeKey: headerName ifAbsent: block [
+{ #category : #accessing }
+ZnHeaders >> removeKey: headerName ifAbsent: block [
 	self isEmpty ifTrue: [ ^ block value ].
 	^ self headers removeKey: (self normalizeHeaderKey: headerName) ifAbsent: block
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>request: url [
+{ #category : #accessing }
+ZnHeaders >> request: url [
 	"Setup the receiver to request url"
 	
 	(url isNil or: [ url hasHost not ]) ifTrue: [ ^ self ].  
@@ -467,19 +349,13 @@ ZnHeaders>>request: url [
   
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>unlimited [
+{ #category : #initialize-release }
+ZnHeaders >> unlimited [
 	self headers unlimited
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHeaders>>writeOn: stream [
+{ #category : #writing }
+ZnHeaders >> writeOn: stream [
 	| writeStream |
 	writeStream := ZnBivalentWriteStream on: stream.
 	self headersDo: [ :key :value |

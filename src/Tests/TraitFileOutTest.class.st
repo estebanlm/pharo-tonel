@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #TraitFileOutTest,
 	#superclass : #TraitsTestCase,
@@ -12,23 +9,16 @@ Class {
 		'tc',
 		'td'
 	],
-	#category : #Tests-Traits,
-	#timestamp : ''
+	#category : #Tests-Traits
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitFileOutTest>>categoryName [
+{ #category : #running }
+TraitFileOutTest >> categoryName [
 	^'Traits-Tests-FileOut'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitFileOutTest>>setUp [
+{ #category : #running }
+TraitFileOutTest >> setUp [
 	super setUp.
 	self class environment organization addCategory: self categoryName.
 	
@@ -50,11 +40,8 @@ TraitFileOutTest>>setUp [
 	cb class uses: ta classTrait + tc instanceVariableNames: ''.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitFileOutTest>>tearDown [
+{ #category : #running }
+TraitFileOutTest >> tearDown [
 	| dir |
 	dir := FileSystem workingDirectory.
 	self createdClassesAndTraits, self resourceClassesAndTraits  do: [:each |
@@ -64,11 +51,8 @@ TraitFileOutTest>>tearDown [
 	super tearDown
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitFileOutTest>>testFileOutCategory [
+{ #category : #testing }
+TraitFileOutTest >> testFileOutCategory [
 	"File out whole system category, delete all classes and traits and then
 	file them in again."
 
@@ -92,11 +76,8 @@ TraitFileOutTest>>testFileOutCategory [
 	self assert: (cb classSide selectors asSet includesAll: #(#d #c))
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitFileOutTest>>testFileOutTrait [
+{ #category : #testing }
+TraitFileOutTest >> testFileOutTrait [
 	"fileOut trait T6, remove it from system and then file it in again"
 
 	"self run: #testFileOutTrait"
@@ -120,11 +101,8 @@ TraitFileOutTest>>testFileOutTrait [
 	self assert: (self t6 classSide selectors asSet includesAll: #(#localClassSideMethod: #m2ClassSide:))
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitFileOutTest>>testRecompiling [
+{ #category : #testing }
+TraitFileOutTest >> testRecompiling [
 
 	| traitSrcPtr methodSrcPtr |
 	
@@ -140,11 +118,8 @@ TraitFileOutTest>>testRecompiling [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TraitFileOutTest>>testRemovingMethods [
+{ #category : #testing }
+TraitFileOutTest >> testRemovingMethods [
 	"When removing a local method, assure that the method
 	from the trait is installed instead and that the users are 
 	updated."

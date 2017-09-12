@@ -9,84 +9,56 @@ Class {
 		'reference',
 		'method'
 	],
-	#category : #SUnit-UI,
-	#timestamp : 'LaurentLaffont 4/15/2011 20:19'
+	#category : #SUnit-UI
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestCoverage class>>on: aMethodReference [
+{ #category : #'instance creation' }
+TestCoverage class >> on: aMethodReference [
 	^ self new initializeOn: aMethodReference
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestCoverage>>doesNotUnderstand: aMessage [
+{ #category : #private }
+TestCoverage >> doesNotUnderstand: aMessage [
 	^ method perform: aMessage selector withArguments: aMessage arguments
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestCoverage>>hasRun [
+{ #category : #testing }
+TestCoverage >> hasRun [
 	^ hasRun
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestCoverage>>initializeOn: aMethodReference [
+{ #category : #initialization }
+TestCoverage >> initializeOn: aMethodReference [
 	hasRun := false.
 	reference := aMethodReference.
 	method := reference compiledMethod
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestCoverage>>install [
+{ #category : #actions }
+TestCoverage >> install [
 	reference actualClass methodDict
 		at: reference selector
 		put: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestCoverage>>mark [
+{ #category : #private }
+TestCoverage >> mark [
 	hasRun := true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestCoverage>>reference [
+{ #category : #private }
+TestCoverage >> reference [
 	^ reference
 ]
 
-{
-	#category : #evaluation,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestCoverage>>run: aSelector with: anArray in: aReceiver [
+{ #category : #evaluation }
+TestCoverage >> run: aSelector with: anArray in: aReceiver [
 	self mark; uninstall.
 	^ aReceiver withArgs: anArray executeMethod: method
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestCoverage>>uninstall [
+{ #category : #actions }
+TestCoverage >> uninstall [
 	reference actualClass methodDict
 		at: reference selector
 		put: method

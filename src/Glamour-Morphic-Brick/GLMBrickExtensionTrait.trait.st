@@ -3,62 +3,41 @@ I declare an api to store and read extention properties. It should be inplemente
 "
 Trait {
 	#name : #GLMBrickExtensionTrait,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Glamour-Morphic-Brick-Traits,
-	#timestamp : 'AliakseiSyrel 1/30/2015 10:47'
+	#category : #Glamour-Morphic-Brick-Traits
 }
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickExtensionTrait>>hasProperty: aSymbol [
+{ #category : #private-extension }
+GLMBrickExtensionTrait >> hasProperty: aSymbol [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickExtensionTrait>>removeProperty: aSymbol [
+{ #category : #private-extension }
+GLMBrickExtensionTrait >> removeProperty: aSymbol [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickExtensionTrait>>setProperty: aSymbol toValue: anObject [
+{ #category : #private-extension }
+GLMBrickExtensionTrait >> setProperty: aSymbol toValue: anObject [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickExtensionTrait>>valueOfProperty: aSymbol [
+{ #category : #private-extension }
+GLMBrickExtensionTrait >> valueOfProperty: aSymbol [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickExtensionTrait>>valueOfProperty: aSymbol ifAbsent: aBlock [
+{ #category : #private-extension }
+GLMBrickExtensionTrait >> valueOfProperty: aSymbol ifAbsent: aBlock [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickExtensionTrait>>valueOfProperty: aSymbol ifAbsentPut: aBlock  [
+{ #category : #private-extension }
+GLMBrickExtensionTrait >> valueOfProperty: aSymbol ifAbsentPut: aBlock [ 
 	
 	^ self explicitRequirement
 ]

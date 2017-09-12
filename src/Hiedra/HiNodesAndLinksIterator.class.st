@@ -10,15 +10,11 @@ Class {
 		'nodeByValue',
 		'values'
 	],
-	#category : #Hiedra-Rendering,
-	#timestamp : '<historical>'
+	#category : #Hiedra-Rendering
 }
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodesAndLinksIterator>>doWithNodes: nodesBlock doWithLinks: linksBlock  [
+{ #category : #enumerating }
+HiNodesAndLinksIterator >> doWithNodes: nodesBlock doWithLinks: linksBlock [ 
 	self prepareToIterate.
 	
 	linkBuilders do: [ :linkModel |
@@ -30,11 +26,8 @@ HiNodesAndLinksIterator>>doWithNodes: nodesBlock doWithLinks: linksBlock  [
 				linkBuilder: linkModel ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodesAndLinksIterator>>doWithNodes: nodesBlock doWithLinks: linksBlock from: initialValue linkBuilder: aLinkBuilder [
+{ #category : #private }
+HiNodesAndLinksIterator >> doWithNodes: nodesBlock doWithLinks: linksBlock from: initialValue linkBuilder: aLinkBuilder [
 
 	| pendingItems |
 	pendingItems := Stack with: (self nodeAt: initialValue).
@@ -58,28 +51,19 @@ HiNodesAndLinksIterator>>doWithNodes: nodesBlock doWithLinks: linksBlock from: i
 		].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodesAndLinksIterator>>linkBuilders: aCollection [
+{ #category : #accessing }
+HiNodesAndLinksIterator >> linkBuilders: aCollection [
 	linkBuilders := aCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodesAndLinksIterator>>nodeAt: aValue [
+{ #category : #private }
+HiNodesAndLinksIterator >> nodeAt: aValue [
 
 	^ nodeByValue at: aValue
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodesAndLinksIterator>>prepareToIterate [
+{ #category : #enumerating }
+HiNodesAndLinksIterator >> prepareToIterate [
 	
 	nodeByValue := Dictionary new.	
 	values withIndexDo: [ :aValue :index |
@@ -91,10 +75,7 @@ HiNodesAndLinksIterator>>prepareToIterate [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiNodesAndLinksIterator>>values: aCollection  [
+{ #category : #accessing }
+HiNodesAndLinksIterator >> values: aCollection [ 
 	values := aCollection
 ]

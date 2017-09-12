@@ -12,83 +12,55 @@ Class {
 		'slotShift',
 		'modificationMap'
 	],
-	#category : #Slot-ClassBuilder,
-	#timestamp : '<historical>'
+	#category : #Slot-ClassBuilder
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractModification class>>new: anInteger [
+{ #category : #'instance creation' }
+AbstractModification class >> new: anInteger [
 	^ self new initialize: anInteger 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractModification>>initialize: anInteger [
+{ #category : #initialize-release }
+AbstractModification >> initialize: anInteger [
 	self initialize.
 	modificationMap := Array new: anInteger.
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractModification>>installAddedSlot: addedSlot [
+{ #category : #installing }
+AbstractModification >> installAddedSlot: addedSlot [
 	self subclassResponsibility
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractModification>>installModifiedSlot: modifiedSlot [
+{ #category : #installing }
+AbstractModification >> installModifiedSlot: modifiedSlot [
 	self subclassResponsibility
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractModification>>installRemovedSlot: removedSlot [
+{ #category : #installing }
+AbstractModification >> installRemovedSlot: removedSlot [
 	self subclassResponsibility
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractModification>>installUnmodifiedSlot: unmodifiedSlot [
+{ #category : #installing }
+AbstractModification >> installUnmodifiedSlot: unmodifiedSlot [
 	modificationMap
 		at: unmodifiedSlot fieldIndex
 		put: unmodifiedSlot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractModification>>modificationAt: idx [
+{ #category : #accessing }
+AbstractModification >> modificationAt: idx [
 	idx > modificationMap size 
 		ifTrue: [ ^ slotShift ].
 	^ modificationMap at: idx
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractModification>>size [
+{ #category : #accessing }
+AbstractModification >> size [
 	^ modificationMap size.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractModification>>slotShift: aShift [
+{ #category : #accessing }
+AbstractModification >> slotShift: aShift [
 	slotShift := aShift
 ]

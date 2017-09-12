@@ -1,12 +1,7 @@
-Extension {
-	#name : #MetacelloToolBox
-}
+Extension { #name : #MetacelloToolBox }
 
-{
-	#category : #'*Versionner-Core-DependenciesModel',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MetacelloToolBox>>addSection: sectionAttributeOrPath repository: repositoryDescription requiredProjects: projectList packages: packageList dependencies: dependecies includes: includes files: files repositories: repositories preLoadDoIts: preLoadDoIts postLoadDoIts: postLoadDoIts supplyingAnswers: supplyingAnswers groups: groups versionSpecsDo: aBlock requiredProjectSpecs: requiredProjectSpecs [
+{ #category : #'*Versionner-Core-DependenciesModel' }
+MetacelloToolBox >> addSection: sectionAttributeOrPath repository: repositoryDescription requiredProjects: projectList packages: packageList dependencies: dependecies includes: includes files: files repositories: repositories preLoadDoIts: preLoadDoIts postLoadDoIts: postLoadDoIts supplyingAnswers: supplyingAnswers groups: groups versionSpecsDo: aBlock requiredProjectSpecs: requiredProjectSpecs [
     "
 		repositoryDescription - metacello repository string
 		projectList - collection of project base names (without ConfigurationOf prefix)
@@ -59,11 +54,8 @@ MetacelloToolBox>>addSection: sectionAttributeOrPath repository: repositoryDescr
     self methodSpec addMethodSection: sectionAttributeOrPath asMetacelloAttributePath versionSpec: versionSpec
 ]
 
-{
-	#category : #'*Versionner-Core-DependenciesModel',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MetacelloToolBox class>>createBaseline: baselineVersionString for: configurationBasename repository: repositoryDescription requiredProjects: projectList packages: packageList repositories: repositories dependencies: dependencies groups: groups requiredProjectSpecs: requiredProjectSpecs [
+{ #category : #'*Versionner-Core-DependenciesModel' }
+MetacelloToolBox class >> createBaseline: baselineVersionString for: configurationBasename repository: repositoryDescription requiredProjects: projectList packages: packageList repositories: repositories dependencies: dependencies groups: groups requiredProjectSpecs: requiredProjectSpecs [
     "Create a new baseline version based on the specified project structure.
 		repositoryDescription - metacello repository string
 		projectList - collection of project base names (without ConfigurationOf prefix)

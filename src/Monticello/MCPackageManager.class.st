@@ -22,39 +22,26 @@ Class {
 	#classInstVars : [
 		'registry'
 	],
-	#category : #Monticello-Versioning,
-	#timestamp : 'StephaneDucasse 4/29/2011 20:42'
+	#category : #Monticello-Versioning
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>allManagers [
+{ #category : #accessing }
+MCPackageManager class >> allManagers [
 	^ self registry values
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>announcer [
+{ #category : #private }
+MCPackageManager class >> announcer [
 	^PrivateAnnouncer ifNil: [ SystemAnnouncer uniqueInstance  ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>announcer: anAnnouncer [
+{ #category : #private }
+MCPackageManager class >> announcer: anAnnouncer [
 	PrivateAnnouncer := anAnnouncer
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>bestMatchingManagerForCategory: aSystemCategory do: aBlock [
+{ #category : #'system changes' }
+MCPackageManager class >> bestMatchingManagerForCategory: aSystemCategory do: aBlock [
 	| bestMatches bestMatchingManagerAndPackage |
 	bestMatches := OrderedCollection new.
 	self registry do: [ :mgr |
@@ -71,30 +58,21 @@ MCPackageManager class>>bestMatchingManagerForCategory: aSystemCategory do: aBlo
 		aBlock value: managerAndPackage key ]
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>classModified: anEvent [
+{ #category : #'system changes' }
+MCPackageManager class >> classModified: anEvent [
 	self 
 		managersForClass: anEvent classAffected 
 		do:[ :mgr | mgr modified: true ].
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>classMoved: anEvent [
+{ #category : #'system changes' }
+MCPackageManager class >> classMoved: anEvent [
 	self managersForPackage: anEvent oldPackage do: [ :mgr | mgr modified: true ].
 	self managersForPackage: anEvent newPackage do: [ :mgr | mgr modified: true ].
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>classRemoved: anEvent [
+{ #category : #'system changes' }
+MCPackageManager class >> classRemoved: anEvent [
 	"Informs the registry who use to keep this class that its changed. Unlike #classModified:, class is not anymore in RPackages so it will not be found, that's why we look for system category instead if class is included or not"
 
 	"Note. Class protocols returns symbols and not Protocol instances!"
@@ -113,21 +91,15 @@ MCPackageManager class>>classRemoved: anEvent [
 									workingCopy modified: true ] ] ] ]
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>classRenamed: anEvent [
+{ #category : #'system changes' }
+MCPackageManager class >> classRenamed: anEvent [
 	self classModified: anEvent.
 	anEvent classAffected extendingPackages
 		do: [ :pkg | self managersForPackage: pkg do: [ :mgr | mgr modified: true ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>forPackage: aPackage [
+{ #category : #accessing }
+MCPackageManager class >> forPackage: aPackage [
 	^ self registry 
 		at: aPackage 
 		ifAbsent: [|mgr|
@@ -137,21 +109,15 @@ MCPackageManager class>>forPackage: aPackage [
 			mgr ]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>initialize [
+{ #category : #initialize }
+MCPackageManager class >> initialize [
 	"Remove this later"
 
 	self unregisterForNotifications.
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>managersForCategory: aSystemCategory do: aBlock [
+{ #category : #'system changes' }
+MCPackageManager class >> managersForCategory: aSystemCategory do: aBlock [
 	"Got to be careful here - we might get method categories where capitalization is problematic."
 	| cat foundOne index |
 	foundOne := false.
@@ -180,11 +146,8 @@ MCPackageManager class>>managersForCategory: aSystemCategory do: aBlock [
 	].
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>managersForClass: aClass category: methodCategory do: aBlock [
+{ #category : #'system changes' }
+MCPackageManager class >> managersForClass: aClass category: methodCategory do: aBlock [
 	(methodCategory isEmptyOrNil or:[methodCategory first ~= $*]) ifTrue:[
 		"Not an extension method"
 		^self managersForClass: aClass do: aBlock.
@@ -192,30 +155,21 @@ MCPackageManager class>>managersForClass: aClass category: methodCategory do: aB
 	self managersForCategory: methodCategory allButFirst do: aBlock.
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>managersForClass: aClass do: aBlock [
+{ #category : #'system changes' }
+MCPackageManager class >> managersForClass: aClass do: aBlock [
 
 	self registry do: [:mgr |
 		(mgr packageSet includesClass: aClass)
 			ifTrue: [aBlock value: mgr]]
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>managersForClass: aClass selector: aSelector do: aBlock [
+{ #category : #'system changes' }
+MCPackageManager class >> managersForClass: aClass selector: aSelector do: aBlock [
 	^self managersForClass: aClass category: (aClass organization categoryOfElement: aSelector) do: aBlock
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>managersForPackage: aPackage do: aBlock [
+{ #category : #'system changes' }
+MCPackageManager class >> managersForPackage: aPackage do: aBlock [
 	self registry do: [:mgr | 
 		(mgr packageSet includesSystemCategory: aPackage name) ifTrue: [
 			aBlock value: mgr.
@@ -223,11 +177,8 @@ MCPackageManager class>>managersForPackage: aPackage do: aBlock [
 	].
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>methodModified: anEvent [
+{ #category : #'system changes' }
+MCPackageManager class >> methodModified: anEvent [
 
    "trait methods aren't handled here"
 	anEvent isProvidedByATrait
@@ -239,29 +190,20 @@ MCPackageManager class>>methodModified: anEvent [
 		do: [ :mgr | mgr modified: true ]
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>methodMoved: anEvent [
+{ #category : #'system changes' }
+MCPackageManager class >> methodMoved: anEvent [
 	self managersForPackage: anEvent oldPackage do: [ :mgr | mgr modified: true ].
 	self managersForPackage: anEvent newPackage do: [ :mgr | mgr modified: true ].
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>methodRemoved: anEvent [
+{ #category : #'system changes' }
+MCPackageManager class >> methodRemoved: anEvent [
 	self managersForClass: anEvent methodClass category: anEvent protocol do:[:mgr| mgr modified: true].
 
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>packageRenamed: anAnnouncement [
+{ #category : #'system changes' }
+MCPackageManager class >> packageRenamed: anAnnouncement [
 	self allManagers 
 		detect: [ :each | each packageName = anAnnouncement newName ]
 		ifFound: [ :newPackage | newPackage modified: true ].
@@ -270,11 +212,8 @@ MCPackageManager class>>packageRenamed: anAnnouncement [
 		unload.
 ]
 
-{
-	#category : #'event registration',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>registerInterestOnSystemChangesOnAnnouncer: anAnnouncer [
+{ #category : #'event registration' }
+MCPackageManager class >> registerInterestOnSystemChangesOnAnnouncer: anAnnouncer [
 	anAnnouncer weak
 		when: RPackageRenamed send: #packageRenamed: to: self;
 		when: ClassAdded, ClassModifiedClassDefinition, ClassCommented , ClassParentRenamed send: #classModified: to: self;
@@ -286,62 +225,41 @@ MCPackageManager class>>registerInterestOnSystemChangesOnAnnouncer: anAnnouncer 
 		when: MethodRemoved send: #methodRemoved: to: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>registry [
+{ #category : #accessing }
+MCPackageManager class >> registry [
 	^ registry ifNil: [registry := Dictionary new]
 ]
 
-{
-	#category : #'event registration',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager class>>unregisterForNotifications [
+{ #category : #'event registration' }
+MCPackageManager class >> unregisterForNotifications [
 	SystemAnnouncer uniqueInstance unsubscribe: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager>>announcer [
+{ #category : #private }
+MCPackageManager >> announcer [
 	^self class announcer
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager>>initialize [
+{ #category : #initialization }
+MCPackageManager >> initialize [
 	super initialize.
 	modified := false.
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager>>initializeWithPackage: aPackage [
+{ #category : #initialization }
+MCPackageManager >> initializeWithPackage: aPackage [
 	package := aPackage.
 	self initialize.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager>>modified [
+{ #category : #accessing }
+MCPackageManager >> modified [
 	^ modified
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager>>modified: aBoolean [
+{ #category : #accessing }
+MCPackageManager >> modified: aBoolean [
 	modified = aBoolean
 		ifTrue: [ ^ self ].
 	modified := aBoolean.
@@ -353,45 +271,30 @@ MCPackageManager>>modified: aBoolean [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager>>package [
+{ #category : #accessing }
+MCPackageManager >> package [
 	^ package
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager>>packageName [
+{ #category : #accessing }
+MCPackageManager >> packageName [
 	^ package name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager>>packageNameWithStar [
+{ #category : #accessing }
+MCPackageManager >> packageNameWithStar [
 	^ modified
 		ifTrue: ['* ', self packageName]
 		ifFalse: [self packageName]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager>>packageSet [
+{ #category : #accessing }
+MCPackageManager >> packageSet [
 	^ package packageSet
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPackageManager>>unregister [
+{ #category : #operations }
+MCPackageManager >> unregister [
 	self class registry 
 		removeKey: package
 		ifAbsent: [ ^ self ].

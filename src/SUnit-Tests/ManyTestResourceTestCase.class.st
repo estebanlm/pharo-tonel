@@ -4,32 +4,22 @@ SUnit tests for handling of many test resources
 Class {
 	#name : #ManyTestResourceTestCase,
 	#superclass : #SimpleTestResourceTestCase,
-	#category : #SUnit-Tests-Core,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:14'
+	#category : #SUnit-Tests-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ManyTestResourceTestCase class>>resources [
+{ #category : #accessing }
+ManyTestResourceTestCase class >> resources [
 	^super resources
 		, (Array with: SimpleTestResourceA with: SimpleTestResourceB)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ManyTestResourceTestCase class>>shouldInheritSelectors [
+{ #category : #testing }
+ManyTestResourceTestCase class >> shouldInheritSelectors [
 	^true
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ManyTestResourceTestCase>>clearOuterResourceStateDuring: aBlock [
+{ #category : #utility }
+ManyTestResourceTestCase >> clearOuterResourceStateDuring: aBlock [
 	"This self-testing test must clear the outer state of its resources before starting and after finishing, so that it can construct test cases and suites of itself and test them."
 	
 	self
@@ -59,11 +49,8 @@ ManyTestResourceTestCase>>clearOuterResourceStateDuring: aBlock [
 				description: 'The resource was not set up again after the test']
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ManyTestResourceTestCase>>testTearDownOrder [
+{ #category : #running }
+ManyTestResourceTestCase >> testTearDownOrder [
 	| myResourceSetUpOrder myResourceReverseTearDownOrder |
 	myResourceReverseTearDownOrder := OrderedCollection new: 7.
 	myResourceSetUpOrder := (OrderedCollection new: 7)

@@ -14,31 +14,21 @@ Class {
 		'messages',
 		'semicolons'
 	],
-	#category : #AST-Core-Nodes,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode class>>messages: messageNodes  [
+{ #category : #'instance creation' }
+RBCascadeNode class >> messages: messageNodes [ 
 	^self new messages: messageNodes
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode class>>messages: messageNodes semicolons: integerCollection  [
+{ #category : #'instance creation' }
+RBCascadeNode class >> messages: messageNodes semicolons: integerCollection [ 
 	^self new messages: messageNodes semicolons: integerCollection
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>= anObject  [
+{ #category : #comparing }
+RBCascadeNode >> = anObject [ 
 	self == anObject ifTrue: [^true].
 	self class = anObject class ifFalse: [^false].
 	self messages size = anObject messages size ifFalse: [^false].
@@ -46,19 +36,13 @@ RBCascadeNode>>= anObject  [
 	^true
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visiting }
+RBCascadeNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^aProgramNodeVisitor visitCascadeNode: self
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>bestNodeFor: anInterval  [
+{ #category : #querying }
+RBCascadeNode >> bestNodeFor: anInterval [ 
 	| selectedChildren |
 	(self intersectsInterval: anInterval) ifFalse: [^nil].
 	(self containedBy: anInterval) ifTrue: [^self].
@@ -70,37 +54,25 @@ RBCascadeNode>>bestNodeFor: anInterval  [
 	^selectedChildren detect: [:each | true] ifNone: [nil]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>children [
+{ #category : #accessing }
+RBCascadeNode >> children [
 	^self messages
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>copyInContext: aDictionary  [
+{ #category : #matching }
+RBCascadeNode >> copyInContext: aDictionary [ 
 	^ self class new
 		messages: (self copyList: self messages inContext: aDictionary);
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>directlyUses: aNode  [
+{ #category : #testing }
+RBCascadeNode >> directlyUses: aNode [ 
 	^messages last = aNode and: [self isDirectlyUsed]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>equalTo: anObject withMapping: aDictionary  [
+{ #category : #comparing }
+RBCascadeNode >> equalTo: anObject withMapping: aDictionary [ 
 	self class = anObject class ifFalse: [^false].
 	self messages size = anObject messages size ifFalse: [^false].
 	self messages
@@ -109,35 +81,23 @@ RBCascadeNode>>equalTo: anObject withMapping: aDictionary  [
 	^true
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>hash [
+{ #category : #comparing }
+RBCascadeNode >> hash [
 	^ self hashForCollection: self messages
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>isCascade [
+{ #category : #testing }
+RBCascadeNode >> isCascade [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>isFaulty [
+{ #category : #testing }
+RBCascadeNode >> isFaulty [
 	^self messages anySatisfy: #isFaulty
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>match: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBCascadeNode >> match: aNode inContext: aDictionary [ 
 	aNode class = self class ifFalse: [^false].
 	^self 
 		matchList: messages
@@ -145,105 +105,69 @@ RBCascadeNode>>match: aNode inContext: aDictionary  [
 		inContext: aDictionary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>messages [
+{ #category : #accessing }
+RBCascadeNode >> messages [
 	^messages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>messages: messageNodeCollection  [
+{ #category : #accessing }
+RBCascadeNode >> messages: messageNodeCollection [ 
 	messages := messageNodeCollection.
 	messages do: [:each | each parent: self]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>messages: messageNodes semicolons: integerCollection  [
+{ #category : #initialize-release }
+RBCascadeNode >> messages: messageNodes semicolons: integerCollection [ 
 	self messages: messageNodes.
 	semicolons := integerCollection
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>needsParenthesis [
+{ #category : #testing }
+RBCascadeNode >> needsParenthesis [
 	^parent 
 		ifNil: [false]
 		ifNotNil: [self precedence > parent precedence]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>postCopy [
+{ #category : #copying }
+RBCascadeNode >> postCopy [
 	super postCopy.
 	self messages: (self messages collect: [ :each | each copy ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>precedence [
+{ #category : #accessing }
+RBCascadeNode >> precedence [
 	^4
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>receiver [
+{ #category : #accessing }
+RBCascadeNode >> receiver [
 	^self messages first receiver
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>replaceNode: aNode withNode: anotherNode  [
+{ #category : #replacing }
+RBCascadeNode >> replaceNode: aNode withNode: anotherNode [ 
 	self messages: (messages 
 				collect: [:each | each == aNode ifTrue: [anotherNode] ifFalse: [each]])
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>semicolons [
+{ #category : #accessing-token }
+RBCascadeNode >> semicolons [
 	^ semicolons
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>semicolons: anArray [
+{ #category : #accessing-token }
+RBCascadeNode >> semicolons: anArray [
 	semicolons := anArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>startWithoutParentheses [
+{ #category : #accessing }
+RBCascadeNode >> startWithoutParentheses [
 	^messages first start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>statementComments [
+{ #category : #accessing }
+RBCascadeNode >> statementComments [
 	| statementComments |
 	statementComments := OrderedCollection withAll: self comments.
 	statementComments addAll: messages first receiver statementComments.
@@ -254,27 +178,18 @@ RBCascadeNode>>statementComments [
 	^statementComments asSortedCollection: [:a :b | a start < b start]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>stopWithoutParentheses [
+{ #category : #accessing }
+RBCascadeNode >> stopWithoutParentheses [
 	^messages last stop
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>uses: aNode  [
+{ #category : #testing }
+RBCascadeNode >> uses: aNode [ 
 	^messages last = aNode and: [self isUsed]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBCascadeNode>>whichNodeIsContainedBy: anInterval  [
+{ #category : #querying }
+RBCascadeNode >> whichNodeIsContainedBy: anInterval [ 
 	| selectedChildren |
 	(self intersectsInterval: anInterval) ifFalse: [^nil].
 	(self containedBy: anInterval) ifTrue: [^self].

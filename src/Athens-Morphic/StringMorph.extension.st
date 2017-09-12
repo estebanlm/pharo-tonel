@@ -1,12 +1,7 @@
-Extension {
-	#name : #StringMorph
-}
+Extension { #name : #StringMorph }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-StringMorph>>drawOnAthensCanvas: canvas [
+{ #category : #'*Athens-Morphic' }
+StringMorph >> drawOnAthensCanvas: canvas [
 	| pt bnd gap |
 "	bnd := self bounds.
 	gap := self layoutInset.

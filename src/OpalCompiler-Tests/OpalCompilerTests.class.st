@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #OpalCompilerTests,
 	#superclass : #TestCase,
-	#category : #OpalCompiler-Tests-Misc,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-Misc
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OpalCompilerTests>>testBindingsWithUppercaseNameDoNotOverwriteGlobals [
+{ #category : #tests }
+OpalCompilerTests >> testBindingsWithUppercaseNameDoNotOverwriteGlobals [
 	| result |
 	result := Smalltalk compiler
 		bindings: { #UndefinedObject -> Object } asDictionary;
@@ -21,11 +14,8 @@ OpalCompilerTests>>testBindingsWithUppercaseNameDoNotOverwriteGlobals [
 	self assert: result = UndefinedObject class.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OpalCompilerTests>>testEvaluateWithBindings [
+{ #category : #tests }
+OpalCompilerTests >> testEvaluateWithBindings [
 	| result |
 	result := Smalltalk compiler
 		bindings: { #a -> 3 } asDictionary;
@@ -34,11 +24,8 @@ OpalCompilerTests>>testEvaluateWithBindings [
 	self assert: result = 4.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OpalCompilerTests>>testEvaluateWithBindingsWithUppercaseName [
+{ #category : #tests }
+OpalCompilerTests >> testEvaluateWithBindingsWithUppercaseName [
 	| result |
 	result := Smalltalk compiler
 		bindings: { #MyVar -> 3 } asDictionary;

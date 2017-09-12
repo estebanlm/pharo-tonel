@@ -4,23 +4,16 @@ SUnit tests for class Generator
 Class {
 	#name : #GeneratorTest,
 	#superclass : #TestCase,
-	#category : #Collections-Tests-Streams,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:29'
+	#category : #Collections-Tests-Streams
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-GeneratorTest class>>packageNamesUnderTest [
+{ #category : #accessing }
+GeneratorTest class >> packageNamesUnderTest [
 	^ #('Generator')
 ]
 
-{
-	#category : #generators,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-GeneratorTest>>fibonacciSequence [
+{ #category : #generators }
+GeneratorTest >> fibonacciSequence [
 	"Yields an infinite sequence of fibonacci numbers."
 	
 	^ Generator on: [ :generator |
@@ -31,11 +24,8 @@ GeneratorTest>>fibonacciSequence [
 			repeat ]
 ]
 
-{
-	#category : #generators,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-GeneratorTest>>numbersBetween: aStartInteger and: aStopInteger [
+{ #category : #generators }
+GeneratorTest >> numbersBetween: aStartInteger and: aStopInteger [
 	"Yields the nubmers between aStartInteger and aStopInteger."
 	
 	^ Generator on: [ :generator |
@@ -43,11 +33,8 @@ GeneratorTest>>numbersBetween: aStartInteger and: aStopInteger [
 			do: [ :value | generator yield: value ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-GeneratorTest>>testAtEnd [
+{ #category : #testing }
+GeneratorTest >> testAtEnd [
 	| generator |
 	generator := self numbersBetween: 1 and: 3.
 	self deny: generator atEnd.
@@ -59,11 +46,8 @@ GeneratorTest>>testAtEnd [
 	self assert: generator atEnd
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-GeneratorTest>>testClose [
+{ #category : #testing }
+GeneratorTest >> testClose [
 	| generator doEnsure notEnsure |
 	doEnsure := notEnsure := 0.
 	[ generator := Generator on: [ :g |
@@ -78,21 +62,15 @@ GeneratorTest>>testClose [
 	self assert: doEnsure = 1; assert: notEnsure = 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-GeneratorTest>>testContents [
+{ #category : #testing }
+GeneratorTest >> testContents [
 	| generator |
 	generator := self numbersBetween: 1 and: 3.
 	self assert: generator contents = #(1 2 3)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-GeneratorTest>>testEmpty [
+{ #category : #testing }
+GeneratorTest >> testEmpty [
 	| generator |
 	generator := Generator on: [ :g | ].
 	self assert: generator atEnd.
@@ -100,11 +78,8 @@ GeneratorTest>>testEmpty [
 	self assert: generator next isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-GeneratorTest>>testEnsure [
+{ #category : #testing }
+GeneratorTest >> testEnsure [
 	| generator |
 	generator := Generator on: [ :g |
 		[ g yield: 1; yield: 2 ]
@@ -112,11 +87,8 @@ GeneratorTest>>testEnsure [
 	self assert: generator upToEnd asArray = #( 1 2 3 )
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-GeneratorTest>>testErrorPropagation [
+{ #category : #testing }
+GeneratorTest >> testErrorPropagation [
 	"Ensure that errors in the generator block are properly propagated"
 
 	| generator |
@@ -127,21 +99,15 @@ GeneratorTest>>testErrorPropagation [
 	self should: [ generator next ] raise: Error
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-GeneratorTest>>testFibonacci [
+{ #category : #testing }
+GeneratorTest >> testFibonacci [
 	| generator |
 	generator := self fibonacciSequence.
 	self assert: (generator next: 10) asArray = #( 1 1 2 3 5 8 13 21 34 55 )
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-GeneratorTest>>testNext [
+{ #category : #testing }
+GeneratorTest >> testNext [
 	| generator |
 	generator := self numbersBetween: 1 and: 3.
 	self assert: generator next = 1.
@@ -150,11 +116,8 @@ GeneratorTest>>testNext [
 	self assert: generator next isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-GeneratorTest>>testPeek [
+{ #category : #testing }
+GeneratorTest >> testPeek [
 	| generator |
 	generator := self numbersBetween: 1 and: 3.
 	self assert: generator peek = 1.
@@ -163,11 +126,8 @@ GeneratorTest>>testPeek [
 	self assert: generator peek = 2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-GeneratorTest>>testReset [
+{ #category : #testing }
+GeneratorTest >> testReset [
 	| generator |
 	generator := self numbersBetween: 1 and: 3.
 	self assert: generator next = 1.
@@ -181,11 +141,8 @@ GeneratorTest>>testReset [
 	self assert: generator next = 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-GeneratorTest>>testResetUnwind [
+{ #category : #testing }
+GeneratorTest >> testResetUnwind [
 	"Just like close, just using reset"
 	| generator doEnsure notEnsure |
 	doEnsure := notEnsure := 0.
@@ -201,11 +158,8 @@ GeneratorTest>>testResetUnwind [
 	self assert: doEnsure = 1; assert: notEnsure = 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-GeneratorTest>>testSimple [
+{ #category : #testing }
+GeneratorTest >> testSimple [
 	| generator |
 	generator := Generator on: [ :g | g yield: 1; yield: 2 ].
 	self assert: generator upToEnd asArray = #( 1 2 )

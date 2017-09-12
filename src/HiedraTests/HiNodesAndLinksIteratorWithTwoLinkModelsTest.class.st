@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #HiNodesAndLinksIteratorWithTwoLinkModelsTest,
 	#superclass : #TestCase,
@@ -14,26 +11,19 @@ Class {
 		'parentsLinkBuilder',
 		'originLinkBuilder'
 	],
-	#category : #HiedraTests,
-	#timestamp : ''
+	#category : #HiedraTests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiNodesAndLinksIteratorWithTwoLinkModelsTest>>assertIteratedAsExpected [
+{ #category : #running }
+HiNodesAndLinksIteratorWithTwoLinkModelsTest >> assertIteratedAsExpected [
 	| builtArray |
 	builtArray := self iteratedAsArray.
 	
 	self assert: builtArray equals: expectedArray
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiNodesAndLinksIteratorWithTwoLinkModelsTest>>iteratedAsArray [
+{ #category : #running }
+HiNodesAndLinksIteratorWithTwoLinkModelsTest >> iteratedAsArray [
 	| result |
 	result := OrderedCollection new.	
 		
@@ -46,11 +36,8 @@ HiNodesAndLinksIteratorWithTwoLinkModelsTest>>iteratedAsArray [
 	^ result asArray
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiNodesAndLinksIteratorWithTwoLinkModelsTest>>setUp [
+{ #category : #running }
+HiNodesAndLinksIteratorWithTwoLinkModelsTest >> setUp [
 	super setUp.
 	
 	parentsLinkBuilder := HiLinkBuilder new
@@ -66,11 +53,8 @@ HiNodesAndLinksIteratorWithTwoLinkModelsTest>>setUp [
 		yourself.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-HiNodesAndLinksIteratorWithTwoLinkModelsTest>>testBasicExpected [
+{ #category : #tests }
+HiNodesAndLinksIteratorWithTwoLinkModelsTest >> testBasicExpected [
 	"Secondary (i.e. origin) links are iterated after all primary (i.e. parents) links are iterated."
 
 	"

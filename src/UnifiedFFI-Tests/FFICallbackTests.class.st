@@ -1,37 +1,24 @@
-"
-
-"
 Class {
 	#name : #FFICallbackTests,
 	#superclass : #TestCase,
 	#pools : [
 		'FFITestEnumeration'
 	],
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackTests>>floatregargsp [
+{ #category : #accessing }
+FFICallbackTests >> floatregargsp [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackTests>>intregargsp [
+{ #category : #accessing }
+FFICallbackTests >> intregargsp [
 	^ nil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackTests>>testCqsort [
+{ #category : #tests }
+FFICallbackTests >> testCqsort [
 	| unsorted expected values callback results |
 	
 	self flag: #TODO. "TEMPORAL... I need to see why this is crashing on windows (but callbacks are 
@@ -59,11 +46,8 @@ FFICallbackTests>>testCqsort [
 	self assert: results equals: expected.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackTests>>testCqsortWithByteArray [
+{ #category : #tests }
+FFICallbackTests >> testCqsortWithByteArray [
 	| unsorted expected values callback results |
 	
 	self flag: #TODO. "TEMPORAL... I need to see why this is crashing on windows (but callbacks are 
@@ -92,11 +76,8 @@ FFICallbackTests>>testCqsortWithByteArray [
 	self assert: results equals: expected.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackTests>>testEnumerationReturnValue [
+{ #category : #tests }
+FFICallbackTests >> testEnumerationReturnValue [
 	| cb returnValue |
 	"Issue 19145 - change semantics so that enumerations can be returned
 	from callback without sending #value to it."
@@ -117,11 +98,8 @@ FFICallbackTests>>testEnumerationReturnValue [
 	self assert: returnValue equals: CCC value.
 ]
 
-{
-	#category : #support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallbackTests>>wordResult: anInteger [
+{ #category : #support }
+FFICallbackTests >> wordResult: anInteger [
 	"For testEnumerationReturnValue, simulate a method invoked 
 	from FFICallback>>valueInContext, so that I can be passed as a fake context."
 	^anInteger

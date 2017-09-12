@@ -3,80 +3,53 @@ A trait for test purposes
 "
 Trait {
 	#name : #TSetArithmetic,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:35'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>anotherElementOrAssociationIn [
+{ #category : #requirements }
+TSetArithmetic >> anotherElementOrAssociationIn [
 	" return an element (or an association for Dictionary ) present  in 'collection' "
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>anotherElementOrAssociationNotIn [
+{ #category : #requirements }
+TSetArithmetic >> anotherElementOrAssociationNotIn [
 	" return an element (or an association for Dictionary )not present  in 'collection' "
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>collection [
+{ #category : #requirements }
+TSetArithmetic >> collection [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>collectionClass [
+{ #category : #requirements }
+TSetArithmetic >> collectionClass [
 " return the class to be used to create instances of the class tested"
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'tests - set arithmetic',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>containsAll: union of: one andOf: another [
+{ #category : #'tests - set arithmetic' }
+TSetArithmetic >> containsAll: union of: one andOf: another [
 			
 	self assert: (one allSatisfy: [:each | union includes: each]).
 	self assert: (another allSatisfy: [:each | union includes: each])
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>nonEmpty [
+{ #category : #requirements }
+TSetArithmetic >> nonEmpty [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'tests - set arithmetic',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>numberOfSimilarElementsInIntersection [
+{ #category : #'tests - set arithmetic' }
+TSetArithmetic >> numberOfSimilarElementsInIntersection [
 	^ self collection occurrencesOf: self anotherElementOrAssociationIn
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>test0FixtureSetAritmeticTest [
+{ #category : #'tests - fixture' }
+TSetArithmetic >> test0FixtureSetAritmeticTest [
 	self collection.
 	self deny: self collection isEmpty.
 	self nonEmpty.
@@ -88,11 +61,8 @@ TSetArithmetic>>test0FixtureSetAritmeticTest [
 	self collectionClass
 ]
 
-{
-	#category : #'tests - set arithmetic',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>testDifference [
+{ #category : #'tests - set arithmetic' }
+TSetArithmetic >> testDifference [
 	"Answer the set theoretic difference of two collections."
 	"self debug: #testDifference"
 	
@@ -106,11 +76,8 @@ TSetArithmetic>>testDifference [
 
 ]
 
-{
-	#category : #'tests - set arithmetic',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>testDifferenceWithNonNullIntersection [
+{ #category : #'tests - set arithmetic' }
+TSetArithmetic >> testDifferenceWithNonNullIntersection [
 	"Answer the set theoretic difference of two collections."
 	"self debug: #testDifferenceWithNonNullIntersection"
 	"	#(1 2 3) difference: #(2 4) 
@@ -124,11 +91,8 @@ TSetArithmetic>>testDifferenceWithNonNullIntersection [
 	overlapping do: [ :each | self deny: (res includes: each) ]
 ]
 
-{
-	#category : #'tests - set arithmetic',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>testDifferenceWithSeparateCollection [
+{ #category : #'tests - set arithmetic' }
+TSetArithmetic >> testDifferenceWithSeparateCollection [
 	"Answer the set theoretic difference of two collections."
 	"self debug: #testDifferenceWithSeparateCollection"
 	| res separateCol |
@@ -147,11 +111,8 @@ TSetArithmetic>>testDifferenceWithSeparateCollection [
 	self assert: res equals: separateCol
 ]
 
-{
-	#category : #'tests - set arithmetic',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>testIntersectionBasic [
+{ #category : #'tests - set arithmetic' }
+TSetArithmetic >> testIntersectionBasic [
 	"self debug: #testIntersectionBasic"
 	| inter |
 	inter := self collection intersection: (self collectionClass with: self anotherElementOrAssociationIn).
@@ -159,11 +120,8 @@ TSetArithmetic>>testIntersectionBasic [
 	self assert: (inter includes: self anotherElementOrAssociationIn value)
 ]
 
-{
-	#category : #'tests - set arithmetic',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>testIntersectionEmpty [
+{ #category : #'tests - set arithmetic' }
+TSetArithmetic >> testIntersectionEmpty [
 	"self debug: #testIntersectionEmpty"
 	
 	| inter |
@@ -174,11 +132,8 @@ TSetArithmetic>>testIntersectionEmpty [
 	
 ]
 
-{
-	#category : #'tests - set arithmetic',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>testIntersectionItself [
+{ #category : #'tests - set arithmetic' }
+TSetArithmetic >> testIntersectionItself [
 	"self debug: #testIntersectionItself"
 	
 	| result |
@@ -189,11 +144,8 @@ TSetArithmetic>>testIntersectionItself [
 	
 ]
 
-{
-	#category : #'tests - set arithmetic',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>testIntersectionTwoSimilarElementsInIntersection [
+{ #category : #'tests - set arithmetic' }
+TSetArithmetic >> testIntersectionTwoSimilarElementsInIntersection [
 	"self debug: #testIntersectionBasic"
 	| inter |
 	inter := self collection intersection: (self collectionClass with: self anotherElementOrAssociationIn).
@@ -201,11 +153,8 @@ TSetArithmetic>>testIntersectionTwoSimilarElementsInIntersection [
 	self assert: (inter includes: self anotherElementOrAssociationIn value)
 ]
 
-{
-	#category : #'tests - set arithmetic',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>testUnion [
+{ #category : #'tests - set arithmetic' }
+TSetArithmetic >> testUnion [
 	"self debug: #testUnionOfEmpties"
 	
 	| union |
@@ -217,11 +166,8 @@ TSetArithmetic>>testUnion [
 	self containsAll: union of: self collection andOf: self nonEmpty.
 ]
 
-{
-	#category : #'tests - set arithmetic',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSetArithmetic>>testUnionOfEmpties [
+{ #category : #'tests - set arithmetic' }
+TSetArithmetic >> testUnionOfEmpties [
 	"self debug: #testUnionOfEmpties"
 	
 	self assert:  (self empty union: self empty) isEmpty.

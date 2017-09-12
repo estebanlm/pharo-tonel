@@ -7,14 +7,10 @@ Class {
 	#classVars : [
 		'One'
 	],
-	#category : #Slot-Tests,
-	#timestamp : 'MartinDias 1/31/2014 15:50'
+	#category : #Slot-Tests
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestSharedPool class>>initialize [
+{ #category : #'class initialization' }
+TestSharedPool class >> initialize [
 	One := 1
 ]

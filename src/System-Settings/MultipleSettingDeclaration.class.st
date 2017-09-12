@@ -7,40 +7,27 @@ Class {
 	#instVars : [
 		'domainValues'
 	],
-	#category : #System-Settings-Core,
-	#timestamp : 'TorstenBergmann 1/31/2014 10:30'
+	#category : #System-Settings-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MultipleSettingDeclaration>>domainValues [
+{ #category : #accessing }
+MultipleSettingDeclaration >> domainValues [
 	^ domainValues ifNil: [domainValues := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MultipleSettingDeclaration>>domainValues: aCollection  [
+{ #category : #accessing }
+MultipleSettingDeclaration >> domainValues: aCollection [ 
 	domainValues := aCollection asArray collect: [ :v | v settingFixedDomainValueNodeFrom: self]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MultipleSettingDeclaration>>domainValuesLabels [
+{ #category : #'user interface' }
+MultipleSettingDeclaration >> domainValuesLabels [
 	^ self domainValues
 		collect: [:f | f name]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MultipleSettingDeclaration>>fixedDomainValueNodeForAssociation: anAssociation  [
+{ #category : #'user interface' }
+MultipleSettingDeclaration >> fixedDomainValueNodeForAssociation: anAssociation [ 
 	| s |
 	^ (s := (SettingDeclaration new name: anAssociation key translated))
 		target: s;
@@ -48,11 +35,8 @@ MultipleSettingDeclaration>>fixedDomainValueNodeForAssociation: anAssociation  [
 		default: anAssociation value
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MultipleSettingDeclaration>>fixedDomainValueNodeForObject: anObject  [
+{ #category : #'user interface' }
+MultipleSettingDeclaration >> fixedDomainValueNodeForObject: anObject [ 
 	| s |
 	^ (s := (SettingDeclaration new name: anObject asString))
 		target: s;
@@ -60,10 +44,7 @@ MultipleSettingDeclaration>>fixedDomainValueNodeForObject: anObject  [
 		default: anObject
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-MultipleSettingDeclaration>>hasEditableList [
+{ #category : #'user interface' }
+MultipleSettingDeclaration >> hasEditableList [
 	^ false
 ]

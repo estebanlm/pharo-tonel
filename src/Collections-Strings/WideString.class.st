@@ -6,15 +6,11 @@ Class {
 	#name : #WideString,
 	#superclass : #String,
 	#type : #words,
-	#category : #Collections-Strings,
-	#timestamp : 'yo 10/19/2004 22:34'
+	#category : #Collections-Strings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString class>>from: aString  [
+{ #category : #'instance creation' }
+WideString class >> from: aString [ 
 
 	| newString |
 	(aString isMemberOf: self)
@@ -25,11 +21,8 @@ WideString class>>from: aString  [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString class>>fromByteArray: aByteArray  [
+{ #category : #'instance creation' }
+WideString class >> fromByteArray: aByteArray [ 
 
 	| inst |
 	aByteArray size \\ 4 = 0 ifFalse: [^ ByteString fromByteArray: aByteArray ].
@@ -46,11 +39,8 @@ WideString class>>fromByteArray: aByteArray  [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString class>>fromString: aString  [
+{ #category : #'instance creation' }
+WideString class >> fromString: aString [ 
 	"Answer an instance of me that is a copy of the argument, aString."
 
 	| inst |
@@ -65,11 +55,8 @@ WideString class>>fromString: aString  [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString>>asFourCode [
+{ #category : #converting }
+WideString >> asFourCode [
 
 	| result |
 	self size = 1 ifFalse: [^ Error signal: 'must be exactly four octets' ].
@@ -82,42 +69,30 @@ WideString>>asFourCode [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString>>asLowercase [
+{ #category : #converting }
+WideString >> asLowercase [
 	"Answer a copy of self with all characters in a lower case.
 	This might be a difficult task, ask Unicode."
 	
 	^ Unicode toLowercaseString: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString>>asUppercase [
+{ #category : #converting }
+WideString >> asUppercase [
 	"Answer a copy of self with all characters in an upper case.
 	This might be a difficult task, ask Unicode."
 	
 	^ Unicode toUppercaseString: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString>>asWideString  [
+{ #category : #converting }
+WideString >> asWideString [ 
 
 	^ self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString>>at: index [
+{ #category : #accessing }
+WideString >> at: index [
 	"Answer the Character stored in the field of the receiver indexed by the
 	 argument.  Primitive.  Fail if the index argument is not an Integer or is out
 	 of bounds.  Essential.  See Object documentation whatIsAPrimitive."
@@ -132,11 +107,8 @@ WideString>>at: index [
 				ifFalse: [self errorNonIntegerIndex]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString>>at: index put: aCharacter [
+{ #category : #accessing }
+WideString >> at: index put: aCharacter [
 	"Store the Character into the field of the receiver indicated by the index.
 	 Primitive.  Fail if the index is not an Integer or is out of bounds, or if the
 	 argument is not a Character.  Essential.  See Object documentation whatIsAPrimitive."
@@ -151,11 +123,8 @@ WideString>>at: index put: aCharacter [
 			[self errorImproperStore]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString>>byteAt: index [
+{ #category : #accessing }
+WideString >> byteAt: index [
 
 	| d r |
 	d := (index + 3) // 4.
@@ -164,11 +133,8 @@ WideString>>byteAt: index [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString>>byteAt: index put: aByte [
+{ #category : #accessing }
+WideString >> byteAt: index put: aByte [
 
 	| d r w |
 	d := (index + 3) // 4.
@@ -180,21 +146,15 @@ WideString>>byteAt: index put: aByte [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString>>byteSize [
+{ #category : #accessing }
+WideString >> byteSize [
 
 	^ self size * 4.
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString>>copyFrom: start to: stop [
+{ #category : #converting }
+WideString >> copyFrom: start to: stop [
 
 	| n |
 	n := super copyFrom: start to: stop.
@@ -203,29 +163,20 @@ WideString>>copyFrom: start to: stop [
 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString>>findIn: body startingAt: start matchTable: matchTable [
+{ #category : #comparing }
+WideString >> findIn: body startingAt: start matchTable: matchTable [
 	
 	^ self findSubstring: self in: body startingAt: start matchTable: matchTable
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString>>isWideString [
+{ #category : #testing }
+WideString >> isWideString [
 	"Answer whether the receiver is a WideString"
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString>>replaceFrom: start to: stop with: replacement startingAt: repStart  [
+{ #category : #accessing }
+WideString >> replaceFrom: start to: stop with: replacement startingAt: repStart [ 
 
 	<primitive: 105>
 	replacement class == String ifTrue: [
@@ -236,21 +187,15 @@ WideString>>replaceFrom: start to: stop with: replacement startingAt: repStart  
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString>>wordAt: index [
+{ #category : #accessing }
+WideString >> wordAt: index [
 	<primitive: 60>
 	^ (self basicAt: index).
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-WideString>>wordAt: index put: anInteger [
+{ #category : #accessing }
+WideString >> wordAt: index put: anInteger [
 	<primitive: 61>
 	self basicAt: index put: anInteger.
 

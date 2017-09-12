@@ -6,25 +6,18 @@ Will be removed when the new Translor design is in place
 Class {
 	#name : #RFASTTranslatorForEffect,
 	#superclass : #RFASTTranslator,
-	#category : #Reflectivity-Compiler,
-	#timestamp : 'MarcusDenker 6/23/2015 17:39'
+	#category : #Reflectivity-Compiler
 }
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslatorForEffect>>emitAnd: aMessageNode [
+{ #category : #'inline messages' }
+RFASTTranslatorForEffect >> emitAnd: aMessageNode [
 	
 	super emitAnd: aMessageNode.
 	methodBuilder popTop.
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslatorForEffect>>emitIfFalse: aMessageNode [
+{ #category : #'inline messages' }
+RFASTTranslatorForEffect >> emitIfFalse: aMessageNode [
 
 	valueTranslator visitNode: aMessageNode receiver.
 	methodBuilder jumpAheadTo: #else if: true.
@@ -33,11 +26,8 @@ RFASTTranslatorForEffect>>emitIfFalse: aMessageNode [
 
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslatorForEffect>>emitIfNotNil: aMessageNode [
+{ #category : #'inline messages' }
+RFASTTranslatorForEffect >> emitIfNotNil: aMessageNode [
 	| args |
 	valueTranslator visitNode: aMessageNode receiver.
 	args := aMessageNode arguments.
@@ -50,11 +40,8 @@ RFASTTranslatorForEffect>>emitIfNotNil: aMessageNode [
 	
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslatorForEffect>>emitIfTrue: aMessageNode [
+{ #category : #'inline messages' }
+RFASTTranslatorForEffect >> emitIfTrue: aMessageNode [
 
 	valueTranslator visitNode: aMessageNode receiver.
 	methodBuilder jumpAheadTo: #else if: false.	
@@ -62,32 +49,23 @@ RFASTTranslatorForEffect>>emitIfTrue: aMessageNode [
 	methodBuilder jumpAheadTarget: #else.
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslatorForEffect>>emitMessageNode: aMessageNode  [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslatorForEffect >> emitMessageNode: aMessageNode [ 
 
 	super emitMessageNode: aMessageNode.
 	methodBuilder popTop.
 
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslatorForEffect>>emitOr: aMessageNode [
+{ #category : #'inline messages' }
+RFASTTranslatorForEffect >> emitOr: aMessageNode [
 
 	super emitOr: aMessageNode.
 	methodBuilder popTop.
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslatorForEffect>>visitArrayNode: anArrayNode  [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslatorForEffect >> visitArrayNode: anArrayNode [ 
 	"An arrayNode may have side effect, for example: '{self foo}'. So we cannot just generate nothing for this node."
 
 	super visitArrayNode: anArrayNode.
@@ -95,60 +73,42 @@ RFASTTranslatorForEffect>>visitArrayNode: anArrayNode  [
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslatorForEffect>>visitAssignmentNode: anAssignmentNode  [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslatorForEffect >> visitAssignmentNode: anAssignmentNode [ 
 
 	super visitAssignmentNode: anAssignmentNode .
 	methodBuilder popTop. 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslatorForEffect>>visitBlockNode: aBlockNode  [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslatorForEffect >> visitBlockNode: aBlockNode [ 
 
 	"A block has no side effect, so a block translated for effect just doesn't generate anything" 
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslatorForEffect>>visitLiteralArrayNode: aLiteralNode [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslatorForEffect >> visitLiteralArrayNode: aLiteralNode [
 	"when visiting a literal array for effect, we could push it and then pop it, but we do nothing"
 	methodBuilder addLiteral: aLiteralNode value
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslatorForEffect>>visitLiteralNode: aLiteralNode [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslatorForEffect >> visitLiteralNode: aLiteralNode [
 	"when visiting a literal for effect, we could push it and then pop it, but we do nothing"
 	methodBuilder addLiteral: aLiteralNode value
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslatorForEffect>>visitParseErrorNode: anErrorNode   [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslatorForEffect >> visitParseErrorNode: anErrorNode [  
 
 	super visitParseErrorNode: anErrorNode.
 	methodBuilder popTop.
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslatorForEffect>>visitSequenceNode: aSequenceNode [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslatorForEffect >> visitSequenceNode: aSequenceNode [
 	self emitMetaLinkBefore: aSequenceNode.
 	self emitPrepareLinkAfter: aSequenceNode.
 	
@@ -161,11 +121,8 @@ RFASTTranslatorForEffect>>visitSequenceNode: aSequenceNode [
 			ifFalse: [methodBuilder popTop]]
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFASTTranslatorForEffect>>visitVariableNode: aVariableNode [
+{ #category : #'visitor-double dispatching' }
+RFASTTranslatorForEffect >> visitVariableNode: aVariableNode [
 	"when visiting a variable for effect, we could push it and then pop it, but we do nothing"
 	| binding |
 	binding := aVariableNode binding.

@@ -12,36 +12,26 @@ Class {
 		'debugger',
 		'notifyPaneRemoved'
 	],
-	#category : #GT-Debugger-UI,
-	#timestamp : 'AndreiChis 12/30/2015 10:03'
+	#category : #GT-Debugger-UI
 }
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerInspector>>actOnPaneAdded: ann [
+{ #category : #callbacks }
+GTDebuggerInspector >> actOnPaneAdded: ann [
 
 	(self panes atLast: 2 ifAbsent: [ ^ self ])
 		presentations first updateToolbar
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerInspector>>actOnPaneRemoved: anAnnouncement [
+{ #category : #callbacks }
+GTDebuggerInspector >> actOnPaneRemoved: anAnnouncement [
 
 	self panes last presentations first updateToolbar.
 	self notifyPaneRemoved ifTrue: [ 
 		self debugger announce: anAnnouncement ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerInspector>>attachExtraBehaviourToPresentationsIn: aComposite [
+{ #category : #building }
+GTDebuggerInspector >> attachExtraBehaviourToPresentationsIn: aComposite [
 
 	aComposite presentations do: [ :aPresentation |
 		aPresentation addAction: 
@@ -51,11 +41,8 @@ GTDebuggerInspector>>attachExtraBehaviourToPresentationsIn: aComposite [
 						self isPresentation: aPresentation inPane: self panes last  ] ] ) ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerInspector>>compose [
+{ #category : #building }
+GTDebuggerInspector >> compose [
 	self pager
 		minimumPageNumberForScrollbar: 2; 
 		show: [ :a :each | 
@@ -69,44 +56,29 @@ GTDebuggerInspector>>compose [
 	self first when: GLMPaneRemoved send: #actOnPaneRemoved: to: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerInspector>>debugger [
+{ #category : #accessing }
+GTDebuggerInspector >> debugger [
 	^ debugger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerInspector>>debugger: anObject [
+{ #category : #accessing }
+GTDebuggerInspector >> debugger: anObject [
 	debugger := anObject
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerInspector>>isPresentation: aPresentation inPane: aPane [
+{ #category : #building }
+GTDebuggerInspector >> isPresentation: aPresentation inPane: aPane [
 	^ aPane presentations first cachedPresentation 
 		ifNil: [ false ] 
 		ifNotNil: [ :aCachedPresentation | aCachedPresentation first includes: aPresentation ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerInspector>>notifyPaneRemoved [
+{ #category : #accessing }
+GTDebuggerInspector >> notifyPaneRemoved [
 	^ notifyPaneRemoved ifNil: [ false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerInspector>>notifyPaneRemoved: anObject [
+{ #category : #accessing }
+GTDebuggerInspector >> notifyPaneRemoved: anObject [
 	notifyPaneRemoved := anObject
 ]

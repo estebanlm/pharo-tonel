@@ -10,93 +10,62 @@ Class {
 		'#director => ToOneRelationSlot inverse: #directedMovies inClass: #SlotExamplePerson',
 		'#actors => ToManyRelationSlot inverse: #actedInMovies inClass: #SlotExamplePerson'
 	],
-	#category : #Slot-Tests-Associations,
-	#timestamp : 'JanVanDeSandt 2/27/2015 11:27'
+	#category : #Slot-Tests-Associations
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovie class>>named: aString [
+{ #category : #'instance creation' }
+SlotExampleMovie class >> named: aString [
 
 	^self new
 		name: aString
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovie>>actors [
+{ #category : #accessing }
+SlotExampleMovie >> actors [
 	^ actors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovie>>actors: anObject [
+{ #category : #accessing }
+SlotExampleMovie >> actors: anObject [
 	actors := anObject
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovie>>addActor: aPerson [
+{ #category : #adding/removing }
+SlotExampleMovie >> addActor: aPerson [
 
 	^actors add: aPerson
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovie>>director [
+{ #category : #accessing }
+SlotExampleMovie >> director [
 	^ director
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovie>>director: aPerson [
+{ #category : #accessing }
+SlotExampleMovie >> director: aPerson [
 
 	director := aPerson
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovie>>initialize [
+{ #category : #initialization }
+SlotExampleMovie >> initialize [
 	super initialize.
 	self class initializeSlots: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovie>>name [
+{ #category : #accessing }
+SlotExampleMovie >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovie>>name: anObject [
+{ #category : #accessing }
+SlotExampleMovie >> name: anObject [
 	name := anObject
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovie>>removeActor: aPerson [
+{ #category : #adding/removing }
+SlotExampleMovie >> removeActor: aPerson [
 
 	^actors remove: aPerson
 ]

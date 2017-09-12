@@ -4,15 +4,11 @@ I'm a test case of SlotClassBuilder integration in the system. Tipically, my tes
 Class {
 	#name : #SlotIntegrationTest,
 	#superclass : #SlotSilentTest,
-	#category : #Slot-Tests,
-	#timestamp : '<historical>'
+	#category : #Slot-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testAddAndAddInstVarNamedWithTrait2 [
+{ #category : #tests }
+SlotIntegrationTest >> testAddAndAddInstVarNamedWithTrait2 [
 	"Add instance variables using the builder interface"
 	
 	aClass := self make: [ :builder |
@@ -42,11 +38,8 @@ SlotIntegrationTest>>testAddAndAddInstVarNamedWithTrait2 [
 	self assert: aClass new one equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testAddAndRemoveInstVarNamedWithTrait2 [
+{ #category : #tests }
+SlotIntegrationTest >> testAddAndRemoveInstVarNamedWithTrait2 [
 	"Add instance variables using the builder interface"
 	
 	aClass := self make: [ :builder |
@@ -76,11 +69,8 @@ SlotIntegrationTest>>testAddAndRemoveInstVarNamedWithTrait2 [
 	self assert: aClass new one equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testAddInstVarNamed [
+{ #category : #tests }
+SlotIntegrationTest >> testAddInstVarNamed [
 	"Add instance variables using the builder interface"
 	
 	aClass := self make: [ :builder |
@@ -102,11 +92,8 @@ SlotIntegrationTest>>testAddInstVarNamed [
 	self assert: anotherClass instVarNames = #(y).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testAddInstVarNamedClassInterface [
+{ #category : #tests }
+SlotIntegrationTest >> testAddInstVarNamedClassInterface [
 
 	"Add instance variables using the class interface"
 	
@@ -128,11 +115,8 @@ SlotIntegrationTest>>testAddInstVarNamedClassInterface [
 	self assert: anotherClass instVarNames = #(y).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testAddInstVarNamedWithTrait [
+{ #category : #tests }
+SlotIntegrationTest >> testAddInstVarNamedWithTrait [
 	"Add instance variables using the builder interface"
 	
 	aClass := self make: [ :builder |
@@ -164,11 +148,8 @@ SlotIntegrationTest>>testAddInstVarNamedWithTrait [
 	self assert: aClass new one equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testAddInstVarNamedWithTrait2 [
+{ #category : #tests }
+SlotIntegrationTest >> testAddInstVarNamedWithTrait2 [
 	"Add instance variables using the builder interface"
 	
 	aClass := self make: [ :builder |
@@ -197,11 +178,8 @@ SlotIntegrationTest>>testAddInstVarNamedWithTrait2 [
 	self assert: aClass new one equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testAnonymousSubclass [
+{ #category : #tests }
+SlotIntegrationTest >> testAnonymousSubclass [
 	
 	aClass := self make: [ :builder |
 		builder 
@@ -217,19 +195,13 @@ SlotIntegrationTest>>testAnonymousSubclass [
 	self assert: anotherClass allInstVarNames = #(x)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testCompiledMethodLayout [
+{ #category : #tests }
+SlotIntegrationTest >> testCompiledMethodLayout [
 	self assert: (CompiledMethod classLayout isKindOf: CompiledMethodLayout).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testCopyPreservesLayout [
+{ #category : #tests }
+SlotIntegrationTest >> testCopyPreservesLayout [
 	aClass := self makeWithLayout: FixedLayout.
 	anotherClass := aClass copy.
 	self deny: anotherClass classLayout isNil.
@@ -238,11 +210,8 @@ SlotIntegrationTest>>testCopyPreservesLayout [
 	self assert: anotherClass classLayout host == anotherClass
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testRemoveInstVarNamed [
+{ #category : #tests }
+SlotIntegrationTest >> testRemoveInstVarNamed [
 
 	| answer |
 
@@ -268,11 +237,8 @@ SlotIntegrationTest>>testRemoveInstVarNamed [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testRemoveInstVarNamedClassInterface [
+{ #category : #tests }
+SlotIntegrationTest >> testRemoveInstVarNamedClassInterface [
 
 	aClass := self make: [ :builder |
 		builder 
@@ -284,11 +250,8 @@ SlotIntegrationTest>>testRemoveInstVarNamedClassInterface [
 	self assert: aClass instVarNames = #(x z).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testRemoveInstVarNamedWithTrait2 [
+{ #category : #tests }
+SlotIntegrationTest >> testRemoveInstVarNamedWithTrait2 [
 	"Add instance variables using the builder interface"
 	
 	aClass := self make: [ :builder |
@@ -315,11 +278,8 @@ SlotIntegrationTest>>testRemoveInstVarNamedWithTrait2 [
 	self assert: aClass new one equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testReshapeClassPropagatesToDeepHierarchyClassInterface [
+{ #category : #tests }
+SlotIntegrationTest >> testReshapeClassPropagatesToDeepHierarchyClassInterface [
 	"Test reshaping a class which is head of a hierarchy of 4 levels"
 	
 	"level 1"
@@ -393,11 +353,8 @@ SlotIntegrationTest>>testReshapeClassPropagatesToDeepHierarchyClassInterface [
 	yetYetAnotherClass classLayout checkIntegrity.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testReshapeClassWithClassSlot [
+{ #category : #tests }
+SlotIntegrationTest >> testReshapeClassWithClassSlot [
 	
 	aClass := 
 		Object 
@@ -422,11 +379,8 @@ SlotIntegrationTest>>testReshapeClassWithClassSlot [
 	self assert: aClass class instVarNames equals: #(x).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testSlotNamedIfFoundIfNone [
+{ #category : #tests }
+SlotIntegrationTest >> testSlotNamedIfFoundIfNone [
 
 	aClass := self make: [ :builder |
 		builder 
@@ -444,11 +398,8 @@ SlotIntegrationTest>>testSlotNamedIfFoundIfNone [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testSlotScopeParallelism [
+{ #category : #tests }
+SlotIntegrationTest >> testSlotScopeParallelism [
 	"Proposed by Camille Teruel"
 
 	| classesAndMetaclasses candidates classWithWrongSlotScope |
@@ -464,10 +415,7 @@ SlotIntegrationTest>>testSlotScopeParallelism [
 	self assert: classWithWrongSlotScope asArray equals: #()
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotIntegrationTest>>testSmallIntegerLayout [
+{ #category : #tests }
+SlotIntegrationTest >> testSmallIntegerLayout [
 	self assert: (SmallInteger classLayout isKindOf: ImmediateLayout).
 ]

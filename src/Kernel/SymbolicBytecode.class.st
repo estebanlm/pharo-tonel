@@ -14,79 +14,51 @@ Class {
 		'offset',
 		'bytes'
 	],
-	#category : #Kernel-Methods,
-	#timestamp : 'MarcusDenker 10/13/2014 15:54'
+	#category : #Kernel-Methods
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SymbolicBytecode>>bytes [
+{ #category : #accessing }
+SymbolicBytecode >> bytes [
 	^ bytes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SymbolicBytecode>>bytes: anObject [
+{ #category : #accessing }
+SymbolicBytecode >> bytes: anObject [
 	bytes := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SymbolicBytecode>>description [
+{ #category : #accessing }
+SymbolicBytecode >> description [
 	^ description
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SymbolicBytecode>>description: anObject [
+{ #category : #accessing }
+SymbolicBytecode >> description: anObject [
 	description := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SymbolicBytecode>>method [
+{ #category : #accessing }
+SymbolicBytecode >> method [
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SymbolicBytecode>>method: anObject [
+{ #category : #accessing }
+SymbolicBytecode >> method: anObject [
 	method := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SymbolicBytecode>>offset [
+{ #category : #accessing }
+SymbolicBytecode >> offset [
 	^ offset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SymbolicBytecode>>offset: anObject [
+{ #category : #accessing }
+SymbolicBytecode >> offset: anObject [
 	offset := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SymbolicBytecode>>printOn: aStream [
+{ #category : #printing }
+SymbolicBytecode >> printOn: aStream [
 	aStream print: offset; space.
 	aStream nextPut: $<.
 	bytes do: [:each | | code |
@@ -99,18 +71,12 @@ SymbolicBytecode>>printOn: aStream [
 	aStream nextPutAll: description
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SymbolicBytecode>>sourceInterval [
+{ #category : #mapping }
+SymbolicBytecode >> sourceInterval [
 	^self sourceNode sourceInterval
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SymbolicBytecode>>sourceNode [
+{ #category : #mapping }
+SymbolicBytecode >> sourceNode [
 	^self method sourceNode sourceNodeForPC: self offset
 ]

@@ -4,36 +4,26 @@ I am an abstract collection of elements with a fixed range of integers (from 1 t
 Class {
 	#name : #ArrayedCollection,
 	#superclass : #SequenceableCollection,
-	#category : #Collections-Abstract,
-	#timestamp : '<historical>'
+	#category : #Collections-Abstract
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection class>>new [
+{ #category : #'instance creation' }
+ArrayedCollection class >> new [
 	"Answer a new instance of me, with size = 0."
 
 	^self new: 0
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection class>>new: size withAll: value  [
+{ #category : #'instance creation' }
+ArrayedCollection class >> new: size withAll: value [ 
 	"Answer an instance of me, with number of elements equal to size, each 
 	of which refers to the argument, value."
 
 	^(self new: size) atAllPut: value
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection class>>newFrom: aCollection  [
+{ #category : #'instance creation' }
+ArrayedCollection class >> newFrom: aCollection [ 
 	"Answer an instance of me containing the same elements as aCollection."
 	| newArray |
 	newArray := self new: aCollection size.
@@ -48,11 +38,8 @@ ArrayedCollection class>>newFrom: aCollection  [
 "
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection class>>with: anObject  [
+{ #category : #'instance creation' }
+ArrayedCollection class >> with: anObject [ 
 	"Answer a new instance of me, containing only anObject."
 
 	| newCollection |
@@ -61,11 +48,8 @@ ArrayedCollection class>>with: anObject  [
 	^newCollection
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection class>>with: firstObject with: secondObject  [
+{ #category : #'instance creation' }
+ArrayedCollection class >> with: firstObject [ with: secondObject 
 	"Answer a new instance of me, containing firstObject and secondObject."
 
 	| newCollection |
@@ -75,11 +59,8 @@ ArrayedCollection class>>with: firstObject with: secondObject  [
 	^newCollection
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection class>>with: firstObject with: secondObject with: thirdObject  [
+{ #category : #'instance creation' }
+ArrayedCollection class >> with: firstObject [ with: secondObject with: thirdObject 
 	"Answer a new instance of me, containing only the three arguments as
 	elements."
 
@@ -91,11 +72,8 @@ ArrayedCollection class>>with: firstObject with: secondObject with: thirdObject 
 	^newCollection
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection class>>with: firstObject with: secondObject with: thirdObject with: fourthObject  [
+{ #category : #'instance creation' }
+ArrayedCollection class >> with: firstObject [ with: secondObject with: thirdObject with: fourthObject 
 	"Answer a new instance of me, containing only the three arguments as
 	elements."
 
@@ -108,11 +86,8 @@ ArrayedCollection class>>with: firstObject with: secondObject with: thirdObject 
 	^newCollection
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection class>>with: firstObject with: secondObject with: thirdObject with: fourthObject with: fifthObject [
+{ #category : #'instance creation' }
+ArrayedCollection class >> with: firstObject [ with: secondObject with: thirdObject with: fourthObject with: fifthObject
 	"Answer a new instance of me, containing only the five arguments as
 	elements."
 
@@ -126,11 +101,8 @@ ArrayedCollection class>>with: firstObject with: secondObject with: thirdObject 
 	^newCollection
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection class>>with: firstObject with: secondObject with: thirdObject with: fourthObject with: fifthObject with: sixthObject [
+{ #category : #'instance creation' }
+ArrayedCollection class >> with: firstObject [ with: secondObject with: thirdObject with: fourthObject with: fifthObject with: sixthObject
 	"Answer a new instance of me, containing only the 6 arguments as elements."
 
 	| newCollection |
@@ -144,38 +116,26 @@ ArrayedCollection class>>with: firstObject with: secondObject with: thirdObject 
 	^ newCollection
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection class>>withAll: aCollection [
+{ #category : #'instance creation' }
+ArrayedCollection class >> withAll: aCollection [
 	"Create a new collection containing all the elements from aCollection."
 
 	^ (self new: aCollection size) replaceFrom: 1 to: aCollection size with: aCollection
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection>>add: newObject [
+{ #category : #adding }
+ArrayedCollection >> add: newObject [
 	self shouldNotImplement
 ]
 
-{
-	#category : #'objects from disk',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection>>byteSize [
+{ #category : #'objects from disk' }
+ArrayedCollection >> byteSize [
 	^self basicSize * self bytesPerBasicElement
 
 ]
 
-{
-	#category : #'objects from disk',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection>>bytesPerBasicElement [
+{ #category : #'objects from disk' }
+ArrayedCollection >> bytesPerBasicElement [
 	"Answer the number of bytes that each of my basic elements requires.
 	In other words:
 		self basicSize * self bytesPerBasicElement
@@ -183,20 +143,14 @@ ArrayedCollection>>bytesPerBasicElement [
 	^self class isBytes ifTrue: [ 1 ] ifFalse: [ 4 ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection>>defaultElement [
+{ #category : #private }
+ArrayedCollection >> defaultElement [
 
 	^nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection>>fillFrom: aCollection with: aBlock [
+{ #category : #private }
+ArrayedCollection >> fillFrom: aCollection with: aBlock [
 	"Evaluate aBlock with each of aCollections's elements as the argument.  
 	Collect the resulting values into self. Answer self."
 
@@ -206,31 +160,22 @@ ArrayedCollection>>fillFrom: aCollection with: aBlock [
 		self at: (index := index + 1) put: (aBlock value: each) ]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection>>removeAll [
+{ #category : #removing }
+ArrayedCollection >> removeAll [
 
 	self shouldNotImplement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection>>size [
+{ #category : #accessing }
+ArrayedCollection >> size [
 	"Answer how many elements the receiver contains."
 
 	<primitive: 62>
 	^ self basicSize
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection>>storeElementsFrom: firstIndex to: lastIndex on: aStream [
+{ #category : #private }
+ArrayedCollection >> storeElementsFrom: firstIndex to: lastIndex on: aStream [
 
 	| noneYet defaultElement arrayElement |
 	noneYet := true.
@@ -250,11 +195,8 @@ ArrayedCollection>>storeElementsFrom: firstIndex to: lastIndex on: aStream [
 	^noneYet
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection>>storeOn: aStream [
+{ #category : #printing }
+ArrayedCollection >> storeOn: aStream [
 
 	aStream nextPutAll: '(('.
 	aStream nextPutAll: self class name.
@@ -266,11 +208,8 @@ ArrayedCollection>>storeOn: aStream [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #'objects from disk',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ArrayedCollection>>writeOn: aStream  [
+{ #category : #'objects from disk' }
+ArrayedCollection >> writeOn: aStream [ 
 	"Store the array of bits onto the argument, aStream.  (leading byte ~= 16r80) identifies this as raw bits (uncompressed).  Always store in Big Endian (Mac) byte order.  Do the writing at BitBlt speeds. We only intend this for non-pointer arrays.  Do nothing if I contain pointers."
 	(self class isPointers or: [ self class isWords not ]) ifTrue: [^ self ].
 	aStream nextInt32Put: self basicSize.

@@ -8,74 +8,49 @@ Class {
 	#instVars : [
 		'table'
 	],
-	#category : #Morphic-Widgets-FastTable-Selection,
-	#timestamp : 'EstebanLorenzano 5/15/2015 10:36'
+	#category : #Morphic-Widgets-FastTable-Selection
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSelectionStrategy class>>new [
+{ #category : #'instance creation' }
+FTSelectionStrategy class >> new [
 	self error: 'Use #table:'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSelectionStrategy class>>table: aFastTableMorph [
+{ #category : #'instance creation' }
+FTSelectionStrategy class >> table: aFastTableMorph [
 	^ self basicNew
 		initializeTable: aFastTableMorph;
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSelectionStrategy>>initializeTable: aTable [
+{ #category : #initialization }
+FTSelectionStrategy >> initializeTable: aTable [
 	table := aTable.
 	self initialize
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSelectionStrategy>>isMultiple [
+{ #category : #testing }
+FTSelectionStrategy >> isMultiple [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSelectionStrategy>>isSimple [
+{ #category : #testing }
+FTSelectionStrategy >> isSimple [
 	^ self isMultiple not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSelectionStrategy>>selectRowIndex: rowIndex event: event [
+{ #category : #accessing }
+FTSelectionStrategy >> selectRowIndex: rowIndex event: event [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSelectionStrategy>>table [
+{ #category : #accessing }
+FTSelectionStrategy >> table [
 	^ table
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTSelectionStrategy>>toggleRowIndex: rowIndex [
+{ #category : #private }
+FTSelectionStrategy >> toggleRowIndex: rowIndex [
 	((self table selectedRowIndexes includes: rowIndex) 
 		and: [ self table selectedRowIndexes size = 1 "just one selected"
 		and: [ self table allowsDeselection ] ])

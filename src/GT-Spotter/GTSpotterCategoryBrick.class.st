@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterCategoryBrick,
 	#superclass : #GLMInteractableBrick,
@@ -10,49 +7,33 @@ Class {
 		'stepModel',
 		'category'
 	],
-	#category : #GT-Spotter-UI,
-	#timestamp : ''
+	#category : #GT-Spotter-UI
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryBrick>>addItem: anItem [
+{ #category : #adding }
+GTSpotterCategoryBrick >> addItem: anItem [
 	self addBrickBack: anItem
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryBrick>>addItems: aCollectionOfItems [
+{ #category : #adding }
+GTSpotterCategoryBrick >> addItems: aCollectionOfItems [
 	self addAllBricks: aCollectionOfItems
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryBrick>>category [
+{ #category : #accessing }
+GTSpotterCategoryBrick >> category [
 
 	^ category
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryBrick>>category: aProcessorClass [
+{ #category : #accessing }
+GTSpotterCategoryBrick >> category: aProcessorClass [
 
 	category := aProcessorClass
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryBrick>>initialize [
+{ #category : #initialization }
+GTSpotterCategoryBrick >> initialize [
 	super initialize.
 	self
 		useVerticalLinearLayout;
@@ -61,97 +42,64 @@ GTSpotterCategoryBrick>>initialize [
 		enable
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryBrick>>initializeListeners [
+{ #category : #initialization }
+GTSpotterCategoryBrick >> initializeListeners [
 	self announcer when: #onMouseHover send: #onHovered to: self. 
 	self announcer when: #onMouseUnhover send: #onUnhovered to: self
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryBrick>>on: aStepModel category: aProcessor [
+{ #category : #'instance creation' }
+GTSpotterCategoryBrick >> on: aStepModel category: aProcessor [
 
 	self stepModel: aStepModel.
 	self category: aProcessor.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryBrick>>onHovered [
+{ #category : #'event handling' }
+GTSpotterCategoryBrick >> onHovered [
 	self titleBrick showActionbar
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryBrick>>onUnhovered [
+{ #category : #'event handling' }
+GTSpotterCategoryBrick >> onUnhovered [
 	(self stepModel isCategorySelected: self category)
 		ifFalse: [ self titleBrick hideActionbar ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryBrick>>order [
+{ #category : #accessing }
+GTSpotterCategoryBrick >> order [
 	^ self category order
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryBrick>>privateAddIntoWorld: aBrick [
+{ #category : #'event handling' }
+GTSpotterCategoryBrick >> privateAddIntoWorld: aBrick [
 	super privateAddIntoWorld: aBrick.
 	self setAmountVisible: self subbricksCount all: '...'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryBrick>>setAmountVisible: visible all: all [
+{ #category : #accessing }
+GTSpotterCategoryBrick >> setAmountVisible: visible all: all [
 
 	self titleBrick setAmountVisible: visible all: all
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryBrick>>stepModel [
+{ #category : #accessing }
+GTSpotterCategoryBrick >> stepModel [
 	^ stepModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryBrick>>stepModel: anObject [
+{ #category : #accessing }
+GTSpotterCategoryBrick >> stepModel: anObject [
 	stepModel := anObject.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryBrick>>titleBrick [
+{ #category : #accessing }
+GTSpotterCategoryBrick >> titleBrick [
 	^ titleBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryBrick>>titleBrick: aBrick [
+{ #category : #accessing }
+GTSpotterCategoryBrick >> titleBrick: aBrick [
 
 	titleBrick := aBrick
 ]

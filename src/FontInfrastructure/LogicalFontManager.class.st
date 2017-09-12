@@ -20,15 +20,11 @@ Class {
 	#classInstVars : [
 		'current'
 	],
-	#category : #FontInfrastructure,
-	#timestamp : 'LaurentLaffont 6/8/2011 22:20'
+	#category : #FontInfrastructure
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-LogicalFontManager class>>current [
+{ #category : #accessing }
+LogicalFontManager class >> current [
 	"
 	current := nil.
 	self current
@@ -36,41 +32,29 @@ LogicalFontManager class>>current [
 	^current ifNil:[current := self defaultCurrent]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-LogicalFontManager class>>defaultCurrent [
+{ #category : #'instance creation' }
+LogicalFontManager class >> defaultCurrent [
 	^self new
 		addFontProvider: FreeTypeFontProvider current;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-LogicalFontManager class>>unload [
+{ #category : #accessing }
+LogicalFontManager class >> unload [
 	current ifNotNil: [current initialize].
 	current := nil.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-LogicalFontManager>>addFontProvider: aFontProvider [
+{ #category : #accessing }
+LogicalFontManager >> addFontProvider: aFontProvider [
 
 	fontProviders addLast: aFontProvider
 	
 ]
 
-{
-	#category : #'font families',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-LogicalFontManager>>allFamilies [
+{ #category : #'font families' }
+LogicalFontManager >> allFamilies [
 	"answer an Array containing all the font families from the receiver's fontProviders,
 	together with any TextStyle font families, sorted by family name"
 
@@ -92,22 +76,16 @@ LogicalFontManager>>allFamilies [
 	^ (answer asSortedCollection: [ :a :b | a familyName <= b familyName ]) asArray
 ]
 
-{
-	#category : #'font lookup',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-LogicalFontManager>>bestFontFor: aLogicalFont [
+{ #category : #'font lookup' }
+LogicalFontManager >> bestFontFor: aLogicalFont [
 	"look up best font from the receivers fontProviders"
 	
 	^self bestFontFor: aLogicalFont whenFindingAlternativeIgnoreAll: Set new
 
 ]
 
-{
-	#category : #'font lookup',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-LogicalFontManager>>bestFontFor: aLogicalFont whenFindingAlternativeIgnoreAll: ignoreSet [
+{ #category : #'font lookup' }
+LogicalFontManager >> bestFontFor: aLogicalFont whenFindingAlternativeIgnoreAll: ignoreSet [
 	"look up best real font from the receivers fontProviders.
 	If we can't find a font, then answer an alternative real font.
 	
@@ -147,11 +125,8 @@ LogicalFontManager>>bestFontFor: aLogicalFont whenFindingAlternativeIgnoreAll: i
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-LogicalFontManager>>initialize [
+{ #category : #initialization }
+LogicalFontManager >> initialize [
 	super initialize.
 	fontProviders := OrderedCollection new: 10
 	

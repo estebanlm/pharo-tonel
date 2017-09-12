@@ -13,143 +13,98 @@ Historical note: #ensureCr and #reset were removed since they were not used
 "
 Trait {
 	#name : #TTranscript,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Transcript,
-	#timestamp : 'SvenVanCaekenberghe 5/12/2015 14:14'
+	#category : #Transcript
 }
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TTranscript>><< anObject [
+{ #category : #streaming }
+TTranscript >> << anObject [
 	"Output anObject asString on the receiver and show the output"
 	
 	self show: anObject
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TTranscript>>clear [
+{ #category : #streaming }
+TTranscript >> clear [
 	"Clear the receiver, removing all existing output"
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TTranscript>>close [
+{ #category : #streaming }
+TTranscript >> close [
 	"Close the receiver, indicating it is not longer needed"
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TTranscript>>cr [
+{ #category : #streaming }
+TTranscript >> cr [
 	"Output a cr on the receiver, buffered and not yet shown"
 	
 	self nextPut: Character cr
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TTranscript>>crShow: anObject [
+{ #category : #streaming }
+TTranscript >> crShow: anObject [
 	"Output anObject asString on the receiver preceded by a cr and show the output"
 	
 	self critical: [ self cr; show: anObject ]
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TTranscript>>critical: block [
+{ #category : #streaming }
+TTranscript >> critical: block [
 	"Execute block making sure only one thread accesses the receiver"
 	
 	self explicitRequirement
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TTranscript>>endEntry [
+{ #category : #streaming }
+TTranscript >> endEntry [
 	"Show the currently buffered output"
 
 	self flush
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TTranscript>>flush [
+{ #category : #streaming }
+TTranscript >> flush [
 	"Show the currently buffered output"
 
 	self explicitRequirement
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TTranscript>>nextPut: character [
+{ #category : #streaming }
+TTranscript >> nextPut: character [
 	"Output character on the receiver, buffered, not yet shown"
 
 	self explicitRequirement
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TTranscript>>nextPutAll: string [
+{ #category : #streaming }
+TTranscript >> nextPutAll: string [
 	"Output string on the receiver, buffered, not yet shown"
 
 	self explicitRequirement
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TTranscript>>print: anObject [
+{ #category : #streaming }
+TTranscript >> print: anObject [
 	"Output anObject asString on the receiver, buffered, not yet shown"
 	
 	self nextPutAll: anObject asString
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TTranscript>>show: anObject [
+{ #category : #streaming }
+TTranscript >> show: anObject [
 	"Output anObject asString on the receiver and show the output"
 	
 	self critical: [ self print: anObject; endEntry ]
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TTranscript>>space [
+{ #category : #streaming }
+TTranscript >> space [
 	"Output a space on the receiver, buffered and not yet shown"
 
 	self nextPut: Character space
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TTranscript>>tab [
+{ #category : #streaming }
+TTranscript >> tab [
 	"Output a tab on the receiver, buffered and not yet shown"
 
 	self nextPut: Character tab

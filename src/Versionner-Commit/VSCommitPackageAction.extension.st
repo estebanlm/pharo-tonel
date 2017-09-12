@@ -1,20 +1,12 @@
-Extension {
-	#name : #VSCommitPackageAction
-}
+Extension { #name : #VSCommitPackageAction }
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction>>browseOn: aBrowser [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitPackageAction >> browseOn: aBrowser [
 	aBrowser browsePackage: self
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction>>currentString [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitPackageAction >> currentString [
 	| workingCopy |
 	
 	workingCopy := self package workingCopy.
@@ -22,18 +14,12 @@ VSCommitPackageAction>>currentString [
 		on: Error do: [ :e | '' ]
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction>>displayString  [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitPackageAction >> displayString [ 
 	^ self package name
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction>>icon [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitPackageAction >> icon [
 	^ Smalltalk ui icons iconNamed: #packageIcon
 ]

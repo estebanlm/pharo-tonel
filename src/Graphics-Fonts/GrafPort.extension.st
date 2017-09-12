@@ -1,22 +1,14 @@
-Extension {
-	#name : #GrafPort
-}
+Extension { #name : #GrafPort }
 
-{
-	#category : #'*Graphics-Fonts',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrafPort>>installStrikeFont: aStrikeFont [
+{ #category : #'*Graphics-Fonts' }
+GrafPort >> installStrikeFont: aStrikeFont [
 
 	^ self installStrikeFont: aStrikeFont foregroundColor: (lastFontForegroundColor ifNil: [Color black]) backgroundColor: (lastFontBackgroundColor ifNil: [Color transparent]).
 
 ]
 
-{
-	#category : #'*Graphics-Fonts',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrafPort>>installStrikeFont: aStrikeFont foregroundColor: foregroundColor backgroundColor: backgroundColor [
+{ #category : #'*Graphics-Fonts' }
+GrafPort >> installStrikeFont: aStrikeFont foregroundColor: foregroundColor backgroundColor: backgroundColor [
 	super installStrikeFont: aStrikeFont foregroundColor: foregroundColor backgroundColor: backgroundColor.
 	aStrikeFont glyphs depth = 1 ifTrue: [
 		alpha := foregroundColor privateAlpha.
@@ -40,11 +32,8 @@ GrafPort>>installStrikeFont: aStrikeFont foregroundColor: foregroundColor backgr
 
 ]
 
-{
-	#category : #'*Graphics-Fonts',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-GrafPort>>lastFont [
+{ #category : #'*Graphics-Fonts' }
+GrafPort >> lastFont [
 
 	^ lastFont.
 

@@ -4,78 +4,50 @@ I am an implementation of the generic API for native window rendering that does 
 Class {
 	#name : #OSWindowNullGenericRenderer,
 	#superclass : #OSWindowGenericRenderer,
-	#category : #OSWindow-Core,
-	#timestamp : 'RonieSalgado 4/10/2016 02:07'
+	#category : #OSWindow-Core
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowNullGenericRenderer>>clear [
+{ #category : #rendering }
+OSWindowNullGenericRenderer >> clear [
 	"Do nothing"
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowNullGenericRenderer>>color: aColor [
+{ #category : #rendering }
+OSWindowNullGenericRenderer >> color: aColor [
 	"Do nothing"
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowNullGenericRenderer>>drawLine: startPoint end: endPoint [
+{ #category : #rendering }
+OSWindowNullGenericRenderer >> drawLine: startPoint end: endPoint [
 	"Do nothing"
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowNullGenericRenderer>>drawPoint: aPoint [
+{ #category : #rendering }
+OSWindowNullGenericRenderer >> drawPoint: aPoint [
 	"Do nothing"
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowNullGenericRenderer>>drawRectangle: aRectangle [
+{ #category : #rendering }
+OSWindowNullGenericRenderer >> drawRectangle: aRectangle [
 	"Do nothing"
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowNullGenericRenderer>>fillRectangle: aRectangle [
+{ #category : #rendering }
+OSWindowNullGenericRenderer >> fillRectangle: aRectangle [
 	"Do nothing"
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowNullGenericRenderer>>present [
+{ #category : #rendering }
+OSWindowNullGenericRenderer >> present [
 	"Do nothing"
 ]
 
-{
-	#category : #'updating screen',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowNullGenericRenderer>>updateAll [
+{ #category : #'updating screen' }
+OSWindowNullGenericRenderer >> updateAll [
 	"Do nothing"
 ]
 
-{
-	#category : #'updating screen',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowNullGenericRenderer>>updateRectangle: rectangle [
+{ #category : #'updating screen' }
+OSWindowNullGenericRenderer >> updateRectangle: rectangle [
 	"Do nothing"
 ]

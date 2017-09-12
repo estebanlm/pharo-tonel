@@ -13,69 +13,47 @@ Class {
 		'errorAdjUp',
 		'errorAdjDown'
 	],
-	#category : #Balloon-Simulation,
-	#timestamp : '<historical>'
+	#category : #Balloon-Simulation
 }
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonLineSimulation>>computeInitialStateFrom: source with: aTransformation [
+{ #category : #computing }
+BalloonLineSimulation >> computeInitialStateFrom: source with: aTransformation [
 	"Compute the initial state in the receiver."
 	start := (aTransformation localPointToGlobal: source start) asIntegerPoint.
 	end := (aTransformation localPointToGlobal: source end) asIntegerPoint.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonLineSimulation>>end [
+{ #category : #accessing }
+BalloonLineSimulation >> end [
 	^end
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonLineSimulation>>end: aPoint [
+{ #category : #accessing }
+BalloonLineSimulation >> end: aPoint [
 	end := aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonLineSimulation>>initialX [
+{ #category : #accessing }
+BalloonLineSimulation >> initialX [
 	^start y <= end y
 		ifTrue:[start x]
 		ifFalse:[end x]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonLineSimulation>>initialY [
+{ #category : #accessing }
+BalloonLineSimulation >> initialY [
 	^start y <= end y
 		ifTrue:[start y]
 		ifFalse:[end y]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonLineSimulation>>initialZ [
+{ #category : #accessing }
+BalloonLineSimulation >> initialZ [
 	^0 "Assume no depth given"
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonLineSimulation>>printOn: aStream [
+{ #category : #printing }
+BalloonLineSimulation >> printOn: aStream [
 	aStream 
 		nextPutAll: self class name;
 		nextPut:$(;
@@ -85,27 +63,18 @@ BalloonLineSimulation>>printOn: aStream [
 		nextPut:$)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonLineSimulation>>start [
+{ #category : #accessing }
+BalloonLineSimulation >> start [
 	^start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonLineSimulation>>start: aPoint [
+{ #category : #accessing }
+BalloonLineSimulation >> start: aPoint [
 	start := aPoint
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonLineSimulation>>stepToFirstScanLineAt: yValue in: edgeTableEntry [
+{ #category : #computing }
+BalloonLineSimulation >> stepToFirstScanLineAt: yValue [ in: edgeTableEntry
 	"Compute the initial x value for the scan line at yValue"
 	|  startX endX startY endY yDir deltaY deltaX widthX |
 	(start y) <= (end y) ifTrue:[
@@ -159,11 +128,8 @@ BalloonLineSimulation>>stepToFirstScanLineAt: yValue in: edgeTableEntry [
 	].
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonLineSimulation>>stepToNextScanLineAt: yValue in: edgeTableEntry [
+{ #category : #computing }
+BalloonLineSimulation >> stepToNextScanLineAt: yValue [ in: edgeTableEntry
 	"Compute the next x value for the scan line at yValue.
 	This message is sent during incremental updates. 
 	The yValue parameter is passed in here for edges
@@ -178,10 +144,7 @@ BalloonLineSimulation>>stepToNextScanLineAt: yValue in: edgeTableEntry [
 	edgeTableEntry xValue: x.
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonLineSimulation>>subdivide [
+{ #category : #computing }
+BalloonLineSimulation >> subdivide [
 	^nil
 ]

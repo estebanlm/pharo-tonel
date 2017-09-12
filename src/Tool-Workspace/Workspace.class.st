@@ -31,47 +31,31 @@ Class {
 	#classVars : [
 		'LastContents'
 	],
-	#category : #Tool-Workspace,
-	#timestamp : 'StephaneDucasse 6/20/2015 10:09'
+	#category : #Tool-Workspace
 }
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace class>>cleanUp [
+{ #category : #cleaning }
+Workspace class >> cleanUp [
 	LastContents := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace class>>lastContents [
+{ #category : #accessing }
+Workspace class >> lastContents [
 	^ LastContents ifNil: [LastContents := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace class>>maxKeptContents [
+{ #category : #accessing }
+Workspace class >> maxKeptContents [
 	^ 30
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace class>>open [
+{ #category : #'instance creation' }
+Workspace class >> open [
 	^ self new openLabel: self title ; yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace class>>openContents: aString [
+{ #category : #'instance creation' }
+Workspace class >> openContents: aString [
 	"Open a new workspace with the given contents. It looks better when aString is code since the style is applied"
 
 	^ self new
@@ -80,47 +64,32 @@ Workspace class>>openContents: aString [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace class>>openLabel: aLabel [
+{ #category : #'instance creation' }
+Workspace class >> openLabel: aLabel [
 	^ self new openLabel: aLabel ; yourself
 ]
 
-{
-	#category : #'tool registry',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace class>>registerToolsOn: registry [
+{ #category : #'tool registry' }
+Workspace class >> registerToolsOn: registry [
 	"Add ourselves to registry. See [Smalltalk tools]" 
 	registry register: self as: #workspace
 
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace class>>taskbarIconName [
+{ #category : #icons }
+Workspace class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^#workspaceIcon
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace class>>title  [
+{ #category : #'instance creation' }
+Workspace class >> title [ 
 	^ 'Workspace'
 ]
 
-{
-	#category : #'window menu',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>addModelItemsToWindowMenu: aMenu [
+{ #category : #'window menu' }
+Workspace >> addModelItemsToWindowMenu: aMenu [
 	aMenu addLine.
 	aMenu add: 'Open...' target: self selector: #openMenuAction.
 	aMenu lastItem icon: (self iconNamed: #smallOpenIcon).
@@ -152,22 +121,16 @@ Workspace>>addModelItemsToWindowMenu: aMenu [
 	aMenu addLine
 ]
 
-{
-	#category : #'file support',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>askForFileNameToOpen [
+{ #category : #'file support' }
+Workspace >> askForFileNameToOpen [
 	"Ask user for file name to load content from"
 	^ UIManager default
 			chooseFullFileNameMatching: nil 
 			label: 'Choose file to open in the workspace' translated
 ]
 
-{
-	#category : #'file support',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>askForFileNameToSave: suggestedFileName [
+{ #category : #'file support' }
+Workspace >> askForFileNameToSave: suggestedFileName [
 	"Ask user for the name of the file to save workspace content to. Use the given file name as the initial answer"
 
 	^ UIManager default
@@ -175,47 +138,32 @@ Workspace>>askForFileNameToSave: suggestedFileName [
 			initialAnswer: suggestedFileName
 ]
 
-{
-	#category : #'variable definitions',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>bindingOf: aString  [
+{ #category : #'variable definitions' }
+Workspace >> bindingOf: aString [ 
 	(bindings includesKey: aString)
 		ifFalse: [ bindings add: (WorkspaceVariable key: aString asSymbol) ].
 	^ bindings associationAt: aString
 ]
 
-{
-	#category : #'variable definitions',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>browseBindings [
+{ #category : #'variable definitions' }
+Workspace >> browseBindings [
 	bindings inspect
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>contents [
+{ #category : #accessing }
+Workspace >> contents [
 
 	^ textModel getText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>contents: aString [
+{ #category : #accessing }
+Workspace >> contents: aString [
 
 	^ textModel setText: aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>createTextView [
+{ #category : #private }
+Workspace >> createTextView [
 	| v |
 	v := textModel newScrolledText
 		withRuler: RubWorkspaceBar new;
@@ -225,51 +173,33 @@ Workspace>>createTextView [
 	^ v
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>defaultTextModel [
+{ #category : #initialization }
+Workspace >> defaultTextModel [
 	^ RubScrolledTextModel new interactionModel: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>doItContext [
+{ #category : #accessing }
+Workspace >> doItContext [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>doItReceiver [
+{ #category : #accessing }
+Workspace >> doItReceiver [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>fileName [
+{ #category : #accessing }
+Workspace >> fileName [
 	^ fileName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>fileName: anObject [
+{ #category : #accessing }
+Workspace >> fileName: anObject [
 	fileName := anObject
 ]
 
-{
-	#category : #'shout bindings',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>guessTypeForName: aString [
+{ #category : #'shout bindings' }
+Workspace >> guessTypeForName: aString [
 	| binding |
 	bindings
 		ifNotNil: [ 
@@ -279,89 +209,59 @@ Workspace>>guessTypeForName: aString [
 	^ nil
 ]
 
-{
-	#category : #'shout bindings',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>hasBindingOf: aString  [
+{ #category : #'shout bindings' }
+Workspace >> hasBindingOf: aString [ 
 	^(self guessTypeForName: aString) notNil
 ]
 
-{
-	#category : #'shout bindings',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>hasBindingThatBeginsWith: aString [
+{ #category : #'shout bindings' }
+Workspace >> hasBindingThatBeginsWith: aString [
 	^ bindings keys anySatisfy: [:each | each beginsWith: aString]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>initialize [
+{ #category : #initialization }
+Workspace >> initialize [
 	super initialize.
 	textModel := self defaultTextModel.
 	encoding := TextConverter default class encodingNames first.
 	self initializeBindings
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>initializeBindings [
+{ #category : #initialization }
+Workspace >> initializeBindings [
 	
 	bindings := Dictionary new
 ]
 
-{
-	#category : #'window menu',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>itemForEncoding: aString [
+{ #category : #'window menu' }
+Workspace >> itemForEncoding: aString [
 	^ encoding = aString -> aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>label: aString [
+{ #category : #accessing }
+Workspace >> label: aString [
 
 	window title: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>lastContents [
+{ #category : #accessing }
+Workspace >> lastContents [
 	^ self class lastContents 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>maxKeptContents [
+{ #category : #accessing }
+Workspace >> maxKeptContents [
 	^ self class maxKeptContents 
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>open [
+{ #category : #view }
+Workspace >> open [
 	
 	self openLabel: self class title
 ]
 
-{
-	#category : #'file support',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>openFile: aFileName [
+{ #category : #'file support' }
+Workspace >> openFile: aFileName [
 	"Load file content into this workspace. If successful, associate the workspace with this file and change its label"
 	
 	self readStringFromFile: aFileName.
@@ -369,11 +269,8 @@ Workspace>>openFile: aFileName [
 	self label: aFileName.
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>openLabel: aString [
+{ #category : #view }
+Workspace >> openLabel: aString [
 	
 	window := StandardWindow new model: self.
 	window title: aString.
@@ -386,11 +283,8 @@ Workspace>>openLabel: aString [
 
 ]
 
-{
-	#category : #'window menu',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>openMenuAction [
+{ #category : #'window menu' }
+Workspace >> openMenuAction [
 	"Open content of the file choosed by user in this workspace and associate it's name with this workspace"
 	| userWarned |
 
@@ -401,11 +295,8 @@ Workspace>>openMenuAction [
 	userWarned ifTrue: [self openFile: self askForFileNameToOpen]
 ]
 
-{
-	#category : #'file support',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>readStringFromFile: aFileName [
+{ #category : #'file support' }
+Workspace >> readStringFromFile: aFileName [
 	"Read the content of the given file."
 
 	| readStream fileContent |
@@ -414,11 +305,8 @@ Workspace>>readStringFromFile: aFileName [
 	self contents: fileContent upToEnd asString
 ]
 
-{
-	#category : #'window menu',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>saveAsMenuAction [
+{ #category : #'window menu' }
+Workspace >> saveAsMenuAction [
 	"Save the receiver's contents string to a file, prompting the user for a file-name.  Suggest a reasonable file-name."
 
 	| suggestedFileName |
@@ -429,11 +317,8 @@ Workspace>>saveAsMenuAction [
 	textModel ifNotNil: [ :model | self saveString: model getString toFile: suggestedFileName ]
 ]
 
-{
-	#category : #'file support',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>saveString: aString toFile: aFileName [
+{ #category : #'file support' }
+Workspace >> saveString: aString toFile: aFileName [
 	"Save the given string to the given file"
 
 	| writeStream fileContent fullFilename |
@@ -443,11 +328,8 @@ Workspace>>saveString: aString toFile: aFileName [
 	fileContent nextPutAll: aString
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>selectPreviousContent [
+{ #category : #history }
+Workspace >> selectPreviousContent [
 
 	| trimmedContents  |
 	trimmedContents := self lastContents collect: [:c | c copyFrom: 1 to: (c size min: 20)].
@@ -455,76 +337,52 @@ Workspace>>selectPreviousContent [
 		ifNotNil: [ :newContents | self setContent: newContents ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>selectedClassOrMetaClass [
+{ #category : #accessing }
+Workspace >> selectedClassOrMetaClass [
 	^ nil
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>selectedMethod [
+{ #category : #menu }
+Workspace >> selectedMethod [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>setBindings: aDictionary [
+{ #category : #accessing }
+Workspace >> setBindings: aDictionary [
 	"Sets the Workspace to use the specified dictionary as its namespace"
 
 	bindings := aDictionary.
 
 ]
 
-{
-	#category : #'file support',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>suggestedFileName [
+{ #category : #'file support' }
+Workspace >> suggestedFileName [
 	"If the workspace has an associated fileName use that, otherwise derive a reasonable file-name from the window label"
 	
 	self fileName ifNotNil: [ :f | ^ f ].
 	^ window title, '.ws'
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>textView [
+{ #category : #view }
+Workspace >> textView [
 	^ textView ifNil:[ textView := self createTextView]
 ]
 
-{
-	#category : #'window menu',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>useEncoding: aString [
+{ #category : #'window menu' }
+Workspace >> useEncoding: aString [
 	encoding := aString.
 	textModel hasUnacceptedEdits: true
 ]
 
-{
-	#category : #'window menu',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>warnUser [
+{ #category : #'window menu' }
+Workspace >> warnUser [
 	"Warn the user about the possible content loss"
 
 	^ UIManager default confirm: 'This will replace the current workspace content.', String cr, 'Do you want to continue?' translated
 ]
 
-{
-	#category : #update,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Workspace>>whenTextAccepted: anAnnouncement [
+{ #category : #update }
+Workspace >> whenTextAccepted: anAnnouncement [
 	self lastContents size > self maxKeptContents
 		ifTrue: [ self lastContents removeFirst ].
 	self lastContents add: textModel getText copy

@@ -7,47 +7,34 @@ Class {
 	#instVars : [
 		'shortIntegerArray'
 	],
-	#category : #Balloon-Tests-Collections,
-	#timestamp : 'tbn 3/25/2011 15:07'
+	#category : #Balloon-Tests-Collections
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ShortIntegerArrayTest>>setUp  [
+{ #category : #running }
+ShortIntegerArrayTest >> setUp [ 
 
 	super setUp.
 	shortIntegerArray := ShortIntegerArray with: 4 with: 4+256 with: 2 with: 1+(256*10).
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ShortIntegerArrayTest>>testAt [
+{ #category : #testing }
+ShortIntegerArrayTest >> testAt [
 
 	self assert: 2  equals: (shortIntegerArray at: 3)
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ShortIntegerArrayTest>>testAtPut [
+{ #category : #testing }
+ShortIntegerArrayTest >> testAtPut [
 
 	shortIntegerArray at: 3 put: 100.
 	self assert: 100  equals: (shortIntegerArray at: 3)
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ShortIntegerArrayTest>>testSetUp [
+{ #category : #testing }
+ShortIntegerArrayTest >> testSetUp [
 
 	self assert: 4 equals: (shortIntegerArray at:1) . 
 	self assert: 4+256 equals: (shortIntegerArray at:2).
@@ -56,11 +43,8 @@ ShortIntegerArrayTest>>testSetUp [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ShortIntegerArrayTest>>testSwapBytePairs [
+{ #category : #testing }
+ShortIntegerArrayTest >> testSwapBytePairs [
 
 	shortIntegerArray swapBytePairsHacky.
 	self assert: 4*256 equals: (shortIntegerArray at:1). 
@@ -70,11 +54,8 @@ ShortIntegerArrayTest>>testSwapBytePairs [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ShortIntegerArrayTest>>testWriteBigEndianOn [
+{ #category : #testing }
+ShortIntegerArrayTest >> testWriteBigEndianOn [
 
 	|stream|
 	stream := WriteStream on: Array new.
@@ -82,11 +63,8 @@ ShortIntegerArrayTest>>testWriteBigEndianOn [
 	self assert: #(12 34 56 78) equals: stream contents
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ShortIntegerArrayTest>>testWriteLittleEndianOn [
+{ #category : #testing }
+ShortIntegerArrayTest >> testWriteLittleEndianOn [
 
 	|stream|
 	stream := WriteStream on: Array new.

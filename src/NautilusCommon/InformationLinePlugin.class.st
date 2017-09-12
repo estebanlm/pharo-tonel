@@ -7,52 +7,36 @@ Class {
 	#instVars : [
 		'morph'
 	],
-	#category : #NautilusCommon-Plugin,
-	#timestamp : 'Stef 7/8/2015 10:33'
+	#category : #NautilusCommon-Plugin
 }
 
-{
-	#category : #position,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-InformationLinePlugin class>>defaultPosition [
+{ #category : #position }
+InformationLinePlugin class >> defaultPosition [
 
 	^ #middle
 ]
 
-{
-	#category : #information,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-InformationLinePlugin class>>description [
+{ #category : #information }
+InformationLinePlugin class >> description [
 
 	^ 'Display the URI of the selected element'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-InformationLinePlugin>>buildString [
+{ #category : #private }
+InformationLinePlugin >> buildString [
 	^ ''
 ]
 
-{
-	#category : #announcement,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-InformationLinePlugin>>changed: ann [
+{ #category : #announcement }
+InformationLinePlugin >> changed: ann [
 	
 	| string |
 	string := self buildString.
 	morph ifNotNil: [ morph contents: string ]
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-InformationLinePlugin>>display [
+{ #category : #display }
+InformationLinePlugin >> display [
 
 	morph :=  LabelMorph new 
 					contents: '';
@@ -63,11 +47,8 @@ InformationLinePlugin>>display [
 	^ morph
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-InformationLinePlugin>>registerTo: aModel [
+{ #category : #registration }
+InformationLinePlugin >> registerTo: aModel [
 
 	aModel announcer
 		when: NautilusPackageSelected send: #changed: to: self;

@@ -15,94 +15,63 @@ Class {
 		'originY',
 		'color'
 	],
-	#category : #Athens-Examples,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:17'
+	#category : #Athens-Examples
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>box [
+{ #category : #accessing }
+AthensSimpleTreeNode >> box [
 	
 	^ box
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>box: anObject [
+{ #category : #accessing }
+AthensSimpleTreeNode >> box: anObject [
 	
 	box := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>children [
+{ #category : #'as yet unclassified' }
+AthensSimpleTreeNode >> children [
 	^ children
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>children: aCollection [
+{ #category : #'as yet unclassified' }
+AthensSimpleTreeNode >> children: aCollection [
 
 	children := aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>color [
+{ #category : #accessing }
+AthensSimpleTreeNode >> color [
 	^ color
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>color: aColor [
+{ #category : #accessing }
+AthensSimpleTreeNode >> color: aColor [
 	color := aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>extent [
+{ #category : #accessing }
+AthensSimpleTreeNode >> extent [
 	
 	^ extent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>extent: anObject [
+{ #category : #accessing }
+AthensSimpleTreeNode >> extent: anObject [
 	
 	extent := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>height [
+{ #category : #accessing }
+AthensSimpleTreeNode >> height [
 	
 	^ extent y
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>layoutHorizontally: center [
+{ #category : #accessing }
+AthensSimpleTreeNode >> layoutHorizontally: center [
 	| pos |
 	"position ourselves in the middle X"
 	originX := center - (self width * 0.5).
@@ -116,11 +85,8 @@ AthensSimpleTreeNode>>layoutHorizontally: center [
 	]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>layoutWidth  [
+{ #category : #accessing }
+AthensSimpleTreeNode >> layoutWidth [ 
 
 	^ layoutWidth ifNil: [  
 		| childWidth |
@@ -136,51 +102,33 @@ AthensSimpleTreeNode>>layoutWidth  [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>midBottom [
+{ #category : #'as yet unclassified' }
+AthensSimpleTreeNode >> midBottom [
 	^ originX +(extent x *0.5) @ (originY + extent y)
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>midTop [
+{ #category : #'as yet unclassified' }
+AthensSimpleTreeNode >> midTop [
 	^ originX +(extent x *0.5) @ originY 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>originX [
+{ #category : #accessing }
+AthensSimpleTreeNode >> originX [
 	^ originX
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>originY [
+{ #category : #accessing }
+AthensSimpleTreeNode >> originY [
 	^ originY
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>originY: aNumber [
+{ #category : #accessing }
+AthensSimpleTreeNode >> originY: aNumber [
 	originY := aNumber
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>renderOn: aCanvas [
+{ #category : #'as yet unclassified' }
+AthensSimpleTreeNode >> renderOn: aCanvas [
 
 	aCanvas setPaint: color.
 	aCanvas drawShape: (originX @ originY extent: extent).
@@ -213,37 +161,25 @@ AthensSimpleTreeNode>>renderOn: aCanvas [
 	]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>spacingBetweenChilds [
+{ #category : #accessing }
+AthensSimpleTreeNode >> spacingBetweenChilds [
 	^ 10
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>subject [
+{ #category : #accessing }
+AthensSimpleTreeNode >> subject [
 	
 	^ subject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>subject: anObject [
+{ #category : #accessing }
+AthensSimpleTreeNode >> subject: anObject [
 	
 	subject := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensSimpleTreeNode>>width [
+{ #category : #accessing }
+AthensSimpleTreeNode >> width [
 	
 	^ extent x
 ]

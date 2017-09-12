@@ -6,22 +6,15 @@ Class {
 	#superclass : #Object,
 	#traits : 'EpTEventVisitor',
 	#classTraits : 'EpTEventVisitor classTrait',
-	#category : #EpiceaBrowsers-Visitors,
-	#timestamp : 'MartinDias 10/27/2014 18:05'
+	#category : #EpiceaBrowsers-Visitors
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryContentVisitor>>visitEvent: aChange [
+{ #category : #visitor }
+EpEntryContentVisitor >> visitEvent: aChange [
 	^ self error: 'Should not be reached'.
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryContentVisitor>>visitTraitRemoved: aChange [
+{ #category : #visitor }
+EpEntryContentVisitor >> visitTraitRemoved: aChange [
 	^ self visitTraitChange: aChange
 ]

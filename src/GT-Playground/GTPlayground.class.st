@@ -24,25 +24,18 @@ Class {
 		'PreferredExtent',
 		'RememberPreferredExtent'
 	],
-	#category : #GT-Playground,
-	#timestamp : 'TudorGirba 10/22/2014 07:37'
+	#category : #GT-Playground
 }
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>contextMenuBasicActionsFor: aPlayground [
+{ #category : #menu }
+GTPlayground class >> contextMenuBasicActionsFor: aPlayground [
 	<playgroundContextMenu>
 	
 	^ aPlayground codePresentation defaultSelectionActions 
 ]
 
-{
-	#category : #compatibility-tools,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>edit: aString label: aLabel [
+{ #category : #compatibility-tools }
+GTPlayground class >> edit: aString label: aLabel [
 
 "Open a new playground with the given contents"
 "Compatibility with the original Workspace"
@@ -65,11 +58,8 @@ GTPlayground class>>edit: aString label: aLabel [
 	^ self new openOn: page
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>examplePlaygroundWithBindings [
+{ #category : #examples }
+GTPlayground class >> examplePlaygroundWithBindings [
 	| playground wsBindings |
 	wsBindings := Dictionary newFrom: { #number-> 1 }.
 	playground := Smalltalk tools workspace
@@ -78,11 +68,8 @@ GTPlayground class>>examplePlaygroundWithBindings [
 		setBindings: wsBindings.
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>extentSettingsOn: aBuilder  [
+{ #category : #settings }
+GTPlayground class >> extentSettingsOn: aBuilder [ 
 	<systemsettings>
 	
 	(aBuilder setting: #GTPlaygroundPreferredWidth)
@@ -112,20 +99,14 @@ GTPlayground class>>extentSettingsOn: aBuilder  [
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>isGTPlaygroundEnabled [
+{ #category : #settings }
+GTPlayground class >> isGTPlaygroundEnabled [
 
 	^ GTPlaygroundEnabledStatus ifNil: [ GTPlaygroundEnabledStatus := Smalltalk tools workspace = self ]
 ]
 
-{
-	#category : #'world menu',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>menuCommandOn: aBuilder [
+{ #category : #'world menu' }
+GTPlayground class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: Smalltalk tools workspace title asSymbol)
 		parent: #MostUsedTools;
@@ -135,22 +116,16 @@ GTPlayground class>>menuCommandOn: aBuilder [
 		icon: Smalltalk tools workspace taskbarIcon
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>open [
+{ #category : #'instance creation' }
+GTPlayground class >> open [
 	"self open"
 	| page |
 	page := GTPlayPage new.
 	^ self openOn: page
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>openContents: aString [
+{ #category : #'instance creation' }
+GTPlayground class >> openContents: aString [
 	"Open a new playground with the given contents. aString has to be Smalltalk code. The style is applied"
 	
 
@@ -164,11 +139,8 @@ GTPlayground class>>openContents: aString [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>openContents: aString label: aLabel [
+{ #category : #'instance creation' }
+GTPlayground class >> openContents: aString label: aLabel [
 	"Open a new playground with the given contents"
 
 	| page |
@@ -180,11 +152,8 @@ GTPlayground class>>openContents: aString label: aLabel [
 	^ self openOn: page
 ]
 
-{
-	#category : #compatibility-tools,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>openLabel: aLabel [
+{ #category : #compatibility-tools }
+GTPlayground class >> openLabel: aLabel [
 	| page |
 
 	page := GTPlayPage new
@@ -193,95 +162,62 @@ GTPlayground class>>openLabel: aLabel [
 	^ self openOn: page
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>preferredExtent [
+{ #category : #settings }
+GTPlayground class >> preferredExtent [
 	^ PreferredExtent ifNil: [ PreferredExtent := 600@400 ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>preferredExtent: aPoint [
+{ #category : #settings }
+GTPlayground class >> preferredExtent: aPoint [
 	PreferredExtent := aPoint
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>preferredHeight [
+{ #category : #settings }
+GTPlayground class >> preferredHeight [
 	^ self preferredExtent y
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>preferredHeight: aHeight [
+{ #category : #settings }
+GTPlayground class >> preferredHeight: aHeight [
 	self preferredExtent setX: self preferredExtent x setY: aHeight
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>preferredWidth [
+{ #category : #settings }
+GTPlayground class >> preferredWidth [
 	^ self preferredExtent x
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>preferredWidth: aWidth [
+{ #category : #settings }
+GTPlayground class >> preferredWidth: aWidth [
 	self preferredExtent setX: aWidth setY: self preferredExtent y
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>register [
+{ #category : #'tools registry' }
+GTPlayground class >> register [
 
 	self registerToolsOn: Smalltalk tools
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>registerToolsOn: registry [
+{ #category : #'tools registry' }
+GTPlayground class >> registerToolsOn: registry [
 	"Add ourselves to registry. See [Smalltalk tools]"
 	"self registerToolsOn: Smalltalk tools" 
 	registry register: self as: #workspace
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>rememberPreferredExtent [
+{ #category : #settings }
+GTPlayground class >> rememberPreferredExtent [
 	^ RememberPreferredExtent ifNil: [ RememberPreferredExtent := true ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>rememberPreferredExtent: aBoolean [
+{ #category : #settings }
+GTPlayground class >> rememberPreferredExtent: aBoolean [
 	^ RememberPreferredExtent := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>setGTPlaygroundEnabledStatus: aBoolean [
+{ #category : #settings }
+GTPlayground class >> setGTPlaygroundEnabledStatus: aBoolean [
 	| oldStatus |
 	
 	oldStatus := self isGTPlaygroundEnabled.
@@ -294,20 +230,14 @@ GTPlayground class>>setGTPlaygroundEnabledStatus: aBoolean [
 	
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>setPreferredExtentIfWanted: anExtent [
+{ #category : #settings }
+GTPlayground class >> setPreferredExtentIfWanted: anExtent [
 	self rememberPreferredExtent ifTrue: [ 
 		self preferredExtent: anExtent ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>settingsOn: aBuilder  [
+{ #category : #settings }
+GTPlayground class >> settingsOn: aBuilder [ 
 	<systemsettings>
 	
 	(aBuilder setting: #GTPlaygroundStatus)
@@ -331,37 +261,25 @@ GTPlayground class>>settingsOn: aBuilder  [
 		label: 'Local Playground stash directory'
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>taskbarIconName [
+{ #category : #'tools registry' }
+GTPlayground class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^ #workspaceIcon
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground class>>title [
+{ #category : #'instance creation' }
+GTPlayground class >> title [
 	^ 'Playground'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>acceptAction: anAction [
+{ #category : #accessing }
+GTPlayground >> acceptAction: anAction [
 	"acceptAction := anAction."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>acceptContents: aString [
+{ #category : #accessing }
+GTPlayground >> acceptContents: aString [
 
 	^ (self entity acceptContents: aString)
 		ifTrue: [  
@@ -369,11 +287,8 @@ GTPlayground>>acceptContents: aString [
 			true]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>actOnBrowserClosing: ann [
+{ #category : #actions }
+GTPlayground >> actOnBrowserClosing: ann [
 
 	"This is a hack for the moment.
 	We need a better mechanism from Glamour to help 
@@ -383,11 +298,8 @@ GTPlayground>>actOnBrowserClosing: ann [
 	GTPlayBook instance addPageIfInteresting: self entity
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>codeIn: a [
+{ #category : #building }
+GTPlayground >> codeIn: a [
 	^ (self codePresentationIn: a)
 		title: [ :page | 
 			GTPlaygroundEditableTabLabel new
@@ -438,29 +350,20 @@ GTPlayground>>codeIn: a [
 			text clearUserEdits ]
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>codePresentation [
+{ #category : #accessing-dynamic }
+GTPlayground >> codePresentation [
 
 	^ self inspectorPresentation firstPresentation
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>codePresentationIn: composite [
+{ #category : #building }
+GTPlayground >> codePresentationIn: composite [
 
 	^ composite pharoScript
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>compose [
+{ #category : #building }
+GTPlayground >> compose [
 	self title: self defaultPlaygroundTitle.
 	self act: [:b | b update] icon: GLMUIThemeExtraIcons glamorousRefresh entitled: 'Update'.
 	self act: [:b | 
@@ -497,11 +400,8 @@ GTPlayground>>compose [
 	
 ]
 
-{
-	#category : #'building actions',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>contextMenuActions [
+{ #category : #'building actions' }
+GTPlayground >> contextMenuActions [
 	^ (Pragma
 		allNamed: self contextMenuPragma
 		from: self class class
@@ -510,65 +410,44 @@ GTPlayground>>contextMenuActions [
 			[ :eachPragma | self class perform: eachPragma methodSelector with: self ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>contextMenuPragma [
+{ #category : #accessing }
+GTPlayground >> contextMenuPragma [
 
 	^ #playgroundContextMenu
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>currentBindings  [
+{ #category : #accessing-dynamic }
+GTPlayground >> currentBindings [ 
 
 	^ self codePresentation currentBindings
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>currentBindingsSorted [
+{ #category : #accessing-dynamic }
+GTPlayground >> currentBindingsSorted [
 
 	^ self currentBindings associations asSortedCollection: [ :first :second | first key < second key ]
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>defaultPlaygroundTitle [
+{ #category : #accessing-defaults }
+GTPlayground >> defaultPlaygroundTitle [
 	^ 'Playground'
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>inspectorPresentation [
+{ #category : #accessing-dynamic }
+GTPlayground >> inspectorPresentation [
 
 	^ self presentations first 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>label: aString [
+{ #category : #accessing }
+GTPlayground >> label: aString [
 	"Set the window label to the given string"
 	self title: aString.
 	self update
 ]
 
-{
-	#category : #'scripting opening',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>openOn: aPage [
+{ #category : #'scripting opening' }
+GTPlayground >> openOn: aPage [
 	| window |
 	window := super openOn: aPage.
 	window extent: self class preferredExtent.
@@ -580,11 +459,8 @@ GTPlayground>>openOn: aPage [
 	^ window
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>removeBinding: anAssociation [
+{ #category : #accessing-dynamic }
+GTPlayground >> removeBinding: anAssociation [
 
 	|bindings|
 	bindings := self currentBindings copy.
@@ -592,39 +468,27 @@ GTPlayground>>removeBinding: anAssociation [
 	self setBindings: bindings.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>requestRefresh [
+{ #category : #updating }
+GTPlayground >> requestRefresh [
 	self inspectorPresentation refreshPanes
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>resetBindings [
+{ #category : #actions }
+GTPlayground >> resetBindings [
 
 	^ self inspectorPresentation firstPresentation resetBindings
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>setBindings: aDictionary [
+{ #category : #actions }
+GTPlayground >> setBindings: aDictionary [
 
 	self inspectorPresentation firstPresentation 
 		variableBindings: [ aDictionary associations ];
 		updateVariableBindings
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayground>>step [
+{ #category : #stepping }
+GTPlayground >> step [
 	self window ifNil: [ ^ self ].
 	self window isActive ifFalse: [ ^ self ].
 	

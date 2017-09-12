@@ -13,23 +13,16 @@ Class {
 		'worldmorph',
 		'wrappedWorldDisplay'
 	],
-	#category : #Athens-Morphic,
-	#timestamp : 'NicolaiHess 1/4/2015 18:35'
+	#category : #Athens-Morphic
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrapWorldMorph>>defaultExtent [
+{ #category : #initialization }
+AthensWrapWorldMorph >> defaultExtent [
 	^ 400 @ 400
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrapWorldMorph>>initialize [
+{ #category : #initialization }
+AthensWrapWorldMorph >> initialize [
 	super initialize.
 	self extent: self defaultExtent.
 	self hResizing: #spaceFill.
@@ -42,27 +35,18 @@ AthensWrapWorldMorph>>initialize [
 	self addMorph: worldmorph
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrapWorldMorph>>layoutChanged [
+{ #category : #layout }
+AthensWrapWorldMorph >> layoutChanged [
 	super layoutChanged.
 	worldmorph ifNotNil:[:w |  w extent: self extent].
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrapWorldMorph>>step [
+{ #category : #stepping }
+AthensWrapWorldMorph >> step [
 	self changed
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWrapWorldMorph>>stepTime [
+{ #category : #stepping }
+AthensWrapWorldMorph >> stepTime [
 	^ 50
 ]

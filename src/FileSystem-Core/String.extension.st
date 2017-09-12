@@ -1,21 +1,13 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*filesystem-core-converting',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-String>>asFileReference [
+{ #category : #'*filesystem-core-converting' }
+String >> asFileReference [
 
 	^ FileSystem disk referenceTo: self
 ]
 
-{
-	#category : #'*filesystem-core-converting',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-String>>asPath [
+{ #category : #'*filesystem-core-converting' }
+String >> asPath [
 	"convert myself to a path"
 	"Examples:
 		'.' asPath
@@ -25,18 +17,12 @@ String>>asPath [
 	^ FileSystem disk resolve: self
 ]
 
-{
-	#category : #'*filesystem-core-converting',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-String>>asPathWith: anObject  [
+{ #category : #'*filesystem-core-converting' }
+String >> asPathWith: anObject [ 
 	^ anObject pathFromString: self
 ]
 
-{
-	#category : #'*filesystem-core-converting',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-String>>asResolvedBy: aFileSystem [
+{ #category : #'*filesystem-core-converting' }
+String >> asResolvedBy: aFileSystem [
 	^ aFileSystem resolveString: self
 ]

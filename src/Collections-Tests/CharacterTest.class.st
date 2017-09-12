@@ -7,15 +7,11 @@ This is the unit test for the class Character. Unit tests are a good way to exer
 Class {
 	#name : #CharacterTest,
 	#superclass : #ClassTestCase,
-	#category : #Collections-Tests-Strings,
-	#timestamp : '<historical>'
+	#category : #Collections-Tests-Strings
 }
 
-{
-	#category : #'tests conversion',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CharacterTest>>testAsLowercaseBasicAsciiRange [
+{ #category : #'tests conversion' }
+CharacterTest >> testAsLowercaseBasicAsciiRange [
 	| lowercase uppercase |
 	lowercase  := 'abcdefghijklmnopqrstuvwxyz123456789'.
 	uppercase := 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789'.
@@ -23,11 +19,8 @@ CharacterTest>>testAsLowercaseBasicAsciiRange [
 		self assert: char asLowercase equals: (lowercase at: index)]
 ]
 
-{
-	#category : #'tests conversion',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CharacterTest>>testAsUppercaseBasicAsciiRange [
+{ #category : #'tests conversion' }
+CharacterTest >> testAsUppercaseBasicAsciiRange [
 	| lowercase uppercase |
 	lowercase  := 'abcdefghijklmnopqrstuvwxyz123456789'.
 	uppercase := 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789'.
@@ -35,11 +28,8 @@ CharacterTest>>testAsUppercaseBasicAsciiRange [
 		self assert: char asUppercase equals: (uppercase at: index)]
 ]
 
-{
-	#category : #'tests - various',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CharacterTest>>testCharacterSeparators [
+{ #category : #'tests - various' }
+CharacterTest >> testCharacterSeparators [
 	"Regression test"
 
 	| result |
@@ -47,22 +37,16 @@ CharacterTest>>testCharacterSeparators [
 	self assert: result size = (Character separators size + 1)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CharacterTest>>testCodePoint [
+{ #category : #tests }
+CharacterTest >> testCodePoint [
 
 	self assert: $A codePoint = 65.
 	self assert: (Character codePoint: $a codePoint) = $a.
 	self assert: (Character codePoint: 97) codePoint = 97.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CharacterTest>>testDigitValue [
+{ #category : #tests }
+CharacterTest >> testDigitValue [
 	"self debug: #testDigitValue"
 	
 	'0123456789ABCDEF' with: #(0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15)
@@ -74,30 +58,21 @@ CharacterTest>>testDigitValue [
 	 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CharacterTest>>testHex [
+{ #category : #tests }
+CharacterTest >> testHex [
 	self assert: $a hex = '16r61'.
 	self assert: Character space hex = '16r20'
 ]
 
-{
-	#category : #'tests instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CharacterTest>>testInstanceCreation [
+{ #category : #'tests instance creation' }
+CharacterTest >> testInstanceCreation [
 	self should: [ Character value: -1 ] raise: Error.
 	Character value: 0.
 	Character value: 256
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CharacterTest>>testIsSeparator [
+{ #category : #tests }
+CharacterTest >> testIsSeparator [
     {Character space.
     Character cr.
     Character lf.
@@ -106,20 +81,14 @@ CharacterTest>>testIsSeparator [
     Character alphabet do: [ :each | self deny: each isSeparator ]
 ]
 
-{
-	#category : #'tests instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CharacterTest>>testNew [
+{ #category : #'tests instance creation' }
+CharacterTest >> testNew [
 
 	self should: [Character new] raise: Error.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CharacterTest>>testPrintString [
+{ #category : #tests }
+CharacterTest >> testPrintString [
 	self assert: $a printString = '$a'.
 	self assert: $5 printString = '$5'.
 	self assert: $@ printString = '$@'.
@@ -132,30 +101,21 @@ CharacterTest>>testPrintString [
 	self assert: (Character value: 17) printString = 'Character value: 17'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CharacterTest>>testPrintStringAll [
+{ #category : #tests }
+CharacterTest >> testPrintStringAll [
 	Character allCharacters do: [ :each |
 		self assert: (self class compiler
 			evaluate: each printString) = each ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CharacterTest>>testPrintStringHex [
+{ #category : #tests }
+CharacterTest >> testPrintStringHex [
 	self assert: $a printStringHex = '61'.
 	self assert: Character space printStringHex = '20'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CharacterTest>>testStoreString [
+{ #category : #tests }
+CharacterTest >> testStoreString [
 	self assert: $a storeString = '$a'.
 	self assert: $5 storeString = '$5'.
 	self assert: $@ storeString = '$@'.
@@ -168,11 +128,8 @@ CharacterTest>>testStoreString [
 	self assert: (Character value: 17) storeString equals: '(Character value: 17)'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CharacterTest>>testStoreStringAll [
+{ #category : #tests }
+CharacterTest >> testStoreStringAll [
 	Character allCharacters do: [ :each |
 		self assert: (self class compiler
 			evaluate: each storeString) = each ].

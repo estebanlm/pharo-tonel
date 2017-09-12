@@ -4,42 +4,29 @@ I model argument variables. By definition, an argument variable is always initia
 Class {
 	#name : #OCArgumentVariable,
 	#superclass : #OCTempVariable,
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : 'DenisKudryashov 12/18/2015 16:46'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCArgumentVariable class>>semanticNodeClass [
+{ #category : #accessing }
+OCArgumentVariable class >> semanticNodeClass [
 
 	^RBArgumentNode 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCArgumentVariable>>isArg [
+{ #category : #testing }
+OCArgumentVariable >> isArg [
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCArgumentVariable>>isUninitialized [
+{ #category : #testing }
+OCArgumentVariable >> isUninitialized [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCArgumentVariable>>isWritable [
+{ #category : #testing }
+OCArgumentVariable >> isWritable [
 
 	^ false
 ]

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MergeJoinSection,
 	#superclass : #JoinSection,
@@ -11,35 +8,25 @@ Class {
 		'stateIcons',
 		'allowClick'
 	],
-	#category : #Tool-Diff,
-	#timestamp : ''
+	#category : #Tool-Diff
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>allowClick [
+{ #category : #accessing }
+MergeJoinSection >> allowClick [
 	"Answer the value of allowClick"
 
 	^ allowClick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>allowClick: anObject [
+{ #category : #accessing }
+MergeJoinSection >> allowClick: anObject [
 	"Set the value of allowClick"
 
 	allowClick := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>appendToCompositeText: aText [
+{ #category : #'as yet unclassified' }
+MergeJoinSection >> appendToCompositeText: aText [
 	"If appropriate append the relevant src or dst text to the given text."
 	
 	self selectionState == #src ifTrue: [^aText append: self src text].
@@ -50,11 +37,8 @@ MergeJoinSection>>appendToCompositeText: aText [
 			append: self dst text]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>borderColorToUse [
+{ #category : #'as yet unclassified' }
+MergeJoinSection >> borderColorToUse [
 	"Answer the border color to use based on the selection state."
 	
 	^self selected
@@ -62,11 +46,8 @@ MergeJoinSection>>borderColorToUse [
 		ifFalse: [super borderColorToUse]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>clicked [
+{ #category : #'as yet unclassified' }
+MergeJoinSection >> clicked [
 	"The receiver or a highlight was clicked."
 
 	self wantsClick ifFalse: [^false].
@@ -74,33 +55,24 @@ MergeJoinSection>>clicked [
 	^true
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>containsPoint: aPoint [
+{ #category : #'as yet unclassified' }
+MergeJoinSection >> containsPoint: aPoint [
 	"Answer whether the receiver contains the given point."
 
 	^(super containsPoint: aPoint) or: [
 		self stateIcon notNil and: [self stateIconBounds containsPoint: aPoint]]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>defaultStateIcons [
+{ #category : #'as yet unclassified' }
+MergeJoinSection >> defaultStateIcons [
 	"Answer the default state icons."
 
 	^ {(self iconNamed: #smallBackIcon) . (self iconNamed: #smallForwardIcon) .
 	(self iconNamed: #smallOkIcon) . (self iconNamed: #smallCancelIcon)}
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>drawOn: aCanvas [
+{ #category : #'as yet unclassified' }
+MergeJoinSection >> drawOn: aCanvas [
 	"Draw the join on the given canvas."
 	
 	super drawOn: aCanvas.
@@ -110,11 +82,8 @@ MergeJoinSection>>drawOn: aCanvas [
 			at: self stateIconBounds topLeft]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>initialize [
+{ #category : #initialization }
+MergeJoinSection >> initialize [
 	"Initialize the receiver."
 
 	self
@@ -126,11 +95,8 @@ MergeJoinSection>>initialize [
 	super initialize
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>selectNextState [
+{ #category : #'as yet unclassified' }
+MergeJoinSection >> selectNextState [
 	"Set the selection state to the next one with wraparound."
 
 	self selectionState: (
@@ -139,21 +105,15 @@ MergeJoinSection>>selectNextState [
 				self selectionStates size + 1))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>selected [
+{ #category : #accessing }
+MergeJoinSection >> selected [
 	"Answer the value of selected"
 
 	^ selected
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>selected: aBoolean [
+{ #category : #accessing }
+MergeJoinSection >> selected: aBoolean [
 	"Set the value of selected"
 
 	selected := aBoolean.
@@ -162,72 +122,51 @@ MergeJoinSection>>selected: aBoolean [
 		changed: #selected
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>selectedBorderColor [
+{ #category : #accessing }
+MergeJoinSection >> selectedBorderColor [
 	"Answer the value of selectedBorderColor"
 
 	^ selectedBorderColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>selectedBorderColor: anObject [
+{ #category : #accessing }
+MergeJoinSection >> selectedBorderColor: anObject [
 	"Set the value of selectedBorderColor"
 
 	selectedBorderColor := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>selectionState [
+{ #category : #accessing }
+MergeJoinSection >> selectionState [
 	"Answer the value of selectionState"
 
 	^ selectionState
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>selectionState: anObject [
+{ #category : #accessing }
+MergeJoinSection >> selectionState: anObject [
 	"Set the value of selectionState"
 
 	selectionState := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>selectionStates [
+{ #category : #'as yet unclassified' }
+MergeJoinSection >> selectionStates [
 	"Answer the valid selection states in order."
 
 	^#(src dst both neither)
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>stateIcon [
+{ #category : #'as yet unclassified' }
+MergeJoinSection >> stateIcon [
 	"Answer the state icon to use."
 
 	self wantsClick ifFalse: [^nil].
 	^self stateIcons at: (self selectionStates indexOf: self selectionState)
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>stateIconBounds [
+{ #category : #'as yet unclassified' }
+MergeJoinSection >> stateIconBounds [
 	"Answer the bounds of the state icon."
 	
 	|i|
@@ -236,31 +175,22 @@ MergeJoinSection>>stateIconBounds [
 		extent: i extent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>stateIcons [
+{ #category : #accessing }
+MergeJoinSection >> stateIcons [
 	"Answer the value of stateIcons"
 
 	^ stateIcons
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>stateIcons: anObject [
+{ #category : #accessing }
+MergeJoinSection >> stateIcons: anObject [
 	"Set the value of stateIcons"
 
 	stateIcons := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-MergeJoinSection>>wantsClick [
+{ #category : #'as yet unclassified' }
+MergeJoinSection >> wantsClick [
 	"Allow if explictly enabled and super."
 
 	^self allowClick and: [super wantsClick]

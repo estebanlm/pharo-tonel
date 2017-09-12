@@ -9,15 +9,11 @@ to transparently bypass the internal buffers when this makes sense.
 Class {
 	#name : #ZdcSocketStream,
 	#superclass : #ZdcOptimizedSocketStream,
-	#category : #Zodiac-Core,
-	#timestamp : 'SvenVanCaekenberghe 5/17/2011 18:57'
+	#category : #Zodiac-Core
 }
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSocketStream>>next: count putAll: collection startingAt: offset [
+{ #category : #'stream out' }
+ZdcSocketStream >> next: count putAll: collection startingAt: offset [
 	"Write count bytes from collection starting at offset. Overwritten, optimized"
 	
 	count <= (writeBuffer bufferSize / 8)  
@@ -29,11 +25,8 @@ ZdcSocketStream>>next: count putAll: collection startingAt: offset [
 			self flushBytes: collection startingAt: offset count: count ]
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcSocketStream>>readInto: collection startingAt: offset count: requestedCount [
+{ #category : #'stream in' }
+ZdcSocketStream >> readInto: collection startingAt: offset count: requestedCount [
 	"Read requestedCount elements into collection starting at offset,
 	returning the number of elements read. Overwritten, optimized"
 	

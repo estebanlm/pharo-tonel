@@ -12,26 +12,19 @@ Class {
 		'selector',
 		'temporaryVariableName'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 15:00'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBTemporaryToInstanceVariableRefactoring class>>class: aClass selector: aSelector variable: aVariableName  [
+{ #category : #'instance creation' }
+RBTemporaryToInstanceVariableRefactoring class >> class: aClass selector: aSelector variable: aVariableName [ 
 	^self new 
 		class: aClass
 		selector: aSelector
 		variable: aVariableName
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBTemporaryToInstanceVariableRefactoring class>>model: aRBSmalltalk class: aClass selector: aSelector variable: aVariableName  [
+{ #category : #'instance creation' }
+RBTemporaryToInstanceVariableRefactoring class >> model: aRBSmalltalk class: aClass selector: aSelector variable: aVariableName [ 
 	^(self new)
 		model: aRBSmalltalk;
 		class: aClass
@@ -40,11 +33,8 @@ RBTemporaryToInstanceVariableRefactoring class>>model: aRBSmalltalk class: aClas
 		yourself
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBTemporaryToInstanceVariableRefactoring>>checkForValidTemporaryVariable [
+{ #category : #preconditions }
+RBTemporaryToInstanceVariableRefactoring >> checkForValidTemporaryVariable [
 	| parseTree |
 	parseTree := class parseTreeFor: selector.
 	(parseTree allTemporaryVariables includes: temporaryVariableName) 
@@ -62,21 +52,15 @@ RBTemporaryToInstanceVariableRefactoring>>checkForValidTemporaryVariable [
 							expandMacrosWith: temporaryVariableName)]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBTemporaryToInstanceVariableRefactoring>>class: aClass selector: aSelector variable: aVariableName  [
+{ #category : #initialize-release }
+RBTemporaryToInstanceVariableRefactoring >> class: aClass selector: aSelector variable: aVariableName [ 
 	class := self classObjectFor: aClass.
 	selector := aSelector.
 	temporaryVariableName := aVariableName
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBTemporaryToInstanceVariableRefactoring>>preconditions [
+{ #category : #preconditions }
+RBTemporaryToInstanceVariableRefactoring >> preconditions [
 	^(RBCondition definesSelector: selector in: class) 
 		& (RBCondition hierarchyOf: class
 				definesVariable: temporaryVariableName asString) not 
@@ -85,11 +69,8 @@ RBTemporaryToInstanceVariableRefactoring>>preconditions [
 						true])
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBTemporaryToInstanceVariableRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBTemporaryToInstanceVariableRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream nextPutAll: ' class: '.
@@ -103,11 +84,8 @@ RBTemporaryToInstanceVariableRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBTemporaryToInstanceVariableRefactoring>>transform [
+{ #category : #transforming }
+RBTemporaryToInstanceVariableRefactoring >> transform [
 	| parseTree matcher method |
 	method := class methodFor: selector.
 	parseTree := method parseTree.

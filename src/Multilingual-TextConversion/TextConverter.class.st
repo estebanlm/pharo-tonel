@@ -13,15 +13,11 @@ Class {
 		'latin1Map',
 		'latin1Encodings'
 	],
-	#category : #Multilingual-TextConversion,
-	#timestamp : '<historical>'
+	#category : #Multilingual-TextConversion
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter class>>allEncodingNames [
+{ #category : #utilities }
+TextConverter class >> allEncodingNames [
 	"TextConverter allEncodingNames"
 	| encodingNames |
 	encodingNames := Set new.
@@ -34,21 +30,15 @@ TextConverter class>>allEncodingNames [
 	^encodingNames
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter class>>default [
+{ #category : #'instance creation' }
+TextConverter class >> default [
 
 	^ UTF8TextConverter new.
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter class>>defaultConverterClassForEncoding: encodingName [
+{ #category : #'instance creation' }
+TextConverter class >> defaultConverterClassForEncoding: encodingName [
 	"TextConverter defaultConverterClassForEncoding: 'shift-jis'"
 
 	^ self allSubclasses
@@ -57,30 +47,21 @@ TextConverter class>>defaultConverterClassForEncoding: encodingName [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter class>>defaultSystemConverter [
+{ #category : #'instance creation' }
+TextConverter class >> defaultSystemConverter [
 
 	^LanguageEnvironment defaultSystemConverter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter class>>encodingNames  [
+{ #category : #accessing }
+TextConverter class >> encodingNames [ 
 
 	^ #() copy.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter class>>initializeLatin1MapAndEncodings [
+{ #category : #accessing }
+TextConverter class >> initializeLatin1MapAndEncodings [
 	"Initialize the latin1Map and latin1Encodings.
 	These variables ensure that conversions from latin1 ByteString is reasonably fast"
 	
@@ -101,11 +82,8 @@ TextConverter class>>initializeLatin1MapAndEncodings [
 	].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter class>>latin1Encodings [
+{ #category : #accessing }
+TextConverter class >> latin1Encodings [
 	"Answer an Array mapping latin1 characters to conversion string"
 
 	^latin1Encodings ifNil:
@@ -113,11 +91,8 @@ TextConverter class>>latin1Encodings [
 		latin1Encodings]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter class>>latin1Map [
+{ #category : #accessing }
+TextConverter class >> latin1Map [
 	"Answer a ByteArray map telling if latin1 characters needs conversion or not"
 
 	^latin1Map ifNil:
@@ -125,11 +100,8 @@ TextConverter class>>latin1Map [
 		latin1Map]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter class>>newForEncoding: aString [
+{ #category : #'instance creation' }
+TextConverter class >> newForEncoding: aString [
 	| encoding |
 	aString ifNil: [ ^ Latin1TextConverter new ].
 	encoding := aString asLowercase.
@@ -139,11 +111,8 @@ TextConverter class>>newForEncoding: aString [
 		ifNone: [ nil ]
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter>>convertFromSystemString: aString [
+{ #category : #conversion }
+TextConverter >> convertFromSystemString: aString [
 
 	| readStream writeStream |
 	readStream := aString readStream.
@@ -155,11 +124,8 @@ TextConverter>>convertFromSystemString: aString [
 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter>>convertToSystemString: aString [
+{ #category : #conversion }
+TextConverter >> convertToSystemString: aString [
 
 	| writeStream |
 	writeStream := String new writeStream.
@@ -168,28 +134,19 @@ TextConverter>>convertToSystemString: aString [
 	^writeStream contents
 ]
 
-{
-	#category : #friend,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter>>emitSequenceToResetStateIfNeededOn: aStream [
+{ #category : #friend }
+TextConverter >> emitSequenceToResetStateIfNeededOn: aStream [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter>>initialize [
+{ #category : #initialization }
+TextConverter >> initialize [
 	latin1Map := self class latin1Map.
 	latin1Encodings := self class latin1Encodings.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter>>installLineEndConvention: lineEndStringOrNil [
+{ #category : #initialize-release }
+TextConverter >> installLineEndConvention: lineEndStringOrNil [
 
 	
 	lineEndStringOrNil ifNotNil:
@@ -199,11 +156,8 @@ TextConverter>>installLineEndConvention: lineEndStringOrNil [
 		latin1Map at: Character cr asciiValue + 1 put: 1]
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter>>next: anInteger putAll: aString startingAt: startIndex toStream: aStream [
+{ #category : #conversion }
+TextConverter >> next: anInteger putAll: aString startingAt: startIndex toStream: aStream [
         "Handle fast conversion if ByteString"
         
         | lastIndex nextIndex |
@@ -218,11 +172,8 @@ TextConverter>>next: anInteger putAll: aString startingAt: startIndex toStream: 
         ^self next: anInteger putByteString: aString startingAt: startIndex toStream: aStream
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter>>next: anAmount putByteString: aString startingAt: startIndex toStream: aStream [
+{ #category : #private }
+TextConverter >> next: anAmount putByteString: aString startingAt: startIndex toStream: aStream [
 
 	"This is a reasonable default which speeds up conversion of encodings which have a partial match with latin1 encoding (for instance ascii supersets)"
 	| lastIndex nextIndex |
@@ -235,31 +186,22 @@ TextConverter>>next: anAmount putByteString: aString startingAt: startIndex toSt
 	aStream basicNext: anAmount - lastIndex + startIndex putAll: aString startingAt: lastIndex.
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter>>nextFromStream: aStream [
+{ #category : #conversion }
+TextConverter >> nextFromStream: aStream [
 
 	self subclassResponsibility.
 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter>>nextPut: aCharacter toStream: aStream [
+{ #category : #conversion }
+TextConverter >> nextPut: aCharacter toStream: aStream [
 
 	self subclassResponsibility.
 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter>>nextPutAll: aString toStream: aStream [
+{ #category : #conversion }
+TextConverter >> nextPutAll: aString toStream: aStream [
 	"Handle fast conversion if ByteString"
 	
 	| lastIndex nextIndex |
@@ -275,11 +217,8 @@ TextConverter>>nextPutAll: aString toStream: aStream [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter>>nextPutByteString: aString toStream: aStream [
+{ #category : #private }
+TextConverter >> nextPutByteString: aString toStream: aStream [
 
 	"This is a reasonable default which speeds up conversion of encodings which have a partial match with latin1 encoding (for instance ascii supersets)"
 	| lastIndex nextIndex |
@@ -292,21 +231,15 @@ TextConverter>>nextPutByteString: aString toStream: aStream [
 	aStream basicNext: aString size-lastIndex+1 putAll: aString startingAt: lastIndex.
 ]
 
-{
-	#category : #friend,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter>>restoreStateOf: aStream with: aConverterState [
+{ #category : #friend }
+TextConverter >> restoreStateOf: aStream with: aConverterState [
 
 	aStream position: aConverterState.
 
 ]
 
-{
-	#category : #friend,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-TextConverter>>saveStateOf: aStream [
+{ #category : #friend }
+TextConverter >> saveStateOf: aStream [
 
 	^ aStream position.
 

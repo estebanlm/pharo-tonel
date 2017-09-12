@@ -37,116 +37,79 @@ Class {
 	#instVars : [
 		'table'
 	],
-	#category : #Morphic-Widgets-FastTable-Functions,
-	#timestamp : 'CyrilFerlicot 10/27/2015 13:51'
+	#category : #Morphic-Widgets-FastTable-Functions
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunction class>>isAbstract [
+{ #category : #testing }
+FTFunction class >> isAbstract [
 	^ self = FTFunction
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunction class>>new [
+{ #category : #'instance creation' }
+FTFunction class >> new [
 	self error: 'Use #table:'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunction class>>table: aFastTableMorph [
+{ #category : #'instance creation' }
+FTFunction class >> table: aFastTableMorph [
 	^ self basicNew
 		initializeTable: aFastTableMorph;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunction>>beExplicite [
+{ #category : #accessing }
+FTFunction >> beExplicite [
 	"This method is call by the FastTable if the user want the widget to be explicit. Describe what to do to be explicit."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunction>>disable [
+{ #category : #protocol }
+FTFunction >> disable [
 	"I am call when a FastTable disable a function."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunction>>initializeTable: aTable [
+{ #category : #initialization }
+FTFunction >> initializeTable: aTable [
 	table := aTable.
 	self initialize
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunction>>isExplicite [
+{ #category : #testing }
+FTFunction >> isExplicite [
 	"See FTFunctionWithField to get an example."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunction>>keyStroke: anEvent [
+{ #category : #'event handling' }
+FTFunction >> keyStroke: anEvent [
 	"If the widget is implicit this method will be call if the user want to communicate with the widget."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunction>>reset [
+{ #category : #accessing }
+FTFunction >> reset [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunction>>resizeContainerFrom: topLefPoint to: bottomRightPoint [
+{ #category : #private }
+FTFunction >> resizeContainerFrom: topLefPoint [ to: bottomRightPoint
 	"I takes takes the bounds of the container of the Fast Table. I return a rectangle that is the bounds of the container."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunction>>resizeWidget [
+{ #category : #private }
+FTFunction >> resizeWidget [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunction>>showWidget [
+{ #category : #accessing }
+FTFunction >> showWidget [
 	"A FastTable can have a special function. Most of these functions are hidden by default. This method make them explicit. 
 	For exemple a FastTable can have a search field. By default the user need to type to show it. With this method the widget should be alwayse visible.
 	My subclasses should describe what to do to be explicit."
@@ -154,10 +117,7 @@ FTFunction>>showWidget [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunction>>table [
+{ #category : #accessing }
+FTFunction >> table [
 	^ table
 ]

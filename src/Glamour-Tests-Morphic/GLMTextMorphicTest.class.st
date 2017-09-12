@@ -1,35 +1,22 @@
-"
-
-"
 Class {
 	#name : #GLMTextMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTextMorphicTest>>expectedFailures [
+{ #category : #tests }
+GLMTextMorphicTest >> expectedFailures [
 	^ #(testUpdatingTextPortUpdatesTheMorph)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTextMorphicTest>>simulateOnlyOneClickOn: aMorph [
+{ #category : #private }
+GLMTextMorphicTest >> simulateOnlyOneClickOn: aMorph [
 	(Delay forMilliseconds: HandMorph doubleClickTime + 1) wait.
 	aMorph simulateClick
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTextMorphicTest>>testExplicitAcceptDoesNotAffectTextPort [
+{ #category : #tests }
+GLMTextMorphicTest >> testExplicitAcceptDoesNotAffectTextPort [
 	| composite textMorph |
 	composite := GLMCompositePresentation new with: [ :a | a text display: '123' ].
 	window := composite openOn: 4.
@@ -48,11 +35,8 @@ GLMTextMorphicTest>>testExplicitAcceptDoesNotAffectTextPort [
 	self assert: (composite pane port: #text) value = '123456'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTextMorphicTest>>testMultipleSelectionWithChange [
+{ #category : #tests }
+GLMTextMorphicTest >> testMultipleSelectionWithChange [
 	| composite textMorph textPresentation |
 	composite := GLMCompositePresentation new with: [ :a | a text display: '123456789' ].
 	window := composite openOn: 4.
@@ -64,11 +48,8 @@ GLMTextMorphicTest>>testMultipleSelectionWithChange [
 	self assert: textPresentation selectedText asString equals: '2345'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTextMorphicTest>>testPastingUpdatesTextPort [
+{ #category : #tests }
+GLMTextMorphicTest >> testPastingUpdatesTextPort [
 	| composite textMorph |
 	composite := GLMCompositePresentation new with: [ :a | a text display: '' ].
 	window := composite openOn: 42.
@@ -78,11 +59,8 @@ GLMTextMorphicTest>>testPastingUpdatesTextPort [
 	self assert: (composite pane port: #text) value = '42'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTextMorphicTest>>testResettingTheSelection [
+{ #category : #tests }
+GLMTextMorphicTest >> testResettingTheSelection [
 	| composite textMorph textPresentation |
 	composite := GLMCompositePresentation new with: [ :a | a text display: '123456789' ].
 	window := composite openOn: 4.
@@ -91,22 +69,16 @@ GLMTextMorphicTest>>testResettingTheSelection [
 	self shouldnt: [textPresentation selectionInterval: nil] raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTextMorphicTest>>testTextPortPopulatedByDefault [
+{ #category : #tests }
+GLMTextMorphicTest >> testTextPortPopulatedByDefault [
 	| composite |
 	composite := GLMCompositePresentation new with: [:a | a text ].
 	window := composite openOn: '42'.
 	self assert: (composite pane port: #text) value asString equals: '42'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTextMorphicTest>>testUnregisterFromAnnouncementsWhenUpdating [
+{ #category : #tests }
+GLMTextMorphicTest >> testUnregisterFromAnnouncementsWhenUpdating [
 	| composite announcingCollection numberOfExecutions |
 	numberOfExecutions := 0.
 	announcingCollection := GLMAnnouncingCollection new.
@@ -119,11 +91,8 @@ GLMTextMorphicTest>>testUnregisterFromAnnouncementsWhenUpdating [
 	self assert: numberOfExecutions equals: 4	"it should not be 8"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMTextMorphicTest>>testUpdatingTextPortUpdatesTheMorph [
+{ #category : #tests }
+GLMTextMorphicTest >> testUpdatingTextPortUpdatesTheMorph [
 	| composite textMorph |
 	composite := GLMCompositePresentation new with: [:a | a text ].
 	window := composite openOn: 'fourtytwo'.

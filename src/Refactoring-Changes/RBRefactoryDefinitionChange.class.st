@@ -13,23 +13,16 @@ Class {
 		'definition',
 		'definedClass'
 	],
-	#category : #Refactoring-Changes,
-	#timestamp : 'NicolaiHess 9/9/2016 20:32'
+	#category : #Refactoring-Changes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryDefinitionChange class>>definition: aString [
+{ #category : #'instance creation' }
+RBRefactoryDefinitionChange class >> definition: aString [
 	^ self definition: aString for: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryDefinitionChange class>>definition: aString for: aController [
+{ #category : #'instance creation' }
+RBRefactoryDefinitionChange class >> definition: aString for: aController [
 	| parseTree context |
 	parseTree := RBParser
 		parseExpression: aString
@@ -42,11 +35,8 @@ RBRefactoryDefinitionChange class>>definition: aString for: aController [
 	^ self error: 'Invalid definition string'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryDefinitionChange class>>definition: aString for: aController context: aDictionary [
+{ #category : #private }
+RBRefactoryDefinitionChange class >> definition: aString for: aController context: aDictionary [
 	| dictionary |
 	dictionary := SmallDictionary new.
 	aDictionary keysAndValuesDo: [ :key :node |
@@ -62,94 +52,61 @@ RBRefactoryDefinitionChange class>>definition: aString for: aController context:
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryDefinitionChange class>>definitionPatterns [
+{ #category : #private }
+RBRefactoryDefinitionChange class >> definitionPatterns [
 	self subclassResponsibility
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryDefinitionChange>>= aDefinitionChange [
+{ #category : #comparing }
+RBRefactoryDefinitionChange >> = aDefinitionChange [
 	^ self class = aDefinitionChange class
 		and: [ self definition = aDefinitionChange definition ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryDefinitionChange>>changeString [
+{ #category : #printing }
+RBRefactoryDefinitionChange >> changeString [
 	^ 'Define ' , self displayClassName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryDefinitionChange>>controller [
+{ #category : #accessing }
+RBRefactoryDefinitionChange >> controller [
 	^ controller
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryDefinitionChange>>definedClass [
+{ #category : #accessing }
+RBRefactoryDefinitionChange >> definedClass [
 	^ definedClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryDefinitionChange>>definition [
+{ #category : #accessing }
+RBRefactoryDefinitionChange >> definition [
 	^ definition
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryDefinitionChange>>definition: aString controller: aController [
+{ #category : #initialization }
+RBRefactoryDefinitionChange >> definition: aString controller: aController [
 	isMeta := false.
 	definition := aString.
 	controller := aController
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryDefinitionChange>>definitionClass [
+{ #category : #private }
+RBRefactoryDefinitionChange >> definitionClass [
 	self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryDefinitionChange>>fillOutDefinition: aDictionary [
+{ #category : #initialization }
+RBRefactoryDefinitionChange >> fillOutDefinition: aDictionary [
 	self subclassResponsibility
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryDefinitionChange>>hash [
+{ #category : #comparing }
+RBRefactoryDefinitionChange >> hash [
 	^ definition hash
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryDefinitionChange>>namesIn: aString [
+{ #category : #private }
+RBRefactoryDefinitionChange >> namesIn: aString [
 	| names scanner token |
 	names := OrderedCollection new.
 	scanner := RBScanner
@@ -162,11 +119,8 @@ RBRefactoryDefinitionChange>>namesIn: aString [
 	^ names asArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryDefinitionChange>>primitiveExecute [
+{ #category : #private }
+RBRefactoryDefinitionChange >> primitiveExecute [
 	definedClass := self definitionClass compiler
 		source: self definition;
 		requestor: self controller;
@@ -174,11 +128,8 @@ RBRefactoryDefinitionChange>>primitiveExecute [
 		evaluate
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRefactoryDefinitionChange>>printOn: aStream  [
+{ #category : #printing }
+RBRefactoryDefinitionChange >> printOn: aStream [ 
 	aStream
 		nextPutAll: definition;
 		nextPut: $!

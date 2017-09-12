@@ -1,20 +1,12 @@
-Extension {
-	#name : #FormCanvas
-}
+Extension { #name : #FormCanvas }
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FormCanvas>>asBalloonCanvas [
+{ #category : #'*Morphic-Base' }
+FormCanvas >> asBalloonCanvas [
 	^(BalloonCanvas on: form) setOrigin: origin clipRect: clipRect
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FormCanvas>>drawString: aString from: firstIndex to: lastIndex autoBoundAt: aPoint font: fontOrNil color: c [
+{ #category : #'*Morphic-Base' }
+FormCanvas >> drawString: aString from: firstIndex to: lastIndex autoBoundAt: aPoint font: fontOrNil color: c [
 
 	| font textStyle portRect bounds character width carriageReturn lineWidth lineHeight |
 
@@ -53,11 +45,8 @@ FormCanvas>>drawString: aString from: firstIndex to: lastIndex autoBoundAt: aPoi
 	port clipRect: portRect.
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FormCanvas>>roundCornersOf: aMorph in: bounds during: aBlock [
+{ #category : #'*Morphic-Base' }
+FormCanvas >> roundCornersOf: aMorph in: bounds during: aBlock [
 	aMorph wantsRoundedCorners ifFalse:[^aBlock value].
 	(self seesNothingOutside: (CornerRounder rectWithinCornersOf: bounds))
 		ifTrue: ["Don't bother with corner logic if the region is inside them"
@@ -68,11 +57,8 @@ FormCanvas>>roundCornersOf: aMorph in: bounds during: aBlock [
 		corners: aMorph roundedCorners
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FormCanvas>>roundShadowCornersOf: aMorph in: bounds during: aBlock [
+{ #category : #'*Morphic-Base' }
+FormCanvas >> roundShadowCornersOf: aMorph in: bounds during: aBlock [
 	aMorph wantsRoundedCorners ifFalse:[^aBlock value].
 	(self seesNothingOutside: (CornerRounder rectWithinCornersOf: bounds))
 		ifTrue: ["Don't bother with corner logic if the region is inside them"

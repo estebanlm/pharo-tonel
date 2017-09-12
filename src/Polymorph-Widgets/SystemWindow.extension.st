@@ -1,12 +1,7 @@
-Extension {
-	#name : #SystemWindow
-}
+Extension { #name : #SystemWindow }
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>aboutText [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> aboutText [
 	"Answer the text to use for the About dialog."
 
 	^self model
@@ -16,11 +11,8 @@ SystemWindow>>aboutText [
 					ifNotEmpty: [:comment | comment]]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>aboutTitle [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> aboutTitle [
 	"Answer the title to use for the About dialog."
 
 	|title|
@@ -32,41 +24,29 @@ SystemWindow>>aboutTitle [
 	^'About {1}' translated format: {title}
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>activeFillStyle [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> activeFillStyle [
 	"Return the active fillStyle for the receiver."
 	
 	^self theme windowActiveFillStyleFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>activeLabelFillStyle [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> activeLabelFillStyle [
 	"Return the active label fillStyle for the receiver."
 	
 	^self theme windowActiveLabelFillStyleFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>activeTitleFillStyle [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> activeTitleFillStyle [
 	"Return the active title fillStyle for the receiver."
 	
 	^self theme windowActiveTitleFillStyleFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addCollapseBox [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> addCollapseBox [
 	"If I have a labelArea, add a collapse box to it."
 	
 	labelArea
@@ -76,11 +56,8 @@ SystemWindow>>addCollapseBox [
 	labelArea addMorphBack: collapseBox
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addCornerGrips [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> addCornerGrips [
 	"Should add these to the front!"
 	
 	|tl tr lh|
@@ -96,11 +73,8 @@ SystemWindow>>addCornerGrips [
 		addMorph: (BottomRightGripMorph new target: self;position: self position)
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addEdgeGrips [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> addEdgeGrips [
 	"Should add these to the front!"
 	
 	|t l r lh|
@@ -120,11 +94,8 @@ SystemWindow>>addEdgeGrips [
 		addMorph: (WindowEdgeGripMorph new target: self;position: self position; edgeName: #bottom)
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addExpandBox [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> addExpandBox [
 	"If I have a labelArea, add a close box to it"
 	labelArea
 		ifNil: [^ self].
@@ -134,11 +105,8 @@ SystemWindow>>addExpandBox [
 	labelArea addMorphBack: expandBox
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addGrips [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> addGrips [
 	"Add the edge and corner grips."
 	
 	self
@@ -146,21 +114,15 @@ SystemWindow>>addGrips [
 		addEdgeGrips
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addGripsIfWanted [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> addGripsIfWanted [
 	"Add the edge and corner grips if the window wants them."
 	
 	self wantsGrips ifTrue: [self addGrips]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addMenuControl [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> addMenuControl [
 	"If I have a label area, add a menu control to it."
 
 	labelArea ifNil: [^ self]. "No menu if no label area"
@@ -169,11 +131,8 @@ SystemWindow>>addMenuControl [
 	labelArea addMorphBack: (menuBox := self createMenuBox)
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addMorph: aMorph fullFrame: aLayoutFrame [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> addMorph: aMorph fullFrame: aLayoutFrame [
 	"Add a morph to the receiver with the given layout frame."
 	
 	| left right bottom top windowBorderWidth frame |
@@ -210,11 +169,8 @@ SystemWindow>>addMorph: aMorph fullFrame: aLayoutFrame [
 	self owner ifNotNil: [self addPaneSplitters] "do when opened for performance"
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addPaneHSplitterBetween: topMorphs and: bottomMorphs [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> addPaneHSplitterBetween: topMorphs and: bottomMorphs [
 	"Add a horizontal splitter for the given morphs that share a common bottom fraction.
 	If there is a horizontal discontinuity apply the splitter to the first contiguous group.
 	Answer the morphs to which the splitter was applied."
@@ -261,11 +217,8 @@ SystemWindow>>addPaneHSplitterBetween: topMorphs and: bottomMorphs [
 	^topGroup
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addPaneHSplitters [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> addPaneHSplitters [
 	"Add the horizontal pane splitters."
 
 	|remaining targetBottom sameBottom sameTop|
@@ -282,11 +235,8 @@ SystemWindow>>addPaneHSplitters [
 			copyWithoutAll: (self addPaneHSplitterBetween: sameBottom and: sameTop)]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addPaneSplitters [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> addPaneSplitters [
 	"Add the vertical and horizontal pane splitters."
 	
 	self removePaneSplitters.
@@ -295,11 +245,8 @@ SystemWindow>>addPaneSplitters [
 	self linkSplittersToSplitters
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addPaneVSplitterBetween: leftMorphs and: rightMorphs [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> addPaneVSplitterBetween: leftMorphs and: rightMorphs [
 	"Add a vertical splitter for the given morphs that share a common right fraction.
 	If there is a vertical discontinuity apply the splitter to the first contiguous group.
 	Answer the morphs to which the splitter was applied."
@@ -343,11 +290,8 @@ SystemWindow>>addPaneVSplitterBetween: leftMorphs and: rightMorphs [
 	^leftGroup
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addPaneVSplitters [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> addPaneVSplitters [
 	"Add the vertical pane splitters."
 
 	|remaining targetRight sameRight sameLeft |
@@ -365,22 +309,16 @@ SystemWindow>>addPaneVSplitters [
 			copyWithoutAll: (self addPaneVSplitterBetween: sameRight and: sameLeft)]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>allowedToClose [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> allowedToClose [
 	"Answer whether the window is currently allowed to close."
 
 	^self mustNotClose not and: [
 		self modalChild isNil]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>animateClose [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> animateClose [
 	"Animate closing."
 	
 	| smallRect restoredRect rects steps|
@@ -395,11 +333,8 @@ SystemWindow>>animateClose [
 	self fastAnimateRectangles: rects
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>animateMaximize [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> animateMaximize [
 	"Animate maximizing from restored."
 	
 	|expandedRect restoredRect rects steps|
@@ -411,11 +346,8 @@ SystemWindow>>animateMaximize [
 	self fastAnimateRectangles: rects
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>animateMinimize [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> animateMinimize [
 	"Animate minimizing."
 	
 	|tb buttonRect restoredRect rects steps|
@@ -432,11 +364,8 @@ SystemWindow>>animateMinimize [
 	self fastAnimateRectangles: rects
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>animateRestore [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> animateRestore [
 	"Animate restoring from maximised."
 	
 	|expandedRect restoredRect rects steps|
@@ -448,11 +377,8 @@ SystemWindow>>animateRestore [
 	self fastAnimateRectangles: rects
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>animateRestoreFromMinimized [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> animateRestoreFromMinimized [
 	"Animate restoring from minimised."
 	
 	|tb buttonRect restoredRect rects steps|
@@ -469,31 +395,22 @@ SystemWindow>>animateRestoreFromMinimized [
 	self fastAnimateRectangles: rects
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>basicIsSticky [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> basicIsSticky [
 	"Answer the super isSticky."
 
 	^super isSticky
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>basicLabel [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> basicLabel [
 	"Answer the actual label morph."
 
 	^label
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>beWithGrips [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> beWithGrips [
 	"Add the grips and set a property to
 	indicate that grips are wanted."
 
@@ -502,11 +419,8 @@ SystemWindow>>beWithGrips [
 		self addGripsIfWanted]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>beWithoutGrips [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> beWithoutGrips [
 	"Remove the grips and set a property to
 	indicate that grips are not wanted."
 
@@ -514,11 +428,8 @@ SystemWindow>>beWithoutGrips [
 	self removeGrips
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>bringBehind: aMorph [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> bringBehind: aMorph [
 	"Make the receiver be directly behind the given morph.
 	Take into account any modal owner and propagate."
 
@@ -529,20 +440,14 @@ SystemWindow>>bringBehind: aMorph [
 	self modalOwner ifNotNil: [:mo | mo bringBehind: self]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>buildWindowMenu [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> buildWindowMenu [
   
 	^ self menuBuilder menu.
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>closeBoxHit [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> closeBoxHit [
 	"The user clicked on the close-box control in the window title.
 	For Mac users only, the Mac convention of option-click-on-close-box is obeyed if the mac option key is down.
 	If we have a modal child then don't delete.
@@ -554,11 +459,8 @@ SystemWindow>>closeBoxHit [
 
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>collapseBoxHit [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> collapseBoxHit [
 	"The user has clicked on the collapse box.
 	Collapse or expand the receiver as appropriate."
 	
@@ -568,11 +470,8 @@ SystemWindow>>collapseBoxHit [
 	self collapseOrExpand
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>configureForEmbedding [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> configureForEmbedding [
 	"Set up the window so it can be embedded into another morph."
 
 	labelArea owner notNil ifTrue: [
@@ -584,11 +483,8 @@ SystemWindow>>configureForEmbedding [
 		self submorphsDo: [:m | m unlock]]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>configureForUnembedding [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> configureForUnembedding [
 	"Set up the window so it can be unembedded and placed in the world."
 
 	labelArea owner isNil ifTrue: [
@@ -599,60 +495,42 @@ SystemWindow>>configureForUnembedding [
 			addGrips]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>createCloseBox [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> createCloseBox [
 	"Answer a button for closing the window."
 	
 	^self theme createCloseBoxFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>createCollapseBox [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> createCollapseBox [
 	"Answer a button for minimising the window."
 	
 	^self theme createCollapseBoxFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>createExpandBox [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> createExpandBox [
 	"Answer a button for maximising/restoring the window."
 	
 	^self theme createExpandBoxFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>createMenuBox [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> createMenuBox [
 	"Answer a button for the window menu."
 	
 	^self theme createMenuBoxFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>defaultBackgroundColor [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> defaultBackgroundColor [
 	"Answer the color to be used as the base window color."
 	^self theme windowColorFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>doubleClick: event [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> doubleClick: event [
 	"Handle a double click. Maximize/restore the window.
 	Works in title bar area."
 
@@ -662,22 +540,16 @@ SystemWindow>>doubleClick: event [
 		ifTrue: [self expandBoxHit]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>doubleClickTimeout: event [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> doubleClickTimeout: event [
 	"Forget the #inactiveDoubleClick property.
 	The property is set if an inactive window was double-clicked."
 	
  	self removeProperty: #inactiveDoubleClick
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>drawDropShadowOn: aCanvas [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> drawDropShadowOn: aCanvas [
 	"Get the theme to draw the drop shawdow for the receiver."
 	
 	|dropAreas|
@@ -693,11 +565,8 @@ SystemWindow>>drawDropShadowOn: aCanvas [
 					on: aCanvas]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>expandBoxHit [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> expandBoxHit [
 	"The fullscreen expand box has been hit"
 
 	self isCollapsed
@@ -724,11 +593,8 @@ SystemWindow>>expandBoxHit [
 	self setExpandBoxBalloonText
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>fastAnimateRectangles: rects [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> fastAnimateRectangles: rects [
 	"Animate the given rectangles using the fast method."
 	
 	|delay col merged|
@@ -748,11 +614,8 @@ SystemWindow>>fastAnimateRectangles: rects [
 	World invalidRect: merged from: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>fillStyleToUse [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> fillStyleToUse [
 	"Answer the basic fill style for the receiver."
 
 	^self isActive 
@@ -760,22 +623,16 @@ SystemWindow>>fillStyleToUse [
 		ifFalse: [self inactiveFillStyle]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>fullscreen [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> fullscreen [
 	"Zoom Window to Full World size with possible DeskMargins"
 	"SystemWindow fullscreen"
 
 	self bounds: self fullscreenBounds
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>getRawLabel [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> getRawLabel [
 	"Answer a shallowCopy of the label with the contents fitted."
 	
 	|contentsFit|
@@ -784,21 +641,15 @@ SystemWindow>>getRawLabel [
 	^contentsFit
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>handlesDropShadowInHand [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> handlesDropShadowInHand [
 	"Answer whether the receiver will handle drop shadow drawing when picked up in the hand."
 
 	^self theme handlesWindowDropShadowInHandFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>handlesKeyboard: evt [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> handlesKeyboard: evt [
 	"Return true if the receiver wishes to handle the given keyboard event"
 
 	(super handlesKeyboard: evt) ifTrue: [^true].
@@ -810,81 +661,57 @@ SystemWindow>>handlesKeyboard: evt [
 		evt keyCharacter = Character tab ]]]]]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>hasCloseBox [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> hasCloseBox [
 	"Answer whether the receiver currently has a close box."
 
 	^closeBox notNil
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>hasCollapseBox [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> hasCollapseBox [
 	"Answer whether the receiver currently has a collapse box."
 
 	^collapseBox notNil
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>hasExpandBox [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> hasExpandBox [
 	"Answer whether the receiver currently has an expand box."
 
 	^expandBox notNil
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>hasMenuBox [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> hasMenuBox [
 	"Answer whether the receiver currently has a menu box."
 
 	^menuBox notNil
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>inactiveFillStyle [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> inactiveFillStyle [
 	"Return the active fillStyle for the receiver."
 	
 	^self theme windowInactiveFillStyleFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>inactiveLabelFillStyle [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> inactiveLabelFillStyle [
 	"Return the inactive label fillStyle for the receiver."
 	
 	^self theme windowInactiveLabelFillStyleFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>inactiveTitleFillStyle [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> inactiveTitleFillStyle [
 	"Return the inactive title fillStyle for the receiver."
 	
 	^self theme windowInactiveTitleFillStyleFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>indicateModalChild [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> indicateModalChild [
 	"Make the user aware that this is the topmost modal child
 	by flashing."
 
@@ -894,11 +721,8 @@ SystemWindow>>indicateModalChild [
 		ifFalse: [self flash]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>initializeLabelArea [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> initializeLabelArea [
 	"Initialize the label area (titlebar) for the window."
 	
 	label := self theme windowLabelFor: self.
@@ -919,92 +743,65 @@ SystemWindow>>initializeLabelArea [
 	labelArea fillStyle: self activeTitleFillStyle.
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>isActive [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> isActive [
 	"Answer active if no owner too to avoid color flickering."
 	
 	^self isWindowActive: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>isEmbedded [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> isEmbedded [
 	"Answer whether the receiver is embedded, i.e.
 	has an owner that is not the world or the hand."
 
 	^self owner isNotNil and: [self owner ~= self world and: [self owner ~= self activeHand]]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>isMaximized [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> isMaximized [
 	"Answer whether we are maximised."
 
 	^self unexpandedFrame notNil
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>isMinimized [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> isMinimized [
 	"Answer whether we are minimised."
 
 	^self isCollapsed
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>isNotMaximized [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> isNotMaximized [
 	"Answer whether we are not maximised."
 
 	^self unexpandedFrame isNil
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>isNotMinimized [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> isNotMinimized [
 	"Answer whether we are not minimised."
 
 	^self isCollapsed not
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>isNotRestored [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> isNotRestored [
 	"Answer whether we are maximised or minimised."
 
 	^self isMinimized or: [self isMaximized]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>isRestored [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> isRestored [
 	"Answer whether we are neither expanded or collapsed."
 
 	^(self isMinimized or: [self isMaximized]) not
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>justDroppedInto: aMorph event: anEvent [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> justDroppedInto: aMorph event: anEvent [
 	"Release the mouse focus as well."
 	
 	isCollapsed
@@ -1022,32 +819,23 @@ SystemWindow>>justDroppedInto: aMorph event: anEvent [
 	^super justDroppedInto: aMorph event: anEvent
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>keyStroke: evt [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> keyStroke: evt [
 	"Check for close window."
 	super keyStroke: evt.
 	(self navigationKey: evt) ifTrue: [^true].
 	^false
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>labelArea [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> labelArea [
 	"Answer the label area."
 
 	^labelArea
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>labelHeight [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> labelHeight [
 	"Answer the height for the window label.  The standard behavior is at bottom; a hook is provided so that models can stipulate other heights, in support of various less-window-looking demos.
 	If no label answer the class border width instead."
 
@@ -1060,11 +848,8 @@ SystemWindow>>labelHeight [
 		(collapseBox ifNotNil: [collapseBox height] ifNil: [10])
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>labelString [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> labelString [
 	"Answer the actual label string."
 
 	^label isNil
@@ -1072,11 +857,8 @@ SystemWindow>>labelString [
 		ifFalse: [label contents asString]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>layoutChanged [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> layoutChanged [
 	"No need to propagate to the world.
 	Fixed to always flush layout cache."
 
@@ -1086,11 +868,8 @@ SystemWindow>>layoutChanged [
 	self layoutPolicy ifNotNil: [:layout | layout flushLayoutCache]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>linkSplittersToSplitters [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> linkSplittersToSplitters [
 	"The pane morphs are already linked. Cross link the splitters as appropriate."
 	
 	self splitters do: [:each |
@@ -1109,22 +888,16 @@ SystemWindow>>linkSplittersToSplitters [
 							ifTrue: [each addRightOrBottom: eachMorph]]]]]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>lockInactivePortions [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> lockInactivePortions [
 	"Make me unable to respond to mouse and keyboard.  Control boxes remain active."
 
 	self isEmbedded ifTrue: [^self].
 	self submorphsDo: [:m | m == labelArea ifFalse: [m lock]]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>makeBordered [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> makeBordered [
 	"Add the border and border width offsets."
 
 	|b|
@@ -1139,11 +912,8 @@ SystemWindow>>makeBordered [
 	self theme configureWindowBorderFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>makeBorderless [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> makeBorderless [
 	"Remove the border and border width offsets.."
 
 	|b|
@@ -1157,11 +927,8 @@ SystemWindow>>makeBorderless [
 	self borderWidth: 0
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>makeClosable [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> makeClosable [
 	"Reinstate the close box. Go via theme to maintain box order."
 	
 	mustNotClose := false.
@@ -1170,52 +937,37 @@ SystemWindow>>makeClosable [
 				self replaceBoxes]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>maximize [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> maximize [
 	"Maximise the receiver. If collapsed the uncollapse first."
 
 	self isMinimized ifTrue: [self collapseOrExpand].
 	self isMaximized ifFalse: [self expandBoxHit]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>menuBox [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> menuBox [
 	"Answer the receiver's menu box."
 
 	^menuBox
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>minimize [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> minimize [
 	"Minimise the receiver."
 
 	self isMinimized ifFalse: [self collapseBoxHit]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>modalChild [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> modalChild [
 	"Answer the modal child of the receiver, if any."
 
 	^self valueOfProperty: #modalChild
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>modalLockTo: aSystemWindow [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> modalLockTo: aSystemWindow [
 	"Lock the receiver as a modal owner of the given window."
 
 	aSystemWindow
@@ -1229,21 +981,15 @@ SystemWindow>>modalLockTo: aSystemWindow [
 
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>modalOwner [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> modalOwner [
 	"Answer the modal owner of the receiver, if any."
 
 	^self valueOfProperty: #modalOwner
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>modalUnlockFrom: aSystemWindow [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> modalUnlockFrom: aSystemWindow [
 	"Unlock the receiver as a modal owner of the given window."
 
 	aSystemWindow removeProperty: #modalOwner.
@@ -1253,11 +999,8 @@ SystemWindow>>modalUnlockFrom: aSystemWindow [
 	self activate
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>model: anObject [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> model: anObject [
 	"Set the model."
 	
 	super model: anObject.
@@ -1277,11 +1020,8 @@ SystemWindow>>model: anObject [
 			height: self boxExtent y]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>navigateFocusForward [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> navigateFocusForward [
 	"Change the keyboard focus to the next morph or the receiver
 	in none are interested."
 
@@ -1291,11 +1031,8 @@ SystemWindow>>navigateFocusForward [
 	
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>navigationKey: event [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> navigationKey: event [
 	"Check for tab key activity and change focus as appropriate.
 	Check for menu key to do popup.
 	Check for active window naviagation."
@@ -1308,11 +1045,8 @@ SystemWindow>>navigationKey: event [
 	^false
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>nextMorphAcrossInWindow [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> nextMorphAcrossInWindow [
 	"Answer the next morph in the window. Traverse
 	from the receiver to its next sibling or owner's next sibling etc.
 	Make sure we behave like a normal Morph, if we aren't a toplevel window ( or not visible) "
@@ -1322,11 +1056,8 @@ SystemWindow>>nextMorphAcrossInWindow [
 		ifFalse: [ super nextMorphAcrossInWindow ]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>nextMorphInWindow [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> nextMorphInWindow [
 	"Answer the next morph in the window. Traverse
 	from the receiver to its first pane."
 
@@ -1334,11 +1065,8 @@ SystemWindow>>nextMorphInWindow [
 		ifTrue: [self submorphs first]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>openModal: aSystemWindow [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> openModal: aSystemWindow [
 	"Open the given window locking the receiver until it is dismissed.
 	Set the pane color to match the receiver.
 	Answer the system window."
@@ -1349,42 +1077,30 @@ SystemWindow>>openModal: aSystemWindow [
 	^super openModal: aSystemWindow
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>paneColor [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> paneColor [
 
 	"Answer the basic pane color that should be used."
 	
 	^self theme paneColorFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>paneColorOrNil [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> paneColorOrNil [
 	"Answer the window's pane color or nil otherwise."
 
 	^self paneColor
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>paneColorTracksModel [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> paneColorTracksModel [
 	"Answer true if the colour of the window should be taken from the model."
 	
 	^true
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>passivate [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> passivate [
 	"Make me unable to respond to mouse and keyboard"
 
 	super passivate.
@@ -1396,11 +1112,8 @@ SystemWindow>>passivate [
 		[self adjustBorderUponDeactivationWhenLabeless]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>passivateTopWindow [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow class >> passivateTopWindow [
 	"Make no window the top window."
 
 	TopWindow ifNotNil: [ :window | 
@@ -1410,81 +1123,57 @@ SystemWindow class>>passivateTopWindow [
 
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>playCloseSound [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> playCloseSound [
 	"Play the themed sound for closing."
 	
 	self theme windowCloseSound play
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>playMaximizeSound [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> playMaximizeSound [
 	"Play the themed sound for maximizing."
 	
 	self theme windowMaximizeSound play
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>playMinimizeSound [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> playMinimizeSound [
 	"Play the themed sound for maximizing."
 	
 	self theme windowMinimizeSound play
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>playOpenSound [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> playOpenSound [
 	"Play the themed sound for opening."
 	
 	self theme windowOpenSound play
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>playRestoreDownSound [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> playRestoreDownSound [
 	"Play the themed sound for restoring from maximized."
 	
 	self theme windowRestoreDownSound play
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>playRestoreUpSound [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> playRestoreUpSound [
 	"Play the themed sound for restoring from minimized."
 	
 	self theme windowRestoreUpSound play
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>preferredCornerStyle [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> preferredCornerStyle [
 	"Answer the preferred corner style."
 
 	^self theme windowPreferredCornerStyleFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>previousMorphInWindow [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> previousMorphInWindow [
 	"Answer the previous morph in the window. This will be the
 	last submorph recursively of the first pane morph."
 
@@ -1492,32 +1181,23 @@ SystemWindow>>previousMorphInWindow [
 		ifTrue: [self lastSubmorphRecursive]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>rememberKeyboardFocus: aMorph [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> rememberKeyboardFocus: aMorph [
 	"Record the current keyboard focus for the receiver."
 	
 	(aMorph isNil or: [(aMorph hasOwner: self) not]) ifFalse: [
 		self setProperty: #rememberedFocus toValue: aMorph]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>rememberedKeyboardFocus [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> rememberedKeyboardFocus [
 	"Answer the remembered keyboard focus for the receiver."
 	
 	^self valueOfProperty: #rememberedFocus
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>removeBoxes [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> removeBoxes [
 	"Remove all label area boxes."
 
 	closeBox ifNotNil: [closeBox delete. closeBox := nil].
@@ -1526,31 +1206,22 @@ SystemWindow>>removeBoxes [
 	collapseBox ifNotNil: [collapseBox delete. collapseBox := nil]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>removeCloseBox [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> removeCloseBox [
 	"Remove the close box."
 
 	closeBox ifNotNil: [closeBox delete. closeBox := nil]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>removeCollapseBox [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> removeCollapseBox [
 	"Remove the collapse box."
 
 	collapseBox ifNotNil: [collapseBox delete. collapseBox := nil]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>removeEdgeGrips [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> removeEdgeGrips [
 	"Remove the window edge grips."
 	
 	|edges|
@@ -1558,21 +1229,15 @@ SystemWindow>>removeEdgeGrips [
 	edges do: [:each | each delete]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>removeExpandBox [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> removeExpandBox [
 	"Remove the expand box."
 
 	expandBox ifNotNil: [expandBox delete. expandBox := nil]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>removeGrips [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> removeGrips [
 	"Remove the edge and corner grips."
 	
 	self
@@ -1580,11 +1245,8 @@ SystemWindow>>removeGrips [
 		removeEdgeGrips
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>removeLabelArea [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> removeLabelArea [
 	"Remove the entire label area."
 
 	self removeGrips.
@@ -1594,11 +1256,8 @@ SystemWindow>>removeLabelArea [
 		self addGripsIfWanted]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>replaceBoxes [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> replaceBoxes [
 	"Rebuild the various boxes."
 	
 	labelArea removeAllMorphs.
@@ -1608,21 +1267,15 @@ SystemWindow>>replaceBoxes [
 	self isActive ifFalse: [labelArea passivate]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>resetCollapsedFrame [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> resetCollapsedFrame [
 	"Reset the collapsed frame."
 
 	collapsedFrame := nil
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>resetForms [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow class >> resetForms [
 	"Set the box forms to nil so that they will be taken from the current theme.
 	Don't touch the expand or menu ones, delegated to theme anyway."
 
@@ -1630,11 +1283,8 @@ SystemWindow class>>resetForms [
 	CollapseBoxImage := nil
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>restore [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> restore [
 	"Restore the receiver's normal size."
 
 	self isMinimized
@@ -1642,11 +1292,8 @@ SystemWindow>>restore [
 		ifFalse: [self isMaximized ifTrue: [self expandBoxHit]]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>restoreAndActivate [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> restoreAndActivate [
 	"Restore the window if minimised then activate."
 
 	self isMinimized
@@ -1655,11 +1302,8 @@ SystemWindow>>restoreAndActivate [
 		ifFalse: [self activate]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>setExpandBoxBalloonText [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> setExpandBoxBalloonText [
 	"Set the expand box balloon help text as appropriate."
 
 	expandBox ifNil: [^self].
@@ -1668,21 +1312,15 @@ SystemWindow>>setExpandBoxBalloonText [
 		ifNotNil: [expandBox setBalloonText: 'Contract to original size' translated]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>setFramesForLabelArea [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> setFramesForLabelArea [
 	"Set the layout for the label area."
 	
 	self theme configureWindowLabelAreaFrameFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>setLabelWidgetAllowance [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> setLabelWidgetAllowance [
 	"Set the extra space required, in general, apart from the label.
 	Should make theme based (for centered titles), leave enough room
 	for the moment."
@@ -1691,11 +1329,8 @@ SystemWindow>>setLabelWidgetAllowance [
 	"allow for three on one side and centering plus a bit"
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>setStripeColorsFrom: paneColor  [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> setStripeColorsFrom: paneColor [ 
 	"Set the stripe color based on the given paneColor.
 	Removed box color update for Pharo compatability."
 
@@ -1709,11 +1344,8 @@ SystemWindow>>setStripeColorsFrom: paneColor  [
 	self adoptPaneColor: self paneColor
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>setWindowColor: incomingColor [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> setWindowColor: incomingColor [
 	"Removed existing color check - looked useless!"
 	
 	| aColor |
@@ -1726,11 +1358,8 @@ SystemWindow>>setWindowColor: incomingColor [
 	self changed.
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>shadowOffsetRectangle [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> shadowOffsetRectangle [
 	"Answer a rectangle describing the offsets to the
 	receiver's bounds for a drop shadow."
 
@@ -1739,11 +1368,8 @@ SystemWindow>>shadowOffsetRectangle [
 		ifFalse: [self theme windowInactiveDropShadowOffsetRectangleFor: self]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>showAbout [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> showAbout [
 
 	self theme  
 		longMessageIn: self
@@ -1751,11 +1377,8 @@ SystemWindow>>showAbout [
 		title: self aboutTitle
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>theme [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> theme [
 	"Answer the ui theme that provides controls.
 	Don't call super since that implementation may delegate here."
 
@@ -1763,11 +1386,8 @@ SystemWindow>>theme [
 	^self class theme
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>themeChanged [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> themeChanged [
 	"Update the window colour and control boxes."
 
 	self labelArea delete.
@@ -1787,11 +1407,8 @@ SystemWindow>>themeChanged [
 	super themeChanged
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>toggleVisibleAndRaise [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> toggleVisibleAndRaise [
 	"Toggle the visibility of the receiver, bringing to
 	the front if becoming visible. Activate or passivate here."
 
@@ -1800,31 +1417,22 @@ SystemWindow>>toggleVisibleAndRaise [
 	self visible ifTrue: [self activate]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>wantsGrips [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> wantsGrips [
 	"Answer whether the window wants edge and corner grips."
 	
 	^self isResizeable
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>wantsRoundedCorners [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> wantsRoundedCorners [
 	"Answer whether rounded corners are wanted."
 	
 	^(self theme windowPreferredCornerStyleFor: self) == #rounded
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>window [
+{ #category : #'*Polymorph-Widgets' }
+SystemWindow >> window [
 	"Answer the receiver's window."
 
 	^self

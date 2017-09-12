@@ -8,15 +8,11 @@ Class {
 		'resetModel',
 		'currentConfigurationModel'
 	],
-	#category : #Tool-CriticBrowser,
-	#timestamp : '<historical>'
+	#category : #Tool-CriticBrowser
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ResetWindow class>>defaultSpec [
+{ #category : #specs }
+ResetWindow class >> defaultSpec [
 <spec>
 
 	^SpecLayout composed
@@ -27,36 +23,24 @@ ResetWindow class>>defaultSpec [
 			]  height: 25
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ResetWindow class>>title [
+{ #category : #specs }
+ResetWindow class >> title [
 	^ 'Critic Browser' 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ResetWindow>>currentConfigurationModel [
+{ #category : #accessing }
+ResetWindow >> currentConfigurationModel [
 	^ currentConfigurationModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ResetWindow>>initialExtent [
+{ #category : #api }
+ResetWindow >> initialExtent [
 
 	^   450@30
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ResetWindow>>initializeWidgets [
+{ #category : #initialization }
+ResetWindow >> initializeWidgets [
 
 	resetModel := self newButton.
 	currentConfigurationModel := self newButton.
@@ -67,19 +51,13 @@ ResetWindow>>initializeWidgets [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ResetWindow>>resetModel [
+{ #category : #accessing }
+ResetWindow >> resetModel [
 	^ resetModel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ResetWindow>>setCurrentConfigurationModel [
+{ #category : #initialization }
+ResetWindow >> setCurrentConfigurationModel [
 	currentConfigurationModel  
 		state: false;
 		label: 'Uses Current Configuration';
@@ -87,22 +65,16 @@ ResetWindow>>setCurrentConfigurationModel [
 				self delete ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ResetWindow>>setFocusOrder [
+{ #category : #initialization }
+ResetWindow >> setFocusOrder [
 
 	self focusOrder
 		add: resetModel;
 		add: currentConfigurationModel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ResetWindow>>setResetModel [
+{ #category : #initialization }
+ResetWindow >> setResetModel [
 	resetModel 
 		state: false;
 		label: 'Reset Current Configurartion';

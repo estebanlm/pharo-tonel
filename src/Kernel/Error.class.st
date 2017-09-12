@@ -9,25 +9,18 @@ Error>defaultAction uses an explicit test for the presence of the Debugger class
 Class {
 	#name : #Error,
 	#superclass : #Exception,
-	#category : #Kernel-Exceptions,
-	#timestamp : '<historical>'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #exceptiondescription,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Error>>defaultAction [
+{ #category : #exceptiondescription }
+Error >> defaultAction [
 	"No one has handled this error, but now give them a chance to decide how to debug it.  If none handle this either then open debugger (see UnhandedError-defaultAction)"
 
 	UnhandledError signalForException: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Error>>isResumable [
+{ #category : #private }
+Error >> isResumable [
 	"Determine whether an exception is resumable."
 
 	^ false

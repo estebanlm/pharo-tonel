@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #TestValueWithinFix,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Processes,
-	#timestamp : ''
+	#category : #Kernel-Tests-Processes
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TestValueWithinFix>>testValueWithinNonLocalReturnFixReal [
+{ #category : #tests }
+TestValueWithinFix >> testValueWithinNonLocalReturnFixReal [
 	"self run: #testValueWithinNonLocalReturnFixReal"
 	"The real test for the fix is just as obscure as the original problem"
 	| startTime |
@@ -28,11 +21,8 @@ TestValueWithinFix>>testValueWithinNonLocalReturnFixReal [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TestValueWithinFix>>testValueWithinNonLocalReturnFixSimply [
+{ #category : #tests }
+TestValueWithinFix >> testValueWithinNonLocalReturnFixSimply [
 	"self run: #testValueWithinNonLocalReturnFixSimply"
 
 	"The simple version to test the fix"
@@ -41,11 +31,8 @@ TestValueWithinFix>>testValueWithinNonLocalReturnFixSimply [
 	(Delay forMilliseconds: 50) wait
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TestValueWithinFix>>testValueWithinTimingBasic [
+{ #category : #tests }
+TestValueWithinFix >> testValueWithinTimingBasic [
 	"Test timing of valueWithin:onTimeout:"
 	| time |
 	time := [
@@ -55,11 +42,8 @@ TestValueWithinFix>>testValueWithinTimingBasic [
 	self assert: time < 150 milliSeconds.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TestValueWithinFix>>testValueWithinTimingNestedInner [
+{ #category : #tests }
+TestValueWithinFix >> testValueWithinTimingNestedInner [
 	"Test nested timing of valueWithin:onTimeout:"
 	| time |
 	time := [
@@ -72,11 +56,8 @@ TestValueWithinFix>>testValueWithinTimingNestedInner [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TestValueWithinFix>>testValueWithinTimingNestedOuter [
+{ #category : #tests }
+TestValueWithinFix >> testValueWithinTimingNestedOuter [
 	"Test nested timing of valueWithin:onTimeout:"
 	| time |
 	time := [
@@ -91,11 +72,8 @@ TestValueWithinFix>>testValueWithinTimingNestedOuter [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TestValueWithinFix>>testValueWithinTimingRepeat [
+{ #category : #tests }
+TestValueWithinFix >> testValueWithinTimingRepeat [
 	"Test timing of valueWithin:onTimeout:"
 	| time |
 	time := [
@@ -107,11 +85,8 @@ TestValueWithinFix>>testValueWithinTimingRepeat [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TestValueWithinFix>>valueWithinNonLocalReturn [
+{ #category : #tests }
+TestValueWithinFix >> valueWithinNonLocalReturn [
 	"Do a non-local return from a valueWithin: block"
 	[^self] valueWithin: 20 milliSeconds onTimeout:[].
 

@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #SystemOrganizerTest,
 	#superclass : #TestCase,
-	#category : #Tests-System,
-	#timestamp : ''
+	#category : #Tests-System
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemOrganizerTest>>testDefault [
+{ #category : #tests }
+SystemOrganizerTest >> testDefault [
 	
 	self assert: (SystemOrganizer default == self class environment organization).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemOrganizerTest>>testDefaultEnvironment [
+{ #category : #tests }
+SystemOrganizerTest >> testDefaultEnvironment [
 	"self debug: #testDefaultEnvironment"
 	
 	"When no environment is specified, point to the default one"
@@ -29,11 +19,8 @@ SystemOrganizerTest>>testDefaultEnvironment [
 	self assert: (SystemOrganizer new  environment == Smalltalk globals)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemOrganizerTest>>testThatExistingPackagenamesDoesNotContainIllegalCharacters [
+{ #category : #tests }
+SystemOrganizerTest >> testThatExistingPackagenamesDoesNotContainIllegalCharacters [
 	| illegalCharacters | 
 	
 	illegalCharacters := #(  $\ $/ $: $* $? $" $< $> $|  ).

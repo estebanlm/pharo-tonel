@@ -8,25 +8,18 @@ Class {
 	#instVars : [
 		'result'
 	],
-	#category : #Refactoring-Critics,
-	#timestamp : '<historical>'
+	#category : #Refactoring-Critics
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBasicLintRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBBasicLintRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'BasicLintRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBasicLintRule>>filteredResult [
+{ #category : #accessing }
+RBBasicLintRule >> filteredResult [
 	"Be very careful when filtering results not to introduce new items and not to lose the dedicated browser environments. Try the following steps in order:
 	
 	- If this is a selector environment use the set-operations of the refactoring browser.
@@ -62,53 +55,35 @@ RBBasicLintRule>>filteredResult [
 	^ result
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBasicLintRule>>initialize [
+{ #category : #initialization }
+RBBasicLintRule >> initialize [
 	super initialize.
 	self resetResult
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBasicLintRule>>isEmpty [
+{ #category : #testing }
+RBBasicLintRule >> isEmpty [
 	^ self result isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBasicLintRule>>problemCount [
+{ #category : #accessing }
+RBBasicLintRule >> problemCount [
 	^ self result problemCount
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBasicLintRule>>resetResult [
+{ #category : #running }
+RBBasicLintRule >> resetResult [
 	result := self resultClass new.
 	result label: self name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBasicLintRule>>result [
+{ #category : #accessing }
+RBBasicLintRule >> result [
 	^ result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBasicLintRule>>resultClass [
+{ #category : #accessing }
+RBBasicLintRule >> resultClass [
 	self subclassResponsibility
 ]

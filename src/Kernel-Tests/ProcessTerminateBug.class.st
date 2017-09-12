@@ -4,15 +4,11 @@ SUnit tests for Process termination
 Class {
 	#name : #ProcessTerminateBug,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Processes,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:42'
+	#category : #Kernel-Tests-Processes
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTerminateBug>>testSchedulerTermination [
+{ #category : #tests }
+ProcessTerminateBug >> testSchedulerTermination [
 	"self debug: #testSchedulerTermination"
 	
 	| process sema gotHere sema2 |
@@ -33,11 +29,8 @@ horribly screw up"
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTerminateBug>>testTerminationDuringUnwind [
+{ #category : #tests }
+ProcessTerminateBug >> testTerminationDuringUnwind [
 	"An illustration of the issue of process termination during unwind.
 	This uses a well-behaved unwind block that we should allow to complete
 	if at all possible."
@@ -57,11 +50,8 @@ ProcessTerminateBug>>testTerminationDuringUnwind [
 	self assert: unwindFinished.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTerminateBug>>testUnwindFromActiveProcess [
+{ #category : #tests }
+ProcessTerminateBug >> testUnwindFromActiveProcess [
 	"self debug: #testUnwindFromActiveProcess"
 	
 	| sema process |
@@ -73,11 +63,8 @@ ProcessTerminateBug>>testUnwindFromActiveProcess [
 	self assert: sema isSignaled.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessTerminateBug>>testUnwindFromForeignProcess [
+{ #category : #tests }
+ProcessTerminateBug >> testUnwindFromForeignProcess [
 	"self debug:#testUnwindFromForeignProcess"
 
 	| sema process |

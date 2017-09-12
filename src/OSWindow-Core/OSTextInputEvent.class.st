@@ -9,77 +9,52 @@ Class {
 		'modifiers',
 		'position'
 	],
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'IgorStasenko 7/30/2014 17:24'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTextInputEvent>>accept: aVisitor [
+{ #category : #visitor }
+OSTextInputEvent >> accept: aVisitor [
 	^ aVisitor visitTextInputEvent: self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTextInputEvent>>initialize [
+{ #category : #initialization }
+OSTextInputEvent >> initialize [
 	super initialize.
 	modifiers := OSStateModifiers new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTextInputEvent>>modifiers [
+{ #category : #accessing }
+OSTextInputEvent >> modifiers [
 	
 	^ modifiers
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTextInputEvent>>modifiers: anObject [
+{ #category : #accessing }
+OSTextInputEvent >> modifiers: anObject [
 	
 	modifiers := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTextInputEvent>>position [
+{ #category : #accessing }
+OSTextInputEvent >> position [
 	
 	^ position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTextInputEvent>>position: anObject [
+{ #category : #accessing }
+OSTextInputEvent >> position: anObject [
 	
 	position := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTextInputEvent>>text [
+{ #category : #accessing }
+OSTextInputEvent >> text [
 	
 	^ text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTextInputEvent>>text: anObject [
+{ #category : #accessing }
+OSTextInputEvent >> text: anObject [
 	
 	text := anObject
 ]

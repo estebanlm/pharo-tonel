@@ -1,12 +1,7 @@
-Extension {
-	#name : #GoferResolvedReference
-}
+Extension { #name : #GoferResolvedReference }
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-GoferResolvedReference>>asMetacelloCachingResolvedReference [
+{ #category : #'*metacello-mc' }
+GoferResolvedReference >> asMetacelloCachingResolvedReference [
 
 	^MetacelloCachingGoferResolvedReference name: self name repository: self repository
 ]

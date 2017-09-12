@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #MetacelloDevelopmentProcess,
 	#superclass : #AbstractTutorial,
-	#category : #Metacello-ProfStef,
-	#timestamp : ''
+	#category : #Metacello-ProfStef
 }
 
-{
-	#category : #'tutorial metainfo',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloDevelopmentProcess class>>title	 [
+{ #category : #'tutorial metainfo' }
+MetacelloDevelopmentProcess class >> title [	
 
 	^'Metacello Development Cycle'
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloDevelopmentProcess>>checkpointSave [
+{ #category : #lessons }
+MetacelloDevelopmentProcess >> checkpointSave [
 	^Lesson
 		title: '4. Checkpoint save'
 		lesson: '"After having done development for awhile, you may want to checkpoint your work to share with others, test in another development environment or just to backup your work.
@@ -42,11 +32,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloDevelopmentProcess>>compareVersions [
+{ #category : #lessons }
+MetacelloDevelopmentProcess >> compareVersions [
 	^Lesson
 		title: '6. Compare versions'
 		lesson: '"Occasionally, it is useful to view the mcz and project version changes between the #development symbolic version and the #stable symbolic version:"
@@ -57,11 +44,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloDevelopmentProcess>>createConfigurationAndBaseline [
+{ #category : #lessons }
+MetacelloDevelopmentProcess >> createConfigurationAndBaseline [
 	^Lesson
 		title: '1. Create configuration'
 		lesson: '"The MetacelloToolBox class provides programmatic support for creating and maintaining your configuration. 
@@ -93,11 +77,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloDevelopmentProcess>>createDevelopmentVersion [
+{ #category : #lessons }
+MetacelloDevelopmentProcess >> createDevelopmentVersion [
 	^Lesson
 		title: '2. Create development version'
 		lesson: '"After the configuration and initial baseline version have been created, define the initial development version:"
@@ -126,11 +107,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloDevelopmentProcess>>createNewDevelopmentVersion [
+{ #category : #lessons }
+MetacelloDevelopmentProcess >> createNewDevelopmentVersion [
 	^Lesson
 		title: '8. Create new development version'
 		lesson: '"After releasing a version it isn''t a bad idea to open a new development version for the next phase of development:"
@@ -145,11 +123,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloDevelopmentProcess>>integrateCodeContributions [
+{ #category : #lessons }
+MetacelloDevelopmentProcess >> integrateCodeContributions [
 	^Lesson
 		title: '5. Integrate code contributions'
 		lesson: '"If other developers have commited new versions of the packages in your project you can integrate the changes into your configuration by first loading the latest packages in your project:"
@@ -172,11 +147,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #intro,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloDevelopmentProcess>>introductionText [
+{ #category : #intro }
+MetacelloDevelopmentProcess >> introductionText [
 
 	^'This tutorial covers some of the methods that can be found in the MetacelloToolBox.
 CREATE PROJECT
@@ -203,11 +175,8 @@ For convenience, a number of the methods covered in these sections can be found 
 "'
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloDevelopmentProcess>>releaseVersion [
+{ #category : #lessons }
+MetacelloDevelopmentProcess >> releaseVersion [
 	^Lesson
 		title: '7. Release development version'
 		lesson: '"When you ready to release the #development version of your project, the following things need to be done:
@@ -234,19 +203,13 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #tutorial,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloDevelopmentProcess>>tutorial [
+{ #category : #tutorial }
+MetacelloDevelopmentProcess >> tutorial [
 	^#(  createConfigurationAndBaseline createDevelopmentVersion validateAndSaveConfiguration checkpointSave integrateCodeContributions compareVersions releaseVersion createNewDevelopmentVersion)
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloDevelopmentProcess>>validateAndSaveConfiguration [
+{ #category : #lessons }
+MetacelloDevelopmentProcess >> validateAndSaveConfiguration [
 	^Lesson
 		title: '3. Validate and save configuration in project repository'
 		lesson: '"Before saving a configuration into the project repository, the configuration should be validated and any Critical Issues should be addressed:"

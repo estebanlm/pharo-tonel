@@ -7,42 +7,29 @@ Class {
 	#instVars : [
 		'browser'
 	],
-	#category : #NautilusRefactoring-Tests,
-	#timestamp : '<historical>'
+	#category : #NautilusRefactoring-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowserTest>>setUp [
+{ #category : #running }
+ChangesBrowserTest >> setUp [
 	browser := ChangesBrowser new
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowserTest>>testBuildDiffFor [
+{ #category : #tests }
+ChangesBrowserTest >> testBuildDiffFor [
 	self assert: (browser buildDiffFor: nil) equals: ''
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowserTest>>testChanges [
+{ #category : #tests }
+ChangesBrowserTest >> testChanges [
 	| aCollection |
 	aCollection := {RBRefactoryChange new}.
 	browser changes: aCollection.
 	self assert: browser changes equals: aCollection
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowserTest>>testInitializeWidgets [
+{ #category : #tests }
+ChangesBrowserTest >> testInitializeWidgets [
 	self assert: browser changesTree isNotNil.
 	self assert: browser textArea isNotNil.
 	self
@@ -52,10 +39,7 @@ ChangesBrowserTest>>testInitializeWidgets [
 			browser textArea} asOrderedCollection
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowserTest>>testPickedChanges [
+{ #category : #tests }
+ChangesBrowserTest >> testPickedChanges [
 	self assert: browser pickedChanges isEmpty
 ]

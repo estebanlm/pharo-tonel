@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ReExceptionStrategyTest,
 	#superclass : #TestCase,
-	#category : #Renraku-Test,
-	#timestamp : ''
+	#category : #Renraku-Test
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReExceptionStrategyTest>>testSettingDescription [
+{ #category : #tests }
+ReExceptionStrategyTest >> testSettingDescription [
 
 	ReExceptionStrategy allSubclassesDo: [ :strategy |
 		self assert: (

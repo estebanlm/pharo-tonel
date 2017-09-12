@@ -22,14 +22,10 @@ Class {
 		'sweep',
 		'endPoint'
 	],
-	#category : #Athens-Core-Paths,
-	#timestamp : '<historical>'
+	#category : #Athens-Core-Paths
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensEllipticalArcSegment>>accept: aVisitor [
+{ #category : #visitor }
+AthensEllipticalArcSegment >> accept: aVisitor [
 	^ aVisitor ellipticalArcSegment: self
 ]

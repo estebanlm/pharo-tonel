@@ -1,12 +1,7 @@
-Extension {
-	#name : #WorldMorph
-}
+Extension { #name : #WorldMorph }
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-WorldMorph>>checkNewWindowSize [
+{ #category : #'*OSWindow-Core' }
+WorldMorph >> checkNewWindowSize [
 	| newExtent |
 	newExtent := self osWindow extent.
 	newExtent ~= self extent ifTrue: [
@@ -15,38 +10,26 @@ WorldMorph>>checkNewWindowSize [
 	]
 ]
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-WorldMorph>>checkSession [
+{ #category : #'*OSWindow-Core' }
+WorldMorph >> checkSession [
 	session == Smalltalk session ifFalse: [ 
 		self recreateOSWindow.
 		session := Smalltalk session.
 	]
 ]
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-WorldMorph>>clipboardText [
+{ #category : #'*OSWindow-Core' }
+WorldMorph >> clipboardText [
 	^ self osWindow clipboardText
 ]
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-WorldMorph>>clipboardText: aString [
+{ #category : #'*OSWindow-Core' }
+WorldMorph >> clipboardText: aString [
 	^ self osWindow clipboardText: aString
 ]
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-WorldMorph>>osWindow [
+{ #category : #'*OSWindow-Core' }
+WorldMorph >> osWindow [
 	
 	self checkSession.
 	^ osWindow
@@ -54,11 +37,8 @@ WorldMorph>>osWindow [
 
 ]
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-WorldMorph>>osWindowRenderer [
+{ #category : #'*OSWindow-Core' }
+WorldMorph >> osWindowRenderer [
 	^ self osWindow renderer ifNil: [ 
 		self osWindow newFormRenderer: Display.
 		self osWindow renderer
@@ -67,11 +47,8 @@ WorldMorph>>osWindowRenderer [
 
 ]
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-WorldMorph>>pickMostSuitableWindowDriver [
+{ #category : #'*OSWindow-Core' }
+WorldMorph >> pickMostSuitableWindowDriver [
 	"TODO: check for headless mode"
 	| driver |
 	
@@ -84,11 +61,8 @@ WorldMorph>>pickMostSuitableWindowDriver [
 	^ driver
 ]
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-WorldMorph>>recreateOSWindow [
+{ #category : #'*OSWindow-Core' }
+WorldMorph >> recreateOSWindow [
 	| attributes driver |
 	session := Smalltalk session.
 	attributes := OSWindowAttributes new.
@@ -103,11 +77,8 @@ WorldMorph>>recreateOSWindow [
 	osWindow eventHandler: (OSWindowMorphicEventHandler for: self)
 ]
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-WorldMorph>>updateOnOSWindow [
+{ #category : #'*OSWindow-Core' }
+WorldMorph >> updateOnOSWindow [
 	"Update this world's display."
 
 	| handsToDraw allDamage worldDamageRects handDamageRects canvas |

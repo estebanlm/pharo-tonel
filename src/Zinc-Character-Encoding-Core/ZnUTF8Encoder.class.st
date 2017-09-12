@@ -13,25 +13,18 @@ Class {
 		'ByteASCIISet',
 		'ByteUTF8Encoding'
 	],
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : '<historical>'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder class>>handlesEncoding: string [
+{ #category : #accessing }
+ZnUTF8Encoder class >> handlesEncoding: string [
 	"Return true when my instances handle the encoding described by string"
 	
 	^ (self canonicalEncodingIdentifier: string) = 'utf8'
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder class>>initialize [
+{ #category : #'class initialization' }
+ZnUTF8Encoder class >> initialize [
 	| encoder stream |
 	ByteASCIISet := ByteArray new: 256.
 	ByteUTF8Encoding := Array new: 256.
@@ -50,37 +43,25 @@ ZnUTF8Encoder class>>initialize [
 				ByteUTF8Encoding at: each + 1 put: bytes ] ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder class>>knownEncodingIdentifiers [
+{ #category : #accessing }
+ZnUTF8Encoder class >> knownEncodingIdentifiers [
 	^ #( utf8 )
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder class>>newForEncoding: string [
+{ #category : #'instance creation' }
+ZnUTF8Encoder class >> newForEncoding: string [
 	"No further parametrization needed"
 	
 	^ self new
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>backOnStream: stream [
+{ #category : #converting }
+ZnUTF8Encoder >> backOnStream: stream [
 	[ (stream back bitAnd: 2r11000000) == 2r10000000 ] whileTrue
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>encodedByteCountForCodePoint: codePoint [
+{ #category : #converting }
+ZnUTF8Encoder >> encodedByteCountForCodePoint: codePoint [
 	codePoint < 128 ifTrue: [ ^ 1 ].
 	codePoint < 2048 ifTrue: [ ^ 2 ].
 	codePoint < 65535 ifTrue: [ ^ 3 ].
@@ -88,11 +69,8 @@ ZnUTF8Encoder>>encodedByteCountForCodePoint: codePoint [
 	self errorOutsideRange
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>encodingLengthFor: byte [
+{ #category : #converting }
+ZnUTF8Encoder >> encodingLengthFor: byte [
 	byte < 128 ifTrue: [ ^ 1 ].
 	(byte bitAnd: 2r11100000) == 2r11000000 ifTrue: [ ^ 2 ].
 	(byte bitAnd: 2r11110000) == 2r11100000 ifTrue: [ ^ 3 ].
@@ -100,51 +78,33 @@ ZnUTF8Encoder>>encodingLengthFor: byte [
 	self errorIllegalLeadingByte
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>error: message [
+{ #category : #'error handling' }
+ZnUTF8Encoder >> error: message [
 	ZnInvalidUTF8 signal: message
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>errorIllegalContinuationByte [
+{ #category : #'error handling' }
+ZnUTF8Encoder >> errorIllegalContinuationByte [
 	self error: 'Illegal continuation byte for utf-8 encoding'
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>errorIllegalLeadingByte [
+{ #category : #'error handling' }
+ZnUTF8Encoder >> errorIllegalLeadingByte [
 	self error: 'Illegal leading byte for utf-8 encoding'
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>errorIncomplete [
+{ #category : #'error handling' }
+ZnUTF8Encoder >> errorIncomplete [
 	self error: 'Incomplete utf-8 encoding'
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>errorOverlong [
+{ #category : #'error handling' }
+ZnUTF8Encoder >> errorOverlong [
 	self error: 'Overlong encoding (non-shortest form)'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>findFirstNonASCIIIn: string startingAt: offset [
+{ #category : #private }
+ZnUTF8Encoder >> findFirstNonASCIIIn: string startingAt: offset [
 	"This calls a fast primitive. Note that string can be a ByteString or ByteArray"
 	
 	offset > string size ifTrue: [ ^ 0 ].
@@ -154,19 +114,13 @@ ZnUTF8Encoder>>findFirstNonASCIIIn: string startingAt: offset [
 		startingAt: offset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>identifier [
+{ #category : #accessing }
+ZnUTF8Encoder >> identifier [
 	^ #utf8
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>next: count putAll: string startingAt: offset toStream: stream [
+{ #category : #convenience }
+ZnUTF8Encoder >> next: count putAll: string startingAt: offset toStream: stream [
 	"Write count characters from string starting at offset to stream."
 	
 	string isByteString
@@ -174,11 +128,8 @@ ZnUTF8Encoder>>next: count putAll: string startingAt: offset toStream: stream [
 		ifFalse: [ super next: count putAll: string startingAt: offset toStream: stream ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>next: count putAllASCII: string startingAt: offset toStream: stream [
+{ #category : #private }
+ZnUTF8Encoder >> next: count putAllASCII: string startingAt: offset toStream: stream [
 	"Write count bytes from string starting at offset to stream,
 	assuming all characters are in the ASCII set and need no translation"
 	
@@ -190,11 +141,8 @@ ZnUTF8Encoder>>next: count putAllASCII: string startingAt: offset toStream: stre
 	stream nextPutAll: bytes
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>next: count putAllByteString: string startingAt: offset toStream: stream [
+{ #category : #private }
+ZnUTF8Encoder >> next: count putAllByteString: string startingAt: offset toStream: stream [
 	"A faster version when string is a ByteString"
 	
 	| lastIndex nextIndex |
@@ -216,11 +164,8 @@ ZnUTF8Encoder>>next: count putAllByteString: string startingAt: offset toStream:
 	
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>nextCodePointFromStream: stream [
+{ #category : #converting }
+ZnUTF8Encoder >> nextCodePointFromStream: stream [
 	| code byte next |
 	(byte := stream next) < 128
 		ifTrue: [ ^ byte ].
@@ -257,11 +202,8 @@ ZnUTF8Encoder>>nextCodePointFromStream: stream [
 	self errorIllegalLeadingByte
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>nextPutCodePoint: codePoint toStream: stream [
+{ #category : #converting }
+ZnUTF8Encoder >> nextPutCodePoint: codePoint toStream: stream [
 	codePoint < 128 ifTrue: [ 
 		^ stream nextPut: codePoint ].
 	codePoint < 2048 ifTrue: [ 
@@ -284,11 +226,8 @@ ZnUTF8Encoder>>nextPutCodePoint: codePoint toStream: stream [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>optimizedReadInto: string startingAt: offset count: requestedCount fromStream: stream [
+{ #category : #private }
+ZnUTF8Encoder >> optimizedReadInto: string startingAt: offset count: requestedCount fromStream: stream [
 	"Read requestedCount characters into string starting at offset,
 	returning the number read, there could be less available when stream is atEnd.
 	Optimized based on the assumption that most decoded characters will be ASCII.
@@ -346,11 +285,8 @@ ZnUTF8Encoder>>optimizedReadInto: string startingAt: offset count: requestedCoun
 	^ read + (self originalReadInto: stringBuffer startingAt: offset + read count: count fromStream: stream)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>originalReadInto: string startingAt: offset count: requestedCount fromStream: stream [
+{ #category : #private }
+ZnUTF8Encoder >> originalReadInto: string startingAt: offset count: requestedCount fromStream: stream [
 	"Read requestedCount characters into string starting at offset,
 	returning the number read, there could be less available when stream is atEnd.
 	I signal a ZnByteStringBecameWideString notification if necessary"
@@ -367,11 +303,8 @@ ZnUTF8Encoder>>originalReadInto: string startingAt: offset count: requestedCount
 	^ requestedCount
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>readInto: string startingAt: offset count: requestedCount fromStream: stream [
+{ #category : #convenience }
+ZnUTF8Encoder >> readInto: string startingAt: offset count: requestedCount fromStream: stream [
 	"Read requestedCount characters into string starting at offset,
 	returning the number read, there could be less available when stream is atEnd.
 	The clean code is in my superclass"
@@ -379,11 +312,8 @@ ZnUTF8Encoder>>readInto: string startingAt: offset count: requestedCount fromStr
 	^ self optimizedReadInto: string startingAt: offset count: requestedCount fromStream: stream
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTF8Encoder>>replace: string from: start to: stop with: replacement startingAt: repStart [
+{ #category : #private }
+ZnUTF8Encoder >> replace: string from: start to: stop with: replacement startingAt: repStart [
 	string isByteString
 		ifTrue: [ 
 			string replaceFrom: start to: stop with: replacement startingAt: repStart ]

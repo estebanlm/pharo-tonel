@@ -7,31 +7,21 @@ Class {
 	#instVars : [
 		'arguments'
 	],
-	#category : #Morphic-Core-Announcements,
-	#timestamp : '<historical>'
+	#category : #Morphic-Core-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphChangedWithArguments>>arguments [
+{ #category : #accessing }
+MorphChangedWithArguments >> arguments [
 	^ arguments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphChangedWithArguments>>arguments: anObject [
+{ #category : #accessing }
+MorphChangedWithArguments >> arguments: anObject [
 	arguments := anObject
 ]
 
-{
-	#category : #delivering,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphChangedWithArguments>>deliverTo: aHandler [
+{ #category : #delivering }
+MorphChangedWithArguments >> deliverTo: aHandler [
 
 	^ aHandler update: selector with: arguments
 

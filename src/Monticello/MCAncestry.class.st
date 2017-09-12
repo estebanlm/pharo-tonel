@@ -8,82 +8,57 @@ Class {
 		'ancestors',
 		'stepChildren'
 	],
-	#category : #Monticello-Versioning,
-	#timestamp : '<historical>'
+	#category : #Monticello-Versioning
 }
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>allAncestorsDo: aBlock [
+{ #category : #ancestry }
+MCAncestry >> allAncestorsDo: aBlock [
 	self ancestors do:
 		[:ea |
 		aBlock value: ea.
 		ea allAncestorsDo: aBlock]
 ]
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>allAncestorsOnPathTo: aVersionInfo [
+{ #category : #ancestry }
+MCAncestry >> allAncestorsOnPathTo: aVersionInfo [
 	^ MCFilteredVersionSorter new
 		target: aVersionInfo;
 		addAllVersionInfos: self ancestors;
 		sortedVersionInfos
 ]
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>ancestorString [
+{ #category : #ancestry }
+MCAncestry >> ancestorString [
 	^ String streamContents:
 		[:s | self ancestors do: [:ea | s nextPutAll: ea name] separatedBy: [s nextPutAll: ', ']]
 ]
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>ancestorStringWithout: packageName [
+{ #category : #ancestry }
+MCAncestry >> ancestorStringWithout: packageName [
 	^ String streamContents:
 		[:s | self ancestors do: [:ea | s nextPutAll: (ea nameWithout: packageName)] separatedBy: [s nextPutAll: ', ']]
 ]
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>ancestors [
+{ #category : #ancestry }
+MCAncestry >> ancestors [
 	^ ancestors ifNil: [#()]
 ]
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>ancestorsDoWhileTrue: aBlock [
+{ #category : #ancestry }
+MCAncestry >> ancestorsDoWhileTrue: aBlock [
 	self ancestors do:
 		[:ea |
 		(aBlock value: ea) ifTrue: 
 			[ea ancestorsDoWhileTrue: aBlock]]
 ]
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>breadthFirstAncestors [
+{ #category : #ancestry }
+MCAncestry >> breadthFirstAncestors [
 	^ Array streamContents: [:s | self breadthFirstAncestorsDo: [:ea | s nextPut: ea]]
 ]
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>breadthFirstAncestorsDo: aBlock [
+{ #category : #ancestry }
+MCAncestry >> breadthFirstAncestorsDo: aBlock [
 	| seen todo next |
 	seen := Set with: self.
 	todo := OrderedCollection with: self.
@@ -97,21 +72,15 @@ MCAncestry>>breadthFirstAncestorsDo: aBlock [
 				todo add: ea]]]
 ]
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>commonAncestorWith: aNode [
+{ #category : #ancestry }
+MCAncestry >> commonAncestorWith: aNode [
 	| commonAncestors |
 	commonAncestors := self commonAncestorsWith: aNode.
 	^ commonAncestors at: 1 ifAbsent: [nil]
 ]
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>commonAncestorsWith: aVersionInfo [
+{ #category : #ancestry }
+MCAncestry >> commonAncestorsWith: aVersionInfo [
 
 	| sharedAncestors mergedOrder sorter |
 	sorter := MCVersionSorter new
@@ -122,21 +91,15 @@ MCAncestry>>commonAncestorsWith: aVersionInfo [
 	^ mergedOrder select: [:ea | sharedAncestors includes: ea]
 ]
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>hasAncestor: aVersionInfo [
+{ #category : #ancestry }
+MCAncestry >> hasAncestor: aVersionInfo [
 	^ self
 		hasAncestor: aVersionInfo
 		alreadySeen: OrderedCollection new
 ]
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>hasAncestor: aVersionInfo alreadySeen: aList [
+{ #category : #ancestry }
+MCAncestry >> hasAncestor: aVersionInfo alreadySeen: aList [
 	(aList includes: self) ifTrue: [^ false].
 	aList add: self.
 
@@ -144,48 +107,33 @@ MCAncestry>>hasAncestor: aVersionInfo alreadySeen: aList [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>initialize [
+{ #category : #initialization }
+MCAncestry >> initialize [
 	super initialize.
 	ancestors := #().
 	stepChildren := #()
 ]
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>isRelatedTo: aVersionInfo [
+{ #category : #ancestry }
+MCAncestry >> isRelatedTo: aVersionInfo [
 	^ aVersionInfo timeStamp < self timeStamp
 		ifTrue: [self hasAncestor: aVersionInfo]
 		ifFalse: [aVersionInfo hasAncestor: self]
 ]
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>stepChildren [
+{ #category : #ancestry }
+MCAncestry >> stepChildren [
 	^ stepChildren ifNil: [#()]
 ]
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>stepChildrenString [
+{ #category : #ancestry }
+MCAncestry >> stepChildrenString [
 	^ String streamContents:
 		[:s | self stepChildren do: [:ea | s nextPutAll: ea name] separatedBy: [s nextPutAll: ', ']]
 ]
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>topologicalAncestors [
+{ #category : #ancestry }
+MCAncestry >> topologicalAncestors [
 	
 	^ Array streamContents:
 		[:s | | f frontier |
@@ -196,10 +144,7 @@ MCAncestry>>topologicalAncestors [
 		f isEmpty] whileFalse] 
 ]
 
-{
-	#category : #ancestry,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAncestry>>withBreadthFirstAncestors [
+{ #category : #ancestry }
+MCAncestry >> withBreadthFirstAncestors [
 	^ (Array with: self), self breadthFirstAncestors
 ]

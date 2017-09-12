@@ -62,26 +62,19 @@ Class {
 	#classVars : [
 		'DependentsFields'
 	],
-	#category : #Kernel-Objects,
-	#timestamp : '<historical>'
+	#category : #Kernel-Objects
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object class>>flushDependents [
+{ #category : #'class initialization' }
+Object class >> flushDependents [
 	DependentsFields keysAndValuesDo:[:key :dep|
 		key ifNotNil:[key removeDependent: nil].
 	].
 	DependentsFields finalizeValues.
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object class>>howToModifyPrimitives [
+{ #category : #documentation }
+Object class >> howToModifyPrimitives [
 	"You are allowed to write methods which specify primitives, but please use 
 	caution.  If you make a subclass of a class which contains a primitive method, 
 	the subclass inherits the primitive.  The message which is implemented 
@@ -131,30 +124,21 @@ Object class>>howToModifyPrimitives [
 	self error: 'comment only'
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object class>>initialize [
+{ #category : #'class initialization' }
+Object class >> initialize [
 	"Object initialize"
 	DependentsFields ifNil:[self initializeDependentsFields].
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object class>>initializeDependentsFields [
+{ #category : #'class initialization' }
+Object class >> initializeDependentsFields [
 	"Object initialize"
 	DependentsFields := WeakIdentityKeyDictionary new.
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object class>>newFrom: aSimilarObject [
+{ #category : #'instance creation' }
+Object class >> newFrom: aSimilarObject [
 	"Create an object that has similar contents to aSimilarObject. If the classes have any instance variables with the same names, copy them across. If this is bad for a class, override this method."
 
 	^ (self isVariable
@@ -162,11 +146,8 @@ Object class>>newFrom: aSimilarObject [
 		ifFalse: [self basicNew]) copySameFrom: aSimilarObject
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object class>>reInitializeDependentsFields [
+{ #category : #'class initialization' }
+Object class >> reInitializeDependentsFields [
 	"Object reInitializeDependentsFields"
 	| oldFields |
 	oldFields := DependentsFields.
@@ -176,11 +157,8 @@ Object class>>reInitializeDependentsFields [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object class>>readFrom: textStringOrStream [
+{ #category : #'instance creation' }
+Object class >> readFrom: textStringOrStream [
 	"Create an object based on the contents of textStringOrStream."
 
 	| object |
@@ -189,11 +167,8 @@ Object class>>readFrom: textStringOrStream [
 	^object
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object class>>whatIsAPrimitive [
+{ #category : #documentation }
+Object class >> whatIsAPrimitive [
 	"Some messages in the system are responded to primitively. A primitive   
 	response is performed directly by the interpreter rather than by evaluating   
 	expressions in a method. The methods for these messages indicate the   
@@ -261,21 +236,15 @@ Object class>>whatIsAPrimitive [
 	self error: 'comment only'
 ]
 
-{
-	#category : #associating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>-> anObject [
+{ #category : #associating }
+Object >> -> anObject [
 	"Answer an Association between self and anObject"
 	"the code of Association>>#key:value: is inline here for speed"
 	^Association basicNew key: self value: anObject
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>= anObject [
+{ #category : #comparing }
+Object >> = anObject [ 
 	"Answer whether the receiver and the argument represent the same 
 	object. If = is redefined in any subclass, consider also redefining the 
 	message hash."
@@ -283,81 +252,57 @@ Object>>= anObject [
 	^self == anObject 
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>actAsExecutor [
+{ #category : #finalization }
+Object >> actAsExecutor [
 	"Prepare the receiver to act as executor for any resources associated with it"
 	self breakDependents
 ]
 
-{
-	#category : #converting,
-	#timestamp : 'EstebanLorenzano 9/7/2017 12:43'
-}
-Object>>adaptToFloat: rcvr andCompare: selector [
+{ #category : #converting }
+Object >> adaptToFloat: rcvr andCompare: selector [ 
 	"If I am involved in comparison with a Float.
 	Default behaviour is to process comparison as any other selectors."
 	
 	^ self adaptToFloat: rcvr andSend: selector
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>adaptToFloat: rcvr andSend: selector [
+{ #category : #converting }
+Object >> adaptToFloat: rcvr andSend: selector [
 	"If no method has been provided for adapting an object to a Float,
 	then it may be adequate to simply adapt it to a number."
 	^ self adaptToNumber: rcvr andSend: selector
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>adaptToFraction: rcvr andCompare: selector [
+{ #category : #converting }
+Object >> adaptToFraction: rcvr andCompare: selector [ 
 	"If I am involved in comparison with a Fraction.
 	Default behaviour is to process comparison as any other selectors."
 	^ self adaptToFraction: rcvr andSend: selector
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>adaptToFraction: rcvr andSend: selector [
+{ #category : #converting }
+Object >> adaptToFraction: rcvr andSend: selector [
 	"If no method has been provided for adapting an object to a Fraction,
 	then it may be adequate to simply adapt it to a number."
 	^ self adaptToNumber: rcvr andSend: selector
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>adaptToInteger: rcvr andCompare: selector [
+{ #category : #converting }
+Object >> adaptToInteger: rcvr andCompare: selector [ 
 	"If I am involved in comparison with an Integer.
 	Default behaviour is to process comparison as any other selectors."
 	^ self adaptToInteger: rcvr andSend: selector
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>adaptToInteger: rcvr andSend: selector [
+{ #category : #converting }
+Object >> adaptToInteger: rcvr andSend: selector [
 	"If no method has been provided for adapting an object to a Integer,
 	then it may be adequate to simply adapt it to a number."
 	^ self adaptToNumber: rcvr andSend: selector
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>addDependent: anObject [
+{ #category : #dependencies }
+Object >> addDependent: anObject [
 	"Make the given object one of the receiver's dependents."
 
 	| dependents |
@@ -367,102 +312,72 @@ Object>>addDependent: anObject [
 	^ anObject
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>addModelItemsToWindowMenu: aMenu [
+{ #category : #'user interface' }
+Object >> addModelItemsToWindowMenu: aMenu [
 	"aMenu is being constructed to be presented to the user in response to the user's pressing on the menu widget in the title bar of a morphic window.  Here, the model is given the opportunity to add any model-specific items to the menu, whose default target is the SystemWindow itself."
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>as: aSimilarClass [
+{ #category : #converting }
+Object >> as: aSimilarClass [
 	"Create an object of class aSimilarClass that has similar contents to the receiver."
 
 	^ aSimilarClass newFrom: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>asLink [
+{ #category : #converting }
+Object >> asLink [
 	"Answer a string that represents the receiver."
 
 	^ ValueLink value: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>asOrderedCollection [
+{ #category : #converting }
+Object >> asOrderedCollection [
 	"Answer an OrderedCollection with the receiver as its only element."
 
 	^ OrderedCollection with: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>asSetElement [
+{ #category : #converting }
+Object >> asSetElement [
 	"Answer an object, which can be put into a Set as element , wrapped
 	by one of SetElement instance, if necessary. 
 	Default implementation is to answer self"
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>asString [
+{ #category : #converting }
+Object >> asString [
 	"Answer a string that represents the receiver."
 
 	^ self printString 
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>assert: aBlock [
+{ #category : #asserting }
+Object >> assert: aBlock [
 	"Throw an assertion error if aBlock does not evaluates to true.
 	We check for true explicitly to make the assertion fail for non booleans"
 	
 	aBlock value == true ifFalse: [AssertionFailure signal: 'Assertion failed']
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>assert: aBlock description: aStringOrBlock [
+{ #category : #asserting }
+Object >> assert: aBlock description: aStringOrBlock [
 	"Throw an assertion error if aBlock does not evaluates to true."
 	
 	aBlock value 
 		ifFalse: [ AssertionFailure signal: aStringOrBlock value ]
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>assert: aBlock descriptionBlock: descriptionBlock [
+{ #category : #asserting }
+Object >> assert: aBlock descriptionBlock: descriptionBlock [
 	"Throw an assertion error if aBlock does not evaluate to true."
 	
 	aBlock value ifFalse: [AssertionFailure signal: descriptionBlock value asString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>at: index [
+{ #category : #accessing }
+Object >> at: index [ 
 	"Primitive. Assumes receiver is indexable. Answer the value of an 
 	indexable element in the receiver. Fail if the argument index is not an 
 	Integer or is out of bounds. Essential. See Object documentation 
@@ -479,11 +394,8 @@ Object>>at: index [
 		ifFalse: [self errorNonIntegerIndex]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>at: index put: value [
+{ #category : #accessing }
+Object >> at: index put: value [ 
 	"Primitive. Assumes receiver is indexable. Store the argument value in 
 	the indexable element of the receiver indicated by index. Fail if the 
 	index is not an Integer or is out of bounds. Or fail if the value is not of 
@@ -502,11 +414,8 @@ Object>>at: index put: value [
 		ifFalse: [self errorNonIntegerIndex]
 ]
 
-{
-	#category : #'write barrier',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>attemptToAssign: value withIndex: index [
+{ #category : #'write barrier' }
+Object >> attemptToAssign: value withIndex: index [ 
 	"Called by the VM when assigning an instance variable of an immutable object.
 	Upon return, executing will resume *after* the inst var assignment. If the inst var mutation has to be 
 	performed, do it manually here in the call back with instVarAt:put:.
@@ -518,11 +427,8 @@ Object>>attemptToAssign: value withIndex: index [
 	"CAN'T REACH"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>basicAt: index [
+{ #category : #accessing }
+Object >> basicAt: index [ 
 	"Primitive. Assumes receiver is indexable. Answer the value of an 
 	indexable element in the receiver. Fail if the argument index is not an 
 	Integer or is out of bounds. Essential. Do not override in a subclass. See 
@@ -535,11 +441,8 @@ Object>>basicAt: index [
 		ifFalse: [self errorNonIntegerIndex]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>basicAt: index put: value [
+{ #category : #accessing }
+Object >> basicAt: index put: value [ 
 	"Primitive. Assumes receiver is indexable. Store the second argument 
 	value in the indexable element of the receiver indicated by index. Fail 
 	if the index is not an Integer or is out of bounds. Or fail if the value is 
@@ -557,11 +460,8 @@ Object>>basicAt: index put: value [
 		ifFalse: [self errorNonIntegerIndex]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>basicSize [
+{ #category : #accessing }
+Object >> basicSize [
 	"Primitive. Answer the number of indexable variables in the receiver. 
 	This value is the same as the largest legal subscript. Essential. Do not 
 	override in any subclass. See Object documentation whatIsAPrimitive."
@@ -571,11 +471,8 @@ Object>>basicSize [
 	^0	
 ]
 
-{
-	#category : #'write barrier',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>beReadOnlyObject [
+{ #category : #'write barrier' }
+Object >> beReadOnlyObject [
 	"If the VM supports read-only objects it will not write to read-only objects.
 	 An attempt to write to an instance variable of a read-only object will
 	 cause the VM to send attemptToAssign:withIndex: to the read-only object.
@@ -585,11 +482,8 @@ Object>>beReadOnlyObject [
 	^self setIsReadOnlyObject: true
 ]
 
-{
-	#category : #'write barrier',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>beWritableObject [
+{ #category : #'write barrier' }
+Object >> beWritableObject [
 	"If the VM supports read-only objects it will not write to read-only objects.
 	 An attempt to write to an instance variable of a read-only object will
 	 cause the VM to send attemptToAssign:withIndex: to the read-only object.
@@ -599,11 +493,8 @@ Object>>beWritableObject [
 	^self setIsReadOnlyObject: false
 ]
 
-{
-	#category : #'reflective operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>becomeForward: otherObject [
+{ #category : #'reflective operations' }
+Object >> becomeForward: otherObject [ 
 	"Primitive. All variables in the entire system that used to point
 	to the receiver now point to the argument.
 	Fails if either argument is a SmallInteger."
@@ -613,11 +504,8 @@ Object>>becomeForward: otherObject [
 			(Array with: otherObject)
 ]
 
-{
-	#category : #'reflective operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>becomeForward: otherObject copyHash: copyHash [
+{ #category : #'reflective operations' }
+Object >> becomeForward: otherObject copyHash: copyHash [
 	"Primitive. All variables in the entire system that used to point to the receiver now point to the argument.
 	If copyHash is true, the argument's identity hash bits will be set to those of the receiver.
 	Fails if either argument is a SmallInteger."
@@ -627,29 +515,20 @@ Object>>becomeForward: otherObject copyHash: copyHash [
 		copyHash: copyHash
 ]
 
-{
-	#category : #binding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>bindingOf: aString [
+{ #category : #binding }
+Object >> bindingOf: aString [
 	^nil
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>breakDependents [
+{ #category : #dependencies }
+Object >> breakDependents [
 	"Remove all of the receiver's dependents."
 
 	self myDependents: nil
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>canDiscardEdits [
+{ #category : #dependencies }
+Object >> canDiscardEdits [
 	"Answer true if none of the views on this model has unaccepted edits that matter."
 
 	self dependents
@@ -658,22 +537,16 @@ Object>>canDiscardEdits [
 	^ true
 ]
 
-{
-	#category : #'casing-To be deprecated',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>caseError [
+{ #category : #'casing-To be deprecated' }
+Object >> caseError [
 	"DO NOT USE THIS METHOD! It will be removed from Pharo."
 	"Report an error from an in-line or explicit case statement."
 
 	self error: 'Case not found (', self printString, '), and no otherwise clause'
 ]
 
-{
-	#category : #'casing-To be deprecated',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>caseOf: aBlockAssociationCollection [
+{ #category : #'casing-To be deprecated' }
+Object >> caseOf: aBlockAssociationCollection [
 	"DO NOT USE THIS METHOD! It will be removed from Pharo."
 
 	"The elements of aBlockAssociationCollection are associations between blocks.
@@ -689,11 +562,8 @@ Object>>caseOf: aBlockAssociationCollection [
 "#b caseOf: {[#a]->[1+1]. ['d' asSymbol]->[2+2]. [#c]->[3+3]}"
 ]
 
-{
-	#category : #'casing-To be deprecated',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>caseOf: aBlockAssociationCollection otherwise: aBlock [
+{ #category : #'casing-To be deprecated' }
+Object >> caseOf: aBlockAssociationCollection otherwise: aBlock [
 	"DO NOT USE THIS METHOD! It will be removed from Pharo."
 	
 	"The elements of aBlockAssociationCollection are associations between blocks.
@@ -712,22 +582,16 @@ Object>>caseOf: aBlockAssociationCollection otherwise: aBlock [
 "#b caseOf: {[#a]->[1+1]. ['d' asSymbol]->[2+2]. [#c]->[3+3]} otherwise: [0]"
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>changed [
+{ #category : #updating }
+Object >> changed [
 	"Receiver changed in a general way; inform all the dependents by 
 	sending each dependent an update: message."
 
 	self changed: self
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>changed: aParameter [
+{ #category : #updating }
+Object >> changed: aParameter [ 
 	"Receiver changed. The change is denoted by the argument aParameter. 
 	Usually the argument is a Symbol that is part of the dependent's change 
 	protocol. Inform all of the dependents."
@@ -735,11 +599,8 @@ Object>>changed: aParameter [
 	self dependents do: [:aDependent | aDependent update: aParameter]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>changed: anAspect with: anObject [
+{ #category : #updating }
+Object >> changed: anAspect with: anObject [
 	"Receiver changed. The change is denoted by the argument anAspect. 
 	Usually the argument is a Symbol that is part of the dependent's change 
 	protocol. Inform all of the dependents. Also pass anObject for additional information."
@@ -747,21 +608,15 @@ Object>>changed: anAspect with: anObject [
 	self dependents do: [:aDependent | aDependent update: anAspect with: anObject]
 ]
 
-{
-	#category : #introspection,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>className [
+{ #category : #introspection }
+Object >> className [
 	"Answer a string characterizing the receiver's class, for use in list views for example"
 
 	^ self class name asString
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>clone [
+{ #category : #copying }
+Object >> clone [
 	"Answer a shallow copy of the receiver."
 	<primitive: 148 error: ec>
 	| class newObject |
@@ -781,30 +636,21 @@ Object>>clone [
 	^newObject copyFrom: self
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>complexContents [
+{ #category : #'user interface' }
+Object >> complexContents [
 
 	^self
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>copy [
+{ #category : #copying }
+Object >> copy [
 	"Answer another instance just like the receiver. Subclasses typically override postCopy; they typically do not override shallowCopy. Copy is a template method in the sense of Design Patterns. So do not override it. Override postCopy instead. Pay attention that normally you should call postCopy of your superclass too."
 
 	^self shallowCopy postCopy
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>copyFrom: anotherObject [
+{ #category : #copying }
+Object >> copyFrom: anotherObject [
 	"Copy to myself all instance variables I have in common with anotherObject.  This is dangerous because it ignores an object's control over its own inst vars.  "
 
 	| mine his |
@@ -819,11 +665,8 @@ Object>>copyFrom: anotherObject [
 			self basicAt: ind put: (anotherObject basicAt: ind)]].
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>copySameFrom: otherObject [
+{ #category : #copying }
+Object >> copySameFrom: otherObject [
 	"Copy to myself all instance variables named the same in otherObject.
 	This ignores otherObject's control over its own inst vars."
 
@@ -838,47 +681,32 @@ Object>>copySameFrom: otherObject [
 
 ]
 
-{
-	#category : #logging-Deprecated,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>crLog [
+{ #category : #logging-Deprecated }
+Object >> crLog [
       self crTrace: self printString
 ]
 
-{
-	#category : #logging-Deprecated,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>crLog: aString [
+{ #category : #logging-Deprecated }
+Object >> crLog: aString [
 	"Log the argument. Use self log: instead of Transcript cr; show: "
 	
 	Transcript cr; show: aString.
 ]
 
-{
-	#category : #tracing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>crTrace [
+{ #category : #tracing }
+Object >> crTrace [
       self crTrace: self printString
 ]
 
-{
-	#category : #tracing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>crTrace: aString [
+{ #category : #tracing }
+Object >> crTrace: aString [
 	"Log the argument. Use self crTrace: instead of Transcript cr; show: "
 	
 	Transcript cr; show: aString.
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>deepCopy [
+{ #category : #copying }
+Object >> deepCopy [
 	"Answer a copy of the receiver with its own copy of each instance variable. deepCopy does a deep copy. It should never be overridden and only be used if you want to get these very specific semantics.
 It doesn't handle cycles, #veryDeepCopy does. In the future we will make it handle cycles and deprecate veryDeepCopy"
 
@@ -903,22 +731,16 @@ It doesn't handle cycles, #veryDeepCopy does. In the future we will make it hand
 	^newObject
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>dependents [
+{ #category : #dependencies }
+Object >> dependents [
 	"Answer a collection of objects that are 'dependent' on the receiver;
 	 that is, all objects that should be notified if the receiver changes."
 
 	^ self myDependents ifNil: [#()]
 ]
 
-{
-	#category : #deprecation,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>deprecated: anExplanationString [
+{ #category : #deprecation }
+Object >> deprecated: anExplanationString [
 	"Warn that the sending method has been deprecated"
 	
 	Deprecation new
@@ -927,11 +749,8 @@ Object>>deprecated: anExplanationString [
 		signal
 ]
 
-{
-	#category : #deprecation,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>deprecated: anExplanationString on: date in: version [
+{ #category : #deprecation }
+Object >> deprecated: anExplanationString [ on: date in: version
 	"Warn that the sending method has been deprecated"
 	
 	Deprecation new
@@ -942,11 +761,8 @@ Object>>deprecated: anExplanationString on: date in: version [
 		signal
 ]
 
-{
-	#category : #deprecation,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>deprecated: anExplanationString on: date in: version transformWith: aRule [
+{ #category : #deprecation }
+Object >> deprecated: anExplanationString on: date in: version transformWith: aRule [
 	"Automatically tranform the deprecated call"
 	
 	Deprecation new
@@ -959,11 +775,8 @@ Object>>deprecated: anExplanationString on: date in: version transformWith: aRul
 		
 ]
 
-{
-	#category : #deprecation,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>deprecated: anExplanationString transformWith: aRule [
+{ #category : #deprecation }
+Object >> deprecated: anExplanationString transformWith: aRule [
 	"Automatically tranform the deprecated call"
 	
 	Deprecation new
@@ -974,11 +787,8 @@ Object>>deprecated: anExplanationString transformWith: aRule [
 		
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>displayString [
+{ #category : #displaying }
+Object >> displayString [
 	"While printString is about to give a detailled information about an object, displayString is a message that should return a short string-based representation to be used by list and related UI frameworks. By default, simply return printString."
 	"asString should not be implemented in Object, and kept for conversion between strings, symbols, text and characters."
 	
@@ -986,11 +796,8 @@ Object>>displayString [
 
 ]
 
-{
-	#category : #'reflective operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>doesNotUnderstand: aMessage [
+{ #category : #'reflective operations' }
+Object >> doesNotUnderstand: aMessage [ 
 	 "Handle the fact that there was an attempt to send the given message to the receiver but the receiver does not understand this message (typically sent from the machine when a message is sent to the receiver and no method is defined for that selector)."
 	"Testing: (3 activeProcess)"
 		
@@ -1004,11 +811,8 @@ Object>>doesNotUnderstand: aMessage [
 		ifFalse: [resumeValue]
 ]
 
-{
-	#category : #'set implementation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>enclosedSetElement [
+{ #category : #'set implementation' }
+Object >> enclosedSetElement [
 	"The receiver is included into a set as an element. 
 	Since some objects require wrappers (see SetElement) to be able to be included into a Set,
 	a set sends this message to its element to make sure it getting real object,
@@ -1018,80 +822,56 @@ Object>>enclosedSetElement [
 
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>error [
+{ #category : #'error handling' }
+Object >> error [
 	"Throw a generic Error exception."
 
 	^self error: 'Error!'.
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>error: aString [
+{ #category : #'error handling' }
+Object >> error: aString [ 
 	"Throw a generic Error exception."
 
 	^Error new signal: aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>errorImproperStore [
+{ #category : #private }
+Object >> errorImproperStore [
 	"Create an error notification that an improper store was attempted."
 
 	self error: 'Improper store into indexable object'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>errorNonIntegerIndex [
+{ #category : #private }
+Object >> errorNonIntegerIndex [
 	"Create an error notification that an improper object was used as an index."
 
 	self error: 'only integers should be used as indices'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>errorNotIndexable [
+{ #category : #private }
+Object >> errorNotIndexable [
 	"Create an error notification that the receiver is not indexable."
 
 	self error: ('Instances of {1} are not indexable' format: {self class name})
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>errorSubscriptBounds: index [
+{ #category : #private }
+Object >> errorSubscriptBounds: index [ 
 	"Create an error notification that an improper integer was used as an index."
 
 	SubscriptOutOfBounds signalFor: index
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>executor [
+{ #category : #finalization }
+Object >> executor [
 	"Return an object which can act as executor for finalization of the receiver"
 	^self shallowCopy actAsExecutor
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>explicitRequirement [
+{ #category : #'error handling' }
+Object >> explicitRequirement [
 	"If one of the superclasses can perform the selector, we execute the method of that class, otherwise, the explicit requirement error is thrown"
 
 	| originalMethod originalArguments errorBlock originalReceiver callingContext originalSelector |
@@ -1118,159 +898,107 @@ Object>>explicitRequirement [
 	errorBlock value
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>finalizationRegistry [
+{ #category : #finalization }
+Object >> finalizationRegistry [
 	"Answer the finalization registry associated with the receiver."
 	^WeakRegistry default
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>finalize [
+{ #category : #finalization }
+Object >> finalize [
 	"Finalize the resource associated with the receiver. This message should only be sent during the finalization process. There is NO garantuee that the resource associated with the receiver hasn't been free'd before so take care that you don't run into trouble - this all may happen with interrupt priority."
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>fullPrintString [
+{ #category : #printing }
+Object >> fullPrintString [
 	"Answer a String whose characters are a description of the receiver."
 
 	^ String streamContents: [:s | self printOn: s]
 ]
 
-{
-	#category : #halting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>halt [
+{ #category : #halting }
+Object >> halt [
 	"This is the typical message to use for inserting breakpoints during debugging."
 	<debuggerCompleteToSender>
 	Halt now
 ]
 
-{
-	#category : #halting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>halt: aString [
+{ #category : #halting }
+Object >> halt: aString [ 
 	<debuggerCompleteToSender>
 	Halt now: aString
 ]
 
-{
-	#category : #halting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>haltIf: condition [
+{ #category : #halting }
+Object >> haltIf: condition [
 	<debuggerCompleteToSender>
 	Halt if: condition.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>haltIfNil [
-
+{ #category : #testing }
+Object >> haltIfNil [
 ]
 
-{
-	#category : #halting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>haltOnCount: anInteger [
+{ #category : #halting }
+Object >> haltOnCount: anInteger [ 
 	<debuggerCompleteToSender>
 	Halt onCount: anInteger.
 ]
 
-{
-	#category : #halting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>haltOnce [
+{ #category : #halting }
+Object >> haltOnce [
 	<debuggerCompleteToSender>
 	Halt once.
 ]
 
-{
-	#category : #'process termination handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>handleProcessTerminationOfWaitingContext: suspendedContext [
+{ #category : #'process termination handling' }
+Object >> handleProcessTerminationOfWaitingContext: suspendedContext [
 	^suspendedContext
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>handles: exception [
+{ #category : #'error handling' }
+Object >> handles: exception [
 	"This method exists in case a non exception class is the first arg in an on:do: (for instance using a exception class that is not loaded). We prefer this to raising an error during error handling itself. Also, semantically it makes sense that the exception handler is not active if its exception class is not loaded"
 
 	^ false
 ]
 
-{
-	#category : #binding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>hasBindingOf: aString [
+{ #category : #binding }
+Object >> hasBindingOf: aString [
 	^false
 ]
 
-{
-	#category : #'literal testing',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>hasLiteralSuchThat: testBlock [
+{ #category : #'literal testing' }
+Object >> hasLiteralSuchThat: testBlock [
 	"This is the end of the imbedded structure path so return false."
 
 	^ false
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>hasMultipleExecutors [
+{ #category : #finalization }
+Object >> hasMultipleExecutors [
 	"All objects, except ObjectFinalizerCollection instances should answer false to this message"
 	^ false
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>hash [
+{ #category : #comparing }
+Object >> hash [
 	"Answer a SmallInteger whose value is related to the receiver's identity.
 	May be overridden, and should be overridden in any classes that define = "
 
 	^ self identityHash 
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>in: aBlock [
+{ #category : #evaluating }
+Object >> in: aBlock [
 	"Evaluate the given block with the receiver as its argument."
 
 	^ aBlock value: self
 
 ]
 
-{
-	#category : #introspection,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>instVarAt: index [
+{ #category : #introspection }
+Object >> instVarAt: index [
 	"Primitive. Answer a fixed variable in an object. The numbering of the variables
 	 corresponds to the named instance variables, followed by the indexed instance
 	 variables. Fail if the index is not an Integer or is not the index of a fixed variable.
@@ -1280,11 +1008,8 @@ Object>>instVarAt: index [
 	self primitiveFailed
 ]
 
-{
-	#category : #introspection,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>instVarAt: index put: anObject [
+{ #category : #introspection }
+Object >> instVarAt: index put: anObject [
 	"Primitive. Store a value into a fixed variable in an object. The numbering of the
 	 variables corresponds to the named instance variables, followed by the indexed
 	 instance variables. Fail if the index is not an Integer or is not the index of a fixed
@@ -1294,200 +1019,134 @@ Object>>instVarAt: index put: anObject [
 	self primitiveFailed
 ]
 
-{
-	#category : #introspection,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>instVarNamed: aString [
+{ #category : #introspection }
+Object >> instVarNamed: aString [
 	"Return the value of the instance variable in me with that name.  Slow and unclean, but very useful. "
 
 	^ self instVarAt: (self class instVarIndexFor: aString asString ifAbsent: [ InstanceVariableNotFound signalFor: aString asString ])
 ]
 
-{
-	#category : #introspection,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>instVarNamed: aString put: aValue [
+{ #category : #introspection }
+Object >> instVarNamed: aString put: aValue [
 	"Store into the value of the instance variable in me of that name. Slow and unclean, but very useful. "
 
 	^ self instVarAt: (self class instVarIndexFor: aString asString ifAbsent: [ InstanceVariableNotFound signalFor: aString asString ]) put: aValue
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isArray [
+{ #category : #testing }
+Object >> isArray [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isBehavior [
+{ #category : #testing }
+Object >> isBehavior [
 	"Return true if the receiver is a behavior.
 	Note: Do not override in any class except behavior."
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isBlock [
+{ #category : #testing }
+Object >> isBlock [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isCharacter [
+{ #category : #testing }
+Object >> isCharacter [
 
 	^ false.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isClass [
+{ #category : #testing }
+Object >> isClass [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isClassOrTrait [
+{ #category : #testing }
+Object >> isClassOrTrait [
 	^ self isClass or: [ self isTrait ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isClosure [
+{ #category : #testing }
+Object >> isClosure [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isCollection [
+{ #category : #testing }
+Object >> isCollection [
 	"Return true if the receiver is some sort of Collection and responds to basic collection messages such as #size and #do:"
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isColor [
+{ #category : #testing }
+Object >> isColor [
 	"Answer true if receiver is a Color. False by default."
 
 	^ false
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isColorForm [
+{ #category : #testing }
+Object >> isColorForm [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isCompiledMethod [
+{ #category : #testing }
+Object >> isCompiledMethod [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isContext [
+{ #category : #testing }
+Object >> isContext [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isDictionary [
+{ #category : #testing }
+Object >> isDictionary [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isFloat [
+{ #category : #testing }
+Object >> isFloat [
 	"Overridden to return true in Float, natch"
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isForm [
+{ #category : #testing }
+Object >> isForm [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isFraction [
+{ #category : #testing }
+Object >> isFraction [
 	"Answer true if the receiver is a Fraction."
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isHeap [
+{ #category : #testing }
+Object >> isHeap [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isInteger [
+{ #category : #testing }
+Object >> isInteger [
 	"Overridden to return true in Integer."
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isInterval [
+{ #category : #testing }
+Object >> isInterval [
 
 	^ false
 ]
 
-{
-	#category : #'class membership',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isKindOf: aClass [
+{ #category : #'class membership' }
+Object >> isKindOf: aClass [ 
 	"Answer whether the class, aClass, is a superclass or class of the receiver."
 
 	self class == aClass
@@ -1495,95 +1154,65 @@ Object>>isKindOf: aClass [
 		ifFalse: [^self class inheritsFrom: aClass]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isLiteral [
+{ #category : #printing }
+Object >> isLiteral [
 	"Answer whether the receiver has a literal text form recognized by the 
 	compiler."
 
 	^false
 ]
 
-{
-	#category : #'class membership',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isMemberOf: aClass [
+{ #category : #'class membership' }
+Object >> isMemberOf: aClass [ 
 	"Answer whether the receiver is an instance of the class, aClass."
 
 	^self class == aClass
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isMessageSend [
+{ #category : #testing }
+Object >> isMessageSend [
 	^false
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isMethodProperties [
+{ #category : #testing }
+Object >> isMethodProperties [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isMorph [
+{ #category : #testing }
+Object >> isMorph [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isMorphicEvent [
+{ #category : #testing }
+Object >> isMorphicEvent [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isMorphicModel [
+{ #category : #testing }
+Object >> isMorphicModel [
 	"Return true if the receiver is a morphic model"
 	^false
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isNotNil [
+{ #category : #testing }
+Object >> isNotNil [
 	"Coerces nil to false and everything else to true."
 
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isNumber [
+{ #category : #testing }
+Object >> isNumber [
 	"Overridden to return true in Number, natch"
 	^ false
 ]
 
-{
-	#category : #pinning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isPinned [
+{ #category : #pinning }
+Object >> isPinned [
 	"Answer if the receiver is pinned.  The VM's garbage collector routinely moves
 	 objects as it reclaims and compacts memory.  But it can also pin an object so
 	 that it will not be moved, which can make it easier to pass objects out through
@@ -1592,21 +1221,15 @@ Object>>isPinned [
 	^self primitiveFailed
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isPoint [
+{ #category : #testing }
+Object >> isPoint [
 	"Overridden to return true in Point."
 
 	^ false
 ]
 
-{
-	#category : #'write barrier',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isReadOnlyObject [
+{ #category : #'write barrier' }
+Object >> isReadOnlyObject [
 	"Answer if the receiver is read-only.
 	 If the VM supports read-only objects it will not write to read-only objects.
 	 An attempt to write to an instance variable of a read-only object will
@@ -1617,184 +1240,124 @@ Object>>isReadOnlyObject [
 	^self primitiveFailed
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isRectangle [
+{ #category : #testing }
+Object >> isRectangle [
 	^false
 ]
 
-{
-	#category : #'self evaluating',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isSelfEvaluating [
+{ #category : #'self evaluating' }
+Object >> isSelfEvaluating [
 	^ self isLiteral
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isStream [
+{ #category : #testing }
+Object >> isStream [
 	"Return true if the receiver responds to the stream protocol"
 	^false
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isString [
+{ #category : #testing }
+Object >> isString [
 	"Overridden to return true in String, natch"
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isSymbol [
+{ #category : #testing }
+Object >> isSymbol [
 	^ false 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isSystemWindow [
+{ #category : #testing }
+Object >> isSystemWindow [
 "answer whatever the receiver is a SystemWindow"
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isText [
+{ #category : #testing }
+Object >> isText [
 	^ false
 ]
 
-{
-	#category : #flagging,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isThisEverCalled [
+{ #category : #flagging }
+Object >> isThisEverCalled [
 	^ self isThisEverCalled: thisContext sender printString
 ]
 
-{
-	#category : #flagging,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isThisEverCalled: msg [
+{ #category : #flagging }
+Object >> isThisEverCalled: msg [
 	"Send this message, with some useful printable argument, from methods or branches of methods which you believe are never reached."
 
 	self error: 'This is indeed called: ', msg printString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isTrait [
+{ #category : #testing }
+Object >> isTrait [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>isVariableBinding [
+{ #category : #testing }
+Object >> isVariableBinding [
 	"Return true if I represent a literal variable binding"
 	^false
 	
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>literalEqual: other [
+{ #category : #comparing }
+Object >> literalEqual: other [
 
 	^ self class == other class and: [self = other]
 ]
 
-{
-	#category : #logging-Deprecated,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>log: aString [
+{ #category : #logging-Deprecated }
+Object >> log: aString [
 	"Log the argument. Use self log: instead of Transcript show: "
 	
 	Transcript show: aString.
 ]
 
-{
-	#category : #logging-Deprecated,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>logCr [
+{ #category : #logging-Deprecated }
+Object >> logCr [
       self logCr: self printString
 ]
 
-{
-	#category : #logging-Deprecated,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>logCr: aString [
+{ #category : #logging-Deprecated }
+Object >> logCr: aString [
 	"Log the argument. Use self logCr: 'something' instead of Transcript show: 'something'  ; cr "
 	
 	Transcript show: aString ; cr
 ]
 
-{
-	#category : #logging-Deprecated,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>logCrTab: aString [
+{ #category : #logging-Deprecated }
+Object >> logCrTab: aString [
 	"Log the argument. Use self logCr: 'something' instead of Transcript show: 'something'  ; cr ; tab"
 	
 	Transcript show: aString ; cr ; tab
 ]
 
-{
-	#category : #flagging,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>logEntry [
+{ #category : #flagging }
+Object >> logEntry [
 
 	Transcript show: 'Entered ', thisContext sender printString; cr.
 
 ]
 
-{
-	#category : #flagging,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>logExecution [
+{ #category : #flagging }
+Object >> logExecution [
 
 	Transcript show: 'Executing ', thisContext sender printString; cr.
 
 ]
 
-{
-	#category : #flagging,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>logExit [
+{ #category : #flagging }
+Object >> logExit [
 
 	Transcript show:  'Exited ', thisContext sender printString; cr.
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>longPrintOn: aStream [
+{ #category : #printing }
+Object >> longPrintOn: aStream [
 	"Append to the argument, aStream, the names and values of all 
 	of the receiver's instance variables."
 
@@ -1808,11 +1371,8 @@ Object>>longPrintOn: aStream [
 		 cr]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>longPrintOn: aStream limitedTo: sizeLimit indent: indent [
+{ #category : #printing }
+Object >> longPrintOn: aStream limitedTo: sizeLimit indent: indent [
 	"Append to the argument, aStream, the names and values of all of the receiver's instance variables.  Limit is the length limit for each inst var."
 
 	self class allInstVarNames doWithIndex:
@@ -1827,11 +1387,8 @@ Object>>longPrintOn: aStream limitedTo: sizeLimit indent: indent [
 		 cr]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>longPrintString [
+{ #category : #printing }
+Object >> longPrintString [
 	"Answer a String whose characters are a description of the receiver."
 	
 	| str |
@@ -1840,11 +1397,8 @@ Object>>longPrintString [
 	^ str isEmpty ifTrue: [self printString, String cr] ifFalse: [str]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>longPrintStringLimitedTo: aLimitValue [
+{ #category : #printing }
+Object >> longPrintStringLimitedTo: aLimitValue [
 	"Answer a String whose characters are a description of the receiver."
 	
 	| str |
@@ -1853,29 +1407,20 @@ Object>>longPrintStringLimitedTo: aLimitValue [
 	^ str isEmpty ifTrue: [self printString, String cr] ifFalse: [str]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>modelWakeUpIn: aWindow [
+{ #category : #'user interface' }
+Object >> modelWakeUpIn: aWindow [
 	"A window with me as model is being entered or expanded.  Default response is no-op" 
 ]
 
-{
-	#category : #'block support',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>mustBeBoolean [
+{ #category : #'block support' }
+Object >> mustBeBoolean [
 	"Catches attempts to test truth of non-Booleans.  This message is sent from the VM.  The sending context is rewound to just before the jump causing this exception."
 
 	^ self mustBeBooleanInMagic: thisContext sender
 ]
 
-{
-	#category : #'block support',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>mustBeBooleanIn: context [
+{ #category : #'block support' }
+Object >> mustBeBooleanIn: context [
 	"context is the where the non-boolean error occurred. Rewind context to before jump then raise error."
 	
 	"Some constructs are optimized in the compiler :
@@ -1902,21 +1447,15 @@ Object>>mustBeBooleanIn: context [
 	^ proceedValue ~~ false
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>myDependents [
+{ #category : #dependencies }
+Object >> myDependents [
 	"Private. Answer a list of all the receiver's dependents."
 
 	^ DependentsFields at: self ifAbsent: []
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>myDependents: aCollectionOrNil [
+{ #category : #dependencies }
+Object >> myDependents: aCollectionOrNil [
 	"Private. Set (or remove) the receiver's dependents list."
 
 	aCollectionOrNil
@@ -1924,11 +1463,8 @@ Object>>myDependents: aCollectionOrNil [
 		ifNotNil: [DependentsFields at: self put: aCollectionOrNil]
 ]
 
-{
-	#category : #flagging,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>nominallyUnsent: aSelectorSymbol [
+{ #category : #flagging }
+Object >> nominallyUnsent: aSelectorSymbol [
 	"From within the body of a method which is not formally sent within the system, but which you intend to have remain in the system (for potential manual invocation, or for documentation, or perhaps because it's sent by commented-out-code that you anticipate uncommenting out someday, send this message, with the selector itself as the argument.
 
 This will serve two purposes:
@@ -1940,42 +1476,30 @@ This will serve two purposes:
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>notNil [
+{ #category : #testing }
+Object >> notNil [
 	"Coerces nil to false and everything else to true."
 
 	^true
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>notYetImplemented [
+{ #category : #'error handling' }
+Object >> notYetImplemented [
 	"Announce that this message is not yet implemented"
 
 	NotYetImplemented signalFor: thisContext sender selector
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>notify: aString [
+{ #category : #'error handling' }
+Object >> notify: aString [ 
 	"Create and schedule a Notifier with the argument as the message in 
 	order to request confirmation before a process can proceed."
 
 	Warning signal: aString
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>notify: aString at: location [
+{ #category : #'error handling' }
+Object >> notify: aString at: location [
 	"Create and schedule a Notifier with the argument as the message in 
 	order to request confirmation before a process can proceed. Subclasses can
 	override this and insert an error message at location within aString."
@@ -1985,20 +1509,14 @@ Object>>notify: aString at: location [
 	"nil notify: 'confirmation message' at: 12"
 ]
 
-{
-	#category : #'model - updating',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>okToChange [
+{ #category : #'model - updating' }
+Object >> okToChange [
 	"Allows a controller to ask this of any model"
 	^ true
 ]
 
-{
-	#category : #'message performing',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>perform: aSymbol [
+{ #category : #'message performing' }
+Object >> perform: aSymbol [ 
 	"Send the unary selector, aSymbol, to the receiver.
 	Fail if the number of arguments expected by the selector is not zero.
 	Primitive. Optional. See Object documentation whatIsAPrimitive."
@@ -2008,20 +1526,14 @@ Object>>perform: aSymbol [
 	^ self perform: aSymbol withArguments: (Array new: 0)
 ]
 
-{
-	#category : #'message performing',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>perform: selector orSendTo: otherTarget [
+{ #category : #'message performing' }
+Object >> perform: selector orSendTo: otherTarget [
 	"If I wish to intercept and handle selector myself, do it; else send it to otherTarget"
 	^ (self respondsTo: selector) ifTrue: [self perform: selector] ifFalse: [otherTarget perform: selector]
 ]
 
-{
-	#category : #'message performing',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>perform: aSymbol with: anObject [
+{ #category : #'message performing' }
+Object >> perform: aSymbol with: anObject [ 
 	"Send the selector, aSymbol, to the receiver with anObject as its argument.
 	Fail if the number of arguments expected by the selector is not one.
 	Primitive. Optional. See Object documentation whatIsAPrimitive."
@@ -2031,11 +1543,8 @@ Object>>perform: aSymbol with: anObject [
 	^ self perform: aSymbol withArguments: (Array with: anObject)
 ]
 
-{
-	#category : #'message performing',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>perform: aSymbol with: firstObject with: secondObject [
+{ #category : #'message performing' }
+Object >> perform: aSymbol with: firstObject [ with: secondObject 
 	"Send the selector, aSymbol, to the receiver with the given arguments.
 	Fail if the number of arguments expected by the selector is not two.
 	Primitive. Optional. See Object documentation whatIsAPrimitive."
@@ -2045,11 +1554,8 @@ Object>>perform: aSymbol with: firstObject with: secondObject [
 	^ self perform: aSymbol withArguments: (Array with: firstObject with: secondObject)
 ]
 
-{
-	#category : #'message performing',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>perform: aSymbol with: firstObject with: secondObject with: thirdObject [
+{ #category : #'message performing' }
+Object >> perform: aSymbol with: firstObject [ with: secondObject with: thirdObject 
 	"Send the selector, aSymbol, to the receiver with the given arguments.
 	Fail if the number of arguments expected by the selector is not three.
 	Primitive. Optional. See Object documentation whatIsAPrimitive."
@@ -2060,11 +1566,8 @@ Object>>perform: aSymbol with: firstObject with: secondObject with: thirdObject 
 		withArguments: {firstObject . secondObject . thirdObject}
 ]
 
-{
-	#category : #'message performing',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>perform: aSymbol with: firstObject with: secondObject with: thirdObject with: fourthObject [
+{ #category : #'message performing' }
+Object >> perform: aSymbol with: firstObject [ with: secondObject with: thirdObject with: fourthObject
 	"Send the selector, aSymbol, to the receiver with the given arguments.
 	Fail if the number of arguments expected by the selector is not four.
 	Primitive. Optional. See Object documentation whatIsAPrimitive."
@@ -2075,11 +1578,8 @@ Object>>perform: aSymbol with: firstObject with: secondObject with: thirdObject 
 		withArguments: (Array with: firstObject with: secondObject with: thirdObject with: fourthObject)
 ]
 
-{
-	#category : #'message performing',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>perform: selector withArguments: argArray [
+{ #category : #'message performing' }
+Object >> perform: selector withArguments: argArray [ 
 	"Send the selector, aSymbol, to the receiver with arguments in argArray.
 	Fail if the number of arguments expected by the selector 
 	does not match the size of argArray.
@@ -2090,11 +1590,8 @@ Object>>perform: selector withArguments: argArray [
 	^ self perform: selector withArguments: argArray inSuperclass: self class
 ]
 
-{
-	#category : #'message performing',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>perform: selector withArguments: argArray inSuperclass: lookupClass [
+{ #category : #'message performing' }
+Object >> perform: selector withArguments: argArray inSuperclass: lookupClass [
 	"NOTE:  This is just like perform:withArguments:, except that
 	the message lookup process begins, not with the receivers's class,
 	but with the supplied superclass instead.  It will fail if lookupClass
@@ -2112,11 +1609,8 @@ Object>>perform: selector withArguments: argArray inSuperclass: lookupClass [
 	self primitiveFailed
 ]
 
-{
-	#category : #'message performing',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>perform: selector withEnoughArguments: anArray [
+{ #category : #'message performing' }
+Object >> perform: selector withEnoughArguments: anArray [
 	"Send the selector, aSymbol, to the receiver with arguments in argArray.
 	Only use enough arguments for the arity of the selector; supply nils for missing ones."
 	| numArgs args |
@@ -2133,11 +1627,8 @@ Object>>perform: selector withEnoughArguments: anArray [
 	^ self perform: selector withArguments: args
 ]
 
-{
-	#category : #pinning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>pin [
+{ #category : #pinning }
+Object >> pin [
 	"The VM's garbage collector routinely moves objects as it reclaims and compacts
 	 memory. But it can also pin an object so that it will not be moved, which can make
 	 it easier to pass objects out through the FFI.  Objects are unpinnned when created.
@@ -2145,11 +1636,8 @@ Object>>pin [
 	^self setPinned: true
 ]
 
-{
-	#category : #'pointing to',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>pointsOnlyWeaklyTo: anObject [
+{ #category : #'pointing to' }
+Object >> pointsOnlyWeaklyTo: anObject [
 	"Assume, we already know that receiver points to an object,
 	answer true if receiver points only weakly to it "
 	
@@ -2159,21 +1647,15 @@ Object>>pointsOnlyWeaklyTo: anObject [
 	^ true
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>postCopy [
+{ #category : #copying }
+Object >> postCopy [
 	"I'm a hook method in the sense of Design Patterns TemplateHook/Methods. I'm called by copy. self is a shallow copy, subclasses should copy fields as necessary to complete the full copy"
 
 	^ self 
 ]
 
-{
-	#category : #'reflective operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>primitiveChangeClassTo: anObject [
+{ #category : #'reflective operations' }
+Object >> primitiveChangeClassTo: anObject [
 	"Primitive. Change the class of the receiver into the class of the argument given that the format of the receiver matches the format of the argument's class. Fail if receiver or argument are SmallIntegers, or the receiver is an instance of a compact class and the argument isn't, or when the argument's class is compact and the receiver isn't, or when the format of the receiver is different from the format of the argument's class, or when the arguments class is fixed and the receiver's size differs from the size that an instance of the argument's class should have.
 	Note: The primitive will fail in most cases that you think might work. This is mostly because of a) the difference between compact and non-compact classes, and b) because of differences in the format. As an example, '(Array new: 3) primitiveChangeClassTo: Morph basicNew' would fail for three of the reasons mentioned above. Array is compact, Morph is not (failure #1). Array is variable and Morph is fixed (different format - failure #2). Morph is a fixed-field-only object and the array is too short (failure #3).
 	The facility is really provided for certain, very specific applications (mostly related to classes changing shape) and not for casual use."
@@ -2182,11 +1664,8 @@ Object>>primitiveChangeClassTo: anObject [
 	self primitiveFailed
 ]
 
-{
-	#category : #'primitive failure',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>primitiveFail [
+{ #category : #'primitive failure' }
+Object >> primitiveFail [
 	"primitiveFail may be invoked by certain methods whose code is translated in C. In such a case primitiveFail and not primitiveFailed
 	 should be invoked. The reason is that this code is translated to C by VMMaker. #primitiveFail is 
 	implemented in Interpreter of VMMaker."
@@ -2194,31 +1673,22 @@ Object>>primitiveFail [
 	^ self primitiveFailed
 ]
 
-{
-	#category : #'primitive failure',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>primitiveFailed [
+{ #category : #'primitive failure' }
+Object >> primitiveFailed [
 	"Announce that a primitive has failed and there is no appropriate Smalltalk code to run."
 
 	self primitiveFailed: thisContext sender selector
 ]
 
-{
-	#category : #'primitive failure',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>primitiveFailed: selector [
+{ #category : #'primitive failure' }
+Object >> primitiveFailed: selector [
 	"Announce that a primitive has failed and there is no appropriate Smalltalk code to run."
 	
 	PrimitiveFailed signalFor: selector
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>printOn: aStream [
+{ #category : #printing }
+Object >> printOn: aStream [
 	"Append to the argument, aStream, a sequence of characters that  
 	identifies the receiver."
 
@@ -2229,22 +1699,16 @@ Object>>printOn: aStream [
 		nextPutAll: title
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>printString [
+{ #category : #printing }
+Object >> printString [
 	"Answer a String whose characters are a description of the receiver. 
 	If you want to print without a character limit, use fullPrintString."
 
 	^ self printStringLimitedTo: 50000
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>printStringLimitedTo: limit [
+{ #category : #printing }
+Object >> printStringLimitedTo: limit [
 	"Answer a String whose characters are a description of the receiver.
 	If you want to print without a character limit, use fullPrintString."
 	| limitedString |
@@ -2253,44 +1717,29 @@ Object>>printStringLimitedTo: limit [
 	^ limitedString , '...etc...'
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>putOn: aStream [
+{ #category : #streaming }
+Object >> putOn: aStream [
 	aStream nextPut: self
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>readFromString: aString [
+{ #category : #reading }
+Object >> readFromString: aString [ 
 	"Create an object based on the contents of aString."
 	^ self readFrom: aString readStream
 ]
 
-{
-	#category : #introspection,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>readSlot: aSlot [
+{ #category : #introspection }
+Object >> readSlot: aSlot [
 	^aSlot read: self
 ]
 
-{
-	#category : #introspection,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>readSlotNamed: aName [
+{ #category : #introspection }
+Object >> readSlotNamed: aName [
 	^self readSlot: (self class slotNamed: aName)
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>release [
+{ #category : #dependencies }
+Object >> release [
 	"Remove references to objects that may refer to the receiver. This message 
 	should be overridden by subclasses with any cycles, in which case the 
 	subclass should also include the expression super release."
@@ -2298,11 +1747,8 @@ Object>>release [
 	
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>removeDependent: anObject [
+{ #category : #dependencies }
+Object >> removeDependent: anObject [
 	"Remove the given object as one of the receiver's dependents."
 
 	| dependents |
@@ -2311,30 +1757,21 @@ Object>>removeDependent: anObject [
 	^ anObject
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>requirement [
+{ #category : #'error handling' }
+Object >> requirement [
 	self error: 'Implicitly required method'
 ]
 
-{
-	#category : #'class membership',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>respondsTo: aSymbol [
+{ #category : #'class membership' }
+Object >> respondsTo: aSymbol [ 
 	"Answer whether the method dictionary of the receiver's class contains 
 	aSymbol as a message selector."
 
 	^self class canUnderstand: aSymbol
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>retryWithGC: execBlock until: testBlock [
+{ #category : #finalization }
+Object >> retryWithGC: execBlock until: testBlock [
 	"Retry execBlock as long as testBlock returns false. Do an incremental GC after the first try, a full GC after the second try."
 	| blockValue |
 	blockValue := execBlock value.
@@ -2346,11 +1783,8 @@ Object>>retryWithGC: execBlock until: testBlock [
 	^execBlock value.
 ]
 
-{
-	#category : #'write barrier',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>setIsReadOnlyObject: aBoolean [
+{ #category : #'write barrier' }
+Object >> setIsReadOnlyObject: aBoolean [
 	"If the VM supports read-only objects it will not write to read-only objects.
 	 An attempt to write to an instance variable of a read-only object will
 	 cause the VM to send attemptToAssign:withIndex: to the read-only object.
@@ -2365,11 +1799,8 @@ Object>>setIsReadOnlyObject: aBoolean [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>setPinned: aBoolean [
+{ #category : #private }
+Object >> setPinned: aBoolean [
 	"The VM's garbage collector routinely moves objects as it reclaims and compacts
 	 memory. But it can also pin an object so that it will not be moved, which can make
 	 it easier to pass objects out through the FFI.  Objects are unpinnned when created.
@@ -2378,11 +1809,8 @@ Object>>setPinned: aBoolean [
 	^self primitiveFailed
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>shallowCopy [
+{ #category : #copying }
+Object >> shallowCopy [
 	"Answer a copy of the receiver which shares the receiver's instance variables. It should never be overridden. I'm invoked from the copy template method. Subclasses that need to specialize the copy should specialize the postCopy hook method."
 	
 	| class newObject index |
@@ -2405,41 +1833,29 @@ Object>>shallowCopy [
 	^ newObject
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>shouldBeImplemented [
+{ #category : #'error handling' }
+Object >> shouldBeImplemented [
 	"Announce that this message should be implemented"
 
 	ShouldBeImplemented signalFor: thisContext sender selector
 ]
 
-{
-	#category : #'literal testing',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>shouldBePrintedAsLiteral [
+{ #category : #'literal testing' }
+Object >> shouldBePrintedAsLiteral [
 
 	^self isLiteral
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>shouldNotImplement [
+{ #category : #'error handling' }
+Object >> shouldNotImplement [
 	"Announce that, although the receiver inherits this message, 
 	it should not implement it."
 
 	ShouldNotImplement signalFor: thisContext sender selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>size [
+{ #category : #accessing }
+Object >> size [
 	"Primitive. Answer the number of indexable variables in the receiver. 
 	This value is the same as the largest legal subscript. Essential. See Object 
 	documentation whatIsAPrimitive."
@@ -2449,11 +1865,8 @@ Object>>size [
 	^ 0
 ]
 
-{
-	#category : #'memory usage',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>sizeInMemory [
+{ #category : #'memory usage' }
+Object >> sizeInMemory [
 	"Answer the number of bytes consumed by this instance including object header."
 
 	| contentBytes |
@@ -2479,11 +1892,8 @@ Object>>sizeInMemory [
 	^ contentBytes
 ]
 
-{
-	#category : #'reflective operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>someObject [
+{ #category : #'reflective operations' }
+Object >> someObject [
 	"Primitive. Answer the first object in the enumeration of all
 	 objects."
 
@@ -2491,11 +1901,8 @@ Object>>someObject [
 	self primitiveFailed.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>species [
+{ #category : #private }
+Object >> species [
 	"Answer the preferred class for reconstructing the receiver.  For example, 
 	collections create new collections whenever enumeration messages such as 
 	collect: or select: are invoked.  The new kind of collection is determined by 
@@ -2505,58 +1912,40 @@ Object>>species [
 	^self class
 ]
 
-{
-	#category : #'model - stepping',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>stepAt: millisecondClockValue in: aWindow [
+{ #category : #'model - stepping' }
+Object >> stepAt: millisecondClockValue in: aWindow [
 
 	^ self stepIn: aWindow
 ]
 
-{
-	#category : #'model - stepping',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>stepIn: aWindow [
+{ #category : #'model - stepping' }
+Object >> stepIn: aWindow [
 
 	^ self step
 ]
 
-{
-	#category : #'model - stepping',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>stepTime [
+{ #category : #'model - stepping' }
+Object >> stepTime [
 	
 	^ 1000 "milliseconds -- default backstop for objects serving as models of system windows"
 ]
 
-{
-	#category : #'model - stepping',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>stepTimeIn: aSystemWindow [
+{ #category : #'model - stepping' }
+Object >> stepTimeIn: aSystemWindow [
 	
 	^ 1000 "milliseconds -- default backstop for objects serving as models of system windows"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>storeAt: offset inTempFrame: aContext [
+{ #category : #private }
+Object >> storeAt: offset inTempFrame: aContext [
 	"This message had to get sent to an expression already on the stack
 	as a Block argument being accessed by the debugger.
 	Just re-route it to the temp frame."
 	^ aContext tempAt: offset put: self
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>storeOn: aStream [
+{ #category : #printing }
+Object >> storeOn: aStream [ 
 	"Append to the argument aStream a sequence of characters that is an 
 	expression whose evaluation creates an object similar to the receiver."
 
@@ -2584,33 +1973,24 @@ Object>>storeOn: aStream [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>storeString [
+{ #category : #printing }
+Object >> storeString [
 	"Answer a String representation of the receiver from which the receiver 
 	can be reconstructed."
 
 	^ String streamContents: [:s | self storeOn: s]
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>subclassResponsibility [
+{ #category : #'error handling' }
+Object >> subclassResponsibility [
 	"This message sets up a framework for the behavior of the class' subclasses.
 	Announce that the subclass should have implemented this message."
 
 	SubclassResponsibility signalFor: thisContext sender selector
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>toFinalizeSend: aSelector to: aFinalizer with: aResourceHandle [
+{ #category : #finalization }
+Object >> toFinalizeSend: aSelector to: aFinalizer with: aResourceHandle [
 	"When I am finalized (e.g., garbage collected) close the associated resource handle by sending aSelector to the appropriate finalizer (the guy who knows how to get rid of the resource).
 	WARNING: Neither the finalizer nor the resource handle are allowed to reference me. If they do, then I will NEVER be garbage collected. Since this cannot be validated here, it is up to the client to make sure this invariant is not broken."
 	self == aFinalizer ifTrue:[self error: 'I cannot finalize myself'].
@@ -2622,55 +2002,37 @@ Object>>toFinalizeSend: aSelector to: aFinalizer with: aResourceHandle [
 			argument: aResourceHandle)
 ]
 
-{
-	#category : #tracing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>trace [
+{ #category : #tracing }
+Object >> trace [
       self trace: self printString
 ]
 
-{
-	#category : #tracing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>trace: aString [
+{ #category : #tracing }
+Object >> trace: aString [
 	"Log the argument. Use self trace: instead of Transcript show: "
 	
 	Transcript show: aString.
 ]
 
-{
-	#category : #tracing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>traceCr [
+{ #category : #tracing }
+Object >> traceCr [
       self traceCr: self printString
 ]
 
-{
-	#category : #tracing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>traceCr: aString [
+{ #category : #tracing }
+Object >> traceCr: aString [
 	"Log the argument. Use self traceCr: 'something' instead of Transcript show: 'something'  ; cr "
 	
 	Transcript show: aString ; cr
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>traitConflict [
+{ #category : #'error handling' }
+Object >> traitConflict [
 	self error: 'A class or trait does not properly resolve a conflict between multiple traits it uses.'
 ]
 
-{
-	#category : #pinning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>unpin [
+{ #category : #pinning }
+Object >> unpin [
 	"The VM's garbage collector routinely moves objects as it reclaims and compacts
 	 memory. But it can also pin an object so that it will not be moved, which can make
 	 it easier to pass objects out through the FFI.  Objects are unpinnned when created.
@@ -2678,11 +2040,8 @@ Object>>unpin [
 	^self setPinned: false
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>update: aParameter [
+{ #category : #updating }
+Object >> update: aParameter [ 
 	"Receive a change notice from an object of whom the receiver is a 
 	dependent. The default behavior is to do nothing; a subclass might want 
 	to change itself in some way."
@@ -2690,11 +2049,8 @@ Object>>update: aParameter [
 	^ self
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>update: anAspect with: anObject [
+{ #category : #updating }
+Object >> update: anAspect with: anObject [
 	"Receive a change notice from an object of whom the receiver is a 
 	dependent. The default behavior is to call update:,
 	which by default does nothing; a subclass might want 
@@ -2703,29 +2059,20 @@ Object>>update: anAspect with: anObject [
 	^ self update: anAspect
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>value [
+{ #category : #evaluating }
+Object >> value [
 
 	^self
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>valueWithArguments: aSequenceOfArguments [
+{ #category : #evaluating }
+Object >> valueWithArguments: aSequenceOfArguments [
 
 	^self
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>veryDeepCopy [
+{ #category : #copying }
+Object >> veryDeepCopy [
 	"Do a complete tree copy using a dictionary.  An object in the tree twice is only copied once.  All references to the object in the copy of the tree will point to the new copy."
 
 	| copier new |
@@ -2737,11 +2084,8 @@ Object>>veryDeepCopy [
 	^ new
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>veryDeepCopyWith: deepCopier [
+{ #category : #copying }
+Object >> veryDeepCopyWith: deepCopier [
 	"Copy me and the entire tree of objects I point to.  An object in the tree twice is copied once, and both references point to him.  deepCopier holds a dictionary of objects we have seen.  Some classes refuse to be copied.  Some classes are picky about which fields get deep copied."
 	
 	| class selfNumberOfInstanceVariables fieldOfSelf copyOfSelf currentClass hasVeryDeepInnerMethod currentNumberOfInstanceVariables |
@@ -2789,85 +2133,58 @@ Object>>veryDeepCopyWith: deepCopier [
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>veryDeepFixupWith: deepCopier [
+{ #category : #copying }
+Object >> veryDeepFixupWith: deepCopier [
 	"I have no fields and no superclass.  Catch the super call."
 	
 	"avoid to use me we will deprecate it in the future"
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>veryDeepInner: deepCopier [
+{ #category : #copying }
+Object >> veryDeepInner: deepCopier [
 	"No special treatment for inst vars of my superclasses.  Override when some need to be weakly copied.  Object>>veryDeepCopyWith: will veryDeepCopy any inst var whose class does not actually define veryDeepInner:"
 
 	"avoid to use me we will deprecate it in the future"
 ]
 
-{
-	#category : #'model - stepping',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>wantsSteps [
+{ #category : #'model - stepping' }
+Object >> wantsSteps [
 	"Overridden by morphic classes whose instances want to be stepped,
 	or by model classes who want their morphic views to be stepped."
 
 	^ false
 ]
 
-{
-	#category : #'model - stepping',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>wantsStepsIn: aSystemWindow [
+{ #category : #'model - stepping' }
+Object >> wantsStepsIn: aSystemWindow [
 	
 	^ self wantsSteps
 ]
 
-{
-	#category : #'model - updating',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>windowIsClosing [
+{ #category : #'model - updating' }
+Object >> windowIsClosing [
 	"This message is used to inform a models that its window is closing. Most models do nothing, but some, such as the Debugger, must do some cleanup. Note that this mechanism must be used with care by models that support multiple views, since one view may be closed while others left open."
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>withoutListWrapper [
+{ #category : #'user interface' }
+Object >> withoutListWrapper [
 
 	^self
 ]
 
-{
-	#category : #introspection,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>writeSlot: aSlot value: anObject [
+{ #category : #introspection }
+Object >> writeSlot: aSlot value: anObject [
 	^aSlot write: anObject to: self
 ]
 
-{
-	#category : #introspection,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>writeSlotNamed: aName value: anObject [
+{ #category : #introspection }
+Object >> writeSlotNamed: aName value: anObject [
 	^(self class slotNamed: aName) write: anObject to: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>yourself [
+{ #category : #accessing }
+Object >> yourself [
 	"Answer self. The message yourself deserves a bit of explanation.
 	Sending yourself is handy to get the receiver of a message. It is especially useful when using a cascade since all the cascaded messages are send to the receiver. Let us look at an example.
 	
@@ -2889,11 +2206,8 @@ Object>>yourself [
 	^self
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Object>>~= anObject [
+{ #category : #comparing }
+Object >> ~= anObject [ 
 	"Answer whether the receiver and the argument do not represent the 
 	same object."
 

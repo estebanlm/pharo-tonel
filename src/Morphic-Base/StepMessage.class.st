@@ -20,25 +20,18 @@ Class {
 	#instVars : [
 		'stepTime'
 	],
-	#category : #Morphic-Base-Events,
-	#timestamp : 'LaurentLaffont 3/15/2011 20:49'
+	#category : #Morphic-Base-Events
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StepMessage class>>scheduledAt: scheduledTime stepTime: stepTime receiver: aTarget selector: aSelector arguments: argArray [
+{ #category : #'instance creation' }
+StepMessage class >> scheduledAt: scheduledTime stepTime: stepTime receiver: aTarget selector: aSelector arguments: argArray [
 	^(self receiver: aTarget selector: aSelector arguments: argArray)
 		scheduledTime: scheduledTime;
 		stepTime: stepTime
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StepMessage>>printOn: aStream [
+{ #category : #printing }
+StepMessage >> printOn: aStream [
 	super printOn: aStream.
 	aStream 
 		nextPut: $(;
@@ -50,20 +43,14 @@ StepMessage>>printOn: aStream [
 		nextPut: $).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StepMessage>>stepTime [
+{ #category : #testing }
+StepMessage >> stepTime [
 	"Return the step time for this message. If nil, the receiver of the message will be asked for its #stepTime."
 	^stepTime
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StepMessage>>stepTime: aNumber [
+{ #category : #accessing }
+StepMessage >> stepTime: aNumber [
 	"Set the step time for this message. If nil, the receiver of the message will be asked for its #stepTime."
 	stepTime := aNumber
 ]

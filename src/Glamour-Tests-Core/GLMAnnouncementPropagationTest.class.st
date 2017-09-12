@@ -1,42 +1,26 @@
-"
-
-"
 Class {
 	#name : #GLMAnnouncementPropagationTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnnouncementPropagationTest>>expectedFailures [
+{ #category : #setup }
+GLMAnnouncementPropagationTest >> expectedFailures [
 	^ #(testEntityPropogationAnnouncements testSimplePropagation)
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnnouncementPropagationTest>>setUp [
+{ #category : #setup }
+GLMAnnouncementPropagationTest >> setUp [
 	GLMLogger instance: GLMMemoryLogger new
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnnouncementPropagationTest>>tearDown [
+{ #category : #setup }
+GLMAnnouncementPropagationTest >> tearDown [
 	GLMLogger reset
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnnouncementPropagationTest>>testEntityPropogationAnnouncements [
+{ #category : #tests }
+GLMAnnouncementPropagationTest >> testEntityPropogationAnnouncements [
 	"This tests the order in which announcements are raised in nested browsers. 
  
 	This is of importance as, in this test, we add a browser to a pane when a 
@@ -108,11 +92,8 @@ GLMAnnouncementPropagationTest>>testEntityPropogationAnnouncements [
 	self assert: (GLMLogger instance announcements at: 8) matchingPresentations first == browser1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnnouncementPropagationTest>>testPropagationDuringCircularDependencies [
+{ #category : #tests }
+GLMAnnouncementPropagationTest >> testPropagationDuringCircularDependencies [
 	| browser announcements |
 	browser := GLMTabulator new.
 	browser
@@ -157,20 +138,14 @@ GLMAnnouncementPropagationTest>>testPropagationDuringCircularDependencies [
 	self assert: announcements sixth presentation pane name equals: #two
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnnouncementPropagationTest>>testSimple [
+{ #category : #tests }
+GLMAnnouncementPropagationTest >> testSimple [
 	GLMPresentation new announce: GLMContextChanged new.
 	self assert: GLMLogger instance announcements size equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnnouncementPropagationTest>>testSimpleEmptyPane [
+{ #category : #tests }
+GLMAnnouncementPropagationTest >> testSimpleEmptyPane [
 	| pane |
 	pane := GLMPane new.
 	pane browser: GLMBrowser new.
@@ -179,11 +154,8 @@ GLMAnnouncementPropagationTest>>testSimpleEmptyPane [
 	self assert: (GLMLogger instance announcements first isKindOf: GLMContextChanged)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAnnouncementPropagationTest>>testSimplePropagation [
+{ #category : #tests }
+GLMAnnouncementPropagationTest >> testSimplePropagation [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #pane1.

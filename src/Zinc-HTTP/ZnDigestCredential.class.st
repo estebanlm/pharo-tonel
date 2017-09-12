@@ -12,40 +12,27 @@ Class {
 		'nonce',
 		'opaque'
 	],
-	#category : #Zinc-HTTP-Support,
-	#timestamp : 'SvenVanCaekenberghe 12/6/2010 12:59'
+	#category : #Zinc-HTTP-Support
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestCredential class>>authName [
+{ #category : #accessing }
+ZnDigestCredential class >> authName [
 	^ 'Digest'
 ]
 
-{
-	#category : #computation,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestCredential>>a1 [
+{ #category : #computation }
+ZnDigestCredential >> a1 [
 	^ ZnDigestAuthenticator md5Hash: self username, ':', self realm, ':', self password
 ]
 
-{
-	#category : #computation,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestCredential>>a2ForUrl: urlObject method: method [
+{ #category : #computation }
+ZnDigestCredential >> a2ForUrl: urlObject method: method [
 	"This doesn't support all qop options yet."
 	^ ZnDigestAuthenticator md5Hash: method, ':', (self uriPathFrom: urlObject)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestCredential>>authTokenForUrl: urlObject method: method [
+{ #category : #accessing }
+ZnDigestCredential >> authTokenForUrl: urlObject method: method [
 	| result |
 	result := WriteStream on: String new.
 	result
@@ -73,85 +60,55 @@ ZnDigestCredential>>authTokenForUrl: urlObject method: method [
 	^ result contents
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestCredential>>isComplete [
+{ #category : #testing }
+ZnDigestCredential >> isComplete [ 
 	^ super isComplete & nonce notNil 
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestCredential>>linkToAuthRequest: aHeader [
+{ #category : #operations }
+ZnDigestCredential >> linkToAuthRequest: aHeader [
 	| data |
 	data := self parseAuthRequest: aHeader.
 	self nonce: (data at: 'nonce').
 	self realm: (data at: 'realm' ifAbsent: [ '' ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestCredential>>nonce [
+{ #category : #accessing }
+ZnDigestCredential >> nonce [
 	^ nonce
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestCredential>>nonce: anObject [
+{ #category : #accessing }
+ZnDigestCredential >> nonce: anObject [
 	nonce := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestCredential>>opaque [
+{ #category : #accessing }
+ZnDigestCredential >> opaque [
 	^ opaque
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestCredential>>opaque: anObject [
+{ #category : #accessing }
+ZnDigestCredential >> opaque: anObject [
 	opaque := anObject
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestCredential>>parseAuthRequest: aHeader [
+{ #category : #operations }
+ZnDigestCredential >> parseAuthRequest: aHeader [
 	^ ZnDigestAuthenticator parseAuthRequest: aHeader
 ]
 
-{
-	#category : #computation,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestCredential>>responseForUrl: urlObject method: method [
+{ #category : #computation }
+ZnDigestCredential >> responseForUrl: urlObject method: method [
 	^ ZnDigestAuthenticator md5Hash: self a1, ':', self nonce, ':', (self a2ForUrl: urlObject method: method)
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestCredential>>setAuthorizationHeader: headers for: urlObject method: method [
+{ #category : #operations }
+ZnDigestCredential >> setAuthorizationHeader: headers for: urlObject method: method [
 	headers at: 'Authorization' put: (self authTokenForUrl: urlObject method: method)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnDigestCredential>>uriPathFrom: urlObject [
+{ #category : #accessing }
+ZnDigestCredential >> uriPathFrom: urlObject [
 	^ urlObject pathPrintString ifNil: [ '/' ]
 ]

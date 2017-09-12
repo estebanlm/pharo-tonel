@@ -6,15 +6,11 @@ This can happen when an implementation is inherited.
 Class {
 	#name : #ShouldNotImplement,
 	#superclass : #SelectorException,
-	#category : #Kernel-Exceptions,
-	#timestamp : 'SvenVanCaekenberghe 4/21/2011 12:33'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ShouldNotImplement>>standardMessageText [
+{ #category : #printing }
+ShouldNotImplement >> standardMessageText [
 	"Generate a standard textual description"
 	
 	^ String streamContents: [ :stream |

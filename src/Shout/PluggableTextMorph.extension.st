@@ -1,12 +1,7 @@
-Extension {
-	#name : #PluggableTextMorph
-}
+Extension { #name : #PluggableTextMorph }
 
-{
-	#category : #'*Shout',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-PluggableTextMorph>>stylerStyled: styledCopyOfText  [
+{ #category : #'*Shout' }
+PluggableTextMorph >> stylerStyled: styledCopyOfText [ 
 
 	textMorph contents runs: styledCopyOfText runs.
 	textMorph updateFromParagraph.
@@ -18,11 +13,8 @@ PluggableTextMorph>>stylerStyled: styledCopyOfText  [
 	self scrollSelectionIntoView
 ]
 
-{
-	#category : #'*Shout',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-PluggableTextMorph>>stylerStyledInBackground: styledCopyOfText  [
+{ #category : #'*Shout' }
+PluggableTextMorph >> stylerStyledInBackground: styledCopyOfText [ 
 	textMorph contents string = styledCopyOfText string
 		ifTrue: [self stylerStyled: styledCopyOfText]
 ]

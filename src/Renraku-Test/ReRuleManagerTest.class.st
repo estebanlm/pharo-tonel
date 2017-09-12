@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ReRuleManagerTest,
 	#superclass : #RenrakuBaseTestCase,
-	#category : #Renraku-Test,
-	#timestamp : ''
+	#category : #Renraku-Test
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReRuleManagerTest>>testClassAdded [
+{ #category : #tests }
+ReRuleManagerTest >> testClassAdded [
 
 	| rule rulesCount |
 	
@@ -39,11 +32,8 @@ ReRuleManagerTest>>testClassAdded [
 	rule removeFromSystem.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReRuleManagerTest>>testClassRemoved [
+{ #category : #tests }
+ReRuleManagerTest >> testClassRemoved [
 
 	| rule |
 	

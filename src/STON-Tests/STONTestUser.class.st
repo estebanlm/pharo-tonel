@@ -15,15 +15,11 @@ Class {
 		'password',
 		'enabled'
 	],
-	#category : #STON-Tests,
-	#timestamp : '<historical>'
+	#category : #STON-Tests
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestUser class>>dummy [
+{ #category : #'instance creation' }
+STONTestUser class >> dummy [
 	"self dummy"
 	
 	| username password |
@@ -37,19 +33,13 @@ STONTestUser class>>dummy [
 		yourself
 ]
 
-{
-	#category : #ston-core,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestUser class>>stonName [
+{ #category : #ston-core }
+STONTestUser class >> stonName [
 	^ #TestUser
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestUser>>= anObject [
+{ #category : #comparing }
+STONTestUser >> = anObject [
 	"Answer whether the receiver and anObject represent the same object."
 
 	self == anObject
@@ -59,69 +49,45 @@ STONTestUser>>= anObject [
 	^ username = anObject username and: [ password = anObject password and: [ enabled = anObject enabled ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestUser>>enabled [
+{ #category : #accessing }
+STONTestUser >> enabled [
 	^ enabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestUser>>enabled: anObject [
+{ #category : #accessing }
+STONTestUser >> enabled: anObject [
 	enabled := anObject
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestUser>>hash [
+{ #category : #comparing }
+STONTestUser >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
 
 	^ username hash bitXor: (password hash bitXor: enabled hash)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestUser>>initialize  [
+{ #category : #initialize-release }
+STONTestUser >> initialize [ 
 	super initialize.
 	enabled := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestUser>>password [
+{ #category : #accessing }
+STONTestUser >> password [
 	^ password
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestUser>>password: anObject [
+{ #category : #accessing }
+STONTestUser >> password: anObject [
 	password := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestUser>>username [
+{ #category : #accessing }
+STONTestUser >> username [
 	^ username
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestUser>>username: anObject [
+{ #category : #accessing }
+STONTestUser >> username: anObject [
 	username := anObject
 ]

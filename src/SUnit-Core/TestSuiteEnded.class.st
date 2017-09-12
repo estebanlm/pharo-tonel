@@ -4,15 +4,11 @@ This announcment is thrown when a test suite just finished (more precisly when h
 Class {
 	#name : #TestSuiteEnded,
 	#superclass : #TestCaseAnnouncement,
-	#category : #SUnit-Core-Announcements,
-	#timestamp : '<historical>'
+	#category : #SUnit-Core-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuiteEnded class>>result: aResult [
+{ #category : #'instance creation' }
+TestSuiteEnded class >> result: aResult [
 
 	^ self new
 		testResult: aResult;

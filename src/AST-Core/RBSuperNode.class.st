@@ -4,22 +4,15 @@ I am a specialized variable node for 'super'
 Class {
 	#name : #RBSuperNode,
 	#superclass : #RBVariableNode,
-	#category : #AST-Core-Nodes,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSuperNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visiting }
+RBSuperNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^aProgramNodeVisitor visitSuperNode: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSuperNode>>isSuper [
+{ #category : #testing }
+RBSuperNode >> isSuper [
 	^ true
 ]

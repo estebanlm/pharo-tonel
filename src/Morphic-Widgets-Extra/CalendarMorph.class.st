@@ -29,15 +29,11 @@ Class {
 		'touchPoints',
 		'announcer'
 	],
-	#category : #Morphic-Widgets-Extra,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Extra
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph class>>on: aDate [
+{ #category : #'instance creation' }
+CalendarMorph class >> on: aDate [
 
 	^self new
 		"extent: 200 @ 160;"
@@ -46,40 +42,28 @@ CalendarMorph class>>on: aDate [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph class>>openOn: aDate [
+{ #category : #'instance creation' }
+CalendarMorph class >> openOn: aDate [
 
 	^(self on: aDate) openInWorld
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>announceDate [
+{ #category : #private }
+CalendarMorph >> announceDate [
 
 	| announcement |
 	announcement := ChoseDate of: self date from: self.
 	announcer ifNotNil: [ announcer announce: announcement ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>announcer [
+{ #category : #private }
+CalendarMorph >> announcer [
 
 	^ announcer ifNil: [ announcer := Announcer new ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>computeDays [
+{ #category : #private }
+CalendarMorph >> computeDays [
 	"Populate the days instance variable with CalendarChooserDay instances for the receiver's month."
 
 	| cellHeight cellWidth height topLeft lastMonth nextMonth theDay thisMonth |
@@ -107,20 +91,14 @@ CalendarMorph>>computeDays [
 			theDay bounds: (cellPosX @ yOffset extent: cellWidth @ cellHeight)]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>date [
+{ #category : #accessing }
+CalendarMorph >> date [
 
 	^date
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>date: aDate [
+{ #category : #accessing }
+CalendarMorph >> date: aDate [
 
 	| recompute |
 	recompute := date isNil or: [date month ~= aDate month].
@@ -129,11 +107,8 @@ CalendarMorph>>date: aDate [
 		ifTrue: [self computeDays]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>daysForLine: aNumber [
+{ #category : #private }
+CalendarMorph >> daysForLine: aNumber [
 	"Return an array of numbers that correspond to the day-of-month numbers of the given line (row) 
 	in the calendar for the month of the receiver's date."
 
@@ -169,21 +144,15 @@ CalendarMorph>>daysForLine: aNumber [
 			ifFalse: [each - dayCount]]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>defaultBounds [
+{ #category : #initialize }
+CalendarMorph >> defaultBounds [
 	"Answer the default bounds for the receiver."
 
 	^0 @ 0 corner: 200 @ 160
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>drawDaysOn: aCanvas [
+{ #category : #drawing }
+CalendarMorph >> drawDaysOn: aCanvas [
 
 	days do: [:each |
 		each
@@ -191,11 +160,8 @@ CalendarMorph>>drawDaysOn: aCanvas [
 			offset: self bounds topLeft]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>drawMonthHeaderOn: aCanvas [
+{ #category : #drawing }
+CalendarMorph >> drawMonthHeaderOn: aCanvas [
 
 	| headerWidth headerString box textBox textTopLeft monthBox monthNameWidth yearBox previousMonthBox nextMonthBox |
 	headerString := date asMonth printString.
@@ -241,11 +207,8 @@ CalendarMorph>>drawMonthHeaderOn: aCanvas [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+CalendarMorph >> drawOn: aCanvas [
 
 	touchPoints := Dictionary new.
 	aCanvas
@@ -271,11 +234,8 @@ CalendarMorph>>drawOn: aCanvas [
 	
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>drawTodayOn: aCanvas [
+{ #category : #drawing }
+CalendarMorph >> drawTodayOn: aCanvas [
 
 	| text textHeight textTopLeft textWidth textBox |
 	text := 'Today: ', (Date today printFormat: #(2 1 3 $  3 1 1)).
@@ -291,11 +251,8 @@ CalendarMorph>>drawTodayOn: aCanvas [
 		color: Color gray
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>drawWeekDayNamesOn: aCanvas [
+{ #category : #drawing }
+CalendarMorph >> drawWeekDayNamesOn: aCanvas [
 
 	| cellHeight height topLeft topRight cellWidth |
 	topLeft := self bounds topLeft translateBy: 0 @ 25.
@@ -322,11 +279,8 @@ CalendarMorph>>drawWeekDayNamesOn: aCanvas [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>extent: aPoint [
+{ #category : #accessing }
+CalendarMorph >> extent: aPoint [
 	"Since the day objects cache their bounding box, we have to recompute them if the receiver resizes."
 
 	| result |
@@ -336,11 +290,8 @@ CalendarMorph>>extent: aPoint [
 	^result
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>handleMonthNameTouched [
+{ #category : #'event handling' }
+CalendarMorph >> handleMonthNameTouched [
 
 	| newMonthName dayCount |
 	newMonthName := UIManager default 
@@ -360,44 +311,32 @@ CalendarMorph>>handleMonthNameTouched [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>handleNextMonthTouched [
+{ #category : #'event handling' }
+CalendarMorph >> handleNextMonthTouched [
 
 	self date: date onNextMonth.
 	self changed.
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>handlePreviousMonthTouched [
+{ #category : #'event handling' }
+CalendarMorph >> handlePreviousMonthTouched [
 
 	self date: date onPreviousMonth.
 	self changed.
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>handleTodayTouched [
+{ #category : #'event handling' }
+CalendarMorph >> handleTodayTouched [
 
 	self date: Date today.
 	self changed.
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>handleYearTouched [
+{ #category : #'event handling' }
+CalendarMorph >> handleYearTouched [
 
 	| newYear dayCount |
 	newYear := UIManager default 
@@ -417,31 +356,22 @@ CalendarMorph>>handleYearTouched [
 	self changed.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>handlesMouseDown: event [
+{ #category : #'event handling' }
+CalendarMorph >> handlesMouseDown: event [
 
 	^true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>initialize [
+{ #category : #initialization }
+CalendarMorph >> initialize [
 
 	super initialize.
 	touchPoints := Dictionary new.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>monthNameFont [
+{ #category : #accessing }
+CalendarMorph >> monthNameFont [
 
 	| font boldItalic |
 	font := LogicalFont familyName: 'Bitmap DejaVu Sans' pointSize: 12.
@@ -449,11 +379,8 @@ CalendarMorph>>monthNameFont [
 	^ font emphasis: boldItalic.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>mouseDown: event [
+{ #category : #'event handling' }
+CalendarMorph >> mouseDown: event [
 	"Handle mouse down and mouse movement. Highlight the day under the mouse."
 
 	| morphRelativeHitPoint |
@@ -464,20 +391,14 @@ CalendarMorph>>mouseDown: event [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>mouseMove: event [
+{ #category : #'event handling' }
+CalendarMorph >> mouseMove: event [
 
 	self mouseDown: event
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>mouseUp: event [
+{ #category : #'event handling' }
+CalendarMorph >> mouseUp: event [
 	"Check for hotspot hits - handle them if they match.
 	Otherwise, convert the event cursor to morph-local, and find the day under it.
 	If there is nothing under the mouse when it goes up, nothing happens."
@@ -497,20 +418,14 @@ CalendarMorph>>mouseUp: event [
 
 ]
 
-{
-	#category : #announcing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>onChoiceSend: aSymbol to: anObject [
+{ #category : #announcing }
+CalendarMorph >> onChoiceSend: aSymbol to: anObject [
 
 	self announcer when: ChoseDate send: aSymbol to: anObject.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CalendarMorph>>weekdayFont [
+{ #category : #accessing }
+CalendarMorph >> weekdayFont [
 
 	^ LogicalFont familyName: 'Bitmap DejaVu Sans' pointSize: 9.
 ]

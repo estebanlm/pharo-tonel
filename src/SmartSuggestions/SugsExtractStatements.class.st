@@ -7,35 +7,25 @@ In fact we should replace the SugsExtracMethod  with this one.
 Class {
 	#name : #SugsExtractStatements,
 	#superclass : #SugsSuggestion,
-	#category : #SmartSuggestions-Suggestion,
-	#timestamp : '<historical>'
+	#category : #SmartSuggestions-Suggestion
 }
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsExtractStatements>>execute [
+{ #category : #execution }
+SugsExtractStatements >> execute [
 	| selectedValidCodeInterval |
 	selectedValidCodeInterval := self privateCalculateInterval.
 	(NautilusRefactoring model: context) extractBetween: selectedValidCodeInterval from: context selectedMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsExtractStatements>>label [
+{ #category : #accessing }
+SugsExtractStatements >> label [
 	^'Extract method' translated.
 	
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsExtractStatements>>privateCalculateInterval [
+{ #category : #private }
+SugsExtractStatements >> privateCalculateInterval [
 	| selectedValidCodeInterval selectedValidCodeStatements |
 	selectedValidCodeStatements := context selectedStatementsAsSequence.
 	selectedValidCodeInterval := selectedValidCodeStatements start to: selectedValidCodeStatements stop.

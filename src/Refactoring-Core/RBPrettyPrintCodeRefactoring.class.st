@@ -6,23 +6,16 @@ I have no precondition.
 Class {
 	#name : #RBPrettyPrintCodeRefactoring,
 	#superclass : #RBRefactoring,
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 19:26'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPrettyPrintCodeRefactoring>>preconditions [
+{ #category : #preconditions }
+RBPrettyPrintCodeRefactoring >> preconditions [
 	^ RBCondition empty
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPrettyPrintCodeRefactoring>>transform [
+{ #category : #transforming }
+RBPrettyPrintCodeRefactoring >> transform [
 	| source tree formatted |
 	self model allClassesDo: [ :class |
 		class selectors do: [ :selector |

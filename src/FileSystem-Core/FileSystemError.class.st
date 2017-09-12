@@ -7,47 +7,31 @@ Class {
 	#instVars : [
 		'reference'
 	],
-	#category : #FileSystem-Core-Kernel,
-	#timestamp : 'cwp 11/18/2009 12:32'
+	#category : #FileSystem-Core-Kernel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemError class>>reference: aReference [
+{ #category : #'instance creation' }
+FileSystemError class >> reference: aReference [
 	^ self basicNew initializeWithReference: aReference
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemError class>>signalWith: aReference [
+{ #category : #'instance creation' }
+FileSystemError class >> signalWith: aReference [
 	^ (self reference: aReference) signal
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemError>>initializeWithReference: aReference [
+{ #category : #initialize-release }
+FileSystemError >> initializeWithReference: aReference [
 	reference := aReference.
 	messageText := aReference printString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemError>>isResumable [
+{ #category : #testing }
+FileSystemError >> isResumable [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemError>>reference [
+{ #category : #accessing }
+FileSystemError >> reference [
 	^ reference
 ]

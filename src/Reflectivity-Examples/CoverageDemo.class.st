@@ -14,15 +14,11 @@ Class {
 		'compiledMethods',
 		'coverageCode'
 	],
-	#category : #Reflectivity-Examples,
-	#timestamp : 'mcamp 11/17/2015 11:33'
+	#category : #Reflectivity-Examples
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo class>>defaultSpec [
+{ #category : #specs }
+CoverageDemo class >> defaultSpec [
 	<spec: #default>
 	
 	^ SpecLayout composed
@@ -35,19 +31,13 @@ CoverageDemo class>>defaultSpec [
 		]
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo class>>title [
+{ #category : #specs }
+CoverageDemo class >> title [
 	^'Coverage Demo'
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>addCards [
+{ #category : #adding }
+CoverageDemo >> addCards [
 
 	compiledMethods do:[:method|
 		codePanelMorph widget addMorph: 
@@ -56,68 +46,44 @@ CoverageDemo>>addCards [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>codePanelMorph [
+{ #category : #accessing }
+CoverageDemo >> codePanelMorph [
 	^ codePanelMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>codePanelMorph: anObject [
+{ #category : #accessing }
+CoverageDemo >> codePanelMorph: anObject [
 	codePanelMorph := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>compiledMethods [
+{ #category : #accessing }
+CoverageDemo >> compiledMethods [
 	^ compiledMethods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>compiledMethods: anObject [
+{ #category : #accessing }
+CoverageDemo >> compiledMethods: anObject [
 	compiledMethods := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>coverageCode [
+{ #category : #accessing }
+CoverageDemo >> coverageCode [
 	^ coverageCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>coverageCode: anObject [
+{ #category : #accessing }
+CoverageDemo >> coverageCode: anObject [
 	coverageCode := anObject
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>exampleMethod [
+{ #category : #example }
+CoverageDemo >> exampleMethod [
 
 	self openWithSpec.
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>exampleNotCompleteCoverage [
+{ #category : #example }
+CoverageDemo >> exampleNotCompleteCoverage [
 
 	self coverageCode: [ ReflectivityExamples new exampleIfTrueIfFalse. ].
 	self compiledMethods add: ReflectivityExamples>>#exampleIfTrueIfFalse.
@@ -125,19 +91,13 @@ CoverageDemo>>exampleNotCompleteCoverage [
 	self openWithSpec.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>initialExtent [
+{ #category : #api }
+CoverageDemo >> initialExtent [
 	^ 700@600
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>initialize [
+{ #category : #initialization }
+CoverageDemo >> initialize [
 
 	coverageCode := [ReflectivityExamples new exampleMethod].
 	compiledMethods := OrderedCollection new.
@@ -146,11 +106,8 @@ CoverageDemo>>initialize [
 	super initialize.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>initializePresenter [
+{ #category : #initialization }
+CoverageDemo >> initializePresenter [
 
 	installMetalinkButton action: [self installMetalink].
 	runCodeButton action: [ self runCoverageCode ].
@@ -161,11 +118,8 @@ CoverageDemo>>initializePresenter [
 	].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>initializeWidgets [
+{ #category : #initialization }
+CoverageDemo >> initializeWidgets [
 
 	installMetalinkButton := self newButton.
 	runCodeButton := self newButton.
@@ -175,11 +129,8 @@ CoverageDemo>>initializeWidgets [
 	runCodeButton label: 'Run Example Code'.
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>installMetalink [
+{ #category : #action }
+CoverageDemo >> installMetalink [
 	|link|
 	
 	link := MetaLink new
@@ -189,88 +140,58 @@ CoverageDemo>>installMetalink [
 	compiledMethods do:[:method| method ast nodesDo: [:node | node link: link]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>installMetalinkButton [
+{ #category : #accessing }
+CoverageDemo >> installMetalinkButton [
 	^ installMetalinkButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>installMetalinkButton: anObject [
+{ #category : #accessing }
+CoverageDemo >> installMetalinkButton: anObject [
 	installMetalinkButton := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>metalinkBlock [
+{ #category : #accessing }
+CoverageDemo >> metalinkBlock [
 	^ metalinkBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>metalinkBlock: anObject [
+{ #category : #accessing }
+CoverageDemo >> metalinkBlock: anObject [
 	metalinkBlock := anObject
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>openWithSpec [
+{ #category : #api }
+CoverageDemo >> openWithSpec [
 	self addCards.
 	^ super openWithSpec
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>removeMetalink [
+{ #category : #action }
+CoverageDemo >> removeMetalink [
 	
 	compiledMethods do:[:method| method methodClass recompile].
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>runCodeButton [
+{ #category : #accessing }
+CoverageDemo >> runCodeButton [
 	^ runCodeButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>runCodeButton: anObject [
+{ #category : #accessing }
+CoverageDemo >> runCodeButton: anObject [
 	runCodeButton := anObject
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>runCoverageCode [
+{ #category : #action }
+CoverageDemo >> runCoverageCode [
 
 	coverageCode value.
 	self updateRubricStyle.
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageDemo>>updateRubricStyle [
+{ #category : #styling }
+CoverageDemo >> updateRubricStyle [
 
 	codePanelMorph widget submorphs do:[:card| |conf ast|
 			

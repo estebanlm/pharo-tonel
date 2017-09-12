@@ -11,49 +11,33 @@ Class {
 		'newCategoryName',
 		'oldCategoryName'
 	],
-	#category : #System-Announcements-System-Categories,
-	#timestamp : 'cyrilledelaunay 1/18/2011 12:26'
+	#category : #System-Announcements-System-Categories
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-CategoryRenamed class>>classCategoryRenamedFrom: anOldCategoryName to: aNewCategoryName [
+{ #category : #'instance creation' }
+CategoryRenamed class >> classCategoryRenamedFrom: anOldCategoryName to: aNewCategoryName [
 	^self new
 			newCategoryName: aNewCategoryName;
 			oldCategoryName: anOldCategoryName;
 			yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-CategoryRenamed>>newCategoryName [
+{ #category : #accessing }
+CategoryRenamed >> newCategoryName [
 	^newCategoryName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-CategoryRenamed>>newCategoryName: aCategoryName [
+{ #category : #accessing }
+CategoryRenamed >> newCategoryName: aCategoryName [
 	newCategoryName := aCategoryName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-CategoryRenamed>>oldCategoryName [
+{ #category : #accessing }
+CategoryRenamed >> oldCategoryName [
 	^oldCategoryName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-CategoryRenamed>>oldCategoryName: aCategoryName [
+{ #category : #accessing }
+CategoryRenamed >> oldCategoryName: aCategoryName [
 	oldCategoryName := aCategoryName
 ]

@@ -4,15 +4,11 @@ SUnit tests for AbstractTutorial
 Class {
 	#name : #AbstractTutorialTest,
 	#superclass : #TestCase,
-	#category : #ProfStef-Tests,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:51'
+	#category : #ProfStef-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-AbstractTutorialTest>>testLessonsReturnsAllLessonInstances [
+{ #category : #tests }
+AbstractTutorialTest >> testLessonsReturnsAllLessonInstances [
 	|lessons|
 	lessons := MockTutorial new lessons.
 	self assert:3 equals:lessons size.
@@ -21,20 +17,14 @@ AbstractTutorialTest>>testLessonsReturnsAllLessonInstances [
 	self assert: 'third' equals: lessons last title.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-AbstractTutorialTest>>testTitleHumanizeClassName [
+{ #category : #tests }
+AbstractTutorialTest >> testTitleHumanizeClassName [
 	self assert: 'How To Make Your Own Tutorial' equals: HowToMakeYourOwnTutorial title.
 	self assert: 'Pharo Syntax Tutorial' equals: PharoSyntaxTutorial title.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-AbstractTutorialTest>>testTutorialRaisesShouldBeImplemented [
+{ #category : #tests }
+AbstractTutorialTest >> testTutorialRaisesShouldBeImplemented [
 	| tutorial |
 	tutorial := AbstractTutorial new.
 	self 
@@ -48,11 +38,8 @@ AbstractTutorialTest>>testTutorialRaisesShouldBeImplemented [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-AbstractTutorialTest>>testTutorialsReturnsAllButMockTutorial [
+{ #category : #tests }
+AbstractTutorialTest >> testTutorialsReturnsAllButMockTutorial [
 	| tutorials |
 	tutorials := AbstractTutorial tutorials.
 	self assert: (tutorials includes: PharoSyntaxTutorial).

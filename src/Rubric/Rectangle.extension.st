@@ -1,19 +1,11 @@
-Extension {
-	#name : #Rectangle
-}
+Extension { #name : #Rectangle }
 
-{
-	#category : #'*Rubric',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-Rectangle>>privateSetCorner: bottomRight  [
+{ #category : #'*Rubric' }
+Rectangle >> privateSetCorner: bottomRight [ 
 	corner := bottomRight
 ]
 
-{
-	#category : #'*Rubric',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-Rectangle>>privateSetOrigin: topLeft  [
+{ #category : #'*Rubric' }
+Rectangle >> privateSetOrigin: topLeft [ 
 	origin := topLeft
 ]

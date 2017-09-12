@@ -8,15 +8,11 @@ Class {
 		'stream',
 		'store'
 	],
-	#category : #Ombu-Persistence,
-	#timestamp : 'MartinDias 12/12/2014 16:10'
+	#category : #Ombu-Persistence
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntryReader class>>newForStore: aFileStore [
+{ #category : #'instance creation' }
+OmEntryReader class >> newForStore: aFileStore [
 	
 	^ self basicNew
 		initializeWithStore: aFileStore;
@@ -24,57 +20,39 @@ OmEntryReader class>>newForStore: aFileStore [
 
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntryReader>>entryPositionsDo: aBlock [
+{ #category : #reading }
+OmEntryReader >> entryPositionsDo: aBlock [
 	
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntryReader>>initializeWithStore: aFileStore [
+{ #category : #initialization }
+OmEntryReader >> initializeWithStore: aFileStore [
 
 	self initialize.
 	store := aFileStore.
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntryReader>>nextEntry [
+{ #category : #reading }
+OmEntryReader >> nextEntry [
 	"Read next entry from the stream."
 	
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntryReader>>store [
+{ #category : #accessing }
+OmEntryReader >> store [
 	^ store
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntryReader>>stream [
+{ #category : #accessing }
+OmEntryReader >> stream [
 
 	^ stream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmEntryReader>>stream: aReadStream [
+{ #category : #accessing }
+OmEntryReader >> stream: aReadStream [
 
 	stream := aReadStream
 ]

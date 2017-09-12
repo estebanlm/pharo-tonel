@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #FLDelayedSerializationMock,
 	#superclass : #FLSerialization,
-	#category : #FuelTests-Mocks,
-	#timestamp : ''
+	#category : #FuelTests-Mocks
 }
 
-{
-	#category : #serializing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLDelayedSerializationMock>>run [
+{ #category : #serializing }
+FLDelayedSerializationMock >> run [
 	"Serialize the graph starting at the root object."
 
 	self analysisStep.

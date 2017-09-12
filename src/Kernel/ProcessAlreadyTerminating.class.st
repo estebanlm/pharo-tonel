@@ -6,6 +6,5 @@ Use Process>>isTerminating to check for this.
 Class {
 	#name : #ProcessAlreadyTerminating,
 	#superclass : #Notification,
-	#category : #Kernel-Processes,
-	#timestamp : 'MaxLeske 9/22/2014 09:56'
+	#category : #Kernel-Processes
 }

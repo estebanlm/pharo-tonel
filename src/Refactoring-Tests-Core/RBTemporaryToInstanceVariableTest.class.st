@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #RBTemporaryToInstanceVariableTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTemporaryToInstanceVariableTest>>setUp [
+{ #category : #'set up' }
+RBTemporaryToInstanceVariableTest >> setUp [
 	super setUp.
 	model := self abstractVariableTestData.
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTemporaryToInstanceVariableTest>>testNonExistantName [
+{ #category : #'failure tests' }
+RBTemporaryToInstanceVariableTest >> testNonExistantName [
 	self
 		shouldFail: (RBTemporaryToInstanceVariableRefactoring 
 				class: RBBasicLintRuleTest
@@ -33,11 +23,8 @@ RBTemporaryToInstanceVariableTest>>testNonExistantName [
 				variable: 'aSmalllintContext')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTemporaryToInstanceVariableTest>>testRedefinedTemporary [
+{ #category : #'failure tests' }
+RBTemporaryToInstanceVariableTest >> testRedefinedTemporary [
 	| class |
 	class := model classNamed: #Foo.
 	class 
@@ -49,11 +36,8 @@ RBTemporaryToInstanceVariableTest>>testRedefinedTemporary [
 				variable: 'instVarName1')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBTemporaryToInstanceVariableTest>>testTemporaryToInstanceVariable [
+{ #category : #tests }
+RBTemporaryToInstanceVariableTest >> testTemporaryToInstanceVariable [
 	| refactoring class |
 	refactoring := RBTemporaryToInstanceVariableRefactoring 
 		class: RBLintRuleTest

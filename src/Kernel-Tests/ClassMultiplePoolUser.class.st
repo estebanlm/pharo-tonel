@@ -8,33 +8,23 @@ Class {
 		'PoolDefiner',
 		'PoolDefiner2'
 	],
-	#category : #Kernel-Tests-Classes,
-	#timestamp : 'StephaneDucasse 12/13/2011 15:59'
+	#category : #Kernel-Tests-Classes
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassMultiplePoolUser class>>author [
+{ #category : #accessing }
+ClassMultiplePoolUser class >> author [
 
 	^ Author
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassMultiplePoolUser class>>gloups [
+{ #category : #accessing }
+ClassMultiplePoolUser class >> gloups [
 
 	^ Gloups
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassMultiplePoolUser class>>variableInPoolDefiner2 [
+{ #category : #accessing }
+ClassMultiplePoolUser class >> variableInPoolDefiner2 [
 
 	^ VariableInPoolDefiner2
 ]

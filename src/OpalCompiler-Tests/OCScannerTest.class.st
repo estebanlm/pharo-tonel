@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #OCScannerTest,
 	#superclass : #TestCase,
-	#category : #OpalCompiler-Tests-FromOld,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-FromOld
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCScannerTest>>testAmbiguousSelector [
+{ #category : #testing }
+OCScannerTest >> testAmbiguousSelector [
 	"Non regression test.
 	See http://code.google.com/p/pharo/issues/detail?id=2271
 	and http://bugs.squeak.org/view.php?id=7491"
@@ -21,11 +14,8 @@ OCScannerTest>>testAmbiguousSelector [
 	self assert: ('1@-1' parseLiterals at: 2) asString = '@-'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCScannerTest>>testLiteralSymbols [
+{ #category : #testing }
+OCScannerTest >> testLiteralSymbols [
 		
 	((((32 to: 126) collect: [:ascii | Character value: ascii])) copyWithout: $`) , "backtick is not suppored by OBParser"
 	#(':x:yourself' '::' 'x:yourself' '123' 'x0:1:2:' 'x.y.z' '1abc' 'a1b0c2' ' x' 'x ' '+x-y' '||' '--' '++' '+-' '+/-' '-/+' '<|>' '#x' '()' '[]' '{}' '')

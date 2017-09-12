@@ -7,39 +7,26 @@ Class {
 	#instVars : [
 		'name'
 	],
-	#category : #OpalCompiler-Core-IR-Nodes,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-IR-Nodes
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTempAccess>>isRemoteTemp [
+{ #category : #testing }
+IRTempAccess >> isRemoteTemp [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTempAccess>>isTemp [
+{ #category : #testing }
+IRTempAccess >> isTemp [
 	^true.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTempAccess>>name [
+{ #category : #accessing }
+IRTempAccess >> name [
 
 	^name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTempAccess>>name: aString [
+{ #category : #accessing }
+IRTempAccess >> name: aString [
 	name := aString
 ]

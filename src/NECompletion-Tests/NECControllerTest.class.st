@@ -7,37 +7,27 @@ Class {
 	#instVars : [
 		'controller'
 	],
-	#category : #NECompletion-Tests,
-	#timestamp : '<historical>'
+	#category : #NECompletion-Tests
 }
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECControllerTest>>setUp [
+{ #category : #initialize }
+NECControllerTest >> setUp [
 	"Setting up code for NECControllerTest"
 
 
 	controller := NECController new.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECControllerTest>>tearDown [
+{ #category : #initialize }
+NECControllerTest >> tearDown [
 	"Tearing down code for NECControllerTest"
 
 
 	controller := nil.
 ]
 
-{
-	#category : #tests-keyboard,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECControllerTest>>testSmartNeedExtraRemoveInForOppositeAt [
+{ #category : #tests-keyboard }
+NECControllerTest >> testSmartNeedExtraRemoveInForOppositeAt [
 
 	self assert: (controller smartNeedExtraRemoveIn: '()' for: $( opposite:$) at:1).
 	self deny: (controller smartNeedExtraRemoveIn: '(()' for: $( opposite:$) at:2).

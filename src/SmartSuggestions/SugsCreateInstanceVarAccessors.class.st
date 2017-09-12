@@ -4,30 +4,20 @@ I know how to create accessors for an instance var
 Class {
 	#name : #SugsCreateInstanceVarAccessors,
 	#superclass : #SugsSuggestion,
-	#category : #SmartSuggestions-Suggestion,
-	#timestamp : '<historical>'
+	#category : #SmartSuggestions-Suggestion
 }
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsCreateInstanceVarAccessors>>execute [
+{ #category : #execution }
+SugsCreateInstanceVarAccessors >> execute [
 	(NautilusRefactoring model: context) accessorsInstVarNamed: context selectedVariableName from: context selectedClass
 ]
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsCreateInstanceVarAccessors>>isValidForContext [
+{ #category : #execution }
+SugsCreateInstanceVarAccessors >> isValidForContext [
 	^ context hasUnImplementedAccessors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsCreateInstanceVarAccessors>>label [
+{ #category : #accessing }
+SugsCreateInstanceVarAccessors >> label [
 	^ 'Create Accesors' translated
 ]

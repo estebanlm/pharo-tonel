@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #KMDispatcherTestCase,
 	#superclass : #AbstractKeymappingTest,
-	#category : #Keymapping-Tests,
-	#timestamp : ''
+	#category : #Keymapping-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMDispatcherTestCase>>keymapContainer [
+{ #category : #tests }
+KMDispatcherTestCase >> keymapContainer [
 	^ KMRepository default
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMDispatcherTestCase>>testBuffering [
+{ #category : #tests }
+KMDispatcherTestCase >> testBuffering [
 	| morph flag category event1 event2 event3|
 	category := KMCategory named: #TestBlah.
 	KMRepository default addCategory: category.
@@ -54,11 +44,8 @@ KMDispatcherTestCase>>testBuffering [
 	self assert: flag.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMDispatcherTestCase>>testDetach [
+{ #category : #tests }
+KMDispatcherTestCase >> testDetach [
 
 	| category1 category2 morph attachedCategories |
 	category1 := KMCategory named: #TestBlah.
@@ -78,11 +65,8 @@ KMDispatcherTestCase>>testDetach [
 	self should: [ morph detachKeymapCategory: #NonExistent ] raise: Error.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMDispatcherTestCase>>testNoMultiTrigger [
+{ #category : #tests }
+KMDispatcherTestCase >> testNoMultiTrigger [
 	| bm1 bm2 flag1 flag2 category otherCategory |
 	category := KMCategory named: #TestBlah.
 	otherCategory := KMCategory named: #TestFoo.
@@ -108,11 +92,8 @@ KMDispatcherTestCase>>testNoMultiTrigger [
 	self assert: flag2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMDispatcherTestCase>>testNoStaggeredTrigger [
+{ #category : #tests }
+KMDispatcherTestCase >> testNoStaggeredTrigger [
 	"Once a key sequence is recognized by a keymapper, all other  
 	keymappers should clear their buffers"
 	| bm1 bm2 flag1 flag2 category otherCategory bufferBefore |

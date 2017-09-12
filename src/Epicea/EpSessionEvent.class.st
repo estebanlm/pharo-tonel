@@ -7,41 +7,28 @@ Class {
 	#instVars : [
 		'imageName'
 	],
-	#category : #Epicea-Model,
-	#timestamp : '<historical>'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSessionEvent class>>imageName: anImageName [
+{ #category : #'instance creation' }
+EpSessionEvent class >> imageName: anImageName [
 	^ self basicNew
 		initializeWith: anImageName;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSessionEvent class>>new  [
+{ #category : #'instance creation' }
+EpSessionEvent class >> new [ 
 	^ self imageName: Smalltalk image imagePath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSessionEvent>>imageName [
+{ #category : #accessing }
+EpSessionEvent >> imageName [
 	^ imageName
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSessionEvent>>initializeWith: anImageName [
+{ #category : #initialization }
+EpSessionEvent >> initializeWith: anImageName [
 	self initialize.
 	
 	imageName := anImageName

@@ -20,23 +20,16 @@ Class {
 		'strongArray',
 		'owner'
 	],
-	#category : #Alien-Core,
-	#timestamp : ''
+	#category : #Alien-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienWeakTable class>>newForOwner: anOwner [
+{ #category : #'instance creation' }
+AlienWeakTable class >> newForOwner: anOwner [
 	^self basicNew initializeWithOwner: anOwner
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienWeakTable>>add: anObject finalizing: postMortemFinalizationTag [
+{ #category : #adding }
+AlienWeakTable >> add: anObject finalizing: postMortemFinalizationTag [
 	"Register a new object in the table, with the associated tag. The object is held onto weakly, the tag--strongly. The tag will be passed to the owner as the argument of #finalize: some time after the object is garbage collected."
 
 	| size start delta |
@@ -63,11 +56,8 @@ AlienWeakTable>>add: anObject finalizing: postMortemFinalizationTag [
 	^anObject
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienWeakTable>>finalizeValues [
+{ #category : #finalization }
+AlienWeakTable >> finalizeValues [
 	"Sent periodically by the finalization loop to check for any dead objects and report their death to the owner."
 	
 	accessProtect critical:
@@ -86,11 +76,8 @@ AlienWeakTable>>finalizeValues [
 		 lastUsedIndex := newLastUsedIndex]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienWeakTable>>initializeWithOwner: anObject [
+{ #category : #initialize-release }
+AlienWeakTable >> initializeWithOwner: anObject [
 	accessProtect := Semaphore forMutualExclusion.
 	firstUnusedIndex := 1.
 	lastUsedIndex := 0.
@@ -100,11 +87,8 @@ AlienWeakTable>>initializeWithOwner: anObject [
 	WeakArray addWeakDependent: self
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienWeakTable>>remove: anObject [
+{ #category : #removing }
+AlienWeakTable >> remove: anObject [
 	1 to: lastUsedIndex do:
 		[:i|
 		(weakArray at: i) == anObject ifTrue:
@@ -118,11 +102,8 @@ AlienWeakTable>>remove: anObject [
 	^anObject
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienWeakTable>>removeAll [
+{ #category : #removing }
+AlienWeakTable >> removeAll [
 
 	accessProtect critical:
 		[1 to: lastUsedIndex do:

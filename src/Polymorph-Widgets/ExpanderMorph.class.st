@@ -8,25 +8,18 @@ Class {
 		'titleMorph',
 		'announcer'
 	],
-	#category : #Polymorph-Widgets,
-	#timestamp : 'gvc 5/18/2007 13:13'
+	#category : #Polymorph-Widgets
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph class>>titleText: aStringOrText [
+{ #category : #'as yet unclassified' }
+ExpanderMorph class >> titleText: aStringOrText [
 	"Answer a new instance of the receiver with the given title text."
 
 	^self new titleText: aStringOrText
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>addedMorph: aMorph [
+{ #category : #operations }
+ExpanderMorph >> addedMorph: aMorph [
 	"Notify the receiver that the given morph was just added."
 
 	aMorph == self titleMorph ifFalse: [
@@ -36,41 +29,29 @@ ExpanderMorph>>addedMorph: aMorph [
 				disableTableLayout: self expanded not]]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>announce: anAnnouncement [
+{ #category : #operations }
+ExpanderMorph >> announce: anAnnouncement [
 	"see Announcements packages.
 	No need to announce if no subscribers."
 	
 	announcer ifNotNil: [announcer announce: anAnnouncement]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>announcer [
+{ #category : #accessing }
+ExpanderMorph >> announcer [
 	"Answer the receiver's announcer, creating if required."
 	
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>announcer: anObject [
+{ #category : #accessing }
+ExpanderMorph >> announcer: anObject [
 
 	announcer := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>defaultTitleMorph [
+{ #category : #initialization }
+ExpanderMorph >> defaultTitleMorph [
 	"Answer a default title morph for the receiver."
 
 	^ExpanderTitleMorph basicNew
@@ -81,41 +62,29 @@ ExpanderMorph>>defaultTitleMorph [
 		basicTheme: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>expanded [
+{ #category : #accessing }
+ExpanderMorph >> expanded [
 	"Answer whether the title is expanded."
 	
 	^self titleMorph expanded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>expanded: aBoolean [
+{ #category : #accessing }
+ExpanderMorph >> expanded: aBoolean [
 	"Set whether the title is expanded."
 	
 	self titleMorph expanded: aBoolean
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>expandedSizingRigid [
+{ #category : #operations }
+ExpanderMorph >> expandedSizingRigid [
 	"Set the vResizing to be (temporarily) #rigid."
 
 	self expanded ifTrue: [self vResizing: #rigid]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>fixLayout [
+{ #category : #operations }
+ExpanderMorph >> fixLayout [
 	"Fix the owner layout, nasty!"
 
 	self owner ifNil: [ ^ self ].
@@ -130,31 +99,22 @@ ExpanderMorph>>fixLayout [
 	self defer: (MessageSend receiver: self owner selector: #changed)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>font [
+{ #category : #accessing }
+ExpanderMorph >> font [
 	"Answer the title font"
 
 	^self titleMorph font
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>font: aFont [
+{ #category : #accessing }
+ExpanderMorph >> font: aFont [
 	"Set the title font"
 
 	self titleMorph font: aFont
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>initialize [
+{ #category : #initialization }
+ExpanderMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -167,11 +127,8 @@ ExpanderMorph>>initialize [
 		expanded: false
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>showMorphs: aBoolean [
+{ #category : #operations }
+ExpanderMorph >> showMorphs: aBoolean [
 	"Hide/Show the other morphs."
 
 	self submorphs do: [:m |
@@ -181,21 +138,15 @@ ExpanderMorph>>showMorphs: aBoolean [
 				disableTableLayout: aBoolean not]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>titleMorph [
+{ #category : #accessing }
+ExpanderMorph >> titleMorph [
 	"Answer the value of titleMorph"
 
 	^ titleMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>titleMorph: aMorph [
+{ #category : #accessing }
+ExpanderMorph >> titleMorph: aMorph [
 	"Set the value of titleMorph"
 
 	titleMorph ifNotNil: [titleMorph delete; removeDependent: self].
@@ -205,20 +156,14 @@ ExpanderMorph>>titleMorph: aMorph [
 		 self addMorph: aMorph]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>titleText: aStringOrText [
+{ #category : #operations }
+ExpanderMorph >> titleText: aStringOrText [
 
 	self titleMorph titleText: aStringOrText
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ExpanderMorph>>update: aspect [
+{ #category : #updating }
+ExpanderMorph >> update: aspect [
 	"Update the receiver."
 
 	aspect = #expanded

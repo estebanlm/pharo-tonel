@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'id'
 	],
-	#category : #FuelTests-Mocks,
-	#timestamp : 'MarianoMartinezPeck 5/19/2011 23:51'
+	#category : #FuelTests-Mocks
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPerson>>= anObject [
+{ #category : #comparing }
+FLPerson >> = anObject [
 	"Answer whether the receiver and anObject represent the same object."
 
 	self == anObject
@@ -25,28 +21,19 @@ FLPerson>>= anObject [
 	^ id = anObject id
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPerson>>hash [
+{ #category : #comparing }
+FLPerson >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
 
 	^ id
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPerson>>id [
+{ #category : #accessing }
+FLPerson >> id [
 	^ id
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLPerson>>id: anObject [
+{ #category : #accessing }
+FLPerson >> id: anObject [
 	id := anObject
 ]

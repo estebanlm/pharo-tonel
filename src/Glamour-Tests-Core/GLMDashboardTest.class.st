@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMDashboardTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMDashboardTest>>compareLayout: aLayout with: anOtherLayout [
+{ #category : #tests }
+GLMDashboardTest >> compareLayout: aLayout with: anOtherLayout [
 	"I am here because when I create this method there is no equals method in LayoutFrame. Only pointers equality."
 
 	^ aLayout leftFraction = anOtherLayout leftFraction
@@ -31,11 +24,8 @@ GLMDashboardTest>>compareLayout: aLayout with: anOtherLayout [
 														and: [ aLayout bottomOffset = anOtherLayout bottomOffset ] ] ] ] ] ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMDashboardTest>>testDefaultLayouts [
+{ #category : #tests }
+GLMDashboardTest >> testDefaultLayouts [
 	| layout |
 	layout := GLMDashboard new.
 	layout addPaneNamed: #one.
@@ -46,11 +36,8 @@ GLMDashboardTest>>testDefaultLayouts [
 	self assert: (self compareLayout: (layout layoutOfPaneNamed: #three) with: (0 @ 0.5 corner: 1 @ 1) asLayoutFrame)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMDashboardTest>>testPanes [
+{ #category : #tests }
+GLMDashboardTest >> testPanes [
 	| layout |
 	layout := GLMDashboard new.
 	layout addPaneNamed: #one.
@@ -60,11 +47,8 @@ GLMDashboardTest>>testPanes [
 	#(#one #two #three) do: [ :aSymbol | self assert: (layout panes anySatisfy: [ :aGLMPane | aGLMPane name = aSymbol ]) ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMDashboardTest>>testPanesAndLayouts [
+{ #category : #tests }
+GLMDashboardTest >> testPanesAndLayouts [
 	| layout |
 	layout := GLMDashboard new.
 	layout addPaneNamed: #one layout: (0 @ 0 corner: 0.5 @ 0.5) asLayoutFrame.

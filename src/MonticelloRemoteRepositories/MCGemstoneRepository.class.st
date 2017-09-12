@@ -4,39 +4,26 @@ An explicit subclass of MCHttpRepository to provide a template for gemstone repo
 Class {
 	#name : #MCGemstoneRepository,
 	#superclass : #MCHttpRepository,
-	#category : #MonticelloRemoteRepositories,
-	#timestamp : 'CamilloBruni 2/8/2012 18:10'
+	#category : #MonticelloRemoteRepositories
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCGemstoneRepository class>>baseURL [
+{ #category : #accessing }
+MCGemstoneRepository class >> baseURL [
 	^ 'http://ss3.gemtalksystems.com/ss/'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCGemstoneRepository class>>description [
+{ #category : #accessing }
+MCGemstoneRepository class >> description [
 	^ 'ss3.gemstone.com'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCGemstoneRepository class>>isResponsibleFor: aUrl [
+{ #category : #testing }
+MCGemstoneRepository class >> isResponsibleFor: aUrl [
 	^ (aUrl includesSubstring: 'ss3.gemstone.com/') or: [  aUrl includesSubstring: 'ss3.gemtalksystems.com/' ]
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCGemstoneRepository>>includesVersionNamed: aString [
+{ #category : #interface }
+MCGemstoneRepository >> includesVersionNamed: aString [
 	"directly do a filename check since squeaksource only stores mcz"
 	^ self includesFileNamed: aString, '.mcz'
 ]

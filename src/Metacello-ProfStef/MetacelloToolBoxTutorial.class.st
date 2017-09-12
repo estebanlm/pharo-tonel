@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #MetacelloToolBoxTutorial,
 	#superclass : #AbstractTutorial,
-	#category : #Metacello-ProfStef,
-	#timestamp : ''
+	#category : #Metacello-ProfStef
 }
 
-{
-	#category : #'tutorial metainfo',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloToolBoxTutorial class>>title	 [
+{ #category : #'tutorial metainfo' }
+MetacelloToolBoxTutorial class >> title [	
 
 	^'Inside Metacello Toolbox API'
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloToolBoxTutorial>>create10Baseline [
+{ #category : #lessons }
+MetacelloToolBoxTutorial >> create10Baseline [
 
 	^Lesson
 		title: 'Create 1.0 Baseline'
@@ -66,11 +56,8 @@ ProfStef next.
 
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloToolBoxTutorial>>create11Baseline [
+{ #category : #lessons }
+MetacelloToolBoxTutorial >> create11Baseline [
 
 	^Lesson
 		title: 'Create 1.1 Baseline'
@@ -141,11 +128,8 @@ ProfStef next.
 
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloToolBoxTutorial>>intro [
+{ #category : #lessons }
+MetacelloToolBoxTutorial >> intro [
 
 	^Lesson
 		title: 'Intro'
@@ -157,20 +141,14 @@ ProfStef next.
 
 ]
 
-{
-	#category : #intro,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloToolBoxTutorial>>introductionText [
+{ #category : #intro }
+MetacelloToolBoxTutorial >> introductionText [
 
 	^'Dive down into the MetacelloToolBox API to take a closer look at the implementation of the development support methods.'
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloToolBoxTutorial>>open10ForDevelopment [
+{ #category : #lessons }
+MetacelloToolBoxTutorial >> open10ForDevelopment [
 
 	^Lesson
 		title: 'Open version 1.0 for development'
@@ -229,11 +207,8 @@ ProfStef next.
 
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloToolBoxTutorial>>open11ForDevelopment [
+{ #category : #lessons }
+MetacelloToolBoxTutorial >> open11ForDevelopment [
 
 	^Lesson
 		title: 'Open version 1.1 for development'
@@ -287,11 +262,8 @@ ProfStef next.
 
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloToolBoxTutorial>>releaseVersion10 [
+{ #category : #lessons }
+MetacelloToolBoxTutorial >> releaseVersion10 [
 
 	^Lesson
 		title: 'Release version 1.0'
@@ -333,11 +305,8 @@ ProfStef next.
 
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloToolBoxTutorial>>releaseVersion11PharoOnly [
+{ #category : #lessons }
+MetacelloToolBoxTutorial >> releaseVersion11PharoOnly [
 
 	^Lesson
 		title: 'Release version 1.1 (#pharo only)'
@@ -378,11 +347,8 @@ ProfStef next.
 
 ]
 
-{
-	#category : #tutorial,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloToolBoxTutorial>>tutorial [
+{ #category : #tutorial }
+MetacelloToolBoxTutorial >> tutorial [
 
 	^#(
 		intro
@@ -396,11 +362,8 @@ MetacelloToolBoxTutorial>>tutorial [
 		)
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloToolBoxTutorial>>updateVersion10 [
+{ #category : #lessons }
+MetacelloToolBoxTutorial >> updateVersion10 [
 
 	^Lesson
 		title: 'Update specs for version 1.0'

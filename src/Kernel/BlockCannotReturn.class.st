@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'home'
 	],
-	#category : #Kernel-Exceptions,
-	#timestamp : 'MarcusDenker 5/30/2016 11:11'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #signalling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockCannotReturn class>>result: anObject from: homeContext [
+{ #category : #signalling }
+BlockCannotReturn class >> result: anObject from: homeContext [
 
 	^self new 
 		result: anObject;
@@ -23,18 +19,12 @@ BlockCannotReturn class>>result: anObject from: homeContext [
 		signal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockCannotReturn>>home [
+{ #category : #accessing }
+BlockCannotReturn >> home [
 	^ home
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BlockCannotReturn>>home: anObject [
+{ #category : #accessing }
+BlockCannotReturn >> home: anObject [
 	home := anObject
 ]

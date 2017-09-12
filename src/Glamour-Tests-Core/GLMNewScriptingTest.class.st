@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMNewScriptingTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMNewScriptingTest>>testBuildingNestedComposites [
+{ #category : #tests }
+GLMNewScriptingTest >> testBuildingNestedComposites [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -32,11 +25,8 @@ GLMNewScriptingTest>>testBuildingNestedComposites [
 	self assert: (browser paneNamed: #one) presentations last size equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMNewScriptingTest>>testBundleTransmission [
+{ #category : #tests }
+GLMNewScriptingTest >> testBundleTransmission [
 	| browser transmission |
 	browser := GLMTabulator new.
 	browser
@@ -62,11 +52,8 @@ GLMNewScriptingTest>>testBundleTransmission [
 	self assert: transmission transmissionStrategy presentations size equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMNewScriptingTest>>testBundleTransmissionWithTransformation [
+{ #category : #tests }
+GLMNewScriptingTest >> testBundleTransmissionWithTransformation [
 	| browser |
 	browser := GLMTabulator new.
 	browser
@@ -84,11 +71,8 @@ GLMNewScriptingTest>>testBundleTransmissionWithTransformation [
 	self assert: ((browser paneNamed: #two) port: #entity) value equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMNewScriptingTest>>testEntity [
+{ #category : #tests }
+GLMNewScriptingTest >> testEntity [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -99,11 +83,8 @@ GLMNewScriptingTest>>testEntity [
 	self assert: ((browser paneNamed: #one) port: #entity) value equals: ($a to: $d)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMNewScriptingTest>>testNestedCompositesPaneReference [
+{ #category : #tests }
+GLMNewScriptingTest >> testNestedCompositesPaneReference [
 	| browser | 
 	browser := GLMTabulator new. 
 	browser column: #one. 
@@ -120,11 +101,8 @@ GLMNewScriptingTest>>testNestedCompositesPaneReference [
 		self assert: each pane == (browser paneNamed: #one) ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMNewScriptingTest>>testSelectionValidation [
+{ #category : #tests }
+GLMNewScriptingTest >> testSelectionValidation [
 	| browser |
 	browser := GLMTabulator new.
 	browser
@@ -163,11 +141,8 @@ GLMNewScriptingTest>>testSelectionValidation [
 	self assert: ((browser paneNamed: #three) port: #entity) value equals: #(1 3)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMNewScriptingTest>>testSimpleTransmission [
+{ #category : #tests }
+GLMNewScriptingTest >> testSimpleTransmission [
 	| browser |
 	browser := GLMTabulator new.
 	browser
@@ -192,11 +167,8 @@ GLMNewScriptingTest>>testSimpleTransmission [
 	self assert: browser transmissions last destination equals: (browser pane port: #anotherOuterPort)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMNewScriptingTest>>testSimpleTransmissionWithCondition [
+{ #category : #tests }
+GLMNewScriptingTest >> testSimpleTransmissionWithCondition [
 	| browser |
 	browser := GLMTabulator new.
 	browser
@@ -215,11 +187,8 @@ GLMNewScriptingTest>>testSimpleTransmissionWithCondition [
 	self assert: ((browser paneNamed: #two) port: #port2) value notNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMNewScriptingTest>>testSimpleTransmissionWithTransformation [
+{ #category : #tests }
+GLMNewScriptingTest >> testSimpleTransmissionWithTransformation [
 	| browser |
 	browser := GLMTabulator new.
 	browser
@@ -237,11 +206,8 @@ GLMNewScriptingTest>>testSimpleTransmissionWithTransformation [
 	self assert: ((browser paneNamed: #two) port: #port2) value equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMNewScriptingTest>>testStartTabulator [
+{ #category : #tests }
+GLMNewScriptingTest >> testStartTabulator [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -255,11 +221,8 @@ GLMNewScriptingTest>>testStartTabulator [
 	self assert: (browser paneNamed: #one) presentations size equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMNewScriptingTest>>testStatusbar [
+{ #category : #tests }
+GLMNewScriptingTest >> testStatusbar [
 	| browser |
 	browser := GLMTabulator withStatusbar.
 	browser row: #one.

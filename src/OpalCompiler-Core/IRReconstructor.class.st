@@ -9,24 +9,17 @@ Class {
 		'remoteTemps',
 		'closureCopiedValues'
 	],
-	#category : #OpalCompiler-Core-Bytecode,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-Bytecode
 }
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReconstructor>>blockReturnTop [
+{ #category : #instructions }
+IRReconstructor >> blockReturnTop [
 	self fixPushNilsForTemps.
 	^ super blockReturnTop
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReconstructor>>createTempVectorNamed: name withVars: anArray [
+{ #category : #initialize }
+IRReconstructor >> createTempVectorNamed: name withVars: anArray [
 	" Don't add the temp yet, we only know it's index at the end of the block or method "
 	"self addVectorTemps: anArray"
 	" Update the byte index to point before the pushing of the new vector "
@@ -34,27 +27,18 @@ IRReconstructor>>createTempVectorNamed: name withVars: anArray [
 	self add: (IRInstruction createTempVectorNamed: name withVars: anArray)
 ]
 
-{
-	#category : #accessors,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReconstructor>>currentSequence [
+{ #category : #accessors }
+IRReconstructor >> currentSequence [
 	^currentSequence 
 ]
 
-{
-	#category : #accessors,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReconstructor>>currentSequence: aSeq [
+{ #category : #accessors }
+IRReconstructor >> currentSequence: aSeq [
 	currentSequence := aSeq
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReconstructor>>fixPushNilsForTemps [
+{ #category : #removing }
+IRReconstructor >> fixPushNilsForTemps [
 	" There are pushConstant: nil in the beginning of the blocksequence for all of the defined temps.
 	  We got these pushConstant: nil in. Now our closure will generate them again, meaning we will double
 	  the number of pushConstant: nil in the final block. To avoid this, we strip the ones we got in from the IR.  "
@@ -65,11 +49,8 @@ IRReconstructor>>fixPushNilsForTemps [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReconstructor>>initialize [
+{ #category : #initialization }
+IRReconstructor >> initialize [
 	temps := Dictionary new.
 	remoteTemps := Dictionary new.
 	closureCopiedValues := Dictionary new.
@@ -77,21 +58,15 @@ IRReconstructor>>initialize [
 	super initialize.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReconstructor>>isLastClosureInstruction [
+{ #category : #testing }
+IRReconstructor >> isLastClosureInstruction [
 	| nextJumps |
 	nextJumps := jumpAheadStacks at: sourceMapByteIndex + 1 ifAbsent: [ ^ false ].
 	^ nextJumps anySatisfy: [ :anOrigin | anOrigin = self currentScope ]
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReconstructor>>pushClosureCopyCopiedValues: copiedValuesNames args: args jumpTo: aJumpLabel [
+{ #category : #instructions }
+IRReconstructor >> pushClosureCopyCopiedValues: copiedValuesNames args: args jumpTo: aJumpLabel [
 	| anInstruction |
 	anInstruction := super pushClosureCopyCopiedValues: copiedValuesNames args: args jumpTo: aJumpLabel.
 	"remove pushed nils of local temps"
@@ -99,31 +74,22 @@ IRReconstructor>>pushClosureCopyCopiedValues: copiedValuesNames args: args jumpT
 		self rememberReference: anInstruction -> index to: aValue in: closureCopiedValues ]
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReconstructor>>pushRemoteTemp: name inVector: nameOfVector [
+{ #category : #instructions }
+IRReconstructor >> pushRemoteTemp: name inVector: nameOfVector [
 	| anInstruction |
 	anInstruction := super pushRemoteTemp: name inVector: nameOfVector.
 	self rememberReference: anInstruction to: nameOfVector in: remoteTemps.
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReconstructor>>pushTemp: aSelector [
+{ #category : #instructions }
+IRReconstructor >> pushTemp: aSelector [
 	| anInstruction |
 	anInstruction := super pushTemp: aSelector.
 	self rememberReference: anInstruction to: aSelector in: temps.
 ]
 
-{
-	#category : #remapping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReconstructor>>remapTemp: aTemp toRemote: aRemote [
+{ #category : #remapping }
+IRReconstructor >> remapTemp: aTemp toRemote: aRemote [
 	(temps removeKey: aTemp ifAbsent: [ #() ])
 		do: [ :tempAccess |
 			tempAccess name: aRemote.
@@ -143,20 +109,14 @@ IRReconstructor>>remapTemp: aTemp toRemote: aRemote [
 			self rememberReference: aClosureAndIndex to: aRemote in: closureCopiedValues. ].
 ]
 
-{
-	#category : #remapping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReconstructor>>rememberReference: anInstruction to: name in: dictionary [
+{ #category : #remapping }
+IRReconstructor >> rememberReference: anInstruction to: name in: dictionary [
 	(dictionary at: name ifAbsentPut: [ OrderedCollection new ])
 		add: anInstruction
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReconstructor>>removeLast: n [
+{ #category : #removing }
+IRReconstructor >> removeLast: n [
 	" Make the address of the instruction be the address of the first removed instruction. "
 	sourceMapByteIndex := sourceMapByteIndex - n.
 	^ (currentSequence removeLast: n) collect: [ :node |
@@ -164,21 +124,15 @@ IRReconstructor>>removeLast: n [
 		node name ]
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReconstructor>>storeRemoteTemp: name inVector: nameOfVector [
+{ #category : #instructions }
+IRReconstructor >> storeRemoteTemp: name inVector: nameOfVector [
 	| anInstruction |
 	anInstruction := super storeRemoteTemp: name inVector: nameOfVector.
 	self rememberReference: anInstruction to: nameOfVector in: remoteTemps.
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReconstructor>>storeTemp: aSelector [
+{ #category : #instructions }
+IRReconstructor >> storeTemp: aSelector [
 	| anInstruction |
 	anInstruction := super storeTemp: aSelector.
 	self rememberReference: anInstruction to: aSelector in: temps.

@@ -15,15 +15,11 @@ Class {
 		'listModel',
 		'searchModel'
 	],
-	#category : #Spec-PolyWidgets-ListAndTree,
-	#timestamp : '<historical>'
+	#category : #Spec-PolyWidgets-ListAndTree
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableList class>>defaultSpec [
+{ #category : #specs }
+SearchableList class >> defaultSpec [
 
 	^ SpecLayout composed
 		newRow: #searchModel height: self toolbarHeight;
@@ -31,22 +27,16 @@ SearchableList class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableList class>>example [
+{ #category : #example }
+SearchableList class >> example [
 	"self example"
 
 	^ self new
 		items: #(#aaa #abc #axz #bbb #bfbg #bof #c); openWithSpec
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableList>>initializePresenter [
+{ #category : #initialization }
+SearchableList >> initializePresenter [
 
 	searchModel whenTextChanged: [:newText || text |
 		text :=  searchModel getText asLowercase.
@@ -56,11 +46,8 @@ SearchableList>>initializePresenter [
 				listModel filteringBlock: [:col | col select: [:e | e asLowercase beginsWith: searchModel getText asLowercase ]]]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableList>>initializeWidgets [
+{ #category : #initialization }
+SearchableList >> initializeWidgets [
 
 	listModel := self newList.
 	searchModel 	:= self newTextInput.
@@ -70,26 +57,17 @@ SearchableList>>initializeWidgets [
 		ghostText: 'filter'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableList>>items: aCollection [
+{ #category : #accessing }
+SearchableList >> items: aCollection [
 	listModel items: aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableList>>listModel [
+{ #category : #accessing }
+SearchableList >> listModel [
 	^ listModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableList>>searchModel [
+{ #category : #accessing }
+SearchableList >> searchModel [
 	^ searchModel
 ]

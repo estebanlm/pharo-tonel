@@ -4,30 +4,20 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestCollectionsAbstract,
 	#superclass : #PackageManifest,
-	#category : #Collections-Abstract,
-	#timestamp : '<historical>'
+	#category : #Collections-Abstract
 }
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ManifestCollectionsAbstract class>>dependencies [
+{ #category : #meta-data }
+ManifestCollectionsAbstract class >> dependencies [
 	^ #(#'Regex-Core' #'Collections-Strings' #'Collections-Streams' #'Collections-Support' #'Collections-Unordered' #Kernel #'Collections-Sequenceable' #'Collections-Native')
 ]
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ManifestCollectionsAbstract class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestCollectionsAbstract class >> manuallyResolvedDependencies [
 	^ #(#'Collections-Arithmetic' #Traits #'System-Localization')
 ]
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-ManifestCollectionsAbstract class>>packageName [
+{ #category : #meta-data }
+ManifestCollectionsAbstract class >> packageName [
 	^ #'Collections-Abstract'
 ]

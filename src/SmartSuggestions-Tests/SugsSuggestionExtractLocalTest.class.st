@@ -4,15 +4,11 @@ SUnit tests for extract locale suggestion
 Class {
 	#name : #SugsSuggestionExtractLocalTest,
 	#superclass : #SugsSuggestionTest,
-	#category : #SmartSuggestions-Tests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:44'
+	#category : #SmartSuggestions-Tests
 }
 
-{
-	#category : #valid,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionExtractLocalTest>>testExtractLocalInALiteralNodeIsValid [
+{ #category : #valid }
+SugsSuggestionExtractLocalTest >> testExtractLocalInALiteralNodeIsValid [
 	| literal context suggestion |
 
 	literal := RBLiteralValueNode  new.
@@ -21,11 +17,8 @@ SugsSuggestionExtractLocalTest>>testExtractLocalInALiteralNodeIsValid [
 	self assert: suggestion isValidForContext .
 ]
 
-{
-	#category : #valid,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionExtractLocalTest>>testExtractLocalInAMessageNodeIsValid [
+{ #category : #valid }
+SugsSuggestionExtractLocalTest >> testExtractLocalInAMessageNodeIsValid [
 	| context suggestion |
 	context := SugsMockContext withMessageName: 'justAName'.
 	suggestion := SugsSuggestionFactory createExtractToLocalVariable context: context.
@@ -33,11 +26,8 @@ SugsSuggestionExtractLocalTest>>testExtractLocalInAMessageNodeIsValid [
 
 ]
 
-{
-	#category : #valid,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionExtractLocalTest>>testExtractLocalInASequenceNodeWithMoreSentencesIsNotValid [
+{ #category : #valid }
+SugsSuggestionExtractLocalTest >> testExtractLocalInASequenceNodeWithMoreSentencesIsNotValid [
 	| multipleLines context suggestion |
 	
 	multipleLines := RBSequenceNode new.
@@ -51,11 +41,8 @@ SugsSuggestionExtractLocalTest>>testExtractLocalInASequenceNodeWithMoreSentences
 	
 ]
 
-{
-	#category : #valid,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionExtractLocalTest>>testExtractLocalInASequenceNodeWithOneSentenceIsValid [
+{ #category : #valid }
+SugsSuggestionExtractLocalTest >> testExtractLocalInASequenceNodeWithOneSentenceIsValid [
 	| oneLine context suggestion |
 	
 	oneLine := RBSequenceNode new.

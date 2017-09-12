@@ -1,12 +1,7 @@
-Extension {
-	#name : #PackageTreePackageSelection
-}
+Extension { #name : #PackageTreePackageSelection }
 
-{
-	#category : #'*Manifest-Core',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-PackageTreePackageSelection>>manifestBuilderForRuleChecker: aRuleChecker [
+{ #category : #'*Manifest-Core' }
+PackageTreePackageSelection >> manifestBuilderForRuleChecker: aRuleChecker [
 	"Return the manifestsince the rulechecker is keeping a cache, we ask it back"
 
 	^ aRuleChecker manifestBuilderOfPackage: self item

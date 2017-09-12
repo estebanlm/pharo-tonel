@@ -4,43 +4,30 @@ I am the adapter used to bridge a TextInputFieldModel and a PluggableTextFieldMo
 Class {
 	#name : #MorphicTextInputFieldAdapter,
 	#superclass : #MorphicTextAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextInputFieldAdapter>>accept: aText [
+{ #category : #'widget API' }
+MorphicTextInputFieldAdapter >> accept: aText [
 
 	self model accept: aText
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextInputFieldAdapter>>acceptOnCR [
+{ #category : #'widget API' }
+MorphicTextInputFieldAdapter >> acceptOnCR [
 
 	^ self model acceptOnCR
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextInputFieldAdapter>>adapt: aModel [
+{ #category : #initialization }
+MorphicTextInputFieldAdapter >> adapt: aModel [
 	
 	super adapt: aModel.
 	aModel whenBuiltDo: [ :w | w widget color: Smalltalk ui theme backgroundColor ]
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextInputFieldAdapter>>buildWidget [
+{ #category : #factory }
+MorphicTextInputFieldAdapter >> buildWidget [
 	| plu |
 	plu := PluggableTextFieldMorph new
 		convertTo: String;
@@ -66,58 +53,40 @@ MorphicTextInputFieldAdapter>>buildWidget [
 	^ plu
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextInputFieldAdapter>>encrypted [
+{ #category : #'widget API' }
+MorphicTextInputFieldAdapter >> encrypted [
 
 	^ self model encrypted
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextInputFieldAdapter>>encrypted: aBoolean [
+{ #category : #'spec protocol' }
+MorphicTextInputFieldAdapter >> encrypted: aBoolean [
 
 	self widgetDo: [ :w | 
 		w encrypted: aBoolean.
 		w changed ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextInputFieldAdapter>>entryCompletion [
+{ #category : #'widget API' }
+MorphicTextInputFieldAdapter >> entryCompletion [
 
 	^ self model entryCompletion
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextInputFieldAdapter>>ghostText [
+{ #category : #'widget API' }
+MorphicTextInputFieldAdapter >> ghostText [
 
 	^ self model ghostText
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextInputFieldAdapter>>ghostText: aText [
+{ #category : #'widget API' }
+MorphicTextInputFieldAdapter >> ghostText: aText [
 
 	^ self model ghostText: aText
 ]
 
-{
-	#category : #NOCompletion,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTextInputFieldAdapter>>isCodeCompletionAllowed [
+{ #category : #NOCompletion }
+MorphicTextInputFieldAdapter >> isCodeCompletionAllowed [
 	
 	^ false
 ]

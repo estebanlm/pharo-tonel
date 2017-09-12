@@ -1,75 +1,52 @@
-Extension {
-	#name : #Morph
-}
+Extension { #name : #Morph }
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>adoptPaneColor [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> adoptPaneColor [
 	"Adopt our pane color."
 
 	self adoptPaneColor: self paneColor
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>basicTheme: aUITheme [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> basicTheme: aUITheme [
 	"Set the current theme for the receiver."
 
 	self theme = aUITheme ifFalse: [
 		self setProperty: #theme toValue: aUITheme]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>boundsWithinCorners [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> boundsWithinCorners [
  	"Changed to be more realistic..."
 	
 	^self bounds insetBy: 2
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>drawKeyboardFocusOn: aCanvas [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> drawKeyboardFocusOn: aCanvas [
 	"Draw the keyboard focus indication."
 
 	self focusIndicatorMorph
 		drawOn: aCanvas
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>expandFullBoundsForDropShadow: aRectangle [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> expandFullBoundsForDropShadow: aRectangle [
 	"Return an expanded rectangle for an eventual drop shadow."
 	
 	^(aRectangle expandBy: self shadowOffsetRectangle)
 		quickMerge: aRectangle
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>focusBounds [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> focusBounds [
 	"Answer the bounds for drawing the focus indication."
 
 	^self bounds
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>focusChanged [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> focusChanged [
 	"Report that the area occupied by the morph's focus indicator should be redrawn.
 	Optimized for border-only (no fill)."
 	
@@ -82,53 +59,38 @@ Morph>>focusChanged [
 		ifFalse: [self invalidRect: fm bounds]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>focusColor [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> focusColor [
 	"Answer the keyboard focus indication color."
 
 	^self borderStyle color contrastingColor
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>focusIndicatorCornerRadius [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> focusIndicatorCornerRadius [
 	"Answer the corner radius preferred for the focus indicator
 	for the receiver for themes that support this."
 
 	^self theme focusIndicatorCornerRadiusFor: self 
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>focusIndicatorMorph [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> focusIndicatorMorph [
 	"Answer the focus indicator morph for the receiver."
 
 	^self theme focusIndicatorMorphFor: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>hasKeyboardFocus [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> hasKeyboardFocus [
 	"Answer whether the receiver has keyboard focus."
 
 	^((self world ifNil: [^false]) 
 		activeHand ifNil: [^false])  keyboardFocus = self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>lastSubmorphRecursive [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> lastSubmorphRecursive [
 	"Answer recursive last submorph of the receiver."
 
 	^self hasSubmorphs
@@ -136,11 +98,8 @@ Morph>>lastSubmorphRecursive [
 		ifFalse: [self]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>layoutInBounds: cellBounds [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> layoutInBounds: cellBounds [
 	"Layout specific. Apply the given bounds to the receiver after being layed out in its owner."
 	| box aSymbol |
 	
@@ -164,11 +123,8 @@ Morph>>layoutInBounds: cellBounds [
 	self bounds: box.
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>minExtent [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> minExtent [
 	"Layout specific. Return the minimum size the receiver can be represented in.
 	Implementation note: When this message is sent from an owner trying to lay out its children it will traverse down the morph tree and recompute the minimal arrangement of the morphs based on which the minimal extent is returned. When a morph with some layout strategy is encountered, the morph will ask its strategy to compute the new arrangement. However, since the final size given to the receiver is unknown at the point of the query, the assumption is made that the current bounds of the receiver are the base on which the layout should be computed. This scheme prevents strange layout changes when for instance, a table is contained in another table. Unless the inner table has been resized manually (which means its bounds are already enlarged) the arrangement of the inner table will not change here. Thus the entire layout computation is basically an iterative process which may have different results depending on the incremental changes applied.
 	Fixed for shrinkWrap."
@@ -206,31 +162,22 @@ Morph>>minExtent [
 	^minExtent
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>modalUnlockFrom: aSystemWindow [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> modalUnlockFrom: aSystemWindow [
 	"Unlock the receiver as a modal owner of the given window."
 
 	self unlock
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>myDependents [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> myDependents [
 	"Improved performance dependents."
 	
 	^ (self valueOfProperty: #myDependents) ifNil: [ #() ]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>myDependents: aCollectionOrNil [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> myDependents: aCollectionOrNil [
 	"Improved performance dependents."
 	
 	aCollectionOrNil 
@@ -238,11 +185,8 @@ Morph>>myDependents: aCollectionOrNil [
 		ifNotNil: [self setProperty: #myDependents toValue: aCollectionOrNil]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>navigateFocusBackward [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> navigateFocusBackward [
 	"Change the keyboard focus to the previous morph."
 
 	self previousMorphWantingFocus ifNotNil: [:m |
@@ -250,11 +194,8 @@ Morph>>navigateFocusBackward [
 	
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>navigateFocusForward [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> navigateFocusForward [
 	"Change the keyboard focus to the next morph."
 
 	self nextMorphWantingFocus ifNotNil: [:m |
@@ -262,11 +203,8 @@ Morph>>navigateFocusForward [
 	
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>navigationKey: event [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> navigationKey: event [
 	"Check for tab key activity and change focus as appropriate.
 	Check for menu key to do popup."
 	
@@ -283,84 +221,60 @@ Morph>>navigationKey: event [
 	^false
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>optimalExtent [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> optimalExtent [
 	"Answer the submorphBounds extent plus twice our border width."
 	
 	^self submorphBounds extent + (self borderWidth * 2)
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>paneColor [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> paneColor [
 	"Answer the window's pane color or our color otherwise."
 
 	^self paneColorOrNil ifNil: [self color]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>paneColor: aColor [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> paneColor: aColor [
 	"Explicitly set the pane color for the reveiver."
 
 	self setProperty: #paneColor toValue: aColor.
 	self adoptPaneColor
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>paneColorOrNil [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> paneColorOrNil [
 	"Answer the window's pane color or nil otherwise."
 
 	^self valueOfProperty: #paneColor ifAbsent: [
 		(self owner ifNil: [^nil]) paneColorOrNil]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>passivate [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> passivate [
 	"Mark the receiver and submorphs as passive (background)."
 
 	self submorphsDo: [:m | m passivate]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>preferredButtonCornerStyle [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> preferredButtonCornerStyle [
 	"Answer the preferred button corner style
 	for submorphs. Answer nil for no preference."
 
 	^nil
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>preferredCornerStyle [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> preferredCornerStyle [
 	"Answer the preferred corner style."
 
 	^#square
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>roundedCorners [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> roundedCorners [
 	"Return a list of those corners to round.
 
 		1-4
@@ -382,11 +296,8 @@ Morph>>roundedCorners [
 	^self valueOfProperty: #roundedCorners ifAbsent: [#(1 2 3 4)]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>roundedCorners: anArray [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> roundedCorners: anArray [
 	"Set the corners to round."
 
 	anArray = #(1 2 3 4)
@@ -395,11 +306,8 @@ Morph>>roundedCorners: anArray [
 	self changed
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>showBalloon: msgString hand: aHand [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> showBalloon: msgString hand: aHand [
 	"Pop up a balloon containing the given string,
 	first removing any existing BalloonMorphs in the world."
 
@@ -410,20 +318,14 @@ Morph>>showBalloon: msgString hand: aHand [
 		popUpFor: self hand: h
 ]
 
-{
-	#category : #'*Polymorph-Widgets-Themes',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph class>>systemIconName [
+{ #category : #'*Polymorph-Widgets-Themes' }
+Morph class >> systemIconName [
 
 	^ #morphIcon
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>tabKey: event [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> tabKey: event [
 	"Check for tab key activity and change focus as appropriate."
 
 	event controlKeyPressed ifFalse: [
@@ -435,52 +337,37 @@ Morph>>tabKey: event [
 	^false
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>takeKeyboardFocus [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> takeKeyboardFocus [
 	"Make the receiver the keyboard focus for the active hand."
 
 	self activeHand newKeyboardFocus: self
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>takesKeyboardFocus [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> takesKeyboardFocus [
 	"Answer whether the receiver can normally take keyboard focus."
 
 	^ false
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph class>>theme [
+{ #category : #'*Polymorph-Widgets' }
+Morph class >> theme [
 	"Answer the ui theme that provides controls."
 
 	^ Smalltalk ui theme
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>theme [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> theme [
 	"Answer the current theme for the receiver."
 
 	(self valueOfProperty: #theme) ifNotNil: [:t | ^ t].
 	^(self owner ifNil: [self class]) theme
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>theme: aUITheme [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> theme: aUITheme [
 	"Set the current theme for the receiver."
 
 	self theme = aUITheme ifFalse: [
@@ -488,11 +375,8 @@ Morph>>theme: aUITheme [
 		self themeChanged]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>themeChanged [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> themeChanged [
 	"The current theme has changed.
 	Update any dependent visual aspects."
 
@@ -500,11 +384,8 @@ Morph>>themeChanged [
 	self changed
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>toggleVisible [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> toggleVisible [
 	"Toggle the visibility of the receiver."
 
 	self visible
@@ -512,11 +393,8 @@ Morph>>toggleVisible [
 		ifFalse: [self show]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>toggleVisibleAndRaise [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> toggleVisibleAndRaise [
 	"Toggle the visibility of the receiver, brining to
 	the front if becoming visible."
 
@@ -525,11 +403,8 @@ Morph>>toggleVisibleAndRaise [
 		ifFalse: [self comeToFront; show]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>visible: aBoolean  [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> visible: aBoolean [ 
 	"set the 'visible' attribute of the receiver to aBoolean.
 	Must update owner layout since its full bounds may depend
 	on the receiver extending beyond its bounds."
@@ -541,11 +416,8 @@ Morph>>visible: aBoolean  [
 	owner ifNotNil: [owner layoutChanged]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>wantsKeyboardFocus [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> wantsKeyboardFocus [
 	"Answer whether the receiver would like keyboard focus
 	in the general case (mouse action normally)."
 
@@ -553,11 +425,8 @@ Morph>>wantsKeyboardFocus [
 		self visible and: [self enabled]]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>wantsKeyboardFocusNavigation [
+{ #category : #'*Polymorph-Widgets' }
+Morph >> wantsKeyboardFocusNavigation [
 	"Answer whether the receiver would like keyboard focus
 	when navigated to by keyboard."
 

@@ -1,12 +1,7 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-String>>addToMetacelloRepositories: aMetacelloRepositoriesSpec [
+{ #category : #'*metacello-mc' }
+String >> addToMetacelloRepositories: aMetacelloRepositoriesSpec [
 
 	| spec |
 	spec := 
@@ -20,29 +15,20 @@ String>>addToMetacelloRepositories: aMetacelloRepositoriesSpec [
 			yourself)
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-String>>fetchRequiredForMetacelloMCVersion: aMetacelloMCVersion [
+{ #category : #'*metacello-mc' }
+String >> fetchRequiredForMetacelloMCVersion: aMetacelloMCVersion [
 
 	^aMetacelloMCVersion doFetchRequiredFromArray: (Array with: self).
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-String>>loadRequiredForMetacelloMCVersion: aMetacelloMCVersion [
+{ #category : #'*metacello-mc' }
+String >> loadRequiredForMetacelloMCVersion: aMetacelloMCVersion [
 
 	^aMetacelloMCVersion doLoadRequiredFromArray: (Array with: self).
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-String>>mergeIntoMetacelloRepositories: aMetacelloRepositoriesSpec [
+{ #category : #'*metacello-mc' }
+String >> mergeIntoMetacelloRepositories: aMetacelloRepositoriesSpec [
 
 	| spec |
 	spec := 
@@ -56,31 +42,22 @@ String>>mergeIntoMetacelloRepositories: aMetacelloRepositoriesSpec [
 			yourself)
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-String>>packageFileSpecFor: aMetacelloPackagesSpec [
+{ #category : #'*metacello-mc' }
+String >> packageFileSpecFor: aMetacelloPackagesSpec [
 
 	^(aMetacelloPackagesSpec project packageSpec)
 			file: self;
 			yourself
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-String>>recordRequiredForMetacelloMCVersion: aMetacelloMCVersion [
+{ #category : #'*metacello-mc' }
+String >> recordRequiredForMetacelloMCVersion: aMetacelloMCVersion [
 
 	^aMetacelloMCVersion doRecordRequiredFromArray: (Array with: self).
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-String>>removeFromMetacelloRepositories: aMetacelloRepositoriesSpec [
+{ #category : #'*metacello-mc' }
+String >> removeFromMetacelloRepositories: aMetacelloRepositoriesSpec [
 
 	aMetacelloRepositoriesSpec addMember: 
 		(aMetacelloRepositoriesSpec removeMember 
@@ -88,11 +65,8 @@ String>>removeFromMetacelloRepositories: aMetacelloRepositoriesSpec [
 			yourself)
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-String>>resolvePackageSpecsNamedForMetacelloMCVersion: aMetacelloMCVersion visited: visited ifAbsent: aBlock [
+{ #category : #'*metacello-mc' }
+String >> resolvePackageSpecsNamedForMetacelloMCVersion: aMetacelloMCVersion visited: visited ifAbsent: aBlock [
     ^ aMetacelloMCVersion
         allPackagesForSpecs: {(aMetacelloMCVersion packageNamed: self ifAbsent: aBlock)}
         visited: visited

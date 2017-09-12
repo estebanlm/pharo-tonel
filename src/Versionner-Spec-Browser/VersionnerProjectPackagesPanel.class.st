@@ -49,15 +49,11 @@ Class {
 		'editPackageButton',
 		'savePackageButton'
 	],
-	#category : #Versionner-Spec-Browser,
-	#timestamp : '<historical>'
+	#category : #Versionner-Spec-Browser
 }
 
-{
-	#category : #spec,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel class>>defaultSpec [
+{ #category : #spec }
+VersionnerProjectPackagesPanel class >> defaultSpec [
 	<spec>
 
 	"Define the layout of the Project Packages Panel"
@@ -83,11 +79,8 @@ VersionnerProjectPackagesPanel class>>defaultSpec [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>addPackage [
+{ #category : #actions }
+VersionnerProjectPackagesPanel >> addPackage [
 	"Add a package as internal dependency."
 	| searchUI packageWC package |
 	searchUI := SearchFacade 
@@ -115,19 +108,13 @@ VersionnerProjectPackagesPanel>>addPackage [
 							package currentVersionInfo ] ] " ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>addPackageButton [
+{ #category : #accessing }
+VersionnerProjectPackagesPanel >> addPackageButton [
 	^ addPackageButton
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>addPackageRequirement [
+{ #category : #actions }
+VersionnerProjectPackagesPanel >> addPackageRequirement [
 	"Add a requirement (a group, another package) for the selected package."
 	
 	packagesList selectedItem
@@ -143,19 +130,13 @@ VersionnerProjectPackagesPanel>>addPackageRequirement [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>editPackageButton [
+{ #category : #accessing }
+VersionnerProjectPackagesPanel >> editPackageButton [
 	^ editPackageButton
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>editSelectedPackageRequirements [
+{ #category : #actions }
+VersionnerProjectPackagesPanel >> editSelectedPackageRequirements [
 	"Edit package requirements for the selected package"
 	
 	| selectedPackage editionWidget |
@@ -173,11 +154,8 @@ VersionnerProjectPackagesPanel>>editSelectedPackageRequirements [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>initializePresenter [
+{ #category : #initialization }
+VersionnerProjectPackagesPanel >> initializePresenter [
 	"Initialize widgets behavior"
 
 	packagesList whenSelectedNodesChanged: [:selection |
@@ -189,11 +167,8 @@ VersionnerProjectPackagesPanel>>initializePresenter [
 	editPackageButton action: [ self editSelectedPackageRequirements ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>initializeWidgets [
+{ #category : #initialization }
+VersionnerProjectPackagesPanel >> initializeWidgets [
 	packagesList := (self instantiate: TreeModel)
 		dragEnabled: true;
 		whenBuiltDo: [ packagesList rootNodeHolder: [ :item | VSPackageNode new content: item ] ];
@@ -240,11 +215,8 @@ VersionnerProjectPackagesPanel>>initializeWidgets [
 		help: 'Save the selected package'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>isPackage: selection [
+{ #category : #testing }
+VersionnerProjectPackagesPanel >> isPackage: selection [
 	| node |
 	
 	(selection size = 1) ifFalse: [  ^false ].
@@ -252,11 +224,8 @@ VersionnerProjectPackagesPanel>>isPackage: selection [
 	^ node parentNode isNil
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>packageBoundToSelection [
+{ #category : #selection }
+VersionnerProjectPackagesPanel >> packageBoundToSelection [
 	| selection |
 	
 	selection := packagesList selectedItem.
@@ -266,35 +235,23 @@ VersionnerProjectPackagesPanel>>packageBoundToSelection [
 		ifNotNil: [ selection parentNode content ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>packages [
+{ #category : #accessing }
+VersionnerProjectPackagesPanel >> packages [
 	^ project ifNil: [ #() ] ifNotNil: [ project packages ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>packagesLabel [
+{ #category : #accessing }
+VersionnerProjectPackagesPanel >> packagesLabel [
 	^ packagesLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>packagesList [
+{ #category : #accessing }
+VersionnerProjectPackagesPanel >> packagesList [
 	^ packagesList
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>project: anMTProject [
+{ #category : #api }
+VersionnerProjectPackagesPanel >> project: anMTProject [
 	project := anMTProject.
 	packagesList roots: self packages.
 	project ifNotNil: 
@@ -304,27 +261,18 @@ VersionnerProjectPackagesPanel>>project: anMTProject [
 			to: self ].
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>refreshPackages [
+{ #category : #refreshing }
+VersionnerProjectPackagesPanel >> refreshPackages [
 	packagesList roots: project packages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>removePackageButton [
+{ #category : #accessing }
+VersionnerProjectPackagesPanel >> removePackageButton [
 	^ removePackageButton
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>removeSelectedPackage [
+{ #category : #actions }
+VersionnerProjectPackagesPanel >> removeSelectedPackage [
 	"remove the selected package from the model and the list."
 	| selectedPackage index |
 
@@ -339,18 +287,12 @@ VersionnerProjectPackagesPanel>>removeSelectedPackage [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>savePackageButton [
+{ #category : #accessing }
+VersionnerProjectPackagesPanel >> savePackageButton [
 	^ savePackageButton
 ]
 
-{
-	#category : #metacello,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectPackagesPanel>>workingCopies [
+{ #category : #metacello }
+VersionnerProjectPackagesPanel >> workingCopies [
 	^ MCWorkingCopy allManagers asSortedCollection: [ :a :b | a name <= b name]
 ]

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MalDominanceNode,
 	#superclass : #MalDisjointSetNode,
@@ -8,96 +5,65 @@ Class {
 		'previousNodes',
 		'uniqueSource'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDominanceNode>>dominantNode [
+{ #category : #accessing }
+MalDominanceNode >> dominantNode [
 
 	^ self find
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDominanceNode>>firstSource [
+{ #category : #accessing }
+MalDominanceNode >> firstSource [
 
 	^ previousNodes first
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDominanceNode>>flagUnique [
+{ #category : #accessing }
+MalDominanceNode >> flagUnique [
 
 	uniqueSource := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDominanceNode>>from: sourceNode [
+{ #category : #accessing }
+MalDominanceNode >> from: sourceNode [
 
 	previousNodes add: sourceNode 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDominanceNode>>hasUniqueSource [
+{ #category : #accessing }
+MalDominanceNode >> hasUniqueSource [
 	^ self previousNodes size = 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDominanceNode>>initialize [
+{ #category : #accessing }
+MalDominanceNode >> initialize [
 
 	previousNodes := OrderedCollection new.
 	uniqueSource := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDominanceNode>>isDominant [
+{ #category : #accessing }
+MalDominanceNode >> isDominant [
 	"A node is dominant if it has been flagged as the unique Source by one of its target
 	 AND it is its own parent in the partition"
 	^ uniqueSource and: [self find = self]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDominanceNode>>isDominated [
+{ #category : #accessing }
+MalDominanceNode >> isDominated [
 
 	^ self isDominant not and: [self find isDominant]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDominanceNode>>label [
+{ #category : #accessing }
+MalDominanceNode >> label [
 
 	^ 'Dm '
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDominanceNode>>previousNodes [
+{ #category : #accessing }
+MalDominanceNode >> previousNodes [
 	^ previousNodes
 ]

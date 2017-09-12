@@ -6,15 +6,11 @@ I add #beforeHooks and #afterHooks anotation and make sure to visit them for sem
 Class {
 	#name : #RFSemanticAnalyzer,
 	#superclass : #OCASTSemanticAnalyzer,
-	#category : #Reflectivity-Compiler,
-	#timestamp : 'MarcusDenker 5/24/2015 11:29'
+	#category : #Reflectivity-Compiler
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFSemanticAnalyzer>>analyseForLinks: aNode [
+{ #category : #visiting }
+RFSemanticAnalyzer >> analyseForLinks: aNode [
 	| generator |
 	aNode hasMetalink
 		ifFalse: [ ^ self ].
@@ -37,11 +33,8 @@ RFSemanticAnalyzer>>analyseForLinks: aNode [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFSemanticAnalyzer>>analyseForLinks: aNode generator: aGenerator [
+{ #category : #visiting }
+RFSemanticAnalyzer >> analyseForLinks: aNode generator: aGenerator [
 
 	aNode propertyAt: #preambles put: aGenerator preamble.
 	aNode preambles do: [:each | self visitNode: each].
@@ -60,11 +53,8 @@ RFSemanticAnalyzer>>analyseForLinks: aNode generator: aGenerator [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFSemanticAnalyzer>>analyseForLinksForNodes: aNode [
+{ #category : #visiting }
+RFSemanticAnalyzer >> analyseForLinksForNodes: aNode [
 	| generator |
 	aNode hasMetalink
 		ifFalse: [ ^ self ].
@@ -73,11 +63,8 @@ RFSemanticAnalyzer>>analyseForLinksForNodes: aNode [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFSemanticAnalyzer>>analyseForLinksForVariables: aVariableNode [
+{ #category : #visiting }
+RFSemanticAnalyzer >> analyseForLinksForVariables: aVariableNode [
 	| variable generator |
 	variable := aVariableNode binding variable.
 	variable hasMetalink
@@ -88,29 +75,20 @@ RFSemanticAnalyzer>>analyseForLinksForVariables: aVariableNode [
 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFSemanticAnalyzer>>analyze: aNode [
+{ #category : #api }
+RFSemanticAnalyzer >> analyze: aNode [
 	self visitNode: aNode.
 	RFASTClosureAnalyzer new visitNode: aNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFSemanticAnalyzer>>visitAssignmentNode: aNode [
+{ #category : #visiting }
+RFSemanticAnalyzer >> visitAssignmentNode: aNode [
 	self visitVarWrite: aNode variable.
 	super visitAssignmentNode: aNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFSemanticAnalyzer>>visitMethodNode: aMethodNode [
+{ #category : #visiting }
+RFSemanticAnalyzer >> visitMethodNode: aMethodNode [
 	
 	scope := compilationContext scope newMethodScope. 
 	aMethodNode scope: scope.  scope node: aMethodNode.
@@ -122,21 +100,15 @@ RFSemanticAnalyzer>>visitMethodNode: aMethodNode [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFSemanticAnalyzer>>visitNode: aNode [
+{ #category : #visiting }
+RFSemanticAnalyzer >> visitNode: aNode [
 	"here we add the hook anotations and visit those AST parts for semantic analysis"
 	super visitNode: aNode.
 	aNode isMethod ifFalse: [self analyseForLinksForNodes: aNode]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFSemanticAnalyzer>>visitStoreIntoTempNode: aNode  [
+{ #category : #visiting }
+RFSemanticAnalyzer >> visitStoreIntoTempNode: aNode [ 
 	| name var |
 	name := aNode name.
 	var := scope lookupVarForDeclaration: name.
@@ -145,11 +117,8 @@ RFSemanticAnalyzer>>visitStoreIntoTempNode: aNode  [
 	aNode binding: var.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFSemanticAnalyzer>>visitStorePopIntoTempNode: aNode  [
+{ #category : #visiting }
+RFSemanticAnalyzer >> visitStorePopIntoTempNode: aNode [ 
 	| name var |
 	name := aNode name.
 	var := scope lookupVarForDeclaration: name.
@@ -158,19 +127,13 @@ RFSemanticAnalyzer>>visitStorePopIntoTempNode: aNode  [
 	aNode binding: var.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFSemanticAnalyzer>>visitVarWrite: aNode [
+{ #category : #visiting }
+RFSemanticAnalyzer >> visitVarWrite: aNode [
 	self analyseForLinksForNodes: aNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFSemanticAnalyzer>>visitVariableNode: aVariableNode [
+{ #category : #visiting }
+RFSemanticAnalyzer >> visitVariableNode: aVariableNode [
 	super visitVariableNode: aVariableNode.
 	self flag: #TBD. "needs to be extendend to other kinds of variables and cleaned"
 	aVariableNode isGlobal ifTrue: [  

@@ -1,12 +1,7 @@
-Extension {
-	#name : #SequenceableCollection
-}
+Extension { #name : #SequenceableCollection }
 
-{
-	#category : #'*Tool-Diff',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SequenceableCollection>>aggregateRuns: aBlock [
+{ #category : #'*Tool-Diff' }
+SequenceableCollection >> aggregateRuns: aBlock [
 	"Answer a new collection of the same species as the
 	receiver with elements being collections (of the receiver
 	species) containing those elements of the receiver

@@ -8,66 +8,44 @@ It is recommended to reuse #basicCheck: functionality in #checkClass: and #check
 Class {
 	#name : #RBDefineBasickCheckRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'YuriyTymchuk 1/13/2016 22:46'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefineBasickCheckRule class>>checksClass [
+{ #category : #testing }
+RBDefineBasickCheckRule class >> checksClass [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefineBasickCheckRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBDefineBasickCheckRule class >> uniqueIdentifierName [
 	
 	^ 'RBDefineBasickCheckRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefineBasickCheckRule>>basicCheck: aClass  [
+{ #category : #running }
+RBDefineBasickCheckRule >> basicCheck: aClass [ 
 	
 	^ (aClass inheritsFrom: RBLintRule) and: [ 
 		aClass isVisible and: [ 
 	  (aClass lookupSelector: #basicCheck:) isSubclassResponsibility ] ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefineBasickCheckRule>>checkClass: aClass  [
+{ #category : #running }
+RBDefineBasickCheckRule >> checkClass: aClass [ 
 	(self basicCheck: aClass) ifTrue: [ result addClass: aClass ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefineBasickCheckRule>>group [
+{ #category : #accessing }
+RBDefineBasickCheckRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefineBasickCheckRule>>name [
+{ #category : #accessing }
+RBDefineBasickCheckRule >> name [
 	^ 'Rule does not define #basicCheck:'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefineBasickCheckRule>>resultClass [
+{ #category : #accessing }
+RBDefineBasickCheckRule >> resultClass [
 	^ RBClassEnvironment
 ]

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBExtractMethodTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractMethodTest>>testBadInterval [
+{ #category : #'failure tests' }
+RBExtractMethodTest >> testBadInterval [
 	self
 		shouldFail: (RBExtractMethodRefactoring 
 				extract: (self 
@@ -28,11 +21,8 @@ RBExtractMethodTest>>testBadInterval [
 				in: RBBasicLintRuleTest class)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractMethodTest>>testExtractFailure [
+{ #category : #'failure tests' }
+RBExtractMethodTest >> testExtractFailure [
 	self
 		shouldFail: (RBExtractMethodRefactoring 
 				extract: (self 
@@ -54,11 +44,8 @@ RBExtractMethodTest>>testExtractFailure [
 				in: RBBasicLintRuleTest class)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractMethodTest>>testExtractMethodAtEndOfMethodThatNeedsReturn [
+{ #category : #tests }
+RBExtractMethodTest >> testExtractMethodAtEndOfMethodThatNeedsReturn [
 	| refactoring class |
 	refactoring := RBExtractMethodRefactoring 
 		extract: (self 
@@ -80,11 +67,8 @@ RBExtractMethodTest>>testExtractMethodAtEndOfMethodThatNeedsReturn [
 	rules size == 1 ifTrue: [^rules first viewResults]')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractMethodTest>>testExtractMethodThatMovesTemporaryVariable [
+{ #category : #tests }
+RBExtractMethodTest >> testExtractMethodThatMovesTemporaryVariable [
 	| refactoring class |
 	refactoring := RBExtractMethodRefactoring 
 		extract: (self 
@@ -112,11 +96,8 @@ RBExtractMethodTest>>testExtractMethodThatMovesTemporaryVariable [
 		^rule')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractMethodTest>>testExtractMethodThatNeedsArgument [
+{ #category : #tests }
+RBExtractMethodTest >> testExtractMethodThatNeedsArgument [
 	| refactoring class |
 	refactoring := RBExtractMethodRefactoring 
 		extract: (self 
@@ -140,11 +121,8 @@ RBExtractMethodTest>>testExtractMethodThatNeedsArgument [
 						classified: aSmalllintContext protocols]')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractMethodTest>>testExtractMethodThatNeedsTemporaryVariable [
+{ #category : #tests }
+RBExtractMethodTest >> testExtractMethodThatNeedsTemporaryVariable [
 	| refactoring class |
 	refactoring := RBExtractMethodRefactoring 
 		extract: (self 
@@ -168,11 +146,8 @@ RBExtractMethodTest>>testExtractMethodThatNeedsTemporaryVariable [
 	nameStream nextPut: $).')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractMethodTest>>testModelExtractMethodWithTemporariesSelected [
+{ #category : #tests }
+RBExtractMethodTest >> testModelExtractMethodWithTemporariesSelected [
 	| class refactoring |
 	model := RBClassModelFactory rbNamespace new.
 	class := model classNamed: self class name.
@@ -191,11 +166,8 @@ RBExtractMethodTest>>testModelExtractMethodWithTemporariesSelected [
 				= (RBParser parseMethod: 'foobar |temp | temp := 5. ^temp * temp')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractMethodTest>>testModelExtractMethodWithTemporaryAssigned [
+{ #category : #tests }
+RBExtractMethodTest >> testModelExtractMethodWithTemporaryAssigned [
 	| class refactoring |
 	model := RBClassModelFactory rbNamespace new.
 	class := model classNamed: self class name.
@@ -218,11 +190,8 @@ RBExtractMethodTest>>testModelExtractMethodWithTemporaryAssigned [
 						parseMethod: 'foobar | temp bar | bar := 5. temp := bar * bar. Transcript show: temp printString; cr. ^temp.'))
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractMethodTest>>testNonExistantSelector [
+{ #category : #'failure tests' }
+RBExtractMethodTest >> testNonExistantSelector [
 	self shouldFail: (RBExtractMethodRefactoring 
 			extract: (10 to: 20)
 			from: #checkClass1:

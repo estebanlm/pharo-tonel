@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RBLintRuleTest,
 	#superclass : #Object,
@@ -14,47 +11,29 @@ Class {
 	#pools : [
 		'TextConstants'
 	],
-	#category : #Refactoring-Tests-Core-Data,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core-Data
 }
 
-{
-	#category : #foo,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest class>>someFooMethod [
+{ #category : #foo }
+RBLintRuleTest class >> someFooMethod [
 	^ 'does nothing here:)'
 ]
 
-{
-	#category : #foo,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest class>>someOtherFooMethod [
+{ #category : #foo }
+RBLintRuleTest class >> someOtherFooMethod [
 	^ 'does nothing here even better:)'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>checkClass: aSmalllintContext [
-
+{ #category : #accessing }
+RBLintRuleTest >> checkClass: aSmalllintContext [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>checkMethod: aSmalllintContext [
-
+{ #category : #accessing }
+RBLintRuleTest >> checkMethod: aSmalllintContext [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>displayName [
+{ #category : #accessing }
+RBLintRuleTest >> displayName [
 	| nameStream |
 	nameStream := WriteStream on: (String new: 64).
 	nameStream nextPutAll: self name;
@@ -64,141 +43,92 @@ RBLintRuleTest>>displayName [
 	^nameStream contents
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>failedRules [
+{ #category : #private }
+RBLintRuleTest >> failedRules [
 	^self isEmpty
 		ifTrue: [#()]
 		ifFalse: [Array with: self]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>hasConflicts [
+{ #category : #testing }
+RBLintRuleTest >> hasConflicts [
 	^false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>initialize [
+{ #category : #initialization }
+RBLintRuleTest >> initialize [
 	name := ''
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>isComposite [
+{ #category : #testing }
+RBLintRuleTest >> isComposite [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>isEmpty [
+{ #category : #testing }
+RBLintRuleTest >> isEmpty [
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>junk [
+{ #category : #testing }
+RBLintRuleTest >> junk [
 	^ RBRefactoryTestDataApp printString 
 		copyFrom: 1
 		to: CR
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>name [
+{ #category : #accessing }
+RBLintRuleTest >> name [
 	^name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>name: aString  [
+{ #category : #accessing }
+RBLintRuleTest >> name: aString [ 
 	name := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>openEditor [
+{ #category : #accessing }
+RBLintRuleTest >> openEditor [
 	| rules |
 	rules := self failedRules.
 	rules isEmpty ifTrue: [^self].
 	rules size == 1 ifTrue: [^rules first viewResults]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>printOn: aStream  [
+{ #category : #printing }
+RBLintRuleTest >> printOn: aStream [ 
 	name isNil
 		ifTrue: [super printOn: aStream]
 		ifFalse: [aStream nextPutAll: name]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>problemCount [
+{ #category : #accessing }
+RBLintRuleTest >> problemCount [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>resetResult [
-
+{ #category : #initialize-release }
+RBLintRuleTest >> resetResult [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>run [
+{ #category : #accessing }
+RBLintRuleTest >> run [
 	^Object printOn: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>runOnEnvironment: anEnvironment  [
+{ #category : #accessing }
+RBLintRuleTest >> runOnEnvironment: anEnvironment [ 
 	^Object printOn: self onEnvironment: anEnvironment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>someOtherDemoMethod [
+{ #category : #accessing }
+RBLintRuleTest >> someOtherDemoMethod [
 	| temp |
 	temp := self new.
 	^ temp junk
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBLintRuleTest>>viewResults [
+{ #category : #private }
+RBLintRuleTest >> viewResults [
 	self subclassResponsibility
 ]

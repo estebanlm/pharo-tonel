@@ -1,33 +1,20 @@
-"
-
-"
 Class {
 	#name : #HETraitLiteral,
 	#superclass : #HESymbol,
-	#category : #Hermes-Model,
-	#timestamp : ''
+	#category : #Hermes-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HETraitLiteral class>>tag [
+{ #category : #accessing }
+HETraitLiteral class >> tag [
 	^ 19
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HETraitLiteral>>asLiteralIn: env [
+{ #category : #converting }
+HETraitLiteral >> asLiteralIn: env [
 	^ env classNamed: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HETraitLiteral>>value: aTrait [
+{ #category : #accessing }
+HETraitLiteral >> value: aTrait [
 	value := aTrait name.
 ]

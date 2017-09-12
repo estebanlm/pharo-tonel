@@ -17,15 +17,11 @@ Class {
 		'AllocatedThunks',
 		'ExecutablePages'
 	],
-	#category : #Alien-Core,
-	#timestamp : ''
+	#category : #Alien-Core
 }
 
-{
-	#category : #'executable page management',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk class>>allocateExecutablePage "^<Alien>" [
+{ #category : #'executable page management' }
+FFICallbackThunk class >> allocateExecutablePage [ "^<Alien>"
 	"Answer an Alien around a piece of (probably malloced) memory, of some multiple
 	 of the pagesize, that has execute permissions set.  This memory can be parcelled
 	 out to individual FFICallbackThunks to hold their thunk/trampoline machine code."
@@ -33,19 +29,13 @@ FFICallbackThunk class>>allocateExecutablePage "^<Alien>" [
 	^self primitiveFailed
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk class>>dataSize [
+{ #category : #'instance creation' }
+FFICallbackThunk class >> dataSize [
 	^40 "see FFICallbackThunk initialize & initializeStdcall:; must be big enough for the largest thunk created."
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk class>>ensureNotifiedAtStartup [
+{ #category : #'class initialization' }
+FFICallbackThunk class >> ensureNotifiedAtStartup [
 	"FFICallbackThunk needs to be notified at system startup to clear the ExecutablePages table."
 	self ~~ FFICallbackThunk ifTrue: [^self].
 	(Smalltalk classNamed: #SessionManager)
@@ -56,19 +46,13 @@ FFICallbackThunk class>>ensureNotifiedAtStartup [
 		ifNil: [Smalltalk addToStartUpList: self after: Alien]
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk class>>finalize: address [
+{ #category : #finalization }
+FFICallbackThunk class >> finalize: address [
 	self freeBlockInExecutablePage: address
 ]
 
-{
-	#category : #'executable page management',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk class>>freeBlockInExecutablePage: address [
+{ #category : #'executable page management' }
+FFICallbackThunk class >> freeBlockInExecutablePage: address [
 	ExecutablePages do:
 		[:alienPage| | alienAddress |
 		alienAddress := alienPage address.
@@ -79,11 +63,8 @@ FFICallbackThunk class>>freeBlockInExecutablePage: address [
 			
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk class>>initialize [
+{ #category : #'class initialization' }
+FFICallbackThunk class >> initialize [
 	"FFICallbackThunk initialize"
 	AccessProtect := Semaphore forMutualExclusion.
 	AllocatedThunks := AlienWeakTable newForOwner: self.
@@ -91,30 +72,21 @@ FFICallbackThunk class>>initialize [
 	self ensureNotifiedAtStartup
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk class>>newCCall [
+{ #category : #'instance creation' }
+FFICallbackThunk class >> newCCall [
 	"Answer a new instance for the C calling-convention."
 	^self privateFinalizingNew initialize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk class>>newStdCall: argBytes [
+{ #category : #'instance creation' }
+FFICallbackThunk class >> newStdCall: argBytes [
 	"Answer a new instance for Windows' StdCall (Pascal) convention, given the
 	 size of the arguments in bytes (bytes to cut-back from the stack on return)."
 	^self privateFinalizingNew initializeStdcall: argBytes
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk class>>privateFinalizingNew [
+{ #category : #'instance creation' }
+FFICallbackThunk class >> privateFinalizingNew [
 	"Answer a new instance that will free its page when garbage collected."
 	| address |
 	address := self unusedBlockInExecutablePage.
@@ -123,22 +95,16 @@ FFICallbackThunk class>>privateFinalizingNew [
 		finalizing: address 
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk class>>startUp: inANewImageSession [
+{ #category : #'class initialization' }
+FFICallbackThunk class >> startUp: inANewImageSession [
 	"Any thunks in the finalization registry at the time the image comes up in a new session MUST NOT be finalized and should  immediately be discarded. Their thunk pointers are no longer valid."
 	inANewImageSession ifTrue:
 		[AllocatedThunks removeAll.
 		ExecutablePages := Set new]
 ]
 
-{
-	#category : #'executable page management',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk class>>unusedBlockInExecutablePage [
+{ #category : #'executable page management' }
+FFICallbackThunk class >> unusedBlockInExecutablePage [
 	AccessProtect critical:
 		[ExecutablePages do:
 			[:alien|
@@ -152,20 +118,14 @@ FFICallbackThunk class>>unusedBlockInExecutablePage [
 		address
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk>>address [
+{ #category : #accessing }
+FFICallbackThunk >> address [
 	"Thunks are hacked - again they need to be indirect objects with a 0 size field."
 	^self addressField
 ]
 
-{
-	#category : #'memory management',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk>>free [
+{ #category : #'memory management' }
+FFICallbackThunk >> free [
 	"Recycle the memory in the executable page containing the receiver's thunk.
 	 Since the receiver is a derived pointer to a block in an executable page this
 	 requires returning the block to the free pool."
@@ -178,11 +138,8 @@ FFICallbackThunk>>free [
 			 self class freeBlockInExecutablePage: address]]
 ]
 
-{
-	#category : #'instance initalization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk>>initialize [
+{ #category : #'instance initalization' }
+FFICallbackThunk >> initialize [
 	"Initialize the receiver with a __ccall thunk."
 	Callback abi caseOf: {
 	['IA32']		->	[self initializeX86].
@@ -191,11 +148,8 @@ FFICallbackThunk>>initialize [
 	['X64Win64']	->	[self initializeX64Win64] }
 ]
 
-{
-	#category : #'instance initalization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk>>initializeARM32 [
+{ #category : #'instance initalization' }
+FFICallbackThunk >> initializeARM32 [
 	"Initialize the receiver with a __ccall thunk."
 	"0x0 <thunk+0>:		mov     r12, sp			; 0xe1a0c00d
  	 0x4 <thunk+4>:		sub     sp, sp, #16		; 0xe24dd010
@@ -222,21 +176,15 @@ FFICallbackThunk>>initializeARM32 [
 	"self newCCall"
 ]
 
-{
-	#category : #'instance initalization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk>>initializeStdcall: bytes [
+{ #category : #'instance initalization' }
+FFICallbackThunk >> initializeStdcall: bytes [
 	"Initialize the receiver with a __stdcall thunk with bytes argument bytes."
 	Callback abi caseOf: {
 	['IA32']		->	[self initializeX86Stdcall: bytes] }
 ]
 
-{
-	#category : #'instance initalization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk>>initializeX64 [
+{ #category : #'instance initalization' }
+FFICallbackThunk >> initializeX64 [
 	"Initialize the receiver with a __ccall thunk."
 	"thunk+0x0:	pushq  %rsp							54
 	 thunk+0x1:	pushq  %rsp							54
@@ -261,11 +209,8 @@ FFICallbackThunk>>initializeX64 [
 	"self newCCall"
 ]
 
-{
-	#category : #'instance initalization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk>>initializeX64Win64 [
+{ #category : #'instance initalization' }
+FFICallbackThunk >> initializeX64Win64 [
 	"Initialize the receiver with a __ccall thunk."
 	"thunk+0x0:	pushq  %rsp							54
 	 thunk+0x1:	pushq  %rsp							54
@@ -292,11 +237,8 @@ FFICallbackThunk>>initializeX64Win64 [
 	"self newCCall"
 ]
 
-{
-	#category : #'instance initalization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk>>initializeX86 [
+{ #category : #'instance initalization' }
+FFICallbackThunk >> initializeX86 [
 	"Initialize the receiver with a __ccall thunk."
 	"thunk:		push   %esp					0x54							0xa1905454
 	 thunk+01:	push   %esp					0x54
@@ -320,11 +262,8 @@ FFICallbackThunk>>initializeX86 [
 		unsignedLongAt: 21 put: 16r9090C30C
 ]
 
-{
-	#category : #'instance initalization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk>>initializeX86Stdcall: bytes [
+{ #category : #'instance initalization' }
+FFICallbackThunk >> initializeX86Stdcall: bytes [
 	"Initialize the receiver with a __stdcall thunk with bytes argument bytes."
 	"thunk:		push   %esp					0x54							0xa1905454
 	 thunk+01:	push   %esp					0x54
@@ -348,19 +287,13 @@ FFICallbackThunk>>initializeX86Stdcall: bytes [
 		unsignedShortAt: 23 put: bytes
 ]
 
-{
-	#category : #'primitives-memory management',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk>>primFree [
+{ #category : #'primitives-memory management' }
+FFICallbackThunk >> primFree [
 	self shouldNotImplement
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFICallbackThunk>>primThunkEntryAddress "^<Integer>" [
+{ #category : #private-primitives }
+FFICallbackThunk >> primThunkEntryAddress [ "^<Integer>"
 	"Answer the address of the entry-point for thunk callbacks:
 		x86: long thunkEntry(void *thunkp, long *stackp);
 		x64: long thunkEntry(long a, long b, long c, long d, long, e, long f,

@@ -24,15 +24,11 @@ Class {
 		'resetButton',
 		'logButton'
 	],
-	#category : #Tool-CriticBrowser,
-	#timestamp : '<historical>'
+	#category : #Tool-CriticBrowser
 }
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser class>>criticsBrowserMenuOn: aBuilder  [
+{ #category : #menu }
+CriticBrowser class >> criticsBrowserMenuOn: aBuilder [ 
 	"I build a menu"
 	<worldMenu>
 	(aBuilder item: 'Critic Browser')
@@ -43,11 +39,8 @@ CriticBrowser class>>criticsBrowserMenuOn: aBuilder  [
 		icon: self icon
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser class>>defaultSpec [
+{ #category : #specs }
+CriticBrowser class >> defaultSpec [
 	<spec>
 	
 	^ SpecLayout composed 
@@ -71,21 +64,15 @@ CriticBrowser class>>defaultSpec [
 				add: #(criticModel textModel) ]
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser class>>icon [
+{ #category : #icons }
+CriticBrowser class >> icon [
 	"Answer an icon for the receiver."
 
 	^ self iconNamed: #smallWarningIcon
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser class>>open [
+{ #category : #'instance creation' }
+CriticBrowser class >> open [
 
 	| env rules  |
 	rules :=  RBCompositeLintRule allGoodRules rules.
@@ -93,22 +80,16 @@ CriticBrowser class>>open [
 	self openOnRule: rules onEnvironment:  env
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser class>>openOnCurrentWorkingConfiguration [
+{ #category : #menu }
+CriticBrowser class >> openOnCurrentWorkingConfiguration [
 
 	CriticWorkingConfiguration exists
 		ifTrue: [  ResetWindow new openWithSpec  ]
 		ifFalse: [ SelectPackageBrowser open]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser class>>openOnRule: aRule onEnvironment: aEnv [
+{ #category : #'instance creation' }
+CriticBrowser class >> openOnRule: aRule onEnvironment: aEnv [
 
 	| cbr |
 	cbr :=  self new rules: aRule;
@@ -121,11 +102,8 @@ CriticBrowser class>>openOnRule: aRule onEnvironment: aEnv [
 	cbr rulesModel  changed:  #listElementAt:.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser class>>openOnWorkingConfiguration: aWorkingConfiguration [
+{ #category : #'instance creation' }
+CriticBrowser class >> openOnWorkingConfiguration: aWorkingConfiguration [
 
 	| cbr |
 	cbr :=  self new 
@@ -139,11 +117,8 @@ CriticBrowser class>>openOnWorkingConfiguration: aWorkingConfiguration [
 	cbr rulesModel  changed:  #listElementAt:.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser class>>packagesMenu: aBuilder [
+{ #category : #'instance creation' }
+CriticBrowser class >> packagesMenu: aBuilder [
 	<nautilusGlobalPackageMenu>
 	(aBuilder item: #'Critic Browser')
 		icon: self icon;
@@ -157,28 +132,19 @@ CriticBrowser class>>packagesMenu: aBuilder [
 		help: 'Running critics rules on this package'
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser class>>taskbarIconName [
+{ #category : #icons }
+CriticBrowser class >> taskbarIconName [
 
 	^#smallWarningIcon
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser class>>theme [
+{ #category : #menu }
+CriticBrowser class >> theme [
 	^ Smalltalk ui theme 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>addModelItemsToWindowMenu: aMenu [
+{ #category : #'user interface' }
+CriticBrowser >> addModelItemsToWindowMenu: aMenu [
 	"Add model-related items to the window menu"
 
 	aMenu
@@ -187,11 +153,8 @@ CriticBrowser>>addModelItemsToWindowMenu: aMenu [
 		add: 'Reapply all  rules' target: self selector: #reapplyAllRules
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>addRuleToFalsePositive [
+{ #category : #private }
+CriticBrowser >> addRuleToFalsePositive [
 	rulesModel selectedItem ifNotNil: [ :rule |
 		rule leaves do: [ :r |
 			rbEnvironment packages do: [ :package |
@@ -199,19 +162,13 @@ CriticBrowser>>addRuleToFalsePositive [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>allRules [
+{ #category : #private }
+CriticBrowser >> allRules [
 	^ rulesModel roots flatCollect: #rules
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>applyRules [
+{ #category : #private }
+CriticBrowser >> applyRules [
 	| packageCount nbPackage process rules |
 	rules := self allRules.
 	nbPackage := rbEnvironment packages size.
@@ -240,20 +197,14 @@ CriticBrowser>>applyRules [
 	process resume
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>browseRule [
+{ #category : #private }
+CriticBrowser >> browseRule [
 
 	rulesModel selectedItem ifNotNil: [ :item | item content browse ]
 ]
 
-{
-	#category : #'system annoucements',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>classAdded: aClass [
+{ #category : #'system annoucements' }
+CriticBrowser >> classAdded: aClass [
 
 	| rules |
 
@@ -275,11 +226,8 @@ CriticBrowser>>classAdded: aClass [
 	cache updateBrowser.
 ]
 
-{
-	#category : #'system annoucements',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>classRemoved: aClass [
+{ #category : #'system annoucements' }
+CriticBrowser >> classRemoved: aClass [
 
 	(rbEnvironment definesClass: aClass)
 		ifTrue: [ cache itemRemoved: aClass ].
@@ -287,11 +235,8 @@ CriticBrowser>>classRemoved: aClass [
 	cache updateBrowser
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>colorForRule: aRule [
+{ #category : #private }
+CriticBrowser >> colorForRule: aRule [
 	| total |
 	^ (total := cache criticsOf: aRule)
 		ifEmpty: [ self class theme textColor ]
@@ -300,56 +245,38 @@ CriticBrowser>>colorForRule: aRule [
 				ifFalse: [ criticModel defaultColor ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>criticModel [
+{ #category : #accessing }
+CriticBrowser >> criticModel [
 	^ criticModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>defaultTitle [
+{ #category : #api }
+CriticBrowser >> defaultTitle [
 
 	^ 'Critic Browser'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>environment [
+{ #category : #accessing }
+CriticBrowser >> environment [
 	^ rbEnvironment
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>environment: aEnv [
+{ #category : #accessing }
+CriticBrowser >> environment: aEnv [
 	rbEnvironment := aEnv
 
 ]
 
-{
-	#category : #'system annoucements',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>handleClassAdded: anAnnouncement [
+{ #category : #'system annoucements' }
+CriticBrowser >> handleClassAdded: anAnnouncement [
 
 	self classAdded: anAnnouncement classAdded
 
 ]
 
-{
-	#category : #'system annoucements',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>handleClassModified: anAnnouncement [
+{ #category : #'system annoucements' }
+CriticBrowser >> handleClassModified: anAnnouncement [
 
 	self
 		classRemoved: anAnnouncement oldClassDefinition;
@@ -357,31 +284,22 @@ CriticBrowser>>handleClassModified: anAnnouncement [
 	
 ]
 
-{
-	#category : #'system annoucements',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>handleClassRemoved: anAnnouncement [
+{ #category : #'system annoucements' }
+CriticBrowser >> handleClassRemoved: anAnnouncement [
 
 	self classRemoved: anAnnouncement classRemoved
 
 ]
 
-{
-	#category : #'system annoucements',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>handleMethodAdded: anAnnouncement [
+{ #category : #'system annoucements' }
+CriticBrowser >> handleMethodAdded: anAnnouncement [
 
 	self methodAdded: anAnnouncement methodAdded
 
 ]
 
-{
-	#category : #'system annoucements',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>handleMethodModified: anAnnouncement [
+{ #category : #'system annoucements' }
+CriticBrowser >> handleMethodModified: anAnnouncement [
 
 	self
 		methodRemoved: anAnnouncement oldMethod;
@@ -390,30 +308,21 @@ CriticBrowser>>handleMethodModified: anAnnouncement [
 
 ]
 
-{
-	#category : #'system annoucements',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>handleMethodRemoved: anAnnouncement [
+{ #category : #'system annoucements' }
+CriticBrowser >> handleMethodRemoved: anAnnouncement [
 
 	self methodRemoved: anAnnouncement methodRemoved
 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>initialExtent [
+{ #category : #api }
+CriticBrowser >> initialExtent [
 
 	^   760@370
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>initialize [
+{ #category : #initialization }
+CriticBrowser >> initialize [
 	
 	super initialize.
 	cache := ReCriticsCache new.
@@ -423,11 +332,8 @@ CriticBrowser>>initialize [
 	criticModel cache: cache.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>initializePresenter [
+{ #category : #initialization }
+CriticBrowser >> initializePresenter [
 
 	rulesModel whenSelectedItemChanged: [ :rule |
 		(rule isNil or: [ rule isComposite ]) ifFalse: [ 
@@ -448,11 +354,8 @@ CriticBrowser>>initializePresenter [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>initializeWidgets [
+{ #category : #initialization }
+CriticBrowser >> initializeWidgets [
 	
 	title := self defaultTitle.
 	rulesModel := self newTree.
@@ -477,27 +380,18 @@ CriticBrowser>>initializeWidgets [
 		add: criticModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>logButton [
+{ #category : #accessing }
+CriticBrowser >> logButton [
 	^ logButton 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>logInManifest [
+{ #category : #private }
+CriticBrowser >> logInManifest [
 	cache logInManifest
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>menu: aMenu shifted: aBoolean [
+{ #category : #menu }
+CriticBrowser >> menu: aMenu shifted: aBoolean [
 	aMenu
 		addGroup:[ :group | 
 			group addItem: [ :item |
@@ -521,11 +415,8 @@ CriticBrowser>>menu: aMenu shifted: aBoolean [
 	 ^ aMenu
 ]
 
-{
-	#category : #'system annoucements',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>methodAdded: aMethod [
+{ #category : #'system annoucements' }
+CriticBrowser >> methodAdded: aMethod [
 
 	| rules |
 
@@ -547,11 +438,8 @@ CriticBrowser>>methodAdded: aMethod [
 	cache updateBrowser.
 ]
 
-{
-	#category : #'system annoucements',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>methodRemoved: aMethod [
+{ #category : #'system annoucements' }
+CriticBrowser >> methodRemoved: aMethod [
 
 	(rbEnvironment includesMethod: aMethod)
 		ifTrue: [ cache itemRemoved: aMethod ].
@@ -559,11 +447,8 @@ CriticBrowser>>methodRemoved: aMethod [
 	cache updateBrowser
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>onWindowClosed [
+{ #category : #api }
+CriticBrowser >> onWindowClosed [
 
 	self unregisterFromAnnouncements.
 
@@ -576,30 +461,21 @@ before closing the Critics Browser ?')
 
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>open [
+{ #category : #display }
+CriticBrowser >> open [
 
 	^ self openWithSpec
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>reapplyAllRules [
+{ #category : #private }
+CriticBrowser >> reapplyAllRules [
 	
 	cache initialize.
 	self applyRules 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>reapplyRule: aRule [
+{ #category : #private }
+CriticBrowser >> reapplyRule: aRule [
 
 	cache removeRule: aRule.
 	checker resetResult.
@@ -615,11 +491,8 @@ CriticBrowser>>reapplyRule: aRule [
 	cache updateBrowser
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>reapplyThisRule [
+{ #category : #private }
+CriticBrowser >> reapplyThisRule [
 
 	| rule |
 	rulesModel selectedItem ifNil: [ ^ self ].
@@ -631,11 +504,8 @@ CriticBrowser>>reapplyThisRule [
 
 ]
 
-{
-	#category : #'system annoucements',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>registerToAnnouncements [
+{ #category : #'system annoucements' }
+CriticBrowser >> registerToAnnouncements [
 	
 	self unregisterFromAnnouncements.
 	
@@ -649,11 +519,8 @@ CriticBrowser>>registerToAnnouncements [
 	self window window announcer when: WindowClosed send: #onWindowClosed to: self.	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>removeRuleToFalsePositive [
+{ #category : #private }
+CriticBrowser >> removeRuleToFalsePositive [
 
 	rulesModel selectedItem ifNotNil: [ :rule |
 		rule leaves do: [ :r |
@@ -664,27 +531,18 @@ CriticBrowser>>removeRuleToFalsePositive [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>removeTestCase: aBoolean [
+{ #category : #accessing }
+CriticBrowser >> removeTestCase: aBoolean [
 	removeTestCase :=  aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>resetButton [
+{ #category : #accessing }
+CriticBrowser >> resetButton [
 	^ resetButton 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>rules: rulesCollection [
+{ #category : #accessing }
+CriticBrowser >> rules: rulesCollection [
 
 	self rulesModel roots: ((
 		(rulesCollection groupedBy: #group) associations collect: [ :as |
@@ -694,31 +552,22 @@ CriticBrowser>>rules: rulesCollection [
 					sorted: [ :a :b | a name < b name ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>rulesModel [
+{ #category : #accessing }
+CriticBrowser >> rulesModel [
 
 	^ rulesModel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>setActionLogButtom [
+{ #category : #initialization }
+CriticBrowser >> setActionLogButtom [
 	
 	^ [(UIManager default confirm:  'Do you want to save all false positive and toDo in the Manifests ?
 (this action may generate new manifest classes and make dirty your package)')
 			ifTrue: [ cache logInManifest] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>setActionResetButtom [
+{ #category : #initialization }
+CriticBrowser >> setActionResetButtom [
 	
 	^ [(UIManager default confirm: 'Do you want to delete the current configuration
  and create a new configuration ?')
@@ -726,11 +575,8 @@ CriticBrowser>>setActionResetButtom [
 				SelectPackageBrowser open.] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>setLogButton [
+{ #category : #initialization }
+CriticBrowser >> setLogButton [
 
 	logButton 
 		state: false;
@@ -738,11 +584,8 @@ CriticBrowser>>setLogButton [
 		action: self setActionLogButtom 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>setResetButton [
+{ #category : #initialization }
+CriticBrowser >> setResetButton [
 
 	resetButton 
 		state: false;
@@ -750,11 +593,8 @@ CriticBrowser>>setResetButton [
 		action: self setActionResetButtom.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>setTitle: aTitle [
+{ #category : #api }
+CriticBrowser >> setTitle: aTitle [
 
 	title := aTitle.
 	
@@ -762,11 +602,8 @@ CriticBrowser>>setTitle: aTitle [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>stringMorphForRule: rule [
+{ #category : #private }
+CriticBrowser >> stringMorphForRule: rule [
 	| unclassified falsePositives toDos text total |
 	falsePositives := (cache falsePositiveOf: rule) size.
 	toDos := (cache toDosOf: rule) size.
@@ -789,28 +626,19 @@ CriticBrowser>>stringMorphForRule: rule [
 		
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>title [
+{ #category : #api }
+CriticBrowser >> title [
 	^ title
 ]
 
-{
-	#category : #'system annoucements',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>unregisterFromAnnouncements [
+{ #category : #'system annoucements' }
+CriticBrowser >> unregisterFromAnnouncements [
 
 	SystemAnnouncer uniqueInstance unsubscribe: self
 ]
 
-{
-	#category : #thread,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowser>>updateTree [
+{ #category : #thread }
+CriticBrowser >> updateTree [
 	criticModel updateList. 
 	rulesModel updateTree
 ]

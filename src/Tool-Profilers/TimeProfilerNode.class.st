@@ -4,56 +4,37 @@ A TimeProfilerNode represents a node in the tally tree
 Class {
 	#name : #TimeProfilerNode,
 	#superclass : #MorphTreeNodeModel,
-	#category : #Tool-Profilers,
-	#timestamp : '<historical>'
+	#category : #Tool-Profilers
 }
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-TimeProfilerNode>>asString [
+{ #category : #printing }
+TimeProfilerNode >> asString [
 	^ String streamContents: [:s | self item printOn: s total: model tally totalTime: model time tallyExact: false] 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-TimeProfilerNode>>browseItem [
+{ #category : #actions }
+TimeProfilerNode >> browseItem [
 	Smalltalk tools browser
 		openOnClass: self methodClass  selector: self selector
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-TimeProfilerNode>>childrenItems [
+{ #category : #accessing-computed }
+TimeProfilerNode >> childrenItems [
 	^ (self item sonsOver: model threshold) asSortedCollection
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-TimeProfilerNode>>exploreItem [
+{ #category : #actions }
+TimeProfilerNode >> exploreItem [
 	self item explore
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-TimeProfilerNode>>inspectItem [
+{ #category : #actions }
+TimeProfilerNode >> inspectItem [
 	self item inspect
 ]
 
-{
-	#category : #'UI specific',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-TimeProfilerNode>>keyStroke: anEvent from: aTreeMorph [
+{ #category : #'UI specific' }
+TimeProfilerNode >> keyStroke: anEvent from: aTreeMorph [
 	| c |
 	c := anEvent keyCharacter.
 	c = $b
@@ -66,11 +47,8 @@ TimeProfilerNode>>keyStroke: anEvent from: aTreeMorph [
 
 ]
 
-{
-	#category : #'UI specific',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-TimeProfilerNode>>menu: menu shifted: b  [
+{ #category : #'UI specific' }
+TimeProfilerNode >> menu: menu shifted: b [ 
 	menu
 		add: 'Browse (b)'
 		target: self
@@ -86,29 +64,20 @@ TimeProfilerNode>>menu: menu shifted: b  [
 
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-TimeProfilerNode>>methodClass [
+{ #category : #accessing-computed }
+TimeProfilerNode >> methodClass [
 	^self item method methodClass 
 	
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-TimeProfilerNode>>percentage  [
+{ #category : #accessing-computed }
+TimeProfilerNode >> percentage [ 
 	^ self item tally asFloat / model time * 100.0 roundTo: 0.1.
 
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-TimeProfilerNode>>selector [
+{ #category : #accessing-computed }
+TimeProfilerNode >> selector [
 	^self item method selector 
 	
 ]

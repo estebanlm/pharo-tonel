@@ -7,35 +7,25 @@ Class {
 	#instVars : [
 		'baseTrait'
 	],
-	#category : #Traits-Kernel,
-	#timestamp : '<historical>'
+	#category : #Traits-Kernel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait class>>for: aTrait [
+{ #category : #'instance creation' }
+ClassTrait class >> for: aTrait [
 	^self new
 		initializeWithBaseTrait: aTrait;
 		yourself
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>acceptsLoggingOfCompilation [
+{ #category : #compiling }
+ClassTrait >> acceptsLoggingOfCompilation [
 	"Answer whether the receiver's method submisions and class defintions should be logged to the changes file and to the current change set.  The metaclass follows the rule of the class itself."
 
 	^ self theNonMetaClass acceptsLoggingOfCompilation
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>addInstVarNamed: aString  [
+{ #category : #'instance variables' }
+ClassTrait >> addInstVarNamed: aString [ 
 	"Add the argument, aString, as one of the receiver's instance variables."
 
 	| fullString |
@@ -45,35 +35,23 @@ ClassTrait>>addInstVarNamed: aString  [
 	self instanceVariableNames: fullString
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>addObsoleteSubclass: aClass [
+{ #category : #'class hierarchy' }
+ClassTrait >> addObsoleteSubclass: aClass [
 	"Do nothing."
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>addSubclass: aClass [
+{ #category : #'class hierarchy' }
+ClassTrait >> addSubclass: aClass [
 	"Do nothing."
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>adoptInstance: oldInstance from: oldMetaClass  [
+{ #category : #initialize-release }
+ClassTrait >> adoptInstance: oldInstance from: oldMetaClass [ 
 	^self error: 'Traits cannot adopt instances'.
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>assertConsistantCompositionsForNew: aTraitComposition [
+{ #category : #composition }
+ClassTrait >> assertConsistantCompositionsForNew: aTraitComposition [
 	"Applying or modifying a trait composition on the class side
 	of a behavior has some restrictions."
 
@@ -99,11 +77,8 @@ ClassTrait>>assertConsistantCompositionsForNew: aTraitComposition [
 				for existing traits or add a trait which does not have any methods on the class side.)']
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>baseTrait [
+{ #category : #'accessing parallel hierarchy' }
+ClassTrait >> baseTrait [
 
 	<localClassTraitMethod> 
     "This method is supposed to be local in ClassTrait because of a good reason.
@@ -113,11 +88,8 @@ ClassTrait>>baseTrait [
 	^baseTrait
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>baseTrait: aTrait [
+{ #category : #'accessing parallel hierarchy' }
+ClassTrait >> baseTrait: aTrait [
 
 	<localClassTraitMethod> 
     "This method is supposed to be local in ClassTrait because of a good reason.
@@ -130,11 +102,8 @@ ClassTrait>>baseTrait: aTrait [
 	
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>binding [
+{ #category : #compiling }
+ClassTrait >> binding [
 	"return an association that can be used as the binding
 	 To share it between methods, reuse an existing one if possible"
 	^self methodDict 
@@ -142,49 +111,34 @@ ClassTrait>>binding [
 		ifNotEmpty: [:dict | dict anyOne classBinding]
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>bindingOf: varName [
+{ #category : #compiling }
+ClassTrait >> bindingOf: varName [
 
 	^self theNonMetaClass classBindingOf: varName
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>canZapMethodDictionary [
+{ #category : #testing }
+ClassTrait >> canZapMethodDictionary [
 	"Return true if it is safe to zap the method dictionary on #obsolete"
 	self soleInstance == nil
 		ifTrue:[^true]
 		ifFalse:[^self soleInstance canZapMethodDictionary]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>category [
+{ #category : #accessing }
+ClassTrait >> category [
 	^ self theNonMetaClass category
 ]
 
-{
-	#category : #'pool variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>classPool [
+{ #category : #'pool variables' }
+ClassTrait >> classPool [
 	"Answer the dictionary of class variables."
 
 	^self theNonMetaClass classPool
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>classTrait [
+{ #category : #'accessing parallel hierarchy' }
+ClassTrait >> classTrait [
 
 	<localClassTraitMethod> 
     "This method is supposed to be local in ClassTrait because of a good reason.
@@ -194,11 +148,8 @@ ClassTrait>>classTrait [
 	^self
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>classTrait: aClassTrait [
+{ #category : #'accessing parallel hierarchy' }
+ClassTrait >> classTrait: aClassTrait [
 
 	<localClassTraitMethod> 
     "This method is supposed to be local in ClassTrait because of a good reason.
@@ -210,22 +161,16 @@ ClassTrait>>classTrait: aClassTrait [
 	
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>classVarNames [
+{ #category : #'accessing instances and variables' }
+ClassTrait >> classVarNames [
 	"Answer a set of the names of the class variables defined in the receiver's instance."
 	
 	self theNonMetaClass ifNil: [ ^ Set new ].
 	^self theNonMetaClass classVarNames
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>compile: text classified: category withStamp: changeStamp notifying: requestor logSource: logSource [
+{ #category : #compiling }
+ClassTrait >> compile: text classified: category withStamp: changeStamp notifying: requestor logSource: logSource [
 	
 	<localClassTraitMethod> 
     "This method is supposed to be local in ClassTrait because of a good reason.
@@ -253,11 +198,8 @@ ClassTrait>>compile: text classified: category withStamp: changeStamp notifying:
 		logSource: logSource
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>copy [
+{ #category : #copying }
+ClassTrait >> copy [
 	"Make a copy of the receiver. Share the 
 	reference to the base trait."
 
@@ -272,11 +214,8 @@ ClassTrait>>copy [
 		yourself
 ]
 
-{
-	#category : #fileIn/Out,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>definition [
+{ #category : #fileIn/Out }
+ClassTrait >> definition [
 	^String streamContents: [:stream |
 		stream
 			nextPutAll: self name;
@@ -285,30 +224,21 @@ ClassTrait>>definition [
 			nextPutAll: self traitCompositionString]
 ]
 
-{
-	#category : #'accessing hierarchy protocol',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>hasClassSide [
+{ #category : #'accessing hierarchy protocol' }
+ClassTrait >> hasClassSide [
 	^false
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>initializeFrom: anotherClassTrait [
+{ #category : #initialize }
+ClassTrait >> initializeFrom: anotherClassTrait [
 	self traitComposition: self traitComposition copyTraitExpression.
 	self methodDict: self methodDict copy.
 	self localSelectors: self localSelectors copy.
 	self basicOrganization: self organization copy.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>initializeWithBaseTrait: aTrait [
+{ #category : #initialize }
+ClassTrait >> initializeWithBaseTrait: aTrait [
 
 	<localClassTraitMethod> 
     "This method is supposed to be local in ClassTrait because of a good reason.
@@ -321,27 +251,18 @@ ClassTrait>>initializeWithBaseTrait: aTrait [
 	
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>instanceVariableNames: instVarString [
+{ #category : #initialize-release }
+ClassTrait >> instanceVariableNames: instVarString [
 	"Compatibility purposes"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>isAnonymous [
+{ #category : #testing }
+ClassTrait >> isAnonymous [
 	^self soleInstance isAnonymous 
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>isBaseTrait [
+{ #category : #'accessing parallel hierarchy' }
+ClassTrait >> isBaseTrait [
 
 	<localClassTraitMethod> 
     "This method is supposed to be local in ClassTrait because of a good reason.
@@ -351,11 +272,8 @@ ClassTrait>>isBaseTrait [
 	^false
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>isClassTrait [
+{ #category : #'accessing parallel hierarchy' }
+ClassTrait >> isClassTrait [
 
 	<localClassTraitMethod> 
     "This method is supposed to be local in ClassTrait because of a good reason.
@@ -365,19 +283,13 @@ ClassTrait>>isClassTrait [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>isMeta [
+{ #category : #testing }
+ClassTrait >> isMeta [
 	^ true
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>isMetaclassOfClassOrNil [
+{ #category : #'class hierarchy' }
+ClassTrait >> isMetaclassOfClassOrNil [
 	
 	
 	^ self theNonMetaClass 
@@ -385,55 +297,37 @@ ClassTrait>>isMetaclassOfClassOrNil [
 		ifNotNil: [ :nonMetaClass | nonMetaClass == Class ] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>isObsolete [
+{ #category : #testing }
+ClassTrait >> isObsolete [
 	"Return true if the receiver is obsolete"
 	^self soleInstance == nil "Either no thisClass"
 		or:[self soleInstance classSide ~~ self "or I am not the class of thisClass"
 			or:[self soleInstance isObsolete]] "or my instance is obsolete"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>isSelfEvaluating [
+{ #category : #testing }
+ClassTrait >> isSelfEvaluating [
 	^self isObsolete not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>isUsed [
+{ #category : #testing }
+ClassTrait >> isUsed [
 	"Metaclasses are used by default"
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>name [
+{ #category : #accessing }
+ClassTrait >> name [
 	^self baseTrait name , ' classTrait'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>new [
+{ #category : #'instance creation' }
+ClassTrait >> new [
 	self error: 'Traits have no instances'
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>noteNewBaseTraitCompositionApplied: aTraitComposition [
+{ #category : #composition }
+ClassTrait >> noteNewBaseTraitCompositionApplied: aTraitComposition [
 	"The argument is the new trait composition of my base trait - add
 	the new traits or remove non existing traits on my class side composition.
 	(Each class trait in my composition has its base trait on the instance side
@@ -454,11 +348,8 @@ ClassTrait>>noteNewBaseTraitCompositionApplied: aTraitComposition [
 	self setTraitComposition: newComposition
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>obsoleteSubclasses [
+{ #category : #'class hierarchy' }
+ClassTrait >> obsoleteSubclasses [
 	"Answer the receiver's subclasses."
 
 	self isMetaclassOfClassOrNil ifTrue: [ ^ #() ].
@@ -466,21 +357,15 @@ ClassTrait>>obsoleteSubclasses [
 	^ self theNonMetaClass obsoleteSubclasses collect: [ :aSubclass | aSubclass theMetaClass ]
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>possibleVariablesFor: misspelled continuedFrom: oldResults [
+{ #category : #compiling }
+ClassTrait >> possibleVariablesFor: misspelled continuedFrom: oldResults [
 
 	^ self theNonMetaClass possibleVariablesFor: misspelled continuedFrom: oldResults
 
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>removeInstVarNamed: aString  [
+{ #category : #'instance variables' }
+ClassTrait >> removeInstVarNamed: aString [ 
 	"Remove the argument, aString, as one of the receiver's instance variables."
 
 	| newArray newString |
@@ -492,43 +377,28 @@ ClassTrait>>removeInstVarNamed: aString  [
 	self instanceVariableNames: newString
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>removeSubclass: aClass [
+{ #category : #'class hierarchy' }
+ClassTrait >> removeSubclass: aClass [
 	"Do nothing."
 ]
 
-{
-	#category : #'pool variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>sharedPools [
+{ #category : #'pool variables' }
+ClassTrait >> sharedPools [
 	^OrderedCollection new.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>slots: slotDefinition  [
+{ #category : #initialize-release }
+ClassTrait >> slots: slotDefinition [ 
 	"Compatibility purposes"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>soleInstance [
+{ #category : #accessing }
+ClassTrait >> soleInstance [
 	^baseTrait
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>subclasses [
+{ #category : #'class hierarchy' }
+ClassTrait >> subclasses [
 	"Answer the receiver's subclasses."
 	
 	self isMetaclassOfClassOrNil ifTrue: [ ^ #() ].
@@ -536,11 +406,8 @@ ClassTrait>>subclasses [
 	^ self theNonMetaClass subclasses collect: [ :aSubclass | aSubclass theMetaClass ].
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>subclassesDo: aBlock [
+{ #category : #'class hierarchy' }
+ClassTrait >> subclassesDo: aBlock [
 	"Evaluate aBlock for each of the receiver's immediate subclasses."
 	
 	self isMetaclassOfClassOrNil ifTrue: [ ^ self ].
@@ -548,11 +415,8 @@ ClassTrait>>subclassesDo: aBlock [
 	self theNonMetaClass subclasses do: [ :each | aBlock value: each theMetaClass ]
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>uses: aTraitCompositionOrArray [
+{ #category : #composition }
+ClassTrait >> uses: aTraitCompositionOrArray [
 	| copyOfOldTrait newComposition |
 	copyOfOldTrait := self copy.
 	newComposition := aTraitCompositionOrArray asTraitComposition.
@@ -563,11 +427,8 @@ ClassTrait>>uses: aTraitCompositionOrArray [
 		classModificationAppliedTo: self
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>uses: aTraitCompositionOrArray instanceVariableNames: instVarString  [
+{ #category : #initialize-release }
+ClassTrait >> uses: aTraitCompositionOrArray instanceVariableNames: instVarString [ 
 	| newComposition newMetaClass copyOfOldMetaClass |
 	
 	copyOfOldMetaClass := self copy.
@@ -581,11 +442,8 @@ ClassTrait>>uses: aTraitCompositionOrArray instanceVariableNames: instVarString 
 		classDefinitionChangedFrom: copyOfOldMetaClass to: newMetaClass
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>uses: aTraitCompositionOrArray slots: slotArray  [
+{ #category : #initialize-release }
+ClassTrait >> uses: aTraitCompositionOrArray slots: slotArray [ 
 	| newComposition newMetaClass copyOfOldMetaClass |
 	
 	copyOfOldMetaClass := self copy.
@@ -599,21 +457,15 @@ ClassTrait>>uses: aTraitCompositionOrArray slots: slotArray  [
 		classDefinitionChangedFrom: copyOfOldMetaClass to: newMetaClass
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>wantsChangeSetLogging [
+{ #category : #compiling }
+ClassTrait >> wantsChangeSetLogging [
 	"Answer whether code submitted for the receiver should be remembered by the changeSet mechanism.The metaclass follows the rule of the class itself."
 
 	^ self theNonMetaClass wantsChangeSetLogging
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-ClassTrait>>wantsRecompilationProgressReported [
+{ #category : #compiling }
+ClassTrait >> wantsRecompilationProgressReported [
 	"The metaclass follows the rule of the class itself."
 
 	^ self theNonMetaClass wantsRecompilationProgressReported

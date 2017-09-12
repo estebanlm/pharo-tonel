@@ -10,15 +10,11 @@ Class {
 		'inspectorChoice',
 		'isUpdating'
 	],
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorToolBar class>>defaultSpec [
+{ #category : #specs }
+EyeInspectorToolBar class >> defaultSpec [
 	<spec>
 	^ SpecLayout composed
 		newRow: [ :r | 
@@ -30,36 +26,24 @@ EyeInspectorToolBar class>>defaultSpec [
 	yourself.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorToolBar>>history [
+{ #category : #accessing }
+EyeInspectorToolBar >> history [
 	^ self inspectorWrapper history
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorToolBar>>initialize [
+{ #category : #initialization }
+EyeInspectorToolBar >> initialize [
 	isUpdating := false.
 	super initialize.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorToolBar>>initializeWidgets [
+{ #category : #initialization }
+EyeInspectorToolBar >> initializeWidgets [
 	" nothing to do"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorToolBar>>inspectorChoice [
+{ #category : #accessing }
+EyeInspectorToolBar >> inspectorChoice [
 	inspectorChoice
 		ifNil: [ 
 			inspectorChoice := self instantiate: DropListModel.
@@ -70,43 +54,28 @@ EyeInspectorToolBar>>inspectorChoice [
 	^ inspectorChoice
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorToolBar>>inspectorType [
+{ #category : #accessing }
+EyeInspectorToolBar >> inspectorType [
 	^ self inspectorWrapper inspectorType
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorToolBar>>inspectorType: anInspectorClass [
+{ #category : #actions }
+EyeInspectorToolBar >> inspectorType: anInspectorClass [
 	^ self inspectorWrapper inspectorType: anInspectorClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorToolBar>>inspectorTypes [
+{ #category : #accessing }
+EyeInspectorToolBar >> inspectorTypes [
 	^ self inspectorWrapper inspectorTypes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorToolBar>>inspectorWrapper [
+{ #category : #accessing }
+EyeInspectorToolBar >> inspectorWrapper [
 	^ self owner
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorToolBar>>nextButton [
+{ #category : #accessing }
+EyeInspectorToolBar >> nextButton [
 	nextButton
 		ifNil: [ 
 			nextButton := self instantiate: ButtonModel.
@@ -118,11 +87,8 @@ EyeInspectorToolBar>>nextButton [
 	^ nextButton
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorToolBar>>preventUpdatesDuring: aBlock [
+{ #category : #private }
+EyeInspectorToolBar >> preventUpdatesDuring: aBlock [
 	"Used to prevent back-firing when the toolbar is update from the outside"
 	isUpdating ifTrue: [ 
 		^ self ].
@@ -130,11 +96,8 @@ EyeInspectorToolBar>>preventUpdatesDuring: aBlock [
 	aBlock ensure: [ isUpdating := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorToolBar>>previousButton [
+{ #category : #accessing }
+EyeInspectorToolBar >> previousButton [
 	previousButton
 		ifNil: [ 
 			previousButton := self instantiate: ButtonModel.
@@ -146,11 +109,8 @@ EyeInspectorToolBar>>previousButton [
 	^ previousButton
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorToolBar>>update [
+{ #category : #event-handling }
+EyeInspectorToolBar >> update [
 	self preventUpdatesDuring: [ 
 		self updateInspectorChoice.
 		self updateInspectorType.
@@ -158,11 +118,8 @@ EyeInspectorToolBar>>update [
 		self nextButton enabled: self history hasNext ]
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorToolBar>>updateInspectorChoice [
+{ #category : #event-handling }
+EyeInspectorToolBar >> updateInspectorChoice [
 	self inspectorTypes
 		ifNotNil: [ :variants | 
 			self inspectorChoice listItems = variants
@@ -172,11 +129,8 @@ EyeInspectorToolBar>>updateInspectorChoice [
 				displayBlock: [ :label | label ]]
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspectorToolBar>>updateInspectorType [
+{ #category : #event-handling }
+EyeInspectorToolBar >> updateInspectorType [
 	
 	
 	self inspectorType

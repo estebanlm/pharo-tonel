@@ -1,65 +1,43 @@
-"
-
-"
 Class {
 	#name : #GLMBrickLayoutMyselfState,
 	#superclass : #GLMBrickLayoutState,
 	#instVars : [
 		'dimension'
 	],
-	#category : #Glamour-Morphic-Brick-Layouts,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Layouts
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutMyselfState>>defaultDimension [
+{ #category : #initialization }
+GLMBrickLayoutMyselfState >> defaultDimension [
 
 	^ 50
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutMyselfState>>dimension [
+{ #category : #accessing }
+GLMBrickLayoutMyselfState >> dimension [
 	^ dimension
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutMyselfState>>dimension: anObject [
+{ #category : #accessing }
+GLMBrickLayoutMyselfState >> dimension: anObject [
 	dimension := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutMyselfState>>initialize [
+{ #category : #initialization }
+GLMBrickLayoutMyselfState >> initialize [
 	super initialize.
 	
 	dimension := self defaultDimension
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutMyselfState>>isOnMyself [
+{ #category : #testing }
+GLMBrickLayoutMyselfState >> isOnMyself [
 
 	^ true
 ]
 
-{
-	#category : #layouting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutMyselfState>>layout: aBrick on: aTraverser [
+{ #category : #layouting }
+GLMBrickLayoutMyselfState >> layout: aBrick on: aTraverser [
 
 	"immidiately set my dimension"
 	aTraverser updateDimension: aBrick.
@@ -68,20 +46,14 @@ GLMBrickLayoutMyselfState>>layout: aBrick on: aTraverser [
 	aTraverser layoutOwnerOf: aBrick
 ]
 
-{
-	#category : #layouting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutMyselfState>>updateHeight: aBrick on: aLayout [
+{ #category : #layouting }
+GLMBrickLayoutMyselfState >> updateHeight: aBrick on: aLayout [
 
 	aBrick withHeight: (aLayout normalizeHeight: (aLayout heightMyselfDependency: aBrick) of: aBrick)
 ]
 
-{
-	#category : #layouting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutMyselfState>>updateWidth: aBrick on: aLayout [
+{ #category : #layouting }
+GLMBrickLayoutMyselfState >> updateWidth: aBrick on: aLayout [
 
 	aBrick withWidth: (aLayout normalizeWidth: (aLayout widthMyselfDependency: aBrick) of: aBrick)
 ]

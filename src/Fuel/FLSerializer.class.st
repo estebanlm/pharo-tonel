@@ -41,78 +41,53 @@ Class {
 		'stream',
 		'header'
 	],
-	#category : #Fuel-Core,
-	#timestamp : 'MartinDias 8/29/2011 19:10'
+	#category : #Fuel-Core
 }
 
-{
-	#category : #protected,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer class>>currentVersion [
+{ #category : #protected }
+FLSerializer class >> currentVersion [
 	"If you change this method, you should also create a version in ConfigurationOfFuel and FLMaterializer >> currentVersion"
 	^ 194
 ]
 
-{
-	#category : #protected,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer class>>defaultSignature [
+{ #category : #protected }
+FLSerializer class >> defaultSignature [
 	^ 'FUEL'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer class>>newDefault [
+{ #category : #'instance creation' }
+FLSerializer class >> newDefault [
 
 	^self newLight
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer class>>newLight [
+{ #category : #'instance creation' }
+FLSerializer class >> newLight [
 
 	^self new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer class>>on: aStream [
+{ #category : #'instance creation' }
+FLSerializer class >> on: aStream [
 	^ self newLight 
 		stream: aStream;
 		yourself
 ]
 
-{
-	#category : #serializing-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer class>>serialize: anObject on: aStream [
+{ #category : #serializing-shortcuts }
+FLSerializer class >> serialize: anObject on: aStream [
 
 	self newDefault serialize: anObject on: aStream
 ]
 
-{
-	#category : #serializing-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer class>>serialize: anObject toFileNamed: aFilename [
+{ #category : #serializing-shortcuts }
+FLSerializer class >> serialize: anObject toFileNamed: aFilename [
 
 	self newDefault serialize: anObject toFileNamed: aFilename
 ]
 
-{
-	#category : #serializing-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer class>>serializeToByteArray: anObject [
+{ #category : #serializing-shortcuts }
+FLSerializer class >> serializeToByteArray: anObject [
 	"No stream is needed by the user. An internal in-memory stream will be used. This method returns a ByteArray representing the serialization"
 
 	| aStream |
@@ -121,61 +96,40 @@ FLSerializer class>>serializeToByteArray: anObject [
 	^ aStream contents
 ]
 
-{
-	#category : #header,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>addPostMaterializationAction: aCleanBlockClosure [
+{ #category : #header }
+FLSerializer >> addPostMaterializationAction: aCleanBlockClosure [
 	header addPostMaterializationAction: aCleanBlockClosure
 ]
 
-{
-	#category : #header,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>addPreMaterializationAction: aCleanBlockClosure [
+{ #category : #header }
+FLSerializer >> addPreMaterializationAction: aCleanBlockClosure [
 	header addPreMaterializationAction: aCleanBlockClosure
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>analyzer [
+{ #category : #accessing }
+FLSerializer >> analyzer [
 	^ analyzer ifNil: [ analyzer := self defaultAnalyzer ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>analyzer: anObject [
+{ #category : #accessing }
+FLSerializer >> analyzer: anObject [
 	analyzer := anObject
 ]
 
-{
-	#category : #header,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>at: key putAdditionalObject: anObject  [
+{ #category : #header }
+FLSerializer >> at: key putAdditionalObject: anObject [ 
 	"This is useful if we want to attach objects to a package that will also be serialized. The way they are stored is key-value."
 	header at: key putAdditionalObject: anObject 
 ]
 
-{
-	#category : #protected,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>defaultAnalyzer [
+{ #category : #protected }
+FLSerializer >> defaultAnalyzer [
 
 	^FLAnalyzer newDefault
 ]
 
-{
-	#category : #protected,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>encodeHeaderWith: anEncoder [
+{ #category : #protected }
+FLSerializer >> encodeHeaderWith: anEncoder [
 
 	"todo: fix how header is encoded"
 	anEncoder encodeByte: (header isEmpty ifTrue: [0] ifFalse: [1]).
@@ -184,44 +138,29 @@ FLSerializer>>encodeHeaderWith: anEncoder [
 		self class newDefault serializationFactory value: header value: anEncoder ]
 ]
 
-{
-	#category : #protected,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>encodeSignatureWith: anEncoder [
+{ #category : #protected }
+FLSerializer >> encodeSignatureWith: anEncoder [
 	anEncoder encodeBytes: self signature asByteArray
 ]
 
-{
-	#category : #protected,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>encodeVersionWith: anEncoder [
+{ #category : #protected }
+FLSerializer >> encodeVersionWith: anEncoder [
 	anEncoder encodeUint16: self version
 
 ]
 
-{
-	#category : #hooks,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>fuelAccept: aGeneralMapper [
+{ #category : #hooks }
+FLSerializer >> fuelAccept: aGeneralMapper [
 	^ aGeneralMapper visitSubstitution: self by: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>header [
+{ #category : #accessing }
+FLSerializer >> header [
 	^ header
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>initialize [
+{ #category : #initialization }
+FLSerializer >> initialize [
 
 	super initialize.
 	self signature: self class defaultSignature.
@@ -229,32 +168,23 @@ FLSerializer>>initialize [
 	header := FLHeader new.
 ]
 
-{
-	#category : #protected,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>serializationFactory [
+{ #category : #protected }
+FLSerializer >> serializationFactory [
 
 	^ serializationFactory ifNil: [ 
 		self setDefaultSerialization.
 		serializationFactory ].
 ]
 
-{
-	#category : #serializing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>serialize: anObject [
+{ #category : #serializing }
+FLSerializer >> serialize: anObject [
 	"Serialize the graph starting at the root object received and answers the FLSerialization object"
 
 	^ self serialize: anObject on: stream
 ]
 
-{
-	#category : #serializing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>serialize: anObject on: aStream [
+{ #category : #serializing }
+FLSerializer >> serialize: anObject on: aStream [
 	"Serialize the graph starting at the root object received and answers the FLSerialization object"
 
 	FLEncoder
@@ -267,11 +197,8 @@ FLSerializer>>serialize: anObject on: aStream [
 			^ self serializationFactory value: anObject value: anEncoder ]
 ]
 
-{
-	#category : #serializing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>serialize: anObject toFileNamed: aFilename [
+{ #category : #serializing }
+FLSerializer >> serialize: anObject toFileNamed: aFilename [
 	"Serialize the graph starting at the root object received and answers the FLSerialization object"
 	FLPlatform current
 		fileNamed: aFilename 
@@ -280,11 +207,8 @@ FLSerializer>>serialize: anObject toFileNamed: aFilename [
 	
 ]
 
-{
-	#category : #protected,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>setDefaultSerialization [
+{ #category : #protected }
+FLSerializer >> setDefaultSerialization [
 
 	^ serializationFactory := [:anObject :anEncoder | 
 		(FLSerialization 
@@ -295,42 +219,27 @@ FLSerializer>>setDefaultSerialization [
 			yourself ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>signature [
+{ #category : #accessing }
+FLSerializer >> signature [
 	^ signature
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>signature: anObject [
+{ #category : #accessing }
+FLSerializer >> signature: anObject [
 	signature := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>stream: aStream [
+{ #category : #accessing }
+FLSerializer >> stream: aStream [
 	stream := aStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>version [
+{ #category : #accessing }
+FLSerializer >> version [
 	^ version
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSerializer>>version: anObject [
+{ #category : #accessing }
+FLSerializer >> version: anObject [
 	version := anObject
 ]

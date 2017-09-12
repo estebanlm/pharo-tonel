@@ -10,99 +10,68 @@ Class {
 		'shortcut',
 		'platform'
 	],
-	#category : #Keymapping-KeyCombinations,
-	#timestamp : '<historical>'
+	#category : #Keymapping-KeyCombinations
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMPlatformSpecificKeyCombination class>>with: aShortcut onPlatform: aPlatform [
+{ #category : #'instance creation' }
+KMPlatformSpecificKeyCombination class >> with: aShortcut onPlatform: aPlatform [
 	^self new
 			shortcut: aShortcut;
 			platform: aPlatform;
 			yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMPlatformSpecificKeyCombination>>= aShortcut [
+{ #category : #comparing }
+KMPlatformSpecificKeyCombination >> = aShortcut [
 	platform = aShortcut platform
 		ifFalse: [ ^ false ].
 	^ shortcut = aShortcut shortcut
 ]
 
-{
-	#category : #iterating,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMPlatformSpecificKeyCombination>>combinationsDo: aBlock [
+{ #category : #iterating }
+KMPlatformSpecificKeyCombination >> combinationsDo: aBlock [
 	aBlock value: self
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMPlatformSpecificKeyCombination>>hash [
+{ #category : #comparing }
+KMPlatformSpecificKeyCombination >> hash [
 	^ platform hash bitXor: shortcut hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMPlatformSpecificKeyCombination>>matches: aCollection [
+{ #category : #testing }
+KMPlatformSpecificKeyCombination >> matches: aCollection [
 
 	self platform == Smalltalk os platformFamily ifFalse: [ ^ false ].	
 	^ self shortcut matches: aCollection
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMPlatformSpecificKeyCombination>>matchesCompletely: aCollection [
+{ #category : #testing }
+KMPlatformSpecificKeyCombination >> matchesCompletely: aCollection [
 
 	self platform == Smalltalk os platformFamily ifFalse: [ ^ false ].	
 	^ self shortcut matchesCompletely: aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMPlatformSpecificKeyCombination>>platform [
+{ #category : #accessing }
+KMPlatformSpecificKeyCombination >> platform [
 	^platform
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMPlatformSpecificKeyCombination>>platform: aPlatform [
+{ #category : #accessing }
+KMPlatformSpecificKeyCombination >> platform: aPlatform [
 	platform := aPlatform
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMPlatformSpecificKeyCombination>>prettyPrintOn: aStream [
+{ #category : #printing }
+KMPlatformSpecificKeyCombination >> prettyPrintOn: aStream [
 
 	self platform = #MacOSX
 		ifTrue: [ shortcut prettyPrintOn: aStream ]
 		ifFalse: [ shortcut printOn: aStream ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMPlatformSpecificKeyCombination>>printOn: aStream [
+{ #category : #printing }
+KMPlatformSpecificKeyCombination >> printOn: aStream [
 	super printOn: aStream.
 	aStream << ' ('.
 	shortcut printOn: aStream.
@@ -111,26 +80,17 @@ KMPlatformSpecificKeyCombination>>printOn: aStream [
 	aStream << ')'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMPlatformSpecificKeyCombination>>shortcut [
+{ #category : #accessing }
+KMPlatformSpecificKeyCombination >> shortcut [
 	^shortcut
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMPlatformSpecificKeyCombination>>shortcut: aShortcut [
+{ #category : #accessing }
+KMPlatformSpecificKeyCombination >> shortcut: aShortcut [
 	shortcut := aShortcut
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMPlatformSpecificKeyCombination>>| aShortcut [
+{ #category : #combining }
+KMPlatformSpecificKeyCombination >> | aShortcut [
 	^KMKeyCombinationChoice withShortcuts: { self . aShortcut }
 ]

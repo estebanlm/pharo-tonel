@@ -13,24 +13,17 @@ Class {
 		'packageName',
 		'workingCopy'
 	],
-	#category : #Versionner-Core-Model,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractPackageInfo class>>named: infoName [
+{ #category : #'instance creation' }
+MBAbstractPackageInfo class >> named: infoName [
 
 	^self named: infoName packageName: infoName spec: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractPackageInfo class>>named: infoName packageName: packageName spec: aMetacelloSpec [
+{ #category : #'instance creation' }
+MBAbstractPackageInfo class >> named: infoName packageName: packageName spec: aMetacelloSpec [
 	"Create an instance of myself named infoName for the package named packageName"
 
 	| answer |
@@ -44,84 +37,57 @@ MBAbstractPackageInfo class>>named: infoName packageName: packageName spec: aMet
 	^ answer
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractPackageInfo class>>new [
+{ #category : #'instance creation' }
+MBAbstractPackageInfo class >> new [
 	self error: 'Please, use #named: to create an instance'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractPackageInfo>>classForBrowsing [
+{ #category : #accessing }
+MBAbstractPackageInfo >> classForBrowsing [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractPackageInfo>>cmdBrowse [
+{ #category : #commands }
+MBAbstractPackageInfo >> cmdBrowse [
 	<command>
 	^ MBBrowsePackageCommand
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractPackageInfo>>cmdBrowsePackageChanges [
+{ #category : #commands }
+MBAbstractPackageInfo >> cmdBrowsePackageChanges [
 	<command>
 	^ MBPackageChangesCommand
 	
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractPackageInfo>>cmdOpenRepositoryCommand [
+{ #category : #commands }
+MBAbstractPackageInfo >> cmdOpenRepositoryCommand [
 	<command>
 	^ VSOpenRepositoryCommand
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractPackageInfo>>isDirty [
+{ #category : #testing }
+MBAbstractPackageInfo >> isDirty [
 	| wc |
 	wc := self workingCopy.
 	wc ifNil: [ ^false ].
 	^wc needsSaving
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractPackageInfo>>packageName [
+{ #category : #accessing }
+MBAbstractPackageInfo >> packageName [
 
 	^packageName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractPackageInfo>>packageName: aString [
+{ #category : #accessing }
+MBAbstractPackageInfo >> packageName: aString [
 
 	packageName := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBAbstractPackageInfo>>workingCopy [
+{ #category : #accessing }
+MBAbstractPackageInfo >> workingCopy [
 	| pkg |
 	workingCopy ~~ nil ifTrue: [ ^workingCopy ].
 	pkg := MCPackage named: self packageName.

@@ -7,15 +7,11 @@ Class {
 	#classVars : [
 		'Default'
 	],
-	#category : #UIManager,
-	#timestamp : 'ar 12/27/2004 08:39'
+	#category : #UIManager
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager class>>default [
+{ #category : #initialization }
+UIManager class >> default [
 	^ Default
 		ifNil: [ 
 			"Note: The way the following is phrased ensures that you can always make 'more specific' managers merely by subclassing a tool builder and implementing a more specific way of reacting to #isActiveManager. For example, a BobsUIManager can subclass MorphicUIManager and will be considered before the parent (generic MorphicUIManager)."
@@ -24,22 +20,16 @@ UIManager class>>default [
 				ifFound: [ :mgrClass | Default := mgrClass new ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager class>>default: aUIManager [
+{ #category : #initialization }
+UIManager class >> default: aUIManager [
 
 	Default deactivate.
 	Default := aUIManager.
 	Default activate.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager class>>forCurrentSystemConfiguration [
+{ #category : #initialization }
+UIManager class >> forCurrentSystemConfiguration [
 	^ (self allSubclasses
 			detect: [ :any | 
 				any isValidForCurrentSystemConfiguration
@@ -47,29 +37,20 @@ UIManager class>>forCurrentSystemConfiguration [
 			ifNone: [ NonInteractiveUIManager ]) new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager class>>isActiveManager [
+{ #category : #initialization }
+UIManager class >> isActiveManager [
 	"Answer whether I should act as the active ui manager"
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager class>>isValidForCurrentSystemConfiguration [
+{ #category : #testing }
+UIManager class >> isValidForCurrentSystemConfiguration [
 
 	^ false
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager class>>nonInteractiveDuring: aBlock [
+{ #category : #utils }
+UIManager class >> nonInteractiveDuring: aBlock [
 	| currentManager |
 	currentManager := self default.
 	currentManager nonInteractiveManager.
@@ -77,59 +58,40 @@ UIManager class>>nonInteractiveDuring: aBlock [
 	aBlock ensure: [ currentManager beDefault ]
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>abort: aStringOrText [
+{ #category : #'ui TEasilyThemed' }
+UIManager >> abort: aStringOrText [
 	"Open an error dialog."
 
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>abort: aStringOrText title: aString [
+{ #category : #'ui TEasilyThemed' }
+UIManager >> abort: aStringOrText title: aString [
 	"Open an error dialog."
 
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>activate [
-
+{ #category : #private }
+UIManager >> activate [
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>alert: aStringOrText [
+{ #category : #'ui TEasilyThemed' }
+UIManager >> alert: aStringOrText [
 	"Open an alert dialog."
 	
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>alert: aStringOrText title: aString [
+{ #category : #'ui TEasilyThemed' }
+UIManager >> alert: aStringOrText title: aString [
 	"Open an alert dialog."
 	
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>alert: aStringOrText title: aString configure: aBlock [
+{ #category : #'ui TEasilyThemed' }
+UIManager >> alert: aStringOrText title: aString configure: aBlock [
 	"Open an alert dialog.
 	Configure the dialog with the 1 argument block
 	before opening modally."
@@ -137,93 +99,63 @@ UIManager>>alert: aStringOrText title: aString configure: aBlock [
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>beDefault [
+{ #category : #private }
+UIManager >> beDefault [
 
 	self class default: self.
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>checkForNewDisplaySize	 [
+{ #category : #display }
+UIManager >> checkForNewDisplaySize [	
 	
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseDirectory [
+{ #category : #'ui requests' }
+UIManager >> chooseDirectory [
 	"Let the user choose a directory"
 	^self chooseDirectoryFrom: FileSystem workingDirectory
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseDirectory: label [
+{ #category : #'ui requests' }
+UIManager >> chooseDirectory: label [
 	"Let the user choose a directory"
 	^self chooseDirectory: label from: FileSystem workingDirectory
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseDirectory: label from: dir [
+{ #category : #'ui requests' }
+UIManager >> chooseDirectory: label from: dir [
 	"Let the user choose a directory"
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseDirectoryFrom: dir [
+{ #category : #'ui requests' }
+UIManager >> chooseDirectoryFrom: dir [
 	"Let the user choose a directory"
 	^self chooseDirectory: nil from: dir
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFrom: aList [
+{ #category : #'ui requests' }
+UIManager >> chooseFrom: aList [
 	"Choose an item from the given list. Answer the index of the selected item."
 	^self chooseFrom: aList lines: #()
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFrom: aList lines: linesArray [
+{ #category : #'ui requests' }
+UIManager >> chooseFrom: aList lines: linesArray [
 	"Choose an item from the given list. Answer the index of the selected item."
 	^self chooseFrom: aList lines: linesArray title: ''
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFrom: aList lines: linesArray message: messageString [
+{ #category : #'ui requests' }
+UIManager >> chooseFrom: aList lines: linesArray message: messageString [
 	"Choose an item from the given list. Answer the index of the selected item."
 	
 	^self chooseFrom: aList lines: linesArray message: messageString title: ''
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFrom: aList lines: linesArray message: messageString title: aString [
+{ #category : #'ui requests' }
+UIManager >> chooseFrom: aList lines: linesArray message: messageString title: aString [
 	"Choose an item from the given list. Answer the selected item."
 	
 	^self
@@ -234,77 +166,53 @@ UIManager>>chooseFrom: aList lines: linesArray message: messageString title: aSt
 				ifNotEmpty: [aString, String cr, messageString])
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFrom: aList lines: linesArray title: aString [
+{ #category : #'ui requests' }
+UIManager >> chooseFrom: aList lines: linesArray title: aString [
 	"Choose an item from the given list. Answer the index of the selected item."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFrom: aList message: messageString [
+{ #category : #'ui requests' }
+UIManager >> chooseFrom: aList message: messageString [
 	"Choose an item from the given list. Answer the index of the selected item."
 	
 	^self chooseFrom: aList lines: #() message: messageString
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFrom: aList message: messageString title: aString [
+{ #category : #'ui requests' }
+UIManager >> chooseFrom: aList message: messageString title: aString [
 	"Choose an item from the given list. Answer the index of the selected item."
 	
 	^self chooseFrom: aList lines: #() message: messageString title: aString
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFrom: aList title: aString [
+{ #category : #'ui requests' }
+UIManager >> chooseFrom: aList title: aString [
 	"Choose an item from the given list. Answer the index of the selected item."
 	^self chooseFrom: aList lines: #() title: aString
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFrom: labelList values: valueList [
+{ #category : #'ui requests' }
+UIManager >> chooseFrom: labelList values: valueList [
 	"Choose an item from the given list. Answer the selected item."
 	^self chooseFrom: labelList values: valueList lines: #()
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFrom: labelList values: valueList lines: linesArray [
+{ #category : #'ui requests' }
+UIManager >> chooseFrom: labelList values: valueList lines: linesArray [
 	"Choose an item from the given list. Answer the selected item."
 	^self chooseFrom: labelList values: valueList lines: linesArray title: ''
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFrom: aList values: valueList lines: linesArray message: messageString [
+{ #category : #'ui requests' }
+UIManager >> chooseFrom: aList values: valueList lines: linesArray message: messageString [
 	"Choose an item from the given list. Answer the index of the selected item."
 	
 	^self chooseFrom: aList values: valueList lines: linesArray message: messageString title: ''
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFrom: labelList values: valueList lines: linesArray message: messageString title: aString [
+{ #category : #'ui requests' }
+UIManager >> chooseFrom: labelList values: valueList lines: linesArray message: messageString title: aString [
 	"Choose an item from the given list. Answer the selected item."
 	
 	^self
@@ -316,95 +224,65 @@ UIManager>>chooseFrom: labelList values: valueList lines: linesArray message: me
 				ifNotEmpty: [aString, String cr, messageString])
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFrom: labelList values: valueList lines: linesArray title: aString [
+{ #category : #'ui requests' }
+UIManager >> chooseFrom: labelList values: valueList lines: linesArray title: aString [
 	"Choose an item from the given list. Answer the selected item."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFrom: aList values: valueList message: messageString [
+{ #category : #'ui requests' }
+UIManager >> chooseFrom: aList values: valueList message: messageString [
 	"Choose an item from the given list. Answer the index of the selected item."
 	
 	^self chooseFrom: aList values: valueList lines: #() message: messageString
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFrom: aList values: valueList message: messageString title: aString [
+{ #category : #'ui requests' }
+UIManager >> chooseFrom: aList values: valueList message: messageString title: aString [
 	"Choose an item from the given list. Answer the index of the selected item."
 	
 	^self chooseFrom: aList values: valueList lines: #() message: messageString title: aString
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFrom: labelList values: valueList title: aString [
+{ #category : #'ui requests' }
+UIManager >> chooseFrom: labelList values: valueList title: aString [
 	"Choose an item from the given list. Answer the selected item."
 	^self chooseFrom: labelList values: valueList lines: #() title: aString
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFullFileNameMatching: patterns [
+{ #category : #'ui requests' }
+UIManager >> chooseFullFileNameMatching: patterns [
 	"Let the user choose a file matching the given patterns"
 	^self chooseFullFileNameMatching: patterns label: nil
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseFullFileNameMatching: patterns label: labelString [
+{ #category : #'ui requests' }
+UIManager >> chooseFullFileNameMatching: patterns label: labelString [
 	"Let the user choose a file matching the given patterns"
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>chooseOrRequestFrom: labelList values: valueList lines: linesArray title: aString [
+{ #category : #'ui requests' }
+UIManager >> chooseOrRequestFrom: labelList values: valueList lines: linesArray title: aString [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>confirm: queryString [
+{ #category : #'ui requests' }
+UIManager >> confirm: queryString [
 	"Put up a yes/no menu with caption queryString. Answer true if the 
 	response is yes, false if no. This is a modal question--the user must 
 	respond yes or no."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>confirm: queryString label: titleString [
+{ #category : #'ui requests' }
+UIManager >> confirm: queryString label: titleString [
 	
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>confirm: queryString label: title trueChoice: trueChoice falseChoice: falseChoice cancelChoice: cancelChoice default: defaultOption [
+{ #category : #'ui requests' }
+UIManager >> confirm: queryString label: title trueChoice: trueChoice falseChoice: falseChoice cancelChoice: cancelChoice default: defaultOption [
 	"Put up a yes/no/cancel menu with caption queryString. The actual wording for the choices will be as provided in the trueChoice, falseChoice and cancelChoice parameters.
 	defaultOption should be one of true, false or nil to set the default button.
 	Answer true if the response is the true-choice, false if it's the false-choice, nil if the cancelChoice.
@@ -412,32 +290,23 @@ UIManager>>confirm: queryString label: title trueChoice: trueChoice falseChoice:
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>confirm: aString orCancel: cancelBlock [
+{ #category : #'ui requests' }
+UIManager >> confirm: aString orCancel: cancelBlock [
 	"Put up a yes/no/cancel menu with caption aString. Answer true if  
 	the response is yes, false if no. If cancel is chosen, evaluate  
 	cancelBlock. This is a modal question--the user must respond yes or no."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>confirm: queryString trueChoice: trueChoice falseChoice: falseChoice  [
+{ #category : #'ui requests' }
+UIManager >> confirm: queryString trueChoice: trueChoice falseChoice: falseChoice [ 
 	"Put up a yes/no menu with caption queryString. The actual wording for the two choices will be as provided in the trueChoice and falseChoice parameters. Answer true if the response is the true-choice, false if it's the false-choice.
 	This is a modal question -- the user must respond one way or the other."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>confirm: queryString trueChoice: trueChoice falseChoice: falseChoice cancelChoice: cancelChoice default: aSymbol [
+{ #category : #'ui requests' }
+UIManager >> confirm: queryString trueChoice: trueChoice falseChoice: falseChoice cancelChoice: cancelChoice default: aSymbol [
 	"Put up a yes/no/cancel menu with caption queryString. The actual wording for the choices will be as provided in the trueChoice, falseChoice and cancelChoice parameters.
 	Default should be one of #yes, #no or #cancel to set the default button.
 	Answer true if the response is the true-choice, false if it's the false-choice, nil if the cancelChoice.
@@ -446,65 +315,43 @@ UIManager>>confirm: queryString trueChoice: trueChoice falseChoice: falseChoice 
 	^self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>deactivate [
-
+{ #category : #private }
+UIManager >> deactivate [
 ]
 
-{
-	#category : #debug,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>debugProcess: process context: context label: title fullView: bool [
+{ #category : #debug }
+UIManager >> debugProcess: process context: context label: title fullView: bool [
 
 	self debugProcess: process context: context label: title fullView: bool notification: nil
 ]
 
-{
-	#category : #debug,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>debugProcess: process context: context label: title fullView: bool notification: notificationString [
+{ #category : #debug }
+UIManager >> debugProcess: process context: context label: title fullView: bool notification: notificationString [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'ui process',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>defer: aBlock [
+{ #category : #'ui process' }
+UIManager >> defer: aBlock [
 	" Evaluate the given Block in the UI thread as soon as there is nothing scheduled. Evaluate immediately when there is no UI"
 	aBlock value
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>deny: aStringOrText [
+{ #category : #'ui TEasilyThemed' }
+UIManager >> deny: aStringOrText [
 	"Open a denial dialog."
 
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>deny: aStringOrText title: aString [
+{ #category : #'ui TEasilyThemed' }
+UIManager >> deny: aStringOrText title: aString [
 	"Open a denial dialog."
 
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>displayProgress: titleString from: minVal to: maxVal during: workBlock [
+{ #category : #display }
+UIManager >> displayProgress: titleString from: minVal to: maxVal during: workBlock [
 	"SystemProgressMorph show: titleString from: minVal to:  during: "
 
 	^ workBlock asJob
@@ -514,102 +361,69 @@ UIManager>>displayProgress: titleString from: minVal to: maxVal during: workBloc
 			run.
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>edit: aText [
+{ #category : #'ui requests' }
+UIManager >> edit: aText [
 	"Open an editor on the given string/text"
 	^self edit: aText label: nil
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>edit: aText label: labelString [
+{ #category : #'ui requests' }
+UIManager >> edit: aText label: labelString [
 	"Open an editor on the given string/text"
 	^self edit: aText label: labelString accept: nil
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>edit: aText label: labelString accept: aBlockOrNil [
+{ #category : #'ui requests' }
+UIManager >> edit: aText label: labelString accept: aBlockOrNil [
 	"Open an editor on the given string/text"
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'default actions',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>fileDoesNotExistsDefaultAction: anException [
+{ #category : #'default actions' }
+UIManager >> fileDoesNotExistsDefaultAction: anException [
 
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #'default actions',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>fileExistsDefaultAction: anException [
+{ #category : #'default actions' }
+UIManager >> fileExistsDefaultAction: anException [
 
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>fontFromUser: priorFont	 [
+{ #category : #'ui requests' }
+UIManager >> fontFromUser: priorFont [	
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>handleError: anError [
+{ #category : #'error handling' }
+UIManager >> handleError: anError [
 	
 	self handleError: anError log: true
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>handleError: anError log: shouldLog [
+{ #category : #'error handling' }
+UIManager >> handleError: anError log: shouldLog [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>headlessManager [
+{ #category : #accessing }
+UIManager >> headlessManager [
 	" Answer an instance of headless manager, which will be used when image runs headless and non-interactive.
 	  We put it here, so subclasses can override it. "
 	^ CommandLineUIManager replacing: self
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>inform: aString [
+{ #category : #'ui requests' }
+UIManager >> inform: aString [
 	"Display a message for the user to read and then dismiss"
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>informUser: aString during: aBlock [
+{ #category : #'ui requests' }
+UIManager >> informUser: aString during: aBlock [
 	"Display a message above (or below if insufficient room) the cursor 
 	during execution of the given block.
 		UIManager default informUser: 'Just a sec!' during: [(Delay forSeconds: 1) wait].
@@ -617,11 +431,8 @@ UIManager>>informUser: aString during: aBlock [
 	^self informUserDuring: [:bar | bar label: aString. aBlock value].
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>informUserDuring: aBlock [
+{ #category : #'ui requests' }
+UIManager >> informUserDuring: aBlock [
 	"Display a message above (or below if insufficient room) the cursor 
 	during execution of the given block.
 		UIManager default informUserDuring:[:bar|
@@ -631,11 +442,8 @@ UIManager>>informUserDuring: aBlock [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>interactiveParserFor: requestor	 [
+{ #category : #settings }
+UIManager >> interactiveParserFor: requestor [	
 	
 	requestor ifNil: [^ false ].
 	(requestor respondsTo: #interactive)
@@ -643,49 +451,33 @@ UIManager>>interactiveParserFor: requestor	 [
 	^true
 ]
 
-{
-	#category : #'ui process',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>interruptName: labelString preemptedProcess: theInterruptedProcess [
+{ #category : #'ui process' }
+UIManager >> interruptName: labelString preemptedProcess: theInterruptedProcess [
 	"Create a Notifier on the active scheduling process with the given label."
 
 	^ self error: 'Cannot perform a given request'
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>logError: anError [
+{ #category : #'error handling' }
+UIManager >> logError: anError [
 
 	Smalltalk
 		logError: anError messageText
 		inContext: anError signalerContext.
 ]
 
-{
-	#category : #'default actions',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>lowSpaceWatcherDefaultAction: preemptedProcess [
-
+{ #category : #'default actions' }
+UIManager >> lowSpaceWatcherDefaultAction: preemptedProcess [
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>merge: merger informing: aString [
+{ #category : #'ui requests' }
+UIManager >> merge: merger informing: aString [
 
 	self subclassResponsibility.
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>multiLineRequest: queryString initialAnswer: defaultAnswer answerHeight: answerHeight [
+{ #category : #'ui requests' }
+UIManager >> multiLineRequest: queryString initialAnswer: defaultAnswer answerHeight: answerHeight [
 	"Create a multi-line instance of me whose question is queryString with
 	the given initial answer. Invoke it centered at the given point, and
 	answer the string the user accepts.  Answer nil if the user cancels.  An
@@ -696,233 +488,163 @@ UIManager>>multiLineRequest: queryString initialAnswer: defaultAnswer answerHeig
 	^self subclassResponsibility
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>newDisplayDepthNoRestore: pixelSize	 [
+{ #category : #display }
+UIManager >> newDisplayDepthNoRestore: pixelSize [	
 	
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>newMenuIn: aThemedMorph for: aModel [
+{ #category : #'ui requests' }
+UIManager >> newMenuIn: aThemedMorph for: aModel [
 	"Answer a new menu."
 	
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #non-interactive,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>nonInteractiveManager [
+{ #category : #non-interactive }
+UIManager >> nonInteractiveManager [
 	" Answer an instance of non-interactive manager, which will be used when image runs headless.
 	  We put it here, so subclasses can override it. "
 	^ NonInteractiveUIManager replacing: self
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>onEventSensorStartup: anEventSensor [
+{ #category : #events }
+UIManager >> onEventSensorStartup: anEventSensor [
 
 
 ]
 
-{
-	#category : #'default actions',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>onFontsChanged [
+{ #category : #'default actions' }
+UIManager >> onFontsChanged [
 
 	
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>onPrimitiveError: aString	 [
-
+{ #category : #events }
+UIManager >> onPrimitiveError: aString [	
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>openComparisionFrom: targetMethodSource
+{ #category : #'ui requests' }
+UIManager >> openComparisionFrom: targetMethodSource
 					to: originalMethodSource
 					belongingTo: aClass
-					from: aChange  [
+					from: aChange [ 
 	^ self subclassResponsibility				
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>proceed: aStringOrText [
+{ #category : #'ui TEasilyThemed' }
+UIManager >> proceed: aStringOrText [
 	"Open a proceed dialog."
 	
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>proceed: aStringOrText title: aString [
+{ #category : #'ui TEasilyThemed' }
+UIManager >> proceed: aStringOrText title: aString [
 	"Open a proceed dialog and answer true if not cancelled, false otherwise."
 	
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>question: aStringOrText [
+{ #category : #'ui TEasilyThemed' }
+UIManager >> question: aStringOrText [
 	"Open a question dialog."
 	
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>question: aStringOrText title: aString [
+{ #category : #'ui TEasilyThemed' }
+UIManager >> question: aStringOrText title: aString [
 	"Open a question dialog and answer true if yes,
 	false if no and nil if cancelled."
 
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>questionWithoutCancel: aStringOrText [
+{ #category : #'ui TEasilyThemed' }
+UIManager >> questionWithoutCancel: aStringOrText [
 	"Open a question dialog."
 
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>questionWithoutCancel: aStringOrText title: aString [
+{ #category : #'ui TEasilyThemed' }
+UIManager >> questionWithoutCancel: aStringOrText title: aString [
 	"Open a question dialog and answer true if yes,
 	false if no and nil if cancelled."
 
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>request: queryString  [
+{ #category : #'ui requests' }
+UIManager >> request: queryString [ 
 	"Create an instance of me whose question is queryString. Invoke it 
 	centered at the cursor, and answer the string the user accepts. Answer 
 	the empty string if the user cancels."
 	^self request: queryString initialAnswer: ''
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>request: queryString entryCompletion: anEntryCompletion [
+{ #category : #'ui requests' }
+UIManager >> request: queryString entryCompletion: anEntryCompletion [
 	"Create an instance of me whose question is queryString. Invoke it 
 	centered at the cursor, and answer the string the user accepts. Answer 
 	the empty string if the user cancels."
 	^self request: queryString initialAnswer: '' entryCompletion: anEntryCompletion
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>request: queryString initialAnswer: defaultAnswer [
+{ #category : #'ui requests' }
+UIManager >> request: queryString initialAnswer: defaultAnswer [
 	"Create an instance of me whose question is queryString with the given initial answer. Answer the string the user accepts. Answer the empty string if the user cancels."
 
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>request: queryString initialAnswer: defaultAnswer entryCompletion: anEntryCompletion [
+{ #category : #'ui requests' }
+UIManager >> request: queryString initialAnswer: defaultAnswer entryCompletion: anEntryCompletion [
 	"Create an instance of me whose question is queryString with the given 
 	initial answer. Invoke it centered at the given point, and answer the 
 	string the user accepts. Answer the empty string if the user cancels."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>request: aStringOrText initialAnswer: defaultAnswer title: aTitle [
+{ #category : #'ui requests' }
+UIManager >> request: aStringOrText initialAnswer: defaultAnswer title: aTitle [
 	"Create an instance of me whose question is queryString with the given 
 	initial answer. Invoke it centered at the given point, and answer the 
 	string the user accepts. Answer the empty string if the user cancels."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>request: aStringOrText initialAnswer: defaultAnswer title: aTitle entryCompletion: anEntryCompletion [
+{ #category : #'ui requests' }
+UIManager >> request: aStringOrText initialAnswer: defaultAnswer title: aTitle entryCompletion: anEntryCompletion [
 	"Create an instance of me whose question is queryString with the given 
 	initial answer. Invoke it centered at the given point, and answer the 
 	string the user accepts. Answer the empty string if the user cancels."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>requestPassword: queryString [
+{ #category : #'ui requests' }
+UIManager >> requestPassword: queryString [
 	"Create an instance of me whose question is queryString. Invoke it centered
 	at the cursor, and answer the string the user accepts. Answer the empty 
 	string if the user cancels."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>restoreDisplay	 [
+{ #category : #display }
+UIManager >> restoreDisplay [	
 	
 	self subclassResponsibility 
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>restoreDisplayAfter: aBlock	 [
+{ #category : #display }
+UIManager >> restoreDisplayAfter: aBlock [	
 	
 	self subclassResponsibility 
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>showWaitCursorWhile: aBlock [
+{ #category : #display }
+UIManager >> showWaitCursorWhile: aBlock [
 	| process |
 	process := [ [ true ] "loop until the end of aBlock processing"
 		whileTrue: [ 
@@ -937,20 +659,14 @@ UIManager>>showWaitCursorWhile: aBlock [
 		ensure: [ process terminate ]
 ]
 
-{
-	#category : #'ui process',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>spawnNewProcess [
+{ #category : #'ui process' }
+UIManager >> spawnNewProcess [
 
 	"do nothing by default"
 ]
 
-{
-	#category : #'ui process',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>spawnNewProcessIfThisIsUI: suspendedProcess [
+{ #category : #'ui process' }
+UIManager >> spawnNewProcessIfThisIsUI: suspendedProcess [
 
 	self uiProcess == suspendedProcess ifTrue: [
 		self spawnNewProcess.
@@ -960,58 +676,40 @@ UIManager>>spawnNewProcessIfThisIsUI: suspendedProcess [
 
 ]
 
-{
-	#category : #'default actions',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>syntaxErrorNotificationDefaultAction: anException [
+{ #category : #'default actions' }
+UIManager >> syntaxErrorNotificationDefaultAction: anException [
 
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #'ui process',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>terminateUIProcess [
+{ #category : #'ui process' }
+UIManager >> terminateUIProcess [
 	"do nothing by default "
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>textEntry: aStringOrText [
+{ #category : #'ui TEasilyThemed' }
+UIManager >> textEntry: aStringOrText [
 	"Open a text entry dialog."
 
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>textEntry: aStringOrText title: aString [
+{ #category : #'ui TEasilyThemed' }
+UIManager >> textEntry: aStringOrText title: aString [
 	"Open a text entry dialog."
 
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>textEntry: aStringOrText title: aString entryText: defaultEntryText [
+{ #category : #'ui TEasilyThemed' }
+UIManager >> textEntry: aStringOrText title: aString entryText: defaultEntryText [
 	"Open a text entry dialog."
 
 	^self subclassResponsibility 
 ]
 
-{
-	#category : #'default actions',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>unhandledErrorDefaultAction: anException [
+{ #category : #'default actions' }
+UIManager >> unhandledErrorDefaultAction: anException [
 
 	"Provide a default handling for unhandled error. 
 	We should never reach this code, because it should be overridden by subclasses. 
@@ -1022,11 +720,8 @@ UIManager>>unhandledErrorDefaultAction: anException [
 	Smalltalk snapshot: false andQuit: true.
 ]
 
-{
-	#category : #'default actions',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-UIManager>>warningDefaultAction: aWarning [
+{ #category : #'default actions' }
+UIManager >> warningDefaultAction: aWarning [
 
 	"Handle warning notification. Should be overidden by subclass"
 	

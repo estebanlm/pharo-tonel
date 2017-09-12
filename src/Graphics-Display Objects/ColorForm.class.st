@@ -22,15 +22,11 @@ Class {
 		'cachedDepth',
 		'cachedColormap'
 	],
-	#category : #'Graphics-Display Objects',
-	#timestamp : '<historical>'
+	#category : #'Graphics-Display Objects'
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm class>>extent: extentPoint depth: bitsPerPixel [
+{ #category : #'instance creation' }
+ColorForm class >> extent: extentPoint depth: bitsPerPixel [
 	"Answer an instance of me with blank bitmap of the given dimensions and depth max 8."
 	
 	^ bitsPerPixel > 8 
@@ -39,11 +35,8 @@ ColorForm class>>extent: extentPoint depth: bitsPerPixel [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm class>>mappingWhiteToTransparentFrom: aFormOrCursor [
+{ #category : #'as yet unclassified' }
+ColorForm class >> mappingWhiteToTransparentFrom: aFormOrCursor [
 	"Return a ColorForm copied from the given Form or Cursor with white mapped to transparent."
 
 	| f map |
@@ -68,20 +61,14 @@ ColorForm class>>mappingWhiteToTransparentFrom: aFormOrCursor [
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>asCursorForm [
+{ #category : #copying }
+ColorForm >> asCursorForm [
 
 	^ (self asFormOfDepth: 32) offset: offset
 ]
 
-{
-	#category : #'color manipulation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>asGrayScale [
+{ #category : #'color manipulation' }
+ColorForm >> asGrayScale [
 	"Return a grayscale ColorForm computed by mapping each color into its grayscale equivalent"
 	^ self copy colors:
 		(colors collect:
@@ -89,41 +76,29 @@ ColorForm>>asGrayScale [
 						ifFalse: [Color gray: c luminance]])
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>blankCopyOf: aRectangle scaledBy: scale [
+{ #category : #copying }
+ColorForm >> blankCopyOf: aRectangle scaledBy: scale [
 	^Form extent: (aRectangle extent * scale) truncated depth: 32
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>clearColormapCache [
+{ #category : #private }
+ColorForm >> clearColormapCache [
 
 	cachedDepth := nil.
 	cachedColormap := nil.
 
 ]
 
-{
-	#category : #'pixel accessing',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>colorAt: aPoint [
+{ #category : #'pixel accessing' }
+ColorForm >> colorAt: aPoint [
 	"Return the color of the pixel at aPoint."
 
 	^ self colors at: (self pixelValueAt: aPoint) + 1
 
 ]
 
-{
-	#category : #'pixel accessing',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>colorAt: aPoint put: aColor [
+{ #category : #'pixel accessing' }
+ColorForm >> colorAt: aPoint put: aColor [
 	"Store the given color into the pixel at aPoint. The given color must match one of the colors in the receiver's colormap."
 
 	| i |
@@ -133,11 +108,8 @@ ColorForm>>colorAt: aPoint put: aColor [
 
 ]
 
-{
-	#category : #'color mapping',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>colormapIfNeededFor: destForm [
+{ #category : #'color mapping' }
+ColorForm >> colormapIfNeededFor: destForm [
 	| newMap color pv |
 	(self hasNonStandardPalette or:[destForm hasNonStandardPalette]) ifFalse:[
 		^self colormapIfNeededForDepth: destForm depth.
@@ -159,11 +131,8 @@ ColorForm>>colormapIfNeededFor: destForm [
 	^cachedColormap := ColorMap shifts: nil masks: nil colors: newMap.
 ]
 
-{
-	#category : #'color manipulation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>colormapIfNeededForDepth: destDepth [
+{ #category : #'color manipulation' }
+ColorForm >> colormapIfNeededForDepth: destDepth [
 	"Return a colormap for displaying the receiver at the given depth, or nil if no colormap is needed."
 
 	| newMap |
@@ -184,11 +153,8 @@ ColorForm>>colormapIfNeededForDepth: destDepth [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>colors [
+{ #category : #accessing }
+ColorForm >> colors [
 	"Return my color palette."
 
 	self ensureColorArrayExists.
@@ -196,11 +162,8 @@ ColorForm>>colors [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>colors: colorList [
+{ #category : #accessing }
+ColorForm >> colors: colorList [
 	"Set my color palette to the given collection."
 
 	| colorArray colorCount newColors |
@@ -222,22 +185,16 @@ ColorForm>>colors: colorList [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>colorsFromArray: colorArray [
+{ #category : #accessing }
+ColorForm >> colorsFromArray: colorArray [
 	| colorList |
 	colorList := colorArray collect: [:colorDef |
 		Color fromArray: colorDef].
 	self colors: colorList
 ]
 
-{
-	#category : #'color manipulation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>colorsUsed [
+{ #category : #'color manipulation' }
+ColorForm >> colorsUsed [
 	"Return a list of the colors actually used by this ColorForm."
 
 	| myColor list |
@@ -249,11 +206,8 @@ ColorForm>>colorsUsed [
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>copy: aRect [
+{ #category : #copying }
+ColorForm >> copy: aRect [
  	"Return a new ColorForm containing the portion of the receiver delineated by aRect."
 
 	| newForm |
@@ -273,11 +227,8 @@ ColorForm>>copy: aRect [
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>deepCopy [
+{ #category : #copying }
+ColorForm >> deepCopy [
 
 	^ self shallowCopy
 		bits: bits copy;
@@ -286,31 +237,22 @@ ColorForm>>deepCopy [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>depth: bitsPerPixel [
+{ #category : #private }
+ColorForm >> depth: bitsPerPixel [
 
 	bitsPerPixel > 8 ifTrue: [self error: 'ColorForms only support depths up to 8 bits'].
 	super depth: bitsPerPixel.
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>displayOnPort: port at: location [
+{ #category : #displaying }
+ColorForm >> displayOnPort: port at: location [
 
 	port copyForm: self to: location rule: Form paint
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>ensureColorArrayExists [
+{ #category : #private }
+ColorForm >> ensureColorArrayExists [
 	"Return my color palette."
 
 	colors ifNil: [
@@ -319,11 +261,8 @@ ColorForm>>ensureColorArrayExists [
 
 ]
 
-{
-	#category : #'scaling, rotation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>flipBy: direction centerAt: aPoint [
+{ #category : #'scaling, rotation' }
+ColorForm >> flipBy: direction centerAt: aPoint [
 	| oldColors newForm |
 	oldColors := colors.
 	self colors: nil.
@@ -333,11 +272,8 @@ ColorForm>>flipBy: direction centerAt: aPoint [
 	^newForm 
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>hibernate [
+{ #category : #filein/out }
+ColorForm >> hibernate [
 	"Make myself take up less space. See comment in Form>hibernate."
 
 	super hibernate.
@@ -345,50 +281,35 @@ ColorForm>>hibernate [
 	colors ifNotNil:[colors := colors asColorArray].
 ]
 
-{
-	#category : #'color manipulation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>indexOfColor: aColor [
+{ #category : #'color manipulation' }
+ColorForm >> indexOfColor: aColor [
 	"Return the index of aColor in my color array"
 
 	self ensureColorArrayExists.
 	^ colors indexOf: aColor ifAbsent: [0]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>isColorForm [
+{ #category : #testing }
+ColorForm >> isColorForm [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>isTranslucent [
+{ #category : #testing }
+ColorForm >> isTranslucent [
 	"Answer whether this form may be translucent"
 	^true
 ]
 
-{
-	#category : #'pixel accessing',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>isTransparentAt: aPoint  [
+{ #category : #'pixel accessing' }
+ColorForm >> isTransparentAt: aPoint [ 
 	"Return true if the receiver is transparent at the given point."
 
 	^ (self colorAt: aPoint) isTransparent
 
 ]
 
-{
-	#category : #'color manipulation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>mapColor: oldColor to: newColor [
+{ #category : #'color manipulation' }
+ColorForm >> mapColor: oldColor to: newColor [
 	"Replace all occurances of the given color with the given new color in my color map."
 
 	self ensureColorArrayExists.
@@ -398,11 +319,8 @@ ColorForm>>mapColor: oldColor to: newColor [
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>maskingMap [
+{ #category : #displaying }
+ColorForm >> maskingMap [
 	"Return a color map that maps all colors except transparent to words of all ones. Used to create a mask for a Form whose transparent pixel value is zero."
 	| maskingMap |
 	maskingMap := Bitmap new: (1 bitShift: depth) withAll: 16rFFFFFFFF.
@@ -413,20 +331,14 @@ ColorForm>>maskingMap [
 	^maskingMap
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>mightBeTranslucent [
+{ #category : #testing }
+ColorForm >> mightBeTranslucent [
 	"Answer whether this form may be translucent"
 	^true
 ]
 
-{
-	#category : #'pixel accessing',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>pixelValueAt: aPoint  [
+{ #category : #'pixel accessing' }
+ColorForm >> pixelValueAt: aPoint [ 
 	"Return the raw pixel value at the given point. Typical clients use colorAt: to get a Color."
 	"Details: To get the raw pixel value, be sure the peeker's colorMap is nil."
 
@@ -434,11 +346,8 @@ ColorForm>>pixelValueAt: aPoint  [
 
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>readAttributesFrom: aBinaryStream [
+{ #category : #filein/out }
+ColorForm >> readAttributesFrom: aBinaryStream [
 	super readAttributesFrom: aBinaryStream.
 	colors := ColorArray new: (2 raisedTo: depth).
 	1 to: colors size do: [:idx | 
@@ -447,11 +356,8 @@ ColorForm>>readAttributesFrom: aBinaryStream [
 	
 ]
 
-{
-	#category : #'color manipulation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>replaceColor: oldColor with: newColor [
+{ #category : #'color manipulation' }
+ColorForm >> replaceColor: oldColor with: newColor [
 	"Replace all occurances of the given color with the given new color in my color map."
 
 	self ensureColorArrayExists.
@@ -461,11 +367,8 @@ ColorForm>>replaceColor: oldColor with: newColor [
 
 ]
 
-{
-	#category : #'color manipulation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>replaceColorAt: aPoint with: newColor [
+{ #category : #'color manipulation' }
+ColorForm >> replaceColorAt: aPoint with: newColor [
 	"Replace a color map entry with newColor.  The entry replaced is the one used by aPoint.  If there are are two entries in the colorMap for the oldColor, just replace ONE!!  There are often two whites or two blacks, and this is what you want, when replacing one."
 
 	| oldIndex |
@@ -476,11 +379,8 @@ ColorForm>>replaceColorAt: aPoint with: newColor [
 
 ]
 
-{
-	#category : #'color manipulation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>replaceColorAtIndex: index with: newColor [
+{ #category : #'color manipulation' }
+ColorForm >> replaceColorAtIndex: index with: newColor [
 	"Replace a color map entry with newColor."
 
 	self ensureColorArrayExists.
@@ -489,11 +389,8 @@ ColorForm>>replaceColorAtIndex: index with: newColor [
 		[cachedColormap at: index put: (newColor pixelValueForDepth: cachedDepth)]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>setColors: colorArray cachedColormap: aBitmap depth: anInteger [
+{ #category : #private }
+ColorForm >> setColors: colorArray cachedColormap: aBitmap depth: anInteger [
 	"Semi-private. Set the color array, cached colormap, and cached colormap depth to avoid having to recompute the colormap when switching color palettes in animations."
 
 	colors := colorArray.
@@ -502,11 +399,8 @@ ColorForm>>setColors: colorArray cachedColormap: aBitmap depth: anInteger [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>setExtent: extent depth: bitsPerPixel [
+{ #category : #private }
+ColorForm >> setExtent: extent depth: bitsPerPixel [
 	"Create a virtual bit map with the given extent and bitsPerPixel."
 
 	bitsPerPixel > 8 ifTrue: [self error: 'ColorForms only support depths up to 8 bits'].
@@ -514,11 +408,8 @@ ColorForm>>setExtent: extent depth: bitsPerPixel [
 
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>storeOn: aStream [
+{ #category : #filein/out }
+ColorForm >> storeOn: aStream [
 	aStream nextPut: $(.
 	super storeOn: aStream.
 	aStream
@@ -529,43 +420,31 @@ ColorForm>>storeOn: aStream [
 	aStream nextPutAll: ' ))'.
 ]
 
-{
-	#category : #'color manipulation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>transparentAllPixelsLike: aPoint [
+{ #category : #'color manipulation' }
+ColorForm >> transparentAllPixelsLike: aPoint [
 	"Make all occurances of the given pixel value transparent.  Very useful when two entries in the colorMap have the same value.  This only changes ONE."
 
 	self replaceColorAt: aPoint with: Color transparent.
 
 ]
 
-{
-	#category : #'color manipulation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>transparentColor: aColor [
+{ #category : #'color manipulation' }
+ColorForm >> transparentColor: aColor [
 	"Make all occurances of the given color transparent.  Note: for colors like black and white, which have two entries in the colorMap, this changes BOTH of them.  Not always what you want."
 
 	self replaceColor: aColor with: Color transparent.
 
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>unhibernate [
+{ #category : #filein/out }
+ColorForm >> unhibernate [
 	colors ifNotNil:[colors := colors asArray].
 	^super unhibernate.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>unusedColormapEntry [
+{ #category : #private }
+ColorForm >> unusedColormapEntry [
 	"Return the index of an unused color map entry, or zero if there isn't one."
 
 	| tallies |
@@ -576,11 +455,8 @@ ColorForm>>unusedColormapEntry [
 
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ColorForm>>writeAttributesOn: file [
+{ #category : #filein/out }
+ColorForm >> writeAttributesOn: file [
 	| colorArray |
 	super writeAttributesOn: file.
 	colorArray := self colors asColorArray.

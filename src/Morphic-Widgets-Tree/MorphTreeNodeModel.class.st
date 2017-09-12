@@ -9,116 +9,75 @@ Class {
 	#instVars : [
 		'parentNode'
 	],
-	#category : #Morphic-Widgets-Tree,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Tree
 }
 
-{
-	#category : #dependents,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>addDependent: aDependent [
+{ #category : #dependents }
+MorphTreeNodeModel >> addDependent: aDependent [
 	"Ensure to only have one dependent at every moment"
 	
 	dependents := #().
 	super addDependent: aDependent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>childNodeClassFromItem: anItem [
+{ #category : #accessing }
+MorphTreeNodeModel >> childNodeClassFromItem: anItem [
 	^ self class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>childNodeFromItem: anItem [
+{ #category : #accessing }
+MorphTreeNodeModel >> childNodeFromItem: anItem [
 	^ ((self childNodeClassFromItem: anItem) with: anItem model: model) parentNode: self; yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>childrenItems [
+{ #category : #accessing }
+MorphTreeNodeModel >> childrenItems [
 	^ Array new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>color [
+{ #category : #accessing }
+MorphTreeNodeModel >> color [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>contents [
+{ #category : #accessing }
+MorphTreeNodeModel >> contents [
 	^ self childrenItems collect: [:ci | self childNodeFromItem: ci ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>enabled [
+{ #category : #accessing }
+MorphTreeNodeModel >> enabled [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>hasContentToShow [
+{ #category : #testing }
+MorphTreeNodeModel >> hasContentToShow [
 
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>helpText [
+{ #category : #accessing }
+MorphTreeNodeModel >> helpText [
 	^ model helpText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>includesSubstringAnywhere: aString [
+{ #category : #accessing }
+MorphTreeNodeModel >> includesSubstringAnywhere: aString [
 	^ (Array with: self asString) includesSubstringAnywhere: aString
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>isExpanded [
+{ #category : #protocol }
+MorphTreeNodeModel >> isExpanded [
 
 	^ false
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>isExpanded: aBoolean [
-
+{ #category : #protocol }
+MorphTreeNodeModel >> isExpanded: aBoolean [
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>isPartialMatch [
+{ #category : #testing }
+MorphTreeNodeModel >> isPartialMatch [
 	| result |
 
 	result := false.
@@ -129,75 +88,48 @@ MorphTreeNodeModel>>isPartialMatch [
 	^ result
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>lastClicked: aBoolean [
+{ #category : #protocol }
+MorphTreeNodeModel >> lastClicked: aBoolean [
 	"Do nothing but introduce a hook"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>level [
+{ #category : #accessing }
+MorphTreeNodeModel >> level [
 	^ parentNode ifNil: [1] ifNotNil: [parentNode level + 1]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>model: anObject [
+{ #category : #accessing }
+MorphTreeNodeModel >> model: anObject [
 	model := anObject
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>mouseDown: event [
+{ #category : #events }
+MorphTreeNodeModel >> mouseDown: event [
 	"Do not do anything"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>name [
+{ #category : #accessing }
+MorphTreeNodeModel >> name [
 	^ self item name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>parentNode [
+{ #category : #accessing }
+MorphTreeNodeModel >> parentNode [
 	^ parentNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>parentNode: aNode [
+{ #category : #accessing }
+MorphTreeNodeModel >> parentNode: aNode [
 	parentNode := aNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>path [
+{ #category : #accessing }
+MorphTreeNodeModel >> path [
 	^ self pathIn: OrderedCollection new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>pathIn: aCollection  [
+{ #category : #accessing }
+MorphTreeNodeModel >> pathIn: aCollection [ 
 	self parentNode
 		ifNotNil: [(aCollection includes: self parentNode)
 		ifFalse: [self parentNode pathIn: aCollection]].
@@ -205,37 +137,25 @@ MorphTreeNodeModel>>pathIn: aCollection  [
 	^ aCollection
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>printOn: aStream [
+{ #category : #printing }
+MorphTreeNodeModel >> printOn: aStream [
 	aStream nextPutAll: 'Node('.
 	self item printOn: aStream.
 	aStream nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>rowMorphForColumn: aTreeColumn [
+{ #category : #accessing }
+MorphTreeNodeModel >> rowMorphForColumn: aTreeColumn [
 	^ self item ifNotNil: [:i | self asString asMorph] 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>selected [
+{ #category : #protocol }
+MorphTreeNodeModel >> selected [
 
 	^ false
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNodeModel>>selected: aBoolean [
+{ #category : #protocol }
+MorphTreeNodeModel >> selected: aBoolean [
 	"Do nothing but introduce a hook"
 ]

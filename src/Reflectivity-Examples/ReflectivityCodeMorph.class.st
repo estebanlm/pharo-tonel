@@ -8,24 +8,17 @@ Class {
 		'textModel',
 		'compiledMethod'
 	],
-	#category : #Reflectivity-Examples,
-	#timestamp : 'mcamp 10/1/2015 11:24'
+	#category : #Reflectivity-Examples
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReflectivityCodeMorph class>>compiledMethod: aCompiledMethod [
+{ #category : #'instance creation' }
+ReflectivityCodeMorph class >> compiledMethod: aCompiledMethod [
 
 	^self new addSourceCode: aCompiledMethod; yourself.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReflectivityCodeMorph>>addSourceCode: aCompiledMethod [
+{ #category : #accessing }
+ReflectivityCodeMorph >> addSourceCode: aCompiledMethod [
 	|editor|
 	
 	self compiledMethod: aCompiledMethod.
@@ -37,72 +30,48 @@ ReflectivityCodeMorph>>addSourceCode: aCompiledMethod [
 	self addMorph: editor.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReflectivityCodeMorph>>compiledMethod [
+{ #category : #accessing }
+ReflectivityCodeMorph >> compiledMethod [
 	^ compiledMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReflectivityCodeMorph>>compiledMethod: anObject [
+{ #category : #accessing }
+ReflectivityCodeMorph >> compiledMethod: anObject [
 	compiledMethod := anObject
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReflectivityCodeMorph>>defaultBounds [
+{ #category : #initialize }
+ReflectivityCodeMorph >> defaultBounds [
 "answer the default bounds for the receiver"
 	^ 0 @ 0 corner: 200 @ 40
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReflectivityCodeMorph>>defaultColor [
+{ #category : #initialize }
+ReflectivityCodeMorph >> defaultColor [
 	^Color veryLightGray
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReflectivityCodeMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+ReflectivityCodeMorph >> drawOn: aCanvas [
 	super drawOn: aCanvas.
 	self drawTitleOn: aCanvas
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReflectivityCodeMorph>>drawTitleOn: aCanvas [
+{ #category : #drawing }
+ReflectivityCodeMorph >> drawTitleOn: aCanvas [
 	aCanvas drawString: self compiledMethod methodClass asString 
 		in: (self bounds insetBy: (Margin left: 10 top: 10 right: 2 bottom: 10)) 
 		font: (LogicalFont familyName: self familyName pointSize: 11)
 		color: Smalltalk ui theme textColor. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReflectivityCodeMorph>>familyName [
+{ #category : #accessing }
+ReflectivityCodeMorph >> familyName [
 	^'Source Sans Pro'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReflectivityCodeMorph>>initialize [
+{ #category : #initialization }
+ReflectivityCodeMorph >> initialize [
 
 	super initialize.
 	self
@@ -117,11 +86,8 @@ ReflectivityCodeMorph>>initialize [
 		
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReflectivityCodeMorph>>newScrolledText [
+{ #category : #'instance creation' }
+ReflectivityCodeMorph >> newScrolledText [
 	| scrolledText |
 	scrolledText := self textModel
 		newScrolledText
@@ -132,20 +98,14 @@ ReflectivityCodeMorph>>newScrolledText [
 	^ scrolledText
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReflectivityCodeMorph>>shoutAboutToStyle: aTextView [
+{ #category : #shout }
+ReflectivityCodeMorph >> shoutAboutToStyle: aTextView [
 
 	aTextView classOrMetaClass: self compiledMethod methodClass.
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReflectivityCodeMorph>>textModel [
+{ #category : #accessing }
+ReflectivityCodeMorph >> textModel [
 	^ textModel ifNil: [ textModel := RubScrolledTextModel new interactionModel: self ]
 ]

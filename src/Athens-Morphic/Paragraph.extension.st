@@ -1,12 +1,7 @@
-Extension {
-	#name : #Paragraph
-}
+Extension { #name : #Paragraph }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Paragraph>>displayCaretAndSelectionOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+Paragraph >> displayCaretAndSelectionOnAthensCanvas: anAthensCanvas [
 	selectionStart ifNil: [ ^ self ].
 	selectionStart = selectionStop
 		ifTrue: [ self drawCaretOnAthensCanvas: anAthensCanvas ]
@@ -17,11 +12,8 @@ Paragraph>>displayCaretAndSelectionOnAthensCanvas: anAthensCanvas [
 			self forLinesIn: anAthensCanvas clipRect do: [ :line | selection displayInLine: line onAthensCanvas: anAthensCanvas ] ]
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Paragraph>>displayExtraSelectionOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+Paragraph >> displayExtraSelectionOnAthensCanvas: anAthensCanvas [
 	| visibleRectangle |
 	visibleRectangle := anAthensCanvas clipRect.
 	refreshExtraSelection = true
@@ -35,11 +27,8 @@ Paragraph>>displayExtraSelectionOnAthensCanvas: anAthensCanvas [
 						do: [ :selblock | self displaySelectionBlock: selblock inLine: line onAthensCanvas: anAthensCanvas ] ] ]
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Paragraph>>displaySelectionBarOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+Paragraph >> displaySelectionBarOnAthensCanvas: anAthensCanvas [
 	| visibleRectangle line |
 	selectionStart ifNil: [ ^ self ].
 	selectionStop ifNil: [ ^ self ].
@@ -51,11 +40,8 @@ Paragraph>>displaySelectionBarOnAthensCanvas: anAthensCanvas [
 	anAthensCanvas drawShape: (visibleRectangle left @ line top corner: visibleRectangle right @ line bottom)
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Paragraph>>displaySelectionBlock: aSelBlock inLine: line onAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+Paragraph >> displaySelectionBlock: aSelBlock inLine: line onAthensCanvas: anAthensCanvas [
 	(selectionStart notNil and: [ selectionStop notNil and: [ selectionStart ~= selectionStop ] ])
 		ifTrue: [ 
 			| startIdx stopIdx selSartIdx selStopIdx selBlockRange selRange |
@@ -73,11 +59,8 @@ Paragraph>>displaySelectionBlock: aSelBlock inLine: line onAthensCanvas: anAthen
 	aSelBlock displayInLine: line onAthensCanvas: anAthensCanvas
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Paragraph>>displayTextOnAthensCanvas: anAthensCanvas in: aRectangle [
+{ #category : #'*Athens-Morphic' }
+Paragraph >> displayTextOnAthensCanvas: anAthensCanvas in: aRectangle [
 	| athensDisplayScanner offset leftInRun |
 	anAthensCanvas clipBy: aRectangle during:[
 	anAthensCanvas pathTransform
@@ -92,11 +75,8 @@ Paragraph>>displayTextOnAthensCanvas: anAthensCanvas in: aRectangle [
 						ifTrue: [ leftInRun := athensDisplayScanner displayLine: line offset: offset leftInRun: leftInRun ] ] ] ]
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Paragraph>>drawCaretOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+Paragraph >> drawCaretOnAthensCanvas: anAthensCanvas [
 	(self showCaret not or: [ selectionStart isNil ])
 		ifTrue: [ ^ self ].
 	caretRect := selectionStart topLeft asIntegerPoint extent: 1 @ selectionStart height.
@@ -104,19 +84,13 @@ Paragraph>>drawCaretOnAthensCanvas: anAthensCanvas [
 	anAthensCanvas drawShape: self caretRect
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Paragraph>>drawOnAthensCanvas: aCanvas bounds: aRectangle  [
+{ #category : #'*Athens-Morphic' }
+Paragraph >> drawOnAthensCanvas: aCanvas bounds: aRectangle [ 
 	"do nothing"
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Paragraph>>drawOnAthensCanvas: anAthensCanvas bounds: aRectangle color: aColor [
+{ #category : #'*Athens-Morphic' }
+Paragraph >> drawOnAthensCanvas: anAthensCanvas bounds: aRectangle color: aColor [
 	self displayCaretAndSelectionOnAthensCanvas: anAthensCanvas.
 	self displayExtraSelectionOnAthensCanvas: anAthensCanvas.
 	anAthensCanvas setPaint: aColor.
@@ -124,11 +98,8 @@ Paragraph>>drawOnAthensCanvas: anAthensCanvas bounds: aRectangle color: aColor [
 
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-Paragraph>>forLinesIn: aVisibleRect do: aBlock [
+{ #category : #'*Athens-Morphic' }
+Paragraph >> forLinesIn: aVisibleRect do: aBlock [
 	(self lineIndexForPoint: aVisibleRect topLeft) to: 
 	(self lineIndexForPoint: aVisibleRect bottomRight) do: 
 		[:i | aBlock value: (lines at: i) ]

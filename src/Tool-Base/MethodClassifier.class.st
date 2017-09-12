@@ -12,15 +12,11 @@ Class {
 		'keywordSuffixMapping',
 		'pragmaMapping'
 	],
-	#category : #Tool-Base,
-	#timestamp : '<historical>'
+	#category : #Tool-Base
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier class>>buildKeywordSuffixMapping [
+{ #category : #private }
+MethodClassifier class >> buildKeywordSuffixMapping [
 	keywordSuffixMapping := Dictionary new
 		at: 'Add:' put: 'adding';
 		at: 'AddAll:' put: 'adding';
@@ -40,11 +36,8 @@ MethodClassifier class>>buildKeywordSuffixMapping [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier class>>buildPragmaMapping [
+{ #category : #private }
+MethodClassifier class >> buildPragmaMapping [
 	pragmaMapping := Dictionary new
 		at: 'example' put: 'examples';
 		at: 'spec' put: 'specs';
@@ -53,11 +46,8 @@ MethodClassifier class>>buildPragmaMapping [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier class>>buildPrefixMapping [
+{ #category : #private }
+MethodClassifier class >> buildPrefixMapping [
 	prefixMapping := Dictionary new
 		at: 'accept' put: 'visiting';
 		at: 'accepts' put: 'testing';
@@ -106,27 +96,18 @@ MethodClassifier class>>buildPrefixMapping [
 		yourself
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier class>>classify: aMethod [
+{ #category : #classification }
+MethodClassifier class >> classify: aMethod [
 	^ self new classify: aMethod
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier class>>classifyAll: aCollectionOfMethods [
+{ #category : #classification }
+MethodClassifier class >> classifyAll: aCollectionOfMethods [
 	^ self new classifyAll: aCollectionOfMethods
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier class>>clearMappings [
+{ #category : #private }
+MethodClassifier class >> clearMappings [
 	"self clearMappings"
 
 	prefixMapping := nil.
@@ -134,44 +115,32 @@ MethodClassifier class>>clearMappings [
 	pragmaMapping := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier class>>keywordSuffixMapping [
+{ #category : #accessing }
+MethodClassifier class >> keywordSuffixMapping [
 	"use a class inst var so subclasses can define custom mappings"
 	^ keywordSuffixMapping ifNil: [
 		self buildKeywordSuffixMapping.
 		keywordSuffixMapping]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier class>>pragmaMapping [
+{ #category : #accessing }
+MethodClassifier class >> pragmaMapping [
 	"use a class inst var so subclasses can define custom mappings"
 	^ pragmaMapping ifNil: [
 		self buildPragmaMapping.
 		pragmaMapping]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier class>>prefixMapping [
+{ #category : #accessing }
+MethodClassifier class >> prefixMapping [
 	"use a class inst var so subclasses can define custom mappings"
 	^ prefixMapping ifNil: [
 		self buildPrefixMapping.
 		prefixMapping]
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier>>classify: aMethod [
+{ #category : #classification }
+MethodClassifier >> classify: aMethod [
 
 	(self classifyInSuperclassProtocol: aMethod)
 		ifTrue: [ ^ aMethod protocol ].
@@ -190,11 +159,8 @@ MethodClassifier>>classify: aMethod [
 
 ]
 
-{
-	#category : #classification-rules,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier>>classifyAccessor: aMethod [
+{ #category : #classification-rules }
+MethodClassifier >> classifyAccessor: aMethod [
 	" If the method is a setter or getter for a  "
 	| names selector |
 	
@@ -212,21 +178,15 @@ MethodClassifier>>classifyAccessor: aMethod [
 	^ true.
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier>>classifyAll: aCollectionOfMethods [
+{ #category : #classification }
+MethodClassifier >> classifyAll: aCollectionOfMethods [
 	
 	aCollectionOfMethods do: [ :method |
 		self classify: method ]
 ]
 
-{
-	#category : #classification-rules,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier>>classifyByKnownKeywordSuffix: aMethod [
+{ #category : #classification-rules }
+MethodClassifier >> classifyByKnownKeywordSuffix: aMethod [
 	(self protocolForKnownKeywordSuffixOfSelector: aMethod selector)
 		ifNil: [ ^ false ]
 		ifNotNil: [ :protocol | 
@@ -234,11 +194,8 @@ MethodClassifier>>classifyByKnownKeywordSuffix: aMethod [
 			^ true ]
 ]
 
-{
-	#category : #classification-rules,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier>>classifyByKnownPragma: aMethod [
+{ #category : #classification-rules }
+MethodClassifier >> classifyByKnownPragma: aMethod [
 	self class pragmaMapping
 		keysAndValuesDo: [ :pragma :protocol | 
 			(aMethod hasPragmaNamed: pragma)
@@ -247,11 +204,8 @@ MethodClassifier>>classifyByKnownPragma: aMethod [
 	^ false
 ]
 
-{
-	#category : #classification-rules,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier>>classifyByKnownPrefix: aMethod [
+{ #category : #classification-rules }
+MethodClassifier >> classifyByKnownPrefix: aMethod [
 	(self protocolForKnownPrefixOfSelector: aMethod selector)
 		ifNil: [ ^ false ]
 		ifNotNil: [ :protocol | 
@@ -259,11 +213,8 @@ MethodClassifier>>classifyByKnownPrefix: aMethod [
 			^ true ]
 ]
 
-{
-	#category : #classification-rules,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier>>classifyByOtherImplementors: aMethod [
+{ #category : #classification-rules }
+MethodClassifier >> classifyByOtherImplementors: aMethod [
 	| protocolBag |
 	
 	protocolBag := Bag new.
@@ -282,11 +233,8 @@ MethodClassifier>>classifyByOtherImplementors: aMethod [
 	^ true
 ]
 
-{
-	#category : #classification-rules,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier>>classifyInSuperclassProtocol: aMethod [
+{ #category : #classification-rules }
+MethodClassifier >> classifyInSuperclassProtocol: aMethod [
 	| currentClass |
 	currentClass := aMethod methodClass.
 	
@@ -304,11 +252,8 @@ MethodClassifier>>classifyInSuperclassProtocol: aMethod [
 	^ false.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier>>protocolForKnownKeywordSuffixOfSelector: aSelector [
+{ #category : #private }
+MethodClassifier >> protocolForKnownKeywordSuffixOfSelector: aSelector [
 	"Returns the protocol for the first keyword suffix that equals a keyword
 	from aSelector or that a keyword ends with or nil if there isn't one."
 
@@ -321,11 +266,8 @@ MethodClassifier>>protocolForKnownKeywordSuffixOfSelector: aSelector [
 	^ nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MethodClassifier>>protocolForKnownPrefixOfSelector: aSelector [
+{ #category : #private }
+MethodClassifier >> protocolForKnownPrefixOfSelector: aSelector [
 	"Returns the protocol for the first prefix that equals aSelector or that
 	aSelector starts with if the prefix is followed by a non-lowercase char
 	(like $: or $A) or nil if there isn't one."

@@ -8,24 +8,17 @@ Class {
 		'isBinary',
 		'converter'
 	],
-	#category : #Deprecated70,
-	#timestamp : '<historical>'
+	#category : #Deprecated70
 }
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream class>>defaultConverter [
+{ #category : #defaults }
+MultiByteBinaryOrTextStream class >> defaultConverter [
 	^ Latin1TextConverter new.
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream class>>on: aCollection encoding: encodingName  [
+{ #category : #'instance creation' }
+MultiByteBinaryOrTextStream class >> on: aCollection encoding: encodingName [ 
 	| aTextConverter |
 	encodingName 
 		ifNil: [aTextConverter := TextConverter default]
@@ -34,11 +27,8 @@ MultiByteBinaryOrTextStream class>>on: aCollection encoding: encodingName  [
 		converter: aTextConverter
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream class>>with: aCollection encoding: encodingName  [
+{ #category : #'instance creation' }
+MultiByteBinaryOrTextStream class >> with: aCollection encoding: encodingName [ 
 	| aTextConverter |
 	encodingName 
 		ifNil: [aTextConverter := TextConverter default]
@@ -47,30 +37,21 @@ MultiByteBinaryOrTextStream class>>with: aCollection encoding: encodingName  [
 		converter: aTextConverter
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>asBinaryOrTextStream [
+{ #category : #converting }
+MultiByteBinaryOrTextStream >> asBinaryOrTextStream [
 
 	^ self
 
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>ascii [
+{ #category : #modes }
+MultiByteBinaryOrTextStream >> ascii [
 	isBinary := false
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>basicNext [
+{ #category : #private }
+MultiByteBinaryOrTextStream >> basicNext [
 	| nextChar |
 
 	^ isBinary
@@ -80,109 +61,76 @@ MultiByteBinaryOrTextStream>>basicNext [
 				ifNotNil: [nextChar asCharacter]].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>basicNext: anInteger [
+{ #category : #private }
+MultiByteBinaryOrTextStream >> basicNext: anInteger [
 
 	^ super next: anInteger.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>basicNext: n into: aString [
+{ #category : #private }
+MultiByteBinaryOrTextStream >> basicNext: n into: aString [
 
 	^ self next: n into: aString.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>basicNext: anInteger putAll: aCollection startingAt: startIndex [
+{ #category : #private }
+MultiByteBinaryOrTextStream >> basicNext: anInteger putAll: aCollection startingAt: startIndex [
 	
 	^super next: anInteger putAll: aCollection startingAt: startIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>basicNextInto: aString [
+{ #category : #private }
+MultiByteBinaryOrTextStream >> basicNextInto: aString [
 
 	^ self nextInto: aString.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>basicNextPut: char [
+{ #category : #private }
+MultiByteBinaryOrTextStream >> basicNextPut: char [
 
 	^ super nextPut: char.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>basicNextPutAll: aString [
+{ #category : #private }
+MultiByteBinaryOrTextStream >> basicNextPutAll: aString [
 
 	^ super nextPutAll: aString.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>basicPeek [
+{ #category : #private }
+MultiByteBinaryOrTextStream >> basicPeek [
 
 	^ super peek
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>basicPosition [
+{ #category : #private }
+MultiByteBinaryOrTextStream >> basicPosition [
 
 	^ self position.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>basicPosition: pos [
+{ #category : #private }
+MultiByteBinaryOrTextStream >> basicPosition: pos [
 
 	^ self position: pos.
 
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>binary [
+{ #category : #modes }
+MultiByteBinaryOrTextStream >> binary [
 	isBinary := true
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>contents [
+{ #category : #accessing }
+MultiByteBinaryOrTextStream >> contents [
 
 	| ret state |
 	state := converter saveStateOf: self.
@@ -192,40 +140,28 @@ MultiByteBinaryOrTextStream>>contents [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>converter [
+{ #category : #accessing }
+MultiByteBinaryOrTextStream >> converter [
 
 	converter ifNil: [converter := self class defaultConverter].
 	^ converter
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>converter: aConverter [
+{ #category : #accessing }
+MultiByteBinaryOrTextStream >> converter: aConverter [
 
 	converter := aConverter.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>isBinary [
+{ #category : #testing }
+MultiByteBinaryOrTextStream >> isBinary [
 	^ isBinary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>next [
+{ #category : #accessing }
+MultiByteBinaryOrTextStream >> next [
 
 	| n |
 	n := self converter nextFromStream: self.
@@ -235,11 +171,8 @@ MultiByteBinaryOrTextStream>>next [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>next: anInteger  [
+{ #category : #accessing }
+MultiByteBinaryOrTextStream >> next: anInteger [ 
 
 	| multiString |
 	self isBinary ifTrue: [^ (super next: anInteger) asByteArray].
@@ -257,11 +190,8 @@ MultiByteBinaryOrTextStream>>next: anInteger  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>next: anInteger putAll: aCollection startingAt: startIndex [
+{ #category : #accessing }
+MultiByteBinaryOrTextStream >> next: anInteger putAll: aCollection startingAt: startIndex [
 
 
         (self isBinary or: [ aCollection class == ByteArray ]) ifTrue: [
@@ -269,11 +199,8 @@ MultiByteBinaryOrTextStream>>next: anInteger putAll: aCollection startingAt: sta
         ^self converter next: anInteger putAll: aCollection startingAt: startIndex toStream: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>nextDelimited: terminator [
+{ #category : #accessing }
+MultiByteBinaryOrTextStream >> nextDelimited: terminator [
 
 	| out ch pos |
 	out := (String new: 1000) writeStream.
@@ -297,11 +224,8 @@ MultiByteBinaryOrTextStream>>nextDelimited: terminator [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>nextMatchAll: aColl [
+{ #category : #accessing }
+MultiByteBinaryOrTextStream >> nextMatchAll: aColl [
 
     | save |
     save := converter saveStateOf: self.
@@ -315,39 +239,27 @@ MultiByteBinaryOrTextStream>>nextMatchAll: aColl [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>nextPut: aCharacter [
+{ #category : #accessing }
+MultiByteBinaryOrTextStream >> nextPut: aCharacter [
 	^ aCharacter isInteger 
 		ifTrue: [ super nextPut: aCharacter asCharacter ]
 		ifFalse: [ self converter nextPut: aCharacter toStream: self ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>nextPutAll: aCollection [
+{ #category : #accessing }
+MultiByteBinaryOrTextStream >> nextPutAll: aCollection [
 	^ self isBinary
 		ifTrue: [ super nextPutAll: aCollection ]
 		ifFalse: [ aCollection do: [ :each | self nextPut: each ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>padToEndWith: aChar [
+{ #category : #accessing }
+MultiByteBinaryOrTextStream >> padToEndWith: aChar [
 	"We don't have pages, so we are at the end, and don't need to pad."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>peek [
+{ #category : #accessing }
+MultiByteBinaryOrTextStream >> peek [
 	"Answer what would be returned if the message next were sent to the receiver. If the receiver is at the end, answer nil.  "
 
 	| next pos |
@@ -360,11 +272,8 @@ MultiByteBinaryOrTextStream>>peek [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>peekFor: item  [
+{ #category : #accessing }
+MultiByteBinaryOrTextStream >> peekFor: item [ 
 
 	| next state |
 	"self atEnd ifTrue: [^ false]. -- SFStream will give nil"
@@ -376,11 +285,8 @@ MultiByteBinaryOrTextStream>>peekFor: item  [
 
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>reset [
+{ #category : #positioning }
+MultiByteBinaryOrTextStream >> reset [
 
 	super reset.
 	isBinary ifNil: [isBinary := false].
@@ -391,11 +297,8 @@ MultiByteBinaryOrTextStream>>reset [
 	self converter. "ensure that we have a converter."
 ]
 
-{
-	#category : #fileIn/out,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>setConverterForCode [
+{ #category : #fileIn/out }
+MultiByteBinaryOrTextStream >> setConverterForCode [
 
 	| current |
 	current := converter saveStateOf: self.
@@ -411,11 +314,8 @@ MultiByteBinaryOrTextStream>>setConverterForCode [
 
 ]
 
-{
-	#category : #fileIn/out,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>setEncoderForSourceCodeNamed: streamName [
+{ #category : #fileIn/out }
+MultiByteBinaryOrTextStream >> setEncoderForSourceCodeNamed: streamName [
 
 	| l |
 	l := streamName asLowercase.
@@ -430,11 +330,8 @@ MultiByteBinaryOrTextStream>>setEncoderForSourceCodeNamed: streamName [
 
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>skipSeparators [
+{ #category : #positioning }
+MultiByteBinaryOrTextStream >> skipSeparators [
 
 	[self atEnd] whileFalse: [
 		self basicNext isSeparator ifFalse: [
@@ -443,11 +340,8 @@ MultiByteBinaryOrTextStream>>skipSeparators [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>skipSeparatorsAndPeekNext [
+{ #category : #accessing }
+MultiByteBinaryOrTextStream >> skipSeparatorsAndPeekNext [
 
 	"A special function to make nextChunk fast"
 	| peek pos |
@@ -461,20 +355,14 @@ MultiByteBinaryOrTextStream>>skipSeparatorsAndPeekNext [
 
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>text [
+{ #category : #modes }
+MultiByteBinaryOrTextStream >> text [
 	isBinary := false
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>upTo: delim  [
+{ #category : #accessing }
+MultiByteBinaryOrTextStream >> upTo: delim [ 
 
 	| out ch |
 	out := (String new: 1000) writeStream.
@@ -489,11 +377,8 @@ MultiByteBinaryOrTextStream>>upTo: delim  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-MultiByteBinaryOrTextStream>>upToEnd [
+{ #category : #accessing }
+MultiByteBinaryOrTextStream >> upToEnd [
 
 	| newStream element newCollection |
 	newCollection := self isBinary

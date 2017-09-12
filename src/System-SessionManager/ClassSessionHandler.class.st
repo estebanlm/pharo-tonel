@@ -8,56 +8,37 @@ Class {
 	#instVars : [
 		'registeredClassName'
 	],
-	#category : #System-SessionManager,
-	#timestamp : 'ChristopheDemarey 10/2/2015 11:06'
+	#category : #System-SessionManager
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-ClassSessionHandler class>>forClassNamed: aClassName [
+{ #category : #'instance creation' }
+ClassSessionHandler class >> forClassNamed: aClassName [
 	^ self new
 		registeredClassName: aClassName;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-ClassSessionHandler>>handledId [
+{ #category : #accessing }
+ClassSessionHandler >> handledId [
 	^ registeredClassName
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-ClassSessionHandler>>registeredClass [
+{ #category : #handlers }
+ClassSessionHandler >> registeredClass [
 	^ Smalltalk globals at: registeredClassName asSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-ClassSessionHandler>>registeredClassName: aClassName  [
+{ #category : #accessing }
+ClassSessionHandler >> registeredClassName: aClassName [ 
 	registeredClassName := aClassName
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-ClassSessionHandler>>shutdown: isImageQuitting [
+{ #category : #handlers }
+ClassSessionHandler >> shutdown: isImageQuitting [
 	self registeredClass shutDown: isImageQuitting
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-ClassSessionHandler>>startup: isImageStarting [
+{ #category : #handlers }
+ClassSessionHandler >> startup: isImageStarting [
 	self registeredClass startUp: isImageStarting
 ]

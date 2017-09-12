@@ -7,22 +7,15 @@ Class {
 	#instVars : [
 		'previousContents'
 	],
-	#category : #Rubric-Editing-Announcements,
-	#timestamp : 'FranckWarlouzet 7/29/2015 11:14'
+	#category : #Rubric-Editing-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMorphEdited>>previousContents [
+{ #category : #accessing }
+RubMorphEdited >> previousContents [
 	^ previousContents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubMorphEdited>>previousContents: anObject [
+{ #category : #accessing }
+RubMorphEdited >> previousContents: anObject [
 	previousContents := anObject
 ]

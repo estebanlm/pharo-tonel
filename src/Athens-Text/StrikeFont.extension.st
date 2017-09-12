@@ -1,38 +1,24 @@
-Extension {
-	#name : #StrikeFont
-}
+Extension { #name : #StrikeFont }
 
-{
-	#category : #'*Athens-Text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-StrikeFont>>asAthensFontDescription [
+{ #category : #'*Athens-Text' }
+StrikeFont >> asAthensFontDescription [
 	^ AthensFontDescription new family: self familyName; fontSize: self pointSize.
 
 ]
 
-{
-	#category : #'*Athens-Text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-StrikeFont>>asFreetypeFont [
+{ #category : #'*Athens-Text' }
+StrikeFont >> asFreetypeFont [
 
 		self error: 'not supported yet. and ever'
 ]
 
-{
-	#category : #'*Athens-Text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-StrikeFont>>getPreciseAscent [
+{ #category : #'*Athens-Text' }
+StrikeFont >> getPreciseAscent [
 	^ self ascent
 ]
 
-{
-	#category : #'*Athens-Text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-StrikeFont>>glyphRendererOn: anAthensSurface [
+{ #category : #'*Athens-Text' }
+StrikeFont >> glyphRendererOn: anAthensSurface [
 
 	^ anAthensSurface getStrikeFontRendererFor: self
 

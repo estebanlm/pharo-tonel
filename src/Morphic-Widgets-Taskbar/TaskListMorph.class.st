@@ -13,15 +13,11 @@ Class {
 	#classVars : [
 		'KeepOpen'
 	],
-	#category : #Morphic-Widgets-Taskbar,
-	#timestamp : 'gvc 5/18/2007 11:19'
+	#category : #Morphic-Widgets-Taskbar
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph class>>from: aKeyboardEvent  [
+{ #category : #'instance creation' }
+TaskListMorph class >> from: aKeyboardEvent [ 
 
 	| instance |
 	instance := self new.
@@ -31,36 +27,24 @@ TaskListMorph class>>from: aKeyboardEvent  [
 	^ instance.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph class>>isNavigationEvent: aKeyboardEvent [
+{ #category : #testing }
+TaskListMorph class >> isNavigationEvent: aKeyboardEvent [
 
 	^ aKeyboardEvent asKeyCombination = Character tab alt or: [ aKeyboardEvent asKeyCombination = Character tab alt shift ].
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph class>>keepOpen [
+{ #category : #settings }
+TaskListMorph class >> keepOpen [
 	^ KeepOpen ifNil: [KeepOpen := false]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph class>>keepOpen: aBoolean [
+{ #category : #settings }
+TaskListMorph class >> keepOpen: aBoolean [
 	KeepOpen := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph class>>taskListSettingOn: aBuilder [
+{ #category : #settings }
+TaskListMorph class >> taskListSettingOn: aBuilder [
 	<systemsettings> 
 	(aBuilder setting: #keepTaskListOpen)
 		label: 'Keep task list open';
@@ -70,21 +54,15 @@ TaskListMorph class>>taskListSettingOn: aBuilder [
 		target: self.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>activeTask [
+{ #category : #private }
+TaskListMorph >> activeTask [
 	"Answer the active task"
 	
 	^self tasks detect: [:t | t isActive] ifNone: []
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>addMorphs [
+{ #category : #private }
+TaskListMorph >> addMorphs [
 	"Add our morphs."
 
 	| mainColumn |
@@ -101,42 +79,30 @@ TaskListMorph>>addMorphs [
 	self layoutChanged
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>defaultPreviewExtent [
+{ #category : #private }
+TaskListMorph >> defaultPreviewExtent [
 	"Answer the default extent of the preview holder."
 
 	^320@320
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>done [
+{ #category : #running }
+TaskListMorph >> done [
 	"Close the tasklist and make the active task current."
 	
 	self delete.
 	self activeTask ifNotNil: [ :t | t activate ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>handlesKeyboard: evt [
+{ #category : #'event handling' }
+TaskListMorph >> handlesKeyboard: evt [
 	"Yes, we do it here."
 	
 	^true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>initialize [
+{ #category : #initialization }
+TaskListMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -149,11 +115,8 @@ TaskListMorph>>initialize [
 		adoptPaneColor: self color
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>initializeAppearance [
+{ #category : #initialization }
+TaskListMorph >> initializeAppearance [
 	"Initialize the appearance."
 
 	self
@@ -163,11 +126,8 @@ TaskListMorph>>initializeAppearance [
 		cornerStyle: (self theme taskbarThumbnailCornerStyleFor: self)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>initializeLayout [
+{ #category : #initialization }
+TaskListMorph >> initializeLayout [
 	"Initialize the layout."
 
 	self
@@ -178,11 +138,8 @@ TaskListMorph>>initializeLayout [
 		extent: self minimumExtent
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>initializeTasks [
+{ #category : #initialization }
+TaskListMorph >> initializeTasks [
 	"Set up the current tasks."
 	
 	self tasks: ((World submorphs
@@ -190,19 +147,13 @@ TaskListMorph>>initializeTasks [
 		select: [:m | m notNil]) asOrderedCollection
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>keepOpen [
+{ #category : #settings }
+TaskListMorph >> keepOpen [
 	^ self class keepOpen
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>keyStroke: event  [
+{ #category : #'event handling' }
+TaskListMorph >> keyStroke: event [ 
 	"Process keys to switch task."
 	
 	event keyCharacter = Character escape ifTrue: [^self delete].
@@ -211,21 +162,15 @@ TaskListMorph>>keyStroke: event  [
 	event keyString =  '<Opt-tab>'	ifTrue: [^self selectNextTask]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>minimumExtent [
+{ #category : #geometry }
+TaskListMorph >> minimumExtent [
 	"Answer the minimum extent."
 
 	^self defaultPreviewExtent + 64
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>newPreviewMorph [
+{ #category : #'instance creation' }
+TaskListMorph >> newPreviewMorph [
 	"Answer a new preview holder."
 	^ Morph new
 		color: Color transparent;
@@ -233,11 +178,8 @@ TaskListMorph>>newPreviewMorph [
 		yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>newTasksMorph [
+{ #category : #'instance creation' }
+TaskListMorph >> newTasksMorph [
 	"Answer a new task list."
 
 	^Morph new
@@ -251,21 +193,15 @@ TaskListMorph>>newTasksMorph [
 		yourself.
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>openAsIs [
+{ #category : #open/close }
+TaskListMorph >> openAsIs [
 	"Open in the world."
 	
 	self openAsIsIn: self currentWorld
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>openAsIsIn: aWorld [
+{ #category : #open/close }
+TaskListMorph >> openAsIsIn: aWorld [
 	"Update the layout after opening."
 
 	aWorld addMorphCentered: self.
@@ -278,31 +214,22 @@ TaskListMorph>>openAsIsIn: aWorld [
 		ifTrue: [self takeKeyboardFocus]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>preview [
+{ #category : #accessing }
+TaskListMorph >> preview [
 	"Answer the value of preview"
 
 	^ preview
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>preview: anObject [
+{ #category : #accessing }
+TaskListMorph >> preview: anObject [
 	"Set the value of preview"
 
 	preview := anObject
 ]
 
-{
-	#category : #cycling,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>selectNextTask [
+{ #category : #cycling }
+TaskListMorph >> selectNextTask [
 	"Make the next task active."
 	
 	self selectTask: (self tasks
@@ -311,11 +238,8 @@ TaskListMorph>>selectNextTask [
 					ifFalse: [self tasks first]])
 ]
 
-{
-	#category : #cycling,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>selectPreviousTask [
+{ #category : #cycling }
+TaskListMorph >> selectPreviousTask [
 	"Make the previous task active."
 	
 	self selectTask: (self tasks
@@ -324,11 +248,8 @@ TaskListMorph>>selectPreviousTask [
 					ifFalse: [self tasks last]])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>selectTask: aTask [
+{ #category : #private }
+TaskListMorph >> selectTask: aTask [
 	"Make the given task active and update the buttons."
 	
 	self tasks do: [:t | t state: #restored].
@@ -336,42 +257,30 @@ TaskListMorph>>selectTask: aTask [
 	self updateButtonsAndPreview
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>step [
+{ #category : #stepping }
+TaskListMorph >> step [
 	"Check the sensor for the command key to see if we're done."
 
 	(self keepOpen not and: [self activeHand anyModifierKeyPressed not])
 		ifTrue: [self done]
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>stepTime [
+{ #category : #stepping }
+TaskListMorph >> stepTime [
 	"Check quickly."
 
 	^100
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>takesKeyboardFocus [
+{ #category : #open/close }
+TaskListMorph >> takesKeyboardFocus [
 	"Answer whether the receiver can normally take keyboard focus."
 
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>taskClicked: aTask [
+{ #category : #private }
+TaskListMorph >> taskClicked: aTask [
 	"A button for a task has been pressed.
 	Close after selecting."
 	
@@ -379,51 +288,36 @@ TaskListMorph>>taskClicked: aTask [
 	self done
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>taskList [
+{ #category : #accessing }
+TaskListMorph >> taskList [
 	"Answer the value of taskList"
 
 	^ taskList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>taskList: anObject [
+{ #category : #accessing }
+TaskListMorph >> taskList: anObject [
 	"Set the value of taskList"
 
 	taskList := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>tasks [
+{ #category : #accessing }
+TaskListMorph >> tasks [
 	"Answer the value of tasks"
 
 	^ tasks
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>tasks: anObject [
+{ #category : #accessing }
+TaskListMorph >> tasks: anObject [
 	"Set the value of tasks"
 
 	tasks := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>updateButtonsAndPreview [
+{ #category : #private }
+TaskListMorph >> updateButtonsAndPreview [
 	"Update the buttons and the preview.."
 	
 	self
@@ -433,11 +327,8 @@ TaskListMorph>>updateButtonsAndPreview [
 		[self center: self world center]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>updatePreview [
+{ #category : #private }
+TaskListMorph >> updatePreview [
 	"Update the preview.."
 	
 	self preview removeAllMorphs.
@@ -447,11 +338,8 @@ TaskListMorph>>updatePreview [
 				ifNotNil: [:t | t morph taskThumbnailOfSize: self preview extent])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TaskListMorph>>updateTaskButtons [
+{ #category : #private }
+TaskListMorph >> updateTaskButtons [
 	"Make buttons for the ordered tasks."
 	
 	

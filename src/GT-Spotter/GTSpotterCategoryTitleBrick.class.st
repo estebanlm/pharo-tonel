@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterCategoryTitleBrick,
 	#superclass : #GLMInteractableBrick,
@@ -13,23 +10,16 @@ Class {
 		'shortcutBrick',
 		'category'
 	],
-	#category : #GT-Spotter-UI,
-	#timestamp : ''
+	#category : #GT-Spotter-UI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>actionbarBrick [
+{ #category : #accessing }
+GTSpotterCategoryTitleBrick >> actionbarBrick [
 	^ actionbarBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>actionbarBrick: anObject [
+{ #category : #accessing }
+GTSpotterCategoryTitleBrick >> actionbarBrick: anObject [
 	actionbarBrick := anObject.
 
 	self actionbarBrick
@@ -37,11 +27,8 @@ GTSpotterCategoryTitleBrick>>actionbarBrick: anObject [
 		hShrinkWrap.
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>addDiveInButton [
+{ #category : #adding }
+GTSpotterCategoryTitleBrick >> addDiveInButton [
 	
 	diveInButton := self newActionbarButton.
 	self diveInButton
@@ -56,20 +43,14 @@ GTSpotterCategoryTitleBrick>>addDiveInButton [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>amountBrick [
+{ #category : #accessing }
+GTSpotterCategoryTitleBrick >> amountBrick [
 
 	^ amountBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>amountBrick: aBrick [
+{ #category : #accessing }
+GTSpotterCategoryTitleBrick >> amountBrick: aBrick [
 
 	amountBrick ifNotNil: [self removeBrick: amountBrick].
 	amountBrick := aBrick.
@@ -79,67 +60,46 @@ GTSpotterCategoryTitleBrick>>amountBrick: aBrick [
 	self addBrickBack: amountBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>category [
+{ #category : #accessing }
+GTSpotterCategoryTitleBrick >> category [
 	self assert: category isNotNil.
 	^ category
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>category: aProcessor [
+{ #category : #accessing }
+GTSpotterCategoryTitleBrick >> category: aProcessor [
 	self assert: aProcessor isNotNil.
 	category := aProcessor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>diveInButton [
+{ #category : #accessing }
+GTSpotterCategoryTitleBrick >> diveInButton [
 	^ diveInButton
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>hideActionbar [
+{ #category : #actions }
+GTSpotterCategoryTitleBrick >> hideActionbar [
 
 	(self hasSubbrick: self actionbarBrick) ifTrue: [ 
 		self removeBrick: self actionbarBrick ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>initialize [
+{ #category : #initialization }
+GTSpotterCategoryTitleBrick >> initialize [
 	super initialize.
 	self enable.
 	self announcer when: #onMouseHover send: #onHovered to: self.
 	self announcer when: #onMouseUnhover send: #onUnhovered to: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>nameBrick [
+{ #category : #accessing }
+GTSpotterCategoryTitleBrick >> nameBrick [
 
 	^ nameBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>nameBrick: aBrick [
+{ #category : #accessing }
+GTSpotterCategoryTitleBrick >> nameBrick: aBrick [
 
 	nameBrick ifNotNil: [self removeBrick: nameBrick].
 	nameBrick := aBrick.
@@ -149,56 +109,38 @@ GTSpotterCategoryTitleBrick>>nameBrick: aBrick [
 	self addBrickBack: nameBrick
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>newActionbarBrick [
+{ #category : #'instance creation' }
+GTSpotterCategoryTitleBrick >> newActionbarBrick [
 
 	^ GLMBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>newActionbarButton [
+{ #category : #'instance creation' }
+GTSpotterCategoryTitleBrick >> newActionbarButton [
 
 	^ GLMHintableActionButtonBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>newAmountBrick [
+{ #category : #'instance creation' }
+GTSpotterCategoryTitleBrick >> newAmountBrick [
 
 	^ GLMLabelBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>newNameBrick [
+{ #category : #'instance creation' }
+GTSpotterCategoryTitleBrick >> newNameBrick [
 
 	^ GLMLabelBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>newShortcutBrick [
+{ #category : #'instance creation' }
+GTSpotterCategoryTitleBrick >> newShortcutBrick [
 
 	^ GLMLabelBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>on: aStepModel category: aProcessor [
+{ #category : #'instance creation' }
+GTSpotterCategoryTitleBrick >> on: aStepModel category: aProcessor [
 
 	self stepModel: aStepModel.
 	self category: aProcessor.
@@ -225,11 +167,8 @@ GTSpotterCategoryTitleBrick>>on: aStepModel category: aProcessor [
 	^ self
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>onCandidateSelected [
+{ #category : #event-handling }
+GTSpotterCategoryTitleBrick >> onCandidateSelected [
 	
 	(self stepModel isCategorySelected: self category)
 		ifTrue: [ self showActionbar ]
@@ -242,49 +181,34 @@ GTSpotterCategoryTitleBrick>>onCandidateSelected [
 			ifTrue: [ self hideActionbar ] ]
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>onHideHints [
+{ #category : #event-handling }
+GTSpotterCategoryTitleBrick >> onHideHints [
 
 	(self hasSubbrick: self actionbarBrick) ifFalse: [ ^ self ].
 	self themer spotterThemer hintHideStyleFor: self diveInButton
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>onHovered [
+{ #category : #event-handling }
+GTSpotterCategoryTitleBrick >> onHovered [
 	self showActionbar
 ]
 
-{
-	#category : #layouting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>onLayoutEvent: aLayoutEvent [
+{ #category : #layouting }
+GTSpotterCategoryTitleBrick >> onLayoutEvent: aLayoutEvent [
 	super onLayoutEvent: aLayoutEvent.
 	
 	(aLayoutEvent isKindOf: GLMBrickLayoutStacked) ifTrue: [ "self enable" ]
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>onRevealHints [
+{ #category : #event-handling }
+GTSpotterCategoryTitleBrick >> onRevealHints [
 
 	(self hasSubbrick: self actionbarBrick) ifFalse: [ ^ self ].
 	self themer spotterThemer hintRevealStyleFor: self diveInButton
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>onThemerChanged [
+{ #category : #brick-properties-events }
+GTSpotterCategoryTitleBrick >> onThemerChanged [
 	super onThemerChanged.
 	
 	self themer spotterThemer categoryTitleWidgetStyleFor: self.
@@ -292,20 +216,14 @@ GTSpotterCategoryTitleBrick>>onThemerChanged [
 	self themer spotterThemer categoryTitleNameWidgetStyleFor: self nameBrick.
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>onUnhovered [
+{ #category : #event-handling }
+GTSpotterCategoryTitleBrick >> onUnhovered [
 	(self stepModel isCategorySelected: self category)
 		ifFalse: [ self hideActionbar ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>pushActionButton: aButton [
+{ #category : #adding }
+GTSpotterCategoryTitleBrick >> pushActionButton: aButton [
 
 	aButton
 		width: [ :b | b icon width * 1.5 ];
@@ -317,11 +235,8 @@ GTSpotterCategoryTitleBrick>>pushActionButton: aButton [
 		ifTrue: [ self themer spotterThemer hintRevealStyleFor: aButton ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>setAmountVisible: visible all: all [
+{ #category : #accessing }
+GTSpotterCategoryTitleBrick >> setAmountVisible: visible all: all [
 
 	self amountBrick text: (visible asString, '/', all asString).
 	self amountBrick wrappedBounds markWidthDirty.
@@ -329,11 +244,8 @@ GTSpotterCategoryTitleBrick>>setAmountVisible: visible all: all [
 	self doLayoutForce
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>setShortcutBrickTextFor: aProcessor [
+{ #category : #'instance creation' }
+GTSpotterCategoryTitleBrick >> setShortcutBrickTextFor: aProcessor [
 	
 	self shortcutBrick text: (ToggleMenuItemShortcut 
 		owner: nil 
@@ -343,20 +255,14 @@ GTSpotterCategoryTitleBrick>>setShortcutBrickTextFor: aProcessor [
 				with: OSPlatform current defaultModifier name)) text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>shortcutBrick [
+{ #category : #accessing }
+GTSpotterCategoryTitleBrick >> shortcutBrick [
 
 	^ shortcutBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>shortcutBrick: aBrick [
+{ #category : #accessing }
+GTSpotterCategoryTitleBrick >> shortcutBrick: aBrick [
 
 	shortcutBrick ifNotNil: [self removeBrick: shortcutBrick].
 	shortcutBrick := aBrick.
@@ -366,31 +272,22 @@ GTSpotterCategoryTitleBrick>>shortcutBrick: aBrick [
 	self addBrickBack: shortcutBrick
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>showActionbar [
+{ #category : #actions }
+GTSpotterCategoryTitleBrick >> showActionbar [
 
 	(self hasSubbrick: self actionbarBrick) ifFalse: [ 
 		self addBrickBack: self actionbarBrick.
 		self toggleHints ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>stepModel [
+{ #category : #accessing }
+GTSpotterCategoryTitleBrick >> stepModel [
 
 	^ stepModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>stepModel: anObject [
+{ #category : #accessing }
+GTSpotterCategoryTitleBrick >> stepModel: anObject [
 	stepModel := anObject.
 	
 	self stepModel announcer when: GTSpotterSelectedCandidateChanged send: #onCandidateSelected to: self.
@@ -398,11 +295,8 @@ GTSpotterCategoryTitleBrick>>stepModel: anObject [
 	self stepModel spotter announcer when: GTSpotterHideHints send: #onHideHints to: self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCategoryTitleBrick>>toggleHints [
+{ #category : #actions }
+GTSpotterCategoryTitleBrick >> toggleHints [
 
 	(self hasSubbrick: self actionbarBrick) ifFalse: [ ^ self ].
 	self stepModel spotter isShiftPressed

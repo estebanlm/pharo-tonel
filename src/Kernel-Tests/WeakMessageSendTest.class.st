@@ -4,15 +4,11 @@ SUnit tests for WeakMessageSend
 Class {
 	#name : #WeakMessageSendTest,
 	#superclass : #ClassTestCase,
-	#category : #Kernel-Tests-Objects,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:48'
+	#category : #Kernel-Tests-Objects
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeakMessageSendTest>>testCollectArguments [
+{ #category : #'as yet unclassified' }
+WeakMessageSendTest >> testCollectArguments [
 
 	"Fogbugz issue 18127"
 	"Test is passed if no primitve fails"
@@ -36,11 +32,8 @@ WeakMessageSendTest>>testCollectArguments [
 	self assertCollection: rcvr asArray equals: { Color black . #a  . Color green }.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeakMessageSendTest>>testNoArguments [
+{ #category : #tests }
+WeakMessageSendTest >> testNoArguments [
 	"self run: #testNoArguments"
 
 	| m |
@@ -51,11 +44,8 @@ WeakMessageSendTest>>testNoArguments [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeakMessageSendTest>>testOneArgument [
+{ #category : #tests }
+WeakMessageSendTest >> testOneArgument [
 	"self run: #testOneArgument"	
 
 	| m |
@@ -68,11 +58,8 @@ WeakMessageSendTest>>testOneArgument [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeakMessageSendTest>>testOneArgumentWithGC [
+{ #category : #tests }
+WeakMessageSendTest >> testOneArgumentWithGC [
 
 	| m |
 	m := WeakMessageSend
@@ -83,11 +70,8 @@ WeakMessageSendTest>>testOneArgumentWithGC [
 	self assert: (m value isNil)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeakMessageSendTest>>testReceiverWithGC [
+{ #category : #tests }
+WeakMessageSendTest >> testReceiverWithGC [
 
 	| m |
 	m := WeakMessageSend
@@ -97,11 +81,8 @@ WeakMessageSendTest>>testReceiverWithGC [
 	self assert: (m value isNil).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-WeakMessageSendTest>>testTwoArguments [
+{ #category : #tests }
+WeakMessageSendTest >> testTwoArguments [
 
 	| m |
 	m := WeakMessageSend

@@ -21,37 +21,27 @@ Class {
 	#instVars : [
 		'stream'
 	],
-	#category : #Zinc-HTTP-Core,
-	#timestamp : 'SvenVanCaekenberghe 8/18/2011 14:48'
+	#category : #Zinc-HTTP-Core
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStreamingEntity class>>designatedMimeType [
+{ #category : #testing }
+ZnStreamingEntity class >> designatedMimeType [
 	"I have no designated mime type, I can handle all content.
 	See #concreteSubclassForType: "
 	
 	^ nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStreamingEntity class>>matches: mimeType [
+{ #category : #testing }
+ZnStreamingEntity class >> matches: mimeType [
 	"I have no designated mime type, I can handle all content.
 	See #concreteSubclassForType: "
 	
 	^ false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStreamingEntity class>>readFrom: stream usingType: mimeType andLength: length [
+{ #category : #'instance creation' }
+ZnStreamingEntity class >> readFrom: stream usingType: mimeType andLength: length [
 	"Create and return a new streaming entity of mimeType and length from stream.
 	Clients can/must use the embedded ZnLimitedReadStream to read all content, 
 	or call #consumeContent when they are done. They should not close the stream."
@@ -62,32 +52,23 @@ ZnStreamingEntity class>>readFrom: stream usingType: mimeType andLength: length 
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStreamingEntity>>close [
+{ #category : #initialize-release }
+ZnStreamingEntity >> close [
 	stream ifNotNil: [ 
 		stream close. 
 		stream := nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStreamingEntity>>consumeContent [
+{ #category : #accessing }
+ZnStreamingEntity >> consumeContent [
 	"To be improved later on using some kind of larger buffer"
 	
 	[ self stream atEnd ] 
 		whileFalse: [ self stream next ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStreamingEntity>>contents [
+{ #category : #accessing }
+ZnStreamingEntity >> contents [
 	"Since this is a non-repeatable entity, 
 	#contents will #consumeContent, 
 	this can thus only be done once"
@@ -96,21 +77,15 @@ ZnStreamingEntity>>contents [
 	^ ZnUtils readUpToEnd: self stream limit: ZnMaximumEntitySize value
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStreamingEntity>>isEmpty [
+{ #category : #testing }
+ZnStreamingEntity >> isEmpty [ 
 	"We actually don't know"
 	
 	^ false
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStreamingEntity>>readFrom: readStream [
+{ #category : #initialize-release }
+ZnStreamingEntity >> readFrom: readStream [
 	self contentLength isNil
 		ifTrue: [ 
 			self stream: readStream ]
@@ -119,35 +94,23 @@ ZnStreamingEntity>>readFrom: readStream [
 			self stream: limitedStream ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStreamingEntity>>readStream [
+{ #category : #accessing }
+ZnStreamingEntity >> readStream [ 
 	^ self stream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStreamingEntity>>stream [
+{ #category : #accessing }
+ZnStreamingEntity >> stream [ 
 	^ stream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStreamingEntity>>stream: readStream [
+{ #category : #accessing }
+ZnStreamingEntity >> stream: readStream [
 	stream := readStream
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStreamingEntity>>writeOn: outputStream [
+{ #category : #writing }
+ZnStreamingEntity >> writeOn: outputStream [
 	(self contentLength isNil or: [ self contentLength = 0 ])
 		ifTrue: [ 
 			ZnUtils 

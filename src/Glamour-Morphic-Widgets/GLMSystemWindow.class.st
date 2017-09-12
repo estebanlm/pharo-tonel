@@ -8,24 +8,17 @@ Class {
 		'toolbarBox',
 		'hasInitialStep'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : 'TudorGirba 1/27/2011 22:09'
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSystemWindow>>actOnWindowRequest: ann [
+{ #category : #callbacks }
+GLMSystemWindow >> actOnWindowRequest: ann [
 
 	ann action value: self	
 ]
 
-{
-	#category : #announcement,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSystemWindow>>allKeystrokeActions [
+{ #category : #announcement }
+GLMSystemWindow >> allKeystrokeActions [
 	^ self model notNil 
 		ifTrue: [
 			(self model allActions, self model allSelectionActions) select: [ :action | 
@@ -33,29 +26,20 @@ GLMSystemWindow>>allKeystrokeActions [
 		ifFalse: [#()]
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSystemWindow>>delete [
+{ #category : #open/close }
+GLMSystemWindow >> delete [
 	self model notNil ifTrue: [self model unregisterFromAllAnnouncements].
 	super delete
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSystemWindow>>extent: aPoint  [
+{ #category : #building }
+GLMSystemWindow >> extent: aPoint [ 
 	super extent: aPoint.
 	self fullBounds
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSystemWindow>>handleKeyStroke: anEvent [
+{ #category : #'as yet unclassified' }
+GLMSystemWindow >> handleKeyStroke: anEvent [
 	| action |
 	action := self allKeystrokeActions detect: [:a | 
 		anEvent commandKeyPressed and: [ 
@@ -63,11 +47,8 @@ GLMSystemWindow>>handleKeyStroke: anEvent [
 	action ifNotNil: [ self announcer announce: (GLMKeyStroke action: action) ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSystemWindow>>initialize  [
+{ #category : #initialization }
+GLMSystemWindow >> initialize [ 
 	super initialize.
 	self
 		on: #keyStroke 
@@ -76,22 +57,16 @@ GLMSystemWindow>>initialize  [
 	hasInitialStep := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSystemWindow>>setLabelWidgetAllowance [
+{ #category : #accessing }
+GLMSystemWindow >> setLabelWidgetAllowance [
 	^ labelWidgetAllowance :=  super setLabelWidgetAllowance +
 		(toolbarBox
 			ifNil: [ 0 ]
 			ifNotNil: [ :toolbar | toolbarBox width ])
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSystemWindow>>stepAt: millisecondClockValue [
+{ #category : #stepping }
+GLMSystemWindow >> stepAt: millisecondClockValue [
 	"An alarm will also be fired the first time the window is opened, 
 	even if stepTime was not reached. Ignore the very first step."
 	hasInitialStep ifFalse: [ 
@@ -100,19 +75,13 @@ GLMSystemWindow>>stepAt: millisecondClockValue [
 	super stepAt: millisecondClockValue
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSystemWindow>>stepTime [
+{ #category : #stepping }
+GLMSystemWindow >> stepTime [
 	^ self model stepTime
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSystemWindow>>toolbarBox: anObject [
+{ #category : #accessing }
+GLMSystemWindow >> toolbarBox: anObject [
 	| previousToolbar |
 	
 	previousToolbar := toolbarBox ifNil: [ menuBox ].
@@ -122,18 +91,12 @@ GLMSystemWindow>>toolbarBox: anObject [
 	self replacePane: previousToolbar with: toolbarBox
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSystemWindow>>wantsSteps [
+{ #category : #stepping }
+GLMSystemWindow >> wantsSteps [
 	^ self model wantsSteps
 ]
 
-{
-	#category : #announcement,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMSystemWindow>>when: anAnnouncement do: aBlock  [
+{ #category : #announcement }
+GLMSystemWindow >> when: anAnnouncement do: aBlock [ 
 	^ self announcer when: anAnnouncement do: aBlock
 ]

@@ -18,31 +18,21 @@ Class {
 	#instVars : [
 		'presenters'
 	],
-	#category : #Spec-Core-Support,
-	#timestamp : 'Spirita 6/30/2016 16:42'
+	#category : #Spec-Core-Support
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecFocusOrder>>add: aPresenter [
+{ #category : #'as yet unclassified' }
+SpecFocusOrder >> add: aPresenter [
 	presenters add: aPresenter
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecFocusOrder>>addLast: aPresenter [
+{ #category : #'as yet unclassified' }
+SpecFocusOrder >> addLast: aPresenter [
 	presenters addLast: aPresenter
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecFocusOrder>>giveFocusToNextFrom: aPresenter for: aModel [
+{ #category : #'as yet unclassified' }
+SpecFocusOrder >> giveFocusToNextFrom: aPresenter for: aModel [
 	"aPresenter is the object what currently get the focus, aModel is the object use to call the good parent in a complex hierarchy"
 
 	| focus |
@@ -63,11 +53,8 @@ SpecFocusOrder>>giveFocusToNextFrom: aPresenter for: aModel [
 			true ]	"loop if there is no parent, else give it the focus"
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecFocusOrder>>giveFocusToPreviousFrom: aPresenter for: aModel [
+{ #category : #'as yet unclassified' }
+SpecFocusOrder >> giveFocusToPreviousFrom: aPresenter for: aModel [
 	| focus |
 	focus := self presenters.
 	(focus includes: aPresenter)
@@ -86,47 +73,32 @@ SpecFocusOrder>>giveFocusToPreviousFrom: aPresenter for: aModel [
 			true ]	" I loop "
 ]
 
-{
-	#category : #'to clean later',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecFocusOrder>>ifEmpty: aBlock ifNotEmpty: aBlock2 [
+{ #category : #'to clean later' }
+SpecFocusOrder >> ifEmpty: aBlock ifNotEmpty: aBlock2 [
 	^ presenters
 		ifEmpty: aBlock
 		ifNotEmpty: aBlock2
 ]
 
-{
-	#category : #'to clean later',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecFocusOrder>>ifNotEmpty: aBlock [
+{ #category : #'to clean later' }
+SpecFocusOrder >> ifNotEmpty: aBlock [
 	^ presenters ifNotEmpty: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecFocusOrder>>initialize [
+{ #category : #initialization }
+SpecFocusOrder >> initialize [
 
 	super initialize.
 
 	presenters := OrderedCollection new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecFocusOrder>>presenters [
+{ #category : #accessing }
+SpecFocusOrder >> presenters [
 	^ presenters
 ]
 
-{
-	#category : #'to clean later',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecFocusOrder>>removeAll [
+{ #category : #'to clean later' }
+SpecFocusOrder >> removeAll [
 ^ presenters removeAll
 ]

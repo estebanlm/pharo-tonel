@@ -30,42 +30,29 @@ Class {
 	#instVars : [
 		'packings'
 	],
-	#category : #GT-EventRecorder-Support,
-	#timestamp : 'JurajKubelka 10/30/2015 12:28'
+	#category : #GT-EventRecorder-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventUnpacking class>>default [
+{ #category : #'instance creation' }
+GTEventUnpacking class >> default [
 	^ self new
 			addPacking: GTEventPacking fuel;
 			addPacking: GTEventPacking ston;
 			yourself
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventUnpacking>>addPacking: aGTEventPacking  [
+{ #category : #adding }
+GTEventUnpacking >> addPacking: aGTEventPacking [ 
 	^ self packings addLast: aGTEventPacking
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventUnpacking>>packings [
+{ #category : #accessing }
+GTEventUnpacking >> packings [
 	^ packings ifNil: [ packings := OrderedCollection new ]
 ]
 
-{
-	#category : #packing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventUnpacking>>safeUnpackDirectory: aFileReference [
+{ #category : #packing }
+GTEventUnpacking >> safeUnpackDirectory: aFileReference [
 	"self default safeUnpackDirectory: './gt/events/' asFileReference"
 	| unpackedData exceptions |
 	exceptions := OrderedCollection new.
@@ -75,11 +62,8 @@ GTEventUnpacking>>safeUnpackDirectory: aFileReference [
 	^ unpackedData -> exceptions
 ]
 
-{
-	#category : #packing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventUnpacking>>unpack: aByteArray [
+{ #category : #packing }
+GTEventUnpacking >> unpack: aByteArray [
 	| exceptions |
 	exceptions := OrderedCollection new: self packings size.
 	self packings do: [ :eachEventPacking |
@@ -95,11 +79,8 @@ GTEventUnpacking>>unpack: aByteArray [
 	^ nil
 ]
 
-{
-	#category : #packing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventUnpacking>>unpackDirectory: aFileReference [
+{ #category : #packing }
+GTEventUnpacking >> unpackDirectory: aFileReference [
 	"self default unpackDirectory: './gt/events/' asFileReference"
 	^ aFileReference asFileReference allFiles 
 			collect: [ :eachFile | 
@@ -109,11 +90,8 @@ GTEventUnpacking>>unpackDirectory: aFileReference [
 			thenSelect: #notNil
 ]
 
-{
-	#category : #packing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventUnpacking>>unpackFile: aFileReference [
+{ #category : #packing }
+GTEventUnpacking >> unpackFile: aFileReference [
 	"self default unpackFile: './gt/events/' asFileReference allFiles atRandom"
 	^ [ self unpack: (aFileReference binaryReadStreamDo: [ :aStream |  aStream contents ]) ]
 		on: GTEventUnpackingError do: [ :anException |

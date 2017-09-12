@@ -1,20 +1,12 @@
-Extension {
-	#name : #StrikeFontSet
-}
+Extension { #name : #StrikeFontSet }
 
-{
-	#category : #'*System-Settings',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StrikeFontSet>>acceptSettings: aVisitor [
+{ #category : #'*System-Settings' }
+StrikeFontSet >> acceptSettings: aVisitor [
 	^ aVisitor visitStrikeFontSet: self
 ]
 
-{
-	#category : #'*system-settings-browser',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StrikeFontSet>>settingStoreOn: aStream  [
+{ #category : #'*system-settings-browser' }
+StrikeFontSet >> settingStoreOn: aStream [ 
 	aStream nextPut: $(.
 	aStream nextPutAll: self class name.
 	aStream nextPut: Character space.

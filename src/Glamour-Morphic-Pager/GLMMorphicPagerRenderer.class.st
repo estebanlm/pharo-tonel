@@ -5,48 +5,32 @@ A GLMMorphicPagerRenderer is xxxxxxxxx.
 Class {
 	#name : #GLMMorphicPagerRenderer,
 	#superclass : #GLMMorphicFinderRenderer,
-	#category : #Glamour-Morphic-Pager-Glamour,
-	#timestamp : 'AndreiChis 6/28/2014 21:19'
+	#category : #Glamour-Morphic-Pager-Glamour
 }
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPagerRenderer>>actOnPaneAdded: ann [
+{ #category : #callbacks }
+GLMMorphicPagerRenderer >> actOnPaneAdded: ann [
 	container brickRoot pushPane: (self renderObject: ann pane).
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPagerRenderer>>actOnPaneRemoved: ann [
+{ #category : #callbacks }
+GLMMorphicPagerRenderer >> actOnPaneRemoved: ann [
 	container brickRoot popPane
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPagerRenderer>>actOnPaneReplaced: ann [
+{ #category : #callbacks }
+GLMMorphicPagerRenderer >> actOnPaneReplaced: ann [
 	container brickRoot popAndReplacePane: (self renderObject: ann newPane)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPagerRenderer>>defaultScrollButtonIconRenderBlock [
+{ #category : #accessing }
+GLMMorphicPagerRenderer >> defaultScrollButtonIconRenderBlock [
 
 	^ [ :object | {Form new. Form new} ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPagerRenderer>>render: aBrowser [
+{ #category : #rendering }
+GLMMorphicPagerRenderer >> render: aBrowser [
 	|pagerModel|
 	pagerModel := GLMPagerModel new
 		isDependenciesShown: false;

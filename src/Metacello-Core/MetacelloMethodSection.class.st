@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #MetacelloMethodSection,
 	#superclass : #Object,
 	#instVars : [
 		'attributes'
 	],
-	#category : #Metacello-Core-Constructors,
-	#timestamp : ''
+	#category : #Metacello-Core-Constructors
 }
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSection>>attributePrintString [
+{ #category : #printing }
+MetacelloMethodSection >> attributePrintString [
     | stream |
     stream := WriteStream on: String new.
     self attributes size = 1
@@ -31,27 +24,18 @@ MetacelloMethodSection>>attributePrintString [
     ^ stream contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSection>>attributes [
+{ #category : #accessing }
+MetacelloMethodSection >> attributes [
     attributes ifNil: [ attributes := OrderedCollection new ].
     ^ attributes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSection>>attributes: aCollectionOrSymbol [
+{ #category : #accessing }
+MetacelloMethodSection >> attributes: aCollectionOrSymbol [
     attributes := aCollectionOrSymbol asMetacelloAttributeList
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloMethodSection>>includesAttributeFrom: attributeCollection [
+{ #category : #testing }
+MetacelloMethodSection >> includesAttributeFrom: attributeCollection [
     ^ (attributeCollection asSet intersection: self attributes asSet) notEmpty
 ]

@@ -5,62 +5,43 @@ Trait {
 	#name : #TSequencedStructuralEqualityTest,
 	#traits : 'TStructuralEqualityTest',
 	#classTraits : 'TStructuralEqualityTest classTrait',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:35'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #'test - equality',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedStructuralEqualityTest>>empty [
+{ #category : #'test - equality' }
+TSequencedStructuralEqualityTest >> empty [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'test - equality',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedStructuralEqualityTest>>nonEmpty [
+{ #category : #'test - equality' }
+TSequencedStructuralEqualityTest >> nonEmpty [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedStructuralEqualityTest>>test0TSequencedStructuralEqualityTest [
+{ #category : #'tests - fixture' }
+TSequencedStructuralEqualityTest >> test0TSequencedStructuralEqualityTest [
 	self nonEmpty at: 1	"Ensures #nonEmpty is sequenceable"
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedStructuralEqualityTest>>test0TStructuralEqualityTest [
+{ #category : #'tests - fixture' }
+TSequencedStructuralEqualityTest >> test0TStructuralEqualityTest [
 	self empty.
 	self nonEmpty.
 	self assert: self empty isEmpty.
 	self deny: self nonEmpty isEmpty
 ]
 
-{
-	#category : #'test - equality',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedStructuralEqualityTest>>testEqualSign [
+{ #category : #'test - equality' }
+TSequencedStructuralEqualityTest >> testEqualSign [
 	"self debug: #testEqualSign"
 
 	self deny: (self empty = self nonEmpty).
 ]
 
-{
-	#category : #'tests - equality',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedStructuralEqualityTest>>testEqualSignForSequenceableCollections [
+{ #category : #'tests - equality' }
+TSequencedStructuralEqualityTest >> testEqualSignForSequenceableCollections [
 	"self debug: #testEqualSign"
 
 	self deny: (self nonEmpty = self nonEmpty asSet). 
@@ -68,11 +49,8 @@ TSequencedStructuralEqualityTest>>testEqualSignForSequenceableCollections [
 	self deny: (self nonEmpty = self nonEmpty reversed).
 ]
 
-{
-	#category : #'test - equality',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedStructuralEqualityTest>>testEqualSignIsTrueForEmptyButNonIdenticalCollections [
+{ #category : #'test - equality' }
+TSequencedStructuralEqualityTest >> testEqualSignIsTrueForEmptyButNonIdenticalCollections [
 	"self debug: #testEqualSignIsTrueForNonIdenticalButEqualCollections"
 		
 	self assert: (self empty = self empty copy). 
@@ -82,11 +60,8 @@ TSequencedStructuralEqualityTest>>testEqualSignIsTrueForEmptyButNonIdenticalColl
 
 ]
 
-{
-	#category : #'test - equality',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedStructuralEqualityTest>>testEqualSignIsTrueForNonIdenticalButEqualCollections [
+{ #category : #'test - equality' }
+TSequencedStructuralEqualityTest >> testEqualSignIsTrueForNonIdenticalButEqualCollections [
 	"self debug: #testEqualSignIsTrueForNonIdenticalButEqualCollections"
 		
 	self assert: (self empty = self empty copy). 
@@ -98,11 +73,8 @@ TSequencedStructuralEqualityTest>>testEqualSignIsTrueForNonIdenticalButEqualColl
 	self assert: (self nonEmpty copy = self nonEmpty copy).
 ]
 
-{
-	#category : #'test - equality',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedStructuralEqualityTest>>testEqualSignOfIdenticalCollectionObjects [
+{ #category : #'test - equality' }
+TSequencedStructuralEqualityTest >> testEqualSignOfIdenticalCollectionObjects [
 	"self debug: #testEqualSignOfIdenticalCollectionObjects"
 	
 	self assert: (self empty = self empty). 
@@ -110,11 +82,8 @@ TSequencedStructuralEqualityTest>>testEqualSignOfIdenticalCollectionObjects [
 	
 ]
 
-{
-	#category : #'tests - equality',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedStructuralEqualityTest>>testHasEqualElements [
+{ #category : #'tests - equality' }
+TSequencedStructuralEqualityTest >> testHasEqualElements [
 	"self debug: #testHasEqualElements"
 
 	self deny: (self empty hasEqualElements: self nonEmpty).
@@ -123,11 +92,8 @@ TSequencedStructuralEqualityTest>>testHasEqualElements [
 	self deny: (self nonEmpty hasEqualElements: self nonEmpty reversed).
 ]
 
-{
-	#category : #'tests - equality',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedStructuralEqualityTest>>testHasEqualElementsIsTrueForNonIdenticalButEqualCollections [
+{ #category : #'tests - equality' }
+TSequencedStructuralEqualityTest >> testHasEqualElementsIsTrueForNonIdenticalButEqualCollections [
 	"self debug: #testHasEqualElementsIsTrueForNonIdenticalButEqualCollections"
 		
 	self assert: (self empty hasEqualElements: self empty copy). 
@@ -139,11 +105,8 @@ TSequencedStructuralEqualityTest>>testHasEqualElementsIsTrueForNonIdenticalButEq
 	self assert: (self nonEmpty copy hasEqualElements: self nonEmpty copy).
 ]
 
-{
-	#category : #'tests - equality',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSequencedStructuralEqualityTest>>testHasEqualElementsOfIdenticalCollectionObjects [
+{ #category : #'tests - equality' }
+TSequencedStructuralEqualityTest >> testHasEqualElementsOfIdenticalCollectionObjects [
 	"self debug: #testHasEqualElementsOfIdenticalCollectionObjects"
 	
 	self assert: (self empty hasEqualElements: self empty). 

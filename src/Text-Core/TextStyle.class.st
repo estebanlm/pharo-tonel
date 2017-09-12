@@ -38,15 +38,11 @@ Class {
 	#classInstVars : [
 		'notifier'
 	],
-	#category : #Text-Core,
-	#timestamp : '<historical>'
+	#category : #Text-Core
 }
 
-{
-	#category : #'textconstants access',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>actualTextStyles [
+{ #category : #'textconstants access' }
+TextStyle class >> actualTextStyles [
 	"TextStyle actualTextStyles"
 	"Answer dictionary whose keys are the names of styles in the system and whose values are the actual styles"
 	| aDict |
@@ -55,29 +51,20 @@ TextStyle class>>actualTextStyles [
 	^ aDict
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>addDependent: anObject [
+{ #category : #accessing }
+TextStyle class >> addDependent: anObject [
 
 	self notifier addDependent: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>changed: anAspect [
+{ #category : #accessing }
+TextStyle class >> changed: anAspect [
 
 	self notifier changed: anAspect
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>decodeStyleName: styleName  [
+{ #category : #utilities }
+TextStyle class >> decodeStyleName: styleName [ 
 	"Given a string styleName, return a collection with: 
 	 
 	* [1] the probable Pharo emphasis code, which is a bit combination of: 
@@ -119,21 +106,15 @@ TextStyle class>>decodeStyleName: styleName  [
 	^ {styleCode. baseName. modifiers. modifierCodes }
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>default [
+{ #category : #constants }
+TextStyle class >> default [
   "Answer the system default text style."
 
   ^TextSharedInformation at: #DefaultTextStyle ifAbsent: nil
 ]
 
-{
-	#category : #'textconstants access',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>defaultFamilyNames [
+{ #category : #'textconstants access' }
+TextStyle class >> defaultFamilyNames [
 	| DefaultTextStyle DefaultFixedTextStyle DefaultMultiStyle |
 
 	DefaultTextStyle := TextSharedInformation at: #DefaultTextStyle.
@@ -143,31 +124,22 @@ TextStyle class>>defaultFamilyNames [
 	^#(DefaultTextStyle DefaultFixedTextStyle DefaultMultiStyle)
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>defaultFont [
+{ #category : #constants }
+TextStyle class >> defaultFont [
 	"Answer the default system font"
 
 	^ self default defaultFont
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>fontArray: anArray  [
+{ #category : #'instance creation' }
+TextStyle class >> fontArray: anArray [ 
 	"Answer an instance of me with fonts those in the argument, anArray."
 
 	^self new newFontArray: anArray
 ]
 
-{
-	#category : #'textconstants access',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>fontArrayForStyle: aName [
+{ #category : #'textconstants access' }
+TextStyle class >> fontArrayForStyle: aName [
 	"Answer the fonts in the style named aName,
 	or an empty Array if no such named style."
 
@@ -178,11 +150,8 @@ TextStyle class>>fontArrayForStyle: aName [
 
 ]
 
-{
-	#category : #'textconstants access',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>fontPointSizesFor: aName [
+{ #category : #'textconstants access' }
+TextStyle class >> fontPointSizesFor: aName [
 	"Answer the point sizes for all the fonts in the given text style"
 
 	"TextStyle fontPointSizesFor: 'Arial'"
@@ -192,11 +161,8 @@ TextStyle class>>fontPointSizesFor: aName [
 
 ]
 
-{
-	#category : #'textconstants access',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>fontSizesFor: aName [
+{ #category : #'textconstants access' }
+TextStyle class >> fontSizesFor: aName [
 	"Answer the pixel sizes for all the fonts in the given text style"
 
 	"TextStyle fontSizesFor: 'Arial'"
@@ -206,11 +172,8 @@ TextStyle class>>fontSizesFor: aName [
 
 ]
 
-{
-	#category : #'textconstants access',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>fontWidthsFor: aName [
+{ #category : #'textconstants access' }
+TextStyle class >> fontWidthsFor: aName [
 	"Answer the widths for all the fonts in the given text style"
 
 	"TextStyle fontWidthsFor: 'ComicPlain'"
@@ -218,28 +181,19 @@ TextStyle class>>fontWidthsFor: aName [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>initialize [
+{ #category : #initialization }
+TextStyle class >> initialize [
 	self initializeStyleDecoder.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>initializeStyleDecoder [
+{ #category : #initialization }
+TextStyle class >> initializeStyleDecoder [
 	TextSharedInformation at: #StyleDecoder put: nil.
 	self styleDecoder.
 ]
 
-{
-	#category : #'textconstants access',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>knownTextStyles [
+{ #category : #'textconstants access' }
+TextStyle class >> knownTextStyles [
 	"Answer the names of the known text styles, sorted in alphabetical order"
 
 	"TextStyle knownTextStyles"
@@ -248,11 +202,8 @@ TextStyle class>>knownTextStyles [
 
 ]
 
-{
-	#category : #'textconstants access',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>knownTextStylesWithoutDefault [
+{ #category : #'textconstants access' }
+TextStyle class >> knownTextStylesWithoutDefault [
 	"Answer the names of the known text styles, sorted in alphabetical order without default"
 
 	"TextStyle knownTextStylesWithoutDefault"
@@ -263,11 +214,8 @@ TextStyle class>>knownTextStylesWithoutDefault [
 
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>named: familyName  [
+{ #category : #constants }
+TextStyle class >> named: familyName [ 
 	"Answer the TextStyle with the given name, or nil."
 	"TextStyle named: 'NewYork'"
 	| textStyle |
@@ -278,46 +226,31 @@ TextStyle class>>named: familyName  [
 	^ textStyle
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>new [
+{ #category : #'instance creation' }
+TextStyle class >> new [
 	^ super new leading: 2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>notifier [
+{ #category : #accessing }
+TextStyle class >> notifier [
 
 	^ notifier ifNil: [ notifier := Model new ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>pixelsPerInch [
+{ #category : #utilities }
+TextStyle class >> pixelsPerInch [
 	"Answer the nominal resolution of the screen."
 
 	^TextSharedInformation at: #pixelsPerInch ifAbsentPut: [ 96.0 ].
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>pixelsToPoints: pixels [
+{ #category : #utilities }
+TextStyle class >> pixelsToPoints: pixels [
 	^pixels * 72.0 / self pixelsPerInch
 ]
 
-{
-	#category : #'textconstants access',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>pointSizesFor: aName [
+{ #category : #'textconstants access' }
+TextStyle class >> pointSizesFor: aName [
 	"Answer all the point sizes for the given text style name"
 
 	"TextStyle pointSizesFor: 'NewYork'"
@@ -325,38 +258,26 @@ TextStyle class>>pointSizesFor: aName [
 
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>pointsToPixels: points [
+{ #category : #utilities }
+TextStyle class >> pointsToPixels: points [
 	^points * self pixelsPerInch / 72.0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>removeDependent: anObject [
+{ #category : #accessing }
+TextStyle class >> removeDependent: anObject [
 
 	self notifier removeDependent: anObject
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>setDefault: aTextStyle [
+{ #category : #constants }
+TextStyle class >> setDefault: aTextStyle [
 	"Answer the system default text style."
 
 	TextSharedInformation at: #DefaultTextStyle put: aTextStyle.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle class>>styleDecoder [
+{ #category : #initialization }
+TextStyle class >> styleDecoder [
 	TextSharedInformation at: #StyleDecoder ifPresent: [ :dict | dict ifNotNil: [ ^dict ]].
 	^TextSharedInformation at: #StyleDecoder put: (
 		Dictionary new at: 'Regular' put: 0;
@@ -386,11 +307,8 @@ TextStyle class>>styleDecoder [
 				 yourself )
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>= other [
+{ #category : #comparing }
+TextStyle >> = other [
 
 	self species == other species ifFalse: [^ false].
 	1 to: self class instSize do:
@@ -398,11 +316,8 @@ TextStyle>>= other [
 	^ true
 ]
 
-{
-	#category : #'fonts and font indexes',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>addNewFontSize: pointSize [
+{ #category : #'fonts and font indexes' }
+TextStyle >> addNewFontSize: pointSize [
 	"Add a font in specified size to the array of fonts."
 	| f d newArray t  |
 	fontArray first emphasis ~= 0 ifTrue: [
@@ -431,11 +346,8 @@ TextStyle>>addNewFontSize: pointSize [
 
 ]
 
-{
-	#category : #'fonts and font indexes',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>addNewFontSizeDialog: args [
+{ #category : #'fonts and font indexes' }
+TextStyle >> addNewFontSizeDialog: args [
 	"This is called from a modal menu and call back the menu with entered argument."
 	| f n r |
 	f := UIManager default request: 'Enter the point size' initialAnswer: '12'.
@@ -448,31 +360,22 @@ TextStyle>>addNewFontSizeDialog: args [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>alignment [
+{ #category : #accessing }
+TextStyle >> alignment [
 	"Answer the code for the current setting of the alignment."
 
 	^alignment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>alignment: anInteger  [
+{ #category : #accessing }
+TextStyle >> alignment: anInteger [ 
 	"Set the current setting of the alignment to be anInteger:
 	0=left flush, 1=right flush, 2=centered, 3=justified."
 	alignment := anInteger \\ (Justified + 1)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>alignmentSymbol [
+{ #category : #accessing }
+TextStyle >> alignmentSymbol [
 	"Answer the symbol for the current setting of the alignment."
 	alignment = LeftFlush ifTrue:[^#leftFlush].
 	alignment = Centered ifTrue:[^#centered].
@@ -481,40 +384,28 @@ TextStyle>>alignmentSymbol [
 	^#leftFlush
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>baseline [
+{ #category : #accessing }
+TextStyle >> baseline [
 	"Answer the distance from the top of the line to the bottom of most of the 
 	characters (by convention, bottom of the letter 'A')."
 
 	^baseline
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>baseline: anInteger  [
+{ #category : #accessing }
+TextStyle >> baseline: anInteger [ 
 	"Set the distance from the top of the line to the bottom of most of the 
 	characters."
 	baseline := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>centered [
+{ #category : #accessing }
+TextStyle >> centered [
 	alignment := 2
 ]
 
-{
-	#category : #'tabs and margins',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>clearIndents [
+{ #category : #'tabs and margins' }
+TextStyle >> clearIndents [
 	"Reset all the margin (index) settings to be 0."
 
 	self firstIndent: 0.
@@ -522,20 +413,14 @@ TextStyle>>clearIndents [
 	self rightIndent: 0
 ]
 
-{
-	#category : #'fonts and font indexes',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>consistOnlyOf: aFont  [
+{ #category : #'fonts and font indexes' }
+TextStyle >> consistOnlyOf: aFont [ 
 	fontArray := Array with: aFont.
 	defaultFontIndex := 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>consolidate [
+{ #category : #private }
+TextStyle >> consolidate [
 	"If this style includes any fonts that are also in the default style,
 	then replace them with references to the default ones."
 	"
@@ -558,56 +443,38 @@ TextStyle>>consolidate [
 							put: (defFonts at: j) ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>defaultFont [
+{ #category : #accessing }
+TextStyle >> defaultFont [
 	^ fontArray at: self defaultFontIndex
 ]
 
-{
-	#category : #'default font',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>defaultFontIndex [
+{ #category : #'default font' }
+TextStyle >> defaultFontIndex [
 	^ defaultFontIndex ifNil: [ defaultFontIndex := 1 ]
 ]
 
-{
-	#category : #'default font',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>defaultFontIndex: anIndex  [
+{ #category : #'default font' }
+TextStyle >> defaultFontIndex: anIndex [ 
 	defaultFontIndex := anIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>firstIndent [
+{ #category : #accessing }
+TextStyle >> firstIndent [
 	"Answer the horizontal indenting of the first line of a paragraph in the 
 	style of the receiver."
 
 	^firstIndent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>firstIndent: anInteger  [
+{ #category : #accessing }
+TextStyle >> firstIndent: anInteger [ 
 	"Set the horizontal indenting of the first line of a paragraph in the style 
 	of the receiver to be the argument, anInteger."
 	firstIndent := anInteger
 ]
 
-{
-	#category : #'fonts and font indexes',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>flushFonts [
+{ #category : #'fonts and font indexes' }
+TextStyle >> flushFonts [
 	"Clean out the fonts, an aid when snapshotting claims too many are 
 	holding onto Display."
 
@@ -620,31 +487,22 @@ Are you foolish or clever enough to proceed?')
 	"TextStyle default flushFonts"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>fontArray [
+{ #category : #private }
+TextStyle >> fontArray [
 	"Only for writing out fonts, etc."
 	^ fontArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>fontAt: index  [
+{ #category : #private }
+TextStyle >> fontAt: index [ 
 	"This is private because no object outside TextStyle should depend on the 
 	representation of the font family in fontArray."
 
 	^ fontArray atPin: index
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>fontAt: index put: font  [
+{ #category : #private }
+TextStyle >> fontAt: index put: font [ 
 	"Automatically grow the array."
 	index > fontArray size ifTrue: [ fontArray := fontArray , (Array new: index - fontArray size) ].
 	fontArray 
@@ -652,19 +510,13 @@ TextStyle>>fontAt: index put: font  [
 		put: font
 ]
 
-{
-	#category : #'fonts and font indexes',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>fontIndexOf: aFont [
+{ #category : #'fonts and font indexes' }
+TextStyle >> fontIndexOf: aFont [
 	^ fontArray indexOf: aFont ifAbsent: [nil]
 ]
 
-{
-	#category : #'fonts and font indexes',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>fontIndexOfPointSize: desiredPointSize  [
+{ #category : #'fonts and font indexes' }
+TextStyle >> fontIndexOfPointSize: desiredPointSize [ 
 	"Returns an index in fontArray of the font with pointSize <= desiredPointSize"
 	"Leading is not inluded in the comparison"
 	| bestMatch bestIndex d |
@@ -682,11 +534,8 @@ TextStyle>>fontIndexOfPointSize: desiredPointSize  [
 	^ bestIndex
 ]
 
-{
-	#category : #'fonts and font indexes',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>fontIndexOfSize: desiredHeight  [
+{ #category : #'fonts and font indexes' }
+TextStyle >> fontIndexOfSize: desiredHeight [ 
 	"Returns an index in fontArray of the font with height <= desiredHeight"
 	"Leading is not inluded in the comparison"
 	| bestMatch bestIndex d |
@@ -704,74 +553,50 @@ TextStyle>>fontIndexOfSize: desiredHeight  [
 	^ bestIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>fontNamed: fontName  "TextStyle default fontNamed: 'TimesRoman10'" [
+{ #category : #accessing }
+TextStyle >> fontNamed: fontName [  "TextStyle default fontNamed: 'TimesRoman10'"
 	^ fontArray detect: [:x | x name sameAs: fontName]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>fontNames  "TextStyle default fontNames" [
+{ #category : #accessing }
+TextStyle >> fontNames [  "TextStyle default fontNames"
 	^ fontArray collect: [:x | x name]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>fontNamesAndSizes  "TextStyle default fontNames" [
+{ #category : #accessing }
+TextStyle >> fontNamesAndSizes [  "TextStyle default fontNames"
 	^ fontArray collect: [:x | x name, ' ', x height printString]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>fontNamesWithPointSizes [
+{ #category : #accessing }
+TextStyle >> fontNamesWithPointSizes [
 	^ fontArray collect:
 		[:x | x fontNameWithPointSize]
 
   "TextStyle default fontNamesWithPointSizes"
 ]
 
-{
-	#category : #'fonts and font indexes',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>fontOfPointSize: aPointSize [
+{ #category : #'fonts and font indexes' }
+TextStyle >> fontOfPointSize: aPointSize [
 	^ fontArray at: (self fontIndexOfPointSize: aPointSize)
 ]
 
-{
-	#category : #'fonts and font indexes',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>fontOfSize: aHeight [
+{ #category : #'fonts and font indexes' }
+TextStyle >> fontOfSize: aHeight [
 	"See fontIndexOfSize.
 	Returns the actual font.  Leading not considered."
 
 	^ fontArray at: (self fontIndexOfSize: aHeight)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>fonts [
+{ #category : #accessing }
+TextStyle >> fonts [
 	"Return a collection of fonts contained in this text style"
 	^fontArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>gridForFont: fontIndex withLead: leadInteger  [
+{ #category : #private }
+TextStyle >> gridForFont: fontIndex withLead: leadInteger [ 
 	"Force whole style to suit one of its fonts. Assumes only one font referred
 	to by runs."
 	| font |
@@ -781,66 +606,45 @@ TextStyle>>gridForFont: fontIndex withLead: leadInteger  [
 	self leading: leadInteger
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>hash [
+{ #category : #comparing }
+TextStyle >> hash [
 	"#hash is re-implemented because #= is re-implemented"
 	^fontArray hash
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>isTTCStyle [
+{ #category : #accessing }
+TextStyle >> isTTCStyle [
 
 	^ fontArray first isTTCFont.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>justified [
+{ #category : #accessing }
+TextStyle >> justified [
 	alignment := 3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>leading [
+{ #category : #accessing }
+TextStyle >> leading [
 	"Leading (from typographers historical use of extra lead (type metal))
 	is the extra spacing above and beyond that needed just to accomodate
 	the various font heights in the set."
 	^ leading
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>leading: yDelta  [
+{ #category : #accessing }
+TextStyle >> leading: yDelta [ 
 	leading := yDelta
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>leftFlush [
+{ #category : #accessing }
+TextStyle >> leftFlush [
 	alignment := 0
 ]
 
-{
-	#category : #'tabs and margins',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>leftMarginTabAt: marginIndex  [
+{ #category : #'tabs and margins' }
+TextStyle >> leftMarginTabAt: marginIndex [ 
 	"Set the 'nesting' level of left margin indents of the paragraph in the 
 	style of the receiver to be the argument, marginIndex."
 
@@ -852,32 +656,23 @@ TextStyle>>leftMarginTabAt: marginIndex  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>lineGrid [
+{ #category : #accessing }
+TextStyle >> lineGrid [
 	"Answer the relative space between lines of a paragraph in the style of 
 	the receiver."
 
 	^lineGrid
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>lineGrid: anInteger  [
+{ #category : #accessing }
+TextStyle >> lineGrid: anInteger [ 
 	"Set the relative space between lines of a paragraph in the style of the 
 	receiver to be the argument, anInteger."
 	lineGrid := anInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>marginTabAt: marginIndex side: sideIndex  [
+{ #category : #private }
+TextStyle >> marginTabAt: marginIndex side: sideIndex [ 
 	"The marginTabsArray is an Array of tuples.  The Array is indexed
 	according to the marginIndex, the 'nesting' level of the requestor.
 	sideIndex is 1 for left, 2 for right."
@@ -887,11 +682,8 @@ TextStyle>>marginTabAt: marginIndex side: sideIndex  [
 		ifFalse: [^0]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>newFontArray: anArray  [
+{ #category : #private }
+TextStyle >> newFontArray: anArray [ 
 	"Currently there is no supporting protocol for changing these arrays. If an editor wishes to implement margin setting, then a copy of the default should be stored with these instance variables.  
 	, Make size depend on first font."
 	fontArray := anArray.
@@ -908,11 +700,8 @@ TextStyle allInstancesDo: [:ts | ts newFontArray: TextStyle default fontArray].
 "
 ]
 
-{
-	#category : #'tabs and margins',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>nextTabXFrom: anX leftMargin: leftMargin rightMargin: rightMargin  [
+{ #category : #'tabs and margins' }
+TextStyle >> nextTabXFrom: anX leftMargin: leftMargin rightMargin: rightMargin [ 
 	"Tab stops are distances from the left margin. Set the distance into the 
 	argument, anX, normalized for the paragraph's left margin."
 	| normalizedX tabX |
@@ -925,22 +714,16 @@ TextStyle>>nextTabXFrom: anX leftMargin: leftMargin rightMargin: rightMargin  [
 	^ rightMargin
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>pointSizes [
+{ #category : #accessing }
+TextStyle >> pointSizes [
 	^ fontArray collect:
 		[:x | x pointSize]
 
   "TextStyle default fontNamesWithPointSizes"
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>printOn: aStream [
+{ #category : #printing }
+TextStyle >> printOn: aStream [
 
 	super printOn: aStream.
 	fontArray first isFontSet ifTrue: [
@@ -951,61 +734,43 @@ TextStyle>>printOn: aStream [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>restIndent [
+{ #category : #accessing }
+TextStyle >> restIndent [
 	"Answer the indent for all but the first line of a paragraph in the style 
 	of the receiver."
 
 	^restIndent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>restIndent: anInteger  [
+{ #category : #accessing }
+TextStyle >> restIndent: anInteger [ 
 	"Set the indent for all but the first line of a paragraph in the style of the 
 	receiver to be the argument, anInteger."
 	restIndent := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>rightFlush [
+{ #category : #accessing }
+TextStyle >> rightFlush [
 	alignment := 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>rightIndent [
+{ #category : #accessing }
+TextStyle >> rightIndent [
 	"Answer the right margin indent for the lines of a paragraph in the style 
 	of the receiver."
 
 	^rightIndent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>rightIndent: anInteger  [
+{ #category : #accessing }
+TextStyle >> rightIndent: anInteger [ 
 	"Answer the right margin indent for the lines of a paragraph in the style 
 	of the receiver to be the argument, anInteger."
 	rightIndent := anInteger
 ]
 
-{
-	#category : #'tabs and margins',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>rightMarginTabAt: marginIndex  [
+{ #category : #'tabs and margins' }
+TextStyle >> rightMarginTabAt: marginIndex [ 
 	"Set the 'nesting' level of right margin indents of the paragraph in the 
 	style of the receiver to be marginIndex."
 
@@ -1017,21 +782,15 @@ TextStyle>>rightMarginTabAt: marginIndex  [
 
 ]
 
-{
-	#category : #'tabs and margins',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>tabWidth [
+{ #category : #'tabs and margins' }
+TextStyle >> tabWidth [
 	"Answer the width of a tab."
 
 	^DefaultTab
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextStyle>>veryDeepCopyWith: deepCopier  [
+{ #category : #copying }
+TextStyle >> veryDeepCopyWith: deepCopier [ 
 	"All inst vars are meant to be shared"
 
 	self == #veryDeepCopyWith:.	"to satisfy checkVariables"

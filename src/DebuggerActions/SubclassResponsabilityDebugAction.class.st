@@ -6,23 +6,16 @@ A SubclassResponsabilityDebugAction is a debugging action that can create a meth
 Class {
 	#name : #SubclassResponsabilityDebugAction,
 	#superclass : #DebugAction,
-	#category : #DebuggerActions,
-	#timestamp : '<historical>'
+	#category : #DebuggerActions
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-SubclassResponsabilityDebugAction class>>actionType [
+{ #category : #registration }
+SubclassResponsabilityDebugAction class >> actionType [
 	<debuggingAction>
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-SubclassResponsabilityDebugAction>>appliesToDebugger: aDebugger [
+{ #category : #testing }
+SubclassResponsabilityDebugAction >> appliesToDebugger: aDebugger [
 	| interruptedContext |
 	
 	interruptedContext := aDebugger session interruptedContext.
@@ -34,11 +27,8 @@ SubclassResponsabilityDebugAction>>appliesToDebugger: aDebugger [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-SubclassResponsabilityDebugAction>>askForSuperclassOf: aClass to: aSuperclass toImplement: aSelector ifCancel: cancelBlock [
+{ #category : #private }
+SubclassResponsabilityDebugAction >> askForSuperclassOf: aClass to: aSuperclass toImplement: aSelector ifCancel: cancelBlock [
 	| classes currentSuperclass chosenClassIndex |
 	
 	classes := OrderedCollection new.
@@ -58,29 +48,20 @@ SubclassResponsabilityDebugAction>>askForSuperclassOf: aClass to: aSuperclass to
 	^ classes at: chosenClassIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-SubclassResponsabilityDebugAction>>defaultLabel [
+{ #category : #accessing }
+SubclassResponsabilityDebugAction >> defaultLabel [
 
 	^  'Create'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-SubclassResponsabilityDebugAction>>defaultOrder [
+{ #category : #accessing }
+SubclassResponsabilityDebugAction >> defaultOrder [
 
 	^ 45
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-SubclassResponsabilityDebugAction>>executeAction [
+{ #category : #actions }
+SubclassResponsabilityDebugAction >> executeAction [
 	| senderContext msg msgCategory chosenClass |
 	
 	senderContext := self interruptedContext sender.
@@ -102,11 +83,8 @@ SubclassResponsabilityDebugAction>>executeAction [
 		forContext: senderContext.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-SubclassResponsabilityDebugAction>>id [
+{ #category : #accessing }
+SubclassResponsabilityDebugAction >> id [
 
 	^ #subclassResponsability
 ]

@@ -4,15 +4,11 @@ I am used to link the spec-adapter names to the morphic adapters
 Class {
 	#name : #MorphicAdapterBindings,
 	#superclass : #SpecAdapterBindings,
-	#category : #Spec-MorphicAdapters-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters-Support
 }
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicAdapterBindings>>initializeBindings [
+{ #category : #initialize }
+MorphicAdapterBindings >> initializeBindings [
 	
 	^ bindings
 		at: #ButtonAdapter				put: #MorphicButtonAdapter;

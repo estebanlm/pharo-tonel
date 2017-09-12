@@ -15,24 +15,17 @@ Class {
 		'resultStorage',
 		'wrapBlockOrSelector'
 	],
-	#category : #Polymorph-Widgets-Windows,
-	#timestamp : 'StephaneDucasse 4/3/2015 15:00'
+	#category : #Polymorph-Widgets-Windows
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow class>>example [
+{ #category : #example }
+TickDialogWindow class >> example [
 	
 	(self itemsList: Morph methods itemsHeaderName: 'Plop' wrapBlockOrSelector: #selector title: 'Example') choose
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow class>>itemsList: itemsList itemsHeaderName: aName title: aTitle [
+{ #category : #'instance creation' }
+TickDialogWindow class >> itemsList: itemsList itemsHeaderName: aName title: aTitle [
 
 	^ self basicNew
 		itemsList: itemsList;
@@ -42,11 +35,8 @@ TickDialogWindow class>>itemsList: itemsList itemsHeaderName: aName title: aTitl
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow class>>itemsList: itemsList itemsHeaderName: aName title: aTitle defaultValue: aBoolean [
+{ #category : #'instance creation' }
+TickDialogWindow class >> itemsList: itemsList itemsHeaderName: aName title: aTitle defaultValue: aBoolean [
 	^ self basicNew
 		itemsList: itemsList;
 		itemsHeaderName: aName;
@@ -56,11 +46,8 @@ TickDialogWindow class>>itemsList: itemsList itemsHeaderName: aName title: aTitl
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow class>>itemsList: itemsList itemsHeaderName: aName wrapBlockOrSelector: aBlockOrSelector title: aTitle [
+{ #category : #'instance creation' }
+TickDialogWindow class >> itemsList: itemsList itemsHeaderName: aName wrapBlockOrSelector: aBlockOrSelector title: aTitle [
 	^ self basicNew
 		itemsList: itemsList;
 		itemsHeaderName: aName;
@@ -70,11 +57,8 @@ TickDialogWindow class>>itemsList: itemsList itemsHeaderName: aName wrapBlockOrS
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow class>>itemsList: itemsList itemsHeaderName: aName wrapBlockOrSelector: aBlockOrSelector title: aTitle defaultValue: aBoolean [
+{ #category : #'instance creation' }
+TickDialogWindow class >> itemsList: itemsList itemsHeaderName: aName wrapBlockOrSelector: aBlockOrSelector title: aTitle defaultValue: aBoolean [
 	^ self basicNew
 		itemsList: itemsList;
 		itemsHeaderName: aName;
@@ -85,77 +69,53 @@ TickDialogWindow class>>itemsList: itemsList itemsHeaderName: aName wrapBlockOrS
 		yourself
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>accept [
+{ #category : #actions }
+TickDialogWindow >> accept [
 
 	self resultStorage: self listModel selectedItems.
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>choose [
+{ #category : #display }
+TickDialogWindow >> choose [
 
 	^ self chooseFromOwner: World
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>chooseFromOwner: aMorph [
+{ #category : #display }
+TickDialogWindow >> chooseFromOwner: aMorph [
 
 	aMorph openModal: self.
 	^ resultStorage
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>defaultFocusMorph [
+{ #category : #'focus handling' }
+TickDialogWindow >> defaultFocusMorph [
 
 	^ self listMorph 
 		ifNil: [ super defaultFocusMorph ]
 		ifNotNil: [:morph | morph ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>defaultValue [
+{ #category : #accessing }
+TickDialogWindow >> defaultValue [
 
 	^ defaultValue ifNil: [defaultValue := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>defaultValue: aBoolean [
+{ #category : #accessing }
+TickDialogWindow >> defaultValue: aBoolean [
 
 	defaultValue := aBoolean
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>hasUnacceptedEdits [
+{ #category : #compatibility }
+TickDialogWindow >> hasUnacceptedEdits [
 
 	^ true
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>initialExtent [
+{ #category : #display }
+TickDialogWindow >> initialExtent [
 	
 	| width |
 	width := (self listMorph allNodeMorphs detectMax: [:e | e width]) width.
@@ -164,92 +124,62 @@ TickDialogWindow>>initialExtent [
 	^width@400
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>isResizeable [
+{ #category : #private }
+TickDialogWindow >> isResizeable [
 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>itemsHeaderName [
+{ #category : #accessing }
+TickDialogWindow >> itemsHeaderName [
 
 	^ itemsHeaderName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>itemsHeaderName: anObject [
+{ #category : #accessing }
+TickDialogWindow >> itemsHeaderName: anObject [
 	
 	itemsHeaderName := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>itemsList [
+{ #category : #accessing }
+TickDialogWindow >> itemsList [
 
 	^ itemsList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>itemsList: anObject [
+{ #category : #accessing }
+TickDialogWindow >> itemsList: anObject [
 	
 	itemsList := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>listModel [
+{ #category : #accessing }
+TickDialogWindow >> listModel [
 
 	^ listModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>listModel: aModel [
+{ #category : #accessing }
+TickDialogWindow >> listModel: aModel [
 
 	listModel := aModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>listMorph [
+{ #category : #accessing }
+TickDialogWindow >> listMorph [
 
 	^ listMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>listMorph: anObject [
+{ #category : #accessing }
+TickDialogWindow >> listMorph: anObject [
 	
 	listMorph := anObject
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>newContentMorph [
+{ #category : #display }
+TickDialogWindow >> newContentMorph [
 
 	self listModel: ((self tickListClass 
 						itemsList: self itemsList 
@@ -268,74 +198,50 @@ TickDialogWindow>>newContentMorph [
 	^ self listMorph
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>openInWorld [
+{ #category : #display }
+TickDialogWindow >> openInWorld [
 
 	self choose 
 	"since it is modal"
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>resultStorage [
+{ #category : #accessing }
+TickDialogWindow >> resultStorage [
 
 	^ resultStorage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>resultStorage: anObject [
+{ #category : #accessing }
+TickDialogWindow >> resultStorage: anObject [
 	
 	resultStorage := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>selectItems: aCollection  [
+{ #category : #accessing }
+TickDialogWindow >> selectItems: aCollection [ 
 	self listModel selectItems: aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>selectedItems  [
+{ #category : #accessing }
+TickDialogWindow >> selectedItems [ 
 	^ self listModel selectedItems
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>tickListClass [
+{ #category : #private }
+TickDialogWindow >> tickListClass [
 
 	^ MorphTreeModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>wrapBlockOrSelector [
+{ #category : #accessing }
+TickDialogWindow >> wrapBlockOrSelector [
 
 	^ wrapBlockOrSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TickDialogWindow>>wrapBlockOrSelector: anObject [
+{ #category : #accessing }
+TickDialogWindow >> wrapBlockOrSelector: anObject [
 	
 	wrapBlockOrSelector := anObject
 ]

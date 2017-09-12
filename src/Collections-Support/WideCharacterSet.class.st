@@ -23,35 +23,25 @@ Class {
 		'map',
 		'byteArrayMap'
 	],
-	#category : #Collections-Support,
-	#timestamp : 'nice 12/10/2009 19:17'
+	#category : #Collections-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet class>>newFrom: aCollection [
+{ #category : #'instance creation' }
+WideCharacterSet class >> newFrom: aCollection [
 	| newCollection |
 	newCollection := self new.
 	newCollection addAll: aCollection.
 	^newCollection
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>= anObject [
+{ #category : #comparing }
+WideCharacterSet >> = anObject [
 	^self species == anObject species and: [
 		self wideCharacterMap = anObject wideCharacterMap ]
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>add: aCharacter  [
+{ #category : #'collection ops' }
+WideCharacterSet >> add: aCharacter [ 
 	| val high low lowmap |
 	val := aCharacter asciiValue.
 	val < 256 ifTrue: [self byteArrayMap at: val + 1 put: 1].
@@ -63,11 +53,8 @@ WideCharacterSet>>add: aCharacter  [
 	^ aCharacter
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>bitmap: aMap at: shortInteger [
+{ #category : #private }
+WideCharacterSet >> bitmap: aMap at: shortInteger [
 	"access a single bit in aMap.
 	shortInteger should be between: 0 and: 16rFFFF"
 	
@@ -77,11 +64,8 @@ WideCharacterSet>>bitmap: aMap at: shortInteger [
 	^(aMap at: collecIndex + 1) bitAnd: (1 bitShift: bitIndex)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>bitmap: aMap do: aBlock [
+{ #category : #private }
+WideCharacterSet >> bitmap: aMap do: aBlock [
 	"Execute a block with each value (0 based) corresponding to set bits.
 	Implementation notes: this version works best for sparse maps.
 	It has (byte lowBit) inlined for speed."
@@ -97,11 +81,8 @@ WideCharacterSet>>bitmap: aMap do: aBlock [
 			(byte := byte bitAnd: byte - 1) = 0] whileFalse]]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>byteArrayMap [
+{ #category : #comparing }
+WideCharacterSet >> byteArrayMap [
 	"return a ByteArray mapping each ascii value to a 1 if that ascii value is in the set, and a 0 if it isn't.
 	Intended for use by primitives only. (and comparison)
 	This version will answer a subset with only byte characters"
@@ -115,11 +96,8 @@ WideCharacterSet>>byteArrayMap [
 	^byteArrayMap
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>clearBitmap: aMap at: shortInteger [
+{ #category : #private }
+WideCharacterSet >> clearBitmap: aMap at: shortInteger [
 	"clear a single bit in aMap.
 	shortInteger should be between: 0 and: 16rFFFF"
 	
@@ -129,21 +107,15 @@ WideCharacterSet>>clearBitmap: aMap at: shortInteger [
 	^aMap at: collecIndex + 1 put: ((aMap at: collecIndex + 1) bitClear: (1 bitShift: bitIndex))
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>complement [
+{ #category : #converting }
+WideCharacterSet >> complement [
 	"return a character set containing precisely the characters the receiver does not"
 	
 	^CharacterSetComplement of: self copy
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>do: aBlock  [
+{ #category : #'collection ops' }
+WideCharacterSet >> do: aBlock [ 
 	map
 		keysAndValuesDo: [:index :lowmap |
 			| high16Bits |
@@ -153,11 +125,8 @@ WideCharacterSet>>do: aBlock  [
 				do: [:low16Bits | aBlock value: (Character value: high16Bits + low16Bits)]]
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>findFirstInByteString: aByteString startingAt: startIndex [
+{ #category : #'collection ops' }
+WideCharacterSet >> findFirstInByteString: aByteString startingAt: startIndex [
 	"Double dispatching: since we know this is a ByteString, we can use a superfast primitive using a ByteArray map with 0 slots for byte characters not included and 1 for byte characters included in the receiver."
 	^ByteString
 		findFirstInString: aByteString
@@ -165,22 +134,16 @@ WideCharacterSet>>findFirstInByteString: aByteString startingAt: startIndex [
 		startingAt: startIndex
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>hasWideCharacters [
+{ #category : #testing }
+WideCharacterSet >> hasWideCharacters [
 	"Answer true if i contain any wide character"
 	
 	self do: [:e | e asciiValue >= 256 ifTrue: [^true]].
 	^false
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>hash [
+{ #category : #comparing }
+WideCharacterSet >> hash [
 	"Answer a hash code aimed at storing and retrieving the receiver in a Set or Dictionary.
 	Two equal objects should have equal hash.
 	Note: as the receiver can be equal to an ordinary CharacterSet,
@@ -191,11 +154,8 @@ WideCharacterSet>>hash [
 		ifFalse: [self asCharacterSet hash]
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>includes: aCharacter  [
+{ #category : #'collection ops' }
+WideCharacterSet >> includes: aCharacter [ 
 	| val high low |
 	val := aCharacter asciiValue.
 	high := val bitShift: -16.
@@ -207,30 +167,21 @@ WideCharacterSet>>includes: aCharacter  [
 		at: low) isZero not
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>initialize [
+{ #category : #initialization }
+WideCharacterSet >> initialize [
 	super initialize.
 	map := Dictionary new.
 	byteArrayMap := ByteArray new: 256
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>postCopy [
+{ #category : #copying }
+WideCharacterSet >> postCopy [
 	super postCopy.
 	map := map collect: [:each | each copy]
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>remove: aCharacter  [
+{ #category : #'collection ops' }
+WideCharacterSet >> remove: aCharacter [ 
 	| val high low lowmap |
 	val := aCharacter asciiValue.
 	val < 256 ifTrue: [self byteArrayMap at: val + 1 put: 0].
@@ -245,29 +196,20 @@ WideCharacterSet>>remove: aCharacter  [
 	^ aCharacter
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>remove: aCharacter ifAbsent: aBlock [
+{ #category : #'collection ops' }
+WideCharacterSet >> remove: aCharacter ifAbsent: aBlock [
 	(self includes: aCharacter) ifFalse: [^aBlock value].
 	^self remove: aCharacter
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>removeAll [
+{ #category : #'collection ops' }
+WideCharacterSet >> removeAll [
 	map removeAll.
 	byteArrayMap := ByteArray new: 256
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>setBitmap: aMap at: shortInteger [
+{ #category : #private }
+WideCharacterSet >> setBitmap: aMap at: shortInteger [
 	"set a single bit in aMap.
 	shortInteger should be between: 0 and: 16rFFFF"
 	
@@ -277,11 +219,8 @@ WideCharacterSet>>setBitmap: aMap at: shortInteger [
 	^aMap at: collecIndex + 1 put: ((aMap at: collecIndex + 1) bitOr: (1 bitShift: bitIndex))
 ]
 
-{
-	#category : #'collection ops',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>size [
+{ #category : #'collection ops' }
+WideCharacterSet >> size [
 	| size |
 	size := 0.
 	map
@@ -291,20 +230,14 @@ WideCharacterSet>>size [
 	^ size
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>species [
+{ #category : #comparing }
+WideCharacterSet >> species [
 	^self hasWideCharacters
 		ifTrue: [WideCharacterSet]
 		ifFalse: [CharacterSet]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WideCharacterSet>>wideCharacterMap [
+{ #category : #comparing }
+WideCharacterSet >> wideCharacterMap [
 	^map
 ]

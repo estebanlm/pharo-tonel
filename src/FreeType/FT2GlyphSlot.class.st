@@ -92,138 +92,89 @@ Class {
 	#pools : [
 		'FT2Constants'
 	],
-	#category : #FreeType-Base,
-	#timestamp : '<historical>'
+	#category : #FreeType-Base
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot class>>fromFace: anFT2Face [
+{ #category : #'instance creation' }
+FT2GlyphSlot class >> fromFace: anFT2Face [
 	^(super new)
 		loadFrom: anFT2Face;
 		yourself.
 ]
 
-{
-	#category : #accessing-convenience,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>advance [
+{ #category : #accessing-convenience }
+FT2GlyphSlot >> advance [
 	^advanceX@advanceY
 ]
 
-{
-	#category : #accessing-fields,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>advanceX [
+{ #category : #accessing-fields }
+FT2GlyphSlot >> advanceX [
 	^advanceX
 ]
 
-{
-	#category : #accessing-fields,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>advanceY [
+{ #category : #accessing-fields }
+FT2GlyphSlot >> advanceY [
 	^advanceY
 ]
 
-{
-	#category : #accessing-fields,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>bitmapLeft [
+{ #category : #accessing-fields }
+FT2GlyphSlot >> bitmapLeft [
 	^bitmapLeft
 ]
 
-{
-	#category : #accessing-fields,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>bitmapTop [
+{ #category : #accessing-fields }
+FT2GlyphSlot >> bitmapTop [
 	^bitmapTop
 ]
 
-{
-	#category : #accessing-convenience,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>extent [
+{ #category : #accessing-convenience }
+FT2GlyphSlot >> extent [
 	^width@height
 ]
 
-{
-	#category : #accessing-fields,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>format [
+{ #category : #accessing-fields }
+FT2GlyphSlot >> format [
 	^format
 ]
 
-{
-	#category : #accessing-convenience,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>hBearing [
+{ #category : #accessing-convenience }
+FT2GlyphSlot >> hBearing [
 	^hBearingX@hBearingY
 ]
 
-{
-	#category : #accessing-fields,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>hBearingX [
+{ #category : #accessing-fields }
+FT2GlyphSlot >> hBearingX [
 	^hBearingX
 ]
 
-{
-	#category : #accessing-fields,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>hBearingY [
+{ #category : #accessing-fields }
+FT2GlyphSlot >> hBearingY [
 	^hBearingY
 ]
 
-{
-	#category : #accessing-fields,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>height [
+{ #category : #accessing-fields }
+FT2GlyphSlot >> height [
 	^height
 ]
 
-{
-	#category : #accessing-convenience,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>linearAdvance [
+{ #category : #accessing-convenience }
+FT2GlyphSlot >> linearAdvance [
 	^"("(linearHorizontalAdvance @ linearVerticalAdvance) "* 2540) rounded"
 
 ]
 
-{
-	#category : #accessing-fields,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>linearHorizontalAdvance [
+{ #category : #accessing-fields }
+FT2GlyphSlot >> linearHorizontalAdvance [
 	^linearHorizontalAdvance
 ]
 
-{
-	#category : #accessing-fields,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>linearVerticalAdvance [
+{ #category : #accessing-fields }
+FT2GlyphSlot >> linearVerticalAdvance [
 	^linearVerticalAdvance
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>loadFrom: anFT2Face [
+{ #category : #private }
+FT2GlyphSlot >> loadFrom: anFT2Face [
 	face := anFT2Face.
 	self primLoadFrom: anFT2Face.
 	format := ((EndianDetector isLittleEndian) ifTrue: [ format reversed ] ifFalse: [ format ]) asString.
@@ -241,45 +192,30 @@ FT2GlyphSlot>>loadFrom: anFT2Face [
 	vAdvance := vAdvance bitShift: -6.
 ]
 
-{
-	#category : #accessing-fields,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>outline [
+{ #category : #accessing-fields }
+FT2GlyphSlot >> outline [
 	^outline
 ]
 
-{
-	#category : #accessing-fields,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>outline: anOutline [
+{ #category : #accessing-fields }
+FT2GlyphSlot >> outline: anOutline [
 	outline := anOutline
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>primLoadFrom: anFT2Face [
+{ #category : #private }
+FT2GlyphSlot >> primLoadFrom: anFT2Face [
 	<primitive: 'primitiveLoadGlyphSlotFromFace' module: 'FT2Plugin'>
 	^self primitiveFailed.
 ]
 
-{
-	#category : #accessing-convenience,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>roundedPixelLinearAdvance [
+{ #category : #accessing-convenience }
+FT2GlyphSlot >> roundedPixelLinearAdvance [
 	"Answer the scaled linearAdvance, rounded to whole pixels"
 	^linearHorizontalAdvance  rounded @ linearVerticalAdvance rounded
 
 ]
 
-{
-	#category : #accessing-fields,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2GlyphSlot>>width [
+{ #category : #accessing-fields }
+FT2GlyphSlot >> width [
 	^width
 ]

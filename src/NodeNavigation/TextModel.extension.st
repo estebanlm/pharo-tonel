@@ -1,19 +1,11 @@
-Extension {
-	#name : #TextModel
-}
+Extension { #name : #TextModel }
 
-{
-	#category : #'*NodeNavigation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-TextModel>>isWorkspace [
+{ #category : #'*NodeNavigation' }
+TextModel >> isWorkspace [
 	^false
 ]
 
-{
-	#category : #'*NodeNavigation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-TextModel>>sourceTextArea [
+{ #category : #'*NodeNavigation' }
+TextModel >> sourceTextArea [
 	^ self widget
 ]

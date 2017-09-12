@@ -14,15 +14,11 @@ Class {
 		'changeSorterRight',
 		'isRefreshing'
 	],
-	#category : #Spec-Tools-ChangeSorter,
-	#timestamp : '<historical>'
+	#category : #Spec-Tools-ChangeSorter
 }
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication class>>changesListMenu: aBuilder [
+{ #category : #menu }
+DualChangeSorterApplication class >> changesListMenu: aBuilder [
 	<contextMenu>
 	<dualChangeSorteChangesListMenu>
 	
@@ -47,11 +43,8 @@ DualChangeSorterApplication class>>changesListMenu: aBuilder [
 		withSeparatorAfter.
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication class>>classListMenu: aBuilder [
+{ #category : #menu }
+DualChangeSorterApplication class >> classListMenu: aBuilder [
 	<contextMenu>
 	<dualChangeSorterClassListMenu>
 	
@@ -71,11 +64,8 @@ DualChangeSorterApplication class>>classListMenu: aBuilder [
 
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication class>>defaultSpec [
+{ #category : #specs }
+DualChangeSorterApplication class >> defaultSpec [
 	<spec>
 	
 	^ SpecLayout composed
@@ -86,11 +76,8 @@ DualChangeSorterApplication class>>defaultSpec [
 						add: #changeSorterRight ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication class>>menuCommandOn: aBuilder  [
+{ #category : #menu }
+DualChangeSorterApplication class >> menuCommandOn: aBuilder [ 
 	<worldMenu> 
 	(aBuilder group: #SystemChanges)
 		parent: #Tools;  
@@ -102,11 +89,8 @@ DualChangeSorterApplication class>>menuCommandOn: aBuilder  [
 	aBuilder withSeparatorAfter.		
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication class>>messageListMenu: aBuilder [
+{ #category : #menu }
+DualChangeSorterApplication class >> messageListMenu: aBuilder [
 	<contextMenu>
 	<dualChangeSorterMessageListMenu>
 	
@@ -126,64 +110,43 @@ DualChangeSorterApplication class>>messageListMenu: aBuilder [
 
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication class>>open [
+{ #category : #specs }
+DualChangeSorterApplication class >> open [
 	self new openWithSpec
 ]
 
-{
-	#category : #tools-registry,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication class>>registerToolsOn: registry [
+{ #category : #tools-registry }
+DualChangeSorterApplication class >> registerToolsOn: registry [
 
 	"Add ourselves to registry. See [Smalltalk tools]" 
 	registry register: self as: #changeSorter
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication class>>taskbarIconName [
+{ #category : #icons }
+DualChangeSorterApplication class >> taskbarIconName [
 	^ #changeSorterIcon
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication class>>title [
+{ #category : #specs }
+DualChangeSorterApplication class >> title [
 
 	^'Dual Change Sorter'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>changeSorterLeft [
+{ #category : #accessing }
+DualChangeSorterApplication >> changeSorterLeft [
 
 	^ changeSorterLeft
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>changeSorterRight [
+{ #category : #accessing }
+DualChangeSorterApplication >> changeSorterRight [
 
 	^ changeSorterRight
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>changesMenu: menu shifted: shifted from: sourcePanel to: destinationPanel [
+{ #category : #menu }
+DualChangeSorterApplication >> changesMenu: menu shifted: shifted from: sourcePanel to: destinationPanel [
 	| menuModel menuDest |
 
 	menuModel := MenuModel new.
@@ -203,11 +166,8 @@ DualChangeSorterApplication>>changesMenu: menu shifted: shifted from: sourcePane
 	^ menu
 ]
 
-{
-	#category : #'menu - change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>checkThatSidesDiffer: escapeBlock [
+{ #category : #'menu - change set' }
+DualChangeSorterApplication >> checkThatSidesDiffer: escapeBlock [
 	"If the change sets on both sides of the dual sorter are the same, put up an error message and escape via escapeBlock, else proceed happily"
 
 	changeSorterLeft selectedChangeSet == changeSorterRight selectedChangeSet
@@ -221,11 +181,8 @@ be the same.'.
 	^ escapeBlock value
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>classMenu: menu shifted: shifted from: sourcePanel to: destinationPanel [
+{ #category : #menu }
+DualChangeSorterApplication >> classMenu: menu shifted: shifted from: sourcePanel to: destinationPanel [
 	"Fill aMenu with items appropriate for the class list"
 	| menuModel menuDest |
 	
@@ -241,22 +198,16 @@ DualChangeSorterApplication>>classMenu: menu shifted: shifted from: sourcePanel 
 	^ menu
 ]
 
-{
-	#category : #'menu - change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>copyAllFrom: src to: dest [
+{ #category : #'menu - change set' }
+DualChangeSorterApplication >> copyAllFrom: src to: dest [
 
 	self checkThatSidesDiffer: [ ^ self ].
 	self model copyAllChangesFrom: (src selectedChangeSet) to: (dest selectedChangeSet).
 	dest updateClassesList.
 ]
 
-{
-	#category : #'menu - class',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>copyClassFrom: src to: dest [
+{ #category : #'menu - class' }
+DualChangeSorterApplication >> copyClassFrom: src to: dest [
 	"Place these changes in the other changeSet also"
 
 	| otherChangeSet |
@@ -270,11 +221,8 @@ DualChangeSorterApplication>>copyClassFrom: src to: dest [
 	dest setSelectedChangeSet: otherChangeSet.
 ]
 
-{
-	#category : #'menu - method',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>copyMethodFrom: src to: dest [
+{ #category : #'menu - method' }
+DualChangeSorterApplication >> copyMethodFrom: src to: dest [
 	"Place this change in the other changeSet also"	
 	| other |
 	
@@ -293,20 +241,14 @@ DualChangeSorterApplication>>copyMethodFrom: src to: dest [
 		dest updateClassesListAndMessagesList ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>initialExtent [
+{ #category : #initialization }
+DualChangeSorterApplication >> initialExtent [
 
 	^  900@530
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>initialize [
+{ #category : #initialization }
+DualChangeSorterApplication >> initialize [
 
 	super initialize.
 	model := ChangeSorterModel new.
@@ -317,11 +259,8 @@ DualChangeSorterApplication>>initialize [
 		to: self 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>initializePresenter [
+{ #category : #initialization }
+DualChangeSorterApplication >> initializePresenter [
 
 	changeSorterLeft 	whenChangesListChanges: [ self refeshedChangeSet: changeSorterRight ].
 	changeSorterRight	whenChangesListChanges: [ self refeshedChangeSet: changeSorterLeft ].
@@ -329,11 +268,8 @@ DualChangeSorterApplication>>initializePresenter [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>initializeWidgets [
+{ #category : #initialization }
+DualChangeSorterApplication >> initializeWidgets [
 
 	changeSorterLeft := self instantiate: ChangeSorterApplication.
 	changeSorterRight := self instantiate: ChangeSorterApplication.
@@ -343,32 +279,23 @@ DualChangeSorterApplication>>initializeWidgets [
 	self setFocusOrder
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>menusRegistration [
+{ #category : #initialization }
+DualChangeSorterApplication >> menusRegistration [
 
 	self menusRegistrationFrom: changeSorterLeft to: changeSorterRight.
 	self menusRegistrationFrom: changeSorterRight to: changeSorterLeft
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>menusRegistrationFrom: src to: dest [
+{ #category : #menu }
+DualChangeSorterApplication >> menusRegistrationFrom: src to: dest [
 	
 	src changesMenu: [:menu :shifted | self changesMenu: menu shifted: shifted from: src to: dest ].
 	src classesMenu: [:menu :shifted | self classMenu: menu shifted: shifted from: src to: dest ].
 	src methodsMenu: [:menu :shifted | self messageMenu: menu shifted: shifted from: src to: dest ].
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>messageMenu: menu shifted: shifted from: sourcePanel to: destinationPanel [
+{ #category : #menu }
+DualChangeSorterApplication >> messageMenu: menu shifted: shifted from: sourcePanel to: destinationPanel [
 	"Fill aMenu with items appropriate for the message list; could be for a single or double changeSorter"
 	
 	| menuModel menuDual |
@@ -385,20 +312,14 @@ DualChangeSorterApplication>>messageMenu: menu shifted: shifted from: sourcePane
 	^ menu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>model [
+{ #category : #accessing }
+DualChangeSorterApplication >> model [
 
 	^ model
 ]
 
-{
-	#category : #'menu - class',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>moveClassFrom: src to: dest [
+{ #category : #'menu - class' }
+DualChangeSorterApplication >> moveClassFrom: src to: dest [
 
 	self checkThatSidesDiffer: [^ self].
 	(self okToChange and: [ src selectedClass notNil]) ifFalse: [ ^ self ].
@@ -407,22 +328,16 @@ DualChangeSorterApplication>>moveClassFrom: src to: dest [
 	src forgetClass
 ]
 
-{
-	#category : #'menu - method',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>moveMethodFrom: src to: dest [
+{ #category : #'menu - method' }
+DualChangeSorterApplication >> moveMethodFrom: src to: dest [
 
 	self copyMethodFrom: src to: dest.
 	src forgetMessage.
 	src updateClassesListAndMessagesList.
 ]
 
-{
-	#category : #event,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>refeshedChangeSet: changeSet [
+{ #category : #event }
+DualChangeSorterApplication >> refeshedChangeSet: changeSet [
 	isRefreshing
 		ifTrue: [ ^ self ].
 	isRefreshing := true.
@@ -430,42 +345,30 @@ DualChangeSorterApplication>>refeshedChangeSet: changeSet [
 	isRefreshing := false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>setFocusOrder [
+{ #category : #initialization }
+DualChangeSorterApplication >> setFocusOrder [
 
 	self focusOrder
 		add: changeSorterLeft;
 		add: changeSorterRight.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>shortcutsRegistration [
+{ #category : #initialization }
+DualChangeSorterApplication >> shortcutsRegistration [
 
 	self shortcutsRegistrationFrom: changeSorterLeft to: changeSorterRight.
 	self shortcutsRegistrationFrom: changeSorterRight to: changeSorterLeft.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>shortcutsRegistrationFrom: src to: dest [
+{ #category : #initialization }
+DualChangeSorterApplication >> shortcutsRegistrationFrom: src to: dest [
 	
 	src changesModelOn: $c meta do: [ self copyAllFrom: src to: dest ].
 	src changesModelOn: $- meta do: [ self subtractFrom: src to: dest ]. 
 ]
 
-{
-	#category : #'menu - change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>submergeFrom: src into: dest [
+{ #category : #'menu - change set' }
+DualChangeSorterApplication >> submergeFrom: src into: dest [
 	"Copy the contents of the receiver to the other side, then remove the receiver -- all after checking that all is well."
 	| source destination index |
 
@@ -479,11 +382,8 @@ DualChangeSorterApplication>>submergeFrom: src into: dest [
 	src setSelectedChangeSetIndex: index.
 ]
 
-{
-	#category : #'menu - change set',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>subtractFrom: src to: dest [
+{ #category : #'menu - change set' }
+DualChangeSorterApplication >> subtractFrom: src to: dest [
 	"Subtract the changes found on the other side from the requesting side."
 	| source destination |
 	source := src selectedChangeSet.
@@ -496,11 +396,8 @@ DualChangeSorterApplication>>subtractFrom: src to: dest [
 	changeSorterRight setSelectedChangeSet: source.
 ]
 
-{
-	#category : #event,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DualChangeSorterApplication>>title [
+{ #category : #event }
+DualChangeSorterApplication >> title [
 
 	^ super title, ' on: ', self model currentChangeSet name. 
 ]

@@ -17,220 +17,141 @@ Class {
 		'mapped',
 		'hasMapping'
 	],
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'RonieSalgado 4/10/2016 06:40'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>button [
+{ #category : #accessing }
+OSJoyButtonEvent >> button [
 	
 	^ button
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>button: anObject [
+{ #category : #accessing }
+OSJoyButtonEvent >> button: anObject [
 	
 	button := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>hasMapping [
+{ #category : #accessing }
+OSJoyButtonEvent >> hasMapping [
 	^ hasMapping
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>hasMapping: anObject [
+{ #category : #accessing }
+OSJoyButtonEvent >> hasMapping: anObject [
 	hasMapping := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>isButtonA [
+{ #category : #testing }
+OSJoyButtonEvent >> isButtonA [
 	^ button == 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>isButtonB [
+{ #category : #testing }
+OSJoyButtonEvent >> isButtonB [
 	^ button == 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>isButtonBack [
+{ #category : #testing }
+OSJoyButtonEvent >> isButtonBack [
 	^ button == 4
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>isButtonGuide [
+{ #category : #testing }
+OSJoyButtonEvent >> isButtonGuide [
 	^ button == 5
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>isButtonStart [
+{ #category : #testing }
+OSJoyButtonEvent >> isButtonStart [
 	^ button == 6
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>isButtonX [
+{ #category : #testing }
+OSJoyButtonEvent >> isButtonX [
 	^ button == 2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>isButtonY [
+{ #category : #testing }
+OSJoyButtonEvent >> isButtonY [
 	^ button == 3
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>isDigitalPadDown [
+{ #category : #testing }
+OSJoyButtonEvent >> isDigitalPadDown [
 	^ button == 12
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>isDigitalPadLeft [
+{ #category : #testing }
+OSJoyButtonEvent >> isDigitalPadLeft [
 	^ button == 13
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>isDigitalPadRight [
+{ #category : #testing }
+OSJoyButtonEvent >> isDigitalPadRight [
 	^ button == 14
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>isDigitalPadUp [
+{ #category : #testing }
+OSJoyButtonEvent >> isDigitalPadUp [
 	^ button == 11
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>isLeftShoulder [
+{ #category : #testing }
+OSJoyButtonEvent >> isLeftShoulder [
 	^ button == 9
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>isLeftStick [
+{ #category : #testing }
+OSJoyButtonEvent >> isLeftStick [
 	^ button == 7
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>isPreferredEvent [
+{ #category : #testing }
+OSJoyButtonEvent >> isPreferredEvent [
 	^ mapped or: hasMapping not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>isRightShoulder [
+{ #category : #testing }
+OSJoyButtonEvent >> isRightShoulder [
 	^ button == 10
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>isRightStick [
+{ #category : #testing }
+OSJoyButtonEvent >> isRightStick [
 	^ button == 8
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>mapped [
+{ #category : #accessing }
+OSJoyButtonEvent >> mapped [
 	^ mapped
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>mapped: anObject [
+{ #category : #accessing }
+OSJoyButtonEvent >> mapped: anObject [
 	mapped := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>pressed [
+{ #category : #accessing }
+OSJoyButtonEvent >> pressed [
 	
 	^ pressed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>pressed: anObject [
+{ #category : #accessing }
+OSJoyButtonEvent >> pressed: anObject [
 	
 	pressed := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>which [
+{ #category : #accessing }
+OSJoyButtonEvent >> which [
 	
 	^ which
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyButtonEvent>>which: anObject [
+{ #category : #accessing }
+OSJoyButtonEvent >> which: anObject [
 	
 	which := anObject
 ]

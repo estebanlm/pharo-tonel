@@ -7,43 +7,30 @@ Class {
 	#instVars : [
 		'nextLink'
 	],
-	#category : #Collections-Support,
-	#timestamp : '<historical>'
+	#category : #Collections-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Link class>>nextLink: aLink  [
+{ #category : #'instance creation' }
+Link class >> nextLink: aLink [ 
 	"Answer an instance of me referring to the argument, aLink."
 
 	^self new nextLink: aLink; yourself
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Link>>asLink [
+{ #category : #converting }
+Link >> asLink [
 	^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Link>>nextLink [
+{ #category : #accessing }
+Link >> nextLink [
 	"Answer the link to which the receiver points."
 
 	^nextLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Link>>nextLink: aLink  [
+{ #category : #accessing }
+Link >> nextLink: aLink [ 
 	"Store the argument, aLink, as the link to which the receiver refers. 
 	Answer aLink."
 

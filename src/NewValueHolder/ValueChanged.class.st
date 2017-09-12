@@ -8,26 +8,19 @@ Class {
 		'newValue',
 		'oldValue'
 	],
-	#category : #NewValueHolder,
-	#timestamp : '<historical>'
+	#category : #NewValueHolder
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ValueChanged class>>newValue: newContents [
+{ #category : #'instance creation' }
+ValueChanged class >> newValue: newContents [
 
 	^ self new
 		newValue: newContents;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ValueChanged class>>oldValue: oldContent newValue: newValue [
+{ #category : #'instance creation' }
+ValueChanged class >> oldValue: oldContent newValue: newValue [
 
 	^ self new
 		newValue: newValue;
@@ -35,38 +28,26 @@ ValueChanged class>>oldValue: oldContent newValue: newValue [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ValueChanged>>newValue [
+{ #category : #accessing }
+ValueChanged >> newValue [
 
 	^ newValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ValueChanged>>newValue: anObject [
+{ #category : #accessing }
+ValueChanged >> newValue: anObject [
 	
 	newValue := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ValueChanged>>oldValue [
+{ #category : #accessing }
+ValueChanged >> oldValue [
 
 	^ oldValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ValueChanged>>oldValue: anObject [
+{ #category : #accessing }
+ValueChanged >> oldValue: anObject [
 	
 	oldValue := anObject
 ]

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMValidator,
 	#superclass : #GLMImplicitBrowser,
@@ -8,24 +5,17 @@ Class {
 		'buttonActions',
 		'specificAnnouncementActions'
 	],
-	#category : #Glamour-Browsers-Other,
-	#timestamp : ''
+	#category : #Glamour-Browsers-Other
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMValidator>>addButtonAction: aGLMGenericAction [
+{ #category : #accessing }
+GLMValidator >> addButtonAction: aGLMGenericAction [
 
 	self buttonActions addLast: aGLMGenericAction 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMValidator>>addPaneFrom: aPort  [
+{ #category : #private }
+GLMValidator >> addPaneFrom: aPort [ 
 
 	self panes isEmpty ifTrue: [
 		self panes addLast: (GLMPane in: self).
@@ -37,11 +27,8 @@ GLMValidator>>addPaneFrom: aPort  [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMValidator>>addPaneFromInner: aPort  [
+{ #category : #private }
+GLMValidator >> addPaneFromInner: aPort [ 
 	| newTransmission realTransmissions lastActivePresentation |
 	"the lastActivePresentation is needed for knowing what presentation to show by default"
 	self panes isEmpty ifFalse: [lastActivePresentation := self panes last lastActivePresentation ].
@@ -65,58 +52,40 @@ GLMValidator>>addPaneFromInner: aPort  [
 		do: [:each | each transmit]. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMValidator>>buttonActions [
+{ #category : #accessing }
+GLMValidator >> buttonActions [
 
 	^ buttonActions
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMValidator>>explicitlyInnerPortNamed: aPortName [
+{ #category : #events }
+GLMValidator >> explicitlyInnerPortNamed: aPortName [
 
 	aPortName = #entity ifFalse: [
 		self panes first ports do: [:each | (self pane port: each name) value: each value] ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMValidator>>initialize [
+{ #category : #initialize-release }
+GLMValidator >> initialize [
 
 	super initialize.
 	buttonActions := OrderedCollection new
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMValidator>>innerPortEvent: aPortEvent  [
+{ #category : #events }
+GLMValidator >> innerPortEvent: aPortEvent [ 
 
 
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMValidator>>on: anAnnouncementClass send: aSelector [
+{ #category : #announcements }
+GLMValidator >> on: anAnnouncementClass send: aSelector [
 
 	self specificAnnouncementActions at: anAnnouncementClass  put: aSelector 
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMValidator>>outerPortEvent: aPortEvent  [
+{ #category : #events }
+GLMValidator >> outerPortEvent: aPortEvent [ 
 	
  	super outerPortEvent: aPortEvent.
 	aPortEvent port name = #entityToSelect ifTrue: [
@@ -125,39 +94,27 @@ GLMValidator>>outerPortEvent: aPortEvent  [
 		self addPaneFrom: aPortEvent port ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMValidator>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMValidator >> renderGlamorouslyOn: aRenderer [ 
 	^ aRenderer renderValidator: self
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMValidator>>setSpecificAnnouncementActionsTo: aRenderer [
+{ #category : #announcements }
+GLMValidator >> setSpecificAnnouncementActionsTo: aRenderer [
 
 	self specificAnnouncementActions keysAndValuesDo: [:anAnnouncementClass :aSymbol |
 		self when: anAnnouncementClass send: aSymbol to: aRenderer.
 		]
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMValidator>>specificAnnouncementActions [
+{ #category : #announcements }
+GLMValidator >> specificAnnouncementActions [
 
 	^ specificAnnouncementActions ifNil: [specificAnnouncementActions := Dictionary new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMValidator>>validator: aString act: aBlock  [
+{ #category : #accessing }
+GLMValidator >> validator: aString act: aBlock [ 
 
 	"will populate all ports by default at the end"
 	self addButtonAction:   
@@ -174,11 +131,8 @@ GLMValidator>>validator: aString act: aBlock  [
 				
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMValidator>>validator: aString act: aBlock populatePorts: aCollectionOfPorts [
+{ #category : #accessing }
+GLMValidator >> validator: aString act: aBlock populatePorts: aCollectionOfPorts [
 
 	self addButtonAction:   
 			((GLMGenericAction new) 
@@ -195,11 +149,8 @@ GLMValidator>>validator: aString act: aBlock populatePorts: aCollectionOfPorts [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMValidator>>validator: aString populatePorts: aCollectionOfPorts [
+{ #category : #accessing }
+GLMValidator >> validator: aString populatePorts: aCollectionOfPorts [
 
 	self addButtonAction:   
 			((GLMGenericAction new) 

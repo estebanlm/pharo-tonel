@@ -4,32 +4,22 @@ SUnit tests for weak identity key dictionaries
 Class {
 	#name : #WeakIdentityKeyDictionaryTest,
 	#superclass : #WeakKeyDictionaryTest,
-	#category : #Collections-Tests-Weak,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:22'
+	#category : #Collections-Tests-Weak
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakIdentityKeyDictionaryTest>>canBeUnhealthy [
+{ #category : #requirements }
+WeakIdentityKeyDictionaryTest >> canBeUnhealthy [
 	^ false
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakIdentityKeyDictionaryTest>>classToBeTested [
+{ #category : #requirements }
+WeakIdentityKeyDictionaryTest >> classToBeTested [
 
 ^WeakIdentityKeyDictionary 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakIdentityKeyDictionaryTest>>testFinalizeValuesWhenLastChainContinuesAtFront [
+{ #category : #tests }
+WeakIdentityKeyDictionaryTest >> testFinalizeValuesWhenLastChainContinuesAtFront [
 
 	| objectWithHashModulo dictionary capacity a b c |
 	
@@ -59,11 +49,8 @@ WeakIdentityKeyDictionaryTest>>testFinalizeValuesWhenLastChainContinuesAtFront [
 		self assert: dictionary slowSize = 2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakIdentityKeyDictionaryTest>>testNoNils [
+{ #category : #tests }
+WeakIdentityKeyDictionaryTest >> testNoNils [
 	| d |
 	d := WeakIdentityKeyDictionary new
 	at: 'hello' copy put: 'world';

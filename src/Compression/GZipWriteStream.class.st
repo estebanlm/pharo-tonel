@@ -7,26 +7,19 @@ Class {
 	#pools : [
 		'GZipConstants'
 	],
-	#category : #Compression-Streams,
-	#timestamp : '<historical>'
+	#category : #Compression-Streams
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-GZipWriteStream>>writeFooter [
+{ #category : #initialization }
+GZipWriteStream >> writeFooter [
 	"Write some footer information for the crc"
 	super writeFooter.
 	0 to: 3 do:[:i| encoder nextBytePut: (crc >> (i*8) bitAnd: 255)].
 	0 to: 3 do:[:i| encoder nextBytePut: (bytesWritten >> (i*8) bitAnd: 255)].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-GZipWriteStream>>writeHeader [
+{ #category : #initialization }
+GZipWriteStream >> writeHeader [
 	"Write the GZip header"
 	encoder nextBits: 16 put: GZipMagic.
 	encoder nextBits: 8 put: GZipDeflated.

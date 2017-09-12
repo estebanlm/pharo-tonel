@@ -4,15 +4,11 @@ I'm the one who knowshow to navigate inside the child nodes
 Class {
 	#name : #NNavDirectionChild,
 	#superclass : #NNavDirection,
-	#category : #NodeNavigation-Core,
-	#timestamp : '<historical>'
+	#category : #NodeNavigation-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionChild class>>askForNodeSelectionFrom: nodes [
+{ #category : #private }
+NNavDirectionChild class >> askForNodeSelectionFrom: nodes [
 	
 	
 	^ UIManager default 
@@ -22,11 +18,8 @@ NNavDirectionChild class>>askForNodeSelectionFrom: nodes [
 		title: 'Which code do you want to select?' translated
 ]
 
-{
-	#category : #builder,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionChild class>>buildShortcut: aBuilder [
+{ #category : #builder }
+NNavDirectionChild class >> buildShortcut: aBuilder [
 	<keymap>
 	(aBuilder shortcut: #selectChild)
 		category: #SmalltalkEditor
@@ -35,11 +28,8 @@ NNavDirectionChild class>>buildShortcut: aBuilder [
 		description: 'Select the node choosing the child'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionChild class>>childNodeFor: node [
+{ #category : #private }
+NNavDirectionChild class >> childNodeFor: node [
 	"We find the child for a node, if it has not childs nil, if has more than one let the user select the one he wants."
 	node ifNil:[^nil].
 	^ node children isEmpty
@@ -51,22 +41,16 @@ NNavDirectionChild class>>childNodeFor: node [
 		 ]
 ]
 
-{
-	#category : #'stand out',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionChild class>>findSelectionFor: navigationContext [
+{ #category : #'stand out' }
+NNavDirectionChild class >> findSelectionFor: navigationContext [
 	^ self
 		calculateBestSeletionFor: (self childNodeFor: navigationContext bestNodeForSelection)
 		beforeSelection: navigationContext textSelection
 		step: [ :selection :target | self selectionChildrenScope: selection for: target ]
 ]
 
-{
-	#category : #'step into',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionChild class>>selectionChildrenScope: selected for: node [
+{ #category : #'step into' }
+NNavDirectionChild class >> selectionChildrenScope: selected for: node [
 	| children |
 
 	node ifNil: [ ^selected ].

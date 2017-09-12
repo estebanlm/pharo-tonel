@@ -18,15 +18,11 @@ Class {
 		'context',
 		'messages'
 	],
-	#category : #AST-Core-Matching,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Matching
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher class>>buildSelectorString: aSelector  [
+{ #category : #private }
+RBParseTreeSearcher class >> buildSelectorString: aSelector [ 
 	| stream keywords |
 	aSelector numArgs = 0 ifTrue: [^aSelector].
 	stream := String new writeStream.
@@ -42,43 +38,31 @@ RBParseTreeSearcher class>>buildSelectorString: aSelector  [
 	^stream contents
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher class>>buildSelectorTree: aSelector  [
+{ #category : #private }
+RBParseTreeSearcher class >> buildSelectorTree: aSelector [ 
 	aSelector isEmpty ifTrue: [^nil].
 	^RBParser parseRewriteExpression: '``@receiver ' 
 				, (self buildSelectorString: aSelector)
 		onError: [:err :pos | ^nil]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher class>>buildTree: aString method: aBoolean  [
+{ #category : #private }
+RBParseTreeSearcher class >> buildTree: aString method: aBoolean [ 
 	^aBoolean 
 		ifTrue: [RBParser parseRewriteMethod: aString]
 		ifFalse: [RBParser parseRewriteExpression: aString]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher class>>getterMethod: aVarName  [
+{ #category : #'instance creation' }
+RBParseTreeSearcher class >> getterMethod: aVarName [ 
 	^(self new)
 		matchesMethod: '`method ^' , aVarName do: [:aNode :ans | aNode selector];
 		matchesMethod: '`method ^' , aVarName, ' ifNil:[ `@expr]' do: [:aNode :ans | aNode selector];
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher class>>justSendsSuper [
+{ #category : #'instance creation' }
+RBParseTreeSearcher class >> justSendsSuper [
 	^ self new
 		matchesAnyMethodOf: #(
 			'`@method: `@args ^ super `@method: `@args' 
@@ -87,22 +71,16 @@ RBParseTreeSearcher class>>justSendsSuper [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher class>>returnSetterMethod: aVarName  [
+{ #category : #'instance creation' }
+RBParseTreeSearcher class >> returnSetterMethod: aVarName [ 
 	^(self new)
 		matchesMethod: '`method: `Arg ^' , aVarName , ' := `Arg'
 			do: [:aNode :ans | aNode selector];
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher class>>setterMethod: aVarName  [
+{ #category : #'instance creation' }
+RBParseTreeSearcher class >> setterMethod: aVarName [ 
 	^(self new)
 		matchesAnyMethodOf: (Array with: '`method: `Arg ' , aVarName , ' := `Arg'
 					with: '`method: `Arg ^' , aVarName , ' := `Arg')
@@ -110,22 +88,16 @@ RBParseTreeSearcher class>>setterMethod: aVarName  [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher class>>treeMatching: aString in: aParseTree  [
+{ #category : #accessing }
+RBParseTreeSearcher class >> treeMatching: aString [ in: aParseTree 
 	(self new)
 		matches: aString do: [:aNode :answer | ^aNode];
 		executeTree: aParseTree.
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher class>>treeMatchingStatements: aString in: aParseTree  [
+{ #category : #accessing }
+RBParseTreeSearcher class >> treeMatchingStatements: aString [ in: aParseTree 
 	| notifier tree |
 	notifier := self new.
 	tree := RBParser parseExpression: aString.
@@ -141,61 +113,40 @@ RBParseTreeSearcher class>>treeMatchingStatements: aString in: aParseTree  [
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>addArgumentRule: aParseTreeRule  [
+{ #category : #accessing }
+RBParseTreeSearcher >> addArgumentRule: aParseTreeRule [ 
 	argumentSearches add: aParseTreeRule.
 	aParseTreeRule owner: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>addArgumentRules: ruleCollection  [
+{ #category : #accessing }
+RBParseTreeSearcher >> addArgumentRules: ruleCollection [ 
 	ruleCollection do: [:each | self addArgumentRule: each]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>addRule: aParseTreeRule  [
+{ #category : #accessing }
+RBParseTreeSearcher >> addRule: aParseTreeRule [ 
 	searches add: aParseTreeRule.
 	aParseTreeRule owner: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>addRules: ruleCollection  [
+{ #category : #accessing }
+RBParseTreeSearcher >> addRules: ruleCollection [ 
 	ruleCollection do: [:each | self addRule: each]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>answer [
+{ #category : #accessing }
+RBParseTreeSearcher >> answer [
 	^answer
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>answer: anObject [
+{ #category : #initialize-release }
+RBParseTreeSearcher >> answer: anObject [
 	answer := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>canMatchMethod: aCompiledMethod [
+{ #category : #testing }
+RBParseTreeSearcher >> canMatchMethod: aCompiledMethod [
 	| actualMessages |
 	self messages isEmpty
 		ifTrue: [ ^ true ].
@@ -204,29 +155,20 @@ RBParseTreeSearcher>>canMatchMethod: aCompiledMethod [
 		anySatisfy: [ :each | actualMessages includes: each ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>context [
+{ #category : #accessing }
+RBParseTreeSearcher >> context [
 	^context
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>executeMethod: aParseTree initialAnswer: anObject  [
+{ #category : #accessing }
+RBParseTreeSearcher >> executeMethod: aParseTree initialAnswer: anObject [ 
 	answer := anObject.
 	searches detect: [:each | (each performOn: aParseTree) notNil] ifNone: [].
 	^answer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>executeTree: aParseTree  [
+{ #category : #accessing }
+RBParseTreeSearcher >> executeTree: aParseTree [ 
 	"Save our current context, in case someone is performing another search inside a match."
 
 	| oldContext |
@@ -237,36 +179,23 @@ RBParseTreeSearcher>>executeTree: aParseTree  [
 	^answer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>executeTree: aParseTree initialAnswer: aValue  [
+{ #category : #accessing }
+RBParseTreeSearcher >> executeTree: aParseTree initialAnswer: aValue [ 
 	answer := aValue.
 	^self executeTree: aParseTree
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>foundMatch [
-
+{ #category : #private }
+RBParseTreeSearcher >> foundMatch [
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>hasRules [
+{ #category : #testing }
+RBParseTreeSearcher >> hasRules [
 	^searches notEmpty
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>initialize [
+{ #category : #initialization }
+RBParseTreeSearcher >> initialize [
 	super initialize.
 	context := SmallDictionary new.
 	searches := OrderedCollection new.
@@ -274,95 +203,62 @@ RBParseTreeSearcher>>initialize [
 	answer := nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>lookForMoreMatchesInContext: oldContext  [
+{ #category : #private }
+RBParseTreeSearcher >> lookForMoreMatchesInContext: oldContext [ 
 	oldContext keysAndValuesDo: 
 			[:key :value | 
 			(key isString not and: [key recurseInto]) 
 				ifTrue: [value do: [:each | self visitNode: each]]]
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>matches: aString do: aBlock  [
+{ #category : #searching }
+RBParseTreeSearcher >> matches: aString do: aBlock [ 
 	self addRule: (RBSearchRule searchFor: aString thenDo: aBlock)
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>matchesAnyArgumentOf: stringCollection do: aBlock  [
+{ #category : #searching }
+RBParseTreeSearcher >> matchesAnyArgumentOf: stringCollection do: aBlock [ 
 	stringCollection do: [:each | self matchesArgument: each do: aBlock]
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>matchesAnyMethodOf: aStringCollection do: aBlock  [
+{ #category : #searching }
+RBParseTreeSearcher >> matchesAnyMethodOf: aStringCollection do: aBlock [ 
 	aStringCollection do: [:each | self matchesMethod: each do: aBlock]
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>matchesAnyOf: aStringCollection do: aBlock  [
+{ #category : #searching }
+RBParseTreeSearcher >> matchesAnyOf: aStringCollection do: aBlock [ 
 	aStringCollection do: [:each | self matches: each do: aBlock]
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>matchesAnyTreeOf: treeCollection do: aBlock  [
+{ #category : #searching }
+RBParseTreeSearcher >> matchesAnyTreeOf: treeCollection do: aBlock [ 
 	treeCollection do: [:each | self matchesTree: each do: aBlock]
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>matchesArgument: aString do: aBlock  [
+{ #category : #searching }
+RBParseTreeSearcher >> matchesArgument: aString do: aBlock [ 
 	self addArgumentRule: (RBSearchRule searchFor: aString thenDo: aBlock)
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>matchesArgumentTree: aBRProgramNode do: aBlock  [
+{ #category : #searching }
+RBParseTreeSearcher >> matchesArgumentTree: aBRProgramNode do: aBlock [ 
 	self 
 		addArgumentRule: (RBSearchRule searchForTree: aBRProgramNode thenDo: aBlock)
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>matchesMethod: aString do: aBlock  [
+{ #category : #searching }
+RBParseTreeSearcher >> matchesMethod: aString do: aBlock [ 
 	self addRule: (RBSearchRule searchForMethod: aString thenDo: aBlock)
 ]
 
-{
-	#category : #searching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>matchesTree: aBRProgramNode do: aBlock  [
+{ #category : #searching }
+RBParseTreeSearcher >> matchesTree: aBRProgramNode do: aBlock [ 
 	self addRule: (RBSearchRule searchForTree: aBRProgramNode thenDo: aBlock)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>messages [
+{ #category : #accessing }
+RBParseTreeSearcher >> messages [
 	messages notNil ifTrue: [^messages].
 	argumentSearches notEmpty ifTrue: [^messages := #()].
 	messages := Set new.
@@ -377,11 +273,8 @@ RBParseTreeSearcher>>messages [
 	^messages := messages asArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>performSearches: aSearchCollection on: aNode  [
+{ #category : #private }
+RBParseTreeSearcher >> performSearches: aSearchCollection [ on: aNode 
 	| value |
 	aSearchCollection do: [ :aSearchRule|
 		value := aSearchRule performOn: aNode.
@@ -392,11 +285,8 @@ RBParseTreeSearcher>>performSearches: aSearchCollection on: aNode  [
 	^nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>recusivelySearchInContext [
+{ #category : #private }
+RBParseTreeSearcher >> recusivelySearchInContext [
 	"We need to save the matched context since the other searches might overwrite it."
 
 	| oldContext |
@@ -406,11 +296,8 @@ RBParseTreeSearcher>>recusivelySearchInContext [
 	context := oldContext
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>visitArgumentNode: aNode [
+{ #category : #visiting }
+RBParseTreeSearcher >> visitArgumentNode: aNode [
 	| value |
 	value := self performSearches: argumentSearches on: aNode.
 	^ value
@@ -420,11 +307,8 @@ RBParseTreeSearcher>>visitArgumentNode: aNode [
 		ifNotNil: [ value ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeSearcher>>visitNode: aNode  [
+{ #category : #visiting }
+RBParseTreeSearcher >> visitNode: aNode [ 
 	| value |
 	value := self performSearches: searches on: aNode.
 	^ value

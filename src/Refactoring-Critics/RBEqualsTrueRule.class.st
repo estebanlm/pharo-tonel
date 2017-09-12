@@ -4,33 +4,23 @@ Check for a =, ==, ~=, or ~~ message being sent to true/false or with true/false
 Class {
 	#name : #RBEqualsTrueRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:31'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEqualsTrueRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBEqualsTrueRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'EqualsTrueRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEqualsTrueRule>>group [
+{ #category : #accessing }
+RBEqualsTrueRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEqualsTrueRule>>initialize [
+{ #category : #initialization }
+RBEqualsTrueRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyOf: #('true' 'false')
@@ -43,26 +33,17 @@ RBEqualsTrueRule>>initialize [
 				ifFalse: [ answer ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEqualsTrueRule>>name [
+{ #category : #accessing }
+RBEqualsTrueRule >> name [
 	^ 'Unnecessary "= true"'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEqualsTrueRule>>rationale [
+{ #category : #accessing }
+RBEqualsTrueRule >> rationale [
 	^ 'Check for a =, ==, ~=, or ~~ message being sent to true/false or with true/false as the argument.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBEqualsTrueRule>>severity [
+{ #category : #accessing }
+RBEqualsTrueRule >> severity [
 	^ #information
 ]

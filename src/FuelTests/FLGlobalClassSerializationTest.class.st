@@ -6,15 +6,11 @@ Class {
 	#superclass : #FLClassSerializationTest,
 	#traits : 'FLTGlobalClassOrTraitSerializationTest',
 	#classTraits : 'FLTGlobalClassOrTraitSerializationTest classTrait',
-	#category : #FuelTests,
-	#timestamp : 'MartinDias 11/28/2011 10:48'
+	#category : #FuelTests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGlobalClassSerializationTest>>testInstanceOfAnObsoleteClass [
+{ #category : #tests }
+FLGlobalClassSerializationTest >> testInstanceOfAnObsoleteClass [
 	"Tests that serializer does not serialize an instance of an obsolete class."
 	
 	| aClass instance |

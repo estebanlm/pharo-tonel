@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloPrePostLoadDirective,
 	#superclass : #MetacelloDirective,
-	#category : #Metacello-MC-Directives,
-	#timestamp : ''
+	#category : #Metacello-MC-Directives
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPrePostLoadDirective>>evaluateSupplyingAnswers: loadBlock [
+{ #category : #actions }
+MetacelloPrePostLoadDirective >> evaluateSupplyingAnswers: loadBlock [
 
 	| answers |
 	(answers := self spec answers) notEmpty
@@ -20,20 +13,14 @@ MetacelloPrePostLoadDirective>>evaluateSupplyingAnswers: loadBlock [
 		ifFalse: [ loadBlock value]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPrePostLoadDirective>>prepostLoadDirectivesDo: aBlock [
+{ #category : #enumerating }
+MetacelloPrePostLoadDirective >> prepostLoadDirectivesDo: aBlock [
 
 	aBlock value: self
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloPrePostLoadDirective>>prepostLoadDo: aBlock [
+{ #category : #enumerating }
+MetacelloPrePostLoadDirective >> prepostLoadDo: aBlock [
 
 	aBlock value: self
 ]

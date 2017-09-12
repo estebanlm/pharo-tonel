@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCTraitDefinition
-}
+Extension { #name : #MCTraitDefinition }
 
-{
-	#category : #'*Ring-Monticello',
-	#timestamp : ' 8/31/2017 07:17:02'
-}
-MCTraitDefinition>>asRingDefinition [
+{ #category : #'*Ring-Monticello' }
+MCTraitDefinition >> asRingDefinition [
 
 	| ring |
 	ring := ( RGTraitDefinition named: self className)
@@ -24,21 +19,15 @@ MCTraitDefinition>>asRingDefinition [
 	^ring
 ]
 
-{
-	#category : #'*Ring-Monticello',
-	#timestamp : ' 8/31/2017 07:17:02'
-}
-MCTraitDefinition>>classDefinitionString [
+{ #category : #'*Ring-Monticello' }
+MCTraitDefinition >> classDefinitionString [
 	"Answer a string describing the class-side definition."
 	
 	^String streamContents: [:stream | self printMetaDefinitionOn: stream]
 ]
 
-{
-	#category : #'*Ring-Monticello',
-	#timestamp : ' 8/31/2017 07:17:02'
-}
-MCTraitDefinition>>classTraitCompositionString [
+{ #category : #'*Ring-Monticello' }
+MCTraitDefinition >> classTraitCompositionString [
 	^self traitComposition 
 		ifNil: [ '{}' ]
 		ifNotNil: [ :source| | tokens tcs |
@@ -52,11 +41,8 @@ MCTraitDefinition>>classTraitCompositionString [
 				ifFalse:[ tcs copyFrom: 1 to: tcs size - 3 ] ]
 ]
 
-{
-	#category : #'*Ring-Monticello',
-	#timestamp : ' 8/31/2017 07:17:02'
-}
-MCTraitDefinition>>printMetaDefinitionOn: stream [
+{ #category : #'*Ring-Monticello' }
+MCTraitDefinition >> printMetaDefinitionOn: stream [
 
 	stream nextPutAll: self className, ' classTrait'; 
 		 crtab;

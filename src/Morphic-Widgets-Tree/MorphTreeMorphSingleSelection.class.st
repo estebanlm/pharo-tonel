@@ -7,63 +7,41 @@ Class {
 	#instVars : [
 		'selectedNodePath'
 	],
-	#category : #Morphic-Widgets-Tree,
-	#timestamp : 'TorstenBergmann 9/5/2014 15:28'
+	#category : #Morphic-Widgets-Tree
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorphSingleSelection>>addNodePath: aPath [
+{ #category : #accessing }
+MorphTreeMorphSingleSelection >> addNodePath: aPath [
 	self selectedNodePath: aPath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorphSingleSelection>>empty [
+{ #category : #accessing }
+MorphTreeMorphSingleSelection >> empty [
 	self selectedNodePath: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorphSingleSelection>>lastSelectedNodePath [
+{ #category : #accessing }
+MorphTreeMorphSingleSelection >> lastSelectedNodePath [
 	^ self selectedNodePath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorphSingleSelection>>removeNode: aNode [
+{ #category : #accessing }
+MorphTreeMorphSingleSelection >> removeNode: aNode [
 	self selectedNodePath = aNode path
 		ifTrue: [self selectedNodePath: nil]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorphSingleSelection>>selectedNodePath [
+{ #category : #accessing }
+MorphTreeMorphSingleSelection >> selectedNodePath [
 	^ selectedNodePath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorphSingleSelection>>selectedNodePath: aSelectionPath [
+{ #category : #accessing }
+MorphTreeMorphSingleSelection >> selectedNodePath: aSelectionPath [
 	selectedNodePath := aSelectionPath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorphSingleSelection>>selectedNodePathList [
+{ #category : #accessing }
+MorphTreeMorphSingleSelection >> selectedNodePathList [
 	^ self selectedNodePath ifNil: [#()] ifNotNil: [Array with: self selectedNodePath]
 ]

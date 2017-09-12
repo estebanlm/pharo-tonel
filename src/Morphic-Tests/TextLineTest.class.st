@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #TextLineTest,
 	#superclass : #HashAndEqualsTestCase,
-	#category : #'Morphic-Tests-Text Support',
-	#timestamp : ''
+	#category : #'Morphic-Tests-Text Support'
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-TextLineTest>>setUp [
+{ #category : #running }
+TextLineTest >> setUp [
 	super setUp.
 	prototypes
 		add: (TextLine

@@ -5,68 +5,46 @@ A ResumeDebugAction resumes the execution of the interrupted process and closes 
 Class {
 	#name : #ResumeDebugAction,
 	#superclass : #DebugAction,
-	#category : #DebuggerActions,
-	#timestamp : '<historical>'
+	#category : #DebuggerActions
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-ResumeDebugAction class>>actionType [
+{ #category : #registration }
+ResumeDebugAction class >> actionType [
 	<debuggingAction>
 	<contextMenuDebuggingAction>
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-ResumeDebugAction>>defaultHelp [
+{ #category : #accessing }
+ResumeDebugAction >> defaultHelp [
 	^ 'Relinquish debugger control and proceed execution from the current point of debugger control.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-ResumeDebugAction>>defaultKeymap [
+{ #category : #accessing }
+ResumeDebugAction >> defaultKeymap [
 
 	^ PharoShortcuts current resumeExecutionShortcut
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-ResumeDebugAction>>defaultLabel [
+{ #category : #accessing }
+ResumeDebugAction >> defaultLabel [
 
 	^ 'Proceed'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-ResumeDebugAction>>defaultOrder [
+{ #category : #accessing }
+ResumeDebugAction >> defaultOrder [
 
 	^ 5
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-ResumeDebugAction>>enabled [
+{ #category : #accessing }
+ResumeDebugAction >> enabled [
 
 	^ self interruptedContextIsPostMortem not
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-ResumeDebugAction>>executeAction [
+{ #category : #actions }
+ResumeDebugAction >> executeAction [
 
 	self session 
 		resume;
@@ -74,31 +52,22 @@ ResumeDebugAction>>executeAction [
 	self debugger close. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-ResumeDebugAction>>id [
+{ #category : #accessing }
+ResumeDebugAction >> id [
 
 	^ #resume
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-ResumeDebugAction>>initialize [
+{ #category : #initialization }
+ResumeDebugAction >> initialize [
 
 	super initialize.
 	"No need to update the debgger as it will anyway be closed."
 	self needsUpdate: false 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-ResumeDebugAction>>interruptedContextIsPostMortem [
+{ #category : #private }
+ResumeDebugAction >> interruptedContextIsPostMortem [
 
 	^ (self session isContextPostMortem: self interruptedContext) 
 ]

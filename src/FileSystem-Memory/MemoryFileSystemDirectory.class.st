@@ -7,85 +7,57 @@ Class {
 	#instVars : [
 		'entries'
 	],
-	#category : #FileSystem-Memory,
-	#timestamp : '<historical>'
+	#category : #FileSystem-Memory
 }
 
-{
-	#category : #creation,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemDirectory>>ensureCreateDirectory: aDirectoryName [
+{ #category : #creation }
+MemoryFileSystemDirectory >> ensureCreateDirectory: aDirectoryName [
 	^ self 
 		fileEntryAt: aDirectoryName
 		put: (self class named: aDirectoryName)
 ]
 
-{
-	#category : #creation,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemDirectory>>ensureCreateFile: aFileName [
+{ #category : #creation }
+MemoryFileSystemDirectory >> ensureCreateFile: aFileName [
 	^ self 
 		fileEntryAt: aFileName 
 		put: (MemoryFileSystemFile named: aFileName)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemDirectory>>entries [
+{ #category : #accessing }
+MemoryFileSystemDirectory >> entries [
 	^ entries
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemDirectory>>fileEntriesDo: aBlock [
+{ #category : #enumeration }
+MemoryFileSystemDirectory >> fileEntriesDo: aBlock [
 	
 	entries keys sort do: [ :fileName|
 		aBlock value: (entries at: fileName)].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemDirectory>>fileEntriesIncludes: aFileName [
+{ #category : #accessing }
+MemoryFileSystemDirectory >> fileEntriesIncludes: aFileName [
 	^ entries includesKey: aFileName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemDirectory>>fileEntryAt: aFileName [
+{ #category : #accessing }
+MemoryFileSystemDirectory >> fileEntryAt: aFileName [
 	^ entries at: aFileName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemDirectory>>fileEntryAt: aFileName ifAbsent: aBlock [
+{ #category : #accessing }
+MemoryFileSystemDirectory >> fileEntryAt: aFileName ifAbsent: aBlock [
 	^ entries at: aFileName ifAbsent: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemDirectory>>fileEntryAt: aFileName ifPresent: aBlock [
+{ #category : #accessing }
+MemoryFileSystemDirectory >> fileEntryAt: aFileName ifPresent: aBlock [
 	^ entries at: aFileName ifPresent: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemDirectory>>fileEntryAt: aFileName put: anEntry [
+{ #category : #accessing }
+MemoryFileSystemDirectory >> fileEntryAt: aFileName put: anEntry [
 	^ entries 
 		at: aFileName 
 		ifAbsentPut: [
@@ -93,46 +65,31 @@ MemoryFileSystemDirectory>>fileEntryAt: aFileName put: anEntry [
 			anEntry ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemDirectory>>fileEntryRemove: aFileName [
+{ #category : #accessing }
+MemoryFileSystemDirectory >> fileEntryRemove: aFileName [
 	^ self fileEntryRemove: aFileName ifAbsent: [ FileDoesNotExist signalWith: aFileName ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemDirectory>>fileEntryRemove: aFileName ifAbsent: absentBlock [
+{ #category : #accessing }
+MemoryFileSystemDirectory >> fileEntryRemove: aFileName ifAbsent: absentBlock [
 	| deletedEntry |
 	deletedEntry := entries removeKey: aFileName ifAbsent: [ ^ absentBlock value ].
 	modificationTime := DateAndTime now.
 	^ deletedEntry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemDirectory>>fileSize [
+{ #category : #accessing }
+MemoryFileSystemDirectory >> fileSize [
 	^ 0
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemDirectory>>initialize [
+{ #category : #initialization }
+MemoryFileSystemDirectory >> initialize [
 	super initialize.
 	entries := Dictionary new.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryFileSystemDirectory>>isDirectory [
+{ #category : #testing }
+MemoryFileSystemDirectory >> isDirectory [
 	^ true
 ]

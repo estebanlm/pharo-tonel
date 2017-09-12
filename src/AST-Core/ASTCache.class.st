@@ -7,75 +7,50 @@ Class {
 	#classInstVars : [
 		'default'
 	],
-	#category : #AST-Core-Parser,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Parser
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-ASTCache class>>at: aCompiledMethod [
+{ #category : #accessing }
+ASTCache class >> at: aCompiledMethod [
 	^ default at: aCompiledMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-ASTCache class>>default [
+{ #category : #accessing }
+ASTCache class >> default [
 	^ default
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-ASTCache class>>default: anASTCache [
+{ #category : #accessing }
+ASTCache class >> default: anASTCache [
 	default := anASTCache.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-ASTCache class>>initialize [
+{ #category : #'class initialization' }
+ASTCache class >> initialize [
 	default := self new.
 	SessionManager default registerSystemClassNamed: self name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-ASTCache class>>reset [
+{ #category : #accessing }
+ASTCache class >> reset [
 	default reset.
 	SystemAnnouncer uniqueInstance announce: ASTCacheReset new 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-ASTCache class>>shutDown	 [
+{ #category : #'system startup' }
+ASTCache class >> shutDown [	
 	self reset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-ASTCache>>at: aCompiledMethod [
+{ #category : #accessing }
+ASTCache >> at: aCompiledMethod [
 	^ self 
 		at: aCompiledMethod
 		ifAbsentPut: [ 
 			aCompiledMethod parseTree doSemanticAnalysisIn: aCompiledMethod methodClass ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-ASTCache>>reset [
+{ #category : #accessing }
+ASTCache >> reset [
 	self removeAll
 ]

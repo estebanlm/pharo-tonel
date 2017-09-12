@@ -15,26 +15,19 @@ Class {
 		'timeout',
 		'debug'
 	],
-	#category : #Zodiac-Core,
-	#timestamp : 'SvenVanCaekenberghe 5/17/2011 18:56'
+	#category : #Zodiac-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream class>>on: object [
+{ #category : #'instance creation' }
+ZdcAbstractSocketStream class >> on: object [
 	^ (self basicNew)
 		initialize;
 		on: object;
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>atEnd [
+{ #category : #testing }
+ZdcAbstractSocketStream >> atEnd [
 	"I am atEnd when there is no more data to be read and there never will be.
 	This means that readBuffer must be empty, 
 	there must be no more unread data available at the socket,
@@ -43,35 +36,23 @@ ZdcAbstractSocketStream>>atEnd [
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>autoFlush: boolean [
+{ #category : #compatibility }
+ZdcAbstractSocketStream >> autoFlush: boolean [
 	"I flush when asked to, or when my buffer is full."
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>binary [
+{ #category : #compatibility }
+ZdcAbstractSocketStream >> binary [
 	"I am always binary."
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>bufferSize: numberOfBytes [
+{ #category : #compatibility }
+ZdcAbstractSocketStream >> bufferSize: numberOfBytes [
 	"Not yet implemented. See #initializeBuffers."
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>close [
+{ #category : #initialize-release }
+ZdcAbstractSocketStream >> close [
 	"Close the stream, flush if necessary"
 
 	[ self flush ] ensure: [ 
@@ -82,129 +63,90 @@ ZdcAbstractSocketStream>>close [
 		writeBuffer close ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>collectionSpecies [
+{ #category : #accessing }
+ZdcAbstractSocketStream >> collectionSpecies [
 	"Fixed to ByteArray since we are binary"
 	
 	^ ByteArray
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>debug: aBoolean [
+{ #category : #private }
+ZdcAbstractSocketStream >> debug: aBoolean [
 	debug := aBoolean 
 ]
 
-{
-	#category : #'private in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>fillReadBuffer [
+{ #category : #'private in' }
+ZdcAbstractSocketStream >> fillReadBuffer [
 	"Ask the delegate to fill the read buffer with data. 
 	Wait for at least some data."
 	
 	self subclassResponsibility  
 ]
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>flush [
+{ #category : #'stream out' }
+ZdcAbstractSocketStream >> flush [
 	"Flush all pending output that might be in the write buffer"
 	
 	self flushWriteBuffer 
 ]
 
-{
-	#category : #'private out',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>flushWriteBuffer [
+{ #category : #'private out' }
+ZdcAbstractSocketStream >> flushWriteBuffer [
 	"Ask the delegate to write all data in the write buffer. Fail if not successful"
 	
 	self subclassResponsibility 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>initialize  [
+{ #category : #initialize-release }
+ZdcAbstractSocketStream >> initialize [ 
 	timeout := 5.
 	debug := false.
 	self initializeBuffers 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>initializeBuffers [
+{ #category : #initialize-release }
+ZdcAbstractSocketStream >> initializeBuffers [
 	readBuffer := ZdcIOBuffer onByteArrayOfSize: 4096.
 	writeBuffer := ZdcIOBuffer onByteArrayOfSize: 4096
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>isBinary [
+{ #category : #testing }
+ZdcAbstractSocketStream >> isBinary [
 	"We are always binary"
 	
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>isConnected [
+{ #category : #testing }
+ZdcAbstractSocketStream >> isConnected [
 	"Are we connected at the socket level ?"
 	
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>isDataAvailable [
+{ #category : #testing }
+ZdcAbstractSocketStream >> isDataAvailable [
 	"Return true when there is data available for reading.
 	This does not block."
 	
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>isStream [
+{ #category : #testing }
+ZdcAbstractSocketStream >> isStream [
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>log: object [
+{ #category : #private }
+ZdcAbstractSocketStream >> log: object [
 	debug ifTrue: [
 		Transcript cr; show: object value ]
 	
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>next [
+{ #category : #'stream in' }
+ZdcAbstractSocketStream >> next [
 	"Read and return a single byte"
 	
 	readBuffer isEmpty ifTrue: [ self fillReadBuffer ].
@@ -213,11 +155,8 @@ ZdcAbstractSocketStream>>next [
 		ifFalse: [ readBuffer next ]
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>next: requestedCount  [
+{ #category : #'stream in' }
+ZdcAbstractSocketStream >> next: requestedCount [ 
 	"Read requestedCount bytes and return them as a ByteArray.
 	If less are available, a smaller ByteArray will be returned."
 
@@ -226,11 +165,8 @@ ZdcAbstractSocketStream>>next: requestedCount  [
 		into: (self collectionSpecies new: requestedCount)
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>next: requestedCount into: collection [
+{ #category : #'stream in' }
+ZdcAbstractSocketStream >> next: requestedCount into: collection [
 	"Read requestedCount elements into collection,
 	returning a copy if less elements are available"
 	
@@ -240,11 +176,8 @@ ZdcAbstractSocketStream>>next: requestedCount into: collection [
 		startingAt: 1   
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>next: requestedCount into: collection startingAt: offset [
+{ #category : #'stream in' }
+ZdcAbstractSocketStream >> next: requestedCount into: collection startingAt: offset [
 	"Read requestedCount elements into collection starting at offset,
 	returning a copy if less elements are available"
 	
@@ -258,11 +191,8 @@ ZdcAbstractSocketStream>>next: requestedCount into: collection startingAt: offse
 		ifFalse: [ collection copyFrom: 1 to: offset + read - 1 ]     
 ]
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>next: count putAll: collection [
+{ #category : #'stream out' }
+ZdcAbstractSocketStream >> next: count putAll: collection [
 	"Write count bytes from collection"
 	
 	self 
@@ -271,11 +201,8 @@ ZdcAbstractSocketStream>>next: count putAll: collection [
 		startingAt: 1
 ]
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>next: count putAll: collection startingAt: offset [
+{ #category : #'stream out' }
+ZdcAbstractSocketStream >> next: count putAll: collection startingAt: offset [
 	"Write count bytes from collection starting at offset.
 	This is an inefficient abstract implementation writing bytes one by one."
 	
@@ -283,11 +210,8 @@ ZdcAbstractSocketStream>>next: count putAll: collection startingAt: offset [
 		self nextPut: (collection at: offset + each) ]
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>nextInto: collection [
+{ #category : #'stream in' }
+ZdcAbstractSocketStream >> nextInto: collection [
 	"Read the next elements of the receiver into collection,
 	returning a copy if less elements are available"
 	
@@ -296,11 +220,8 @@ ZdcAbstractSocketStream>>nextInto: collection [
 		into: collection
 ]
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>nextPut: object [
+{ #category : #'stream out' }
+ZdcAbstractSocketStream >> nextPut: object [
 	"Write a single byte"
 	
 	writeBuffer isFull ifTrue: [ self flushWriteBuffer ].
@@ -308,11 +229,8 @@ ZdcAbstractSocketStream>>nextPut: object [
 	
 ]
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>nextPutAll: collection [
+{ #category : #'stream out' }
+ZdcAbstractSocketStream >> nextPutAll: collection [
 	"Write a collection of bytes"
 	
 	self 
@@ -321,19 +239,13 @@ ZdcAbstractSocketStream>>nextPutAll: collection [
 		startingAt: 1
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>on: object [
+{ #category : #initialize-release }
+ZdcAbstractSocketStream >> on: object [
 	socket := object
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>peek [
+{ #category : #'stream in' }
+ZdcAbstractSocketStream >> peek [
 	"Peek and return a single byte"
 	
 	readBuffer isEmpty ifTrue: [ self fillReadBuffer ].
@@ -342,21 +254,15 @@ ZdcAbstractSocketStream>>peek [
 		ifFalse: [ readBuffer peek]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>printOn: aStream [
+{ #category : #printing }
+ZdcAbstractSocketStream >> printOn: aStream [
 	aStream 
 		nextPutAll: 'a '; 
 		nextPutAll: self class name
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>readInto: collection startingAt: offset count: requestedCount [
+{ #category : #'stream in' }
+ZdcAbstractSocketStream >> readInto: collection startingAt: offset count: requestedCount [
 	"Read requestedCount elements into collection starting at offset,
 	returning the number of elements read, there could be less elements available.
 	This is an inefficient abstract implementation, reading bytes one by one."
@@ -367,75 +273,51 @@ ZdcAbstractSocketStream>>readInto: collection startingAt: offset count: requeste
 	^ requestedCount
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>shouldSignal: boolean [
+{ #category : #compatibility }
+ZdcAbstractSocketStream >> shouldSignal: boolean [
 	"I always signal exceptional situations."
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>skip: count [
+{ #category : #'stream in' }
+ZdcAbstractSocketStream >> skip: count [
 	"Skip over count bytes.
 	This is an inefficient abstract implementation skipping bytes one by one."
 	
 	count timesRepeat: [ self next ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>socket [
+{ #category : #accessing }
+ZdcAbstractSocketStream >> socket [
 	"Return the underlying socket object that I delegate I/O to"
 	
 	^ socket
 ]
 
-{
-	#category : #'private socket',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>socketClose [
+{ #category : #'private socket' }
+ZdcAbstractSocketStream >> socketClose [
 	socket closeAndDestroy 
 ]
 
-{
-	#category : #'private socket',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>socketConnectTo: hostAddress port: portNumber [
+{ #category : #'private socket' }
+ZdcAbstractSocketStream >> socketConnectTo: hostAddress port: portNumber [
 	socket 
 		connectTo: hostAddress 
 		port: portNumber 
 		waitForConnectionFor: self timeout        
 ]
 
-{
-	#category : #'private socket',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>socketIsConnected [
+{ #category : #'private socket' }
+ZdcAbstractSocketStream >> socketIsConnected [
 	^ socket isConnected and: [ socket isOtherEndClosed not ]
 ]
 
-{
-	#category : #'private socket',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>socketIsDataAvailable [
+{ #category : #'private socket' }
+ZdcAbstractSocketStream >> socketIsDataAvailable [
 	^ socket dataAvailable 
 ]
 
-{
-	#category : #'private socket',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>socketReceiveDataInto: bytes startingAt: offset count: count [
+{ #category : #'private socket' }
+ZdcAbstractSocketStream >> socketReceiveDataInto: bytes startingAt: offset count: count [
 	^ socket 
 		primSocket: socket socketHandle 
 		receiveDataInto: bytes
@@ -443,60 +325,42 @@ ZdcAbstractSocketStream>>socketReceiveDataInto: bytes startingAt: offset count: 
 		count: count
 ]
 
-{
-	#category : #'private socket',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>socketSendData: bytes startingAt: offset count: count [
+{ #category : #'private socket' }
+ZdcAbstractSocketStream >> socketSendData: bytes startingAt: offset count: count [
 	^ socket 
 		sendSomeData: bytes 
 		startIndex: offset 
 		count: count 
 ]
 
-{
-	#category : #'private socket',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>socketWaitForData [
+{ #category : #'private socket' }
+ZdcAbstractSocketStream >> socketWaitForData [
 	^ socket waitForDataFor: self timeout
 	
 ]
 
-{
-	#category : #'private socket',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>socketWaitForSendDone [
+{ #category : #'private socket' }
+ZdcAbstractSocketStream >> socketWaitForSendDone [
 	^ socket waitForSendDoneFor: self timeout
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>timeout [
+{ #category : #accessing }
+ZdcAbstractSocketStream >> timeout [
 	"Return the number of seconds we wait for socket IO operations"
 	
 	^ timeout 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>timeout: seconds [
+{ #category : #accessing }
+ZdcAbstractSocketStream >> timeout: seconds [
 	"Set the number of seconds we wait for socket IO operations"
 	
 	timeout := seconds
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>upTo: value  [
+{ #category : #'stream in' }
+ZdcAbstractSocketStream >> upTo: value [ 
 	"Read bytes upto but not including value and return them as a ByteArray.
 	If value is not found, return the entire contents of the stream.
 	This is an inefficient abstract implementation reading bytes one by one."
@@ -507,11 +371,8 @@ ZdcAbstractSocketStream>>upTo: value  [
 				writeStream nextPut: element ] ]
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcAbstractSocketStream>>upToEnd [
+{ #category : #'stream in' }
+ZdcAbstractSocketStream >> upToEnd [
 	"Read bytes until the stream is atEnd and return them as a ByteArray.
 	This is an inefficient abstract implementation reading bytes one by one.
 	Note that even when #atEnd returns false, the following #next could be nil 

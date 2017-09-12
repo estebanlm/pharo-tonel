@@ -1,12 +1,7 @@
-Extension {
-	#name : #Class
-}
+Extension { #name : #Class }
 
-{
-	#category : #'*Manifest-Core',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-Class>>criticTheNonMetaclassClass [
+{ #category : #'*Manifest-Core' }
+Class >> criticTheNonMetaclassClass [
 
 	"Return the class of the receiver for the critic browser. This behavior may be folded later by changing the name of this method or using another one."
 	

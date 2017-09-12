@@ -7,15 +7,11 @@ Class {
 	#classVars : [
 		'ValidateBeforeSaving'
 	],
-	#category : #Versionner-Core-Commands,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSSaveProjectCommand class>>enableValidateSetting: aBuilder [
+{ #category : #settings }
+VSSaveProjectCommand class >> enableValidateSetting: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #validateBeforeSaving)
 		label: 'Validate before commit';
@@ -24,29 +20,20 @@ VSSaveProjectCommand class>>enableValidateSetting: aBuilder [
 		description: 'When selected the project will be validated (i.e., the metacello rules will be checked)'
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSSaveProjectCommand class>>validateBeforeSaving [
+{ #category : #settings }
+VSSaveProjectCommand class >> validateBeforeSaving [
 
 	^ ValidateBeforeSaving ifNil: [ ValidateBeforeSaving := true ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSSaveProjectCommand class>>validateBeforeSaving: aBoolean [
+{ #category : #settings }
+VSSaveProjectCommand class >> validateBeforeSaving: aBoolean [
 
 	 ValidateBeforeSaving := aBoolean 
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSSaveProjectCommand>>alertValidationErrors: errors for: configClassName [
+{ #category : #execute }
+VSSaveProjectCommand >> alertValidationErrors: errors for: configClassName [
 	| message |
 	
 	message :=  'There are critical issues in configuration ' , configClassName printString, '. Configuration not saved!' , Character cr asString.
@@ -57,19 +44,13 @@ VSSaveProjectCommand>>alertValidationErrors: errors for: configClassName [
 		title: 'Critical Issues'
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSSaveProjectCommand>>commit [
+{ #category : #execute }
+VSSaveProjectCommand >> commit [
 	Komitter openAndCommitToMonticelloWorkingCopiesFilteredBy: self filterBlock 
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSSaveProjectCommand>>execute [
+{ #category : #execute }
+VSSaveProjectCommand >> execute [
 	| configClassName |
 	target
 		ifNil: [ self inform: 'Select the version to commit.'.
@@ -82,11 +63,8 @@ VSSaveProjectCommand>>execute [
 		ifFalse: [ self commit ]
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSSaveProjectCommand>>filterBlock [
+{ #category : #execute }
+VSSaveProjectCommand >> filterBlock [
 	| project packageNames |
 	
 	project := target.

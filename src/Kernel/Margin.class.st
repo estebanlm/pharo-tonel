@@ -21,81 +21,56 @@ Class {
 		'left',
 		'top'
 	],
-	#category : #Kernel-BasicObjects,
-	#timestamp : 'StephaneDucasse 6/18/2015 11:25'
+	#category : #Kernel-BasicObjects
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin class>>fromNumber: aNumber [
+{ #category : #'instance creation' }
+Margin class >> fromNumber: aNumber [
 	"Create a margin whose four values are the same and based on anInteger"
 	
 	^ self new fromNumber: aNumber; yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin class>>fromPoint: aPoint [
+{ #category : #'instance creation' }
+Margin class >> fromPoint: aPoint [
 	"Create a margin whose values are based on the point value: top and bottom are y and left right are x."
 	
 	^ self new fromPoint: aPoint; yourself
 ]
 
-{
-	#category : #'will be deprecated',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin class>>fromRectangle: aRectangle [
+{ #category : #'will be deprecated' }
+Margin class >> fromRectangle: aRectangle [
 	"Create a margin with four values based on aRectangle using exactly top, left, bottom, right semantics. Pay attention that most of the time you should not use this method but prefer top:left:bottom:right:. The reason is that using rectangle may force you to create rectangles with negative extent which is totally wrong and bogus."
 	
 	^ self new fromRectangle: aRectangle; yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin class>>left: leftNumber top: topNumber right: rightNumber bottom: bottomNumber [
+{ #category : #'instance creation' }
+Margin class >> left: leftNumber top: topNumber right: rightNumber bottom: bottomNumber [ 
 
 	^ self new setTop: topNumber left: leftNumber bottom: bottomNumber right: rightNumber 
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin class>>top: topNumber left: leftNumber bottom: bottomNumber right: rightNumber [
+{ #category : #'instance creation' }
+Margin class >> top: topNumber left: leftNumber bottom: bottomNumber right: rightNumber [ 
 
 	^ self new setTop: topNumber left: leftNumber bottom: bottomNumber right: rightNumber 
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>asMargin [
+{ #category : #converting }
+Margin >> asMargin [
 	^ self 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>bottom [
+{ #category : #accessing }
+Margin >> bottom [
 	^ bottom
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>expandRectangle: aRectangle [
+{ #category : #operations }
+Margin >> expandRectangle: aRectangle [
 	"Answer a rectangle whose size has been expanded by the receiver which represents each rectangle corner."
 	
 	^ Rectangle 
@@ -106,11 +81,8 @@ Margin>>expandRectangle: aRectangle [
 
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>extendRectangle: aRectangle [
+{ #category : #operations }
+Margin >> extendRectangle: aRectangle [
 	"Answer a rectangle whose size has been expanded (without changing its origin) by the receiver which represents each rectangle corner."
 	
 	^ Rectangle 
@@ -119,11 +91,8 @@ Margin>>extendRectangle: aRectangle [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>fromNumber: anInteger [
+{ #category : #initialization }
+Margin >> fromNumber: anInteger [
 
 	self setTop: anInteger 
 		left: anInteger 
@@ -131,11 +100,8 @@ Margin>>fromNumber: anInteger [
 		right: anInteger
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>fromPoint: aPoint [
+{ #category : #initialization }
+Margin >> fromPoint: aPoint [
 
 	self setTop: aPoint y 
 		left: aPoint x 
@@ -143,11 +109,8 @@ Margin>>fromPoint: aPoint [
 		right: aPoint x
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>fromRectangle: aRectangle [
+{ #category : #initialization }
+Margin >> fromRectangle: aRectangle [
 	"Pay attention do not use this method but prefer top:left:bottom:right:"
 	
 	self setTop: aRectangle top 
@@ -156,31 +119,22 @@ Margin>>fromRectangle: aRectangle [
 		right: aRectangle right
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>height [
+{ #category : #accessing }
+Margin >> height [
 
 	^ self bottom + self top
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>initialize [
+{ #category : #initialization }
+Margin >> initialize [
 
 	super initialize.
 	
 	self fromNumber: 0
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>insetRectangle: aRectangle [
+{ #category : #operations }
+Margin >> insetRectangle: aRectangle [
 	"Answer a rectangle whose size has been reduced by the receiver. The limitation is that since a rectangle topleft is always less than its bottomright you may have a some cases that are not possible to express. For that you should use a margin object instead of a rectangle."
 	
 	| l r t b |
@@ -194,11 +148,8 @@ Margin>>insetRectangle: aRectangle [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>isZero [
+{ #category : #testing }
+Margin >> isZero [
 
 	^ (0 = top) 
 		and: [ (0 = left) 
@@ -206,19 +157,13 @@ Margin>>isZero [
 					and: [ 0 = bottom]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>left [
+{ #category : #accessing }
+Margin >> left [
 	^ left
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>printOn: aStream [
+{ #category : #printing }
+Margin >> printOn: aStream [
 
 	super printOn: aStream.
 
@@ -234,19 +179,13 @@ Margin>>printOn: aStream [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>right [
+{ #category : #accessing }
+Margin >> right [
 	^ right
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>setTop: topNumber left: leftNumber bottom: bottomNumber right: rightNumber [
+{ #category : #private }
+Margin >> setTop: topNumber left: leftNumber bottom: bottomNumber right: rightNumber [ 
 
 	top := topNumber.
 	left := leftNumber.
@@ -254,19 +193,13 @@ Margin>>setTop: topNumber left: leftNumber bottom: bottomNumber right: rightNumb
 	right := rightNumber.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>top [
+{ #category : #accessing }
+Margin >> top [
 	^ top
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Margin>>width [
+{ #category : #accessing }
+Margin >> width [ 
 
 	^ self right + self left
 ]

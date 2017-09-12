@@ -5,49 +5,33 @@ Trait {
 	#name : #TRemoveForMultiplenessTest,
 	#traits : 'TRemoveTest',
 	#classTraits : 'TRemoveTest classTrait',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:35'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveForMultiplenessTest>>elementNotIn [
+{ #category : #requirements }
+TRemoveForMultiplenessTest >> elementNotIn [
 " return an element not included in nonEmptyWithoutEqualElements"
 	self explicitRequirement
 ]
 
-{
-	#category : #'test - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveForMultiplenessTest>>elementTwiceIn [
+{ #category : #'test - remove' }
+TRemoveForMultiplenessTest >> elementTwiceIn [
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveForMultiplenessTest>>empty [
+{ #category : #requirements }
+TRemoveForMultiplenessTest >> empty [
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveForMultiplenessTest>>nonEmptyWithoutEqualElements [
+{ #category : #requirements }
+TRemoveForMultiplenessTest >> nonEmptyWithoutEqualElements [
 " return a collection without equal elements "
 	self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveForMultiplenessTest>>test0FixtureTRemoveTest [
+{ #category : #'tests - fixture' }
+TRemoveForMultiplenessTest >> test0FixtureTRemoveTest [
 	| duplicate |
 	self empty.
 	self nonEmptyWithoutEqualElements.
@@ -63,11 +47,8 @@ TRemoveForMultiplenessTest>>test0FixtureTRemoveTest [
 	self deny: (self nonEmptyWithoutEqualElements includes: self elementNotIn)
 ]
 
-{
-	#category : #'tests - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveForMultiplenessTest>>testRemoveAll [
+{ #category : #'tests - remove' }
+TRemoveForMultiplenessTest >> testRemoveAll [
 	"self debug: #testRemoveElementThatExists"
 	| el aSubCollection collection res |
 	collection := self nonEmptyWithoutEqualElements.
@@ -78,11 +59,8 @@ TRemoveForMultiplenessTest>>testRemoveAll [
 	self nonEmptyWithoutEqualElements do: [ :each | self assert: each = el ]
 ]
 
-{
-	#category : #'tests - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveForMultiplenessTest>>testRemoveAllError [
+{ #category : #'tests - remove' }
+TRemoveForMultiplenessTest >> testRemoveAllError [
 	"self debug: #testRemoveElementThatExists"
 	| el aSubCollection |
 	el := self elementNotIn.
@@ -92,11 +70,8 @@ TRemoveForMultiplenessTest>>testRemoveAllError [
 		raise: Error
 ]
 
-{
-	#category : #'tests - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveForMultiplenessTest>>testRemoveAllFoundIn [
+{ #category : #'tests - remove' }
+TRemoveForMultiplenessTest >> testRemoveAllFoundIn [
 	"self debug: #testRemoveElementThatExists"
 	| el aSubCollection res |
 	el := self nonEmptyWithoutEqualElements anyOne.
@@ -106,11 +81,8 @@ TRemoveForMultiplenessTest>>testRemoveAllFoundIn [
 	self nonEmptyWithoutEqualElements do: [ :each | self assert: each = el ]
 ]
 
-{
-	#category : #'tests - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveForMultiplenessTest>>testRemoveAllSuchThat [
+{ #category : #'tests - remove' }
+TRemoveForMultiplenessTest >> testRemoveAllSuchThat [
 	"self debug: #testRemoveElementThatExists"
 	| el aSubCollection |
 	el := self nonEmptyWithoutEqualElements anyOne.
@@ -120,22 +92,16 @@ TRemoveForMultiplenessTest>>testRemoveAllSuchThat [
 	self nonEmptyWithoutEqualElements do: [ :each | self assert: each = el ]
 ]
 
-{
-	#category : #'tests - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveForMultiplenessTest>>testRemoveElementFromEmpty [
+{ #category : #'tests - remove' }
+TRemoveForMultiplenessTest >> testRemoveElementFromEmpty [
 	"self debug: #testRemoveElementFromEmpty"
 	self 
 		should: [ self empty remove: self nonEmptyWithoutEqualElements anyOne ]
 		raise: Error
 ]
 
-{
-	#category : #'tests - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveForMultiplenessTest>>testRemoveElementReallyRemovesElement [
+{ #category : #'tests - remove' }
+TRemoveForMultiplenessTest >> testRemoveElementReallyRemovesElement [
 	"self debug: #testRemoveElementReallyRemovesElement"
 	| size |
 	size := self nonEmptyWithoutEqualElements size.
@@ -143,11 +109,8 @@ TRemoveForMultiplenessTest>>testRemoveElementReallyRemovesElement [
 	self assert: size - 1 = self nonEmptyWithoutEqualElements size
 ]
 
-{
-	#category : #'tests - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveForMultiplenessTest>>testRemoveElementThatExists [
+{ #category : #'tests - remove' }
+TRemoveForMultiplenessTest >> testRemoveElementThatExists [
 	"self debug: #testRemoveElementThatExists"
 
 	| el res |
@@ -156,11 +119,8 @@ TRemoveForMultiplenessTest>>testRemoveElementThatExists [
 	self assert: res == el
 ]
 
-{
-	#category : #'test - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveForMultiplenessTest>>testRemoveElementThatExistsTwice [
+{ #category : #'test - remove' }
+TRemoveForMultiplenessTest >> testRemoveElementThatExistsTwice [
 	"self debug: #testRemoveElementThatDoesExistsTwice"
 
 	| size |
@@ -174,11 +134,8 @@ TRemoveForMultiplenessTest>>testRemoveElementThatExistsTwice [
 	self assert: size - 2 = self nonEmpty size
 ]
 
-{
-	#category : #'tests - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveForMultiplenessTest>>testRemoveIfAbsent [
+{ #category : #'tests - remove' }
+TRemoveForMultiplenessTest >> testRemoveIfAbsent [
 	"self debug: #testRemoveElementThatExists"
 
 	| el res |

@@ -9,15 +9,11 @@ Class {
 		'contentMorph',
 		'pageMorphs'
 	],
-	#category : #Morphic-Widgets-PolyTabs,
-	#timestamp : 'gvc 5/18/2007 11:54'
+	#category : #Morphic-Widgets-PolyTabs
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph class>>example [
+{ #category : #example }
+TabGroupMorph class >> example [
 	| builder window page1 page2 label1 label2 tabs content okButton cancelButton |
 	builder := self theme builder.
 	okButton := builder newOKButton.
@@ -75,11 +71,8 @@ TabGroupMorph class>>example [
 		action: #delete
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>addPage: aMorph label: aStringOrMorph [
+{ #category : #adding }
+TabGroupMorph >> addPage: aMorph label: aStringOrMorph [
 	"Add a page and its tab."
 
 	aMorph
@@ -89,11 +82,8 @@ TabGroupMorph>>addPage: aMorph label: aStringOrMorph [
 	self tabSelectorMorph addTab: aStringOrMorph
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>addPage: aMorph label: aStringOrMorph selected: selectedStringOrMorph [
+{ #category : #adding }
+TabGroupMorph >> addPage: aMorph label: aStringOrMorph selected: selectedStringOrMorph [
 	"Add a page and its tab with alternate label when selected."
 
 	aMorph
@@ -103,11 +93,8 @@ TabGroupMorph>>addPage: aMorph label: aStringOrMorph selected: selectedStringOrM
 	self tabSelectorMorph addTab: aStringOrMorph selected: selectedStringOrMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+TabGroupMorph >> adoptPaneColor: paneColor [
 	"Pass on to the content morph a little lighter."
 	
 	paneColor ifNil: [^super adoptPaneColor: paneColor].
@@ -115,31 +102,22 @@ TabGroupMorph>>adoptPaneColor: paneColor [
 	self contentMorph borderStyle: (self theme tabPanelBorderStyleFor: self)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>contentMorph [
+{ #category : #accessing }
+TabGroupMorph >> contentMorph [
 	"Answer the value of contentMorph"
 
 	^ contentMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>contentMorph: anObject [
+{ #category : #accessing }
+TabGroupMorph >> contentMorph: anObject [
 	"Set the value of contentMorph"
 
 	contentMorph := anObject
 ]
 
-{
-	#category : #rounding,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>cornerStyle: aSymbol [
+{ #category : #rounding }
+TabGroupMorph >> cornerStyle: aSymbol [
 	"Pass on to selector and content too."
 
 	super cornerStyle: aSymbol.
@@ -147,42 +125,30 @@ TabGroupMorph>>cornerStyle: aSymbol [
 	self contentMorph cornerStyle: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>font [
+{ #category : #accessing }
+TabGroupMorph >> font [
 	"Answer the label font"
 
 	^self tabSelectorMorph font
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>font: aFont [
+{ #category : #accessing }
+TabGroupMorph >> font: aFont [
 	"Set the label font"
 
 	self tabSelectorMorph font: aFont
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>fullDrawOn: aCanvas [
+{ #category : #drawing }
+TabGroupMorph >> fullDrawOn: aCanvas [
 	"Patch up the selected tab visuals if required."
 	
 	super fullDrawOn: aCanvas.
 	self theme drawTabGroupFinishingFor: self on: aCanvas
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>initialize [
+{ #category : #initialization }
+TabGroupMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -200,11 +166,8 @@ TabGroupMorph>>initialize [
 	self tabSelectorMorph addDependent: self
 ]
 
-{
-	#category : #page,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>labelsAndPages: assocs [
+{ #category : #page }
+TabGroupMorph >> labelsAndPages: assocs [
 	"Replace the tabs and the associated pages."
 
 	self contentMorph removeAllMorphs.
@@ -212,11 +175,8 @@ TabGroupMorph>>labelsAndPages: assocs [
 	assocs do: [:a | self addPage: a value label: a key]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>minExtent [
+{ #category : #drawing }
+TabGroupMorph >> minExtent [
 	"Calculate the min extent of the receiver based on all pages."
 
 	|extra|
@@ -227,11 +187,8 @@ TabGroupMorph>>minExtent [
 		max: self tabSelectorMorph minExtent)
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>newContentMorph [
+{ #category : #building }
+TabGroupMorph >> newContentMorph [
 	"Answer a new content morph"
 
 	|p|
@@ -246,11 +203,8 @@ TabGroupMorph>>newContentMorph [
 	^p
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>newTabSelectorMorph [
+{ #category : #building }
+TabGroupMorph >> newTabSelectorMorph [
 	"Answer a new tab selector morph"
 
 	^TabSelectorMorph new
@@ -258,82 +212,58 @@ TabGroupMorph>>newTabSelectorMorph [
 		hResizing: #spaceFill
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>page [
+{ #category : #accessing }
+TabGroupMorph >> page [
 	"Answer the current page morph if any."
 
 	^self pageMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>page: aMorph [
+{ #category : #accessing }
+TabGroupMorph >> page: aMorph [
 	"Select the give page."
 
 	self selectedPageIndex: (self pages indexOf: aMorph)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>pageMorph [
+{ #category : #accessing }
+TabGroupMorph >> pageMorph [
 	"Answer the current page morph if any."
 
 	^self contentMorph hasSubmorphs
 		ifTrue: [self contentMorph submorphs first]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>pageMorphs [
+{ #category : #accessing }
+TabGroupMorph >> pageMorphs [
 	"Answer the value of pageMorphs"
 
 	^ pageMorphs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>pageMorphs: anObject [
+{ #category : #accessing }
+TabGroupMorph >> pageMorphs: anObject [
 	"Set the value of pageMorphs"
 
 	pageMorphs := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>pages [
+{ #category : #accessing }
+TabGroupMorph >> pages [
 	"Answer the pages."
 
 	^self pageMorphs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>paneColorOrNil [
+{ #category : #accessing }
+TabGroupMorph >> paneColorOrNil [
 	"Answer the window's pane color or nil otherwise."
 
 	^super paneColorOrNil ifNotNil: [:c | self theme subgroupColorFrom: c]
 ]
 
-{
-	#category : #page,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>relabelPage: aMorph with: aStringOrMorph [
+{ #category : #page }
+TabGroupMorph >> relabelPage: aMorph with: aStringOrMorph [
 	"Relabel the tab associated with the given page and
 	update tabs."
 
@@ -341,11 +271,8 @@ TabGroupMorph>>relabelPage: aMorph with: aStringOrMorph [
 		relabelTab: (self tabOfPage: aMorph) with: aStringOrMorph
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>removePage: aMorph [
+{ #category : #adding }
+TabGroupMorph >> removePage: aMorph [
 	"Remove the given page and its tab."
 
 	|index|
@@ -354,82 +281,58 @@ TabGroupMorph>>removePage: aMorph [
 	self tabSelectorMorph removeTabIndex: index
 ]
 
-{
-	#category : #page,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>removePageIndex: anInteger [
+{ #category : #page }
+TabGroupMorph >> removePageIndex: anInteger [
 	"Remove the page at index anInteger page and its tab."
 
 	self pages removeAt: anInteger.
 	self tabSelectorMorph removeTabIndex: anInteger
 ]
 
-{
-	#category : #page,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>selectedPageIndex [
+{ #category : #page }
+TabGroupMorph >> selectedPageIndex [
 	"Answer the selected page index."
 
 	^self tabSelectorMorph selectedIndex
 ]
 
-{
-	#category : #page,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>selectedPageIndex: index [
+{ #category : #page }
+TabGroupMorph >> selectedPageIndex: index [
 	"Set the selected page index."
 
 	self tabSelectorMorph selectedIndex: index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>selectedTab [
+{ #category : #accessing }
+TabGroupMorph >> selectedTab [
 	"Answer the tab of the selected page."
 	
  	^self tabSelectorMorph selectedTab
 ]
 
-{
-	#category : #page,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>tabOfPage: aMorph [
+{ #category : #page }
+TabGroupMorph >> tabOfPage: aMorph [
 	"Answer the tab associated with the given page."
 
 	^self tabSelectorMorph tabs at: (self pages indexOf: aMorph)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>tabSelectorMorph [
+{ #category : #accessing }
+TabGroupMorph >> tabSelectorMorph [
 	"Answer the value of tabSelectorMorph"
 
 	^ tabSelectorMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>tabSelectorMorph: anObject [
+{ #category : #accessing }
+TabGroupMorph >> tabSelectorMorph: anObject [
 	"Set the value of tabSelectorMorph"
 
 	tabSelectorMorph := anObject
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>update: aSymbol [
+{ #category : #updating }
+TabGroupMorph >> update: aSymbol [
 	"Handle tab changes."
 
 	super update: aSymbol.
@@ -437,11 +340,8 @@ TabGroupMorph>>update: aSymbol [
 		ifTrue: [self updatePageIndex: self selectedPageIndex]
 ]
 
-{
-	#category : #page,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabGroupMorph>>updatePageIndex: index [
+{ #category : #page }
+TabGroupMorph >> updatePageIndex: index [
 	"Change to the given page index."
 
 	self pageMorph ifNotNil: [:p | self contentMorph removeMorph: p].

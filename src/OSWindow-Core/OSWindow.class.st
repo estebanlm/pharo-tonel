@@ -37,136 +37,87 @@ Class {
 		'TraceEvents',
 		'VMWindow'
 	],
-	#category : #OSWindow-Core,
-	#timestamp : 'IgorStasenko 7/30/2014 16:01'
+	#category : #OSWindow-Core
 }
 
-{
-	#category : #'clipboard handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow class>>clipboardText [
+{ #category : #'clipboard handling' }
+OSWindow class >> clipboardText [
 	^ self validHandle clipboardText
 ]
 
-{
-	#category : #'clipboard handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow class>>clipboardText: aString [
+{ #category : #'clipboard handling' }
+OSWindow class >> clipboardText: aString [
 	self validHandle clipboardText: aString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow class>>createWithAttributes: attributes [
+{ #category : #'instance creation' }
+OSWindow class >> createWithAttributes: attributes [
 	^ self basicNew initWithAttributes: attributes
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow class>>finalizeResourceData: windowHandle [
+{ #category : #finalization }
+OSWindow class >> finalizeResourceData: windowHandle [
 	windowHandle destroy.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow class>>new [
+{ #category : #'instance creation' }
+OSWindow class >> new [
 	^ self createWithAttributes: OSWindowAttributes new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow class>>newWithNullDriver [
+{ #category : #'instance creation' }
+OSWindow class >> newWithNullDriver [
 	^ self createWithAttributes: OSWindowAttributes newWithNullDriver
 ]
 
-{
-	#category : #tracing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow class>>traceEvents: aBoolean [
+{ #category : #tracing }
+OSWindow class >> traceEvents: aBoolean [
 	TraceEvents := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>borderless [
+{ #category : #accessing }
+OSWindow >> borderless [
 	^ self validHandle borderless
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>borderless: aBoolean [
+{ #category : #accessing }
+OSWindow >> borderless: aBoolean [
 	self validHandle borderless: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>bounds [
+{ #category : #accessing }
+OSWindow >> bounds [
 	^ self validHandle bounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>bounds: newBounds [
+{ #category : #accessing }
+OSWindow >> bounds: newBounds [
 	self validHandle bounds: newBounds
 ]
 
-{
-	#category : #'mouse capture',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>captureMouse [
+{ #category : #'mouse capture' }
+OSWindow >> captureMouse [
 	self validHandle captureMouse
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>checkIsValid [
+{ #category : #private }
+OSWindow >> checkIsValid [
 
 	(handle isNil or: [ handle isValid not ]) ifTrue: [ self invalidHandle ].
 ]
 
-{
-	#category : #'clipboard handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>clipboardText [
+{ #category : #'clipboard handling' }
+OSWindow >> clipboardText [
 	^ self validHandle clipboardText
 ]
 
-{
-	#category : #'clipboard handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>clipboardText: aString [
+{ #category : #'clipboard handling' }
+OSWindow >> clipboardText: aString [
 	^ self validHandle clipboardText: aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>createWindow [
+{ #category : #private }
+OSWindow >> createWindow [
 	handle ifNotNil: [ self error: 'The window is already created.' ].
 	
 	handle := initialAttributes createWindowHandleFor: self.
@@ -174,11 +125,8 @@ OSWindow>>createWindow [
 		ifTrue: [ FFIExternalResourceManager addResource: self data: handle ]
 ]
 
-{
-	#category : #'dispatching events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>deliverEvent: anEvent [
+{ #category : #'dispatching events' }
+OSWindow >> deliverEvent: anEvent [
 	"TODO..."
 	
 	TraceEvents == true ifTrue: [ Transcript show: anEvent; cr ].
@@ -188,11 +136,8 @@ OSWindow>>deliverEvent: anEvent [
 
 ]
 
-{
-	#category : #'dispatching events',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>deliverGlobalEvent: aGlobalEvent [
+{ #category : #'dispatching events' }
+OSWindow >> deliverGlobalEvent: aGlobalEvent [
 	"TODO..."
 	
 	TraceEvents == true ifTrue: [ Transcript show: aGlobalEvent; cr ].
@@ -201,342 +146,222 @@ OSWindow>>deliverGlobalEvent: aGlobalEvent [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>destroy [
+{ #category : #private }
+OSWindow >> destroy [
 	self validHandle destroy.
 	handle := nil.
 	eventHandler := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>eventHandler [
+{ #category : #accessing }
+OSWindow >> eventHandler [
 	
 	^ eventHandler
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>eventHandler: anObject [
+{ #category : #accessing }
+OSWindow >> eventHandler: anObject [
 	
 	eventHandler := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>extent [
+{ #category : #accessing }
+OSWindow >> extent [
 	^ self validHandle extent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>extent: newExtent [
+{ #category : #accessing }
+OSWindow >> extent: newExtent [
 	self validHandle extent: newExtent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>fullscreen: aBoolean [
+{ #category : #accessing }
+OSWindow >> fullscreen: aBoolean [
 	self validHandle fullscreen: aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>getFlags [
+{ #category : #private }
+OSWindow >> getFlags [
 	^ self validHandle getFlags
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>handle [
+{ #category : #accessing }
+OSWindow >> handle [
 	^ handle
 ]
 
-{
-	#category : #visibility,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>hide [
+{ #category : #visibility }
+OSWindow >> hide [
 	self checkIsValid .
 	handle hide
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>icon: aForm [
+{ #category : #accessing }
+OSWindow >> icon: aForm [
 	self validHandle icon: aForm
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>initWithAttributes: attributes [
+{ #category : #initialization }
+OSWindow >> initWithAttributes: attributes [
 	initialAttributes := attributes.
 	self createWindow.
 	self initialize
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>invalidHandle [
+{ #category : #private }
+OSWindow >> invalidHandle [
 	self error: 'Invalid window handle'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>isValid [
+{ #category : #testing }
+OSWindow >> isValid [
 	 ^ handle notNil and: [ handle isValid ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>isVisible [
+{ #category : #testing }
+OSWindow >> isVisible [
 	^ self isValid and: [handle isVisible]
 ]
 
-{
-	#category : #'window management',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>maximize [
+{ #category : #'window management' }
+OSWindow >> maximize [
 
 	self validHandle maximize.
 ]
 
-{
-	#category : #'window management',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>minimize [
+{ #category : #'window management' }
+OSWindow >> minimize [
 
 	self validHandle minimize.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>newAthensRenderer [
+{ #category : #'instance creation' }
+OSWindow >> newAthensRenderer [
 	^ handle newAthensRenderer
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>newFormRenderer: form [
+{ #category : #factory }
+OSWindow >> newFormRenderer: form [
 	^ handle newFormRenderer: form
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>newGenericRenderer [
+{ #category : #factory }
+OSWindow >> newGenericRenderer [
 	^ handle newGenericRenderer
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>newOpenGLRenderer [
+{ #category : #factory }
+OSWindow >> newOpenGLRenderer [
 	^ handle newOpenGLRenderer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>platformSpecificHandle [
+{ #category : #accessing }
+OSWindow >> platformSpecificHandle [
 	^ self validHandle platformSpecificHandle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>position [
+{ #category : #accessing }
+OSWindow >> position [
 	^ self validHandle position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>position: newPosition [
+{ #category : #accessing }
+OSWindow >> position: newPosition [
 	self validHandle position: newPosition
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>processPendingEvents [
+{ #category : #'event handling' }
+OSWindow >> processPendingEvents [
 	handle processPendingEvents
 ]
 
-{
-	#category : #'mouse capture',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>releaseMouse [
+{ #category : #'mouse capture' }
+OSWindow >> releaseMouse [
 	self validHandle releaseMouse
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>renderer [
+{ #category : #accessing }
+OSWindow >> renderer [
 	^ handle renderer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>renderer: aRenderer [
+{ #category : #accessing }
+OSWindow >> renderer: aRenderer [
 	handle renderer: aRenderer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>resizable [
+{ #category : #accessing }
+OSWindow >> resizable [
 	^ self validHandle resizable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>resizable: aBoolean [
+{ #category : #accessing }
+OSWindow >> resizable: aBoolean [
 	self validHandle resizable: aBoolean
 ]
 
-{
-	#category : #'window management',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>restore [
+{ #category : #'window management' }
+OSWindow >> restore [
 
 	self validHandle restore.
 ]
 
-{
-	#category : #'window management',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>setDraggableArea: aRectangle [
+{ #category : #'window management' }
+OSWindow >> setDraggableArea: aRectangle [
 
 	^self validHandle setDraggableArea: aRectangle.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>setMouseCursor: cursorWithMask [
+{ #category : #accessing }
+OSWindow >> setMouseCursor: cursorWithMask [
 	currentCursor == cursorWithMask ifTrue: [ ^ self ].
 	currentCursor := cursorWithMask.
 	self validHandle setMouseCursor: cursorWithMask
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>setMouseCursor: cursor mask: mask [
+{ #category : #accessing }
+OSWindow >> setMouseCursor: cursor mask: mask [
 	currentCursor == cursor ifTrue: [ ^ self ].
 	currentCursor := cursor.
 
 	self validHandle setMouseCursor: cursor mask: mask
 ]
 
-{
-	#category : #visibility,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>show [
+{ #category : #visibility }
+OSWindow >> show [
 	self checkIsValid .
 	handle show
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>title [
+{ #category : #accessing }
+OSWindow >> title [
 	^ self validHandle title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>title: aString [
+{ #category : #accessing }
+OSWindow >> title: aString [
 	self validHandle title: aString
 ]
 
-{
-	#category : #'window management',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>toggleBorderOff [
+{ #category : #'window management' }
+OSWindow >> toggleBorderOff [
 
 	self validHandle toggleBorderOff.
 ]
 
-{
-	#category : #'window management',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>toggleBorderOn [
+{ #category : #'window management' }
+OSWindow >> toggleBorderOn [
 
 	self validHandle toggleBorderOn.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>validHandle [
+{ #category : #private }
+OSWindow >> validHandle [
 	self checkIsValid.
 	^ handle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow>>windowId [
+{ #category : #accessing }
+OSWindow >> windowId [
 	^ self validHandle windowId
 ]

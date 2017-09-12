@@ -34,15 +34,11 @@ Class {
 		'chooser',
 		'previousToken'
 	],
-	#category : #Polymorph-Widgets,
-	#timestamp : 'AlainPlantec 11/29/2010 10:58'
+	#category : #Polymorph-Widgets
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion class>>exampleTextEntryWithCompletionDialog [
+{ #category : #examples }
+EntryCompletion class >> exampleTextEntryWithCompletionDialog [
 	"self exampleTextEntryWithCompletionDialog"
 
 	<exampleWidget>
@@ -63,48 +59,33 @@ EntryCompletion class>>exampleTextEntryWithCompletionDialog [
 		entryCompletion: entryCompletion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>choose: aToken [
+{ #category : #accessing }
+EntryCompletion >> choose: aToken [
 	chooseBlock 
 		ifNotNil: [self closeChooser.
 			previousToken := aToken.
 			chooseBlock value: aToken]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>chooseBlock [
+{ #category : #accessing }
+EntryCompletion >> chooseBlock [
 
 	^ chooseBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>chooseBlock: aBlock [
+{ #category : #accessing }
+EntryCompletion >> chooseBlock: aBlock [
 
 	chooseBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>chooser [
+{ #category : #accessing }
+EntryCompletion >> chooser [
 	^ chooser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>chooserWith: aToken [
+{ #category : #accessing }
+EntryCompletion >> chooserWith: aToken [
 	| applicants |
 	applicants  := self filteredValuesWith: aToken.
 	aToken 
@@ -120,83 +101,56 @@ EntryCompletion>>chooserWith: aToken [
 	^ chooser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>closeChooser [
+{ #category : #accessing }
+EntryCompletion >> closeChooser [
 	chooser 
 		ifNotNil: [chooser close.
 			chooser := nil].
 
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>closeIfNotNeeded: aMorph [
+{ #category : #event-handling }
+EntryCompletion >> closeIfNotNeeded: aMorph [
 
 	(chooser isNotNil and:[ chooser hasKeyboardFocus or: [ aMorph hasKeyboardFocus ] ]) ifFalse: [ self closeChooser ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>dataSourceBlock [
+{ #category : #accessing }
+EntryCompletion >> dataSourceBlock [
 	^ dataSourceBlock ifNil: [dataSourceBlock := [:token | #()]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>dataSourceBlock: aBlock [
+{ #category : #accessing }
+EntryCompletion >> dataSourceBlock: aBlock [
 	dataSourceBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>filterBlock [
+{ #category : #accessing }
+EntryCompletion >> filterBlock [
 
 	^ filterBlock ifNil: [filterBlock := [:currApplicant  :currText | true]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>filterBlock: aBlock [
+{ #category : #accessing }
+EntryCompletion >> filterBlock: aBlock [
 
 	filterBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>filteredValuesWith: aToken [
+{ #category : #accessing }
+EntryCompletion >> filteredValuesWith: aToken [
 	^ (self dataSourceBlock value: aToken) 
 		select: [:v | aToken isNil or: [v isNil or: [self filterBlock value: v value: aToken]]]
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>handlesKeyboard: anEvent [
+{ #category : #event-handling }
+EntryCompletion >> handlesKeyboard: anEvent [
 	^ anEvent keyCharacter = Character arrowDown
 		or: [chooser notNil and: [ anEvent keyCharacter = Character escape]]
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>keystroke: anEvent from: aMorph [
+{ #category : #event-handling }
+EntryCompletion >> keystroke: anEvent from: aMorph [
 	(self handlesKeyboard: anEvent) 
 		ifFalse: [^ false].
 	(chooser notNil and: [ anEvent keyCharacter = Character escape])
@@ -213,19 +167,13 @@ EntryCompletion>>keystroke: anEvent from: aMorph [
 	
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>mouseDownFromTextMorph: anEvent [
+{ #category : #event-handling }
+EntryCompletion >> mouseDownFromTextMorph: anEvent [
 	self closeChooser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>openChooserWith: aToken from: aFieldMorph  [
+{ #category : #accessing }
+EntryCompletion >> openChooserWith: aToken from: aFieldMorph [ 
 	self closeChooser.
 	self chooserWith: aToken.
 	chooser
@@ -245,32 +193,23 @@ EntryCompletion>>openChooserWith: aToken from: aFieldMorph  [
 	^ chooser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>openChooserWithAllOrCloseFrom: aFieldMorph  [
+{ #category : #accessing }
+EntryCompletion >> openChooserWithAllOrCloseFrom: aFieldMorph [ 
 	chooser 
 		ifNotNil: [self closeChooser]
 		ifNil: [self openChooserWith: nil from: aFieldMorph].
 	^ chooser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>positionChooser [
+{ #category : #accessing }
+EntryCompletion >> positionChooser [
         "Position the chooser to fit on the display."
 
    
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>positionChooser: aChooser [
+{ #category : #accessing }
+EntryCompletion >> positionChooser: aChooser [
         "Position the list morph to fit on the display."
 
         aChooser boundsInWorld bottomLeft y + aChooser listHeight > aChooser world bottom
@@ -280,11 +219,8 @@ EntryCompletion>>positionChooser: aChooser [
                                         bounds: (aChooser boundsInWorld bottomLeft extent: aChooser width @ aChooser listHeight)] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EntryCompletion>>setChooserWith: aToken labels: labels [
+{ #category : #accessing }
+EntryCompletion >> setChooserWith: aToken labels: labels [
 	chooser 
 		ifNil: [chooser := IdentifierChooserMorph 
 							labels: labels

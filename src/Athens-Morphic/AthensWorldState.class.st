@@ -9,31 +9,21 @@ Class {
 	#instVars : [
 		'display'
 	],
-	#category : #Athens-Morphic,
-	#timestamp : 'NicolaiHess 1/4/2015 18:31'
+	#category : #Athens-Morphic
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWorldState>>display [
+{ #category : #accessing }
+AthensWorldState >> display [
 	^ display
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWorldState>>display: aDisplay [
+{ #category : #accessing }
+AthensWorldState >> display: aDisplay [
 	display := aDisplay
 ]
 
-{
-	#category : #'update cycle',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensWorldState>>doDeferredUpdatingFor: aWorld [
+{ #category : #'update cycle' }
+AthensWorldState >> doDeferredUpdatingFor: aWorld [
 	"overwritten from WorldState to use ower own display"
 
 	(self display deferUpdates: true) ifNil: [ ^ false ].

@@ -12,91 +12,60 @@ Class {
 		'propagations',
 		'newClass'
 	],
-	#category : #Slot-ClassBuilder,
-	#timestamp : '<historical>'
+	#category : #Slot-ClassBuilder
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>allPropagationsDo: aBlock [
+{ #category : #accessing }
+AbstractClassModification >> allPropagationsDo: aBlock [
 	propagations do: [ :aPropagation |
 		aBlock value: aPropagation.
 		aPropagation allPropagationsDo: aBlock ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>apply [
+{ #category : #public }
+AbstractClassModification >> apply [
 	^ newClass := target shallowCopy
 		superclass: self superclass
 		layout: layout
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>checkSanity [
+{ #category : #accessing }
+AbstractClassModification >> checkSanity [
 	layout checkSanity.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>classLayout [
+{ #category : #accessing }
+AbstractClassModification >> classLayout [
 	^ self layout
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>classLayout: aLayout [
+{ #category : #accessing }
+AbstractClassModification >> classLayout: aLayout [
 	self layout: aLayout
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>computeChange [
+{ #category : #private }
+AbstractClassModification >> computeChange [
 	self checkSanity.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>initialize [
+{ #category : #initialization }
+AbstractClassModification >> initialize [
 	propagations := OrderedCollection new.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>isPropagation [
+{ #category : #testing }
+AbstractClassModification >> isPropagation [
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>layout [
+{ #category : #accessing }
+AbstractClassModification >> layout [
 	^ layout
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>layout: aLayout [
+{ #category : #accessing }
+AbstractClassModification >> layout: aLayout [
 	layout := aLayout.
 	layout host: target.
 	layout finalize.
@@ -104,35 +73,23 @@ AbstractClassModification>>layout: aLayout [
 		ifFalse: [ self computeChange ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>newClass [
+{ #category : #accessing }
+AbstractClassModification >> newClass [
 	^ newClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>newLayout [
+{ #category : #accessing }
+AbstractClassModification >> newLayout [
 	^ layout
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>oldLayout [
+{ #category : #accessing }
+AbstractClassModification >> oldLayout [
 	^ target classLayout
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>propagate [
+{ #category : #private }
+AbstractClassModification >> propagate [
 	target subclassesDo: [ :subclass |
 		propagations add:
 			(ClassModificationPropagation
@@ -144,26 +101,17 @@ AbstractClassModification>>propagate [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>result [
+{ #category : #accessing }
+AbstractClassModification >> result [
 	^ target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>target [
+{ #category : #accessing }
+AbstractClassModification >> target [
 	^ target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-AbstractClassModification>>target: aTarget [
+{ #category : #accessing }
+AbstractClassModification >> target: aTarget [
 	target := aTarget
 ]

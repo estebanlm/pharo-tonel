@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterItemActionbarBrick,
 	#superclass : #GLMBrick,
@@ -10,23 +7,16 @@ Class {
 		'actOnButton',
 		'candidateLink'
 	],
-	#category : #GT-Spotter-UI,
-	#timestamp : ''
+	#category : #GT-Spotter-UI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>actOnButton [
+{ #category : #accessing }
+GTSpotterItemActionbarBrick >> actOnButton [
 	^ actOnButton
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>addActActionButton [
+{ #category : #adding }
+GTSpotterItemActionbarBrick >> addActActionButton [
 
 	actOnButton := (self newActionButtonBrick
 			icon: self themer spotterThemer iconAct;
@@ -38,11 +28,8 @@ GTSpotterItemActionbarBrick>>addActActionButton [
 	self addActionButton: actOnButton.
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>addActionButton: anActionButton [
+{ #category : #adding }
+GTSpotterItemActionbarBrick >> addActionButton: anActionButton [
 
 	self themer spotterThemer itemActionButtonStyleFor: anActionButton.
 	self themer spotterThemer itemActionButtonWidgetStyleFor: anActionButton.
@@ -53,11 +40,8 @@ GTSpotterItemActionbarBrick>>addActionButton: anActionButton [
 		ifTrue: [ self themer spotterThemer hintRevealStyleFor: anActionButton ].
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>addDiveInActionButton [
+{ #category : #adding }
+GTSpotterItemActionbarBrick >> addDiveInActionButton [
 			
 	(self stepModel canDiveIn: self candidate) ifTrue: [
 		diveInButton := (self newActionButtonBrick
@@ -70,102 +54,69 @@ GTSpotterItemActionbarBrick>>addDiveInActionButton [
 		self addActionButton: diveInButton ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>candidate [
+{ #category : #accessing }
+GTSpotterItemActionbarBrick >> candidate [
 
 	^ self candidateLink value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>candidateLink [
+{ #category : #accessing }
+GTSpotterItemActionbarBrick >> candidateLink [
 	^ candidateLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>candidateLink: anObject [
+{ #category : #accessing }
+GTSpotterItemActionbarBrick >> candidateLink: anObject [
 	candidateLink := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>diveInButton [
+{ #category : #accessing }
+GTSpotterItemActionbarBrick >> diveInButton [
 	^ diveInButton
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>hasStepModel [
+{ #category : #testing }
+GTSpotterItemActionbarBrick >> hasStepModel [
 	^ stepModel isNotNil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>newActionButtonBrick [
+{ #category : #'instance creation' }
+GTSpotterItemActionbarBrick >> newActionButtonBrick [
 
 	^ GLMHintableActionButtonBrick new
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>onHideHints [
+{ #category : #'event handling' }
+GTSpotterItemActionbarBrick >> onHideHints [
 
 	self visible ifFalse: [ ^ self ].
 	self themer spotterThemer hintHideStyleFor: self diveInButton.
 	self themer spotterThemer hintHideStyleFor: self actOnButton.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>onRevealHints [
+{ #category : #'event handling' }
+GTSpotterItemActionbarBrick >> onRevealHints [
 
 	self visible ifFalse: [ ^ self ].
 	self themer spotterThemer hintRevealStyleFor: self diveInButton.
 	self themer spotterThemer hintRevealStyleFor: self actOnButton
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>onThemerChanged [
+{ #category : #brick-properties-events }
+GTSpotterItemActionbarBrick >> onThemerChanged [
 	super onThemerChanged.
 	
 	self themer spotterThemer itemActionbarStyleFor: self.
 	self subbricks do: [ :aBrick | self themer spotterThemer itemActionButtonWidgetStyleFor: aBrick ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>stepModel [
+{ #category : #accessing }
+GTSpotterItemActionbarBrick >> stepModel [
 	^ stepModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>stepModel: anObject [
+{ #category : #accessing }
+GTSpotterItemActionbarBrick >> stepModel: anObject [
 	stepModel := anObject.
 	
 	self stepModel spotter announcer when: GTSpotterRevealHints send: #onRevealHints to: self.
@@ -176,11 +127,8 @@ GTSpotterItemActionbarBrick>>stepModel: anObject [
 		addDiveInActionButton
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>toggleHints [
+{ #category : #actions }
+GTSpotterItemActionbarBrick >> toggleHints [
 
 	self visible ifFalse: [ ^ self ].
 	self stepModel spotter isShiftPressed
@@ -188,11 +136,8 @@ GTSpotterItemActionbarBrick>>toggleHints [
 		ifFalse: [ self onHideHints ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterItemActionbarBrick>>visible: aBoolean [
+{ #category : #actions }
+GTSpotterItemActionbarBrick >> visible: aBoolean [
 	super visible: aBoolean.
 	
 	self toggleHints

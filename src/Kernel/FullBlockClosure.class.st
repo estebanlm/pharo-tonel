@@ -14,23 +14,16 @@ Class {
 	#instVars : [
 		'receiver'
 	],
-	#category : #Kernel-Methods,
-	#timestamp : 'ClementBera 6/27/2016 10:36'
+	#category : #Kernel-Methods
 }
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>abstractBytecodeMessagesDo: aBlock [
+{ #category : #scanning }
+FullBlockClosure >> abstractBytecodeMessagesDo: aBlock [
 	^ self compiledBlock abstractBytecodeMessagesDo: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>asContextWithSender: aContext [
+{ #category : #private }
+FullBlockClosure >> asContextWithSender: aContext [
 	"Inner private support method for evaluation.  Do not use unless you know what you're doing."
 
 	^(Context newForMethod: self compiledBlock)
@@ -42,110 +35,71 @@ FullBlockClosure>>asContextWithSender: aContext [
 		privRefresh
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>compiledBlock [
+{ #category : #accessing }
+FullBlockClosure >> compiledBlock [
 	"To be able to inherit from BlockClosure"
 	^ startpc
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>compiledBlock: aCompiledMethod [
+{ #category : #accessing }
+FullBlockClosure >> compiledBlock: aCompiledMethod [
 	"To be able to inherit from BlockClosure"
 	startpc := aCompiledMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>endPC [
+{ #category : #accessing }
+FullBlockClosure >> endPC [
 	^ self compiledBlock endPC
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>hasMethodReturn [
+{ #category : #scanning }
+FullBlockClosure >> hasMethodReturn [
 	"Answer whether the receiver has a method-return ('^') in its code."
 	^ self compiledBlock hasMethodReturn
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>home [
+{ #category : #accessing }
+FullBlockClosure >> home [
 	^ outerContext ifNotNil: [ outerContext home ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>method [
+{ #category : #accessing }
+FullBlockClosure >> method [
 	^ self compiledBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>numArgs: n [
+{ #category : #accessing }
+FullBlockClosure >> numArgs: n [
 	numArgs := n
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>numTemps [
+{ #category : #accessing }
+FullBlockClosure >> numTemps [
 	^ self compiledBlock numTemps
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>outerContext: ctxt [
+{ #category : #accessing }
+FullBlockClosure >> outerContext: ctxt [
 	outerContext := ctxt
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>printOn: s [
+{ #category : #private }
+FullBlockClosure >> printOn: s [
 	[ super printOn: s ] on: Error do: [ :ex | s << '![' << ex messageText << ']!' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>receiver [
+{ #category : #accessing }
+FullBlockClosure >> receiver [
 	^ receiver
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>receiver: anObject [
+{ #category : #accessing }
+FullBlockClosure >> receiver: anObject [
 	receiver := anObject
 ]
 
-{
-	#category : #simulation,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>simulateValueWithArguments: anArray caller: aContext [
+{ #category : #simulation }
+FullBlockClosure >> simulateValueWithArguments: anArray caller: aContext [
 	"Simulate the valueWithArguments: primitive. Fail if anArray is not an array of the right arity."
 	| newContext |
 	newContext := (Context newForMethod: self compiledBlock)
@@ -165,27 +119,18 @@ FullBlockClosure>>simulateValueWithArguments: anArray caller: aContext [
 	^newContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>sourceNode [
+{ #category : #accessing }
+FullBlockClosure >> sourceNode [
 	^ self compiledBlock sourceNodeInOuter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>startpc [
+{ #category : #accessing }
+FullBlockClosure >> startpc [
 	^ self compiledBlock initialPC
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>value [
+{ #category : #evaluating }
+FullBlockClosure >> value [
 	"Activate the receiver, creating a closure activation (MethodContext)
 	 whose closure is the receiver and whose caller is the sender of this
 	 message. Supply the copied values to the activation as its copied
@@ -201,11 +146,8 @@ FullBlockClosure>>value [
 		ifFalse: [self primitiveFailed]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>value: firstArg [
+{ #category : #evaluating }
+FullBlockClosure >> value: firstArg [
 	"Activate the receiver, creating a closure activation (MethodContext)
 	 whose closure is the receiver and whose caller is the sender of this
 	 message. Supply the argument and copied values to the activation
@@ -222,11 +164,8 @@ FullBlockClosure>>value: firstArg [
 		ifFalse: [self primitiveFailed]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>value: firstArg value: secondArg [
+{ #category : #evaluating }
+FullBlockClosure >> value: firstArg [ value: secondArg
 	"Activate the receiver, creating a closure activation (MethodContext)
 	 whose closure is the receiver and whose caller is the sender of this
 	 message. Supply the arguments and copied values to the activation
@@ -244,11 +183,8 @@ FullBlockClosure>>value: firstArg value: secondArg [
 		ifFalse: [self primitiveFailed]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>value: firstArg value: secondArg value: thirdArg [
+{ #category : #evaluating }
+FullBlockClosure >> value: firstArg [ value: secondArg value: thirdArg
 	"Activate the receiver, creating a closure activation (MethodContext)
 	 whose closure is the receiver and whose caller is the sender of this
 	 message. Supply the arguments and copied values to the activation
@@ -267,11 +203,8 @@ FullBlockClosure>>value: firstArg value: secondArg value: thirdArg [
 		ifFalse: [self primitiveFailed]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>value: firstArg value: secondArg value: thirdArg value: fourthArg [
+{ #category : #evaluating }
+FullBlockClosure >> value: firstArg [ value: secondArg value: thirdArg value: fourthArg
 	"Activate the receiver, creating a closure activation (MethodContext)
 	 whose closure is the receiver and whose caller is the sender of this
 	 message. Supply the arguments and copied values to the activation
@@ -291,11 +224,8 @@ FullBlockClosure>>value: firstArg value: secondArg value: thirdArg value: fourth
 		ifFalse: [self primitiveFailed]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>valueNoContextSwitch [
+{ #category : #evaluating }
+FullBlockClosure >> valueNoContextSwitch [
 	"An exact copy of BlockClosure>>value except that this version will not preempt
 	 the current process on block activation if a higher-priority process is runnable.
 	 Primitive. Essential."
@@ -305,11 +235,8 @@ FullBlockClosure>>valueNoContextSwitch [
 	self primitiveFailed
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>valueNoContextSwitch: anArg [
+{ #category : #evaluating }
+FullBlockClosure >> valueNoContextSwitch: anArg [
 	"An exact copy of BlockClosure>>value: except that this version will not preempt
 	 the current process on block activation if a higher-priority process is runnable.
 	 Primitive. Essential."
@@ -319,11 +246,8 @@ FullBlockClosure>>valueNoContextSwitch: anArg [
 	self primitiveFailed
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-FullBlockClosure>>valueWithArguments: anArray [
+{ #category : #evaluating }
+FullBlockClosure >> valueWithArguments: anArray [
 	"Activate the receiver, creating a closure activation (MethodContext)
 	 whose closure is the receiver and whose caller is the sender of this
 	 message. Supply the arguments in an anArray and copied values to

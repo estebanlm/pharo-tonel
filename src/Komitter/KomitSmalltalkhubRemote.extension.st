@@ -1,20 +1,12 @@
-Extension {
-	#name : #KomitSmalltalkhubRemote
-}
+Extension { #name : #KomitSmalltalkhubRemote }
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSmalltalkhubRemote>>icon [
+{ #category : #'*Komitter-UI' }
+KomitSmalltalkhubRemote >> icon [
 	^ self iconNamed: #komitterSmalltalkhubRemote
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSmalltalkhubRemote>>label [
+{ #category : #'*Komitter-UI' }
+KomitSmalltalkhubRemote >> label [
 	| url |
 	url := self remote location splitOn: '/'.
 	

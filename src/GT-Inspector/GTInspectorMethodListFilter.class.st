@@ -10,15 +10,11 @@ Class {
 		'allMethodSignatures',
 		'selectedMethodSignatures'
 	],
-	#category : #GT-Inspector,
-	#timestamp : 'AndreiChis 1/27/2015 23:30'
+	#category : #GT-Inspector
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter class>>exampleASTBrowser [
+{ #category : #examples }
+GTInspectorMethodListFilter class >> exampleASTBrowser [
 	"An inspector showing a browser for navigating through AST nodes."
 	|inspector|
 	
@@ -29,11 +25,8 @@ GTInspectorMethodListFilter class>>exampleASTBrowser [
 	inspector openOn: Morph>>#initialize.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter class>>exampleCodeBrowser [
+{ #category : #examples }
+GTInspectorMethodListFilter class >> exampleCodeBrowser [
 	"An inspector showing only the Meta presentation for all objects"
 	|inspector|
 	
@@ -43,11 +36,8 @@ GTInspectorMethodListFilter class>>exampleCodeBrowser [
 	inspector openOn: Morph new.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter class>>exampleFileBrowser [
+{ #category : #examples }
+GTInspectorMethodListFilter class >> exampleFileBrowser [
 	"An inspector for browsing directories and files."
 	|inspector|
 	
@@ -63,11 +53,8 @@ GTInspectorMethodListFilter class>>exampleFileBrowser [
 	inspector openOn: FileSystem workingDirectory.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter class>>exampleFullInspector [
+{ #category : #examples }
+GTInspectorMethodListFilter class >> exampleFullInspector [
 	"An inspector showing all presentations for all objects"
 	|inspector|
 	
@@ -77,11 +64,8 @@ GTInspectorMethodListFilter class>>exampleFullInspector [
 	inspector openOn: Morph new.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter class>>exampleHelpBrowser [
+{ #category : #examples }
+GTInspectorMethodListFilter class >> exampleHelpBrowser [
 	"An inspector for browsing Help pages.
 	
 	self exampleHelpBrowser
@@ -95,11 +79,8 @@ GTInspectorMethodListFilter class>>exampleHelpBrowser [
 	inspector openOn: SystemHelp asHelpTopic.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter class>>exampleRawInspector [
+{ #category : #examples }
+GTInspectorMethodListFilter class >> exampleRawInspector [
 	"An inspector showing only the Raw presentation for all objects"
 	|inspector|
 	
@@ -109,29 +90,20 @@ GTInspectorMethodListFilter class>>exampleRawInspector [
 	inspector openOn: Morph new.
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter>>addAllSignatures [
+{ #category : #adding }
+GTInspectorMethodListFilter >> addAllSignatures [
 	
 	self allPresentationMethods do: [ :aMethod | self addSignatureFor: aMethod ] 
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter>>addAndSelectAllSignatures [
+{ #category : #adding }
+GTInspectorMethodListFilter >> addAndSelectAllSignatures [
 	
 	self allPresentationMethods do: [ :aMethod | self addAndSelectSignatureFor: aMethod ] 
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter>>addAndSelectSignatureFor: aMethod [
+{ #category : #adding }
+GTInspectorMethodListFilter >> addAndSelectSignatureFor: aMethod [
 	|signature|
 	
 	signature := self signatureFor: aMethod.
@@ -140,32 +112,23 @@ GTInspectorMethodListFilter>>addAndSelectSignatureFor: aMethod [
 	
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter>>addSignatureFor: aMethod [
+{ #category : #adding }
+GTInspectorMethodListFilter >> addSignatureFor: aMethod [
 	|signature|
 	
 	signature := self signatureFor: aMethod.
 	(allMethodSignatures includes: signature) ifFalse: [ allMethodSignatures add: signature ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter>>allPresentationMethods [
+{ #category : #accessing }
+GTInspectorMethodListFilter >> allPresentationMethods [
 
 	^ (PragmaCollector allSystemPragmas select: [ :pragma | 
 		pragma key == self inspectorPragmaKey ]) collect: [ :aPragma | aPragma method ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter>>changeFilterRequestFor: aGTInspector [
+{ #category : #accessing }
+GTInspectorMethodListFilter >> changeFilterRequestFor: aGTInspector [
 
 	self
 		openListChooseLabeled: 'All available presentations' 
@@ -176,59 +139,41 @@ GTInspectorMethodListFilter>>changeFilterRequestFor: aGTInspector [
 		actionSelector: #replaceSelectedSignaturesWith:in:
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter>>initialize [
+{ #category : #initialization }
+GTInspectorMethodListFilter >> initialize [
 	super initialize.
 	allMethodSignatures := OrderedCollection new.
 	selectedMethodSignatures := OrderedCollection new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter>>inspectorPragmaKey [
+{ #category : #accessing }
+GTInspectorMethodListFilter >> inspectorPragmaKey [
 
 	^ #gtInspectorPresentationOrder:
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter>>printSignature: aSignature [
+{ #category : #printing }
+GTInspectorMethodListFilter >> printSignature: aSignature [
 
 	^ aSignature first name, '>>', aSignature second asString
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter>>replaceSelectedSignaturesWith: aList in: aGTInspector [
+{ #category : #callbacks }
+GTInspectorMethodListFilter >> replaceSelectedSignaturesWith: aList in: aGTInspector [
 
 	selectedMethodSignatures := aList.
 	aGTInspector update
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter>>shouldDisplayPresentationCreatedBy: aMethod [
+{ #category : #testing }
+GTInspectorMethodListFilter >> shouldDisplayPresentationCreatedBy: aMethod [
 
 	^ selectedMethodSignatures anySatisfy: [ :aSignature | 
 		aSignature first = aMethod methodClass and: [ aSignature second = aMethod selector ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorMethodListFilter>>signatureFor: aMethod [
+{ #category : #accessing }
+GTInspectorMethodListFilter >> signatureFor: aMethod [
 
 	^ {aMethod methodClass . aMethod selector}
 ]

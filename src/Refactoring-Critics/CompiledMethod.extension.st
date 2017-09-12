@@ -1,12 +1,7 @@
-Extension {
-	#name : #CompiledMethod
-}
+Extension { #name : #CompiledMethod }
 
-{
-	#category : #'*Refactoring-Critics',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-CompiledMethod>>selfMessages [
+{ #category : #'*Refactoring-Critics' }
+CompiledMethod >> selfMessages [
 
 	|  selfMessages searcher |
 	selfMessages := Set new.
@@ -20,11 +15,8 @@ CompiledMethod>>selfMessages [
 	^ selfMessages
 ]
 
-{
-	#category : #'*Refactoring-Critics',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-CompiledMethod>>superMessages [
+{ #category : #'*Refactoring-Critics' }
+CompiledMethod >> superMessages [
 
 	|  superMessages searcher |
 	superMessages := Set new.

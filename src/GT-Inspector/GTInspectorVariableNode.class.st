@@ -20,25 +20,18 @@ Class {
 	#instVars : [
 		'hostObject'
 	],
-	#category : #GT-Inspector,
-	#timestamp : 'AndreiChis 2/27/2017 11:19'
+	#category : #GT-Inspector
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorVariableNode class>>hostObject: anObject  [
+{ #category : #'instance creation' }
+GTInspectorVariableNode class >> hostObject: anObject [ 
 	^ self new
 		hostObject: anObject;
 		yourself
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorVariableNode>>childrenNodesFor: aVariablesBrowser [
+{ #category : #composition }
+GTInspectorVariableNode >> childrenNodesFor: aVariablesBrowser [
 	"Return a collection of subvariable nodes to be displayed in a given raw variables browser.
 	Note: by default we dispatch to browser and let it perform collection"
 	<return: #Collection of: #GTInspectorVariableNode>
@@ -46,27 +39,18 @@ GTInspectorVariableNode>>childrenNodesFor: aVariablesBrowser [
 	^ aVariablesBrowser childrenVariableNodesForNode: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorVariableNode>>errorMessage [
+{ #category : #accessing }
+GTInspectorVariableNode >> errorMessage [
 	^ 'error obtaining value'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorVariableNode>>hostObject [
+{ #category : #accessing }
+GTInspectorVariableNode >> hostObject [
 	^ hostObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorVariableNode>>hostObject: anObject [
+{ #category : #accessing }
+GTInspectorVariableNode >> hostObject: anObject [
 
 	"
 	Allow nil objects for the moment. Normally the inspector should be able to inspect nil.
@@ -81,66 +65,44 @@ GTInspectorVariableNode>>hostObject: anObject [
 	hostObject := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorVariableNode>>inspectorActionsForNode [
+{ #category : #actions }
+GTInspectorVariableNode >> inspectorActionsForNode [
 	"Return a collection of available inspector actions associated with a variable node"
 	<return: #Collection of: #GLMAction>
 
 	^ #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorVariableNode>>key [
+{ #category : #accessing }
+GTInspectorVariableNode >> key [
 	"Answer the key of this object variable (slot, indexed attribute, computed value)."
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorVariableNode>>label [
+{ #category : #accessing }
+GTInspectorVariableNode >> label [
 	"Answer the label of this object variable (slot, indexed attribute, computed value)."
 	^ self key asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorVariableNode>>rawValue [
+{ #category : #accessing }
+GTInspectorVariableNode >> rawValue [
 	"Answer the object value of this object variable (slot, indexed attribute, computed value)."
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorVariableNode>>save: aValue [
-
+{ #category : #actions }
+GTInspectorVariableNode >> save: aValue [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorVariableNode>>value [
+{ #category : #accessing }
+GTInspectorVariableNode >> value [
 	"Answer the object value of this object variable (slot, indexed attribute, computed value).
 	Return nil in case there is an error obtaining the value"
 	^ [ self rawValue ] on: Error do: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorVariableNode>>variableTag [
+{ #category : #accessing }
+GTInspectorVariableNode >> variableTag [
 	^ 'implicit'
 ]

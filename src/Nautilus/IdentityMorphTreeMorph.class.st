@@ -5,15 +5,11 @@ An IdentityMorphTreeMorph is a MorphTreeMorph which always check for identity be
 Class {
 	#name : #IdentityMorphTreeMorph,
 	#superclass : #MorphTreeMorph,
-	#category : #Nautilus-MorphTreeWidget-Extension,
-	#timestamp : '<historical>'
+	#category : #Nautilus-MorphTreeWidget-Extension
 }
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IdentityMorphTreeMorph>>expandedFormForMorph: aMorph [
+{ #category : #expanding-collapsing }
+IdentityMorphTreeMorph >> expandedFormForMorph: aMorph [
 	"Answer the form to use for expanded items."
 	
 	^ ((self selectedMorphList identityIncludes: aMorph) and: [self theme selectionColor luminance < 0.6])
@@ -21,20 +17,14 @@ IdentityMorphTreeMorph>>expandedFormForMorph: aMorph [
 		ifFalse: [self theme treeExpandedForm]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IdentityMorphTreeMorph>>listManager: aManager [
+{ #category : #accessing }
+IdentityMorphTreeMorph >> listManager: aManager [
 
 	listManager := aManager
 ]
 
-{
-	#category : #expanding-collapsing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-IdentityMorphTreeMorph>>notExpandedFormForMorph: aMorph [
+{ #category : #expanding-collapsing }
+IdentityMorphTreeMorph >> notExpandedFormForMorph: aMorph [
 
 	^ ((self selectedMorphList identityIncludes: aMorph) and: [self theme selectionColor luminance < 0.6])
 		ifTrue: [self theme whiteTreeUnexpandedForm]

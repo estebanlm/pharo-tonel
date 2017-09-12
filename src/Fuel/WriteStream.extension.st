@@ -1,12 +1,7 @@
-Extension {
-	#name : #WriteStream
-}
+Extension { #name : #WriteStream }
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-WriteStream>>nextBytesPutAll: aCollection [
+{ #category : #'*Fuel' }
+WriteStream >> nextBytesPutAll: aCollection [
 	"Append the bytes of aCollection to the sequence of bytes accessible 
 	by the receiver. Answer aCollection."
  

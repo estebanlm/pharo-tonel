@@ -10,66 +10,43 @@ Class {
 	#instVars : [
 		'form'
 	],
-	#category : #OSWindow-Core,
-	#timestamp : 'IgorStasenko 7/30/2014 17:04'
+	#category : #OSWindow-Core
 }
 
-{
-	#category : #'morphic integration',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowFormRenderer>>deferUpdatesWhile: aBlock [
+{ #category : #'morphic integration' }
+OSWindowFormRenderer >> deferUpdatesWhile: aBlock [
 
 	aBlock value
 ]
 
-{
-	#category : #'morphic integration',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowFormRenderer>>forceDisplayUpdate [
-
+{ #category : #'morphic integration' }
+OSWindowFormRenderer >> forceDisplayUpdate [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowFormRenderer>>form [
+{ #category : #accessing }
+OSWindowFormRenderer >> form [
 	
 	^ form
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowFormRenderer>>form: anObject [
+{ #category : #accessing }
+OSWindowFormRenderer >> form: anObject [
 	
 	form := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowFormRenderer>>getCanvas [
+{ #category : #accessing }
+OSWindowFormRenderer >> getCanvas [
 	^ form getCanvas
 ]
 
-{
-	#category : #size,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowFormRenderer>>newExtent: newExtent [
+{ #category : #size }
+OSWindowFormRenderer >> newExtent: newExtent [
 	form setExtent: newExtent depth: form depth
 ]
 
-{
-	#category : #'morphic integration',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowFormRenderer>>updateAreas: allDamage immediate: forceToScreen [
+{ #category : #'morphic integration' }
+OSWindowFormRenderer >> updateAreas: allDamage immediate: forceToScreen [
 	"Force all the damage rects to the screen."
 	allDamage do: [ :r| self updateRectangle: r ].
 ]

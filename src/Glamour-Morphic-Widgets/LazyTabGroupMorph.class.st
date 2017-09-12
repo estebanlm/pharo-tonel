@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #LazyTabGroupMorph,
 	#superclass : #TabGroupMorph,
@@ -10,31 +7,21 @@ Class {
 		'headerMorph',
 		'tabSelectorWidth'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>addLazyPage: aBlock label: aStringOrMorph [
+{ #category : #adding }
+LazyTabGroupMorph >> addLazyPage: aBlock label: aStringOrMorph [
 	self addLazyPage: aBlock label: aStringOrMorph toolbar: nil
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>addLazyPage: aBlock label: aStringOrMorph toolbar: aToolbar [
+{ #category : #adding }
+LazyTabGroupMorph >> addLazyPage: aBlock label: aStringOrMorph toolbar: aToolbar [
 	self addLazyPage: aBlock label: aStringOrMorph toolbar: aToolbar collapsable: false
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>addLazyPage: aBlock label: aStringOrMorph toolbar: aToolbar action: anActionMorphOrNil [
+{ #category : #adding }
+LazyTabGroupMorph >> addLazyPage: aBlock label: aStringOrMorph toolbar: aToolbar action: anActionMorphOrNil [
 	| newPage label |
 	newPage := LazyTabPage new.
 	newPage
@@ -49,11 +36,8 @@ LazyTabGroupMorph>>addLazyPage: aBlock label: aStringOrMorph toolbar: aToolbar a
 		label: label
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>addLazyPage: aBlock label: aStringOrMorph toolbar: aToolbar collapsable: aBoolean [
+{ #category : #adding }
+LazyTabGroupMorph >> addLazyPage: aBlock label: aStringOrMorph toolbar: aToolbar collapsable: aBoolean [
 	| newPage label |
 	newPage := LazyTabPage new.
 	newPage
@@ -73,19 +57,13 @@ LazyTabGroupMorph>>addLazyPage: aBlock label: aStringOrMorph toolbar: aToolbar c
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>announcer [
+{ #category : #accessing }
+LazyTabGroupMorph >> announcer [
 	^ announcer ifNil: [announcer := GLMAnnouncer new]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>buildLabelFrom: aStringOrMorph withAction: aBrick [
+{ #category : #private }
+LazyTabGroupMorph >> buildLabelFrom: aStringOrMorph withAction: aBrick [
 	| label innerLabel |
 
 	innerLabel := aStringOrMorph isMorph
@@ -114,29 +92,20 @@ LazyTabGroupMorph>>buildLabelFrom: aStringOrMorph withAction: aBrick [
 	^ label
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>headerMorph [
+{ #category : #accessing }
+LazyTabGroupMorph >> headerMorph [
 	^ headerMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>headerMorph: anObject [
+{ #category : #accessing }
+LazyTabGroupMorph >> headerMorph: anObject [
 	headerMorph := anObject.
 	
 	headerMorph clipSubmorphs: true.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>initialize [
+{ #category : #initialization }
+LazyTabGroupMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -161,11 +130,8 @@ LazyTabGroupMorph>>initialize [
 	self tabSelectorMorph addDependent: self"
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>newContentMorph [
+{ #category : #'instance creation' }
+LazyTabGroupMorph >> newContentMorph [
 	"Answer a new content morph"
 
 	|p|
@@ -180,21 +146,15 @@ LazyTabGroupMorph>>newContentMorph [
 	^p
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>newHeaderMorph [
+{ #category : #private }
+LazyTabGroupMorph >> newHeaderMorph [
 	^ (self theme 
 			newRowIn: self theme
 			for: {self tabSelectorMorph . self toolbarMorph}) cellInset: 0; cellPositioning: #bottomCenter; borderWidth: 0
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>newTabSelectorMorph [
+{ #category : #building }
+LazyTabGroupMorph >> newTabSelectorMorph [
 	"Answer a new tab selector morph"
 
 	^ GLMTabSelectorBrick new
@@ -203,11 +163,8 @@ LazyTabGroupMorph>>newTabSelectorMorph [
 		vResizing: #shrinkWrap
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>newToolbarMorph [
+{ #category : #private }
+LazyTabGroupMorph >> newToolbarMorph [
 	^ GLMPanelMorph new
 		fillStyle: (SolidFillStyle color: Color transparent);
 		borderStyle: (BorderStyle width: 0);
@@ -219,19 +176,13 @@ LazyTabGroupMorph>>newToolbarMorph [
 		yourself 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>pageAt: index [
+{ #category : #private }
+LazyTabGroupMorph >> pageAt: index [
 	^ (self pages at: index ) actualPageMorph
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>removePage: aPage [
+{ #category : #private }
+LazyTabGroupMorph >> removePage: aPage [
 	| removedPageIndex |
 	removedPageIndex := self pages indexOf: aPage.
 	self announcer suspendAllWhile: [ super removePage: aPage ].
@@ -245,35 +196,23 @@ LazyTabGroupMorph>>removePage: aPage [
 		ifTrue: [ self contentMorph removeAllMorphs ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>removePageIndex: anInteger [
+{ #category : #private }
+LazyTabGroupMorph >> removePageIndex: anInteger [
 	self removePage: (self pages at: anInteger)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>toolbarMorph [
+{ #category : #accessing }
+LazyTabGroupMorph >> toolbarMorph [
 	^ toolbarMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>toolbarMorph: anObject [
+{ #category : #accessing }
+LazyTabGroupMorph >> toolbarMorph: anObject [
 	toolbarMorph := anObject.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>updatePageAtIndex: anInteger withLabel: aStringOrMorph toolbar: aToolbar action: anActionMorph [
+{ #category : #updating }
+LazyTabGroupMorph >> updatePageAtIndex: anInteger withLabel: aStringOrMorph toolbar: aToolbar action: anActionMorph [
 	
 	(self pages at: anInteger)
 			toolbar: aToolbar.
@@ -287,11 +226,8 @@ LazyTabGroupMorph>>updatePageAtIndex: anInteger withLabel: aStringOrMorph toolba
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabGroupMorph>>updatePageIndex: index [
+{ #category : #private }
+LazyTabGroupMorph >> updatePageIndex: index [
 	"Change to the given page index, update the toolbar and send the announcement"
 
 	| p oldPage |

@@ -5,31 +5,21 @@ Trait {
 	#name : #TPrintOnSequencedTest,
 	#traits : 'TPrintTest',
 	#classTraits : 'TPrintTest classTrait',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:35'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPrintOnSequencedTest>>nonEmpty [
+{ #category : #requirements }
+TPrintOnSequencedTest >> nonEmpty [
  self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPrintOnSequencedTest>>test0FixturePrintTest [
+{ #category : #'tests - fixture' }
+TPrintOnSequencedTest >> test0FixturePrintTest [
 	self nonEmpty
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPrintOnSequencedTest>>testPrintElementsOn [
+{ #category : #'tests - printing' }
+TPrintOnSequencedTest >> testPrintElementsOn [
 
 	| aStream result allElementsAsString |
 	result:=''.
@@ -43,11 +33,8 @@ TPrintOnSequencedTest>>testPrintElementsOn [
 			].
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPrintOnSequencedTest>>testPrintNameOn [
+{ #category : #'tests - printing' }
+TPrintOnSequencedTest >> testPrintNameOn [
 
 	| aStream result |
 	result:=''.
@@ -60,11 +47,8 @@ TPrintOnSequencedTest>>testPrintNameOn [
 		ifFalse:[self assert: aStream contents =('a ',self nonEmpty class name)].
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPrintOnSequencedTest>>testPrintOn [
+{ #category : #'tests - printing' }
+TPrintOnSequencedTest >> testPrintOn [
 	| aStream result allElementsAsString |
 	result:=''.
 	aStream:= ReadWriteStream on: result.
@@ -85,11 +69,8 @@ TPrintOnSequencedTest>>testPrintOn [
 			].
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPrintOnSequencedTest>>testPrintOnDelimiter [
+{ #category : #'tests - printing' }
+TPrintOnSequencedTest >> testPrintOnDelimiter [
 	| aStream result allElementsAsString |
 	result:=''.
 	aStream:= ReadWriteStream on: result.
@@ -103,11 +84,8 @@ TPrintOnSequencedTest>>testPrintOnDelimiter [
 			].
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPrintOnSequencedTest>>testPrintOnDelimiterLast [
+{ #category : #'tests - printing' }
+TPrintOnSequencedTest >> testPrintOnDelimiterLast [
 
 	| aStream result allElementsAsString |
 	result:=''.
@@ -127,11 +105,8 @@ TPrintOnSequencedTest>>testPrintOnDelimiterLast [
 			].
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPrintOnSequencedTest>>testStoreOn [
+{ #category : #'tests - printing' }
+TPrintOnSequencedTest >> testStoreOn [
 " for the moment work only for collection that include simple elements such that Integer"
 
 "| string str result cuttedResult index elementsAsStringExpected elementsAsStringObtained tmp |

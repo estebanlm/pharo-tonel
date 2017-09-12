@@ -1,22 +1,14 @@
-Extension {
-	#name : #RubSmalltalkEditor
-}
+Extension { #name : #RubSmalltalkEditor }
 
-{
-	#category : #'*SmartSuggestions',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-RubSmalltalkEditor>>smartSuggestions [
+{ #category : #'*SmartSuggestions' }
+RubSmalltalkEditor >> smartSuggestions [
 	"Open suggested actions based on the selection"
 
 	SugsMenuBuilder showMenuFor: self
 ]
 
-{
-	#category : #'*SmartSuggestions',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-RubSmalltalkEditor class>>suggestionsMenuOn: aBuilder [
+{ #category : #'*SmartSuggestions' }
+RubSmalltalkEditor class >> suggestionsMenuOn: aBuilder [
 	<RubSmalltalkCodeMenu>
 	aBuilder
 		item: 'Suggestions...';

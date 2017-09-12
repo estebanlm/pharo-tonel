@@ -5,15 +5,11 @@ I have no test fixtures.
 Class {
 	#name : #SystemVersionTest,
 	#superclass : #TestCase,
-	#category : #Tests-System,
-	#timestamp : 'tlk 11/14/2004 10:47'
+	#category : #Tests-System
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemVersionTest>>testDottedMajorMinor [
+{ #category : #tests }
+SystemVersionTest >> testDottedMajorMinor [
 	"
 	SystemVersionTest run: #testMajorMinor
 	"
@@ -22,11 +18,8 @@ SystemVersionTest>>testDottedMajorMinor [
 	self assert: (SystemVersion fromShortVersionString: 'Pharo1.1') dottedMajorMinor = '1.1'.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemVersionTest>>testMajorMinorVersion [
+{ #category : #'as yet unclassified' }
+SystemVersionTest >> testMajorMinorVersion [
 	"SystemVersionTest run: #testMajorMinorVersion"
 	
 	self assert: (SystemVersion fromShortVersionString: 'Squeak3.7alpha') majorMinorVersion = 'Squeak3.7'.
@@ -34,11 +27,8 @@ SystemVersionTest>>testMajorMinorVersion [
 	self assert: (SystemVersion fromShortVersionString: 'Pharo1.1') majorMinorVersion = 'Pharo1.1'.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemVersionTest>>testMajorMinorWithSeparatingString [
+{ #category : #'as yet unclassified' }
+SystemVersionTest >> testMajorMinorWithSeparatingString [
 	"SystemVersionTest debug: #testMajorMinorWithSeparatingString"
 	
 	self assert: ((SystemVersion fromShortVersionString: 'Squeak3.7alpha') majorMinor: '-') = '3-7'.
@@ -46,11 +36,8 @@ SystemVersionTest>>testMajorMinorWithSeparatingString [
 	self assert: ((SystemVersion fromShortVersionString: 'Pharo1.1') majorMinor: '.') = '1.1'.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemVersionTest>>testParseShortVersionString [
+{ #category : #'as yet unclassified' }
+SystemVersionTest >> testParseShortVersionString [
 	
 
 	self assert: (SystemVersion parseShortVersionString: 'Squeak3.7alpha') = {'Squeak'. 3. 7. 'alpha'}.

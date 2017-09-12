@@ -7,30 +7,20 @@ Class {
 	#instVars : [
 		'event'
 	],
-	#category : #Rubric-Editing-Announcements,
-	#timestamp : 'FranckWarlouzet 7/29/2015 11:03'
+	#category : #Rubric-Editing-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubKeystroke class>>with: anEvent [
+{ #category : #'instance creation' }
+RubKeystroke class >> with: anEvent [
 	^ self new event: anEvent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubKeystroke>>event [
+{ #category : #accessing }
+RubKeystroke >> event [
 	^ event
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubKeystroke>>event: anObject [
+{ #category : #accessing }
+RubKeystroke >> event: anObject [
 	event := anObject
 ]

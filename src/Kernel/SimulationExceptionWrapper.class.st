@@ -7,34 +7,24 @@ Class {
 	#instVars : [
 		'exception'
 	],
-	#category : #Kernel-Exceptions,
-	#timestamp : 'TorstenBergmann 2/4/2014 21:43'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #signalling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SimulationExceptionWrapper class>>signalForException: anError [
+{ #category : #signalling }
+SimulationExceptionWrapper class >> signalForException: anError [
 
 	^ self new
 		exception: anError
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SimulationExceptionWrapper>>exception [
+{ #category : #accessing }
+SimulationExceptionWrapper >> exception [
 
 	^ exception
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SimulationExceptionWrapper>>exception: anObject [
+{ #category : #accessing }
+SimulationExceptionWrapper >> exception: anObject [
 
 	exception := anObject
 ]

@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'hasValidText'
 	],
-	#category : #Rubric-Editing-Widgets,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:40'
+	#category : #Rubric-Editing-Widgets
 }
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldMorph>>adornmentColor [
+{ #category : #drawing }
+RubTextFieldMorph >> adornmentColor [
 	"color to Indicate edit status for the given morph."
 
 	self hasValidText
@@ -23,82 +19,55 @@ RubTextFieldMorph>>adornmentColor [
 	^ super adornmentColor
 ]
 
-{
-	#category : #configure,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldMorph>>configureGhostText: aTextArea [
+{ #category : #configure }
+RubTextFieldMorph >> configureGhostText: aTextArea [
 	super configureGhostText: aTextArea.
 	self hasKeyboardFocus
 		ifTrue: [ 
 			aTextArea left: self left]
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldMorph>>defaultGhostTextMorph [
+{ #category : #defaults }
+RubTextFieldMorph >> defaultGhostTextMorph [
 	^ super defaultGhostTextMorph beNotWrapped 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldMorph>>extent: aPoint [
+{ #category : #geometry }
+RubTextFieldMorph >> extent: aPoint [
 	super extent: aPoint x @ self textFieldHeight
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldMorph>>hasValidText [
+{ #category : #'model protocol' }
+RubTextFieldMorph >> hasValidText [
 	^ hasValidText ifNil: [ hasValidText := true ] 
 ]
 
-{
-	#category : #'model protocol',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldMorph>>hasValidText: aBoolean [
+{ #category : #'model protocol' }
+RubTextFieldMorph >> hasValidText: aBoolean [
 	hasValidText := aBoolean
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldMorph>>initialize [
+{ #category : #initialize-release }
+RubTextFieldMorph >> initialize [
 	super initialize.
 	self textArea announcer when: RubReturnEntered  send: #whenReturnEntered: to: self.
 	self scrollbarsShowNever.
 	self extent: self extent
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldMorph>>resetState [
+{ #category : #private }
+RubTextFieldMorph >> resetState [
 	hasValidText := nil.
 	super resetState
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldMorph>>textAreaClass [
+{ #category : #initialize-release }
+RubTextFieldMorph >> textAreaClass [
 	^ RubTextFieldArea
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldMorph>>textFieldHeight [
+{ #category : #geometry }
+RubTextFieldMorph >> textFieldHeight [
 	| vgap |
 	vgap := self currentHScrollBarThickness isZero
 		ifTrue: [  0 ]
@@ -106,11 +75,8 @@ RubTextFieldMorph>>textFieldHeight [
 	^ self textArea height + 1 + (self borderWidth * 2) + vgap
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextFieldMorph>>whenReturnEntered: anAnnouncement [
+{ #category : #'event handling' }
+RubTextFieldMorph >> whenReturnEntered: anAnnouncement [
 	self changed
 
 ]

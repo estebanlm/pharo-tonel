@@ -25,15 +25,11 @@ Class {
 	#instVars : [
 		'instVarName'
 	],
-	#category : #Kernel-Exceptions,
-	#timestamp : 'CyrilFerlicot 8/18/2017 01:10'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #signalling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstanceVariableNotFound class>>signalFor: aString [
+{ #category : #signalling }
+InstanceVariableNotFound class >> signalFor: aString [
 	"Create and signal a NoInstanceVariableNAmed exception for aString in the default receiver."
 	
 	^ self new
@@ -41,37 +37,25 @@ InstanceVariableNotFound class>>signalFor: aString [
 		signal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstanceVariableNotFound>>instVarName [
+{ #category : #accessing }
+InstanceVariableNotFound >> instVarName [
 	^ instVarName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstanceVariableNotFound>>instVarName: anObject [
+{ #category : #accessing }
+InstanceVariableNotFound >> instVarName: anObject [
 	instVarName := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstanceVariableNotFound>>messageText [
+{ #category : #accessing }
+InstanceVariableNotFound >> messageText [
 	"Overwritten to initialiaze the message text to a standard text if it has not yet been set"
 	
 	^ messageText ifNil: [ messageText := self standardMessageText ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstanceVariableNotFound>>standardMessageText [
+{ #category : #accessing }
+InstanceVariableNotFound >> standardMessageText [
 	"Generate a standard textual description"
 
 	^ String

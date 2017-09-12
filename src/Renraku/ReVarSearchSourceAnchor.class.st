@@ -4,23 +4,16 @@ Same as search string source anchor but uses specific heuristics for finding a b
 Class {
 	#name : #ReVarSearchSourceAnchor,
 	#superclass : #ReSearchStringSourceAnchor,
-	#category : #Renraku-SourceAnchors,
-	#timestamp : 'YuriyTymchuk 9/7/2016 00:09'
+	#category : #Renraku-SourceAnchors
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReVarSearchSourceAnchor>>interval [
+{ #category : #accessing }
+ReVarSearchSourceAnchor >> interval [
 	^ super interval allButLast 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReVarSearchSourceAnchor>>modify: aString for: aStringCollection [
+{ #category : #private }
+ReVarSearchSourceAnchor >> modify: aString for: aStringCollection [
 
 	aStringCollection size = 1 ifTrue: [ 
 		^ aString surroundedBySingleQuotes ].
@@ -31,11 +24,8 @@ ReVarSearchSourceAnchor>>modify: aString for: aStringCollection [
 	^ aString surroundedBy: String space.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReVarSearchSourceAnchor>>searchString [
+{ #category : #accessing }
+ReVarSearchSourceAnchor >> searchString [
 	| origString |
 	
 	origString := super searchString.

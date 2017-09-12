@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicSpotterTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Morphic-Renderer-Spotter,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer-Spotter
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicSpotterTest>>creation [
+{ #category : #'as yet unclassified' }
+GLMMorphicSpotterTest >> creation [
 	| composite classRequest methodRequest thirdRequest |
 	composite  := GLMSpotterRequest new.
 

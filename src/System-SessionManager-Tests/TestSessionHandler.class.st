@@ -9,45 +9,32 @@ Class {
 		'startupHandler',
 		'shutdownHandler'
 	],
-	#category : #System-SessionManager-Tests,
-	#timestamp : 'ChristopheDemarey 10/12/2015 16:45'
+	#category : #System-SessionManager-Tests
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestSessionHandler class>>onShutdown: aBlockClosure  [
+{ #category : #instance-creation }
+TestSessionHandler class >> onShutdown: aBlockClosure [ 
 	
 	^ self new
 		shutdownHandler: aBlockClosure;
 		yourself
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestSessionHandler class>>onStartup: aBlockClosure  [
+{ #category : #instance-creation }
+TestSessionHandler class >> onStartup: aBlockClosure [ 
 	
 	^ self new
 		startupHandler: aBlockClosure;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestSessionHandler>>handledId [
+{ #category : #accessing }
+TestSessionHandler >> handledId [
 	^ 'testSessionHandler'
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestSessionHandler>>printOn: aStream [
+{ #category : #printing }
+TestSessionHandler >> printOn: aStream [
 	"Append to the argument, aStream, a sequence of characters that  
 	identifies the receiver."
 
@@ -58,34 +45,22 @@ TestSessionHandler>>printOn: aStream [
 		nextPutAll: title
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestSessionHandler>>shutdown: isImageQuitting [
+{ #category : #handlers }
+TestSessionHandler >> shutdown: isImageQuitting [
 	shutdownHandler value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestSessionHandler>>shutdownHandler: aBlockClosure [
+{ #category : #accessing }
+TestSessionHandler >> shutdownHandler: aBlockClosure [
 	shutdownHandler := aBlockClosure
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestSessionHandler>>startup: isImageStarting [
+{ #category : #handlers }
+TestSessionHandler >> startup: isImageStarting [
 	startupHandler value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestSessionHandler>>startupHandler: aBlockClosure [
+{ #category : #accessing }
+TestSessionHandler >> startupHandler: aBlockClosure [
 	startupHandler := aBlockClosure
 ]

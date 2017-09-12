@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #RBAbstractClassVariableTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAbstractClassVariableTest>>setUp [
+{ #category : #'set up' }
+RBAbstractClassVariableTest >> setUp [
 	super setUp.
 	model := self abstractVariableTestData.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAbstractClassVariableTest>>testAbstractClassVariable [
+{ #category : #tests }
+RBAbstractClassVariableTest >> testAbstractClassVariable [
 	| refactoring meta class |
 	refactoring := RBAbstractClassVariableRefactoring 
 		variable: 'RecursiveSelfRule'
@@ -48,31 +38,22 @@ RBAbstractClassVariableTest>>testAbstractClassVariable [
 												classified: aSmalllintContext protocols]]')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAbstractClassVariableTest>>testInheritedName [
+{ #category : #'failure tests' }
+RBAbstractClassVariableTest >> testInheritedName [
 	self shouldFail: (RBAbstractClassVariableRefactoring 
 			variable: #DependentsFields
 			class: RBBasicLintRuleTest)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAbstractClassVariableTest>>testMetaClassFailure [
+{ #category : #'failure tests' }
+RBAbstractClassVariableTest >> testMetaClassFailure [
 	self shouldFail: (RBAbstractClassVariableRefactoring 
 			variable: #RecursiveSelfRule
 			class: RBTransformationRuleTest class)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAbstractClassVariableTest>>testModelAbstractClassVariable [
+{ #category : #tests }
+RBAbstractClassVariableTest >> testModelAbstractClassVariable [
 	| refactoring meta class |
 	class := model classNamed: #Foo.
 	meta := class theMetaClass.
@@ -97,11 +78,8 @@ RBAbstractClassVariableTest>>testModelAbstractClassVariable [
 						instVarName1 := instVarName1 + instVarName2 + self class classVarName1')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAbstractClassVariableTest>>testModelAbstractClassVariableOverridenMethodsInSubclass [
+{ #category : #tests }
+RBAbstractClassVariableTest >> testModelAbstractClassVariableOverridenMethodsInSubclass [
 	| refactoring meta class |
 	class := model classNamed: #Foo.
 	meta := class theMetaClass.
@@ -114,11 +92,8 @@ RBAbstractClassVariableTest>>testModelAbstractClassVariableOverridenMethodsInSub
 	self assert: (meta parseTreeFor: #classVarName21:) = (RBParser parseMethod: 'classVarName21: anObject ClassVarName2 := anObject')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAbstractClassVariableTest>>testNonExistantName [
+{ #category : #'failure tests' }
+RBAbstractClassVariableTest >> testNonExistantName [
 	self shouldFail: (RBAbstractClassVariableRefactoring 
 			variable: #Foo
 			class: RBBasicLintRuleTest)

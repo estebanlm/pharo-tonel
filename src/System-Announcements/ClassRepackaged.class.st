@@ -9,15 +9,11 @@ Class {
 		'newPackage',
 		'oldPackage'
 	],
-	#category : #System-Announcements-System-Packages,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:56'
+	#category : #System-Announcements-System-Packages
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRepackaged class>>classRepackaged: aClass oldPackage: oldPackage newPackage: newPackage [
+{ #category : #'instance creation' }
+ClassRepackaged class >> classRepackaged: aClass oldPackage: oldPackage newPackage: newPackage [
 	^self new
 			classRepackaged: aClass;
 			oldPackage: oldPackage;
@@ -25,73 +21,49 @@ ClassRepackaged class>>classRepackaged: aClass oldPackage: oldPackage newPackage
 			yourself.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRepackaged>>classAffected [
+{ #category : #accessing }
+ClassRepackaged >> classAffected [
 	
 	^ classRepackaged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRepackaged>>classRepackaged [
+{ #category : #accessing }
+ClassRepackaged >> classRepackaged [
 	
 	^ classRepackaged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRepackaged>>classRepackaged: anObject [
+{ #category : #accessing }
+ClassRepackaged >> classRepackaged: anObject [
 	
 	classRepackaged := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRepackaged>>newPackage [
+{ #category : #accessing }
+ClassRepackaged >> newPackage [
 	
 	^ newPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRepackaged>>newPackage: anObject [
+{ #category : #accessing }
+ClassRepackaged >> newPackage: anObject [
 	
 	newPackage := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRepackaged>>oldPackage [
+{ #category : #accessing }
+ClassRepackaged >> oldPackage [
 	
 	^ oldPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRepackaged>>oldPackage: anObject [
+{ #category : #accessing }
+ClassRepackaged >> oldPackage: anObject [
 	
 	oldPackage := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassRepackaged>>packagesAffected [
+{ #category : #accessing }
+ClassRepackaged >> packagesAffected [
 	^{oldPackage. newPackage}
 ]

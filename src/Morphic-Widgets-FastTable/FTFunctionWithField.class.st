@@ -28,60 +28,41 @@ Class {
 	#instVars : [
 		'field'
 	],
-	#category : #Morphic-Widgets-FastTable-Functions,
-	#timestamp : 'CyrilFerlicot 10/27/2015 14:01'
+	#category : #Morphic-Widgets-FastTable-Functions
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunctionWithField class>>isAbstract [
+{ #category : #testing }
+FTFunctionWithField class >> isAbstract [
 	^ self = FTFunctionWithField
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunctionWithField>>beExplicite [
+{ #category : #accessing }
+FTFunctionWithField >> beExplicite [
 	self initializeMorph.
 	table
 		addMorph: field;
 		resizeAllSubviews
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunctionWithField>>disable [
+{ #category : #protocol }
+FTFunctionWithField >> disable [
 	field
 		ifNotNil: [ field delete.
 			field := nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunctionWithField>>fieldHeigh [
+{ #category : #accessing }
+FTFunctionWithField >> fieldHeigh [
 	^ StandardFonts defaultFont pixelSize + 10
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunctionWithField>>ghostText [
+{ #category : #'widget API' }
+FTFunctionWithField >> ghostText [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunctionWithField>>initializeMorph [
+{ #category : #initialization }
+FTFunctionWithField >> initializeMorph [
 	field := RubScrolledTextModel new newTextField
 		hResizing: #spaceFill;
 		autoAccept: true;
@@ -90,27 +71,18 @@ FTFunctionWithField>>initializeMorph [
 	field model announcer subscribe: RubTextUpdatedInModel send: #textUpdated: to: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunctionWithField>>isExplicite [
+{ #category : #testing }
+FTFunctionWithField >> isExplicite [
 	^ field isNotNil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunctionWithField>>resizeContainerFrom: topLeftPoint to: bottomLeftPoint [
+{ #category : #private }
+FTFunctionWithField >> resizeContainerFrom: topLeftPoint [ to: bottomLeftPoint
 	^ topLeftPoint corner: bottomLeftPoint x @ (bottomLeftPoint y - self fieldHeigh)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunctionWithField>>resizeWidget [
+{ #category : #private }
+FTFunctionWithField >> resizeWidget [
 	| topLeft bottomRight |
 	self flag: #TODO.	"Maybe it could be cool to let the user choose if the field need to be at the top or the bottom."
 	topLeft := table bounds left @ (table bounds bottom - self fieldHeigh).
@@ -118,22 +90,16 @@ FTFunctionWithField>>resizeWidget [
 	field bounds: (topLeft corner: bottomRight)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunctionWithField>>showWidget [
+{ #category : #accessing }
+FTFunctionWithField >> showWidget [
 	self initializeMorph.
 	table
 		addMorph: field;
 		resizeAllSubviews
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFunctionWithField>>textUpdated: anAnnouncement [
+{ #category : #updating }
+FTFunctionWithField >> textUpdated: anAnnouncement [
 	
 	"do nothing by default"
 ]

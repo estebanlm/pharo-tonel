@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #FileStreamTest,
 	#superclass : #ClassTestCase,
-	#category : #Tests-Files,
-	#timestamp : ''
+	#category : #Tests-Files
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileStreamTest>>doTestsForReading: count intoBufferWithSize: readSize startingAt: startIndex fromFileOfSize: writeSize offsetBy: startOffset [
+{ #category : #private }
+FileStreamTest >> doTestsForReading: count intoBufferWithSize: readSize startingAt: startIndex fromFileOfSize: writeSize offsetBy: startOffset [
 	"Do the actual assertions for read/write buffers with the given parameters
 	
 	If offset > 0, some elements will be fetched from buffer.
@@ -56,11 +49,8 @@ FileStreamTest>>doTestsForReading: count intoBufferWithSize: readSize startingAt
 		(FileSystem disk workingDirectory / filename) ensureDelete ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileStreamTest>>testCachingNextChunkPut [
+{ #category : #testing }
+FileStreamTest >> testCachingNextChunkPut [
 	"Ensure that nextChunkPut:/nextChunk works properly on a caching file"
 	| file text read filename |
 	filename := 'testCachingNextChunkPut'.
@@ -74,11 +64,8 @@ FileStreamTest>>testCachingNextChunkPut [
 		(FileSystem disk workingDirectory / filename) ensureDelete ].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileStreamTest>>testDetectFileDo [
+{ #category : #testing }
+FileStreamTest >> testDetectFileDo [
 	| file |
 	[ file := 'filestream.tst' asFileReference.
 	file writeStreamDo: [ :s | s nextPutAll: '42' ].
@@ -92,11 +79,8 @@ FileStreamTest>>testDetectFileDo [
 			file ensureDelete ].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileStreamTest>>testFileTruncation [
+{ #category : #testing }
+FileStreamTest >> testFileTruncation [
 	"Ensure that nextChunkPut:/nextChunk works properly on a caching file"
 
 	"self debug: #testFileTruncation"
@@ -113,11 +97,8 @@ FileStreamTest>>testFileTruncation [
 		ensure: [ file ensureDelete ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileStreamTest>>testNextChunkOutOfBounds [
+{ #category : #testing }
+FileStreamTest >> testNextChunkOutOfBounds [
 	"self debug: #testNextChunkOutOfBounds"
 	
 	"Ensure that nextChunkPut:/nextChunk works properly on a caching file"
@@ -133,11 +114,8 @@ FileStreamTest>>testNextChunkOutOfBounds [
 		(FileSystem disk workingDirectory / filename) ensureDelete ].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileStreamTest>>testNextLine [
+{ #category : #testing }
+FileStreamTest >> testNextLine [
 	| filename lines text |
 	filename := 'filestream.tst'.
 	lines := #('line 1' ' and line 2' '' 'fourth').
@@ -154,11 +132,8 @@ FileStreamTest>>testNextLine [
 		(FileSystem disk workingDirectory / filename) ensureDelete ].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileStreamTest>>testReadIntoStartingAtCountAll [
+{ #category : #testing }
+FileStreamTest >> testReadIntoStartingAtCountAll [
 	"Tests for correct count and contents when all could be read, none pre-buffered"
 	self doTestsForReading: 100 
 		intoBufferWithSize: 400 
@@ -168,11 +143,8 @@ FileStreamTest>>testReadIntoStartingAtCountAll [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileStreamTest>>testReadIntoStartingAtCountBufferedAll [
+{ #category : #testing }
+FileStreamTest >> testReadIntoStartingAtCountBufferedAll [
 	"Tests for correct count and contents when all could be read, some pre-buffered"
 	self doTestsForReading: 5000 
 		intoBufferWithSize: 6000 
@@ -181,11 +153,8 @@ FileStreamTest>>testReadIntoStartingAtCountBufferedAll [
 		offsetBy: 200.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileStreamTest>>testReadIntoStartingAtCountBufferedNotAll [
+{ #category : #testing }
+FileStreamTest >> testReadIntoStartingAtCountBufferedNotAll [
 	"Tests for correct count and contents when all could be read, some pre-buffered"
 	self doTestsForReading: 8000 
 		intoBufferWithSize: 10000 
@@ -194,11 +163,8 @@ FileStreamTest>>testReadIntoStartingAtCountBufferedNotAll [
 		offsetBy: 200.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileStreamTest>>testReadIntoStartingAtCountNotAll [
+{ #category : #testing }
+FileStreamTest >> testReadIntoStartingAtCountNotAll [
 	
 	"Tests for correct count and contents when not all could be read, and none pre-buffered"
 	self doTestsForReading: 500 

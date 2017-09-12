@@ -89,688 +89,432 @@ Class {
 		'Tab',
 		'TextSharedInformation'
 	],
-	#category : #Text-Core,
-	#timestamp : 'TorstenBergmann 1/31/2014 12:19'
+	#category : #Text-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>BS [
+{ #category : #accessing }
+TextConstants class >> BS [
 	^BS
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>BS2 [
+{ #category : #accessing }
+TextConstants class >> BS2 [
 	^BS2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Basal [
+{ #category : #accessing }
+TextConstants class >> Basal [
 	^Basal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Bold [
+{ #category : #accessing }
+TextConstants class >> Bold [
 	^Bold
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CR [
+{ #category : #accessing }
+TextConstants class >> CR [
 	^CR
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Centered [
+{ #category : #accessing }
+TextConstants class >> Centered [
 	^Centered
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Clear [
+{ #category : #accessing }
+TextConstants class >> Clear [
 	^Clear
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CrossedX [
+{ #category : #accessing }
+TextConstants class >> CrossedX [
 	^CrossedX
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlA [
+{ #category : #accessing }
+TextConstants class >> CtrlA [
 	^CtrlA
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlB [
+{ #category : #accessing }
+TextConstants class >> CtrlB [
 	^CtrlB
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlC [
+{ #category : #accessing }
+TextConstants class >> CtrlC [
 	^CtrlC
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlD [
+{ #category : #accessing }
+TextConstants class >> CtrlD [
 	^CtrlD
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlDigits [
+{ #category : #accessing }
+TextConstants class >> CtrlDigits [
 	^CtrlDigits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlE [
+{ #category : #accessing }
+TextConstants class >> CtrlE [
 	^CtrlE
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlF [
+{ #category : #accessing }
+TextConstants class >> CtrlF [
 	^CtrlF
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlG [
+{ #category : #accessing }
+TextConstants class >> CtrlG [
 	^CtrlG
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlH [
+{ #category : #accessing }
+TextConstants class >> CtrlH [
 	^CtrlH
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlI [
+{ #category : #accessing }
+TextConstants class >> CtrlI [
 	^CtrlI
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlJ [
+{ #category : #accessing }
+TextConstants class >> CtrlJ [
 	^CtrlJ
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlK [
+{ #category : #accessing }
+TextConstants class >> CtrlK [
 	^CtrlK
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlL [
+{ #category : #accessing }
+TextConstants class >> CtrlL [
 	^CtrlL
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlM [
+{ #category : #accessing }
+TextConstants class >> CtrlM [
 	^CtrlM
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlN [
+{ #category : #accessing }
+TextConstants class >> CtrlN [
 	^CtrlN
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlO [
+{ #category : #accessing }
+TextConstants class >> CtrlO [
 	^CtrlO
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlOpenBrackets [
+{ #category : #accessing }
+TextConstants class >> CtrlOpenBrackets [
 	^CtrlOpenBrackets
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlP [
+{ #category : #accessing }
+TextConstants class >> CtrlP [
 	^CtrlP
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlQ [
+{ #category : #accessing }
+TextConstants class >> CtrlQ [
 	^CtrlQ
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlR [
+{ #category : #accessing }
+TextConstants class >> CtrlR [
 	^CtrlR
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlS [
+{ #category : #accessing }
+TextConstants class >> CtrlS [
 	^CtrlS
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlT [
+{ #category : #accessing }
+TextConstants class >> CtrlT [
 	^CtrlT
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlU [
+{ #category : #accessing }
+TextConstants class >> CtrlU [
 	^CtrlU
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlV [
+{ #category : #accessing }
+TextConstants class >> CtrlV [
 	^CtrlV
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlW [
+{ #category : #accessing }
+TextConstants class >> CtrlW [
 	^CtrlW
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlX [
+{ #category : #accessing }
+TextConstants class >> CtrlX [
 	^CtrlX
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlY [
+{ #category : #accessing }
+TextConstants class >> CtrlY [
 	^CtrlY
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>CtrlZ [
+{ #category : #accessing }
+TextConstants class >> CtrlZ [
 	^CtrlZ
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrla [
+{ #category : #accessing }
+TextConstants class >> Ctrla [
 	^Ctrla
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlb [
+{ #category : #accessing }
+TextConstants class >> Ctrlb [
 	^Ctrlb
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlc [
+{ #category : #accessing }
+TextConstants class >> Ctrlc [
 	^Ctrlc
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrld [
+{ #category : #accessing }
+TextConstants class >> Ctrld [
 	^Ctrld
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrle [
+{ #category : #accessing }
+TextConstants class >> Ctrle [
 	^Ctrle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlf [
+{ #category : #accessing }
+TextConstants class >> Ctrlf [
 	^Ctrlf
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlg [
+{ #category : #accessing }
+TextConstants class >> Ctrlg [
 	^Ctrlg
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlh [
+{ #category : #accessing }
+TextConstants class >> Ctrlh [
 	^Ctrlh
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrli [
+{ #category : #accessing }
+TextConstants class >> Ctrli [
 	^Ctrli
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlj [
+{ #category : #accessing }
+TextConstants class >> Ctrlj [
 	^Ctrlj
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlk [
+{ #category : #accessing }
+TextConstants class >> Ctrlk [
 	^Ctrlk
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrll [
+{ #category : #accessing }
+TextConstants class >> Ctrll [
 	^Ctrll
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlm [
+{ #category : #accessing }
+TextConstants class >> Ctrlm [
 	^Ctrlm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrln [
+{ #category : #accessing }
+TextConstants class >> Ctrln [
 	^Ctrln
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlo [
+{ #category : #accessing }
+TextConstants class >> Ctrlo [
 	^Ctrlo
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlp [
+{ #category : #accessing }
+TextConstants class >> Ctrlp [
 	^Ctrlp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlq [
+{ #category : #accessing }
+TextConstants class >> Ctrlq [
 	^Ctrlq
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlr [
+{ #category : #accessing }
+TextConstants class >> Ctrlr [
 	^Ctrlr
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrls [
+{ #category : #accessing }
+TextConstants class >> Ctrls [
 	^Ctrls
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlt [
+{ #category : #accessing }
+TextConstants class >> Ctrlt [
 	^Ctrlt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlu [
+{ #category : #accessing }
+TextConstants class >> Ctrlu [
 	^Ctrlu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlv [
+{ #category : #accessing }
+TextConstants class >> Ctrlv [
 	^Ctrlv
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlw [
+{ #category : #accessing }
+TextConstants class >> Ctrlw [
 	^Ctrlw
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlx [
+{ #category : #accessing }
+TextConstants class >> Ctrlx [
 	^Ctrlx
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrly [
+{ #category : #accessing }
+TextConstants class >> Ctrly [
 	^Ctrly
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Ctrlz [
+{ #category : #accessing }
+TextConstants class >> Ctrlz [
 	^Ctrlz
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>DefaultBaseline [
+{ #category : #accessing }
+TextConstants class >> DefaultBaseline [
 	^DefaultBaseline
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>DefaultFontFamilySize [
+{ #category : #accessing }
+TextConstants class >> DefaultFontFamilySize [
 	^DefaultFontFamilySize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>DefaultLineGrid [
+{ #category : #accessing }
+TextConstants class >> DefaultLineGrid [
 	^DefaultLineGrid
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>DefaultMarginTabsArray [
+{ #category : #accessing }
+TextConstants class >> DefaultMarginTabsArray [
 	^DefaultMarginTabsArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>DefaultMask [
+{ #category : #accessing }
+TextConstants class >> DefaultMask [
 	^DefaultMask
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>DefaultRule [
+{ #category : #accessing }
+TextConstants class >> DefaultRule [
 	^DefaultRule
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>DefaultSpace [
+{ #category : #accessing }
+TextConstants class >> DefaultSpace [
 	^DefaultSpace
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>DefaultTab [
+{ #category : #accessing }
+TextConstants class >> DefaultTab [
 	^DefaultTab
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>DefaultTabsArray [
+{ #category : #accessing }
+TextConstants class >> DefaultTabsArray [
 	^DefaultTabsArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>ESC [
+{ #category : #accessing }
+TextConstants class >> ESC [
 	^ESC
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>EndOfRun [
+{ #category : #accessing }
+TextConstants class >> EndOfRun [
 	^EndOfRun
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Enter [
+{ #category : #accessing }
+TextConstants class >> Enter [
 	^Enter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Italic [
+{ #category : #accessing }
+TextConstants class >> Italic [
 	^Italic
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Justified [
+{ #category : #accessing }
+TextConstants class >> Justified [
 	^Justified
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>LeftFlush [
+{ #category : #accessing }
+TextConstants class >> LeftFlush [
 	^LeftFlush
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>LeftMarginTab [
+{ #category : #accessing }
+TextConstants class >> LeftMarginTab [
 	^LeftMarginTab
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>RightFlush [
+{ #category : #accessing }
+TextConstants class >> RightFlush [
 	^RightFlush
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>RightMarginTab [
+{ #category : #accessing }
+TextConstants class >> RightMarginTab [
 	^RightMarginTab
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Space [
+{ #category : #accessing }
+TextConstants class >> Space [
 	^Space
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>Tab [
+{ #category : #accessing }
+TextConstants class >> Tab [
 	^Tab
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>TextSharedInformation [
+{ #category : #accessing }
+TextConstants class >> TextSharedInformation [
 	^TextSharedInformation
 ]
 
-{
-	#category : #'backward compatibility',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>at: aSymbol [
+{ #category : #'backward compatibility' }
+TextConstants class >> at: aSymbol [
 	
 	^ self classPool at: aSymbol ifAbsent: [self TextSharedInformation at: aSymbol]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextConstants class>>initialize [
+{ #category : #initialization }
+TextConstants class >> initialize [
 
 	TextSharedInformation ifNil: [ TextSharedInformation := Dictionary new].
 	Ctrll := Character value: 153.

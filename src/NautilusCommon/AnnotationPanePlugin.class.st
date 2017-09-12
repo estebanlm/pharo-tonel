@@ -4,24 +4,17 @@ An IgorsPlugin is a plugin which displays info about the current selection
 Class {
 	#name : #AnnotationPanePlugin,
 	#superclass : #InformationLinePlugin,
-	#category : #NautilusCommon-Plugin,
-	#timestamp : '<historical>'
+	#category : #NautilusCommon-Plugin
 }
 
-{
-	#category : #information,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationPanePlugin class>>description [
+{ #category : #information }
+AnnotationPanePlugin class >> description [
 
 	^ 'Display the information of the selected class/method'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AnnotationPanePlugin>>buildString [
+{ #category : #private }
+AnnotationPanePlugin >> buildString [
 	| mdl |
 	mdl := self model.
 	^ String

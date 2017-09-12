@@ -7,57 +7,37 @@ You can add files in subdirectories to a ZipArchive without using any ZipDirecto
 Class {
 	#name : #ZipDirectoryMember,
 	#superclass : #ZipFileMember,
-	#category : #Compression-Archives,
-	#timestamp : '<historical>'
+	#category : #Compression-Archives
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipDirectoryMember class>>newNamed: aFileName [
+{ #category : #'as yet unclassified' }
+ZipDirectoryMember class >> newNamed: aFileName [
 	^(self new) localFileName: aFileName; yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipDirectoryMember>>asDirectory [
+{ #category : #private }
+ZipDirectoryMember >> asDirectory [
 	^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipDirectoryMember>>desiredCompressionMethod: aNumber [
-
+{ #category : #accessing }
+ZipDirectoryMember >> desiredCompressionMethod: aNumber [
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipDirectoryMember>>initialize [
+{ #category : #initialization }
+ZipDirectoryMember >> initialize [
 	super initialize.
 	externalFileAttributes := self mapPermissionsFromUnix: DefaultDirectoryPermissions.
 	super desiredCompressionMethod: CompressionStored.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipDirectoryMember>>isDirectory [
+{ #category : #testing }
+ZipDirectoryMember >> isDirectory [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipDirectoryMember>>localFileName: aString [
+{ #category : #accessing }
+ZipDirectoryMember >> localFileName: aString [
 
 	| file |
 	file := aString asFileReference.	
@@ -66,26 +46,16 @@ ZipDirectoryMember>>localFileName: aString [
 	self modifiedAt: file entry modificationTime.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipDirectoryMember>>rewindData [
-
+{ #category : #private }
+ZipDirectoryMember >> rewindData [
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipDirectoryMember>>usesFileNamed: aName [
+{ #category : #testing }
+ZipDirectoryMember >> usesFileNamed: aName [
 	^false
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipDirectoryMember>>writeDataTo: aStream [
+{ #category : #private-writing }
+ZipDirectoryMember >> writeDataTo: aStream [
        "Write nothing. Directories have no contents to write."
 ]

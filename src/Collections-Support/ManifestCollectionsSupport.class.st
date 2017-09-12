@@ -4,38 +4,25 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestCollectionsSupport,
 	#superclass : #PackageManifest,
-	#category : #Collections-Support,
-	#timestamp : '<historical>'
+	#category : #Collections-Support
 }
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ManifestCollectionsSupport class>>dependencies [
+{ #category : #meta-data }
+ManifestCollectionsSupport class >> dependencies [
 	^ #(#'Collections-Strings' #'Collections-Native' #'Collections-Unordered' #Kernel #'Collections-Abstract')
 ]
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ManifestCollectionsSupport class>>description [
+{ #category : #meta-data }
+ManifestCollectionsSupport class >> description [
 	^ 'Some basic classes used in collections: Link, Associtation, Weak*, CharacterSet, SetElement, etc.'
 ]
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ManifestCollectionsSupport class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestCollectionsSupport class >> manuallyResolvedDependencies [
 	^ #(#'Collections-Streams')
 ]
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ManifestCollectionsSupport class>>packageName [
+{ #category : #meta-data }
+ManifestCollectionsSupport class >> packageName [
 	^ #'Collections-Support'
 ]

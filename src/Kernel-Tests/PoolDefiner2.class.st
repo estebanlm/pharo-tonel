@@ -8,15 +8,11 @@ Class {
 		'Author',
 		'VariableInPoolDefiner2'
 	],
-	#category : #Kernel-Tests-Classes,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:39'
+	#category : #Kernel-Tests-Classes
 }
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-PoolDefiner2 class>>initialize [
+{ #category : #initialize }
+PoolDefiner2 class >> initialize [
 	"self initialize"
 	
 	VariableInPoolDefiner2 := 33.

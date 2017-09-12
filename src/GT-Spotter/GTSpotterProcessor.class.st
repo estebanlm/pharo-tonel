@@ -8,31 +8,21 @@ Class {
 		'allFilteredCandidates',
 		'order'
 	],
-	#category : #GT-Spotter-Processors,
-	#timestamp : 'TudorGirba 11/26/2014 15:12'
+	#category : #GT-Spotter-Processors
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>actOn: anObject for: aStep [
+{ #category : #public }
+GTSpotterProcessor >> actOn: anObject for: aStep [
 	anObject spotterActDefault: aStep
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>allFilteredCandidates [
+{ #category : #public }
+GTSpotterProcessor >> allFilteredCandidates [
 	^ allFilteredCandidates ifNil: [ allFilteredCandidates := OrderedCollection new ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>basicContinueFilterInContext: aSpotterContext [
+{ #category : #private }
+GTSpotterProcessor >> basicContinueFilterInContext: aSpotterContext [
 
 	" We DO NOT prepare the context since we could no longer continue producing filtered candidates. "
 	(self shouldFilterInContext: aSpotterContext) ifTrue: [
@@ -43,11 +33,8 @@ GTSpotterProcessor>>basicContinueFilterInContext: aSpotterContext [
 		withArguments: { self allFilteredCandidates size . self }
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>basicFilterInContext: aSpotterContext [
+{ #category : #private }
+GTSpotterProcessor >> basicFilterInContext: aSpotterContext [
 	
 	self prepareProcessorInContext: aSpotterContext.
 	(self shouldFilterInContext: aSpotterContext) ifTrue: [
@@ -57,11 +44,8 @@ GTSpotterProcessor>>basicFilterInContext: aSpotterContext [
 		withArguments: { self allFilteredCandidates size . self }
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>continueFilterInContext: aSpotterContext [
+{ #category : #private }
+GTSpotterProcessor >> continueFilterInContext: aSpotterContext [
 	[ self basicContinueFilterInContext: aSpotterContext ]
 		on: Error 
 		do: [ :exception | 
@@ -70,39 +54,27 @@ GTSpotterProcessor>>continueFilterInContext: aSpotterContext [
 				do: [ ('[Spotter] Exception in continuing processor <', self title asString, '>: ', exception asString) logCr ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>doContinueFilterInContext: aSpotterContext [
+{ #category : #private }
+GTSpotterProcessor >> doContinueFilterInContext: aSpotterContext [
 	^ aSpotterContext doContinueFilterForProcessor: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>doFilterInContext: aSpotterContext [
+{ #category : #private }
+GTSpotterProcessor >> doFilterInContext: aSpotterContext [
 	"override this method to:
 	- add items to the stream
 	- return all found items at the end"
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>exceptionHandler [
+{ #category : #accessing-dynamic }
+GTSpotterProcessor >> exceptionHandler [
 	self flag: 'Bloc -> overrides doesNotUnderstand discarding the current exception context'.
 	^ GTCurrentSpotterExceptionHandler value ifNil: [ GTSpotterExceptionHandlerNotFound signal ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>filterInContext: aSpotterContext [
+{ #category : #private }
+GTSpotterProcessor >> filterInContext: aSpotterContext [
 	[ self basicFilterInContext: aSpotterContext ]
 		on: Error 
 		do: [ :exception | 
@@ -111,92 +83,62 @@ GTSpotterProcessor>>filterInContext: aSpotterContext [
 				do: [ ('[Spotter] Exception in processor <', self title asString, '>: ', exception asString) logCr ] ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>gtDisplayOn: stream [
+{ #category : #printing }
+GTSpotterProcessor >> gtDisplayOn: stream [
 	stream 
 		nextPutAll: 'Processor: ';
 		nextPutAll: self title asString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>hasFilteredCandidates [
+{ #category : #testing }
+GTSpotterProcessor >> hasFilteredCandidates [
 	^ self allFilteredCandidates notEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>order [
+{ #category : #accessing }
+GTSpotterProcessor >> order [
 	"Return assigned spotter order used to arrange categories in spotter UI"
 	<return: #Number>
 	
 	^ order
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>order: aNumber [
+{ #category : #accessing }
+GTSpotterProcessor >> order: aNumber [
 	"Assign to processor its spotter order to arrange categories
 	within spotter ui"
 	order := aNumber
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>prepareProcessorInContext: aContext [
+{ #category : #private }
+GTSpotterProcessor >> prepareProcessorInContext: aContext [
 	allFilteredCandidates := nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>render: anObject [
+{ #category : #private }
+GTSpotterProcessor >> render: anObject [
 	^ GTSpotterItemBrick new
 		icon: (nil);
 		text: (anObject gtDisplayString)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>shouldFilterInContext: aSpotterContext [
+{ #category : #testing }
+GTSpotterProcessor >> shouldFilterInContext: aSpotterContext [
 	^ aSpotterContext notEmpty 
 		or: [ self wantsToDisplayOnEmptyQuery ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>title [
+{ #category : #accessing }
+GTSpotterProcessor >> title [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>wantsToDisplayOnEmptyQuery [
+{ #category : #accessing }
+GTSpotterProcessor >> wantsToDisplayOnEmptyQuery [
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessor>>withItemsLimit: aLimit do: aBlock [
+{ #category : #private }
+GTSpotterProcessor >> withItemsLimit: aLimit do: aBlock [
 	^ aBlock value
 ]

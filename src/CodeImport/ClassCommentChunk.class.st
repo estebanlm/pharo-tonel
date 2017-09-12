@@ -9,15 +9,11 @@ Class {
 	#instVars : [
 		'stamp'
 	],
-	#category : #CodeImport,
-	#timestamp : '<historical>'
+	#category : #CodeImport
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ClassCommentChunk class>>contents: someContents behaviorName: behaviorName isMeta: aBoolean stamp: stamp [
+{ #category : #'instance creation' }
+ClassCommentChunk class >> contents: someContents behaviorName: behaviorName isMeta: aBoolean stamp: stamp [
 	^self new
 			contents: someContents;
 			behaviorName: behaviorName;
@@ -26,29 +22,20 @@ ClassCommentChunk class>>contents: someContents behaviorName: behaviorName isMet
 			yourself
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ClassCommentChunk>>accept: aVisitor [
+{ #category : #visiting }
+ClassCommentChunk >> accept: aVisitor [
 
 	^ aVisitor visitClassCommentChunk: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ClassCommentChunk>>description [
+{ #category : #accessing }
+ClassCommentChunk >> description [
 
 	^ 'Comment (', behaviorName, ')', stamp asString
 ]
 
-{
-	#category : #importing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ClassCommentChunk>>importFor: aRequestor logSource: logSource [
+{ #category : #importing }
+ClassCommentChunk >> importFor: aRequestor logSource: logSource [
 	(self existsBehavior)
 		ifFalse: [ self error: ('Cannot install comment in unexistent behavior {1}' format: { behaviorName asString } ) ].
 	
@@ -57,27 +44,18 @@ ClassCommentChunk>>importFor: aRequestor logSource: logSource [
 						stamp: stamp
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ClassCommentChunk>>isClassCommentDeclaration [
+{ #category : #testing }
+ClassCommentChunk >> isClassCommentDeclaration [
 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ClassCommentChunk>>stamp [
+{ #category : #accessing }
+ClassCommentChunk >> stamp [
 	^ stamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ClassCommentChunk>>stamp: classCommentStamp [
+{ #category : #accessing }
+ClassCommentChunk >> stamp: classCommentStamp [
 	stamp := classCommentStamp
 ]

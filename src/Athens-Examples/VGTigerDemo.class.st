@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'surface'
 	],
-	#category : #Athens-Examples,
-	#timestamp : '<historical>'
+	#category : #Athens-Examples
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VGTigerDemo class>>checkDataSizes [
+{ #category : #private }
+VGTigerDemo class >> checkDataSizes [
 
 " 
 VGTigerDemo checkDataSizes
@@ -25,11 +21,8 @@ VGTigerDemo checkDataSizes
 	self assert: (self tigerPointsCount = self tigerPoints size).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VGTigerDemo class>>commands [
+{ #category : #private }
+VGTigerDemo class >> commands [
 " VGTigerDemo commands 
 "
 	| pt str |
@@ -50,28 +43,19 @@ VGTigerDemo class>>commands [
 	^ str
 ]
 
-{
-	#category : #run,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VGTigerDemo class>>runDemo [
+{ #category : #run }
+VGTigerDemo class >> runDemo [
 	<script>
 	^ self new runDemo
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VGTigerDemo class>>tigerCommandCount  [
+{ #category : #private }
+VGTigerDemo class >> tigerCommandCount [ 
 	^ 4142
 ]
 
-{
-	#category : #'huge data',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VGTigerDemo class>>tigerCommands [
+{ #category : #'huge data' }
+VGTigerDemo class >> tigerCommands [
 
 	^ #(
 'FNBMMCCCENS'
@@ -284,45 +268,30 @@ VGTigerDemo class>>tigerCommands [
 'SRMMCNSRMMC' ).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VGTigerDemo class>>tigerMaxX  [
+{ #category : #private }
+VGTigerDemo class >> tigerMaxX [ 
 	^ 612.0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VGTigerDemo class>>tigerMaxY  [
+{ #category : #private }
+VGTigerDemo class >> tigerMaxY [ 
 	^ 792.0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VGTigerDemo class>>tigerMinX  [
+{ #category : #private }
+VGTigerDemo class >> tigerMinX [ 
 	^ 0.0
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VGTigerDemo class>>tigerMinY  [
+{ #category : #private }
+VGTigerDemo class >> tigerMinY [ 
 	^ 0.0
 
 ]
 
-{
-	#category : #'huge data',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VGTigerDemo class>>tigerPoints [
+{ #category : #'huge data' }
+VGTigerDemo class >> tigerPoints [
 
 	^ #(10 0 1
 1 1 1 1 1 5 85.25 487.75 85.25 487.75
@@ -2027,19 +1996,13 @@ VGTigerDemo class>>tigerPoints [
 )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VGTigerDemo class>>tigerPointsCount  [
+{ #category : #private }
+VGTigerDemo class >> tigerPointsCount [ 
 	^ 16988
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VGTigerDemo>>convertPathData2 [
+{ #category : #conversion }
+VGTigerDemo >> convertPathData2 [
 
 	| paths pathData cmdStream ptStream fillBlocks strokeBlocks capBlocks joinBlocks cmdBlocks |
 	
@@ -2133,20 +2096,14 @@ VGTigerDemo>>convertPathData2 [
 	^ paths
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VGTigerDemo>>initialize  [
+{ #category : #initialization }
+VGTigerDemo >> initialize [ 
 	surface := AthensCairoSurface extent: 400@400.
 	
 ]
 
-{
-	#category : #run,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VGTigerDemo>>runDemo [
+{ #category : #run }
+VGTigerDemo >> runDemo [
 	| paths extent rotation scale translation rotationSpeed time frames zoom |
 	
 	paths := self convertPathData2.

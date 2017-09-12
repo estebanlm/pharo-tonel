@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #MalCircuitSpanningEdges,
 	#superclass : #MalSccExtractor,
 	#instVars : [
 		'dijkstra'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCircuitSpanningEdges>>doUnvisitedEdges: aBlock [
+{ #category : #private }
+MalCircuitSpanningEdges >> doUnvisitedEdges: aBlock [
 
 	self edges do: [:e|
 		e cseVisited ifFalse: [
@@ -25,20 +18,14 @@ MalCircuitSpanningEdges>>doUnvisitedEdges: aBlock [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCircuitSpanningEdges>>edgeClass [
+{ #category : #accessing }
+MalCircuitSpanningEdges >> edgeClass [
 
 	^ MalCseEdge 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCircuitSpanningEdges>>findDirectCircuits [
+{ #category : #running }
+MalCircuitSpanningEdges >> findDirectCircuits [
 
 	"detect direct circuits"
 	| returnNode returnEdge |
@@ -54,11 +41,8 @@ MalCircuitSpanningEdges>>findDirectCircuits [
 	]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCircuitSpanningEdges>>findIndirectCircuits [
+{ #category : #running }
+MalCircuitSpanningEdges >> findIndirectCircuits [
 	
 	"for each unvisited edge, pop and detect circuit with Dijsktra, backtrack"
 	dijkstra privateNodes: self nodes; privateEdges: self edges.
@@ -74,11 +58,8 @@ MalCircuitSpanningEdges>>findIndirectCircuits [
 		]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCircuitSpanningEdges>>initialize  [
+{ #category : #accessing }
+MalCircuitSpanningEdges >> initialize [ 
 
 	super initialize.
 	circuits := OrderedCollection new. "use that instead of Set"
@@ -86,20 +67,14 @@ MalCircuitSpanningEdges>>initialize  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCircuitSpanningEdges>>nodeClass [
+{ #category : #accessing }
+MalCircuitSpanningEdges >> nodeClass [
 
 	^ MalDijkstraNode
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCircuitSpanningEdges>>run [
+{ #category : #running }
+MalCircuitSpanningEdges >> run [
 
 	self flag: #todo.	"for stability, we should sort edges by their label"
 	self findDirectCircuits.

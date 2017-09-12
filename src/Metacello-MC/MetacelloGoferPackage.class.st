@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloGoferPackage,
 	#superclass : #GoferPackageReference,
@@ -9,23 +6,16 @@ Class {
 		'version',
 		'workingCopy'
 	],
-	#category : #Metacello-MC-Gofer,
-	#timestamp : ''
+	#category : #Metacello-MC-Gofer
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGoferPackage class>>name: aString packageFilename: packageFilename [
+{ #category : #'instance creation' }
+MetacelloGoferPackage class >> name: aString packageFilename: packageFilename [
 	^ self basicNew initializeName: aString packageFilename: packageFilename
 ]
 
-{
-	#category : #'package name matching',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGoferPackage class>>packageFileName: pkgFileName matchesPackageName: wcPkgName [
+{ #category : #'package name matching' }
+MetacelloGoferPackage class >> packageFileName: pkgFileName matchesPackageName: wcPkgName [
   ^ (pkgFileName beginsWith: wcPkgName)
     ifTrue: [ 
       pkgFileName size = wcPkgName size
@@ -42,11 +32,8 @@ MetacelloGoferPackage class>>packageFileName: pkgFileName matchesPackageName: wc
       ^ (wcPkgName at: pkgFileName size + 1) = $. ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGoferPackage>>ancestors [
+{ #category : #querying }
+MetacelloGoferPackage >> ancestors [
 
 	| wc |
 	(wc := self workingCopy) ~~ nil
@@ -56,11 +43,8 @@ MetacelloGoferPackage>>ancestors [
 	^nil
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGoferPackage>>currentVersionInfo [
+{ #category : #querying }
+MetacelloGoferPackage >> currentVersionInfo [
 
 	| wc |
 	(wc := self workingCopy) ~~ nil
@@ -70,11 +54,8 @@ MetacelloGoferPackage>>currentVersionInfo [
 	^nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGoferPackage>>findWorkingCopy [
+{ #category : #private }
+MetacelloGoferPackage >> findWorkingCopy [
 	"Answer a working copy, or nil if the package is not loaded."
 
 	| wcs |
@@ -83,21 +64,15 @@ MetacelloGoferPackage>>findWorkingCopy [
 	^wcs detectMax: [:ea | ea package name size ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGoferPackage>>initializeName: aString packageFilename: packagefilename [
+{ #category : #initialization }
+MetacelloGoferPackage >> initializeName: aString packageFilename: packagefilename [
 
 	name := aString.
 	packageFilename := packagefilename
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGoferPackage>>matches: aLoadableReference [
+{ #category : #private }
+MetacelloGoferPackage >> matches: aLoadableReference [
   | pFilename |
   ((pFilename := self packageFilename) == nil
     or: [ self name = self packageFilename ])
@@ -109,21 +84,15 @@ MetacelloGoferPackage>>matches: aLoadableReference [
   ^ aLoadableReference matchesMetacelloGoferPackage: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGoferPackage>>matchesMetacelloGoferPackage: aMetacelloGoferPackage [
+{ #category : #private }
+MetacelloGoferPackage >> matchesMetacelloGoferPackage: aMetacelloGoferPackage [
   self
     error:
       'Should not be matching a MetacelloGoferPackage with another MetacelloGoferPackage'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGoferPackage>>matchesWorkingCopy: aWorkingCopy [
+{ #category : #private }
+MetacelloGoferPackage >> matchesWorkingCopy: aWorkingCopy [
 	"check that the working copy package name matches the package file name and that the first ancestor's package file name
 	 matches the packageName"
 	
@@ -140,20 +109,14 @@ MetacelloGoferPackage>>matchesWorkingCopy: aWorkingCopy [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGoferPackage>>packageFilename [
+{ #category : #accessing }
+MetacelloGoferPackage >> packageFilename [
 
 	^packageFilename
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloGoferPackage>>workingCopy [
+{ #category : #accessing }
+MetacelloGoferPackage >> workingCopy [
 	
 	workingCopy == nil ifTrue: [ workingCopy := self findWorkingCopy ].
 	^workingCopy

@@ -10,87 +10,59 @@ Class {
 		'index',
 		'container'
 	],
-	#category : #Morphic-Widgets-Tree,
-	#timestamp : 'TorstenBergmann 9/5/2014 15:29'
+	#category : #Morphic-Widgets-Tree
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph class>>container: aTreeList index: anInteger [
+{ #category : #'instance creation' }
+MorphTreeResizerMorph class >> container: aTreeList index: anInteger [
 	^ self new container: aTreeList index: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph class>>fastSplitterResize [
+{ #category : #accessing }
+MorphTreeResizerMorph class >> fastSplitterResize [
 	^ true
 ]
 
-{
-	#category : #Polymorph-Widgets,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>adoptPaneColor: paneColor  [
+{ #category : #Polymorph-Widgets }
+MorphTreeResizerMorph >> adoptPaneColor: paneColor [ 
 	"Change our color too."
 	super adoptPaneColor: paneColor.
 	self fillStyle: self normalFillStyle
 ]
 
-{
-	#category : #'private - testing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>canResizeColumn [
+{ #category : #'private - testing' }
+MorphTreeResizerMorph >> canResizeColumn [
 	^(container columns at: index) resizable
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>container: aTreeMorph index: anInteger [
+{ #category : #'as yet unclassified' }
+MorphTreeResizerMorph >> container: aTreeMorph index: anInteger [
 	container := aTreeMorph.
 	index := anInteger
 ]
 
-{
-	#category : #'dependents access',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>delete [
+{ #category : #'dependents access' }
+MorphTreeResizerMorph >> delete [
 	super delete.
 	self release.
 	
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+MorphTreeResizerMorph >> drawOn: aCanvas [
 	(owner notNil and: [owner containsPoint: self position])
 		ifTrue: [super drawOn: aCanvas]
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>getOldColor [
+{ #category : #'as yet unclassified' }
+MorphTreeResizerMorph >> getOldColor [
 	^ oldColor ifNil: [Color transparent]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>mouseDown: anEvent  [
+{ #category : #'event handling' }
+MorphTreeResizerMorph >> mouseDown: anEvent [ 
 	"A mouse button has been pressed.
 	Update the color for feedback and store the mouse
 	position and relative offset to the receiver."
@@ -103,30 +75,21 @@ MorphTreeResizerMorph>>mouseDown: anEvent  [
 	lastMouse := {cp. cp - self position}
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>mouseEnter: anEvent [
+{ #category : #'event handling' }
+MorphTreeResizerMorph >> mouseEnter: anEvent [
 	self canResizeColumn ifFalse: [^ self].
 	(owner notNil and: [owner bounds containsPoint: anEvent position]) 
 		ifTrue: [super mouseEnter: anEvent]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>mouseLeave: anEvent [
+{ #category : #'event handling' }
+MorphTreeResizerMorph >> mouseLeave: anEvent [
 	self canResizeColumn ifFalse: [^ self].
 	super mouseLeave: anEvent
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>mouseMove: anEvent  [
+{ #category : #'event handling' }
+MorphTreeResizerMorph >> mouseMove: anEvent [ 
 	self canResizeColumn ifFalse: [^ self].
 	anEvent hand temporaryCursor
 		ifNil: [^ self].
@@ -140,11 +103,8 @@ MorphTreeResizerMorph>>mouseMove: anEvent  [
 		ifFalse: [self updateFromEvent: anEvent]
 ]
 
-{
-	#category : #Polymorph-Widgets,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>mouseUp: anEvent [
+{ #category : #Polymorph-Widgets }
+MorphTreeResizerMorph >> mouseUp: anEvent [
 	"Change the cursor back to normal if necessary and change the color back to normal."
 	
 	self canResizeColumn ifFalse: [^ self].
@@ -157,46 +117,31 @@ MorphTreeResizerMorph>>mouseUp: anEvent [
 	self triggerEvent: #mouseUp
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>normalFillStyle [
+{ #category : #'as yet unclassified' }
+MorphTreeResizerMorph >> normalFillStyle [
 	"Return the normal fillstyle for the receiver."
 	^ self theme morphTreeSplitterNormalFillStyleFor: self
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>normalizedX: x [
+{ #category : #'as yet unclassified' }
+MorphTreeResizerMorph >> normalizedX: x [
 
 	^ x
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>normalizedY: y  [
+{ #category : #'as yet unclassified' }
+MorphTreeResizerMorph >> normalizedY: y [ 
 	^y
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>pressedFillStyle [
+{ #category : #'as yet unclassified' }
+MorphTreeResizerMorph >> pressedFillStyle [
 	"Return the pressed fillStyle of the receiver."
 	^ self theme morphTreeSplitterPressedFillStyleFor: self
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>release [
+{ #category : #submorphs-add/remove }
+MorphTreeResizerMorph >> release [
 	traceMorph := nil.
 	oldColor := nil.
 	container := nil.
@@ -205,55 +150,37 @@ MorphTreeResizerMorph>>release [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>resizeCursor [
+{ #category : #'as yet unclassified' }
+MorphTreeResizerMorph >> resizeCursor [
 	^ Cursor resizeForEdge: #left
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>setGrabbedColor [
+{ #category : #'as yet unclassified' }
+MorphTreeResizerMorph >> setGrabbedColor [
 	"Set the color of the receiver when it is grabbed."
 	
 	self fillStyle: self pressedFillStyle
 ]
 
-{
-	#category : #Polymorph-Widgets,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>shouldDraw [
+{ #category : #Polymorph-Widgets }
+MorphTreeResizerMorph >> shouldDraw [
 	^ true
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>splitsTopAndBottom [
+{ #category : #'as yet unclassified' }
+MorphTreeResizerMorph >> splitsTopAndBottom [
 	^ false
 ]
 
-{
-	#category : #Polymorph-Widgets,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>themeChanged [
+{ #category : #Polymorph-Widgets }
+MorphTreeResizerMorph >> themeChanged [
 	"Update the fill style."
 	self fillStyle: self normalFillStyle.
 	super themeChanged
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeResizerMorph>>updateFromEvent: anEvent  [
+{ #category : #'as yet unclassified' }
+MorphTreeResizerMorph >> updateFromEvent: anEvent [ 
 	"Update the splitter and attached morph positions from
 	the mouse event.
 	Take into account the mouse down offset."

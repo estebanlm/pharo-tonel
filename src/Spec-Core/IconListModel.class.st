@@ -17,35 +17,25 @@ Class {
 	#instVars : [
 		'iconHolder'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 6/28/2016 13:27'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-IconListModel class>>adapterName [
+{ #category : #specs }
+IconListModel class >> adapterName [
 
 	^ #IconListAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-IconListModel class>>defaultSpec [
+{ #category : #specs }
+IconListModel class >> defaultSpec [
 	<spec: #default>
 	
 	^ #(IconListAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-IconListModel class>>example [
+{ #category : #example }
+IconListModel class >> example [
 	| example |
 	example := self new.
 	example
@@ -55,52 +45,37 @@ IconListModel class>>example [
 	^ example
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-IconListModel>>getIconFor: anItem [
+{ #category : #api }
+IconListModel >> getIconFor: anItem [
 
 	^ iconHolder value cull: anItem cull: self
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-IconListModel>>icons [
+{ #category : #api }
+IconListModel >> icons [
 	"<api: #inspect>"
 	"Return the block which takes an item as argument and returns the icon to display in the list"
 	
 	^ iconHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-IconListModel>>icons: aBlock [
+{ #category : #api }
+IconListModel >> icons: aBlock [
 	"<api: #block getter: #icon registration: #whenIconsChanged: >"
 	"Set a block which takes an item as argument and returns the icon to display in the list"
 	iconHolder value: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-IconListModel>>initialize [
+{ #category : #initialization }
+IconListModel >> initialize [
 
 	super initialize.
 
 	iconHolder := [:item | nil ] asValueHolder.
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-IconListModel>>whenIconsChanged: aBlock  [
+{ #category : #api-events }
+IconListModel >> whenIconsChanged: aBlock [ 
 	
 	iconHolder whenChangedDo: aBlock 
 

@@ -33,25 +33,18 @@ Class {
 	#instVars : [
 		'stream'
 	],
-	#category : #Zinc-HTTP-Streaming,
-	#timestamp : 'SvenVanCaekenberghe 11/30/2015 22:06'
+	#category : #Zinc-HTTP-Streaming
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream class>>on: writeStream [
+{ #category : #'instance creation' }
+ZnHtmlOutputStream class >> on: writeStream [
 	^ self new
 		on: writeStream;
 		yourself
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream class>>streamContents: block [
+{ #category : #convenience }
+ZnHtmlOutputStream class >> streamContents: block [
 	"Execute block with a ZnHtmlOutputStream as argument to generate HTML, returning the resulting string"
 	
 	"ZnHtmlOutputStream streamContents: [ :html |
@@ -62,27 +55,18 @@ ZnHtmlOutputStream class>>streamContents: block [
 			block value: (self on: out) ]
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>><< collection [
+{ #category : #streaming }
+ZnHtmlOutputStream >> << collection [
 	^ self nextPutAll: collection asString
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>close [
+{ #category : #initialize-release }
+ZnHtmlOutputStream >> close [
 	stream close
 ]
 
-{
-	#category : #'private html',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>closeTag: tag [
+{ #category : #'private html' }
+ZnHtmlOutputStream >> closeTag: tag [
 	stream
 		nextPut: $<;
 		nextPut: $/;
@@ -90,11 +74,8 @@ ZnHtmlOutputStream>>closeTag: tag [
 		nextPut: $>
 ]
 
-{
-	#category : #html,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>comment: string [
+{ #category : #html }
+ZnHtmlOutputStream >> comment: string [
 	"Write an HTML/XML comment consisting of string, as in <!-- string -->"
 	
 	stream
@@ -103,21 +84,15 @@ ZnHtmlOutputStream>>comment: string [
 		nextPutAll: ' -->'
 ]
 
-{
-	#category : #html,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>escape: string [
+{ #category : #html }
+ZnHtmlOutputStream >> escape: string [
 	"Write string, escaping characters as needed for regular text"
 	
 	string do: [ :each | self escapeCharacter: each ]
 ]
 
-{
-	#category : #html,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>escapeAttributeValue: string [
+{ #category : #html }
+ZnHtmlOutputStream >> escapeAttributeValue: string [
 	"Write string, escaping characters as needed for the value of an attribute"
 
 	string do: [ :each |
@@ -126,11 +101,8 @@ ZnHtmlOutputStream>>escapeAttributeValue: string [
 			ifFalse: [ stream nextPut: each ] ] 
 ]
 
-{
-	#category : #html,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>escapeCharacter: char [
+{ #category : #html }
+ZnHtmlOutputStream >> escapeCharacter: char [
 	"Write char, escaping it as needed for regular text"
 
 	char == $<
@@ -141,19 +113,13 @@ ZnHtmlOutputStream>>escapeCharacter: char [
 				ifFalse: [ stream nextPut: char ] ]
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>flush [
+{ #category : #streaming }
+ZnHtmlOutputStream >> flush [
 	stream flush
 ]
 
-{
-	#category : #html,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>format: string with: args [
+{ #category : #html }
+ZnHtmlOutputStream >> format: string with: args [
 	"Like String>>#format: format the string template using the args given, esacaping characters when needed for regular text"
 
 	| input currentChar |
@@ -170,32 +136,23 @@ ZnHtmlOutputStream>>format: string with: args [
 					ifFalse: [ self escapeCharacter: currentChar ] ] ]
 ]
 
-{
-	#category : #html,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>html5 [
+{ #category : #html }
+ZnHtmlOutputStream >> html5 [
 	"Write the standard HTML5 DOCTYPE tag"
 	
 	stream nextPutAll: '<!DOCTYPE html>'
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>next: count putAll: collection [
+{ #category : #streaming }
+ZnHtmlOutputStream >> next: count putAll: collection [	
 	self 
 		next: count 
 		putAll: collection 
 		startingAt: 1
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>next: count putAll: collection startingAt: offset [
+{ #category : #streaming }
+ZnHtmlOutputStream >> next: count putAll: collection startingAt: offset [
 	"Write count characters from collection starting at offset."
 	
 	stream 
@@ -204,49 +161,34 @@ ZnHtmlOutputStream>>next: count putAll: collection startingAt: offset [
 		startingAt: offset
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>nextPut: object [
+{ #category : #streaming }
+ZnHtmlOutputStream >> nextPut: object [
 	^ stream nextPut: object
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>nextPutAll: collection [
+{ #category : #streaming }
+ZnHtmlOutputStream >> nextPutAll: collection [
 	self 
 		next: collection size 
 		putAll: collection 
 		startingAt: 1
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>on: writeStream [
+{ #category : #initialize-release }
+ZnHtmlOutputStream >> on: writeStream [
 	stream := writeStream
 ]
 
-{
-	#category : #'private html',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>openTag: tag [
+{ #category : #'private html' }
+ZnHtmlOutputStream >> openTag: tag [
 	stream
 		nextPut: $<;
 		nextPutAll: tag;
 		nextPut: $>
 ]
 
-{
-	#category : #'private html',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>openTag: tag attribute: name value: value [
+{ #category : #'private html' }
+ZnHtmlOutputStream >> openTag: tag attribute: name value: value [
 	stream
 		nextPut: $<;
 		nextPutAll: tag;
@@ -259,11 +201,8 @@ ZnHtmlOutputStream>>openTag: tag attribute: name value: value [
 	stream nextPut: $>
 ]
 
-{
-	#category : #'private html',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>openTag: tag attributes: attributes [
+{ #category : #'private html' }
+ZnHtmlOutputStream >> openTag: tag attributes: attributes [
 	stream
 		nextPut: $<;
 		nextPutAll: tag.
@@ -271,11 +210,8 @@ ZnHtmlOutputStream>>openTag: tag attributes: attributes [
 	stream nextPut: $>
 ]
 
-{
-	#category : #html,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>page: title do: block [
+{ #category : #html }
+ZnHtmlOutputStream >> page: title do: block [
 	"Write out a standard page using title, then execute block"
 	
 	"ZnHtmlOutputStream streamContents: [ :html | html page: 'Hello' do: [ html tag: #p with: 'World' ] ]"
@@ -288,19 +224,13 @@ ZnHtmlOutputStream>>page: title do: block [
 				block value ] ]
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>print: object [
+{ #category : #streaming }
+ZnHtmlOutputStream >> print: object [
 	object printOn: self
 ]
 
-{
-	#category : #'private html',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>renderAttributes: attributes [
+{ #category : #'private html' }
+ZnHtmlOutputStream >> renderAttributes: attributes [
 	attributes pairsDo: [ :name :value | 
 		stream space; nextPutAll: name.
 		value ifNotNil: [
@@ -309,29 +239,20 @@ ZnHtmlOutputStream>>renderAttributes: attributes [
 			stream nextPut: $" ] ]
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>space [
+{ #category : #streaming }
+ZnHtmlOutputStream >> space [
 	self nextPut: Character space
 ]
 
-{
-	#category : #html,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>str: string [
+{ #category : #html }
+ZnHtmlOutputStream >> str: string [
 	"Write string, escaping characters as needed for regular text"
 
 	self escape: string
 ]
 
-{
-	#category : #'html tags',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>tag: tag [
+{ #category : #'html tags' }
+ZnHtmlOutputStream >> tag: tag [
 	"Write a standalone, self closing HTML tag"
 	
 	"<tag/>"
@@ -343,11 +264,8 @@ ZnHtmlOutputStream>>tag: tag [
 		nextPut: $>
 ]
 
-{
-	#category : #'html tags',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>tag: tag attributes: attributes [
+{ #category : #'html tags' }
+ZnHtmlOutputStream >> tag: tag attributes: attributes [
 	"Write a standalone, self closing HTML tag with attributes, a collection of alternating keys and values"
 	
 	"<tag attr1=""value1"" ... attrN=""valueN""/>"
@@ -361,11 +279,8 @@ ZnHtmlOutputStream>>tag: tag attributes: attributes [
 		nextPut: $>
 ]
 
-{
-	#category : #'html tags',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>tag: tag attributes: attributePairs do: block [
+{ #category : #'html tags' }
+ZnHtmlOutputStream >> tag: tag attributes: attributePairs do: block [
 	"Write an HTML tag with attributes, a collection of alternating keys and values, executing block to generate enclosed content" 
 	
 	"<tag attr1=""value1"" ... attrN=""valueN""> ... </tag>"
@@ -375,11 +290,8 @@ ZnHtmlOutputStream>>tag: tag attributes: attributePairs do: block [
 	self closeTag: tag
 ]
 
-{
-	#category : #'html tags',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>tag: tag attributes: attributePairs with: string [
+{ #category : #'html tags' }
+ZnHtmlOutputStream >> tag: tag attributes: attributePairs with: string [
 	"Write an HTML tag with attributes, a collection of alternating keys and values, using the escaped string as content" 
 	
 	"<tag attr1=""value1"" ... attrN=""valueN"">string</tag>"
@@ -389,11 +301,8 @@ ZnHtmlOutputStream>>tag: tag attributes: attributePairs with: string [
 	self closeTag: tag 
 ]
 
-{
-	#category : #'html tags',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>tag: tag class: cssClass do: block [
+{ #category : #'html tags' }
+ZnHtmlOutputStream >> tag: tag class: cssClass do: block [
 	"Write an HTML tag with class cssClass, executing block to generate enclosed content" 
 	
 	"<tag class=""cssClass""> ... </tag>"
@@ -403,11 +312,8 @@ ZnHtmlOutputStream>>tag: tag class: cssClass do: block [
 	self closeTag: tag
 ]
 
-{
-	#category : #'html tags',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>tag: tag class: cssClass with: string [
+{ #category : #'html tags' }
+ZnHtmlOutputStream >> tag: tag class: cssClass with: string [
 	"Write an HTML tag with class cssClass, using the escaped string as content" 
 	
 	"<tag class=""cssClass"">string</tag>"
@@ -417,11 +323,8 @@ ZnHtmlOutputStream>>tag: tag class: cssClass with: string [
 	self closeTag: tag 
 ]
 
-{
-	#category : #'html tags',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>tag: tag do: block [
+{ #category : #'html tags' }
+ZnHtmlOutputStream >> tag: tag do: block [
 	"Write an HTML tag, executing block to generate enclosed content" 
 	
 	"<tag>...</tag>"
@@ -431,11 +334,8 @@ ZnHtmlOutputStream>>tag: tag do: block [
 	self closeTag: tag
 ]
 
-{
-	#category : #'html tags',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>tag: tag id: cssId do: block [
+{ #category : #'html tags' }
+ZnHtmlOutputStream >> tag: tag id: cssId do: block [
 	"Write an HTML tag with id cssId, executing block to generate enclosed content" 
 	
 	"<tag id=""cssId""> ... </tag>"
@@ -445,11 +345,8 @@ ZnHtmlOutputStream>>tag: tag id: cssId do: block [
 	self closeTag: tag
 ]
 
-{
-	#category : #'html tags',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>tag: tag id: cssId with: string [
+{ #category : #'html tags' }
+ZnHtmlOutputStream >> tag: tag id: cssId with: string [
 	"Write an HTML tag with id cssId, using the escaped string as content" 
 	
 	"<tag id=""cssId"">string</tag>"
@@ -459,11 +356,8 @@ ZnHtmlOutputStream>>tag: tag id: cssId with: string [
 	self closeTag: tag 
 ]
 
-{
-	#category : #'html tags',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>tag: tag with: string [
+{ #category : #'html tags' }
+ZnHtmlOutputStream >> tag: tag with: string [
 	"Write an HTML tag using the escaped string as content" 
 	
 	"<tag>string</tag>"
@@ -473,10 +367,7 @@ ZnHtmlOutputStream>>tag: tag with: string [
 	self closeTag: tag 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHtmlOutputStream>>wrappedStream [
+{ #category : #accessing }
+ZnHtmlOutputStream >> wrappedStream [
 	^ stream
 ]

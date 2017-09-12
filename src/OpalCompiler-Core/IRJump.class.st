@@ -8,76 +8,51 @@ Class {
 		'destination',
 		'successor'
 	],
-	#category : #OpalCompiler-Core-IR-Nodes,
-	#timestamp : 'ajh 3/24/2003 23:56'
+	#category : #OpalCompiler-Core-IR-Nodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRJump>>accept: aVisitor [
+{ #category : #visiting }
+IRJump >> accept: aVisitor [
 	^ aVisitor visitJump: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRJump>>destination [
+{ #category : #accessing }
+IRJump >> destination [
 
 	^ destination
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRJump>>destination: aSequence [
+{ #category : #accessing }
+IRJump >> destination: aSequence [
 	destination := aSequence
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRJump>>isGoto [
+{ #category : #testing }
+IRJump >> isGoto [
 	"is unconditional jump"
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRJump>>isJump [
+{ #category : #testing }
+IRJump >> isJump [
 	"goto or if"
 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRJump>>successor [
+{ #category : #accessing }
+IRJump >> successor [
 	^successor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRJump>>successor: succ [
+{ #category : #accessing }
+IRJump >> successor: succ [
 	successor := succ
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRJump>>successorSequences [
+{ #category : #accessing }
+IRJump >> successorSequences [
 
 	^ {destination. successor} 
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #BlockClosure
-}
+Extension { #name : #BlockClosure }
 
-{
-	#category : #'*FuelTests',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosure>>assertWellMaterializedInto: aBlockClosure in: aTestCase [
+{ #category : #'*FuelTests' }
+BlockClosure >> assertWellMaterializedInto: aBlockClosure in: aTestCase [
 	
 	aTestCase assert: self ~~ aBlockClosure. 
 	aTestCase assert: (self class == aBlockClosure class).
@@ -28,10 +23,7 @@ BlockClosure>>assertWellMaterializedInto: aBlockClosure in: aTestCase [
 
 ]
 
-{
-	#category : #'*FuelTests',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BlockClosure>>fuelValueWithoutNotifications [
+{ #category : #'*FuelTests' }
+BlockClosure >> fuelValueWithoutNotifications [
 	SystemAnnouncer uniqueInstance suspendAllWhile: self
 ]

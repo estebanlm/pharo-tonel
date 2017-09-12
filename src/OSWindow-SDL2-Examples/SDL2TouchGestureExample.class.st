@@ -8,39 +8,24 @@ Class {
 		'circleCenter',
 		'circleSize'
 	],
-	#category : #OSWindow-SDL2-Examples-Gesture,
-	#timestamp : 'MerwanOuddane 4/6/2015 18:28'
+	#category : #OSWindow-SDL2-Examples-Gesture
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample class>>example [
+{ #category : #'as yet unclassified' }
+SDL2TouchGestureExample class >> example [
 	^ self new open
 ]
 
-{
-	#category : #'manage pinch',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample>>beginPinch: anEvent [
-
+{ #category : #'manage pinch' }
+SDL2TouchGestureExample >> beginPinch: anEvent [
 ]
 
-{
-	#category : #'manage scrolling',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample>>beginScroll: anEvent [
-
+{ #category : #'manage scrolling' }
+SDL2TouchGestureExample >> beginScroll: anEvent [
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample>>createEventHandler [
+{ #category : #factory }
+SDL2TouchGestureExample >> createEventHandler [
 	^OSWindowGestureEventHandler new
 				touchExample: self;
 				registerGesture: OSTouchTwoFingersScrollDetector new;
@@ -48,11 +33,8 @@ SDL2TouchGestureExample>>createEventHandler [
 				yourself
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample>>drawCircle [
+{ #category : #drawing }
+SDL2TouchGestureExample >> drawCircle [
 	renderer athensSurface
 		drawDuring: [ :canvas | 
 			canvas pathTransform translateBy: circleCenter.
@@ -65,27 +47,16 @@ SDL2TouchGestureExample>>drawCircle [
 				draw ]
 ]
 
-{
-	#category : #'manage pinch',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample>>endPinch: anEvent [
-
+{ #category : #'manage pinch' }
+SDL2TouchGestureExample >> endPinch: anEvent [
 ]
 
-{
-	#category : #'manage scrolling',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample>>endScroll: anEvent [
-
+{ #category : #'manage scrolling' }
+SDL2TouchGestureExample >> endScroll: anEvent [
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample>>generateCircleOfSize: anInteger [
+{ #category : #drawing }
+SDL2TouchGestureExample >> generateCircleOfSize: anInteger [
 	^ renderer athensSurface
 		createPath: [ :builder | 
 			builder
@@ -97,38 +68,26 @@ SDL2TouchGestureExample>>generateCircleOfSize: anInteger [
 				ccwArcTo: anInteger negated @ 0 angle: 90 degreesToRadians ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample>>initialize [
+{ #category : #initialization }
+SDL2TouchGestureExample >> initialize [
 	super initialize.
 	circleCenter := (self defaultExtent x / 2) asFloat @ (self defaultExtent y / 2) asFloat.
 	circleSize := 10.0
 ]
 
-{
-	#category : #'manage pinch',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample>>pinch: anEvent [
+{ #category : #'manage pinch' }
+SDL2TouchGestureExample >> pinch: anEvent [
 	circleSize := circleSize + (anEvent dDist * (self defaultExtent distanceTo: 0@0)).
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample>>redraw [
+{ #category : #drawing }
+SDL2TouchGestureExample >> redraw [
 	super redraw.
 	self drawCircle
 ]
 
-{
-	#category : #'manage scrolling',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2TouchGestureExample>>scroll: anEvent [
+{ #category : #'manage scrolling' }
+SDL2TouchGestureExample >> scroll: anEvent [
 	circleCenter := circleCenter
 		+ (anEvent direction * (anEvent dDist abs * (self defaultExtent distanceTo: 0 @ 0)))
 ]

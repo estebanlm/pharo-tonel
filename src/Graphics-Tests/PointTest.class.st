@@ -4,15 +4,11 @@ This is the unit test for the class Point.
 Class {
 	#name : #PointTest,
 	#superclass : #ClassTestCase,
-	#category : #Graphics-Tests-Primitives,
-	#timestamp : 'StephaneDucasse 7/7/2010 23:43'
+	#category : #Graphics-Tests-Primitives
 }
 
-{
-	#category : #tests-arithmetic,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testAbs [
+{ #category : #tests-arithmetic }
+PointTest >> testAbs [
 
 	self assert: (0 @ 0) abs = (0 @ 0).
 	self assert: (1 @ 1) abs = (1 @ 1).
@@ -24,11 +20,8 @@ PointTest>>testAbs [
 	self deny: (1 @ -1) abs = (1 @ -1).
 ]
 
-{
-	#category : #tests-converting,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testAsFloatPoint [
+{ #category : #tests-converting }
+PointTest >> testAsFloatPoint [
 	|testPoint|
 	self assert: (1 @ 1) asFloatPoint = (1.0 @ 1.0).
 	self assert: (1.2 @ 1) asFloatPoint = (1.2 @ 1.0).
@@ -58,11 +51,8 @@ PointTest>>testAsFloatPoint [
 	self deny: testPoint == testPoint asFloatPoint
 ]
 
-{
-	#category : #tests-converting,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testAsIntegerPoint [
+{ #category : #tests-converting }
+PointTest >> testAsIntegerPoint [
 	|testPoint|
 	self assert: (1 @ 1) asIntegerPoint = (1 @ 1).
 	self assert: (1.2 @ 1) asIntegerPoint = (1 @ 1).
@@ -92,11 +82,8 @@ PointTest>>testAsIntegerPoint [
 	self deny: testPoint == testPoint asIntegerPoint
 ]
 
-{
-	#category : #tests-converting,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testAsPoint [
+{ #category : #tests-converting }
+PointTest >> testAsPoint [
 
 	self deny: 1 isPoint.
 	self deny: 1.2 isPoint.
@@ -114,11 +101,8 @@ PointTest>>testAsPoint [
 	self assert: (-1.2 @ -1.2) asPoint = (-1.2 @ -1.2).
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testBasicFourDirections [
+{ #category : #'tests - testing' }
+PointTest >> testBasicFourDirections [
 	"fourDirections returns the four rotation of the receiver in counter clockwise order with the receiver appearing last."
 	
 	| samples results rejects |
@@ -141,11 +125,8 @@ PointTest>>testBasicFourDirections [
 
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testBearingToPoint [
+{ #category : #'tests - testing' }
+PointTest >> testBearingToPoint [
 	self assert: (0 @ 0 bearingToPoint: 0 @ 0) = 0.
 	self assert: (0 @ 0 bearingToPoint: 0 @ -1) = 0.
 	self assert: (0 @ 0 bearingToPoint: 1 @ 0) = 90.
@@ -158,11 +139,8 @@ PointTest>>testBearingToPoint [
 	self assert: (-2 @ -3 bearingToPoint: 0 @ 0) = 146
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testCloseTo [
+{ #category : #'tests - testing' }
+PointTest >> testCloseTo [
 
 	| x y |
 	x := 0.00001000001.
@@ -174,11 +152,8 @@ PointTest>>testCloseTo [
 	self assert: (x@y closeTo: (0.00001@0.00001))
 ]
 
-{
-	#category : #'tests-point functions',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testCrossProduct [
+{ #category : #'tests-point functions' }
+PointTest >> testCrossProduct [
 
 	self assert: (0 @ 0 crossProduct: 0 @ 0) = 0.
 	self assert: (1 @ 0 crossProduct: 1 @ 1) = 1.
@@ -186,11 +161,8 @@ PointTest>>testCrossProduct [
 	self assert: (1 @ 2 crossProduct: 3 @ 4) = -2.
 ]
 
-{
-	#category : #'tests-point functions',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testDist [
+{ #category : #'tests-point functions' }
+PointTest >> testDist [
 
 	self assert: (0 @ 0 dist: 0 @ 0) = 0.
 	self assert: (0 @ 0 dist: 0 @ 5) = 5.
@@ -200,11 +172,8 @@ PointTest>>testDist [
 	self deny: (0 @ 0 dist: 0 @ 0) = 1.
 ]
 
-{
-	#category : #'tests-point functions',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testDistanceTo [
+{ #category : #'tests-point functions' }
+PointTest >> testDistanceTo [
 
 	self assert: (0 @ 0 distanceTo: 0 @ 0) = 0.
 	self assert: (0 @ 0 distanceTo: 0 @ 5) = 5.
@@ -214,11 +183,8 @@ PointTest>>testDistanceTo [
 	self deny: (0 @ 0 distanceTo: 0 @ 0) = 1.
 ]
 
-{
-	#category : #'tests-point functions',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testEightNeighbors [
+{ #category : #'tests-point functions' }
+PointTest >> testEightNeighbors [
 
 	| x y |
 	x := Point new.
@@ -232,11 +198,8 @@ PointTest>>testEightNeighbors [
 
 ]
 
-{
-	#category : #'tests-point functions',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testFlipByCenterAt [
+{ #category : #'tests-point functions' }
+PointTest >> testFlipByCenterAt [
 
 	| center a direction |
 	
@@ -259,11 +222,8 @@ PointTest>>testFlipByCenterAt [
 	self should: [ a flipBy: direction centerAt: center ] raise: Error description: 'unrecognizable direction'
 ]
 
-{
-	#category : #'tests-point functions',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testInsideTriangleWithWith [
+{ #category : #'tests-point functions' }
+PointTest >> testInsideTriangleWithWith [
 	self assert:   ( (2 @ 3) insideTriangle:  (1 @ 1 ) with: (1 @ 7) with: (3 @ 3)).
 	self deny:    ( (3 @ 1) insideTriangle:  (1 @ 1 ) with: (1 @ 7) with: (3 @ 3)).
 	self deny:    ( (3 @ 15) insideTriangle:  (1 @ 1 ) with: (1 @ 7) with: (3 @ 3)).
@@ -274,11 +234,8 @@ PointTest>>testInsideTriangleWithWith [
 	self deny:    ( (0 @ -6) insideTriangle:  (-1 @ -1 ) with: (-1 @ -7) with: (-3 @ -3)).
 ]
 
-{
-	#category : #'tests-truncation and roundoff',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testIsFloatPoint [
+{ #category : #'tests-truncation and roundoff' }
+PointTest >> testIsFloatPoint [
 
 	self deny: (1 @ 1) isFloatPoint.
 	self deny: (-1 @ 1) isFloatPoint.
@@ -300,11 +257,8 @@ PointTest>>testIsFloatPoint [
 	
 ]
 
-{
-	#category : #'tests-truncation and roundoff',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testIsIntegerPoint [
+{ #category : #'tests-truncation and roundoff' }
+PointTest >> testIsIntegerPoint [
 
 	self assert: (1 @ 1) isIntegerPoint.
 	self assert: (-1 @ 1) isIntegerPoint.
@@ -321,11 +275,8 @@ PointTest>>testIsIntegerPoint [
 	
 ]
 
-{
-	#category : #tests-converting,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testIsPoint [
+{ #category : #tests-converting }
+PointTest >> testIsPoint [
 
 	self deny: nil isPoint.
 	self deny: 'a' isPoint.
@@ -341,11 +292,8 @@ PointTest>>testIsPoint [
 	self assert: (-1.2 @ -1.2) isPoint.
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testIsZero [
+{ #category : #'tests - testing' }
+PointTest >> testIsZero [
 
 	self assert: (0@0) isZero.	
 	self deny:  (0@1) isZero.
@@ -353,20 +301,14 @@ PointTest>>testIsZero [
 	self deny:  (1@1) isZero.
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testLeftRotated [
+{ #category : #'tests - testing' }
+PointTest >> testLeftRotated [
 
 	self assert: (10 @ 20) leftRotated = (20@ -10)
 ]
 
-{
-	#category : #tests-transforming,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testNegated [
+{ #category : #tests-transforming }
+PointTest >> testNegated [
 
 	self assert: (0 @ 0) negated = (0 @ 0).
 	self deny: (0 @ 1) negated = (0 @ 0).
@@ -381,22 +323,16 @@ PointTest>>testNegated [
 	self assert: (-1 @ 1) negated = (1 @ -1)
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testNormalized [
+{ #category : #'tests - testing' }
+PointTest >> testNormalized [
 	| pt |
 	pt:= Point x:2 y:2.
 	
 	self assert: pt normalized =  ((2/(8 sqrt))@(2/(8 sqrt))).
 ]
 
-{
-	#category : #tests-arithmetic,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testReciprocal [
+{ #category : #tests-arithmetic }
+PointTest >> testReciprocal [
 
 	self assert: (1 @ 1) reciprocal = (1 @ 1).
 	self deny: (2 @ 2) reciprocal = (2 @ 2).
@@ -406,20 +342,14 @@ PointTest>>testReciprocal [
 	self should: [ (0 @ 1) reciprocal ] raise: ZeroDivide
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testRightRotated [
+{ #category : #'tests - testing' }
+PointTest >> testRightRotated [
 
 	self assert: (10 @ 20) rightRotated = (-20@10)
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testSideOf [
+{ #category : #'tests - testing' }
+PointTest >> testSideOf [
 	| p1 p2 p3 p4 p5 p6 o|
 	
 	p1:= 1@1.
@@ -440,11 +370,8 @@ PointTest>>testSideOf [
 	self assert:(p1 sideOf:p6) = #right.
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testSign [
+{ #category : #'tests - testing' }
+PointTest >> testSign [
 
 	self assert: (-3 @ -2) sign = ( -1@ -1).
 	self assert: (-3 @ 2) sign = ( -1@ 1).
@@ -452,11 +379,8 @@ PointTest>>testSign [
 	self assert: (3 @ 2) sign = ( 1@ 1).
 ]
 
-{
-	#category : #'tests - testing',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testTheta [
+{ #category : #'tests - testing' }
+PointTest >> testTheta [
       | result dir tan x y |
 	self assert: ((0 @ 1) theta - 90.0 degreesToRadians) abs < 1e-15.
 	self assert: ((0 @ -1) theta - 270.0 degreesToRadians) abs < 1e-15.
@@ -475,11 +399,8 @@ PointTest>>testTheta [
 	
 ]
 
-{
-	#category : #tests-geometry,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PointTest>>testToIntersectsTo [
+{ #category : #tests-geometry }
+PointTest >> testToIntersectsTo [
 
 	self assert: ( (1 @ 1) to: ( 1 @ 6) intersects: (1 @ 1) to: (2 @ 9) ).
 	self assert: ( (1 @ 1) to: ( 1 @ 6) intersects: (1 @ 2) to: (1 @6) ).

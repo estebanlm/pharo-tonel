@@ -8,35 +8,25 @@ Class {
 		'contents',
 		'toolbar'
 	],
-	#category : #Spec-Core-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Support
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DialogWindowModel class>>adapterName [
+{ #category : #specs }
+DialogWindowModel class >> adapterName [
 
 	^ #DialogWindowAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DialogWindowModel class>>defaultSpec [
+{ #category : #specs }
+DialogWindowModel class >> defaultSpec [
 	<spec>
 	
 	^ #(DialogWindowAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DialogWindowModel>>buildWithSpecLayout: aSpec [
+{ #category : #private }
+DialogWindowModel >> buildWithSpecLayout: aSpec [
 	"Build the widget using the spec name provided as argument"
 	| widget |
 	
@@ -54,38 +44,26 @@ DialogWindowModel>>buildWithSpecLayout: aSpec [
 	^ widget
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DialogWindowModel>>cancelAction: aBlock [
+{ #category : #api }
+DialogWindowModel >> cancelAction: aBlock [
 
 	^ self changed: #cancelAction: with: { aBlock }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DialogWindowModel>>cancelled [
+{ #category : #api }
+DialogWindowModel >> cancelled [
 
 	^ self toolbar cancelled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DialogWindowModel>>contents [
+{ #category : #accessing }
+DialogWindowModel >> contents [
 
 	^ contents
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DialogWindowModel>>initialize [
+{ #category : #initialization }
+DialogWindowModel >> initialize [
 
 	super initialize.
 
@@ -93,56 +71,38 @@ DialogWindowModel>>initialize [
 	toolbar whenChangedDo: [ :t | self changed: #toolbar: with: { t } ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DialogWindowModel>>okAction: aBlock [
+{ #category : #api }
+DialogWindowModel >> okAction: aBlock [
 
 	^ self changed: #okAction: with: { aBlock }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DialogWindowModel>>okButtonEnabled: aBoolean [
+{ #category : #api }
+DialogWindowModel >> okButtonEnabled: aBoolean [
 
 	self changed: #okButtonEnabled: with: { aBoolean }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DialogWindowModel>>toolbar [
+{ #category : #api }
+DialogWindowModel >> toolbar [
 
 	^ toolbar value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DialogWindowModel>>toolbar: aBar [
+{ #category : #api }
+DialogWindowModel >> toolbar: aBar [
 
 	toolbar value: aBar
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DialogWindowModel>>triggerCancelAction [
+{ #category : #api }
+DialogWindowModel >> triggerCancelAction [
 
 	self changed: #triggerCancelAction with: #()
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-DialogWindowModel>>triggerOkAction [
+{ #category : #api }
+DialogWindowModel >> triggerOkAction [
 
 	self changed: #triggerOkAction with: #()
 ]

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MCStWriterTest,
 	#superclass : #MCTestCase,
@@ -8,24 +5,17 @@ Class {
 		'stream',
 		'writer'
 	],
-	#category : #Monticello-Tests,
-	#timestamp : ''
+	#category : #Monticello-Tests
 }
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>assertAllChunksAreWellFormed [
+{ #category : #asserting }
+MCStWriterTest >> assertAllChunksAreWellFormed [
 	stream := ChunkReadStream on: stream contents readStream.
 	self assertChunkIsWellFormed: stream next.
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>assertChunkIsWellFormed: chunk [
+{ #category : #asserting }
+MCStWriterTest >> assertChunkIsWellFormed: chunk [
 	self class compiler
 		source:  chunk readStream ;
 		class: UndefinedObject;
@@ -34,22 +24,16 @@ MCStWriterTest>>assertChunkIsWellFormed: chunk [
 		translate.
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>assertContentsOf: strm match: expected  [
+{ #category : #asserting }
+MCStWriterTest >> assertContentsOf: strm match: expected [ 
 	| actual |
 	actual := strm contents.
 	self assert: actual size = expected size.
 	actual with: expected do: [:a :e | self assert: a = e]
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>assertMethodChunkIsWellFormed: chunk [
+{ #category : #asserting }
+MCStWriterTest >> assertMethodChunkIsWellFormed: chunk [
 	self class compiler
 		source: chunk readStream;
 		class: UndefinedObject;
@@ -58,11 +42,8 @@ MCStWriterTest>>assertMethodChunkIsWellFormed: chunk [
 	
 ]
 
-{
-	#category : #data,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>expectedClassDefinitionA [
+{ #category : #data }
+MCStWriterTest >> expectedClassDefinitionA [
  ^ '
 MCMock subclass: #MCMockClassA
 	instanceVariableNames: ''ivar''
@@ -75,11 +56,8 @@ This is a mock class. The Monticello tests manipulated it to simulate a develope
 '
 ]
 
-{
-	#category : #data,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>expectedClassDefinitionB [
+{ #category : #data }
+MCStWriterTest >> expectedClassDefinitionB [
  ^ '
 MCMock subclass: #MCMockClassB
 	instanceVariableNames: ''ivarb''
@@ -95,44 +73,29 @@ This comment has a bang!! Bang!! Bang!!!
 '
 ]
 
-{
-	#category : #data,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>expectedClassMethodDefinition [
+{ #category : #data }
+MCStWriterTest >> expectedClassMethodDefinition [
 
 	^ '\s*!MCMockClassA class methodsFor\: ''as yet unclassified'' stamp\: ''[/:\s\w]*''!\s*one\s*\^ 1! !\s*'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>expectedInitializerA [
+{ #category : #testing }
+MCStWriterTest >> expectedInitializerA [
 	^ 'MCMockClassA initialize'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>expectedInitializerASubclass [
+{ #category : #testing }
+MCStWriterTest >> expectedInitializerASubclass [
 	^ 'MCMockASubclass initialize'
 ]
 
-{
-	#category : #data,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>expectedMethodDefinition [
+{ #category : #data }
+MCStWriterTest >> expectedMethodDefinition [
 	^ '\s*!MCMockClassA methodsFor\: ''numeric'' stamp\: ''[/:\s\w]*''!\s*one\s*\^ 1! !\s*'
 ]
 
-{
-	#category : #data,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>expectedMethodDefinitionWithBangs [
+{ #category : #data }
+MCStWriterTest >> expectedMethodDefinitionWithBangs [
 	^ '
 !MCStWriterTest methodsFor: ''testing'' stamp: ''''!
 methodWithBangs
@@ -159,20 +122,14 @@ MCMethodDeclaration className: #MCMockClassD selector: #one category: #''''as ye
 '
 ]
 
-{
-	#category : #data,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>expectedOrganizationDefinition [
+{ #category : #data }
+MCStWriterTest >> expectedOrganizationDefinition [
 	^ 'SystemOrganization addCategory: #MonticelloMocks!
 '
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>methodWithBangs [
+{ #category : #testing }
+MCStWriterTest >> methodWithBangs [
 	^ '
 	^ ReadStream on: 
 ''MCRevisionInfo packageName: ''MonticelloCompatibilityTest''!!
@@ -195,42 +152,30 @@ MCMethodDeclaration className: #MCMockClassD selector: #one category: #''as yet 
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>setUp [
+{ #category : #testing }
+MCStWriterTest >> setUp [
 	stream := String new writeStream.
 	writer := MCStWriter on: stream.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>testClassDefinitionA [
+{ #category : #testing }
+MCStWriterTest >> testClassDefinitionA [
 	writer visitClassDefinition: (self mockClassA asClassDefinition).
 	self assertContentsOf: stream match: self expectedClassDefinitionA.
 	stream := ChunkReadStream on: stream contents readStream.
 	2 timesRepeat: [self assertChunkIsWellFormed: stream next]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>testClassDefinitionB [
+{ #category : #testing }
+MCStWriterTest >> testClassDefinitionB [
 	writer visitClassDefinition: (self mockClassB asClassDefinition).
 	self assertContentsOf: stream match: self expectedClassDefinitionB.
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>testClassMethodDefinition [
+{ #category : #testing }
+MCStWriterTest >> testClassMethodDefinition [
 	writer visitMethodDefinition: (RGMethodDefinition realClass: self mockClassA class selector: #one) asMCMethodDefinition.
 	self assert: (stream contents matchesRegex: self expectedClassMethodDefinition).
 	
@@ -242,11 +187,8 @@ MCStWriterTest>>testClassMethodDefinition [
 	self assert: stream next isAllSeparators 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>testInitializerDefinition [
+{ #category : #testing }
+MCStWriterTest >> testInitializerDefinition [
 	|chunk lastChunk penultChunk|
 	writer writeSnapshot: self mockSnapshot.
 	stream := ChunkReadStream on: stream contents readStream.
@@ -260,11 +202,8 @@ MCStWriterTest>>testInitializerDefinition [
 	self assertContentsOf: lastChunk readStream match: self expectedInitializerASubclass
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>testMethodDefinition [
+{ #category : #testing }
+MCStWriterTest >> testMethodDefinition [
 	writer visitMethodDefinition: (RGMethodDefinition realClass: self mockClassA selector: #one) asMCMethodDefinition.
 	self assert: (stream contents matchesRegex: self expectedMethodDefinition).
 	
@@ -276,11 +215,8 @@ MCStWriterTest>>testMethodDefinition [
 	self assert: stream next isAllSeparators 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>testMethodDefinitionWithBangs [
+{ #category : #testing }
+MCStWriterTest >> testMethodDefinitionWithBangs [
 
 	| methodDefinition |
 	
@@ -300,11 +236,8 @@ MCStWriterTest>>testMethodDefinitionWithBangs [
 	self assert: stream next isAllSeparators 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStWriterTest>>testOrganizationDefinition [
+{ #category : #testing }
+MCStWriterTest >> testOrganizationDefinition [
 	| definition |
 	definition := MCOrganizationDefinition categories: 
 					(self mockPackage packageSet systemCategories).

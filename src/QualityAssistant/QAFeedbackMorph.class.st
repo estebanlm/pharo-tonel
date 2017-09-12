@@ -10,31 +10,21 @@ Class {
 		'text',
 		'critique'
 	],
-	#category : #QualityAssistant,
-	#timestamp : 'YuriyTymchuk 8/21/2015 12:13'
+	#category : #QualityAssistant
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QAFeedbackMorph>>critique [
+{ #category : #accessing }
+QAFeedbackMorph >> critique [
 	^ critique
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QAFeedbackMorph>>critique: anObject [
+{ #category : #accessing }
+QAFeedbackMorph >> critique: anObject [
 	critique := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QAFeedbackMorph>>finalizeFeedback: aBoolean withComment: aString [
+{ #category : #initialization }
+QAFeedbackMorph >> finalizeFeedback: aBoolean withComment: aString [
 
 	text contents: 'Thanks!'.
 	self
@@ -50,11 +40,8 @@ QAFeedbackMorph>>finalizeFeedback: aBoolean withComment: aString [
 	  self delete ] fork.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QAFeedbackMorph>>fireDialogWithFeedback: aBoolean [
+{ #category : #initialization }
+QAFeedbackMorph >> fireDialogWithFeedback: aBoolean [
 
 	| comment |
 
@@ -107,11 +94,8 @@ QAFeedbackMorph>>fireDialogWithFeedback: aBoolean [
 			self window modalLockTo: window ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QAFeedbackMorph>>initialize [
+{ #category : #initialization }
+QAFeedbackMorph >> initialize [
 	super initialize.
 	
 	self
@@ -132,11 +116,8 @@ QAFeedbackMorph>>initialize [
 		addMorphBack: (self initializeNegativeFeedback)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QAFeedbackMorph>>initializeNegativeFeedback [
+{ #category : #initialization }
+QAFeedbackMorph >> initializeNegativeFeedback [
 	
 	^ negative := IconicButton new
 				target: self;
@@ -150,11 +131,8 @@ QAFeedbackMorph>>initializeNegativeFeedback [
 				yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QAFeedbackMorph>>initializePositiveFeedback [
+{ #category : #initialization }
+QAFeedbackMorph >> initializePositiveFeedback [
 	
 	^ positive := IconicButton new
 				target: self;

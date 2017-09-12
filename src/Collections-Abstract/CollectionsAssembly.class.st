@@ -4,31 +4,21 @@ I contain all basic collections.
 Class {
 	#name : #CollectionsAssembly,
 	#superclass : #AssemblyManifest,
-	#category : #Collections-Abstract,
-	#timestamp : 'ChristopheDemarey 6/23/2015 10:52'
+	#category : #Collections-Abstract
 }
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-CollectionsAssembly class>>description [
+{ #category : #meta-data }
+CollectionsAssembly class >> description [
 	^ 'I contain all basic collections.'
 ]
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-CollectionsAssembly class>>packageName [
+{ #category : #meta-data }
+CollectionsAssembly class >> packageName [
 	^ #Collections
 ]
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-CollectionsAssembly class>>parts [
+{ #category : #meta-data }
+CollectionsAssembly class >> parts [
 	^ {#'Collections-Abstract' -> #().
 	#'Collections-Arithmetic' -> #().
 	#'Collections-Atomic' -> #().
@@ -42,10 +32,7 @@ CollectionsAssembly class>>parts [
 	#'Collections-Weak' -> #()}
 ]
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-CollectionsAssembly class>>version [
+{ #category : #meta-data }
+CollectionsAssembly class >> version [
 	^ '1.0-dev'
 ]

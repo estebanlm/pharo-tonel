@@ -17,26 +17,19 @@ Class {
 		'lowerBound',
 		'upperBound'
 	],
-	#category : #Kernel-Exceptions,
-	#timestamp : 'SvenVanCaekenberghe 4/21/2011 13:00'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SubscriptOutOfBounds class>>signalFor: subscript [
+{ #category : #signaling }
+SubscriptOutOfBounds class >> signalFor: subscript [
 	^ self 
 		signalFor: subscript 
 		lowerBound: nil 
 		upperBound: nil
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SubscriptOutOfBounds class>>signalFor: subscript lowerBound: lowerBound upperBound: upperBound [
+{ #category : #signaling }
+SubscriptOutOfBounds class >> signalFor: subscript lowerBound: lowerBound upperBound: upperBound [
 	^ self 
 		signalFor: subscript 
 		lowerBound: lowerBound 
@@ -45,11 +38,8 @@ SubscriptOutOfBounds class>>signalFor: subscript lowerBound: lowerBound upperBou
 
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SubscriptOutOfBounds class>>signalFor: subscript lowerBound: lowerBound upperBound: upperBound in: object [
+{ #category : #signaling }
+SubscriptOutOfBounds class >> signalFor: subscript lowerBound: lowerBound upperBound: upperBound in: object [
 	^ self new
 		signaler: object;
 		subscript: subscript;
@@ -58,37 +48,25 @@ SubscriptOutOfBounds class>>signalFor: subscript lowerBound: lowerBound upperBou
 		signal		 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SubscriptOutOfBounds>>lowerBound [
+{ #category : #accessing }
+SubscriptOutOfBounds >> lowerBound [
 	^ lowerBound
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SubscriptOutOfBounds>>lowerBound: anObject [
+{ #category : #accessing }
+SubscriptOutOfBounds >> lowerBound: anObject [
 	lowerBound := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SubscriptOutOfBounds>>messageText [
+{ #category : #accessing }
+SubscriptOutOfBounds >> messageText [
 	"Overwritten to initialiaze the message text to a standard text if it has not yet been set"
 	
 	^ messageText ifNil: [ messageText := self standardMessageText ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SubscriptOutOfBounds>>standardMessageText [
+{ #category : #printing }
+SubscriptOutOfBounds >> standardMessageText [
 	"Generate a standard textual description"
 	
 	^ String streamContents: [ :stream |
@@ -105,34 +83,22 @@ SubscriptOutOfBounds>>standardMessageText [
 				stream print: self upperBound ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SubscriptOutOfBounds>>subscript [
+{ #category : #accessing }
+SubscriptOutOfBounds >> subscript [
 	^ subscript
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SubscriptOutOfBounds>>subscript: anObject [
+{ #category : #accessing }
+SubscriptOutOfBounds >> subscript: anObject [
 	subscript := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SubscriptOutOfBounds>>upperBound [
+{ #category : #accessing }
+SubscriptOutOfBounds >> upperBound [
 	^ upperBound
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SubscriptOutOfBounds>>upperBound: anObject [
+{ #category : #accessing }
+SubscriptOutOfBounds >> upperBound: anObject [
 	upperBound := anObject
 ]

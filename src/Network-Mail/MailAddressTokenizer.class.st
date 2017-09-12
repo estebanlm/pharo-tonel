@@ -15,23 +15,16 @@ Class {
 		'CSParens',
 		'CSSpecials'
 	],
-	#category : #Network-Mail,
-	#timestamp : '<historical>'
+	#category : #Network-Mail
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer class>>forString: aString [
+{ #category : #'instance creation' }
+MailAddressTokenizer class >> forString: aString [
 	^self basicNew initialize: aString
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer class>>initialize [
+{ #category : #initialization }
+MailAddressTokenizer class >> initialize [
 	"Initalize class variables using   MailAddressTokenizer initialize"
 
 	| atomChars |
@@ -55,45 +48,30 @@ MailAddressTokenizer class>>initialize [
 	CSNonAtom :=  atomChars complement.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer class>>tokensIn: aString [
+{ #category : #'instance creation' }
+MailAddressTokenizer class >> tokensIn: aString [
 	"return a collection of the tokens in aString"
 	^(self forString: aString) upToEnd
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer>>atEnd [
+{ #category : #'stream protocol' }
+MailAddressTokenizer >> atEnd [
 	^ self peek isNil
 ]
 
-{
-	#category : #tokenizing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer>>atEndOfChars [
+{ #category : #tokenizing }
+MailAddressTokenizer >> atEndOfChars [
 	^pos > text size
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer>>initialize: aString [
+{ #category : #initialization }
+MailAddressTokenizer >> initialize: aString [
 	text := aString.
 	pos := 1.
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer>>next [
+{ #category : #'stream protocol' }
+MailAddressTokenizer >> next [
 	| ans |
 	cachedToken ifNil: [ ^self nextToken ].
 	ans := cachedToken.
@@ -101,11 +79,8 @@ MailAddressTokenizer>>next [
 	^ans
 ]
 
-{
-	#category : #tokenizing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer>>nextAtom [
+{ #category : #tokenizing }
+MailAddressTokenizer >> nextAtom [
 	| start end |
 	start := pos.
 	pos := text indexOfAnyOf: CSNonAtom startingAt: start ifAbsent: [ text size + 1].
@@ -115,21 +90,15 @@ MailAddressTokenizer>>nextAtom [
 		text: (text copyFrom: start to: end)
 ]
 
-{
-	#category : #tokenizing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer>>nextChar [
+{ #category : #tokenizing }
+MailAddressTokenizer >> nextChar [
 	self atEndOfChars ifTrue: [ ^nil ].
 	pos := pos + 1.
 	^text at: (pos-1)
 ]
 
-{
-	#category : #tokenizing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer>>nextComment [
+{ #category : #tokenizing }
+MailAddressTokenizer >> nextComment [
 	| start nestLevel paren |
 	start := pos.
 	pos := pos + 1.
@@ -146,11 +115,8 @@ MailAddressTokenizer>>nextComment [
 	^ MailAddressToken type: #Comment text: (text copyFrom: start to: pos - 1)
 ]
 
-{
-	#category : #tokenizing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer>>nextDomainLiteral [
+{ #category : #tokenizing }
+MailAddressTokenizer >> nextDomainLiteral [
 	| start end |
 	start := pos.
 	end := text indexOf: $] startingAt: start ifAbsent: [ 0 ].
@@ -165,11 +131,8 @@ MailAddressTokenizer>>nextDomainLiteral [
 		text: (text copyFrom: start to: end)
 ]
 
-{
-	#category : #tokenizing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer>>nextQuotedString [
+{ #category : #tokenizing }
+MailAddressTokenizer >> nextQuotedString [
 	| res c |
 	res := String new writeStream.
 	res nextPut: self nextChar.   "record the starting quote"
@@ -189,21 +152,15 @@ MailAddressTokenizer>>nextQuotedString [
 	^MailAddressToken type: #QuotedString  text: (res contents, '"')
 ]
 
-{
-	#category : #tokenizing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer>>nextSpecial [
+{ #category : #tokenizing }
+MailAddressTokenizer >> nextSpecial [
 	| c |
 	c := self nextChar.
 	^MailAddressToken type: c  text: c asString.
 ]
 
-{
-	#category : #tokenizing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer>>nextToken [
+{ #category : #tokenizing }
+MailAddressTokenizer >> nextToken [
 	| c |
 	self skipSeparators.
 	c := self peekChar.
@@ -215,28 +172,19 @@ MailAddressTokenizer>>nextToken [
 	^self nextAtom
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer>>peek [
+{ #category : #'stream protocol' }
+MailAddressTokenizer >> peek [
 	cachedToken ifNil: [ cachedToken := self nextToken. ].
 	
 	^cachedToken	
 ]
 
-{
-	#category : #tokenizing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer>>peekChar [
+{ #category : #tokenizing }
+MailAddressTokenizer >> peekChar [
 	^text at: pos ifAbsent: [ nil ]
 ]
 
-{
-	#category : #tokenizing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressTokenizer>>skipSeparators [
+{ #category : #tokenizing }
+MailAddressTokenizer >> skipSeparators [
 	pos := text indexOfAnyOf: CSNonSeparators  startingAt: pos  ifAbsent: [ text size + 1 ].
 ]

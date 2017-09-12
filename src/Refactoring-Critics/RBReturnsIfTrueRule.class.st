@@ -4,33 +4,23 @@ Check for methods that return the value of an ifTrue: or ifFalse: message. These
 Class {
 	#name : #RBReturnsIfTrueRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 23:05'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBReturnsIfTrueRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBReturnsIfTrueRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'ReturnsIfTrueRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBReturnsIfTrueRule>>group [
+{ #category : #accessing }
+RBReturnsIfTrueRule >> group [
 	^ 'Potential Bugs'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBReturnsIfTrueRule>>initialize [
+{ #category : #initialization }
+RBReturnsIfTrueRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyOf: #(
@@ -39,10 +29,7 @@ RBReturnsIfTrueRule>>initialize [
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBReturnsIfTrueRule>>name [
+{ #category : #accessing }
+RBReturnsIfTrueRule >> name [
 	^ 'Returns value of ifTrue:/ifFalse: without ifFalse:/ifTrue: block'
 ]

@@ -8,31 +8,21 @@ Class {
 	#instVars : [
 		'exception'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 14:00'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientIgnoringExceptionOnConnectionReuseEvent>>exception [
+{ #category : #accessing }
+ZnClientIgnoringExceptionOnConnectionReuseEvent >> exception [
 	^ exception
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientIgnoringExceptionOnConnectionReuseEvent>>exception: anObject [
+{ #category : #accessing }
+ZnClientIgnoringExceptionOnConnectionReuseEvent >> exception: anObject [
 	exception := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientIgnoringExceptionOnConnectionReuseEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnClientIgnoringExceptionOnConnectionReuseEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream << ' Ignoring Exception On Connection Reuse '; print: exception
 ]

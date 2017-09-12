@@ -13,15 +13,11 @@ Class {
 		'newVariableName',
 		'parseTree'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 14:30'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractToTemporaryRefactoring class>>extract: anInterval to: aString from: aSelector in: aClass  [
+{ #category : #'instance creation' }
+RBExtractToTemporaryRefactoring class >> extract: anInterval to: aString from: aSelector [ in: aClass 
 	^self new 
 		extract: anInterval
 		to: aString
@@ -29,11 +25,8 @@ RBExtractToTemporaryRefactoring class>>extract: anInterval to: aString from: aSe
 		in: aClass
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractToTemporaryRefactoring class>>model: aRBSmalltalk extract: anInterval to: aString from: aSelector in: aClass  [
+{ #category : #'instance creation' }
+RBExtractToTemporaryRefactoring class >> model: aRBSmalltalk extract: anInterval to: aString from: aSelector [ in: aClass 
 	^(self new)
 		model: aRBSmalltalk;
 		extract: anInterval
@@ -43,11 +36,8 @@ RBExtractToTemporaryRefactoring class>>model: aRBSmalltalk extract: anInterval t
 		yourself
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractToTemporaryRefactoring>>checkVariableName [
+{ #category : #preconditions }
+RBExtractToTemporaryRefactoring >> checkVariableName [
 	(class whoDefinesInstanceVariable: newVariableName) notNil 
 		ifTrue: 
 			[self refactoringError: ('<1p> defines an instance variable named <2s>' 
@@ -64,40 +54,28 @@ RBExtractToTemporaryRefactoring>>checkVariableName [
 						expandMacrosWith: newVariableName)]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractToTemporaryRefactoring>>compileNewMethod [
+{ #category : #transforming }
+RBExtractToTemporaryRefactoring >> compileNewMethod [
 	class compileTree: self parseTree
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractToTemporaryRefactoring>>constructAssignmentFrom: aNode  [
+{ #category : #transforming }
+RBExtractToTemporaryRefactoring >> constructAssignmentFrom: aNode [ 
 	| valueNode |
 	valueNode := RBVariableNode named: newVariableName.
 	^RBAssignmentNode variable: valueNode value: aNode
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractToTemporaryRefactoring>>extract: anInterval to: aString from: aSelector in: aClass  [
+{ #category : #initialize-release }
+RBExtractToTemporaryRefactoring >> extract: anInterval to: aString from: aSelector [ in: aClass 
 	class := self classObjectFor: aClass.
 	selector := aSelector.
 	sourceInterval := anInterval.
 	newVariableName := aString
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractToTemporaryRefactoring>>insertTemporary [
+{ #category : #transforming }
+RBExtractToTemporaryRefactoring >> insertTemporary [
 	| node statementNode nodeReferences children |
 	node := self parseTree whichNodeIsContainedBy: sourceInterval.
 	(node notNil and: [ node isValue ])
@@ -115,11 +93,8 @@ RBExtractToTemporaryRefactoring>>insertTemporary [
 		addTemporaryNamed: newVariableName
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractToTemporaryRefactoring>>parseTree [
+{ #category : #private-accessing }
+RBExtractToTemporaryRefactoring >> parseTree [
 	parseTree isNil 
 		ifTrue: 
 			[parseTree := class parseTreeFor: selector.
@@ -127,11 +102,8 @@ RBExtractToTemporaryRefactoring>>parseTree [
 	^parseTree
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractToTemporaryRefactoring>>preconditions [
+{ #category : #preconditions }
+RBExtractToTemporaryRefactoring >> preconditions [
 	^(RBCondition definesSelector: selector in: class) 
 		& (RBCondition isValidInstanceVariableName: newVariableName for: class) 
 			& (RBCondition withBlock: 
@@ -140,11 +112,8 @@ RBExtractToTemporaryRefactoring>>preconditions [
 						true])
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractToTemporaryRefactoring>>selectedSource [
+{ #category : #private-accessing }
+RBExtractToTemporaryRefactoring >> selectedSource [
 	| source |
 	source := class sourceCodeFor: selector.
 	source isNil ifTrue: [self refactoringFailure: 'Couldn''t find sources'].
@@ -154,11 +123,8 @@ RBExtractToTemporaryRefactoring>>selectedSource [
 	^source copyFrom: sourceInterval first to: sourceInterval last
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractToTemporaryRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBExtractToTemporaryRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream nextPutAll: ' extract: '.
@@ -173,21 +139,15 @@ RBExtractToTemporaryRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractToTemporaryRefactoring>>transform [
+{ #category : #transforming }
+RBExtractToTemporaryRefactoring >> transform [
 	self
 		insertTemporary;
 		compileNewMethod
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractToTemporaryRefactoring>>verifySelectedInterval [
+{ #category : #preconditions }
+RBExtractToTemporaryRefactoring >> verifySelectedInterval [
 	| selectedParseTree selectedSources |
 	selectedSources := self selectedSource.
 	selectedParseTree := RBParser parseExpression: selectedSources

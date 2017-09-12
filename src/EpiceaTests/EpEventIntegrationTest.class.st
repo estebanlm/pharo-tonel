@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #EpEventIntegrationTest,
 	#superclass : #EpEnabledIntegrationTest,
-	#category : #EpiceaTests-Integration,
-	#timestamp : ''
+	#category : #EpiceaTests-Integration
 }
 
-{
-	#category : #mocks,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpEventIntegrationTest>>mockPackage [
+{ #category : #mocks }
+EpEventIntegrationTest >> mockPackage [
 
 	^ MCPackage new name: #EpTest
 ]
 
-{
-	#category : #mocks,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpEventIntegrationTest>>mockVersion [
+{ #category : #mocks }
+EpEventIntegrationTest >> mockVersion [
 
 	^ MCVersion 
 		package: self mockPackage
@@ -29,11 +19,8 @@ EpEventIntegrationTest>>mockVersion [
 		snapshot: MCSnapshot empty
 ]
 
-{
-	#category : #mocks,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpEventIntegrationTest>>mockVersionInfo [
+{ #category : #mocks }
+EpEventIntegrationTest >> mockVersionInfo [
 
 	^ MCVersionInfo
 		name: #EpTest
@@ -45,11 +32,8 @@ EpEventIntegrationTest>>mockVersionInfo [
 		ancestors: #()
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpEventIntegrationTest>>testMCVersionSaved [
+{ #category : #tests }
+EpEventIntegrationTest >> testMCVersionSaved [
 
 self flag: #todo. "Don't understand why it fails in non-interactive mode (in Jenkins)"
 

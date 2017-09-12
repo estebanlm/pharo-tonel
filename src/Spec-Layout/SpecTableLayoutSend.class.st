@@ -5,15 +5,11 @@ A SpecTableLayoutSend is a spec layout action used when a selector is sent to th
 Class {
 	#name : #SpecTableLayoutSend,
 	#superclass : #AbstractSpecLayoutAction,
-	#category : #Spec-Layout,
-	#timestamp : 'webwarrior 6/9/2014 19:37'
+	#category : #Spec-Layout
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTableLayoutSend class>>selector: selector arguments: arguments [
+{ #category : #'instance creation' }
+SpecTableLayoutSend class >> selector: selector arguments: arguments [
 
 	^ self new
 		arguments: arguments;
@@ -21,11 +17,8 @@ SpecTableLayoutSend class>>selector: selector arguments: arguments [
 		yourself
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTableLayoutSend>>asSpecElements [
+{ #category : #protocol }
+SpecTableLayoutSend >> asSpecElements [
 
 	^ {self selector.}, self arguments
 ]

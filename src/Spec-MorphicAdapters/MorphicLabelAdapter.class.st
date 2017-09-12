@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'emphasisOptions'
 	],
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicLabelAdapter>>buildWidget [
+{ #category : #factory }
+MorphicLabelAdapter >> buildWidget [
 	| label |
 	label := LabelMorph new model: self.
 	label
@@ -31,30 +27,21 @@ MorphicLabelAdapter>>buildWidget [
 	^ label
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicLabelAdapter>>emphasis: anEmphasis [
+{ #category : #'spec protocol' }
+MorphicLabelAdapter >> emphasis: anEmphasis [
 
 	self widgetDo: [ :w | w emphasis: (self emphasisCodeFor: anEmphasis) ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicLabelAdapter>>emphasisCodeFor: anEmphasis [
+{ #category : #'spec protocol' }
+MorphicLabelAdapter >> emphasisCodeFor: anEmphasis [
 	^ anEmphasis
 		inject: 0
 		into: [ :sum :next | sum + (self emphasisOptions at: next) ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicLabelAdapter>>emphasisOptions [
+{ #category : #'spec protocol' }
+MorphicLabelAdapter >> emphasisOptions [
 	^ emphasisOptions
 		ifNil:
 			[ 
@@ -65,11 +52,8 @@ MorphicLabelAdapter>>emphasisOptions [
 			(#struck -> 16)} asDictionary ]
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicLabelAdapter>>getText [
+{ #category : #'model access' }
+MorphicLabelAdapter >> getText [
 
 	^ self model label
 ]

@@ -6,22 +6,15 @@ Just like RBGlobalNode, RBInstanceVariableNodes are only used in a RBMethodNode 
 Class {
 	#name : #RBInstanceVariableNode,
 	#superclass : #RBVariableNode,
-	#category : #AST-Core-Nodes,
-	#timestamp : 'NicolaiHess 8/2/2016 14:35'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #visting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBInstanceVariableNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visting }
+RBInstanceVariableNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^ aProgramNodeVisitor visitInstanceVariableNode: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBInstanceVariableNode>>isInstance [
+{ #category : #testing }
+RBInstanceVariableNode >> isInstance [
 	^true
 ]

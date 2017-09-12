@@ -1,20 +1,12 @@
-Extension {
-	#name : #FileStream
-}
+Extension { #name : #FileStream }
 
-{
-	#category : #'*Network-Url',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-FileStream>>asUrl [
+{ #category : #'*Network-Url' }
+FileStream >> asUrl [
 	^ self asZnUrl 
 ]
 
-{
-	#category : #'*Network-Url',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-FileStream>>url [
+{ #category : #'*Network-Url' }
+FileStream >> url [
 	"Convert my path into a file:// type url String."
 	
 	^self asUrl asString

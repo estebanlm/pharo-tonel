@@ -7,48 +7,32 @@ Class {
 	#instVars : [
 		'operations'
 	],
-	#category : #Monticello-Patching,
-	#timestamp : 'StephaneDucasse 6/24/2011 14:11'
+	#category : #Monticello-Patching
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatch class>>fromBase: baseSnapshot target: targetSnapshot [
+{ #category : #instance-creation }
+MCPatch class >> fromBase: baseSnapshot target: targetSnapshot [
 	^ self new initializeWithBase: baseSnapshot target: targetSnapshot
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatch class>>operations: aCollection [
+{ #category : #instance-creation }
+MCPatch class >> operations: aCollection [
 	^ self basicNew initializeWithOperations: aCollection
 ]
 
-{
-	#category : #applying,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatch>>applyTo: anObject [
+{ #category : #applying }
+MCPatch >> applyTo: anObject [
 	operations do: [:ea | ea applyTo: anObject].
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatch>>hasConflict [
+{ #category : #accessing }
+MCPatch >> hasConflict [
 	^ self operations anySatisfy: [ :change| change isConflict ]
 ]
 
-{
-	#category : #intializing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatch>>initializeWithBase: baseSnapshot target: targetSnapshot [
+{ #category : #intializing }
+MCPatch >> initializeWithBase: baseSnapshot target: targetSnapshot [
 	| base target |	
 	operations := OrderedCollection new.
 	base := MCDefinitionIndex definitions: baseSnapshot definitions.
@@ -69,26 +53,17 @@ MCPatch>>initializeWithBase: baseSnapshot target: targetSnapshot [
 			ifAbsent: [operations add: (MCRemoval of: b)]]		
 ]
 
-{
-	#category : #intializing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatch>>initializeWithOperations: aCollection [
+{ #category : #intializing }
+MCPatch >> initializeWithOperations: aCollection [
 	operations := aCollection
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatch>>isEmpty [
+{ #category : #querying }
+MCPatch >> isEmpty [
 	^ operations isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatch>>operations [
+{ #category : #accessing }
+MCPatch >> operations [
 	^ operations
 ]

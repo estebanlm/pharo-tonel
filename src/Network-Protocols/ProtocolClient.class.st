@@ -18,39 +18,26 @@ Class {
 		'pendingResponses',
 		'progressObservers'
 	],
-	#category : #Network-Protocols,
-	#timestamp : 'gk 12/13/2005 00:34'
+	#category : #Network-Protocols
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient class>>defaultPortNumber [
+{ #category : #accessing }
+ProtocolClient class >> defaultPortNumber [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient class>>logFlag [
+{ #category : #accessing }
+ProtocolClient class >> logFlag [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient class>>openOnHost: hostIP port: portNumber [
+{ #category : #'instance creation' }
+ProtocolClient class >> openOnHost: hostIP port: portNumber [
 	^self new openOnHost: hostIP port: portNumber
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient class>>openOnHostNamed: hostName [
+{ #category : #'instance creation' }
+ProtocolClient class >> openOnHostNamed: hostName [
 	"If the hostname uses the colon syntax to express a certain portnumber
 	we use that instead of the default port number."
 
@@ -66,22 +53,16 @@ ProtocolClient class>>openOnHostNamed: hostName [
 	
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient class>>openOnHostNamed: hostName port: portNumber [
+{ #category : #'instance creation' }
+ProtocolClient class >> openOnHostNamed: hostName port: portNumber [
 	| serverIP |
 	serverIP := NetNameResolver addressForName: hostName timeout: 20.
 	^self openOnHost: serverIP port: portNumber
 
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>checkForPendingError [
+{ #category : #'private protocol' }
+ProtocolClient >> checkForPendingError [
 	"If data is waiting, check it to catch any error reports.
 	In case the response is not an error, push it back."
 
@@ -96,11 +77,8 @@ ProtocolClient>>checkForPendingError [
 	self pushResponse: self lastResponse
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>checkResponse [
+{ #category : #'private protocol' }
+ProtocolClient >> checkResponse [
 	self
 		checkResponseOnError: [:response | (TelnetProtocolError protocolInstance: self)
 				signal: response]
@@ -108,11 +86,8 @@ ProtocolClient>>checkResponse [
 				signal: response]
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>checkResponse: aResponse onError: errorBlock onWarning: warningBlock [
+{ #category : #'private protocol' }
+ProtocolClient >> checkResponse: aResponse onError: errorBlock onWarning: warningBlock [
 	"Get the response from the server and check for errors. Invoke one of the blocks if an error or warning is encountered. See class comment for classification of error codes."
 
 	self responseIsError
@@ -122,50 +97,35 @@ ProtocolClient>>checkResponse: aResponse onError: errorBlock onWarning: warningB
 
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>checkResponseOnError: errorBlock onWarning: warningBlock [
+{ #category : #'private protocol' }
+ProtocolClient >> checkResponseOnError: errorBlock onWarning: warningBlock [
 	"Get the response from the server and check for errors. Invoke one of the blocks if an error or warning is encountered. See class comment for classification of error codes."
 
 	self fetchPendingResponse.
 	self checkResponse: self lastResponse onError: errorBlock onWarning: warningBlock
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>close [
+{ #category : #actions }
+ProtocolClient >> close [
 	self stream
 		ifNotNil: [
 			self stream close.
 			stream := nil]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>connectionInfo [
+{ #category : #private }
+ProtocolClient >> connectionInfo [
 	connectInfo ifNil: [connectInfo := Dictionary new].
 	^connectInfo
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>defaultPortNumber [
+{ #category : #private }
+ProtocolClient >> defaultPortNumber [
 	^self class defaultPortNumber
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>ensureConnection [
+{ #category : #private }
+ProtocolClient >> ensureConnection [
 	self isConnected
 		ifTrue: [^self].
 	self stream
@@ -176,140 +136,92 @@ ProtocolClient>>ensureConnection [
 	self login
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>fetchNextResponse [
+{ #category : #'private protocol' }
+ProtocolClient >> fetchNextResponse [
 	self lastResponse: self stream nextLine
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>fetchPendingResponse [
+{ #category : #'private protocol' }
+ProtocolClient >> fetchPendingResponse [
 	^pendingResponses
 		ifNil: [self fetchNextResponse; lastResponse]
 		ifNotNil: [self popResponse]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>host [
+{ #category : #private }
+ProtocolClient >> host [
 	^self connectionInfo at: #host
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>host: hostId [
+{ #category : #private }
+ProtocolClient >> host: hostId [
 	^self connectionInfo at: #host put: hostId
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>isConnected [
+{ #category : #testing }
+ProtocolClient >> isConnected [
 	^stream notNil
 		and: [stream isConnected]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>lastResponse [
+{ #category : #private }
+ProtocolClient >> lastResponse [
 	^lastResponse
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>lastResponse: aString [
+{ #category : #private }
+ProtocolClient >> lastResponse: aString [
 	lastResponse := aString.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>logFlag [
+{ #category : #private }
+ProtocolClient >> logFlag [
 	^self class logFlag
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>logProgress: aString [
+{ #category : #private }
+ProtocolClient >> logProgress: aString [
 	self progressObservers do: [:each | each show: aString].
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>logProgressToTranscript [
+{ #category : #accessing }
+ProtocolClient >> logProgressToTranscript [
 	self progressObservers add: Transcript
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>messageText [
+{ #category : #accessing }
+ProtocolClient >> messageText [
 	^super messageText
 		ifNil: [self response]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>openOnHost: hostIP port: portNumber [
+{ #category : #private }
+ProtocolClient >> openOnHost: hostIP port: portNumber [
 	self host: hostIP.
 	self port: portNumber.
 	self ensureConnection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>password [
+{ #category : #private }
+ProtocolClient >> password [
 	^self connectionInfo at: #password
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>password: aString [
+{ #category : #private }
+ProtocolClient >> password: aString [
 	^self connectionInfo at: #password put: aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>pendingResponses [
+{ #category : #private }
+ProtocolClient >> pendingResponses [
 	pendingResponses ifNil: [pendingResponses := OrderedCollection new].
 	^pendingResponses
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>popResponse [
+{ #category : #private }
+ProtocolClient >> popResponse [
 	| pendingResponse |
 	pendingResponse := self pendingResponses removeFirst.
 	pendingResponses isEmpty
@@ -317,124 +229,79 @@ ProtocolClient>>popResponse [
 	^pendingResponse
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>port [
+{ #category : #private }
+ProtocolClient >> port [
 	^self connectionInfo at: #port
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>port: aPortNumber [
+{ #category : #private }
+ProtocolClient >> port: aPortNumber [
 	^self connectionInfo at: #port put: aPortNumber
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>progressObservers [
+{ #category : #private }
+ProtocolClient >> progressObservers [
 	progressObservers ifNil: [progressObservers := OrderedCollection new].
 	^progressObservers
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>pushResponse: aResponse [
+{ #category : #private }
+ProtocolClient >> pushResponse: aResponse [
 	self pendingResponses add: aResponse
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>reopen [
+{ #category : #actions }
+ProtocolClient >> reopen [
 	self ensureConnection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>resetConnectionInfo [
+{ #category : #private }
+ProtocolClient >> resetConnectionInfo [
 	connectInfo := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>response [
+{ #category : #accessing }
+ProtocolClient >> response [
 	^self protocolInstance lastResponse
 ]
 
-{
-	#category : #'private testing',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>responseIsError [
+{ #category : #'private testing' }
+ProtocolClient >> responseIsError [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'private testing',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>responseIsWarning [
+{ #category : #'private testing' }
+ProtocolClient >> responseIsWarning [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>sendCommand: aString [
+{ #category : #'private protocol' }
+ProtocolClient >> sendCommand: aString [
 	self stream sendCommand: aString.
 
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>sendStreamContents: aStream [
+{ #category : #'private protocol' }
+ProtocolClient >> sendStreamContents: aStream [
 	self stream sendStreamContents: aStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>stream [
+{ #category : #accessing }
+ProtocolClient >> stream [
 	^stream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>stream: aStream [
+{ #category : #accessing }
+ProtocolClient >> stream: aStream [
 	stream := aStream
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>user [
+{ #category : #private }
+ProtocolClient >> user [
 	^self connectionInfo at: #user ifAbsent: [nil]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-ProtocolClient>>user: aString [
+{ #category : #private }
+ProtocolClient >> user: aString [
 	^self connectionInfo at: #user put: aString
 ]

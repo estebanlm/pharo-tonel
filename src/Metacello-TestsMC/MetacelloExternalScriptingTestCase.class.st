@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #MetacelloExternalScriptingTestCase,
 	#superclass : #MetacelloBasicScriptingTestCase,
-	#category : #Metacello-TestsMC,
-	#timestamp : ''
+	#category : #Metacello-TestsMC
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloExternalScriptingTestCase>>setUpRepositoryContents [
+{ #category : #running }
+MetacelloExternalScriptingTestCase >> setUpRepositoryContents [
     super setUpRepositoryContents.
     Smalltalk at: #'Metacello_Config_Test_Repository' put: configurationRepository
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloExternalScriptingTestCase>>tearDownRepositories [
+{ #category : #running }
+MetacelloExternalScriptingTestCase >> tearDownRepositories [
   super tearDownRepositories.
   MCRepositoryGroup default
     removeIdenticalRepository:

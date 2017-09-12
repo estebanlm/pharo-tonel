@@ -52,97 +52,66 @@ Class {
 	#classInstVars : [
 		'type'
 	],
-	#category : #UnifiedFFI-Objects,
-	#timestamp : 'EstebanLorenzano 3/17/2016 13:42'
+	#category : #UnifiedFFI-Objects
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolder class>>asExternalTypeOn: generator [
+{ #category : #converting }
+FFIExternalValueHolder class >> asExternalTypeOn: generator [
 	^ FFIExternalValueHolderType 
 		objectClass: self 
 		representationType: self type
 ]
 
-{
-	#category : #'class factory',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolder class>>ofType: aTypeName [
+{ #category : #'class factory' }
+FFIExternalValueHolder class >> ofType: aTypeName [
 	^ FFIExternalValueHolder newAnonymousSubclass 
 		type: (FFIExternalType resolveType: aTypeName)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolder class>>reset [
+{ #category : #private }
+FFIExternalValueHolder class >> reset [
 	type := nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolder class>>type [
+{ #category : #private }
+FFIExternalValueHolder class >> type [
 	^ type ifNil: [ type := FFIExternalType resolveType: self typeDecl ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolder class>>type: aType  [
+{ #category : #private }
+FFIExternalValueHolder class >> type: aType [ 
 	type := aType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolder class>>typeDecl [
+{ #category : #accessing }
+FFIExternalValueHolder class >> typeDecl [
 	"Define the type for this value holder. 
 	 It can be anything that FFIExternalType class>>resolveType: can resolve. 
 	 If you need something different, you can override #representationType"
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolder>>initialize [
+{ #category : #initialization }
+FFIExternalValueHolder >> initialize [
 	data := ByteArray new: self type typeSize.
 	super initialize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolder>>type  [
+{ #category : #accessing }
+FFIExternalValueHolder >> type [ 
 	^ self class type
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolder>>value  [
+{ #category : #accessing }
+FFIExternalValueHolder >> value [ 
 	^ self type 
 		handle: data 
 		at: 1
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolder>>value: anObject  [
+{ #category : #accessing }
+FFIExternalValueHolder >> value: anObject [ 
 	self type 
 		handle: data 
 		at: 1

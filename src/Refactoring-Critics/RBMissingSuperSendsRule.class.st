@@ -4,33 +4,23 @@ Checks that methods that should always contain a super message send, actually co
 Class {
 	#name : #RBMissingSuperSendsRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 20:51'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingSuperSendsRule class>>checksMethod [
+{ #category : #testing }
+RBMissingSuperSendsRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingSuperSendsRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBMissingSuperSendsRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'MissingSuperSendsRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingSuperSendsRule>>basicCheck: aMethod  [
+{ #category : #running }
+RBMissingSuperSendsRule >> basicCheck: aMethod [ 
 	| definer superMethod |
 	(aMethod methodClass isMeta not and: [ self superMessages includes: aMethod selector ]) ifTrue: 
 		[ definer := aMethod methodClass superclass ifNotNil: [ :sc | sc whichClassIncludesSelector: aMethod selector ].
@@ -46,35 +36,23 @@ RBMissingSuperSendsRule>>basicCheck: aMethod  [
 	^ false
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingSuperSendsRule>>checkMethod: aMethod  [
+{ #category : #running }
+RBMissingSuperSendsRule >> checkMethod: aMethod [ 
 	(self basicCheck: aMethod) ifTrue: 
 		[ result addMethod: aMethod ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingSuperSendsRule>>group [
+{ #category : #accessing }
+RBMissingSuperSendsRule >> group [
 	^ 'Potential Bugs'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingSuperSendsRule>>name [
+{ #category : #accessing }
+RBMissingSuperSendsRule >> name [
 	^ 'Missing super sends in selected methods.'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingSuperSendsRule>>superMessages [
+{ #category : #private }
+RBMissingSuperSendsRule >> superMessages [
 	^#(#release #postCopy #postBuildWith: #preBuildWith: #postOpenWith: #noticeOfWindowClose: #initialize)
 ]

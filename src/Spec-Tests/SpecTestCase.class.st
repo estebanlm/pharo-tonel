@@ -15,88 +15,56 @@ Class {
 		'window',
 		'testedInstance'
 	],
-	#category : #Spec-Tests-Utils,
-	#timestamp : 'Spirita 7/28/2016 11:10'
+	#category : #Spec-Tests-Utils
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecTestCase class>>isAbstract [
+{ #category : #testing }
+SpecTestCase class >> isAbstract [
 	^ self name = #SpecTestCase
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecTestCase class>>shouldInheritSelectors [
+{ #category : #testing }
+SpecTestCase class >> shouldInheritSelectors [
 	^ true
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecTestCase>>classToTest [
+{ #category : #running }
+SpecTestCase >> classToTest [
 	self subclassResponsibility
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecTestCase>>initializeTestedInstance [
-
+{ #category : #running }
+SpecTestCase >> initializeTestedInstance [
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecTestCase>>openInstance [
+{ #category : #running }
+SpecTestCase >> openInstance [
 	window := testedInstance openWithSpec
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecTestCase>>openInstance: aLayoutSelector [
+{ #category : #running }
+SpecTestCase >> openInstance: aLayoutSelector [
 	window := testedInstance openWithSpec: aLayoutSelector
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecTestCase>>setUp [
+{ #category : #running }
+SpecTestCase >> setUp [
 	testedInstance := self classToTest new.
 	self initializeTestedInstance
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecTestCase>>tearDown [
+{ #category : #running }
+SpecTestCase >> tearDown [
 	super tearDown.
 	window ifNotNil: [ window delete ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecTestCase>>testExample [
+{ #category : #tests }
+SpecTestCase >> testExample [
 	[window := self classToTest example] on: MessageNotUnderstood do: [  ] 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecTestCase>>testOpenWithSpec [
+{ #category : #tests }
+SpecTestCase >> testOpenWithSpec [
 	self openInstance
 ]

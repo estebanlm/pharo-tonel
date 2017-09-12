@@ -18,61 +18,42 @@ Class {
 	#classVars : [
 		'LookupComment'
 	],
-	#category : #Refactoring-Core-Model,
-	#timestamp : 'NicolaiHess 5/18/2016 23:41'
+	#category : #Refactoring-Core-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass class>>existingNamed: aSymbol  [
+{ #category : #'instance creation' }
+RBClass class >> existingNamed: aSymbol [ 
 	^(self named: aSymbol)
 		realName: aSymbol;
 		yourself
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass class>>initialize [
+{ #category : #'class initialization' }
+RBClass class >> initialize [
 	LookupComment := Object new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass class>>named: aSymbol  [
+{ #category : #'instance creation' }
+RBClass class >> named: aSymbol [ 
 	^(self new)
 		name: aSymbol;
 		yourself
 ]
 
-{
-	#category : #'variable accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>addClassVariable: aString  [
+{ #category : #'variable accessing' }
+RBClass >> addClassVariable: aString [ 
 	self privateClassVariableNames add: aString asSymbol.
 	model addClassVariable: aString to: self
 ]
 
-{
-	#category : #'variable accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>addPoolDictionary: aString  [
+{ #category : #'variable accessing' }
+RBClass >> addPoolDictionary: aString [ 
 	self privatePoolDictionaryNames add: aString asSymbol.
 	model addPool: aString to: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>allClassVariableNames [
+{ #category : #accessing }
+RBClass >> allClassVariableNames [
 	| sprClass |
 	sprClass := self superclass.
 	^sprClass isNil 
@@ -80,11 +61,8 @@ RBClass>>allClassVariableNames [
 		ifFalse: [sprClass allClassVariableNames , self classVariableNames]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>allPoolDictionaryNames [
+{ #category : #accessing }
+RBClass >> allPoolDictionaryNames [
 	| sprClass |
 	sprClass := self superclass.
 	^sprClass isNil 
@@ -92,11 +70,8 @@ RBClass>>allPoolDictionaryNames [
 		ifFalse: [sprClass allPoolDictionaryNames , self sharedPoolNames]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>category [
+{ #category : #accessing }
+RBClass >> category [
 	^category isNil 
 		ifTrue: 
 			[self isDefined
@@ -106,36 +81,24 @@ RBClass>>category [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>category: aSymbol  [
+{ #category : #accessing }
+RBClass >> category: aSymbol [ 
 	category := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>classVariableNames [
+{ #category : #accessing }
+RBClass >> classVariableNames [
 	^self privateClassVariableNames copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>classVariableNames: aCollectionOfStrings  [
+{ #category : #accessing }
+RBClass >> classVariableNames: aCollectionOfStrings [ 
 	classVariableNames := (aCollectionOfStrings 
 				collect: [:each | each asSymbol]) asOrderedCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>comment [
+{ #category : #accessing }
+RBClass >> comment [
 	^ comment = LookupComment
 		ifTrue: [
 			comment := self isDefined
@@ -144,19 +107,13 @@ RBClass>>comment [
 		ifFalse: [ comment ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>comment: aString [
+{ #category : #accessing }
+RBClass >> comment: aString [
 	model comment: (comment := aString) in: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>definitionString [
+{ #category : #accessing }
+RBClass >> definitionString [
 	^ String
 		streamContents:
 			[ :definitionStream | 
@@ -198,63 +155,42 @@ RBClass>>definitionString [
 			definitionStream nextPut: $' ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>directlyDefinesClassVariable: aString  [
+{ #category : #testing }
+RBClass >> directlyDefinesClassVariable: aString [ 
 	^self classVariableNames includes: aString asSymbol
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>directlyDefinesPoolDictionary: aString  [
+{ #category : #testing }
+RBClass >> directlyDefinesPoolDictionary: aString [ 
 	^self sharedPoolNames includes: aString asSymbol
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>initialize [
+{ #category : #initialization }
+RBClass >> initialize [
 	super initialize.
 	comment := LookupComment
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>isMeta [
+{ #category : #testing }
+RBClass >> isMeta [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>poolDictionaryNames: aCollectionOfStrings  [
+{ #category : #accessing }
+RBClass >> poolDictionaryNames: aCollectionOfStrings [ 
 	poolDictionaryNames := (aCollectionOfStrings 
 				collect: [:each | each asSymbol]) asOrderedCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>privateClassVariableNames [
+{ #category : #private }
+RBClass >> privateClassVariableNames [
 	(self isDefined and: [classVariableNames isNil]) 
 		ifTrue: [self classVariableNames: self realClass classVarNames].
 	^classVariableNames
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>privatePoolDictionaryNames [
+{ #category : #private }
+RBClass >> privatePoolDictionaryNames [
 	(self isDefined and: [poolDictionaryNames isNil]) 
 		ifTrue: 
 			[self poolDictionaryNames: (self realClass sharedPools 
@@ -262,36 +198,24 @@ RBClass>>privatePoolDictionaryNames [
 	^poolDictionaryNames
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>realName: aSymbol  [
+{ #category : #initialize-release }
+RBClass >> realName: aSymbol [ 
 	self realClass: (self class environment at: aSymbol)
 ]
 
-{
-	#category : #'variable accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>removeClassVariable: aString  [
+{ #category : #'variable accessing' }
+RBClass >> removeClassVariable: aString [ 
 	self privateClassVariableNames remove: aString asSymbol.
 	model removeClassVariable: aString from: self
 ]
 
-{
-	#category : #'variable accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>removePoolDictionary: aString  [
+{ #category : #'variable accessing' }
+RBClass >> removePoolDictionary: aString [ 
 	self privatePoolDictionaryNames remove: aString asSymbol
 ]
 
-{
-	#category : #'variable accessing',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>renameClassVariable: oldName to: newName around: aBlock  [
+{ #category : #'variable accessing' }
+RBClass >> renameClassVariable: oldName to: newName around: aBlock [ 
 	self privateClassVariableNames 
 		at: (self privateClassVariableNames indexOf: oldName asSymbol)
 		put: newName asSymbol.
@@ -302,26 +226,17 @@ RBClass>>renameClassVariable: oldName to: newName around: aBlock  [
 		around: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>sharedPoolNames [
+{ #category : #accessing }
+RBClass >> sharedPoolNames [
 	^self privatePoolDictionaryNames copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>sharedPools [
+{ #category : #accessing }
+RBClass >> sharedPools [
 	^ self allPoolDictionaryNames collect: [ :each | Smalltalk globals at: each asSymbol ifAbsent: [ Dictionary new ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBClass>>theNonMetaClass [
+{ #category : #accessing }
+RBClass >> theNonMetaClass [
 	^ self
 ]

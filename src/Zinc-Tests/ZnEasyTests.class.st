@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #ZnEasyTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEasyTests>>smallHtmlUrl [
+{ #category : #accessing }
+ZnEasyTests >> smallHtmlUrl [
 	^ 'http://zn.stfx.eu/zn/small.html' asZnUrl
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEasyTests>>testDelete [
+{ #category : #testing }
+ZnEasyTests >> testDelete [
 	self withServerDo: [ :server | | response |
 		response := ZnEasy delete: (server localUrl addPathSegments: #('echo' 'foo'); yourself).
 		self assert: (response headers contentType = ZnMimeType textPlain).
@@ -29,44 +19,32 @@ ZnEasyTests>>testDelete [
 		self assert: (response entity string includesSubstring: 'foo') ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEasyTests>>testGetGif [
+{ #category : #testing }
+ZnEasyTests >> testGetGif [
 	| url result |
 	url := 'http://zn.stfx.eu/zn/Hot-Air-Balloon.gif'.
 	result := ZnEasy getGif: url.
 	self assert: result isForm
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEasyTests>>testGetJpeg [
+{ #category : #testing }
+ZnEasyTests >> testGetJpeg [
 	| url result |
 	url := 'http://stfx.eu/sun-fire-x2100.jpg'.
 	result := ZnEasy getJpeg: url.
 	self assert: result isForm
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEasyTests>>testGetPng [
+{ #category : #testing }
+ZnEasyTests >> testGetPng [
 	| url result |
 	url := 'http://pharo.org/files/pharo.png'.
 	result := ZnEasy getPng: url.
 	self assert: result isForm
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEasyTests>>testGetSmallHTMLDocument [
+{ #category : #testing }
+ZnEasyTests >> testGetSmallHTMLDocument [
 	| url response |
 	url := self smallHtmlUrl.
 	response := ZnEasy get: url.
@@ -75,11 +53,8 @@ ZnEasyTests>>testGetSmallHTMLDocument [
 	self assert: (response entity string includesSubstring: 'small')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEasyTests>>testHeadSmallHTMLDocument [
+{ #category : #testing }
+ZnEasyTests >> testHeadSmallHTMLDocument [
 	| url response |
 	url := self smallHtmlUrl.
 	response := ZnEasy head: url.
@@ -88,11 +63,8 @@ ZnEasyTests>>testHeadSmallHTMLDocument [
 	self assert: response hasEntity not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEasyTests>>testPost [
+{ #category : #testing }
+ZnEasyTests >> testPost [
 	self withServerDo: [ :server | | response data |
 		data := String streamContents: [ :stream | 1 to: 32 do: [ :each | stream nextPut: 'abc' atRandom ] ].
 		response := ZnEasy post: (server localUrl addPathSegment: 'echo'; yourself) data: (ZnEntity text: data).
@@ -102,11 +74,8 @@ ZnEasyTests>>testPost [
 		self assert: (response entity string includesSubstring: data) ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEasyTests>>testPostUnicodeUtf8 [
+{ #category : #testing }
+ZnEasyTests >> testPostUnicodeUtf8 [
 	self withServerDo: [ :server | | response data |
 		data := String streamContents: [ :stream | 0 to: 16r024F do: [ :each | stream nextPut: each asCharacter ] ].
 		response := ZnEasy post: (server localUrl addPathSegment: 'echo'; yourself) data: (ZnEntity text: data).
@@ -116,11 +85,8 @@ ZnEasyTests>>testPostUnicodeUtf8 [
 		self assert: (response entity string includesSubstring: data) ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEasyTests>>testPut [
+{ #category : #testing }
+ZnEasyTests >> testPut [
 	self withServerDo: [ :server | | response data |
 		data := String streamContents: [ :stream | 1 to: 32 do: [ :each | stream nextPut: 'abc' atRandom ] ].
 		response := ZnEasy put: (server localUrl addPathSegment: 'echo'; yourself) data: (ZnEntity text: data).
@@ -130,11 +96,8 @@ ZnEasyTests>>testPut [
 		self assert: (response entity string includesSubstring: data) ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEasyTests>>testTimeout [
+{ #category : #testing }
+ZnEasyTests >> testTimeout [
 	self withServerDo: [ : server |
 		self 
 			should: [ 
@@ -145,11 +108,8 @@ ZnEasyTests>>testTimeout [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEasyTests>>withServerDo: block [
+{ #category : #private }
+ZnEasyTests >> withServerDo: block [
 	| server |
 	server := ZnServer on: 1700 + 32 atRandom.
 	[ 

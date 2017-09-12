@@ -4,23 +4,16 @@ Abstract class used to display a project with its specific icons and no child in
 Class {
 	#name : #VSProjectLeafNode,
 	#superclass : #VSProjectNode,
-	#category : #Versionner-Spec-Browser,
-	#timestamp : '<historical>'
+	#category : #Versionner-Spec-Browser
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSProjectLeafNode>>children [
+{ #category : #accessing }
+VSProjectLeafNode >> children [
 	^ [ #() ]
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSProjectLeafNode>>hasChildren [
+{ #category : #testing }
+VSProjectLeafNode >> hasChildren [
 	^ false
 ]

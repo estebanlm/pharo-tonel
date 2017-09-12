@@ -10,22 +10,15 @@ OSPlatform current.
 Class {
 	#name : #Unix64Platform,
 	#superclass : #UnixPlatform,
-	#category : #System-Platforms,
-	#timestamp : 'EstebanLorenzano 3/6/2017 17:15'
+	#category : #System-Platforms
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Unix64Platform class>>isActivePlatform [
+{ #category : #testing }
+Unix64Platform class >> isActivePlatform [
 	^ (self currentPlatformName = 'unix') and: [ Smalltalk vm wordSize = 8 ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Unix64Platform>>isUnix64 [
+{ #category : #testing }
+Unix64Platform >> isUnix64 [
 	^ true
 ]

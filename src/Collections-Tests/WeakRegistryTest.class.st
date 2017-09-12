@@ -7,25 +7,18 @@ Class {
 	#instVars : [
 		'errorWasHere'
 	],
-	#category : #Collections-Tests-Weak,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:36'
+	#category : #Collections-Tests-Weak
 }
 
-{
-	#category : #mocketry,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakRegistryTest>>signalMockException [
+{ #category : #mocketry }
+WeakRegistryTest >> signalMockException [
 	MockExceptionWithPassAction new
 		passAction: [ errorWasHere := true];
 		signal
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakRegistryTest>>testFinalization [
+{ #category : #tests }
+WeakRegistryTest >> testFinalization [
 
 	| w finalized block object |
 	w := WeakRegistry new: 1.
@@ -51,11 +44,8 @@ WeakRegistryTest>>testFinalization [
 	self assert: finalized
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakRegistryTest>>testFinalizationWithBadFinalizer [
+{ #category : #tests }
+WeakRegistryTest >> testFinalizationWithBadFinalizer [
 
 	" Test that if error occurs during finalization, the finalization process continues to run normally.
 
@@ -84,11 +74,8 @@ WeakRegistryTest>>testFinalizationWithBadFinalizer [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakRegistryTest>>testFinalizationWithMultipleFinalizersPerObject [
+{ #category : #tests }
+WeakRegistryTest >> testFinalizationWithMultipleFinalizersPerObject [
 
 	| object registry counter |
 	registry := WeakRegistry new.
@@ -107,11 +94,8 @@ WeakRegistryTest>>testFinalizationWithMultipleFinalizersPerObject [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakRegistryTest>>testFinalizationWithOnFork [
+{ #category : #tests }
+WeakRegistryTest >> testFinalizationWithOnFork [
 
 	" Test that if error occurs during finalization, the finalization process continues to run normally.
 	
@@ -147,11 +131,8 @@ WeakRegistryTest>>testFinalizationWithOnFork [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakRegistryTest>>testGrowingByAHighPriorityProcessDoesntLeak [
+{ #category : #tests }
+WeakRegistryTest >> testGrowingByAHighPriorityProcessDoesntLeak [
 
 	| w finalized block object executor semaphore |
 	w := WeakRegistry new: 1.
@@ -175,11 +156,8 @@ WeakRegistryTest>>testGrowingByAHighPriorityProcessDoesntLeak [
 	self assert: finalized
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakRegistryTest>>testGrowingDoesntLeak [
+{ #category : #tests }
+WeakRegistryTest >> testGrowingDoesntLeak [
 
 	| w finalized block object executor |
 	w := WeakRegistry new: 1.
@@ -198,11 +176,8 @@ WeakRegistryTest>>testGrowingDoesntLeak [
 	self assert: finalized
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakRegistryTest>>testRemovingByAHighPriorityProcessDoesntLeak [
+{ #category : #tests }
+WeakRegistryTest >> testRemovingByAHighPriorityProcessDoesntLeak [
 
 	| w finalized block hash object executor semaphore |
 	w := WeakRegistry new: 1.
@@ -228,11 +203,8 @@ WeakRegistryTest>>testRemovingByAHighPriorityProcessDoesntLeak [
 	self assert: finalized
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakRegistryTest>>testRemovingDoesntLeak [
+{ #category : #tests }
+WeakRegistryTest >> testRemovingDoesntLeak [
 
 	| w finalized block hash object executor |
 	w := WeakRegistry new: 1.
@@ -253,11 +225,8 @@ WeakRegistryTest>>testRemovingDoesntLeak [
 	self assert: finalized
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakRegistryTest>>testVileFinalizer [
+{ #category : #tests }
+WeakRegistryTest >> testVileFinalizer [
 	" this test checks that manipulation (or accessing) a weak registry 
 	does not lead to deadlocks when performed from within a #finalize implementation"
 	

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MCGitHubRepository,
 	#superclass : #MCGitBasedNetworkRepository,
@@ -9,31 +6,21 @@ Class {
 		'DownloadCache',
 		'ETagsCache'
 	],
-	#category : #Metacello-GitHub,
-	#timestamp : ''
+	#category : #Metacello-GitHub
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository class>>basicDescription [
+{ #category : #accessing }
+MCGitHubRepository class >> basicDescription [
   ^ 'github'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository class>>basicFromUrl: aZnUrl  [
+{ #category : #'instance creation' }
+MCGitHubRepository class >> basicFromUrl: aZnUrl [ 
 	^ self location: aZnUrl asString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository class>>cacheDirectory [
+{ #category : #private }
+MCGitHubRepository class >> cacheDirectory [
   "use class var to survive upgrade when MCGitHubRepository moved to subclass of MCGitBasedRepository"
 
   self resetCacheDirectoryIfInvalid.
@@ -41,63 +28,45 @@ MCGitHubRepository class>>cacheDirectory [
   ^ CacheDirectory
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository class>>cacheDirectory: aDirectory [
+{ #category : #private }
+MCGitHubRepository class >> cacheDirectory: aDirectory [
   "use class var to survive upgrade when MCGitHubRepository moved to subclass of MCGitBasedRepository"
 
   CacheDirectory := aDirectory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository class>>cacheDirectoryPath [
+{ #category : #accessing }
+MCGitHubRepository class >> cacheDirectoryPath [
   <preference: 'GitHub Cache' category: 'Metacello' description: '' type:
     #'String'>
   ^ super cacheDirectoryPath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository class>>downloadCache [
+{ #category : #accessing }
+MCGitHubRepository class >> downloadCache [
   "use class var to survive upgrade when MCGitHubRepository moved to subclass of MCGitBasedRepository"
 
   DownloadCache ifNil: [ DownloadCache := Dictionary new ].
   ^ DownloadCache
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository class>>eTagsCache [
+{ #category : #accessing }
+MCGitHubRepository class >> eTagsCache [
   "To avoid GitHub rate limiting problems, we are caching the ETags for the tag request: https://developer.github.com/v3/#conditional-requests"
 
   ETagsCache ifNil: [ ETagsCache := Dictionary new ].
   ^ ETagsCache
 ]
 
-{
-	#category : #flushing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository class>>flushDownloadCache [
+{ #category : #flushing }
+MCGitHubRepository class >> flushDownloadCache [
     "self flushDownloadCache"
 
     DownloadCache := nil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository class>>flushETagsCache [
+{ #category : #initialization }
+MCGitHubRepository class >> flushETagsCache [
   "mainly needed for tests .... but if you want to pare down object consumption..."
 
   "self flushETagsCache"
@@ -105,11 +74,8 @@ MCGitHubRepository class>>flushETagsCache [
   ETagsCache := nil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository class>>initialize [
+{ #category : #initialization }
+MCGitHubRepository class >> initialize [
 	SessionManager default 
 		registerNetworkClassNamed: self name.
 	
@@ -117,36 +83,24 @@ MCGitHubRepository class>>initialize [
 	self resetCacheDirectoryIfInvalid.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository class>>isEnabled [
+{ #category : #testing }
+MCGitHubRepository class >> isEnabled [
 
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository class>>projectTagsUrlFor: projectPath [
+{ #category : #private }
+MCGitHubRepository class >> projectTagsUrlFor: projectPath [
   ^ 'https://api.github.com/repos/' , projectPath , '/tags'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository class>>projectZipUrlFor: projectPath versionString: versionString [
+{ #category : #private }
+MCGitHubRepository class >> projectZipUrlFor: projectPath versionString: versionString [
   ^ 'https://github.com/' , projectPath , '/zipball/' , versionString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository class>>resetCacheDirectoryIfInvalid [
+{ #category : #private }
+MCGitHubRepository class >> resetCacheDirectoryIfInvalid [
   "use class var to survive upgrade when MCGitHubRepository moved to subclass of MCGitBasedRepository"
 
   "Reset if invalid"
@@ -157,30 +111,21 @@ MCGitHubRepository class>>resetCacheDirectoryIfInvalid [
         ifFalse: [ CacheDirectory := nil ] ]
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository class>>startUp: isImageStarting [
+{ #category : #'system startup' }
+MCGitHubRepository class >> startUp: isImageStarting [
     "Flush the GitHub download cache"
 
     isImageStarting
         ifTrue: [ self flushDownloadCache ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository class>>urlSchemes [
+{ #category : #accessing }
+MCGitHubRepository class >> urlSchemes [
 	^ #(github)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository>>downloadJSONTags [
+{ #category : #private }
+MCGitHubRepository >> downloadJSONTags [
   | tagsUrl jsonObject |
   tagsUrl := self projectTagsUrlFor: self projectPath.
   jsonObject := MetacelloPlatform current
@@ -192,11 +137,8 @@ MCGitHubRepository>>downloadJSONTags [
   ^ self normalizeTagsData: jsonObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitHubRepository>>normalizeTagsData: jsonObject [
+{ #category : #private }
+MCGitHubRepository >> normalizeTagsData: jsonObject [
   "return a dictionay mapping the tag name to the commit SHA"
 
   | tagDict |

@@ -8,15 +8,11 @@ Class {
 		'SDL2Constants',
 		'SDL2Types'
 	],
-	#category : #OSWindow-SDL2-Examples-Examples,
-	#timestamp : 'IgorStasenko 7/30/2014 18:25'
+	#category : #OSWindow-SDL2-Examples-Examples
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2Example>>osWindow [
+{ #category : #examples }
+SDL2Example >> osWindow [
 	"
 	self new osWindow
 	"
@@ -32,11 +28,8 @@ SDL2Example>>osWindow [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2Example>>simpleBlackWindow [
+{ #category : #examples }
+SDL2Example >> simpleBlackWindow [
 	"
 	self new simpleBlackWindow
 	"
@@ -57,11 +50,8 @@ SDL2Example>>simpleBlackWindow [
 	window destroy.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2Example>>simpleDrawDisplay [
+{ #category : #examples }
+SDL2Example >> simpleDrawDisplay [
 	"
 	self new simpleDrawDisplay
 	"
@@ -93,11 +83,8 @@ SDL2Example>>simpleDrawDisplay [
 	window destroy.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2Example>>simpleDrawWindow [
+{ #category : #examples }
+SDL2Example >> simpleDrawWindow [
 	"
 	self new simpleDrawWindow
 	"
@@ -126,11 +113,8 @@ SDL2Example>>simpleDrawWindow [
 	window destroy.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2Example>>simpleWindow [
+{ #category : #examples }
+SDL2Example >> simpleWindow [
 	"
 	self new simpleWindow
 	"

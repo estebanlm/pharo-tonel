@@ -19,43 +19,30 @@ Class {
 		'privateObjectStack',
 		'privateFirstMapper'
 	],
-	#category : #Fuel-Core,
-	#timestamp : 'MartinDias 8/29/2011 19:15'
+	#category : #Fuel-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLAnalysis class>>newWith: aMapper private: privateMapper root: anObject [
+{ #category : #'instance creation' }
+FLAnalysis class >> newWith: aMapper private: privateMapper root: anObject [
 
 	^self basicNew
 		initializeWith: aMapper private: privateMapper root: anObject;
 		yourself.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLAnalysis>>clusterization [
+{ #category : #accessing }
+FLAnalysis >> clusterization [
 
 	^clusterization
 ]
 
-{
-	#category : #hooks,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLAnalysis>>fuelAccept: aGeneralMapper [
+{ #category : #hooks }
+FLAnalysis >> fuelAccept: aGeneralMapper [
 	^ aGeneralMapper visitSubstitution: self by: nil
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLAnalysis>>initializeWith: aMapper private: privateMapper root: anObject [
+{ #category : #initialize-release }
+FLAnalysis >> initializeWith: aMapper private: privateMapper root: anObject [
 
 	self initialize.
 	firstMapper := aMapper.
@@ -69,40 +56,28 @@ FLAnalysis>>initializeWith: aMapper private: privateMapper root: anObject [
 
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLAnalysis>>mapAndTrace: anObject [
+{ #category : #mapping }
+FLAnalysis >> mapAndTrace: anObject [
 	"Map an object to its cluster. Trace its references."
 
 	firstMapper mapAndTrace: anObject fuelReplacement
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLAnalysis>>privateMapAndTrace: anObject [
+{ #category : #mapping }
+FLAnalysis >> privateMapAndTrace: anObject [
 	"Map an object to its cluster. Trace its references."
 
 	privateFirstMapper mapAndTrace: anObject
 ]
 
-{
-	#category : #tracing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLAnalysis>>privateTrace: anObject [
+{ #category : #tracing }
+FLAnalysis >> privateTrace: anObject [
 
 	privateObjectStack push: anObject
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLAnalysis>>run [
+{ #category : #analyzing }
+FLAnalysis >> run [
 
 	objectStack push: root.
 	[ objectStack isEmpty ] 
@@ -111,11 +86,8 @@ FLAnalysis>>run [
 		whileFalse: [ self privateMapAndTrace: privateObjectStack pop ].
 ]
 
-{
-	#category : #tracing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLAnalysis>>trace: anObject [
+{ #category : #tracing }
+FLAnalysis >> trace: anObject [
 
 	objectStack push: anObject
 ]

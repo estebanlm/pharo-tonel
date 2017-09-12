@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCFileBasedRepository
-}
+Extension { #name : #MCFileBasedRepository }
 
-{
-	#category : #'*gofer-core-accessing',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-MCFileBasedRepository>>goferReferences [
+{ #category : #'*gofer-core-accessing' }
+MCFileBasedRepository >> goferReferences [
 	| versionNames |
 	versionNames := [ self allVersionNames ]
 		on: MCRepositoryError

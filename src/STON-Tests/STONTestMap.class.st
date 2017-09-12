@@ -6,23 +6,16 @@ I am a Dictionary but I don't print my elements during #printOn: to allow safe i
 Class {
 	#name : #STONTestMap,
 	#superclass : #Dictionary,
-	#category : #STON-Tests,
-	#timestamp : '<historical>'
+	#category : #STON-Tests
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestMap class>>classTree [
+{ #category : #'instance creation' }
+STONTestMap class >> classTree [
 	^ self classTree: Object
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestMap class>>classTree: topClass [
+{ #category : #'instance creation' }
+STONTestMap class >> classTree: topClass [
 	| map |
 	map := IdentityDictionary new.
 	topClass withAllSubclasses do: [ :eachClass | | info |
@@ -39,19 +32,13 @@ STONTestMap class>>classTree: topClass [
 	^ map at: topClass
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestMap class>>classTreeExtended [
+{ #category : #'instance creation' }
+STONTestMap class >> classTreeExtended [
 	^ self classTreeExtended: Object
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestMap class>>classTreeExtended: topClass [
+{ #category : #'instance creation' }
+STONTestMap class >> classTreeExtended: topClass [
 	| map |
 	map := IdentityDictionary new.
 	topClass withAllSubclasses do: [ :eachClass | | info methodsInfo |
@@ -74,19 +61,13 @@ STONTestMap class>>classTreeExtended: topClass [
 	^ map at: topClass
 ]
 
-{
-	#category : #ston-core,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestMap class>>stonName [
+{ #category : #ston-core }
+STONTestMap class >> stonName [
 	^ #TestMap
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTestMap>>printElementsOn: stream [
+{ #category : #printing }
+STONTestMap >> printElementsOn: stream [
 	stream
 		nextPut: $(;
 		nextPut: $#;

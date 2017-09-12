@@ -8,56 +8,40 @@ Class {
 		'listMorph',
 		'list'
 	],
-	#category : #Polymorph-Widgets-Windows,
-	#timestamp : 'gvc 5/18/2007 13:46'
+	#category : #Polymorph-Widgets-Windows
 }
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ChooseDropListDialogWindow class>>taskbarIconName [
+{ #category : #icons }
+ChooseDropListDialogWindow class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^#smallQuestionIcon
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ChooseDropListDialogWindow>>icon [
+{ #category : #'as yet unclassified' }
+ChooseDropListDialogWindow >> icon [
 	"Answer an icon for the receiver."
 
 	^ self iconNamed: #questionIcon
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ChooseDropListDialogWindow>>initialize [
+{ #category : #initialization }
+ChooseDropListDialogWindow >> initialize [
 	"Initialize the receiver."
 
 	self list: #().
 	super initialize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ChooseDropListDialogWindow>>list [
+{ #category : #accessing }
+ChooseDropListDialogWindow >> list [
 	"Answer the value of list"
 
 	^ list
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ChooseDropListDialogWindow>>list: anObject [
+{ #category : #accessing }
+ChooseDropListDialogWindow >> list: anObject [
 	"Set the value of list"
 
 	list := anObject.
@@ -66,31 +50,22 @@ ChooseDropListDialogWindow>>list: anObject [
 		changed: #selectionIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ChooseDropListDialogWindow>>listMorph [
+{ #category : #accessing }
+ChooseDropListDialogWindow >> listMorph [
 	"Answer the value of listMorph"
 
 	^ listMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ChooseDropListDialogWindow>>listMorph: anObject [
+{ #category : #accessing }
+ChooseDropListDialogWindow >> listMorph: anObject [
 	"Set the value of listMorph"
 
 	listMorph := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ChooseDropListDialogWindow>>newContentMorph [
+{ #category : #'as yet unclassified' }
+ChooseDropListDialogWindow >> newContentMorph [
 	"Answer a new content morph."
 
 	self iconMorph: self newIconMorph.
@@ -101,11 +76,8 @@ ChooseDropListDialogWindow>>newContentMorph [
 		self listMorph}
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ChooseDropListDialogWindow>>newListMorph [
+{ #category : #'as yet unclassified' }
+ChooseDropListDialogWindow >> newListMorph [
 	"Answer a new drop-list morph."
 
 	^self
@@ -117,21 +89,15 @@ ChooseDropListDialogWindow>>newListMorph [
 		help: nil
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ChooseDropListDialogWindow>>selectedItem [
+{ #category : #'as yet unclassified' }
+ChooseDropListDialogWindow >> selectedItem [
 	"Answer the selected list item or nil if cancelled."
 
 	^self cancelled ifFalse: [self listMorph selectedItem]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ChooseDropListDialogWindow>>selectionIndex [
+{ #category : #'as yet unclassified' }
+ChooseDropListDialogWindow >> selectionIndex [
 	"Answer the initial selection index for the list."
 
 	^self list ifEmpty: [0] ifNotEmpty: [1]

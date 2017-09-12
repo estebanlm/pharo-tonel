@@ -5,42 +5,29 @@ Trait {
 	#name : #TDictionaryIncludesWithIdentityCheckTest,
 	#traits : 'TDictionaryIncludesTest',
 	#classTraits : 'TDictionaryIncludesTest classTrait',
-	#category : #Collections-Tests-Unordered,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:33'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesWithIdentityCheckTest>>keyNotInNonEmpty [
+{ #category : #requirements }
+TDictionaryIncludesWithIdentityCheckTest >> keyNotInNonEmpty [
 	" return a key not included in nonEmpty"
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesWithIdentityCheckTest>>nonEmpty [
+{ #category : #requirements }
+TDictionaryIncludesWithIdentityCheckTest >> nonEmpty [
 
 ^self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesWithIdentityCheckTest>>nonEmptyWithCopyNonIdentical. [
+{ #category : #requirements }
+TDictionaryIncludesWithIdentityCheckTest >> nonEmptyWithCopyNonIdentical. [
 " return a collection including elements for wich copy is not identical to the initial element ( this is not the cas of Integer )"
 ^self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesWithIdentityCheckTest>>test0FixtureDictionaryIncludes [
+{ #category : #'tests - fixture' }
+TDictionaryIncludesWithIdentityCheckTest >> test0FixtureDictionaryIncludes [
 	| in |
 	self nonEmpty.
 	self deny: self nonEmpty isEmpty.
@@ -60,21 +47,15 @@ TDictionaryIncludesWithIdentityCheckTest>>test0FixtureDictionaryIncludes [
 	self assert: in = false
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesWithIdentityCheckTest>>test0FixtureDictionaryIncludesIdentity [
+{ #category : #'tests - fixture' }
+TDictionaryIncludesWithIdentityCheckTest >> test0FixtureDictionaryIncludesIdentity [
 	self nonEmptyWithCopyNonIdentical.
 	self deny: self nonEmptyWithCopyNonIdentical isEmpty.
 	self nonEmptyWithCopyNonIdentical do: [ :each | self deny: each == each copy ]
 ]
 
-{
-	#category : #'tests - dictionary including',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesWithIdentityCheckTest>>testIncludesAssociation [
+{ #category : #'tests - dictionary including' }
+TDictionaryIncludesWithIdentityCheckTest >> testIncludesAssociation [
 
 	|  nonExistantAssociation associationIn keyIn valueIn |
 
@@ -95,11 +76,8 @@ TDictionaryIncludesWithIdentityCheckTest>>testIncludesAssociation [
 
 ]
 
-{
-	#category : #'tests - dictionary including',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesWithIdentityCheckTest>>testIncludesComportementForDictionnary [
+{ #category : #'tests - dictionary including' }
+TDictionaryIncludesWithIdentityCheckTest >> testIncludesComportementForDictionnary [
 	| valueIn collection keyIn |
 	collection := self nonEmpty.
 	valueIn := collection values anyOne.
@@ -110,11 +88,8 @@ TDictionaryIncludesWithIdentityCheckTest>>testIncludesComportementForDictionnary
 	self deny: (collection includes: keyIn)
 ]
 
-{
-	#category : #'tests - dictionary including',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesWithIdentityCheckTest>>testIncludesIdentityBasicComportement [
+{ #category : #'tests - dictionary including' }
+TDictionaryIncludesWithIdentityCheckTest >> testIncludesIdentityBasicComportement [
 
 | valueIn collection |
 collection := self nonEmpty .
@@ -124,11 +99,8 @@ self assert: (collection includesIdentity: valueIn ) .
 self deny: (collection includesIdentity: self valueNotInNonEmpty ).
 ]
 
-{
-	#category : #'tests - dictionary including',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesWithIdentityCheckTest>>testIncludesIdentitySpecificComportement [
+{ #category : #'tests - dictionary including' }
+TDictionaryIncludesWithIdentityCheckTest >> testIncludesIdentitySpecificComportement [
 
 | valueIn collection |
 collection := self nonEmptyWithCopyNonIdentical  .
@@ -139,11 +111,8 @@ self deny: (collection includesIdentity: valueIn copy ) .
 
 ]
 
-{
-	#category : #'tests - dictionary including',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesWithIdentityCheckTest>>testIncludesKey [
+{ #category : #'tests - dictionary including' }
+TDictionaryIncludesWithIdentityCheckTest >> testIncludesKey [
 
 	| collection keyIn nonExistantKey |
 
@@ -155,11 +124,8 @@ TDictionaryIncludesWithIdentityCheckTest>>testIncludesKey [
 	self deny: ( collection includesKey: nonExistantKey ).
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesWithIdentityCheckTest>>valueNotInNonEmpty [
+{ #category : #requirements }
+TDictionaryIncludesWithIdentityCheckTest >> valueNotInNonEmpty [
 	" return a value not included in nonEmpty"
 	^ self explicitRequirement
 ]

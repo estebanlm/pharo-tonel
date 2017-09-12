@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #FLCompiledMethodSerializationTest,
 	#superclass : #FLSerializationTest,
@@ -8,24 +5,17 @@ Class {
 		'theCompiledMethod',
 		'theClass'
 	],
-	#category : #FuelTests,
-	#timestamp : ''
+	#category : #FuelTests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLCompiledMethodSerializationTest>>setUp [
+{ #category : #running }
+FLCompiledMethodSerializationTest >> setUp [
 	super setUp.
 	theClass := self newClass class
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLCompiledMethodSerializationTest>>testDoIt [
+{ #category : #tests }
+FLCompiledMethodSerializationTest >> testDoIt [
 	| materialized |
 	"Since Pharo 3.0 decompilation of compiled methods is no longer possible.
 	That means we have to store the source too."
@@ -50,11 +40,8 @@ FLCompiledMethodSerializationTest>>testDoIt [
 	self assert: (materialized isEqualRegardlessTrailerTo: theCompiledMethod)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLCompiledMethodSerializationTest>>testInstalled [
+{ #category : #tests }
+FLCompiledMethodSerializationTest >> testInstalled [
 	| materialized |
 	"Since Pharo 3.0 decompilation of compiled methods is no longer possible.
 	That means we have to store the source too."
@@ -71,11 +58,8 @@ FLCompiledMethodSerializationTest>>testInstalled [
 	self assert: materialized == theCompiledMethod
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLCompiledMethodSerializationTest>>testInstalledModified [
+{ #category : #'as yet unclassified' }
+FLCompiledMethodSerializationTest >> testInstalledModified [
 	| copy materialized |
 	"Since Pharo 3.0 decompilation of compiled methods is no longer possible.
 	That means we have to store the source too."
@@ -107,11 +91,8 @@ FLCompiledMethodSerializationTest>>testInstalledModified [
 	self deny: materialized trailer hasSourcePointer
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLCompiledMethodSerializationTest>>testNotInstalled [
+{ #category : #tests }
+FLCompiledMethodSerializationTest >> testNotInstalled [
 	| materialized |
 	"Since Pharo 3.0 decompilation of compiled methods is no longer possible.
 	That means we have to store the source too."
@@ -134,11 +115,8 @@ FLCompiledMethodSerializationTest>>testNotInstalled [
 	self assert: (materialized isEqualRegardlessTrailerTo: theCompiledMethod)
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLCompiledMethodSerializationTest>>useDoIt [
+{ #category : #helpers }
+FLCompiledMethodSerializationTest >> useDoIt [
 	theClass 
 		duringTestCompileSilently: 'm  ^ 42'
 		storeSource: false.
@@ -148,22 +126,16 @@ FLCompiledMethodSerializationTest>>useDoIt [
 		put: theCompiledMethod
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLCompiledMethodSerializationTest>>useInstalled [
+{ #category : #helpers }
+FLCompiledMethodSerializationTest >> useInstalled [
 	theClass 
 		duringTestCompileSilently: 'm  ^ 42'
 		storeSource: true.
 	theCompiledMethod := theClass methodNamed: #m
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLCompiledMethodSerializationTest>>useNotInstalled [
+{ #category : #helpers }
+FLCompiledMethodSerializationTest >> useNotInstalled [
 	theClass 
 		duringTestCompileSilently: 'm  ^ 42'
 		storeSource: false.

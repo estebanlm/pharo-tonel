@@ -6,33 +6,23 @@ Replaces at:ifAbsent: by at:ifAbsentPut:. Its leads to shorter and more readable
 Class {
 	#name : #RBAtIfAbsentRule,
 	#superclass : #RBTransformationRule,
-	#category : #Refactoring-Critics-TransformationRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 17:37'
+	#category : #Refactoring-Critics-TransformationRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAtIfAbsentRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBAtIfAbsentRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'AtIfAbsentRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAtIfAbsentRule>>group [
+{ #category : #accessing }
+RBAtIfAbsentRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAtIfAbsentRule>>initialize [
+{ #category : #initialization }
+RBAtIfAbsentRule >> initialize [
 	super initialize.
 	self rewriteRule
 		replace: '``@dictionary at: ``@key 
@@ -56,10 +46,7 @@ RBAtIfAbsentRule>>initialize [
 							``@object]'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAtIfAbsentRule>>name [
+{ #category : #accessing }
+RBAtIfAbsentRule >> name [
 	^ 'at:ifAbsent: -> at:ifAbsentPut:'
 ]

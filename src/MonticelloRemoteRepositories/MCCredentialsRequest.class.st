@@ -10,25 +10,18 @@ Class {
 		'password',
 		'url'
 	],
-	#category : #MonticelloRemoteRepositories,
-	#timestamp : '<historical>'
+	#category : #MonticelloRemoteRepositories
 }
 
-{
-	#category : #signalling,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCCredentialsRequest class>>signalUrl: aUrl [
+{ #category : #signalling }
+MCCredentialsRequest class >> signalUrl: aUrl [
 	^ self new 
 		url: aUrl;
 		signal
 ]
 
-{
-	#category : #signalling,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCCredentialsRequest class>>signalUrl: aUrl username: username password: password [
+{ #category : #signalling }
+MCCredentialsRequest class >> signalUrl: aUrl username: username password: password [
 	^ self new 
 		url: aUrl;
 		username: username;
@@ -36,11 +29,8 @@ MCCredentialsRequest class>>signalUrl: aUrl username: username password: passwor
 		signal
 ]
 
-{
-	#category : #exceptiondescription,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCCredentialsRequest>>defaultAction [
+{ #category : #exceptiondescription }
+MCCredentialsRequest >> defaultAction [
 	
 	username := UIManager default
 			request: self userMessagePrompt
@@ -53,66 +43,42 @@ MCCredentialsRequest>>defaultAction [
 	^ MCServerCredentials user: username password: password
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCCredentialsRequest>>password [
+{ #category : #accessing }
+MCCredentialsRequest >> password [
 	^ password
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCCredentialsRequest>>password: anObject [
+{ #category : #accessing }
+MCCredentialsRequest >> password: anObject [
 	password := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCCredentialsRequest>>passwordMessagePrompt [
+{ #category : #accessing }
+MCCredentialsRequest >> passwordMessagePrompt [
 	^ 'Please enter a password for ', self url asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCCredentialsRequest>>url [
+{ #category : #accessing }
+MCCredentialsRequest >> url [
 	^ url
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCCredentialsRequest>>url: anObject [
+{ #category : #accessing }
+MCCredentialsRequest >> url: anObject [
 	url := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCCredentialsRequest>>userMessagePrompt [
+{ #category : #accessing }
+MCCredentialsRequest >> userMessagePrompt [
 	^ 'Please enter a username for ', self url asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCCredentialsRequest>>username [
+{ #category : #accessing }
+MCCredentialsRequest >> username [
 	^ username
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCCredentialsRequest>>username: anObject [
+{ #category : #accessing }
+MCCredentialsRequest >> username: anObject [
 	username := anObject
 ]

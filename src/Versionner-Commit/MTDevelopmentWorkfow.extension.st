@@ -1,12 +1,7 @@
-Extension {
-	#name : #MTDevelopmentWorkfow
-}
+Extension { #name : #MTDevelopmentWorkfow }
 
-{
-	#category : #'*Versionner-Commit',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MTDevelopmentWorkfow>>releaseFixedDevelopment: versionName [
+{ #category : #'*Versionner-Commit' }
+MTDevelopmentWorkfow >> releaseFixedDevelopment: versionName [
 	"Release the development baseline (will give a version method) with the given version name."
 
 	| devVersionString |
@@ -28,11 +23,8 @@ MTDevelopmentWorkfow>>releaseFixedDevelopment: versionName [
 	self notifyConfigurationModified
 ]
 
-{
-	#category : #'*Versionner-Commit',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MTDevelopmentWorkfow>>releaseFixedDevelopment: versionName description: description [
+{ #category : #'*Versionner-Commit' }
+MTDevelopmentWorkfow >> releaseFixedDevelopment: versionName description: description [
 	"Release the development baseline (will give a version method) with the given version name."
 
 	| devVersionString |

@@ -31,24 +31,17 @@ Class {
 		'b2',
 		'p4'
 	],
-	#category : #RPackage-Tests,
-	#timestamp : 'StephaneDucasse 4/13/2011 17:10'
+	#category : #RPackage-Tests
 }
 
-{
-	#category : #expectedfailures,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>expectedFailures [
+{ #category : #expectedfailures }
+RPackageReadOnlyCompleteSetupTest >> expectedFailures [
 
 	^ #(testClassNamesAndExtensionSelectorsDo testClassNamesAndExtensionSelectorsDo)
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>setUp [
+{ #category : #setup }
+RPackageReadOnlyCompleteSetupTest >> setUp [
 
 	super setUp.
 	p1 := self createNewPackageNamed: self p1Name.
@@ -81,11 +74,8 @@ RPackageReadOnlyCompleteSetupTest>>setUp [
 
 ]
 
-{
-	#category : #'test tag class',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testAddTag [
+{ #category : #'test tag class' }
+RPackageReadOnlyCompleteSetupTest >> testAddTag [
 	"self debug: #testAddTag"
 	
 	self assert: p1 classTags isEmpty.
@@ -109,11 +99,8 @@ RPackageReadOnlyCompleteSetupTest>>testAddTag [
 	self assert: ((p1 classesForClassTag: #foo) size = 2).
 ]
 
-{
-	#category : #'test tag class',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testAddTagNames [
+{ #category : #'test tag class' }
+RPackageReadOnlyCompleteSetupTest >> testAddTagNames [
 	"self debug: #testAddTag"
 	
 	self assert: p1 classTags isEmpty.
@@ -137,11 +124,8 @@ RPackageReadOnlyCompleteSetupTest>>testAddTagNames [
 	self assert: ((p1 classNamesForClassTag: #foo) size = 2).
 ]
 
-{
-	#category : #'test tag class',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testAddTagsToAClass [
+{ #category : #'test tag class' }
+RPackageReadOnlyCompleteSetupTest >> testAddTagsToAClass [
 	"self debug: #testAddTagsToAClass"
 	
 	self assert: p1 classTags isEmpty.
@@ -158,11 +142,8 @@ RPackageReadOnlyCompleteSetupTest>>testAddTagsToAClass [
 	self assert: ((p1 classesForClassTag: #zork) size = 1).
 ]
 
-{
-	#category : #'test compiled method',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testClassIsExtendedInPackage [
+{ #category : #'test compiled method' }
+RPackageReadOnlyCompleteSetupTest >> testClassIsExtendedInPackage [
 	"self debug: #testClassIsExtendedInPackage"
 	
 	self deny: ((Smalltalk globals at: #A1DefinedInP1) isExtendedInPackage: p1).
@@ -174,11 +155,8 @@ RPackageReadOnlyCompleteSetupTest>>testClassIsExtendedInPackage [
 	
 ]
 
-{
-	#category : #'test slice',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testClassNamesAndExtensionSelectorsDo2 [
+{ #category : #'test slice' }
+RPackageReadOnlyCompleteSetupTest >> testClassNamesAndExtensionSelectorsDo2 [
 	"self debug: #testClassNamesAndExtensionSelectorsDo2"
 	
 
@@ -193,11 +171,8 @@ A2DefinedInP2_class classSideMethodDefinedInP3
 
 ]
 
-{
-	#category : #'test slice',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testClassesAndExtensionMethodsDo [
+{ #category : #'test slice' }
+RPackageReadOnlyCompleteSetupTest >> testClassesAndExtensionMethodsDo [
 	"self debug: #testClassesAndExtensionMethodsDo"
 	
 	| block |
@@ -216,11 +191,8 @@ A2DefinedInP2 classSideMethodDefinedInP3
 '
 ]
 
-{
-	#category : #'test compiled method',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testCompiledMethodIsDefinedInPackage [
+{ #category : #'test compiled method' }
+RPackageReadOnlyCompleteSetupTest >> testCompiledMethodIsDefinedInPackage [
 	"self debug: #testCompiledMethodIsDefinedInPackage"
 	
 	self assert: (((Smalltalk at: #A1DefinedInP1) >> #methodDefinedInP1) isDefinedInPackage: p1).
@@ -228,11 +200,8 @@ RPackageReadOnlyCompleteSetupTest>>testCompiledMethodIsDefinedInPackage [
 	
 ]
 
-{
-	#category : #'test compiled method',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testCompiledMethodIsExtensionInPackage [
+{ #category : #'test compiled method' }
+RPackageReadOnlyCompleteSetupTest >> testCompiledMethodIsExtensionInPackage [
 	"self debug: #testCompiledMethodIsExtensionInPackage"
 	
 	self deny: (((Smalltalk at: #A1DefinedInP1) >> #methodDefinedInP1) isExtensionInPackage: p1).
@@ -240,11 +209,8 @@ RPackageReadOnlyCompleteSetupTest>>testCompiledMethodIsExtensionInPackage [
 	
 ]
 
-{
-	#category : #'test compiled method',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testCompiledMethodPackageFromOrganizer [
+{ #category : #'test compiled method' }
+RPackageReadOnlyCompleteSetupTest >> testCompiledMethodPackageFromOrganizer [
 	"self debug: #testCompiledMethodPackageFromOrganizer"
 	| method |
 	method := (Smalltalk at: #A1DefinedInP1) >> #methodDefinedInP1.
@@ -253,11 +219,8 @@ RPackageReadOnlyCompleteSetupTest>>testCompiledMethodPackageFromOrganizer [
 	self assert: (method packageFromOrganizer: self packageClass organizer) = p1
 ]
 
-{
-	#category : #'test situation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testDefinedSelectors [
+{ #category : #'test situation' }
+RPackageReadOnlyCompleteSetupTest >> testDefinedSelectors [
 	"self debug: #testDefinedSelectors"
 	
 	self assert: a1 definedSelectors size = 2. 
@@ -268,11 +231,8 @@ RPackageReadOnlyCompleteSetupTest>>testDefinedSelectors [
 	self assert: (a2 definedSelectors includes: #methodDefinedInP2).
 ]
 
-{
-	#category : #'test situation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testDefinedSelectorsForClass [
+{ #category : #'test situation' }
+RPackageReadOnlyCompleteSetupTest >> testDefinedSelectorsForClass [
 	"self debug: #testDefinedSelectorsForClass"
 	
 	self assert: (p1 definedSelectorsForClass: a1) size = 2. 
@@ -285,22 +245,16 @@ RPackageReadOnlyCompleteSetupTest>>testDefinedSelectorsForClass [
 
 ]
 
-{
-	#category : #'test tag class',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testEmpty [
+{ #category : #'test tag class' }
+RPackageReadOnlyCompleteSetupTest >> testEmpty [
 	"self debug: #testEmpty"
 	
 	self assert: p1 classTags isEmpty.
 	
 ]
 
-{
-	#category : #'test accessing',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testExtendingPackagesOfClass [
+{ #category : #'test accessing' }
+RPackageReadOnlyCompleteSetupTest >> testExtendingPackagesOfClass [
 	"since a class can be extended by several packages, we want the list of packages that extend
 	the class"
 	
@@ -318,11 +272,8 @@ RPackageReadOnlyCompleteSetupTest>>testExtendingPackagesOfClass [
 	self assert: packages isEmpty. 
 ]
 
-{
-	#category : #'test accessing',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testExtensionMethods [
+{ #category : #'test accessing' }
+RPackageReadOnlyCompleteSetupTest >> testExtensionMethods [
 	"a package can extend several classes, either the class or  the meta-class side. 'extensionMethods' should list all the methods involved in shuch extensions. P3 extend a2 and a2 class"
 
 	"self debug: #testExtendingPackagesOfClass"
@@ -346,11 +297,8 @@ RPackageReadOnlyCompleteSetupTest>>testExtensionMethods [
 	self assert: cpt = 1
 ]
 
-{
-	#category : #'test situation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testExtensionSelectors [
+{ #category : #'test situation' }
+RPackageReadOnlyCompleteSetupTest >> testExtensionSelectors [
 	"self debug: #testDefinedSelectors"
 	
 	self assert: a1 extensionSelectors isEmpty.
@@ -360,11 +308,8 @@ RPackageReadOnlyCompleteSetupTest>>testExtensionSelectors [
 	self assert: (a2 extensionSelectors includes: #methodDefinedInP3).
 ]
 
-{
-	#category : #'test situation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testExtensionSelectorsForClass [
+{ #category : #'test situation' }
+RPackageReadOnlyCompleteSetupTest >> testExtensionSelectorsForClass [
 	"self debug: #testExtensionSelectorsForClass"
 	
 	self assert: (p1 extensionSelectorsForClass: a2) size = 1. 
@@ -374,11 +319,8 @@ RPackageReadOnlyCompleteSetupTest>>testExtensionSelectorsForClass [
 	self assert: (p1 extensionSelectorsForClass: Object class) isEmpty
 ]
 
-{
-	#category : #'test situation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testMetaclassHasExtensions [
+{ #category : #'test situation' }
+RPackageReadOnlyCompleteSetupTest >> testMetaclassHasExtensions [
 	"self debug: #testMetaclassHasExtensions"
 
 	self assert: (p3 includesExtensionSelector: #methodDefinedInP3 ofClassName: a2  name).
@@ -389,11 +331,8 @@ RPackageReadOnlyCompleteSetupTest>>testMetaclassHasExtensions [
 	
 ]
 
-{
-	#category : #'test situation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testMethods [
+{ #category : #'test situation' }
+RPackageReadOnlyCompleteSetupTest >> testMethods [
 	"self debug: #testMethods"
 	
 	| m1 m3 |
@@ -408,11 +347,8 @@ RPackageReadOnlyCompleteSetupTest>>testMethods [
 	self assert: (m3 includes: a2 class>>#classSideMethodDefinedInP3)
 ]
 
-{
-	#category : #'test situation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testMethodsForClass [
+{ #category : #'test situation' }
+RPackageReadOnlyCompleteSetupTest >> testMethodsForClass [
 	"self debug: #testMethodsForClass"
 	
 	self assert: (p1 methodsForClass: a1) size = 2. 
@@ -428,11 +364,8 @@ RPackageReadOnlyCompleteSetupTest>>testMethodsForClass [
 	self assert:  ((p3 methodsForClass: a2 class) includes: ((Smalltalk at: #A2DefinedInP2) class>>#classSideMethodDefinedInP3))	
 ]
 
-{
-	#category : #'test accessing',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testPackagesOfClass [
+{ #category : #'test accessing' }
+RPackageReadOnlyCompleteSetupTest >> testPackagesOfClass [
 	"since a class can be extended by several packages, we want the complete list of packages that define or extend
 	the class"
 	"self debug: #testPackagesOfClass"
@@ -458,11 +391,8 @@ RPackageReadOnlyCompleteSetupTest>>testPackagesOfClass [
 	
 ]
 
-{
-	#category : #'test tag class',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testRemoveTag [
+{ #category : #'test tag class' }
+RPackageReadOnlyCompleteSetupTest >> testRemoveTag [
 	"self debug: #testRemoveTag"
 
 	self assert: p1 classTags isEmpty.
@@ -480,11 +410,8 @@ RPackageReadOnlyCompleteSetupTest>>testRemoveTag [
 	self assert: (p1 classesForClassTag: #foo) size = 0
 ]
 
-{
-	#category : #'test tag class',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testRemoveTaggedClasses [
+{ #category : #'test tag class' }
+RPackageReadOnlyCompleteSetupTest >> testRemoveTaggedClasses [
 	"self debug: #testRemoveTaggedClasses"
 
 	p1 addClassDefinitionName: #A1DefinedInP1 toClassTag: #foo.
@@ -508,11 +435,8 @@ RPackageReadOnlyCompleteSetupTest>>testRemoveTaggedClasses [
 	self assert: (p1 classesForClassTag: #foo) size = 1
 ]
 
-{
-	#category : #'test situation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testSelectors [
+{ #category : #'test situation' }
+RPackageReadOnlyCompleteSetupTest >> testSelectors [
 	"self debug: #testSelectors"
 	
 	self assert: (p1 selectors) size = 2. 
@@ -524,11 +448,8 @@ RPackageReadOnlyCompleteSetupTest>>testSelectors [
 	self assert:  (p3 selectors includes: #classSideMethodDefinedInP3)	
 ]
 
-{
-	#category : #'test situation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testSelectorsForClass [
+{ #category : #'test situation' }
+RPackageReadOnlyCompleteSetupTest >> testSelectorsForClass [
 	"self debug: #testSelectorsForClass"
 	
 	self assert: (p1 selectorsForClass: a1) size = 2. 
@@ -544,11 +465,8 @@ RPackageReadOnlyCompleteSetupTest>>testSelectorsForClass [
 	self assert:  ((p3 selectorsForClass: a2 class) includes: #classSideMethodDefinedInP3)	
 ]
 
-{
-	#category : #'test situation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageReadOnlyCompleteSetupTest>>testStartingSituation [
+{ #category : #'test situation' }
+RPackageReadOnlyCompleteSetupTest >> testStartingSituation [
 	"self debug: #testStartingSituation"
 
 .	self deny: (p2 includesClass: b1).

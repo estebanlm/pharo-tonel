@@ -17,57 +17,38 @@ Class {
 	#instVars : [
 		'anchoredMorph'
 	],
-	#category : #'Morphic-Base-Text Support',
-	#timestamp : 'SeanDeNigris 2/4/2015 13:42'
+	#category : #'Morphic-Base-Text Support'
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextAnchor>>= other  [
+{ #category : #comparing }
+TextAnchor >> = other [ 
 	^ (other class == self class) 
 		and: [other anchoredMorph == anchoredMorph]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextAnchor>>anchoredMorph [
+{ #category : #accessing }
+TextAnchor >> anchoredMorph [
 	^ anchoredMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextAnchor>>anchoredMorph: aMorph  [
+{ #category : #accessing }
+TextAnchor >> anchoredMorph: aMorph [ 
 	anchoredMorph := aMorph
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextAnchor>>emphasizeScanner: scanner [
+{ #category : #visiting }
+TextAnchor >> emphasizeScanner: scanner [
 	"Do nothing for emphasizing the scanner - if the anchor is valid a #embeddedObject will be encountered by the scanner and do the real thing"
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextAnchor>>hash [
+{ #category : #comparing }
+TextAnchor >> hash [
 	"#hash is re-implemented because #= is re-implemented"
 	^anchoredMorph identityHash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextAnchor>>mayBeExtended [
+{ #category : #accessing }
+TextAnchor >> mayBeExtended [
 	"A textAnchor is designed to modify only a single character, and therefore must not be extended by the ParagraphEditor's emphasisHere facility"
 	^ false
 ]

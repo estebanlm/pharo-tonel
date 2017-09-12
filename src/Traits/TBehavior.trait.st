@@ -3,17 +3,11 @@ Kernel trait for Behavior
 "
 Trait {
 	#name : #TBehavior,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Traits-Kernel-Traits,
-	#timestamp : 'TorstenBergmann 2/4/2014 20:36'
+	#category : #Traits-Kernel-Traits
 }
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>>> selector  [
+{ #category : #'accessing method dictionary' }
+TBehavior >> >> selector [ 
 	"Answer the compiled method associated with the argument, selector (a 
 	Symbol), a message selector in the receiver's method dictionary. If the 
 	selector is not in the dictionary, create an error notification."
@@ -22,20 +16,14 @@ TBehavior>>>> selector  [
 
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>addExclusionOf: aSymbol to: aTrait [
+{ #category : #traits }
+TBehavior >> addExclusionOf: aSymbol to: aTrait [
 	self setTraitComposition: (
 		self traitComposition copyWithExclusionOf: aSymbol to: aTrait)
 ]
 
-{
-	#category : #'obsolete subclasses',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>addObsoleteSubclass: aClass [
+{ #category : #'obsolete subclasses' }
+TBehavior >> addObsoleteSubclass: aClass [
 	"Weakly remember that aClass was a subclass of the receiver and is now obsolete"
 	| obs |
 
@@ -46,47 +34,32 @@ TBehavior>>addObsoleteSubclass: aClass [
 	self basicObsoleteSubclasses at: self put: obs.
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>addSelector: selector withMethod: compiledMethod  [
+{ #category : #'adding/removing methods' }
+TBehavior >> addSelector: selector withMethod: compiledMethod [ 
 	^ self addSelector: selector withMethod: compiledMethod notifying: nil
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>addSelector: selector withMethod: compiledMethod notifying: requestor [
+{ #category : #'adding/removing methods' }
+TBehavior >> addSelector: selector withMethod: compiledMethod notifying: requestor [
 	^ self addSelectorSilently: selector withMethod: compiledMethod
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>addSelectorSilently: selector withMethod: compiledMethod [
+{ #category : #'adding/removing methods' }
+TBehavior >> addSelectorSilently: selector withMethod: compiledMethod [
 	self basicAddSelector: selector withMethod: compiledMethod.
 	self registerLocalSelector: selector.
 	self isTrait ifTrue: [ self notifyUsersOfChangedSelector: selector].
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>addToComposition: aTrait [
+{ #category : #traits }
+TBehavior >> addToComposition: aTrait [
 	self setTraitComposition: (self traitComposition copyTraitExpression
 		add: aTrait;
 		yourself)
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>addTraitSelector: aSymbol withMethod: aCompiledMethod [
+{ #category : #traits }
+TBehavior >> addTraitSelector: aSymbol withMethod: aCompiledMethod [
 	"Add aMethod with selector aSymbol to my
 	methodDict. aMethod must not be defined locally."
 
@@ -109,19 +82,13 @@ TBehavior>>addTraitSelector: aSymbol withMethod: aCompiledMethod [
 	self basicAddSelector: aSymbol withMethod: method
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>addUser: aClassOrTrait [
+{ #category : #traits }
+TBehavior >> addUser: aClassOrTrait [
 	self traitUsers add: aClassOrTrait.
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>adoptInstance: anInstance [
+{ #category : #'adding/removing methods' }
+TBehavior >> adoptInstance: anInstance [
 	"Change the class of anInstance to me.
 	Primitive (found in Cog and new VMs)  follows the same rules as primitiveChangeClassTo:, but returns the 	class rather than the modified instance"
 	<primitive: 160 error: ec>
@@ -129,22 +96,16 @@ TBehavior>>adoptInstance: anInstance [
 	^self
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allClassVarNames [
+{ #category : #'accessing instances and variables' }
+TBehavior >> allClassVarNames [
 	"Answer a Set of the names of the receiver's and the receiver's ancestor's 
 	class variables."
 
 	^self superclass allClassVarNames
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allInstVarNames [
+{ #category : #'accessing instances and variables' }
+TBehavior >> allInstVarNames [
 	"Answer an Array of the names of the receiver's instance variables. The 
 	Array ordering is the order in which the variables are stored and 
 	accessed by the interpreter."
@@ -156,11 +117,8 @@ TBehavior>>allInstVarNames [
 	^vars
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allInstances [
+{ #category : #'accessing instances and variables' }
+TBehavior >> allInstances [
 	"Answer all instances of the receiver."
 	<primitive: 177>
 	"The primitive can fail because memory is low.  If so, fall back on the old
@@ -177,11 +135,8 @@ TBehavior>>allInstances [
 	^insts contents
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allInstancesDo: aBlock [
+{ #category : #enumerating }
+TBehavior >> allInstancesDo: aBlock [
 	"Evaluate aBlock with each of the current instances of the receiver."
 	| instances inst next |
 	instances := self allInstancesOrNil.
@@ -198,65 +153,47 @@ TBehavior>>allInstancesDo: aBlock [
 		 inst := next]
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allInstancesOrNil [
+{ #category : #'accessing instances and variables' }
+TBehavior >> allInstancesOrNil [
 	"Answer all instances of the receiver, or nil if the primitive
 	 fails, which it may be due to being out of memory."
 	<primitive: 177>
 	^nil
 ]
 
-{
-	#category : #'obsolete subclasses',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allLocalCallsOn: aSymbol [
+{ #category : #'obsolete subclasses' }
+TBehavior >> allLocalCallsOn: aSymbol [
 	"Answer a SortedCollection of all the methods that call on aSymbol, anywhere in my class hierarchy."
 
 	^(SystemNavigation new allLocalCallsOn: aSymbol ofClass: (self theNonMetaClass)).
 
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allMethods [
+{ #category : #'accessing method dictionary' }
+TBehavior >> allMethods [
 	"Return the collection of compiled method I and my superclasses are defining"
 	"asArray is used to not bump into a bug when comparing compiled methods."
 	
 	^ self allSelectors asArray collect: [ :s | self lookupSelector: s ]
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allMethodsAccessingSlot: aSlot [
+{ #category : #queries }
+TBehavior >> allMethodsAccessingSlot: aSlot [
 	"return all methods that access aSlot in this class and subclasses"
 	^self withAllSubclasses flatCollect: [ :class |
 		class methodsAccessingSlot: aSlot.
 	]
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allSelectors [
+{ #category : #'accessing method dictionary' }
+TBehavior >> allSelectors [
 	"Answer all selectors understood by instances of the receiver"
 
 	^ self allSelectorsBelow: nil
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allSelectorsAbove [
+{ #category : #'accessing method dictionary' }
+TBehavior >> allSelectorsAbove [
 
 	^ self allSelectorsAboveUntil: ProtoObject 
 	
@@ -264,11 +201,8 @@ TBehavior>>allSelectorsAbove [
 
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allSelectorsAboveUntil: aRootClass [
+{ #category : #'accessing method dictionary' }
+TBehavior >> allSelectorsAboveUntil: aRootClass [
 
 	| coll |
 	coll := IdentitySet new.
@@ -281,11 +215,8 @@ TBehavior>>allSelectorsAboveUntil: aRootClass [
 
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allSelectorsBelow: topClass  [
+{ #category : #'accessing method dictionary' }
+TBehavior >> allSelectorsBelow: topClass [ 
 	| coll |
 	coll := IdentitySet new.
 	self withAllSuperclassesDo: 
@@ -299,11 +230,8 @@ TBehavior>>allSelectorsBelow: topClass  [
 
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allSelectorsWithout: behaviors [
+{ #category : #'accessing method dictionary' }
+TBehavior >> allSelectorsWithout: behaviors [
 	"Returns all the selectors of the receiver and its superclasses, except the ones define in behaviors"
 
 	| selectors |
@@ -314,29 +242,20 @@ TBehavior>>allSelectorsWithout: behaviors [
 	^ selectors
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allSharedPools [
+{ #category : #'accessing instances and variables' }
+TBehavior >> allSharedPools [
 	"Answer an ordered collection of the shared pools that the receiver and the receiver's ancestors share."
 
 	^self superclass allSharedPools
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allSlots [
+{ #category : #accessing }
+TBehavior >> allSlots [
 	^#()
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allSubInstances  [
+{ #category : #'accessing instances and variables' }
+TBehavior >> allSubInstances [ 
 	"Answer a list of all current instances of the receiver and all of its subclasses."
 	| aCollection |
 	aCollection := OrderedCollection new.
@@ -345,11 +264,8 @@ TBehavior>>allSubInstances  [
 	^ aCollection
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allSubInstancesDo: aBlock  [
+{ #category : #enumerating }
+TBehavior >> allSubInstancesDo: aBlock [ 
 	"Evaluate the argument, aBlock, for each of the current instances of the 
 	receiver and all its subclasses."
 
@@ -357,11 +273,8 @@ TBehavior>>allSubInstancesDo: aBlock  [
 	self allSubclassesDo: [:sub | sub allInstancesDo: aBlock]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allSubclasses [
+{ #category : #'accessing class hierarchy' }
+TBehavior >> allSubclasses [
 	"Answer an orderedCollection of the receiver's and the receiver's descendent's subclasses. "
 
 	| scan scanTop |
@@ -373,11 +286,8 @@ TBehavior>>allSubclasses [
 	^ scan
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allSubclassesDo: aBlock  [
+{ #category : #enumerating }
+TBehavior >> allSubclassesDo: aBlock [ 
 	"Evaluate the argument, aBlock, for each of the receiver's subclasses."
 
 	self subclassesDo: 
@@ -386,11 +296,8 @@ TBehavior>>allSubclassesDo: aBlock  [
 		cl allSubclassesDo: aBlock]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allSubclassesWithLevelDo: classAndLevelBlock startingLevel: level  [
+{ #category : #'accessing class hierarchy' }
+TBehavior >> allSubclassesWithLevelDo: classAndLevelBlock startingLevel: level [ 
 	"Walk the tree of subclasses, giving the class and its level"
 	| subclassNames |
 	classAndLevelBlock value: self value: level.
@@ -404,11 +311,8 @@ TBehavior>>allSubclassesWithLevelDo: classAndLevelBlock startingLevel: level  [
 			startingLevel: level+1]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allSuperclasses [
+{ #category : #'accessing class hierarchy' }
+TBehavior >> allSuperclasses [
 	"Answer an OrderedCollection of the receiver's and the receiver's  
 	ancestor's superclasses. The first element is the receiver's immediate  
 	superclass, followed by its superclass; the last element is Object."
@@ -420,11 +324,8 @@ TBehavior>>allSuperclasses [
 			temp]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allSuperclassesDo: aBlock  [
+{ #category : #enumerating }
+TBehavior >> allSuperclassesDo: aBlock [ 
 	"Evaluate the argument, aBlock, for each of the receiver's superclasses."
 
 	self superclass == nil
@@ -432,11 +333,8 @@ TBehavior>>allSuperclassesDo: aBlock  [
 				self superclass allSuperclassesDo: aBlock]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allSuperclassesIncluding: aClass [
+{ #category : #'accessing class hierarchy' }
+TBehavior >> allSuperclassesIncluding: aClass [
 	"Answer an OrderedCollection of the receiver's and the receiver's  ancestor's superclasses
 	up to aClass included. If aClass is not part of the receiver's superclass, returns up to the root."
 	| temp |
@@ -448,11 +346,8 @@ TBehavior>>allSuperclassesIncluding: aClass [
 			temp]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>allUnreferencedInstanceVariables [
+{ #category : #enumerating }
+TBehavior >> allUnreferencedInstanceVariables [
 	"Return a list of the instance variables known to the receiver which are not referenced in the receiver or any of its subclasses OR superclasses"
 
 	^ self allInstVarNames reject: [:ivn |
@@ -462,11 +357,8 @@ TBehavior>>allUnreferencedInstanceVariables [
 				(class whichSelectorsAccess: ivn asSymbol) notEmpty]]
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>applyChangesOfNewTraitCompositionReplacing: oldComposition [
+{ #category : #traits }
+TBehavior >> applyChangesOfNewTraitCompositionReplacing: oldComposition [
 	| changedSelectors |
 	changedSelectors := self traitComposition
 		changedSelectorsComparedTo: oldComposition.
@@ -477,11 +369,8 @@ TBehavior>>applyChangesOfNewTraitCompositionReplacing: oldComposition [
 	^changedSelectors
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>basicAddSelector: selector withMethod: compiledMethod  [
+{ #category : #'adding/removing methods' }
+TBehavior >> basicAddSelector: selector withMethod: compiledMethod [ 
 	"Add the message selector with the corresponding compiled method to the 
 	receiver's method dictionary.
 	Do this without sending system change notifications"
@@ -493,44 +382,29 @@ TBehavior>>basicAddSelector: selector withMethod: compiledMethod  [
 	compiledMethod selector: selector.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>basicLocalSelectors [
+{ #category : #accessing }
+TBehavior >> basicLocalSelectors [
 	^nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>basicNew [
+{ #category : #'instance creation' }
+TBehavior >> basicNew [
 	^self explicitRequirement.
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>basicNew: sizeRequested  [
+{ #category : #'instance creation' }
+TBehavior >> basicNew: sizeRequested [ 
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'obsolete subclasses',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>basicObsoleteSubclasses [
+{ #category : #'obsolete subclasses' }
+TBehavior >> basicObsoleteSubclasses [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>basicRemoveSelector: selector  [
+{ #category : #'adding/removing methods' }
+TBehavior >> basicRemoveSelector: selector [ 
 	"Assuming that the argument, selector (a Symbol), is a message selector 
 	in my method dictionary, remove it and its method."
 
@@ -539,65 +413,44 @@ TBehavior>>basicRemoveSelector: selector  [
 	self methodDict removeKey: selector.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>becomeCompact [
+{ #category : #private }
+TBehavior >> becomeCompact [
 	"Backward compatibility with the Squeak V3 object format.
 	Spur does not have a distinction between compact and non-compact classes."
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>becomeCompactSimplyAt: index [
+{ #category : #private }
+TBehavior >> becomeCompactSimplyAt: index [
 	"Backward compatibility with the Squeak V3 object format.
 	Spur does not have a distinction between compact and non-compact classes."
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>becomeUncompact [
+{ #category : #private }
+TBehavior >> becomeUncompact [
 	"Backward compatibility with the Squeak V3 object format.
 	 Spur does not have a distinction between compact and non-compact classes."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>binding [
+{ #category : #accessing }
+TBehavior >> binding [
 	^ nil -> self
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>bindingOf: varName [
+{ #category : #'accessing instances and variables' }
+TBehavior >> bindingOf: varName [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>canPerform: selector [
+{ #category : #'testing method dictionary' }
+TBehavior >> canPerform: selector [
 	"Answer whether the receiver can safely perform to the message whose selector 
 	is the argument: it is not an abstract or cancelled method"
 
 	^ self classAndMethodFor: selector do: [:c :m | m isProvided] ifAbsent: [false].
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>canUnderstand: selector [
+{ #category : #'testing method dictionary' }
+TBehavior >> canUnderstand: selector [
 	"Answer whether the receiver can respond to the message whose selector 
 	is the argument."
 
@@ -607,20 +460,14 @@ TBehavior>>canUnderstand: selector [
 		ifAbsent: [ false ].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>canZapMethodDictionary [
+{ #category : #testing }
+TBehavior >> canZapMethodDictionary [
 	"Return true if it is safe to zap the method dictionary on #obsolete"
 	^true
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>classAndMethodFor: aSymbol do: binaryBlock ifAbsent: absentBlock [
+{ #category : #'accessing method dictionary' }
+TBehavior >> classAndMethodFor: aSymbol do: binaryBlock ifAbsent: absentBlock [
 	"Looks up the selector aSymbol in the class chain. If it is found, binaryBlock is evaluated
 	with the class that defines the selector and the associated method. Otherwise
 	absentBlock is evaluated."
@@ -633,69 +480,48 @@ TBehavior>>classAndMethodFor: aSymbol do: binaryBlock ifAbsent: absentBlock [
 	^ absentBlock value.
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>classBindingOf: varName [
+{ #category : #'testing method dictionary' }
+TBehavior >> classBindingOf: varName [
 	"Answer the binding of some variable resolved in the scope of the receiver's class"
 	^self bindingOf: varName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>classDepth [
+{ #category : #accessing }
+TBehavior >> classDepth [
 
 	self superclass ifNil: [^ 1].
 	^ self superclass classDepth + 1
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>classVarNames [
+{ #category : #'accessing instances and variables' }
+TBehavior >> classVarNames [
 	"Answer a collection of the receiver's class variable names."
 
 	^#()
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>classesComposedWithMe [
+{ #category : #traits }
+TBehavior >> classesComposedWithMe [
 	self isTrait
 		ifTrue: [ ^ self traitUsers flatCollect: [ :u | u classesComposedWithMe ] ]
 		ifFalse: [ ^ {self} ]
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>cleanUp [
+{ #category : #cleanup }
+TBehavior >> cleanUp [
 	"Clean out any caches and other state that should be flushed when trying to get an image into a pristine state. Subclasses may override #cleanUp: to provide different levels of cleanliness"
 
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>cleanUp: aggressive [
+{ #category : #cleanup }
+TBehavior >> cleanUp: aggressive [
 	"Clean out any caches and other state that should be flushed when trying to get an image into a pristine state. The argument should be used to indicate how aggressive the cleanup should be. Some subclasses may act differently depending on its value - for example, ChangeSet will only delete all unused and reinitialize the current change set if we're asking it to be aggressive."
 
 	^self cleanUp
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>commentsAt:  selector [
+{ #category : #'accessing method dictionary' }
+TBehavior >> commentsAt:  selector [
 	"Answer a string representing the first comment in the method associated with selector.  Return an empty string if the relevant source file is not available, or if the method's source code does not contain a comment.  Not smart enough to bypass quotes in string constants, but does map doubled quote into a single quote."
 
 
@@ -704,11 +530,8 @@ TBehavior>>commentsAt:  selector [
 "Behavior commentsAt: #commentsAt:"
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>commentsIn: sourceString [
+{ #category : #'accessing method dictionary' }
+TBehavior >> commentsIn: sourceString [
 
 	
 	| commentStart nextQuotePos someComments aPos |
@@ -726,11 +549,8 @@ TBehavior>>commentsIn: sourceString [
 	^someComments
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>compiledMethodAt: selector  [
+{ #category : #'accessing method dictionary' }
+TBehavior >> compiledMethodAt: selector [ 
 	"Answer the compiled method associated with the argument, selector (a 
 	Symbol), a message selector in the receiver's method dictionary. If the 
 	selector is not in the dictionary, create an error notification."
@@ -738,41 +558,29 @@ TBehavior>>compiledMethodAt: selector  [
 	^ self methodDict at: selector
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>compiledMethodAt: selector ifAbsent: aBlock [
+{ #category : #'accessing method dictionary' }
+TBehavior >> compiledMethodAt: selector ifAbsent: aBlock [
 	"Answer the compiled method associated with the argument, selector (a Symbol), a message selector in the receiver's method dictionary. If the selector is not in the dictionary, return the value of aBlock"
 
 	^ self methodDict at: selector ifAbsent: aBlock
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>compiledMethodAt: selector ifPresent: anotherBlock ifAbsent: aBlock [
+{ #category : #'accessing method dictionary' }
+TBehavior >> compiledMethodAt: selector ifPresent: anotherBlock ifAbsent: aBlock [
 	"Answer the compiled method associated with the argument, selector (a Symbol), a message selector in the receiver's method dictionary. If the selector is not in the dictionary, return the value of aBlock"
 
 	^ self methodDict at: selector ifPresent: anotherBlock ifAbsent: aBlock
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>compress [
+{ #category : #'accessing method dictionary' }
+TBehavior >> compress [
 	"Compact the method dictionary of the receiver."
 
 	self methodDict rehash
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>copiedFromSuperclass: method [
+{ #category : #queries }
+TBehavior >> copiedFromSuperclass: method [
 	"Returns the methods that the receiver copied with its ancestors"
 	
 	self allSuperclassesDo: [ :cls|
@@ -785,11 +593,8 @@ TBehavior>>copiedFromSuperclass: method [
 	
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>copiedMethodsFromSuperclass [
+{ #category : #queries }
+TBehavior >> copiedMethodsFromSuperclass [
 	"Returns the methods that the receiver copied with its ancestors"
 	
 	| methods |
@@ -799,11 +604,8 @@ TBehavior>>copiedMethodsFromSuperclass [
 	^ methods
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>copiesFromSuperclass: method [
+{ #category : #queries }
+TBehavior >> copiesFromSuperclass: method [
 	"Checks whether the receiver copied the argument,  method, from its superclasses"
 	
 	self allSuperclassesDo: [ :cls|
@@ -812,11 +614,8 @@ TBehavior>>copiesFromSuperclass: method [
 	^ false
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>copiesMethodsFromSuperclass [
+{ #category : #queries }
+TBehavior >> copiesMethodsFromSuperclass [
 	"Checks whether the receiver copied some method from its superclass"
 
 	self methodsDo: [ :method|
@@ -825,31 +624,22 @@ TBehavior>>copiesMethodsFromSuperclass [
 	^ false
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>copyOfMethodDictionary [
+{ #category : #copying }
+TBehavior >> copyOfMethodDictionary [
 	"Return a copy of the receiver's method dictionary"
 
 	^ self methodDict copy
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>deepCopy [
+{ #category : #copying }
+TBehavior >> deepCopy [
 	"Classes should only be shallowCopied or made anew."
 
 	^ self shallowCopy
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>dependentClasses [
+{ #category : #dependencies }
+TBehavior >> dependentClasses [
 	"Return the list of classes used myself"
 	
 	"Morph dependentClasses"
@@ -870,29 +660,20 @@ TBehavior>>dependentClasses [
 	^ cll asArray
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>deregisterLocalSelector: aSymbol [
+{ #category : #'accessing method dictionary' }
+TBehavior >> deregisterLocalSelector: aSymbol [
 	self basicLocalSelectors notNil ifTrue: [
 		self basicLocalSelectors remove: aSymbol ifAbsent: []]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>emptyMethodDictionary [
+{ #category : #initialization }
+TBehavior >> emptyMethodDictionary [
 
 	^ MethodDictionary new
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>ensureLocalSelectors [
+{ #category : #traits }
+TBehavior >> ensureLocalSelectors [
 	"Ensures that the instance variable localSelectors is effectively used to maintain
 	the set of local selectors.
 	This method must be called before any non-local selectors are added to the
@@ -901,28 +682,19 @@ TBehavior>>ensureLocalSelectors [
 	self basicLocalSelectors ifNil: [self basicLocalSelectors: self selectors asSet]
 ]
 
-{
-	#category : #accessing-properties,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>ensureProperties [
+{ #category : #accessing-properties }
+TBehavior >> ensureProperties [
 	^ self explicitRequirement
 ]
 
-{
-	#category : #naming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>environment [
+{ #category : #naming }
+TBehavior >> environment [
 	"Return the environment in which the receiver is visible"
 	^Smalltalk globals
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>firstCommentAt:  selector [
+{ #category : #'accessing method dictionary' }
+TBehavior >> firstCommentAt:  selector [
 	"Answer a string representing the first comment in the method associated with selector.  Return an empty string if the relevant source file is not available, or if the method's source code does not contain a comment.  Not smart enough to bypass quotes in string constants, but does map doubled quote into a single quote."
 
 	|someComments|
@@ -933,11 +705,8 @@ TBehavior>>firstCommentAt:  selector [
 "Behavior firstCommentAt: #firstCommentAt:"
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>firstPrecodeCommentFor:  selector [
+{ #category : #'accessing method dictionary' }
+TBehavior >> firstPrecodeCommentFor:  selector [
 	"If there is a comment in the source code at the given selector that preceeds the body of the method, return it here, else return nil"
 
 	| method |
@@ -949,11 +718,8 @@ TBehavior>>firstPrecodeCommentFor:  selector [
 	
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>flattenDown: aTrait [
+{ #category : #traits }
+TBehavior >> flattenDown: aTrait [
 | selectors |
 	[self hasTraitComposition and: [self traitComposition allTraits includes: aTrait]] assert.
 	(self traitComposition transformationOfTrait: aTrait)
@@ -963,52 +729,37 @@ TBehavior>>flattenDown: aTrait [
 	self removeFromComposition: aTrait. ].
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>flattenDownAllTraits [
+{ #category : #traits }
+TBehavior >> flattenDownAllTraits [
 	self traitComposition allTraits do: [:each | self flattenDown: each].
 	[ self traitComposition isEmpty ] assert.
 	self traitComposition: nil.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>flushCache [
+{ #category : #private }
+TBehavior >> flushCache [
 	"Tell the virtual machine to remove the contents of its method lookup caches, if it has any.  This must be done when the system 	modifies the class hierarchy so that message lookups reflect the revised organization.  c.f. Symbol>>flushCache & 	CompiledMethod>>flushCache.  Essential. See MethodDictionary class comment."
 
 	<primitive: 89>
 	self primitiveFailed
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>hasAbstractMethods [
+{ #category : #testing }
+TBehavior >> hasAbstractMethods [
 	"Tells whether the receiver locally defines an abstract method, i.e., a method sending subclassResponsibility"
 	
 	^ (self methods anySatisfy: [:cm | cm sendsSelector: #subclassResponsibility ])
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>hasMethods [
+{ #category : #'testing method dictionary' }
+TBehavior >> hasMethods [
 	"Answer whether the receiver has any methods in its method dictionary."
 
 	^ self methodDict notEmpty
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>hasSelectorReferringTo: literal [
+{ #category : #'testing method dictionary' }
+TBehavior >> hasSelectorReferringTo: literal [
 	"Answer true if any of my methods access the argument as a 
 	literal. Dives into the compact literal notation, making it slow but 
 	thorough "
@@ -1017,71 +768,50 @@ TBehavior>>hasSelectorReferringTo: literal [
 		
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>hasTraitComposition [
+{ #category : #traits }
+TBehavior >> hasTraitComposition [
 
 	^ self traitComposition notEmpty.
 ]
 
-{
-	#category : #'testing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>includesBehavior: aClass [
+{ #category : #'testing class hierarchy' }
+TBehavior >> includesBehavior: aClass [
 	
 	self isTrait ifTrue: [ ^false ].
 	^self == aClass or:[self inheritsFrom: aClass]
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>includesLocalSelector: aSymbol [
+{ #category : #'testing method dictionary' }
+TBehavior >> includesLocalSelector: aSymbol [
 	^self basicLocalSelectors 
 		ifNil: [self includesSelector: aSymbol]
 		ifNotNil: [self localSelectors includes: aSymbol]
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>includesSelector: aSymbol  [
+{ #category : #'testing method dictionary' }
+TBehavior >> includesSelector: aSymbol [ 
 	"Answer whether the message whose selector is the argument is in the 
 	method dictionary of the receiver's class."
 
 	^ self methodDict includesKey: aSymbol
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>includesSharedPoolNamed:  aSharedPoolString  [
+{ #category : #'accessing instances and variables' }
+TBehavior >> includesSharedPoolNamed:  aSharedPoolString [ 
 	"Answer whether the receiver uses the shared pool named aSharedPoolString"
 	
 	^ (self sharedPools anySatisfy: [:each | each name = aSharedPoolString])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>indexIfCompact [
+{ #category : #private }
+TBehavior >> indexIfCompact [
 	"Backward compatibility with the Squeak V3 object format.
 	 Spur does not have a distinction between compact and non-compact classes."
 	^0
 ]
 
-{
-	#category : #'testing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>inheritsFrom: aClass  [
+{ #category : #'testing class hierarchy' }
+TBehavior >> inheritsFrom: aClass [ 
 	"Answer whether the argument, aClass, is on the receiver's superclass 
 	chain."
 
@@ -1094,11 +824,8 @@ TBehavior>>inheritsFrom: aClass  [
 	^false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>initialize [
+{ #category : #initialization }
+TBehavior >> initialize [
 	"moved here from the class side's #new"
 	super initialize.
 	self superclass: Object.
@@ -1109,27 +836,18 @@ TBehavior>>initialize [
 	self users: IdentitySet new.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>initializeSlots: anObject  [
+{ #category : #initialization }
+TBehavior >> initializeSlots: anObject [ 
 	self classLayout initializeInstance: anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>instSize [
+{ #category : #testing }
+TBehavior >> instSize [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>instSpec [
+{ #category : #testing }
+TBehavior >> instSpec [
 	"Answer the instance specification part of the format that defines what kind of object
 	 an instance of the receiver is.  The formats are
 			0	= 0 sized objects (UndefinedObject True False et al)
@@ -1149,11 +867,8 @@ TBehavior>>instSpec [
 	^(self format bitShift: -16) bitAnd: 16r1F
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>instVarNames [
+{ #category : #'accessing instances and variables' }
+TBehavior >> instVarNames [
 	"Answer an Array of the instance variable names. Behaviors must make 
 	up fake local instance variable names because Behaviors have instance 
 	variables for the purpose of compiling methods, but these are not named 
@@ -1169,11 +884,8 @@ TBehavior>>instVarNames [
 	^(superSize + 1 to: mySize) collect: [:i | 'inst' , i printString]
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>instVarNamesAndOffsetsDo: aBinaryBlock [
+{ #category : #compiling }
+TBehavior >> instVarNamesAndOffsetsDo: aBinaryBlock [
 	"This is part of the interface between the compiler and a class's instance or field names.
 	 The class should enumerate aBinaryBlock with the instance variable name strings and
 	 their integer offsets.  The order is important. Names evaluated later will override the
@@ -1183,11 +895,8 @@ TBehavior>>instVarNamesAndOffsetsDo: aBinaryBlock [
 	^self
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>instanceCount [
+{ #category : #'accessing instances and variables' }
+TBehavior >> instanceCount [
 	"Answer the number of instances of the receiver that are currently in 
 	use."
 
@@ -1197,11 +906,8 @@ TBehavior>>instanceCount [
 	^count
 ]
 
-{
-	#category : #'memory usage',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>instancesSizeInMemory [
+{ #category : #'memory usage' }
+TBehavior >> instancesSizeInMemory [
 	"Answers the number of bytes consumed by all its instances including their object header"
 	
 	| bytes |
@@ -1210,11 +916,8 @@ TBehavior>>instancesSizeInMemory [
 	^ bytes
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isAliasSelector: aSymbol [
+{ #category : #'testing method dictionary' }
+TBehavior >> isAliasSelector: aSymbol [
 	"Return true if the selector aSymbol is an alias defined
 	in my or in another composition somewhere deeper in 
 	the tree of traits compositions."
@@ -1224,19 +927,13 @@ TBehavior>>isAliasSelector: aSymbol [
 				and: [self traitComposition isAliasSelector: aSymbol]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isAnonymous [
+{ #category : #testing }
+TBehavior >> isAnonymous [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isBits [
+{ #category : #testing }
+TBehavior >> isBits [
 	"Answer whether the receiver contains just bits (not pointers).
 	 Above Cog Spur the class format is
 		<5 bits inst spec><16 bits inst size>
@@ -1258,11 +955,8 @@ TBehavior>>isBits [
 	^self instSpec >= 7
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isBytes [
+{ #category : #testing }
+TBehavior >> isBytes [
 	"Answer whether the receiver has 8-bit instance variables.
 	 Above Cog Spur the class format is
 		<5 bits inst spec><16 bits inst size>
@@ -1284,21 +978,15 @@ TBehavior>>isBytes [
 	^self instSpec >= 16
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isCompact [
+{ #category : #testing }
+TBehavior >> isCompact [
 	"Backward compatibility with the Squeak V3 object format.
 	Spur does not have a distinction between compact and non-compact classes."
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isComposedBy: aTrait [
+{ #category : #accessing }
+TBehavior >> isComposedBy: aTrait [
 	"Answers if this object includes trait aTrait into its composition"
 	aTrait isTrait ifFalse: [ ^false].
 	^self hasTraitComposition 
@@ -1306,19 +994,13 @@ TBehavior>>isComposedBy: aTrait [
 		ifFalse: [ false ]
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isDisabledSelector: selector [
+{ #category : #'testing method dictionary' }
+TBehavior >> isDisabledSelector: selector [
 	^ self classAndMethodFor: selector do: [:c :m | m isDisabled] ifAbsent: [false]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isEphemeronClass [
+{ #category : #testing }
+TBehavior >> isEphemeronClass [
 	"Answer whether the receiver has ephemeral instance variables.  The garbage collector will
 	 fire (queue for finalization) any ephemeron whose first instance variable is not referenced
 	 other than from the transitive closure of references from ephemerons. Hence referring to
@@ -1332,21 +1014,15 @@ TBehavior>>isEphemeronClass [
 	^self instSpec = 5
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isFixed [
+{ #category : #testing }
+TBehavior >> isFixed [
 	"Answer whether the receiver does not have a variable (indexable) part."
 
 	^self isVariable not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isImmediateClass [
+{ #category : #testing }
+TBehavior >> isImmediateClass [
 	"Answer whether the receiver has immediate instances.  Immediate instances
 	 store their value in their object pointer, not in an object body.  Hence immediates
 	 take no space and are immutable.  The immediates are distinguished by tag bits
@@ -1356,11 +1032,8 @@ TBehavior>>isImmediateClass [
 	^self instSpec = 7
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isLocalAliasSelector: aSymbol [
+{ #category : #'testing method dictionary' }
+TBehavior >> isLocalAliasSelector: aSymbol [
 	"Return true if the selector aSymbol is an alias defined
 	in my trait composition."
 
@@ -1369,54 +1042,36 @@ TBehavior>>isLocalAliasSelector: aSymbol [
 				and: [self traitComposition isLocalAliasSelector: aSymbol]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isManifest [
+{ #category : #testing }
+TBehavior >> isManifest [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isMeta [
+{ #category : #testing }
+TBehavior >> isMeta [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isObsolete [
+{ #category : #testing }
+TBehavior >> isObsolete [
 	"Return true if the receiver is obsolete."
 	^self instanceCount = 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isPointers [
+{ #category : #testing }
+TBehavior >> isPointers [
 	"Answer whether the receiver contains just pointers (not bits)."
 
 	^self isBits not
 ]
 
-{
-	#category : #'testing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isRootInEnvironment [
+{ #category : #'testing class hierarchy' }
+TBehavior >> isRootInEnvironment [
 	^self superclass isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isVariable [
+{ #category : #testing }
+TBehavior >> isVariable [
 	"Answer whether the receiver has indexable variables.
 	 Above Cog Spur the class format is
 		<5 bits inst spec><16 bits inst size>
@@ -1440,30 +1095,21 @@ TBehavior>>isVariable [
 	^instSpec >= 2 and: [instSpec <= 4 or: [instSpec >= 9]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isWeak [
+{ #category : #testing }
+TBehavior >> isWeak [
 	"Answer whether the receiver has contains weak references."
 	^ self instSpec = 4
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>isWords [
+{ #category : #testing }
+TBehavior >> isWords [
 	"Answer true if the receiver is made of 32-bit instance variables."
 
 	^self isBytes not
 ]
 
-{
-	#category : #'testing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>kindOfSubclass [
+{ #category : #'testing class hierarchy' }
+TBehavior >> kindOfSubclass [
 	"Answer a String that is the keyword that describes the receiver's kind of subclass,
 	 either a regular subclass, a variableSubclass, a variableByteSubclass,
 	 a variableWordSubclass, a weakSubclass, an ephemeronSubclass or an immediateSubclass.
@@ -1488,11 +1134,8 @@ TBehavior>>kindOfSubclass [
 						ifFalse: [' subclass: ']]]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>literalScannedAs: scannedLiteral notifying: requestor [
+{ #category : #printing }
+TBehavior >> literalScannedAs: scannedLiteral notifying: requestor [
 	"Postprocesses a literal scanned by Scanner scanToken (esp. xLitQuote).
 	If scannedLiteral is not an association, answer it.
 	Else, if it is of the form:
@@ -1530,11 +1173,8 @@ TBehavior>>literalScannedAs: scannedLiteral notifying: requestor [
 "
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>localMethodNamed: selector ifAbsent: aBlock [
+{ #category : #'accessing method dictionary' }
+TBehavior >> localMethodNamed: selector ifAbsent: aBlock [
 	"Answer the locally defined method associated with the argument, selector (a Symbol), a message selector in the receiver's method dictionary. If the selector is not in the dictionary or it is not a local one, return the value of aBlock"
 	| method |
 	method := self compiledMethodAt: selector ifAbsent: aBlock.
@@ -1546,21 +1186,15 @@ TBehavior>>localMethodNamed: selector ifAbsent: aBlock [
 	^aBlock value
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>localMethods [
+{ #category : #'accessing method dictionary' }
+TBehavior >> localMethods [
 	"returns the methods of classes excluding the ones of the traits that the class uses" 
 	 
 	^ self methods select: [:each | self includesLocalSelector: each selector].
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>localSelectors [
+{ #category : #'accessing method dictionary' }
+TBehavior >> localSelectors [
 	"Return a set of selectors defined locally.
 	The instance variable is lazily initialized. If it is nil then there
 	are no non-local selectors"
@@ -1570,29 +1204,20 @@ TBehavior>>localSelectors [
 		ifNotNil: [self basicLocalSelectors].
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>localSelectors: aSet  [
+{ #category : #'accessing method dictionary' }
+TBehavior >> localSelectors: aSet [ 
 	self basicLocalSelectors: aSet
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>longPrintOn: aStream [
+{ #category : #printing }
+TBehavior >> longPrintOn: aStream [
 	"Append to the argument, aStream, the names and values of all of the receiver's instance variables.  But, not useful for a class with a method dictionary."
 
 	aStream nextPutAll: '<<too complex to show>>'; cr.
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>lookupSelector: selector [
+{ #category : #'accessing method dictionary' }
+TBehavior >> lookupSelector: selector [
 	"Look up the given selector in my methodDictionary.
 	Return the corresponding method if found.
 	Otherwise chase the superclass chain and try again.
@@ -1608,133 +1233,88 @@ TBehavior>>lookupSelector: selector [
 	^ nil
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>methodDict [
+{ #category : #'accessing method dictionary' }
+TBehavior >> methodDict [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>methodDict: aDictionary [
+{ #category : #'accessing method dictionary' }
+TBehavior >> methodDict: aDictionary [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>methodDictionary [
+{ #category : #'accessing method dictionary' }
+TBehavior >> methodDictionary [
 	^self methodDict
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>methodDictionary: aDictionary [
+{ #category : #'accessing method dictionary' }
+TBehavior >> methodDictionary: aDictionary [
 	self methodDict: aDictionary
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>methods [
+{ #category : #'accessing method dictionary' }
+TBehavior >> methods [
 	
 	^ self methodDict values
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>methodsAccessingSlot: aSlot [
+{ #category : #queries }
+TBehavior >> methodsAccessingSlot: aSlot [
 	^self methods select: [ :method | method accessesSlot: aSlot ]
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>methodsDo: aBlock [
+{ #category : #'accessing method dictionary' }
+TBehavior >> methodsDo: aBlock [
 	"Evaluate aBlock for all the compiled methods in my method dictionary."
 
 	^ self methodDict valuesDo: aBlock
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>methodsReadingSlot: aSlot [
+{ #category : #queries }
+TBehavior >> methodsReadingSlot: aSlot [
 	^self methods select: [ :method | method readsSlot: aSlot ]
 ]
 
-{
-	#category : #navigation,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>methodsReferencingClass: aClass [
+{ #category : #navigation }
+TBehavior >> methodsReferencingClass: aClass [
 
 	^self methodsReferencingClasses: { aClass }
 ]
 
-{
-	#category : #navigation,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>methodsReferencingClasses: aCollectionOfClasses [
+{ #category : #navigation }
+TBehavior >> methodsReferencingClasses: aCollectionOfClasses [
 	^ self methods select: [ :meth | meth referencedClasses includesAny: aCollectionOfClasses ]
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>methodsWritingSlot: aSlot [
+{ #category : #queries }
+TBehavior >> methodsWritingSlot: aSlot [
 	^self methods select: [ :method | method writesSlot: aSlot ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>name [
+{ #category : #accessing }
+TBehavior >> name [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>new [
+{ #category : #'instance creation' }
+TBehavior >> new [
 	"Answer a new initialized instance of the receiver (which is a class) with no indexable variables. Fail if the class is indexable."
 
 	^ self basicNew initialize
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>new: sizeRequested  [
+{ #category : #'instance creation' }
+TBehavior >> new: sizeRequested [ 
 	"Answer an initialized instance of this class with the number of indexable
 	variables specified by the argument, sizeRequested."
 
 	^ (self basicNew: sizeRequested) initialize  
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>nextQuotePosIn: sourceString startingFrom: commentStart [
+{ #category : #'accessing method dictionary' }
+TBehavior >> nextQuotePosIn: sourceString startingFrom: commentStart [
 	| pos nextQuotePos |
 	pos := commentStart + 1.
 	[((nextQuotePos := sourceString findString: '"' startingAt: pos) == (sourceString findString: '""' startingAt: pos)) and: [nextQuotePos ~= 0]]
@@ -1743,11 +1323,8 @@ TBehavior>>nextQuotePosIn: sourceString startingFrom: commentStart [
 	^nextQuotePos
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>nonObsoleteClass [
+{ #category : #initialize-release }
+TBehavior >> nonObsoleteClass [
 	"Attempt to find and return the current version of this obsolete class"
 
 	| obsName |
@@ -1757,11 +1334,8 @@ TBehavior>>nonObsoleteClass [
 	^ self environment at: obsName asSymbol
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>noteChangedSelectors: aCollection [
+{ #category : #traits }
+TBehavior >> noteChangedSelectors: aCollection [
 	"Start update of my methodDict (after changes to traits in traitComposition
 	or after a local method was removed from my methodDict). The argument 
 	is a collection of method selectors that may have been changed. Most of the time
@@ -1776,36 +1350,23 @@ TBehavior>>noteChangedSelectors: aCollection [
 	^ affectedSelectors
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>notifyUsersOfChangedSelector: aSelector [
+{ #category : #traits }
+TBehavior >> notifyUsersOfChangedSelector: aSelector [
 	self notifyUsersOfChangedSelectors: (Array with: aSelector)
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>notifyUsersOfChangedSelectors: aCollection [
-
+{ #category : #traits }
+TBehavior >> notifyUsersOfChangedSelectors: aCollection [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>numberOfInstanceVariables [
+{ #category : #accessing }
+TBehavior >> numberOfInstanceVariables [
 	^ self instVarNames size
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>obsolete [
+{ #category : #initialization }
+TBehavior >> obsolete [
 	"Invalidate and recycle local methods,
 	e.g., zap the method dictionary if can be done safely."
 	self canZapMethodDictionary
@@ -1815,31 +1376,22 @@ TBehavior>>obsolete [
 			each removeUser: self]]
 ]
 
-{
-	#category : #'obsolete subclasses',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>obsoleteSubclasses [
+{ #category : #'obsolete subclasses' }
+TBehavior >> obsoleteSubclasses [
 	"Return all the weakly remembered obsolete subclasses of the receiver"
 	| obs |
 	obs := self basicObsoleteSubclasses at: self ifAbsent: [^ #()].
 	^ obs copyWithout: nil
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>postCopy [
+{ #category : #copying }
+TBehavior >> postCopy [
 	super postCopy.
 	self methodDict: self copyOfMethodDictionary
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>precodeCommentOrInheritedCommentFor: selector  [
+{ #category : #'accessing method dictionary' }
+TBehavior >> precodeCommentOrInheritedCommentFor: selector [ 
 	"Answer a string representing the first comment in the method associated 
 	with selector, considering however only comments that occur before the 
 	beginning of the actual code. If the version recorded in the receiver is 
@@ -1854,11 +1406,8 @@ TBehavior>>precodeCommentOrInheritedCommentFor: selector  [
 		ifFalse: [aComment]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>printHierarchy [
+{ #category : #printing }
+TBehavior >> printHierarchy [
 	"Answer a description containing the names and instance variable names 
 	of all of the subclasses and superclasses of the receiver."
 
@@ -1877,134 +1426,92 @@ TBehavior>>printHierarchy [
 	^aStream contents
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>printOn: aStream  [
+{ #category : #printing }
+TBehavior >> printOn: aStream [ 
 	"Refer to the comment in Object|printOn:." 
 
 	aStream nextPutAll: 'a descendent of '.
 	self superclass printOn: aStream
 ]
 
-{
-	#category : #accessing-properties,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>properties [
+{ #category : #accessing-properties }
+TBehavior >> properties [
 	^ self explicitRequirement
 		
 ]
 
-{
-	#category : #accessing-properties,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>propertyAt: propName [
+{ #category : #accessing-properties }
+TBehavior >> propertyAt: propName [
 	^ self
 		propertyAt: propName
 		ifAbsent: [ nil ]
 ]
 
-{
-	#category : #accessing-properties,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>propertyAt: propName ifAbsent: aBlock [
+{ #category : #accessing-properties }
+TBehavior >> propertyAt: propName ifAbsent: aBlock [
 	self properties ifNil: [^aBlock value].
 	^ self properties
 		at: propName
 		ifAbsent: aBlock
 ]
 
-{
-	#category : #accessing-properties,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>propertyAt: propName put: propValue [
+{ #category : #accessing-properties }
+TBehavior >> propertyAt: propName put: propValue [
 	^ self ensureProperties
 		at: propName
 		ifAbsentPut: propValue
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>purgeLocalSelectors [
+{ #category : #traits }
+TBehavior >> purgeLocalSelectors [
 	self basicLocalSelectors: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>realClass [
+{ #category : #accessing }
+TBehavior >> realClass [
 
 	^ self
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>registerLocalSelector: aSymbol [
+{ #category : #'accessing method dictionary' }
+TBehavior >> registerLocalSelector: aSymbol [
 	self basicLocalSelectors notNil ifTrue: [
 		self basicLocalSelectors add: aSymbol]
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>removeAlias: aSymbol of: aTrait [
+{ #category : #traits }
+TBehavior >> removeAlias: aSymbol of: aTrait [
 	self setTraitComposition: (
 		self traitComposition copyWithoutAlias: aSymbol of: aTrait)
 ]
 
-{
-	#category : #'obsolete subclasses',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>removeAllObsoleteSubclasses [
+{ #category : #'obsolete subclasses' }
+TBehavior >> removeAllObsoleteSubclasses [
 	"Remove all the obsolete subclasses of the receiver"
 	self basicObsoleteSubclasses removeKey: self ifAbsent: [].
 
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>removeFromComposition: aTrait [
+{ #category : #traits }
+TBehavior >> removeFromComposition: aTrait [
 	self setTraitComposition: (self traitComposition copyTraitExpression
 		removeFromComposition: aTrait)
 ]
 
-{
-	#category : #accessing-properties,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>removePropertiesIfEmpty [
+{ #category : #accessing-properties }
+TBehavior >> removePropertiesIfEmpty [
 	^ self explicitRequirement
 ]
 
-{
-	#category : #accessing-properties,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>removeProperty: propName [
+{ #category : #accessing-properties }
+TBehavior >> removeProperty: propName [
 	^ self
 		removeProperty: propName
 		ifAbsent: [ nil ]
 ]
 
-{
-	#category : #accessing-properties,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>removeProperty: propName ifAbsent: aBlock [
+{ #category : #accessing-properties }
+TBehavior >> removeProperty: propName ifAbsent: aBlock [
 	| property |
 	self properties ifNil: [^aBlock value].
 	property := self properties
@@ -2014,11 +1521,8 @@ TBehavior>>removeProperty: propName ifAbsent: aBlock [
 	^ property
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>removeSelector: aSelector [
+{ #category : #'accessing method dictionary' }
+TBehavior >> removeSelector: aSelector [
 	"Assuming that the argument, selector (a Symbol), is a message selector 
 	in my method dictionary, remove it and its method.
 	
@@ -2047,38 +1551,26 @@ TBehavior>>removeSelector: aSelector [
 	self isTrait ifTrue: [ self notifyUsersOfChangedSelector: aSelector].
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>removeSelectorSilently: selector  [
+{ #category : #'adding/removing methods' }
+TBehavior >> removeSelectorSilently: selector [ 
 	"Remove selector without sending system change notifications"
 
 	^ SystemAnnouncer uniqueInstance suspendAllWhile: [self removeSelector: selector].
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>removeTraitSelector: aSymbol [
+{ #category : #traits }
+TBehavior >> removeTraitSelector: aSymbol [
 	[(self includesLocalSelector: aSymbol) not] assert.
 	self basicRemoveSelector: aSymbol
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>removeUser: aClassOrTrait [
+{ #category : #traits }
+TBehavior >> removeUser: aClassOrTrait [
 	self traitUsers remove: aClassOrTrait ifAbsent: []
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>selectSubclasses: aBlock  [
+{ #category : #enumerating }
+TBehavior >> selectSubclasses: aBlock [ 
 	"Evaluate the argument, aBlock, with each of the receiver's (next level) 
 	subclasses as its argument. Collect into a Set only those subclasses for 
 	which aBlock evaluates to true. In addition, evaluate aBlock for the 
@@ -2093,11 +1585,8 @@ TBehavior>>selectSubclasses: aBlock  [
 	^aSet
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>selectSuperclasses: aBlock  [
+{ #category : #enumerating }
+TBehavior >> selectSuperclasses: aBlock [ 
 	"Evaluate the argument, aBlock, with the receiver's superclasses as the 
 	argument. Collect into an OrderedCollection only those superclasses for 
 	which aBlock evaluates to true. In addition, evaluate aBlock for the 
@@ -2113,60 +1602,42 @@ TBehavior>>selectSuperclasses: aBlock  [
 	^aSet
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>selectors [
+{ #category : #'accessing method dictionary' }
+TBehavior >> selectors [
 	"Answer a Set of all the message selectors specified in the receiver's 
 	method dictionary."
 
 	^ self methodDict keys
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>selectorsAndMethodsDo: selectorAndMethodBlock [
+{ #category : #'accessing method dictionary' }
+TBehavior >> selectorsAndMethodsDo: selectorAndMethodBlock [
 	"Evaluate selectorAndMethodBlock with two arguments for each selector/method pair in my method dictionary."
 
 	^ self methodDict keysAndValuesDo: selectorAndMethodBlock
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>selectorsDo: selectorBlock [
+{ #category : #'accessing method dictionary' }
+TBehavior >> selectorsDo: selectorBlock [
 	"Evaluate selectorBlock for all the message selectors in my method dictionary."
 
 	^ self methodDict keysDo: selectorBlock
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>selectorsWithArgs: numberOfArgs [
+{ #category : #'accessing method dictionary' }
+TBehavior >> selectorsWithArgs: numberOfArgs [
 	"Return all selectors defined in this class that take this number of arguments"
 
 	^ self selectors select: [:selector | selector numArgs = numberOfArgs]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>setFormat: aFormatInstanceDescription [
+{ #category : #private }
+TBehavior >> setFormat: aFormatInstanceDescription [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>setTraitComposition: aTraitComposition [
+{ #category : #traits }
+TBehavior >> setTraitComposition: aTraitComposition [
 	| oldComposition |
 	(self hasTraitComposition not and: [aTraitComposition isEmpty]) ifTrue: [^self].
 	aTraitComposition assertValidUser: self.
@@ -2179,30 +1650,21 @@ TBehavior>>setTraitComposition: aTraitComposition [
 	aTraitComposition traits do: [:each | each addUser: self]
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>setTraitCompositionFrom: aTraitExpression [
+{ #category : #traits }
+TBehavior >> setTraitCompositionFrom: aTraitExpression [
 	^ self setTraitComposition: aTraitExpression asTraitComposition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>sharedPoolNames [
+{ #category : #accessing }
+TBehavior >> sharedPoolNames [
 	^ self sharedPools collect: [:ea |
 		ea isObsolete
 			ifTrue: [ ea name ]
 			ifFalse: [ self environment keyAtIdentityValue: ea ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>shouldNotBeRedefined [
+{ #category : #testing }
+TBehavior >> shouldNotBeRedefined [
 	"Answer if the receiver should not be redefined.
 	 The assumption is that classes in Smalltalk specialObjects and 
 	 instance-specific Behaviors should not be redefined"
@@ -2212,29 +1674,20 @@ TBehavior>>shouldNotBeRedefined [
 		ifAbsent: [(self isKindOf: self) ifTrue: [1] ifFalse: [0]]) ~= 0
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>shutDown [
+{ #category : #'system startup' }
+TBehavior >> shutDown [
 	"This message is sent on system shutdown to registered classes"
 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>shutDown: quitting [
+{ #category : #'system startup' }
+TBehavior >> shutDown: quitting [
 	"This message is sent on system shutdown to registered classes"
 	^self shutDown.
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>someInstance [
+{ #category : #'accessing instances and variables' }
+TBehavior >> someInstance [
 	"Primitive. Answer the first instance in the enumeration of all instances 
 	of the receiver. Fails if there are none. Essential. See Object 
 	documentation whatIsAPrimitive."
@@ -2243,29 +1696,20 @@ TBehavior>>someInstance [
 	^nil
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>sourceCodeAt: selector [
+{ #category : #'accessing method dictionary' }
+TBehavior >> sourceCodeAt: selector [
 
 	^ (self compiledMethodAt: selector) sourceCode.
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>sourceCodeAt: selector ifAbsent: aBlock [
+{ #category : #'accessing method dictionary' }
+TBehavior >> sourceCodeAt: selector ifAbsent: aBlock [
 
 	^ (self compiledMethodAt: selector ifAbsent: [^ aBlock value]) sourceCode.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>sourceMatchesBytecodeAt: selector [
+{ #category : #testing }
+TBehavior >> sourceMatchesBytecodeAt: selector [
 	"Answers true if the source code at the selector compiles to the bytecode at the selector, and false
 	otherwise. Implemented to detect an error where Monticello did not recompile sources when the class
 	shape changed"
@@ -2287,11 +1731,8 @@ TBehavior>>sourceMatchesBytecodeAt: selector [
 	^ newMethod = method
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>spaceUsed [
+{ #category : #private }
+TBehavior >> spaceUsed [
 	"Answer a rough estimate of number of bytes used by this class and its metaclass. Does not include space used by class variables."
 
 	| space |
@@ -2308,29 +1749,20 @@ TBehavior>>spaceUsed [
 		^ space
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>startUp [
+{ #category : #'system startup' }
+TBehavior >> startUp [
 	"This message is sent to registered classes when the system is coming up."
  
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>startUp: resuming [
+{ #category : #'system startup' }
+TBehavior >> startUp: resuming [
 	"This message is sent to registered classes when the system is coming up."
 	^self startUp
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>storeLiteral: aCodeLiteral on: aStream [
+{ #category : #printing }
+TBehavior >> storeLiteral: aCodeLiteral on: aStream [
 	"Store aCodeLiteral on aStream, changing an Association to ##GlobalName
 	 or ###MetaclassSoleInstanceName format if appropriate"
 	| key value |
@@ -2350,22 +1782,16 @@ TBehavior>>storeLiteral: aCodeLiteral on: aStream [
 	aCodeLiteral storeOn: aStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>subclassDefinerClass [
+{ #category : #accessing }
+TBehavior >> subclassDefinerClass [
 	"Answer an evaluator class appropriate for evaluating definitions of new 
 	subclasses of this class."
 
 	^Smalltalk compilerClass
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>subclassInstVarNames [
+{ #category : #'accessing instances and variables' }
+TBehavior >> subclassInstVarNames [
 	"Answer a Set of the names of the receiver's subclasses' instance 
 	variables."
 	| vars |
@@ -2374,36 +1800,24 @@ TBehavior>>subclassInstVarNames [
 	^vars
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>subclassesDo: aBlock [
+{ #category : #enumerating }
+TBehavior >> subclassesDo: aBlock [
 	"Evaluate the argument, aBlock, for each of the receiver's immediate subclasses."
 	self subclasses do: aBlock
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>superclass [
+{ #category : #'accessing class hierarchy' }
+TBehavior >> superclass [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>superclass: aClass [
+{ #category : #'accessing class hierarchy' }
+TBehavior >> superclass: aClass [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>superclass: aClass methodDictionary: mDict format: fmt [
+{ #category : #initialize-release }
+TBehavior >> superclass: aClass methodDictionary: mDict format: fmt [
 	"Basic initialization of the receiver.
 	Must only be sent to a new instance; else we would need Object flushCache."
 	self superclass: aClass.
@@ -2412,11 +1826,8 @@ TBehavior>>superclass: aClass methodDictionary: mDict format: fmt [
 	self traitComposition: nil
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>supermostPrecodeCommentFor: selector  [
+{ #category : #'accessing method dictionary' }
+TBehavior >> supermostPrecodeCommentFor: selector [ 
 	"Answer a string representing the precode comment in the most distant 
 	superclass's implementation of the selector. Return nil if none found."
 	| aSuper superComment |
@@ -2430,11 +1841,8 @@ TBehavior>>supermostPrecodeCommentFor: selector  [
 			"ActorState supermostPrecodeCommentFor: #printOn:"]
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>thoroughHasSelectorReferringTo: literal [
+{ #category : #'testing method dictionary' }
+TBehavior >> thoroughHasSelectorReferringTo: literal [
 	"Answer true if any of my methods access the argument as a 
 	literal. Dives into the compact literal notation, making it slow but 
 	thorough "
@@ -2447,11 +1855,8 @@ TBehavior>>thoroughHasSelectorReferringTo: literal [
 		
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>thoroughWhichSelectorsReferTo: literal [
+{ #category : #'testing method dictionary' }
+TBehavior >> thoroughWhichSelectorsReferTo: literal [
 	"Answer a set of selectors whose methods access the argument as a 
 	literal. Dives into the compact literal notation, making it slow but 
 	thorough "
@@ -2464,47 +1869,32 @@ TBehavior>>thoroughWhichSelectorsReferTo: literal [
 	^ selectors
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>traitComposition [
+{ #category : #traits }
+TBehavior >> traitComposition [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>traitComposition: aTraitComposition [
+{ #category : #traits }
+TBehavior >> traitComposition: aTraitComposition [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>traitCompositionIncludes: aTrait [
+{ #category : #traits }
+TBehavior >> traitCompositionIncludes: aTrait [
 	^self == aTrait or: 
 		[self hasTraitComposition and: 
 			[self traitComposition allTraits includes: aTrait]]
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>traitCompositionString [
+{ #category : #traits }
+TBehavior >> traitCompositionString [
 	^self hasTraitComposition
 		ifTrue: [self traitComposition asString]
 		ifFalse: ['{}']
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>traitOrClassOfSelector: aSymbol [
+{ #category : #traits }
+TBehavior >> traitOrClassOfSelector: aSymbol [
 	"Return the trait or the class which originally defines the method aSymbol
 	or return self if locally defined or if it is a conflict marker method.
 	This is primarly used by Debugger to determin the behavior in which a recompiled
@@ -2516,44 +1906,29 @@ TBehavior>>traitOrClassOfSelector: aSymbol [
 	^(self traitComposition traitProvidingSelector: aSymbol) ifNil: [self]
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>traitTransformations  [
+{ #category : #traits }
+TBehavior >> traitTransformations [ 
 	^ self traitComposition transformations 
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>traitUsers [
+{ #category : #traits }
+TBehavior >> traitUsers [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>traitUsers: aCollection [
+{ #category : #traits }
+TBehavior >> traitUsers: aCollection [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>traits [
+{ #category : #traits }
+TBehavior >> traits [
 	"Returns a collection of all traits used by the receiver"
 	^ self traitComposition traits
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>traitsProvidingSelector: aSymbol [
+{ #category : #traits }
+TBehavior >> traitsProvidingSelector: aSymbol [
 	| result |
 	result := OrderedCollection new.
 	self hasTraitComposition ifFalse: [^result].
@@ -2564,11 +1939,8 @@ TBehavior>>traitsProvidingSelector: aSymbol [
 	^result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>typeOfClass [
+{ #category : #accessing }
+TBehavior >> typeOfClass [
 	"Answer a symbol uniquely describing the type of the receiver. c.f. kindOfSubclass"
 	self classLayout isCustomLayout ifTrue: [ ^self classLayout class name asSymbol].
 	self isBytes ifTrue:
@@ -2585,11 +1957,8 @@ TBehavior>>typeOfClass [
 	^#normal
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>ultimateSourceCodeAt: selector ifAbsent: aBlock [
+{ #category : #'accessing method dictionary' }
+TBehavior >> ultimateSourceCodeAt: selector ifAbsent: aBlock [
 	"Return the source code at selector, deferring to superclass if necessary"
 	^ self sourceCodeAt: selector ifAbsent:
 		[self superclass
@@ -2599,11 +1968,8 @@ TBehavior>>ultimateSourceCodeAt: selector ifAbsent: aBlock [
 				[self superclass ultimateSourceCodeAt: selector ifAbsent: aBlock]]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>unreferencedInstanceVariables [
+{ #category : #'user interface' }
+TBehavior >> unreferencedInstanceVariables [
 	"Return a list of the instance variables defined in the receiver which are not referenced in the receiver or any of its subclasses."
 
 	^ self instVarNames reject: [:ivn | 
@@ -2611,11 +1977,8 @@ TBehavior>>unreferencedInstanceVariables [
 			(class whichSelectorsAccess: ivn) notEmpty]]
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>updateMethodDictionarySelector: aSymbol [
+{ #category : #traits }
+TBehavior >> updateMethodDictionarySelector: aSymbol [
 	"A method with selector aSymbol in myself or my traitComposition has been changed.
 	Do the appropriate update to my methodDict (remove or update method) and
 	return all affected selectors of me so that my useres get notified."
@@ -2643,27 +2006,18 @@ TBehavior>>updateMethodDictionarySelector: aSymbol [
 	^modifiedSelectors
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>users [
+{ #category : #traits }
+TBehavior >> users [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>users: aCollection [
+{ #category : #traits }
+TBehavior >> users: aCollection [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>variablesAndOffsetsDo: aBinaryBlock [
+{ #category : #compiling }
+TBehavior >> variablesAndOffsetsDo: aBinaryBlock [
 	"This is the interface between the compiler and a class's instance or field names.  The
 	 class should enumerate aBinaryBlock with the field definitions (with nil offsets) followed
 	 by the instance variable name strings and their integer offsets (1-relative).  The order is
@@ -2673,11 +2027,8 @@ TBehavior>>variablesAndOffsetsDo: aBinaryBlock [
 	self instVarNamesAndOffsetsDo: aBinaryBlock
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>whichClassDefinesClassVar: aString  [
+{ #category : #queries }
+TBehavior >> whichClassDefinesClassVar: aString [ 
 	Symbol hasInterned: aString ifTrue: [ :aSymbol |
 		^self whichSuperclassSatisfies: 
 			[:aClass | 
@@ -2685,20 +2036,14 @@ TBehavior>>whichClassDefinesClassVar: aString  [
 	^#()
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>whichClassDefinesInstVar: aString  [
+{ #category : #queries }
+TBehavior >> whichClassDefinesInstVar: aString [ 
 	^self 
 		whichSuperclassSatisfies: [:aClass | aClass instVarNames includes: aString]
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>whichClassIncludesSelector: aSymbol  [
+{ #category : #'testing method dictionary' }
+TBehavior >> whichClassIncludesSelector: aSymbol [ 
 	"Answer the class on the receiver's superclass chain where the 
 	argument, aSymbol (a message selector), will be found. Answer nil if none found."
 	"Rectangle whichClassIncludesSelector: #inspect."
@@ -2709,11 +2054,8 @@ TBehavior>>whichClassIncludesSelector: aSymbol  [
 	^ self superclass whichClassIncludesSelector: aSymbol
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>whichSelectorsAccess: instVarName  [
+{ #category : #'testing method dictionary' }
+TBehavior >> whichSelectorsAccess: instVarName [ 
 	"Answer a set of selectors whose methods access the argument, 
 	instVarName, as a named instance variable."
 
@@ -2725,21 +2067,15 @@ TBehavior>>whichSelectorsAccess: instVarName  [
 			or: [(self compiledMethodAt: sel) writesField: instVarIndex]]
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>whichSelectorsAssign: instVarName  [
+{ #category : #queries }
+TBehavior >> whichSelectorsAssign: instVarName [ 
 	"Answer a Set of selectors whose methods store into the argument, 
 	instVarName, as a named instance variable."
 	^self whichSelectorsStoreInto: instVarName
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>whichSelectorsRead: aString [
+{ #category : #queries }
+TBehavior >> whichSelectorsRead: aString [
 	
 	| index |
 	index := self
@@ -2750,19 +2086,13 @@ TBehavior>>whichSelectorsRead: aString [
 			readsField: index ]
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>whichSelectorsReferTo: literal  [
+{ #category : #'testing method dictionary' }
+TBehavior >> whichSelectorsReferTo: literal [ 
 	^ self thoroughWhichSelectorsReferTo: literal
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>whichSelectorsStoreInto: instVarName  [
+{ #category : #'testing method dictionary' }
+TBehavior >> whichSelectorsStoreInto: instVarName [ 
 	"Answer a Set of selectors whose methods access the argument, 
 	instVarName, as a named instance variable."
 	| instVarIndex |
@@ -2772,31 +2102,22 @@ TBehavior>>whichSelectorsStoreInto: instVarName  [
 	"Point whichSelectorsStoreInto: 'x'."
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>whichSuperclassSatisfies: aBlock  [
+{ #category : #queries }
+TBehavior >> whichSuperclassSatisfies: aBlock [ 
 	(aBlock value: self) ifTrue: [^self].
 	^self superclass ifNotNil: [self superclass whichSuperclassSatisfies: aBlock]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>withAllSubAndSuperclassesDo: aBlock [
+{ #category : #'user interface' }
+TBehavior >> withAllSubAndSuperclassesDo: aBlock [
 
 	self withAllSubclassesDo: aBlock.
 	self allSuperclassesDo: aBlock.
 
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>withAllSubclasses [
+{ #category : #'accessing class hierarchy' }
+TBehavior >> withAllSubclasses [
 	"Answer a Set of the receiver, the receiver's descendent's, and the  
 	receiver's descendent's subclasses."
 
@@ -2804,31 +2125,22 @@ TBehavior>>withAllSubclasses [
 		 yourself
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>withAllSubclassesDo: aBlock [
+{ #category : #'accessing class hierarchy' }
+TBehavior >> withAllSubclassesDo: aBlock [
 	"Evaluate the argument, aBlock, for the receiver and each of its 
 	subclasses."
 	self withAllSubclasses do: [ :subclass | aBlock value: subclass ].
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>withAllSuperAndSubclassesDo: aBlock [
+{ #category : #enumerating }
+TBehavior >> withAllSuperAndSubclassesDo: aBlock [
 	self allSuperclassesDo: aBlock.
 	aBlock value: self.
 	self allSubclassesDo: aBlock
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>withAllSuperclasses [
+{ #category : #'accessing class hierarchy' }
+TBehavior >> withAllSuperclasses [
 	"Answer an OrderedCollection of the receiver and the receiver's 
 	superclasses. The first element is the receiver, 
 	followed by its superclass; the last element is Object."
@@ -2839,22 +2151,16 @@ TBehavior>>withAllSuperclasses [
 	^ temp
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>withAllSuperclassesDo: aBlock  [
+{ #category : #enumerating }
+TBehavior >> withAllSuperclassesDo: aBlock [ 
 	"Evaluate the argument, aBlock, for each of the receiver's superclasses."
 	aBlock value: self.
 	self superclass == nil
 		ifFalse: [self superclass withAllSuperclassesDo: aBlock]
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehavior>>zapAllMethods [
+{ #category : #'accessing method dictionary' }
+TBehavior >> zapAllMethods [
 	"Remove all methods in this class which is assumed to be obsolete"
 
 	self methodDict: self emptyMethodDictionary.

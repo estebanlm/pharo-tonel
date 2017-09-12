@@ -12,23 +12,16 @@ Class {
 		'RenderThreadProcess',
 		'RenderThreadQueue'
 	],
-	#category : #OSWindow-Core-Extras,
-	#timestamp : '<historical>'
+	#category : #OSWindow-Core-Extras
 }
 
-{
-	#category : #'window animation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThread class>>animationStep [
+{ #category : #'window animation' }
+OSWindowRenderThread class >> animationStep [
 	^ 10
 ]
 
-{
-	#category : #'session management',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThread class>>checkSession [
+{ #category : #'session management' }
+OSWindowRenderThread class >> checkSession [
 	RenderSession ~~ Smalltalk session ifTrue: [ 
 		self createRenderThread.
 		RenderSession := Smalltalk session.
@@ -36,11 +29,8 @@ OSWindowRenderThread class>>checkSession [
 
 ]
 
-{
-	#category : #'render thread',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThread class>>createRenderThread [
+{ #category : #'render thread' }
+OSWindowRenderThread class >> createRenderThread [
 	RenderThreadProcess ifNotNil: [ RenderThreadProcess terminate ].
 	
 	RenderThreadQueue := AtomicSharedQueue new.
@@ -54,11 +44,8 @@ OSWindowRenderThread class>>createRenderThread [
 
 ]
 
-{
-	#category : #'window animation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThread class>>createdWindow: window [
+{ #category : #'window animation' }
+OSWindowRenderThread class >> createdWindow: window [
 	self checkSession.
 	RegisteredWindowsMutex critical: [
 		RegisteredWindows add: window
@@ -66,55 +53,37 @@ OSWindowRenderThread class>>createdWindow: window [
 
 ]
 
-{
-	#category : #'window animation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThread class>>destroyedWindow: window [
+{ #category : #'window animation' }
+OSWindowRenderThread class >> destroyedWindow: window [
 	self checkSession.
 	RegisteredWindowsMutex critical:  [ 
 		RegisteredWindows remove: window ifAbsent: [ nil ]
 	]
 ]
 
-{
-	#category : #'window animation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThread class>>doAnimationFrameFor: window [
+{ #category : #'window animation' }
+OSWindowRenderThread class >> doAnimationFrameFor: window [
 	"TODO: Handle errors produced here"
 	(OSWindowFrameEvent for: window) deliver
 ]
 
-{
-	#category : #'render thread',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThread class>>enqueueBlockingOperation: operation [
+{ #category : #'render thread' }
+OSWindowRenderThread class >> enqueueBlockingOperation: operation [
 	self enqueueOperation: operation blocking: true
 ]
 
-{
-	#category : #'render thread',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThread class>>enqueueOperation: operation [
+{ #category : #'render thread' }
+OSWindowRenderThread class >> enqueueOperation: operation [
 	self enqueueOperation: operation blocking: false
 ]
 
-{
-	#category : #'render thread',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThread class>>enqueueOperation: operation blocking: blocking [
+{ #category : #'render thread' }
+OSWindowRenderThread class >> enqueueOperation: operation blocking: blocking [
 	^ self enqueueOperation: operation blocking: blocking ifError: [ ]
 ]
 
-{
-	#category : #'render thread',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThread class>>enqueueOperation: operation blocking: blocking ifError: aBlock [
+{ #category : #'render thread' }
+OSWindowRenderThread class >> enqueueOperation: operation blocking: blocking ifError: aBlock [
 	" If this is in the RenderThread, execute directly"
 	| operationHandle |
 	Processor activeProcess == RenderThreadProcess ifTrue: [ operation value ].
@@ -135,11 +104,8 @@ OSWindowRenderThread class>>enqueueOperation: operation blocking: blocking ifErr
 
 ]
 
-{
-	#category : #'render thread',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThread class>>executeRenderOperations [
+{ #category : #'render thread' }
+OSWindowRenderThread class >> executeRenderOperations [
 	| operation  |
 	[ operation := RenderThreadQueue nextOrNil.
 	  operation  ~~ nil ] whileTrue: [
@@ -148,21 +114,15 @@ OSWindowRenderThread class>>executeRenderOperations [
 
 ]
 
-{
-	#category : #'render thread',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThread class>>isThisThread [
+{ #category : #'render thread' }
+OSWindowRenderThread class >> isThisThread [
 	^ Processor activeProcess == RenderThreadProcess
 
 
 ]
 
-{
-	#category : #'window animation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThread class>>performAnimationFrames [
+{ #category : #'window animation' }
+OSWindowRenderThread class >> performAnimationFrames [
 	| windows hasAnimated |
 	
 	" Copy the registered windows. "
@@ -189,11 +149,8 @@ OSWindowRenderThread class>>performAnimationFrames [
 	]
 ]
 
-{
-	#category : #'render thread',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowRenderThread class>>renderThreadProcess [
+{ #category : #'render thread' }
+OSWindowRenderThread class >> renderThreadProcess [
 	| session |
 	session := Smalltalk session.
 	

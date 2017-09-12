@@ -1,12 +1,7 @@
-Extension {
-	#name : #RGClassDefinitionTest
-}
+Extension { #name : #RGClassDefinitionTest }
 
-{
-	#category : #'*Ring-Tests-Monticello',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RGClassDefinitionTest>>testAsClassDefinition3 [
+{ #category : #'*Ring-Tests-Monticello' }
+RGClassDefinitionTest >> testAsClassDefinition3 [
 
 	| newClass newSlice |
 	newClass:= OrderedCollection asRingDefinitionWithMethods: true withSuperclasses: false withSubclasses: false withPackages: false.
@@ -45,11 +40,8 @@ RGClassDefinitionTest>>testAsClassDefinition3 [
 
 ]
 
-{
-	#category : #'*Ring-Tests-Monticello',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RGClassDefinitionTest>>testAsFullClassDefinition [
+{ #category : #'*Ring-Tests-Monticello' }
+RGClassDefinitionTest >> testAsFullClassDefinition [
 	"self debug: #testAsFullClassDefinition"
 	
 	| rgClass |

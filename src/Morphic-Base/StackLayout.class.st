@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #StackLayout,
 	#superclass : #LayoutPolicy,
@@ -8,25 +5,18 @@ Class {
 		'cachedMinExtent',
 		'cachedMinExtents'
 	],
-	#category : #Morphic-Base-Layouts,
-	#timestamp : ''
+	#category : #Morphic-Base-Layouts
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StackLayout>>flushLayoutCache [
+{ #category : #'as yet unclassified' }
+StackLayout >> flushLayoutCache [
 	"Flush any cached information associated with the receiver."
 	
 	cachedMinExtent := nil
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StackLayout>>layout: aMorph in: layoutBounds [
+{ #category : #'as yet unclassified' }
+StackLayout >> layout: aMorph in: layoutBounds [
 	"Compute the layout for the given morph based on the new bounds.
 	Supports submorph hResizing, vResizing, cellInset, cellPositioning
 	(top, *center, bottom*)."
@@ -53,11 +43,8 @@ StackLayout>>layout: aMorph in: layoutBounds [
 								m bounds: box]]]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StackLayout>>minExtentOf: aMorph in: newBounds [
+{ #category : #'as yet unclassified' }
+StackLayout >> minExtentOf: aMorph [ in: newBounds
 	"Return the minimal size aMorph's children would require given the new bounds"
 	
 	|min extent|

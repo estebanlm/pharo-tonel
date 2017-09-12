@@ -29,15 +29,11 @@ Class {
 		'WindowEventPaint',
 		'YellowButtonBit'
 	],
-	#category : #System-VMEvents,
-	#timestamp : 'LaurentLaffont 3/15/2011 20:48'
+	#category : #System-VMEvents
 }
 
-{
-	#category : #'pool initialization',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventSensorConstants class>>initialize [
+{ #category : #'pool initialization' }
+EventSensorConstants class >> initialize [
 	"EventSensorConstants initialize"
 	RedButtonBit := 4.
 	BlueButtonBit := 2.

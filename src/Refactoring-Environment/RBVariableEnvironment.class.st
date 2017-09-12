@@ -17,15 +17,11 @@ Class {
 		'classVariables',
 		'selectorCache'
 	],
-	#category : #Refactoring-Environment,
-	#timestamp : 'NicolaiHess 4/27/2015 21:24'
+	#category : #Refactoring-Environment
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment class>>on: anEnvironment readersOfInstanceVariable: aString in: aClass  [
+{ #category : #'instance creation' }
+RBVariableEnvironment class >> on: anEnvironment readersOfInstanceVariable: aString [ in: aClass 
 	| newEnv |
 	newEnv := (self onEnvironment: anEnvironment)
 				label: 'Readers of ''' , aString , ''' in ' , aClass name;
@@ -37,11 +33,8 @@ RBVariableEnvironment class>>on: anEnvironment readersOfInstanceVariable: aStrin
 	^newEnv
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment class>>on: anEnvironment referencesToClassVariable: aSymbol in: aClass  [
+{ #category : #'instance creation' }
+RBVariableEnvironment class >> on: anEnvironment referencesToClassVariable: aSymbol in: aClass [ 
 	| newEnv definingClass assoc |
 	newEnv := (self onEnvironment: anEnvironment)
 				label: 'References to ''' , aSymbol , ''' in ' , aClass name;
@@ -55,11 +48,8 @@ RBVariableEnvironment class>>on: anEnvironment referencesToClassVariable: aSymbo
 	^newEnv
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment class>>on: anEnvironment referencesToInstanceVariable: aString in: aClass  [
+{ #category : #'instance creation' }
+RBVariableEnvironment class >> on: anEnvironment referencesToInstanceVariable: aString [ in: aClass 
 	| newEnv |
 	newEnv := (self onEnvironment: anEnvironment)
 				label: 'References to ''' , aString , ''' in ' , aClass name;
@@ -72,11 +62,8 @@ RBVariableEnvironment class>>on: anEnvironment referencesToInstanceVariable: aSt
 	^newEnv
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment class>>on: anEnvironment writersOfInstanceVariable: aString in: aClass  [
+{ #category : #'instance creation' }
+RBVariableEnvironment class >> on: anEnvironment writersOfInstanceVariable: aString [ in: aClass 
 	| newEnv |
 	newEnv := (self onEnvironment: anEnvironment)
 				label: 'Writers of ''' , aString , ''' in ' , aClass name;
@@ -88,105 +75,75 @@ RBVariableEnvironment class>>on: anEnvironment writersOfInstanceVariable: aStrin
 	^newEnv
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment class>>readersOfInstanceVariable: aString in: aClass  [
+{ #category : #'instance creation' }
+RBVariableEnvironment class >> readersOfInstanceVariable: aString [ in: aClass 
 	^ self
 		on: self default
 		readersOfInstanceVariable: aString
 		in: aClass
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment class>>referencesToClassVariable: aSymbol in: aClass  [
+{ #category : #'instance creation' }
+RBVariableEnvironment class >> referencesToClassVariable: aSymbol in: aClass [ 
 	^ self 
 		on: self default
 		referencesToClassVariable: aSymbol 
 		in: aClass 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment class>>referencesToInstanceVariable: aString in: aClass  [
+{ #category : #'instance creation' }
+RBVariableEnvironment class >> referencesToInstanceVariable: aString [ in: aClass 
 	^ self
 		on: self default 
 		referencesToInstanceVariable: aString 
 		in: aClass 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment class>>writersOfInstanceVariable: aString in: aClass  [
+{ #category : #'instance creation' }
+RBVariableEnvironment class >> writersOfInstanceVariable: aString [ in: aClass 
 	^ self
 		on: self default
 		writersOfInstanceVariable: aString 
 		in: aClass 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>accessorMethods [
+{ #category : #private }
+RBVariableEnvironment >> accessorMethods [
 	^#(#instanceVariables #instanceVariableReaders #instanceVariableWriters #classVariables)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>addClass: aClass classVariable: aSymbol  [
+{ #category : #accessing }
+RBVariableEnvironment >> addClass: aClass classVariable: aSymbol [ 
 	(classVariables at: aClass name ifAbsentPut: [Set new]) add: aSymbol.
 	self flushCachesFor: aClass.
 	self addSearchString: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>addClass: aClass instanceVariable: aString  [
+{ #category : #accessing }
+RBVariableEnvironment >> addClass: aClass instanceVariable: aString [ 
 	(instanceVariables at: aClass name ifAbsentPut: [Set new]) add: aString.
 	self flushCachesFor: aClass.
 	self addSearchString: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>addClass: aClass instanceVariableReader: aString  [
+{ #category : #accessing }
+RBVariableEnvironment >> addClass: aClass instanceVariableReader: aString [ 
 	(instanceVariableReaders at: aClass name ifAbsentPut: [Set new]) 
 		add: aString.
 	self flushCachesFor: aClass.
 	self addSearchString: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>addClass: aClass instanceVariableWriter: aString  [
+{ #category : #accessing }
+RBVariableEnvironment >> addClass: aClass instanceVariableWriter: aString [ 
 	(instanceVariableWriters at: aClass name ifAbsentPut: [Set new]) 
 		add: aString.
 	self flushCachesFor: aClass.
 	self addSearchString: aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>allClassesDo: aBlock  [
+{ #category : #private }
+RBVariableEnvironment >> allClassesDo: aBlock [ 
 	| classes instVarBlock |
 	classes := Set new.
 	instVarBlock := 
@@ -209,11 +166,8 @@ RBVariableEnvironment>>allClassesDo: aBlock  [
 	classes do: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>classForName: aString  [
+{ #category : #private }
+RBVariableEnvironment >> classForName: aString [ 
 	| name isMeta class |
 	isMeta := aString includes: $ .
 	name := (isMeta 
@@ -225,11 +179,8 @@ RBVariableEnvironment>>classForName: aString  [
 		ifFalse: [ class ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>classNamesWithVariables [
+{ #category : #accessing }
+RBVariableEnvironment >> classNamesWithVariables [
 	| classNames |
 	classNames := Set new.
 	classNames
@@ -240,11 +191,8 @@ RBVariableEnvironment>>classNamesWithVariables [
 	^classNames
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>classVariableSelectorsFor: aClass  [
+{ #category : #private }
+RBVariableEnvironment >> classVariableSelectorsFor: aClass [ 
 	| selectors classVars |
 	selectors := Set new.
 	classVars := Set new.
@@ -263,56 +211,38 @@ RBVariableEnvironment>>classVariableSelectorsFor: aClass  [
 	^selectors
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>classVariables [
+{ #category : #private }
+RBVariableEnvironment >> classVariables [
 	^classVariables
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>classVariables: anObject [
+{ #category : #private }
+RBVariableEnvironment >> classVariables: anObject [
 	classVariables := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>classVariablesFor: aClass  [
+{ #category : #accessing }
+RBVariableEnvironment >> classVariablesFor: aClass [ 
 	^classVariables at: aClass name ifAbsent: [#()]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>computeSelectorCacheFor: aClass  [
+{ #category : #private }
+RBVariableEnvironment >> computeSelectorCacheFor: aClass [ 
 	^(self instanceVariableSelectorsFor: aClass)
 		addAll: (self classVariableSelectorsFor: aClass);
 		yourself
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>copyDictionary: aDictionary  [
+{ #category : #copying }
+RBVariableEnvironment >> copyDictionary: aDictionary [ 
 	| copy |
 	copy := Dictionary new: aDictionary size.
 	aDictionary keysAndValuesDo: [:key :value | copy at: key put: value].
 	^copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>environmentForClassVariable: aSymbol in: aClass  [
+{ #category : #accessing }
+RBVariableEnvironment >> environmentForClassVariable: aSymbol in: aClass [ 
 	| selectorEnvironment assoc block |
 	selectorEnvironment := RBSelectorEnvironment onEnvironment: self.
 	selectorEnvironment addSearchString: aSymbol.
@@ -331,11 +261,8 @@ RBVariableEnvironment>>environmentForClassVariable: aSymbol in: aClass  [
 	^selectorEnvironment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>environmentForInstanceVariable: aString in: aClass  [
+{ #category : #accessing }
+RBVariableEnvironment >> environmentForInstanceVariable: aString [ in: aClass 
 	| selectorEnvironment isReader isWriter |
 	selectorEnvironment := RBSelectorEnvironment onEnvironment: self.
 	selectorEnvironment addSearchString: aString.
@@ -361,11 +288,8 @@ RBVariableEnvironment>>environmentForInstanceVariable: aString in: aClass  [
 	^selectorEnvironment
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>flushCachesFor: aClass  [
+{ #category : #private }
+RBVariableEnvironment >> flushCachesFor: aClass [ 
 	selectorCache isNil ifTrue: [ ^ self] .
 	aClass theNonMetaClass withAllSubclasses do: [ :each | 
 		selectorCache
@@ -373,19 +297,13 @@ RBVariableEnvironment>>flushCachesFor: aClass  [
 			removeKey: each theMetaClass name ifAbsent: [] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>includesCategory: aCategory  [
+{ #category : #testing }
+RBVariableEnvironment >> includesCategory: aCategory [ 
 	^(self classNamesFor: aCategory) isEmpty not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>includesClass: aClass  [
+{ #category : #testing }
+RBVariableEnvironment >> includesClass: aClass [ 
 	(super includesClass: aClass) ifFalse: [^false].
 	(instanceVariables includesKey: aClass name) ifTrue: [^true].
 	(classVariables includesKey: aClass name) ifTrue: [^true].
@@ -394,28 +312,19 @@ RBVariableEnvironment>>includesClass: aClass  [
 		ifNone: [nil]) notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>includesProtocol: aProtocol in: aClass  [
+{ #category : #testing }
+RBVariableEnvironment >> includesProtocol: aProtocol [ in: aClass 
 	^(self selectorsFor: aProtocol in: aClass) isEmpty not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>includesSelector: aSymbol in: aClass  [
+{ #category : #testing }
+RBVariableEnvironment >> includesSelector: aSymbol [ in: aClass 
 	^(environment includesSelector: aSymbol in: aClass) 
 		and: [(self selectorCacheFor: aClass) includes: aSymbol]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>initialize [
+{ #category : #initialization }
+RBVariableEnvironment >> initialize [
 	super initialize.
 	instanceVariables := Dictionary new.
 	classVariables := Dictionary new.
@@ -423,27 +332,18 @@ RBVariableEnvironment>>initialize [
 	instanceVariableWriters := Dictionary new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>instanceVariableReaders [
+{ #category : #private }
+RBVariableEnvironment >> instanceVariableReaders [
 	^instanceVariableReaders
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>instanceVariableReaders: anObject [
+{ #category : #private }
+RBVariableEnvironment >> instanceVariableReaders: anObject [
 	instanceVariableReaders := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>instanceVariableSelectorsFor: aClass  [
+{ #category : #private }
+RBVariableEnvironment >> instanceVariableSelectorsFor: aClass [ 
 	| selectors |
 	selectors := Set new.
 	#(#instanceVariables #instanceVariableReaders #instanceVariableWriters) 
@@ -461,43 +361,28 @@ RBVariableEnvironment>>instanceVariableSelectorsFor: aClass  [
 	^selectors
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>instanceVariableWriters [
+{ #category : #private }
+RBVariableEnvironment >> instanceVariableWriters [
 	^instanceVariableWriters
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>instanceVariableWriters: anObject [
+{ #category : #private }
+RBVariableEnvironment >> instanceVariableWriters: anObject [
 	instanceVariableWriters := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>instanceVariables [
+{ #category : #private }
+RBVariableEnvironment >> instanceVariables [
 	^instanceVariables
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>instanceVariables: anObject [
+{ #category : #private }
+RBVariableEnvironment >> instanceVariables: anObject [
 	instanceVariables := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>instanceVariablesFor: aClass  [
+{ #category : #accessing }
+RBVariableEnvironment >> instanceVariablesFor: aClass [ 
 	| vars name |
 	vars := Set new.
 	name := aClass name.
@@ -508,44 +393,29 @@ RBVariableEnvironment>>instanceVariablesFor: aClass  [
 	^vars
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>isEmpty [
+{ #category : #testing }
+RBVariableEnvironment >> isEmpty [
 	^ self accessorMethods allSatisfy: [ :each | (self perform: each) isEmpty ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>isVariableEnvironment [
+{ #category : #testing }
+RBVariableEnvironment >> isVariableEnvironment [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>numberVariables [
+{ #category : #accessing }
+RBVariableEnvironment >> numberVariables [
 	^self accessorMethods inject: 0
 		into: [:sum :each | sum + ((self perform: each) inject: 0 into: [:s :e | s + e size])]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>packages [
+{ #category : #accessing }
+RBVariableEnvironment >> packages [
 	^ self classes collect: #package
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>postCopy [
+{ #category : #copying }
+RBVariableEnvironment >> postCopy [
 	super postCopy.
 	instanceVariables := self copyDictionary: instanceVariables.
 	instanceVariableReaders := self copyDictionary: instanceVariableReaders.
@@ -554,19 +424,13 @@ RBVariableEnvironment>>postCopy [
 	selectorCache := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>problemCount [
+{ #category : #accessing }
+RBVariableEnvironment >> problemCount [
 	^self numberVariables
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>removeClass: aClass classVariable: aSymbol  [
+{ #category : #accessing }
+RBVariableEnvironment >> removeClass: aClass classVariable: aSymbol [ 
 	| vars |
 	vars := classVariables at: aClass name ifAbsent: [Set new].
 	vars remove: aSymbol ifAbsent: [].
@@ -574,11 +438,8 @@ RBVariableEnvironment>>removeClass: aClass classVariable: aSymbol  [
 	self flushCachesFor: aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>removeClass: aClass instanceVariable: aString  [
+{ #category : #accessing }
+RBVariableEnvironment >> removeClass: aClass instanceVariable: aString [ 
 	| vars |
 	vars := instanceVariables at: aClass name ifAbsent: [Set new].
 	vars remove: aString ifAbsent: [].
@@ -587,11 +448,8 @@ RBVariableEnvironment>>removeClass: aClass instanceVariable: aString  [
 	self flushCachesFor: aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>removeClass: aClass instanceVariableReader: aString  [
+{ #category : #accessing }
+RBVariableEnvironment >> removeClass: aClass instanceVariableReader: aString [ 
 	| vars |
 	vars := instanceVariableReaders at: aClass name ifAbsent: [Set new].
 	vars remove: aString ifAbsent: [].
@@ -600,11 +458,8 @@ RBVariableEnvironment>>removeClass: aClass instanceVariableReader: aString  [
 	self flushCachesFor: aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>removeClass: aClass instanceVariableWriter: aString  [
+{ #category : #accessing }
+RBVariableEnvironment >> removeClass: aClass instanceVariableWriter: aString [ 
 	| vars |
 	vars := instanceVariableWriters at: aClass name ifAbsent: [Set new].
 	vars remove: aString ifAbsent: [].
@@ -613,29 +468,20 @@ RBVariableEnvironment>>removeClass: aClass instanceVariableWriter: aString  [
 	self flushCachesFor: aClass
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>selectorCache [
+{ #category : #private }
+RBVariableEnvironment >> selectorCache [
 	^selectorCache isNil 
 		ifTrue: [selectorCache := Dictionary new]
 		ifFalse: [selectorCache]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>selectorCacheFor: aClass  [
+{ #category : #private }
+RBVariableEnvironment >> selectorCacheFor: aClass [ 
 	^self selectorCache at: aClass name ifAbsentPut: [ self computeSelectorCacheFor: aClass ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBVariableEnvironment>>storeOn: aStream  [
+{ #category : #printing }
+RBVariableEnvironment >> storeOn: aStream [ 
 	aStream
 		nextPut: $(;
 		nextPutAll: self class name;

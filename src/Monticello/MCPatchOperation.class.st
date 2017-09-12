@@ -8,23 +8,16 @@ Class {
 		'isApplicable',
 		'isConflict'
 	],
-	#category : #Monticello-Patching,
-	#timestamp : 'StephaneDucasse 6/24/2011 14:15'
+	#category : #Monticello-Patching
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>><= other [
+{ #category : #comparing }
+MCPatchOperation >> <= other [
 	^ self definition <= other definition
 ]
 
-{
-	#category : #'applying operation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>applyTo: anObject [
+{ #category : #'applying operation' }
+MCPatchOperation >> applyTo: anObject [
 
 	(self isConflict and: [self isResolved not] ) ifTrue: [
 		self error: 'Cannot continue until this conflict has been resolved' ].
@@ -32,224 +25,146 @@ MCPatchOperation>>applyTo: anObject [
 	self remoteChosen ifTrue: [ self basicApplyTo: anObject ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>beConflict [
+{ #category : #accessing }
+MCPatchOperation >> beConflict [
 	isConflict := true.
 	isApplicable := nil. "not resolved"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>beNonConflict [
+{ #category : #accessing }
+MCPatchOperation >> beNonConflict [
 	isConflict := false.
 	isApplicable := true.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>chooseLocal [
+{ #category : #accessing }
+MCPatchOperation >> chooseLocal [
 	isApplicable := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>chooseNewer [
+{ #category : #accessing }
+MCPatchOperation >> chooseNewer [
 	self isLocalNewer 
 		ifTrue: [ self chooseLocal ]
 		ifFalse: [ self isRemoteNewer ifTrue: [ self chooseRemote ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>chooseOlder [
+{ #category : #accessing }
+MCPatchOperation >> chooseOlder [
 	self isRemoteNewer 
 		ifTrue: [ self chooseLocal ]
 		ifFalse: [ self isLocalNewer ifTrue: [ self chooseRemote ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>chooseRemote [
+{ #category : #accessing }
+MCPatchOperation >> chooseRemote [
 	isApplicable := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>clearChoice [
+{ #category : #accessing }
+MCPatchOperation >> clearChoice [
 	isApplicable := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>definition [
+{ #category : #accessing }
+MCPatchOperation >> definition [
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>initialize [
+{ #category : #initialization }
+MCPatchOperation >> initialize [
 	super initialize.
 	self beNonConflict
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>inverse [
+{ #category : #accessing }
+MCPatchOperation >> inverse [
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>isAddition [
+{ #category : #testing }
+MCPatchOperation >> isAddition [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>isClassPatch [
+{ #category : #testing }
+MCPatchOperation >> isClassPatch [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>isConflict [
+{ #category : #testing }
+MCPatchOperation >> isConflict [
 	^ isConflict == true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>isLocalNewer [
+{ #category : #testing }
+MCPatchOperation >> isLocalNewer [
 	^ self localDefinition fullTimeStamp > self remoteDefinition fullTimeStamp
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>isModification [
+{ #category : #testing }
+MCPatchOperation >> isModification [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>isRemoteNewer [
+{ #category : #testing }
+MCPatchOperation >> isRemoteNewer [
 	^ self localDefinition fullTimeStamp < self remoteDefinition fullTimeStamp
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>isRemoval [
+{ #category : #testing }
+MCPatchOperation >> isRemoval [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>isResolved [
+{ #category : #testing }
+MCPatchOperation >> isResolved [
 	^ isConflict and: [ isApplicable notNil ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>localChosen [
+{ #category : #testing }
+MCPatchOperation >> localChosen [
 	^ isApplicable == false
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>localDefinition [
+{ #category : #testing }
+MCPatchOperation >> localDefinition [
 	^ self baseDefinition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>operation [
+{ #category : #accessing }
+MCPatchOperation >> operation [
 	"for compatibility with MCConflict interface"
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>prefixForOperation: aSymbol [
+{ #category : #accessing }
+MCPatchOperation >> prefixForOperation: aSymbol [
 	aSymbol == #insert ifTrue: [^ '+'].
 	aSymbol == #remove ifTrue: [^ '-'].
 	^ ' '
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>printAnnotations: requests on: aStream [
+{ #category : #accessing }
+MCPatchOperation >> printAnnotations: requests [ on: aStream
 	"Add a string for an annotation pane, trying to fulfill the CodeHolder annotationRequests"
 
 	self definition printAnnotations: requests on: aStream.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>remoteChosen [
+{ #category : #testing }
+MCPatchOperation >> remoteChosen [
 	^ isApplicable ~~ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>remoteDefinition [
+{ #category : #accessing }
+MCPatchOperation >> remoteDefinition [
 	^ self targetDefinition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>status [
+{ #category : #accessing }
+MCPatchOperation >> status [
 	^ self isResolved
 		ifFalse: ['']
 		ifTrue: [self remoteChosen
@@ -257,18 +172,12 @@ MCPatchOperation>>status [
 					ifTrue: ['R']]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>summarySuffix [
+{ #category : #accessing }
+MCPatchOperation >> summarySuffix [
 	^ ''
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCPatchOperation>>targetClass [
+{ #category : #accessing }
+MCPatchOperation >> targetClass [
 	self subclassResponsibility.
 ]

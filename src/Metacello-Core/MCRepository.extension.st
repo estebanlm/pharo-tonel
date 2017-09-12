@@ -1,40 +1,26 @@
-Extension {
-	#name : #MCRepository
-}
+Extension { #name : #MCRepository }
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MCRepository>>flushForScriptGet [
+{ #category : #'*Metacello-Core' }
+MCRepository >> flushForScriptGet [
     "noop"
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MCRepository>>repositoryBranchName [
+{ #category : #'*Metacello-Core' }
+MCRepository >> repositoryBranchName [
   "extract a branch name from the repository ... if possible"
 
   ^ ''
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MCRepository>>repositoryDescription [
+{ #category : #'*Metacello-Core' }
+MCRepository >> repositoryDescription [
   "return a description that includes a repositoryVersionString and repositoryBranchName if present"
 
   ^ self description
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MCRepository>>repositoryVersionString [
+{ #category : #'*Metacello-Core' }
+MCRepository >> repositoryVersionString [
   "extract a version string from the repository ... if possible"
 
   ^ ''

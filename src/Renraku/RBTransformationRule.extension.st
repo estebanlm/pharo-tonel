@@ -1,12 +1,7 @@
-Extension {
-	#name : #RBTransformationRule
-}
+Extension { #name : #RBTransformationRule }
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBTransformationRule>>check: aMethod forCritiquesDo: aCriticBlock [
+{ #category : #'*renraku' }
+RBTransformationRule >> check: aMethod forCritiquesDo: aCriticBlock [
 	
 	(self basicCheck: aMethod)
 		ifTrue: [
@@ -18,11 +13,8 @@ RBTransformationRule>>check: aMethod forCritiquesDo: aCriticBlock [
 		
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBTransformationRule>>suggestedCode: aCritic [
+{ #category : #'*renraku' }
+RBTransformationRule >> suggestedCode: aCritic [
 
 	^ (self changes detect: [ :ch | 
 			(ch  isMeta = aCritic  methodClass isMeta) &

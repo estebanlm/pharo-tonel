@@ -9,15 +9,11 @@ Class {
 		'selector',
 		'class'
 	],
-	#category : #Compiler-Support,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:16'
+	#category : #Compiler-Support
 }
 
-{
-	#category : #exceptionDescription,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-UndeclaredVariableWarning>>defaultAction [
+{ #category : #exceptionDescription }
+UndeclaredVariableWarning >> defaultAction [
 	"The user should be notified of the occurrence of an exceptional occurrence and
 	 given an option of continuing or aborting the computation. The description of the
 	 occurrence should include any text specified as the argument of the #signal: message."
@@ -28,20 +24,14 @@ UndeclaredVariableWarning>>defaultAction [
 	^true
 ]
 
-{
-	#category : #exceptionDescription,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-UndeclaredVariableWarning>>defaultResumeValue [
+{ #category : #exceptionDescription }
+UndeclaredVariableWarning >> defaultResumeValue [
 	"Answer the value that by default should be returned if the exception is resumed"
 	^true
 ]
 
-{
-	#category : #exceptionDescription,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-UndeclaredVariableWarning>>messageText [
+{ #category : #exceptionDescription }
+UndeclaredVariableWarning >> messageText [
 	^ String streamContents: [ :s | 
 		selector 
 			ifNotNil: [ s print: class; nextPutAll:  '>>'; print: selector; space]
@@ -49,11 +39,8 @@ UndeclaredVariableWarning>>messageText [
 		s nextPut: $(; print: name; nextPutAll: ' is Undeclared) ' ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-UndeclaredVariableWarning>>name: aString selector: aSymbolOrNil class: aBehavior [
+{ #category : #initialize-release }
+UndeclaredVariableWarning >> name: aString selector: aSymbolOrNil class: aBehavior [
 	name := aString.
 	selector := aSymbolOrNil.
 	class := aBehavior

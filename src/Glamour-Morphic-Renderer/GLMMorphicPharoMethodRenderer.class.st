@@ -1,28 +1,18 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicPharoMethodRenderer,
 	#superclass : #GLMMorphicPharoCodeRenderer,
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoMethodRenderer>>methodBindingsStrategy [
+{ #category : #private }
+GLMMorphicPharoMethodRenderer >> methodBindingsStrategy [
 
 	^ [ :currentBindings :aSymbol |
 		 currentBindings associationAt: aSymbol ifAbsent: [nil] ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoMethodRenderer>>modelFor: aPresentation [
+{ #category : #rendering }
+GLMMorphicPharoMethodRenderer >> modelFor: aPresentation [
 
 	^ (super modelFor: aPresentation)
 		bindingsStrategy: self methodBindingsStrategy;
@@ -30,11 +20,8 @@ GLMMorphicPharoMethodRenderer>>modelFor: aPresentation [
 		yourself
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicPharoMethodRenderer>>morph [
+{ #category : #rendering }
+GLMMorphicPharoMethodRenderer >> morph [
 	|morph|
 	morph := RubScrolledTextMorph new
 		beForSmalltalkCode;

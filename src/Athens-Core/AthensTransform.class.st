@@ -44,15 +44,11 @@ It is safe to store transformation in temporary variable, as long as canvas is v
 Class {
 	#name : #AthensTransform,
 	#superclass : #Object,
-	#category : #Athens-Core,
-	#timestamp : 'IgorStasenko 3/7/2012 14:41'
+	#category : #Athens-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensTransform>>getMatrix [
+{ #category : #accessing }
+AthensTransform >> getMatrix [
 	"Answer an affine transformation matrix currently used by receiver.
 	Note, that resulting matrix should be copied from receiver's data, i.e.
 	no future modifications of receiver should affect the answered object.
@@ -62,107 +58,71 @@ AthensTransform>>getMatrix [
 	^ self copy
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensTransform>>invert [
+{ #category : #transformations }
+AthensTransform >> invert [
 	"i should invert"
 	self subclassResponsibility
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensTransform>>loadAffineTransform: anAthenTransform [
+{ #category : #transformations }
+AthensTransform >> loadAffineTransform: anAthenTransform [
 	self subclassResponsibility
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensTransform>>loadIdentity [
+{ #category : #transformations }
+AthensTransform >> loadIdentity [
 	"load the identity matrix into receiver"
 	self subclassResponsibility
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensTransform>>restoreAfter: aBlock [
+{ #category : #transformations }
+AthensTransform >> restoreAfter: aBlock [
 	"i should save the current transform state, evaluate the block, and then restore the saved transform state"
 	self subclassResponsibility
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensTransform>>rotateByDegrees: angle [
+{ #category : #transformations }
+AthensTransform >> rotateByDegrees: angle [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensTransform>>rotateByRadians: angle [
+{ #category : #transformations }
+AthensTransform >> rotateByRadians: angle [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensTransform>>scaleBy: factor [
+{ #category : #transformations }
+AthensTransform >> scaleBy: factor [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensTransform>>scaleX: fx Y: fy [
+{ #category : #transformations }
+AthensTransform >> scaleX: fx Y: fy [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #vector-transform,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensTransform>>transform: aPoint  [
+{ #category : #vector-transform }
+AthensTransform >> transform: aPoint [ 
 	self subclassResponsibility
 ]
 
-{
-	#category : #vector-transform,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensTransform>>transformX: px Y: py  [
+{ #category : #vector-transform }
+AthensTransform >> transformX: px Y: py [ 
 	self subclassResponsibility
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensTransform>>translateBy: aPoint [
+{ #category : #transformations }
+AthensTransform >> translateBy: aPoint [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensTransform>>translateX: px Y: py [
+{ #category : #transformations }
+AthensTransform >> translateX: px Y: py [
 
 	self subclassResponsibility
 ]

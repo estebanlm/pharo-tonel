@@ -11,15 +11,11 @@ Class {
 		'list',
 		'inspectIt'
 	],
-	#category : #Reflectivity-Tools-Watchpoints,
-	#timestamp : 'johanfabry 11/24/2015 14:11'
+	#category : #Reflectivity-Tools-Watchpoints
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow class>>defaultSpec [
+{ #category : #specs }
+WatchpointWindow class >> defaultSpec [
 	<spec: #default>
 	^ SpecLayout composed
 		newColumn: [ :col |
@@ -29,20 +25,14 @@ WatchpointWindow class>>defaultSpec [
 				add: #inspectIt height: self toolbarHeight ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow class>>new [
+{ #category : #'instance creation' }
+WatchpointWindow class >> new [
 	"use on: aWatchpoint"
 	^self shouldNotImplement 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow class>>on: aWatchpoint [
+{ #category : #'instance creation' }
+WatchpointWindow class >> on: aWatchpoint [
 	| inst |
 	inst := self basicNew.
 	inst watchpoint: aWatchpoint.
@@ -50,36 +40,24 @@ WatchpointWindow class>>on: aWatchpoint [
 	^inst
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow class>>openOn: aWatchpoint [
+{ #category : #'instance creation' }
+WatchpointWindow class >> openOn: aWatchpoint [
 	^(self on: aWatchpoint) openWithSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>defaultWindowModelClass [
+{ #category : #accessing }
+WatchpointWindow >> defaultWindowModelClass [
 
 	^ TickingWindowModel 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>extent [
+{ #category : #api }
+WatchpointWindow >> extent [
 	^230@240
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>initializePresenter  [
+{ #category : #initialization }
+WatchpointWindow >> initializePresenter [ 
 	
 	list whenSelectionChanged: [inspectIt enabled: (list getIndex = 0) not ].
 	
@@ -89,11 +67,8 @@ WatchpointWindow>>initializePresenter  [
 		index = 0 ifFalse: [ (list listItems at: index) inspect ]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>initializeWidgets [
+{ #category : #initialization }
+WatchpointWindow >> initializeWidgets [
 
 	list := self newList.
 	inspectIt := self newButton.
@@ -108,86 +83,56 @@ WatchpointWindow>>initializeWidgets [
 	inspectIt enabled: false.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>inspectIt [
+{ #category : #accessing }
+WatchpointWindow >> inspectIt [
 	^ inspectIt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>inspectIt: anObject [
+{ #category : #accessing }
+WatchpointWindow >> inspectIt: anObject [
 	inspectIt := anObject
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>lessItems [
+{ #category : #configuration }
+WatchpointWindow >> lessItems [
 	numItems := 0 max: (numItems - 1)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>list [
+{ #category : #accessing }
+WatchpointWindow >> list [
 	^ list
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>list: anObject [
+{ #category : #accessing }
+WatchpointWindow >> list: anObject [
 	list := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>menu [
+{ #category : #accessing }
+WatchpointWindow >> menu [
 	^ menu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>menu: anObject [
+{ #category : #accessing }
+WatchpointWindow >> menu: anObject [
 	menu := anObject
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>moreItems [
+{ #category : #configuration }
+WatchpointWindow >> moreItems [
 	numItems := numItems + 1
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>refreshItems [
+{ #category : #updating }
+WatchpointWindow >> refreshItems [
 	| max values |
 	values := self watchpoint values.
 	max := values size.
 	list items: (values copyFrom: (1 max: max - numItems) to: max) reversed. 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>setupMenu [
+{ #category : #initialization }
+WatchpointWindow >> setupMenu [
 	menu := MenuModel new.
 	menu applyTo: self.
 	menu
@@ -255,36 +200,24 @@ WatchpointWindow>>setupMenu [
 						action: [ self watchpoint uninstall ] ] ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>step [
+{ #category : #updating }
+WatchpointWindow >> step [
 	self refreshItems 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>title [
+{ #category : #api }
+WatchpointWindow >> title [
 	| wpName |
 	wpName := self watchpoint tagname.
 	^'WP: ',(wpName isAllSeparators ifTrue: [ 'Unnamed' ] ifFalse: [ wpName ]).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>watchpoint [
+{ #category : #accessing }
+WatchpointWindow >> watchpoint [
 	^ watchpoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WatchpointWindow>>watchpoint: anObject [
+{ #category : #accessing }
+WatchpointWindow >> watchpoint: anObject [
 	watchpoint := anObject
 ]

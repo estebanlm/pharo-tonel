@@ -1,12 +1,7 @@
-Extension {
-	#name : #Collection
-}
+Extension { #name : #Collection }
 
-{
-	#category : #'*UIManager',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Collection>>do: aBlock displayingProgress: aStringOrBlock [
+{ #category : #'*UIManager' }
+Collection >> do: aBlock displayingProgress: aStringOrBlock [
 	"Enumerate aBlock displaying progress information. 
 	If the argument is a string, use a static label for the process. 
 	If the argument is a block, evaluate it with the element to retrieve the label.
@@ -20,11 +15,8 @@ Collection>>do: aBlock displayingProgress: aStringOrBlock [
 	^self do: aBlock displayingProgress: aStringOrBlock every: 20
 ]
 
-{
-	#category : #'*UIManager',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-Collection>>do: aBlock displayingProgress: aStringOrBlock every: msecs [
+{ #category : #'*UIManager' }
+Collection >> do: aBlock displayingProgress: aStringOrBlock every: msecs [
        "Enumerate aBlock displaying progress information.
        If the argument is a string, use a static label for the process.
        If the argument is a block, evaluate it with the element to retrieve the label.

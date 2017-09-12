@@ -4,32 +4,22 @@ I represent the Shift key modifier. Look at my superclass for a more detailed ex
 Class {
 	#name : #KMShiftModifier,
 	#superclass : #KMModifier,
-	#category : #Keymapping-KeyCombinations,
-	#timestamp : '<historical>'
+	#category : #Keymapping-KeyCombinations
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMShiftModifier>>eventCode [
+{ #category : #accessing }
+KMShiftModifier >> eventCode [
 	^8
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMShiftModifier>>initialize [
+{ #category : #initialization }
+KMShiftModifier >> initialize [
 	super initialize.
 	identifier := #s.
 	name := 'Shift'.
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMShiftModifier>>matchesEvent: aKeyboardEvent [
+{ #category : #matching }
+KMShiftModifier >> matchesEvent: aKeyboardEvent [
 	^ aKeyboardEvent shiftPressed
 ]

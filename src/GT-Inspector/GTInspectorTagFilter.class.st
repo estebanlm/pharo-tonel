@@ -14,15 +14,11 @@ Class {
 		'selectedTags',
 		'defaultTag'
 	],
-	#category : #GT-Inspector,
-	#timestamp : 'AndreiChis 1/27/2015 23:31'
+	#category : #GT-Inspector
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter class>>exampleBasicInspector [
+{ #category : #examples }
+GTInspectorTagFilter class >> exampleBasicInspector [
 	"An inspector showing only the basic presentations Raw and Meta for all object."
 	|inspector|
 	
@@ -32,11 +28,8 @@ GTInspectorTagFilter class>>exampleBasicInspector [
 	inspector openOn: Morph new.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter class>>exampleCustomInspector [
+{ #category : #examples }
+GTInspectorTagFilter class >> exampleCustomInspector [
 	"An inspector showing only the custom presentations for all object (excluding Raw and Meta)."
 	|inspector|
 	
@@ -47,11 +40,8 @@ GTInspectorTagFilter class>>exampleCustomInspector [
 	inspector openOn: Morph new.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter class>>exampleExampleBrowser [
+{ #category : #examples }
+GTInspectorTagFilter class >> exampleExampleBrowser [
 	"A browser for viewing examples"
 	|inspector|
 	
@@ -61,11 +51,8 @@ GTInspectorTagFilter class>>exampleExampleBrowser [
 	inspector openOn: Dictionary.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter class>>exampleFullInspector [
+{ #category : #examples }
+GTInspectorTagFilter class >> exampleFullInspector [
 	"An inspector showing all the available presentations for all objects."
 	|inspector|
 	
@@ -77,67 +64,46 @@ GTInspectorTagFilter class>>exampleFullInspector [
 	inspector openOn: Morph new.
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter>>addAllTags [
+{ #category : #adding }
+GTInspectorTagFilter >> addAllTags [
 	
 	self allTags do: [ :aTag | self addTag: allTags ] 
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter>>addAndSelectAllTags [
+{ #category : #adding }
+GTInspectorTagFilter >> addAndSelectAllTags [
 	
 	self allTags do: [ :aTag | self addAndSelectTag: aTag ] 
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter>>addAndSelectTag: aSymbol [
+{ #category : #adding }
+GTInspectorTagFilter >> addAndSelectTag: aSymbol [
 
 	self addTag: aSymbol.
 	(selectedTags includes: aSymbol) ifFalse:  [selectedTags add: aSymbol]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter>>addTag: aSymbol [
+{ #category : #adding }
+GTInspectorTagFilter >> addTag: aSymbol [
 
 	(allTags includes: aSymbol) ifFalse:  [allTags add: aSymbol].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter>>allPragmasWithTag [
+{ #category : #accessing }
+GTInspectorTagFilter >> allPragmasWithTag [
 
 	^ PragmaCollector allSystemPragmas select: [ :pragma | pragma key == self tagPragmaKey ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter>>allTags [
+{ #category : #accessing }
+GTInspectorTagFilter >> allTags [
 
 	^ (self allPragmasWithTag collect: [ :pragma | 
 		pragma argumentAt: 1 ]) asSet sorted: [ :a :b | a < b ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter>>changeFilterRequestFor: aGTInspector [
+{ #category : #accessing }
+GTInspectorTagFilter >> changeFilterRequestFor: aGTInspector [
 
 	self
 		openListChooseLabeled: 'All available tags' 
@@ -149,20 +115,14 @@ GTInspectorTagFilter>>changeFilterRequestFor: aGTInspector [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter>>defaultTag: aSymbol [
+{ #category : #accessing }
+GTInspectorTagFilter >> defaultTag: aSymbol [
 
 	defaultTag := aSymbol
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter>>initialize [
+{ #category : #initialization }
+GTInspectorTagFilter >> initialize [
 	super initialize.
 	
 	allTags := OrderedCollection new.
@@ -170,39 +130,27 @@ GTInspectorTagFilter>>initialize [
 	defaultTag := #custom
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter>>replaceSelectedTagsWith: aListOfSymbols in: aGTInspector [
+{ #category : #callbacks }
+GTInspectorTagFilter >> replaceSelectedTagsWith: aListOfSymbols in: aGTInspector [
 
 	selectedTags := aListOfSymbols.
 	aGTInspector update.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter>>shouldDisplayPresentationCreatedBy: aMethod [
+{ #category : #testing }
+GTInspectorTagFilter >> shouldDisplayPresentationCreatedBy: aMethod [
 
 	^ (self tagsFrom: aMethod) includesAny: selectedTags
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter>>tagPragmaKey [
+{ #category : #accessing }
+GTInspectorTagFilter >> tagPragmaKey [
 
 	^ #gtInspectorTag:
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorTagFilter>>tagsFrom: aMethod [
+{ #category : #accessing }
+GTInspectorTagFilter >> tagsFrom: aMethod [
 
 	^ (aMethod pragmas select: [ :each | each key == self tagPragmaKey ])
 		ifEmpty: [ defaultTag ifNil: [ {} ] ifNotNil: [ {defaultTag} ] ]

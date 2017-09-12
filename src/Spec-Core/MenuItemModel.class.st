@@ -36,143 +36,97 @@ Class {
 		'enabled',
 		'autoRefresh'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 7/19/2016 11:15'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel class>>adapterName [
+{ #category : #specs }
+MenuItemModel class >> adapterName [
 
 	^ #MenuItemAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel class>>defaultSpec [
+{ #category : #specs }
+MenuItemModel class >> defaultSpec [
 	<spec: #default>
 	
 	^ #(MenuItemAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>action [
+{ #category : #accessing }
+MenuItemModel >> action [
 
 	^ action value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>action: aBlock [
+{ #category : #accessing }
+MenuItemModel >> action: aBlock [
 
 	action value: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>autoRefresh [
+{ #category : #accessing }
+MenuItemModel >> autoRefresh [
 
 	^ autoRefresh value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>autoRefresh: aBlock [
+{ #category : #accessing }
+MenuItemModel >> autoRefresh: aBlock [
 
 	autoRefresh value: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>description [
+{ #category : #api }
+MenuItemModel >> description [
 
 	^ description value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>description: aString [
+{ #category : #api }
+MenuItemModel >> description: aString [
 
 	description value: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>enabled [
+{ #category : #accessing }
+MenuItemModel >> enabled [
 
 	^ enabled value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>enabled: aBoolean [
+{ #category : #accessing }
+MenuItemModel >> enabled: aBoolean [
 
 	enabled value: aBoolean
 ]
 
-{
-	#category : #api-building,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>fromSpec: aSpec [
+{ #category : #api-building }
+MenuItemModel >> fromSpec: aSpec [
 
 	aSpec addToMenuItemModel: self
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>icon [
+{ #category : #api }
+MenuItemModel >> icon [
 
 	^ icon value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>icon: anIcon [
+{ #category : #api }
+MenuItemModel >> icon: anIcon [
 
 	icon value: anIcon
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>iconName: aSymbol [
+{ #category : #api }
+MenuItemModel >> iconName: aSymbol [
 
 	icon value: (self iconNamed: aSymbol)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>initialize [
+{ #category : #initialization }
+MenuItemModel >> initialize [
 
 	super initialize.
 
@@ -187,29 +141,20 @@ MenuItemModel>>initialize [
 	icon := nil asValueHolder
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>name [
+{ #category : #api }
+MenuItemModel >> name [
 
 	^ name value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>name: aString [
+{ #category : #api }
+MenuItemModel >> name: aString [
 
 	name value: aString
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>performMenuActionWith: aMenuItem [
+{ #category : #api }
+MenuItemModel >> performMenuActionWith: aMenuItem [
 	| en |
 
 	en := self enabled.
@@ -219,56 +164,38 @@ MenuItemModel>>performMenuActionWith: aMenuItem [
 	action value cull: aMenuItem
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>shortcut [
+{ #category : #api }
+MenuItemModel >> shortcut [
 
 	^ shortcut value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>shortcut: aShortcut [
+{ #category : #api }
+MenuItemModel >> shortcut: aShortcut [
 
 	shortcut value: aShortcut
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>state [
+{ #category : #accessing }
+MenuItemModel >> state [
 
 	^ state value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>state: aBoolean [
+{ #category : #accessing }
+MenuItemModel >> state: aBoolean [
 
 	state value: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>subMenu [
+{ #category : #api }
+MenuItemModel >> subMenu [
 
 	^ subMenu value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuItemModel>>subMenu: aMenuModel [
+{ #category : #api }
+MenuItemModel >> subMenu: aMenuModel [
 
 	subMenu value: aMenuModel
 ]

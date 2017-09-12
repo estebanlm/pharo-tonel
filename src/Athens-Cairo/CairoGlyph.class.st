@@ -15,15 +15,11 @@ Class {
 		'OFFSET_X',
 		'OFFSET_Y'
 	],
-	#category : #Athens-Cairo-Text,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Text
 }
 
-{
-	#category : #'fields description',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoGlyph class>>fieldsDesc [
+{ #category : #'fields description' }
+CairoGlyph class >> fieldsDesc [
 	"self rebuildFieldAccessors"
 	^ #(
 	ulong        index;
@@ -32,56 +28,38 @@ CairoGlyph class>>fieldsDesc [
 	)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoGlyph>>index [
+{ #category : #'accessing structure variables' }
+CairoGlyph >> index [
 	"This method was automatically generated"
 	^handle platformUnsignedLongAt: OFFSET_INDEX
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoGlyph>>index: anObject [
+{ #category : #'accessing structure variables' }
+CairoGlyph >> index: anObject [
 	"This method was automatically generated"
 	^handle platformUnsignedLongAt: OFFSET_INDEX put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoGlyph>>x [
+{ #category : #'accessing structure variables' }
+CairoGlyph >> x [
 	"This method was automatically generated"
 	^handle doubleAt: OFFSET_X
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoGlyph>>x: anObject [
+{ #category : #'accessing structure variables' }
+CairoGlyph >> x: anObject [
 	"This method was automatically generated"
 	handle doubleAt: OFFSET_X put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoGlyph>>y [
+{ #category : #'accessing structure variables' }
+CairoGlyph >> y [
 	"This method was automatically generated"
 	^handle doubleAt: OFFSET_Y
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoGlyph>>y: anObject [
+{ #category : #'accessing structure variables' }
+CairoGlyph >> y: anObject [
 	"This method was automatically generated"
 	handle doubleAt: OFFSET_Y put: anObject
 ]

@@ -13,15 +13,11 @@ Class {
 		'DefaultHandler',
 		'RegisteredHandlers'
 	],
-	#category : #Morphic-Core-Worlds,
-	#timestamp : 'TorstenBergmann 1/31/2014 10:29'
+	#category : #Morphic-Core-Worlds
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler class>>chooseServiceFrom: aCollection [
+{ #category : #private }
+ExternalDropHandler class >> chooseServiceFrom: aCollection [
 	"private - choose a service from aCollection asking the user if  
 	needed"
 	aCollection size = 1 ifTrue: [^ aCollection anyOne].
@@ -30,36 +26,24 @@ ExternalDropHandler class>>chooseServiceFrom: aCollection [
 
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler class>>cleanUp [
+{ #category : #cleanup }
+ExternalDropHandler class >> cleanUp [
 	self resetRegisteredHandlers.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler class>>defaultHandler [
+{ #category : #accessing }
+ExternalDropHandler class >> defaultHandler [
 	DefaultHandler ifNil: [DefaultHandler := ExternalDropHandler type: nil extension: nil action: [:dropStream | dropStream edit]].
 	^DefaultHandler
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler class>>defaultHandler: externalDropHandler [
+{ #category : #accessing }
+ExternalDropHandler class >> defaultHandler: externalDropHandler [
 	DefaultHandler := externalDropHandler
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler class>>initialize [
+{ #category : #initialization }
+ExternalDropHandler class >> initialize [
 	"ExternalDropHandler initialize"
 
 	self resetRegisteredHandlers.
@@ -67,11 +51,8 @@ ExternalDropHandler class>>initialize [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler class>>lookupExternalDropHandler: stream [
+{ #category : #accessing }
+ExternalDropHandler class >> lookupExternalDropHandler: stream [
 
 	| types extension serviceHandler |
 	types := stream mimeTypes.
@@ -90,11 +71,8 @@ ExternalDropHandler class>>lookupExternalDropHandler: stream [
 		ifNil: [self defaultHandler]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler class>>lookupServiceBasedHandler: dropStream [
+{ #category : #accessing }
+ExternalDropHandler class >> lookupServiceBasedHandler: dropStream [
 	"the file was just droped, let's do our job"
 	| fileName services theOne |
 	fileName := dropStream name.
@@ -111,61 +89,40 @@ ExternalDropHandler class>>lookupServiceBasedHandler: dropStream [
 		ifNotNil: [ExternalDropHandler type: nil extension: nil action: [:stream | theOne performServiceFor: stream]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler class>>registerHandler: aHandler [
+{ #category : #accessing }
+ExternalDropHandler class >> registerHandler: aHandler [
 	self registeredHandlers add: aHandler
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler class>>registeredHandlers [
+{ #category : #private }
+ExternalDropHandler class >> registeredHandlers [
 	RegisteredHandlers ifNil: [RegisteredHandlers := OrderedCollection new].
 	^RegisteredHandlers
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler class>>resetRegisteredHandlers [
+{ #category : #private }
+ExternalDropHandler class >> resetRegisteredHandlers [
 	RegisteredHandlers := nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler class>>type: aType extension: anExtension action: anAction  [
+{ #category : #'instance creation' }
+ExternalDropHandler class >> type: aType extension: anExtension action: anAction [ 
 	^self new type: aType extension: anExtension action: anAction 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler class>>unwantedSelectors [
+{ #category : #private }
+ExternalDropHandler class >> unwantedSelectors [
 	"private - answer a collection well known unwanted selectors "
 	^ #(#removeLineFeeds: #compressFile:)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler>>extension [
+{ #category : #accessing }
+ExternalDropHandler >> extension [
 	^extension
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler>>handle: dropStream in: pasteUp dropEvent: anEvent [
+{ #category : #accessing }
+ExternalDropHandler >> handle: dropStream in: pasteUp dropEvent: anEvent [
 	
 	^action cull: dropStream 
 			cull: pasteUp 
@@ -173,11 +130,8 @@ ExternalDropHandler>>handle: dropStream in: pasteUp dropEvent: anEvent [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler>>matchesExtension: aExtension [
+{ #category : #testing }
+ExternalDropHandler >> matchesExtension: aExtension [
 	(self extension isNil or: [aExtension isNil])
 		ifTrue: [^false].
 	FileSystem disk isCaseSensitive
@@ -185,29 +139,20 @@ ExternalDropHandler>>matchesExtension: aExtension [
 		ifFalse: [^extension sameAs: aExtension]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler>>matchesTypes: types [
+{ #category : #testing }
+ExternalDropHandler >> matchesTypes: types [
 	(self type isNil or: [types isNil])
 		ifTrue: [^false].
 	^types anySatisfy: [:mimeType | mimeType beginsWith: self type]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler>>type [
+{ #category : #accessing }
+ExternalDropHandler >> type [
 	^type
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-ExternalDropHandler>>type: aType extension: anExtension action: anAction  [
+{ #category : #initialize }
+ExternalDropHandler >> type: aType extension: anExtension action: anAction [ 
 	action := anAction.
 	type := aType.
 	extension := anExtension

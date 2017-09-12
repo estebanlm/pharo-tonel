@@ -1,20 +1,12 @@
-Extension {
-	#name : #Boolean
-}
+Extension { #name : #Boolean }
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-Boolean>>fuelAccept: aGeneralMapper [
+{ #category : #'*Fuel' }
+Boolean >> fuelAccept: aGeneralMapper [
 
 	^aGeneralMapper visitHookPrimitive: self
 ]
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-Boolean>>serializeOn: anEncoder [
+{ #category : #'*Fuel' }
+Boolean >> serializeOn: anEncoder [
 	"Do nothing"
 ]

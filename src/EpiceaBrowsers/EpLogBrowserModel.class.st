@@ -22,44 +22,31 @@ Class {
 		'cachedItems',
 		'showEntryItemMenu'
 	],
-	#category : #EpiceaBrowsers-UI-Log,
-	#timestamp : 'MartinDias 2/18/2017 17:31'
+	#category : #EpiceaBrowsers-UI-Log
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel class>>defaultLog [
+{ #category : #accessing }
+EpLogBrowserModel class >> defaultLog [
 
 	^ EpMonitor current log
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel class>>newWithLog: aLog [
+{ #category : #'instance creation' }
+EpLogBrowserModel class >> newWithLog: aLog [
 
 	^ self new
 		theLog: aLog;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel class>>open [
+{ #category : #'instance creation' }
+EpLogBrowserModel class >> open [
 
 	^ self openWithLog: self defaultLog
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel class>>openWithLog: aLog [
+{ #category : #'instance creation' }
+EpLogBrowserModel class >> openWithLog: aLog [
 
 	^ (self newWithLog: aLog)
 		refresh;
@@ -67,11 +54,8 @@ EpLogBrowserModel class>>openWithLog: aLog [
 		yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel class>>spec [
+{ #category : #specs }
+EpLogBrowserModel class >> spec [
 	<spec: #default>
 
 	^ SpecLayout composed newColumn: [:column |
@@ -83,11 +67,8 @@ EpLogBrowserModel class>>spec [
 			yourself ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>addFilter: aFilter [
+{ #category : #private }
+EpLogBrowserModel >> addFilter: aFilter [
 
 	(andFilter subFilters includes: aFilter) ifTrue: [ ^self ].
 	
@@ -95,11 +76,8 @@ EpLogBrowserModel>>addFilter: aFilter [
 	self refresh.
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>addMenuItemsForSelectedItemsIn: aMenu [
+{ #category : #menu }
+EpLogBrowserModel >> addMenuItemsForSelectedItemsIn: aMenu [
 
 	aMenu addGroup: [ :aGroup | 
 		self menuActionsForSelectedItems do: [ :oldStyleMenuItemArray | 
@@ -127,22 +105,16 @@ EpLogBrowserModel>>addMenuItemsForSelectedItemsIn: aMenu [
 
 ]
 
-{
-	#category : #'menu - operations',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>applyAllChangesAndCloseWindow [
+{ #category : #'menu - operations' }
+EpLogBrowserModel >> applyAllChangesAndCloseWindow [
 
 	self applyChangesIn: self entriesWithCodeChanges.
 	self window close.
 
 ]
 
-{
-	#category : #'menu - operations',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>applyChangesIn: entries [
+{ #category : #'menu - operations' }
+EpLogBrowserModel >> applyChangesIn: entries [
 
 	entries ifEmpty: [ ^ self inform: 'No code changes to apply' ].
 
@@ -154,11 +126,8 @@ EpLogBrowserModel>>applyChangesIn: entries [
 
 ]
 
-{
-	#category : #'menu - operations',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>applyCompleteRefactoringInSelection [
+{ #category : #'menu - operations' }
+EpLogBrowserModel >> applyCompleteRefactoringInSelection [
 
 	| entries |
 	entries := self selectedEntryItems.
@@ -172,11 +141,8 @@ EpLogBrowserModel>>applyCompleteRefactoringInSelection [
 
 ]
 
-{
-	#category : #'menu - operations',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>applyPropagateRefactoringInSelection [
+{ #category : #'menu - operations' }
+EpLogBrowserModel >> applyPropagateRefactoringInSelection [
 
 	| entries |
 	entries := self selectedEntryItems.
@@ -190,21 +156,15 @@ EpLogBrowserModel>>applyPropagateRefactoringInSelection [
 
 ]
 
-{
-	#category : #'menu - operations',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>applySelectedChanges [
+{ #category : #'menu - operations' }
+EpLogBrowserModel >> applySelectedChanges [
 
 	self applyChangesIn: self selectedCodeChanges
 
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>beApplyMode [
+{ #category : #modes }
+EpLogBrowserModel >> beApplyMode [
 
 	self title: 'Epicea - Apply Changes'.
 	self toolbarModel beApplyMode.
@@ -212,11 +172,8 @@ EpLogBrowserModel>>beApplyMode [
 
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>beHistoryMode [
+{ #category : #modes }
+EpLogBrowserModel >> beHistoryMode [
 
 	self title: 'Epicea - Log Browser'.
 	self toolbarModel beHistoryMode.
@@ -224,11 +181,8 @@ EpLogBrowserModel>>beHistoryMode [
 
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>beRevertMode [
+{ #category : #modes }
+EpLogBrowserModel >> beRevertMode [
 
 	self title: 'Epicea - Revert Changes'.
 	self toolbarModel beRevertMode.
@@ -236,11 +190,8 @@ EpLogBrowserModel>>beRevertMode [
 
 ]
 
-{
-	#category : #'menu - operations',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>browseSelection [
+{ #category : #'menu - operations' }
+EpLogBrowserModel >> browseSelection [
 
 	| selectionSize |
 	selectionSize := self selectedEntryReferences size.	
@@ -253,20 +204,14 @@ EpLogBrowserModel>>browseSelection [
 		thenDo: [ :each | each browseItem ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>cachedItems [
+{ #category : #private }
+EpLogBrowserModel >> cachedItems [
 
 	^ cachedItems ifNil: [ cachedItems := WeakValueDictionary new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>cachedLogEntries [
+{ #category : #accessing }
+EpLogBrowserModel >> cachedLogEntries [
 	"Answer log entries.
 	Check size since the log might be current Monitor's, so it can grow."
 
@@ -280,21 +225,15 @@ EpLogBrowserModel>>cachedLogEntries [
 
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>cleanEntryContentModel [
+{ #category : #refreshing }
+EpLogBrowserModel >> cleanEntryContentModel [
 
 	self refreshEntryContentModelWith: #()
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>codeChangesMenuActions [
+{ #category : #menu }
+EpLogBrowserModel >> codeChangesMenuActions [
 
 	^ { 
 		{ 'Apply...'.
@@ -316,11 +255,8 @@ EpLogBrowserModel>>codeChangesMenuActions [
 
 ]
 
-{
-	#category : #'menu - operations',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>commentSelection [
+{ #category : #'menu - operations' }
+EpLogBrowserModel >> commentSelection [
 
 	| items newCommentOrNil oldComment entryReferences |
 	items := self selectedEntryItems.
@@ -341,66 +277,45 @@ EpLogBrowserModel>>commentSelection [
 			newComment: newCommentOrNil)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>commentsLog [
+{ #category : #accessing }
+EpLogBrowserModel >> commentsLog [
 	
 	^ commentsLog ifNil: [ self monitor log ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>commentsLog: anEpLog [
+{ #category : #accessing }
+EpLogBrowserModel >> commentsLog: anEpLog [
 	
 	commentsLog := anEpLog
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>entries [
+{ #category : #accessing }
+EpLogBrowserModel >> entries [
 
 	^ log entryReferences collect: [:each | log entryFor: each ]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>entriesWithCodeChanges [
+{ #category : #accessing }
+EpLogBrowserModel >> entriesWithCodeChanges [
 
 	^ self entries select: [:each | each content isCodeChange ]
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>entryContentModel [
+{ #category : #'accessing widgets' }
+EpLogBrowserModel >> entryContentModel [
 	^ entryContentModel 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>entryItems [
+{ #category : #accessing }
+EpLogBrowserModel >> entryItems [
 
 	^ log entryReferences collect: [:each |
 		self itemForEntryReference: each ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>eventsMenuActions  [
+{ #category : #menu }
+EpLogBrowserModel >> eventsMenuActions [ 
 
 	^ {
 		{ 'Comment'. 
@@ -412,11 +327,8 @@ EpLogBrowserModel>>eventsMenuActions  [
 
 ]
 
-{
-	#category : #'menu - operations',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>fileOutSelection [
+{ #category : #'menu - operations' }
+EpLogBrowserModel >> fileOutSelection [
 
 	| entries outputDirectory |
 	entries := (self selectedEntryItems collect: [ :each | each entry ]) reversed.
@@ -425,11 +337,8 @@ EpLogBrowserModel>>fileOutSelection [
 	EpOmbuExporter askFileNameAndFileOut: entries in: outputDirectory.
 ]
 
-{
-	#category : #'menu - filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>filterAfter [
+{ #category : #'menu - filters' }
+EpLogBrowserModel >> filterAfter [
 
 	self selectedEntryItems ifNotEmpty: [ :items |
 		| time |
@@ -437,11 +346,8 @@ EpLogBrowserModel>>filterAfter [
 		self addFilter: (EpPluggableFilter after: time) ]
 ]
 
-{
-	#category : #'menu - filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>filterAllChangesToSelection [
+{ #category : #'menu - filters' }
+EpLogBrowserModel >> filterAllChangesToSelection [
 
 	| changes |
 	changes := (self selectedEntryItems collect: [ :each | each entry content ]).
@@ -452,11 +358,8 @@ EpLogBrowserModel>>filterAllChangesToSelection [
 	self addFilter: (EpPluggableFilter isMethod: changes anyOne methodAffected).
 ]
 
-{
-	#category : #'menu - filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>filterAllChangesToSelectionBehavior [
+{ #category : #'menu - filters' }
+EpLogBrowserModel >> filterAllChangesToSelectionBehavior [
 
 	| changes |
 	changes := self selectedEntryItems collect: [ :each | each entry content ].
@@ -467,11 +370,8 @@ EpLogBrowserModel>>filterAllChangesToSelectionBehavior [
 	self addFilter: (EpPluggableFilter isBehaviorNamed: changes anyOne behaviorAffectedName).
 ]
 
-{
-	#category : #'menu - filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>filterAllChangesToSelectionPackage [
+{ #category : #'menu - filters' }
+EpLogBrowserModel >> filterAllChangesToSelectionPackage [
 
 	| changes |
 	changes := (self selectedEntryItems collect: [ :each | each entry content ]).
@@ -481,11 +381,8 @@ EpLogBrowserModel>>filterAllChangesToSelectionPackage [
 	self addFilter: (EpPluggableFilter isPackageNamed: changes anyOne affectedPackageName).
 ]
 
-{
-	#category : #'menu - filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>filterBefore [
+{ #category : #'menu - filters' }
+EpLogBrowserModel >> filterBefore [
 
 	self selectedEntryItems ifNotEmpty: [ :items |
 		| time |
@@ -493,29 +390,20 @@ EpLogBrowserModel>>filterBefore [
 		self addFilter: (EpPluggableFilter before: time) ]
 ]
 
-{
-	#category : #'menu - filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>filterImpactCodeChanges [
+{ #category : #'menu - filters' }
+EpLogBrowserModel >> filterImpactCodeChanges [
 
 	self addFilter: (EpImpactCodeChangeFilter new environment: self class environment; yourself)
 ]
 
-{
-	#category : #'menu - filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>filterLatestCodeChanges [
+{ #category : #'menu - filters' }
+EpLogBrowserModel >> filterLatestCodeChanges [
 
 	self addFilter: (EpLatestCodeChangeFilter new logBrowserModel: self; yourself)
 ]
 
-{
-	#category : #'menu - filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>filterSelection [
+{ #category : #'menu - filters' }
+EpLogBrowserModel >> filterSelection [
 
 	| references |
 	references := self selectedEntryReferences.
@@ -529,39 +417,27 @@ EpLogBrowserModel>>filterSelection [
 
 ]
 
-{
-	#category : #'menu - filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>filterToday [
+{ #category : #'menu - filters' }
+EpLogBrowserModel >> filterToday [
 
 	self addFilter: EpPluggableFilter todayFilter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>filteredEntries [
+{ #category : #accessing }
+EpLogBrowserModel >> filteredEntries [
 	
 	^ self filteredEntryReferences collect: [:each | log entryFor: each ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>filteredEntriesCount [
+{ #category : #accessing }
+EpLogBrowserModel >> filteredEntriesCount [
 
 	^ self filteredEntryReferences size
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>filteredEntryReferences [
+{ #category : #accessing }
+EpLogBrowserModel >> filteredEntryReferences [
 
 	^ andFilter subFilters 
 		ifEmpty: [ log entryReferences ]
@@ -572,20 +448,14 @@ EpLogBrowserModel>>filteredEntryReferences [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>filters [
+{ #category : #accessing }
+EpLogBrowserModel >> filters [
 
 	^ andFilter subFilters
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>filtersSubMenu [
+{ #category : #menu }
+EpLogBrowserModel >> filtersSubMenu [
 	
 	| aMenu |
 	aMenu := MenuModel new.
@@ -683,40 +553,28 @@ EpLogBrowserModel>>filtersSubMenu [
 	^ aMenu
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>initialExtent [
+{ #category : #api }
+EpLogBrowserModel >> initialExtent [
 	^ 550 @ 700
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>initialize [
+{ #category : #initialization }
+EpLogBrowserModel >> initialize [
 
 	super initialize.
 	
 	andFilter := EpAndFilter withAll: #().
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>initializeEntryContentModel [
+{ #category : #initialization }
+EpLogBrowserModel >> initializeEntryContentModel [
 
 	entryContentModel showOptions: false.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>initializeItemsModel [
+{ #category : #initialization }
+EpLogBrowserModel >> initializeItemsModel [
 
 	itemsModel
 		beMultipleSelection;
@@ -731,21 +589,15 @@ EpLogBrowserModel>>initializeItemsModel [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>initializeItemsModelPerformFilterWorkaround: widgetBuildAnnouncement [
+{ #category : #initialization }
+EpLogBrowserModel >> initializeItemsModelPerformFilterWorkaround: widgetBuildAnnouncement [
 	"Problem: FastTableModel sends #explicitFilter to the FTTableMorph in MorphicFastTableAdapter>>buildWidget but the EpEntryItem in the itemsModel are not compatible."
 	
 	widgetBuildAnnouncement widget disableFunction
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>initializePresenter [
+{ #category : #initialization }
+EpLogBrowserModel >> initializePresenter [
 
 	super initializePresenter.
 
@@ -756,20 +608,14 @@ EpLogBrowserModel>>initializePresenter [
 	self beHistoryMode.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>initializeToolbarModel [
+{ #category : #initialization }
+EpLogBrowserModel >> initializeToolbarModel [
 
 	toolbarModel logBrowserModel: self.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>initializeWidgets [
+{ #category : #initialization }
+EpLogBrowserModel >> initializeWidgets [
 
 	self instantiateModels: {
 		#itemsModel -> #FastTableModel.
@@ -779,20 +625,14 @@ EpLogBrowserModel>>initializeWidgets [
 
 ]
 
-{
-	#category : #'menu - operations',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>inspectSelection [
+{ #category : #'menu - operations' }
+EpLogBrowserModel >> inspectSelection [
 
 	self selectedEntryItems do: #inspect
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>itemForEntryReference: entryReference [
+{ #category : #private }
+EpLogBrowserModel >> itemForEntryReference: entryReference [
 
 	^ self cachedItems
 		at: entryReference
@@ -804,27 +644,18 @@ EpLogBrowserModel>>itemForEntryReference: entryReference [
 			newItem ]
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>itemsModel [
+{ #category : #'accessing widgets' }
+EpLogBrowserModel >> itemsModel [
 	^ itemsModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>log [
+{ #category : #accessing }
+EpLogBrowserModel >> log [
 	^ log
 ]
 
-{
-	#category : #'menu - operations',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>logOffEvent: anEvent [
+{ #category : #'menu - operations' }
+EpLogBrowserModel >> logOffEvent: anEvent [
 
 	self commentsLog 
 		addEntryWith: anEvent
@@ -833,11 +664,8 @@ EpLogBrowserModel>>logOffEvent: anEvent [
 			tags at: EpLog timeKey put: self monitor time ].
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>menuActionsForSelectedItems [
+{ #category : #menu }
+EpLogBrowserModel >> menuActionsForSelectedItems [
 
 	| selectedReferences |
 	selectedReferences := self selectedEntryReferences.
@@ -854,11 +682,8 @@ EpLogBrowserModel>>menuActionsForSelectedItems [
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>menuMorphForSelectedItems [
+{ #category : #menu }
+EpLogBrowserModel >> menuMorphForSelectedItems [
 
 	| aMenu |
 	aMenu := MenuModel new.
@@ -869,30 +694,21 @@ EpLogBrowserModel>>menuMorphForSelectedItems [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>monitor [
+{ #category : #accessing }
+EpLogBrowserModel >> monitor [
 	
 	^ monitor ifNil: [ EpMonitor current ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>morphForItemAt: entryReference [
+{ #category : #private }
+EpLogBrowserModel >> morphForItemAt: entryReference [
 
 	^ [ (self itemForEntryReference: entryReference) asMorph ]
 			on: NotFound do: [:error | error asString asMorph ] "Enforce... remove it?"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>newItemForEntryReference: entryReference [
+{ #category : #private }
+EpLogBrowserModel >> newItemForEntryReference: entryReference [
 
 	| entry triggers|
 	entry := log entryFor: entryReference.
@@ -908,11 +724,8 @@ EpLogBrowserModel>>newItemForEntryReference: entryReference [
 		yourself
 ]
 
-{
-	#category : #'menu - operations',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>openPreviewToApplySelectedChanges [
+{ #category : #'menu - operations' }
+EpLogBrowserModel >> openPreviewToApplySelectedChanges [
 
 	| entries previewLog |
 	entries := self selectedCodeChanges.
@@ -930,11 +743,8 @@ EpLogBrowserModel>>openPreviewToApplySelectedChanges [
 		ifFalse: [ previewLog browseEvents beApplyMode ]
 ]
 
-{
-	#category : #'menu - operations',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>openPreviewToRevertSelectedChanges [
+{ #category : #'menu - operations' }
+EpLogBrowserModel >> openPreviewToRevertSelectedChanges [
 
 	| entries previewLog |
 	entries := self selectedCodeChanges.
@@ -952,11 +762,8 @@ EpLogBrowserModel>>openPreviewToRevertSelectedChanges [
 		ifFalse: [ previewLog browseEvents beRevertMode ]
 ]
 
-{
-	#category : #'menu - operations',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>operationsErrorHandlerBlock [
+{ #category : #'menu - operations' }
+EpLogBrowserModel >> operationsErrorHandlerBlock [
 
 	^ [ :error | | message |
 		message := self title, ' error on operation: ', error asString.
@@ -964,11 +771,8 @@ EpLogBrowserModel>>operationsErrorHandlerBlock [
 		self inform: message. ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>refactoringMenuActions [
+{ #category : #menu }
+EpLogBrowserModel >> refactoringMenuActions [
 
 	^ {
 		{ 'Apply refactoring'.
@@ -984,11 +788,8 @@ EpLogBrowserModel>>refactoringMenuActions [
 	}
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>refresh [
+{ #category : #refreshing }
+EpLogBrowserModel >> refresh [
 
 	"Refresh log"
 	itemsModel resetSelection. "Needed, else #items: can silently fail"
@@ -999,21 +800,15 @@ EpLogBrowserModel>>refresh [
 
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>refreshEntryContentModel [
+{ #category : #refreshing }
+EpLogBrowserModel >> refreshEntryContentModel [
 
 	self refreshEntryContentModelWith: self selectedEntryItems
 
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>refreshEntryContentModelDeferrer [
+{ #category : #refreshing }
+EpLogBrowserModel >> refreshEntryContentModelDeferrer [
 		
 	^ selectionDeferrer ifNil: [
 		selectionDeferrer := OmDeferrer 
@@ -1022,11 +817,8 @@ EpLogBrowserModel>>refreshEntryContentModelDeferrer [
 			after: 150 milliSeconds ]
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>refreshEntryContentModelWith: selectedItems [
+{ #category : #refreshing }
+EpLogBrowserModel >> refreshEntryContentModelWith: selectedItems [
 
 	selectedItems size = 1
 		ifTrue: [
@@ -1046,42 +838,30 @@ EpLogBrowserModel>>refreshEntryContentModelWith: selectedItems [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>removeAllFilters [
+{ #category : #accessing }
+EpLogBrowserModel >> removeAllFilters [
 
 	andFilter := EpAndFilter withAll: #().
 	self refresh.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>removeFilter: aFilter [
+{ #category : #accessing }
+EpLogBrowserModel >> removeFilter: aFilter [
 
 	andFilter := EpAndFilter withAll: (andFilter subFilters copyWithout: aFilter).
 	self refresh.
 ]
 
-{
-	#category : #'menu - operations',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>revertAllChangesAndCloseWindow [
+{ #category : #'menu - operations' }
+EpLogBrowserModel >> revertAllChangesAndCloseWindow [
 
 	self revertChangesIn: self entriesWithCodeChanges.
 	self window close.
 
 ]
 
-{
-	#category : #'menu - operations',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>revertChangesIn: entries [
+{ #category : #'menu - operations' }
+EpLogBrowserModel >> revertChangesIn: entries [
 
 	entries ifEmpty: [ ^ self inform: 'No code changes to revert' ].
 
@@ -1093,88 +873,61 @@ EpLogBrowserModel>>revertChangesIn: entries [
 
 ]
 
-{
-	#category : #'menu - operations',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>revertSelectedChanges [
+{ #category : #'menu - operations' }
+EpLogBrowserModel >> revertSelectedChanges [
 
 	self revertChangesIn: self selectedCodeChanges
 
 ]
 
-{
-	#category : #'menu - accessing',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>selectedCodeChanges [
+{ #category : #'menu - accessing' }
+EpLogBrowserModel >> selectedCodeChanges [
 
 	^ self selectedEntryItems 
 		select: [ :each | each entry content isCodeChange ]
 		thenCollect: [ :each | each entry ]
 ]
 
-{
-	#category : #'menu - accessing',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>selectedEntryItems [
+{ #category : #'menu - accessing' }
+EpLogBrowserModel >> selectedEntryItems [
 
 	^ self selectedEntryReferences collect: [:each |
 		self itemForEntryReference: each ]
 ]
 
-{
-	#category : #'menu - accessing',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>selectedEntryReferences [
+{ #category : #'menu - accessing' }
+EpLogBrowserModel >> selectedEntryReferences [
 	self flag: #todo. "Workaround: FastTableModel can return nil"
 
 	^ itemsModel selectedItemsSorted select: [:each | each isNotNil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>theLog [
+{ #category : #accessing }
+EpLogBrowserModel >> theLog [
 	^ log
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>theLog: aLog [
+{ #category : #accessing }
+EpLogBrowserModel >> theLog: aLog [
 
 	cachedItems := nil.
 	cachedLogEntries := nil.
 	log := aLog.
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>toolbarModel [
+{ #category : #'accessing widgets' }
+EpLogBrowserModel >> toolbarModel [
 	^ toolbarModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>totalEntriesCount [
+{ #category : #accessing }
+EpLogBrowserModel >> totalEntriesCount [
 
 	^ self theLog entriesCount
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserModel>>triggerItemsFor: anEntry [
+{ #category : #private }
+EpLogBrowserModel >> triggerItemsFor: anEntry [
 
 	^ self log 
 		triggererReferenceOf: anEntry 

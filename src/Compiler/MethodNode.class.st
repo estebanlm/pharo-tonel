@@ -17,59 +17,40 @@ Class {
 		'locationCounter',
 		'localsPool'
 	],
-	#category : #Compiler-ParseNodes,
-	#timestamp : '<historical>'
+	#category : #Compiler-ParseNodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>accept: aVisitor [
+{ #category : #visiting }
+MethodNode >> accept: aVisitor [
 	^aVisitor visitMethodNode: self
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>addLocalsToPool: locals "<Set of: TempVariableNode>" [
+{ #category : #'code generation (closures)' }
+MethodNode >> addLocalsToPool: locals [ "<Set of: TempVariableNode>"
 	localsPool ifNil:
 		[localsPool := IdentitySet new].
 	localsPool addAll: locals
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>arguments [
+{ #category : #accessing }
+MethodNode >> arguments [
 	"For transformations etc, not used in compilation"
 	^arguments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>arguments: aSequence [
+{ #category : #accessing }
+MethodNode >> arguments: aSequence [
 	"For transformations etc, not used in compilation"
 	arguments := aSequence
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>block [
+{ #category : #initialize-release }
+MethodNode >> block [
 	^ block
 ]
 
-{
-	#category : #'debugger support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>blockExtentsToTempsMap [
+{ #category : #'debugger support' }
+MethodNode >> blockExtentsToTempsMap [
 	"Answer a Dictionary of blockExtent to temp locations for the current method.
 	 This is used by the debugger to locate temp vars in contexts.  A temp map
 	 entry is a pair of the temp's name and its index, where an index is either an
@@ -87,65 +68,44 @@ MethodNode>>blockExtentsToTempsMap [
 		methNode encoder blockExtentsToTempsMap]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>body [
+{ #category : #accessing }
+MethodNode >> body [
 	^block
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>decompileString  [
+{ #category : #converting }
+MethodNode >> decompileString [ 
 	"Answer a string description of the parse tree whose root is the receiver."
 
 	^self formattedCode
 
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>encoder [
+{ #category : #'code generation' }
+MethodNode >> encoder [
 	^ encoder
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>ensureClosureAnalysisDone [
+{ #category : #'code generation (closures)' }
+MethodNode >> ensureClosureAnalysisDone [
 	block blockExtent ifNil:
 		[temporaries := block analyseArguments: arguments temporaries: temporaries rootNode: self]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>formattedCode [
+{ #category : #printing }
+MethodNode >> formattedCode [
 	^ self fullPrintString 
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>generate [
+{ #category : #'code generation' }
+MethodNode >> generate [
 	"The receiver is the root of a parse tree. Answer a CompiledMethod."
 
 	^self generate: CompiledMethodTrailer empty
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>generate: trailer  [
+{ #category : #'code generation' }
+MethodNode >> generate: trailer [ 
 	"The receiver is the root of a parse tree. Answer a CompiledMethod.
 	 The argument, trailer, is arbitrary but is typically either the reference
 	 to the source code that is stored with every CompiledMethod, or an
@@ -154,11 +114,8 @@ MethodNode>>generate: trailer  [
 	^self generate: trailer using: CompiledMethod
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>generate: trailer ifQuick: methodBlock [
+{ #category : #'code generation' }
+MethodNode >> generate: trailer ifQuick: methodBlock [
 	| v |
 	(primitive = 0 and: [arguments size = 0 and: [block isQuick]]) ifFalse:
 		[^self].
@@ -175,11 +132,8 @@ MethodNode>>generate: trailer ifQuick: methodBlock [
 		[^methodBlock value: (CompiledMethod toReturnField: v \\ 256 trailerBytes: trailer)]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>generate: trailer using: aCompiledMethodClass [
+{ #category : #'as yet unclassified' }
+MethodNode >> generate: trailer using: aCompiledMethodClass [
 	"The receiver is the root of a parse tree. Answer an instance of aCompiledMethodClass.
 	 The argument, trailer, is arbitrary but is typically either the reference to the source code
 	 that is stored with every CompiledMethod, or an encoding of the method's temporary names."
@@ -240,11 +194,8 @@ MethodNode>>generate: trailer using: aCompiledMethodClass [
 	^method
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>generate: trailer using: aCompiledMethodClass ifQuick: methodBlock [
+{ #category : #'as yet unclassified' }
+MethodNode >> generate: trailer using: aCompiledMethodClass ifQuick: methodBlock [
 	| v |
 	(primitive = 0 and: [arguments size = 0 and: [block isQuick]]) ifFalse:
 		[^self].
@@ -261,11 +212,8 @@ MethodNode>>generate: trailer using: aCompiledMethodClass ifQuick: methodBlock [
 		[^methodBlock value: (aCompiledMethodClass toReturnField: v \\ 256 trailerBytes: trailer)]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>generateWithSource [
+{ #category : #'code generation' }
+MethodNode >> generateWithSource [
 	"Answer a CompiledMethod with source encoded in trailer."
 	
 	| source |
@@ -277,36 +225,24 @@ MethodNode>>generateWithSource [
 	^self generate: (CompiledMethodTrailer new sourceCode: sourceText).
 ]
 
-{
-	#category : #'debugger support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>hasGeneratedMethod [
+{ #category : #'debugger support' }
+MethodNode >> hasGeneratedMethod [
 	^encoder hasGeneratedMethod
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>locationCounter [
+{ #category : #'code generation (closures)' }
+MethodNode >> locationCounter [
 	^locationCounter
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>methodClass [
+{ #category : #printing }
+MethodNode >> methodClass [
 
 	^ encoder classEncoding
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>noteBlockEntry: aBlock [
+{ #category : #'code generation (closures)' }
+MethodNode >> noteBlockEntry: aBlock [
 	"Evaluate aBlock with the numbering for the block entry."
 	locationCounter ifNil:
 		[locationCounter := -1].
@@ -314,21 +250,15 @@ MethodNode>>noteBlockEntry: aBlock [
 	locationCounter := locationCounter + 2
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>noteBlockExit: aBlock [
+{ #category : #'code generation (closures)' }
+MethodNode >> noteBlockExit: aBlock [
 	"Evaluate aBlock with the numbering for the block exit."
 	aBlock value: locationCounter + 1.
 	locationCounter := locationCounter + 2
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>preen [
+{ #category : #converting }
+MethodNode >> preen [
 	"Preen for pretty-printing and/or decompilation.
 	 i.e. post-process to cover up for inadequacies in both algorithms.
 	 Currently one case, hiding the assignment to the arg of an inlined block arg to ifNotNil:,
@@ -337,11 +267,8 @@ MethodNode>>preen [
 	self preenLocalIfNotNilArg
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>preenLocalIfNotNilArg [
+{ #category : #converting }
+MethodNode >> preenLocalIfNotNilArg [
 	"Try and spot a (var := expr) ifNil: [...] ifNotNil: [...] where var is only used in the ifNotNil: block
 	 and convert it to expr ifNil: [...] ifNotNil: [:var| ...].  Deal both with the pretty-print case where
 	 the block already declares the variable and the decompile case where it does not."
@@ -371,11 +298,8 @@ MethodNode>>preenLocalIfNotNilArg [
 				[node temporaries: (node temporaries reject: [:temp| varsToHide includes: temp])]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>primitiveErrorVariableName [
+{ #category : #accessing }
+MethodNode >> primitiveErrorVariableName [
 	"Answer the primitive error code temp name, or nil if none."
 	(primitive isInteger and: [primitive > 0]) ifTrue:
 		[properties pragmas do:
@@ -400,11 +324,8 @@ MethodNode>>primitiveErrorVariableName [
 	"(Parser new parse: 'foo <primitive: 111 error: foo> self primitiveFailed' class: Object) generate"
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>printOn: aStream [
+{ #category : #printing }
+MethodNode >> printOn: aStream [
 	| selectorNode |
 	selectorNode := self selectorNode.
 	precedence = 1
@@ -433,11 +354,8 @@ MethodNode>>printOn: aStream [
 	block printStatementsOn: aStream indent: 0
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>printPragmasOn: aStream [
+{ #category : #printing }
+MethodNode >> printPragmasOn: aStream [
 	properties ifNil: [^self].
 	properties pragmas do:
 		[:pragma|
@@ -447,11 +365,8 @@ MethodNode>>printPragmasOn: aStream [
 			 pragma printOn: aStream]]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>printPrimitiveOn: aStream [
+{ #category : #printing }
+MethodNode >> printPrimitiveOn: aStream [
 	"Print the primitive on aStream"
 
 	| primDecl |
@@ -479,11 +394,8 @@ MethodNode>>printPrimitiveOn: aStream [
 	aStream nextPut: $>.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>printPropertiesOn: aStream [
+{ #category : #printing }
+MethodNode >> printPropertiesOn: aStream [
 	properties ifNil: [^self].
 	properties propertyKeysAndValuesDo:
 		[:prop :val|
@@ -499,28 +411,19 @@ MethodNode>>printPropertiesOn: aStream [
 		aStream nextPut: $>]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>properties [
+{ #category : #'code generation' }
+MethodNode >> properties [
 	^ properties
 ]
 
-{
-	#category : #'source mapping',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>rawSourceRanges [
+{ #category : #'source mapping' }
+MethodNode >> rawSourceRanges [
 
 	^self rawSourceRangesAndMethodDo: [:rawSourceRanges :method| rawSourceRanges]
 ]
 
-{
-	#category : #'source mapping',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>rawSourceRangesAndMethodDo: aBinaryBlock [
+{ #category : #'source mapping' }
+MethodNode >> rawSourceRangesAndMethodDo: aBinaryBlock [
 	"Evaluate aBinaryBlock with the rawSourceRanges and method generated from the receiver."
 
 	| methNode method |
@@ -534,11 +437,8 @@ MethodNode>>rawSourceRangesAndMethodDo: aBinaryBlock [
 		value: method
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>referencedValuesWithinBlockExtent: anInterval  [
+{ #category : #'code generation (closures)' }
+MethodNode >> referencedValuesWithinBlockExtent: anInterval [ 
 	^(localsPool select:
 		[:temp|
 		 temp isReferencedWithinBlockExtent: anInterval]) collect:
@@ -546,11 +446,8 @@ MethodNode>>referencedValuesWithinBlockExtent: anInterval  [
 			temp isRemote ifTrue: [temp remoteNode] ifFalse: [temp]]
 ]
 
-{
-	#category : #'primitive error codes',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>removeAndRenameLastTempIfErrorCode [
+{ #category : #'primitive error codes' }
+MethodNode >> removeAndRenameLastTempIfErrorCode [
 	self primitiveErrorVariableName ifNotNil:
 		[:primitiveErrorVariableName|
 		 temporaries last
@@ -560,21 +457,15 @@ MethodNode>>removeAndRenameLastTempIfErrorCode [
 		 temporaries removeLast].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>removeProperty: aSymbol [
+{ #category : #accessing }
+MethodNode >> removeProperty: aSymbol [
 	properties := properties copyWithout: (Association
 											key: aSymbol
 											value: (properties propertyValueAt: aSymbol))
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>selector  [
+{ #category : #'code generation' }
+MethodNode >> selector [ 
 	"Answer the message selector for the method represented by the receiver."
 
 	(selectorOrFalse isSymbol)
@@ -583,20 +474,14 @@ MethodNode>>selector  [
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>selector: symbol [
+{ #category : #initialize-release }
+MethodNode >> selector: symbol [
 
 	selectorOrFalse := symbol
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>selector: selOrFalse arguments: args precedence: p temporaries: temps block: blk encoder: anEncoder primitive: prim  [
+{ #category : #initialize-release }
+MethodNode >> selector: selOrFalse arguments: args precedence: p temporaries: temps block: blk encoder: anEncoder primitive: prim [ 
 	"Initialize the receiver with respect to the arguments given."
 
 	encoder := anEncoder.
@@ -608,11 +493,8 @@ MethodNode>>selector: selOrFalse arguments: args precedence: p temporaries: temp
 	primitive := prim
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>selector: selOrFalse arguments: args precedence: p temporaries: temps block: blk encoder: anEncoder primitive: prim properties: propDict [
+{ #category : #initialize-release }
+MethodNode >> selector: selOrFalse arguments: args precedence: p temporaries: temps block: blk encoder: anEncoder primitive: prim properties: propDict [
 	"Initialize the receiver with respect to the arguments given."
 
 	encoder := anEncoder.
@@ -625,11 +507,8 @@ MethodNode>>selector: selOrFalse arguments: args precedence: p temporaries: temp
 	properties := propDict.
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>selectorNode [
+{ #category : #'code generation' }
+MethodNode >> selectorNode [
 	"Answer a SelectorNode for the message selector of the method represented by the receiver."
 
 	^(selectorOrFalse isMemberOf: SelectorNode)
@@ -637,64 +516,43 @@ MethodNode>>selectorNode [
 		ifFalse: [SelectorNode new key: selectorOrFalse]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>source: stringOrText [
+{ #category : #initialize-release }
+MethodNode >> source: stringOrText [
 
 	sourceText := stringOrText
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>sourceCode [
+{ #category : #printing }
+MethodNode >> sourceCode [
 
 	^ self sourceText.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>sourceText [
+{ #category : #printing }
+MethodNode >> sourceText [
 
 	^ sourceText ifNil: [self printString]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>sourceText: stringOrText [
+{ #category : #initialize-release }
+MethodNode >> sourceText: stringOrText [
 
 	sourceText := stringOrText
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>tempNames [
+{ #category : #printing }
+MethodNode >> tempNames [
 	^ encoder tempNames
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>temporaries [
+{ #category : #accessing }
+MethodNode >> temporaries [
 	"For transformations etc, not used in compilation"
 	^temporaries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodNode>>temporaries: aSequence [
+{ #category : #accessing }
+MethodNode >> temporaries: aSequence [
 	"For transformations etc, not used in compilation"
 	temporaries := aSequence
 ]

@@ -32,15 +32,11 @@ Class {
 		'existing',
 		'stored'
 	],
-	#category : #System-Identification,
-	#timestamp : 'JurajKubelka 10/30/2015 16:38'
+	#category : #System-Identification
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierMerger>>convertValues [
+{ #category : #actions }
+GlobalIdentifierMerger >> convertValues [
 	existing 
 		at: #computerUUID 
 		ifPresent: [ :aValue | existing at: #computerUUID put: aValue asString ]
@@ -51,27 +47,18 @@ GlobalIdentifierMerger>>convertValues [
 		ifAbsent: [ "ignore" ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierMerger>>existing [
+{ #category : #accessing }
+GlobalIdentifierMerger >> existing [
 	^ existing
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierMerger>>existing: anObject [
+{ #category : #accessing }
+GlobalIdentifierMerger >> existing: anObject [
 	existing := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierMerger>>merge [
+{ #category : #actions }
+GlobalIdentifierMerger >> merge [
 	"If UUIDs are different, it is likely different user and we should use
 	localy stored settings. If the UUIDs are same, we keep settings of the image.
 	
@@ -82,11 +69,8 @@ GlobalIdentifierMerger>>merge [
 			ifFalse: [ self mergeDifferentComputer ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierMerger>>mergeDifferentComputer [
+{ #category : #actions }
+GlobalIdentifierMerger >> mergeDifferentComputer [
 	"It puts all stored values into existing dictionary."
 	stored keysAndValuesDo: [ :eachKey :eachValue |
 		existing at: eachKey put: eachValue ].
@@ -94,11 +78,8 @@ GlobalIdentifierMerger>>mergeDifferentComputer [
 	^ true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierMerger>>mergeSameComputer [
+{ #category : #actions }
+GlobalIdentifierMerger >> mergeSameComputer [
 	"It add into existing dictionary keys that are included in the stored dictionary,
 	but are missing in the existing dictionary. Useful when a new version
 	adds new configuration values that should be saved too.
@@ -113,18 +94,12 @@ GlobalIdentifierMerger>>mergeSameComputer [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierMerger>>stored [
+{ #category : #accessing }
+GlobalIdentifierMerger >> stored [
 	^ stored
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlobalIdentifierMerger>>stored: anObject [
+{ #category : #accessing }
+GlobalIdentifierMerger >> stored: anObject [
 	stored := anObject
 ]

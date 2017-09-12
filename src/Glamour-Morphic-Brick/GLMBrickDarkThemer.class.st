@@ -1,100 +1,66 @@
-"
-
-"
 Class {
 	#name : #GLMBrickDarkThemer,
 	#superclass : #GLMBrickThemer,
-	#category : #Glamour-Morphic-Brick-Theme,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Theme
 }
 
-{
-	#category : #theme-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickDarkThemer>>actionThemer [
+{ #category : #theme-actions }
+GLMBrickDarkThemer >> actionThemer [
 
 	^ GLMActionBrickDarkThemer new
 ]
 
-{
-	#category : #brick-button,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickDarkThemer>>buttonBackgroundColor [
+{ #category : #brick-button }
+GLMBrickDarkThemer >> buttonBackgroundColor [
 
 	^ Color veryDarkGray lighter
 ]
 
-{
-	#category : #brick-button,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickDarkThemer>>buttonPressedColor [
+{ #category : #brick-button }
+GLMBrickDarkThemer >> buttonPressedColor [
 
 	^ self backgroundColor whiter
 ]
 
-{
-	#category : #brick-button,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickDarkThemer>>buttonSelectedColor [
+{ #category : #brick-button }
+GLMBrickDarkThemer >> buttonSelectedColor [
 
 	^ Color veryDarkGray lighter slightlyDarker
 ]
 
-{
-	#category : #brick-checkbox,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickDarkThemer>>checkboxBorderColor [
+{ #category : #brick-checkbox }
+GLMBrickDarkThemer >> checkboxBorderColor [
 
 	^ Color lightGray
 ]
 
-{
-	#category : #brick,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickDarkThemer>>contentBackgroundColor [
+{ #category : #brick }
+GLMBrickDarkThemer >> contentBackgroundColor [
 
 	^ Color darkGray darker
 ]
 
-{
-	#category : #brick-scrollbar,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickDarkThemer>>scrollbarColor [
+{ #category : #brick-scrollbar }
+GLMBrickDarkThemer >> scrollbarColor [
 
 	^ Color black alpha: 0.5
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickDarkThemer>>tabLabelThemer [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickDarkThemer >> tabLabelThemer [
 
 	^ self
 		registerModule: GLMBrickTabLabelDarkThemer new
 ]
 
-{
-	#category : #brick,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickDarkThemer>>textColor [
+{ #category : #brick }
+GLMBrickDarkThemer >> textColor [
 
 	^ self color whiten
 ]
 
-{
-	#category : #brick,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickDarkThemer>>textSecondaryColor [
+{ #category : #brick }
+GLMBrickDarkThemer >> textSecondaryColor [
 
 	^ Color white
 ]

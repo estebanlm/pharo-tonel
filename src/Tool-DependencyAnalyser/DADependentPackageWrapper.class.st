@@ -8,47 +8,31 @@ Class {
 		'pdPackage',
 		'relationGraph'
 	],
-	#category : #Tool-DependencyAnalyser-Core,
-	#timestamp : 'BaptisteQuide 8/1/2014 14:19'
+	#category : #Tool-DependencyAnalyser-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageWrapper class>>newWith: aPackage on: relationGraph [
+{ #category : #'instance creation' }
+DADependentPackageWrapper class >> newWith: aPackage on: relationGraph [
 	^ self new initializeFrom: aPackage on: relationGraph
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageWrapper>><= other [
+{ #category : #comparing }
+DADependentPackageWrapper >> <= other [
 	^ self daPackage <= other daPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageWrapper>>daPackage [
+{ #category : #accessing }
+DADependentPackageWrapper >> daPackage [
 	^ pdPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageWrapper>>daPackage: anObject [
+{ #category : #accessing }
+DADependentPackageWrapper >> daPackage: anObject [
 	pdPackage := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageWrapper>>dependenciesSize [
+{ #category : #accessing }
+DADependentPackageWrapper >> dependenciesSize [
 	| usersOf |
 	usersOf := self usersOfPackage.
 	^ usersOf
@@ -56,11 +40,8 @@ DADependentPackageWrapper>>dependenciesSize [
 			 into: [ :sum :each | sum + (each dependenciesSizeTo: self daPackage) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageWrapper>>extensionDependenciesSize [
+{ #category : #accessing }
+DADependentPackageWrapper >> extensionDependenciesSize [
 	| usersOf |
 	usersOf := self usersOfPackage.
 	^ usersOf 
@@ -68,28 +49,19 @@ DADependentPackageWrapper>>extensionDependenciesSize [
 			into: [ :sum :each | sum + (each extensionDependenciesSizeTo: self daPackage) ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageWrapper>>initializeFrom: aPackage on: aRelationGraph [
+{ #category : #initialization }
+DADependentPackageWrapper >> initializeFrom: aPackage on: aRelationGraph [
 	pdPackage := aPackage.
 	relationGraph :=aRelationGraph.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageWrapper>>packageName [
+{ #category : #accessing }
+DADependentPackageWrapper >> packageName [
 	^ self daPackage packageName
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageWrapper>>printOn: aStream [
+{ #category : #printing }
+DADependentPackageWrapper >> printOn: aStream [
 	| numberOfExtension |
 	numberOfExtension := self extensionDependenciesSize.
 	aStream
@@ -105,42 +77,27 @@ DADependentPackageWrapper>>printOn: aStream [
 		nextPutAll: ')'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageWrapper>>rPackageSet [
+{ #category : #accessing }
+DADependentPackageWrapper >> rPackageSet [
 	^ pdPackage rPackageSet
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageWrapper>>relationGraph [
+{ #category : #accessing }
+DADependentPackageWrapper >> relationGraph [
 	^ relationGraph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageWrapper>>relationGraph: anObject [
+{ #category : #accessing }
+DADependentPackageWrapper >> relationGraph: anObject [
 	relationGraph := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageWrapper>>usersOfPackage [
+{ #category : #accessing }
+DADependentPackageWrapper >> usersOfPackage [
 	^ relationGraph usersOf: pdPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageWrapper>>usersOfPackageSize [
+{ #category : #accessing }
+DADependentPackageWrapper >> usersOfPackageSize [
 	^ self usersOfPackage size
 ]

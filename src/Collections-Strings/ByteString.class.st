@@ -9,15 +9,11 @@ Class {
 	#classVars : [
 		'NonAsciiMap'
 	],
-	#category : #Collections-Strings,
-	#timestamp : '<historical>'
+	#category : #Collections-Strings
 }
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString class>>compare: string1 with: string2 collated: order [
+{ #category : #primitives }
+ByteString class >> compare: string1 with: string2 collated: order [
 	"Return 1, 2 or 3, if string1 is <, =, or > string2, with the collating order of characters given by the order array."
 
 	| len1 len2 c1 c2 |
@@ -40,11 +36,8 @@ ByteString class>>compare: string1 with: string2 collated: order [
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString class>>findFirstInString: aString  inSet: inclusionMap  startingAt: start [
+{ #category : #primitives }
+ByteString class >> findFirstInString: aString  inSet: inclusionMap  startingAt: start [
 	| i stringSize |
 	<primitive: 'primitiveFindFirstInString' module: 'MiscPrimitivePlugin'>
 	<var: #aString declareC: 'unsigned char *aString'>
@@ -61,11 +54,8 @@ ByteString class>>findFirstInString: aString  inSet: inclusionMap  startingAt: s
 	^i
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString class>>indexOfAscii: anInteger inString: aString startingAt: start [
+{ #category : #primitives }
+ByteString class >> indexOfAscii: anInteger inString: aString startingAt: start [
 
 	| stringSize |
 	<primitive: 'primitiveIndexOfAsciiInString' module: 'MiscPrimitivePlugin'>
@@ -79,11 +69,8 @@ ByteString class>>indexOfAscii: anInteger inString: aString startingAt: start [
 	^ 0
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString class>>initialize [
+{ #category : #initialization }
+ByteString class >> initialize [
 	"ByteString initialize"
 
 	NonAsciiMap := ByteArray new: 256.
@@ -93,19 +80,13 @@ ByteString class>>initialize [
 			ifFalse: [ NonAsciiMap at: i + 1 put: 1	"extended charset" ] ]
 ]
 
-{
-	#category : #contants,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString class>>nonAsciiMap [
+{ #category : #contants }
+ByteString class >> nonAsciiMap [
 	^NonAsciiMap
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString class>>stringHash: aString initialHash: speciesHash [
+{ #category : #primitives }
+ByteString class >> stringHash: aString initialHash: speciesHash [
 
 	| stringSize hash low |
 	<primitive: 'primitiveStringHash' module: 'MiscPrimitivePlugin'>
@@ -124,11 +105,8 @@ ByteString class>>stringHash: aString initialHash: speciesHash [
 	^ hash
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString class>>translate: aString from: start  to: stop  table: table [
+{ #category : #primitives }
+ByteString class >> translate: aString from: start  to: stop  table: table [
 	"translate the characters in the string by the given table, in place"
 	<primitive: 'primitiveTranslateStringWithTable' module: 'MiscPrimitivePlugin'>
 	<var: #table  declareC: 'unsigned char *table'>
@@ -138,11 +116,8 @@ ByteString class>>translate: aString from: start  to: stop  table: table [
 		aString at: i put: (table at: (aString basicAt: i) + 1) ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString>>asByteArray [
+{ #category : #converting }
+ByteString >> asByteArray [
 	| ba sz |
 	sz := self byteSize.
 	ba := ByteArray new: sz.
@@ -150,21 +125,15 @@ ByteString>>asByteArray [
 	^ba
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString>>asOctetString [
+{ #category : #converting }
+ByteString >> asOctetString [
 
 	^ self.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString>>at: index  [
+{ #category : #accessing }
+ByteString >> at: index [ 
 	"Primitive. Answer the Character stored in the field of the receiver
 	indexed by the argument. Fail if the index argument is not an Integer or
 	is out of bounds. Essential. See Object documentation whatIsAPrimitive."
@@ -173,11 +142,8 @@ ByteString>>at: index  [
 	^ Character value: (super at: index)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString>>at: index put: aCharacter [
+{ #category : #accessing }
+ByteString >> at: index put: aCharacter [
 	"Primitive. Store the Character in the field of the receiver indicated by
 	the index. Fail if the index is not an Integer or is out of bounds, or if
 	the argument is not a Character. Essential. See Object documentation
@@ -196,11 +162,8 @@ ByteString>>at: index put: aCharacter [
 		ifFalse: [self errorNonIntegerIndex]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString>>beginsWith: prefix [
+{ #category : #comparing }
+ByteString >> beginsWith: prefix [
 	"Answer whether the receiver begins with the given prefix string.
 	The comparison is case-sensitive."
 
@@ -218,65 +181,44 @@ ByteString>>beginsWith: prefix [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString>>byteAt: index [
+{ #category : #accessing }
+ByteString >> byteAt: index [
 	<primitive: 60>
 	^(self at: index) asciiValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString>>byteAt: index put: value [
+{ #category : #accessing }
+ByteString >> byteAt: index put: value [
 	<primitive: 61>
 	self at: index put: value asCharacter.
 	^value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString>>byteSize [
+{ #category : #accessing }
+ByteString >> byteSize [
 	^self size
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString>>findSubstring: key in: body startingAt: start matchTable: matchTable [
+{ #category : #comparing }
+ByteString >> findSubstring: key in: body startingAt: start matchTable: matchTable [
 	
 	^ key findIn: body startingAt: start matchTable: matchTable.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString>>hasWideCharacterFrom: start to: stop [
+{ #category : #testing }
+ByteString >> hasWideCharacterFrom: start to: stop [
 	"Only WideStrings contain these characters"
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString>>indexOfAnyOf: aCollection startingAt: start [
+{ #category : #accessing }
+ByteString >> indexOfAnyOf: aCollection startingAt: start [
 	"Use double dispatching for speed"
 	^aCollection findFirstInByteString: self startingAt: start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString>>indexOfAnyOf: aCollection startingAt: start ifAbsent: aBlock [
+{ #category : #accessing }
+ByteString >> indexOfAnyOf: aCollection startingAt: start ifAbsent: aBlock [
 	"Use double dispatching for speed"
 	| index |
 	^(index := aCollection findFirstInByteString: self startingAt: start) = 0
@@ -284,30 +226,21 @@ ByteString>>indexOfAnyOf: aCollection startingAt: start ifAbsent: aBlock [
 		ifFalse: [index]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString>>isAsciiString [
+{ #category : #testing }
+ByteString >> isAsciiString [
 
 
  ^(self class findFirstInString: self inSet: NonAsciiMap startingAt: 1) = 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString>>isByteString [
+{ #category : #testing }
+ByteString >> isByteString [
 	"Answer whether the receiver is a ByteString"
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString>>isOctetString [
+{ #category : #testing }
+ByteString >> isOctetString [
 	"Answer whether the receiver can be represented as a byte string. 
 	This is different from asking whether the receiver *is* a ByteString 
 	(i.e., #isByteString)"
@@ -315,11 +248,8 @@ ByteString>>isOctetString [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteString>>replaceFrom: start to: stop with: replacement startingAt: repStart  [
+{ #category : #accessing }
+ByteString >> replaceFrom: start to: stop with: replacement startingAt: repStart [ 
 	"Primitive. This destructively replaces elements from start to stop in the receiver starting at index, repStart, in the collection, replacement. Answer the receiver. Range checks are performed in the primitive only. Optional. See Object documentation whatIsAPrimitive."
 	<primitive: 105>
 	replacement class == WideString ifTrue: [

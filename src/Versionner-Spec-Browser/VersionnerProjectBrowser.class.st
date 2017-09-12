@@ -23,15 +23,11 @@ Class {
 		'versionsLabel',
 		'versionDescriptionLabel'
 	],
-	#category : #Versionner-Spec-Browser,
-	#timestamp : '<historical>'
+	#category : #Versionner-Spec-Browser
 }
 
-{
-	#category : #spec,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser class>>defaultSpec [
+{ #category : #spec }
+VersionnerProjectBrowser class >> defaultSpec [
 	"Define the layout of the Versionner Browser"
 	^ SpecLayout composed
 		newColumn: [ : column | 
@@ -73,20 +69,14 @@ VersionnerProjectBrowser class>>defaultSpec [
  
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser class>>example [
+{ #category : #examples }
+VersionnerProjectBrowser class >> example [
 	^ self
 		openOn: (MBConfigurationRoot current configurations detect: [ :config | config name = 'ConfigurationOfOSWindow' ])
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser class>>openOn: configuration [
+{ #category : #ui }
+VersionnerProjectBrowser class >> openOn: configuration [
 	^ self new
 		configuration: configuration;
 		createBaselineIfEmptyConfiguration;
@@ -94,30 +84,21 @@ VersionnerProjectBrowser class>>openOn: configuration [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>allVersionsCheckBox [
+{ #category : #accessing }
+VersionnerProjectBrowser >> allVersionsCheckBox [
 	^ allVersionsCheckBox
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>configuration: aMBConfigurationInfo  [
+{ #category : #api }
+VersionnerProjectBrowser >> configuration: aMBConfigurationInfo [ 
 	configuration := aMBConfigurationInfo.
 	configuration ifNotNil: [ 
 		configuration recalculateSilently.
 		self versionList: configuration versions ].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>createBaselineIfEmptyConfiguration [
+{ #category : #actions }
+VersionnerProjectBrowser >> createBaselineIfEmptyConfiguration [
 	configuration versions ifEmpty: 
 		[ | tempProject|
 		tempProject := MTProject new
@@ -127,11 +108,8 @@ VersionnerProjectBrowser>>createBaselineIfEmptyConfiguration [
 		tempProject devWorkflow createInitialDevelopment ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>hasChanges [
+{ #category : #testing }
+VersionnerProjectBrowser >> hasChanges [
 	|  initialProject |
 	
 	versionList selectedItem ifNil: [ ^ false ].
@@ -141,47 +119,32 @@ VersionnerProjectBrowser>>hasChanges [
 	^ (MTModelComparator is: project equalsTo: initialProject) not
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>iconForVersion: aMBVersionInfo  [
+{ #category : #ui }
+VersionnerProjectBrowser >> iconForVersion: aMBVersionInfo [ 
 	^ self iconNamed: #databaseIcon
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>ignoreUnsavedChangesOnDevelopmentIfAny [
+{ #category : #testing }
+VersionnerProjectBrowser >> ignoreUnsavedChangesOnDevelopmentIfAny [
 	^ self hasChanges
 		ifTrue: [ self confirm: 'There are unsaved changes to the development version.
 Ok to loose these changes?' ]
 		ifFalse: [ true ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>initialExtent [
+{ #category : #initialization }
+VersionnerProjectBrowser >> initialExtent [
 	 ^  (900.0@650.0)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>initialize  [
+{ #category : #initialization }
+VersionnerProjectBrowser >> initialize [ 
 	super initialize.
 	self register.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>initializePresenter [
+{ #category : #initialization }
+VersionnerProjectBrowser >> initializePresenter [
 	"Initialize widgets behavior"
 
 	versionList
@@ -207,11 +170,8 @@ VersionnerProjectBrowser>>initializePresenter [
 	repositoryAddButton action: [ self updateRepository ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>initializeWidgets [
+{ #category : #initialization }
+VersionnerProjectBrowser >> initializeWidgets [
 	"toolbar"
 	toolbar := self instantiate: VersionnerProjectToolBar.
 	toolbar browser: self.
@@ -258,11 +218,8 @@ VersionnerProjectBrowser>>initializeWidgets [
 	
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>loadMenuFor: mbInfo in: aMenu  [
+{ #category : #menu }
+VersionnerProjectBrowser >> loadMenuFor: mbInfo in: aMenu [ 
 	"dynamic menu"
 	aMenu target: self.
 	((mbInfo commands 
@@ -280,115 +237,76 @@ VersionnerProjectBrowser>>loadMenuFor: mbInfo in: aMenu  [
 	^ aMenu.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>project [
+{ #category : #accessing }
+VersionnerProjectBrowser >> project [
 	^ project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>projectPanel [
+{ #category : #accessing }
+VersionnerProjectBrowser >> projectPanel [
 	^ projectPanel
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>refreshConfiguration [
+{ #category : #refreshing }
+VersionnerProjectBrowser >> refreshConfiguration [
 	configuration
 		ifNotNil: [ self configuration: (MBConfigurationRoot current configurationInfoFor: configuration configurationClass) ]
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>refreshConfigurationOfProject: anAnnouncement [
+{ #category : #refreshing }
+VersionnerProjectBrowser >> refreshConfigurationOfProject: anAnnouncement [
 	configuration = anAnnouncement configurationInfo
 		ifTrue: [ self refreshConfiguration ]
 ]
 
-{
-	#category : #'announcement registration',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>register [
+{ #category : #'announcement registration' }
+VersionnerProjectBrowser >> register [
 	MBConfigurationRoot current announcer weak
 		when: MBConfigurationInfoChanged
 		send: #refreshConfigurationOfProject:
 		to: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>repository [
+{ #category : #accessing }
+VersionnerProjectBrowser >> repository [
 	^ repository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>repositoryAddButton [
+{ #category : #accessing }
+VersionnerProjectBrowser >> repositoryAddButton [
 	^ repositoryAddButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>repositoryLabel [
+{ #category : #accessing }
+VersionnerProjectBrowser >> repositoryLabel [
 	^ repositoryLabel
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>selectDevelopmentVersion [
+{ #category : #refreshing }
+VersionnerProjectBrowser >> selectDevelopmentVersion [
 	versionList selectDevelopment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>title [
+{ #category : #accessing }
+VersionnerProjectBrowser >> title [
 	^ configuration name configurationBaseName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>toolbar [
+{ #category : #accessing }
+VersionnerProjectBrowser >> toolbar [
 
 	^ toolbar.
 ]
 
-{
-	#category : #'announcement registration',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>unregister [
+{ #category : #'announcement registration' }
+VersionnerProjectBrowser >> unregister [
 	"Unregister from the dependent object. Typically used when closing the browser"
 	
 	MBConfigurationRoot current announcer unsubscribe: self  
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>update [
+{ #category : #refreshing }
+VersionnerProjectBrowser >> update [
 	"Update the project details according to selected configuration and version."
 
 	versionList selectedItem
@@ -403,11 +321,8 @@ VersionnerProjectBrowser>>update [
 			versionCommitMessage label: 'Commited: ' , project version author , ' - ' , project version timestamp ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>updateRepository [
+{ #category : #actions }
+VersionnerProjectBrowser >> updateRepository [
 	"Update the core repository of this project"
 	| package repoManager |
 	
@@ -428,43 +343,28 @@ VersionnerProjectBrowser>>updateRepository [
 			yourself  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>versionCommitMessage [
+{ #category : #accessing }
+VersionnerProjectBrowser >> versionCommitMessage [
 	^ versionCommitMessage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>versionDescription [
+{ #category : #accessing }
+VersionnerProjectBrowser >> versionDescription [
 	^ versionDescription
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>versionDescriptionLabel [
+{ #category : #accessing }
+VersionnerProjectBrowser >> versionDescriptionLabel [
 	^ versionDescriptionLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>versionList [
+{ #category : #accessing }
+VersionnerProjectBrowser >> versionList [
 	^ versionList.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>versionList: aVersionList [
+{ #category : #accessing }
+VersionnerProjectBrowser >> versionList: aVersionList [
 	"Select versions to display and give them to the list model."
 
 	| selectedVersions |
@@ -476,18 +376,12 @@ VersionnerProjectBrowser>>versionList: aVersionList [
 	self versionList items: selectedVersions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>versionsLabel [
+{ #category : #accessing }
+VersionnerProjectBrowser >> versionsLabel [
 	^ versionsLabel
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectBrowser>>windowIsClosing [
+{ #category : #ui }
+VersionnerProjectBrowser >> windowIsClosing [
 	self unregister.
 ]

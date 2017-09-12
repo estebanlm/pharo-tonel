@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #GLMPaneTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>expectedFailures [
+{ #category : #tests }
+GLMPaneTest >> expectedFailures [
 	^ #(testPortsInmmutability testPresentationsInmmutability)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testAllRecursivePresentations [
+{ #category : #tests }
+GLMPaneTest >> testAllRecursivePresentations [
 	| browser |
 	browser := GLMTabulator new.
 	browser column: #one.
@@ -32,11 +22,8 @@ GLMPaneTest>>testAllRecursivePresentations [
 	self assert: browser pane withAllPresentations size equals: 4
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testCachedMatchingPresentations [
+{ #category : #tests }
+GLMPaneTest >> testCachedMatchingPresentations [
 	| aPane cachedMatchingPresentations |
 	aPane := GLMPane in: nil.
 	cachedMatchingPresentations := aPane cachedMatchingPresentations.
@@ -45,11 +32,8 @@ GLMPaneTest>>testCachedMatchingPresentations [
 	self assert: cachedMatchingPresentations ~~ aPane cachedMatchingPresentations
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testCopyAnnouncements [
+{ #category : #tests }
+GLMPaneTest >> testCopyAnnouncements [
 	| pane newPane |
 	pane := GLMPane new.
 	pane when: GLMPresentationsChanged do: [ :ann | self fail ].
@@ -59,11 +43,8 @@ GLMPaneTest>>testCopyAnnouncements [
 	self assert: newPane numberOfSubscriptions equals: 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testCopyAnnouncementsDoNotRaise [
+{ #category : #tests }
+GLMPaneTest >> testCopyAnnouncementsDoNotRaise [
 	| pane newPane |
 	pane := GLMPane new.
 	pane when: GLMPresentationsChanged do: [ :ann | self fail ].
@@ -73,11 +54,8 @@ GLMPaneTest>>testCopyAnnouncementsDoNotRaise [
 	self assert: newPane numberOfSubscriptions equals: 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testCopyNotTheSameRegistry [
+{ #category : #tests }
+GLMPaneTest >> testCopyNotTheSameRegistry [
 
 	| pane newPane |
 	pane := GLMPane new.
@@ -85,64 +63,46 @@ GLMPaneTest>>testCopyNotTheSameRegistry [
 	self assert: pane glmSubscriptions ~~ newPane glmSubscriptions
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testCreation [
+{ #category : #tests }
+GLMPaneTest >> testCreation [
 	| aPane |
 	aPane := GLMPane named: 1 in: 2.
 	self assert: aPane name equals: 1.
 	self assert: aPane browser equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testDefaultCompositePresentation [
+{ #category : #tests }
+GLMPaneTest >> testDefaultCompositePresentation [
 
  	| pane |
 	pane := GLMPane named: 'test'. 
 	self assert: (pane presentations isKindOf: GLMCompositePresentation)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testDefaultPortValue [
+{ #category : #tests }
+GLMPaneTest >> testDefaultPortValue [
 	| pane |
 	pane := GLMPane named: 'test'.
 	self assert: (pane port: #somePort) value isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testDefaultPresentations [
+{ #category : #tests }
+GLMPaneTest >> testDefaultPresentations [
 	| pane |
 	pane := GLMPane named: 'test'.
 	self assert: (pane presentations isKindOf: GLMCompositePresentation)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testDefaultValidate [
+{ #category : #tests }
+GLMPaneTest >> testDefaultValidate [
 	| pane |
 	pane := GLMPane named: 'test'. 
 	self assert: ((pane port: #selection) validate: 5)
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testIn [
+{ #category : #tests }
+GLMPaneTest >> testIn [
 	| aPane |
 	aPane := GLMPane in: 1.
 	self assert: aPane name equals: aPane defaultName.
@@ -151,11 +111,8 @@ GLMPaneTest>>testIn [
 	self assert: aPane presentations isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testNamed [
+{ #category : #tests }
+GLMPaneTest >> testNamed [
 	| aPane |
 	aPane := GLMPane named: 1.
 	self assert: aPane name equals: 1.
@@ -164,11 +121,8 @@ GLMPaneTest>>testNamed [
 	self assert: aPane presentations isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testNamedIn [
+{ #category : #tests }
+GLMPaneTest >> testNamedIn [
 	| aPane |
 	aPane := GLMPane named: 1 in: 2.
 	self assert: aPane name equals: 1.
@@ -177,11 +131,8 @@ GLMPaneTest>>testNamedIn [
 	self assert: aPane presentations isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testPorts [
+{ #category : #tests }
+GLMPaneTest >> testPorts [
 	| pane port |
 	pane := GLMPane named: 'test'.
 	self assert: pane ports isEmpty.
@@ -191,11 +142,8 @@ GLMPaneTest>>testPorts [
 	self assert: (pane port: #foo) == port
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testPortsInmmutability [
+{ #category : #tests }
+GLMPaneTest >> testPortsInmmutability [
 	| aPane ports |
 	aPane := GLMPane in: 1.
 	self assert: aPane ports isEmpty.
@@ -205,11 +153,8 @@ GLMPaneTest>>testPortsInmmutability [
 	self assert: aPane ports isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testPresentationAndBrowserConditions [
+{ #category : #tests }
+GLMPaneTest >> testPresentationAndBrowserConditions [
 	| pane presentation1 presentation2 presentation3 |
 	pane := GLMPane named: 'test'.
 	presentation1 := GLMExplicitBrowser new condition: [ :first :second | first = 1 and: [ second = 2 ] ].
@@ -230,11 +175,8 @@ GLMPaneTest>>testPresentationAndBrowserConditions [
 	self assert: pane matchingPresentations size equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testPresentationConditions [
+{ #category : #tests }
+GLMPaneTest >> testPresentationConditions [
 	| pane presentation1 presentation2 presentation3 |
 	pane := GLMPane named: 'test'.
 	presentation1 := GLMPresentation new condition: [ :first :second | first = 1 and: [ second = 2 ] ].
@@ -255,11 +197,8 @@ GLMPaneTest>>testPresentationConditions [
 	self assert: pane matchingPresentations size equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testPresentations [
+{ #category : #tests }
+GLMPaneTest >> testPresentations [
 	| pane presentation announcement |
 	pane := GLMPane named: 'test'.
 	presentation := GLMPresentation new.
@@ -273,11 +212,8 @@ GLMPaneTest>>testPresentations [
 	self assert: announcement notNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testPresentationsInmmutability [
+{ #category : #tests }
+GLMPaneTest >> testPresentationsInmmutability [
 	| aPane presentations |
 	aPane := GLMPane in: 1.
 	self assert: aPane presentations isEmpty.
@@ -287,11 +223,8 @@ GLMPaneTest>>testPresentationsInmmutability [
 	self assert: aPane presentations isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testSimplePresentations [
+{ #category : #tests }
+GLMPaneTest >> testSimplePresentations [
 	| pane presentation announcement |
 	pane := GLMPane named: 'test'.
 	presentation := GLMPresentation new.
@@ -305,11 +238,8 @@ GLMPaneTest>>testSimplePresentations [
 	self assert: announcement notNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPaneTest>>testValidate [
+{ #category : #tests }
+GLMPaneTest >> testValidate [
 	| pane presentation |
 	pane := GLMPane named: 'test'. 
 	presentation := GLMListPresentation new.

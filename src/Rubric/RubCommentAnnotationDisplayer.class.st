@@ -11,23 +11,16 @@ Class {
 		'lineNumbersDisplayMorph',
 		'extendCommentPolicyMorph'
 	],
-	#category : #Rubric-Editing-Widgets,
-	#timestamp : 'FranckWarlouzet 6/3/2015 16:00'
+	#category : #Rubric-Editing-Widgets
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer class>>key [
+{ #category : #querying }
+RubCommentAnnotationDisplayer class >> key [
 	^ #commentAnnotation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>backgroundColor [
+{ #category : #accessing }
+RubCommentAnnotationDisplayer >> backgroundColor [
 	
 	| clr |
 	
@@ -38,19 +31,13 @@ RubCommentAnnotationDisplayer>>backgroundColor [
 		ifFalse: [ clr lighter]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>changeExtendCommentPolicy [
+{ #category : #submorphs-accessing }
+RubCommentAnnotationDisplayer >> changeExtendCommentPolicy [
 	self paragraphProvider model announcer announce: NautilusExtendCommentSwitch
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>changeLineNumbersDisplay [
+{ #category : #submorphs-accessing }
+RubCommentAnnotationDisplayer >> changeLineNumbersDisplay [
 	self paragraphProvider lineNumbersRuler 
 		ifNil: [ self paragraphProvider withLineNumbers ]
 		ifNotNil: [ self paragraphProvider withoutLineNumbers ].
@@ -58,11 +45,8 @@ RubCommentAnnotationDisplayer>>changeLineNumbersDisplay [
 	self updateContents
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>changeWrappingPolicy [
+{ #category : #submorphs-accessing }
+RubCommentAnnotationDisplayer >> changeWrappingPolicy [
 	self paragraphProvider wrapped 
 		ifTrue: [ self paragraphProvider beNotWrapped  ]
 		ifFalse: [ self paragraphProvider beWrapped ].
@@ -70,95 +54,65 @@ RubCommentAnnotationDisplayer>>changeWrappingPolicy [
 	self paragraphProvider changed
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>computedHeightFrom: aRectangle [
+{ #category : #geometry }
+RubCommentAnnotationDisplayer >> computedHeightFrom: aRectangle [
 	^ row ifNil: [0] ifNotNil: [row height]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>computedWidthFrom: aRectangle [
+{ #category : #geometry }
+RubCommentAnnotationDisplayer >> computedWidthFrom: aRectangle [
 	^ aRectangle width
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>extendCommentPolicyMorph [
+{ #category : #submorphs-accessing }
+RubCommentAnnotationDisplayer >> extendCommentPolicyMorph [
 	^ IconicButton new
 		labelGraphic: (self iconNamed: #expandBoxIcon);
 		color: Color transparent;
 		borderWidth: 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>fontToUse [
+{ #category : #accessing }
+RubCommentAnnotationDisplayer >> fontToUse [
 	^ UITheme new textFont
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>initialize [
+{ #category : #initialize-release }
+RubCommentAnnotationDisplayer >> initialize [
 	super initialize.
 	self side: #bottom
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>level [
+{ #category : #accessing }
+RubCommentAnnotationDisplayer >> level [
 	^ 0
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>lineNumbersDisplayLabel [
+{ #category : #submorphs-accessing }
+RubCommentAnnotationDisplayer >> lineNumbersDisplayLabel [
 	^ self paragraphProvider lineNumbersRuler  
 		ifNil: [ '+L' ]
 		ifNotNil: [ 'L' ]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>lineNumbersDisplayLabelMorph [
+{ #category : #submorphs-accessing }
+RubCommentAnnotationDisplayer >> lineNumbersDisplayLabelMorph [
 	^ StringMorph
 		contents: self lineNumbersDisplayLabel
 		font: self fontToUse
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>manageLayoutInBounds: aRectangle [
+{ #category : #geometry }
+RubCommentAnnotationDisplayer >> manageLayoutInBounds: aRectangle [
 	| ret |
 	ret := super manageLayoutInBounds: aRectangle.
 	self updateContents.
 	^ ret
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>noteNewOwner: aMorph [
+{ #category : #submorphs-accessing }
+RubCommentAnnotationDisplayer >> noteNewOwner: aMorph [
 	super noteNewOwner: aMorph.
 	self color: self backgroundColor.
 	lineAnnotation := RubTextFieldArea new.
@@ -191,40 +145,28 @@ RubCommentAnnotationDisplayer>>noteNewOwner: aMorph [
 	self addMorph: row
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>selectionChanged [
+{ #category : #'event handling' }
+RubCommentAnnotationDisplayer >> selectionChanged [
 	self updateContents.
 	super selectionChanged
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>spacer: anInteger [
+{ #category : #submorphs-accessing }
+RubCommentAnnotationDisplayer >> spacer: anInteger [
 	^ Morph new
 		borderWidth: 0;
 		color: Color transparent;
 		extent: anInteger@3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>textColor [
+{ #category : #accessing }
+RubCommentAnnotationDisplayer >> textColor [
 	^ self paragraphProvider textColor
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>textOfCharBlock: aCharacterBlock [
+{ #category : #'event handling' }
+RubCommentAnnotationDisplayer >> textOfCharBlock: aCharacterBlock [
 	| t l c |
 	l := aCharacterBlock textLine.
 	c := aCharacterBlock stringIndex - l first + 1.
@@ -239,11 +181,8 @@ RubCommentAnnotationDisplayer>>textOfCharBlock: aCharacterBlock [
 	^ t
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>themeChanged [
+{ #category : #'event handling' }
+RubCommentAnnotationDisplayer >> themeChanged [
 
 	self color: self backgroundColor .
 	
@@ -256,11 +195,8 @@ RubCommentAnnotationDisplayer>>themeChanged [
 	super themeChanged
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>updateContents [
+{ #category : #'event handling' }
+RubCommentAnnotationDisplayer >> updateContents [
 	| t |
 	row ifNil: [ ^self ].
 	self textArea selectionStart ifNil: [ ^self ].
@@ -278,21 +214,15 @@ RubCommentAnnotationDisplayer>>updateContents [
 	row width: self innerBounds width
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>wrappingPolicyLabel [
+{ #category : #submorphs-accessing }
+RubCommentAnnotationDisplayer >> wrappingPolicyLabel [
 	^ self paragraphProvider wrapped
 				ifTrue: [ 'W' ]
 				ifFalse: [ 'NW' ]
 ]
 
-{
-	#category : #submorphs-accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCommentAnnotationDisplayer>>wrappingPolicyLabelMorph [
+{ #category : #submorphs-accessing }
+RubCommentAnnotationDisplayer >> wrappingPolicyLabelMorph [
 	^ StringMorph
 		contents: self wrappingPolicyLabel
 		font: self fontToUse

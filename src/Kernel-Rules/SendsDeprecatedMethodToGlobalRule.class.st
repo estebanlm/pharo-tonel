@@ -4,15 +4,11 @@ Checks for sends of deprecated messages that might be removed in upcoming releas
 Class {
 	#name : #SendsDeprecatedMethodToGlobalRule,
 	#superclass : #ReNodeBasedRule,
-	#category : #Kernel-Rules,
-	#timestamp : 'StephaneDucasse 11/29/2014 23:03'
+	#category : #Kernel-Rules
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SendsDeprecatedMethodToGlobalRule>>check: aNode forCritiquesDo: aCriticBlock [
+{ #category : #running }
+SendsDeprecatedMethodToGlobalRule >> check: aNode forCritiquesDo: aCriticBlock [
 
 	| receiver |
 
@@ -30,11 +26,8 @@ SendsDeprecatedMethodToGlobalRule>>check: aNode forCritiquesDo: aCriticBlock [
 	aCriticBlock cull: (self critiqueFor: aNode) 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SendsDeprecatedMethodToGlobalRule>>check: aSelector forDeprecationIn: aGlobalName [
+{ #category : #running }
+SendsDeprecatedMethodToGlobalRule >> check: aSelector forDeprecationIn: aGlobalName [
 
 	^ (Smalltalk globals at: aGlobalName ifAbsent: [ ^ false ]) class
 		classAndMethodFor: aSelector
@@ -42,36 +35,24 @@ SendsDeprecatedMethodToGlobalRule>>check: aSelector forDeprecationIn: aGlobalNam
 		ifAbsent: [ false ]
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SendsDeprecatedMethodToGlobalRule>>critiqueFor: aMessageNode [
+{ #category : #helpers }
+SendsDeprecatedMethodToGlobalRule >> critiqueFor: aMessageNode [
 	^ (super critiqueFor: aMessageNode)
 		tinyHint: aMessageNode selector;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SendsDeprecatedMethodToGlobalRule>>group [
+{ #category : #accessing }
+SendsDeprecatedMethodToGlobalRule >> group [
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SendsDeprecatedMethodToGlobalRule>>name [
+{ #category : #accessing }
+SendsDeprecatedMethodToGlobalRule >> name [
 	^ 'Sends a deprecated message to a known global'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SendsDeprecatedMethodToGlobalRule>>severity [
+{ #category : #accessing }
+SendsDeprecatedMethodToGlobalRule >> severity [
 	^ #error
 ]

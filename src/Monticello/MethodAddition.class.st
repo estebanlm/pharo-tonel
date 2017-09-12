@@ -16,15 +16,11 @@ Class {
 		'priorMethodOrNil',
 		'priorCategoryOrNil'
 	],
-	#category : #Monticello-Loading,
-	#timestamp : 'rej 2/25/2007 19:30'
+	#category : #Monticello-Loading
 }
 
-{
-	#category : #compilation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MethodAddition>>compile [
+{ #category : #compilation }
+MethodAddition >> compile [
     "This method is the how compiling a method used to work.  All these steps were done at once.
      This method should not normally be used, because the whole point of MethodAddition is to let
 	you first create a compiled method and then install the method later."
@@ -34,11 +30,8 @@ MethodAddition>>compile [
 	^selector
 ]
 
-{
-	#category : #compilation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MethodAddition>>compile: aString classified: aString1 withStamp: aString2 notifying: aRequestor logSource: aBoolean inClass: aClass [
+{ #category : #compilation }
+MethodAddition >> compile: aString classified: aString1 withStamp: aString2 notifying: aRequestor logSource: aBoolean inClass: aClass [
 
 	text := aString.
 	category := aString1.
@@ -48,11 +41,8 @@ MethodAddition>>compile: aString classified: aString1 withStamp: aString2 notify
 	myClass := aClass
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MethodAddition>>createCompiledMethod [
+{ #category : #operations }
+MethodAddition >> createCompiledMethod [
 	compiledMethod := myClass compiler 
 		source: text asString;
 		requestor: requestor;
@@ -64,20 +54,14 @@ MethodAddition>>createCompiledMethod [
 	priorCategoryOrNil := myClass organization categoryOfElement: selector
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MethodAddition>>installMethod [
+{ #category : #operations }
+MethodAddition >> installMethod [
 	myClass addSelectorSilently: selector withMethod: compiledMethod.
 
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MethodAddition>>notifyObservers [
+{ #category : #notifying }
+MethodAddition >> notifyObservers [
 	SystemAnnouncer uniqueInstance 
 		suspendAllWhile: [myClass organization classify: selector under: category].
 	priorMethodOrNil 
@@ -91,27 +75,18 @@ MethodAddition>>notifyObservers [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MethodAddition>>priorCategoryOrNil [
+{ #category : #accessing }
+MethodAddition >> priorCategoryOrNil [
 	^ priorCategoryOrNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MethodAddition>>priorCategoryOrNil: anObject [
+{ #category : #accessing }
+MethodAddition >> priorCategoryOrNil: anObject [
 	priorCategoryOrNil := anObject
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MethodAddition>>writeSourceToLog [
+{ #category : #operations }
+MethodAddition >> writeSourceToLog [
 	logSource ifTrue: [
 		myClass logMethodSource: text forMethod: compiledMethod
 			inCategory: category withStamp: changeStamp

@@ -5,23 +5,16 @@ Somewhere in the override hierarchy there is a pragma that tells that this metho
 Class {
 	#name : #ReReturnMethodRule,
 	#superclass : #ReAbstractRule,
-	#category : #Renraku-Rules,
-	#timestamp : 'YuriyTymchuk 1/18/2016 17:13'
+	#category : #Renraku-Rules
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReReturnMethodRule class>>checksMethod [
+{ #category : #'as yet unclassified' }
+ReReturnMethodRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReReturnMethodRule>>check: aMethod forCritiquesDo: aCriticBlock [
+{ #category : #running }
+ReReturnMethodRule >> check: aMethod forCritiquesDo: aCriticBlock [
 	(aMethod overriddenMethods anySatisfy: [ :method |
 		method hasPragmaNamed: #shouldReturn. ])
 			ifFalse: [ ^ self ].
@@ -31,29 +24,20 @@ ReReturnMethodRule>>check: aMethod forCritiquesDo: aCriticBlock [
 	aCriticBlock cull: (self critiqueFor: aMethod)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReReturnMethodRule>>group [
+{ #category : #accessing }
+ReReturnMethodRule >> group [
 
 	^ 'Bugs'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReReturnMethodRule>>name [
+{ #category : #accessing }
+ReReturnMethodRule >> name [
 
 	^ 'Method should explicitly return a value'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReReturnMethodRule>>severity [
+{ #category : #accessing }
+ReReturnMethodRule >> severity [
 
 	^ #error
 ]

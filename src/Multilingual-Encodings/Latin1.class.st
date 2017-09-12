@@ -7,15 +7,11 @@ Class {
 	#classInstVars : [
 		'rightHalfSequence'
 	],
-	#category : #Multilingual-Encodings,
-	#timestamp : 'yo 10/19/2004 19:53'
+	#category : #Multilingual-Encodings
 }
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Latin1 class>>emitSequenceToResetStateIfNeededOn: aStream forState: state  [
+{ #category : #'class methods' }
+Latin1 class >> emitSequenceToResetStateIfNeededOn: aStream forState: state [ 
 	state g0Leading ~= 0 ifTrue: 
 		[ state charSize: 1.
 		state g0Leading: 0.
@@ -25,11 +21,8 @@ Latin1 class>>emitSequenceToResetStateIfNeededOn: aStream forState: state  [
 	"Actually, G1 state should go back to ISO-8859-1, too."
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Latin1 class>>initialize [
+{ #category : #'class methods' }
+Latin1 class >> initialize [
 	"
 	self initialize
 "
@@ -46,19 +39,13 @@ Latin1 class>>initialize [
 		s nextPut: $A ]
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Latin1 class>>initializeUcsTable [
+{ #category : #'class methods' }
+Latin1 class >> initializeUcsTable [
 	UcsTable := (0 to: 255) asArray.
 ]
 
-{
-	#category : #'accessing - displaying',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Latin1 class>>isBreakableAt: index in: text [
+{ #category : #'accessing - displaying' }
+Latin1 class >> isBreakableAt: index [ in: text
 
 	| char |
 	char := text at: index.
@@ -69,11 +56,8 @@ Latin1 class>>isBreakableAt: index in: text [
 
 ]
 
-{
-	#category : #'character classification',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Latin1 class>>isLetter: char [
+{ #category : #'character classification' }
+Latin1 class >> isLetter: char [
 	"Answer whether the receiver is a letter."
 
 	^ Unicode isLetter: char.
@@ -81,21 +65,15 @@ Latin1 class>>isLetter: char [
 
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Latin1 class>>leadingChar [
+{ #category : #'class methods' }
+Latin1 class >> leadingChar [
 
 	^ 0.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Latin1 class>>nextPutRightHalfValue: ascii toStream: aStream withShiftSequenceIfNeededForTextConverterState: state  [
+{ #category : #private }
+Latin1 class >> nextPutRightHalfValue: ascii toStream: aStream withShiftSequenceIfNeededForTextConverterState: state [ 
 	state charSize: 1.
 	state g1Leading: 0.
 	state g1Size: 1.
@@ -103,11 +81,8 @@ Latin1 class>>nextPutRightHalfValue: ascii toStream: aStream withShiftSequenceIf
 	aStream basicNextPut: (Character value: ascii)
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Latin1 class>>nextPutValue: ascii toStream: aStream withShiftSequenceIfNeededForTextConverterState: state  [
+{ #category : #'class methods' }
+Latin1 class >> nextPutValue: ascii toStream: aStream withShiftSequenceIfNeededForTextConverterState: state [ 
 	(ascii <= 127 and: [ state g0Leading ~= 0 ]) ifTrue: 
 		[ state charSize: 1.
 		state g0Leading: 0.
@@ -124,11 +99,8 @@ Latin1 class>>nextPutValue: ascii toStream: aStream withShiftSequenceIfNeededFor
 	^ self
 ]
 
-{
-	#category : #'accessing - displaying',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-Latin1 class>>printingDirection [
+{ #category : #'accessing - displaying' }
+Latin1 class >> printingDirection [
 
 	^ #right.
 

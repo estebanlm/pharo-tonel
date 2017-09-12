@@ -4,15 +4,11 @@ The rule detects if any Float system classes are refferenced by an AST
 Class {
 	#name : #FloatReferencesRule,
 	#superclass : #ReBasicTreeRule,
-	#category : #Kernel-Rules,
-	#timestamp : 'YuriyTymchuk 2/24/2016 11:47'
+	#category : #Kernel-Rules
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FloatReferencesRule>>basicCheck: anEntity [
+{ #category : #running }
+FloatReferencesRule >> basicCheck: anEntity [
 	
 	 self
 		check: anEntity
@@ -20,11 +16,8 @@ FloatReferencesRule>>basicCheck: anEntity [
 		ifNone: [ ^ false ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FloatReferencesRule>>check: anAST forCritiquesDo: aCriticBlock ifNone: alternativeBlock [
+{ #category : #running }
+FloatReferencesRule >> check: anAST forCritiquesDo: aCriticBlock ifNone: alternativeBlock [
 
 	| encounteredCritique |
 	encounteredCritique := false.
@@ -45,39 +38,27 @@ FloatReferencesRule>>check: anAST forCritiquesDo: aCriticBlock ifNone: alternati
 	encounteredCritique ifFalse: alternativeBlock	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FloatReferencesRule>>group [
+{ #category : #accessing }
+FloatReferencesRule >> group [
 	^ 'Bugs'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FloatReferencesRule>>name [
+{ #category : #accessing }
+FloatReferencesRule >> name [
 
 	^ 'Access to a system class'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FloatReferencesRule>>rationale [
+{ #category : #accessing }
+FloatReferencesRule >> rationale [
 
 	^ 'You should not refference ',
 		(self systemClassNames joinUsing: Character space),
 		' as they are there for system purpouses and should not be refferenced directly.'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FloatReferencesRule>>systemClassNames [
+{ #category : #running }
+FloatReferencesRule >> systemClassNames [
 
 	^ #(BoxedFloat64 SmallFloat64)
 ]

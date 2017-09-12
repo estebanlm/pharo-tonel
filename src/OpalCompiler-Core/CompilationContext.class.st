@@ -30,42 +30,29 @@ Class {
 		'BytecodeBackend',
 		'UsesFullBlockClosure'
 	],
-	#category : #OpalCompiler-Core-FrontEnd,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-FrontEnd
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext class>>bytecodeBackend [
+{ #category : #accessing }
+CompilationContext class >> bytecodeBackend [
 	^ BytecodeBackend ifNil: [ self initialize. BytecodeBackend ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext class>>bytecodeBackend: bytecodeSet [
+{ #category : #accessing }
+CompilationContext class >> bytecodeBackend: bytecodeSet [
 	BytecodeBackend := bytecodeSet
 ]
 
-{
-	#category : #compiler,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext class>>compiler [
+{ #category : #compiler }
+CompilationContext class >> compiler [
 	^self compilerClass new
 		compilationContextClass: CompilationContext;
 		environment: self environment;
 		class: self
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext class>>default  [
+{ #category : #'instance creation' }
+CompilationContext class >> default [ 
 	| instance |
 	instance := self new.
 	instance parseOptions: OpalCompiler defaultOptions.
@@ -74,28 +61,19 @@ CompilationContext class>>default  [
 	^instance.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext class>>initialize [
+{ #category : #initialize }
+CompilationContext class >> initialize [
 	BytecodeBackend := OpalEncoderForV3PlusClosures.
 	UsesFullBlockClosure := false.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext class>>usesFullBlockClosure [
+{ #category : #accessing }
+CompilationContext class >> usesFullBlockClosure [
 	^ UsesFullBlockClosure ifNil: [ self initialize. UsesFullBlockClosure ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext class>>usesFullBlockClosure: usesFullBlock [
+{ #category : #accessing }
+CompilationContext class >> usesFullBlockClosure: usesFullBlock [
 	usesFullBlock ifTrue: [ 
 		(BytecodeBackend name endsWith: 'SistaV1') ifFalse: [ 
 			UIManager default alert: 'Be careful ! Inconsistency detected !
@@ -105,91 +83,58 @@ CompilationContext class>>usesFullBlockClosure: usesFullBlock [
 	UsesFullBlockClosure := usesFullBlock
 ]
 
-{
-	#category : #plugins,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>addASTTransformationPlugin: aPlugin [
+{ #category : #plugins }
+CompilationContext >> addASTTransformationPlugin: aPlugin [
 	astTransformPlugins add: aPlugin
 ]
 
-{
-	#category : #plugins,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>astTransformPlugins [
+{ #category : #plugins }
+CompilationContext >> astTransformPlugins [
 	^astTransformPlugins
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>astTranslatorClass [
+{ #category : #accessing }
+CompilationContext >> astTranslatorClass [
 	^ astTranslatorClass ifNil: [ astTranslatorClass := OCASTTranslator ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>astTranslatorClass: anObject [
+{ #category : #accessing }
+CompilationContext >> astTranslatorClass: anObject [
 	astTranslatorClass := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>bytecodeGeneratorClass [
+{ #category : #accessing }
+CompilationContext >> bytecodeGeneratorClass [
 	^ bytecodeGeneratorClass ifNil: [ bytecodeGeneratorClass := IRBytecodeGenerator ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>bytecodeGeneratorClass: anObject [
+{ #category : #accessing }
+CompilationContext >> bytecodeGeneratorClass: anObject [
 	bytecodeGeneratorClass := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>class: anObject [
+{ #category : #accessing }
+CompilationContext >> class: anObject [
 	class := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>compiledMethodTrailer [
+{ #category : #accessing }
+CompilationContext >> compiledMethodTrailer [
 	^ compiledMethodTrailer ifNil: [ compiledMethodTrailer := CompiledMethodTrailer empty ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>compiledMethodTrailer: anObject [
+{ #category : #accessing }
+CompilationContext >> compiledMethodTrailer: anObject [
 	compiledMethodTrailer := anObject
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>compilerOptions: anArray [
+{ #category : #options }
+CompilationContext >> compilerOptions: anArray [
 	self parseOptions: anArray
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>doesNotUnderstand: message [
+{ #category : #options }
+CompilationContext >> doesNotUnderstand: message [
 
 	(message selector isUnary and: [ message selector beginsWith: 'opt'] )
 		ifTrue: [ ^ options includes: message selector ].
@@ -197,304 +142,196 @@ CompilationContext>>doesNotUnderstand: message [
 	^ super doesNotUnderstand: message
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>encoderClass [
+{ #category : #accessing }
+CompilationContext >> encoderClass [
 	^ encoderClass ifNil: [ encoderClass := self class bytecodeBackend ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>encoderClass: anObject [
+{ #category : #accessing }
+CompilationContext >> encoderClass: anObject [
 	encoderClass := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>environment [
+{ #category : #accessing }
+CompilationContext >> environment [
 	^ environment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>environment: anObject [
+{ #category : #accessing }
+CompilationContext >> environment: anObject [
 	environment := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>failBlock [
+{ #category : #accessing }
+CompilationContext >> failBlock [
 	^ failBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>failBlock: anObject [
+{ #category : #accessing }
+CompilationContext >> failBlock: anObject [
 	failBlock := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>forSyntaxHighlighting [
+{ #category : #accessing }
+CompilationContext >> forSyntaxHighlighting [
 	^ forSyntaxHighlighting ifNil: [ ^false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>forSyntaxHighlighting: aBoolean [
+{ #category : #accessing }
+CompilationContext >> forSyntaxHighlighting: aBoolean [
 	forSyntaxHighlighting := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>getClass [
+{ #category : #accessing }
+CompilationContext >> getClass [
 	^ class
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>initialize [
+{ #category : #initialization }
+CompilationContext >> initialize [
 	options := Set new.
 	astTransformPlugins := OrderedCollection new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>interactive [
+{ #category : #accessing }
+CompilationContext >> interactive [
 	^ interactive ifNil: [ false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>interactive: anObject [
+{ #category : #accessing }
+CompilationContext >> interactive: anObject [
 	interactive := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>logged [
+{ #category : #accessing }
+CompilationContext >> logged [
 	^logged ifNil: [ false ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>logged: anObject [
+{ #category : #accessing }
+CompilationContext >> logged: anObject [
 	logged := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>noPattern [
+{ #category : #accessing }
+CompilationContext >> noPattern [
 	^noPattern ifNil: [ false ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>noPattern: anObject [
+{ #category : #accessing }
+CompilationContext >> noPattern: anObject [
 	noPattern := anObject
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>optionInlineAndOr [
+{ #category : #options }
+CompilationContext >> optionInlineAndOr [
 	^ options includes: #optionInlineAndOr
 
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>optionInlineCase [
+{ #category : #options }
+CompilationContext >> optionInlineCase [
 	^ options includes: #optionInlineCase
 
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>optionInlineIf [
+{ #category : #options }
+CompilationContext >> optionInlineIf [
 	^ options includes: #optionInlineIf
 
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>optionInlineIfNil [
+{ #category : #options }
+CompilationContext >> optionInlineIfNil [
 	^ options includes: #optionInlineIfNil
 
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>optionInlineNone [
+{ #category : #options }
+CompilationContext >> optionInlineNone [
 	^ options includes: #optionInlineNone
 
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>optionInlineRepeat [
+{ #category : #options }
+CompilationContext >> optionInlineRepeat [
 	^ options includes: #optionInlineRepeat
 
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>optionInlineTimesRepeat [
+{ #category : #options }
+CompilationContext >> optionInlineTimesRepeat [
 	^ options includes: #optionInlineTimesRepeat
 
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>optionInlineToDo [
+{ #category : #options }
+CompilationContext >> optionInlineToDo [
 	^ options includes: #optionInlineToDo
 
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>optionInlineWhile [
+{ #category : #options }
+CompilationContext >> optionInlineWhile [
 	^ options includes: #optionInlineWhile
 
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>optionLongIvarAccessBytecodes [
+{ #category : #options }
+CompilationContext >> optionLongIvarAccessBytecodes [
 	^ options includes: #optionLongIvarAccessBytecodes
 
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>optionOptimizeIR [
+{ #category : #options }
+CompilationContext >> optionOptimizeIR [
 	^ options includes: #optionOptimizeIR
 
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>optionParseErrors [
+{ #category : #options }
+CompilationContext >> optionParseErrors [
 	^ options includes: #optionParseErrors
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>parseOptions: optionsArray [
+{ #category : #options }
+CompilationContext >> parseOptions: optionsArray [
 	options parseOptions: optionsArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>parserClass [
+{ #category : #accessing }
+CompilationContext >> parserClass [
 	^ parserClass ifNil: [ parserClass := RBParser ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>parserClass: anObject [
+{ #category : #accessing }
+CompilationContext >> parserClass: anObject [
 	parserClass := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>requestor [
+{ #category : #accessing }
+CompilationContext >> requestor [
 	^ requestor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>requestor: anObject [
+{ #category : #accessing }
+CompilationContext >> requestor: anObject [
 	requestor := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>requestorScopeClass [
+{ #category : #accessing }
+CompilationContext >> requestorScopeClass [
 	^ requestorScopeClass ifNil: [ requestorScopeClass := OCRequestorScope ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>requestorScopeClass: anObject [
+{ #category : #accessing }
+CompilationContext >> requestorScopeClass: anObject [
 	"clients can set their own subclass of OCRequestorScope if needed"
 	requestorScopeClass := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>scope [
+{ #category : #accessing }
+CompilationContext >> scope [
 	| newScope |
 
 	newScope := OCClassScope for: class.
@@ -507,34 +344,22 @@ CompilationContext>>scope [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>semanticAnalyzerClass [
+{ #category : #accessing }
+CompilationContext >> semanticAnalyzerClass [
 	^ semanticAnalyzerClass ifNil: [ semanticAnalyzerClass := OCASTSemanticAnalyzer  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>semanticAnalyzerClass: anObject [
+{ #category : #accessing }
+CompilationContext >> semanticAnalyzerClass: anObject [
 	semanticAnalyzerClass := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>usesFullBlockClosure [
+{ #category : #accessing }
+CompilationContext >> usesFullBlockClosure [
 	^ usesFullBlockClosure ifNil: [ usesFullBlockClosure := self class usesFullBlockClosure ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompilationContext>>usesFullBlockClosure: bool [
+{ #category : #accessing }
+CompilationContext >> usesFullBlockClosure: bool [
 	usesFullBlockClosure := bool
 ]

@@ -7,22 +7,15 @@ Class {
 	#instVars : [
 		'newSourceCode'
 	],
-	#category : #OpalCompiler-Core-Exception,
-	#timestamp : 'BenComan 3/6/2014 02:40'
+	#category : #OpalCompiler-Core-Exception
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSourceCodeChanged>>newSourceCode [
+{ #category : #accessing }
+OCSourceCodeChanged >> newSourceCode [
 	^newSourceCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSourceCodeChanged>>newSourceCode: aString [
+{ #category : #accessing }
+OCSourceCodeChanged >> newSourceCode: aString [
 	newSourceCode := aString
 ]

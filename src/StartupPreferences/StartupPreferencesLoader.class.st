@@ -114,59 +114,40 @@ Class {
 		'AllowStartupScript',
 		'UniqueInstance'
 	],
-	#category : #StartupPreferences,
-	#timestamp : 'PavelKrivanek 5/18/2016 14:16'
+	#category : #StartupPreferences
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader class>>allowStartupScript [
+{ #category : #accessing }
+StartupPreferencesLoader class >> allowStartupScript [
 
 	^ AllowStartupScript ifNil: [ AllowStartupScript := true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader class>>allowStartupScript: aBoolean [
+{ #category : #accessing }
+StartupPreferencesLoader class >> allowStartupScript: aBoolean [
 
 	AllowStartupScript := aBoolean
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader class>>cleanUp: aggressive [
+{ #category : #'as yet unclassified' }
+StartupPreferencesLoader class >> cleanUp: aggressive [
 	self reset
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader class>>default [
+{ #category : #'instance creation' }
+StartupPreferencesLoader class >> default [
 
 	^ UniqueInstance ifNil: [ UniqueInstance := super basicNew initialize ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader class>>new [
+{ #category : #'instance creation' }
+StartupPreferencesLoader class >> new [
 
 	^ self error: 'use #default instead'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader class>>preferencesGeneralFolder [
+{ #category : #private }
+StartupPreferencesLoader class >> preferencesGeneralFolder [
 
 	^ [ FileLocator preferences asFileReference / 'pharo' ]
 		on: Error
@@ -175,39 +156,27 @@ StartupPreferencesLoader class>>preferencesGeneralFolder [
 			StartupPreferencesLoadingError signal ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader class>>preferencesVersionFolder [
+{ #category : #private }
+StartupPreferencesLoader class >> preferencesVersionFolder [
 
 	^ self preferencesGeneralFolder 
 		ifNotNil: [ :folder | folder / SystemVersion current dottedMajorMinor ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader class>>reset [
+{ #category : #'instance creation' }
+StartupPreferencesLoader class >> reset [
 
 	UniqueInstance := nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader class>>startupGeneralPreferencesFolderScriptName [
+{ #category : #private }
+StartupPreferencesLoader class >> startupGeneralPreferencesFolderScriptName [
 
 	^ 'startupPharo.st'
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader class>>startupPreferencesSettingsOn: aBuilder [
+{ #category : #setting }
+StartupPreferencesLoader class >> startupPreferencesSettingsOn: aBuilder [
 	<systemsettings>
 	
 	(aBuilder setting: #allowStartupScript)
@@ -217,38 +186,26 @@ StartupPreferencesLoader class>>startupPreferencesSettingsOn: aBuilder [
 		description: 'If true, the preferences will be loaded' .
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader class>>startupPreferencesVersionFolderScriptName [
+{ #category : #private }
+StartupPreferencesLoader class >> startupPreferencesVersionFolderScriptName [
 
 	^ 'startupPharo', SystemVersion current dottedMajorMinor,'.st'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader class>>startupScriptName [
+{ #category : #private }
+StartupPreferencesLoader class >> startupScriptName [
 
 	^ 'startup.st'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>actions [
+{ #category : #accessing }
+StartupPreferencesLoader >> actions [
 
 	^ actions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>add: anAction [
+{ #category : #accessing }
+StartupPreferencesLoader >> add: anAction [
 	| action |
 	action := actions at: anAction name ifAbsentPut: [ anAction ].
 	"make sure the possible existing action ueses new code or
@@ -258,11 +215,8 @@ StartupPreferencesLoader>>add: anAction [
 	^ action
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>addAtStartup: aCollection inDirectory: aFileReference named: fileName [
+{ #category : #private }
+StartupPreferencesLoader >> addAtStartup: aCollection inDirectory: aFileReference named: fileName [
 
 	| scriptFile |
 	aFileReference ensureCreateDirectory.
@@ -271,33 +225,24 @@ StartupPreferencesLoader>>addAtStartup: aCollection inDirectory: aFileReference 
 
 ]
 
-{
-	#category : #'script generation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>addAtStartupInGeneralPreferenceFolder: aCollection  [
+{ #category : #'script generation' }
+StartupPreferencesLoader >> addAtStartupInGeneralPreferenceFolder: aCollection [ 
 	self 
 		addAtStartup: aCollection 
 		inDirectory: self preferencesGeneralFolder 
 		named: self class startupGeneralPreferencesFolderScriptName
 ]
 
-{
-	#category : #'script generation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>addAtStartupInGeneralPreferenceFolder: aCollection named: fileName [
+{ #category : #'script generation' }
+StartupPreferencesLoader >> addAtStartupInGeneralPreferenceFolder: aCollection named: fileName [
 	self 
 		addAtStartup: aCollection 
 		inDirectory: self preferencesGeneralFolder 
 		named: fileName
 ]
 
-{
-	#category : #'script generation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>addAtStartupInImageDirectory:  aCollection [
+{ #category : #'script generation' }
+StartupPreferencesLoader >> addAtStartupInImageDirectory:  aCollection [
 	self 
 		addAtStartup: aCollection 
 		inDirectory: FileSystem workingDirectory 
@@ -305,33 +250,24 @@ StartupPreferencesLoader>>addAtStartupInImageDirectory:  aCollection [
 
 ]
 
-{
-	#category : #'script generation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>addAtStartupInPreferenceVersionFolder: aCollection  [
+{ #category : #'script generation' }
+StartupPreferencesLoader >> addAtStartupInPreferenceVersionFolder: aCollection [ 
 	self 
 		addAtStartup: aCollection 
 		inDirectory: self preferencesVersionFolder 
 		named: self class startupPreferencesVersionFolderScriptName
 ]
 
-{
-	#category : #'script generation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>addAtStartupInPreferenceVersionFolder: aCollection named: fileName [
+{ #category : #'script generation' }
+StartupPreferencesLoader >> addAtStartupInPreferenceVersionFolder: aCollection named: fileName [
 	self 
 		addAtStartup: aCollection 
 		inDirectory: self preferencesVersionFolder 
 		named: fileName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>buildStreamFor: aCollection [
+{ #category : #private }
+StartupPreferencesLoader >> buildStreamFor: aCollection [
 	^ String
 		streamContents:
 			[ :stream | 
@@ -352,29 +288,20 @@ StartupPreferencesLoader>>buildStreamFor: aCollection [
 				crlf ]
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>cleanSavedActionsAndErrors [
+{ #category : #cleaning }
+StartupPreferencesLoader >> cleanSavedActionsAndErrors [
 	actions := Dictionary new. 
 	errors := OrderedCollection new. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>errors [
+{ #category : #accessing }
+StartupPreferencesLoader >> errors [
 
 	^ errors
 ]
 
-{
-	#category : #'code execution',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>executeAtomicItems: aCollection [
+{ #category : #'code execution' }
+StartupPreferencesLoader >> executeAtomicItems: aCollection [
 	"No sender but send from the generated script"
 
 	'Load Startup Preferences'
@@ -385,31 +312,22 @@ StartupPreferencesLoader>>executeAtomicItems: aCollection [
 				(self add: item) execute ]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>initialize [
+{ #category : #initialization }
+StartupPreferencesLoader >> initialize [
 
 	super initialize.
 	actions := Dictionary new. 
 	errors := OrderedCollection new. 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>load: aCollection [
+{ #category : #private }
+StartupPreferencesLoader >> load: aCollection [
 	errors removeAll.
 	aCollection do: [:file | file fileIn ].
 ]
 
-{
-	#category : #'startup loading',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>loadFromDefaultLocations [
+{ #category : #'startup loading' }
+StartupPreferencesLoader >> loadFromDefaultLocations [
 	self class allowStartupScript ifFalse: [ ^ self ].
 	
 	[ self load: self retrieveFilesStream ]
@@ -417,88 +335,61 @@ StartupPreferencesLoader>>loadFromDefaultLocations [
 		do: [ :ex | ex return ]
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>preferencesGeneralFolder [
+{ #category : #utility }
+StartupPreferencesLoader >> preferencesGeneralFolder [
 
 	^ self class preferencesGeneralFolder.
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>preferencesVersionFolder [
+{ #category : #utility }
+StartupPreferencesLoader >> preferencesVersionFolder [
 
 	^ self class preferencesVersionFolder.
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>removeAllScriptsAndCleanSavedActions [
+{ #category : #cleaning }
+StartupPreferencesLoader >> removeAllScriptsAndCleanSavedActions [
 	self removeAllScriptsFromAllDirectories.
 	self cleanSavedActionsAndErrors.
 	
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>removeAllScriptsFromAllDirectories [
+{ #category : #cleaning }
+StartupPreferencesLoader >> removeAllScriptsFromAllDirectories [
 	self removeScriptFromImageDirectory.
 	self removeAllScriptsFromPreferencesVersionDirectory.
 	self removeAllScriptsFromGeneralPreferencesDirectory.
 
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>removeAllScriptsFromDirectory: aDirectory [
+{ #category : #cleaning }
+StartupPreferencesLoader >> removeAllScriptsFromDirectory: aDirectory [
 	aDirectory deleteAllChildren
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>removeAllScriptsFromGeneralPreferencesDirectory [
+{ #category : #cleaning }
+StartupPreferencesLoader >> removeAllScriptsFromGeneralPreferencesDirectory [
 	self removeAllScriptsFromDirectory: self preferencesGeneralFolder.
 	
 	
 
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>removeAllScriptsFromPreferencesVersionDirectory [
+{ #category : #cleaning }
+StartupPreferencesLoader >> removeAllScriptsFromPreferencesVersionDirectory [
 	self removeAllScriptsFromDirectory: self preferencesVersionFolder.
 
 
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>removeScriptFromImageDirectory [
+{ #category : #cleaning }
+StartupPreferencesLoader >> removeScriptFromImageDirectory [
 	(FileSystem workingDirectory / self class startupScriptName) delete.
 
 ]
 
-{
-	#category : #'startup loading',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesLoader>>retrieveFilesStream [
+{ #category : #'startup loading' }
+StartupPreferencesLoader >> retrieveFilesStream [
 
 	^ StartupPreferencesHandler new perform
 ]

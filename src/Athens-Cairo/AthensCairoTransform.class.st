@@ -9,31 +9,21 @@ Class {
 	#instVars : [
 		'canvas'
 	],
-	#category : #Athens-Cairo-Transforms,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Transforms
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoTransform class>>for: cairoCanvas [
+{ #category : #'instance creation' }
+AthensCairoTransform class >> for: cairoCanvas [
 	^ self new canvas: cairoCanvas
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoTransform>>canvas: aCairoCanvas [
+{ #category : #initializing }
+AthensCairoTransform >> canvas: aCairoCanvas [
 	canvas := aCairoCanvas
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoTransform>>loadIdentity [
+{ #category : #primitives }
+AthensCairoTransform >> loadIdentity [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
@@ -43,19 +33,13 @@ AthensCairoTransform>>loadIdentity [
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoTransform>>moveTo: aPoint [
+{ #category : #transformations }
+AthensCairoTransform >> moveTo: aPoint [
 	self moveToX: aPoint x asFloat Y: aPoint y asFloat
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoTransform>>moveToX: px Y: py [
+{ #category : #primitives }
+AthensCairoTransform >> moveToX: px Y: py [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
@@ -67,11 +51,8 @@ AthensCairoTransform>>moveToX: px Y: py [
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoTransform>>primTransformX: x Y: y [
+{ #category : #primitives }
+AthensCairoTransform >> primTransformX: x Y: y [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
@@ -82,40 +63,28 @@ AthensCairoTransform>>primTransformX: x Y: y [
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoTransform>>restore [
+{ #category : #primitives }
+AthensCairoTransform >> restore [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^ self nbCall: #(void cairo_restore(AthensCairoCanvas canvas))
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoTransform>>restoreAfter: aBlock [
+{ #category : #transformations }
+AthensCairoTransform >> restoreAfter: aBlock [
 	self save.
 	aBlock ensure:  [ self restore ].
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoTransform>>rotateByDegrees: angle [
+{ #category : #transformations }
+AthensCairoTransform >> rotateByDegrees: angle [
 
 	^ self rotateByRadians: angle degreesToRadians
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoTransform>>rotateByRadians: angle [
+{ #category : #primitives }
+AthensCairoTransform >> rotateByRadians: angle [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
@@ -126,22 +95,16 @@ AthensCairoTransform>>rotateByRadians: angle [
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoTransform>>save [
+{ #category : #primitives }
+AthensCairoTransform >> save [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^ self nbCall: #(void cairo_save (AthensCairoCanvas canvas))
 
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoTransform>>scaleBy: aScalarOrPoint [
+{ #category : #transformations }
+AthensCairoTransform >> scaleBy: aScalarOrPoint [
 	| double |
 	aScalarOrPoint isPoint
 		ifTrue:[
@@ -154,11 +117,8 @@ AthensCairoTransform>>scaleBy: aScalarOrPoint [
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoTransform>>scaleX: fx Y: fy [
+{ #category : #primitives }
+AthensCairoTransform >> scaleX: fx Y: fy [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
@@ -170,11 +130,8 @@ AthensCairoTransform>>scaleX: fx Y: fy [
 
 ]
 
-{
-	#category : #vector-transform,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoTransform>>transform: aPoint [
+{ #category : #vector-transform }
+AthensCairoTransform >> transform: aPoint [
 	| x y |
 	x := ByteArray new: 8.
 	y := ByteArray new: 8.
@@ -184,20 +141,14 @@ AthensCairoTransform>>transform: aPoint [
 	^ (x doubleAt: 1) @ (y doubleAt: 1)
 ]
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoTransform>>translateBy: aPoint [
+{ #category : #transformations }
+AthensCairoTransform >> translateBy: aPoint [
 	self translateX: aPoint x Y: aPoint y
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoTransform>>translateX: px Y: py [
+{ #category : #primitives }
+AthensCairoTransform >> translateX: px Y: py [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	

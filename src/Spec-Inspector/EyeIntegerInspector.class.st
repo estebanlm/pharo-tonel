@@ -6,15 +6,11 @@ If within Unicode range, show a Character having using the Integer value as code
 Class {
 	#name : #EyeIntegerInspector,
 	#superclass : #EyeInspector,
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeIntegerInspector>>addSpecialFields: elements [
+{ #category : #list }
+EyeIntegerInspector >> addSpecialFields: elements [
 
 	elements add: (DynamicEyeElement 
 		host: self object 

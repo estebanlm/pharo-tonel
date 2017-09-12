@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #RBRemoveMethodTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveMethodTest>>expectedFailures [
+{ #category : #accessing }
+RBRemoveMethodTest >> expectedFailures [
 	^ #(testRemoveSameMethodButSendsSuper)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveMethodTest>>testModelRecursiveMethodThatIsNotReferencedFromOtherMethods [
+{ #category : #tests }
+RBRemoveMethodTest >> testModelRecursiveMethodThatIsNotReferencedFromOtherMethods [
 	| class otherClass |
 	class := model classNamed: #Object.
 	class compile: 'someMethodThatIsNotReferenced ^2' classified: #(#accessing).
@@ -37,11 +27,8 @@ RBRemoveMethodTest>>testModelRecursiveMethodThatIsNotReferencedFromOtherMethods 
 	self deny: (class definesMethod: #someMethodThatIsNotReferenced)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveMethodTest>>testRemoveMethod [
+{ #category : #tests }
+RBRemoveMethodTest >> testRemoveMethod [
 	| refactoring selectors |
 	selectors := Array with: ('selectorNot' , 'Referenced') asSymbol.
 	refactoring := RBRemoveMethodRefactoring 
@@ -52,21 +39,15 @@ RBRemoveMethodTest>>testRemoveMethod [
 	self deny: ((refactoring model classNamed: #RBRefactoryTestDataApp) directlyDefinesMethod: selectors first)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveMethodTest>>testRemoveReferenced [
+{ #category : #'failure tests' }
+RBRemoveMethodTest >> testRemoveReferenced [
 	self shouldFail: (RBRemoveMethodRefactoring 
 			removeMethods: #(#checkClass: )
 			from: RBBasicLintRuleTest)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveMethodTest>>testRemoveSameMethodButSendsSuper [
+{ #category : #'failure tests' }
+RBRemoveMethodTest >> testRemoveSameMethodButSendsSuper [
 	self shouldWarn: (RBRemoveMethodRefactoring 
 			removeMethods: #(#new )
 			from: RBBasicLintRuleTest class)

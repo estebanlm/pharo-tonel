@@ -12,42 +12,29 @@ Class {
 		'start',
 		'stop'
 	],
-	#category : #AST-Core-Nodes,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralNode class>>value: aValue  [
+{ #category : #'instance creation' }
+RBLiteralNode class >> value: aValue [ 
 	^((aValue class == Array or: [aValue class == ByteArray]) 
 		ifTrue: [RBLiteralArrayNode]
 		ifFalse: [RBLiteralValueNode]) value: aValue
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralNode>>= anObject  [
+{ #category : #comparing }
+RBLiteralNode >> = anObject [ 
 	self == anObject ifTrue: [^true].
 	^self class = anObject class
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralNode>>hash [
+{ #category : #comparing }
+RBLiteralNode >> hash [
 	^self value hash
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralNode>>initialize [
+{ #category : #initialization }
+RBLiteralNode >> initialize [
 
 	super initialize.
 
@@ -55,96 +42,63 @@ RBLiteralNode>>initialize [
 	stop := 0.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralNode>>isImmediateNode [
+{ #category : #testing }
+RBLiteralNode >> isImmediateNode [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralNode>>isLiteralNode [
+{ #category : #testing }
+RBLiteralNode >> isLiteralNode [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralNode>>needsParenthesis [
+{ #category : #testing }
+RBLiteralNode >> needsParenthesis [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralNode>>precedence [
+{ #category : #accessing }
+RBLiteralNode >> precedence [
 	^0
 ]
 
-{
-	#category : #private-replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralNode>>replaceSourceFrom: aNode  [
+{ #category : #private-replacing }
+RBLiteralNode >> replaceSourceFrom: aNode [ 
 	self addReplacement: (RBStringReplacement 
 				replaceFrom: aNode start
 				to: aNode stop
 				with: self formattedCode)
 ]
 
-{
-	#category : #private-replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralNode>>replaceSourceWith: aNode  [
+{ #category : #private-replacing }
+RBLiteralNode >> replaceSourceWith: aNode [ 
 	self addReplacement: (RBStringReplacement 
 				replaceFrom: self start
 				to: self stop
 				with: aNode formattedCode)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralNode>>start: anInteger [
+{ #category : #accessing }
+RBLiteralNode >> start: anInteger [
 	start := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralNode>>startWithoutParentheses [
+{ #category : #accessing }
+RBLiteralNode >> startWithoutParentheses [
 	^start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralNode>>stop: anInteger [
+{ #category : #accessing }
+RBLiteralNode >> stop: anInteger [
 	stop := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralNode>>stopWithoutParentheses [
+{ #category : #accessing }
+RBLiteralNode >> stopWithoutParentheses [
 	^stop
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralNode>>value [
+{ #category : #accessing }
+RBLiteralNode >> value [
 	^self subclassResponsibility
 ]

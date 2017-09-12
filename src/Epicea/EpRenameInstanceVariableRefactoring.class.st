@@ -9,15 +9,11 @@ Class {
 		'oldName',
 		'affectedClassName'
 	],
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 15:19'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRenameInstanceVariableRefactoring class>>rename: oldName to: newName in: affectedClassName [
+{ #category : #'instance creation' }
+EpRenameInstanceVariableRefactoring class >> rename: oldName to: newName in: affectedClassName [
 	^ self basicNew 
 		initializeIn: affectedClassName
 		from: oldName 
@@ -25,30 +21,21 @@ EpRenameInstanceVariableRefactoring class>>rename: oldName to: newName in: affec
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRenameInstanceVariableRefactoring>>affectedClassName [
+{ #category : #accessing }
+EpRenameInstanceVariableRefactoring >> affectedClassName [
 	^ affectedClassName
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRenameInstanceVariableRefactoring>>asRBRefactoring [
+{ #category : #converting }
+EpRenameInstanceVariableRefactoring >> asRBRefactoring [
 	^ RBRenameInstanceVariableRefactoring 
 		rename: oldName 
 		to: newName 
 		in: affectedClassName
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRenameInstanceVariableRefactoring>>initializeIn: aClassName from:  anOldName to: aNewName [
+{ #category : #initialize }
+EpRenameInstanceVariableRefactoring >> initializeIn: aClassName from:  anOldName to: aNewName [
 	self initialize.
 
 	affectedClassName := aClassName.
@@ -56,18 +43,12 @@ EpRenameInstanceVariableRefactoring>>initializeIn: aClassName from:  anOldName t
 	oldName := anOldName.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRenameInstanceVariableRefactoring>>newName [
+{ #category : #accessing }
+EpRenameInstanceVariableRefactoring >> newName [
 	^ newName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpRenameInstanceVariableRefactoring>>oldName [
+{ #category : #accessing }
+EpRenameInstanceVariableRefactoring >> oldName [
 	^ oldName
 ]

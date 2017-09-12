@@ -11,35 +11,25 @@ Class {
 		'SymbolFont',
 		'SymbolTable'
 	],
-	#category : #Morphic-Base-Menus,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-Menus
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemShortcutWithSymbol class>>canBeUsed [
+{ #category : #testing }
+ToggleMenuItemShortcutWithSymbol class >> canBeUsed [
 	^ OSPlatform current isMacOS 
 		and: [ self symbolFont isTTCFont 
 		and: [ self symbolFont familyName = self symbolFont realFont face familyName ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemShortcutWithSymbol class>>createSymbolFont [
+{ #category : #private }
+ToggleMenuItemShortcutWithSymbol class >> createSymbolFont [
 	^ LogicalFont 
 		familyName: 'Lucida Grande' 
 		pointSize: 10
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemShortcutWithSymbol class>>createSymbolTable [
+{ #category : #private }
+ToggleMenuItemShortcutWithSymbol class >> createSymbolTable [
 	| attributes |
 	attributes := {TextFontReference toFont: self symbolFont}.
 	^ Dictionary newFromPairs: { 
@@ -52,43 +42,28 @@ ToggleMenuItemShortcutWithSymbol class>>createSymbolTable [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemShortcutWithSymbol class>>priority [
+{ #category : #accessing }
+ToggleMenuItemShortcutWithSymbol class >> priority [
 	^ 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemShortcutWithSymbol class>>symbolFont [
+{ #category : #accessing }
+ToggleMenuItemShortcutWithSymbol class >> symbolFont [
 	^ SymbolFont ifNil: [ SymbolFont := self createSymbolFont ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemShortcutWithSymbol class>>symbolTable [
+{ #category : #accessing }
+ToggleMenuItemShortcutWithSymbol class >> symbolTable [
 	^ SymbolTable ifNil: [ SymbolTable := self createSymbolTable ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemShortcutWithSymbol class>>symbolTableAt: anObject ifAbsent: aBlock [
+{ #category : #accessing }
+ToggleMenuItemShortcutWithSymbol class >> symbolTableAt: anObject ifAbsent: aBlock [
 	^ self symbolTable at: anObject ifAbsent: aBlock
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemShortcutWithSymbol>>drawOn: aCanvas [
+{ #category : #drawing }
+ToggleMenuItemShortcutWithSymbol >> drawOn: aCanvas [
 	| text paragraph keyBounds keyFont |
 
 	text := self text.
@@ -108,11 +83,8 @@ ToggleMenuItemShortcutWithSymbol>>drawOn: aCanvas [
 		color: self owner stringColorToUse
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemShortcutWithSymbol>>text [
+{ #category : #drawing }
+ToggleMenuItemShortcutWithSymbol >> text [
 	| keyParts |
 	keyParts := (self keyText substrings: '+') collect: #trimBoth.
 

@@ -7,34 +7,24 @@ Class {
 	#instVars : [
 		'testMethod'
 	],
-	#category : #Nautilus-Widgets,
-	#timestamp : '<historical>'
+	#category : #Nautilus-Widgets
 }
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWithCorrespondingTestAction>>actionOrder [
+{ #category : #order }
+MethodWithCorrespondingTestAction >> actionOrder [
 	"Return the priority of this action"
 	
 	^ 500
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWithCorrespondingTestAction>>isActionHandled [
+{ #category : #order }
+MethodWithCorrespondingTestAction >> isActionHandled [
 
 	^ (testMethod := method correspondingTestMethod) notNil 
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodWithCorrespondingTestAction>>privateActionIcon [
+{ #category : #order }
+MethodWithCorrespondingTestAction >> privateActionIcon [
 	"Return the icon for this action"
 	
 	^ IconicButton new

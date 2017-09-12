@@ -18,63 +18,41 @@ Class {
 		'DumbbellCursor',
 		'SkipOverMultipleSpaces'
 	],
-	#category : #Text-Edition,
-	#timestamp : 'AlainPlantec 11/2/2010 18:23'
+	#category : #Text-Edition
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor class>>blinkingCursor	 [
+{ #category : #settings }
+Editor class >> blinkingCursor [	
 	^ BlinkingCursor ifNil: [ BlinkingCursor := true ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor class>>blinkingCursor: aBoolean	 [
+{ #category : #settings }
+Editor class >> blinkingCursor: aBoolean [	
 	BlinkingCursor := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor class>>cmdKeysInText [
+{ #category : #settings }
+Editor class >> cmdKeysInText [
 	^ CmdKeysInText ifNil: [CmdKeysInText := true]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor class>>cmdKeysInText: aBoolean [
+{ #category : #settings }
+Editor class >> cmdKeysInText: aBoolean [
 	CmdKeysInText := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor class>>dumbbellCursor [
+{ #category : #settings }
+Editor class >> dumbbellCursor [
 	^ DumbbellCursor ifNil: [ DumbbellCursor := false ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor class>>dumbbellCursor: aBoolean [
+{ #category : #settings }
+Editor class >> dumbbellCursor: aBoolean [
 	DumbbellCursor := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor class>>editingSettingsOn: aBuilder  [
+{ #category : #settings }
+Editor class >> editingSettingsOn: aBuilder [ 
 	<systemsettings> 
 	(aBuilder group: #codeEditing) 
 		label: 'Text Editing';
@@ -151,27 +129,18 @@ Editor class>>editingSettingsOn: aBuilder  [
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor class>>skipOverMultipleSpaces [
+{ #category : #settings }
+Editor class >> skipOverMultipleSpaces [
 	^ SkipOverMultipleSpaces  ifNil: [ SkipOverMultipleSpaces := false ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor class>>skipOverMultipleSpaces: aBoolean [
+{ #category : #settings }
+Editor class >> skipOverMultipleSpaces: aBoolean [
 	SkipOverMultipleSpaces := aBoolean
 ]
 
-{
-	#category : #'private accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor class>>specialShiftCmdKeys [
+{ #category : #'private accessing' }
+Editor class >> specialShiftCmdKeys [
 
 "Private - return array of key codes that represent single keys acting
 as if shift-command were also being pressed"
@@ -192,11 +161,8 @@ as if shift-command were also being pressed"
 	)
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>backWord: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+Editor >> backWord: aKeyboardEvent [
 	"If the selection is not a caret, delete it and leave it in the backspace buffer.
 	 Else, delete the word before the caret."
 
@@ -213,11 +179,8 @@ Editor>>backWord: aKeyboardEvent [
 	^false
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>backspace: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+Editor >> backspace: aKeyboardEvent [
 	"Backspace over the last character."
 
 	| startIndex |
@@ -230,68 +193,47 @@ Editor>>backspace: aKeyboardEvent [
 	^false
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>clipboardText [
+{ #category : #'menu messages' }
+Editor >> clipboardText [
 
 	^ Clipboard clipboardText
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>clipboardTextPut: text [
+{ #category : #'menu messages' }
+Editor >> clipboardTextPut: text [
 
 	^ Clipboard clipboardText: text
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>cmdKeysInText [
+{ #category : #settings }
+Editor >> cmdKeysInText [
 	^ self class cmdKeysInText
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>copySelection: aKeyboardEvent [
+{ #category : #'editing keys' }
+Editor >> copySelection: aKeyboardEvent [
 	"Copy the current text selection."
 
 	self copySelection.
 	^true
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>crlf: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+Editor >> crlf: aKeyboardEvent [
 	"Append a line feed character to the stream of characters."
 
 	self addString: String crlf.
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>currentAttributes [
+{ #category : #accessing }
+Editor >> currentAttributes [
 	"Redefined by subclasses that handle TextAttributes"
 	^nil
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>cursorDown: aKeyboardEvent  [
+{ #category : #'nonediting/nontyping keys' }
+Editor >> cursorDown: aKeyboardEvent [ 
 
 	"Private - Move cursor from position in current line to same position in
 	next line. If next line too short, put at end. If shift key down,
@@ -309,11 +251,8 @@ Editor>>cursorDown: aKeyboardEvent  [
 	^true
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>cursorLeft: aKeyboardEvent  [
+{ #category : #'nonediting/nontyping keys' }
+Editor >> cursorLeft: aKeyboardEvent [ 
 	"Private - Move cursor left one character if nothing selected, otherwise 
 	move cursor to beginning of selection. If the shift key is down, start 
 	selecting or extending current selection. Don't allow cursor past 
@@ -332,11 +271,8 @@ Editor>>cursorLeft: aKeyboardEvent  [
 	^ true
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>cursorPageDown: aKeyboardEvent  [
+{ #category : #'nonediting/nontyping keys' }
+Editor >> cursorPageDown: aKeyboardEvent [ 
 
 	self closeTypeIn.
 	self 
@@ -351,11 +287,8 @@ Editor>>cursorPageDown: aKeyboardEvent  [
 	^true
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>cursorPageUp: aKeyboardEvent  [
+{ #category : #'nonediting/nontyping keys' }
+Editor >> cursorPageUp: aKeyboardEvent [ 
 
 	self closeTypeIn.
 	self 
@@ -370,11 +303,8 @@ Editor>>cursorPageUp: aKeyboardEvent  [
 	^true
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>cursorRight: aKeyboardEvent  [
+{ #category : #'nonediting/nontyping keys' }
+Editor >> cursorRight: aKeyboardEvent [ 
 	"Private - Move cursor right one character if nothing selected, 
 	otherwise move cursor to end of selection. If the shift key is down, 
 	start selecting characters or extending already selected characters. 
@@ -393,22 +323,16 @@ Editor>>cursorRight: aKeyboardEvent  [
 	^ true
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>cursorTopHome: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+Editor >> cursorTopHome: aKeyboardEvent [
 	"Put cursor at beginning of text -- invoked from cmd-H shortcut, useful for keyboards that have no home key."
 
 	self selectAt: 1.
 	^ true
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>cursorUp: aKeyboardEvent  [
+{ #category : #'nonediting/nontyping keys' }
+Editor >> cursorUp: aKeyboardEvent [ 
 "Private - Move cursor from position in current line to same position in
 prior line. If prior line too short, put at end"
 
@@ -424,111 +348,75 @@ prior line. If prior line too short, put at end"
 	^true
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>cut: aKeyboardEvent  [
+{ #category : #'editing keys' }
+Editor >> cut: aKeyboardEvent [ 
 	"Cut out the current text selection."
 
 	self cut.
 	^true
 ]
 
-{
-	#category : #'current selection',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>deselect [
+{ #category : #'current selection' }
+Editor >> deselect [
 	"If the text selection is visible on the screen, reverse its highlight."
 	" ***** screw this logic ***** selectionShowing ifTrue: [self reverseSelection] "
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>escape  [
+{ #category : #'nonediting/nontyping keys' }
+Editor >> escape [ 
 	self morph escapePressed .
 	
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>escape: aKeyboardEvent [
+{ #category : #'nonediting/nontyping keys' }
+Editor >> escape: aKeyboardEvent [
 	self morph escapePressed.
 	^ false  
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>hasError [
+{ #category : #testing }
+Editor >> hasError [
 	^ false 
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>hasSelection [
+{ #category : #accessing-selection }
+Editor >> hasSelection [
 	^self hasCaret not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>isSimpleEditor  [
+{ #category : #testing }
+Editor >> isSimpleEditor [ 
 	^ false 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>isSmalltalkEditor [
+{ #category : #testing }
+Editor >> isSmalltalkEditor [
 	^ false 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>isTextEditor [
+{ #category : #testing }
+Editor >> isTextEditor [
 	^ false 
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>lf: aKeyboardEvent  [
+{ #category : #'typing/selecting keys' }
+Editor >> lf: aKeyboardEvent [ 
 	"Append a line feed character to the stream of characters."
 
 	self addString: Character lf asString.
 	^false
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>lineSelectAndEmptyCheck: returnBlock [
+{ #category : #'menu messages' }
+Editor >> lineSelectAndEmptyCheck: returnBlock [
 	"If the current selection is an insertion point, expand it to be the entire current line; if after that's done the selection is still empty, then evaluate the returnBlock, which will typically consist of '[^ self]' in the caller -- check senders of this method to understand this."
 
 	self selectLine.  "if current selection is an insertion point, then first select the entire line in which occurs before proceeding"
 	self hasSelection ifFalse: [morph flash.  ^ returnBlock value]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>lines [
+{ #category : #private }
+Editor >> lines [
 	"Compute lines based on logical line breaks, not optical (which may change due to line wrapping of the editor).
 	Subclasses using kinds of Paragraphs can instead use the service provided by it.
 	"
@@ -551,36 +439,24 @@ Editor>>lines [
 	^lines
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>markBlock: aCharacterBlock  [
+{ #category : #accessing }
+Editor >> markBlock: aCharacterBlock [ 
 	self editingState markBlock:  aCharacterBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>morph [
+{ #category : #accessing }
+Editor >> morph [
 	^ morph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>morph: aMorph [
+{ #category : #accessing }
+Editor >> morph: aMorph [
 	"Install a link back to the morph being edited (esp for text links)"
 	morph := aMorph 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>moveCursor: directionBlock forward: forward specialBlock: specialBlock event: aKeyboardEvent [
+{ #category : #private }
+Editor >> moveCursor: directionBlock forward: forward specialBlock: specialBlock event: aKeyboardEvent [
 	"Private - Move cursor.
 	directionBlock is a one argument Block that computes the new Position from a given one.
 	specialBlock is a one argumentBlock that computes the new position from a given one under the alternate semantics.
@@ -597,11 +473,8 @@ Editor>>moveCursor: directionBlock forward: forward specialBlock: specialBlock e
 		ifFalse: [self selectAt: newPosition]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>nextNonBlank: position [
+{ #category : #private }
+Editor >> nextNonBlank: position [
 
 "if current position is not separator, advance by 1, otherwise advance up until non-separator char found or new line"
 	
@@ -617,11 +490,8 @@ Editor>>nextNonBlank: position [
 	^ index
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>nextWord: position [
+{ #category : #private }
+Editor >> nextWord: position [
 	| string index |
 	string := self string.
 	index := position.
@@ -632,32 +502,23 @@ Editor>>nextWord: position [
 	^ index
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>noop: aKeyboardEvent  [
+{ #category : #'editing keys' }
+Editor >> noop: aKeyboardEvent [ 
 	"Unimplemented keyboard command; just ignore it."
 
 	^ true
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>normalCharacter: aKeyboardEvent  [
+{ #category : #'typing/selecting keys' }
+Editor >> normalCharacter: aKeyboardEvent [ 
 	"A nonspecial character is to be added to the stream of characters."
 
 	self addString: aKeyboardEvent keyCharacter asString.
 	^false
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>paste [
+{ #category : #'menu messages' }
+Editor >> paste [
 	"Paste the text from the shared buffer over the current selection and 
 	redisplay if necessary.  Undoer & Redoer: undoAndReselect."
 
@@ -665,11 +526,8 @@ Editor>>paste [
 		[self selectAt: self pointIndex]
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>paste: aKeyboardEvent  [
+{ #category : #'editing keys' }
+Editor >> paste: aKeyboardEvent [ 
 	"Replace the current text selection by the text in the shared buffer."
 
 	self closeTypeIn.
@@ -677,11 +535,8 @@ Editor>>paste: aKeyboardEvent  [
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>previousNonBlank: position [
+{ #category : #private }
+Editor >> previousNonBlank: position [
 	"decrement position up until any non-blank character found, or end of line"
 	| string index |
 	position <= 1 ifTrue: [ ^ 1 ].
@@ -696,11 +551,8 @@ Editor>>previousNonBlank: position [
 	^ index
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>previousWord: position [
+{ #category : #private }
+Editor >> previousWord: position [
 	| string index |
 	string := self string.
 	index := position.
@@ -711,31 +563,22 @@ Editor>>previousWord: position [
 	^ index + 1
 ]
 
-{
-	#category : #'current selection',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>select [
+{ #category : #'current selection' }
+Editor >> select [
 	"If the text selection is visible on the screen, reverse its highlight."
 	^'Not doing anything'
 	"screw this logic
 	selectionShowing ifFalse: [self reverseSelection]"
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>selectAll [
+{ #category : #'typing/selecting keys' }
+Editor >> selectAll [
 
 	self selectFrom: 1 to: self string size
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>selectAll: aKeyboardEvent  [
+{ #category : #'typing/selecting keys' }
+Editor >> selectAll: aKeyboardEvent [ 
 	"select everything"
 
 	self closeTypeIn.
@@ -743,33 +586,24 @@ Editor>>selectAll: aKeyboardEvent  [
 	^ true
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>selectAt: characterIndex  [
+{ #category : #'new selection' }
+Editor >> selectAt: characterIndex [ 
 	"Place the caret before the character at characterIndex.
 	 Be sure it is in view."
 
 	self selectFrom: characterIndex to: characterIndex - 1
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>selectInterval: anInterval [
+{ #category : #'new selection' }
+Editor >> selectInterval: anInterval [
 	"Select the specified characters inclusive.
 	 Be sure the selection is in view."
 
 	self selectFrom: anInterval first to: anInterval last
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>selectInvisiblyAt: characterIndex  [
+{ #category : #'new selection' }
+Editor >> selectInvisiblyAt: characterIndex [ 
 	"Place the caret before the character at characterIndex.
 	 Be sure it is in view but vithout any further action."
 	
@@ -777,31 +611,22 @@ Editor>>selectInvisiblyAt: characterIndex  [
 
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>selectInvisiblyFrom: start to: stop [
+{ #category : #'new selection' }
+Editor >> selectInvisiblyFrom: start to: stop [
 	"Select the designated characters, inclusive.  Make no visual changes."
 
 	self markIndex: start; pointIndex: stop + 1
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>selectInvisiblyMark: mark point: point [
+{ #category : #'new selection' }
+Editor >> selectInvisiblyMark: mark point: point [
 	"Select the designated characters, inclusive.  Make no visual changes."
 
 	self markIndex: mark; pointIndex: point + 1
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>selectMark: mark point: point [
+{ #category : #'new selection' }
+Editor >> selectMark: mark point: point [
 	"Select the specified characters inclusive.
 	 Be sure the selection is in view."
 
@@ -810,11 +635,8 @@ Editor>>selectMark: mark point: point [
 		self selectInvisiblyMark: mark point: point]
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>selectWord [
+{ #category : #'new selection' }
+Editor >> selectWord [
 	"Select delimited text or word--the result of double-clicking."
 
 	| openDelimiter closeDelimiter direction match level leftDelimiters rightDelimiters
@@ -880,32 +702,23 @@ Editor>>selectWord [
 		ifFalse: [self selectFrom: here + 1 to: stop]
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>selectWord: aKeyboardEvent [
+{ #category : #'nonediting/nontyping keys' }
+Editor >> selectWord: aKeyboardEvent [
 
 	self closeTypeIn.
 	self selectWord.
 	^ true
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>selectionInterval [
+{ #category : #accessing-selection }
+Editor >> selectionInterval [
 	"Answer the interval that is currently selected."
 
 	^self startIndex to: self stopIndex - 1 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>setIndices: shiftPressed forward: forward [
+{ #category : #private }
+Editor >> setIndices: shiftPressed forward: forward [
 	"Little helper method that sets the moving and fixed indices according to some flags."
 	| indices |
 	indices := Dictionary new.
@@ -927,27 +740,18 @@ Editor>>setIndices: shiftPressed forward: forward [
 	^indices
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>theme [
+{ #category : #accessing }
+Editor >> theme [
 	^ Smalltalk ui theme 
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>unselect [
+{ #category : #accessing-selection }
+Editor >> unselect [
 	self markIndex: self pointIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Editor>>userHasEdited [
+{ #category : #accessing }
+Editor >> userHasEdited [
 	"Note that my text is free of user edits."
 	morph notNil ifTrue:[ morph hasUnacceptedEdits: true ]
 ]

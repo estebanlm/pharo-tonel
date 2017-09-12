@@ -1,11 +1,6 @@
-Extension {
-	#name : #RBProgramNode
-}
+Extension { #name : #RBProgramNode }
 
-{
-	#category : #'*NodeNavigation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-RBProgramNode>>statements [
+{ #category : #'*NodeNavigation' }
+RBProgramNode >> statements [
 	^ #().
 ]

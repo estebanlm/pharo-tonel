@@ -11,49 +11,33 @@ Class {
 		'elementAlreadyIncluded',
 		'identityBagWithoutElement'
 	],
-	#category : #Collections-Tests-Unordered,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:20'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IdentityBagTest>>elementToCopy [
+{ #category : #requirements }
+IdentityBagTest >> elementToCopy [
 	^ elementToCopy ifNil: [ elementToCopy := 'element to copy' ]
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IdentityBagTest>>equalNotIdenticalElement [
+{ #category : #requirements }
+IdentityBagTest >> equalNotIdenticalElement [
 	^ equalNotIdenticalElement ifNil: [ equalNotIdenticalElement := self elementToCopy copy ]
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IdentityBagTest>>identityCollectionWithElementsCopyNotIdentical [
+{ #category : #requirements }
+IdentityBagTest >> identityCollectionWithElementsCopyNotIdentical [
 "Returns a collection including elements for which #copy doesn't return the same object."
 	^ identityBagNonEmptyNoDuplicate5Elements ifNil: [ 
 	identityBagNonEmptyNoDuplicate5Elements := IdentityBag new add: 2.5 ; add: 1.5  ;add: 5.5 ; yourself ]
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IdentityBagTest>>speciesClass [
+{ #category : #requirements }
+IdentityBagTest >> speciesClass [
 	^ IdentityBag
 ]
 
-{
-	#category : #'tests - converting',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IdentityBagTest>>testAsSetWithEqualsElements [
+{ #category : #'tests - converting' }
+IdentityBagTest >> testAsSetWithEqualsElements [
 	| t1 |
 	t1 := self withEqualElements asSet.
 	self withEqualElements
@@ -62,11 +46,8 @@ IdentityBagTest>>testAsSetWithEqualsElements [
 	self assert: t1 class = IdentitySet
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IdentityBagTest>>testIdentity [
+{ #category : #tests }
+IdentityBagTest >> testIdentity [
 	"self run:#testIdentity" 
 	"self debug:#testIdentity"
 	| bag identityBag aString anOtherString |
@@ -97,11 +78,8 @@ IdentityBagTest>>testIdentity [
 
 ]
 
-{
-	#category : #'tests - identity adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IdentityBagTest>>testIdentityAdd [
+{ #category : #'tests - identity adding' }
+IdentityBagTest >> testIdentityAdd [
 	| added oldSize |
 	oldSize := self collection size.
 	self collection add: self elementToCopy .

@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCClassDefinition
-}
+Extension { #name : #MCClassDefinition }
 
-{
-	#category : #'*Ring-Monticello',
-	#timestamp : ' 8/31/2017 07:17:02'
-}
-MCClassDefinition>>asRingDefinition [
+{ #category : #'*Ring-Monticello' }
+MCClassDefinition >> asRingDefinition [
 	| ring |
 
 	ring:= (RGClassDefinition named:  self className)

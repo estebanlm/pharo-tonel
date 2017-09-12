@@ -14,15 +14,11 @@ Class {
 		'module',
 		'errorCodeName'
 	],
-	#category : #FFI-Kernel,
-	#timestamp : '<historical>'
+	#category : #FFI-Kernel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalLibraryFunction class>>name: aName module: aModule callType: callType returnType: retType argumentTypes: argTypes [
+{ #category : #'instance creation' }
+ExternalLibraryFunction class >> name: aName module: aModule callType: callType returnType: retType argumentTypes: argTypes [
 	^self new
 		name: aName
 		module: aModule
@@ -30,11 +26,8 @@ ExternalLibraryFunction class>>name: aName module: aModule callType: callType re
 		argTypes: (Array with: retType), argTypes
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalLibraryFunction>>analogousCodeTo: anObject [
+{ #category : #comparing }
+ExternalLibraryFunction >> analogousCodeTo: anObject [
 	^(anObject isKindOf: ExternalLibraryFunction)
 	and: [flags = anObject flags
 	and: [argTypes = anObject argTypes
@@ -43,35 +36,23 @@ ExternalLibraryFunction>>analogousCodeTo: anObject [
 	and: [errorCodeName = anObject errorCodeName]]]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalLibraryFunction>>errorCodeName [
+{ #category : #accessing }
+ExternalLibraryFunction >> errorCodeName [
 	^errorCodeName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalLibraryFunction>>module [
+{ #category : #accessing }
+ExternalLibraryFunction >> module [
 	^module
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalLibraryFunction>>name [
+{ #category : #accessing }
+ExternalLibraryFunction >> name [
 	^name
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalLibraryFunction>>name: aName module: aModule flags: anInteger argTypes: argTypeArray [
+{ #category : #private }
+ExternalLibraryFunction >> name: aName module: aModule flags: anInteger argTypes: argTypeArray [
 
 	name := aName.
 	module := aModule.
@@ -79,19 +60,13 @@ ExternalLibraryFunction>>name: aName module: aModule flags: anInteger argTypes: 
 	argTypes := argTypeArray.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalLibraryFunction>>setErrorCodeName: aString [
+{ #category : #accessing }
+ExternalLibraryFunction >> setErrorCodeName: aString [
 	errorCodeName := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalLibraryFunction>>setModule: aString [
+{ #category : #accessing }
+ExternalLibraryFunction >> setModule: aString [
 	"Private. Hack the module"
 	module := aString.
 ]

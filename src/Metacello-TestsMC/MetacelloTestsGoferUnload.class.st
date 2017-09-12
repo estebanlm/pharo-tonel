@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloTestsGoferUnload,
 	#superclass : #GoferUnload,
-	#category : #Metacello-TestsMC,
-	#timestamp : ''
+	#category : #Metacello-TestsMC
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloTestsGoferUnload>>execute [
+{ #category : #running }
+MetacelloTestsGoferUnload >> execute [
 	self workingCopies 
 		do: [ :copy | self unload: copy ].
 	self model load.
@@ -21,10 +14,7 @@ MetacelloTestsGoferUnload>>execute [
 		do: [ :copy | self unregister: copy ]
 ]
 
-{
-	#category : #unloading,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloTestsGoferUnload>>unloadClasses: aWorkingCopy [
+{ #category : #unloading }
+MetacelloTestsGoferUnload >> unloadClasses: aWorkingCopy [
 	"skip this so that tests run faster"
 ]

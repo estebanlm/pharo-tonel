@@ -7,24 +7,17 @@ Class {
 	#instVars : [
 		'message'
 	],
-	#category : #Gofer-Core,
-	#timestamp : 'TorstenBergmann 2/5/2014 09:35'
+	#category : #Gofer-Core
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferCommit>>execute [
+{ #category : #running }
+GoferCommit >> execute [
 	self workingCopies 
 		do: [ :each | self execute: each ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferCommit>>execute: aWorkingCopy [
+{ #category : #running }
+GoferCommit >> execute: aWorkingCopy [
 	| repositories version |
 	repositories := self gofer repositories
 		reject: [ :repository | (aWorkingCopy changesRelativeToRepository: repository) isEmpty ].
@@ -39,26 +32,17 @@ GoferCommit>>execute: aWorkingCopy [
 		do: [ :repository | repository storeVersion: version ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferCommit>>initializeOn: aGofer [
+{ #category : #running }
+GoferCommit >> initializeOn: aGofer [
 	super initializeOn: aGofer disablePackageCache
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferCommit>>message [
+{ #category : #accessing }
+GoferCommit >> message [
 	^ message
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferCommit>>message: aString [
+{ #category : #accessing }
+GoferCommit >> message: aString [
 	message := aString
 ]

@@ -8,15 +8,11 @@ Class {
 		'targetMethodName',
 		'condition'
 	],
-	#category : #Renraku-Critiques,
-	#timestamp : 'YuriyTymchuk 3/4/2016 14:42'
+	#category : #Renraku-Critiques
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationOrderCritique class>>withAnchor: anAnchor by: aRule method: aString condition: aCondition [
+{ #category : #'instance creation' }
+ReInvocationOrderCritique class >> withAnchor: anAnchor by: aRule method: aString condition: aCondition [
 
 	^ self new
 		initializeRule:	aRule
@@ -27,21 +23,15 @@ ReInvocationOrderCritique class>>withAnchor: anAnchor by: aRule method: aString 
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationOrderCritique>>initializeRule: aRule sourceAnchor: anAnchor method: aString condition: aCondition [
+{ #category : #initialization }
+ReInvocationOrderCritique >> initializeRule: aRule sourceAnchor: anAnchor method: aString condition: aCondition [
 
 	self initializeRule: aRule sourceAnchor: anAnchor.
 	targetMethodName := aString.
 	condition := aCondition 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInvocationOrderCritique>>providesChange [
+{ #category : #testing }
+ReInvocationOrderCritique >> providesChange [
 	^ false
 ]

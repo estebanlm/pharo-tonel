@@ -4,60 +4,41 @@ I reify the receiver of a Message or a method
 Class {
 	#name : #RFEReceiverReification,
 	#superclass : #RFReification,
-	#category : #Reflectivity-Links,
-	#timestamp : 'MarcusDenker 6/10/2015 13:45'
+	#category : #Reflectivity-Links
 }
 
-{
-	#category : #'plugin interface',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFEReceiverReification class>>entities [
+{ #category : #'plugin interface' }
+RFEReceiverReification class >> entities [
 	^{RBMethodNode. RBMessageNode}
 ]
 
-{
-	#category : #'plugin interface',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFEReceiverReification class>>key [
+{ #category : #'plugin interface' }
+RFEReceiverReification class >> key [
 	^#receiver
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFEReceiverReification>>genForRBMessageNode [
+{ #category : #generate }
+RFEReceiverReification >> genForRBMessageNode [
 	^RBTemporaryNode named: #RFReceiverReificationVar.
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFEReceiverReification>>genForRBMethodNode [
+{ #category : #generate }
+RFEReceiverReification >> genForRBMethodNode [
 	^RBMessageNode 
 		receiver: (RBVariableNode named: 'thisContext')
 		selector: #receiver 
 	
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFEReceiverReification>>preamble: aNode [
+{ #category : #generate }
+RFEReceiverReification >> preamble: aNode [
 	^aNode isMessage 
 		ifTrue: [self preambleForMessage: aNode]
 		ifFalse: [{}]
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFEReceiverReification>>preambleForMessage: aNode [
+{ #category : #generate }
+RFEReceiverReification >> preambleForMessage: aNode [
 	| preamble |
 	preamble := OrderedCollection new.
 

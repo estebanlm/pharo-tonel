@@ -9,97 +9,69 @@ Class {
 		'codeMorph',
 		'merged'
 	],
-	#category : #Tool-Diff,
-	#timestamp : '<historical>'
+	#category : #Tool-Diff
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph class>>forMerger: aMerger [
+{ #category : #'as yet unclassified' }
+PSMCMergeMorph class >> forMerger: aMerger [
 	"Answer a new instance of the receiver
 	with the given merger as the model."
 	
 	^ self new model: aMerger
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>allConflictsResolved [
+{ #category : #'as yet unclassified' }
+PSMCMergeMorph >> allConflictsResolved [
 	"Answer whether all conflicts were resolved."
 	
 	^(self model ifNil: [^false]) isMerged
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>cancel [
+{ #category : #actions }
+PSMCMergeMorph >> cancel [
 	"Delete the window to cancel."
 
 	self window delete
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>codeMorph [
+{ #category : #accessing }
+PSMCMergeMorph >> codeMorph [
 	"Answer the value of codeMorph"
 
 	^ codeMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>codeMorph: anObject [
+{ #category : #accessing }
+PSMCMergeMorph >> codeMorph: anObject [
 	"Set the value of codeMorph"
 
 	codeMorph := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>compositeText [
+{ #category : #actions }
+PSMCMergeMorph >> compositeText [
 	"Answer the composite text from the patch morph."
 
 	^self patchMorph compositeText
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>compositeText: aString [
+{ #category : #'as yet unclassified' }
+PSMCMergeMorph >> compositeText: aString [
 	"Save the new method text for the selected method.
 	Yet to be implemented."
 	
 	UIManager default inform: 'Saving of replacement methods is not yet imlemented.'
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>conflictCount [
+{ #category : #'as yet unclassified' }
+PSMCMergeMorph >> conflictCount [
 	"Answer the number of conflicts that are unresolved."
 
 	^(self model ifNil: [^0]) conflicts count: [:c | c isResolved not]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>conflictCountString [
+{ #category : #'as yet unclassified' }
+PSMCMergeMorph >> conflictCountString [
 	"Answer a string describing the number of conflicts."
 
 	|count|
@@ -109,42 +81,30 @@ PSMCMergeMorph>>conflictCountString [
 		ifFalse: ['{1} conflicts' translated format: {count}]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>defaultTitle [
+{ #category : #'as yet unclassified' }
+PSMCMergeMorph >> defaultTitle [
 	"Answer the default title label for the receiver."
 
 	^'Merge' translated
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>fromDescription: aString [
+{ #category : #actions }
+PSMCMergeMorph >> fromDescription: aString [
 	"Set the description for the left-hand side of the merge,
 	typically 'currently in image'."
 
 	self patchMorph fromDescription: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>initialColorInSystemWindow: aSystemWindow [
+{ #category : #accessing }
+PSMCMergeMorph >> initialColorInSystemWindow: aSystemWindow [
 	"Answer the colour the receiver should be when added to a SystemWindow."
 
 	^Color transparent
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>initialize [
+{ #category : #initialization }
+PSMCMergeMorph >> initialize [
 	"Initialize the receiver."
 
 	|buttons buttonsHeight|
@@ -165,11 +125,8 @@ PSMCMergeMorph>>initialize [
 		addPaneSplitters
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>merge [
+{ #category : #actions }
+PSMCMergeMorph >> merge [
 	"Do the merge and close if no conflicts."
 	
 	^self model isMerged
@@ -178,32 +135,23 @@ PSMCMergeMorph>>merge [
 		ifFalse: [self inform: 'You must resolve all conflicts first.' translated]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>merged [
+{ #category : #accessing }
+PSMCMergeMorph >> merged [
 	"Answer the value of merged. Indicates whether
 	the merge button was pressed with no conflicts remaining."
 
 	^ merged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>merged: anObject [
+{ #category : #accessing }
+PSMCMergeMorph >> merged: anObject [
 	"Set the value of merged"
 
 	merged := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>model: aMerger [
+{ #category : #initialization }
+PSMCMergeMorph >> model: aMerger [
 	"Set the model and update the window."
 
 	|grouped sorted|
@@ -217,11 +165,8 @@ PSMCMergeMorph>>model: aMerger [
 	self patchMorph model: sorted
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>newButtonsMorph [
+{ #category : #instance-creation }
+PSMCMergeMorph >> newButtonsMorph [
 	"Answer a new buttons morph."
 
 	^(self newRow: {
@@ -234,11 +179,8 @@ PSMCMergeMorph>>newButtonsMorph [
 		layoutInset: 4
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>newCodeMorph [
+{ #category : #instance-creation }
+PSMCMergeMorph >> newCodeMorph [
 	"Answer a new code morph."
 
 	^(self newTextEditorFor: self
@@ -249,11 +191,8 @@ PSMCMergeMorph>>newCodeMorph [
 		setText: ''
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>newConflictsButton [
+{ #category : #instance-creation }
+PSMCMergeMorph >> newConflictsButton [
 	"Answer a new button for displaying the count
 	of outstanding conflicts and navigating to each.
 	It will be disabled if all conflicts are resolved."
@@ -269,11 +208,8 @@ PSMCMergeMorph>>newConflictsButton [
 		vResizing: #spaceFill "workaround until table  layout fixed"
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>newMergeButton [
+{ #category : #instance-creation }
+PSMCMergeMorph >> newMergeButton [
 	"Answer a new button for performing the merge.
 	It will be disabled if any conflicts are unresolved."
 
@@ -285,11 +221,8 @@ PSMCMergeMorph>>newMergeButton [
 		help: 'Merge the version into the image' translated
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>newPatchMorph [
+{ #category : #instance-creation }
+PSMCMergeMorph >> newPatchMorph [
 	"Answer a new patch morph."
 
 	^PSMCMergePatchMorph new
@@ -298,62 +231,44 @@ PSMCMergeMorph>>newPatchMorph [
 		yourself
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>notAllConflictsResolved [
+{ #category : #'as yet unclassified' }
+PSMCMergeMorph >> notAllConflictsResolved [
 	"Answer whether any conflicts are unresolved."
 	
 	^self allConflictsResolved not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>patchMorph [
+{ #category : #accessing }
+PSMCMergeMorph >> patchMorph [
 	"Answer the value of patchMorph"
 
 	^ patchMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>patchMorph: anObject [
+{ #category : #accessing }
+PSMCMergeMorph >> patchMorph: anObject [
 	"Set the value of patchMorph"
 
 	patchMorph := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>selectNextConflict [
+{ #category : #'as yet unclassified' }
+PSMCMergeMorph >> selectNextConflict [
 	"Select the next conflict in the tree."
 	
 	self patchMorph selectNextConflict
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>toDescription: aString [
+{ #category : #actions }
+PSMCMergeMorph >> toDescription: aString [
 	"Set the description for the right-hand side of the merge,
 	typically 'incoming'."
 
 	self patchMorph toDescription: aString
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>update: aspect [
+{ #category : #updating }
+PSMCMergeMorph >> update: aspect [
 	"A join has probably changed its selection state."
 
 	super update: aspect.
@@ -366,11 +281,8 @@ PSMCMergeMorph>>update: aspect [
 				changed: #notAllConflictsResolved]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCMergeMorph>>updateCode [
+{ #category : #'as yet unclassified' }
+PSMCMergeMorph >> updateCode [
 	"Update the code morph to match selected differences."
 
 	self changed: #compositeText

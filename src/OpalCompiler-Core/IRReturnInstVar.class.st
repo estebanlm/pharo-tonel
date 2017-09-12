@@ -7,30 +7,20 @@ Class {
 	#instVars : [
 		'index'
 	],
-	#category : #OpalCompiler-Core-IR-Nodes,
-	#timestamp : 'ClementBer 10/14/2014 15:23'
+	#category : #OpalCompiler-Core-IR-Nodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReturnInstVar>>accept: aVisitor [
+{ #category : #visiting }
+IRReturnInstVar >> accept: aVisitor [
 	^ aVisitor visitReturnInstVar: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReturnInstVar>>index [
+{ #category : #accessing }
+IRReturnInstVar >> index [
 	^ index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRReturnInstVar>>index: anObject [
+{ #category : #accessing }
+IRReturnInstVar >> index: anObject [
 	index := anObject
 ]

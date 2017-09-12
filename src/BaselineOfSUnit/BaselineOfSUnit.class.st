@@ -13,15 +13,11 @@ Installs:
 Class {
 	#name : #BaselineOfSUnit,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfSUnit,
-	#timestamp : 'PavelKrivanek 11/7/2016 12:07'
+	#category : #BaselineOfSUnit
 }
 
-{
-	#category : #baseline,
-	#timestamp : ' 8/31/2017 05:26:06'
-}
-BaselineOfSUnit>>baseline: spec [
+{ #category : #baseline }
+BaselineOfSUnit >> baseline: spec [
 	<baseline>
 
 	spec for: #common do: [

@@ -10,6 +10,5 @@ ZnServerSessions are created lazily.
 Class {
 	#name : #ZnCurrentServerSession,
 	#superclass : #ProcessLocalVariable,
-	#category : #Zinc-HTTP-Variables,
-	#timestamp : 'SvenVanCaekenberghe 7/2/2015 22:43'
+	#category : #Zinc-HTTP-Variables
 }

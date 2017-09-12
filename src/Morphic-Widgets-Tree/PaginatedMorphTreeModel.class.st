@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'pageSize'
 	],
-	#category : #Morphic-Widgets-Tree-Pagination,
-	#timestamp : 'TorstenBergmann 9/5/2014 15:20'
+	#category : #Morphic-Widgets-Tree-Pagination
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeModel class>>example [
+{ #category : #examples }
+PaginatedMorphTreeModel class >> example [
 	"This test demonstrate a paginating morphTreeMorph in action."
 
 	"self example."
@@ -32,48 +28,33 @@ PaginatedMorphTreeModel class>>example [
 	self assert: treeMorph pager currentPage == 2
 ]
 
-{
-	#category : #'pager managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeModel>>chunkSize [
+{ #category : #'pager managing' }
+PaginatedMorphTreeModel >> chunkSize [
 	^ pageSize 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeModel>>chunkSize: anIntegerOrNil [
+{ #category : #accessing }
+PaginatedMorphTreeModel >> chunkSize: anIntegerOrNil [
 	self setPageSize: anIntegerOrNil.
 	self announce: (MorphTreeChangeRequest chunkSize: anIntegerOrNil)
 
 ]
 
-{
-	#category : #'pager managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeModel>>pageSize [
+{ #category : #'pager managing' }
+PaginatedMorphTreeModel >> pageSize [
 	^ pageSize
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeModel>>pageSize: anIntegerOrNil [
+{ #category : #accessing }
+PaginatedMorphTreeModel >> pageSize: anIntegerOrNil [
 	self setPageSize: anIntegerOrNil.
 	self announce: (MorphTreeChangeRequest pageSize: anIntegerOrNil)
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeModel>>rootNodes [
+{ #category : #accessing }
+PaginatedMorphTreeModel >> rootNodes [
 	| computedRootNodes |
 	computedRootNodes := super rootNodes.
 	self defaultChunkSize 
@@ -87,19 +68,13 @@ PaginatedMorphTreeModel>>rootNodes [
 
 ]
 
-{
-	#category : #'pager managing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeModel>>setPageSize: anIntegerOrNil [
+{ #category : #'pager managing' }
+PaginatedMorphTreeModel >> setPageSize: anIntegerOrNil [
 	pageSize := anIntegerOrNil.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PaginatedMorphTreeModel>>treeMorphClass [
+{ #category : #accessing }
+PaginatedMorphTreeModel >> treeMorphClass [
 	^ PaginatedMorphTreeMorph 
 ]

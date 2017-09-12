@@ -1,11 +1,6 @@
-Extension {
-	#name : #FileReference
-}
+Extension { #name : #FileReference }
 
-{
-	#category : #'*Spec-Inspector',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-FileReference class>>additionalInspectorClasses [
+{ #category : #'*Spec-Inspector' }
+FileReference class >> additionalInspectorClasses [
 	^ super additionalInspectorClasses, { EyeFileSystemInspector }
 ]

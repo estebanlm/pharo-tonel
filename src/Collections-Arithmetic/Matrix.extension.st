@@ -1,12 +1,7 @@
-Extension {
-	#name : #Matrix
-}
+Extension { #name : #Matrix }
 
-{
-	#category : #'*Collections-arithmetic',
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-Matrix>>+* aCollection [
+{ #category : #'*Collections-arithmetic' }
+Matrix >> +* aCollection [
 	"Premultiply aCollection by self.  aCollection should be an Array or Matrix.
 	 The name of this method is APL's +.x squished into Smalltalk syntax."
 
@@ -14,11 +9,8 @@ Matrix>>+* aCollection [
 
 ]
 
-{
-	#category : #'*Collections-arithmetic',
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-Matrix>>preMultiplyByArray: a [
+{ #category : #'*Collections-arithmetic' }
+Matrix >> preMultiplyByArray: a [
 	"Answer a +* self where a is an Array."
 
 	numberOfRows = 1 ifFalse: [self error: 'dimensions do not conform'].
@@ -27,11 +19,8 @@ Matrix>>preMultiplyByArray: a [
 
 ]
 
-{
-	#category : #'*Collections-arithmetic',
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-Matrix>>preMultiplyByMatrix: m [
+{ #category : #'*Collections-arithmetic' }
+Matrix >> preMultiplyByMatrix: m [
 	"Answer m +* self where m is a Matrix."
 	|s|
 	numberOfRows = m numberOfColumns ifFalse: [self error: 'dimensions do not conform'].

@@ -1,12 +1,7 @@
-Extension {
-	#name : #GLMPresentation
-}
+Extension { #name : #GLMPresentation }
 
-{
-	#category : #'*glamour-morphic-renderer',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPresentation>>morphicAct: aBlock entitled: aString  [
+{ #category : #'*glamour-morphic-renderer' }
+GLMPresentation >> morphicAct: aBlock entitled: aString [ 
 	 
 	self addAction: 
 			((GLMMorphicAction new) 
@@ -15,11 +10,8 @@ GLMPresentation>>morphicAct: aBlock entitled: aString  [
 				yourself)
 ]
 
-{
-	#category : #'*glamour-morphic-renderer',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPresentation>>morphicAct: aBlock icon: anIcon entitled: aString  [
+{ #category : #'*glamour-morphic-renderer' }
+GLMPresentation >> morphicAct: aBlock icon: anIcon entitled: aString [ 
 	 
 	self addAction: 
 			((GLMMorphicAction new) 
@@ -29,11 +21,8 @@ GLMPresentation>>morphicAct: aBlock icon: anIcon entitled: aString  [
 				yourself)
 ]
 
-{
-	#category : #'*glamour-morphic-renderer',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPresentation>>morphicAct: aBlock on: aCharacter entitled: aString  [
+{ #category : #'*glamour-morphic-renderer' }
+GLMPresentation >> morphicAct: aBlock on: aCharacter entitled: aString [ 
 	 
 	self 
 		addAction: 
@@ -44,11 +33,8 @@ GLMPresentation>>morphicAct: aBlock on: aCharacter entitled: aString  [
 				yourself)
 ]
 
-{
-	#category : #'*glamour-morphic-renderer',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPresentation>>morphicAct: aBlock on: aCharacter icon: anIcon entitled: aString  [
+{ #category : #'*glamour-morphic-renderer' }
+GLMPresentation >> morphicAct: aBlock on: aCharacter icon: anIcon entitled: aString [ 
 	 
 	self 
 		addAction: 
@@ -60,11 +46,8 @@ GLMPresentation>>morphicAct: aBlock on: aCharacter icon: anIcon entitled: aStrin
 				yourself)
 ]
 
-{
-	#category : #'*glamour-morphic-renderer',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPresentation>>morphicPopulate: aPortSymbol icon: anIcon on: aCharacter entitled: aString with: aBlock  [
+{ #category : #'*glamour-morphic-renderer' }
+GLMPresentation >> morphicPopulate: aPortSymbol icon: anIcon on: aCharacter entitled: aString with: aBlock [ 
 	 
 	self 
 		addAction: 
@@ -80,11 +63,8 @@ GLMPresentation>>morphicPopulate: aPortSymbol icon: anIcon on: aCharacter entitl
 				yourself)
 ]
 
-{
-	#category : #'*glamour-morphic-renderer',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPresentation>>morphicSelectionAct: aBlock entitled: aString  [
+{ #category : #'*glamour-morphic-renderer' }
+GLMPresentation >> morphicSelectionAct: aBlock entitled: aString [ 
 	 
 	self addSelectionAction: 
 			((GLMMorphicAction new) 
@@ -93,11 +73,8 @@ GLMPresentation>>morphicSelectionAct: aBlock entitled: aString  [
 				yourself)
 ]
 
-{
-	#category : #'*glamour-morphic-renderer',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPresentation>>morphicSelectionAct: aBlock icon: anIcon entitled: aString [
+{ #category : #'*glamour-morphic-renderer' }
+GLMPresentation >> morphicSelectionAct: aBlock icon: anIcon entitled: aString [
 	self 
 		addSelectionAction: 
 			((GLMMorphicAction new) 
@@ -107,11 +84,8 @@ GLMPresentation>>morphicSelectionAct: aBlock icon: anIcon entitled: aString [
 				yourself)
 ]
 
-{
-	#category : #'*glamour-morphic-renderer',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPresentation>>morphicSelectionAct: aBlock icon: anIcon on: aCharacter entitled: aString [
+{ #category : #'*glamour-morphic-renderer' }
+GLMPresentation >> morphicSelectionAct: aBlock icon: anIcon on: aCharacter entitled: aString [
 	self 
 		addSelectionAction: 
 			((GLMMorphicAction new) 

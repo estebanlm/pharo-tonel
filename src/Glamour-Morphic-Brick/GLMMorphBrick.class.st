@@ -18,24 +18,17 @@ Class {
 		'vResizing',
 		'hResizing'
 	],
-	#category : #Glamour-Morphic-Brick-Morphic,
-	#timestamp : 'AliakseiSyrel 1/30/2015 10:14'
+	#category : #Glamour-Morphic-Brick-Morphic
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick class>>on: aMorph [
+{ #category : #'instance creation' }
+GLMMorphBrick class >> on: aMorph [
 
 	^ self new on: aMorph
 ]
 
-{
-	#category : #brick-structure-adding/removing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>addBrickBack: aBrick [
+{ #category : #brick-structure-adding/removing }
+GLMMorphBrick >> addBrickBack: aBrick [
 	|link|
 	link := aBrick asDoubleLink.
 	aBrick brickDoubleLink: link.
@@ -49,31 +42,22 @@ GLMMorphBrick>>addBrickBack: aBrick [
 	aBrick privateOwner: self.
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>brickBounds: aRectangle [
+{ #category : #brick-geometry }
+GLMMorphBrick >> brickBounds: aRectangle [
 	super brickBounds: aRectangle.
 	
 	self invalidateMorphBounds
 ]
 
-{
-	#category : #morph-drawing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>drawSubmorphsOn: aCanvas [
+{ #category : #morph-drawing }
+GLMMorphBrick >> drawSubmorphsOn: aCanvas [
 	aCanvas
 		translateBy: self bounds origin - self morph bounds origin + (self paddingLeft @ self paddingTop)
 		during: [ :canvas | self morph fullDrawOn: canvas ]
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>hShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMMorphBrick >> hShrinkWrap [
 	
 	hResizing := #shrinkWrap.
 	self width: [ self morph width ]
@@ -81,49 +65,34 @@ GLMMorphBrick>>hShrinkWrap [
 	
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>hSpaceFill: anInteger [
+{ #category : #brick-layout-properties }
+GLMMorphBrick >> hSpaceFill: anInteger [
 	super hSpaceFill: anInteger.
 	
 	hResizing := #spaceFill
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>initialize [
+{ #category : #initialization }
+GLMMorphBrick >> initialize [
 	super initialize.
 	
 	isLayouting := false
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>invalidateLayout [
+{ #category : #brick-layout }
+GLMMorphBrick >> invalidateLayout [
 
 	
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>invalidateMorphBounds [
+{ #category : #brick-layout }
+GLMMorphBrick >> invalidateMorphBounds [
 
 	self invalidateMorphBounds: false
 ]
 
-{
-	#category : #brick-layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>invalidateMorphBounds: isForce [
+{ #category : #brick-layout }
+GLMMorphBrick >> invalidateMorphBounds: isForce [
 	| origin corner newBounds |
 	isLayouting & (isForce not) ifTrue: [ ^ self ].
 	origin := self paddingLeft @ self paddingTop.
@@ -134,65 +103,44 @@ GLMMorphBrick>>invalidateMorphBounds: isForce [
 	self morph bounds: newBounds
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>isHFilling [
+{ #category : #testing }
+GLMMorphBrick >> isHFilling [
 
 	^ hResizing = #spaceFill
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>isHShrinking [
+{ #category : #testing }
+GLMMorphBrick >> isHShrinking [
 
 	^ hResizing = #shrinkWrap
 ]
 
-{
-	#category : #morph-common,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>isMorphBrick [
+{ #category : #morph-common }
+GLMMorphBrick >> isMorphBrick [
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>isShrinking [
+{ #category : #testing }
+GLMMorphBrick >> isShrinking [
 
 	^ self isHShrinking | self isVShrinking
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>isVFilling [
+{ #category : #testing }
+GLMMorphBrick >> isVFilling [
 
 	^ vResizing = #spaceFill
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>isVShrinking [
+{ #category : #testing }
+GLMMorphBrick >> isVShrinking [
 
 	^ vResizing = #shrinkWrap
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>layoutChanged [
+{ #category : #layout }
+GLMMorphBrick >> layoutChanged [
 	super layoutChanged.
 	
 	self morph ifNil: [ ^ self ].
@@ -209,20 +157,14 @@ GLMMorphBrick>>layoutChanged [
 	isLayouting := false.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>morph [
+{ #category : #accessing }
+GLMMorphBrick >> morph [
 
 	^ morph
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>on: aMorph [
+{ #category : #'instance creation' }
+GLMMorphBrick >> on: aMorph [
 	
 	aMorph layoutProperties ifNil: [ 
 		aMorph layoutProperties: GLMBrickLayoutProperties new.
@@ -238,68 +180,47 @@ GLMMorphBrick>>on: aMorph [
 	super brickBounds: (0@0 extent: (morph width@morph height)).
 ]
 
-{
-	#category : #brick-layout-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>onLayouted [
+{ #category : #brick-layout-events }
+GLMMorphBrick >> onLayouted [
 	super onLayouted.
 	
 	self invalidateMorphBounds
 ]
 
-{
-	#category : #brick-structure-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>onRemovedFrom: aBrick [
+{ #category : #brick-structure-events }
+GLMMorphBrick >> onRemovedFrom: aBrick [
 	
 	"we should just override it and left empty,
 	to prevent recursion calls of this method
 	to be propagated to morph"
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>onThemerChanged [
+{ #category : #brick-properties-events }
+GLMMorphBrick >> onThemerChanged [
 	
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>shrinkingHeight [
+{ #category : #brick-geometry }
+GLMMorphBrick >> shrinkingHeight [
 
 	^ self morph height
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>shrinkingWidth [
+{ #category : #brick-geometry }
+GLMMorphBrick >> shrinkingWidth [
 
 	^ self morph width
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>themerChanged [
+{ #category : #brick-properties }
+GLMMorphBrick >> themerChanged [
 
 	self onThemerChanged.
 	self morph brickThemerChanged
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>vShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMMorphBrick >> vShrinkWrap [
 
 	vResizing := #shrinkWrap.
 	self height: [ self morph height ]
@@ -307,11 +228,8 @@ GLMMorphBrick>>vShrinkWrap [
 	
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphBrick>>vSpaceFill: anInteger [
+{ #category : #brick-layout-properties }
+GLMMorphBrick >> vSpaceFill: anInteger [
 	super vSpaceFill: anInteger.
 	
 	vResizing := #spaceFill

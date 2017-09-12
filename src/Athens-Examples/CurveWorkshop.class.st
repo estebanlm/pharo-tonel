@@ -7,43 +7,30 @@ Class {
 	#instVars : [
 		'surface'
 	],
-	#category : #Athens-Examples,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:19'
+	#category : #Athens-Examples
 }
 
-{
-	#category : #colors,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-CurveWorkshop>>curveColor [
+{ #category : #colors }
+CurveWorkshop >> curveColor [
 	^ Color red
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-CurveWorkshop>>draw [
+{ #category : #'as yet unclassified' }
+CurveWorkshop >> draw [
 
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-CurveWorkshop>>drawOn: canvas [
+{ #category : #'as yet unclassified' }
+CurveWorkshop >> drawOn: canvas [
 
 	
 
 	self drawQuadFrom: 10@200 via: 50@50 to: 200@200 on: canvas
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-CurveWorkshop>>drawQuadFrom: pt1 via: pt2 to: pt3 on: canvas [
+{ #category : #'as yet unclassified' }
+CurveWorkshop >> drawQuadFrom: pt1 via: pt2 to: pt3 on: canvas [
 	| curve triangle middleRay curveBlock |
 
 	curveBlock := [ :builder | 
@@ -94,18 +81,12 @@ CurveWorkshop>>drawQuadFrom: pt1 via: pt2 to: pt3 on: canvas [
 
 ]
 
-{
-	#category : #colors,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-CurveWorkshop>>middleRayColor [
+{ #category : #colors }
+CurveWorkshop >> middleRayColor [
 	^ Color blue
 ]
 
-{
-	#category : #colors,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-CurveWorkshop>>triangleColor [
+{ #category : #colors }
+CurveWorkshop >> triangleColor [
 	^ Color green
 ]

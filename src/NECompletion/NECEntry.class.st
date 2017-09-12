@@ -9,47 +9,31 @@ Class {
 		'type',
 		'description'
 	],
-	#category : #NECompletion-Model,
-	#timestamp : 'bar 10/5/2005 23:31'
+	#category : #NECompletion-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry class>>contents: aString  [
+{ #category : #'instance creation' }
+NECEntry class >> contents: aString [ 
 	^ self new setContents: aString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry class>>contents: aString type: aSymbol [
+{ #category : #'instance creation' }
+NECEntry class >> contents: aString type: aSymbol [
 	^ self new setContents: aString type: aSymbol
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>><= aECEntry  [
+{ #category : #operations }
+NECEntry >> <= aECEntry [ 
 	^ contents <= aECEntry contents
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>>asNECEntry [
+{ #category : #conversion }
+NECEntry >> asNECEntry [
 	^ self
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>>browseWith: anECContext  [
+{ #category : #operations }
+NECEntry >> browseWith: anECContext [ 
 	| guessType |
 	guessType := self guessTypeWith: anECContext.
 	guessType ifNil: [^ false].
@@ -57,35 +41,23 @@ NECEntry>>browseWith: anECContext  [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>>completion [
+{ #category : #accessing }
+NECEntry >> completion [
 	^ self contents asSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>>contents [
+{ #category : #accessing }
+NECEntry >> contents [
 	^contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>>contentsAsSymbol [
+{ #category : #accessing }
+NECEntry >> contentsAsSymbol [
 	^ contents asSymbol 
 ]
 
-{
-	#category : #'detail information',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>>createDescriptionWith: anECContext  [
+{ #category : #'detail information' }
+NECEntry >> createDescriptionWith: anECContext [ 
 	| clazz |
 	clazz := self guessTypeWith: anECContext.
 	^ clazz 
@@ -97,60 +69,39 @@ NECEntry>>createDescriptionWith: anECContext  [
 				description: clazz comment ]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>>descriptionWith: anECContext  [
+{ #category : #operations }
+NECEntry >> descriptionWith: anECContext [ 
 	description ifNotNil: [ ^ description ].
 	^ description := self createDescriptionWith: anECContext
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>>guessTypeWith: anECContext  [
+{ #category : #operations }
+NECEntry >> guessTypeWith: anECContext [ 
 	^ nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>>isInstance [
+{ #category : #testing }
+NECEntry >> isInstance [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>>isLocal [
+{ #category : #testing }
+NECEntry >> isLocal [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>>isSelector [
+{ #category : #testing }
+NECEntry >> isSelector [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>>label [
+{ #category : #accessing }
+NECEntry >> label [
 	^ 'unknown'
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>>printOn: aStream  [
+{ #category : #printing }
+NECEntry >> printOn: aStream [ 
 	aStream nextPutAll: self class name;
 		 nextPut: $(;
 		 nextPutAll: contents asString;
@@ -159,27 +110,18 @@ NECEntry>>printOn: aStream  [
 		 nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>>setContents: aString  [
+{ #category : #accessing }
+NECEntry >> setContents: aString [ 
 	contents := aString.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>>setContents: aString type: aSymbol  [
+{ #category : #accessing }
+NECEntry >> setContents: aString type: aSymbol [ 
 	contents := aString.
 	type := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntry>>type [
+{ #category : #accessing }
+NECEntry >> type [
 	^type
 ]

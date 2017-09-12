@@ -82,33 +82,23 @@ Class {
 		'size',
 		'method'
 	],
-	#category : #Kernel-Methods,
-	#timestamp : '<historical>'
+	#category : #Kernel-Methods
 }
 
-{
-	#category : #kinds,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer class>>empty [
+{ #category : #kinds }
+CompiledMethodTrailer class >> empty [
 	"answer the empty trailer"
 	^ self new
 ]
 
-{
-	#category : #generated,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer class>>trailerKindDecoders [
+{ #category : #generated }
+CompiledMethodTrailer class >> trailerKindDecoders [
 
 	^#(#decodeNoTrailer #decodeClearedTrailer #decodeTempsNamesQCompress #decodeTempsNamesZip #decodeSourceBySelector #decodeSourceByStringIdentifier #decodeEmbeddedSourceQCompress #decodeEmbeddedSourceZip #decodeVarLengthSourcePointer #decodeExtendedKind #decodeNativeCodeTrailer #decodeEmbeddedSource #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeUndefined #decodeSourcePointer)
 ]
 
-{
-	#category : #kinds,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer class>>trailerKinds [
+{ #category : #kinds }
+CompiledMethodTrailer class >> trailerKinds [
 	" see class comment for description. If you change this method, evaluate this:
 	self generateTrailerKindDecoders"
 	
@@ -180,21 +170,15 @@ CompiledMethodTrailer class>>trailerKinds [
 	)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>clear [
+{ #category : #initialization }
+CompiledMethodTrailer >> clear [
 	kind := #NoTrailer.
 	size := 4.
 	data := encodedData := method := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>compressSourceCode: aString [
+{ #category : #accessing }
+CompiledMethodTrailer >> compressSourceCode: aString [
 	"Embed the source code into compiled method trailer, 
 	pick best compression method"
 	| temp |
@@ -214,11 +198,8 @@ CompiledMethodTrailer>>compressSourceCode: aString [
 		]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>compressedSourceCode [
+{ #category : #accessing }
+CompiledMethodTrailer >> compressedSourceCode [
 	"Answer the source code of compiled method.
 	Note: it does not attempts to read from source files using sourcePointer,
 	nor reconstruct the source code using temp names"
@@ -229,11 +210,8 @@ CompiledMethodTrailer>>compressedSourceCode [
 	^ nil
 ]
 
-{
-	#category : #'creating a method',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>createMethod: numberOfBytesForAllButTrailer class: aCompiledMethodClass header: headerWord [
+{ #category : #'creating a method' }
+CompiledMethodTrailer >> createMethod: numberOfBytesForAllButTrailer class: aCompiledMethodClass header: headerWord [ 
 	| meth |
 	"Instantiates a compiled method with this trailer.
 	- numberOfBytesForAllButTrailer specifies the number of bytes needed to encode the literals and the bytecode.
@@ -252,22 +230,16 @@ CompiledMethodTrailer>>createMethod: numberOfBytesForAllButTrailer class: aCompi
 	^meth
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>decodeClearedTrailer [
+{ #category : #decoding }
+CompiledMethodTrailer >> decodeClearedTrailer [
 	"Size is set in #decodeLengthField"
 
 	self decodeLengthField.
 
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>decodeEmbeddedSource [
+{ #category : #decoding }
+CompiledMethodTrailer >> decodeEmbeddedSource [
 
 	"data is string with method's source code"
 	| len input dataStr |
@@ -278,32 +250,23 @@ CompiledMethodTrailer>>decodeEmbeddedSource [
 	data := dataStr contents utf8Decoded
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>decodeEmbeddedSourceQCompress [
+{ #category : #decoding }
+CompiledMethodTrailer >> decodeEmbeddedSourceQCompress [
 
 	"data is string with method's source code, encoded using qCompress method"
 	self qDecompress.
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>decodeExtendedKind [
+{ #category : #encoding }
+CompiledMethodTrailer >> decodeExtendedKind [
 
 	"reserved for future use"
 	self shouldBeImplemented.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>decodeLengthField [
+{ #category : #private }
+CompiledMethodTrailer >> decodeLengthField [
 
 	"used in various encodings, where length field is preceeding the last trailer byte.
 	Two least significant bits in last byte denoting the number of bytes for length field"
@@ -322,20 +285,14 @@ CompiledMethodTrailer>>decodeLengthField [
 	^ length
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>decodeNoTrailer [
+{ #category : #decoding }
+CompiledMethodTrailer >> decodeNoTrailer [
 	"Not much to decode here"
 	size := 4. 
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>decodeSourcePointer [
+{ #category : #decoding }
+CompiledMethodTrailer >> decodeSourcePointer [
 
 	"Trailer is a source pointer"
 	| msz |
@@ -348,19 +305,13 @@ CompiledMethodTrailer>>decodeSourcePointer [
 
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>decodeUndefined [
+{ #category : #decoding }
+CompiledMethodTrailer >> decodeUndefined [
 	self error: 'undefined method encoding'
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>decodeVarLengthSourcePointer [
+{ #category : #decoding }
+CompiledMethodTrailer >> decodeVarLengthSourcePointer [
 
 	| pos shift |
 	
@@ -377,21 +328,15 @@ CompiledMethodTrailer>>decodeVarLengthSourcePointer [
 	size := method size - pos.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>embeddedSourceCode [
+{ #category : #accessing }
+CompiledMethodTrailer >> embeddedSourceCode [
 	"Answer the already decoded source code of compiled method"
 	
 	^ data
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>embeddedSourceCode: aString [
+{ #category : #accessing }
+CompiledMethodTrailer >> embeddedSourceCode: aString [
 	"Embed the source code into compiled method trailer"
 
 	self clear.
@@ -400,11 +345,8 @@ CompiledMethodTrailer>>embeddedSourceCode: aString [
 	self encode.
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>encode [
+{ #category : #encoding }
+CompiledMethodTrailer >> encode [
 
 	encodedData := nil.
 	
@@ -417,11 +359,8 @@ CompiledMethodTrailer>>encode [
 	size := encodedData size.
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>encodeClearedTrailer [
+{ #category : #encoding }
+CompiledMethodTrailer >> encodeClearedTrailer [
 
 	"A cleared trailer is replaced by #NoTrailer, when used for encoding"
 	self clear.
@@ -430,11 +369,8 @@ CompiledMethodTrailer>>encodeClearedTrailer [
 	^ self encode
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>encodeEmbeddedSource [
+{ #category : #encoding }
+CompiledMethodTrailer >> encodeEmbeddedSource [
 	"data is string with method's source code"
 
 	| str length encodedLength utf8data |
@@ -449,11 +385,8 @@ CompiledMethodTrailer>>encodeEmbeddedSource [
 	encodedData := str contents
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>encodeEmbeddedSourceQCompress [
+{ #category : #encoding }
+CompiledMethodTrailer >> encodeEmbeddedSourceQCompress [
 	"data is string with method's source code, encode it using qCompress method"
 
 	| str length encodedLength |
@@ -466,11 +399,8 @@ CompiledMethodTrailer>>encodeEmbeddedSourceQCompress [
 	encodedData := str contents
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>encodeLengthField: integer [
+{ #category : #private }
+CompiledMethodTrailer >> encodeLengthField: integer [
 	| bytes value |
 	[integer > 0] assert.
 	value := integer.
@@ -483,11 +413,8 @@ CompiledMethodTrailer>>encodeLengthField: integer [
 	^ bytes
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>encodeNoTrailer [
+{ #category : #encoding }
+CompiledMethodTrailer >> encodeNoTrailer [
 
 	"When creating methods with no trailer, male them, 4 bytes long so that we can update them to sourcePointers 
 	without having to use #become:"
@@ -496,11 +423,8 @@ CompiledMethodTrailer>>encodeNoTrailer [
 	encodedData := #[0 0 0 0].
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>encodeSourcePointer [
+{ #category : #encoding }
+CompiledMethodTrailer >> encodeSourcePointer [
 
 	encodedData := ByteArray new: 4.
 	encodedData at: 4 put: (data >> 24) + 251.
@@ -508,20 +432,14 @@ CompiledMethodTrailer>>encodeSourcePointer [
 		encodedData at: 4-i put: ((data bitShift: (i-3)*8) bitAnd: 16rFF)]
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>encodeUndefined [
+{ #category : #encoding }
+CompiledMethodTrailer >> encodeUndefined [
 
 	self error: 'use of an undefined kind of trailer encoding'
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>encodeVarLengthSourcePointer [
+{ #category : #encoding }
+CompiledMethodTrailer >> encodeVarLengthSourcePointer [
 
 	"source pointer must be >=0"
 	[data >= 0] assert.
@@ -540,11 +458,8 @@ CompiledMethodTrailer>>encodeVarLengthSourcePointer [
 	encodedData := encodedData reversed copyWith: (self kindAsByte)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>endPC [
+{ #category : #accessing }
+CompiledMethodTrailer >> endPC [
 	"Answer the index of the last bytecode."
 	
 	method ifNil: [ self error: 'Cannot determine the endPC without compiled method' ].
@@ -553,54 +468,36 @@ CompiledMethodTrailer>>endPC [
 	^ method size - size
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>hasSource [
+{ #category : #testing }
+CompiledMethodTrailer >> hasSource [
 	^ kind == #EmbeddedSource or: [ kind == #EmbeddedSourceQCompress or: [ kind == #EmbeddedSourceZip ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>hasSourcePointer [
+{ #category : #testing }
+CompiledMethodTrailer >> hasSourcePointer [
 	^ kind == #SourcePointer or: [ kind == #VarLengthSourcePointer ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>initialize [
+{ #category : #initialization }
+CompiledMethodTrailer >> initialize [
 	self clear
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>isEmpty [
+{ #category : #testing }
+CompiledMethodTrailer >> isEmpty [
 	^ kind == #NoTrailer or: [ kind == #ClearedTrailer ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>kind [
+{ #category : #accessing }
+CompiledMethodTrailer >> kind [
 	"Answer a symbolic name of trailer kind.
 	See #trailerKinds on class side and class comment for details"
 	
 	^ kind
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>kindAsByte [
+{ #category : #private }
+CompiledMethodTrailer >> kindAsByte [
 	| index |
 	index := self class trailerKinds indexOf: kind.
 	[index ~~ 0] assert.
@@ -608,11 +505,8 @@ CompiledMethodTrailer>>kindAsByte [
 	^ (index - 1) << 2
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>method: aMethod [
+{ #category : #initialization }
+CompiledMethodTrailer >> method: aMethod [
 
 	| flagByte |
 
@@ -636,11 +530,8 @@ CompiledMethodTrailer>>method: aMethod [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>qCompress: string [
+{ #category : #private }
+CompiledMethodTrailer >> qCompress: string [
 	"A very simple text compression routine designed for method temp names.
 	 Most common 11 chars get values 1-11 packed in one 4-bit nibble;
 	 the next most common get values 12-15 (2 bits) * 16 plus next nibble;
@@ -677,11 +568,8 @@ CompiledMethodTrailer>>qCompress: string [
 
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>qDecompress [
+{ #category : #decoding }
+CompiledMethodTrailer >> qDecompress [ 
 	"Trailer is compressed string using qCompress method + length field + 1 byte
 	
 	Decompress strings compressed by qCompress:.
@@ -715,20 +603,14 @@ CompiledMethodTrailer>>qDecompress [
 	data := str convertFromEncoding: 'utf8'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>size [
+{ #category : #accessing }
+CompiledMethodTrailer >> size [
 	"Answer the size of method's trailer , in bytes"
 	^ size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>sourceCode [
+{ #category : #accessing }
+CompiledMethodTrailer >> sourceCode [
 	"Answer the source code of compiled method as it was decoded.
 	Note: it does not attempts to read from source files using sourcePointer,
 	nor reconstruct the source code using temp names"
@@ -739,20 +621,14 @@ CompiledMethodTrailer>>sourceCode [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>sourceCode: aString [
+{ #category : #accessing }
+CompiledMethodTrailer >> sourceCode: aString [
 	
 	^ self embeddedSourceCode: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>sourcePointer [
+{ #category : #accessing }
+CompiledMethodTrailer >> sourcePointer [
 
 	kind == #NativeCodeTrailer ifTrue: [ ^ data at: 3].
 	^ (kind == #SourcePointer or: [ kind == #VarLengthSourcePointer ] )
@@ -761,11 +637,8 @@ CompiledMethodTrailer>>sourcePointer [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>sourcePointer: ptr [
+{ #category : #accessing }
+CompiledMethodTrailer >> sourcePointer: ptr [
 
 	self clear.
 	data := ptr.
@@ -775,11 +648,8 @@ CompiledMethodTrailer>>sourcePointer: ptr [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethodTrailer>>testEncoding [
+{ #category : #testing }
+CompiledMethodTrailer >> testEncoding [
 
 	"Since we are using basic protocol (#at:, #at:put: , #size) for accessing compiled method data,
 	we can pass the ByteArray instance into #method: accessor and check if encoding/decoding 

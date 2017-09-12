@@ -12,23 +12,16 @@ Class {
 	#instVars : [
 		'valueBlock'
 	],
-	#category : #AST-Core-Pattern,
-	#timestamp : 'md 8/9/2005 14:56'
+	#category : #AST-Core-Pattern
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternBlockNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visitor }
+RBPatternBlockNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^aProgramNodeVisitor visitPatternBlockNode: self
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternBlockNode>>addArgumentWithNameBasedOn: aString to: aRBBlockNode  [
+{ #category : #matching }
+RBPatternBlockNode >> addArgumentWithNameBasedOn: aString to: aRBBlockNode [ 
 	| name index vars |
 	name := aString.
 	vars := aRBBlockNode allDefinedVariables.
@@ -40,11 +33,8 @@ RBPatternBlockNode>>addArgumentWithNameBasedOn: aString to: aRBBlockNode  [
 		arguments: (aRBBlockNode arguments copyWith: (RBVariableNode named: name))
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternBlockNode>>constructLookupNodeFor: aString in: aRBBlockNode  [
+{ #category : #matching }
+RBPatternBlockNode >> constructLookupNodeFor: aString [ in: aRBBlockNode 
 	| argumentNode |
 	argumentNode := RBLiteralNode value: aString.
 	
@@ -54,19 +44,13 @@ RBPatternBlockNode>>constructLookupNodeFor: aString in: aRBBlockNode  [
 		arguments: (Array with: argumentNode with: aRBBlockNode arguments last)
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternBlockNode>>copyInContext: aDictionary  [
+{ #category : #matching }
+RBPatternBlockNode >> copyInContext: aDictionary [ 
 	^ self replacingBlock value: aDictionary
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternBlockNode>>createBlockFor: aRBBlockNode  [
+{ #category : #matching }
+RBPatternBlockNode >> createBlockFor: aRBBlockNode [ 
 	aRBBlockNode left: self left; right:self right.
 	self replacePatternNodesIn: aRBBlockNode.
 	^Smalltalk compiler 
@@ -75,11 +59,8 @@ RBPatternBlockNode>>createBlockFor: aRBBlockNode  [
 		evaluate
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternBlockNode>>createMatchingBlock [
+{ #category : #matching }
+RBPatternBlockNode >> createMatchingBlock [
 	| newBlock |
 	self arguments size > 2 
 		ifTrue: 
@@ -93,11 +74,8 @@ RBPatternBlockNode>>createMatchingBlock [
 	^self createBlockFor: newBlock
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternBlockNode>>createReplacingBlock [
+{ #category : #matching }
+RBPatternBlockNode >> createReplacingBlock [
 	| newBlock |
 	self arguments size > 1 
 		ifTrue: 
@@ -109,19 +87,13 @@ RBPatternBlockNode>>createReplacingBlock [
 	^self createBlockFor: newBlock
 ]
 
-{
-	#category : #testing-matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternBlockNode>>isPatternNode [
+{ #category : #testing-matching }
+RBPatternBlockNode >> isPatternNode [
 	^ true
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternBlockNode>>lookupMatchFor: aString in: aDictionary  [
+{ #category : #matching }
+RBPatternBlockNode >> lookupMatchFor: aString [ in: aDictionary 
 	^aDictionary at: aString
 		ifAbsent: 
 			[| variableNode |
@@ -129,27 +101,18 @@ RBPatternBlockNode>>lookupMatchFor: aString in: aDictionary  [
 			aDictionary at: variableNode ifAbsent: [nil]]
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternBlockNode>>match: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBPatternBlockNode >> match: aNode inContext: aDictionary [ 
 	^self matchingBlock value: aNode value: aDictionary
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternBlockNode>>matchingBlock [
+{ #category : #matching }
+RBPatternBlockNode >> matchingBlock [
 	^ valueBlock ifNil: [valueBlock := self createMatchingBlock]
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternBlockNode>>replacePatternNodesIn: aRBBlockNode  [
+{ #category : #matching }
+RBPatternBlockNode >> replacePatternNodesIn: aRBBlockNode [ 
 	aRBBlockNode body nodesDo: 
 			[:each | 
 			(each isVariable and: [each isPatternNode]) 
@@ -158,18 +121,12 @@ RBPatternBlockNode>>replacePatternNodesIn: aRBBlockNode  [
 						replaceWith: (self constructLookupNodeFor: each name in: aRBBlockNode)]]
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternBlockNode>>replacingBlock [
+{ #category : #matching }
+RBPatternBlockNode >> replacingBlock [
 	^ valueBlock ifNil: [valueBlock := self createReplacingBlock]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternBlockNode>>sentMessages [
+{ #category : #accessing }
+RBPatternBlockNode >> sentMessages [
 	^ OrderedCollection new
 ]

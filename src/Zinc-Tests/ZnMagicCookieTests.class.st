@@ -1,34 +1,21 @@
-"
-
-"
 Class {
 	#name : #ZnMagicCookieTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMagicCookieTests>>cookieString [
+{ #category : #testing }
+ZnMagicCookieTests >> cookieString [
 	^ 'PREF=ID=18ae67ce302b6317:TM=1285696140:LM=1285696140:S=hqroFGlRQR1j4Yhy; expires={1}; path=/; domain=.google.com' format: { ZnUtils httpDate: DateAndTime now + 60 days }
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMagicCookieTests>>cookieStringSubpath [
+{ #category : #accessing }
+ZnMagicCookieTests >> cookieStringSubpath [
 	^ 'PREF=ID=18ae67ce302b6317:TM=1285696140:LM=1285696140:S=hqroFGlRQR1j4Yhy; expires={1}; path=/test/; domain=.google.com' format: { ZnUtils httpDate: DateAndTime now + 60 days }
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMagicCookieTests>>testFromString [
+{ #category : #testing }
+ZnMagicCookieTests >> testFromString [
 	| cookie |
 	cookie := ZnCookie fromString: self cookieString for: 'www.google.com' asZnUrl.
 	self assert: (cookie name = 'PREF').
@@ -38,11 +25,8 @@ ZnMagicCookieTests>>testFromString [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMagicCookieTests>>testInDomain [
+{ #category : #testing }
+ZnMagicCookieTests >> testInDomain [
 	| cookie |
 	cookie := ZnCookie fromString: self cookieString for: 'http://www.google.com' asZnUrl.
 	self assert: (cookie isInDomain: 'http://www.google.com' asZnUrl).
@@ -51,11 +35,8 @@ ZnMagicCookieTests>>testInDomain [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMagicCookieTests>>testInPath [
+{ #category : #testing }
+ZnMagicCookieTests >> testInPath [
 	| cookie |
 	cookie := ZnCookie fromString: self cookieStringSubpath for: 'www.google.com' asZnUrl.
 	self assert: (cookie isInPath: 'www.google.com/test/' asZnUrl).

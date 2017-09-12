@@ -40,15 +40,11 @@ Class {
 		'selector',
 		'options'
 	],
-	#category : #Reflectivity-Links,
-	#timestamp : 'MarcusDenker 3/1/2015 18:09'
+	#category : #Reflectivity-Links
 }
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink class>>defaultOptions [
+{ #category : #options }
+MetaLink class >> defaultOptions [
 	^ #(
 	+ optionInlineMetaObject            "meta object is inlined by default."
 	+ optionInlineCondition              "condition is inlined by default."
@@ -59,20 +55,14 @@ MetaLink class>>defaultOptions [
 	)
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink class>>uninstallAll [
+{ #category : #cleanup }
+MetaLink class >> uninstallAll [
 	<script>
 	self allInstances do: #uninstall.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>allReifications [
+{ #category : #accessing }
+MetaLink >> allReifications [
 	| reifications |
 	"we only check reification, that is symbols."
 	reifications := (self arguments select: [:each | each isSymbol]) asSet. 
@@ -85,28 +75,19 @@ MetaLink>>allReifications [
 	^reifications
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>arguments [
+{ #category : #accessing }
+MetaLink >> arguments [
 	^arguments
 ]
 
-{
-	#category : #'link api',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>arguments: args [
+{ #category : #'link api' }
+MetaLink >> arguments: args [
 	arguments := args.
 	self invalidate.
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>checkForCompatibilityWith: aNode [
+{ #category : #installing }
+MetaLink >> checkForCompatibilityWith: aNode [
 	| supported |
 	
 	supported := Set new.
@@ -117,19 +98,13 @@ MetaLink>>checkForCompatibilityWith: aNode [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>condition [
+{ #category : #accessing }
+MetaLink >> condition [
 	^condition
 ]
 
-{
-	#category : #'link api',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>condition: aCondition [
+{ #category : #'link api' }
+MetaLink >> condition: aCondition [
 	condition:= aCondition.
 	self optionInlineCondition ifTrue: [^self invalidate].
 	nodes do: [ :node |  | methodNode |
@@ -142,11 +117,8 @@ MetaLink>>condition: aCondition [
 
 ]
 
-{
-	#category : #'link api',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>condition: aCondition arguments: anArray [
+{ #category : #'link api' }
+MetaLink >> condition: aCondition arguments: anArray [
 	self condition: aCondition.
 	conditionArguments := anArray.
 
@@ -154,48 +126,33 @@ MetaLink>>condition: aCondition arguments: anArray [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>conditionArguments [
+{ #category : #accessing }
+MetaLink >> conditionArguments [
 	^conditionArguments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>control [
+{ #category : #accessing }
+MetaLink >> control [
 	^control
 	
 ]
 
-{
-	#category : #'link api',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>control: aRFLinkControl [
+{ #category : #'link api' }
+MetaLink >> control: aRFLinkControl [
 	control:= aRFLinkControl.
 	self invalidate.
 ]
 
-{
-	#category : #'reflecive api',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>disable [
+{ #category : #'reflecive api' }
+MetaLink >> disable [
 	"turn off link reflectively while keeping the condition"
 	self hasReifiedCondition
 		ifFalse: [self condition: (RFCondition for: condition)].
 	self condition disable.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>doesNotUnderstand: message [
+{ #category : #private }
+MetaLink >> doesNotUnderstand: message [
 
 	(message selector isUnary and: [ message selector beginsWith: 'option'] )
 		ifTrue: [ ^ options includes: message selector ].
@@ -203,11 +160,8 @@ MetaLink>>doesNotUnderstand: message [
 	^ super doesNotUnderstand: message
 ]
 
-{
-	#category : #'reflecive api',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>enable [
+{ #category : #'reflecive api' }
+MetaLink >> enable [
 	"turn on link reflectively if it has been turned off"
 	self hasReifiedCondition
 		ifTrue: [self condition enable].
@@ -215,44 +169,29 @@ MetaLink>>enable [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>hasCondition	 [
+{ #category : #testing }
+MetaLink >> hasCondition [	
 	^condition notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>hasMetaLevel [
+{ #category : #testing }
+MetaLink >> hasMetaLevel [
 	^level notNil
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>hasOption: aSymbol [
+{ #category : #options }
+MetaLink >> hasOption: aSymbol [
 	^options includes: aSymbol
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>hasReifiedCondition [
+{ #category : #testing }
+MetaLink >> hasReifiedCondition [
 	self hasCondition ifFalse: [ ^false ].
 	^self condition isKindOf: RFCondition
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>initialize [
+{ #category : #initialization }
+MetaLink >> initialize [
 	nodes := IdentitySet new.
 	control := #before.
 	selector := #value.
@@ -261,69 +200,45 @@ MetaLink>>initialize [
 	self parseOptions: self class defaultOptions.
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>installOn: aNode  [
+{ #category : #installing }
+MetaLink >> installOn: aNode [ 
 	nodes add: aNode
 	
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>installOnVariable: aVariable [
+{ #category : #installing }
+MetaLink >> installOnVariable: aVariable [
 	nodes add: aVariable
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>invalidate [
+{ #category : #installing }
+MetaLink >> invalidate [
 	nodes do: [ :node | node invalidate ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>level [
+{ #category : #accessing }
+MetaLink >> level [
 	^ level
 ]
 
-{
-	#category : #'link api',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>level: anObject [
+{ #category : #'link api' }
+MetaLink >> level: anObject [
 	level := anObject.
 	self invalidate.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>metaLinkOptions: anArray [
+{ #category : #accessing }
+MetaLink >> metaLinkOptions: anArray [
 	self options: anArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>metaObject [
+{ #category : #accessing }
+MetaLink >> metaObject [
 	^ metaObject
 ]
 
-{
-	#category : #'link api',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>metaObject: anObject [
+{ #category : #'link api' }
+MetaLink >> metaObject: anObject [
 	metaObject := anObject.
 	self optionInlineMetaObject ifTrue: [^self invalidate].
 	nodes do: [ :node | | methodNode |
@@ -334,200 +249,134 @@ MetaLink>>metaObject: anObject [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>methods [
+{ #category : #accessing }
+MetaLink >> methods [
 	^nodes flatCollect: [ :entity |
 		(entity isKindOf: RBProgramNode) 
 			ifTrue: [ {entity methodNode compiledMethod}  ]
 			ifFalse: [ entity usingMethods ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>option: anArray  [
+{ #category : #accessing }
+MetaLink >> option: anArray [ 
 	self parseOptions: anArray
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>optionCompileOnLinkInstallation [
+{ #category : #options }
+MetaLink >> optionCompileOnLinkInstallation [
 	^ options includes: #optionCompileOnLinkInstallation
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>optionCompileOnLinkInstallation: aBoolean [
+{ #category : #options }
+MetaLink >> optionCompileOnLinkInstallation: aBoolean [
 	aBoolean
 		ifTrue: [ options add: #optionCompileOnLinkInstallation ] 
 		ifFalse: [ options remove: #optionCompileOnLinkInstallation ifAbsent:[] ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>optionDisabledLink [
+{ #category : #options }
+MetaLink >> optionDisabledLink [
 	^ options includes: #optionDisabledLink
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>optionDisabledLink: aBoolean [
+{ #category : #options }
+MetaLink >> optionDisabledLink: aBoolean [
 	aBoolean
 		ifTrue: [ options add: #optionDisabledLink ] 
 		ifFalse: [ options remove: #optionDisabledLink ifAbsent:[] ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>optionInlineCondition [
+{ #category : #options }
+MetaLink >> optionInlineCondition [
 	^ options includes: #optionInlineCondition
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>optionInlineCondition: aBoolean [
+{ #category : #options }
+MetaLink >> optionInlineCondition: aBoolean [
 	aBoolean
 		ifTrue: [ options add: #optionInlineCondition ] 
 		ifFalse: [ options remove: #optionInlineCondition ifAbsent:[] ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>optionInlineMetaObject [
+{ #category : #options }
+MetaLink >> optionInlineMetaObject [
 	^ options includes: #optionInlineMetaObject
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>optionInlineMetaObject: aBoolean [
+{ #category : #options }
+MetaLink >> optionInlineMetaObject: aBoolean [
 	aBoolean
 		ifTrue: [ options add: #optionInlineMetaObject ] 
 		ifFalse: [ options remove: #optionInlineMetaObject ifAbsent:[] ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>optionMetalevel [
+{ #category : #options }
+MetaLink >> optionMetalevel [
 	^ options includes: #optionMetalevel
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>optionMetalevel: aBoolean [
+{ #category : #options }
+MetaLink >> optionMetalevel: aBoolean [
 	aBoolean
 		ifTrue: [ options add: #optionMetalevel ] 
 		ifFalse: [ options remove: #optionMetalevel ifAbsent:[] ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>optionOneShot [
+{ #category : #options }
+MetaLink >> optionOneShot [
 	^ options includes: #optionOneShot
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>optionOneShot: aBoolean [
+{ #category : #options }
+MetaLink >> optionOneShot: aBoolean [
 	aBoolean
 		ifTrue: [ options add: #optionOneShot ] 
 		ifFalse: [ options remove: #optionOneShot ifAbsent:[] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>options [
+{ #category : #accessing }
+MetaLink >> options [
 	^options
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>options: anArray  [
+{ #category : #accessing }
+MetaLink >> options: anArray [ 
 	self parseOptions: anArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>parseOptions: optionsArray [
+{ #category : #private }
+MetaLink >> parseOptions: optionsArray [
 
 	options parseOptions: optionsArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>reificationsFor: aBlockOrBoolean [
+{ #category : #private }
+MetaLink >> reificationsFor: aBlockOrBoolean [
 	(aBlockOrBoolean isKindOf: Boolean) ifTrue: [ ^#() ].
 	(aBlockOrBoolean isKindOf: RFCondition) ifTrue: [^aBlockOrBoolean reifications].
 	^aBlockOrBoolean argumentNames.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>selector [
+{ #category : #accessing }
+MetaLink >> selector [
 	^selector
 	
 ]
 
-{
-	#category : #'link api',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>selector: aSymbol [
+{ #category : #'link api' }
+MetaLink >> selector: aSymbol [
 	selector := aSymbol.
 	self invalidate.
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>uninstall [
+{ #category : #installing }
+MetaLink >> uninstall [
 	nodes do: [:node | node removeLink: self].
 	nodes removeAll.
 ]
 
-{
-	#category : #ast,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-MetaLink>>valueInContext: aBlock [
+{ #category : #ast }
+MetaLink >> valueInContext: aBlock [
 	(RFMetaContext current isActive: (self level ifNil: [0]))
 		ifFalse: [ ^ self ].
 	RFMetaContext current shiftLevelUp.

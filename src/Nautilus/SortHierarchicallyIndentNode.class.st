@@ -10,44 +10,31 @@ Class {
 		'element',
 		'indent'
 	],
-	#category : #Nautilus,
-	#timestamp : 'HenrikNergaard 10/4/2015 19:20'
+	#category : #Nautilus
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortHierarchicallyIndentNode class>>on: anObject indentBy: aNumber [
+{ #category : #'instance creation' }
+SortHierarchicallyIndentNode class >> on: anObject indentBy: aNumber [
 	^ self new
 		setElement: anObject;
 		setIndent: aNumber;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortHierarchicallyIndentNode>>element [
+{ #category : #accessing }
+SortHierarchicallyIndentNode >> element [
 	"Any model object that is part of a collection we are sorting hierarchically."
 	^ element
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortHierarchicallyIndentNode>>indent  [
+{ #category : #accessing }
+SortHierarchicallyIndentNode >> indent [ 
 
 	^indent
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortHierarchicallyIndentNode>>printOn: aStream [
+{ #category : #printing }
+SortHierarchicallyIndentNode >> printOn: aStream [
 	"Print me->ancestor"
 	aStream
 		print: element;
@@ -55,19 +42,13 @@ SortHierarchicallyIndentNode>>printOn: aStream [
 		print: indent
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortHierarchicallyIndentNode>>setElement: anObject [
+{ #category : #initialize-release }
+SortHierarchicallyIndentNode >> setElement: anObject [
 	element := anObject
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortHierarchicallyIndentNode>>setIndent: aNumber [
+{ #category : #initialize-release }
+SortHierarchicallyIndentNode >> setIndent: aNumber [
 
 	indent := aNumber
 ]

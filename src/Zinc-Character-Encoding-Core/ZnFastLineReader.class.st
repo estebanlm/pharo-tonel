@@ -10,67 +10,45 @@ Class {
 		'lf',
 		'bufferStream'
 	],
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : 'SvenVanCaekenberghe 12/11/2014 14:10'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnFastLineReader class>>on: characterReadStream [
+{ #category : #'instance creation' }
+ZnFastLineReader class >> on: characterReadStream [
 	^ self new 
 		on: characterReadStream;
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnFastLineReader>>atEnd [
+{ #category : #testing }
+ZnFastLineReader >> atEnd [
 	^ readStream atEnd
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnFastLineReader>>beWide [
+{ #category : #initialize }
+ZnFastLineReader >> beWide [
 	self bufferStream: (WideString new: 32) writeStream
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnFastLineReader>>bufferStream: characterWriteStream [
+{ #category : #initialize }
+ZnFastLineReader >> bufferStream: characterWriteStream [
 	^ bufferStream := characterWriteStream
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnFastLineReader>>close [
+{ #category : #initialize }
+ZnFastLineReader >> close [
 	readStream close
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnFastLineReader>>initialize [
+{ #category : #initialize }
+ZnFastLineReader >> initialize [
 	super initialize.
 	cr := Character cr.
 	lf := Character lf
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnFastLineReader>>linesDo: block [
+{ #category : #accessing }
+ZnFastLineReader >> linesDo: block [
 	[ self atEnd ]
 		whileFalse: [ 
 			| line |
@@ -79,11 +57,8 @@ ZnFastLineReader>>linesDo: block [
 				ifFalse: [ block value: line ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnFastLineReader>>nextLine [
+{ #category : #accessing }
+ZnFastLineReader >> nextLine [
 	"Read a CR, LF or CRLF terminated line, returning the contents of the line without the EOL. Return nil when the receiver is #atEnd."
 	
 	self atEnd ifTrue: [ ^ nil ].
@@ -99,19 +74,13 @@ ZnFastLineReader>>nextLine [
 						ifFalse: [  out nextPut: char ] ] ] ]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnFastLineReader>>on: characterReadStream [
+{ #category : #initialize }
+ZnFastLineReader >> on: characterReadStream [
 	readStream := characterReadStream 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnFastLineReader>>streamContents: block [
+{ #category : #private }
+ZnFastLineReader >> streamContents: block [
 	"Like readStream collectionSpecies streamContents: block
 	but reusing the underlying buffer for improved efficiency"
 	

@@ -1,31 +1,20 @@
-Extension {
-	#name : #Behavior
-}
+Extension { #name : #Behavior }
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Behavior>>methodNamed: aSelector [
+{ #category : #'*Ring-Core-Kernel' }
+Behavior >> methodNamed: aSelector [
 
 	^ self methodDict at: aSelector
 ]
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Behavior>>methodsInProtocol: aString [
+{ #category : #'*Ring-Core-Kernel' }
+Behavior >> methodsInProtocol: aString [
 
 	^ (self organization listAtCategoryNamed: aString) 
 			collect: [ :each | (self compiledMethodAt: each) ]
 ]
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Behavior>>protocols [
+{ #category : #'*Ring-Core-Kernel' }
+Behavior >> protocols [
 	
 	^ self organization categories copy
 ]

@@ -28,15 +28,11 @@ Class {
 		'TypeTable',
 		'UppercasingTable'
 	],
-	#category : #Collections-Strings,
-	#timestamp : '<historical>'
+	#category : #Collections-Strings
 }
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>compare: string1 with: string2 collated: order [
+{ #category : #primitives }
+String class >> compare: string1 with: string2 collated: order [
 	"Return 1, 2 or 3, if string1 is <, =, or > string2, with the collating order of characters given by the order array."
 
 	| len1 len2 c1 c2 |
@@ -65,60 +61,42 @@ String class>>compare: string1 with: string2 collated: order [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>cr [
+{ #category : #'instance creation' }
+String class >> cr [
 	"Answer a string containing a single carriage return character."
 
 	^ self with: Character cr
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>crLfExchangeTable [
+{ #category : #accessing }
+String class >> crLfExchangeTable [
 
 	^CrLfExchangeTable
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>crlf [
+{ #category : #'instance creation' }
+String class >> crlf [
 	"Answer a string containing a carriage return and a linefeed."
 
 	^ self with: Character cr with: Character lf
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>crlfcrlf [
+{ #category : #'instance creation' }
+String class >> crlfcrlf [
 	^self crlf , self crlf.
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>empty [
+{ #category : #'instance creation' }
+String class >> empty [
 	"A canonicalized empty String instance."
 	^ ''
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>expandMacro: macroType argument: argument withExpansions: expansions  [
+{ #category : #formatting }
+String class >> expandMacro: macroType argument: argument withExpansions: expansions [ 
 	macroType = $s ifTrue: [^expansions at: argument].
 	macroType = $p ifTrue: [^(expansions at: argument) printString].
 	macroType = $n ifTrue: [^String cr].
@@ -126,11 +104,8 @@ String class>>expandMacro: macroType argument: argument withExpansions: expansio
 	self error: 'unknown expansion type'
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>findFirstInString: aString inCharacterSet: aCharacterSet startingAt: start  [
+{ #category : #primitives }
+String class >> findFirstInString: aString inCharacterSet: aCharacterSet startingAt: start [ 
 	"Trivial, non-primitive version"
 	
 	start
@@ -141,11 +116,8 @@ String class>>findFirstInString: aString inCharacterSet: aCharacterSet startingA
 	^ 0
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>findFirstInString: aString inSet: inclusionMap startingAt: start [
+{ #category : #primitives }
+String class >> findFirstInString: aString inSet: inclusionMap startingAt: start [
 	"Trivial, non-primitive version"
 	
 	| i stringSize ascii more |
@@ -162,31 +134,22 @@ String class>>findFirstInString: aString inSet: inclusionMap startingAt: start [
 	^ i
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>fromByteArray: aByteArray [
+{ #category : #'instance creation' }
+String class >> fromByteArray: aByteArray [
 
 	^ aByteArray asString
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>fromString: aString  [
+{ #category : #'instance creation' }
+String class >> fromString: aString [ 
 	"Answer an instance of me that is a copy of the argument, aString."
 	
 	^ aString copyFrom: 1 to: aString size
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>indexOfAscii: anInteger inString: aString startingAt: start	 [
+{ #category : #primitives }
+String class >> indexOfAscii: anInteger inString: aString startingAt: start [	
 	start to: aString size do: [ :index |
 		(aString basicAt: index) = anInteger ifTrue: [ ^index ] ].
 	^0
@@ -194,11 +157,8 @@ String class>>indexOfAscii: anInteger inString: aString startingAt: start	 [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>initialize   "self initialize" [
+{ #category : #initialization }
+String class >> initialize [   "self initialize"
 
 	
 	self initializeTypeTable.
@@ -218,11 +178,8 @@ String class>>initialize   "self initialize" [
 	CrLfExchangeTable := self newCrLfExchangeTable
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>initializeTypeTable [
+{ #category : #initialization }
+String class >> initializeTypeTable [
 
 	| newTable |
 	newTable := Array new: 256 withAll: #xBinary. "default"
@@ -255,32 +212,23 @@ String class>>initializeTypeTable [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>lf [
+{ #category : #'instance creation' }
+String class >> lf [
 	"Answer a string containing a single carriage return character."
 
 	^ self with: Character lf
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>loremIpsum [
+{ #category : #'instance creation' }
+String class >> loremIpsum [
 	"Return a constant string with one paragraph of text, the famous Lorem ipsum filler text.
 	The result is pure ASCII (Latin words) and contains no newlines."
 	
 	^ 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>loremIpsum: size [
+{ #category : #'instance creation' }
+String class >> loremIpsum: size [
 	"Return a mostly random multi-paragraph filler string of the specified size.
 	The result is pure ASCII, uses CR for newlines and ends with a dot and newline."
 	
@@ -305,11 +253,8 @@ String class>>loremIpsum: size [
 			out cr; cr ] ] repeat
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>new: sizeRequested  [
+{ #category : #'instance creation' }
+String class >> new: sizeRequested [ 
 	"Answer an instance of this class with the number of indexable
 	variables specified by the argument, sizeRequested."
 	
@@ -318,28 +263,19 @@ String class>>new: sizeRequested  [
 		ifFalse:[^self basicNew: sizeRequested].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>newAsciiOrder [
+{ #category : #initialization }
+String class >> newAsciiOrder [
 	^ (0 to: 255) as: ByteArray
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>newCSLineEnders [
+{ #category : #initialization }
+String class >> newCSLineEnders [
 	"CR and LF--characters that terminate a line"
 	^ CharacterSet crlf.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>newCaseInsensitiveOrder [
+{ #category : #initialization }
+String class >> newCaseInsensitiveOrder [
 	"map char and char asLower (Lowercase Latin1 stays in the Latin1 range, uppercase not.)"
 	| newCollection |
 	newCollection := AsciiOrder copy.
@@ -351,11 +287,8 @@ String class>>newCaseInsensitiveOrder [
 	^ newCollection 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>newCaseSensitiveOrder [
+{ #category : #initialization }
+String class >> newCaseSensitiveOrder [
 	"Case-sensitive compare sorts space, digits, letters, all the rest..."
 	
 	| newTab order |
@@ -373,11 +306,8 @@ String class>>newCaseSensitiveOrder [
 	^ newTab 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>newCrLfExchangeTable [
+{ #category : #initialization }
+String class >> newCrLfExchangeTable [
 	"a table for exchanging cr with lf and vica versa"
 	^ Character allByteCharacters collect: [ :each |
 		each = Character cr 
@@ -388,39 +318,27 @@ String class>>newCrLfExchangeTable [
 					ifFalse:[ each ]]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>newLowercasingTable [
+{ #category : #initialization }
+String class >> newLowercasingTable [
 	"a table for translating to lower case"
 	^ String withAll: (Character allByteCharacters collect: [:c | c asLowercase]).
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>newTokenish [
+{ #category : #initialization }
+String class >> newTokenish [
 	"a table for testing tokenish (for fast numArgs)"
 	^ String withAll: (Character allByteCharacters 
 		collect: [:c | c tokenish ifTrue: [ c ] ifFalse: [ $~ ]]).
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>newUppercasingTable [
+{ #category : #initialization }
+String class >> newUppercasingTable [
 	"a table for translating to upper case"
 	^ String withAll: (Character allByteCharacters collect: [:c | c asUppercase]).
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>readFrom: inStream [
+{ #category : #'instance creation' }
+String class >> readFrom: inStream [
 	"Answer an instance of me that is determined by reading the stream, 
 	inStream. Embedded double quotes become the quote Character."
 
@@ -441,22 +359,16 @@ String class>>readFrom: inStream [
 					ifFalse: [ outStream nextPut: char ] ] ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>space [
+{ #category : #'instance creation' }
+String class >> space [
 	"Answer a string containing a single space character."
 
 	^ self with: Character space
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>stringHash: aString initialHash: speciesHash [
+{ #category : #primitives }
+String class >> stringHash: aString initialHash: speciesHash [
 	| stringSize hash low |
 	stringSize := aString size.
 	hash := speciesHash bitAnd: 16rFFFFFFF.
@@ -470,22 +382,16 @@ String class>>stringHash: aString initialHash: speciesHash [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>tab [
+{ #category : #'instance creation' }
+String class >> tab [
 	"Answer a string containing a single tab character."
 
 	^ self with: Character tab
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>translate: aString from: start  to: stop  table: table [
+{ #category : #primitives }
+String class >> translate: aString from: start  to: stop  table: table [
 	"Trivial, non-primitive version"
 	| char |
 	start to: stop do: [:i |
@@ -495,30 +401,21 @@ String class>>translate: aString from: start  to: stop  table: table [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>typeTable [
+{ #category : #accessing }
+String class >> typeTable [
 	TypeTable ifNil: [self initializeTypeTable].
 	^ TypeTable
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>value: anInteger [
+{ #category : #'instance creation' }
+String class >> value: anInteger [
 
 	^ self with: (Character value: anInteger).
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String class>>with: aCharacter [
+{ #category : #'instance creation' }
+String class >> with: aCharacter [
 	| newCollection |
 	aCharacter asInteger < 256
 		ifTrue:[newCollection := ByteString new: 1]
@@ -527,33 +424,24 @@ String class>>with: aCharacter [
 	^newCollection
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>< aString  [
+{ #category : #comparing }
+String >> < aString [ 
 	"Answer whether the receiver sorts before aString.
 	The collation order is simple ascii (with case differences)."
 
 	^ (self compare: self with: aString collated: AsciiOrder) = 1
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>><= aString  [
+{ #category : #comparing }
+String >> <= aString [ 
 	"Answer whether the receiver sorts before or equal to aString.
 	The collation order is simple ascii (with case differences)."
 	
 	^ (self compare: self with: aString collated: AsciiOrder) <= 2
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>= aString  [
+{ #category : #comparing }
+String >> = aString [ 
 	"Answer whether the receiver sorts equally as aString.
 	The collation order is simple ascii (with case differences)."
 	
@@ -561,33 +449,24 @@ String>>= aString  [
 	^ (self compare: self with: aString collated: AsciiOrder) = 2
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>> aString  [
+{ #category : #comparing }
+String >> > aString [ 
 	"Answer whether the receiver sorts after aString.
 	The collation order is simple ascii (with case differences)."
 
 	^ (self compare: self with: aString collated: AsciiOrder) = 3
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>>= aString  [
+{ #category : #comparing }
+String >> >= aString [ 
 	"Answer whether the receiver sorts after or equal to aString.
 	The collation order is simple ascii (with case differences)."
 
 	^ (self compare: self with: aString collated: AsciiOrder) >= 2
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>alike: aString  [
+{ #category : #comparing }
+String >> alike: aString [ 
 	"Answer some indication of how alike the receiver is to the argument,  0 is no match, twice aString size is best score.  Case is ignored."
 
 	| i j k minSize bonus |
@@ -602,11 +481,8 @@ String>>alike: aString  [
 	^ i - 1 + self size - j + bonus. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>allRangesOfSubstring: aSubstring [
+{ #category : #accessing }
+String >> allRangesOfSubstring: aSubstring [
 
 	^ Array streamContents: [:s | | start subSize |
 		start := 1.
@@ -618,11 +494,8 @@ String>>allRangesOfSubstring: aSubstring [
 						start := start + subSize]]]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asByteArray [
+{ #category : #converting }
+String >> asByteArray [
 	"Convert to a ByteArray with the ascii values of the string."
 	| b |
 	b := ByteArray new: self byteSize.
@@ -632,21 +505,15 @@ String>>asByteArray [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asByteString [
+{ #category : #converting }
+String >> asByteString [
 	"Convert the receiver into a ByteString, if possible"
 	"Do not raise an error if it's not possible, since my use case is usually one in which WideStrings may or may not have been mutated to something representable in a ByteString, and we mostly do this to save space if possible. If the percentage of such cases are small, it may be better to use isOctetString check first to avoid creating String instances"	
 	^self asOctetString
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asCamelCase [
+{ #category : #converting }
+String >> asCamelCase [
        "Convert to CamelCase. Can be conveinient in conjunction with #asLegalSelector
      	 'A man, a plan, a canal, panama' asCamelCase.
        'A man, a plan, a canal, panama' asCamelCase asLegalSelector.
@@ -658,11 +525,8 @@ String>>asCamelCase [
                        stream nextPutAll: sub capitalized]]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asComment [
+{ #category : #converting }
+String >> asComment [
 	"return this string, munged so that it can be treated as a comment in Smalltalk code.  Quote marks are added to the beginning and end of the string, and whenever a solitary quote mark appears within the string, it is doubled"
 
 	^String streamContents:  [ :str |
@@ -695,42 +559,30 @@ String>>asComment [
 	
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asDate [
+{ #category : #converting }
+String >> asDate [
 	"Many allowed forms, see Date>>#readFrom:"
 
 	^ Date fromString: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asDateAndTime [
+{ #category : #converting }
+String >> asDateAndTime [
  	"Convert from UTC format" 	
 	
 	^ DateAndTime fromString: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asDuration [
+{ #category : #converting }
+String >> asDuration [
  	"convert from [nnnd]hh:mm:ss[.nanos] format. [] implies optional elements"
  
  	^ Duration fromString: self
  
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asFourCode [
+{ #category : #converting }
+String >> asFourCode [
 
 	| result |
 	self size = 4 
@@ -746,11 +598,8 @@ String>>asFourCode [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asHTMLString [
+{ #category : #converting }
+String >> asHTMLString [
 	"substitute the < & > into HTML compliant elements"
 	"'<a>' asHTMLString"
 	^ self class new: self size streamContents: [ :s| 
@@ -758,40 +607,28 @@ String>>asHTMLString [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asHex [
+{ #category : #converting }
+String >> asHex [
 	^ self class new: self size * 4 streamContents: [ :stream |
 		self do: [ :ch | stream nextPutAll: ch hex ]]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asInteger  [
+{ #category : #converting }
+String >> asInteger [ 
 	^self asSignedInteger
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asLowercase [
+{ #category : #converting }
+String >> asLowercase [
 	"Answer a String made up from the receiver whose characters are all 
 	lowercase."
 
 	^ self copy asString translateToLowercase
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asOctetString [
+{ #category : #converting }
+String >> asOctetString [
 	"Convert the receiver into an octet string, if possible"
 	"(IE, I am a WideString containing only character with codePoints < 255, so all of them fit in a latin1-string)."
 	| string |
@@ -800,11 +637,8 @@ String>>asOctetString [
 	^string
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asPluralBasedOn: aNumberOrCollection [
+{ #category : #converting }
+String >> asPluralBasedOn: aNumberOrCollection [
 	"Append an 's' to this string based on whether aNumberOrCollection is 1 or of size 1."
 
 	^ (aNumberOrCollection = 1 or:
@@ -814,11 +648,8 @@ String>>asPluralBasedOn: aNumberOrCollection [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asSignedInteger  [
+{ #category : #converting }
+String >> asSignedInteger [ 
 	"Returns the first signed integer it can find or nil."
 
 	| start stream |
@@ -830,42 +661,30 @@ String>>asSignedInteger  [
 	^ Integer readFrom: stream
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asString [
+{ #category : #converting }
+String >> asString [
 	"Answer this string."
 
 	^ self
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asSymbol [
+{ #category : #converting }
+String >> asSymbol [
 	"Answer the unique Symbol whose characters are the characters of the 
 	string."
 	^Symbol intern: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asTime [
+{ #category : #converting }
+String >> asTime [
 	"Many allowed forms, see Time>>readFrom:"
 
 	^ Time fromString: self.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asUncommentedCode [
+{ #category : #converting }
+String >> asUncommentedCode [
 	"this string reprensent a commented code, let's uncomment it"
 	
 	^String streamContents:  [ :str |
@@ -889,11 +708,8 @@ String>>asUncommentedCode [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asUnsignedInteger [
+{ #category : #converting }
+String >> asUnsignedInteger [
 	"Returns the first integer it can find or nil."
 	| start stream |
 	start := self findFirst: [ :char | char isDigit ].
@@ -902,22 +718,16 @@ String>>asUnsignedInteger [
 	^ Integer readFrom: stream
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asUppercase [
+{ #category : #converting }
+String >> asUppercase [
 	"Answer a String made up from the receiver whose characters are all 
 	uppercase."
 
 	^self copy asString translateToUppercase
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asValidSelector [
+{ #category : #converting }
+String >> asValidSelector [
 	"e.g. '234znak ::x43 åå) :2' asValidSelector = #v234znak:x43:v2"
 	
 ^(((
@@ -944,20 +754,14 @@ String>>asValidSelector [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>asWideString  [
+{ #category : #converting }
+String >> asWideString [ 
 
 	^ WideString from: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>beginsWithEmpty: prefix caseSensitive: aBoolean  [
+{ #category : #testing }
+String >> beginsWithEmpty: prefix caseSensitive: aBoolean [ 
 	"Answer whether the receiver begins with the given prefix string. 
 	The comparison is case-sensitive." 
 	| matchTable |
@@ -973,35 +777,23 @@ String>>beginsWithEmpty: prefix caseSensitive: aBoolean  [
 		matchTable: matchTable) = 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>byteAt: index [
+{ #category : #accessing }
+String >> byteAt: index [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>byteAt: index put: value [
+{ #category : #accessing }
+String >> byteAt: index put: value [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>byteSize [
+{ #category : #accessing }
+String >> byteSize [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>capitalized [
+{ #category : #converting }
+String >> capitalized [
 	"Return a copy with the first letter capitalized"
 	| cap |
 	self isEmpty ifTrue: [ ^self copy ].
@@ -1010,31 +802,22 @@ String>>capitalized [
 	^ cap
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>caseInsensitiveLessOrEqual: aString  [
+{ #category : #comparing }
+String >> caseInsensitiveLessOrEqual: aString [ 
 	"Answer whether the receiver sorts before or equal to aString.
 	The collation order is case insensitive."
 	^(self compare: aString caseSensitive: false) <= 2
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>caseSensitiveLessOrEqual: aString  [
+{ #category : #comparing }
+String >> caseSensitiveLessOrEqual: aString [ 
 	"Answer whether the receiver sorts before or equal to aString.
 	The collation order is case sensitive."
 	^(self compare: aString caseSensitive: true) <= 2
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>charactersExactlyMatching: aString [
+{ #category : #comparing }
+String >> charactersExactlyMatching: aString [
 	"Do a character-by-character comparison between the receiver and aString.  Return the index of the final character that matched exactly."
 
 	| count |
@@ -1045,11 +828,8 @@ String>>charactersExactlyMatching: aString [
 	^ count
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>compare: aString  [
+{ #category : #comparing }
+String >> compare: aString [ 
 	"Answer a comparison code telling how the receiver sorts relative to aString:
 		1 - before
 		2 - equal
@@ -1059,11 +839,8 @@ String>>compare: aString  [
 	^self compare: aString caseSensitive: false
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>compare: aString caseSensitive: aBool [
+{ #category : #comparing }
+String >> compare: aString caseSensitive: aBool [
 	"Answer a comparison code telling how the receiver sorts relative to aString:
 		1 - before
 		2 - equal
@@ -1074,11 +851,8 @@ String>>compare: aString caseSensitive: aBool [
 	^self compare: self with: aString collated: map
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>compare: string1 with: string2 collated: order [
+{ #category : #comparing }
+String >> compare: string1 with: string2 collated: order [
 	"
 	self assert: 'abc' = 'abc' asWideString.
 	self assert: 'abc' asWideString = 'abc'.
@@ -1097,11 +871,8 @@ String>>compare: string1 with: string2 collated: order [
 	^ String compare: string1 with: string2 collated: order
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>contractTo: smallSize [
+{ #category : #converting }
+String >> contractTo: smallSize [
 	"return myself or a copy shortened by ellipsis to smallSize"
 	| leftSize |
 	self size <= smallSize
@@ -1117,11 +888,8 @@ String>>contractTo: smallSize [
 "
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>copyReplaceAll: oldSubstring with: newSubstring [
+{ #category : #copying }
+String >> copyReplaceAll: oldSubstring with: newSubstring [
     "Answer a copy of the receiver in which all occurrences of oldSubstring have been replaced by newSubstring"
 
     | idx |        
@@ -1138,11 +906,8 @@ String>>copyReplaceAll: oldSubstring with: newSubstring [
             stream next: (self size - idx + 1) putAll: self startingAt: idx ] ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>copyReplaceAll: oldSubstring with: newSubstring asTokens: ifTokens [
+{ #category : #copying }
+String >> copyReplaceAll: oldSubstring with: newSubstring asTokens: ifTokens [
 	"Answer a copy of the receiver in which all occurrences of
 	oldSubstring have been replaced by newSubstring.
 	ifTokens (valid for Strings only) specifies that the characters
@@ -1179,22 +944,16 @@ String>>copyReplaceAll: oldSubstring with: newSubstring asTokens: ifTokens [
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>copyReplaceTokens: oldSubstring with: newSubstring  [
+{ #category : #copying }
+String >> copyReplaceTokens: oldSubstring with: newSubstring [ 
 	"Replace all occurrences of oldSubstring that are surrounded
 	by non-alphanumeric characters"
 	^ self copyReplaceAll: oldSubstring with: newSubstring asTokens: true
 	"'File asFile Files File''s File' copyReplaceTokens: 'File' with: 'Snick'"
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>correctAgainst: wordList [
+{ #category : #converting }
+String >> correctAgainst: wordList [
 	"Correct the receiver: assume it is a misspelled word and return the (maximum of five) nearest words in the wordList.  Depends on the scoring scheme of alike:"
 	| results |
 	results := self correctAgainst: wordList continuedFrom: nil.
@@ -1202,11 +961,8 @@ String>>correctAgainst: wordList [
 	^ results
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>correctAgainst: wordList continuedFrom: oldCollection [
+{ #category : #converting }
+String >> correctAgainst: wordList continuedFrom: oldCollection [
 	"Like correctAgainst:.  Use when you want to correct against several lists, give nil as the first oldCollection, and nil as the last wordList."
 
 	^ wordList 
@@ -1216,11 +972,8 @@ String>>correctAgainst: wordList continuedFrom: oldCollection [
 					continuedFrom: oldCollection ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>correctAgainstDictionary: wordDict continuedFrom: oldCollection [
+{ #category : #converting }
+String >> correctAgainstDictionary: wordDict continuedFrom: oldCollection [
 	"Like correctAgainst:continuedFrom:.  Use when you want to correct against a dictionary."
 
 	^ wordDict 
@@ -1230,11 +983,8 @@ String>>correctAgainstDictionary: wordDict continuedFrom: oldCollection [
 					continuedFrom: oldCollection ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>correctAgainstEnumerator: wordBlock continuedFrom: oldCollection [
+{ #category : #private }
+String >> correctAgainstEnumerator: wordBlock continuedFrom: oldCollection [
 	"The guts of correction, instead of a wordList, there is a block that should take another block and enumerate over some list with it."
 
 	| choices results maxChoices scoreMin |
@@ -1256,22 +1006,16 @@ String>>correctAgainstEnumerator: wordBlock continuedFrom: oldCollection [
 	^ results
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>deepCopy [
+{ #category : #copying }
+String >> deepCopy [
 	"DeepCopy would otherwise mean make a copy of the character;  since 
 	characters are unique, just return a shallowCopy."
 
 	^self shallowCopy
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>encodeDoublingQuoteOn: aStream  [
+{ #category : #printing }
+String >> encodeDoublingQuoteOn: aStream [ 
 	"Print inside string quotes, doubling inbedded quotes."
 	| x |
 	aStream print: $'.
@@ -1281,11 +1025,8 @@ String>>encodeDoublingQuoteOn: aStream  [
 	aStream print: $'
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>endsWith: suffix [
+{ #category : #comparing }
+String >> endsWith: suffix [
 	"Answer whether the tail end of the receiver is the same as suffix.
 	The comparison is case-sensitive.
  
@@ -1298,11 +1039,8 @@ String>>endsWith: suffix [
 	^ (self findString: suffix startingAt: extra + 1) > 0
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>endsWithAColon  [
+{ #category : #'system primitives' }
+String >> endsWithAColon [ 
 	"Answer whether the final character of the receiver is a colon
 	
 	#fred: endsWithAColon
@@ -1313,68 +1051,47 @@ String>>endsWithAColon  [
 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>endsWithAnyOf: aCollection [
+{ #category : #comparing }
+String >> endsWithAnyOf: aCollection [
 	aCollection do:[:suffix|
 		(self endsWith: suffix) ifTrue:[^true].
 	].
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>endsWithDigit [
+{ #category : #accessing }
+String >> endsWithDigit [
 	"Answer whether the receiver's final character represents a digit."
 
 	^ self size > 0 and: [self last isDigit]
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>expandMacros [
+{ #category : #formatting }
+String >> expandMacros [
 	^self expandMacrosWithArguments: #()
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>expandMacrosWith: anObject  [
+{ #category : #formatting }
+String >> expandMacrosWith: anObject [ 
 	^self expandMacrosWithArguments: (Array with: anObject)
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>expandMacrosWith: anObject with: anotherObject  [
+{ #category : #formatting }
+String >> expandMacrosWith: anObject with: anotherObject [ 
 	^self 
 		expandMacrosWithArguments: (Array with: anObject with: anotherObject)
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>expandMacrosWith: anObject with: anotherObject with: thirdObject  [
+{ #category : #formatting }
+String >> expandMacrosWith: anObject with: anotherObject [ with: thirdObject 
 	^self expandMacrosWithArguments: (Array 
 				with: anObject
 				with: anotherObject
 				with: thirdObject)
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>expandMacrosWith: anObject with: anotherObject with: thirdObject with: fourthObject  [
+{ #category : #formatting }
+String >> expandMacrosWith: anObject with: anotherObject [ with: thirdObject with: fourthObject 
 	^self expandMacrosWithArguments: (Array 
 				with: anObject
 				with: anotherObject
@@ -1382,11 +1099,8 @@ String>>expandMacrosWith: anObject with: anotherObject with: thirdObject with: f
 				with: fourthObject)
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>expandMacrosWithArguments: anArray [
+{ #category : #formatting }
+String >> expandMacrosWithArguments: anArray [
 	| readStream char index |
 	^ self class
 		new: self size
@@ -1434,11 +1148,8 @@ String>>expandMacrosWithArguments: anArray [
 										ifFalse: [ char ]) ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findAnySubstring: aCollection startingAt: start  [
+{ #category : #accessing }
+String >> findAnySubstring: aCollection startingAt: start [ 
 	"Answer the index where an element of aCollection begins. If none are found, answer size + 1. aCollection is an Array of Strings or Characters."
 
 	^aCollection inject: 1 + self size into: [:min :searchTerm |
@@ -1449,11 +1160,8 @@ String>>findAnySubstring: aCollection startingAt: start  [
 		min min: ind]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findBetweenSubstrings: delimiters [
+{ #category : #accessing }
+String >> findBetweenSubstrings: delimiters [
 	"Answer the collection of String tokens that result from parsing self.  Tokens are separated by 'delimiters', which can be a collection of Strings, or a collection of Characters.  Several delimiters in a row are considered as just one separation."
 
 	| tokens keyStart keyStop |
@@ -1467,11 +1175,8 @@ String>>findBetweenSubstrings: delimiters [
 	^tokens
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findCloseParenthesisFor: startIndex [
+{ #category : #accessing }
+String >> findCloseParenthesisFor: startIndex [
 	"assume (self at: startIndex) is $(.  Find the matching $), allowing parentheses to nest."
 	" '(1+(2-3))-3.14159' findCloseParenthesisFor: 1 "
 	" '(1+(2-3))-3.14159' findCloseParenthesisFor: 4 "
@@ -1487,11 +1192,8 @@ String>>findCloseParenthesisFor: startIndex [
 	^self size + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findDelimiters: delimiters startingAt: start  [
+{ #category : #accessing }
+String >> findDelimiters: delimiters startingAt: start [ 
 	"Answer the index of the character within the receiver, starting at start, that matches one of the delimiters. If the receiver does not contain any of the delimiters, answer size + 1."
 
 	start to: self size do: [:i |
@@ -1501,20 +1203,14 @@ String>>findDelimiters: delimiters startingAt: start  [
 	^ self size + 1
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findIn: body startingAt: start matchTable: matchTable [
+{ #category : #comparing }
+String >> findIn: body startingAt: start matchTable: matchTable [
 	
 	^ self findSubstringViaPrimitive: self in: body startingAt: start matchTable: matchTable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findLastOccurrenceOfString: substring startingAt: start  [
+{ #category : #accessing }
+String >> findLastOccurrenceOfString: substring startingAt: start [ 
 	"Answer the index of the last occurrence of substring within the receiver, starting at start. If 
 	the receiver does not contain substring, answer 0.  Case-sensitive match used."
 
@@ -1529,11 +1225,8 @@ String>>findLastOccurrenceOfString: substring startingAt: start  [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findSelector [
+{ #category : #converting }
+String >> findSelector [
 	"Dan's code for hunting down selectors with keyword parts; while this doesn't give a true parse, in most cases it does what we want, in where it doesn't, we're none the worse for it."
 	| sel possibleParens |
 	sel := self trimBoth.
@@ -1560,32 +1253,23 @@ String>>findSelector [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findString: substring [
+{ #category : #accessing }
+String >> findString: substring [
 	"Answer the index of substring within the receiver, starting at start. If 
 	the receiver does not contain substring, answer 0."
 	^self findString: substring startingAt: 1.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findString: substring startingAt: start  [
+{ #category : #accessing }
+String >> findString: substring startingAt: start [ 
 	"Answer the index of substring within the receiver, starting at start. If 
 	the receiver does not contain substring, answer 0."
 
 	^self findString: substring startingAt: start caseSensitive: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findString: key startingAt: start caseSensitive: caseSensitive  [
+{ #category : #accessing }
+String >> findString: key startingAt: start caseSensitive: caseSensitive [ 
 	"Answer the index in this String at which the substring key first occurs,
 	at or beyond start. The match can be case-sensitive or not. If no match
 	is found, zero will be returned."
@@ -1624,11 +1308,8 @@ String>>findString: key startingAt: start caseSensitive: caseSensitive  [
 						matchTable: CaseInsensitiveOrder]]
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findSubstring: key in: body startingAt: start matchTable: matchTable [
+{ #category : #'system primitives' }
+String >> findSubstring: key in: body startingAt: start matchTable: matchTable [
 	"Answer the index in the string body at which the substring key first occurs, at or beyond start.  The match is determined using matchTable, which can be used to effect, eg, case-insensitive matches.  If no match is found, zero will be returned."
 	| index c1 c2 |
 	matchTable == nil ifTrue: [
@@ -1662,11 +1343,8 @@ String>>findSubstring: key in: body startingAt: start matchTable: matchTable [
 	^ 0
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findSubstringViaPrimitive: key in: body startingAt: start matchTable: matchTable [
+{ #category : #comparing }
+String >> findSubstringViaPrimitive: key in: body startingAt: start matchTable: matchTable [
 	"Answer the index in the string body at which the substring key first occurs, at or beyond start.  The match is determined using matchTable, which can be used to effect, eg, case-insensitive matches.  If no match is found, zero will be returned.
 
 	The algorithm below is not optimum -- it is intended to be translated to C which will go so fast that it wont matter."
@@ -1695,11 +1373,8 @@ String>>findSubstringViaPrimitive: key in: body startingAt: start matchTable: ma
 "
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findTokens: delimiters [
+{ #category : #accessing }
+String >> findTokens: delimiters [
 	"Answer the collection of tokens that result from parsing self.  Return strings between the delimiters.  Any character in the Collection delimiters marks a border.  Several delimiters in a row are considered as just one separation.  Also, allow delimiters to be a single character."
 
 	| tokens keyStart keyStop separators |
@@ -1717,11 +1392,8 @@ String>>findTokens: delimiters [
 	^tokens
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findTokens: delimiters escapedBy: quoteDelimiters  [
+{ #category : #accessing }
+String >> findTokens: delimiters escapedBy: quoteDelimiters [ 
 	"Answer a collection of Strings separated by the delimiters, where  
 	delimiters is a Character or collection of characters. Two delimiters in a  
 	row produce an empty string (compare this to #findTokens, which  
@@ -1773,11 +1445,8 @@ String>>findTokens: delimiters escapedBy: quoteDelimiters  [
 	^ tokens
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findTokens: delimiters includes: substring [
+{ #category : #accessing }
+String >> findTokens: delimiters includes: substring [
 	"Divide self into pieces using delimiters.  Return the piece that includes substring anywhere in it.  Is case sensitive (say asLowercase to everything beforehand to make insensitive)."
 
 ^ (self findTokens: delimiters) 
@@ -1785,11 +1454,8 @@ String>>findTokens: delimiters includes: substring [
 	ifNone: [nil]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findTokens: delimiters keep: keepers [
+{ #category : #accessing }
+String >> findTokens: delimiters keep: keepers [
 	"Answer the collection of tokens that result from parsing self.  The tokens are seperated by delimiters, any of a string of characters.  If a delimiter is also in keepers, make a token for it.  (Very useful for carriage return.  A sole return ends a line, but is also saved as a token so you can see where the line breaks were.)"
 
 	| tokens keyStart keyStop |
@@ -1806,11 +1472,8 @@ String>>findTokens: delimiters keep: keepers [
 	^tokens
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>findWordStart: key startingAt: start [
+{ #category : #accessing }
+String >> findWordStart: key startingAt: start [
 	| ind |
 	"HyperCard style searching.  Answer the index in self of the substring key, when that key is preceeded by a separator character.  Must occur at or beyond start.  The match is case-insensitive.  If no match is found, zero will be returned."
 
@@ -1822,11 +1485,8 @@ String>>findWordStart: key startingAt: start [
 	^ ind	"is a word start"
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>format: collection  [
+{ #category : #formatting }
+String >> format: collection [ 
 	"Format the receiver by interpolating elements from collection, as in the following examples:  
 	'Today is {1}.' format: {Date today}.
 	'Today is {date}.' format: (Dictionary with: #date->Date today). 
@@ -1846,22 +1506,16 @@ String>>format: collection  [
 						ifFalse: [ result nextPut: currentChar ] ] ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>hasWideCharacterFrom: start to: stop [
+{ #category : #testing }
+String >> hasWideCharacterFrom: start to: stop [
 	"Return true if one of my character in the range does not fit in a single byte"
 	
 	"Implementation note: inline #anySatisfy: here for efficiency reasons"
 	^(self indexOfWideCharacterFrom: start to: stop) ~= 0
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>hash [
+{ #category : #comparing }
+String >> hash [
 	"#hash is implemented, because #= is implemented"
 	"ar 4/10/2005: I had to change this to use ByteString hash as initial 
 	hash in order to avoid having to rehash everything and yet compute
@@ -1869,11 +1523,8 @@ String>>hash [
 	^ self class stringHash: self initialHash: ByteString hash
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>howManyMatch: string  [
+{ #category : #comparing }
+String >> howManyMatch: string [ 
 	"Count the number of characters that match up in self and aString."
 	| count shorterLength |
 	
@@ -1887,36 +1538,24 @@ String>>howManyMatch: string  [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>includesSubstring: substring [
+{ #category : #accessing }
+String >> includesSubstring: substring [
 	^ substring isEmpty or: [ (self findString: substring startingAt: 1) > 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>includesSubstring: aString caseSensitive: caseSensitive [
+{ #category : #accessing }
+String >> includesSubstring: aString caseSensitive: caseSensitive [
 	
 	^ (self findString: aString startingAt: 1 caseSensitive: caseSensitive) > 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>includesUnifiedCharacter [
+{ #category : #testing }
+String >> includesUnifiedCharacter [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>indexOf: aCharacter [
+{ #category : #accessing }
+String >> indexOf: aCharacter [
 
 	aCharacter isCharacter ifFalse: [^ 0].
 	^ self class
@@ -1926,21 +1565,15 @@ String>>indexOf: aCharacter [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>indexOf: aCharacter startingAt: start [
+{ #category : #accessing }
+String >> indexOf: aCharacter startingAt: start [
 
 	(aCharacter isCharacter) ifFalse: [^ 0].
 	^ self class indexOfAscii: aCharacter asciiValue inString: self startingAt: start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>indexOf: aCharacter  startingAt: start  ifAbsent: aBlock [
+{ #category : #accessing }
+String >> indexOf: aCharacter  startingAt: start  ifAbsent: aBlock [
 	| ans |
 	(aCharacter isCharacter) ifFalse: [ ^ aBlock value ].
 	ans := self class indexOfAscii: aCharacter asciiValue inString: self  startingAt: start.
@@ -1949,11 +1582,8 @@ String>>indexOf: aCharacter  startingAt: start  ifAbsent: aBlock [
 		ifFalse: [ ^ ans ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>indexOfFirstUppercaseCharacter [
+{ #category : #accessing }
+String >> indexOfFirstUppercaseCharacter [
 	"Returns the index of the first Uppercase character.
 	'uouFauhZ ' indexOfFirstUppercaseCharacter2 -> 4
 	New implementation much faster than older one.
@@ -1966,33 +1596,24 @@ String>>indexOfFirstUppercaseCharacter [
 	^ 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>indexOfSubCollection: sub  [
+{ #category : #accessing }
+String >> indexOfSubCollection: sub [ 
 	^ self
 		indexOfSubCollection: sub
 		startingAt: 1
 		ifAbsent: [0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>indexOfSubCollection: sub startingAt: start ifAbsent: exceptionBlock [
+{ #category : #accessing }
+String >> indexOfSubCollection: sub startingAt: start ifAbsent: exceptionBlock [
 	| index |
 	index := self findString: sub startingAt: start.
 	index = 0 ifTrue: [^ exceptionBlock value].
 	^ index
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>indexOfWideCharacterFrom: start to: end [
+{ #category : #testing }
+String >> indexOfWideCharacterFrom: start to: end [
 	"Return the index of the first wide character following anIndex"
 	"Implementation note: inline #anySatisfy: here for efficiency reasons"
 	
@@ -2001,11 +1622,8 @@ String>>indexOfWideCharacterFrom: start to: end [
 	^ 0
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>initialIntegerOrNil [
+{ #category : #converting }
+String >> initialIntegerOrNil [
 	"Answer the integer represented by the leading digits of the receiver, or nil if the receiver does not begin with a digit"
 	"
 	'234Whoopie' initialIntegerOrNil
@@ -2025,21 +1643,15 @@ String>>initialIntegerOrNil [
 	^ (self copyFrom: 1  to: (firstNonDigit - 1)) asNumber
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>isAllAlphaNumerics [
+{ #category : #testing }
+String >> isAllAlphaNumerics [
 	"whether the receiver is composed entirely of alphanumerics"
 	self do: [:c | c isAlphaNumeric ifFalse: [^ false]].
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>isAllDigits [
+{ #category : #testing }
+String >> isAllDigits [
 	"whether the receiver is composed entirely of digits and has at least one digit"
 
 	self do: [:c | c isDigit ifFalse: [^ false]].
@@ -2047,49 +1659,34 @@ String>>isAllDigits [
        ^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>isAllSeparators [
+{ #category : #testing }
+String >> isAllSeparators [
 	"whether the receiver is composed entirely of separators"
 	self do: [ :c | c isSeparator ifFalse: [ ^false ] ].
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>isAsciiString [
+{ #category : #testing }
+String >> isAsciiString [
 
 	^ self allSatisfy: [ :each | each asciiValue <= 127 ]
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>isByteString [
+{ #category : #testing }
+String >> isByteString [
 	"Answer whether the receiver is a ByteString"
 	^false
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>isLiteral [
+{ #category : #printing }
+String >> isLiteral [
 
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>isLiteralSymbol [
+{ #category : #testing }
+String >> isLiteralSymbol [
 	"Test whether a symbol can be stored as # followed by its characters.  
 	Symbols created internally with asSymbol may not have this property, 
 	e.g. '3' asSymbol."
@@ -2126,11 +1723,8 @@ String>>isLiteralSymbol [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>isOctetString [
+{ #category : #testing }
+String >> isOctetString [
 	"Answer whether the receiver can be represented as a byte string. 
 	This is different from asking whether the receiver *is* a ByteString 
 	(i.e., #isByteString)"
@@ -2141,28 +1735,19 @@ String>>isOctetString [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>isPatternVariable [
+{ #category : #testing }
+String >> isPatternVariable [
 
 	 ^self keywords anySatisfy: [:each | each first = $`]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>isString [
+{ #category : #testing }
+String >> isString [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>isValidGlobalName [
+{ #category : #testing }
+String >> isValidGlobalName [
 
 	self ifEmpty: [ ^ false ].
 	
@@ -2176,20 +1761,14 @@ String>>isValidGlobalName [
 						character isAlphaNumeric or: [ character = $_ ]]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>isWideString [
+{ #category : #testing }
+String >> isWideString [
 	"Answer whether the receiver is a WideString"
 	^false
 ]
 
-{
-	#category : #splitjoin,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>join: aCollection  [
+{ #category : #splitjoin }
+String >> join: aCollection [ 
 	"'*' join: #('WWWWW' 'W  EW' 'zzzz')
 		->  'WWWWW*W  EW*zzzz' "
 	^ self class new: (aCollection size * self size) streamContents: [:stream | 
@@ -2198,11 +1777,8 @@ String>>join: aCollection  [
 				separatedBy: [stream nextPutAll: self]]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>keywords [
+{ #category : #converting }
+String >> keywords [
 	"Answer an array of the keywords that compose the receiver."
 	| keywords |
 	keywords := Array streamContents:
@@ -2224,11 +1800,8 @@ String>>keywords [
 	^ keywords
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>lastSpacePosition [
+{ #category : #testing }
+String >> lastSpacePosition [
 	"Answer the character position of the final space or other separator character in the receiver, and 0 if none
 
 	'fred the bear' lastSpacePosition
@@ -2243,11 +1816,8 @@ String>>lastSpacePosition [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>leadingCharRunLengthAt: index [
+{ #category : #accessing }
+String >> leadingCharRunLengthAt: index [
 
 	| leadingChar |
 	leadingChar := (self at: index) leadingChar.
@@ -2258,11 +1828,8 @@ String>>leadingCharRunLengthAt: index [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>lineCorrespondingToIndex: anIndex [
+{ #category : #accessing }
+String >> lineCorrespondingToIndex: anIndex [
 	"Answer a string containing the line at the given character position."
 
 	self lineIndicesDo: [:start :endWithoutDelimiters :end |
@@ -2270,11 +1837,8 @@ String>>lineCorrespondingToIndex: anIndex [
 	^''
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>lineCount [
+{ #category : #accessing }
+String >> lineCount [
 	"Answer the number of lines represented by the receiver, where every line delimiter CR, LF or CRLF pair adds one line."
 
 	| lineCount |
@@ -2284,11 +1848,8 @@ String>>lineCount [
 	^lineCount
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>lineIndicesDo: aBlock [
+{ #category : #accessing }
+String >> lineIndicesDo: aBlock [
 	"execute aBlock with 3 arguments for each line:
 	- start index of line
 	- end index of line without line delimiter
@@ -2323,11 +1884,8 @@ String>>lineIndicesDo: aBlock [
 					nextCR := self indexOf: cr startingAt: start ]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>lineNumber: anIndex [
+{ #category : #accessing }
+String >> lineNumber: anIndex [
 	"Answer a string containing the characters in the given line number."
 
 	| lineCount |
@@ -2337,11 +1895,8 @@ String>>lineNumber: anIndex [
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>lineNumberCorrespondingToIndex: anIndex [
+{ #category : #accessing }
+String >> lineNumberCorrespondingToIndex: anIndex [
 	"Answer a lineNumber for the line at the given character position."
 	|lineNumber|
 	
@@ -2353,32 +1908,23 @@ String>>lineNumberCorrespondingToIndex: anIndex [
 	^lineNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>lines [
+{ #category : #accessing }
+String >> lines [
     "Answer an array of lines composing this receiver without the line ending delimiters"
     ^Array new: (self size // 60 max: 16)
             streamContents: [:lines | self linesDo: [:aLine | lines nextPut: aLine]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>linesDo: aBlock [
+{ #category : #accessing }
+String >> linesDo: aBlock [
 	"Execute aBlock with each line in this string. The terminating line delimiters CR, LF or CRLF pairs are not included in what is passed to aBlock"
 
 	self lineIndicesDo: [:start :endWithoutDelimiters :end |
 		aBlock value: (self copyFrom: start to: endWithoutDelimiters)]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>match: text [
+{ #category : #comparing }
+String >> match: text [
 	"Answer whether text matches the pattern in this string.
 	Matching ignores upper/lower case differences.
 	Where this string contains #, text may contain any character.
@@ -2403,11 +1949,8 @@ String>>match: text [
 	^ self startingAt: 1 match: text startingAt: 1
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>numArgs  [
+{ #category : #'system primitives' }
+String >> numArgs [ 
 	"Answer either the number of arguments that the receiver would take if considered a selector.  Answer -1 if it couldn't be a selector. It is intended mostly for the assistance of spelling correction."
 
 	| firstChar numColons start ix |
@@ -2435,11 +1978,8 @@ String>>numArgs  [
 	^1
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>numericSuffix [
+{ #category : #converting }
+String >> numericSuffix [
 	"
 	'abc98' numericSuffix
 	'98abc' numericSuffix
@@ -2447,11 +1987,8 @@ String>>numericSuffix [
 	^ self stemAndNumericSuffix last
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>occursInWithEmpty: prefix caseSensitive: aBoolean  [
+{ #category : #testing }
+String >> occursInWithEmpty: prefix caseSensitive: aBoolean [ 
 	"Answer whether the receiver begins with the given prefix string. 
 	The comparison is case-sensitive." 
 	| matchTable |
@@ -2467,78 +2004,51 @@ String>>occursInWithEmpty: prefix caseSensitive: aBoolean  [
 		matchTable: matchTable) > 0
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>onlyLetters [
+{ #category : #converting }
+String >> onlyLetters [
 	"answer the receiver with only letters"
 	^ self select:[:each | each isLetter]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>padLeftTo: length [
+{ #category : #copying }
+String >> padLeftTo: length [
 	^ self padLeftTo: length with: Character space
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>padLeftTo: length with: char [
+{ #category : #copying }
+String >> padLeftTo: length with: char [
 	^ (String new: (length - self size max: 0) withAll: char) , self.
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>padRightTo: length [
+{ #category : #copying }
+String >> padRightTo: length [
 	^ self padRightTo: length with: Character space
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>padRightTo: length with: char [
+{ #category : #copying }
+String >> padRightTo: length with: char [
 	^ self, (String new: (length - self size max: 0) withAll: char)
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>parseLiterals [
+{ #category : #converting }
+String >> parseLiterals [
 	^ self class compiler parseLiterals: self
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>printOn: aStream  [
+{ #category : #printing }
+String >> printOn: aStream [ 
 	"Print inside string quotes, doubling inbedded quotes."
  
 	self storeOn: aStream
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>putOn: aStream [
+{ #category : #streaming }
+String >> putOn: aStream [
 	aStream nextPutAll: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>repeat: aNumber [
+{ #category : #converting }
+String >> repeat: aNumber [
 
 	"returns a new string concatenated by itself repeated n times
 		'abc' repeat: 3. 'abcabcabc'
@@ -2553,21 +2063,15 @@ String>>repeat: aNumber [
 		]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>replaceFrom: start to: stop with: replacement startingAt: repStart  [
+{ #category : #private }
+String >> replaceFrom: start to: stop with: replacement startingAt: repStart [ 
 	"Primitive. This destructively replaces elements from start to stop in the receiver starting at index, repStart, in the collection, replacement. Answer the receiver. Range checks are performed in the primitive only. Optional. See Object documentation whatIsAPrimitive."
 	<primitive: 105>
 	super replaceFrom: start to: stop with: replacement startingAt: repStart
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>romanNumber [
+{ #category : #converting }
+String >> romanNumber [
 	| value v1 v2 |
 	value := v1 := v2 := 0.
 	self reverseDo:
@@ -2580,21 +2084,15 @@ String>>romanNumber [
 	^ value
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>sameAs: aString  [
+{ #category : #comparing }
+String >> sameAs: aString [ 
 	"Answer whether the receiver sorts equal to aString. The 
 	collation sequence is ascii with case differences ignored."
 	^(self compare: aString caseSensitive: false) = 2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>skipAnySubstring: delimiters startingAt: start  [
+{ #category : #accessing }
+String >> skipAnySubstring: delimiters startingAt: start [ 
 	"Answer the index of the last character within the receiver, starting at start, that does NOT match one of the delimiters. delimiters is a Array of substrings (Characters also allowed).  If the receiver is all delimiters, answer size + 1."
 
 	| any this ind ii |
@@ -2617,11 +2115,8 @@ String>>skipAnySubstring: delimiters startingAt: start  [
 	^ self size + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>skipDelimiters: delimiters startingAt: start  [
+{ #category : #accessing }
+String >> skipDelimiters: delimiters startingAt: start [ 
 	"Answer the index of the character within the receiver, starting at start, that does NOT match one of the delimiters. If the receiver does not contain any of the delimiters, answer size + 1.  Assumes the delimiters to be a non-empty string."
 
 	start to: self size do: [:i |
@@ -2630,20 +2125,14 @@ String>>skipDelimiters: delimiters startingAt: start  [
 	^ self size + 1
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>squeezeOutNumber [
+{ #category : #converting }
+String >> squeezeOutNumber [
 	"Try to find a number somewhere in this string, as explained in Number>readFrom:"
 	^ Number squeezeNumberOutOfString: self
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>startingAt: keyStart match: text startingAt: textStart [
+{ #category : #comparing }
+String >> startingAt: keyStart match: text [ startingAt: textStart
 	"Answer whether text matches the pattern in this string.
 	Matching ignores upper/lower case differences.
 	Where this string contains #, text may contain any character.
@@ -2692,21 +2181,15 @@ String>>startingAt: keyStart match: text startingAt: textStart [
 	^ false "Failed to find the match string"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>startsWithDigit [
+{ #category : #accessing }
+String >> startsWithDigit [
 	"Answer whether the receiver's first character represents a digit"
 
 	^ self size > 0 and: [self first isDigit]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>stemAndNumericSuffix [
+{ #category : #converting }
+String >> stemAndNumericSuffix [
 	"Parse the receiver into a string-valued stem and a numeric-valued suffix."
 	"'Fred2305' stemAndNumericSuffix"
 
@@ -2723,11 +2206,8 @@ String>>stemAndNumericSuffix [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>storeOn: aStream  [
+{ #category : #printing }
+String >> storeOn: aStream [ 
 	"Print inside string quotes, doubling inbedded quotes."
 	| x |
 	aStream nextPut: $'.
@@ -2738,40 +2218,28 @@ String>>storeOn: aStream  [
 	aStream nextPut: $'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>string [
+{ #category : #accessing }
+String >> string [
 	^self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>stringhash [
+{ #category : #private }
+String >> stringhash [
 
 	^ self hash.
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>substrings [
+{ #category : #converting }
+String >> substrings [
 	"Answer an array of non-empty substrings from the receiver separated by
 	one or more whitespace characters."
 
 	^ self substrings: CSSeparators
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>substrings: separators [
+{ #category : #converting }
+String >> substrings: separators [
 	"Answer an array of non-empty substrings from the receiver separated by
 	one or more characters from the 'separators' argument collection."
 
@@ -2792,118 +2260,82 @@ String>>substrings: separators [
 	^ substrings contents
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>surroundedBy: aString [
+{ #category : #converting }
+String >> surroundedBy: aString [
 	^ self class streamContents: [ :s|
 		s nextPutAll: aString.
 		s nextPutAll: self.
 		s nextPutAll: aString ].
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>surroundedBySingleQuotes [
+{ #category : #converting }
+String >> surroundedBySingleQuotes [
 	"Answer the receiver with leading and trailing quotes.  "
 
 	^ self surroundedBy: ($' asString)
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>translateFrom: start  to: stop  table: table [
+{ #category : #converting }
+String >> translateFrom: start  to: stop  table: table [
 	"translate the characters in the string by the given table, in place"
 	self class translate: self from: start to: stop table: table
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>translateToLowercase [
+{ #category : #converting }
+String >> translateToLowercase [
 	"Translate all characters to lowercase, in place"
 
 	self translateWith: LowercasingTable
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>translateToUppercase [
+{ #category : #converting }
+String >> translateToUppercase [
 	"Translate all characters to lowercase, in place"
 
 	self translateWith: UppercasingTable
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>translateWith: table [
+{ #category : #converting }
+String >> translateWith: table [
 	"translate the characters in the string by the given table, in place"
 	^ self translateFrom: 1 to: self size table: table
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>trim [
+{ #category : #copying }
+String >> trim [
 	^ self trimBoth
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>trimBoth [
+{ #category : #copying }
+String >> trimBoth [
 	"Trim separators from both sides of the receiving string."
 	
 	^ self trimBoth: [ :char | char isSeparator ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>trimBoth: aBlock [
+{ #category : #copying }
+String >> trimBoth: aBlock [
 	"Trim characters satisfying the condition given in aBlock from both sides of the receiving string."
 
 	^ self trimLeft: aBlock right: aBlock
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>trimLeft [
+{ #category : #copying }
+String >> trimLeft [
 	"Trim separators from the left side of the receiving string."
 	
 	^ self trimLeft: [ :char | char isSeparator ] 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>trimLeft: aBlock [
+{ #category : #copying }
+String >> trimLeft: aBlock [
 	"Trim characters satisfying the condition given in aBlock from the left side of the receiving string."
 	
 	^ self trimLeft: aBlock right: [ :char | false ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>trimLeft: aLeftBlock right: aRightBlock [
+{ #category : #copying }
+String >> trimLeft: aLeftBlock right: aRightBlock [
 	"Trim characters satisfying the condition given in aLeftBlock from the left side and aRightBlock from the right sides of the receiving string."
 
 	| left right |
@@ -2919,11 +2351,8 @@ String>>trimLeft: aLeftBlock right: aRightBlock [
 	^ self copyFrom: left to: right
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>trimLineSpaces [
+{ #category : #copying }
+String >> trimLineSpaces [
 	"Trim the spaces from the right side of each line. Useful for code"
 	
 	^ self class streamContents: [ :str |
@@ -2934,39 +2363,27 @@ String>>trimLineSpaces [
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>trimRight [
+{ #category : #copying }
+String >> trimRight [
 	"Trim separators from the right side of the receiving string."
 	
 	^ self trimRight: [ :char | char isSeparator ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>trimRight: aBlock [
+{ #category : #copying }
+String >> trimRight: aBlock [
 	"Trim characters satisfying the condition given in aBlock from the right side of the receiving string."
 
 	^ self trimLeft: [ :char | false ] right: aBlock
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>trimmed [
+{ #category : #copying }
+String >> trimmed [
 	^ self trimBoth
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>truncateTo: smallSize [
+{ #category : #converting }
+String >> truncateTo: smallSize [
 	"return myself or a copy shortened to smallSize."
 
 	^ self size <= smallSize
@@ -2976,11 +2393,8 @@ String>>truncateTo: smallSize [
 			[self copyFrom: 1 to: smallSize]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>truncateWithElipsisTo: maxLength [
+{ #category : #converting }
+String >> truncateWithElipsisTo: maxLength [
 	"Return myself or a copy suitably shortened but with elipsis added"
 
 	^ self size <= maxLength
@@ -2993,19 +2407,13 @@ String>>truncateWithElipsisTo: maxLength [
 	"'truncateWithElipsisTo:' truncateWithElipsisTo: 20"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>typeTable [
+{ #category : #accessing }
+String >> typeTable [
 	^ self class typeTable
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>uncapitalized [
+{ #category : #converting }
+String >> uncapitalized [
 	"Return a copy with the first letter downShifted (in lower case)"
 	
 	| answer |
@@ -3015,11 +2423,8 @@ String>>uncapitalized [
 	^ answer
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>withBlanksCondensed [
+{ #category : #converting }
+String >> withBlanksCondensed [
 	"Return a copy of the receiver with leading/trailing blanks (separators) removed
 	 and consecutive white spaces (separators) condensed to the first one."
 
@@ -3036,31 +2441,22 @@ String>>withBlanksCondensed [
 	" ' abc  d   ' withBlanksCondensed"
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>withCRs [
+{ #category : #formatting }
+String >> withCRs [
 	"Return a copy of the receiver in which backslash (\) characters have been replaced with carriage returns."
 
 	^ self collect: [ :c | c = $\ ifTrue: [ Character cr ] ifFalse: [ c ]].
 ]
 
-{
-	#category : #'platform conventions',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>withInternetLineEndings [
+{ #category : #'platform conventions' }
+String >> withInternetLineEndings [
 	"change line endings from CR's and LF's to CRLF's.  This is probably in prepration for sending a string over the Internet"
 	
 	^self withLineEndings: String crlf
 ]
 
-{
-	#category : #'platform conventions',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>withLineEndings: lineEndingString [
+{ #category : #'platform conventions' }
+String >> withLineEndings: lineEndingString [
 
 	| stream |
 	
@@ -3082,11 +2478,8 @@ String>>withLineEndings: lineEndingString [
 				ifFalse: [ stream contents ]]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>withNoLineLongerThan: aNumber [
+{ #category : #converting }
+String >> withNoLineLongerThan: aNumber [
 	"Answer a string with the same content as receiver, but rewrapped so that no line has more characters than the given number"
 	(aNumber isNumber not or: [ aNumber < 1 ]) ifTrue: [self error: 'too narrow'].
 	^self class
@@ -3113,11 +2506,8 @@ String>>withNoLineLongerThan: aNumber [
 				stream nextPutAll: (self copyFrom: pastEnd to: end) ] ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>withSeparatorsCompacted [
+{ #category : #converting }
+String >> withSeparatorsCompacted [
 	"Return a copy of the receiver with each sequence of whitespace (separator) 
 	characters replaced by a single space character"
 
@@ -3140,11 +2530,8 @@ String>>withSeparatorsCompacted [
 	"'test  test		 ' withSeparatorsCompacted"
 ]
 
-{
-	#category : #'platform conventions',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>withSqueakLineEndings [
+{ #category : #'platform conventions' }
+String >> withSqueakLineEndings [
 	"Assume the string is textual, and that CR, LF, and CRLF are all valid line endings.
 	Replace each occurence with a single CR."
 
@@ -3154,11 +2541,8 @@ String>>withSqueakLineEndings [
 	^self withLineEndings: String cr
 ]
 
-{
-	#category : #'platform conventions',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>withUnixLineEndings [
+{ #category : #'platform conventions' }
+String >> withUnixLineEndings [
 	"Assume the string is textual, and that CR, LF, and CRLF are all valid line endings.
 	Replace each occurence with a single LF."
 
@@ -3168,22 +2552,16 @@ String>>withUnixLineEndings [
 	^self withLineEndings: String lf
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>withoutLeadingDigits [
+{ #category : #converting }
+String >> withoutLeadingDigits [
 	"Answer the portion of the receiver that follows any leading series of digits and separators.
 	If the receiver consists entirely of digits and separators, return an empty string"
 
 	^ self trimLeft: [ :char | char isDigit or: [ char isSeparator ] ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>withoutPeriodSuffix [
+{ #category : #converting }
+String >> withoutPeriodSuffix [
 	"Return a copy of the receiver up to, but not including, the first period.  If the receiver's *first* character is a period, then just return the entire receiver. "
 
 	| likely |
@@ -3193,21 +2571,15 @@ String>>withoutPeriodSuffix [
 		ifFalse: [ likely ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>withoutPrefix: prefix [
+{ #category : #converting }
+String >> withoutPrefix: prefix [
 	"Remove the given prefix, if present."
 
 	^(self beginsWith: prefix) ifTrue: [ self copyFrom: 1 + prefix size to: self size ] ifFalse: [ self ]
 ]
 
-{
-	#category : #'platform conventions',
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>withoutQuoting [
+{ #category : #'platform conventions' }
+String >> withoutQuoting [
 	"remove the initial and final quote marks, if present (and if matches nesting quotes)"
 	"'''h''' withoutQuoting"
 	| quote |
@@ -3218,42 +2590,30 @@ String>>withoutQuoting [
 		ifFalse: [ ^self ].
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>withoutSuffix: suffix [
+{ #category : #converting }
+String >> withoutSuffix: suffix [
 	"Remove the given suffix, if present."
 
 	^(self endsWith: suffix) ifTrue: [ self copyFrom: 1 to: self size - suffix size ] ifFalse: [ self ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>withoutTrailingDigits [
+{ #category : #converting }
+String >> withoutTrailingDigits [
 	"Answer the portion of the receiver that precedes any leading series of digits and separators.
 	If the receiver consists entirely of digits and separators, return an empty string"
 
 	^ self trimRight: [ :char | char isDigit or: [ char isSeparator ] ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>withoutTrailingNewlines [
+{ #category : #converting }
+String >> withoutTrailingNewlines [
 	"Return a copy of the receiver with any combination of cr/lf characters at the end removed"
 
 	^ self trimRight: [ :char | char = Character cr or: [ char = Character lf ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>wordBefore: anIndex  [
+{ #category : #accessing }
+String >> wordBefore: anIndex [ 
 	| sep tok |
 	tok := false.
 	sep := anIndex.
@@ -3268,11 +2628,8 @@ String>>wordBefore: anIndex  [
 		ifFalse: [ String new ]
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-String>>writeLeadingCharRunsOn: stream [
+{ #category : #encoding }
+String >> writeLeadingCharRunsOn: stream [
 
 	| runLength runValues runStart leadingChar |
 	self isEmpty ifTrue: [^ self].

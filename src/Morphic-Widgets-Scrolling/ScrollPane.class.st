@@ -16,39 +16,26 @@ Class {
 		'hasFocus',
 		'hScrollBar'
 	],
-	#category : #Morphic-Widgets-Scrolling,
-	#timestamp : 'mk 8/9/2005 10:34'
+	#category : #Morphic-Widgets-Scrolling
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane class>>alwaysHideHScrollbar [
+{ #category : #settings }
+ScrollPane class >> alwaysHideHScrollbar [
 	^ false
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane class>>alwaysShowHScrollbar [
+{ #category : #settings }
+ScrollPane class >> alwaysShowHScrollbar [
 	^ false
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane class>>alwaysShowVScrollbar [
+{ #category : #settings }
+ScrollPane class >> alwaysShowVScrollbar [
 	^ false
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane class>>buildScrollPaneShortcuts: aBuilder [
+{ #category : #shortcuts }
+ScrollPane class >> buildScrollPaneShortcuts: aBuilder [
 	"Note: the ctrl up and down don't work because they are transformed at the very beginning as mousewheel ctrl up and ctrl down. But why and how ? TG 15/09/2012."
 
 	<keymap>
@@ -62,11 +49,8 @@ ScrollPane class>>buildScrollPaneShortcuts: aBuilder [
 		do: [ :target | target scrollBar scrollDown: 3 ].
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane class>>example1 [
+{ #category : #examples }
+ScrollPane class >> example1 [
 	| window scrollPane pasteUpMorph |
 	window := SystemWindow new.
 	scrollPane := ScrollPane new.
@@ -77,11 +61,8 @@ ScrollPane class>>example1 [
 	window openInWorld.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane class>>example2 [
+{ #category : #examples }
+ScrollPane class >> example2 [
 	| window scrollPane pasteUpMorph point textMorph |
 	window := SystemWindow new.
 	scrollPane := ScrollPane new.
@@ -101,37 +82,25 @@ ScrollPane class>>example2 [
 	window openInWorld.
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>alwaysHideHScrollbar [
+{ #category : #settings }
+ScrollPane >> alwaysHideHScrollbar [
 	^ self class alwaysHideHScrollbar
 ]
 
-{
-	#category : #'access options',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>alwaysShowHScrollBar: bool [
+{ #category : #'access options' }
+ScrollPane >> alwaysShowHScrollBar: bool [
 	self setProperty: #hScrollBarAlways toValue: bool.
 	self hHideOrShowScrollBar.
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>alwaysShowHScrollbar [
+{ #category : #settings }
+ScrollPane >> alwaysShowHScrollbar [
 	^ self class alwaysShowHScrollbar
 ]
 
-{
-	#category : #'access options',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>alwaysShowScrollBars: bool [
+{ #category : #'access options' }
+ScrollPane >> alwaysShowScrollBars: bool [
 	"Get rid of scroll bar for short panes that don't want it shown."
 
 	self 
@@ -140,57 +109,39 @@ ScrollPane>>alwaysShowScrollBars: bool [
 
 ]
 
-{
-	#category : #'access options',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>alwaysShowVScrollBar: bool [
+{ #category : #'access options' }
+ScrollPane >> alwaysShowVScrollBar: bool [
 
 	self setProperty: #vScrollBarAlways toValue: bool.
 	self vHideOrShowScrollBar.
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>alwaysShowVScrollbar [
+{ #category : #settings }
+ScrollPane >> alwaysShowVScrollbar [
 	^ self class alwaysShowVScrollbar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>borderWidth: aNumber  [
+{ #category : #accessing }
+ScrollPane >> borderWidth: aNumber [ 
 	super borderWidth: aNumber.
 	self setScrollDeltas
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>defaultBorderColor [
+{ #category : #initialization }
+ScrollPane >> defaultBorderColor [
 	"answer the default border color/fill style for the receiver"
 	^ self theme borderColor
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>defaultExtent [
+{ #category : #initialization }
+ScrollPane >> defaultExtent [
 	^150@120
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>drawSubmorphsOn: aCanvas  [
+{ #category : #drawing }
+ScrollPane >> drawSubmorphsOn: aCanvas [ 
 	"Draw the focus here since we are using inset bounds
 	for the focus rectangle."
 
@@ -199,11 +150,8 @@ ScrollPane>>drawSubmorphsOn: aCanvas  [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>extent: newExtent [
+{ #category : #geometry }
+ScrollPane >> extent: newExtent [
 	
 	| oldW oldH wasHShowing wasVShowing noVPlease noHPlease minH minW |
 	
@@ -241,21 +189,15 @@ ScrollPane>>extent: newExtent [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>extraScrollRange [
+{ #category : #geometry }
+ScrollPane >> extraScrollRange [
 	"Return the amount of extra blank space to include below the bottom of the scroll content."
 	"The classic behavior would be ^bounds height - (bounds height * 3 // 4)"
 	^ self scrollDeltaHeight
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>findSubmorphFor: ptY [
+{ #category : #'event handling' }
+ScrollPane >> findSubmorphFor: ptY [
 	^ scroller
 		findSubmorphBinary: [ :item | 
 			(ptY between: item top and: item bottom)
@@ -268,11 +210,8 @@ ScrollPane>>findSubmorphFor: ptY [
 						ifFalse: [ 1 ]	"found" ] ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>getMenu: shiftKeyState [
+{ #category : #menu }
+ScrollPane >> getMenu: shiftKeyState [
 	"Answer the menu for this text view, supplying an empty menu to be filled in. If the menu selector takes an extra argument, pass in the current state of the shift key."
 	| menu aMenu aTitle |
 	self getMenuSelector == nil ifTrue: [^ nil].
@@ -289,21 +228,15 @@ ScrollPane>>getMenu: shiftKeyState [
 	^ self error: 'The getMenuSelector must be a 1- or 2-keyword symbol'
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hExtraScrollRange [
+{ #category : #geometry }
+ScrollPane >> hExtraScrollRange [
 	"Return the amount of extra blank space to include below the bottom of the scroll content."
 	^ self scrollDeltaWidth
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hHideOrShowScrollBar [
+{ #category : #scrolling }
+ScrollPane >> hHideOrShowScrollBar [
 	"Hide or show the scrollbar depending on if the pane is scrolled/scrollable."
 
 	self hIsScrollbarNeeded
@@ -312,11 +245,8 @@ ScrollPane>>hHideOrShowScrollBar [
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hHideScrollBar [
+{ #category : #scrolling }
+ScrollPane >> hHideScrollBar [
 	self hIsScrollbarShowing ifFalse: [^scroller offset: (self hMargin negated@scroller offset y)].
 	self removeMorph: hScrollBar.
 	scroller offset: (self hMargin negated@scroller offset y).
@@ -325,11 +255,8 @@ ScrollPane>>hHideScrollBar [
 
 ]
 
-{
-	#category : #'geometry testing',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hIsScrollable [
+{ #category : #'geometry testing' }
+ScrollPane >> hIsScrollable [
 
 	"If the contents of the pane are too small to scroll, return false."
 	^ self hLeftoverScrollRange > 0
@@ -337,11 +264,8 @@ ScrollPane>>hIsScrollable [
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hIsScrollbarNeeded [
+{ #category : #scrolling }
+ScrollPane >> hIsScrollbarNeeded [
 "Return whether the horz scrollbar is needed"
 
 	"Don't show it if we were told not to."
@@ -354,32 +278,23 @@ ScrollPane>>hIsScrollbarNeeded [
 
 ]
 
-{
-	#category : #'geometry testing',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hIsScrollbarShowing [
+{ #category : #'geometry testing' }
+ScrollPane >> hIsScrollbarShowing [
 	"Return true if a horz scroll bar is currently showing"
 
 	^submorphs includes: hScrollBar
 
 ]
 
-{
-	#category : #'geometry testing',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hIsScrolled [
+{ #category : #'geometry testing' }
+ScrollPane >> hIsScrolled [
 	"If the scroller is not set to x = 0, then the pane has been h-scrolled."
 	^scroller offset x > 0
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hLeftoverScrollRange [
+{ #category : #geometry }
+ScrollPane >> hLeftoverScrollRange [
 	"Return the entire scrolling range minus the currently viewed area."
 	| w |
 	scroller hasSubmorphs ifFalse: [^0].
@@ -389,21 +304,15 @@ ScrollPane>>hLeftoverScrollRange [
 
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hMargin [
+{ #category : #access }
+ScrollPane >> hMargin [
 "pixels of whitespace at to the left of the scroller when the hScrollBar offset is 0"
 	^3
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hResizeScrollBar [
+{ #category : #geometry }
+ScrollPane >> hResizeScrollBar [
 
 	| topLeft h |
 
@@ -416,20 +325,14 @@ ScrollPane>>hResizeScrollBar [
 
 ]
 
-{
-	#category : #'scroll bar events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hScrollBarMenuButtonPressed: event [
+{ #category : #'scroll bar events' }
+ScrollPane >> hScrollBarMenuButtonPressed: event [
 	^ self scrollBarMenuButtonPressed: event
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hScrollBarValue: scrollValue [
+{ #category : #scrolling }
+ScrollPane >> hScrollBarValue: scrollValue [
 	| x systemWindow |
 	
 	self hIsScrollbarShowing ifFalse: 
@@ -451,11 +354,8 @@ ScrollPane>>hScrollBarValue: scrollValue [
 		yourself)
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hScrollBarWidth [
+{ #category : #geometry }
+ScrollPane >> hScrollBarWidth [
 "Return the width of the horizontal scrollbar"
 
 
@@ -470,11 +370,8 @@ ScrollPane>>hScrollBarWidth [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hSetScrollDelta [
+{ #category : #geometry }
+ScrollPane >> hSetScrollDelta [
 	"Set the ScrollBar deltas, value and interval, based on the current scroll pane size, offset and range."
 	| range delta |
 
@@ -494,11 +391,8 @@ ScrollPane>>hSetScrollDelta [
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hShowScrollBar [
+{ #category : #scrolling }
+ScrollPane >> hShowScrollBar [
 
 	self hIsScrollbarShowing ifTrue: [^self].
 	self hResizeScrollBar.
@@ -507,21 +401,15 @@ ScrollPane>>hShowScrollBar [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hTotalScrollRange [
+{ #category : #geometry }
+ScrollPane >> hTotalScrollRange [
 	"Return the entire scrolling range."
 	^ self hUnadjustedScrollRange + self hExtraScrollRange + self hMargin
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hUnadjustedScrollRange [
+{ #category : #geometry }
+ScrollPane >> hUnadjustedScrollRange [
 	"Return the width extent of the receiver's submorphs."
 
 	| submorphBounds |
@@ -530,20 +418,14 @@ ScrollPane>>hUnadjustedScrollRange [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>handlesMouseDown: evt [
+{ #category : #'event handling' }
+ScrollPane >> handlesMouseDown: evt [
 	^ true
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>handlesMouseOver: evt [
+{ #category : #'event handling' }
+ScrollPane >> handlesMouseOver: evt [
 	"Could just ^ true, but this ensures that scroll bars won't flop out
 	if you mouse-over appendages such as connecting pins."
 	"self flag: #arNote." "I have no idea how the code below could've ever worked. If the receiver does not handle mouse over events then it should not receive any #mouseLeave if the mouse leaves the receiver for real. This is because 'evt cursorPoint' describes the *end* point of the movement and considering that the code would return false if the move ends outside the receiver the scroll bars should never pop back in again. Which is exactly what happens with the new event logic if you don't just ^true. I'm leaving the code in for reference - perhaps somebody can make sense from it; I sure cannot."
@@ -562,22 +444,16 @@ ScrollPane>>handlesMouseOver: evt [
 "
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hasFocus [
+{ #category : #access }
+ScrollPane >> hasFocus [
 	"hasFocus is currently set by mouse enter/leave events.
 	This inst var should probably be moved up to a higher superclass."
 
 	^ hasFocus ifNil: [false]
 ]
 
-{
-	#category : #'access options',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hideHScrollBarIndefinitely: bool [
+{ #category : #'access options' }
+ScrollPane >> hideHScrollBarIndefinitely: bool [
 	"Get rid of scroll bar for short panes that don't want it shown."
 
 	self setProperty: #noHScrollBarPlease toValue: bool.
@@ -585,11 +461,8 @@ ScrollPane>>hideHScrollBarIndefinitely: bool [
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hideOrShowScrollBars [
+{ #category : #scrolling }
+ScrollPane >> hideOrShowScrollBars [
 
 	| wasHShowing wasVShowing |
 
@@ -612,31 +485,22 @@ ScrollPane>>hideOrShowScrollBars [
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hideScrollBars [
+{ #category : #scrolling }
+ScrollPane >> hideScrollBars [
 	self
 		vHideScrollBar;
 		hHideScrollBar
 
 ]
 
-{
-	#category : #'access options',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hideScrollBarsIndefinitely [
+{ #category : #'access options' }
+ScrollPane >> hideScrollBarsIndefinitely [
 	self hideScrollBarsIndefinitely: true
 
 ]
 
-{
-	#category : #'access options',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hideScrollBarsIndefinitely: bool [
+{ #category : #'access options' }
+ScrollPane >> hideScrollBarsIndefinitely: bool [
 	"Get rid of scroll bar for short panes that don't want it shown."
 
 	self hideVScrollBarIndefinitely: bool.
@@ -644,11 +508,8 @@ ScrollPane>>hideScrollBarsIndefinitely: bool [
 
 ]
 
-{
-	#category : #'access options',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>hideVScrollBarIndefinitely: bool [
+{ #category : #'access options' }
+ScrollPane >> hideVScrollBarIndefinitely: bool [
 	"Get rid of scroll bar for short panes that don't want it shown."
 
 	self setProperty: #noVScrollBarPlease toValue: bool.
@@ -656,11 +517,8 @@ ScrollPane>>hideVScrollBarIndefinitely: bool [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>initialize [
+{ #category : #initialization }
+ScrollPane >> initialize [
 	
 	"initialize the state of the receiver"
 	super initialize.
@@ -673,11 +531,8 @@ ScrollPane>>initialize [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>initializeScrollBars [
+{ #category : #initialization }
+ScrollPane >> initializeScrollBars [
 	"initialize the receiver's scrollBar"
 
 	(scrollBar := ScrollBar new model: self; setValueSelector: #vScrollBarValue:)
@@ -698,30 +553,21 @@ ScrollPane>>initializeScrollBars [
 				ifTrue: [ self alwaysShowHScrollBar: true ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>initializeScroller [
+{ #category : #initialization }
+ScrollPane >> initializeScroller [
 	scroller := self newTransformMorph color: Color transparent.
 	scroller offset: -3 @ 0.
 	self addMorph: scroller
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>initializeShortcuts: aKMDispatcher [
+{ #category : #initialization }
+ScrollPane >> initializeShortcuts: aKMDispatcher [
 	super initializeShortcuts: aKMDispatcher.
 	aKMDispatcher attachCategory: #ScrollPane
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>innerBounds [
+{ #category : #geometry }
+ScrollPane >> innerBounds [
 	| inner |
 	inner := super innerBounds.
 	(submorphs includes: scrollBar) ifTrue:[
@@ -733,29 +579,20 @@ ScrollPane>>innerBounds [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>isAutoFit [
+{ #category : #testing }
+ScrollPane >> isAutoFit [
 	^false
 ]
 
-{
-	#category : #'geometry testing',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>isScrolledFromTop [
+{ #category : #'geometry testing' }
+ScrollPane >> isScrolledFromTop [
 	"Have the contents of the pane been scrolled, so that the top of the contents are not visible?"
 	^scroller offset y > 0
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>itemFromPoint: aPoint [
+{ #category : #'event handling' }
+ScrollPane >> itemFromPoint: aPoint [
 	"Return the list element (morph) at the given point or nil if outside"
 
 	| ptY |
@@ -769,11 +606,8 @@ ScrollPane>>itemFromPoint: aPoint [
 	^ self findSubmorphFor: ptY.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>keyStroke: evt [
+{ #category : #'event handling' }
+ScrollPane >> keyStroke: evt [
 	"If pane is not empty, pass the event to the last submorph,
 	assuming it is the most appropriate recipient (!)"
 
@@ -781,11 +615,8 @@ ScrollPane>>keyStroke: evt [
 	scroller submorphs last keyStroke: evt
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>layoutProportionallyIn: newBounds [
+{ #category : #layout }
+ScrollPane >> layoutProportionallyIn: newBounds [
 	"Layout specific. Apply the given bounds to the receiver."
 	self layoutFrame ifNil:[^self].
 	"before applying the proportional values make sure the receiver's layout is computed"
@@ -793,19 +624,13 @@ ScrollPane>>layoutProportionallyIn: newBounds [
 	^super layoutProportionallyIn: newBounds 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>menuTitleSelector: aSelector [
+{ #category : #menu }
+ScrollPane >> menuTitleSelector: aSelector [
 	getMenuTitleSelector := aSelector
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>mouseDown: evt [
+{ #category : #'event handling' }
+ScrollPane >> mouseDown: evt [
 	self flag: #todo. "This is a quick fix for ensure cmd+click works. 
 	see: http://code.google.com/p/pharo/issues/detail?id=7403
 	probably a better fix is just remove it, but I want to prevent any possible side effects and 
@@ -823,112 +648,76 @@ ScrollPane>>mouseDown: evt [
 		ifNotNil: [ self eventHandler mouseDown: evt fromMorph: self ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>mouseEnter: event [
+{ #category : #'event handling' }
+ScrollPane >> mouseEnter: event [
 	hasFocus := true.
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>mouseLeave: event [
+{ #category : #'event handling' }
+ScrollPane >> mouseLeave: event [
 	hasFocus := false.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>mouseMove: evt [
+{ #category : #'event handling' }
+ScrollPane >> mouseMove: evt [
 	"If pane is not empty, pass the event to the last submorph,
 	assuming it is the most appropriate recipient (!)."
 	scroller hasSubmorphs ifTrue:
 		[scroller submorphs last mouseMove: (evt transformedBy: (scroller transformFrom: self))]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>mouseUp: evt [
+{ #category : #'event handling' }
+ScrollPane >> mouseUp: evt [
 	"If pane is not empty, pass the event to the last submorph,
 	assuming it is the most appropriate recipient (!)"
 	scroller hasSubmorphs ifTrue:
 		[scroller submorphs last mouseUp: (evt transformedBy: (scroller transformFrom: self))]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>newTransformMorph [
+{ #category : #initialization }
+ScrollPane >> newTransformMorph [
 	^TransformMorph new 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>numSelectionsInView [
+{ #category : #accessing }
+ScrollPane >> numSelectionsInView [
 	"Answer the scroller's height based on the average number of submorphs."
 	
 	^scroller numberOfItemsPotentiallyInView
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>resetExtent [
+{ #category : #geometry }
+ScrollPane >> resetExtent [
 	"Reset the extent. (may be overridden by subclasses which need to do more than this)"
 	self resizeScroller
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>resizeScrollBars [
+{ #category : #geometry }
+ScrollPane >> resizeScrollBars [
 	self vResizeScrollBar; hResizeScrollBar
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>resizeScroller [
+{ #category : #geometry }
+ScrollPane >> resizeScroller [
 
 	scroller bounds: self innerBounds
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>scrollBar [
+{ #category : #access }
+ScrollPane >> scrollBar [
 	^scrollBar
 ]
 
-{
-	#category : #'scroll bar events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>scrollBarMenuButtonPressed: event [
+{ #category : #'scroll bar events' }
+ScrollPane >> scrollBarMenuButtonPressed: event [
 	^ self yellowButtonActivity: event shiftPressed
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>scrollBy: delta [
+{ #category : #scrolling }
+ScrollPane >> scrollBy: delta [
 	"Move the contents in the direction delta."
 
 	| newYoffset r newXoffset |
@@ -949,11 +738,8 @@ ScrollPane>>scrollBy: delta [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>scrollByKeyboard: event  [
+{ #category : #'event handling' }
+ScrollPane >> scrollByKeyboard: event [ 
 	"If event is ctrl+up/down then scroll and answer true"
 	(event controlKeyPressed or:[event commandKeyPressed]) ifFalse: [^ false].
 	event keyValue = 30
@@ -967,32 +753,23 @@ ScrollPane>>scrollByKeyboard: event  [
 	^ false
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>scrollDeltaHeight [
+{ #category : #geometry }
+ScrollPane >> scrollDeltaHeight [
 	"Return the increment in pixels which this pane should be scrolled (normally a subclass responsibility)."
 	^ 10
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>scrollDeltaWidth [
+{ #category : #geometry }
+ScrollPane >> scrollDeltaWidth [
 	"Return the increment in pixels which this pane should be scrolled (normally a subclass responsibility)."
 	
 	^10
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>scrollToShow: aRectangle [
+{ #category : #scrolling }
+ScrollPane >> scrollToShow: aRectangle [
 	"scroll to include as much of aRectangle as possible, where aRectangle is in the scroller's local space"
 	| range |
 	((aRectangle top - scroller offset y) >= 0 and: [
@@ -1007,30 +784,21 @@ ScrollPane>>scrollToShow: aRectangle [
 	scroller offset: -3 @ (range * scrollBar value).
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>scroller [
+{ #category : #access }
+ScrollPane >> scroller [
 	^ scroller
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>scroller: aTransformMorph [
+{ #category : #access }
+ScrollPane >> scroller: aTransformMorph [
 	scroller ifNotNil:[scroller delete].
 	scroller := aTransformMorph.
 	self addMorph: scroller.
 	self resizeScroller.
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>setScrollDeltas [
+{ #category : #geometry }
+ScrollPane >> setScrollDeltas [
 	"Set the ScrollBar deltas, value and interval, based on the current scroll pane size, offset and range."
 
 	scroller hasSubmorphs ifFalse: 
@@ -1047,29 +815,20 @@ ScrollPane>>setScrollDeltas [
 
 ]
 
-{
-	#category : #'scroll bar events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>shiftedTextPaneMenuRequest [
+{ #category : #'scroll bar events' }
+ScrollPane >> shiftedTextPaneMenuRequest [
 	"The more... button was hit from the text-pane menu"
 
 	^ self yellowButtonActivity: true
 ]
 
-{
-	#category : #'scroll bar events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>shiftedYellowButtonActivity [
+{ #category : #'scroll bar events' }
+ScrollPane >> shiftedYellowButtonActivity [
 	^ self yellowButtonActivity: true
 ]
 
-{
-	#category : #'access options',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>showHScrollBarOnlyWhenNeeded: bool [
+{ #category : #'access options' }
+ScrollPane >> showHScrollBarOnlyWhenNeeded: bool [
 	"Get rid of scroll bar for short panes that don't want it shown."
 
 	self setProperty: #noHScrollBarPlease toValue: bool.
@@ -1079,31 +838,22 @@ ScrollPane>>showHScrollBarOnlyWhenNeeded: bool [
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>showScrollBars [
+{ #category : #scrolling }
+ScrollPane >> showScrollBars [
 	self  vShowScrollBar; hShowScrollBar
 
 ]
 
-{
-	#category : #'access options',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>showScrollBarsOnlyWhenNeeded: bool [
+{ #category : #'access options' }
+ScrollPane >> showScrollBarsOnlyWhenNeeded: bool [
 
 	self showHScrollBarOnlyWhenNeeded: bool.
 	self showVScrollBarOnlyWhenNeeded: bool.
 
 ]
 
-{
-	#category : #'access options',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>showVScrollBarOnlyWhenNeeded: bool [
+{ #category : #'access options' }
+ScrollPane >> showVScrollBarOnlyWhenNeeded: bool [
 	"Get rid of scroll bar for short panes that don't want it shown."
 
 	self setProperty: #noVScrollBarPlease toValue: bool.
@@ -1112,30 +862,21 @@ ScrollPane>>showVScrollBarOnlyWhenNeeded: bool [
 
 ]
 
-{
-	#category : #'scroll bar events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>unshiftedYellowButtonActivity [
+{ #category : #'scroll bar events' }
+ScrollPane >> unshiftedYellowButtonActivity [
 	^ self yellowButtonActivity: false
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>vExtraScrollRange [
+{ #category : #geometry }
+ScrollPane >> vExtraScrollRange [
 	"Return the amount of extra blank space to include below the bottom of the scroll content."
 	"The classic behavior would be ^bounds height - (bounds height * 3 // 4)"
 	^ self scrollDeltaHeight
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>vHideOrShowScrollBar [
+{ #category : #scrolling }
+ScrollPane >> vHideOrShowScrollBar [
 
 	self vIsScrollbarNeeded
 		ifTrue:[ self vShowScrollBar ]
@@ -1143,11 +884,8 @@ ScrollPane>>vHideOrShowScrollBar [
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>vHideScrollBar [
+{ #category : #scrolling }
+ScrollPane >> vHideScrollBar [
 	self vIsScrollbarShowing ifFalse: [^self].
 	self removeMorph: scrollBar.
 	self resetExtent
@@ -1155,11 +893,8 @@ ScrollPane>>vHideScrollBar [
 
 ]
 
-{
-	#category : #'geometry testing',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>vIsScrollable [
+{ #category : #'geometry testing' }
+ScrollPane >> vIsScrollable [
 "Return whether the verticle scrollbar is scrollable"
 
 	"If the contents of the pane are too small to scroll, return false."
@@ -1169,11 +904,8 @@ ScrollPane>>vIsScrollable [
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>vIsScrollbarNeeded [
+{ #category : #scrolling }
+ScrollPane >> vIsScrollbarNeeded [
 "Return whether the verticle scrollbar is needed"
 	
 	"Don't show it if we were told not to."
@@ -1186,54 +918,39 @@ ScrollPane>>vIsScrollbarNeeded [
 
 ]
 
-{
-	#category : #'geometry testing',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>vIsScrollbarShowing [
+{ #category : #'geometry testing' }
+ScrollPane >> vIsScrollbarShowing [
 	"Return true if a retractable scroll bar is currently showing"
 
 	^submorphs includes: scrollBar
 
 ]
 
-{
-	#category : #'geometry testing',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>vIsScrolled [
+{ #category : #'geometry testing' }
+ScrollPane >> vIsScrolled [
 	"If the scroller is not set to y = 0, then the pane has been scrolled."
 	^scroller offset y > 0
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>vLeftoverScrollRange [
+{ #category : #geometry }
+ScrollPane >> vLeftoverScrollRange [
 	"Return the entire scrolling range minus the currently viewed area."
 	scroller hasSubmorphs ifFalse:[^0].
 	^ (self vTotalScrollRange -  self vScrollBarHeight roundTo: self scrollDeltaHeight) max: 0
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>vResizeScrollBar [
+{ #category : #geometry }
+ScrollPane >> vResizeScrollBar [
 	| w topLeft  |
 	w := self scrollBarThickness.
 	topLeft := bounds topRight - ((w + borderWidth - 0) @ (0 - borderWidth)).
 	scrollBar bounds: (topLeft extent: w @ self vScrollBarHeight)
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>vScrollBarHeight [
+{ #category : #geometry }
+ScrollPane >> vScrollBarHeight [
 	| h |
 
 	h := bounds height - (2 * borderWidth).
@@ -1243,20 +960,14 @@ ScrollPane>>vScrollBarHeight [
 
 ]
 
-{
-	#category : #'scroll bar events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>vScrollBarMenuButtonPressed: event [
+{ #category : #'scroll bar events' }
+ScrollPane >> vScrollBarMenuButtonPressed: event [
 	^ self scrollBarMenuButtonPressed: event
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>vScrollBarValue: scrollValue [
+{ #category : #scrolling }
+ScrollPane >> vScrollBarValue: scrollValue [
 	| systemWindow |
 	scroller hasSubmorphs ifFalse: [^ self].
 	scroller offset: (scroller offset x @ (self vLeftoverScrollRange * scrollValue) rounded).
@@ -1276,11 +987,8 @@ ScrollPane>>vScrollBarValue: scrollValue [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>vSetScrollDelta [
+{ #category : #geometry }
+ScrollPane >> vSetScrollDelta [
 	"Set the ScrollBar deltas, value and interval, based on the current scroll pane size, offset and range."
 	| range delta |
 
@@ -1298,11 +1006,8 @@ ScrollPane>>vSetScrollDelta [
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>vShowScrollBar [
+{ #category : #scrolling }
+ScrollPane >> vShowScrollBar [
 
 	self vIsScrollbarShowing ifTrue: [^ self].
 	self vResizeScrollBar.
@@ -1311,21 +1016,15 @@ ScrollPane>>vShowScrollBar [
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>vTotalScrollRange [
+{ #category : #geometry }
+ScrollPane >> vTotalScrollRange [
 	"Return the entire scrolling range."
 	^ self vUnadjustedScrollRange + self vExtraScrollRange
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>vUnadjustedScrollRange [
+{ #category : #geometry }
+ScrollPane >> vUnadjustedScrollRange [
 	"Return the height extent of the receiver's submorphs."
 	| submorphBounds |
 	submorphBounds := scroller localSubmorphBounds ifNil: [^ 0].
@@ -1333,20 +1032,14 @@ ScrollPane>>vUnadjustedScrollRange [
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>wantsYellowButtonMenu [
+{ #category : #menu }
+ScrollPane >> wantsYellowButtonMenu [
 	"Answer true if the receiver wants a yellow button menu"
 	^ self getMenuSelector notNil
 ]
 
-{
-	#category : #'scroll bar events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ScrollPane>>yellowButtonActivity: shiftKeyState [
+{ #category : #'scroll bar events' }
+ScrollPane >> yellowButtonActivity: shiftKeyState [
 	
 	(self getMenu: shiftKeyState) 
 		ifNotNil: [ :menu|

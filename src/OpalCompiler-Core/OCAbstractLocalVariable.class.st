@@ -10,41 +10,28 @@ Class {
 	#instVars : [
 		'name'
 	],
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractLocalVariable>>isLocal [
+{ #category : #testing }
+OCAbstractLocalVariable >> isLocal [
 
 	^true
 ]
 
-{
-	#category : #'read/write usage',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractLocalVariable>>isUninitialized [
+{ #category : #'read/write usage' }
+OCAbstractLocalVariable >> isUninitialized [
 
 	^ self isWrite not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractLocalVariable>>name [
+{ #category : #accessing }
+OCAbstractLocalVariable >> name [
 
 	^ name
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractLocalVariable>>name: string [
+{ #category : #initializing }
+OCAbstractLocalVariable >> name: string [
 	name := string
 ]

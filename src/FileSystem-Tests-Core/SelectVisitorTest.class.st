@@ -5,15 +5,11 @@ SUnit tests for class SelectVistor
 Class {
 	#name : #SelectVisitorTest,
 	#superclass : #AbstractEnumerationVisitorTest,
-	#category : #FileSystem-Tests-Core,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:41'
+	#category : #FileSystem-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SelectVisitorTest>>testBreadthFirst [
+{ #category : #tests }
+SelectVisitorTest >> testBreadthFirst [
 	| entries |
 	entries := SelectVisitor breadthFirst: self root.
 	self 
@@ -28,11 +24,8 @@ SelectVisitorTest>>testBreadthFirst [
 			)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SelectVisitorTest>>testBreadthFirstSelect [
+{ #category : #tests }
+SelectVisitorTest >> testBreadthFirstSelect [
 	| entries |
 	entries := SelectVisitor breadthFirst: self root select: [ :node| node name endsWith: #a].
 	self 
@@ -46,11 +39,8 @@ SelectVisitorTest>>testBreadthFirstSelect [
 			)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SelectVisitorTest>>testPostorder [
+{ #category : #tests }
+SelectVisitorTest >> testPostorder [
 	| entries |
 	entries := SelectVisitor postorder: self root.
 	self 
@@ -65,11 +55,8 @@ SelectVisitorTest>>testPostorder [
 			)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SelectVisitorTest>>testPostorderSelect [
+{ #category : #tests }
+SelectVisitorTest >> testPostorderSelect [
 	| entries |
 	entries := SelectVisitor postorder: self root select: [ :node| node name endsWith: #a].
 	self 
@@ -83,11 +70,8 @@ SelectVisitorTest>>testPostorderSelect [
 			)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SelectVisitorTest>>testPreorder [
+{ #category : #tests }
+SelectVisitorTest >> testPreorder [
 	| entries |
 	entries := SelectVisitor preorder: self root.
 	self 
@@ -102,11 +86,8 @@ SelectVisitorTest>>testPreorder [
 			)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SelectVisitorTest>>testPreorderSelect [
+{ #category : #tests }
+SelectVisitorTest >> testPreorderSelect [
 	| entries |
 	entries := SelectVisitor preorder: self root select: [ :node| node name endsWith: #a].
 	self 

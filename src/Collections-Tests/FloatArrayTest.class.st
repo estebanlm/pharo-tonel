@@ -22,395 +22,268 @@ Class {
 		'replacementCollectionSameSize',
 		'sortedCollection'
 	],
-	#category : #Collections-Tests-Arrayed,
-	#timestamp : 'nice 5/30/2006 01:24'
+	#category : #Collections-Tests-Arrayed
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>aValue [
+{ #category : #requirements }
+FloatArrayTest >> aValue [
 " return a value to put into nonEmpty"
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>anIndex [
+{ #category : #requirements }
+FloatArrayTest >> anIndex [
 " return an index in nonEmpty bounds"
 	^ 2
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>anotherElementNotIn [
+{ #category : #requirements }
+FloatArrayTest >> anotherElementNotIn [
 " return an element different of 'elementNotIn'  not included in 'nonEmpty' "
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>anotherElementOrAssociationIn [
+{ #category : #requirements }
+FloatArrayTest >> anotherElementOrAssociationIn [
 	" return an element (or an association for Dictionary ) present  in 'collection' "
 	^ self collection anyOne
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>anotherElementOrAssociationNotIn [
+{ #category : #requirements }
+FloatArrayTest >> anotherElementOrAssociationNotIn [
 	" return an element (or an association for Dictionary )not present  in 'collection' "
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>anotherValue [
+{ #category : #requirements }
+FloatArrayTest >> anotherValue [
 " return a value ( not eual to 'aValue' ) to put into nonEmpty "
 	^ elementInNonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>collection [
+{ #category : #requirements }
+FloatArrayTest >> collection [
 
 	^ nonEmpty5ElementsNoDuplicate 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>collectionClass  [
+{ #category : #requirements }
+FloatArrayTest >> collectionClass [ 
 	
 	^ FloatArray
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>collectionMoreThan1NoDuplicates [
+{ #category : #requirements }
+FloatArrayTest >> collectionMoreThan1NoDuplicates [
 	" return a collection of size > 1 without equal elements"
 	^ nonEmpty5ElementsNoDuplicate 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>collectionMoreThan5Elements [
+{ #category : #requirements }
+FloatArrayTest >> collectionMoreThan5Elements [
 " return a collection including at least 5 elements"
 	
 	^ nonEmpty5ElementsNoDuplicate 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>collectionNotIncluded [
+{ #category : #requirements }
+FloatArrayTest >> collectionNotIncluded [
 " return a collection for wich each element is not included in 'nonEmpty' "
 	^ collectionNotIncluded 
 		ifNil: [ collectionNotIncluded := (FloatArray new: 2) at:1 put: elementNotIn ; at: 2 put: elementNotIn  ; yourself ].
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>collectionWith1TimeSubcollection [
+{ #category : #requirements }
+FloatArrayTest >> collectionWith1TimeSubcollection [
 " return a collection including 'oldSubCollection'  only one time "
 	^ collectionWith1TimeSubcollection ifNil: [ collectionWith1TimeSubcollection := collectionWithSameAtEndAndBegining  , self oldSubCollection , collectionWithSameAtEndAndBegining  ].
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>collectionWith2TimeSubcollection [
+{ #category : #requirements }
+FloatArrayTest >> collectionWith2TimeSubcollection [
 " return a collection including 'oldSubCollection'  two or many time "
 	^ collectionWith2TimeSubcollection ifNil: [ collectionWith2TimeSubcollection := self collectionWith1TimeSubcollection, self oldSubCollection  ].
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>collectionWithCopyNonIdentical [
+{ #category : #requirements }
+FloatArrayTest >> collectionWithCopyNonIdentical [
 	" return a collection that include elements for which 'copy' return a different object (this is not the case of SmallInteger)"
 	^ nonEmpty5ElementsNoDuplicate 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>collectionWithElementsToRemove [
+{ #category : #requirements }
+FloatArrayTest >> collectionWithElementsToRemove [
 " return a collection of elements included in 'nonEmpty'  "
 	^ nonEmptySubcollection 
 	ifNil: [ nonEmptySubcollection := (FloatArray new:2 ) at:1 put: self nonEmpty first ; at:2 put: self nonEmpty last ; yourself ]
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>collectionWithNonIdentitySameAtEndAndBegining [
+{ #category : #requirements }
+FloatArrayTest >> collectionWithNonIdentitySameAtEndAndBegining [
 	" return a collection with elements at end and begining equals only with classic equality (they are not the same object).
 (others elements of the collection are not equal to those elements)"
 	^ collectionWithSameAtEndAndBegining 		
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>collectionWithSameAtEndAndBegining [
+{ #category : #requirements }
+FloatArrayTest >> collectionWithSameAtEndAndBegining [
 " return a collection with elements at end and begining equals .
 (others elements of the collection are not equal to those elements)"
 	^ collectionWithSameAtEndAndBegining 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>collectionWithSortableElements [
+{ #category : #requirements }
+FloatArrayTest >> collectionWithSortableElements [
 " return a collection elements that can be sorte ( understanding message ' < '  or ' > ')"
 	^ nonEmpty5ElementsNoDuplicate 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>collectionWithoutEqualElements [
+{ #category : #requirements }
+FloatArrayTest >> collectionWithoutEqualElements [
 
 " return a collection not including equal elements "
 	^ nonEmpty5ElementsNoDuplicate 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>collectionWithoutNilElements [
+{ #category : #requirements }
+FloatArrayTest >> collectionWithoutNilElements [
 " return a collection that doesn't includes a nil element  and that doesn't includes equal elements'"
 	^ nonEmpty5ElementsNoDuplicate 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>elementInForElementAccessing [
+{ #category : #requirements }
+FloatArrayTest >> elementInForElementAccessing [
 " return an element inculded in 'moreThan4Elements'"
 	^ elementInNonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>elementInForIndexAccessing [
+{ #category : #requirements }
+FloatArrayTest >> elementInForIndexAccessing [
 " return an element included in 'collectionMoreThan1NoDuplicates' "
 	^ elementInNonEmpty .
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>elementNotIn [
+{ #category : #requirements }
+FloatArrayTest >> elementNotIn [
 "return an element not included in 'nonEmpty' "
 
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>elementNotInForElementAccessing [
+{ #category : #requirements }
+FloatArrayTest >> elementNotInForElementAccessing [
 " return an element not included in 'moreThan4Elements' "
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>elementNotInForIndexAccessing [
+{ #category : #requirements }
+FloatArrayTest >> elementNotInForIndexAccessing [
 " return an element not included in 'collectionMoreThan1NoDuplicates' "
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>elementToAdd [
+{ #category : #requirements }
+FloatArrayTest >> elementToAdd [
 " return an element of type 'nonEmpy' elements'type'  not  yet included in nonEmpty" 
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>elementsCopyNonIdenticalWithoutEqualElements [
+{ #category : #requirements }
+FloatArrayTest >> elementsCopyNonIdenticalWithoutEqualElements [
 	" return a collection that does niot incllude equal elements ( classic equality )
 	all elements included are elements for which copy is not identical to the element  "
 	^ nonEmpty5ElementsNoDuplicate 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>empty [
+{ #category : #requirements }
+FloatArrayTest >> empty [
 	^ empty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>firstCollection [
+{ #category : #requirements }
+FloatArrayTest >> firstCollection [
 " return a collection that will be the first part of the concatenation"
 	^ nonEmpty5ElementsNoDuplicate 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>firstIndex [
+{ #category : #requirements }
+FloatArrayTest >> firstIndex [
 " return an index between 'nonEmpty' bounds that is < to 'second index' "
 	^2
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>indexArray [
+{ #category : #requirements }
+FloatArrayTest >> indexArray [
 " return a Collection including indexes between bounds of 'nonEmpty' "
 
 	^ { 1. 4. 3.}
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>indexInForCollectionWithoutDuplicates [
+{ #category : #requirements }
+FloatArrayTest >> indexInForCollectionWithoutDuplicates [
 " return an index between 'collectionWithoutEqualsElements'  bounds"
 	^ 2.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>indexInNonEmpty [
+{ #category : #requirements }
+FloatArrayTest >> indexInNonEmpty [
 " return an index between bounds of 'nonEmpty' "
 
 	^ 3.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>moreThan3Elements [
+{ #category : #requirements }
+FloatArrayTest >> moreThan3Elements [
 	" return a collection including atLeast 3 elements"
 	^ nonEmpty5ElementsNoDuplicate 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>moreThan4Elements [
+{ #category : #requirements }
+FloatArrayTest >> moreThan4Elements [
 
 " return a collection including at leat 4 elements"
 	^ nonEmpty5ElementsNoDuplicate 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>newElement [
+{ #category : #requirements }
+FloatArrayTest >> newElement [
 "return an element that will be put in the collection in place of another"
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>nonEmpty [
+{ #category : #requirements }
+FloatArrayTest >> nonEmpty [
 
 	^ nonEmpty5ElementsNoDuplicate 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>nonEmpty1Element [
+{ #category : #requirements }
+FloatArrayTest >> nonEmpty1Element [
 " return a collection of size 1 including one element"
 	^ nonEmpty1Element 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>nonEmptyMoreThan1Element [
+{ #category : #requirements }
+FloatArrayTest >> nonEmptyMoreThan1Element [
 " return a collection that doesn't includes equal elements' and doesn't include nil elements'" 
 	^nonEmpty5ElementsNoDuplicate 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>oldSubCollection [
+{ #category : #requirements }
+FloatArrayTest >> oldSubCollection [
 " return a subCollection included in collectionWith1TimeSubcollection .
 ex :   subCollection := #( 2 3 4) and collectionWith1TimeSubcollection := #(1 2 3 4 5)"
 	^ nonEmpty5ElementsNoDuplicate 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>replacementCollection [
+{ #category : #requirements }
+FloatArrayTest >> replacementCollection [
 " return a collection that will be used to replace 'oldSubcollection' in ' collectionWith1TimeSubcollection'  " 
 	^ collectionWithSameAtEndAndBegining 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>replacementCollectionSameSize [
+{ #category : #requirements }
+FloatArrayTest >> replacementCollectionSameSize [
 " return a collection of size (secondIndex - firstIndex + 1)"
 	^replacementCollectionSameSize 
 		ifNil: [ 	replacementCollectionSameSize := FloatArray new: (self secondIndex  - self firstIndex  + 1).
@@ -420,29 +293,20 @@ FloatArrayTest>>replacementCollectionSameSize [
 				 ].
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>secondCollection [
+{ #category : #requirements }
+FloatArrayTest >> secondCollection [
 " return a collection that will be the second part of the concatenation"
 	^ collectionWithEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>secondIndex [
+{ #category : #requirements }
+FloatArrayTest >> secondIndex [
 " return an index between 'nonEmpty' bounds that is > to 'first index' "
 	^self firstIndex +1
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>setUp [
+{ #category : #running }
+FloatArrayTest >> setUp [
 
 empty := FloatArray new.
 elementInNonEmpty := 7.0.
@@ -454,40 +318,28 @@ nonEmpty1Element := ( FloatArray new: 1) at:1 put: 1.2 ; yourself.
 collectionWithSameAtEndAndBegining := (FloatArray new: 3)  at: 1 put: 2.0 ; at: 2 put: 1.0 ; at: 3 put: 2.0 copy ; yourself.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>sizeCollection [
+{ #category : #requirements }
+FloatArrayTest >> sizeCollection [
 	"Answers a collection not empty"
 	^ nonEmpty5ElementsNoDuplicate 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>sortedInAscendingOrderCollection [
+{ #category : #requirements }
+FloatArrayTest >> sortedInAscendingOrderCollection [
 	"Return a collection sorted in ascending order"
 	^ sortedCollection ifNil: [ sortedCollection := ( FloatArray new: 3)at: 1 put: 1.0 ; at: 2 put: 2.0 ; at: 3 put: 3.0 ; yourself ]
 	
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>subCollectionNotIn [
+{ #category : #requirements }
+FloatArrayTest >> subCollectionNotIn [
 " return a collection for which at least one element is not included in 'moreThan4Elements' "
 	^ collectionNotIncluded 
 		ifNil: [ collectionNotIncluded := (FloatArray new: 2) at:1 put: elementNotIn ; at: 2 put: elementNotIn  ; yourself ].
 ]
 
-{
-	#category : #'tests - arithmetic',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>testArithmeticCoercion [
+{ #category : #'tests - arithmetic' }
+FloatArrayTest >> testArithmeticCoercion [
 	"This test is related to http://bugs.squeak.org/view.php?id=6782"
 	
 	self should: [3.0 / (FloatArray with: 2.0) = (FloatArray with: 1.5)].
@@ -496,11 +348,8 @@ FloatArrayTest>>testArithmeticCoercion [
 	self should: [3.0 - (FloatArray with: 2.0) = (FloatArray with: 1.0)].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>testFloatArrayPluginPrimitiveAt [
+{ #category : #testing }
+FloatArrayTest >> testFloatArrayPluginPrimitiveAt [
 	"if FloatArrayPlugin primitive are not here, this test is dumb.
 	Otherwise, it will compare primitive and #fromIEEE32Bit:"
 	
@@ -569,11 +418,8 @@ FloatArrayTest>>testFloatArrayPluginPrimitiveAt [
 		do: [:e | self assert: (Float fromIEEE32Bit: ((FloatArray with: e) basicAt: 1)) isNaN].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>testFloatArrayPluginPrimitiveAtPut [
+{ #category : #testing }
+FloatArrayTest >> testFloatArrayPluginPrimitiveAtPut [
 	"if FloatArrayPlugin primitive are not here, this test is dumb.
 	Otherwise, it will compare primitive and #asIEEE32BitWord"
 	
@@ -639,19 +485,13 @@ FloatArrayTest>>testFloatArrayPluginPrimitiveAtPut [
 		
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>unsortedCollection [
+{ #category : #requirements }
+FloatArrayTest >> unsortedCollection [
 " retur a collection that is not yat sorted"
 	^nonEmpty5ElementsNoDuplicate 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FloatArrayTest>>withEqualElements [
+{ #category : #requirements }
+FloatArrayTest >> withEqualElements [
 	^ collectionWithEqualElements 
 ]

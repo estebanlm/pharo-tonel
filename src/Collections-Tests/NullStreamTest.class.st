@@ -1,30 +1,20 @@
-"
-
-"
 Class {
 	#name : #NullStreamTest,
 	#superclass : #ClassTestCase,
 	#instVars : [
 		'stream'
 	],
-	#category : #Collections-Tests-Streams,
-	#timestamp : ''
+	#category : #Collections-Tests-Streams
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-NullStreamTest>>setUp [
+{ #category : #running }
+NullStreamTest >> setUp [
 	super setUp.
 	stream := NullStream new.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-NullStreamTest>>testCounting [
+{ #category : #tests }
+NullStreamTest >> testCounting [
 	| expectedPosition |
 	expectedPosition := 0.
 	self assert: stream position equals: expectedPosition.
@@ -58,11 +48,8 @@ NullStreamTest>>testCounting [
 	self assert: stream position equals: expectedPosition.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-NullStreamTest>>testNextPutAllEmpty [
+{ #category : #tests }
+NullStreamTest >> testNextPutAllEmpty [
 	self assert: stream position equals: 0.
 	self assert: stream peekLast equals: nil.
 	stream nextPutAll: ''.
@@ -70,11 +57,8 @@ NullStreamTest>>testNextPutAllEmpty [
 	self assert: stream peekLast equals: nil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-NullStreamTest>>testPeekLast [
+{ #category : #tests }
+NullStreamTest >> testPeekLast [
 	self assert: stream peekLast equals: nil.
 	stream nextPut: $a.
 	self assert: stream peekLast equals: $a.

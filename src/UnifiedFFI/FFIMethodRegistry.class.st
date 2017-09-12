@@ -11,44 +11,31 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #UnifiedFFI,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodRegistry class>>cleanUp: aggressive [
+{ #category : #cleanup }
+FFIMethodRegistry class >> cleanUp: aggressive [
 	"Only delete change sets when being aggressive"
 	self uniqueInstance reset.
 	uniqueInstance := nil
 	
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodRegistry class>>initialize [
+{ #category : #'class initialization' }
+FFIMethodRegistry class >> initialize [
 	SessionManager default
 		registerSystemClassNamed: self name
 		atPriority: 60
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodRegistry class>>new [
+{ #category : #'instance creation' }
+FFIMethodRegistry class >> new [
 	self error: 'Use #uniqueInstance'
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodRegistry class>>resetAll [
+{ #category : #'system startup' }
+FFIMethodRegistry class >> resetAll [
 	"I'm reseting each shutdown and startup because like that I can be sure a complete cleanup is done, 
 	 because many things can change: 
 		- platform change 
@@ -61,66 +48,45 @@ FFIMethodRegistry class>>resetAll [
 	uniqueInstance := nil.
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodRegistry class>>shutDown: quitting [
+{ #category : #'system startup' }
+FFIMethodRegistry class >> shutDown: quitting [
 	quitting ifFalse: [ ^ self ].
 	
 	self resetAll
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodRegistry class>>startUp: isImageStarting [
+{ #category : #'system startup' }
+FFIMethodRegistry class >> startUp: isImageStarting [
 	isImageStarting ifFalse: [ ^ self ].
 	uniqueInstance ifNil: [ ^self ].
 	
 	self resetAll
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodRegistry class>>uniqueInstance [
+{ #category : #'instance creation' }
+FFIMethodRegistry class >> uniqueInstance [
 	^ uniqueInstance ifNil: [ uniqueInstance := super new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodRegistry>>compiledMethods [
+{ #category : #accessing }
+FFIMethodRegistry >> compiledMethods [
 	^ compiledMethods
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodRegistry>>initialize  [
+{ #category : #initialization }
+FFIMethodRegistry >> initialize [ 
 	super initialize.
 	compiledMethods := WeakSet new.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodRegistry>>registerMethod: aCompiledMethod [
+{ #category : #accessing }
+FFIMethodRegistry >> registerMethod: aCompiledMethod [
 	compiledMethods add: aCompiledMethod.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodRegistry>>reset [
+{ #category : #accessing }
+FFIMethodRegistry >> reset [
 	"FFI compiled methods will keep the old method as a property, making easy to replace it 
 	 when changing platforms."
 	self compiledMethods do: [ :each |

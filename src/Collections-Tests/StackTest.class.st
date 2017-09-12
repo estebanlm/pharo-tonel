@@ -13,33 +13,23 @@ Class {
 	#classInstVars : [
 		'testSize'
 	],
-	#category : #Collections-Tests-Stack,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:31'
+	#category : #Collections-Tests-Stack
 }
 
-{
-	#category : #'tests - empty',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StackTest>>empty [
+{ #category : #'tests - empty' }
+StackTest >> empty [
 	
  	^ empty
 ]
 
-{
-	#category : #'tests - empty',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StackTest>>nonEmpty [
+{ #category : #'tests - empty' }
+StackTest >> nonEmpty [
 	
  	^ nonEmpty
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StackTest>>setUp [
+{ #category : #setup }
+StackTest >> setUp [
 
 	empty := Stack new.
 	nonEmpty := Stack new.
@@ -50,11 +40,8 @@ StackTest>>setUp [
 	
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StackTest>>testEmptyError [
+{ #category : #test }
+StackTest >> testEmptyError [
 	| aStack |
 	aStack := Stack new.
 	self should: [ aStack top ] raise: Error.
@@ -66,11 +53,8 @@ StackTest>>testEmptyError [
 	self should: [ aStack pop ] raise: Error
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StackTest>>testPop [
+{ #category : #test }
+StackTest >> testPop [
 
 	| aStack res elem |
 	elem := 'anElement'.	
@@ -90,11 +74,8 @@ StackTest>>testPop [
 
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StackTest>>testPush [
+{ #category : #test }
+StackTest >> testPush [
 	
 	| aStack |
 	aStack := Stack new.
@@ -105,11 +86,8 @@ StackTest>>testPush [
 	
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StackTest>>testSize [
+{ #category : #test }
+StackTest >> testSize [
 	
 	| aStack |
 	aStack := Stack new.
@@ -130,11 +108,8 @@ StackTest>>testSize [
 
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-StackTest>>testTop [
+{ #category : #test }
+StackTest >> testTop [
 
 	| aStack |
 	aStack := Stack new.

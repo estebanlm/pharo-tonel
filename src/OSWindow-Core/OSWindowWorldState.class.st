@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'display'
 	],
-	#category : #OSWindow-Core-Morphic,
-	#timestamp : 'RonieSalgado 9/4/2016 21:04'
+	#category : #OSWindow-Core-Morphic
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldState>>assuredCanvas [
+{ #category : #'as yet unclassified' }
+OSWindowWorldState >> assuredCanvas [
 
 	(canvas isNil or: [(canvas extent ~= viewBox extent) or: [canvas form depth ~= Display depth]])
 		ifTrue:
@@ -24,35 +20,23 @@ OSWindowWorldState>>assuredCanvas [
 	^ self canvas
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldState>>display [
+{ #category : #accessing }
+OSWindowWorldState >> display [
 	^ display
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldState>>display: anObject [
+{ #category : #accessing }
+OSWindowWorldState >> display: anObject [
 	display := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldState>>displayWorld: aWorld submorphs: submorphs [
+{ #category : #accessing }
+OSWindowWorldState >> displayWorld: aWorld submorphs: submorphs [
 	aWorld updateOnOSWindow
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldState>>doDeferredUpdatingFor: aWorld [
+{ #category : #accessing }
+OSWindowWorldState >> doDeferredUpdatingFor: aWorld [
         "If this platform supports deferred updates, then make my canvas be the Display (or a rectangular portion of it), set the Display to deferred update mode, and answer true. Otherwise, do nothing and answer false. One can set the class variable DisableDeferredUpdates to true to completely disable the deferred updating feature."
 
 	display ifNil: [ ^ false ].
@@ -64,11 +48,8 @@ OSWindowWorldState>>doDeferredUpdatingFor: aWorld [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldState>>doOneCycleNowFor: aWorld [
+{ #category : #'as yet unclassified' }
+OSWindowWorldState >> doOneCycleNowFor: aWorld [
 	"process user input events"
 	LastCycleTime := Time millisecondClockValue.
 	self handsDo: [:h |

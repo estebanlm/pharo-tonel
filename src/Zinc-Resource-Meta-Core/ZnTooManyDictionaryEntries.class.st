@@ -11,42 +11,29 @@ Class {
 	#instVars : [
 		'limit'
 	],
-	#category : #Zinc-Resource-Meta-Core,
-	#timestamp : 'SvenVanCaekenberghe 5/10/2017 16:44'
+	#category : #Zinc-Resource-Meta-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnTooManyDictionaryEntries class>>limit: limit [
+{ #category : #'instance creation' }
+ZnTooManyDictionaryEntries class >> limit: limit [
 	^ self new 
 		limit: limit; 
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnTooManyDictionaryEntries>>isResumable [
+{ #category : #testing }
+ZnTooManyDictionaryEntries >> isResumable [
 	"Determine whether an exception is resumable."
 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnTooManyDictionaryEntries>>limit [
+{ #category : #accessing }
+ZnTooManyDictionaryEntries >> limit [
 	^ limit
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnTooManyDictionaryEntries>>limit: anObject [
+{ #category : #accessing }
+ZnTooManyDictionaryEntries >> limit: anObject [
 	limit := anObject
 ]

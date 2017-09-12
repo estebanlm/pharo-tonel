@@ -8,124 +8,81 @@ Class {
 		'groups',
 		'selectedElements'
 	],
-	#category : #Nautilus-GroupManagerUI,
-	#timestamp : 'FranckWarlouzet 7/19/2015 18:44'
+	#category : #Nautilus-GroupManagerUI
 }
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageCreatorTreeModel>>acceptDroppingMorph: transferMorph event: evt inMorph: listMorph [
+{ #category : #'drag and drop' }
+PackageCreatorTreeModel >> acceptDroppingMorph: transferMorph event: evt inMorph: listMorph [
 	patternModel acceptEditsInView
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageCreatorTreeModel>>add: aCollection into: aGroup [
+{ #category : #private }
+PackageCreatorTreeModel >> add: aCollection into: aGroup [
 	aGroup addPackages: aCollection
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageCreatorTreeModel>>defaultTreeMorph [
+{ #category : #view }
+PackageCreatorTreeModel >> defaultTreeMorph [
 	^ super defaultTreeMorph
 		dragEnabled: true;
 		nodeStringGetter: #name
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageCreatorTreeModel>>dragTransferType [
+{ #category : #'drag and drop' }
+PackageCreatorTreeModel >> dragTransferType [
 	^ #SelectedPackage
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageCreatorTreeModel>>dragTransferTypeForMorph: listMorph [
+{ #category : #'drag and drop' }
+PackageCreatorTreeModel >> dragTransferTypeForMorph: listMorph [
 	^ self dragTransferType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageCreatorTreeModel>>groups [
+{ #category : #accessing }
+PackageCreatorTreeModel >> groups [
 	^ groups
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageCreatorTreeModel>>groups: anObject [
+{ #category : #accessing }
+PackageCreatorTreeModel >> groups: anObject [
 	groups := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageCreatorTreeModel>>initialize [
+{ #category : #initialization }
+PackageCreatorTreeModel >> initialize [
 	super initialize.
 	selectedElements := OrderedCollection new
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageCreatorTreeModel>>open [
+{ #category : #display }
+PackageCreatorTreeModel >> open [
 	(DialogGroupManagerUI on: self)
 		title: 'Group Manager' translated;
 		openInWorld
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageCreatorTreeModel>>patternModel [
+{ #category : #accessing }
+PackageCreatorTreeModel >> patternModel [
 	^ patternModel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageCreatorTreeModel>>remove: aCollection from: aGroup [
+{ #category : #private }
+PackageCreatorTreeModel >> remove: aCollection from: aGroup [
 	aGroup removePackages: aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageCreatorTreeModel>>selectedElements [
+{ #category : #accessing }
+PackageCreatorTreeModel >> selectedElements [
 	^ selectedElements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageCreatorTreeModel>>selectedElements: anObject [
+{ #category : #accessing }
+PackageCreatorTreeModel >> selectedElements: anObject [
 	selectedElements := anObject
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageCreatorTreeModel>>wantsDroppedMorph: transferMorph event: evt inMorph: listMorph [
+{ #category : #'drag and drop' }
+PackageCreatorTreeModel >> wantsDroppedMorph: transferMorph event: evt inMorph: listMorph [
 	(transferMorph isKindOf: TransferMorph)
 		ifFalse: [ ^ false ].
 	^ true

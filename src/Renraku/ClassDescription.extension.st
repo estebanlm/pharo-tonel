@@ -1,12 +1,7 @@
-Extension {
-	#name : #ClassDescription
-}
+Extension { #name : #ClassDescription }
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ClassDescription>>ban: aCritique [
+{ #category : #'*renraku' }
+ClassDescription >> ban: aCritique [
 
 	ReSystemAnnouncer uniqueInstance
 		notifyCritique: aCritique
@@ -17,40 +12,28 @@ ClassDescription>>ban: aCritique [
 		banRule: aCritique rule for: self.
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ClassDescription>>banChecksForValidation [
+{ #category : #'*renraku' }
+ClassDescription >> banChecksForValidation [
 "returns ban levels that have to be chacked before validation"
 
 	^ { self }
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ClassDescription>>banLevelCandidates [
+{ #category : #'*renraku' }
+ClassDescription >> banLevelCandidates [
 "returns code entities which can ban a rule for this entity"
 
 	^ { self } , self package banLevelCandidates
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ClassDescription>>critiques [
+{ #category : #'*renraku' }
+ClassDescription >> critiques [
 	<eProperty>
 	^ ReCriticEngine critiquesOf: self
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ClassDescription>>glmCritiqueSourceIn: composite [
+{ #category : #'*renraku' }
+ClassDescription >> glmCritiqueSourceIn: composite [
 
 	^ composite pharoScript  
 		title: 'Source';
@@ -58,19 +41,13 @@ ClassDescription>>glmCritiqueSourceIn: composite [
 		act: [ self browse ] icon: GLMUIThemeExtraIcons glamorousBrowse entitled: 'Browse'
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ClassDescription>>reBanName [
+{ #category : #'*renraku' }
+ClassDescription >> reBanName [
 
 	^ self name, ' (Class)'
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ClassDescription>>suitableRulesFrom: aReRuleManager  [
+{ #category : #'*renraku' }
+ClassDescription >> suitableRulesFrom: aReRuleManager [ 
 	^ aReRuleManager classRules
 ]

@@ -3,35 +3,23 @@ A trait for test purposes
 "
 Trait {
 	#name : #TSubCollectionAccess,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:35'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSubCollectionAccess>>moreThan3Elements [
+{ #category : #requirements }
+TSubCollectionAccess >> moreThan3Elements [
 	" return a collection including atLeast 3 elements"
 	self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSubCollectionAccess>>test0FixtureSubcollectionAccessTest [
+{ #category : #'tests - fixture' }
+TSubCollectionAccess >> test0FixtureSubcollectionAccessTest [
 	self moreThan3Elements.
 	self assert: self moreThan3Elements size > 2
 ]
 
-{
-	#category : #'tests - subcollections access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSubCollectionAccess>>testAllButFirst [
+{ #category : #'tests - subcollections access' }
+TSubCollectionAccess >> testAllButFirst [
 	"self debug: #testAllButFirst"
 	| abf col |
 	col := self moreThan3Elements.
@@ -40,11 +28,8 @@ TSubCollectionAccess>>testAllButFirst [
 	self assert: abf size + 1 = col size
 ]
 
-{
-	#category : #'tests - subcollections access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSubCollectionAccess>>testAllButFirstNElements [
+{ #category : #'tests - subcollections access' }
+TSubCollectionAccess >> testAllButFirstNElements [
 	"self debug: #testAllButFirst"
 	| abf col |
 	col := self moreThan3Elements.
@@ -55,11 +40,8 @@ TSubCollectionAccess>>testAllButFirstNElements [
 	self assert: abf size + 2 = col size
 ]
 
-{
-	#category : #'tests - subcollections access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSubCollectionAccess>>testAllButLast [
+{ #category : #'tests - subcollections access' }
+TSubCollectionAccess >> testAllButLast [
 	"self debug: #testAllButLast"
 	| abf col |
 	col := self moreThan3Elements.
@@ -68,11 +50,8 @@ TSubCollectionAccess>>testAllButLast [
 	self assert: abf size + 1 = col size
 ]
 
-{
-	#category : #'tests - subcollections access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSubCollectionAccess>>testAllButLastNElements [
+{ #category : #'tests - subcollections access' }
+TSubCollectionAccess >> testAllButLastNElements [
 	"self debug: #testAllButFirst"
 	| abf col |
 	col := self moreThan3Elements.
@@ -83,11 +62,8 @@ TSubCollectionAccess>>testAllButLastNElements [
 	self assert: abf size + 2 = col size
 ]
 
-{
-	#category : #'tests - subcollections access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSubCollectionAccess>>testFirstNElements [
+{ #category : #'tests - subcollections access' }
+TSubCollectionAccess >> testFirstNElements [
 	"self debug: #testFirstNElements"
 
 	| result |
@@ -97,11 +73,8 @@ TSubCollectionAccess>>testFirstNElements [
 	self should: [ self moreThan3Elements first: self moreThan3Elements size + 1 ] raise: SubscriptOutOfBounds
 ]
 
-{
-	#category : #'tests - subcollections access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TSubCollectionAccess>>testLastNElements [
+{ #category : #'tests - subcollections access' }
+TSubCollectionAccess >> testLastNElements [
 	"self debug: #testLastNElements"
 	| result |
 	result := self moreThan3Elements last: self moreThan3Elements size - 1.

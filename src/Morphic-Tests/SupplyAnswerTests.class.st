@@ -4,15 +4,11 @@ A test for supplying answer
 Class {
 	#name : #SupplyAnswerTests,
 	#superclass : #TestCase,
-	#category : #Morphic-Tests-Widgets,
-	#timestamp : 'TorstenBergmann 9/5/2014 17:00'
+	#category : #Morphic-Tests-Widgets
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SupplyAnswerTests>>testChooseDirectory [
+{ #category : #tests }
+SupplyAnswerTests >> testChooseDirectory [
 
 	| tmpDirectory answer |
 	tmpDirectory :=FileSystem / 'tmp'.
@@ -22,11 +18,8 @@ SupplyAnswerTests>>testChooseDirectory [
 	self assert: answer = tmpDirectory.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SupplyAnswerTests>>testFillInTheBlank [
+{ #category : #tests }
+SupplyAnswerTests >> testFillInTheBlank [
 
 	| answer |
 	answer := [ MorphicUIManager new request: 'Your favorite color?' ] valueSupplyingAnswer: #('Your favorite color?' 'blue').
@@ -34,11 +27,8 @@ SupplyAnswerTests>>testFillInTheBlank [
 	self assert: answer = 'blue'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-SupplyAnswerTests>>testInform [
+{ #category : #tests }
+SupplyAnswerTests >> testInform [
 
 	| answer |
 	[ MorphicUIManager new inform: 'blah' ] on: Exception do: [:ex | answer := ex messageText ].

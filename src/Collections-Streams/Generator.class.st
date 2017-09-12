@@ -76,55 +76,39 @@ Class {
 		'continue',
 		'home'
 	],
-	#category : #Collections-Streams,
-	#timestamp : 'MarcusDenker 9/7/2016 15:47'
+	#category : #Collections-Streams
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Generator class>>examplePrimes [
+{ #category : #examples }
+Generator class >> examplePrimes [
 	| generator |
 	Transcript open.
 	generator := Generator on: [:g| Integer primesUpTo: 100 do:[:prime| g yield: prime]].
 	[generator atEnd] whileFalse:[Transcript show: generator next; cr].
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Generator class>>on: aBlock [
+{ #category : #instance-creation }
+Generator class >> on: aBlock [
 	^ self basicNew initializeOn: aBlock
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Generator>>atEnd [
+{ #category : #testing }
+Generator >> atEnd [
 	"Answer whether the receiver can access any more objects."
 
 	^ continue isNil
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Generator>>close [
+{ #category : #open/close }
+Generator >> close [
 	"Close the receiving generator and unwind its ensure-blocks."
 
 	continue ifNotNil:[continue unwindTo: home].
 	continue := block := next := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Generator>>contents [
+{ #category : #accessing }
+Generator >> contents [
 	"Answer the contents of this generator. Do not call this method on infinite generators."
 
 	| stream |
@@ -134,11 +118,8 @@ Generator>>contents [
 	^ stream contents
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Generator>>fork [
+{ #category : #private }
+Generator >> fork [
 	| result |
 	home := thisContext.
 	block reentrant value: self.
@@ -148,20 +129,14 @@ Generator>>fork [
 	^ result
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Generator>>initializeOn: aBlock [
+{ #category : #initialization }
+Generator >> initializeOn: aBlock [
 	block := aBlock.
 	self reset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Generator>>next [
+{ #category : #accessing }
+Generator >> next [
 	"Generate and answer the next object in the receiver."
 
 	^ self atEnd ifFalse: [
@@ -170,11 +145,8 @@ Generator>>next [
 	]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Generator>>nextPut: anObject [
+{ #category : #accessing }
+Generator >> nextPut: anObject [
 	"Add anObject into the generator. A synonym to #yield: and value:."
 
 	| previous |
@@ -184,29 +156,20 @@ Generator>>nextPut: anObject [
 	^ previous
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Generator>>peek [
+{ #category : #accessing }
+Generator >> peek [
 	"Answer the upcoming object of the receiver."
 
 	^ next
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Generator>>printOn: aStream [
+{ #category : #printing }
+Generator >> printOn: aStream [
 	aStream nextPutAll: self class name; nextPutAll: ' on: '; print: block
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Generator>>reset [
+{ #category : #public }
+Generator >> reset [
 	"Reset the generator, i.e., start it over"
 	continue ifNotNil:[continue unwindTo: home].
 	next := nil.
@@ -214,31 +177,22 @@ Generator>>reset [
 	self fork
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Generator>>size [
+{ #category : #accessing }
+Generator >> size [
 	"A generator does not know its size."
 
 	^ self shouldNotImplement
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Generator>>value: anObject  [
+{ #category : #public }
+Generator >> value: anObject [ 
 	"Allows passing generators as arguments to methods expecting blocks.
 	A synonym for #yield: / #nextPut:."
 	^ self nextPut: anObject
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-Generator>>yield: anObject  [
+{ #category : #public }
+Generator >> yield: anObject [ 
 	"Yield the next value to the consumer of the generator.
 	A synonym for #nextPut:"
 	^ self nextPut: anObject

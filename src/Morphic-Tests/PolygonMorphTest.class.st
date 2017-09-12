@@ -4,15 +4,11 @@ This class holds tests for PolygonMorph
 Class {
 	#name : #PolygonMorphTest,
 	#superclass : #MorphTest,
-	#category : #Morphic-Tests-Basic,
-	#timestamp : 'nice 2/16/2008 02:13'
+	#category : #Morphic-Tests-Basic
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PolygonMorphTest>>testBoundsBug1035 [
+{ #category : #tests }
+PolygonMorphTest >> testBoundsBug1035 [
 	"This is a non regression test for http://bugs.squeak.org/view.php?id=1035
 	PolygonMorph used to position badly when container bounds were growing"
 	

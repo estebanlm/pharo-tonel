@@ -18,47 +18,31 @@ The theme is developed in the context of the Glamour project, and its goal is to
 Class {
 	#name : #GLMWhitespaceTheme,
 	#superclass : #UIThemeWatery,
-	#category : #Glamour-Morphic-Theme,
-	#timestamp : '<historical>'
+	#category : #Glamour-Morphic-Theme
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme class>>baseColor [
+{ #category : #accessing }
+GLMWhitespaceTheme class >> baseColor [
 	^ Color white
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme class>>basePassiveBackgroundColor [
+{ #category : #accessing }
+GLMWhitespaceTheme class >> basePassiveBackgroundColor [
 	^ Color r: 245 g: 245 b: 245 range: 255
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme class>>baseSelectionColor [
+{ #category : #accessing }
+GLMWhitespaceTheme class >> baseSelectionColor [
 	^ Color r: 97 g: 163 b: 225 range: 255
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme class>>darkBaseColor [
+{ #category : #accessing }
+GLMWhitespaceTheme class >> darkBaseColor [
 	^ Color r: 210 g: 210 b: 210 range: 255
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme class>>importGlamorousIcons [
+{ #category : #private }
+GLMWhitespaceTheme class >> importGlamorousIcons [
 	"utility method to import the icons necessary for the theme from the file system"
 	"self importGlamorousIcons"
 	| icons |
@@ -80,37 +64,25 @@ GLMWhitespaceTheme class>>importGlamorousIcons [
 	"self importIcons: icons fromFolder: 'icons' inClass: GLMThemeIcons category: '*glamour-morphic-theme'"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme class>>isAbstract [
+{ #category : #testing }
+GLMWhitespaceTheme class >> isAbstract [
 	"Answer whether the receiver is considered to be abstract."
 
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme class>>lightBaseColor [
+{ #category : #accessing }
+GLMWhitespaceTheme class >> lightBaseColor [
 	^ Color r: 220 g: 220 b: 220 range: 255
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme class>>lightSelectionColor [
+{ #category : #accessing }
+GLMWhitespaceTheme class >> lightSelectionColor [
 	^ Color r: 175 g: 213 b: 250 range: 255
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme class>>newDefaultSettings [
+{ #category : #settings }
+GLMWhitespaceTheme class >> newDefaultSettings [
 	self setPreferredPreferences.
 	
 	BalloonMorph setBalloonColorTo: self veryLightSelectionColor.
@@ -129,86 +101,59 @@ GLMWhitespaceTheme class>>newDefaultSettings [
 		flatMenu: true
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme class>>setPreferredPreferences [
+{ #category : #settings }
+GLMWhitespaceTheme class >> setPreferredPreferences [
 	NECPreferences 
 		expandPrefixes: true;
 		popupShowWithShortcut: Character tab asShortcut.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme class>>themeName [
+{ #category : #accessing }
+GLMWhitespaceTheme class >> themeName [
 	^ 'Glamorous Whitespace'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme class>>veryLightSelectionColor [
+{ #category : #accessing }
+GLMWhitespaceTheme class >> veryLightSelectionColor [
 	^ Color white darker
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>borderColor  [
+{ #category : #'accessing colors' }
+GLMWhitespaceTheme >> borderColor [ 
 	^ Color transparent
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>buttonCornerStyleIn: aThemedMorph [
+{ #category : #border-styles-buttons }
+GLMWhitespaceTheme >> buttonCornerStyleIn: aThemedMorph [
 	"If asked, we only allow square corners"
 	
 	^ #square
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>buttonLabelForText: aTextOrString [
+{ #category : #label-styles }
+GLMWhitespaceTheme >> buttonLabelForText: aTextOrString [
 	"Answer the label to use for the given text."
 	^aTextOrString isString
 		ifTrue: [(LabelMorph contents: aTextOrString) color: Color black]
 		ifFalse: [super buttonLabelForText: aTextOrString]
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>buttonMinHeight [
+{ #category : #defaults }
+GLMWhitespaceTheme >> buttonMinHeight [
 	"Answer the minumum height of a button for this theme."
 	
 	^24
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>buttonMinWidth [
+{ #category : #defaults }
+GLMWhitespaceTheme >> buttonMinWidth [
 	"Answer the minumum width of a button for this theme."
 	
 	^24
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>buttonNormalBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+GLMWhitespaceTheme >> buttonNormalBorderStyleFor: aButton [
 	"Return the normal button borderStyle for the given button."
 
 	(aButton valueOfProperty: #noBorder ifAbsent: [false]) ifTrue: [
@@ -216,30 +161,21 @@ GLMWhitespaceTheme>>buttonNormalBorderStyleFor: aButton [
 	^ self glamorousNoBorderFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>buttonNormalFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+GLMWhitespaceTheme >> buttonNormalFillStyleFor: aButton [
 	"Return the normal button fillStyle for the given button."
 	
 	(aButton valueOfProperty: #noFill ifAbsent: [false]) ifTrue: [^ SolidFillStyle color: Color transparent ].
 	^ self glamorousNormalFillStyleFor: aButton height: aButton height
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>buttonSelectedBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+GLMWhitespaceTheme >> buttonSelectedBorderStyleFor: aButton [
 	^ self buttonNormalBorderStyleFor: aButton
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>buttonSelectedFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+GLMWhitespaceTheme >> buttonSelectedFillStyleFor: aButton [
 	"Return the normal button fillStyle for the given button."
 	
 	| top bottom |
@@ -254,41 +190,29 @@ GLMWhitespaceTheme>>buttonSelectedFillStyleFor: aButton [
 		radial: false
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>checkboxForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> checkboxForm [
 	"Answer the form to use for a normal checkbox."
 
 	^self  checkboxUnselectedForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>checkboxSelectedForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> checkboxSelectedForm [
 	"Answer the form to use for a selected checkbox."
 
 	^ self iconNamed: #checkboxSelectedForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>checkboxUnselectedForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> checkboxUnselectedForm [
 	"Answer the form to use for a selected checkbox."
 
 	^ self iconNamed: #checkboxUnselectedForm
 ]
 
-{
-	#category : #'watcher window',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>configureWatcherWindowLabelAreaFor: aWindow [
+{ #category : #'watcher window' }
+GLMWhitespaceTheme >> configureWatcherWindowLabelAreaFor: aWindow [
 	"Configure the label area for the given Watcher window."
 
 	|padding|
@@ -308,27 +232,18 @@ GLMWhitespaceTheme>>configureWatcherWindowLabelAreaFor: aWindow [
 		addMorphBack: (Morph new extent: aWindow class borderWidth @ 0)
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>configureWindowBorderFor: aWindow [
+{ #category : #border-styles }
+GLMWhitespaceTheme >> configureWindowBorderFor: aWindow [
 	^ self glamorousThickBorderFor: aWindow
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>configureWindowDropShadowFor: aWindow [
+{ #category : #border-styles }
+GLMWhitespaceTheme >> configureWindowDropShadowFor: aWindow [
 	aWindow hasDropShadow: false
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>configureWindowLabelAreaFor: aWindow [
+{ #category : #label-styles }
+GLMWhitespaceTheme >> configureWindowLabelAreaFor: aWindow [
 	"Configure the label area for the given window."
 
 	|padding|
@@ -352,11 +267,8 @@ GLMWhitespaceTheme>>configureWindowLabelAreaFor: aWindow [
 		addMorphBack: (Morph new extent: aWindow class borderWidth @ 0)
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>createCollapseBoxFor: aSystemWindow [
+{ #category : #label-styles }
+GLMWhitespaceTheme >> createCollapseBoxFor: aSystemWindow [
 	"Answer a button for minimising the window."
 	
 	|form msb|
@@ -382,11 +294,8 @@ GLMWhitespaceTheme>>createCollapseBoxFor: aSystemWindow [
 	^msb
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>createExpandBoxFor: aSystemWindow [
+{ #category : #label-styles }
+GLMWhitespaceTheme >> createExpandBoxFor: aSystemWindow [
 	"Answer a button for maximising/restoring the window."
 	
 	|form msb|
@@ -412,11 +321,8 @@ GLMWhitespaceTheme>>createExpandBoxFor: aSystemWindow [
 	^msb
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>createMenuBoxFor: aSystemWindow [
+{ #category : #label-styles }
+GLMWhitespaceTheme >> createMenuBoxFor: aSystemWindow [
 	"Answer a button for the window menu."
 	
 "	^aSystemWindow createBox
@@ -451,146 +357,98 @@ GLMWhitespaceTheme>>createMenuBoxFor: aSystemWindow [
 	^msb
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>desktopColor [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> desktopColor [
 
 	^(Color r: 250 g: 250 b: 250 range: 256)
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>dialogWindowPreferredCornerStyleFor: aDialogWindow [
+{ #category : #defaults }
+GLMWhitespaceTheme >> dialogWindowPreferredCornerStyleFor: aDialogWindow [
 	"Answer the preferred corner style for the given dialog."
 
 	^#square
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>dockingBarNormalFillStyleFor: aToolDockingBar [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> dockingBarNormalFillStyleFor: aToolDockingBar [
 	^ SolidFillStyle color: Color transparent
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>dropListDisabledFillStyleFor: aDropList [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> dropListDisabledFillStyleFor: aDropList [
 	"Return the disabled fillStyle for the given drop list."
 	
 	^ self textEditorDisabledFillStyleFor: aDropList
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>dropListNormalBorderStyleFor: aDropList [
+{ #category : #border-styles }
+GLMWhitespaceTheme >> dropListNormalBorderStyleFor: aDropList [
 	"Return the normal borderStyle for the given drop list"
 
 	^ self glamorousLightBorderStyleFor: aDropList
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>dropListNormalFillStyleFor: aDropList [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> dropListNormalFillStyleFor: aDropList [
 	"Return the normal fillStyle for the given drop list."
 	
 	^ SolidFillStyle color: Color white
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>errorPopperBackgroundColor [
+{ #category : #basic-colors }
+GLMWhitespaceTheme >> errorPopperBackgroundColor [
 	^ Color paleRed
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>expanderTitleNormalFillStyleFor: anExpanderTitle [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> expanderTitleNormalFillStyleFor: anExpanderTitle [
 	"Return the normal expander title fillStyle for the given expander title."
 	
 	^ self buttonNormalFillStyleFor: anExpanderTitle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>glamorousBaseColorFor: aButton [
+{ #category : #private }
+GLMWhitespaceTheme >> glamorousBaseColorFor: aButton [
 	^ self class baseColor
 	"unfortunately, it looks like paneColor does not always return the wanted color"
 	"aButton paneColorOrNil ifNil: [Color r: 200 g: 200 b: 200 range: 255]"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>glamorousBasePassiveBackgroundColorFor: aButton [
+{ #category : #private }
+GLMWhitespaceTheme >> glamorousBasePassiveBackgroundColorFor: aButton [
 	^ self class basePassiveBackgroundColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>glamorousBaseSelectionColorFor: aButton [
+{ #category : #private }
+GLMWhitespaceTheme >> glamorousBaseSelectionColorFor: aButton [
 	^ self class baseSelectionColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>glamorousDarkBaseColorFor: aButton [
+{ #category : #private }
+GLMWhitespaceTheme >> glamorousDarkBaseColorFor: aButton [
 	^ self class darkBaseColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>glamorousLightBorderStyleFor: aTextEditor [
+{ #category : #private }
+GLMWhitespaceTheme >> glamorousLightBorderStyleFor: aTextEditor [
 	^ SimpleBorder new
 		baseColor: (self glamorousLightColorFor: aTextEditor);
 		width: 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>glamorousLightColorFor: aButton [
+{ #category : #private }
+GLMWhitespaceTheme >> glamorousLightColorFor: aButton [
 	^ self class lightBaseColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>glamorousLightSelectionColorFor: aMorph [
+{ #category : #private }
+GLMWhitespaceTheme >> glamorousLightSelectionColorFor: aMorph [
 	^ self class lightSelectionColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>glamorousNoBorderFor: aMorph [
+{ #category : #private }
+GLMWhitespaceTheme >> glamorousNoBorderFor: aMorph [
 	| aStyle |
 	aStyle := SimpleBorder new 
 			baseColor: (self glamorousLightColorFor: aMorph);
@@ -598,21 +456,15 @@ GLMWhitespaceTheme>>glamorousNoBorderFor: aMorph [
 	^ aStyle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>glamorousNormalFillStyleFor: aMorph height: anInteger [
+{ #category : #private }
+GLMWhitespaceTheme >> glamorousNormalFillStyleFor: aMorph height: anInteger [
 	"Return the normal button fillStyle for the given morph."
 
 	^ SolidFillStyle color: (self glamorousLightColorFor: aMorph)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>glamorousNormalFillStyleWithBaseColor: aColor for: aMorph height: anInteger	 [
+{ #category : #private }
+GLMWhitespaceTheme >> glamorousNormalFillStyleWithBaseColor: aColor for: aMorph height: anInteger [	
 	| top bottom |
 	top := aColor "darker".
 	bottom := aColor.
@@ -624,11 +476,8 @@ GLMWhitespaceTheme>>glamorousNormalFillStyleWithBaseColor: aColor for: aMorph he
 		radial: false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>glamorousThickBorderFor: aWindow [
+{ #category : #private }
+GLMWhitespaceTheme >> glamorousThickBorderFor: aWindow [
 	| aStyle desiredColor |
 	"Color lightGray is the color with which SystemWindow initializes the border color.
 	If it is the default, we override it with the theme specific color.
@@ -646,47 +495,32 @@ GLMWhitespaceTheme>>glamorousThickBorderFor: aWindow [
 	^ aStyle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>glamorousVisibleFillStyleFor: aMorph height: anInteger [
+{ #category : #private }
+GLMWhitespaceTheme >> glamorousVisibleFillStyleFor: aMorph height: anInteger [
 	"Return the normal button fillStyle for the given morph."
 
 	^ SolidFillStyle color: (self glamorousLightColorFor: aMorph)
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>groupPanelBorderStyleFor: aGroupPanel [
+{ #category : #border-styles }
+GLMWhitespaceTheme >> groupPanelBorderStyleFor: aGroupPanel [
 	"Answer the normal border style for a group panel."
 
 	^ self glamorousNoBorderFor: aGroupPanel
 ]
 
-{
-	#category : #'growl - specific',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>growlBorderColorFor: aGrowlMorph [
+{ #category : #'growl - specific' }
+GLMWhitespaceTheme >> growlBorderColorFor: aGrowlMorph [
 	^ self glamorousThickBorderFor: aGrowlMorph 
 ]
 
-{
-	#category : #'growl - specific',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>growlContentsColorFor: aGrowlMorph [
+{ #category : #'growl - specific' }
+GLMWhitespaceTheme >> growlContentsColorFor: aGrowlMorph [
 	^ Color black
 ]
 
-{
-	#category : #'growl - specific',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>growlDismissHandleFor: aGrowlMorph [
+{ #category : #'growl - specific' }
+GLMWhitespaceTheme >> growlDismissHandleFor: aGrowlMorph [
 	| form image |
 	form := self windowCloseForm.
 	image := ImageMorph new.
@@ -695,38 +529,26 @@ GLMWhitespaceTheme>>growlDismissHandleFor: aGrowlMorph [
 	^ image
 ]
 
-{
-	#category : #'growl - specific',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>growlFillColorFor: aGrowlMorph [
+{ #category : #'growl - specific' }
+GLMWhitespaceTheme >> growlFillColorFor: aGrowlMorph [
 	^ Color white darker
 ]
 
-{
-	#category : #'growl - specific',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>growlLabelColorFor: aGrowlMorph [
+{ #category : #'growl - specific' }
+GLMWhitespaceTheme >> growlLabelColorFor: aGrowlMorph [
 	^ Color black
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>initialize [
+{ #category : #initialize-release }
+GLMWhitespaceTheme >> initialize [
 	"self beCurrent"
 
 	super initialize.
 	self windowActiveDropShadowStyle: #diffuse
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>initializeForms [
+{ #category : #initialize-release }
+GLMWhitespaceTheme >> initializeForms [
 	"Initialize the receiver's image forms."
 
 	|inactiveForm|
@@ -741,76 +563,52 @@ GLMWhitespaceTheme>>initializeForms [
 		at: #windowMaximizePassive put: inactiveForm
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>listDisabledFillStyleFor: aList [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> listDisabledFillStyleFor: aList [
 	"Return the disabled fillStyle for the given list."
 	
 	^ self textEditorDisabledFillStyleFor: aList
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>listNormalBorderStyleFor: aList [
+{ #category : #border-styles }
+GLMWhitespaceTheme >> listNormalBorderStyleFor: aList [
 	"Return the normal borderStyle for the given list"
 		
 	^ self glamorousNoBorderFor: aList
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>menuItemInDockingBarSelectedFillStyleFor: aMenuItem [
+{ #category : #fill-styles-buttons }
+GLMWhitespaceTheme >> menuItemInDockingBarSelectedFillStyleFor: aMenuItem [
 	"Answer the selected fill style to use for the given menu item that is in a docking bar."
 	^ self buttonSelectedFillStyleFor: aMenuItem
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>menuPinForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> menuPinForm [
 	"Answer the form to use for the pin button of a menu."
 
 	^ self iconNamed: #menuPinForm
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>morphTreeSplitterNormalFillStyleFor: aSplitter	 [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> morphTreeSplitterNormalFillStyleFor: aSplitter [	
 	^ SolidFillStyle color: Color transparent
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>morphTreeSplitterPressedFillStyleFor: aSplitter	 [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> morphTreeSplitterPressedFillStyleFor: aSplitter [	
 	^ self splitterPressedFillStyleFor: aSplitter
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>newCheckboxMarkerForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> newCheckboxMarkerForm [
 	"Answer a new checkbox marker form."
 
 	^ self iconNamed: #checkboxMarkerForm
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>newCloseControlIn: aThemedMorph for: aModel action: aValuable help: helpText [
+{ #category : #'morph creation' }
+GLMWhitespaceTheme >> newCloseControlIn: aThemedMorph for: aModel action: aValuable help: helpText [
 	"Answer a button for closing things."
 	
 	|form msb|
@@ -837,11 +635,8 @@ GLMWhitespaceTheme>>newCloseControlIn: aThemedMorph for: aModel action: aValuabl
 	^msb
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>newFocusIndicatorMorphFor: aMorph [
+{ #category : #'morph creation' }
+GLMWhitespaceTheme >> newFocusIndicatorMorphFor: aMorph [
 	"Answer a new focus indicator for the given morph."
 
 	|radius|
@@ -854,31 +649,22 @@ GLMWhitespaceTheme>>newFocusIndicatorMorphFor: aMorph [
 		bounds: aMorph focusBounds
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>newRadioButtonMarkerForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> newRadioButtonMarkerForm [
 	"Answer a new radio button marker form. We make it empty because we already have the selected radio button take care of the state."
 
 	^ self iconNamed: #radioButtonMarkerForm
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>newRadioMarkerForm [
+{ #category : #initialize-release }
+GLMWhitespaceTheme >> newRadioMarkerForm [
 	"Answer a new checkbox marker form."
 
 	^Form extent: 12@12 depth: 32
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>newTreeExpandedForm [
+{ #category : #initialize-release }
+GLMWhitespaceTheme >> newTreeExpandedForm [
 	"Answer a new form for an expanded tree item."
 
 	^(Form
@@ -888,11 +674,8 @@ GLMWhitespaceTheme>>newTreeExpandedForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>newTreeUnexpandedForm [
+{ #category : #initialize-release }
+GLMWhitespaceTheme >> newTreeUnexpandedForm [
 	"Answer a new form for an unexpanded tree item."
 
 	^(Form
@@ -902,31 +685,22 @@ GLMWhitespaceTheme>>newTreeUnexpandedForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>newWindowCloseForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> newWindowCloseForm [
 	"Answer a new form for a window close box."
 
 	^ self iconNamed: #windowCloseForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>newWindowCloseOverForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> newWindowCloseOverForm [
 	"Answer a new form for a window menu box."
 
 	^ self newWindowCloseForm
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>newWindowInactiveControlForm [
+{ #category : #initialize-release }
+GLMWhitespaceTheme >> newWindowInactiveControlForm [
 	"Answer a new form for an inactive window control box."
 
 	^(Form
@@ -936,71 +710,50 @@ GLMWhitespaceTheme>>newWindowInactiveControlForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>newWindowMaximizeForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> newWindowMaximizeForm [
 	"Answer a new form for a window maximize box."
 
 	^ self iconNamed: #windowMaximizeForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>newWindowMaximizeOverForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> newWindowMaximizeOverForm [
 	"Answer a new form for a window menu box."
 
 	^ self newWindowMaximizeForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>newWindowMenuForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> newWindowMenuForm [
 	"Answer a new form for a window menu box."
 
 	^ self iconNamed: #windowMenuForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>newWindowMenuPassiveForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> newWindowMenuPassiveForm [
 	"Answer a new form for a window menu box."
 
 	^ self iconNamed: #windowMenuInactiveForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>newWindowMinimizeForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> newWindowMinimizeForm [
 	"Answer a new form for a window minimize box."
 
 	^ self iconNamed: #windowMinimizeForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>newWindowMinimizeOverForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> newWindowMinimizeOverForm [
 	"Answer a new form for a window menu box."
 
 	^ self newWindowMinimizeForm
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>plainGroupPanelBorderStyleFor: aGroupPanel [
+{ #category : #border-styles }
+GLMWhitespaceTheme >> plainGroupPanelBorderStyleFor: aGroupPanel [
 	"Answer the normal border style for a plain group panel."
 
 	^SimpleBorder new
@@ -1008,56 +761,38 @@ GLMWhitespaceTheme>>plainGroupPanelBorderStyleFor: aGroupPanel [
 		baseColor: Color transparent
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>progressBarFillStyleFor: aProgressBar [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> progressBarFillStyleFor: aProgressBar [
 	^ self glamorousBasePassiveBackgroundColorFor: aProgressBar
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>progressBarProgressFillStyleFor: aProgressBar [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> progressBarProgressFillStyleFor: aProgressBar [
 	^ (self glamorousLightSelectionColorFor: aProgressBar)
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>progressFillStyleFor: aProgress [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> progressFillStyleFor: aProgress [
 	"Return the progress fillStyle for the given progress morph."
 	^ self windowActiveFillStyleFor: aProgress  
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>radioButtonForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> radioButtonForm [
 	"Answer the form to use for a normal radio button."
 
 	^ self iconNamed: #radioButtonUnselectedForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>radioButtonSelectedForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> radioButtonSelectedForm [
 	"Answer the form to use for a selected radio button."
 
 	^ self iconNamed: #radioButtonSelectedForm
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>resizerGripNormalFillStyleFor: aResizer [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> resizerGripNormalFillStyleFor: aResizer [
 	"Return the normal fillStyle for the given resizer.
 	For the moment, answer a transparent colour for no drawing,
 	non transparent to draw as normal."
@@ -1071,27 +806,18 @@ GLMWhitespaceTheme>>resizerGripNormalFillStyleFor: aResizer [
 	^SolidFillStyle color: Color red"
 ]
 
-{
-	#category : #themers,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>rubScrolledTextMorphThemer [
+{ #category : #themers }
+GLMWhitespaceTheme >> rubScrolledTextMorphThemer [
 	^ RubScrolledTextMorphThemerForGLMWhitespaceTheme new
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>scrollbarArrowOfDirection: aSymbol size: finalSizeInteger color: aColor [
+{ #category : #scrollbars }
+GLMWhitespaceTheme >> scrollbarArrowOfDirection: aSymbol size: finalSizeInteger color: aColor [
 	^ Form extent: 1@1
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>scrollbarNormalButtonFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+GLMWhitespaceTheme >> scrollbarNormalButtonFillStyleFor: aScrollbar [
 	"Return the normal scrollbar button fillStyle for the given scrollbar."
 	
 	^ self 
@@ -1099,21 +825,15 @@ GLMWhitespaceTheme>>scrollbarNormalButtonFillStyleFor: aScrollbar [
 		height: aScrollbar height
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>scrollbarNormalFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+GLMWhitespaceTheme >> scrollbarNormalFillStyleFor: aScrollbar [
 	"Return the normal scrollbar fillStyle for the given scrollbar."
 	
 	^ Color transparent
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>scrollbarNormalThumbBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+GLMWhitespaceTheme >> scrollbarNormalThumbBorderStyleFor: aScrollbar [
 	"Return the normal thumb borderStyle for the given scrollbar."
 
 	^ BorderStyle simple
@@ -1121,48 +841,33 @@ GLMWhitespaceTheme>>scrollbarNormalThumbBorderStyleFor: aScrollbar [
 		baseColor: Color transparent
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>scrollbarNormalThumbFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+GLMWhitespaceTheme >> scrollbarNormalThumbFillStyleFor: aScrollbar [
 	"Return the normal scrollbar fillStyle for the given scrollbar."
 	^ self 
 		glamorousVisibleFillStyleFor: aScrollbar 
 		height: aScrollbar height
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>scrollbarPagingAreaCornerStyleIn: aThemedMorph	 [
+{ #category : #border-styles-scrollbars }
+GLMWhitespaceTheme >> scrollbarPagingAreaCornerStyleIn: aThemedMorph [	
 	^#square
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>scrollbarThumbCornerStyleIn: aThemedMorph	 [
+{ #category : #border-styles-scrollbars }
+GLMWhitespaceTheme >> scrollbarThumbCornerStyleIn: aThemedMorph [	
 	^#square
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>separatorFillStyleFor: aSeparator [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> separatorFillStyleFor: aSeparator [
 	"Return the separator fillStyle for the given separator."
 	
 	^ SolidFillStyle color: (self glamorousBaseColorFor: aSeparator) darker
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>shStyleTable [
+{ #category : #defaults }
+GLMWhitespaceTheme >> shStyleTable [
 
 	^#(
 			"(symbol color [emphasisSymbolOrArray [textStyleName [pixelHeight]]])" 
@@ -1276,21 +981,15 @@ GLMWhitespaceTheme>>shStyleTable [
 
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>sliderDisabledFillStyleFor: aSlider [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> sliderDisabledFillStyleFor: aSlider [
 	"Return the disabled fillStyle for the given slider."
 	
 	^ self textEditorDisabledFillStyleFor: aSlider
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>splitterNormalFillStyleFor: aSplitter [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> splitterNormalFillStyleFor: aSplitter [
 	"Return the normal splitter fillStyle for the given splitter."
 	
 	^ self 
@@ -1298,69 +997,48 @@ GLMWhitespaceTheme>>splitterNormalFillStyleFor: aSplitter [
 		height: 1
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>splitterPressedFillStyleFor: aSplitter [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> splitterPressedFillStyleFor: aSplitter [
 	"Return the pressed splitter fillStyle for the given splitter."
 	
 	^ self splitterNormalFillStyleFor: aSplitter
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>subgroupColorFrom: paneColor [
+{ #category : #basic-colors }
+GLMWhitespaceTheme >> subgroupColorFrom: paneColor [
 	"Answer the colour for a subgroup given the pane colour."
 
 	^ self glamorousBaseColorFor: paneColor
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>tabLabelNormalBorderStyleFor: aTabLabel [
+{ #category : #border-styles }
+GLMWhitespaceTheme >> tabLabelNormalBorderStyleFor: aTabLabel [
 "	^SimpleBorder new
 		width: 0;
 		baseColor: (self buttonBaseColorFor: aTabLabel) darker
 "	^ self buttonNormalBorderStyleFor: aTabLabel
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>tabLabelNormalFillStyleFor: aTabLabel [
+{ #category : #fill-styles-buttons }
+GLMWhitespaceTheme >> tabLabelNormalFillStyleFor: aTabLabel [
 	^ self buttonNormalFillStyleFor: aTabLabel 
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>tabLabelSelectedFillStyleFor: aTabLabel [
+{ #category : #fill-styles-buttons }
+GLMWhitespaceTheme >> tabLabelSelectedFillStyleFor: aTabLabel [
 	^ self buttonSelectedFillStyleFor: aTabLabel 
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>tabPanelBorderStyleFor: aTabGroup [
+{ #category : #border-styles }
+GLMWhitespaceTheme >> tabPanelBorderStyleFor: aTabGroup [
 	^ GLMTabPanelBorder new 
 		width: 1;
 		baseColor: (self glamorousLightColorFor: aTabGroup);
 		tabSelector: aTabGroup tabSelectorMorph
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>taskbarButtonLabelColorFor: aButton [
+{ #category : #basic-colors }
+GLMWhitespaceTheme >> taskbarButtonLabelColorFor: aButton [
 	"Answer the colour for the label of the given taskbar button."
 
 	^aButton model
@@ -1371,213 +1049,147 @@ GLMWhitespaceTheme>>taskbarButtonLabelColorFor: aButton [
 				ifFalse: [Color gray darker]]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>taskbarFillStyleFor: aTaskbar [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> taskbarFillStyleFor: aTaskbar [
 	^ "self buttonNormalFillStyleFor: aTaskbar"
 	SolidFillStyle color: Color transparent 
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>taskbarThumbnailCornerStyleFor: aMorph [
+{ #category : #border-styles }
+GLMWhitespaceTheme >> taskbarThumbnailCornerStyleFor: aMorph [
 	"Answer the corner style for the taskbar thumbnail/tasklist."
 	
 	^#square
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>taskbarThumbnailNormalBorderStyleFor: aWindow [
+{ #category : #border-styles }
+GLMWhitespaceTheme >> taskbarThumbnailNormalBorderStyleFor: aWindow [
 	^ self buttonNormalBorderStyleFor: aWindow
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>textEditorDisabledFillStyleFor: aTextEditor [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> textEditorDisabledFillStyleFor: aTextEditor [
 	"Return the disabled fillStyle for the given text editor."
 	
 	^self glamorousBasePassiveBackgroundColorFor: aTextEditor
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>textEditorNormalBorderStyleFor: aTextEditor [
+{ #category : #border-styles }
+GLMWhitespaceTheme >> textEditorNormalBorderStyleFor: aTextEditor [
 	"Return the normal text editor borderStyle for the given text editor."
 
 	^ self glamorousLightBorderStyleFor: aTextEditor
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>treeLineWidth [
+{ #category : #basic-colors }
+GLMWhitespaceTheme >> treeLineWidth [
 	"Answer the width of the tree lines."
 
 	^0
 ]
 
-{
-	#category : #'watcher window',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>watcherWindowActiveFillStyleFor: aWindow [
+{ #category : #'watcher window' }
+GLMWhitespaceTheme >> watcherWindowActiveFillStyleFor: aWindow [
 
 	^ SolidFillStyle color: (Color veryVeryLightGray alpha: 0.6)
 ]
 
-{
-	#category : #'watcher window',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>watcherWindowInactiveFillStyleFor: aWindow [
+{ #category : #'watcher window' }
+GLMWhitespaceTheme >> watcherWindowInactiveFillStyleFor: aWindow [
 
 	^ SolidFillStyle color: (Color veryVeryLightGray alpha: 0.6)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>windowActiveDropShadowStyle: anObject [
+{ #category : #accessing }
+GLMWhitespaceTheme >> windowActiveDropShadowStyle: anObject [
 	"Set the value of windowActiveDropShadowStyle"
 	windowActiveDropShadowStyle := anObject
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>windowActiveFillStyleFor: aWindow [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> windowActiveFillStyleFor: aWindow [
 	"We do not want the lighting effect when the window goes inactive"
 	"^ SolidFillStyle color: (self class lightBaseColor)"
 	
 	^ SolidFillStyle color: (self glamorousBaseColorFor: aWindow)
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>windowActiveTitleFillStyleFor: aWindow [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> windowActiveTitleFillStyleFor: aWindow [
 	^ SolidFillStyle color: (self glamorousDarkBaseColorFor: aWindow)
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>windowCloseOverForm [
+{ #category : #label-styles }
+GLMWhitespaceTheme >> windowCloseOverForm [
 	"Answer the form to use for mouse over window close buttons"
 
 	^self forms at: #windowCloseOver ifAbsent: [Form extent: 16@16 depth: Display depth]
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>windowClosePassiveForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> windowClosePassiveForm [
 	"Answer the form to use for passive (background) window close buttons"
 
 	^ self iconNamed: #windowCloseInactiveForm
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>windowEdgeNormalFillStyleFor: anEdgeGrip [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> windowEdgeNormalFillStyleFor: anEdgeGrip [
 	"Return the normal window edge fillStyle for the given edge grip."
 	self flag: 'this is used for the long edges'.
 	^ super windowEdgeNormalFillStyleFor: anEdgeGrip
 	"self glamorousDarkBaseColorFor: anEdgeGrip"
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>windowInactiveFillStyleFor: aWindow [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> windowInactiveFillStyleFor: aWindow [
 	"We do not want the lighting effect when the window goes inactive"
 	^self windowActiveFillStyleFor: aWindow
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>windowInactiveTitleFillStyleFor: aWindow [
+{ #category : #fill-styles }
+GLMWhitespaceTheme >> windowInactiveTitleFillStyleFor: aWindow [
 	"We do not want the lighting effect when the window goes inactive"
 	^ SolidFillStyle color: Color transparent
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>windowMaximizeOverForm [
+{ #category : #label-styles }
+GLMWhitespaceTheme >> windowMaximizeOverForm [
 	"Answer the form to use for mouse over window maximize buttons"
 
 	^self forms at: #windowMaximizeOver ifAbsent: [Form extent: 16@16 depth: Display depth]
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>windowMaximizePassiveForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> windowMaximizePassiveForm [
 	"Answer the form to use for passive (background) window maximize/restore buttons"
 
 	^ self iconNamed: #windowMaximizeInactiveForm
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>windowMenuPassiveForm [
+{ #category : #label-styles }
+GLMWhitespaceTheme >> windowMenuPassiveForm [
 	"Answer the form to use for passive (background) window menu buttons"
 
 	^self newWindowMenuPassiveForm
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>windowMinimizeOverForm [
+{ #category : #label-styles }
+GLMWhitespaceTheme >> windowMinimizeOverForm [
 	"Answer the form to use for mouse over window minimize buttons"
 
 	^self forms at: #windowMinimizeOver ifAbsent: [Form extent: 16@16 depth: Display depth]
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>windowMinimizePassiveForm [
+{ #category : #forms }
+GLMWhitespaceTheme >> windowMinimizePassiveForm [
 	"Answer the form to use for passive (background) window minimize buttons"
 
 	^ self iconNamed: #windowMinimizeInactiveForm
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWhitespaceTheme>>windowShadowColor [
+{ #category : #defaults }
+GLMWhitespaceTheme >> windowShadowColor [
 	"Answer the window shadow color to use."
 
 	^ Color transparent

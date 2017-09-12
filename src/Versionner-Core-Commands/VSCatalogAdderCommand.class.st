@@ -6,23 +6,16 @@ A VSCatalogAdderCommand adds methods to ConfigurationOf class to declare catalog
 Class {
 	#name : #VSCatalogAdderCommand,
 	#superclass : #VSConfigurationCommand,
-	#category : #Versionner-Core-Commands,
-	#timestamp : 'ChristopheDemarey 2/14/2014 17:53'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>configurationMetaclass [
+{ #category : #accessing }
+VSCatalogAdderCommand >> configurationMetaclass [
 	^ self configurationClass class
 ]
 
-{
-	#category : #'metadata methods defintion',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>defineCatalogDescriptionTemplate [
+{ #category : #'metadata methods defintion' }
+VSCatalogAdderCommand >> defineCatalogDescriptionTemplate [
 	self configurationMetaclass
 		compile: 'catalogDescription
 	"Returns a paragraph describing the project"
@@ -30,11 +23,8 @@ VSCatalogAdderCommand>>defineCatalogDescriptionTemplate [
 		classified: 'catalog'
 ]
 
-{
-	#category : #'metadata methods defintion',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>defineChangeLogTemplate [
+{ #category : #'metadata methods defintion' }
+VSCatalogAdderCommand >> defineChangeLogTemplate [
 
 	self configurationMetaclass 
 		compile: 'catalogChangeLog
@@ -50,11 +40,8 @@ or simply
 		classified: 'catalog'
 ]
 
-{
-	#category : #'metadata methods defintion',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>defineContactInfoTemplate [
+{ #category : #'metadata methods defintion' }
+VSCatalogAdderCommand >> defineContactInfoTemplate [
 
 	self configurationMetaclass 
 		compile: 'catalogContactInfo
@@ -63,11 +50,8 @@ VSCatalogAdderCommand>>defineContactInfoTemplate [
 		classified: 'catalog'
 ]
 
-{
-	#category : #'metadata methods defintion',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>defineKeyClassesTemplate [
+{ #category : #'metadata methods defintion' }
+VSCatalogAdderCommand >> defineKeyClassesTemplate [
 
 	self configurationMetaclass 
 		compile: 'catalogKeyClassesAndExample
@@ -78,11 +62,8 @@ VSCatalogAdderCommand>>defineKeyClassesTemplate [
 		classified: 'catalog'
 ]
 
-{
-	#category : #'metadata methods defintion',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>defineKeywordsTemplate [
+{ #category : #'metadata methods defintion' }
+VSCatalogAdderCommand >> defineKeywordsTemplate [
 
 	self configurationMetaclass 
 		compile: 'catalogKeywords
@@ -91,60 +72,42 @@ VSCatalogAdderCommand>>defineKeywordsTemplate [
 		classified: 'catalog'
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>ensureCatalogDescription [
+{ #category : #execute }
+VSCatalogAdderCommand >> ensureCatalogDescription [
 
 	^ self hasCatalogDescription 
 		ifFalse: [ self defineCatalogDescriptionTemplate ]
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>ensureChangeLog [
+{ #category : #execute }
+VSCatalogAdderCommand >> ensureChangeLog [
 	^ self hasChangeLog 
 		ifFalse: [ self defineChangeLogTemplate ]
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>ensureContactInfo [
+{ #category : #execute }
+VSCatalogAdderCommand >> ensureContactInfo [
 
 	^ self hasContactInfo 
 		ifFalse: [ self defineContactInfoTemplate ]
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>ensureKeyClasses [
+{ #category : #execute }
+VSCatalogAdderCommand >> ensureKeyClasses [
 
 	^ self hasKeyClasses
 		ifFalse: [ self defineKeyClassesTemplate ]
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>ensureKeywords [
+{ #category : #execute }
+VSCatalogAdderCommand >> ensureKeywords [
 
 	^ self hasKeywords 
 		ifFalse: [ self defineKeywordsTemplate ]
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>execute [
+{ #category : #execute }
+VSCatalogAdderCommand >> execute [
 	self 
 		ensureChangeLog;
 		ensureCatalogDescription ;
@@ -153,55 +116,37 @@ VSCatalogAdderCommand>>execute [
 		ensureKeywords 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>hasCatalogDescription [
+{ #category : #testing }
+VSCatalogAdderCommand >> hasCatalogDescription [
 
 	^ (self configurationClass includesSelector: #catalogDescription) 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>hasChangeLog [
+{ #category : #testing }
+VSCatalogAdderCommand >> hasChangeLog [
 
 	^ (self configurationClass includesSelector: #catalogChangeLog) 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>hasContactInfo [
+{ #category : #testing }
+VSCatalogAdderCommand >> hasContactInfo [
 
 	^ (self configurationClass includesSelector: #catalogContactInfo) 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>hasKeyClasses [
+{ #category : #testing }
+VSCatalogAdderCommand >> hasKeyClasses [
 
 	^ (self configurationClass includesSelector: #catalogKeyClassesAndExample) 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>hasKeywords [
+{ #category : #testing }
+VSCatalogAdderCommand >> hasKeywords [
 
 	^ (self configurationClass includesSelector: #catalogKeywords) 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSCatalogAdderCommand>>title [
+{ #category : #accessing }
+VSCatalogAdderCommand >> title [
 	^ 'add catalog methods'
 ]

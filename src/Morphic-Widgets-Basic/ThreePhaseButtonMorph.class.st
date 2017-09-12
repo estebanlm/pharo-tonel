@@ -25,15 +25,11 @@ Class {
 		'arguments',
 		'actWhen'
 	],
-	#category : #Morphic-Widgets-Basic-Buttons,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Basic-Buttons
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph class>>checkBox [
+{ #category : #'instance creation' }
+ThreePhaseButtonMorph class >> checkBox [
 	"Answer a button pre-initialized with checkbox images."
 
 	| f |
@@ -45,11 +41,8 @@ ThreePhaseButtonMorph class>>checkBox [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph class>>radioButton [
+{ #category : #'instance creation' }
+ThreePhaseButtonMorph class >> radioButton [
 	"Answer a button pre-initialized with radiobutton images."
 
 	| f |
@@ -61,30 +54,21 @@ ThreePhaseButtonMorph class>>radioButton [
 		yourself
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>actWhen: condition [
+{ #category : #submorphs-add/remove }
+ThreePhaseButtonMorph >> actWhen: condition [
 	"Accepts symbols:  #buttonDown, #buttonUp, and #whilePressed"
 	actWhen := condition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>actionSelector [
+{ #category : #accessing }
+ThreePhaseButtonMorph >> actionSelector [
 
 	^ actionSelector
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>actionSelector: aSymbolOrString [
+{ #category : #accessing }
+ThreePhaseButtonMorph >> actionSelector: aSymbolOrString [
 
 	(nil = aSymbolOrString or:
 	 ['nil' = aSymbolOrString or:
@@ -95,29 +79,20 @@ ThreePhaseButtonMorph>>actionSelector: aSymbolOrString [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>arguments [
+{ #category : #accessing }
+ThreePhaseButtonMorph >> arguments [
 	^ arguments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>arguments: aCollection [
+{ #category : #accessing }
+ThreePhaseButtonMorph >> arguments: aCollection [
 
 	arguments := aCollection asArray copy.
 
 ]
 
-{
-	#category : #button,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>doButtonAction [
+{ #category : #button }
+ThreePhaseButtonMorph >> doButtonAction [
 	"Perform the action of this button. Subclasses may override this method. The default behavior is to send the button's actionSelector to its target object with its arguments."
 
 	(target notNil and: [actionSelector notNil]) 
@@ -127,11 +102,8 @@ ThreePhaseButtonMorph>>doButtonAction [
 			target isMorph ifTrue: [target changed]]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>doButtonAction: evt [
+{ #category : #'event handling' }
+ThreePhaseButtonMorph >> doButtonAction: evt [
 	
 	"Perform the action of this button. Subclasses may override this method. The default behavior is to send the button's actionSelector to its target object with its arguments."
 
@@ -147,11 +119,8 @@ ThreePhaseButtonMorph>>doButtonAction: evt [
 	]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+ThreePhaseButtonMorph >> drawOn: aCanvas [
 
 	state == #off ifTrue: [
 		offImage ifNotNil: [aCanvas translucentImage: offImage at: bounds origin]].
@@ -161,11 +130,8 @@ ThreePhaseButtonMorph>>drawOn: aCanvas [
 		image ifNotNil: [aCanvas translucentImage: image at: bounds origin]].
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>extent: aPoint [
+{ #category : #geometry }
+ThreePhaseButtonMorph >> extent: aPoint [
 	"Do it normally"
 	
 	self changed.
@@ -175,47 +141,32 @@ ThreePhaseButtonMorph>>extent: aPoint [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>handlesMouseDown: evt [
+{ #category : #'event handling' }
+ThreePhaseButtonMorph >> handlesMouseDown: evt [
 
 	^ true
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>handlesMouseStillDown: evt [
+{ #category : #'event handling' }
+ThreePhaseButtonMorph >> handlesMouseStillDown: evt [
 	^actWhen == #whilePressed
 ]
 
-{
-	#category : #balloon,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>helpText [
+{ #category : #balloon }
+ThreePhaseButtonMorph >> helpText [
 	
 	^self balloonText
 ]
 
-{
-	#category : #balloon,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>helpText: aString [
+{ #category : #balloon }
+ThreePhaseButtonMorph >> helpText: aString [
 
 	self setBalloonText: aString
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>initialize [
+{ #category : #initialization }
+ThreePhaseButtonMorph >> initialize [
 
 	super initialize.
 	state := #off.
@@ -228,19 +179,13 @@ ThreePhaseButtonMorph>>initialize [
 		"real move should include a call on dragIfAuthoring: "
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>isOn [
+{ #category : #testing }
+ThreePhaseButtonMorph >> isOn [
 	^ state == #on
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>mouseDown: evt [
+{ #category : #'event handling' }
+ThreePhaseButtonMorph >> mouseDown: evt [
 	| now dt |
 	self state: #pressed.
 	actWhen == #buttonDown
@@ -255,11 +200,8 @@ ThreePhaseButtonMorph>>mouseDown: evt [
 	self mouseStillDown: evt.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>mouseMove: evt [
+{ #category : #'event handling' }
+ThreePhaseButtonMorph >> mouseMove: evt [
 	(self containsPoint: evt cursorPoint)
 		ifTrue: [self state: #pressed.
 				super mouseMove: evt]
@@ -268,20 +210,14 @@ ThreePhaseButtonMorph>>mouseMove: evt [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>mouseStillDown: evt [
+{ #category : #'event handling' }
+ThreePhaseButtonMorph >> mouseStillDown: evt [
 	actWhen == #whilePressed ifFalse:[^self].
 	(self containsPoint: evt cursorPoint) ifTrue:[self doButtonAction].
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>mouseUp: evt [
+{ #category : #'event handling' }
+ThreePhaseButtonMorph >> mouseUp: evt [
 	"Allow on:send:to: to set the response to events other than actWhen"
 	actWhen == #buttonUp ifFalse: [^super mouseUp: evt].
 
@@ -295,64 +231,43 @@ ThreePhaseButtonMorph>>mouseUp: evt [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>offImage [
+{ #category : #accessing }
+ThreePhaseButtonMorph >> offImage [
 	^ offImage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>offImage: aForm [
+{ #category : #accessing }
+ThreePhaseButtonMorph >> offImage: aForm [
 	offImage := aForm.
 	self invalidRect: self bounds.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>onImage [
+{ #category : #accessing }
+ThreePhaseButtonMorph >> onImage [
 	^ image
 ]
 
-{
-	#category : #button,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>onImage: aForm [
+{ #category : #button }
+ThreePhaseButtonMorph >> onImage: aForm [
 	"The main image is used when on.
 	Go through ImageMorph method to set extent."
 	
 	self image: aForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>pressedImage [
+{ #category : #accessing }
+ThreePhaseButtonMorph >> pressedImage [
 	^ pressedImage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>pressedImage: aForm [
+{ #category : #accessing }
+ThreePhaseButtonMorph >> pressedImage: aForm [
 	pressedImage := aForm.
 	self invalidRect: self bounds.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>printOn: aStream  [
+{ #category : #printing }
+ThreePhaseButtonMorph >> printOn: aStream [ 
 	| string |
 	aStream nextPutAll: '3PButton'.
 	arguments notEmpty 
@@ -372,11 +287,8 @@ ThreePhaseButtonMorph>>printOn: aStream  [
 		nextPutAll: ')'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>state: newState [
+{ #category : #accessing }
+ThreePhaseButtonMorph >> state: newState [
 	"Change the image and invalidate the rect."
 
 	newState == state ifTrue: [^ self].
@@ -384,51 +296,36 @@ ThreePhaseButtonMorph>>state: newState [
 	self invalidRect: bounds.	"All three images must be the same size"
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>step [
+{ #category : #'stepping and presenter' }
+ThreePhaseButtonMorph >> step [
 	(self hasProperty: #doesButtonAction) ifTrue:[
 		self doButtonAction.
 		self setProperty: #didButtonAction toValue: true.
 	].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>stepTime [
+{ #category : #testing }
+ThreePhaseButtonMorph >> stepTime [
 	(self hasProperty: #doesButtonAction) ifTrue:[^1].
 	^super stepTime
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>target [
+{ #category : #accessing }
+ThreePhaseButtonMorph >> target [
 
 	^ target
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>target: anObject [
+{ #category : #accessing }
+ThreePhaseButtonMorph >> target: anObject [
 
 	target := anObject
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>veryDeepFixupWith: deepCopier [
+{ #category : #copying }
+ThreePhaseButtonMorph >> veryDeepFixupWith: deepCopier [
 	"If target and arguments fields were weakly copied, fix them here.  If they were in the tree being copied, fix them up, otherwise point to the originals!!"
 
 super veryDeepFixupWith: deepCopier.
@@ -438,11 +335,8 @@ arguments := arguments collect: [:each |
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>veryDeepInner: deepCopier [
+{ #category : #copying }
+ThreePhaseButtonMorph >> veryDeepInner: deepCopier [
 	"Copy all of my instance variables.  Some need to be not copied at all, but shared.  	Warning!!  Every instance variable defined in this class must be handled.  We must also implement veryDeepFixupWith:.  See DeepCopier class comment."
 
 super veryDeepInner: deepCopier.
@@ -455,10 +349,7 @@ state := state veryDeepCopyWith: deepCopier.
 actWhen := actWhen.		"Symbol"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ThreePhaseButtonMorph>>wantsSteps [
+{ #category : #testing }
+ThreePhaseButtonMorph >> wantsSteps [
 	^self hasProperty: #doesButtonAction
 ]

@@ -25,52 +25,36 @@ Class {
 		'workingCopy',
 		'trimVersionLists'
 	],
-	#category : #Versionner-Core-Model,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo class>>configurationClass: aConfiguration [
+{ #category : #'instance creation' }
+MBConfigurationInfo class >> configurationClass: aConfiguration [
 	^ super new 
 		configurationClass: aConfiguration;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo class>>helpLabel [
+{ #category : #accessing }
+MBConfigurationInfo class >> helpLabel [
 
 	^'Configuration'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo class>>new [
+{ #category : #'instance creation' }
+MBConfigurationInfo class >> new [
 	self error: 'Please, use #configuration: to instantiate ', self name printString
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>baselines  [
+{ #category : #accessing-computed }
+MBConfigurationInfo >> baselines [ 
 	baselines ifNotNil: [ ^baselines ].
 	baselines := self baselinesFor: self project.
 	^baselines 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>baselinesFor: aMetacelloProject [
+{ #category : #accessing }
+MBConfigurationInfo >> baselinesFor: aMetacelloProject [
 	"Return the list of  BaselineInfo for the configuration class passed as parameter"
 
 	"The returned collection is ordered. Labeled baselines are first, numbered baselines are last"
@@ -87,21 +71,15 @@ MBConfigurationInfo>>baselinesFor: aMetacelloProject [
 	^ labeledBaselines asArray , numberedBaselines asArray reversed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>branch [
+{ #category : #accessing }
+MBConfigurationInfo >> branch [
 
 	branch ifNil: [ branch := self extractBranchFrom: self workingCopy ].
 	^branch
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>buildStringOrText [
+{ #category : #converting }
+MBConfigurationInfo >> buildStringOrText [
 	| string cv specVersion attributes wc |
 	attributes := OrderedCollection new.
 	[ string := super buildStringOrText ]
@@ -126,11 +104,8 @@ MBConfigurationInfo>>buildStringOrText [
 	^ string
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>calculateInfoList [
+{ #category : #private }
+MBConfigurationInfo >> calculateInfoList [
 	| answer list cvs cv |
 	answer := OrderedCollection new.
 	[self project ifNil: [ ^answer ]] on: Error do: [:ex | ^answer ].
@@ -160,154 +135,103 @@ MBConfigurationInfo>>calculateInfoList [
 	^ answer
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>cmdBrowseConfiguration [
+{ #category : #commands }
+MBConfigurationInfo >> cmdBrowseConfiguration [
 	<command>
 	^ VSBrowseConfigurationCommand
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>cmdCatalogAdder [
+{ #category : #commands }
+MBConfigurationInfo >> cmdCatalogAdder [
 	<command>
 	^ VSCatalogAdderCommand
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>cmdCommitMajorVersion [
+{ #category : #commands }
+MBConfigurationInfo >> cmdCommitMajorVersion [
 	<command>
 	^ VSCommitMajorCommand
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>cmdCommitMinorVersion [
+{ #category : #commands }
+MBConfigurationInfo >> cmdCommitMinorVersion [
 	<command>
 	^ VSCommitMinorCommand
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>cmdCommitPatchVersion [
+{ #category : #commands }
+MBConfigurationInfo >> cmdCommitPatchVersion [
 	<command>
 	^ VSCommitPatchCommand
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>cmdOpenRepository [
+{ #category : #commands }
+MBConfigurationInfo >> cmdOpenRepository [
 	<command>
 	^ VSOpenRepositoryCommand
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>cmdSaveConfiguration [
+{ #category : #commands }
+MBConfigurationInfo >> cmdSaveConfiguration [
 	<command>
 	^ MBSaveConfigurationCommand
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>cmdUnloadConfiguration [
+{ #category : #commands }
+MBConfigurationInfo >> cmdUnloadConfiguration [
 	<command>
 	^ VSUnloadConfigurationCommand
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>cmdUpdateFromItsRepository [
+{ #category : #commands }
+MBConfigurationInfo >> cmdUpdateFromItsRepository [
 	<command>
 	^ VSUpdateFromItsRepositoryCommand
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>cmdValidateConfiguration [
+{ #category : #commands }
+MBConfigurationInfo >> cmdValidateConfiguration [
 	<command>
 	^ VSValidateConfigurationCommand
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>configurationClass [
+{ #category : #accessing }
+MBConfigurationInfo >> configurationClass [
 	"Returns the class configurationOfXXX associted to the configuration info (wrapper for the UI)"
 
 	^ configurationClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>configurationClass: aConfigurationClass [
+{ #category : #accessing }
+MBConfigurationInfo >> configurationClass: aConfigurationClass [
 	configurationClass := aConfigurationClass.
 	self name: configurationClass name asString
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>configurationClassModified [
+{ #category : #updating }
+MBConfigurationInfo >> configurationClassModified [
 
 	self fullRecalculate 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>configurationInfo [
+{ #category : #accessing }
+MBConfigurationInfo >> configurationInfo [
 
 	^self 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>configurationRoot [
+{ #category : #accessing }
+MBConfigurationInfo >> configurationRoot [
 	^ configurationRoot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>configurationRoot: anObject [
+{ #category : #accessing }
+MBConfigurationInfo >> configurationRoot: anObject [
 	configurationRoot := anObject
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>currentVersion [
+{ #category : #accessing-computed }
+MBConfigurationInfo >> currentVersion [
 	"Return the currentVersion of the configuration ... nil if not loaded."
 
 	currentVersion == #notLoaded
@@ -325,11 +249,8 @@ MBConfigurationInfo>>currentVersion [
 	^ currentVersion
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>currentVersion: aVersion [
+{ #category : #accessing-computed }
+MBConfigurationInfo >> currentVersion: aVersion [
 
 	currentVersion  := aVersion.
 	branch := baselines := versions := infoList := packages := projects := groups := text := nil.
@@ -338,20 +259,14 @@ MBConfigurationInfo>>currentVersion: aVersion [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>currentVersionMismatch [
+{ #category : #testing }
+MBConfigurationInfo >> currentVersionMismatch [
 	^ (self projects anySatisfy: [ :each | each currentVersionMismatch ])
 		or: [ self packages anySatisfy: [ :each | each currentVersionMismatch ] ]
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>extractBranchFrom: aWorkingCopy [
+{ #category : #utils }
+MBConfigurationInfo >> extractBranchFrom: aWorkingCopy [
 	| ref |
 	(aWorkingCopy isNil or: [ aWorkingCopy ancestors isEmpty ])
 		ifTrue: [ ^ '' ].
@@ -359,11 +274,8 @@ MBConfigurationInfo>>extractBranchFrom: aWorkingCopy [
 	^ ref branch
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>fullRecalculate [
+{ #category : #updating }
+MBConfigurationInfo >> fullRecalculate [
 
 	super fullRecalculate.
 	(currentVersion == #recalculate or: [ currentVersion isNil ]) ifTrue: [^self ].
@@ -371,31 +283,22 @@ MBConfigurationInfo>>fullRecalculate [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>hasVersion: aVersionString [
+{ #category : #testing }
+MBConfigurationInfo >> hasVersion: aVersionString [
  	[ self project version: aVersionString ]
 		on: MetacelloSymbolicVersionDoesNotExistError
 		do:  [ ^ false ].
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>isDirty [
+{ #category : #testing }
+MBConfigurationInfo >> isDirty [
 	| wc |
 	^ [super isDirty or: [ (wc := self workingCopy) notNil and: [ wc needsSaving ]]] on:Error do:[false].
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>printOn: aStream [
+{ #category : #printing }
+MBConfigurationInfo >> printOn: aStream [
 	| cv nameString wc refString branchString |
 	[self name
 		ifNil: [ 
@@ -414,32 +317,23 @@ MBConfigurationInfo>>printOn: aStream [
 	aStream nextPutAll: refString.] on:Error do:[].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>project [
+{ #category : #accessing }
+MBConfigurationInfo >> project [
 	"Answer the MetacelloProject associated with the receiver."
 
 	^ self configurationClass project
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>recalculate [
+{ #category : #updating }
+MBConfigurationInfo >> recalculate [
 	branch := workingCopy := baselines := versions := nil.
 	super recalculate.
 	self configurationRoot announcer announce: (MBConfigurationInfoChanged changed: self).
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>recalculateIfInterestedInConfigurationInfo: configInfo for: operation [
+{ #category : #updating }
+MBConfigurationInfo >> recalculateIfInterestedInConfigurationInfo: configInfo for: operation [
 
 	projects ifNil: [ ^self ].
 	self projects detect: [ :info | info interestedInConfigurationInfo: configInfo ] ifNone: [ ^self ].
@@ -447,11 +341,8 @@ MBConfigurationInfo>>recalculateIfInterestedInConfigurationInfo: configInfo for:
 	self configurationRoot announcer announce: (MBConfigurationInfoChanged changed: self)
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>recalculateIfInterestedInPackageNamed: packageName for: operation [
+{ #category : #updating }
+MBConfigurationInfo >> recalculateIfInterestedInPackageNamed: packageName for: operation [
 	| recalculate |
 	recalculate := super recalculateIfInterestedInPackageNamed: packageName for: operation.
 	(recalculate not and: [ baselines notNil ])
@@ -469,31 +360,22 @@ MBConfigurationInfo>>recalculateIfInterestedInPackageNamed: packageName for: ope
 			self fullRecalculate ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>recalculateSilently [
+{ #category : #updating }
+MBConfigurationInfo >> recalculateSilently [
 	branch := workingCopy := baselines := versions := nil.
 	super recalculate.
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>release [
+{ #category : #initialize-release }
+MBConfigurationInfo >> release [
 
 	baselines := versions := nil.
 	super release.	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>repositories [
+{ #category : #accessing }
+MBConfigurationInfo >> repositories [
 	"Return the repositories associated with the configuration."
 	| mcPackage |
 	
@@ -504,11 +386,8 @@ MBConfigurationInfo>>repositories [
 		ifNotNil: [ :wc | wc repositoryGroup repositories ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>trimVersionInfos: versionInfos [
+{ #category : #private }
+MBConfigurationInfo >> trimVersionInfos: versionInfos [
 
 	| trimmed count marker cv |
 	self trimVersionLists ifFalse: [ ^versionInfos ].
@@ -528,30 +407,21 @@ MBConfigurationInfo>>trimVersionInfos: versionInfos [
 	^trimmed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>trimVersionLists [
+{ #category : #accessing }
+MBConfigurationInfo >> trimVersionLists [
 
 	trimVersionLists == nil ifTrue: [ trimVersionLists := true ].
 	^trimVersionLists
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>trimVersionLists: aBool [
+{ #category : #accessing }
+MBConfigurationInfo >> trimVersionLists: aBool [
 
 	trimVersionLists := aBool
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>validate [
+{ #category : #actions }
+MBConfigurationInfo >> validate [
 	validationResult == nil
 		ifTrue: [ 
 			validationIcon := nil.
@@ -559,11 +429,8 @@ MBConfigurationInfo>>validate [
 	^ validationResult
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>validateFull [
+{ #category : #actions }
+MBConfigurationInfo >> validateFull [
 
 	infoList := baselines := versions := nil.
 	(self baselines, self versions) do: [:version | version validateFull ].
@@ -571,29 +438,20 @@ MBConfigurationInfo>>validateFull [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>version [
+{ #category : #accessing }
+MBConfigurationInfo >> version [
 
 	^self currentVersion
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>versionForInfoList [
+{ #category : #accessing-computed }
+MBConfigurationInfo >> versionForInfoList [
 
 	^self currentVersion 
 ]
 
-{
-	#category : #accessing-computed,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>versions [
+{ #category : #accessing-computed }
+MBConfigurationInfo >> versions [
 	"Return the versions of the configuration"
 	| versionList devVersionString |
 	
@@ -610,11 +468,8 @@ MBConfigurationInfo>>versions [
 	^ versions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationInfo>>workingCopy [
+{ #category : #accessing }
+MBConfigurationInfo >> workingCopy [
 	| pkg |
 	workingCopy ~~ nil ifTrue: [ ^workingCopy ].
 	pkg := MCPackage named: self configurationClass category asString.

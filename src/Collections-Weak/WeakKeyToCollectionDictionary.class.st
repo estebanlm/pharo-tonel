@@ -5,23 +5,16 @@ Keys not in the dictionary are mapped to the empty collection.  Conversely, if a
 Class {
 	#name : #WeakKeyToCollectionDictionary,
 	#superclass : #WeakIdentityKeyDictionary,
-	#category : #Collections-Weak,
-	#timestamp : '<historical>'
+	#category : #Collections-Weak
 }
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyToCollectionDictionary>>finalizeValues  [
+{ #category : #finalization }
+WeakKeyToCollectionDictionary >> finalizeValues [ 
 	self rehash
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyToCollectionDictionary>>noCheckAddForRehash: anAssociation [
+{ #category : #private }
+WeakKeyToCollectionDictionary >> noCheckAddForRehash: anAssociation [
 	| cleanedValue |
 	anAssociation key ifNil:[^self].
 	cleanedValue := anAssociation value copyWithout: nil.
@@ -31,11 +24,8 @@ WeakKeyToCollectionDictionary>>noCheckAddForRehash: anAssociation [
 	].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyToCollectionDictionary>>noCheckNoGrowFillFrom: anArray [
+{ #category : #private }
+WeakKeyToCollectionDictionary >> noCheckNoGrowFillFrom: anArray [
 	"Add the elements of anArray except nils and associations with empty collections (or with only nils) to me assuming that I don't contain any of them, they are unique and I have more free space than they require."
 
 	tally := 0.

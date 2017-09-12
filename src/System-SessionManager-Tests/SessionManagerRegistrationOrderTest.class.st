@@ -1,50 +1,34 @@
-"
-
-"
 Class {
 	#name : #SessionManagerRegistrationOrderTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'manager'
 	],
-	#category : #System-SessionManager-Tests,
-	#timestamp : ''
+	#category : #System-SessionManager-Tests
 }
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationOrderTest>>assertHandledId: aSessionHandlerList equals: aCollection [
+{ #category : #asserting }
+SessionManagerRegistrationOrderTest >> assertHandledId: aSessionHandlerList equals: aCollection [
 	self 
 		assert: (aSessionHandlerList collect: #handledId)
 		equals: aCollection
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationOrderTest>>register: aString atSystemPriority: anInteger [
+{ #category : #tests }
+SessionManagerRegistrationOrderTest >> register: aString atSystemPriority: anInteger [
 	manager 
 		register: aString
 		inCategory: manager systemCategory
 		atPriority: anInteger
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationOrderTest>>setUp [
+{ #category : #tests }
+SessionManagerRegistrationOrderTest >> setUp [
 	manager := SessionManager new
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationOrderTest>>testCategoriesPriorityOrder [
+{ #category : #tests }
+SessionManagerRegistrationOrderTest >> testCategoriesPriorityOrder [
 	manager 
 		register: (ClassSessionHandler forClassNamed: 'anObject');
 		registerSystemClassNamed: 'aFirstSubscription' atPriority: 100.
@@ -54,11 +38,8 @@ SessionManagerRegistrationOrderTest>>testCategoriesPriorityOrder [
 		equals: #( 'aFirstSubscription' 'anObject' ).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationOrderTest>>testCreateCategoryFailsIfAfterUnexistentCategory [
+{ #category : #tests }
+SessionManagerRegistrationOrderTest >> testCreateCategoryFailsIfAfterUnexistentCategory [
 	| customCategory |
 	
 	self 
@@ -66,11 +47,8 @@ SessionManagerRegistrationOrderTest>>testCreateCategoryFailsIfAfterUnexistentCat
 		raise: NotFound.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationOrderTest>>testCustomCategoryGoesAfterSystemCategoryByDefault [
+{ #category : #tests }
+SessionManagerRegistrationOrderTest >> testCustomCategoryGoesAfterSystemCategoryByDefault [
 	| customCategory |
 	customCategory := manager createCategory: 'Custom'.
 	customCategory register: 'aCustomAction'.
@@ -82,11 +60,8 @@ SessionManagerRegistrationOrderTest>>testCustomCategoryGoesAfterSystemCategoryBy
 		equals: #( 'aSystemAction' 'aCustomAction' ).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationOrderTest>>testCustomCategoryOrderIsPreserved [
+{ #category : #tests }
+SessionManagerRegistrationOrderTest >> testCustomCategoryOrderIsPreserved [
 	| customCategory |
 	customCategory := manager createCategory: 'First'.
 	customCategory register: 'first'.	
@@ -99,11 +74,8 @@ SessionManagerRegistrationOrderTest>>testCustomCategoryOrderIsPreserved [
 		equals: #( 'first' 'second' ).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationOrderTest>>testPriorityOrderInTheSameCategoryIsRespected [
+{ #category : #tests }
+SessionManagerRegistrationOrderTest >> testPriorityOrderInTheSameCategoryIsRespected [
 	manager
 		registerSystemClassNamed: 'aFirstSubscription' atPriority: 100;
 		registerSystemClassNamed: 'aSecondSubscription' atPriority: 110;
@@ -115,11 +87,8 @@ SessionManagerRegistrationOrderTest>>testPriorityOrderInTheSameCategoryIsRespect
 		equals: #( 'aThirdSubscriptionThatShouldGoFirst' 'aFirstSubscription' 'aSecondSubscription' ).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationOrderTest>>testRegisterElementByDefault [
+{ #category : #tests }
+SessionManagerRegistrationOrderTest >> testRegisterElementByDefault [
 	manager register: (ClassSessionHandler forClassNamed: 'anObject').
 
 	self 
@@ -127,11 +96,8 @@ SessionManagerRegistrationOrderTest>>testRegisterElementByDefault [
 		equals: #( 'anObject' ).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationOrderTest>>testRegisterSystemElement [
+{ #category : #tests }
+SessionManagerRegistrationOrderTest >> testRegisterSystemElement [
 	manager registerSystemClassNamed: 'anObject' atPriority: 1.
 
 	self 
@@ -139,11 +105,8 @@ SessionManagerRegistrationOrderTest>>testRegisterSystemElement [
 		equals: #( 'anObject' ).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationOrderTest>>testSubscriptionReverseOrder [
+{ #category : #tests }
+SessionManagerRegistrationOrderTest >> testSubscriptionReverseOrder [
 	manager
 		registerSystemClassNamed: 'aFirstSubscription' atPriority: 100;
 		register: (ClassSessionHandler forClassNamed: 'anObject').

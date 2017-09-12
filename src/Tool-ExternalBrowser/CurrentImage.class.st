@@ -7,15 +7,11 @@ CurrentImage new packages
 Class {
 	#name : #CurrentImage,
 	#superclass : #Object,
-	#category : #Tool-ExternalBrowser,
-	#timestamp : 'GuillermoPolito 5/29/2015 13:43'
+	#category : #Tool-ExternalBrowser
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-CurrentImage>>packages [
+{ #category : #accessing }
+CurrentImage >> packages [
 
 	^ (RPackageOrganizer default packages) sorted
 ]

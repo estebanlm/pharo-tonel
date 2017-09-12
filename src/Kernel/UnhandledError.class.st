@@ -15,53 +15,37 @@ Class {
 	#instVars : [
 		'exception'
 	],
-	#category : #Kernel-Exceptions,
-	#timestamp : '<historical>'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #signalling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-UnhandledError class>>signalForException: anError [
+{ #category : #signalling }
+UnhandledError class >> signalForException: anError [
 
 	^ self new
 		exception: anError;
 		signal
 ]
 
-{
-	#category : #'priv handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-UnhandledError>>defaultAction [
+{ #category : #'priv handling' }
+UnhandledError >> defaultAction [
 	<reflective: #unhandledErrorDefaultAction:message:>
  	^ UIManager default unhandledErrorDefaultAction: self exception
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-UnhandledError>>exception [
+{ #category : #accessing }
+UnhandledError >> exception [
 
 	^ exception
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-UnhandledError>>exception: anError [
+{ #category : #accessing }
+UnhandledError >> exception: anError [
 
 	exception := anError
 ]
 
-{
-	#category : #'priv handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-UnhandledError>>isResumable [
+{ #category : #'priv handling' }
+UnhandledError >> isResumable [
 	
 	^ false
 ]

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloAtomicLoadDirective,
 	#superclass : #MetacelloVersionLoadDirective,
@@ -9,15 +6,11 @@ Class {
 		'preloads',
 		'postloads'
 	],
-	#category : #Metacello-MC-Directives,
-	#timestamp : ''
+	#category : #Metacello-MC-Directives
 }
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAtomicLoadDirective>>directivesDo: aBlock [
+{ #category : #enumerating }
+MetacelloAtomicLoadDirective >> directivesDo: aBlock [
 
 	aBlock value: self.
 	self preloads do: [:directive | directive directivesDo: aBlock ].
@@ -25,11 +18,8 @@ MetacelloAtomicLoadDirective>>directivesDo: aBlock [
 	self postloads do: [:directive | directive directivesDo: aBlock ].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAtomicLoadDirective>>finalizeLoad: aGofer [
+{ #category : #actions }
+MetacelloAtomicLoadDirective >> finalizeLoad: aGofer [
 	"load the accumulated packages (if any), reset the package list"
 
 	| pkgLoads |
@@ -45,130 +35,91 @@ MetacelloAtomicLoadDirective>>finalizeLoad: aGofer [
 	postloads := nil
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAtomicLoadDirective>>loadAtomicLoadDirective: aLoaderDirective gofer: aGofer [
+{ #category : #actions }
+MetacelloAtomicLoadDirective >> loadAtomicLoadDirective: aLoaderDirective gofer: aGofer [
 
 	aLoaderDirective loadDirectives do: [:directive | directive loadUsing: self gofer: aGofer ].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAtomicLoadDirective>>loadLinearLoadDirective: aLoaderDirective gofer: aGofer [
+{ #category : #actions }
+MetacelloAtomicLoadDirective >> loadLinearLoadDirective: aLoaderDirective gofer: aGofer [
 
 	self finalizeLoad: aGofer.
 	super loadLinearLoadDirective: aLoaderDirective gofer: aGofer
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAtomicLoadDirective>>loadPackageDirective: aPackageLoadDirective gofer: aGofer [
+{ #category : #loading }
+MetacelloAtomicLoadDirective >> loadPackageDirective: aPackageLoadDirective gofer: aGofer [
 	"accumulate packages"
 	
 	self packageloads add: aPackageLoadDirective
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAtomicLoadDirective>>loadPostloadDirective: aPostloadDirective [
+{ #category : #loading }
+MetacelloAtomicLoadDirective >> loadPostloadDirective: aPostloadDirective [
 	"accumulate postloads"
 
 	self postloads add: aPostloadDirective
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAtomicLoadDirective>>loadPreloadDirective: aPreloadDirective  [
+{ #category : #loading }
+MetacelloAtomicLoadDirective >> loadPreloadDirective: aPreloadDirective [ 
 	"accumulate preloads"
 
 	self preloads add: aPreloadDirective
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAtomicLoadDirective>>loadUsing: aLoaderDirective gofer: aGofer [
+{ #category : #actions }
+MetacelloAtomicLoadDirective >> loadUsing: aLoaderDirective gofer: aGofer [
 
 	self loadDirectives isEmpty ifTrue: [ ^self ].
 	aLoaderDirective loadAtomicLoadDirective: self gofer: aGofer.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAtomicLoadDirective>>packageloads [
+{ #category : #accessing }
+MetacelloAtomicLoadDirective >> packageloads [
 
 	packageloads == nil ifTrue: [ packageloads := OrderedCollection new ].
 	^ packageloads
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAtomicLoadDirective>>packageloads: anObject [
+{ #category : #accessing }
+MetacelloAtomicLoadDirective >> packageloads: anObject [
 	packageloads := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAtomicLoadDirective>>postloads [
+{ #category : #accessing }
+MetacelloAtomicLoadDirective >> postloads [
 
 	postloads == nil ifTrue: [ postloads := OrderedCollection new ].
 	^ postloads
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAtomicLoadDirective>>preloads [
+{ #category : #accessing }
+MetacelloAtomicLoadDirective >> preloads [
 
 	preloads == nil ifTrue: [ preloads := OrderedCollection new ].
 	^ preloads
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAtomicLoadDirective>>prepostLoadDirectivesDo: aBlock [
+{ #category : #enumerating }
+MetacelloAtomicLoadDirective >> prepostLoadDirectivesDo: aBlock [
 
 	self preloads do: [:directive | directive prepostLoadDirectivesDo: aBlock ].
 	self loadDirectives do: [:directive | directive prepostLoadDirectivesDo: aBlock ].
 	self postloads do: [:directive | directive prepostLoadDirectivesDo: aBlock ].
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAtomicLoadDirective>>prepostLoadsDo: aBlock [
+{ #category : #enumerating }
+MetacelloAtomicLoadDirective >> prepostLoadsDo: aBlock [
 
 	self preloads do: [:directive | directive prepostLoadDo: aBlock ].
 	self loadDirectives do: [:directive | directive prepostLoadDo: aBlock ].
 	self postloads do: [:directive | directive prepostLoadDo: aBlock ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloAtomicLoadDirective>>title [
+{ #category : #accessing }
+MetacelloAtomicLoadDirective >> title [
 
 	^'atomic load'
 ]

@@ -4,33 +4,23 @@ SimpleGridExample new open
 Class {
 	#name : #SimpleGridExample,
 	#superclass : #MorphTreeModel,
-	#category : #Morphic-Examples-MorphTreeWidget,
-	#timestamp : 'AlainPlantec 2/1/2010 11:58'
+	#category : #Morphic-Examples-MorphTreeWidget
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridExample class>>example [
+{ #category : #examples }
+SimpleGridExample class >> example [
 
 	SimpleGridExample new open
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridExample>>open [
+{ #category : #'instance creation' }
+SimpleGridExample >> open [
 	(self treeMorph buildContents;
 		embeddedInMorphicWindowLabeled: 'Simple grid example') openInWorld
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridExample>>rootItems [
+{ #category : #accessing }
+SimpleGridExample >> rootItems [
 	^ rootItems ifNil: [rootItems := (1 to: 1000)
 		collect: [:i | PersonDataExample
 				firstName: 'Person' , i asString
@@ -39,19 +29,13 @@ SimpleGridExample>>rootItems [
 				married: false] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridExample>>rootNodeClassFromItem: anItem [
+{ #category : #accessing }
+SimpleGridExample >> rootNodeClassFromItem: anItem [
 	^ SimpleGridNodeExample
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridExample>>treeMorph [
+{ #category : #'user interface' }
+SimpleGridExample >> treeMorph [
 	| treeMorph oddColor evenColor |
 	treeMorph := (self treeMorphClass on: self)
 		beCheckList;

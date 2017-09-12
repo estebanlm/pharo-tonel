@@ -8,46 +8,30 @@ Class {
 		'dDist',
 		'direction'
 	],
-	#category : #OSWindow-Core-Events-Touch,
-	#timestamp : 'MerwanOuddane 4/8/2015 14:22'
+	#category : #OSWindow-Core-Events-Touch
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeEvent class>>id [
+{ #category : #'as yet unclassified' }
+OSTouchSwipeEvent class >> id [
 	^ #swipe
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeEvent>>dDist [
+{ #category : #accessing }
+OSTouchSwipeEvent >> dDist [
 	^ dDist
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeEvent>>dDist: anObject [
+{ #category : #accessing }
+OSTouchSwipeEvent >> dDist: anObject [
 	dDist := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeEvent>>direction [
+{ #category : #accessing }
+OSTouchSwipeEvent >> direction [
 	^ direction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchSwipeEvent>>direction: anObject [
+{ #category : #accessing }
+OSTouchSwipeEvent >> direction: anObject [
 	direction := anObject
 ]

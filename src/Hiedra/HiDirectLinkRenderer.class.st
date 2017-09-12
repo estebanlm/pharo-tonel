@@ -4,15 +4,11 @@ I draw links in a straight line. See comment in superclass.
 Class {
 	#name : #HiDirectLinkRenderer,
 	#superclass : #HiLinkRenderer,
-	#category : #Hiedra-Rendering,
-	#timestamp : '<historical>'
+	#category : #Hiedra-Rendering
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiDirectLinkRenderer>>render [
+{ #category : #rendering }
+HiDirectLinkRenderer >> render [
 	| linkShape |
 	self setPaint.
 	

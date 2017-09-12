@@ -1,12 +1,7 @@
-Extension {
-	#name : #PasteUpMorph
-}
+Extension { #name : #PasteUpMorph }
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>createTaskbarIfNecessary [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+PasteUpMorph >> createTaskbarIfNecessary [
 	"Private - create a new taskbar if not present."
 
 	self taskbars ifEmpty: [
@@ -14,32 +9,23 @@ PasteUpMorph>>createTaskbarIfNecessary [
 		self moveCollapsedWindowsToTaskbar]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>moveCollapsedWindowsToTaskbar [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+PasteUpMorph >> moveCollapsedWindowsToTaskbar [
 	"Move collapsed windows to the taskbar."
 	
 	(self systemWindows select: [:w | w isCollapsed]) do: [:w |
 		w restore; minimize]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>removeTaskbar [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+PasteUpMorph >> removeTaskbar [
 	"Remove the receiver's taskbars."
 	
 	self taskbars do: [:each | each removeFromWorld]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>showWorldTaskbar: aBoolean [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+PasteUpMorph >> showWorldTaskbar: aBoolean [
 	"Change the receiver to show the taskbar."
 	
 	aBoolean
@@ -47,11 +33,8 @@ PasteUpMorph>>showWorldTaskbar: aBoolean [
 		ifFalse: [self removeTaskbar]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PasteUpMorph>>taskList [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+PasteUpMorph >> taskList [
 
 	^ self submorphs
 		detect: [ :e | e isKindOf: TaskListMorph ]

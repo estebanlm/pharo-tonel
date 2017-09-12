@@ -4,48 +4,32 @@ A PDCycleNode is used to display a reference dependency in a tree.
 Class {
 	#name : #DAReferenceDependencyNode,
 	#superclass : #DAMethodDependencyNode,
-	#category : #Tool-DependencyAnalyser-UI-Nodes,
-	#timestamp : 'BaptisteQuide 7/11/2014 11:47'
+	#category : #Tool-DependencyAnalyser-UI-Nodes
 }
 
-{
-	#category : #browse-nautilus,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReferenceDependencyNode>>browseInOtherNautilus [
+{ #category : #browse-nautilus }
+DAReferenceDependencyNode >> browseInOtherNautilus [
 	| classToBrowse |
 	classToBrowse := self content reference.
 	self browseClass: classToBrowse
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReferenceDependencyNode>>browseSendersOrUsers [
+{ #category : #testing }
+DAReferenceDependencyNode >> browseSendersOrUsers [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReferenceDependencyNode>>icon [
+{ #category : #accessing }
+DAReferenceDependencyNode >> icon [
 	^ self iconNamed: #classIcon
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReferenceDependencyNode>>isClassToDependencyNode [
+{ #category : #testing }
+DAReferenceDependencyNode >> isClassToDependencyNode [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReferenceDependencyNode>>isReferenceNode [
+{ #category : #testing }
+DAReferenceDependencyNode >> isReferenceNode [
 	  ^ true
 ]

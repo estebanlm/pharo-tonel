@@ -7,62 +7,40 @@ Class {
 	#instVars : [
 		'binding'
 	],
-	#category : #Reflectivity-Compiler,
-	#timestamp : 'MarcusDenker 10/20/2015 15:45'
+	#category : #Reflectivity-Compiler
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFLiteralVariableNode class>>value: anObject [
+{ #category : #'instance creation' }
+RFLiteralVariableNode class >> value: anObject [
 	^self new binding: #RFMetaLink -> anObject
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFLiteralVariableNode>>acceptVisitor: aProgramNodeVisitor [
+{ #category : #visiting }
+RFLiteralVariableNode >> acceptVisitor: aProgramNodeVisitor [
 	^ aProgramNodeVisitor visitLiteralVariableNode:  self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFLiteralVariableNode>>binding  [
+{ #category : #accessing }
+RFLiteralVariableNode >> binding [ 
 	^binding
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFLiteralVariableNode>>binding: anAssocation [
+{ #category : #accessing }
+RFLiteralVariableNode >> binding: anAssocation [
 	binding := anAssocation
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFLiteralVariableNode>>isFaulty [
+{ #category : #testing }
+RFLiteralVariableNode >> isFaulty [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFLiteralVariableNode>>start [
+{ #category : #accessing }
+RFLiteralVariableNode >> start [
 	^0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFLiteralVariableNode>>stop [
+{ #category : #accessing }
+RFLiteralVariableNode >> stop [
 	^1
 ]

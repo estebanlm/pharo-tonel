@@ -1,34 +1,21 @@
-"
-
-"
 Class {
 	#name : #ZnMagicCookieJarTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMagicCookieJarTests>>cookieString [
+{ #category : #accessing }
+ZnMagicCookieJarTests >> cookieString [
 	^ 'PREF=ID=18ae67ce302b6317:TM=1285696140:LM=1285696140:S=hqroFGlRQR1j4Yhy; expires={1}; path=/; domain=.google.com' format: { ZnUtils httpDate: DateAndTime now + 60 days }
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMagicCookieJarTests>>cookieStringAlt [
+{ #category : #accessing }
+ZnMagicCookieJarTests >> cookieStringAlt [
 	^'PREFS=ID=18ae67ce302b6317:TM=1285696140:LM=1285696140:S=hqroFGlRQR1j4Yhy; expires={1}; path=/; domain=.pharo-project.org' format: { ZnUtils httpDate: DateAndTime now + 60 days }
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMagicCookieJarTests>>testAdd [
+{ #category : #testing }
+ZnMagicCookieJarTests >> testAdd [
 	| jar count |
 	jar := ZnCookieJar new.
 	count := jar cookies size.
@@ -36,11 +23,8 @@ ZnMagicCookieJarTests>>testAdd [
 	self assert: ((jar cookies size) = (count + 1))
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMagicCookieJarTests>>testCookieAtForUrl [
+{ #category : #testing }
+ZnMagicCookieJarTests >> testCookieAtForUrl [
 	| jar c1 c2 |
 	jar := ZnCookieJar new.
 	c1 := ZnCookie fromString: self cookieString for: 'http://www.google.com' asZnUrl.
@@ -50,11 +34,8 @@ ZnMagicCookieJarTests>>testCookieAtForUrl [
 	self assert: ((jar cookieAt: 'foobar' forUrl: 'http://www.google.com' asZnUrl) isNil)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnMagicCookieJarTests>>testCookiesForUrl [
+{ #category : #testing }
+ZnMagicCookieJarTests >> testCookiesForUrl [
 	| jar c1 c2 |
 	jar := ZnCookieJar new.
 	c1 := ZnCookie fromString: self cookieString for: 'http://www.google.com' asZnUrl.

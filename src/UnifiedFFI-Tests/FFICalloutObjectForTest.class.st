@@ -1,104 +1,70 @@
-"
-
-"
 Class {
 	#name : #FFICalloutObjectForTest,
 	#superclass : #Object,
 	#instVars : [
 		'handle'
 	],
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutObjectForTest class>>asExternalTypeOn: generator [
+{ #category : #converting }
+FFICalloutObjectForTest class >> asExternalTypeOn: generator [
 	^ FFIExternalObjectType objectClass: self
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutObjectForTest class>>primCreate: size [
+{ #category : #primitives }
+FFICalloutObjectForTest class >> primCreate: size [
 	self 
 		ffiCall: #( FFICalloutObjectForTest malloc( size_t size ) )
 		module: LibC	
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutObjectForTest class>>primObject: anObject strcpy: aString [
+{ #category : #primitives }
+FFICalloutObjectForTest class >> primObject: anObject strcpy: aString [
 	self
 		ffiCall: #( char *strcpy ( FFICalloutObjectForTest anObject, const char *aString ) )
 		module: LibC
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutObjectForTest>>free [
+{ #category : #accessing }
+FFICalloutObjectForTest >> free [
 	handle ifNil: [ ^ self ].
 	self primFree
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutObjectForTest>>handle [
+{ #category : #accessing }
+FFICalloutObjectForTest >> handle [
 	^ handle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutObjectForTest>>handle: anObject [
+{ #category : #accessing }
+FFICalloutObjectForTest >> handle: anObject [
 	handle := anObject
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutObjectForTest>>primFree [
+{ #category : #primitives }
+FFICalloutObjectForTest >> primFree [
 	^ self 
 		ffiCall: #( void free ( self ) )
 		module: LibC
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutObjectForTest>>primStrcpy: aString [
+{ #category : #primitives }
+FFICalloutObjectForTest >> primStrcpy: aString [
 	^ self 
 		ffiCall: #( char *strcpy ( self, const char *aString ) )
 		module: LibC
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutObjectForTest>>primStrcpy: aString size: n [
+{ #category : #primitives }
+FFICalloutObjectForTest >> primStrcpy: aString size: n [
 	^ self 
 		ffiCall: #( char *strncpy ( self, const char *aString, size_t n ) )
 		module: LibC
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutObjectForTest>>strcpy: aString [
+{ #category : #accessing }
+FFICalloutObjectForTest >> strcpy: aString [
 	handle := ByteArray new: aString size + 1.
 	^ self primStrcpy: aString.
 ]

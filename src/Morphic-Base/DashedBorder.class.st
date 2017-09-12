@@ -8,15 +8,11 @@ Class {
 		'dashColors',
 		'dashLengths'
 	],
-	#category : #Morphic-Base-Borders,
-	#timestamp : 'gvc 5/18/2007 13:28'
+	#category : #Morphic-Base-Borders
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-DashedBorder class>>width: width dashColors: cols dashLengths: lens [
+{ #category : #'as yet unclassified' }
+DashedBorder class >> width: width dashColors: cols dashLengths: lens [
 	"Answer a new instance of the receiver with the given
 	width, colours and lengths."
 	
@@ -25,31 +21,22 @@ DashedBorder class>>width: width dashColors: cols dashLengths: lens [
 		dashColors: cols dashLengths: lens
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-DashedBorder>>dashColors [
+{ #category : #accessing }
+DashedBorder >> dashColors [
 	"Answer the value of dashColors"
 
 	^ dashColors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-DashedBorder>>dashColors: anObject [
+{ #category : #accessing }
+DashedBorder >> dashColors: anObject [
 	"Set the value of dashColors"
 
 	dashColors := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-DashedBorder>>dashColors: cols dashLengths: lens [
+{ #category : #accessing }
+DashedBorder >> dashColors: cols dashLengths: lens [
 	"Set the colours and lengths."
 
 	cols size = lens size ifFalse: [self error: 'Colors and Lengths must have the same size'].
@@ -58,31 +45,22 @@ DashedBorder>>dashColors: cols dashLengths: lens [
 		dashLengths: lens
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-DashedBorder>>dashLengths [
+{ #category : #accessing }
+DashedBorder >> dashLengths [
 	"Answer the value of dashLengths"
 
 	^ dashLengths
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-DashedBorder>>dashLengths: anObject [
+{ #category : #accessing }
+DashedBorder >> dashLengths: anObject [
 	"Set the value of dashLengths"
 
 	dashLengths := anObject
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-DashedBorder>>frameRectangle: aRectangle on: aCanvas [
+{ #category : #drawing }
+DashedBorder >> frameRectangle: aRectangle on: aCanvas [
 	"Frame the given rectangle on aCanvas"
 	
 	(aRectangle width < self width or: [aRectangle height < self width])
@@ -94,11 +72,8 @@ DashedBorder>>frameRectangle: aRectangle on: aCanvas [
 		dashes: self dashLengths
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-DashedBorder>>initialize [
+{ #category : #initialization }
+DashedBorder >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -107,11 +82,8 @@ DashedBorder>>initialize [
 		dashLengths: #(1 1)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-DashedBorder>>style [
+{ #category : #accessing }
+DashedBorder >> style [
 	"Answer #dashed."
 	
 	^#dashed

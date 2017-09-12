@@ -22,31 +22,21 @@ Class {
 	#pools : [
 		'ZipConstants'
 	],
-	#category : #Compression-Streams,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:03'
+	#category : #Compression-Streams
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>baseDistance [
+{ #category : #accessing }
+ZipWriteStream class >> baseDistance [
 	^BaseDistance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>baseLength [
+{ #category : #accessing }
+ZipWriteStream class >> baseLength [
 	^BaseLength
 ]
 
-{
-	#category : #'regression test',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>compressAndDecompress: aFile using: tempFile stats: stats [
+{ #category : #'regression test' }
+ZipWriteStream class >> compressAndDecompress: aFile using: tempFile stats: stats [
 
 	| fileSize tempStream result |
 	aFile ifNil: [^nil].
@@ -67,44 +57,29 @@ ZipWriteStream class>>compressAndDecompress: aFile using: tempFile stats: stats 
 	^result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>distanceCodes [
+{ #category : #accessing }
+ZipWriteStream class >> distanceCodes [
 	^DistanceCodes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>extraDistanceBits [
+{ #category : #accessing }
+ZipWriteStream class >> extraDistanceBits [
 	^ExtraDistanceBits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>extraLengthBits [
+{ #category : #accessing }
+ZipWriteStream class >> extraLengthBits [
 	^ExtraLengthBits
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>initialize [
+{ #category : #initialization }
+ZipWriteStream class >> initialize [
 	"ZipWriteStream initialize"
 	VerboseLevel := 0
 ]
 
-{
-	#category : #'regression test',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>logProblem: reason for: aFile [
+{ #category : #'regression test' }
+ZipWriteStream class >> logProblem: reason for: aFile [
 	| errFile |
 	errFile := FileStream fileNamed:'problems.log'.
 	errFile position: errFile size.
@@ -116,35 +91,23 @@ ZipWriteStream class>>logProblem: reason for: aFile [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>matchLengthCodes [
+{ #category : #accessing }
+ZipWriteStream class >> matchLengthCodes [
 	^MatchLengthCodes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>maxDistanceCodes [
+{ #category : #accessing }
+ZipWriteStream class >> maxDistanceCodes [
 	^MaxDistCodes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>maxLiteralCodes [
+{ #category : #accessing }
+ZipWriteStream class >> maxLiteralCodes [
 	^MaxLiteralCodes
 ]
 
-{
-	#category : #'regression test',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>printRegressionStats: stats from: fd [
+{ #category : #'regression test' }
+ZipWriteStream class >> printRegressionStats: stats from: fd [
 	| raw compressed numFiles |
 	raw := stats at: #rawSize ifAbsent:[0].
 	raw = 0 ifTrue:[^self].
@@ -158,11 +121,8 @@ ZipWriteStream class>>printRegressionStats: stats from: fd [
 	Transcript endEntry.
 ]
 
-{
-	#category : #'regression test',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>regressionCompress: aFile into: tempFile notifiying: progressBar stats: stats [
+{ #category : #'regression test' }
+ZipWriteStream class >> regressionCompress: aFile into: tempFile notifiying: progressBar stats: stats [
 	"Compress aFile into tempFile"
 	| zip encoded buffer |
 	aFile binary.
@@ -182,11 +142,8 @@ ZipWriteStream class>>regressionCompress: aFile into: tempFile notifiying: progr
 	^true
 ]
 
-{
-	#category : #'regression test',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>regressionDecompress: aFile from: tempFile notifying: progressBar stats: stats [
+{ #category : #'regression test' }
+ZipWriteStream class >> regressionDecompress: aFile from: tempFile notifying: progressBar stats: stats [
 	"Validate aFile as decompressed from tempFile"
 
 	| unzip rawSize compressedSize buffer1 buffer2 |
@@ -212,21 +169,15 @@ ZipWriteStream class>>regressionDecompress: aFile from: tempFile notifying: prog
 	^ compressedSize asFloat / rawSize asFloat
 ]
 
-{
-	#category : #'regression test',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>regressionTest "ZipWriteStream regressionTest" [
+{ #category : #'regression test' }
+ZipWriteStream class >> regressionTest [ "ZipWriteStream regressionTest"
 	"Compress and decompress everything we can 
 	find to validate that compression works as expected."
 	self regressionTestFrom: FileSystem workingDirectory.
 ]
 
-{
-	#category : #'regression test',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>regressionTestFrom: fd [
+{ #category : #'regression test' }
+ZipWriteStream class >> regressionTestFrom: fd [
 	"ZipWriteStream regressionTestFrom: FileSystem disk workingDirectory"
 	"ZipWriteStream regressionTestFrom: (FileSystem disk root)"
 	| tempFile stats |
@@ -237,11 +188,8 @@ ZipWriteStream class>>regressionTestFrom: fd [
 	self regressionTestFrom: fd using: tempFile stats: stats.
 ]
 
-{
-	#category : #'regression test',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>regressionTestFrom: fd using: tempFile stats: stats [
+{ #category : #'regression test' }
+ZipWriteStream class >> regressionTestFrom: fd using: tempFile stats: stats [
 	| files |
 	files := fd files asSortedCollection.
 	files do: [ :file | 
@@ -260,47 +208,32 @@ ZipWriteStream class>>regressionTestFrom: fd using: tempFile stats: stats [
 	].
 ]
 
-{
-	#category : #crc,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream class>>updateCrc: oldCrc from: start to: stop in: aCollection [
+{ #category : #crc }
+ZipWriteStream class >> updateCrc: oldCrc from: start to: stop in: aCollection [
 	^ CRC update: oldCrc from: start to: stop in: aCollection
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>close [
+{ #category : #open/close }
+ZipWriteStream >> close [
 	self deflateBlock.
 	self flushBlock: true.
 	encoder close.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>crc [
+{ #category : #accessing }
+ZipWriteStream >> crc [
 	^crc
 ]
 
-{
-	#category : #deflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>deflateBlock: lastIndex chainLength: chainLength goodMatch: goodMatch [
+{ #category : #deflating }
+ZipWriteStream >> deflateBlock: lastIndex chainLength: chainLength goodMatch: goodMatch [
 	"^DeflatePlugin doPrimitive:#primitiveDeflateBlock"
 	<primitive: 'primitiveDeflateBlock' module: 'ZipPlugin'>
 	^super deflateBlock: lastIndex chainLength: chainLength goodMatch: goodMatch
 ]
 
-{
-	#category : #'dynamic blocks',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>dynamicBlockSizeFor: lTree and: dTree using: blTree and: blFreq [
+{ #category : #'dynamic blocks' }
+ZipWriteStream >> dynamicBlockSizeFor: lTree and: dTree using: blTree [ and: blFreq
 	"Compute the length for the current block using dynamic huffman trees"
 	| bits index extra treeBits freq |
 	bits := 3 "block type" + 5 "literal codes length" + 5 "distance codes length".
@@ -344,11 +277,8 @@ ZipWriteStream>>dynamicBlockSizeFor: lTree and: dTree using: blTree and: blFreq 
 	^bits
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>encodeLiteral: lit [
+{ #category : #encoding }
+ZipWriteStream >> encodeLiteral: lit [
 	"Encode the given literal"
 	litCount := litCount + 1.
 	literals at: litCount put: lit.
@@ -357,11 +287,8 @@ ZipWriteStream>>encodeLiteral: lit [
 	^self shouldFlush
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>encodeMatch: length distance: dist [
+{ #category : #encoding }
+ZipWriteStream >> encodeMatch: length distance: dist [
 	"Encode the given match of length length starting at dist bytes ahead"
 	| literal distance |
 	dist > 0 
@@ -381,30 +308,21 @@ ZipWriteStream>>encodeMatch: length distance: dist [
 	^self shouldFlush
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>encodedStream [
+{ #category : #accessing }
+ZipWriteStream >> encodedStream [
 	^encoder encodedStream
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>finish [
+{ #category : #initialization }
+ZipWriteStream >> finish [
 	"Finish pending operation. Do not close output stream."
 	self deflateBlock.
 	self flushBlock: true.
 	encoder flush.
 ]
 
-{
-	#category : #'fixed blocks',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>fixedBlockSizeFor: lTree and: dTree [
+{ #category : #'fixed blocks' }
+ZipWriteStream >> fixedBlockSizeFor: lTree and: dTree [
 	"Compute the length for the current block using fixed huffman trees"
 	| bits extra |
 	bits := 3 "block type".
@@ -421,19 +339,13 @@ ZipWriteStream>>fixedBlockSizeFor: lTree and: dTree [
 	^bits
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>flushBlock [
+{ #category : #encoding }
+ZipWriteStream >> flushBlock [
 	^self flushBlock: false
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>flushBlock: lastBlock [
+{ #category : #encoding }
+ZipWriteStream >> flushBlock: lastBlock [
 	"Send the current block"
 	| lastFlag bitsRequired method bitsSent
 	storedLength fixedLength dynamicLength 
@@ -506,11 +418,8 @@ ZipWriteStream>>flushBlock: lastBlock [
 		ifFalse:[self initializeNewBlock].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>forcedMethod [
+{ #category : #accessing }
+ZipWriteStream >> forcedMethod [
 	"Return a symbol describing an enforced method or nil if the method should
 	be chosen adaptively. Valid symbols are
 		#stored	- store blocks (do not compress)
@@ -519,11 +428,8 @@ ZipWriteStream>>forcedMethod [
 	^nil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>initialize [
+{ #category : #initialization }
+ZipWriteStream >> initialize [
 	super initialize.
 	literals := ByteArray new: WindowSize.
 	distances := WordArray new: WindowSize.
@@ -533,11 +439,8 @@ ZipWriteStream>>initialize [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>initializeNewBlock [
+{ #category : #initialization }
+ZipWriteStream >> initializeNewBlock [
 	"Initialize the encoder for a new block of data"
 	literalFreq atAllPut: 0.
 	distanceFreq atAllPut: 0.
@@ -546,22 +449,16 @@ ZipWriteStream>>initializeNewBlock [
 	matchCount := 0.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>moveContentsToFront [
+{ #category : #private }
+ZipWriteStream >> moveContentsToFront [
 	"Need to update crc here"
 	self updateCrc.
 	super moveContentsToFront.
 	crcPosition := position + 1.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>on: aCollectionOrStream [
+{ #category : #initialization }
+ZipWriteStream >> on: aCollectionOrStream [
 	crc := 16rFFFFFFFF.
 	crcPosition := 1.
 	bytesWritten := 0.
@@ -573,11 +470,8 @@ ZipWriteStream>>on: aCollectionOrStream [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>release [
+{ #category : #initialization }
+ZipWriteStream >> release [
 	"We're done with compression. Do some cleanup."
 	literals := distances := literalFreq := distanceFreq := nil.
 	self updateCrc.
@@ -585,11 +479,8 @@ ZipWriteStream>>release [
 	self writeFooter.
 ]
 
-{
-	#category : #'dynamic blocks',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>scanBitLength: bitLength repeatCount: repeatCount into: anArray [
+{ #category : #'dynamic blocks' }
+ZipWriteStream >> scanBitLength: bitLength repeatCount: repeatCount into: anArray [
 	"Update the frequency for the aTree based on the given values"
 	| count |
 	count := repeatCount.
@@ -611,11 +502,8 @@ ZipWriteStream>>scanBitLength: bitLength repeatCount: repeatCount into: anArray 
 	].
 ]
 
-{
-	#category : #'dynamic blocks',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>scanBitLengths: bits into: anArray [
+{ #category : #'dynamic blocks' }
+ZipWriteStream >> scanBitLengths: bits into: anArray [
 	"Scan the trees and determine the frequency of the bit lengths.
 	For repeating codes, emit a repeat count."
 	| lastValue lastCount value |
@@ -632,11 +520,8 @@ ZipWriteStream>>scanBitLengths: bits into: anArray [
 	self scanBitLength: lastValue repeatCount: lastCount into: anArray.
 ]
 
-{
-	#category : #'dynamic blocks',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>sendBitLength: bitLength repeatCount: repeatCount tree: aTree [
+{ #category : #'dynamic blocks' }
+ZipWriteStream >> sendBitLength: bitLength repeatCount: repeatCount tree: aTree [
 	"Send the given bitLength, repeating repeatCount times"
 	| count |
 	count := repeatCount.
@@ -661,21 +546,15 @@ ZipWriteStream>>sendBitLength: bitLength repeatCount: repeatCount tree: aTree [
 	].
 ]
 
-{
-	#category : #'dynamic blocks',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>sendBitLength: bitLength tree: aTree [
+{ #category : #'dynamic blocks' }
+ZipWriteStream >> sendBitLength: bitLength tree: aTree [
 	"Send the given bitLength"
 	encoder nextBits: (aTree bitLengthAt: bitLength) 
 		put: (aTree codeAt: bitLength).
 ]
 
-{
-	#category : #'dynamic blocks',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>sendBitLengthTree: blTree [
+{ #category : #'dynamic blocks' }
+ZipWriteStream >> sendBitLengthTree: blTree [
 	"Send the bit length tree"
 	| blIndex bitLength |
 	MaxBitLengthCodes to: 4 by: -1 do:[:maxIndex|
@@ -692,11 +571,8 @@ ZipWriteStream>>sendBitLengthTree: blTree [
 			^self]].
 ]
 
-{
-	#category : #'dynamic blocks',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>sendCompressedBlock: litTree with: distTree [
+{ #category : #'dynamic blocks' }
+ZipWriteStream >> sendCompressedBlock: litTree with: distTree [
 	"Send the current block using the encodings from the given literal/length and distance tree"
 	| sum |
 	sum := encoder
@@ -707,30 +583,21 @@ ZipWriteStream>>sendCompressedBlock: litTree with: distTree [
 	sum = (blockPosition - blockStart) ifFalse:[self error:'Wrong number of bytes'].
 ]
 
-{
-	#category : #'dynamic blocks',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>sendDynamicBlock: blTree literalTree: lTree distanceTree: dTree bitLengths: bits [
+{ #category : #'dynamic blocks' }
+ZipWriteStream >> sendDynamicBlock: blTree literalTree: lTree distanceTree: dTree bitLengths: bits [
 	"Send a block using dynamic huffman trees"
 	self sendLiteralTree: lTree distanceTree: dTree using: blTree bitLengths: bits.
 	self sendCompressedBlock: lTree with: dTree.
 ]
 
-{
-	#category : #'fixed blocks',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>sendFixedBlock [
+{ #category : #'fixed blocks' }
+ZipWriteStream >> sendFixedBlock [
 	"Send a block using fixed huffman trees"
 	self sendCompressedBlock: FixedLiteralTree with: FixedDistanceTree.
 ]
 
-{
-	#category : #'dynamic blocks',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>sendLiteralTree: lTree distanceTree: dTree using: blTree bitLengths: bits [
+{ #category : #'dynamic blocks' }
+ZipWriteStream >> sendLiteralTree: lTree distanceTree: dTree using: blTree bitLengths: bits [
 	"Send all the trees needed for dynamic huffman tree encoding"
 	| lastValue lastCount value |
 	encoder nextBits: 5 put: (lTree maxCode - 256).
@@ -749,11 +616,8 @@ ZipWriteStream>>sendLiteralTree: lTree distanceTree: dTree using: blTree bitLeng
 	self sendBitLength: lastValue repeatCount: lastCount tree: blTree.
 ]
 
-{
-	#category : #'stored blocks',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>sendStoredBlock [
+{ #category : #'stored blocks' }
+ZipWriteStream >> sendStoredBlock [
 	"Send an uncompressed block"
 	| inBytes |
 	inBytes := blockPosition - blockStart.
@@ -765,11 +629,8 @@ ZipWriteStream>>sendStoredBlock [
 		encoder nextBytePut: (collection byteAt: blockStart+i)].
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>shouldFlush [
+{ #category : #encoding }
+ZipWriteStream >> shouldFlush [
 	"Check if we should flush the current block.
 	Flushing can be useful if the input characteristics change."
 	| nLits |
@@ -788,11 +649,8 @@ ZipWriteStream>>shouldFlush [
 	^nLits * 4 <= matchCount
 ]
 
-{
-	#category : #'stored blocks',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>storedBlockSize [
+{ #category : #'stored blocks' }
+ZipWriteStream >> storedBlockSize [
 	"Compute the length for the current block when stored as is"
 	^3 "block type bits" 
 		+ (8 - (encoder bitPosition + 3 bitAnd: 7) bitAnd: 7)"skipped bits to byte boundary"
@@ -800,38 +658,26 @@ ZipWriteStream>>storedBlockSize [
 				+ (blockPosition - blockStart * 8) "actual data bits".
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>updateCrc [
+{ #category : #private }
+ZipWriteStream >> updateCrc [
 	crcPosition <= position ifTrue:[
 		bytesWritten := bytesWritten + position - crcPosition + 1.
 		crc := self updateCrc: crc from: crcPosition to: position in: collection.
 		crcPosition := position + 1].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>updateCrc: oldCrc from: start to: stop in: aCollection [
+{ #category : #private }
+ZipWriteStream >> updateCrc: oldCrc from: start to: stop in: aCollection [
 	^self class updateCrc: oldCrc from: start to: stop in: aCollection
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>writeFooter [
+{ #category : #initialization }
+ZipWriteStream >> writeFooter [
 	"Write footer information if necessary"
 	crc := crc bitXor: 16rFFFFFFFF.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipWriteStream>>writeHeader [
+{ #category : #initialization }
+ZipWriteStream >> writeHeader [
 	"Write header information if necessary"
 ]

@@ -8,46 +8,30 @@ Class {
 		'layout',
 		'subType'
 	],
-	#category : #Slot-Exception,
-	#timestamp : '<historical>'
+	#category : #Slot-Exception
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-IncompatibleLayoutConflict>>layout [
+{ #category : #accessing }
+IncompatibleLayoutConflict >> layout [
 	^ layout
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-IncompatibleLayoutConflict>>layout: anObject [
+{ #category : #accessing }
+IncompatibleLayoutConflict >> layout: anObject [
 	layout := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-IncompatibleLayoutConflict>>messageText [
+{ #category : #accessing }
+IncompatibleLayoutConflict >> messageText [
 	^ 'Class with ', layout class name, ' cannot be extended as ', subType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-IncompatibleLayoutConflict>>subType [
+{ #category : #accessing }
+IncompatibleLayoutConflict >> subType [
 	^ subType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-IncompatibleLayoutConflict>>subType: anObject [
+{ #category : #accessing }
+IncompatibleLayoutConflict >> subType: anObject [
 	subType := anObject
 ]

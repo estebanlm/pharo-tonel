@@ -7,40 +7,27 @@ Class {
 	#instVars : [
 		'colorRamp'
 	],
-	#category : #Athens-Balloon,
-	#timestamp : '<historical>'
+	#category : #Athens-Balloon
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonGradientPaint>>colorRamp [
+{ #category : #accessing }
+AthensBalloonGradientPaint >> colorRamp [
 
 	^ colorRamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonGradientPaint>>colorRamp: anObject [
+{ #category : #accessing }
+AthensBalloonGradientPaint >> colorRamp: anObject [
 
 	colorRamp := anObject
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonGradientPaint>>strokeRect: aRectangle on: anAthensCanvas stroke: anAthensBalloonStrokePaint  [
+{ #category : #rendering }
+AthensBalloonGradientPaint >> strokeRect: aRectangle on: anAthensCanvas [ stroke: anAthensBalloonStrokePaint 
 	self shouldBeImplemented.
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonGradientPaint>>strokeRect: aRectangle on: anAthensCanvas strokeWidth: strokeWidth [
+{ #category : #rendering }
+AthensBalloonGradientPaint >> strokeRect: aRectangle on: anAthensCanvas strokeWidth: strokeWidth [
 	self shouldBeImplemented.
 ]

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ChainedSortFunctionTest,
 	#superclass : #TestCase,
-	#category : #SortFunctions-Tests,
-	#timestamp : ''
+	#category : #SortFunctions-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ChainedSortFunctionTest>>testEvaluation [
+{ #category : #tests }
+ChainedSortFunctionTest >> testEvaluation [
 
 	| function |
 	function := #first ascending , [:a | a at: 2] descending , #last ascending.

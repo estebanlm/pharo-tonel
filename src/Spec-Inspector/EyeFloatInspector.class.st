@@ -12,15 +12,11 @@ sign * significand * (2 raisedToInteger: exponent)
 Class {
 	#name : #EyeFloatInspector,
 	#superclass : #EyeInspector,
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeFloatInspector>>addSpecialFields: elements [
+{ #category : #list }
+EyeFloatInspector >> addSpecialFields: elements [
 
 	elements add: (DynamicEyeElement 
 		host: self object 

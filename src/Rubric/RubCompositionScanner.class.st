@@ -13,15 +13,11 @@ Class {
 		'baselineAtBreak',
 		'breakAtSpace'
 	],
-	#category : #Rubric-TextScanning,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:50'
+	#category : #Rubric-TextScanning
 }
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCompositionScanner>>composeFrom: startIndex inRectangle: lineRectangle firstLine: firstLine leftSide: leftSide rightSide: rightSide [
+{ #category : #scanning }
+RubCompositionScanner >> composeFrom: startIndex inRectangle: lineRectangle firstLine: firstLine leftSide: leftSide rightSide: rightSide [
 	"Answer an instance of TextLineInterval that represents the next line in the paragraph."
 	| runLength stopCondition |
 	"Set up margins"
@@ -57,11 +53,8 @@ RubCompositionScanner>>composeFrom: startIndex inRectangle: lineRectangle firstL
 				ifTrue: [^ line lineHeight: lineHeight + textStyle leading baseline: baseline + textStyle leading]]
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCompositionScanner>>cr [
+{ #category : #'stop conditions' }
+RubCompositionScanner >> cr [
 	"Answer true. Set up values for the text line interval currently being 
 	composed."
 
@@ -73,11 +66,8 @@ RubCompositionScanner>>cr [
 	^true
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCompositionScanner>>crossedX [
+{ #category : #'stop conditions' }
+RubCompositionScanner >> crossedX [
 	"There is a word that has fallen across the right edge of the composition 
 	rectangle. This signals the need for wrapping which is done to the last 
 	space that was encountered, as recorded by the space stop condition."
@@ -132,11 +122,8 @@ RubCompositionScanner>>crossedX [
 
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCompositionScanner>>endOfRun [
+{ #category : #'stop conditions' }
+RubCompositionScanner >> endOfRun [
 	"Answer true if scanning has reached the end of the paragraph. 
 	Otherwise step conditions (mostly install potential new font) and answer 
 	false."
@@ -156,11 +143,8 @@ RubCompositionScanner>>endOfRun [
 
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCompositionScanner>>placeEmbeddedObject: anchoredMorph [
+{ #category : #'stop conditions' }
+RubCompositionScanner >> placeEmbeddedObject: anchoredMorph [
 	| descent |
 	"Workaround: The following should really use #textAnchorType"
 	anchoredMorph relativeTextAnchorPosition ifNotNil:[^true].
@@ -176,11 +160,8 @@ RubCompositionScanner>>placeEmbeddedObject: anchoredMorph [
 	^ true
 ]
 
-{
-	#category : #'multilingual scanning',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCompositionScanner>>registerBreakableIndex [
+{ #category : #'multilingual scanning' }
+RubCompositionScanner >> registerBreakableIndex [
 
 	"Record left x and character index of the line-wrappable point. 
 	Used for wrap-around. Answer whether the character has crossed the 
@@ -204,11 +185,8 @@ RubCompositionScanner>>registerBreakableIndex [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCompositionScanner>>rightX [
+{ #category : #accessing }
+RubCompositionScanner >> rightX [
 	"Meaningful only when a line has just been composed -- refers to the 
 	line most recently composed. This is a subtrefuge to allow for easy 
 	resizing of a composition rectangle to the width of the maximum line. 
@@ -221,11 +199,8 @@ RubCompositionScanner>>rightX [
 
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCompositionScanner>>setActualFont: aFont [
+{ #category : #scanning }
+RubCompositionScanner >> setActualFont: aFont [
 	"Keep track of max height and ascent for auto lineheight"
 	| descent |
 	super setActualFont: aFont.
@@ -239,30 +214,21 @@ RubCompositionScanner>>setActualFont: aFont [
 				lineHeight := lineHeight max: baseline + descent]
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCompositionScanner>>setFont [
+{ #category : #'stop conditions' }
+RubCompositionScanner >> setFont [
 	super setFont.
 	breakAtSpace := false
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCompositionScanner>>setStopConditions [
+{ #category : #'stop conditions' }
+RubCompositionScanner >> setStopConditions [
 	"Set the font and the stop conditions for the current run."
 	
 	self setFont
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubCompositionScanner>>tab [
+{ #category : #'stop conditions' }
+RubCompositionScanner >> tab [
 	"Advance destination x according to tab settings in the paragraph's 
 	textStyle. Answer whether the character has crossed the right edge of 
 	the composition rectangle of the paragraph."

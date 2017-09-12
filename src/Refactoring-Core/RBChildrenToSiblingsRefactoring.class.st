@@ -27,15 +27,11 @@ Class {
 		'parent',
 		'subclasses'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 21:35'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring class>>model: aRBSmalltalk name: aClassName class: aClass subclasses: subclassCollection  [
+{ #category : #'instance creation' }
+RBChildrenToSiblingsRefactoring class >> model: aRBSmalltalk name: aClassName class: aClass subclasses: subclassCollection [ 
 	^(self new)
 		model: aRBSmalltalk;
 		name: aClassName
@@ -44,11 +40,8 @@ RBChildrenToSiblingsRefactoring class>>model: aRBSmalltalk name: aClassName clas
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring class>>name: aClassName class: aClass subclasses: subclassCollection  [
+{ #category : #'instance creation' }
+RBChildrenToSiblingsRefactoring class >> name: aClassName class: aClass subclasses: subclassCollection [ 
 	^(self new)
 		name: aClassName
 			class: aClass
@@ -56,19 +49,13 @@ RBChildrenToSiblingsRefactoring class>>name: aClassName class: aClass subclasses
 		yourself
 ]
 
-{
-	#category : #private-accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>abstractSuperclass [
+{ #category : #private-accessing }
+RBChildrenToSiblingsRefactoring >> abstractSuperclass [
 	^self model classNamed: className asSymbol
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>addSuperclass [
+{ #category : #transforming }
+RBChildrenToSiblingsRefactoring >> addSuperclass [
 	self performComponentRefactoring: (RBAddClassRefactoring 
 				model: self model
 				addClass: className
@@ -77,11 +64,8 @@ RBChildrenToSiblingsRefactoring>>addSuperclass [
 				category: parent category)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>changeIsKindOfReferences [
+{ #category : #transforming }
+RBChildrenToSiblingsRefactoring >> changeIsKindOfReferences [
 	| replacer |
 	replacer := RBParseTreeRewriter new.
 	replacer replace: '``@object isKindOf: ' , parent name
@@ -89,11 +73,8 @@ RBChildrenToSiblingsRefactoring>>changeIsKindOfReferences [
 	self convertAllReferencesToClass: parent using: replacer
 ]
 
-{
-	#category : #private-methods,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>computeSubclassSupersOf: aClass  [
+{ #category : #private-methods }
+RBChildrenToSiblingsRefactoring >> computeSubclassSupersOf: aClass [ 
 	| selectors |
 	selectors := Set new.
 	aClass subclasses do: 
@@ -103,11 +84,8 @@ RBChildrenToSiblingsRefactoring>>computeSubclassSupersOf: aClass  [
 	^selectors
 ]
 
-{
-	#category : #private-methods,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>createSubclassResponsibilityFor: aSelector in: aClass  [
+{ #category : #private-methods }
+RBChildrenToSiblingsRefactoring >> createSubclassResponsibilityFor: aSelector in: aClass [ 
 	| source |
 	(aClass superclass definesMethod: aSelector) ifTrue: [^self].
 	source := self subclassResponsibilityFor: aSelector in: aClass.
@@ -116,22 +94,16 @@ RBChildrenToSiblingsRefactoring>>createSubclassResponsibilityFor: aSelector in: 
 		classified: (aClass protocolsFor: aSelector)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>name: aClassName class: aClass subclasses: subclassCollection  [
+{ #category : #initialize-release }
+RBChildrenToSiblingsRefactoring >> name: aClassName class: aClass subclasses: subclassCollection [ 
 	className := aClassName asSymbol.
 	parent := self model classFor: aClass.
 	subclasses := subclassCollection 
 				collect: [:each | self model classFor: each]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>preconditions [
+{ #category : #preconditions }
+RBChildrenToSiblingsRefactoring >> preconditions [
 	^subclasses 
 		inject: ((RBCondition isMetaclass: parent) 
 				errorMacro: 'Superclass must not be a metaclass') not 
@@ -145,11 +117,8 @@ RBChildrenToSiblingsRefactoring>>preconditions [
 					& (RBCondition isImmediateSubclass: each of: parent)]
 ]
 
-{
-	#category : #private-variables,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>pullUpClassInstanceVariables [
+{ #category : #private-variables }
+RBChildrenToSiblingsRefactoring >> pullUpClassInstanceVariables [
 	| newSuperclass |
 	newSuperclass := self abstractSuperclass theMetaClass.
 	parent theMetaClass instanceVariableNames do: 
@@ -160,11 +129,8 @@ RBChildrenToSiblingsRefactoring>>pullUpClassInstanceVariables [
 				class: newSuperclass) ]
 ]
 
-{
-	#category : #private-variables,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>pullUpClassVariables [
+{ #category : #private-variables }
+RBChildrenToSiblingsRefactoring >> pullUpClassVariables [
 	| newSuperclass |
 	newSuperclass := self abstractSuperclass.
 	parent classVariableNames do: 
@@ -175,11 +141,8 @@ RBChildrenToSiblingsRefactoring>>pullUpClassVariables [
 						class: newSuperclass)]
 ]
 
-{
-	#category : #private-variables,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>pullUpInstanceVariables [
+{ #category : #private-variables }
+RBChildrenToSiblingsRefactoring >> pullUpInstanceVariables [
 	| newSuperclass |
 	newSuperclass := self abstractSuperclass.
 	parent instanceVariableNames do: 
@@ -190,20 +153,14 @@ RBChildrenToSiblingsRefactoring>>pullUpInstanceVariables [
 						class: newSuperclass)]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>pullUpMethods [
+{ #category : #transforming }
+RBChildrenToSiblingsRefactoring >> pullUpMethods [
 	self pushUpMethodsFrom: parent.
 	self pushUpMethodsFrom: parent theMetaClass
 ]
 
-{
-	#category : #private-variables,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>pullUpPoolVariables [
+{ #category : #private-variables }
+RBChildrenToSiblingsRefactoring >> pullUpPoolVariables [
 	"Don't remove the pool variables from the subclass since they might be referenced there."
 
 	| newSuperclass |
@@ -212,11 +169,8 @@ RBChildrenToSiblingsRefactoring>>pullUpPoolVariables [
 		do: [:each | newSuperclass addPoolDictionary: each]
 ]
 
-{
-	#category : #private-methods,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>pushUp: aSelector in: aClass  [
+{ #category : #private-methods }
+RBChildrenToSiblingsRefactoring >> pushUp: aSelector in: aClass [ 
 	| source |
 	source := aClass sourceCodeFor: aSelector.
 	source isNil 
@@ -225,11 +179,8 @@ RBChildrenToSiblingsRefactoring>>pushUp: aSelector in: aClass  [
 				classified: (aClass protocolsFor: aSelector)]
 ]
 
-{
-	#category : #private-methods,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>pushUpMethodsFrom: aClass  [
+{ #category : #private-methods }
+RBChildrenToSiblingsRefactoring >> pushUpMethodsFrom: aClass [ 
 	| selectorsToPushUp |
 	selectorsToPushUp := self selectorsToPushUpFrom: aClass.
 	aClass selectors do: 
@@ -240,30 +191,21 @@ RBChildrenToSiblingsRefactoring>>pushUpMethodsFrom: aClass  [
 	selectorsToPushUp do: [:each | aClass removeMethod: each]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>pushUpVariables [
+{ #category : #transforming }
+RBChildrenToSiblingsRefactoring >> pushUpVariables [
 	self pullUpInstanceVariables.
 	self pullUpClassInstanceVariables.
 	self pullUpClassVariables.
 	self pullUpPoolVariables
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>reparentSubclasses [
+{ #category : #transforming }
+RBChildrenToSiblingsRefactoring >> reparentSubclasses [
 	self model reparentClasses: subclasses to: self abstractSuperclass
 ]
 
-{
-	#category : #private-methods,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>selectorsToPushUpFrom: aClass  [
+{ #category : #private-methods }
+RBChildrenToSiblingsRefactoring >> selectorsToPushUpFrom: aClass [ 
 	| superSelectors |
 	superSelectors := self computeSubclassSupersOf: aClass.
 	^aClass selectors select: 
@@ -271,11 +213,8 @@ RBChildrenToSiblingsRefactoring>>selectorsToPushUpFrom: aClass  [
 			(superSelectors includes: each) or: [self shouldPushUp: each from: aClass]]
 ]
 
-{
-	#category : #private-methods,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>shouldPushUp: aSelector from: aClass  [
+{ #category : #private-methods }
+RBChildrenToSiblingsRefactoring >> shouldPushUp: aSelector from: aClass [ 
 	^ ((aClass isMeta 
 		ifTrue: [ subclasses collect: [ :each | each theMetaClass ] ]
 		ifFalse: [ subclasses ]) 
@@ -283,11 +222,8 @@ RBChildrenToSiblingsRefactoring>>shouldPushUp: aSelector from: aClass  [
 		ifNone: [ nil ]) notNil
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBChildrenToSiblingsRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream
@@ -300,11 +236,8 @@ RBChildrenToSiblingsRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #private-methods,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>subclassResponsibilityFor: aSelector in: aClass  [
+{ #category : #private-methods }
+RBChildrenToSiblingsRefactoring >> subclassResponsibilityFor: aSelector in: aClass [ 
 	| methodNode position source |
 	source := aClass sourceCodeFor: aSelector.
 	methodNode := RBParser parseMethod: source onError: [:err :pos | ^nil].
@@ -315,11 +248,8 @@ RBChildrenToSiblingsRefactoring>>subclassResponsibilityFor: aSelector in: aClass
 		expandMacrosWith: (source copyFrom: 1 to: position)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBChildrenToSiblingsRefactoring>>transform [
+{ #category : #transforming }
+RBChildrenToSiblingsRefactoring >> transform [
 	self
 		addSuperclass;
 		pushUpVariables;

@@ -8,33 +8,23 @@ Be careful, my #import method also handles ChangeSet interaction so far, handlin
 Class {
 	#name : #DoItChunk,
 	#superclass : #CodeChunk,
-	#category : #CodeImport,
-	#timestamp : '<historical>'
+	#category : #CodeImport
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DoItChunk>>accept: aVisitor [
+{ #category : #visiting }
+DoItChunk >> accept: aVisitor [
 
 	^ aVisitor visitDoItChunk: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DoItChunk>>description [
+{ #category : #accessing }
+DoItChunk >> description [
 
 	^ 'DoIt (', (contents first: (40 min: contents size)), ')'
 ]
 
-{
-	#category : #importing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DoItChunk>>importFor: requestor logSource: logSource [
+{ #category : #importing }
+DoItChunk >> importFor: requestor logSource: logSource [
 	
 	(contents beginsWith: '----') ifTrue: [ ^self ].
 	
@@ -51,11 +41,8 @@ DoItChunk>>importFor: requestor logSource: logSource [
 		evaluate.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DoItChunk>>isDoItDeclaration [
+{ #category : #testing }
+DoItChunk >> isDoItDeclaration [
 
 	^ true
 ]

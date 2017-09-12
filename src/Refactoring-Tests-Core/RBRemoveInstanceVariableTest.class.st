@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBRemoveInstanceVariableTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveInstanceVariableTest>>testModelRemoveInstanceVariable [
+{ #category : #tests }
+RBRemoveInstanceVariableTest >> testModelRemoveInstanceVariable [
 	| class |
 	model 
 		defineClass: 'nil subclass: #Object instanceVariableNames: ''foo1'' classVariableNames: '''' poolDictionaries: '''' category: #''Refactory-Test data'''.
@@ -25,31 +18,22 @@ RBRemoveInstanceVariableTest>>testModelRemoveInstanceVariable [
 	self deny: (class definesInstanceVariable: 'foo1')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveInstanceVariableTest>>testNonExistantName [
+{ #category : #'failure tests' }
+RBRemoveInstanceVariableTest >> testNonExistantName [
 	self shouldFail: (RBRemoveInstanceVariableRefactoring 
 			variable: 'name1'
 			class: RBLintRuleTest)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveInstanceVariableTest>>testReferencedVariable [
+{ #category : #'failure tests' }
+RBRemoveInstanceVariableTest >> testReferencedVariable [
 	self shouldFail: (RBRemoveInstanceVariableRefactoring 
 			variable: 'name'
 			class: RBLintRuleTest)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRemoveInstanceVariableTest>>testRemoveInstVar [
+{ #category : #tests }
+RBRemoveInstanceVariableTest >> testRemoveInstVar [
 	| refactoring class |
 	refactoring := RBRemoveInstanceVariableRefactoring 
 		variable: 'foo1'

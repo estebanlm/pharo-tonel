@@ -11,23 +11,16 @@ Class {
 	#instVars : [
 		'hierarchy'
 	],
-	#category : #Nautilus,
-	#timestamp : '<historical>'
+	#category : #Nautilus
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortHierarchically class>>buildHierarchyFor: aPackageGroup in: anEnvironment [
+{ #category : #'instance creation' }
+SortHierarchically class >> buildHierarchyFor: aPackageGroup in: anEnvironment [
 	^ aPackageGroup withClassesIn: anEnvironment createHierarchySorter: self 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortHierarchically class>>buildHierarchyForClass: aClass [
+{ #category : #'instance creation' }
+SortHierarchically class >> buildHierarchyForClass: aClass [
 	| tupleBlock heirarchy indentDepth |
 	
 	indentDepth := 0.
@@ -50,11 +43,8 @@ SortHierarchically class>>buildHierarchyForClass: aClass [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortHierarchically class>>buildHierarchyForClasses: aCollection [
+{ #category : #'instance creation' }
+SortHierarchically class >> buildHierarchyForClasses: aCollection [
 	
 	| classes roots dct indenter result |
 
@@ -91,57 +81,39 @@ SortHierarchically class>>buildHierarchyForClasses: aCollection [
 		yourself
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortHierarchically class>>sortClasses: classes [
+{ #category : #actions }
+SortHierarchically class >> sortClasses: classes [
 	
 	^ (self buildHierarchyForClasses: classes) sortedElements 
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortHierarchically>>, another  [
+{ #category : #combining }
+SortHierarchically >> , another [ 
 
 	^ self class new
 		setHierarchy: (self hierarchy, another hierarchy);
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortHierarchically>>hierarchy [
+{ #category : #accessing }
+SortHierarchically >> hierarchy [
 	^ hierarchy
 ]
 
-{
-	#category : #computation,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortHierarchically>>indentationFor: anElement [
+{ #category : #computation }
+SortHierarchically >> indentationFor: anElement [
 	"Return the number of spaces needed before anElement to indent it properly."
 	"Speed could be enhanced by using a hash-based collection instead of this #detect:."
 	^ (hierarchy detect: [ :node | node element = anElement ]) indent
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortHierarchically>>setHierarchy: nodes [
+{ #category : #initialize-release }
+SortHierarchically >> setHierarchy: nodes [
 	hierarchy := nodes
 ]
 
-{
-	#category : #computation,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-SortHierarchically>>sortedElements [
+{ #category : #computation }
+SortHierarchically >> sortedElements [
 	"Return the list of elements sorted appropriately."
 	"Nodes are already sorted, we just return each's element."
 	^ hierarchy collect: [ :each | each element ]

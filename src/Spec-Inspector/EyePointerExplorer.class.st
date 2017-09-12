@@ -17,42 +17,29 @@ Class {
 	#instVars : [
 		'onlyStrong'
 	],
-	#category : #Spec-Inspector,
-	#timestamp : 'MarcusDenker 8/5/2014 16:11'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerExplorer class>>label [
+{ #category : #accessing }
+EyePointerExplorer class >> label [
 	^ 'Pointer Explorer'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerExplorer class>>openOn: anObject [
+{ #category : #'instance creation' }
+EyePointerExplorer class >> openOn: anObject [
 	^(self new inspect: anObject) openWithSpec
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerExplorer class>>openStrongOn: anObject [
+{ #category : #'instance creation' }
+EyePointerExplorer class >> openStrongOn: anObject [
 	"only show strong references"
 	^(self new 
 		onlyStrong;
 		inspect: anObject) openWithSpec
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerExplorer class>>registerToolsOn: registry [
+{ #category : #'as yet unclassified' }
+EyePointerExplorer class >> registerToolsOn: registry [
 	"Add ourselves to registry. See [Smalltalk tools class]
 	self registerToolsOn: Smalltalk tools
 	" 
@@ -60,11 +47,8 @@ EyePointerExplorer class>>registerToolsOn: registry [
 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerExplorer>>childrenForObject: anObject [
+{ #category : #api }
+EyePointerExplorer >> childrenForObject: anObject [
 	| objects  |
 	objects := anObject wrappedObject pointersToExcept: { self. anObject}.
 	"filter out all wrappers and (otionally) all those who pointing only weakly to subject"
@@ -76,74 +60,50 @@ EyePointerExplorer>>childrenForObject: anObject [
 			value: each)]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerExplorer>>initialize [
+{ #category : #initialization }
+EyePointerExplorer >> initialize [
 	super initialize.
 	onlyStrong := false.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerExplorer>>object: anObject [
+{ #category : #accessing }
+EyePointerExplorer >> object: anObject [
 	Smalltalk garbageCollect.
 	super object: (EyePointerWrapper wrap: anObject)
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerExplorer>>objectChanged [
+{ #category : #event-handling }
+EyePointerExplorer >> objectChanged [
 	self text doItReceiver: self object.
 	self text widget
 		ifNotNil: [ :w | w editingMode classOrMetaClass: self object class ].
 	self tree roots: self roots
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerExplorer>>onlyStrong [
+{ #category : #api }
+EyePointerExplorer >> onlyStrong [
 	onlyStrong := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerExplorer>>roots [
+{ #category : #accessing }
+EyePointerExplorer >> roots [
 	^ self childrenForObject: self object
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerExplorer>>selectedObjectDo: aBlock [
+{ #category : #accessing }
+EyePointerExplorer >> selectedObjectDo: aBlock [
 
 	self selectedElement ifNotNil: [ :element |
 		aBlock value: element value wrappedObject ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerExplorer>>title [
+{ #category : #accessing }
+EyePointerExplorer >> title [
 	^ 'Pointers to: ', self object printString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerExplorer>>tree [
+{ #category : #accessing }
+EyePointerExplorer >> tree [
 	^ tree ifNil: [ 
 		tree := self instantiate: TreeModel.
 		tree whenBuiltDo: [ self initializeShortcuts ].
@@ -156,10 +116,7 @@ EyePointerExplorer>>tree [
 			yourself]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyePointerExplorer>>valueClass [
+{ #category : #accessing }
+EyePointerExplorer >> valueClass [
 	^ self value wrappedObject class
 ]

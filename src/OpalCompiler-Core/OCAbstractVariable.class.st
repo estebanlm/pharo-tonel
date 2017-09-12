@@ -8,318 +8,209 @@ Class {
 		'scope',
 		'usage'
 	],
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable class>>semanticNodeClass [
+{ #category : #accessing }
+OCAbstractVariable class >> semanticNodeClass [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>asString [
+{ #category : #converting }
+OCAbstractVariable >> asString [
 
 	^ self name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>definingScope [
+{ #category : #accessing }
+OCAbstractVariable >> definingScope [
 	^ scope
 ]
 
-{
-	#category : #emitting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>emitStore: methodBuilder [
+{ #category : #emitting }
+OCAbstractVariable >> emitStore: methodBuilder [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #emitting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>emitValue: methodBuilder [
+{ #category : #emitting }
+OCAbstractVariable >> emitValue: methodBuilder [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isArg [
+{ #category : #testing }
+OCAbstractVariable >> isArg [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isClassVariable [
+{ #category : #testing }
+OCAbstractVariable >> isClassVariable [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isGlobal [
+{ #category : #testing }
+OCAbstractVariable >> isGlobal [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isGlobalVariable [
+{ #category : #testing }
+OCAbstractVariable >> isGlobalVariable [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isInstance [
+{ #category : #testing }
+OCAbstractVariable >> isInstance [
 	^false
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isLiteralVariable [
+{ #category : #testing }
+OCAbstractVariable >> isLiteralVariable [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isLocal [
+{ #category : #testing }
+OCAbstractVariable >> isLocal [
 
 	^false
 ]
 
-{
-	#category : #'read/write usage',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isRead [
+{ #category : #'read/write usage' }
+OCAbstractVariable >> isRead [
 	^usage = #read
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isRemote [
+{ #category : #testing }
+OCAbstractVariable >> isRemote [
 	^false
 ]
 
-{
-	#category : #'read/write usage',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isRepeatedWrite [
+{ #category : #'read/write usage' }
+OCAbstractVariable >> isRepeatedWrite [
 	^usage = #repeatedWrite
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isSelf [
+{ #category : #testing }
+OCAbstractVariable >> isSelf [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isSpecialVariable [
+{ #category : #testing }
+OCAbstractVariable >> isSpecialVariable [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isSuper [
+{ #category : #testing }
+OCAbstractVariable >> isSuper [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isTemp [
+{ #category : #testing }
+OCAbstractVariable >> isTemp [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isUndeclared [
+{ #category : #testing }
+OCAbstractVariable >> isUndeclared [
 
 	^ false
 ]
 
-{
-	#category : #'read/write usage',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isUninitialized [
+{ #category : #'read/write usage' }
+OCAbstractVariable >> isUninitialized [
 
 	^ false
 ]
 
-{
-	#category : #'read/write usage',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isUnused [
+{ #category : #'read/write usage' }
+OCAbstractVariable >> isUnused [
 	"when the var is never read or written, it is not used.
 	Note: we have a special #arg use which means arguments are never unused"
 	^ usage isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isWritable [
+{ #category : #testing }
+OCAbstractVariable >> isWritable [
 	^ true
 ]
 
-{
-	#category : #'read/write usage',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>isWrite [
+{ #category : #'read/write usage' }
+OCAbstractVariable >> isWrite [
 	^ usage = #write or: [ self isRepeatedWrite ]
 ]
 
-{
-	#category : #'read/write usage',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>markRead [
+{ #category : #'read/write usage' }
+OCAbstractVariable >> markRead [
 	"reading does not change a #write, nor an #arg"
 	usage ifNil: [usage := #read]
 ]
 
-{
-	#category : #'read/write usage',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>markRepeatedWrite [
+{ #category : #'read/write usage' }
+OCAbstractVariable >> markRepeatedWrite [
 	"blocks in a loop have to know if write usage happens outside (just #write) or
 	in the loop -> #repeatedWrite"
 	usage := #repeatedWrite.
 ]
 
-{
-	#category : #'read/write usage',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>markWrite [
+{ #category : #'read/write usage' }
+OCAbstractVariable >> markWrite [
 	"write is the strongest use: a read is turned into a write"
 	usage := #write.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>name [
+{ #category : #accessing }
+OCAbstractVariable >> name [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>originalVar [
+{ #category : #accessing }
+OCAbstractVariable >> originalVar [
 	^ self
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>printOn: stream [
+{ #category : #printing }
+OCAbstractVariable >> printOn: stream [
 
 	stream nextPutAll: self name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>scope [
+{ #category : #accessing }
+OCAbstractVariable >> scope [
 
 	^ scope
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>scope: aLexicalScope [
+{ #category : #initializing }
+OCAbstractVariable >> scope: aLexicalScope [
 
 	scope := aLexicalScope
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>semanticNodeClass [
+{ #category : #accessing }
+OCAbstractVariable >> semanticNodeClass [
 	^self class semanticNodeClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>usage [
+{ #category : #accessing }
+OCAbstractVariable >> usage [
 
 	^ usage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>usage: anObject [
+{ #category : #accessing }
+OCAbstractVariable >> usage: anObject [
 
 	usage := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbstractVariable>>variable [
+{ #category : #accessing }
+OCAbstractVariable >> variable [
 	"I return the first class variable that I model in the case of globals and ivars"
 	^self
 ]

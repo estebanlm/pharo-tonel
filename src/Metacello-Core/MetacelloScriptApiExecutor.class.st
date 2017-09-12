@@ -4,35 +4,25 @@ MetacelloScriptExecutor decodes script args and launches MetacelloScriptEngine t
 Class {
 	#name : #MetacelloScriptApiExecutor,
 	#superclass : #MetacelloScriptExecutor,
-	#category : #Metacello-Core-Scripts,
-	#timestamp : 'dkh 7/12/2012 14:49'
+	#category : #Metacello-Core-Scripts
 }
 
-{
-	#category : #'execution callback',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptApiExecutor>>executeBlock: selectBlock do: projectSpecBlock [
+{ #category : #'execution callback' }
+MetacelloScriptApiExecutor >> executeBlock: selectBlock do: projectSpecBlock [
     (self projectSpecsFromRepositoryArg select: selectBlock)
         do: [ :projectSpec | projectSpecBlock value: (self applyArgsToProjectSpec: projectSpec copy) ]
 ]
 
-{
-	#category : #'execution callback',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptApiExecutor>>executeCollection: aCollection do: projectSpecBlock [
+{ #category : #'execution callback' }
+MetacelloScriptApiExecutor >> executeCollection: aCollection do: projectSpecBlock [
     self projectSpecsFromRepositoryArg
         do: [ :projectSpec | 
             (aCollection includes: (MetacelloScriptEngine baseNameOf: projectSpec className))
                 ifTrue: [ projectSpecBlock value: (self applyArgsToProjectSpec: projectSpec copy) ] ]
 ]
 
-{
-	#category : #'execution callback',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptApiExecutor>>executeString: aString do: projectSpecBlock [
+{ #category : #'execution callback' }
+MetacelloScriptApiExecutor >> executeString: aString do: projectSpecBlock [
   singleRoot ifNil: [ self singleRoot: true ].
   (projectSpecGenerator projectSpecCreationBlock value: aString)
     do: [ :projectSpec | 
@@ -40,11 +30,8 @@ MetacelloScriptApiExecutor>>executeString: aString do: projectSpecBlock [
         ifNotNil: [ projectSpecBlock value: (self applyArgsToProjectSpec: projectSpec copy) ] ]
 ]
 
-{
-	#category : #'execution callback',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptApiExecutor>>projectSpecsFromRepositoryArg [
+{ #category : #'execution callback' }
+MetacelloScriptApiExecutor >> projectSpecsFromRepositoryArg [
     | spec repo projectSpecs |
     repositoryArg ifNil: [ ^ #() ].
     spec := (projectSpecGenerator projectSpecCreationBlock value: 'xxx') first.

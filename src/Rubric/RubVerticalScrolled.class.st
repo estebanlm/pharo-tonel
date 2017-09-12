@@ -7,30 +7,20 @@ Class {
 	#instVars : [
 		'scrollValue'
 	],
-	#category : #Rubric-Editing-Announcements,
-	#timestamp : 'FranckWarlouzet 7/29/2015 11:19'
+	#category : #Rubric-Editing-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubVerticalScrolled class>>scrollValue: aScrollValue [
+{ #category : #'instance creation' }
+RubVerticalScrolled class >> scrollValue: aScrollValue [
 	^ self new scrollValue: aScrollValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubVerticalScrolled>>scrollValue [
+{ #category : #accessing }
+RubVerticalScrolled >> scrollValue [
 	^ scrollValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubVerticalScrolled>>scrollValue: anObject [
+{ #category : #accessing }
+RubVerticalScrolled >> scrollValue: anObject [
 	scrollValue := anObject
 ]

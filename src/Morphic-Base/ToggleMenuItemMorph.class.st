@@ -9,54 +9,38 @@ Class {
 		'enablementSelector',
 		'keyText'
 	],
-	#category : #Morphic-Base-Menus,
-	#timestamp : 'gvc 5/18/2007 10:22'
+	#category : #Morphic-Base-Menus
 }
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>adjacentTo [
+{ #category : #selecting }
+ToggleMenuItemMorph >> adjacentTo [
 
 	^{self bounds topRight + (5 @ 0). self bounds topLeft + (2@0)}
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+ToggleMenuItemMorph >> adoptPaneColor: paneColor [
 	"Pass on to submenu too."
 	
 	super adoptPaneColor: paneColor.
 	self hasSubMenu ifTrue: [self subMenu adoptPaneColor: paneColor]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>argumentsBlock: aBlock [
+{ #category : #accessing }
+ToggleMenuItemMorph >> argumentsBlock: aBlock [
 
 	self arguments: aBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>balloonText: aText [
+{ #category : #accessing }
+ToggleMenuItemMorph >> balloonText: aText [
 
 	self assureExtension balloonText: aText
 ]
 
-{
-	#category : #drawing-private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>basicDrawOn: aCanvas  [
+{ #category : #drawing-private }
+ToggleMenuItemMorph >> basicDrawOn: aCanvas [ 
 	"Draw on the canvas. Taken from MenuItemMorph for minor refactoring."
 	
 	| stringColor stringBounds|
@@ -81,11 +65,8 @@ ToggleMenuItemMorph>>basicDrawOn: aCanvas  [
 		self drawSubMenuMarker: subMenuMarker on: aCanvas in: stringBounds]
 ]
 
-{
-	#category : #drawing-private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>drawIcon: aForm on: aCanvas in: aRectangle [
+{ #category : #drawing-private }
+ToggleMenuItemMorph >> drawIcon: aForm on: aCanvas in: aRectangle [
 	"Draw the icon on the canvas within the given bounds."
 	
 	|iconForm|
@@ -101,22 +82,16 @@ ToggleMenuItemMorph>>drawIcon: aForm on: aCanvas in: aRectangle [
 		at: aRectangle topLeft + (0@(aRectangle height - iconForm height // 2))
 ]
 
-{
-	#category : #drawing-private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>drawKeyTextOn: aCanvas  [
+{ #category : #drawing-private }
+ToggleMenuItemMorph >> drawKeyTextOn: aCanvas [ 
 	"Draw the key text on the canvas."
 	
 	self keyText ifNil: [^self].
 	self itemShortcut drawOn: aCanvas
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>drawOn: aCanvas  [
+{ #category : #drawing }
+ToggleMenuItemMorph >> drawOn: aCanvas [ 
 	"Need to check isEnabled here."
 	
 	self
@@ -125,11 +100,8 @@ ToggleMenuItemMorph>>drawOn: aCanvas  [
 		drawKeyTextOn: aCanvas
 ]
 
-{
-	#category : #drawing-private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>drawSubMenuMarker: aForm on: aCanvas in: aRectangle [
+{ #category : #drawing-private }
+ToggleMenuItemMorph >> drawSubMenuMarker: aForm on: aCanvas in: aRectangle [
 	"Draw the submenu marker on the canvas within the given bounds."
 	
 	|markerRect| 
@@ -137,11 +109,8 @@ ToggleMenuItemMorph>>drawSubMenuMarker: aForm on: aCanvas in: aRectangle [
 	self drawIcon: aForm on: aCanvas in: markerRect
 ]
 
-{
-	#category : #drawing-private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>drawText: aStringOrText on: aCanvas in: aRectangle [
+{ #category : #drawing-private }
+ToggleMenuItemMorph >> drawText: aStringOrText on: aCanvas [ in: aRectangle
 	^ self 
 		drawText: aStringOrText 
 		on: aCanvas 
@@ -149,11 +118,8 @@ ToggleMenuItemMorph>>drawText: aStringOrText on: aCanvas in: aRectangle [
 		color: self stringColorToUse.
 ]
 
-{
-	#category : #drawing-private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>drawText: aStringOrText on: aCanvas in: aRectangle color: stringColor  [
+{ #category : #drawing-private }
+ToggleMenuItemMorph >> drawText: aStringOrText on: aCanvas in: aRectangle color: stringColor [ 
 	"Draw the text on the canvas within the given bounds."
 	
 	(self enabled not and: [self theme disabledItemStyle = #inset])
@@ -174,51 +140,36 @@ ToggleMenuItemMorph>>drawText: aStringOrText on: aCanvas in: aRectangle color: s
 					color: stringColor ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>enablementSelector [
+{ #category : #accessing }
+ToggleMenuItemMorph >> enablementSelector [
 	"Answer the value of enablementSelector"
 
 	^ enablementSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>enablementSelector: anObject [
+{ #category : #accessing }
+ToggleMenuItemMorph >> enablementSelector: anObject [
 	"Set the value of enablementSelector"
 
 	enablementSelector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>getStateSelector [
+{ #category : #accessing }
+ToggleMenuItemMorph >> getStateSelector [
 	"Answer the value of getStateSelector"
 
 	^ getStateSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>getStateSelector: anObject [
+{ #category : #accessing }
+ToggleMenuItemMorph >> getStateSelector: anObject [
 	"Set the value of getStateSelector"
 
 	getStateSelector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>icon [
+{ #category : #accessing }
+ToggleMenuItemMorph >> icon [
 	"Answer the receiver's icon. Handle legacy case
 	of wording-based mechanism."
 	
@@ -237,11 +188,8 @@ ToggleMenuItemMorph>>icon [
 	^super icon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>isEnabled [
+{ #category : #accessing }
+ToggleMenuItemMorph >> isEnabled [
 	"Answer whether the item is enabled."
 	
 	|state|
@@ -253,22 +201,16 @@ ToggleMenuItemMorph>>isEnabled [
 	^state
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>isEnabled: aBoolean [
+{ #category : #testing }
+ToggleMenuItemMorph >> isEnabled: aBoolean [
 
 	isEnabled = aBoolean ifTrue: [^ self].
 	isEnabled := aBoolean.
 	self changed
 ]
 
-{
-	#category : #drawing-private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>itemShortcut [
+{ #category : #drawing-private }
+ToggleMenuItemMorph >> itemShortcut [
 
 	^ ToggleMenuItemShortcut 
 		owner: self 
@@ -276,39 +218,27 @@ ToggleMenuItemMorph>>itemShortcut [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>keyText [
+{ #category : #accessing }
+ToggleMenuItemMorph >> keyText [
 	"Answer the value of keyText"
 
 	^ keyText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>keyText: anObject [
+{ #category : #accessing }
+ToggleMenuItemMorph >> keyText: anObject [
 	"Set the value of keyText"
 
 	keyText := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>keyTextExpanded [
+{ #category : #private }
+ToggleMenuItemMorph >> keyTextExpanded [
 	^ ToggleMenuItemShortcut normalize: self keyText
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>minWidth [
+{ #category : #layout }
+ToggleMenuItemMorph >> minWidth [
 	"Plus the key text if any."
 	
 	|w|
@@ -317,11 +247,8 @@ ToggleMenuItemMorph>>minWidth [
 	^w
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>mouseEnter: evt [
+{ #category : #events }
+ToggleMenuItemMorph >> mouseEnter: evt [
 	"The mouse entered the receiver.
 	Handle the case when in an EmbeddedMenuMorph."
 
@@ -331,11 +258,8 @@ ToggleMenuItemMorph>>mouseEnter: evt [
 			ifTrue: [owner selectItem: self event: evt]]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>mouseLeave: evt [
+{ #category : #events }
+ToggleMenuItemMorph >> mouseLeave: evt [
 	"The mouse left the receiver.
 	Handle the case when in an EmbeddedMenuMorph."
 
@@ -345,11 +269,8 @@ ToggleMenuItemMorph>>mouseLeave: evt [
 			ifTrue: [owner selectItem: nil event: evt]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>offImage [
+{ #category : #private }
+ToggleMenuItemMorph >> offImage [
 	"Return the form to be used for indicating an '<off>' marker."
 	
 	|m form|
@@ -363,11 +284,8 @@ ToggleMenuItemMorph>>offImage [
 	^form
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>onImage [
+{ #category : #private }
+ToggleMenuItemMorph >> onImage [
 	"Return the form to be used for indicating an '<on>' marker."
 	
 	|m form|
@@ -381,52 +299,37 @@ ToggleMenuItemMorph>>onImage [
 	^form
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>select: evt [
+{ #category : #selecting }
+ToggleMenuItemMorph >> select: evt [
 	"Don't if not enabled."
 	
 	self isEnabled ifFalse: [^self].
 	^super select: evt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>selectionBorderStyle [
+{ #category : #accessing }
+ToggleMenuItemMorph >> selectionBorderStyle [
 	"Answer the border style to use with the receiver is the selected element."
 	
 	^ self theme menuItemSelectedBorderStyleFor: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>selectionFillStyle [
+{ #category : #private }
+ToggleMenuItemMorph >> selectionFillStyle [
 	"Answer the fill style to use with the receiver is the selected element."
 	
 	^ self theme menuItemSelectedFillStyleFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>stringBoundsToUse [
+{ #category : #accessing }
+ToggleMenuItemMorph >> stringBoundsToUse [
 	"Answer the bounds to use when drawing the item text."
 	
 	^ self bounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ToggleMenuItemMorph>>stringColorToUse [
+{ #category : #accessing }
+ToggleMenuItemMorph >> stringColorToUse [
 	"Answer the state dependent color to use for drawing text."
 	
 	^self isEnabled

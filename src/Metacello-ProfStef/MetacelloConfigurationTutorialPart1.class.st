@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloConfigurationTutorialPart1,
 	#superclass : #AbstractTutorial,
-	#category : #Metacello-ProfStef,
-	#timestamp : ''
+	#category : #Metacello-ProfStef
 }
 
-{
-	#category : #intro,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>introductionText [
+{ #category : #intro }
+MetacelloConfigurationTutorialPart1 >> introductionText [
 
 	^'Convers basic Metacello configuration specifications:
 	1. Open a code browser on the MetacelloTutorialConfig class:"
@@ -22,11 +15,8 @@ MetacelloConfigurationTutorialPart1>>introductionText [
 	
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>lesson01 [
+{ #category : #lessons }
+MetacelloConfigurationTutorialPart1 >> lesson01 [
 	^Lesson
 		title: 'Lesson 1'
 		lesson: 
@@ -79,11 +69,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>lesson02 [
+{ #category : #lessons }
+MetacelloConfigurationTutorialPart1 >> lesson02 [
 	^Lesson
 		title: 'Lesson 2'
 		lesson: 
@@ -99,11 +86,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>lesson03 [
+{ #category : #lessons }
+MetacelloConfigurationTutorialPart1 >> lesson03 [
 	^Lesson
 		title: 'Lesson 3'
 		lesson: 
@@ -122,11 +106,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>lesson04 [
+{ #category : #lessons }
+MetacelloConfigurationTutorialPart1 >> lesson04 [
 	^Lesson
 		title: 'Lesson 4'
 		lesson: 
@@ -147,11 +128,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>lesson05 [
+{ #category : #lessons }
+MetacelloConfigurationTutorialPart1 >> lesson05 [
 	^Lesson
 		title: 'Lesson 5'
 		lesson: 
@@ -192,11 +170,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>lesson06 [
+{ #category : #lessons }
+MetacelloConfigurationTutorialPart1 >> lesson06 [
 	^Lesson
 		title: 'Lesson 6'
 		lesson: 
@@ -220,11 +195,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>lesson07 [
+{ #category : #lessons }
+MetacelloConfigurationTutorialPart1 >> lesson07 [
 	^Lesson
 		title: 'Lesson 7'
 		lesson: 
@@ -273,11 +245,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>lesson08 [
+{ #category : #lessons }
+MetacelloConfigurationTutorialPart1 >> lesson08 [
 	^Lesson
 		title: 'Lesson 8'
 		lesson: 
@@ -295,11 +264,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>lesson10 [
+{ #category : #lessons }
+MetacelloConfigurationTutorialPart1 >> lesson10 [
 	^Lesson
 		title: 'Lesson 10'
 		lesson: 
@@ -341,11 +307,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>lesson11 [
+{ #category : #lessons }
+MetacelloConfigurationTutorialPart1 >> lesson11 [
 	^Lesson
 		title: 'Lesson 11'
 		lesson: 
@@ -366,11 +329,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>lesson11Author [
+{ #category : #lessons }
+MetacelloConfigurationTutorialPart1 >> lesson11Author [
 	^Lesson
 		title: 'Lesson 11 (Author)'
 		lesson: 
@@ -388,11 +348,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>lesson11Blessing [
+{ #category : #lessons }
+MetacelloConfigurationTutorialPart1 >> lesson11Blessing [
 	^Lesson
 		title: 'Lesson 11 (Blessing)'
 		lesson: 
@@ -447,11 +404,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>lesson11Descripton [
+{ #category : #lessons }
+MetacelloConfigurationTutorialPart1 >> lesson11Descripton [
 	^Lesson
 		title: 'Lesson 11 (Description)'
 		lesson: 
@@ -467,11 +421,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>lesson11Timestamp [
+{ #category : #lessons }
+MetacelloConfigurationTutorialPart1 >> lesson11Timestamp [
 	^Lesson
 		title: 'Lesson 11 (Timestamp)'
 		lesson: 
@@ -491,11 +442,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>lesson12DoIts [
+{ #category : #lessons }
+MetacelloConfigurationTutorialPart1 >> lesson12DoIts [
 	^Lesson
 		title: 'Lesson 12 (DoIts)'
 		lesson: 
@@ -522,11 +470,8 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>lesson13 [
+{ #category : #lessons }
+MetacelloConfigurationTutorialPart1 >> lesson13 [
 	^Lesson
 		title: 'Lesson 12 (DoIts)'
 		lesson: 
@@ -571,10 +516,7 @@ ProfStef next.
 '
 ]
 
-{
-	#category : #tutorial,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloConfigurationTutorialPart1>>tutorial [
+{ #category : #tutorial }
+MetacelloConfigurationTutorialPart1 >> tutorial [
 	^ #(#lesson01 #lesson02 #lesson03 #lesson04 #lesson05 #lesson06 #lesson07 #lesson08 #lesson10 #lesson11 #lesson11Author #lesson11Blessing #lesson11Descripton #lesson11Timestamp #lesson12DoIts #lesson13)
 ]

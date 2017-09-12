@@ -4,46 +4,30 @@ Using the ObjectRefification, one can pass a pointer to the object where the lin
 Class {
 	#name : #RFObjectReification,
 	#superclass : #RFReification,
-	#category : #Reflectivity-Links,
-	#timestamp : 'MarcusDenker 4/29/2015 15:39'
+	#category : #Reflectivity-Links
 }
 
-{
-	#category : #'plugin interface',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFObjectReification class>>entities [
+{ #category : #'plugin interface' }
+RFObjectReification class >> entities [
 	^{RBProgramNode. LiteralVariable. Slot}
 ]
 
-{
-	#category : #'plugin interface',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFObjectReification class>>key [
+{ #category : #'plugin interface' }
+RFObjectReification class >> key [
 	^#object
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFObjectReification>>genForInstanceVariableSlot [
+{ #category : #generate }
+RFObjectReification >> genForInstanceVariableSlot [
 	^RBVariableNode named: 'self'
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFObjectReification>>genForLiteralVariable [
+{ #category : #generate }
+RFObjectReification >> genForLiteralVariable [
 	^RBVariableNode named: 'self'
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFObjectReification>>genForRBProgramNode [
+{ #category : #generate }
+RFObjectReification >> genForRBProgramNode [
 	^RBVariableNode named: 'self'
 ]

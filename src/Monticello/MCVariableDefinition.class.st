@@ -7,113 +7,73 @@ Class {
 	#instVars : [
 		'name'
 	],
-	#category : #Monticello-Modeling,
-	#timestamp : '<historical>'
+	#category : #Monticello-Modeling
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVariableDefinition class>>name: aString [
+{ #category : #instance-creation }
+MCVariableDefinition class >> name: aString [
 	^ self new name: aString
 	
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVariableDefinition>>= other [
+{ #category : #comparing }
+MCVariableDefinition >> = other [
 	^ (self species = other species)
 		and: [self name = other name]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVariableDefinition>>hash [
+{ #category : #comparing }
+MCVariableDefinition >> hash [
 	^ name hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVariableDefinition>>isClassInstanceVariable [
+{ #category : #testing }
+MCVariableDefinition >> isClassInstanceVariable [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVariableDefinition>>isClassInstanceVariableDefinition [
+{ #category : #testing }
+MCVariableDefinition >> isClassInstanceVariableDefinition [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVariableDefinition>>isClassVariable [
+{ #category : #testing }
+MCVariableDefinition >> isClassVariable [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVariableDefinition>>isInstanceVariable [
+{ #category : #testing }
+MCVariableDefinition >> isInstanceVariable [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVariableDefinition>>isInstanceVariableDefinition [
+{ #category : #testing }
+MCVariableDefinition >> isInstanceVariableDefinition [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVariableDefinition>>isOrderDependend [
+{ #category : #testing }
+MCVariableDefinition >> isOrderDependend [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVariableDefinition>>isPoolImport [
+{ #category : #testing }
+MCVariableDefinition >> isPoolImport [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVariableDefinition>>name [
+{ #category : #accessing }
+MCVariableDefinition >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVariableDefinition>>name: aString [
+{ #category : #accessing }
+MCVariableDefinition >> name: aString [
 	name := aString
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVariableDefinition>>printOn: aStream [
+{ #category : #printing }
+MCVariableDefinition >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut: $(; nextPutAll: self name; nextPut: $)
 ]

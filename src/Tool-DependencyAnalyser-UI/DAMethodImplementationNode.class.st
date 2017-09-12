@@ -4,15 +4,11 @@ I'm a tree node representing a method implementation
 Class {
 	#name : #DAMethodImplementationNode,
 	#superclass : #DAMethodDependencyNode,
-	#category : #Tool-DependencyAnalyser-UI-Nodes,
-	#timestamp : 'ChristopheDemarey 7/2/2015 15:20'
+	#category : #Tool-DependencyAnalyser-UI-Nodes
 }
 
-{
-	#category : #building-menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMethodImplementationNode>>addMenuEntriesOn: aMenuGroup [
+{ #category : #building-menu }
+DAMethodImplementationNode >> addMenuEntriesOn: aMenuGroup [
 	| method |
 	method := self content.
 	aMenuGroup
@@ -25,19 +21,13 @@ DAMethodImplementationNode>>addMenuEntriesOn: aMenuGroup [
 					"TODO: run the analysis again" ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMethodImplementationNode>>icon [
+{ #category : #accessing }
+DAMethodImplementationNode >> icon [
 	^ self iconNamed: #packageIcon
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMethodImplementationNode>>label [
+{ #category : #displaying }
+DAMethodImplementationNode >> label [
 	^ String streamContents: [ :stream |
 		stream
 			nextPutAll: 'Implemented in ';

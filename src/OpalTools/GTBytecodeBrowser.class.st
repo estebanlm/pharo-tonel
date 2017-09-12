@@ -7,15 +7,11 @@ self openOn: (self>>#compose)
 Class {
 	#name : #GTBytecodeBrowser,
 	#superclass : #GLMCompositePresentation,
-	#category : #OpalTools,
-	#timestamp : 'MarcusDenker 10/16/2014 11:28'
+	#category : #OpalTools
 }
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GTBytecodeBrowser>>compose [
+{ #category : #building }
+GTBytecodeBrowser >> compose [
 	self title: 'Tree'.
 	self tabulator with: [ :browser |
 		browser
@@ -36,21 +32,15 @@ GTBytecodeBrowser>>compose [
 			from: #tree port: #selectedNode ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GTBytecodeBrowser>>sourceIn: a [
+{ #category : #building }
+GTBytecodeBrowser >> sourceIn: a [
 	^ a pharoMethod 
 		smalltalkClass: [ :each | each method methodClass ]; 
 		display: [ :each | each sourceCode ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GTBytecodeBrowser>>treeIn: a [
+{ #category : #building }
+GTBytecodeBrowser >> treeIn: a [
 	^ a tree
 		rootsExpanded;
 		display: [ :anObject | anObject symbolicBytecodes ];

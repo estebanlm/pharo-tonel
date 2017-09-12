@@ -18,15 +18,11 @@ and DockingBarToggleMenuItemMorph is created by
 Class {
 	#name : #DockingBarToggleMenuItemMorph,
 	#superclass : #ToggleMenuItemMorph,
-	#category : #Morphic-Widgets-Extra,
-	#timestamp : 'StephaneDucasse 9/28/2014 16:49'
+	#category : #Morphic-Widgets-Extra
 }
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarToggleMenuItemMorph>>adjacentTo [
+{ #category : #selecting }
+DockingBarToggleMenuItemMorph >> adjacentTo [
 	"Adjusted to line up more nicely."
 	self owner isFloating
 		ifTrue: [^ {self bounds bottomLeft + (3 @ 3).  self bounds bottomRight + (5 @ 3)}].
@@ -41,11 +37,8 @@ DockingBarToggleMenuItemMorph>>adjacentTo [
 	^ {self bounds bottomLeft + (3 @ 5)}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarToggleMenuItemMorph>>deselectTimeOut: evt [
+{ #category : #accessing }
+DockingBarToggleMenuItemMorph >> deselectTimeOut: evt [
 	"Deselect timout. Now really deselect"
 
 	owner selectedItem == self
@@ -54,11 +47,8 @@ DockingBarToggleMenuItemMorph>>deselectTimeOut: evt [
 			owner selectItem: nil event: evt ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarToggleMenuItemMorph>>drawOn: aCanvas  [
+{ #category : #accessing }
+DockingBarToggleMenuItemMorph >> drawOn: aCanvas [ 
 	| stringColor stringBounds |
 	(isSelected and: [ isEnabled ])
 		ifTrue: [aCanvas fillRectangle: self bounds fillStyle: self selectionFillStyle.
@@ -87,11 +77,8 @@ DockingBarToggleMenuItemMorph>>drawOn: aCanvas  [
 			aCanvas paintImage: subMenuMarker at: subMenuMarkerPosition]
 ]
 
-{
-	#category : #drawing-private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarToggleMenuItemMorph>>drawSubMenuMarker: aForm on: aCanvas in: aRectangle [
+{ #category : #drawing-private }
+DockingBarToggleMenuItemMorph >> drawSubMenuMarker: aForm on: aCanvas in: aRectangle [
 	"Draw the submenu marker on the canvas within the given bounds."
 	
 	|markerRect| 
@@ -100,11 +87,8 @@ DockingBarToggleMenuItemMorph>>drawSubMenuMarker: aForm on: aCanvas in: aRectang
 	self drawIcon: aForm on: aCanvas in: markerRect
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarToggleMenuItemMorph>>mouseDown: evt [
+{ #category : #accessing }
+DockingBarToggleMenuItemMorph >> mouseDown: evt [
 	"Handle a mouse down event. Menu items get activated when the mouse is over them."
 
 	evt shiftPressed ifTrue: [^ super mouseDown: evt].  "enable label editing"
@@ -118,11 +102,8 @@ DockingBarToggleMenuItemMorph>>mouseDown: evt [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarToggleMenuItemMorph>>mouseEnter: evt [
+{ #category : #accessing }
+DockingBarToggleMenuItemMorph >> mouseEnter: evt [
 	"The mouse entered the receiver"
 
 	owner ifNotNil: [owner stayUp ifFalse: [self mouseEnterDragging: evt]].
@@ -133,11 +114,8 @@ DockingBarToggleMenuItemMorph>>mouseEnter: evt [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarToggleMenuItemMorph>>mouseUp: evt [
+{ #category : #accessing }
+DockingBarToggleMenuItemMorph >> mouseUp: evt [
 	"Handle a mouse up event. Menu items get activated when the mouse is over them. Do nothing if we're not in a 'valid menu transition', meaning that the current hand focus must be aimed at the owning menu."
 	evt hand mouseFocus == owner ifFalse: [^self].
 	
@@ -150,33 +128,24 @@ DockingBarToggleMenuItemMorph>>mouseUp: evt [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarToggleMenuItemMorph>>noteNewOwner: aMorph  [
+{ #category : #accessing }
+DockingBarToggleMenuItemMorph >> noteNewOwner: aMorph [ 
 	"I have just been added as a submorph of aMorph"
 	super noteNewOwner: aMorph.
 
 	self updateLayoutInDockingBar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarToggleMenuItemMorph>>ownerChanged [
+{ #category : #accessing }
+DockingBarToggleMenuItemMorph >> ownerChanged [
 	"The receiver's owner, some kind of a pasteup, has changed its 
 	layout."
 	super ownerChanged.
 	self updateLayoutInDockingBar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarToggleMenuItemMorph>>roundedCorners [
+{ #category : #accessing }
+DockingBarToggleMenuItemMorph >> roundedCorners [
 	"Return a list of those corners to round"
 	owner isFloating
 		ifTrue: [^ #(1 4 )].
@@ -191,43 +160,31 @@ DockingBarToggleMenuItemMorph>>roundedCorners [
 	^ #(1 2 3 4 )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarToggleMenuItemMorph>>selectionBorderStyle [
+{ #category : #accessing }
+DockingBarToggleMenuItemMorph >> selectionBorderStyle [
 	"Answer the border style to use with the receiver is the selected element."
 	
 	^ self theme menuItemInDockingBarSelectedBorderStyleFor: self
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarToggleMenuItemMorph>>selectionFillStyle [
+{ #category : #private }
+DockingBarToggleMenuItemMorph >> selectionFillStyle [
 	"Answer the fill style to use with the receiver is the selected element."
 	
 	^self theme menuItemInDockingBarSelectedFillStyleFor: self
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarToggleMenuItemMorph>>stringBoundsToUse [
+{ #category : #accessing }
+DockingBarToggleMenuItemMorph >> stringBoundsToUse [
 	"Answer the bounds to use when drawing the item text."
 	
 	^self bounds left: self left + 4
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarToggleMenuItemMorph>>subMenuMarker [
+{ #category : #accessing }
+DockingBarToggleMenuItemMorph >> subMenuMarker [
 	"private - answer the form to be used as submenu marker"
 
 	owner isFloating
@@ -243,11 +200,8 @@ DockingBarToggleMenuItemMorph>>subMenuMarker [
 	^ self rightArrow
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarToggleMenuItemMorph>>updateLayoutInDockingBar [
+{ #category : #accessing }
+DockingBarToggleMenuItemMorph >> updateLayoutInDockingBar [
 
 	owner isVertical
 		ifTrue: [
@@ -259,11 +213,8 @@ DockingBarToggleMenuItemMorph>>updateLayoutInDockingBar [
 	self extent: self minWidth @ self minHeight
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarToggleMenuItemMorph>>wantsRoundedCorners [
+{ #category : #accessing }
+DockingBarToggleMenuItemMorph >> wantsRoundedCorners [
 	^self theme currentSettings preferRoundCorner
 		
 ]

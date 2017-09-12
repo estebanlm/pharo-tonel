@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'version'
 	],
-	#category : #Gofer-Core,
-	#timestamp : '<historical>'
+	#category : #Gofer-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferMetacelloLoad>>configuration [
+{ #category : #accessing }
+GoferMetacelloLoad >> configuration [
 	^ self configurationReference project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferMetacelloLoad>>configurationReference [
+{ #category : #accessing }
+GoferMetacelloLoad >> configurationReference [
 	^ gofer references
 		detect: [ :ref | ref isConfigurationReference ]
 		ifNone: [ 
@@ -31,28 +24,19 @@ GoferMetacelloLoad>>configurationReference [
 			^ self configurationReference ].
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferMetacelloLoad>>execute [
+{ #category : #running }
+GoferMetacelloLoad >> execute [
 	super execute.
 	self loadConfiguration.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferMetacelloLoad>>loadConfiguration [
+{ #category : #running }
+GoferMetacelloLoad >> loadConfiguration [
 	self metacelloVersion load
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferMetacelloLoad>>metacelloVersion [
+{ #category : #accessing }
+GoferMetacelloLoad >> metacelloVersion [
 	| configuration |
 	
 	configuration := self configuration project.
@@ -76,19 +60,13 @@ GoferMetacelloLoad>>metacelloVersion [
 					configuration version: self version asSymbol ]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferMetacelloLoad>>version [
+{ #category : #accessing }
+GoferMetacelloLoad >> version [
 	^ version
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferMetacelloLoad>>version: aVersionStringOrSymbol  [
+{ #category : #accessing }
+GoferMetacelloLoad >> version: aVersionStringOrSymbol [ 
 	"A version identifiery see MetacelloProject>>#version:"
 	version := aVersionStringOrSymbol
 ]

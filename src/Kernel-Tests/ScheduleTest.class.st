@@ -9,26 +9,19 @@ Class {
 		'aSchedule',
 		'restoredTimeZone'
 	],
-	#category : #Kernel-Tests-Chronology,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:43'
+	#category : #Kernel-Tests-Chronology
 }
 
-{
-	#category : #coverage,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScheduleTest>>classToBeTested [
+{ #category : #coverage }
+ScheduleTest >> classToBeTested [
 
 	^ Schedule
 
 
 ]
 
-{
-	#category : #coverage,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScheduleTest>>selectorsToBeIgnored [
+{ #category : #coverage }
+ScheduleTest >> selectorsToBeIgnored [
 
 	| private | 
 	private := #( #printOn: ).
@@ -37,11 +30,8 @@ ScheduleTest>>selectorsToBeIgnored [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScheduleTest>>setUp [
+{ #category : #running }
+ScheduleTest >> setUp [
  	 "Schedule is a type of Timespan representing repeated occurences of the same event. 
 	The beginning of the schedule is the first occurrence of the event.
 	A schedule maintains an array of Durations. 
@@ -66,21 +56,15 @@ ScheduleTest>>setUp [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScheduleTest>>tearDown [
+{ #category : #running }
+ScheduleTest >> tearDown [
 
 	DateAndTime localTimeZone: restoredTimeZone.
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScheduleTest>>testBetweenAndDoDisjointWithSchedule [
+{ #category : #tests }
+ScheduleTest >> testBetweenAndDoDisjointWithSchedule [
 	| count |
 	count := 0.
 	aSchedule
@@ -96,11 +80,8 @@ ScheduleTest>>testBetweenAndDoDisjointWithSchedule [
 	self assert: count = 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScheduleTest>>testBetweenAndDoIncludedInSchedule [
+{ #category : #tests }
+ScheduleTest >> testBetweenAndDoIncludedInSchedule [
 	| count |
 	count := 0.
 	aSchedule
@@ -116,11 +97,8 @@ ScheduleTest>>testBetweenAndDoIncludedInSchedule [
 	self assert: count = 8
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScheduleTest>>testBetweenAndDoOverlappingSchedule [
+{ #category : #tests }
+ScheduleTest >> testBetweenAndDoOverlappingSchedule [
 	| count |
 	count := 0.
 	aSchedule
@@ -136,11 +114,8 @@ ScheduleTest>>testBetweenAndDoOverlappingSchedule [
 	self assert: count = 8
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScheduleTest>>testDateAndTimes [
+{ #category : #tests }
+ScheduleTest >> testDateAndTimes [
 	| answer |
 	self assert: aSchedule dateAndTimes size  = 104.
 	self assert: aSchedule dateAndTimes first = firstEvent.
@@ -151,11 +126,8 @@ ScheduleTest>>testDateAndTimes [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScheduleTest>>testDaysOfWeekAreConsistent [
+{ #category : #tests }
+ScheduleTest >> testDaysOfWeekAreConsistent [
 	| originalDayOfWeekSet modifiedDayOfWeekSet start end |
 	originalDayOfWeekSet := (aSchedule dateAndTimes collect: [ :each | each dayOfWeek ]) asSet.
 	start := DateAndTime
@@ -175,11 +147,8 @@ ScheduleTest>>testDaysOfWeekAreConsistent [
 	self assert: originalDayOfWeekSet equals: modifiedDayOfWeekSet asSet
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScheduleTest>>testExampleFromSwikiPage [
+{ #category : #tests }
+ScheduleTest >> testExampleFromSwikiPage [
 	"It is often neccessary to schedule repeated events, like airline flight schedules, TV programmes, and file backups.
 	 Schedule is a Timespan which maintains an array of Durations.
 	 The durations specify the offset to the next scheduled DateAndTime. "
@@ -198,11 +167,8 @@ ScheduleTest>>testExampleFromSwikiPage [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScheduleTest>>testFromDateAndTime [
+{ #category : #tests }
+ScheduleTest >> testFromDateAndTime [
 
 	| oc1 oc2 |
 	oc1 := OrderedCollection new.
@@ -215,21 +181,15 @@ ScheduleTest>>testFromDateAndTime [
 	self assert: (oc1 asArray = oc2)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScheduleTest>>testIncludes [
+{ #category : #tests }
+ScheduleTest >> testIncludes [
 	self assert: (aSchedule includes: (DateAndTime year: 2003 month: 6 day: 15 hour: 20 minute: 30 second: 0 offset: 0 hours))
 	
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScheduleTest>>testMonotonicity [
+{ #category : #tests }
+ScheduleTest >> testMonotonicity [
 
 	| t1 t2 t3 t4 |
 	t1 := DateAndTime now.
@@ -244,11 +204,8 @@ ScheduleTest>>testMonotonicity [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ScheduleTest>>testSchedule [
+{ #category : #tests }
+ScheduleTest >> testSchedule [
 	self assert: aSchedule schedule size = 2.
 	self assert: aSchedule schedule first = 1 days.	
 	self assert: aSchedule schedule second = 6 days.

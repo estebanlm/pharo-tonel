@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #SystemAnnouncerTest,
 	#superclass : #TestCase,
@@ -8,15 +5,11 @@ Class {
 		'oldSystemAnnouncer',
 		'factory'
 	],
-	#category : #Tests-SystemChangeNotification,
-	#timestamp : ''
+	#category : #Tests-SystemChangeNotification
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemAnnouncerTest>>setUp  [
+{ #category : #running }
+SystemAnnouncerTest >> setUp [ 
 	super setUp. 
 	
 	oldSystemAnnouncer := SystemAnnouncer uniqueInstance.
@@ -25,11 +18,8 @@ SystemAnnouncerTest>>setUp  [
 	factory := ClassFactoryForTestCase new.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemAnnouncerTest>>tearDown [
+{ #category : #running }
+SystemAnnouncerTest >> tearDown [
 	super tearDown.
 
 	SystemAnnouncer announcer: oldSystemAnnouncer.
@@ -37,11 +27,8 @@ SystemAnnouncerTest>>tearDown [
 	factory cleanUp.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemAnnouncerTest>>testProtocolAdded [
+{ #category : #tests }
+SystemAnnouncerTest >> testProtocolAdded [
 	| pass class classReorganized protocolAdded |
 	
 	pass := false.
@@ -60,11 +47,8 @@ SystemAnnouncerTest>>testProtocolAdded [
 	self assert: protocolAdded equals: 'shiny-new-category'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemAnnouncerTest>>testProtocolRemoved [
+{ #category : #tests }
+SystemAnnouncerTest >> testProtocolRemoved [
 	| pass class classRemoved protocolRemoved |
 	
 	pass := false.
@@ -85,11 +69,8 @@ SystemAnnouncerTest>>testProtocolRemoved [
 	self assert: protocolRemoved equals: 'shiny-new-category'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemAnnouncerTest>>testSuspendAllWhile [
+{ #category : #tests }
+SystemAnnouncerTest >> testSuspendAllWhile [
 	| value |
 	
 	value := 42.	
@@ -106,11 +87,8 @@ SystemAnnouncerTest>>testSuspendAllWhile [
 	self assert: value = 43.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemAnnouncerTest>>testSuspendAllWhileStoring [
+{ #category : #tests }
+SystemAnnouncerTest >> testSuspendAllWhileStoring [
 	| value stored |
 	
 	value := 42.	
@@ -121,11 +99,8 @@ SystemAnnouncerTest>>testSuspendAllWhileStoring [
 	self assert: (stored at:1) equals: ClassAdded. 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemAnnouncerTest>>testSuspendAllWhileStoringNested [
+{ #category : #tests }
+SystemAnnouncerTest >> testSuspendAllWhileStoringNested [
 	| value stored |
 	
 	value := 42.	

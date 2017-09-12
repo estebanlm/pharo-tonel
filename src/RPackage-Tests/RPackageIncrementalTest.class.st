@@ -19,60 +19,41 @@ P3
 Class {
 	#name : #RPackageIncrementalTest,
 	#superclass : #RPackageTestCase,
-	#category : #RPackage-Tests,
-	#timestamp : 'StephaneDucasse 5/15/2010 20:21'
+	#category : #RPackage-Tests
 }
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>p1Name [
+{ #category : #utility }
+RPackageIncrementalTest >> p1Name [
 	^ 'RPackageTestP1'
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>p2Name [
+{ #category : #utility }
+RPackageIncrementalTest >> p2Name [
 	^ 'RPackageTestP2'
 
 
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>p3Name [
+{ #category : #utility }
+RPackageIncrementalTest >> p3Name [
 	^ 'RPackageTestP3'
 
 
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>removeClassNamedIfExists: aClassNameSymbol [
+{ #category : #utility }
+RPackageIncrementalTest >> removeClassNamedIfExists: aClassNameSymbol [
 	Smalltalk at: aClassNameSymbol asSymbol ifPresent: [:c| c removeFromSystem]
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>setUp [
+{ #category : #setup }
+RPackageIncrementalTest >> setUp [
 	super setUp.
 	Author fullName ifNil: [Author fullName: 'RPackage'].
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>tearDown [
+{ #category : #setup }
+RPackageIncrementalTest >> tearDown [
 	
 	| logging |
 	createdPackages  do: [:each | self removePackage: each name].
@@ -104,11 +85,8 @@ RPackageIncrementalTest>>tearDown [
 	super tearDown.
 ]
 
-{
-	#category : #'test class addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testAddClassAfterMethods [
+{ #category : #'test class addition removal' }
+RPackageIncrementalTest >> testAddClassAfterMethods [
 	| p1 a1 b1 |
 	p1 := self createNewPackageNamed: self p1Name.
 	"the class is created but not added to the package for now"
@@ -140,11 +118,8 @@ RPackageIncrementalTest>>testAddClassAfterMethods [
 	"
 ]
 
-{
-	#category : #'test class addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testAddClassAfterMethodsAtMetaclassToo [
+{ #category : #'test class addition removal' }
+RPackageIncrementalTest >> testAddClassAfterMethodsAtMetaclassToo [
 	| p1 a1 b1 |
 	p1 := self createNewPackageNamed: self p1Name.
 	"the class is created but not added to the package for now"
@@ -176,11 +151,8 @@ RPackageIncrementalTest>>testAddClassAfterMethodsAtMetaclassToo [
 	"
 ]
 
-{
-	#category : #'test class addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testAddClassDefinitionNoDuplicate [
+{ #category : #'test class addition removal' }
+RPackageIncrementalTest >> testAddClassDefinitionNoDuplicate [
 	| p a1 b1 |
 	p := self createNewPackageNamed: self p1Name.
 	a1 := self createNewClassNamed: #A1InPackageP1 inCategory: self p1Name.
@@ -196,11 +168,8 @@ RPackageIncrementalTest>>testAddClassDefinitionNoDuplicate [
 
 ]
 
-{
-	#category : #'test method addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testAddRemoveMethod [
+{ #category : #'test method addition removal' }
+RPackageIncrementalTest >> testAddRemoveMethod [
 	| p1 p2 p3 a2   a2Name |
 	a2Name := #A2InPackageP2.
 	p1 := self createNewPackageNamed: 'P1'.
@@ -232,11 +201,8 @@ RPackageIncrementalTest>>testAddRemoveMethod [
 	self deny: (p1 includesExtensionSelector: #methodDefinedInP3 ofClassName: a2Name).
 ]
 
-{
-	#category : #'test method addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testAddRemoveSelector [
+{ #category : #'test method addition removal' }
+RPackageIncrementalTest >> testAddRemoveSelector [
 	| p1 p2 p3 a2   a2Name |
 	a2Name := #A2InPackageP2.
 	p1 := self createNewPackageNamed: 'P1'.
@@ -266,11 +232,8 @@ RPackageIncrementalTest>>testAddRemoveSelector [
 	self deny: (p1 includesExtensionSelector: #methodDefinedInP3 ofClassName: a2Name).
 ]
 
-{
-	#category : #'test method addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testAddRemoveSelectorOfMetaclass [
+{ #category : #'test method addition removal' }
+RPackageIncrementalTest >> testAddRemoveSelectorOfMetaclass [
 	| p1 p2 p3 a2   a2Name a2class |
 	a2Name := #A2InPackageP2.
 	p1 := self createNewPackageNamed: 'P1'.
@@ -301,11 +264,8 @@ RPackageIncrementalTest>>testAddRemoveSelectorOfMetaclass [
 	self deny: (p1 includesExtensionSelector: #methodDefinedInP3 ofMetaclassName: a2Name).
 ]
 
-{
-	#category : #'test class addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testBogusClassAddition [
+{ #category : #'test class addition removal' }
+RPackageIncrementalTest >> testBogusClassAddition [
 	| p a1 |
 	p := self createNewPackageNamed: self p1Name.
 	a1 := self createNewClassNamed: #A1InPAckageP1 inCategory: self p1Name.
@@ -317,11 +277,8 @@ RPackageIncrementalTest>>testBogusClassAddition [
 
 ]
 
-{
-	#category : #'test class addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testClassAddition [
+{ #category : #'test class addition removal' }
+RPackageIncrementalTest >> testClassAddition [
 	| p a1 |
 	p := self createNewPackageNamed: self p1Name.
 	a1 := self createNewClassNamed: #A1InPAckageP1 inCategory: self p1Name.
@@ -333,11 +290,8 @@ RPackageIncrementalTest>>testClassAddition [
 
 ]
 
-{
-	#category : #'test class addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testClassDefinitionRemoval [
+{ #category : #'test class addition removal' }
+RPackageIncrementalTest >> testClassDefinitionRemoval [
 	| p a1 b1|
 	
 	p := self createNewPackageNamed: self p1Name.
@@ -362,11 +316,8 @@ RPackageIncrementalTest>>testClassDefinitionRemoval [
 
 ]
 
-{
-	#category : #'test class addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testClassDefinitionRemovalName [
+{ #category : #'test class addition removal' }
+RPackageIncrementalTest >> testClassDefinitionRemovalName [
 	| p a1 b1|
 	p := self createNewPackageNamed: self p1Name.
 	a1 := self createNewClassNamed: #A1InPAckageP1 inCategory: self p1Name.
@@ -387,11 +338,8 @@ RPackageIncrementalTest>>testClassDefinitionRemovalName [
 
 ]
 
-{
-	#category : #'test class addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testClassDefinitionWithTagsRemoval [
+{ #category : #'test class addition removal' }
+RPackageIncrementalTest >> testClassDefinitionWithTagsRemoval [
 	| p a1 b1|
 	
 	p := self createNewPackageNamed: self p1Name.
@@ -421,11 +369,8 @@ RPackageIncrementalTest>>testClassDefinitionWithTagsRemoval [
 
 ]
 
-{
-	#category : #'test extension',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testClasses	 [
+{ #category : #'test extension' }
+RPackageIncrementalTest >> testClasses [	
 	| p1 p2 a2  b2 |
 	p1 := self createNewPackageNamed: 'P1'.
 	p2 := self createNewPackageNamed: 'P2'.
@@ -441,11 +386,8 @@ RPackageIncrementalTest>>testClasses	 [
 	self assert: p2 classes size = 2.
 ]
 
-{
-	#category : #'test class addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testDefinedClassesAndDefinedClassNames [
+{ #category : #'test class addition removal' }
+RPackageIncrementalTest >> testDefinedClassesAndDefinedClassNames [
 	| p a1 b1 |
 	p := self createNewPackageNamed: self p1Name.
 	a1 := self createNewClassNamed: #A1InPackageP1 inCategory: self p1Name.
@@ -463,11 +405,8 @@ RPackageIncrementalTest>>testDefinedClassesAndDefinedClassNames [
 	
 ]
 
-{
-	#category : #'test extension',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testExtensionClassNames [
+{ #category : #'test extension' }
+RPackageIncrementalTest >> testExtensionClassNames [
 	| p1 p2  a2 b2 |
 	p1 := self createNewPackageNamed: 'P1'.
 	p2 := self createNewPackageNamed: 'P2'.
@@ -504,11 +443,8 @@ RPackageIncrementalTest>>testExtensionClassNames [
 	self deny: (p1 includesClass: b2).
 ]
 
-{
-	#category : #'test extension',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testExtensionClasses [
+{ #category : #'test extension' }
+RPackageIncrementalTest >> testExtensionClasses [
 	| p1 p2 a2  b2 |
 	p1 := self createNewPackageNamed: 'P1'.
 	p2 := self createNewPackageNamed: 'P2'.
@@ -537,11 +473,8 @@ RPackageIncrementalTest>>testExtensionClasses [
 	self assert: (p1 extendedClassNames  includes: b2 name).
 ]
 
-{
-	#category : #'test extension',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testExtensionClassesWithCompiledMethod [
+{ #category : #'test extension' }
+RPackageIncrementalTest >> testExtensionClassesWithCompiledMethod [
 	| p1 p2  a2 b2 |
 	p1 := self createNewPackageNamed: 'P1'.
 	p2 := self createNewPackageNamed: 'P2'.
@@ -577,11 +510,8 @@ RPackageIncrementalTest>>testExtensionClassesWithCompiledMethod [
 	self deny: (p1 includesClass: b2).
 ]
 
-{
-	#category : #'test extension',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testExtensionMethods	 [
+{ #category : #'test extension' }
+RPackageIncrementalTest >> testExtensionMethods [	
 	| p1 p2 a2  b2 |
 	p1 := self createNewPackageNamed: 'P1'.
 	p2 := self createNewPackageNamed: 'P2'.
@@ -601,11 +531,8 @@ RPackageIncrementalTest>>testExtensionMethods	 [
 	
 ]
 
-{
-	#category : #'test extension',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testIncludeClass [
+{ #category : #'test extension' }
+RPackageIncrementalTest >> testIncludeClass [
 	| p1 p2 a2  |
 	p1 := self createNewPackageNamed: 'P1'.
 	p2 := self createNewPackageNamed: 'P2'.
@@ -626,11 +553,8 @@ RPackageIncrementalTest>>testIncludeClass [
 	
 ]
 
-{
-	#category : #'test extension',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testIncludeClassMore [
+{ #category : #'test extension' }
+RPackageIncrementalTest >> testIncludeClassMore [
 	| p1 p2 p3 a2  |
 	p1 := self createNewPackageNamed: 'P1'.
 	p2 := self createNewPackageNamed: 'P2'.
@@ -648,11 +572,8 @@ RPackageIncrementalTest>>testIncludeClassMore [
 	self deny: (p3 includesClass: a2).
 ]
 
-{
-	#category : #'test extension',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testIncludeSelectorOfClass [
+{ #category : #'test extension' }
+RPackageIncrementalTest >> testIncludeSelectorOfClass [
 	| p1 p2 p3 a2  |
 	p1 := self createNewPackageNamed: 'P1'.
 	p2 := self createNewPackageNamed: 'P2'.
@@ -679,11 +600,8 @@ RPackageIncrementalTest>>testIncludeSelectorOfClass [
 	self deny: (p3 includesDefinedSelector: #methodDefinedInP1 ofClassName: a2 name).
 ]
 
-{
-	#category : #'test extension',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testIncludeSelectorOfMetaClass [
+{ #category : #'test extension' }
+RPackageIncrementalTest >> testIncludeSelectorOfMetaClass [
 	| p1 p2 p3 a2  a2class |
 	p1 := self createNewPackageNamed: 'P1'.
 	p2 := self createNewPackageNamed: 'P2'.
@@ -715,11 +633,8 @@ RPackageIncrementalTest>>testIncludeSelectorOfMetaClass [
 
 ]
 
-{
-	#category : #'test extension',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testIncludesMethodOfClassInPresenceOfOtherPackageExtensions [
+{ #category : #'test extension' }
+RPackageIncrementalTest >> testIncludesMethodOfClassInPresenceOfOtherPackageExtensions [
 	| p1 p2 p3 a2  a2name |
 	p1 := self createNewPackageNamed: 'P1'.
 	p2 := self createNewPackageNamed: 'P2'.
@@ -749,11 +664,8 @@ RPackageIncrementalTest>>testIncludesMethodOfClassInPresenceOfOtherPackageExtens
 	
 ]
 
-{
-	#category : #'test extension',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testIncludesOrTouches [
+{ #category : #'test extension' }
+RPackageIncrementalTest >> testIncludesOrTouches [
 	| p1 p2 a2  |
 	p1 := self createNewPackageNamed: 'P1'.
 	p2 := self createNewPackageNamed: 'P2'.
@@ -772,11 +684,8 @@ RPackageIncrementalTest>>testIncludesOrTouches [
 	self assert: (p2 includesClass: a2).
 ]
 
-{
-	#category : #'test method addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testMethodAddition [
+{ #category : #'test method addition removal' }
+RPackageIncrementalTest >> testMethodAddition [
 	| p1 a1 methodRef |
 	p1 := self createNewPackageNamed: 'P1'.
 	a1 := self createNewClassNamed: #A1DefinedInP1 inPackage: p1.
@@ -786,11 +695,8 @@ RPackageIncrementalTest>>testMethodAddition [
 	
 ]
 
-{
-	#category : #'test method addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testMethodPackageResolution [
+{ #category : #'test method addition removal' }
+RPackageIncrementalTest >> testMethodPackageResolution [
 	| a1Name p1 a1 |
 	a1Name := #A2InPackageP2.
 	p1 := self createNewPackageNamed: 'P1'.
@@ -805,11 +711,8 @@ RPackageIncrementalTest>>testMethodPackageResolution [
 	self assert: (a1 class >> #method) package == p1.
 ]
 
-{
-	#category : #'test package belonging',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testPackageOfClassForClassesNotDefinedInPackageButJustExtendingIt [
+{ #category : #'test package belonging' }
+RPackageIncrementalTest >> testPackageOfClassForClassesNotDefinedInPackageButJustExtendingIt [
 	| p1 p2 a2  |
 	p1 := self createNewPackageNamed: 'P1'.
 	p2 := self createNewPackageNamed: 'P2'.
@@ -825,11 +728,8 @@ RPackageIncrementalTest>>testPackageOfClassForClassesNotDefinedInPackageButJustE
 	but the package where the class was defined"
 ]
 
-{
-	#category : #'test package belonging',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testPackageOfClassForDefinedClasses [
+{ #category : #'test package belonging' }
+RPackageIncrementalTest >> testPackageOfClassForDefinedClasses [
 	| p a1 b1 |
 	p := self createNewPackageNamed: 'P1'.
 	a1 := self createNewClassNamed: #A1InPAckageP1 inPackage: p.
@@ -840,11 +740,8 @@ RPackageIncrementalTest>>testPackageOfClassForDefinedClasses [
 
 ]
 
-{
-	#category : #'test registration',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testPrivateClassRegisterUnregister [
+{ #category : #'test registration' }
+RPackageIncrementalTest >> testPrivateClassRegisterUnregister [
 	"Verify that when we register a class, the package organizer register it."
 	| p a1 b1 |
 	p := self createNewPackageNamed: 'P1'.
@@ -868,11 +765,8 @@ RPackageIncrementalTest>>testPrivateClassRegisterUnregister [
 	
 ]
 
-{
-	#category : #'test class addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testRemoveClassAfterMethods [
+{ #category : #'test class addition removal' }
+RPackageIncrementalTest >> testRemoveClassAfterMethods [
 	| p1 a1 b1 |
 	p1 := self createNewPackageNamed: self p1Name.
 	"the class is created but not added to the package for now"
@@ -898,11 +792,8 @@ RPackageIncrementalTest>>testRemoveClassAfterMethods [
 	
 ]
 
-{
-	#category : #'test class addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testRemoveClassRemovesExtensions [
+{ #category : #'test class addition removal' }
+RPackageIncrementalTest >> testRemoveClassRemovesExtensions [
 	| p1 p2 a1 b1 |
 	p1 := self createNewPackageNamed: self p1Name.
 	p2 := self createNewPackageNamed: self p2Name.
@@ -923,11 +814,8 @@ RPackageIncrementalTest>>testRemoveClassRemovesExtensions [
 	self deny: (p2 includesDefinedSelector: #newlyAddedToA1 ofClass: a1).
 ]
 
-{
-	#category : #'test class addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testRemoveExtensionMethodRemovesExtensionsFromRPackage [
+{ #category : #'test class addition removal' }
+RPackageIncrementalTest >> testRemoveExtensionMethodRemovesExtensionsFromRPackage [
 	| p1 p2 a1 b1 |
 	p1 := self createNewPackageNamed: self p1Name.
 	p2 := self createNewPackageNamed: self p2Name.
@@ -948,11 +836,8 @@ RPackageIncrementalTest>>testRemoveExtensionMethodRemovesExtensionsFromRPackage 
 	self deny: (p2 includesDefinedSelector: #newlyAddedToA1 ofClass: a1).
 ]
 
-{
-	#category : #'test class addition removal',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageIncrementalTest>>testUniqueClassInDefinedClassesUsingAddClassDefinition [
+{ #category : #'test class addition removal' }
+RPackageIncrementalTest >> testUniqueClassInDefinedClassesUsingAddClassDefinition [
 	| p a1 |
 	p := self createNewPackageNamed: self p1Name.
 	a1 := self createNewClassNamed: #A1InPAckageP1 inCategory: self p1Name.

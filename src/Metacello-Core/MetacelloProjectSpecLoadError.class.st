@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloProjectSpecLoadError,
 	#superclass : #Error,
@@ -8,77 +5,52 @@ Class {
 		'projectSpec',
 		'versionDoesNotExistException'
 	],
-	#category : #Metacello-Core-Exceptions-Errors,
-	#timestamp : ''
+	#category : #Metacello-Core-Exceptions-Errors
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecLoadError class>>projectSpec: aMetacelloMCProjectSpec [
+{ #category : #'instance creation' }
+MetacelloProjectSpecLoadError class >> projectSpec: aMetacelloMCProjectSpec [
 
 	^self new
 		projectSpec: aMetacelloMCProjectSpec;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecLoadError>>isResumable [
+{ #category : #private }
+MetacelloProjectSpecLoadError >> isResumable [
 	"Determine whether an exception is resumable."
 
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecLoadError>>possibleVersions [
+{ #category : #accessing }
+MetacelloProjectSpecLoadError >> possibleVersions [
     ^ self versionDoesNotExistException possibleVersions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecLoadError>>projectSpec [
+{ #category : #accessing }
+MetacelloProjectSpecLoadError >> projectSpec [
 
 	^projectSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecLoadError>>projectSpec: aMetacelloMCProjectSpec [
+{ #category : #accessing }
+MetacelloProjectSpecLoadError >> projectSpec: aMetacelloMCProjectSpec [
 
 	projectSpec := aMetacelloMCProjectSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecLoadError>>versionDoesNotExistException [
+{ #category : #accessing }
+MetacelloProjectSpecLoadError >> versionDoesNotExistException [
 	^ versionDoesNotExistException
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecLoadError>>versionDoesNotExistException: anObject [
+{ #category : #accessing }
+MetacelloProjectSpecLoadError >> versionDoesNotExistException: anObject [
 	versionDoesNotExistException := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecLoadError>>versionString [
+{ #category : #accessing }
+MetacelloProjectSpecLoadError >> versionString [
     ^ self versionDoesNotExistException versionString
 ]

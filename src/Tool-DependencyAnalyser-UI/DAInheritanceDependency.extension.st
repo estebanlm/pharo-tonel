@@ -1,11 +1,6 @@
-Extension {
-	#name : #DAInheritanceDependency
-}
+Extension { #name : #DAInheritanceDependency }
 
-{
-	#category : #'*Tool-DependencyAnalyser-UI',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAInheritanceDependency>>nodeClass [
+{ #category : #'*Tool-DependencyAnalyser-UI' }
+DAInheritanceDependency >> nodeClass [
 	^ DAInheritanceDependencyNode
 ]

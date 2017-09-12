@@ -14,117 +14,77 @@ Class {
 		'isPotentialDropTarget',
 		'resizable'
 	],
-	#category : #Morphic-Widgets-Tree,
-	#timestamp : 'TorstenBergmann 9/5/2014 15:25'
+	#category : #Morphic-Widgets-Tree
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>asDraggableMorph [
+{ #category : #accessing }
+MorphTreeColumn >> asDraggableMorph [
 	^ self thumbnailOfSize: self header fullBounds extent
 	
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>asPotentialDropTarget [
+{ #category : #'column drawing' }
+MorphTreeColumn >> asPotentialDropTarget [
 	isPotentialDropTarget := true.
 	self container invalidRect: self visibleBounds
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>color  [
+{ #category : #'column drawing' }
+MorphTreeColumn >> color [ 
 	^ color ifNil: [self container columnColors at: ((self index \\ 2) + 1)]
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>color: aColor [
+{ #category : #'column drawing' }
+MorphTreeColumn >> color: aColor [
 	color := aColor
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>container [
+{ #category : #'column drawing' }
+MorphTreeColumn >> container [
 	^ container
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>container: aTreeMorph [
+{ #category : #'column drawing' }
+MorphTreeColumn >> container: aTreeMorph [
 	container := aTreeMorph
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>contentWidth [
+{ #category : #'column drawing' }
+MorphTreeColumn >> contentWidth [
 	| w |
 	w := 0.
 	self container allNodeMorphs do: [:n | w := w max: (n columnMorphAt: self index) width].
 	^ w
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>currentWidth [
+{ #category : #'column drawing' }
+MorphTreeColumn >> currentWidth [
 	^ currentWidth ifNil: [currentWidth := self defaultWidth]
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>currentWidth: anInteger [
+{ #category : #'column drawing' }
+MorphTreeColumn >> currentWidth: anInteger [
 	self resizable ifTrue: [currentWidth := anInteger]
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>dataBounds  [
+{ #category : #'column drawing' }
+MorphTreeColumn >> dataBounds [ 
 	^ self visibleBounds withTop: self container topHeader bottom
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>defaultRowMorph [
+{ #category : #'column drawing' }
+MorphTreeColumn >> defaultRowMorph [
 	^ Morph new color: Color red; borderWidth: 0; extent: 0@0; yourself
 
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>defaultWidth [
+{ #category : #'column drawing' }
+MorphTreeColumn >> defaultWidth [
 	^ 100
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>drawColumnOn: aCanvas [
+{ #category : #converting }
+MorphTreeColumn >> drawColumnOn: aCanvas [
 	self isPotentialDropTarget 
 		ifTrue: [aCanvas 
 					frameAndFillRectangle: self dataBounds 
@@ -145,45 +105,30 @@ MorphTreeColumn>>drawColumnOn: aCanvas [
 									aCanvas fillRectangle: self dataBounds  basicFillStyle: c]]]
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>fixedWidth: anInteger [
+{ #category : #'column drawing' }
+MorphTreeColumn >> fixedWidth: anInteger [
 	currentWidth := anInteger.
 	resizable := false
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>forceWidthTo: anInteger [
+{ #category : #'column drawing' }
+MorphTreeColumn >> forceWidthTo: anInteger [
 	currentWidth := anInteger
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>header [
+{ #category : #'column drawing' }
+MorphTreeColumn >> header [
 	^ header ifNil: [header :=  (Morph new extent: 0@0) color: Color transparent]
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>header: aMorph [
+{ #category : #'column drawing' }
+MorphTreeColumn >> header: aMorph [
 	header := aMorph clipSubmorphs: true; yourself.
 	header model: self
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>headerButton [
+{ #category : #'column drawing' }
+MorphTreeColumn >> headerButton [
 	self header: ((MorphTreeColumnButton new) 
 		layoutPolicy: RowLayout new; 
 		listDirection: #leftToRight; 
@@ -193,22 +138,16 @@ MorphTreeColumn>>headerButton [
 		yourself)
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>headerButtonLabel: aLabel font: aFont [
+{ #category : #'column drawing' }
+MorphTreeColumn >> headerButtonLabel: aLabel font: aFont [
 	self headerButton.
 	self header label: aLabel font: aFont.
 
 
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>headerButtonLabel: aLabel font: aFont icon: anIconForm target: aReceiver actionSelector: aSelector arguments: aCollection [
+{ #category : #'column drawing' }
+MorphTreeColumn >> headerButtonLabel: aLabel font: aFont icon: anIconForm target: aReceiver actionSelector: aSelector arguments: aCollection [
 	self headerButton.
 	self header label: aLabel font: aFont.
 	self header icon: (ImageMorph new form: anIconForm).
@@ -217,11 +156,8 @@ MorphTreeColumn>>headerButtonLabel: aLabel font: aFont icon: anIconForm target: 
 	self header arguments: aCollection
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>headerButtonLabel: aLabel font: aFont target: aReceiver actionSelector: aSelector arguments: aCollection [
+{ #category : #'column drawing' }
+MorphTreeColumn >> headerButtonLabel: aLabel font: aFont target: aReceiver actionSelector: aSelector arguments: aCollection [
 	self headerButton.
 	self header label: aLabel font: aFont.
 	self header actionSelector: aSelector.
@@ -230,127 +166,85 @@ MorphTreeColumn>>headerButtonLabel: aLabel font: aFont target: aReceiver actionS
 	
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>headerButtonLabel: aLabel icon: anIconForm [
+{ #category : #'column drawing' }
+MorphTreeColumn >> headerButtonLabel: aLabel icon: anIconForm [
 	self headerButtonLabel: aLabel font: nil.
 	self header cellInset: 3@0.
 	self header icon: (ImageMorph new form: anIconForm)
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>height [
+{ #category : #geometry }
+MorphTreeColumn >> height [
 	^ header ifNil: [0] ifNotNil: [header height]
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>index [
+{ #category : #'column drawing' }
+MorphTreeColumn >> index [
 	^ self container columns indexOf: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>isFirstColumn [
+{ #category : #testing }
+MorphTreeColumn >> isFirstColumn [
 	^ container columns first = self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>isLastColumn [
+{ #category : #testing }
+MorphTreeColumn >> isLastColumn [
 	^ container columns last = self
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>isPotentialDropTarget [
+{ #category : #'column drawing' }
+MorphTreeColumn >> isPotentialDropTarget [
 	^ isPotentialDropTarget ifNil: [isPotentialDropTarget := false]
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>itemMorphGetter: aSelectorOrAValuable [
+{ #category : #'column drawing' }
+MorphTreeColumn >> itemMorphGetter: aSelectorOrAValuable [
 	rowMorphGetSelector := aSelectorOrAValuable isSymbol 
 		ifTrue: [[:node | node complexContents item perform: aSelectorOrAValuable]]
 		ifFalse: [[:node | aSelectorOrAValuable value: node complexContents item]]
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>itemStringGetter: aSelectorOrAValuable [
+{ #category : #'column drawing' }
+MorphTreeColumn >> itemStringGetter: aSelectorOrAValuable [
 	rowMorphGetSelector := aSelectorOrAValuable isSymbol 
 		ifTrue: [[:node | (node complexContents item perform: aSelectorOrAValuable) asMorph]]
 		ifFalse: [[:node | (aSelectorOrAValuable value: node complexContents item) asMorph]]
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>noMorePotentialDropTarget [
+{ #category : #'column drawing' }
+MorphTreeColumn >> noMorePotentialDropTarget [
 	isPotentialDropTarget := false.
 	self container invalidRect: self visibleBounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>nodeStringGetter: aSelectorOrAValuable [
+{ #category : #accessing }
+MorphTreeColumn >> nodeStringGetter: aSelectorOrAValuable [
 	rowMorphGetSelector := aSelectorOrAValuable isSymbol 
 		ifTrue: [[:node | (node complexContents perform: aSelectorOrAValuable) asMorph]]
 		ifFalse: [[:node | (aSelectorOrAValuable value: node complexContents ) asMorph]]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>release [
+{ #category : #initialize-release }
+MorphTreeColumn >> release [
 	container := nil.
 	header := nil.
 	self releaseActionMap. "we are not sure if we need it"
 	super release.
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>resizable [
+{ #category : #'column drawing' }
+MorphTreeColumn >> resizable [
 	^ resizable ifNil: [resizable := true]
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>resizable: aBoolean [
+{ #category : #'column drawing' }
+MorphTreeColumn >> resizable: aBoolean [
 	resizable := aBoolean
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>rowMorphFor: aNode  [
+{ #category : #'column drawing' }
+MorphTreeColumn >> rowMorphFor: aNode [ 
 	| rowMorph |
 	
 	rowMorph := self rowMorphGetSelector
@@ -364,27 +258,18 @@ MorphTreeColumn>>rowMorphFor: aNode  [
 
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>rowMorphGetSelector [
+{ #category : #'column drawing' }
+MorphTreeColumn >> rowMorphGetSelector [
 	^ rowMorphGetSelector
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>rowMorphGetSelector: aSelector [
+{ #category : #'column drawing' }
+MorphTreeColumn >> rowMorphGetSelector: aSelector [
 	rowMorphGetSelector := aSelector
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>rowMorphGetterBlock [
+{ #category : #'column drawing' }
+MorphTreeColumn >> rowMorphGetterBlock [
 	^ self rowMorphGetSelector isSymbol
 		ifTrue: [self rowMorphGetSelector numArgs = 0
 				ifTrue: [[:node :cont | node perform: self rowMorphGetSelector]]
@@ -394,35 +279,23 @@ MorphTreeColumn>>rowMorphGetterBlock [
 				ifFalse: [[:node :cont| self rowMorphGetSelector value: node]]] 
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>shrinkWrap [
+{ #category : #'column drawing' }
+MorphTreeColumn >> shrinkWrap [
 	^ shrinkWrap ifNil: [shrinkWrap := false]
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>shrinkWrap: aBoolean [
+{ #category : #'column drawing' }
+MorphTreeColumn >> shrinkWrap: aBoolean [
 	shrinkWrap := aBoolean
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>startWidth: anInteger [
+{ #category : #'column drawing' }
+MorphTreeColumn >> startWidth: anInteger [
 	currentWidth := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>thumbnailOfSize: thumbExtent [
+{ #category : #accessing }
+MorphTreeColumn >> thumbnailOfSize: thumbExtent [
 	"Answer a new thumbnail for the receiver."
 
 	|f t r|
@@ -438,10 +311,7 @@ MorphTreeColumn>>thumbnailOfSize: thumbExtent [
 		form: f
 ]
 
-{
-	#category : #'column drawing',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumn>>visibleBounds [
+{ #category : #'column drawing' }
+MorphTreeColumn >> visibleBounds [
 	^ self header bounds withBottom: self container scroller bottom
 ]

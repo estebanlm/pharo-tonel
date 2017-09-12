@@ -15,25 +15,18 @@ Class {
 		'position',
 		'limit'
 	],
-	#category : #Zinc-HTTP-Streaming,
-	#timestamp : 'SvenVanCaekenberghe 9/27/2010 17:31'
+	#category : #Zinc-HTTP-Streaming
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLineReader class>>on: stream [
+{ #category : #'instance creation' }
+ZnLineReader class >> on: stream [
 	^ self new
 		on: stream;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLineReader>>growBuffer [
+{ #category : #private }
+ZnLineReader >> growBuffer [
 	| newBuffer |
 	buffer size >= limit 
 		ifTrue: [
@@ -43,29 +36,20 @@ ZnLineReader>>growBuffer [
 	buffer := newBuffer 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLineReader>>limit: size [
+{ #category : #accessing }
+ZnLineReader >> limit: size [
 	limit := size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLineReader>>nextLine [
+{ #category : #accessing }
+ZnLineReader >> nextLine [
 	self reset.
 	[ self processNext isNil ] whileFalse.
 	^ buffer copyFrom: 1 to: position 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLineReader>>on: readStream [
+{ #category : #initialize-release }
+ZnLineReader >> on: readStream [
 	stream := readStream.
 	buffer := String new: 64.
 	self 
@@ -73,11 +57,8 @@ ZnLineReader>>on: readStream [
 		reset
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLineReader>>processNext [
+{ #category : #private }
+ZnLineReader >> processNext [
 	| item |
 	stream atEnd ifTrue: [ ^ nil ].
 	(item := stream next) ifNil: [ ^ nil ].
@@ -94,19 +75,13 @@ ZnLineReader>>processNext [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLineReader>>reset [
+{ #category : #private }
+ZnLineReader >> reset [
 	position := 0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnLineReader>>store: item [
+{ #category : #private }
+ZnLineReader >> store: item [
 	position >= buffer size ifTrue: [ self growBuffer ].
 	position := position + 1.
 	buffer at: position put: item		

@@ -3,45 +3,30 @@ A trait for test purposes
 "
 Trait {
 	#name : #TPutTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:35'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPutTest>>aValue [
+{ #category : #requirements }
+TPutTest >> aValue [
 " return a value to put into nonEmpty"
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPutTest>>indexArray [
+{ #category : #requirements }
+TPutTest >> indexArray [
 " return a Collection including indexes between bounds of 'nonEmpty' "
 
 	self explicitRequirement.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPutTest>>nonEmpty [
+{ #category : #requirements }
+TPutTest >> nonEmpty [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPutTest>>test0FixturePutOneOrMoreElementsTest [
+{ #category : #'tests - fixture' }
+TPutTest >> test0FixturePutOneOrMoreElementsTest [
 	self aValue.
 
 	
@@ -61,22 +46,16 @@ TPutTest>>test0FixturePutOneOrMoreElementsTest [
 	self deny: self nonEmpty  isEmpty.
 ]
 
-{
-	#category : #'tests - puting with indexes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPutTest>>testAtAllIndexesPut [
+{ #category : #'tests - puting with indexes' }
+TPutTest >> testAtAllIndexesPut [
 	
 	self nonEmpty atAllPut: self aValue.
 	self nonEmpty do:[ :each| self assert: each = self aValue].
 	
 ]
 
-{
-	#category : #'tests - puting with indexes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPutTest>>testAtAllPut [
+{ #category : #'tests - puting with indexes' }
+TPutTest >> testAtAllPut [
 	| |
 	self nonEmpty atAll: self indexArray put: self aValue..
 	
@@ -85,11 +64,8 @@ TPutTest>>testAtAllPut [
 	
 ]
 
-{
-	#category : #'tests - puting with indexes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPutTest>>testAtAllPutAll [
+{ #category : #'tests - puting with indexes' }
+TPutTest >> testAtAllPutAll [
 
 	| aValueArray |
 	aValueArray := self valueArray .
@@ -100,11 +76,8 @@ TPutTest>>testAtAllPutAll [
 		self assert: (self nonEmpty at:(self indexArray at: i))= (aValueArray  at:i) ]
 ]
 
-{
-	#category : #'tests - puting with indexes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPutTest>>testAtLastPut [
+{ #category : #'tests - puting with indexes' }
+TPutTest >> testAtLastPut [
 	| result index |
 	index := self indexArray anyOne.
 	result := self nonEmpty atLast: index  put: self aValue.
@@ -112,11 +85,8 @@ TPutTest>>testAtLastPut [
 	self assert: (self nonEmpty at: (self nonEmpty size +1 - index)) = self aValue .
 ]
 
-{
-	#category : #'tests - puting with indexes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPutTest>>testAtWrapPut [
+{ #category : #'tests - puting with indexes' }
+TPutTest >> testAtWrapPut [
 	"self debug: #testAtWrapPut"
 	| index |
 	index := self indexArray anyOne.
@@ -134,11 +104,8 @@ TPutTest>>testAtWrapPut [
 	self assert: (self nonEmpty at:(index ))=self aValue .
 ]
 
-{
-	#category : #'tests - puting with indexes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPutTest>>testFromToPut [
+{ #category : #'tests - puting with indexes' }
+TPutTest >> testFromToPut [
 	
 	| collection index |
 	index := self indexArray anyOne.
@@ -150,11 +117,8 @@ TPutTest>>testFromToPut [
 		[:i | self assert: (collection at:i)= (self nonEmpty at:i)].
 ]
 
-{
-	#category : #'tests - puting with indexes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPutTest>>testSwapWith [
+{ #category : #'tests - puting with indexes' }
+TPutTest >> testSwapWith [
 	"self debug: #testSwapWith"
 	| result index |
 	index := self indexArray anyOne.
@@ -165,11 +129,8 @@ TPutTest>>testSwapWith [
 	
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TPutTest>>valueArray [
+{ #category : #requirements }
+TPutTest >> valueArray [
 " return a collection (with the same size than 'indexArray' )of values to be put in 'nonEmpty'  at indexes in 'indexArray' "
 	| result |
 	result := Array new: self indexArray size.

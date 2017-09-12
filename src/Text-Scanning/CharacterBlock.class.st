@@ -26,103 +26,75 @@ Class {
 	#pools : [
 		'TextConstants'
 	],
-	#category : #Text-Scanning,
-	#timestamp : 'StephaneDucasse 5/18/2010 16:00'
+	#category : #Text-Scanning
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlock>>< aCharacterBlock  [
+{ #category : #comparing }
+CharacterBlock >> < aCharacterBlock [ 
 	"Answer whether the string index of the receiver precedes that of 
 	aCharacterBlock."
 
 	^stringIndex < aCharacterBlock stringIndex
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlock>><= aCharacterBlock  [
+{ #category : #comparing }
+CharacterBlock >> <= aCharacterBlock [ 
 	"Answer whether the string index of the receiver does not come after that 
 	of aCharacterBlock."
 
 	^(self > aCharacterBlock) not
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlock>>= aCharacterBlock [
+{ #category : #comparing }
+CharacterBlock >> = aCharacterBlock [
 
 	self species = aCharacterBlock species
 		ifTrue: [^stringIndex = aCharacterBlock stringIndex]
 		ifFalse: [^false]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlock>>> aCharacterBlock  [
+{ #category : #comparing }
+CharacterBlock >> > aCharacterBlock [ 
 	"Answer whether the string index of the receiver comes after that of 
 	aCharacterBlock."
 
 	^aCharacterBlock < self
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlock>>>= aCharacterBlock  [
+{ #category : #comparing }
+CharacterBlock >> >= aCharacterBlock [ 
 	"Answer whether the string index of the receiver does not precede that of 
 	aCharacterBlock."
 
 	^(self < aCharacterBlock) not
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlock>>max: aCharacterBlock [
+{ #category : #comparing }
+CharacterBlock >> max: aCharacterBlock [
 	aCharacterBlock ifNil:[^self].
 	^aCharacterBlock > self
 		ifTrue:[ aCharacterBlock]
 		ifFalse:[self].
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlock>>min: aCharacterBlock [
+{ #category : #comparing }
+CharacterBlock >> min: aCharacterBlock [
 	aCharacterBlock ifNil:[^self].
 	^aCharacterBlock < self
 		ifTrue:[ aCharacterBlock]
 		ifFalse:[self].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlock>>moveBy: aPoint  [
+{ #category : #private }
+CharacterBlock >> moveBy: aPoint [ 
 	"Change the corner positions of the receiver so that its area translates by 
 	the amount defined by the argument, aPoint."
 	origin := origin + aPoint.
 	corner := corner + aPoint
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlock>>printOn: aStream [
+{ #category : #printing }
+CharacterBlock >> printOn: aStream [
 
 	aStream nextPutAll: 'a CharacterBlock with index '.
 	stringIndex printOn: aStream.
@@ -136,21 +108,15 @@ CharacterBlock>>printOn: aStream [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlock>>stringIndex [
+{ #category : #accessing }
+CharacterBlock >> stringIndex [
 	"Answer the position of the receiver in the string it indexes."
 
 	^stringIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlock>>stringIndex: anInteger text: aText topLeft: topLeft extent: extent  [
+{ #category : #private }
+CharacterBlock >> stringIndex: anInteger text: aText topLeft: topLeft extent: extent [ 
 	stringIndex := anInteger.
 	text := aText.
 	super 
@@ -158,18 +124,12 @@ CharacterBlock>>stringIndex: anInteger text: aText topLeft: topLeft extent: exte
 		point: topLeft + extent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlock>>textLine [
+{ #category : #accessing }
+CharacterBlock >> textLine [
 	^ textLine
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlock>>textLine: aLine  [
+{ #category : #accessing }
+CharacterBlock >> textLine: aLine [ 
 	textLine := aLine
 ]

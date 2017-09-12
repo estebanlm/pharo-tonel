@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'detector'
 	],
-	#category : #EpiceaBrowsersTests-Integration,
-	#timestamp : '<historical>'
+	#category : #EpiceaBrowsersTests-Integration
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLostChangesDetectorTest>>testDetectInEmptyLog [
+{ #category : #tests }
+EpLostChangesDetectorTest >> testDetectInEmptyLog [
 
 	detector := EpLostChangesDetector newWithLog: monitor log.
 	self deny: detector hasLostChanges.
@@ -25,11 +21,8 @@ EpLostChangesDetectorTest>>testDetectInEmptyLog [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLostChangesDetectorTest>>testDetectNoChange [
+{ #category : #tests }
+EpLostChangesDetectorTest >> testDetectNoChange [
 
 	classFactory newClass.
 	monitor log store flush.
@@ -41,11 +34,8 @@ EpLostChangesDetectorTest>>testDetectNoChange [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLostChangesDetectorTest>>testDetectOneChange [
+{ #category : #tests }
+EpLostChangesDetectorTest >> testDetectOneChange [
 
 	| logWithALostChange |
 	"Build a fake log with a lost change"

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterMorph,
 	#superclass : #GLMFoundationBrick,
@@ -12,44 +9,31 @@ Class {
 		'autoHide',
 		'processorKeyBindings'
 	],
-	#category : #GT-Spotter-UI,
-	#timestamp : ''
+	#category : #GT-Spotter-UI
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>actDueTo: anEventType [
+{ #category : #actions }
+GTSpotterMorph >> actDueTo: anEventType [
 	self spotterModelDo: [
 		self spotterModel hasSteps ifFalse: [ ^self ].
 		self spotterModel currentStep hasCandidates ifFalse: [ ^ self ].
 		self spotterModel currentStep actDueTo: anEventType ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>autoHide [
+{ #category : #accessing }
+GTSpotterMorph >> autoHide [
 
 	^ autoHide ifNil: [ autoHide := true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>autoHide: aBoolean [
+{ #category : #accessing }
+GTSpotterMorph >> autoHide: aBoolean [
 
 	autoHide := aBoolean
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>bindingDictionnary [
+{ #category : #initialization }
+GTSpotterMorph >> bindingDictionnary [
 	^ {Character escape -> [ self spotterModel exitDueTo: #keyPressedEscape ].
 	$w meta -> [ self spotterModel exitDueTo: #keyPressedW ].
 	$p meta -> [ self togglePreview ].
@@ -73,20 +57,14 @@ GTSpotterMorph>>bindingDictionnary [
 	$p meta shift -> [ self exportAsPNGSilently ]}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>breadcrumbBrick [
+{ #category : #accessing }
+GTSpotterMorph >> breadcrumbBrick [
 	
 	^ breadcrumbBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>breadcrumbBrick: aBrick [
+{ #category : #accessing }
+GTSpotterMorph >> breadcrumbBrick: aBrick [
 
 	breadcrumbBrick ifNotNil: [self removeBrick: breadcrumbBrick].
 	breadcrumbBrick := aBrick.
@@ -98,59 +76,41 @@ GTSpotterMorph>>breadcrumbBrick: aBrick [
 	self addBrickBack: breadcrumbBrick
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>closeSpotter [
+{ #category : #actions }
+GTSpotterMorph >> closeSpotter [
 
 	self autoHide ifTrue: [ self delete ]
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>defaultLabel [
+{ #category : #accessing-defaults }
+GTSpotterMorph >> defaultLabel [
 	^ 'Spotter'
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>diveInCategoryDueTo: anEventType [
+{ #category : #actions }
+GTSpotterMorph >> diveInCategoryDueTo: anEventType [
 
 	self spotterModelDo: [ :aSpotter |
 		aSpotter hasSelected
 			ifTrue: [ aSpotter currentStep diveInCategoryDueTo: anEventType ] ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>diveInDueTo: anEventType [
+{ #category : #actions }
+GTSpotterMorph >> diveInDueTo: anEventType [
 
 	self spotterModelDo: [ :aSpotter |
 		aSpotter hasSelected
 			ifTrue: [ aSpotter currentStep diveInDueTo: anEventType ] ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>diveOut [
+{ #category : #actions }
+GTSpotterMorph >> diveOut [
 	self spotterModelDo: [ 
 		self spotterModel popStep ]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>handleListenEvent: anEvent [
+{ #category : #events-processing }
+GTSpotterMorph >> handleListenEvent: anEvent [
 		
 	anEvent type = #mouseDown ifTrue: [ 
 		((self fullBoundsInWorld containsPoint: anEvent position) not and: [ self autoHide ])
@@ -161,11 +121,8 @@ GTSpotterMorph>>handleListenEvent: anEvent [
 			ifNotNil: [ :s | s shiftPressed: (InputEventSensor default anyModifierKeyPressed not & InputEventSensor default shiftPressed) ] ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>handleProcessorKeyBindings [
+{ #category : #private }
+GTSpotterMorph >> handleProcessorKeyBindings [
 	self processorKeyBindingsDo: [
 		self spotterModel currentStep ifNotNil: [ 
 			self spotterModel currentStep processors do: [ :processor | 
@@ -176,28 +133,19 @@ GTSpotterMorph>>handleProcessorKeyBindings [
 					self kmDispatcher bindKeyCombination: keyCombination toAction: [ self onKeyProcessor: processor ] ] ] ] ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>handlesMouseDown: evt [
+{ #category : #'event handling' }
+GTSpotterMorph >> handlesMouseDown: evt [
 	^ true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>hidePreview [
+{ #category : #actions }
+GTSpotterMorph >> hidePreview [
 	
 	self spotterModel hidePreview
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>initialize [
+{ #category : #initialization }
+GTSpotterMorph >> initialize [
 	super initialize.
 	"setting custom brick themer for the whole spotter"
 	self themer: self themer spotterThemer themer.
@@ -213,11 +161,8 @@ GTSpotterMorph>>initialize [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>initializeListeners [
+{ #category : #initialization }
+GTSpotterMorph >> initializeListeners [
 	self activeHand addEventListener: self.
 	Morph announcer weak when: MorphLostFocus send: #onLostFocus: to: self.
 	self bindingDictionnary
@@ -225,38 +170,26 @@ GTSpotterMorph>>initializeListeners [
 	processorKeyBindings := Dictionary new.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>newBreadcrumbBrick [
+{ #category : #'instance creation' }
+GTSpotterMorph >> newBreadcrumbBrick [
 
 	^ GTSpotterStepsBreadcrumb new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>newPaneBrick [
+{ #category : #'instance creation' }
+GTSpotterMorph >> newPaneBrick [
 
 	^ GTSpotterPaneBrick new
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>onBreadcrumbVisibilityChanged [
+{ #category : #events-processing }
+GTSpotterMorph >> onBreadcrumbVisibilityChanged [
 
 	self changed.
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>onHidePreview [
+{ #category : #events-processing }
+GTSpotterMorph >> onHidePreview [
 	|delta|
 	self paneBrick isPreviewShown ifFalse: [ ^ self ].
 	delta := ((self width - ((self width / 100) * (100 - self themer spotterThemer previewWidthPercent)))@0) negated / 2.
@@ -265,11 +198,8 @@ GTSpotterMorph>>onHidePreview [
 	self doLayout
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>onKeyProcessor: aProcessor [
+{ #category : #private }
+GTSpotterMorph >> onKeyProcessor: aProcessor [
 	" this is really ugly, we should make an abstraction of the query/input and the key-identifier of a processor ...... "
 	| searchField newText newTextFragment newSelection oldText oldSelection oldSelectionOffset newSeparator newSeparatorOffset |
 	aProcessor title isEmptyOrNil ifTrue: [ ^ self ].
@@ -308,20 +238,14 @@ GTSpotterMorph>>onKeyProcessor: aProcessor [
 		selectFrom: newSelection first to: newSelection last
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>onLostFocus: event [
+{ #category : #events-processing }
+GTSpotterMorph >> onLostFocus: event [
 
 	focusedMorph ifNil: [ focusedMorph := event morph ]
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>onShowPreview [
+{ #category : #events-processing }
+GTSpotterMorph >> onShowPreview [
 
 	|delta|
 	self paneBrick isPreviewShown ifTrue: [ ^ self ].
@@ -331,20 +255,14 @@ GTSpotterMorph>>onShowPreview [
 	self doLayout
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>openInWindowLabeled: aString inWorld: aWorld [
+{ #category : #opening }
+GTSpotterMorph >> openInWindowLabeled: aString inWorld: aWorld [
 	self autoHide: false.
 	^ super openInWindowLabeled: aString inWorld: aWorld
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>outOfWorld: aWorld [
+{ #category : #initialization }
+GTSpotterMorph >> outOfWorld: aWorld [
 	super outOfWorld: aWorld.
 	self unsubscribeListeners.
 	
@@ -354,20 +272,14 @@ GTSpotterMorph>>outOfWorld: aWorld [
 	focusedMorph ifNotNil: [ focusedMorph takeKeyboardFocus ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>paneBrick [
+{ #category : #accessing }
+GTSpotterMorph >> paneBrick [
 
 	^ paneBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>paneBrick: aBrick [
+{ #category : #accessing }
+GTSpotterMorph >> paneBrick: aBrick [
 	
 	paneBrick ifNotNil: [self removeBrick: paneBrick].
 	paneBrick := aBrick.
@@ -377,11 +289,8 @@ GTSpotterMorph>>paneBrick: aBrick [
 	self addBrickBack: paneBrick
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>processorKeyBindingsDo: aBlock [
+{ #category : #private }
+GTSpotterMorph >> processorKeyBindingsDo: aBlock [
 	processorKeyBindings ifNotNil: [ 
 		processorKeyBindings keys do: [ :each | 
 			self kmDispatcher removeKeyCombination: each ] ].
@@ -389,72 +298,51 @@ GTSpotterMorph>>processorKeyBindingsDo: aBlock [
 	aBlock value
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>selectNextCandidateDueTo: anEventType [
+{ #category : #actions }
+GTSpotterMorph >> selectNextCandidateDueTo: anEventType [
 
 	self spotterModel hasSelected
 		ifTrue: [ self spotterModel currentStep selectNextDueTo: anEventType ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>selectNextCategory [
+{ #category : #actions }
+GTSpotterMorph >> selectNextCategory [
 
 	self spotterModel hasSelected
 		ifTrue: [ self spotterModel currentStep selectNextCategory ]
 	
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>selectPreviousCandidateDueTo: anEventType [
+{ #category : #actions }
+GTSpotterMorph >> selectPreviousCandidateDueTo: anEventType [
 
 	self spotterModel hasSelected
 		ifTrue: [ self spotterModel currentStep selectPreviousDueTo: anEventType ]
 	
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>selectPreviousCategory [
+{ #category : #actions }
+GTSpotterMorph >> selectPreviousCategory [
 
 	self spotterModel hasSelected
 		ifTrue: [ self spotterModel currentStep selectPreviousCategory ]
 	
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>showPreview [
+{ #category : #actions }
+GTSpotterMorph >> showPreview [
 	
 	self spotterModel showPreview
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>spotterModel [
+{ #category : #accessing }
+GTSpotterMorph >> spotterModel [
 
 	^ spotterModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>spotterModel: aSpotter [
+{ #category : #accessing }
+GTSpotterMorph >> spotterModel: aSpotter [
 
 	spotterModel := aSpotter.
 	
@@ -476,48 +364,33 @@ GTSpotterMorph>>spotterModel: aSpotter [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>spotterModelDo: aBlock [
+{ #category : #private }
+GTSpotterMorph >> spotterModelDo: aBlock [
 	self spotterModel handleExceptionsDuring: [ 
 		aBlock cull: self spotterModel.
 		self handleProcessorKeyBindings ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>stepScrollPageDown [
+{ #category : #actions }
+GTSpotterMorph >> stepScrollPageDown [
 
 	self spotterModel currentStep announcer announce: (GTSpotterScrollPageDown new)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>stepScrollPageUp [
+{ #category : #actions }
+GTSpotterMorph >> stepScrollPageUp [
 
 	self spotterModel currentStep announcer announce: (GTSpotterScrollPageUp new)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>togglePreview [
+{ #category : #actions }
+GTSpotterMorph >> togglePreview [
 
 	self spotterModel togglePreview
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterMorph>>unsubscribeListeners [
+{ #category : #initialization }
+GTSpotterMorph >> unsubscribeListeners [
 
 	self activeHand removeEventListener: self.
 	Morph announcer unsubscribe: self.

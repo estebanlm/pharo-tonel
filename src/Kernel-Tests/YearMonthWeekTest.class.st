@@ -9,15 +9,11 @@ Class {
 		'restoredStartDay',
 		'restoredTimeZone'
 	],
-	#category : #Kernel-Tests-Chronology,
-	#timestamp : 'tlk 1/6/2004 17:55'
+	#category : #Kernel-Tests-Chronology
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-YearMonthWeekTest>>setUp [
+{ #category : #running }
+YearMonthWeekTest >> setUp [
 	restoredStartDay := Week startDay.
 	restoredTimeZone := DateAndTime localTimeZone.
 
@@ -25,20 +21,14 @@ YearMonthWeekTest>>setUp [
 	DateAndTime localTimeZone: (TimeZone timeZones detect: [:tz | tz abbreviation = 'GMT']).
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-YearMonthWeekTest>>tearDown [
+{ #category : #running }
+YearMonthWeekTest >> tearDown [
 	Week startDay: restoredStartDay.
 	DateAndTime localTimeZone: restoredTimeZone.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-YearMonthWeekTest>>testDaysInMonth [
+{ #category : #tests }
+YearMonthWeekTest >> testDaysInMonth [
 	self assert: (Month daysInMonth: 2 forYear: 2000) = 29.
 	self assert: (Month daysInMonth: 2 forYear: 2001) = 28.
 	self assert: (Month  daysInMonth: 2 forYear: 2004) = 29.
@@ -58,11 +48,8 @@ YearMonthWeekTest>>testDaysInMonth [
 	self assert: (Month  daysInMonth: 'December' forYear: 2003) = 31.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-YearMonthWeekTest>>testDaysInYear [
+{ #category : #tests }
+YearMonthWeekTest >> testDaysInYear [
 	self assert: (Year daysInYear: 2000) = 366.
 	self assert: (Year daysInYear: 2001) = 365.
 	self assert: (Year daysInYear: 2004) = 366.
@@ -70,21 +57,15 @@ YearMonthWeekTest>>testDaysInYear [
 	self assert: (Year daysInYear: 2003) = 365.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-YearMonthWeekTest>>testIndexOfDay [
+{ #category : #tests }
+YearMonthWeekTest >> testIndexOfDay [
 	self assert: (Week indexOfDay: 'Friday') = 6.
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-YearMonthWeekTest>>testIsLeapYear [
+{ #category : #tests }
+YearMonthWeekTest >> testIsLeapYear [
 	self assert: (Year isLeapYear: 2000).
 	self deny: (Year isLeapYear: 2001).
 	self assert: (Year isLeapYear: 2004).
@@ -92,21 +73,15 @@ YearMonthWeekTest>>testIsLeapYear [
 	self deny: (Year isLeapYear: 2002).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-YearMonthWeekTest>>testMonthPrintOn [
+{ #category : #tests }
+YearMonthWeekTest >> testMonthPrintOn [
 	| aMonth |
 	aMonth := Month starting: DateAndTime new duration: 31 days.
 	self assert: (String streamContents: [ :str | aMonth printOn: str ]) equals: 'January 1901'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-YearMonthWeekTest>>testStartDay [
+{ #category : #tests }
+YearMonthWeekTest >> testStartDay [
 	Week startDay: 'Wednesday'.
 	self assert: Week startDay = 'Wednesday'.
 	Week startDay: 'Thursday'.
@@ -115,11 +90,8 @@ YearMonthWeekTest>>testStartDay [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-YearMonthWeekTest>>testWeekPrintOn [
+{ #category : #tests }
+YearMonthWeekTest >> testWeekPrintOn [
 	| aWeek cs rw |
 	aWeek := Week starting: (DateAndTime year: 1900 month: 12 day: 31).
 	cs := 'a Week starting: 1900-12-30T00:00:00+00:00'.
@@ -128,11 +100,8 @@ YearMonthWeekTest>>testWeekPrintOn [
 	self assert: rw contents = cs
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-YearMonthWeekTest>>testYearPrintOn [
+{ #category : #tests }
+YearMonthWeekTest >> testYearPrintOn [
 	| aYear |
 	aYear := Year starting: DateAndTime new duration: 365 days.
 	self assert: (String streamContents: [ :str | aYear printOn: str ]) equals: 'a Year (1901)'

@@ -10,47 +10,31 @@ Class {
 	#classVars : [
 		'Settings'
 	],
-	#category : #Monticello-Repositories,
-	#timestamp : 'TorstenBergmann 2/5/2014 13:54'
+	#category : #Monticello-Repositories
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository class>>allConcreteSubclasses [
+{ #category : #accessing }
+MCRepository class >> allConcreteSubclasses [
 	^ self withAllSubclasses reject: [:ea | ea isAbstract]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository class>>creationTemplate [
+{ #category : #accessing }
+MCRepository class >> creationTemplate [
 	self subclassResponsibility.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository class>>description [
+{ #category : #accessing }
+MCRepository class >> description [
 	^ nil
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository class>>fillInTheBlankRequest [
+{ #category : #'request handling' }
+MCRepository class >> fillInTheBlankRequest [
 	self subclassResponsibility.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository class>>fromUrl: aUrlOrString  [
+{ #category : #'instance creation' }
+MCRepository class >> fromUrl: aUrlOrString [ 
 	| url |
 	url := aUrlOrString asUrl.
 
@@ -62,145 +46,94 @@ MCRepository class>>fromUrl: aUrlOrString  [
 		ifNone: [ MCRepositoryError signal: 'Cannot instantiate a repository from the url: ', url asString ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository class>>isAbstract [
+{ #category : #testing }
+MCRepository class >> isAbstract [
 	^ self description isNil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository class>>morphicConfigure [
+{ #category : #'instance creation' }
+MCRepository class >> morphicConfigure [
 	^ self new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository class>>urlSchemes [
+{ #category : #accessing }
+MCRepository class >> urlSchemes [
 	"Returns the URL schemes used to describe this repository"
 	^ #()
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>= other [
+{ #category : #comparing }
+MCRepository >> = other [
 	^ other species = self species and: [other description = self description]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>addTo: aRepository [
+{ #category : #adding }
+MCRepository >> addTo: aRepository [
 	^ aRepository addBasicRepository: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>asCreationTemplate [
+{ #category : #converting }
+MCRepository >> asCreationTemplate [
 	^ self creationTemplate
 ]
 
-{
-	#category : #storing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>basicStoreVersion: aVersion [
+{ #category : #storing }
+MCRepository >> basicStoreVersion: aVersion [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>closestAncestorVersionFor: anAncestry ifNone: errorBlock [
+{ #category : #accessing }
+MCRepository >> closestAncestorVersionFor: anAncestry ifNone: errorBlock [
 	anAncestry breadthFirstAncestorsDo:
 		[:ancestorInfo |
 		(self versionWithInfo: ancestorInfo) ifNotNil: [:v | ^ v]].
 	^ errorBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>creationTemplate [
+{ #category : #accessing }
+MCRepository >> creationTemplate [
 	^ creationTemplate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>creationTemplate: aString [
+{ #category : #accessing }
+MCRepository >> creationTemplate: aString [
 	self creationTemplate ifNotNil: [ self error: 'Creation template already set for this MCRepository instance.' ].
 	
 	creationTemplate := aString.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>description [
+{ #category : #accessing }
+MCRepository >> description [
 	^ self class name
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>error: aString  [
+{ #category : #'error handling' }
+MCRepository >> error: aString [ 
 	^ MCRepositoryError new signal: aString
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>hash [
+{ #category : #comparing }
+MCRepository >> hash [
 	^ self description hash
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>includesVersionNamed: aString [
+{ #category : #interface }
+MCRepository >> includesVersionNamed: aString [
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>isValid [
+{ #category : #testing }
+MCRepository >> isValid [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>possiblyNewerVersionsOfAnyOf: someVersions [
+{ #category : #accessing }
+MCRepository >> possiblyNewerVersionsOfAnyOf: someVersions [
 	^#()
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>printOn: aStream [
+{ #category : #printing }
+MCRepository >> printOn: aStream [
 	super printOn: aStream.
 	aStream
 		nextPut: $(;
@@ -208,11 +141,8 @@ MCRepository>>printOn: aStream [
 		nextPut: $).
 ]
 
-{
-	#category : #storing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>storeDependencies: aVersion [
+{ #category : #storing }
+MCRepository >> storeDependencies: aVersion [
 	MCCacheRepository uniqueInstance cacheAllFileNamesDuring: 
 		[self cacheAllFileNamesDuring: 
 			[aVersion allAvailableDependenciesDo:
@@ -221,36 +151,24 @@ MCRepository>>storeDependencies: aVersion [
 						ifFalse: [self storeVersion: dep]]]]
 ]
 
-{
-	#category : #storing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>storeVersion: aVersion [
+{ #category : #storing }
+MCRepository >> storeVersion: aVersion [
 	self basicStoreVersion: aVersion.
 	SystemAnnouncer uniqueInstance
 		announce: (MCVersionSaved version: aVersion repository: self)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>versionFrom: aVersionReferenceString [
+{ #category : #accessing }
+MCRepository >> versionFrom: aVersionReferenceString [
 	self error: 'Unable to load from ' , self printString
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>versionWithInfo: aVersionInfo [
+{ #category : #interface }
+MCRepository >> versionWithInfo: aVersionInfo [
 	^ self versionWithInfo: aVersionInfo ifAbsent: [nil]
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepository>>versionWithInfo: aVersionInfo ifAbsent: aBlock [
+{ #category : #interface }
+MCRepository >> versionWithInfo: aVersionInfo ifAbsent: aBlock [
 	self subclassResponsibility 
 ]

@@ -7,35 +7,25 @@ Class {
 	#instVars : [
 		'newSource'
 	],
-	#category : #OpalCompiler-Core-Exception,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:19'
+	#category : #OpalCompiler-Core-Exception
 }
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-ReparseAfterSourceEditing class>>signalWithNewSource: aSourceCode [
+{ #category : #signaling }
+ReparseAfterSourceEditing class >> signalWithNewSource: aSourceCode [
 
 	^ self new
 		newSource: aSourceCode;
 		signal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-ReparseAfterSourceEditing>>newSource [
+{ #category : #accessing }
+ReparseAfterSourceEditing >> newSource [
 	
 	^ newSource
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-ReparseAfterSourceEditing>>newSource: anObject [
+{ #category : #accessing }
+ReparseAfterSourceEditing >> newSource: anObject [
 	
 	newSource := anObject
 ]

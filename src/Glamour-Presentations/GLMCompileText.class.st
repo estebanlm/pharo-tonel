@@ -10,78 +10,53 @@ Class {
 		'presentation',
 		'action'
 	],
-	#category : #Glamour-Presentations-Announcements,
-	#timestamp : 'AndreiChis 5/6/2014 17:53'
+	#category : #Glamour-Presentations-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompileText>>action [
+{ #category : #accessing }
+GLMCompileText >> action [
 
 	^ action
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompileText>>action: aBlock [
+{ #category : #accessing }
+GLMCompileText >> action: aBlock [
 
 	action := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompileText>>context [
+{ #category : #accessing }
+GLMCompileText >> context [
 	
 	^ context
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompileText>>context: anObject [
+{ #category : #accessing }
+GLMCompileText >> context: anObject [
 	
 	context := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompileText>>presentation [
+{ #category : #accessing }
+GLMCompileText >> presentation [
 
 	^ presentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompileText>>presentation: anObject [
+{ #category : #accessing }
+GLMCompileText >> presentation: anObject [
 
 	presentation := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompileText>>session [
+{ #category : #accessing }
+GLMCompileText >> session [
 	
 	^ session
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompileText>>session: anObject [
+{ #category : #accessing }
+GLMCompileText >> session: anObject [
 	
 	session := anObject
 ]

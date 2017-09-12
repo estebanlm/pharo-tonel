@@ -4,15 +4,11 @@ this class is subject of changes/removal. do not use it.
 Class {
 	#name : #AthensTextMorph,
 	#superclass : #TextMorphForEditView,
-	#category : #Athens-Morphic,
-	#timestamp : '<historical>'
+	#category : #Athens-Morphic
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextMorph>>contents: stringOrText wrappedTo: width [
+{ #category : #'as yet unclassified' }
+AthensTextMorph >> contents: stringOrText wrappedTo: width [
 	"Accept new text contents.  Lay it out, wrapping to width.
 	Then fit my height to the result."
 	wrapFlag := true.
@@ -20,11 +16,8 @@ AthensTextMorph>>contents: stringOrText wrappedTo: width [
 	self newContents: stringOrText
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextMorph>>createParagraph [
+{ #category : #'as yet unclassified' }
+AthensTextMorph >> createParagraph [
 	| newParagraph |
 	self setDefaultContentsIfNil.
 
@@ -49,20 +42,14 @@ AthensTextMorph>>createParagraph [
 	^ paragraph
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextMorph>>paragraph [
+{ #category : #'as yet unclassified' }
+AthensTextMorph >> paragraph [
 	^ paragraph ifNil: [ paragraph := self createParagraph ].
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextMorph>>selectionColor: aColor [
+{ #category : #'as yet unclassified' }
+AthensTextMorph >> selectionColor: aColor [
 	selectionColor := aColor.
 	
 ]

@@ -9,23 +9,16 @@ Class {
 	#instVars : [
 		'environment'
 	],
-	#category : #System-Support,
-	#timestamp : 'LucFabresse 10/10/2010 19:54'
+	#category : #System-Support
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation class>>default [
+{ #category : #accessing }
+SystemNavigation class >> default [
 	^ self new
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allAccessesTo: instVarName from: aClass [
+{ #category : #query }
+SystemNavigation >> allAccessesTo: instVarName from: aClass [
 	| coll |
 	coll := OrderedCollection new.
 	aClass
@@ -33,19 +26,13 @@ SystemNavigation>>allAccessesTo: instVarName from: aClass [
 	^ coll
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allBehaviors [
+{ #category : #query }
+SystemNavigation >> allBehaviors [
 	^self environment allBehaviors
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allBehaviorsDo: aBlock [
+{ #category : #query }
+SystemNavigation >> allBehaviorsDo: aBlock [
 	"Execute a block on each class, metaclass, trait and trait class"
 
 	self environment allClassesDo: [ :aClass | 
@@ -59,22 +46,16 @@ SystemNavigation>>allBehaviorsDo: aBlock [
 			value: aTrait theMetaClass ]
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allCallsOn: aSymbol  [
+{ #category : #query }
+SystemNavigation >> allCallsOn: aSymbol [ 
 	"Answer a Collection of all the methods that call on the provided symbol even deeply embedded in literal array."
 	"self new allCallsOn: #allCallsOn:"
 	
 	^ self allReferencesTo: aSymbol
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allCallsOn: aSymbol from: aClass [
+{ #category : #query }
+SystemNavigation >> allCallsOn: aSymbol from: aClass [
 	"Answer a SortedCollection of all the methods that call on aSymbol."
 
 	| collection |
@@ -85,11 +66,8 @@ SystemNavigation>>allCallsOn: aSymbol from: aClass [
 	^collection
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allClasses [
+{ #category : #query }
+SystemNavigation >> allClasses [
 	"currently returns all the classes in the current environment"
 
 	^ self environment allClasses
@@ -97,33 +75,24 @@ SystemNavigation>>allClasses [
 	
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allClassesAndTraits [
+{ #category : #query }
+SystemNavigation >> allClassesAndTraits [
 	"Answer all the classes and traits present in the image"
 	"Note that metaclasses are not part of the answer"
 	
 	^ self environment allClassesAndTraits
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allClassesDo: aBlock [
+{ #category : #query }
+SystemNavigation >> allClassesDo: aBlock [
 
 	^ self environment allClassesDo: aBlock
 
 	
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allClassesImplementing: aSelector   [
+{ #category : #query }
+SystemNavigation >> allClassesImplementing: aSelector [  
 	"Answer an Array of all classes that implement the message aSelector."
 
 	| aCollection |
@@ -132,11 +101,8 @@ SystemNavigation>>allClassesImplementing: aSelector   [
 	^ aCollection contents
 ]
 
-{
-	#category : #packages,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allClassesInPackageNamed: packageName [
+{ #category : #packages }
+SystemNavigation >> allClassesInPackageNamed: packageName [
 	"Returns the list of classes that belongs to a Monticello package."
 	
 	"It would be probably better to delegate that query to the package itself"
@@ -148,11 +114,8 @@ SystemNavigation>>allClassesInPackageNamed: packageName [
 	^ classes asArray
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allClassesUsingSharedPool: aString   [
+{ #category : #query }
+SystemNavigation >> allClassesUsingSharedPool: aString [  
 	"Answer an Array of all classes that uses the shared pool named aString."
 
 	| aCollection |
@@ -161,11 +124,8 @@ SystemNavigation>>allClassesUsingSharedPool: aString   [
 	^ aCollection contents
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allExistingProtocolsFor: instanceSide [
+{ #category : #query }
+SystemNavigation >> allExistingProtocolsFor: instanceSide [
 
 	"answer all protocols on instance or class side"
 	
@@ -183,11 +143,8 @@ SystemNavigation>>allExistingProtocolsFor: instanceSide [
 	^ allExistingProtocols
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allGlobalRefsOn: aSymbol [
+{ #category : #private }
+SystemNavigation >> allGlobalRefsOn: aSymbol [
 
 	| binding|
 	
@@ -198,11 +155,8 @@ SystemNavigation>>allGlobalRefsOn: aSymbol [
 	
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allImplementedMessages [
+{ #category : #query }
+SystemNavigation >> allImplementedMessages [
 	"Answer a Collection of all the messages that are implemented in the system."
 	| messages |
 	messages := IdentitySet new.
@@ -210,11 +164,8 @@ SystemNavigation>>allImplementedMessages [
 	^ messages
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allImplementorsOf: aSelector  [
+{ #category : #query }
+SystemNavigation >> allImplementorsOf: aSelector [ 
 	"Answer all the methods that implement the message aSelector."
 	
 	| aCollection |
@@ -225,11 +176,8 @@ SystemNavigation>>allImplementorsOf: aSelector  [
 	^ aCollection
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allLocalCallsOn: aSymbol ofClass: aClass [
+{ #category : #query }
+SystemNavigation >> allLocalCallsOn: aSymbol ofClass: aClass [
 	"Answer a SortedCollection of all the methods that call on aSymbol, anywhere in my class hierarchy."
 	
 	| aSet cls |
@@ -247,20 +195,14 @@ SystemNavigation>>allLocalCallsOn: aSymbol ofClass: aClass [
 	^aSet
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allMethods [
+{ #category : #query }
+SystemNavigation >> allMethods [
 	^self allBehaviors flatCollect: [ :behavior | behavior methods]
 
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allMethodsSelect: aBlock  [
+{ #category : #query }
+SystemNavigation >> allMethodsSelect: aBlock [ 
 	"Answer a SortedCollection of each method that, when used as the block  
 	argument to aBlock, gives a true result."
 	| aCollection |
@@ -272,11 +214,8 @@ SystemNavigation>>allMethodsSelect: aBlock  [
 	^ aCollection
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allMethodsWithSourceString: aString matchCase: caseSensitive [
+{ #category : #query }
+SystemNavigation >> allMethodsWithSourceString: aString matchCase: caseSensitive [
 	"Answer a SortedCollection of all the methods that contain, in source code, aString as a substring.  Search the class comments also"
 
 	| list addMethod addComment |
@@ -299,22 +238,16 @@ SystemNavigation>>allMethodsWithSourceString: aString matchCase: caseSensitive [
 			^ list asSortedCollection
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allObjects [
+{ #category : #query }
+SystemNavigation >> allObjects [
 	"Answer an Array of all objects in the system.  Fail if
 	 there isn't enough memory to instantiate the result."
 	<primitive: 178>
 	^self primitiveFailed
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allObjectsDo: aBlock  [
+{ #category : #query }
+SystemNavigation >> allObjectsDo: aBlock [ 
 	"Evaluate the argument, aBlock, for each object in the system, excluding immediates
 	 such as SmallInteger and Character."
 	self allObjectsOrNil
@@ -322,22 +255,16 @@ SystemNavigation>>allObjectsDo: aBlock  [
 		ifNil:[self error:'Error allocating a big enough array for all objects']
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allObjectsOrNil [
+{ #category : #query }
+SystemNavigation >> allObjectsOrNil [
 	"Answer an Array of all objects in the system.  Fail if there isn't
 	 enough memory to instantiate the result and answer nil."
 	<primitive: 178>
 	^nil
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allPrimitiveMethods [
+{ #category : #query }
+SystemNavigation >> allPrimitiveMethods [
 	"Answer an OrderedCollection of all the methods that are implemented by primitives."
 	| aColl |
 	aColl := OrderedCollection new: 200.
@@ -348,11 +275,8 @@ SystemNavigation>>allPrimitiveMethods [
 	^ aColl
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allReferencesTo: aLiteral  [
+{ #category : #query }
+SystemNavigation >> allReferencesTo: aLiteral [ 
 	"Answer a Collection of all the methods that refer to aLiteral even deeply embedded in literal array."
 
 	"SystemNavigation new allReferencesTo: #+"
@@ -369,11 +293,8 @@ SystemNavigation>>allReferencesTo: aLiteral  [
 	^ result
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allReferencesToPool: aPool [
+{ #category : #query }
+SystemNavigation >> allReferencesToPool: aPool [
 	"Answer all the references to variable aPool"
 
 	| list |
@@ -388,11 +309,8 @@ SystemNavigation>>allReferencesToPool: aPool [
 	^ list
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allReferencesToPool: aPool from: aClass [
+{ #category : #query }
+SystemNavigation >> allReferencesToPool: aPool from: aClass [
 	"Answer all the references to variables from aPool"
 
 	| list |
@@ -407,11 +325,8 @@ SystemNavigation>>allReferencesToPool: aPool from: aClass [
 	^ list
 ]
 
-{
-	#category : #'message sends',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allSendersOf: selector  [
+{ #category : #'message sends' }
+SystemNavigation >> allSendersOf: selector [ 
 	|  senders |
 	senders := OrderedCollection new.
 	self allBehaviorsDo: [ :behavior | 
@@ -420,11 +335,8 @@ SystemNavigation>>allSendersOf: selector  [
 	^ senders
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allSentMessages [
+{ #category : #query }
+SystemNavigation >> allSentMessages [
 	"Answer the set of selectors which are sent somewhere in the system."
 	| sent |
 	sent := IdentitySet new.
@@ -444,11 +356,8 @@ SystemNavigation>>allSentMessages [
 	^ sent
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allStoresInto: instVarName of: aClass [
+{ #category : #query }
+SystemNavigation >> allStoresInto: instVarName of: aClass [
     | coll |
     coll := OrderedCollection new.
     aClass
@@ -456,11 +365,8 @@ SystemNavigation>>allStoresInto: instVarName of: aClass [
     ^ coll
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allUnimplementedCalls [
+{ #category : #query }
+SystemNavigation >> allUnimplementedCalls [
 	"Answer an Array of each message that is sent by an expression in a  
 	method but is not implemented by any object in the system."
 	| aStream all |
@@ -482,11 +388,8 @@ SystemNavigation>>allUnimplementedCalls [
 	^ aStream contents
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allUnreferencedClassVariablesOf: aClass [
+{ #category : #query }
+SystemNavigation >> allUnreferencedClassVariablesOf: aClass [
 	"Answer a list of the names of all the receiver's unreferenced class  
 	vars, including those defined in superclasses"
 	| aList |
@@ -498,11 +401,8 @@ SystemNavigation>>allUnreferencedClassVariablesOf: aClass [
 	^ aList
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>allUnsentMessagesIn: selectorSet  [
+{ #category : #query }
+SystemNavigation >> allUnsentMessagesIn: selectorSet [ 
 	"Answer the subset of selectorSet which are not sent anywhere in the 
 	system. As allSentMessages does not recurse into nested Arrays, filter
 	with #allCallsOn, which does"
@@ -510,19 +410,13 @@ SystemNavigation>>allUnsentMessagesIn: selectorSet  [
 	^ (selectorSet copyWithoutAll: self allSentMessages) select: [:each | (self allCallsOn: each) isEmpty]   
 ]
 
-{
-	#category : #packages,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>categoriesInPackageNamed: packageName [
+{ #category : #packages }
+SystemNavigation >> categoriesInPackageNamed: packageName [
 	^(self environment organization categoriesMatching: packageName), (self environment organization categoriesMatching: (packageName, '-*'))
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>createMethodNamed: aSelector realParent: class [
+{ #category : #query }
+SystemNavigation >> createMethodNamed: aSelector realParent: class [
 
 	"This method has some problems."
 	"1 - It should use the object that comes from the browsed environment"
@@ -530,27 +424,18 @@ SystemNavigation>>createMethodNamed: aSelector realParent: class [
 	^ (RGMethodDefinition realClass: class selector: aSelector) package:  (class>>aSelector) package asRingDefinition; yourself .
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>environment [
+{ #category : #accessing }
+SystemNavigation >> environment [
 	^environment 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>environment: aSystemDictionary [
+{ #category : #accessing }
+SystemNavigation >> environment: aSystemDictionary [
 	^environment :=  aSystemDictionary
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>headingAndAutoselectForLiteral: aLiteral do: binaryBlock [
+{ #category : #private }
+SystemNavigation >> headingAndAutoselectForLiteral: aLiteral do: binaryBlock [
 	"Evaluate aBlock with either Users of ... or Senders of ... plus the auto-select string
 	 for the given literal.  aLiteral can be a Symbol, a VariableBinding or an arbitrary object."
 
@@ -564,31 +449,22 @@ SystemNavigation>>headingAndAutoselectForLiteral: aLiteral do: binaryBlock [
 			binaryBlock value: 'Users of ', autoSelect value: autoSelect]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>initialize [
+{ #category : #initialization }
+SystemNavigation >> initialize [
 
 	super initialize.
 	self environment: Smalltalk globals
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>installedMethodsWithIncorrectTrailerKind [
+{ #category : #query }
+SystemNavigation >> installedMethodsWithIncorrectTrailerKind [
 
 	^self allMethodsSelect:
 		[:each | (#(#SourcePointer #VarLengthSourcePointer #NativeCodeTrailer) includes: each trailer kind) not and: [ each isInstalled ]  ]
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>instanceSideMethodsWithNilKeyInLastLiteral [
+{ #category : #query }
+SystemNavigation >> instanceSideMethodsWithNilKeyInLastLiteral [
 	"This answers all the instance side methods that has NIL as the key in their last literal. There should be none (only class side methods have this)"
 
 	^ self
@@ -597,33 +473,24 @@ SystemNavigation>>instanceSideMethodsWithNilKeyInLastLiteral [
 				and: [ each methodClass ~= UndefinedObject ]) and: [ each isInstalled ] ]
 ]
 
-{
-	#category : #'message sends',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>isUnsentMessage: selector [
+{ #category : #'message sends' }
+SystemNavigation >> isUnsentMessage: selector [
 
 	self allBehaviorsDo: [ :behavior | 
 		(behavior thoroughHasSelectorReferringTo: selector) ifTrue: [^false] ].
 	^true
 ]
 
-{
-	#category : #'message sends',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>isUsedClass: aClass [
+{ #category : #'message sends' }
+SystemNavigation >> isUsedClass: aClass [
 
 	self allBehaviorsDo: [ :behavior | 
 		(behavior hasSelectorReferringTo: aClass binding) ifTrue: [^true] ].
 	^false
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>methodsWithUnboundGlobals [
+{ #category : #query }
+SystemNavigation >> methodsWithUnboundGlobals [
 	"This says that for any global, it should match either the class's notion of what bindingOf: the key is, or bindingOf: should be nil and the binding should be in Undeclared. If the class answers a different binding through bindingOf: or answers no binding and the binding is not in Undeclared then the variable in the method is wrong.
 	For a clean image the result should be empty. If it is not empty, evaluating Compiler recompileAll probably solves the problem. However, we should investigate why the method gets an incorrect state."
 
@@ -641,11 +508,8 @@ SystemNavigation>>methodsWithUnboundGlobals [
 					ifNotNil: [:b| b ~~ l]]]]]]
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>obsoleteBehaviors [
+{ #category : #query }
+SystemNavigation >> obsoleteBehaviors [
 	"SystemNavigation new obsoleteBehaviors inspect"
 	"Find all obsolete behaviors including meta classes"
 
@@ -659,11 +523,8 @@ SystemNavigation>>obsoleteBehaviors [
 	^ obs asArray
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>obsoleteClasses [
+{ #category : #query }
+SystemNavigation >> obsoleteClasses [
 	"SystemNavigation new obsoleteClasses inspect"
 
 	"NOTE:  Also try inspecting comments below"
@@ -692,11 +553,8 @@ Smalltalk browseAllSelect:
 "
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>obsoleteMethodReferences [
+{ #category : #query }
+SystemNavigation >> obsoleteMethodReferences [
 	"SystemNavigation new obsoleteMethodReferences"
 
 	"Open a browser on all referenced behaviors that are obsolete"
@@ -724,11 +582,8 @@ SystemNavigation>>obsoleteMethodReferences [
 	^ references contents
 ]
 
-{
-	#category : #packages,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemNavigation>>removeAllButPackages: packagesList [
+{ #category : #packages }
+SystemNavigation >> removeAllButPackages: packagesList [
   "Remove all classes and methods that do not belong to some of listed packages. Skip #unload. Do not use this method if you can use Monticello! This method is used by some low-level shrinking process. Do not use it. This is quite hackish"
 
   | keep remove oldRemove extensionCategories |

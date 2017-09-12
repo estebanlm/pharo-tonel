@@ -1,44 +1,27 @@
-Extension {
-	#name : #CompiledMethod
-}
+Extension { #name : #CompiledMethod }
 
-{
-	#category : #'*rpackage-core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-CompiledMethod>>isDefinedInPackage: anRPackage [
+{ #category : #'*rpackage-core' }
+CompiledMethod >> isDefinedInPackage: anRPackage [
 	^ anRPackage includesDefinedSelector: self selector ofClass: self methodClass
 ]
 
-{
-	#category : #'*rpackage-core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-CompiledMethod>>isExtension [
+{ #category : #'*rpackage-core' }
+CompiledMethod >> isExtension [
 	^ self origin package ~= self package
 ]
 
-{
-	#category : #'*rpackage-core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-CompiledMethod>>isExtensionInPackage: anRPackage [
+{ #category : #'*rpackage-core' }
+CompiledMethod >> isExtensionInPackage: anRPackage [
 	^ anRPackage includesExtensionSelector: self selector ofClass: self methodClass
 ]
 
-{
-	#category : #'*rpackage-core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-CompiledMethod>>package [
+{ #category : #'*rpackage-core' }
+CompiledMethod >> package [
 	^ self packageFromOrganizer: RPackage organizer
 ]
 
-{
-	#category : #'*rpackage-core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-CompiledMethod>>packageFromOrganizer: anRPackageOrganizer [
+{ #category : #'*rpackage-core' }
+CompiledMethod >> packageFromOrganizer: anRPackageOrganizer [
 	| originSelector |
 	"This method returns the package this method belongs to.  
 	It takes into account classes and traits.  

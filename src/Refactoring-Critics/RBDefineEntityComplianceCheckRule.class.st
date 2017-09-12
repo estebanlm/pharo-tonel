@@ -4,32 +4,22 @@ The rule checks if the class rule in question specifies which entities it can ch
 Class {
 	#name : #RBDefineEntityComplianceCheckRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'YuriyTymchuk 1/13/2016 22:34'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefineEntityComplianceCheckRule class>>checksClass [
+{ #category : #testing }
+RBDefineEntityComplianceCheckRule class >> checksClass [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefineEntityComplianceCheckRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBDefineEntityComplianceCheckRule class >> uniqueIdentifierName [
 	
 	^ 'RBDefineEntityComplianceCheckRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefineEntityComplianceCheckRule>>basicCheck: aClass  [
+{ #category : #running }
+RBDefineEntityComplianceCheckRule >> basicCheck: aClass [ 
 	
 	^ (aClass inheritsFrom: RBLintRule) and: [ 
 		aClass isVisible and: [
@@ -37,54 +27,36 @@ RBDefineEntityComplianceCheckRule>>basicCheck: aClass  [
 				aClass perform: method ] ] ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefineEntityComplianceCheckRule>>checkClass: aClass  [
+{ #category : #running }
+RBDefineEntityComplianceCheckRule >> checkClass: aClass [ 
 	(self basicCheck: aClass) ifTrue: [ result addClass: aClass ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefineEntityComplianceCheckRule>>complianceMethods [
+{ #category : #properties }
+RBDefineEntityComplianceCheckRule >> complianceMethods [
 
 	^ #(checksMethod checksClass checksPackage)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefineEntityComplianceCheckRule>>group [
+{ #category : #accessing }
+RBDefineEntityComplianceCheckRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefineEntityComplianceCheckRule>>name [
+{ #category : #accessing }
+RBDefineEntityComplianceCheckRule >> name [
 	^ 'Rule does not define entity compliance'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefineEntityComplianceCheckRule>>rationale [
+{ #category : #accessing }
+RBDefineEntityComplianceCheckRule >> rationale [
 
 	^ 'You should override on the CLASS SIDE at least one of #',
 	  (self complianceMethods joinUsing: ', #'),
 	  ' methods to return true and so indicate which entities can be checked by your rule.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBDefineEntityComplianceCheckRule>>resultClass [
+{ #category : #accessing }
+RBDefineEntityComplianceCheckRule >> resultClass [
 	^ RBClassEnvironment
 ]

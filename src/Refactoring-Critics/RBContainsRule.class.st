@@ -4,33 +4,23 @@ Checks for the common code fragment: ""(aCollection detect: [:each | ''some cond
 Class {
 	#name : #RBContainsRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:26'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBContainsRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBContainsRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'ContainsRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBContainsRule>>group [
+{ #category : #accessing }
+RBContainsRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBContainsRule>>initialize [
+{ #category : #initialization }
+RBContainsRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyOf: #(
@@ -44,18 +34,12 @@ RBContainsRule>>initialize [
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBContainsRule>>name [
+{ #category : #accessing }
+RBContainsRule >> name [
 	^ 'Uses detect:ifNone: instead of contains:'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBContainsRule>>rationale [
+{ #category : #accessing }
+RBContainsRule >> rationale [
 	^ 'Checks for the common code fragment: "(aCollection detect: [:each | ''some condition''] ifNone: [nil]) ~= nil".'
 ]

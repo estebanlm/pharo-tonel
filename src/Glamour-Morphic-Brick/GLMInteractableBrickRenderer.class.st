@@ -5,15 +5,11 @@ A GLMInteractableBrickRenderer is more advanced Brick renderer, that is used in 
 Class {
 	#name : #GLMInteractableBrickRenderer,
 	#superclass : #GLMBrickRenderer,
-	#category : #Glamour-Morphic-Brick-Renderer,
-	#timestamp : 'AliakseiSyrel 10/17/2014 10:34'
+	#category : #Glamour-Morphic-Brick-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrickRenderer>>render: aBrick on: aCanvas [
+{ #category : #rendering }
+GLMInteractableBrickRenderer >> render: aBrick on: aCanvas [
 
 	self
 		renderShadowOf: aBrick on: aCanvas;
@@ -23,22 +19,16 @@ GLMInteractableBrickRenderer>>render: aBrick on: aCanvas [
 		renderBorderOf: aBrick on: aCanvas
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrickRenderer>>renderColorOf: aBrick on: aCanvas [
+{ #category : #rendering }
+GLMInteractableBrickRenderer >> renderColorOf: aBrick on: aCanvas [
 	|color|
 	color := aBrick currentColor.
 	color ifNotNil: [
 		aCanvas fillRectangle: (aBrick brickBounds expandBy: aBrick shadowWidth negated) color: color ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrickRenderer>>renderImageOf: aBrick on: aCanvas [
+{ #category : #rendering }
+GLMInteractableBrickRenderer >> renderImageOf: aBrick on: aCanvas [
 	|image|
 	
 	image := aBrick currentImage.

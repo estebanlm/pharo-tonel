@@ -14,299 +14,190 @@ Subinstances are the graphical representation of the associated decorators defin
 Class {
 	#name : #RubScrolledTextExtra,
 	#superclass : #Morph,
-	#category : #Rubric-Editing-Widgets,
-	#timestamp : '<historical>'
+	#category : #Rubric-Editing-Widgets
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra class>>classOfRulerNamed: aKey  [
+{ #category : #querying }
+RubScrolledTextExtra class >> classOfRulerNamed: aKey [ 
 	^ self allSubclasses detect: [ :cls | cls key = aKey ] ifNone: [  ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra class>>key [
+{ #category : #querying }
+RubScrolledTextExtra class >> key [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>computedExtentFrom: aRectangle [
+{ #category : #accessing }
+RubScrolledTextExtra >> computedExtentFrom: aRectangle [
 	^ (self computedWidthFrom: aRectangle) @ (self computedHeightFrom: aRectangle)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>computedHeightFrom: aRectangle [
+{ #category : #accessing }
+RubScrolledTextExtra >> computedHeightFrom: aRectangle [
 	^ aRectangle height
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>computedPositionFrom: aRectangle [
+{ #category : #accessing }
+RubScrolledTextExtra >> computedPositionFrom: aRectangle [
 	^ aRectangle topLeft
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>computedWidthFrom: aRectangle [
+{ #category : #accessing }
+RubScrolledTextExtra >> computedWidthFrom: aRectangle [
 	^ aRectangle width 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>defaultBackgroundColor  [
+{ #category : #defaults }
+RubScrolledTextExtra >> defaultBackgroundColor [ 
 	^ Color transparent
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>defaultColor [
+{ #category : #defaults }
+RubScrolledTextExtra >> defaultColor [
 	^ self defaultBackgroundColor 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>initialize [
+{ #category : #initialize-release }
+RubScrolledTextExtra >> initialize [
 	super initialize.
 	self clipSubmorphs: true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>isHorizontal [
+{ #category : #testing }
+RubScrolledTextExtra >> isHorizontal [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>isOver [
+{ #category : #testing }
+RubScrolledTextExtra >> isOver [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>isSideRuler [
+{ #category : #testing }
+RubScrolledTextExtra >> isSideRuler [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>isVertical [
+{ #category : #testing }
+RubScrolledTextExtra >> isVertical [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>key [
+{ #category : #accessing }
+RubScrolledTextExtra >> key [
 	^self class key
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>level [
+{ #category : #accessing }
+RubScrolledTextExtra >> level [
 	^ 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>lineIndexForPoint: aPoint [
+{ #category : #accessing }
+RubScrolledTextExtra >> lineIndexForPoint: aPoint [
 	^ self paragraph lineIndexForPoint: aPoint  + (0 @ (self offset y - self bounds top))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>lines [
+{ #category : #accessing }
+RubScrolledTextExtra >> lines [
 	^ self paragraph lines
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>manageLayoutInBounds: aRectangle [
+{ #category : #geometry }
+RubScrolledTextExtra >> manageLayoutInBounds: aRectangle [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>margins [
+{ #category : #accessing }
+RubScrolledTextExtra >> margins [
 	^ self textArea margins
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>offset [
+{ #category : #accessing }
+RubScrolledTextExtra >> offset [
 	^ self paragraphProvider scrollPane offset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>paragraph [
+{ #category : #accessing }
+RubScrolledTextExtra >> paragraph [
 	^ self paragraphProvider ifNotNil: [:p | p paragraph]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>paragraphProvider [
+{ #category : #accessing }
+RubScrolledTextExtra >> paragraphProvider [
 	
 	^ self ownerThatIsA: RubScrolledTextMorph 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>primarySelectionColor [
+{ #category : #accessing }
+RubScrolledTextExtra >> primarySelectionColor [
 	^ self textArea primarySelectionColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>scrollBounds [
+{ #category : #accessing }
+RubScrolledTextExtra >> scrollBounds [
 	^ self paragraphProvider scrollBounds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>scrollPane [
+{ #category : #accessing }
+RubScrolledTextExtra >> scrollPane [
 	^ self paragraphProvider scrollPane
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>scrollerOffsetChanged [
+{ #category : #'event handling' }
+RubScrolledTextExtra >> scrollerOffsetChanged [
 	self changed
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>selectionChanged [
+{ #category : #'event handling' }
+RubScrolledTextExtra >> selectionChanged [
 	self changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>selectionStart [
+{ #category : #accessing }
+RubScrolledTextExtra >> selectionStart [
 	^ self paragraph selectionStart
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>selectionStop [
+{ #category : #accessing }
+RubScrolledTextExtra >> selectionStop [
 	^ self paragraph selectionStop
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>text  [
+{ #category : #accessing }
+RubScrolledTextExtra >> text [ 
 	^ self textArea text
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>textAccepted [
+{ #category : #'event handling' }
+RubScrolledTextExtra >> textAccepted [
 	self changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>textArea [
+{ #category : #accessing }
+RubScrolledTextExtra >> textArea [
 	^ self paragraph textArea
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>textChanged [
+{ #category : #'event handling' }
+RubScrolledTextExtra >> textChanged [
 	self changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>textStyle [
+{ #category : #accessing }
+RubScrolledTextExtra >> textStyle [
 
 	^ self textArea textStyle.
 
 ]
 
-{
-	#category : #structure,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>topRendererOrSelf [
+{ #category : #structure }
+RubScrolledTextExtra >> topRendererOrSelf [
 	^self paragraphProvider
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubScrolledTextExtra>>unplug [
+{ #category : #initialize-release }
+RubScrolledTextExtra >> unplug [
 	self paragraphProvider
 		ifNotNil: [ 
 			self scrollPane ifNotNil: [:sp | sp announcer unsubscribe: self].

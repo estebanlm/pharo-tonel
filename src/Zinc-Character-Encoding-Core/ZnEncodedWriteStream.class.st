@@ -6,50 +6,34 @@ Part of Zinc HTTP Components
 Class {
 	#name : #ZnEncodedWriteStream,
 	#superclass : #ZnEncodedStream,
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : 'SvenVanCaekenberghe 1/26/2016 10:21'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEncodedWriteStream>><< collection [
+{ #category : #accessing }
+ZnEncodedWriteStream >> << collection [
 	^ self nextPutAll: collection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEncodedWriteStream>>flush [
+{ #category : #accessing }
+ZnEncodedWriteStream >> flush [
 	stream flush
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEncodedWriteStream>>isBinary [
+{ #category : #testing }
+ZnEncodedWriteStream >> isBinary [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEncodedWriteStream>>next: count putAll: collection	 [
+{ #category : #accessing }
+ZnEncodedWriteStream >> next: count putAll: collection [	
 	self 
 		next: count 
 		putAll: collection 
 		startingAt: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEncodedWriteStream>>next: count putAll: collection startingAt: offset [
+{ #category : #accessing }
+ZnEncodedWriteStream >> next: count putAll: collection startingAt: offset [
 	"Write count items from collection starting at offset.
 	This is an inefficient abstract implementation writing one by one."
 	
@@ -57,19 +41,13 @@ ZnEncodedWriteStream>>next: count putAll: collection startingAt: offset [
 		self nextPut: (collection at: offset + each) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEncodedWriteStream>>nextPut: anObject [
+{ #category : #accessing }
+ZnEncodedWriteStream >> nextPut: anObject [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEncodedWriteStream>>nextPutAll: collection [
+{ #category : #accessing }
+ZnEncodedWriteStream >> nextPutAll: collection [
 	self 
 		next: collection size 
 		putAll: collection 

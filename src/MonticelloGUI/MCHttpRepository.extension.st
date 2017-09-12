@@ -1,20 +1,12 @@
-Extension {
-	#name : #MCHttpRepository
-}
+Extension { #name : #MCHttpRepository }
 
-{
-	#category : #'*MonticelloGUI',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCHttpRepository class>>fillInTheBlankRequest [
+{ #category : #'*MonticelloGUI' }
+MCHttpRepository class >> fillInTheBlankRequest [
 	^ 'HTTP Repository:'
 			
 ]
 
-{
-	#category : #'*MonticelloGUI',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCHttpRepository class>>morphicConfigure [
+{ #category : #'*MonticelloGUI' }
+MCHttpRepository class >> morphicConfigure [
 	^ self fillInTheBlankConfigure
 ]

@@ -11,15 +11,11 @@ I provide shortcuts for the most common methods to avoid the use of the DoesNotU
 Class {
 	#name : #LabelledSliderInput,
 	#superclass : #LabelledContainer,
-	#category : #Spec-PolyWidgets-Labelled,
-	#timestamp : 'Spirita 8/1/2016 11:11'
+	#category : #Spec-PolyWidgets-Labelled
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledSliderInput class>>example [
+{ #category : #example }
+LabelledSliderInput class >> example [
 	| example |
 	example := self new
 		min: 0;
@@ -32,107 +28,68 @@ LabelledSliderInput class>>example [
 	^ example
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledSliderInput>>absoluteValue [
+{ #category : #api-shortcuts }
+LabelledSliderInput >> absoluteValue [
 	^ self sliderInput absoluteValue
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledSliderInput>>absoluteValue: aBoolean [
+{ #category : #api-shortcuts }
+LabelledSliderInput >> absoluteValue: aBoolean [
 	^ self sliderInput absoluteValue: aBoolean
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledSliderInput>>autoAccept [
+{ #category : #api-shortcuts }
+LabelledSliderInput >> autoAccept [
 	^ self sliderInput autoAccept
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledSliderInput>>autoAccept: aBoolean [
+{ #category : #api-shortcuts }
+LabelledSliderInput >> autoAccept: aBoolean [
 	^ self sliderInput autoAccept: aBoolean
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledSliderInput>>initializeWidgets [
+{ #category : #initialization }
+LabelledSliderInput >> initializeWidgets [
 	super initializeWidgets.
 	self content: SliderInput 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledSliderInput>>input [
+{ #category : #accessing }
+LabelledSliderInput >> input [
 	^ subwidget input
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledSliderInput>>max: aNumber [
+{ #category : #api-shortcuts }
+LabelledSliderInput >> max: aNumber [
 	^ self sliderInput max: aNumber
 ]
 
-{
-	#category : #api-shortcuts,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledSliderInput>>min: aNumber [
+{ #category : #api-shortcuts }
+LabelledSliderInput >> min: aNumber [
 	^ self sliderInput min: aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledSliderInput>>slider [
+{ #category : #accessing }
+LabelledSliderInput >> slider [
 	^ subwidget slider
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledSliderInput>>sliderInput [
+{ #category : #accessing }
+LabelledSliderInput >> sliderInput [
 	^ subwidget
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledSliderInput>>value [
+{ #category : #accessing }
+LabelledSliderInput >> value [
 	^ self sliderInput value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledSliderInput>>value: aNumber [
+{ #category : #accessing }
+LabelledSliderInput >> value: aNumber [
 	^ self sliderInput value: aNumber
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledSliderInput>>whenValueChangedDo: aBlock [
+{ #category : #api-events }
+LabelledSliderInput >> whenValueChangedDo: aBlock [
 	self sliderInput whenValueChangedDo: aBlock
 ]

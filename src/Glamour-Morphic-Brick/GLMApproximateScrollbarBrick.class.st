@@ -7,15 +7,11 @@ Approximates the height of band depending on average height of all visible items
 Class {
 	#name : #GLMApproximateScrollbarBrick,
 	#superclass : #GLMScrollbarBrick,
-	#category : #Glamour-Morphic-Brick-Widgets-Scrollpane,
-	#timestamp : 'AliakseiSyrel 12/6/2014 20:15'
+	#category : #Glamour-Morphic-Brick-Widgets-Scrollpane
 }
 
-{
-	#category : #scrollbar-calculations,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMApproximateScrollbarBrick>>approximateBandHeight [
+{ #category : #scrollbar-calculations }
+GLMApproximateScrollbarBrick >> approximateBandHeight [
 	|visible averageItemHeight|
 	
 	visible := self scrollPane band submorphs select: [ :each | self scrollPane isPartiallyVisible: each ].
@@ -25,11 +21,8 @@ GLMApproximateScrollbarBrick>>approximateBandHeight [
 	^ self scrollPane model count * averageItemHeight.
 ]
 
-{
-	#category : #scrollbar-calculations,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMApproximateScrollbarBrick>>calculateScrollbarHeight [
+{ #category : #scrollbar-calculations }
+GLMApproximateScrollbarBrick >> calculateScrollbarHeight [
 	|bandHeight firstIndex lastIndex |
 	bandHeight := self approximateBandHeight.
 	bandHeight = 0 ifTrue: [ ^ 0 ].
@@ -42,11 +35,8 @@ GLMApproximateScrollbarBrick>>calculateScrollbarHeight [
 	
 ]
 
-{
-	#category : #scrollbar-calculations,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMApproximateScrollbarBrick>>calculateScrollbarTopOffset [
+{ #category : #scrollbar-calculations }
+GLMApproximateScrollbarBrick >> calculateScrollbarTopOffset [
 	|bandHeight firstIndex lastIndex|
 	bandHeight := self approximateBandHeight.
 	bandHeight = 0 ifTrue: [ ^ 0 ].

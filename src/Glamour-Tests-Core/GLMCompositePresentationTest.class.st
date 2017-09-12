@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMCompositePresentationTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositePresentationTest>>testAdd [
+{ #category : #tests }
+GLMCompositePresentationTest >> testAdd [
 	| composite |
 	composite := GLMCompositePresentation new.
 	composite add: GLMPresentation new.
@@ -20,11 +13,8 @@ GLMCompositePresentationTest>>testAdd [
 	self assert: composite presentations size equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositePresentationTest>>testAddRaisesAnnouncement [
+{ #category : #tests }
+GLMCompositePresentationTest >> testAddRaisesAnnouncement [
 	| composite announcementCount pane |
 	composite := GLMCompositePresentation new.
 	pane := composite pane.
@@ -36,11 +26,8 @@ GLMCompositePresentationTest>>testAddRaisesAnnouncement [
 	self assert: announcementCount equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositePresentationTest>>testAddSetsCorrectPane [
+{ #category : #tests }
+GLMCompositePresentationTest >> testAddSetsCorrectPane [
 	| composite presentation |
 	composite := GLMCompositePresentation new.
 	presentation := GLMPresentation new.
@@ -48,11 +35,8 @@ GLMCompositePresentationTest>>testAddSetsCorrectPane [
 	self assert: composite pane equals: presentation pane
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositePresentationTest>>testCompositeWithinCompositeOuterPortEvents [
+{ #category : #'as yet unclassified' }
+GLMCompositePresentationTest >> testCompositeWithinCompositeOuterPortEvents [
 	| childComposite finder parentComposite count |
 	count := 0.
 	childComposite := GLMCompositePresentation new.
@@ -67,11 +51,8 @@ GLMCompositePresentationTest>>testCompositeWithinCompositeOuterPortEvents [
 	self assert: count equals: 1
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositePresentationTest>>testCompositeWithinCompositePanePropagation [
+{ #category : #'as yet unclassified' }
+GLMCompositePresentationTest >> testCompositeWithinCompositePanePropagation [
 	| composite0 composite1 composite21 composite22 pane |
 	composite0 := GLMCompositePresentation new.
 	composite1 := GLMCompositePresentation new.
@@ -90,11 +71,8 @@ GLMCompositePresentationTest>>testCompositeWithinCompositePanePropagation [
 	self assert: (composite0 first at: 2) first pane equals: pane
 ]
 
-{
-	#category : #'tests - composer',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositePresentationTest>>testCreateFinder [
+{ #category : #'tests - composer' }
+GLMCompositePresentationTest >> testCreateFinder [
 	| show |
 	show := GLMCompositePresentation new.
 	show finder with: [ :b | b show: [ :a | a text ] ].
@@ -105,11 +83,8 @@ GLMCompositePresentationTest>>testCreateFinder [
 	self assert: (show first panes first port: #entity) value equals: 42
 ]
 
-{
-	#category : #'tests - composer',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositePresentationTest>>testCreateTabulator [
+{ #category : #'tests - composer' }
+GLMCompositePresentationTest >> testCreateTabulator [
 	| show |
 	show := GLMCompositePresentation new.
 	show tabulator
@@ -126,31 +101,22 @@ GLMCompositePresentationTest>>testCreateTabulator [
 	self assert: (show first panes first port: #entity) value equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositePresentationTest>>testCreation [
+{ #category : #tests }
+GLMCompositePresentationTest >> testCreation [
 	| composite |
 	composite := GLMCompositePresentation new.
 	self assert: composite isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositePresentationTest>>testDefaultPane [
+{ #category : #tests }
+GLMCompositePresentationTest >> testDefaultPane [
 	| composite |
 	composite := GLMCompositePresentation new.
 	self assert: composite pane presentations equals: composite
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositePresentationTest>>testPane [
+{ #category : #tests }
+GLMCompositePresentationTest >> testPane [
 	| pane composite presentation |
 	pane := GLMPane new.
 	composite := GLMCompositePresentation new.
@@ -161,11 +127,8 @@ GLMCompositePresentationTest>>testPane [
 	self assert: composite first pane == pane
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMCompositePresentationTest>>testStartingPreservesItself [
+{ #category : #tests }
+GLMCompositePresentationTest >> testStartingPreservesItself [
 	| composite finder |
 	composite := GLMCompositePresentation new.
 	finder := composite finder.

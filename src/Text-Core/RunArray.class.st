@@ -21,32 +21,22 @@ Class {
 		'lastRun',
 		'lastOffset'
 	],
-	#category : #Text-Core,
-	#timestamp : '<historical>'
+	#category : #Text-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray class>>new [
+{ #category : #'instance creation' }
+RunArray class >> new [
 
 	^self runs: Array new values: Array new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray class>>new: aSize [
+{ #category : #'instance creation' }
+RunArray class >> new: aSize [
 	^ self new: aSize withAll: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray class>>new: size withAll: value  [
+{ #category : #'instance creation' }
+RunArray class >> new: size withAll: value [ 
 	"Answer a new instance of me, whose every element is equal to the
 	argument, value."
 
@@ -54,11 +44,8 @@ RunArray class>>new: size withAll: value  [
 	^self runs: (Array with: size) values: (Array with: value)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray class>>newFrom: aCollection  [
+{ #category : #'instance creation' }
+RunArray class >> newFrom: aCollection [ 
 	"Answer an instance of me containing the same elements as aCollection."
 
 	| runs values lastRun lastValue |
@@ -88,11 +75,8 @@ RunArray class>>newFrom: aCollection  [
 "
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray class>>readFrom: aStream [
+{ #category : #'instance creation' }
+RunArray class >> readFrom: aStream [
 	"Answer an instance of me as described on the stream, aStream."
 
 	| size runs values |
@@ -106,11 +90,8 @@ RunArray class>>readFrom: aStream [
 	^ self runs: runs values: values
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray class>>runs: newRuns values: newValues  [
+{ #category : #'instance creation' }
+RunArray class >> runs: newRuns values: newValues [ 
 	"Answer an instance of me with runs and values specified by the 
 	arguments."
 
@@ -120,11 +101,8 @@ RunArray class>>runs: newRuns values: newValues  [
 	^instance
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray class>>scanFrom: strm [
+{ #category : #'instance creation' }
+RunArray class >> scanFrom: strm [
 	"Read the style section of a fileOut or sources file.	nextChunk has already been done. We need to return a RunArray of TextAttributes of various kinds. These are written by the implementors of writeScanOn:"
 	| runs values attrList char |
 	(strm peekFor: $( ) ifFalse: [^ nil].
@@ -164,11 +142,8 @@ RunArray scanFrom: (ReadStream on: '(14 50 312)f1,f1b,f1LInteger +;i')
 "
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>, aRunArray  [
+{ #category : #copying }
+RunArray >> , aRunArray [ 
 	"Answer a new RunArray that is a concatenation of the receiver and
 	aRunArray."
 
@@ -199,11 +174,8 @@ RunArray>>, aRunArray  [
 				with: aRunArray values)
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>= otherArray  [
+{ #category : #comparing }
+RunArray >> = otherArray [ 
 	"Test if all my elements are equal to those of otherArray"
 
 	self == otherArray ifTrue: [^true].
@@ -215,11 +187,8 @@ RunArray>>= otherArray  [
 		and: [values hasEqualElements: otherArray values]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>add: newObject withOccurrences: anInteger [
+{ #category : #adding }
+RunArray >> add: newObject withOccurrences: anInteger [
 	"Add value as the last element of the receiver, the given number of times"
 	anInteger <= 0 ifTrue: [ ^self ].
 	lastIndex := nil. "flush access cache"
@@ -231,11 +200,8 @@ RunArray>>add: newObject withOccurrences: anInteger [
 			[runs at: runs size put: runs last + anInteger]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>addFirst: value [
+{ #category : #adding }
+RunArray >> addFirst: value [
 	"Add value as the first element of the receiver."
 	lastIndex := nil. "flush access cache"
 	(runs size=0 or: [values first ~= value])
@@ -246,11 +212,8 @@ RunArray>>addFirst: value [
 			[runs at: 1 put: runs first+1]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>addLast: value [
+{ #category : #adding }
+RunArray >> addLast: value [
 	"Add value as the last element of the receiver."
 	lastIndex := nil. "flush access cache"
 	(runs size=0 or: [values last ~= value])
@@ -262,31 +225,22 @@ RunArray>>addLast: value [
 	^value
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>allSatisfy: aBlock  [
+{ #category : #enumerating }
+RunArray >> allSatisfy: aBlock [ 
 	"Only evaluate once per run"
 
 	^values allSatisfy: aBlock
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>anySatisfy: aBlock  [
+{ #category : #enumerating }
+RunArray >> anySatisfy: aBlock [ 
 	"Only evaluate once per run"
 
 	^values anySatisfy: aBlock
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>asBag [
+{ #category : #converting }
+RunArray >> asBag [
 	| aBag |
 	aBag := Bag new: values size.
 	self runsAndValuesDo: [:run :value |
@@ -294,28 +248,19 @@ RunArray>>asBag [
 	^aBag
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>asSet [
+{ #category : #converting }
+RunArray >> asSet [
 	^values asSet
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>at: index [
+{ #category : #accessing }
+RunArray >> at: index [
 
 	self at: index setRunOffsetAndValue: [:run :offset :value | ^value]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>at: index put: aValue [
+{ #category : #accessing }
+RunArray >> at: index put: aValue [
 	"Set an element of the RunArray"
 
 	| runIndex offsetInRun lastValue runLength runReplacement valueReplacement iStart iStop |
@@ -347,11 +292,8 @@ RunArray>>at: index put: aValue [
 	^ aValue
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>at: index setRunOffsetAndValue: aBlock  [
+{ #category : #private }
+RunArray >> at: index setRunOffsetAndValue: aBlock [ 
 	"Supply all run information to aBlock."
 	"Tolerates index=0 and index=size+1 for copyReplace: "
 	| run limit offset |
@@ -381,11 +323,8 @@ RunArray>>at: index setRunOffsetAndValue: aBlock  [
 		value: (values at: run) "value for this run"
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>coalesce [
+{ #category : #adding }
+RunArray >> coalesce [
 	"Try to combine adjacent runs"
 	| ind |
 	ind := 2.
@@ -400,20 +339,14 @@ RunArray>>coalesce [
 			
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>collect: aBlock [
+{ #category : #enumerating }
+RunArray >> collect: aBlock [
 	"Beware, the block will be evaluated only once per group of values."
 	^(self class runs: runs copy contents values: (values collect: aBlock)) coalesce
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>copyFrom: start to: stop [
+{ #category : #copying }
+RunArray >> copyFrom: start to: stop [
 	| newRuns run1 run2 offset1 offset2 | 
 	stop < start ifTrue: [^RunArray new].
 	self at: start setRunOffsetAndValue: [:r :o :value1 | run1 := r. offset1 := o. value1].
@@ -428,22 +361,16 @@ RunArray>>copyFrom: start to: stop [
 	^RunArray runs: newRuns values: (values copyFrom: run1 to: run2)
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>copyReplaceFrom: start to: stop with: replacement [
+{ #category : #copying }
+RunArray >> copyReplaceFrom: start to: stop with: replacement [
 
 	^(self copyFrom: 1 to: start - 1)
 		, replacement 
 		, (self copyFrom: stop + 1 to: self size)
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>copyUpThrough: anElement [
+{ #category : #copying }
+RunArray >> copyUpThrough: anElement [
 	"Optimized"
 
 	| newValues |
@@ -453,11 +380,8 @@ RunArray>>copyUpThrough: anElement [
 		values: newValues
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>copyUpTo: anElement  [
+{ #category : #copying }
+RunArray >> copyUpTo: anElement [ 
 	"Optimized"
 
 	| newValues |
@@ -467,11 +391,8 @@ RunArray>>copyUpTo: anElement  [
 		values: newValues
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>copyUpToLast: anElement [
+{ #category : #copying }
+RunArray >> copyUpToLast: anElement [
 	"Optimized"
 
 	| newValues |
@@ -481,11 +402,8 @@ RunArray>>copyUpToLast: anElement [
 		values: newValues
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>count: aBlock [
+{ #category : #enumerating }
+RunArray >> count: aBlock [
 	"Beware, the block will be evaluated only once per group of values."
 	| count |
 	count := 0.
@@ -496,41 +414,29 @@ RunArray>>count: aBlock [
 	^count
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>detect: aBlock ifNone: exceptionBlock  [
+{ #category : #enumerating }
+RunArray >> detect: aBlock ifNone: exceptionBlock [ 
 	"Only evaluate once per run"
 
 	^values detect: aBlock ifNone: exceptionBlock 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>detectMax: aBlock [
+{ #category : #enumerating }
+RunArray >> detectMax: aBlock [
 	"Only evaluate once per run"
 
 	^values detectMax: aBlock
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>detectMin: aBlock [
+{ #category : #enumerating }
+RunArray >> detectMin: aBlock [
 	"Only evaluate once per run"
 
 	^values detectMin: aBlock
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>detectSum: aBlock [
+{ #category : #enumerating }
+RunArray >> detectSum: aBlock [
 	"Only loop on runs"
 	| sum |
 	sum := 0.
@@ -539,11 +445,8 @@ RunArray>>detectSum: aBlock [
 	^ sum
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>do: aBlock [
+{ #category : #enumerating }
+RunArray >> do: aBlock [
 	"This is refined for speed"
 	
 	1 to: runs size do: [:i |
@@ -554,11 +457,8 @@ RunArray>>do: aBlock [
 			whileTrue: [aBlock value: v]].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>fillFrom: aCollection with: aBlock [
+{ #category : #private }
+RunArray >> fillFrom: aCollection with: aBlock [
 	"Evaluate aBlock with each of aCollection's elements as the argument.
 	Collect the resulting values into self. Answer self."
 
@@ -586,11 +486,8 @@ RunArray>>fillFrom: aCollection with: aBlock [
 	self setRuns: newRuns contents setValues: newValues contents
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>findFirst: aBlock [
+{ #category : #enumerating }
+RunArray >> findFirst: aBlock [
 	| index |
 	index := 1.
 	self runsAndValuesDo: [ :run :value |
@@ -599,11 +496,8 @@ RunArray>>findFirst: aBlock [
 	^0
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>findLast: aBlock [
+{ #category : #enumerating }
+RunArray >> findLast: aBlock [
 	| index |
 	index := values size + 1.
 	[(index := index - 1) >= 1] whileTrue:
@@ -611,91 +505,61 @@ RunArray>>findLast: aBlock [
 	^0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>first [
+{ #category : #accessing }
+RunArray >> first [
 	^values at: 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>includes: anObject [
+{ #category : #testing }
+RunArray >> includes: anObject [
 	"Answer whether anObject is one of the receiver's elements."
 
 	^values includes: anObject
 ]
 
-{
-	#category : #'self evaluating',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>isSelfEvaluating [
+{ #category : #'self evaluating' }
+RunArray >> isSelfEvaluating [
 	^ self class == RunArray and: [values isSelfEvaluating]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>isSorted [
+{ #category : #testing }
+RunArray >> isSorted [
 	^values isSorted
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>isSortedBy: aBlock [
+{ #category : #testing }
+RunArray >> isSortedBy: aBlock [
 	^values isSortedBy: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>last [
+{ #category : #accessing }
+RunArray >> last [
 	^values at: values size
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>mapValues: mapBlock [
+{ #category : #private }
+RunArray >> mapValues: mapBlock [
 	"NOTE: only meaningful to an entire set of runs"
 
 	values := values collect: mapBlock
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>noneSatisfy: aBlock  [
+{ #category : #enumerating }
+RunArray >> noneSatisfy: aBlock [ 
 	"Only evaluate once per run"
 
 	^values noneSatisfy: aBlock
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>postCopy [
+{ #category : #copying }
+RunArray >> postCopy [
 	super postCopy.
 	runs := runs copy.
 	values := values copy
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>printOn: aStream [
+{ #category : #printing }
+RunArray >> printOn: aStream [
 	self printNameOn: aStream.
 	aStream
 		nextPutAll: ' runs: ';
@@ -704,11 +568,8 @@ RunArray>>printOn: aStream [
 		print: values
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>rangeOf: attr startingAt: startPos [
+{ #category : #adding }
+RunArray >> rangeOf: attr startingAt: startPos [
 	"Answer an interval that gives the range of attr at index position startPos. An empty interval with start value startPos is returned when the attribute attr is not present at position startPos. self size > 0 is assumed, it is the responsibility of the caller to test for emptiness of self.
 Note that an attribute may span several adjancent runs. "
 
@@ -737,11 +598,8 @@ Note that an attribute may span several adjancent runs. "
 					firstRelevantPosition to: lastRelevantPosition]]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>remove: anObject ifAbsent: exceptionBlock [
+{ #category : #removing }
+RunArray >> remove: anObject ifAbsent: exceptionBlock [
 	| index mustCoalesce run |
 	index := values indexOf: anObject ifAbsent: [^exceptionBlock value].
 	(run := runs at: index) > 1
@@ -758,20 +616,14 @@ RunArray>>remove: anObject ifAbsent: exceptionBlock [
 	^anObject
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>removeAll [
+{ #category : #removing }
+RunArray >> removeAll [
 	runs := Array new.
 	values := Array new
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>repeatLast: times ifEmpty: defaultBlock [
+{ #category : #adding }
+RunArray >> repeatLast: times ifEmpty: defaultBlock [
 	"add the last value back again, the given number of times. If we are empty, add (defaultBlock value)"
 	times = 0 ifTrue: [^self ].
 	lastIndex := nil. "flush access cache"
@@ -783,11 +635,8 @@ RunArray>>repeatLast: times ifEmpty: defaultBlock [
 			[runs at: runs size put: runs last+times] 
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>repeatLastIfEmpty: defaultBlock [
+{ #category : #adding }
+RunArray >> repeatLastIfEmpty: defaultBlock [
 	"add the last value back again. If we are empty, add (defaultBlock value)"
 	lastIndex := nil. "flush access cache"
 	(runs size=0)
@@ -798,21 +647,15 @@ RunArray>>repeatLastIfEmpty: defaultBlock [
 			[runs at: runs size put: runs last+1]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>replace: aBlock [
+{ #category : #enumerating }
+RunArray >> replace: aBlock [
 	"Beware, the block will be evaluated only once per group of values."
 	values := values replace: aBlock.
 	self coalesce
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>reverseDo: aBlock [
+{ #category : #enumerating }
+RunArray >> reverseDo: aBlock [
 	"This is refined for speed"
 	
 	| i |
@@ -827,48 +670,33 @@ RunArray>>reverseDo: aBlock [
 				whileTrue: [aBlock value: v]].
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>reversed [
+{ #category : #converting }
+RunArray >> reversed [
 	^self class runs: runs reversed values: values reversed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>runLengthAt: index  [
+{ #category : #accessing }
+RunArray >> runLengthAt: index [ 
 	"Answer the length remaining in run beginning at index."
 
 	self at: index 
 		setRunOffsetAndValue: [:run :offset :value | ^(runs at: run) - offset]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>runs [
+{ #category : #private }
+RunArray >> runs [
 
 	^runs
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>runsAndValuesDo: aBlock [
+{ #category : #enumerating }
+RunArray >> runsAndValuesDo: aBlock [
 	"Evaluate aBlock with run lengths and values from the receiver"
 	^runs with: values do: aBlock.
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>runsFrom: start to: stop do: aBlock [
+{ #category : #enumerating }
+RunArray >> runsFrom: start to: stop do: aBlock [
 	"Evaluate aBlock with all existing runs in the range from start to stop"
 	start > stop ifTrue:[^self].
 	self at: start setRunOffsetAndValue:[:firstRun :offset :firstValue|
@@ -884,11 +712,8 @@ RunArray>>runsFrom: start to: stop do: aBlock [
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>select: aBlock [
+{ #category : #enumerating }
+RunArray >> select: aBlock [
 	"Beware, the block will be evaluated only once per group of values."
 	| newRuns newValues |
 	newRuns := (Array new: runs size) writeStream.
@@ -901,32 +726,23 @@ RunArray>>select: aBlock [
 	^(self class runs: newRuns contents values: newValues contents) coalesce
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>setRuns: newRuns setValues: newValues [
+{ #category : #private }
+RunArray >> setRuns: newRuns setValues: newValues [
 	lastIndex := nil. "flush access cache"
 	runs := newRuns asArray.
 	values := newValues asArray.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>size [
+{ #category : #accessing }
+RunArray >> size [
 	| size |
 	size := 0.
 	1 to: runs size do: [:i | size := size + (runs at: i)].
 	^size
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>storeOn: aStream [
+{ #category : #printing }
+RunArray >> storeOn: aStream [
 
 	aStream nextPut: $(.
 	aStream nextPutAll: self class name.
@@ -937,21 +753,15 @@ RunArray>>storeOn: aStream [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>values [
+{ #category : #private }
+RunArray >> values [
 	"Answer the values in the receiver."
 
 	^values
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>withStartStopAndValueDo: aBlock [
+{ #category : #accessing }
+RunArray >> withStartStopAndValueDo: aBlock [
 	| start |
 	start := 1.
 	runs with: values do:
@@ -962,11 +772,8 @@ RunArray>>withStartStopAndValueDo: aBlock [
 		
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>writeOn: aStream [
+{ #category : #printing }
+RunArray >> writeOn: aStream [
 
 	aStream nextWordPut: runs size.
 	1 to: runs size do:
@@ -975,11 +782,8 @@ RunArray>>writeOn: aStream [
 		aStream nextWordPut: (values at: x)]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-RunArray>>writeScanOn: strm [
+{ #category : #printing }
+RunArray >> writeScanOn: strm [
 	"Write out the format used for text runs in source files. (14 50 312)f1,f1b,f1LInteger +;i"
 
 	strm nextPut: $(.

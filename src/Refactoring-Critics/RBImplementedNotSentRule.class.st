@@ -13,33 +13,23 @@ Class {
 	#instVars : [
 		'literals'
 	],
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:01'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBImplementedNotSentRule class>>checksMethod [
+{ #category : #testing }
+RBImplementedNotSentRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBImplementedNotSentRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBImplementedNotSentRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'ImplementedNotSentRule'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBImplementedNotSentRule>>addLiteral: aLiteral [
+{ #category : #private }
+RBImplementedNotSentRule >> addLiteral: aLiteral [
 
 	aLiteral isSymbol
 		ifTrue: [ literals add: aLiteral ]
@@ -49,11 +39,8 @@ RBImplementedNotSentRule>>addLiteral: aLiteral [
 					self addLiteral: each ] ] ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBImplementedNotSentRule>>basicCheck: aMethod [
+{ #category : #running }
+RBImplementedNotSentRule >> basicCheck: aMethod [
 	"Check if there are any senders. Furthermore methods with pragmas are likely to be sent through reflection, thus do not report those. Also test methods are sent through reflection, so ignore those as well."
 	(self literals includes: aMethod selector)
 		ifTrue: [ ^ false ].
@@ -64,29 +51,20 @@ RBImplementedNotSentRule>>basicCheck: aMethod [
 			
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBImplementedNotSentRule>>checkMethod: aMethod [
+{ #category : #running }
+RBImplementedNotSentRule >> checkMethod: aMethod [
 	"Check if there are any senders. Furthermore methods with pragmas are likely to be sent through reflection, thus do not report those. Also test methods are sent through reflection, so ignore those as well."
 	(self basicCheck: aMethod) ifTrue: [
 		result addMethod: aMethod ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBImplementedNotSentRule>>group [
+{ #category : #accessing }
+RBImplementedNotSentRule >> group [
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #cache,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBImplementedNotSentRule>>literals [
+{ #category : #cache }
+RBImplementedNotSentRule >> literals [
 	"return all 'message sends' in the systed and cache them"
 
 	literals ifNil: [
@@ -101,35 +79,23 @@ RBImplementedNotSentRule>>literals [
 	^ literals 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBImplementedNotSentRule>>name [
+{ #category : #accessing }
+RBImplementedNotSentRule >> name [
 	^ 'Methods implemented but not sent'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBImplementedNotSentRule>>rationale [
+{ #category : #accessing }
+RBImplementedNotSentRule >> rationale [
 	^ 'Check for methods that are never sent. If a method is not sent, it can be removed.'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBImplementedNotSentRule>>resetResult [
+{ #category : #running }
+RBImplementedNotSentRule >> resetResult [
 	super resetResult.
 	literals := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBImplementedNotSentRule>>severity [
+{ #category : #accessing }
+RBImplementedNotSentRule >> severity [
 	^ #information
 ]

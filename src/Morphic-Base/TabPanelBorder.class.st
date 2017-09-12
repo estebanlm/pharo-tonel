@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'tabSelector'
 	],
-	#category : #Morphic-Base-Borders,
-	#timestamp : 'gvc 9/23/2008 11:48'
+	#category : #Morphic-Base-Borders
 }
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TabPanelBorder>>frameRectangle: aRectangle on: aCanvas [
+{ #category : #drawing }
+TabPanelBorder >> frameRectangle: aRectangle on: aCanvas [
 	"Draw the border taking the currently selected tab into account.
 	Only works for top-positioned tabs for the moment."
 	
@@ -41,41 +37,29 @@ TabPanelBorder>>frameRectangle: aRectangle on: aCanvas [
 	aCanvas fillRectangle: r color: self color. "top 3"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TabPanelBorder>>selectedTab [
+{ #category : #accessing }
+TabPanelBorder >> selectedTab [
 	"Answer the currently selected tab."
 	
 	^(self tabSelector ifNil: [^nil]) selectedTab
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TabPanelBorder>>style [
+{ #category : #accessing }
+TabPanelBorder >> style [
 	"Answer #tabbed."
 	
 	^#tabbed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TabPanelBorder>>tabSelector [
+{ #category : #accessing }
+TabPanelBorder >> tabSelector [
 	"Answer the value of tabSelector"
 
 	^ tabSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TabPanelBorder>>tabSelector: anObject [
+{ #category : #accessing }
+TabPanelBorder >> tabSelector: anObject [
 	"Set the value of tabSelector"
 
 	tabSelector := anObject

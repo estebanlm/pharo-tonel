@@ -10,26 +10,19 @@ Class {
 	#instVars : [
 		'date'
 	],
-	#category : #NonInteractiveTranscript,
-	#timestamp : 'SvenVanCaekenberghe 5/12/2015 14:21'
+	#category : #NonInteractiveTranscript
 }
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-DailyNonInteractiveTranscript class>>defaultLogFileName [
+{ #category : #constants }
+DailyNonInteractiveTranscript class >> defaultLogFileName [
 	"The default file name that will be used to write to.
 	This needs to have a slot where the date will come."
 	
 	^ 'PharoTranscript-{1}.log'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-DailyNonInteractiveTranscript>>fileNameWithDate [
+{ #category : #accessing }
+DailyNonInteractiveTranscript >> fileNameWithDate [
 	| newName |
 	newName := self fileName format: { date yyyymmdd }.
 	self 
@@ -38,20 +31,14 @@ DailyNonInteractiveTranscript>>fileNameWithDate [
 	^ newName
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-DailyNonInteractiveTranscript>>initialize [
+{ #category : #initialize-release }
+DailyNonInteractiveTranscript >> initialize [
 	super initialize.
 	date := Date today
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-DailyNonInteractiveTranscript>>initializeStream [
+{ #category : #private }
+DailyNonInteractiveTranscript >> initializeStream [
 	"Open the file stream that I write to or connect to #stdout.
 	I use the proper line end convention.
 	I will append to regular files.
@@ -65,11 +52,8 @@ DailyNonInteractiveTranscript>>initializeStream [
 	^ stream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-DailyNonInteractiveTranscript>>stream  [
+{ #category : #accessing }
+DailyNonInteractiveTranscript >> stream [ 
 	"Overwritten to check if the date changed on each access"
 	
 	Date today > date

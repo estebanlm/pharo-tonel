@@ -11,26 +11,19 @@ Class {
 	#instVars : [
 		'nextChar'
 	],
-	#category : #CodeImport,
-	#timestamp : 'GuillermoPolito 6/12/2015 09:56'
+	#category : #CodeImport
 }
 
-{
-	#category : #decorated,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkReadStream>>basicNext [
+{ #category : #decorated }
+ChunkReadStream >> basicNext [
 
 	nextChar = self terminatorMark 
 		ifTrue: [ decoratedStream next ].
 	^ nextChar
 ]
 
-{
-	#category : #decorated,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkReadStream>>basicNextChunk [
+{ #category : #decorated }
+ChunkReadStream >> basicNextChunk [
 	"Answer the contents of the receiver, up to the next terminator character. Doubled terminators indicate an embedded terminator character."
 
 	| out ch |
@@ -47,11 +40,8 @@ ChunkReadStream>>basicNextChunk [
 	^ out contents
 ]
 
-{
-	#category : #decorated,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkReadStream>>decodeString: string andRuns: runsRaw [
+{ #category : #decorated }
+ChunkReadStream >> decodeString: string andRuns: runsRaw [
 	| strm runLength runValues newString index |
 	strm := ReadStream on: runsRaw from: 1 to: runsRaw size.
 	(strm peekFor: $()
@@ -75,40 +65,28 @@ ChunkReadStream>>decodeString: string andRuns: runsRaw [
 	^ newString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkReadStream>>isNextChunkMetaData [
+{ #category : #testing }
+ChunkReadStream >> isNextChunkMetaData [
 	| isMetaData |
 	isMetaData := decoratedStream peek = $!.
 	isMetaData ifTrue: [ decoratedStream next ].
 	^ isMetaData
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkReadStream>>isNextStyleChunk [
+{ #category : #testing }
+ChunkReadStream >> isNextStyleChunk [
 	"Style chunks are between $] and $["
 	^ decoratedStream peek == $]
 ]
 
-{
-	#category : #decorated,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkReadStream>>next [
+{ #category : #decorated }
+ChunkReadStream >> next [
 
     ^ self parseLangTagFor: self basicNextChunk
 ]
 
-{
-	#category : #decorated,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkReadStream>>parseLangTagFor: aString [
+{ #category : #decorated }
+ChunkReadStream >> parseLangTagFor: aString [
 
 	| string peek runsRaw foundTag |
 	string := aString.
@@ -126,47 +104,32 @@ ChunkReadStream>>parseLangTagFor: aString [
 	^ string
 ]
 
-{
-	#category : #decorated,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkReadStream>>position [
+{ #category : #decorated }
+ChunkReadStream >> position [
 	
 	^ decoratedStream position - (nextChar ifNil: [0] ifNotNil: [1])
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkReadStream>>readUpToEndOfStyleChunk [
+{ #category : #public }
+ChunkReadStream >> readUpToEndOfStyleChunk [
 	"Style chunks are between $] and $["
 	^decoratedStream upTo: $[
 ]
 
-{
-	#category : #decorated,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkReadStream>>reset [
+{ #category : #decorated }
+ChunkReadStream >> reset [
 	nextChar := nil.
 	decoratedStream reset.
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkReadStream>>skipSeparators [
+{ #category : #public }
+ChunkReadStream >> skipSeparators [
 
 	[self atEnd not and: [ self peek isSeparator ]]
 		whileTrue: [ decoratedStream next ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ChunkReadStream>>terminatorMark [
+{ #category : #public }
+ChunkReadStream >> terminatorMark [
 	^$!
 ]

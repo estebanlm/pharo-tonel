@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicRubricHighlightedTextRenderer,
 	#superclass : #GLMMorphicRubricTextRenderer,
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRubricHighlightedTextRenderer>>morph [
+{ #category : #rendering }
+GLMMorphicRubricHighlightedTextRenderer >> morph [
 	| morph |
 	
 	morph := super morph.

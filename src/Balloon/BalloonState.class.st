@@ -9,54 +9,35 @@ Class {
 		'colorTransform',
 		'aaLevel'
 	],
-	#category : #Balloon-Engine,
-	#timestamp : '<historical>'
+	#category : #Balloon-Engine
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonState>>aaLevel [
+{ #category : #accessing }
+BalloonState >> aaLevel [
 	^aaLevel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonState>>aaLevel: aNumber [
+{ #category : #accessing }
+BalloonState >> aaLevel: aNumber [
 	aaLevel := aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonState>>colorTransform [
+{ #category : #accessing }
+BalloonState >> colorTransform [
 	^colorTransform
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonState>>colorTransform: aColorTransform [
+{ #category : #accessing }
+BalloonState >> colorTransform: aColorTransform [
 	colorTransform := aColorTransform
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonState>>transform [
+{ #category : #accessing }
+BalloonState >> transform [
 	^transform
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonState>>transform: aMatrixTransform [
+{ #category : #accessing }
+BalloonState >> transform: aMatrixTransform [
 	transform := aMatrixTransform
 ]

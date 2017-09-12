@@ -7,15 +7,11 @@ Class {
 	#classInstVars : [
 		'lastRandomIndex'
 	],
-	#category : #SUnit-Core-Utilities,
-	#timestamp : 'mjr 8/20/2003 13:28'
+	#category : #SUnit-Core-Utilities
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-BadHasher class>>randomValue [
+{ #category : #accessing }
+BadHasher class >> randomValue [
 
 	"For every call return different value. Not really random but we do not want to create
 	dependency on random number generators."
@@ -33,11 +29,8 @@ BadHasher class>>randomValue [
 	^ randomNumbers at: lastRandomIndex.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-BadHasher>>hash [
+{ #category : #comparing }
+BadHasher >> hash [
 	"answer with a different hash some of the time"
 	self class randomValue
 ]

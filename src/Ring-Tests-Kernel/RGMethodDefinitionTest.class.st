@@ -4,15 +4,11 @@ SUnit tests for method definitions
 Class {
 	#name : #RGMethodDefinitionTest,
 	#superclass : #TestCase,
-	#category : #Ring-Tests-Kernel,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:09'
+	#category : #Ring-Tests-Kernel
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>runCase [
+{ #category : #running }
+RGMethodDefinitionTest >> runCase [
 
 	SystemAnnouncer uniqueInstance suspendAllWhile: [ 
 		Author useAuthor: self class name asString during: [ super runCase ]
@@ -20,20 +16,14 @@ RGMethodDefinitionTest>>runCase [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>tearDown [
+{ #category : #running }
+RGMethodDefinitionTest >> tearDown [
 	self class removeSelectorSilently: #foo.
 	self class removeProtocol: 'test'.
 ]
 
-{
-	#category : #'test - accessing source',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testASTExistingMethod [
+{ #category : #'test - accessing source' }
+RGMethodDefinitionTest >> testASTExistingMethod [
 	"accessing ring methods ast from active method"
 
 	| method |
@@ -42,11 +32,8 @@ RGMethodDefinitionTest>>testASTExistingMethod [
 	self assert: method ast equals: method compiledMethod ast.
 ]
 
-{
-	#category : #'test - accessing source',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testASTNonExistingMethodWithNoSource [
+{ #category : #'test - accessing source' }
+RGMethodDefinitionTest >> testASTNonExistingMethodWithNoSource [
 	"accessing ring methods ast for passive ring definition with no source"
 
 	| newMethod newClass |
@@ -56,11 +43,8 @@ RGMethodDefinitionTest>>testASTNonExistingMethodWithNoSource [
 	self assert: newMethod ast isNil.
 ]
 
-{
-	#category : #'test - accessing source',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testASTNonExistingMethodWithSource [
+{ #category : #'test - accessing source' }
+RGMethodDefinitionTest >> testASTNonExistingMethodWithSource [
 	"accessing ring methods ast for passive ring definition created with source"
 
 	| newMethod newClass source |
@@ -74,11 +58,8 @@ RGMethodDefinitionTest>>testASTNonExistingMethodWithSource [
 
 ]
 
-{
-	#category : #'test - accessing source',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testArgumentNamesExistingMethod [
+{ #category : #'test - accessing source' }
+RGMethodDefinitionTest >> testArgumentNamesExistingMethod [
 	"accessing ring methods arguments from active method"
 
 	| method |
@@ -87,11 +68,8 @@ RGMethodDefinitionTest>>testArgumentNamesExistingMethod [
 	self assertCollection: method argumentNames  hasSameElements: #(#aRGBehaviorDefinition #aString) 
 ]
 
-{
-	#category : #'test - accessing source',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testArgumentNamesNonExistingMethodWithNoSource [
+{ #category : #'test - accessing source' }
+RGMethodDefinitionTest >> testArgumentNamesNonExistingMethodWithNoSource [
 	"accessing ring methods arguments for passive ring definition created with source"
 
 	| newMethod newClass |
@@ -102,11 +80,8 @@ RGMethodDefinitionTest>>testArgumentNamesNonExistingMethodWithNoSource [
 
 ]
 
-{
-	#category : #'test - accessing source',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testArgumentNamesNonExistingMethodWithSource [
+{ #category : #'test - accessing source' }
+RGMethodDefinitionTest >> testArgumentNamesNonExistingMethodWithSource [
 	"accessing ring methods arguments for passive ring definition created with source"
 
 	| newMethod newClass source |
@@ -120,11 +95,8 @@ RGMethodDefinitionTest>>testArgumentNamesNonExistingMethodWithSource [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testAsActive [
+{ #category : #testing }
+RGMethodDefinitionTest >> testAsActive [
 	| newMethod |
 
 	RGMethodDefinitionTest compileSilently: 'foo	^ ''first version''' classified: 'test'.
@@ -149,11 +121,8 @@ RGMethodDefinitionTest>>testAsActive [
 	self assert: newMethod sourcePointer notNil.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testAsHistorical [
+{ #category : #testing }
+RGMethodDefinitionTest >> testAsHistorical [
 	| firstVersion secondVersion |
 
 	RGMethodDefinitionTest compileSilently: 'foo	^ ''first version''' classified: 'test'.
@@ -172,11 +141,8 @@ RGMethodDefinitionTest>>testAsHistorical [
 	self deny: firstVersion sourceCode = secondVersion sourceCode.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testAsMethodDefinition [
+{ #category : #testing }
+RGMethodDefinitionTest >> testAsMethodDefinition [
 	| newMethod |
 
 	newMethod:= (OrderedCollection >> #size) asRingDefinition.
@@ -189,11 +155,8 @@ RGMethodDefinitionTest>>testAsMethodDefinition [
 	self assert: (newMethod stamp notNil).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testAsMethodDefinition2 [
+{ #category : #testing }
+RGMethodDefinitionTest >> testAsMethodDefinition2 [
 	"self debug: #testAsMethodDefinition2"
 	
 	| newMethod |
@@ -209,11 +172,8 @@ RGMethodDefinitionTest>>testAsMethodDefinition2 [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testAsPassive [
+{ #category : #testing }
+RGMethodDefinitionTest >> testAsPassive [
 	| newMethod |
 
 	RGMethodDefinitionTest compileSilently: 'foo	^ ''first version''' classified: 'test'.
@@ -226,11 +186,8 @@ RGMethodDefinitionTest>>testAsPassive [
 	self assert: newMethod compiledMethod sourceCode = 'foo	^ ''second version'''.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testClassNameSelectorIsMetaSide [
+{ #category : #testing }
+RGMethodDefinitionTest >> testClassNameSelectorIsMetaSide [
 	"self debug: #testClassNameSelectorIsMetaSide"
 	
 	| rg |
@@ -241,11 +198,8 @@ RGMethodDefinitionTest>>testClassNameSelectorIsMetaSide [
 	self assert: (rg isMetaSide not).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testCreatingMethodsWithoutFactory [
+{ #category : #testing }
+RGMethodDefinitionTest >> testCreatingMethodsWithoutFactory [
 	| newMethod newClass |
 
 	newMethod := RGMethodDefinition realClass: OrderedCollection selector: 'size'.
@@ -271,11 +225,8 @@ RGMethodDefinitionTest>>testCreatingMethodsWithoutFactory [
 	self assert: (newMethod stamp notNil).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testDifferentObjectButSameMethodInSet [
+{ #category : #testing }
+RGMethodDefinitionTest >> testDifferentObjectButSameMethodInSet [
 	"self debug: #testDifferentObjectButSameMethodInSet"
 
 	| s rgmethod rgmethod2 |
@@ -292,11 +243,8 @@ RGMethodDefinitionTest>>testDifferentObjectButSameMethodInSet [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testExistingMethodWithClass [
+{ #category : #testing }
+RGMethodDefinitionTest >> testExistingMethodWithClass [
 	| newMethod newClass |
 	
 	newClass:=RGClassDefinition named: #OrderedCollection.
@@ -318,11 +266,8 @@ RGMethodDefinitionTest>>testExistingMethodWithClass [
 	self assert: (newMethod compiledMethod = (OrderedCollection compiledMethodAt: #add:)).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testExistingMethodWithPointer [
+{ #category : #testing }
+RGMethodDefinitionTest >> testExistingMethodWithPointer [
 	| newMethod |
 	
 	newMethod:= (OrderedCollection>>#size) asActiveRingDefinition.
@@ -336,11 +281,8 @@ RGMethodDefinitionTest>>testExistingMethodWithPointer [
 	self assert: (newMethod isExtension not)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testExistingMethodWithoutClass [
+{ #category : #testing }
+RGMethodDefinitionTest >> testExistingMethodWithoutClass [
 	"its parent class is not assigned only its name"
 	| newMethod |
 	
@@ -368,11 +310,8 @@ RGMethodDefinitionTest>>testExistingMethodWithoutClass [
 	self assert: (newMethod compiledMethod = (OrderedCollection compiledMethodAt: #add:))
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testExtensionMethod [
+{ #category : #testing }
+RGMethodDefinitionTest >> testExtensionMethod [
 	| newMethod newClass newPackage newPackageExt |
 
 	newMethod:= (RGMethodDefinition named: #+)
@@ -394,11 +333,8 @@ RGMethodDefinitionTest>>testExtensionMethod [
 	self assert: (newMethod isExtension).
 ]
 
-{
-	#category : #'test - accessing source',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testIsAbstractExistingMethod [
+{ #category : #'test - accessing source' }
+RGMethodDefinitionTest >> testIsAbstractExistingMethod [
 	"testing existing ring method isAbstract"
 
 	| method |
@@ -407,11 +343,8 @@ RGMethodDefinitionTest>>testIsAbstractExistingMethod [
 	self deny: method isAbstract.
 ]
 
-{
-	#category : #'test - accessing source',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testIsAbstractNonExistingMethod [
+{ #category : #'test - accessing source' }
+RGMethodDefinitionTest >> testIsAbstractNonExistingMethod [
 	"testing non existing ring method isAbstract"
 
 	| newMethod newClass |
@@ -422,11 +355,8 @@ RGMethodDefinitionTest>>testIsAbstractNonExistingMethod [
 
 ]
 
-{
-	#category : #'test - accessing source',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testMessagesExistingMethod [
+{ #category : #'test - accessing source' }
+RGMethodDefinitionTest >> testMessagesExistingMethod [
 	"accessing ring sent messages for active method"
 
 	| method |
@@ -435,11 +365,8 @@ RGMethodDefinitionTest>>testMessagesExistingMethod [
 	self assert: method messages equals: method compiledMethod messages.
 ]
 
-{
-	#category : #'test - accessing source',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testMessagesNonExistingMethodWithNoSource [
+{ #category : #'test - accessing source' }
+RGMethodDefinitionTest >> testMessagesNonExistingMethodWithNoSource [
 	"accessing ring sent messages for passive method with no source"
 
 	| newMethod newClass |
@@ -450,11 +377,8 @@ RGMethodDefinitionTest>>testMessagesNonExistingMethodWithNoSource [
 
 ]
 
-{
-	#category : #'test - accessing source',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testMessagesNonExistingMethodWithSource [
+{ #category : #'test - accessing source' }
+RGMethodDefinitionTest >> testMessagesNonExistingMethodWithSource [
 	"accessing ring sent messages for passive method created with source"
 
 	| newMethod newClass source |
@@ -468,11 +392,8 @@ RGMethodDefinitionTest>>testMessagesNonExistingMethodWithSource [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testMethodEquality [
+{ #category : #testing }
+RGMethodDefinitionTest >> testMethodEquality [
 
 	| newMethod newClass |
 	self assert: (OrderedCollection>>#size) asRingDefinition = (OrderedCollection>>#size) asRingDefinition.
@@ -490,11 +411,8 @@ RGMethodDefinitionTest>>testMethodEquality [
 	self deny: ((OrderedCollection>>#size) asRingDefinition = newMethod).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testNonExistingMethodWithClass [
+{ #category : #testing }
+RGMethodDefinitionTest >> testNonExistingMethodWithClass [
 	"method does not exist in OrderedCollection"
 	| newMethod newClass |
 	
@@ -518,11 +436,8 @@ RGMethodDefinitionTest>>testNonExistingMethodWithClass [
 	self assert: (newMethod compiledMethod isNil).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testSameMethodInSet [
+{ #category : #testing }
+RGMethodDefinitionTest >> testSameMethodInSet [
 	"self debug: #testSameMethodInSet"
 
 	| s rgmethod |
@@ -538,11 +453,8 @@ RGMethodDefinitionTest>>testSameMethodInSet [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGMethodDefinitionTest>>testSorting [
+{ #category : #testing }
+RGMethodDefinitionTest >> testSorting [
 
 	| rgMethod1 rgMethod2 |
 	rgMethod1 := RGMethodDefinition realClass: RGInstanceVariableDefinition selector: #isInstanceVariable.

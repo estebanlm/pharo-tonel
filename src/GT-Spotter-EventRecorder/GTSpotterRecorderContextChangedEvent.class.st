@@ -16,55 +16,36 @@ Class {
 		'currentTextInfo',
 		'previousTextInfo'
 	],
-	#category : #GT-Spotter-EventRecorder-Events,
-	#timestamp : 'AndreiChis 3/2/2015 15:29'
+	#category : #GT-Spotter-EventRecorder-Events
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderContextChangedEvent>>accept: aVisitor [
+{ #category : #visitor }
+GTSpotterRecorderContextChangedEvent >> accept: aVisitor [
 	^ aVisitor visitContextChangedEvent: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderContextChangedEvent>>currentTextHashes [
+{ #category : #accessing }
+GTSpotterRecorderContextChangedEvent >> currentTextHashes [
 	^ self stringHashesFor: self currentTextInfo
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderContextChangedEvent>>currentTextInfo [
+{ #category : #accessing }
+GTSpotterRecorderContextChangedEvent >> currentTextInfo [
 	^ currentTextInfo
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderContextChangedEvent>>currentTextSizes [
+{ #category : #accessing }
+GTSpotterRecorderContextChangedEvent >> currentTextSizes [
 	^ self stringSizesFor: self currentTextInfo
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderContextChangedEvent>>currentTextSpecials [
+{ #category : #accessing }
+GTSpotterRecorderContextChangedEvent >> currentTextSpecials [
 	^ self stringSpecialsFor: self currentTextInfo
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderContextChangedEvent>>fromAnnouncement: anAnnouncement [
+{ #category : #initialization }
+GTSpotterRecorderContextChangedEvent >> fromAnnouncement: anAnnouncement [
 
 	currentTextInfo := self textInfoFrom: anAnnouncement currentText.
 	anAnnouncement previousText size == 0 ifTrue: [ ^ self ].
@@ -74,11 +55,8 @@ GTSpotterRecorderContextChangedEvent>>fromAnnouncement: anAnnouncement [
 		ifFalse: [ anAnnouncement previousText beginsWith: anAnnouncement currentText ]).
 ]
 
-{
-	#category : #gt-inspector-extension,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderContextChangedEvent>>gtInspectorItems [
+{ #category : #gt-inspector-extension }
+GTSpotterRecorderContextChangedEvent >> gtInspectorItems [
 	^ OrderedCollection new
 			add: (#isRefinement -> self isRefinement);
 			add: (#currentTextInfo -> self currentTextInfo);
@@ -87,43 +65,28 @@ GTSpotterRecorderContextChangedEvent>>gtInspectorItems [
 			yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderContextChangedEvent>>hasCurrentTextSpecials [
+{ #category : #testing }
+GTSpotterRecorderContextChangedEvent >> hasCurrentTextSpecials [
 	^ self currentTextSpecials includes: true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderContextChangedEvent>>initialize [
+{ #category : #initialization }
+GTSpotterRecorderContextChangedEvent >> initialize [
 	super initialize.
 	isRefinement := false.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderContextChangedEvent>>isContextChanged [
+{ #category : #testing }
+GTSpotterRecorderContextChangedEvent >> isContextChanged [
 	^ self currentTextInfo notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderContextChangedEvent>>isRefinement [
+{ #category : #accessing }
+GTSpotterRecorderContextChangedEvent >> isRefinement [
 	^ isRefinement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderContextChangedEvent>>previousTextInfo [
+{ #category : #accessing }
+GTSpotterRecorderContextChangedEvent >> previousTextInfo [
 	^ previousTextInfo
 ]

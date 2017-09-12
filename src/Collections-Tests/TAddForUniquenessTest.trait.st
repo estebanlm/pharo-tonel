@@ -3,43 +3,28 @@ A trait for test purposes
 "
 Trait {
 	#name : #TAddForUniquenessTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:32'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddForUniquenessTest>>collectionWithElement [
+{ #category : #requirements }
+TAddForUniquenessTest >> collectionWithElement [
 " return a collection already including 'element'    "
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddForUniquenessTest>>collectionWithoutElement [
+{ #category : #requirements }
+TAddForUniquenessTest >> collectionWithoutElement [
 	" return a collection that does not include 'element' "
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddForUniquenessTest>>element [
+{ #category : #requirements }
+TAddForUniquenessTest >> element [
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddForUniquenessTest>>test0FixtureAddForUniquenessTest [
+{ #category : #'tests - fixture' }
+TAddForUniquenessTest >> test0FixtureAddForUniquenessTest [
 	self element.
 	self collectionWithElement.
 	self assert: (self collectionWithElement includes: self element).
@@ -47,11 +32,8 @@ TAddForUniquenessTest>>test0FixtureAddForUniquenessTest [
 	self deny: (self collectionWithoutElement includes: self element)
 ]
 
-{
-	#category : #'tests - adding uniquely',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddForUniquenessTest>>testAddAlreadyThereDoesNotCount [
+{ #category : #'tests - adding uniquely' }
+TAddForUniquenessTest >> testAddAlreadyThereDoesNotCount [
 
 	| added oldSize |
 	oldSize := self collectionWithElement size.
@@ -64,11 +46,8 @@ TAddForUniquenessTest>>testAddAlreadyThereDoesNotCount [
 	self assert: self collectionWithElement size = oldSize.
 ]
 
-{
-	#category : #'tests - adding uniquely',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddForUniquenessTest>>testAddNewElementIncrementsSize [
+{ #category : #'tests - adding uniquely' }
+TAddForUniquenessTest >> testAddNewElementIncrementsSize [
 	| added oldSize |
 	oldSize := self collectionWithoutElement size.
 	self deny: (self collectionWithoutElement includes: self element).
@@ -78,11 +57,8 @@ TAddForUniquenessTest>>testAddNewElementIncrementsSize [
 	self assert: self collectionWithoutElement size = (oldSize + 1)
 ]
 
-{
-	#category : #'tests - adding uniquely',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddForUniquenessTest>>testTAddIfNotPresentWithElementAlreadyIn [
+{ #category : #'tests - adding uniquely' }
+TAddForUniquenessTest >> testTAddIfNotPresentWithElementAlreadyIn [
 
 	| added oldSize |
 	oldSize := self collectionWithElement size.
@@ -95,11 +71,8 @@ TAddForUniquenessTest>>testTAddIfNotPresentWithElementAlreadyIn [
 	self assert: self collectionWithElement size = oldSize.
 ]
 
-{
-	#category : #'tests - adding uniquely',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddForUniquenessTest>>testTAddIfNotPresentWithNewElement [
+{ #category : #'tests - adding uniquely' }
+TAddForUniquenessTest >> testTAddIfNotPresentWithNewElement [
 	| added oldSize |
 	oldSize := self collectionWithoutElement size.
 	self deny: (self collectionWithoutElement includes: self element).

@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #MetacelloExplicitLoadDirective,
 	#superclass : #MetacelloVersionLoadDirective,
-	#category : #Metacello-MC-Directives,
-	#timestamp : ''
+	#category : #Metacello-MC-Directives
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloExplicitLoadDirective>>explicitLoadUsing: aLoaderDirective gofer: aGofer [
+{ #category : #actions }
+MetacelloExplicitLoadDirective >> explicitLoadUsing: aLoaderDirective gofer: aGofer [
 
 	aLoaderDirective loadLinearLoadDirective: self gofer: aGofer.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloExplicitLoadDirective>>explicitLoadWithPolicy: aLoadPolicy [
+{ #category : #actions }
+MetacelloExplicitLoadDirective >> explicitLoadWithPolicy: aLoadPolicy [
 
 	| gofer |
 	gofer := MetacelloGofer new.
@@ -30,29 +20,20 @@ MetacelloExplicitLoadDirective>>explicitLoadWithPolicy: aLoadPolicy [
 	self explicitLoadUsing: self gofer: gofer
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloExplicitLoadDirective>>isExplicit [
+{ #category : #testing }
+MetacelloExplicitLoadDirective >> isExplicit [
 
 	^true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloExplicitLoadDirective>>loadUsing: aLoaderDirective gofer: aGofer [
+{ #category : #actions }
+MetacelloExplicitLoadDirective >> loadUsing: aLoaderDirective gofer: aGofer [
 
 	aLoaderDirective loadExplicitLoadDirective: self gofer: aGofer.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloExplicitLoadDirective>>title [
+{ #category : #accessing }
+MetacelloExplicitLoadDirective >> title [
 
 	^'explicit load'
 ]

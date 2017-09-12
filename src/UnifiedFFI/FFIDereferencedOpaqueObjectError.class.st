@@ -12,6 +12,5 @@ self ffiCall: #( void function(FFIOpaqueObject  var)  ""WRONG""
 Class {
 	#name : #FFIDereferencedOpaqueObjectError,
 	#superclass : #Error,
-	#category : #UnifiedFFI-Types,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Types
 }

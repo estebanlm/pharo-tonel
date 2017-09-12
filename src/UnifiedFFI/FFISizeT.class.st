@@ -7,64 +7,42 @@ WARNING: I'm just implemented 32bits!
 Class {
 	#name : #FFISizeT,
 	#superclass : #FFIIntegerType,
-	#category : #UnifiedFFI-Types,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Types
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFISizeT class>>asExternalTypeOn: generator [
+{ #category : #converting }
+FFISizeT class >> asExternalTypeOn: generator [
 	"We resolve size_t to a uint/ulong which may be not the case always"
 	^ generator resolveType: #ulong
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFISizeT class>>externalType  [
+{ #category : #accessing }
+FFISizeT class >> externalType [ 
 	^ ExternalType long
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFISizeT class>>externalTypeAlignment [
+{ #category : #accessing }
+FFISizeT class >> externalTypeAlignment [
 	^ Smalltalk wordSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFISizeT class>>externalTypeSize [
+{ #category : #accessing }
+FFISizeT class >> externalTypeSize [
 	^ Smalltalk wordSize
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFISizeT>>basicHandle: aHandle at: index [
+{ #category : #private }
+FFISizeT >> basicHandle: aHandle at: index [
 	^ aHandle platformUnsignedLongAt: index
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFISizeT>>basicHandle: aHandle at: index put: value [
+{ #category : #private }
+FFISizeT >> basicHandle: aHandle at: index put: value [
 	^ aHandle platformUnsignedLongAt: index put: value
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFISizeT>>readFieldAt: byteOffset [
+{ #category : #'emitting code' }
+FFISizeT >> readFieldAt: byteOffset [
 	self isPointer ifTrue: [ 
 		^ self pointerReadFieldAt: byteOffset ].
 
@@ -73,11 +51,8 @@ FFISizeT>>readFieldAt: byteOffset [
 
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFISizeT>>writeFieldAt: byteOffset with: valueName [
+{ #category : #'emitting code' }
+FFISizeT >> writeFieldAt: byteOffset with: valueName [
 	self isPointer ifTrue: [ 
 		^ self externalTypeWithArity 
 			writeFieldAt: byteOffset

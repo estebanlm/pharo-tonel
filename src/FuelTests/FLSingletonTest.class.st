@@ -4,24 +4,17 @@ SUnit tests for fuel serialization of singletons
 Class {
 	#name : #FLSingletonTest,
 	#superclass : #FLSerializationTest,
-	#category : #FuelTests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:31'
+	#category : #FuelTests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSingletonTest>>setUp [
+{ #category : #running }
+FLSingletonTest >> setUp [
 	super setUp.
 	FLSingletonMock reset
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSingletonTest>>testSingletonMaterialization [
+{ #category : #tests }
+FLSingletonTest >> testSingletonMaterialization [
 	| singleton materialized |
 	singleton := FLSingletonMock instance.
 	singleton reference: 'a reference'.
@@ -35,11 +28,8 @@ FLSingletonTest>>testSingletonMaterialization [
 	FLSingletonMock reset "cannot do this in tearDown because that's used by some helper methods"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSingletonTest>>testSingletonMaterializationEnforced [
+{ #category : #tests }
+FLSingletonTest >> testSingletonMaterializationEnforced [
 	| singleton materialized |
 	singleton := FLSingletonMockEnforced instance.
 	singleton reference: 'a reference'.
@@ -53,11 +43,8 @@ FLSingletonTest>>testSingletonMaterializationEnforced [
 	FLSingletonMock reset "cannot do this in tearDown because that's used by some helper methods"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSingletonTest>>testSingletonMaterializationEnforcedNoInstance [
+{ #category : #tests }
+FLSingletonTest >> testSingletonMaterializationEnforcedNoInstance [
 	| singleton materialized |
 	singleton := FLSingletonMockEnforced instance.
 	singleton reference: 'a reference'.

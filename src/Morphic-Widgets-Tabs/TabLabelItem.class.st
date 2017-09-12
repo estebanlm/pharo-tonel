@@ -10,44 +10,31 @@ Class {
 		'tab',
 		'storedIcon'
 	],
-	#category : #Morphic-Widgets-Tabs-Support,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Tabs-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelItem class>>tab: tab [
+{ #category : #'instance creation' }
+TabLabelItem class >> tab: tab [
 
 	^ self new
 		tab: tab;
 		yourself
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelItem>>clipSubmorphs  [
+{ #category : #drawing }
+TabLabelItem >> clipSubmorphs [ 
 
 	^ true
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelItem>>clippingBounds [
+{ #category : #drawing }
+TabLabelItem >> clippingBounds [
 	"Return the bounds to which any submorphs should be clipped if the property is set"
 	^ tab modifyClippingBounds: super clippingBounds
 ]
 
-{
-	#category : #drawing-private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelItem>>computeSubmorphsToDraw [
+{ #category : #drawing-private }
+TabLabelItem >> computeSubmorphsToDraw [
 
 	owner width < tab showIconTreshold 
 		ifTrue: [ 
@@ -64,11 +51,8 @@ TabLabelItem>>computeSubmorphsToDraw [
 	^ self submorphs
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelItem>>drawSubmorphsOn: aCanvas [
+{ #category : #drawing }
+TabLabelItem >> drawSubmorphsOn: aCanvas [
 	"Display submorphs back to front"
 
 	| drawBlock submorphsToDraw |
@@ -84,11 +68,8 @@ TabLabelItem>>drawSubmorphsOn: aCanvas [
 		ifFalse: [ drawBlock value: aCanvas ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelItem>>icon: anObject [
+{ #category : #accessing }
+TabLabelItem >> icon: anObject [
 
 	icon ifNotNil: [ self removeMorph: icon ].
 	
@@ -96,20 +77,14 @@ TabLabelItem>>icon: anObject [
 	icon ifNotNil: [ 	self addMorphFront: icon ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelItem>>tab: anObject [
+{ #category : #accessing }
+TabLabelItem >> tab: anObject [
 	
 	tab := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelItem>>themeChanged [
+{ #category : #accessing }
+TabLabelItem >> themeChanged [
 	super themeChanged.
 	morph color: morph defaultColor.
 	morph changed

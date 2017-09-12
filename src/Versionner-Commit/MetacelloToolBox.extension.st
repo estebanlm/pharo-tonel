@@ -1,12 +1,7 @@
-Extension {
-	#name : #MetacelloToolBox
-}
+Extension { #name : #MetacelloToolBox }
 
-{
-	#category : #'*Versionner-Commit',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MetacelloToolBox class>>createFixedDevelopment: developmentVersionString for: configurationBasename importFromBaseline: baselineVersionString description: aString [
+{ #category : #'*Versionner-Commit' }
+MetacelloToolBox class >> createFixedDevelopment: developmentVersionString for: configurationBasename importFromBaseline: baselineVersionString description: aString [
 	"Create a new development version based on the specifications in an existing baseline version. Modify the #development symbolic version to reference the new version."
 
 	<apiDocumentation>
@@ -36,11 +31,8 @@ MetacelloToolBox class>>createFixedDevelopment: developmentVersionString for: co
 	^ toolbox
 ]
 
-{
-	#category : #'*Versionner-Commit',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MetacelloToolBox class>>createFixedVersion: targetVersionString for: configurationBasename from: sourceVersionString description: aString [
+{ #category : #'*Versionner-Commit' }
+MetacelloToolBox class >> createFixedVersion: targetVersionString for: configurationBasename from: sourceVersionString description: aString [
 	"Create a new version based on the development version.
 	 I'm assuming Versionner style: development versions are baselines"
 	<apiDocumentation>
@@ -59,11 +51,8 @@ MetacelloToolBox class>>createFixedVersion: targetVersionString for: configurati
 
 ]
 
-{
-	#category : #'*Versionner-Commit',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MetacelloToolBox>>fixedEditVersionSpecsForImport: constructor projectAttributes: projectAttributes active: activeSection fullVersionSpec: fullVersionSpec updateProjects: updateProjects updatePackages: updatePackages visited: visitedSpecs updated: updatedSpecs [
+{ #category : #'*Versionner-Commit' }
+MetacelloToolBox >> fixedEditVersionSpecsForImport: constructor projectAttributes: projectAttributes active: activeSection fullVersionSpec: fullVersionSpec updateProjects: updateProjects updatePackages: updatePackages visited: visitedSpecs updated: updatedSpecs [
     | fileSpecified encounteredPackageSpecs |
     fileSpecified := Bag new.
     encounteredPackageSpecs := Bag new.
@@ -127,11 +116,8 @@ MetacelloToolBox>>fixedEditVersionSpecsForImport: constructor projectAttributes:
                         updatePackages: updatePackages ] ]
 ]
 
-{
-	#category : #'*Versionner-Commit',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MetacelloToolBox>>fixedImportFrom: inputVersionStringOrSymbol projectAttributes: projectAttributes inactiveAttributes: inactiveAttributesList updateProjects: updateProjects updatePackages: updatePackages versionSpecsDo: aBlock [
+{ #category : #'*Versionner-Commit' }
+MetacelloToolBox >> fixedImportFrom: inputVersionStringOrSymbol projectAttributes: projectAttributes inactiveAttributes: inactiveAttributesList updateProjects: updateProjects updatePackages: updatePackages versionSpecsDo: aBlock [
     | constructor updatedSpecs fullVersionSpec version visitedSpecs fromVersionString attributeSet |
     constructor := self constructor.
     updatedSpecs := Set new.
@@ -185,11 +171,8 @@ MetacelloToolBox>>fixedImportFrom: inputVersionStringOrSymbol projectAttributes:
                 ifTrue: [ self methodSpec addMethodSection: attributePath versionSpec: versionSpec ] ]
 ]
 
-{
-	#category : #'*Versionner-Commit',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MetacelloToolBox>>fixedImportFrom: inputVersionStringOrSymbol updateProjects: updateProjects updatePackages: updatePackages versionSpecsDo: aBlock [
+{ #category : #'*Versionner-Commit' }
+MetacelloToolBox >> fixedImportFrom: inputVersionStringOrSymbol updateProjects: updateProjects updatePackages: updatePackages versionSpecsDo: aBlock [
     ^ self
         fixedImportFrom: inputVersionStringOrSymbol
         projectAttributes: project attributes

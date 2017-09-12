@@ -11,24 +11,17 @@ Class {
 		'remoteStringMap',
 		'sourceStreams'
 	],
-	#category : #System-Sources,
-	#timestamp : 'CamilloBruni 2/21/2014 22:29'
+	#category : #System-Sources
 }
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser class>>condense [
+{ #category : #helper }
+PharoChangesCondenser class >> condense [
 	^ self new
 		condense
 ]
 
-{
-	#category : #'private - 3 installing',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>backupOldChanges [
+{ #category : #'private - 3 installing' }
+PharoChangesCondenser >> backupOldChanges [
 	| changesFile |
 	
 	changesFile := self originalFile.
@@ -36,11 +29,8 @@ PharoChangesCondenser>>backupOldChanges [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>basicCondense [
+{ #category : #private }
+PharoChangesCondenser >> basicCondense [
 	self
 		condenseClassesAndTraits;
 		swapSourcePointers;
@@ -48,11 +38,8 @@ PharoChangesCondenser>>basicCondense [
 		reset
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>condense [
+{ #category : #public }
+PharoChangesCondenser >> condense [
 	job := [ 
 		newChangesFile writeStreamDo: [ :aStream |
 			stream := aStream.
@@ -64,11 +51,8 @@ PharoChangesCondenser>>condense [
 		run.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>condenseClassOrTrait: classOrTrait [
+{ #category : #private }
+PharoChangesCondenser >> condenseClassOrTrait: classOrTrait [
 	self writeClassComment: classOrTrait.
 	
 	classOrTrait theNonMetaClass methodsDo: [ :method |
@@ -80,40 +64,28 @@ PharoChangesCondenser>>condenseClassOrTrait: classOrTrait [
 			ifTrue: [ self writeMethodSource: method ]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>condenseClassesAndTraits  [
+{ #category : #private }
+PharoChangesCondenser >> condenseClassesAndTraits [ 
 	Smalltalk allClassesAndTraitsDo: [ :classOrTrait | 
 		self condenseClassOrTrait: classOrTrait	]
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>fileIndex [
+{ #category : #accessing }
+PharoChangesCondenser >> fileIndex [
 	"Return the index into the SourceFiles:
 	1: the .sources file
 	2. the .changes file"
 	^ 2
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>initialize [
+{ #category : #initialization }
+PharoChangesCondenser >> initialize [
 	self reset.
 ]
 
-{
-	#category : #'private - 3 installing',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>installNewChangesFile [
+{ #category : #'private - 3 installing' }
+PharoChangesCondenser >> installNewChangesFile [
 	
 	SourceFiles changesFileStream close.
 	self updateQuitPosition.
@@ -127,37 +99,25 @@ PharoChangesCondenser>>installNewChangesFile [
 	Smalltalk openSourceFiles.
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>nextChunkDo: aBlock [
+{ #category : #helper }
+PharoChangesCondenser >> nextChunkDo: aBlock [
 	stream nextChunkPut: (String streamContents: aBlock)
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>nextCommentChunkDo: aBlock [
+{ #category : #helper }
+PharoChangesCondenser >> nextCommentChunkDo: aBlock [
 	stream cr; nextPut: $!.
 	self nextChunkDo: aBlock.
 	stream cr
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>originalFile [
+{ #category : #accessing }
+PharoChangesCondenser >> originalFile [
 	^ Smalltalk changesFile asFileReference
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>reset [
+{ #category : #initialization }
+PharoChangesCondenser >> reset [
 	remoteStringMap := IdentityDictionary new.
 	newChangesFile := self temporaryFile.
 	
@@ -167,32 +127,23 @@ PharoChangesCondenser>>reset [
 			with: PharoFilesOpener default changesFileOrNil
 ]
 
-{
-	#category : #'private - testing',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>shouldCondenseMethod: aMethod [
+{ #category : #'private - testing' }
+PharoChangesCondenser >> shouldCondenseMethod: aMethod [
 	"Only write methods with changes in the current file (not .sources)"
 
 	^ (SourceFiles fileIndexFromSourcePointer: aMethod sourcePointer) == 2
 ]
 
-{
-	#category : #'private - 2 swapping',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>swapClassComment: classOrTrait [
+{ #category : #'private - 2 swapping' }
+PharoChangesCondenser >> swapClassComment: classOrTrait [
 	remoteStringMap 
 		at: classOrTrait
 		ifPresent: [ :remoteString | 
 			classOrTrait organization comment: remoteString ]
 ]
 
-{
-	#category : #'private - 2 swapping',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>swapSourcePointerOfClassOrTrait: classOrTrait [
+{ #category : #'private - 2 swapping' }
+PharoChangesCondenser >> swapSourcePointerOfClassOrTrait: classOrTrait [
 
 	self swapClassComment: classOrTrait.
 	
@@ -203,21 +154,15 @@ PharoChangesCondenser>>swapSourcePointerOfClassOrTrait: classOrTrait [
 		self swapSourcePointerOfMethod: method ]
 ]
 
-{
-	#category : #'private - 2 swapping',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>swapSourcePointerOfMethod: method [
+{ #category : #'private - 2 swapping' }
+PharoChangesCondenser >> swapSourcePointerOfMethod: method [
 
 	remoteStringMap at: method ifPresent: [ :remoteString |
 		method setSourcePointer: remoteString sourcePointer ]
 ]
 
-{
-	#category : #'private - 2 swapping',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>swapSourcePointers [
+{ #category : #'private - 2 swapping' }
+PharoChangesCondenser >> swapSourcePointers [
 	job 
 		title: 'Swapping source pointers';
 		currentValue: 0.
@@ -228,28 +173,19 @@ PharoChangesCondenser>>swapSourcePointers [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>temporaryFile [
+{ #category : #accessing }
+PharoChangesCondenser >> temporaryFile [
 	^ (Smalltalk changesFile, 'new') nextVersion.
 ]
 
-{
-	#category : #'private - 3 installing',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>updateQuitPosition [
+{ #category : #'private - 3 installing' }
+PharoChangesCondenser >> updateQuitPosition [
 	
 	Smalltalk lastQuitLogPosition: stream position.
 ]
 
-{
-	#category : #'private - 1 writing',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>writeClassComment: aClass [
+{ #category : #'private - 1 writing' }
+PharoChangesCondenser >> writeClassComment: aClass [
 	| organizer commentRemoteString stamp |
 	
 	organizer := aClass organization.
@@ -271,11 +207,8 @@ PharoChangesCondenser>>writeClassComment: aClass [
 		for: aClass
 ]
 
-{
-	#category : #'private - 1 writing',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>writeMethodSource: aMethod [
+{ #category : #'private - 1 writing' }
+PharoChangesCondenser >> writeMethodSource: aMethod [
 	
 	self nextCommentChunkDo: [ :strm |
 		strm 
@@ -292,11 +225,8 @@ PharoChangesCondenser>>writeMethodSource: aMethod [
 	stream nextPutAll: ' !'; cr.
 ]
 
-{
-	#category : #'private - 1 writing',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoChangesCondenser>>writeRemoteString: aString for: reference [
+{ #category : #'private - 1 writing' }
+PharoChangesCondenser >> writeRemoteString: aString for: reference [
 
 	| remoteString |
 	remoteString := 

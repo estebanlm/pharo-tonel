@@ -4,14 +4,10 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestCodeImport,
 	#superclass : #PackageManifest,
-	#category : #CodeImport,
-	#timestamp : '<historical>'
+	#category : #CodeImport
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ManifestCodeImport class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestCodeImport class >> manuallyResolvedDependencies [
 	^ #(#'RPackage-Core' #'System-Support' #'Collections-Abstract' #Traits)
 ]

@@ -16,15 +16,11 @@ For more information, look at my subclasses.
 Class {
 	#name : #KMKeyCombination,
 	#superclass : #Object,
-	#category : #Keymapping-KeyCombinations,
-	#timestamp : '<historical>'
+	#category : #Keymapping-KeyCombinations
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination class>>fromKeyboardEvent: evt [
+{ #category : #'instance creation' }
+KMKeyCombination class >> fromKeyboardEvent: evt [
 	| modifier control command shift alt |
 	control := evt controlKeyPressed.
 	command := evt commandKeyPressed.
@@ -44,102 +40,66 @@ KMKeyCombination class>>fromKeyboardEvent: evt [
 	^ modifier + evt modifiedCharacter
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>, aShortcut [
+{ #category : #combining }
+KMKeyCombination >> , aShortcut [
 	^ KMKeyCombinationSequence first: self next: aShortcut asKeyCombination
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>= aShortcut [
+{ #category : #comparing }
+KMKeyCombination >> = aShortcut [
 	^ aShortcut isKindOf: self species
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>asKeyCombination [
+{ #category : #converting }
+KMKeyCombination >> asKeyCombination [
 	^self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>asShortcut [
+{ #category : #converting }
+KMKeyCombination >> asShortcut [
 	^ self asKeyCombination
 ]
 
-{
-	#category : #iterating,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>combinationsDo: aBlock [
+{ #category : #iterating }
+KMKeyCombination >> combinationsDo: aBlock [
 	aBlock value: self
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>hash [
+{ #category : #comparing }
+KMKeyCombination >> hash [
 	^ self species hash
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>includes: aShortcut [
+{ #category : #matching }
+KMKeyCombination >> includes: aShortcut [
 	^self = aShortcut
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>mac [
+{ #category : #combining }
+KMKeyCombination >> mac [
 	^KMPlatformSpecificKeyCombination with: self onPlatform: #MacOSX
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>matches: anEventBuffer [
+{ #category : #matching }
+KMKeyCombination >> matches: anEventBuffer [
 	^ self matchesCompletely: anEventBuffer first
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>matchesCompletely: aKeyboardEvent [
+{ #category : #matching }
+KMKeyCombination >> matchesCompletely: aKeyboardEvent [
 	^ self = aKeyboardEvent asKeyCombination
 ]
 
-{
-	#category : #'keymap building',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>named: keymapName do: anActionBlock [
+{ #category : #'keymap building' }
+KMKeyCombination >> named: keymapName do: anActionBlock [
 	^ KMKeymap
 		named: keymapName
 		shortcut: self
 		action: anActionBlock
 ]
 
-{
-	#category : #'keymap building',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>named: keymapName do: anActionBlock withDescription: aDescription [
+{ #category : #'keymap building' }
+KMKeyCombination >> named: keymapName do: anActionBlock withDescription: aDescription [
 	^ KMKeymap
 		named: keymapName
 		shortcut: self
@@ -147,60 +107,39 @@ KMKeyCombination>>named: keymapName do: anActionBlock withDescription: aDescript
 		description: aDescription
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>platform [
+{ #category : #accessing }
+KMKeyCombination >> platform [
 	^#all
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>prettyPrintOn: aStream [
+{ #category : #printing }
+KMKeyCombination >> prettyPrintOn: aStream [
 
 	aStream << self shortcut modifier symbol.
 	self shortcut character printOn: aStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>shortcut [
+{ #category : #accessing }
+KMKeyCombination >> shortcut [
 	^self
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>unix [
+{ #category : #combining }
+KMKeyCombination >> unix [
 	^KMPlatformSpecificKeyCombination with: self onPlatform: #Unix
 ]
 
-{
-	#category : #'keymap building',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>value: aBuilder [
+{ #category : #'keymap building' }
+KMKeyCombination >> value: aBuilder [
 	^ self
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>win [
+{ #category : #combining }
+KMKeyCombination >> win [
 	^KMPlatformSpecificKeyCombination with: self onPlatform: #Windows
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMKeyCombination>>| aShortcut [
+{ #category : #combining }
+KMKeyCombination >> | aShortcut [
 	^KMKeyCombinationChoice withShortcuts: { self . aShortcut }
 ]

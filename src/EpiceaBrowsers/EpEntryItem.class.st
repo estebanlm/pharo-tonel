@@ -9,23 +9,16 @@ Class {
 		'entry',
 		'triggerItems'
 	],
-	#category : #EpiceaBrowsers-UI-Log,
-	#timestamp : '<historical>'
+	#category : #EpiceaBrowsers-UI-Log
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>= other [
+{ #category : #comparing }
+EpEntryItem >> = other [
 	^ self species = other species and: [ self entry = other entry ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>asMorph [
+{ #category : #converting }
+EpEntryItem >> asMorph [
 
 	| morphs |
 	morphs := OrderedCollection new.
@@ -39,35 +32,23 @@ EpEntryItem>>asMorph [
 	^ self morphFactory rowWithAll: morphs
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>browseItem  [
+{ #category : #operations }
+EpEntryItem >> browseItem [ 
 	self eventAccept: EpBrowseVisitor new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>browser [
+{ #category : #accessing }
+EpEntryItem >> browser [
 	^ browser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>browser: anObject [
+{ #category : #accessing }
+EpEntryItem >> browser: anObject [
 	browser := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>commentMorphs [
+{ #category : #private }
+EpEntryItem >> commentMorphs [
 	
 	browser commentsLog
 		commentAt: entry 
@@ -77,115 +58,76 @@ EpEntryItem>>commentMorphs [
 	^ #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>entry [
+{ #category : #accessing }
+EpEntryItem >> entry [
 	^ entry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>entry: anObject [
+{ #category : #accessing }
+EpEntryItem >> entry: anObject [
 	entry := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>event [
+{ #category : #accessing }
+EpEntryItem >> event [
 
 	^ entry content
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>eventAccept: aVisitor [
+{ #category : #private }
+EpEntryItem >> eventAccept: aVisitor [
 
 	^ entry content accept: aVisitor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>eventMorphs [
+{ #category : #private }
+EpEntryItem >> eventMorphs [
 	
 	^ self eventAccept: EpMorphVisitor new
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>hash [
+{ #category : #comparing }
+EpEntryItem >> hash [
 	^ self species hash bitXor: self entry hash
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>icon [
+{ #category : #private }
+EpEntryItem >> icon [
 
 	^ self eventAccept: EpIconVisitor new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>log [
+{ #category : #accessing }
+EpEntryItem >> log [
 	^ browser log
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>morphFactory [
+{ #category : #private }
+EpEntryItem >> morphFactory [
 
 	^ EpMorphFactory default
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>newStateString [
+{ #category : #private }
+EpEntryItem >> newStateString [
 
 	^ self eventAccept: EpNewStateVisitor new
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>oldComment [
+{ #category : #operations }
+EpEntryItem >> oldComment [
 
 	^ browser commentsLog commentAt: entry ifAbsent: [ '' ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>oldStateString [
+{ #category : #private }
+EpEntryItem >> oldStateString [
 
 	^ entry content accept: EpOldStateVisitor new
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>printOn: aStream [
+{ #category : #printing }
+EpEntryItem >> printOn: aStream [
 	super printOn: aStream.
 
 	aStream nextPut: $(.
@@ -193,57 +135,39 @@ EpEntryItem>>printOn: aStream [
 	aStream nextPut: $).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>reference [
+{ #category : #accessing }
+EpEntryItem >> reference [
 	^ self log referenceTo: entry
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>timeMorphs [
+{ #category : #private }
+EpEntryItem >> timeMorphs [
 	
 	^ self timeString
 		ifEmpty: [ #() ]
 		ifNotEmpty: [:aString | { self morphFactory secondaryStringFor: aString } ]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>timeString [
+{ #category : #operations }
+EpEntryItem >> timeString [
 	| aDateTime |
 	aDateTime := self log timeAt: entry ifAbsent: [ ^ '' ].
 	
 	^ aDateTime epiceaBrowsersAsString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>triggerItems [
+{ #category : #accessing }
+EpEntryItem >> triggerItems [
 	^ triggerItems
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>triggerItems: anObject [
+{ #category : #accessing }
+EpEntryItem >> triggerItems: anObject [
 	triggerItems := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpEntryItem>>triggerMarkMorphs [
+{ #category : #private }
+EpEntryItem >> triggerMarkMorphs [
 
 	^ self triggerItems collect: [:item |
 		self morphFactory semiTransparent: item icon ]

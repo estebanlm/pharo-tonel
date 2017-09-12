@@ -25,58 +25,39 @@ Class {
 		'announcementClass',
 		'conditionBlock'
 	],
-	#category : #Announcements-Core,
-	#timestamp : 'DenisKudryashov 6/2/2016 23:56'
+	#category : #Announcements-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementDeliveryCondition class>>for: anAnnouncementClass where: aBlock [
+{ #category : #'instance creation' }
+AnnouncementDeliveryCondition class >> for: anAnnouncementClass where: aBlock [
 
 	^self new 
 		announcementClass: anAnnouncementClass;
 		conditionBlock: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementDeliveryCondition>>announcementClass [
+{ #category : #accessing }
+AnnouncementDeliveryCondition >> announcementClass [
 	^ announcementClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementDeliveryCondition>>announcementClass: anObject [
+{ #category : #accessing }
+AnnouncementDeliveryCondition >> announcementClass: anObject [
 	announcementClass := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementDeliveryCondition>>conditionBlock [
+{ #category : #accessing }
+AnnouncementDeliveryCondition >> conditionBlock [
 	^ conditionBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementDeliveryCondition>>conditionBlock: anObject [
+{ #category : #accessing }
+AnnouncementDeliveryCondition >> conditionBlock: anObject [
 	conditionBlock := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-AnnouncementDeliveryCondition>>handlesAnnouncement: anAnnouncement [
+{ #category : #testing }
+AnnouncementDeliveryCondition >> handlesAnnouncement: anAnnouncement [
 
 	^(announcementClass handlesAnnouncement: anAnnouncement)
 		and: [conditionBlock value: anAnnouncement ] 

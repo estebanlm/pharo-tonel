@@ -29,31 +29,21 @@ Class {
 	#pools : [
 		'TextConstants'
 	],
-	#category : #Graphics-Fonts,
-	#timestamp : 'LaurentLaffont 2/10/2011 18:19'
+	#category : #Graphics-Fonts
 }
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>balloonFont [
+{ #category : #'font accessing' }
+StandardFonts class >> balloonFont [
 	^BalloonMorph balloonFont
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>balloonFont: aFont [
+{ #category : #'font accessing' }
+StandardFonts class >> balloonFont: aFont [
 	BalloonMorph balloonFont: aFont
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>bigPointSizeForStyleNamed: aSymbol [
+{ #category : #styles }
+StandardFonts class >> bigPointSizeForStyleNamed: aSymbol [
 	| all s idx |
 	StrikeFont defaultFontKey.
 	all := TextStyle pointSizesFor: StrikeFont defaultFontKey.
@@ -64,59 +54,38 @@ StandardFonts class>>bigPointSizeForStyleNamed: aSymbol [
 			ifFalse: [all at: idx + 1]
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>buttonFont [
+{ #category : #'font accessing' }
+StandardFonts class >> buttonFont [
 	^ ButtonFont ifNil: [ButtonFont := self defaultFont]
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>buttonFont: aFont [
+{ #category : #'font accessing' }
+StandardFonts class >> buttonFont: aFont [
 	 ButtonFont := aFont
 ]
 
-{
-	#category : #choosing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>chooseBalloonFont [
+{ #category : #choosing }
+StandardFonts class >> chooseBalloonFont [
 	self chooseStandardFont: #balloonFont
 ]
 
-{
-	#category : #choosing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>chooseButtonFont [
+{ #category : #choosing }
+StandardFonts class >> chooseButtonFont [
 	self chooseStandardFont: #buttonFont
 ]
 
-{
-	#category : #choosing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>chooseCodeFont [
+{ #category : #choosing }
+StandardFonts class >> chooseCodeFont [
 	self chooseStandardFont: #codeFont
 ]
 
-{
-	#category : #choosing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>chooseDefaultFont [
+{ #category : #choosing }
+StandardFonts class >> chooseDefaultFont [
 	self chooseStandardFont: #defaultFont
 ]
 
-{
-	#category : #choosing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>chooseFontWithTitle: aTitle for: aReceiver setSelector: aSetSelector getSelector: aGetSelector [
+{ #category : #choosing }
+StandardFonts class >> chooseFontWithTitle: aTitle for: aReceiver setSelector: aSetSelector getSelector: aGetSelector [
 	FontChooser
 		openWithWindowTitle: aTitle
 		for: aReceiver
@@ -124,35 +93,23 @@ StandardFonts class>>chooseFontWithTitle: aTitle for: aReceiver setSelector: aSe
 		getSelector: aGetSelector
 ]
 
-{
-	#category : #choosing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>chooseHaloFont [
+{ #category : #choosing }
+StandardFonts class >> chooseHaloFont [
 	self chooseStandardFont: #haloFont
 ]
 
-{
-	#category : #choosing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>chooseListFont [
+{ #category : #choosing }
+StandardFonts class >> chooseListFont [
 	self chooseStandardFont: #listFont
 ]
 
-{
-	#category : #choosing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>chooseMenuFont [
+{ #category : #choosing }
+StandardFonts class >> chooseMenuFont [
 	self chooseStandardFont: #menuFont
 ]
 
-{
-	#category : #choosing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>chooseStandardFont: aSelector  [
+{ #category : #choosing }
+StandardFonts class >> chooseStandardFont: aSelector [ 
 	self
 		chooseFontWithTitle: (self systemFontLabelOf: aSelector)	, '...'
 		for: self
@@ -160,43 +117,28 @@ StandardFonts class>>chooseStandardFont: aSelector  [
 		getSelector: aSelector
 ]
 
-{
-	#category : #choosing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>chooseWindowTitleFont [
+{ #category : #choosing }
+StandardFonts class >> chooseWindowTitleFont [
 	self chooseStandardFont: #windowTitleFont
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>codeFont [
+{ #category : #'font accessing' }
+StandardFonts class >> codeFont [
 	^ CodeFont ifNil: [CodeFont := self defaultFont]
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>codeFont: aFont [
+{ #category : #'font accessing' }
+StandardFonts class >> codeFont: aFont [
 	 CodeFont := aFont
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>defaultFont [
+{ #category : #'font accessing' }
+StandardFonts class >> defaultFont [
 	^ TextStyle defaultFont
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>defaultFont: aFont [
+{ #category : #'font accessing' }
+StandardFonts class >> defaultFont: aFont [
 	"Establish the default text font and style"
 
 	| aStyle newDefaultStyle |
@@ -208,11 +150,8 @@ StandardFonts class>>defaultFont: aFont [
 
 ]
 
-{
-	#category : #'small font fixing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>fixSmallDejaVuPunctuationMarks [
+{ #category : #'small font fixing' }
+StandardFonts class >> fixSmallDejaVuPunctuationMarks [
 	"Just a small hack to make small font punctuation marks readable"
 	| fb |
 	StandardFonts setFontsToStyleNamed: #small. "To be sure we use the small font"
@@ -223,11 +162,8 @@ StandardFonts class>>fixSmallDejaVuPunctuationMarks [
 			StandardFonts defaultFont characterFormAt: ch put: (fb characterFormAt: ch) deepCopy].
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>fontsSpecForStyleNamed: aSymbol [
+{ #category : #styles }
+StandardFonts class >> fontsSpecForStyleNamed: aSymbol [
 	| k small regular big |
 	k := StrikeFont defaultFontKey.
 	small := self smallPointSizeForStyleNamed: aSymbol.
@@ -245,71 +181,47 @@ StandardFonts class>>fontsSpecForStyleNamed: aSymbol [
 
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>getCurrentFontsSpec [
+{ #category : #'font accessing' }
+StandardFonts class >> getCurrentFontsSpec [
 	"self getCurrentFontsSpec "
 	^ self systemFontAspects collect: [:aspect | | font |
 		font := self perform: aspect.
 		Array with: (aspect, ':') asSymbol with: font familyName with: font pointSize]
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>haloFont [
+{ #category : #'font accessing' }
+StandardFonts class >> haloFont [
 	^ HaloFont ifNil: [HaloFont := StandardFonts defaultFont]
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>haloFont: aFont [
+{ #category : #'font accessing' }
+StandardFonts class >> haloFont: aFont [
 	HaloFont := aFont
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>listFont [
+{ #category : #'font accessing' }
+StandardFonts class >> listFont [
 	^ ListFont ifNil: [ListFont := self defaultFont]
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>listFont: aFont [
+{ #category : #'font accessing' }
+StandardFonts class >> listFont: aFont [
 	 ListFont := aFont
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>menuFont [
+{ #category : #'font accessing' }
+StandardFonts class >> menuFont [
 	^ MenuFont ifNil: [MenuFont := self defaultFont]
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>menuFont: aFont [
+{ #category : #'font accessing' }
+StandardFonts class >> menuFont: aFont [
 	aFont ~= MenuFont 
 		ifTrue: [ MenuFont := aFont ].
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>pointSizeForStyleNamed: aSymbol [
+{ #category : #styles }
+StandardFonts class >> pointSizeForStyleNamed: aSymbol [
 	"
 	self pointSizeForStyleNamed: #small.
 	self pointSizeForStyleNamed: #Medium.
@@ -326,11 +238,8 @@ StandardFonts class>>pointSizeForStyleNamed: aSymbol [
 
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>printStandardSystemFonts [
+{ #category : #'font accessing' }
+StandardFonts class >> printStandardSystemFonts [
 	"self printStandardSystemFonts"
 
 	| string |
@@ -355,11 +264,8 @@ StandardFonts class>>printStandardSystemFonts [
 	
 ]
 
-{
-	#category : #choosing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>restoreDefaultFonts [
+{ #category : #choosing }
+StandardFonts class >> restoreDefaultFonts [
 	"Since this is called from menus, we can take the opportunity to prompt for missing font styles."
 	"
 	self restoreDefaultFonts
@@ -367,21 +273,15 @@ StandardFonts class>>restoreDefaultFonts [
 	self setFontsToSmall
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>setAllStandardFontsTo: aFont [
+{ #category : #'font accessing' }
+StandardFonts class >> setAllStandardFontsTo: aFont [
 	self systemFontAspects do: [:selector | StandardFonts perform: (selector, ':') asSymbol with: aFont].
 	 
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>setDefaultFonts: defaultFontsSpec [
+{ #category : #menu }
+StandardFonts class >> setDefaultFonts: defaultFontsSpec [
 	"Since this is called from menus, we can take the opportunity to prompt for missing font styles."
 
 	| fontNames map emphases |
@@ -398,11 +298,8 @@ StandardFonts class>>setDefaultFonts: defaultFontsSpec [
 		with: (((map at: triplet second) fontOfPointSize: triplet third) emphasized: (emphases at: triplet second))]
 ]
 
-{
-	#category : #choosing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>setDemoFonts [
+{ #category : #choosing }
+StandardFonts class >> setDemoFonts [
 	"StandardFonts setDemoFonts"
 	|size font codeFont titleFont|
 
@@ -423,11 +320,8 @@ StandardFonts class>>setDemoFonts [
 		windowTitleFont: titleFont.
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>setFontsFromSpec: fontsSpec [
+{ #category : #'font accessing' }
+StandardFonts class >> setFontsFromSpec: fontsSpec [
 	"set some fonts by interpreting fontsSpec.
 	fontsSpec is a collection.
 	Each fontsSpec element is an array with 3 elements: 
@@ -460,59 +354,38 @@ StandardFonts class>>setFontsFromSpec: fontsSpec [
 						emphasized: (emphases at: triplet second))]
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>setFontsToHuge [
+{ #category : #styles }
+StandardFonts class >> setFontsToHuge [
 	self setFontsToStyleNamed: #huge
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>setFontsToLarge [
+{ #category : #styles }
+StandardFonts class >> setFontsToLarge [
 	self setFontsToStyleNamed: #large
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>setFontsToMedium [
+{ #category : #styles }
+StandardFonts class >> setFontsToMedium [
 	self setFontsToStyleNamed: #medium
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>setFontsToSmall [
+{ #category : #styles }
+StandardFonts class >> setFontsToSmall [
 	self setFontsToStyleNamed: #small
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>setFontsToStyleNamed: aSymbol [
+{ #category : #styles }
+StandardFonts class >> setFontsToStyleNamed: aSymbol [
 	self setFontsFromSpec: (self fontsSpecForStyleNamed: aSymbol)
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>setFontsToVeryLarge [
+{ #category : #styles }
+StandardFonts class >> setFontsToVeryLarge [
 	self setFontsToStyleNamed: #verylarge
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>smallPointSizeForStyleNamed: aSymbol [
+{ #category : #styles }
+StandardFonts class >> smallPointSizeForStyleNamed: aSymbol [
 	| all s idx |
 	StrikeFont defaultFontKey.
 	all := TextStyle pointSizesFor: StrikeFont defaultFontKey.
@@ -523,53 +396,35 @@ StandardFonts class>>smallPointSizeForStyleNamed: aSymbol [
 			ifFalse: [all at: idx]
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>systemFontAspects [
+{ #category : #'font accessing' }
+StandardFonts class >> systemFontAspects [
 	^ self systemFontAspectsAndLabels collect: [:assoc | assoc key]
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>systemFontAspectsAndLabels [
+{ #category : #'font accessing' }
+StandardFonts class >> systemFontAspectsAndLabels [
 	^ {#defaultFont -> 'Default font' translated. #listFont -> 'List font'  translated. #menuFont -> 'Menu font'  translated. #windowTitleFont -> 'Window title'  translated. #balloonFont -> 'Balloon help font'  translated. #codeFont -> 'Code font'  translated. #buttonFont -> 'Button font'  translated. #haloFont -> 'Halo font'  translated } 
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>systemFontLabelOf: aSelector [
+{ #category : #'font accessing' }
+StandardFonts class >> systemFontLabelOf: aSelector [
 	^ self systemFontAspectsAndLabels
 		detect: [ :assoc | assoc key = aSelector ]
 		ifFound: [ :assoc | assoc value ]
 		ifNone: [ '' ]
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>systemFontLabels [
+{ #category : #'font accessing' }
+StandardFonts class >> systemFontLabels [
 	^ self systemFontAspectsAndLabels collect: [:assoc | assoc value]
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>windowTitleFont [
+{ #category : #'font accessing' }
+StandardFonts class >> windowTitleFont [
 	^ WindowTitleFont ifNil: [WindowTitleFont := StandardFonts defaultFont]
 ]
 
-{
-	#category : #'font accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StandardFonts class>>windowTitleFont: aFont [
+{ #category : #'font accessing' }
+StandardFonts class >> windowTitleFont: aFont [
 	WindowTitleFont := aFont
 ]

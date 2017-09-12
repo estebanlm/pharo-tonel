@@ -1,38 +1,25 @@
-"
-
-"
 Class {
 	#name : #GLMDashboard,
 	#superclass : #GLMExplicitBrowser,
 	#instVars : [
 		'panesLayouts'
 	],
-	#category : #Glamour-Browsers-Dashboard,
-	#timestamp : ''
+	#category : #Glamour-Browsers-Dashboard
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDashboard>>addPaneNamed: aString [
+{ #category : #adding }
+GLMDashboard >> addPaneNamed: aString [
 	self addNewPaneNamed: aString
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDashboard>>addPaneNamed: aSymbol layout: aLayout [
+{ #category : #adding }
+GLMDashboard >> addPaneNamed: aSymbol layout: aLayout [
 	self addPaneNamed: aSymbol.
 	self panesLayouts at: aSymbol put: aLayout
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDashboard>>initializeScriptingDefaults [
+{ #category : #scripting }
+GLMDashboard >> initializeScriptingDefaults [
 	super initializeScriptingDefaults.
 	self transmissions
 		detect: [ :each | each originatesAt: (self pane port: #entity) ]
@@ -43,11 +30,8 @@ GLMDashboard>>initializeScriptingDefaults [
 				andShow: [:a |  a custom: GLMFlexiblePresentation new ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDashboard>>layoutOfPaneNamed: aSymbol [
+{ #category : #accessing }
+GLMDashboard >> layoutOfPaneNamed: aSymbol [
 	^ self panesLayouts
 		at: aSymbol
 		ifAbsent:
@@ -64,19 +48,13 @@ GLMDashboard>>layoutOfPaneNamed: aSymbol [
 				ifFalse: [ (0.5 @ yTop corner: 1 @ yBot) asLayoutFrame ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDashboard>>panesLayouts [
+{ #category : #accessing }
+GLMDashboard >> panesLayouts [
 	^ panesLayouts ifNil: [ panesLayouts := Dictionary new ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDashboard>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMDashboard >> renderGlamorouslyOn: aRenderer [ 
 	 
 	^aRenderer renderDashboard: self
 ]

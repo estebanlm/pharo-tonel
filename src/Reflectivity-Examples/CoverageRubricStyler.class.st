@@ -5,15 +5,11 @@ For simplicity we extend from MetaLinkIconStyler
 Class {
 	#name : #CoverageRubricStyler,
 	#superclass : #MetalinkIconStyler,
-	#category : #Reflectivity-Examples,
-	#timestamp : 'mcamp 9/23/2015 10:58'
+	#category : #Reflectivity-Examples
 }
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-CoverageRubricStyler>>addIconStyle: aNode from: start to: stop [
+{ #category : #styling }
+CoverageRubricStyler >> addIconStyle: aNode from: start to: stop [
 	|rejectClass|
 	
 	rejectClass := { RBMethodNode . RBSequenceNode }.

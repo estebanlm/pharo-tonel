@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'name'
 	],
-	#category : #Compiler-ParseNodes,
-	#timestamp : '<historical>'
+	#category : #Compiler-ParseNodes
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode class>>initialize    "VariableNode initialize.  Decompiler initialize" [
+{ #category : #initialization }
+VariableNode class >> initialize [    "VariableNode initialize.  Decompiler initialize"
 	| encoder |
 	encoder := Encoder new.
 	StdVariables := Dictionary new: 16.
@@ -48,43 +44,28 @@ VariableNode class>>initialize    "VariableNode initialize.  Decompiler initiali
 	NodeSuper := encoder encodeVariable: 'super'
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>accept: aVisitor [
+{ #category : #visiting }
+VariableNode >> accept: aVisitor [
 	^aVisitor visitVariableNode: self
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>asStorableNode: encoder [
+{ #category : #initialize-release }
+VariableNode >> asStorableNode: encoder [
 	^ self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>assignmentCheck: encoder at: location [
+{ #category : #testing }
+VariableNode >> assignmentCheck: encoder at: location [
 	^(encoder cantStoreInto: name) ifTrue: [location] ifFalse: [-1]
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>beingAssignedToAnalyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools "<Dictionary>" [
+{ #category : #'code generation (closures)' }
+VariableNode >> beingAssignedToAnalyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools [ "<Dictionary>"
 	"No-op overridden by TempVariableNode"
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>emitCodeForReturn: stack encoder: encoder [
+{ #category : #'code generation' }
+VariableNode >> emitCodeForReturn: stack encoder: encoder [
 	encoder
 		if: code
 		isSpecialLiteralForReturn:
@@ -101,30 +82,21 @@ VariableNode>>emitCodeForReturn: stack encoder: encoder [
 	super emitCodeForReturn: stack encoder: encoder
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>emitCodeForStore: stack encoder: encoder [
+{ #category : #'code generation' }
+VariableNode >> emitCodeForStore: stack encoder: encoder [
 
 	self shouldNotImplement
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>emitCodeForStorePop: stack encoder: encoder [
+{ #category : #'code generation' }
+VariableNode >> emitCodeForStorePop: stack encoder: encoder [
 	self assert: [self type ~= 1].
 	encoder genStorePopInstVar: index.
 	stack pop: 1
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>emitCodeForValue: stack encoder: encoder [
+{ #category : #'code generation' }
+VariableNode >> emitCodeForValue: stack encoder: encoder [
 	stack push: 1.
 	encoder
 		if: code
@@ -139,22 +111,16 @@ VariableNode>>emitCodeForValue: stack encoder: encoder [
 	^encoder genPushInstVar: index
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>fieldOffset [
+{ #category : #'code generation' }
+VariableNode >> fieldOffset [
 	"Return temp or instVar offset for this variable"
 	^index ifNil: [code < 256
 					ifTrue: [code \\ 16]
 					ifFalse: [code \\ 256]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>index [
+{ #category : #testing }
+VariableNode >> index [
 	"This code attempts to reconstruct the index from its encoding in code."
 	code < 0 ifTrue:[^nil].
 	code > 256 ifTrue:
@@ -167,102 +133,69 @@ VariableNode>>index [
 	^code - self type
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>isSelfPseudoVariable [
+{ #category : #testing }
+VariableNode >> isSelfPseudoVariable [
 	"Answer if this ParseNode represents the 'self' pseudo-variable."
 
 	^ key = 'self' or: [name = '{{self}}']
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>isVariableNode [
+{ #category : #testing }
+VariableNode >> isVariableNode [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>isVariableReference [
+{ #category : #testing }
+VariableNode >> isVariableReference [
 
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>name [
+{ #category : #accessing }
+VariableNode >> name [
 	^ name
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>name: string [
+{ #category : #initialize-release }
+VariableNode >> name: string [
 	"Change name"
 
 	name := string
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>name: varName index: i type: type [
+{ #category : #initialize-release }
+VariableNode >> name: varName index: i type: type [
 	"Only used for initting instVar refs"
 	^self name: varName key: varName index: i type: type
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>name: string key: object code: byte [
+{ #category : #initialize-release }
+VariableNode >> name: string key: object code: byte [
 	"Only used for initting std variables, nil, true, false, self, etc."
 	name := string.
 	key := object.
 	code := byte
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>name: varName key: objRef index: i type: type [
+{ #category : #initialize-release }
+VariableNode >> name: varName key: objRef index: i type: type [
 	"Only used for initting global (litInd) variables"
 	^self name: varName key: objRef code: (self code: (index := i) type: type)
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>printOn: aStream indent: level  [
+{ #category : #printing }
+VariableNode >> printOn: aStream indent: level [ 
 
 	aStream nextPutAll: name
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>returns [
+{ #category : #testing }
+VariableNode >> returns [
 	^false 
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>sizeCodeForReturn: encoder [
+{ #category : #'code generation' }
+VariableNode >> sizeCodeForReturn: encoder [
 	encoder
 		if: code
 		isSpecialLiteralForPush:
@@ -273,27 +206,18 @@ VariableNode>>sizeCodeForReturn: encoder [
 	^super sizeCodeForReturn: encoder
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>sizeCodeForStore: encoder [
+{ #category : #'code generation' }
+VariableNode >> sizeCodeForStore: encoder [
 	self shouldNotImplement
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>sizeCodeForStorePop: encoder [
+{ #category : #'code generation' }
+VariableNode >> sizeCodeForStorePop: encoder [
 	self shouldNotImplement
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>sizeCodeForValue: encoder [
+{ #category : #'code generation' }
+VariableNode >> sizeCodeForValue: encoder [
 	self reserve: encoder.
 	encoder
 		if: code
@@ -308,11 +232,8 @@ VariableNode>>sizeCodeForValue: encoder [
 	^encoder sizePushInstVar: index
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-VariableNode>>type [
+{ #category : #testing }
+VariableNode >> type [
 	"This code attempts to reconstruct the type from its encoding in code.
 		This allows one to test, for instance, (aNode type = LdInstType)."
 	| type |

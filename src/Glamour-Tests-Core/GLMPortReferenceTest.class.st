@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMPortReferenceTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPortReferenceTest>>testOriginTransformedValue [
+{ #category : #tests }
+GLMPortReferenceTest >> testOriginTransformedValue [
 	| port reference |
 	port := GLMSimplePort new value: 41.
 	reference := (GLMOriginPortReference new)
@@ -21,11 +14,8 @@ GLMPortReferenceTest>>testOriginTransformedValue [
 	self assert: reference value equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPortReferenceTest>>testOriginValue [
+{ #category : #tests }
+GLMPortReferenceTest >> testOriginValue [
 	| port reference |
 	port := GLMSimplePort new value: 42.
 	reference := GLMOriginPortReference new port: port.

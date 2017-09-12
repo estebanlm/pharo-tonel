@@ -1,38 +1,24 @@
-Extension {
-	#name : #Object
-}
+Extension { #name : #Object }
 
-{
-	#category : #'*Collections-Abstract-splitjoin',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-Object>>appendTo: aCollection [
+{ #category : #'*Collections-Abstract-splitjoin' }
+Object >> appendTo: aCollection [
 	"double dispatch for join:"
 	^ aCollection addLast: self
 ]
 
-{
-	#category : #'*Collections-Abstract-splitjoin',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-Object>>join: aSequenceableCollection [
+{ #category : #'*Collections-Abstract-splitjoin' }
+Object >> join: aSequenceableCollection [
 	^ (Array with: self) join: aSequenceableCollection
 ]
 
-{
-	#category : #'*Collections-Abstract-splitjoin',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-Object>>joinTo: stream [
+{ #category : #'*Collections-Abstract-splitjoin' }
+Object >> joinTo: stream [
 	"double dispatch for join:"
 	^ stream nextPut: self
 ]
 
-{
-	#category : #'*Collections-Abstract-splitjoin',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-Object>>split: aSequenceableCollection [
+{ #category : #'*Collections-Abstract-splitjoin' }
+Object >> split: aSequenceableCollection [
 	"optimized version for single delimiters:
 	Example:
 		$/ split: '/foo/bar'"
@@ -46,11 +32,8 @@ Object>>split: aSequenceableCollection [
 
 ]
 
-{
-	#category : #'*Collections-Abstract-splitjoin',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-Object>>split: aSequenceableCollection do: aBlock [
+{ #category : #'*Collections-Abstract-splitjoin' }
+Object >> split: aSequenceableCollection do: aBlock [
 	"optimized version for single delimiters:
 	Example:
 		$/ split: '/foo/bar' indicesDo: [ :item | ]"
@@ -58,11 +41,8 @@ Object>>split: aSequenceableCollection do: aBlock [
 		aBlock value: (aSequenceableCollection copyFrom: start to: end) ]
 ]
 
-{
-	#category : #'*Collections-Abstract-splitjoin',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-Object>>split: aSequenceableCollection indicesDo: aBlock [
+{ #category : #'*Collections-Abstract-splitjoin' }
+Object >> split: aSequenceableCollection indicesDo: aBlock [
 	"optimized version for single delimiters:
 	Example:
 		$/ split: '/foo/bar' indicesDo: [ :start :end | ]"

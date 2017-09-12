@@ -1,12 +1,7 @@
-Extension {
-	#name : #Morph
-}
+Extension { #name : #Morph }
 
-{
-	#category : #'*Morphic-Widgets-ColorPicker',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Morph>>changeColor [
+{ #category : #'*Morphic-Widgets-ColorPicker' }
+Morph >> changeColor [
 	
 	| dialog |
 	dialog := ColorSelectorDialogWindow new
@@ -19,10 +14,7 @@ Morph>>changeColor [
 	
 ]
 
-{
-	#category : #'*Morphic-Widgets-ColorPicker',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Morph>>scaledIntoFormOfSize: aSmallInteger  [
+{ #category : #'*Morphic-Widgets-ColorPicker' }
+Morph >> scaledIntoFormOfSize: aSmallInteger [ 
 	^ self imageForm scaledIntoFormOfSize: aSmallInteger 
 ]

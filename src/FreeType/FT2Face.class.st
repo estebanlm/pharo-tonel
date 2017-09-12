@@ -47,15 +47,11 @@ Class {
 		'encodingId',
 		'size'
 	],
-	#category : #FreeType-Base,
-	#timestamp : '<historical>'
+	#category : #FreeType-Base
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>angle: angle scale: scale offset: aPoint [
+{ #category : #rendering }
+FT2Face >> angle: angle scale: scale offset: aPoint [
 	| one matrix delta |
 	one := (16r10000 * scale) asInteger.
 	matrix := IntegerArray new: 4.
@@ -79,11 +75,8 @@ FT2Face>>angle: angle scale: scale offset: aPoint [
 
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>angle: angle scale: scale offset: aPoint slant: slant [
+{ #category : #rendering }
+FT2Face >> angle: angle scale: scale offset: aPoint slant: slant [
 	| one matrix delta slantOne |
 	one := (16r10000 * scale) asInteger.
 	slantOne := (16r10000 * scale* slant) asInteger.
@@ -109,11 +102,8 @@ FT2Face>>angle: angle scale: scale offset: aPoint slant: slant [
 
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>angle: angle scalePoint: scalePoint offset: aPoint [
+{ #category : #rendering }
+FT2Face >> angle: angle scalePoint: scalePoint offset: aPoint [
 	| oneX oneY matrix delta |
 	oneX := (16r10000 * scalePoint x) asInteger.
 	oneY :=  (16r10000 * scalePoint y) asInteger.
@@ -138,11 +128,8 @@ FT2Face>>angle: angle scalePoint: scalePoint offset: aPoint [
 
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>angle: angle scalePoint: scalePoint offset: aPoint slant: slant [
+{ #category : #rendering }
+FT2Face >> angle: angle scalePoint: scalePoint offset: aPoint slant: slant [
 	| oneX oneY matrix delta slantOne|
 	oneX := (16r10000 * scalePoint x) asInteger.
 	oneY :=  (16r10000 * scalePoint y) asInteger.
@@ -169,46 +156,31 @@ FT2Face>>angle: angle scalePoint: scalePoint offset: aPoint slant: slant [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>ascender [
+{ #category : #accessing }
+FT2Face >> ascender [
 	^ascender
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>availableSizes [
+{ #category : #accessing }
+FT2Face >> availableSizes [
 	^availableSizes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>bbox [
+{ #category : #accessing }
+FT2Face >> bbox [
 	bbox
 		ifNil: [bbox := Rectangle new.
 			self primLoadBbox: bbox].
 	^ bbox
 ]
 
-{
-	#category : #outlines,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>characterOutline: aCharacter [
+{ #category : #outlines }
+FT2Face >> characterOutline: aCharacter [
 	^self loadCharacterOutline: aCharacter asUnicode flags: LoadIgnoreTransform
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>charmaps [
+{ #category : #accessing }
+FT2Face >> charmaps [
 	"Answer an Array of Strings naming the different character maps available for setCharMap:"
 	charmaps ifNil: [
 		charmaps := Array new: numCharmaps.
@@ -216,85 +188,55 @@ FT2Face>>charmaps [
 	^charmaps
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>descender [
+{ #category : #accessing }
+FT2Face >> descender [
 	^descender
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>emboldenOutline: strength [
+{ #category : #rendering }
+FT2Face >> emboldenOutline: strength [
 	^self primEmboldenGlyphSlotOutline: (strength * 64) rounded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>encoding [
+{ #category : #accessing }
+FT2Face >> encoding [
 	encoding ifNil: [ self getCharMap ].
 	^encoding
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>faceFlags [
+{ #category : #accessing }
+FT2Face >> faceFlags [
 	^faceFlags
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>faceIndex [
+{ #category : #accessing }
+FT2Face >> faceIndex [
 	^faceIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>familyName [
+{ #category : #accessing }
+FT2Face >> familyName [
 	^familyName
 ]
 
-{
-	#category : #charmaps,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>getCharMap [
+{ #category : #charmaps }
+FT2Face >> getCharMap [
 	self primGetCharMap.
 ]
 
-{
-	#category : #charmaps,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>getCharMapsInto: array [
+{ #category : #charmaps }
+FT2Face >> getCharMapsInto: array [
 	self primGetCharMapsInto: array.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>glyph [
+{ #category : #accessing }
+FT2Face >> glyph [
 	glyph ifNil: [ glyph := FT2GlyphSlot fromFace: self ].
 	^glyph
 ]
 
-{
-	#category : #glyphs,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>glyphOfCharacter: aCharacter [
+{ #category : #glyphs }
+FT2Face >> glyphOfCharacter: aCharacter [
 	"load a glyph with outline, glyph is not scaled "
 	| em aGlyph |
 	em := self unitsPerEm.
@@ -306,19 +248,13 @@ FT2Face>>glyphOfCharacter: aCharacter [
 	^aGlyph
 ]
 
-{
-	#category : #glyphs,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>glyphOfCharacter: aCharacter fontSize: fontSize [
+{ #category : #glyphs }
+FT2Face >> glyphOfCharacter: aCharacter fontSize: fontSize [
 	^self glyphOfCharacter: aCharacter pixelSize: fontSize@fontSize
 ]
 
-{
-	#category : #glyphs,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>glyphOfCharacter: aCharacter pixelSize: pixelSize [
+{ #category : #glyphs }
+FT2Face >> glyphOfCharacter: aCharacter pixelSize: pixelSize [
 	"load a glyph with outline, glyph is not scaled "
 	| aGlyph |
 	self validate.
@@ -329,65 +265,44 @@ FT2Face>>glyphOfCharacter: aCharacter pixelSize: pixelSize [
 	^aGlyph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>height [
+{ #category : #accessing }
+FT2Face >> height [
 	^height
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>isBold [
+{ #category : #testing }
+FT2Face >> isBold [
 	styleFlags == nil ifTrue:[^false].
 	^styleFlags allMask: StyleFlagBold
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>isFixedWidth [
+{ #category : #testing }
+FT2Face >> isFixedWidth [
 	styleFlags == nil ifTrue:[^false].
 	^faceFlags allMask: 4 "FT_FACE_FLAG_FIXED_WIDTH" 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>isItalic [
+{ #category : #testing }
+FT2Face >> isItalic [
 	styleFlags == nil ifTrue:[^false].
 	^styleFlags allMask: StyleFlagItalic
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>isRegular [
+{ #category : #testing }
+FT2Face >> isRegular [
 	styleFlags == nil ifTrue:[^true].
 	^styleFlags = 0
 ]
 
-{
-	#category : #kerning,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>kerningLeft: leftCharacter right: rightCharacter [
+{ #category : #kerning }
+FT2Face >> kerningLeft: leftCharacter right: rightCharacter [
 	[^self primGetKerningLeft: (self primGetCharIndex: leftCharacter asInteger)  
 		right: (self primGetCharIndex: rightCharacter asInteger) 
 	] on: FT2Error do:[:e | ^0@0]
 ]
 
-{
-	#category : #glyphs,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>loadCharacter: index flags: flags [
+{ #category : #glyphs }
+FT2Face >> loadCharacter: index flags: flags [
 	self primLoadCharacter: index flags: flags.
 	glyph
 		ifNil: [ glyph := FT2GlyphSlot fromFace: self ]
@@ -395,11 +310,8 @@ FT2Face>>loadCharacter: index flags: flags [
 
 ]
 
-{
-	#category : #outlines,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>loadCharacterOutline: index flags: flags [
+{ #category : #outlines }
+FT2Face >> loadCharacterOutline: index flags: flags [
 	| em outline |
 	em := unitsPerEm.
 	self setPixelWidth: em height: em.
@@ -412,21 +324,15 @@ FT2Face>>loadCharacterOutline: index flags: flags [
 	^outline
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>loadFields [
+{ #category : #private }
+FT2Face >> loadFields [
 	self isValid 
 		ifFalse: [ ^ self error: 'I cannot load face fields because face is not valid.' ].
 	self primLoadFields.
 ]
 
-{
-	#category : #glyphs,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>loadGlyph: index flags: flags [
+{ #category : #glyphs }
+FT2Face >> loadGlyph: index flags: flags [
 	self primLoadGlyph: index flags: flags.
 	glyph
 		ifNil: [ glyph := FT2GlyphSlot fromFace: self ]
@@ -434,35 +340,23 @@ FT2Face>>loadGlyph: index flags: flags [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>maxAdvanceHeight [
+{ #category : #accessing }
+FT2Face >> maxAdvanceHeight [
 	^maxAdvanceHeight
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>maxAdvanceWidth [
+{ #category : #accessing }
+FT2Face >> maxAdvanceWidth [
 	^maxAdvanceWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>memoryFaceData [
+{ #category : #accessing }
+FT2Face >> memoryFaceData [
 	self subclassResponsibility
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>newFaceFromExternalMemory: aFreeTypeExternalMemory index: anInteger [
+{ #category : #initialize-release }
+FT2Face >> newFaceFromExternalMemory: aFreeTypeExternalMemory index: anInteger [
 	| memSize |
 
 	aFreeTypeExternalMemory validate.
@@ -476,252 +370,168 @@ FT2Face>>newFaceFromExternalMemory: aFreeTypeExternalMemory index: anInteger [
 		ifTrue:[ self class register: self ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>newFaceFromFile: fileName index: anInteger [
+{ #category : #initialize-release }
+FT2Face >> newFaceFromFile: fileName index: anInteger [
 	self primNewFaceFromFile: fileName fullName index: anInteger.
 	self class register: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>numCharmaps [
+{ #category : #accessing }
+FT2Face >> numCharmaps [
 	^numCharmaps
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>numFaces [
+{ #category : #accessing }
+FT2Face >> numFaces [
 	^numFaces
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>numFixedSizes [
+{ #category : #accessing }
+FT2Face >> numFixedSizes [
 	^numFixedSizes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>numGlyphs [
+{ #category : #accessing }
+FT2Face >> numGlyphs [
 	^numGlyphs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>postscriptName [
+{ #category : #accessing }
+FT2Face >> postscriptName [
 	^self primGetPostscriptName
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primDestroyHandle [
+{ #category : #private-primitives }
+FT2Face >> primDestroyHandle [
 	<primitive: 'primitiveDoneFacePreserveFields' module: 'FT2Plugin'>
 	^self primitiveFailed.
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primEmboldenGlyphSlotOutline: strengthInteger [
+{ #category : #private-primitives }
+FT2Face >> primEmboldenGlyphSlotOutline: strengthInteger [
 	<primitive: 'primitiveEmboldenFaceGlyphSlotOutline' module: 'FT2Plugin'>
 	^self primitiveFailed.
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primGetCharIndex: characterCode [
+{ #category : #private-primitives }
+FT2Face >> primGetCharIndex: characterCode [
 	"Return the glyph index of a given character code"
 	<primitive: 'primitiveGetFaceCharIndex' module: 'FT2Plugin'>
 	^self primitiveFailed.
 
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primGetCharMap [
+{ #category : #private-primitives }
+FT2Face >> primGetCharMap [
 	<primitive: 'primitiveGetFaceCharMap' module: 'FT2Plugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primGetCharMapsInto: array [
+{ #category : #private-primitives }
+FT2Face >> primGetCharMapsInto: array [
 	<primitive: 'primitiveGetFaceCharMapsIntoArray' module: 'FT2Plugin'>
 	^self primitiveFailed.
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primGetKerningLeft: leftGlyphIndex right: rightGlyphIndex [
+{ #category : #private-primitives }
+FT2Face >> primGetKerningLeft: leftGlyphIndex right: rightGlyphIndex [
 	"self primGetKerningLeft: $V asInteger  right: $a asInteger "
 	<primitive: 'primitiveGetKerningLeftRight' module: 'FT2Plugin'>
 	^self primitiveFailed.
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primGetPostscriptName  [
+{ #category : #private-primitives }
+FT2Face >> primGetPostscriptName [ 
 	<primitive: 'primitiveGetPostscriptName' module: 'FT2Plugin'>
 	^nil
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primGetTrackKerningPointSize: pointSize degree: degree [
+{ #category : #private-primitives }
+FT2Face >> primGetTrackKerningPointSize: pointSize degree: degree [
 	<primitive: 'primitiveGetTrackKerningPointSizeDegree' module: 'FT2Plugin'>
 	^self primitiveFailed.
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primHasKerning [
+{ #category : #private-primitives }
+FT2Face >> primHasKerning [
 	<primitive: 'primitiveHasKerning' module: 'FT2Plugin'>
 	^self primitiveFailed.
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primLoadBbox: aRectangle [
+{ #category : #private-primitives }
+FT2Face >> primLoadBbox: aRectangle [
 	<primitive: 'primitiveLoadFaceBbox' module: 'FT2Plugin'>
 	^self primitiveFailed.
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primLoadCharacter: index flags: flags [
+{ #category : #private-primitives }
+FT2Face >> primLoadCharacter: index flags: flags [
 	<primitive: 'primitiveLoadCharacter' module: 'FT2Plugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primLoadFields [
+{ #category : #private }
+FT2Face >> primLoadFields [
 	<primitive: 'primitiveLoadFaceFields' module: 'FT2Plugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primLoadGlyph: index flags: flags [
+{ #category : #private-primitives }
+FT2Face >> primLoadGlyph: index flags: flags [
 	<primitive: 'primitiveLoadGlyph' module: 'FT2Plugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primNewFaceFromExternalMemory: aFreeTypeExternalMemory size: anInteger index: anInteger2 [
+{ #category : #private-primitives }
+FT2Face >> primNewFaceFromExternalMemory: aFreeTypeExternalMemory size: anInteger index: anInteger2 [
 	<primitive: 'primitiveNewMemoryFaceFromExternalMemoryAndIndex' module: 'FT2Plugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primNewFaceFromFile: fileName index: anInteger [
+{ #category : #private-primitives }
+FT2Face >> primNewFaceFromFile: fileName index: anInteger [
 	<primitive: 'primitiveNewFaceFromFileAndIndex' module: 'FT2Plugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primNewMemoryFaceByteSize: anInteger index: anInteger2 [
+{ #category : #private-primitives }
+FT2Face >> primNewMemoryFaceByteSize: anInteger index: anInteger2 [
 	<primitive: 'primitiveNewMemoryFaceByteSizeAndIndex' module: 'FT2Plugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primRenderGlyphIntoForm: aForm [
+{ #category : #private-primitives }
+FT2Face >> primRenderGlyphIntoForm: aForm [
 	<primitive: 'primitiveRenderGlyphIntoForm' module: 'FT2Plugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primRenderGlyphIntoForm: aForm pixelMode: anInteger [
+{ #category : #private-primitives }
+FT2Face >> primRenderGlyphIntoForm: aForm pixelMode: anInteger [
 	<primitive: 'primitiveRenderGlyphIntoFormWithRenderMode' module: 'FT2Plugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primSetBitmapLeft: x top: y [
+{ #category : #private-primitives }
+FT2Face >> primSetBitmapLeft: x top: y [
 	<primitive: 'primitiveSetBitmapLefttop' module: 'FT2Plugin'>
 	^self primitiveFailed.
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primSetCharMap: encodingString [
+{ #category : #private-primitives }
+FT2Face >> primSetCharMap: encodingString [
 	<primitive: 'primitiveSetFaceCharMap' module: 'FT2Plugin'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primSetPixelWidth: x height: y [
+{ #category : #private-primitives }
+FT2Face >> primSetPixelWidth: x height: y [
 	<primitive: 'primitiveSetPixelSizes' module: 'FT2Plugin'>
 	^self primitiveFailed.
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primSetTransform: matrixWordArray delta: deltaWordArray [
+{ #category : #private-primitives }
+FT2Face >> primSetTransform: matrixWordArray delta: deltaWordArray [
 	"matrix is 16.16 fixed point
 		x' = x*m[0] + y*m[1]                                 
 		y' = x*m[2] + y*yy[3]
@@ -733,29 +543,20 @@ FT2Face>>primSetTransform: matrixWordArray delta: deltaWordArray [
 	^self primitiveFailed.
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primTransformGlyphSlotOutline:  anIntegerArray [
+{ #category : #private-primitives }
+FT2Face >> primTransformGlyphSlotOutline:  anIntegerArray [
 	<primitive: 'primitiveTransformFaceGlyphSlotOutline' module: 'FT2Plugin'>
 	^self primitiveFailed.
 ]
 
-{
-	#category : #private-primitives,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>primTranslateGlyphSlotOutline:  anIntegerArray [
+{ #category : #private-primitives }
+FT2Face >> primTranslateGlyphSlotOutline:  anIntegerArray [
 	<primitive: 'primitiveTranslateFaceGlyphSlotOutline' module: 'FT2Plugin'>
 	^self primitiveFailed.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>printOn: aStream  [
+{ #category : #printing }
+FT2Face >> printOn: aStream [ 
 	super printOn: aStream.
 	handle ifNil: [^self].
 	"self familyName isNil ifTrue: [ self loadFields ]."
@@ -767,74 +568,50 @@ FT2Face>>printOn: aStream  [
 		nextPut: $]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>renderGlyphIntoForm: aForm [
+{ #category : #rendering }
+FT2Face >> renderGlyphIntoForm: aForm [
 	"render the current glyph (selected by loadChar/loadGlyph into the given form (1 or 8 bpp)"
 	self primRenderGlyphIntoForm: aForm
 
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>renderGlyphIntoForm: aForm pixelMode: anInteger [
+{ #category : #rendering }
+FT2Face >> renderGlyphIntoForm: aForm pixelMode: anInteger [
 	"render the current glyph (selected by loadChar/loadGlyph into the given form (1 or 8 bpp)
 	with pixel mode anInteger "
 	self primRenderGlyphIntoForm: aForm pixelMode: anInteger
 
 ]
 
-{
-	#category : #charmaps,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>setCharMap: encodingString [
+{ #category : #charmaps }
+FT2Face >> setCharMap: encodingString [
 	self primSetCharMap: encodingString.
 	self primGetCharMap.
 
 ]
 
-{
-	#category : #glyphs,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>setPixelWidth: x height: y [
+{ #category : #glyphs }
+FT2Face >> setPixelWidth: x height: y [
 	self primSetPixelWidth: x height: y
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>size [
+{ #category : #accessing }
+FT2Face >> size [
 	^size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>styleFlags [
+{ #category : #accessing }
+FT2Face >> styleFlags [
 	^styleFlags
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>styleName [
+{ #category : #accessing }
+FT2Face >> styleName [
 	^styleName
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>transform: aMatrix [
+{ #category : #rendering }
+FT2Face >> transform: aMatrix [
 
 	| matrix delta |
 	matrix := IntegerArray new: 4.
@@ -850,11 +627,8 @@ FT2Face>>transform: aMatrix [
 
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>transformOutlineAngle: angle scalePoint: scalePoint slant: slant [
+{ #category : #rendering }
+FT2Face >> transformOutlineAngle: angle scalePoint: scalePoint slant: slant [
 	| oneX oneY matrix  slantOne|
 	oneX := (16r10000 * scalePoint x) asInteger.
 	oneY :=  (16r10000 * scalePoint y) asInteger.
@@ -877,11 +651,8 @@ FT2Face>>transformOutlineAngle: angle scalePoint: scalePoint slant: slant [
 	self primTransformGlyphSlotOutline: matrix
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>translateOutlineBy: aPoint [
+{ #category : #rendering }
+FT2Face >> translateOutlineBy: aPoint [
 	| delta|
 	delta := IntegerArray new: 2.
 	delta at: 1 put: (aPoint x * 64) rounded. 
@@ -889,26 +660,17 @@ FT2Face>>translateOutlineBy: aPoint [
 	self primTranslateGlyphSlotOutline: delta.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>underlinePosition [
+{ #category : #accessing }
+FT2Face >> underlinePosition [
 	^underlinePosition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>underlineThickness [
+{ #category : #accessing }
+FT2Face >> underlineThickness [
 	^underlineThickness
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Face>>unitsPerEm [
+{ #category : #accessing }
+FT2Face >> unitsPerEm [
 	^unitsPerEm
 ]

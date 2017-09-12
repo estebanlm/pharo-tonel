@@ -26,24 +26,17 @@ Class {
 		'inverseName',
 		'inverseSlot'
 	],
-	#category : #Slot-Examples-Associations,
-	#timestamp : 'JanVanDeSandt 2/27/2015 11:26'
+	#category : #Slot-Examples-Associations
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot class>>named: aSymbol inverse: anInverseSymbol inClass: aTargetClassOrSymbol  [
+{ #category : #'instance creation' }
+RelationSlot class >> named: aSymbol inverse: anInverseSymbol inClass: aTargetClassOrSymbol [ 
 
 	^(super named: aSymbol) inverse: anInverseSymbol inClass: aTargetClassOrSymbol 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot>>= anObject  [
+{ #category : #comparing }
+RelationSlot >> = anObject [ 
 
 	^super = anObject and: [ 
 		self targetClassName = anObject targetClassName and: [ 
@@ -52,11 +45,8 @@ RelationSlot>>= anObject  [
 	
 ]
 
-{
-	#category : #internal,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot>>addAssociationFrom: ownerObject to: otherObject [
+{ #category : #internal }
+RelationSlot >> addAssociationFrom: ownerObject to: otherObject [
 	"A new reference from <ownerObject> to <otherObject> is created. Here we update the other 
 	side of the association. If the other side is a ToOne association this means that an other
 	association may have to be removed first."
@@ -72,21 +62,15 @@ RelationSlot>>addAssociationFrom: ownerObject to: otherObject [
 			(inverseSlot read: otherObject) inverseAdd: ownerObject ]
 ]
 
-{
-	#category : #internal,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot>>checkValue: aValue [
+{ #category : #internal }
+RelationSlot >> checkValue: aValue [
 
 	(aValue isKindOf: self targetClass)
 		ifFalse: [ self error: 'Invalid value' ].
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot>>emitStore: aMethodBuilder [
+{ #category : #'code generation' }
+RelationSlot >> emitStore: aMethodBuilder [
 	| tempName |
 	tempName := Object new.
 	aMethodBuilder
@@ -99,76 +83,52 @@ RelationSlot>>emitStore: aMethodBuilder [
 		send: #writeSlot:value:
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot>>hasInverse [
+{ #category : #testing }
+RelationSlot >> hasInverse [
 
 	^inverseName notNil
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot>>hash [
+{ #category : #comparing }
+RelationSlot >> hash [
 	^ ((self species hash bitXor: self name hash) 
 			bitXor: (self index ifNil: [ 0 ])) 
 				bitXor: self targetClassName hash
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot>>inClass: aTargetClassOrSymbol [
+{ #category : #initialization }
+RelationSlot >> inClass: aTargetClassOrSymbol [
 
 	targetClass := aTargetClassOrSymbol
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot>>inverse: anInverseSymbol inClass: aTargetClassOrSymbol [
+{ #category : #initialization }
+RelationSlot >> inverse: anInverseSymbol inClass: aTargetClassOrSymbol [
 
 	self inClass: aTargetClassOrSymbol.
 	inverseName := anInverseSymbol.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot>>inverseName [
+{ #category : #accessing }
+RelationSlot >> inverseName [
 
 	^inverseName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot>>inverseSlot [
+{ #category : #accessing }
+RelationSlot >> inverseSlot [
 
 	^inverseSlot ifNil: [ self linkUp. inverseSlot ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot>>isToOneSlot [
+{ #category : #testing }
+RelationSlot >> isToOneSlot [
 
 	^false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot>>linkUp [
+{ #category : #initialization }
+RelationSlot >> linkUp [
 
 	inverseSlot := self targetClass slotNamed: inverseName.
 	(inverseSlot isKindOf: RelationSlot)
@@ -178,11 +138,8 @@ RelationSlot>>linkUp [
 		ifFalse: [ self error: 'Invalid association: inverse names do not match' ].
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot>>printOn: aStream [
+{ #category : #printing }
+RelationSlot >> printOn: aStream [
 	aStream 
 		store: self name;
 		nextPutAll: ' => ';
@@ -198,11 +155,8 @@ RelationSlot>>printOn: aStream [
 
 ]
 
-{
-	#category : #internal,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot>>removeAssociationFrom: ownerObject to: otherObject [
+{ #category : #internal }
+RelationSlot >> removeAssociationFrom: ownerObject to: otherObject [
 	"A reference from <ownerObject> to <otherObject> is removed. Here we update the other 
 	side of the association. If the other side is a ToOne association set the value to nil,
 	for ToMany associations remove <ownerObject> from the collection." 
@@ -212,11 +166,8 @@ RelationSlot>>removeAssociationFrom: ownerObject to: otherObject [
 		ifFalse: [ (inverseSlot read: otherObject) inverseRemove: ownerObject ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot>>targetClass [
+{ #category : #accessing }
+RelationSlot >> targetClass [
 
 	targetClass isSymbol
 		ifTrue: [ 
@@ -226,11 +177,8 @@ RelationSlot>>targetClass [
 	^targetClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RelationSlot>>targetClassName [
+{ #category : #accessing }
+RelationSlot >> targetClassName [
 
 	^targetClass isSymbol
 		ifTrue: [ targetClass ]

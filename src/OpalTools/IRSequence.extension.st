@@ -1,12 +1,7 @@
-Extension {
-	#name : #IRSequence
-}
+Extension { #name : #IRSequence }
 
-{
-	#category : #'*OpalTools',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-IRSequence>>gtInspectorSourceCodeIn: composite [
+{ #category : #'*OpalTools' }
+IRSequence >> gtInspectorSourceCodeIn: composite [
 	<gtInspectorPresentationOrder: 30> 
 
 	^ composite pharoMethod 
@@ -18,11 +13,8 @@ IRSequence>>gtInspectorSourceCodeIn: composite [
 		act: [ self method compiledMethod browse ] icon: GLMUIThemeExtraIcons glamorousBrowse entitled: 'Browse'
 ]
 
-{
-	#category : #'*OpalTools',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-IRSequence>>gtInspectorTreeIn: composite [
+{ #category : #'*OpalTools' }
+IRSequence >> gtInspectorTreeIn: composite [
 	<gtInspectorPresentationOrder: 30> 
 	^composite tree
 		rootsExpanded;

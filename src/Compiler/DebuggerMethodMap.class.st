@@ -18,26 +18,19 @@ Class {
 		'blockExtentsToTempRefs',
 		'startpcsToTempRefs'
 	],
-	#category : #Compiler-Support,
-	#timestamp : '<historical>'
+	#category : #Compiler-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap class>>forMethod: aMethod "<CompiledMethod>" [
+{ #category : #'instance creation' }
+DebuggerMethodMap class >> forMethod: aMethod [ "<CompiledMethod>"
 	"Answer a DebuggerMethodMap suitable for debugging activations of aMethod"
 	^self new forMethod: aMethod
 	
 				
 ]
 
-{
-	#category : #'source mapping',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>abstractPCFor: concretePC when: contextIsActive [
+{ #category : #'source mapping' }
+DebuggerMethodMap >> abstractPCFor: concretePC when: contextIsActive [
 	"If the context is the actve context (is at the hot end of the stack)
 	 then its pc is the current pc.  But if the context isn't, because it is
 	suspended sending a message, then its current pc is the previous pc"
@@ -47,11 +40,8 @@ DebuggerMethodMap>>abstractPCFor: concretePC when: contextIsActive [
 			ifFalse: [(self method pcPreviousTo: concretePC) ifNil: [concretePC]]) method: self method
 ]
 
-{
-	#category : #'source mapping',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>abstractPCForConcretePC: concretePC method: aMethod [
+{ #category : #'source mapping' }
+DebuggerMethodMap >> abstractPCForConcretePC: concretePC method: aMethod [
 	"Answer the abstractPC matching concretePC."
 
 	| abstractPC scanner client |
@@ -66,11 +56,8 @@ DebuggerMethodMap>>abstractPCForConcretePC: concretePC method: aMethod [
 	 true] whileTrue
 ]
 
-{
-	#category : #'source mapping',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>abstractSourceMap [
+{ #category : #'source mapping' }
+DebuggerMethodMap >> abstractSourceMap [
 	"Answer with a Dictionary of abstractPC <Integer> to sourceRange <Interval>."
 	| theMethodToScan rawSourceRanges concreteSourceRanges abstractPC scanner client |
 	abstractSourceRanges ifNotNil:
@@ -98,11 +85,8 @@ DebuggerMethodMap>>abstractSourceMap [
 	^abstractSourceRanges
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>blockExtentsInto: aDictionary from: initialPC to: endPC scanner: scanner numberer: numbererBlock [
+{ #category : #private }
+DebuggerMethodMap >> blockExtentsInto: aDictionary from: initialPC to: endPC scanner: scanner numberer: numbererBlock [
 	"Support routine for startpcsToBlockExtents"
 	| extentStart blockSizeOrLocator |
 	extentStart := numbererBlock value.
@@ -119,28 +103,19 @@ DebuggerMethodMap>>blockExtentsInto: aDictionary from: initialPC to: endPC scann
 	^aDictionary
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>forMethod: aMethod  [
+{ #category : #initialize-release }
+DebuggerMethodMap >> forMethod: aMethod [ 
 	^self forMethod: aMethod methodNode: aMethod methodNode.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>forMethod: aMethod "<CompiledMethod>" methodNode: theMethodNode "<MethodNode>" [
+{ #category : #initialize-release }
+DebuggerMethodMap >> forMethod: aMethod "<CompiledMethod>" methodNode: theMethodNode [ "<MethodNode>"
 	methodReference := WeakArray with: aMethod.
 	methodNode := theMethodNode.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>mapFromBlockKeys: keys toSchematicTemps: schematicTempNamesString method: aCompiledMethod [
+{ #category : #private }
+DebuggerMethodMap >> mapFromBlockKeys: keys toSchematicTemps: schematicTempNamesString method: aCompiledMethod [
 	"Decode a schematicTempNamesString that encodes the layout of temp names
 	 in a method and any closures/blocks within it, matching keys in keys to
 	 vectors of temp names."
@@ -169,19 +144,13 @@ DebuggerMethodMap>>mapFromBlockKeys: keys toSchematicTemps: schematicTempNamesSt
 	^map
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>method [
+{ #category : #accessing }
+DebuggerMethodMap >> method [
 	^methodReference at: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>namedTempAt: index in: aContext [
+{ #category : #accessing }
+DebuggerMethodMap >> namedTempAt: index [ in: aContext
 	"Answer the value of the temp at index in aContext where index is relative
 	 to the array of temp names answered by tempNamesForContext:"
 	^self
@@ -190,11 +159,8 @@ DebuggerMethodMap>>namedTempAt: index in: aContext [
 		startpcsToBlockExtents: (self startpcsToBlockExtents: aContext method)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>namedTempAt: index put: aValue in: aContext [
+{ #category : #accessing }
+DebuggerMethodMap >> namedTempAt: index put: aValue [ in: aContext
 	"Assign the value of the temp at index in aContext where index is relative
 	 to the array of temp names answered by tempNamesForContext:.
 	 If the value is a copied value we also need to set it along the lexical chain."
@@ -205,11 +171,8 @@ DebuggerMethodMap>>namedTempAt: index put: aValue in: aContext [
 		startpcsToBlockExtents: (self startpcsToBlockExtents: aContext method)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>privateDereference: tempReference in: aContext [
+{ #category : #private }
+DebuggerMethodMap >> privateDereference: tempReference in: aContext [
 	"Fetch the temporary with reference tempReference in aContext.
 	 tempReference can be
 		integer - direct temp reference
@@ -225,11 +188,8 @@ DebuggerMethodMap>>privateDereference: tempReference in: aContext [
 							at: tempReference second]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>privateDereference: tempReference in: aContext put: aValue [
+{ #category : #private }
+DebuggerMethodMap >> privateDereference: tempReference in: aContext put: aValue [
 	"Assign the temporary with reference tempReference in aContext.
 	 tempReference can be
 		integer - direct temp reference
@@ -247,19 +207,13 @@ DebuggerMethodMap>>privateDereference: tempReference in: aContext put: aValue [
 							put: aValue]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>privateIsOuter: anObject  [
+{ #category : #private }
+DebuggerMethodMap >> privateIsOuter: anObject [ 
 	^anObject last isArray and: [anObject last first == #outer]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>privateTempAt: index in: aContext put: aValue startpcsToBlockExtents: theContextsStartpcsToBlockExtents [
+{ #category : #private }
+DebuggerMethodMap >> privateTempAt: index in: aContext put: aValue startpcsToBlockExtents: theContextsStartpcsToBlockExtents [
 	| nameRefPair |
 	nameRefPair := (self privateTempRefsForContext: aContext
 						 startpcsToBlockExtents: theContextsStartpcsToBlockExtents)
@@ -268,11 +222,8 @@ DebuggerMethodMap>>privateTempAt: index in: aContext put: aValue startpcsToBlock
 	^self privateDereference: nameRefPair last in: aContext put: aValue
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>privateTempAt: index in: aContext startpcsToBlockExtents: theContextsStartpcsToBlockExtents [
+{ #category : #private }
+DebuggerMethodMap >> privateTempAt: index in: aContext startpcsToBlockExtents: theContextsStartpcsToBlockExtents [
 	| nameRefPair |
 	nameRefPair := (self privateTempRefsForContext: aContext
 						 startpcsToBlockExtents: theContextsStartpcsToBlockExtents)
@@ -281,11 +232,8 @@ DebuggerMethodMap>>privateTempAt: index in: aContext startpcsToBlockExtents: the
 	^self privateDereference: nameRefPair last in: aContext
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>privateTempRefsForContext: aContext startpcsToBlockExtents: theContextsStartpcsToBlockExtents [
+{ #category : #private }
+DebuggerMethodMap >> privateTempRefsForContext: aContext startpcsToBlockExtents: theContextsStartpcsToBlockExtents [
 	"Answer the sequence of temps in scope in aContext in the natural order,
 	 outermost arguments and temporaries first, innermost last.  Each temp is
 	 a pair of the temp's name followed by a reference.  The reference can be
@@ -317,11 +265,8 @@ DebuggerMethodMap>>privateTempRefsForContext: aContext startpcsToBlockExtents: t
 					 (localRefs reject: [:localPair| outerTemps anySatisfy: [:outerPair| localPair first = outerPair first]])]]
 ]
 
-{
-	#category : #'source mapping',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>rangeForPC: concretePC contextIsActiveContext: contextIsActive [
+{ #category : #'source mapping' }
+DebuggerMethodMap >> rangeForPC: concretePC contextIsActiveContext: contextIsActive [
   	"Answer the indices in the source code for the supplied pc."
 	
 	| pc |
@@ -344,21 +289,15 @@ DebuggerMethodMap>>rangeForPC: concretePC contextIsActiveContext: contextIsActiv
 					nil -> (end +1 to: end)]) value ]
 ]
 
-{
-	#category : #'source mapping',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>sortedSourceMap [
+{ #category : #'source mapping' }
+DebuggerMethodMap >> sortedSourceMap [
 	"Answer a sorted collection of associations, pcRangeStart -> pcRangeInterval "
 	^ sortedSourceMap
 		ifNil: [sortedSourceMap := self abstractSourceMap associations sorted]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>startpcsToBlockExtents: aCompiledMethod [
+{ #category : #private }
+DebuggerMethodMap >> startpcsToBlockExtents: aCompiledMethod [
 	"Answer a Dictionary of startpc to Interval of blockExtent, using the
 	 identical numbering scheme described in and orchestrated by
 	 BlockNode>>analyseArguments:temporaries:rootNode:.  This is
@@ -382,11 +321,8 @@ DebuggerMethodMap>>startpcsToBlockExtents: aCompiledMethod [
 		numberer: [| value | value := index. index := index + 2. value] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>tempNamesForContext: aContext [
+{ #category : #accessing }
+DebuggerMethodMap >> tempNamesForContext: aContext [
 	"Answer an Array of all the temp names in scope in aContext starting with
 	 the home's first local (the first argument or first temporary if no arguments)."
 	^(self
@@ -395,11 +331,8 @@ DebuggerMethodMap>>tempNamesForContext: aContext [
 			[:pair| pair first]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-DebuggerMethodMap>>tempsSubSequenceFrom: tempNamesStream [
+{ #category : #private }
+DebuggerMethodMap >> tempsSubSequenceFrom: tempNamesStream [
 	^Array streamContents:
 		[:tsss|
 		[tempNamesStream skipSeparators.

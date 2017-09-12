@@ -7,15 +7,11 @@ self openOn: (self>>#compose) ast
 Class {
 	#name : #GTOpalScopeBrowser,
 	#superclass : #GLMCompositePresentation,
-	#category : #OpalTools,
-	#timestamp : 'MarcusDenker 10/16/2014 11:26'
+	#category : #OpalTools
 }
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GTOpalScopeBrowser>>compose [
+{ #category : #building }
+GTOpalScopeBrowser >> compose [
 	self title: 'Tree'.
 	self tabulator with: [ :browser |
 		browser
@@ -36,21 +32,15 @@ GTOpalScopeBrowser>>compose [
 			from: #tree port: #selectedNode ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GTOpalScopeBrowser>>sourceIn: a [
+{ #category : #building }
+GTOpalScopeBrowser >> sourceIn: a [
 	^ a pharoMethod 
 		smalltalkClass: [ :each | each parents first methodClass ]; 
 		display: [ :each | each source ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GTOpalScopeBrowser>>treeIn: a [
+{ #category : #building }
+GTOpalScopeBrowser >> treeIn: a [
 	^ a tree
 		rootsExpanded;
 		display: [ :anObject | anObject doSemanticAnalysis;scope ];

@@ -18,68 +18,46 @@ Class {
 		'via',
 		'to'
 	],
-	#category : #Athens-Core-Paths,
-	#timestamp : 'IgorStasenko 3/7/2012 13:32'
+	#category : #Athens-Core-Paths
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensQuadSegment>>accept: aVisitor [
+{ #category : #visitor }
+AthensQuadSegment >> accept: aVisitor [
 	^ aVisitor quadricBezierSegment: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensQuadSegment>>endPoint [
+{ #category : #accessing }
+AthensQuadSegment >> endPoint [
 	^ to
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensQuadSegment>>from: pt0 via: pt1 to: p [
+{ #category : #initialize-release }
+AthensQuadSegment >> from: pt0 via: pt1 to: p [
 
 	via := pt1.
 	to := p.
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensQuadSegment>>sendCommandTo: aBuilder [
+{ #category : #visitor }
+AthensQuadSegment >> sendCommandTo: aBuilder [
 	^ aBuilder curveVia: via to: to 
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensQuadSegment>>to [
+{ #category : #accessing }
+AthensQuadSegment >> to [
 
 	^ to
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensQuadSegment>>via [
+{ #category : #accessing }
+AthensQuadSegment >> via [
 
 	^ via
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensQuadSegment>>visitWith: visitor [
+{ #category : #visitor }
+AthensQuadSegment >> visitWith: visitor [
 
 	visitor visitQuadSegment: self
 ]

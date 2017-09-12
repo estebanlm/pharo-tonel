@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnEntityWriterTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityWriterTests>>testChunkedOnly [
+{ #category : #testing }
+ZnEntityWriterTests >> testChunkedOnly [
 	| entity headers writer output reader result |
 	entity := 	ZnEntity text: (String streamContents: [ :out |
 		{ Collection. Stream. Exception. Magnitude } do: [ :cls |
@@ -35,11 +28,8 @@ ZnEntityWriterTests>>testChunkedOnly [
 	self assert: result contents equals: entity contents
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityWriterTests>>testGzippedAndChunked [
+{ #category : #testing }
+ZnEntityWriterTests >> testGzippedAndChunked [
 	| entity headers writer output reader result |
 	entity := 	ZnEntity text: (String streamContents: [ :out |
 		{ Collection. Stream. Exception. Magnitude } do: [ :cls |
@@ -63,11 +53,8 @@ ZnEntityWriterTests>>testGzippedAndChunked [
 	self assert: result contents equals: entity contents
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityWriterTests>>testPlain [
+{ #category : #testing }
+ZnEntityWriterTests >> testPlain [
 	| entity writer output |
 	entity := ZnEntity text: 'Foo bar!'.
 	output := ByteArray streamContents: [ :out |
@@ -79,11 +66,8 @@ ZnEntityWriterTests>>testPlain [
 	self assert: output equals: 'Foo bar!' asByteArray
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityWriterTests>>testPlainUsingReader [
+{ #category : #testing }
+ZnEntityWriterTests >> testPlainUsingReader [
 	| entity headers writer output reader result |
 	entity := ZnEntity text: 'Foo bar!'.
 	headers := ZnHeaders new 

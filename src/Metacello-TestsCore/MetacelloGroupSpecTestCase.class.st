@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloGroupSpecTestCase,
 	#superclass : #MetacelloSpecTestCase,
-	#category : #Metacello-TestsCore-Specs,
-	#timestamp : ''
+	#category : #Metacello-TestsCore-Specs
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloGroupSpecTestCase>>testGroupMergeSpec [
+{ #category : #tests }
+MetacelloGroupSpecTestCase >> testGroupMergeSpec [
     | groupA groupB group |
     groupA := self groupSpec
         name: 'Platform';
@@ -27,11 +20,8 @@ MetacelloGroupSpecTestCase>>testGroupMergeSpec [
     self assert: (group includes includes: 'Tests')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloGroupSpecTestCase>>testGroupSpec [
+{ #category : #tests }
+MetacelloGroupSpecTestCase >> testGroupSpec [
     | group |
     group := self groupSpec
         name: 'Platform';

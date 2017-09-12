@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #SlotMigrationTest,
 	#superclass : #SlotSilentTest,
-	#category : #Slot-Tests,
-	#timestamp : ''
+	#category : #Slot-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testAddSharedVariableKeepSubclasses [
+{ #category : #tests }
+SlotMigrationTest >> testAddSharedVariableKeepSubclasses [
 	"Reproduces fogbugz case 13028"
 
 	"Define original hierarchy"
@@ -41,11 +34,8 @@ SlotMigrationTest>>testAddSharedVariableKeepSubclasses [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testAddSlotAndMigrate [
+{ #category : #tests }
+SlotMigrationTest >> testAddSlotAndMigrate [
 	"We create a class without slots and create an instance; then we add a slot and check the instance can hold a value."
 	aClass := self makeWithLayout: FixedLayout.
 	
@@ -59,11 +49,8 @@ SlotMigrationTest>>testAddSlotAndMigrate [
 	aClass classLayout checkIntegrity.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testAddSlotPropagateAndMigrate [
+{ #category : #tests }
+SlotMigrationTest >> testAddSlotPropagateAndMigrate [
 	"We create a class without slots and a subclass, and create an instance of the latter; then we add a slot to superclass and check the instance can hold a value."
 
 	| superclass subclass |
@@ -89,11 +76,8 @@ SlotMigrationTest>>testAddSlotPropagateAndMigrate [
 	subclass classLayout checkIntegrity.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testAddTestSlot [
+{ #category : #tests }
+SlotMigrationTest >> testAddTestSlot [
 	"We create a class without slots and create an instance; then we add a slot and check the instance can hold a value."
 	aClass := self makeWithLayout: FixedLayout andSlots: { #aSlot }.
 	
@@ -107,11 +91,8 @@ SlotMigrationTest>>testAddTestSlot [
 	aClass classLayout checkIntegrity.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testChangeLayoutTypeFromByte [
+{ #category : #tests }
+SlotMigrationTest >> testChangeLayoutTypeFromByte [
 
 	aClass := self makeWithLayout: ByteLayout.
 	"Change the layout of the class from bytes to pointer"
@@ -125,11 +106,8 @@ SlotMigrationTest>>testChangeLayoutTypeFromByte [
 	self assert: aClass instVarNames equals: { #id. #name }.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testChangeLayoutTypeToByte [
+{ #category : #tests }
+SlotMigrationTest >> testChangeLayoutTypeToByte [
 	aClass := self 
 		makeWithLayout: FixedLayout
 		andSlots: { #id. #name }.
@@ -142,11 +120,8 @@ SlotMigrationTest>>testChangeLayoutTypeToByte [
 	self assert: aClass instVarNames isEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testChangeSuperclass [
+{ #category : #tests }
+SlotMigrationTest >> testChangeSuperclass [
 
 	"Define original hierarchy"
 	aClass := self make: [ :builder |
@@ -181,11 +156,8 @@ SlotMigrationTest>>testChangeSuperclass [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testChangingFormatKeepsMethod [
+{ #category : #tests }
+SlotMigrationTest >> testChangingFormatKeepsMethod [
 
 	aClass := self make: [ :builder | 
 		builder 
@@ -206,11 +178,8 @@ SlotMigrationTest>>testChangingFormatKeepsMethod [
 	anotherClass classLayout checkIntegrity.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testMigrateTestSlot [
+{ #category : #tests }
+SlotMigrationTest >> testMigrateTestSlot [
 	"We create a class with a Test slot, so its  value is shared between instances"
 	| instance2 |
 	aClass := self makeWithLayout: FixedLayout andSlots: { #aSlot => ExampleSlotWithState. }.
@@ -226,11 +195,8 @@ SlotMigrationTest>>testMigrateTestSlot [
 	aClass classLayout checkIntegrity.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testRedefineSuperclass [
+{ #category : #tests }
+SlotMigrationTest >> testRedefineSuperclass [
 	"This case reproduces a MNU found loading Moose."
 
 	| superclass class |
@@ -248,11 +214,8 @@ SlotMigrationTest>>testRedefineSuperclass [
 	class classLayout checkIntegrity.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testRemoveSlotAndMigrate [
+{ #category : #tests }
+SlotMigrationTest >> testRemoveSlotAndMigrate [
 	"We create a class with a slot and create an instance; then we remove the slot and check the instance doesn't hold the value."
 	aClass := self makeWithLayout: FixedLayout andSlots: { #aSlot }.
 
@@ -267,11 +230,8 @@ SlotMigrationTest>>testRemoveSlotAndMigrate [
 	aClass classLayout checkIntegrity.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testRemoveTestSlot [
+{ #category : #tests }
+SlotMigrationTest >> testRemoveTestSlot [
 	aClass := self makeWithLayout: FixedLayout andSlots: {#anotherSlot => ExampleSlotWithState. #aSlot }.
 	
 	instance := aClass new.
@@ -284,11 +244,8 @@ SlotMigrationTest>>testRemoveTestSlot [
 	aClass classLayout checkIntegrity.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testReshapeByteVariableToPointerPropagatesToDeepHierarchy [
+{ #category : #tests }
+SlotMigrationTest >> testReshapeByteVariableToPointerPropagatesToDeepHierarchy [
 
 	"create the original hierarchy"
 	aClass := self make: [ :builder |
@@ -336,11 +293,8 @@ SlotMigrationTest>>testReshapeByteVariableToPointerPropagatesToDeepHierarchy [
 		self assert: each isPointers description: each name, ' was not reshaped.' ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testReshapeClassPropagatesToDeepHierarchy [
+{ #category : #tests }
+SlotMigrationTest >> testReshapeClassPropagatesToDeepHierarchy [
 	"Test reshaping a class which is head of a hierarchy of 4 levels"
 	
 	"level 1"
@@ -402,11 +356,8 @@ SlotMigrationTest>>testReshapeClassPropagatesToDeepHierarchy [
 	yetYetAnotherClass classLayout checkIntegrity.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testReshapePointerToByteVariablePropagatesToDeepHierarchy [
+{ #category : #tests }
+SlotMigrationTest >> testReshapePointerToByteVariablePropagatesToDeepHierarchy [
 
 	"create the original hierarchy"
 	aClass := self make: [ :builder |
@@ -453,11 +404,8 @@ SlotMigrationTest>>testReshapePointerToByteVariablePropagatesToDeepHierarchy [
 		self assert: each isBytes description: each name, ' was not reshaped.' ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testReshapeSuperSuperClass [
+{ #category : #tests }
+SlotMigrationTest >> testReshapeSuperSuperClass [
 
 	| supersuperclass superclass subclass |
 
@@ -512,11 +460,8 @@ SlotMigrationTest>>testReshapeSuperSuperClass [
 	supersuperclass classLayout checkIntegrity.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testShiftSlotAndMigrate [
+{ #category : #tests }
+SlotMigrationTest >> testShiftSlotAndMigrate [
 
 	aClass := self makeWithLayout: FixedLayout andSlots: { #a. #c }.
 	aClass compile: 'a ^a'.
@@ -544,11 +489,8 @@ SlotMigrationTest>>testShiftSlotAndMigrate [
 	aClass classLayout checkIntegrity.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testSuperclassChangeLayoutType [
+{ #category : #tests }
+SlotMigrationTest >> testSuperclassChangeLayoutType [
 	"This case reproduces a MNU found loading Moose."
 
 	| superclass class |
@@ -569,11 +511,8 @@ SlotMigrationTest>>testSuperclassChangeLayoutType [
 	self assert: class classLayout isBits.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotMigrationTest>>testSwitchSlotsAndMigrate [
+{ #category : #tests }
+SlotMigrationTest >> testSwitchSlotsAndMigrate [
 
 	aClass := self makeWithLayout: FixedLayout andSlots: { #a. #b }.
 	aClass 

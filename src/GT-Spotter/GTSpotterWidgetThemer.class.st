@@ -7,52 +7,36 @@ ACustomTheme>>spotterWidgetThemer
 Class {
 	#name : #GTSpotterWidgetThemer,
 	#superclass : #GLMBrickThemerModule,
-	#category : #GT-Spotter-Theme,
-	#timestamp : 'TudorGirba 11/26/2014 15:15'
+	#category : #GT-Spotter-Theme
 }
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>backgroundColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> backgroundColor [
 	"used as background color for all panes"
 	^ Color white
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>borderColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> borderColor [
 	"color that is used for border and dividers of UI parts of Spotter
 	for example divider between header and results or between preview and list"
 	^ Color r: 180 g: 180 b: 180 range: 255
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>breadcrumbHeight [
+{ #category : #values }
+GTSpotterWidgetThemer >> breadcrumbHeight [
 
 	^ 26
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>breadcrumbItemBackgroundColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> breadcrumbItemBackgroundColor [
 
 	^ self borderColor
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>breadcrumbItemLabelStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> breadcrumbItemLabelStyleFor: aBrick [
 
 	aBrick
 		textPosition: #center;
@@ -61,51 +45,36 @@ GTSpotterWidgetThemer>>breadcrumbItemLabelStyleFor: aBrick [
 		hSpaceFill
 ]
 
-{
-	#category : #styles-widget,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>breadcrumbItemLabelWidgetStyleFor: aBrick [
+{ #category : #styles-widget }
+GTSpotterWidgetThemer >> breadcrumbItemLabelWidgetStyleFor: aBrick [
 
 	aBrick
 		color: self breadcrumbItemBackgroundColor;
 		textColor: self breadcrumbItemTextColor
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>breadcrumbItemStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> breadcrumbItemStyleFor: aBrick [
 
 	aBrick vSpaceFill
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>breadcrumbItemTextColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> breadcrumbItemTextColor [
 
 	^ Color white
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>breadcrumbItemTriangleStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> breadcrumbItemTriangleStyleFor: aBrick [
 
 	aBrick
 		height: self breadcrumbTriangleHeight;
 		hSpaceFill
 ]
 
-{
-	#category : #styles-widget,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>breadcrumbItemTriangleWidgetStyleFor: aBrick [
+{ #category : #styles-widget }
+GTSpotterWidgetThemer >> breadcrumbItemTriangleWidgetStyleFor: aBrick [
 
 	aBrick
 		renderer: (GTSpotterTriangleRenderer new orientation: #bottom).
@@ -115,29 +84,20 @@ GTSpotterWidgetThemer>>breadcrumbItemTriangleWidgetStyleFor: aBrick [
 		ifFalse: [ aBrick color: Color transparent ]
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>breadcrumbSeparatorColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> breadcrumbSeparatorColor [
 
 	^ self breadcrumbItemBackgroundColor muchLighter slightlyDarker
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>breadcrumbSeparatorLineWidth [
+{ #category : #values }
+GTSpotterWidgetThemer >> breadcrumbSeparatorLineWidth [
 
 	^ 2
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>breadcrumbSeparatorStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> breadcrumbSeparatorStyleFor: aBrick [
 
 	aBrick
 		borderWidth: self breadcrumbSeparatorLineWidth;
@@ -145,11 +105,8 @@ GTSpotterWidgetThemer>>breadcrumbSeparatorStyleFor: aBrick [
 		height: self breadcrumbHeight + self outerBorderWidth.
 ]
 
-{
-	#category : #styles-widget,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>breadcrumbSeparatorWidgetStyleFor: aBrick [
+{ #category : #styles-widget }
+GTSpotterWidgetThemer >> breadcrumbSeparatorWidgetStyleFor: aBrick [
 
 	aBrick
 		color: self breadcrumbItemBackgroundColor;
@@ -157,20 +114,14 @@ GTSpotterWidgetThemer>>breadcrumbSeparatorWidgetStyleFor: aBrick [
 		renderer: GTSpotterBreadcrumbSeparatorRenderer new
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>breadcrumbSeparatorWidth [
+{ #category : #values }
+GTSpotterWidgetThemer >> breadcrumbSeparatorWidth [
 
 	^ (self breadcrumbHeight + self outerBorderWidth) / 2 + 4 "we need slightly more because of drawing accuracy"
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>breadcrumbStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> breadcrumbStyleFor: aBrick [
 	
 	aBrick
 		margin: { 0 . 0 };
@@ -181,29 +132,20 @@ GTSpotterWidgetThemer>>breadcrumbStyleFor: aBrick [
 		zIndex: 2.
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>breadcrumbTriangleHeight [
+{ #category : #values }
+GTSpotterWidgetThemer >> breadcrumbTriangleHeight [
 
 	^ 16
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>buttonPressedColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> buttonPressedColor [
 
 	^ self backgroundColor darker
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>categoryAmountStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> categoryAmountStyleFor: aBrick [
 
 	aBrick
 		textPosition: #leftCenter.
@@ -217,69 +159,48 @@ GTSpotterWidgetThemer>>categoryAmountStyleFor: aBrick [
 		marginLeft: self categoryNameMarginRight.
 ]
 
-{
-	#category : #styles-widget,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>categoryAmountWidgetStyleFor: aBrick [
+{ #category : #styles-widget }
+GTSpotterWidgetThemer >> categoryAmountWidgetStyleFor: aBrick [
 
 	aBrick
 		textColor: self titleTextColor;
 		color: self titleBackgroundColor
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>categoryMarginBottom [
+{ #category : #values }
+GTSpotterWidgetThemer >> categoryMarginBottom [
 
 	^ (self itemHeight * (2/3)) ceiling "pixels"
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>categoryNameMarginLeft [
+{ #category : #values }
+GTSpotterWidgetThemer >> categoryNameMarginLeft [
 
 	^ self itemIconMaxWidth
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>categoryNameMarginRight [
+{ #category : #values }
+GTSpotterWidgetThemer >> categoryNameMarginRight [
 
 	^ 10
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>categoryStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> categoryStyleFor: aBrick [
 
 	aBrick
 		marginBottom: self categoryMarginBottom;
 		hSpaceFill
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>categoryTitleBackgroundColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> categoryTitleBackgroundColor [
 
 	^ self backgroundColor alpha: 0.95
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>categoryTitleNameStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> categoryTitleNameStyleFor: aBrick [
 
 	aBrick
 		vSpaceFill;
@@ -291,11 +212,8 @@ GTSpotterWidgetThemer>>categoryTitleNameStyleFor: aBrick [
 	
 ]
 
-{
-	#category : #styles-widget,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>categoryTitleNameWidgetStyleFor: aBrick [
+{ #category : #styles-widget }
+GTSpotterWidgetThemer >> categoryTitleNameWidgetStyleFor: aBrick [
 
 	aBrick
 		textColor: self titleTextColor;
@@ -303,11 +221,8 @@ GTSpotterWidgetThemer>>categoryTitleNameWidgetStyleFor: aBrick [
 	
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>categoryTitleShortcutStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> categoryTitleShortcutStyleFor: aBrick [
 
 	aBrick
 		vSpaceFill;
@@ -319,11 +234,8 @@ GTSpotterWidgetThemer>>categoryTitleShortcutStyleFor: aBrick [
 	
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>categoryTitleStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> categoryTitleStyleFor: aBrick [
 
 	aBrick
 		useHorizontalLinearLayout;
@@ -341,21 +253,15 @@ GTSpotterWidgetThemer>>categoryTitleStyleFor: aBrick [
 			title amountBrick hMargin ]"
 ]
 
-{
-	#category : #styles-widget,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>categoryTitleWidgetStyleFor: aBrick [
+{ #category : #styles-widget }
+GTSpotterWidgetThemer >> categoryTitleWidgetStyleFor: aBrick [
 
 	aBrick
 		normalColor: self categoryTitleBackgroundColor
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>closeButtonStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> closeButtonStyleFor: aBrick [
 
 	aBrick
 		vSpaceFill;
@@ -364,22 +270,16 @@ GTSpotterWidgetThemer>>closeButtonStyleFor: aBrick [
 		marginLeft: 0
 ]
 
-{
-	#category : #styles-widget,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>closeButtonWidgetStyleFor: aBrick [
+{ #category : #styles-widget }
+GTSpotterWidgetThemer >> closeButtonWidgetStyleFor: aBrick [
 
 	aBrick
 		normalImage: GLMUIThemeExtraIcons glamorousClose;
 		pressedColor: self buttonPressedColor
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>dropDownPaneStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> dropDownPaneStyleFor: aBrick [
 
 	aBrick
 		layoutProperties: GLMBrickLayoutProperties new;
@@ -388,41 +288,29 @@ GTSpotterWidgetThemer>>dropDownPaneStyleFor: aBrick [
 		hSpaceFill
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>headerHeight [
+{ #category : #values }
+GTSpotterWidgetThemer >> headerHeight [
 	"height of the header where user enters search request"
 	^ 56
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>headerStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> headerStyleFor: aBrick [
 
 	aBrick
 		hSpaceFill;
 		height: self headerHeight
 ]
 
-{
-	#category : #styles-widget,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>headerWidgetStyleFor: aBrick [
+{ #category : #styles-widget }
+GTSpotterWidgetThemer >> headerWidgetStyleFor: aBrick [
 
 	aBrick
 		color: self backgroundColor
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>helpButtonStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> helpButtonStyleFor: aBrick [
 
 	aBrick
 		vSpaceFill;
@@ -431,22 +319,16 @@ GTSpotterWidgetThemer>>helpButtonStyleFor: aBrick [
 		marginLeft: 0
 ]
 
-{
-	#category : #styles-widget,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>helpButtonWidgetStyleFor: aBrick [
+{ #category : #styles-widget }
+GTSpotterWidgetThemer >> helpButtonWidgetStyleFor: aBrick [
 
 	aBrick
 		normalImage: GLMUIThemeExtraIcons glamorousHelp;
 		pressedColor: self buttonPressedColor
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>hintHideArrowStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> hintHideArrowStyleFor: aBrick [
 
 	aBrick ifNil: [ ^ self ].
 	(aBrick valueOfProperty: #brickSpotterIsReveal ifAbsent: [ false ])
@@ -459,11 +341,8 @@ GTSpotterWidgetThemer>>hintHideArrowStyleFor: aBrick [
 	aBrick changed
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>hintHideStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> hintHideStyleFor: aBrick [
 
 	aBrick ifNil: [ ^ self ].
 	(aBrick valueOfProperty: #brickSpotterIsReveal ifAbsent: [ false ])
@@ -479,11 +358,8 @@ GTSpotterWidgetThemer>>hintHideStyleFor: aBrick [
 	aBrick changed
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>hintRevealArrowStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> hintRevealArrowStyleFor: aBrick [
 	
 	SmalltalkImage current vm canHandleShiftPressed
 		ifTrue: [ ^ self ].
@@ -500,11 +376,8 @@ GTSpotterWidgetThemer>>hintRevealArrowStyleFor: aBrick [
 	aBrick changed
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>hintRevealStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> hintRevealStyleFor: aBrick [
 	
 	SmalltalkImage current vm canHandleShiftPressed
 		ifTrue: [ ^ self ].
@@ -525,44 +398,29 @@ GTSpotterWidgetThemer>>hintRevealStyleFor: aBrick [
 	aBrick changed
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>iconAct [
+{ #category : #icons }
+GTSpotterWidgetThemer >> iconAct [
 	^ self iconNamed: #glamorousAccept
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>iconDiveIn [
+{ #category : #icons }
+GTSpotterWidgetThemer >> iconDiveIn [
 	^ self iconNamed: #glamorousDiveRightIcon
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>iconDiveInCategory [
+{ #category : #icons }
+GTSpotterWidgetThemer >> iconDiveInCategory [
 	^ self iconNamed: #glamorousDiveAllRightIcon
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>innerBorderWidth [
+{ #category : #values }
+GTSpotterWidgetThemer >> innerBorderWidth [
 	"width of the border that separates panes in the spotter"
 	^ 1
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>itemActionButtonStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> itemActionButtonStyleFor: aBrick [
 
 	aBrick
 		width: [ (self itemHeight / 1.1) floor ];
@@ -571,30 +429,21 @@ GTSpotterWidgetThemer>>itemActionButtonStyleFor: aBrick [
 		padding: { 0 . self outerBorderWidth }
 ]
 
-{
-	#category : #styles-widget,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>itemActionButtonWidgetStyleFor: aBrick [
+{ #category : #styles-widget }
+GTSpotterWidgetThemer >> itemActionButtonWidgetStyleFor: aBrick [
 
 	aBrick
 		pressedColor: self itemActionSelectedBackgroundColor
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>itemActionSelectedBackgroundColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> itemActionSelectedBackgroundColor [
 
 	^ self itemSelectedBackgroundColor darker
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>itemActionbarStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> itemActionbarStyleFor: aBrick [
 
 	aBrick
 		useHorizontalLinearLayout;
@@ -604,47 +453,32 @@ GTSpotterWidgetThemer>>itemActionbarStyleFor: aBrick [
 		visible: false
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>itemHeight [
+{ #category : #values }
+GTSpotterWidgetThemer >> itemHeight [
 
 	^  16 + Smalltalk ui theme labelFont height
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>itemHoveredBackgroundColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> itemHoveredBackgroundColor [
 
 	^ self itemSelectedBackgroundColor alpha: 0.35
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>itemIconAlphaValue [
+{ #category : #values }
+GTSpotterWidgetThemer >> itemIconAlphaValue [
 
 	^ 0.8
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>itemIconMaxWidth [
+{ #category : #values }
+GTSpotterWidgetThemer >> itemIconMaxWidth [
 
 	^ 50
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>itemIconStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> itemIconStyleFor: aBrick [
 	"icon form must already be set before styling"
 
 	self flag: 'figure out why alpha doesn''t work'.
@@ -655,11 +489,8 @@ GTSpotterWidgetThemer>>itemIconStyleFor: aBrick [
 		vSpaceFill
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>itemLabelStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> itemLabelStyleFor: aBrick [
 
 	aBrick label
 		highlightingLogic: [ :aCanvas :aRectangle | |bounds|
@@ -673,31 +504,22 @@ GTSpotterWidgetThemer>>itemLabelStyleFor: aBrick [
 		marginRight: self outerBorderWidth.
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>itemNormalBackgroundColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> itemNormalBackgroundColor [
 
 	^ Color transparent
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>itemNormalStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> itemNormalStyleFor: aBrick [
 
 	aBrick
 		height: [ self itemHeight ];
 		hSpaceFill
 ]
 
-{
-	#category : #styles-widget,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>itemNormalWidgetStyleFor: aBrick [
+{ #category : #styles-widget }
+GTSpotterWidgetThemer >> itemNormalWidgetStyleFor: aBrick [
 
 	aBrick
 		normalColor: self itemNormalBackgroundColor;
@@ -705,112 +527,76 @@ GTSpotterWidgetThemer>>itemNormalWidgetStyleFor: aBrick [
 		checkedColor: self itemSelectedBackgroundColor
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>itemSelectedBackgroundColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> itemSelectedBackgroundColor [
 
 	^ self backgroundColor darker
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>outerBorderWidth [
+{ #category : #values }
+GTSpotterWidgetThemer >> outerBorderWidth [
 	"the width of the border around the whole spotter"
 	^ 4
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>previewArrowColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> previewArrowColor [
 
 	^ self itemSelectedBackgroundColor
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>previewArrowGapHack [
+{ #category : #values }
+GTSpotterWidgetThemer >> previewArrowGapHack [
 
 	^ self themer scrollbarOffset + self themer scrollbarWidth + self outerBorderWidth + 1"pager bug"
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>previewArrowWidth [
+{ #category : #values }
+GTSpotterWidgetThemer >> previewArrowWidth [
 
 	^ (self itemHeight / 2) + self previewArrowGapHack
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>previewBorderWidth [
+{ #category : #values }
+GTSpotterWidgetThemer >> previewBorderWidth [
 
 	^ self outerBorderWidth
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>previewPaddingLeft [
+{ #category : #values }
+GTSpotterWidgetThemer >> previewPaddingLeft [
 
 	^ self previewArrowWidth * 1.2
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>previewPaddingRight [
+{ #category : #values }
+GTSpotterWidgetThemer >> previewPaddingRight [
 
 	^ self previewPaddingLeft
 
 
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>previewWidthPercent [
+{ #category : #values }
+GTSpotterWidgetThemer >> previewWidthPercent [
 
 	^ 40
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>privacyAgreementIsNotSendingDataColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> privacyAgreementIsNotSendingDataColor [
 
 	^ Color paleRed
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>privacyAgreementIsSendingDataColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> privacyAgreementIsSendingDataColor [
 
 	^ Color paleGreen
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>privacyAgreementNotificationStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> privacyAgreementNotificationStyleFor: aBrick [
 
 	| color |
 	color := aBrick sendUsageData 
@@ -825,11 +611,8 @@ GTSpotterWidgetThemer>>privacyAgreementNotificationStyleFor: aBrick [
 		marginTop: 0
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>resultsPaneStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> resultsPaneStyleFor: aBrick [
 
 	aBrick
 		hSpaceFill: self resultsPaneWidth;
@@ -837,47 +620,32 @@ GTSpotterWidgetThemer>>resultsPaneStyleFor: aBrick [
 		with: [ :b | b band layout: GTSpotterStackedLayout new ]
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>resultsPaneWidth [
+{ #category : #values }
+GTSpotterWidgetThemer >> resultsPaneWidth [
 	"width in Percents of the results pane"
 	^ 100"%"
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>searchFieldFamilyName [
+{ #category : #values }
+GTSpotterWidgetThemer >> searchFieldFamilyName [
 
 	^ 'Source Sans Pro'
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>searchFieldFontSize [
+{ #category : #values }
+GTSpotterWidgetThemer >> searchFieldFontSize [
 
 	^ 15
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>searchFieldMarginLeft [
+{ #category : #values }
+GTSpotterWidgetThemer >> searchFieldMarginLeft [
 
 	^ 20
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>searchFieldStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> searchFieldStyleFor: aBrick [
 	
 	aBrick
 		beCentered;
@@ -897,20 +665,14 @@ GTSpotterWidgetThemer>>searchFieldStyleFor: aBrick [
 		fontName: self searchFieldFamilyName pointSize: self searchFieldFontSize.
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>searchFieldTextColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> searchFieldTextColor [
 	
 	^ Color black
 ]
 
-{
-	#category : #styles-widget,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>searchFieldWidgetStyleFor: aBrick [
+{ #category : #styles-widget }
+GTSpotterWidgetThemer >> searchFieldWidgetStyleFor: aBrick [
 	
 	aBrick morph
 		color: Color transparent;
@@ -921,11 +683,8 @@ GTSpotterWidgetThemer>>searchFieldWidgetStyleFor: aBrick [
 		backgroundColor: Color transparent
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>settingsButtonStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> settingsButtonStyleFor: aBrick [
 
 	aBrick
 		vSpaceFill;
@@ -934,48 +693,33 @@ GTSpotterWidgetThemer>>settingsButtonStyleFor: aBrick [
 		marginRight: 2
 ]
 
-{
-	#category : #styles-widget,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>settingsButtonWidgetStyleFor: aBrick [
+{ #category : #styles-widget }
+GTSpotterWidgetThemer >> settingsButtonWidgetStyleFor: aBrick [
 	aBrick
 		normalImage: (Smalltalk ui icons iconNamed: #glamorousPreferences);
 		pressedColor: self buttonPressedColor
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>settingsLabelPadding [
+{ #category : #values }
+GTSpotterWidgetThemer >> settingsLabelPadding [
 
 	^ 4
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>settingsLabelSelectedTextColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> settingsLabelSelectedTextColor [
 
 	^ Color black
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>settingsLabelTextColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> settingsLabelTextColor [
 
 	^ Color white
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>spotterContentsStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> spotterContentsStyleFor: aBrick [
 	
 	aBrick
 		useVerticalLinearLayout;
@@ -989,11 +733,8 @@ GTSpotterWidgetThemer>>spotterContentsStyleFor: aBrick [
 	
 ]
 
-{
-	#category : #styles-widget,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>spotterContentsWidgetStyleFor: aBrick [
+{ #category : #styles-widget }
+GTSpotterWidgetThemer >> spotterContentsWidgetStyleFor: aBrick [
 	
 	aBrick
 		borderColor: self borderColor;
@@ -1001,20 +742,14 @@ GTSpotterWidgetThemer>>spotterContentsWidgetStyleFor: aBrick [
 	
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>spotterGhostText [
+{ #category : #values }
+GTSpotterWidgetThemer >> spotterGhostText [
 
 	^ 'Search'
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>spotterPaneStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> spotterPaneStyleFor: aBrick [
 	
 	aBrick
 		useHorizontalLinearLayout;
@@ -1022,11 +757,8 @@ GTSpotterWidgetThemer>>spotterPaneStyleFor: aBrick [
 		vSpaceFill
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>spotterPreviewArrowContainerStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> spotterPreviewArrowContainerStyleFor: aBrick [
 
 	aBrick
 		useVerticalLinearLayout;
@@ -1042,11 +774,8 @@ GTSpotterWidgetThemer>>spotterPreviewArrowContainerStyleFor: aBrick [
 		zIndex: 4.
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>spotterPreviewArrowStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> spotterPreviewArrowStyleFor: aBrick [
 
 	aBrick
 		hSpaceFill;
@@ -1054,11 +783,8 @@ GTSpotterWidgetThemer>>spotterPreviewArrowStyleFor: aBrick [
 		height: [ (self previewArrowWidth - self previewArrowGapHack ) * 2 ]
 ]
 
-{
-	#category : #styles-widget,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>spotterPreviewArrowWidgetStyleFor: aBrick [
+{ #category : #styles-widget }
+GTSpotterWidgetThemer >> spotterPreviewArrowWidgetStyleFor: aBrick [
 
 	aBrick owner isTriangleVisible
 		ifTrue: [
@@ -1077,11 +803,8 @@ GTSpotterWidgetThemer>>spotterPreviewArrowWidgetStyleFor: aBrick [
 			aBrick renderer border: self outerBorderWidth ]
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>spotterPreviewCompositeStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> spotterPreviewCompositeStyleFor: aBrick [
 
 	aBrick
 		hSpaceFill;
@@ -1090,11 +813,8 @@ GTSpotterWidgetThemer>>spotterPreviewCompositeStyleFor: aBrick [
 		paddingLeft: self previewPaddingLeft
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>spotterPreviewStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> spotterPreviewStyleFor: aBrick [
 	
 	aBrick
 		borderWidth: self previewBorderWidth;
@@ -1107,56 +827,38 @@ GTSpotterWidgetThemer>>spotterPreviewStyleFor: aBrick [
 		zIndex: 1
 ]
 
-{
-	#category : #styles-widget,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>spotterPreviewWidgetStyleFor: aBrick [
+{ #category : #styles-widget }
+GTSpotterWidgetThemer >> spotterPreviewWidgetStyleFor: aBrick [
 	
 	aBrick
 		borderColor: self borderColor;
 		color: self backgroundColor
 ]
 
-{
-	#category : #styles,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>spotterStyleFor: aBrick [
+{ #category : #styles }
+GTSpotterWidgetThemer >> spotterStyleFor: aBrick [
 
 	aBrick brickRoot useVerticalLinearLayout
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>titleBackgroundColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> titleBackgroundColor [
 
 	^ Color transparent
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>titleFamilyName [
+{ #category : #values }
+GTSpotterWidgetThemer >> titleFamilyName [
 	^ 'Open Sans'.
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>titleMarginLeft [
+{ #category : #values }
+GTSpotterWidgetThemer >> titleMarginLeft [
 	^ 20
 ]
 
-{
-	#category : #values,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterWidgetThemer>>titleTextColor [
+{ #category : #values }
+GTSpotterWidgetThemer >> titleTextColor [
 
 	^ self themer textLightColor
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #Collection
-}
+Extension { #name : #Collection }
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-Collection class>>fromSton: stonReader [
+{ #category : #'*ston-core' }
+Collection class >> fromSton: stonReader [
 	| collection |
 	collection := self new.
 	stonReader parseListDo: [ :each |
@@ -14,11 +9,8 @@ Collection class>>fromSton: stonReader [
 	^ collection
 ]
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-Collection>>stonOn: stonWriter [
+{ #category : #'*ston-core' }
+Collection >> stonOn: stonWriter [
 	stonWriter writeObject: self do: [
 		stonWriter encodeList: self ]
 

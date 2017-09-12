@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'width'
 	],
-	#category : #Spec-Layout,
-	#timestamp : '<historical>'
+	#category : #Spec-Layout
 }
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecRowLayout>>add: aSpec width: aNumber [
+{ #category : #commands }
+SpecRowLayout >> add: aSpec width: aNumber [
 	
 	self add: aSpec origin: 0@0 corner: 1@1 offsetOrigin: 0@0 offsetCorner: aNumber @0
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecRowLayout>>addSplitter [
+{ #category : #commands }
+SpecRowLayout >> addSplitter [
 
 	self commands add: (SpecSplitterVertical commands: self commands)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecRowLayout>>autoFractionComputation [
+{ #category : #private }
+SpecRowLayout >> autoFractionComputation [
 	
 	self commands
 		doWithIndex: [ :e :idx | 
@@ -44,11 +34,8 @@ SpecRowLayout>>autoFractionComputation [
 				ifFalse: [ self setWidgetLayoutWithOffset: e at: idx ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecRowLayout>>countNumberOfProportionals [
+{ #category : #private }
+SpecRowLayout >> countNumberOfProportionals [
 
 	self commands do: [ :e | 
 		e layoutFrame hasNoOffsets
@@ -58,11 +45,8 @@ SpecRowLayout>>countNumberOfProportionals [
 				numberOfProportionals := numberOfProportionals + 1 ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecRowLayout>>manualFractionComputation [
+{ #category : #private }
+SpecRowLayout >> manualFractionComputation [
 	| delta |
 	delta := numberOfProportionals isZero
 		ifTrue: [ 0 ]
@@ -74,11 +58,8 @@ SpecRowLayout>>manualFractionComputation [
 				ifFalse: [ self setWidgetLayoutWithOffset: e at: idx ] ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecRowLayout>>privateAsArray [
+{ #category : #converting }
+SpecRowLayout >> privateAsArray [
 
 	self resetArrayComputation.
 	self countNumberOfProportionals.
@@ -93,11 +74,8 @@ SpecRowLayout>>privateAsArray [
 	^ result asArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecRowLayout>>resetArrayComputation [
+{ #category : #private }
+SpecRowLayout >> resetArrayComputation [
 
 	super resetArrayComputation.
 	
@@ -109,11 +87,8 @@ SpecRowLayout>>resetArrayComputation [
 	size := self commands size
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecRowLayout>>setWidgetLayoutWithNoOffset: widget at: index delta: delta [
+{ #category : #private }
+SpecRowLayout >> setWidgetLayoutWithNoOffset: widget at: index delta: delta [
 
 	widget layoutFrame: ((currentProportional @ 0 corner: (currentProportional + delta) @ 1) asLayoutFrame leftOffset: currentOffset).
 	
@@ -122,11 +97,8 @@ SpecRowLayout>>setWidgetLayoutWithNoOffset: widget at: index delta: delta [
 	lastFractionIndex := index
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecRowLayout>>setWidgetLayoutWithOffset: e at: idx [
+{ #category : #private }
+SpecRowLayout >> setWidgetLayoutWithOffset: e at: idx [
 	| y0 y1 |
 	
 	width := e offsets width.
@@ -147,11 +119,8 @@ SpecRowLayout>>setWidgetLayoutWithOffset: e at: idx [
 			currentOffset := currentOffset + width ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecRowLayout>>shiftLastWidgets [
+{ #category : #private }
+SpecRowLayout >> shiftLastWidgets [
 	| index ante |
 	
 	(lastFractionIndex > 0 and: [ lastFractionIndex < size ]) ifFalse: [ ^ self ].

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #OCCompiledMethodIntegrityTests,
 	#superclass : #TestCase,
-	#category : #OpalCompiler-Tests-Misc,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-Misc
 }
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompiledMethodIntegrityTests>>testBlockTemps [
+{ #category : #test }
+OCCompiledMethodIntegrityTests >> testBlockTemps [
 
 	| newCompiledMethod |
 	newCompiledMethod := OpalCompiler new 
@@ -27,11 +20,8 @@ OCCompiledMethodIntegrityTests>>testBlockTemps [
 	self assert: newCompiledMethod primitive = 0.
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompiledMethodIntegrityTests>>testNotUsedArgument [
+{ #category : #test }
+OCCompiledMethodIntegrityTests >> testNotUsedArgument [
 
 	| newCompiledMethod |
 	
@@ -47,11 +37,8 @@ OCCompiledMethodIntegrityTests>>testNotUsedArgument [
 	self assert: newCompiledMethod primitive = 0.
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompiledMethodIntegrityTests>>testPragmas [
+{ #category : #test }
+OCCompiledMethodIntegrityTests >> testPragmas [
 
 	| newCompiledMethod |
 	
@@ -72,11 +59,8 @@ OCCompiledMethodIntegrityTests>>testPragmas [
 	self assert: newCompiledMethod primitive = 256.
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompiledMethodIntegrityTests>>testPrimitive [
+{ #category : #test }
+OCCompiledMethodIntegrityTests >> testPrimitive [
 
 	| newCompiledMethod |
 	
@@ -93,11 +77,8 @@ OCCompiledMethodIntegrityTests>>testPrimitive [
 	self assert: newCompiledMethod primitive = 62.
 ]
 
-{
-	#category : #test,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompiledMethodIntegrityTests>>testRemoteTempInVector [
+{ #category : #test }
+OCCompiledMethodIntegrityTests >> testRemoteTempInVector [
 
 	| newCompiledMethod |
 

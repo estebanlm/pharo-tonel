@@ -4,15 +4,11 @@ WideCharacterSetTest holds tests for WideCharacterSet
 Class {
 	#name : #WideCharacterSetTest,
 	#superclass : #TestCase,
-	#category : #Collections-Tests-Support,
-	#timestamp : 'nice 11/19/2007 22:45'
+	#category : #Collections-Tests-Support
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WideCharacterSetTest>>testAddingToCharacterSet [
+{ #category : #testing }
+WideCharacterSetTest >> testAddingToCharacterSet [
 
 	| cs wcs wc |
 	cs := CharacterSet newFrom: 'aeiouy'.
@@ -43,11 +39,8 @@ WideCharacterSetTest>>testAddingToCharacterSet [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WideCharacterSetTest>>testCopy [
+{ #category : #testing }
+WideCharacterSetTest >> testCopy [
     | theOriginal theCopy |
     theOriginal := WideCharacterSet newFrom: ('abc' copyWith: 300 asCharacter).
     theCopy := theOriginal copy.
@@ -55,11 +48,8 @@ WideCharacterSetTest>>testCopy [
     ^self should: [theOriginal includes: $a] description: 'Changing the copy should not change the original'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WideCharacterSetTest>>testCreation [
+{ #category : #testing }
+WideCharacterSetTest >> testCreation [
 	"By now, only creation method is newFrom:"
 
 	| cs1 wcs1 cs2 wcs2 byteString wideString |

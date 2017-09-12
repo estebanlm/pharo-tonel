@@ -15,39 +15,26 @@ Class {
 		'reference',
 		'method'
 	],
-	#category : #Tool-DependencyAnalyser-Core,
-	#timestamp : 'BaptisteQuide 7/31/2014 12:06'
+	#category : #Tool-DependencyAnalyser-Core
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReferenceDependency>>isReferenceDependency [
+{ #category : #testing }
+DAReferenceDependency >> isReferenceDependency [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReferenceDependency>>method [
+{ #category : #accessing }
+DAReferenceDependency >> method [
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReferenceDependency>>method: anObject [
+{ #category : #accessing }
+DAReferenceDependency >> method: anObject [
 	method := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReferenceDependency>>printReasonOn: aStream [
+{ #category : #printing }
+DAReferenceDependency >> printReasonOn: aStream [
 	aStream
 		nextPutAll: self theClass name;
 		nextPutAll: '>>';
@@ -56,34 +43,22 @@ DAReferenceDependency>>printReasonOn: aStream [
 		print: self reference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReferenceDependency>>reference [
+{ #category : #accessing }
+DAReferenceDependency >> reference [
 	^ reference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReferenceDependency>>reference: aClass [
+{ #category : #accessing }
+DAReferenceDependency >> reference: aClass [
 	reference := aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReferenceDependency>>selector [
+{ #category : #accessing }
+DAReferenceDependency >> selector [
 	^ selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAReferenceDependency>>selector: aSymbol [
+{ #category : #accessing }
+DAReferenceDependency >> selector: aSymbol [
 	selector := aSymbol
 ]

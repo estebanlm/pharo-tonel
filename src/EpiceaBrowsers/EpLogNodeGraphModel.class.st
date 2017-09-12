@@ -19,15 +19,11 @@ Class {
 		'openSettingsButtonModel',
 		'hiedraCheckBoxModel'
 	],
-	#category : #EpiceaBrowsers-UI-Graph,
-	#timestamp : 'MartinDias 8/14/2016 02:38'
+	#category : #EpiceaBrowsers-UI-Graph
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel class>>open [
+{ #category : #'instance creation' }
+EpLogNodeGraphModel class >> open [
 
 	^ self new
 		refresh;
@@ -35,11 +31,8 @@ EpLogNodeGraphModel class>>open [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel class>>spec [
+{ #category : #accessing }
+EpLogNodeGraphModel class >> spec [
 	<spec: #default>
 
 	^ SpecLayout composed newColumn: [:column |
@@ -56,40 +49,28 @@ EpLogNodeGraphModel class>>spec [
 			 height: self buttonHeight - 4 ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>directory [
+{ #category : #accessing }
+EpLogNodeGraphModel >> directory [
 
 	^ directory ifNil: [ 
 		directory := self monitor sessionStore baseLocator ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>directory: aFileReference [
+{ #category : #accessing }
+EpLogNodeGraphModel >> directory: aFileReference [
 
 	directory := aFileReference.
 	
 	self refresh.
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>hiedraCheckBoxModel [
+{ #category : #'accessing widgets' }
+EpLogNodeGraphModel >> hiedraCheckBoxModel [
 	^ hiedraCheckBoxModel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>initializeHiedraCheckBoxModel [
+{ #category : #initialization }
+EpLogNodeGraphModel >> initializeHiedraCheckBoxModel [
 
 	hiedraCheckBoxModel
 		help: 'Analyze and display connections between log files.';
@@ -99,11 +80,8 @@ EpLogNodeGraphModel>>initializeHiedraCheckBoxModel [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>initializeHiedraController [
+{ #category : #initialization }
+EpLogNodeGraphModel >> initializeHiedraController [
 
 	hiedraRulerController := HiRulerController new.
 	
@@ -123,11 +101,8 @@ EpLogNodeGraphModel>>initializeHiedraController [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>initializeLogNodesTreeModel [
+{ #category : #initialization }
+EpLogNodeGraphModel >> initializeLogNodesTreeModel [
 
 	self initializeHiedraController.
 
@@ -143,22 +118,16 @@ EpLogNodeGraphModel>>initializeLogNodesTreeModel [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>initializeOpenSettingsButtonModel [
+{ #category : #initialization }
+EpLogNodeGraphModel >> initializeOpenSettingsButtonModel [
 
 	openSettingsButtonModel
 		label: 'Dashboard';
 		action: [ self openDashboard ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>initializePresenter  [
+{ #category : #initialization }
+EpLogNodeGraphModel >> initializePresenter [ 
 	super initializePresenter.
 	
 	self initializeSelectedDirectoryButtonModel.
@@ -168,11 +137,8 @@ EpLogNodeGraphModel>>initializePresenter  [
 	self initializeOpenSettingsButtonModel.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>initializeRefreshButtonModel [
+{ #category : #initialization }
+EpLogNodeGraphModel >> initializeRefreshButtonModel [
 
 	refreshButtonModel 
 		help: 'Refresh logs from this directory';
@@ -181,11 +147,8 @@ EpLogNodeGraphModel>>initializeRefreshButtonModel [
 		action: [ self refresh ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>initializeSelectedDirectoryButtonModel [
+{ #category : #initialization }
+EpLogNodeGraphModel >> initializeSelectedDirectoryButtonModel [
 	
 	selectDirectoryButtonModel 
 		help: 'Select directory to browse logs (i.e. files with ombu extension)';
@@ -195,11 +158,8 @@ EpLogNodeGraphModel>>initializeSelectedDirectoryButtonModel [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>initializeWidgets [
+{ #category : #initialization }
+EpLogNodeGraphModel >> initializeWidgets [
 
 	self instantiateModels: {
 		#hiedraCheckBoxModel -> #CheckBoxModel.
@@ -210,82 +170,55 @@ EpLogNodeGraphModel>>initializeWidgets [
 		}
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>isMonitorDirectory [
+{ #category : #refreshing }
+EpLogNodeGraphModel >> isMonitorDirectory [
 
 	^ self monitor sessionStore directory asFileReference = self directory asFileReference 
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>logNodesTreeModel [
+{ #category : #'accessing widgets' }
+EpLogNodeGraphModel >> logNodesTreeModel [
 	^ logNodesTreeModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>monitor [
+{ #category : #accessing }
+EpLogNodeGraphModel >> monitor [
 	
 	^ monitor ifNil: [ EpMonitor current ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>monitor: anEpMonitor [
+{ #category : #accessing }
+EpLogNodeGraphModel >> monitor: anEpMonitor [
 
 	monitor := anEpMonitor
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>openDashboard [
+{ #category : #private }
+EpLogNodeGraphModel >> openDashboard [
 
 	EpDashboardModel open
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>openSettingsButtonModel [
+{ #category : #'accessing widgets' }
+EpLogNodeGraphModel >> openSettingsButtonModel [
 	^ openSettingsButtonModel
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>refresh [
+{ #category : #refreshing }
+EpLogNodeGraphModel >> refresh [
 
 	self refreshLogNodesTreeModel.
 
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>refreshButtonModel [
+{ #category : #'accessing widgets' }
+EpLogNodeGraphModel >> refreshButtonModel [
 	^ refreshButtonModel
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>refreshLogNodesTreeModel [
+{ #category : #refreshing }
+EpLogNodeGraphModel >> refreshLogNodesTreeModel [
 
 	| nodes |
 	nodes := #().
@@ -311,30 +244,21 @@ EpLogNodeGraphModel>>refreshLogNodesTreeModel [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>rowSize [
+{ #category : #accessing }
+EpLogNodeGraphModel >> rowSize [
 
 	^ 23
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>selectDirectory [
+{ #category : #private }
+EpLogNodeGraphModel >> selectDirectory [
 
 	(UIManager default chooseDirectoryFrom: self directory)
 		ifNotNil: [ :selectedDirectory | self directory: selectedDirectory ]
 ]
 
-{
-	#category : #'accessing widgets',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNodeGraphModel>>selectDirectoryButtonModel [
+{ #category : #'accessing widgets' }
+EpLogNodeGraphModel >> selectDirectoryButtonModel [
 
 	^ selectDirectoryButtonModel
 ]

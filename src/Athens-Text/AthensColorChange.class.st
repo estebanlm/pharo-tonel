@@ -7,32 +7,22 @@ Class {
 	#instVars : [
 		'color'
 	],
-	#category : #Athens-Text,
-	#timestamp : 'IgorStasenko 2/6/2012 16:17'
+	#category : #Athens-Text
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensColorChange>>color [
+{ #category : #accessing }
+AthensColorChange >> color [
 
 	^ color
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensColorChange>>color: anObject [
+{ #category : #accessing }
+AthensColorChange >> color: anObject [
 
 	color := anObject
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensColorChange>>renderOn: renderer [
+{ #category : #rendering }
+AthensColorChange >> renderOn: renderer [
 	renderer setCurrentColor: color
 ]

@@ -12,66 +12,44 @@ Class {
 	#instVars : [
 		'value'
 	],
-	#category : #AST-Core-Tokens,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Tokens
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueToken class>>value: aString start: anInteger  [
+{ #category : #'instance creation' }
+RBValueToken class >> value: aString start: anInteger [ 
 	^self new value: aString start: anInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueToken>>length [
+{ #category : #private }
+RBValueToken >> length [
 	^value size
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueToken>>printOn: aStream [
+{ #category : #printing }
+RBValueToken >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut: $(.
 	value printOn: aStream.
 	aStream nextPutAll: ')'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueToken>>source [
+{ #category : #accessing }
+RBValueToken >> source [
 	^ self value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueToken>>value [
+{ #category : #accessing }
+RBValueToken >> value [
 	^value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueToken>>value: anObject [
+{ #category : #accessing }
+RBValueToken >> value: anObject [
 	value := anObject
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueToken>>value: aString start: anInteger  [
+{ #category : #initialize-release }
+RBValueToken >> value: aString start: anInteger [ 
 	value := aString.
 	sourcePointer := anInteger
 ]

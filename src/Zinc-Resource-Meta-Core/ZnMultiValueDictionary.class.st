@@ -17,15 +17,11 @@ Class {
 	#instVars : [
 		'limit'
 	],
-	#category : #Zinc-Resource-Meta-Core,
-	#timestamp : '<historical>'
+	#category : #Zinc-Resource-Meta-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnMultiValueDictionary class>>defaultLimit [
+{ #category : #accessing }
+ZnMultiValueDictionary class >> defaultLimit [
 	"Return the maximum number dictionary entries to accept.
 	Used by ZnMultiValueDictionary and thus for reading headers, 
 	url query and application form url encoded entity fields.
@@ -34,31 +30,22 @@ ZnMultiValueDictionary class>>defaultLimit [
 	^ ZnMaximumNumberOfDictionaryEntries value
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnMultiValueDictionary>>add: anAssociation [
+{ #category : #adding }
+ZnMultiValueDictionary >> add: anAssociation [
 	self checkLimitForKey: anAssociation key.
 	^ super add: anAssociation
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnMultiValueDictionary>>addAllMulti: keyedCollection [
+{ #category : #adding }
+ZnMultiValueDictionary >> addAllMulti: keyedCollection [
 	"Note that we use #at:add:"
 
 	keyedCollection keysAndValuesDo: [ :key :value | 
 		self at: key add: value ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnMultiValueDictionary>>at: key add: value [
+{ #category : #accessing }
+ZnMultiValueDictionary >> at: key add: value [
 	"Store value under key. If key already exists, store multiple values as Array"
 	
 	| existingValue newValue |
@@ -74,20 +61,14 @@ ZnMultiValueDictionary>>at: key add: value [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnMultiValueDictionary>>at: key put: anObject [
+{ #category : #accessing }
+ZnMultiValueDictionary >> at: key put: anObject [
 	self checkLimitForKey: key.
 	^ super at: key put: anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnMultiValueDictionary>>checkLimitForKey: aKey [
+{ #category : #private }
+ZnMultiValueDictionary >> checkLimitForKey: aKey [
 	"Signal an exception when the limit, if present, is exceeded."
 	
 	(self limit notNil and: [ self size >= self limit and: [ (self includesKey: aKey) not ]])
@@ -95,20 +76,14 @@ ZnMultiValueDictionary>>checkLimitForKey: aKey [
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnMultiValueDictionary>>initialize: n [
+{ #category : #initialize-release }
+ZnMultiValueDictionary >> initialize: n [
 	super initialize: n.
 	limit := self class defaultLimit
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnMultiValueDictionary>>keysAndValuesDo: block [
+{ #category : #enumerating }
+ZnMultiValueDictionary >> keysAndValuesDo: block [
 	"Execute a two argument (key, value) block for each header.
 	Multi-valued headers are handled transparently."
 
@@ -121,26 +96,17 @@ ZnMultiValueDictionary>>keysAndValuesDo: block [
 				block value: key value: value ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnMultiValueDictionary>>limit [
+{ #category : #accessing }
+ZnMultiValueDictionary >> limit [
 	^ limit
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnMultiValueDictionary>>limit: numberOfEntries [
+{ #category : #initialize-release }
+ZnMultiValueDictionary >> limit: numberOfEntries [
 	limit := numberOfEntries 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnMultiValueDictionary>>unlimited [
+{ #category : #initialize-release }
+ZnMultiValueDictionary >> unlimited [
 	self limit: nil
 ]

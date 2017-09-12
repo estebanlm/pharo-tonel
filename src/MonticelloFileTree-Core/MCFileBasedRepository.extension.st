@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCFileBasedRepository
-}
+Extension { #name : #MCFileBasedRepository }
 
-{
-	#category : #'*monticellofiletree-core',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileBasedRepository>>packageDescriptionsFromReadableFileNames [
+{ #category : #'*monticellofiletree-core' }
+MCFileBasedRepository >> packageDescriptionsFromReadableFileNames [
 	^ self readableFileNames
 		collect: [ :each | 
 			| name |
@@ -28,11 +23,8 @@ MCFileBasedRepository>>packageDescriptionsFromReadableFileNames [
 					each} ] ]
 ]
 
-{
-	#category : #'*monticellofiletree-core',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileBasedRepository>>retrieveVersionsWithPackageNames: packageNames [
+{ #category : #'*monticellofiletree-core' }
+MCFileBasedRepository >> retrieveVersionsWithPackageNames: packageNames [
 	| packageDescriptions |
 	packageDescriptions := self packageDescriptionsFromReadableFileNames.
 	packageNames addAll: (packageDescriptions collect: [ :packageDescription | packageDescription first ]).

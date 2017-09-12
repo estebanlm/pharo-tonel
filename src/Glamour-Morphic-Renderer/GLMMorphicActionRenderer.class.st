@@ -1,34 +1,21 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicActionRenderer,
 	#superclass : #GLMMorphicWidgetRenderer,
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicActionRenderer>>actionArguments [
+{ #category : #accessing }
+GLMMorphicActionRenderer >> actionArguments [
 	^ {  }
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicActionRenderer>>actionSelector [
+{ #category : #accessing }
+GLMMorphicActionRenderer >> actionSelector [
 	^ #morphicActOn:
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicActionRenderer>>render: anAction [
+{ #category : #rendering }
+GLMMorphicActionRenderer >> render: anAction [
 	|b|
 	b := GLMPluggableButtonMorph
 			on: anAction getState: nil action: self actionSelector.

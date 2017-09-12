@@ -42,90 +42,59 @@ Class {
 		'packageSearchList',
 		'versionSearchList'
 	],
-	#category : #MonticelloGUI,
-	#timestamp : 'LaurentLaffont 2/5/2011 17:35'
+	#category : #MonticelloGUI
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector class>>order [
+{ #category : #'as yet unclassified' }
+MCFileRepositoryInspector class >> order [
 	^ Order ifNil: [ Order := 5 ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector class>>order: anInteger [
+{ #category : #'as yet unclassified' }
+MCFileRepositoryInspector class >> order: anInteger [
 	Order := anInteger
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector class>>packageSearchList [
+{ #category : #'as yet unclassified' }
+MCFileRepositoryInspector class >> packageSearchList [
 	^ packageSearchList ifNil: [ packageSearchList := OrderedCollection new]. 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector class>>repository: aFileBasedRepository workingCopy: aWorkingCopy [
+{ #category : #'as yet unclassified' }
+MCFileRepositoryInspector class >> repository: aFileBasedRepository workingCopy: aWorkingCopy [
 	^self new
 		setRepository: aFileBasedRepository workingCopy: aWorkingCopy;
 		yourself
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector class>>versionSearchList [
+{ #category : #'as yet unclassified' }
+MCFileRepositoryInspector class >> versionSearchList [
 	^ versionSearchList ifNil: [ versionSearchList := OrderedCollection new]. 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>buttonSpecs [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> buttonSpecs [
 	^#(('Refresh' refresh 'refresh the version-list')
 		(Save saveChanges 'Save the local changes')) , super buttonSpecs
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>defaultLabel [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> defaultLabel [
 	^'Repository: ' , repository description
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>hasVersion [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> hasVersion [
 	^ selectedVersion notNil
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>initialExtent [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> initialExtent [
 	^ 640 @ 480
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>initialize [
+{ #category : #initialization }
+MCFileRepositoryInspector >> initialize [
 	super initialize.
 	loaded := Set new.
 	loadedPackages := Set new.
@@ -134,20 +103,14 @@ MCFileRepositoryInspector>>initialize [
 	packageList := #()
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>invalidatePackageAncestryCache [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> invalidatePackageAncestryCache [
 	"Invalidate the ancestry cache so the ancestor list is correctly styled/formatted in the version list i.e., underlined if loaded, bold if not loaded"
 	selectedPackageAncestors := nil
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>load [
+{ #category : #actions }
+MCFileRepositoryInspector >> load [
 	self hasVersion
 		ifFalse: [ ^ self ].
 	self version isCacheable
@@ -157,31 +120,22 @@ MCFileRepositoryInspector>>load [
 	self refresh
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>merge [
+{ #category : #actions }
+MCFileRepositoryInspector >> merge [
 	super merge.
 	self invalidatePackageAncestryCache.
 	self refresh.
 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>order: anInteger [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> order: anInteger [
 	self class order: (order := anInteger).
 	self changed: #versionList.
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>orderSpecs [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> orderSpecs [
 	^{
 		'Unchanged' -> nil.
 		'Order by package' -> [ :x :y | x first <= y first ].
@@ -192,11 +146,8 @@ MCFileRepositoryInspector>>orderSpecs [
 	}
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>orderString: anIndex [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> orderString: anIndex [
 	^String streamContents: [ :stream |
 		order = anIndex
 			ifTrue: [ stream nextPutAll: '<yes>' ]
@@ -204,11 +155,8 @@ MCFileRepositoryInspector>>orderString: anIndex [
 		stream nextPutAll: (self orderSpecs at: anIndex) key ]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>packageIcon: aPackage [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> packageIcon: aPackage [
 	| p |
 	newer ifNil: [ newer := #() ].
 	(loaded anySatisfy: [ :each | each beginsWith: aPackage , '-' ])
@@ -226,27 +174,18 @@ MCFileRepositoryInspector>>packageIcon: aPackage [
 		ifTrue: [ self iconNamed: #dirtyPackageIcon ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>packageList [
+{ #category : #accessing }
+MCFileRepositoryInspector >> packageList [
 	^ packageList 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>packageListMenu: aMenu [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> packageListMenu: aMenu [
 	^aMenu
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>packageListUpdate [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> packageListUpdate [
 	| result packageNames |	
 	
 	"Within fork, make no changes to object state until end with assignment wrapped by #defer:"
@@ -282,11 +221,8 @@ MCFileRepositoryInspector>>packageListUpdate [
 	] fork.
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>packageSearchAccept: string [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> packageSearchAccept: string [
 	| aString |
 
 	aString := string ifNil: [ '' ].
@@ -296,11 +232,8 @@ MCFileRepositoryInspector>>packageSearchAccept: string [
    	self packageListUpdate.
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>packageSearchField [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> packageSearchField [
 	^ SearchMorph new
 		model: self;
 		setIndexSelector: #packageSearchAccept:;
@@ -309,21 +242,15 @@ MCFileRepositoryInspector>>packageSearchField [
 		yourself
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>packageSelection [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> packageSelection [
 	^self packageList ifNotNil: [
 		^ self packageList indexOf: selectedPackage
 	]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>packageSelection: aNumber [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> packageSelection: aNumber [
 	"Track a package change to have the ancestors list loaded."
 
 	"selectedPackage is the selected package name :("
@@ -337,11 +264,8 @@ MCFileRepositoryInspector>>packageSelection: aNumber [
 		changed: #versionList
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>refresh [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> refresh [
 	loadedPackages := Set new.
 	versions := repository retrieveVersionsWithPackageNames: Set new.
 	newer := Set new.
@@ -363,11 +287,8 @@ MCFileRepositoryInspector>>refresh [
 		changed: #versionList
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>saveChanges [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> saveChanges [
 	| currentRepository workingCopy |
 	
 	currentRepository := repository. "This can be changed elsewhere while processing"
@@ -383,11 +304,8 @@ MCFileRepositoryInspector>>saveChanges [
 						ifFalse: [currentRepository storeVersion: dep]]]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>selectedPackageAncestors [
+{ #category : #accessing }
+MCFileRepositoryInspector >> selectedPackageAncestors [
 	selectedPackageAncestors
 		ifNil: [ 
 			selectedPackage
@@ -397,11 +315,8 @@ MCFileRepositoryInspector>>selectedPackageAncestors [
 	^ selectedPackageAncestors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>setRepository: aFileBasedRepository workingCopy: aWorkingCopy [
+{ #category : #accessing }
+MCFileRepositoryInspector >> setRepository: aFileBasedRepository workingCopy: aWorkingCopy [
 	order := self class order.
 	repository := aFileBasedRepository.
 	
@@ -416,32 +331,23 @@ MCFileRepositoryInspector>>setRepository: aFileBasedRepository workingCopy: aWor
 
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>version [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> version [
 	^ version ifNil:
 		[Cursor wait showWhile:
 			[version := repository versionFromFileNamed: selectedVersion]]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>versionHighlight: aString [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> versionHighlight: aString [
 
 	^ Text
 		string: aString
 		attribute: (self versionHighlightEmphasis: aString)
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>versionHighlightEmphasis: aString [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> versionHighlightEmphasis: aString [
 	"Appearence. This code attempts to show the following:
 		- a currently loaded version of the package: underlined.
 		- a version of a not loaded package: bold.
@@ -468,19 +374,13 @@ MCFileRepositoryInspector>>versionHighlightEmphasis: aString [
 	^ TextEmphasis normal
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>versionInfo [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> versionInfo [
 	^ versionInfo ifNil: [versionInfo := repository versionInfoFromFileNamed: selectedVersion]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>versionList [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> versionList [
 	| result sortBlock |
 	result := selectedPackage 
 		ifNil: [ versions ifNil: [ ^ #() ]]
@@ -495,21 +395,15 @@ MCFileRepositoryInspector>>versionList [
 	^ result collect: [ :each | self versionHighlight: each fourth ]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>versionListMenu: aMenu [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> versionListMenu: aMenu [
 	1 to: self orderSpecs size do: [ :index |
 		aMenu addUpdating: #orderString: target: self selector: #order: argumentList: { index } ].
 	^aMenu
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>versionSearchAccept: string [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> versionSearchAccept: string [
 	| aString |
 
 	aString := string ifNil: [ '' ].
@@ -520,11 +414,8 @@ MCFileRepositoryInspector>>versionSearchAccept: string [
 	versionProcess := [ self changed: #versionList ] fork.
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>versionSearchField [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> versionSearchField [
 	^ SearchMorph new
 		model: self;
 		setIndexSelector: #versionSearchAccept:;
@@ -533,19 +424,13 @@ MCFileRepositoryInspector>>versionSearchField [
 		yourself
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>versionSelection [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> versionSelection [
 	^self versionList indexOf: selectedVersion
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>versionSelection: aNumber [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> versionSelection: aNumber [
 	aNumber isZero 
 		ifTrue: [ selectedVersion := version := versionInfo := nil ]
 		ifFalse: [ 
@@ -554,11 +439,8 @@ MCFileRepositoryInspector>>versionSelection: aNumber [
 	self changed: #versionSelection; changed: #summary; changed: #hasVersion
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCFileRepositoryInspector>>widgetSpecs [
+{ #category : #'morphic ui' }
+MCFileRepositoryInspector >> widgetSpecs [
 	| searchBarOffset |
 	
 	searchBarOffset := 30 + StandardFonts defaultFont height + 10..

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #VSUnloadUnit,
 	#superclass : #Object,
@@ -8,41 +5,28 @@ Class {
 		'configurationClass',
 		'commitVersion'
 	],
-	#category : #Versionner-Commit,
-	#timestamp : ''
+	#category : #Versionner-Commit
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSUnloadUnit class>>configurationClass: aClass [
+{ #category : #'instance creation' }
+VSUnloadUnit class >> configurationClass: aClass [
 	^ self basicNew 
 		initializeConfigurationClass: aClass;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSUnloadUnit class>>new [
+{ #category : #'instance creation' }
+VSUnloadUnit class >> new [
 	self error: 'Use #configuration:'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSUnloadUnit>>configurationClass [
+{ #category : #accessing }
+VSUnloadUnit >> configurationClass [
 	^ configurationClass
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSUnloadUnit>>execute  [
+{ #category : #'as yet unclassified' }
+VSUnloadUnit >> execute [ 
 	| developmentVersion project |
 	
 	developmentVersion := self configurationClass project version: #development. 
@@ -61,11 +45,8 @@ VSUnloadUnit>>execute  [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSUnloadUnit>>initializeConfigurationClass: aClass [
+{ #category : #initialization }
+VSUnloadUnit >> initializeConfigurationClass: aClass [
 	configurationClass := aClass.
 	self initialize
 ]

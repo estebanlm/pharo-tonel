@@ -5,70 +5,48 @@ A WhereIsDebugAction highlights in the code editor the current instruction.
 Class {
 	#name : #WhereIsDebugAction,
 	#superclass : #DebugAction,
-	#category : #DebuggerActions,
-	#timestamp : '<historical>'
+	#category : #DebuggerActions
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-WhereIsDebugAction class>>actionType [
+{ #category : #registration }
+WhereIsDebugAction class >> actionType [
 	<debuggingAction>
 	<contextMenuDebuggingAction>
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-WhereIsDebugAction>>defaultHelp [
+{ #category : #accessing }
+WhereIsDebugAction >> defaultHelp [
 
 	^ 'Highligh the next method to be executed (step) by the debugger.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-WhereIsDebugAction>>defaultLabel [
+{ #category : #accessing }
+WhereIsDebugAction >> defaultLabel [
 
 	^ 'Where is?'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-WhereIsDebugAction>>defaultOrder [
+{ #category : #accessing }
+WhereIsDebugAction >> defaultOrder [
 
 	^ 40
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-WhereIsDebugAction>>executeAction [
+{ #category : #actions }
+WhereIsDebugAction >> executeAction [
 
 	self debugger code setSelection: (self session 
 		pcRangeForContext:  self currentContext)	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-WhereIsDebugAction>>id [
+{ #category : #accessing }
+WhereIsDebugAction >> id [
 
 	^ #whereIs
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-WhereIsDebugAction>>initialize [
+{ #category : #initialization }
+WhereIsDebugAction >> initialize [
 
 	super initialize.
 	"This action just updates the selection in the code editor. 

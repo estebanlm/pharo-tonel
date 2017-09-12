@@ -1,12 +1,7 @@
-Extension {
-	#name : #OrderedDictionaryTest
-}
+Extension { #name : #OrderedDictionaryTest }
 
-{
-	#category : #'*Random-Tests',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OrderedDictionaryTest>>testAtRandom [
+{ #category : #'*Random-Tests' }
+OrderedDictionaryTest >> testAtRandom [
 	| dict random |
 	dict := { #one -> 1 . #two -> 2 . #three -> 3  } asOrderedDictionary.
 	random := dict atRandom.

@@ -26,36 +26,26 @@ Class {
 	#classInstVars : [
 		'jobAnnouncer'
 	],
-	#category : #Jobs-Base,
-	#timestamp : 'MartinDias 6/24/2015 15:07'
+	#category : #Jobs-Base
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job class>>block: aBlock [
+{ #category : #'instance creation' }
+Job class >> block: aBlock [
 
 	^(self new)
 		block: aBlock;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job class>>current [
+{ #category : #accessing }
+Job class >> current [
 	"Answer the current job or nil if none."
 
 	^ CurrentJob value
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job class>>exampleCurrentValue [
+{ #category : #examples }
+Job class >> exampleCurrentValue [
 
 	[ :job| 
 		job title: 'Simulating some progress for 1 Second'. 
@@ -67,11 +57,8 @@ Job class>>exampleCurrentValue [
 	] asJob run
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job class>>exampleDebug [
+{ #category : #examples }
+Job class >> exampleDebug [
 	"Job exampleDebug"
 	| aJob |
 	aJob := [ :job| 
@@ -94,11 +81,8 @@ Job class>>exampleDebug [
 	
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job class>>exampleProgress [
+{ #category : #examples }
+Job class >> exampleProgress [
 
 	[:job | job title: 'Let us get started'.
 		1 to: 10 do: [:each | 
@@ -109,163 +93,112 @@ Job class>>exampleProgress [
 			] ]  asJob run
 ]
 
-{
-	#category : #announcing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job class>>jobAnnouncer [
+{ #category : #announcing }
+Job class >> jobAnnouncer [
 	"Answers the announcer for job announcements"
 	
 	^ jobAnnouncer 
 			ifNil: [ jobAnnouncer := Announcer new ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>addChild: aJob [
+{ #category : #private }
+Job >> addChild: aJob [
 
 	children add: aJob.
 	aJob parent: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>announce: anAnnouncementClass [
+{ #category : #accessing }
+Job >> announce: anAnnouncementClass [
 
 	| announcement |
 	announcement := anAnnouncementClass on: self.
 	self announcer announce: announcement.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>announceChange [
+{ #category : #accessing }
+Job >> announceChange [
 
 	isRunning ifFalse: [ ^ self ].
 	self announce: JobChange.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>announcer [
+{ #category : #accessing }
+Job >> announcer [
 
 	^ self class jobAnnouncer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>block [
+{ #category : #accessing }
+Job >> block [
 	
 	^ block
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>block: aBlock [
+{ #category : #private }
+Job >> block: aBlock [
 	
 	block := aBlock.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>children [
+{ #category : #accessing }
+Job >> children [
 
 	^ children copy.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>cleanupAfterRunning [
+{ #category : #private }
+Job >> cleanupAfterRunning [
 	isRunning := false.
 	process := nil.
 	self announce: JobEnd.
 	parent ifNotNil: [ :job | job removeChild: self ].
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>current [
+{ #category : #compatibility }
+Job >> current [
 
 	^ self currentValue.
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>current: aNumber [
+{ #category : #compatibility }
+Job >> current: aNumber [
 
 	self currentValue: aNumber.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>currentValue [
+{ #category : #accessing }
+Job >> currentValue [
 	
 	^ currentValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>currentValue: aNumber [
+{ #category : #accessing }
+Job >> currentValue: aNumber [
 	
 	currentValue := aNumber.
 	self announceChange.
 ]
 
-{
-	#category : #debugging,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>debug [
+{ #category : #debugging }
+Job >> debug [
 	^ process debug
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>decrement [
+{ #category : #compatibility }
+Job >> decrement [
 
 	self currentValue: self currentValue - 1.
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>increment [
+{ #category : #compatibility }
+Job >> increment [
 
 	self currentValue: self currentValue + 1.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>initialize [
+{ #category : #initialization }
+Job >> initialize [
 
 	super initialize.
 	min := 0.
@@ -276,37 +209,25 @@ Job>>initialize [
 	children := OrderedCollection new.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>isRunning [
+{ #category : #testing }
+Job >> isRunning [
 	^ isRunning
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>label [
+{ #category : #compatibility }
+Job >> label [
 
 	^ self title.
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>label: aString  [
+{ #category : #compatibility }
+Job >> label: aString [ 
 
 	self title: aString.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>lookup: lookupBlock ifNone: noneBlock [
+{ #category : #accessing }
+Job >> lookup: lookupBlock ifNone: noneBlock [
 	"Detect a job that satisfies the lookupBlock, or value noneBlock if none satisfies. 
 	The lookup starts at myself, following recursevely through my parent."
 
@@ -317,28 +238,19 @@ Job>>lookup: lookupBlock ifNone: noneBlock [
 		ifNotNil: [ parent lookup: lookupBlock ifNone: noneBlock ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>max [
+{ #category : #accessing }
+Job >> max [
 	
 	^ max
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>max: aNumber [
+{ #category : #accessing }
+Job >> max: aNumber [
 	self migrateProgressWhileUpdatingBounds: [ max := aNumber ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>migrateProgressWhileUpdatingBounds: aBlockChangingBounds [
+{ #category : #accessing }
+Job >> migrateProgressWhileUpdatingBounds: aBlockChangingBounds [
 	"Keep the progress value consistent while we change min / max"
 	| progress |
 	progress := self progress.
@@ -346,56 +258,38 @@ Job>>migrateProgressWhileUpdatingBounds: aBlockChangingBounds [
 	self progress: progress.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>min [
+{ #category : #accessing }
+Job >> min [
 	
 	^ min
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>min: aNumber [
+{ #category : #accessing }
+Job >> min: aNumber [
 	self migrateProgressWhileUpdatingBounds: [ min := aNumber ].
 	self announceChange.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>owner [
+{ #category : #accessing }
+Job >> owner [
 
 	^ block outerContext receiver
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>parent [
+{ #category : #private }
+Job >> parent [
 
 	^ parent
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>parent: aJob  [
+{ #category : #private }
+Job >> parent: aJob [ 
 
 	parent := aJob.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>prepareForRunning [
+{ #category : #private }
+Job >> prepareForRunning [
 
 	isRunning := true.
 	process := Processor activeProcess.
@@ -403,79 +297,55 @@ Job>>prepareForRunning [
 	self announce: JobStart.
 ]
 
-{
-	#category : #progress,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>progress [
+{ #category : #progress }
+Job >> progress [
 	"Avoid negative progress and divideByZero."
 	^ min >= max ifTrue: [ 1 ] ifFalse: [ (currentValue - min) / (max - min) ]
 ]
 
-{
-	#category : #progress,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>progress: aNormalizedFloat [
+{ #category : #progress }
+Job >> progress: aNormalizedFloat [
 	"Set the progress: 0.0 - 1.0"
 
 	currentValue := (min + ((max - min) * aNormalizedFloat)).
 	self announceChange.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>removeChild: aJob  [
+{ #category : #private }
+Job >> removeChild: aJob [ 
 
 	children remove: aJob.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>run [
+{ #category : #running }
+Job >> run [
 
 	[ self prepareForRunning.
 	  CurrentJob value: self during: [ ^ block cull: self ] ]
 			ensure: [ self cleanupAfterRunning ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>title [
+{ #category : #accessing }
+Job >> title [
 	
 	^ title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>title: anObject [
+{ #category : #accessing }
+Job >> title: anObject [
 	
 	title := anObject.
 	self announceChange.
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>value [
+{ #category : #compatibility }
+Job >> value [
 
 	^ self currentValue.
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 07:16:14'
-}
-Job>>value: aNumber [
+{ #category : #compatibility }
+Job >> value: aNumber [
 
 	self currentValue: aNumber.
 ]

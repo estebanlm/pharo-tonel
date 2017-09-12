@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBExtractMethodToComponentTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractMethodToComponentTest>>testBadInterval [
+{ #category : #'failure tests' }
+RBExtractMethodToComponentTest >> testBadInterval [
 	self
 		shouldFail: (RBExtractMethodToComponentRefactoring 
 				extract: (self 
@@ -28,11 +21,8 @@ RBExtractMethodToComponentTest>>testBadInterval [
 				in: RBBasicLintRuleTest class)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractMethodToComponentTest>>testExtractFailure [
+{ #category : #'failure tests' }
+RBExtractMethodToComponentTest >> testExtractFailure [
 	self
 		shouldFail: (RBExtractMethodToComponentRefactoring 
 				extract: (self 
@@ -54,11 +44,8 @@ RBExtractMethodToComponentTest>>testExtractFailure [
 				in: RBBasicLintRuleTest class)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractMethodToComponentTest>>testExtractMethodAtEndOfMethodThatNeedsReturn [
+{ #category : #tests }
+RBExtractMethodToComponentTest >> testExtractMethodAtEndOfMethodThatNeedsReturn [
 	| refactoring class selectorsSize |
 	refactoring := RBExtractMethodToComponentRefactoring 
 		extract: (self 
@@ -92,11 +79,8 @@ RBExtractMethodToComponentTest>>testExtractMethodAtEndOfMethodThatNeedsReturn [
 	self assert: class selectors size = selectorsSize
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractMethodToComponentTest>>testMoveWithoutSelfReference [
+{ #category : #tests }
+RBExtractMethodToComponentTest >> testMoveWithoutSelfReference [
 	| refactoring class selectorsSize |
 	refactoring := RBExtractMethodToComponentRefactoring 
 				extract: (self convertInterval: (118 to: 286)
@@ -125,11 +109,8 @@ RBExtractMethodToComponentTest>>testMoveWithoutSelfReference [
 	self assert: class selectors size = selectorsSize
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractMethodToComponentTest>>testNonExistantSelector [
+{ #category : #'failure tests' }
+RBExtractMethodToComponentTest >> testNonExistantSelector [
 	self shouldFail: (RBExtractMethodToComponentRefactoring 
 			extract: (10 to: 20)
 			from: #checkClass1:

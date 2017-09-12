@@ -5,31 +5,21 @@ This is a custom help book providing a tutorial for the SUnit framework.
 Class {
 	#name : #SUnitTutorial,
 	#superclass : #SUnitHelp,
-	#category : #SUnit-Help,
-	#timestamp : 'tbn 12/16/2010 22:38'
+	#category : #SUnit-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SUnitTutorial class>>bookName [
+{ #category : #accessing }
+SUnitTutorial class >> bookName [
 	^'Tutorial'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SUnitTutorial class>>pages [
+{ #category : #accessing }
+SUnitTutorial class >> pages [
 	^#(step1 step2 step3 step4 step5)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SUnitTutorial class>>step1 [
+{ #category : #pages }
+SUnitTutorial class >> step1 [
 	"This method was automatically generated. Edit it using:"
 	"SUnitTutorial edit: #step1"
 	^HelpTopic
@@ -51,11 +41,8 @@ Note that we havent created the class Person yet - so one idea of ExtremeProgram
 	!' readStream nextChunkText
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SUnitTutorial class>>step2 [
+{ #category : #pages }
+SUnitTutorial class >> step2 [
 	"This method was automatically generated. Edit it using:"
 	"SUnitTutorial edit: #step2"
 	^HelpTopic
@@ -80,11 +67,8 @@ When you accept the code the system may ask you about the new class Person. It''
 		category: ''MyApp-Core-Model''!' readStream nextChunkText
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SUnitTutorial class>>step3 [
+{ #category : #pages }
+SUnitTutorial class >> step3 [
 	"This method was automatically generated. Edit it using:"
 	"SUnitTutorial edit: #step3"
 	^HelpTopic
@@ -110,11 +94,8 @@ If you want to debug the test to see whats happened you can evaluate:
 	!' readStream nextChunkText
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SUnitTutorial class>>step4 [
+{ #category : #pages }
+SUnitTutorial class >> step4 [
 	"This method was automatically generated. Edit it using:"
 	"SUnitTutorial edit: #step4"
 	^HelpTopic
@@ -135,11 +116,8 @@ If you run the test in the test runner it will be marked red since it contains e
 If you click on the failed method in the lower right pane the debugger will open.!' readStream nextChunkText
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SUnitTutorial class>>step5 [
+{ #category : #pages }
+SUnitTutorial class >> step5 [
 	"This method was automatically generated. Edit it using:"
 	"SUnitTutorial edit: #step5"
 	^HelpTopic

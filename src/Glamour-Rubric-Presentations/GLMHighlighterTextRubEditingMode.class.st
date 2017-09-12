@@ -14,79 +14,54 @@ Class {
 	#instVars : [
 		'stylerDecorator'
 	],
-	#category : #Glamour-Rubric-Presentations,
-	#timestamp : 'TudorGirba 1/23/2017 14:41'
+	#category : #Glamour-Rubric-Presentations
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMHighlighterTextRubEditingMode class>>withParserStyler: aParser [
+{ #category : #'instance creation' }
+GLMHighlighterTextRubEditingMode class >> withParserStyler: aParser [
 
 	^ self new stylerDecorator: (GLMHighlighterTextStylerDecorator
 			withParserStyler: aParser)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMHighlighterTextRubEditingMode class>>withStylerDecorator: aDecorator [
+{ #category : #'instance creation' }
+GLMHighlighterTextRubEditingMode class >> withStylerDecorator: aDecorator [
 
 	^ self new stylerDecorator: aDecorator
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMHighlighterTextRubEditingMode>>stylerDecorator [
+{ #category : #accessing }
+GLMHighlighterTextRubEditingMode >> stylerDecorator [
 	
 	^ stylerDecorator
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMHighlighterTextRubEditingMode>>stylerDecorator: anObject [
+{ #category : #accessing }
+GLMHighlighterTextRubEditingMode >> stylerDecorator: anObject [
 	
 	stylerDecorator := anObject
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMHighlighterTextRubEditingMode>>updateTextAreaWhenPlugged [
+{ #category : #initialize-release }
+GLMHighlighterTextRubEditingMode >> updateTextAreaWhenPlugged [
 	self withStyler.
 	super updateTextAreaWhenPlugged
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMHighlighterTextRubEditingMode>>updateTextAreaWhenUnplugged [
+{ #category : #initialize-release }
+GLMHighlighterTextRubEditingMode >> updateTextAreaWhenUnplugged [
 	self withoutStyler.
 	super updateTextAreaWhenUnplugged
 
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMHighlighterTextRubEditingMode>>withStyler [
+{ #category : #initialize-release }
+GLMHighlighterTextRubEditingMode >> withStyler [
 	self textArea withDecorator: self stylerDecorator
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMHighlighterTextRubEditingMode>>withoutStyler [
+{ #category : #initialize-release }
+GLMHighlighterTextRubEditingMode >> withoutStyler [
 	self textArea withoutDecorator: self stylerDecorator
 ]

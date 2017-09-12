@@ -4,26 +4,19 @@ SUnit tests for large positive integers
 Class {
 	#name : #LargePositiveIntegerTest,
 	#superclass : #ClassTestCase,
-	#category : #Kernel-Tests-Numbers,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:40'
+	#category : #Kernel-Tests-Numbers
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-LargePositiveIntegerTest>>testBitShift [
+{ #category : #tests }
+LargePositiveIntegerTest >> testBitShift [
 
 	"Check bitShift from and back to SmallInts"
 	
 	1 to: 257 do: [:i | self should: [((i bitShift: i) bitShift: 0-i) == i]].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-LargePositiveIntegerTest>>testEmptyTemplate [
+{ #category : #tests }
+LargePositiveIntegerTest >> testEmptyTemplate [
 
 	"Check that an uninitialized instance behaves reasonably."
 
@@ -34,11 +27,8 @@ LargePositiveIntegerTest>>testEmptyTemplate [
 	self assert: i normalize = 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-LargePositiveIntegerTest>>testLargeSqrtFloor [
+{ #category : #tests }
+LargePositiveIntegerTest >> testLargeSqrtFloor [
 	"This test fails if a careless implementation naivly factors out the power of two (remove the trailing zeroes up to lowBit).
 	This was the case in a previous implementation, so this is a non regression test."
 
@@ -49,11 +39,8 @@ LargePositiveIntegerTest>>testLargeSqrtFloor [
 	 self assert: (root+1) squared > large.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-LargePositiveIntegerTest>>testMultDicAddSub [
+{ #category : #tests }
+LargePositiveIntegerTest >> testMultDicAddSub [
 	"self run: #testMultDicAddSub"
 
 	| n f f1 |	
@@ -68,11 +55,8 @@ LargePositiveIntegerTest>>testMultDicAddSub [
 	self assert: (f1 negated = (Number readFrom: '-' , f1 printString)).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-LargePositiveIntegerTest>>testNormalize [
+{ #category : #tests }
+LargePositiveIntegerTest >> testNormalize [
 	"self run: #testNormalize"
 	"Check normalization and conversion to/from SmallInts"
 

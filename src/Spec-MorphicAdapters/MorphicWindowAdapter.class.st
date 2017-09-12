@@ -7,96 +7,68 @@ Class {
 	#instVars : [
 		'isClosedHolder'
 	],
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>aboutText [
+{ #category : #'widget API' }
+MorphicWindowAdapter >> aboutText [
 
 	^ self model model
 		ifNotNil: [ :m | m aboutText ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>aboutTitle [
+{ #category : #'widget API' }
+MorphicWindowAdapter >> aboutTitle [
     ^ self model model
          ifNotNil: [ :m | (m respondsTo: #aboutTitle)
 		ifTrue: [m aboutTitle]
 		ifFalse: [m class name]].
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>addModelIn: widgetToBuild withSpec: aSpec [
+{ #category : #protocol }
+MorphicWindowAdapter >> addModelIn: widgetToBuild withSpec: aSpec [
 	
 	widgetToBuild
 		addMorph: (self model model buildWithSpec: aSpec)
 		frame: (0@0 corner: 1@1)
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>addModelIn: widgetToBuild withSpecLayout: aSpec [
+{ #category : #protocol }
+MorphicWindowAdapter >> addModelIn: widgetToBuild withSpecLayout: aSpec [
 	
 	widgetToBuild
 		addMorph: (self model model buildWithSpecLayout: aSpec)
 		frame: (0@0 corner: 1@1)
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>addModelItemsToWindowMenu: aMenu [
+{ #category : #'widget API' }
+MorphicWindowAdapter >> addModelItemsToWindowMenu: aMenu [
 
 	self model addMenuItemsToWindowMenu: aMenu
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>askOkToClose [
+{ #category : #'widget API' }
+MorphicWindowAdapter >> askOkToClose [
 
 	^ self model askOkToClose
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>buildWidget [
+{ #category : #factory }
+MorphicWindowAdapter >> buildWidget [
 	^ SpecWindow new
 		model: model;
 		isResizeable: self isResizeable;
 		yourself
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>cancelled [
+{ #category : #'widget API' }
+MorphicWindowAdapter >> cancelled [
 
 	^ false
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>centered [
+{ #category : #protocol }
+MorphicWindowAdapter >> centered [
 
 	self widgetDo: [ :w | 
 		w
@@ -104,139 +76,94 @@ MorphicWindowAdapter>>centered [
 			position: Display extent - w extent // 2 ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>centeredRelativeTo: aModel [
+{ #category : #protocol }
+MorphicWindowAdapter >> centeredRelativeTo: aModel [
 
 	self widgetDo: [ :w | aModel centerWidget: w ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>close [
+{ #category : #protocol }
+MorphicWindowAdapter >> close [
 
 	self widget ifNotNil: [ :w | w close ].
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>extent: aPoint [
+{ #category : #protocol }
+MorphicWindowAdapter >> extent: aPoint [
 
 	^ self widget extent: aPoint
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>initialExtent [
+{ #category : #'widget API' }
+MorphicWindowAdapter >> initialExtent [
 
 	^ self model initialExtent
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>initialize [
+{ #category : #initialize }
+MorphicWindowAdapter >> initialize [
 
 	super initialize.
 
 	isClosedHolder := false asValueHolder.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>isDisplayed [
+{ #category : #protocol }
+MorphicWindowAdapter >> isDisplayed [
 
 	^ self widget isDisplayed
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>isResizeable [
+{ #category : #'widget API' }
+MorphicWindowAdapter >> isResizeable [
 
 	^ self model isResizeable
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>isResizeable: aBoolean [
+{ #category : #'spec protocol' }
+MorphicWindowAdapter >> isResizeable: aBoolean [
 
 	^ self widgetDo: [ :w | w isResizeable: aBoolean ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>maximize [
+{ #category : #'spec protocol' }
+MorphicWindowAdapter >> maximize [
 
 	self widgetDo: [ :w | w maximize ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>minimize [
+{ #category : #'spec protocol' }
+MorphicWindowAdapter >> minimize [
 
 	self widgetDo: [ :w | w minimize ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>modalRelativeTo: aWindow [
+{ #category : #'spec protocol' }
+MorphicWindowAdapter >> modalRelativeTo: aWindow [
 
 	self widgetDo: [ :w | aWindow setModal: w ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>okToChange [
+{ #category : #'widget API' }
+MorphicWindowAdapter >> okToChange [
 ^ self model okToChange
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>open [
+{ #category : #protocol }
+MorphicWindowAdapter >> open [
 
 	self model window openInWorld
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>openModal: aWindow [
+{ #category : #protocol }
+MorphicWindowAdapter >> openModal: aWindow [
 
 	^ self widget 
 		ifNotNil: [:w | w openModal: aWindow asWidget ].
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>rebuildWithSpec: aSpec [
+{ #category : #protocol }
+MorphicWindowAdapter >> rebuildWithSpec: aSpec [
 	| sub |
 	
 	sub := self model window submorphs copy.
@@ -245,11 +172,8 @@ MorphicWindowAdapter>>rebuildWithSpec: aSpec [
 	self model addModelIn: self widget withSpec: aSpec
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>rebuildWithSpecLayout: aSpec [
+{ #category : #protocol }
+MorphicWindowAdapter >> rebuildWithSpecLayout: aSpec [
 	| sub |
 	
 	sub := self model window submorphs copy.
@@ -259,37 +183,25 @@ MorphicWindowAdapter>>rebuildWithSpecLayout: aSpec [
 	self widget model: self
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>taskbarIcon  [
+{ #category : #icons }
+MorphicWindowAdapter >> taskbarIcon [ 
 	^ self model taskbarIcon
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>title [
+{ #category : #'widget API' }
+MorphicWindowAdapter >> title [
 	^ self model title
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>title: aString [
+{ #category : #protocol }
+MorphicWindowAdapter >> title: aString [
 
 	^ self widget
 		ifNotNil: [:w | w title: aString ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicWindowAdapter>>windowIsClosing [
+{ #category : #updating }
+MorphicWindowAdapter >> windowIsClosing [
 
 	self model windowIsClosing
 ]

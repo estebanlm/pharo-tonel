@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RBClassTest,
 	#superclass : #RBRefactoringBrowserTest,
@@ -9,15 +6,11 @@ Class {
 		'newClass',
 		'messageNodeClass'
 	],
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBClassTest>>setUp [
+{ #category : #'set up' }
+RBClassTest >> setUp [
 	| st |
 	super setUp.
 	st := RBClassModelFactory rbNamespace new.
@@ -31,11 +24,8 @@ RBClassTest>>setUp [
 	newClass := st classNamed: #SomeClassName
 ]
 
-{
-	#category : #'method tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBClassTest>>testDefinesClassVariable [
+{ #category : #'method tests' }
+RBClassTest >> testDefinesClassVariable [
 	self deny: (objectClass definesClassVariable: #ClassVariable1).
 	self assert: (objectClass definesClassVariable: self objectClassVariable).
 	self assert: (newClass definesClassVariable: #ClassVariable1).
@@ -44,11 +34,8 @@ RBClassTest>>testDefinesClassVariable [
 		assert: (messageNodeClass definesClassVariable: self objectClassVariable)
 ]
 
-{
-	#category : #'method tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBClassTest>>testDefinesInstanceVariable [
+{ #category : #'method tests' }
+RBClassTest >> testDefinesInstanceVariable [
 	self deny: (objectClass definesInstanceVariable: 'instanceVariable1').
 	self assert: (newClass definesInstanceVariable: 'instanceVariable1').
 	self deny: (messageNodeClass definesInstanceVariable: 'instanceVariable1').
@@ -56,21 +43,15 @@ RBClassTest>>testDefinesInstanceVariable [
 	self assert: (messageNodeClass definesInstanceVariable: 'selector')
 ]
 
-{
-	#category : #'method tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBClassTest>>testDefinesMethod [
+{ #category : #'method tests' }
+RBClassTest >> testDefinesMethod [
 	self assert: (objectClass definesMethod: #printString).
 	self assert: (newClass definesMethod: #printString).
 	self assert: (messageNodeClass definesMethod: #printString)
 ]
 
-{
-	#category : #'method tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBClassTest>>testDefinesPoolDictionary [
+{ #category : #'method tests' }
+RBClassTest >> testDefinesPoolDictionary [
 	self deny: (objectClass definesPoolDictionary: #OpcodePool).
 	self assert: (newClass definesPoolDictionary: #TextConstants).
 	self deny: (messageNodeClass definesPoolDictionary: #OpcodePool).
@@ -78,22 +59,16 @@ RBClassTest>>testDefinesPoolDictionary [
 				definesPoolDictionary: #TextConstants)
 ]
 
-{
-	#category : #'method tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBClassTest>>testHierarchy [
+{ #category : #'method tests' }
+RBClassTest >> testHierarchy [
 	| meta |
 	meta := objectClass theMetaClass.
 	self assert: (objectClass withAllSubclasses includes: meta).
 	self assert: (meta withAllSuperclasses includes: objectClass)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBClassTest>>testObjectIsNotAbstract [
+{ #category : #tests }
+RBClassTest >> testObjectIsNotAbstract [
 	self deny: objectClass isAbstract.
 	self deny: objectClass theMetaClass isAbstract.
 ]

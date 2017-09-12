@@ -4,15 +4,11 @@ This node represents accesses to temporary variables for do-its in the debugger.
 Class {
 	#name : #MessageAsTempNode,
 	#superclass : #MessageNode,
-	#category : #Compiler-ParseNodes,
-	#timestamp : '<historical>'
+	#category : #Compiler-ParseNodes
 }
 
-{
-	#category : #'access to remote temps',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageAsTempNode>>asStorableNode: encoder [
+{ #category : #'access to remote temps' }
+MessageAsTempNode >> asStorableNode: encoder [
 	"This node is a message masquerading as a temporary variable.
 	It currently has the form {homeContext tempAt: offset}.
 	We need to generate code for {expr storeAt: offset inTempFrame: homeContext},
@@ -27,40 +23,28 @@ MessageAsTempNode>>asStorableNode: encoder [
 		from: encoder
 ]
 
-{
-	#category : #'access to remote temps',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageAsTempNode>>code [
+{ #category : #'access to remote temps' }
+MessageAsTempNode >> code [
 	"Allow synthetic temp nodes to be sorted by code"
 	^ arguments first literalValue
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageAsTempNode>>emitCodeForStorePop: stack encoder: encoder [
+{ #category : #'code generation' }
+MessageAsTempNode >> emitCodeForStorePop: stack encoder: encoder [
 	"This node has the form {expr storeAt: offset inTempFrame: homeContext},
 	where the expr, the block argument, is already on the stack."
 	^self emitCodeForEffect: stack encoder: encoder
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageAsTempNode>>sizeCodeForStorePop: encoder [
+{ #category : #'code generation' }
+MessageAsTempNode >> sizeCodeForStorePop: encoder [
 	"This node has the form {expr storeAt: offset inTempFrame: homeContext},
 	where the expr, the block argument, is already on the stack."
 	^self sizeCodeForEffect: encoder
 ]
 
-{
-	#category : #'access to remote temps',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MessageAsTempNode>>store: expr from: encoder  [
+{ #category : #'access to remote temps' }
+MessageAsTempNode >> store: expr from: encoder [ 
 	"ctxt tempAt: n -> ctxt tempAt: n put: expr (see Assignment).
 	For assigning into temps of a context being debugged."
 

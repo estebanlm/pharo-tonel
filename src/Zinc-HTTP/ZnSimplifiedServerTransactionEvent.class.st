@@ -21,31 +21,21 @@ Class {
 		'size',
 		'duration'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 15:20'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedServerTransactionEvent>>duration [
+{ #category : #accessing }
+ZnSimplifiedServerTransactionEvent >> duration [
 	^ duration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedServerTransactionEvent>>method [
+{ #category : #accessing }
+ZnSimplifiedServerTransactionEvent >> method [
 	^ method
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedServerTransactionEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnSimplifiedServerTransactionEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream space; nextPutAll: method.
 	stream space.
@@ -56,53 +46,35 @@ ZnSimplifiedServerTransactionEvent>>printContentsOn: stream [
 	stream space; print: duration; nextPutAll: 'ms'
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedServerTransactionEvent>>request: aZnRequest [
+{ #category : #initialize }
+ZnSimplifiedServerTransactionEvent >> request: aZnRequest [
 	method := aZnRequest method.
 	url := aZnRequest url
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedServerTransactionEvent>>response: aZnResponse [
+{ #category : #initialize }
+ZnSimplifiedServerTransactionEvent >> response: aZnResponse [
 	response := aZnResponse code.
 	aZnResponse hasEntity
 		ifTrue: [ size := aZnResponse entity contentLength ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedServerTransactionEvent>>responseCode [
+{ #category : #accessing }
+ZnSimplifiedServerTransactionEvent >> responseCode [
 	^ response
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedServerTransactionEvent>>size [
+{ #category : #accessing }
+ZnSimplifiedServerTransactionEvent >> size [
 	^ size
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedServerTransactionEvent>>timing: timing [
+{ #category : #initialize }
+ZnSimplifiedServerTransactionEvent >> timing: timing [
 	duration := timing totalDuration 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSimplifiedServerTransactionEvent>>url [
+{ #category : #accessing }
+ZnSimplifiedServerTransactionEvent >> url [
 	^ url
 ]

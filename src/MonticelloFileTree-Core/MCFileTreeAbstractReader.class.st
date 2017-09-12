@@ -8,41 +8,28 @@ Class {
 		'packageDirectory',
 		'packageProperties'
 	],
-	#category : #MonticelloFileTree-Core,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:54'
+	#category : #MonticelloFileTree-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader class>>monticelloMetaDirName [
+{ #category : #accessing }
+MCFileTreeAbstractReader class >> monticelloMetaDirName [
     ^ '.'
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader class>>on: s fileName: f [
+{ #category : #reading }
+MCFileTreeAbstractReader class >> on: s fileName: f [
 	^ (self on: s)
 		packageDirectory: f;
 		yourself
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader>>addClassAndMethodDefinitionsFromDirectory: aDirectory [
+{ #category : #utilities }
+MCFileTreeAbstractReader >> addClassAndMethodDefinitionsFromDirectory: aDirectory [
     self subclassResponsibility
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader>>addClassAndMethodDefinitionsFromDirectoryEntries: entries [
+{ #category : #utilities }
+MCFileTreeAbstractReader >> addClassAndMethodDefinitionsFromDirectoryEntries: entries [
     | timestamp |
     self noMethodMetaData
         ifTrue: [ timestamp := self info author , ' ' , self info date mmddyyyy , ' ' , self info time print24 ].
@@ -71,19 +58,13 @@ MCFileTreeAbstractReader>>addClassAndMethodDefinitionsFromDirectoryEntries: entr
                                     definitions add: definition ] ] ] ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader>>addDefinitionFromFile: directoryEntry inDirectory: aDirectory [
+{ #category : #utilities }
+MCFileTreeAbstractReader >> addDefinitionFromFile: directoryEntry inDirectory: aDirectory [
     (self definitionFromFile: directoryEntry inDirectory: aDirectory) ifNotNil: [ :def | definitions add: def ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader>>basicVersion [
+{ #category : #accessing }
+MCFileTreeAbstractReader >> basicVersion [
 	^ (MCVersion new)
 		setPackage: self package
 			info: self info
@@ -92,11 +73,8 @@ MCFileTreeAbstractReader>>basicVersion [
 		yourself
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader>>definitionFromFile: directoryEntry inDirectory: aDirectory [
+{ #category : #utilities }
+MCFileTreeAbstractReader >> definitionFromFile: directoryEntry inDirectory: aDirectory [
     | defs reader |
     directoryEntry ifNil: [ ^ nil ].
     self fileUtils
@@ -112,19 +90,13 @@ MCFileTreeAbstractReader>>definitionFromFile: directoryEntry inDirectory: aDirec
     ^ defs first
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader>>fileUtils [
+{ #category : #accessing }
+MCFileTreeAbstractReader >> fileUtils [
     ^ MCFileTreeFileUtils current
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader>>hasMonticelloMetadata [
+{ #category : #testing }
+MCFileTreeAbstractReader >> hasMonticelloMetadata [
     ^ (self fileUtils
 		filePathExists: 'version'
 		relativeTo:
@@ -142,11 +114,8 @@ MCFileTreeAbstractReader>>hasMonticelloMetadata [
 
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader>>loadDefinitions [
+{ #category : #utilities }
+MCFileTreeAbstractReader >> loadDefinitions [
     | entries |
     definitions := OrderedCollection new.
     entries := packageDirectory entries.
@@ -158,11 +127,8 @@ MCFileTreeAbstractReader>>loadDefinitions [
             inDirectory: packageDirectory
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader>>loadDependencies [
+{ #category : #utilities }
+MCFileTreeAbstractReader >> loadDependencies [
     | dependencyDir directoryPath |
     directoryPath := self monticelloMetaDirName , self fileUtils pathNameDelimiter asString , 'dependencies'.
     dependencyDir := self fileUtils directoryFromPath: directoryPath relativeTo: packageDirectory.
@@ -180,35 +146,23 @@ MCFileTreeAbstractReader>>loadDependencies [
     dependencies := dependencies asArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader>>monticelloMetaDirName [
+{ #category : #accessing }
+MCFileTreeAbstractReader >> monticelloMetaDirName [
     ^ self class monticelloMetaDirName
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader>>noMethodMetaData [
+{ #category : #testing }
+MCFileTreeAbstractReader >> noMethodMetaData [
     ^ self packageProperties at: 'noMethodMetaData' ifAbsent: [ false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader>>packageDirectory: aDirectoryName [
+{ #category : #accessing }
+MCFileTreeAbstractReader >> packageDirectory: aDirectoryName [
     packageDirectory := self fileUtils directoryFromPath: aDirectoryName relativeTo: stream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader>>packageProperties [
+{ #category : #accessing }
+MCFileTreeAbstractReader >> packageProperties [
     packageProperties
         ifNil: [ 
             packageProperties := Dictionary new.
@@ -242,21 +196,15 @@ MCFileTreeAbstractReader>>packageProperties [
     ^ packageProperties
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader>>parseMember: fileName [
+{ #category : #utilities }
+MCFileTreeAbstractReader >> parseMember: fileName [
     | directory tokens |
     directory := self fileUtils directoryFromPath: self monticelloMetaDirName relativeTo: packageDirectory.
     self fileUtils readStreamFor: fileName in: directory do: [ :fileStream | tokens := self scanner scan: fileStream ].
     ^ self associate: tokens
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractReader>>separateMethodMetaAndSource [
+{ #category : #testing }
+MCFileTreeAbstractReader >> separateMethodMetaAndSource [
     ^ self packageProperties at: 'separateMethodMetaAndSource' ifAbsent: [ false ]
 ]

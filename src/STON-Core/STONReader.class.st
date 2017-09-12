@@ -27,70 +27,48 @@ Class {
 		'newLine',
 		'convertNewLines'
 	],
-	#category : #STON-Core,
-	#timestamp : 'SvenVanCaekenberghe 10/24/2016 10:29'
+	#category : #STON-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader class>>on: readStream [
+{ #category : #'instance creation' }
+STONReader class >> on: readStream [
 	^ self new
 		on: readStream;
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>acceptUnknownClasses: boolean [
+{ #category : #initialize-release }
+STONReader >> acceptUnknownClasses: boolean [
 	acceptUnknownClasses := boolean
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>allowComplexMapKeys: boolean [
+{ #category : #initialize-release }
+STONReader >> allowComplexMapKeys: boolean [
 	"This is a no-op, this used to be an option, but it is now always enabled"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>atEnd [
+{ #category : #testing }
+STONReader >> atEnd [
 	^ readStream atEnd
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>close [
+{ #category : #initialize-release }
+STONReader >> close [
 	readStream ifNotNil: [
 		readStream close.
 		readStream := nil ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>consumeWhitespace [
+{ #category : #private }
+STONReader >> consumeWhitespace [
 	"Strip whitespaces from the input stream."
 
 	[ readStream atEnd not and: [ readStream peek isSeparator ] ]
 		whileTrue: [ readStream next ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>convertNewLines: boolean [
+{ #category : #initialize-release }
+STONReader >> convertNewLines: boolean [
 	"When true, any newline CR, LF or CRLF read unescaped inside strings or symbols 
 	will be converted to the newline convention chosen, see #newLine:
 	The default is false, not doing any convertions."
@@ -98,11 +76,8 @@ STONReader>>convertNewLines: boolean [
 	convertNewLines := boolean
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>error: aString [
+{ #category : #'error handling' }
+STONReader >> error: aString [
 	| streamPosition |
 	"Remain compatible with streams that don't understand #position"
 	streamPosition := [ readStream position ]
@@ -110,11 +85,8 @@ STONReader>>error: aString [
 	^ STONReaderError signal: aString streamPosition: streamPosition
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>expectChar: character [
+{ #category : #private }
+STONReader >> expectChar: character [
 	"Expect character and consume input and optional whitespace at the end,
 	 throw an error otherwise."
 
@@ -122,11 +94,8 @@ STONReader>>expectChar: character [
 		ifFalse: [ self error: character asString, ' expected' ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>initialize [
+{ #category : #initialize-release }
+STONReader >> initialize [
 	super initialize.
 	objects := IdentityDictionary new.
 	classes := IdentityDictionary new.
@@ -135,35 +104,23 @@ STONReader>>initialize [
 	unresolvedReferences := 0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>isClassChar: char [
+{ #category : #private }
+STONReader >> isClassChar: char [
 	^ 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_' includes: char
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>isClassStartChar: char [
+{ #category : #private }
+STONReader >> isClassStartChar: char [
 	^ 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' includes: char
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>isSimpleSymbolChar: char [
+{ #category : #private }
+STONReader >> isSimpleSymbolChar: char [
 	^char isLetter or: ['0123456789-_./' includes: char]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>lookupClass: name [
+{ #category : #private }
+STONReader >> lookupClass: name [
 	Smalltalk globals 
 		at: name 
 		ifPresent: [ :class | ^ class ].
@@ -176,11 +133,8 @@ STONReader>>lookupClass: name [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>match: string do: block [
+{ #category : #private }
+STONReader >> match: string do: block [
 	"Try to read and consume string and execute block if successful.
 	Else do nothing (but do not back up)"
 
@@ -190,11 +144,8 @@ STONReader>>match: string do: block [
 			block value ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>matchChar: character [
+{ #category : #private }
+STONReader >> matchChar: character [
 	"Tries to match character, consume input and 
 	answer true if successful and consumes whitespace at the end."
 
@@ -205,21 +156,15 @@ STONReader>>matchChar: character [
 		ifFalse: [ false ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>newLine: string [
+{ #category : #initialize-release }
+STONReader >> newLine: string [
 	"Set the newline convention to be used when converting newlines, see #convertNewLines"
 	
 	newLine := string 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>newReference [
+{ #category : #private }
+STONReader >> newReference [
 	| index reference |
 	index := objects size + 1.
 	reference := STONReference index: index.
@@ -227,11 +172,8 @@ STONReader>>newReference [
 	^ reference
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>next [
+{ #category : #public }
+STONReader >> next [
 	| object |
 	self consumeWhitespace.
 	object := self parseValue.
@@ -242,40 +184,28 @@ STONReader>>next [
 	^ object
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>on: aReadStream [
+{ #category : #initialize-release }
+STONReader >> on: aReadStream [
 	readStream := aReadStream
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>optimizeForLargeStructures [
+{ #category : #initialize-release }
+STONReader >> optimizeForLargeStructures [
 	self class environment
 		at: #FLLargeIdentityDictionary
 		ifPresent: [ :identityDictionaryClass | objects := identityDictionaryClass new ]
 ]
 
-{
-	#category : #parsing-internal,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseCharacter [
+{ #category : #parsing-internal }
+STONReader >> parseCharacter [
 	| char |
 	^ (char := readStream next) = $\
 		ifTrue: [ self parseEscapedCharacter ]
 		ifFalse: [ char ]
 ]
 
-{
-	#category : #parsing-internal,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseCharacterConvertingNewLinesOn: writeStream [
+{ #category : #parsing-internal }
+STONReader >> parseCharacterConvertingNewLinesOn: writeStream [
 	| char |
 	(char := readStream next) = $\
 		ifTrue: [ writeStream nextPut: self parseEscapedCharacter ]
@@ -290,11 +220,8 @@ STONReader>>parseCharacterConvertingNewLinesOn: writeStream [
 						ifFalse: [ writeStream nextPut: char ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseCharacterHex [
+{ #category : #private }
+STONReader >> parseCharacterHex [
 	| value codePoint |
 	value := self parseCharacterHex4Value.
 	(value < 16rD800 or: [ value > 16rDBFF ])
@@ -309,11 +236,8 @@ STONReader>>parseCharacterHex [
 	^ Character codePoint: codePoint
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseCharacterHex4Value [
+{ #category : #private }
+STONReader >> parseCharacterHex4Value [
 	| value |
 	value := self parseCharacterHexDigit.
 	3 timesRepeat: [ 
@@ -321,11 +245,8 @@ STONReader>>parseCharacterHex4Value [
 	^ value
 ]
 
-{
-	#category : #parsing-internal,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseCharacterHexDigit [
+{ #category : #parsing-internal }
+STONReader >> parseCharacterHexDigit [
 	| digit |
 	readStream atEnd ifFalse: [ 
 		digit := readStream next asInteger.
@@ -338,11 +259,8 @@ STONReader>>parseCharacterHexDigit [
 	self error: 'hex-digit expected'
 ]
 
-{
-	#category : #parsing-internal,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseClass [
+{ #category : #parsing-internal }
+STONReader >> parseClass [
 	| className |
 	className := self stringStreamContents: [ :stream |
 		[ readStream atEnd not and: [ self isClassChar: readStream peek ] ] whileTrue: [ 
@@ -352,11 +270,8 @@ STONReader>>parseClass [
 	
 ]
 
-{
-	#category : #parsing-internal,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseConstantDo: block [
+{ #category : #parsing-internal }
+STONReader >> parseConstantDo: block [
 	"Parse and consume either true|false|nil|null and execute block 
 	or else do nothing (but do not back up).
 	Hand written implementation to avoid the use of #position:"
@@ -379,11 +294,8 @@ STONReader>>parseConstantDo: block [
 
 ]
 
-{
-	#category : #parsing-internal,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseEscapedCharacter [
+{ #category : #parsing-internal }
+STONReader >> parseEscapedCharacter [
 	| char |
 	char := readStream next.
 	(#($' $" $/ $\) includes: char)
@@ -404,11 +316,8 @@ STONReader>>parseEscapedCharacter [
 	^ char
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseList [
+{ #category : #parsing }
+STONReader >> parseList [
 	| reference array |
 	reference := self newReference.
 	array := STON listClass streamContents: [ :stream |
@@ -417,11 +326,8 @@ STONReader>>parseList [
 	^ array
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseListDo: block [
+{ #category : #parsing }
+STONReader >> parseListDo: block [
 	| index |
 	self expectChar: $[.
 	(self matchChar: $]) ifTrue: [ ^ self ]. "short cut for empty lists"
@@ -434,11 +340,8 @@ STONReader>>parseListDo: block [
 	self error: 'end of list expected'
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseListSingleton [
+{ #category : #parsing }
+STONReader >> parseListSingleton [
 	| value |
 	value := nil.
 	self parseListDo: [ :each :index |
@@ -446,11 +349,8 @@ STONReader>>parseListSingleton [
 	^ value
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseMap [
+{ #category : #parsing }
+STONReader >> parseMap [
 	| map |
 	map := STON mapClass new.
 	self storeReference: map.
@@ -459,11 +359,8 @@ STONReader>>parseMap [
 	^ map
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseMapDo: block [
+{ #category : #parsing }
+STONReader >> parseMapDo: block [
 	self expectChar: ${.
 	(self matchChar: $}) ifTrue: [ ^ self ]. "short cut for empty maps"
 	[ readStream atEnd ] whileFalse: [ | name value |
@@ -477,20 +374,14 @@ STONReader>>parseMapDo: block [
 	self error: 'end of map expected'
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseNamedInstVarsFor: anObject [
+{ #category : #parsing }
+STONReader >> parseNamedInstVarsFor: anObject [
 	self parseMapDo: [ :instVarName :value |
 		anObject instVarNamed: instVarName put: value ]
 ]
 
-{
-	#category : #parsing-internal,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseNumber [
+{ #category : #parsing-internal }
+STONReader >> parseNumber [
 	| negated number |
 	negated := readStream peekFor: $-.
 	number := self parseNumberInteger.
@@ -504,11 +395,8 @@ STONReader>>parseNumber [
 	^ number
 ]
 
-{
-	#category : #parsing-internal,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseNumberExponent [
+{ #category : #parsing-internal }
+STONReader >> parseNumberExponent [
 	| number negated |
 	number := 0.
 	(negated := readStream peekFor: $-)
@@ -520,11 +408,8 @@ STONReader>>parseNumberExponent [
 	^ 10 raisedTo: number
 ]
 
-{
-	#category : #parsing-internal,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseNumberFraction [
+{ #category : #parsing-internal }
+STONReader >> parseNumberFraction [
 	| number power |
 	number := 0.
 	power := 1.0.
@@ -534,11 +419,8 @@ STONReader>>parseNumberFraction [
 	^ number / power
 ]
 
-{
-	#category : #parsing-internal,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseNumberInteger [
+{ #category : #parsing-internal }
+STONReader >> parseNumberInteger [
 	| number |
 	number := 0.
 	[ readStream atEnd not and: [ readStream peek isDigit ] ] whileTrue: [ 
@@ -546,11 +428,8 @@ STONReader>>parseNumberInteger [
 	^ number
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseObject [
+{ #category : #parsing }
+STONReader >> parseObject [
 	| targetClass reference object |
 	[
 		reference := self newReference.
@@ -570,11 +449,8 @@ STONReader>>parseObject [
 	^ object
 ]
 
-{
-	#category : #parsing-internal,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseReference [
+{ #category : #parsing-internal }
+STONReader >> parseReference [
 	| index |
 	self expectChar: $@.
 	index := self parseNumberInteger.
@@ -583,11 +459,8 @@ STONReader>>parseReference [
 	^ STONReference index: index
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseSimpleValue [
+{ #category : #parsing }
+STONReader >> parseSimpleValue [
 	| char |
 	readStream atEnd ifFalse: [ 
 		(self isClassStartChar: (char := readStream peek)) 
@@ -608,19 +481,13 @@ STONReader>>parseSimpleValue [
 	self error: 'invalid input'
 ]
 
-{
-	#category : #parsing-internal,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseString [
+{ #category : #parsing-internal }
+STONReader >> parseString [
 	^ self parseStringInternal
 ]
 
-{
-	#category : #parsing-internal,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseStringInternal [
+{ #category : #parsing-internal }
+STONReader >> parseStringInternal [
 	| result delimiter |
 	delimiter := readStream next.
 	(delimiter = $' or: [ delimiter = $" ])
@@ -638,11 +505,8 @@ STONReader>>parseStringInternal [
 	^ result
 ]
 
-{
-	#category : #parsing-internal,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseSymbol [
+{ #category : #parsing-internal }
+STONReader >> parseSymbol [
 	| string |
 	self expectChar: $#.
 	readStream peek = $'
@@ -657,21 +521,15 @@ STONReader>>parseSymbol [
 	self error: 'unexpected input'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseTrailingSurrogateHexEscape [
+{ #category : #private }
+STONReader >> parseTrailingSurrogateHexEscape [
 	(readStream next = $\ and: [ readStream next = $u ])
 		ifTrue: [ ^ self parseCharacterHex4Value ]
 		ifFalse: [ self error: 'trailing surrogate hex escape expected' ]
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>parseValue [
+{ #category : #parsing }
+STONReader >> parseValue [
 	| value |
 	value := self parseSimpleValue.
 	^ (self matchChar: $:)
@@ -679,11 +537,8 @@ STONReader>>parseValue [
 		ifFalse: [ value ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>processSubObjectsOf: object [
+{ #category : #private }
+STONReader >> processSubObjectsOf: object [
 	| unresolvedReferencesCount |
 	unresolvedReferencesCount := unresolvedReferences.
 	object stonProcessSubObjects: [ :each | 
@@ -698,56 +553,38 @@ STONReader>>processSubObjectsOf: object [
 	^ object
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>reset [
+{ #category : #initialize-release }
+STONReader >> reset [
 	unresolvedReferences := 0.
 	objects removeAll
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>resolveReference: reference [
+{ #category : #private }
+STONReader >> resolveReference: reference [
 	unresolvedReferences := unresolvedReferences - 1.
 	^ self resolveReferenceIndex: reference index
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>resolveReferenceIndex: index [
+{ #category : #private }
+STONReader >> resolveReferenceIndex: index [
 	^ objects at: index
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>setReference: reference to: object [
+{ #category : #private }
+STONReader >> setReference: reference to: object [
 	objects at: reference index put: object
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>storeReference: object [
+{ #category : #private }
+STONReader >> storeReference: object [
 	| index |
 	index := objects size + 1.
 	objects at: index put: object.
 	^ index
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReader>>stringStreamContents: block [
+{ #category : #private }
+STONReader >> stringStreamContents: block [
 	stringStream ifNil: [ 
 		stringStream := (String new: 32) writeStream ].
 	stringStream reset.

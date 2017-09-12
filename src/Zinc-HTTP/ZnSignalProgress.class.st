@@ -11,15 +11,11 @@ ZnSignalProgress
 Class {
 	#name : #ZnSignalProgress,
 	#superclass : #DynamicVariable,
-	#category : #Zinc-HTTP-Variables,
-	#timestamp : '<historical>'
+	#category : #Zinc-HTTP-Variables
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSignalProgress class>>enabled [
+{ #category : #accessing }
+ZnSignalProgress class >> enabled [
 	"Answer if HTTPProgress should be signalled.
 	The default is false."
 	

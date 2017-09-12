@@ -35,26 +35,19 @@ Class {
 		'acceptOnFocusChange',
 		'selectionColor'
 	],
-	#category : #'Morphic-Base-Text Support',
-	#timestamp : 'AlainPlantec 2/21/2011 17:43'
+	#category : #'Morphic-Base-Text Support'
 }
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>acceptContents [
+{ #category : #editing }
+TextMorphForEditView >> acceptContents [
 	"The message is sent when the user hits enter or Cmd-S.
 	Accept the current contents and end editing."
 	self updateFromParagraph.
 	editView accept.
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>acceptOnCR [
+{ #category : #editing }
+TextMorphForEditView >> acceptOnCR [
 	"Answer whether the receiver wants to accept when the Return key is hit"
 	"This test is to make sure that existing instances that may be changed and get their acceptOnCR 
 	do not blow up on our face. Now this test could be removed"
@@ -62,59 +55,41 @@ TextMorphForEditView>>acceptOnCR [
 	^ acceptOnCR == true
 ]
 
-{
-	#category : #accept/cancel,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>acceptOnCR: trueOrFalse [
+{ #category : #accept/cancel }
+TextMorphForEditView >> acceptOnCR: trueOrFalse [
 	acceptOnCR := trueOrFalse
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>acceptOnFocusChange [
+{ #category : #'as yet unclassified' }
+TextMorphForEditView >> acceptOnFocusChange [
 	"Answer the value of acceptOnFocusChange"
 
 	^ acceptOnFocusChange
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>acceptOnFocusChange: anObject [
+{ #category : #'as yet unclassified' }
+TextMorphForEditView >> acceptOnFocusChange: anObject [
 	"Set the value of acceptOnFocusChange"
 
 	acceptOnFocusChange := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>autoAccept [
+{ #category : #'as yet unclassified' }
+TextMorphForEditView >> autoAccept [
 	"Answer the value of autoAccept"
 
 	^ autoAccept
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>autoAccept: anObject [
+{ #category : #'as yet unclassified' }
+TextMorphForEditView >> autoAccept: anObject [
 	"Set the value of autoAccept"
 
 	autoAccept := anObject
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>autoScrollView: evt [
+{ #category : #'event handling' }
+TextMorphForEditView >> autoScrollView: evt [
 	"This is kind of a hack because the PluggableTextMorph expects me to first expand the selection before auto scrolling will work."
 	| localEvt |
 	localEvt := evt transformedBy: (self transformedFrom: editView).
@@ -122,38 +97,26 @@ TextMorphForEditView>>autoScrollView: evt [
 	editView scrollSelectionIntoView: localEvt.
 ]
 
-{
-	#category : #binding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>bindingOf: varName [
+{ #category : #binding }
+TextMorphForEditView >> bindingOf: varName [
 	^ self editor bindingOf: varName
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>canChangeText [
+{ #category : #editing }
+TextMorphForEditView >> canChangeText [
 	^ self editView enabled
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>cancelEdits [
+{ #category : #editing }
+TextMorphForEditView >> cancelEdits [
 	"The message is sent when the user hits enter or Cmd-L.
 	Cancel the current contents and end editing."
 	self releaseParagraph.
 	editView cancel
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>doAutoAccept: evt [
+{ #category : #'as yet unclassified' }
+TextMorphForEditView >> doAutoAccept: evt [
 	"Do the key stroke and check to see if it should be accepted."
 
 	self autoAccept == true 
@@ -161,40 +124,28 @@ TextMorphForEditView>>doAutoAccept: evt [
 			ifTrue: [self editor accept]]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>doubleClickOnSelectedText: event [
+{ #category : #'event handling' }
+TextMorphForEditView >> doubleClickOnSelectedText: event [
 	"Unselect everything. This message is sent by the editor"
 	
 	self deselect
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>dragEnabled [
+{ #category : #'event handling' }
+TextMorphForEditView >> dragEnabled [
 
 	^ self editView dragEnabled
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>drawNullTextOn: aCanvas [
+{ #category : #drawing }
+TextMorphForEditView >> drawNullTextOn: aCanvas [
 	"Just run the normal code to show selection in a window"
 	aCanvas paragraph: self paragraph bounds: bounds color: color
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>drawOn: aCanvas [
+{ #category : #drawing }
+TextMorphForEditView >> drawOn: aCanvas [
 	self useSelectionBar
 		ifTrue: [self paragraph displaySelectionBarOn: aCanvas].
 	self useExtraSelection 
@@ -203,27 +154,18 @@ TextMorphForEditView>>drawOn: aCanvas [
 
 ]
 
-{
-	#category : #'edit view',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>editView [
+{ #category : #'edit view' }
+TextMorphForEditView >> editView [
 	^ editView
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>escapePressed [
+{ #category : #'event handling' }
+TextMorphForEditView >> escapePressed [
 	^ self editView yellowButtonActivity: false. 
 ]
 
-{
-	#category : #find-replace,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>findAndSelect: aRegex startingAt: anIndex searchBackwards: searchBackwards [
+{ #category : #find-replace }
+TextMorphForEditView >> findAndSelect: aRegex startingAt: anIndex searchBackwards: searchBackwards [
 	| where |
 	self
 		handleEdit: [
@@ -235,11 +177,8 @@ TextMorphForEditView>>findAndSelect: aRegex startingAt: anIndex searchBackwards:
 	^ where
 ]
 
-{
-	#category : #find-replace,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>findNextString: aSubstring startingAt: searchIdx [
+{ #category : #find-replace }
+TextMorphForEditView >> findNextString: aSubstring startingAt: searchIdx [
 	| where |
 	self
 		handleEdit: [where := self editor findNextString: aSubstring startingAt: searchIdx].
@@ -247,84 +186,57 @@ TextMorphForEditView>>findNextString: aSubstring startingAt: searchIdx [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>findRegex [
+{ #category : #private }
+TextMorphForEditView >> findRegex [
 	^ self editor findRegex
 ]
 
-{
-	#category : #find-replace,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>findReplaceDialog [
+{ #category : #find-replace }
+TextMorphForEditView >> findReplaceDialog [
 	^ EditorFindReplaceDialogWindow singleton
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>findText [
+{ #category : #private }
+TextMorphForEditView >> findText [
 	^ self editor findText
 ]
 
-{
-	#category : #macpal,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>flash [
+{ #category : #macpal }
+TextMorphForEditView >> flash [
 	^ editView flash
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>handleInteraction: interActionBlock [
+{ #category : #editing }
+TextMorphForEditView >> handleInteraction: interActionBlock [
 	"Overridden to pass along a model to the editor for, eg, link resolution, doits, etc"
 
 	self editor model: editView model.  "For evaluateSelection, etc"
 	^ super handleInteraction: interActionBlock
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>handlesDoubleClick [
+{ #category : #'event handling' }
+TextMorphForEditView >> handlesDoubleClick [
 
 	^ self editView handlesDoubleClick
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>hasUnacceptedEdits: aBoolean [
+{ #category : #editing }
+TextMorphForEditView >> hasUnacceptedEdits: aBoolean [
 	"Set the hasUnacceptedEdits flag in my view."
 
 	editView hasUnacceptedEdits: aBoolean
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>initialize [
+{ #category : #initialization }
+TextMorphForEditView >> initialize [
 	super initialize.
 	acceptOnCR := false.
 	autoAccept := false.
 	acceptOnFocusChange := false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>keyStroke: evt [
+{ #category : #'event handling' }
+TextMorphForEditView >> keyStroke: evt [
 	"Handle a keystroke. Deal with navigation keys also."
 	
 	| view |  
@@ -344,11 +256,8 @@ TextMorphForEditView>>keyStroke: evt [
 	view scrollSelectionIntoView
 ]
 
-{
-	#category : #changed,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>keyboardFocusChange: gotFocus  [
+{ #category : #changed }
+TextMorphForEditView >> keyboardFocusChange: gotFocus [ 
 	self announceKeyboardFocusChange: gotFocus.
  	paragraph 
 		ifNotNil: [paragraph focused: gotFocus].
@@ -371,11 +280,8 @@ TextMorphForEditView>>keyboardFocusChange: gotFocus  [
 		ifTrue: [self editView hasUnacceptedEdits ifTrue: [self editor accept]]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>mouseDown: event [
+{ #category : #'event handling' }
+TextMorphForEditView >> mouseDown: event [
 	self editView ifNotNil: [ self editView mouseDownFromTextMorph: event ].
 	super mouseDown: event.
 	self flag: #hack.
@@ -386,11 +292,8 @@ TextMorphForEditView>>mouseDown: event [
 				ifFound: [ :hl | hl clicked: event ] ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>mouseMove: evt [
+{ #category : #'event handling' }
+TextMorphForEditView >> mouseMove: evt [
 	| editEvt |
 	super mouseMove: evt.
 	evt redButtonPressed ifFalse: [^ self].
@@ -406,11 +309,8 @@ TextMorphForEditView>>mouseMove: evt [
 	].
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>mouseUp: event [
+{ #category : #'event handling' }
+TextMorphForEditView >> mouseUp: event [
 	super mouseUp: event.
 	
 	self stopSteppingSelector: #autoScrollView:.
@@ -418,32 +318,23 @@ TextMorphForEditView>>mouseUp: event [
 	editView selectionInterval: editor selectionInterval.
 ]
 
-{
-	#category : #find-replace,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>openFindDialog [
+{ #category : #find-replace }
+TextMorphForEditView >> openFindDialog [
 	self sharesFindReplace 
 		ifTrue: [ (self findReplaceDialog on: self) open]
 		ifFalse: [self flash]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>paragraph [
+{ #category : #accessing }
+TextMorphForEditView >> paragraph [
 	"Answer the paragraph."
 
 	^ super paragraph selectionColor: self selectionColor; yourself
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>preferredKeyboardPosition [
+{ #category : #'event handling' }
+TextMorphForEditView >> preferredKeyboardPosition [
 
 	| pos |
 	pos := super preferredKeyboardPosition.
@@ -451,19 +342,13 @@ TextMorphForEditView>>preferredKeyboardPosition [
 
 ]
 
-{
-	#category : #'multi level undo',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>redoTypeIn: aText interval: anInterval  [
+{ #category : #'multi level undo' }
+TextMorphForEditView >> redoTypeIn: aText interval: anInterval [ 
 	self handleEdit: [self editor redoTypeIn: aText interval: anInterval]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>refreshExtraSelection [
+{ #category : #private }
+TextMorphForEditView >> refreshExtraSelection [
 	| fullRefreshNeeded |
 	fullRefreshNeeded := self useSelectionBar.
 	self useFindReplaceSelection
@@ -486,49 +371,34 @@ TextMorphForEditView>>refreshExtraSelection [
 			self invalidRect: self bounds ]
 ]
 
-{
-	#category : #find-replace,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>replaceAll: aRegex with: aText [
+{ #category : #find-replace }
+TextMorphForEditView >> replaceAll: aRegex with: aText [
 	self
 		handleEdit: [self editor replaceAll: aRegex with: aText].
 
 ]
 
-{
-	#category : #find-replace,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>replaceAll: aRegex with: aText startingAt: startIdx [
+{ #category : #find-replace }
+TextMorphForEditView >> replaceAll: aRegex with: aText startingAt: startIdx [
 	self
 		handleEdit: [self editor replaceAll: aRegex with: aText startingAt: startIdx].
 
 ]
 
-{
-	#category : #find-replace,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>replaceSelectionWith: aReplacementText [
+{ #category : #find-replace }
+TextMorphForEditView >> replaceSelectionWith: aReplacementText [
 	self handleEdit: [self editor replaceSelectionWith: aReplacementText]
 ]
 
-{
-	#category : #miscellaneous,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>selectAll [
+{ #category : #miscellaneous }
+TextMorphForEditView >> selectAll [
 	"Tell my editor to select all the text"
 
 	self editor selectAll
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>selectionChanged [
+{ #category : #private }
+TextMorphForEditView >> selectionChanged [
 	self sharesFindReplace 
 		ifTrue: [self editor findReplaceService changed: #findReplaceSelection].
 	self useExtraSelection
@@ -536,121 +406,79 @@ TextMorphForEditView>>selectionChanged [
 	super selectionChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>selectionColor [
+{ #category : #accessing }
+TextMorphForEditView >> selectionColor [
 	^ selectionColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>selectionColor: aColor [
+{ #category : #accessing }
+TextMorphForEditView >> selectionColor: aColor [
 	selectionColor := aColor.
 	paragraph ifNotNil: [:p | p selectionColor: aColor]
 ]
 
-{
-	#category : #'edit view',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>setEditView: editPane [
+{ #category : #'edit view' }
+TextMorphForEditView >> setEditView: editPane [
 	editView := editPane
 ]
 
-{
-	#category : #find-replace,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>sharesFindReplace [
+{ #category : #find-replace }
+TextMorphForEditView >> sharesFindReplace [
 	^ true
 ]
 
-{
-	#category : #blinking,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>startBlinking [
+{ #category : #blinking }
+TextMorphForEditView >> startBlinking [
 	self canChangeText 
 		ifTrue: [super startBlinking]
 		ifFalse: [self paragraph showCaret: true]
 ]
 
-{
-	#category : #dragging,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>startDrag: event [
+{ #category : #dragging }
+TextMorphForEditView >> startDrag: event [
 
 	self editView startDrag: event
 ]
 
-{
-	#category : #'multi level undo',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>undoRedoExchange: aninterval with: anotherInterval [
+{ #category : #'multi level undo' }
+TextMorphForEditView >> undoRedoExchange: aninterval with: anotherInterval [
 	self handleEdit: [self editor undoRedoExchange: aninterval with: anotherInterval]
 ]
 
-{
-	#category : #'multi level undo',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>undoTypeIn: aText interval: anInterval  [
+{ #category : #'multi level undo' }
+TextMorphForEditView >> undoTypeIn: aText interval: anInterval [ 
 	self handleEdit: [self editor undoTypeIn: aText interval: anInterval]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>updateFromParagraph   [
+{ #category : #private }
+TextMorphForEditView >> updateFromParagraph [  
 	super updateFromParagraph.
 	editView setScrollDeltas.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>useExtraSelection [
+{ #category : #private }
+TextMorphForEditView >> useExtraSelection [
 	^ self useFindReplaceSelection or: [self useSecondarySelection]
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>useFindReplaceSelection [
+{ #category : #private }
+TextMorphForEditView >> useFindReplaceSelection [
 	^ TextEditor useFindReplaceSelection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>useSecondarySelection [
+{ #category : #private }
+TextMorphForEditView >> useSecondarySelection [
 	^ TextEditor useSecondarySelection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>useSelectionBar [
+{ #category : #private }
+TextMorphForEditView >> useSelectionBar [
 	^ TextEditor useSelectionBar
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextMorphForEditView>>wouldAcceptKeyboardFocusUponTab [
+{ #category : #'event handling' }
+TextMorphForEditView >> wouldAcceptKeyboardFocusUponTab [
 	"Answer whether the receiver would be a happy inheritor of keyboard focus if tab were hit in an enclosing playfield under propitious circumstances.  Does not make sense for this kind of morph, which is encased in a window"
 
 	^ false

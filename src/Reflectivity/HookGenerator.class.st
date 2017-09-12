@@ -13,31 +13,21 @@ Class {
 		'links',
 		'plugins'
 	],
-	#category : #Reflectivity-Core,
-	#timestamp : 'MarcusDenker 7/2/2015 10:30'
+	#category : #Reflectivity-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator class>>entity: anEntity node: aNode [
+{ #category : #'instance creation' }
+HookGenerator class >> entity: anEntity node: aNode [
 	^self new entity: anEntity node: aNode links: anEntity links 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator class>>node: aNode [
+{ #category : #'instance creation' }
+HookGenerator class >> node: aNode [
 	^self entity: aNode node: aNode
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator>>afterHooks [
+{ #category : #results }
+HookGenerator >> afterHooks [
 	| statements |
 	statements := links 
 			select: [ :each | each control = #after ] 
@@ -46,30 +36,21 @@ HookGenerator>>afterHooks [
 	^(RBBlockNode body: (RBSequenceNode statements: statements flattened)) parent: node.
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator>>beforeHooks [
+{ #category : #results }
+HookGenerator >> beforeHooks [
 	^links 
 			select: [ :each | each control = #before ] 
 			thenCollect:  [ :link | (self hookFor: link) parent: node] 
 ]
 
-{
-	#category : #'ast manipulation',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator>>encloseInBlock: nodeOrCollection [
+{ #category : #'ast manipulation' }
+HookGenerator >> encloseInBlock: nodeOrCollection [
 	"Creates a new block node from a node or a list of nodes"
 	^ RBBlockNode body: nodeOrCollection asSequenceNode
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator>>entity: anEntity node: aNode links: aCollection [
+{ #category : #initialize }
+HookGenerator >> entity: anEntity node: aNode links: aCollection [
 	plugins := Dictionary new.
 	node := aNode.
 	entity := anEntity.
@@ -83,22 +64,16 @@ HookGenerator>>entity: anEntity node: aNode links: aCollection [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator>>genReification: aSymbolOrNode for: aLink [
+{ #category : #private }
+HookGenerator >> genReification: aSymbolOrNode for: aLink [
 	| plugin | 
 	aSymbolOrNode isSymbol not ifTrue: [ ^ aSymbolOrNode]. 
 	plugin := (plugins at: aSymbolOrNode ifAbsent: [self error: 'reification not supported for this entity']) entity: entity link: aLink.	
 	 ^plugin perform: self selectorForNode
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator>>generateArguments: aMetalink [
+{ #category : #private }
+HookGenerator >> generateArguments: aMetalink [
 	| arguments |
 	
 	arguments := aMetalink arguments collect: [: each | self genReification: each for: aMetalink].
@@ -107,28 +82,19 @@ HookGenerator>>generateArguments: aMetalink [
 	^arguments
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator>>hasOption: aSymbol for: aLink [
+{ #category : #options }
+HookGenerator >> hasOption: aSymbol for: aLink [
 	"take the class and method overrides to options into account"
 	^(node methodNode optionsFor: aLink) includes: aSymbol.
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator>>hook [
+{ #category : #results }
+HookGenerator >> hook [
 	^RBSequenceNode statements: (links collect:  [ :link | self hookFor: link ]). 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator>>hookFor: aLink [
+{ #category : #private }
+HookGenerator >> hookFor: aLink [
 	| receiver hook arguments |
 	
 	(self hasOption: #optionDisabledLink for: aLink) ifTrue: [ ^RBSequenceNode new ].
@@ -159,38 +125,26 @@ HookGenerator>>hookFor: aLink [
 	^ hook
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator>>insteadHooks [
+{ #category : #results }
+HookGenerator >> insteadHooks [
 	| insteadLinks |
 	insteadLinks := ((links select: [ :each | each control = #instead ])) asArray.
 	insteadLinks isEmpty ifTrue: [ ^#()].
 	^(self hookFor: insteadLinks last) parent: node 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator>>links [
+{ #category : #accessing }
+HookGenerator >> links [
 	^links
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator>>plugins [
+{ #category : #accessing }
+HookGenerator >> plugins [
 	^ plugins
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator>>preamble [
+{ #category : #results }
+HookGenerator >> preamble [
 	| preamble |
 	"Very simplistic now: needs to do some optimizatons"
 	
@@ -204,20 +158,14 @@ HookGenerator>>preamble [
 	^preamble
 ]
 
-{
-	#category : #'ast manipulation',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator>>selectorForNode [
+{ #category : #'ast manipulation' }
+HookGenerator >> selectorForNode [
 	"The selector to be called on the Reification plugin"
 	^('genFor' , entity class name) asSymbol.
 ]
 
-{
-	#category : #'ast manipulation',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator>>wrapCondition: hook link: aLink [
+{ #category : #'ast manipulation' }
+HookGenerator >> wrapCondition: hook link: aLink [
 	| linkBlock conditionExpression condSelector condArguments linkConditionArguments|
 	
 	condSelector := aLink condition valueSelector.
@@ -244,11 +192,8 @@ HookGenerator>>wrapCondition: hook link: aLink [
 				arguments: {linkBlock}
 ]
 
-{
-	#category : #'ast manipulation',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-HookGenerator>>wrapInContext: hook link: aLink [
+{ #category : #'ast manipulation' }
+HookGenerator >> wrapInContext: hook link: aLink [
 	^RFMessageNode 
 		receiver: aLink asLiteralNode
 		selector: #valueInContext:

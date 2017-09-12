@@ -1,32 +1,21 @@
-Extension {
-	#name : #RBMethodNode
-}
+Extension { #name : #RBMethodNode }
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RBMethodNode>>hasOption: aSymbol for: aLink [
+{ #category : #'*Reflectivity' }
+RBMethodNode >> hasOption: aSymbol for: aLink [
 	"take the class and method overrides to options into account"
 	^(self optionsFor: aLink) includes: aSymbol.
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RBMethodNode>>metaLinkOptions [
+{ #category : #'*Reflectivity' }
+RBMethodNode >> metaLinkOptions [
 	^{
 	#metaLinkOptionsFromClassAndMethod -> #( + optionCompileOnLinkInstallation).
 	#metaLinkOptions -> #( + optionCompileOnLinkInstallation)
 	}
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RBMethodNode>>metaLinkOptionsFromClassAndMethod  [
+{ #category : #'*Reflectivity' }
+RBMethodNode >> metaLinkOptionsFromClassAndMethod [ 
 	| options |
 	options := Set new.
 	self methodClass 
@@ -41,21 +30,15 @@ RBMethodNode>>metaLinkOptionsFromClassAndMethod  [
 	
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RBMethodNode>>method [
+{ #category : #'*Reflectivity' }
+RBMethodNode >> method [
 	"return the method that I have been compiled for"
 	self compilationContext ifNil: [ ^nil ].
 	^self compilationContext getClass >> self selector
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RBMethodNode>>optionsFor: aLink [
+{ #category : #'*Reflectivity' }
+RBMethodNode >> optionsFor: aLink [
 	| options |
 	options := aLink options copy.
 	options addAll: self metaLinkOptionsFromClassAndMethod.

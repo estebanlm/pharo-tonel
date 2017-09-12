@@ -13,48 +13,32 @@ Class {
 		'previousAuthor',
 		'quadrangleClass'
 	],
-	#category : #RPackage-Tests,
-	#timestamp : 'StephaneDucasse 4/24/2011 17:10'
+	#category : #RPackage-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>p1Name [
+{ #category : #tests }
+RPackageOrganizerTest >> p1Name [
 	^ 'RPackageTestP1'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>p2Name [
+{ #category : #tests }
+RPackageOrganizerTest >> p2Name [
 	^ 'RPackageTestP2'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>p3Name [
+{ #category : #tests }
+RPackageOrganizerTest >> p3Name [
 	^ 'RPackageTestP3'
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>packageOrganizer [
+{ #category : #utility }
+RPackageOrganizerTest >> packageOrganizer [
 
 	^ packageOrganizer 
 ]
 
-{
-	#category : #'tests extending',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>pointRectangleInGraphElement  [
+{ #category : #'tests extending' }
+RPackageOrganizerTest >> pointRectangleInGraphElement [ 
 	| p |
 	p := self packageClass named: #GraphElement.
 	p addClassDefinition: Point.
@@ -65,39 +49,27 @@ RPackageOrganizerTest>>pointRectangleInGraphElement  [
 	^ p
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>quadrangleClass [
+{ #category : #utility }
+RPackageOrganizerTest >> quadrangleClass [
 	^ self class environment at: #QuadrangleForTesting 
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>removeClassNamedIfExists: aClassNameSymbol [
+{ #category : #utility }
+RPackageOrganizerTest >> removeClassNamedIfExists: aClassNameSymbol [
 
 	Smalltalk globals at: aClassNameSymbol asSymbol ifPresent: [ :c | c removeFromSystem ]
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>removePackageIfExist: aName [
+{ #category : #utility }
+RPackageOrganizerTest >> removePackageIfExist: aName [
 
 	self packageOrganizer basicUnregisterPackageNamed: aName asSymbol.
 		
 	
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>setUp [
+{ #category : #setup }
+RPackageOrganizerTest >> setUp [
 	super setUp.
 	createdClasses := OrderedCollection new.
 	createdPackages := OrderedCollection new.
@@ -109,11 +81,8 @@ RPackageOrganizerTest>>setUp [
 	self quadrangleClass compileSilently: 'intersect:aPoint ^ false'.
 ]
 
-{
-	#category : #'tests extending',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>stringCharacterInCollPackage [
+{ #category : #'tests extending' }
+RPackageOrganizerTest >> stringCharacterInCollPackage [
 	| p |
 	p := self packageClass named: #CollPackage.
 	p addClassDefinition: String.
@@ -126,11 +95,8 @@ RPackageOrganizerTest>>stringCharacterInCollPackage [
 	^ p
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>tearDown  [
+{ #category : #setup }
+RPackageOrganizerTest >> tearDown [ 
 	
 	Author fullName: previousAuthor.
 	
@@ -145,11 +111,8 @@ RPackageOrganizerTest>>tearDown  [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>testAccessingPackage [
+{ #category : #tests }
+RPackageOrganizerTest >> testAccessingPackage [
 	"self debug: #testAccessingPackage"
 
 	| p1 |
@@ -162,11 +125,8 @@ RPackageOrganizerTest>>testAccessingPackage [
 	self should: [(self packageOrganizer packageNamed: #P22)] raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>testDefinedClassesInstanceAndMetaSideAPI [
+{ #category : #tests }
+RPackageOrganizerTest >> testDefinedClassesInstanceAndMetaSideAPI [
 	"self debug: #testDefinedClassesInstanceAndMetaSideAPI"
 	| p1 |
 	p1 := self createNewPackageNamed: 'P1'.
@@ -179,22 +139,16 @@ RPackageOrganizerTest>>testDefinedClassesInstanceAndMetaSideAPI [
 	self assert: (self packageOrganizer packageNamed: #P1) definedClasses size = 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>testEmpty [
+{ #category : #tests }
+RPackageOrganizerTest >> testEmpty [
 	"self debug: #testEmpty"
 	self assert: self packageOrganizer packageNames size = 1.
 	self assert: (self packageOrganizer packageNames includes: self packageClass defaultPackageName)
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>testFullRegistration [
+{ #category : #tests }
+RPackageOrganizerTest >> testFullRegistration [
 	"self debug: #testFullRegistration"
 
 	| p1 p2 p3 a1 a2 b1 b2 a3 |
@@ -244,11 +198,8 @@ RPackageOrganizerTest>>testFullRegistration [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>testFullUnregistration [
+{ #category : #tests }
+RPackageOrganizerTest >> testFullUnregistration [
 	"self debug: #testFullRegistration"
 
 	| p1 p2 p3 a1 a2 b1 b2 a3 |
@@ -299,11 +250,8 @@ RPackageOrganizerTest>>testFullUnregistration [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>testRegisterPackageConflictWithPackage [
+{ #category : #tests }
+RPackageOrganizerTest >> testRegisterPackageConflictWithPackage [
 	"self debug: #testRegisteredIsThere"
 
 	| package1 package2 |
@@ -317,11 +265,8 @@ RPackageOrganizerTest>>testRegisterPackageConflictWithPackage [
 		raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>testRegisterPackageConflictWithPackageTag [
+{ #category : #tests }
+RPackageOrganizerTest >> testRegisterPackageConflictWithPackageTag [
 	"self debug: #testRegisteredIsThere"
 
 	| package1 package2 |
@@ -336,11 +281,8 @@ RPackageOrganizerTest>>testRegisterPackageConflictWithPackageTag [
 		raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>testRegisterPackageTagConflictWithPackage [
+{ #category : #tests }
+RPackageOrganizerTest >> testRegisterPackageTagConflictWithPackage [
 	| package1 package2 |
 
 	package1 := self createNewPackageNamed: 'P1-T1'.
@@ -352,11 +294,8 @@ RPackageOrganizerTest>>testRegisterPackageTagConflictWithPackage [
 		raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>testRegisteredIsIncludedInPackageNames [
+{ #category : #tests }
+RPackageOrganizerTest >> testRegisteredIsIncludedInPackageNames [
 	"self debug: #testRegisteredIsIncludedInPackageNames"
 	| p1 p2 p3 |
 	p1 := self createNewPackageNamed: 'P1'.
@@ -374,11 +313,8 @@ RPackageOrganizerTest>>testRegisteredIsIncludedInPackageNames [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>testRegisteredIsThere [
+{ #category : #tests }
+RPackageOrganizerTest >> testRegisteredIsThere [
 	"self debug: #testRegisteredIsThere"
 
 	| p1 p2 p3 |
@@ -395,11 +331,8 @@ RPackageOrganizerTest>>testRegisteredIsThere [
 		self assert:  (self packageOrganizer packageNames includes: each name)]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>testRegisteredNumberOfPackageIsOk [
+{ #category : #tests }
+RPackageOrganizerTest >> testRegisteredNumberOfPackageIsOk [
 	"self debug: #testRegisteredNumberOfPackageIsOk"
 
 	| p1 p2 p3 |
@@ -415,11 +348,8 @@ RPackageOrganizerTest>>testRegisteredNumberOfPackageIsOk [
 	self assert: self packageOrganizer packageNames size = 3.
 ]
 
-{
-	#category : #'tests extending',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>testRegistrationExtendingPackages [
+{ #category : #'tests extending' }
+RPackageOrganizerTest >> testRegistrationExtendingPackages [
 	"self debug: #testRegistrationExtendingPackages"
 
 	| p |
@@ -433,11 +363,8 @@ RPackageOrganizerTest>>testRegistrationExtendingPackages [
 	
 ]
 
-{
-	#category : #'tests extensions',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>testSilentlyRenameCategoryToBe [
+{ #category : #'tests extensions' }
+RPackageOrganizerTest >> testSilentlyRenameCategoryToBe [
 
 	| class |
 	
@@ -451,11 +378,8 @@ RPackageOrganizerTest>>testSilentlyRenameCategoryToBe [
 	self deny: (class organization categories includes: #foo).	
 ]
 
-{
-	#category : #'tests extending',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>testTestingPackageExistence [
+{ #category : #'tests extending' }
+RPackageOrganizerTest >> testTestingPackageExistence [
 
 	| extensionCategory package existingPackage |
 	
@@ -473,11 +397,8 @@ RPackageOrganizerTest>>testTestingPackageExistence [
 	self deny: (packageOrganizer includesPackageNamed: extensionCategory).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>testUnregisterBasedOnNames [
+{ #category : #tests }
+RPackageOrganizerTest >> testUnregisterBasedOnNames [
 	"self debug: #testUnregisterBasedOnNames"
 
 	| p1 p2 p3 |
@@ -495,11 +416,8 @@ RPackageOrganizerTest>>testUnregisterBasedOnNames [
 		self deny:  (self packageOrganizer packageNames includes: each name)]
 ]
 
-{
-	#category : #'tests extending',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageOrganizerTest>>testUnregistrationExtendingPackages [
+{ #category : #'tests extending' }
+RPackageOrganizerTest >> testUnregistrationExtendingPackages [
 	"self debug: #testUnregistrationExtendingPackages"
 
 	| p |

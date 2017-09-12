@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterStepsBreadcrumb,
 	#superclass : #GLMBrick,
@@ -10,15 +7,11 @@ Class {
 		'band',
 		'animation'
 	],
-	#category : #GT-Spotter-UI,
-	#timestamp : ''
+	#category : #GT-Spotter-UI
 }
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>addItem: aBrick [
+{ #category : #adding/removing }
+GTSpotterStepsBreadcrumb >> addItem: aBrick [
 
 	aBrick width: [ :itemBrick | self calculateItemWidth: itemBrick ].
 	aBrick layout widthDependency: self.
@@ -32,11 +25,8 @@ GTSpotterStepsBreadcrumb>>addItem: aBrick [
 	self band doLayoutForce.
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>addSeparator [
+{ #category : #adding/removing }
+GTSpotterStepsBreadcrumb >> addSeparator [
 	|separator|
 	separator := self newSeparator.
 	self themer spotterThemer breadcrumbSeparatorStyleFor: separator.
@@ -44,29 +34,20 @@ GTSpotterStepsBreadcrumb>>addSeparator [
 	self band addBrickBack: separator
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>animation [
+{ #category : #accessing }
+GTSpotterStepsBreadcrumb >> animation [
 
 	^ animation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>band [
+{ #category : #accessing }
+GTSpotterStepsBreadcrumb >> band [
 
 	^ band
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>band: aBrick [
+{ #category : #accessing }
+GTSpotterStepsBreadcrumb >> band: aBrick [
 
 	band := aBrick.
 	band
@@ -78,11 +59,8 @@ GTSpotterStepsBreadcrumb>>band: aBrick [
 	self addBrickBack: band.
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>calculateItemWidth: aBrick [
+{ #category : #geometry }
+GTSpotterStepsBreadcrumb >> calculateItemWidth: aBrick [
 	|sWidth bWidth singleWidth lastWidth|
 	sWidth := self themer spotterThemer breadcrumbSeparatorWidth.
 	bWidth := self width.
@@ -101,20 +79,14 @@ GTSpotterStepsBreadcrumb>>calculateItemWidth: aBrick [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>defaultBreadcrumbHeight [
+{ #category : #accessing }
+GTSpotterStepsBreadcrumb >> defaultBreadcrumbHeight [
 
 	^ self themer spotterThemer breadcrumbHeight + self themer spotterThemer breadcrumbTriangleHeight
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>glmAnimateBrickBounds: aValue duration: anInteger callback: aBlock [
+{ #category : #geometry }
+GTSpotterStepsBreadcrumb >> glmAnimateBrickBounds: aValue duration: anInteger callback: aBlock [
 
 	self animation ifNotNil: #terminate.
 	animation := GLMAnimation new
@@ -127,85 +99,58 @@ GTSpotterStepsBreadcrumb>>glmAnimateBrickBounds: aValue duration: anInteger call
 		animate: self band
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>initialize [
+{ #category : #initialization }
+GTSpotterStepsBreadcrumb >> initialize [
 	super initialize.
 	
 	self band: self newBand
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>isVisible [
+{ #category : #testing }
+GTSpotterStepsBreadcrumb >> isVisible [
 
 	^ self items isEmpty not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>items [
+{ #category : #accessing }
+GTSpotterStepsBreadcrumb >> items [
 
 	^ items ifNil: [ items := OrderedCollection new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>maxNumberOfSteps [
+{ #category : #accessing }
+GTSpotterStepsBreadcrumb >> maxNumberOfSteps [
 	^ 5
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>newBand [
+{ #category : #'instance creation' }
+GTSpotterStepsBreadcrumb >> newBand [
 
 	^ GLMBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>newSeparator [
+{ #category : #'instance creation' }
+GTSpotterStepsBreadcrumb >> newSeparator [
 
 	^ GLMBrick new
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>notifyBreadcrumbVisibilityChanged [
+{ #category : #notifying }
+GTSpotterStepsBreadcrumb >> notifyBreadcrumbVisibilityChanged [
 
 	self announcer announce: GTSpotterBreadcrumbVisibilityChanged new
 ]
 
-{
-	#category : #brick-layout-events,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>onChildrenLayouted [
+{ #category : #brick-layout-events }
+GTSpotterStepsBreadcrumb >> onChildrenLayouted [
 	super onChildrenLayouted.
 	
 	self band translateXTo: (self band data ifNil: [ 0 ]).
 	self scrollToTheLastOne
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>onStepAdded: ann [
+{ #category : #events-processing }
+GTSpotterStepsBreadcrumb >> onStepAdded: ann [
 	|step origin previousStep selectedCandidate|
 	
 	self spotterModel steps size <= 1 ifTrue: [
@@ -227,31 +172,22 @@ GTSpotterStepsBreadcrumb>>onStepAdded: ann [
 				ifFalse: [ origin gtDisplayString] ]))
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>onStepPopped [
+{ #category : #events-processing }
+GTSpotterStepsBreadcrumb >> onStepPopped [
 
 	self pop
 	
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>onThemerChanged [
+{ #category : #brick-properties-events }
+GTSpotterStepsBreadcrumb >> onThemerChanged [
 	super onThemerChanged.
 	
 	self band subbricks withIndexDo: [ :each :index | index even ifTrue: [ self themer spotterThemer breadcrumbSeparatorWidgetStyleFor: each ] ]
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>pop [
+{ #category : #adding/removing }
+GTSpotterStepsBreadcrumb >> pop [
 	
 	self band layoutAfter: [
 		self band removeBrick: self items removeLast.
@@ -270,20 +206,14 @@ GTSpotterStepsBreadcrumb>>pop [
 			self changed ]
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>popSeparator [
+{ #category : #adding/removing }
+GTSpotterStepsBreadcrumb >> popSeparator [
 
 	self band removeBrick: self band lastSubbrick
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>push: aBrick [
+{ #category : #adding/removing }
+GTSpotterStepsBreadcrumb >> push: aBrick [
 
 	self themer spotterThemer breadcrumbItemStyleFor: aBrick.
 	
@@ -303,11 +233,8 @@ GTSpotterStepsBreadcrumb>>push: aBrick [
 	
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>scrollToTheLastOne [
+{ #category : #geometry }
+GTSpotterStepsBreadcrumb >> scrollToTheLastOne [
 	|leftDelta rightDelta delta|
 	self items isEmpty ifTrue: [ ^ self ].
 	
@@ -328,19 +255,13 @@ GTSpotterStepsBreadcrumb>>scrollToTheLastOne [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>spotterModel [
+{ #category : #accessing }
+GTSpotterStepsBreadcrumb >> spotterModel [
 	^ spotterModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterStepsBreadcrumb>>spotterModel: aSpotterModel [
+{ #category : #accessing }
+GTSpotterStepsBreadcrumb >> spotterModel: aSpotterModel [
 	
 	spotterModel := aSpotterModel.
 	

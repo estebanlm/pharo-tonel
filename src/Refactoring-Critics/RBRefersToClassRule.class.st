@@ -5,70 +5,48 @@ However we cannot systematically replace Class reference by self class or self b
 Class {
 	#name : #RBRefersToClassRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 20:28'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRefersToClassRule class>>checksMethod [
+{ #category : #testing }
+RBRefersToClassRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRefersToClassRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBRefersToClassRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'RefersToClassRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRefersToClassRule>>basicCheck: aMethod [
+{ #category : #running }
+RBRefersToClassRule >> basicCheck: aMethod [
 	| class |
 	class := aMethod methodClass theNonMetaClass.
 	^ aMethod hasLiteral: (class environment associationAt: class name ifAbsent: [ ^ false ])
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRefersToClassRule>>checkMethod: aMethod [
+{ #category : #running }
+RBRefersToClassRule >> checkMethod: aMethod [
 	(self basicCheck: aMethod) ifTrue: [ 
 		result
 			addMethod: aMethod;
 			addSearchString: aMethod methodClass name ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRefersToClassRule>>group [
+{ #category : #accessing }
+RBRefersToClassRule >> group [
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRefersToClassRule>>name [
+{ #category : #accessing }
+RBRefersToClassRule >> name [
 	^ 'Refers to class name instead of "self class"'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBRefersToClassRule>>rationale [
+{ #category : #accessing }
+RBRefersToClassRule >> rationale [
 	^ 'Checks for direct reference to classes themselves.'
 ]

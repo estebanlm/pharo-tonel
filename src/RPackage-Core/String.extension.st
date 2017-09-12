@@ -1,19 +1,11 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*RPackage-Core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-String>>asPackage [
+{ #category : #'*RPackage-Core' }
+String >> asPackage [
 	^ self asPackageIfAbsent: [ NotFound new messageText: 'There is no package named ', self; object: self; signal ] 
 ]
 
-{
-	#category : #'*RPackage-Core',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-String>>asPackageIfAbsent: aBlock [
+{ #category : #'*RPackage-Core' }
+String >> asPackageIfAbsent: aBlock [
 	^ RPackageOrganizer default packageNamed: self ifAbsent: aBlock
 ]

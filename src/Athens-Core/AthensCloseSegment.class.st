@@ -4,23 +4,16 @@ i represent close segment (when user issuing #close command to path builder)
 Class {
 	#name : #AthensCloseSegment,
 	#superclass : #AthensLineSegment,
-	#category : #Athens-Core-Paths,
-	#timestamp : '<historical>'
+	#category : #Athens-Core-Paths
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCloseSegment>>accept: aVisitor [
+{ #category : #visitor }
+AthensCloseSegment >> accept: aVisitor [
 	^ aVisitor closeSegment: self
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCloseSegment>>sendCommandTo: aBuilder [
+{ #category : #visitor }
+AthensCloseSegment >> sendCommandTo: aBuilder [
 	^ aBuilder close
 	
 ]

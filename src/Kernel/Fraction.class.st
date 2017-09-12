@@ -17,15 +17,11 @@ Class {
 		'numerator',
 		'denominator'
 	],
-	#category : #Kernel-Numbers,
-	#timestamp : 'VeronicaUquillas 6/11/2010 14:04'
+	#category : #Kernel-Numbers
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction class>>numerator: numInteger denominator: denInteger [
+{ #category : #'instance creation' }
+Fraction class >> numerator: numInteger denominator: denInteger [ 
 	"Answer an instance of me (numInteger/denInteger).
 	NOTE: This primitive initialization method will not reduce improper fractions,
 	so normal usage should be coded as, eg,
@@ -36,11 +32,8 @@ Fraction class>>numerator: numInteger denominator: denInteger [
 	^self new setNumerator: numInteger denominator: denInteger
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>* aNumber [
+{ #category : #arithmetic }
+Fraction >> * aNumber [ 
 	"Answer the result of multiplying the receiver by aNumber."
 	| d1 d2 |
 	aNumber isFraction ifTrue: 
@@ -53,11 +46,8 @@ Fraction>>* aNumber [
 	^ aNumber adaptToFraction: self andSend: #*
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>+ aNumber [
+{ #category : #arithmetic }
+Fraction >> + aNumber [ 
 	"Answer the sum of the receiver and aNumber."
 	| n d d1 d2 |
 	aNumber isInteger ifTrue:
@@ -72,11 +62,8 @@ Fraction>>+ aNumber [
 	^ aNumber adaptToFraction: self andSend: #+
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>- aNumber [
+{ #category : #arithmetic }
+Fraction >> - aNumber [
 	"Answer the difference between the receiver and aNumber."
 	aNumber isInteger ifTrue:
 		[^Fraction numerator: numerator - (denominator * aNumber) denominator: denominator].
@@ -85,42 +72,30 @@ Fraction>>- aNumber [
 	^ aNumber adaptToFraction: self andSend: #-
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>/ aNumber [
+{ #category : #arithmetic }
+Fraction >> / aNumber [
 	"Answer the result of dividing the receiver by aNumber."
 	aNumber isFraction
 		ifTrue: [^self * aNumber reciprocal].
 	^ aNumber adaptToFraction: self andSend: #/
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>< aNumber [
+{ #category : #comparing }
+Fraction >> < aNumber [
 	aNumber isFraction ifTrue:
 		[^ numerator * aNumber denominator < (aNumber numerator * denominator)].
 	^ aNumber adaptToFraction: self andCompare: #<
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>><= aNumber [
+{ #category : #comparing }
+Fraction >> <= aNumber [
 	aNumber isFraction ifTrue:
 		[^ numerator * aNumber denominator <= (aNumber numerator * denominator)].
 	^ aNumber adaptToFraction: self andCompare: #<=
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>= aNumber [
+{ #category : #comparing }
+Fraction >> = aNumber [
 	aNumber isNumber ifFalse: [^ false].
 	aNumber isFraction
 		ifTrue: [numerator = 0 ifTrue: [^ aNumber numerator = 0].
@@ -131,40 +106,28 @@ Fraction>>= aNumber [
 	^ aNumber adaptToFraction: self andCompare: #=
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>> aNumber [
+{ #category : #comparing }
+Fraction >> > aNumber [
 	aNumber isFraction ifTrue:
 		[^ numerator * aNumber denominator > (aNumber numerator * denominator)].
 	^ aNumber adaptToFraction: self andCompare: #>
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>>= aNumber [
+{ #category : #comparing }
+Fraction >> >= aNumber [
 	aNumber isFraction ifTrue:
 		[^ numerator * aNumber denominator >= (aNumber numerator * denominator)].
 	^ aNumber adaptToFraction: self andCompare: #>=
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>adaptToInteger: rcvr andSend: selector [
+{ #category : #converting }
+Fraction >> adaptToInteger: rcvr andSend: selector [
 	"If I am involved in arithmetic with an Integer, convert it to a Fraction."
 	^ (Fraction numerator: rcvr denominator: 1) perform: selector with: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>asFloat [
+{ #category : #converting }
+Fraction >> asFloat [
 	"Answer a Float that closely approximates the value of the receiver.
 	This implementation will answer the closest floating point number to the receiver.
 	In case of a tie, it will use the IEEE 754 round to nearest even mode.
@@ -217,21 +180,15 @@ Fraction>>asFloat [
 		timesTwoPower: exponent
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>asFraction [
+{ #category : #converting }
+Fraction >> asFraction [	
 	"Answer the receiver itself."
 
 	^self
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>asLargerPowerOfTwo [
+{ #category : #'truncation and round off' }
+Fraction >> asLargerPowerOfTwo [
 	"Convert the receiver into a power of two which is not less than the receiver"
 	| quotient |
 	(numerator = 0 or: [numerator sign ~= denominator sign]) ifTrue: [^DomainError signal: 'Value outside (0 , infinity)' from: 0].
@@ -245,11 +202,8 @@ Fraction>>asLargerPowerOfTwo [
 					ifFalse: [1 bitShift: (quotient highBit )]]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>asScaledDecimal [
+{ #category : #converting }
+Fraction >> asScaledDecimal [
 	"Convert the receiver to a ScaledDecimal.
 	If there is a finite decimal representation of the receiver, then use the exact number of decimal places required.
 	Else, use a default number of decimals."
@@ -267,11 +221,8 @@ Fraction>>asScaledDecimal [
 	^self asScaledDecimal: (pow2 max: pow5)
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>asSmallerPowerOfTwo [
+{ #category : #'truncation and round off' }
+Fraction >> asSmallerPowerOfTwo [
 	"Convert the receiver into a power of two which is not larger than the receiver"
 	| quotient |
 	(numerator = 0 or: [numerator sign ~= denominator sign]) ifTrue: [^DomainError signal: 'Value outside (0 , infinity)' from: 0].
@@ -285,20 +236,14 @@ Fraction>>asSmallerPowerOfTwo [
 		ifFalse: [1 bitShift: ((numerator // denominator) highBit -1)]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>denominator [
+{ #category : #private }
+Fraction >> denominator [
 
 	^denominator
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>hash [
+{ #category : #comparing }
+Fraction >> hash [
 	"Hash is reimplemented because = is implemented.
 	Care is taken that a Fraction equal to a Float also have an equal hash"
 
@@ -313,35 +258,23 @@ Fraction>>hash [
 	^numerator hash bitXor: denominator hash
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>isFraction [
+{ #category : #converting }
+Fraction >> isFraction [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>isPowerOfTwo [
+{ #category : #testing }
+Fraction >> isPowerOfTwo [
 	^ numerator = 1 and: [ denominator isPowerOfTwo ]
 ]
 
-{
-	#category : #'self evaluating',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>isSelfEvaluating [
+{ #category : #'self evaluating' }
+Fraction >> isSelfEvaluating [ 
 	^ true
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>ln [
+{ #category : #'mathematical functions' }
+Fraction >> ln [
 	"This function is defined because super ln might overflow."
 	| res |
 	self <= 0 ifTrue: [^DomainError signal: 'ln is only defined for x > 0' from: 0].
@@ -352,11 +285,8 @@ Fraction>>ln [
 	^numerator ln - denominator ln
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>log [
+{ #category : #'mathematical functions' }
+Fraction >> log [
 	"This function is defined because super log might overflow."
 	| res |
 	self <= 0 ifTrue: [^DomainError signal: 'log is only defined for x > 0' from: 0].
@@ -367,11 +297,8 @@ Fraction>>log [
 	^numerator log - denominator log
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>negated [
+{ #category : #arithmetic }
+Fraction >> negated [ 
 	"Refer to the comment in Number|negated."
 
 	^ Fraction
@@ -379,20 +306,14 @@ Fraction>>negated [
 		denominator: denominator
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>negative [
+{ #category : #testing }
+Fraction >> negative [
 
 	^numerator negative
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>nthRoot: aPositiveInteger [
+{ #category : #'mathematical functions' }
+Fraction >> nthRoot: aPositiveInteger [
 	"Answer the nth root of the receiver."
 
 	| d n |
@@ -405,20 +326,14 @@ Fraction>>nthRoot: aPositiveInteger [
 	^n / d
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>numerator [
+{ #category : #private }
+Fraction >> numerator [
 
 	^numerator
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>printOn: aStream [
+{ #category : #printing }
+Fraction >> printOn: aStream [
 
 	aStream nextPut: $(.
 	numerator printOn: aStream.
@@ -428,11 +343,8 @@ Fraction>>printOn: aStream [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>printOn: aStream base: base [
+{ #category : #printing }
+Fraction >> printOn: aStream base: base [
 
 	aStream nextPut: $(.
 	numerator printOn: aStream base: base.
@@ -442,11 +354,8 @@ Fraction>>printOn: aStream base: base [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>printOn: aStream showingDecimalPlaces: placesDesired [
+{ #category : #printing }
+Fraction >> printOn: aStream showingDecimalPlaces: placesDesired [
 	"Same as super, but provides a faster implementation by inlining some Fraction protocol thus avoiding intermediate Fraction creation."
 	
 	| roundedFractionPart integerPart scaling |
@@ -467,11 +376,8 @@ Fraction>>printOn: aStream showingDecimalPlaces: placesDesired [
 			roundedFractionPart printOn: aStream base: 10 length: placesDesired padded: true].
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>raisedToInteger: anInteger [
+{ #category : #'mathematical functions' }
+Fraction >> raisedToInteger: anInteger [ 
 	"See Number | raisedToInteger:"
 	anInteger = 0 ifTrue: [^ 1].
 	anInteger < 0 ifTrue: [^ self reciprocal raisedToInteger: anInteger negated].
@@ -479,21 +385,15 @@ Fraction>>raisedToInteger: anInteger [
 		denominator: (denominator raisedToInteger: anInteger)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>reciprocal [
+{ #category : #private }
+Fraction >> reciprocal [
 	
 	numerator abs = 1 ifTrue: [^denominator * numerator].
 	^self class numerator: denominator denominator: numerator
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>reduced [
+{ #category : #private }
+Fraction >> reduced [
 
 	| gcd numer denom |
 	numerator = 0 ifTrue: [^0].
@@ -504,11 +404,8 @@ Fraction>>reduced [
 	^Fraction numerator: numer denominator: denom
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>round: numberOfWishedDecimal [
+{ #category : #'truncation and round off' }
+Fraction >> round: numberOfWishedDecimal [
 	"Round the decimal part of the receiver to be limited to the number of wished decimal. Only leave a fixed amount of decimal"
    < expr: '(1/3 round: 2)' result: 0.33 >      
 	< expr: '(111/100 round: 2)' result: 1.11 > 
@@ -516,11 +413,8 @@ Fraction>>round: numberOfWishedDecimal [
 	^self asFloat round: numberOfWishedDecimal
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>setNumerator: n denominator: d [
+{ #category : #private }
+Fraction >> setNumerator: n denominator: d [
 
 	d = 0
 		ifTrue: [^(ZeroDivide dividend: n) signal]
@@ -530,11 +424,8 @@ Fraction>>setNumerator: n denominator: d [
 			d < 0 ifTrue: [numerator := numerator negated]]
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>sqrt [
+{ #category : #'mathematical functions' }
+Fraction >> sqrt [
 	| d n |
 	n := numerator sqrt.
 	d := denominator sqrt.
@@ -545,20 +436,14 @@ Fraction>>sqrt [
 	^n / d
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>squared [
+{ #category : #'mathematical functions' }
+Fraction >> squared [
 	"See Fraction (Number) | squared"
 	^ Fraction numerator: numerator squared denominator: denominator squared
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>storeOn: aStream base: base [
+{ #category : #printing }
+Fraction >> storeOn: aStream base: base [
 
 	aStream nextPut: $(.
 	numerator storeOn: aStream base: base.
@@ -568,11 +453,8 @@ Fraction>>storeOn: aStream base: base [
 
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Fraction>>truncated [
+{ #category : #'truncation and round off' }
+Fraction >> truncated [ 
 	"Refer to the comment in Number|truncated."
 
 	^numerator quo: denominator

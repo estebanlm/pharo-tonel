@@ -13,25 +13,18 @@ Class {
 		'useByteOrderMark',
 		'byteOrderMarkDone'
 	],
-	#category : #Multilingual-TextConversion,
-	#timestamp : 'HenrikSperreJohansen 8/9/2010 15:29'
+	#category : #Multilingual-TextConversion
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF16TextConverter class>>encodingNames [
+{ #category : #utilities }
+UTF16TextConverter class >> encodingNames [
 
 	^ #('utf-16' 'utf16' 'utf-16-le' 'utf-16-be') copy.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF16TextConverter>>charFromStream: aStream withFirst: firstValue [
+{ #category : #private }
+UTF16TextConverter >> charFromStream: aStream withFirst: firstValue [
 
 	^(firstValue < 16rD800 or: [firstValue > 16rDBFF])
 		ifTrue:
@@ -49,11 +42,8 @@ UTF16TextConverter>>charFromStream: aStream withFirst: firstValue [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF16TextConverter>>checkBOMOn: aStream [
+{ #category : #private }
+UTF16TextConverter >> checkBOMOn: aStream [
 	"Write bom if applicable, and we are at beginning of stream"
 	(self useByteOrderMark and: [byteOrderMarkDone not]) ifTrue: [
 		aStream position = 0 ifTrue: [self next16BitValue: (16rFEFF) toStream: aStream].
@@ -61,22 +51,16 @@ UTF16TextConverter>>checkBOMOn: aStream [
 	].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF16TextConverter>>initialize [
+{ #category : #initialization }
+UTF16TextConverter >> initialize [
 	super initialize.
 	byteOrderMarkDone := false.
 	useByteOrderMark := false.
 	useLittleEndian := false.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF16TextConverter>>next16BitValue: value toStream: aStream [
+{ #category : #private }
+UTF16TextConverter >> next16BitValue: value toStream: aStream [
 
 	| v1 v2 |
 	v1 := (value >> 8) bitAnd: 16rFF.
@@ -92,11 +76,8 @@ UTF16TextConverter>>next16BitValue: value toStream: aStream [
 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF16TextConverter>>nextFromStream: aStream [
+{ #category : #conversion }
+UTF16TextConverter >> nextFromStream: aStream [
 
 	| character1 character2 readBOM charValue |
 	aStream isBinary ifTrue: [^ aStream basicNext].
@@ -124,11 +105,8 @@ UTF16TextConverter>>nextFromStream: aStream [
 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF16TextConverter>>nextPut: aCharacter toStream: aStream [
+{ #category : #conversion }
+UTF16TextConverter >> nextPut: aCharacter toStream: aStream [
 
 	| v low high |
 	
@@ -147,21 +125,15 @@ UTF16TextConverter>>nextPut: aCharacter toStream: aStream [
 	]
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF16TextConverter>>nextPutAll: aString toStream: aStream [
+{ #category : #conversion }
+UTF16TextConverter >> nextPutAll: aString toStream: aStream [
 	
 	self checkBOMOn: aStream.
 	^super nextPutAll: aString toStream: aStream
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF16TextConverter>>nextPutByteString: aString toStream: aStream [
+{ #category : #private }
+UTF16TextConverter >> nextPutByteString: aString toStream: aStream [
 	| utf16Bytes start |
 	"No bytestring character will be a surrogate pair, so simply write the 2x size string with the correct endianness"
 	utf16Bytes := String new: aString size* 2.
@@ -171,49 +143,34 @@ UTF16TextConverter>>nextPutByteString: aString toStream: aStream [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF16TextConverter>>swapLatin1EncodingByteOrder [
+{ #category : #private }
+UTF16TextConverter >> swapLatin1EncodingByteOrder [
 	latin1Encodings := latin1Encodings collect: [:each | each reverse]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF16TextConverter>>useByteOrderMark [
+{ #category : #accessing }
+UTF16TextConverter >> useByteOrderMark [
 
 	^ useByteOrderMark
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF16TextConverter>>useByteOrderMark: aBoolean [
+{ #category : #accessing }
+UTF16TextConverter >> useByteOrderMark: aBoolean [
 
 	useByteOrderMark := aBoolean.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF16TextConverter>>useLittleEndian [
+{ #category : #accessing }
+UTF16TextConverter >> useLittleEndian [
 
 	^ useLittleEndian
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-UTF16TextConverter>>useLittleEndian: aBoolean [
+{ #category : #accessing }
+UTF16TextConverter >> useLittleEndian: aBoolean [
 	aBoolean = self useLittleEndian ifFalse: [self swapLatin1EncodingByteOrder].
 	useLittleEndian := aBoolean.
 

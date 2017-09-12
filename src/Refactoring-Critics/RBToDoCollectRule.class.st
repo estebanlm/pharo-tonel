@@ -4,33 +4,23 @@ Checks for users of to:do: when the shorter collect: would work.
 Class {
 	#name : #RBToDoCollectRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 22:58'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBToDoCollectRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBToDoCollectRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'ToDoCollectRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBToDoCollectRule>>group [
+{ #category : #accessing }
+RBToDoCollectRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBToDoCollectRule>>initialize [
+{ #category : #initialization }
+RBToDoCollectRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyOf: #(
@@ -59,10 +49,7 @@ RBToDoCollectRule>>initialize [
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBToDoCollectRule>>name [
+{ #category : #accessing }
+RBToDoCollectRule >> name [
 	^ 'to:do: used instead of collect:'
 ]

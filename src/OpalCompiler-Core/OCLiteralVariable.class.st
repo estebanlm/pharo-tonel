@@ -7,68 +7,46 @@ Class {
 	#instVars : [
 		'assoc'
 	],
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : 'ajh 3/24/2003 21:53'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralVariable class>>semanticNodeClass [
+{ #category : #accessing }
+OCLiteralVariable class >> semanticNodeClass [
 
 	^RBGlobalNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralVariable>>assoc [
+{ #category : #accessing }
+OCLiteralVariable >> assoc [
 	^ assoc
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralVariable>>assoc: anAssociation [
+{ #category : #initializing }
+OCLiteralVariable >> assoc: anAssociation [
 
 	assoc := anAssociation
 ]
 
-{
-	#category : #emitting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralVariable>>emitStore: methodBuilder [
+{ #category : #emitting }
+OCLiteralVariable >> emitStore: methodBuilder [
 
 	 assoc emitStore: methodBuilder
 
 
 ]
 
-{
-	#category : #emitting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralVariable>>emitValue: methodBuilder [
+{ #category : #emitting }
+OCLiteralVariable >> emitValue: methodBuilder [
 	assoc emitValue: methodBuilder
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralVariable>>isClassVariable [
+{ #category : #testing }
+OCLiteralVariable >> isClassVariable [
 	^ assoc isClassVariable
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralVariable>>isFromSharedPool [
+{ #category : #testing }
+OCLiteralVariable >> isFromSharedPool [
 	| sharedPools |
 	sharedPools := scope getClass baseClass sharedPools.
 	^ sharedPools 
@@ -77,72 +55,48 @@ OCLiteralVariable>>isFromSharedPool [
 		ifNone: [ false ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralVariable>>isGlobal [
+{ #category : #testing }
+OCLiteralVariable >> isGlobal [
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralVariable>>isGlobalClassNameBinding [
+{ #category : #testing }
+OCLiteralVariable >> isGlobalClassNameBinding [
 	^ (self value isClass or: [ self value isTrait ])
 		and: [ self variable key == self value name ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralVariable>>isGlobalVariable [
+{ #category : #testing }
+OCLiteralVariable >> isGlobalVariable [
 	^ assoc isGlobalVariable
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralVariable>>isLiteralVariable [
+{ #category : #testing }
+OCLiteralVariable >> isLiteralVariable [
 	^true.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralVariable>>isWritable [
+{ #category : #testing }
+OCLiteralVariable >> isWritable [
 	"Literal variables are writable, if they aren't global bindings for class names, like
  #Object -> Object "
 
 	^ (self isGlobalVariable and: [ self isGlobalClassNameBinding ]) not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralVariable>>name [
+{ #category : #accessing }
+OCLiteralVariable >> name [
 
 	^ assoc name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralVariable>>value [
+{ #category : #accessing }
+OCLiteralVariable >> value [
 	^assoc value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralVariable>>variable [
+{ #category : #accessing }
+OCLiteralVariable >> variable [
 	^assoc
 ]

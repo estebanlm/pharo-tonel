@@ -4,31 +4,21 @@ A preamble evaluated before unloading/removing
 Class {
 	#name : #MCRemovalPreambleDefinition,
 	#superclass : #MCScriptDefinition,
-	#category : #Monticello-Modeling,
-	#timestamp : 'TorstenBergmann 2/5/2014 13:48'
+	#category : #Monticello-Modeling
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRemovalPreambleDefinition class>>scriptSelector [
+{ #category : #accessing }
+MCRemovalPreambleDefinition class >> scriptSelector [
 	^ #preambleOfRemoval
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRemovalPreambleDefinition>>sortKey [
+{ #category : #accessing }
+MCRemovalPreambleDefinition >> sortKey [
 	^ 'zzz' "force to the end so it gets unloaded early"
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRemovalPreambleDefinition>>unload [
+{ #category : #installing }
+MCRemovalPreambleDefinition >> unload [
 	super unload.
 	self evaluate
 ]

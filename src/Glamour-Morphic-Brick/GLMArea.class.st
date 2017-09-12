@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMArea,
 	#superclass : #Object,
@@ -9,36 +6,26 @@ Class {
 		'vector',
 		'vertices'
 	],
-	#category : #Glamour-Morphic-Brick-Utils-Geometry,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Utils-Geometry
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMArea class>>origin: aPoint vectors: theVectors [
+{ #category : #initialization }
+GLMArea class >> origin: aPoint vectors: theVectors [
 	^ self new
 		origin: aPoint;
 		vectors: theVectors;
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMArea class>>vectors: theVectors [
+{ #category : #initialization }
+GLMArea class >> vectors: theVectors [
 	^ self new
 		vectors: theVectors;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMArea>>computeVertices [
+{ #category : #private }
+GLMArea >> computeVertices [
 	vector ifNil: [ ^ self ].
 	
 	vertices := Array streamContents: [ :aStream |
@@ -53,47 +40,32 @@ GLMArea>>computeVertices [
 			currentVector := currentVector next ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMArea>>initialize [
+{ #category : #initialization }
+GLMArea >> initialize [
 	super initialize.
 	
 	origin := 0@0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMArea>>origin [
+{ #category : #accessing }
+GLMArea >> origin [
 	^ origin
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMArea>>origin: aPoint [
+{ #category : #accessing }
+GLMArea >> origin: aPoint [
 
 	origin := aPoint.
 	self computeVertices
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMArea>>vector [
+{ #category : #accessing }
+GLMArea >> vector [
 	^ vector
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMArea>>vectors: theVectors [
+{ #category : #initialization }
+GLMArea >> vectors: theVectors [
 	| currentVector |
 
 	self
@@ -116,10 +88,7 @@ GLMArea>>vectors: theVectors [
 	self computeVertices
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMArea>>vertices [
+{ #category : #accessing }
+GLMArea >> vertices [
 	^ vertices
 ]

@@ -4,14 +4,10 @@ A non-primary pointer has gone down.
 Class {
 	#name : #OSTouchActionPointerDownEvent,
 	#superclass : #OSTouchActionPointerEvent,
-	#category : #OSWindow-Core-Events-Touch,
-	#timestamp : '<historical>'
+	#category : #OSWindow-Core-Events-Touch
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchActionPointerDownEvent>>accept: aVisitor [
+{ #category : #visitor }
+OSTouchActionPointerDownEvent >> accept: aVisitor [
 	^aVisitor visitTouchPointerDownEvent: self.
 ]

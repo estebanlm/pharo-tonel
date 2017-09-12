@@ -8,39 +8,26 @@ Class {
 		'action',
 		'rectangle'
 	],
-	#category : #Morphic-Core-Events,
-	#timestamp : 'StephaneDucasse 11/29/2011 22:29'
+	#category : #Morphic-Core-Events
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WindowEvent>>action [
+{ #category : #accessing }
+WindowEvent >> action [
 	^action
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WindowEvent>>action: aValue [
+{ #category : #accessing }
+WindowEvent >> action: aValue [
 	action := aValue.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WindowEvent>>isWindowEvent [
+{ #category : #testing }
+WindowEvent >> isWindowEvent [
 	^true
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WindowEvent>>printOn: aStream [
+{ #category : #printing }
+WindowEvent >> printOn: aStream [
 
 	aStream nextPut: $[.
 	aStream nextPutAll: self type; space.
@@ -48,36 +35,24 @@ WindowEvent>>printOn: aStream [
 	aStream nextPut: $].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WindowEvent>>rectangle [
+{ #category : #accessing }
+WindowEvent >> rectangle [
 	^rectangle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WindowEvent>>rectangle: aValue [
+{ #category : #accessing }
+WindowEvent >> rectangle: aValue [
 	rectangle := aValue.
 ]
 
-{
-	#category : #dispatching,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WindowEvent>>sentTo:anObject [
+{ #category : #dispatching }
+WindowEvent >> sentTo:anObject [
 	"Dispatch the receiver into anObject"
 	^anObject handleWindowEvent: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WindowEvent>>type [
+{ #category : #accessing }
+WindowEvent >> type [
 	"This should match the definitions in sq.h"
 	^#(
 		windowMetricChange

@@ -13,51 +13,35 @@ Class {
 	#classInstVars : [
 		'bindings'
 	],
-	#category : #Spec-Core,
-	#timestamp : '<historical>'
+	#category : #Spec-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter class>>bindings [
+{ #category : #accessing }
+SpecInterpreter class >> bindings [
 
 	^ bindings ifNil: [ bindings := self defaultBindings ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter class>>bindings: anAdapterBinding [
+{ #category : #accessing }
+SpecInterpreter class >> bindings: anAdapterBinding [
 
 	bindings := anAdapterBinding
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter class>>defaultBindings [
+{ #category : #private }
+SpecInterpreter class >> defaultBindings [
 	
 	^ MorphicAdapterBindings new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter class>>hardResetBindings [
+{ #category : #accessing }
+SpecInterpreter class >> hardResetBindings [
 
 	bindings := nil
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter class>>interpretASpec: aSpec model: aModel [
+{ #category : #protocol }
+SpecInterpreter class >> interpretASpec: aSpec model: aModel [
 	
 	^ self
 		interpretASpec: aSpec
@@ -65,11 +49,8 @@ SpecInterpreter class>>interpretASpec: aSpec model: aModel [
 		selector: nil
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter class>>interpretASpec: aPresenter model: aModel selector: aSelector [
+{ #category : #protocol }
+SpecInterpreter class >> interpretASpec: aPresenter model: aModel selector: aSelector [
 	| result |
 	
 	 [ result :=  self 
@@ -79,20 +60,14 @@ SpecInterpreter class>>interpretASpec: aPresenter model: aModel selector: aSelec
 	^ result
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter class>>private_buildWidgetFor: aComposableModel withSpec: aSymbol [
+{ #category : #private }
+SpecInterpreter class >> private_buildWidgetFor: aComposableModel withSpec: aSymbol [
 	
 	^ self private_interpretASpec: (aComposableModel retrieveSpec: aSymbol) model: aComposableModel selector: aSymbol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter class>>private_interpretASpec: aPresenter model: aModel selector: aSelector [
+{ #category : #private }
+SpecInterpreter class >> private_interpretASpec: aPresenter model: aModel selector: aSelector [
 	
 	^ self new
 		interpretASpec: aPresenter
@@ -100,29 +75,20 @@ SpecInterpreter class>>private_interpretASpec: aPresenter model: aModel selector
 		selector: aSelector
 ]
 
-{
-	#category : #interpreting-private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter>>actionToPerformWithSelector: selector arguments: args [
+{ #category : #interpreting-private }
+SpecInterpreter >> actionToPerformWithSelector: selector arguments: args [
 
 	^ spec instance perform: selector withArguments: args
 ]
 
-{
-	#category : #bindings,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter>>bindings [
+{ #category : #bindings }
+SpecInterpreter >> bindings [
 
 	^ self class bindings
 ]
 
-{
-	#category : #interpreting-private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter>>computeSpecFrom: aSymbol selector: aSelector [
+{ #category : #interpreting-private }
+SpecInterpreter >> computeSpecFrom: aSymbol selector: aSelector [
 	| instance |
 
 	instance := (aSymbol isSymbol and: [ aSymbol ~= #model ])
@@ -140,11 +106,8 @@ SpecInterpreter>>computeSpecFrom: aSymbol selector: aSelector [
 		selector: aSelector
 ]
 
-{
-	#category : #bindings,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter>>convertSymbolOfClassToInstance: aSymbol [
+{ #category : #bindings }
+SpecInterpreter >> convertSymbolOfClassToInstance: aSymbol [
 	| translatedSymbol |
 	
 	translatedSymbol := self bindings translateSymbol: aSymbol.
@@ -154,11 +117,8 @@ SpecInterpreter>>convertSymbolOfClassToInstance: aSymbol [
 		ifAbsent: [ ^ translatedSymbol ]) new
 ]
 
-{
-	#category : #interpreting-private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter>>extractArrayToInterpretFrom: aFragment [
+{ #category : #interpreting-private }
+SpecInterpreter >> extractArrayToInterpretFrom: aFragment [
 
 	arrayToInterpret := aFragment.
 	
@@ -176,21 +136,15 @@ SpecInterpreter>>extractArrayToInterpretFrom: aFragment [
 	^ nil
 ]
 
-{
-	#category : #interpreting,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter>>interpretASpec: aPresenter model: aModel  selector: aSelector [
+{ #category : #interpreting }
+SpecInterpreter >> interpretASpec: aPresenter model: aModel  selector: aSelector [
 	
 	self model: aModel.
 	^ self interpretASpec: aPresenter selector: aSelector
 ]
 
-{
-	#category : #interpreting,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter>>interpretASpec: aPresenter selector: aSelector [
+{ #category : #interpreting }
+SpecInterpreter >> interpretASpec: aPresenter selector: aSelector [
 	aPresenter ifNil: [ ^ nil ].
 	
 	(self extractArrayToInterpretFrom: aPresenter) ifNotNil: [ :result | ^ result ].
@@ -218,27 +172,18 @@ SpecInterpreter>>interpretASpec: aPresenter selector: aSelector [
 	^ spec instance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter>>model [
+{ #category : #accessing }
+SpecInterpreter >> model [
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter>>model: anObject [
+{ #category : #accessing }
+SpecInterpreter >> model: anObject [
 	model := anObject
 ]
 
-{
-	#category : #interpreting-private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter>>performNextSelectorAndIncrementIndex [
+{ #category : #interpreting-private }
+SpecInterpreter >> performNextSelectorAndIncrementIndex [
 	| args numArgs selector |
 
 	selector := (arrayToInterpret at: index).
@@ -261,11 +206,8 @@ SpecInterpreter>>performNextSelectorAndIncrementIndex [
 	^ self actionToPerformWithSelector: selector arguments: args
 ]
 
-{
-	#category : #interpreting-private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter>>retrieveSpecFrom: aPresenter selector: aSelector [
+{ #category : #interpreting-private }
+SpecInterpreter >> retrieveSpecFrom: aPresenter selector: aSelector [
 
 	((self model respondsTo: #needRebuild) and: [ self model needRebuild not and: [ self model spec notNil ] ])
 		ifTrue: [
@@ -286,11 +228,8 @@ SpecInterpreter>>retrieveSpecFrom: aPresenter selector: aSelector [
 	^ nil
 ]
 
-{
-	#category : #interpreting-private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecInterpreter>>returnInterpretationOf: newInstance [
+{ #category : #interpreting-private }
+SpecInterpreter >> returnInterpretationOf: newInstance [
 	| result |
 	(model respondsTo: #spec:)
 		ifTrue: [ model spec: spec ].

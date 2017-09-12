@@ -24,50 +24,34 @@ FTStaticBasicItem new
 Class {
 	#name : #FTStaticBasicItem,
 	#superclass : #FTBasicItem,
-	#category : #Morphic-Widgets-FastTable-Tree,
-	#timestamp : 'CyrilFerlicot 11/2/2015 16:06'
+	#category : #Morphic-Widgets-FastTable-Tree
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTStaticBasicItem>>calculateChildren [
+{ #category : #accessing }
+FTStaticBasicItem >> calculateChildren [
 	"Not for this item."
 
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTStaticBasicItem>>children [
+{ #category : #accessing }
+FTStaticBasicItem >> children [
 	^ children
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTStaticBasicItem>>children: aCollectionsOfItems [
+{ #category : #accessing }
+FTStaticBasicItem >> children: aCollectionsOfItems [
 	children := aCollectionsOfItems
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTStaticBasicItem>>dataSource: anObject [
+{ #category : #updating }
+FTStaticBasicItem >> dataSource: anObject [
 	dataSource := anObject.
 	children do: [ :item | item dataSource: anObject ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTStaticBasicItem>>updateData [
+{ #category : #updating }
+FTStaticBasicItem >> updateData [
 	"Static Item cannot do it."
 
 	

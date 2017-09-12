@@ -4,15 +4,11 @@ A DiffChangeRecordConverter is a converter used to show the diff between two met
 Class {
 	#name : #DiffChangeRecordConverter,
 	#superclass : #AbstractMethodReferenceConverter,
-	#category : #Spec-Tools-VersionBrowser,
-	#timestamp : '<historical>'
+	#category : #Spec-Tools-VersionBrowser
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DiffChangeRecordConverter>>internalGetText	 [
+{ #category : #private }
+DiffChangeRecordConverter >> internalGetText [	
 
 	^TextDiffBuilder
 		 buildDisplayPatchFrom: ((self priorVersionOfAMethod: method) sourceCode) 
@@ -20,11 +16,8 @@ DiffChangeRecordConverter>>internalGetText	 [
 		inClass: (method className)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-DiffChangeRecordConverter>>priorVersionOfAMethod: aChangeRecord [
+{ #category : #private }
+DiffChangeRecordConverter >> priorVersionOfAMethod: aChangeRecord [
 	| index mylist |
 	
 	mylist := referencesList sorted: [:a :b | a timeStamp > b timeStamp ].

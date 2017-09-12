@@ -4,15 +4,11 @@ A pluggable functionality used to ban rules in the image scale
 Class {
 	#name : #ReImageRuleBaner,
 	#superclass : #Object,
-	#category : #Renraku-Utility,
-	#timestamp : 'YuriyTymchuk 6/28/2017 12:45'
+	#category : #Renraku-Utility
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReImageRuleBaner class>>ban: aCritique [
+{ #category : #actions }
+ReImageRuleBaner class >> ban: aCritique [
 	
 	ReSystemAnnouncer uniqueInstance
 		notifyCritique: aCritique
@@ -24,10 +20,7 @@ ReImageRuleBaner class>>ban: aCritique [
 			aCritique rule class enabled: false ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReImageRuleBaner class>>reBanName [
+{ #category : #properties }
+ReImageRuleBaner class >> reBanName [
 	^ 'The whole image'
 ]

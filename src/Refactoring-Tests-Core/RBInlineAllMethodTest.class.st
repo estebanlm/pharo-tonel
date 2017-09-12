@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBInlineAllMethodTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineAllMethodTest>>testInlineMethodWithMultipleSendersInMethod [
+{ #category : #tests }
+RBInlineAllMethodTest >> testInlineMethodWithMultipleSendersInMethod [
 	| refactoring |
 	refactoring := RBInlineAllSendersRefactoring 
 		sendersOf: #caller2
@@ -25,11 +18,8 @@ RBInlineAllMethodTest>>testInlineMethodWithMultipleSendersInMethod [
 	(1 to: 10) inject: 1 into: [:sum1 :each1 | sum1 * (self foo: each1)]')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineAllMethodTest>>testRecursiveMethod [
+{ #category : #tests }
+RBInlineAllMethodTest >> testRecursiveMethod [
 	| class |
 	model := RBClassModelFactory rbNamespace new.
 	class := model classNamed: self class name.

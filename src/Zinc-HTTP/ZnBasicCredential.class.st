@@ -12,62 +12,40 @@ Class {
 		'username',
 		'password'
 	],
-	#category : #Zinc-HTTP-Support,
-	#timestamp : 'SvenVanCaekenberghe 12/6/2010 12:58'
+	#category : #Zinc-HTTP-Support
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBasicCredential class>>authName [
+{ #category : #accessing }
+ZnBasicCredential class >> authName [
 	^ 'Basic'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBasicCredential>>authTokenForUrl: urlObject method: method [
+{ #category : #accessing }
+ZnBasicCredential >> authTokenForUrl: urlObject method: method [
 	^ 'Basic ', (ZnUtils encodeBase64: (username, ':', password)) 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBasicCredential>>isComplete [
+{ #category : #testing }
+ZnBasicCredential >> isComplete [ 
 	^ username notNil & password notNil 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBasicCredential>>password [
+{ #category : #accessing }
+ZnBasicCredential >> password [
 	^ password
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBasicCredential>>password: anObject [
+{ #category : #accessing }
+ZnBasicCredential >> password: anObject [
 	password := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBasicCredential>>username [
+{ #category : #accessing }
+ZnBasicCredential >> username [
 	^ username
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBasicCredential>>username: anObject [
+{ #category : #accessing }
+ZnBasicCredential >> username: anObject [
 	username := anObject
 ]

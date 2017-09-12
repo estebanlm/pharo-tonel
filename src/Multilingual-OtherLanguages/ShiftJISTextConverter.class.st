@@ -4,25 +4,18 @@ Text converter for Shift-JIS.  Mac and Windows in Japanese mode use this encodin
 Class {
 	#name : #ShiftJISTextConverter,
 	#superclass : #TextConverter,
-	#category : #Multilingual-OtherLanguages,
-	#timestamp : '<historical>'
+	#category : #Multilingual-OtherLanguages
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ShiftJISTextConverter class>>encodingNames  [
+{ #category : #utilities }
+ShiftJISTextConverter class >> encodingNames [ 
 
 	^ #('shift-jis' 'shift_jis' 'sjis') copy
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ShiftJISTextConverter>>katakanaValue: code [
+{ #category : #private }
+ShiftJISTextConverter >> katakanaValue: code [
 
 	^ Character leadingChar: JapaneseEnvironment leadingChar code: (#(
 	16rFFFD 16rFF61 16rFF62 16rFF63 16rFF64 16rFF65 16rFF66 16rFF67
@@ -37,21 +30,15 @@ ShiftJISTextConverter>>katakanaValue: code [
 
 ]
 
-{
-	#category : #friend,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ShiftJISTextConverter>>leadingChar [
+{ #category : #friend }
+ShiftJISTextConverter >> leadingChar [
 
 	^ JISX0208 leadingChar
 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ShiftJISTextConverter>>nextFromStream: aStream [
+{ #category : #conversion }
+ShiftJISTextConverter >> nextFromStream: aStream [
 	| character1 character2 value1 value2 char1Value result |
 	aStream isBinary
 		ifTrue: [ ^ aStream basicNext ].
@@ -82,11 +69,8 @@ ShiftJISTextConverter>>nextFromStream: aStream [
 	^ self toUnicode: result
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ShiftJISTextConverter>>nextPut: aCharacter toStream: aStream  [
+{ #category : #conversion }
+ShiftJISTextConverter >> nextPut: aCharacter toStream: aStream [ 
 	| value leadingChar aChar |
 	aStream isBinary ifTrue: [^aCharacter storeBinaryOn: aStream].
 	value := aCharacter charCode.
@@ -121,11 +105,8 @@ ShiftJISTextConverter>>nextPut: aCharacter toStream: aStream  [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ShiftJISTextConverter>>sjisKatakanaFor: value [
+{ #category : #private }
+ShiftJISTextConverter >> sjisKatakanaFor: value [
 
 	^ Character value: (#(
 		16rA0 16rA1 16rA2 16rA3 16rA4 16rA5 16rA6 16rA7
@@ -141,11 +122,8 @@ ShiftJISTextConverter>>sjisKatakanaFor: value [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ShiftJISTextConverter>>toUnicode: aChar [
+{ #category : #private }
+ShiftJISTextConverter >> toUnicode: aChar [
 
 	^ Character leadingChar: JapaneseEnvironment leadingChar code: aChar asUnicode.
 

@@ -5,23 +5,16 @@ Class {
 	#name : #BalloonBuffer,
 	#superclass : #Object,
 	#type : #words,
-	#category : #Balloon-Engine,
-	#timestamp : '<historical>'
+	#category : #Balloon-Engine
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBuffer class>>new [
+{ #category : #'instance creation' }
+BalloonBuffer class >> new [
 	^self new: 256.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBuffer>>at: index [
+{ #category : #accessing }
+BalloonBuffer >> at: index [
 	"For simulation only"
 	| word |
 	word := self basicAt: index.
@@ -32,11 +25,8 @@ BalloonBuffer>>at: index [
 		ifFalse:[word]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBuffer>>at: index put: anInteger [
+{ #category : #accessing }
+BalloonBuffer >> at: index put: anInteger [
 	"For simulation only"
 	| word |
 	anInteger < 0
@@ -47,21 +37,15 @@ BalloonBuffer>>at: index put: anInteger [
 	^anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBuffer>>floatAt: index [
+{ #category : #accessing }
+BalloonBuffer >> floatAt: index [
 	"For simulation only"
 	<primitive: 'primitiveAt' module: 'FloatArrayPlugin'>
 	^Float fromIEEE32Bit: (self basicAt: index)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonBuffer>>floatAt: index put: value [
+{ #category : #accessing }
+BalloonBuffer >> floatAt: index put: value [
 	"For simulation only"
 	<primitive: 'primitiveAtPut' module: 'FloatArrayPlugin'>
 	value isFloat 

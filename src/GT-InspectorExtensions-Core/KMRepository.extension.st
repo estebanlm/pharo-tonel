@@ -1,12 +1,7 @@
-Extension {
-	#name : #KMRepository
-}
+Extension { #name : #KMRepository }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-KMRepository>>gtInspectorGlobalsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+KMRepository >> gtInspectorGlobalsIn: composite [
 	<gtInspectorPresentationOrder: 40>
 	composite table 
 		title: 'Global keys';
@@ -23,11 +18,8 @@ KMRepository>>gtInspectorGlobalsIn: composite [
 		send: #key
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-KMRepository>>gtInspectorMappingsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+KMRepository >> gtInspectorMappingsIn: composite [
 	<gtInspectorPresentationOrder: 40>
 	composite table 
 		title: 'Keys';

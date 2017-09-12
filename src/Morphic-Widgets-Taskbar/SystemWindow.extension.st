@@ -1,32 +1,21 @@
-Extension {
-	#name : #SystemWindow
-}
+Extension { #name : #SystemWindow }
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>basicTaskThumbnailOfSize: thumbExtent [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+SystemWindow >> basicTaskThumbnailOfSize: thumbExtent [
 	"Answer a new task thumbnail for the receiver."
 	
 	^super taskThumbnailOfSize: thumbExtent
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>isTaskbarPresent [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+SystemWindow >> isTaskbarPresent [
 	"Answer whether there is a taskbar in the world."
 
 	^self worldTaskbar notNil
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>minimizeAfterGeneratingThumbnail [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+SystemWindow >> minimizeAfterGeneratingThumbnail [
 	"Minimize the window after thumbnail generation."
 	
 	self isMinimized ifTrue: [^self].
@@ -39,11 +28,8 @@ SystemWindow>>minimizeAfterGeneratingThumbnail [
 	
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>restoreBeforeGeneratingThumbnail [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+SystemWindow >> restoreBeforeGeneratingThumbnail [
 	"Restore the window without activating unlocking or stepping."
 	
 	self isMinimized ifFalse: [^self].
@@ -55,11 +41,8 @@ SystemWindow>>restoreBeforeGeneratingThumbnail [
 	self layoutChanged
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>taskThumbnailOfSize: thumbExtent [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+SystemWindow >> taskThumbnailOfSize: thumbExtent [
 	"Answer a new task thumbnail for the receiver."
 	
 	|min thumb|
@@ -72,11 +55,8 @@ SystemWindow>>taskThumbnailOfSize: thumbExtent [
 	^thumb
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>taskbarButtonClicked [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+SystemWindow >> taskbarButtonClicked [
 	"The taskbar button for the receiver has been clicked.
 	If minimised then restore.
 	If active then minimize.
@@ -89,11 +69,8 @@ SystemWindow>>taskbarButtonClicked [
 					ifFalse: [self activate]]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>taskbarButtonEntered: aButton event: evt in: aMorph [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+SystemWindow >> taskbarButtonEntered: aButton event: evt in: aMorph [
 	"The mouse has entered out taskbar button.
 	Show a thumbnail."
 
@@ -108,11 +85,8 @@ SystemWindow>>taskbarButtonEntered: aButton event: evt in: aMorph [
 		thumb openInWorld]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>taskbarButtonFor: aTaskbar [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+SystemWindow >> taskbarButtonFor: aTaskbar [
 	"Answer a new task bar button for the receiver.
 	Answer nil if not required."
 
@@ -121,11 +95,8 @@ SystemWindow>>taskbarButtonFor: aTaskbar [
 		for: self
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>taskbarButtonLeft: aButton event: evt in: aMorph [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+SystemWindow >> taskbarButtonLeft: aButton event: evt in: aMorph [
 	"The mouse has left our taskbar button.
 	Remove our thumbnail."
 
@@ -136,11 +107,8 @@ SystemWindow>>taskbarButtonLeft: aButton event: evt in: aMorph [
 			self removeProperty: #taskbarThumbnail]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>taskbarButtonMenu: aMenu [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+SystemWindow >> taskbarButtonMenu: aMenu [
 	"Answer the menu for the task bar button."
 
 	| menu theme submenu  |
@@ -216,11 +184,8 @@ SystemWindow>>taskbarButtonMenu: aMenu [
 	^menu
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>taskbarCloseAllToRight [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+SystemWindow >> taskbarCloseAllToRight [
 	| wasFound |
 	wasFound := false.
 	self worldTaskbar ifNotNil: [ :worldTaskbar |
@@ -232,22 +197,16 @@ SystemWindow>>taskbarCloseAllToRight [
 		].
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>taskbarLabel [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+SystemWindow >> taskbarLabel [
 	"Answer the label to use for a taskbar button for the receiver."
 
 	self model ifNotNil: [self model taskbarLabel ifNotNil: [:str | ^str]].
 	^self labelString
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>taskbarState [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+SystemWindow >> taskbarState [
 	"Answer one of #minimized, #restored, #maximized or #active."
 
 	^self isMinimized
@@ -259,11 +218,8 @@ SystemWindow>>taskbarState [
 						ifFalse: [#restored]]]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>taskbarTask [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+SystemWindow >> taskbarTask [
 	"Answer a new taskbar task for the receiver.
 	Answer nil if not required."
 
@@ -275,11 +231,8 @@ SystemWindow>>taskbarTask [
 		label: self taskbarLabel
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>taskbarThumbnailExtent [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+SystemWindow >> taskbarThumbnailExtent [
 	"Answer the size of a taskbar thumbnail for the receiver."
 
 	^self isMinimized
@@ -287,11 +240,8 @@ SystemWindow>>taskbarThumbnailExtent [
 		ifFalse: [super taskbarThumbnailExtent]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Taskbar',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>worldTaskbar [
+{ #category : #'*Morphic-Widgets-Taskbar' }
+SystemWindow >> worldTaskbar [
 	"Answer the world taskbar or nil if none."
 
 	^self world ifNotNil: [ :world | 

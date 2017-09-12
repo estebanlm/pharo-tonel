@@ -1,12 +1,7 @@
-Extension {
-	#name : #ReAbstractCritique
-}
+Extension { #name : #ReAbstractCritique }
 
-{
-	#category : #'*qualityAssistant',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReAbstractCritique>>color [
+{ #category : #'*qualityAssistant' }
+ReAbstractCritique >> color [
 
 	^ ({
 	#error -> Color red .

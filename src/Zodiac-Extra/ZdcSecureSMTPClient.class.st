@@ -20,31 +20,21 @@ Class {
 		'variant',
 		'lineReader'
 	],
-	#category : #Zodiac-Extra,
-	#timestamp : 'SvenVanCaekenberghe 12/6/2011 11:46'
+	#category : #Zodiac-Extra
 }
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient class>>defaultPortForSSL [
+{ #category : #constants }
+ZdcSecureSMTPClient class >> defaultPortForSSL [
 	^ 465
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient class>>defaultPortForStartTLS [
+{ #category : #constants }
+ZdcSecureSMTPClient class >> defaultPortForStartTLS [
 	^ 587
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient class>>sendUsingGMailAccount: senderAddress password: password to: receiverAddress message: mailMessage [
+{ #category : #example }
+ZdcSecureSMTPClient class >> sendUsingGMailAccount: senderAddress password: password to: receiverAddress message: mailMessage [
 	| smtpClient |
 	(smtpClient := self new)
 		user: senderAddress; 
@@ -60,11 +50,8 @@ ZdcSecureSMTPClient class>>sendUsingGMailAccount: senderAddress password: passwo
 
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>alternativeLogin [
+{ #category : #'private protocol' }
+ZdcSecureSMTPClient >> alternativeLogin [
 	self initiateSession. "send EHLO first"
 	self user ifNil: [ ^ self ].
 	self sendCommand: 'AUTH LOGIN'.
@@ -75,11 +62,8 @@ ZdcSecureSMTPClient>>alternativeLogin [
 	self checkResponse
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>ensureConnection [
+{ #category : #private }
+ZdcSecureSMTPClient >> ensureConnection [
 	"Overwritten & refactored"
 		
 	self isConnected ifTrue: [ ^ self].
@@ -90,11 +74,8 @@ ZdcSecureSMTPClient>>ensureConnection [
 	self login
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>fetchNextResponse [
+{ #category : #'private protocol' }
+ZdcSecureSMTPClient >> fetchNextResponse [
 	"The FTP and similar protocols allow multi-line responses.
 	If the response is multi-line, the fourth character of the first line is a  
 	$- and the last line repeats the numeric code but the code is followed by 
@@ -116,65 +97,44 @@ ZdcSecureSMTPClient>>fetchNextResponse [
 	self lastResponse: result contents
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>initialize [
+{ #category : #initialization }
+ZdcSecureSMTPClient >> initialize [
 	super initialize.
 	self useSSL
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>isSSL [
+{ #category : #testing }
+ZdcSecureSMTPClient >> isSSL [
 	^ variant = #ssl
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>isStartTLS [
+{ #category : #testing }
+ZdcSecureSMTPClient >> isStartTLS [
 	^ variant = #startTLS
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>logVerbose: aString [
+{ #category : #private }
+ZdcSecureSMTPClient >> logVerbose: aString [
 	"self log: aString; log: Character cr"
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>nextLineFromStream [
+{ #category : #'private protocol' }
+ZdcSecureSMTPClient >> nextLineFromStream [
 	| line |
 	line := lineReader nextLine.
 	self logVerbose: line.
 	^ line
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>requireStartTLS [
+{ #category : #'private protocol' }
+ZdcSecureSMTPClient >> requireStartTLS [
 	(self lastResponse includesSubstring: 'STARTTLS')
 		ifFalse: [ ^ self error: 'Server does not seem to support STARTTLS' ].
 
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>sendCommand: aString [
+{ #category : #'private protocol' }
+ZdcSecureSMTPClient >> sendCommand: aString [
 	self logVerbose: aString.
 	self stream 
 		nextPutAll: aString;
@@ -183,20 +143,14 @@ ZdcSecureSMTPClient>>sendCommand: aString [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>setupStream [
+{ #category : #private }
+ZdcSecureSMTPClient >> setupStream [
 	variant = #ssl ifTrue: [ ^ self setupStreamForSSL ].
 	variant = #startTLS ifTrue: [ ^ self setupStreamForStartTLS ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>setupStreamForSSL [
+{ #category : #private }
+ZdcSecureSMTPClient >> setupStreamForSSL [
 	self stream: (ZdcSecureSocketStream openConnectionToHost: self host port: self port).
 	self stream connect.
 	self logVerbose: 'SSL Connect OK.'.
@@ -205,11 +159,8 @@ ZdcSecureSMTPClient>>setupStreamForSSL [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>setupStreamForStartTLS [
+{ #category : #private }
+ZdcSecureSMTPClient >> setupStreamForStartTLS [
 	"See http://www.ietf.org/rfc/rfc3207.txt for how to setup a secure connection"
 
 	self stream: (SocketStream openConnectionToHost: self host port: self port).
@@ -219,11 +170,8 @@ ZdcSecureSMTPClient>>setupStreamForStartTLS [
 	self startTLS
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>startTLS [
+{ #category : #'private protocol' }
+ZdcSecureSMTPClient >> startTLS [
 	"Send a STARTTLS command and after the response, 
 	switch to a SecureSocketStream and do the client handshake"
 	
@@ -234,27 +182,18 @@ ZdcSecureSMTPClient>>startTLS [
 	self logVerbose: 'SSL Connect OK.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>stream: aStream [
+{ #category : #accessing }
+ZdcSecureSMTPClient >> stream: aStream [
 	super stream: aStream.
 	lineReader := ZnLineReader on: self stream
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>useSSL [
+{ #category : #initialize-release }
+ZdcSecureSMTPClient >> useSSL [
 	variant := #ssl
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcSecureSMTPClient>>useStartTLS [
+{ #category : #initialize-release }
+ZdcSecureSMTPClient >> useStartTLS [
 	variant := #startTLS
 ]

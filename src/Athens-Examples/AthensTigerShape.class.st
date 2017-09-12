@@ -17,87 +17,56 @@ Class {
 		'fillPaint',
 		'stroke'
 	],
-	#category : #Athens-Examples,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:16'
+	#category : #Athens-Examples
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTigerShape>>addFill [
+{ #category : #'as yet unclassified' }
+AthensTigerShape >> addFill [
 	fill := true.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTigerShape>>addStroke [
+{ #category : #'as yet unclassified' }
+AthensTigerShape >> addStroke [
 	stroke := true.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTigerShape>>capStyle: cap [
+{ #category : #'as yet unclassified' }
+AthensTigerShape >> capStyle: cap [
 	capStyle := cap.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTigerShape>>fillPaint: aColor  [
+{ #category : #'as yet unclassified' }
+AthensTigerShape >> fillPaint: aColor [ 
 	fillPaint := aColor
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTigerShape>>fillRule [
+{ #category : #'as yet unclassified' }
+AthensTigerShape >> fillRule [
 	^ fillRule
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTigerShape>>fillRule: rule  [
+{ #category : #'as yet unclassified' }
+AthensTigerShape >> fillRule: rule [ 
 	fillRule := rule.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTigerShape>>initialize  [
+{ #category : #'as yet unclassified' }
+AthensTigerShape >> initialize [ 
 	fill := stroke := false.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTigerShape>>joinStyle: join [
+{ #category : #'as yet unclassified' }
+AthensTigerShape >> joinStyle: join [
 	joinStyle := join.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTigerShape>>miterLimit: lim [
+{ #category : #'as yet unclassified' }
+AthensTigerShape >> miterLimit: lim [
 	miterLimit := lim.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTigerShape>>prepareFor: surface [
+{ #category : #'as yet unclassified' }
+AthensTigerShape >> prepareFor: surface [
 	fill ifTrue: [
 		fillPaint := surface createSolidColorPaint: fillPaint.
 	].
@@ -110,11 +79,8 @@ AthensTigerShape>>prepareFor: surface [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTigerShape>>renderOn: can [
+{ #category : #'as yet unclassified' }
+AthensTigerShape >> renderOn: can [
 
 	fill ifTrue: [ 
 		can setPaint: fillPaint.
@@ -127,26 +93,17 @@ AthensTigerShape>>renderOn: can [
 	]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTigerShape>>setPath: anAthensCairoPath [
+{ #category : #'as yet unclassified' }
+AthensTigerShape >> setPath: anAthensCairoPath [
 		path := anAthensCairoPath
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTigerShape>>strokePaint: aColor  [
+{ #category : #'as yet unclassified' }
+AthensTigerShape >> strokePaint: aColor [ 
 	strokePaint := aColor
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTigerShape>>strokeWidth: w [
+{ #category : #'as yet unclassified' }
+AthensTigerShape >> strokeWidth: w [
 	strokeWidth := w
 ]

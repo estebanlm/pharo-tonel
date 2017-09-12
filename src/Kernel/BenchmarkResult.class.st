@@ -22,55 +22,39 @@ Class {
 		'iterations',
 		'elapsedTime'
 	],
-	#category : #Kernel-Chronology,
-	#timestamp : 'SvenVanCaekenberghe 2/18/2015 17:10'
+	#category : #Kernel-Chronology
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BenchmarkResult>>elapsedTime [
+{ #category : #accessing }
+BenchmarkResult >> elapsedTime [
 	"Return the duration of the total execution time"
 	
 	^ elapsedTime
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BenchmarkResult>>elapsedTime: duration [
+{ #category : #accessing }
+BenchmarkResult >> elapsedTime: duration [
 	"Set the duration of the total execution time"
 	
 	elapsedTime := duration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BenchmarkResult>>executionsPerSecond [
+{ #category : #accessing }
+BenchmarkResult >> executionsPerSecond [
 	"Return the average number of executions per second"
 
 	^ self frequency
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BenchmarkResult>>frequency [
+{ #category : #accessing }
+BenchmarkResult >> frequency [
 	"Return the average number of executions per second"
 	
 	^ iterations / elapsedTime totalSeconds
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BenchmarkResult>>isEmpty [
+{ #category : #testing }
+BenchmarkResult >> isEmpty [
 	iterations isNil | elapsedTime isNil 
 		ifTrue: [ ^ true ].
 	iterations isZero | elapsedTime isZero 
@@ -78,52 +62,37 @@ BenchmarkResult>>isEmpty [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BenchmarkResult>>iterations [
+{ #category : #accessing }
+BenchmarkResult >> iterations [
 	"Return the number of iterations that were executed"
 	
 	^ iterations
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BenchmarkResult>>iterations: integer [
+{ #category : #accessing }
+BenchmarkResult >> iterations: integer [
 	"Set the number of iterations that were executed"
 
 	iterations := integer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BenchmarkResult>>period [
+{ #category : #accessing }
+BenchmarkResult >> period [
 	"Return the average duration of one iteration"
 	
 	^ elapsedTime / iterations
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BenchmarkResult>>printFrequenceOn: stream [
+{ #category : #printing }
+BenchmarkResult >> printFrequenceOn: stream [
 	self frequency > 999
 		ifTrue: [ self frequency rounded printWithCommasOn: stream ]
 		ifFalse: [ self frequency printOn: stream showingDecimalPlaces: 3 ].
 	stream << ' per second'
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BenchmarkResult>>printOn: stream [
+{ #category : #printing }
+BenchmarkResult >> printOn: stream [
 	super printOn: stream.
 	stream nextPut: $(.
 	self isEmpty
@@ -139,21 +108,15 @@ BenchmarkResult>>printOn: stream [
 	stream nextPut: $)
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BenchmarkResult>>shortPrintString [
+{ #category : #printing }
+BenchmarkResult >> shortPrintString [
 	self isEmpty
 		ifTrue: [ ^ self printString ].
 	^ String streamContents: [ :out | self printFrequenceOn: out ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BenchmarkResult>>timePerExecution [
+{ #category : #accessing }
+BenchmarkResult >> timePerExecution [
 	"Return the average duration of one iteration"
 
 	^ self period

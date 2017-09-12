@@ -7,47 +7,31 @@ Class {
 	#instVars : [
 		'stream'
 	],
-	#category : #Monticello-Storing,
-	#timestamp : 'TorstenBergmann 2/5/2014 13:53'
+	#category : #Monticello-Storing
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCReader class>>canReadFileNamed: fileName [
+{ #category : #testing }
+MCReader class >> canReadFileNamed: fileName [
 	^ (fileName endsWith: self extension)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCReader class>>concreteSubclasses [
+{ #category : #testing }
+MCReader class >> concreteSubclasses [
 	^ self allSubclasses reject: [:c | c isAbstract]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCReader class>>isAbstract [
+{ #category : #testing }
+MCReader class >> isAbstract [
 	^ (self respondsTo: #extension) not
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCReader class>>on: aStream [
+{ #category : #'instance creation' }
+MCReader class >> on: aStream [
 	^ self new stream: aStream
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCReader class>>on: aStream name: aFileName [
+{ #category : #'instance creation' }
+MCReader class >> on: aStream name: aFileName [
 	| class |
 	class := self readerClassForFileNamed: aFileName.
 	^ class
@@ -55,30 +39,21 @@ MCReader class>>on: aStream name: aFileName [
 		ifNotNil: [class on: aStream]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCReader class>>readerClassForFileNamed: fileName [
+{ #category : #testing }
+MCReader class >> readerClassForFileNamed: fileName [
 	^ self concreteSubclasses
 		detect: [:c | c canReadFileNamed: fileName]
 		ifNone: [nil]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCReader>>stream [
+{ #category : #accessing }
+MCReader >> stream [
 	stream closed ifTrue: [ stream open ].
 	^ stream
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCReader>>stream: aStream [
+{ #category : #accessing }
+MCReader >> stream: aStream [
 	stream := aStream
 ]

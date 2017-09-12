@@ -4,57 +4,38 @@ reify args
 Class {
 	#name : #RFArgumentsReification,
 	#superclass : #RFReification,
-	#category : #Reflectivity-Links,
-	#timestamp : 'MarcusDenker 6/17/2015 16:36'
+	#category : #Reflectivity-Links
 }
 
-{
-	#category : #'plugin interface',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFArgumentsReification class>>entities [
+{ #category : #'plugin interface' }
+RFArgumentsReification class >> entities [
 	^{RBMessageNode. RBMethodNode. RBBlockNode}
 ]
 
-{
-	#category : #'plugin interface',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFArgumentsReification class>>key [
+{ #category : #'plugin interface' }
+RFArgumentsReification class >> key [
 	^#arguments
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFArgumentsReification>>genForRBMessageNode [
+{ #category : #generate }
+RFArgumentsReification >> genForRBMessageNode [
 	^RBTemporaryNode named: self varName.
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFArgumentsReification>>genForRBProgramNode [
+{ #category : #generate }
+RFArgumentsReification >> genForRBProgramNode [
 	^RBTemporaryNode named: self varName.
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFArgumentsReification>>preamble: aNode [
+{ #category : #generate }
+RFArgumentsReification >> preamble: aNode [
 	^aNode isMessage 
 		ifTrue: [ self preambleForMessage: aNode ]
 		ifFalse: [ self preambleForMethod: aNode ]
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFArgumentsReification>>preambleForMessage: aNode [
+{ #category : #generate }
+RFArgumentsReification >> preambleForMessage: aNode [
 	| preamble arguments |
 	preamble := OrderedCollection new.
 	arguments := OrderedCollection new.
@@ -76,11 +57,8 @@ RFArgumentsReification>>preambleForMessage: aNode [
 	^ preamble 
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFArgumentsReification>>preambleForMethod: aNode [
+{ #category : #generate }
+RFArgumentsReification >> preambleForMethod: aNode [
 	| preamble arguments |
 	preamble := OrderedCollection new.
 	arguments := aNode argumentNames collect: [ :name | RBTemporaryNode named: name].
@@ -89,10 +67,7 @@ RFArgumentsReification>>preambleForMethod: aNode [
 	^ preamble 
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFArgumentsReification>>varName [
+{ #category : #generate }
+RFArgumentsReification >> varName [
 	^#RFArgumentsReificationVar
 ]

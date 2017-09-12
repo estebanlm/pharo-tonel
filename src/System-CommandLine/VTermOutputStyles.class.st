@@ -13,15 +13,11 @@ Class {
 		'Standout',
 		'Underline'
 	],
-	#category : #System-CommandLine,
-	#timestamp : 'ValentinRyckewaert 6/24/2016 10:49'
+	#category : #System-CommandLine
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputStyles class>>initialize [
+{ #category : #'class initialization' }
+VTermOutputStyles class >> initialize [
 	ResetStyle := '0m'.
 	Bold := '1m'.
 	Underline := '4m'.

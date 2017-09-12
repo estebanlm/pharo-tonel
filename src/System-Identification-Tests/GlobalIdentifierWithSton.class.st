@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #GlobalIdentifierWithSton,
 	#superclass : #GlobalIdentifierTest,
-	#category : #System-Identification-Tests,
-	#timestamp : ''
+	#category : #System-Identification-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierWithSton>>actualPreferencesFileName [
+{ #category : #accessing }
+GlobalIdentifierWithSton >> actualPreferencesFileName [
 	^ 'preferences.ston'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:48'
-}
-GlobalIdentifierWithSton>>setUpPersistenceStrategyAndChecker [
+{ #category : #running }
+GlobalIdentifierWithSton >> setUpPersistenceStrategyAndChecker [
 	preferences := FileLocator workingDirectory / self folderName / 'pharoX' / self actualPreferencesFileName.
 	preferences ensureDelete.
 	identifier persistenceStrategy: GlobalIdentifierPersistence ston.

@@ -8,15 +8,11 @@ Class {
 		'newPackage',
 		'oldPackage'
 	],
-	#category : #System-Announcements-System-Packages,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:57'
+	#category : #System-Announcements-System-Packages
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRepackaged class>>methodRepackaged: aMethod oldPackage: oldPackage newPackage: newPackage [
+{ #category : #'instance creation' }
+MethodRepackaged class >> methodRepackaged: aMethod oldPackage: oldPackage newPackage: newPackage [
 	^self new
 			method: aMethod;
 			oldPackage: oldPackage;
@@ -24,55 +20,37 @@ MethodRepackaged class>>methodRepackaged: aMethod oldPackage: oldPackage newPack
 			yourself.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRepackaged>>methodRepackaged [
+{ #category : #accessing }
+MethodRepackaged >> methodRepackaged [
 	
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRepackaged>>newPackage [
+{ #category : #accessing }
+MethodRepackaged >> newPackage [
 	
 	^ newPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRepackaged>>newPackage: anObject [
+{ #category : #accessing }
+MethodRepackaged >> newPackage: anObject [
 	
 	newPackage := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRepackaged>>oldPackage [
+{ #category : #accessing }
+MethodRepackaged >> oldPackage [
 	
 	^ oldPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRepackaged>>oldPackage: anObject [
+{ #category : #accessing }
+MethodRepackaged >> oldPackage: anObject [
 	
 	oldPackage := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRepackaged>>packagesAffected [
+{ #category : #accessing }
+MethodRepackaged >> packagesAffected [
 	^{oldPackage. newPackage}
 ]

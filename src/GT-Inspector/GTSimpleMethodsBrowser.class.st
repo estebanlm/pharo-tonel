@@ -7,26 +7,19 @@ self openOn: World
 Class {
 	#name : #GTSimpleMethodsBrowser,
 	#superclass : #GLMCompositePresentation,
-	#category : #GT-Inspector,
-	#timestamp : 'TudorGirba 1/18/2014 14:29'
+	#category : #GT-Inspector
 }
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSimpleMethodsBrowser>>accumulatedSourceOf: m for: object in: composite [
+{ #category : #building }
+GTSimpleMethodsBrowser >> accumulatedSourceOf: m for: object in: composite [
 	composite accumulator with: [ :acc | 
 		acc show: [ :a |
 			a title: [ :method | method selector ].
 			self sourceOf: m for: object in: a ] ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSimpleMethodsBrowser>>classesIn: a [
+{ #category : #building }
+GTSimpleMethodsBrowser >> classesIn: a [
 	^ a fastList
 		display: [ :object | 
 			| all |
@@ -41,11 +34,8 @@ GTSimpleMethodsBrowser>>classesIn: a [
 			entitled: 'Browse'
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSimpleMethodsBrowser>>compose [
+{ #category : #building }
+GTSimpleMethodsBrowser >> compose [
 	self title: 'Meta'.
 	self tabulator with: [ :browser |
 		browser
@@ -77,11 +67,8 @@ GTSimpleMethodsBrowser>>compose [
 	]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSimpleMethodsBrowser>>evaluationAction [
+{ #category : #building }
+GTSimpleMethodsBrowser >> evaluationAction [
 	^ GLMGenericAction new
 		action: [ :listPresentation :obj | 
 					| result |
@@ -92,21 +79,15 @@ GTSimpleMethodsBrowser>>evaluationAction [
 		yourself
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSimpleMethodsBrowser>>methodActionsFor: aMethod [
+{ #category : #building }
+GTSimpleMethodsBrowser >> methodActionsFor: aMethod [
 	^ aMethod selector isUnary
 		ifTrue: [ Array with: self evaluationAction ]
 		ifFalse: [ #() ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSimpleMethodsBrowser>>methodsIn: a [
+{ #category : #building }
+GTSimpleMethodsBrowser >> methodsIn: a [
 	^ a list
 		display: [ :object :class | class methods collect: #asRingDefinition];
 		filterOn: [ :text :each | (text , '*') match: each selector ];
@@ -124,11 +105,8 @@ GTSimpleMethodsBrowser>>methodsIn: a [
 		dynamicActionsOnSelection: [ :list | self methodActionsFor: list selection ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSimpleMethodsBrowser>>sourceOf: method for: object in: composite [
+{ #category : #building }
+GTSimpleMethodsBrowser >> sourceOf: method for: object in: composite [
 	^ composite pharoMethod 
 		display: [ :m | m sourceCode ];
 		smalltalkClass: [ :m | m methodClass ];
@@ -144,11 +122,8 @@ GTSimpleMethodsBrowser>>sourceOf: method for: object in: composite [
 			entitled: 'Accept'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTSimpleMethodsBrowser>>updateOuterPaneFrom: text for: method [
+{ #category : #private }
+GTSimpleMethodsBrowser >> updateOuterPaneFrom: text for: method [
 	"this is a utility method to tell the pane surrounding the browser to update.
 	The reason we do that is to support the use case of updating the GTInspector from
 	the editor by modifying code directly in the Inspector."

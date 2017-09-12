@@ -13,31 +13,21 @@ Class {
 	#instVars : [
 		'dataSocket'
 	],
-	#category : #Network-Protocols,
-	#timestamp : 'mir 5/12/2003 17:55'
+	#category : #Network-Protocols
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient class>>defaultPortNumber [
+{ #category : #accessing }
+FTPClient class >> defaultPortNumber [
 	^21
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient class>>logFlag [
+{ #category : #accessing }
+FTPClient class >> logFlag [
 	^#ftp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient class>>rawResponseCodes [
+{ #category : #accessing }
+FTPClient class >> rawResponseCodes [
 	#(200 'Command okay.'
 	500 'Syntax error, command unrecognized. This may include errors such as command line too long.'
 	501 'Syntax error in parameters or arguments.'
@@ -82,48 +72,33 @@ FTPClient class>>rawResponseCodes [
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>abortDataConnection [
+{ #category : #protocol }
+FTPClient >> abortDataConnection [
 	self sendCommand: 'ABOR'.
 	self closeDataSocket
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>ascii [
+{ #category : #protocol }
+FTPClient >> ascii [
 	self sendCommand: 'TYPE A'.
 	self lookForCode: 200
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>binary [
+{ #category : #protocol }
+FTPClient >> binary [
 	self sendCommand: 'TYPE I'.
 	self lookForCode: 200
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>changeDirectoryTo: newDirName [
+{ #category : #protocol }
+FTPClient >> changeDirectoryTo: newDirName [
 	self sendCommand: 'CWD ' , newDirName.
 	self checkResponse.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>closeDataSocket [
+{ #category : #private }
+FTPClient >> closeDataSocket [
 	self dataSocket
 		ifNotNil: [
 			self dataSocket closeAndDestroy.
@@ -131,47 +106,32 @@ FTPClient>>closeDataSocket [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>dataSocket [
+{ #category : #private }
+FTPClient >> dataSocket [
 	^dataSocket
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>dataSocket: aSocket [
+{ #category : #private }
+FTPClient >> dataSocket: aSocket [
 	dataSocket := aSocket
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>deleteDirectory: dirName [
+{ #category : #protocol }
+FTPClient >> deleteDirectory: dirName [
 	self sendCommand: 'RMD ' , dirName.
 	self checkResponse.
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>deleteFileNamed: fileName [
+{ #category : #protocol }
+FTPClient >> deleteFileNamed: fileName [
 	self sendCommand: 'DELE ' , fileName.
 	self checkResponse.
 
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>get: limit dataInto: dataStream [
+{ #category : #'private protocol' }
+FTPClient >> get: limit dataInto: dataStream [
 	"Reel in data until the server closes the connection or the limit is reached.
 	At the same time, watch for errors on otherSocket."
 
@@ -189,11 +149,8 @@ FTPClient>>get: limit dataInto: dataStream [
 	^ dataStream
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>getData [
+{ #category : #'private protocol' }
+FTPClient >> getData [
 
 	| dataStream |
 	dataStream := RWBinaryOrTextStream on: (String new: 4000).
@@ -203,11 +160,8 @@ FTPClient>>getData [
 
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>getDataInto: dataStream [
+{ #category : #'private protocol' }
+FTPClient >> getDataInto: dataStream [
 	"Reel in all data until the server closes the connection.  At the same time, watch for errors on otherSocket.  Don't know how much is coming.  Put the data on the stream."
 
 	| buf bytesRead |
@@ -221,11 +175,8 @@ FTPClient>>getDataInto: dataStream [
 	^ dataStream
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>getDirectory [
+{ #category : #protocol }
+FTPClient >> getDirectory [
 	| dirList |
 	self openPassiveDataConnection.
 	self sendCommand: 'LIST'.
@@ -236,11 +187,8 @@ FTPClient>>getDirectory [
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>getFileList [
+{ #category : #protocol }
+FTPClient >> getFileList [
 	| dirList |
 	self openPassiveDataConnection.
 	self sendCommand: 'NLST'.
@@ -251,11 +199,8 @@ FTPClient>>getFileList [
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>getFileNamed: remoteFileName [
+{ #category : #protocol }
+FTPClient >> getFileNamed: remoteFileName [
 	| data |
 	self openPassiveDataConnection.
 	self sendCommand: 'RETR ', remoteFileName.
@@ -270,11 +215,8 @@ FTPClient>>getFileNamed: remoteFileName [
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>getFileNamed: remoteFileName into: dataStream [
+{ #category : #protocol }
+FTPClient >> getFileNamed: remoteFileName into: dataStream [
 	self openPassiveDataConnection.
 	self sendCommand: 'RETR ', remoteFileName.
 	[self checkResponse]
@@ -287,11 +229,8 @@ FTPClient>>getFileNamed: remoteFileName into: dataStream [
 	self checkResponse
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>getPartial: limit fileNamed: remoteFileName into: dataStream [
+{ #category : #protocol }
+FTPClient >> getPartial: limit fileNamed: remoteFileName into: dataStream [
 	| data |
 	self openPassiveDataConnection.
 	self sendCommand: 'RETR ', remoteFileName.
@@ -306,11 +245,8 @@ FTPClient>>getPartial: limit fileNamed: remoteFileName into: dataStream [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>login [
+{ #category : #private }
+FTPClient >> login [
 
 	self user ifNil: [^self].
 
@@ -332,11 +268,8 @@ FTPClient>>login [
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>loginUser: userName password: passwdString [
+{ #category : #protocol }
+FTPClient >> loginUser: userName password: passwdString [
 
 	self user: userName.
 	self password: passwdString.
@@ -344,11 +277,8 @@ FTPClient>>loginUser: userName password: passwdString [
 	self login
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>lookForCode: code ifDifferent: handleBlock  [
+{ #category : #'private protocol' }
+FTPClient >> lookForCode: code ifDifferent: handleBlock [ 
 	"We are expecting a certain numeric code next.  
 	However, in the FTP protocol, multiple lines are allowed.  
 	If the response is multi-line, the fourth character of the first line is a  
@@ -371,30 +301,21 @@ FTPClient>>lookForCode: code ifDifferent: handleBlock  [
 	^ super lookForCode: code ifDifferent: handleBlock
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>makeDirectory: newDirName [
+{ #category : #protocol }
+FTPClient >> makeDirectory: newDirName [
 	self sendCommand: 'MKD ' , newDirName.
 	self checkResponse.
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>openDataSocket: remoteHostAddress port: dataPort [
+{ #category : #protocol }
+FTPClient >> openDataSocket: remoteHostAddress port: dataPort [
 	dataSocket := Socket new.
 	dataSocket connectTo: remoteHostAddress port: dataPort
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>openPassiveDataConnection [
+{ #category : #'private protocol' }
+FTPClient >> openPassiveDataConnection [
 	| portInfo list dataPort remoteHostAddress remoteAddressString |
 	self sendCommand: 'PASV'.
 	self lookForCode: 227 ifDifferent: [:response | (TelnetProtocolError protocolInstance: self) signal: 'Could not enter passive mode: ' , response].
@@ -413,20 +334,14 @@ FTPClient>>openPassiveDataConnection [
 	self openDataSocket: (NetNameResolver addressForName: remoteAddressString) port: dataPort
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>passive [
+{ #category : #protocol }
+FTPClient >> passive [
 	self sendCommand: 'PASV'.
 	self lookForCode: 227
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>putFileNamed: filePath as: fileNameOnServer [
+{ #category : #protocol }
+FTPClient >> putFileNamed: filePath as: fileNameOnServer [
 	"FTP a file to the server."
 
 
@@ -438,11 +353,8 @@ FTPClient>>putFileNamed: filePath as: fileNameOnServer [
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>putFileStreamContents: fileStream as: fileNameOnServer [
+{ #category : #protocol }
+FTPClient >> putFileStreamContents: fileStream as: fileNameOnServer [
 	"FTP a file to the server."
 
 
@@ -459,11 +371,8 @@ FTPClient>>putFileStreamContents: fileStream as: fileNameOnServer [
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>pwd [
+{ #category : #protocol }
+FTPClient >> pwd [
 	| result |
 	self sendCommand: 'PWD'.
 	self lookForCode: 257.
@@ -471,40 +380,28 @@ FTPClient>>pwd [
 	^result copyFrom: (result indexOf: $")+1 to: (result lastIndexOf: $")-1
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>quit [
+{ #category : #protocol }
+FTPClient >> quit [
 	self sendCommand: 'QUIT'.
 	self close
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>removeFileNamed: remoteFileName [
+{ #category : #protocol }
+FTPClient >> removeFileNamed: remoteFileName [
 	self sendCommand: 'DELE ', remoteFileName.
 	self checkResponse.
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>renameFileNamed: oldFileName to: newFileName [
+{ #category : #protocol }
+FTPClient >> renameFileNamed: oldFileName to: newFileName [
 	self sendCommand: 'RNFR ' , oldFileName.
 	self lookForCode: 350.
 	self sendCommand: 'RNTO ' , newFileName.
 	self lookForCode: 250
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:57'
-}
-FTPClient>>sendStreamContents: aStream [
+{ #category : #private }
+FTPClient >> sendStreamContents: aStream [
 	self dataSocket sendStreamContents: aStream checkBlock: [self checkForPendingError. true]
 ]

@@ -3,76 +3,52 @@ Kernel trait for Class
 "
 Trait {
 	#name : #TClass,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Traits-Kernel-Traits,
-	#timestamp : 'TorstenBergmann 2/4/2014 20:37'
+	#category : #Traits-Kernel-Traits
 }
 
-{
-	#category : #fileIn/Out,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass classSide>>allSuperclassesFor: aClass cache: cache 	 [
+{ #category : #fileIn/Out }
+TClass classSide >> allSuperclassesFor: aClass cache: cache [ 	
 	^ cache at: aClass ifAbsentPut: [aClass allSuperclasses asArray]
 ]
 
-{
-	#category : #fileIn/Out,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass classSide>>doesNotIncludeInstanceOrSuperclassesFor: aClass in: unprocessedClasses cache: cache  [
+{ #category : #fileIn/Out }
+TClass classSide >> doesNotIncludeInstanceOrSuperclassesFor: aClass in: unprocessedClasses cache: cache [ 
 	| soleInstance |
 	soleInstance := aClass soleInstance.
 	^ (unprocessedClasses includes: soleInstance) not and: [
 				self hasNoSuperclassesOf: soleInstance in: unprocessedClasses cache: cache]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass classSide>>hasNoDependenciesFor: aClass in: unprocessedClasses cache: cache  [
+{ #category : #private }
+TClass classSide >> hasNoDependenciesFor: aClass in: unprocessedClasses cache: cache [ 
 	^ (self hasNoSuperclassesOf: aClass in: unprocessedClasses cache: cache) and: [
 		aClass isMeta not or: [
 			self hasNoDependenciesForMetaclass: aClass in: unprocessedClasses cache: cache]] 
 ]
 
-{
-	#category : #fileIn/Out,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass classSide>>hasNoDependenciesForMetaclass: aClass in: unprocessedClasses cache: cache  [
+{ #category : #fileIn/Out }
+TClass classSide >> hasNoDependenciesForMetaclass: aClass in: unprocessedClasses cache: cache [ 
 	| soleInstance |
 	soleInstance := aClass soleInstance.
 	^ (unprocessedClasses includes: soleInstance) not and: [
 				self hasNoSuperclassesOf: soleInstance in: unprocessedClasses cache: cache]
 ]
 
-{
-	#category : #fileIn/Out,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass classSide>>hasNoSuperclassesOf: aClass in: unprocessedClasses cache: cache  [
+{ #category : #fileIn/Out }
+TClass classSide >> hasNoSuperclassesOf: aClass in: unprocessedClasses cache: cache [ 
 	^ (unprocessedClasses includesAnyOf: (self allSuperclassesFor: aClass cache: cache)) not
 	
 ]
 
-{
-	#category : #inquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass classSide>>rootsOfTheWorld [
+{ #category : #inquiries }
+TClass classSide >> rootsOfTheWorld [
 	"return all classes that have a nil superclass"
 	
 	^(self environment select: [:each | each isBehavior and: [each superclass isNil]]) asOrderedCollection
 ]
 
-{
-	#category : #fileIn/Out,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass classSide>>superclassOrder: classes [
+{ #category : #fileIn/Out }
+TClass classSide >> superclassOrder: classes [
     "Arrange the classes in the collection, classes, in superclass order so the 
     classes can be properly filed in. Do it in sets instead of ordered collections.
     Preserve provided classes order when there is no hierarchy relationship."
@@ -94,21 +70,15 @@ TClass classSide>>superclassOrder: classes [
     ^all
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass classSide>>template: aSystemCategoryName  [
+{ #category : #'instance creation' }
+TClass classSide >> template: aSystemCategoryName [ 
 	"Answer an expression that can be edited and evaluated in order to define a new class."
 
 	^ self templateForSubclassOf: Object name category: aSystemCategoryName 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass classSide>>templateForSubclassOf: priorClassName category: systemCategoryName  [
+{ #category : #'instance creation' }
+TClass classSide >> templateForSubclassOf: priorClassName category: systemCategoryName [ 
 	"Answer an expression that can be edited and evaluated in order to define a new class, given that the class previously looked at was as given"
 
 	^priorClassName asString, ' subclass: #NameOfSubclass
@@ -118,11 +88,8 @@ TClass classSide>>templateForSubclassOf: priorClassName category: systemCategory
 	package: ''' , systemCategoryName asString , ''''
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>addClassVarNamed: aString  [
+{ #category : #'class variables' }
+TClass >> addClassVarNamed: aString [ 
 	"Add the argument, aString, as a class variable of the receiver.
 	Signal an error if the first character of aString is not capitalized,
 	or if it is already a variable named in the class."
@@ -130,11 +97,8 @@ TClass>>addClassVarNamed: aString  [
 	self addClassVariable: (aString asSymbol => ClassVariable)
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>addClassVariable: aGlobal [
+{ #category : #'class variables' }
+TClass >> addClassVariable: aGlobal [
 	"Add the argument, aString, as a class variable of the receiver.
 	Signal an error if the first character of aString is not capitalized,
 	or if it is already a variable named in the class."
@@ -155,11 +119,8 @@ TClass>>addClassVariable: aGlobal [
 			classModificationAppliedTo: self]
 ]
 
-{
-	#category : #'pool variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>addSharedPool: aSharedPool  [
+{ #category : #'pool variables' }
+TClass >> addSharedPool: aSharedPool [ 
 	"Add the argument, aSharedPool, as one of the receiver's shared pools. 
 	Create an error if the shared pool is already one of the pools.
 	This method will work with shared pools that are plain Dictionaries or thenewer SharedPool subclasses"
@@ -171,22 +132,16 @@ TClass>>addSharedPool: aSharedPool  [
 		ifFalse: [self sharedPools add: aSharedPool]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>addSubclass: aSubclass  [
+{ #category : #'accessing class hierarchy' }
+TClass >> addSubclass: aSubclass [ 
 	"Make the argument, aSubclass, be one of the subclasses of the receiver. 
 	Create an error notification if the argument's superclass is not the receiver."
 	
 	self explicitRequirement
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>allClassVarNames [
+{ #category : #'class variables' }
+TClass >> allClassVarNames [
 	"Answer a Set of the names of the receiver's class variables, including those
 	defined in the superclasses of the receiver."
 
@@ -200,11 +155,8 @@ TClass>>allClassVarNames [
 			^aSet]
 ]
 
-{
-	#category : #'pool variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>allSharedPools [
+{ #category : #'pool variables' }
+TClass >> allSharedPools [
 	"Answer an ordered collection of the pools the receiver shares, including those defined  in the superclasses of the receiver."
 	| aSet | 
 	^self superclass == nil
@@ -214,11 +166,8 @@ TClass>>allSharedPools [
 			aSet]
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>anyUserOfClassVarNamed: aSymbol [
+{ #category : #'class variables' }
+TClass >> anyUserOfClassVarNamed: aSymbol [
 	self withAllSubclasses do: [ :subclass | 
  		(Array with: subclass with: subclass class) do: [ :classOrMeta | 
 			(classOrMeta whichSelectorsReferTo: (self classPool associationAt: aSymbol)) 
@@ -227,11 +176,8 @@ TClass>>anyUserOfClassVarNamed: aSymbol [
 	^nil
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>applyChangesOfNewTraitCompositionReplacing: oldComposition [
+{ #category : #traits }
+TClass >> applyChangesOfNewTraitCompositionReplacing: oldComposition [
 
 	| changedSelectors |
 	changedSelectors := super applyChangesOfNewTraitCompositionReplacing: oldComposition.
@@ -239,22 +185,16 @@ TClass>>applyChangesOfNewTraitCompositionReplacing: oldComposition [
 	^ changedSelectors
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>binding [
+{ #category : #compiling }
+TClass >> binding [
        "Answer a binding for the receiver, sharing if possible"
       | binding |
 	binding := self environment associationAt: self name ifAbsent: [nil -> self].
        ^binding value == self ifTrue: [binding] ifFalse: [nil -> self]
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>bindingOf: varName [
+{ #category : #compiling }
+TClass >> bindingOf: varName [
 	"Answer the binding of some variable resolved in the scope of the receiver, or nil
 	if variable with such name is not defined"
 
@@ -272,11 +212,8 @@ TClass>>bindingOf: varName [
 	]
 ]
 
-{
-	#category : #organization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>category [
+{ #category : #organization }
+TClass >> category [
 	"Answer the system organization category for the receiver. First check whether the
 	category name stored in the ivar is still correct and only if this fails look it up
 	(latter is much more expensive)"
@@ -293,11 +230,8 @@ TClass>>category [
 	^ result
 ]
 
-{
-	#category : #organization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>category: aString  [
+{ #category : #organization }
+TClass >> category: aString [ 
 	"Categorize the receiver under the system category, aString, removing it from 
 	any previous categorization."
 
@@ -312,78 +246,54 @@ TClass>>category: aString  [
 		class: self recategorizedFrom: oldCategory to: self basicCategory
 ]
 
-{
-	#category : #'subclass creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>classBuilder [
+{ #category : #'subclass creation' }
+TClass >> classBuilder [
 		"Answer the object responsible of creating subclasses of myself in the system."
 	
 		^ self classInstaller new builder
 ]
 
-{
-	#category : #'subclass creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>classInstaller [
+{ #category : #'subclass creation' }
+TClass >> classInstaller [
 	"Answer the class responsible of creating subclasses of myself in the system."
 	^self isAnonymous 
 		ifTrue: [Smalltalk anonymousClassInstaller]
 		ifFalse: [Smalltalk classInstaller]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>classPool [
+{ #category : #accessing }
+TClass >> classPool [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>classPool: aDictionary [
+{ #category : #accessing }
+TClass >> classPool: aDictionary [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>classVarNamed: aString [
+{ #category : #'class variables' }
+TClass >> classVarNamed: aString [
 	"for compatibility"
 
 	^self readClassVariableNamed: aString
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>classVarNamed: aString put: anObject [
+{ #category : #'class variables' }
+TClass >> classVarNamed: aString put: anObject [
 	"for compatibility"
 	
 	self writeClassVariableNamed: aString value: anObject
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>classVarNames [
+{ #category : #'class variables' }
+TClass >> classVarNames [
 	"Answer a collection of the names of the class variables defined in the receiver."
 
 	^self classPool keys sort
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>classVariableDefinitionString [
+{ #category : #'class variables' }
+TClass >> classVariableDefinitionString [
 	"Answer a string that evaluates to the definition of the class Variables"
 	
 	^String streamContents: [ :str | | special |
@@ -397,40 +307,28 @@ TClass>>classVariableDefinitionString [
 		str nextPutAll: ' }'. ]
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>classVariableNamed: aString [
+{ #category : #'class variables' }
+TClass >> classVariableNamed: aString [
 	"Answer the Class Variable"
 
 	^self classPool associationAt: aString asSymbol ifAbsent: [self error: 'no such class var']
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>classVariables [
+{ #category : #'class variables' }
+TClass >> classVariables [
 	"Answer the meta objects of all class variables"
 
 	^self classPool associations
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>compileAll [
+{ #category : #compiling }
+TClass >> compileAll [
 	super compileAll.
 	self classSide compileAll.
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>compileAllFrom: oldClass [
+{ #category : #compiling }
+TClass >> compileAllFrom: oldClass [
 	"Recompile all the methods in the receiver's method dictionary (not the
 	subclasses). Also recompile the methods in the metaclass."
 
@@ -438,19 +336,13 @@ TClass>>compileAllFrom: oldClass [
 	self theMetaClass compileAllFrom: oldClass theMetaClass
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>copy [
+{ #category : #copying }
+TClass >> copy [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>declareClassVariables: newVars  [
+{ #category : #initialize-release }
+TClass >> declareClassVariables: newVars [ 
 	"Declare class variables common to all instances. Answer whether 
 	recompilation is advisable."
 	|  conflicts |
@@ -474,31 +366,22 @@ TClass>>declareClassVariables: newVars  [
 	^conflicts
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>definesClassVariable: aGlobal [
+{ #category : #'class variables' }
+TClass >> definesClassVariable: aGlobal [
 	"Return whether the receiver has a class variables (shared variables among its class and subclasses) named: aString"
 	
 	^ self classVariables includes: aGlobal
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>definesClassVariableNamed: aString [
+{ #category : #'class variables' }
+TClass >> definesClassVariableNamed: aString [
 	"Return whether the receiver has a class variables (shared variables among its class and subclasses) named: aString"
 	
 	^ self classVarNames includes: aString
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>duplicateClassWithNewName: aSymbol [
+{ #category : #copying }
+TClass >> duplicateClassWithNewName: aSymbol [
 	| copysName class |
 	copysName := aSymbol asSymbol.
 	copysName = self name
@@ -519,27 +402,18 @@ TClass>>duplicateClassWithNewName: aSymbol [
 	^ class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>environment [
+{ #category : #accessing }
+TClass >> environment [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>environment: anEnvironment [
+{ #category : #accessing }
+TClass >> environment: anEnvironment [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'subclass creation - weak',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>ephemeronSubclass: className instanceVariableNames: instVarNames 
+{ #category : #'subclass creation - weak' }
+TClass >> ephemeronSubclass: className instanceVariableNames: instVarNames 
 	classVariableNames: classVarNames package: cat [
 	"Added to allow for a simplified subclass creation experience. "
 	
@@ -550,11 +424,8 @@ TClass>>ephemeronSubclass: className instanceVariableNames: instVarNames
 		category: cat
 ]
 
-{
-	#category : #'subclass creation - weak',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>ephemeronSubclass: t instanceVariableNames: f 
+{ #category : #'subclass creation - weak' }
+TClass >> ephemeronSubclass: t instanceVariableNames: f 
 	classVariableNames: d poolDictionaries: s category: cat [
 	"This is the standard initialization message for creating a new class as a subclass of an existing class (the receiver) in which the subclass is to have weak indexable pointer variables."
 
@@ -571,67 +442,46 @@ TClass>>ephemeronSubclass: t instanceVariableNames: f
 			copyClassSlotsFromExistingClass ].
 ]
 
-{
-	#category : #viewer,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>externalName [
+{ #category : #viewer }
+TClass >> externalName [
 	"Answer a name by which the receiver can be known."
 
 	^ self name
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>getName [
+{ #category : #private }
+TClass >> getName [
 	^ self name
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>hasAbstractMethods [
+{ #category : #testing }
+TClass >> hasAbstractMethods [
 	"Tells whether the receiver locally defines an abstract method, i.e., a method sending subclassResponsibility"
 
 	^ super hasAbstractMethods or: [ self theMetaClass hasAbstractMethods ]
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>hasClassSide [
+{ #category : #'accessing parallel hierarchy' }
+TClass >> hasClassSide [
 	^self classSide notNil.
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>hasClassVarNamed: aString [
+{ #category : #'class variables' }
+TClass >> hasClassVarNamed: aString [
 	"Return whether the receiver has a class variables (shared variables among its class and subclasses) named: aString"
 	
 	^ self classVarNames includes: aString
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>hasClassVariable: aGlobal [
+{ #category : #'class variables' }
+TClass >> hasClassVariable: aGlobal [
 	"Return whether the receiver has a class variables (shared variables among its class and subclasses) named: aString"
 	
 	^ self classVariables identityIncludes: aGlobal
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>hasMethods [
+{ #category : #testing }
+TClass >> hasMethods [
 	"Answer a Boolean according to whether any methods are defined for the 
 	receiver (includes whether there are methods defined in the receiver's 
 	metaclass)."
@@ -639,28 +489,19 @@ TClass>>hasMethods [
 	^super hasMethods or: [ self theMetaClass hasMethods ]
 ]
 
-{
-	#category : #'pool variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>hasSharedPools [
+{ #category : #'pool variables' }
+TClass >> hasSharedPools [
 	"Returns whether the receiver uses shared pools directly (Does not take into account that it may inherit shared pool uses."
 	^ self sharedPools notEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>hasSubclasses [
+{ #category : #testing }
+TClass >> hasSubclasses [
 	^self explicitRequirement
 ]
 
-{
-	#category : #'subclass creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>immediateByteSubclass: className instanceVariableNames: instvarNames classVariableNames: classVarNames package: package [
+{ #category : #'subclass creation' }
+TClass >> immediateByteSubclass: className instanceVariableNames: instvarNames classVariableNames: classVarNames package: package [
 	"Added to allow for a simplified subclass creation experience. "
 
 	^ self
@@ -670,11 +511,8 @@ TClass>>immediateByteSubclass: className instanceVariableNames: instvarNames cla
 		package: package
 ]
 
-{
-	#category : #'subclass creation - immediate',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>immediateSubclass: className instanceVariableNames: instvarNames 
+{ #category : #'subclass creation - immediate' }
+TClass >> immediateSubclass: className instanceVariableNames: instvarNames 
 	classVariableNames: classVarNames package: cat [
 	"
 	An immediate subclass define a class for which its value is coded within the OOP itself (like SmallInteger in 32 bits). It is not meant to be used by non-experimented users.
@@ -688,11 +526,8 @@ TClass>>immediateSubclass: className instanceVariableNames: instvarNames
 		package: cat
 ]
 
-{
-	#category : #'subclass creation - immediate',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>immediateSubclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s package: cat [
+{ #category : #'subclass creation - immediate' }
+TClass >> immediateSubclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s package: cat [
 	"This is the standard initialization message for creating a new class as a 
 	subclass of an existing class (the receiver) in which the subclass is to 
 	have indexable pointer variables."
@@ -710,11 +545,8 @@ TClass>>immediateSubclass: t instanceVariableNames: f classVariableNames: d pool
 			copyClassSlotsFromExistingClass ].
 ]
 
-{
-	#category : #'subclass creation - immediate',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>immediateSubclass: aClassName uses: aTraitCompositionOrArray instanceVariableNames: instVarNames 
+{ #category : #'subclass creation - immediate' }
+TClass >> immediateSubclass: aClassName uses: aTraitCompositionOrArray instanceVariableNames: instVarNames 
 	classVariableNames: classVarNames package: cat [
 	"Added to allow for a simplified subclass creation experience. "
 	
@@ -726,11 +558,8 @@ TClass>>immediateSubclass: aClassName uses: aTraitCompositionOrArray instanceVar
 		package: cat
 ]
 
-{
-	#category : #'subclass creation - immediate',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>immediateSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames package: aCategory [
+{ #category : #'subclass creation - immediate' }
+TClass >> immediateSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames package: aCategory [
 	"Creates a new class as a subclass of an existing class (the receiver) 
 	in which the subclass is to have indexable byte-sized nonpointer variables."
 	
@@ -746,11 +575,8 @@ TClass>>immediateSubclass: aName uses: aTraitComposition instanceVariableNames: 
 				package: aCategory ]
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>innerBindingOf: aSymbol [
+{ #category : #compiling }
+TClass >> innerBindingOf: aSymbol [
 	"Answer the binding of some variable resolved in the scope of the receiver, or one of its superclass
 	but do not look up binding in receiver's environment.
 	Use #bindingOf: for looking up the variable binding in a full scope, including receiver's environment"
@@ -763,72 +589,48 @@ TClass>>innerBindingOf: aSymbol [
 	^ nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>isAnonymous [
+{ #category : #testing }
+TClass >> isAnonymous [
 	^self getName isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>isClassOrTrait [
+{ #category : #testing }
+TClass >> isClassOrTrait [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>isObsolete [
+{ #category : #testing }
+TClass >> isObsolete [
 	"Return true if the receiver is obsolete."
 
 	^ self propertyAt: #obsolete ifAbsent: false
 ]
 
-{
-	#category : #'self evaluating',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>isSelfEvaluating [
+{ #category : #'self evaluating' }
+TClass >> isSelfEvaluating [
 	^self isObsolete not
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>isValidTraitName: aSymbol [
+{ #category : #private }
+TClass >> isValidTraitName: aSymbol [
 
 	aSymbol ifNil: [ ^ false ].
 	^ aSymbol isValidGlobalName.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>name [
+{ #category : #accessing }
+TClass >> name [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>name: aSymbol [
+{ #category : #private }
+TClass >> name: aSymbol [
 	"for compatibile API with trais"
 	self setName: aSymbol
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>name: aString traitComposition: aComposition methodDict: aMethodDict localSelectors: aSet organization: aClassOrganization [
+{ #category : #initialize-release }
+TClass >> name: aString traitComposition: aComposition methodDict: aMethodDict localSelectors: aSet organization: aClassOrganization [
 
 	"Used by copy"
 	
@@ -839,11 +641,8 @@ TClass>>name: aString traitComposition: aComposition methodDict: aMethodDict loc
 	self organization: aClassOrganization
 ]
 
-{
-	#category : #'subclass creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>newSubclass [
+{ #category : #'subclass creation' }
+TClass >> newSubclass [
 	| i className |
 	i := 1.
 	[className := (self name , i printString) asSymbol.
@@ -859,11 +658,8 @@ TClass>>newSubclass [
 "Point newSubclass new"
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>obsolete [
+{ #category : #initialize-release }
+TClass >> obsolete [
 	"Change the receiver and all of its subclasses to an obsolete class."
 	self == Object 
 		ifTrue: [^self error: 'Object is NOT obsolete'].
@@ -877,11 +673,8 @@ TClass>>obsolete [
 	super obsolete.
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>possibleVariablesFor: misspelled continuedFrom: oldResults [
+{ #category : #compiling }
+TClass >> possibleVariablesFor: misspelled continuedFrom: oldResults [
 
 	| results |
 	results := misspelled correctAgainstDictionary: self classPool continuedFrom: oldResults.
@@ -894,29 +687,20 @@ TClass>>possibleVariablesFor: misspelled continuedFrom: oldResults [
 			[ ^ self superclass possibleVariablesFor: misspelled continuedFrom: results ]
 ]
 
-{
-	#category : #'subclass creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>private_subclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s category: cat  [
+{ #category : #'subclass creation' }
+TClass >> private_subclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s category: cat [ 
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>readClassVariableNamed: aString [
+{ #category : #'class variables' }
+TClass >> readClassVariableNamed: aString [
 	"Answer the content of the Class Variable"
 
 	^(self classVariableNamed: aString) read
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>reformatAll  [
+{ #category : #compiling }
+TClass >> reformatAll [ 
 	"Reformat all methods in this class.
 	Leaves old code accessible to version browsing"
 
@@ -924,11 +708,8 @@ TClass>>reformatAll  [
 	self theMetaClass reformatAll.	"...and my metaclass"
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>removeClassVarNamed: aString [
+{ #category : #'class variables' }
+TClass >> removeClassVarNamed: aString [
 	"Remove the class variable whose name is the argument, aString, from 
     the names defined in the receiver, a class. Create an error notification if 
     aString is not a class variable or if it is still being used in the code of 
@@ -937,11 +718,8 @@ TClass>>removeClassVarNamed: aString [
 	self removeClassVarNamed: aString interactive: false
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>removeClassVarNamed: aString interactive: interactive [
+{ #category : #'class variables' }
+TClass >> removeClassVarNamed: aString interactive: interactive [
 	"Remove the class variable whose name is the argument, aString, from 
     the names defined in the receiver, a class. Create an error notification if 
     aString is not a class variable or if it is still being used in the code of 
@@ -967,32 +745,23 @@ TClass>>removeClassVarNamed: aString interactive: interactive [
 	SystemAnnouncer uniqueInstance classModificationAppliedTo: self
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>removeClassVariable: aGlobal [
+{ #category : #'class variables' }
+TClass >> removeClassVariable: aGlobal [
 	"Remove the class variable"
 	self removeClassVarNamed: aGlobal name
 
 	
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>removeFromSystem [
+{ #category : #initialize-release }
+TClass >> removeFromSystem [
 	"Forget the receiver from the Smalltalk global dictionary. Any existing 
 	instances will refer to an obsolete version of the receiver."
 	self removeFromSystem: true.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>removeFromSystem: logged [
+{ #category : #initialize-release }
+TClass >> removeFromSystem: logged [
 	"Forget the receiver from the Smalltalk global dictionary. Any existing 
 	instances will refer to an obsolete version of the receiver."
 	
@@ -1012,30 +781,21 @@ TClass>>removeFromSystem: logged [
 	logged ifTrue: [SystemAnnouncer uniqueInstance classRemoved: self fromCategory: myCategory].
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>removeFromSystemUnlogged [
+{ #category : #initialize-release }
+TClass >> removeFromSystemUnlogged [
 	"Forget the receiver from the Smalltalk global dictionary. Any existing instances will refer to an obsolete version of the receiver.  Do not log the removal either to the current change set nor to the system changes log"
 	^self removeFromSystem: false
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>removeInstVarNamed: aString  [
+{ #category : #'instance variables' }
+TClass >> removeInstVarNamed: aString [ 
 	"Remove the argument, aString, as one of the receiver's instance variables."
 
 	^self removeSlot: (self slotNamed: aString)
 ]
 
-{
-	#category : #'pool variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>removeSharedPool: aDictionary  [
+{ #category : #'pool variables' }
+TClass >> removeSharedPool: aDictionary [ 
 	"Remove the pool dictionary, aDictionary, as one of the receiver's pool 
 	dictionaries. Create an error notification if the dictionary is not one of 
 	the pools.
@@ -1078,11 +838,8 @@ TClass>>removeSharedPool: aDictionary  [
 	self sharedPools isEmpty ifTrue: [self sharedPools: nil]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>removeSubclass: aSubclass  [
+{ #category : #'accessing class hierarchy' }
+TClass >> removeSubclass: aSubclass [ 
 	"If the argument, aSubclass, is one of the receiver's subclasses, remove it."
 
 	self subclasses == nil ifFalse:
@@ -1090,11 +847,8 @@ TClass>>removeSubclass: aSubclass  [
 		self subclasses isEmpty ifTrue: [self subclasses: nil]].
 ]
 
-{
-	#category : #'class name',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>rename: aString  [
+{ #category : #'class name' }
+TClass >> rename: aString [ 
 	"The new name of the receiver is the argument, aString."
 
 	| oldName newName |
@@ -1109,19 +863,13 @@ TClass>>rename: aString  [
 from Undeclared. Check them after this change.'].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>setName: aSymbol [
+{ #category : #private }
+TClass >> setName: aSymbol [
 	self name: aSymbol.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>setName: aSymbol andRegisterInCategory: categorySymbol environment: aSystemDictionary [
+{ #category : #private }
+TClass >> setName: aSymbol andRegisterInCategory: categorySymbol environment: aSystemDictionary [
 	(self isValidTraitName: aSymbol) ifFalse: [TraitException signal: 'Invalid trait name'].
 	
 	(self environment == aSystemDictionary
@@ -1141,11 +889,8 @@ TClass>>setName: aSymbol andRegisterInCategory: categorySymbol environment: aSys
 	^ true
 ]
 
-{
-	#category : #'pool variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>sharedPoolOfVarNamed: aString [
+{ #category : #'pool variables' }
+TClass >> sharedPoolOfVarNamed: aString [
 	"Returns the SharedPool or nil from which the pool variable named aString is coming from."
 	
 	 ^ self sharedPools 
@@ -1157,27 +902,18 @@ TClass>>sharedPoolOfVarNamed: aString [
 						]
 ]
 
-{
-	#category : #'pool variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>sharedPools [
+{ #category : #'pool variables' }
+TClass >> sharedPools [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'pool variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>sharedPools: aCollection [
+{ #category : #'pool variables' }
+TClass >> sharedPools: aCollection [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>sharing: poolString  [
+{ #category : #initialize-release }
+TClass >> sharing: poolString [ 
 	"Set up sharedPools. Answer whether recompilation is advisable."
 	| oldPools |
 	oldPools := self sharedPools.
@@ -1200,27 +936,18 @@ TClass>>sharing: poolString  [
 	^ false
 ]
 
-{
-	#category : #'subclass creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: t [
+{ #category : #'subclass creation' }
+TClass >> subclass: t [
 	^ self subclass: t instanceVariableNames: '' classVariableNames: '' poolDictionaries: '' category: 'Unclassified' 
 ]
 
-{
-	#category : #'subclass creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: t instanceVariableNames: ins [
+{ #category : #'subclass creation' }
+TClass >> subclass: t instanceVariableNames: ins [
 	^ self subclass: t instanceVariableNames: ins classVariableNames: '' poolDictionaries: '' category: 'Unclassified' 
 ]
 
-{
-	#category : #'subclass creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: aSubclassSymbol instanceVariableNames: instVarNames classVariableNames: classVarNames category: aCategorySymbol [
+{ #category : #'subclass creation' }
+TClass >> subclass: aSubclassSymbol instanceVariableNames: instVarNames classVariableNames: classVarNames category: aCategorySymbol [
 	"Added to allow for a simplified subclass creation experience. "
 	^ self
 		subclass: aSubclassSymbol
@@ -1230,11 +957,8 @@ TClass>>subclass: aSubclassSymbol instanceVariableNames: instVarNames classVaria
 		category: aCategorySymbol
 ]
 
-{
-	#category : #'subclass creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: aSubclassSymbol instanceVariableNames: instVarNames classVariableNames: classVarNames package: aPackageSymbol [
+{ #category : #'subclass creation' }
+TClass >> subclass: aSubclassSymbol instanceVariableNames: instVarNames classVariableNames: classVarNames package: aPackageSymbol [
 	"Added to allow for a simplified subclass creation experience. "
 
 	^ self
@@ -1245,11 +969,8 @@ TClass>>subclass: aSubclassSymbol instanceVariableNames: instVarNames classVaria
 		package: aPackageSymbol
 ]
 
-{
-	#category : #'subclass creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s category: cat [
+{ #category : #'subclass creation' }
+TClass >> subclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s category: cat [
 	^ self
 		subclass: t
 		uses: {}
@@ -1259,11 +980,8 @@ TClass>>subclass: t instanceVariableNames: f classVariableNames: d poolDictionar
 		category: cat
 ]
 
-{
-	#category : #'subclass creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s package: cat [
+{ #category : #'subclass creation' }
+TClass >> subclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s package: cat [
 	^ self
 		subclass: t
 		uses: {}
@@ -1273,11 +991,8 @@ TClass>>subclass: t instanceVariableNames: f classVariableNames: d poolDictionar
 		package: cat
 ]
 
-{
-	#category : #'subclass creation - slots',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: aSubclassSymbol  layout: layoutClass slots: slotDefinition classVariables: classVarDefinition category: aCategorySymbol [
+{ #category : #'subclass creation - slots' }
+TClass >> subclass: aSubclassSymbol  layout: layoutClass slots: slotDefinition classVariables: classVarDefinition category: aCategorySymbol [
 
 	^ self classInstaller make: [ :builder |
 		builder name: aSubclassSymbol;
@@ -1289,11 +1004,8 @@ TClass>>subclass: aSubclassSymbol  layout: layoutClass slots: slotDefinition cla
 
 ]
 
-{
-	#category : #'subclass creation - slots',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: aSubclassSymbol  layout: layoutClass  slots: slotDefinition classVariables: classVarDefinition poolDictionaries: someSharedPoolNames category: aCategorySymbol [
+{ #category : #'subclass creation - slots' }
+TClass >> subclass: aSubclassSymbol  layout: layoutClass  slots: slotDefinition classVariables: classVarDefinition poolDictionaries: someSharedPoolNames category: aCategorySymbol [
 
 	^ self classInstaller make: [ :builder |
 		builder name: aSubclassSymbol;
@@ -1306,11 +1018,8 @@ TClass>>subclass: aSubclassSymbol  layout: layoutClass  slots: slotDefinition cl
 
 ]
 
-{
-	#category : #'subclass creation - slots',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: aSubclassSymbol slots: slotDefinition classVariables: classVarDefinition category: aCategorySymbol [
+{ #category : #'subclass creation - slots' }
+TClass >> subclass: aSubclassSymbol slots: slotDefinition classVariables: classVarDefinition category: aCategorySymbol [
 
 	^ self classInstaller make: [ :builder | 
 			builder
@@ -1321,11 +1030,8 @@ TClass>>subclass: aSubclassSymbol slots: slotDefinition classVariables: classVar
 				category: aCategorySymbol ]
 ]
 
-{
-	#category : #'subclass creation - slots',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: aSubclassSymbol slots: slotDefinition classVariables: classVarDefinition poolDictionaries: someSharedPoolNames category: aCategorySymbol [
+{ #category : #'subclass creation - slots' }
+TClass >> subclass: aSubclassSymbol slots: slotDefinition classVariables: classVarDefinition poolDictionaries: someSharedPoolNames category: aCategorySymbol [
 
 	^ self classInstaller make: [ :builder |
 		builder name: aSubclassSymbol;
@@ -1337,11 +1043,8 @@ TClass>>subclass: aSubclassSymbol slots: slotDefinition classVariables: classVar
 
 ]
 
-{
-	#category : #'subclass creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: t uses: aTraitComposition  [
+{ #category : #'subclass creation' }
+TClass >> subclass: t uses: aTraitComposition [ 
 	| cls |
 	cls := self
 				subclass: t
@@ -1353,11 +1056,8 @@ TClass>>subclass: t uses: aTraitComposition  [
 	^ cls
 ]
 
-{
-	#category : #'subclass creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: aTraitName uses: aTraitCompositionOrArray instanceVariableNames: instVarNames classVariableNames: classVarNames category: cat  [
+{ #category : #'subclass creation' }
+TClass >> subclass: aTraitName uses: aTraitCompositionOrArray instanceVariableNames: instVarNames classVariableNames: classVarNames category: cat [ 
 
 	^ self
 		subclass: aTraitName
@@ -1368,11 +1068,8 @@ TClass>>subclass: aTraitName uses: aTraitCompositionOrArray instanceVariableName
 		category: cat 
 ]
 
-{
-	#category : #'subclass creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: aTraitName uses: aTraitCompositionOrArray instanceVariableNames: instVarNames classVariableNames: classVarNames package: cat [
+{ #category : #'subclass creation' }
+TClass >> subclass: aTraitName uses: aTraitCompositionOrArray instanceVariableNames: instVarNames classVariableNames: classVarNames package: cat [
 	^ self
 		subclass: aTraitName
 		uses: aTraitCompositionOrArray
@@ -1381,11 +1078,8 @@ TClass>>subclass: aTraitName uses: aTraitCompositionOrArray instanceVariableName
 		category: cat
 ]
 
-{
-	#category : #'subclass creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: aName uses: aTraitCompositionOrArray instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames category: aCategory [
+{ #category : #'subclass creation' }
+TClass >> subclass: aName uses: aTraitCompositionOrArray instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames category: aCategory [
 
 	^ self
 		subclass: aName
@@ -1399,11 +1093,8 @@ TClass>>subclass: aName uses: aTraitCompositionOrArray instanceVariableNames: so
 				category: aCategory ]
 ]
 
-{
-	#category : #'subclass creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: aName uses: aTraitCompositionOrArray instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames package: aCategory [
+{ #category : #'subclass creation' }
+TClass >> subclass: aName uses: aTraitCompositionOrArray instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames package: aCategory [
 
 	^ self
 		subclass: aName
@@ -1417,11 +1108,8 @@ TClass>>subclass: aName uses: aTraitCompositionOrArray instanceVariableNames: so
 				category: aCategory ]
 ]
 
-{
-	#category : #'subclass creation - slots',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: aSubclassSymbol uses: aTraitCompositionOrArray  layout: layoutClass slots: slotDefinition classVariables: classVarDefinition category: aCategorySymbol [
+{ #category : #'subclass creation - slots' }
+TClass >> subclass: aSubclassSymbol uses: aTraitCompositionOrArray  layout: layoutClass slots: slotDefinition classVariables: classVarDefinition category: aCategorySymbol [
 	^ self
 		subclass: aSubclassSymbol
 		uses: aTraitCompositionOrArray
@@ -1437,11 +1125,8 @@ TClass>>subclass: aSubclassSymbol uses: aTraitCompositionOrArray  layout: layout
 						category: aCategorySymbol ] ]
 ]
 
-{
-	#category : #'subclass creation - slots',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: aSubclassSymbol uses: aTraitCompositionOrArray  layout: layoutClass slots: slotDefinition classVariables: classVarDefinition poolDictionaries: someSharedPoolNames category: aCategorySymbol [
+{ #category : #'subclass creation - slots' }
+TClass >> subclass: aSubclassSymbol uses: aTraitCompositionOrArray  layout: layoutClass slots: slotDefinition classVariables: classVarDefinition poolDictionaries: someSharedPoolNames category: aCategorySymbol [
 	^ self
 		subclass: aSubclassSymbol
 		uses: aTraitCompositionOrArray
@@ -1458,11 +1143,8 @@ TClass>>subclass: aSubclassSymbol uses: aTraitCompositionOrArray  layout: layout
 						category: aCategorySymbol ] ]
 ]
 
-{
-	#category : #'subclass creation - slots',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: aSubclassSymbol uses: aTraitCompositionOrArray slots: slotDefinition classVariables: classVarDefinition category: aCategorySymbol [
+{ #category : #'subclass creation - slots' }
+TClass >> subclass: aSubclassSymbol uses: aTraitCompositionOrArray slots: slotDefinition classVariables: classVarDefinition category: aCategorySymbol [
 	^ self
 		subclass: aSubclassSymbol
 		uses: aTraitCompositionOrArray
@@ -1477,11 +1159,8 @@ TClass>>subclass: aSubclassSymbol uses: aTraitCompositionOrArray slots: slotDefi
 						category: aCategorySymbol ] ]
 ]
 
-{
-	#category : #'subclass creation - slots',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: aSubclassSymbol uses: aTraitCompositionOrArray slots: slotDefinition classVariables: classVarDefinition poolDictionaries: someSharedPoolNames category: aCategorySymbol [
+{ #category : #'subclass creation - slots' }
+TClass >> subclass: aSubclassSymbol uses: aTraitCompositionOrArray slots: slotDefinition classVariables: classVarDefinition poolDictionaries: someSharedPoolNames category: aCategorySymbol [
 	^ self
 		subclass: aSubclassSymbol
 		uses: aTraitCompositionOrArray
@@ -1497,11 +1176,8 @@ TClass>>subclass: aSubclassSymbol uses: aTraitCompositionOrArray slots: slotDefi
 						category: aCategorySymbol ] ]
 ]
 
-{
-	#category : #'subclass creation - private',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclass: aName uses: aTraitComposition with: aBlock  [
+{ #category : #'subclass creation - private' }
+TClass >> subclass: aName uses: aTraitComposition with: aBlock [ 
 	"Define (or redefine) a subclass by evaluating a block closure. 
 
 	Note (MartinDias): 
@@ -1536,65 +1212,44 @@ TClass>>subclass: aName uses: aTraitComposition with: aBlock  [
 			newClass].
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclasses [
+{ #category : #'accessing class hierarchy' }
+TClass >> subclasses [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclasses: aCollection [
+{ #category : #'accessing class hierarchy' }
+TClass >> subclasses: aCollection [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>subclassesDo: aBlock  [
+{ #category : #'accessing class hierarchy' }
+TClass >> subclassesDo: aBlock [ 
 	"Evaluate the argument, aBlock, for each of the receiver's immediate subclasses."
 	
 	self subclasses do: aBlock
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>superclass: aClass methodDictionary: mDict format: fmt [
+{ #category : #initialize-release }
+TClass >> superclass: aClass methodDictionary: mDict format: fmt [
 	"Basic initialization of the receiver"
 	super superclass: aClass methodDictionary: mDict format: fmt.
 	self subclasses: nil. 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>unload [
+{ #category : #initialize-release }
+TClass >> unload [
 	"Sent when a the class is removed.  Does nothing, but may be overridden by (class-side) subclasses."
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>usesClassVarNamed: aString [
+{ #category : #'class variables' }
+TClass >> usesClassVarNamed: aString [
 	"Return whether the receiver or its superclasses have a class variable named: aString"
 	
 	^ self allClassVarNames includes: aString
 ]
 
-{
-	#category : #'pool variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>usesLocalPoolVarNamed: aString [
+{ #category : #'pool variables' }
+TClass >> usesLocalPoolVarNamed: aString [
 	"Return whether the receiver uses a pool variable named: aString which is defined locally"
 	
 	self hasSharedPools
@@ -1604,22 +1259,16 @@ TClass>>usesLocalPoolVarNamed: aString [
 	^false
 ]
 
-{
-	#category : #'pool variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>usesPoolVarNamed: aString [
+{ #category : #'pool variables' }
+TClass >> usesPoolVarNamed: aString [
 	"Return whether the receiver has a pool variable named: aString, taking into account superclasses too"
 	
 	self allSharedPools do: [:each | (each usesClassVarNamed: aString) ifTrue: [^true]].
 	^false
 ]
 
-{
-	#category : #'subclass creation - variableByte',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableByteSubclass: className instanceVariableNames: instvarNames 
+{ #category : #'subclass creation - variableByte' }
+TClass >> variableByteSubclass: className instanceVariableNames: instvarNames 
 	classVariableNames: classVarNames category: cat [
 	"Added to allow for a simplified subclass creation experience. "
 	^self variableByteSubclass: className
@@ -1629,11 +1278,8 @@ TClass>>variableByteSubclass: className instanceVariableNames: instvarNames
 		category: cat
 ]
 
-{
-	#category : #'subclass creation - variableByte',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableByteSubclass: className instanceVariableNames: instvarNames classVariableNames: classVarNames package: cat [
+{ #category : #'subclass creation - variableByte' }
+TClass >> variableByteSubclass: className instanceVariableNames: instvarNames classVariableNames: classVarNames package: cat [
 	"Added to allow for a simplified subclass creation experience. "
 
 	^ self
@@ -1643,11 +1289,8 @@ TClass>>variableByteSubclass: className instanceVariableNames: instvarNames clas
 		category: cat
 ]
 
-{
-	#category : #'subclass creation - variableByte',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableByteSubclass: t instanceVariableNames: f 
+{ #category : #'subclass creation - variableByte' }
+TClass >> variableByteSubclass: t instanceVariableNames: f 
 	classVariableNames: d poolDictionaries: s category: cat [
 	"This is the standard initialization message for creating a new class as a 
 	subclass of an existing class (the receiver) in which the subclass is to 
@@ -1673,11 +1316,8 @@ TClass>>variableByteSubclass: t instanceVariableNames: f
 			copyClassSlotsFromExistingClass ].
 ]
 
-{
-	#category : #'subclass creation - variableByte',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableByteSubclass: className uses: aTraitCompositionOrArray instanceVariableNames: instVarNames 
+{ #category : #'subclass creation - variableByte' }
+TClass >> variableByteSubclass: className uses: aTraitCompositionOrArray instanceVariableNames: instVarNames 
 	classVariableNames: classVarNames category: cat [
 		"Added to allow for a simplified subclass creation experience. "
 	
@@ -1689,11 +1329,8 @@ TClass>>variableByteSubclass: className uses: aTraitCompositionOrArray instanceV
 		category: cat
 ]
 
-{
-	#category : #'subclass creation - variableByte',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableByteSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames category: aCategory [
+{ #category : #'subclass creation - variableByte' }
+TClass >> variableByteSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames category: aCategory [
 	"Creates a new class as a subclass of an existing class (the receiver) 
 	in which the subclass is to have indexable byte-sized nonpointer variables."
 	
@@ -1709,11 +1346,8 @@ TClass>>variableByteSubclass: aName uses: aTraitComposition instanceVariableName
 				category: aCategory ]
 ]
 
-{
-	#category : #'subclass creation - variable',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableSubclass: className instanceVariableNames: instVarNames classVariableNames: classVarNames category: cat [
+{ #category : #'subclass creation - variable' }
+TClass >> variableSubclass: className instanceVariableNames: instVarNames classVariableNames: classVarNames category: cat [
 	"Added to allow for a simplified subclass creation experience. "
 
 	^ self variableSubclass: className
@@ -1724,19 +1358,13 @@ TClass>>variableSubclass: className instanceVariableNames: instVarNames classVar
 
 ]
 
-{
-	#category : #'subclass creation - variable',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableSubclass: className instanceVariableNames: instVarNames classVariableNames: classVarNames package: cat [
+{ #category : #'subclass creation - variable' }
+TClass >> variableSubclass: className instanceVariableNames: instVarNames classVariableNames: classVarNames package: cat [
 	^self variableSubclass: className instanceVariableNames: instVarNames classVariableNames: classVarNames category: cat
 ]
 
-{
-	#category : #'subclass creation - variable',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableSubclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s category: cat [
+{ #category : #'subclass creation - variable' }
+TClass >> variableSubclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s category: cat [
 	"This is the standard initialization message for creating a new class as a 
 	subclass of an existing class (the receiver) in which the subclass is to 
 	have indexable pointer variables."
@@ -1754,19 +1382,13 @@ TClass>>variableSubclass: t instanceVariableNames: f classVariableNames: d poolD
 			copyClassSlotsFromExistingClass ].
 ]
 
-{
-	#category : #'subclass creation - variable',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableSubclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s package: cat [
+{ #category : #'subclass creation - variable' }
+TClass >> variableSubclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s package: cat [
 	^ self variableSubclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s category: cat
 ]
 
-{
-	#category : #'subclass creation - variable',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableSubclass: aClassName uses: aTraitCompositionOrArray instanceVariableNames: instVarNames 
+{ #category : #'subclass creation - variable' }
+TClass >> variableSubclass: aClassName uses: aTraitCompositionOrArray instanceVariableNames: instVarNames 
 	classVariableNames: classVarNames category: cat [
 	"Added to allow for a simplified subclass creation experience. "
 	
@@ -1778,21 +1400,15 @@ TClass>>variableSubclass: aClassName uses: aTraitCompositionOrArray instanceVari
 		category: cat
 ]
 
-{
-	#category : #'subclass creation - variable',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableSubclass: aClassName uses: aTraitCompositionOrArray instanceVariableNames: instVarNames classVariableNames: classVarNames package: cat [
+{ #category : #'subclass creation - variable' }
+TClass >> variableSubclass: aClassName uses: aTraitCompositionOrArray instanceVariableNames: instVarNames classVariableNames: classVarNames package: cat [
 
 	^ self variableSubclass: aClassName uses: aTraitCompositionOrArray instanceVariableNames: instVarNames classVariableNames: classVarNames category: cat
 
 ]
 
-{
-	#category : #'subclass creation - variable',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames category: aCategory [
+{ #category : #'subclass creation - variable' }
+TClass >> variableSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames category: aCategory [
 	"Creates a new class as a subclass of an existing class (the receiver) 
 	in which the subclass is to have indexable pointer variables."
 	
@@ -1808,19 +1424,13 @@ TClass>>variableSubclass: aName uses: aTraitComposition instanceVariableNames: s
 				category: aCategory ]
 ]
 
-{
-	#category : #'subclass creation - variable',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames package: aCategory [
+{ #category : #'subclass creation - variable' }
+TClass >> variableSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames package: aCategory [
 	^ self variableSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames category: aCategory
 ]
 
-{
-	#category : #'subclass creation - variableWord',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableWordSubclass: className instanceVariableNames: instVarNames
+{ #category : #'subclass creation - variableWord' }
+TClass >> variableWordSubclass: className instanceVariableNames: instVarNames
 	classVariableNames: classVarNames category: cat [
 	"Added to allow for a simplified subclass creation experience. "
 	 
@@ -1831,11 +1441,8 @@ TClass>>variableWordSubclass: className instanceVariableNames: instVarNames
 		package: cat
 ]
 
-{
-	#category : #'subclass creation - variableWord',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableWordSubclass: className instanceVariableNames: instVarNames
+{ #category : #'subclass creation - variableWord' }
+TClass >> variableWordSubclass: className instanceVariableNames: instVarNames
 	classVariableNames: classVarNames package: cat [
 	"
 	Variable word is like variable byte (ByteArray), variable size, with indices instead of named instance variables, but each index points to a full word (either 32 or 64bit depending on the VM).
@@ -1850,11 +1457,8 @@ TClass>>variableWordSubclass: className instanceVariableNames: instVarNames
 		package: cat
 ]
 
-{
-	#category : #'subclass creation - variableWord',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableWordSubclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s category: cat [
+{ #category : #'subclass creation - variableWord' }
+TClass >> variableWordSubclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s category: cat [
 	^ self
 		variableWordSubclass: t
 		instanceVariableNames: f
@@ -1863,11 +1467,8 @@ TClass>>variableWordSubclass: t instanceVariableNames: f classVariableNames: d p
 		package: cat
 ]
 
-{
-	#category : #'subclass creation - variableWord',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableWordSubclass: t instanceVariableNames: f 
+{ #category : #'subclass creation - variableWord' }
+TClass >> variableWordSubclass: t instanceVariableNames: f 
 	classVariableNames: d poolDictionaries: s package: cat [
 	"This is the standard initialization message for creating a new class as a 
 	subclass of an existing class (the receiver) in which the subclass is to 
@@ -1885,11 +1486,8 @@ TClass>>variableWordSubclass: t instanceVariableNames: f
 			copyClassSlotsFromExistingClass ].
 ]
 
-{
-	#category : #'subclass creation - variableWord',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableWordSubclass: className uses: aTraitCompositionOrArray instanceVariableNames: instVarNames classVariableNames: classVarNames category: cat [
+{ #category : #'subclass creation - variableWord' }
+TClass >> variableWordSubclass: className uses: aTraitCompositionOrArray instanceVariableNames: instVarNames classVariableNames: classVarNames category: cat [
 	"Added to allow for a simplified subclass creation experience. "
 
 	^ self
@@ -1900,11 +1498,8 @@ TClass>>variableWordSubclass: className uses: aTraitCompositionOrArray instanceV
 		package: cat
 ]
 
-{
-	#category : #'subclass creation - variableWord',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableWordSubclass: className uses: aTraitCompositionOrArray instanceVariableNames: instVarNames
+{ #category : #'subclass creation - variableWord' }
+TClass >> variableWordSubclass: className uses: aTraitCompositionOrArray instanceVariableNames: instVarNames
 	classVariableNames: classVarNames package: cat [
 	"Added to allow for a simplified subclass creation experience. "
 
@@ -1916,11 +1511,8 @@ TClass>>variableWordSubclass: className uses: aTraitCompositionOrArray instanceV
 		package: cat
 ]
 
-{
-	#category : #'subclass creation - variableWord',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableWordSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames category: aCategory [
+{ #category : #'subclass creation - variableWord' }
+TClass >> variableWordSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames category: aCategory [
 	^ self
 		variableWordSubclass: aName
 		uses: aTraitComposition
@@ -1930,11 +1522,8 @@ TClass>>variableWordSubclass: aName uses: aTraitComposition instanceVariableName
 		package: aCategory
 ]
 
-{
-	#category : #'subclass creation - variableWord',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>variableWordSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames package: aCategory [
+{ #category : #'subclass creation - variableWord' }
+TClass >> variableWordSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames package: aCategory [
 	"Creates a new class as a subclass of an existing class (the receiver) 
 	in which the subclass is to have indexable word-sized nonpointer variables."
 	
@@ -1950,11 +1539,8 @@ TClass>>variableWordSubclass: aName uses: aTraitComposition instanceVariableName
 				package: aCategory ]
 ]
 
-{
-	#category : #'subclass creation - weak',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>weakSubclass: className instanceVariableNames: instVarNames 
+{ #category : #'subclass creation - weak' }
+TClass >> weakSubclass: className instanceVariableNames: instVarNames 
 	classVariableNames: classVarNames category: cat [
 	"Added to allow for a simplified subclass creation experience. "
 	
@@ -1965,11 +1551,8 @@ TClass>>weakSubclass: className instanceVariableNames: instVarNames
 		category: cat
 ]
 
-{
-	#category : #'subclass creation - weak',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>weakSubclass: className instanceVariableNames: instVarNames 
+{ #category : #'subclass creation - weak' }
+TClass >> weakSubclass: className instanceVariableNames: instVarNames 
 	classVariableNames: classVarNames package: cat [
 	"Added to allow for a simplified subclass creation experience. "
 	
@@ -1980,11 +1563,8 @@ TClass>>weakSubclass: className instanceVariableNames: instVarNames
 		category: cat
 ]
 
-{
-	#category : #'subclass creation - weak',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>weakSubclass: t instanceVariableNames: f 
+{ #category : #'subclass creation - weak' }
+TClass >> weakSubclass: t instanceVariableNames: f 
 	classVariableNames: d poolDictionaries: s category: cat [
 	"This is the standard initialization message for creating a new class as a subclass of an existing class (the receiver) in which the subclass is to have weak indexable pointer variables."
 
@@ -2001,22 +1581,16 @@ TClass>>weakSubclass: t instanceVariableNames: f
 			copyClassSlotsFromExistingClass ].
 ]
 
-{
-	#category : #'subclass creation - weak',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>weakSubclass: t instanceVariableNames: f 
+{ #category : #'subclass creation - weak' }
+TClass >> weakSubclass: t instanceVariableNames: f 
 	classVariableNames: d poolDictionaries: s package: cat [
 	"This is the standard initialization message for creating a new class as a subclass of an existing class (the receiver) in which the subclass is to have weak indexable pointer variables."
 
 	^self weakSubclass: t instanceVariableNames: f classVariableNames: d poolDictionaries: s category: cat
 ]
 
-{
-	#category : #'subclass creation - weak',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>weakSubclass: className uses: aTraitCompositionOrArray instanceVariableNames: instVarNames 
+{ #category : #'subclass creation - weak' }
+TClass >> weakSubclass: className uses: aTraitCompositionOrArray instanceVariableNames: instVarNames 
 	classVariableNames: classVarNames category: cat [
 	"Added to allow for a simplified subclass creation experience. "
 	
@@ -2029,22 +1603,16 @@ TClass>>weakSubclass: className uses: aTraitCompositionOrArray instanceVariableN
 
 ]
 
-{
-	#category : #'subclass creation - weak',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>weakSubclass: className uses: aTraitCompositionOrArray instanceVariableNames: instVarNames 
+{ #category : #'subclass creation - weak' }
+TClass >> weakSubclass: className uses: aTraitCompositionOrArray instanceVariableNames: instVarNames 
 	classVariableNames: classVarNames package: cat [
 	"Added to allow for a simplified subclass creation experience. "
 	
 	^self weakSubclass: className uses: aTraitCompositionOrArray instanceVariableNames: instVarNames classVariableNames: classVarNames category: cat
 ]
 
-{
-	#category : #'subclass creation - weak',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>weakSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames category: aCategory [
+{ #category : #'subclass creation - weak' }
+TClass >> weakSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames category: aCategory [
 	"Creates a new class as a subclass of an existing class (the receiver) 
 	in which the subclass is to have weak indexable pointer variables."
 	
@@ -2060,22 +1628,16 @@ TClass>>weakSubclass: aName uses: aTraitComposition instanceVariableNames: someI
 				category: aCategory ]
 ]
 
-{
-	#category : #'subclass creation - weak',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>weakSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames package: aCategory [
+{ #category : #'subclass creation - weak' }
+TClass >> weakSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames package: aCategory [
 	"Creates a new class as a subclass of an existing class (the receiver) 
 	in which the subclass is to have weak indexable pointer variables."
 	
 	^self weakSubclass: aName uses: aTraitComposition instanceVariableNames: someInstanceVariableNames classVariableNames: someClassVariableNames poolDictionaries: someSharedPoolNames category: aCategory
 ]
 
-{
-	#category : #'class variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TClass>>writeClassVariableNamed: aString value: anObject [
+{ #category : #'class variables' }
+TClass >> writeClassVariableNamed: aString value: anObject [
 	"Store anObject in the class variable."
 	
 	(self classVariableNamed: aString) write: anObject

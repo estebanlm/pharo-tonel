@@ -19,52 +19,36 @@ Class {
 	#instVars : [
 		'columnToSortBy'
 	],
-	#category : #Glamour-FastTable-Model,
-	#timestamp : 'AndreiChis 2/6/2017 14:39'
+	#category : #Glamour-FastTable-Model
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTableDataSource>>dataFromPresentationItem: anItem [
+{ #category : #'as yet unclassified' }
+GLMFastTableDataSource >> dataFromPresentationItem: anItem [
 	^ anItem
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTableDataSource>>elementsSorted [
+{ #category : #private }
+GLMFastTableDataSource >> elementsSorted [
 	elements ifNil: [ ^ nil ].
 	^ columnToSortBy 
 		ifNotNil: [ elements sorted: self sortBlock ]
 		ifNil: [ self calculateElements ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTableDataSource>>rowMorphElementsForFirstColumn: aColumn item: anItem in: rowElements [
+{ #category : #accessing }
+GLMFastTableDataSource >> rowMorphElementsForFirstColumn: aColumn item: anItem in: rowElements [
 	
 	(self iconFor: anItem) ifNotNil: [ :anIcon | rowElements add: anIcon asMorph ] 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTableDataSource>>sortBlock [
+{ #category : #private }
+GLMFastTableDataSource >> sortBlock [
 	^ columnToSortBy sortBlock ifNil: [ 
 		columnToSortBy defaultSortBlockForPresentation: self glamourPresentation ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTableDataSource>>sortByColumn: aGlamourColumn [
+{ #category : #accessing }
+GLMFastTableDataSource >> sortByColumn: aGlamourColumn [
 	columnToSortBy := (columnToSortBy == aGlamourColumn 
 		ifTrue: [ nil ]
 		ifFalse: [ aGlamourColumn ]).

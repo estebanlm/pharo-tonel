@@ -1,12 +1,7 @@
-Extension {
-	#name : #GlamourPresentationModel
-}
+Extension { #name : #GlamourPresentationModel }
 
-{
-	#category : #'*GT-Playground',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlamourPresentationModel class>>examplePlaygroundAndInspectorOn42 [
+{ #category : #'*GT-Playground' }
+GlamourPresentationModel class >> examplePlaygroundAndInspectorOn42 [
 	<gtExample>
 	|ui lay|	
 	ui := DynamicComposableModel new.
@@ -27,21 +22,15 @@ GlamourPresentationModel class>>examplePlaygroundAndInspectorOn42 [
 	ui openWithSpecLayout: lay.
 ]
 
-{
-	#category : #'*GT-Playground',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlamourPresentationModel class>>examplePlaygroundOn42 [
+{ #category : #'*GT-Playground' }
+GlamourPresentationModel class >> examplePlaygroundOn42 [
 	<gtExample>
 	"open a playground on 42"
 	^ self playgroundOn: '42'
 ]
 
-{
-	#category : #'*GT-Playground',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GlamourPresentationModel class>>playgroundOn: aStringOrText [
+{ #category : #'*GT-Playground' }
+GlamourPresentationModel class >> playgroundOn: aStringOrText [
 	"Open a playground with aStringOrText. Execute the following code:"
 	"self playgroundOn: '21 + 21'"
 	|ui|

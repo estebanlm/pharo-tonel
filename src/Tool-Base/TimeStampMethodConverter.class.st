@@ -4,15 +4,11 @@ A TimeStampMessageConverter is a wrapper wich display the timestamp of the provi
 Class {
 	#name : #TimeStampMethodConverter,
 	#superclass : #AbstractMethodConverter,
-	#category : #Tool-Base,
-	#timestamp : '<historical>'
+	#category : #Tool-Base
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TimeStampMethodConverter>>formattedModificationTextFor:aUser atStamp:aTimeStampString [
+{ #category : #private }
+TimeStampMethodConverter >> formattedModificationTextFor:aUser atStamp:aTimeStampString [
 |stamp|
 stamp:= DateAndTime fromString:aTimeStampString.
 ^ String streamContents:[ :s |
@@ -21,11 +17,8 @@ stamp:= DateAndTime fromString:aTimeStampString.
  			s << Character tab << 'by:' << Character tab << Character tab << aUser ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TimeStampMethodConverter>>internalGetText [
+{ #category : #private }
+TimeStampMethodConverter >> internalGetText [
 	| list |
 	list := method stamp substrings.
 	list ifEmpty: [ ^ 'No information available' ].

@@ -26,50 +26,34 @@ Class {
 	#instVars : [
 		'ast'
 	],
-	#category : #OpalCompiler-Core-Translator,
-	#timestamp : 'MarcusDenker 2/28/2015 15:00'
+	#category : #OpalCompiler-Core-Translator
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCCompilerASTPlugin class>>transform: ast [
+{ #category : #'instance creation' }
+OCCompilerASTPlugin class >> transform: ast [
 	^self new
 		ast: ast;
 		transform.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCCompilerASTPlugin>>ast: anAst [
+{ #category : #accessing }
+OCCompilerASTPlugin >> ast: anAst [
 	ast := anAst
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCCompilerASTPlugin>>priority [
+{ #category : #api }
+OCCompilerASTPlugin >> priority [
 	^100 "default. Priority 0 is used by Reflectivity to be the last"
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCCompilerASTPlugin>>transform [
+{ #category : #api }
+OCCompilerASTPlugin >> transform [
 	
 	self subclassResponsibility.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCCompilerASTPlugin>>transform: anRBMethodNode [
+{ #category : #api }
+OCCompilerASTPlugin >> transform: anRBMethodNode [
 	"by default do nothing"
 	^ ast := anRBMethodNode.
 ]

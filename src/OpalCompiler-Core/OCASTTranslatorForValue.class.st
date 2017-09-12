@@ -4,15 +4,11 @@ I override some methods in my super to generate instructions for effect and valu
 Class {
 	#name : #OCASTTranslatorForValue,
 	#superclass : #OCASTTranslator,
-	#category : #OpalCompiler-Core-Translator,
-	#timestamp : 'ajh 3/24/2003 22:20'
+	#category : #OpalCompiler-Core-Translator
 }
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForValue>>emitIfFalse: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslatorForValue >> emitIfFalse: aMessageNode [
 	
 	self visitNode: aMessageNode receiver.
 	methodBuilder jumpAheadTo: #false if: false.
@@ -23,11 +19,8 @@ OCASTTranslatorForValue>>emitIfFalse: aMessageNode [
 	methodBuilder jumpAheadTarget: #end.
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForValue>>emitIfNotNil: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslatorForValue >> emitIfNotNil: aMessageNode [
 	| args |
 	self visitNode: aMessageNode receiver.
 	args := aMessageNode arguments.
@@ -41,11 +34,8 @@ OCASTTranslatorForValue>>emitIfNotNil: aMessageNode [
 	methodBuilder jumpAheadTarget: #end.
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForValue>>emitIfTrue: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslatorForValue >> emitIfTrue: aMessageNode [
 	
 	self visitNode: aMessageNode receiver.
 	methodBuilder jumpAheadTo: #else if: false.
@@ -56,33 +46,24 @@ OCASTTranslatorForValue>>emitIfTrue: aMessageNode [
 	methodBuilder jumpAheadTarget: #end.
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForValue>>emitWhileFalse: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslatorForValue >> emitWhileFalse: aMessageNode [
 
 	super emitWhileFalse: aMessageNode.
 	methodBuilder pushLiteral: nil.
 
 ]
 
-{
-	#category : #'inline messages',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForValue>>emitWhileTrue: aMessageNode [
+{ #category : #'inline messages' }
+OCASTTranslatorForValue >> emitWhileTrue: aMessageNode [
 
 	super emitWhileTrue: aMessageNode.
 	methodBuilder pushLiteral: nil.
 
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTTranslatorForValue>>visitSequenceNode: aSequenceNode  [
+{ #category : #'visitor-double dispatching' }
+OCASTTranslatorForValue >> visitSequenceNode: aSequenceNode [ 
 	| statements |
 	statements := aSequenceNode statements.
 	statements ifEmpty: [

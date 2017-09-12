@@ -36,15 +36,11 @@ Class {
 		'HighBitOfByte',
 		'SmallPrimes'
 	],
-	#category : #System-Hashing-DSA,
-	#timestamp : '<historical>'
+	#category : #System-Hashing-DSA
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm class>>example [
+{ #category : #examples }
+DigitalSignatureAlgorithm class >> example [
 	"Example of signing a message and verifying its signature."
 	"Note: Secure random numbers are needed for key generation and message signing, but not for signature verification. There is no need to call initRandomFromUser if you are merely checking a signature."
 	"DigitalSignatureAlgorithm example"
@@ -60,11 +56,8 @@ DigitalSignatureAlgorithm class>>example [
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm class>>generateKeySet [
+{ #category : #public }
+DigitalSignatureAlgorithm class >> generateKeySet [
  	"Generate and answer a key set for code signing. The result is a pair (<private key><public key>). Each key is an array of four large integers. The signer must be sure to record this keys set and must keep the private key secret to prevent someone from forging their signature."
  	"Note: Key generation can take some time. Open a transcript so you can see what's happening and take a coffee break!"
  	"Note: Unguessable random numbers are needed for key generation. The user will be prompted to type a really long random string (two or three lines) to initialize the random number generator before generating a key set. A different random string should be typed for every session; it is not a password and we wish to produce different random number streams."
@@ -79,11 +72,8 @@ DigitalSignatureAlgorithm class>>generateKeySet [
  
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm class>>initialize [
+{ #category : #initialization }
+DigitalSignatureAlgorithm class >> initialize [
 	"DigitalSignatureAlgorithm initialize"
 
 	"SmallPrimes is a list of small primes greater than two."
@@ -95,11 +85,8 @@ DigitalSignatureAlgorithm class>>initialize [
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm class>>sign: aStringOrStream privateKey: privateKey  [
+{ #category : #public }
+DigitalSignatureAlgorithm class >> sign: aStringOrStream privateKey: privateKey [ 
 	"Sign the given message (a stream or string) and answer a signature string."
 	"Note: Unguessable random numbers are needed for message signing. The user will be prompted to type a really long random string (two or three lines) to initialize the random number generator before signing a message. A different random string should be typed for every session; it is not a password and we wish to produce different random number streams."
 	| dsa hasher h sig |
@@ -115,11 +102,8 @@ DigitalSignatureAlgorithm class>>sign: aStringOrStream privateKey: privateKey  [
 	^ dsa signatureToString: sig
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm class>>sign: aStringOrStream privateKey: privateKey dsa: dsa  [
+{ #category : #public }
+DigitalSignatureAlgorithm class >> sign: aStringOrStream privateKey: privateKey dsa: dsa [ 
 	"Sign the given message (a stream or string) and answer a signature string."
 	"Note: Unguessable random numbers are needed for message signing. The user will be prompted to type a really long random string (two or three lines) to initialize the random number generator before signing a message. A different random string should be typed for every session; it is not a password and we wish to produce different random number streams."
 	| hasher h sig |
@@ -133,11 +117,8 @@ DigitalSignatureAlgorithm class>>sign: aStringOrStream privateKey: privateKey ds
 	^ dsa signatureToString: sig
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm class>>testExamplesFromDisk [
+{ #category : #examples }
+DigitalSignatureAlgorithm class >> testExamplesFromDisk [
 	"verify messages from file on disk"
 	"Note: Secure random numbers are needed for key generation and message signing, but not for signature verification. There is no need to call initRandomFromUser if you are merely checking a signature."
 	"DigitalSignatureAlgorithm testExamplesFromDisk"
@@ -155,11 +136,8 @@ DigitalSignatureAlgorithm class>>testExamplesFromDisk [
 					ifFalse: [self error: 'ERROR! Signature verification failed']]]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm class>>testKeySet [
+{ #category : #examples }
+DigitalSignatureAlgorithm class >> testKeySet [
 	"Answer a pair of keys for testing. The first key is the private key, the second one is the public key."
 	"WARNING: This test key set is public should be used only for testing! In a real application, the user would create a set of keys using generateKeySet and would keep the private key secret."
 
@@ -169,20 +147,14 @@ DigitalSignatureAlgorithm class>>testKeySet [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm class>>time: aBlock as: aString count: anInteger [
+{ #category : #testing }
+DigitalSignatureAlgorithm class >> time: aBlock as: aString count: anInteger [
 
 	^{anInteger. aString. (Time millisecondsToRun: aBlock)}
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm class>>timeDecode: count [
+{ #category : #examples }
+DigitalSignatureAlgorithm class >> timeDecode: count [
 	"Example of signing a message and verifying its signature."
 	"Note: Secure random numbers are needed for key generation and message signing, but not for signature verification. There is no need to call initRandomFromUser if you are merely checking a signature."
 	"DigitalSignatureAlgorithm timeDecode: 20"
@@ -209,11 +181,8 @@ DigitalSignatureAlgorithm class>>timeDecode: count [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm class>>timeDirect: aBlock as: aString count: anInteger [
+{ #category : #testing }
+DigitalSignatureAlgorithm class >> timeDirect: aBlock as: aString count: anInteger [
 
 	Transcript show: anInteger asStringWithCommas,'  ',
 		aString ,' took ',
@@ -221,11 +190,8 @@ DigitalSignatureAlgorithm class>>timeDirect: aBlock as: aString count: anInteger
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm class>>verify: signatureString isSignatureOf: aStringOrStream publicKey: publicKey  [
+{ #category : #public }
+DigitalSignatureAlgorithm class >> verify: signatureString isSignatureOf: aStringOrStream publicKey: publicKey [ 
 	"Answer true if the given signature string signs the given message (a stream or string)."
 	"Note: Random numbers are not needed for signature verification; thus, there is no need to call initRandomFromUser before verifying a signature."
 	| dsa hasher h sig |
@@ -241,11 +207,8 @@ DigitalSignatureAlgorithm class>>verify: signatureString isSignatureOf: aStringO
 		publicKey: publicKey
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm class>>writeExamplesToDisk [
+{ #category : #examples }
+DigitalSignatureAlgorithm class >> writeExamplesToDisk [
 	"Example of signing a message and verifying its signature. Used to create samples from one implementation that could later be tested with a different implementation"
 	"Note: Secure random numbers are needed for key generation and message signing, but not for signature verification. There is no need to call initRandomFromUser if you are merely checking a signature."
 	"DigitalSignatureAlgorithm writeExamplesToDisk"
@@ -276,11 +239,8 @@ DigitalSignatureAlgorithm class>>writeExamplesToDisk [
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm>>computeSignatureForMessageHash: hash privateKey: privateKey [
+{ #category : #public }
+DigitalSignatureAlgorithm >> computeSignatureForMessageHash: hash privateKey: privateKey [
 	"Answer the digital signature of the given message hash using the given private key. A signature is a pair of large integers. The private key is an array of four large integers: (p, q, g, x)."
 
 	| p q g x r s k tmp |
@@ -300,11 +260,8 @@ DigitalSignatureAlgorithm>>computeSignatureForMessageHash: hash privateKey: priv
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm>>generateKeySet [
+{ #category : #public }
+DigitalSignatureAlgorithm >> generateKeySet [
 	"Generate and answer a key set for DSA. The result is a pair (<private key><public key>). Each key is an array of four large integers. The private key is (p, q, g, x); the public one is (p, q, g, y). The signer must be sure to record (p, q, g, x), and must keep x secret to prevent someone from forging their signature."
 	"Note: Key generation can take some time. Open a transcript so you can see what's happening and take a coffee break!"
 
@@ -328,11 +285,8 @@ DigitalSignatureAlgorithm>>generateKeySet [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm>>generateQandP [
+{ #category : #private }
+DigitalSignatureAlgorithm >> generateQandP [
 	"Generate the two industrial-grade primes, q (160-bits) and p (512-bit) needed to build a key set. Answer the array (q, p, s), where s is the seed that from which q and p were created. This seed is normally discarded, but can be used to verify the key generation process if desired."
 
 	| pBits halfTwoToTheP chunkCount sAndq q twoQ n c w x p s |
@@ -363,11 +317,8 @@ DigitalSignatureAlgorithm>>generateQandP [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm>>generateRandomLength: bitLength s: s n: n [
+{ #category : #private }
+DigitalSignatureAlgorithm >> generateRandomLength: bitLength s: s [ n: n
 	"Answer a random number of bitLength bits generated using the secure hash algorithm."
 
 	| sha out count extraBits v |
@@ -384,11 +335,8 @@ DigitalSignatureAlgorithm>>generateRandomLength: bitLength s: s n: n [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm>>generateSandQ [
+{ #category : #private }
+DigitalSignatureAlgorithm >> generateSandQ [
 	"Generate a 160-bit random seed s and an industrial grade prime q."
 
 	| hasher s sPlusOne u q |
@@ -403,11 +351,8 @@ DigitalSignatureAlgorithm>>generateSandQ [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm>>initRandom: randomInteger [
+{ #category : #initialization }
+DigitalSignatureAlgorithm >> initRandom: randomInteger [
 	"Initialize the the secure random number generator with the given value. The argument should be a positive integer of up to 512 bits chosen randomly to avoid someone being able to predict the sequence of random values generated."
 	"Note: The random generator must be initialized before generating a key set or signature. Signature verification does not require initialization of the random generator."
 
@@ -417,11 +362,8 @@ DigitalSignatureAlgorithm>>initRandom: randomInteger [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm>>initRandomFromString: aString [
+{ #category : #initialization }
+DigitalSignatureAlgorithm >> initRandomFromString: aString [
 	"Ask the user to type a long random string and use the result to seed the secure random number generator."
 
 	| s k srcIndex |
@@ -436,11 +378,8 @@ DigitalSignatureAlgorithm>>initRandomFromString: aString [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm>>initRandomFromUser [
+{ #category : #initialization }
+DigitalSignatureAlgorithm >> initRandomFromUser [
 	"Ask the user to type a long random string and use the result to seed the secure random number generator."
 
 	| s |
@@ -449,11 +388,8 @@ DigitalSignatureAlgorithm>>initRandomFromUser [
 	^self initRandomFromString: s
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm>>initRandomNonInteractively [
+{ #category : #initialization }
+DigitalSignatureAlgorithm >> initRandomNonInteractively [
 
  	self initRandomFromString: 
  		Time millisecondClockValue printString, 
@@ -461,11 +397,8 @@ DigitalSignatureAlgorithm>>initRandomNonInteractively [
  		Smalltalk os platformName printString
 ]
 
-{
-	#category : #'large integer arithmetic',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm>>inverseOf: x mod: n [
+{ #category : #'large integer arithmetic' }
+DigitalSignatureAlgorithm >> inverseOf: x mod: n [
 	"Answer the inverse of x modulus n. That is, the integer y such that (x * y) \\ n is 1. Both x and n must be positive, and it is assumed that x < n and that x and n are integers."
 	"Details: Use the extended Euclidean algorithm, Schneier, p. 247."
 
@@ -510,11 +443,8 @@ DigitalSignatureAlgorithm>>inverseOf: x mod: n [
 
 ]
 
-{
-	#category : #'large integer arithmetic',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm>>isProbablyPrime: p [
+{ #category : #'large integer arithmetic' }
+DigitalSignatureAlgorithm >> isProbablyPrime: p [
 	"Answer true if p is prime with very high probability. Such a number is sometimes called an 'industrial grade prime'--a large number that is so extremely likely to be prime that it can assumed that it actually is prime for all practical purposes. This implementation uses the Rabin-Miller algorithm (Schneier, p. 159)."
 
 	| iterations pMinusOne b m r a j z couldBePrime |
@@ -562,22 +492,16 @@ DigitalSignatureAlgorithm>>isProbablyPrime: p [
 	^ true	"passed all tests; probably prime"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm>>logOfLargestPowerOfTwoDividing: aPositiveInteger [
+{ #category : #private }
+DigitalSignatureAlgorithm >> logOfLargestPowerOfTwoDividing: aPositiveInteger [
 	"Answer the base-2 log of the largest power of two that divides the given integer. For example, the largest power of two that divides 24 is 8, whose log base-2 is 3. Do this efficiently even when the given number is a large integer. Assume that the given integer is > 0."
 	"DigitalSignatureAlgorithm new logOfLargestPowerOfTwoDividing: (32 * 3)"
 
 	^aPositiveInteger lowBit - 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm>>nextRandom160 [
+{ #category : #private }
+DigitalSignatureAlgorithm >> nextRandom160 [
 	"Answer a newly generated 160-bit random number in the range [1..(2^160 - 1)]."
 	"Details: Try again in the extremely unlikely chance that zero is encountered."
 
@@ -590,11 +514,8 @@ DigitalSignatureAlgorithm>>nextRandom160 [
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm>>signatureToString: aSignature [
+{ #category : #public }
+DigitalSignatureAlgorithm >> signatureToString: aSignature [
 	"Answer a string representation of the given signature. This string can be parsed using the stringToSignature: method."
 
 	| s |
@@ -608,11 +529,8 @@ DigitalSignatureAlgorithm>>signatureToString: aSignature [
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm>>stringToSignature: aString  [
+{ #category : #public }
+DigitalSignatureAlgorithm >> stringToSignature: aString [ 
 	"Answer the signature stored in the given string. A signature string has the format:
 
 		 '[DSA digital signature <r> <s>]'
@@ -635,11 +553,8 @@ DigitalSignatureAlgorithm>>stringToSignature: aString  [
 		with: s
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-DigitalSignatureAlgorithm>>verifySignature: aSignature ofMessageHash: hash publicKey: publicKey [
+{ #category : #public }
+DigitalSignatureAlgorithm >> verifySignature: aSignature ofMessageHash: hash publicKey: publicKey [
 	"Answer true if the given signature is the authentic signature of the given message hash. That is, if the signature must have been computed using the private key set corresponding to the given public key. The public key is an array of four large integers: (p, q, g, y)."
 
 	| p q g y r s w u1 u2 v0 v |

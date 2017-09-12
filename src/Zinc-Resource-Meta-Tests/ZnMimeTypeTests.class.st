@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnMimeTypeTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Resource-Meta-Tests,
-	#timestamp : ''
+	#category : #Zinc-Resource-Meta-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnMimeTypeTests>>someNonBinaryMimeTypes [
+{ #category : #accessing }
+ZnMimeTypeTests >> someNonBinaryMimeTypes [
 	^ #(
 		'text/plain;charset=ascii' 
 		'application/json;charset=utf-8' 
@@ -26,20 +19,14 @@ ZnMimeTypeTests>>someNonBinaryMimeTypes [
 		'application/csv')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnMimeTypeTests>>testAsMimeType [
+{ #category : #testing }
+ZnMimeTypeTests >> testAsMimeType [
 	self assert: 'text/plain;charset=utf-8' asZnMimeType equals: ZnMimeType textPlain.
 	self assert: ZnMimeType applicationOctetStream asZnMimeType equals: ZnMimeType applicationOctetStream
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnMimeTypeTests>>testCharset [
+{ #category : #testing }
+ZnMimeTypeTests >> testCharset [
 	| mimeType |
 	mimeType := ZnMimeType textPlain.
 	self assert: mimeType charSet = 'utf-8'.
@@ -51,11 +38,8 @@ ZnMimeTypeTests>>testCharset [
 	self assert: mimeType charSet = 'utf-8'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnMimeTypeTests>>testCopying [
+{ #category : #testing }
+ZnMimeTypeTests >> testCopying [
 	| mimeType1 mimeType2 |
 	mimeType1 := ZnMimeType textPlain.
 	mimeType2 := ZnMimeType textPlain.
@@ -71,27 +55,18 @@ ZnMimeTypeTests>>testCopying [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnMimeTypeTests>>testDefault [
+{ #category : #testing }
+ZnMimeTypeTests >> testDefault [
 	self assert: ZnMimeType default = ZnMimeType applicationOctetStream
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnMimeTypeTests>>testIdentity [
+{ #category : #testing }
+ZnMimeTypeTests >> testIdentity [
 	self assert: ZnMimeType textPlain = ZnMimeType textPlain
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnMimeTypeTests>>testIsBinary [
+{ #category : #testing }
+ZnMimeTypeTests >> testIsBinary [
 	self assert: ZnMimeType applicationOctetStream isBinary.
 	self assert: ZnMimeType imagePng isBinary.
 	self deny: ZnMimeType textPlain isBinary.
@@ -102,11 +77,8 @@ ZnMimeTypeTests>>testIsBinary [
 		self deny: each asZnMimeType isBinary ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnMimeTypeTests>>testMatches [
+{ #category : #testing }
+ZnMimeTypeTests >> testMatches [
 	#(
 		( 'text/plain' 'text/*' )
 		( 'text/plain' '*/*' )
@@ -118,11 +90,8 @@ ZnMimeTypeTests>>testMatches [
 			self assert: (each first asZnMimeType matches: each second asZnMimeType) ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnMimeTypeTests>>testParameters [
+{ #category : #testing }
+ZnMimeTypeTests >> testParameters [
 	| mimeType |
 	mimeType := ZnMimeType main: 'text' sub: 'plain'.
 	self should: [ mimeType parameterAt: 'foo' ] raise: KeyNotFound.
@@ -136,11 +105,8 @@ ZnMimeTypeTests>>testParameters [
 	self assert: (mimeType parameterAt: 'foo' ifAbsent: [ #none ]) = #none	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnMimeTypeTests>>testReading [
+{ #category : #testing }
+ZnMimeTypeTests >> testReading [
 	| mimeType |
 	mimeType := ZnMimeType fromString: 'text/plain; charset=utf-8'.
 	self assert: (mimeType main = 'text').
@@ -150,11 +116,8 @@ ZnMimeTypeTests>>testReading [
 	self assert: mimeType isBinary not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnMimeTypeTests>>testWriting [
+{ #category : #testing }
+ZnMimeTypeTests >> testWriting [
 	| mimeType |
 	(mimeType := ZnMimeType main: 'text' sub: 'plain')
 		charSet: 'utf-8'.

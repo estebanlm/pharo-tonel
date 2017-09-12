@@ -1,22 +1,14 @@
-Extension {
-	#name : #StringTest
-}
+Extension { #name : #StringTest }
 
-{
-	#category : #'*ScriptingExtensions-Tests',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-StringTest>>testAsClass [
+{ #category : #'*ScriptingExtensions-Tests' }
+StringTest >> testAsClass [
 	self 
 		assert: 'String' asClass
 		equals: String
 ]
 
-{
-	#category : #'*ScriptingExtensions-Tests',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-StringTest>>testAsClassIfAbsent [
+{ #category : #'*ScriptingExtensions-Tests' }
+StringTest >> testAsClassIfAbsent [
 
 	self 
 		assert: ('String' asClassIfAbsent: [ self fail ])
@@ -26,11 +18,8 @@ StringTest>>testAsClassIfAbsent [
 	self fail.
 ]
 
-{
-	#category : #'*ScriptingExtensions-Tests',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-StringTest>>testAsClassIfPresent [
+{ #category : #'*ScriptingExtensions-Tests' }
+StringTest >> testAsClassIfPresent [
 	
 	'String' asClassIfPresent: [ :class | 
 		self assert: class equals: String ].

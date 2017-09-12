@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBExtractToTemporaryTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractToTemporaryTest>>testBadInterval [
+{ #category : #'failure tests' }
+RBExtractToTemporaryTest >> testBadInterval [
 	self
 		shouldFail: (RBExtractToTemporaryRefactoring 
 				extract: (self 
@@ -37,11 +30,8 @@ RBExtractToTemporaryTest>>testBadInterval [
 				in: RBRefactoryTestDataApp)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractToTemporaryTest>>testBadName [
+{ #category : #'failure tests' }
+RBExtractToTemporaryTest >> testBadName [
 	self shouldFail: (RBExtractToTemporaryRefactoring 
 			extract: (self 
 					convertInterval: (14 to: 23)
@@ -51,11 +41,8 @@ RBExtractToTemporaryTest>>testBadName [
 			in: RBRefactoryTestDataApp)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractToTemporaryTest>>testExtractToTemporaryForLastStatementInBlock [
+{ #category : #tests }
+RBExtractToTemporaryTest >> testExtractToTemporaryForLastStatementInBlock [
 	| refactoring |
 	refactoring := RBExtractToTemporaryRefactoring 
 		extract: (self 
@@ -69,11 +56,8 @@ RBExtractToTemporaryTest>>testExtractToTemporaryForLastStatementInBlock [
 	^(1 to: 10) inject: 1 into: [:sum :each | | temp | temp := sum * (self foo: each). temp]')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractToTemporaryTest>>testExtractToTemporaryInsideBlock [
+{ #category : #tests }
+RBExtractToTemporaryTest >> testExtractToTemporaryInsideBlock [
 	| refactoring |
 	refactoring := RBExtractToTemporaryRefactoring 
 		extract: (self 
@@ -92,11 +76,8 @@ RBExtractToTemporaryTest>>testExtractToTemporaryInsideBlock [
 		select: [:each | | asdf | asdf := each size. temp := asdf + temp]')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractToTemporaryTest>>testExtractToTemporaryWithDuplicates [
+{ #category : #tests }
+RBExtractToTemporaryTest >> testExtractToTemporaryWithDuplicates [
 	| refactoring |
 	refactoring := RBExtractToTemporaryRefactoring 
 		extract: (self 
@@ -117,11 +98,8 @@ RBExtractToTemporaryTest>>testExtractToTemporaryWithDuplicates [
 	^ answer')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBExtractToTemporaryTest>>testNonExistantSelector [
+{ #category : #'failure tests' }
+RBExtractToTemporaryTest >> testNonExistantSelector [
 	self shouldFail: (RBExtractToTemporaryRefactoring 
 			extract: (14 to: 23)
 			to: 'asdf'

@@ -8,15 +8,11 @@ Class {
 		'svMorph',
 		'hMorph'
 	],
-	#category : #Morphic-Widgets-ColorPicker,
-	#timestamp : 'gvc 5/18/2007 12:55'
+	#category : #Morphic-Widgets-ColorPicker
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVColorSelectorMorph>>colorSelected: aColor [
+{ #category : #accessing }
+HSVColorSelectorMorph >> colorSelected: aColor [
 	"A color has been selected. Make the hue match."
 
 	"self hMorph value: aColor hue / 360.
@@ -24,53 +20,38 @@ HSVColorSelectorMorph>>colorSelected: aColor [
 	self triggerEvent: #colorSelected with: aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVColorSelectorMorph>>defaultColor [
+{ #category : #accessing }
+HSVColorSelectorMorph >> defaultColor [
 	"Answer the default color/fill style for the receiver."
 	
 	^Color transparent
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVColorSelectorMorph>>hMorph [
+{ #category : #accessing }
+HSVColorSelectorMorph >> hMorph [
 	"Answer the value of hMorph"
 
 	^ hMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVColorSelectorMorph>>hMorph: anObject [
+{ #category : #accessing }
+HSVColorSelectorMorph >> hMorph: anObject [
 	"Set the value of hMorph"
 
 	hMorph := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVColorSelectorMorph>>hue: aFloat [
+{ #category : #accessing }
+HSVColorSelectorMorph >> hue: aFloat [
 	"Set the hue in the range 0.0 - 1.0. Update the SV morph and hMorph."
 
 	self hMorph value: aFloat.
 	self svMorph color: (Color h: aFloat * 359.9 s: 1.0 v: 1.0)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVColorSelectorMorph>>initialize [
+{ #category : #initialization }
+HSVColorSelectorMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -88,11 +69,8 @@ HSVColorSelectorMorph>>initialize [
 		hue: 0.5
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVColorSelectorMorph>>newHColorMorph [
+{ #category : #operations }
+HSVColorSelectorMorph >> newHColorMorph [
 	"Answer a new hue color morph."
 
 	^HColorSelectorMorph new
@@ -103,11 +81,8 @@ HSVColorSelectorMorph>>newHColorMorph [
 		extent: 36@36
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVColorSelectorMorph>>newSVColorMorph [
+{ #category : #operations }
+HSVColorSelectorMorph >> newSVColorMorph [
 	"Answer a new saturation/volume color morph."
 
 	^SVColorSelectorMorph new
@@ -117,42 +92,30 @@ HSVColorSelectorMorph>>newSVColorMorph [
 		when: #colorSelected send: #colorSelected: to: self
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVColorSelectorMorph>>selectedColor [
+{ #category : #operations }
+HSVColorSelectorMorph >> selectedColor [
 	"Answer the selected color."
 
 	^self svMorph selectedColor
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVColorSelectorMorph>>selectedColor: aColor [
+{ #category : #operations }
+HSVColorSelectorMorph >> selectedColor: aColor [
 	"Set the hue and sv components."
 
 	self hue: aColor hue / 360.
 	self svMorph selectedColor: aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVColorSelectorMorph>>svMorph [
+{ #category : #accessing }
+HSVColorSelectorMorph >> svMorph [
 	"Answer the value of svMorph"
 
 	^ svMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-HSVColorSelectorMorph>>svMorph: anObject [
+{ #category : #accessing }
+HSVColorSelectorMorph >> svMorph: anObject [
 	"Set the value of svMorph"
 
 	svMorph := anObject

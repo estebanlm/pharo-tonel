@@ -29,33 +29,23 @@ Class {
 		'tagsToFilterBy',
 		'dataCache'
 	],
-	#category : #Glamour-FastTable-Model,
-	#timestamp : 'CyrilFerlicot 11/10/2015 11:59'
+	#category : #Glamour-FastTable-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>actionColumn: column [
+{ #category : #accessing }
+GLMFastListDataSource >> actionColumn: column [
 	"If columns has actions associated, execute them"
 	column execute.
 	self tableRefresh
 ]
 
-{
-	#category : #announcing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>announcer [
+{ #category : #announcing }
+GLMFastListDataSource >> announcer [
 	^ announcer ifNil: [ announcer := GLMAnnouncer new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>cellColumn: column row: rowIndex [
+{ #category : #accessing }
+GLMFastListDataSource >> cellColumn: column row: rowIndex [
 	| element cell |
 	element := self elementAt: rowIndex.
 	cell := FTCellMorph new
@@ -65,61 +55,40 @@ GLMFastListDataSource>>cellColumn: column row: rowIndex [
 	^ cell
 ]
 
-{
-	#category : #cache,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>dataCache [
+{ #category : #cache }
+GLMFastListDataSource >> dataCache [
 	^ dataCache ifNil: [ dataCache := self class defaultCache ]
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>dragTransferType [
+{ #category : #'drag and drop' }
+GLMFastListDataSource >> dragTransferType [
 	^ #Glamour
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>dropElements: aCollection index: rowIndex [
+{ #category : #'drag and drop' }
+GLMFastListDataSource >> dropElements: aCollection index: rowIndex [
 	self glamourPresentation 
 		accept: (self collectionToDragPassenger: aCollection)
 		droppedOnItem: (self elementOrZeroAt: rowIndex)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>elements [
+{ #category : #accessing }
+GLMFastListDataSource >> elements [
 	^ elements ifNil: [ elements := self calculateElements ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>glamourPresentation [
+{ #category : #accessing }
+GLMFastListDataSource >> glamourPresentation [
 	^ glamourPresentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>glamourPresentation: anObject [
+{ #category : #accessing }
+GLMFastListDataSource >> glamourPresentation: anObject [
 	glamourPresentation := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>headerColumn: column [
+{ #category : #accessing }
+GLMFastListDataSource >> headerColumn: column [
 	column id ifNil: [ ^ nil ].
 	^ SimpleButtonMorph new
 		layoutPolicy: RowLayout new; 
@@ -134,37 +103,25 @@ GLMFastListDataSource>>headerColumn: column [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>resetChildrenContent [
+{ #category : #private }
+GLMFastListDataSource >> resetChildrenContent [
 	elements := self calculateElements.
 	self resetDataCache
 ]
 
-{
-	#category : #cache,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>resetDataCache [
+{ #category : #cache }
+GLMFastListDataSource >> resetDataCache [
 	dataCache := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>resetElements [
+{ #category : #accessing }
+GLMFastListDataSource >> resetElements [
 	self resetDataCache.
 	elements := nil
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>rowMorphForElement: element [
+{ #category : #factory }
+GLMFastListDataSource >> rowMorphForElement: element [
 	| rowElements |
 	rowElements := OrderedCollection new.
 	(self iconFor: element) ifNotNil: [ :icon | rowElements add: icon asMorph ].
@@ -174,27 +131,18 @@ GLMFastListDataSource>>rowMorphForElement: element [
 	^ Smalltalk ui theme newRowIn: World for: rowElements
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>selectTable: aTable element: anObject  [
+{ #category : #selecting }
+GLMFastListDataSource >> selectTable: aTable element: anObject [ 
 	aTable selectRowIndex: (self elements indexOf: anObject)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>tagsToFilterBy [
+{ #category : #accessing }
+GLMFastListDataSource >> tagsToFilterBy [
 	^ tagsToFilterBy ifNil: [ tagsToFilterBy := OrderedCollection new ]
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListDataSource>>wantsDropElements: aCollection type: type index: rowIndex [
+{ #category : #'drag and drop' }
+GLMFastListDataSource >> wantsDropElements: aCollection type: type index: rowIndex [
 	^ (aCollection isEmptyOrNil or: [ type ~= self dragTransferType ])
 		ifFalse: [ self glamourPresentation allow: (self collectionToDragPassenger: aCollection) droppedOnItem: (self elementOrZeroAt: rowIndex) ]
 		ifTrue: [ false ]

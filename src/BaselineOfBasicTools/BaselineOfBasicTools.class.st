@@ -24,15 +24,11 @@ Installs:
 Class {
 	#name : #BaselineOfBasicTools,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfBasicTools,
-	#timestamp : 'PavelKrivanek 11/7/2016 11:56'
+	#category : #BaselineOfBasicTools
 }
 
-{
-	#category : #baseline,
-	#timestamp : ' 8/31/2017 05:26:05'
-}
-BaselineOfBasicTools>>baseline: spec  [
+{ #category : #baseline }
+BaselineOfBasicTools >> baseline: spec [ 
     
 	<baseline>
         
@@ -106,11 +102,8 @@ BaselineOfBasicTools>>baseline: spec  [
 	].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:05'
-}
-BaselineOfBasicTools>>postload: loader package: packageSpec [
+{ #category : #actions }
+BaselineOfBasicTools >> postload: loader package: packageSpec [
 
 	| gofer |
 	
@@ -127,11 +120,8 @@ BaselineOfBasicTools>>postload: loader package: packageSpec [
 
 ]
 
-{
-	#category : #baseline,
-	#timestamp : ' 8/31/2017 05:26:05'
-}
-BaselineOfBasicTools>>project [
+{ #category : #baseline }
+BaselineOfBasicTools >> project [
 	
 	| aProject |
 	

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #DelayNullSchedulerTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Processes,
-	#timestamp : ''
+	#category : #Kernel-Tests-Processes
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayNullSchedulerTest>>testNullDelay [
+{ #category : #tests }
+DelayNullSchedulerTest >> testNullDelay [
 	| scheduler delay preTick postTick actualDuration |
 	scheduler := DelayNullScheduler new.
 	delay := Delay forMilliseconds: 1000.

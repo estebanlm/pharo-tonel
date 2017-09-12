@@ -22,15 +22,11 @@ Class {
 	#classInstVars : [
 		'default'
 	],
-	#category : #System-Sound,
-	#timestamp : 'gk 2/26/2004 22:44'
+	#category : #System-Sound
 }
 
-{
-	#category : #beeping,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Beeper class>>beep [
+{ #category : #beeping }
+Beeper class >> beep [
 	"The preferred way of producing an audible feedback.
 	The default playable entity (an instance of Beeper)
 	also uses the pluggable SoundService
@@ -43,11 +39,8 @@ Beeper class>>beep [
 
 ]
 
-{
-	#category : #beeping,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Beeper class>>beepPrimitive [
+{ #category : #beeping }
+Beeper class >> beepPrimitive [
 	"Make a primitive beep. Only use this if
 	you want to force this to be a primitive beep.
 	Otherwise use Beeper class>>beep
@@ -58,33 +51,24 @@ Beeper class>>beepPrimitive [
 		ifTrue: [self primitiveBeep]
 ]
 
-{
-	#category : #customize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Beeper class>>clearDefault [
+{ #category : #customize }
+Beeper class >> clearDefault [
 	"Clear the default playable.
 	Will be lazily initialized in Beeper class >>default."
 
 	default := nil
 ]
 
-{
-	#category : #customize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Beeper class>>default [
+{ #category : #customize }
+Beeper class >> default [
 	"When the default is not defined it is
 	initialized using #newDefault."
 
 	^ default ifNil: [default := self newDefault ] 
 ]
 
-{
-	#category : #customize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Beeper class>>newDefault [
+{ #category : #customize }
+Beeper class >> newDefault [
 	"Subclasses may override me to provide a default beep.
 	This base implementation returns an instance of Beeper
 	which uses the pluggable sound service."
@@ -92,11 +76,8 @@ Beeper class>>newDefault [
 	^ self new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Beeper class>>primitiveBeep [
+{ #category : #private }
+Beeper class >> primitiveBeep [
 	"Make a primitive beep. Not to be called directly.
 	It is much better to use Beeper class>>beep
 	or Beeper class>>beepPrimitive
@@ -108,22 +89,16 @@ Beeper class>>primitiveBeep [
 	self primitiveFailed
 ]
 
-{
-	#category : #customize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Beeper class>>setDefault: aPlayableEntity [
+{ #category : #customize }
+Beeper class >> setDefault: aPlayableEntity [
 	"Set the playable entity used when making a beep.
 	The playable entity should implement the message #play."
 
 	default := aPlayableEntity
 ]
 
-{
-	#category : #'play interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Beeper>>play [
+{ #category : #'play interface' }
+Beeper >> play [
 	"This is how the default Beeper makes a beep,
 	by sending beep to the default sound service.
 	The sound system will check if sounds are enabled."

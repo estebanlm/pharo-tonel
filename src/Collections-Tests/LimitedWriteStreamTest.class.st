@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #LimitedWriteStreamTest,
 	#superclass : #WriteStreamTest,
-	#category : #Collections-Tests-Streams,
-	#timestamp : ''
+	#category : #Collections-Tests-Streams
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LimitedWriteStreamTest>>streamClass [
+{ #category : #accessing }
+LimitedWriteStreamTest >> streamClass [
 	^ LimitedWriteStream
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LimitedWriteStreamTest>>testLimit [
+{ #category : #tests }
+LimitedWriteStreamTest >> testLimit [
 	| stream overLimit |
 	stream := self newStream.
 	overLimit := false.
@@ -43,11 +33,8 @@ LimitedWriteStreamTest>>testLimit [
 			assert: overLimit].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LimitedWriteStreamTest>>testLimitBlock [
+{ #category : #tests }
+LimitedWriteStreamTest >> testLimitBlock [
 	| stream overLimit limitBlock |
 	stream := self newStream.
 	overLimit := false.
@@ -59,11 +46,8 @@ LimitedWriteStreamTest>>testLimitBlock [
 		deny: overLimit
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LimitedWriteStreamTest>>testNextPut [
+{ #category : #tests }
+LimitedWriteStreamTest >> testNextPut [
 	| stream overLimit |
 
 	super testNextPut.
@@ -90,11 +74,8 @@ LimitedWriteStreamTest>>testNextPut [
 				assert: overLimit ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LimitedWriteStreamTest>>testNextPutAll [
+{ #category : #tests }
+LimitedWriteStreamTest >> testNextPutAll [
 	| stream overLimit |
 	super testNextPutAll.
 	stream := self streamClass
@@ -114,11 +95,8 @@ LimitedWriteStreamTest>>testNextPutAll [
 		assert: overLimit
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LimitedWriteStreamTest>>testOn [
+{ #category : #tests }
+LimitedWriteStreamTest >> testOn [
 	| stream |
 	super testOn.
 	stream := self newStream.
@@ -127,11 +105,8 @@ LimitedWriteStreamTest>>testOn [
 		assert: stream limitBlock isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LimitedWriteStreamTest>>testOnFromTo [
+{ #category : #tests }
+LimitedWriteStreamTest >> testOnFromTo [
 	| stream |
 	super testOnFromTo.
 	stream := self streamClass
@@ -143,11 +118,8 @@ LimitedWriteStreamTest>>testOnFromTo [
 		assert: stream limitBlock isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LimitedWriteStreamTest>>testOnLimitLimitBlock [
+{ #category : #tests }
+LimitedWriteStreamTest >> testOnLimitLimitBlock [
 	| collection overLimit limitBlock stream |
 	collection := String new.
 	overLimit := false.
@@ -164,11 +136,8 @@ LimitedWriteStreamTest>>testOnLimitLimitBlock [
 		deny: overLimit
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LimitedWriteStreamTest>>testSetLimitLimitBlock [
+{ #category : #tests }
+LimitedWriteStreamTest >> testSetLimitLimitBlock [
 	| stream overLimit |
 	stream := self newStream.
 	overLimit := false.
@@ -195,11 +164,8 @@ LimitedWriteStreamTest>>testSetLimitLimitBlock [
 		self assert: overLimit].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LimitedWriteStreamTest>>testWith [
+{ #category : #tests }
+LimitedWriteStreamTest >> testWith [
 	"like on: except it starts writing at the end of its argument collection,
 	and the initial position is the collection size and the initial contents
 	is the collection"
@@ -229,11 +195,8 @@ LimitedWriteStreamTest>>testWith [
 				assert: overLimit ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LimitedWriteStreamTest>>testWithFromTo [
+{ #category : #tests }
+LimitedWriteStreamTest >> testWithFromTo [
 	"like with: except it paritions its argument collection first using the
 	from:/to: indexes"
 	| stream overLimit |

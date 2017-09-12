@@ -20,31 +20,21 @@ Class {
 		'updateSelector',
 		'keystrokeSelector'
 	],
-	#category : #Polymorph-Widgets,
-	#timestamp : 'CamilloBruni 8/4/2011 14:39'
+	#category : #Polymorph-Widgets
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>acceptSelector [
+{ #category : #accessing }
+SearchMorph >> acceptSelector [
 	^ self setIndexSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>acceptSelector: aSymbol [
+{ #category : #accessing }
+SearchMorph >> acceptSelector: aSymbol [
 	self setIndexSelector: aSymbol
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>addToList: aString [
+{ #category : #protocol }
+SearchMorph >> addToList: aString [
 	aString isEmpty ifTrue: [ ^ self ].
 	list ifNil: [
 		list := self searchList].
@@ -55,32 +45,23 @@ SearchMorph>>addToList: aString [
 	self changed: #list.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>content: anObject  [
+{ #category : #accessing }
+SearchMorph >> content: anObject [ 
 	content := anObject trimBoth.
 	self addToList: content.
 	self listSelectionIndex: (self list indexOf: content).
 	self updateList
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>contentChanged: aString [
+{ #category : #protocol }
+SearchMorph >> contentChanged: aString [
 	content := aString.
 	self updateSelector ifNotNil: [ :selector|
 		self model perform: selector with: aString ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>currentTabCompletion [
+{ #category : #private }
+SearchMorph >> currentTabCompletion [
 	self searchList ifEmpty: [ ^ ''].
 	
 	currentCompletionIndex > self searchList
@@ -89,11 +70,8 @@ SearchMorph>>currentTabCompletion [
 	^ self searchList at: currentCompletionIndex
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>initialize [
+{ #category : #initialization }
+SearchMorph >> initialize [
 	super initialize.
 	self convertTo: String.
 	list := OrderedCollection new.
@@ -101,11 +79,8 @@ SearchMorph>>initialize [
 	self ghostText: 'Hit return to accept' translated
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>keyStroke: event [
+{ #category : #'event handling' }
+SearchMorph >> keyStroke: event [
 
 	keystrokeSelector ifNotNil: [ 
 		(self keystrokeAction: event) ifTrue: [ ^ self ] ].
@@ -113,11 +88,8 @@ SearchMorph>>keyStroke: event [
 	^ super keyStroke: event
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>keyStroke: event fromMorph: morph [
+{ #category : #'event handling' }
+SearchMorph >> keyStroke: event fromMorph: morph [
 
 	keystrokeSelector ifNotNil: [ 
 		^ self keystrokeAction: event ].
@@ -125,11 +97,8 @@ SearchMorph>>keyStroke: event fromMorph: morph [
 	^ false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>keystrokeAction: event  [
+{ #category : #'event handling' }
+SearchMorph >> keystrokeAction: event [ 
 	| args returnValue |
 	keystrokeSelector ifNil: [ ^ nil ].
 	args := keystrokeSelector numArgs.
@@ -147,28 +116,19 @@ SearchMorph>>keystrokeAction: event  [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>keystrokeSelector [
+{ #category : #accessing }
+SearchMorph >> keystrokeSelector [
 	^ keystrokeSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>keystrokeSelector: aSymbol [
+{ #category : #accessing }
+SearchMorph >> keystrokeSelector: aSymbol [
 	keystrokeSelector := aSymbol.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>listSelectionIndex: anInteger [
+{ #category : #accessing }
+SearchMorph >> listSelectionIndex: anInteger [
 	"Set the list selection."
 
 	self hideList.
@@ -181,27 +141,18 @@ SearchMorph>>listSelectionIndex: anInteger [
 		ifFalse: [ ^ super listSelectionIndex: anInteger ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>maxSize [
+{ #category : #accessing }
+SearchMorph >> maxSize [
 	^ maxSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>maxSize: aNumber [
+{ #category : #accessing }
+SearchMorph >> maxSize: aNumber [
 	maxSize := aNumber
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>newContentMorph [
+{ #category : #drawing }
+SearchMorph >> newContentMorph [
 	|pluggableTextMorph|
 	pluggableTextMorph := super newContentMorph.
 
@@ -216,77 +167,50 @@ SearchMorph>>newContentMorph [
 	^ pluggableTextMorph
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>nextCompletion [
+{ #category : #private }
+SearchMorph >> nextCompletion [
 	currentCompletionIndex := (currentCompletionIndex + 1 \\ self searchList size) + 1.
 	^ self currentTabCompletion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>searchList [
+{ #category : #accessing }
+SearchMorph >> searchList [
 	^ list ifNil: [ list := OrderedCollection new].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>searchList: aCollection [
+{ #category : #accessing }
+SearchMorph >> searchList: aCollection [
 	self list: aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>searchString [
+{ #category : #accessing }
+SearchMorph >> searchString [
 	^ content
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>selectionInterval [
+{ #category : #accessing }
+SearchMorph >> selectionInterval [
 	^ contentMorph selectionInterval
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>showList [
+{ #category : #protocol }
+SearchMorph >> showList [
 	"trigger a list update so that shared search results are updated properly"
 	self changed: #list.
 	super showList.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>takeKeyboardFocus [
+{ #category : #protocol }
+SearchMorph >> takeKeyboardFocus [
 	contentMorph takeKeyboardFocus.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>updateSelector [
+{ #category : #accessing }
+SearchMorph >> updateSelector [
 	^ updateSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SearchMorph>>updateSelector: aSymbol  [
+{ #category : #accessing }
+SearchMorph >> updateSelector: aSymbol [ 
 	updateSelector := aSymbol
 ]

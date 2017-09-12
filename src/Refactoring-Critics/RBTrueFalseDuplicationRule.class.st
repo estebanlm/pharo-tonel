@@ -4,33 +4,23 @@ Checks for ifTrue:ifFalse: blocks that have the same code at the beginning or en
 Class {
 	#name : #RBTrueFalseDuplicationRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 22:56'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTrueFalseDuplicationRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBTrueFalseDuplicationRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'TrueFalseDuplication'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTrueFalseDuplicationRule>>group [
+{ #category : #accessing }
+RBTrueFalseDuplicationRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTrueFalseDuplicationRule>>initialize [
+{ #category : #initialization }
+RBTrueFalseDuplicationRule >> initialize [
 	super initialize.
 	self matcher
 		matchesAnyOf: #(
@@ -57,26 +47,17 @@ RBTrueFalseDuplicationRule>>initialize [
 					ifFalse: [ answer ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTrueFalseDuplicationRule>>name [
+{ #category : #accessing }
+RBTrueFalseDuplicationRule >> name [
 	^ 'Check for same statements in ifTrue:ifFalse: blocks'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTrueFalseDuplicationRule>>rationale [
+{ #category : #accessing }
+RBTrueFalseDuplicationRule >> rationale [
 	^ 'Checks for ifTrue:ifFalse: blocks that have the same code at the beginning or end.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBTrueFalseDuplicationRule>>severity [
+{ #category : #accessing }
+RBTrueFalseDuplicationRule >> severity [
 	^ #information
 ]

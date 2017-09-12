@@ -61,34 +61,24 @@ Class {
 		'lastDisplayableIndex',
 		'stopConditionsMustBeReset'
 	],
-	#category : #Text-Scanning,
-	#timestamp : 'nice 10/11/2013 23:45'
+	#category : #Text-Scanning
 }
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner class>>defaultFont [
+{ #category : #queries }
+DisplayScanner class >> defaultFont [
 	^ TextStyle defaultFont
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner class>>new [
+{ #category : #'instance creation' }
+DisplayScanner class >> new [
 	"Use default concrete class"
 	^(self == DisplayScanner
 		ifTrue: [BitBltDisplayScanner]
 		ifFalse: [self]) basicNew initialize
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>cr [
+{ #category : #'stop conditions' }
+DisplayScanner >> cr [
 	"When a carriage return is encountered, simply increment the pointer 
 	into the paragraph."
 
@@ -100,11 +90,8 @@ DisplayScanner>>cr [
 	^false
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>crossedX [
+{ #category : #'stop conditions' }
+DisplayScanner >> crossedX [
 	"This condition will sometimes be reached 'legally' during display, when, 
 	for instance the space that caused the line to wrap actually extends over 
 	the right boundary. This character is allowed to display, even though it 
@@ -117,36 +104,24 @@ DisplayScanner>>crossedX [
 	^ true 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>defaultTextColor [
+{ #category : #private }
+DisplayScanner >> defaultTextColor [
 	defaultTextColor ifNil:[ defaultTextColor := Smalltalk ui theme textColor ].
 	^defaultTextColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>defaultTextColor: color [
+{ #category : #private }
+DisplayScanner >> defaultTextColor: color [
 	defaultTextColor := color.
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>displayEmbeddedForm: aForm [
+{ #category : #displaying }
+DisplayScanner >> displayEmbeddedForm: aForm [
 	self subclassResponsibility
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>displayLine: textLine offset: offset leftInRun: leftInRun [
+{ #category : #scanning }
+DisplayScanner >> displayLine: textLine offset: offset leftInRun: leftInRun [
 	"The call on the primitive (scanCharactersFrom:to:in:rightX:) will be interrupted according to an array of stop conditions passed to the scanner at which time the code to handle the stop condition is run and the call on the primitive continued until a stop condition returns true (which means the line has terminated).  leftInRun is the # of characters left to scan in the current run; when 0, it is time to call setStopConditions."
 	| stopCondition nowLeftInRun startIndex string lastPos lineHeight stop |
 	line := textLine.
@@ -195,19 +170,13 @@ DisplayScanner>>displayLine: textLine offset: offset leftInRun: leftInRun [
 	^ runStopIndex - lastIndex   "Number of characters remaining in the current run"
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>displayString: string from: startIndex  to: stopIndex at: aPoint [
+{ #category : #displaying }
+DisplayScanner >> displayString: string from: startIndex  to: stopIndex at: aPoint [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>endOfRun [
+{ #category : #'stop conditions' }
+DisplayScanner >> endOfRun [
 	"The end of a run in the display case either means that there is actually 
 	a change in the style (run code) to be associated with the string or the 
 	end of this line has been reached."
@@ -221,28 +190,19 @@ DisplayScanner>>endOfRun [
 	^ false
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>fillTextBackground [
+{ #category : #displaying }
+DisplayScanner >> fillTextBackground [
 	self subclassResponsibility
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>initialize [
+{ #category : #displaying }
+DisplayScanner >> initialize [
 	super initialize.
 	ignoreColorChanges := false.
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>paddedSpace [
+{ #category : #'stop conditions' }
+DisplayScanner >> paddedSpace [
 	"Each space is a stop condition when the alignment is right justified. 
 	Padding must be added to the base width of the space according to 
 	which space in the line this space is and according to the amount of 
@@ -256,11 +216,8 @@ DisplayScanner>>paddedSpace [
 	^ false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>placeEmbeddedObject: anchoredMorphOrForm [
+{ #category : #private }
+DisplayScanner >> placeEmbeddedObject: anchoredMorphOrForm [
 
 	anchoredMorphOrForm relativeTextAnchorPosition ifNotNil:[:relativeTextAnchorPosition |
 		anchoredMorphOrForm position: 
@@ -277,41 +234,29 @@ DisplayScanner>>placeEmbeddedObject: anchoredMorphOrForm [
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>setFont  [
+{ #category : #private }
+DisplayScanner >> setFont [ 
 	foregroundColor := self defaultTextColor.
 	super setFont.  "Sets font and emphasis bits, and maybe foregroundColor"
 	text ifNotNil:[destY := lineY + line baseline - font ascent]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>setStopConditions [
+{ #category : #private }
+DisplayScanner >> setStopConditions [
 	super setStopConditions.
 	stopConditionsMustBeReset := false
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>tab [
+{ #category : #'stop conditions' }
+DisplayScanner >> tab [
 	lastDisplayableIndex := lastIndex - 1.
 	destX := self plainTab.
 	lastIndex := lastIndex + 1.
 	^ false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>text: t textStyle: ts foreground: foreColor background: backColor fillBlt: blt ignoreColorChanges: shadowMode [
+{ #category : #private }
+DisplayScanner >> text: t textStyle: ts foreground: foreColor background: backColor fillBlt: blt ignoreColorChanges: shadowMode [
 	text := t.
 	textStyle := ts. 
 	foregroundColor := defaultTextColor := foreColor.
@@ -319,11 +264,8 @@ DisplayScanner>>text: t textStyle: ts foreground: foreColor background: backColo
 	ignoreColorChanges := shadowMode
 ]
 
-{
-	#category : #'text attributes',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-DisplayScanner>>textColor: textColor [
+{ #category : #'text attributes' }
+DisplayScanner >> textColor: textColor [
 	ignoreColorChanges ifTrue: [^ self].
 	foregroundColor := textColor
 ]

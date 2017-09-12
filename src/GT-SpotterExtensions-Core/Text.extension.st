@@ -1,12 +1,7 @@
-Extension {
-	#name : #Text
-}
+Extension { #name : #Text }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Text>>spotterPreviewCodeIn: aComposite [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Text >> spotterPreviewCodeIn: aComposite [
 	<spotterPreview: 10>
 	^ aComposite text
 		title: 'Contents';

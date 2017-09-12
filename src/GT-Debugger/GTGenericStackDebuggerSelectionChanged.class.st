@@ -8,43 +8,30 @@ Class {
 		'debugger',
 		'newContext'
 	],
-	#category : #GT-Debugger-UI,
-	#timestamp : 'RogerStebler 3/15/2016 14:07'
+	#category : #GT-Debugger-UI
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebuggerSelectionChanged class>>forDebugger: aDebugger [
+{ #category : #'instance creation' }
+GTGenericStackDebuggerSelectionChanged class >> forDebugger: aDebugger [
 
 	^ self new forDebugger: aDebugger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebuggerSelectionChanged>>debugger [
+{ #category : #accessing }
+GTGenericStackDebuggerSelectionChanged >> debugger [
 
 	^ debugger
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebuggerSelectionChanged>>forDebugger: aDebugger [
+{ #category : #initialization }
+GTGenericStackDebuggerSelectionChanged >> forDebugger: aDebugger [
 
 	debugger := aDebugger.
 	newContext := aDebugger currentContext.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTGenericStackDebuggerSelectionChanged>>newContext [
+{ #category : #accessing }
+GTGenericStackDebuggerSelectionChanged >> newContext [
 
 	^ newContext
 ]

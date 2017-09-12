@@ -7,41 +7,28 @@ Class {
 	#instVars : [
 		'package'
 	],
-	#category : #Versionner-Commit,
-	#timestamp : 'EstebanLorenzano 4/23/2015 15:48'
+	#category : #Versionner-Commit
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction class>>new [
+{ #category : #'instance creation' }
+VSCommitPackageAction class >> new [
 	self error: 'Use #package:'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction class>>package: aPackage [
+{ #category : #'instance creation' }
+VSCommitPackageAction class >> package: aPackage [
 	^ self basicNew 
 		initializePackage: aPackage;
 		yourself
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction>>browseOn: aBrowser [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitPackageAction >> browseOn: aBrowser [
 	aBrowser browsePackage: self
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction>>currentString [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitPackageAction >> currentString [
 	| workingCopy |
 	
 	workingCopy := self package workingCopy.
@@ -49,85 +36,55 @@ VSCommitPackageAction>>currentString [
 		on: Error do: [ :e | '' ]
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction>>displayString  [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitPackageAction >> displayString [ 
 	^ self package name
 ]
 
-{
-	#category : #executing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction>>executeOn: aUnit [
+{ #category : #executing }
+VSCommitPackageAction >> executeOn: aUnit [
 	self 
 		commitPackage: self packageName
 		comment: aUnit comment
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction>>icon [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitPackageAction >> icon [
 	^ Smalltalk ui icons iconNamed: #packageIcon
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction>>initializePackage: aPackage [
+{ #category : #initialization }
+VSCommitPackageAction >> initializePackage: aPackage [
 	package := aPackage.
 	self initialize
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction>>isPackage  [
+{ #category : #testing }
+VSCommitPackageAction >> isPackage [ 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction>>package [
+{ #category : #accessing }
+VSCommitPackageAction >> package [
 	^ package
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction>>packageName [
+{ #category : #accessing }
+VSCommitPackageAction >> packageName [
 	^ self package name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction>>removeOn: aUnit [
+{ #category : #accessing }
+VSCommitPackageAction >> removeOn: aUnit [
 	aUnit removePackageAction: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction>>repository [
+{ #category : #accessing }
+VSCommitPackageAction >> repository [
 	^ self package repository
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitPackageAction>>workingCopy  [
+{ #category : #private }
+VSCommitPackageAction >> workingCopy [ 
 	^ self package workingCopy
 ]

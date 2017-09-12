@@ -1,31 +1,21 @@
-"
-
-"
 Class {
 	#name : #MetacelloReferenceConfig,
 	#superclass : #Object,
 	#instVars : [
 		'project'
 	],
-	#category : #Metacello-Reference,
-	#timestamp : ''
+	#category : #Metacello-Reference
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloReferenceConfig class>>project [
+{ #category : #accessing }
+MetacelloReferenceConfig class >> project [
   "force new version as workaround for https://code.google.com/p/smalltalk-hub/issues/detail?id=21"
 
   ^ self new project
 ]
 
-{
-	#category : #'baseline 1.0',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloReferenceConfig>>baseline10: spec  [
+{ #category : #'baseline 1.0' }
+MetacelloReferenceConfig >> baseline10: spec [ 
 	<version: '1.0-baseline'>
 	
 	spec for: #common do: [
@@ -171,11 +161,8 @@ MetacelloReferenceConfig>>baseline10: spec  [
 			removeGroup: 'default' ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloReferenceConfig>>project [
+{ #category : #accessing }
+MetacelloReferenceConfig >> project [
 
 	^ project ifNil: [ | constructor |
 		"Construct Metacello project"

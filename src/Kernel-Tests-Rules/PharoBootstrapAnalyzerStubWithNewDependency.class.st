@@ -4,14 +4,10 @@ Stub class to do not compute dependencies of the given package butrather give pr
 Class {
 	#name : #PharoBootstrapAnalyzerStubWithNewDependency,
 	#superclass : #Object,
-	#category : #Kernel-Tests-Rules,
-	#timestamp : 'ChristopheDemarey 9/29/2015 12:46'
+	#category : #Kernel-Tests-Rules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PharoBootstrapAnalyzerStubWithNewDependency>>dependenciesOf: aPackageName [
+{ #category : #accessing }
+PharoBootstrapAnalyzerStubWithNewDependency >> dependenciesOf: aPackageName [
 	^ #(Foo Bar)
 ]

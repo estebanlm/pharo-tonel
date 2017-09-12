@@ -30,23 +30,16 @@ Class {
 		'size',
 		'posixPermissions'
 	],
-	#category : #FileSystem-Core-Public,
-	#timestamp : 'cwp 11/18/2009 11:09'
+	#category : #FileSystem-Core-Public
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry class>>allPosixPermissions  [
+{ #category : #accessing }
+FileSystemDirectoryEntry class >> allPosixPermissions [ 
 	^8r777
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry class>>fileSystem: aFilesystem path: aPath creation: cTime modification: mTime isDir: aBoolean size: anInteger posixPermissions: posixNumber isSymlink: symlinkBooleam [
+{ #category : #'instance creation' }
+FileSystemDirectoryEntry class >> fileSystem: aFilesystem path: aPath creation: cTime modification: mTime isDir: aBoolean size: anInteger posixPermissions: posixNumber isSymlink: symlinkBooleam [
 	"Create a directory entry given a filesystem and a path in such filesystem. In addition, the creation and modification time are required as well as a boolean that indicates whether the entry is a folder or a file and its size."
 
 	^ self 
@@ -59,11 +52,8 @@ FileSystemDirectoryEntry class>>fileSystem: aFilesystem path: aPath creation: cT
 		isSymlink: symlinkBooleam
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry class>>reference: ref creation: cTime modification: mTime isDir: aBoolean size: anInteger posixPermissions: posixNumber isSymlink: symlinkBoolean [
+{ #category : #'instance creation' }
+FileSystemDirectoryEntry class >> reference: ref creation: cTime modification: mTime isDir: aBoolean size: anInteger posixPermissions: posixNumber isSymlink: symlinkBoolean [
 	"Create a directory entry for the file reference ref, with the creation time, cTime, the modification time, mTime. aBoolean indicates if the entry represents a directory or a file of size given by anInteger"
 	
 	^ self basicNew
@@ -76,72 +66,48 @@ FileSystemDirectoryEntry class>>reference: ref creation: cTime modification: mTi
 		isSymlink: symlinkBoolean
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>asFileReference [
+{ #category : #converting }
+FileSystemDirectoryEntry >> asFileReference [
 	^ reference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>basename [
+{ #category : #accessing }
+FileSystemDirectoryEntry >> basename [
 
 	^ reference basename
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>creation [
+{ #category : #accessing }
+FileSystemDirectoryEntry >> creation [
 	^ self creationTime 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>creationSeconds [
+{ #category : #accessing }
+FileSystemDirectoryEntry >> creationSeconds [
 	"Return the creation date and time of the entry receiver in seconds."
 		
 	^ creation asSeconds
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>creationTime [
+{ #category : #accessing }
+FileSystemDirectoryEntry >> creationTime [
 	"Return the creation date and time of the entry receiver."
 	
 	^ creation
 ]
 
-{
-	#category : #delegate,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>extension [
+{ #category : #delegate }
+FileSystemDirectoryEntry >> extension [
 	^ reference extension
 ]
 
-{
-	#category : #delegate,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>fullName [
+{ #category : #delegate }
+FileSystemDirectoryEntry >> fullName [
 	^ reference fullName
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>initializeWithRef: ref 
+{ #category : #initialize-release }
+FileSystemDirectoryEntry >> initializeWithRef: ref 
 	creation: cTime 
 	modification: mTime 
 	isDir: directoryBoolean
@@ -158,125 +124,83 @@ FileSystemDirectoryEntry>>initializeWithRef: ref
 	isSymlink := symlinkBoolean.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>isDirectory [
+{ #category : #testing }
+FileSystemDirectoryEntry >> isDirectory [
 	"Return whether the receiver is a directory"
 	
 	^ isDirectory
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>isFile [
+{ #category : #testing }
+FileSystemDirectoryEntry >> isFile [
 	"Return whether the receiver is a file"
 	
 	^ isDirectory not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>isSymlink  [
+{ #category : #testing }
+FileSystemDirectoryEntry >> isSymlink [ 
 	^isSymlink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>modification [
+{ #category : #accessing }
+FileSystemDirectoryEntry >> modification [
 	^ self modificationTime 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>modificationSeconds [
+{ #category : #accessing }
+FileSystemDirectoryEntry >> modificationSeconds [
 	"Return the modification date and time of the entry receiver in seconds."
 	^ modification
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>modificationTime [
+{ #category : #accessing }
+FileSystemDirectoryEntry >> modificationTime [
 	"Return the modification date and time of the entry receiver."
 
 	^  modification
 ]
 
-{
-	#category : #delegate,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>pathSegments [
+{ #category : #delegate }
+FileSystemDirectoryEntry >> pathSegments [
 	^ reference pathSegments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>permissions  [
+{ #category : #accessing }
+FileSystemDirectoryEntry >> permissions [ 
 	^self posixPermissions
 		ifNotNil: [ FileSystemPermission posixPermissions: self posixPermissions ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>posixPermissions  [
+{ #category : #accessing }
+FileSystemDirectoryEntry >> posixPermissions [ 
 	^posixPermissions
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>printOn: aStream [
+{ #category : #printing }
+FileSystemDirectoryEntry >> printOn: aStream [
 
 	aStream nextPutAll: 'DirectoryEntry: '.
 	reference ifNotNil: [:ref | aStream nextPutAll: reference printString].
 ]
 
-{
-	#category : #delegate,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>readStream [
+{ #category : #delegate }
+FileSystemDirectoryEntry >> readStream [
 	^ reference readStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>reference [
+{ #category : #accessing }
+FileSystemDirectoryEntry >> reference [
 	^ reference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>size [
+{ #category : #accessing }
+FileSystemDirectoryEntry >> size [
 	"Returns the receiver size"
 	^ size
 ]
 
-{
-	#category : #delegate,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemDirectoryEntry>>writeStream [
+{ #category : #delegate }
+FileSystemDirectoryEntry >> writeStream [
 	^ reference writeStream
 ]

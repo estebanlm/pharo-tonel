@@ -11,39 +11,26 @@ Class {
 		'maxTest',
 		'shouldSerializeError'
 	],
-	#category : #SUnit-UI,
-	#timestamp : '<historical>'
+	#category : #SUnit-UI
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>createStderr [
+{ #category : #private }
+CommandLineTestRunner >> createStderr [
 	^ Stdio stderr
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>createStdout [
+{ #category : #private }
+CommandLineTestRunner >> createStdout [
 	^ Stdio stdout
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>done [
+{ #category : #running }
+CommandLineTestRunner >> done [
 	
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>handleFailure: anError of: aTestCase  [
+{ #category : #helper }
+CommandLineTestRunner >> handleFailure: anError of: aTestCase [ 
 	(anError isNil or: [aTestCase isExpectedFailure])  ifTrue: [ ^ self ].
 
 	(anError isKindOf: TestFailure)
@@ -58,37 +45,25 @@ CommandLineTestRunner>>handleFailure: anError of: aTestCase  [
 		ifTrue: [ self serializeError: anError of: aTestCase ]
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>handleSkip: aTestSkip of: aTestCase  [
+{ #category : #helper }
+CommandLineTestRunner >> handleSkip: aTestSkip of: aTestCase [ 
 	self printSkipOf: aTestCase
 
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>increaseTestCount [
+{ #category : #helper }
+CommandLineTestRunner >> increaseTestCount [
 	currentTest := currentTest + 1.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>initialize [
+{ #category : #initialization }
+CommandLineTestRunner >> initialize [
 	super initialize.
 	shouldSerializeError := false.
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>print: longErrorMessage short: shortErrorMessage of: aTestCase  [
+{ #category : #helper }
+CommandLineTestRunner >> print: longErrorMessage short: shortErrorMessage of: aTestCase [ 
 	| cr |
 
 	cr := OSPlatform current lineEnding.
@@ -100,44 +75,32 @@ CommandLineTestRunner>>print: longErrorMessage short: shortErrorMessage of: aTes
 		ifFalse: [ self stdout << longErrorMessage << cr ]
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>printError: anError of: aTestCase  [
+{ #category : #helper }
+CommandLineTestRunner >> printError: anError of: aTestCase [ 
 	self
 		print: (self shortStackDescriptionFor: anError)
 		short: ' [ERROR]' 
 		of: aTestCase 
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>printFailure: anError of: aTestCase  [
+{ #category : #helper }
+CommandLineTestRunner >> printFailure: anError of: aTestCase [ 
 	self
 		print: (self shortStackDescriptionFor: anError)
 		short: ' [FAIL]' 
 		of: aTestCase 
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>printPassOf: aTestCase [
+{ #category : #helper }
+CommandLineTestRunner >> printPassOf: aTestCase [
 	self
 		print: nil
 		short: ' [OK]' 
 		of: aTestCase 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>printReport [
+{ #category : #printing }
+CommandLineTestRunner >> printReport [
 	| cr |
 	cr := OSPlatform current lineEnding.
 	
@@ -148,30 +111,20 @@ CommandLineTestRunner>>printReport [
 		<< cr
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>printSkipOf: aTestCase [
+{ #category : #helper }
+CommandLineTestRunner >> printSkipOf: aTestCase [
 	self 
 		print: nil
 		short: ' [SKIPPED]' 
 		of: aTestCase
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>printTestCase: aTestCase [
-
+{ #category : #printing }
+CommandLineTestRunner >> printTestCase: aTestCase [
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>runCase: aTestCase [
+{ #category : #running }
+CommandLineTestRunner >> runCase: aTestCase [
 	self increaseTestCount.
 	self printTestCase: aTestCase.
 	
@@ -182,21 +135,15 @@ CommandLineTestRunner>>runCase: aTestCase [
 		on: TestSkip do: [ :skip| self handleSkip: skip of: aTestCase ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>setUp [
+{ #category : #running }
+CommandLineTestRunner >> setUp [
 	
 	currentTest := 0.
 	maxTest := suite tests size.
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>shortStackDescriptionFor: anError [
+{ #category : #helper }
+CommandLineTestRunner >> shortStackDescriptionFor: anError [
 	^ (String streamContents: [ :s| 
 			s << anError printString; cr.
 			anError signalerContext shortDebugStackOn: s ])
@@ -204,47 +151,32 @@ CommandLineTestRunner>>shortStackDescriptionFor: anError [
 		with: OSPlatform current lineEnding
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>shouldSerializeError [
+{ #category : #accessing }
+CommandLineTestRunner >> shouldSerializeError [
 	^ shouldSerializeError
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>shouldSerializeError: aBoolean [
+{ #category : #accessing }
+CommandLineTestRunner >> shouldSerializeError: aBoolean [
 	shouldSerializeError := aBoolean.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>stderr [
+{ #category : #accessing }
+CommandLineTestRunner >> stderr [
 	(stderr isNil or: [ stderr closed ])
 		ifTrue: [ stderr := self createStderr ].
 	^ stderr 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>stdout [
+{ #category : #accessing }
+CommandLineTestRunner >> stdout [
 	(stdout isNil or: [ stdout closed ])
 		ifTrue: [ stdout := self createStdout ].
 		
 	^ stdout
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-CommandLineTestRunner>>tearDown [
+{ #category : #running }
+CommandLineTestRunner >> tearDown [
 	self printReport
 ]

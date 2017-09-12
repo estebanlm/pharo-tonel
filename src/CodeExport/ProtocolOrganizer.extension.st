@@ -1,12 +1,7 @@
-Extension {
-	#name : #ProtocolOrganizer
-}
+Extension { #name : #ProtocolOrganizer }
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ProtocolOrganizer>>stringForFileOut [
+{ #category : #'*CodeExport' }
+ProtocolOrganizer >> stringForFileOut [
 
 	^ String streamContents: [:aStream | 
 			self protocols do: [:p | 

@@ -1,23 +1,15 @@
-Extension {
-	#name : #SettingNode
-}
+Extension { #name : #SettingNode }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-SettingNode class>>gtExampleSettingNode [
+{ #category : #'*GT-SpotterExtensions-Core' }
+SettingNode class >> gtExampleSettingNode [
 	<gtExample>
 	<label: 'Settings node'>
 	
 	^ SettingTree gtExampleSettingTree nodeList anyOne
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-SettingNode>>spotterForSettingsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+SettingNode >> spotterForSettingsFor: aStep [
 	<spotterOrder: 0>
 	self allChildren isEmpty ifTrue: [ ^ self ].
 	aStep listProcessor
@@ -27,11 +19,8 @@ SettingNode>>spotterForSettingsFor: aStep [
 		filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-SettingNode>>spotterLabel [
+{ #category : #'*GT-SpotterExtensions-Core' }
+SettingNode >> spotterLabel [
 	| label |
 	label := self settingDeclaration label.
 	^ self parentNode isNil
@@ -40,11 +29,8 @@ SettingNode>>spotterLabel [
 		
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-SettingNode>>spotterPreviewIn: composite [
+{ #category : #'*GT-SpotterExtensions-Core' }
+SettingNode >> spotterPreviewIn: composite [
 	<spotterPreview: 0>
 	
 	composite custom: (

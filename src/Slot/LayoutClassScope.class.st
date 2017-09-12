@@ -8,15 +8,11 @@ Class {
 	#instVars : [
 		'parentScope'
 	],
-	#category : #Slot-Layout,
-	#timestamp : '<historical>'
+	#category : #Slot-Layout
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>= other [
+{ #category : #comparing }
+LayoutClassScope >> = other [
 	super = other
 		ifFalse: [ ^ false ].
 	
@@ -30,29 +26,20 @@ LayoutClassScope>>= other [
 	^ self parentScope = other parentScope.
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>allSlotsDo: aBlock [
+{ #category : #enumerating }
+LayoutClassScope >> allSlotsDo: aBlock [
 	parentScope allSlotsDo: aBlock.
 	self do: aBlock
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>allSlotsReverseDo: aBlock [
+{ #category : #enumerating }
+LayoutClassScope >> allSlotsReverseDo: aBlock [
 	self reverseDo: aBlock.
 	parentScope allSlotsReverseDo: aBlock.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>allVisibleSlots [
+{ #category : #accessing }
+LayoutClassScope >> allVisibleSlots [
 	| result |
 	result := parentScope allVisibleSlots.
 	self do: [ :slot | 
@@ -61,60 +48,42 @@ LayoutClassScope>>allVisibleSlots [
 	^ result
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>do: aBlock [
+{ #category : #enumerating }
+LayoutClassScope >> do: aBlock [
 	1 to: self size do: [ :index |
 		aBlock value: (self at: index) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>fieldSize [
+{ #category : #accessing }
+LayoutClassScope >> fieldSize [
 	^ parentScope fieldSize + self ownFieldSize.
 ]
 
-{
-	#category : #flattening,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>flatten [
+{ #category : #flattening }
+LayoutClassScope >> flatten [
 	| result |
 	result := parentScope flatten.
 	result addAll: self.
 	^ result
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>hasFields [
+{ #category : #testing }
+LayoutClassScope >> hasFields [
 	self do: [ :slot | 
 		slot size > 0 
 			ifTrue: [ ^ true ]].
 	^ parentScope hasFields
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>hasSlots [
+{ #category : #testing }
+LayoutClassScope >> hasSlots [
 	self size > 0 
 		ifTrue: [ ^ true ].
 	^ parentScope hasSlots
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>hash [
+{ #category : #comparing }
+LayoutClassScope >> hash [
 	| hash |
 	hash := super hash.
 	1 to: self size do: [ :i | 
@@ -122,67 +91,46 @@ LayoutClassScope>>hash [
 	^ hash + self parentScope hash hashMultiply.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>ifNotEmpty: aBlock [
+{ #category : #testing }
+LayoutClassScope >> ifNotEmpty: aBlock [
 	"This scope is not empty so we evaluate the block"
 	aBlock value: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>ownFieldSize [
+{ #category : #accessing }
+LayoutClassScope >> ownFieldSize [
 	|result|
 	result := 0.
 	self do: [ :slot | result := result + slot size ].
 	^ result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>parentScope [
+{ #category : #accessing }
+LayoutClassScope >> parentScope [
 	^ parentScope
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>parentScope: aLayoutScope [
+{ #category : #accessing }
+LayoutClassScope >> parentScope: aLayoutScope [
 	parentScope := aLayoutScope
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>postCopy [
+{ #category : #copying }
+LayoutClassScope >> postCopy [
 	parentScope := parentScope copy.
 	1 to: self size do: [ :index | 
 		self at: index put: (self at: index) copy ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>printOn: aStream [
+{ #category : #printing }
+LayoutClassScope >> printOn: aStream [
 	
 	super printOn: aStream.
 	self allVisibleSlots printElementsOn: aStream.
 ]
 
-{
-	#category : #reshaping,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>rebase: originalScope to: newScope [
+{ #category : #reshaping }
+LayoutClassScope >> rebase: originalScope to: newScope [
 	| newParent result fieldIndex |
 	newParent := parentScope == originalScope
 		ifTrue: [ newScope ]
@@ -200,33 +148,24 @@ LayoutClassScope>>rebase: originalScope to: newScope [
 	
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>reverseDo: aBlock [
+{ #category : #enumerating }
+LayoutClassScope >> reverseDo: aBlock [
 	|size|
 	size := self size.
 	1 to: size do: [ :index |
 		aBlock value: (self at: (1 + size - index)) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>slots [
+{ #category : #accessing }
+LayoutClassScope >> slots [
 	| result |
 	result := OrderedCollection new.
 	self do: [ :slot |  result add: slot].
 	^ result asArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>visibleSlots [
+{ #category : #accessing }
+LayoutClassScope >> visibleSlots [
 	| result |
 	result := OrderedCollection new.
 	self do: [ :slot | 
@@ -235,11 +174,8 @@ LayoutClassScope>>visibleSlots [
 	^ result asArray
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>withIndexDo: elementAndIndexBlock  [
+{ #category : #enumerating }
+LayoutClassScope >> withIndexDo: elementAndIndexBlock [ 
 	"Just like with:do: except that the iteration index supplies the second argument to the block."
 	1 to: self size do:
 		[:index |
@@ -248,11 +184,8 @@ LayoutClassScope>>withIndexDo: elementAndIndexBlock  [
 			value: index]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LayoutClassScope>>withParentScopesDo: aBlock [
+{ #category : #enumerating }
+LayoutClassScope >> withParentScopesDo: aBlock [
 	aBlock value: self.
 	parentScope withParentScopesDo: aBlock.
 ]

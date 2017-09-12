@@ -20,15 +20,11 @@ Class {
 		'periods',
 		'temporaries'
 	],
-	#category : #AST-Core-Nodes,
-	#timestamp : 'NicolaiHess 8/2/2016 13:33'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode class>>leftBar: leftInteger temporaries: variableNodes rightBar: rightInteger  [
+{ #category : #'instance creation' }
+RBSequenceNode class >> leftBar: leftInteger temporaries: variableNodes rightBar: rightInteger [ 
 	^(self new)
 		leftBar: leftInteger
 			temporaries: variableNodes
@@ -36,30 +32,21 @@ RBSequenceNode class>>leftBar: leftInteger temporaries: variableNodes rightBar: 
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode class>>statements: statementNodes  [
+{ #category : #'instance creation' }
+RBSequenceNode class >> statements: statementNodes [ 
 	^self temporaries: #() statements: statementNodes
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode class>>temporaries: variableNodes statements: statementNodes  [
+{ #category : #'instance creation' }
+RBSequenceNode class >> temporaries: variableNodes statements: statementNodes [ 
 	^(self new)
 		temporaries: variableNodes;
 		statements: statementNodes;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>= anObject  [
+{ #category : #comparing }
+RBSequenceNode >> = anObject [ 
 	"Can't send = to the temporaries and statements collection since they might change from arrays to OCs"
 
 	self == anObject ifTrue: [^true].
@@ -75,19 +62,13 @@ RBSequenceNode>>= anObject  [
 	^true
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visiting }
+RBSequenceNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^aProgramNodeVisitor visitSequenceNode: self
 ]
 
-{
-	#category : #'adding nodes',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>addFaultyNode: aNode [
+{ #category : #'adding nodes' }
+RBSequenceNode >> addFaultyNode: aNode [
 "just like addNode, but ignore if we already include a return node, as we are faulty"
 	aNode parent: self.
 	statements := statements asOrderedCollection
@@ -96,11 +77,8 @@ RBSequenceNode>>addFaultyNode: aNode [
 	^ aNode
 ]
 
-{
-	#category : #'adding nodes',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>addNode: aNode [
+{ #category : #'adding nodes' }
+RBSequenceNode >> addNode: aNode [
 	aNode parent: self.
 	(statements notEmpty and: [ statements last isReturn ])
 		ifTrue: [ self error: 'Cannot add statement after return node' ].
@@ -110,11 +88,8 @@ RBSequenceNode>>addNode: aNode [
 	^ aNode
 ]
 
-{
-	#category : #'adding nodes',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>addNode: aNode before: anotherNode [
+{ #category : #'adding nodes' }
+RBSequenceNode >> addNode: aNode before: anotherNode [
 	| index |
 	index := self indexOfNode: anotherNode.
 	index = 0
@@ -126,11 +101,8 @@ RBSequenceNode>>addNode: aNode before: anotherNode [
 	^ aNode
 ]
 
-{
-	#category : #'adding nodes',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>addNodeFirst: aNode [
+{ #category : #'adding nodes' }
+RBSequenceNode >> addNodeFirst: aNode [
 	aNode parent: self.
 	statements := statements asOrderedCollection
 		addFirst: aNode;
@@ -138,11 +110,8 @@ RBSequenceNode>>addNodeFirst: aNode [
 	^ aNode
 ]
 
-{
-	#category : #'adding nodes',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>addNodes: aCollection [
+{ #category : #'adding nodes' }
+RBSequenceNode >> addNodes: aCollection [
 	aCollection do: [ :each | each parent: self ].
 	(statements notEmpty and: [ statements last isReturn ])
 		ifTrue: [ self error: 'Cannot add statement after return node' ].
@@ -152,20 +121,14 @@ RBSequenceNode>>addNodes: aCollection [
 	^ aCollection
 ]
 
-{
-	#category : #'adding nodes',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>addNodes: aCollection before: anotherNode [
+{ #category : #'adding nodes' }
+RBSequenceNode >> addNodes: aCollection before: anotherNode [
 	aCollection do: [ :each | self addNode: each before: anotherNode ].
 	^ aCollection
 ]
 
-{
-	#category : #'adding nodes',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>addNodesFirst: aCollection [
+{ #category : #'adding nodes' }
+RBSequenceNode >> addNodesFirst: aCollection [
 	aCollection do: [ :each | each parent: self ].
 	statements := statements asOrderedCollection
 		addAllFirst: aCollection;
@@ -173,11 +136,8 @@ RBSequenceNode>>addNodesFirst: aCollection [
 	^ aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>addReturn [
+{ #category : #accessing }
+RBSequenceNode >> addReturn [
 	| node |
 	statements isEmpty
 		ifTrue: [ ^ nil ].
@@ -189,11 +149,8 @@ RBSequenceNode>>addReturn [
 	^ node
 ]
 
-{
-	#category : #'adding nodes',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>addSelfReturn [
+{ #category : #'adding nodes' }
+RBSequenceNode >> addSelfReturn [
 	| node |
 	self lastIsReturn
 		ifTrue: [ ^ self statements last ].
@@ -201,19 +158,13 @@ RBSequenceNode>>addSelfReturn [
 	^ self addNode: node
 ]
 
-{
-	#category : #'adding nodes',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>addTemporariesNamed: aCollection [
+{ #category : #'adding nodes' }
+RBSequenceNode >> addTemporariesNamed: aCollection [
 	^ aCollection collect: [ :each | self addTemporaryNamed: each ]
 ]
 
-{
-	#category : #'adding nodes',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>addTemporaryNamed: aString  [
+{ #category : #'adding nodes' }
+RBSequenceNode >> addTemporaryNamed: aString [ 
 	| variableNode |
 	variableNode := RBVariableNode named: aString.
 	variableNode parent: self.
@@ -221,39 +172,27 @@ RBSequenceNode>>addTemporaryNamed: aString  [
 	^ variableNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>allDefinedVariables [
+{ #category : #accessing }
+RBSequenceNode >> allDefinedVariables [
 	^(self temporaryNames asOrderedCollection)
 		addAll: super allDefinedVariables;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>allTemporaryVariables [
+{ #category : #accessing }
+RBSequenceNode >> allTemporaryVariables [
 	^(self temporaryNames asOrderedCollection)
 		addAll: super allTemporaryVariables;
 		yourself
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>asSequenceNode [
+{ #category : #converting }
+RBSequenceNode >> asSequenceNode [
 	^self
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>bestNodeFor: anInterval  [
+{ #category : #querying }
+RBSequenceNode >> bestNodeFor: anInterval [ 
 	| node |
 	node := super bestNodeFor: anInterval.
 	node == self 
@@ -263,49 +202,34 @@ RBSequenceNode>>bestNodeFor: anInterval  [
 	^node
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>children [
+{ #category : #accessing }
+RBSequenceNode >> children [
 	^(OrderedCollection new)
 		addAll: self temporaries;
 		addAll: self statements;
 		yourself
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>copyInContext: aDictionary  [
+{ #category : #matching }
+RBSequenceNode >> copyInContext: aDictionary [ 
 	^ self class new
 		temporaries: (self copyList: self temporaries inContext: aDictionary);
 		statements: (self copyList: self statements inContext: aDictionary);
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>defines: aName  [
+{ #category : #testing }
+RBSequenceNode >> defines: aName [ 
 	^temporaries anySatisfy: [:each | each name = aName]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>directlyUses: aNode  [
+{ #category : #testing }
+RBSequenceNode >> directlyUses: aNode [ 
 	^false
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>equalTo: anObject withMapping: aDictionary  [
+{ #category : #comparing }
+RBSequenceNode >> equalTo: anObject withMapping: aDictionary [ 
 	self class = anObject class ifFalse: [^false].
 	self statements size = anObject statements size ifFalse: [^false].
 	self statements
@@ -317,47 +241,32 @@ RBSequenceNode>>equalTo: anObject withMapping: aDictionary  [
 	^true
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>hash [
+{ #category : #comparing }
+RBSequenceNode >> hash [
 	^ (self hashForCollection: self temporaries) bitXor: (self hashForCollection: self statements)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>indexOfNode: aNode  [
+{ #category : #private }
+RBSequenceNode >> indexOfNode: aNode [ 
 	"Try to find the node by first looking for ==, and then for ="
 
 	^(1 to: statements size) detect: [:each | (statements at: each) == aNode]
 		ifNone: [statements indexOf: aNode]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>initialize [
+{ #category : #initialization }
+RBSequenceNode >> initialize [
 	super initialize.
 	periods := statements := temporaries := #()
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>isFaulty [
+{ #category : #testing }
+RBSequenceNode >> isFaulty [
 	^self statements anySatisfy: #isFaulty.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>isLast: aNode  [
+{ #category : #testing }
+RBSequenceNode >> isLast: aNode [ 
 	| last |
 	statements isEmpty ifTrue: [^false].
 	last := statements last.
@@ -367,53 +276,35 @@ RBSequenceNode>>isLast: aNode  [
 						and: [last arguments anySatisfy: [:each | each isLast: aNode]]]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>isSequence [
+{ #category : #testing }
+RBSequenceNode >> isSequence [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>lastIsReturn [
+{ #category : #testing }
+RBSequenceNode >> lastIsReturn [
 	^statements notEmpty and: [statements last lastIsReturn]
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>leftBar [
+{ #category : #accessing-token }
+RBSequenceNode >> leftBar [
 	^ leftBar
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>leftBar: anInteger [
+{ #category : #accessing-token }
+RBSequenceNode >> leftBar: anInteger [
 	leftBar := anInteger
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>leftBar: leftInteger temporaries: variableNodes rightBar: rightInteger  [
+{ #category : #initialize-release }
+RBSequenceNode >> leftBar: leftInteger temporaries: variableNodes rightBar: rightInteger [ 
 	leftBar := leftInteger.
 	self temporaries: variableNodes.
 	rightBar := rightInteger
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>match: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBSequenceNode >> match: aNode inContext: aDictionary [ 
 	self class = aNode class ifFalse: [^false].
 	^(self 
 		matchList: temporaries
@@ -425,11 +316,8 @@ RBSequenceNode>>match: aNode inContext: aDictionary  [
 					inContext: aDictionary]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>methodComments [
+{ #category : #accessing }
+RBSequenceNode >> methodComments [
 	| methodComments |
 	methodComments := OrderedCollection withAll: self comments.
 	temporaries do: [:each | methodComments addAll: each comments].
@@ -438,45 +326,30 @@ RBSequenceNode>>methodComments [
 	^methodComments asSortedCollection: [:a :b | a start < b start]
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>periods [
+{ #category : #accessing-token }
+RBSequenceNode >> periods [
 	^ periods
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>periods: anArray [
+{ #category : #accessing-token }
+RBSequenceNode >> periods: anArray [
 	periods := anArray
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>postCopy [
+{ #category : #copying }
+RBSequenceNode >> postCopy [
 	super postCopy.
 	self temporaries: (self temporaries collect: [ :each | each copy ]).
 	self statements: (self statements collect: [ :each | each copy ])
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>references: aVariableName  [
+{ #category : #testing }
+RBSequenceNode >> references: aVariableName [ 
 	^statements anySatisfy: [:each | each references: aVariableName]
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>removeDeadCode [
+{ #category : #replacing }
+RBSequenceNode >> removeDeadCode [
 	(self isUsed ifTrue: [statements size - 1] ifFalse: [statements size]) 
 		to: 1
 		by: -1
@@ -489,38 +362,26 @@ RBSequenceNode>>removeDeadCode [
 	super removeDeadCode
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>removeNode: aNode [
+{ #category : #replacing }
+RBSequenceNode >> removeNode: aNode [
 	self replaceNode: aNode withNodes: #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>removeTemporaryNamed: aName  [
+{ #category : #accessing }
+RBSequenceNode >> removeTemporaryNamed: aName [ 
 	temporaries := temporaries reject: [:each | each name = aName]
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>replaceNode: aNode withNode: anotherNode  [
+{ #category : #replacing }
+RBSequenceNode >> replaceNode: aNode withNode: anotherNode [ 
 	self statements: (statements 
 				collect: [:each | each == aNode ifTrue: [anotherNode] ifFalse: [each]]).
 	self temporaries: (temporaries 
 				collect: [:each | each == aNode ifTrue: [anotherNode] ifFalse: [each]])
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>replaceNode: aNode withNodes: aCollection  [
+{ #category : #replacing }
+RBSequenceNode >> replaceNode: aNode withNodes: aCollection [ 
 	| index newStatements |
 	self clearReplacements.
 	index := self indexOfNode: aNode.
@@ -533,107 +394,71 @@ RBSequenceNode>>replaceNode: aNode withNodes: aCollection  [
 	statements := newStatements
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>rightBar [
+{ #category : #accessing-token }
+RBSequenceNode >> rightBar [
 	^ rightBar
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>rightBar: anInteger [
+{ #category : #accessing-token }
+RBSequenceNode >> rightBar: anInteger [
 	rightBar := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>start [
+{ #category : #accessing }
+RBSequenceNode >> start [
 	^ leftBar 
 		ifNil: [statements isEmpty ifTrue: [1] ifFalse: [statements first start]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>statements [
+{ #category : #accessing }
+RBSequenceNode >> statements [
 	^statements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>statements: stmtCollection  [
+{ #category : #accessing }
+RBSequenceNode >> statements: stmtCollection [ 
 	statements := stmtCollection.
 	statements do: [:each | each parent: self]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>stop [
+{ #category : #accessing }
+RBSequenceNode >> stop [
 	^(periods isEmpty ifTrue: [0] ifFalse: [periods last]) 
 		max: (statements isEmpty ifTrue: [0] ifFalse: [statements last stop])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>temporaries [
+{ #category : #accessing }
+RBSequenceNode >> temporaries [
 	^temporaries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>temporaries: tempCollection  [
+{ #category : #accessing }
+RBSequenceNode >> temporaries: tempCollection [ 
 	temporaries := tempCollection.
 	temporaries do: [:each | each parent: self]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>temporaryNames [
+{ #category : #accessing }
+RBSequenceNode >> temporaryNames [
 	^temporaries collect: [:each | each name]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>temporaryVariables [
+{ #category : #accessing }
+RBSequenceNode >> temporaryVariables [
 	^(super temporaryVariables asOrderedCollection)
 		addAll: self temporaryNames;
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>uses: aNode  [
+{ #category : #testing }
+RBSequenceNode >> uses: aNode [ 
 	statements isEmpty ifTrue: [^false].
 	aNode == statements last ifFalse: [^false].
 	^self isUsed
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSequenceNode>>whichNodeIsContainedBy: anInterval  [
+{ #category : #querying }
+RBSequenceNode >> whichNodeIsContainedBy: anInterval [ 
 	| node |
 	node := super whichNodeIsContainedBy: anInterval.
 	node == self 

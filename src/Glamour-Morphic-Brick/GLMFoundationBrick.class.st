@@ -18,51 +18,35 @@ Class {
 		'vResizing',
 		'hResizing'
 	],
-	#category : #Glamour-Morphic-Brick-Morphic,
-	#timestamp : 'AliakseiSyrel 10/17/2014 10:32'
+	#category : #Glamour-Morphic-Brick-Morphic
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick class>>root: aBrick [
+{ #category : #'instance creation' }
+GLMFoundationBrick class >> root: aBrick [
 
 	^ self new brickRoot: aBrick
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>addAllBricks: aCollection [
+{ #category : #adding }
+GLMFoundationBrick >> addAllBricks: aCollection [
 
 	self brickRoot addAllBricks: aCollection
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>addBrickBack: aBrick [
+{ #category : #adding }
+GLMFoundationBrick >> addBrickBack: aBrick [
 
 	self brickRoot addBrickBack: aBrick.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>brickRoot [
+{ #category : #accessing }
+GLMFoundationBrick >> brickRoot [
 
 	^ brickRoot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>brickRoot: aBrick [
+{ #category : #accessing }
+GLMFoundationBrick >> brickRoot: aBrick [
 
 	self brickRoot ifNotNil: [
 		self removeMorph: self brickRoot.
@@ -73,49 +57,34 @@ GLMFoundationBrick>>brickRoot: aBrick [
 	brickRoot onThemerChanged
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>brickThemerChanged [
+{ #category : #private }
+GLMFoundationBrick >> brickThemerChanged [
 
 	self brickRoot themerChanged
 ]
 
-{
-	#category : #recategorized,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>changed [
+{ #category : #recategorized }
+GLMFoundationBrick >> changed [
 	"Report that the area occupied by this morph should be redrawn.
 	Fixed to include submorphs outside the outerBounds"
 	
 	self brickRoot changed
 ]
 
-{
-	#category : #layouting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>doLayout [
+{ #category : #layouting }
+GLMFoundationBrick >> doLayout [
 
 	self brickRoot doLayoutForce.
 ]
 
-{
-	#category : #'reflective operations',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>doesNotUnderstand: aMessage [
+{ #category : #'reflective operations' }
+GLMFoundationBrick >> doesNotUnderstand: aMessage [
 
 	^ self brickRoot perform: aMessage selector withArguments: aMessage arguments
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>extent: aPoint [
+{ #category : #geometry }
+GLMFoundationBrick >> extent: aPoint [
 	|left top right bottom|
 	
 	super extent: aPoint.
@@ -133,66 +102,45 @@ GLMFoundationBrick>>extent: aPoint [
 	self brickRoot doLayoutForce
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>fullBounds [
+{ #category : #accessing }
+GLMFoundationBrick >> fullBounds [
 	super fullBounds.
 	^ self brickRoot globalClippingBounds
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>fullDrawOn: aCanvas [
+{ #category : #drawing }
+GLMFoundationBrick >> fullDrawOn: aCanvas [
 	"preventing from drawing outside of me"
 	super fullDrawOn: (aCanvas copyClipRect: self fullBounds).
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>globalBounds [
+{ #category : #geometry }
+GLMFoundationBrick >> globalBounds [
 
 	^ self bounds
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>globalBoundsTranslateFactor [
+{ #category : #geometry }
+GLMFoundationBrick >> globalBoundsTranslateFactor [
 
 	^ self globalBounds origin
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>hShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMFoundationBrick >> hShrinkWrap [
 
 	hResizing:= #shrinkWrap
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>hSpaceFill [
+{ #category : #brick-layout-properties }
+GLMFoundationBrick >> hSpaceFill [
 
 	hResizing:= #spaceFill.
 	self hResizing: #spaceFill
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>initialize [
+{ #category : #initialization }
+GLMFoundationBrick >> initialize [
 	super initialize.
 
 	vResizing := #spaceFill.
@@ -203,111 +151,75 @@ GLMFoundationBrick>>initialize [
 		brickRoot: GLMBrick new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>isFocused [
+{ #category : #testing }
+GLMFoundationBrick >> isFocused [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>isFoundationBrick [
+{ #category : #testing }
+GLMFoundationBrick >> isFoundationBrick [
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>isHFilling [
+{ #category : #testing }
+GLMFoundationBrick >> isHFilling [
 
 	^ hResizing = #spaceFill
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>isHShrinking [
+{ #category : #testing }
+GLMFoundationBrick >> isHShrinking [
 
 	^ hResizing = #shrinkWrap
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>isVFilling [
+{ #category : #testing }
+GLMFoundationBrick >> isVFilling [
 
 	^ vResizing = #spaceFill
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>isVShrinking [
+{ #category : #testing }
+GLMFoundationBrick >> isVShrinking [
 
 	^ vResizing = #shrinkWrap
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>outOfWorld: aWorld [
+{ #category : #initialize }
+GLMFoundationBrick >> outOfWorld: aWorld [
 	super outOfWorld: aWorld.
 	
 	self brickRoot onRemovedFrom: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>privateExtent: aPoint [
+{ #category : #private }
+GLMFoundationBrick >> privateExtent: aPoint [
 
 	super extent: aPoint.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>privateThemer [
+{ #category : #private }
+GLMFoundationBrick >> privateThemer [
 
 	^ self valueOfProperty: #brickThemer ifAbsentPut: [ nil ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>removeAllBricks [
+{ #category : #adding }
+GLMFoundationBrick >> removeAllBricks [
 
 	self brickRoot removeAllBricks
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>removeBrick: aBrick [
+{ #category : #adding }
+GLMFoundationBrick >> removeBrick: aBrick [
 
 	self brickRoot removeBrick: aBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>themer [
+{ #category : #accessing }
+GLMFoundationBrick >> themer [
 
 	^ self privateThemer
 		ifNotNil: [ self privateThemer ]
@@ -316,30 +228,21 @@ GLMFoundationBrick>>themer [
 			ifFalse: [ self theme brickThemer ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>themer: aThemer [
+{ #category : #accessing }
+GLMFoundationBrick >> themer: aThemer [
 
 	self setProperty: #brickThemer toValue: aThemer.
 	self brickRoot themerChanged
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>vShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMFoundationBrick >> vShrinkWrap [
 
 	vResizing:= #shrinkWrap
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFoundationBrick>>vSpaceFill [
+{ #category : #brick-layout-properties }
+GLMFoundationBrick >> vSpaceFill [
 
 	vResizing:= #spaceFill
 ]

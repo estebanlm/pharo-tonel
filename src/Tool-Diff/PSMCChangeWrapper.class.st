@@ -1,28 +1,18 @@
-"
-
-"
 Class {
 	#name : #PSMCChangeWrapper,
 	#superclass : #ListItemWrapper,
-	#category : #Tool-Diff,
-	#timestamp : ''
+	#category : #Tool-Diff
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangeWrapper>>actualClass [
+{ #category : #accessing }
+PSMCChangeWrapper >> actualClass [
 	"Answer the class represented in the receiver."
 
 	^(self operation ifNil: [^nil]) targetClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangeWrapper>>icon [
+{ #category : #accessing }
+PSMCChangeWrapper >> icon [
 	"Answer a form with an icon to represent the receiver"
 
 	| o |
@@ -36,41 +26,29 @@ PSMCChangeWrapper>>icon [
 	^ self iconNamed: #changeUpdateIcon
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangeWrapper>>isConflict [
+{ #category : #testing }
+PSMCChangeWrapper >> isConflict [
 	"Answer whether the receiver is a conflict item."
 
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangeWrapper>>model: anObject [
+{ #category : #accessing }
+PSMCChangeWrapper >> model: anObject [
 	"Set the model."
 
 	model := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangeWrapper>>operation [
+{ #category : #accessing }
+PSMCChangeWrapper >> operation [
 	"Answer the underlying operation."
 
 	self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-PSMCChangeWrapper>>preferredColor [
+{ #category : #accessing }
+PSMCChangeWrapper >> preferredColor [
 
 	| op |
 	op := self operation.

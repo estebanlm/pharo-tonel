@@ -7,58 +7,39 @@ Class {
 	#instVars : [
 		'model'
 	],
-	#category : #Spec-MorphicAdapters-Support,
-	#timestamp : 'BenjaminVanRyseghem 4/24/2014 16:44'
+	#category : #Spec-MorphicAdapters-Support
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTransferMorph>>initialize [
+{ #category : #initialization }
+SpecTransferMorph >> initialize [
 
 	super initialize.
 
 	dragHand := ActiveHand
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTransferMorph>>model [
+{ #category : #accessing }
+SpecTransferMorph >> model [
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTransferMorph>>model: anObject [
+{ #category : #accessing }
+SpecTransferMorph >> model: anObject [
 	model := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTransferMorph>>passenger: aBlock [
+{ #category : #accessing }
+SpecTransferMorph >> passenger: aBlock [
 	passenger := aBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTransferMorph>>shouldCopy [
+{ #category : #accessing }
+SpecTransferMorph >> shouldCopy [
 
 	^ self dragHand shiftPressed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTransferMorph>>source: aBlock [
+{ #category : #accessing }
+SpecTransferMorph >> source: aBlock [
 	source := aBlock value
 ]

@@ -7,22 +7,15 @@ Class {
 	#instVars : [
 		'fastTable'
 	],
-	#category : #Morphic-Widgets-FastTable-Announcement,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-FastTable-Announcement
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTAnnouncement>>fastTable [
+{ #category : #accessing }
+FTAnnouncement >> fastTable [
 	^ fastTable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTAnnouncement>>fastTable: aFastTable [
+{ #category : #accessing }
+FTAnnouncement >> fastTable: aFastTable [
 	fastTable := aFastTable
 ]

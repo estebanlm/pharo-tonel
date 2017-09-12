@@ -5,55 +5,36 @@ Represented as double in C side.
 Class {
 	#name : #FFIFloat64,
 	#superclass : #FFIFloatType,
-	#category : #UnifiedFFI-Types,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Types
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFloat64 class>>externalType  [
+{ #category : #accessing }
+FFIFloat64 class >> externalType [ 
 	^ ExternalType double
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFloat64 class>>externalTypeAlignment [
+{ #category : #accessing }
+FFIFloat64 class >> externalTypeAlignment [
 	^ OSPlatform current ffiFloat64Alignment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFloat64 class>>externalTypeSize [
+{ #category : #accessing }
+FFIFloat64 class >> externalTypeSize [
 	^ 8
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFloat64>>basicHandle: aHandle at: index [
+{ #category : #private }
+FFIFloat64 >> basicHandle: aHandle at: index [
 	^ aHandle doubleAt: index
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFloat64>>basicHandle: aHandle at: index put: value [
+{ #category : #private }
+FFIFloat64 >> basicHandle: aHandle at: index put: value [
 	^ aHandle doubleAt: index put: value
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFloat64>>emitPointerArityRoll: aBuilder context: aContext [
+{ #category : #'emitting code' }
+FFIFloat64 >> emitPointerArityRoll: aBuilder context: aContext [
 	self loader 
 		emitPointerArityPack: aBuilder 
 		context: aContext 

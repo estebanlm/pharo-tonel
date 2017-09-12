@@ -1,12 +1,7 @@
-Extension {
-	#name : #CompiledMethod
-}
+Extension { #name : #CompiledMethod }
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-CompiledMethod>>asActiveRingDefinition [
+{ #category : #'*Ring-Core-Kernel' }
+CompiledMethod >> asActiveRingDefinition [
 	"Retrieves an active RGMethodDefinition object based on the data of the receiver.
 	Source, protocol and stamp are retrieved from the compiled method"
 	
@@ -18,11 +13,8 @@ CompiledMethod>>asActiveRingDefinition [
 
 ]
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-CompiledMethod>>asFullRingDefinition [
+{ #category : #'*Ring-Core-Kernel' }
+CompiledMethod >> asFullRingDefinition [
 
 	"Retrieves an active RGMethodDefinition which knows its parent <class>.
 	Note that the full conversion does not happen at the level of the class. If you need that request asFullRingDefinition to the class"
@@ -34,11 +26,8 @@ CompiledMethod>>asFullRingDefinition [
 	^ rgMethod
 ]
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-CompiledMethod>>asHistoricalRingDefinition [
+{ #category : #'*Ring-Core-Kernel' }
+CompiledMethod >> asHistoricalRingDefinition [
 
 	"Retrieves a historical RGMethodDefinition object based on the data of the receiver.
 	Source, protocol and stamp are retrieved from the source file method"
@@ -59,11 +48,8 @@ CompiledMethod>>asHistoricalRingDefinition [
 	^ ring
 ]
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-CompiledMethod>>asPassiveRingDefinition [
+{ #category : #'*Ring-Core-Kernel' }
+CompiledMethod >> asPassiveRingDefinition [
 	"Retrieves a passive RGMethodDefinition object based on the data of the receiver.
 	Source, protocol and stamp are retrieved from value assigned in creation"
 	
@@ -77,22 +63,16 @@ CompiledMethod>>asPassiveRingDefinition [
 			asPassive.
 ]
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-CompiledMethod>>asRingDefinition [
+{ #category : #'*Ring-Core-Kernel' }
+CompiledMethod >> asRingDefinition [
 	"Retrieves an active RGMethodDefinition object based on the receiver.
 	Note that its class is not converted."
 	
 	^ self asActiveRingDefinition
 ]
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-CompiledMethod>>methodReference [
+{ #category : #'*Ring-Core-Kernel' }
+CompiledMethod >> methodReference [
 
 	| class selector |
 	class := self methodClass ifNil: [^nil].
@@ -101,11 +81,8 @@ CompiledMethod>>methodReference [
 	
 ]
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-CompiledMethod>>realClass [
+{ #category : #'*Ring-Core-Kernel' }
+CompiledMethod >> realClass [
 	"answer the class that I am installed in"
 	
 	^ self methodClass

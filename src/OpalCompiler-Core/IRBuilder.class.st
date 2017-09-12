@@ -31,31 +31,21 @@ Class {
 		'sourceMapNodes',
 		'sourceMapByteIndex'
 	],
-	#category : #OpalCompiler-Core-IR-Manipulation,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-IR-Manipulation
 }
 
-{
-	#category : #'builder api',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder class>>buildIR: aBlock [
+{ #category : #'builder api' }
+IRBuilder class >> buildIR: aBlock [
 	^(aBlock value: self new) ir.
 ]
 
-{
-	#category : #'builder api',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder class>>buildMethod: aBlock [
+{ #category : #'builder api' }
+IRBuilder class >> buildMethod: aBlock [
 	^(self buildIR: aBlock) compiledMethod
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>add: instr [
+{ #category : #private }
+IRBuilder >> add: instr [
 	
 	"Associate instr with current parse node or byte range"
 	instr sourceNode: self sourceNode.
@@ -63,11 +53,8 @@ IRBuilder>>add: instr [
 	^ currentSequence add: instr
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>addBlockReturnTopIfRequired [
+{ #category : #instructions }
+IRBuilder >> addBlockReturnTopIfRequired [
 	"If the current sequence is empty this means that there was a returntop before 
 	then since there is no more stmts we do not need a blockreturntop"
 	
@@ -84,48 +71,33 @@ IRBuilder>>addBlockReturnTopIfRequired [
 							ifFalse: [self blockReturnTop ]
 ]
 
-{
-	#category : #decompiling,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>addJumpBackTarget: label to: sequence [
+{ #category : #decompiling }
+IRBuilder >> addJumpBackTarget: label to: sequence [
 
 	(jumpBackTargetStacks at: label ifAbsentPut: [OrderedCollection new])
 		addLast: sequence
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>addLiteral: aLiteral [
+{ #category : #initialize }
+IRBuilder >> addLiteral: aLiteral [
 	"Add this literal at the end of the literal array if there is space left"
 	aLiteral ifNil: [ ^ self ].
 	ir addAdditionalLiteral: aLiteral.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>addPragma: aPragma [
+{ #category : #initialize }
+IRBuilder >> addPragma: aPragma [
 	^ir addPragma: aPragma
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>addTemp: tempKey [
+{ #category : #initialize }
+IRBuilder >> addTemp: tempKey [
 	
 	self addTemps: {tempKey}
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>addTemps: newKeys [
+{ #category : #initialize }
+IRBuilder >> addTemps: newKeys [
 	| i offset |
 	offset := self currentScope tempMap size.
 	i := 1.
@@ -135,20 +107,14 @@ IRBuilder>>addTemps: newKeys [
 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>additionalLiterals:  literals [
+{ #category : #initialize }
+IRBuilder >> additionalLiterals:  literals [
 	"Add this literal at the end of the literal array if there is space left"
 	ir addAdditionalLiterals: literals.
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>blockReturnTop [
+{ #category : #instructions }
+IRBuilder >> blockReturnTop [
 	| retInst |
 	
 	retInst := IRInstruction blockReturnTop.
@@ -158,27 +124,18 @@ IRBuilder>>blockReturnTop [
 	self popScope.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>compilationContext [
+{ #category : #accessing }
+IRBuilder >> compilationContext [
 	^ir compilationContext 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>compilationContext: aCompilationContext [
+{ #category : #initialize }
+IRBuilder >> compilationContext: aCompilationContext [
 	ir compilationContext: aCompilationContext
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>createTempVectorNamed: name withVars: anArray [
+{ #category : #initialize }
+IRBuilder >> createTempVectorNamed: name withVars: anArray [
 	
 	"self addVectorTemps: anArray."
 	self addTemp: name.
@@ -186,19 +143,13 @@ IRBuilder>>createTempVectorNamed: name withVars: anArray [
 
 ]
 
-{
-	#category : #scopes,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>currentScope  [
+{ #category : #scopes }
+IRBuilder >> currentScope [ 
 	^currentScope top
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>initialize [
+{ #category : #initialization }
+IRBuilder >> initialize [
 	ir := IRMethod new.
 	jumpAheadStacks := IdentityDictionary new.
 	jumpBackTargetStacks := IdentityDictionary new.
@@ -217,29 +168,20 @@ IRBuilder>>initialize [
 
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>ir [
+{ #category : #results }
+IRBuilder >> ir [
 
 	^ ir optimize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>irPrimitive: primNode [
+{ #category : #accessing }
+IRBuilder >> irPrimitive: primNode [
 
 	ir irPrimitive: primNode
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>jumpAheadTarget: labelSymbol [
+{ #category : #instructions }
+IRBuilder >> jumpAheadTarget: labelSymbol [
 	"Pop latest jumpAheadTo: with this labelSymbol and have it point to this new instruction sequence"
 
 	| jumpInstr |
@@ -250,11 +192,8 @@ IRBuilder>>jumpAheadTarget: labelSymbol [
 
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>jumpAheadTo: labelSymbol [
+{ #category : #instructions }
+IRBuilder >> jumpAheadTo: labelSymbol [
 	"Jump to the sequence that will be created when jumpAheadTarget: labelSymbol is sent to self.  This is and its corresponding target is only good for one use.  Other jumpAheadTo: with the same label will be put on a stack and superceed existing ones until its jumpAheadTarget: is called."
 
 	"jumpAheadTarget: label will pop this and replace destination with its basic block"
@@ -265,11 +204,8 @@ IRBuilder>>jumpAheadTo: labelSymbol [
 
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>jumpAheadTo: labelSymbol if: boolean [
+{ #category : #instructions }
+IRBuilder >> jumpAheadTo: labelSymbol if: boolean [
 	"Conditional jump to the sequence that will be created when jumpAheadTarget: labelSymbol is sent to self.  This and its corresponding target is only good for one use.  Other jumpAheadTo:... with the same label will be put on a stack and superceed existing ones until its jumpAheadTarget: is called."
 
 	| instr |
@@ -281,11 +217,8 @@ IRBuilder>>jumpAheadTo: labelSymbol if: boolean [
 
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>jumpBackTarget: labelSymbol [
+{ #category : #instructions }
+IRBuilder >> jumpBackTarget: labelSymbol [
 	"Remember this basic block for a future jumpBackTo: labelSymbol.  Stack up remembered targets with same name and remove them from stack for each jumpBackTo: called with same name."
 
 	self startNewSequence.
@@ -294,11 +227,8 @@ IRBuilder>>jumpBackTarget: labelSymbol [
 
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>jumpBackTo: labelSymbol [
+{ #category : #instructions }
+IRBuilder >> jumpBackTo: labelSymbol [
 	"Pop last remembered position with this label and write an unconditional jump to it"
 
 	| sequence jump |
@@ -310,74 +240,50 @@ IRBuilder>>jumpBackTo: labelSymbol [
 	
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>mapToByteIndex: index [
+{ #category : #mapping }
+IRBuilder >> mapToByteIndex: index [
 	"decompiling"
 
 	sourceMapByteIndex := index
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>mapToNode: object [
+{ #category : #mapping }
+IRBuilder >> mapToNode: object [
 	"new instructions will be associated with object"
 
 	sourceMapNodes addLast: object
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>numArgs: anInteger [
+{ #category : #initialize }
+IRBuilder >> numArgs: anInteger [
 	ir numArgs: anInteger.
 	ir sourceNode: self sourceNode.
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>popMap [
+{ #category : #mapping }
+IRBuilder >> popMap [
 
 	sourceMapNodes removeLast
 ]
 
-{
-	#category : #scopes,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>popScope [
+{ #category : #scopes }
+IRBuilder >> popScope [
 	currentScope pop.
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>popTop [
+{ #category : #instructions }
+IRBuilder >> popTop [
 
 	self add: IRInstruction popTop
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>properties: aDict [
+{ #category : #accessing }
+IRBuilder >> properties: aDict [
 	ir properties: aDict
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>pushClosureCopyCopiedValues: copiedValuesNames args: args jumpTo: aJumpLabel [
+{ #category : #instructions }
+IRBuilder >> pushClosureCopyCopiedValues: copiedValuesNames args: args jumpTo: aJumpLabel [
 	
 	|  irInstruction |
 	
@@ -394,167 +300,113 @@ IRBuilder>>pushClosureCopyCopiedValues: copiedValuesNames args: args jumpTo: aJu
 	^irInstruction
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>pushConsArray: size [
+{ #category : #instructions }
+IRBuilder >> pushConsArray: size [
 
 	self add: (IRInstruction pushConsArray: size)
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>pushDup [
+{ #category : #instructions }
+IRBuilder >> pushDup [
 
 	self add: IRInstruction pushDup
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>pushFullClosureCompiledBlock: compiledBlock copiedValues: copiedValues [
+{ #category : #instructions }
+IRBuilder >> pushFullClosureCompiledBlock: compiledBlock copiedValues: copiedValues [
 
 	self add: (IRInstruction pushFullClosureCompiledBlock: compiledBlock copiedValues: copiedValues)
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>pushInstVar: index [
+{ #category : #instructions }
+IRBuilder >> pushInstVar: index [
 
 	self add: (IRInstruction pushInstVar: index).
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>pushLiteral: object [
+{ #category : #instructions }
+IRBuilder >> pushLiteral: object [
 
 	self add: (IRInstruction pushLiteral: object)
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>pushLiteralVariable: object [
+{ #category : #instructions }
+IRBuilder >> pushLiteralVariable: object [
 
 	self add: (IRInstruction pushLiteralVariable: object)
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>pushNewArray: size [
+{ #category : #instructions }
+IRBuilder >> pushNewArray: size [
 
 	self add: (IRInstruction pushNewArray: size)
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>pushReceiver [
+{ #category : #instructions }
+IRBuilder >> pushReceiver [
 
 	self add: (IRInstruction pushReceiver)
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>pushRemoteTemp: name inVector: nameOfVector [
+{ #category : #instructions }
+IRBuilder >> pushRemoteTemp: name inVector: nameOfVector [
 
 	^self add: (IRInstruction pushRemoteTemp: name inVectorAt: nameOfVector)
 ]
 
-{
-	#category : #scopes,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>pushScope: anIRBlockOrMethod [
+{ #category : #scopes }
+IRBuilder >> pushScope: anIRBlockOrMethod [
 
 	currentScope push: anIRBlockOrMethod
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>pushTemp: aSelector [
+{ #category : #instructions }
+IRBuilder >> pushTemp: aSelector [
 
 	^ self add: (IRInstruction pushTemp: aSelector)
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>pushThisContext [
+{ #category : #instructions }
+IRBuilder >> pushThisContext [
 
 	self add: (IRInstruction pushThisContext)
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>returnTop [
+{ #category : #instructions }
+IRBuilder >> returnTop [
 
 	self add: IRInstruction returnTop.
 	self startNewSequence.
 
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>send: selector [
+{ #category : #instructions }
+IRBuilder >> send: selector [
 
 	^self add: (IRInstruction send: selector)
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>send: selector toSuperOf: behavior [
+{ #category : #instructions }
+IRBuilder >> send: selector toSuperOf: behavior [
 
 	^self add: (IRInstruction send: selector toSuperOf: behavior)
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>sourceByteIndex [
+{ #category : #mapping }
+IRBuilder >> sourceByteIndex [
 
 	^ sourceMapByteIndex
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>sourceNode [
+{ #category : #mapping }
+IRBuilder >> sourceNode [
 	^ sourceMapNodes
 		ifEmpty: [nil]
 		ifNotEmpty: [sourceMapNodes last]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>startNewSequence [
+{ #category : #private }
+IRBuilder >> startNewSequence [
 	"End current instruction sequence and start a new sequence to add instructions to.  If ending block just falls through to new block then add an explicit jump to it so they stay linked"
 
 	| newSequence | 
@@ -569,47 +421,32 @@ IRBuilder>>startNewSequence [
 
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>storeInstVar: name [
+{ #category : #instructions }
+IRBuilder >> storeInstVar: name [
 
 	^self add: (IRInstruction storeInstVar: name).
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>storeIntoLiteralVariable: name [
+{ #category : #instructions }
+IRBuilder >> storeIntoLiteralVariable: name [
 	
 	^self add: (IRInstruction storeIntoLiteralVariable: name)
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>storeRemoteTemp: name inVector: nameOfVector [
+{ #category : #instructions }
+IRBuilder >> storeRemoteTemp: name inVector: nameOfVector [
 
 	^self add: (IRInstruction storeRemoteTemp: name inVectorAt: nameOfVector)
 ]
 
-{
-	#category : #instructions,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>storeTemp: aSymbol [
+{ #category : #instructions }
+IRBuilder >> storeTemp: aSymbol [
 
 	^self add: (IRInstruction storeTemp: aSymbol)
 ]
 
-{
-	#category : #decompiling,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRBuilder>>testJumpAheadTarget: label [
+{ #category : #decompiling }
+IRBuilder >> testJumpAheadTarget: label [
 
 	jumpAheadStacks at: label ifPresent: [:stack |
 		[stack isEmpty] whileFalse: [self jumpAheadTarget: label]

@@ -1,23 +1,15 @@
-Extension {
-	#name : #MCWorkingCopy
-}
+Extension { #name : #MCWorkingCopy }
 
-{
-	#category : #'*Komitter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCWorkingCopy>>baseSnapshot [
+{ #category : #'*Komitter' }
+MCWorkingCopy >> baseSnapshot [
 
 	^ self ancestors
 		ifEmpty: [ nil ]
 		ifNotEmpty: [ :ancestors | self findSnapshotWithVersionInfo: ancestors first ]
 ]
 
-{
-	#category : #'*Komitter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCWorkingCopy>>collectSliceDependenciesWithMessage: messageString in: aRepository [
+{ #category : #'*Komitter' }
+MCWorkingCopy >> collectSliceDependenciesWithMessage: messageString [ in: aRepository
 	
 	^ self requiredPackages collect: [:aPackage | 
 			MCVersionDependency
@@ -26,20 +18,14 @@ MCWorkingCopy>>collectSliceDependenciesWithMessage: messageString in: aRepositor
 	
 ]
 
-{
-	#category : #'*Komitter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCWorkingCopy>>remotes [
+{ #category : #'*Komitter' }
+MCWorkingCopy >> remotes [
 
 	^ self repositoryGroup remotes
 ]
 
-{
-	#category : #'*Komitter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCWorkingCopy>>silentUniqueVersionNameIn: aRepository [
+{ #category : #'*Komitter' }
+MCWorkingCopy >> silentUniqueVersionNameIn: aRepository [
 	|versionName|
 
 	counter := nil.
@@ -51,11 +37,8 @@ MCWorkingCopy>>silentUniqueVersionNameIn: aRepository [
 	^ versionName
 ]
 
-{
-	#category : #'*Komitter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCWorkingCopy>>silentlyNewSliceVersionWithName: nameString message: messageString in: aRepository [
+{ #category : #'*Komitter' }
+MCWorkingCopy >> silentlyNewSliceVersionWithName: nameString message: messageString [ in: aRepository
 	| info deps |
 	
 	info := ancestry infoWithName: nameString message: messageString.
@@ -76,11 +59,8 @@ MCWorkingCopy>>silentlyNewSliceVersionWithName: nameString message: messageStrin
 		dependencies: deps
 ]
 
-{
-	#category : #'*Komitter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCWorkingCopy>>silentlyNewVersionWithName: nameString message: messageString in: aRepository [
+{ #category : #'*Komitter' }
+MCWorkingCopy >> silentlyNewVersionWithName: nameString message: messageString [ in: aRepository
 	
 	| info deps |
 	info := ancestry infoWithName: nameString message: messageString.

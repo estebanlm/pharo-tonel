@@ -4,59 +4,40 @@ This smell arises when a statement such as x := x is found. This statement has n
 Class {
 	#name : #RBAssignmentWithoutEffectRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:17'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAssignmentWithoutEffectRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBAssignmentWithoutEffectRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'AssignmentWithoutEffectRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAssignmentWithoutEffectRule>>group [
+{ #category : #accessing }
+RBAssignmentWithoutEffectRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAssignmentWithoutEffectRule>>initialize [
+{ #category : #initialization }
+RBAssignmentWithoutEffectRule >> initialize [
 	super initialize.
 	self matcher 
 		matches: '`var := `var'
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAssignmentWithoutEffectRule>>name [
+{ #category : #accessing }
+RBAssignmentWithoutEffectRule >> name [
 	^ 'Assignment has no effect'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAssignmentWithoutEffectRule>>rationale [
+{ #category : #accessing }
+RBAssignmentWithoutEffectRule >> rationale [
 	^ 'A statement such as x := x has no effect.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAssignmentWithoutEffectRule>>severity [
+{ #category : #accessing }
+RBAssignmentWithoutEffectRule >> severity [
 	^ #information
 ]

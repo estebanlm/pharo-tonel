@@ -1,19 +1,11 @@
-Extension {
-	#name : #AbstractTool
-}
+Extension { #name : #AbstractTool }
 
-{
-	#category : #'*necompletion-extensions',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AbstractTool>>guessTypeForName: aString [
+{ #category : #'*necompletion-extensions' }
+AbstractTool >> guessTypeForName: aString [
 	^nil
 ]
 
-{
-	#category : #'*necompletion-extensions',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AbstractTool>>isCodeCompletionAllowed  [
+{ #category : #'*necompletion-extensions' }
+AbstractTool >> isCodeCompletionAllowed [ 
 	^true
 ]

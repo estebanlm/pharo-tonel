@@ -8,69 +8,46 @@ Class {
 		'athensSurface',
 		'session'
 	],
-	#category : #OSWindow-Core,
-	#timestamp : 'Matthieu 5/28/2015 11:59'
+	#category : #OSWindow-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAthensRenderer>>athensSurface [
+{ #category : #accessing }
+OSWindowAthensRenderer >> athensSurface [
 	^ athensSurface
 ]
 
-{
-	#category : #'session management',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAthensRenderer>>checkSession [
+{ #category : #'session management' }
+OSWindowAthensRenderer >> checkSession [
 	session == Smalltalk session 
 		ifFalse: [ self error: 'Cannot use this renderer (created in a previous session or in a closed window)' ].
 ]
 
-{
-	#category : #deleting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAthensRenderer>>destroy [
+{ #category : #deleting }
+OSWindowAthensRenderer >> destroy [
 	
 	super destroy.
 	athensSurface := nil.
 	session := nil.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAthensRenderer>>drawDuring: aBlock [
+{ #category : #drawing }
+OSWindowAthensRenderer >> drawDuring: aBlock [
 	self prepareForDrawing.
 	self athensSurface drawDuring: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAthensRenderer>>initialize [
+{ #category : #initialization }
+OSWindowAthensRenderer >> initialize [
 	super initialize.
 	session := Smalltalk session.
 	athensSurface := nil.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAthensRenderer>>prepareForDrawing [
-
+{ #category : #drawing }
+OSWindowAthensRenderer >> prepareForDrawing [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAthensRenderer>>surface [
+{ #category : #accessing }
+OSWindowAthensRenderer >> surface [
 	^ self athensSurface
 ]

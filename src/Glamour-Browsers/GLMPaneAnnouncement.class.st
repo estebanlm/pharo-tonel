@@ -14,15 +14,11 @@ Class {
 		'browser',
 		'position'
 	],
-	#category : #Glamour-Browsers-Announcements,
-	#timestamp : 'TudorGirba 2/4/2011 21:24'
+	#category : #Glamour-Browsers-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPaneAnnouncement class>>pane: aPane atPosition: anInteger inBrowser: aBrowser  [
+{ #category : #'instance creation' }
+GLMPaneAnnouncement class >> pane: aPane atPosition: anInteger inBrowser: aBrowser [ 
 	 
 	^(self new) 
 		pane: aPane; 
@@ -31,56 +27,38 @@ GLMPaneAnnouncement class>>pane: aPane atPosition: anInteger inBrowser: aBrowser
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPaneAnnouncement>>browser  [
+{ #category : #accessing }
+GLMPaneAnnouncement >> browser [ 
 	 
 	^browser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPaneAnnouncement>>browser: anObject  [
+{ #category : #accessing }
+GLMPaneAnnouncement >> browser: anObject [ 
 	 
 	browser := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPaneAnnouncement>>pane  [
+{ #category : #accessing }
+GLMPaneAnnouncement >> pane [ 
 	 
 	^pane
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPaneAnnouncement>>pane: anObject  [
+{ #category : #accessing }
+GLMPaneAnnouncement >> pane: anObject [ 
 	 
 	pane := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPaneAnnouncement>>position  [
+{ #category : #accessing }
+GLMPaneAnnouncement >> position [ 
 	 
 	^position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPaneAnnouncement>>position: anObject  [
+{ #category : #accessing }
+GLMPaneAnnouncement >> position: anObject [ 
 	 
 	position := anObject
 ]

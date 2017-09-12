@@ -7,32 +7,22 @@ Class {
 	#instVars : [
 		'project'
 	],
-	#category : #Versionner-Core-Announcements,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Announcements
 }
 
-{
-	#category : #creation,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProjectModelChanged class>>project: anObject [
+{ #category : #creation }
+MTProjectModelChanged class >> project: anObject [
 	^ self new 
 		project: anObject;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProjectModelChanged>>project [
+{ #category : #accessing }
+MTProjectModelChanged >> project [
 	^ project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProjectModelChanged>>project: anObject [
+{ #category : #accessing }
+MTProjectModelChanged >> project: anObject [
 	project := anObject
 ]

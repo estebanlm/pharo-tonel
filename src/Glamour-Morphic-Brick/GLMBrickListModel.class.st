@@ -24,35 +24,25 @@ Class {
 		'countLogic',
 		'morphLogic'
 	],
-	#category : #Glamour-Morphic-Brick-Model,
-	#timestamp : 'AliakseiSyrel 12/6/2014 20:15'
+	#category : #Glamour-Morphic-Brick-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickListModel class>>on: anObject [
+{ #category : #'instance creation' }
+GLMBrickListModel class >> on: anObject [
 
 	^ self new on: anObject
 ]
 
-{
-	#category : #'adaptor api',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickListModel>>count [
+{ #category : #'adaptor api' }
+GLMBrickListModel >> count [
 
 	^ countLogic
 		ifNil: [ origin size ]
 		ifNotNil: [ countLogic cull: origin ] 
 ]
 
-{
-	#category : #'adaptor api',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickListModel>>morphAt: anInteger convert: aMorph [
+{ #category : #'adaptor api' }
+GLMBrickListModel >> morphAt: anInteger convert: aMorph [
 
 	^ morphLogic
 		ifNil: [ (origin at: anInteger) asMorph ]
@@ -62,38 +52,26 @@ GLMBrickListModel>>morphAt: anInteger convert: aMorph [
 				ifFalse: [ morphLogic cull: anInteger cull: aMorph ] ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickListModel>>morphAtLogic: aBlockWithTwoParameters [
+{ #category : #'instance creation' }
+GLMBrickListModel >> morphAtLogic: aBlockWithTwoParameters [
 
 	morphLogic := aBlockWithTwoParameters
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickListModel>>on: anObject [
+{ #category : #'instance creation' }
+GLMBrickListModel >> on: anObject [
 
 	origin := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickListModel>>origin [
+{ #category : #accessing }
+GLMBrickListModel >> origin [
 
 	^ origin
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickListModel>>sizeLogic: aBlockWithNoParameters [
+{ #category : #'instance creation' }
+GLMBrickListModel >> sizeLogic: aBlockWithNoParameters [
 
 	countLogic := aBlockWithNoParameters
 ]

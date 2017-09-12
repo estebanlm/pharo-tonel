@@ -8,26 +8,19 @@ Class {
 		'package',
 		'workingCopy'
 	],
-	#category : #Monticello-Announcements,
-	#timestamp : '<historical>'
+	#category : #Monticello-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopyCreated class>>workingCopy: workingCopy [
+{ #category : #'instance creation' }
+MCWorkingCopyCreated class >> workingCopy: workingCopy [
 
 	^ self new
 		workingCopy: workingCopy;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopyCreated class>>workingCopy: aWC package: package [
+{ #category : #'instance creation' }
+MCWorkingCopyCreated class >> workingCopy: aWC package: package [
 
 	^ self new
 		workingCopy: aWC;
@@ -35,34 +28,22 @@ MCWorkingCopyCreated class>>workingCopy: aWC package: package [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopyCreated>>package [
+{ #category : #accessing }
+MCWorkingCopyCreated >> package [
 	^ package
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopyCreated>>package: anObject [
+{ #category : #accessing }
+MCWorkingCopyCreated >> package: anObject [
 	package := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopyCreated>>workingCopy [
+{ #category : #accessing }
+MCWorkingCopyCreated >> workingCopy [
 	^ workingCopy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWorkingCopyCreated>>workingCopy: anObject [
+{ #category : #accessing }
+MCWorkingCopyCreated >> workingCopy: anObject [
 	workingCopy := anObject
 ]

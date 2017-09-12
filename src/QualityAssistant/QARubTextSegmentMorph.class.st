@@ -8,15 +8,11 @@ Class {
 		'entity',
 		'critique'
 	],
-	#category : #QualityAssistant,
-	#timestamp : 'YuriyTymchuk 6/21/2016 20:54'
+	#category : #QualityAssistant
 }
 
-{
-	#category : #actions,
-	#timestamp : 'AutoDeprecationRefactoring 9/4/2017 11:54'
-}
-QARubTextSegmentMorph>>addItemToMenu: aMenu [
+{ #category : #actions }
+QARubTextSegmentMorph >> addItemToMenu: aMenu [
 	| listItem |
 	listItem := QARubMenuItemMorph new
 		layoutPolicy: TableLayout new;
@@ -58,34 +54,22 @@ QARubTextSegmentMorph>>addItemToMenu: aMenu [
 	^ aMenu addMenuItem: listItem
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QARubTextSegmentMorph>>critique [
+{ #category : #accessing }
+QARubTextSegmentMorph >> critique [
 	^ critique
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QARubTextSegmentMorph>>critique: anObject [
+{ #category : #accessing }
+QARubTextSegmentMorph >> critique: anObject [
 	critique := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QARubTextSegmentMorph>>entity [
+{ #category : #accessing }
+QARubTextSegmentMorph >> entity [
 	^ entity
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QARubTextSegmentMorph>>entity: anObject [
+{ #category : #accessing }
+QARubTextSegmentMorph >> entity: anObject [
 	entity := anObject
 ]

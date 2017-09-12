@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RBRefactoringTest,
 	#superclass : #RBRefactoringBrowserTest,
@@ -9,15 +6,11 @@ Class {
 		'changeSet',
 		'model'
 	],
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoringTest>>abstractVariableTestData [
+{ #category : #private }
+RBRefactoringTest >> abstractVariableTestData [
 	| newModel classEnvironment classes |
 	classes := #(#Bar #Foo) 
 		inject: OrderedCollection new 
@@ -84,11 +77,8 @@ RBRefactoringTest>>abstractVariableTestData [
 	^ newModel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoringTest>>childrenToSiblingTestData [
+{ #category : #private }
+RBRefactoringTest >> childrenToSiblingTestData [
 ^'
 | m |
 (m:= RBNamespace 
@@ -148,11 +138,8 @@ m
 '
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoringTest>>inlineMethodTestData [
+{ #category : #private }
+RBRefactoringTest >> inlineMethodTestData [
 ^ '
 | m |
 (m := RBNamespace 
@@ -361,44 +348,32 @@ m
 '
 ]
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoringTest>>setUp [
+{ #category : #'set up' }
+RBRefactoringTest >> setUp [
 	super setUp.
 	manager := RBRefactoringManager classVarNamed: #Instance.
 	RBRefactoringManager classVarNamed: #Instance put: nil.
 	model := RBClassModelFactory rbNamespace new
 ]
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoringTest>>setupImplementorToInlineFor: aRefactoring toReturn: anObject  [
+{ #category : #'set up' }
+RBRefactoringTest >> setupImplementorToInlineFor: aRefactoring toReturn: anObject [ 
 	| options |
 	options := aRefactoring options copy.
 	options at: #implementorToInline put: [:ref :imps | anObject].
 	aRefactoring options: options
 ]
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoringTest>>setupInlineExpressionFor: aRefactoring toReturn: aBoolean  [
+{ #category : #'set up' }
+RBRefactoringTest >> setupInlineExpressionFor: aRefactoring toReturn: aBoolean [ 
 	| options |
 	options := aRefactoring options copy.
 	options at: #inlineExpression put: [:ref :string | aBoolean].
 	aRefactoring options: options
 ]
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoringTest>>setupMethodNameFor: aRefactoring toReturn: aSelector  [
+{ #category : #'set up' }
+RBRefactoringTest >> setupMethodNameFor: aRefactoring toReturn: aSelector [ 
 	| options |
 	options := aRefactoring options copy.
 	options at: #methodName
@@ -410,11 +385,8 @@ RBRefactoringTest>>setupMethodNameFor: aRefactoring toReturn: aSelector  [
 	aRefactoring options: options
 ]
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoringTest>>setupMethodNameFor: aRefactoring toReturn: aSelector withArguments: stringCollection  [
+{ #category : #'set up' }
+RBRefactoringTest >> setupMethodNameFor: aRefactoring toReturn: aSelector withArguments: stringCollection [ 
 	| options |
 	options := aRefactoring options copy.
 	options at: #methodName
@@ -427,75 +399,54 @@ RBRefactoringTest>>setupMethodNameFor: aRefactoring toReturn: aSelector withArgu
 	aRefactoring options: options
 ]
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoringTest>>setupSelfArgumentNameFor: aRefactoring toReturn: aString  [
+{ #category : #'set up' }
+RBRefactoringTest >> setupSelfArgumentNameFor: aRefactoring toReturn: aString [ 
 	| options |
 	options := aRefactoring options copy.
 	options at: #selfArgumentName put: [:ref | aString].
 	aRefactoring options: options
 ]
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoringTest>>setupVariableToMoveToFor: aRefactoring toReturn: aString  [
+{ #category : #'set up' }
+RBRefactoringTest >> setupVariableToMoveToFor: aRefactoring toReturn: aString [ 
 	| options |
 	options := aRefactoring options copy.
 	options at: #selectVariableToMoveTo put: [:ref :class :selector | aString].
 	aRefactoring options: options
 ]
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoringTest>>setupVariableTypesFor: aRefactoring toReturn: anObject  [
+{ #category : #'set up' }
+RBRefactoringTest >> setupVariableTypesFor: aRefactoring toReturn: anObject [ 
 	| options |
 	options := aRefactoring options copy.
 	options at: #variableTypes put: [:ref :ignore1 :ignore2 | anObject].
 	aRefactoring options: options
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoringTest>>shouldFail: aRefactoring  [
+{ #category : #private }
+RBRefactoringTest >> shouldFail: aRefactoring [ 
 	self proceedThroughWarning: [
 		self 
 			should: [ self executeRefactoring: aRefactoring ]
 			raise: RBRefactoringError ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoringTest>>shouldWarn: aRefactoring  [
+{ #category : #private }
+RBRefactoringTest >> shouldWarn: aRefactoring [ 
 	self 
 		should: [ self executeRefactoring: aRefactoring ]
 		raise: RBRefactoringWarning
 ]
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoringTest>>tearDown [
+{ #category : #'set up' }
+RBRefactoringTest >> tearDown [
 	super tearDown.
 	RBRefactoringManager instance release.
 	RBRefactoringManager classVarNamed: #Instance put: manager.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoringTest>>testConditions [
+{ #category : #tests }
+RBRefactoringTest >> testConditions [
 	| condition newCondition |
 	condition := RBCondition new 
 				type: #false
@@ -521,10 +472,7 @@ RBRefactoringTest>>testConditions [
 	self assert: (condition & condition) errorString = 'false OR false'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRefactoringTest>>testPrintRefactoringManager [
+{ #category : #tests }
+RBRefactoringTest >> testPrintRefactoringManager [
 	self assert: RBRefactoringManager instance printString isString
 ]

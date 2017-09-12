@@ -14,65 +14,43 @@ Class {
 	#classVars : [
 		'Instance'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 21:32'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoringManager class>>instance [
+{ #category : #'instance creation' }
+RBRefactoringManager class >> instance [
 	^ Instance ifNil: [ Instance := self basicNew initialize ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoringManager class>>new [
+{ #category : #'instance creation' }
+RBRefactoringManager class >> new [
 	^ self shouldNotImplement
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoringManager class>>nuke [
+{ #category : #public }
+RBRefactoringManager class >> nuke [
 	Instance notNil ifTrue: [ Instance release ].
 	Instance := nil
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoringManager class>>unload [
+{ #category : #public }
+RBRefactoringManager class >> unload [
 	self nuke
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoringManager>>addRefactoring: aRefactoring  [
+{ #category : #'public access' }
+RBRefactoringManager >> addRefactoring: aRefactoring [ 
 	RBRefactoryChangeManager instance performChange: aRefactoring changes.
 	refactorings add: aRefactoring class name
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoringManager>>initialize [
+{ #category : #initialization }
+RBRefactoringManager >> initialize [
 	refactorings := Bag new
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoringManager>>printOn: aStream  [
+{ #category : #printing }
+RBRefactoringManager >> printOn: aStream [ 
 	aStream nextPutAll: '#		Refactoring';
 		cr;
 		nextPutAll: '---		-----------------------------------------------';

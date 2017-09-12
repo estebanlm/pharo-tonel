@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #LazyTabPageAnnouncement,
 	#superclass : #Announcement,
@@ -9,54 +6,35 @@ Class {
 		'tabs',
 		'pageIndex'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPageAnnouncement>>page [
+{ #category : #accessing }
+LazyTabPageAnnouncement >> page [
 	^ page
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPageAnnouncement>>page: anObject [
+{ #category : #accessing }
+LazyTabPageAnnouncement >> page: anObject [
 	page := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPageAnnouncement>>pageIndex [
+{ #category : #accessing }
+LazyTabPageAnnouncement >> pageIndex [
 	^ pageIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPageAnnouncement>>pageIndex: anObject [
+{ #category : #accessing }
+LazyTabPageAnnouncement >> pageIndex: anObject [
 	pageIndex := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPageAnnouncement>>tabs [
+{ #category : #accessing }
+LazyTabPageAnnouncement >> tabs [
 	^ tabs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-LazyTabPageAnnouncement>>tabs: anObject [
+{ #category : #accessing }
+LazyTabPageAnnouncement >> tabs: anObject [
 	tabs := anObject
 ]

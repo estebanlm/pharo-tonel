@@ -18,49 +18,33 @@ Class {
 		'code',
 		'comment'
 	],
-	#category : #Shout-Examples,
-	#timestamp : 'AlainPlantec 9/20/2011 17:23'
+	#category : #Shout-Examples
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHOneEditorShoutedASecondNotShouted>>code [
+{ #category : #accessing }
+SHOneEditorShoutedASecondNotShouted >> code [
 	^ code ifNil: [code := '' asText]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHOneEditorShoutedASecondNotShouted>>code: someText [
+{ #category : #accessing }
+SHOneEditorShoutedASecondNotShouted >> code: someText [
 	code := someText.
 	self changed: #code
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHOneEditorShoutedASecondNotShouted>>comment [
+{ #category : #accessing }
+SHOneEditorShoutedASecondNotShouted >> comment [
 	^ comment ifNil: [comment := '' asText]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHOneEditorShoutedASecondNotShouted>>comment: someText [
+{ #category : #accessing }
+SHOneEditorShoutedASecondNotShouted >> comment: someText [
 	comment := someText.
 	self changed: #comment
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHOneEditorShoutedASecondNotShouted>>open [
+{ #category : #view }
+SHOneEditorShoutedASecondNotShouted >> open [
 	| window codeEditor commentEditor |
 	window := (StandardWindow labelled: 'A styled editor and a not styled one for the same model') model: self.
 	codeEditor := window newTextEditorFor:  self getText:  #code setText: #code: getEnabled: nil. 
@@ -72,10 +56,7 @@ SHOneEditorShoutedASecondNotShouted>>open [
 	^ window openInWorld
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHOneEditorShoutedASecondNotShouted>>shoutAboutToStyle: aTextView [
+{ #category : #shout }
+SHOneEditorShoutedASecondNotShouted >> shoutAboutToStyle: aTextView [
 	^ true
 ]

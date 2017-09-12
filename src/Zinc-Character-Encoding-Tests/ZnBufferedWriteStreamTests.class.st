@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnBufferedWriteStreamTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Character-Encoding-Tests,
-	#timestamp : ''
+	#category : #Zinc-Character-Encoding-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBufferedWriteStreamTests>>testNextPutAllStartingAt [
+{ #category : #testing }
+ZnBufferedWriteStreamTests >> testNextPutAllStartingAt [
 	| string |
 	string := String streamContents: [ :stringStream | 
 		ZnBufferedWriteStream on: stringStream do: [ : bufferedStream |
@@ -24,11 +17,8 @@ ZnBufferedWriteStreamTests>>testNextPutAllStartingAt [
 	self assert: string equals: '01234567890123456789'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBufferedWriteStreamTests>>testWriting [
+{ #category : #testing }
+ZnBufferedWriteStreamTests >> testWriting [
 	| string |
 	string := String streamContents: [ :stringStream | | bufferedStream |
 		bufferedStream := ZnBufferedWriteStream on: stringStream.
@@ -37,11 +27,8 @@ ZnBufferedWriteStreamTests>>testWriting [
 	self assert: string = '0123456789'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBufferedWriteStreamTests>>testWritingOverflow [
+{ #category : #testing }
+ZnBufferedWriteStreamTests >> testWritingOverflow [
 	| string |
 	string := String streamContents: [ :stringStream | | bufferedStream |
 		bufferedStream := ZnBufferedWriteStream on: stringStream.

@@ -1,19 +1,11 @@
-Extension {
-	#name : #KomitPackage
-}
+Extension { #name : #KomitPackage }
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>koDestinationText [
+{ #category : #'*Komitter-UI' }
+KomitPackage >> koDestinationText [
 	^ ''
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackage>>koSourceText [
+{ #category : #'*Komitter-UI' }
+KomitPackage >> koSourceText [
 	^ 'No changes'
 ]

@@ -3,27 +3,18 @@ Kernel trait for applying on the class side
 "
 Trait {
 	#name : #TApplyingOnClassSide,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Traits-Kernel-Traits,
-	#timestamp : 'TorstenBergmann 2/4/2014 20:36'
+	#category : #Traits-Kernel-Traits
 }
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>acceptsLoggingOfCompilation [
+{ #category : #compiling }
+TApplyingOnClassSide >> acceptsLoggingOfCompilation [
 	"Answer whether the receiver's method submisions and class defintions should be logged to the changes file and to the current change set.  The metaclass follows the rule of the class itself."
 
 	^ self theNonMetaClass acceptsLoggingOfCompilation
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>addInstVarNamed: aString  [
+{ #category : #'instance variables' }
+TApplyingOnClassSide >> addInstVarNamed: aString [ 
 	"Add the argument, aString, as one of the receiver's instance variables."
 
 	| fullString |
@@ -33,35 +24,23 @@ TApplyingOnClassSide>>addInstVarNamed: aString  [
 	self instanceVariableNames: fullString
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>addObsoleteSubclass: aClass [
+{ #category : #'class hierarchy' }
+TApplyingOnClassSide >> addObsoleteSubclass: aClass [
 	"Do nothing."
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>addSubclass: aClass [
+{ #category : #'class hierarchy' }
+TApplyingOnClassSide >> addSubclass: aClass [
 	"Do nothing."
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>adoptInstance: oldInstance from: oldMetaClass  [
+{ #category : #initialize-release }
+TApplyingOnClassSide >> adoptInstance: oldInstance from: oldMetaClass [ 
 	^self explicitRequirement.
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>assertConsistantCompositionsForNew: aTraitComposition [
+{ #category : #composition }
+TApplyingOnClassSide >> assertConsistantCompositionsForNew: aTraitComposition [
 	"Applying or modifying a trait composition on the class side
 	of a behavior has some restrictions."
 
@@ -87,11 +66,8 @@ TApplyingOnClassSide>>assertConsistantCompositionsForNew: aTraitComposition [
 				for existing traits or add a trait which does not have any methods on the class side.)']
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>binding [
+{ #category : #compiling }
+TApplyingOnClassSide >> binding [
 	"return an association that can be used as the binding
 	 To share it between methods, reuse an existing one if possible"
 	^self methodDict 
@@ -99,111 +75,75 @@ TApplyingOnClassSide>>binding [
 		ifNotEmpty: [:dict | dict anyOne classBinding]
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>bindingOf: varName [
+{ #category : #compiling }
+TApplyingOnClassSide >> bindingOf: varName [
 
 	^self theNonMetaClass classBindingOf: varName
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>canZapMethodDictionary [
+{ #category : #testing }
+TApplyingOnClassSide >> canZapMethodDictionary [
 	"Return true if it is safe to zap the method dictionary on #obsolete"
 	self soleInstance == nil
 		ifTrue:[^true]
 		ifFalse:[^self soleInstance canZapMethodDictionary]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>category [
+{ #category : #accessing }
+TApplyingOnClassSide >> category [
 	^ self theNonMetaClass category
 ]
 
-{
-	#category : #'pool variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>classPool [
+{ #category : #'pool variables' }
+TApplyingOnClassSide >> classPool [
 	"Answer the dictionary of class variables."
 
 	^self theNonMetaClass classPool
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>classVarNames [
+{ #category : #'accessing instances and variables' }
+TApplyingOnClassSide >> classVarNames [
 	"Answer a set of the names of the class variables defined in the receiver's instance."
 	
 	self theNonMetaClass ifNil: [ ^ Set new ].
 	^self theNonMetaClass classVarNames
 ]
 
-{
-	#category : #fileIn/Out,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>definition [
+{ #category : #fileIn/Out }
+TApplyingOnClassSide >> definition [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'accessing hierarchy protocol',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>hasClassSide [
+{ #category : #'accessing hierarchy protocol' }
+TApplyingOnClassSide >> hasClassSide [
 	^false
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>initializeFrom: anotherClassTrait [
+{ #category : #initialize }
+TApplyingOnClassSide >> initializeFrom: anotherClassTrait [
 	self traitComposition: self traitComposition copyTraitExpression.
 	self methodDict: self methodDict copy.
 	self localSelectors: self localSelectors copy.
 	self basicOrganization: self organization copy.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>instanceVariableNames: instVarString [
+{ #category : #initialize-release }
+TApplyingOnClassSide >> instanceVariableNames: instVarString [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>isAnonymous [
+{ #category : #testing }
+TApplyingOnClassSide >> isAnonymous [
 	^self soleInstance isAnonymous 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>isMeta [
+{ #category : #testing }
+TApplyingOnClassSide >> isMeta [
 	^ true
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>isMetaclassOfClassOrNil [
+{ #category : #'class hierarchy' }
+TApplyingOnClassSide >> isMetaclassOfClassOrNil [
 	
 	
 	^ self theNonMetaClass 
@@ -211,55 +151,37 @@ TApplyingOnClassSide>>isMetaclassOfClassOrNil [
 		ifNotNil: [ :nonMetaClass | nonMetaClass == Class ] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>isObsolete [
+{ #category : #testing }
+TApplyingOnClassSide >> isObsolete [
 	"Return true if the receiver is obsolete"
 	^self soleInstance == nil "Either no thisClass"
 		or:[self soleInstance classSide ~~ self "or I am not the class of thisClass"
 			or:[self soleInstance isObsolete]] "or my instance is obsolete"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>isSelfEvaluating [
+{ #category : #testing }
+TApplyingOnClassSide >> isSelfEvaluating [
 	^self isObsolete not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>isUsed [
+{ #category : #testing }
+TApplyingOnClassSide >> isUsed [
 	"Metaclasses are used by default"
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>name [
+{ #category : #accessing }
+TApplyingOnClassSide >> name [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>new [
+{ #category : #'instance creation' }
+TApplyingOnClassSide >> new [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>noteNewBaseTraitCompositionApplied: aTraitComposition [
+{ #category : #composition }
+TApplyingOnClassSide >> noteNewBaseTraitCompositionApplied: aTraitComposition [
 	"The argument is the new trait composition of my base trait - add
 	the new traits or remove non existing traits on my class side composition.
 	(Each class trait in my composition has its base trait on the instance side
@@ -280,11 +202,8 @@ TApplyingOnClassSide>>noteNewBaseTraitCompositionApplied: aTraitComposition [
 	self setTraitComposition: newComposition
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>obsoleteSubclasses [
+{ #category : #'class hierarchy' }
+TApplyingOnClassSide >> obsoleteSubclasses [
 	"Answer the receiver's subclasses."
 
 	self isMetaclassOfClassOrNil ifTrue: [ ^ #() ].
@@ -292,21 +211,15 @@ TApplyingOnClassSide>>obsoleteSubclasses [
 	^ self theNonMetaClass obsoleteSubclasses collect: [ :aSubclass | aSubclass theMetaClass ]
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>possibleVariablesFor: misspelled continuedFrom: oldResults [
+{ #category : #compiling }
+TApplyingOnClassSide >> possibleVariablesFor: misspelled continuedFrom: oldResults [
 
 	^ self theNonMetaClass possibleVariablesFor: misspelled continuedFrom: oldResults
 
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>removeInstVarNamed: aString  [
+{ #category : #'instance variables' }
+TApplyingOnClassSide >> removeInstVarNamed: aString [ 
 	"Remove the argument, aString, as one of the receiver's instance variables."
 
 	| newArray newString |
@@ -318,43 +231,28 @@ TApplyingOnClassSide>>removeInstVarNamed: aString  [
 	self instanceVariableNames: newString
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>removeSubclass: aClass [
+{ #category : #'class hierarchy' }
+TApplyingOnClassSide >> removeSubclass: aClass [
 	"Do nothing."
 ]
 
-{
-	#category : #'pool variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>sharedPools [
+{ #category : #'pool variables' }
+TApplyingOnClassSide >> sharedPools [
 	^OrderedCollection new.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>slots: instVarString [
+{ #category : #initialize-release }
+TApplyingOnClassSide >> slots: instVarString [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>soleInstance [
+{ #category : #accessing }
+TApplyingOnClassSide >> soleInstance [
 	^self explicitRequirement.
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>subclasses [
+{ #category : #'class hierarchy' }
+TApplyingOnClassSide >> subclasses [
 	"Answer the receiver's subclasses."
 	
 	self isMetaclassOfClassOrNil ifTrue: [ ^ #() ].
@@ -362,11 +260,8 @@ TApplyingOnClassSide>>subclasses [
 	^ self theNonMetaClass subclasses collect: [ :aSubclass | aSubclass theMetaClass ].
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>subclassesDo: aBlock [
+{ #category : #'class hierarchy' }
+TApplyingOnClassSide >> subclassesDo: aBlock [
 	"Evaluate aBlock for each of the receiver's immediate subclasses."
 	
 	self isMetaclassOfClassOrNil ifTrue: [ ^ self ].
@@ -374,11 +269,8 @@ TApplyingOnClassSide>>subclassesDo: aBlock [
 	self theNonMetaClass subclasses do: [ :each | aBlock value: each theMetaClass ]
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>uses: aTraitCompositionOrArray [
+{ #category : #composition }
+TApplyingOnClassSide >> uses: aTraitCompositionOrArray [
 	| copyOfOldTrait newComposition |
 	copyOfOldTrait := self copy.
 	newComposition := aTraitCompositionOrArray asTraitComposition.
@@ -389,11 +281,8 @@ TApplyingOnClassSide>>uses: aTraitCompositionOrArray [
 		classModificationAppliedTo: self
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>uses: aTraitCompositionOrArray instanceVariableNames: instVarString  [
+{ #category : #initialize-release }
+TApplyingOnClassSide >> uses: aTraitCompositionOrArray instanceVariableNames: instVarString [ 
 	| newComposition newMetaClass copyOfOldMetaClass |
 	
 	copyOfOldMetaClass := self copy.
@@ -407,11 +296,8 @@ TApplyingOnClassSide>>uses: aTraitCompositionOrArray instanceVariableNames: inst
 		classDefinitionChangedFrom: copyOfOldMetaClass to: newMetaClass
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>uses: aTraitCompositionOrArray slots: slotArray  [
+{ #category : #initialize-release }
+TApplyingOnClassSide >> uses: aTraitCompositionOrArray slots: slotArray [ 
 	| newComposition newMetaClass copyOfOldMetaClass |
 	
 	copyOfOldMetaClass := self copy.
@@ -425,21 +311,15 @@ TApplyingOnClassSide>>uses: aTraitCompositionOrArray slots: slotArray  [
 		classDefinitionChangedFrom: copyOfOldMetaClass to: newMetaClass
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>wantsChangeSetLogging [
+{ #category : #compiling }
+TApplyingOnClassSide >> wantsChangeSetLogging [
 	"Answer whether code submitted for the receiver should be remembered by the changeSet mechanism.The metaclass follows the rule of the class itself."
 
 	^ self theNonMetaClass wantsChangeSetLogging
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TApplyingOnClassSide>>wantsRecompilationProgressReported [
+{ #category : #compiling }
+TApplyingOnClassSide >> wantsRecompilationProgressReported [
 	"The metaclass follows the rule of the class itself."
 
 	^ self theNonMetaClass wantsRecompilationProgressReported

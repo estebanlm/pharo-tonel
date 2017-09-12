@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicModel,
 	#superclass : #Announcer,
@@ -9,64 +6,42 @@ Class {
 	#instVars : [
 		'glamourPresentation'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphicModel>>allKeystrokeActions [
+{ #category : #callbacks }
+GLMMorphicModel >> allKeystrokeActions [
 	^ (self glamourPresentation allActions, self glamourPresentation allSelectionActions) select: [ :action | 
 		action hasShortcut ]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphicModel>>allMenuActions [
+{ #category : #callbacks }
+GLMMorphicModel >> allMenuActions [
 	^ self glamourPresentation allSelectionActions select: [:action | action hasTitle ]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphicModel>>executeMenuAction: anAction [
+{ #category : #callbacks }
+GLMMorphicModel >> executeMenuAction: anAction [
 	self announce: (GLMMenuItemSelected action: anAction)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphicModel>>glamourPresentation [
+{ #category : #accessing }
+GLMMorphicModel >> glamourPresentation [
 	^ glamourPresentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphicModel>>glamourPresentation: anObject [
+{ #category : #accessing }
+GLMMorphicModel >> glamourPresentation: anObject [
 	glamourPresentation := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphicModel>>initialize [
+{ #category : #initialization }
+GLMMorphicModel >> initialize [
 	super initialize.
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphicModel>>keystroke: anEvent from: aMorph [
+{ #category : #callbacks }
+GLMMorphicModel >> keystroke: anEvent from: aMorph [
 	| action |
 
 	self deprecated: 'This method is needed only for the text rederer for PluggableTextMorph.'.
@@ -77,11 +52,8 @@ GLMMorphicModel>>keystroke: anEvent from: aMorph [
 	^ false
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMMorphicModel>>menu: aMenuMorph  [
+{ #category : #callbacks }
+GLMMorphicModel >> menu: aMenuMorph [ 
 	| subMenus targetMenuMorph subMenu allActions |
 	subMenus := Dictionary new.
 	allActions := self allMenuActions.

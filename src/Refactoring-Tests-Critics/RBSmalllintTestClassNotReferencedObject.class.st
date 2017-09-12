@@ -5,14 +5,10 @@ This class should trigger the RBClassNotReferencedRule critic. All other classes
 Class {
 	#name : #RBSmalllintTestClassNotReferencedObject,
 	#superclass : #RBSmalllintTestSuperclassObject,
-	#category : #Refactoring-Tests-Critics,
-	#timestamp : 'monty 10/11/2016 00:25'
+	#category : #Refactoring-Tests-Critics
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTestClassNotReferencedObject class>>mustNotBeReferenced [
+{ #category : #testing }
+RBSmalllintTestClassNotReferencedObject class >> mustNotBeReferenced [
 	^ true
 ]

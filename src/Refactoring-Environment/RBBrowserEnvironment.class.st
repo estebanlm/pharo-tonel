@@ -29,23 +29,16 @@ Class {
 		'label',
 		'searchStrings'
 	],
-	#category : #Refactoring-Environment,
-	#timestamp : 'NicolaiHess 4/27/2015 21:22'
+	#category : #Refactoring-Environment
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment class>>default [
+{ #category : #accessing }
+RBBrowserEnvironment class >> default [
 	^ RBBrowserEnvironment new
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>& anEnvironment  [
+{ #category : #environments }
+RBBrowserEnvironment >> & anEnvironment [ 
 	"If we or anEnvironment includes everything, then just include the other environment (optimization)"
 
 	self isSystem ifTrue: [^anEnvironment].
@@ -53,11 +46,8 @@ RBBrowserEnvironment>>& anEnvironment  [
 	^RBAndEnvironment onEnvironment: self and: anEnvironment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>addSearchString: aString  [
+{ #category : #accessing }
+RBBrowserEnvironment >> addSearchString: aString [ 
 	searchStrings isNil ifTrue: [
 		searchStrings := SortedCollection sortBlock: [ :a :b | 
 			(a indexOf: $: ifAbsent: [ a size ]) > (b indexOf: $: ifAbsent: [ b size ]) ] ].
@@ -65,11 +55,8 @@ RBBrowserEnvironment>>addSearchString: aString  [
 		ifFalse: [ searchStrings add: aString ]
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>allClasses [
+{ #category : #accessing-classes }
+RBBrowserEnvironment >> allClasses [
 	"Answer all the unique non-metaclasses of all the classes and metaclasses in this environment."
 
 	| allClasses |
@@ -79,11 +66,8 @@ RBBrowserEnvironment>>allClasses [
 	^ allClasses asArray
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>allClassesAndTraits [
+{ #category : #accessing-classes }
+RBBrowserEnvironment >> allClassesAndTraits [
 	" compatibility method with SystemDictionary "
 	
 	| allClassesAndTraits |
@@ -93,27 +77,18 @@ RBBrowserEnvironment>>allClassesAndTraits [
 	^ allClassesAndTraits asArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>allClassesAndTraitsDo: aBlock [
+{ #category : #private }
+RBBrowserEnvironment >> allClassesAndTraitsDo: aBlock [
 	self systemDictionary allClassesAndTraitsDo: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>allClassesDo: aBlock [
+{ #category : #private }
+RBBrowserEnvironment >> allClassesDo: aBlock [
 	self systemDictionaryClassesDo: aBlock
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>allMetaClasses [
+{ #category : #accessing-classes }
+RBBrowserEnvironment >> allMetaClasses [
 	"Answer all the unique non-metaclasses of all metaclasses in this environment."
 
 	| allMetaClasses |
@@ -125,11 +100,8 @@ RBBrowserEnvironment>>allMetaClasses [
 	^ allMetaClasses asArray
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>allNonMetaClasses [
+{ #category : #accessing-classes }
+RBBrowserEnvironment >> allNonMetaClasses [
 	"Answer all the unique non-metaclasses of all of all the non-metaclasses in this environment."
 	| allNonMetaClasses |
 	allNonMetaClasses := OrderedCollection new: 4096.
@@ -140,27 +112,18 @@ RBBrowserEnvironment>>allNonMetaClasses [
 	^ allNonMetaClasses asArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>asSelectorEnvironment [
+{ #category : #accessing }
+RBBrowserEnvironment >> asSelectorEnvironment [
 	^(RBClassEnvironment onEnvironment: self classes: self classes) asSelectorEnvironment
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>associationAt: aKey [
+{ #category : #accessing-classes }
+RBBrowserEnvironment >> associationAt: aKey [
 	^ self associationAt: aKey ifAbsent: [ self error: aKey printString , ' not found' ]
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>associationAt: aKey ifAbsent: aBlock [
+{ #category : #accessing-classes }
+RBBrowserEnvironment >> associationAt: aKey ifAbsent: aBlock [
 	| association class |
 	association := self systemDictionary
 		associationAt: aKey
@@ -173,19 +136,13 @@ RBBrowserEnvironment>>associationAt: aKey ifAbsent: aBlock [
 		ifFalse: [ nil ]
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>at: aKey [
+{ #category : #accessing-classes }
+RBBrowserEnvironment >> at: aKey [
 	^ self at: aKey ifAbsent: [ self error: aKey printString , ' not found' ]
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>at: aKey ifAbsent: aBlock [
+{ #category : #accessing-classes }
+RBBrowserEnvironment >> at: aKey ifAbsent: aBlock [
 	| association |
 	association := self
 		associationAt: aKey 
@@ -195,30 +152,21 @@ RBBrowserEnvironment>>at: aKey ifAbsent: aBlock [
 		ifFalse: [ association value ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>categories [
+{ #category : #accessing }
+RBBrowserEnvironment >> categories [
 	^ self systemDictionary organization categories select: [ :each | self includesCategory: each ]
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>classNames [
+{ #category : #accessing-classes }
+RBBrowserEnvironment >> classNames [
 	| names |
 	names := IdentitySet new: 4096.
 	self classesDo: [ :each | names add: each theNonMetaClass name ].
 	^ names
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>classNamesFor: aCategoryName [
+{ #category : #accessing }
+RBBrowserEnvironment >> classNamesFor: aCategoryName [
 	^ (self systemDictionary organization listAtCategoryNamed: aCategoryName) select: [ :each |
 		| class |
 		class := self systemDictionary at: each ifAbsent: [ nil ].
@@ -227,51 +175,36 @@ RBBrowserEnvironment>>classNamesFor: aCategoryName [
 			or: [ self includesClass: class class ] ] ]
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>classVarRefsTo: instVarName in: aClass  [
+{ #category : #environments }
+RBBrowserEnvironment >> classVarRefsTo: instVarName [ in: aClass 
 	^ RBVariableEnvironment 
 		on: self
 		referencesToClassVariable: instVarName
 		in: aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>classVariablesFor: aClass  [
+{ #category : #accessing }
+RBBrowserEnvironment >> classVariablesFor: aClass [ 
 	^aClass classVarNames
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>classes [
+{ #category : #accessing-classes }
+RBBrowserEnvironment >> classes [
 	| classes |
 	classes := IdentitySet new: 4096.
 	self classesDo: [ :each | classes add: each ].
 	^ classes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>classesAndSelectorsDo: aBlock  [
+{ #category : #accessing }
+RBBrowserEnvironment >> classesAndSelectorsDo: aBlock [ 
 	self classesDo: [ :class | 
 		self selectorsForClass: class do: [ :sel | 
 			aBlock value: class value: sel ]]
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>classesAndTraits [
+{ #category : #accessing-classes }
+RBBrowserEnvironment >> classesAndTraits [
 	
 	| classesAndTraits |
 	classesAndTraits := OrderedCollection new: 4096.
@@ -280,81 +213,54 @@ RBBrowserEnvironment>>classesAndTraits [
 	^ classesAndTraits asArray
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>classesAndTraitsDo: aBlock  [
+{ #category : #accessing-classes }
+RBBrowserEnvironment >> classesAndTraitsDo: aBlock [ 
 	self allClassesAndTraitsDo: [ :each |
 		(self includesClass: each)
 			ifTrue: [ aBlock value: each ] ]
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>classesDo: aBlock  [
+{ #category : #accessing-classes }
+RBBrowserEnvironment >> classesDo: aBlock [ 
 	self systemDictionaryClassesDo: [ :each |
 		(self includesClass: each)
 			ifTrue: [aBlock value: each ] ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>copyEmpty [
+{ #category : #copying }
+RBBrowserEnvironment >> copyEmpty [
 	^ self class new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>defaultLabel [
+{ #category : #private }
+RBBrowserEnvironment >> defaultLabel [
 	^ 'Smalltalk'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>definesClass: aClass [
+{ #category : #testing }
+RBBrowserEnvironment >> definesClass: aClass [
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>environment [
+{ #category : #private }
+RBBrowserEnvironment >> environment [
 	^ self
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>forCategories: categoryList  [
+{ #category : #environments }
+RBBrowserEnvironment >> forCategories: categoryList [ 
 	^RBCategoryEnvironment onEnvironment: self categories: categoryList
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>forClass: aClass protocols: protocolCollection  [
+{ #category : #environments }
+RBBrowserEnvironment >> forClass: aClass protocols: protocolCollection [ 
 	^RBProtocolEnvironment onEnvironment: self
 		class: aClass
 		protocols: protocolCollection
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>forClass: aClass selectors: selectorCollection  [
+{ #category : #environments }
+RBBrowserEnvironment >> forClass: aClass selectors: selectorCollection [ 
 	^(RBSelectorEnvironment 
 		onMethods: selectorCollection
 		forClass: aClass
@@ -364,11 +270,8 @@ RBBrowserEnvironment>>forClass: aClass selectors: selectorCollection  [
 		yourself
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>forClasses: classCollection  [
+{ #category : #environments }
+RBBrowserEnvironment >> forClasses: classCollection [ 
 	| classes |
 	classes := OrderedCollection new: classCollection size * 2.
 	classCollection do: 
@@ -378,182 +281,119 @@ RBBrowserEnvironment>>forClasses: classCollection  [
 	^RBClassEnvironment onEnvironment: self classes: classes
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>forPackageNames: aCollection [
+{ #category : #environments }
+RBBrowserEnvironment >> forPackageNames: aCollection [
 	^ RBPackageEnvironment onEnvironment: self packageNames: aCollection
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>forPackages: aCollection [
+{ #category : #environments }
+RBBrowserEnvironment >> forPackages: aCollection [
 	^ RBPackageEnvironment onEnvironment: self packages: aCollection
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>forPragmas: aKeywordCollection [
+{ #category : #environments }
+RBBrowserEnvironment >> forPragmas: aKeywordCollection [
 	^ RBPragmaEnvironment onEnvironment: self keywords: aKeywordCollection
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>implementorsMatching: aString  [
+{ #category : #environments }
+RBBrowserEnvironment >> implementorsMatching: aString [ 
 	^RBSelectorEnvironment implementorsMatching: aString in: self
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>implementorsOf: aSelector  [
+{ #category : #environments }
+RBBrowserEnvironment >> implementorsOf: aSelector [ 
 	^RBSelectorEnvironment implementorsOf: aSelector in: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>includesCategory: aCategory [
+{ #category : #testing }
+RBBrowserEnvironment >> includesCategory: aCategory [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>includesClass: aClass [
+{ #category : #testing }
+RBBrowserEnvironment >> includesClass: aClass [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>includesMethod: aMethod [
+{ #category : #testing }
+RBBrowserEnvironment >> includesMethod: aMethod [
 	^ self 
 		includesSelector: aMethod selector
 		in: aMethod methodClass
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>includesPackage: packageName [
+{ #category : #testing }
+RBBrowserEnvironment >> includesPackage: packageName [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>includesProtocol: aProtocol in: aClass [
+{ #category : #testing }
+RBBrowserEnvironment >> includesProtocol: aProtocol [ in: aClass
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>includesSelector: aSelector in: aClass [
+{ #category : #testing }
+RBBrowserEnvironment >> includesSelector: aSelector [ in: aClass
 	^ true
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>instVarReadersTo: instVarName in: aClass  [
+{ #category : #environments }
+RBBrowserEnvironment >> instVarReadersTo: instVarName [ in: aClass 
 	^RBVariableEnvironment 
 		on: self
 		readersOfInstanceVariable: instVarName
 		in: aClass
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>instVarRefsTo: instVarName in: aClass  [
+{ #category : #environments }
+RBBrowserEnvironment >> instVarRefsTo: instVarName [ in: aClass 
 	^RBVariableEnvironment 
 		on: self
 		referencesToInstanceVariable: instVarName
 		in: aClass
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>instVarWritersTo: instVarName in: aClass  [
+{ #category : #environments }
+RBBrowserEnvironment >> instVarWritersTo: instVarName [ in: aClass 
 	^RBVariableEnvironment 
 		on: self
 		writersOfInstanceVariable: instVarName
 		in: aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>instanceVariablesFor: aClass  [
+{ #category : #accessing }
+RBBrowserEnvironment >> instanceVariablesFor: aClass [ 
 	^aClass instVarNames
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>isClassEnvironment [
+{ #category : #testing }
+RBBrowserEnvironment >> isClassEnvironment [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>isEmpty [
+{ #category : #testing }
+RBBrowserEnvironment >> isEmpty [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>isSelectorEnvironment [
+{ #category : #testing }
+RBBrowserEnvironment >> isSelectorEnvironment [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>isSystem [
+{ #category : #testing }
+RBBrowserEnvironment >> isSystem [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>isVariableEnvironment [
+{ #category : #testing }
+RBBrowserEnvironment >> isVariableEnvironment [
 	^ false
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>keys [
+{ #category : #accessing-classes }
+RBBrowserEnvironment >> keys [
 	| keys |
 	keys := Set new.
 	self systemDictionary keysAndValuesDo: [ :key :value | 
@@ -567,48 +407,33 @@ RBBrowserEnvironment>>keys [
 	^ keys
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>label [
+{ #category : #private }
+RBBrowserEnvironment >> label [
 	^ label isNil
 		ifTrue: [ self defaultLabel ]
 		ifFalse: [ label ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>label: aString [
+{ #category : #initialize-release }
+RBBrowserEnvironment >> label: aString [
 	label := aString
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>matches: aString  [
+{ #category : #environments }
+RBBrowserEnvironment >> matches: aString [ 
 	^RBSelectorEnvironment matches: aString in: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>methods [
+{ #category : #accessing }
+RBBrowserEnvironment >> methods [
 	| methods |
 	methods := IdentitySet new: 4096.
 	self methodsDo: [ :each | methods add: each ].
 	^ methods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>methodsDo: aBlock [
+{ #category : #accessing }
+RBBrowserEnvironment >> methodsDo: aBlock [
 	
 	self classesDo: [ :aClass |
 		
@@ -618,47 +443,32 @@ RBBrowserEnvironment>>methodsDo: aBlock [
 			aBlock value: (aClass class >> selector) ] ]
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>not [
+{ #category : #environments }
+RBBrowserEnvironment >> not [
 	self isSystem ifTrue: [^RBSelectorEnvironment new].
 	^RBNotEnvironment onEnvironment: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>numberClasses [
+{ #category : #accessing }
+RBBrowserEnvironment >> numberClasses [
 	^self classNames size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>numberSelectors [
+{ #category : #accessing }
+RBBrowserEnvironment >> numberSelectors [
 	| total |
 	total := 0.
 	self selectorsDo: [:sel | total := total + 1 ].
 	^total
 ]
 
-{
-	#category : #accessing-packages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>packageAt: aName [
+{ #category : #accessing-packages }
+RBBrowserEnvironment >> packageAt: aName [
 	^ self packageAt: aName ifAbsent: [ NotFound signalFor: aName in: self ]
 ]
 
-{
-	#category : #accessing-packages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>packageAt: aName ifAbsent: absentBlock [
+{ #category : #accessing-packages }
+RBBrowserEnvironment >> packageAt: aName ifAbsent: absentBlock [
 	| package |
 	package := self packageOrganizer 
 		packageNamed: aName ifAbsent: absentBlock.
@@ -668,75 +478,51 @@ RBBrowserEnvironment>>packageAt: aName ifAbsent: absentBlock [
 		ifFalse: absentBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>packageOrganizer [
+{ #category : #private }
+RBBrowserEnvironment >> packageOrganizer [
 
 	^ RPackageOrganizer default
 ]
 
-{
-	#category : #accessing-packages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>packages [
+{ #category : #accessing-packages }
+RBBrowserEnvironment >> packages [
 
 	^ self packageOrganizer packages
 		select: [ :package |
 			self includesCategory: package name ]
 ]
 
-{
-	#category : #accessing-packages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>packagesWithContributors [
+{ #category : #accessing-packages }
+RBBrowserEnvironment >> packagesWithContributors [
 	"answer a list of all packages contributing to the definition of classes in the environment"
 	^ self classes 
 		flatCollect: #packages
 		as: Set
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>printOn: aStream [
+{ #category : #printing }
+RBBrowserEnvironment >> printOn: aStream [
 	aStream nextPutAll: self label
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>problemCount [
+{ #category : #accessing }
+RBBrowserEnvironment >> problemCount [
 	^self numberSelectors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>protocolsFor: aClass [
+{ #category : #accessing }
+RBBrowserEnvironment >> protocolsFor: aClass [
 	^aClass organization categories 
 		select: [ :each | self includesProtocol: each in: aClass ]
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>referencesTo: aLiteral  [
+{ #category : #environments }
+RBBrowserEnvironment >> referencesTo: aLiteral [ 
 	^RBSelectorEnvironment referencesTo: aLiteral in: self
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>referencesTo: aLiteral in: aClass  [
+{ #category : #environments }
+RBBrowserEnvironment >> referencesTo: aLiteral in: aClass [ 
 	| classes |
 	classes := aClass withAllSuperclasses asSet.
 	classes
@@ -746,39 +532,27 @@ RBBrowserEnvironment>>referencesTo: aLiteral in: aClass  [
 	^(self forClasses: classes) referencesTo: aLiteral
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>rootEnvironment [
+{ #category : #private }
+RBBrowserEnvironment >> rootEnvironment [
 	"The root environment representing everything."
 
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>searchStrings [
+{ #category : #accessing }
+RBBrowserEnvironment >> searchStrings [
 	^searchStrings isNil
 		ifTrue: [#()]
 		ifFalse: [searchStrings]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>searchStrings: aCollection  [
+{ #category : #accessing }
+RBBrowserEnvironment >> searchStrings: aCollection [ 
 	searchStrings := aCollection
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>selectMethods: aBlock  [
+{ #category : #environments }
+RBBrowserEnvironment >> selectMethods: aBlock [ 
 	| env |
 	env := RBSelectorEnvironment onEnvironment: self.
 	self classesAndSelectorsDo: 
@@ -788,11 +562,8 @@ RBBrowserEnvironment>>selectMethods: aBlock  [
 	^env
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>selectionIntervalFor: aString  [
+{ #category : #accessing }
+RBBrowserEnvironment >> selectionIntervalFor: aString [ 
 	| interval |
 	self searchStrings isEmpty ifTrue: [^nil].
 	interval := self selectionParseTreeIntervalFor: aString.
@@ -806,11 +577,8 @@ RBBrowserEnvironment>>selectionIntervalFor: aString  [
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>selectionParseTreeIntervalFor: aString  [
+{ #category : #accessing }
+RBBrowserEnvironment >> selectionParseTreeIntervalFor: aString [ 
 	| parseTree answerBlock |
 	parseTree := RBParser
 		parseMethod: aString
@@ -833,116 +601,80 @@ RBBrowserEnvironment>>selectionParseTreeIntervalFor: aString  [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>selectors [
+{ #category : #accessing }
+RBBrowserEnvironment >> selectors [
 	^ Array streamContents: [ :stream |
 		self selectorsDo: [ :selector | 
 			stream nextPut: selector ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>selectorsDo: aBlock [
+{ #category : #accessing }
+RBBrowserEnvironment >> selectorsDo: aBlock [
 	self allClassesDo: [ :each | 
 		self selectorsForClass: each do: aBlock ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>selectorsFor: aProtocol in: aClass [
+{ #category : #accessing }
+RBBrowserEnvironment >> selectorsFor: aProtocol in: aClass [
 	^(aClass organization listAtCategoryNamed: aProtocol)
 		select: [:each | self includesSelector: each in: aClass]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>selectorsForClass: aClass  [
+{ #category : #accessing }
+RBBrowserEnvironment >> selectorsForClass: aClass [ 
 	| selectors |
 	selectors := IdentitySet new.
 	self selectorsForClass: aClass do: [ :each | selectors add: each ].
 	^ selectors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>selectorsForClass: aClass do: aBlock  [
+{ #category : #accessing }
+RBBrowserEnvironment >> selectorsForClass: aClass do: aBlock [ 
 	aClass selectorsAndMethodsDo: 
 			[:each :meth | 
 			(self includesSelector: each in: aClass) ifTrue: [aBlock value: each]]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>storeOn: aStream  [
+{ #category : #printing }
+RBBrowserEnvironment >> storeOn: aStream [ 
 	aStream
 		nextPutAll: self class name;
 		nextPutAll: ' new'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>systemDictionary [
+{ #category : #private }
+RBBrowserEnvironment >> systemDictionary [
 	"The root system dictionary as the source of all objects in this environment."
 
 	^ Smalltalk globals
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>systemDictionaryClassesDo: aBlock [
+{ #category : #private }
+RBBrowserEnvironment >> systemDictionaryClassesDo: aBlock [
 	self systemDictionary allClassesDo:[:class |
 		 aBlock value: class; value: class theMetaClass]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>whichCategoryIncludes: aClassName [
+{ #category : #accessing }
+RBBrowserEnvironment >> whichCategoryIncludes: aClassName [
 	^ self systemDictionary organization categoryOfElement: aClassName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>whichProtocolIncludes: aSelector in: aClass [
+{ #category : #accessing }
+RBBrowserEnvironment >> whichProtocolIncludes: aSelector in: aClass [
 	^aClass organization categoryOfElement: aSelector ifAbsent: [ Protocol unclassified ]
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>withoutClasses: aListOfClasses [
+{ #category : #environments }
+RBBrowserEnvironment >> withoutClasses: aListOfClasses [
 	"Build the same environment without classes given as parameter"
 	^ RBClassEnvironment 
 			onEnvironment: self 
 			classes: (self classes copyWithoutAll: aListOfClasses)
 ]
 
-{
-	#category : #environments,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironment>>| anEnvironment  [
+{ #category : #environments }
+RBBrowserEnvironment >> | anEnvironment [ 
 	"If we or anEnvironment includes everything, then return it instead of creating 
 	an or that will include everything."
 

@@ -4,15 +4,11 @@ I am an acceptor in the context of method definition
 Class {
 	#name : #MethodDefinitionAcceptor,
 	#superclass : #AbstractAcceptor,
-	#category : #Nautilus-Acceptors,
-	#timestamp : '<historical>'
+	#category : #Nautilus-Acceptors
 }
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodDefinitionAcceptor>>accept: source notifying: aController [
+{ #category : #protocol }
+MethodDefinitionAcceptor >> accept: source notifying: aController [
 	| protocol method |
 
 	protocol := self model selectedCategory.

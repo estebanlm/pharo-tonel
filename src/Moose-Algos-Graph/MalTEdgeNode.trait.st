@@ -1,46 +1,28 @@
-"
-
-"
 Trait {
 	#name : #MalTEdgeNode,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTEdgeNode>>from: aNode edge: anEdge [
+{ #category : #'as yet unclassified' }
+MalTEdgeNode >> from: aNode edge: anEdge [
 
 	self previousEdges add: anEdge
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTEdgeNode>>nextEdges [
+{ #category : #'as yet unclassified' }
+MalTEdgeNode >> nextEdges [
 
 	self explicitRequirement
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTEdgeNode>>previousEdges [
+{ #category : #'as yet unclassified' }
+MalTEdgeNode >> previousEdges [
 
 	self explicitRequirement
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTEdgeNode>>to: aNode edge: anEdge [
+{ #category : #'as yet unclassified' }
+MalTEdgeNode >> to: aNode edge: anEdge [
 
 	self nextEdges add: anEdge
 ]

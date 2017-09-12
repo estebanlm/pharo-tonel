@@ -5,15 +5,11 @@ I am packing tightly all of my fields.
 Class {
 	#name : #FFIExternalPackedStructure,
 	#superclass : #FFIExternalStructure,
-	#category : #UnifiedFFI-Objects,
-	#timestamp : 'RonieSalgado 5/4/2016 13:37'
+	#category : #UnifiedFFI-Objects
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalPackedStructure class>>compileFields: specArray withAccessors: defineBoolean [
+{ #category : #private }
+FFIExternalPackedStructure class >> compileFields: specArray withAccessors: defineBoolean [
 	| offset fieldSpec |
 			
 	fieldSpec := self fieldSpec.
@@ -38,18 +34,12 @@ FFIExternalPackedStructure class>>compileFields: specArray withAccessors: define
 	^ compiledSpec
 ]
 
-{
-	#category : #'register marshalling',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalPackedStructure class>>emitFlatStructureLayoutInto: flatStructureLayout [
+{ #category : #'register marshalling' }
+FFIExternalPackedStructure class >> emitFlatStructureLayoutInto: flatStructureLayout [
 	flatStructureLayout addMemoryFieldSize: self structureSize alignment: self structureAlignment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalPackedStructure class>>packedStructureAlignment [
+{ #category : #accessing }
+FFIExternalPackedStructure class >> packedStructureAlignment [
 	^ 1
 ]

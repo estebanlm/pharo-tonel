@@ -1,12 +1,7 @@
-Extension {
-	#name : #TClassDescription
-}
+Extension { #name : #TClassDescription }
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-TClassDescription>>instanceVariableNamesDo: anUnaryBlock [
+{ #category : #'*Fuel' }
+TClassDescription >> instanceVariableNamesDo: anUnaryBlock [
 	"This is part of the interface between the compiler and a class's instance or field names.
 	 The class should enumerate anUnaryBlock with the instance variable name strings.  The order is important. Names evaluated later will override the
 	 same names occurring earlier."

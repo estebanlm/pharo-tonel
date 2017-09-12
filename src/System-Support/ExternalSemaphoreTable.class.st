@@ -18,15 +18,11 @@ Class {
 		'ProtectAdd',
 		'ProtectRemove'
 	],
-	#category : #System-Support,
-	#timestamp : 'HenrikSperreJohansen 8/18/2011 11:25'
+	#category : #System-Support
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ExternalSemaphoreTable class>>clearExternalObjects [
+{ #category : #accessing }
+ExternalSemaphoreTable class >> clearExternalObjects [
 	"Clear the array of objects that have been registered for use in non-Smalltalk code."
 	"Only lock additions, removals executing in parallel would have little effect on the resulting array"
 
@@ -35,11 +31,8 @@ ExternalSemaphoreTable class>>clearExternalObjects [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ExternalSemaphoreTable class>>collectionBasedOn: externalObjects withRoomFor: anObject [
+{ #category : #private }
+ExternalSemaphoreTable class >> collectionBasedOn: externalObjects withRoomFor: anObject [
 	"Called if no slots to put anObject in have been found in externalObjects "
 	"Return a externalObject collection which does, either:
 		- Same collection with some slots freed up by finalization logic
@@ -61,21 +54,15 @@ ExternalSemaphoreTable class>>collectionBasedOn: externalObjects withRoomFor: an
 	^newObjects
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ExternalSemaphoreTable class>>externalObjects [
+{ #category : #accessing }
+ExternalSemaphoreTable class >> externalObjects [
 	"Not really sure why this is protected, once called you are out of protection of the locks anyways, and any use of the object is dangerous...
 	Only additions can potentially change the actual array in use though, so only lock that."
 	^ProtectAdd critical: [self unprotectedExternalObjects].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ExternalSemaphoreTable class>>freedSlotsIn: externalObjects ratherThanIncreaseSizeTo: newSize [
+{ #category : #private }
+ExternalSemaphoreTable class >> freedSlotsIn: externalObjects ratherThanIncreaseSizeTo: newSize [
 	"In some VM's, the external object table has a max size, which has to be increased for vm to reference them correctly."
 	"In that case, try to gc to free slots first before actually increasing the max size"
 	"Return whether I ended up freeing slots by GC'ing, or one should increase the size of "
@@ -99,20 +86,14 @@ ExternalSemaphoreTable class>>freedSlotsIn: externalObjects ratherThanIncreaseSi
 		ifNil:[false]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ExternalSemaphoreTable class>>initialize [
+{ #category : #initialize }
+ExternalSemaphoreTable class >> initialize [
 	ProtectAdd := Semaphore forMutualExclusion.
 	ProtectRemove := Semaphore forMutualExclusion
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ExternalSemaphoreTable class>>privateRegisterExternalObject: anObject [
+{ #category : #private }
+ExternalSemaphoreTable class >> privateRegisterExternalObject: anObject [
 	"Register the given object in the external objects array and return its index. If it is already there, just return its index.
 	Calls to this method must be guarded against simultaneous removes from multiple threads."
 
@@ -130,11 +111,8 @@ ExternalSemaphoreTable class>>privateRegisterExternalObject: anObject [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ExternalSemaphoreTable class>>privateUnregisterExternalObject: anObject [
+{ #category : #private }
+ExternalSemaphoreTable class >> privateUnregisterExternalObject: anObject [
 	"Unregister the given object in the external objects array. Do nothing if it isn't registered.
 	Calls to this method must be guarded against simultaneous removes from multiple threads."
 
@@ -148,20 +126,14 @@ ExternalSemaphoreTable class>>privateUnregisterExternalObject: anObject [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ExternalSemaphoreTable class>>registerExternalObject: anObject [
+{ #category : #accessing }
+ExternalSemaphoreTable class >> registerExternalObject: anObject [
 	^ ProtectAdd critical: [self privateRegisterExternalObject: anObject]
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ExternalSemaphoreTable class>>slotFor: anObject in: aCollection [
+{ #category : #private }
+ExternalSemaphoreTable class >> slotFor: anObject in: aCollection [
 	"find the first empty slot, or nil if there is none"
 
 	"The following was written in an atomic fashion using special methods with no suspension points, not sure if on purpose, but keeping it that way for now.
@@ -178,27 +150,18 @@ ExternalSemaphoreTable class>>slotFor: anObject in: aCollection [
 	^ firstEmptyIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ExternalSemaphoreTable class>>unprotectedExternalObjects [
+{ #category : #private }
+ExternalSemaphoreTable class >> unprotectedExternalObjects [
 	^Smalltalk specialObjectsArray at: 39
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ExternalSemaphoreTable class>>unprotectedExternalObjects: aCollection [
+{ #category : #private }
+ExternalSemaphoreTable class >> unprotectedExternalObjects: aCollection [
 	^Smalltalk specialObjectsArray at: 39 put: aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ExternalSemaphoreTable class>>unregisterExternalObject: anObject [
+{ #category : #accessing }
+ExternalSemaphoreTable class >> unregisterExternalObject: anObject [
 	ProtectRemove critical: [self privateUnregisterExternalObject: anObject]
 
 ]

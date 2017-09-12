@@ -8,15 +8,11 @@ Class {
 	#classVars : [
 		'Instance'
 	],
-	#category : #NodeNavigation-Core,
-	#timestamp : '<historical>'
+	#category : #NodeNavigation-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirection class>>calculateBestSeletionFor: node beforeSelection: selectionInText step: blockForStep [
+{ #category : #private }
+NNavDirection class >> calculateBestSeletionFor: node beforeSelection: selectionInText step: blockForStep [
 	| selectionInNode |
 	
 	node ifNil:[ ^selectionInText ].
@@ -26,10 +22,7 @@ NNavDirection class>>calculateBestSeletionFor: node beforeSelection: selectionIn
 		ifFalse: [selectionInNode ].
 ]
 
-{
-	#category : #'stand out',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirection class>>findSelectionFor: navigationContext [
+{ #category : #'stand out' }
+NNavDirection class >> findSelectionFor: navigationContext [
 	self subclassResponsibility .
 ]

@@ -9,32 +9,22 @@ Class {
 	#instVars : [
 		'code'
 	],
-	#category : #Zinc-HTTP-Exceptions,
-	#timestamp : 'DamienPollet 8/4/2011 14:07'
+	#category : #Zinc-HTTP-Exceptions
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnknownHttpStatusCode class>>code: code [
+{ #category : #'instance creation' }
+ZnUnknownHttpStatusCode class >> code: code [
 	^ self new
 		code: code;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnknownHttpStatusCode>>code [
+{ #category : #accessing }
+ZnUnknownHttpStatusCode >> code [
 	^ code
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnknownHttpStatusCode>>code: anObject [
+{ #category : #accessing }
+ZnUnknownHttpStatusCode >> code: anObject [
 	code := anObject
 ]

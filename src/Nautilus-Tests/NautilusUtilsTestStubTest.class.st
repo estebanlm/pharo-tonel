@@ -4,31 +4,21 @@ This is just a stub test that tests a stub class so NautilusUtilsTest can test m
 Class {
 	#name : #NautilusUtilsTestStubTest,
 	#superclass : #TestCase,
-	#category : #Nautilus-Tests,
-	#timestamp : 'monty 8/22/2016 07:22'
+	#category : #Nautilus-Tests
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusUtilsTestStubTest>>newStub [
+{ #category : #'instance creation' }
+NautilusUtilsTestStubTest >> newStub [
 	^ self stubClass new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusUtilsTestStubTest>>stubClass [
+{ #category : #accessing }
+NautilusUtilsTestStubTest >> stubClass [
 	^ NautilusUtilsTestStub
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusUtilsTestStubTest>>testOne [
+{ #category : #tests }
+NautilusUtilsTestStubTest >> testOne [
 	| stub |
 
 	stub := self newStub.
@@ -38,11 +28,8 @@ NautilusUtilsTestStubTest>>testOne [
 		assert: stub one = #one.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusUtilsTestStubTest>>testOneTwo [
+{ #category : #tests }
+NautilusUtilsTestStubTest >> testOneTwo [
 	| stub |
 	stub := self stubClass one: #one two: #two.
 	self
@@ -56,11 +43,8 @@ NautilusUtilsTestStubTest>>testOneTwo [
 		assert: stub two = #five
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusUtilsTestStubTest>>testTwo [
+{ #category : #tests }
+NautilusUtilsTestStubTest >> testTwo [
 	| stub |
 
 	stub := self newStub.

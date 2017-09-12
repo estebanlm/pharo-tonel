@@ -9,44 +9,31 @@ Class {
 		'oldName',
 		'newName'
 	],
-	#category : #Refactoring-Changes,
-	#timestamp : 'NicolaiHess 9/8/2016 23:43'
+	#category : #Refactoring-Changes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameClassChange class>>rename: oldString to: newString  [
+{ #category : #'instance creation' }
+RBRenameClassChange class >> rename: oldString to: newString [ 
 	^ self new
 		rename: oldString to: newString;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameClassChange>>= aRenameClassChange  [
+{ #category : #comparing }
+RBRenameClassChange >> = aRenameClassChange [ 
 	super class = aRenameClassChange class
 		ifFalse: [ ^ false ].
 	^oldName = aRenameClassChange oldName 
 		and: [ newName = aRenameClassChange newName ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameClassChange>>changeClass [
+{ #category : #accessing }
+RBRenameClassChange >> changeClass [
 	^ Smalltalk globals at: oldName asSymbol ifAbsent: [ Smalltalk globals at: newName asSymbol ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameClassChange>>executeNotifying: aBlock  [
+{ #category : #private }
+RBRenameClassChange >> executeNotifying: aBlock [ 
 	| undos |
 	self changeClass rename: newName.
 	undos := changes collect: [ :each | 
@@ -58,35 +45,23 @@ RBRenameClassChange>>executeNotifying: aBlock  [
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameClassChange>>hash [
+{ #category : #comparing }
+RBRenameClassChange >> hash [
 	^ (self class hash bitXor: self oldName hash) bitXor: self newName hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameClassChange>>newName [
+{ #category : #accessing }
+RBRenameClassChange >> newName [
 	^ newName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameClassChange>>oldName [
+{ #category : #accessing }
+RBRenameClassChange >> oldName [
 	^ oldName
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameClassChange>>printOn: aStream  [
+{ #category : #printing }
+RBRenameClassChange >> printOn: aStream [ 
 	aStream
 		nextPutAll: self oldName;
 		nextPutAll: ' rename: ';
@@ -94,20 +69,14 @@ RBRenameClassChange>>printOn: aStream  [
 		nextPut: $!
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameClassChange>>rename: oldString to: newString  [
+{ #category : #initialize-release }
+RBRenameClassChange >> rename: oldString to: newString [ 
 	oldName := oldString.
 	newName := newString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRenameClassChange>>renameChangesForClass: oldClassName to: newClassName [
+{ #category : #accessing }
+RBRenameClassChange >> renameChangesForClass: oldClassName to: newClassName [
 	| change |
 	change := super renameChangesForClass: oldClassName to: newClassName.
 	oldName asSymbol = oldClassName

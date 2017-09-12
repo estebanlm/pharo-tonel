@@ -8,15 +8,11 @@ Class {
 		'package',
 		'browser'
 	],
-	#category : #Versionner-Tests-Core-Model,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:17'
+	#category : #Versionner-Tests-Core-Model
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfoTest>>setUp [
+{ #category : #running }
+MBPackageInfoTest >> setUp [
 "	(Smalltalk includesKey: #TMPClass)
 		ifTrue: [ (Smalltalk at: #TMPClass) removeFromSystem ].
 "		
@@ -27,32 +23,23 @@ MBPackageInfoTest>>setUp [
 	package := MBPackageInfo named: 'FooBarZork'.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfoTest>>tearDown [
+{ #category : #running }
+MBPackageInfoTest >> tearDown [
 "	(Smalltalk includesKey: #TMPClass)
 		ifTrue: [ (Smalltalk at: #TMPClass) removeFromSystem ].
 "
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfoTest>>testInstantiation [
+{ #category : #tests }
+MBPackageInfoTest >> testInstantiation [
 	self should: [ MBPackageInfo new ] raise: Error.
 
 	self should: [ MBPackageInfo named: #'FooBar' ] raise: AssertionFailure.
 	self shouldnt: [ MBPackageInfo named: 'FooBar' ] raise: Error.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfoTest>>testIsDirty [
+{ #category : #tests }
+MBPackageInfoTest >> testIsDirty [
 	"This test is likely to be bogus ... cannot just create a package for packages that don'e exist. see Metacello Issue 113"
 	
 	| cls |
@@ -75,19 +62,13 @@ MBPackageInfoTest>>testIsDirty [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfoTest>>testPrintOn [
+{ #category : #tests }
+MBPackageInfoTest >> testPrintOn [
 	self assert: (package printString =  'FooBarZork ---').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageInfoTest>>testWorkingCopy [
+{ #category : #tests }
+MBPackageInfoTest >> testWorkingCopy [
 
 	|  workingCopy |
 	self assert: (RPackageOrganizer default packageNamed: 'FooBarZork' ifAbsent: []) isNil.	

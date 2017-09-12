@@ -14,15 +14,11 @@ Class {
 	#pools : [
 		'AthensCairoDefs'
 	],
-	#category : #Athens-Cairo-Text,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Text
 }
 
-{
-	#category : #finalizing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoScaledFont class>>finalizeResourceData: handle [
+{ #category : #finalizing }
+CairoScaledFont class >> finalizeResourceData: handle [
 
 "
 void                cairo_scaled_font_destroy           (cairo_scaled_font_t *scaled_font);
@@ -32,11 +28,8 @@ void                cairo_scaled_font_destroy           (cairo_scaled_font_t *sc
 	^ self nbCall: #( void  cairo_scaled_font_destroy (size_t handle) )
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoScaledFont class>>fromFreetypeFont: aFont [
+{ #category : #'instance creation' }
+CairoScaledFont class >> fromFreetypeFont: aFont [
 	| ftFace face |
 	^ CairoBackendCache soleInstance at: aFont ifAbsentPut: [ | emphasis |
 			emphasis := aFont simulatedEmphasis.
@@ -50,11 +43,8 @@ CairoScaledFont class>>fromFreetypeFont: aFont [
 			self fromFreetypeFont: aFont cairoFace: face ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoScaledFont class>>fromFreetypeFont: aFont cairoFace: face [
+{ #category : #'instance creation' }
+CairoScaledFont class >> fromFreetypeFont: aFont cairoFace: face [
 
 	| options fontMatrix deviceMatrix font |
 
@@ -73,11 +63,8 @@ CairoScaledFont class>>fromFreetypeFont: aFont cairoFace: face [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoScaledFont class>>primCreate: face fontMatrix: fontMatrix userToDeviceMatrix: ctm options: options [
+{ #category : #private }
+CairoScaledFont class >> primCreate: face fontMatrix: fontMatrix userToDeviceMatrix: ctm options: options [
 "
 cairo_scaled_font_t * cairo_scaled_font_create          (cairo_font_face_t *font_face,
                                                          const cairo_matrix_t *font_matrix,
@@ -113,11 +100,8 @@ Returns :
  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoScaledFont>>extents [
+{ #category : #accessing }
+CairoScaledFont >> extents [
 	| extents |
 	extents := CairoFontExtents new.
 
@@ -126,11 +110,8 @@ CairoScaledFont>>extents [
 	^ extents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoScaledFont>>getExtents: cairoFontExtents [
+{ #category : #accessing }
+CairoScaledFont >> getExtents: cairoFontExtents [
 	"void                cairo_scaled_font_extents           (cairo_scaled_font_t *scaled_font,
                                                          cairo_font_extents_t *extents);
 	"
@@ -140,11 +121,8 @@ CairoScaledFont>>getExtents: cairoFontExtents [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoScaledFont>>getExtentsOf: utf8String into: extentObj  [
+{ #category : #accessing }
+CairoScaledFont >> getExtentsOf: utf8String into: extentObj [ 
 	"void                cairo_scaled_font_extents           (cairo_scaled_font_t *scaled_font,
                                                          cairo_font_extents_t *extents);
 	"
@@ -157,11 +135,8 @@ CairoScaledFont>>getExtentsOf: utf8String into: extentObj  [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoScaledFont>>getExtentsOfGlyphs: glyphs ofLength: num into: extents  [
+{ #category : #accessing }
+CairoScaledFont >> getExtentsOfGlyphs: glyphs ofLength: num into: extents [ 
 	"void
 	cairo_scaled_font_glyph_extents (cairo_scaled_font_t *scaled_font,
                                  const cairo_glyph_t *glyphs,
@@ -177,33 +152,24 @@ CairoScaledFont>>getExtentsOfGlyphs: glyphs ofLength: num into: extents  [
 		
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoScaledFont>>initWithFace: cairo_face [
+{ #category : #initialize-release }
+CairoScaledFont >> initWithFace: cairo_face [
 
 	face := cairo_face.
 	
 	self autoRelease.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoScaledFont>>initialize  [
+{ #category : #initialize-release }
+CairoScaledFont >> initialize [ 
 	super initialize.
 	self status ~= CAIRO_STATUS_SUCCESS 
 		ifTrue: [ self error: 'Something is wrong!' ].
 	self autoRelease
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoScaledFont>>lock [
+{ #category : #'as yet unclassified' }
+CairoScaledFont >> lock [
 
 "
 FT_Face             cairo_ft_scaled_font_lock_face      (cairo_scaled_font_t *scaled_font);
@@ -215,19 +181,13 @@ FT_Face             cairo_ft_scaled_font_lock_face      (cairo_scaled_font_t *sc
 		void cairo_ft_scaled_font_lock_face (self)) 
 ]
 
-{
-	#category : #'external resource management',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoScaledFont>>resourceData  [
+{ #category : #'external resource management' }
+CairoScaledFont >> resourceData [ 
 	^ handle value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoScaledFont>>status [
+{ #category : #accessing }
+CairoScaledFont >> status [
 "cairo_status_t      cairo_scaled_font_status            (cairo_scaled_font_t *scaled_font);"
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
@@ -235,11 +195,8 @@ CairoScaledFont>>status [
 		
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoScaledFont>>unlock [
+{ #category : #'as yet unclassified' }
+CairoScaledFont >> unlock [
 
 "
 FT_Face             cairo_ft_scaled_font_lock_face      (cairo_scaled_font_t *scaled_font);

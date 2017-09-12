@@ -8,55 +8,36 @@ Class {
 		'behaviorName',
 		'isMeta'
 	],
-	#category : #CodeImport,
-	#timestamp : '<historical>'
+	#category : #CodeImport
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BehaviorOwnedChunk>>behaviorName [
+{ #category : #accessing }
+BehaviorOwnedChunk >> behaviorName [
 	^ behaviorName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BehaviorOwnedChunk>>behaviorName: aBehaviorName [
+{ #category : #accessing }
+BehaviorOwnedChunk >> behaviorName: aBehaviorName [
 	behaviorName := aBehaviorName
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BehaviorOwnedChunk>>existsBehavior [
+{ #category : #testing }
+BehaviorOwnedChunk >> existsBehavior [
 	^self class environment includesKey: behaviorName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BehaviorOwnedChunk>>isMeta [
+{ #category : #accessing }
+BehaviorOwnedChunk >> isMeta [
 	^ isMeta
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BehaviorOwnedChunk>>isMeta: aBoolean [
+{ #category : #accessing }
+BehaviorOwnedChunk >> isMeta: aBoolean [
 	isMeta := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-BehaviorOwnedChunk>>targetClass [
+{ #category : #accessing }
+BehaviorOwnedChunk >> targetClass [
 	| target |
 	target := self class environment at: behaviorName.
 	^isMeta

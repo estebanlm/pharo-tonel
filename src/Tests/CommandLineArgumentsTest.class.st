@@ -7,39 +7,26 @@ Class {
 	#instVars : [
 		'commandLine'
 	],
-	#category : #Tests-System-CommandLine,
-	#timestamp : 'AdrienBarreau 2/12/2011 15:55'
+	#category : #Tests-System-CommandLine
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineArgumentsTest>>commandLine [
+{ #category : #accessing }
+CommandLineArgumentsTest >> commandLine [
 	^ commandLine
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineArgumentsTest>>parameters [
+{ #category : #accessing }
+CommandLineArgumentsTest >> parameters [
 	^ #('noOpt1' 'noOpt2.txt' 'noOpt3.avi' '--option1' 'opt11' 'opt12.txt' 'opt13.avi' '--option2' '--option3' 'opt31.st' 'opt32' '--option4' '--option5=option5Value' '-o' 'oValue')
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineArgumentsTest>>setUp [
+{ #category : #running }
+CommandLineArgumentsTest >> setUp [
 	commandLine := CommandLineArguments withArguments: self parameters.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineArgumentsTest>>tesOptionAt [
+{ #category : #tests }
+CommandLineArgumentsTest >> tesOptionAt [
 	self assert: (self commandLine optionAt: #option1) equals: nil.
 	self assert: (self commandLine optionAt: #option4) equals: nil.
 	self assert: (self commandLine optionAt: #option5) equals: 'option5Value'.
@@ -47,37 +34,25 @@ CommandLineArgumentsTest>>tesOptionAt [
 	self assert: (self commandLine optionAt: #o) equals: 'oValue'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineArgumentsTest>>testAllFileTyped [
+{ #category : #tests }
+CommandLineArgumentsTest >> testAllFileTyped [
 	self assert: (self commandLine allFilesWithExtension: #txt) = #('noOpt2.txt' 'opt12.txt').
 	self assert: (self commandLine allFilesWithExtension: #foo) isEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineArgumentsTest>>testAllParameters [
+{ #category : #tests }
+CommandLineArgumentsTest >> testAllParameters [
 	self assertCollection: self commandLine arguments equals: self parameters
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineArgumentsTest>>testHasFilesTyped [
+{ #category : #tests }
+CommandLineArgumentsTest >> testHasFilesTyped [
 	self assert: (self commandLine hasFileWithExtension: #txt).
 	self deny: (self commandLine hasFileWithExtension: #foo).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineArgumentsTest>>testHasOption [
+{ #category : #tests }
+CommandLineArgumentsTest >> testHasOption [
 	self assert: (self commandLine hasOption: #option1).
 	self assert: (self commandLine hasOption: #option4).
 	self assert: (self commandLine hasOption: #option5).
@@ -86,19 +61,13 @@ CommandLineArgumentsTest>>testHasOption [
 	self deny: (self commandLine hasOption: #option5Value).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineArgumentsTest>>testHasParameters [
+{ #category : #tests }
+CommandLineArgumentsTest >> testHasParameters [
 	self assert: (self commandLine hasArguments)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineArgumentsTest>>testOptionAt [
+{ #category : #tests }
+CommandLineArgumentsTest >> testOptionAt [
 	self should: [ self commandLine optionAt: #option1 ] raise: Error.
 	self should: [ self commandLine optionAt: #option4 ] raise: Error.
 	
@@ -109,11 +78,8 @@ CommandLineArgumentsTest>>testOptionAt [
 	self should: [ self commandLine optionAt: #x ] raise: Error.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineArgumentsTest>>testOptionAtifAbsent [
+{ #category : #tests }
+CommandLineArgumentsTest >> testOptionAtifAbsent [
 	self assert: (self commandLine optionAt: #option1 ifAbsent: [ nil ]) equals: nil.
 	self assert: (self commandLine optionAt: #option4 ifAbsent: [ nil ]) equals: nil.
 	self assert: (self commandLine optionAt: #option5) equals: 'option5Value'.
@@ -122,11 +88,8 @@ CommandLineArgumentsTest>>testOptionAtifAbsent [
 	self assert: (self commandLine optionAt: #x ifAbsent: [ nil ]) equals: nil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CommandLineArgumentsTest>>testParameterAt [
+{ #category : #tests }
+CommandLineArgumentsTest >> testParameterAt [
 	self assert: (self commandLine argumentAt: 1) = 'noOpt1'.
 	self assert: (self commandLine argumentAt: 4) = '--option1'.
 	self deny: (self commandLine argumentAt: 5) = 'foo'.

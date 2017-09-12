@@ -6,23 +6,16 @@ See class side for selectors.
 Class {
 	#name : #SpecHelpTopics,
 	#superclass : #CustomHelp,
-	#category : #Spec-Help,
-	#timestamp : 'IgnacioSniechowski 2/25/2015 08:31'
+	#category : #Spec-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SpecHelpTopics class>>bookName [
+{ #category : #accessing }
+SpecHelpTopics class >> bookName [
 	^ 'Spec'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SpecHelpTopics class>>introduction [
+{ #category : #pages }
+SpecHelpTopics class >> introduction [
 	^HelpTopic 	
 		title: 'About Spec'
 		contents: 'Spec has been originally developed by B. Van Ryseghem based on an idea of S. Ducasse. It is now maintained by the community and the pharo core team.. 
@@ -30,27 +23,18 @@ SpecHelpTopics class>>introduction [
 Spec is an attempt to support UI logic reuse. Spec is influenced by VisualWorks and Dolphin MVP in the sense that it recognizes the need for a Presenter or Application-Model class, in Spec called ComposableModel that manages the logic and the link between widgets and domain objects. Spec, following the tradition, uses value holders, simple object raising announcements when their values, often domain objects, change.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SpecHelpTopics class>>key [
+{ #category : #accessing }
+SpecHelpTopics class >> key [
 	^'Spec'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SpecHelpTopics class>>pages [
+{ #category : #accessing }
+SpecHelpTopics class >> pages [
 	^#(introduction terminology SpecExamples TheHeartOfSpec SpecLayouts)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-SpecHelpTopics class>>terminology [
+{ #category : #pages }
+SpecHelpTopics class >> terminology [
 	^HelpTopic
 		title: 'Terminology'
 		contents: 'To avoid possible misunderstandings due to confusion in terminology, we first define the following four terms, which will be used frequently:

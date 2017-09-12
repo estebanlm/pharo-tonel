@@ -8,50 +8,34 @@ Class {
 		'superclass',
 		'variable'
 	],
-	#category : #Kernel-Exceptions,
-	#timestamp : '<historical>'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DuplicatedVariableError>>isResumable [
+{ #category : #testing }
+DuplicatedVariableError >> isResumable [
         ^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DuplicatedVariableError>>superclass [
+{ #category : #accessing }
+DuplicatedVariableError >> superclass [
         "The superclass in which the variable is defined"
         ^superclass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DuplicatedVariableError>>superclass: aSuperclass [
+{ #category : #accessing }
+DuplicatedVariableError >> superclass: aSuperclass [
         "The superclass in which the variable is defined"
         superclass := aSuperclass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DuplicatedVariableError>>variable [
+{ #category : #accessing }
+DuplicatedVariableError >> variable [
         "Name of the duplicate variable"
         ^variable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DuplicatedVariableError>>variable: aVariable [
+{ #category : #accessing }
+DuplicatedVariableError >> variable: aVariable [
         "Name of the duplicate variable"
         variable := aVariable
 ]

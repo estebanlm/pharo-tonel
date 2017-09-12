@@ -23,95 +23,67 @@ Class {
 		'testSelector',
 		'testResult'
 	],
-	#category : #SUnit-Core-Announcements,
-	#timestamp : 'tbn 4/26/2011 09:54'
+	#category : #SUnit-Core-Announcements
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestCaseAnnouncement>>hasErrors [
+{ #category : #testing }
+TestCaseAnnouncement >> hasErrors [
         "Return true if the test result has errors."
         
         ^testResult hasErrors
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestCaseAnnouncement>>hasFailures [
+{ #category : #testing }
+TestCaseAnnouncement >> hasFailures [
         "Return true if the test result has failures."
         
         ^testResult hasFailures
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestCaseAnnouncement>>hasPassed [
+{ #category : #testing }
+TestCaseAnnouncement >> hasPassed [
         "Return true if the test has passed."
         
         ^testResult hasPassed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestCaseAnnouncement>>testCase [
+{ #category : #accessing }
+TestCaseAnnouncement >> testCase [
         "Returns the test case."
         
         ^testCase
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestCaseAnnouncement>>testCase: aTestCase [
+{ #category : #accessing }
+TestCaseAnnouncement >> testCase: aTestCase [
         "Sets the test case to the given test case."
         
         testCase := aTestCase
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestCaseAnnouncement>>testResult [
+{ #category : #accessing }
+TestCaseAnnouncement >> testResult [
         "Returns the test result."
         
         ^testResult
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestCaseAnnouncement>>testResult: aTestResult [
+{ #category : #accessing }
+TestCaseAnnouncement >> testResult: aTestResult [
         "Sets the test result to the given test result."
         
         testResult := aTestResult
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestCaseAnnouncement>>testSelector [
+{ #category : #accessing }
+TestCaseAnnouncement >> testSelector [
         "Returns the test selector."
         
         ^testSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestCaseAnnouncement>>testSelector: aSymbol [
+{ #category : #accessing }
+TestCaseAnnouncement >> testSelector: aSymbol [
         "Sets the test selector to the given symbol."
         
         testSelector := aSymbol

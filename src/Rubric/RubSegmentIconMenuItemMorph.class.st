@@ -1,58 +1,39 @@
-"
-
-"
 Class {
 	#name : #RubSegmentIconMenuItemMorph,
 	#superclass : #ToggleMenuItemMorph,
 	#instVars : [
 		'segment'
 	],
-	#category : #Rubric-Editing-Widgets,
-	#timestamp : ''
+	#category : #Rubric-Editing-Widgets
 }
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSegmentIconMenuItemMorph>>deselect: anEvent [
+{ #category : #selecting }
+RubSegmentIconMenuItemMorph >> deselect: anEvent [
 	self segment showMouseHasLeaved.
 	super deselect: anEvent.
 
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSegmentIconMenuItemMorph>>invokeWithEvent: evt [
+{ #category : #events }
+RubSegmentIconMenuItemMorph >> invokeWithEvent: evt [
 	super invokeWithEvent: evt.
 	self owner defaultTarget changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSegmentIconMenuItemMorph>>segment [
+{ #category : #accessing }
+RubSegmentIconMenuItemMorph >> segment [
 	
 	^ segment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSegmentIconMenuItemMorph>>segment: aSegment [
+{ #category : #accessing }
+RubSegmentIconMenuItemMorph >> segment: aSegment [
 	
 	segment := aSegment
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSegmentIconMenuItemMorph>>select: anEvent [
+{ #category : #selecting }
+RubSegmentIconMenuItemMorph >> select: anEvent [
 	self segment showMouseHasEntered.
 	super select: anEvent.
 

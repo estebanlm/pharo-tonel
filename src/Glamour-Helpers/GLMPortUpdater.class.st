@@ -8,52 +8,36 @@ Class {
 		'portSymbol',
 		'valueBlock'
 	],
-	#category : #Glamour-Helpers,
-	#timestamp : '<historical>'
+	#category : #Glamour-Helpers
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortUpdater>>glamourValueWithArgs: anArray  [
+{ #category : #accessing }
+GLMPortUpdater >> glamourValueWithArgs: anArray [ 
 	 
 	(anArray first pane port: self portSymbol) 
 		value: (self valueBlock glamourValueWithArgs: anArray)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortUpdater>>portSymbol  [
+{ #category : #accessing }
+GLMPortUpdater >> portSymbol [ 
 	 
 	^portSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortUpdater>>portSymbol: anObject  [
+{ #category : #accessing }
+GLMPortUpdater >> portSymbol: anObject [ 
 	 
 	portSymbol := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortUpdater>>valueBlock  [
+{ #category : #accessing }
+GLMPortUpdater >> valueBlock [ 
 	 
 	^valueBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPortUpdater>>valueBlock: anObject  [
+{ #category : #accessing }
+GLMPortUpdater >> valueBlock: anObject [ 
 	 
 	valueBlock := anObject
 ]

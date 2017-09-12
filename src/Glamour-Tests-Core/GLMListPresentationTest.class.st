@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMListPresentationTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMListPresentationTest>>testChildren [
+{ #category : #tests }
+GLMListPresentationTest >> testChildren [
 	| tree |
 	tree := GLMTreePresentation new.
 	tree transformation: [:aNumber | (1 to: aNumber ) collect: #printString ].
@@ -20,11 +13,8 @@ GLMListPresentationTest>>testChildren [
 	tree entity: 42.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMListPresentationTest>>testCustomValidation [
+{ #category : #tests }
+GLMListPresentationTest >> testCustomValidation [
 	| pane presentation |
 	pane := GLMPane named: 'test'.
 	presentation := GLMPresentation new.
@@ -35,11 +25,8 @@ GLMListPresentationTest>>testCustomValidation [
 	self assert: (presentation validate: 42 on: (pane port: #selection))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMListPresentationTest>>testSorted [
+{ #category : #tests }
+GLMListPresentationTest >> testSorted [
 	| presentation | 
 	presentation := GLMListPresentation new. 
 	presentation entity: #(#foo #bar #blurp).
@@ -50,11 +37,8 @@ GLMListPresentationTest>>testSorted [
 	self assert: presentation displayValue equals: #(#bar #foo #blurp).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMListPresentationTest>>testToSend [
+{ #category : #tests }
+GLMListPresentationTest >> testToSend [
 	| list |
 	list := GLMListPresentation new.
 	list selectionTransformation: [ :x | x + 1 ].
@@ -63,11 +47,8 @@ GLMListPresentationTest>>testToSend [
 	self assert: list selection equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMListPresentationTest>>testValidateOn [
+{ #category : #tests }
+GLMListPresentationTest >> testValidateOn [
 	| pane presentation |
 	pane := GLMPane named: 'test'. 
 	presentation := GLMListPresentation new.
@@ -81,11 +62,8 @@ GLMListPresentationTest>>testValidateOn [
 	self deny: (presentation validate: $z on: (pane port: #selection)).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMListPresentationTest>>testValidatePorts [
+{ #category : #tests }
+GLMListPresentationTest >> testValidatePorts [
 	| pane presentation |
 	pane := GLMPane named: 'test'.
 	presentation := GLMListPresentation new.
@@ -98,11 +76,8 @@ GLMListPresentationTest>>testValidatePorts [
 	self assert: presentation selection equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMListPresentationTest>>testValidateWithMultipleSelection [
+{ #category : #tests }
+GLMListPresentationTest >> testValidateWithMultipleSelection [
 	| pane presentation |
 	pane := GLMPane named: 'test'. 
 	presentation := GLMListPresentation new.

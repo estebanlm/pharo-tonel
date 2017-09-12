@@ -7,62 +7,43 @@ Class {
 	#instVars : [
 		'trait'
 	],
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 14:46'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTraitAddition class>>trait: aTrait [
+{ #category : #'instance creation' }
+EpTraitAddition class >> trait: aTrait [
 
 	^ self basicNew
 		initializeWithTrait: aTrait;
 		yourself 
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTraitAddition>>accept: aVisitor [
+{ #category : #visitor }
+EpTraitAddition >> accept: aVisitor [
 
 	^ aVisitor visitTraitAddition: self 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTraitAddition>>behaviorAffected [
+{ #category : #accessing }
+EpTraitAddition >> behaviorAffected [
 	^ self traitAdded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTraitAddition>>behaviorAffectedName [
+{ #category : #accessing }
+EpTraitAddition >> behaviorAffectedName [
 
 	^ self traitAdded name
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTraitAddition>>initializeWithTrait: aTrait [
+{ #category : #initialization }
+EpTraitAddition >> initializeWithTrait: aTrait [
 
 	self initialize.
 	trait := aTrait asEpiceaRingDefinition.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpTraitAddition>>traitAdded [
+{ #category : #accessing }
+EpTraitAddition >> traitAdded [
 
 	^ trait 
 ]

@@ -8,15 +8,11 @@ Class {
 		'localName',
 		'globalName'
 	],
-	#category : #Ombu-Entries,
-	#timestamp : 'MartinDias 4/14/2014 23:27'
+	#category : #Ombu-Entries
 }
 
-{
-	#category : #'ston persistence',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmReference class>>fromSton: stonReader [
+{ #category : #'ston persistence' }
+OmReference class >> fromSton: stonReader [
 	| array |
 	array := Array new: 2 streamContents: [ :stream |
 		stonReader parseListDo: [ :each :index | stream nextPut: each ] ].
@@ -34,11 +30,8 @@ OmReference class>>fromSton: stonReader [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmReference class>>globalName: aName localName: anIdentifier [
+{ #category : #'instance creation' }
+OmReference class >> globalName: aName localName: anIdentifier [
 
 	^ self new
 		initializeWithLocalName: anIdentifier
@@ -46,58 +39,40 @@ OmReference class>>globalName: aName localName: anIdentifier [
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmReference>>= other [
+{ #category : #comparing }
+OmReference >> = other [
 	^ other species = self species and: [ 
 		other localName = self localName and: [
 		other globalName = self globalName ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmReference>>globalName [
+{ #category : #accessing }
+OmReference >> globalName [
 	
 	^ globalName
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmReference>>hash [
+{ #category : #comparing }
+OmReference >> hash [
 	^ (self species hash bitXor: self localName hash) bitXor: self globalName hash
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmReference>>initializeWithLocalName: aLocalName globalName: aGlobalName [
+{ #category : #initialize-release }
+OmReference >> initializeWithLocalName: aLocalName globalName: aGlobalName [
 
 	self initialize.
 	localName := aLocalName.
 	globalName := aGlobalName.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmReference>>localName [
+{ #category : #accessing }
+OmReference >> localName [
 	
 	^ localName
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmReference>>printOn: aStream [
+{ #category : #printing }
+OmReference >> printOn: aStream [
 
 	super printOn: aStream.
 	
@@ -107,11 +82,8 @@ OmReference>>printOn: aStream [
 		nextPut: $).
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmReference>>shortName [
+{ #category : #printing }
+OmReference >> shortName [
 
 	^ String streamContents: [ :stream |
 		stream
@@ -120,19 +92,13 @@ OmReference>>shortName [
 			nextPutAll: self localName ]
 ]
 
-{
-	#category : #'ston persistence',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmReference>>stonContainSubObjects  [
+{ #category : #'ston persistence' }
+OmReference >> stonContainSubObjects [ 
 	^ false
 ]
 
-{
-	#category : #'ston persistence',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmReference>>stonOn: stonWriter [
+{ #category : #'ston persistence' }
+OmReference >> stonOn: stonWriter [
 	
 	stonWriter 
 		writeObject: self 

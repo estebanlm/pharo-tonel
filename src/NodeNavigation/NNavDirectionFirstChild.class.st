@@ -4,15 +4,11 @@ I navigate throw the childs picking allways the firs one
 Class {
 	#name : #NNavDirectionFirstChild,
 	#superclass : #NNavDirectionChild,
-	#category : #NodeNavigation-Core,
-	#timestamp : '<historical>'
+	#category : #NodeNavigation-Core
 }
 
-{
-	#category : #builder,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionFirstChild class>>buildShortcut: aBuilder [
+{ #category : #builder }
+NNavDirectionFirstChild class >> buildShortcut: aBuilder [
 	<keymap>
 	(aBuilder shortcut: #firstChild) 
 		category: #SmalltalkEditor
@@ -24,11 +20,8 @@ NNavDirectionFirstChild class>>buildShortcut: aBuilder [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionFirstChild class>>childNodeFor: node [
+{ #category : #private }
+NNavDirectionFirstChild class >> childNodeFor: node [
 	"We find the child for a node, if it has not childs nil, if has more than one return the first one."
 	node ifNil:[^nil].
 	^ node children isEmpty
@@ -37,11 +30,8 @@ NNavDirectionFirstChild class>>childNodeFor: node [
 
 ]
 
-{
-	#category : #builder,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionFirstChild class>>defaultKeyCombination [
+{ #category : #builder }
+NNavDirectionFirstChild class >> defaultKeyCombination [
 	^NNavNavigation useArrowsShortcuts 
 		ifTrue: [ Character arrowRight meta shift ]
 		ifFalse: [ $o meta shift  ]

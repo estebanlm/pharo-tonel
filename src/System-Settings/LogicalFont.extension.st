@@ -1,20 +1,12 @@
-Extension {
-	#name : #LogicalFont
-}
+Extension { #name : #LogicalFont }
 
-{
-	#category : #'*System-Settings',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LogicalFont>>acceptSettings: aVisitor [
+{ #category : #'*System-Settings' }
+LogicalFont >> acceptSettings: aVisitor [
 	^ aVisitor visitLogicalFont: self
 ]
 
-{
-	#category : #'*system-settings-browser',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LogicalFont>>settingStoreOn: aStream  [
+{ #category : #'*system-settings-browser' }
+LogicalFont >> settingStoreOn: aStream [ 
 	aStream nextPut: $(.
 	aStream nextPutAll: self class name.
 	aStream nextPut: Character space.
@@ -38,11 +30,8 @@ LogicalFont>>settingStoreOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #'*system-settings-browser',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LogicalFont>>withSizeIncrementedBy: anInteger [
+{ #category : #'*system-settings-browser' }
+LogicalFont >> withSizeIncrementedBy: anInteger [
 	^ self class 
 		familyName: self familyName 
 		fallbackFamilyNames: self fallbackFamilyNames

@@ -5,31 +5,21 @@ A ProcessSpecificTest is a test case for process local and dynamic variables.
 Class {
 	#name : #ProcessSpecificTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Processes,
-	#timestamp : 'mvl 3/13/2007 13:52'
+	#category : #Kernel-Tests-Processes
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessSpecificTest>>checkDynamic: value [
+{ #category : #testing }
+ProcessSpecificTest >> checkDynamic: value [
 	self assert: TestDynamicVariable value = value
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessSpecificTest>>checkLocal: value [
+{ #category : #testing }
+ProcessSpecificTest >> checkLocal: value [
 	self assert: TestLocalVariable value = value
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessSpecificTest>>testDynamicVariable [
+{ #category : #testing }
+ProcessSpecificTest >> testDynamicVariable [
 
 	| s1 s2 p1stopped p2stopped |
 	s1 := Semaphore new.
@@ -70,11 +60,8 @@ ProcessSpecificTest>>testDynamicVariable [
 	self assert: p2stopped.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessSpecificTest>>testDynamicVariableAccessFromDifferentProcess [
+{ #category : #testing }
+ProcessSpecificTest >> testDynamicVariableAccessFromDifferentProcess [
 	| process sem result |
 	
 	sem := Semaphore new.
@@ -90,21 +77,15 @@ ProcessSpecificTest>>testDynamicVariableAccessFromDifferentProcess [
 	self assert: result = 123
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessSpecificTest>>testDynamicVariableBlockReturnValue [
+{ #category : #testing }
+ProcessSpecificTest >> testDynamicVariableBlockReturnValue [
 	| returnValue |
 	returnValue := TestDynamicVariable value: 10 during: [ TestDynamicVariable value + 1 ].
 	self assert: returnValue equals: 11
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessSpecificTest>>testDynamicVariableRemovedAfterUse [
+{ #category : #testing }
+ProcessSpecificTest >> testDynamicVariableRemovedAfterUse [
 	TestDynamicVariable
 		value: 3
 		during: [  ].
@@ -112,11 +93,8 @@ ProcessSpecificTest>>testDynamicVariableRemovedAfterUse [
 	self assert: (Processor activeProcess psValueAt: TestDynamicVariable soleInstance index) equals: nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessSpecificTest>>testExecutionEnvironment [
+{ #category : #testing }
+ProcessSpecificTest >> testExecutionEnvironment [
 
 	| newEnv |
 	newEnv := ExecutionEnvironmentStub new.
@@ -130,11 +108,8 @@ ProcessSpecificTest>>testExecutionEnvironment [
 	]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessSpecificTest>>testInheritableVariable [
+{ #category : #testing }
+ProcessSpecificTest >> testInheritableVariable [
 
 	| s1 s2 parentVar childVar |
 	s1 := Semaphore new.
@@ -155,11 +130,8 @@ ProcessSpecificTest>>testInheritableVariable [
 	self assert: childVar equals: #inheritedVar
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessSpecificTest>>testInheritingExecutionEnvironment [
+{ #category : #testing }
+ProcessSpecificTest >> testInheritingExecutionEnvironment [
 
 	| newEnv p |
 	newEnv := ExecutionEnvironmentStub new.
@@ -170,11 +142,8 @@ ProcessSpecificTest>>testInheritingExecutionEnvironment [
 	self assert: newEnv forkedProcesses anyOne equals: p
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ProcessSpecificTest>>testLocalVariable [
+{ #category : #testing }
+ProcessSpecificTest >> testLocalVariable [
 
 	| s1 s2 p1stopped p2stopped |
 	s1 := Semaphore new.

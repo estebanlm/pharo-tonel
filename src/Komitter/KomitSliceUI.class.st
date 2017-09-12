@@ -11,15 +11,11 @@ Class {
 		'titleWidget',
 		'valid'
 	],
-	#category : #Komitter-UI,
-	#timestamp : '<historical>'
+	#category : #Komitter-UI
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSliceUI class>>defaultSpec [
+{ #category : #specs }
+KomitSliceUI class >> defaultSpec [
 	<spec: #default>
 	
 	^ SpecLayout composed
@@ -33,11 +29,8 @@ KomitSliceUI class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSliceUI>>encodeTitle: aTitle [
+{ #category : #initialization }
+KomitSliceUI >> encodeTitle: aTitle [
 	| allowedCharacters |
 	
 	allowedCharacters := ($A to: $Z)
@@ -52,31 +45,22 @@ KomitSliceUI>>encodeTitle: aTitle [
 						ifTrue: [ stream << character ] ] ] ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSliceUI>>initialExtent [
+{ #category : #api }
+KomitSliceUI >> initialExtent [
 
 	^ 600@100
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSliceUI>>initialize [
+{ #category : #initialization }
+KomitSliceUI >> initialize [
 
 	super initialize.
 
 	valid := false asValueHolder
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSliceUI>>initializeDialogWindow: aWindow [
+{ #category : #initialization }
+KomitSliceUI >> initializeDialogWindow: aWindow [
 
 	valid whenChangedDo: [ :b | aWindow toolbar okButton enabled: b ].
 	aWindow toolbar okButton enabled: false.
@@ -85,11 +69,8 @@ KomitSliceUI>>initializeDialogWindow: aWindow [
 		toAction: [ self valid ifTrue: [ aWindow triggerOkAction ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSliceUI>>initializeWidgets [
+{ #category : #initialization }
+KomitSliceUI >> initializeWidgets [
 
 	issueNumber := self newTextInput.
 	titleWidget := self newTextInput.
@@ -116,36 +97,24 @@ KomitSliceUI>>initializeWidgets [
 		add: issueNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSliceUI>>issueNumber [
+{ #category : #accessing }
+KomitSliceUI >> issueNumber [
 	^ issueNumber
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSliceUI>>issueNumberText [
+{ #category : #api }
+KomitSliceUI >> issueNumberText [
 
 	^ issueNumber text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSliceUI>>loadingWidget [
+{ #category : #accessing }
+KomitSliceUI >> loadingWidget [
 	^ loadingWidget
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSliceUI>>setTitleFrom: aZnResponse [
+{ #category : #private }
+KomitSliceUI >> setTitleFrom: aZnResponse [
 
 	(aZnResponse isError or: [ aZnResponse entity isNil ])
 		ifTrue: [ 
@@ -157,46 +126,31 @@ KomitSliceUI>>setTitleFrom: aZnResponse [
 			loadingWidget ok ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSliceUI>>title [
+{ #category : #api }
+KomitSliceUI >> title [
 
 	^ 'Retrieve Slice title'
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSliceUI>>titleText [
+{ #category : #api }
+KomitSliceUI >> titleText [
 
 	^ titleWidget text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSliceUI>>titleWidget [
+{ #category : #accessing }
+KomitSliceUI >> titleWidget [
 	^ titleWidget
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSliceUI>>valid [
+{ #category : #api }
+KomitSliceUI >> valid [
 
 	^ valid value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitSliceUI>>valid: aBoolean [
+{ #category : #api }
+KomitSliceUI >> valid: aBoolean [
 
 	valid value: aBoolean
 ]

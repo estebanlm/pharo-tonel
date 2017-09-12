@@ -4,15 +4,11 @@ SUnit tests for TextEmphasis
 Class {
 	#name : #TextEmphasisTest,
 	#superclass : #HashAndEqualsTestCase,
-	#category : #Text-Tests,
-	#timestamp : 'TorstenBergmann 1/31/2014 12:23'
+	#category : #Text-Tests
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextEmphasisTest>>setUp [
+{ #category : #initialization }
+TextEmphasisTest >> setUp [
 	super setUp.
 	prototypes add: TextEmphasis bold;
 		 add: TextEmphasis italic;
@@ -22,11 +18,8 @@ TextEmphasisTest>>setUp [
 		 add: TextEmphasis underlined 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextEmphasisTest>>testAppendString [
+{ #category : #tests }
+TextEmphasisTest >> testAppendString [
 	"tests the Text>>prepend: method when appending a String " 
 	"self run: # testAppendString"
 
@@ -43,11 +36,8 @@ TextEmphasisTest>>testAppendString [
 	self assert: (result runs = expectedResult runs)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextEmphasisTest>>testAppendText [
+{ #category : #tests }
+TextEmphasisTest >> testAppendText [
 	"tests the Text>>prepend: method when appending a Text " 
 	| receiver argument result expectedResult |
 
@@ -67,11 +57,8 @@ TextEmphasisTest>>testAppendText [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextEmphasisTest>>testPrependString [
+{ #category : #tests }
+TextEmphasisTest >> testPrependString [
 	"tests the Text>>prepend: method when prepending a String " 
 	| receiver argument result expectedResult |
 
@@ -88,11 +75,8 @@ TextEmphasisTest>>testPrependString [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextEmphasisTest>>testPrependText [
+{ #category : #tests }
+TextEmphasisTest >> testPrependText [
 	"tests the Text>>prepend: method when prepending Text " 
 	| receiver argument result expectedResult |
 

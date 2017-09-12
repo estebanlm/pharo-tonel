@@ -16,15 +16,11 @@ Class {
 	#classInstVars : [
 		'icons'
 	],
-	#category : #Tool-CriticBrowser,
-	#timestamp : '<historical>'
+	#category : #Tool-CriticBrowser
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList class>>defaultSpec [
+{ #category : #specs }
+SingleCodeCriticResultList class >> defaultSpec [
 	<spec>
 	
 	^ SpecLayout composed
@@ -36,11 +32,8 @@ SingleCodeCriticResultList class>>defaultSpec [
 				add: #textModel ]
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList class>>exclamationIcon  [
+{ #category : #icons }
+SingleCodeCriticResultList class >> exclamationIcon [ 
 
 	^  icons
 			at: #'exclamationIcon'
@@ -48,11 +41,8 @@ SingleCodeCriticResultList class>>exclamationIcon  [
 
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList class>>exclamationIconContents [
+{ #category : #icons }
+SingleCodeCriticResultList class >> exclamationIconContents [
 	"Private - Method generated"
 	^ 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0
 RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJPSURBVDjLpZPLS5RhFMYfv9QJ
@@ -69,29 +59,20 @@ xsBV74Or3od4OISPr0e3SHa3PX0f3HXKofNH/UIG9pZ5PeUth+CyS2EMkEqs4fPEOBJLsysk
 e48/+xD8oxcAYPzs4QaS7RR2kbLTTOTQieczfzfTv8QPldGvTGoF6/8AAAAASUVORK5CYII='
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList class>>initialize [
+{ #category : #'class initialization' }
+SingleCodeCriticResultList class >> initialize [
 	
 	icons := IdentityDictionary new
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList class>>title [
+{ #category : #specs }
+SingleCodeCriticResultList class >> title [
 
 	^ 'Critic Browser'
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList class>>wrenchOrangeIcon [
+{ #category : #icons }
+SingleCodeCriticResultList class >> wrenchOrangeIcon [
 
 	^  icons
 			at: #'wrenchOrangeIcon'
@@ -99,11 +80,8 @@ SingleCodeCriticResultList class>>wrenchOrangeIcon [
 
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList class>>wrenchOrangeIconContents [
+{ #category : #icons }
+SingleCodeCriticResultList class >> wrenchOrangeIconContents [
 	"Private - Method generated"
 	^ 'iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0
 RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAHaSURBVDjLlZO7a1NRHMfzfzhI
@@ -118,11 +96,8 @@ ZfiyAUWx/OY25O4JHBP4CtyZ16a9EwuRi1CXs+5K1ew6lB9DXERX517P8tEsPDzfNIP6C5Ye
 QewSrJyeCd4P0bnwXYISy3MCn5oZNtsf3pH46e7XBJcAAAAASUVORK5CYII='
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>addCriticToFalsePositive [
+{ #category : #menu }
+SingleCodeCriticResultList >> addCriticToFalsePositive [
 	
 	criticsModel selectedItems
 		ifNotNil: [ :items | items do: [ :item |
@@ -133,11 +108,8 @@ SingleCodeCriticResultList>>addCriticToFalsePositive [
 	
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>addCriticToToDo [
+{ #category : #menu }
+SingleCodeCriticResultList >> addCriticToToDo [
 
 	criticsModel selectedItems
 		ifNotNil: [ :items | items do: [ :item |
@@ -148,11 +120,8 @@ SingleCodeCriticResultList>>addCriticToToDo [
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>addMarkingMenuItemsTo: aMenu [
+{ #category : #menu }
+SingleCodeCriticResultList >> addMarkingMenuItemsTo: aMenu [
 	(criticsModel selectedItems anySatisfy: [ :critic | cache isFalsePositive: critic forRule: rule ]) 
 		ifTrue: [ aMenu add: 'Unmark as wrong' target: self selector: #removeCriticToFalsePositive ].
 	(criticsModel selectedItems anySatisfy: [ :critic | (cache isFalsePositive: critic forRule: rule) not ]) 
@@ -164,32 +133,23 @@ SingleCodeCriticResultList>>addMarkingMenuItemsTo: aMenu [
 	
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>addNavigationMenuItemsTo: aMenu [
+{ #category : #menu }
+SingleCodeCriticResultList >> addNavigationMenuItemsTo: aMenu [
 
 	criticsModel selectedItem ifNotNil: [ :critique |
 		critique sourceAnchor entity populateCBMenu: aMenu ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>addRuleToFalsePositive [
+{ #category : #menu }
+SingleCodeCriticResultList >> addRuleToFalsePositive [
 
 	criticsModel selectedItems ifNotNil: [ :criticss |
 		criticss do: [ :critic |
 			cache addFalsePositiveRule: rule forPackage: critic mcWorkingCopy]].
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>browseCritic [
+{ #category : #menu }
+SingleCodeCriticResultList >> browseCritic [
 	criticsModel selectedItem
 		ifNotNil: [ :element |
 			| entity |
@@ -199,76 +159,52 @@ SingleCodeCriticResultList>>browseCritic [
 				ifFalse: [ entity browse ] ] 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>browseDependencies [
+{ #category : #menu }
+SingleCodeCriticResultList >> browseDependencies [
 	criticsModel selectedItems ifNotNil: [ :packages |
 		(DAPackageAnalyzerPackageDependenciesWindow onPackagesNamed: (packages collect: #packageName)) open ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>cache:  acache  [
+{ #category : #accessing }
+SingleCodeCriticResultList >> cache:  acache [ 
 	cache := acache
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>criticsModel [
+{ #category : #accessing }
+SingleCodeCriticResultList >> criticsModel [
 	^ criticsModel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>criticsModelContains: aCritic [
+{ #category : #private }
+SingleCodeCriticResultList >> criticsModelContains: aCritic [
 
 	^ criticsModel listItems anySatisfy: [ :each |
 			 each sourceAnchor entity name = aCritic name]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>criticsOf: aRule [
+{ #category : #private }
+SingleCodeCriticResultList >> criticsOf: aRule [
 	cache ifNil: [^ {}].
 	criticsModel items: ((cache criticsOf: aRule)
 				sorted: [ :a :b | 
 					a printString < b printString ]).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>defaultColor [
+{ #category : #private }
+SingleCodeCriticResultList >> defaultColor [
 	^ Color red
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>diffSeparator [
+{ #category : #private }
+SingleCodeCriticResultList >> diffSeparator [
 
 	^ '——————————————————
 	
 '
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>diffTextForChange: aRefactoryChange [
+{ #category : #private }
+SingleCodeCriticResultList >> diffTextForChange: aRefactoryChange [
 	| text builder |
 
 	text := Text new.
@@ -284,29 +220,20 @@ SingleCodeCriticResultList>>diffTextForChange: aRefactoryChange [
 	^ text
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>falsePositiveColor [
+{ #category : #private }
+SingleCodeCriticResultList >> falsePositiveColor [
 	^ Color darkGray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>formatCritic: aCritic [
+{ #category : #private }
+SingleCodeCriticResultList >> formatCritic: aCritic [
 	
 	^  String streamContents: [:s | aCritic sourceAnchor entity criticNameOn: s ]
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>iconFor: anItem [
+{ #category : #private }
+SingleCodeCriticResultList >> iconFor: anItem [
 	
 	^  (cache isFalsePositive: anItem forRule: rule) 
 			ifFalse: [(cache isToDo: anItem forRule: rule)
@@ -314,30 +241,21 @@ SingleCodeCriticResultList>>iconFor: anItem [
 				ifFalse: [ self class exclamationIcon ] ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>implementorsOfCritic [
+{ #category : #menu }
+SingleCodeCriticResultList >> implementorsOfCritic [
 	criticsModel selectedItem ifNotNil: [ :item | item browse] 
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>initialize [
+{ #category : #initialization }
+SingleCodeCriticResultList >> initialize [
 
 	super initialize.
 	self initializeShortcuts
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>initializeActionToPerformOnTextModel [
+{ #category : #initialization }
+SingleCodeCriticResultList >> initializeActionToPerformOnTextModel [
 	
 	| selectedItem |
 	sourceCodeModel acceptBlock:  [ :text | 	
@@ -349,11 +267,8 @@ SingleCodeCriticResultList>>initializeActionToPerformOnTextModel [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>initializeDisplayCritic: aCritic forRule: aRule [
+{ #category : #initialization }
+SingleCodeCriticResultList >> initializeDisplayCritic: aCritic forRule: aRule [
 	
 	| criticRepresentation | 
 	criticRepresentation := (self formatCritic: aCritic) asMorph.
@@ -364,11 +279,8 @@ SingleCodeCriticResultList>>initializeDisplayCritic: aCritic forRule: aRule [
 						ifFalse: [ criticRepresentation color: self defaultColor ]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>initializePresenter [
+{ #category : #initialization }
+SingleCodeCriticResultList >> initializePresenter [
 
 	self whenSelectedItemChangesOnListModel.
 	
@@ -376,19 +288,13 @@ SingleCodeCriticResultList>>initializePresenter [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>initializeShortcuts [
+{ #category : #initialization }
+SingleCodeCriticResultList >> initializeShortcuts [
 	criticsModel bindKeyCombination: PharoShortcuts current browseShortcut toAction: [ self browseCritic ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>initializeTextInputFieldModel [
+{ #category : #initialization }
+SingleCodeCriticResultList >> initializeTextInputFieldModel [
 
 	|critics|
 	textInputFieldModel 
@@ -407,22 +313,16 @@ SingleCodeCriticResultList>>initializeTextInputFieldModel [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>initializeToolBar [
+{ #category : #initialization }
+SingleCodeCriticResultList >> initializeToolBar [
 	
 	self toolbarModel whenFalsePositiveClickedDo: [ self addCriticToFalsePositive ].
 
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>initializeWidgets [
+{ #category : #initialization }
+SingleCodeCriticResultList >> initializeWidgets [
 	criticsModel := self newIconList.
 	sourceCodeModel := self newCode.
 	toolbarModel := self instantiate: CriticToolbar.
@@ -445,11 +345,8 @@ SingleCodeCriticResultList>>initializeWidgets [
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>menu: aMenu shifted: aBoolean [
+{ #category : #menu }
+SingleCodeCriticResultList >> menu: aMenu shifted: aBoolean [
 	(rule notNil and: [ criticsModel selectedItems notEmpty ])
 		ifFalse: [ ^ aMenu ]. 
 		
@@ -473,11 +370,8 @@ SingleCodeCriticResultList>>menu: aMenu shifted: aBoolean [
 	^ aMenu
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>removeCriticToFalsePositive [
+{ #category : #menu }
+SingleCodeCriticResultList >> removeCriticToFalsePositive [
 	
 	criticsModel selectedItems
 		ifNotNil: [ :items | items do: [ :item |
@@ -485,11 +379,8 @@ SingleCodeCriticResultList>>removeCriticToFalsePositive [
 	
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>removeCriticToToDo [
+{ #category : #menu }
+SingleCodeCriticResultList >> removeCriticToToDo [
 
 	criticsModel selectedItems
 		ifNotNil: [:items | items do: [ :item |
@@ -498,38 +389,26 @@ SingleCodeCriticResultList>>removeCriticToToDo [
 	
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>removeRuleToFalsePositive [
+{ #category : #menu }
+SingleCodeCriticResultList >> removeRuleToFalsePositive [
 
 	criticsModel selectedItems ifNotNil: [ :criticss |
 		criticss do: [ :critic |
 			cache removeFalsePositiveRule: rule forPackage: critic sourceAnchor entity mcWorkingCopy]].
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>resetSelection [
+{ #category : #api }
+SingleCodeCriticResultList >> resetSelection [
 	self criticsModel resetSelection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>rule [
+{ #category : #accessing }
+SingleCodeCriticResultList >> rule [
 	^ rule
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>rule: aRule [
+{ #category : #initialization }
+SingleCodeCriticResultList >> rule: aRule [
 
 	rule := aRule.
 	(rule isNil or: [ rule isComposite ]) 
@@ -538,27 +417,18 @@ SingleCodeCriticResultList>>rule: aRule [
 	toolbarModel rule: rule.
 ]
 
-{
-	#category : #'smartSuggestions - support',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>selectedMessage [
+{ #category : #'smartSuggestions - support' }
+SingleCodeCriticResultList >> selectedMessage [
 	^ nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>selectionIntervalFor: aString [
+{ #category : #private }
+SingleCodeCriticResultList >> selectionIntervalFor: aString [
 	^ rule result selectionIntervalFor: aString
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>sendersOfCritic [
+{ #category : #menu }
+SingleCodeCriticResultList >> sendersOfCritic [
 
 	| abstractTool |
 	abstractTool := AbstractTool new. 	
@@ -569,11 +439,8 @@ SingleCodeCriticResultList>>sendersOfCritic [
 				ifFalse: [ abstractTool browseSendersOfMessagesFrom: elem selector ] ] 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>setTextModelForClassOrMethod: aCritique [
+{ #category : #initialization }
+SingleCodeCriticResultList >> setTextModelForClassOrMethod: aCritique [
 
 	| entity |
 	entity := aCritique sourceAnchor entity.
@@ -594,11 +461,8 @@ SingleCodeCriticResultList>>setTextModelForClassOrMethod: aCritique [
 					
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>setTextModelForNil [
+{ #category : #initialization }
+SingleCodeCriticResultList >> setTextModelForNil [
 
 	| text |
 	text := rule rationale isEmpty 
@@ -613,11 +477,8 @@ SingleCodeCriticResultList>>setTextModelForNil [
 					
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>setTextModelForTransformationRule: selection [
+{ #category : #initialization }
+SingleCodeCriticResultList >> setTextModelForTransformationRule: selection [
 	
 	sourceCodeModel behavior: nil.
 	sourceCodeModel text: (
@@ -628,64 +489,43 @@ SingleCodeCriticResultList>>setTextModelForTransformationRule: selection [
 					
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>textInputFieldModel [
+{ #category : #accessing }
+SingleCodeCriticResultList >> textInputFieldModel [
 	^ textInputFieldModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>textModel [
+{ #category : #accessing }
+SingleCodeCriticResultList >> textModel [
 	^ sourceCodeModel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>toDoColor [
+{ #category : #private }
+SingleCodeCriticResultList >> toDoColor [
 	^ Color orange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>toolbarModel [
+{ #category : #accessing }
+SingleCodeCriticResultList >> toolbarModel [
 	^ toolbarModel
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>transformCritic [
+{ #category : #menu }
+SingleCodeCriticResultList >> transformCritic [
 	
 	criticsModel selectedItems ifNotNil: [ :items |
 		items do: [:critic | critic change execute ]  displayingProgress: [:critic|]]
 ]
 
-{
-	#category : #thread,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>updateList [
+{ #category : #thread }
+SingleCodeCriticResultList >> updateList [
 
 	self criticsOf: rule.
 	thread ifNotNil: [ thread terminate ].
 	thread := [ UIManager default defer:  [ criticsModel updateList ]] fork.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SingleCodeCriticResultList>>whenSelectedItemChangesOnListModel [
+{ #category : #initialization }
+SingleCodeCriticResultList >> whenSelectedItemChangesOnListModel [
 
 	criticsModel whenSelectedItemChanged: [ :critique |
 		sourceCodeModel setSelection: (0 to: 0). 	

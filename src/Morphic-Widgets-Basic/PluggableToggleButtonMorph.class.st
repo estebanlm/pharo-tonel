@@ -24,23 +24,16 @@ Class {
 	#instVars : [
 		'pressed'
 	],
-	#category : #Morphic-Widgets-Basic-Buttons,
-	#timestamp : 'EstebanLorenzano 8/7/2015 17:04'
+	#category : #Morphic-Widgets-Basic-Buttons
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableToggleButtonMorph>>bePressed [
+{ #category : #accessing }
+PluggableToggleButtonMorph >> bePressed [
 	self pressed: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableToggleButtonMorph>>icon [
+{ #category : #accessing }
+PluggableToggleButtonMorph >> icon [
 	| originalIcon |
 	originalIcon := super icon.
 	originalIcon ifNil: [ ^ originalIcon ].
@@ -49,28 +42,19 @@ PluggableToggleButtonMorph>>icon [
 		ifFalse: [ originalIcon ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableToggleButtonMorph>>initialize  [
+{ #category : #initialization }
+PluggableToggleButtonMorph >> initialize [ 
 	pressed := false.
 	super initialize
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableToggleButtonMorph>>isPressed [
+{ #category : #testing }
+PluggableToggleButtonMorph >> isPressed [
 	^ pressed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableToggleButtonMorph>>on: anObject getState: getStateSel action: actionSel label: labelSel icon: iconSel menu: menuSel [
+{ #category : #accessing }
+PluggableToggleButtonMorph >> on: anObject getState: getStateSel action: actionSel label: labelSel icon: iconSel menu: menuSel [
 	"Set up the pluggable parameters.
 	Update label and state."
 
@@ -84,11 +68,8 @@ PluggableToggleButtonMorph>>on: anObject getState: getStateSel action: actionSel
 	self pressed: super getModelState
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableToggleButtonMorph>>performAction: event [
+{ #category : #accessing }
+PluggableToggleButtonMorph >> performAction: event [
 	"Inform the model that this button has been pressed. Sent by the controller when this button 
 	 is pressed. If the button's actionSelector takes any arguments, they are obtained 
 	 dynamically by sending the argumentSelector to the argumentsProvider"
@@ -110,11 +91,8 @@ PluggableToggleButtonMorph>>performAction: event [
 		withArguments: (arguments copyWithFirst: self isPressed)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableToggleButtonMorph>>pressed: aBoolean [
+{ #category : #private }
+PluggableToggleButtonMorph >> pressed: aBoolean [
 	pressed := aBoolean.
 	self update: (getLabelSelector ifNil: [ getIconSelector ])
 ]

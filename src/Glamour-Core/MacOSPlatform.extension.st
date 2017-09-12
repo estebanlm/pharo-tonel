@@ -1,11 +1,6 @@
-Extension {
-	#name : #MacOSPlatform
-}
+Extension { #name : #MacOSPlatform }
 
-{
-	#category : #'*Glamour-Core',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-MacOSPlatform>>menuShortcutModifierString [
+{ #category : #'*Glamour-Core' }
+MacOSPlatform >> menuShortcutModifierString [
 	^ 'cmd'
 ]

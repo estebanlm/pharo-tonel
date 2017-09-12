@@ -10,26 +10,19 @@ Class {
 		'instanceCount',
 		'spaceForInstances'
 	],
-	#category : #Tool-Profilers,
-	#timestamp : 'sd 6/20/2003 22:02'
+	#category : #Tool-Profilers
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTallyItem class>>analyzedClassName: aClassName [
+{ #category : #'instance creation' }
+SpaceTallyItem class >> analyzedClassName: aClassName [
 
 	^ self new
 		analyzedClassName: aClassName ; yourself
 		
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTallyItem class>>analyzedClassName: aClassName codeSize: codeSize instanceCount: instanceCount spaceForInstances: spaceForInstances [
+{ #category : #'instance creation' }
+SpaceTallyItem class >> analyzedClassName: aClassName codeSize: codeSize instanceCount: instanceCount spaceForInstances: spaceForInstances [
 
 	^ self new
 		analyzedClassName: aClassName ;
@@ -38,65 +31,44 @@ SpaceTallyItem class>>analyzedClassName: aClassName codeSize: codeSize instanceC
 		spaceForInstances: spaceForInstances ; yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTallyItem>>analyzedClassName [
+{ #category : #accessing }
+SpaceTallyItem >> analyzedClassName [
 
 	^ analyzedClassName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTallyItem>>analyzedClassName: aClassName [
+{ #category : #accessing }
+SpaceTallyItem >> analyzedClassName: aClassName [
 
 	analyzedClassName := aClassName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTallyItem>>codeSize [
+{ #category : #accessing }
+SpaceTallyItem >> codeSize [
 
 	^ codeSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTallyItem>>codeSize: aNumber [
+{ #category : #accessing }
+SpaceTallyItem >> codeSize: aNumber [
 
 	codeSize := aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTallyItem>>instanceCount [
+{ #category : #accessing }
+SpaceTallyItem >> instanceCount [
 
 	^ instanceCount
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTallyItem>>instanceCount: aNumber [
+{ #category : #accessing }
+SpaceTallyItem >> instanceCount: aNumber [
 
 	instanceCount := aNumber
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTallyItem>>printOn: aStream [
+{ #category : #printing }
+SpaceTallyItem >> printOn: aStream [
 
 	analyzedClassName isNil
 		ifFalse: [aStream nextPutAll: analyzedClassName asString]. 
@@ -111,20 +83,14 @@ SpaceTallyItem>>printOn: aStream [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTallyItem>>spaceForInstances [
+{ #category : #accessing }
+SpaceTallyItem >> spaceForInstances [
 
 	^ spaceForInstances
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTallyItem>>spaceForInstances: aNumber [
+{ #category : #accessing }
+SpaceTallyItem >> spaceForInstances: aNumber [
 
 	spaceForInstances := aNumber
 ]

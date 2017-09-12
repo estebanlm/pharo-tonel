@@ -1,45 +1,28 @@
-Extension {
-	#name : #PluggableTextMorph
-}
+Extension { #name : #PluggableTextMorph }
 
-{
-	#category : #'*NodeNavigation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-PluggableTextMorph>>standOutHorizontalScope [
+{ #category : #'*NodeNavigation' }
+PluggableTextMorph >> standOutHorizontalScope [
 
 	self handleEdit: [NNavNavigation new navigate: textMorph editor direction: NNavDirectionSibling ] 
 ]
 
-{
-	#category : #'*NodeNavigation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-PluggableTextMorph>>standOutIntoFirstScope [
+{ #category : #'*NodeNavigation' }
+PluggableTextMorph >> standOutIntoFirstScope [
 	self handleEdit: [NNavNavigation new navigate: textMorph editor direction: NNavDirectionFirstChild ]
 ]
 
-{
-	#category : #'*NodeNavigation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-PluggableTextMorph>>standOutIntoScope [
+{ #category : #'*NodeNavigation' }
+PluggableTextMorph >> standOutIntoScope [
 	self handleEdit: [NNavNavigation new navigate: textMorph editor direction:  NNavDirectionChild]
 ]
 
-{
-	#category : #'*NodeNavigation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-PluggableTextMorph>>standOutOverScope [
+{ #category : #'*NodeNavigation' }
+PluggableTextMorph >> standOutOverScope [
 	self handleEdit: [NNavNavigation new navigate: textMorph editor direction:  NNavDirectionParent] 
 ]
 
-{
-	#category : #'*NodeNavigation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-PluggableTextMorph>>standOutPreviousChild [
+{ #category : #'*NodeNavigation' }
+PluggableTextMorph >> standOutPreviousChild [
 	self handleEdit: [
 		NNavNavigation new 
 			navigate: textMorph editor 
@@ -47,11 +30,8 @@ PluggableTextMorph>>standOutPreviousChild [
 	]
 ]
 
-{
-	#category : #'*NodeNavigation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-PluggableTextMorph>>standOutPreviousSelection [
+{ #category : #'*NodeNavigation' }
+PluggableTextMorph >> standOutPreviousSelection [
 	self handleEdit: [
 		NNavNavigation new 
 			navigate: textMorph editor 

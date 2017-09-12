@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #SimulateMouseSpecification,
 	#superclass : #UITestCase,
 	#instVars : [
 		'morph'
 	],
-	#category : #SUnit-UITesting,
-	#timestamp : ''
+	#category : #SUnit-UITesting
 }
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SimulateMouseSpecification>>menuOpenedDuring: aBlock [
+{ #category : #helpers }
+SimulateMouseSpecification >> menuOpenedDuring: aBlock [
 
 	| jailor |
 	jailor := MenuCapturingMorph new openInWorld.
@@ -23,20 +16,14 @@ SimulateMouseSpecification>>menuOpenedDuring: aBlock [
 	^ jailor menu.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SimulateMouseSpecification>>tearDown [
+{ #category : #running }
+SimulateMouseSpecification >> tearDown [
 
 	morph delete.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SimulateMouseSpecification>>testSimulateClick [
+{ #category : #tests }
+SimulateMouseSpecification >> testSimulateClick [
 	"self run: #testSimulateClick"
 
 	morph := TextMorph new contents: ''; openInWorld.	
@@ -44,11 +31,8 @@ SimulateMouseSpecification>>testSimulateClick [
 	self assert: morph hasKeyboardFocus.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SimulateMouseSpecification>>testSimulateMiddleClick [
+{ #category : #tests }
+SimulateMouseSpecification >> testSimulateMiddleClick [
 	"self run: #testSimulateMiddleClick"
 	
 	morph := MorphHandlingMiddleButton new openInWorld.
@@ -57,11 +41,8 @@ SimulateMouseSpecification>>testSimulateMiddleClick [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SimulateMouseSpecification>>testSimulateRightClick [
+{ #category : #tests }
+SimulateMouseSpecification >> testSimulateRightClick [
 	"self run: #testSimulateRightClick"
 	
 	| menu |
@@ -70,22 +51,16 @@ SimulateMouseSpecification>>testSimulateRightClick [
 	self assert: menu isNil not.
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SimulateMouseSpecification>>timeoutAfter: aDuration ifNot: aBlock [
+{ #category : #helpers }
+SimulateMouseSpecification >> timeoutAfter: aDuration ifNot: aBlock [
 
 	| timer |
 	timer := Stopwatch new activate.
 	[ timer duration < aDuration and: [ aBlock value not ] ] whileTrue.
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SimulateMouseSpecification>>waitForMorphThat: aBlock [
+{ #category : #helpers }
+SimulateMouseSpecification >> waitForMorphThat: aBlock [
 
 	self timeoutAfter: 2 seconds ifNot: [
 		morph := World submorphThat: aBlock ifNone: [ nil ].

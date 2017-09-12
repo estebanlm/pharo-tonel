@@ -4,15 +4,11 @@ This class provides tests for the regular expression parser.
 Class {
 	#name : #RxParserTest,
 	#superclass : #TestCase,
-	#category : #Regex-Tests-Core,
-	#timestamp : 'Tbn 11/12/2010 22:31'
+	#category : #Regex-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>DoesNotWorktestBackQuotesEscape [
+{ #category : #tests }
+RxParserTest >> DoesNotWorktestBackQuotesEscape [
 	"self debug: #testBackQuotesEscape"
 	
 	"Regular expressions can also include the following backquote escapes
@@ -33,11 +29,8 @@ minus'."
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>test [
+{ #category : #tests }
+RxParserTest >> test [
 	"self debug: #test"
 	
 
@@ -48,11 +41,8 @@ RxParserTest>>test [
 	"the regular expression matches words beginning with either an uppercase or a lowercase T"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testCadrMatching [
+{ #category : #tests }
+RxParserTest >> testCadrMatching [
 	"self debug: #testCadrMatching"
 
 	"A bit more complex example is the following expression, matching the
@@ -66,11 +56,8 @@ name of any of the Lisp-style `car', `cdr', `caar', `cadr',
 	self assert: ( 'caddar' matchesRegex: 'c(a|d)+r').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testCharacterSet [
+{ #category : #tests }
+RxParserTest >> testCharacterSet [
 	"self debug: #testCharacterSet"
 	
 	"So far, we have used only characters as the 'smallest' components of
@@ -86,11 +73,8 @@ brackets. For example, `[01]' matches either `0' or `1':"
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testCharacterSetBinaryNumber [
+{ #category : #tests }
+RxParserTest >> testCharacterSetBinaryNumber [
 	"self debug: #testCharacterSetBinaryNumber"
 	
 	"Using plus operator, we can build the following binary number
@@ -99,11 +83,8 @@ recognizer:"
 	self deny: ('10001210' matchesRegex: '[01]+')	 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testCharacterSetInversion [
+{ #category : #tests }
+RxParserTest >> testCharacterSetInversion [
 	"self debug: #testCharacterSetInversion"
 	
 	"If the first character after the opening bracket is `^', the set is
@@ -122,11 +103,8 @@ brackets:"
 	"there is one zero so it does not match"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testCharacterSetRange [
+{ #category : #tests }
+RxParserTest >> testCharacterSetRange [
 	"self debug: #testCharacterSetRange"
 	
 	"For convenience, a set may include ranges: pairs of characters
@@ -141,21 +119,15 @@ between them: `[0-9]' is the same as `[0123456789]'. "
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testLookaround [
+{ #category : #tests }
+RxParserTest >> testLookaround [
 	self assert: ('A'   matchesRegex: '(?!ABC).*').
 	self assert: ('AB'  matchesRegex: '(?!ABC).*').
 	self deny:   ('ABC' matchesRegex: '(?!ABC).*').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testMatchesInwW [
+{ #category : #tests }
+RxParserTest >> testMatchesInwW [
 	"self debug: #testMatchesInwW"
 	
 	"1. Backslash escapes similar to those in Perl are allowed in patterns:
@@ -169,11 +141,8 @@ RxParserTest>>testMatchesInwW [
 	self assert: ('\w' asRegex matchesIn: 'now') asArray = #('n' 'o' 'w').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testOrOperator [
+{ #category : #tests }
+RxParserTest >> testOrOperator [
 	"self debug: #testOrOperator"
 	
 	"The last operator is `|' meaning `or'. It is placed between two
@@ -195,11 +164,8 @@ such expression: `(a|)*' is an invalid expression."
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testQuantifier [
+{ #category : #tests }
+RxParserTest >> testQuantifier [
 	self deny:   (''     matchesRegex: 'a{2}').
 	self deny:   ('a'    matchesRegex: 'a{2}').
 	self assert: ('aa'   matchesRegex: 'a{2}').
@@ -224,11 +190,8 @@ RxParserTest>>testQuantifier [
 	self deny:   ('aaaa' matchesRegex: 'a{,3}').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testQuantifierSimple [
+{ #category : #tests }
+RxParserTest >> testQuantifierSimple [
 	"Test quantifier expressions that can be expressed with + or *"
 	self assert: ('a'  matchesRegex: 'a{1}').
 	self deny:   ('aa' matchesRegex: 'a{1}').
@@ -245,11 +208,8 @@ RxParserTest>>testQuantifierSimple [
 	self deny:   ('abab' matchesRegex: '(ab){,1}').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testQuotingOperators [
+{ #category : #tests }
+RxParserTest >> testQuotingOperators [
 	"self debug: #testQuotingOperators"
 	
 	"As we have seen, characters `*', `+', `?', `(', and `)' have special
@@ -264,11 +224,8 @@ further)."
 	self assert: ('a\c' matchesRegex: 'a\\c').		 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testSimpleMatchesRegex [
+{ #category : #tests }
+RxParserTest >> testSimpleMatchesRegex [
 	"self debug: #testSimpleMatchesRegex"
 	
 	"The simplest regular expression is a single character.  It matches
@@ -280,11 +237,8 @@ exactly the same sequence of characters:"
 	self deny: ('blorple' matchesRegex: 'foobar')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testSimpleMatchesRegexWithStar [
+{ #category : #tests }
+RxParserTest >> testSimpleMatchesRegexWithStar [
 	"self debug: #testSimpleMatchesRegexWithStar"
 	
 	"The above paragraph in testSimpleMatchesRegex introduced a primitive regular expression (a
@@ -303,11 +257,8 @@ expression. For example:"
 	self deny: ('aac' matchesRegex: 'a*b').	 		
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testSpecialCharacterInSetRange [
+{ #category : #tests }
+RxParserTest >> testSpecialCharacterInSetRange [
 	"self debug: #testSpecialCharacterInSetRange"
 	
 	"Special characters within a set are `^', `-', and `]' that closes the
@@ -329,11 +280,8 @@ set. Below are the examples of how to literally use them in a set:
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testStarPlusQuestionMark [
+{ #category : #tests }
+RxParserTest >> testStarPlusQuestionMark [
 	"self debug: #testStarPlusQuestionMark"
 	
 	"Two other operators similar to `*' are `+' and `?'. `+' (positive
@@ -348,11 +296,8 @@ more, occurrences."
 	self deny: ('abbc' matchesRegex: 'ab?c')	 	"-- false: too many b's"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testStarPrecedence [
+{ #category : #tests }
+RxParserTest >> testStarPrecedence [
 	"self debug: #testStarPrecedence"
 	
 	"A star's precedence is higher than that of sequencing. A star applies
@@ -369,11 +314,8 @@ or more occurrences of ab':"
 	self deny: ('abcab' matchesRegex: '(ab)*')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>testTranslatingMatchesUsing [
+{ #category : #tests }
+RxParserTest >> testTranslatingMatchesUsing [
 	"self debug: #testTranslatingMatchesUsing"
 	
 
@@ -384,11 +326,8 @@ RxParserTest>>testTranslatingMatchesUsing [
 	"the regular expression matches words beginning with either an uppercase or a lowercase T"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RxParserTest>>toDotestSpecialCharacterInSetRange [
+{ #category : #tests }
+RxParserTest >> toDotestSpecialCharacterInSetRange [
 	"self debug: #testSpecialCharacterInSetRange"
 	
 	"Special characters within a set are `^', `-', and `]' that closes the

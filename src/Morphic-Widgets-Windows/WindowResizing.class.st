@@ -12,46 +12,30 @@ Class {
 		'oldSize',
 		'newSize'
 	],
-	#category : #Morphic-Widgets-Windows-Announcements,
-	#timestamp : 'NicolaiHess 4/25/2015 23:18'
+	#category : #Morphic-Widgets-Windows-Announcements
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowResizing>>isResized [
+{ #category : #testing }
+WindowResizing >> isResized [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowResizing>>newSize [
+{ #category : #accessing }
+WindowResizing >> newSize [
 	^ newSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowResizing>>newSize: anObject [
+{ #category : #accessing }
+WindowResizing >> newSize: anObject [
 	newSize := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowResizing>>oldSize [
+{ #category : #accessing }
+WindowResizing >> oldSize [
 	^ oldSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowResizing>>oldSize: anObject [
+{ #category : #accessing }
+WindowResizing >> oldSize: anObject [
 	oldSize := anObject
 ]

@@ -23,15 +23,11 @@ Class {
 		'CR1',
 		'CR2'
 	],
-	#category : #Graphics-Canvas,
-	#timestamp : '<historical>'
+	#category : #Graphics-Canvas
 }
 
-{
-	#category : #all,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-CornerRounder class>>initialize  "CornerRounder initialize" [
+{ #category : #all }
+CornerRounder class >> initialize [  "CornerRounder initialize"
 
 	CR0 := CR1 := self new
 		masterMask:
@@ -55,11 +51,8 @@ CornerRounder class>>initialize  "CornerRounder initialize" [
 
 ]
 
-{
-	#category : #all,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-CornerRounder class>>rectWithinCornersOf: aRectangle [
+{ #category : #all }
+CornerRounder class >> rectWithinCornersOf: aRectangle [
 	"Return a single sub-rectangle that lies entirely inside corners
 	that are made by me.
 	Used to identify large regions of window that do not need to be redrawn."
@@ -67,11 +60,8 @@ CornerRounder class>>rectWithinCornersOf: aRectangle [
 	^ aRectangle insetBy: 0@6
 ]
 
-{
-	#category : #all,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-CornerRounder class>>roundCornersOf: aMorph on: aCanvas in: bounds displayBlock: displayBlock borderWidth: w corners: aList [
+{ #category : #all }
+CornerRounder class >> roundCornersOf: aMorph on: aCanvas in: bounds displayBlock: displayBlock borderWidth: w corners: aList [
 
 	| rounder |
 	rounder := CR0.
@@ -83,11 +73,8 @@ CornerRounder class>>roundCornersOf: aMorph on: aCanvas in: bounds displayBlock:
 	rounder tweakCornersOf: aMorph on: aCanvas in: bounds borderWidth: w corners: aList
 ]
 
-{
-	#category : #all,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-CornerRounder class>>roundShadowCornersOf: aMorph on: aCanvas in: bounds displayBlock: displayBlock borderWidth: w corners: aList [
+{ #category : #all }
+CornerRounder class >> roundShadowCornersOf: aMorph on: aCanvas in: bounds displayBlock: displayBlock borderWidth: w corners: aList [
 
 	| rounder |
 	rounder := CR0.
@@ -99,11 +86,8 @@ CornerRounder class>>roundShadowCornersOf: aMorph on: aCanvas in: bounds display
 	rounder tweakShadowCornersOf: aMorph on: aCanvas in: bounds borderWidth: w corners: aList
 ]
 
-{
-	#category : #all,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-CornerRounder>>masterMask: maskForm masterOverlay: overlayForm [
+{ #category : #all }
+CornerRounder >> masterMask: maskForm masterOverlay: overlayForm [
 
 	cornerMasks := #(none left pi right) collect:
 		[:dir | (maskForm rotateBy: dir centerAt: 0@0) offset: 0@0].
@@ -112,11 +96,8 @@ CornerRounder>>masterMask: maskForm masterOverlay: overlayForm [
 
 ]
 
-{
-	#category : #all,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-CornerRounder>>saveBitsUnderCornersOf: aMorph on: aCanvas in: bounds corners: cornerList [
+{ #category : #all }
+CornerRounder >> saveBitsUnderCornersOf: aMorph on: aCanvas in: bounds corners: cornerList [
 
 	| corners |
 	underBits := Array new: 4.
@@ -137,11 +118,8 @@ CornerRounder>>saveBitsUnderCornersOf: aMorph on: aCanvas in: bounds corners: co
 
 ]
 
-{
-	#category : #all,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-CornerRounder>>tweakCornersOf: aMorph on: aCanvas in: bounds borderWidth: w corners: cornerList [
+{ #category : #all }
+CornerRounder >> tweakCornersOf: aMorph on: aCanvas in: bounds borderWidth: w corners: cornerList [
 	"This variant has a cornerList argument, to allow some corners to be rounded and others not"
 	| fourColors mask corners |
 
@@ -174,11 +152,8 @@ CornerRounder>>tweakCornersOf: aMorph on: aCanvas in: bounds borderWidth: w corn
 
 ]
 
-{
-	#category : #all,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-CornerRounder>>tweakShadowCornersOf: aMorph on: aCanvas in: bounds borderWidth: w corners: cornerList [
+{ #category : #all }
+CornerRounder >> tweakShadowCornersOf: aMorph on: aCanvas in: bounds borderWidth: w corners: cornerList [
 	"This variant has a cornerList argument, to allow some corners to be rounded and others not"
 	| fourColors mask corners |
 

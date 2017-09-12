@@ -11,31 +11,21 @@ Class {
 		'streamFactory',
 		'traits'
 	],
-	#category : #FuelTests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:24'
+	#category : #FuelTests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest class>>packageNamesUnderTest [
+{ #category : #accessing }
+FLSerializationTest class >> packageNamesUnderTest [
 	^ #('Fuel')
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>analyzer [
+{ #category : #accessing }
+FLSerializationTest >> analyzer [
 	^serializer analyzer
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>assertSerializationEqualityOf: anObject [
+{ #category : #running }
+FLSerializationTest >> assertSerializationEqualityOf: anObject [
 	"Asserts that the original object and the materialized one are equal (but not the same)"
 
 	| materialized |
@@ -44,11 +34,8 @@ FLSerializationTest>>assertSerializationEqualityOf: anObject [
 	self assert: anObject = materialized description: 'The materialized object should be equal to serialized one'.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>assertSerializationIdentityOf: anObject [
+{ #category : #running }
+FLSerializationTest >> assertSerializationIdentityOf: anObject [
 	"Asserts that the original object and the materialized one are the same"
 
 	| result |
@@ -58,100 +45,67 @@ FLSerializationTest>>assertSerializationIdentityOf: anObject [
 		description: 'The materialized object is not the same as the serialized one'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>classFactory [
+{ #category : #accessing }
+FLSerializationTest >> classFactory [
 	^classFactory
 ]
 
-{
-	#category : #traits-factory,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>cleanUpTraits [
+{ #category : #traits-factory }
+FLSerializationTest >> cleanUpTraits [
 	self traits do: [ :aTrait | self removeFromSystem: aTrait ]
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>deleteFileNamed: aFilename [
+{ #category : #cleaning }
+FLSerializationTest >> deleteFileNamed: aFilename [
 	 FLPlatform current deleteFileNamed: aFilename
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>materialization [
+{ #category : #running }
+FLSerializationTest >> materialization [
 	
 	self streamFactory readStreamDo: [:aStream |
 		^ self materializer materializeFrom: aStream ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>materializationHeader [
+{ #category : #running }
+FLSerializationTest >> materializationHeader [
 	
 	self streamFactory readStreamDo: [:aStream |
 		^ self materializer materializeHeaderFrom: aStream ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>materialized [
+{ #category : #running }
+FLSerializationTest >> materialized [
 	
 	^ self materialization root
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>materializedObjects [
+{ #category : #running }
+FLSerializationTest >> materializedObjects [
 	
 	^ self materialization objects
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>materializer [
+{ #category : #accessing }
+FLSerializationTest >> materializer [
 	^materializer
 ]
 
-{
-	#category : #class-factory,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>newClass [
+{ #category : #class-factory }
+FLSerializationTest >> newClass [
 	^ self newSubclassOf: Object 
 		instanceVariableNames: '' 
 		classVariableNames: ''
 
 ]
 
-{
-	#category : #class-factory,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>newClassInCategory: aCategory [
+{ #category : #class-factory }
+FLSerializationTest >> newClassInCategory: aCategory [
 	^ self classFactory silentlyNewClassInCategory: aCategory
 ]
 
-{
-	#category : #class-factory,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>newSubclassNamed: nameString of: aClass  instanceVariableNames: ivNamesString classVariableNames: classVarsString [
+{ #category : #class-factory }
+FLSerializationTest >> newSubclassNamed: nameString of: aClass  instanceVariableNames: ivNamesString classVariableNames: classVarsString [
 	| class |
 	SystemAnnouncer uniqueInstance suspendAllWhile: [
 		class := aClass
@@ -164,19 +118,13 @@ FLSerializationTest>>newSubclassNamed: nameString of: aClass  instanceVariableNa
 	^ class
 ]
 
-{
-	#category : #class-factory,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>newSubclassOf: aClass  instanceVariableNames: ivNamesString classVariableNames: classVarsString [
+{ #category : #class-factory }
+FLSerializationTest >> newSubclassOf: aClass  instanceVariableNames: ivNamesString classVariableNames: classVarsString [
 	^ self classFactory silentlyNewSubclassOf: aClass instanceVariableNames: ivNamesString classVariableNames:  classVarsString
 ]
 
-{
-	#category : #traits-factory,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>newTraitNamed: traitName inCategory: aCategory [
+{ #category : #traits-factory }
+FLSerializationTest >> newTraitNamed: traitName inCategory: aCategory [
 
 	^ Trait 
 		named: traitName asSymbol
@@ -184,11 +132,8 @@ FLSerializationTest>>newTraitNamed: traitName inCategory: aCategory [
 		category: aCategory asSymbol
 ]
 
-{
-	#category : #traits-factory,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>newTraitSuffixed: suffix [
+{ #category : #traits-factory }
+FLSerializationTest >> newTraitSuffixed: suffix [
 
 	| trait |
 	trait := Trait 
@@ -200,100 +145,70 @@ FLSerializationTest>>newTraitSuffixed: suffix [
 	^ trait
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>removeFromSystem: aClassOrTrait [
+{ #category : #cleaning }
+FLSerializationTest >> removeFromSystem: aClassOrTrait [
 	aClassOrTrait removeFromSystem: false
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>resultOfSerializeAndMaterialize: anObject [
+{ #category : #running }
+FLSerializationTest >> resultOfSerializeAndMaterialize: anObject [
 
 	self serialize: anObject.
 	^ self materialized
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>resultOfSerializeAndMaterializeCompiledMethod: aCompiledMethod [
+{ #category : #running }
+FLSerializationTest >> resultOfSerializeAndMaterializeCompiledMethod: aCompiledMethod [
 	| materialized |
 	materialized := self resultOfSerializeAndMaterialize: aCompiledMethod.
 	self assert: (materialized isEqualRegardlessTrailerTo: aCompiledMethod)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>resultOfSerializeAndMaterializeMethod: aCompiledMethod [
+{ #category : #running }
+FLSerializationTest >> resultOfSerializeAndMaterializeMethod: aCompiledMethod [
 	self analyzer considerInternalMethod: aCompiledMethod. 
 	self serialize: aCompiledMethod.
 	^ self materialized
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>resultOfSerializeAndMaterializeMethodDictionary: aMethodDictionary [
+{ #category : #running }
+FLSerializationTest >> resultOfSerializeAndMaterializeMethodDictionary: aMethodDictionary [
 	| materialized |
 	materialized := self resultOfSerializeAndMaterialize: aMethodDictionary.
 	self assert: (materialized isEqualRegardlessMethodsTrailerTo: aMethodDictionary)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>serializationOf: anObject  [
+{ #category : #running }
+FLSerializationTest >> serializationOf: anObject [ 
 	self streamFactory writeStreamDo: [:aStream |
 	^ serializer serialize: anObject on: aStream. ].
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>serializationOf: anObject includes: anotherObject  [
+{ #category : #running }
+FLSerializationTest >> serializationOf: anObject includes: anotherObject [ 
 	| serialization |
 	self streamFactory writeStreamDo: [:aStream |
 	serialization := serializer serialize: anObject on: aStream.
 	^ serialization objects includes: anotherObject ].
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>serialize: anObject [
+{ #category : #running }
+FLSerializationTest >> serialize: anObject [
 
 	self streamFactory writeStreamDo: [:aStream |
 		self serializer serialize: anObject on: aStream ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>serializer [
+{ #category : #accessing }
+FLSerializationTest >> serializer [
 	^serializer
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>setUp [
+{ #category : #running }
+FLSerializationTest >> setUp [
 	super setUp.
 	self setUpClassFactory.
 	self setUpSerializer.
@@ -303,44 +218,29 @@ FLSerializationTest>>setUp [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>setUpClassFactory [
+{ #category : #running }
+FLSerializationTest >> setUpClassFactory [
 	classFactory := ClassFactoryForTestCase new
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>setUpMaterializer [
+{ #category : #running }
+FLSerializationTest >> setUpMaterializer [
 	materializer := FLMaterializer newDefault
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>setUpSerializer [
+{ #category : #running }
+FLSerializationTest >> setUpSerializer [
 	serializer := FLSerializer newDefault
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>streamFactory [
+{ #category : #accessing }
+FLSerializationTest >> streamFactory [
 	^streamFactory
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>tearDown [
+{ #category : #running }
+FLSerializationTest >> tearDown [
 	super tearDown.
 	"Traits should be cleaned before classFactory because it seems class factory only knwos how to clean classes, not traits."
 	self tearDownTraits.
@@ -350,28 +250,19 @@ FLSerializationTest>>tearDown [
 	self tearDownInstanceVariables.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>tearDownClassFactory [
+{ #category : #running }
+FLSerializationTest >> tearDownClassFactory [
 	self classFactory cleanUp
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>tearDownGlobalVariables [
+{ #category : #running }
+FLSerializationTest >> tearDownGlobalVariables [
 
 	Smalltalk globals removeKey: #FLGlobalVariableForTesting ifAbsent: []
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>tearDownInstanceVariables [
+{ #category : #running }
+FLSerializationTest >> tearDownInstanceVariables [
 	self class withAllSuperclasses do: [ :class |
 		class = TestCase ifTrue: [ ^ self ].
 		
@@ -381,97 +272,64 @@ FLSerializationTest>>tearDownInstanceVariables [
 				put: nil ] ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>tearDownTraits [
+{ #category : #running }
+FLSerializationTest >> tearDownTraits [
 	self cleanUpTraits
 ]
 
-{
-	#category : #traits-factory,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>traitNamePrefix [
+{ #category : #traits-factory }
+FLSerializationTest >> traitNamePrefix [
 	^'FLTraitForTesting'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>traits	 [
+{ #category : #accessing }
+FLSerializationTest >> traits [	
 	^ traits ifNil: [ traits := OrderedCollection new ]
 ]
 
-{
-	#category : #stream-strategies,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>useBinaryFileStream [
+{ #category : #stream-strategies }
+FLSerializationTest >> useBinaryFileStream [
 
 	streamFactory := FLFileStreamStrategy newWithBinaryFileStream
 ]
 
-{
-	#category : #stream-strategies,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>useGzipInMemoryStream [
+{ #category : #stream-strategies }
+FLSerializationTest >> useGzipInMemoryStream [
 
 	streamFactory := FLGZipStrategy newWithTarget: FLByteArrayStreamStrategy new
 ]
 
-{
-	#category : #stream-strategies,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>useInMemorySerializationStream  [
+{ #category : #stream-strategies }
+FLSerializationTest >> useInMemorySerializationStream [ 
 	"This is a special factory to test what we offer with FLSerializer class >> #serializeInMemory:  and  FLMaterializer class >> #materializeFromByteArray: "
 	streamFactory := FLByteArrayStreamStrategy new
 ]
 
-{
-	#category : #stream-strategies,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>useMemoryStream [
+{ #category : #stream-strategies }
+FLSerializationTest >> useMemoryStream [
 
 	streamFactory := FLMultiByteStreamStrategy new
 ]
 
-{
-	#category : #stream-strategies,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>useMultiByteFileStream [
+{ #category : #stream-strategies }
+FLSerializationTest >> useMultiByteFileStream [
 
 	streamFactory := FLFileStreamStrategy newWithMultiByteFileStream
 ]
 
-{
-	#category : #stream-strategies,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>useStandardFileStream [
+{ #category : #stream-strategies }
+FLSerializationTest >> useStandardFileStream [
 
 	streamFactory := FLFileStreamStrategy newWithStandardFileStream
 ]
 
-{
-	#category : #class-factory,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>withNotificationsNewClass [
+{ #category : #class-factory }
+FLSerializationTest >> withNotificationsNewClass [
 	^ self classFactory withNotificationsNewClass
 ]
 
-{
-	#category : #class-factory,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSerializationTest>>withNotificationsNewClassWithInstanceVariableNames: instanceVariableNames [
+{ #category : #class-factory }
+FLSerializationTest >> withNotificationsNewClassWithInstanceVariableNames: instanceVariableNames [
 	"Returns a class for testing, with the specified instance variables."
 
 	^ classFactory withNotificationsNewClassWithInstanceVariableNames: instanceVariableNames

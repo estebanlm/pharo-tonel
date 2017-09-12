@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'maskForm'
 	],
-	#category : #'Graphics-Display Objects',
-	#timestamp : '<historical>'
+	#category : #'Graphics-Display Objects'
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CursorWithMask class>>derivedFrom: aForm      "Cursor initNormalWithMask.  Cursor normal show" [
+{ #category : #'as yet unclassified' }
+CursorWithMask class >> derivedFrom: aForm [      "Cursor initNormalWithMask.  Cursor normal show"
 	"aForm is presumably a cursor"
 	| cursor mask ext |
 	ext := aForm extent.
@@ -29,11 +25,8 @@ CursorWithMask class>>derivedFrom: aForm      "Cursor initNormalWithMask.  Curso
 	^ cursor
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CursorWithMask>>asCursorForm [
+{ #category : #converting }
+CursorWithMask >> asCursorForm [
 	| form |
 	form := Form extent: self extent depth: 8.
 	form fillShape: maskForm fillColor: Color white.
@@ -41,44 +34,29 @@ CursorWithMask>>asCursorForm [
 	^ form offset: offset
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CursorWithMask>>beCursor [
+{ #category : #primitives }
+CursorWithMask >> beCursor [
 	maskForm unhibernate.
 	^ self beCursorWithMask: maskForm
 ]
 
-{
-	#category : #mask,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CursorWithMask>>hasMask [
+{ #category : #mask }
+CursorWithMask >> hasMask [
 	^true
 ]
 
-{
-	#category : #mask,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CursorWithMask>>maskForm [
+{ #category : #mask }
+CursorWithMask >> maskForm [
 	^ maskForm
 ]
 
-{
-	#category : #mask,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CursorWithMask>>setMaskForm: aForm [
+{ #category : #mask }
+CursorWithMask >> setMaskForm: aForm [
 	maskForm := aForm
 ]
 
-{
-	#category : #mask,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CursorWithMask>>storeOn: aStream base: anInteger [
+{ #category : #mask }
+CursorWithMask >> storeOn: aStream base: anInteger [
 
 	aStream nextPut: $(.
 	super storeOn: aStream base: anInteger.
@@ -87,10 +65,7 @@ CursorWithMask>>storeOn: aStream base: anInteger [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #mask,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CursorWithMask>>withMask [
+{ #category : #mask }
+CursorWithMask >> withMask [
 	^self
 ]

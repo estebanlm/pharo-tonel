@@ -23,60 +23,41 @@ Class {
 		'testContext',
 		'assertionCallerContext'
 	],
-	#category : #GT-SUnitDebugger,
-	#timestamp : 'AndreiChis 12/30/2015 10:44'
+	#category : #GT-SUnitDebugger
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession class>>activationPredicate [
+{ #category : #accessing }
+GTSUnitDebugSession class >> activationPredicate [
 
 	^  GTSUnitActivationPredicate new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>actualResult [
+{ #category : #accessing }
+GTSUnitDebugSession >> actualResult [
 	
 	^ actualResult
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>assertionCallerContext [
+{ #category : #accessing }
+GTSUnitDebugSession >> assertionCallerContext [
 
 	^ assertionCallerContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>assertionContext [
+{ #category : #accessing }
+GTSUnitDebugSession >> assertionContext [
 
 	^ assertionContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>expectedResult [
+{ #category : #accessing }
+GTSUnitDebugSession >> expectedResult [
 	
 	^ expectedResult 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>initializeAssestionContextFrom: aContext [
+{ #category : #initialization }
+GTSUnitDebugSession >> initializeAssestionContextFrom: aContext [
 	| frameworkTestClasses |
 	
 	frameworkTestClasses := {TestCase. TestCase superclass}.
@@ -95,11 +76,8 @@ GTSUnitDebugSession>>initializeAssestionContextFrom: aContext [
 		
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>initializeTestContextFrom: aContext [
+{ #category : #initialization }
+GTSUnitDebugSession >> initializeTestContextFrom: aContext [
 
 	"we first try to find a test method in the stack"
 	testContext := aContext findContextSuchThat: [ :anotherContext |
@@ -115,20 +93,14 @@ GTSUnitDebugSession>>initializeTestContextFrom: aContext [
 		testContext := aContext ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>isActive [
+{ #category : #testing }
+GTSUnitDebugSession >> isActive [
 
 	^ self isActive: self testContext
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>isActive: aContext [
+{ #category : #testing }
+GTSUnitDebugSession >> isActive: aContext [
 
 	^ aContext 
 		ifNil: [ false ] 
@@ -137,39 +109,27 @@ GTSUnitDebugSession>>isActive: aContext [
 				aContext ~= self process suspendedContext or: [aContext willReturn not ] ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>overridesDefaultSetOrTearMethods [
+{ #category : #testing }
+GTSUnitDebugSession >> overridesDefaultSetOrTearMethods [
 	
 	^ self overridesDefaultTearDownMethod or: [ 
 		self overridesDefaultSetUpMethod ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>overridesDefaultSetUpMethod [
+{ #category : #testing }
+GTSUnitDebugSession >> overridesDefaultSetUpMethod [
 	
 	^ self setUpMethod methodClass ~= TestCase
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>overridesDefaultTearDownMethod [
+{ #category : #testing }
+GTSUnitDebugSession >> overridesDefaultTearDownMethod [
 	
 	^ self tearDownMethod methodClass ~= TestCase
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>process: aProcess context: aContext [
+{ #category : #initialization }
+GTSUnitDebugSession >> process: aProcess context: aContext [
 
 	super process: aProcess context: aContext.
 
@@ -181,49 +141,34 @@ GTSUnitDebugSession>>process: aProcess context: aContext [
 			expectedResult := assertionContext tempAt: 2 ]  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>setUpMethod [
+{ #category : #accessing }
+GTSUnitDebugSession >> setUpMethod [
 
 	^ self testObject class lookupSelector: #setUp
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>supportsDiff [
+{ #category : #testing }
+GTSUnitDebugSession >> supportsDiff [
 
 	^ assertionContext 
 		ifNil: [ false ]
 		ifNotNil: [ assertionContext selector = #assert:equals: ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>tearDownMethod [
+{ #category : #accessing }
+GTSUnitDebugSession >> tearDownMethod [
 
 	^ self testObject class lookupSelector: #tearDown
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>testContext [
+{ #category : #accessing }
+GTSUnitDebugSession >> testContext [
 
 	^ testContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTSUnitDebugSession>>testObject [
+{ #category : #accessing }
+GTSUnitDebugSession >> testObject [
 
 	^ testContext receiver
 ]

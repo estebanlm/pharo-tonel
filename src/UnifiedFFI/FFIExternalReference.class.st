@@ -7,68 +7,46 @@ A referenced type is  some variable that lives in the C heap and is seen in Phar
 Class {
 	#name : #FFIExternalReference,
 	#superclass : #ExternalObject,
-	#category : #UnifiedFFI-Objects,
-	#timestamp : 'EstebanLorenzano 3/17/2016 13:46'
+	#category : #UnifiedFFI-Objects
 }
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReference class>>finalizeResourceData: handle [
+{ #category : #finalization }
+FFIExternalReference class >> finalizeResourceData: handle [
 	handle isNull ifTrue: [ ^ self ].
 	handle free.
 	handle beNull
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReference class>>fromHandle: aHandle [
+{ #category : #'instance creation' }
+FFIExternalReference class >> fromHandle: aHandle [
 	^ self new setHandle: aHandle
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReference class>>newPointer [
+{ #category : #'instance creation' }
+FFIExternalReference class >> newPointer [
 	^ self fromHandle: ExternalAddress newPointer
 ]
 
-{
-	#category : #'external resource management',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReference>>autoRelease [
+{ #category : #'external resource management' }
+FFIExternalReference >> autoRelease [
 	"Note, subclasses should implement #resourceData
 	and #finalizeResourceData: on class side"
 	FFIExternalResourceManager addResource: self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReference>>createDefaultHandle [
+{ #category : #initialization }
+FFIExternalReference >> createDefaultHandle [
 	^ ExternalAddress new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReference>>initialize [
+{ #category : #initialization }
+FFIExternalReference >> initialize [
 	super initialize.
 	self setHandle: self createDefaultHandle.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReference>>printOn: aStream [
+{ #category : #printing }
+FFIExternalReference >> printOn: aStream [
 	super printOn: aStream.
 	aStream 
 		nextPut: $(;
@@ -76,21 +54,15 @@ FFIExternalReference>>printOn: aStream [
 		nextPut: $)
 ]
 
-{
-	#category : #'external resource management',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReference>>registerAsExternalResource [
+{ #category : #'external resource management' }
+FFIExternalReference >> registerAsExternalResource [
 	"Note, subclasses should implement #resourceData
 	and #finalizeResourceData: on class side"
 	self deprecated: 'Use #autoRelease instead.' on: '2016-01-22' in: #Pharo5.  
 	FFIExternalResourceManager addResource: self
 ]
 
-{
-	#category : #'external resource management',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReference>>resourceData [
+{ #category : #'external resource management' }
+FFIExternalReference >> resourceData [
 	^ self getHandle
 ]

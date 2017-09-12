@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #AthensCairoMatrixTest,
 	#superclass : #TestCase,
-	#category : #Athens-Cairo-Tests,
-	#timestamp : ''
+	#category : #Athens-Cairo-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrixTest>>testCopy [
+{ #category : #tests }
+AthensCairoMatrixTest >> testCopy [
 
 	| m |
 	m := AthensCairoMatrix new.
@@ -20,11 +13,8 @@ AthensCairoMatrixTest>>testCopy [
 	self assert: m getHandle ~~ m copy getHandle.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoMatrixTest>>testInverted [
+{ #category : #tests }
+AthensCairoMatrixTest >> testInverted [
 
 	| m |
 	m := AthensCairoMatrix new.

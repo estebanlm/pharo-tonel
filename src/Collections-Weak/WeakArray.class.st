@@ -11,15 +11,11 @@ Class {
 		'FinalizationProcess',
 		'FinalizationSemaphore'
 	],
-	#category : #Collections-Weak,
-	#timestamp : '<historical>'
+	#category : #Collections-Weak
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakArray class>>addWeakDependent: anObject [
+{ #category : #accessing }
+WeakArray class >> addWeakDependent: anObject [
 	
 	FinalizationLock critical:[ | index finished weakDependent |
 		finished := false.
@@ -40,11 +36,8 @@ WeakArray class>>addWeakDependent: anObject [
 	] ifError:[:msg :rcvr| rcvr error: msg].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakArray class>>initialize [
+{ #category : #initialization }
+WeakArray class >> initialize [
 	"Do we need to initialize specialObjectsArray?"
 	Smalltalk specialObjectsArray size < 42 
 		ifTrue: [Smalltalk recreateSpecialObjectsArray].
@@ -57,20 +50,14 @@ WeakArray class>>initialize [
 	FinalizationDependents ifNil: [FinalizationDependents := WeakArray new: 10].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakArray class>>pvtCreateTemporaryObjectIn: tempObject [
+{ #category : #private }
+WeakArray class >> pvtCreateTemporaryObjectIn: tempObject [
 	"We have to create the temporary object in a separate stack frame"
 	tempObject at: 1 put: Object new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakArray class>>removeWeakDependent: anObject [
+{ #category : #accessing }
+WeakArray class >> removeWeakDependent: anObject [
 	FinalizationLock critical:[
 		1 to: FinalizationDependents size do:[:i|
 			((FinalizationDependents at: i) == anObject) ifTrue:[
@@ -80,11 +67,8 @@ WeakArray class>>removeWeakDependent: anObject [
 	] ifError:[:msg :rcvr| rcvr error: msg].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakArray class>>runningFinalizationProcess [
+{ #category : #accessing }
+WeakArray class >> runningFinalizationProcess [
 	"Answer the FinalizationProcess I am running, if any"
 	^FinalizationProcess
 ]

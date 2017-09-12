@@ -3,50 +3,32 @@ A trait for test purposes
 "
 Trait {
 	#name : #TDictionaryEnumeratingTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Unordered,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:33'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryEnumeratingTest>>emptyDict [
+{ #category : #requirements }
+TDictionaryEnumeratingTest >> emptyDict [
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryEnumeratingTest>>newEmptyDict [
+{ #category : #requirements }
+TDictionaryEnumeratingTest >> newEmptyDict [
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryEnumeratingTest>>nonEmptyDict [
+{ #category : #requirements }
+TDictionaryEnumeratingTest >> nonEmptyDict [
 	self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryEnumeratingTest>>test0FixtureDictionaryEnumeratingTest [
+{ #category : #'tests - fixture' }
+TDictionaryEnumeratingTest >> test0FixtureDictionaryEnumeratingTest [
 	self nonEmptyDict.
 	self deny: self nonEmptyDict isEmpty
 ]
 
-{
-	#category : #'tests - dictionnary enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryEnumeratingTest>>testAssociationsDo [
+{ #category : #'tests - dictionnary enumerating' }
+TDictionaryEnumeratingTest >> testAssociationsDo [
 
 	| collection keys |
 	collection := self nonEmptyDict .
@@ -61,11 +43,8 @@ TDictionaryEnumeratingTest>>testAssociationsDo [
 	collection keys do: [:key | self assert: ( keys occurrencesOf: key ) = (collection keys occurrencesOf: key)].
 ]
 
-{
-	#category : #'tests - dictionnary enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryEnumeratingTest>>testAssociationsSelect [
+{ #category : #'tests - dictionnary enumerating' }
+TDictionaryEnumeratingTest >> testAssociationsSelect [
 	| collection keys result |
 	collection := self nonEmptyDict .
 	keys := OrderedCollection new.
@@ -77,11 +56,8 @@ TDictionaryEnumeratingTest>>testAssociationsSelect [
 	self assert: result = collection.
 ]
 
-{
-	#category : #'tests - dictionnary enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryEnumeratingTest>>testCollect [
+{ #category : #'tests - dictionnary enumerating' }
+TDictionaryEnumeratingTest >> testCollect [
 	| collection values result |
 	collection := self nonEmptyDict .
 	values := OrderedCollection new.
@@ -93,11 +69,8 @@ TDictionaryEnumeratingTest>>testCollect [
 	self assert: result = collection.
 ]
 
-{
-	#category : #'tests - dictionnary enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryEnumeratingTest>>testDo [
+{ #category : #'tests - dictionnary enumerating' }
+TDictionaryEnumeratingTest >> testDo [
 	| t collection |
 	collection := self nonEmptyDict .
 	t := OrderedCollection new.
@@ -108,11 +81,8 @@ TDictionaryEnumeratingTest>>testDo [
 	t do: [ :each | self assert: (t occurrencesOf: each ) = ( collection values occurrencesOf: each) ].
 ]
 
-{
-	#category : #'tests - dictionnary enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryEnumeratingTest>>testKeysAndValuesDo [
+{ #category : #'tests - dictionnary enumerating' }
+TDictionaryEnumeratingTest >> testKeysAndValuesDo [
 
 	
 	| collection keys |
@@ -125,11 +95,8 @@ TDictionaryEnumeratingTest>>testKeysAndValuesDo [
 	collection keys do: [ :key | self assert: (collection keys occurrencesOf: key) = (keys occurrencesOf: key)]
 ]
 
-{
-	#category : #'tests - dictionnary enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryEnumeratingTest>>testKeysDo [
+{ #category : #'tests - dictionnary enumerating' }
+TDictionaryEnumeratingTest >> testKeysDo [
 	| collection keys |
 	collection := self nonEmptyDict .
 	keys := OrderedCollection new.
@@ -140,11 +107,8 @@ TDictionaryEnumeratingTest>>testKeysDo [
 	collection keys do: [ :key | self assert: (collection keys occurrencesOf: key) = (keys occurrencesOf: key)]
 ]
 
-{
-	#category : #'tests - dictionnary enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryEnumeratingTest>>testReject [
+{ #category : #'tests - dictionnary enumerating' }
+TDictionaryEnumeratingTest >> testReject [
 	"Ensure that Dictionary>>reject: answers a dictionary not something else"
 	
 	| collection result |
@@ -154,11 +118,8 @@ TDictionaryEnumeratingTest>>testReject [
 	self assert: result = collection. 
 ]
 
-{
-	#category : #'tests - dictionnary enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryEnumeratingTest>>testSelect [
+{ #category : #'tests - dictionnary enumerating' }
+TDictionaryEnumeratingTest >> testSelect [
 	| collection values result |
 	collection := self nonEmptyDict .
 	values := OrderedCollection new.
@@ -170,11 +131,8 @@ TDictionaryEnumeratingTest>>testSelect [
 	self assert: result = collection.
 ]
 
-{
-	#category : #'tests - dictionnary enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryEnumeratingTest>>testValuesDo [
+{ #category : #'tests - dictionnary enumerating' }
+TDictionaryEnumeratingTest >> testValuesDo [
 	| collection values |
 	collection := self nonEmptyDict .
 	values := OrderedCollection new.

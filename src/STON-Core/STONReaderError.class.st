@@ -8,26 +8,19 @@ Class {
 	#instVars : [
 		'streamPosition'
 	],
-	#category : #STON-Core,
-	#timestamp : '<historical>'
+	#category : #STON-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReaderError class>>signal: aString streamPosition: streamPosition  [
+{ #category : #'instance creation' }
+STONReaderError class >> signal: aString streamPosition: streamPosition [ 
 	^ self new
 		streamPosition: streamPosition;
 		signal: aString;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReaderError>>messageText [
+{ #category : #accessing }
+STONReaderError >> messageText [
 	^ streamPosition 
 		ifNil: [ 
 			super messageText ] 
@@ -36,18 +29,12 @@ STONReaderError>>messageText [
 				(Array with: streamPosition with: super messageText) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReaderError>>streamPosition [
+{ #category : #accessing }
+STONReaderError >> streamPosition [
 	^ streamPosition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONReaderError>>streamPosition: aNumber [
+{ #category : #accessing }
+STONReaderError >> streamPosition: aNumber [
 	streamPosition := aNumber
 ]

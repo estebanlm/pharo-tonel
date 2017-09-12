@@ -4,33 +4,23 @@ Checks code using the do: method instead of using the collect: or select: method
 Class {
 	#name : #RBCollectionProtocolRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:25'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBCollectionProtocolRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBCollectionProtocolRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'CollectionProtocolRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBCollectionProtocolRule>>group [
+{ #category : #accessing }
+RBCollectionProtocolRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBCollectionProtocolRule>>initialize [
+{ #category : #initialization }
+RBCollectionProtocolRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyOf: #(
@@ -52,18 +42,12 @@ RBCollectionProtocolRule>>initialize [
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBCollectionProtocolRule>>name [
+{ #category : #accessing }
+RBCollectionProtocolRule >> name [
 	^ 'Uses do: instead of collect: or select:''s'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBCollectionProtocolRule>>rationale [
+{ #category : #accessing }
+RBCollectionProtocolRule >> rationale [
 	^ 'Checks for code using the do: method instead of using the collect: or select: methods.'
 ]

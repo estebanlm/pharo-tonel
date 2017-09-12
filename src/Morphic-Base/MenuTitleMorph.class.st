@@ -30,15 +30,11 @@ Class {
 		'closeBox',
 		'pinBox'
 	],
-	#category : #Morphic-Base-Menus,
-	#timestamp : 'HenrikNergaard 9/8/2015 17:52'
+	#category : #Morphic-Base-Menus
 }
 
-{
-	#category : #construction-defined,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>bigTitle: aTitle [
+{ #category : #construction-defined }
+MenuTitleMorph >> bigTitle: aTitle [
 
 	self 
 	withCloseBox;
@@ -47,59 +43,41 @@ MenuTitleMorph>>bigTitle: aTitle [
 	withPinBox.
 ]
 
-{
-	#category : #private-creation,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>boxExtent [
+{ #category : #private-creation }
+MenuTitleMorph >> boxExtent [
 
 	^18 @ 18
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>closeBoxClicked [
+{ #category : #'event handling' }
+MenuTitleMorph >> closeBoxClicked [
 
 	owner ifNotNil: [ :o | o delete ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>defaultBorderColor [
+{ #category : #initialization }
+MenuTitleMorph >> defaultBorderColor [
 	^ self theme settings flatMenu 
 		ifFalse: [#inset]
 		ifTrue: [self theme settings derivedMenuColor muchDarker]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>defaultColor [
+{ #category : #initialization }
+MenuTitleMorph >> defaultColor [
 	
 	^self theme menuTitleColorFor: nil
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>font: aFont [
+{ #category : #construction }
+MenuTitleMorph >> font: aFont [
 
 	titleContainer ifNil: [ ^self ]. "should really not happen!"
 	
 	titleContainer submorphsDo: [ :stringMorph | stringMorph font: aFont ].
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>icon: aForm [
+{ #category : #construction }
+MenuTitleMorph >> icon: aForm [
 
 	icon ifNotNil: [ icon delete ].
 	icon := aForm asMorph.
@@ -109,11 +87,8 @@ MenuTitleMorph>>icon: aForm [
 	self addMorphFront: icon
 ]
 
-{
-	#category : #private-creation,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>iconButtonCalling: aSelector withForm: aForm helpText: aText [
+{ #category : #private-creation }
+MenuTitleMorph >> iconButtonCalling: aSelector withForm: aForm helpText: aText [
 
 	^IconicButton new target: self;
 		actionSelector: aSelector;
@@ -125,11 +100,8 @@ MenuTitleMorph>>iconButtonCalling: aSelector withForm: aForm helpText: aText [
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>initialize [
+{ #category : #initialization }
+MenuTitleMorph >> initialize [
 	super initialize.
 	
 	self 
@@ -142,11 +114,8 @@ MenuTitleMorph>>initialize [
 	clipSubmorphs: true
 ]
 
-{
-	#category : #construction-defined,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>onlyCloseAndPinable [
+{ #category : #construction-defined }
+MenuTitleMorph >> onlyCloseAndPinable [
 
 	self 
 	withCloseBox;
@@ -154,31 +123,22 @@ MenuTitleMorph>>onlyCloseAndPinable [
 	withPinBox.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>pinBoxClicked [
+{ #category : #'event handling' }
+MenuTitleMorph >> pinBoxClicked [
 
 	owner toggleStayUp.
 	
 	self updatePinForm
 ]
 
-{
-	#category : #pinning,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>pinColor [
+{ #category : #pinning }
+MenuTitleMorph >> pinColor [
 
 	^owner stayUp ifTrue: [ Color gray lighter ] ifFalse: [ Color black ]
 ]
 
-{
-	#category : #pinning,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>pinForm [
+{ #category : #pinning }
+MenuTitleMorph >> pinForm [
 
 	^CircleMorph new
 		extent: 8@8;
@@ -187,20 +147,14 @@ MenuTitleMorph>>pinForm [
 		imageForm
 ]
 
-{
-	#category : #rounding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>roundedCorners [
+{ #category : #rounding }
+MenuTitleMorph >> roundedCorners [
 
 	^#(1 4)
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>title: aString [
+{ #category : #construction }
+MenuTitleMorph >> title: aString [
 
 	titleContainer ifNotNil: [ titleContainer delete ].
 	
@@ -222,28 +176,19 @@ MenuTitleMorph>>title: aString [
 	self addMorphBack: titleContainer 
 ]
 
-{
-	#category : #pinning,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>updatePinForm [
+{ #category : #pinning }
+MenuTitleMorph >> updatePinForm [
 
 	pinBox ifNotNil: [ pinBox labelGraphic: self pinForm; extent: self boxExtent ].
 ]
 
-{
-	#category : #rounding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>wantsRoundedCorners [
+{ #category : #rounding }
+MenuTitleMorph >> wantsRoundedCorners [
 	^ color isTransparent not and: [ owner wantsRoundedCorners ]
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>withCloseBox [
+{ #category : #construction }
+MenuTitleMorph >> withCloseBox [
 
 	closeBox ifNotNil: [ closeBox delete ].	
 		
@@ -255,11 +200,8 @@ MenuTitleMorph>>withCloseBox [
 	self addMorph: closeBox asElementNumber: 1
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuTitleMorph>>withPinBox [
+{ #category : #construction }
+MenuTitleMorph >> withPinBox [
 
 	pinBox ifNotNil: [ pinBox delete ].	
 		

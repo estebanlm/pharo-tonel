@@ -1,12 +1,7 @@
-Extension {
-	#name : #DebugAction
-}
+Extension { #name : #DebugAction }
 
-{
-	#category : #'*GT-Debugger',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-DebugAction>>asGlamourAction [
+{ #category : #'*GT-Debugger' }
+DebugAction >> asGlamourAction [
 
 	^ ((GLMGenericAction new) 
 			action: [ self execute ]; 

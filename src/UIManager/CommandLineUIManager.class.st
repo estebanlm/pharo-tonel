@@ -12,24 +12,17 @@ Class {
 	#classVars : [
 		'SnapshotErrorImage'
 	],
-	#category : #UIManager,
-	#timestamp : '<historical>'
+	#category : #UIManager
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager class>>isValidForCurrentSystemConfiguration [
+{ #category : #testing }
+CommandLineUIManager class >> isValidForCurrentSystemConfiguration [
 
 	^ Smalltalk isHeadless and: [ Smalltalk isInteractive ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager class>>replacing: aUIManager [
+{ #category : #'instance creation' }
+CommandLineUIManager class >> replacing: aUIManager [
 
 	"Replace the current UI manager with instance of myself. 
 	Keep a backup reference to old manager, and then restore it, when image will be interactive again. "
@@ -37,27 +30,18 @@ CommandLineUIManager class>>replacing: aUIManager [
 	^ self new replacing: aUIManager
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager class>>snapshotErrorImage [
+{ #category : #accessing }
+CommandLineUIManager class >> snapshotErrorImage [
 	^ SnapshotErrorImage == true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager class>>snapshotErrorImage: aBoolean [
+{ #category : #accessing }
+CommandLineUIManager class >> snapshotErrorImage: aBoolean [
 	SnapshotErrorImage := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager class>>uiSettingsOn: aBuilder [
+{ #category : #settings }
+CommandLineUIManager class >> uiSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #nonInteractive)
 		label: 'Headless mode';
@@ -70,81 +54,54 @@ CommandLineUIManager class>>uiSettingsOn: aBuilder [
 				description: 'On unhandled exception, save a new version of the image before quitting']
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>abort: aStringOrText [
+{ #category : #'ui TEasilyThemed' }
+CommandLineUIManager >> abort: aStringOrText [
 	
 	self abort: aStringOrText title: 'Error'.
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>abort: aStringOrText title: aString [
+{ #category : #'ui TEasilyThemed' }
+CommandLineUIManager >> abort: aStringOrText title: aString [
 	
 	self logTitle: aString andDescription: aStringOrText to: self stderr.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>activate [
+{ #category : #private }
+CommandLineUIManager >> activate [
 	NonInteractiveTranscript stderr install
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>alert: aStringOrText [
+{ #category : #'ui TEasilyThemed' }
+CommandLineUIManager >> alert: aStringOrText [
 
 	self abort: aStringOrText title: 'Alert'.
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>alert: aStringOrText title: aString [
+{ #category : #'ui TEasilyThemed' }
+CommandLineUIManager >> alert: aStringOrText title: aString [
 
 	self logTitle: aString andDescription: aStringOrText to: self stdout.
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>alert: aStringOrText title: aString configure: aBlock [
+{ #category : #'ui TEasilyThemed' }
+CommandLineUIManager >> alert: aStringOrText title: aString configure: aBlock [
 	"Ignore the block, because we don't create a dialog, so there is nothing to configure."
 
 	self alert: aStringOrText title: aString.
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>checkForNewDisplaySize [
+{ #category : #display }
+CommandLineUIManager >> checkForNewDisplaySize [
 	"do nothing"
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>choose: questionsAnswerDict title: queryString [
+{ #category : #'ui requests' }
+CommandLineUIManager >> choose: questionsAnswerDict title: queryString [
 
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>chooseFrom: aList lines: linesArray title: aString [
+{ #category : #'ui requests' }
+CommandLineUIManager >> chooseFrom: aList lines: linesArray title: aString [
 	| maxPad |
 	maxPad := aList size asString size.
 	self stdout 
@@ -157,11 +114,8 @@ CommandLineUIManager>>chooseFrom: aList lines: linesArray title: aString [
 	^ aList at: (self stdin upToAnyOf: String crlf do: [ :chr| ]) asInteger.
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>confirm: queryString label: title trueChoice: trueLabel falseChoice: falseLabel cancelChoice: cancelLabel default: trueFalseNil [
+{ #category : #'ui requests' }
+CommandLineUIManager >> confirm: queryString label: title trueChoice: trueLabel falseChoice: falseLabel cancelChoice: cancelLabel default: trueFalseNil [
 	| questions |
 	questions := Dictionary new.
 	trueLabel ifNotNil: [ questions at: 'y' put: trueLabel ].
@@ -171,11 +125,8 @@ CommandLineUIManager>>confirm: queryString label: title trueChoice: trueLabel fa
 
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>confirm: queryString trueChoice: trueLabel falseChoice: falseLabel [
+{ #category : #'ui requests' }
+CommandLineUIManager >> confirm: queryString trueChoice: trueLabel falseChoice: falseLabel [
 	^self
 		confirm: queryString
 		trueChoice: trueLabel
@@ -185,11 +136,8 @@ CommandLineUIManager>>confirm: queryString trueChoice: trueLabel falseChoice: fa
 		
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>confirm: queryString trueChoice: trueLabel falseChoice: falseLabel cancelChoice: cancelLabel default: trueFalseNil [
+{ #category : #'ui requests' }
+CommandLineUIManager >> confirm: queryString trueChoice: trueLabel falseChoice: falseLabel cancelChoice: cancelLabel default: trueFalseNil [
 	| questions |
 	questions := Dictionary new.
 	trueLabel ifNotNil: [ questions at: 'y' put: trueLabel ].
@@ -199,11 +147,8 @@ CommandLineUIManager>>confirm: queryString trueChoice: trueLabel falseChoice: fa
 
 ]
 
-{
-	#category : #debug,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>debugProcess: process context: context label: title fullView: bool notification: notificationString [
+{ #category : #debug }
+CommandLineUIManager >> debugProcess: process context: context label: title fullView: bool notification: notificationString [
 	| description |
 	description := String streamContents: [ :stream |
 		stream
@@ -220,27 +165,18 @@ CommandLineUIManager>>debugProcess: process context: context label: title fullVi
 		to: self stderr
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>deny: aStringOrText [
+{ #category : #'ui TEasilyThemed' }
+CommandLineUIManager >> deny: aStringOrText [
 	"Open a denial dialog."
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>deny: aStringOrText title: aString [
+{ #category : #'ui TEasilyThemed' }
+CommandLineUIManager >> deny: aStringOrText title: aString [
 	"Open a denial dialog."
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>exitFailure [
+{ #category : #utils }
+CommandLineUIManager >> exitFailure [
 	[
 		self class snapshotErrorImage ifTrue: [
 			doNotQuitOnRestart := true.
@@ -254,31 +190,22 @@ CommandLineUIManager>>exitFailure [
 	
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>handleError: anError log: shouldLog [
+{ #category : #'error handling' }
+CommandLineUIManager >> handleError: anError log: shouldLog [
 
 	shouldLog ifTrue: [ self logError: anError ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>headlessManager [
+{ #category : #accessing }
+CommandLineUIManager >> headlessManager [
 	self class == CommandLineUIManager 
 		ifFalse: [ ^ self ].
 		
 	^ CommandLineUIManager replacing: uiManager
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>inform: aString [
+{ #category : #'ui requests' }
+CommandLineUIManager >> inform: aString [
 
 	| logBlock |
 
@@ -296,30 +223,21 @@ CommandLineUIManager>>inform: aString [
 	aString logCr.
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>informUserDuring: aBlock [
+{ #category : #'ui requests' }
+CommandLineUIManager >> informUserDuring: aBlock [
 	self
 		displayProgress: ''
 		from: 1 to: 100
 		during: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>initialize [
+{ #category : #initialization }
+CommandLineUIManager >> initialize [
 	doNotQuitOnRestart := false.
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>logColored: anAnsiiColorCode during: aBlock [
+{ #category : #utils }
+CommandLineUIManager >> logColored: anAnsiiColorCode during: aBlock [
 	
 	Smalltalk logStdErrorDuring: [:stderr |
 		stderr
@@ -332,40 +250,28 @@ CommandLineUIManager>>logColored: anAnsiiColorCode during: aBlock [
 	]
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>logDuring: aBlock [
+{ #category : #utils }
+CommandLineUIManager >> logDuring: aBlock [
 	
 	Smalltalk logStdErrorDuring: [ :stderr | aBlock value: stderr ]
 
 
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>logGreenDuring: aBlock [
+{ #category : #utils }
+CommandLineUIManager >> logGreenDuring: aBlock [
 	
 	^ self logColored: '32' during: aBlock
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>logRedDuring: aBlock [
+{ #category : #utils }
+CommandLineUIManager >> logRedDuring: aBlock [
 	
 	^ self logColored: '31' during: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>logTitle: aString andDescription: aStringOrText to: aStream [
+{ #category : #private }
+CommandLineUIManager >> logTitle: aString andDescription: aStringOrText to: aStream [
 	
 	aStream
 		nextPutAll: aString;
@@ -374,111 +280,75 @@ CommandLineUIManager>>logTitle: aString andDescription: aStringOrText to: aStrea
 		cr.
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>logYellowDuring: aBlock [
+{ #category : #utils }
+CommandLineUIManager >> logYellowDuring: aBlock [
 	
 	^ self logColored: '33' during: aBlock
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>merge: merger informing: aString [
+{ #category : #'ui requests' }
+CommandLineUIManager >> merge: merger informing: aString [
 	"Check for conflicts, if there are none, just continue. 
 	 Merger will accept all conflicts"
 	merger hasConflicts ifFalse: [ ^ self ].
 	self abort: aString title: 'Conflict detected'
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>newDisplayDepthNoRestore: pixelSize	 [
+{ #category : #display }
+CommandLineUIManager >> newDisplayDepthNoRestore: pixelSize [	
 	"do nothing"
 	
 
 ]
 
-{
-	#category : #non-interactive,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>nonInteractiveManager [
+{ #category : #non-interactive }
+CommandLineUIManager >> nonInteractiveManager [
 	" Answer an instance of non-interactive manager, which will be used when image runs headless.
 	  We put it here, so subclasses can override it. "
 	^ NonInteractiveUIManager replacing: uiManager
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>onPrimitiveError: aString	 [
+{ #category : #events }
+CommandLineUIManager >> onPrimitiveError: aString [	
 
 	" log error and quit "
 	^ self quitFrom: thisContext sender withMessage: aString
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>proceed: aStringOrText [
+{ #category : #'ui TEasilyThemed' }
+CommandLineUIManager >> proceed: aStringOrText [
 	"Open a proceed dialog."
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>proceed: aStringOrText title: aString [
+{ #category : #'ui TEasilyThemed' }
+CommandLineUIManager >> proceed: aStringOrText title: aString [
 	"Open a proceed dialog and answer true if not cancelled, false otherwise."
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>question: aStringOrText [
+{ #category : #'ui TEasilyThemed' }
+CommandLineUIManager >> question: aStringOrText [
 	"Open a question dialog."
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>question: aStringOrText title: aString [
+{ #category : #'ui TEasilyThemed' }
+CommandLineUIManager >> question: aStringOrText title: aString [
 	"Open a question dialog and answer true if yes,
 	false if no and nil if cancelled."
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>questionWithoutCancel: aStringOrText [
+{ #category : #'ui TEasilyThemed' }
+CommandLineUIManager >> questionWithoutCancel: aStringOrText [
 	"Open a question dialog."
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>questionWithoutCancel: aStringOrText title: aString [
+{ #category : #'ui TEasilyThemed' }
+CommandLineUIManager >> questionWithoutCancel: aStringOrText title: aString [
 	"Open a question dialog and answer true if yes,
 	false if no and nil if cancelled."
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>quitFrom: aContext withMessage: aString [
+{ #category : #utils }
+CommandLineUIManager >> quitFrom: aContext withMessage: aString [
 
 	" log error and quit "
 	[ Smalltalk 
@@ -501,11 +371,8 @@ CommandLineUIManager>>quitFrom: aContext withMessage: aString [
 	] ensure: [ self exitFailure ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>replacing: aUIManager [
+{ #category : #private }
+CommandLineUIManager >> replacing: aUIManager [
 
 	" save the aUIManager to restore it later, when we become interactive again "
 	
@@ -514,54 +381,36 @@ CommandLineUIManager>>replacing: aUIManager [
 	self beDefault.
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>restoreDisplay	 [
+{ #category : #display }
+CommandLineUIManager >> restoreDisplay [	
 	"do nothing"
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>restoreDisplayAfter: aBlock	 [
+{ #category : #display }
+CommandLineUIManager >> restoreDisplayAfter: aBlock [	
 	"do nothing"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>stderr [
+{ #category : #accessing }
+CommandLineUIManager >> stderr [
 		
 	^ Stdio stderr
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>stdin [
+{ #category : #accessing }
+CommandLineUIManager >> stdin [
 
 	^ Stdio stdin
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>stdout [
+{ #category : #accessing }
+CommandLineUIManager >> stdout [
 	
 	^ Stdio stdout
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>syntaxErrorNotificationDefaultAction: aSyntaxErrorNotification [
+{ #category : #'ui requests' }
+CommandLineUIManager >> syntaxErrorNotificationDefaultAction: aSyntaxErrorNotification [
 	"log the syntax notificaiton and print a nicely formatted and colored syntax error on stderr"
 	Smalltalk logDuring: [ :logger |
 		logger print: aSyntaxErrorNotification; cr.
@@ -573,46 +422,31 @@ CommandLineUIManager>>syntaxErrorNotificationDefaultAction: aSyntaxErrorNotifica
 	^ self exitFailure
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>textEntry: aStringOrText [
+{ #category : #'ui TEasilyThemed' }
+CommandLineUIManager >> textEntry: aStringOrText [
 	"Open a text entry dialog."
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>textEntry: aStringOrText title: aString [
+{ #category : #'ui TEasilyThemed' }
+CommandLineUIManager >> textEntry: aStringOrText title: aString [
 	"Open a text entry dialog."
 ]
 
-{
-	#category : #'ui TEasilyThemed',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>textEntry: aStringOrText title: aString entryText: defaultEntryText [
+{ #category : #'ui TEasilyThemed' }
+CommandLineUIManager >> textEntry: aStringOrText title: aString entryText: defaultEntryText [
 	"Open a text entry dialog."
 
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>uiProcess [
+{ #category : #'ui requests' }
+CommandLineUIManager >> uiProcess [
 	" receiver don't have a ui process, associated with it,
 	client should check explicitly if #uiProcess answers nil or not"
 	^ nil
 ]
 
-{
-	#category : #'default actions',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>unhandledErrorDefaultAction: anException [
+{ #category : #'default actions' }
+CommandLineUIManager >> unhandledErrorDefaultAction: anException [
 
 	self quitFrom: anException signalerContext  withMessage: anException description.
 	
@@ -621,11 +455,8 @@ CommandLineUIManager>>unhandledErrorDefaultAction: anException [
 		]
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-CommandLineUIManager>>warningDefaultAction: aWarning [
+{ #category : #'ui requests' }
+CommandLineUIManager >> warningDefaultAction: aWarning [
 	| logBlock |
 	"Pass all warnings, but log them"
 	

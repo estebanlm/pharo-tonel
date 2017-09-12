@@ -5,23 +5,16 @@ This is a custom help book for the SUnit framework.
 Class {
 	#name : #SUnitHelp,
 	#superclass : #CustomHelp,
-	#category : #SUnit-Help,
-	#timestamp : 'tbn 12/16/2010 22:26'
+	#category : #SUnit-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SUnitHelp class>>bookName [
+{ #category : #accessing }
+SUnitHelp class >> bookName [
 	^'SUnit framework'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SUnitHelp class>>introduction [
+{ #category : #pages }
+SUnitHelp class >> introduction [
 	"This method was automatically generated. Edit it using:"
 	"SUnitHelp edit: #introduction"
 	^HelpTopic
@@ -33,11 +26,8 @@ The culture of testing has always been part of the philosophy of development in 
 You write a method, accept the code and test it by writing a small script in a workspace, in a comment or an example as a class method. But this approach does not allow to automatically repeat the testing or ensure that the code is working. SUnit is a framework you can use to describe and execute unit tests. Unit testing is a method by which individual units of source code are tested to determine if they are fit for use. A unit is the smallest testable part of an application.!' readStream nextChunkText
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SUnitHelp class>>links [
+{ #category : #pages }
+SUnitHelp class >> links [
 	"This method was automatically generated. Edit it using:"
 	"SUnitHelp edit: #links"
 	^HelpTopic
@@ -50,19 +40,13 @@ SUnitHelp class>>links [
 - http://en.wikipedia.org/wiki/SUnit!' readStream nextChunkText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SUnitHelp class>>pages [
+{ #category : #accessing }
+SUnitHelp class >> pages [
 	^#(introduction running SUnitTutorial SUnitAPIDocumentation links)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-SUnitHelp class>>running [
+{ #category : #pages }
+SUnitHelp class >> running [
 	"This method was automatically generated. Edit it using:"
 	"SUnitHelp edit: #running"
 	^HelpTopic

@@ -1,17 +1,10 @@
-"
-
-"
 Class {
 	#name : #MetacelloMCValueHolderSpecTestCase,
 	#superclass : #MetacelloValueHolderSpecTestCase,
-	#category : #Metacello-TestsMCCore,
-	#timestamp : ''
+	#category : #Metacello-TestsMCCore
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCValueHolderSpecTestCase>>projectClass [
+{ #category : #accessing }
+MetacelloMCValueHolderSpecTestCase >> projectClass [
     ^ MetacelloMCProject
 ]

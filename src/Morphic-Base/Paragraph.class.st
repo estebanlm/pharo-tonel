@@ -92,31 +92,21 @@ Class {
 	#classVars : [
 		'InsertionPointColor'
 	],
-	#category : #'Morphic-Base-Text Support',
-	#timestamp : 'AlainPlantec 9/15/2011 16:13'
+	#category : #'Morphic-Base-Text Support'
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph class>>insertionPointColor [
+{ #category : #settings }
+Paragraph class >> insertionPointColor [
 	^ InsertionPointColor ifNil: [InsertionPointColor := (Color r: 0.0 g: 0.0 b: 0.8 alpha: 0.8)]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph class>>insertionPointColor: aColor [
+{ #category : #settings }
+Paragraph class >> insertionPointColor: aColor [
 	InsertionPointColor := aColor
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>actionAttributesUnder: aClickPoint event: anEvent do: aBlock [
+{ #category : #editing }
+Paragraph >> actionAttributesUnder: aClickPoint event: anEvent do: aBlock [
 	| startBlock |
 	startBlock := self characterBlockAtPoint: aClickPoint.
 	(text attributesAt: startBlock stringIndex forStyle: textStyle)
@@ -131,11 +121,8 @@ Paragraph>>actionAttributesUnder: aClickPoint event: anEvent do: aBlock [
 			boxes detect: [ :each | each containsPoint: aClickPoint ] ifFound: [ aBlock cull: attribute cull: boxes ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>adjustBottomY [
+{ #category : #private }
+Paragraph >> adjustBottomY [
 	| heights  bottomY verticalSize |
 	heights := lines collect:[:each| each lineHeight ].
 	verticalSize := heights sum.
@@ -143,42 +130,30 @@ Paragraph>>adjustBottomY [
 	container := container withBottom: bottomY.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>adjustLineIndicesBy: delta [
+{ #category : #private }
+Paragraph >> adjustLineIndicesBy: delta [
 	firstCharacterIndex := firstCharacterIndex + delta.
 	lines do: [:line | line slide: delta].
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>adjustRightX [
+{ #category : #private }
+Paragraph >> adjustRightX [
 	| shrink |
 	shrink := container right - maxRightX.
 	lines do: [:line | line paddingWidth: (line paddingWidth - shrink)].
 	container := container withRight: maxRightX
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>adjustedFirstCharacterIndex [
+{ #category : #access }
+Paragraph >> adjustedFirstCharacterIndex [
 	"Return the index in the text where this paragraph WOULD begin if nothing had changed, except the size of the text -- ie if there have only been an insertion of deletion in the preceding morphs"
 	offsetToEnd ifNil: [^ -1].
 	^ text size - offsetToEnd
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>buildSelectionBlocksFrom: topLeft to: bottomRight [
+{ #category : #selection }
+Paragraph >> buildSelectionBlocksFrom: topLeft [ to: bottomRight
 	| viewedString primary topLeftBlk bottomRightBlk findReplaceIntervals secondarySelectionIntervals startIdx stopIdx |
 	Display depth = 1
 		ifTrue: [ ^ self ].
@@ -233,39 +208,27 @@ Paragraph>>buildSelectionBlocksFrom: topLeft to: bottomRight [
 	secondarySelection := nil
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>caretRect [
+{ #category : #access }
+Paragraph >> caretRect [
 	"The rectangle in which the caret was last drawn,
 	 or nil if the last drawing drew a range-selection rather than insertion point."
 	^ caretRect
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>caretWidth [
+{ #category : #access }
+Paragraph >> caretWidth [
 	^ Editor dumbbellCursor		
 			ifTrue: [ 2 ]		
 			ifFalse: [ 0 ]
 ]
 
-{
-	#category : #alignment,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>centered  [
+{ #category : #alignment }
+Paragraph >> centered [ 
 	textStyle centered
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>characterBlockAtPoint: aPoint  [
+{ #category : #selection }
+Paragraph >> characterBlockAtPoint: aPoint [ 
 	"Answer a CharacterBlock for the character in the text at aPoint."
 	| line |
 	line := lines at: (self lineIndexForPoint: aPoint).
@@ -274,11 +237,8 @@ Paragraph>>characterBlockAtPoint: aPoint  [
 		in: line
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>characterBlockForIndex: index  [
+{ #category : #selection }
+Paragraph >> characterBlockForIndex: index [ 
 	"Answer a CharacterBlock for the character in text at index."
 	| line |
 	line := lines at: (self lineIndexForCharacter: index).
@@ -287,11 +247,8 @@ Paragraph>>characterBlockForIndex: index  [
 		in: line
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>click: anEvent for: model controller: editor [
+{ #category : #editing }
+Paragraph >> click: anEvent for: model controller: editor [
 	"Give sensitive text a chance to fire.  Display flash: (100@100 extent: 100@100)."
 	
 	| action clickPoint |
@@ -310,11 +267,8 @@ Paragraph>>click: anEvent for: model controller: editor [
 	^ action
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>compose: t style: ts from: startingIndex in: textContainer [
+{ #category : #composition }
+Paragraph >> compose: t style: ts from: startingIndex [ in: textContainer
 	text := t.
 	textStyle := ts.
 	firstCharacterIndex := startingIndex.
@@ -323,11 +277,8 @@ Paragraph>>compose: t style: ts from: startingIndex in: textContainer [
 	self composeAll
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>composeAll [
+{ #category : #composition }
+Paragraph >> composeAll [
 	^ self
 		multiComposeLinesFrom: firstCharacterIndex
 		to: text size
@@ -337,21 +288,15 @@ Paragraph>>composeAll [
 		atY: container top 
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>composeAllStartingAt: characterIndex [
+{ #category : #composition }
+Paragraph >> composeAllStartingAt: characterIndex [
 	firstCharacterIndex := characterIndex.
 	offsetToEnd := text size - firstCharacterIndex.
 	self composeAll
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>composeLinesFrom: start to: stop delta: delta into: lineColl priorLines: priorLines
+{ #category : #composition }
+Paragraph >> composeLinesFrom: start to: stop delta: delta into: lineColl priorLines: priorLines
 	atY: startingY [
 	"While the section from start to stop has changed, composition may ripple all the way to the end of the text.  However in a rectangular container, if we ever find a line beginning with the same character as before (ie corresponding to delta in the old lines), then we can just copy the old lines from there to the end of the container, with adjusted indices and y-values"
 
@@ -373,36 +318,24 @@ Paragraph>>composeLinesFrom: start to: stop delta: delta into: lineColl priorLin
 
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>composer [
+{ #category : #access }
+Paragraph >> composer [
 	^ composer ifNil: [composer := TextComposer new]
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>compositionRectangle [
+{ #category : #composition }
+Paragraph >> compositionRectangle [
 	^ container
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>containsPoint: aPoint [
+{ #category : #selection }
+Paragraph >> containsPoint: aPoint [
 	^ (lines at: (self lineIndexForPoint: aPoint)) rectangle
 		containsPoint: aPoint
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>deepCopy [
+{ #category : #copying }
+Paragraph >> deepCopy [
 	"Don't want to copy the container (etc) or fonts in the TextStyle."
 	| new |
 	new := self copy.
@@ -412,21 +345,15 @@ Paragraph>>deepCopy [
 	^ new
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>defaultCharacterBlock [
+{ #category : #selection }
+Paragraph >> defaultCharacterBlock [
 	^ (CharacterBlock new stringIndex: firstCharacterIndex text: text
 			topLeft: lines first topLeft extent: 0 @ 0)
 		textLine: lines first
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>displayExtraSelectionOn: aCanvas  [
+{ #category : #display }
+Paragraph >> displayExtraSelectionOn: aCanvas [ 
 	"Send all visible lines to the displayScanner for display"
 
 	| visibleRectangle line |
@@ -442,11 +369,8 @@ Paragraph>>displayExtraSelectionOn: aCanvas  [
 					do: [:selblock | self displaySelectionBlock: selblock inLine: line on: aCanvas]]]
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>displayOn: aCanvas using: displayScanner at: somePosition [
+{ #category : #display }
+Paragraph >> displayOn: aCanvas using: displayScanner at: somePosition [
 	"Send all visible lines to the displayScanner for display"
 	| visibleRectangle offset leftInRun line |
 	visibleRectangle := aCanvas clipRect.
@@ -461,11 +385,8 @@ Paragraph>>displayOn: aCanvas using: displayScanner at: somePosition [
 
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>displaySelectionBarOn: aCanvas  [
+{ #category : #display }
+Paragraph >> displaySelectionBarOn: aCanvas [ 
 	| visibleRectangle line |
 	selectionStart ifNil: [^ self].
 	selectionStop ifNil: [^ self].
@@ -475,11 +396,8 @@ Paragraph>>displaySelectionBarOn: aCanvas  [
 	aCanvas fillRectangle: (visibleRectangle left @ line top corner: visibleRectangle right @ line bottom) color: self selectionBarColor
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>displaySelectionBlock: aSelBlock inLine: line on: aCanvas  [
+{ #category : #display }
+Paragraph >> displaySelectionBlock: aSelBlock inLine: line [ on: aCanvas 
 	"Display a SelectionBlock if it does not overlap vith the regular selection"
 	
 	(selectionStart notNil and: [selectionStop notNil and: [selectionStart ~= selectionStop]])
@@ -497,11 +415,8 @@ Paragraph>>displaySelectionBlock: aSelBlock inLine: line on: aCanvas  [
 
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>displaySelectionInLine: line on: aCanvas  [
+{ #category : #display }
+Paragraph >> displaySelectionInLine: line [ on: aCanvas 
 	| leftX rightX w caretColor |
 	selectionStart ifNil: [^self].	"No selection"
 	aCanvas isShadowDrawing ifTrue: [ ^self ].	"don't draw selection with shadow"
@@ -553,27 +468,18 @@ Paragraph>>displaySelectionInLine: line on: aCanvas  [
 				color: self selectionColor]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>extent [
+{ #category : #access }
+Paragraph >> extent [
 	^ container width @ (lines last bottom - lines first top)
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>extraSelectionChanged [
+{ #category : #selection }
+Paragraph >> extraSelectionChanged [
 	refreshExtraSelection := true
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>extraSelectionRects [
+{ #category : #selection }
+Paragraph >> extraSelectionRects [
 	"Return an array of rectangles representing the findReplace and the secondary selection regions."
 	^ Array streamContents: [:strm |
 		extraSelectionBlocks 
@@ -582,11 +488,8 @@ Paragraph>>extraSelectionRects [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>fastFindFirstLineSuchThat: lineBlock [
+{ #category : #private }
+Paragraph >> fastFindFirstLineSuchThat: lineBlock [
 	"Perform a binary search of the lines array and return the index
 	of the first element for which lineBlock evaluates as true.
 	This assumes the condition is one that goes from false to true for
@@ -604,64 +507,43 @@ Paragraph>>fastFindFirstLineSuchThat: lineBlock [
 	^ low
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>findReplaceSelectionColor [
+{ #category : #selection }
+Paragraph >> findReplaceSelectionColor [
 	^  self theme currentSettings findReplaceSelectionColor
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>findReplaceSelectionRegex: aRegex [
+{ #category : #selection }
+Paragraph >> findReplaceSelectionRegex: aRegex [
 	findReplaceSelectionRegex := aRegex.
 
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>firstCharacterIndex [
+{ #category : #access }
+Paragraph >> firstCharacterIndex [
 	^ firstCharacterIndex
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>focused [
+{ #category : #access }
+Paragraph >> focused [
 	^ focused ifNil: [focused := false]
 
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>focused: aBoolean [
+{ #category : #access }
+Paragraph >> focused: aBoolean [
 	focused := aBoolean
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>hasExtraSelection [
+{ #category : #selection }
+Paragraph >> hasExtraSelection [
 	"Return true if I've some findReplace or secondary selection"
 	^ extraSelectionBlocks isEmptyOrNil not
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>indentationOfLineIndex: lineIndex ifBlank: aBlock [
+{ #category : #private }
+Paragraph >> indentationOfLineIndex: lineIndex ifBlank: aBlock [
 	"Answer the number of leading tabs in the line at lineIndex.  If there are
 	 no visible characters, pass the number of tabs to aBlock and return its value.
 	 If the line is word-wrap overflow, back up a line and recur."
@@ -678,64 +560,43 @@ Paragraph>>indentationOfLineIndex: lineIndex ifBlank: aBlock [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>initialize [
+{ #category : #initialization }
+Paragraph >> initialize [
 	super initialize.
 	self positionWhenComposed: 0 @ 0
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>insertionPointColor [
+{ #category : #settings }
+Paragraph >> insertionPointColor [
 	self focused ifFalse: [^ Color transparent].
 	^ Display depth <= 2
 		ifTrue: [Color black]
 		ifFalse: [self class insertionPointColor]
 ]
 
-{
-	#category : #alignment,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>justified  [
+{ #category : #alignment }
+Paragraph >> justified [ 
 	textStyle justified
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>lastCharacterIndex [
+{ #category : #access }
+Paragraph >> lastCharacterIndex [
 	^ lines last last
 ]
 
-{
-	#category : #alignment,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>leftFlush  [
+{ #category : #alignment }
+Paragraph >> leftFlush [ 
 	textStyle leftFlush
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>lineIndexForCharacter: index [
+{ #category : #private }
+Paragraph >> lineIndexForCharacter: index [
 	"Answer the index of the line in which to select the character at index."
 	^ (self fastFindFirstLineSuchThat: [:line | line first > index]) - 1 max: 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>lineIndexForPoint: aPoint [
+{ #category : #private }
+Paragraph >> lineIndexForPoint: aPoint [
 	"Answer the index of the line in which to select the character nearest to aPoint."
 	| i py |
 	py := aPoint y truncated.
@@ -750,11 +611,8 @@ Paragraph>>lineIndexForPoint: aPoint [
 	^ i
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>lineIndexOfCharacterIndex: characterIndex  [
+{ #category : #private }
+Paragraph >> lineIndexOfCharacterIndex: characterIndex [ 
 	"Answer the line index for a given characterIndex."
 	"apparently the selector changed with NewParagraph"
 
@@ -762,27 +620,18 @@ Paragraph>>lineIndexOfCharacterIndex: characterIndex  [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>lines [
+{ #category : #private }
+Paragraph >> lines [
 	^ lines
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>maxRightX [
+{ #category : #access }
+Paragraph >> maxRightX [
 	^ maxRightX
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>move: anEvent for: model controller: editor [
+{ #category : #editing }
+Paragraph >> move: anEvent for: model controller: editor [
 	"Give sensitive text a chance to fire.  Display flash: (100@100 extent: 100@100)."
 	
 	| action clickPoint |
@@ -802,22 +651,16 @@ Paragraph>>move: anEvent for: model controller: editor [
 	^ action
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>moveBy: delta [
+{ #category : #private }
+Paragraph >> moveBy: delta [
 	lines do: [:line | line moveBy: delta].
 	positionWhenComposed ifNotNil:[
 	positionWhenComposed := positionWhenComposed + delta].
 	container := container translateBy: delta
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>multiComposeLinesFrom: start to: stop delta: delta into: lineColl priorLines: priorLines atY: startingY  [
+{ #category : #composition }
+Paragraph >> multiComposeLinesFrom: start to: stop delta: delta into: lineColl priorLines: priorLines atY: startingY [ 
 	"While the section from start to stop has changed, composition may
 	ripple all the way to the end of the text. However in a rectangular
 	container, if we ever find a line beginning with the same character as
@@ -843,28 +686,19 @@ Paragraph>>multiComposeLinesFrom: start to: stop delta: delta into: lineColl pri
 
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>numberOfLines [
+{ #category : #access }
+Paragraph >> numberOfLines [
 
 	^lines size
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>positionWhenComposed: pos [
+{ #category : #private }
+Paragraph >> positionWhenComposed: pos [
 	positionWhenComposed := pos
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>recomposeFrom: start to: stop delta: delta  [
+{ #category : #composition }
+Paragraph >> recomposeFrom: start to: stop delta: delta [ 
 	"Recompose this paragraph. The altered portion is between start and
 	stop. Recomposition may continue to the end of the text, due to a
 	ripple effect.
@@ -897,111 +731,75 @@ Paragraph>>recomposeFrom: start to: stop delta: delta  [
 		atY: (lines at: startLine) top
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>replaceFrom: start to: stop with: aText [
+{ #category : #editing }
+Paragraph >> replaceFrom: start to: stop with: aText [
 	"Edit the text, and then recompose the lines." 
 	text replaceFrom: start to: stop with: aText.
 	self recomposeFrom: start to: start + aText size - 1 delta: aText size - (stop-start+1)
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>replaceFrom: start to: stop with: aText displaying: displayBoolean  [
+{ #category : #editing }
+Paragraph >> replaceFrom: start to: stop with: aText displaying: displayBoolean [ 
 	"Edit the text, and then recompose the lines." 
 	text replaceFrom: start to: stop with: aText.
 	self recomposeFrom: start to: start + aText size - 1 delta: aText size - (stop-start+1)
 ]
 
-{
-	#category : #alignment,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>rightFlush  [
+{ #category : #alignment }
+Paragraph >> rightFlush [ 
 	textStyle rightFlush
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>secondarySelection [
+{ #category : #access }
+Paragraph >> secondarySelection [
 	^ secondarySelection
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>secondarySelection: aSubstring [
+{ #category : #selection }
+Paragraph >> secondarySelection: aSubstring [
 	secondarySelection := aSubstring.
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>secondarySelectionColor [
+{ #category : #selection }
+Paragraph >> secondarySelectionColor [
 	^  self theme secondarySelectionColor
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>selectionBarColor [
+{ #category : #selection }
+Paragraph >> selectionBarColor [
 	^ self theme  selectionBarColor
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>selectionColor [
+{ #category : #selection }
+Paragraph >> selectionColor [
 	^ self focused 
 		ifTrue: [ self theme selectionColor]
 		ifFalse: [ self theme unfocusedSelectionColor ].
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>selectionColor: aColor  [
+{ #category : #selection }
+Paragraph >> selectionColor: aColor [ 
 	"ignored"
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>selectionContainsPoint: aPoint [
+{ #category : #selection }
+Paragraph >> selectionContainsPoint: aPoint [
 	"return whether the current selection contains the given point"
 	^ self selectionRects anySatisfy: [ :rect| rect containsPoint: aPoint ]
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>selectionRects [
+{ #category : #selection }
+Paragraph >> selectionRects [
 	"Return an array of rectangles representing the selection region."
 	selectionStart ifNil: [^ Array new].
 	^ self selectionRectsFrom: selectionStart to: selectionStop
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>selectionRectsFrom: characterBlock1 to: characterBlock2  [
+{ #category : #selection }
+Paragraph >> selectionRectsFrom: characterBlock1 to: characterBlock2 [ 
 	"Return an array of rectangles representing the area between the two character blocks given as arguments."
 	| line1 line2 rects cb1 cb2 w |
 	characterBlock1 <= characterBlock2
@@ -1031,107 +829,70 @@ Paragraph>>selectionRectsFrom: characterBlock1 to: characterBlock2  [
 	^ rects
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>selectionStart: startBlock selectionStop: stopBlock [
+{ #category : #selection }
+Paragraph >> selectionStart: startBlock selectionStop: stopBlock [
 	selectionStart := startBlock.
 	selectionStop := stopBlock.
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>showCaret [
+{ #category : #access }
+Paragraph >> showCaret [
 	^showCaret ifNil:[true]
 
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>showCaret: aBool [
+{ #category : #access }
+Paragraph >> showCaret: aBool [
 	showCaret := aBool
 
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>string [
+{ #category : #access }
+Paragraph >> string [
 	^ text string
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>text [
+{ #category : #access }
+Paragraph >> text [
 	^ text
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>textOwner: ignored  "See TextOnCurve" [
-
+{ #category : #access }
+Paragraph >> textOwner: ignored [  "See TextOnCurve"
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>textStyle [
+{ #category : #access }
+Paragraph >> textStyle [
 	^ textStyle
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>textStyle: aTextStyle  [
+{ #category : #access }
+Paragraph >> textStyle: aTextStyle [ 
 	"Set the style by which the receiver should display its text."
 	textStyle := aTextStyle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>textStyle: ts lines: l text: t [
+{ #category : #private }
+Paragraph >> textStyle: ts lines: l [ text: t
 	"Private -- just a service for deepCopy"
 	textStyle := ts.
 	lines := l.
 	text := t.
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>theme [
+{ #category : #access }
+Paragraph >> theme [
 	^ Smalltalk ui theme
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>wantsColumnBreaks [
+{ #category : #access }
+Paragraph >> wantsColumnBreaks [
 
 	^wantsColumnBreaks
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Paragraph>>wantsColumnBreaks: aBoolean [
+{ #category : #access }
+Paragraph >> wantsColumnBreaks: aBoolean [
 
 	wantsColumnBreaks := aBoolean
 ]

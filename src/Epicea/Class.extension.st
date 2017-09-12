@@ -1,12 +1,7 @@
-Extension {
-	#name : #Class
-}
+Extension { #name : #Class }
 
-{
-	#category : #'*Epicea-Ring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-Class>>asEpiceaRingDefinition [
+{ #category : #'*Epicea-Ring' }
+Class >> asEpiceaRingDefinition [
 	
 	| ring |
 	ring := (RGClassDefinition named: self name)
@@ -30,11 +25,8 @@ Class>>asEpiceaRingDefinition [
 	^ ring
 ]
 
-{
-	#category : #'*Epicea-Ring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-Class>>epiceaPackageName [
+{ #category : #'*Epicea-Ring' }
+Class >> epiceaPackageName [
 	"Answer my package name for Epicea serialization"
 
 	self flag: #fix.

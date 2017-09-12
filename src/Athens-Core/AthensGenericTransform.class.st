@@ -12,15 +12,11 @@ Class {
 		'w1',
 		'w2'
 	],
-	#category : #Athens-Core-Matrices,
-	#timestamp : '<historical>'
+	#category : #Athens-Core-Matrices
 }
 
-{
-	#category : #transformations,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensGenericTransform>>loadIdentity [
+{ #category : #transformations }
+AthensGenericTransform >> loadIdentity [
 	"initialize with identity transform"
 	super loadIdentity.
 	w0 := w1 := 0.0.

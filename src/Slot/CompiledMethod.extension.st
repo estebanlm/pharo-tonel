@@ -1,48 +1,31 @@
-Extension {
-	#name : #CompiledMethod
-}
+Extension { #name : #CompiledMethod }
 
-{
-	#category : #'*Slot',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-CompiledMethod>>hasTemporaryVariableNamed: aName [
+{ #category : #'*Slot' }
+CompiledMethod >> hasTemporaryVariableNamed: aName [
 	^(self tempNames includes: aName)
 	
 ]
 
-{
-	#category : #'*Slot',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-CompiledMethod>>removeSavedTemp: aTemp [
+{ #category : #'*Slot' }
+CompiledMethod >> removeSavedTemp: aTemp [
 	self savedTemps ifNotNil: [ :saved | 
 			saved remove: aTemp.
 			saved ifEmpty: [ self removeProperty: #savedTemps ] ]
 ]
 
-{
-	#category : #'*Slot',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-CompiledMethod>>saveTemp: aTemp [
+{ #category : #'*Slot' }
+CompiledMethod >> saveTemp: aTemp [
 	self savedTemps ifNil: [ self propertyAt: #savedTemps put: Set new].
 	self savedTemps add: aTemp.
 ]
 
-{
-	#category : #'*Slot',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-CompiledMethod>>savedTemps [
+{ #category : #'*Slot' }
+CompiledMethod >> savedTemps [
 	^self propertyAt: #savedTemps ifAbsent: nil
 ]
 
-{
-	#category : #'*Slot',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-CompiledMethod>>temporaryVariableNamed: aName [
+{ #category : #'*Slot' }
+CompiledMethod >> temporaryVariableNamed: aName [
 	(self hasTemporaryVariableNamed: aName) ifFalse: [ ^nil ].
 	^TemporaryVariable 
 		name: aName 
@@ -51,11 +34,8 @@ CompiledMethod>>temporaryVariableNamed: aName [
 
 ]
 
-{
-	#category : #'*Slot',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-CompiledMethod>>temporaryVariables [
+{ #category : #'*Slot' }
+CompiledMethod >> temporaryVariables [
 	^self tempNames collect: [ :name | TemporaryVariable new name: name ]
 
 ]

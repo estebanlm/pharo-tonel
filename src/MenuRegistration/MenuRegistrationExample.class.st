@@ -8,15 +8,11 @@ I'm here to show you how to use the menu registration. See class side methods an
 Class {
 	#name : #MenuRegistrationExample,
 	#superclass : #Object,
-	#category : #MenuRegistration-example,
-	#timestamp : 'AlainPlantec 2/17/2010 01:10'
+	#category : #MenuRegistration-example
 }
 
-{
-	#category : #'menu declaring',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistrationExample class>>mostUsedToolsOn: aBuilder  [
+{ #category : #'menu declaring' }
+MenuRegistrationExample class >> mostUsedToolsOn: aBuilder [ 
 	<worldMenuExample>
 	(aBuilder group: #MostUsedTools)
 		withSeparatorAfter;
@@ -28,11 +24,8 @@ MenuRegistrationExample class>>mostUsedToolsOn: aBuilder  [
 			]
 ]
 
-{
-	#category : #'menu declaring',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistrationExample class>>myOwnCoolMenuRegistrationOn: aBuilder  [
+{ #category : #'menu declaring' }
+MenuRegistrationExample class >> myOwnCoolMenuRegistrationOn: aBuilder [ 
 	<worldMenuExample>
 	(aBuilder item: #MyOwnCoolMenu)
 		parent: #Tools; "place me as a child of the #Tools node (declared by #toolsOn:)"
@@ -45,11 +38,8 @@ MenuRegistrationExample class>>myOwnCoolMenuRegistrationOn: aBuilder  [
 				arguments: #('yep, my own cool tool can be also opened from a world sub-menu ! :)')]
 ]
 
-{
-	#category : #'menu declaring',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistrationExample class>>myOwnCoolToolRegistrationOn: aBuilder  [
+{ #category : #'menu declaring' }
+MenuRegistrationExample class >> myOwnCoolToolRegistrationOn: aBuilder [ 
 	<worldMenuExample> 
 	(aBuilder item: #MyOwnCoolTool)
 		parent: #Tools;
@@ -60,19 +50,13 @@ MenuRegistrationExample class>>myOwnCoolToolRegistrationOn: aBuilder  [
 
 ]
 
-{
-	#category : #'menu declaring',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistrationExample class>>pragmaKeyword [
+{ #category : #'menu declaring' }
+MenuRegistrationExample class >> pragmaKeyword [
 	^ 'worldMenuExample'
 ]
 
-{
-	#category : #'menu declaring',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistrationExample class>>quitItemsOn: aBuilder  [
+{ #category : #'menu declaring' }
+MenuRegistrationExample class >> quitItemsOn: aBuilder [ 
 	<worldMenuExample> 
 	(aBuilder group: #QuitPharo)
 		order: 9999; 
@@ -88,47 +72,32 @@ MenuRegistrationExample class>>quitItemsOn: aBuilder  [
 						help: (triplet size > 2 ifTrue: [triplet third] ifFalse: [nil])]]
 ]
 
-{
-	#category : #'menu actions',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistrationExample class>>quitSession [
+{ #category : #'menu actions' }
+MenuRegistrationExample class >> quitSession [
 	Smalltalk
 		snapshot: (UIManager default confirm: 'Save changes before quitting?' translated orCancel: [ ^ self ])
 		andQuit: true
 ]
 
-{
-	#category : #'menu actions',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistrationExample class>>saveAndQuit [
+{ #category : #'menu actions' }
+MenuRegistrationExample class >> saveAndQuit [
 	Smalltalk snapshot: true andQuit: true
 ]
 
-{
-	#category : #'menu actions',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistrationExample class>>saveAs [
+{ #category : #'menu actions' }
+MenuRegistrationExample class >> saveAs [
 	Smalltalk saveAs.
 ]
 
-{
-	#category : #'menu declaring',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistrationExample class>>theme [
+{ #category : #'menu declaring' }
+MenuRegistrationExample class >> theme [
 	"Answer the ui theme that provides controls."
 
 	^ Smalltalk ui theme 
 ]
 
-{
-	#category : #'menu declaring',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistrationExample class>>toolsOn: aBuilder  [
+{ #category : #'menu declaring' }
+MenuRegistrationExample class >> toolsOn: aBuilder [ 
 	<worldMenuExample>
 	(aBuilder item: #Tools)
 		order: 1.0;

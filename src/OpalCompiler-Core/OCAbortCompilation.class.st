@@ -7,32 +7,22 @@ Class {
 	#instVars : [
 		'sourceCode'
 	],
-	#category : #OpalCompiler-Core-Exception,
-	#timestamp : 'AlejandroInfante 3/31/2017 12:15'
+	#category : #OpalCompiler-Core-Exception
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbortCompilation class>>sourceCode: code [
+{ #category : #accessing }
+OCAbortCompilation class >> sourceCode: code [
 	^ self new
 		sourceCode: code;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbortCompilation>>sourceCode [
+{ #category : #accessing }
+OCAbortCompilation >> sourceCode [
 	^ sourceCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCAbortCompilation>>sourceCode: anObject [
+{ #category : #accessing }
+OCAbortCompilation >> sourceCode: anObject [
 	sourceCode := anObject
 ]

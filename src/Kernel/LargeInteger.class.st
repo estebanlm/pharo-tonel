@@ -5,15 +5,11 @@ Class {
 	#name : #LargeInteger,
 	#superclass : #Integer,
 	#type : #bytes,
-	#category : #Kernel-Numbers,
-	#timestamp : '<historical>'
+	#category : #Kernel-Numbers
 }
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>* anInteger [
+{ #category : #arithmetic }
+LargeInteger >> * anInteger [ 
 	"Primitive. Multiply the receiver by the argument and answer with an
 	Integer result. Fail if either the argument or the result is not a
 	SmallInteger or a LargePositiveInteger less than 2-to-the-30th (1073741824). Optional. See
@@ -23,11 +19,8 @@ LargeInteger>>* anInteger [
 	^super * anInteger
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>+ anInteger [
+{ #category : #arithmetic }
+LargeInteger >> + anInteger [ 
 	"Primitive. Add the receiver to the argument and answer with an
 	Integer result. Fail if either the argument or the result is not a
 	SmallInteger or a LargePositiveInteger less than 2-to-the-30th (1073741824). Optional. See
@@ -37,11 +30,8 @@ LargeInteger>>+ anInteger [
 	^super + anInteger
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>- anInteger [
+{ #category : #arithmetic }
+LargeInteger >> - anInteger [ 
 	"Primitive. Subtract the argument from the receiver and answer with an
 	Integer result. Fail if either the argument or the result is not a
 	SmallInteger or a LargePositiveInteger less than 2-to-the-30th (1073741824). Optional. See
@@ -51,11 +41,8 @@ LargeInteger>>- anInteger [
 	^super - anInteger
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>/ anInteger [
+{ #category : #arithmetic }
+LargeInteger >> / anInteger [ 
 	"Primitive. Divide the receiver by the argument and answer with the
 	result if the division is exact. Fail if the result is not a whole integer.
 	Fail if the argument is 0. Fail if either the argument or the result is not
@@ -66,11 +53,8 @@ LargeInteger>>/ anInteger [
 	^super / anInteger
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>// anInteger [
+{ #category : #arithmetic }
+LargeInteger >> // anInteger [ 
 	"Primitive. Divide the receiver by the argument and return the result.
 	Round the result down towards negative infinity to make it a whole
 	integer. Fail if the argument is 0. Fail if either the argument or the
@@ -81,11 +65,8 @@ LargeInteger>>// anInteger [
 	^super // anInteger
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>< anInteger [
+{ #category : #comparing }
+LargeInteger >> < anInteger [ 
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is less than the argument. Otherwise answer false. Fail if the
 	argument is not a SmallInteger or a LargePositiveInteger less than 2-to-the-30th (1073741824).
@@ -95,11 +76,8 @@ LargeInteger>>< anInteger [
 	^super < anInteger
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>><= anInteger [
+{ #category : #comparing }
+LargeInteger >> <= anInteger [ 
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is less than or equal to the argument. Otherwise answer false.
 	Fail if the argument is not a SmallInteger or a LargePositiveInteger less
@@ -109,11 +87,8 @@ LargeInteger>><= anInteger [
 	^super <= anInteger
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>> anInteger [
+{ #category : #comparing }
+LargeInteger >> > anInteger [ 
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is greater than the argument. Otherwise answer false. Fail if
 	the argument is not a SmallInteger or a LargePositiveInteger less than
@@ -123,11 +98,8 @@ LargeInteger>>> anInteger [
 	^super > anInteger
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>>= anInteger [
+{ #category : #comparing }
+LargeInteger >> >= anInteger [ 
 	"Primitive. Compare the receiver with the argument and answer true if
 	the receiver is greater than or equal to the argument. Otherwise answer
 	false. Fail if the argument is not a SmallInteger or a LargePositiveInteger
@@ -137,11 +109,8 @@ LargeInteger>>>= anInteger [
 	^super >= anInteger
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>\\ aNumber [
+{ #category : #arithmetic }
+LargeInteger >> \\ aNumber [ 
 	"Primitive. Take the receiver modulo the argument. The result is the
 	remainder rounded towards negative infinity, of the receiver divided
 	by the argument. Fail if the argument is 0. Fail if either the argument
@@ -165,21 +134,15 @@ LargeInteger>>\\ aNumber [
 	
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>\\\ anInteger [
+{ #category : #arithmetic }
+LargeInteger >> \\\ anInteger [ 
 	"a faster modulo method for use in DSA. Be careful if you try to use this elsewhere"
 
 	^(self digitDiv: anInteger neg: false) second
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>as31BitSmallInt [
+{ #category : #converting }
+LargeInteger >> as31BitSmallInt [
 	"This is only for 31 bit numbers.  Keep my 31 bits the same, but put them in a small int.  The small int will be negative since my 31st bit is 1.  We know my 31st bit is 1 because otherwise I would already be a positive small int."
 
 	self highBit = 31 ifFalse: [self error: 'more than 31 bits can not fit in a SmallInteger'].
@@ -187,11 +150,8 @@ LargeInteger>>as31BitSmallInt [
 	^ self - 16r80000000
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>asFloat [
+{ #category : #converting }
+LargeInteger >> asFloat [
 	"Answer a Float that best approximates the value of the receiver.
 	This algorithm is optimized to process only the significant digits of a LargeInteger.
 	And it does honour IEEE 754 round to nearest even mode in case of excess precision (see details below)."
@@ -244,11 +204,8 @@ LargeInteger>>asFloat [
 	^result timesTwoPower: shift.
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>digitAt: index [
+{ #category : #'system primitives' }
+LargeInteger >> digitAt: index [ 
 	"Primitive. Answer the value of an indexable field in the receiver.   LargePositiveInteger uses bytes of base two number, and each is a 'digit' base 256.  Fail if the argument (the index) is not an Integer or is out of bounds. Essential.  See Object documentation whatIsAPrimitive."
 
 	<primitive: 60>
@@ -257,11 +214,8 @@ LargeInteger>>digitAt: index [
 		ifFalse: [^super at: index]
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>digitAt: index put: value [
+{ #category : #'system primitives' }
+LargeInteger >> digitAt: index put: value [ 
 	"Primitive. Store the second argument (value) in the indexable field of 
 	the receiver indicated by index. Fail if the value is negative or is larger 
 	than 255. Fail if the index is not an Integer or is out of bounds. Answer 
@@ -272,11 +226,8 @@ LargeInteger>>digitAt: index put: value [
 	^super at: index put: value
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>digitLength [
+{ #category : #'system primitives' }
+LargeInteger >> digitLength [
 	"Primitive. Answer the number of indexable fields in the receiver. This 
 	value is the same as the largest legal subscript. Essential. See Object 
 	documentation whatIsAPrimitive."
@@ -285,32 +236,23 @@ LargeInteger>>digitLength [
 	self primitiveFailed
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>hash [
+{ #category : #comparing }
+LargeInteger >> hash [
 
 	^ByteArray
 		hashBytes: self
 		startingWith: self species hash
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>hashMultiply [
+{ #category : #'bit manipulation' }
+LargeInteger >> hashMultiply [
 	"Truncate to 28 bits and try again"
 
 	^(self bitAnd: 16rFFFFFFF) hashMultiply
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>highBitOfMagnitude [
+{ #category : #'bit manipulation' }
+LargeInteger >> highBitOfMagnitude [
 	"Answer the index of the high order bit of the magnitude of the  
 	receiver, or zero if the receiver is zero.  
 	This method is used for LargeNegativeIntegers as well,  
@@ -322,19 +264,13 @@ LargeInteger>>highBitOfMagnitude [
 	^ lastDigit highBitOfPositiveReceiver + (8 * (realLength - 1))
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>isLarge [
+{ #category : #testing }
+LargeInteger >> isLarge [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>isPrime [
+{ #category : #testing }
+LargeInteger >> isPrime [
 	"Answer true if the receiver is a prime number. Use a probabilistic implementation	 that
 	is much faster for large integers, and that is correct to an extremely high statistical
 	level of confidence (effectively deterministic)."
@@ -342,19 +278,13 @@ LargeInteger>>isPrime [
 	^ self isProbablyPrime
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>mightBeASquare [
+{ #category : #testing }
+LargeInteger >> mightBeASquare [
 	self subclassResponsibility
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>printOn: aStream base: b nDigits: n [
+{ #category : #printing }
+LargeInteger >> printOn: aStream base: b nDigits: n [
 	"Append a representation of this number in base b on aStream using n digits.
 	In order to reduce cost of LargePositiveInteger ops, split the number of digts approximatily in two
 	Should be invoked with: 0 <= self < (b raisedToInteger: n)"
@@ -375,11 +305,8 @@ LargeInteger>>printOn: aStream base: b nDigits: n [
 	tail printOn: aStream base: b nDigits: halfPower
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>quo: anInteger [
+{ #category : #arithmetic }
+LargeInteger >> quo: anInteger [ 
 	"Primitive. Divide the receiver by the argument and return the result.
 	Round the result down towards zero to make it a whole integer. Fail if
 	the argument is 0. Fail if either the argument or the result is not a
@@ -390,11 +317,8 @@ LargeInteger>>quo: anInteger [
 	^super quo: anInteger
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>rem: aNumber [
+{ #category : #arithmetic }
+LargeInteger >> rem: aNumber [ 
 	"Remainder defined in terms of quo:. See super rem:.
 	This is defined only to speed up case of large integers."
 
@@ -408,21 +332,15 @@ LargeInteger>>rem: aNumber [
 	^super rem: aNumber
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>replaceFrom: start to: stop with: replacement startingAt: repStart [
+{ #category : #'system primitives' }
+LargeInteger >> replaceFrom: start to: stop with: replacement startingAt: repStart [ 
 	"Primitive. This destructively replaces elements from start to stop in the receiver starting at index, repStart, in the collection, replacement. Answer the receiver. Range checks are performed in the primitive only. Optional. See Object documentation whatIsAPrimitive."
 	<primitive: 105>
 	^ super replaceFrom: start to: stop with: replacement startingAt: repStart
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeInteger>>withAtLeastNDigits: desiredLength [
+{ #category : #converting }
+LargeInteger >> withAtLeastNDigits: desiredLength [
 
 	| new |
 

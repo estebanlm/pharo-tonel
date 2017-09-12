@@ -4,75 +4,50 @@ I'm a generic model for package tree nodes.
 Class {
 	#name : #PackageTreeNodeModel,
 	#superclass : #MorphTreeNodeModel,
-	#category : #Nautilus-Tree,
-	#timestamp : '<historical>'
+	#category : #Nautilus-Tree
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeNodeModel>>= aNode  [
+{ #category : #comparing }
+PackageTreeNodeModel >> = aNode [ 
 	^ (self class = aNode class) and:[ self item = aNode item]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeNodeModel>>asNautilusSelection [
+{ #category : #converting }
+PackageTreeNodeModel >> asNautilusSelection [
 	"Answers a pair RPackage->Tag to express the correct selection"
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeNodeModel>>asString [
+{ #category : #converting }
+PackageTreeNodeModel >> asString [
 	^ self item name
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeNodeModel>>canBeRenamed [
+{ #category : #testing }
+PackageTreeNodeModel >> canBeRenamed [
 	^ false
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeNodeModel>>doubleClick [
+{ #category : #'event handling' }
+PackageTreeNodeModel >> doubleClick [
 	"do not react"
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeNodeModel>>doubleClickEvent: anEvent onNodeMorph: aNodeMorph [
+{ #category : #'event handling' }
+PackageTreeNodeModel >> doubleClickEvent: anEvent onNodeMorph: aNodeMorph [
 	(self canBeRenamed and: [ anEvent shiftPressed ])
 		ifTrue:
 			[ self model model selectedPackage: aNodeMorph complexContents item.
 			self openFloatingEditorToRenameFromNodeMorph: aNodeMorph ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeNodeModel>>hash [
+{ #category : #comparing }
+PackageTreeNodeModel >> hash [
 	^ self class hash bitXor: self item hash
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreeNodeModel>>openFloatingEditorToRenameFromNodeMorph: aNodeMorph [
+{ #category : #'event handling' }
+PackageTreeNodeModel >> openFloatingEditorToRenameFromNodeMorph: aNodeMorph [
 	| ed pkgMorph font element |
 	element := aNodeMorph complexContents item.
 	pkgMorph := aNodeMorph lastSubmorph.

@@ -1,12 +1,7 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>addToMetacelloPackages: aMetacelloPackagesSpec [
+{ #category : #'*Metacello-Core' }
+String >> addToMetacelloPackages: aMetacelloPackagesSpec [
 
 	| spec |
 	spec := 
@@ -20,36 +15,24 @@ String>>addToMetacelloPackages: aMetacelloPackagesSpec [
 			yourself)
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>asMetacelloSemanticVersionNumber [
+{ #category : #'*Metacello-Core' }
+String >> asMetacelloSemanticVersionNumber [
     ^ MetacelloSemanticVersionNumber fromString: self
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>asMetacelloVersionNumber [
+{ #category : #'*Metacello-Core' }
+String >> asMetacelloVersionNumber [
 
 	^MetacelloVersionNumber fromString: self
 ]
 
-{
-	#category : #'*Metacello-Core-scripting',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>execute: projectSpecBlock against: aScriptExecutor [
+{ #category : #'*Metacello-Core-scripting' }
+String >> execute: projectSpecBlock against: aScriptExecutor [
     aScriptExecutor executeString: self do: projectSpecBlock
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>mergeIntoMetacelloPackages: aMetacelloPackagesSpec [
+{ #category : #'*Metacello-Core' }
+String >> mergeIntoMetacelloPackages: aMetacelloPackagesSpec [
 
 	| spec |
 	spec := 
@@ -63,65 +46,44 @@ String>>mergeIntoMetacelloPackages: aMetacelloPackagesSpec [
 			yourself)
 ]
 
-{
-	#category : #'*Metacello-Core-version comparison',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>metacelloIntegerLessThanSelf: anInteger [
+{ #category : #'*Metacello-Core-version comparison' }
+String >> metacelloIntegerLessThanSelf: anInteger [
 	"integer version components are always '>' string component"
 
 	^false
 ]
 
-{
-	#category : #'*Metacello-Core-version comparison',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>metacelloSemanticIntegerLessThanSelf: anInteger [
+{ #category : #'*Metacello-Core-version comparison' }
+String >> metacelloSemanticIntegerLessThanSelf: anInteger [
     "integer version components are always '>' string component"
 
     ^ true
 ]
 
-{
-	#category : #'*Metacello-Core-version comparison',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>metacelloSemanticStringLessThanSelf: aString [
+{ #category : #'*Metacello-Core-version comparison' }
+String >> metacelloSemanticStringLessThanSelf: aString [
     ^ aString < self
 ]
 
-{
-	#category : #'*Metacello-Core-version comparison',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>metacelloSemanticVersionComponentLessThan: aMetacelloVersonComponent [
+{ #category : #'*Metacello-Core-version comparison' }
+String >> metacelloSemanticVersionComponentLessThan: aMetacelloVersonComponent [
     ^ aMetacelloVersonComponent metacelloSemanticStringLessThanSelf: self
 ]
 
-{
-	#category : #'*Metacello-Core-version comparison',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>metacelloStringLessThanSelf: aString [
+{ #category : #'*Metacello-Core-version comparison' }
+String >> metacelloStringLessThanSelf: aString [
 
 	^aString < self
 ]
 
-{
-	#category : #'*Metacello-Core-version comparison',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>metacelloVersionComponentLessThan: aMetacelloVersonComponent [
+{ #category : #'*Metacello-Core-version comparison' }
+String >> metacelloVersionComponentLessThan: aMetacelloVersonComponent [
 
 	^aMetacelloVersonComponent metacelloStringLessThanSelf: self
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>removeFromMetacelloPackages: aMetacelloPackagesSpec [
+{ #category : #'*Metacello-Core' }
+String >> removeFromMetacelloPackages: aMetacelloPackagesSpec [
 
 	aMetacelloPackagesSpec addMember: 
 		(aMetacelloPackagesSpec removeMember 
@@ -129,20 +91,14 @@ String>>removeFromMetacelloPackages: aMetacelloPackagesSpec [
 			yourself)
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>setAuthorInMetacelloConfig: aMetacelloConfig [
+{ #category : #'*Metacello-Core' }
+String >> setAuthorInMetacelloConfig: aMetacelloConfig [
 
 	aMetacelloConfig setAuthorWithString: self
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>setAuthorInMetacelloVersion: aMetacelloVersionSpec [
+{ #category : #'*Metacello-Core' }
+String >> setAuthorInMetacelloVersion: aMetacelloVersionSpec [
 
 	aMetacelloVersionSpec setAuthor: 
 		(aMetacelloVersionSpec project valueHolderSpec
@@ -150,20 +106,14 @@ String>>setAuthorInMetacelloVersion: aMetacelloVersionSpec [
 			yourself)
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>setBlessingInMetacelloConfig: aMetacelloConfig [
+{ #category : #'*Metacello-Core' }
+String >> setBlessingInMetacelloConfig: aMetacelloConfig [
 
 	aMetacelloConfig setBlessingWithString: self
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>setBlessingInMetacelloVersion: aMetacelloVersionSpec [
+{ #category : #'*Metacello-Core' }
+String >> setBlessingInMetacelloVersion: aMetacelloVersionSpec [
 
 	aMetacelloVersionSpec setBlessing: 
 		(aMetacelloVersionSpec project valueHolderSpec
@@ -171,20 +121,14 @@ String>>setBlessingInMetacelloVersion: aMetacelloVersionSpec [
 			yourself)
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>setDescriptionInMetacelloConfig: aMetacelloConfig [
+{ #category : #'*Metacello-Core' }
+String >> setDescriptionInMetacelloConfig: aMetacelloConfig [
 
 	aMetacelloConfig setDescriptionWithString: self
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>setDescriptionInMetacelloVersion: aMetacelloVersionSpec [
+{ #category : #'*Metacello-Core' }
+String >> setDescriptionInMetacelloVersion: aMetacelloVersionSpec [
 
 	aMetacelloVersionSpec setDescription: 
 		(aMetacelloVersionSpec project valueHolderSpec
@@ -192,89 +136,59 @@ String>>setDescriptionInMetacelloVersion: aMetacelloVersionSpec [
 			yourself)
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>setImportInVersionSpec: aMetacelloVersionSpec [
+{ #category : #'*Metacello-Core' }
+String >> setImportInVersionSpec: aMetacelloVersionSpec [
   aMetacelloVersionSpec setImport: {self}
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>setIncludesInMetacelloPackage: aMetacelloPackageSpec [
+{ #category : #'*Metacello-Core' }
+String >> setIncludesInMetacelloPackage: aMetacelloPackageSpec [
 
 	aMetacelloPackageSpec setIncludes: { self }.
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>setLoadsInMetacelloProject: aMetacelloPackageSpec [
+{ #category : #'*Metacello-Core' }
+String >> setLoadsInMetacelloProject: aMetacelloPackageSpec [
 
 	aMetacelloPackageSpec setLoads: { self }.
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>setPackage: aString withInMetacelloConfig: aMetacelloConfig [
+{ #category : #'*Metacello-Core' }
+String >> setPackage: aString withInMetacelloConfig: aMetacelloConfig [
 
 	aMetacelloConfig setPackage: aString withString: self
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>setPostLoadDoItInMetacelloSpec: aMetacelloSpec [
+{ #category : #'*Metacello-Core' }
+String >> setPostLoadDoItInMetacelloSpec: aMetacelloSpec [
     self asSymbol setPostLoadDoItInMetacelloSpec: aMetacelloSpec
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>setPreLoadDoItInMetacelloSpec: aMetacelloSpec [
+{ #category : #'*Metacello-Core' }
+String >> setPreLoadDoItInMetacelloSpec: aMetacelloSpec [
     self asSymbol setPreLoadDoItInMetacelloSpec: aMetacelloSpec
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>setProject: aString withInMetacelloConfig: aMetacelloConfig [
+{ #category : #'*Metacello-Core' }
+String >> setProject: aString withInMetacelloConfig: aMetacelloConfig [
 
 	aMetacelloConfig setProject: aString withString: self
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>setRequiresInMetacelloPackage: aMetacelloPackageSpec [
+{ #category : #'*Metacello-Core' }
+String >> setRequiresInMetacelloPackage: aMetacelloPackageSpec [
 
 	aMetacelloPackageSpec setRequires: { self }.
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>setTimestampInMetacelloConfig: aMetacelloConfig [
+{ #category : #'*Metacello-Core' }
+String >> setTimestampInMetacelloConfig: aMetacelloConfig [
 
 	aMetacelloConfig setTimestampWithString: self
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-String>>setTimestampInMetacelloVersion: aMetacelloVersionSpec [
+{ #category : #'*Metacello-Core' }
+String >> setTimestampInMetacelloVersion: aMetacelloVersionSpec [
 
 	aMetacelloVersionSpec setTimestamp: 
 		(aMetacelloVersionSpec project valueHolderSpec

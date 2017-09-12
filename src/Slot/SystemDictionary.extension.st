@@ -1,12 +1,7 @@
-Extension {
-	#name : #SystemDictionary
-}
+Extension { #name : #SystemDictionary }
 
-{
-	#category : #'*Slot',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SystemDictionary>>declare: key from: aDictionary  [
+{ #category : #'*Slot' }
+SystemDictionary >> declare: key from: aDictionary [ 
 	"Add key to the receiver. If key already exists, do nothing. If aDictionary 
 	includes key, then remove it from aDictionary and use its association as 
 	the element of the receiver."

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnDispatcherDelegateTest,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnDispatcherDelegateTest>>testDispatcherDelegate [
+{ #category : #testing }
+ZnDispatcherDelegateTest >> testDispatcherDelegate [
 	self withServerDo: [ :server |  | client |
 		server delegate: (ZnDispatcherDelegate new 
 			map: '/hello' to: [ :request :response | response entity: (ZnStringEntity html: '<h1>hello server</h1>') ];
@@ -35,11 +28,8 @@ ZnDispatcherDelegateTest>>testDispatcherDelegate [
 		client close ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnDispatcherDelegateTest>>withServerDo: block [
+{ #category : #private }
+ZnDispatcherDelegateTest >> withServerDo: block [
 	| server |
 	server := ZnServer on: 1700 + 32 atRandom.
 	[ 

@@ -10,15 +10,11 @@ Class {
 		'user',
 		'password'
 	],
-	#category : #MonticelloRemoteRepositories,
-	#timestamp : '<historical>'
+	#category : #MonticelloRemoteRepositories
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCFtpRepository class>>basicFromUrl: aZnUrl [
+{ #category : #'instance creation' }
+MCFtpRepository class >> basicFromUrl: aZnUrl [
 	^ self
 		host: (aZnUrl hasPort ifTrue: [ aZnUrl host, ':', aZnUrl port asString ] ifFalse: [ aZnUrl host ])
 		directory: aZnUrl path "MCFtpRepository assumes NO prefixed / in the path"
@@ -26,11 +22,8 @@ MCFtpRepository class>>basicFromUrl: aZnUrl [
 		password: (aZnUrl password ifNil: [ '' ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCFtpRepository class>>creationTemplate [
+{ #category : #accessing }
+MCFtpRepository class >> creationTemplate [
 	^
 'MCFtpRepository
 	host: ''modules.squeakfoundation.org''
@@ -40,19 +33,13 @@ MCFtpRepository class>>creationTemplate [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCFtpRepository class>>description [
+{ #category : #accessing }
+MCFtpRepository class >> description [
 	^ 'FTP'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCFtpRepository class>>host: host directory: directory user: user password: password [
+{ #category : #'instance creation' }
+MCFtpRepository class >> host: host directory: directory user: user password: password [
 	^ self new
 		host: host;
 		directory: directory;
@@ -60,27 +47,18 @@ MCFtpRepository class>>host: host directory: directory user: user password: pass
 		password: password
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCFtpRepository class>>templateCreationSelector [
+{ #category : #accessing }
+MCFtpRepository class >> templateCreationSelector [
 	^ #host:directory:user:password: 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCFtpRepository class>>urlSchemes [
+{ #category : #accessing }
+MCFtpRepository class >> urlSchemes [
 	^ #(ftp)
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCFtpRepository>>clientDo: aBlock [
+{ #category : #enumerating }
+MCFtpRepository >> clientDo: aBlock [
 	| client |
 	client := FTPClient openOnHostNamed: host.
 	client loginUser: user password: password.
@@ -88,45 +66,30 @@ MCFtpRepository>>clientDo: aBlock [
 	^ [aBlock value: client] ensure: [client close]
 ]
 
-{
-	#category : #required,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCFtpRepository>>description [
+{ #category : #required }
+MCFtpRepository >> description [
 	^ 'ftp://', host, '/', directory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCFtpRepository>>directory: dirPath [
+{ #category : #accessing }
+MCFtpRepository >> directory: dirPath [
 	directory := dirPath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCFtpRepository>>host: hostname [
+{ #category : #accessing }
+MCFtpRepository >> host: hostname [
 	host := hostname
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCFtpRepository>>loadAllFileNames [
+{ #category : #interface }
+MCFtpRepository >> loadAllFileNames [
 	^ self clientDo:
 		[:client |
 		self parseDirectoryListing: client getDirectory]
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCFtpRepository>>parseDirectoryListing: aString [
+{ #category : #parsing }
+MCFtpRepository >> parseDirectoryListing: aString [
 	| stream files line tokens |
 	stream := aString readStream.
 	files := OrderedCollection new.
@@ -137,19 +100,13 @@ MCFtpRepository>>parseDirectoryListing: aString [
 	^ files
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCFtpRepository>>password: passwordString [
+{ #category : #accessing }
+MCFtpRepository >> password: passwordString [
 	password := passwordString
 ]
 
-{
-	#category : #required,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCFtpRepository>>readStreamForFileNamed: aString do: aBlock [
+{ #category : #required }
+MCFtpRepository >> readStreamForFileNamed: aString do: aBlock [
 	
 	^ self clientDo:
 		[:client | | stream |
@@ -159,19 +116,13 @@ MCFtpRepository>>readStreamForFileNamed: aString do: aBlock [
 		aBlock value: stream reset]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCFtpRepository>>user: userString [
+{ #category : #accessing }
+MCFtpRepository >> user: userString [
 	user := userString
 ]
 
-{
-	#category : #required,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCFtpRepository>>writeStreamForFileNamed: aString replace: ignoreBoolean do: aBlock [
+{ #category : #required }
+MCFtpRepository >> writeStreamForFileNamed: aString replace: ignoreBoolean do: aBlock [
 	| stream |
 	stream := RWBinaryOrTextStream on: String new.
 	aBlock value: stream.

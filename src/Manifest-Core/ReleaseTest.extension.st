@@ -1,12 +1,7 @@
-Extension {
-	#name : #ReleaseTest
-}
+Extension { #name : #ReleaseTest }
 
-{
-	#category : #'*Manifest-Core',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ReleaseTest>>assertValidLintRule: aLintRule [
+{ #category : #'*Manifest-Core' }
+ReleaseTest >> assertValidLintRule: aLintRule [
 	| checker |
 	checker := SmalllintManifestChecker new 
 		rule: aLintRule;

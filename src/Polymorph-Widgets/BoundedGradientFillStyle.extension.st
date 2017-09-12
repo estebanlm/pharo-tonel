@@ -1,12 +1,7 @@
-Extension {
-	#name : #BoundedGradientFillStyle
-}
+Extension { #name : #BoundedGradientFillStyle }
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-BoundedGradientFillStyle>>fillRectangle: aRectangle on: aCanvas [
+{ #category : #'*Polymorph-Widgets' }
+BoundedGradientFillStyle >> fillRectangle: aRectangle on: aCanvas [
 	"Fill the given rectangle on the given canvas with the receiver."
 	
 	self extent ifNil: [^super fillRectangle: aRectangle on: aCanvas].

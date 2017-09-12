@@ -1,12 +1,7 @@
-Extension {
-	#name : #ClassDescription
-}
+Extension { #name : #ClassDescription }
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ClassDescription>>fileOutCategory: catName  [
+{ #category : #'*CodeExport' }
+ClassDescription >> fileOutCategory: catName [ 
 
 	| internalStream |
 	internalStream := (String new: 1000) writeStream.
@@ -17,11 +12,8 @@ ClassDescription>>fileOutCategory: catName  [
 	^ FileStream writeSourceCodeFrom: internalStream baseName: (self name , '-' , catName) isSt: true.
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ClassDescription>>fileOutCategory: aSymbol on: aFileStream [
+{ #category : #'*CodeExport' }
+ClassDescription >> fileOutCategory: aSymbol on: aFileStream [
 	"File a description of the receiver's category, aString, onto aFileStream. If 
 	moveSource, is true, then set the method source pointer to the new file position.
 	Note when this method is called with moveSource=true, it is condensing the
@@ -37,11 +29,8 @@ ClassDescription>>fileOutCategory: aSymbol on: aFileStream [
 	^ self
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ClassDescription>>fileOutChangedMessages: aSet on: aFileStream [
+{ #category : #'*CodeExport' }
+ClassDescription >> fileOutChangedMessages: aSet on: aFileStream [
 	"File a description of the messages of this class that have been 
 	changed (i.e., are entered into the argument, aSet) onto aFileStream."
 
@@ -53,11 +42,8 @@ ClassDescription>>fileOutChangedMessages: aSet on: aFileStream [
 			sels do: [ :sel | self printMethodChunk: sel on: aFileStream ] ]
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ClassDescription>>fileOutLocalMethodsInCategory: aSymbol on: aFileStream [
+{ #category : #'*CodeExport' }
+ClassDescription >> fileOutLocalMethodsInCategory: aSymbol on: aFileStream [
 	"File out only the local (non-trait) methods for this category."
 
 	| selectors localSelectors |
@@ -70,11 +56,8 @@ ClassDescription>>fileOutLocalMethodsInCategory: aSymbol on: aFileStream [
 	^ self
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ClassDescription>>fileOutMethod: selector [
+{ #category : #'*CodeExport' }
+ClassDescription >> fileOutMethod: selector [
 	"Write source code of a single method on a file.  Make up a name for the file."
 	
 	| internalStream |
@@ -83,11 +66,8 @@ ClassDescription>>fileOutMethod: selector [
 	FileStream writeSourceCodeFrom: internalStream baseName: (self name , '-' , (selector copyReplaceAll: ':' with: '')) isSt: true.
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ClassDescription>>fileOutMethod: selector on: aStream [
+{ #category : #'*CodeExport' }
+ClassDescription >> fileOutMethod: selector on: aStream [
 	
 	(selector == #Comment) ifTrue: [^ self inform: 'Sorry, cannot file out class comment in isolation.'].
 	(self includesSelector: selector) ifFalse: [^ self error: 'Selector ', selector asString, ' not found'].
@@ -95,11 +75,8 @@ ClassDescription>>fileOutMethod: selector on: aStream [
 	self printMethodChunk: selector on: aStream.
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ClassDescription>>fileOutOn: aFileStream [
+{ #category : #'*CodeExport' }
+ClassDescription >> fileOutOn: aFileStream [
 	"File a description of the receiver on aFileStream."
 
 	aFileStream nextChunkPut: self definition.
@@ -108,11 +85,8 @@ ClassDescription>>fileOutOn: aFileStream [
 		do: [ :heading | self fileOutLocalMethodsInCategory: heading on: aFileStream ]
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ClassDescription>>fileOutOrganizationOn: aFileStream [
+{ #category : #'*CodeExport' }
+ClassDescription >> fileOutOrganizationOn: aFileStream [
 	"File a description of the receiver's organization on aFileStream."
 
 	aFileStream cr; nextPut: $!.
@@ -120,21 +94,15 @@ ClassDescription>>fileOutOrganizationOn: aFileStream [
 	aFileStream nextChunkPut: self organization stringForFileOut ; cr
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ClassDescription>>isLocalSelector: aSelector [
+{ #category : #'*CodeExport' }
+ClassDescription >> isLocalSelector: aSelector [
 	| method |
 	method := self methodDict at: aSelector ifAbsent: [ ^ false ].
 	^ method isFromTrait not
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ClassDescription>>printCategoryChunk: category on: aFileStream withStamp: changeStamp priorMethod: priorMethod  [
+{ #category : #'*CodeExport' }
+ClassDescription >> printCategoryChunk: category on: aFileStream withStamp: changeStamp priorMethod: priorMethod [ 
 	"Print a method category preamble.  This must have a category name.
 	It may have an author/date stamp, and it may have a prior source link.
 	If it has a prior source link, it MUST have a stamp, even if it is empty."
@@ -153,11 +121,8 @@ ClassDescription>>printCategoryChunk: category on: aFileStream withStamp: change
 	
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ClassDescription>>printMethodChunk: selector on: outStream [
+{ #category : #'*CodeExport' }
+ClassDescription >> printMethodChunk: selector on: outStream [
 	"Copy the source code for the method associated with selector onto the fileStream."
 
 	| preamble method |
@@ -194,10 +159,7 @@ ClassDescription>>printMethodChunk: selector on: outStream [
 	^ outStream
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ClassDescription>>selectorsToFileOutCategory: aSymbol [
+{ #category : #'*CodeExport' }
+ClassDescription >> selectorsToFileOutCategory: aSymbol [
 	^ self organization listAtCategoryNamed: aSymbol
 ]

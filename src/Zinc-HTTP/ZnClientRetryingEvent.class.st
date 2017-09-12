@@ -8,31 +8,21 @@ Class {
 	#instVars : [
 		'exception'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 14:01'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientRetryingEvent>>exception [
+{ #category : #accessing }
+ZnClientRetryingEvent >> exception [
 	^ exception
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientRetryingEvent>>exception: anObject [
+{ #category : #accessing }
+ZnClientRetryingEvent >> exception: anObject [
 	exception := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientRetryingEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnClientRetryingEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream << ' Retrying '; print: exception
 ]

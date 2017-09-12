@@ -15,93 +15,62 @@ Class {
 		'work',
 		'selectChildren'
 	],
-	#category : #FileSystem-Core-Implementation,
-	#timestamp : 'cwp 11/18/2009 12:09'
+	#category : #FileSystem-Core-Implementation
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemGuide class>>for: aVisitor [
+{ #category : #'instance creation' }
+FileSystemGuide class >> for: aVisitor [
 	^ self basicNew initializeWithVisitor: aVisitor
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemGuide class>>show: aReference to: aVisitor [
+{ #category : #'instance creation' }
+FileSystemGuide class >> show: aReference to: aVisitor [
 	^ (self for: aVisitor) show: aReference
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemGuide class>>show: aReference to: aVisitor selecting: aBlock [
+{ #category : #'instance creation' }
+FileSystemGuide class >> show: aReference to: aVisitor selecting: aBlock [
 	^ (self for: aVisitor)
 		selectChildren:  aBlock;
 		show: aReference
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemGuide>>initialize [
+{ #category : #initialization }
+FileSystemGuide >> initialize [
 
 	super initialize.
 	work := OrderedCollection new
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemGuide>>initializeWithVisitor: aVisitor [
+{ #category : #initialize-release }
+FileSystemGuide >> initializeWithVisitor: aVisitor [
 	self initialize.
 	visitor := aVisitor.
 	
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemGuide>>pop [
+{ #category : #removing }
+FileSystemGuide >> pop [
 	^ work removeLast
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemGuide>>push: anObject [
+{ #category : #adding }
+FileSystemGuide >> push: anObject [
 	work add: anObject
 ]
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemGuide>>pushAll: aCollection  [
+{ #category : #showing }
+FileSystemGuide >> pushAll: aCollection [ 
 	aCollection do: [ :ea | self push: ea ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemGuide>>selectChildren [
+{ #category : #accessing }
+FileSystemGuide >> selectChildren [
 	^ selectChildren
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemGuide>>selectChildren: aBlock [
+{ #category : #accessing }
+FileSystemGuide >> selectChildren: aBlock [
 	"With this block you can control how the guide spreads over directories.
 	Example: 
 		self selectChildren: [ :parentEntry | parentEntry isSymlink not ].
@@ -113,36 +82,24 @@ FileSystemGuide>>selectChildren: aBlock [
 	selectChildren := aBlock
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemGuide>>shouldVisitChildrenOf: anEntry [
+{ #category : #testing }
+FileSystemGuide >> shouldVisitChildrenOf: anEntry [
 	^ selectChildren 
 		ifNil: [ true ]
 		ifNotNil: [ selectChildren cull: anEntry ]
 ]
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemGuide>>show: aReference [
+{ #category : #showing }
+FileSystemGuide >> show: aReference [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemGuide>>top [
+{ #category : #accessing }
+FileSystemGuide >> top [
 	^ work removeFirst
 ]
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-FileSystemGuide>>whileNotDoneDo: aBlock [
+{ #category : #showing }
+FileSystemGuide >> whileNotDoneDo: aBlock [
 	[ work isEmpty ] whileFalse: [ aBlock value ]
 ]

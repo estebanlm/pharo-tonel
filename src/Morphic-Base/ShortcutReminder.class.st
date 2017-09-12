@@ -19,42 +19,29 @@ Class {
 		'DefaultReminder',
 		'Enabled'
 	],
-	#category : #Morphic-Base-Menus,
-	#timestamp : 'HenrikNergaard 1/17/2016 00:17'
+	#category : #Morphic-Base-Menus
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder class>>defaultReminder [
+{ #category : #'as yet unclassified' }
+ShortcutReminder class >> defaultReminder [
 
 	^DefaultReminder ifNil: [ DefaultReminder := self new ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder class>>enabled [
+{ #category : #settings }
+ShortcutReminder class >> enabled [
 
 	^Enabled ifNil: [ Enabled := false ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder class>>enabled: aBoolean [
+{ #category : #settings }
+ShortcutReminder class >> enabled: aBoolean [
 
 	Enabled := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder class>>settingsOn: aBuilder  [
+{ #category : #settings }
+ShortcutReminder class >> settingsOn: aBuilder [ 
 	<systemsettings>
 	(aBuilder setting: #'Shortcut Reminder') 
 		target: self;
@@ -65,40 +52,28 @@ ShortcutReminder class>>settingsOn: aBuilder  [
 		with: [ self defaultReminder customSettingsOn: aBuilder ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder class>>showShortcut: aShortcut [
+{ #category : #'as yet unclassified' }
+ShortcutReminder class >> showShortcut: aShortcut [
 	
 	(aShortcut keyText isNil or: [ self enabled not ]) ifTrue: [ ^self ].
 	
 	self defaultReminder remind: aShortcut.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>backgroundColor [
+{ #category : #accessing }
+ShortcutReminder >> backgroundColor [
 
 	^backgroundColor 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>backgroundColor: aColor [
+{ #category : #accessing }
+ShortcutReminder >> backgroundColor: aColor [
 
 	backgroundColor := aColor
 ]
 
-{
-	#category : #'private - utilities',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>createKeyTextMorph: aString [
+{ #category : #'private - utilities' }
+ShortcutReminder >> createKeyTextMorph: aString [
 
 	^(self fixKeyText: aString) asStringMorph 
 		font: self keyTextFont emphasis: 2;
@@ -106,11 +81,8 @@ ShortcutReminder>>createKeyTextMorph: aString [
 		yourself. 
 ]
 
-{
-	#category : #'private - utilities',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>createLabelMorph: aString [
+{ #category : #'private - utilities' }
+ShortcutReminder >> createLabelMorph: aString [
 
 	^aString asStringMorph 
 		font: self labelFont emphasis: 0;
@@ -118,11 +90,8 @@ ShortcutReminder>>createLabelMorph: aString [
 		yourself. 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>createResetCountButtonMorph [
+{ #category : #settings }
+ShortcutReminder >> createResetCountButtonMorph [
 
 	^SimpleButtonMorph new
 		target: self;
@@ -133,11 +102,8 @@ ShortcutReminder>>createResetCountButtonMorph [
 	
 ]
 
-{
-	#category : #'shortcut creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>createShortcutMorphFor: aMenuItem  [
+{ #category : #'shortcut creation' }
+ShortcutReminder >> createShortcutMorphFor: aMenuItem [ 
 
 	^FadingMorph new
 		addMorphBack: (self createLabelMorph: aMenuItem contents);
@@ -147,11 +113,8 @@ ShortcutReminder>>createShortcutMorphFor: aMenuItem  [
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>customSettingsOn: aBuilder [
+{ #category : #settings }
+ShortcutReminder >> customSettingsOn: aBuilder [
 
 	(aBuilder pickOne: #position)
 		order: 1;
@@ -193,65 +156,44 @@ ShortcutReminder>>customSettingsOn: aBuilder [
 		dialog: [ self createResetCountButtonMorph ].
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>defaultBackgroundColor [
+{ #category : #defaults }
+ShortcutReminder >> defaultBackgroundColor [
 
 	^Color gray
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>defaultFontFamiliyName [
+{ #category : #defaults }
+ShortcutReminder >> defaultFontFamiliyName [
 
 	^'Source Sans Pro'
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>defaultLimit [
+{ #category : #defaults }
+ShortcutReminder >> defaultLimit [
 
 	^5
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>defaultTextColor [
+{ #category : #defaults }
+ShortcutReminder >> defaultTextColor [
 
 	^Color black
 ]
 
-{
-	#category : #'private - utilities',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>fixKeyText: aString [
+{ #category : #'private - utilities' }
+ShortcutReminder >> fixKeyText: aString [
 
 	^ToggleMenuItemShortcut normalize: aString
 ]
 
-{
-	#category : #'private - utilities',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>fontSized: aPointSize [
+{ #category : #'private - utilities' }
+ShortcutReminder >> fontSized: aPointSize [
 
 	^LogicalFont familyName: self defaultFontFamiliyName pointSize: aPointSize
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>initialize [
+{ #category : #initialization }
+ShortcutReminder >> initialize [
 
 	countDict := Dictionary new.
 	limit := self defaultLimit.
@@ -262,94 +204,64 @@ ShortcutReminder>>initialize [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>keyTextFont [
+{ #category : #private }
+ShortcutReminder >> keyTextFont [
 
 	^self fontSized: self pointSize * 2
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>labelFont [
+{ #category : #private }
+ShortcutReminder >> labelFont [
 
 	^self fontSized: self pointSize 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>large [
+{ #category : #private }
+ShortcutReminder >> large [
 
 	^55
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>limit [
+{ #category : #accessing }
+ShortcutReminder >> limit [
 	
 	^limit
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>limit: aNumber [
+{ #category : #accessing }
+ShortcutReminder >> limit: aNumber [
 
 	limit := aNumber
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>medium [
+{ #category : #private }
+ShortcutReminder >> medium [
 
 	 ^27
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>pointSize [
+{ #category : #private }
+ShortcutReminder >> pointSize [
 
 	^size value: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>position [
+{ #category : #accessing }
+ShortcutReminder >> position [
 
 	^position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>position: aSymbol [
+{ #category : #accessing }
+ShortcutReminder >> position: aSymbol [
 
 	(self positions includes: aSymbol) ifFalse: [ self error ].
 	
 	position := aSymbol
 ]
 
-{
-	#category : #'shortcut creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>positionShortcut: aMorph [
+{ #category : #'shortcut creation' }
+ShortcutReminder >> positionShortcut: aMorph [
 	
 	| area |
 	
@@ -364,20 +276,14 @@ ShortcutReminder>>positionShortcut: aMorph [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>positions [
+{ #category : #private }
+ShortcutReminder >> positions [
 
 	^#(#topLeft #topRight #center #bottomLeft #bottomRight)
 ]
 
-{
-	#category : #'shortcut creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>remind: aMenuItem  [
+{ #category : #'shortcut creation' }
+ShortcutReminder >> remind: aMenuItem [ 
 
 	| itemHash |
 	
@@ -390,21 +296,15 @@ ShortcutReminder>>remind: aMenuItem  [
 	updateCount: itemHash.
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>resetCount [
+{ #category : #settings }
+ShortcutReminder >> resetCount [
 
 	countDict := Dictionary new. 
 	
 ]
 
-{
-	#category : #'shortcut creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>show: aMenuItem [
+{ #category : #'shortcut creation' }
+ShortcutReminder >> show: aMenuItem [
 
 	| shortcutMorph |
 	
@@ -415,67 +315,46 @@ ShortcutReminder>>show: aMenuItem [
 	shortcutMorph openInWorld.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>sizes  [
+{ #category : #private }
+ShortcutReminder >> sizes [ 
 
 	^#(#small #medium #large) 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>small [
+{ #category : #private }
+ShortcutReminder >> small [
 
 	^15
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>textColor [
+{ #category : #accessing }
+ShortcutReminder >> textColor [
 
 	^textColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>textColor: aColor [
+{ #category : #accessing }
+ShortcutReminder >> textColor: aColor [
 
 	textColor := aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>textSize [
+{ #category : #accessing }
+ShortcutReminder >> textSize [
 
 	^size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>textSize: aSymbol [
+{ #category : #accessing }
+ShortcutReminder >> textSize: aSymbol [
 
 	(self sizes includes: aSymbol) ifFalse: [ self error ].
 	
 	size := aSymbol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>updateCount: aHashValue [
+{ #category : #private }
+ShortcutReminder >> updateCount: aHashValue [
 	
 	| value |
 	
@@ -484,11 +363,8 @@ ShortcutReminder>>updateCount: aHashValue [
 	countDict at: aHashValue put: value + 1.
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ShortcutReminder>>wantsToShow: aHashValue [
+{ #category : #queries }
+ShortcutReminder >> wantsToShow: aHashValue [
 	
 	^limit < 0 or: [ 
 		(countDict at: aHashValue ifAbsent: [ 0 ]) < limit

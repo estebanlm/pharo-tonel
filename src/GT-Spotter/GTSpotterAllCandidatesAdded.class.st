@@ -1,28 +1,18 @@
-"
-
-"
 Class {
 	#name : #GTSpotterAllCandidatesAdded,
 	#superclass : #GTSpotterAnnouncement,
 	#instVars : [
 		'candidateLinks'
 	],
-	#category : #GT-Spotter-Announcements,
-	#timestamp : ''
+	#category : #GT-Spotter-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterAllCandidatesAdded>>candidateLinks [
+{ #category : #accessing }
+GTSpotterAllCandidatesAdded >> candidateLinks [
 	^ candidateLinks
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterAllCandidatesAdded>>candidateLinks: anObject [
+{ #category : #accessing }
+GTSpotterAllCandidatesAdded >> candidateLinks: anObject [
 	candidateLinks := anObject
 ]

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #PluggableTextMorph,
 	#superclass : #ScrollPane,
@@ -32,15 +29,11 @@ Class {
 		'ShowTextEditingState',
 		'StylingClass'
 	],
-	#category : #Morphic-Widgets-Pluggable,
-	#timestamp : ''
+	#category : #Morphic-Widgets-Pluggable
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph class>>on: anObject text: getTextSel accept: setTextSel [
+{ #category : #'instance creation' }
+PluggableTextMorph class >> on: anObject text: getTextSel accept: setTextSel [
 
 	^ self on: anObject
 		text: getTextSel
@@ -49,11 +42,8 @@ PluggableTextMorph class>>on: anObject text: getTextSel accept: setTextSel [
 		menu: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph class>>on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel [
+{ #category : #'instance creation' }
+PluggableTextMorph class >> on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel [
 
 	^ self new on: anObject
 		text: getTextSel
@@ -63,11 +53,8 @@ PluggableTextMorph class>>on: anObject text: getTextSel accept: setTextSel readS
 		setSelection: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph class>>on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel setSelection: setSelectionSel [
+{ #category : #'instance creation' }
+PluggableTextMorph class >> on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel setSelection: setSelectionSel [
 
 	^ self new on: anObject
 		text: getTextSel
@@ -77,79 +64,52 @@ PluggableTextMorph class>>on: anObject text: getTextSel accept: setTextSel readS
 		setSelection: setSelectionSel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph class>>shoutEnabled [
+{ #category : #accessing }
+PluggableTextMorph class >> shoutEnabled [
 	^ (Smalltalk globals includesKey: #SHPreferences)
 		and: [(Smalltalk globals at: #SHPreferences) enabled]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph class>>showTextEditingState [
+{ #category : #settings }
+PluggableTextMorph class >> showTextEditingState [
 	^ ShowTextEditingState ifNil: [ShowTextEditingState := true]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph class>>showTextEditingState: aBoolean [
+{ #category : #settings }
+PluggableTextMorph class >> showTextEditingState: aBoolean [
 	ShowTextEditingState := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph class>>stylingClass [
+{ #category : #accessing }
+PluggableTextMorph class >> stylingClass [
 
 	^ StylingClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph class>>stylingClass: aClass [
+{ #category : #accessing }
+PluggableTextMorph class >> stylingClass: aClass [
 
 	StylingClass := aClass
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>accept [
+{ #category : #actions }
+PluggableTextMorph >> accept [
 	self acceptBasic.
 	acceptAction ifNotNil: [acceptAction value: textMorph contents asText].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>acceptAction [
+{ #category : #accessing }
+PluggableTextMorph >> acceptAction [
 	^acceptAction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>acceptAction: anAction [
+{ #category : #accessing }
+PluggableTextMorph >> acceptAction: anAction [
 	acceptAction := anAction
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>acceptBasic [
+{ #category : #actions }
+PluggableTextMorph >> acceptBasic [
 	"Inform the model of text to be accepted, and return true if OK."
 
 	| ok saveSelection saveScrollerOffset |
@@ -185,11 +145,8 @@ editing it here.  Accept anyway?' translated) ifFalse: [^ self flash]].
 
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>acceptDroppingMorph: aMorph event: evt  [
+{ #category : #layout }
+PluggableTextMorph >> acceptDroppingMorph: aMorph event: evt [ 
 	"This message is sent when a morph is dropped onto a morph that has     
 	agreed to accept the dropped morph by responding 'true' to the     
 	wantsDroppedMorph:Event: message. The default implementation just     
@@ -204,40 +161,28 @@ PluggableTextMorph>>acceptDroppingMorph: aMorph event: evt  [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>acceptOnCR: trueOrFalse [
+{ #category : #initialization }
+PluggableTextMorph >> acceptOnCR: trueOrFalse [
 	textMorph acceptOnCR: trueOrFalse
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>acceptOnFocusChange [
+{ #category : #accessing }
+PluggableTextMorph >> acceptOnFocusChange [
 	"Answer whether the editor accepts its contents when it loses the keyboard focus."
 
 	^acceptOnFocusChange ifNil: [false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>acceptOnFocusChange: aBoolean [
+{ #category : #accessing }
+PluggableTextMorph >> acceptOnFocusChange: aBoolean [
 	"Set whether the editor accepts its contents when it loses the keyboard focus."
 
 	acceptOnFocusChange := aBoolean.
 	self textMorph ifNotNil: [:t | t acceptOnFocusChange: aBoolean]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>acceptTextInModel  [
+{ #category : #actions }
+PluggableTextMorph >> acceptTextInModel [ 
 	"#correctFrom:to:with: is sent when the method source is
 	manipulated during compilation (removing unused temps,
 	changing selectors etc). But 	#correctFrom:to:with: operates 
@@ -256,11 +201,8 @@ PluggableTextMorph>>acceptTextInModel  [
 		] ensure: [unstyledAcceptText := nil]
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>acceptTextInModelBasic [
+{ #category : #'menu commands' }
+PluggableTextMorph >> acceptTextInModelBasic [
 	"Inform the model that the receiver's textMorph's text should be accepted.
 	Answer true if the model accepted ok, false otherwise"
 	
@@ -273,27 +215,18 @@ PluggableTextMorph>>acceptTextInModelBasic [
 
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>again [
+{ #category : #'menu commands' }
+PluggableTextMorph >> again [
 	self handleEdit: [textMorph editor again]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>alwaysAccept [
+{ #category : #accessing }
+PluggableTextMorph >> alwaysAccept [
 	^ alwaysAccept ifNil: [false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>alwaysAccept: aBoolean [
+{ #category : #accessing }
+PluggableTextMorph >> alwaysAccept: aBoolean [
 	"Set the always accept flag."
 	"This flag is used when there are unsaved changes in my text field and an exterior actor tries to modify me"
 	"If the flag is true, I will accept to change even if I have pending modification instead of poping up the Accept/Discard/Cancel window"
@@ -303,11 +236,8 @@ PluggableTextMorph>>alwaysAccept: aBoolean [
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>appendEntry [
+{ #category : #settings }
+PluggableTextMorph >> appendEntry [
 	"Append the text in the model's writeStream to the editable text. "
 	textMorph asText size > model characterLimit ifTrue:
 		["Knock off first half of text"
@@ -318,31 +248,22 @@ PluggableTextMorph>>appendEntry [
 	self selectInvisiblyFrom: textMorph asText size + 1 to: textMorph asText size
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>askBeforeDiscardingEdits: aBoolean [
+{ #category : #styling }
+PluggableTextMorph >> askBeforeDiscardingEdits: aBoolean [
 	"Set the flag that determines whether the user should be asked before discarding unaccepted edits."
 
 	askBeforeDiscardingEdits := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>autoAccept [
+{ #category : #accessing }
+PluggableTextMorph >> autoAccept [
 	"Answer whether the editor accepts its contents on each change."
 
 	^autoAccept ifNil: [false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>autoAccept: aBoolean [
+{ #category : #accessing }
+PluggableTextMorph >> autoAccept: aBoolean [
 	"Answer whether the editor accepts its contents on each change."
 
 	autoAccept := aBoolean.
@@ -350,11 +271,8 @@ PluggableTextMorph>>autoAccept: aBoolean [
 		ifNotNil: [:t | t autoAccept: aBoolean]
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>basicHasUnacceptedEdits: aBoolean [
+{ #category : #styling }
+PluggableTextMorph >> basicHasUnacceptedEdits: aBoolean [
 	"Set the hasUnacceptedEdits flag to the given value. "	
 	aBoolean == hasUnacceptedEdits 
 		ifFalse: [hasUnacceptedEdits := aBoolean. 
@@ -365,20 +283,14 @@ PluggableTextMorph>>basicHasUnacceptedEdits: aBoolean [
 		ifTrue: [ self styler styleInBackgroundProcess: textMorph contents]
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>basicInspectIt [
+{ #category : #'menu commands' }
+PluggableTextMorph >> basicInspectIt [
 	self handleEdit:
 		[textMorph editor evaluateSelectionAndDo: [:result | result basicInspect]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>borderStyleToUse [
+{ #category : #accessing }
+PluggableTextMorph >> borderStyleToUse [
 	"Answer the borderStyle that should be used for the receiver."
 	
 	^self enabled
@@ -386,126 +298,84 @@ PluggableTextMorph>>borderStyleToUse [
 		ifFalse: [self theme textEditorDisabledBorderStyleFor: self]
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>browseIt [
+{ #category : #'menu commands' }
+PluggableTextMorph >> browseIt [
 	self handleEdit: [textMorph editor browseIt]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>bsText [
+{ #category : #settings }
+PluggableTextMorph >> bsText [
 	self changeText: (self text copyFrom: 1 to: (self text size - 1 max: 0))
 ]
 
-{
-	#category : #'dependents access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>canDiscardEdits [
+{ #category : #'dependents access' }
+PluggableTextMorph >> canDiscardEdits [
 	"Return true if this view either has no text changes or does not care."
 
 	^ (hasUnacceptedEdits and: [askBeforeDiscardingEdits]) not
 
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>cancel [
+{ #category : #'menu commands' }
+PluggableTextMorph >> cancel [
 	(self confirm:
 'This action will cancel your changes.
 Is it OK to cancel changes?' translated) ifTrue: [self setText: self getText.
 	self setSelection: self getSelection.]
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>cancelWithoutConfirmation [
+{ #category : #'menu commands' }
+PluggableTextMorph >> cancelWithoutConfirmation [
 	self setText: self getText.
 	self setSelection: self getSelection.
 
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>changeStyle [
+{ #category : #'menu commands' }
+PluggableTextMorph >> changeStyle [
 	self handleEdit: [textMorph editor changeStyle]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>changeText: aText [
+{ #category : #settings }
+PluggableTextMorph >> changeText: aText [
 	"The paragraph to be edited is changed to aText."
 	self setText: aText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>changedAction [
+{ #category : #accessing }
+PluggableTextMorph >> changedAction [
 	^ changedAction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>changedAction: aBlock [
+{ #category : #accessing }
+PluggableTextMorph >> changedAction: aBlock [
 	changedAction := aBlock
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>chooseAlignment [
+{ #category : #'menu commands' }
+PluggableTextMorph >> chooseAlignment [
 	self handleEdit: [textMorph editor changeAlignment]
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>classCommentsContainingIt [
+{ #category : #'menu commands' }
+PluggableTextMorph >> classCommentsContainingIt [
 	self handleEdit: [textMorph editor classCommentsContainingIt]
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>classNamesContainingIt [
+{ #category : #'menu commands' }
+PluggableTextMorph >> classNamesContainingIt [
 	self handleEdit: [textMorph editor classNamesContainingIt]
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>classOrMetaClass: aBehavior [
+{ #category : #scrolling }
+PluggableTextMorph >> classOrMetaClass: aBehavior [
 	"set the classOrMetaClass in the receiver's styler to aBehavior"
 		
 	self styler classOrMetaClass: aBehavior
 ]
 
-{
-	#category : #'unaccepted edits',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>configureTextMorph: aTextMorph [
+{ #category : #'unaccepted edits' }
+PluggableTextMorph >> configureTextMorph: aTextMorph [
 	"I prepare a text morph for use"
 	aTextMorph setEditView: self.
 	scroller addMorph: aTextMorph.
@@ -516,28 +386,19 @@ PluggableTextMorph>>configureTextMorph: aTextMorph [
 
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>copySelection [
+{ #category : #'menu commands' }
+PluggableTextMorph >> copySelection [
 	self handleEdit: [textMorph editor copySelection]
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>correctFrom: start to: stop with: aString [
+{ #category : #'interactive error protocol' }
+PluggableTextMorph >> correctFrom: start to: stop with: aString [
 	unstyledAcceptText ifNotNil: [unstyledAcceptText replaceFrom: start to: stop with: aString ].
 	^ self handleEdit: [textMorph editor correctFrom: start to: stop with: aString]
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>correctSelectionWithString: aString [
+{ #category : #'interactive error protocol' }
+PluggableTextMorph >> correctSelectionWithString: aString [
 	| result newPosition |
 
 	"I can't tell if this is a hack or if it's the right thing to do."
@@ -549,104 +410,68 @@ PluggableTextMorph>>correctSelectionWithString: aString [
 	^ result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>crAction: anAction [
+{ #category : #accessing }
+PluggableTextMorph >> crAction: anAction [
 	self textMorph crAction: anAction
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>cursorEnd: aKeyboardEvent  [
+{ #category : #'event handling' }
+PluggableTextMorph >> cursorEnd: aKeyboardEvent [ 
 
 	^ textMorph editor cursorEnd: aKeyboardEvent.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>cursorHome: aKeyboardEvent  [
+{ #category : #'event handling' }
+PluggableTextMorph >> cursorHome: aKeyboardEvent [ 
 
 	^ textMorph editor cursorHome: aKeyboardEvent.
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>cut [
+{ #category : #'menu commands' }
+PluggableTextMorph >> cut [
 	self handleEdit: [textMorph editor cut].
 	self autoAccept ifTrue: [ self accept ].
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>debugIt [
+{ #category : #'menu commands' }
+PluggableTextMorph >> debugIt [
 	self handleEdit: [textMorph editor debugIt]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>defaultBorderWidth [
+{ #category : #initialization }
+PluggableTextMorph >> defaultBorderWidth [
 	^ 1
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>defaultColor  [
+{ #category : #initialization }
+PluggableTextMorph >> defaultColor [ 
 	^ self theme backgroundColor
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>defaultStyler [
+{ #category : #scrolling }
+PluggableTextMorph >> defaultStyler [
 	^ self stylerClass new view: self
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>deselect [
+{ #category : #'interactive error protocol' }
+PluggableTextMorph >> deselect [
 	^ textMorph editor deselect
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>disable [
+{ #category : #actions }
+PluggableTextMorph >> disable [
 	"Disable the receiver."
 	
 	self enabled: false
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>doIt [
+{ #category : #'menu commands' }
+PluggableTextMorph >> doIt [
 	self handleEdit: [textMorph editor evaluateSelection]
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>drawHighlightsOn: aCanvas [
+{ #category : #'model access' }
+PluggableTextMorph >> drawHighlightsOn: aCanvas [
 	"Draw the highlights."
 	
 	|b o|
@@ -660,11 +485,8 @@ PluggableTextMorph>>drawHighlightsOn: aCanvas [
 			offset: o]]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+PluggableTextMorph >> drawOn: aCanvas [
 	"Indicate unaccepted edits, conflicts etc."
 
 	super drawOn: aCanvas. 
@@ -673,41 +495,29 @@ PluggableTextMorph>>drawOn: aCanvas [
 	self drawHighlightsOn: aCanvas
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>editString: aString  [
+{ #category : #initialization }
+PluggableTextMorph >> editString: aString [ 
 	"Jam some text in.  This is treated as clean text by default."
 
 	self setText: aString asText
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>enable [
+{ #category : #actions }
+PluggableTextMorph >> enable [
 	"Enable the receiver."
 	
 	self enabled: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>enabled [
+{ #category : #accessing }
+PluggableTextMorph >> enabled [
 	"Answer whether the receiver is enabled."
 	
 	^enabled ifNil: [true]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>enabled: aBoolean [
+{ #category : #actions }
+PluggableTextMorph >> enabled: aBoolean [
 	"Set the value of enabled"
 
 	enabled = aBoolean ifTrue: [^self].
@@ -718,20 +528,14 @@ PluggableTextMorph>>enabled: aBoolean [
 		changed
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>exploreIt [
+{ #category : #'menu commands' }
+PluggableTextMorph >> exploreIt [
 	self handleEdit:
 		[textMorph editor evaluateSelectionAndDo: [:result | result explore]].
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>extent: newExtent [
+{ #category : #geometry }
+PluggableTextMorph >> extent: newExtent [
 	"The inner bounds may have changed due to scrollbar visibility."
 
 	super extent: (newExtent max: 36 @ 16).
@@ -744,27 +548,18 @@ PluggableTextMorph>>extent: newExtent [
 		ifTrue: [ self fillStyle: self fillStyleToUse ]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>extraScrollRange [
+{ #category : #geometry }
+PluggableTextMorph >> extraScrollRange [
 	^ self height // 4
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>fileItIn [
+{ #category : #'menu commands' }
+PluggableTextMorph >> fileItIn [
 	self handleEdit: [textMorph editor fileItIn]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>fillStyleToUse [
+{ #category : #accessing }
+PluggableTextMorph >> fillStyleToUse [
 	"Answer the fillStyle that should be used for the receiver."
 	self color ifNotNil: [ ^ self color ].
 	^self enabled
@@ -772,27 +567,18 @@ PluggableTextMorph>>fillStyleToUse [
 		ifFalse: [self theme textEditorDisabledFillStyleFor: self]
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>find [
+{ #category : #'menu commands' }
+PluggableTextMorph >> find [
 	self handleEdit: [textMorph editor find]
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>findAgain [
+{ #category : #'menu commands' }
+PluggableTextMorph >> findAgain [
 	self handleEdit: [textMorph editor findAgain]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>font [
+{ #category : #accessing }
+PluggableTextMorph >> font [
 	"Answer the probable font"
 
 	^self textMorph
@@ -800,20 +586,14 @@ PluggableTextMorph>>font [
 		ifNotNil: [:m | m font]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>font: aFont [
+{ #category : #initialization }
+PluggableTextMorph >> font: aFont [
 	textMorph beAllFont: aFont.
 	self styler font: aFont
 ]
 
-{
-	#category : #formatting,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>formatSourceCode [
+{ #category : #formatting }
+PluggableTextMorph >> formatSourceCode [
 	self
 		handleEdit: [ 
 			| source tree formatted |
@@ -827,60 +607,42 @@ PluggableTextMorph>>formatSourceCode [
 				hasUnacceptedEdits: true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>getColorSelector [
+{ #category : #accessing }
+PluggableTextMorph >> getColorSelector [
 	^getColorSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>getColorSelector: aSymbol [
+{ #category : #accessing }
+PluggableTextMorph >> getColorSelector: aSymbol [
 	getColorSelector := aSymbol.
 	self update: getColorSelector.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>getEnabledSelector [
+{ #category : #actions }
+PluggableTextMorph >> getEnabledSelector [
 	"Answer the value of getEnabledSelector"
 
 	^ getEnabledSelector
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>getEnabledSelector: anObject [
+{ #category : #actions }
+PluggableTextMorph >> getEnabledSelector: anObject [
 	"Set the value of getEnabledSelector"
 
 	getEnabledSelector := anObject.
 	self updateEnabled
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>getSelection [
+{ #category : #'model access' }
+PluggableTextMorph >> getSelection [
 	"Answer the model's selection interval."
 
 	getSelectionSelector ifNil: [^1 to: 0].	"null selection"
 	^model perform: getSelectionSelector withEnoughArguments: { self }
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>getText [
+{ #category : #'model access' }
+PluggableTextMorph >> getText [
 	"Retrieve the current model text"
 
 	| newText |
@@ -890,30 +652,21 @@ PluggableTextMorph>>getText [
 	^newText shallowCopy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>getTextSelector [
+{ #category : #accessing }
+PluggableTextMorph >> getTextSelector [
 	^getTextSelector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>hScrollBarValue: scrollValue [
+{ #category : #private }
+PluggableTextMorph >> hScrollBarValue: scrollValue [
 	super hScrollBarValue: scrollValue.
 	textMorph ifNotNil: [textMorph selectionChanged].
 	
 	self triggerEvent: #hScroll with: scrollValue
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>hUnadjustedScrollRange [
+{ #category : #private }
+PluggableTextMorph >> hUnadjustedScrollRange [
 "Return the width of the widest item in the list"
 
 	textMorph ifNil: [ ^0 ].
@@ -923,11 +676,8 @@ PluggableTextMorph>>hUnadjustedScrollRange [
 
 ]
 
-{
-	#category : #'editor access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>handleEdit: editBlock [
+{ #category : #'editor access' }
+PluggableTextMorph >> handleEdit: editBlock [
 	| result |
 
 	textMorph editor 
@@ -940,58 +690,40 @@ PluggableTextMorph>>handleEdit: editBlock [
 	^ result
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>handlesDoubleClick [
+{ #category : #'event handling' }
+PluggableTextMorph >> handlesDoubleClick [
 	
 	^ doubleClickSelector notNil
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>handlesKeyboard: evt [
+{ #category : #'event handling' }
+PluggableTextMorph >> handlesKeyboard: evt [
 	^true
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>hasEditingConflicts [
+{ #category : #styling }
+PluggableTextMorph >> hasEditingConflicts [
 	"Return true if a conflicting edit to the same code (typically) is known to have occurred after the current contents started getting edited"
 
 	^ hasEditingConflicts == true
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>hasEditingConflicts: aBoolean [
+{ #category : #styling }
+PluggableTextMorph >> hasEditingConflicts: aBoolean [
 
 	hasEditingConflicts := aBoolean.
 	self changed
 ]
 
-{
-	#category : #'dependents access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>hasUnacceptedEdits [
+{ #category : #'dependents access' }
+PluggableTextMorph >> hasUnacceptedEdits [
 	"Return true if this view has unaccepted edits."
 
 	^ hasUnacceptedEdits
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>hasUnacceptedEdits: aBoolean [
+{ #category : #styling }
+PluggableTextMorph >> hasUnacceptedEdits: aBoolean [
 	"Set the hasUnacceptedEdits flag to the given value. "
 	
 	(model respondsTo: #hasUnacceptedEdits:)
@@ -999,39 +731,27 @@ PluggableTextMorph>>hasUnacceptedEdits: aBoolean [
 		ifFalse: [ self basicHasUnacceptedEdits: aBoolean ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>highlights [
+{ #category : #actions }
+PluggableTextMorph >> highlights [
 	"Answer the value of highlights"
 
 	^ highlights ifNil: [#()]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>highlights: aCollectionOfHighlight [
+{ #category : #actions }
+PluggableTextMorph >> highlights: aCollectionOfHighlight [
 	"Set the value of highlights"
 
 	highlights := aCollectionOfHighlight
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>implementorsOfIt [
+{ #category : #'menu commands' }
+PluggableTextMorph >> implementorsOfIt [
 	self handleEdit: [textMorph editor implementorsOfIt]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>initialize [
+{ #category : #initialization }
+PluggableTextMorph >> initialize [
 	"initialize the state of the receiver"
 	super initialize.
 	
@@ -1042,36 +762,24 @@ PluggableTextMorph>>initialize [
 	highlights := OrderedCollection new
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>innerExtent [
+{ #category : #geometry }
+PluggableTextMorph >> innerExtent [
 	^ self innerBounds extent - 6
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>inspectIt [
+{ #category : #'menu commands' }
+PluggableTextMorph >> inspectIt [
 	self handleEdit:
 		[textMorph editor evaluateSelectionAndDo: [:result | result inspect]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>isAutoFit [
+{ #category : #testing }
+PluggableTextMorph >> isAutoFit [
 	^textMorph isAutoFit
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>keyStroke: evt [
+{ #category : #'event handling' }
+PluggableTextMorph >> keyStroke: evt [
 	"A keystroke was hit while the receiver had keyboard focus.  Pass the keywtroke on to my textMorph, and and also, if I have an event handler, pass it on to that handler"
 
 	self eventHandler ifNotNil:
@@ -1079,63 +787,42 @@ PluggableTextMorph>>keyStroke: evt [
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>keystrokeFromTextMorph: anEvent [
+{ #category : #'event handling' }
+PluggableTextMorph >> keystrokeFromTextMorph: anEvent [
 	self eventHandler ifNotNil:
 		[^ self eventHandler keyStroke: anEvent fromMorph: self].
 	^ false
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>methodNamesContainingIt [
+{ #category : #'menu commands' }
+PluggableTextMorph >> methodNamesContainingIt [
 	self handleEdit: [textMorph editor methodNamesContainingIt]
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>methodSourceContainingIt [
+{ #category : #'menu commands' }
+PluggableTextMorph >> methodSourceContainingIt [
 	self handleEdit: [textMorph editor methodSourceContainingIt]
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>methodStringsContainingit [
+{ #category : #'menu commands' }
+PluggableTextMorph >> methodStringsContainingit [
 	self handleEdit: [textMorph editor methodStringsContainingit]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>model: aModel [
+{ #category : #initialization }
+PluggableTextMorph >> model: aModel [
 	"Update the enablement state too."
 	super model: aModel.
 	self updateEnabled
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>mouseDownFromTextMorph: anEvent [
+{ #category : #'event handling' }
+PluggableTextMorph >> mouseDownFromTextMorph: anEvent [
 	"Nothing to do here normally"
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>mouseEnter: event [
+{ #category : #'event handling' }
+PluggableTextMorph >> mouseEnter: event [
 	"Changed to take keyboardFocusOnMouseDown into account."
 	
 	super mouseEnter: event.
@@ -1148,11 +835,8 @@ PluggableTextMorph>>mouseEnter: event [
 		ifFalse: [self textMorph takeKeyboardFocus]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>mouseLeave: event [
+{ #category : #'event handling' }
+PluggableTextMorph >> mouseLeave: event [
 	"The mouse has left the area of the receiver"
 
 	textMorph ifNotNil: [selectionInterval := textMorph editor selectionInterval].
@@ -1161,35 +845,23 @@ PluggableTextMorph>>mouseLeave: event [
 		ifTrue:	[event hand releaseKeyboardFocus: textMorph]
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>nextTokenFrom: start direction: dir [
+{ #category : #'interactive error protocol' }
+PluggableTextMorph >> nextTokenFrom: start direction: dir [
 	^ textMorph nextTokenFrom: start direction: dir
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>notify: aString at: anInteger in: aStream [
+{ #category : #'interactive error protocol' }
+PluggableTextMorph >> notify: aString at: anInteger [ in: aStream
 	^ textMorph editor notify: aString at: anInteger in: aStream
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>offerFontMenu [
+{ #category : #'menu commands' }
+PluggableTextMorph >> offerFontMenu [
 	self handleEdit: [textMorph editor changeTextFont]
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>okToStyle [
+{ #category : #scrolling }
+PluggableTextMorph >> okToStyle [
 	self shoutEnabled 
 		ifFalse: [^ false].
 	(model respondsTo: #shoutAboutToStyle:) 
@@ -1198,21 +870,15 @@ PluggableTextMorph>>okToStyle [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel [
+{ #category : #initialization }
+PluggableTextMorph >> on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel [
 
 	self on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel setSelection: nil.
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel setSelection: setSelectionSel [
+{ #category : #initialization }
+PluggableTextMorph >> on: anObject text: getTextSel accept: setTextSel readSelection: getSelectionSel menu: getMenuSel setSelection: setSelectionSel [
 
 	self model: anObject.
 	getTextSelector := getTextSel.
@@ -1225,28 +891,19 @@ PluggableTextMorph>>on: anObject text: getTextSel accept: setTextSel readSelecti
 	self setSelection: self getSelection.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>onKeyStrokeSend: sel to: recipient [
+{ #category : #'event handling' }
+PluggableTextMorph >> onKeyStrokeSend: sel to: recipient [
 	textMorph on: #keyStroke send: sel to: recipient.
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>paste [
+{ #category : #'menu commands' }
+PluggableTextMorph >> paste [
 	self handleEdit: [textMorph editor paste].
 	self autoAccept ifTrue: [ self accept ].
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>pasteRecent [
+{ #category : #'menu commands' }
+PluggableTextMorph >> pasteRecent [
 	"Paste an item chosen from RecentClippings."
 
 	| clipping |
@@ -1255,19 +912,13 @@ PluggableTextMorph>>pasteRecent [
 	self paste.
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>prettyPrint [
+{ #category : #'menu commands' }
+PluggableTextMorph >> prettyPrint [
 	self handleEdit: [textMorph editor prettyPrint]
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>printIt [
+{ #category : #'menu commands' }
+PluggableTextMorph >> printIt [
 	| oldEditor printString |
 	textMorph editor
 		selectFrom: selectionInterval first to: selectionInterval last;
@@ -1287,19 +938,13 @@ PluggableTextMorph>>printIt [
 					self scrollSelectionIntoView ] ]
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>printerSetup [
+{ #category : #'menu commands' }
+PluggableTextMorph >> printerSetup [
 	self handleEdit: [textMorph editor printerSetup]
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>promptForCancel [
+{ #category : #styling }
+PluggableTextMorph >> promptForCancel [
 	"Ask for the appropriate action to take when unaccepted contents
 	would be overwritten."
 
@@ -1316,36 +961,24 @@ PluggableTextMorph>>promptForCancel [
 			ifFalse: [ self model clearUserEditFlag ]]
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>redo [
+{ #category : #'menu commands' }
+PluggableTextMorph >> redo [
 	self handleEdit: [ textMorph editor redo ].
 	self autoAccept ifTrue: [ self accept ].
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>referencesToIt [
+{ #category : #'menu commands' }
+PluggableTextMorph >> referencesToIt [
 	self handleEdit: [textMorph editor referencesToIt]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>replaceSelectionWith: aText [
+{ #category : #settings }
+PluggableTextMorph >> replaceSelectionWith: aText [
 	^ textMorph editor replaceSelectionWith: aText
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>resetExtent [
+{ #category : #geometry }
+PluggableTextMorph >> resetExtent [
 	"Reset the extent while maintaining the current selection.  Needed when resizing while the editor is active (when inside the pane)."
 	| tempSelection |
 	textMorph notNil ifTrue:
@@ -1356,11 +989,8 @@ PluggableTextMorph>>resetExtent [
 		self setSelection: tempSelection]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>scrollBarMenuButtonPressed: event [
+{ #category : #updating }
+PluggableTextMorph >> scrollBarMenuButtonPressed: event [
 	"The menu button in the scrollbar was pressed; put up the menu"
 
 	| menu |
@@ -1370,11 +1000,8 @@ PluggableTextMorph>>scrollBarMenuButtonPressed: event [
 		menu invokeModal]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>scrollBy: delta [
+{ #category : #private }
+PluggableTextMorph >> scrollBy: delta [
 	"Move the contents in the direction delta."
 	
 	super scrollBy: delta.
@@ -1384,30 +1011,21 @@ PluggableTextMorph>>scrollBy: delta [
 	
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>scrollDeltaHeight [
+{ #category : #geometry }
+PluggableTextMorph >> scrollDeltaHeight [
 	"Return the increment in pixels which this pane should be scrolled."
 	^ scroller firstSubmorph defaultLineHeight
 
 ]
 
-{
-	#category : #'editor access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>scrollSelectionIntoView [
+{ #category : #'editor access' }
+PluggableTextMorph >> scrollSelectionIntoView [
 	"Scroll my text into view if necessary and return true, else return false"
 	^ self scrollSelectionIntoView: nil
 ]
 
-{
-	#category : #'editor access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>scrollSelectionIntoView: event  [
+{ #category : #'editor access' }
+PluggableTextMorph >> scrollSelectionIntoView: event [ 
 	"Scroll my text into view if necessary and return true, else return false"
 	| selRects delta selRect rectToTest transform cpHere editor |
 	editor := textMorph editor.
@@ -1437,11 +1055,8 @@ PluggableTextMorph>>scrollSelectionIntoView: event  [
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>scrollToBottom [
+{ #category : #scrolling }
+PluggableTextMorph >> scrollToBottom [
 	"Scroll to the bottom."
 	
 	self
@@ -1449,11 +1064,8 @@ PluggableTextMorph>>scrollToBottom [
 		setScrollDeltas
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>scrollToTop [
+{ #category : #actions }
+PluggableTextMorph >> scrollToTop [
 	"Scroll to the top."
 	
 	self
@@ -1461,66 +1073,45 @@ PluggableTextMorph>>scrollToTop [
 		setScrollDeltas
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>select [
+{ #category : #'interactive error protocol' }
+PluggableTextMorph >> select [
 	^ textMorph editor select
 ]
 
-{
-	#category : #'editor access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>selectAll [
+{ #category : #'editor access' }
+PluggableTextMorph >> selectAll [
 	"Tell my textMorph's editor to select all"
 
 	self textMorph editor selectAll.
 	self selectionInterval: self textMorph editor selectionInterval
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>selectFrom: start to: stop [
+{ #category : #'interactive error protocol' }
+PluggableTextMorph >> selectFrom: start to: stop [
 	self textMorph editor selectFrom: start to: stop.
 	self selectionInterval: self textMorph editor selectionInterval.
 	^ self selectionInterval
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>selectInvisiblyFrom: start to: stop [
+{ #category : #'interactive error protocol' }
+PluggableTextMorph >> selectInvisiblyFrom: start to: stop [
 	^ textMorph editor selectInvisiblyFrom: start to: stop
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>selectedContents [
+{ #category : #'interactive error protocol' }
+PluggableTextMorph >> selectedContents [
 	^ textMorph editor selection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>selectionColor [
+{ #category : #accessing }
+PluggableTextMorph >> selectionColor [
 	"Answer the color to use for the text selection."
 
 	^ selectionColor 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>selectionColor: aColor [
+{ #category : #accessing }
+PluggableTextMorph >> selectionColor: aColor [
 	"Set the colour to use for the text selection."
 
 	selectionColor := aColor.
@@ -1528,74 +1119,50 @@ PluggableTextMorph>>selectionColor: aColor [
 		ifNotNil: [:t | t selectionColor: aColor]
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>selectionInterval [
+{ #category : #'interactive error protocol' }
+PluggableTextMorph >> selectionInterval [
 	^ textMorph editor selectionInterval
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>selectionInterval: sel [
+{ #category : #'model access' }
+PluggableTextMorph >> selectionInterval: sel [
 	selectionInterval := sel.
 	setSelectionSelector ifNotNil: [ model perform:setSelectionSelector with: sel ].
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>sendersOfIt [
+{ #category : #'menu commands' }
+PluggableTextMorph >> sendersOfIt [
 	self handleEdit: [textMorph editor sendersOfIt]
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>setSearchString [
+{ #category : #'menu commands' }
+PluggableTextMorph >> setSearchString [
 	self handleEdit: [textMorph editor setSearchString]
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>setSelection: sel [
+{ #category : #'model access' }
+PluggableTextMorph >> setSelection: sel [
 	self selectionInterval: sel.
 	textMorph editor selectFrom: sel first to: sel last.
 	self scrollSelectionIntoView ifFalse: [scroller changed].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>setSelectionSelector [
+{ #category : #accessing }
+PluggableTextMorph >> setSelectionSelector [
 
 	^ setSelectionSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>setSelectionSelector: aSelector [
+{ #category : #accessing }
+PluggableTextMorph >> setSelectionSelector: aSelector [
 
 	setSelectionSelector := aSelector
 
 	
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>setText: aText [
+{ #category : #'model access' }
+PluggableTextMorph >> setText: aText [
 	self okToStyle
 		ifFalse: [ self setTextBasic: aText ]
 		ifTrue: [
@@ -1605,11 +1172,8 @@ PluggableTextMorph>>setText: aText [
 				ifFalse: [ self styler styleInBackgroundProcess: textMorph contents ] ]
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>setTextBasic: aText [
+{ #category : #'model access' }
+PluggableTextMorph >> setTextBasic: aText [
 
 	((self textMorph contents size = 0) and: [self wrapFlag])
 		ifTrue: [ 
@@ -1623,21 +1187,15 @@ PluggableTextMorph>>setTextBasic: aText [
 	self setScrollDeltas.
 ]
 
-{
-	#category : #'editor access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>setTextMorphToSelectAllOnMouseEnter [
+{ #category : #'editor access' }
+PluggableTextMorph >> setTextMorphToSelectAllOnMouseEnter [
 	"Tell my textMorph's editor to select all when the mouse enters"
 
 	textMorph on: #mouseEnter send: #selectAll to: textMorph
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>setViewToFirstHighlight [
+{ #category : #actions }
+PluggableTextMorph >> setViewToFirstHighlight [
 	| min lines |
 	
 	min := (self highlights detectMin: [:e | e lineNumber ]) lineNumber.
@@ -1646,27 +1204,18 @@ PluggableTextMorph>>setViewToFirstHighlight [
 	self vScrollValue: (min/lines)
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>shoutEnabled [
+{ #category : #scrolling }
+PluggableTextMorph >> shoutEnabled [
 	^ self class shoutEnabled
 ]
 
-{
-	#category : #'scroll bar events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>showTextEditingState [
+{ #category : #'scroll bar events' }
+PluggableTextMorph >> showTextEditingState [
 	^ self class showTextEditingState
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>startDrag: event [
+{ #category : #'drag and drop' }
+PluggableTextMorph >> startDrag: event [
 	| aTransferMorph itemMorph passenger |
 	
 	self dragEnabled ifFalse: [ ^ self ].
@@ -1685,155 +1234,107 @@ PluggableTextMorph>>startDrag: event [
 	event hand releaseMouseFocus: self
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>styled: aBoolean [
+{ #category : #scrolling }
+PluggableTextMorph >> styled: aBoolean [
 
 	self styler stylingEnabled: aBoolean
 
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>styler [
+{ #category : #scrolling }
+PluggableTextMorph >> styler [
 	"The styler responsible for highlighting text in the receiver"
 	^ styler ifNil: [styler := self defaultStyler]
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>styler: aStyler [
+{ #category : #scrolling }
+PluggableTextMorph >> styler: aStyler [
 	"Set the styler responsible for highlighting text in the receiver"
 	styler := aStyler
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>stylerClass [
+{ #category : #accessing }
+PluggableTextMorph >> stylerClass [
 	^ self class stylingClass ifNil: [NullTextStyler]
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>tallyIt [
+{ #category : #'menu commands' }
+PluggableTextMorph >> tallyIt [
 	self handleEdit: [textMorph editor tallyIt]
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>text [
+{ #category : #'model access' }
+PluggableTextMorph >> text [
 	^ textMorph contents
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>textChanged [
+{ #category : #'event handling' }
+PluggableTextMorph >> textChanged [
 	"this is used in the case where we want to listen for live changes in a text morph. otherwise we're limited to the accept behavior"
 	
 	changedAction ifNotNil: [changedAction value: textMorph contents asText].
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>textColor: aColor [
+{ #category : #'model access' }
+PluggableTextMorph >> textColor: aColor [
 	"Set the color of my text to the given color"
 
 	self textMorph textColor: aColor
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>textExtent [
+{ #category : #actions }
+PluggableTextMorph >> textExtent [
 	"Answer the text morph extent."
 	
 	^(textMorph ifNil: [^0@0]) extent
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>textExtent: newExtent [
+{ #category : #actions }
+PluggableTextMorph >> textExtent: newExtent [
 	"If autoFit is on then override to false for the duration of the extent call."
 	
 	textMorph ifNil: [^self].
 	textMorph overrideExtent: newExtent
 ]
 
-{
-	#category : #'editor access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>textMorph [
+{ #category : #'editor access' }
+PluggableTextMorph >> textMorph [
 	^ textMorph ifNil: [ 
 		self textMorph: self textMorphClass new.
 		textMorph ]
 ]
 
-{
-	#category : #'editor access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>textMorph: aTextMorph [
+{ #category : #'editor access' }
+PluggableTextMorph >> textMorph: aTextMorph [
 	textMorph ifNotNil: [ 
 		scrollBar removeMorph: textMorph ].
 	textMorph := aTextMorph.
 	self configureTextMorph: textMorph.
 ]
 
-{
-	#category : #'unaccepted edits',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>textMorphClass [
+{ #category : #'unaccepted edits' }
+PluggableTextMorph >> textMorphClass [
 	"Answer the class used to create the receiver's textMorph"
 	
 	^TextMorphForEditView 
 ]
 
-{
-	#category : #'editor access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>toggleCommentOnSelectionOrLine [
+{ #category : #'editor access' }
+PluggableTextMorph >> toggleCommentOnSelectionOrLine [
 	"Tell my textMorph's editor to comment or uncomment current selection or line if no there is no selection"
 
 	textMorph editor toggleCommentOnSelectionOrLine
 	
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>undo [
+{ #category : #'menu commands' }
+PluggableTextMorph >> undo [
 	self handleEdit: [textMorph editor undo].
 	self autoAccept ifTrue: [ self accept ].
 ]
 
-{
-	#category : #transcript,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>update: aSymbol  [
+{ #category : #transcript }
+PluggableTextMorph >> update: aSymbol [ 
 	aSymbol ifNil: [^self].
 	(aSymbol == getColorSelector)
 		ifTrue: [^ self color: (model perform: getColorSelector)].
@@ -1870,11 +1371,8 @@ PluggableTextMorph>>update: aSymbol  [
 	^ self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>updateEnabled [
+{ #category : #actions }
+PluggableTextMorph >> updateEnabled [
 	"Update the enablement state."
 
 	self model ifNotNil: [
@@ -1882,29 +1380,20 @@ PluggableTextMorph>>updateEnabled [
 			self enabled: (self model perform: self getEnabledSelector)]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>vScrollBarValue: scrollValue [
+{ #category : #private }
+PluggableTextMorph >> vScrollBarValue: scrollValue [
 	super vScrollBarValue: scrollValue.
 	textMorph ifNotNil: [textMorph selectionChanged].
 	self triggerEvent: #vScroll with: scrollValue
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>wantsDroppedMorph: aMorph event: anEvent  [
+{ #category : #dropping/grabbing }
+PluggableTextMorph >> wantsDroppedMorph: aMorph event: anEvent [ 
 	^ self model wantsDroppedMorph: aMorph event: anEvent inMorph: self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>wantsFrameAdornments [
+{ #category : #actions }
+PluggableTextMorph >> wantsFrameAdornments [
 	"Answer whether the receiver wishes to have red borders, etc.,  
 	used to show editing state"
 	"A 'long-term temporary workaround': a nonmodular,  
@@ -1917,47 +1406,32 @@ PluggableTextMorph>>wantsFrameAdornments [
 					ifFalse: [false]]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>wantsFrameAdornments: aBoolean  [
+{ #category : #drawing }
+PluggableTextMorph >> wantsFrameAdornments: aBoolean [ 
 	self setProperty: #wantsFrameAdornments toValue: aBoolean
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>wrapFlag [
+{ #category : #actions }
+PluggableTextMorph >> wrapFlag [
 	"Answer the wrap flag on the text morph."
 	
 	^self textMorph wrapFlag
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>wrapFlag: aBoolean [
+{ #category : #accessing }
+PluggableTextMorph >> wrapFlag: aBoolean [
 	self textMorph ifNil: [self setText: ''].
 	textMorph wrapFlag: aBoolean
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>yellowButtonActivity [
+{ #category : #'menu commands' }
+PluggableTextMorph >> yellowButtonActivity [
 	"Called when the shifted-menu's 'more' item is chosen"
 	^ self yellowButtonActivity: false
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTextMorph>>yellowButtonActivity: shiftKeyState  [
+{ #category : #'menu commands' }
+PluggableTextMorph >> yellowButtonActivity: shiftKeyState [ 
 	"Called when the shifted-menu's 'more' item is chosen"
 	
 	(self getMenu: shiftKeyState)

@@ -4,22 +4,15 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestSystemAnnouncements,
 	#superclass : #PackageManifest,
-	#category : #System-Announcements,
-	#timestamp : '<historical>'
+	#category : #System-Announcements
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ManifestSystemAnnouncements class>>ignoredDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestSystemAnnouncements class >> ignoredDependencies [
 	^ #(#PragmaCollector)
 ]
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ManifestSystemAnnouncements class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestSystemAnnouncements class >> manuallyResolvedDependencies [
 	^ #(#Transcript)
 ]

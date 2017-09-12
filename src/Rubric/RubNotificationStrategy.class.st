@@ -9,30 +9,20 @@ Class {
 	#instVars : [
 		'editor'
 	],
-	#category : #Rubric-Editing-Core,
-	#timestamp : 'AndreiChis 10/1/2014 13:34'
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubNotificationStrategy>>editor [
+{ #category : #'as yet unclassified' }
+RubNotificationStrategy >> editor [
 	^ editor
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubNotificationStrategy>>editor: aSmalltalkEditor [
+{ #category : #'as yet unclassified' }
+RubNotificationStrategy >> editor: aSmalltalkEditor [
 	editor := aSmalltalkEditor 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubNotificationStrategy>>notify: aString at: anInteger in: aStream  [
+{ #category : #'as yet unclassified' }
+RubNotificationStrategy >> notify: aString at: anInteger [ in: aStream 
 	self subclassResponsibility 
 ]

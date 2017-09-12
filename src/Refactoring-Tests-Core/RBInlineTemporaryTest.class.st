@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBInlineTemporaryTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineTemporaryTest>>testInlineTemporary [
+{ #category : #tests }
+RBInlineTemporaryTest >> testInlineTemporary [
 	| refactoring |
 	refactoring := RBInlineTemporaryRefactoring 
 		inline: (self 
@@ -28,11 +21,8 @@ RBInlineTemporaryTest>>testInlineTemporary [
 													bar')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineTemporaryTest>>testInlineTemporaryBadInterval [
+{ #category : #tests }
+RBInlineTemporaryTest >> testInlineTemporaryBadInterval [
 	self shouldFail: (RBInlineTemporaryRefactoring 
 			inline: (self 
 					convertInterval: (29 to: 100)
@@ -41,11 +31,8 @@ RBInlineTemporaryTest>>testInlineTemporaryBadInterval [
 			in: RBRefactoryTestDataApp)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineTemporaryTest>>testInlineTemporaryMutlipleAssignment [
+{ #category : #tests }
+RBInlineTemporaryTest >> testInlineTemporaryMutlipleAssignment [
 	self shouldFail: (RBInlineTemporaryRefactoring 
 			inline: (self 
 					convertInterval: (60 to: 83)
@@ -54,11 +41,8 @@ RBInlineTemporaryTest>>testInlineTemporaryMutlipleAssignment [
 			in: RBRefactoryTestDataApp)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBInlineTemporaryTest>>testInlineTemporaryReadBeforeWritten [
+{ #category : #tests }
+RBInlineTemporaryTest >> testInlineTemporaryReadBeforeWritten [
 	self shouldFail: (RBInlineTemporaryRefactoring 
 			inline: (self 
 					convertInterval: (48 to: 56)

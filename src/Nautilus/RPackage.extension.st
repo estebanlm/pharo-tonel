@@ -1,35 +1,21 @@
-Extension {
-	#name : #RPackage
-}
+Extension { #name : #RPackage }
 
-{
-	#category : #'*Nautilus',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RPackage>>asNautilusItemPath [
+{ #category : #'*Nautilus' }
+RPackage >> asNautilusItemPath [
 	^ Array with: self
 ]
 
-{
-	#category : #'*Nautilus',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RPackage>>asNautilusNodeWithModel: anObject [
+{ #category : #'*Nautilus' }
+RPackage >> asNautilusNodeWithModel: anObject [
 	^ PackageTreePackageNodeModel with: self model: anObject.
 ]
 
-{
-	#category : #'*Nautilus',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RPackage>>asNautilusSelection  [
+{ #category : #'*Nautilus' }
+RPackage >> asNautilusSelection [ 
 	^ PackageTreePackageSelection package: self
 ]
 
-{
-	#category : #'*Nautilus',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RPackage>>withClassesIn: anEnvironment createHierarchySorter: aHierarchClass [
+{ #category : #'*Nautilus' }
+RPackage >> withClassesIn: anEnvironment createHierarchySorter: aHierarchClass [
 	^ self asNautilusSelection withClassesIn: anEnvironment createHierarchySorter: aHierarchClass
 ]

@@ -10,53 +10,37 @@ Class {
 	#classVars : [
 		'Default'
 	],
-	#category : #System-Sources,
-	#timestamp : '<historical>'
+	#category : #System-Sources
 }
 
-{
-	#category : #singleton,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener class>>default [
+{ #category : #singleton }
+PharoFilesOpener class >> default [
 	^ Default ifNil: [ Default := self new ]
 ]
 
-{
-	#category : #singleton,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener class>>reset [
+{ #category : #singleton }
+PharoFilesOpener class >> reset [
 	Default := nil
 ]
 
-{
-	#category : #messages,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>badContentMsg [
+{ #category : #messages }
+PharoFilesOpener >> badContentMsg [
 	^ '&fileRef
 has been injured by an unpacking utility.  Crs were changed to CrLfs.
 Please set the preferences in your decompressing program to 
 "do not convert text files" and unpack the system again.'
 ]
 
-{
-	#category : #messages,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>cannotLocateMsg [
+{ #category : #messages }
+PharoFilesOpener >> cannotLocateMsg [
 	^ 'Pharo cannot locate &fileRef.
 
 Please check that the file is named properly and is in the
 same directory as this image.'
 ]
 
-{
-	#category : #messages,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>cannotWriteMsg [
+{ #category : #messages }
+PharoFilesOpener >> cannotWriteMsg [
 	^ 'Pharo cannot write to &fileRef.
 
 Please check that you have write permission for this file.
@@ -64,11 +48,8 @@ Please check that you have write permission for this file.
 You won''t be able to save this image correctly until you fix this.'
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>changesFileOrNil [
+{ #category : #public }
+PharoFilesOpener >> changesFileOrNil [
 	| changes |
 	changes := self openChanges: self changesName.
 	changes
@@ -82,51 +63,33 @@ PharoFilesOpener>>changesFileOrNil [
 	^ changes
 ]
 
-{
-	#category : #delegated,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>changesName [
+{ #category : #delegated }
+PharoFilesOpener >> changesName [
 	^ Smalltalk changesName
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>ignoreIfFail: aBlock [
+{ #category : #helper }
+PharoFilesOpener >> ignoreIfFail: aBlock [
 	^ [ aBlock value ] ifError: [  ]
 ]
 
-{
-	#category : #'user interaction',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>inform: msg withChangesRef: fileRef [
+{ #category : #'user interaction' }
+PharoFilesOpener >> inform: msg withChangesRef: fileRef [
 	self inform: msg withRef: 'the changes file named ' , fileRef
 ]
 
-{
-	#category : #'user interaction',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>inform: msg withRef: fileRef [
+{ #category : #'user interaction' }
+PharoFilesOpener >> inform: msg withRef: fileRef [
 	self inform: (msg copyReplaceAll: '&fileRef' with: fileRef)
 ]
 
-{
-	#category : #'user interaction',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>inform: msg withSourceRef: fileRef [
+{ #category : #'user interaction' }
+PharoFilesOpener >> inform: msg withSourceRef: fileRef [
 	self inform: msg withRef: 'the sources file named ' , fileRef
 ]
 
-{
-	#category : #'open sources',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>informCannotLocateSources [
+{ #category : #'open sources' }
+PharoFilesOpener >> informCannotLocateSources [
 	| msg |
 	msg := self cannotLocateMsg.
 	Smalltalk os isMacOS
@@ -138,27 +101,18 @@ Make sure the sources file is not an Alias.' ].
 	self inform: msg withSourceRef: self sourcesName
 ]
 
-{
-	#category : #'user interaction',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>informProblemInChanges: msg [
+{ #category : #'user interaction' }
+PharoFilesOpener >> informProblemInChanges: msg [
 	self inform: msg withChangesRef: self changesName
 ]
 
-{
-	#category : #delegated,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>lastImagePath [
+{ #category : #delegated }
+PharoFilesOpener >> lastImagePath [
 	^ Smalltalk lastImagePath
 ]
 
-{
-	#category : #'open changes',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>openChanges: changesPath [
+{ #category : #'open changes' }
+PharoFilesOpener >> openChanges: changesPath [
 	| fileColocatedWithImage fileInWorkingDirectory locations |
 	fileColocatedWithImage := changesPath asFileReference.
 	fileInWorkingDirectory := FileSystem workingDirectory / fileColocatedWithImage basename.	"locations references all possible path where to search for the .changes file."
@@ -170,19 +124,13 @@ PharoFilesOpener>>openChanges: changesPath [
 	^ nil
 ]
 
-{
-	#category : #'open sources',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>openSources [
+{ #category : #'open sources' }
+PharoFilesOpener >> openSources [
 	^ self openSources: self sourcesName forImage: self lastImagePath
 ]
 
-{
-	#category : #'open sources',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>openSources: fullSourcesName forImage: imagePath [
+{ #category : #'open sources' }
+PharoFilesOpener >> openSources: fullSourcesName forImage: imagePath [
 	"Look in various places for a sources file, return an open stream to it."
 
 	| sourcesFile sourcesName |
@@ -206,29 +154,20 @@ PharoFilesOpener>>openSources: fullSourcesName forImage: imagePath [
 	^ nil
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>setInformAboutReadOnlyChanges [
+{ #category : #public }
+PharoFilesOpener >> setInformAboutReadOnlyChanges [
 	"Make sure the user is informed when the .changes file can not be written to."
 	shouldInformAboutReadOnlyChanges := true
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>shouldInformAboutReadOnlyChanges [
+{ #category : #public }
+PharoFilesOpener >> shouldInformAboutReadOnlyChanges [
 	"Answer true if and only if the user must be informed when the .changes file can not be written to."
 	^ shouldInformAboutReadOnlyChanges ifNil: [ shouldInformAboutReadOnlyChanges := true ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>sourcesFileOrNil [
+{ #category : #public }
+PharoFilesOpener >> sourcesFileOrNil [
 	| sources |
 	sources := self openSources.
 	^ (sources isNil or: [ sources atEnd ])
@@ -238,19 +177,13 @@ PharoFilesOpener>>sourcesFileOrNil [
 		ifFalse: [ sources ]
 ]
 
-{
-	#category : #delegated,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>sourcesName [
+{ #category : #delegated }
+PharoFilesOpener >> sourcesName [
 	^ Smalltalk sourcesName
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PharoFilesOpener>>unsetInformAboutReadOnlyChanges [
+{ #category : #public }
+PharoFilesOpener >> unsetInformAboutReadOnlyChanges [
 	"Make sure the user is *not* informed when the .changes file can not be written to."
 	shouldInformAboutReadOnlyChanges := false
 ]

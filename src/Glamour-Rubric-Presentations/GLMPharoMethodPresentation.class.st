@@ -9,15 +9,11 @@ self pharoMethodPresentationExample
 Class {
 	#name : #GLMPharoMethodPresentation,
 	#superclass : #GLMRubricSmalltalkCodePresentation,
-	#category : #Glamour-Rubric-Presentations,
-	#timestamp : 'AndreiChis 10/1/2014 13:52'
+	#category : #Glamour-Rubric-Presentations
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPharoMethodPresentation class>>pharoMethodPresentationExample [
+{ #category : #examples }
+GLMPharoMethodPresentation class >> pharoMethodPresentationExample [
 	"
 	self pharoMethodPresentationExample
 	"
@@ -39,11 +35,8 @@ GLMPharoMethodPresentation class>>pharoMethodPresentationExample [
 	browser openOn: CompiledMethod class >> #gtExampleSimple
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPharoMethodPresentation>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMPharoMethodPresentation >> renderGlamorouslyOn: aRenderer [ 
 	self registerAnnouncements.
 	^ aRenderer renderPharoMethodPresentation: self
 ]

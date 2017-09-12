@@ -7,31 +7,21 @@ Class {
 	#instVars : [
 		'address'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 15:10'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerConnectionClosedEvent>>address [
+{ #category : #accessing }
+ZnServerConnectionClosedEvent >> address [
 	^ address
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerConnectionClosedEvent>>address: anObject [
+{ #category : #accessing }
+ZnServerConnectionClosedEvent >> address: anObject [
 	address := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerConnectionClosedEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnServerConnectionClosedEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream << ' Server Connection Closed '.
 	address do: [ :each | stream print: each ] separatedBy: [ stream nextPut: $. ]

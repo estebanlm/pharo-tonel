@@ -10,15 +10,11 @@ Class {
 		'menu',
 		'text'
 	],
-	#category : #Spec-Examples,
-	#timestamp : 'Spirita 7/26/2016 14:58'
+	#category : #Spec-Examples
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ApplicationWithToolbar class>>defaultSpec [
+{ #category : #specs }
+ApplicationWithToolbar class >> defaultSpec [
 	<spec: #default>
 	
 	^ SpecLayout composed
@@ -29,19 +25,13 @@ ApplicationWithToolbar class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ApplicationWithToolbar class>>example [
+{ #category : #example }
+ApplicationWithToolbar class >> example [
 	^ self new openWithSpec
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ApplicationWithToolbar>>addItemTo: aGroup [
+{ #category : #initialization }
+ApplicationWithToolbar >> addItemTo: aGroup [
 	aGroup
 		addItem: [ :item | 
 			item
@@ -54,11 +44,8 @@ ApplicationWithToolbar>>addItemTo: aGroup [
 	self buildWithSpec
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ApplicationWithToolbar>>initializeWidgets [
+{ #category : #initialization }
+ApplicationWithToolbar >> initializeWidgets [
 	menu := MenuModel new
 		addGroup: [ :group | 
 			group
@@ -116,19 +103,13 @@ ApplicationWithToolbar>>initializeWidgets [
 	self focusOrder add: text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ApplicationWithToolbar>>menu [
+{ #category : #accessing }
+ApplicationWithToolbar >> menu [
 	^ menu
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ApplicationWithToolbar>>subMenu  [
+{ #category : #initialization }
+ApplicationWithToolbar >> subMenu [ 
 
 	^ MenuModel new
 		addGroup: [ :group |
@@ -158,19 +139,13 @@ ApplicationWithToolbar>>subMenu  [
 					action: [ self inform: 'Kill' ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ApplicationWithToolbar>>text [
+{ #category : #accessing }
+ApplicationWithToolbar >> text [
 	^ text
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ApplicationWithToolbar>>title [
+{ #category : #api }
+ApplicationWithToolbar >> title [
 
 	^ 'Text editor'
 ]

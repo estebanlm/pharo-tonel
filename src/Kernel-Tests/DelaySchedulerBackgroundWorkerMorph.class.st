@@ -24,24 +24,17 @@ Class {
 		'stringMorph',
 		'morphDeleted'
 	],
-	#category : #Kernel-Tests-Processes,
-	#timestamp : 'BenComan 3/25/2015 22:07'
+	#category : #Kernel-Tests-Processes
 }
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelaySchedulerBackgroundWorkerMorph>>delete [
+{ #category : #action }
+DelaySchedulerBackgroundWorkerMorph >> delete [
     morphDeleted := true.
     super delete.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelaySchedulerBackgroundWorkerMorph>>initialize [
+{ #category : #initialization }
+DelaySchedulerBackgroundWorkerMorph >> initialize [
     "DelaySchedulerBackgroundWorkerMorph new openInWorld"
     | workerProcess controllerProcess |
     super initialize.
@@ -70,18 +63,12 @@ DelaySchedulerBackgroundWorkerMorph>>initialize [
     controllerProcess resume.
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelaySchedulerBackgroundWorkerMorph>>step [
+{ #category : #stepping }
+DelaySchedulerBackgroundWorkerMorph >> step [
     stringMorph contents: work printString 
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelaySchedulerBackgroundWorkerMorph>>stepTime [
+{ #category : #stepping }
+DelaySchedulerBackgroundWorkerMorph >> stepTime [
     ^ 50
 ]

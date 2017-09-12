@@ -3,44 +3,29 @@ A trait for test purposes
 "
 Trait {
 	#name : #TIndexAccess,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:34'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccess>>collectionMoreThan1NoDuplicates [
+{ #category : #requirements }
+TIndexAccess >> collectionMoreThan1NoDuplicates [
 	" return a collection of size > 1 without equal elements"
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccess>>elementInForIndexAccessing [
+{ #category : #requirements }
+TIndexAccess >> elementInForIndexAccessing [
 " return an element included in 'collectionMoreThan1NoDuplicates' "
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccess>>elementNotInForIndexAccessing [
+{ #category : #requirements }
+TIndexAccess >> elementNotInForIndexAccessing [
 " return an element not included in 'collectionMoreThan1NoDuplicates' "
 	self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccess>>test0FixtureIndexAccessTest [
+{ #category : #'tests - fixture' }
+TIndexAccess >> test0FixtureIndexAccessTest [
 	| res collection element |
 	self collectionMoreThan1NoDuplicates.
 	self assert: self collectionMoreThan1NoDuplicates size > 1.
@@ -56,11 +41,8 @@ TIndexAccess>>test0FixtureIndexAccessTest [
 	self deny: (self collectionMoreThan1NoDuplicates includes: self elementNotInForIndexAccessing)
 ]
 
-{
-	#category : #'tests - index access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccess>>testIdentityIndexOf [
+{ #category : #'tests - index access' }
+TIndexAccess >> testIdentityIndexOf [
 	"self debug: #testIdentityIndexOf"
 	| collection element |
 	collection := self collectionMoreThan1NoDuplicates.
@@ -68,11 +50,8 @@ TIndexAccess>>testIdentityIndexOf [
 	self assert: (collection identityIndexOf: element) = (collection indexOf: element)
 ]
 
-{
-	#category : #'tests - index access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccess>>testIdentityIndexOfIAbsent [
+{ #category : #'tests - index access' }
+TIndexAccess >> testIdentityIndexOfIAbsent [
 	| collection element |
 	collection := self collectionMoreThan1NoDuplicates.
 	element := collection first.
@@ -84,11 +63,8 @@ TIndexAccess>>testIdentityIndexOfIAbsent [
 			ifAbsent: [ 55 ]) = 55
 ]
 
-{
-	#category : #'tests - index access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccess>>testIndexOf [
+{ #category : #'tests - index access' }
+TIndexAccess >> testIndexOf [
 	"self debug: #testIndexOf"
 	| tmp index collection |
 	collection := self collectionMoreThan1NoDuplicates.
@@ -100,11 +76,8 @@ TIndexAccess>>testIndexOf [
 	self assert: (collection indexOf: self elementInForIndexAccessing) = index
 ]
 
-{
-	#category : #'tests - index access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccess>>testIndexOfIfAbsent [
+{ #category : #'tests - index access' }
+TIndexAccess >> testIndexOfIfAbsent [
 	"self debug: #testIndexOfIfAbsent"
 	| collection |
 	collection := self collectionMoreThan1NoDuplicates.
@@ -116,11 +89,8 @@ TIndexAccess>>testIndexOfIfAbsent [
 			ifAbsent: [ 33 ]) = 33
 ]
 
-{
-	#category : #'tests - index access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccess>>testIndexOfStartingAt [
+{ #category : #'tests - index access' }
+TIndexAccess >> testIndexOfStartingAt [
 	"self debug: #testLastIndexOf"
 	| element collection |
 	collection := self collectionMoreThan1NoDuplicates.
@@ -139,11 +109,8 @@ TIndexAccess>>testIndexOfStartingAt [
 			ifAbsent: [ 99 ]) = 99
 ]
 
-{
-	#category : #'tests - index access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccess>>testIndexOfStartingAtIfAbsent [
+{ #category : #'tests - index access' }
+TIndexAccess >> testIndexOfStartingAtIfAbsent [
 	"self debug: #testLastIndexOf"
 	| element collection |
 	collection := self collectionMoreThan1NoDuplicates.
@@ -162,11 +129,8 @@ TIndexAccess>>testIndexOfStartingAtIfAbsent [
 			ifAbsent: [ 99 ]) = 99
 ]
 
-{
-	#category : #'tests - index access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccess>>testIndexOfSubCollectionStartingAt [
+{ #category : #'tests - index access' }
+TIndexAccess >> testIndexOfSubCollectionStartingAt [
 	"self debug: #testIndexOfIfAbsent"
 	| subcollection index collection |
 	collection := self collectionMoreThan1NoDuplicates.
@@ -181,11 +145,8 @@ TIndexAccess>>testIndexOfSubCollectionStartingAt [
 	self assert: index = 0
 ]
 
-{
-	#category : #'tests - index access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccess>>testIndexOfSubCollectionStartingAtIfAbsent [
+{ #category : #'tests - index access' }
+TIndexAccess >> testIndexOfSubCollectionStartingAtIfAbsent [
 	"self debug: #testIndexOfIfAbsent"
 	| index absent subcollection collection |
 	collection := self collectionMoreThan1NoDuplicates.
@@ -204,11 +165,8 @@ TIndexAccess>>testIndexOfSubCollectionStartingAtIfAbsent [
 	self assert: absent = true
 ]
 
-{
-	#category : #'tests - index access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccess>>testLastIndexOf [
+{ #category : #'tests - index access' }
+TIndexAccess >> testLastIndexOf [
 	"self debug: #testLastIndexOf"
 	| element collection |
 	collection := self collectionMoreThan1NoDuplicates.
@@ -217,11 +175,8 @@ TIndexAccess>>testLastIndexOf [
 	self assert: (collection lastIndexOf: self elementNotInForIndexAccessing) = 0
 ]
 
-{
-	#category : #'tests - index access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccess>>testLastIndexOfIfAbsent [
+{ #category : #'tests - index access' }
+TIndexAccess >> testLastIndexOfIfAbsent [
 	"self debug: #testIndexOfIfAbsent"
 	| element collection |
 	collection := self collectionMoreThan1NoDuplicates.
@@ -234,11 +189,8 @@ TIndexAccess>>testLastIndexOfIfAbsent [
 			ifAbsent: [ 99 ]) = 99
 ]
 
-{
-	#category : #'tests - index access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIndexAccess>>testLastIndexOfStartingAt [
+{ #category : #'tests - index access' }
+TIndexAccess >> testLastIndexOfStartingAt [
 	"self debug: #testLastIndexOf"
 	| element collection |
 	collection := self collectionMoreThan1NoDuplicates.

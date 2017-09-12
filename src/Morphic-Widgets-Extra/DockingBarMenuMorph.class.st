@@ -1,39 +1,26 @@
-"
-
-"
 Class {
 	#name : #DockingBarMenuMorph,
 	#superclass : #MenuMorph,
 	#instVars : [
 		'activatorDockingBar'
 	],
-	#category : #Morphic-Widgets-Extra,
-	#timestamp : ''
+	#category : #Morphic-Widgets-Extra
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuMorph>>activatedFromDockingBar: aDockingBar  [
+{ #category : #accessing }
+DockingBarMenuMorph >> activatedFromDockingBar: aDockingBar [ 
 	activatorDockingBar := aDockingBar
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuMorph>>activeSubmenu: aSubmenu  [
+{ #category : #'as yet unclassified' }
+DockingBarMenuMorph >> activeSubmenu: aSubmenu [ 
 	super activeSubmenu: aSubmenu.
 	aSubmenu
 		ifNotNil: [activeSubMenu activatedFromDockingBar: nil]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuMorph>>roundedCorners [
+{ #category : #'as yet unclassified' }
+DockingBarMenuMorph >> roundedCorners [
 	"Return a list of those corners to round"
 	self wasActivatedFromDockingBar
 		ifTrue: [
@@ -50,11 +37,8 @@ DockingBarMenuMorph>>roundedCorners [
 	^ super roundedCorners
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuMorph>>veryDeepInner: deepCopier [
+{ #category : #'as yet unclassified' }
+DockingBarMenuMorph >> veryDeepInner: deepCopier [
 	"Copy all of my instance variables.  Some need to be not copied at all, but shared.  	Warning!!  Every instance variable defined in this class must be handled.  We must also implement veryDeepFixupWith:.  See DeepCopier class comment."
 
 	super veryDeepInner: deepCopier.
@@ -63,11 +47,8 @@ DockingBarMenuMorph>>veryDeepInner: deepCopier [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-DockingBarMenuMorph>>wasActivatedFromDockingBar [
+{ #category : #accessing }
+DockingBarMenuMorph >> wasActivatedFromDockingBar [
 	"answer true if the receiver was activated from a docking bar"
 	^ activatorDockingBar notNil
 ]

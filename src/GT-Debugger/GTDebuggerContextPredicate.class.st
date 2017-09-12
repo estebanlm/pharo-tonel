@@ -19,45 +19,32 @@ Class {
 	#instVars : [
 		'result'
 	],
-	#category : #GT-Debugger-Model,
-	#timestamp : 'AndreiChis 12/30/2015 10:17'
+	#category : #GT-Debugger-Model
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerContextPredicate>>hasMatched [
+{ #category : #testing }
+GTDebuggerContextPredicate >> hasMatched [
 
 	^ self result ifNil: [ ^ false ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerContextPredicate>>matchContext: aContext [
+{ #category : #testing }
+GTDebuggerContextPredicate >> matchContext: aContext [
 	"Subclasses should implement this method to add concrete conditions. "
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerContextPredicate>>matches: aContext [
+{ #category : #testing }
+GTDebuggerContextPredicate >> matches: aContext [
 	"Return true if the given context satisfies the condition contained by this predicate,
 	or false otherwise."
 	
 	^ result := self matchContext: aContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebuggerContextPredicate>>result [
+{ #category : #accessing }
+GTDebuggerContextPredicate >> result [
 	"The value returned by the most recent call to matches: "
 	
 	^ result

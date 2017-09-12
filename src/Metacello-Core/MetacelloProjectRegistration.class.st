@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloProjectRegistration,
 	#superclass : #Object,
@@ -16,15 +13,11 @@ Class {
 	#classVars : [
 		'Registry'
 	],
-	#category : #Metacello-Core-Scripts,
-	#timestamp : ''
+	#category : #Metacello-Core-Scripts
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>baselineClasses [
+{ #category : #accessing }
+MetacelloProjectRegistration class >> baselineClasses [
     "Return a set of the Metacello baseline classes that have been loaded into the image."
 
     "self baselineClasses"
@@ -32,21 +25,15 @@ MetacelloProjectRegistration class>>baselineClasses [
     ^ BaselineOf allSubclasses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>baselineProjectSpecs [
+{ #category : #accessing }
+MetacelloProjectRegistration class >> baselineProjectSpecs [
     "MetacelloProjectRegistration baselineProjectSpecs"
 
     ^ self registry baselineProjectSpecs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>classRemoved: aClassRemovalAnnouncement [
+{ #category : #accessing }
+MetacelloProjectRegistration class >> classRemoved: aClassRemovalAnnouncement [
   "aRemovalAnnouncement is platform-specific ... responds to #itemClass to 
    answer the class that was removed."
 
@@ -58,11 +45,8 @@ MetacelloProjectRegistration class>>classRemoved: aClassRemovalAnnouncement [
   registration unregisterProject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>configurationClasses [
+{ #category : #accessing }
+MetacelloProjectRegistration class >> configurationClasses [
     "Return a set of the Metacello configuration classes that have been loaded into the image."
 
     "self configurationClasses"
@@ -84,21 +68,15 @@ MetacelloProjectRegistration class>>configurationClasses [
     ^ answer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>configurationProjectSpecs [
+{ #category : #accessing }
+MetacelloProjectRegistration class >> configurationProjectSpecs [
     "MetacelloProjectRegistration configurationProjectSpecs"
 
     ^ self registry configurationProjectSpecs
 ]
 
-{
-	#category : #mutability,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>copyRegistryRestoreOnErrorWhile: aBlock [
+{ #category : #mutability }
+MetacelloProjectRegistration class >> copyRegistryRestoreOnErrorWhile: aBlock [
   "install copy of registry for duration of <aBlock> execution."
 
   "registrations will be copied on write during <aBlock> execution."
@@ -118,11 +96,8 @@ MetacelloProjectRegistration class>>copyRegistryRestoreOnErrorWhile: aBlock [
   self registry: newRegistry	"if control returned, install newRegistry"
 ]
 
-{
-	#category : #mutability,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>copyRegistryWhile: aBlock [
+{ #category : #mutability }
+MetacelloProjectRegistration class >> copyRegistryWhile: aBlock [
     "install copy of registry for duration of <aBlock> execution."
 
     "registrations will be copied on write during <aBlock> execution."
@@ -140,61 +115,43 @@ MetacelloProjectRegistration class>>copyRegistryWhile: aBlock [
             self registry: oldRegistry ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>fromMCBaselineProjectSpec: aProjectSpec [
+{ #category : #'instance creation' }
+MetacelloProjectRegistration class >> fromMCBaselineProjectSpec: aProjectSpec [
     ^ self new
         projectName: aProjectSpec name;
         baselineProjectSpec: aProjectSpec;
         yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>fromMCConfigurationProjectSpec: aProjectSpec [
+{ #category : #'instance creation' }
+MetacelloProjectRegistration class >> fromMCConfigurationProjectSpec: aProjectSpec [
     ^ self new
         projectName: aProjectSpec name;
         configurationProjectSpec: aProjectSpec;
         yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>primeRegistryFromImage [
+{ #category : #accessing }
+MetacelloProjectRegistration class >> primeRegistryFromImage [
     "MetacelloProjectRegistration primeRegistryFromImage"
 
     self registry primeRegistryFromImage
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>projectSpecForClassNamed: aClassName ifAbsent: absentBlock [
+{ #category : #querying }
+MetacelloProjectRegistration class >> projectSpecForClassNamed: aClassName ifAbsent: absentBlock [
     ^ self registry projectSpecForClassNamed: aClassName ifAbsent: absentBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>projectSpecs [
+{ #category : #accessing }
+MetacelloProjectRegistration class >> projectSpecs [
     "MetacelloProjectRegistration projectSpecs"
 
     ^ self configurationProjectSpecs , self baselineProjectSpecs
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>registerProjectSpec: aProjectSpec ifPresent: presentBlock [
+{ #category : #registration }
+MetacelloProjectRegistration class >> registerProjectSpec: aProjectSpec ifPresent: presentBlock [
     | newRegistration |
     newRegistration := aProjectSpec asProjectRegistration.
     ^ self registry
@@ -203,19 +160,13 @@ MetacelloProjectRegistration class>>registerProjectSpec: aProjectSpec ifPresent:
         ifAbsent: [ newRegistration registerProject ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>registrationForClassNamed: aClassName ifAbsent: absentBlock [
+{ #category : #querying }
+MetacelloProjectRegistration class >> registrationForClassNamed: aClassName ifAbsent: absentBlock [
     ^ self registry registrationForClassNamed: aClassName ifAbsent: absentBlock
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>registrationForProjectSpec: aProjectSpec ifAbsent: absentBlock ifPresent: presentBlock [
+{ #category : #querying }
+MetacelloProjectRegistration class >> registrationForProjectSpec: aProjectSpec ifAbsent: absentBlock ifPresent: presentBlock [
     | newRegistration |
     newRegistration := aProjectSpec asProjectRegistration.
     self registry
@@ -224,65 +175,44 @@ MetacelloProjectRegistration class>>registrationForProjectSpec: aProjectSpec ifA
         ifAbsent: [ ^ absentBlock value: newRegistration ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>registry [
+{ #category : #accessing }
+MetacelloProjectRegistration class >> registry [
     Registry ifNil: [ Registry := MetacelloProjectRegistry new ].
     ^ Registry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>registry: aMetacelloProjectRegistry [
+{ #category : #accessing }
+MetacelloProjectRegistration class >> registry: aMetacelloProjectRegistry [
     Registry := aMetacelloProjectRegistry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration class>>resetRegistry [
+{ #category : #accessing }
+MetacelloProjectRegistration class >> resetRegistry [
     Registry := nil
 ]
 
-{
-	#category : #comparision,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>= aRegistration [
+{ #category : #comparision }
+MetacelloProjectRegistration >> = aRegistration [
     aRegistration class == self class
         ifFalse: [ ^ false ].
     ^ (configurationProjectSpec registrationsCompareEqual: aRegistration configurationProjectSpec)
         and: [ baselineProjectSpec registrationsCompareEqual: aRegistration baselineProjectSpec ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>baseName [
+{ #category : #accessing }
+MetacelloProjectRegistration >> baseName [
 	^ self projectSpec baseName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>baselineProjectSpec [
+{ #category : #accessing }
+MetacelloProjectRegistration >> baselineProjectSpec [
   "only one of baselineProjectSpec or configurationProjectSpec should ever be set"
 
   ^ baselineProjectSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>baselineProjectSpec: anObject [
+{ #category : #accessing }
+MetacelloProjectRegistration >> baselineProjectSpec: anObject [
   "force the registration to be consistent -- difficult for Metacello to 
    repair registrations during load -- I've tried. "
 
@@ -294,27 +224,18 @@ MetacelloProjectRegistration>>baselineProjectSpec: anObject [
   baselineProjectSpec := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>baselineProjectSpecIfAbsent: absentBlock [
+{ #category : #accessing }
+MetacelloProjectRegistration >> baselineProjectSpecIfAbsent: absentBlock [
   ^ baselineProjectSpec ifNil: absentBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>baselineProjectSpecIfPresent: presentBlock ifAbsent: absentBlock [
+{ #category : #accessing }
+MetacelloProjectRegistration >> baselineProjectSpecIfPresent: presentBlock ifAbsent: absentBlock [
      ^ baselineProjectSpec ifNotNil: [ presentBlock cull: baselineProjectSpec ]  ifNil: absentBlock
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>canDowngradeTo: aProjectRegistration [
+{ #category : #testing }
+MetacelloProjectRegistration >> canDowngradeTo: aProjectRegistration [
     "true if there are no load conflicts
         OR
        if the load conflicts involved two cofigurations ONLY and a downgrade is allowed"
@@ -330,11 +251,8 @@ MetacelloProjectRegistration>>canDowngradeTo: aProjectRegistration [
     ^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>canUpgradeTo: aProjectRegistration [
+{ #category : #testing }
+MetacelloProjectRegistration >> canUpgradeTo: aProjectRegistration [
   "true if there are no load conflicts
         OR
        if the load conflicts involved two cofigurations ONLY and an upgrade is allowed"
@@ -358,21 +276,15 @@ MetacelloProjectRegistration>>canUpgradeTo: aProjectRegistration [
   ^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>configurationProjectSpec [
+{ #category : #accessing }
+MetacelloProjectRegistration >> configurationProjectSpec [
   "only one of baselineProjectSpec or configurationProjectSpec should ever be set"
 
   ^ configurationProjectSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>configurationProjectSpec: anObject [
+{ #category : #accessing }
+MetacelloProjectRegistration >> configurationProjectSpec: anObject [
   "force the registration to be consistent -- difficult for Metacello to 
    repair registrations during load -- I've tried. "
 
@@ -384,27 +296,18 @@ MetacelloProjectRegistration>>configurationProjectSpec: anObject [
   configurationProjectSpec := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>configurationProjectSpecIfAbsent: absentBlock [
+{ #category : #accessing }
+MetacelloProjectRegistration >> configurationProjectSpecIfAbsent: absentBlock [
     ^ configurationProjectSpec ifNil: absentBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>configurationProjectSpecIfPresent: presentBlock ifAbsent: absentBlock [
+{ #category : #accessing }
+MetacelloProjectRegistration >> configurationProjectSpecIfPresent: presentBlock ifAbsent: absentBlock [
     ^ configurationProjectSpec ifNotNil: [ presentBlock cull: configurationProjectSpec ]  ifNil: absentBlock
 ]
 
-{
-	#category : #mutability,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>copyOnWrite: aBlock [
+{ #category : #mutability }
+MetacelloProjectRegistration >> copyOnWrite: aBlock [
     "assume that only registered projects are immutable ... otherwise you'll get an error"
 
     | copy |
@@ -421,11 +324,8 @@ MetacelloProjectRegistration>>copyOnWrite: aBlock [
     ^ copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>currentBranchName [
+{ #category : #accessing }
+MetacelloProjectRegistration >> currentBranchName [
   ^ self configurationProjectSpec
     ifNotNil: [ 
       configurationProjectSpec versionOrNil
@@ -434,29 +334,20 @@ MetacelloProjectRegistration>>currentBranchName [
     ifNil: [ baselineProjectSpec repositoryBranchName ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>currentVersionString [
+{ #category : #accessing }
+MetacelloProjectRegistration >> currentVersionString [
   ^ self configurationProjectSpec
     ifNotNil: [ :aSpec | aSpec versionString ]
     ifNil: [ baselineProjectSpec repositoryVersionString ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>currentlyLoadedClassesInProject [
+{ #category : #querying }
+MetacelloProjectRegistration >> currentlyLoadedClassesInProject [
 	^ self projectSpec currentlyLoadedClassesInVersion asSet
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>hasLoadConflicts: aProjectRegistration [
+{ #category : #testing }
+MetacelloProjectRegistration >> hasLoadConflicts: aProjectRegistration [
 	"5 combinations of loads with no load conflicts:
         No configs and baselines =
         configs = and no baselines
@@ -470,37 +361,25 @@ MetacelloProjectRegistration>>hasLoadConflicts: aProjectRegistration [
 	^ self projectSpec hasConflictWithProjectSpec: aProjectRegistration projectSpec
 ]
 
-{
-	#category : #comparision,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>hash [
+{ #category : #comparision }
+MetacelloProjectRegistration >> hash [
     ^ ((String stringHash: projectName initialHash: 0) bitXor: configurationProjectSpec metacelloRegistrationHash)
         bitXor: baselineProjectSpec metacelloRegistrationHash
 ]
 
-{
-	#category : #mutability,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>immutable [
+{ #category : #mutability }
+MetacelloProjectRegistration >> immutable [
     mutable := false
 ]
 
-{
-	#category : #mutability,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>isMutable [
+{ #category : #mutability }
+MetacelloProjectRegistration >> isMutable [
     mutable ifNil: [ ^ true ].
     ^ mutable
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>isValid [
+{ #category : #testing }
+MetacelloProjectRegistration >> isValid [
   " has a name and one or the other of the projectSpecs is non-nil, but not both ... this is CRITICAL"
 
   projectName ifNil: [ ^ false ].
@@ -509,65 +388,44 @@ MetacelloProjectRegistration>>isValid [
   ^ baselineProjectSpec isNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>loadedInImage [
+{ #category : #accessing }
+MetacelloProjectRegistration >> loadedInImage [
     loadedInImage ifNil: [ loadedInImage := false ].
     ^ loadedInImage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>loadedInImage: anObject [
+{ #category : #accessing }
+MetacelloProjectRegistration >> loadedInImage: anObject [
     self shouldBeMutable.
     loadedInImage := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>locked [
+{ #category : #accessing }
+MetacelloProjectRegistration >> locked [
     locked ifNil: [ locked := false ].
     ^ locked
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>locked: anObject [
+{ #category : #accessing }
+MetacelloProjectRegistration >> locked: anObject [
     self shouldBeMutable.
     locked := anObject
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>lookupBaselineSpec [
+{ #category : #lookup }
+MetacelloProjectRegistration >> lookupBaselineSpec [
   baselineProjectSpec ifNotNil: [ :spec | ^ spec ].
   ^ configurationProjectSpec
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>lookupConfigurationSpec [
+{ #category : #lookup }
+MetacelloProjectRegistration >> lookupConfigurationSpec [
   configurationProjectSpec ifNotNil: [ :spec | ^ spec ].
   ^ baselineProjectSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>merge: aProjectRegistration [
+{ #category : #accessing }
+MetacelloProjectRegistration >> merge: aProjectRegistration [
   " ... merge is done when a spec has been loaded into the image"
 
   self shouldBeMutable.
@@ -588,28 +446,19 @@ MetacelloProjectRegistration>>merge: aProjectRegistration [
         versionString: baselineProjectSpec repositoryVersionString ]
 ]
 
-{
-	#category : #mutability,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>mutable [
+{ #category : #mutability }
+MetacelloProjectRegistration >> mutable [
     mutable := true
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>postCopy [
+{ #category : #copying }
+MetacelloProjectRegistration >> postCopy [
     super postCopy.
     mutable := nil
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>printOn: aStream [
+{ #category : #printing }
+MetacelloProjectRegistration >> printOn: aStream [
   | label versionString descriptions |
   self
     configurationProjectSpecIfPresent: [ :spec | 
@@ -637,39 +486,27 @@ MetacelloProjectRegistration>>printOn: aStream [
       aStream nextPut: $} ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>projectName [
+{ #category : #accessing }
+MetacelloProjectRegistration >> projectName [
 	^ projectName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>projectName: anObject [
+{ #category : #accessing }
+MetacelloProjectRegistration >> projectName: anObject [
     self shouldBeMutable.
     projectName := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>projectSpec [
+{ #category : #accessing }
+MetacelloProjectRegistration >> projectSpec [
 	^ baselineProjectSpec
 		ifNil: [ 
 			self assert: configurationProjectSpec notNil.
 			configurationProjectSpec ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>projectVersion [
+{ #category : #accessing }
+MetacelloProjectRegistration >> projectVersion [
   | pv |
   pv := self versionInfo projectVersion.
   pv
@@ -679,64 +516,43 @@ MetacelloProjectRegistration>>projectVersion [
   ^ pv
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>registerProject [
+{ #category : #registration }
+MetacelloProjectRegistration >> registerProject [
     "unconditionally register <newRegistration> ... use with care"
 
     self class registry registerProjectRegistration: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>repositoryDescriptions [
+{ #category : #accessing }
+MetacelloProjectRegistration >> repositoryDescriptions [
     ^ (self configurationProjectSpecIfAbsent: [ self baselineProjectSpec ]) repositoryDescriptions
 ]
 
-{
-	#category : #mutability,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>shouldBeMutable [
+{ #category : #mutability }
+MetacelloProjectRegistration >> shouldBeMutable [
     self isMutable
         ifTrue: [ ^ self ].
     self error: 'Not allowed to modify an immutable object'
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>unregisterProject [
+{ #category : #registration }
+MetacelloProjectRegistration >> unregisterProject [
     self class registry unregisterProjectRegistration: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>validate [
+{ #category : #accessing }
+MetacelloProjectRegistration >> validate [
 	self isValid
 		ifFalse: [ self error: 'Invalid project registration' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>version [
+{ #category : #accessing }
+MetacelloProjectRegistration >> version [
     ^ (self configurationProjectSpecIfAbsent: [ ^ MetacelloMCBaselineProject singletonVersionName ]) versionString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>versionInfo [
+{ #category : #accessing }
+MetacelloProjectRegistration >> versionInfo [
   versionInfo
     ifNil: [ 
       versionInfo := MetacelloProjectRegistrationVersionInfo new.
@@ -749,10 +565,7 @@ MetacelloProjectRegistration>>versionInfo [
   ^ versionInfo
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectRegistration>>versionInfo: aMetacelloProjectRegistrationVersionInfo [
+{ #category : #accessing }
+MetacelloProjectRegistration >> versionInfo: aMetacelloProjectRegistrationVersionInfo [
   versionInfo := aMetacelloProjectRegistrationVersionInfo
 ]

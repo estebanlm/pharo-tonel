@@ -1,19 +1,11 @@
-Extension {
-	#name : #Symbol
-}
+Extension { #name : #Symbol }
 
-{
-	#category : #'*System-Support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Symbol>>implementors [
+{ #category : #'*System-Support' }
+Symbol >> implementors [
 	^SystemNavigation new allImplementorsOf: self
 ]
 
-{
-	#category : #'*System-Support',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Symbol>>senders [
+{ #category : #'*System-Support' }
+Symbol >> senders [
 	^SystemNavigation new allSendersOf: self
 ]

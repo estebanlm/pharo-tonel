@@ -7,40 +7,27 @@ Class {
 	#instVars : [
 		'forkedProcesses'
 	],
-	#category : #Kernel-Tests-Processes,
-	#timestamp : 'DenisKudryashov 9/1/2016 13:36'
+	#category : #Kernel-Tests-Processes
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExecutionEnvironmentStub>>forkedProcesses [
+{ #category : #accessing }
+ExecutionEnvironmentStub >> forkedProcesses [
 	^ forkedProcesses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExecutionEnvironmentStub>>forkedProcesses: anObject [
+{ #category : #accessing }
+ExecutionEnvironmentStub >> forkedProcesses: anObject [
 	forkedProcesses := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExecutionEnvironmentStub>>initialize [
+{ #category : #initialization }
+ExecutionEnvironmentStub >> initialize [
 	super initialize.
 	
 	forkedProcesses := OrderedCollection new
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExecutionEnvironmentStub>>prepareForNewProcess: aProcess  [
+{ #category : #controlling }
+ExecutionEnvironmentStub >> prepareForNewProcess: aProcess [ 
 	forkedProcesses add: aProcess
 ]

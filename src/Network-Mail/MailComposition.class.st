@@ -12,34 +12,24 @@ Class {
 	#classVars : [
 		'SmtpServer'
 	],
-	#category : #Network-Mail,
-	#timestamp : '<historical>'
+	#category : #Network-Mail
 }
 
-{
-	#category : #'smtp server',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition class>>isSmtpServerSet [
+{ #category : #'smtp server' }
+MailComposition class >> isSmtpServerSet [
 	^ SmtpServer notNil and: [SmtpServer notEmpty]
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition class>>sendMailMessage: aMailMessage [
+{ #category : #'instance creation' }
+MailComposition class >> sendMailMessage: aMailMessage [
 	| newComposition |
 	newComposition := self new.
 	newComposition messageText: aMailMessage text; open
 ]
 
-{
-	#category : #'smtp server',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition class>>setSmtpServer [
+{ #category : #'smtp server' }
+MailComposition class >> setSmtpServer [
 	"Set the SMTP server used to send outgoing messages via"
 	SmtpServer ifNil: [SmtpServer := ''].
 	SmtpServer := UIManager default
@@ -48,19 +38,13 @@ MailComposition class>>setSmtpServer [
 
 ]
 
-{
-	#category : #'smtp server',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition class>>setSmtpServer: aString [
+{ #category : #'smtp server' }
+MailComposition class >> setSmtpServer: aString [
 	SmtpServer := aString
 ]
 
-{
-	#category : #'smtp server',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition class>>smtpServer [
+{ #category : #'smtp server' }
+MailComposition class >> smtpServer [
 	"Answer the server for sending email"
 
 	self isSmtpServerSet
@@ -71,11 +55,8 @@ MailComposition class>>smtpServer [
 	^SmtpServer
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition>>addAttachment [
+{ #category : #interface }
+MailComposition >> addAttachment [
 	| fileSelected |
 	self textModel hasUnacceptedEdits
 		ifTrue: [ self textModel acceptEditsInView ].
@@ -92,11 +73,8 @@ MailComposition>>addAttachment [
 						yourself) ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition>>breakLines: aString  atWidth: width [
+{ #category : #private }
+MailComposition >> breakLines: aString  atWidth: width [
 	"break lines in the given string into shorter lines"
 	| result atAttachment |
 
@@ -145,11 +123,8 @@ MailComposition>>breakLines: aString  atWidth: width [
 	^result contents
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition>>breakLinesInMessage: message [
+{ #category : #private }
+MailComposition >> breakLinesInMessage: message [
 	"reformat long lines in the specified message into shorter ones"
 
 	"multipart message; process the top-level parts.  HACK: the parts are modified in place"
@@ -172,11 +147,8 @@ MailComposition>>breakLinesInMessage: message [
 	message regenerateBodyFromParts
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition>>menuGet: aMenu shifted: shifted [
+{ #category : #interface }
+MailComposition >> menuGet: aMenu shifted: shifted [
 	
 	aMenu addList: {
 		{'Find...(f)' .	#find}.
@@ -188,41 +160,29 @@ MailComposition>>menuGet: aMenu shifted: shifted [
 	^aMenu.
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition>>messageText [
+{ #category : #access }
+MailComposition >> messageText [
 	"return the current text"
 	^messageText.
 
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition>>messageText: aText [
+{ #category : #access }
+MailComposition >> messageText: aText [
 	"change the current text"
 	messageText := aText.
 	self changed: #messageText.
 	^true
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition>>open [
+{ #category : #interface }
+MailComposition >> open [
 	"open an interface"
 	self openInMorphic 
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition>>openInMorphic [
+{ #category : #interface }
+MailComposition >> openInMorphic [
 	"open an interface for sending a mail message with the given initial 
 	text"
 
@@ -256,27 +216,18 @@ MailComposition>>openInMorphic [
 	morphicWindow openInWorld
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition>>sendMailMessage: aMailMessage [
+{ #category : #interface }
+MailComposition >> sendMailMessage: aMailMessage [
 	self messageText: aMailMessage text
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition>>smtpServer [
+{ #category : #access }
+MailComposition >> smtpServer [
 	^self class smtpServer
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition>>submit [
+{ #category : #access }
+MailComposition >> submit [
 	| message |
 	"submit the message"
 	self textModel hasUnacceptedEdits
@@ -291,10 +242,7 @@ MailComposition>>submit [
 	morphicWindow ifNotNil: [ morphicWindow delete ]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailComposition>>textModel [
+{ #category : #access }
+MailComposition >> textModel [
 	^ textModel ifNil: [ textModel := RubScrolledTextModel new interactionModel: self ]
 ]

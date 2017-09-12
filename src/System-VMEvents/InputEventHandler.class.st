@@ -18,48 +18,31 @@ Class {
 	#pools : [
 		'EventSensorConstants'
 	],
-	#category : #System-VMEvents,
-	#timestamp : 'michael.rueger 4/22/2009 11:56'
+	#category : #System-VMEvents
 }
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventHandler>>flushEvents [
-
+{ #category : #events }
+InputEventHandler >> flushEvents [
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventHandler>>handleEvent: eventBuffer [
+{ #category : #events }
+InputEventHandler >> handleEvent: eventBuffer [
 	self subclassResponsibility
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventHandler>>isKbdEvent: bufEvt [
+{ #category : #events }
+InputEventHandler >> isKbdEvent: bufEvt [
 	^ bufEvt first = EventTypeKeyboard and: [ bufEvt fourth = EventKeyChar ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventHandler>>registerIn: anEventFetcher [
+{ #category : #initialize-release }
+InputEventHandler >> registerIn: anEventFetcher [
 	eventFetcher := anEventFetcher.
 	eventFetcher registerHandler: self
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-InputEventHandler>>unregister [
+{ #category : #initialize-release }
+InputEventHandler >> unregister [
 	eventFetcher ifNotNil: [
 			eventFetcher unregisterHandler: self.
 			eventFetcher := nil. ]

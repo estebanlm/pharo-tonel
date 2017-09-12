@@ -1,11 +1,6 @@
-Extension {
-	#name : #MetacelloBaselineConstructor
-}
+Extension { #name : #MetacelloBaselineConstructor }
 
-{
-	#category : #'*metacello-mc-accessing',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloBaselineConstructor>>projectClass [
+{ #category : #'*metacello-mc-accessing' }
+MetacelloBaselineConstructor >> projectClass [
     ^ MetacelloMCBaselineProject
 ]

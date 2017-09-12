@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'window'
 	],
-	#category : #OSWindow-Core-Morphic,
-	#timestamp : 'RonieSalgado 9/9/2016 18:04'
+	#category : #OSWindow-Core-Morphic
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GLMOSWindowMorphWorldRenderer>>actOnPresentationUpdated: ann [
+{ #category : #rendering }
+GLMOSWindowMorphWorldRenderer >> actOnPresentationUpdated: ann [
 		self setLabelOf: window for: ann presentation
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GLMOSWindowMorphWorldRenderer>>handlePotentialStatusbarFor: aRenderable [
+{ #category : #rendering }
+GLMOSWindowMorphWorldRenderer >> handlePotentialStatusbarFor: aRenderable [
 	| statusbarMorph bottomOffset |
 	bottomOffset := 0.
 	aRenderable hasStatusbar
@@ -36,11 +29,8 @@ GLMOSWindowMorphWorldRenderer>>handlePotentialStatusbarFor: aRenderable [
 	^ bottomOffset
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GLMOSWindowMorphWorldRenderer>>render: aRenderable [
+{ #category : #rendering }
+GLMOSWindowMorphWorldRenderer >> render: aRenderable [
 	| dock offset bottomOffset |
 	window := GLMOSWindowWorldMorph new model: aRenderable.
 	self installActionsOnModel: window fromPresentation: aRenderable.
@@ -65,26 +55,17 @@ GLMOSWindowMorphWorldRenderer>>render: aRenderable [
 	^ window
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GLMOSWindowMorphWorldRenderer>>setLabelOf: aWindow for: aRenderable [
+{ #category : #rendering }
+GLMOSWindowMorphWorldRenderer >> setLabelOf: aWindow for: aRenderable [
 	"aWindow title: (self titleFor: aRenderable)."
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GLMOSWindowMorphWorldRenderer>>setPotentialBackgroundColorFor: aRenderable [
+{ #category : #rendering }
+GLMOSWindowMorphWorldRenderer >> setPotentialBackgroundColorFor: aRenderable [
 	aRenderable colorValue ifNotNil: [ window borderColor: aRenderable colorValue ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GLMOSWindowMorphWorldRenderer>>titleFor: aRenderable [
+{ #category : #rendering }
+GLMOSWindowMorphWorldRenderer >> titleFor: aRenderable [
 	^ aRenderable titleValue ifNil: [ 'Glamorous Browser' ]
 ]

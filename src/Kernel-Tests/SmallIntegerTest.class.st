@@ -4,24 +4,17 @@ I provide a test suite for SmallInteger values. Examine my tests to see how Smal
 Class {
 	#name : #SmallIntegerTest,
 	#superclass : #ClassTestCase,
-	#category : #Kernel-Tests-Numbers,
-	#timestamp : 'fbs 3/8/2004 22:13'
+	#category : #Kernel-Tests-Numbers
 }
 
-{
-	#category : #'tests - Class Methods',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmallIntegerTest>>testBasicNew [
+{ #category : #'tests - Class Methods' }
+SmallIntegerTest >> testBasicNew [
 
 	self should: [SmallInteger basicNew] raise: self defaultTestError. 
 ]
 
-{
-	#category : #'tests - operations',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmallIntegerTest>>testCeiling [
+{ #category : #'tests - operations' }
+SmallIntegerTest >> testCeiling [
 
 	self assert: 2 ceiling = 2.
 	self assert: -2 ceiling = -2.
@@ -29,11 +22,8 @@ SmallIntegerTest>>testCeiling [
 	self assert: -2.1 ceiling = -2.
 ]
 
-{
-	#category : #'tests - Class Methods',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmallIntegerTest>>testDigitAt [
+{ #category : #'tests - Class Methods' }
+SmallIntegerTest >> testDigitAt [
 
 	| number |
 	number := 16rABCDEF.
@@ -42,11 +32,8 @@ SmallIntegerTest>>testDigitAt [
 	self assert: (number digitAt: 3) equals: 16rAB.
 ]
 
-{
-	#category : #'tests - arithmetic',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmallIntegerTest>>testDivide [
+{ #category : #'tests - arithmetic' }
+SmallIntegerTest >> testDivide [
 
 	self assert: 2 / 1 = 2.
 	self assert: (3 / 2) isFraction.
@@ -54,42 +41,30 @@ SmallIntegerTest>>testDivide [
 	self should: [ 1 / 0 ] raise: ZeroDivide.
 ]
 
-{
-	#category : #'tests - Class Methods',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmallIntegerTest>>testMaxVal [
+{ #category : #'tests - Class Methods' }
+SmallIntegerTest >> testMaxVal [
 	Smalltalk vm wordSize = 4
 		ifTrue: [ self assert: SmallInteger maxVal = 16r3FFFFFFF ].
 	Smalltalk vm wordSize = 8
 		ifTrue: [ self assert: SmallInteger maxVal = 16rFFFFFFFFFFFFFFF ]
 ]
 
-{
-	#category : #'tests - Class Methods',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmallIntegerTest>>testMinVal [
+{ #category : #'tests - Class Methods' }
+SmallIntegerTest >> testMinVal [
 	Smalltalk vm wordSize = 4
 		ifTrue: [ self assert: SmallInteger minVal = -16r40000000 ].
 	Smalltalk vm wordSize = 8
 		ifTrue: [ self assert: SmallInteger minVal = -16r1000000000000000 ]
 ]
 
-{
-	#category : #'tests - Class Methods',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmallIntegerTest>>testNew [
+{ #category : #'tests - Class Methods' }
+SmallIntegerTest >> testNew [
 
 	self should: [SmallInteger new] raise: self defaultTestError. 
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmallIntegerTest>>testPrintPaddedWith [
+{ #category : #'tests - printing' }
+SmallIntegerTest >> testPrintPaddedWith [
 
 self assert: (123 printPaddedWith: $0 to: 10 base: 2)  = '0001111011'.
 self assert: (123 printPaddedWith: $0 to: 10 base: 8)  = '0000000173'.
@@ -97,11 +72,8 @@ self assert: (123 printPaddedWith: $0 to: 10 base: 10) = '0000000123'.
 self assert: (123 printPaddedWith: $0 to: 10 base: 16) = '000000007B'.
 ]
 
-{
-	#category : #'tests - printing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SmallIntegerTest>>testPrintString [
+{ #category : #'tests - printing' }
+SmallIntegerTest >> testPrintString [
 	self assert: 1 printString equals: '1'.
 	self assert: -1 printString equals: '-1'.
 	Smalltalk vm wordSize = 4

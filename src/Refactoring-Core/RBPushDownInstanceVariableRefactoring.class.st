@@ -6,15 +6,11 @@ My precondition verifies that the moved variable is not referenced in the method
 Class {
 	#name : #RBPushDownInstanceVariableRefactoring,
 	#superclass : #RBVariableRefactoring,
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 21:22'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPushDownInstanceVariableRefactoring>>preconditions [
+{ #category : #preconditions }
+RBPushDownInstanceVariableRefactoring >> preconditions [
 	| references |
 	references := RBCondition referencesInstanceVariable: variableName
 				in: class.
@@ -33,11 +29,8 @@ RBPushDownInstanceVariableRefactoring>>preconditions [
 		& references not
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPushDownInstanceVariableRefactoring>>transform [
+{ #category : #transforming }
+RBPushDownInstanceVariableRefactoring >> transform [
 	class removeInstanceVariable: variableName.
 	class subclasses do: [:each | each addInstanceVariable: variableName]
 ]

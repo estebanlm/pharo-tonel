@@ -4,15 +4,11 @@ I represent a selector
 Class {
 	#name : #NECSelectorEntry,
 	#superclass : #NECEntry,
-	#category : #NECompletion-Model,
-	#timestamp : '<historical>'
+	#category : #NECompletion-Model
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSelectorEntry>>browseWith: anECContext [
+{ #category : #private }
+NECSelectorEntry >> browseWith: anECContext [
 
 	(self guessTypeWith: anECContext)
 		ifNotNil: [ :clazz|
@@ -32,11 +28,8 @@ NECSelectorEntry>>browseWith: anECContext [
 			true ]
 ]
 
-{
-	#category : #'detail information',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSelectorEntry>>createDescriptionWith: anECContext [
+{ #category : #'detail information' }
+NECSelectorEntry >> createDescriptionWith: anECContext [
 
 	(self guessTypeWith: anECContext)
 		ifNotNil: [ :clazz|
@@ -53,11 +46,8 @@ NECSelectorEntry>>createDescriptionWith: anECContext [
 		ifAbsent: [:selector | self implementorsDescription: selector]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSelectorEntry>>findMethodWith: anECContext do: foundBlock ifAbsent: notfoundBlock  [
+{ #category : #private }
+NECSelectorEntry >> findMethodWith: anECContext do: foundBlock ifAbsent: notfoundBlock [ 
 	| theClass result implementors |
 	theClass := anECContext model theClass.
 	result := theClass
@@ -71,11 +61,8 @@ NECSelectorEntry>>findMethodWith: anECContext do: foundBlock ifAbsent: notfoundB
 	^ foundBlock value: result first value: result second
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSelectorEntry>>guessTypeWith: anECContext  [
+{ #category : #operations }
+NECSelectorEntry >> guessTypeWith: anECContext [ 
 	| globalEntry |
 	globalEntry := Smalltalk at: contents ifAbsent: [^ nil].
 	globalEntry isBehavior ifTrue: [^ globalEntry].
@@ -83,11 +70,8 @@ NECSelectorEntry>>guessTypeWith: anECContext  [
 	^ nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSelectorEntry>>implementorsDescription: aSymbol  [
+{ #category : #private }
+NECSelectorEntry >> implementorsDescription: aSymbol [ 
 	| implementors output |
 	output := WriteStream on: String new.
 	implementors := self systemNavigation allImplementorsOf: aSymbol.
@@ -106,19 +90,13 @@ NECSelectorEntry>>implementorsDescription: aSymbol  [
 		description: output contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSelectorEntry>>label [
+{ #category : #accessing }
+NECSelectorEntry >> label [
 	^ (self guessTypeWith: nil) ifNil:[ 'method' ] ifNotNil: [ 'class' ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSelectorEntry>>lookupSelector: aSymbol class: aClass  [
+{ #category : #private }
+NECSelectorEntry >> lookupSelector: aSymbol class: aClass [ 
 	"Look up the given selector in my methodDictionary.
 	Return the corresponding method if found.
 	Otherwise chase the superclass chain and try again.
@@ -134,11 +112,8 @@ NECSelectorEntry>>lookupSelector: aSymbol class: aClass  [
 	^ nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECSelectorEntry>>methodSourceDescription: aClass method: aCompiledMethod  [
+{ #category : #private }
+NECSelectorEntry >> methodSourceDescription: aClass [ method: aCompiledMethod 
 	| styler styledText |
 	
 	styler := SHTextStylerST80 new.

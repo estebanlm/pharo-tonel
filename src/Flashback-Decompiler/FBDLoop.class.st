@@ -13,30 +13,20 @@ Class {
 	#instVars : [
 		'backjump'
 	],
-	#category : #Flashback-Decompiler,
-	#timestamp : 'ClementBera 6/19/2015 15:11'
+	#category : #Flashback-Decompiler
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FBDLoop>>backjump [
+{ #category : #accessing }
+FBDLoop >> backjump [
 	^ backjump
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FBDLoop>>backjump: anObject [
+{ #category : #accessing }
+FBDLoop >> backjump: anObject [
 	backjump := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FBDLoop>>isConditionalLoop [
+{ #category : #testing }
+FBDLoop >> isConditionalLoop [
 	^ false
 ]

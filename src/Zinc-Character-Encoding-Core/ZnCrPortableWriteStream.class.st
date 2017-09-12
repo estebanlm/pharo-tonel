@@ -13,35 +13,25 @@ Class {
 		'stream',
 		'previous'
 	],
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : 'GuillermoPolito 7/28/2017 20:37'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCrPortableWriteStream class>>on: aStream [
+{ #category : #'instance creation' }
+ZnCrPortableWriteStream class >> on: aStream [
 
 	^ self basicNew
 		stream: aStream;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCrPortableWriteStream>>newLine [
+{ #category : #accessing }
+ZnCrPortableWriteStream >> newLine [
 	previous := nil.
 	stream nextPutAll: OSPlatform current lineEnding
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCrPortableWriteStream>>nextPut: aCharacter [
+{ #category : #accessing }
+ZnCrPortableWriteStream >> nextPut: aCharacter [
 
 	(String crlf includes: aCharacter )
 		ifFalse: [ 
@@ -54,10 +44,7 @@ ZnCrPortableWriteStream>>nextPut: aCharacter [
 		ifTrue: [ previous := aCharacter ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCrPortableWriteStream>>stream: aWriteStream  [
+{ #category : #accessing }
+ZnCrPortableWriteStream >> stream: aWriteStream [ 
 	stream := aWriteStream
 ]

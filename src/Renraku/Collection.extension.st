@@ -1,12 +1,7 @@
-Extension {
-	#name : #Collection
-}
+Extension { #name : #Collection }
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-Collection>>select: selectBlock thenDo: doBlock ifNone: alternativeBlock [
+{ #category : #'*renraku' }
+Collection >> select: selectBlock thenDo: doBlock ifNone: alternativeBlock [
     "same as #select:thenDo: but also allows to evaluate an alternative block if nothing was selected"
 	| found |
 

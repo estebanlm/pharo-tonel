@@ -1,12 +1,7 @@
-Extension {
-	#name : #MenuMorph
-}
+Extension { #name : #MenuMorph }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MenuMorph>>allItems [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MenuMorph >> allItems [
 	| all |
 	all := OrderedCollection new.
 	self items do: [ :each |
@@ -16,11 +11,8 @@ MenuMorph>>allItems [
 	^ all
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MenuMorph class>>gtExampleMenuMorph [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MenuMorph class >> gtExampleMenuMorph [
 	<gtExample>
 	| menu |
 	menu := MenuMorph new.
@@ -38,11 +30,8 @@ MenuMorph class>>gtExampleMenuMorph [
 	
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MenuMorph>>spotterItemsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MenuMorph >> spotterItemsFor: aStep [
 	<spotterOrder: 10>
 	self flag: #refactoringViolationForSpotterActDefault:.
 	^ aStep listProcessor 

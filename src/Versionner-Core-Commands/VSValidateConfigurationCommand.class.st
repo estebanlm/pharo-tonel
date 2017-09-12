@@ -4,15 +4,11 @@ This command allows you to check inconsistencies in a Configuration class.
 Class {
 	#name : #VSValidateConfigurationCommand,
 	#superclass : #VSConfigurationCommand,
-	#category : #Versionner-Core-Commands,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSValidateConfigurationCommand>>execute [
+{ #category : #execute }
+VSValidateConfigurationCommand >> execute [
 
 	| result |
 	result := self validate.
@@ -23,18 +19,12 @@ VSValidateConfigurationCommand>>execute [
 	result explore
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSValidateConfigurationCommand>>title [
+{ #category : #accessing }
+VSValidateConfigurationCommand >> title [
 	^ 'validate'
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSValidateConfigurationCommand>>validate [
+{ #category : #execute }
+VSValidateConfigurationCommand >> validate [
 	self showExecuteWhile: [ ^ target validateFull ]
 ]

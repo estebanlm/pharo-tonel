@@ -16,25 +16,18 @@ My subclasses represent a concreate paint by implementing my protocol,  that act
 Class {
 	#name : #AthensPaint,
 	#superclass : #AthensAbstractPaint,
-	#category : #Athens-Core-Paints,
-	#timestamp : '<historical>'
+	#category : #Athens-Core-Paints
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPaint>>asStrokePaintOn: aCanvas [
+{ #category : #converting }
+AthensPaint >> asStrokePaintOn: aCanvas [
 	"default implementation"
 	^ aCanvas surface createStrokePaintFor: self
 	
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPaint>>athensFillPath: aPath on: aCanvas  [
+{ #category : #rendering }
+AthensPaint >> athensFillPath: aPath on: aCanvas [ 
 
 	"This is a terminal method in rendering dispatch scheme
 	canvas->shape->paint. See AthensCanvas>>fillShape: "
@@ -42,11 +35,8 @@ AthensPaint>>athensFillPath: aPath on: aCanvas  [
 	self subclassResponsibility
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPaint>>athensFillRectangle: aRectangle on: aCanvas [
+{ #category : #rendering }
+AthensPaint >> athensFillRectangle: aRectangle on: aCanvas [
 	"This is a terminal method in rendering dispatch scheme
 	canvas->shape->paint. See AthensCanvas>>fillShape: "
 	

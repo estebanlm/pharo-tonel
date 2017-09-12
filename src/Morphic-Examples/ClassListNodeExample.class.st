@@ -4,23 +4,16 @@ Example for a class list node
 Class {
 	#name : #ClassListNodeExample,
 	#superclass : #MorphTreeNodeModel,
-	#category : #Morphic-Examples-MorphTreeWidget,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:56'
+	#category : #Morphic-Examples-MorphTreeWidget
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListNodeExample>>browseItem [
+{ #category : #accessing }
+ClassListNodeExample >> browseItem [
 	Smalltalk tools browser openOnClass: self item
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListNodeExample>>classButton [
+{ #category : #menu }
+ClassListNodeExample >> classButton [
 	^ ( self theme 
 				newButtonIn: World
 				for: self
@@ -34,43 +27,28 @@ ClassListNodeExample>>classButton [
 				yourself
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListNodeExample>>commentText [
+{ #category : #menu }
+ClassListNodeExample >> commentText [
 	^ ( self theme  newTextIn: World text: self item comment) unlock; wrapFlag: true; yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListNodeExample>>exploreItem [
+{ #category : #accessing }
+ClassListNodeExample >> exploreItem [
 	self explore
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListNodeExample>>icon [
+{ #category : #menu }
+ClassListNodeExample >> icon [
 	^ self iconNamed: #smallExpertIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListNodeExample>>inspectItem [
+{ #category : #accessing }
+ClassListNodeExample >> inspectItem [
 	self inspect
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListNodeExample>>keyStroke: anEvent from: aTreeMorph [
+{ #category : #accessing }
+ClassListNodeExample >> keyStroke: anEvent from: aTreeMorph [
 	| c |
 	c := anEvent keyCharacter.
 	c = $b
@@ -83,11 +61,8 @@ ClassListNodeExample>>keyStroke: anEvent from: aTreeMorph [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListNodeExample>>menu: menu shifted: b  [
+{ #category : #accessing }
+ClassListNodeExample >> menu: menu shifted: b [ 
 	menu
 		add: 'Browse (b)' 
 		target: self

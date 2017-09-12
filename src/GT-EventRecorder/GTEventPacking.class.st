@@ -15,71 +15,46 @@ Public API and Key Messages
 Class {
 	#name : #GTEventPacking,
 	#superclass : #Object,
-	#category : #GT-EventRecorder-Support,
-	#timestamp : 'JurajKubelka 10/13/2015 23:00'
+	#category : #GT-EventRecorder-Support
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventPacking class>>all [
+{ #category : #accessing }
+GTEventPacking class >> all [
 	^ {self ston. self fuel}
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventPacking class>>default [
+{ #category : #'instance creation' }
+GTEventPacking class >> default [
 	^ self ston
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventPacking class>>fuel [
+{ #category : #'instance creation' }
+GTEventPacking class >> fuel [
 	^ GTFuelPacking new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventPacking class>>ston [
+{ #category : #'instance creation' }
+GTEventPacking class >> ston [
 	^ GTStonPacking new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventPacking>>materialize: aByteArray [
+{ #category : #private }
+GTEventPacking >> materialize: aByteArray [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventPacking>>migrations: anObject  [
+{ #category : #accessing }
+GTEventPacking >> migrations: anObject [ 
 	"Ignore by default. Subclasses can overwrite it."
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventPacking>>newAnnouncement [
+{ #category : #'instance creation' }
+GTEventPacking >> newAnnouncement [
 	^ GTEventAnnouncement new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventPacking>>newAnnouncementFor: aGTEventCollector [
+{ #category : #private }
+GTEventPacking >> newAnnouncementFor: aGTEventCollector [
 	| announcement |
 	announcement := self 
 		updateAnnouncement: self newAnnouncement 
@@ -88,11 +63,8 @@ GTEventPacking>>newAnnouncementFor: aGTEventCollector [
 	^ announcement
 ]
 
-{
-	#category : #packing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventPacking>>pack: aGTEventCollector [
+{ #category : #packing }
+GTEventPacking >> pack: aGTEventCollector [
 	^ GTEventBundle new
 			url: aGTEventCollector url;
 			category: aGTEventCollector category;
@@ -100,44 +72,29 @@ GTEventPacking>>pack: aGTEventCollector [
 			yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventPacking>>packCollector: aGTEventCollector [
+{ #category : #private }
+GTEventPacking >> packCollector: aGTEventCollector [
 	^ self serialize: (self newAnnouncementFor: aGTEventCollector)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventPacking>>serialize: anObject [
+{ #category : #private }
+GTEventPacking >> serialize: anObject [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventPacking>>technologyName [
+{ #category : #accessing }
+GTEventPacking >> technologyName [
 	"It returns a string that identify packing technology."
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #packing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventPacking>>unpack: aByteArray [
+{ #category : #packing }
+GTEventPacking >> unpack: aByteArray [
 	^ self materialize: aByteArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventPacking>>updateAnnouncement: aGTEventAnnouncement for: aGTEventCollector [
+{ #category : #private }
+GTEventPacking >> updateAnnouncement: aGTEventAnnouncement for: aGTEventCollector [
 	^ aGTEventAnnouncement
 			data: (self serialize: aGTEventCollector bundle);
 			category: aGTEventCollector category;
@@ -153,11 +110,8 @@ GTEventPacking>>updateAnnouncement: aGTEventAnnouncement for: aGTEventCollector 
 			yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventPacking>>version [
+{ #category : #accessing }
+GTEventPacking >> version [
 	^ 4
 	
 "

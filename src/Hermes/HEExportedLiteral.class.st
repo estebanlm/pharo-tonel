@@ -1,47 +1,31 @@
-"
-
-"
 Class {
 	#name : #HEExportedLiteral,
 	#superclass : #HEAbstractExported,
 	#instVars : [
 		'value'
 	],
-	#category : #Hermes-Model,
-	#timestamp : ''
+	#category : #Hermes-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExportedLiteral class>>checkAllTags [
+{ #category : #'instance creation' }
+HEExportedLiteral class >> checkAllTags [
 	self assert: (self allSubclasses size = (self allSubclasses collect:#tag as:Set) size)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExportedLiteral class>>for: aValue [
+{ #category : #'instance creation' }
+HEExportedLiteral class >> for: aValue [
 	^ self new
 		value: aValue;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExportedLiteral class>>missingTags [
+{ #category : #'instance creation' }
+HEExportedLiteral class >> missingTags [
 	^ self allSubclasses reject: [ :e | e class canUnderstand: #tag ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExportedLiteral class>>nextTag [
+{ #category : #'instance creation' }
+HEExportedLiteral class >> nextTag [
 	^(self allSubclasses
 		collect: [ :e | 
 			(e class canUnderstand: #tag)
@@ -49,11 +33,8 @@ HEExportedLiteral class>>nextTag [
 				ifFalse: [ -1 ] ]) max + 1
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExportedLiteral class>>readFrom: aReader [
+{ #category : #'instance creation' }
+HEExportedLiteral class >> readFrom: aReader [
 	| tag subclass |
 	tag := aReader readByte.
 	subclass := self allSubclasses detect: [ :e | e tag = tag ].
@@ -62,43 +43,28 @@ HEExportedLiteral class>>readFrom: aReader [
 		yourself
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExportedLiteral>>doReadFrom: aReader [
+{ #category : #reading }
+HEExportedLiteral >> doReadFrom: aReader [
 	self subclassResponsibility.
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExportedLiteral>>doWriteInto: aWriter [
+{ #category : #writing }
+HEExportedLiteral >> doWriteInto: aWriter [
 	self subclassResponsibility.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExportedLiteral>>value [
+{ #category : #accessing }
+HEExportedLiteral >> value [
 	^ value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExportedLiteral>>value: anObject [
+{ #category : #accessing }
+HEExportedLiteral >> value: anObject [
 	value := anObject
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEExportedLiteral>>writeInto: aWriter [
+{ #category : #writing }
+HEExportedLiteral >> writeInto: aWriter [
 	aWriter writeByte: self class tag.
 	self doWriteInto: aWriter.
 ]

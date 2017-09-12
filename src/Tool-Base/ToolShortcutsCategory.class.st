@@ -4,87 +4,59 @@ ToolShortcuts defines some global keyboard shortcuts to open tools for workspace
 Class {
 	#name : #ToolShortcutsCategory,
 	#superclass : #KMCategory,
-	#category : #Tool-Base,
-	#timestamp : 'BenComan 2/17/2014 23:07'
+	#category : #Tool-Base
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolShortcutsCategory class>>isGlobalCategory [
+{ #category : #testing }
+ToolShortcutsCategory class >> isGlobalCategory [
 
 	^ true 
 ]
 
-{
-	#category : #keymaps,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolShortcutsCategory>>openKomitter [
+{ #category : #keymaps }
+ToolShortcutsCategory >> openKomitter [
 	<shortcut>
 	^ KMKeymap shortcut: PharoShortcuts current openKomitterShortcut action: [ Komitter openAndCommitToMonticello ]
 ]
 
-{
-	#category : #keymaps,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolShortcutsCategory>>openMonticelloPackageBrowser [
+{ #category : #keymaps }
+ToolShortcutsCategory >> openMonticelloPackageBrowser [
 	<shortcut>
 	^ KMKeymap shortcut: PharoShortcuts current openMonticielloShortcut action: [ Smalltalk tools openMonticelloBrowser ]
 ]
 
-{
-	#category : #keymaps,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolShortcutsCategory>>openSettings [
+{ #category : #keymaps }
+ToolShortcutsCategory >> openSettings [
 	<shortcut>
 	^ KMKeymap shortcut: PharoShortcuts current openSettingsShortcut action: [ SettingBrowser open ]
 ]
 
-{
-	#category : #keymaps,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolShortcutsCategory>>openSystemBrowser [
+{ #category : #keymaps }
+ToolShortcutsCategory >> openSystemBrowser [
 	<shortcut>
 	^ KMKeymap shortcut: PharoShortcuts current openSystemBrowserShortcut action: [ Smalltalk tools openClassBrowser ]
 ]
 
-{
-	#category : #keymaps,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolShortcutsCategory>>openTranscript [
+{ #category : #keymaps }
+ToolShortcutsCategory >> openTranscript [
 	<shortcut>
 	^ KMKeymap shortcut: PharoShortcuts current openTranscriptShortcut action: [ Smalltalk tools openTranscript ]
 ]
 
-{
-	#category : #keymaps,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolShortcutsCategory>>openUnitTestRunner [
+{ #category : #keymaps }
+ToolShortcutsCategory >> openUnitTestRunner [
 	<shortcut>
 	^ KMKeymap shortcut: PharoShortcuts current openTestRunnerShortcut action: [ Smalltalk tools openTestRunner ]
 ]
 
-{
-	#category : #keymaps,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolShortcutsCategory>>openWorkspace [
+{ #category : #keymaps }
+ToolShortcutsCategory >> openWorkspace [
 	<shortcut>
 	^ KMKeymap shortcut: PharoShortcuts current openPlaygroundShortcut action: [ Smalltalk tools workspace open ]
 ]
 
-{
-	#category : #keymaps,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolShortcutsCategory>>saveImage [
+{ #category : #keymaps }
+ToolShortcutsCategory >> saveImage [
 	<shortcut>
 	^ KMKeymap
 		shortcut: PharoShortcuts current saveImageShortcut

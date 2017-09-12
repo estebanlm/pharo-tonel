@@ -67,89 +67,58 @@ Class {
 	#classVars : [
 		'Instance'
 	],
-	#category : #ProfStef-Core,
-	#timestamp : 'StephaneDucasse 7/28/2015 17:20'
+	#category : #ProfStef-Core
 }
 
-{
-	#category : #zen,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>aboutPharoZen [
+{ #category : #zen }
+ProfStef class >> aboutPharoZen [
 	^ 'These are the Pharo Zen values.\\See:\\  ProfStef class>>#pharoZenValues\\Inspect:\\  PharoTutorial pharoZenValues' withCRs
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>cleanUp [
+{ #category : #cleanup }
+ProfStef class >> cleanUp [
 	self reset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>contents [
+{ #category : #accessing }
+ProfStef class >> contents [
 	"build table of contents with all defined tutorials"
 
 	^ AbstractTutorial contentsOfTutorials
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>default [
+{ #category : #'class initialization' }
+ProfStef class >> default [
 	^ Instance ifNil: [Instance := self new]
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>first [
+{ #category : #navigating }
+ProfStef class >> first [
 	^ self default first.
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>go [
+{ #category : #navigating }
+ProfStef class >> go [
 	^ self default go.
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>goOn: aTutorialClass [
+{ #category : #navigating }
+ProfStef class >> goOn: aTutorialClass [
 	^ self default goOn: aTutorialClass.
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>goToNextLesson [
+{ #category : #navigating }
+ProfStef class >> goToNextLesson [
   self next
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>last [
+{ #category : #navigating }
+ProfStef class >> last [
 	^ self default last.
 ]
 
-{
-	#category : #zen,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>menuCommandOn: aBuilder [
+{ #category : #zen }
+ProfStef class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'Pharo Zen')
 		parent: #Help;
@@ -159,19 +128,13 @@ ProfStef class>>menuCommandOn: aBuilder [
 		withSeparatorAfter 
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>next [
+{ #category : #navigating }
+ProfStef class >> next [
 	^ self default next.
 ]
 
-{
-	#category : #zen,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>openPharoZenWorkspace [
+{ #category : #zen }
+ProfStef class >> openPharoZenWorkspace [
 	"Open a Workspace showing the Pharo Zen values in random order"
 
 	"self openPharoZenWorkspace"
@@ -184,11 +147,8 @@ ProfStef class>>openPharoZenWorkspace [
 		openWithSpec
 ]
 
-{
-	#category : #zen,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>pharoZenValues [
+{ #category : #zen }
+ProfStef class >> pharoZenValues [
 	"Our values and convictions are condensed in this simple list."
 	
 	^ #(
@@ -216,11 +176,8 @@ ProfStef class>>pharoZenValues [
 		'A system with robust abstractions that a single person can understand.' )
 ]
 
-{
-	#category : #zen,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>pharoZenValuesContents [
+{ #category : #zen }
+ProfStef class >> pharoZenValuesContents [
 	"Return a string with CRs listing the Pharo Zen values in random order"
 	
 	"self pharoZenValuesContents"
@@ -232,77 +189,50 @@ ProfStef class>>pharoZenValuesContents [
 				separatedBy: [ stream cr ] ]
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>previous [
+{ #category : #navigating }
+ProfStef class >> previous [
 	^ self default previous.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>reset  [
+{ #category : #'class initialization' }
+ProfStef class >> reset [ 
 	Instance := nil
 ]
 
-{
-	#category : #starting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>tutorial: aTutorialClass lesson: aSelector [
+{ #category : #starting }
+ProfStef class >> tutorial: aTutorialClass lesson: aSelector [
 	self default tutorial: aTutorialClass lesson: aSelector.
 ]
 
-{
-	#category : #starting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef class>>tutorial: aTutorialClass lessonAt: lessonIndex [
+{ #category : #starting }
+ProfStef class >> tutorial: aTutorialClass lessonAt: lessonIndex [
 	self default tutorial: aTutorialClass lessonAt: lessonIndex.
 ]
 
-{
-	#category : #gui,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>close [
+{ #category : #gui }
+ProfStef >> close [
 	self lessonView close
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>first [
+{ #category : #navigating }
+ProfStef >> first [
 	self player first.
 	^ self showCurrentLesson.
 ]
 
-{
-	#category : #starting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>go [
+{ #category : #starting }
+ProfStef >> go [
 	^ self goOn: PharoSyntaxTutorial.
 ]
 
-{
-	#category : #starting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>goOn: aTutorialClass [
+{ #category : #starting }
+ProfStef >> goOn: aTutorialClass [
 	self player tutorial: aTutorialClass new.
 	^ self open.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>helpBrowserWindow [
+{ #category : #accessing }
+ProfStef >> helpBrowserWindow [
 	"Yes this is a hack"
 	
 	^ World systemWindows 
@@ -310,36 +240,24 @@ ProfStef>>helpBrowserWindow [
 		ifNone: [ nil ]
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>last [
+{ #category : #navigating }
+ProfStef >> last [
 	self player last.
 	^ self showCurrentLesson.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>lessonView [
+{ #category : #accessing }
+ProfStef >> lessonView [
 	^ lessonView ifNil: [lessonView := LessonView new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>lessonView: aLessonView [
+{ #category : #accessing }
+ProfStef >> lessonView: aLessonView [
 	lessonView := aLessonView.
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>next [
+{ #category : #navigating }
+ProfStef >> next [
 	self helpBrowserWindow 
 		ifNotNil: [ :window | window model next ].
 	self lessonView isOpenInWindow 
@@ -348,36 +266,24 @@ ProfStef>>next [
 			self showCurrentLesson ]
 ]
 
-{
-	#category : #gui,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>open [
+{ #category : #gui }
+ProfStef >> open [
 	self player first.
 	^ self showCurrentLesson.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>player  [
+{ #category : #accessing }
+ProfStef >> player [ 
 	^ player ifNil: [player := TutorialPlayer new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>player: aTutorialPlayer [
+{ #category : #accessing }
+ProfStef >> player: aTutorialPlayer [
 	player := aTutorialPlayer.
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>previous [
+{ #category : #navigating }
+ProfStef >> previous [
 	self helpBrowserWindow 
 		ifNotNil: [ :window | window model previous ].
 	self lessonView isOpenInWindow 
@@ -386,11 +292,8 @@ ProfStef>>previous [
 			self showCurrentLesson ]
 ]
 
-{
-	#category : #gui,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>showCurrentLesson [
+{ #category : #gui }
+ProfStef >> showCurrentLesson [
 	| progressInfo lesson |
 	lesson := self player currentLesson.
 	progressInfo := '(', self tutorialPositionString, '/', self tutorialSizeString, ')'. 
@@ -399,39 +302,27 @@ ProfStef>>showCurrentLesson [
 		withTitle: lesson title, ' ', progressInfo.
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>tutorial: aTutorialClass lesson: aSelector [
+{ #category : #navigating }
+ProfStef >> tutorial: aTutorialClass lesson: aSelector [
 	| tutorial |
 	tutorial := aTutorialClass new.
 	self player tutorial: tutorial.
 	self tutorial: aTutorialClass lessonAt: (tutorial indexOfLesson: aSelector).
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>tutorial: aTutorialClass lessonAt: lessonIndex [
+{ #category : #navigating }
+ProfStef >> tutorial: aTutorialClass lessonAt: lessonIndex [
 	self player tutorial: aTutorialClass new.
 	self player tutorialPosition: lessonIndex.
 	self showCurrentLesson.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>tutorialPositionString [
+{ #category : #accessing }
+ProfStef >> tutorialPositionString [
 	^ player tutorialPosition asString.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-ProfStef>>tutorialSizeString [
+{ #category : #accessing }
+ProfStef >> tutorialSizeString [
 	^ self player size asString
 ]

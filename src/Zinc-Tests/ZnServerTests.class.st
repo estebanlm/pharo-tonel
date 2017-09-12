@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnServerTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>assertEntityTooLarge: serverUrl [
+{ #category : #testing }
+ZnServerTests >> assertEntityTooLarge: serverUrl [
 	| response client |
 	client := ZnClient new
 		url: serverUrl;
@@ -29,11 +22,8 @@ ZnServerTests>>assertEntityTooLarge: serverUrl [
 	self assert: (response entity contents includesSubstring: 'ZnEntityTooLarge')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>assertHeaderLineTooLong: serverUrl [
+{ #category : #testing }
+ZnServerTests >> assertHeaderLineTooLong: serverUrl [
 	| response client |
 	client := ZnClient new
 		url: serverUrl;
@@ -50,11 +40,8 @@ ZnServerTests>>assertHeaderLineTooLong: serverUrl [
 	self assert: (response entity contents includesSubstring: 'ZnLineTooLong')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>assertRequestLineTooLong: serverUrl [
+{ #category : #testing }
+ZnServerTests >> assertRequestLineTooLong: serverUrl [
 	| url response |
 	url := serverUrl
 		addPathSegment: #echo;
@@ -67,11 +54,8 @@ ZnServerTests>>assertRequestLineTooLong: serverUrl [
 	self assert: (response entity contents includesSubstring: 'ZnLineTooLong')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>assertTooManyHeaders: serverUrl [
+{ #category : #testing }
+ZnServerTests >> assertTooManyHeaders: serverUrl [
 	| response client |
 	client := ZnClient new
 		url: serverUrl;
@@ -89,27 +73,18 @@ ZnServerTests>>assertTooManyHeaders: serverUrl [
 	self assert: (response entity contents includesSubstring: 'ZnTooManyDictionaryEntries')
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>entitySizeLimit [
+{ #category : #accessing }
+ZnServerTests >> entitySizeLimit [
 	^ 1024
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>port [
+{ #category : #private }
+ZnServerTests >> port [
 	^ 1700 + 32 atRandom
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>runningOnWindows [
+{ #category : #private }
+ZnServerTests >> runningOnWindows [
 	"Pharo 3+"
 	[ ^ OSPlatform current isWindows ] on: MessageNotUnderstood do: [ ].
 	"Pharo 2-"
@@ -118,11 +93,8 @@ ZnServerTests>>runningOnWindows [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testAuthorizationFailed [
+{ #category : #testing }
+ZnServerTests >> testAuthorizationFailed [
 	self withServerDo: [ :server | | response |
 		server authenticator: (ZnBasicAuthenticator username: 'foo' password: 'secret').
 		response := ZnEasy get: (server localUrl addPathSegment: 'echo'; yourself).
@@ -132,11 +104,8 @@ ZnServerTests>>testAuthorizationFailed [
 		self assert: ((response headers at: 'WWW-Authenticate') includesSubstring: 'Zinc') ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testAuthorizationSuccessful [
+{ #category : #testing }
+ZnServerTests >> testAuthorizationSuccessful [
 	self withServerDo: [ :server | | response |
 		server authenticator: (ZnBasicAuthenticator username: 'foo' password: 'secret').
 		response := ZnEasy get: (server localUrl addPathSegments: #('echo' 'foo'); yourself) username: 'foo' password: 'secret'.
@@ -146,11 +115,8 @@ ZnServerTests>>testAuthorizationSuccessful [
 		self assert: (response entity string includesSubstring: 'foo') ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testCustomDefaultDelegate [
+{ #category : #testing }
+ZnServerTests >> testCustomDefaultDelegate [
 	self withServerDo: [ :server | | customDelegate client |
 		customDelegate := ZnDefaultServerDelegate empty.
 		customDelegate 
@@ -165,11 +131,8 @@ ZnServerTests>>testCustomDefaultDelegate [
 		client close	 ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testDefault [
+{ #category : #testing }
+ZnServerTests >> testDefault [
 	| port server initialDefaultServer wasRunning |
 	wasRunning := ZnServer default 
 		ifNil: [ false ] 
@@ -197,11 +160,8 @@ ZnServerTests>>testDefault [
 	wasRunning ifTrue: [ ZnServer default start ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testEcho [
+{ #category : #testing }
+ZnServerTests >> testEcho [
 	self withServerDo: [ :server | | response |
 		response := ZnEasy get: (server localUrl addPathSegments: #('echo' 'foo'); yourself).
 		self assert: (response contentType = ZnMimeType textPlain).
@@ -211,11 +171,8 @@ ZnServerTests>>testEcho [
 		self assert: (response entity contents includesSubstring: server printString) ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testEchoBinary [
+{ #category : #testing }
+ZnServerTests >> testEchoBinary [
 	self withServerDo: [ :server | | response entityIn entityOut |
 		server reader: [ :stream | ZnRequest readBinaryFrom: stream ].
 		entityIn := ZnEntity with: 'ABC' type: 'text/plain'.
@@ -226,11 +183,8 @@ ZnServerTests>>testEchoBinary [
 		self assert: (response entity contents includesSubstring: entityOut printString) ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testEchoLocalInterface [
+{ #category : #testing }
+ZnServerTests >> testEchoLocalInterface [
 	| server response |
 	(server := ZnServer on: self port)
 		bindingAddress: NetNameResolver loopBackAddress.
@@ -248,11 +202,8 @@ ZnServerTests>>testEchoLocalInterface [
 		ensure: [ server stop ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testEntityTooLarge [
+{ #category : #testing }
+ZnServerTests >> testEntityTooLarge [
 	self usingClassicSocketStreamsOnWindowsDo: [ 
 		self withServerDo: [ :server | 
 			server maximumEntitySize: self entitySizeLimit.
@@ -260,11 +211,8 @@ ZnServerTests>>testEntityTooLarge [
 			self assertEntityTooLarge: server localUrl ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testError [
+{ #category : #testing }
+ZnServerTests >> testError [
 	self withServerDo: [ :server | | url response |
 		self deny: server debugMode.
 		url := server localUrl
@@ -278,11 +226,8 @@ ZnServerTests>>testError [
 		self assert: (response entity contents includesSubstring: 'Test Error') ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testFormTest1 [
+{ #category : #testing }
+ZnServerTests >> testFormTest1 [
 	| inputs client |
 	inputs := #( '1+2=3 & 2+1=3' 'single ''' 'double " - cool ?' 'élèves français' 'Ελλάδα' ).
 	self withServerDo: [ :server |
@@ -297,11 +242,8 @@ ZnServerTests>>testFormTest1 [
 			self assert: (client contents includesSubstring: each) ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testFormTest2 [
+{ #category : #testing }
+ZnServerTests >> testFormTest2 [
 	| inputs client |
 	inputs := #( '1+2=3 & 2+1=3' 'single ''' 'double " - cool ?' 'élèves français' 'Ελλάδα' ).
 	self withServerDo: [ :server |
@@ -316,11 +258,8 @@ ZnServerTests>>testFormTest2 [
 			self assert: (client contents includesSubstring: each) ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testFormTest3 [
+{ #category : #testing }
+ZnServerTests >> testFormTest3 [
 	| inputs client part |
 	inputs := #( ('foo.txt' 'this is foo!') ('français.txt' 'Je te dis: élèves français') ('Ελλάδα.txt' 'Ελλάδα is it!') ).
 	self withServerDo: [ :server |
@@ -342,11 +281,8 @@ ZnServerTests>>testFormTest3 [
 			self assert: (client contents includesSubstring: each second) ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testFormTest3Unspecified [
+{ #category : #testing }
+ZnServerTests >> testFormTest3Unspecified [
 	"Simulate what most browsers seem to do: upload text files utf-8 encoded 
 	without specifying the charset in the mime type of the mime part"
 	
@@ -371,11 +307,8 @@ ZnServerTests>>testFormTest3Unspecified [
 			self assert: (client contents includesSubstring: each second) ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testGetConnectionClose [
+{ #category : #testing }
+ZnServerTests >> testGetConnectionClose [
 	self withServerDo: [ :server | | client |
 		client := ZnClient new.
 		client url: server localUrl; addPathSegment: #echo.
@@ -387,11 +320,8 @@ ZnServerTests>>testGetConnectionClose [
 		client close ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testGetUnicodeUtf8 [
+{ #category : #testing }
+ZnServerTests >> testGetUnicodeUtf8 [
 	self withServerDo: [ :server | | response html |
 		response := ZnEasy get: (server localUrl addPathSegment: 'unicode'; yourself).
 		self assert: (response contentType = ZnMimeType textHtml).
@@ -402,11 +332,8 @@ ZnServerTests>>testGetUnicodeUtf8 [
 		0 to: 16r024F do: [ :each | self assert: (html includes: each asCharacter) ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testGzipCompressionAndChunking [
+{ #category : #testing }
+ZnServerTests >> testGzipCompressionAndChunking [
 	self withServerDo: [ :server | | client |
 		server useGzipCompressionAndChunking: true.
 		(client := ZnClient new)
@@ -421,33 +348,24 @@ ZnServerTests>>testGzipCompressionAndChunking [
 		self assert: (client response headers at: 'Transfer-Encoding') equals: 'chunked' ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testHeaderLineTooLong [
+{ #category : #testing }
+ZnServerTests >> testHeaderLineTooLong [
 	self usingClassicSocketStreamsOnWindowsDo: [
 		self withServerDo: [ :server |
 			self deny: server debugMode.
 			self assertHeaderLineTooLong: server localUrl ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testLocalUrl [
+{ #category : #testing }
+ZnServerTests >> testLocalUrl [
 	self withServerDo: [ :server | 
 		self assert: server localUrl scheme equals: #http.
 		self assert: server localUrl host equals: NetNameResolver loopBackName.
 		self assert: server localUrl port equals: server port ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testOSAssignedPort [
+{ #category : #testing }
+ZnServerTests >> testOSAssignedPort [
 	| server | 
 	server := ZnServer on: 0.
 	self assert: server port equals: 0.
@@ -464,11 +382,8 @@ ZnServerTests>>testOSAssignedPort [
 			ensure: [ server stop ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testReadEvalPrint [
+{ #category : #testing }
+ZnServerTests >> testReadEvalPrint [
 	self withServerDo: [ :server | | x y result |
 		server delegate: ZnReadEvalPrintDelegate new.
 		x := 100 atRandom.
@@ -481,22 +396,16 @@ ZnServerTests>>testReadEvalPrint [
 		self assert: result asInteger equals: x + y ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testRequestLineTooLong [
+{ #category : #testing }
+ZnServerTests >> testRequestLineTooLong [
 	self usingClassicSocketStreamsOnWindowsDo: [
 		self withServerDo: [ :server |
 		self deny: server debugMode.
 		self assertRequestLineTooLong: server localUrl ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testRespond [
+{ #category : #testing }
+ZnServerTests >> testRespond [
 	self withServerDo: [ :server | | client |
 		server onRequestRespond: [ :request |
 			ZnRespond signalWith: (ZnResponse ok: (ZnEntity text: 'RESPONDED')).
@@ -509,11 +418,8 @@ ZnServerTests>>testRespond [
 		client close ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testSession [
+{ #category : #testing }
+ZnServerTests >> testSession [
 	self withServerDo: [ :server | | client sessionId |
 		client := ZnClient new url: (server localUrl addPathSegment: #session); yourself.
 		self assert: client session cookieJar cookies isEmpty.
@@ -530,11 +436,8 @@ ZnServerTests>>testSession [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testSessionExpired [
+{ #category : #testing }
+ZnServerTests >> testSessionExpired [
 	self withServerDo: [ :server | | client sessionId |
 		client := ZnClient new url: (server localUrl addPathSegment: #session); yourself.
 		self assert: client session cookieJar cookies isEmpty.
@@ -553,11 +456,8 @@ ZnServerTests>>testSessionExpired [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testSessionRoute [
+{ #category : #testing }
+ZnServerTests >> testSessionRoute [
 	self withServerDo: [ :server | | client sessionId |
 		server route: 'r1'.
 		self assert: server route equals: 'r1'.
@@ -577,11 +477,8 @@ ZnServerTests>>testSessionRoute [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testSmall [
+{ #category : #testing }
+ZnServerTests >> testSmall [
 	self withServerDo: [ :server | 
 		| client |
 		client := ZnClient new
@@ -595,22 +492,16 @@ ZnServerTests>>testSmall [
 		client close ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testTooManyHeaders [
+{ #category : #testing }
+ZnServerTests >> testTooManyHeaders [
 	self usingClassicSocketStreamsOnWindowsDo: [
 		self withServerDo: [ :server |
 			self deny: server debugMode.
 			self assertTooManyHeaders: server localUrl ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testUrl [
+{ #category : #testing }
+ZnServerTests >> testUrl [
 	self withServerDo: [ :server | 
 		self assert: server url equals: server localUrl.
 		server serverUrl:
@@ -627,11 +518,8 @@ ZnServerTests>>testUrl [
 		self assert: server url path equals: 'zn' ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>testZeroContentLength [
+{ #category : #testing }
+ZnServerTests >> testZeroContentLength [
 	self withServerDo: [ :server | 
 		| client |
 		client := ZnClient new
@@ -644,11 +532,8 @@ ZnServerTests>>testZeroContentLength [
 		client close ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>usingClassicSocketStreamsOnWindowsDo: block [
+{ #category : #private }
+ZnServerTests >> usingClassicSocketStreamsOnWindowsDo: block [
 	| originalSocketStreamClass |
 	originalSocketStreamClass := ZnNetworkingUtils default socketStreamClass.
 	self runningOnWindows
@@ -657,11 +542,8 @@ ZnServerTests>>usingClassicSocketStreamsOnWindowsDo: block [
 		ensure: [ ZnNetworkingUtils default socketStreamClass: originalSocketStreamClass ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnServerTests>>withServerDo: block [
+{ #category : #private }
+ZnServerTests >> withServerDo: block [
 	| server |
 	server := ZnServer on: self port.
 	[ 

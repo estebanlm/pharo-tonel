@@ -9,31 +9,21 @@ Class {
 		'externalFileName',
 		'stream'
 	],
-	#category : #Compression-Archives,
-	#timestamp : '<historical>'
+	#category : #Compression-Archives
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipNewFileMember class>>newNamed: aFileName [
+{ #category : #'instance creation' }
+ZipNewFileMember class >> newNamed: aFileName [
 	^(self new) from: aFileName
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipNewFileMember>>close [
+{ #category : #initialization }
+ZipNewFileMember >> close [
 	stream ifNotNil:[stream close].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipNewFileMember>>from: aFileName [
+{ #category : #initialization }
+ZipNewFileMember >> from: aFileName [
 
 	| entry |
 	"Now get the size, attributes, and timestamps, and see if the file exists"
@@ -47,11 +37,8 @@ ZipNewFileMember>>from: aFileName [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipNewFileMember>>initialize [
+{ #category : #initialization }
+ZipNewFileMember >> initialize [
 	super initialize.
 	externalFileName := ''.
 	compressionMethod := CompressionStored.
@@ -59,29 +46,20 @@ ZipNewFileMember>>initialize [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipNewFileMember>>readRawChunk: n [
+{ #category : #private }
+ZipNewFileMember >> readRawChunk: n [
 	^stream next: n
 ]
 
-{
-	#category : #private-writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipNewFileMember>>rewindData [
+{ #category : #private-writing }
+ZipNewFileMember >> rewindData [
 	super rewindData.
 	readDataRemaining := stream size.
 	stream position: 0.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipNewFileMember>>usesFileNamed: aFileName [
+{ #category : #testing }
+ZipNewFileMember >> usesFileNamed: aFileName [
 	"Do I require aFileName? That is, do I care if it's clobbered?"
 	^externalFileName asFileReference = aFileName asFileReference
 ]

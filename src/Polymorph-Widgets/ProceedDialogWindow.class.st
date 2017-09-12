@@ -4,25 +4,18 @@ Yes/no dialog. Test result as to whether the dialog is cancelled (no) or not (ye
 Class {
 	#name : #ProceedDialogWindow,
 	#superclass : #MessageDialogWindow,
-	#category : #Polymorph-Widgets-Windows,
-	#timestamp : 'gvc 5/18/2007 12:22'
+	#category : #Polymorph-Widgets-Windows
 }
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProceedDialogWindow class>>taskbarIconName [
+{ #category : #icons }
+ProceedDialogWindow class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^#smallQuestionIcon
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProceedDialogWindow>>handlesKeyboard: evt [
+{ #category : #'as yet unclassified' }
+ProceedDialogWindow >> handlesKeyboard: evt [
 	"Return true if the receiver wishes to handle the given keyboard event"
 	
 	(super handlesKeyboard: evt) ifTrue: [^true].
@@ -31,21 +24,15 @@ ProceedDialogWindow>>handlesKeyboard: evt [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProceedDialogWindow>>icon [
+{ #category : #'as yet unclassified' }
+ProceedDialogWindow >> icon [
 	"Answer an icon for the receiver."
 
 	^ self iconNamed: #questionIcon
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProceedDialogWindow>>keyStroke: evt [
+{ #category : #'as yet unclassified' }
+ProceedDialogWindow >> keyStroke: evt [
 	"Additionally check for y and n keys (aliases for ok and cancel)."
 
 	(super keyStroke: evt) ifTrue: [^true].
@@ -54,31 +41,22 @@ ProceedDialogWindow>>keyStroke: evt [
 	^false
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProceedDialogWindow>>newButtons [
+{ #category : #'as yet unclassified' }
+ProceedDialogWindow >> newButtons [
 	"Answer new buttons as appropriate."
 
 	^{self newOKButton. self newCancelButton isDefault: true}
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProceedDialogWindow>>no [
+{ #category : #'as yet unclassified' }
+ProceedDialogWindow >> no [
 	"Answer no."
 
 	self cancel
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ProceedDialogWindow>>yes [
+{ #category : #'as yet unclassified' }
+ProceedDialogWindow >> yes [
 	"Answer yes."
 
 	self ok

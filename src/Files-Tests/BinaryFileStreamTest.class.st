@@ -1,46 +1,30 @@
-"
-
-"
 Class {
 	#name : #BinaryFileStreamTest,
 	#superclass : #TestCase,
-	#category : #Files-Tests,
-	#timestamp : ''
+	#category : #Files-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>fileStreamForFileNamed: fileName [
+{ #category : #running }
+BinaryFileStreamTest >> fileStreamForFileNamed: fileName [
 	^ (File named: fileName) writeStream
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>killTestFile [
+{ #category : #running }
+BinaryFileStreamTest >> killTestFile [
 
 	(File named: 'testFile') exists
 		ifTrue: [ (File named: 'testFile') delete ].
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>setUp [
+{ #category : #running }
+BinaryFileStreamTest >> setUp [
 
 	super setUp.
 	self killTestFile.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>tearDown [
+{ #category : #running }
+BinaryFileStreamTest >> tearDown [
 
 	super tearDown.
 	self killTestFile.
@@ -49,22 +33,16 @@ BinaryFileStreamTest>>tearDown [
 	3 timesRepeat: [ Smalltalk garbageCollect. ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>testEmptyFileIsAtEnd [
+{ #category : #testing }
+BinaryFileStreamTest >> testEmptyFileIsAtEnd [
 	
 	| file |
 	file := self fileStreamForFileNamed: 'testFile'.
 	self assert: file atEnd
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>testFileWithSomeBytesSizeIsNotZero [
+{ #category : #testing }
+BinaryFileStreamTest >> testFileWithSomeBytesSizeIsNotZero [
 	
 	| file |
 	file := self fileStreamForFileNamed: 'testFile'.
@@ -76,11 +54,8 @@ BinaryFileStreamTest>>testFileWithSomeBytesSizeIsNotZero [
 	self assert: file position equals: 5.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>testFullFileIsAtEnd [
+{ #category : #testing }
+BinaryFileStreamTest >> testFullFileIsAtEnd [
 	
 	| file |
 	file := self fileStreamForFileNamed: 'testFile'.
@@ -88,11 +63,8 @@ BinaryFileStreamTest>>testFullFileIsAtEnd [
 	self assert: file atEnd.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>testOpenFile [
+{ #category : #testing }
+BinaryFileStreamTest >> testOpenFile [
 	
 	| file |
 	file := self fileStreamForFileNamed: 'testFile'.
@@ -100,11 +72,8 @@ BinaryFileStreamTest>>testOpenFile [
 	self assert: (File named: 'testFile') exists
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>testPeekDoesNotAdvanceTheStream [
+{ #category : #testing }
+BinaryFileStreamTest >> testPeekDoesNotAdvanceTheStream [
 	
 	| file |
 	file := self fileStreamForFileNamed: 'testFile'.
@@ -119,11 +88,8 @@ BinaryFileStreamTest>>testPeekDoesNotAdvanceTheStream [
 	self assert: file position equals: 0.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>testReadFullFileIsAtEnd [
+{ #category : #testing }
+BinaryFileStreamTest >> testReadFullFileIsAtEnd [
 	
 	| file |
 	file := self fileStreamForFileNamed: 'testFile'.
@@ -135,11 +101,8 @@ BinaryFileStreamTest>>testReadFullFileIsAtEnd [
 	self assert: file atEnd.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>testReadLessThanAvailableYieldsJustRead [
+{ #category : #testing }
+BinaryFileStreamTest >> testReadLessThanAvailableYieldsJustRead [
 	
 	| file |
 	file := self fileStreamForFileNamed: 'testFile'.
@@ -152,11 +115,8 @@ BinaryFileStreamTest>>testReadLessThanAvailableYieldsJustRead [
 	self assert: (file next:2) equals: #[1 2].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>testReadMoreThanAvailableYieldsOnlyAvailable [
+{ #category : #testing }
+BinaryFileStreamTest >> testReadMoreThanAvailableYieldsOnlyAvailable [
 	
 	| file |
 	file := self fileStreamForFileNamed: 'testFile'.
@@ -170,11 +130,8 @@ BinaryFileStreamTest>>testReadMoreThanAvailableYieldsOnlyAvailable [
 	self assert: (file next:2) equals: #[1].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>testReadMultipleBytes [
+{ #category : #testing }
+BinaryFileStreamTest >> testReadMultipleBytes [
 	
 	| file |
 	file := self fileStreamForFileNamed: 'testFile'.
@@ -186,22 +143,16 @@ BinaryFileStreamTest>>testReadMultipleBytes [
 	self assert: (file next: 2) equals: #[1 2].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>testReadWhenNothingAvailableYieldsNil [
+{ #category : #testing }
+BinaryFileStreamTest >> testReadWhenNothingAvailableYieldsNil [
 	
 	| file |
 	file := self fileStreamForFileNamed: 'testFile'.
 	self assert: file next equals: nil.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>testSkipLecture [
+{ #category : #testing }
+BinaryFileStreamTest >> testSkipLecture [
 	
 	| file |
 	file := self fileStreamForFileNamed: 'testFile'.
@@ -215,11 +166,8 @@ BinaryFileStreamTest>>testSkipLecture [
 	self assert: file next equals: 3.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>testWriteMultipleBytes [
+{ #category : #testing }
+BinaryFileStreamTest >> testWriteMultipleBytes [
 	
 	| file |
 	file := self fileStreamForFileNamed: 'testFile'.
@@ -231,11 +179,8 @@ BinaryFileStreamTest>>testWriteMultipleBytes [
 	self assert: file next equals: 2.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>testWriteReadInt [
+{ #category : #testing }
+BinaryFileStreamTest >> testWriteReadInt [
 	
 	| file |
 	file := self fileStreamForFileNamed: 'testFile'.
@@ -246,11 +191,8 @@ BinaryFileStreamTest>>testWriteReadInt [
 	self assert: file next equals: 1.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-BinaryFileStreamTest>>testWriteToClosedFileFails [
+{ #category : #testing }
+BinaryFileStreamTest >> testWriteToClosedFileFails [
 	
 	| fileStream |
 	fileStream := self fileStreamForFileNamed: 'testFile'.

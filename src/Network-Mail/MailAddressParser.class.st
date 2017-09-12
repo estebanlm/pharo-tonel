@@ -13,35 +13,25 @@ Class {
 		'addresses',
 		'curAddrTokens'
 	],
-	#category : #Network-Mail,
-	#timestamp : '<historical>'
+	#category : #Network-Mail
 }
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressParser class>>addressesIn: aString [
+{ #category : #parsing }
+MailAddressParser class >> addressesIn: aString [
 	"return a collection of the bare addresses listed in aString"
 	| tokens |
 	tokens := MailAddressTokenizer tokensIn: aString.
 	^(self new initialize: tokens) grabAddresses
 ]
 
-{
-	#category : #'building address list',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressParser>>addToAddress [
+{ #category : #'building address list' }
+MailAddressParser >> addToAddress [
 	"add the last token to the address.  removes the token from the collection"
 	curAddrTokens addFirst: (tokens removeLast)
 ]
 
-{
-	#category : #'building address list',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressParser>>finishAddress [
+{ #category : #'building address list' }
+MailAddressParser >> finishAddress [
 	"we've finished one address.  Bundle it up and add it to the list of addresses"
 	| address |
 
@@ -53,11 +43,8 @@ MailAddressParser>>finishAddress [
 	curAddrTokens := nil.
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressParser>>grabAddressWithRoute [
+{ #category : #parsing }
+MailAddressParser >> grabAddressWithRoute [
 	"grad an address of the form 'Descriptive Text <real.address@c.d.e>"
 	
 	self startNewAddress.
@@ -79,11 +66,8 @@ MailAddressParser>>grabAddressWithRoute [
 	self finishAddress
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressParser>>grabAddresses [
+{ #category : #parsing }
+MailAddressParser >> grabAddresses [
 	"grab all the addresses in the string"
 	| token |
 	"remove comments"
@@ -118,11 +102,8 @@ MailAddressParser>>grabAddresses [
 	^addresses
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressParser>>grabBasicAddress [
+{ #category : #parsing }
+MailAddressParser >> grabBasicAddress [
 	"grad an address of the form a.b@c.d.e"
 	self startNewAddress.
 	"grab either the domain if specified, or the domain if not"
@@ -155,11 +136,8 @@ MailAddressParser>>grabBasicAddress [
 			self finishAddress]
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressParser>>grabGroupAddress [
+{ #category : #parsing }
+MailAddressParser >> grabGroupAddress [
 	"grab an address of the form 'phrase : address, address, ..., address;'"
 	"I'm not 100% sure what this format means, so I'm just returningthe list of addresses between the : and ;   -ls  (if this sounds right to someone, feel free to remove this comment :)"
 
@@ -195,20 +173,14 @@ MailAddressParser>>grabGroupAddress [
 	self removePhrase.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressParser>>initialize: tokenList [
+{ #category : #initialization }
+MailAddressParser >> initialize: tokenList [
 	tokens := tokenList asOrderedCollection copy.
 	addresses := OrderedCollection new.
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressParser>>removePhrase [
+{ #category : #parsing }
+MailAddressParser >> removePhrase [
 	"skip most characters to the left of this"
 
 	[
@@ -218,11 +190,8 @@ MailAddressParser>>removePhrase [
 
 ]
 
-{
-	#category : #'building address list',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressParser>>startNewAddress [
+{ #category : #'building address list' }
+MailAddressParser >> startNewAddress [
 	"set up data structures to begin a new address"
 
 	curAddrTokens notNil

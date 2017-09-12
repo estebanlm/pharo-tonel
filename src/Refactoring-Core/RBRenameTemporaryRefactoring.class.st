@@ -16,15 +16,11 @@ Class {
 		'newName',
 		'parseTree'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 14:56'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameTemporaryRefactoring class>>model: aRBSmalltalk renameTemporaryFrom: anInterval to: newName in: aClass selector: aSelector  [
+{ #category : #'instance creation' }
+RBRenameTemporaryRefactoring class >> model: aRBSmalltalk renameTemporaryFrom: anInterval to: newName in: aClass selector: aSelector [ 
 	^(self new)
 		model: aRBSmalltalk;
 		class: aClass
@@ -34,11 +30,8 @@ RBRenameTemporaryRefactoring class>>model: aRBSmalltalk renameTemporaryFrom: anI
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameTemporaryRefactoring class>>renameTemporaryFrom: anInterval to: newName in: aClass selector: aSelector  [
+{ #category : #'instance creation' }
+RBRenameTemporaryRefactoring class >> renameTemporaryFrom: anInterval to: newName in: aClass selector: aSelector [ 
 	^self new
 		class: aClass
 		selector: aSelector
@@ -46,22 +39,16 @@ RBRenameTemporaryRefactoring class>>renameTemporaryFrom: anInterval to: newName 
 		newName: newName
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameTemporaryRefactoring>>class: aClass selector: aSelector interval: anInterval newName: aString  [
+{ #category : #initialize-release }
+RBRenameTemporaryRefactoring >> class: aClass selector: aSelector interval: anInterval newName: aString [ 
 	class := self classObjectFor: aClass.
 	selector := aSelector.
 	interval := anInterval.
 	newName := aString
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameTemporaryRefactoring>>preconditions [
+{ #category : #preconditions }
+RBRenameTemporaryRefactoring >> preconditions [
 	^ (RBCondition
 		withBlock: [ | methodSource |
 			interval first > interval last
@@ -74,11 +61,8 @@ RBRenameTemporaryRefactoring>>preconditions [
 		& (RBCondition definesInstanceVariable: newName in: class) not & (RBCondition definesClassVariable: newName in: class) not
 ]
 
-{
-	#category : #tranforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameTemporaryRefactoring>>renameNode: aParseTree [
+{ #category : #tranforming }
+RBRenameTemporaryRefactoring >> renameNode: aParseTree [
 	(aParseTree whoDefines: newName)
 		ifNotNil: [ self refactoringError: newName asString , ' is already defined' ].
 	(aParseTree allDefinedVariables includes: newName)
@@ -86,11 +70,8 @@ RBRenameTemporaryRefactoring>>renameNode: aParseTree [
 	(RBParseTreeRewriter rename: oldName to: newName) executeTree: aParseTree
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameTemporaryRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBRenameTemporaryRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream nextPutAll: ' renameTemporaryFrom: '.
@@ -106,11 +87,8 @@ RBRenameTemporaryRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #tranforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameTemporaryRefactoring>>transform [
+{ #category : #tranforming }
+RBRenameTemporaryRefactoring >> transform [
 	| definingNode variableNode |
 	parseTree := class parseTreeFor: selector.
 	variableNode := self whichVariableNode: parseTree inInterval: interval name: oldName.

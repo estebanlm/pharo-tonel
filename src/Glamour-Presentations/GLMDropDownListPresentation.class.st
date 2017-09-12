@@ -9,15 +9,11 @@ Class {
 	#instVars : [
 		'selectedIndex'
 	],
-	#category : #Glamour-Presentations,
-	#timestamp : 'AndreiChis 10/3/2014 18:23'
+	#category : #Glamour-Presentations
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDropDownListPresentation>>defaultValidate: anObject on: aPort [
+{ #category : #rendering }
+GLMDropDownListPresentation >> defaultValidate: anObject on: aPort [
 	"we only allow objects that are in the display value"
 
 	(aPort name == #selection) ifFalse: [ ^ true ].
@@ -25,28 +21,19 @@ GLMDropDownListPresentation>>defaultValidate: anObject on: aPort [
 	^ self displayValue includes: anObject 
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDropDownListPresentation>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMDropDownListPresentation >> renderGlamorouslyOn: aRenderer [ 
 	self registerAnnouncements.
 	^ aRenderer renderDropDownListPresentation: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDropDownListPresentation>>selectedIndex [
+{ #category : #accessing }
+GLMDropDownListPresentation >> selectedIndex [
 	^ selectedIndex ifNil:[ selectedIndex := 0 ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDropDownListPresentation>>selectedIndex: index [
+{ #category : #accessing }
+GLMDropDownListPresentation >> selectedIndex: index [
 	
 	selectedIndex:= index
 ]

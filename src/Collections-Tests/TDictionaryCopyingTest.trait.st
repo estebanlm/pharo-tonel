@@ -5,77 +5,52 @@ Trait {
 	#name : #TDictionaryCopyingTest,
 	#traits : 'TCloneTest',
 	#classTraits : 'TCloneTest classTrait',
-	#category : #Collections-Tests-Unordered,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:33'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryCopyingTest>>empty [
+{ #category : #helper }
+TDictionaryCopyingTest >> empty [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryCopyingTest>>emptyDict [
+{ #category : #requirements }
+TDictionaryCopyingTest >> emptyDict [
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryCopyingTest>>newEmptyDict [
+{ #category : #requirements }
+TDictionaryCopyingTest >> newEmptyDict [
 	self explicitRequirement
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryCopyingTest>>nonEmpty [
+{ #category : #helper }
+TDictionaryCopyingTest >> nonEmpty [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryCopyingTest>>nonEmptyDict [
+{ #category : #requirements }
+TDictionaryCopyingTest >> nonEmptyDict [
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryCopyingTest>>nonEmptyDifferentFromNonEmptyDict [
+{ #category : #requirements }
+TDictionaryCopyingTest >> nonEmptyDifferentFromNonEmptyDict [
 " return a dictionary for which all keys are not included in nonEmptyDict"
 self explicitRequirement.
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryCopyingTest>>test0FixtureCloneTest [
+{ #category : #'tests - fixture' }
+TDictionaryCopyingTest >> test0FixtureCloneTest [
 	self nonEmpty.
 	self deny: self nonEmpty isEmpty.
 	self empty.
 	self assert: self empty isEmpty
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryCopyingTest>>test0FixtureDictionaryCopyingTest [
+{ #category : #'tests - fixture' }
+TDictionaryCopyingTest >> test0FixtureDictionaryCopyingTest [
 	| duplicateKey |
 	self nonEmptyDict.
 	self deny: self nonEmptyDict isEmpty.
@@ -88,11 +63,8 @@ TDictionaryCopyingTest>>test0FixtureDictionaryCopyingTest [
 	self assert: duplicateKey = false
 ]
 
-{
-	#category : #'tests - copy - clone',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryCopyingTest>>testCopyCreatesNewObject [
+{ #category : #'tests - copy - clone' }
+TDictionaryCopyingTest >> testCopyCreatesNewObject [
 	"self debug: #testCopyCreatesNewObject"
 	
 	| copy | 
@@ -101,11 +73,8 @@ TDictionaryCopyingTest>>testCopyCreatesNewObject [
 	
 ]
 
-{
-	#category : #'tests - copy - clone',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryCopyingTest>>testCopyEmpty [
+{ #category : #'tests - copy - clone' }
+TDictionaryCopyingTest >> testCopyEmpty [
 	"self debug: #testCopyEmpty"
 	
 	| copy | 
@@ -113,11 +82,8 @@ TDictionaryCopyingTest>>testCopyEmpty [
 	self assert: copy isEmpty.
 ]
 
-{
-	#category : #'tests - copy - clone',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryCopyingTest>>testCopyNonEmpty [
+{ #category : #'tests - copy - clone' }
+TDictionaryCopyingTest >> testCopyNonEmpty [
 	"self debug: #testCopyNonEmpty"
 	
 	| copy | 
@@ -128,11 +94,8 @@ TDictionaryCopyingTest>>testCopyNonEmpty [
 		[:each | copy includes: each]
 ]
 
-{
-	#category : #'test - copying',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryCopyingTest>>testDictionaryConcatenationWithCommonKeys [
+{ #category : #'test - copying' }
+TDictionaryCopyingTest >> testDictionaryConcatenationWithCommonKeys [
 
 	| dictionary1 dictionary2 result |
 	dictionary1 := self nonEmptyDict.
@@ -143,11 +106,8 @@ TDictionaryCopyingTest>>testDictionaryConcatenationWithCommonKeys [
 	dictionary2 associationsDo: [ :assoc | self assert: (result at: assoc key) = assoc value ]
 ]
 
-{
-	#category : #'test - copying',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryCopyingTest>>testDictionaryConcatenationWithCommonKeysDifferentValues [
+{ #category : #'test - copying' }
+TDictionaryCopyingTest >> testDictionaryConcatenationWithCommonKeysDifferentValues [
 
 	| dictionary1 dictionary2 result value |
 	
@@ -163,11 +123,8 @@ TDictionaryCopyingTest>>testDictionaryConcatenationWithCommonKeysDifferentValues
 	dictionary2 associationsDo: [ :assoc | self assert: (result at: assoc key) = assoc value ]
 ]
 
-{
-	#category : #'test - copying',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryCopyingTest>>testDictionaryConcatenationWithoutCommonKeys [
+{ #category : #'test - copying' }
+TDictionaryCopyingTest >> testDictionaryConcatenationWithoutCommonKeys [
 
 	| dictionary1 dictionary2 result |
 	dictionary1 := self nonEmptyDict.

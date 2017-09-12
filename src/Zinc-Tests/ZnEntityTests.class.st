@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnEntityTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityTests>>testApplicationUrlEncodingAddAll [
+{ #category : #testing }
+ZnEntityTests >> testApplicationUrlEncodingAddAll [
 	| entity string data |
 	data := Dictionary new.
 	data at: 'foo' put: 1 asString.
@@ -31,11 +24,8 @@ ZnEntityTests>>testApplicationUrlEncodingAddAll [
 	self assert: (entity at: 'bar') equals: '2'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityTests>>testMultiPartFormDataWriteRead [
+{ #category : #testing }
+ZnEntityTests >> testMultiPartFormDataWriteRead [
 	| input output bytes |
 	input := (ZnMultiPartFormDataEntity new)
 		addPart: (ZnMimePart fieldName: 'extra' value: 'my-extra');
@@ -62,11 +52,8 @@ ZnEntityTests>>testMultiPartFormDataWriteRead [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityTests>>testMultiPartFormDataWriteReadBinary [
+{ #category : #testing }
+ZnEntityTests >> testMultiPartFormDataWriteReadBinary [
 	| input output bytes |
 	input := (ZnMultiPartFormDataEntity new)
 		addPart: (ZnMimePart fieldName: 'extra' value: 'my-extra');
@@ -86,11 +73,8 @@ ZnEntityTests>>testMultiPartFormDataWriteReadBinary [
 	self assert: (output partNamed: 'file') contents = 'Zinc HTTP Components' asByteArray
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityTests>>testReading [
+{ #category : #testing }
+ZnEntityTests >> testReading [
 	| contents entity |
 	contents := 'This is a test'.
 	entity := ZnEntity 
@@ -103,11 +87,8 @@ ZnEntityTests>>testReading [
 	self assert: entity contentType = ZnMimeType textPlain 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityTests>>testReadingApplicationFormUrlEncoding [
+{ #category : #testing }
+ZnEntityTests >> testReadingApplicationFormUrlEncoding [
 	| input entity |
 	input := #(111 97 117 116 104 95 116 111 107 101 110 95 115 101 99 114 101 116 61 98 121 112 104 57 99 109 104 106 49 53 101 108 121 56 38 111 97 117 116 104 95 116 111 107 101 110 61 56 54 101 112 106 51 116 118 100 49 107 115 120 111 57)
 		asByteArray.
@@ -119,11 +100,8 @@ ZnEntityTests>>testReadingApplicationFormUrlEncoding [
 	self assert: (entity at: 'oauth_token') equals: '86epj3tvd1ksxo9'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityTests>>testReadingApplicationFormUrlEncodingNoLength [
+{ #category : #testing }
+ZnEntityTests >> testReadingApplicationFormUrlEncodingNoLength [
 	| input entity |
 	input := #(111 97 117 116 104 95 116 111 107 101 110 95 115 101 99 114 101 116 61 98 121 112 104 57 99 109 104 106 49 53 101 108 121 56 38 111 97 117 116 104 95 116 111 107 101 110 61 56 54 101 112 106 51 116 118 100 49 107 115 120 111 57)
 		asByteArray.
@@ -135,11 +113,8 @@ ZnEntityTests>>testReadingApplicationFormUrlEncodingNoLength [
 	self assert: (entity at: 'oauth_token') equals: '86epj3tvd1ksxo9'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityTests>>testReadingBinary [
+{ #category : #testing }
+ZnEntityTests >> testReadingBinary [
 	| contents entity |
 	contents := 'This is a test'.
 	entity := ZnEntity 
@@ -152,11 +127,8 @@ ZnEntityTests>>testReadingBinary [
 	self assert: entity contentType = ZnMimeType textPlain 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityTests>>testReadingLimited [
+{ #category : #testing }
+ZnEntityTests >> testReadingLimited [
 	| contents |
 	contents := String new: 1025 withAll: $X.
 	ZnMaximumEntitySize value: 1024 during: [
@@ -174,11 +146,8 @@ ZnEntityTests>>testReadingLimited [
 			raise: ZnEntityTooLarge ] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityTests>>testStringEntityEncoderInitialization [
+{ #category : #testing }
+ZnEntityTests >> testStringEntityEncoderInitialization [
 	| entity response |
 	entity := ZnEntity text: 'Regression test'.
 	self assert: entity hasEncoder not.
@@ -189,11 +158,8 @@ ZnEntityTests>>testStringEntityEncoderInitialization [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityTests>>testUTF8ReadingDetermined [
+{ #category : #testing }
+ZnEntityTests >> testUTF8ReadingDetermined [
 	| string entity bytes |
 	string := String with: $$ with: (16r00A2 asCharacter) with: ( 16r20AC asCharacter) with: (16r024B62 asCharacter).
 	entity := ZnStringEntity type: ZnMimeType textPlain length: 10.
@@ -204,11 +170,8 @@ ZnEntityTests>>testUTF8ReadingDetermined [
 	self assert: entity contents = string
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityTests>>testUTF8ReadingUndetermined [
+{ #category : #testing }
+ZnEntityTests >> testUTF8ReadingUndetermined [
 	| string entity bytes |
 	string := String with: $$ with: (16r00A2 asCharacter) with: ( 16r20AC asCharacter) with: (16r024B62 asCharacter).
 	entity := ZnStringEntity type: ZnMimeType textPlain.
@@ -219,11 +182,8 @@ ZnEntityTests>>testUTF8ReadingUndetermined [
 	self assert: entity contents = string
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityTests>>testUTF8Writing [
+{ #category : #testing }
+ZnEntityTests >> testUTF8Writing [
 	| string entity bytes |
 	string := String with: $$ with: (16r00A2 asCharacter) with: ( 16r20AC asCharacter) with: (16r024B62 asCharacter).
 	entity := ZnStringEntity text: string.
@@ -233,11 +193,8 @@ ZnEntityTests>>testUTF8Writing [
 	self assert: bytes = #(16r24 16rC2 16rA2 16rE2 16r82 16rAC 16rF0 16rA4 16rAD 16rA2) asByteArray
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityTests>>testUnspecifiedEncoding [
+{ #category : #testing }
+ZnEntityTests >> testUnspecifiedEncoding [
 	| json bytes entity |
 	json := '{"text":"Der Weg zur Hölle ist mit guten Vorsätzen gepflastert."}'.
 	entity := ZnEntity with: json type: ZnMimeType applicationJson setCharSetUTF8.
@@ -254,11 +211,8 @@ ZnEntityTests>>testUnspecifiedEncoding [
 			self assert: entity encoder equals: ZnUTF8Encoder new ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityTests>>testWritingApplicationUrlEncoding [
+{ #category : #testing }
+ZnEntityTests >> testWritingApplicationUrlEncoding [
 	| entity string |
 	entity := ZnApplicationFormUrlEncodedEntity new.
 	entity at: 'foo' put: 'bar'.
@@ -267,11 +221,8 @@ ZnEntityTests>>testWritingApplicationUrlEncoding [
 	self assert: entity contentLength = 7
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityTests>>testWritingApplicationUrlEncodingWithTextEncodingLatin1 [
+{ #category : #testing }
+ZnEntityTests >> testWritingApplicationUrlEncodingWithTextEncodingLatin1 [
 	| entity string |
 	entity := ZnApplicationFormUrlEncodedEntity new.
 	entity contentType charSet: 'iso-8859-1'.
@@ -282,11 +233,8 @@ ZnEntityTests>>testWritingApplicationUrlEncodingWithTextEncodingLatin1 [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnEntityTests>>testWritingApplicationUrlEncodingWithTextEncodingUtf8 [
+{ #category : #testing }
+ZnEntityTests >> testWritingApplicationUrlEncodingWithTextEncodingUtf8 [
 	| entity string |
 	entity := ZnApplicationFormUrlEncodedEntity new.
 	entity contentType charSet: 'utf-8'.

@@ -10,33 +10,23 @@ Class {
 		'pageSizeEditor',
 		'nextPageAllowed'
 	],
-	#category : #Morphic-Widgets-Tree-Pagination,
-	#timestamp : 'TorstenBergmann 9/5/2014 15:30'
+	#category : #Morphic-Widgets-Tree-Pagination
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>atBottom [
+{ #category : #accessing }
+MorphTreeChunkPager >> atBottom [
 	^ atBottom ifNil: [atBottom := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>atBottom: aBoolean [
+{ #category : #accessing }
+MorphTreeChunkPager >> atBottom: aBoolean [
 	atBottom ~= aBoolean 
 		ifTrue: [atBottom := aBoolean]
 
 ]
 
-{
-	#category : #initailize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>buildPanel [
+{ #category : #initailize-release }
+MorphTreeChunkPager >> buildPanel [
 	| widgets nextButton lastPageButton  searchEditor |
 	self removeAllMorphs.
 	pageSize
@@ -85,11 +75,8 @@ MorphTreeChunkPager>>buildPanel [
 	self updateContents
 ]
 
-{
-	#category : #navigation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>chunkSizeInput: aString [
+{ #category : #navigation }
+MorphTreeChunkPager >> chunkSizeInput: aString [
 	| input newPageSize |
 	input := aString trimBoth.
 	input ifEmpty: [treeMorph flash.
@@ -105,21 +92,15 @@ MorphTreeChunkPager>>chunkSizeInput: aString [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>computedHeight  [
+{ #category : #accessing }
+MorphTreeChunkPager >> computedHeight [ 
 	^ self nodeList size > self lastIndex 
 		ifTrue: [super computedHeight ]
 		ifFalse:[0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>computedHeightFromContents [
+{ #category : #accessing }
+MorphTreeChunkPager >> computedHeightFromContents [
 	| h |
 	h := 0.
 	self submorphsDo: [:sm | h := h max: sm height].
@@ -127,53 +108,35 @@ MorphTreeChunkPager>>computedHeightFromContents [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>currentNodelist [
+{ #category : #accessing }
+MorphTreeChunkPager >> currentNodelist [
 	^ self nodeList copyFrom: 1 to: (self lastIndex min: self nodeList size)
 ]
 
-{
-	#category : #navigation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>fullList [
+{ #category : #navigation }
+MorphTreeChunkPager >> fullList [
 	self lastIndex < self nodeList size
 		ifTrue: [self nextPage: self nodeList size]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>initialize [
+{ #category : #initialization }
+MorphTreeChunkPager >> initialize [
 	super initialize.
 	nextPageAllowed := true
 ]
 
-{
-	#category : #navigation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>lastIndex [
+{ #category : #navigation }
+MorphTreeChunkPager >> lastIndex [
 	^ lastIndex ifNil: [lastIndex := self pageSize]
 ]
 
-{
-	#category : #navigation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>lastIndex: anIndex [
+{ #category : #navigation }
+MorphTreeChunkPager >> lastIndex: anIndex [
 	lastIndex := anIndex
 ]
 
-{
-	#category : #navigation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>nextPage [
+{ #category : #navigation }
+MorphTreeChunkPager >> nextPage [
 	| last |
 	nextPageAllowed
 		ifTrue: [[nextPageAllowed := false.
@@ -193,11 +156,8 @@ MorphTreeChunkPager>>nextPage [
 				ensure: [nextPageAllowed := true]] 
 ]
 
-{
-	#category : #navigation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>nextPage: newLast [
+{ #category : #navigation }
+MorphTreeChunkPager >> nextPage: newLast [
 	| addedNodeList |
 	newLast > self lastIndex
 		ifFalse: [ ^ self ].
@@ -209,37 +169,25 @@ MorphTreeChunkPager>>nextPage: newLast [
 			treeMorph addSubmorphsFromNodeList: addedNodeList previouslyExpanded: treeMorph currentlyExpanded ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>notOnLastPage [
+{ #category : #testing }
+MorphTreeChunkPager >> notOnLastPage [
 	^ self onLastPage not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>onLastPage [
+{ #category : #testing }
+MorphTreeChunkPager >> onLastPage [
 	^ self lastIndex = self nodeList size
 ]
 
-{
-	#category : #initailize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>updateContents [
+{ #category : #initailize-release }
+MorphTreeChunkPager >> updateContents [
 	treeMorph vIsScrollable 
 		ifFalse: [self atBottom: true].
 	super updateContents
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>vScrollBarValue: scrollValue [
+{ #category : #'user interface' }
+MorphTreeChunkPager >> vScrollBarValue: scrollValue [
 	| old |
 	old := atBottom.
 	self atBottom: scrollValue >= self verticalScrollbarFrontier.
@@ -247,10 +195,7 @@ MorphTreeChunkPager>>vScrollBarValue: scrollValue [
 		ifTrue: [ self buildPanel ]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChunkPager>>verticalScrollbarFrontier [
+{ #category : #'user interface' }
+MorphTreeChunkPager >> verticalScrollbarFrontier [
 	^ 0.98
 ]

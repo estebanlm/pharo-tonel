@@ -4,33 +4,23 @@ I am the adapter used to bridget a SliderModel and a PluggableSliderMorph
 Class {
 	#name : #MorphicSliderAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicSliderAdapter>>absoluteValue [
+{ #category : #'widget API' }
+MorphicSliderAdapter >> absoluteValue [
 
 	^ self model absoluteValue
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicSliderAdapter>>absoluteValue: aFloat [
+{ #category : #'widget API' }
+MorphicSliderAdapter >> absoluteValue: aFloat [
 
 	^ self model absoluteValue: aFloat
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicSliderAdapter>>buildWidget [
+{ #category : #factory }
+MorphicSliderAdapter >> buildWidget [
 	^ PluggableSliderMorph new
 		model: self;
 		getValueSelector: #value;
@@ -46,56 +36,38 @@ MorphicSliderAdapter>>buildWidget [
 		yourself
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicSliderAdapter>>label [
+{ #category : #'widget API' }
+MorphicSliderAdapter >> label [
 
 	^ self model label
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicSliderAdapter>>max [
+{ #category : #'widget API' }
+MorphicSliderAdapter >> max [
 
 	^ self model max
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicSliderAdapter>>min [
+{ #category : #'widget API' }
+MorphicSliderAdapter >> min [
 
 	^ self model min
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicSliderAdapter>>quantum [
+{ #category : #'widget API' }
+MorphicSliderAdapter >> quantum [
 
 	^ self model quantum
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicSliderAdapter>>value [
+{ #category : #'widget API' }
+MorphicSliderAdapter >> value [
 
 	^ self model value
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicSliderAdapter>>value: aValue [
+{ #category : #'widget API' }
+MorphicSliderAdapter >> value: aValue [
 
 	^ self model value: aValue
 ]

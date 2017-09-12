@@ -5,47 +5,31 @@ A GTSpotterRecorderSelectedCandidateChangedEvent models the action of  selecting
 Class {
 	#name : #GTSpotterRecorderSelectedCandidateChangedEvent,
 	#superclass : #GTSpotterRecorderEvent,
-	#category : #GT-Spotter-EventRecorder-Events,
-	#timestamp : 'AndreiChis 2/28/2015 19:07'
+	#category : #GT-Spotter-EventRecorder-Events
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderSelectedCandidateChangedEvent>>accept: aVisitor [
+{ #category : #visitor }
+GTSpotterRecorderSelectedCandidateChangedEvent >> accept: aVisitor [
 	^ aVisitor visitSelectedCandidateChangedEvent: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderSelectedCandidateChangedEvent>>elementName [
+{ #category : #accessing }
+GTSpotterRecorderSelectedCandidateChangedEvent >> elementName [
 	^ self infoAt: #elementName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderSelectedCandidateChangedEvent>>elementType [
+{ #category : #accessing }
+GTSpotterRecorderSelectedCandidateChangedEvent >> elementType [
 	^ self infoAt: #elementType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderSelectedCandidateChangedEvent>>eventType [
+{ #category : #accessing }
+GTSpotterRecorderSelectedCandidateChangedEvent >> eventType [
 	^ self infoAt: #eventType
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderSelectedCandidateChangedEvent>>fromAnnouncement: anAnnouncement [
+{ #category : #initialization }
+GTSpotterRecorderSelectedCandidateChangedEvent >> fromAnnouncement: anAnnouncement [
 	super fromAnnouncement: anAnnouncement.
 	self infoAt: #eventType put: anAnnouncement eventType.
 	self infoAt: #elementName putHashForText: anAnnouncement selected asString.
@@ -53,18 +37,12 @@ GTSpotterRecorderSelectedCandidateChangedEvent>>fromAnnouncement: anAnnouncement
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderSelectedCandidateChangedEvent>>isUserSelection [
+{ #category : #testing }
+GTSpotterRecorderSelectedCandidateChangedEvent >> isUserSelection [
 	^ self eventType notNil and: [ (self eventType = #unknown) not ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderSelectedCandidateChangedEvent>>isUserSelectionClass [
+{ #category : #testing }
+GTSpotterRecorderSelectedCandidateChangedEvent >> isUserSelectionClass [
 	^ true
 ]

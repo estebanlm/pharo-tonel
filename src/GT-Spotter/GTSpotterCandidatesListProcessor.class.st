@@ -18,358 +18,231 @@ Class {
 		'keyBinding',
 		'sortBlock'
 	],
-	#category : #GT-Spotter-Processors,
-	#timestamp : 'TudorGirba 11/30/2014 22:12'
+	#category : #GT-Spotter-Processors
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>actLogic [
+{ #category : #accessing }
+GTSpotterCandidatesListProcessor >> actLogic [
 	^ actBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>actLogic: aBlockWithTwoArguments [
+{ #category : #scripting }
+GTSpotterCandidatesListProcessor >> actLogic: aBlockWithTwoArguments [
 
 	actBlock := aBlockWithTwoArguments
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>actOn: anObject for: aStep [
+{ #category : #private }
+GTSpotterCandidatesListProcessor >> actOn: anObject for: aStep [
 	
 	actBlock
 		ifNil: [ super actOn: anObject for: aStep ]
 		ifNotNil: [ actBlock cull: anObject cull: aStep ]
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>allCandidates: aBlockWithOneArgument [
+{ #category : #compatibility }
+GTSpotterCandidatesListProcessor >> allCandidates: aBlockWithOneArgument [
 	self items: aBlockWithOneArgument
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>candidatesLimit: anInteger [
+{ #category : #compatibility }
+GTSpotterCandidatesListProcessor >> candidatesLimit: anInteger [
 	self itemsLimit: anInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>computeAllItemsIn: aContext [
+{ #category : #private }
+GTSpotterCandidatesListProcessor >> computeAllItemsIn: aContext [
 	^ allCandidatesBlock cull: aContext
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>defaultCandidatesLimit [
+{ #category : #compatibility }
+GTSpotterCandidatesListProcessor >> defaultCandidatesLimit [
 	^ self defaultItemsLimit
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>defaultContinueItemsLimit [
+{ #category : #accessing-defaults }
+GTSpotterCandidatesListProcessor >> defaultContinueItemsLimit [
 	" Spotter becomes extraordenary slow when rendering too many results. So we set the maximum limit to 100. This is only a temporary solution until we have fixed the problem. Until then no spotter processor will ever generate more then 100 results. "
 	^ 100
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>defaultItemsLimit [
+{ #category : #accessing-defaults }
+GTSpotterCandidatesListProcessor >> defaultItemsLimit [
 	^ 5
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>doFilterInContext: aSpotterContext [
+{ #category : #private }
+GTSpotterCandidatesListProcessor >> doFilterInContext: aSpotterContext [
 	^ aSpotterContext doFilter: filterBlock gtFilter forProcessor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>filter [
+{ #category : #accessing }
+GTSpotterCandidatesListProcessor >> filter [
 	^ filterBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>filter: aGTFilterOrBlockWithOneArgument [
+{ #category : #scripting }
+GTSpotterCandidatesListProcessor >> filter: aGTFilterOrBlockWithOneArgument [
 	filterBlock := aGTFilterOrBlockWithOneArgument 
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>filter: aGTFilter item: aGTSpotterIterator  [
+{ #category : #scripting }
+GTSpotterCandidatesListProcessor >> filter: aGTFilter item: aGTSpotterIterator [ 
 	self filter: aGTFilter.
 	self items: aGTSpotterIterator gtIterator.
 	
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>filterUsing: aFilter [
+{ #category : #compatibility }
+GTSpotterCandidatesListProcessor >> filterUsing: aFilter [
 	self filter: aFilter
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>hasDynamicItems [
+{ #category : #testing }
+GTSpotterCandidatesListProcessor >> hasDynamicItems [
 	^ allCandidatesBlock hasDynamicItems
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>itemFilterName [
+{ #category : #accessing }
+GTSpotterCandidatesListProcessor >> itemFilterName [
 	^ itemFilterNameBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>itemFilterName: aBlockWithOneArgument [
+{ #category : #scripting }
+GTSpotterCandidatesListProcessor >> itemFilterName: aBlockWithOneArgument [
 	itemFilterNameBlock := aBlockWithOneArgument
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>itemFilterNameFor: anObject [
+{ #category : #private }
+GTSpotterCandidatesListProcessor >> itemFilterNameFor: anObject [
 	^ itemFilterNameBlock isNil
 		ifTrue: [ super itemFilterNameFor: anObject ]
 		ifFalse: [ itemFilterNameBlock cull: anObject ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>itemIcon [
+{ #category : #accessing }
+GTSpotterCandidatesListProcessor >> itemIcon [
 	^ itemIconBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>itemIcon: aBlockWithOneArgument [
+{ #category : #scripting }
+GTSpotterCandidatesListProcessor >> itemIcon: aBlockWithOneArgument [
 	itemIconBlock := aBlockWithOneArgument
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>itemIconFor: anObject [
+{ #category : #private }
+GTSpotterCandidatesListProcessor >> itemIconFor: anObject [
 	^ itemIconBlock isNil
 		ifTrue: [ super itemIconFor: anObject ]
 		ifFalse: [ itemIconBlock cull: anObject ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>itemName [
+{ #category : #accessing }
+GTSpotterCandidatesListProcessor >> itemName [
 	^ itemNameBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>itemName: aBlockWithOneArgument [
+{ #category : #scripting }
+GTSpotterCandidatesListProcessor >> itemName: aBlockWithOneArgument [
 	itemNameBlock := aBlockWithOneArgument
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>itemNameFor: anObject [
+{ #category : #private }
+GTSpotterCandidatesListProcessor >> itemNameFor: anObject [
 	^ itemNameBlock isNil
 		ifTrue: [ super itemNameFor: anObject ]
 		ifFalse: [ itemNameBlock cull: anObject ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>items: aBlock [
+{ #category : #scripting }
+GTSpotterCandidatesListProcessor >> items: aBlock [
 	allCandidatesBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>itemsLimit [
+{ #category : #accessing }
+GTSpotterCandidatesListProcessor >> itemsLimit [
 	^ candidatesLimit ifNil: [ self defaultItemsLimit ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>itemsLimit: anInteger [
+{ #category : #scripting }
+GTSpotterCandidatesListProcessor >> itemsLimit: anInteger [
 	candidatesLimit := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>keyBinding [
+{ #category : #accessing }
+GTSpotterCandidatesListProcessor >> keyBinding [
 	^ keyBinding
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>keyBinding: anObject [
+{ #category : #accessing }
+GTSpotterCandidatesListProcessor >> keyBinding: anObject [
 	keyBinding := anObject
 ]
 
-{
-	#category : #scripting-convenience,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>match: aBlockWithTwoArguments [
+{ #category : #scripting-convenience }
+GTSpotterCandidatesListProcessor >> match: aBlockWithTwoArguments [
 	self filter: (GTFilterBlock new 
 		matcher: aBlockWithTwoArguments;
 		yourself)
 ]
 
-{
-	#category : #scripting-convenience,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>matchAlike [
+{ #category : #scripting-convenience }
+GTSpotterCandidatesListProcessor >> matchAlike [
 	self filter: GTFilterAlike
 ]
 
-{
-	#category : #scripting-convenience,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>matchRegex [
+{ #category : #scripting-convenience }
+GTSpotterCandidatesListProcessor >> matchRegex [
 	self filter: GTFilterRegex
 ]
 
-{
-	#category : #scripting-convenience,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>matchString [
+{ #category : #scripting-convenience }
+GTSpotterCandidatesListProcessor >> matchString [
 	self filter: GTFilterStringMatch
 ]
 
-{
-	#category : #scripting-convenience,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>matchSubstring [
+{ #category : #scripting-convenience }
+GTSpotterCandidatesListProcessor >> matchSubstring [
 	self filter: GTFilterSubstring
 ]
 
-{
-	#category : #scripting-convenience,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>matchSubstrings [
+{ #category : #scripting-convenience }
+GTSpotterCandidatesListProcessor >> matchSubstrings [
 	self filter: GTFilterSubstrings
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>sort [
+{ #category : #accessing }
+GTSpotterCandidatesListProcessor >> sort [
 	^ sortBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>sort: aBlockWithTwoArguments [
+{ #category : #scripting }
+GTSpotterCandidatesListProcessor >> sort: aBlockWithTwoArguments [
 	sortBlock := aBlockWithTwoArguments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>title [
+{ #category : #accessing }
+GTSpotterCandidatesListProcessor >> title [
 	^ title ifNil: [ super title ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>title: aString [
+{ #category : #scripting }
+GTSpotterCandidatesListProcessor >> title: aString [
 	title := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>wantsToDisplayOnEmptyQuery [
+{ #category : #accessing }
+GTSpotterCandidatesListProcessor >> wantsToDisplayOnEmptyQuery [
 	^ wantsToDisplayOnEmptyQuery ifNil: [ super wantsToDisplayOnEmptyQuery ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>wantsToDisplayOnEmptyQuery: anObject [
+{ #category : #scripting }
+GTSpotterCandidatesListProcessor >> wantsToDisplayOnEmptyQuery: anObject [
 	wantsToDisplayOnEmptyQuery := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesListProcessor>>withItemsLimit: aLimit do: aBlock [
+{ #category : #private }
+GTSpotterCandidatesListProcessor >> withItemsLimit: aLimit do: aBlock [
 	| previousCandidatesLimit |
 	previousCandidatesLimit := candidatesLimit.
 	^ [ candidatesLimit := aLimit. aBlock value ] 

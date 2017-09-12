@@ -4,14 +4,10 @@ I'm a simple test ressource for test purposes
 Class {
 	#name : #SimpleTestResourceB,
 	#superclass : #SimpleTestResource,
-	#category : #SUnit-Tests-Core,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:13'
+	#category : #SUnit-Tests-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResourceB class>>resources [
+{ #category : #accessing }
+SimpleTestResourceB class >> resources [
 	^Array with: SimpleTestResourceA1 with: SimpleTestResourceB1
 ]

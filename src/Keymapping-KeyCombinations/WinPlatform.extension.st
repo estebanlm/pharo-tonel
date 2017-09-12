@@ -1,12 +1,7 @@
-Extension {
-	#name : #WinPlatform
-}
+Extension { #name : #WinPlatform }
 
-{
-	#category : #'*Keymapping-KeyCombinations',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-WinPlatform>>defaultModifier [
+{ #category : #'*Keymapping-KeyCombinations' }
+WinPlatform >> defaultModifier [
 
 	^ KMModifier control
 ]

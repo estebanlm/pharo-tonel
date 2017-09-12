@@ -1,31 +1,21 @@
-"
-
-"
 Class {
 	#name : #MetacelloMCProjectSpec,
 	#superclass : #MetacelloGenericProjectSpec,
 	#instVars : [
 		'file'
 	],
-	#category : #Metacello-MC-Specs,
-	#timestamp : ''
+	#category : #Metacello-MC-Specs
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec class>>new [
+{ #category : #'instance creation' }
+MetacelloMCProjectSpec class >> new [
 	self name == #MetacelloMCProjectSpec
 		ifTrue: [ self error: 'This class is abstract' ].
 	^ super new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>allPackagesLoaded: aLoader [
+{ #category : #testing }
+MetacelloMCProjectSpec >> allPackagesLoaded: aLoader [
     "answer true if all of the packages (excluding projects) are loaded"
 
     | vrsn pkgs |
@@ -41,27 +31,18 @@ MetacelloMCProjectSpec>>allPackagesLoaded: aLoader [
     ^ true
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>asBaselineProjectSpec [
+{ #category : #scripting }
+MetacelloMCProjectSpec >> asBaselineProjectSpec [
     ^ self copyForScriptingInto: (MetacelloMCBaselineOfProjectSpec for: self project asBaselineProject)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>asConfigurationProjectSpec [
+{ #category : #scripting }
+MetacelloMCProjectSpec >> asConfigurationProjectSpec [
     ^ self copyForScriptingInto: (MetacelloMCConfigurationOfProjectSpec for: self project asConfigurationProject)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>asProjectRegistration [
+{ #category : #scripting }
+MetacelloMCProjectSpec >> asProjectRegistration [
   (self className beginsWith: 'BaselineOf')
     ifTrue: [ 
       ^ MetacelloProjectRegistration
@@ -70,60 +51,39 @@ MetacelloMCProjectSpec>>asProjectRegistration [
     fromMCConfigurationProjectSpec: self asConfigurationProjectSpec
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>asProjectSpec [
+{ #category : #scripting }
+MetacelloMCProjectSpec >> asProjectSpec [
     ^ self
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>asProjectSpecForVersion: vrsn [
+{ #category : #scripting }
+MetacelloMCProjectSpec >> asProjectSpecForVersion: vrsn [
   ^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>baseName [
+{ #category : #accessing }
+MetacelloMCProjectSpec >> baseName [
 	^ MetacelloScriptEngine baseNameOf: self className
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>canDowngradeTo: aMetacelloProjectSpec [
+{ #category : #scripting }
+MetacelloMCProjectSpec >> canDowngradeTo: aMetacelloProjectSpec [
     ^ (super canDowngradeTo: aMetacelloProjectSpec) and: [ self file = aMetacelloProjectSpec file ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>canUpgradeTo: aMetacelloProjectSpec [
+{ #category : #scripting }
+MetacelloMCProjectSpec >> canUpgradeTo: aMetacelloProjectSpec [
     ^ (super canUpgradeTo: aMetacelloProjectSpec) and: [ self file = aMetacelloProjectSpec file ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>className: aString [
+{ #category : #accessing }
+MetacelloMCProjectSpec >> className: aString [
     super className: aString.
     self projectPackage: nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>compareCurrentVersion: anOperator targetVersionStatus: targetVersionStatus using: anMCLoader [
+{ #category : #testing }
+MetacelloMCProjectSpec >> compareCurrentVersion: anOperator targetVersionStatus: targetVersionStatus using: anMCLoader [
     ^ (MetacelloLookupProjectSpecForLoad new
         projectSpec: self;
         yourself) signal
@@ -133,21 +93,15 @@ MetacelloMCProjectSpec>>compareCurrentVersion: anOperator targetVersionStatus: t
         using: anMCLoader
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>compareEqual: aMetacelloProjectSpec [
+{ #category : #scripting }
+MetacelloMCProjectSpec >> compareEqual: aMetacelloProjectSpec [
     "'projectPackage repositories'"
 
     ^ (super compareEqual: aMetacelloProjectSpec) and: [ self file = aMetacelloProjectSpec file ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>compareRelativeCurrentVersion: anOperator targetVersionStatus: targetVersionStatus using: anMCLoader [
+{ #category : #testing }
+MetacelloMCProjectSpec >> compareRelativeCurrentVersion: anOperator targetVersionStatus: targetVersionStatus using: anMCLoader [
 
 	| cv vrsn |
 	(vrsn := self versionOrNil) == nil ifTrue: [ ^false ].
@@ -157,19 +111,13 @@ MetacelloMCProjectSpec>>compareRelativeCurrentVersion: anOperator targetVersionS
 	^false
 ]
 
-{
-	#category : #mutability,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>copyForRegistration: aMetacelloProjectRegistration onWrite: aBlock [
+{ #category : #mutability }
+MetacelloMCProjectSpec >> copyForRegistration: aMetacelloProjectRegistration onWrite: aBlock [
     self subclassResponsibility
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>copyForScriptingInto: aProjectSpec [
+{ #category : #scripting }
+MetacelloMCProjectSpec >> copyForScriptingInto: aProjectSpec [
     ^aProjectSpec
         setName: name;
         className: className;
@@ -182,11 +130,8 @@ MetacelloMCProjectSpec>>copyForScriptingInto: aProjectSpec [
         file: file
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>determineCurrentVersionForLoad [
+{ #category : #loading }
+MetacelloMCProjectSpec >> determineCurrentVersionForLoad [
     "don't use self currentVersion, because we are interested in the currentVersion of the project as loaded in image, not the current version relative to our load list"
 
     | prjct version currentVersion packageAndProjectNames cvs |
@@ -221,11 +166,8 @@ MetacelloMCProjectSpec>>determineCurrentVersionForLoad [
     ^ nil
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>ensureConfigurationLoaded: vrsn ensured: ensured [
+{ #category : #loading }
+MetacelloMCProjectSpec >> ensureConfigurationLoaded: vrsn ensured: ensured [
   "answer true if the configuration should be reloaded:
     blessing is #development
     symbolic version (https://github.com/dalehenrich/metacello-work/issues/283)"
@@ -237,11 +179,8 @@ MetacelloMCProjectSpec>>ensureConfigurationLoaded: vrsn ensured: ensured [
   ^ false
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>ensureLoadUsing: aLoader [
+{ #category : #loading }
+MetacelloMCProjectSpec >> ensureLoadUsing: aLoader [
   | pp |
   pp := (MetacelloLookupProjectSpec new
     projectSpec: self;
@@ -256,11 +195,8 @@ MetacelloMCProjectSpec>>ensureLoadUsing: aLoader [
   pp ensureLoadUsing: aLoader
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>ensureLoadedForDevelopmentUsing: mcLoader [
+{ #category : #loading }
+MetacelloMCProjectSpec >> ensureLoadedForDevelopmentUsing: mcLoader [
   "for #development projects, always need latest version of package when contemplating a load"
 
   | ensured |
@@ -303,11 +239,8 @@ MetacelloMCProjectSpec>>ensureLoadedForDevelopmentUsing: mcLoader [
       mcLoader ensuredMap at: self name put: #'present' ]
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>ensureProjectLoaded [
+{ #category : #loading }
+MetacelloMCProjectSpec >> ensureProjectLoaded [
   "Ensure that the MetacelloProject is loaded in image. 
 	 projectClass == nil or requested version non-existent warrants a project package load."
 
@@ -330,112 +263,76 @@ MetacelloMCProjectSpec>>ensureProjectLoaded [
   ^ self projectClass ~~ nil
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>fetchUsing: aLoader [
+{ #category : #loading }
+MetacelloMCProjectSpec >> fetchUsing: aLoader [
     (MetacelloLookupProjectSpec new
         projectSpec: self;
         yourself) signal projectPackage fetchUsing: aLoader
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>file [
+{ #category : #querying }
+MetacelloMCProjectSpec >> file [
     file ifNil: [ ^ self className ].
     ^ file
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>file: aString [
+{ #category : #accessing }
+MetacelloMCProjectSpec >> file: aString [
     self shouldBeMutable.
     file := aString.
     self projectPackage: nil
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>file: aString constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloMCProjectSpec >> file: aString constructor: aVersionConstructor [
     aVersionConstructor fileForProject: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>getFile [
+{ #category : #accessing }
+MetacelloMCProjectSpec >> getFile [
     "raw access to iv"
 
     ^ file
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>hasConflictWithBaselineSpec: projectSpec [
+{ #category : #testing }
+MetacelloMCProjectSpec >> hasConflictWithBaselineSpec: projectSpec [
 	^ self hasLoadConflicts: projectSpec
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>hasConflictWithConfigurationSpec: projectSpec [
+{ #category : #testing }
+MetacelloMCProjectSpec >> hasConflictWithConfigurationSpec: projectSpec [
 	^ self hasLoadConflicts: projectSpec
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>hasConflictWithProjectSpec: projectSpec [
+{ #category : #testing }
+MetacelloMCProjectSpec >> hasConflictWithProjectSpec: projectSpec [
   (self className beginsWith: 'BaselineOf')
     ifTrue: [ ^ projectSpec hasConflictWithBaselineSpec: self asBaselineProjectSpec ].
   ^ projectSpec
     hasConflictWithConfigurationSpec: self asConfigurationProjectSpec
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>hasNoLoadConflicts: aMetacelloProjectSpec [
+{ #category : #scripting }
+MetacelloMCProjectSpec >> hasNoLoadConflicts: aMetacelloProjectSpec [
   "'projectPackage repositories'"
 
   ^ (super hasNoLoadConflicts: aMetacelloProjectSpec)
     and: [ self file = aMetacelloProjectSpec file ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>isBaselineOfProjectSpec [
+{ #category : #testing }
+MetacelloMCProjectSpec >> isBaselineOfProjectSpec [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>isConfigurationOfProjectSpec [
+{ #category : #testing }
+MetacelloMCProjectSpec >> isConfigurationOfProjectSpec [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>isPartiallyLoaded: aLoader [
+{ #category : #testing }
+MetacelloMCProjectSpec >> isPartiallyLoaded: aLoader [
 
 	| vrsn |
 	(vrsn := self versionOrNil) == nil ifTrue: [ ^false ].
@@ -445,11 +342,8 @@ MetacelloMCProjectSpec>>isPartiallyLoaded: aLoader [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>isPossibleBaseline [
+{ #category : #testing }
+MetacelloMCProjectSpec >> isPossibleBaseline [
 
 	| vrsn |
 	(vrsn := self versionOrNil) == nil ifTrue: [ ^false ].
@@ -458,11 +352,8 @@ MetacelloMCProjectSpec>>isPossibleBaseline [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>loadPackageList [
+{ #category : #accessing }
+MetacelloMCProjectSpec >> loadPackageList [
 
 	| vrsn pkgs |
 	(vrsn := self versionOrNil) == nil ifTrue: [ ^#() ].
@@ -472,11 +363,8 @@ MetacelloMCProjectSpec>>loadPackageList [
 	^pkgs
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>loadVersion: aVersionOrNil [
+{ #category : #loading }
+MetacelloMCProjectSpec >> loadVersion: aVersionOrNil [
     "Load the correct version of the project"
 
     | vrsn mcLoader list |
@@ -520,11 +408,8 @@ MetacelloMCProjectSpec>>loadVersion: aVersionOrNil [
         defaultDictionary: Dictionary new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>loadedPackageNames: aLoader [
+{ #category : #accessing }
+MetacelloMCProjectSpec >> loadedPackageNames: aLoader [
 
 	| vrsn pkgs |
 	(vrsn := self versionOrNil) == nil ifTrue: [ ^#() ].
@@ -535,21 +420,15 @@ MetacelloMCProjectSpec>>loadedPackageNames: aLoader [
 	^pkgs
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>metacelloRegistrationHash [
+{ #category : #scripting }
+MetacelloMCProjectSpec >> metacelloRegistrationHash [
     "file"
 
     ^ String stringHash: self file initialHash: super metacelloRegistrationHash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>packageFileSpecFor: aMetacelloPackagesSpec [
+{ #category : #accessing }
+MetacelloMCProjectSpec >> packageFileSpecFor: aMetacelloPackagesSpec [
 
 	^(aMetacelloPackagesSpec project projectReferenceSpec)
 			name: self name;
@@ -557,21 +436,15 @@ MetacelloMCProjectSpec>>packageFileSpecFor: aMetacelloPackagesSpec [
 			yourself.
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>projectClass [
+{ #category : #querying }
+MetacelloMCProjectSpec >> projectClass [
     self className == nil
         ifTrue: [ ^ nil ].
     ^ Smalltalk at: self className asSymbol ifAbsent: [  ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>projectClassProject [
+{ #category : #querying }
+MetacelloMCProjectSpec >> projectClassProject [
     "indirection needed when projectClass is _not_ a subclass of MetacelloProject"
 
     ^ self projectClass new project
@@ -579,11 +452,8 @@ MetacelloMCProjectSpec>>projectClassProject [
         yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>projectPackage [
+{ #category : #accessing }
+MetacelloMCProjectSpec >> projectPackage [
     projectPackage
         ifNil: [ 
             self className ifNil: [ ^ nil ].
@@ -594,11 +464,8 @@ MetacelloMCProjectSpec>>projectPackage [
     ^ projectPackage
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>relativeCurrentVersion [
+{ #category : #querying }
+MetacelloMCProjectSpec >> relativeCurrentVersion [
     "currentVersion calculated relative to the loadList"
 
     | vrsn expanded loadList |
@@ -616,11 +483,8 @@ MetacelloMCProjectSpec>>relativeCurrentVersion [
     ^ self projectClassProject currentVersionAgainst: expanded
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>resolveToAllPackagesIn: aVersionSpec visited: visited [
+{ #category : #private }
+MetacelloMCProjectSpec >> resolveToAllPackagesIn: aVersionSpec visited: visited [
     | vrsn |
     visited
         pushProject: [ 
@@ -635,22 +499,16 @@ MetacelloMCProjectSpec>>resolveToAllPackagesIn: aVersionSpec visited: visited [
     ^ #()
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>updateForSpawnMethod: sourceSpec [
+{ #category : #'development support' }
+MetacelloMCProjectSpec >> updateForSpawnMethod: sourceSpec [
 	"This means that this spec was used in a baseline and will be used in a version .... drop all information that isn't useful"
 	
 	repositories := className := operator := loads := projectPackage := nil.
 	sourceSpec ~~ nil ifTrue: [ versionString := sourceSpec versionString ].
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>updatePackageSpec: updatedSpecs [
+{ #category : #'development support' }
+MetacelloMCProjectSpec >> updatePackageSpec: updatedSpecs [
     "Add project copy to updatedSpecs if the current version of the project 
 	 is different from the receiver's version"
 
@@ -667,11 +525,8 @@ MetacelloMCProjectSpec>>updatePackageSpec: updatedSpecs [
     updatedSpecs at: spec name put: spec
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>validateForScriptLoad: aScriptEngine withDefaultVersionString: defaultVersionString withDefaultRepositoryDecription: defaultRepositoryDecription [
+{ #category : #scripting }
+MetacelloMCProjectSpec >> validateForScriptLoad: aScriptEngine withDefaultVersionString: defaultVersionString withDefaultRepositoryDecription: defaultRepositoryDecription [
     | issues callSite |
     issues := OrderedCollection new.
     callSite := #'validateForScriptLoad:withDefaultVersionString:withDefaultRepositoryDecription:'.
@@ -709,11 +564,8 @@ MetacelloMCProjectSpec>>validateForScriptLoad: aScriptEngine withDefaultVersionS
     ^ issues
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>validateVersionString: issues withDefaultVersionString: defaultVersionString [
+{ #category : #scripting }
+MetacelloMCProjectSpec >> validateVersionString: issues withDefaultVersionString: defaultVersionString [
     self versionString
         ifNil: [ 
             defaultVersionString
@@ -729,11 +581,8 @@ MetacelloMCProjectSpec>>validateVersionString: issues withDefaultVersionString: 
                                 explanation: 'version field required') ] ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>version [
+{ #category : #querying }
+MetacelloMCProjectSpec >> version [
 	"Empty version string means use latestVersion or #bleedingEdge"
 
 	self projectClass == nil
@@ -750,11 +599,8 @@ MetacelloMCProjectSpec>>version [
 		ifFalse: [ self projectClassProject version: self versionString ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>versionForScriptEngine: aMetacelloScriptEngine [
+{ #category : #scripting }
+MetacelloMCProjectSpec >> versionForScriptEngine: aMetacelloScriptEngine [
     | prj |
     prj := self projectClass ifNil: [ self project ] ifNotNil: [ self projectClassProject ].
     ^ ((prj projectForScriptEngine: aMetacelloScriptEngine) version: self versionString)
@@ -764,10 +610,7 @@ MetacelloMCProjectSpec>>versionForScriptEngine: aMetacelloScriptEngine [
         repositoryOverrides: aMetacelloScriptEngine repositoryOverrides
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCProjectSpec>>workingCopy [
+{ #category : #accessing }
+MetacelloMCProjectSpec >> workingCopy [
   ^ self projectPackage workingCopy
 ]

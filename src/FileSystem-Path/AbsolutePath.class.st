@@ -5,50 +5,33 @@ Class {
 	#name : #AbsolutePath,
 	#superclass : #Path,
 	#type : #variable,
-	#category : #FileSystem-Path,
-	#timestamp : '<historical>'
+	#category : #FileSystem-Path
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-AbsolutePath class>>addEmptyElementTo: result [
-
+{ #category : #'as yet unclassified' }
+AbsolutePath class >> addEmptyElementTo: result [
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-AbsolutePath class>>from: aString delimiter: aDelimiterCharater [
+{ #category : #'as yet unclassified' }
+AbsolutePath class >> from: aString delimiter: aDelimiterCharater [
 	aString = '/'
 		ifTrue: [ ^ self root ].
 		
 	^ super from: aString delimiter: aDelimiterCharater
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-AbsolutePath>>isAbsolute [
+{ #category : #testing }
+AbsolutePath >> isAbsolute [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-AbsolutePath>>isRoot [
+{ #category : #testing }
+AbsolutePath >> isRoot [
 	^ self size = 0
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-AbsolutePath>>printOn: aStream [
+{ #category : #printing }
+AbsolutePath >> printOn: aStream [
 	aStream nextPutAll: 'Path'.
 	self isRoot
 		ifTrue: [aStream nextPutAll: ' root']
@@ -61,11 +44,8 @@ AbsolutePath>>printOn: aStream [
 					nextPut: $']]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-AbsolutePath>>printPathOn: aStream delimiter: aCharacter [
+{ #category : #printing }
+AbsolutePath >> printPathOn: aStream delimiter: aCharacter [
 	"Print the path elements of the receiver, without the 'Path *' part"
 
 	aStream nextPut: aCharacter.
@@ -73,10 +53,7 @@ AbsolutePath>>printPathOn: aStream delimiter: aCharacter [
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-AbsolutePath>>withParents [
+{ #category : #enumerating }
+AbsolutePath >> withParents [
 	^ super withParents addFirst: (Path root); yourself
 ]

@@ -17,102 +17,68 @@ Class {
 	#name : #CompiledMethod,
 	#superclass : #CompiledCode,
 	#type : #compiledMethod,
-	#category : #Kernel-Methods,
-	#timestamp : 'ClementBera 5/23/2016 11:05'
+	#category : #Kernel-Methods
 }
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>abstractMarker [
+{ #category : #constants }
+CompiledMethod class >> abstractMarker [
 	^ #subclassResponsibility
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>basicNew [
+{ #category : #'instance creation' }
+CompiledMethod class >> basicNew [
 
 	self error: 'CompiledMethods may only be created with newMethod:header:' 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>basicNew: size [
+{ #category : #'instance creation' }
+CompiledMethod class >> basicNew: size [
 
 	self error: 'CompiledMethods may only be created with newMethod:header:' 
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>checkBytecodeSetConflictsInMethodsWith: aBlock [
+{ #category : #'class initialization' }
+CompiledMethod class >> checkBytecodeSetConflictsInMethodsWith: aBlock [
 	(self allSubInstances detect: aBlock ifNone: [ ])
 		ifNotNil: [ Warning signal: 'There are existing CompiledMethods with a different encoderClass.' ]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>checkIsValidBytecodeEncoder: aBytecodeEncoderSubclass [
+{ #category : #'class initialization' }
+CompiledMethod class >> checkIsValidBytecodeEncoder: aBytecodeEncoderSubclass [
 	(aBytecodeEncoderSubclass inheritsFrom: OpalBytecodeEncoder) ifFalse:
 		[self error: 'A bytecode set encoder is expected to be a subclass of BytecodeEncoder'].
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>cleanUpSourceInTrailers [
+{ #category : #'instance creation' }
+CompiledMethod class >> cleanUpSourceInTrailers [
 
 	self allInstances do: [:e | e isInstalled ifFalse: [e embeddSourceInTrailer]].  
 	"pay attention since embeddSourceInTrailer creates a new compiled method. So iterating while
 	changing it is a bad idea. This is why we use allInstances do and not allInstancesDo:"
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>conflictMarker [
+{ #category : #constants }
+CompiledMethod class >> conflictMarker [
 	^ #traitConflict
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>disabledMarker [
+{ #category : #constants }
+CompiledMethod class >> disabledMarker [
 	^ #shouldNotImplement
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>explicitRequirementMarker [
+{ #category : #constants }
+CompiledMethod class >> explicitRequirementMarker [
 	^ #explicitRequirement
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>fullFrameSize  "CompiledMethod fullFrameSize" [
+{ #category : #'class initialization' }
+CompiledMethod class >> fullFrameSize [  "CompiledMethod fullFrameSize"
 	^ LargeFrame
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>handleFailingFailingNewMethod: numberOfBytes header: headerWord [
+{ #category : #private }
+CompiledMethod class >> handleFailingFailingNewMethod: numberOfBytes header: headerWord [
 	"This newMethod:header: gets sent after handleFailingBasicNew: has done a full
 	 garbage collection and possibly grown memory.  If this basicNew: fails then the
 	 system really is low on space, so raise the OutOfMemory signal.
@@ -130,11 +96,8 @@ CompiledMethod class>>handleFailingFailingNewMethod: numberOfBytes header: heade
 	^self newMethod: numberOfBytes header: headerWord
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>handleFailingNewMethod: numberOfBytes header: headerWord [
+{ #category : #private }
+CompiledMethod class >> handleFailingNewMethod: numberOfBytes header: headerWord [
 	"This newMethod:header: gets sent after newMethod:header: has failed
 	 and allowed a scavenging garbage collection to occur.  The scavenging
 	 collection will have happened as the VM is activating the (failing) basicNew:.
@@ -157,11 +120,8 @@ CompiledMethod class>>handleFailingNewMethod: numberOfBytes header: headerWord [
 	^self handleFailingFailingNewMethod: numberOfBytes header: headerWord
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>headerFlagForEncoder: anEncoderClass [
+{ #category : #'instance creation' }
+CompiledMethod class >> headerFlagForEncoder: anEncoderClass [
 	anEncoderClass == PrimaryBytecodeSetEncoderClass ifTrue: [ ^ 0 ].
 	anEncoderClass == SecondaryBytecodeSetEncoderClass ifTrue: [ ^ SmallInteger minVal ].
 	
@@ -173,19 +133,13 @@ CompiledMethod class>>headerFlagForEncoder: anEncoderClass [
 	^ 0
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>implicitRequirementMarker [
+{ #category : #constants }
+CompiledMethod class >> implicitRequirementMarker [
 	^ #requirement
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>initialize    "CompiledMethod initialize" [
+{ #category : #'class initialization' }
+CompiledMethod class >> initialize [    "CompiledMethod initialize"
 	"Initialize class variables specifying the size of the temporary frame
 	needed to run instances of me."
 
@@ -195,11 +149,8 @@ CompiledMethod class>>initialize    "CompiledMethod initialize" [
 	SecondaryBytecodeSetEncoderClass := OpalEncoderForSistaV1
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>installPrimaryBytecodeSet: aBytecodeEncoderSubclass [
+{ #category : #'class initialization' }
+CompiledMethod class >> installPrimaryBytecodeSet: aBytecodeEncoderSubclass [
 	PrimaryBytecodeSetEncoderClass == aBytecodeEncoderSubclass ifTrue:
 		[ ^self ].
 	self checkIsValidBytecodeEncoder: aBytecodeEncoderSubclass.
@@ -208,11 +159,8 @@ CompiledMethod class>>installPrimaryBytecodeSet: aBytecodeEncoderSubclass [
 	PrimaryBytecodeSetEncoderClass := aBytecodeEncoderSubclass
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>installSecondaryBytecodeSet: aBytecodeEncoderSubclass [
+{ #category : #'class initialization' }
+CompiledMethod class >> installSecondaryBytecodeSet: aBytecodeEncoderSubclass [
 	PrimaryBytecodeSetEncoderClass == aBytecodeEncoderSubclass ifTrue:
 		[ ^ self ].
 	self checkIsValidBytecodeEncoder: aBytecodeEncoderSubclass.
@@ -221,11 +169,8 @@ CompiledMethod class>>installSecondaryBytecodeSet: aBytecodeEncoderSubclass [
 	SecondaryBytecodeSetEncoderClass := aBytecodeEncoderSubclass
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>methodPropertiesClass [
+{ #category : #'accessing class hierarchy' }
+CompiledMethod class >> methodPropertiesClass [
 	"Answer the class to use to create a method's properties, which can be a poor man's way
 	 to add instance variables to subclassses of CompiledMethod.  Subclasses of CompiledMethod
 	 should define a corresponding subclass of AdditionalMethodState that adds any instance variables
@@ -233,21 +178,15 @@ CompiledMethod class>>methodPropertiesClass [
 	^AdditionalMethodState
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>new [
+{ #category : #'instance creation' }
+CompiledMethod class >> new [
 	"This will not make a meaningful method, but it could be used
 	to invoke some otherwise useful method in this class."
 	^self newMethod: 2 header: 1024
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>newBytes: numberOfBytes trailerBytes: trailer nArgs: nArgs nTemps: nTemps nStack: stackSize nLits: nLits primitive: primitiveIndex [
+{ #category : #'instance creation' }
+CompiledMethod class >> newBytes: numberOfBytes trailerBytes: trailer nArgs: nArgs nTemps: nTemps nStack: stackSize nLits: nLits primitive: primitiveIndex [
 	"Answer an instance of me. The header is specified by the message 
 	 arguments. The remaining parts are not as yet determined."
 	| method pc |
@@ -275,11 +214,8 @@ CompiledMethod class>>newBytes: numberOfBytes trailerBytes: trailer nArgs: nArgs
 	^method
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>newBytes: numberOfBytes trailerBytes: trailer nArgs: nArgs nTemps: nTemps nStack: stackSize nLits: nLits primitive: primitiveIndex flag: flag [
+{ #category : #'instance creation' }
+CompiledMethod class >> newBytes: numberOfBytes trailerBytes: trailer nArgs: nArgs nTemps: nTemps nStack: stackSize nLits: nLits primitive: primitiveIndex flag: flag [
 	"Answer an instance of me. The header is specified by the message 
 	 arguments. The remaining parts are not as yet determined."
 	| method pc |
@@ -308,11 +244,8 @@ CompiledMethod class>>newBytes: numberOfBytes trailerBytes: trailer nArgs: nArgs
 	^method
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>newFrom: aCompiledMethod [
+{ #category : #'instance creation' }
+CompiledMethod class >> newFrom: aCompiledMethod [
 	| inst |
 	inst := super basicNew: aCompiledMethod size.
 	1 to: aCompiledMethod size do: [:index |
@@ -320,11 +253,8 @@ CompiledMethod class>>newFrom: aCompiledMethod [
 	^ inst.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>newInstanceFrom: oldInstance variable: variable size: instSize map: map [
+{ #category : #'instance creation' }
+CompiledMethod class >> newInstanceFrom: oldInstance variable: variable size: instSize map: map [
 	"Create a new instance of the receiver based on the given old instance.
 	The supplied map contains a mapping of the old instVar names into
 	the receiver's instVars"
@@ -337,11 +267,8 @@ CompiledMethod class>>newInstanceFrom: oldInstance variable: variable size: inst
 	^new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>primitive: primNum numArgs: numArgs numTemps: numTemps stackSize: stackSize literals: literals bytecodes: bytecodes trailer: trailerBytes [
+{ #category : #'instance creation' }
+CompiledMethod class >> primitive: primNum numArgs: numArgs numTemps: numTemps stackSize: stackSize literals: literals bytecodes: bytecodes trailer: trailerBytes [
 	"Create method with given attributes.  numTemps includes numArgs.  stackSize does not include numTemps."
 
 	| compiledMethod |
@@ -361,114 +288,78 @@ CompiledMethod class>>primitive: primNum numArgs: numArgs numTemps: numTemps sta
 	^ compiledMethod
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>smallFrameSize [
+{ #category : #'class initialization' }
+CompiledMethod class >> smallFrameSize [
 
 	^ SmallFrame
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>subclassResponsibilityMarker [
+{ #category : #constants }
+CompiledMethod class >> subclassResponsibilityMarker [
 	^ #subclassResponsibility
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>toReturnConstant: index trailerBytes: trailer [
+{ #category : #'instance creation' }
+CompiledMethod class >> toReturnConstant: index trailerBytes: trailer [
 	"Answer an instance of me that is a quick return of the constant
 	indexed in (true false nil -1 0 1 2)."
 
 	^self newBytes: 3 trailerBytes: trailer nArgs: 0 nTemps: 0 nStack: 0 nLits: 2 primitive: 256 + index
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>toReturnField: field trailerBytes: trailer [
+{ #category : #'instance creation' }
+CompiledMethod class >> toReturnField: field trailerBytes: trailer [
 	"Answer an instance of me that is a quick return of the instance variable 
 	indexed by the argument, field."
 
 	^self newBytes: 3 trailerBytes: trailer nArgs: 0 nTemps: 0 nStack: 0 nLits: 2 primitive: 264 + field
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>toReturnSelf [
+{ #category : #'instance creation' }
+CompiledMethod class >> toReturnSelf [
 	"Answer an instance of me that is a quick return of the instance (^self)."
 
 	^ self toReturnSelfTrailerBytes: CompiledMethodTrailer empty
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod class>>toReturnSelfTrailerBytes: trailer [
+{ #category : #'instance creation' }
+CompiledMethod class >> toReturnSelfTrailerBytes: trailer [
 	"Answer an instance of me that is a quick return of the instance (^self)."
 
 	^self newBytes: 3 trailerBytes: trailer nArgs: 0 nTemps: 0 nStack: 0 nLits: 2 primitive: 256
 ]
 
-{
-	#category : #'accessing-backward compatible',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>category [
+{ #category : #'accessing-backward compatible' }
+CompiledMethod >> category [
 	"Please favor protocol instead of category. We want to have method protocol and class package and tag = a category"
 	^ self methodClass organization categoryOfElement: self selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>classBinding [
+{ #category : #accessing }
+CompiledMethod >> classBinding [
 	"answer the association to the class that I am installed in, or nil if none."
 	^self literalAt: self numLiterals
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>classBinding: aBinding [
+{ #category : #accessing }
+CompiledMethod >> classBinding: aBinding [
        "sets the association to the class that I am installed in"
        ^self literalAt: self numLiterals put: aBinding.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>codeForNoSource [
+{ #category : #accessing }
+CompiledMethod >> codeForNoSource [
 	"if everything fails, decompile the bytecode"
 	 ^(self compiler decompileMethod: self) formattedCode
 ]
 
-{
-	#category : #'source code management',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>copyWithSource: aString [
+{ #category : #'source code management' }
+CompiledMethod >> copyWithSource: aString [
 	^self copyWithTrailerBytes: (CompiledMethodTrailer new sourceCode: aString) 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>copyWithTrailerBytes: trailer [
+{ #category : #initialize-release }
+CompiledMethod >> copyWithTrailerBytes: trailer [
 "Testing:
 	(CompiledMethod compiledMethodAt: #copyWithTrailerBytes:)
 		tempNamesPut: 'copy end '
@@ -486,30 +377,21 @@ CompiledMethod>>copyWithTrailerBytes: trailer [
 	^copy
 ]
 
-{
-	#category : #'debugger support',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>debuggerMap [
+{ #category : #'debugger support' }
+CompiledMethod >> debuggerMap [
 	^self compilerClass debuggerMethodMapForMethod: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>defaultSelector [
+{ #category : #accessing }
+CompiledMethod >> defaultSelector [ 
 	"Invent and answer an appropriate message selector (a Symbol) for me, 
 	that is, one that will parse with the correct number of arguments."
 
 	^ #DoIt numArgs: self numArgs
 ]
 
-{
-	#category : #'source code management',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>embeddSourceInTrailer [
+{ #category : #'source code management' }
+CompiledMethod >> embeddSourceInTrailer [
 	"When receiver is deinstalled from its class, its not managed anymore by development tools
 	and it's hard to predict, how long a method could stay in the image, because if it contains blocks,
 	they could still reference it. 
@@ -520,30 +402,21 @@ CompiledMethod>>embeddSourceInTrailer [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>flushCache [
+{ #category : #accessing }
+CompiledMethod >> flushCache [
 	"Tell the virtual machine to remove all references to this method from its method lookup caches, and to discard any optimized version 	of the method, if it has any of these.  This must be done whenever a method is modified in place, such as modifying its literals or 	machine code, to reflect the revised code.  c.f. Behavior>>flushCache & Symbol>>flushCache.  Essential.	 See MethodDictionary class 	comment."
 
 	<primitive: 116>
 
 ]
 
-{
-	#category : #'source code management',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>getPreambleFrom: aFileStream at: position [
+{ #category : #'source code management' }
+CompiledMethod >> getPreambleFrom: aFileStream at: position [
 	^ SourceFiles getPreambleFrom: aFileStream at: position
 ]
 
-{
-	#category : #'source code management',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>getSourceFromFile [
+{ #category : #'source code management' }
+CompiledMethod >> getSourceFromFile [
 	"PLEASE Note: clients should always call #sourceCode"
 	"Read the source code from file, determining source file index and
 	file position from the last 3 bytes of this method."
@@ -551,11 +424,8 @@ CompiledMethod>>getSourceFromFile [
 	^ [ SourceFiles sourceCodeAt: self sourcePointer ] on: Error do: [ '' ]
 ]
 
-{
-	#category : #'source code management',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>getSourceReplacingSelectorWith: newSelector [
+{ #category : #'source code management' }
+CompiledMethod >> getSourceReplacingSelectorWith: newSelector [
 	| oldKeywords newKeywords source newSource oldSelector start |
 	source := self sourceCode.
 	oldSelector := self selector.
@@ -575,36 +445,24 @@ CompiledMethod>>getSourceReplacingSelectorWith: newSelector [
 	^newSource
 ]
 
-{
-	#category : #'accessing-pragmas & properties',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>hasPragmaNamed: aSymbol [
+{ #category : #'accessing-pragmas & properties' }
+CompiledMethod >> hasPragmaNamed: aSymbol [
 	^ self pragmas anySatisfy: [ :pragma | pragma keyword = aSymbol ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>hasProperties [
+{ #category : #testing }
+CompiledMethod >> hasProperties [
 	^ self penultimateLiteral isMethodProperties
 ]
 
-{
-	#category : #'accessing-pragmas & properties',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>hasProperty: aKey [
+{ #category : #'accessing-pragmas & properties' }
+CompiledMethod >> hasProperty: aKey [
 	self propertyAt: aKey ifAbsent: [ ^false ].
 	^true.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>hasSourceCode [
+{ #category : #accessing }
+CompiledMethod >> hasSourceCode [
 
 	"Retrieve or reconstruct the source code for this method."
 	| trailer source |
@@ -620,55 +478,37 @@ CompiledMethod>>hasSourceCode [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>hasSourcePointer [
+{ #category : #testing }
+CompiledMethod >> hasSourcePointer [
 	^ self trailer hasSourcePointer
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isAbstract [
+{ #category : #testing }
+CompiledMethod >> isAbstract [
 	"Answer true if I am abstract"
 	
 	^ self markerOrNil == self class abstractMarker
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isBinarySelector [
+{ #category : #testing }
+CompiledMethod >> isBinarySelector [
 	^self selector
 		allSatisfy: [:each | each isSpecial]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isCompiledMethod [
+{ #category : #testing }
+CompiledMethod >> isCompiledMethod [
 
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isConflict [
+{ #category : #testing }
+CompiledMethod >> isConflict [
 	^ self markerOrNil == self class conflictMarker
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isDeprecated [
+{ #category : #testing }
+CompiledMethod >> isDeprecated [
 	"Object selectorsInProtocol: #deprecation"
 	(self
 		sendsAnySelectorOf:
@@ -682,76 +522,49 @@ CompiledMethod>>isDeprecated [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isDisabled [
+{ #category : #testing }
+CompiledMethod >> isDisabled [
 	^ self isDisabled: self markerOrNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isDisabled: marker [
+{ #category : #testing }
+CompiledMethod >> isDisabled: marker [
 	^ marker == self class disabledMarker
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isDoIt [
+{ #category : #testing }
+CompiledMethod >> isDoIt [
 	^self selector isDoIt.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isExplicitlyRequired [
+{ #category : #testing }
+CompiledMethod >> isExplicitlyRequired [
 	^ self isExplicitlyRequired: self markerOrNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isExplicitlyRequired: marker [
+{ #category : #testing }
+CompiledMethod >> isExplicitlyRequired: marker [
 	^ marker == self class explicitRequirementMarker
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isFromTrait [
+{ #category : #testing }
+CompiledMethod >> isFromTrait [
 	"Return true for methods that have been included from Traits"
 	^ self origin isTrait and: [ self origin ~= self methodClass ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isImplicitlyRequired [
+{ #category : #testing }
+CompiledMethod >> isImplicitlyRequired [
 	^ self isImplicitlyRequired: self markerOrNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isImplicitlyRequired: marker [
+{ #category : #testing }
+CompiledMethod >> isImplicitlyRequired: marker [
 	^ marker == self class implicitRequirementMarker
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isInstalled [
+{ #category : #testing }
+CompiledMethod >> isInstalled [
 	self methodClass ifNotNil:
 		[:class|
 		self selector ifNotNil:
@@ -760,11 +573,8 @@ CompiledMethod>>isInstalled [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isOverridden [
+{ #category : #testing }
+CompiledMethod >> isOverridden [
 	| selector| 
 	selector := self selector.
 	self methodClass allSubclassesDo: [:each | 
@@ -774,36 +584,24 @@ CompiledMethod>>isOverridden [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isProvided [
+{ #category : #testing }
+CompiledMethod >> isProvided [
 	^ self isProvided: self markerOrNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isProvided: marker [
+{ #category : #testing }
+CompiledMethod >> isProvided: marker [
 	marker ifNil: [^ true].
 	^ (self isRequired: marker) not and: [(self isDisabled: marker) not]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isRequired [
+{ #category : #testing }
+CompiledMethod >> isRequired [
 	^ self isRequired: self markerOrNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isRequired: marker [
+{ #category : #testing }
+CompiledMethod >> isRequired: marker [
 	marker ifNil: [^ false].
 	(self isImplicitlyRequired: marker) ifTrue: [^ true].
 	(self isExplicitlyRequired: marker) ifTrue: [^ true]. 
@@ -811,74 +609,50 @@ CompiledMethod>>isRequired: marker [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isReturnField [
+{ #category : #testing }
+CompiledMethod >> isReturnField [
 	"Answer whether the receiver is a quick return of an instance variable."
 	^ self primitive between: 264 and: 519
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isReturnSelf [
+{ #category : #testing }
+CompiledMethod >> isReturnSelf [
 	"Answer whether the receiver is a quick return of self."
 
 	^ self primitive = 256
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isReturnSpecial [
+{ #category : #testing }
+CompiledMethod >> isReturnSpecial [
 	"Answer whether the receiver is a quick return of self or constant."
 
 	^ self primitive between: 256 and: 263
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isSelfEvaluating [
+{ #category : #printing }
+CompiledMethod >> isSelfEvaluating [
 
 	^self methodClass notNil and: [(#(#DoIt #DoItIn: nil) includes: self selector) not]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isSubclassResponsibility [
+{ #category : #testing }
+CompiledMethod >> isSubclassResponsibility [
 	^ self isSubclassResponsibility: self markerOrNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isSubclassResponsibility: marker [
+{ #category : #testing }
+CompiledMethod >> isSubclassResponsibility: marker [
 	^ marker == self class subclassResponsibilityMarker
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>isTaggedWith: aSymbol [
+{ #category : #testing }
+CompiledMethod >> isTaggedWith: aSymbol [
 	"Not methods tags implemented by protocols. Look #tags comment"
 	^self protocol == aSymbol
 ]
 
-{
-	#category : #'source code management',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>linesOfCode [
+{ #category : #'source code management' }
+CompiledMethod >> linesOfCode [
 	"An approximate measure of lines of code.
 	Includes comments, but excludes empty lines."
 	| lines |
@@ -888,67 +662,46 @@ CompiledMethod>>linesOfCode [
 	^lines
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>markerOrNil [
+{ #category : #private }
+CompiledMethod >> markerOrNil [
 	^ self encoderClass markerOrNilFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>method [
+{ #category : #accessing }
+CompiledMethod >> method [
 	"polymorphic with closure"
 
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>methodClass [
+{ #category : #accessing }
+CompiledMethod >> methodClass [
 	"answer the class that I am installed in"
 	^self classBinding value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>methodClass: aClass [
+{ #category : #accessing }
+CompiledMethod >> methodClass: aClass [
 	"set the class binding in the last literal to aClass"
 	^self numLiterals > 0
 		ifTrue: [ self literalAt: self numLiterals put: aClass binding ]	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>name [
+{ #category : #accessing }
+CompiledMethod >> name [
 	^ self printString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>origin [
+{ #category : #accessing }
+CompiledMethod >> origin [
 	self properties 
 		at: #traitSource 
 		ifPresent: [ :traitMethod| ^ traitMethod origin].
 	^ self methodClass traitOrClassOfSelector: self selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>originMethod [
+{ #category : #accessing }
+CompiledMethod >> originMethod [
 	| selector trait|
 	
 	self properties 
@@ -962,11 +715,8 @@ CompiledMethod>>originMethod [
 	^ self. 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>penultimateLiteral [
+{ #category : #private }
+CompiledMethod >> penultimateLiteral [
 	"Answer the penultimate literal of the receiver, which holds either
 	 the receiver's selector or its properties (which will hold the selector)."
 	| pIndex |
@@ -975,11 +725,8 @@ CompiledMethod>>penultimateLiteral [
 		ifFalse: [nil]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>penultimateLiteral: anObject [
+{ #category : #private }
+CompiledMethod >> penultimateLiteral: anObject [
 	"Answer the penultimate literal of the receiver, which holds either
 	 the receiver's selector or its properties (which will hold the selector)."
 	| pIndex |
@@ -988,11 +735,8 @@ CompiledMethod>>penultimateLiteral: anObject [
 		ifFalse: [self error: 'insufficient literals']
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>postCopy [
+{ #category : #copying }
+CompiledMethod >> postCopy [
 	| penultimateLiteral |
 	(penultimateLiteral := self penultimateLiteral) isMethodProperties ifTrue:
 		[self penultimateLiteral: (penultimateLiteral copy
@@ -1003,11 +747,8 @@ CompiledMethod>>postCopy [
 
 ]
 
-{
-	#category : #'accessing-pragmas & properties',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>pragmaAt: aKey [
+{ #category : #'accessing-pragmas & properties' }
+CompiledMethod >> pragmaAt: aKey [
 	"Answer the pragma with selector aKey, or nil if none."
 	| propertiesOrSelector |
 	^(propertiesOrSelector := self penultimateLiteral) isMethodProperties
@@ -1015,22 +756,16 @@ CompiledMethod>>pragmaAt: aKey [
 		ifFalse: [nil]
 ]
 
-{
-	#category : #'accessing-pragmas & properties',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>pragmas [
+{ #category : #'accessing-pragmas & properties' }
+CompiledMethod >> pragmas [
 	| selectorOrProperties |
 	^(selectorOrProperties := self penultimateLiteral) isMethodProperties
 		ifTrue: [selectorOrProperties pragmas]
 		ifFalse: [#()]
 ]
 
-{
-	#category : #'debugger support',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>prepareForSimulationWith: numArgs [
+{ #category : #'debugger support' }
+CompiledMethod >> prepareForSimulationWith: numArgs [
 	"This method changes the argument count of a CompiledMethod header to numArgs, its temporary count to numArgs + 1 and change the code handling primitive error to store the error code in the unique temporary of the method"
 			
 	| newHeader |
@@ -1043,11 +778,8 @@ CompiledMethod>>prepareForSimulationWith: numArgs [
 	self encoderClass prepareMethod: self forSimulationWith: numArgs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>primitive [
+{ #category : #accessing }
+CompiledMethod >> primitive [
 	"Answer the primitive index associated with the receiver.
 	 Zero indicates that this is not a primitive method."
 	| initialPC |
@@ -1056,21 +788,15 @@ CompiledMethod>>primitive [
 		ifFalse: [0]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>printOn: aStream [
+{ #category : #printing }
+CompiledMethod >> printOn: aStream [ 
 	"Overrides method inherited from the byte arrayed collection."
 
 	aStream print: self methodClass; nextPutAll: '>>'; print: self selector.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>printPrimitiveOn: aStream [
+{ #category : #printing }
+CompiledMethod >> printPrimitiveOn: aStream [
 	"Print the primitive on aStream"
 	| primDecl |
 	self isPrimitive ifFalse: [ ^self ].
@@ -1094,11 +820,8 @@ CompiledMethod>>printPrimitiveOn: aStream [
 	aStream nextPut: $>; cr
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>properties [
+{ #category : #accessing }
+CompiledMethod >> properties [
 	"Answer the method properties of the receiver."
 	| propertiesOrSelector |
 	^(propertiesOrSelector := self penultimateLiteral) isMethodProperties
@@ -1106,11 +829,8 @@ CompiledMethod>>properties [
 		ifFalse: [self class methodPropertiesClass forMethod: self selector: propertiesOrSelector]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>properties: aMethodProperties [
+{ #category : #accessing }
+CompiledMethod >> properties: aMethodProperties [
 	"Set the method-properties of the receiver to aMethodProperties."
 	self literalAt: self numLiterals - 1
 		put: (aMethodProperties isEmpty
@@ -1120,43 +840,31 @@ CompiledMethod>>properties: aMethodProperties [
 							yourself])
 ]
 
-{
-	#category : #'accessing-pragmas & properties',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>propertyAt: propName [
+{ #category : #'accessing-pragmas & properties' }
+CompiledMethod >> propertyAt: propName [
 	| propertiesOrSelector |
 	^(propertiesOrSelector := self penultimateLiteral) isMethodProperties
 		ifTrue: [propertiesOrSelector propertyAt: propName ifAbsent: [nil]]
 		ifFalse: [nil]
 ]
 
-{
-	#category : #'accessing-pragmas & properties',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>propertyAt: propName ifAbsent: aBlock [
+{ #category : #'accessing-pragmas & properties' }
+CompiledMethod >> propertyAt: propName ifAbsent: aBlock [
 	| propertiesOrSelector |
 	^(propertiesOrSelector := self penultimateLiteral) isMethodProperties
 		ifTrue: [propertiesOrSelector propertyAt: propName ifAbsent: aBlock]
 		ifFalse: [aBlock value]
 ]
 
-{
-	#category : #'accessing-pragmas & properties',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>propertyAt: aKey ifAbsentPut: aBlock [
+{ #category : #'accessing-pragmas & properties' }
+CompiledMethod >> propertyAt: aKey ifAbsentPut: aBlock [
 	"Answer the property associated with aKey or, if aKey isn't found store the result of evaluating aBlock as new value."
 	
 	^ self propertyAt: aKey ifAbsent: [ self propertyAt: aKey put: aBlock value ]
 ]
 
-{
-	#category : #'accessing-pragmas & properties',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>propertyAt: propName put: propValue [
+{ #category : #'accessing-pragmas & properties' }
+CompiledMethod >> propertyAt: propName put: propValue [
 	"Set or add the property with key propName and value propValue.
 	 If the receiver does not yet have a method properties create one and replace
 	 the selector with it.  Otherwise, either relace propValue in the method properties
@@ -1180,11 +888,8 @@ CompiledMethod>>propertyAt: propName put: propValue [
 	^propValue
 ]
 
-{
-	#category : #'accessing-pragmas & properties',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>propertyKeysAndValuesDo: aBlock [
+{ #category : #'accessing-pragmas & properties' }
+CompiledMethod >> propertyKeysAndValuesDo: aBlock [
 	"Enumerate the receiver with all the keys and values."
 
 	| propertiesOrSelector |
@@ -1192,74 +897,50 @@ CompiledMethod>>propertyKeysAndValuesDo: aBlock [
 		[propertiesOrSelector propertyKeysAndValuesDo: aBlock]
 ]
 
-{
-	#category : #'accessing-properties - compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>propertyValueAt: propName [
+{ #category : #'accessing-properties - compatibility' }
+CompiledMethod >> propertyValueAt: propName [
 	"use the version without ..Value, this methid is retained for compatibility"
 	^self propertyAt: propName
 ]
 
-{
-	#category : #'accessing-properties - compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>propertyValueAt: propName ifAbsent: aBlock [
+{ #category : #'accessing-properties - compatibility' }
+CompiledMethod >> propertyValueAt: propName ifAbsent: aBlock [
 	"use the version without ..Value, this method is retained for compatibility"
 	^self propertyAt: propName ifAbsent: aBlock
 ]
 
-{
-	#category : #'accessing-properties - compatibility',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>propertyValueAt: propName put: propValue [
+{ #category : #'accessing-properties - compatibility' }
+CompiledMethod >> propertyValueAt: propName put: propValue [
 	"use the version without ..Value, this method is retained for compatibility"
 	^self propertyAt: propName put: propValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>protocol [
+{ #category : #accessing }
+CompiledMethod >> protocol [
 	"Return in which protocol (conceptual groups of methods) the receiver is grouped into."
 
 	^ self category
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>protocol: aString [
+{ #category : #accessing }
+CompiledMethod >> protocol: aString [
 	^ self methodClass organization classify: self selector under: aString
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>readsField: varIndex [
+{ #category : #scanning }
+CompiledMethod >> readsField: varIndex [ 
 	"Answer whether the receiver loads the instance variable indexed by the argument."
 	self isReturnField ifTrue: [^self returnField = (varIndex - 1)].
 	^ super readsField: varIndex 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>removeFromSystem [
+{ #category : #initialize-release }
+CompiledMethod >> removeFromSystem [
 	^ self methodClass removeSelector: self selector
 ]
 
-{
-	#category : #'accessing-pragmas & properties',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>removeProperty: propName [
+{ #category : #'accessing-pragmas & properties' }
+CompiledMethod >> removeProperty: propName [
 	"Remove the property propName if it exists.
 	 Do _not_ raise an error if the property is missing."
 	| value |
@@ -1271,11 +952,8 @@ CompiledMethod>>removeProperty: propName [
 	^value
 ]
 
-{
-	#category : #'accessing-pragmas & properties',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>removeProperty: propName ifAbsent: aBlock [
+{ #category : #'accessing-pragmas & properties' }
+CompiledMethod >> removeProperty: propName ifAbsent: aBlock [
 	"Remove the property propName if it exists.
 	 Answer the evaluation of aBlock if the property is missing."
 	| value |
@@ -1287,11 +965,8 @@ CompiledMethod>>removeProperty: propName ifAbsent: aBlock [
 	^value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>returnField [
+{ #category : #accessing }
+CompiledMethod >> returnField [
 	"Answer the index of the instance variable returned by a quick return 
 	method."
 	| prim |
@@ -1301,11 +976,8 @@ CompiledMethod>>returnField [
 		ifFalse: [^ prim - 264]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>selector [
+{ #category : #accessing }
+CompiledMethod >> selector [
 	"Answer a method's selector.  This is either the penultimate literal,
 	 or, if the method has any properties or pragmas, the selector of
 	 the MethodProperties stored in the penultimate literal."
@@ -1315,11 +987,8 @@ CompiledMethod>>selector [
 		ifFalse: [penultimateLiteral]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>selector: aSelector [
+{ #category : #accessing }
+CompiledMethod >> selector: aSelector [
 	"Set a method's selector.  This is either the penultimate literal,
 	 or, if the method has any properties or pragmas, the selector of
 	 the MethodProperties stored in the penultimate literal."
@@ -1332,11 +1001,8 @@ CompiledMethod>>selector: aSelector [
 				self literalAt: nl - 1 put: aSelector]
 ]
 
-{
-	#category : #'source code management',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>setSourcePointer: srcPointer [
+{ #category : #'source code management' }
+CompiledMethod >> setSourcePointer: srcPointer [
 	"We can't change the trailer of existing method, since it could have completely different format. 	
 	Therefore we need to generate a copy with new trailer, containing scrPointer, and then become it."
 
@@ -1354,11 +1020,8 @@ CompiledMethod>>setSourcePointer: srcPointer [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>sourceCode [
+{ #category : #accessing }
+CompiledMethod >> sourceCode [
 	"Retrieve or reconstruct the source code for this method."
 
 	| trailer |
@@ -1369,11 +1032,8 @@ CompiledMethod>>sourceCode [
 	^ self getSourceFromFile ifEmpty: [ self codeForNoSource ]
 ]
 
-{
-	#category : #'source code management',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>sourcePointer [
+{ #category : #'source code management' }
+CompiledMethod >> sourcePointer [
 	"Answer the integer which can be used to find the source file and position for this method.
 	The actual interpretation of this number is up to the SourceFileArray stored in the global variable SourceFiles."
 
@@ -1381,11 +1041,8 @@ CompiledMethod>>sourcePointer [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>storeOn: aStream [
+{ #category : #printing }
+CompiledMethod >> storeOn: aStream [
 	| noneYet |
 	aStream nextPutAll: '(('.
 	aStream nextPutAll: self class name.
@@ -1408,11 +1065,8 @@ CompiledMethod>>storeOn: aStream [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #accessing-tags,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>tagWith: aSymbol [
+{ #category : #accessing-tags }
+CompiledMethod >> tagWith: aSymbol [
 	"Any method could be tagged with multiple symbols for user purpose. 
 	This method should apply new tag. All existing tags should not be changed. 
 	But now we could only implemented tags with protocols. 	
@@ -1422,11 +1076,8 @@ CompiledMethod>>tagWith: aSymbol [
 	self protocol: aSymbol
 ]
 
-{
-	#category : #accessing-tags,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>tags [
+{ #category : #accessing-tags }
+CompiledMethod >> tags [
 	"Any method could be tagged with multiple symbols for user purpose. 
 	For now we only define API to manage them implemented on top of method protocols.
 	Protocol unclassified means that method is not tagged by anything"
@@ -1437,19 +1088,13 @@ CompiledMethod>>tags [
 	^{protocol}
 ]
 
-{
-	#category : #'source code management',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>tempNames [
+{ #category : #'source code management' }
+CompiledMethod >> tempNames [
 	^self methodNode tempNames.
 ]
 
-{
-	#category : #accessing-tags,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>untagFrom: aSymbol [
+{ #category : #accessing-tags }
+CompiledMethod >> untagFrom: aSymbol [
 	"Any method could be tagged with multiple symbols for user purpose. 
 	This method should remove given tag from it. All other tags should not be changed. 
 	But now we could implemented tags with protocols which allow only tag for method.
@@ -1458,30 +1103,21 @@ CompiledMethod>>untagFrom: aSymbol [
 		self protocol: Protocol unclassified]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>valueWithReceiver: aReceiver arguments: anArray [
+{ #category : #evaluating }
+CompiledMethod >> valueWithReceiver: aReceiver arguments: anArray [ 
 	"This should be changed when all the VM will support passign of extra arguments
 		^self receiver: aReceiver withArguments: anArray executeMethod: self"
 	
 	^ aReceiver withArgs: anArray executeMethod: self
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>veryDeepCopyWith: deepCopier [
+{ #category : #copying }
+CompiledMethod >> veryDeepCopyWith: deepCopier [
 	"Return self.  I am always shared.  Do not record me.  Only use this for blocks.  Normally methodDictionaries should not be copied this way."
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CompiledMethod>>writesField: varIndex [
+{ #category : #scanning }
+CompiledMethod >> writesField: varIndex [
 	"Answer whether the receiver stores into the instance variable indexed by the argument."
 	self isQuick ifTrue: [^false].
 	^ super writesField: varIndex

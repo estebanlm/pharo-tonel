@@ -5,15 +5,11 @@ I also make sure  that step over only goes over one single bytecode instruction.
 Class {
 	#name : #GTBytecodeDebuggerSession,
 	#superclass : #DebugSession,
-	#category : #GT-BytecodeDebugger-Model,
-	#timestamp : 'AndreiChis 12/30/2015 10:51'
+	#category : #GT-BytecodeDebugger-Model
 }
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebuggerSession>>runToBytecode: aSymbolicBytecode inContext: aContext  [
+{ #category : #'debugging actions' }
+GTBytecodeDebuggerSession >> runToBytecode: aSymbolicBytecode inContext: aContext [ 
 	"Attempt to step over instructions in selectedContext until the 
 	execution reaches the selected instruction. This happens when the
 	program counter passes the begining of selectionInterval." 
@@ -25,21 +21,15 @@ GTBytecodeDebuggerSession>>runToBytecode: aSymbolicBytecode inContext: aContext 
 		whileTrue: [ self stepOver: aContext ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebuggerSession>>stepToFirstInterestingBytecodeIn: aProcess [
+{ #category : #private }
+GTBytecodeDebuggerSession >> stepToFirstInterestingBytecodeIn: aProcess [
 	"Do not step over any bytecode."
 	
 	^ aProcess suspendedContext
 ]
 
-{
-	#category : #acessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebuggerSession>>symbolicBytecodeForCurrentPCFrom: aContext [
+{ #category : #acessing }
+GTBytecodeDebuggerSession >> symbolicBytecodeForCurrentPCFrom: aContext [
 	| pc |
 	
 	pc := aContext pc.

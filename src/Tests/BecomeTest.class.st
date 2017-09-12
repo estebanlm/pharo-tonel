@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #BecomeTest,
 	#superclass : #TestCase,
-	#category : #Tests-VM,
-	#timestamp : ''
+	#category : #Tests-VM
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-BecomeTest>>testBecome [
+{ #category : #testing }
+BecomeTest >> testBecome [
 	"Test the two way become. Note. we cannot use string literals for this test"
 	| a b c d |
 
@@ -33,11 +26,8 @@ BecomeTest>>testBecome [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-BecomeTest>>testBecomeForward [
+{ #category : #testing }
+BecomeTest >> testBecomeForward [
 	"Test the forward become."
 	| a b c d |
 
@@ -58,11 +48,8 @@ BecomeTest>>testBecomeForward [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-BecomeTest>>testBecomeForwardCopyIdentityHash [
+{ #category : #testing }
+BecomeTest >> testBecomeForwardCopyIdentityHash [
 	"Check that
 		1. the argument to becomeForward: IS modified to have the sender's identity hash.
 		2. the sender's identity hash is unchanged."
@@ -83,11 +70,8 @@ BecomeTest>>testBecomeForwardCopyIdentityHash [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-BecomeTest>>testBecomeForwardDontCopyIdentityHash [
+{ #category : #testing }
+BecomeTest >> testBecomeForwardDontCopyIdentityHash [
 	"Check that
 		1. the argument to becomeForward: is NOT modified to have the receiver's identity hash.
 		2. the receiver's identity hash is unchanged."
@@ -108,11 +92,8 @@ BecomeTest>>testBecomeForwardDontCopyIdentityHash [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-BecomeTest>>testBecomeForwardHash [
+{ #category : #testing }
+BecomeTest >> testBecomeForwardHash [
 
 	| a b c hb |
 
@@ -132,11 +113,8 @@ BecomeTest>>testBecomeForwardHash [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-BecomeTest>>testBecomeForwardIdentityHash [
+{ #category : #testing }
+BecomeTest >> testBecomeForwardIdentityHash [
 	"Check that
 		1. the argument to becomeForward: is modified to have the receiver's identity hash.
 		2. the receiver's identity hash is unchanged."
@@ -156,11 +134,8 @@ BecomeTest>>testBecomeForwardIdentityHash [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-BecomeTest>>testBecomeHash [
+{ #category : #testing }
+BecomeTest >> testBecomeHash [
 
 	| a b c d ha hb |
 
@@ -183,11 +158,8 @@ BecomeTest>>testBecomeHash [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-BecomeTest>>testBecomeIdentityHash [
+{ #category : #testing }
+BecomeTest >> testBecomeIdentityHash [
 	"Note. The identity hash of both objects seems to change after the become:"
 
 	| a b c d |

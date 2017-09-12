@@ -11,15 +11,11 @@ Class {
 		'data',
 		'errors'
 	],
-	#category : #GT-EventRecorder-Exceptions,
-	#timestamp : 'JurajKubelka 10/30/2015 12:19'
+	#category : #GT-EventRecorder-Exceptions
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventUnpackingError class>>signal: aString data: aByteArray errors: aCollection  [
+{ #category : #'instance creation' }
+GTEventUnpackingError class >> signal: aString data: aByteArray errors: aCollection [ 
 	^ self new
 			data: aByteArray;
 			errors: aCollection;
@@ -27,43 +23,28 @@ GTEventUnpackingError class>>signal: aString data: aByteArray errors: aCollectio
 			yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventUnpackingError>>data [
+{ #category : #accessing }
+GTEventUnpackingError >> data [
 	^ data
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventUnpackingError>>data: anObject [
+{ #category : #accessing }
+GTEventUnpackingError >> data: anObject [
 	data := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventUnpackingError>>errors [
+{ #category : #accessing }
+GTEventUnpackingError >> errors [
 	^ errors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventUnpackingError>>errors: anObject [
+{ #category : #accessing }
+GTEventUnpackingError >> errors: anObject [
 	errors := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventUnpackingError>>isResumable [
+{ #category : #private }
+GTEventUnpackingError >> isResumable [
 	"Determine whether an exception is resumable."
 	^true
 ]

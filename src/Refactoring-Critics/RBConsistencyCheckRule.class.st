@@ -4,33 +4,23 @@ Checks for code using equality tests instead of the message sends. Since the cod
 Class {
 	#name : #RBConsistencyCheckRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:26'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBConsistencyCheckRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBConsistencyCheckRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'ConsistencyCheckRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBConsistencyCheckRule>>group [
+{ #category : #accessing }
+RBConsistencyCheckRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBConsistencyCheckRule>>initialize [
+{ #category : #initialization }
+RBConsistencyCheckRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyOf: #(
@@ -42,18 +32,12 @@ RBConsistencyCheckRule>>initialize [
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBConsistencyCheckRule>>name [
+{ #category : #accessing }
+RBConsistencyCheckRule >> name [
 	^ 'Uses "size = 0" instead of "isEmpty"'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBConsistencyCheckRule>>rationale [
+{ #category : #accessing }
+RBConsistencyCheckRule >> rationale [
 	^ 'Checks for code using equality tests instead of the message sends.'
 ]

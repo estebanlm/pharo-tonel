@@ -11,15 +11,11 @@ fontSelector selectedFont inspect.
 Class {
 	#name : #FreeTypeFontSelectorDialogWindow,
 	#superclass : #AbstractFontSelectorDialogWindow,
-	#category : #FontChooser,
-	#timestamp : 'LaurentLaffont 4/15/2011 20:19'
+	#category : #FontChooser
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FreeTypeFontSelectorDialogWindow>>defaultFontFamilies [
+{ #category : #'as yet unclassified' }
+FreeTypeFontSelectorDialogWindow >> defaultFontFamilies [
 	"Answer the set of available fonts families that are supported in the font that they represent."
 	
 	|fonts defaultFont|
@@ -37,11 +33,8 @@ FreeTypeFontSelectorDialogWindow>>defaultFontFamilies [
 			addAttribute: (TextFontReference toFont: dispFont)]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FreeTypeFontSelectorDialogWindow>>matchingFont [
+{ #category : #'as yet unclassified' }
+FreeTypeFontSelectorDialogWindow >> matchingFont [
 	"Answer the font that matches the selections."
 
 	|lf emp|
@@ -63,11 +56,8 @@ FreeTypeFontSelectorDialogWindow>>matchingFont [
 	^lf 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FreeTypeFontSelectorDialogWindow>>newFontStyleButtonRowMorph [
+{ #category : #'instance creation' }
+FreeTypeFontSelectorDialogWindow >> newFontStyleButtonRowMorph [
 	"Answer a new font style button row morph."
 
 	^self newRow: {
@@ -75,11 +65,8 @@ FreeTypeFontSelectorDialogWindow>>newFontStyleButtonRowMorph [
 		self newItalicButtonMorph}
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-FreeTypeFontSelectorDialogWindow>>updateFromSelectedFont [
+{ #category : #'as yet unclassified' }
+FreeTypeFontSelectorDialogWindow >> updateFromSelectedFont [
 	"Update our state based on the selected font."
 
 	|font|

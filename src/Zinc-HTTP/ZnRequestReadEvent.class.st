@@ -10,47 +10,31 @@ Class {
 		'request',
 		'duration'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 15:07'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnRequestReadEvent>>duration [
+{ #category : #accessing }
+ZnRequestReadEvent >> duration [
 	^ duration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnRequestReadEvent>>duration: anObject [
+{ #category : #accessing }
+ZnRequestReadEvent >> duration: anObject [
 	duration := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnRequestReadEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnRequestReadEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream << ' Request Read '; print: request; space; print: duration; << 'ms'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnRequestReadEvent>>request [
+{ #category : #accessing }
+ZnRequestReadEvent >> request [
 	^ request
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnRequestReadEvent>>request: anObject [
+{ #category : #accessing }
+ZnRequestReadEvent >> request: anObject [
 	request := anObject
 ]

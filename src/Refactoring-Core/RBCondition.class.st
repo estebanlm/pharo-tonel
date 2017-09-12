@@ -21,26 +21,19 @@ Class {
 		'type',
 		'errorBlock'
 	],
-	#category : #Refactoring-Core-Conditions,
-	#timestamp : 'NicolaiHess 5/19/2016 16:56'
+	#category : #Refactoring-Core-Conditions
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>canUnderstand: aSelector in: aClass [
+{ #category : #'instance creation' }
+RBCondition class >> canUnderstand: aSelector in: aClass [
 	^self new
 		type: (Array with: #understandsSelector with: aClass with: aSelector)
 		block: [aClass canUnderstand: aSelector]
 		errorString: aClass printString , ' <1?:does not >understand<1?s:> ' , aSelector printString
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>checkClassVarName: aName in: aClass  [
+{ #category : #utilities }
+RBCondition class >> checkClassVarName: aName in: aClass [ 
 	| string |
 	aName isString ifFalse: [^false].
 	string := aName asString.
@@ -50,11 +43,8 @@ RBCondition class>>checkClassVarName: aName in: aClass  [
 	^RBScanner isVariable: string
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>checkInstanceVariableName: aName in: aClass  [
+{ #category : #utilities }
+RBCondition class >> checkInstanceVariableName: aName in: aClass [ 
 	| string |
 	aName isString ifFalse: [^false].
 	string := aName asString.
@@ -64,19 +54,13 @@ RBCondition class>>checkInstanceVariableName: aName in: aClass  [
 	^RBScanner isVariable: string
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>checkMethodName: aName in: aClass  [
+{ #category : #utilities }
+RBCondition class >> checkMethodName: aName in: aClass [ 
 	^aName isString and: [RBScanner isSelector: aName]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>definesClassVariable: aString in: aClass  [
+{ #category : #'instance creation' }
+RBCondition class >> definesClassVariable: aString [ in: aClass 
 	^self new 
 		type: (Array 
 				with: #definesClassVar
@@ -87,11 +71,8 @@ RBCondition class>>definesClassVariable: aString in: aClass  [
 				, ' <1?:does not >define<1?s:> class variable ' , aString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>definesInstanceVariable: aString in: aClass  [
+{ #category : #'instance creation' }
+RBCondition class >> definesInstanceVariable: aString [ in: aClass 
 	^self new 
 		type: (Array 
 				with: #definesInstVar
@@ -102,22 +83,16 @@ RBCondition class>>definesInstanceVariable: aString in: aClass  [
 				, ' <1?:does not >define<1?s:> instance variable ' , aString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>definesSelector: aSelector in: aClass  [
+{ #category : #'instance creation' }
+RBCondition class >> definesSelector: aSelector [ in: aClass 
 	^self new
 		type: (Array with: #definesSelector with: aClass with: aSelector)
 		block: [aClass directlyDefinesMethod: aSelector]
 		errorString: aClass printString , ' <1?:does not >define<1?s:> ' , aSelector printString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>definesTempVar: aString in: aClass ignoreClass: subclass  [
+{ #category : #'instance creation' }
+RBCondition class >> definesTempVar: aString in: aClass ignoreClass: subclass [ 
 	| condition |
 	condition := self new.
 	condition 
@@ -137,11 +112,8 @@ RBCondition class>>definesTempVar: aString in: aClass ignoreClass: subclass  [
 	^condition
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>definesTemporaryVariable: aString in: aClass  [
+{ #category : #'instance creation' }
+RBCondition class >> definesTemporaryVariable: aString [ in: aClass 
 	| condition |
 	condition := self new.
 	condition 
@@ -161,11 +133,8 @@ RBCondition class>>definesTemporaryVariable: aString in: aClass  [
 	^condition
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>directlyDefinesClassVariable: aString in: aClass  [
+{ #category : #'instance creation' }
+RBCondition class >> directlyDefinesClassVariable: aString [ in: aClass 
 	^self new 
 		type: (Array with: #directlyDefinesClassVar with: aClass with: aString)
 		block: [aClass directlyDefinesClassVariable: aString]
@@ -173,11 +142,8 @@ RBCondition class>>directlyDefinesClassVariable: aString in: aClass  [
 				, ' <1?:does not >directly define<1?s:> class variable ' , aString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>directlyDefinesInstanceVariable: aString in: aClass  [
+{ #category : #'instance creation' }
+RBCondition class >> directlyDefinesInstanceVariable: aString [ in: aClass 
 	^self new 
 		type: (Array with: #directlyDefinesInstanceVariable with: aClass with: aString)
 		block: [aClass directlyDefinesInstanceVariable: aString]
@@ -185,11 +151,8 @@ RBCondition class>>directlyDefinesInstanceVariable: aString in: aClass  [
 				, ' <1?:does not >directly define<1?s:> instance variable ' , aString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>empty [
+{ #category : #'instance creation' }
+RBCondition class >> empty [
 	"Returns an empty condition"
 
 	^self new 
@@ -198,44 +161,32 @@ RBCondition class>>empty [
 		errorString: 'Empty'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>hasSubclasses: aClass [
+{ #category : #'instance creation' }
+RBCondition class >> hasSubclasses: aClass [
 	^self new
 		type: (Array with: #hasSubclasses with: aClass)
 		block: [aClass subclasses isEmpty not]
 		errorString: aClass printString , ' has <1?:no >subclasses'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>hasSuperclass: aClass  [
+{ #category : #'instance creation' }
+RBCondition class >> hasSuperclass: aClass [ 
 	^self new 
 		type: (Array with: #hasSuperclass with: aClass)
 		block: [aClass superclass isNil not]
 		errorString: aClass printString , ' has <1?a:no> superclass'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>hierarchyOf: aClass canUnderstand: aSelector [
+{ #category : #'instance creation' }
+RBCondition class >> hierarchyOf: aClass canUnderstand: aSelector [
 	^self new
 		type: (Array with: #hierarchyUnderstandsSelector with: aClass with: aSelector)
 		block: [aClass hierarchyDefinesMethod: aSelector]
 		errorString: aClass printString , ' <1?or a subclass:and all subclasses do not> understand<1?s:> ' , aSelector printString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>hierarchyOf: aClass definesVariable: aString  [
+{ #category : #'instance creation' }
+RBCondition class >> hierarchyOf: aClass definesVariable: aString [ 
 	^self new 
 		type: (Array 
 				with: #hierarchyDefinesInstVar
@@ -247,11 +198,8 @@ RBCondition class>>hierarchyOf: aClass definesVariable: aString  [
 					, aString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>hierarchyOf: aClass referencesInstanceVariable: aString  [
+{ #category : #'instance creation' }
+RBCondition class >> hierarchyOf: aClass referencesInstanceVariable: aString [ 
 	^self new 
 		type: (Array 
 				with: #hierarchyReferencesInstVar
@@ -265,33 +213,24 @@ RBCondition class>>hierarchyOf: aClass referencesInstanceVariable: aString  [
 				, ' or subclass <1?:does not >reference<1?s:> instance variable ' , aString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>isAbstractClass: aClass  [
+{ #category : #'instance creation' }
+RBCondition class >> isAbstractClass: aClass [ 
 	^self new 
 		type: (Array with: #IsAbstractClass with: aClass)
 		block: [aClass isAbstract]
 		errorString: aClass printString , ' is <1?:not >an abstract class'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>isClass: anObject [
+{ #category : #'instance creation' }
+RBCondition class >> isClass: anObject [
 	^self new
 		type: (Array with: #IsClass with: anObject)
 		block: [anObject isBehavior]
 		errorString: anObject printString , ' is <1?:not >a behavior'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>isEmptyClass: anObject  [
+{ #category : #'instance creation' }
+RBCondition class >> isEmptyClass: anObject [ 
 	^self new type: (Array with: #IsEmptyClass with: anObject)
 		block: 
 			[anObject classVariableNames isEmpty
@@ -299,87 +238,63 @@ RBCondition class>>isEmptyClass: anObject  [
 		errorString: anObject printString , ' is <1?:not > empty'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>isGlobal: aString in: aRBSmalltalk  [
+{ #category : #'instance creation' }
+RBCondition class >> isGlobal: aString [ in: aRBSmalltalk 
 	^self new 
 		type: (Array with: #isGlobal with: aString)
 		block: [aRBSmalltalk includesGlobal: aString asSymbol]
 		errorString: aString , ' is <1?:not >a class or global variable'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>isImmediateSubclass: subclass of: superClass [
+{ #category : #'instance creation' }
+RBCondition class >> isImmediateSubclass: subclass of: superClass [
 	^self new
 		type: (Array with: #immediateSubclass with: superClass with: subclass)
 		block: [subclass superclass = superClass]
 		errorString: subclass printString , ' is <1?:not >an immediate subclass of ' , superClass printString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>isMetaclass: anObject  [
+{ #category : #'instance creation' }
+RBCondition class >> isMetaclass: anObject [ 
 	^self new type: (Array with: #IsMetaclass with: anObject)
 		block: [anObject isMeta]
 		errorString: anObject printString , ' is <1?:not >a metaclass'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>isSubclass: subclass of: superClass [
+{ #category : #'instance creation' }
+RBCondition class >> isSubclass: subclass of: superClass [
 	^self new
 		type: (Array with: #subclass with: superClass with: subclass)
 		block: [subclass includesClass: superClass]
 		errorString: subclass printString , ' is <1?:not >a subclass of ' , superClass printString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>isSymbol: aString [
+{ #category : #'instance creation' }
+RBCondition class >> isSymbol: aString [
 	^self new
 		type: (Array with: #isSymbol with: aString)
 		block: [aString isSymbol]
 		errorString: aString , ' is <1?:not >a symbol'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>isValidClassName: aString [
+{ #category : #'instance creation' }
+RBCondition class >> isValidClassName: aString [
 	^self new
 		type: (Array with: #validClassName with: aString)
 		block: [self validClassName: aString]
 		errorString: aString , ' is <1?:not >a valid class name'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>isValidClassVarName: aString for: aClass [
+{ #category : #'instance creation' }
+RBCondition class >> isValidClassVarName: aString for: aClass [
 	^self new
 		type: (Array with: #validClassVarName with: aString with: aClass)
 		block: [self checkClassVarName: aString in: aClass]
 		errorString: aString , ' is <1?:not >a valid class variable name'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>isValidInstanceVariableName: aString for: aClass  [
+{ #category : #'instance creation' }
+RBCondition class >> isValidInstanceVariableName: aString for: aClass [ 
 	^self new 
 		type: (Array 
 				with: #validInstVarName
@@ -389,22 +304,16 @@ RBCondition class>>isValidInstanceVariableName: aString for: aClass  [
 		errorString: aString , ' is <1?:not >a valid instance variable name'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>isValidMethodName: aString for: aClass [
+{ #category : #'instance creation' }
+RBCondition class >> isValidMethodName: aString for: aClass [
 	^self new
 		type: (Array with: #validMethodName with: aString with: aClass)
 		block: [self checkMethodName: aString in: aClass]
 		errorString: aString printString , ' is <1?:not >a valid method name'
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>methodDefiningTemporary: aString in: aClass ignore: aBlock  [
+{ #category : #utilities }
+RBCondition class >> methodDefiningTemporary: aString in: aClass ignore: aBlock [ 
 	| searcher method |
 	searcher := RBParseTreeSearcher new.
 	method := nil.	"Shut-up the warning"
@@ -422,11 +331,8 @@ RBCondition class>>methodDefiningTemporary: aString in: aClass ignore: aBlock  [
 	^nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>referencesInstanceVariable: aString in: aClass  [
+{ #category : #'instance creation' }
+RBCondition class >> referencesInstanceVariable: aString [ in: aClass 
 	^self new 
 		type: (Array with: #referencesInstVar with: aClass with: aString)
 		block: [(aClass whichSelectorsReferToInstanceVariable: aString) isEmpty not]
@@ -434,19 +340,13 @@ RBCondition class>>referencesInstanceVariable: aString in: aClass  [
 				, ' <1?:does not >reference<1?s:> instance variable ' , aString
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>reservedNames [
+{ #category : #utilities }
+RBCondition class >> reservedNames [
 	^#('self' 'true' 'false' 'nil' 'thisContext' 'super')
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>subclassesOf: aClass referToSelector: aSelector  [
+{ #category : #'instance creation' }
+RBCondition class >> subclassesOf: aClass referToSelector: aSelector [ 
 	^self new 
 		type: (Array 
 				with: #subclassReferences
@@ -466,81 +366,54 @@ RBCondition class>>subclassesOf: aClass referToSelector: aSelector  [
 				, aSelector printString
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>validClassName: aString  [
+{ #category : #utilities }
+RBCondition class >> validClassName: aString [ 
 	"Class names and class variable names have the same restrictions"
 
 	^self checkClassVarName: aString in: self
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>withBlock: aBlock [
+{ #category : #'instance creation' }
+RBCondition class >> withBlock: aBlock [
 	^self new withBlock: aBlock
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition class>>withBlock: aBlock errorString: aString  [
+{ #category : #'instance creation' }
+RBCondition class >> withBlock: aBlock errorString: aString [ 
 	^self new type: #unknown
 		block: aBlock
 		errorString: aString
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition>>check [
+{ #category : #checking }
+RBCondition >> check [
 	^block value
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition>>errorBlock: anObject [
+{ #category : #initialize-release }
+RBCondition >> errorBlock: anObject [
 	errorBlock := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition>>errorBlockFor: aBoolean [
+{ #category : #accessing }
+RBCondition >> errorBlockFor: aBoolean [
 	^errorBlock
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition>>printOn: aStream  [
+{ #category : #printing }
+RBCondition >> printOn: aStream [ 
 	aStream nextPutAll: type asString
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition>>type: aSymbol block: aBlock errorString: aString  [
+{ #category : #initialize-release }
+RBCondition >> type: aSymbol block: aBlock errorString: aString [ 
  	type := aSymbol.
 	block := aBlock.
 	self errorMacro: aString
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBCondition>>withBlock: aBlock  [
+{ #category : #initialize-release }
+RBCondition >> withBlock: aBlock [ 
 	block := aBlock.
 	type := #(#generic)
 ]

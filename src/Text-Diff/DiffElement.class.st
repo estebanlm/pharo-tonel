@@ -24,84 +24,59 @@ Class {
 		'hash',
 		'match'
 	],
-	#category : #Text-Diff,
-	#timestamp : 'HenrikSperreJohansen 5/21/2010 01:41'
+	#category : #Text-Diff
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DiffElement class>>string: aString [
+{ #category : #'instance creation' }
+DiffElement class >> string: aString [
 
 	^self new
 		string: aString;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DiffElement>>= anObject [
+{ #category : #comparing }
+DiffElement >> = anObject [
 
 	^anObject class == self class and: [
 		anObject hash = hash and: [
 			anObject string = string ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DiffElement>>hasMatch [
+{ #category : #testing }
+DiffElement >> hasMatch [
 
 	^match notNil
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DiffElement>>hash [
+{ #category : #comparing }
+DiffElement >> hash [
 
 	^hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DiffElement>>match [
+{ #category : #accessing }
+DiffElement >> match [
 
 	^match
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DiffElement>>match: aDiffMatch [
+{ #category : #accessing }
+DiffElement >> match: aDiffMatch [
 
 	match := aDiffMatch
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DiffElement>>matches: aDiffMatch [
+{ #category : #accessing }
+DiffElement >> matches: aDiffMatch [
 
 	match := aDiffMatch.
 	aDiffMatch match: self
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DiffElement>>printOn: aStream [
+{ #category : #printing }
+DiffElement >> printOn: aStream [
 
 	super printOn: aStream.
 	aStream
@@ -114,20 +89,14 @@ DiffElement>>printOn: aStream [
 		nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DiffElement>>string [
+{ #category : #accessing }
+DiffElement >> string [
 
 	^string
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-DiffElement>>string: aString [
+{ #category : #accessing }
+DiffElement >> string: aString [
 
 	string := aString.
 	string isOctetString ifTrue: [ "Make sure that #hash will return the same value if the strings are equal."

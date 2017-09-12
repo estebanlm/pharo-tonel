@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMExpanderMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMExpanderMorphicTest>>testCreation [
+{ #category : #tests }
+GLMExpanderMorphicTest >> testCreation [
 	| browser |
 	browser := GLMExpander new.
 	browser show: [ :a | a text ].

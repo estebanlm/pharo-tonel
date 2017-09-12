@@ -4,15 +4,11 @@ Command to browse package changes in versionner
 Class {
 	#name : #MBPackageChangesCommand,
 	#superclass : #MBAbstractPackageCommand,
-	#category : #Versionner-Core-Commands,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:06'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageChangesCommand>>changesForSymbolicVersion: symbolicVersion workingCopy: wc [
+{ #category : #private }
+MBPackageChangesCommand >> changesForSymbolicVersion: symbolicVersion workingCopy: wc [
 	| repository info ancestorVersion ref gofer resolved version packageSpec packageName ancestorVersionInfo |
 	(repository := self selectRepositoryFromWorkingCopy: wc) ifNil: [ ^ self ].
 	info := target configurationInfo.
@@ -39,19 +35,13 @@ MBPackageChangesCommand>>changesForSymbolicVersion: symbolicVersion workingCopy:
 		fromLabel: ancestorVersion info name , ' (' , symbolicVersion printString , ' )'
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageChangesCommand>>documentation [
+{ #category : #documentation }
+MBPackageChangesCommand >> documentation [
 	^ 'View changes to the package ancestor in the selected repository or the corresponding package version in the selected symbolic version.'
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageChangesCommand>>execute [
+{ #category : #execute }
+MBPackageChangesCommand >> execute [
 	"View the changes made in the working copy."
 
 	| wc repositoryOrSymbolicVersion |
@@ -64,11 +54,8 @@ MBPackageChangesCommand>>execute [
 		ifFalse: [ self findChangesFor: wc relativeToRepository: repositoryOrSymbolicVersion ]
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageChangesCommand>>selectRepositoryOrSymbolicVersion: workingCopy [
+{ #category : #utility }
+MBPackageChangesCommand >> selectRepositoryOrSymbolicVersion: workingCopy [
 	| project symbolicVersions repos list values |
 	project := target spec project.
 	symbolicVersions := project symbolicVersionSymbols select: [ :each | project hasVersion: each ].
@@ -83,10 +70,7 @@ MBPackageChangesCommand>>selectRepositoryOrSymbolicVersion: workingCopy [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBPackageChangesCommand>>title [
+{ #category : #accessing }
+MBPackageChangesCommand >> title [
 	^ 'changes'
 ]

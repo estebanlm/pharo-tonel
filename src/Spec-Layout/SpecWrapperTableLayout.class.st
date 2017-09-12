@@ -9,107 +9,70 @@ Class {
 	#instVars : [
 		'elementAdded'
 	],
-	#category : #Spec-Layout,
-	#timestamp : 'webwarrior 6/12/2014 16:39'
+	#category : #Spec-Layout
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapperTableLayout class>>column [
+{ #category : #'instance creation' }
+SpecWrapperTableLayout class >> column [
 	self shouldNotImplement
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapperTableLayout class>>row [
+{ #category : #'instance creation' }
+SpecWrapperTableLayout class >> row [
 	self shouldNotImplement
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapperTableLayout class>>wrap: aSpec [
+{ #category : #'instance creation' }
+SpecWrapperTableLayout class >> wrap: aSpec [
 	^ self new add: aSpec
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapperTableLayout class>>wrap: modelGetter withSpec: aSymbol  [
+{ #category : #'instance creation' }
+SpecWrapperTableLayout class >> wrap: modelGetter withSpec: aSymbol [ 
 	^ self new add: modelGetter withSpec: aSymbol
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapperTableLayout>>add: aSpec [
+{ #category : #commands }
+SpecWrapperTableLayout >> add: aSpec [
 	elementAdded 
 		ifTrue: [ Error signal: ('{0} can only hold 1 element' format: { self class name }) ]
 		ifFalse: [ super add: aSpec. elementAdded := true. ]
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapperTableLayout>>add: modelGetter withSpec: aSymbol  [
+{ #category : #commands }
+SpecWrapperTableLayout >> add: modelGetter withSpec: aSymbol [ 
 	elementAdded 
 		ifTrue: [ Error signal: ('{0} can only hold 1 element' format: { self class name }) ]
 		ifFalse: [ super add: modelGetter withSpec: aSymbol. elementAdded := true. ]
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapperTableLayout>>add: modelGetter withSpec: aSymbol wrapped: aBlock [
+{ #category : #commands }
+SpecWrapperTableLayout >> add: modelGetter withSpec: aSymbol wrapped: aBlock [
 	self shouldNotImplement
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapperTableLayout>>add: aSpec wrapped: aBlock [
+{ #category : #commands }
+SpecWrapperTableLayout >> add: aSpec wrapped: aBlock [
 	self shouldNotImplement
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapperTableLayout>>addSpacer [
+{ #category : #commands }
+SpecWrapperTableLayout >> addSpacer [
 	self shouldNotImplement
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapperTableLayout>>addSpacerSized: aNumber [
+{ #category : #commands }
+SpecWrapperTableLayout >> addSpacerSized: aNumber [
 	self shouldNotImplement
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapperTableLayout>>addSpacerWeighted: aNumber [
+{ #category : #commands }
+SpecWrapperTableLayout >> addSpacerWeighted: aNumber [
 	self shouldNotImplement
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWrapperTableLayout>>initialize [
+{ #category : #initialization }
+SpecWrapperTableLayout >> initialize [
 	elementAdded := false.
 	super initialize
 ]

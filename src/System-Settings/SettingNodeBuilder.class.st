@@ -8,267 +8,176 @@ Class {
 		'node',
 		'builder'
 	],
-	#category : #System-Settings-Browser,
-	#timestamp : 'TorstenBergmann 1/31/2014 10:35'
+	#category : #System-Settings-Browser
 }
 
-{
-	#category : #'private tree building',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>asParentWhile: aBlock [
+{ #category : #'private tree building' }
+SettingNodeBuilder >> asParentWhile: aBlock [
 	builder parent: self while: aBlock
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>builder: aTreeBuilder [
+{ #category : #accessing }
+SettingNodeBuilder >> builder: aTreeBuilder [
 	builder := aTreeBuilder
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>default: anObject [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> default: anObject [
 	node item  default: anObject
 
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>description: aText [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> description: aText [
 	node item description: aText
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>dialog: aSymbol [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> dialog: aSymbol [
 	node item dialog: aSymbol
 
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>domainValues: aCollection  [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> domainValues: aCollection [ 
 	node item domainValues: aCollection 
 
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>getSelector: aSymbol [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> getSelector: aSymbol [
 	node item getSelector: aSymbol
 
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>ghostHelp: aString [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> ghostHelp: aString [
 	node item ghostHelp: aString
 
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>icon: aForm [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> icon: aForm [
 	node item icon: aForm
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>iconName: aSymbol [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> iconName: aSymbol [
 	self icon: (self iconNamed: aSymbol)
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>label: aString [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> label: aString [
 	node item label: aString
 
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>name [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> name [
 	^ node item name
 
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>name: aString [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> name: aString [
 	node item name: aString
 
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>noOrdering [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> noOrdering [
 	node item noOrdering
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>node [
+{ #category : #accessing }
+SettingNodeBuilder >> node [
 	^ node
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>node: aSettingTreeNode [
+{ #category : #accessing }
+SettingNodeBuilder >> node: aSettingTreeNode [
 	node := aSettingTreeNode
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>notInStyle [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> notInStyle [
 	node item notInStyle
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>order: aNumber [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> order: aNumber [
 	node item order: aNumber
 
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>parent: aSymbol [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> parent: aSymbol [
 	node parentName: aSymbol
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>parentName [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> parentName [
 	^ node parentName
 	
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>parentName: aSymbol [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> parentName: aSymbol [
 	node parentName: aSymbol.
 	
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>precondition: aValuable [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> precondition: aValuable [
 	node item precondition: aValuable
 
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>range: anInterval [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> range: anInterval [
 	node item range: anInterval
 
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>script: aSymbol [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> script: aSymbol [
 	node item script: aSymbol
 
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>selector: aSymbol [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> selector: aSymbol [
 	node item selector: aSymbol
 
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>setSelector: aSymbol [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> setSelector: aSymbol [
 	node item setSelector: aSymbol
 
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>target: anObject [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> target: anObject [
 	node item target: anObject
 
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>targetSelector: aSelector [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> targetSelector: aSelector [
 	node item targetSelector: aSelector
 
 ]
 
-{
-	#category : #'public declaration accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>type: anObject [
+{ #category : #'public declaration accessing' }
+SettingNodeBuilder >> type: anObject [
 	node item type: anObject
 
 ]
 
-{
-	#category : #'public tree building',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNodeBuilder>>with: aBlock [
+{ #category : #'public tree building' }
+SettingNodeBuilder >> with: aBlock [
 	self asParentWhile: aBlock
 ]

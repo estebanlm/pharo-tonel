@@ -4,15 +4,11 @@ Gradient fill style that uses proper alpha-aware interpolation.
 Class {
 	#name : #InterpolatedGradientFillStyle,
 	#superclass : #GradientFillStyle,
-	#category : #Balloon-Fills,
-	#timestamp : 'gvc 5/18/2007 12:49'
+	#category : #Balloon-Fills
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-InterpolatedGradientFillStyle>>computePixelRampOfSize: length [
+{ #category : #'as yet unclassified' }
+InterpolatedGradientFillStyle >> computePixelRampOfSize: length [
 	"Compute the pixel ramp in the receiver."
 	
 	| bits ramp lastColor lastIndex lastWord |
@@ -39,11 +35,8 @@ InterpolatedGradientFillStyle>>computePixelRampOfSize: length [
 	^bits
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-InterpolatedGradientFillStyle>>interpolatedAlphaMix: ratio of: rgba1 and: rgba2 [
+{ #category : #'as yet unclassified' }
+InterpolatedGradientFillStyle >> interpolatedAlphaMix: ratio of: rgba1 and: rgba2 [
 	"Answer a proper interpolated value between two RGBA color words.
 	Theta is 0..1.."
 
@@ -62,11 +55,8 @@ InterpolatedGradientFillStyle>>interpolatedAlphaMix: ratio of: rgba1 and: rgba2 
 	^result bitOr: (alpha rounded bitShift: 24)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-InterpolatedGradientFillStyle>>pixelWord32Of: aColor  [
+{ #category : #private }
+InterpolatedGradientFillStyle >> pixelWord32Of: aColor [ 
 	"Returns an integer representing the bits that appear in a single pixel of this color in a Form of depth 32.
 	Transparency: The pixel value zero is reserved for transparent. For depths greater than 8, black maps to the darkest possible blue.
 	Just a little quicker if we are dealing with RGBA colors at 32 bit depth."

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #FFIExternalPackedStructureTests,
 	#superclass : #TestCase,
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalPackedStructureTests>>testExternallyAllocatedStructure [
+{ #category : #tests }
+FFIExternalPackedStructureTests >> testExternallyAllocatedStructure [
 	| struct struct2 |
 	
 	struct := FFITestPackedStructure externalNew.
@@ -38,11 +31,8 @@ FFIExternalPackedStructureTests>>testExternallyAllocatedStructure [
 	ensure: [  struct free ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalPackedStructureTests>>testStructAccess [
+{ #category : #tests }
+FFIExternalPackedStructureTests >> testStructAccess [
 
 	| struct |
 	

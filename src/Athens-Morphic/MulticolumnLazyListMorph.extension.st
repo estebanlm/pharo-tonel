@@ -1,12 +1,7 @@
-Extension {
-	#name : #MulticolumnLazyListMorph
-}
+Extension { #name : #MulticolumnLazyListMorph }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MulticolumnLazyListMorph>>athensDisplay: items atRow: row on: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+MulticolumnLazyListMorph >> athensDisplay: items atRow: row on: anAthensCanvas [
 	| drawBounds backgroundColor |
 	backgroundColor := self backgroundColorForRow: row.
 	drawBounds := self drawBoundsForRow: row.
@@ -28,11 +23,8 @@ MulticolumnLazyListMorph>>athensDisplay: items atRow: row on: anAthensCanvas [
 				color: color]
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MulticolumnLazyListMorph>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+MulticolumnLazyListMorph >> drawOnAthensCanvas: anAthensCanvas [
 	self getListSize = 0 ifTrue:[ ^self ].
 
 	self setColumnWidthsFor: anAthensCanvas.

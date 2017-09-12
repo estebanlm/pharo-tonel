@@ -8,54 +8,35 @@ Class {
 		'width',
 		'height'
 	],
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'IgorStasenko 7/30/2014 17:41'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowResizeEvent>>accept: aVisitor [
+{ #category : #visitor }
+OSWindowResizeEvent >> accept: aVisitor [
 	^ aVisitor visitWindowResizeEvent: self
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowResizeEvent>>defaultAction [
+{ #category : #visitor }
+OSWindowResizeEvent >> defaultAction [
 	window renderer ifNotNil: [ :renderer | renderer resized ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowResizeEvent>>height [
+{ #category : #accessing }
+OSWindowResizeEvent >> height [
 	^ height
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowResizeEvent>>height: anInteger  [
+{ #category : #accessing }
+OSWindowResizeEvent >> height: anInteger [ 
 	height := anInteger.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowResizeEvent>>width [
+{ #category : #accessing }
+OSWindowResizeEvent >> width [
 	^ width
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowResizeEvent>>width: anInteger  [
+{ #category : #accessing }
+OSWindowResizeEvent >> width: anInteger [ 
 	width := anInteger.
 ]

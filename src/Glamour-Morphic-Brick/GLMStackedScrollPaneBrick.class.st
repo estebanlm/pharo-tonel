@@ -8,61 +8,42 @@ Class {
 	#instVars : [
 		'allowedBounds'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-Scrollpane,
-	#timestamp : 'AliakseiSyrel 11/27/2014 23:31'
+	#category : #Glamour-Morphic-Brick-Widgets-Scrollpane
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStackedScrollPaneBrick class>>example [
+{ #category : #examples }
+GLMStackedScrollPaneBrick class >> example [
 
 	super example
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStackedScrollPaneBrick>>allowedBounds [
+{ #category : #accessing }
+GLMStackedScrollPaneBrick >> allowedBounds [
 
 	^ allowedBounds ifNil: [ allowedBounds := self globalBounds ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStackedScrollPaneBrick>>allowedBounds: aRectangle [
+{ #category : #accessing }
+GLMStackedScrollPaneBrick >> allowedBounds: aRectangle [
 
 	allowedBounds := aRectangle
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStackedScrollPaneBrick>>initialize [
+{ #category : #initialization }
+GLMStackedScrollPaneBrick >> initialize [
 	super initialize.
 	
 	self band useVerticalLinearLayout
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStackedScrollPaneBrick>>invalidate [
+{ #category : #scrolling }
+GLMStackedScrollPaneBrick >> invalidate [
 
 	
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMStackedScrollPaneBrick>>update [
+{ #category : #scrolling }
+GLMStackedScrollPaneBrick >> update [
 	super update.
 	
 	"we need to update band's layout to support stacking"

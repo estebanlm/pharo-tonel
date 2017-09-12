@@ -19,118 +19,75 @@ Class {
 		'lines',
 		'source'
 	],
-	#category : #Balloon-Simulation,
-	#timestamp : '<historical>'
+	#category : #Balloon-Simulation
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEdgeData>>index [
+{ #category : #accessing }
+BalloonEdgeData >> index [
 	^index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEdgeData>>index: anInteger [
+{ #category : #accessing }
+BalloonEdgeData >> index: anInteger [
 	index := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEdgeData>>lines [
+{ #category : #accessing }
+BalloonEdgeData >> lines [
 	^lines
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEdgeData>>lines: anInteger [
+{ #category : #accessing }
+BalloonEdgeData >> lines: anInteger [
 	^lines := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEdgeData>>source [
+{ #category : #accessing }
+BalloonEdgeData >> source [
 	^source
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEdgeData>>source: anObject [
+{ #category : #accessing }
+BalloonEdgeData >> source: anObject [
 	source := anObject
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEdgeData>>stepToFirstScanLine [
+{ #category : #computing }
+BalloonEdgeData >> stepToFirstScanLine [
 	source stepToFirstScanLineAt: yValue in: self
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEdgeData>>stepToNextScanLine [
+{ #category : #computing }
+BalloonEdgeData >> stepToNextScanLine [
 	source stepToNextScanLineAt: yValue in: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEdgeData>>xValue [
+{ #category : #accessing }
+BalloonEdgeData >> xValue [
 	^xValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEdgeData>>xValue: anInteger [
+{ #category : #accessing }
+BalloonEdgeData >> xValue: anInteger [
 	xValue := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEdgeData>>yValue [
+{ #category : #accessing }
+BalloonEdgeData >> yValue [
 	^yValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEdgeData>>yValue: anInteger [
+{ #category : #accessing }
+BalloonEdgeData >> yValue: anInteger [
 	yValue := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEdgeData>>zValue [
+{ #category : #accessing }
+BalloonEdgeData >> zValue [
 	^zValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BalloonEdgeData>>zValue: anInteger [
+{ #category : #accessing }
+BalloonEdgeData >> zValue: anInteger [
 	zValue := anInteger
 ]

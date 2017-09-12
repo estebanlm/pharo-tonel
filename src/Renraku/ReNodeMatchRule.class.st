@@ -21,44 +21,31 @@ Class {
 	#instVars : [
 		'matchers'
 	],
-	#category : #Renraku-Rules-Rewrite,
-	#timestamp : 'YuriyTymchuk 7/9/2016 13:31'
+	#category : #Renraku-Rules-Rewrite
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeMatchRule class>>isVisible [
+{ #category : #testing }
+ReNodeMatchRule class >> isVisible [
 
 	^ self name ~= #ReNodeMatchRule
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeMatchRule>>addMatchingExpression: aString [
+{ #category : #adding }
+ReNodeMatchRule >> addMatchingExpression: aString [
 	"add a string of rewrite expression to be matched by rule"
 
 	matchers add: (RBParser parseRewriteExpression: aString)
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeMatchRule>>addMatchingMethod: aString [
+{ #category : #adding }
+ReNodeMatchRule >> addMatchingMethod: aString [
 	"add a string of rewrite expression which should be parsed as a method"
 
 	matchers add: (RBParser parseRewriteMethod: aString)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeMatchRule>>check: aNode forCritiquesDo: aCriticBlock [
+{ #category : #running }
+ReNodeMatchRule >> check: aNode forCritiquesDo: aCriticBlock [
 	
 	matchers do: [ :matcher |
 		matcher
@@ -73,30 +60,21 @@ ReNodeMatchRule>>check: aNode forCritiquesDo: aCriticBlock [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeMatchRule>>initialize [
+{ #category : #initialization }
+ReNodeMatchRule >> initialize [
 	super initialize.
 	matchers := Set new.
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeMatchRule>>matches: aString [
+{ #category : #adding }
+ReNodeMatchRule >> matches: aString [
 	"add a string of rewrite expression to be matched by rule"
 
 	self addMatchingExpression: aString
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReNodeMatchRule>>matchesAny: aStringCollection [
+{ #category : #adding }
+ReNodeMatchRule >> matchesAny: aStringCollection [
 	"add a collection of rewrite expression strings to be matched by the rule"
 
 	aStringCollection do: [ :string |

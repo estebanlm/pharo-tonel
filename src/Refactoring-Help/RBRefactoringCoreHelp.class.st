@@ -4,15 +4,11 @@ A chapter with a more in-depth description of the core components of the refacto
 Class {
 	#name : #RBRefactoringCoreHelp,
 	#superclass : #RefactoringHelp,
-	#category : #Refactoring-Help,
-	#timestamp : 'NicolaiHess 7/27/2016 21:52'
+	#category : #Refactoring-Help
 }
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBRefactoringCoreHelp class>>astContent [
+{ #category : #pages }
+RBRefactoringCoreHelp class >> astContent [
 	^HelpTopic
 		title: 'AST Nodes'
 		contents: 
@@ -39,11 +35,8 @@ Keep in mind that the syntax tree is created from the source code only and may n
 '
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBRefactoringCoreHelp class>>astVisiting [
+{ #category : #pages }
+RBRefactoringCoreHelp class >> astVisiting [
 	^HelpTopic
 		title: 'AST Vistor'
 		contents: 
@@ -74,19 +67,13 @@ The original users of this AST structure for searching and rewriting code, more 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBRefactoringCoreHelp class>>bookName [
+{ #category : #accessing }
+RBRefactoringCoreHelp class >> bookName [
 	^ 'RB Refactoring Engine'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBRefactoringCoreHelp class>>browserEnvironments [
+{ #category : #pages }
+RBRefactoringCoreHelp class >> browserEnvironments [
 	^HelpTopic
 		title: 'RBBrowserEnvironment'
 		contents: 
@@ -154,11 +141,8 @@ This opens (may be slow) a browser with all classes with methods having my (curr
 '
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBRefactoringCoreHelp class>>overview [
+{ #category : #pages }
+RBRefactoringCoreHelp class >> overview [
 	^HelpTopic
 		title: 'Overview'
 		contents: 
@@ -171,11 +155,8 @@ the tree searcher / rewriter (RBParseTreeSearcher/RBParseTreeRewriter)
 '
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBRefactoringCoreHelp class>>overviewParser [
+{ #category : #pages }
+RBRefactoringCoreHelp class >> overviewParser [
 	^HelpTopic
 		title: 'RBParser'
 		contents: 
@@ -230,19 +211,13 @@ RBPatternParser, described in its own chapter.
 '
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBRefactoringCoreHelp class>>pages [
+{ #category : #accessing }
+RBRefactoringCoreHelp class >> pages [
 	^ #(overview astContent astVisiting overviewParser patternParser patternParserExamples browserEnvironments)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBRefactoringCoreHelp class>>patternParser [
+{ #category : #pages }
+RBRefactoringCoreHelp class >> patternParser [
 	^HelpTopic
 		title: 'RBPatternParser and metavariables'
 		contents: 
@@ -338,11 +313,8 @@ If we want to find the same call in the argument, we need to recurse into it by 
 '
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBRefactoringCoreHelp class>>patternParserExamples [
+{ #category : #pages }
+RBRefactoringCoreHelp class >> patternParserExamples [
 	^HelpTopic
 		title: 'Examples and usage of RBPatternParser expressions'
 		contents: 

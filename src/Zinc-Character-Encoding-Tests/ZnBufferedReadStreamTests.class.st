@@ -4,15 +4,11 @@ I am ZnBufferedReadStreamTests.
 Class {
 	#name : #ZnBufferedReadStreamTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Character-Encoding-Tests,
-	#timestamp : '<historical>'
+	#category : #Zinc-Character-Encoding-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBufferedReadStreamTests>>testBuffering [
+{ #category : #testing }
+ZnBufferedReadStreamTests >> testBuffering [
 	| stream |
 	stream := ZnBufferedReadStream on: '01234567890123456789' readStream.
 	stream sizeBuffer: 8.
@@ -23,11 +19,8 @@ ZnBufferedReadStreamTests>>testBuffering [
 	self assert: stream atEnd	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBufferedReadStreamTests>>testPeek [
+{ #category : #testing }
+ZnBufferedReadStreamTests >> testPeek [
 	| stream |
 	stream := ZnBufferedReadStream on: '0123456789' readStream.
 	stream sizeBuffer: 8.
@@ -40,11 +33,8 @@ ZnBufferedReadStreamTests>>testPeek [
 	self assert: stream next isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBufferedReadStreamTests>>testReadInto [
+{ #category : #testing }
+ZnBufferedReadStreamTests >> testReadInto [
 	| stream buffer count |
 	stream := ZnBufferedReadStream on: '0123456789' readStream.
 	stream sizeBuffer: 8.
@@ -59,11 +49,8 @@ ZnBufferedReadStreamTests>>testReadInto [
 	self assert: buffer equals: '789123'	 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBufferedReadStreamTests>>testReadIntoLarger [
+{ #category : #testing }
+ZnBufferedReadStreamTests >> testReadIntoLarger [
 	| stream buffer count |
 	stream := ZnBufferedReadStream on: '0123456789' readStream.
 	stream sizeBuffer: 4.
@@ -73,11 +60,8 @@ ZnBufferedReadStreamTests>>testReadIntoLarger [
 	self assert: buffer equals: '0123456789'	 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBufferedReadStreamTests>>testReadUpTo [
+{ #category : #testing }
+ZnBufferedReadStreamTests >> testReadUpTo [
 	| stream |
 	stream := ZnBufferedReadStream on: '0123456789' readStream.
 	stream sizeBuffer: 8.
@@ -86,11 +70,8 @@ ZnBufferedReadStreamTests>>testReadUpTo [
 	self assert: stream atEnd
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnBufferedReadStreamTests>>testReadUpToEnd [
+{ #category : #testing }
+ZnBufferedReadStreamTests >> testReadUpToEnd [
 	| stream |
 	stream := ZnBufferedReadStream on: '0123456789' readStream.
 	stream sizeBuffer: 4.

@@ -4,35 +4,25 @@ Custom icon for methods which uses FFI
 Class {
 	#name : #MethodIsFFI,
 	#superclass : #AbstractMethodIconAction,
-	#category : #Nautilus-Widgets,
-	#timestamp : 'HenrikNergaard 11/29/2016 19:35'
+	#category : #Nautilus-Widgets
 }
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsFFI>>actionOrder [
+{ #category : #order }
+MethodIsFFI >> actionOrder [
 	"Return the priority of this action"
 	
 	^0
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsFFI>>actionStateToCache [
+{ #category : #order }
+MethodIsFFI >> actionStateToCache [
 	"Return the state of the icon for caching purpose"
 	
 	^ icon
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsFFI>>ffiSelectors [
+{ #category : #order }
+MethodIsFFI >> ffiSelectors [
 
 	^ #( 
 		ffiCall: ffiCall:module: ffiCall:options: ffiCall:module:options: 
@@ -40,22 +30,16 @@ MethodIsFFI>>ffiSelectors [
 	)
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsFFI>>isActionHandled [
+{ #category : #order }
+MethodIsFFI >> isActionHandled [
 
 	^ ((method literalAt: 1) class == ExternalLibraryFunction) or: [
 		method sendsAnySelectorOf: self ffiSelectors
 	] 
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsFFI>>privateActionIcon [
+{ #category : #order }
+MethodIsFFI >> privateActionIcon [
 	"Return the icon for this action"
 	^ self iconNamed: #recoverLostChanges
 ]

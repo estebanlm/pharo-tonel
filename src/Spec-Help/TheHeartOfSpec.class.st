@@ -6,34 +6,24 @@ See class side for selectors.
 Class {
 	#name : #TheHeartOfSpec,
 	#superclass : #SpecHelpTopics,
-	#category : #Spec-Help,
-	#timestamp : 'IgnacioSniechowski 2/25/2015 08:32'
+	#category : #Spec-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TheHeartOfSpec class>>bookName [
+{ #category : #accessing }
+TheHeartOfSpec class >> bookName [
 	^'The Heart of Spec'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TheHeartOfSpec class>>initializePresenter [
+{ #category : #pages }
+TheHeartOfSpec class >> initializePresenter [
 	^HelpTopic
 		title: 'The initializePresenter method'
 		contents: 'This method takes care of the interactions between the different widgets. By linking the behavior of the different widgets it specifies the overall presentation, i.e. how the overall UI responds to interactions by the user. Usually this method consists of specifications of actions to perform when a certain event is received by a widget. From the propagation of those events the whole interaction flow of the UI emerges. In Spec, the different UI models are contained in value holders, and the event mechanism relies on the announcements of these value holders to manage the interactions between widgets. 
 Value holders provide a single method whenChangedDo: that is used to register a block to perform on change. In addition to this primitive whenChangedDo: method, the basic widgets provide more specific hooks, e.g. when an item in a list is selected or deselected.'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TheHeartOfSpec class>>initializeWidgets [
+{ #category : #pages }
+TheHeartOfSpec class >> initializeWidgets [
 	^HelpTopic
 		title: 'The initializeWidgets method'
 		contents: 'This method is used to instantiate the models for the different widgets that will be part of the UI and store them in their respective instance variables. Instantiation of the models will in turn result in the instantiation and initialization of the different widgets that make up the UI. Consequently, configuration and default values of each widget are specified here as well, which is why this method is called initializeWidgets. This focus in this method is to specify what the widgets will look like and what their self-contained behavior is. 
@@ -59,11 +49,8 @@ An example of the initializeWidgets method could be:
 Specifying this method is mandatory, as without it the UI would have no widgets.'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TheHeartOfSpec class>>intro [
+{ #category : #pages }
+TheHeartOfSpec class >> intro [
 	^HelpTopic 
 		title: 'The Heart of Spec'
 		contents: 'All user interfaces in Spec are constructed through the composition of existing user interfaces. To define a user interface, it is sufficient to define the model of the user interface. The UI elements that correspond to this model are instantiated by Spec, depending on the underlying UI framework. 
@@ -79,11 +66,8 @@ ComposableModel class>>#defaultSpec.
 These methods are hence typically found in the model for each user interface. In the following topics we describe the responsibility for each method, i.e. how these three work together to build the overall UI.'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TheHeartOfSpec class>>layouts [
+{ #category : #pages }
+TheHeartOfSpec class >> layouts [
 	^HelpTopic
 		title: 'The layout method'
 		contents: 'This method specifies the layout of the different widgets in the UI. It also specifies how a widget reacts when the window is resized. For the same UI multiple layouts can be described, and when the UI is built a specific layout to use can be specified. If no such specific layout is given, the following lookup mechanism will be used to obtain the layout method:
@@ -111,19 +95,13 @@ Specifying this method is mandatory, as without it the UI would show no widgets 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TheHeartOfSpec class>>pages [
+{ #category : #accessing }
+TheHeartOfSpec class >> pages [
 	^#(intro initializeWidgets widgetInstantiation initializePresenter layouts)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TheHeartOfSpec class>>widgetInstantiation [
+{ #category : #pages }
+TheHeartOfSpec class >> widgetInstantiation [
 	^HelpTopic
 		title: 'Widget Instantiation'
 		contents: 'The instantiation of the model for a widget (and hence the widget) can be done in two ways: 

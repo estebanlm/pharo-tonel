@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloScriptImageExecutor,
 	#superclass : #MetacelloScriptExecutor,
-	#category : #Metacello-Core-Scripts,
-	#timestamp : ''
+	#category : #Metacello-Core-Scripts
 }
 
-{
-	#category : #'execution callback',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloScriptImageExecutor>>projectSpecSelectBlock [
+{ #category : #'execution callback' }
+MetacelloScriptImageExecutor >> projectSpecSelectBlock [
     ^ [ :projectSpec | 
     projectSpec
         ifNil: [ false ]

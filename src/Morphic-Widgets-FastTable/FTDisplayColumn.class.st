@@ -11,15 +11,11 @@ Class {
 		'column',
 		'width'
 	],
-	#category : #Morphic-Widgets-FastTable,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-FastTable
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDisplayColumn class>>column: aColumn width: aWidth [
+{ #category : #'instance creation' }
+FTDisplayColumn class >> column: aColumn width: aWidth [
 	^ self new 
 		column: aColumn;
 		width: aWidth;
@@ -27,34 +23,22 @@ FTDisplayColumn class>>column: aColumn width: aWidth [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDisplayColumn>>column [
+{ #category : #accessing }
+FTDisplayColumn >> column [
 	^ column
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDisplayColumn>>column: anObject [
+{ #category : #accessing }
+FTDisplayColumn >> column: anObject [
 	column := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDisplayColumn>>width [
+{ #category : #accessing }
+FTDisplayColumn >> width [
 	^ width
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTDisplayColumn>>width: anObject [
+{ #category : #accessing }
+FTDisplayColumn >> width: anObject [
 	width := anObject
 ]

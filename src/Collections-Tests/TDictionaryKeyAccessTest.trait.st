@@ -3,26 +3,17 @@ A trait for test purposes
 "
 Trait {
 	#name : #TDictionaryKeyAccessTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Unordered,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:34'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryKeyAccessTest>>nonEmptyWithoutEqualsValues [
+{ #category : #requirements }
+TDictionaryKeyAccessTest >> nonEmptyWithoutEqualsValues [
 " return a dictionary that doesn't include equal values'"
 ^self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryKeyAccessTest>>test0FixtureDictionaryKeyAccess [
+{ #category : #'tests - fixture' }
+TDictionaryKeyAccessTest >> test0FixtureDictionaryKeyAccess [
 	| collection equals |
 	self nonEmptyWithoutEqualsValues.
 	self deny: self nonEmptyWithoutEqualsValues isEmpty.
@@ -34,11 +25,8 @@ TDictionaryKeyAccessTest>>test0FixtureDictionaryKeyAccess [
 	self deny: (self nonEmptyWithoutEqualsValues values includes: self valueNotIn)
 ]
 
-{
-	#category : #'tests - dictionary key access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryKeyAccessTest>>testKeyAtIdentityValue [
+{ #category : #'tests - dictionary key access' }
+TDictionaryKeyAccessTest >> testKeyAtIdentityValue [
 	
 	
 	| dict value result |
@@ -53,11 +41,8 @@ TDictionaryKeyAccessTest>>testKeyAtIdentityValue [
 	
 ]
 
-{
-	#category : #'tests - dictionary key access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryKeyAccessTest>>testKeyAtIdentityValueIfAbsent [
+{ #category : #'tests - dictionary key access' }
+TDictionaryKeyAccessTest >> testKeyAtIdentityValueIfAbsent [
 	"self run: #testKeyAtValue"
 	"self debug: #testKeyAtValue"
 	
@@ -72,11 +57,8 @@ TDictionaryKeyAccessTest>>testKeyAtIdentityValueIfAbsent [
 	
 ]
 
-{
-	#category : #'tests - dictionary key access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryKeyAccessTest>>testKeyAtValue [
+{ #category : #'tests - dictionary key access' }
+TDictionaryKeyAccessTest >> testKeyAtValue [
 	"self run: #testKeyAtValue"
 	"self debug: #testKeyAtValue"
 	
@@ -92,11 +74,8 @@ TDictionaryKeyAccessTest>>testKeyAtValue [
 	
 ]
 
-{
-	#category : #'tests - dictionary key access',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryKeyAccessTest>>testKeyAtValueIfAbsent [
+{ #category : #'tests - dictionary key access' }
+TDictionaryKeyAccessTest >> testKeyAtValueIfAbsent [
 	"self run: #testKeyAtValue"
 	"self debug: #testKeyAtValue"
 	
@@ -112,11 +91,8 @@ TDictionaryKeyAccessTest>>testKeyAtValueIfAbsent [
 	
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryKeyAccessTest>>valueNotIn [
+{ #category : #requirements }
+TDictionaryKeyAccessTest >> valueNotIn [
 " return a value not included in nonEmptyWithoutEqualValues "
 ^self explicitRequirement
 ]

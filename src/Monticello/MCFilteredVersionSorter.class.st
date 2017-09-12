@@ -7,25 +7,18 @@ Class {
 	#instVars : [
 		'target'
 	],
-	#category : #Monticello-Versioning,
-	#timestamp : 'TorstenBergmann 2/6/2014 08:10'
+	#category : #Monticello-Versioning
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFilteredVersionSorter>>addVersionInfo: aVersionInfo [
+{ #category : #adding }
+MCFilteredVersionSorter >> addVersionInfo: aVersionInfo [
 	(aVersionInfo hasAncestor: target)
 		ifTrue: [super addVersionInfo: aVersionInfo]
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFilteredVersionSorter>>processVersionInfo: aVersionInfo [
+{ #category : #private }
+MCFilteredVersionSorter >> processVersionInfo: aVersionInfo [
 	| success |
 	aVersionInfo = target ifTrue: [^ true].
 	(aVersionInfo hasAncestor: target) ifFalse: [^false].
@@ -37,10 +30,7 @@ MCFilteredVersionSorter>>processVersionInfo: aVersionInfo [
 	^ success	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCFilteredVersionSorter>>target: aVersionInfo [
+{ #category : #accessing }
+MCFilteredVersionSorter >> target: aVersionInfo [
 	target := aVersionInfo
 ]

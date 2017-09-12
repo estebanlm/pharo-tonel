@@ -7,85 +7,57 @@ Class {
 	#instVars : [
 		'selectedNodePathList'
 	],
-	#category : #Morphic-Widgets-Tree,
-	#timestamp : 'TorstenBergmann 9/5/2014 15:28'
+	#category : #Morphic-Widgets-Tree
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorphMultipleSelection>>addNodePath: aPath [
+{ #category : #accessing }
+MorphTreeMorphMultipleSelection >> addNodePath: aPath [
 	self selectedNodePathList add: aPath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorphMultipleSelection>>empty [
+{ #category : #accessing }
+MorphTreeMorphMultipleSelection >> empty [
 	self selectedNodePathList: OrderedCollection new
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorphMultipleSelection>>lastSelectedNodePath [
+{ #category : #accessing }
+MorphTreeMorphMultipleSelection >> lastSelectedNodePath [
 	^ self selectedNodePathList ifNotEmpty: [:l | l last]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorphMultipleSelection>>removeNode: aNode [
+{ #category : #accessing }
+MorphTreeMorphMultipleSelection >> removeNode: aNode [
 	self selectedNodePathList remove: aNode path ifAbsent: []
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorphMultipleSelection>>selectedItemOrItemsOrNil [
+{ #category : #accessing }
+MorphTreeMorphMultipleSelection >> selectedItemOrItemsOrNil [
 	| theItems |
 	theItems := self selectedNodeList collect: [ :each | each item ].
 	^ theItems isEmpty ifTrue: [nil] ifFalse: [ theItems ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorphMultipleSelection>>selectedNodeList [
+{ #category : #accessing }
+MorphTreeMorphMultipleSelection >> selectedNodeList [
 	^ self selectedNodePathList 
 		ifNil: [#()]
 		ifNotNil: [:l | l collect: [:path | path last]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorphMultipleSelection>>selectedNodePathList [
+{ #category : #accessing }
+MorphTreeMorphMultipleSelection >> selectedNodePathList [
 	^ selectedNodePathList ifNil: [selectedNodePathList := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorphMultipleSelection>>selectedNodePathList: aCollectionOfPath [
+{ #category : #accessing }
+MorphTreeMorphMultipleSelection >> selectedNodePathList: aCollectionOfPath [
 	selectedNodePathList := aCollectionOfPath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeMorphMultipleSelection>>selectedNodes [
+{ #category : #accessing }
+MorphTreeMorphMultipleSelection >> selectedNodes [
 	^ OrderedCollection withAll: self selectedNodeList
 
 ]

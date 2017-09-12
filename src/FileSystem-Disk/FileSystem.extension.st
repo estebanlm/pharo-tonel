@@ -1,46 +1,29 @@
-Extension {
-	#name : #FileSystem
-}
+Extension { #name : #FileSystem }
 
-{
-	#category : #'*filesystem-disk',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileSystem class>>* aFileOrDirectoryName [
+{ #category : #'*filesystem-disk' }
+FileSystem class >> * aFileOrDirectoryName [
 	^ self disk * aFileOrDirectoryName
 ]
 
-{
-	#category : #'*filesystem-disk',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileSystem class>>/ aFileOrDirectoryName [
+{ #category : #'*filesystem-disk' }
+FileSystem class >> / aFileOrDirectoryName [
 	^ self disk / aFileOrDirectoryName
 ]
 
-{
-	#category : #'*filesystem-disk',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileSystem class>>disk [
+{ #category : #'*filesystem-disk' }
+FileSystem class >> disk [
 	"Answer a filesystem that represents the 'on-disk' filesystem used by the host operating system."
 
 	^ DiskStore currentFileSystem
 ]
 
-{
-	#category : #'*FileSystem-Disk',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileSystem>>isDiskFileSystem [
+{ #category : #'*FileSystem-Disk' }
+FileSystem >> isDiskFileSystem [
 	^ store isDiskFileSystem
 ]
 
-{
-	#category : #'*filesystem-disk',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileSystem class>>lookInUsualPlaces: fileName [
+{ #category : #'*filesystem-disk' }
+FileSystem class >> lookInUsualPlaces: fileName [
 	"Check the default directory, the imagePath, and the vmPath (and the vmPath's owner) for this file."
 
 	| file |
@@ -59,18 +42,12 @@ FileSystem class>>lookInUsualPlaces: fileName [
 	^ nil
 ]
 
-{
-	#category : #'*filesystem-disk',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileSystem class>>root [
+{ #category : #'*filesystem-disk' }
+FileSystem class >> root [
 	^ self disk root
 ]
 
-{
-	#category : #'*filesystem-disk',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileSystem class>>workingDirectory [
+{ #category : #'*filesystem-disk' }
+FileSystem class >> workingDirectory [
 	^ self disk workingDirectory
 ]

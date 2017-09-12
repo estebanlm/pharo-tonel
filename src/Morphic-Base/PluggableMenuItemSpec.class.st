@@ -18,33 +18,23 @@ Class {
 		'help',
 		'name'
 	],
-	#category : #Morphic-Base-Menus,
-	#timestamp : 'StephaneDucasse 9/30/2014 20:22'
+	#category : #Morphic-Base-Menus
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>action [
+{ #category : #accessing }
+PluggableMenuItemSpec >> action [
 	"Answer the action associated with the receiver"
 	^action
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>action: aMessageSend [
+{ #category : #accessing }
+PluggableMenuItemSpec >> action: aMessageSend [
 	"Answer the action associated with the receiver"
 	action := aMessageSend
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>asMenuItemMorphFrom: parentMenu isLast: aBoolean [
+{ #category : #morphic }
+PluggableMenuItemSpec >> asMenuItemMorphFrom: parentMenu isLast: aBoolean [
 
 	| it act lbl menu |
 	it := self morphClass new.
@@ -68,194 +58,128 @@ PluggableMenuItemSpec>>asMenuItemMorphFrom: parentMenu isLast: aBoolean [
 	^it
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>checked [
+{ #category : #accessing }
+PluggableMenuItemSpec >> checked [
 	"Answer whether the receiver is checked"
 	^checked 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>checked: aBool [
+{ #category : #accessing }
+PluggableMenuItemSpec >> checked: aBool [
 	"Indicate whether the receiver is checked"
 	checked := aBool.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>enabled [
+{ #category : #accessing }
+PluggableMenuItemSpec >> enabled [
 	"Answer whether the receiver is enabled"
 	^ enabledBlock
 		ifNil:[enabled ifNil: [ true ]]
 		ifNotNil: [ enabledBlock value ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>enabled: aBool [
+{ #category : #accessing }
+PluggableMenuItemSpec >> enabled: aBool [
 	"Indicate whether the receiver is enabled"
 	enabled := aBool
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>enabledBlock [
+{ #category : #accessing }
+PluggableMenuItemSpec >> enabledBlock [
 
 	^ enabledBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>enabledBlock: aBlock [
+{ #category : #accessing }
+PluggableMenuItemSpec >> enabledBlock: aBlock [
 
 	enabledBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>hasCheckBox	 [
+{ #category : #accessing }
+PluggableMenuItemSpec >> hasCheckBox [	
 	^ checked notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>help [
+{ #category : #accessing }
+PluggableMenuItemSpec >> help [
 	"Answer the message to get the help texts of this element."
 	^ help
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>help: aSymbol  [
+{ #category : #accessing }
+PluggableMenuItemSpec >> help: aSymbol [ 
 	"Indicate the message to retrieve the help texts of this element."
 	help := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>icon [
+{ #category : #accessing }
+PluggableMenuItemSpec >> icon [
 	^ icon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>icon: aForm [
+{ #category : #accessing }
+PluggableMenuItemSpec >> icon: aForm [
 	 icon := aForm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>keyText [
+{ #category : #accessing }
+PluggableMenuItemSpec >> keyText [
 	^keyText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>keyText: aString [
+{ #category : #accessing }
+PluggableMenuItemSpec >> keyText: aString [
 	keyText := aString.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>label [
+{ #category : #accessing }
+PluggableMenuItemSpec >> label [
 	"Answer the receiver's label"
 	^label
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>label: aString [
+{ #category : #accessing }
+PluggableMenuItemSpec >> label: aString [
 	"Set the receiver's label"
 	label := aString
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>morphClass [
+{ #category : #morphic }
+PluggableMenuItemSpec >> morphClass [
 	^ ToggleMenuItemMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>name [
+{ #category : #accessing }
+PluggableMenuItemSpec >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>name: anObject [
+{ #category : #accessing }
+PluggableMenuItemSpec >> name: anObject [
 	name := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>separator [
+{ #category : #accessing }
+PluggableMenuItemSpec >> separator [
 	"Answer whether the receiver should be followed by a separator"
 	^separator ifNil:[false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>separator: aBool [
+{ #category : #accessing }
+PluggableMenuItemSpec >> separator: aBool [
 	"Indicate whether the receiver should be followed by a separator"
 	separator := aBool.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>subMenu [
+{ #category : #accessing }
+PluggableMenuItemSpec >> subMenu [
 	"Answer the receiver's subMenu"
 	^subMenu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuItemSpec>>subMenu: aMenuSpec [
+{ #category : #accessing }
+PluggableMenuItemSpec >> subMenu: aMenuSpec [
 	"Answer the receiver's subMenu"
 	subMenu := aMenuSpec
 ]

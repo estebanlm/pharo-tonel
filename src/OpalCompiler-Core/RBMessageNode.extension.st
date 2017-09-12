@@ -1,12 +1,7 @@
-Extension {
-	#name : #RBMessageNode
-}
+Extension { #name : #RBMessageNode }
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMessageNode>>isInlineAndOr [
+{ #category : #'*opalcompiler-core' }
+RBMessageNode >> isInlineAndOr [
 	self methodCompilationContextOrNil ifNotNil:[:c | c optionInlineAndOr ifFalse: [ ^false ]]. 
 	self receiver isBlock ifTrue: [^ false].
 	self isCascaded ifTrue: [^ false].
@@ -16,11 +11,8 @@ RBMessageNode>>isInlineAndOr [
 	^ true
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMessageNode>>isInlineCase [
+{ #category : #'*opalcompiler-core' }
+RBMessageNode >> isInlineCase [
 	self methodCompilationContextOrNil ifNotNil:[:c | c optionInlineCase ifFalse: [ ^false ]]. 
 	self isCascaded ifTrue: [^ false].
 	(#(caseOf: caseOf:otherwise:) includes: self selector) ifFalse: [^ false].
@@ -36,11 +28,8 @@ RBMessageNode>>isInlineCase [
 	^ true
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMessageNode>>isInlineIf [
+{ #category : #'*opalcompiler-core' }
+RBMessageNode >> isInlineIf [
 	self methodCompilationContextOrNil ifNotNil:[:c | c optionInlineIf ifFalse: [ ^false ]]. 
 	self receiver isBlock ifTrue: [^ false].
 	self isCascaded ifTrue: [^ false].
@@ -52,11 +41,8 @@ RBMessageNode>>isInlineIf [
 	^ true
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMessageNode>>isInlineIfNil [
+{ #category : #'*opalcompiler-core' }
+RBMessageNode >> isInlineIfNil [
 
 	| assertNone assertOneOrNone |
 	
@@ -82,11 +68,8 @@ RBMessageNode>>isInlineIfNil [
 	^ true
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMessageNode>>isInlineRepeat [
+{ #category : #'*opalcompiler-core' }
+RBMessageNode >> isInlineRepeat [
 	self methodCompilationContextOrNil ifNotNil:[:c | c optionInlineRepeat
 		ifFalse: [ ^ false ]].
 	self receiver isBlock
@@ -100,11 +83,8 @@ RBMessageNode>>isInlineRepeat [
 	^ true
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMessageNode>>isInlineTimesRepeat [
+{ #category : #'*opalcompiler-core' }
+RBMessageNode >> isInlineTimesRepeat [
 
 	| block |
 	self methodCompilationContextOrNil ifNotNil:[:c | c optionInlineTimesRepeat ifFalse: [ ^false ]]. 
@@ -118,11 +98,8 @@ RBMessageNode>>isInlineTimesRepeat [
 	^ true
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMessageNode>>isInlineToDo [
+{ #category : #'*opalcompiler-core' }
+RBMessageNode >> isInlineToDo [
 
 	| block step |
 	self methodCompilationContextOrNil ifNotNil:[:c | c optionInlineToDo ifFalse: [ ^false ]]. 
@@ -146,11 +123,8 @@ RBMessageNode>>isInlineToDo [
 	^ true
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMessageNode>>isInlineWhile [
+{ #category : #'*opalcompiler-core' }
+RBMessageNode >> isInlineWhile [
 	
 	self methodCompilationContextOrNil ifNotNil:[:c | c optionInlineWhile ifFalse: [ ^false ]]. 
 	self isCascaded ifTrue: [^ false].
@@ -164,11 +138,8 @@ RBMessageNode>>isInlineWhile [
 	^ true
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMessageNode>>isInlined  [
+{ #category : #'*opalcompiler-core' }
+RBMessageNode >> isInlined [ 
 	self methodCompilationContextOrNil ifNotNil:[:c | c optionInlineNone ifTrue: [ ^false ]]. 
 	self isInlineIf ifTrue: [^true].
 	self isInlineIfNil  ifTrue: [^true]. 
@@ -181,10 +152,7 @@ RBMessageNode>>isInlined  [
 	^false.
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-RBMessageNode>>methodCompilationContextOrNil [
+{ #category : #'*opalcompiler-core' }
+RBMessageNode >> methodCompilationContextOrNil [
 	^ self methodNode ifNotNil: [ :node | node compilationContext ]
 ]

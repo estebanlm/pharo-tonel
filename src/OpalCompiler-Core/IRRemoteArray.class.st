@@ -8,54 +8,35 @@ Class {
 		'size',
 		'index'
 	],
-	#category : #OpalCompiler-Core-Bytecode,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-Bytecode
 }
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRRemoteArray>>do: aBlock [
+{ #category : #enumerating }
+IRRemoteArray >> do: aBlock [
 	1 to: size do: [ :idx | aBlock value: (idx - 1) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRRemoteArray>>index [
+{ #category : #accessing }
+IRRemoteArray >> index [
 	^ index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRRemoteArray>>index: anIndex [
+{ #category : #accessing }
+IRRemoteArray >> index: anIndex [
 	index := anIndex
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRRemoteArray>>indexOf: anInteger [
+{ #category : #enumerating }
+IRRemoteArray >> indexOf: anInteger [
 	^anInteger + 1.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRRemoteArray>>size [
+{ #category : #accessing }
+IRRemoteArray >> size [
 	^ size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRRemoteArray>>size: aSize [
+{ #category : #accessing }
+IRRemoteArray >> size: aSize [
 	size := aSize
 ]

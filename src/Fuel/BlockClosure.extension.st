@@ -1,12 +1,7 @@
-Extension {
-	#name : #BlockClosure
-}
+Extension { #name : #BlockClosure }
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-BlockClosure>>cleanCopy [
+{ #category : #'*Fuel' }
+BlockClosure >> cleanCopy [
 	"Answer a copy of myself preserving in outerContext just the receiver and method, which are the only needed by a clean block closure."
 
 	^ self shallowCopy
@@ -14,21 +9,15 @@ BlockClosure>>cleanCopy [
 		yourself
 ]
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-BlockClosure>>cleanOuterContext [
+{ #category : #'*Fuel' }
+BlockClosure >> cleanOuterContext [
 	"Clean my outerContext preserving just the receiver and method, which are the only needed by a clean block closure."
 
 	outerContext := outerContext cleanCopy
 ]
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-BlockClosure>>fuelAccept: aGeneralMapper [
+{ #category : #'*Fuel' }
+BlockClosure >> fuelAccept: aGeneralMapper [
 
 	^ self shouldBeSubstitutedByCleanCopy
 		"The 'onRecursionDo:' is just to avoid an infinitive loop for the substitution. The cleanCopy MUST be a clean copy so it can be serialized normally"
@@ -36,10 +25,7 @@ BlockClosure>>fuelAccept: aGeneralMapper [
 		ifFalse: [ aGeneralMapper visitVariableObject: self ]
 ]
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-BlockClosure>>shouldBeSubstitutedByCleanCopy [
+{ #category : #'*Fuel' }
+BlockClosure >> shouldBeSubstitutedByCleanCopy [
 	^ self isClean 
 ]

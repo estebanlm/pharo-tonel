@@ -7,43 +7,30 @@ Class {
 	#instVars : [
 		'circuits'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : 'ChristopheDemarey 3/23/2015 15:27'
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSccExtractor>>addCircuit: aCollectionOfNodes [
+{ #category : #accessing }
+MalSccExtractor >> addCircuit: aCollectionOfNodes [
 	
 	circuits add: aCollectionOfNodes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSccExtractor>>circuits [
+{ #category : #accessing }
+MalSccExtractor >> circuits [
 	^ circuits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSccExtractor>>initialize  [
+{ #category : #accessing }
+MalSccExtractor >> initialize [ 
 
 	super initialize.
 	circuits := Set new.
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalSccExtractor>>run [
+{ #category : #running }
+MalSccExtractor >> run [
 
 	self subclassResponsibility
 ]

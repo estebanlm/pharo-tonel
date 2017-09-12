@@ -7,25 +7,18 @@ Instances of classes using this kind of layout have only a minimum given size. I
 Class {
 	#name : #VariableLayout,
 	#superclass : #PointerLayout,
-	#category : #Slot-Layout,
-	#timestamp : '<historical>'
+	#category : #Slot-Layout
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-VariableLayout class>>extending: superLayout scope: aScope host: aClass [
+{ #category : #'instance creation' }
+VariableLayout class >> extending: superLayout scope: aScope host: aClass [
 	^ (superLayout extendVariable: aScope)
 		host: aClass;
 		yourself
 ]
 
-{
-	#category : #reshaping,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-VariableLayout>>extendAgain: aLayout with: someScope [
+{ #category : #reshaping }
+VariableLayout >> extendAgain: aLayout with: someScope [
 	| result |
 	result := self species new.
 	result host: aLayout host.
@@ -33,20 +26,14 @@ VariableLayout>>extendAgain: aLayout with: someScope [
 	^ result
 ]
 
-{
-	#category : #format,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-VariableLayout>>instanceSpecification [
+{ #category : #format }
+VariableLayout >> instanceSpecification [
 	^ self hasFields
 		ifTrue: [ 3 ]
 		ifFalse: [ 2 ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-VariableLayout>>isVariable [
+{ #category : #testing }
+VariableLayout >> isVariable [
 	^ true
 ]

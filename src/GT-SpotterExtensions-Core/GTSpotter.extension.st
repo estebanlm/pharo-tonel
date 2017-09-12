@@ -1,12 +1,7 @@
-Extension {
-	#name : #GTSpotter
-}
+Extension { #name : #GTSpotter }
 
-{
-	#category : #'*GT-SpotterExtensions-Core-private',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>concreteMethodsInContext: aContext usingFilter: aFilter [
+{ #category : #'*GT-SpotterExtensions-Core-private' }
+GTSpotter >> concreteMethodsInContext: aContext usingFilter: aFilter [
 	" return the concrete methods described by the expression (Class >> #Selector) - evaluate it savely "
 	| classAndSelectorStrings class selector |
 	classAndSelectorStrings := (aContext textTrimmed splitOn: '>>') collect: [ :each | each trimBoth ].
@@ -32,11 +27,8 @@ GTSpotter>>concreteMethodsInContext: aContext usingFilter: aFilter [
 		aFilter value: ([ aClass compiledMethodAt: selector ] on: Error do: [ ^ self ]) ]
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core-private',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>evaluateExpressionInContext: aSpotterContext usingFilter: filter [
+{ #category : #'*GT-SpotterExtensions-Core-private' }
+GTSpotter >> evaluateExpressionInContext: aSpotterContext usingFilter: filter [
 	" only allow arithmethic selectors to be evaluated - otherwise this may have some severe side-effects "
 	| result |
 	" filter allowed selectors "
@@ -54,11 +46,8 @@ GTSpotter>>evaluateExpressionInContext: aSpotterContext usingFilter: filter [
 		filter value: result asFloat ]
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core-private',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>fileReferencesBy: aSelector inContext: aSpotterContext usingFilter: aBlock [
+{ #category : #'*GT-SpotterExtensions-Core-private' }
+GTSpotter >> fileReferencesBy: aSelector inContext: aSpotterContext usingFilter: aBlock [
 	| split rootDirectory query |
 	split := aSpotterContext textLowercase piecesCutWhere: [ :a :b | a = FileSystem disk delimiter ].
 	split size < 1
@@ -79,11 +68,8 @@ GTSpotter>>fileReferencesBy: aSelector inContext: aSpotterContext usingFilter: a
 	(rootDirectory perform: aSelector) do: aBlock
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterClipboardFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterClipboardFor: aStep [
 	<spotterOrder: 90>
 	^ aStep listProcessor
 		title: 'Clipboard History';
@@ -97,11 +83,8 @@ GTSpotter>>spotterClipboardFor: aStep [
 		wantsToDisplayOnEmptyQuery: false
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterConcreteMethodFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterConcreteMethodFor: aStep [
     <spotterOrder: 30>
 	self flag: #specialFilter.
 	^ aStep listProcessor
@@ -111,11 +94,8 @@ GTSpotter>>spotterConcreteMethodFor: aStep [
 		wantsToDisplayOnEmptyQuery: false
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterDirtyMonticelloPackagesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterDirtyMonticelloPackagesFor: aStep [
 	<spotterOrder: 85>
 	aStep listProcessor
 			allCandidates: [ MCWorkingCopy allManagers select: #modified ];
@@ -125,11 +105,8 @@ GTSpotter>>spotterDirtyMonticelloPackagesFor: aStep [
 			wantsToDisplayOnEmptyQuery: true
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter class>>spotterExtensionsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter class >> spotterExtensionsFor: aStep [
 	<spotterOrder: 50>
 	aStep listProcessor
 			allCandidates: [ self spotterExtendingMethods ];
@@ -139,11 +116,8 @@ GTSpotter class>>spotterExtensionsFor: aStep [
 			wantsToDisplayOnEmptyQuery: true
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterForCachedPlaygroundPagesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterForCachedPlaygroundPagesFor: aStep [
 	<spotterOrder: 100>
 	aStep listProcessor
 			allCandidates: [ GTPlayBook instance pages ];
@@ -152,11 +126,8 @@ GTSpotter>>spotterForCachedPlaygroundPagesFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterForClassesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterForClassesFor: aStep [
 	<spotterOrder: 10>
 	aStep listProcessor
 			allCandidates: [ Smalltalk allClassesAndTraits ];
@@ -167,11 +138,8 @@ GTSpotter>>spotterForClassesFor: aStep [
 			wantsToDisplayOnEmptyQuery: false
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterForDirectoriesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterForDirectoriesFor: aStep [
 	<spotterOrder: 50>
 	self flag: #specialFilter.
 	aStep listProcessor
@@ -183,11 +151,8 @@ GTSpotter>>spotterForDirectoriesFor: aStep [
 		wantsToDisplayOnEmptyQuery: false	
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterForExpressionsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterForExpressionsFor: aStep [
 	<spotterOrder: 1>
 	self flag: #specialFilter.
 	aStep listProcessor
@@ -197,11 +162,8 @@ GTSpotter>>spotterForExpressionsFor: aStep [
 		wantsToDisplayOnEmptyQuery: false
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterForFilesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterForFilesFor: aStep [
 	<spotterOrder: 40>
 	self flag: #specialFilter.
 	aStep listProcessor
@@ -213,11 +175,8 @@ GTSpotter>>spotterForFilesFor: aStep [
 		wantsToDisplayOnEmptyQuery: false
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterForGlobalVarsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterForGlobalVarsFor: aStep [
 	<spotterOrder: 40>
 	aStep listProcessor
 			allCandidates: [ Smalltalk globals associations select:[:assoc | 
@@ -229,11 +188,8 @@ GTSpotter>>spotterForGlobalVarsFor: aStep [
 			wantsToDisplayOnEmptyQuery: false
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterForHelpTopicFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterForHelpTopicFor: aStep [
 	<spotterOrder: 200>
 	aStep listProcessor 
 			allCandidates: [ SystemHelp asHelpTopic gtAllSubtopics ];
@@ -244,11 +200,8 @@ GTSpotter>>spotterForHelpTopicFor: aStep [
 			wantsToDisplayOnEmptyQuery: true
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterForMessagesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterForMessagesFor: aStep [
 	<spotterOrder: 35>
 
 	aStep listProcessor
@@ -261,11 +214,8 @@ GTSpotter>>spotterForMessagesFor: aStep [
 		wantsToDisplayOnEmptyQuery: false
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterForMetacelloConfigurationsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterForMetacelloConfigurationsFor: aStep [
 	<spotterOrder: 86>
 	aStep listProcessor
 			title: 'Metacello Configurations';
@@ -281,11 +231,8 @@ GTSpotter>>spotterForMetacelloConfigurationsFor: aStep [
 			wantsToDisplayOnEmptyQuery: false
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterForPackagesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterForPackagesFor: aStep [
 	<spotterOrder: 20>
 	aStep listProcessor
 			allCandidates: [ RPackageOrganizer default packages ];
@@ -296,11 +243,8 @@ GTSpotter>>spotterForPackagesFor: aStep [
 			wantsToDisplayOnEmptyQuery: false
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterForPragmasFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterForPragmasFor: aStep [
 	<spotterOrder: 40>
 	aStep listProcessor 
 			allCandidates: [ PragmaType all ];
@@ -310,11 +254,8 @@ GTSpotter>>spotterForPragmasFor: aStep [
 			wantsToDisplayOnEmptyQuery: false
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterForReferencesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterForReferencesFor: aStep [
 	<spotterOrder: 32>
 	
 	aStep listProcessor
@@ -326,11 +267,8 @@ GTSpotter>>spotterForReferencesFor: aStep [
 		itemName: [ :method | method gtDisplayString ]
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterForRepositoriesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterForRepositoriesFor: aStep [
 	<spotterOrder: 87>
 	aStep listProcessor
 		title: 'Monticello Repositories';
@@ -340,11 +278,8 @@ GTSpotter>>spotterForRepositoriesFor: aStep [
 		filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterForSendersFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterForSendersFor: aStep [
 	<spotterOrder: 31>
 
 	aStep listProcessor
@@ -357,11 +292,8 @@ GTSpotter>>spotterForSendersFor: aStep [
 		wantsToDisplayOnEmptyQuery: false
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterForStashedPlaygroundPagesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterForStashedPlaygroundPagesFor: aStep [
 	<spotterOrder: 100>
 	aStep listProcessor
 			allCandidates: [ 
@@ -376,11 +308,8 @@ GTSpotter>>spotterForStashedPlaygroundPagesFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterHistoryFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterHistoryFor: aStep [
 	<spotterOrder: 8>
 	aStep listProcessor
 			allCandidates: [ self history asArray select: [ :each | each isNotNil and: [ each value isNotNil ] ] ];
@@ -392,11 +321,8 @@ GTSpotter>>spotterHistoryFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterImplementorsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterImplementorsFor: aStep [
 	<spotterOrder: 30>
 	self flag: #specialFilter.
 	aStep listProcessor
@@ -407,11 +333,8 @@ GTSpotter>>spotterImplementorsFor: aStep [
 		wantsToDisplayOnEmptyQuery: false
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterStfxFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterStfxFor: aStep [
 	<spotterOrder: 30>
 	self flag: #specialFilter.
 	^ aStep listProcessor
@@ -421,11 +344,8 @@ GTSpotter>>spotterStfxFor: aStep [
 				ifTrue: [ GTPlayPage loadFromPublishUrl: context textTrimmed thenDo: filter ] ]
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterWindowsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterWindowsFor: aStep [
 	<spotterOrder: 5>
 
 	aStep listProcessor
@@ -439,11 +359,8 @@ GTSpotter>>spotterWindowsFor: aStep [
 		wantsToDisplayOnEmptyQuery: true
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotter>>spotterWorldMenuFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTSpotter >> spotterWorldMenuFor: aStep [
 	<spotterOrder: 9>
 	
 	^ (World worldMenu spotterItemsFor: aStep)

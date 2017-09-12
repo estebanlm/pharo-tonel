@@ -1,34 +1,21 @@
-"
-
-"
 Class {
 	#name : #HermesCommandLineHandler,
 	#superclass : #CommandLineHandler,
-	#category : #Hermes-CommandLineHandler,
-	#timestamp : ''
+	#category : #Hermes-CommandLineHandler
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HermesCommandLineHandler class>>commandName [
+{ #category : #accessing }
+HermesCommandLineHandler class >> commandName [
 	^ 'loadHermes'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HermesCommandLineHandler class>>description [
+{ #category : #accessing }
+HermesCommandLineHandler class >> description [
 	^ 'Loads the hermes file passed as parameter'
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HermesCommandLineHandler>>activate [
+{ #category : #activation }
+HermesCommandLineHandler >> activate [
 	| installer readPackage reader |
 	self activateHelp
 		ifTrue: [ ^ self ].

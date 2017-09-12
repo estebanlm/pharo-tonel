@@ -10,15 +10,11 @@ Class {
 		'listModel',
 		'methodModel'
 	],
-	#category : #Spec-Examples,
-	#timestamp : 'Spirita 7/26/2016 14:59'
+	#category : #Spec-Examples
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ClassMethodBrowser class>>defaultSpec [
+{ #category : #specs }
+ClassMethodBrowser class >> defaultSpec [
 <spec>
 	^ SpecLayout composed
 		newRow: [:row | row
@@ -27,11 +23,8 @@ ClassMethodBrowser class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ClassMethodBrowser class>>defaultSpec2 [
+{ #category : #specs }
+ClassMethodBrowser class >> defaultSpec2 [
 <spec: #default>
 
 	^ SpecLayout composed
@@ -45,11 +38,8 @@ ClassMethodBrowser class>>defaultSpec2 [
 		yourself
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ClassMethodBrowser class>>example [
+{ #category : #example }
+ClassMethodBrowser class >> example [
 	| example |
 	example := ClassMethodBrowser new.
 	example
@@ -58,29 +48,20 @@ ClassMethodBrowser class>>example [
 		^example
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ClassMethodBrowser class>>title [
+{ #category : #specs }
+ClassMethodBrowser class >> title [
 
 	^ 'Class Method Browser'
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ClassMethodBrowser>>classes: aList [
+{ #category : #api }
+ClassMethodBrowser >> classes: aList [
 
 	self listModel items: aList
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ClassMethodBrowser>>initializePresenter [
+{ #category : #initialization }
+ClassMethodBrowser >> initializePresenter [
 	
 	listModel whenSelectedItemChanged: [:selection |
 		selection 
@@ -89,11 +70,8 @@ ClassMethodBrowser>>initializePresenter [
 				methodModel listModel resetSelection ]].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ClassMethodBrowser>>initializeWidgets [
+{ #category : #initialization }
+ClassMethodBrowser >> initializeWidgets [
 	listModel := self instantiate:  ListModel .
 	methodModel := self instantiate: MethodBrowser.
 	self focusOrder
@@ -102,20 +80,14 @@ ClassMethodBrowser>>initializeWidgets [
 	methodModel displayBlock: [ :method | method selector ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ClassMethodBrowser>>listModel [
+{ #category : #accessing }
+ClassMethodBrowser >> listModel [
 
 	^ listModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ClassMethodBrowser>>methodModel [
+{ #category : #accessing }
+ClassMethodBrowser >> methodModel [
 
 	^ methodModel
 ]

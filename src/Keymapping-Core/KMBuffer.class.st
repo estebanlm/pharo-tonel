@@ -13,85 +13,57 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #Keymapping-Core,
-	#timestamp : '<historical>'
+	#category : #Keymapping-Core
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMBuffer class>>resetUniqueInstance [
+{ #category : #'as yet unclassified' }
+KMBuffer class >> resetUniqueInstance [
 	uniqueInstance := nil
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMBuffer class>>uniqueInstance [
+{ #category : #'as yet unclassified' }
+KMBuffer class >> uniqueInstance [
 	^uniqueInstance ifNil: [ uniqueInstance := self new ].
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMBuffer class>>uniqueInstance: aBuffer [
+{ #category : #'as yet unclassified' }
+KMBuffer class >> uniqueInstance: aBuffer [
 	uniqueInstance := aBuffer.
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMBuffer>>addEvent: anEvent [
+{ #category : #adding }
+KMBuffer >> addEvent: anEvent [
 
 	buffer add: anEvent.
 	currentEvent := anEvent.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMBuffer>>buffer [
+{ #category : #accessing }
+KMBuffer >> buffer [
 	^buffer
 ]
 
-{
-	#category : #clearing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMBuffer>>clearBuffer [
+{ #category : #clearing }
+KMBuffer >> clearBuffer [
 
 	currentEvent := nil.
 	buffer removeAll.
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMBuffer>>completeMatch [
+{ #category : #matching }
+KMBuffer >> completeMatch [
 
 	currentEvent ifNotNil:[ currentEvent wasHandled: true ].
 	self clearBuffer.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMBuffer>>initialize [
+{ #category : #initialization }
+KMBuffer >> initialize [
 	buffer := OrderedCollection new.
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMBuffer>>partialMatch [
+{ #category : #matching }
+KMBuffer >> partialMatch [
 
 	KMLog logPartialMatch: currentEvent.
 	currentEvent ifNotNil:[ currentEvent wasHandled: true ].

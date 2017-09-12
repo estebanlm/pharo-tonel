@@ -4,23 +4,16 @@ SUnit tests for self evaluting objects
 Class {
 	#name : #SelfEvaluatingObjectTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Objects,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:44'
+	#category : #Kernel-Tests-Objects
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SelfEvaluatingObjectTest>>assertCode: code print: aString [
+{ #category : #utilities }
+SelfEvaluatingObjectTest >> assertCode: code print: aString [
 	self assert: (self class evaluate: code) printString = aString
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SelfEvaluatingObjectTest>>testArray [
+{ #category : #tests }
+SelfEvaluatingObjectTest >> testArray [
 	"self debug: #testArray"
 
 	self assertCode: '#(1 2 3)' print: '#(1 2 3)'.
@@ -33,11 +26,8 @@ SelfEvaluatingObjectTest>>testArray [
 	self assertCode: '{10@10 corner: 20@20 . 100@100 corner: 200@200}' print: '{(10@10) corner: (20@20). (100@100) corner: (200@200)}'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SelfEvaluatingObjectTest>>testObjects [
+{ #category : #tests }
+SelfEvaluatingObjectTest >> testObjects [
 	"self debug: #testObjects"
 
 	self assert: 10 isSelfEvaluating.

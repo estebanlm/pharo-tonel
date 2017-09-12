@@ -14,26 +14,19 @@ Class {
 		'headers',
 		'entity'
 	],
-	#category : #Zinc-HTTP-Core,
-	#timestamp : 'SvenVanCaekenberghe 10/5/2010 19:20'
+	#category : #Zinc-HTTP-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart class>>fieldName: fieldName entity: entity [
+{ #category : #'instance creation' }
+ZnMimePart class >> fieldName: fieldName entity: entity [
 	^ self new
 		setContentDisposition: 'form-data;name="', fieldName, '"';
 		entity: entity;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart class>>fieldName: fieldName fileName: fileName entity: entity [
+{ #category : #'instance creation' }
+ZnMimePart class >> fieldName: fieldName fileName: fileName entity: entity [
 	"Pathnames are often silenty encoded using UTF-8,
 	this is a no-op for ASCII, but will fail on Latin-1 and others"
 
@@ -45,11 +38,8 @@ ZnMimePart class>>fieldName: fieldName fileName: fileName entity: entity [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart class>>fieldName: fieldName fileNamed: fileName [
+{ #category : #'instance creation' }
+ZnMimePart class >> fieldName: fieldName fileNamed: fileName [
 	| mimeType size fileStream entity baseName |
 	mimeType := ZnMimeType forFilenameExtension: (ZnFileSystemUtils extensionFor: fileName).
 	fileStream := ZnFileSystemUtils oldFileStreamFor: fileName.
@@ -62,58 +52,40 @@ ZnMimePart class>>fieldName: fieldName fileNamed: fileName [
 	
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart class>>fieldName: fieldName value: fieldValue [
+{ #category : #'instance creation' }
+ZnMimePart class >> fieldName: fieldName value: fieldValue [
 	^ self
 		fieldName: fieldName
 		entity: (ZnEntity with: fieldValue)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart class>>readBinaryFrom: stream [
+{ #category : #'instance creation' }
+ZnMimePart class >> readBinaryFrom: stream [
 	^ self new
 		readBinaryFrom: stream;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart class>>readFrom: stream [
+{ #category : #'instance creation' }
+ZnMimePart class >> readFrom: stream [
 	^ self new
 		readFrom: stream;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>= other [
+{ #category : #comparing }
+ZnMimePart >> = other [
 	self class = other class ifFalse: [ ^ false ].
 	^ self headers = other headers and: [ self entity = other entity ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>contentDisposition [
+{ #category : #accessing }
+ZnMimePart >> contentDisposition [
 	^ self headers at: 'Content-Disposition' ifAbsent: [ nil ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>contentDispositionValues [
+{ #category : #private }
+ZnMimePart >> contentDispositionValues [
 	| contentDisposition values start semiColonIndex |
 	(contentDisposition := self contentDisposition) isNil ifTrue: [ ^ #() ].
 	values := OrderedCollection new: 3.
@@ -129,39 +101,27 @@ ZnMimePart>>contentDispositionValues [
 	^ values
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>contentLength [
+{ #category : #accessing }
+ZnMimePart >> contentLength [
 	self hasEntity ifTrue: [ ^ self entity contentLength ].
 	(self hasHeaders and: [ self headers hasContentLength ]) ifTrue: [ ^ self headers contentLength ].
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>contentType [
+{ #category : #accessing }
+ZnMimePart >> contentType [
 	self hasEntity ifTrue: [ ^ self entity contentType ].
 	(self hasHeaders and: [ self headers hasContentType ]) ifTrue: [ ^ self headers contentType ].
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>contents [
+{ #category : #accessing }
+ZnMimePart >> contents [
 	^ entity isNil ifTrue: [ nil ] ifFalse: [ entity contents ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>detectContentDispositionValue: aString [
+{ #category : #private }
+ZnMimePart >> detectContentDispositionValue: aString [
 	self contentDispositionValues do: [ :each | 
 		((each beginsWith: aString)
 			and: [ each size > (aString size + 1)
@@ -170,29 +130,20 @@ ZnMimePart>>detectContentDispositionValue: aString [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>entity [
+{ #category : #accessing }
+ZnMimePart >> entity [
 	^ entity
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>entity: object [
+{ #category : #accessing }
+ZnMimePart >> entity: object [
 	entity := object.
 	self headers isDescribingEntity ifFalse: [
 		self headers acceptEntityDescription: object ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>entityReaderOn: stream [
+{ #category : #private }
+ZnMimePart >> entityReaderOn: stream [
 	^ ZnEntityReader new
 		headers: self headers;
 		stream: stream;
@@ -200,50 +151,35 @@ ZnMimePart>>entityReaderOn: stream [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>entityWriterOn: stream [
+{ #category : #private }
+ZnMimePart >> entityWriterOn: stream [
 	^ ZnEntityWriter new
 		headers: self headers;
 		stream: stream;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>fieldName [
+{ #category : #accessing }
+ZnMimePart >> fieldName [
 	^ self detectContentDispositionValue: 'name'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>fieldValue [
+{ #category : #accessing }
+ZnMimePart >> fieldValue [
 	^ self hasEntity 
 		ifTrue: [ self entity contents ] 
 		ifFalse: [ nil ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>fieldValueString [
+{ #category : #accessing }
+ZnMimePart >> fieldValueString [
 	^ self fieldValue
 		ifNil: [ String empty ]
 		ifNotNil: [ :value | value asString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>fileName [
+{ #category : #accessing }
+ZnMimePart >> fileName [
 	"Pathnames are often silenty encoded using UTF-8,
 	this is a no-op for ASCII, but will fail on Latin-1 and others"
 
@@ -251,70 +187,46 @@ ZnMimePart>>fileName [
 		ifNotNil: [ :encodedFileName | encodedFileName asByteArray utf8Decoded ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>hasEntity [
+{ #category : #testing }
+ZnMimePart >> hasEntity [
 	^ self entity notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>hasHeaders [
+{ #category : #testing }
+ZnMimePart >> hasHeaders [
 	^ headers notNil and: [ self headers isEmpty not ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>hash [
+{ #category : #comparing }
+ZnMimePart >> hash [
 	^ self headers hash bitXor: self entity hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>headers [
+{ #category : #accessing }
+ZnMimePart >> headers [
 	headers isNil ifTrue: [ headers := ZnHeaders new ].
 	^ headers
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>headers: object [
+{ #category : #accessing }
+ZnMimePart >> headers: object [
 	headers := object
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>headersDo: twoArgumentBlock [
+{ #category : #enumerating }
+ZnMimePart >> headersDo: twoArgumentBlock [
 	self hasHeaders
 		ifTrue: [ self headers headersDo: twoArgumentBlock ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>postCopy [
+{ #category : #copying }
+ZnMimePart >> postCopy [
 	headers := headers copy.
 	"Note that we don't copy the entity, see also #resetEntity: and ZnClient>>#resetEntity"
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>printOn: stream [
+{ #category : #printing }
+ZnMimePart >> printOn: stream [
 	super printOn: stream.
 	stream nextPut: $(.
 	self hasEntity ifTrue: [ 
@@ -323,11 +235,8 @@ ZnMimePart>>printOn: stream [
 	
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>readBinaryFrom: stream [
+{ #category : #initialize-release }
+ZnMimePart >> readBinaryFrom: stream [
 	| entityReader |
 	self headers: (ZnHeaders readFrom: stream).
 	(entityReader := self entityReaderOn: stream)
@@ -335,29 +244,20 @@ ZnMimePart>>readBinaryFrom: stream [
 	self entity: entityReader readEntity
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>readFrom: stream [
+{ #category : #initialize-release }
+ZnMimePart >> readFrom: stream [
 	self headers: (ZnHeaders readFrom: stream).
 	self entity: (self entityReaderOn: stream) readEntity
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>setContentDisposition: value [
+{ #category : #accessing }
+ZnMimePart >> setContentDisposition: value [
 	^ self headers at: 'Content-Disposition' put: value 
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMimePart>>writeOn: stream [
+{ #category : #writing }
+ZnMimePart >> writeOn: stream [
 	self headers writeOn: stream.
 	stream nextPutAll: String crlf.
 	self hasEntity ifTrue: [ 

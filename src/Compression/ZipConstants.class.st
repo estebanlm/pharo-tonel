@@ -102,25 +102,18 @@ Class {
 		'WindowMask',
 		'WindowSize'
 	],
-	#category : #Compression-Streams,
-	#timestamp : '<historical>'
+	#category : #Compression-Streams
 }
 
-{
-	#category : #'pool initialization',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipConstants class>>initialize [
+{ #category : #'pool initialization' }
+ZipConstants class >> initialize [
 	"ZipConstants initialize"
 	self initializeDeflateConstants.
 	self initializeWriteStreamConstants.
 ]
 
-{
-	#category : #'pool initialization',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipConstants class>>initializeDeflateConstants [
+{ #category : #'pool initialization' }
+ZipConstants class >> initializeDeflateConstants [
 
 	WindowSize := 16r8000.
 	WindowMask := WindowSize - 1.
@@ -135,11 +128,8 @@ ZipConstants class>>initializeDeflateConstants [
 
 ]
 
-{
-	#category : #'pool initialization',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipConstants class>>initializeDistanceCodes [
+{ #category : #'pool initialization' }
+ZipConstants class >> initializeDistanceCodes [
 	| dist |
 	BaseDistance := WordArray new: MaxDistCodes.
 	DistanceCodes := WordArray new: 512.
@@ -159,11 +149,8 @@ ZipConstants class>>initializeDistanceCodes [
 
 ]
 
-{
-	#category : #'pool initialization',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipConstants class>>initializeExtraBits [
+{ #category : #'pool initialization' }
+ZipConstants class >> initializeExtraBits [
 	ExtraLengthBits := 
 		WordArray withAll: #(0 0 0 0 0 0 0 0 1 1 1 1 2 2 2 2 3 3 3 3 4 4 4 4 5 5 5 5 0).
 	ExtraDistanceBits := 
@@ -175,11 +162,8 @@ ZipConstants class>>initializeExtraBits [
 
 ]
 
-{
-	#category : #'pool initialization',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipConstants class>>initializeFixedTrees [
+{ #category : #'pool initialization' }
+ZipConstants class >> initializeFixedTrees [
 	"ZipWriteStream initializeFixedTrees"
 	| counts nodes |
 	FixedLiteralTree := ZipEncoderTree new.
@@ -204,11 +188,8 @@ ZipConstants class>>initializeFixedTrees [
 		codes: ((0 to: MaxDistCodes) collect:[:i| FixedDistanceTree reverseBits: i length: 5]).
 ]
 
-{
-	#category : #'pool initialization',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipConstants class>>initializeLengthCodes [
+{ #category : #'pool initialization' }
+ZipConstants class >> initializeLengthCodes [
 	| length |
 	BaseLength := WordArray new: MaxLengthCodes.
 	MatchLengthCodes := WordArray new: MaxMatch - MinMatch + 1.
@@ -221,11 +202,8 @@ ZipConstants class>>initializeLengthCodes [
 
 ]
 
-{
-	#category : #'pool initialization',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipConstants class>>initializeWriteStreamConstants [
+{ #category : #'pool initialization' }
+ZipConstants class >> initializeWriteStreamConstants [
 
 	MaxBits := 15.
 	MaxBitLengthBits := 7.

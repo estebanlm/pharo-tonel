@@ -3,17 +3,11 @@ I provide various actions for browsing a Context object. These actions are loade
 "
 Trait {
 	#name : #GTBrowsingActions,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #GT-Debugger-Actions,
-	#timestamp : 'AndreiChis 12/30/2015 11:21'
+	#category : #GT-Debugger-Actions
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTBrowsingActions>>browseClassRefs [
+{ #category : #actions }
+GTBrowsingActions >> browseClassRefs [
 
 	self currentContext ifNotNil: [ :aContext || class|
 		class := aContext methodClass theNonMetaClass.
@@ -23,22 +17,16 @@ GTBrowsingActions>>browseClassRefs [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTBrowsingActions>>browseClassVarRefs [
+{ #category : #actions }
+GTBrowsingActions >> browseClassVarRefs [
 	| cls |
 	cls := self currentClass.
 	(cls notNil and: [cls isTrait not])
 		ifTrue: [self systemNavigation  browseClassVarRefs: cls]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTBrowsingActions>>browseClassVariables [
+{ #category : #actions }
+GTBrowsingActions >> browseClassVariables [
 	"Browse the class variables of the selected class."
 	| cls |
 	cls := self currentClass.
@@ -47,22 +35,16 @@ GTBrowsingActions>>browseClassVariables [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTBrowsingActions>>browseInstVarRefs [
+{ #category : #actions }
+GTBrowsingActions >> browseInstVarRefs [
 	| cls |
 	cls := self currentClassOrMetaClass.
 	(cls notNil and: [cls isTrait not])
 		ifTrue: [self systemNavigation browseInstVarRefs: cls]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTBrowsingActions>>browseMessages [
+{ #category : #actions }
+GTBrowsingActions >> browseMessages [
 	"Present a menu of all messages sent by the current message. 
 	Open a message set browser of all implementors of the message chosen."
 
@@ -70,11 +52,8 @@ GTBrowsingActions>>browseMessages [
 		self systemNavigation browseAllImplementorsOf: self currentMessageName ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTBrowsingActions>>browseMethodFull [
+{ #category : #actions }
+GTBrowsingActions >> browseMethodFull [
 	"Create and schedule a full Browser and then select the current class and message."
 
 	self currentClassOrMetaClass ifNotNil: [ 
@@ -83,69 +62,48 @@ GTBrowsingActions>>browseMethodFull [
 			selector: self currentMessageName ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTBrowsingActions>>browseSendersOfMessages [
+{ #category : #actions }
+GTBrowsingActions >> browseSendersOfMessages [
 	"Present a menu of the current message, as well as all messages sent by it.  Open a message set browser of all senders of the selector chosen."
 
 	self currentMessageName ifNotNil: [   
 		self systemNavigation browseAllSendersOf: self currentMessageName ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTBrowsingActions>>browseVersions [
+{ #category : #actions }
+GTBrowsingActions >> browseVersions [
 	"Create and schedule a message set browser on all versions of the 
 	currently selected message selector."
 
 	Smalltalk tools versionBrowser browseVersionsForClass: self currentClassOrMetaClass selector: self currentMessageName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTBrowsingActions>>currentClass [
+{ #category : #accessing }
+GTBrowsingActions >> currentClass [
 
 	^ self currentContext methodClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTBrowsingActions>>currentClassOrMetaClass [
+{ #category : #accessing }
+GTBrowsingActions >> currentClassOrMetaClass [
 
 	^ self currentContext methodClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTBrowsingActions>>currentContext [
+{ #category : #accessing }
+GTBrowsingActions >> currentContext [
 	
 	^ self debugger currentContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTBrowsingActions>>currentMessageName [
+{ #category : #accessing }
+GTBrowsingActions >> currentMessageName [
 
 	^ self currentContext methodSelector
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTBrowsingActions>>fileOutMessage [
+{ #category : #actions }
+GTBrowsingActions >> fileOutMessage [
 	"Put a description of the selected message on a file"
 
 	self currentMessageName ifNotNil: [
@@ -153,33 +111,24 @@ GTBrowsingActions>>fileOutMessage [
 			[ self currentClassOrMetaClass fileOutMethod: self currentMessageName ] ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTBrowsingActions>>inspectInstances [
+{ #category : #actions }
+GTBrowsingActions >> inspectInstances [
 	"Inspect all instances of the selected class."
 
 	self currentClassOrMetaClass ifNotNil: [ :aClass |
 		aClass theNonMetaClass inspectAllInstances ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTBrowsingActions>>inspectSubInstances [
+{ #category : #actions }
+GTBrowsingActions >> inspectSubInstances [
 	"Inspect all instances of the selected class and all its subclasses"
 
 	self currentClassOrMetaClass ifNotNil: [ :aClass |
 		aClass theNonMetaClass inspectSubInstances ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTBrowsingActions>>methodHierarchy [
+{ #category : #actions }
+GTBrowsingActions >> methodHierarchy [
 	"Create and schedule a method browser on the hierarchy of implementors."
 
 	self systemNavigation 

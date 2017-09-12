@@ -6,15 +6,11 @@ Class {
 	#superclass : #EpLogBrowserOperationVisitor,
 	#traits : 'EpTCodeChangeVisitor',
 	#classTraits : 'EpTCodeChangeVisitor classTrait',
-	#category : #EpiceaBrowsers-Visitors,
-	#timestamp : 'MartinDias 10/27/2014 18:03'
+	#category : #EpiceaBrowsers-Visitors
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitBehaviorCategoryChange: aChange [
+{ #category : #visitor }
+EpApplyVisitor >> visitBehaviorCategoryChange: aChange [
 
 	self
 		behaviorNamed: aChange behaviorAffectedName
@@ -22,11 +18,8 @@ EpApplyVisitor>>visitBehaviorCategoryChange: aChange [
 
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitBehaviorCommentChange: aChange [
+{ #category : #visitor }
+EpApplyVisitor >> visitBehaviorCommentChange: aChange [
 
 	self
 		behaviorNamed: aChange behaviorAffectedName
@@ -36,58 +29,40 @@ EpApplyVisitor>>visitBehaviorCommentChange: aChange [
 				stamp: aChange newStamp ]
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitBehaviorNameChange: aClassRenameChange [
+{ #category : #visitor }
+EpApplyVisitor >> visitBehaviorNameChange: aClassRenameChange [
 	(environment classOrTraitNamed: aClassRenameChange oldName)
 		rename: aClassRenameChange newName
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitCategoryAddition: aPackageCreated [
+{ #category : #visitor }
+EpApplyVisitor >> visitCategoryAddition: aPackageCreated [
 	environment organization addCategory: aPackageCreated categoryName
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitCategoryRemoval: aPackageRemoved [
+{ #category : #visitor }
+EpApplyVisitor >> visitCategoryRemoval: aPackageRemoved [
 	environment organization removeCategory: aPackageRemoved categoryName
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitCategoryRename: aChange [
+{ #category : #visitor }
+EpApplyVisitor >> visitCategoryRename: aChange [
 
 	environment organization
 		renameCategory: aChange oldCategoryName
 		toBe: aChange newCategoryName
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitClassAddition: aClassCreation [
+{ #category : #visitor }
+EpApplyVisitor >> visitClassAddition: aClassCreation [
 
 	self compiler
 		evaluate: aClassCreation classAdded definitionSource;
 		evaluate: aClassCreation classAdded theMetaClass definitionSource.
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitClassModification: aModifiedClassChange [
+{ #category : #visitor }
+EpApplyVisitor >> visitClassModification: aModifiedClassChange [
 	self compiler
 		evaluate: aModifiedClassChange newClass definitionSource;
 		evaluate: aModifiedClassChange newClass theMetaClass definitionSource.
@@ -101,29 +76,20 @@ EpApplyVisitor>>visitClassModification: aModifiedClassChange [
 
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitClassRemoval: aClassRemoval [
+{ #category : #visitor }
+EpApplyVisitor >> visitClassRemoval: aClassRemoval [
 	environment removeClassNamed: aClassRemoval behaviorAffectedName
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitCodeChange: aChange [
+{ #category : #visitor }
+EpApplyVisitor >> visitCodeChange: aChange [
 	"Default behavior for any change."
 		
 	^ self visitEvent: aChange
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitMethodAddition: aMethodCreated [
+{ #category : #visitor }
+EpApplyVisitor >> visitMethodAddition: aMethodCreated [
 
 	self 
 		behaviorNamed: aMethodCreated behaviorAffectedName
@@ -133,11 +99,8 @@ EpApplyVisitor>>visitMethodAddition: aMethodCreated [
 				classified: aMethodCreated protocol ]
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitMethodModification: aMethodModified [
+{ #category : #visitor }
+EpApplyVisitor >> visitMethodModification: aMethodModified [
 
 	self 
 		behaviorNamed: aMethodModified behaviorAffectedName
@@ -147,11 +110,8 @@ EpApplyVisitor>>visitMethodModification: aMethodModified [
 				classified: aMethodModified newProtocol ]
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitMethodRemoval: aMethodRemoval [
+{ #category : #visitor }
+EpApplyVisitor >> visitMethodRemoval: aMethodRemoval [
 
 	self 
 		behaviorNamed: aMethodRemoval behaviorAffectedName
@@ -159,52 +119,37 @@ EpApplyVisitor>>visitMethodRemoval: aMethodRemoval [
 			behavior removeSelector: aMethodRemoval selector ]
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitProtocolAddition: aProtocolAddition [
+{ #category : #visitor }
+EpApplyVisitor >> visitProtocolAddition: aProtocolAddition [
 	self 
 		behaviorNamed: aProtocolAddition behaviorAffectedName
 		ifPresent: [ :behavior | 
 			behavior organization addCategory: aProtocolAddition protocol ]
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitProtocolRemoval: aProtocolRemoved [
+{ #category : #visitor }
+EpApplyVisitor >> visitProtocolRemoval: aProtocolRemoved [
 	self 
 		behaviorNamed: aProtocolRemoved behaviorAffectedName
 		ifPresent: [ :behavior | 
 			behavior removeProtocol: aProtocolRemoved protocol ]
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitTraitAddition: aChange [
+{ #category : #visitor }
+EpApplyVisitor >> visitTraitAddition: aChange [
 
 	self compiler evaluate: aChange traitAdded definitionSource
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitTraitModification: aChange [
+{ #category : #visitor }
+EpApplyVisitor >> visitTraitModification: aChange [
 
 	self compiler evaluate: aChange newTrait definitionSource
 
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyVisitor>>visitTraitRemoval: aTraitRemoval [
+{ #category : #visitor }
+EpApplyVisitor >> visitTraitRemoval: aTraitRemoval [
 
 	environment removeClassNamed: aTraitRemoval behaviorAffectedName
 ]

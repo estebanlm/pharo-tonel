@@ -4,31 +4,21 @@ SUnit tests for reducing collections
 Class {
 	#name : #ReduceTest,
 	#superclass : #TestCase,
-	#category : #Collections-Tests-Sequenceable,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:30'
+	#category : #Collections-Tests-Sequenceable
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReduceTest>>collectionClasses [
+{ #category : #accessing }
+ReduceTest >> collectionClasses [
 	^ (Array with: Set with: Bag) , (self sequenceableClasses)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReduceTest>>sequenceableClasses [
+{ #category : #accessing }
+ReduceTest >> sequenceableClasses [
 	^ Array with: Array with: OrderedCollection with: SortedCollection
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReduceTest>>testReduceCollection2Arguments [
+{ #category : #testing }
+ReduceTest >> testReduceCollection2Arguments [
 	| block |
 	block := [ :a :b | a + b ].
 	self collectionClasses do: [ :class |
@@ -39,11 +29,8 @@ ReduceTest>>testReduceCollection2Arguments [
 		self assert: ((class with: 1 with: 2 with: 3 with: 4) reduce: block) = 10 ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReduceTest>>testReduceCollection3Arguments [
+{ #category : #testing }
+ReduceTest >> testReduceCollection3Arguments [
 	| block |
 	block := [ :a :b :c | a + b + c ].
 	self collectionClasses do: [ :class |
@@ -54,11 +41,8 @@ ReduceTest>>testReduceCollection3Arguments [
 		self should: [ (class with: 1 with: 2 with: 3 with: 4) reduce: block ] raise: Error ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReduceTest>>testReduceLeft2Arguments [
+{ #category : #testing }
+ReduceTest >> testReduceLeft2Arguments [
 	| block |
 	block := [ :a :b | Array with: a with: b ].
 	self sequenceableClasses do: [ :class |
@@ -70,11 +54,8 @@ ReduceTest>>testReduceLeft2Arguments [
 		self assert: ((class with: #a with: #b with: #c with: #d with: #e) reduceLeft: block) = #((((a b) c) d) e) ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReduceTest>>testReduceLeft3Arguments [
+{ #category : #testing }
+ReduceTest >> testReduceLeft3Arguments [
 	| block |
 	block := [ :a :b :c | Array with: a with: b with: c ].
 	self sequenceableClasses do: [ :class |
@@ -86,20 +67,14 @@ ReduceTest>>testReduceLeft3Arguments [
 		self assert: ((class with: #a with: #b with: #c with: #d with: #e) reduceLeft: block) = #((a b c) d e) ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReduceTest>>testReduceLeftSpecial [
+{ #category : #testing }
+ReduceTest >> testReduceLeftSpecial [
 	self assert: ((1 to: 100) reduceLeft: [ :a :b | a - b ]) = -5048.
 	self assert: ('abc' reduceLeft: [ :a :b | Array with: a with: b ]) = #(($a $b) $c)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReduceTest>>testReduceRight2Arguments [
+{ #category : #testing }
+ReduceTest >> testReduceRight2Arguments [
 	| block |
 	block := [ :a :b | Array with: a with: b ].
 	self sequenceableClasses do: [ :class |
@@ -111,11 +86,8 @@ ReduceTest>>testReduceRight2Arguments [
 		self assert: ((class with: #a with: #b with: #c with: #d with: #e) reduceRight: block) = #(a (b (c (d e)))) ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReduceTest>>testReduceRight3Arguments [
+{ #category : #testing }
+ReduceTest >> testReduceRight3Arguments [
 	| block |
 	block := [ :a :b :c | Array with: a with: b with: c ].
 	self sequenceableClasses do: [ :class |
@@ -127,11 +99,8 @@ ReduceTest>>testReduceRight3Arguments [
 		self assert: ((class with: #a with: #b with: #c with: #d with: #e) reduceRight: block) = #(a b (c d e)) ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ReduceTest>>testReduceRightSpecial [
+{ #category : #testing }
+ReduceTest >> testReduceRightSpecial [
 	self assert: ((1 to: 100) reduceRight: [ :a :b | a - b ]) = -50.
 	self assert: ('abc' reduceRight: [ :a :b | Array with: a with: b ]) = #($a ($b $c))
 ]

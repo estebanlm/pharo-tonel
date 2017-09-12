@@ -8,15 +8,11 @@ Class {
 		'okButton',
 		'okAction'
 	],
-	#category : #Spec-Core-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Support
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkToolbar class>>defaultSpec [
+{ #category : #specs }
+OkToolbar class >> defaultSpec [
 	<spec>
 	
 	^ SpecLayout composed
@@ -25,42 +21,30 @@ OkToolbar class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkToolbar class>>title [
+{ #category : #specs }
+OkToolbar class >> title [
 
 	^ 'Ok Toolbar'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkToolbar>>addAll: aWindow  withSpec: aSpec [
+{ #category : #private }
+OkToolbar >> addAll: aWindow  withSpec: aSpec [
 
 	aWindow
 		addMorph: (self buildWithSpec: aSpec)
 		fullFrame: ((0@0 corner: 1@0) asLayoutFrame bottomOffset: 30).
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkToolbar>>cancel [
+{ #category : #api }
+OkToolbar >> cancel [
 	
 	owner 
 		ifNil: [ self delete ] 
 		ifNotNil: [ owner delete ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkToolbar>>hFill [
+{ #category : #private }
+OkToolbar >> hFill [
 
 	^ Morph new
 		color: Color transparent;
@@ -69,30 +53,21 @@ OkToolbar>>hFill [
 		hResizing: #spaceFill
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkToolbar>>initialize [
+{ #category : #initialization }
+OkToolbar >> initialize [
 
 	super initialize.
 	okAction := [ true ] asValueHolder.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkToolbar>>initializePresenter [
+{ #category : #initialization }
+OkToolbar >> initializePresenter [
 
 	okButton action: self okActionBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkToolbar>>initializeWidgets [
+{ #category : #initialization }
+OkToolbar >> initializeWidgets [
 	
 	
 	okButton := self newButton.
@@ -102,29 +77,20 @@ OkToolbar>>initializeWidgets [
 		add: okButton
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkToolbar>>okAction [
+{ #category : #api }
+OkToolbar >> okAction [
 
 	^ okAction value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkToolbar>>okAction: aBlock [
+{ #category : #api }
+OkToolbar >> okAction: aBlock [
 
 	^ okAction value: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkToolbar>>okActionBlock [
+{ #category : #private }
+OkToolbar >> okActionBlock [
 
 	^ [ okAction value value == false
 		ifFalse: [ owner 
@@ -132,20 +98,14 @@ OkToolbar>>okActionBlock [
 			ifNotNil: [ owner delete ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkToolbar>>okButton [
+{ #category : #accessing }
+OkToolbar >> okButton [
 
 	^ okButton
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkToolbar>>registerOkButtonEvents [
+{ #category : #initialization }
+OkToolbar >> registerOkButtonEvents [
 
 	okButton 
 		label: 'Ok';
@@ -153,20 +113,14 @@ OkToolbar>>registerOkButtonEvents [
 		state: false
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkToolbar>>triggerCancelAction [
+{ #category : #api }
+OkToolbar >> triggerCancelAction [
 	
 	self cancel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkToolbar>>triggerOkAction [
+{ #category : #api }
+OkToolbar >> triggerOkAction [
 
 	self okActionBlock value
 ]

@@ -4,33 +4,23 @@ Check that the number of addDependent: message sends in a class is less than or 
 Class {
 	#name : #RBAddRemoveDependentsRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:15'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAddRemoveDependentsRule class>>checksClass [
+{ #category : #testing }
+RBAddRemoveDependentsRule class >> checksClass [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAddRemoveDependentsRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBAddRemoveDependentsRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'AddRemoveDependentsRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAddRemoveDependentsRule>>basicCheck: aClass [
+{ #category : #running }
+RBAddRemoveDependentsRule >> basicCheck: aClass [
 	| addSends removeSends |
 	addSends := 0.
 	removeSends := 0.
@@ -48,34 +38,22 @@ RBAddRemoveDependentsRule>>basicCheck: aClass [
 	^ addSends > removeSends
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAddRemoveDependentsRule>>checkClass: aClass  [
+{ #category : #running }
+RBAddRemoveDependentsRule >> checkClass: aClass [ 
 	(self basicCheck: aClass) ifTrue: [ result addClass: aClass ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAddRemoveDependentsRule>>group [
+{ #category : #accessing }
+RBAddRemoveDependentsRule >> group [
 	^ 'Potential Bugs'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAddRemoveDependentsRule>>name [
+{ #category : #accessing }
+RBAddRemoveDependentsRule >> name [
 	^ 'Number of addDependent: messages > removeDependent:'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAddRemoveDependentsRule>>resultClass [
+{ #category : #accessing }
+RBAddRemoveDependentsRule >> resultClass [
 	^ RBClassEnvironment
 ]

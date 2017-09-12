@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GTEventRecorderHelp,
 	#superclass : #CustomHelp,
-	#category : #GT-EventRecorder-Help,
-	#timestamp : ''
+	#category : #GT-EventRecorder-Help
 }
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorderHelp class>>analysis [
+{ #category : #pages }
+GTEventRecorderHelp class >> analysis [
 	^HelpTopic 
 		title: 'Data Analysis'
 		contents:	
@@ -48,27 +41,18 @@ GTEventRecorderHelp class>>analysis [
 	Remember that semantics of the data depends on you. GT Event Recorder only provides a convenient infrustructure to collect data.' 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorderHelp class>>bookDescription [
+{ #category : #accessing }
+GTEventRecorderHelp class >> bookDescription [
 	^ 'Here, we describe GT Event Recorder, a moldable infrastructure, that allows to capture and store events that are specific to different tools. It is composed of a client and a server that we describe in the following sections. The last section describes basic analysis support.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorderHelp class>>bookName [
+{ #category : #accessing }
+GTEventRecorderHelp class >> bookName [
 	^ 'GT Event Recorder'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorderHelp class>>client [
+{ #category : #pages }
+GTEventRecorderHelp class >> client [
 	^HelpTopic 
 		title: 'Client'
 		contents:	 (String streamContents: [ :aStream | aStream 
@@ -105,11 +89,8 @@ nextPutAll:
 nextPutAll: GTEventCollector comment ])
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorderHelp class>>introduction [
+{ #category : #pages }
+GTEventRecorderHelp class >> introduction [
 	^HelpTopic 
 		title: 'Introduction'
 		contents:	
@@ -120,19 +101,13 @@ GTEventRecorderHelp class>>introduction [
 	GT Event Recorder is composed of a client and a server that we describe in the following sections.' 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorderHelp class>>pages [
+{ #category : #accessing }
+GTEventRecorderHelp class >> pages [
 	^ #(introduction client server analysis)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorderHelp class>>server [
+{ #category : #pages }
+GTEventRecorderHelp class >> server [
 	^HelpTopic 
 		title: 'Server'
 		contents:	

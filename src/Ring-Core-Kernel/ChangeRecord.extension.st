@@ -1,12 +1,7 @@
-Extension {
-	#name : #ChangeRecord
-}
+Extension { #name : #ChangeRecord }
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>asRingDefinition [
+{ #category : #'*Ring-Core-Kernel' }
+ChangeRecord >> asRingDefinition [
 	"Retrieves a RGMethodDefinition object based on the data of the receiver"
 	
 	self type == #method
@@ -16,11 +11,8 @@ ChangeRecord>>asRingDefinition [
 	^nil
 ]
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>createCommentDefinition [
+{ #category : #'*Ring-Core-Kernel' }
+ChangeRecord >> createCommentDefinition [
 	"Retrieves a RGCommentDefinition object based on the data of the receiver"
 
 	^ (RGCommentDefinition class: self commentClass)
@@ -29,11 +21,8 @@ ChangeRecord>>createCommentDefinition [
 		yourself 
 ]
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ChangeRecord>>createMethodDefinition [
+{ #category : #'*Ring-Core-Kernel' }
+ChangeRecord >> createMethodDefinition [
 	"Retrieves a RGMethodDefinition object based on the data of the receiver"
 	
 	^(RGMethodDefinition named: self methodSelector)

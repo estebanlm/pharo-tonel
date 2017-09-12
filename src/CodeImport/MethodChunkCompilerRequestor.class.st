@@ -9,31 +9,21 @@ Class {
 		'fileCompileRequestor',
 		'interactive'
 	],
-	#category : #CodeImport,
-	#timestamp : 'NicolaiHess 4/15/2016 12:10'
+	#category : #CodeImport
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunkCompilerRequestor>>fileCompileRequestor [
+{ #category : #accessing }
+MethodChunkCompilerRequestor >> fileCompileRequestor [
 	^ fileCompileRequestor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunkCompilerRequestor>>fileCompileRequestor: anObject [
+{ #category : #accessing }
+MethodChunkCompilerRequestor >> fileCompileRequestor: anObject [
 	fileCompileRequestor := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunkCompilerRequestor>>initialize [
+{ #category : #initialization }
+MethodChunkCompilerRequestor >> initialize [
 
 	super initialize.
 
@@ -42,43 +32,28 @@ MethodChunkCompilerRequestor>>initialize [
 	methodChunk := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunkCompilerRequestor>>interactive [
+{ #category : #accessing }
+MethodChunkCompilerRequestor >> interactive [
 	^ interactive
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunkCompilerRequestor>>interactive: anObject [
+{ #category : #accessing }
+MethodChunkCompilerRequestor >> interactive: anObject [
 	interactive := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunkCompilerRequestor>>methodChunk [
+{ #category : #accessing }
+MethodChunkCompilerRequestor >> methodChunk [
 	^ methodChunk
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunkCompilerRequestor>>methodChunk: anObject [
+{ #category : #accessing }
+MethodChunkCompilerRequestor >> methodChunk: anObject [
 	methodChunk := anObject
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunkCompilerRequestor>>notify: message at: location in: code [
+{ #category : #'interactive error protocol' }
+MethodChunkCompilerRequestor >> notify: message at: location in: code [
 	| newSource |
 	self flag: #hack.
 	"Should use the new OPalWarnings directly instead of recreating a SyntaxErrorNotification"
@@ -93,10 +68,7 @@ MethodChunkCompilerRequestor>>notify: message at: location in: code [
 	ReparseAfterSourceEditing signalWithNewSource: newSource
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MethodChunkCompilerRequestor>>text [
+{ #category : #'interactive error protocol' }
+MethodChunkCompilerRequestor >> text [
 	^ methodChunk contents
 ]

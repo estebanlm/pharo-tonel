@@ -1,31 +1,20 @@
-Extension {
-	#name : #Morph
-}
+Extension { #name : #Morph }
 
-{
-	#category : #'*Spec-MorphicAdapters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Morph>>asSpecAdapter [
+{ #category : #'*Spec-MorphicAdapters' }
+Morph >> asSpecAdapter [
 
 	^ MorphicGenericAdapter 
 		morph: self
 ]
 
-{
-	#category : #'*Spec-MorphicAdapters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Morph>>heightToDisplayInTree: aTree [
+{ #category : #'*Spec-MorphicAdapters' }
+Morph >> heightToDisplayInTree: aTree [
 
 	^ self minExtent y
 ]
 
-{
-	#category : #'*Spec-MorphicAdapters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Morph>>setModal: aSystemWindow [
+{ #category : #'*Spec-MorphicAdapters' }
+Morph >> setModal: aSystemWindow [
 	|area mySysWin keyboardFocus|
 
 	keyboardFocus := self activeHand keyboardFocus.
@@ -48,22 +37,16 @@ Morph>>setModal: aSystemWindow [
 	^aSystemWindow
 ]
 
-{
-	#category : #'*Spec-MorphicAdapters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Morph>>treeRenderOn: aCanvas bounds: drawBounds color: drawColor font: aFont from: aMorph [
+{ #category : #'*Spec-MorphicAdapters' }
+Morph >> treeRenderOn: aCanvas bounds: drawBounds color: drawColor font: aFont from: aMorph [
 
 	self bounds: drawBounds.
 	aMorph addMorphBack: self.
        
 ]
 
-{
-	#category : #'*Spec-MorphicAdapters',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Morph>>widthToDisplayInTree: aTree [
+{ #category : #'*Spec-MorphicAdapters' }
+Morph >> widthToDisplayInTree: aTree [
 
 	^ self minExtent x
 ]

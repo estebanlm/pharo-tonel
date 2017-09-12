@@ -1,38 +1,25 @@
-"
-
-"
 Class {
 	#name : #RBPullUpClassVariableTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPullUpClassVariableTest>>testMetaClassFailure [
+{ #category : #'failure tests' }
+RBPullUpClassVariableTest >> testMetaClassFailure [
 	self shouldFail: (RBPullUpClassVariableRefactoring 
 			variable: #RecursiveSelfRule
 			class: RBLintRuleTest class)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPullUpClassVariableTest>>testNonExistantName [
+{ #category : #'failure tests' }
+RBPullUpClassVariableTest >> testNonExistantName [
 	self shouldFail: (RBPullUpClassVariableRefactoring 
 			variable: #Foo
 			class: RBLintRuleTest)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPullUpClassVariableTest>>testPullUpClassVariable [
+{ #category : #tests }
+RBPullUpClassVariableTest >> testPullUpClassVariable [
 	| refactoring |
 	refactoring := RBPullUpClassVariableRefactoring 
 		variable: #RecursiveSelfRule

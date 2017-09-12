@@ -13,70 +13,45 @@ Class {
 		'category',
 		'data'
 	],
-	#category : #GT-EventRecorder-Support,
-	#timestamp : 'AndreiChis 10/13/2015 00:34'
+	#category : #GT-EventRecorder-Support
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventBundle>>accept: aVisitor  [
+{ #category : #visitor }
+GTEventBundle >> accept: aVisitor [ 
 	^ aVisitor visitSingleBundle: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventBundle>>category [
+{ #category : #accessing }
+GTEventBundle >> category [
 	^ category
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventBundle>>category: anObject [
+{ #category : #accessing }
+GTEventBundle >> category: anObject [
 	category := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventBundle>>data [
+{ #category : #accessing }
+GTEventBundle >> data [
 	^ data
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventBundle>>data: anObject [
+{ #category : #accessing }
+GTEventBundle >> data: anObject [
 	data := anObject
 ]
 
-{
-	#category : #'accessing - computed',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventBundle>>entity [
+{ #category : #'accessing - computed' }
+GTEventBundle >> entity [
 	^ ZnByteArrayEntity bytes: self data
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventBundle>>url [
+{ #category : #accessing }
+GTEventBundle >> url [
 	^ url
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventBundle>>url: anObject [
+{ #category : #accessing }
+GTEventBundle >> url: anObject [
 	url := anObject
 ]

@@ -15,35 +15,25 @@ Class {
 	#instVars : [
 		'handle'
 	],
-	#category : #Zodiac-Core,
-	#timestamp : 'SvenVanCaekenberghe 9/13/2011 09:56'
+	#category : #Zodiac-Core
 }
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>accept: srcBuf from: start to: stop into: dstBuf [
+{ #category : #operations }
+ZdcPluginSSLSession >> accept: srcBuf from: start to: stop into: dstBuf [
 	"Start or continue the server handshake using the given input token"
 
 	^ self primitiveSSL: handle accept: srcBuf startingAt: start count: stop - start + 1 into: dstBuf
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>certificateName [
+{ #category : #accessing }
+ZdcPluginSSLSession >> certificateName [
 	"The name of the local certificate to provide to the remote peer"
 
 	^ self primitiveSSL: handle getStringProperty: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>certificateName: aString [
+{ #category : #accessing }
+ZdcPluginSSLSession >> certificateName: aString [
 	"Sets the name of the local certificate to provide to the remote peer.
 	OpenSSL: The name is the full path to a .pem file.
 	WinSSL: The name is matched against the 'subject' of a certificate in the cert store"
@@ -51,11 +41,8 @@ ZdcPluginSSLSession>>certificateName: aString [
 	^ self primitiveSSL: handle setStringProperty: 1 toValue: (aString ifNil: [ '' ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>certificateVerificationState [
+{ #category : #accessing }
+ZdcPluginSSLSession >> certificateVerificationState [
 	"Returns the certificate verification bits. The returned value indicates
 	whether the certificate is valid. The two standard values are:
 		0   - The certificate is valid
@@ -71,40 +58,28 @@ ZdcPluginSSLSession>>certificateVerificationState [
 	^ self primitiveSSL: handle getIntProperty: 3
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>connect: srcBuf from: start to: stop into: dstBuf [
+{ #category : #operations }
+ZdcPluginSSLSession >> connect: srcBuf from: start to: stop into: dstBuf [
 	"Start or continue the client handshake using the given input token"
 
 	^ self primitiveSSL: handle connect: srcBuf startingAt: start count: stop - start + 1 into: dstBuf
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>constantsSQSSL_PROP_LOGLEVEL [
+{ #category : #private }
+ZdcPluginSSLSession >> constantsSQSSL_PROP_LOGLEVEL [
 
 	^ 1
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>decrypt: srcBuf from: start to: stop into: dstBuf [
+{ #category : #operations }
+ZdcPluginSSLSession >> decrypt: srcBuf from: start to: stop into: dstBuf [
 	"Decrypt the input in srcBuf from start to stop into dstBuf."
 
 	^ self primitiveSSL: handle decrypt: srcBuf startingAt: start count: stop - start + 1 into: dstBuf
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>destroy [
+{ #category : #initialize }
+ZdcPluginSSLSession >> destroy [
 	"Destroys the platform handle in the VM plugin"
 
 	handle isNil ifTrue: [ ^ self ].  
@@ -112,31 +87,22 @@ ZdcPluginSSLSession>>destroy [
 	handle := nil
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>enableLogging [
+{ #category : #initialize }
+ZdcPluginSSLSession >> enableLogging [
 	"Enable logging of the native code inside the plugin"
 	
 	self logging: true
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>encrypt: srcBuf from: start to: stop into: dstBuf [
+{ #category : #operations }
+ZdcPluginSSLSession >> encrypt: srcBuf from: start to: stop into: dstBuf [
 	"Encrypt the input in srcBuf from start to stop into dstBuf."
 
 	^ self primitiveSSL: handle encrypt: srcBuf startingAt: start count: stop - start + 1 into: dstBuf
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>initialize [
+{ #category : #initialize }
+ZdcPluginSSLSession >> initialize [
 	"Initialize the receiver"
 
 	[ handle := self primitiveSSLCreate ]
@@ -148,61 +114,43 @@ ZdcPluginSSLSession>>initialize [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>isConnected [
+{ #category : #testing }
+ZdcPluginSSLSession >> isConnected [
 	"Returns true if the SSL handshake has been completed"
 
 	^ self sslState = 3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>logging [
+{ #category : #accessing }
+ZdcPluginSSLSession >> logging [
 
 	^ ((self primitiveSSL: handle getIntProperty: self constantsSQSSL_PROP_LOGLEVEL) = 0) not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>logging: boolean [
+{ #category : #accessing }
+ZdcPluginSSLSession >> logging: boolean [
 
 	self primitiveSSL: handle setIntProperty: self constantsSQSSL_PROP_LOGLEVEL toValue: (boolean ifFalse: [ 0 ] ifTrue: [ 1 ]).
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>peerCertificateName [
+{ #category : #accessing }
+ZdcPluginSSLSession >> peerCertificateName [
 	"Returns the certificate name of the remote peer.
 	The method only returns a name if the certificate has been verified"
 
 	^ self primitiveSSL: handle getStringProperty: 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>pluginVersion [
+{ #category : #accessing }
+ZdcPluginSSLSession >> pluginVersion [
 	"Returns the version of the plugin"
 
 	^ self primitiveSSL: handle getIntProperty: 0
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>primitiveSSL: sslHandle accept: srcbuf startingAt: start count: length into: dstbuf [
+{ #category : #primitives }
+ZdcPluginSSLSession >> primitiveSSL: sslHandle accept: srcbuf startingAt: start count: length into: dstbuf [
 	"Primitive. Starts or continues a server handshake using the provided data.
 	Will eventually produce output to be sent to the client.
 	Returns:
@@ -216,11 +164,8 @@ ZdcPluginSSLSession>>primitiveSSL: sslHandle accept: srcbuf startingAt: start co
 	^ self primitiveFailed
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>primitiveSSL: sslHandle connect: srcbuf startingAt: start count: length into: dstbuf [
+{ #category : #primitives }
+ZdcPluginSSLSession >> primitiveSSL: sslHandle connect: srcbuf startingAt: start count: length into: dstbuf [
 	"Primitive. Starts or continues a client handshake using the provided data.
 	Will eventually produce output to be sent to the server.
 	Returns:
@@ -234,11 +179,8 @@ ZdcPluginSSLSession>>primitiveSSL: sslHandle connect: srcbuf startingAt: start c
 	^ self primitiveFailed
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>primitiveSSL: sslHandle decrypt: srcbuf startingAt: start count: length into: dstbuf [
+{ #category : #primitives }
+ZdcPluginSSLSession >> primitiveSSL: sslHandle decrypt: srcbuf startingAt: start count: length into: dstbuf [
 	"Primitive. Takes incoming data for decryption and continues to decrypt data.
 	Returns the number of bytes produced in the output"
 
@@ -247,11 +189,8 @@ ZdcPluginSSLSession>>primitiveSSL: sslHandle decrypt: srcbuf startingAt: start c
 	^ self primitiveFailed
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>primitiveSSL: sslHandle encrypt: srcbuf startingAt: start count: length into: dstbuf [
+{ #category : #primitives }
+ZdcPluginSSLSession >> primitiveSSL: sslHandle encrypt: srcbuf startingAt: start count: length into: dstbuf [
 	"Primitive. Encrypts the incoming buffer into the result buffer.
 	Returns the number of bytes produced as a result"
 
@@ -260,11 +199,8 @@ ZdcPluginSSLSession>>primitiveSSL: sslHandle encrypt: srcbuf startingAt: start c
 	^ self primitiveFailed
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>primitiveSSL: sslHandle getIntProperty: propID [
+{ #category : #primitives }
+ZdcPluginSSLSession >> primitiveSSL: sslHandle getIntProperty: propID [
 	"Primitive. Returns a string property from an SSL session"
 
 	<primitive: 'primitiveGetIntProperty' module: 'SqueakSSL'>
@@ -272,11 +208,8 @@ ZdcPluginSSLSession>>primitiveSSL: sslHandle getIntProperty: propID [
 	^ self primitiveFailed
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>primitiveSSL: sslHandle getStringProperty: propID [
+{ #category : #primitives }
+ZdcPluginSSLSession >> primitiveSSL: sslHandle getStringProperty: propID [
 	"Primitive. Returns a string property from an SSL session"
 
 	<primitive: 'primitiveGetStringProperty' module: 'SqueakSSL'>
@@ -284,11 +217,8 @@ ZdcPluginSSLSession>>primitiveSSL: sslHandle getStringProperty: propID [
 	^ self primitiveFailed
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>primitiveSSL: sslHandle setIntProperty: propID toValue: anInteger [
+{ #category : #primitives }
+ZdcPluginSSLSession >> primitiveSSL: sslHandle setIntProperty: propID toValue: anInteger [
 	"Primitive. Sets an integer property in an SSL session"
 
 	<primitive: 'primitiveSetIntProperty' module: 'SqueakSSL'>
@@ -296,11 +226,8 @@ ZdcPluginSSLSession>>primitiveSSL: sslHandle setIntProperty: propID toValue: anI
 	^ self primitiveFailed
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>primitiveSSL: sslHandle setStringProperty: propID toValue: aString [
+{ #category : #primitives }
+ZdcPluginSSLSession >> primitiveSSL: sslHandle setStringProperty: propID toValue: aString [
 	"Primitive. Sets a string property in an SSL session"
 
 	<primitive: 'primitiveSetStringProperty' module: 'SqueakSSL'>
@@ -308,11 +235,8 @@ ZdcPluginSSLSession>>primitiveSSL: sslHandle setStringProperty: propID toValue: 
 	^ self primitiveFailed
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>primitiveSSLCreate [
+{ #category : #primitives }
+ZdcPluginSSLSession >> primitiveSSLCreate [
 	"Primitive. Creates and returns a new SSL handle in the VM plugin"
 
 	<primitive: 'primitiveCreate' module: 'SqueakSSL'>
@@ -320,11 +244,8 @@ ZdcPluginSSLSession>>primitiveSSLCreate [
 	^ self primitiveFailed
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>primitiveSSLDestroy: sslHandle [
+{ #category : #primitives }
+ZdcPluginSSLSession >> primitiveSSLDestroy: sslHandle [
 	"Primitive. Destroys the SSL session handle in the VM plugin"
 
 	<primitive: 'primitiveDestroy' module: 'SqueakSSL'>
@@ -332,21 +253,15 @@ ZdcPluginSSLSession>>primitiveSSLDestroy: sslHandle [
 	^ self primitiveFailed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>serverName [
+{ #category : #accessing }
+ZdcPluginSSLSession >> serverName [
 	"Get the Server Name Indication (SNI) property"
 
 	^ self primitiveSSL: handle getStringProperty: 2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>serverName: serverName [
+{ #category : #accessing }
+ZdcPluginSSLSession >> serverName: serverName [
 	"Set the Server Name Indication (SNI) to serverName, 
 	the fully qualified domain name of the host to connect to.
 	This should be set by a client before #connect is attempted."
@@ -354,11 +269,8 @@ ZdcPluginSSLSession>>serverName: serverName [
 	^ self primitiveSSL: handle setStringProperty: 2 toValue: (serverName ifNil: [''])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcPluginSSLSession>>sslState [
+{ #category : #accessing }
+ZdcPluginSSLSession >> sslState [
 	"Returns the current state of the SSL connection:
 		0 - Unused
 		1 - In accept handshake

@@ -4,24 +4,17 @@ I'm a private and internal class to Gofer. I'm a command used to call the class 
 Class {
 	#name : #GoferReinitialize,
 	#superclass : #GoferWorking,
-	#category : #Gofer-Core,
-	#timestamp : 'LaurentLaffont 2/23/2011 20:22'
+	#category : #Gofer-Core
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferReinitialize>>execute [
+{ #category : #running }
+GoferReinitialize >> execute [
 	self workingCopies
 		do: [ :each | self execute: each ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferReinitialize>>execute: aWorkingCopy [
+{ #category : #running }
+GoferReinitialize >> execute: aWorkingCopy [
 	aWorkingCopy packageSet methods do: [ :each |
 		(each classIsMeta and: [ each selector = #initialize ])
 			ifTrue: [ each actualClass theNonMetaClass initialize ] ]

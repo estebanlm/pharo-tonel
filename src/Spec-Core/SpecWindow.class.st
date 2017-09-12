@@ -6,24 +6,17 @@ I have been introduced since it's currently the best solution to prevent to add 
 Class {
 	#name : #SpecWindow,
 	#superclass : #StandardWindow,
-	#category : #Spec-Core-Widgets-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Widgets-Support
 }
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWindow>>aboutText [
+{ #category : #protocol }
+SpecWindow >> aboutText [
 
 	^ self model aboutText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWindow>>close [
+{ #category : #controls }
+SpecWindow >> close [
 
 	self model askOkToClose
 		ifTrue: [ self okToChange ifFalse: [ ^ self ] ].
@@ -31,11 +24,8 @@ SpecWindow>>close [
 	super close
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecWindow>>okToChange [
+{ #category : #updating }
+SpecWindow >> okToChange [
 
 	^ self model okToChange
 ]

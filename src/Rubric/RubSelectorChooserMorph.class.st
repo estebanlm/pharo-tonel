@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RubSelectorChooserMorph,
 	#superclass : #IdentifierChooserMorph,
@@ -8,15 +5,11 @@ Class {
 		'prefix',
 		'requestorPos'
 	],
-	#category : #Rubric-Editing-Core-Support,
-	#timestamp : ''
+	#category : #Rubric-Editing-Core-Support
 }
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph class>>popUpPrefix: aPrefix from: aTextMorph  [
+{ #category : #opening }
+RubSelectorChooserMorph class >> popUpPrefix: aPrefix from: aTextMorph [ 
 	Cursor wait
 		showWhile: [| selectors chooser |
 			selectors := self selectorsFromPrefix: aPrefix.
@@ -34,11 +27,8 @@ RubSelectorChooserMorph class>>popUpPrefix: aPrefix from: aTextMorph  [
 			^ chooser]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph class>>selectorsFromPrefix: aPrefix [
+{ #category : #accessing }
+RubSelectorChooserMorph class >> selectorsFromPrefix: aPrefix [
 	"returns the value of labels from a selector prefix"
 	"self selectorsFromPrefix: 'prin' "
 	| key applicants |
@@ -57,11 +47,8 @@ RubSelectorChooserMorph class>>selectorsFromPrefix: aPrefix [
 
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph>>choose: index [
+{ #category : #action }
+RubSelectorChooserMorph >> choose: index [
 	"Set the given choice and ok."
 	requestor ifNil: [^ self delete].
 	requestor editor selectorChooser ~= self 
@@ -71,38 +58,26 @@ RubSelectorChooserMorph>>choose: index [
 	
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph>>close [
+{ #category : #action }
+RubSelectorChooserMorph >> close [
 	requestor 
 		ifNotNil: [requestor takeKeyboardFocus.
 			self choose: 0]
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph>>comeToFront [
+{ #category : #submorphs-add/remove }
+RubSelectorChooserMorph >> comeToFront [
 	super comeToFront.
 	self setPosition 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph>>defaultBaseColor [
+{ #category : #accessing }
+RubSelectorChooserMorph >> defaultBaseColor [
 	^  (self theme menuColorFor: self) muchLighter
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph>>drawCommonPrefixAreasOn: aCanvas [
+{ #category : #drawing }
+RubSelectorChooserMorph >> drawCommonPrefixAreasOn: aCanvas [
 	| firstMenu firstMenuItem topLeft bottomLeft lastMenuItem |
 	requestor ifNil: [^ self ].
 	prefix  
@@ -111,11 +86,8 @@ RubSelectorChooserMorph>>drawCommonPrefixAreasOn: aCanvas [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph>>drawCommonPrefixAreasOn: aCanvas menu: aMenu [
+{ #category : #drawing }
+RubSelectorChooserMorph >> drawCommonPrefixAreasOn: aCanvas menu: aMenu [
 	| firstMenuItem topLeft bottomLeft lastMenuItem w c |
 	firstMenuItem := aMenu menuItems first.
 	lastMenuItem := aMenu menuItems last.
@@ -126,21 +98,15 @@ RubSelectorChooserMorph>>drawCommonPrefixAreasOn: aCanvas menu: aMenu [
 	aCanvas fillRectangle: (topLeft  corner: bottomLeft) color: (c alpha: 0.3)
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph>>fullDrawOn: aCanvas [
+{ #category : #drawing }
+RubSelectorChooserMorph >> fullDrawOn: aCanvas [
 	super fullDrawOn: aCanvas.
 	self drawCommonPrefixAreasOn: aCanvas
 	
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph>>newContentMorph  [
+{ #category : #ui-building }
+RubSelectorChooserMorph >> newContentMorph [ 
 	| sp |
 	sp := super newContentMorph.
 	sp
@@ -149,11 +115,8 @@ RubSelectorChooserMorph>>newContentMorph  [
 
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph>>nextPrefixWith: aPrefix [
+{ #category : #ui-building }
+RubSelectorChooserMorph >> nextPrefixWith: aPrefix [
 	| curr pref found lab |
 	curr := aPrefix size.
 	lab := self labels first.
@@ -172,22 +135,16 @@ RubSelectorChooserMorph>>nextPrefixWith: aPrefix [
 
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph>>open [
+{ #category : #ui-building }
+RubSelectorChooserMorph >> open [
 	super open. 
 	self comeToFront.
 	self borderStyle: ( self theme progressBarBorderStyleFor: self).
 	self setPosition
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph>>positionInRequestor [
+{ #category : #ui-building }
+RubSelectorChooserMorph >> positionInRequestor [
 	|  caret  editor pos allowedArea |
 	requestor ifNil: [^self].
 	editor := requestor editor.
@@ -203,30 +160,21 @@ RubSelectorChooserMorph>>positionInRequestor [
  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph>>prefix: aPrefix [
+{ #category : #accessing }
+RubSelectorChooserMorph >> prefix: aPrefix [
 	"Set the value of labels"
 	prefix := aPrefix.
 
 ]
 
-{
-	#category : #ui-building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph>>setPosition [
+{ #category : #ui-building }
+RubSelectorChooserMorph >> setPosition [
 	self position: self positionInRequestor.
 
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph>>step [
+{ #category : #'stepping and presenter' }
+RubSelectorChooserMorph >> step [
 	[requestorPos 
 		ifNil: [requestorPos := requestor owner position]
 		ifNotNil: [requestorPos ~= requestor owner position
@@ -239,18 +187,12 @@ RubSelectorChooserMorph>>step [
 
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph>>stepTime [
+{ #category : #'stepping and presenter' }
+RubSelectorChooserMorph >> stepTime [
 	^ 500
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubSelectorChooserMorph>>wantsSteps  [
+{ #category : #testing }
+RubSelectorChooserMorph >> wantsSteps [ 
 	^ requestor notNil
 ]

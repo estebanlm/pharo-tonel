@@ -21,101 +21,70 @@ Class {
 		'actionMap',
 		'clipSubmorphs'
 	],
-	#category : #Morphic-Core-Kernel,
-	#timestamp : '<historical>'
+	#category : #Morphic-Core-Kernel
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>actionMap [
+{ #category : #accessing }
+MorphExtension >> actionMap [
 	"Answer the value of actionMap"
 
 	^actionMap ifNil: [self valueOfProperty: #actionMap ifAbsent: []]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>actionMap: anObject [
+{ #category : #accessing }
+MorphExtension >> actionMap: anObject [
 	"Set the value of actionMap"
 
 	actionMap := anObject
 ]
 
-{
-	#category : #'accessing - other properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>assureOtherProperties [
+{ #category : #'accessing - other properties' }
+MorphExtension >> assureOtherProperties [
 	"creates an otherProperties for the receiver if needed"
 	otherProperties ifNil: [self initializeOtherProperties].
 	^ otherProperties
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>balloonText [
+{ #category : #accessing }
+MorphExtension >> balloonText [
 	^ balloonText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>balloonText: newValue [
+{ #category : #accessing }
+MorphExtension >> balloonText: newValue [
 	balloonText := newValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>borderStyle [
+{ #category : #accessing }
+MorphExtension >> borderStyle [
 	"Answer the value of borderStyle"
 
 	^borderStyle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>borderStyle: anObject [
+{ #category : #accessing }
+MorphExtension >> borderStyle: anObject [
 	"Set the value of borderStyle"
 
 	borderStyle := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>clipSubmorphs [
+{ #category : #accessing }
+MorphExtension >> clipSubmorphs [
 	"Answer the value of clipSubmorphs"
 
 	^clipSubmorphs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>clipSubmorphs: anObject [
+{ #category : #accessing }
+MorphExtension >> clipSubmorphs: anObject [
 	"Set the value of clipSubmorphs"
 
 	clipSubmorphs := anObject
 ]
 
-{
-	#category : #connectors-copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>copyWeakly [
+{ #category : #connectors-copying }
+MorphExtension >> copyWeakly [
 	"list of names of properties whose values should be weak-copied when veryDeepCopying a morph.  See DeepCopier."
 
 	^ #(formerOwner)
@@ -124,85 +93,58 @@ MorphExtension>>copyWeakly [
 	"formerOwner should really be nil at the time of the copy, but this will work just fine."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>cornerStyle [
+{ #category : #accessing }
+MorphExtension >> cornerStyle [
 	"Answer the value of cornerStyle"
 
 	^cornerStyle ifNil: [#square]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>cornerStyle: anObject [
+{ #category : #accessing }
+MorphExtension >> cornerStyle: anObject [
 	"Set the value of cornerStyle"
 
 	cornerStyle := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>eventHandler [
+{ #category : #accessing }
+MorphExtension >> eventHandler [
 	"answer the receiver's eventHandler"
 	^ eventHandler 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>eventHandler: newValue [
+{ #category : #accessing }
+MorphExtension >> eventHandler: newValue [
 	eventHandler := newValue
 ]
 
-{
-	#category : #viewer,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>externalName [
+{ #category : #viewer }
+MorphExtension >> externalName [
 	^ externalName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>externalName: aString  [
+{ #category : #accessing }
+MorphExtension >> externalName: aString [ 
 	"change the receiver's externalName"
 	externalName := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>fillStyle [
+{ #category : #accessing }
+MorphExtension >> fillStyle [
 	"Answer the value of fillStyle"
 
 	^ fillStyle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>fillStyle: anObject [
+{ #category : #accessing }
+MorphExtension >> fillStyle: anObject [
 	"Set the value of fillStyle"
 
 	fillStyle := anObject
 ]
 
-{
-	#category : #'accessing - other properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>hasProperty: aSymbol  [
+{ #category : #'accessing - other properties' }
+MorphExtension >> hasProperty: aSymbol [ 
 	"Answer whether the receiver has the property named aSymbol"
 	| property |
 	otherProperties ifNil: [^ false].
@@ -212,11 +154,8 @@ MorphExtension>>hasProperty: aSymbol  [
 	^ true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>initialize [
+{ #category : #initialization }
+MorphExtension >> initialize [
 	
 	locked := false.
 	visible := true.
@@ -225,20 +164,14 @@ MorphExtension>>initialize [
 
 ]
 
-{
-	#category : #'accessing - other properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>initializeOtherProperties [
+{ #category : #'accessing - other properties' }
+MorphExtension >> initializeOtherProperties [
 	"private - initializes the receiver's otherProperties"
 	otherProperties :=  SmallIdentityDictionary new
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>inspectElement [
+{ #category : #other }
+MorphExtension >> inspectElement [
 	"Create and schedule an Inspector on the otherProperties and the 
 	named properties."
 	| key obj |
@@ -257,11 +190,8 @@ MorphExtension>>inspectElement [
 		ifFalse: [obj inspect]
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>isDefault [
+{ #category : #other }
+MorphExtension >> isDefault [
 	"Return true if the receiver is a default and can be omitted"
 	locked == true
 		ifTrue: [^ false].
@@ -276,93 +206,63 @@ MorphExtension>>isDefault [
 	^ true
 ]
 
-{
-	#category : #'accessing - layout properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>layoutFrame [
+{ #category : #'accessing - layout properties' }
+MorphExtension >> layoutFrame [
 
 	^layoutFrame
 ]
 
-{
-	#category : #'accessing - layout properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>layoutFrame: aLayoutFrame [
+{ #category : #'accessing - layout properties' }
+MorphExtension >> layoutFrame: aLayoutFrame [
 
 	layoutFrame := aLayoutFrame
 ]
 
-{
-	#category : #'accessing - layout properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>layoutPolicy [
+{ #category : #'accessing - layout properties' }
+MorphExtension >> layoutPolicy [
 
 	^layoutPolicy
 ]
 
-{
-	#category : #'accessing - layout properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>layoutPolicy: aLayoutPolicy  [
+{ #category : #'accessing - layout properties' }
+MorphExtension >> layoutPolicy: aLayoutPolicy [ 
 	
 	layoutPolicy := aLayoutPolicy
 ]
 
-{
-	#category : #'accessing - layout properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>layoutProperties [
+{ #category : #'accessing - layout properties' }
+MorphExtension >> layoutProperties [
 
 	^layoutProperties
 ]
 
-{
-	#category : #'accessing - layout properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>layoutProperties: newProperties  [
+{ #category : #'accessing - layout properties' }
+MorphExtension >> layoutProperties: newProperties [ 
 	"Return the current layout properties associated with the receiver"
 
 	layoutProperties := newProperties
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>locked [
+{ #category : #accessing }
+MorphExtension >> locked [
 	"answer whether the receiver is Locked"
 	^ locked
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>locked: aBoolean  [
+{ #category : #accessing }
+MorphExtension >> locked: aBoolean [ 
 	"change the receiver's locked property"
 	locked := aBoolean
 ]
 
-{
-	#category : #'accessing - other properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>otherProperties [
+{ #category : #'accessing - other properties' }
+MorphExtension >> otherProperties [
 	"answer the receiver's otherProperties"
 	^ otherProperties
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>printOn: aStream [
+{ #category : #printing }
+MorphExtension >> printOn: aStream [
 	"Append to the argument, aStream, a sequence of characters that 
 	identifies the receiver."
 
@@ -400,11 +300,8 @@ MorphExtension>>printOn: aStream [
 	aStream nextPut: $]
 ]
 
-{
-	#category : #connectors-copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>propertyNamesNotCopied [
+{ #category : #connectors-copying }
+MorphExtension >> propertyNamesNotCopied [
 	"list of names of properties whose values should be deleted when veryDeepCopying a morph.
 	See DeepCopier."
 
@@ -413,40 +310,28 @@ MorphExtension>>propertyNamesNotCopied [
 
 ]
 
-{
-	#category : #'accessing - other properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>removeOtherProperties [
+{ #category : #'accessing - other properties' }
+MorphExtension >> removeOtherProperties [
 	"Remove the 'other' properties"
 	otherProperties := nil
 ]
 
-{
-	#category : #'accessing - other properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>removeProperty: aSymbol  [
+{ #category : #'accessing - other properties' }
+MorphExtension >> removeProperty: aSymbol [ 
 	"removes the property named aSymbol if it exists"
 	otherProperties ifNil: [^ self].
 	otherProperties removeKey: aSymbol ifAbsent: [].
 	otherProperties isEmpty ifTrue: [self removeOtherProperties]
 ]
 
-{
-	#category : #'accessing - other properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>setProperty: aSymbol toValue: abObject  [
+{ #category : #'accessing - other properties' }
+MorphExtension >> setProperty: aSymbol toValue: abObject [ 
 	"change the receiver's property named aSymbol to anObject"
 	self assureOtherProperties at: aSymbol put: abObject
 ]
 
-{
-	#category : #'accessing - other properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>sortedPropertyNames [
+{ #category : #'accessing - other properties' }
+MorphExtension >> sortedPropertyNames [
 	"answer the receiver's property names in a sorted way"
 
 	| props |
@@ -461,39 +346,27 @@ MorphExtension>>sortedPropertyNames [
 	^props contents sort: [:s1 :s2 | s1 <= s2]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>sticky [
+{ #category : #accessing }
+MorphExtension >> sticky [
 	^ sticky
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>sticky: aBoolean  [
+{ #category : #accessing }
+MorphExtension >> sticky: aBoolean [ 
 	"change the receiver's sticky property"
 	sticky := aBoolean
 ]
 
-{
-	#category : #'accessing - other properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>valueOfProperty: aSymbol  [
+{ #category : #'accessing - other properties' }
+MorphExtension >> valueOfProperty: aSymbol [ 
 "answer the value of the receiver's property named aSymbol"
 	^ self
 		valueOfProperty: aSymbol
 		ifAbsent: []
 ]
 
-{
-	#category : #'accessing - other properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>valueOfProperty: aSymbol ifAbsent: aBlock  [
+{ #category : #'accessing - other properties' }
+MorphExtension >> valueOfProperty: aSymbol ifAbsent: aBlock [ 
 	"if the receiver possesses a property of the given name, answer  
 	its value. If not then evaluate aBlock and answer the result of  
 	this block evaluation"
@@ -501,11 +374,8 @@ MorphExtension>>valueOfProperty: aSymbol ifAbsent: aBlock  [
 	^ otherProperties at: aSymbol ifAbsent: [^ aBlock value]
 ]
 
-{
-	#category : #'accessing - other properties',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>valueOfProperty: aSymbol ifAbsentPut: aBlock  [
+{ #category : #'accessing - other properties' }
+MorphExtension >> valueOfProperty: aSymbol ifAbsentPut: aBlock [ 
 	"If the receiver possesses a property of the given name, answer  
 	its value. If not, then create a property of the given name, give 
 	it the value obtained by evaluating aBlock, then answer that  
@@ -513,11 +383,8 @@ MorphExtension>>valueOfProperty: aSymbol ifAbsentPut: aBlock  [
 	^self assureOtherProperties at: aSymbol ifAbsentPut: aBlock
 ]
 
-{
-	#category : #connectors-copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>veryDeepFixupWith: deepCopier  [
+{ #category : #connectors-copying }
+MorphExtension >> veryDeepFixupWith: deepCopier [ 
 	"If target and arguments fields were weakly copied, fix them here.
 	If they were in the tree being copied, fix them up, otherwise point to the originals!!"
 
@@ -532,11 +399,8 @@ MorphExtension>>veryDeepFixupWith: deepCopier  [
 
 ]
 
-{
-	#category : #connectors-copying,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>veryDeepInner: deepCopier  [
+{ #category : #connectors-copying }
+MorphExtension >> veryDeepInner: deepCopier [ 
 	"Copy all of my instance variables.
 	Some otherProperties need to be not copied at all, but shared. Their names are given by copyWeakly.
 	Some otherProperties should not be copied or shared. Their names are given by propertyNamesNotCopied.
@@ -576,19 +440,13 @@ MorphExtension>>veryDeepInner: deepCopier  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>visible [
+{ #category : #accessing }
+MorphExtension >> visible [
 	"answer whether the receiver is visible"
 	^ visible
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphExtension>>visible: newValue [
+{ #category : #accessing }
+MorphExtension >> visible: newValue [
 	visible := newValue
 ]

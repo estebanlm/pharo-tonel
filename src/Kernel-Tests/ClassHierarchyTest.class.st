@@ -4,15 +4,11 @@ SUnit tests for the class hierarchy
 Class {
 	#name : #ClassHierarchyTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Classes,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:31'
+	#category : #Kernel-Tests-Classes
 }
 
-{
-	#category : #fixing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassHierarchyTest class>>fixSlotScope [
+{ #category : #fixing }
+ClassHierarchyTest class >> fixSlotScope [
 	"postscript for issue 11596"
 	
 	| ivName all candidates toRebuild |
@@ -28,11 +24,8 @@ ClassHierarchyTest class>>fixSlotScope [
           ifFalse: [ Smalltalk at: e name ]) removeInstVarNamed: ivName ]
 ]
 
-{
-	#category : #fixing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassHierarchyTest class>>fixSubclasses [
+{ #category : #fixing }
+ClassHierarchyTest class >> fixSubclasses [
 	"Fix all the missing subclasses"
 	"ClassHierarchyTest fixSubclasses "
 	SystemNavigation new allClassesDo: [ :cls|
@@ -40,11 +33,8 @@ ClassHierarchyTest class>>fixSubclasses [
 			ifFalse: [ cls superclass addSubclass: cls ]]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassHierarchyTest>>testObjectFormatInstSize [
+{ #category : #tests }
+ClassHierarchyTest >> testObjectFormatInstSize [
 	| classes |
 	"check that #instSize is in sync with #allInstVarNames"
 	self assert:
@@ -57,11 +47,8 @@ ClassHierarchyTest>>testObjectFormatInstSize [
 	self assert: (classes allSatisfy: [ :each | each instVarNames isEmpty or: [ each isVariable not ] ])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassHierarchyTest>>testSubclassInstVar [
+{ #category : #tests }
+ClassHierarchyTest >> testSubclassInstVar [
 	| subclasses |
 	SystemNavigation new allClassesDo: [ :cls|
 		subclasses := cls subclasses.
@@ -73,11 +60,8 @@ ClassHierarchyTest>>testSubclassInstVar [
 			cls addSubclass: subclass."]]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassHierarchyTest>>testSubclasses [
+{ #category : #tests }
+ClassHierarchyTest >> testSubclasses [
 	" self class fixSubclasses "
 
 	SystemNavigation new

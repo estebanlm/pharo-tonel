@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #LocaleAnnouncementTests,
 	#superclass : #TestCase,
@@ -8,43 +5,30 @@ Class {
 		'saveCurrent',
 		'catchedAnnouncement'
 	],
-	#category : #System-Localization-Tests,
-	#timestamp : ''
+	#category : #System-Localization-Tests
 }
 
-{
-	#category : #'private accessing',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleAnnouncementTests>>frenchLocale [
+{ #category : #'private accessing' }
+LocaleAnnouncementTests >> frenchLocale [
 	^ Locale isoLanguage: 'fr'
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleAnnouncementTests>>localeWasChanged: anAnnouncement [
+{ #category : #events }
+LocaleAnnouncementTests >> localeWasChanged: anAnnouncement [
 
 	catchedAnnouncement := anAnnouncement 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleAnnouncementTests>>setUp [
+{ #category : #running }
+LocaleAnnouncementTests >> setUp [
 
 	super setUp.
 	saveCurrent := Locale current.
 	Locale localeAnnouncer when: LocaleChanged send: #localeWasChanged: to: self
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LocaleAnnouncementTests>>tearDown [
+{ #category : #running }
+LocaleAnnouncementTests >> tearDown [
 
 	Locale localeAnnouncer unsubscribe: self.
 	Locale classVarNamed: 'Current' put: saveCurrent.

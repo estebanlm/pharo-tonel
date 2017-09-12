@@ -7,24 +7,17 @@ Class {
 	#instVars : [
 		'serializer'
 	],
-	#category : #Ombu-Persistence,
-	#timestamp : 'MartinDias 12/12/2014 16:11'
+	#category : #Ombu-Persistence
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFuelEntryWriter>>initialize [
+{ #category : #initialization }
+OmFuelEntryWriter >> initialize [
 	super initialize.
 	serializer := FLSerializer new
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFuelEntryWriter>>on: aStream nextEntryPut: anEntry  [
+{ #category : #writing }
+OmFuelEntryWriter >> on: aStream nextEntryPut: anEntry [ 
 
 	serializer
 		serialize: anEntry 

@@ -9,92 +9,61 @@ Class {
 		'reference',
 		'method'
 	],
-	#category : #JenkinsTools-ExtraReports,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:32'
+	#category : #JenkinsTools-ExtraReports
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestCoverage class>>on: aMethodReference [
+{ #category : #'instance creation' }
+HDTestCoverage class >> on: aMethodReference [
 	^ self new initializeOn: aMethodReference
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestCoverage>>doesNotUnderstand: aMessage [
+{ #category : #private }
+HDTestCoverage >> doesNotUnderstand: aMessage [
 	^ method perform: aMessage selector withArguments: aMessage arguments
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestCoverage>>hasRun [
+{ #category : #testing }
+HDTestCoverage >> hasRun [
 	^ hasRun
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestCoverage>>initializeOn: aMethodReference [
+{ #category : #initialization }
+HDTestCoverage >> initializeOn: aMethodReference [
 	hasRun := false.
 	reference := aMethodReference.
 	method := reference compiledMethod
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestCoverage>>install [
+{ #category : #actions }
+HDTestCoverage >> install [
 	reference actualClass methodDict
 		at: reference selector
 		put: self.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestCoverage>>mark [
+{ #category : #private }
+HDTestCoverage >> mark [
 	hasRun := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestCoverage>>method [
+{ #category : #accessing }
+HDTestCoverage >> method [
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestCoverage>>reference [
+{ #category : #accessing }
+HDTestCoverage >> reference [
 	^ reference
 ]
 
-{
-	#category : #evaluation,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestCoverage>>run: aSelector with: anArray in: aReceiver [
+{ #category : #evaluation }
+HDTestCoverage >> run: aSelector with: anArray in: aReceiver [
 	self mark; uninstall.
 	^ aReceiver withArgs: anArray executeMethod: method
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestCoverage>>uninstall [
+{ #category : #actions }
+HDTestCoverage >> uninstall [
 	reference actualClass methodDict
 		at: reference selector
 		put: method.

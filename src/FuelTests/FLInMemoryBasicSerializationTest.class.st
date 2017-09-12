@@ -7,60 +7,41 @@ Class {
 	#instVars : [
 		'byteArray'
 	],
-	#category : #FuelTests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:25'
+	#category : #FuelTests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLInMemoryBasicSerializationTest class>>shouldInheritSelectors  [
+{ #category : #testing }
+FLInMemoryBasicSerializationTest class >> shouldInheritSelectors [ 
 	^ true
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLInMemoryBasicSerializationTest>>materialization [
+{ #category : #running }
+FLInMemoryBasicSerializationTest >> materialization [
 
 	self error: 'Disabled, instead use #materialized.'
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLInMemoryBasicSerializationTest>>materialized [
+{ #category : #running }
+FLInMemoryBasicSerializationTest >> materialized [
 
 	^ FLMaterializer materializeFromByteArray: byteArray.
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLInMemoryBasicSerializationTest>>serialize: anObject [
+{ #category : #running }
+FLInMemoryBasicSerializationTest >> serialize: anObject [
 
 	byteArray := FLSerializer serializeToByteArray: anObject
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLInMemoryBasicSerializationTest>>testConsiderCustomGlobal [
+{ #category : #tests }
+FLInMemoryBasicSerializationTest >> testConsiderCustomGlobal [
 	"Since FLSerializer class >> serializeToByteArray: does not allow customizing serialization, this test is disabled."
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLInMemoryBasicSerializationTest>>testStringGlobalsAndClosure [
+{ #category : #tests }
+FLInMemoryBasicSerializationTest >> testStringGlobalsAndClosure [
 
 	| materialized |
 	materialized := self resultOfSerializeAndMaterialize:  (Array 

@@ -1,25 +1,15 @@
-"
-
-"
 Class {
 	#name : #OrderedIdentityDictionaryTest,
 	#superclass : #OrderedDictionaryTest,
-	#category : #Collections-Tests-Sequenceable,
-	#timestamp : ''
+	#category : #Collections-Tests-Sequenceable
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedIdentityDictionaryTest>>dictionaryClass [
+{ #category : #accessing }
+OrderedIdentityDictionaryTest >> dictionaryClass [
 	^ OrderedIdentityDictionary
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedIdentityDictionaryTest>>isTestingIdentityDictionary [
+{ #category : #testing }
+OrderedIdentityDictionaryTest >> isTestingIdentityDictionary [
 	^ true
 ]

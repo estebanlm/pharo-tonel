@@ -10,64 +10,42 @@ Class {
 		'blockcounter',
 		'compilationContext'
 	],
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>analyze: aNode [
+{ #category : #api }
+OCASTSemanticAnalyzer >> analyze: aNode [
 	self visitNode: aNode.
 	OCASTClosureAnalyzer new visitNode: aNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>blockcounter [
+{ #category : #accessing }
+OCASTSemanticAnalyzer >> blockcounter [
 	^blockcounter ifNil: [0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>compilationContext [
+{ #category : #accessing }
+OCASTSemanticAnalyzer >> compilationContext [
 	^ compilationContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>compilationContext: aCompilationContext [
+{ #category : #accessing }
+OCASTSemanticAnalyzer >> compilationContext: aCompilationContext [
 	compilationContext := aCompilationContext
 ]
 
-{
-	#category : #variables,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>declareArgumentNode: aVariableNode [
+{ #category : #variables }
+OCASTSemanticAnalyzer >> declareArgumentNode: aVariableNode [
 	^self declareVariableNode: aVariableNode as: OCArgumentVariable new
 ]
 
-{
-	#category : #variables,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>declareVariableNode: aVariableNode [
+{ #category : #variables }
+OCASTSemanticAnalyzer >> declareVariableNode: aVariableNode [
 	^self declareVariableNode: aVariableNode as: OCTempVariable new
 ]
 
-{
-	#category : #variables,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>declareVariableNode: aVariableNode as: anOCTempVariable [
+{ #category : #variables }
+OCASTSemanticAnalyzer >> declareVariableNode: aVariableNode as: anOCTempVariable [
 	| name var |
 	name := aVariableNode name.
 	var := scope lookupVarForDeclaration: name.
@@ -86,11 +64,8 @@ OCASTSemanticAnalyzer>>declareVariableNode: aVariableNode as: anOCTempVariable [
 	^ var
 ]
 
-{
-	#category : #variables,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>lookupVariableForRead: aVariableNode [
+{ #category : #variables }
+OCASTSemanticAnalyzer >> lookupVariableForRead: aVariableNode [
 
 	| var |
 	var := scope lookupVar: aVariableNode name.
@@ -100,11 +75,8 @@ OCASTSemanticAnalyzer>>lookupVariableForRead: aVariableNode [
 	^var
 ]
 
-{
-	#category : #variables,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>lookupVariableForWrite: aVariableNode [
+{ #category : #variables }
+OCASTSemanticAnalyzer >> lookupVariableForWrite: aVariableNode [
 
 	| var |
 	
@@ -120,19 +92,13 @@ OCASTSemanticAnalyzer>>lookupVariableForWrite: aVariableNode [
 	^var
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>scope: aSemScope [
+{ #category : #initialize-release }
+OCASTSemanticAnalyzer >> scope: aSemScope [
 	scope := aSemScope
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>storeIntoReadOnlyVariable: variableNode [
+{ #category : #'error handling' }
+OCASTSemanticAnalyzer >> storeIntoReadOnlyVariable: variableNode [
 	compilationContext forSyntaxHighlighting
 		ifTrue: [ ^ self ].
 		
@@ -143,11 +109,8 @@ OCASTSemanticAnalyzer>>storeIntoReadOnlyVariable: variableNode [
 		signal
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>storeIntoSpecialVariable: variableNode [
+{ #category : #'error handling' }
+OCASTSemanticAnalyzer >> storeIntoSpecialVariable: variableNode [
 	compilationContext forSyntaxHighlighting
 		ifTrue: [ ^ self ].
 	^ OCStoreIntoSpecialVariableError new
@@ -157,11 +120,8 @@ OCASTSemanticAnalyzer>>storeIntoSpecialVariable: variableNode [
 		signal
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>undeclaredVariable: variableNode [
+{ #category : #'error handling' }
+OCASTSemanticAnalyzer >> undeclaredVariable: variableNode [
 	compilationContext forSyntaxHighlighting 
 		ifTrue: [ ^OCUndeclaredVariable new name: variableNode name ].
 	^ OCUndeclaredVariableWarning new
@@ -170,29 +130,20 @@ OCASTSemanticAnalyzer>>undeclaredVariable: variableNode [
 		signal
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>uninitializedVariable: variableNode [
+{ #category : #'error handling' }
+OCASTSemanticAnalyzer >> uninitializedVariable: variableNode [
 	variableNode binding markRead.
 	variableNode propertyAt: #semanticWarning put: #unitialized.
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>unusedVariable: variableNode [
+{ #category : #'error handling' }
+OCASTSemanticAnalyzer >> unusedVariable: variableNode [
 
 	variableNode propertyAt: #semanticWarning put: 'unused variable'
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>variable: variableNode shadows: semVar [
+{ #category : #'error handling' }
+OCASTSemanticAnalyzer >> variable: variableNode shadows: semVar [
 
 	^ OCShadowVariableWarning new
 		node: variableNode;
@@ -201,11 +152,8 @@ OCASTSemanticAnalyzer>>variable: variableNode shadows: semVar [
 		signal
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>visitAssignmentNode: anAssignmentNode [
+{ #category : #visitor }
+OCASTSemanticAnalyzer >> visitAssignmentNode: anAssignmentNode [
 	| var |
 	self visitNode: anAssignmentNode value.
 	var := (self lookupVariableForWrite: anAssignmentNode variable)
@@ -216,11 +164,8 @@ OCASTSemanticAnalyzer>>visitAssignmentNode: anAssignmentNode [
 	anAssignmentNode variable binding: var
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>visitBlockNode: aBlockNode [
+{ #category : #visitor }
+OCASTSemanticAnalyzer >> visitBlockNode: aBlockNode [
 	blockcounter := self blockcounter + 1.
 
 	aBlockNode isInlined ifTrue: [^ self visitInlinedBlockNode: aBlockNode ].	
@@ -232,11 +177,8 @@ OCASTSemanticAnalyzer>>visitBlockNode: aBlockNode [
 	scope := scope popScope.
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>visitInlinedBlockNode: aBlockNode [
+{ #category : #visitor }
+OCASTSemanticAnalyzer >> visitInlinedBlockNode: aBlockNode [
 	scope := scope newOptimizedBlockScope: blockcounter.
 	aBlockNode isInlinedLoop ifTrue: [scope markInlinedLoop]. 
 	aBlockNode scope: scope. scope node: aBlockNode.
@@ -245,11 +187,8 @@ OCASTSemanticAnalyzer>>visitInlinedBlockNode: aBlockNode [
 	scope := scope popScope.
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>visitMethodNode: aMethodNode [
+{ #category : #visitor }
+OCASTSemanticAnalyzer >> visitMethodNode: aMethodNode [
 
 	scope := compilationContext scope newMethodScope. 
 	aMethodNode scope: scope.  scope node: aMethodNode.
@@ -260,21 +199,15 @@ OCASTSemanticAnalyzer>>visitMethodNode: aMethodNode [
 
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>visitPragmaNode: aPragmaNode [
+{ #category : #visitor }
+OCASTSemanticAnalyzer >> visitPragmaNode: aPragmaNode [
 	super visitPragmaNode: aPragmaNode.
 	(aPragmaNode selector = #compilerOptions:)
 		ifTrue: [ aPragmaNode asPragma sendTo: aPragmaNode methodNode compilationContext ].
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>visitSequenceNode: aSequenceNode [
+{ #category : #visitor }
+OCASTSemanticAnalyzer >> visitSequenceNode: aSequenceNode [
 	
 	aSequenceNode temporaries do: [ :node | self declareVariableNode: node ].
 	aSequenceNode parent isMethod
@@ -290,11 +223,8 @@ OCASTSemanticAnalyzer>>visitSequenceNode: aSequenceNode [
 				ifTrue: [ self unusedVariable: node ] ]
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCASTSemanticAnalyzer>>visitVariableNode: aVariableNode [
+{ #category : #visitor }
+OCASTSemanticAnalyzer >> visitVariableNode: aVariableNode [
 	| var |
 	var := (self lookupVariableForRead: aVariableNode) ifNil: [(self undeclaredVariable: aVariableNode)].
 	(var isTemp and: [var isEscaping and: [scope outerScope isInsideOptimizedLoop]])

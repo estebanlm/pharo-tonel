@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMPortTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPortTest>>testPanePortTransmissionCallingReceiveIn [
+{ #category : #tests }
+GLMPortTest >> testPanePortTransmissionCallingReceiveIn [
 	| originPort destinationPort transmission |
 	originPort := GLMTestPane new port: #originPort.
 	destinationPort := GLMTestPane new port: #destinationPort.
@@ -29,11 +22,8 @@ GLMPortTest>>testPanePortTransmissionCallingReceiveIn [
 	self assert: destinationPort value equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPortTest>>testPortEquality [
+{ #category : #tests }
+GLMPortTest >> testPortEquality [
 	| presentation port |
 	presentation := GLMPresentation new.
 	port := (GLMPresentationBoundPort new)
@@ -45,11 +35,8 @@ GLMPortTest>>testPortEquality [
 	self assert: (presentation pane port: #port) hash equals: port hash
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPortTest>>testPortInitializationDoesNotAffectTransmissionPort [
+{ #category : #tests }
+GLMPortTest >> testPortInitializationDoesNotAffectTransmissionPort [
 	| browser count |
 	count := 0.
 	browser := GLMTabulator new.
@@ -73,11 +60,8 @@ GLMPortTest>>testPortInitializationDoesNotAffectTransmissionPort [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPortTest>>testPortInitializationFromTransmission [
+{ #category : #tests }
+GLMPortTest >> testPortInitializationFromTransmission [
 	| browser |
 	browser := GLMTabulator new.
 	browser
@@ -103,11 +87,8 @@ GLMPortTest>>testPortInitializationFromTransmission [
 	self assert: (browser panes first port: #selectionInterval) value equals: (2 to: 3).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPortTest>>testPresentationBoundPort [
+{ #category : #tests }
+GLMPortTest >> testPresentationBoundPort [
 	| presentation port |
 	presentation := GLMPresentation new.
 	port := (GLMPresentationBoundPort new)
@@ -119,11 +100,8 @@ GLMPortTest>>testPresentationBoundPort [
 	self assert: port value equals: 43
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPortTest>>testResetValue [
+{ #category : #tests }
+GLMPortTest >> testResetValue [
 	| port |
 	port := GLMTestPane new port: #port1.
 	port value: 42.
@@ -132,11 +110,8 @@ GLMPortTest>>testResetValue [
 	self assert: port value isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPortTest>>testSimplePort [
+{ #category : #tests }
+GLMPortTest >> testSimplePort [
 	| port |
 	port := GLMSimplePort new.
 	port name: #foo.
@@ -146,11 +121,8 @@ GLMPortTest>>testSimplePort [
 	self assert: port hasPane not
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPortTest>>testTransientValue [
+{ #category : #tests }
+GLMPortTest >> testTransientValue [
 	| port pane browser |
 	browser := GLMTabulator new.
 	browser

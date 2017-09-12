@@ -1,12 +1,7 @@
-Extension {
-	#name : #ParagraphSelectionBlock
-}
+Extension { #name : #ParagraphSelectionBlock }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-ParagraphSelectionBlock>>displayInLine: line onAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+ParagraphSelectionBlock >> displayInLine: line onAthensCanvas: anAthensCanvas [
 	"Display myself in the passed line."
 
 	| startIdx stopIdx leftX rightX |

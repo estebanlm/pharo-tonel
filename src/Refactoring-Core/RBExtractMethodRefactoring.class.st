@@ -17,26 +17,19 @@ Class {
 		'parameters',
 		'needsReturn'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 14:23'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring class>>extract: anInterval from: aSelector in: aClass  [
+{ #category : #'instance creation' }
+RBExtractMethodRefactoring class >> extract: anInterval from: aSelector in: aClass [ 
 	^self new
 		extract: anInterval
 		from: aSelector
 		in: aClass
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring class>>model: aRBSmalltalk extract: anInterval from: aSelector in: aClass  [
+{ #category : #'instance creation' }
+RBExtractMethodRefactoring class >> model: aRBSmalltalk extract: anInterval from: aSelector in: aClass [ 
 	^(self new)
 		model: aRBSmalltalk;
 		extract: anInterval
@@ -45,11 +38,8 @@ RBExtractMethodRefactoring class>>model: aRBSmalltalk extract: anInterval from: 
 		yourself
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>checkAssignments: variableNames  [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> checkAssignments: variableNames [ 
 	| node outsideVars removeAssigned |
 	removeAssigned := variableNames copy.
 	node := self placeholderNode.
@@ -70,11 +60,8 @@ RBExtractMethodRefactoring>>checkAssignments: variableNames  [
 	self createTemporariesInExtractedMethodFor: variableNames
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>checkReturn [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> checkReturn [
 	needsReturn := self placeholderNode isUsed.
 	extractedParseTree containsReturn ifFalse: [^self].
 	extractedParseTree lastIsReturn ifTrue: [^self].
@@ -84,11 +71,8 @@ RBExtractMethodRefactoring>>checkReturn [
 	self checkSelfReturns
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>checkSelfReturns [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> checkSelfReturns [
 	| searcher |
 	searcher := RBParseTreeSearcher new.
 	searcher
@@ -98,11 +82,8 @@ RBExtractMethodRefactoring>>checkSelfReturns [
 		ifTrue: [self placeholderNode asReturn]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>checkSingleAssignment: varName  [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> checkSingleAssignment: varName [ 
 	((RBReadBeforeWrittenTester isVariable: varName
 		readBeforeWrittenIn: extractedParseTree) 
 			or: [extractedParseTree containsReturn]) 
@@ -117,11 +98,8 @@ RBExtractMethodRefactoring>>checkSingleAssignment: varName  [
 				in: modifiedParseTree
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>checkSpecialExtractions [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> checkSpecialExtractions [
 	| node |
 	node := self placeholderNode parent.
 	node isNil ifTrue: [^self].
@@ -131,11 +109,8 @@ RBExtractMethodRefactoring>>checkSpecialExtractions [
 			[self refactoringError: 'Cannot extract first message of a cascaded message']
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>checkTemporaries [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> checkTemporaries [
 	| temps accesses assigned |
 	temps := self remainingTemporaries.
 	accesses := temps select: [:each | extractedParseTree references: each].
@@ -146,40 +121,28 @@ RBExtractMethodRefactoring>>checkTemporaries [
 				yourself
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>createTemporariesInExtractedMethodFor: assigned  [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> createTemporariesInExtractedMethodFor: assigned [ 
 	assigned do: [:each | extractedParseTree body addTemporaryNamed: each]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>existingSelector [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> existingSelector [
 	"Try to find an existing method instead of creating a new one"
 
 	^class allSelectors detect: [:each | self isMethodEquivalentTo: each]
 		ifNone: [nil]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>extract: anInterval from: aSelector in: aClass  [
+{ #category : #initialize-release }
+RBExtractMethodRefactoring >> extract: anInterval from: aSelector in: aClass [ 
 	class := self classObjectFor: aClass.
 	selector := aSelector.
 	extractionInterval := anInterval
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>extractMethod [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> extractMethod [
 	| parseTree isSequence extractCode subtree newCode errorMessage |
 	extractCode := self getExtractedSource.
 	extractedParseTree := RBParser parseExpression: extractCode
@@ -247,11 +210,8 @@ RBExtractMethodRefactoring>>extractMethod [
 						onInterval: extractionInterval]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>getExtractedSource [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> getExtractedSource [
 	| source |
 	source := class sourceCodeFor: selector.
 	((extractionInterval first between: 1 and: source size) 
@@ -260,11 +220,8 @@ RBExtractMethodRefactoring>>getExtractedSource [
 	^source copyFrom: extractionInterval first to: extractionInterval last
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>getNewMethodName [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> getNewMethodName [
 	| newSelector methodName newMethodName |
 	methodName := RBMethodName new.
 	methodName arguments: parameters.
@@ -286,11 +243,8 @@ RBExtractMethodRefactoring>>getNewMethodName [
 	^newSelector asSymbol
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>isMethodEquivalentTo: aSelector  [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> isMethodEquivalentTo: aSelector [ 
 	selector == aSelector ifTrue: [^false].
 	aSelector numArgs ~~ parameters size ifTrue: [^false].
 	(self isParseTreeEquivalentTo: aSelector) ifFalse: [^false].
@@ -298,11 +252,8 @@ RBExtractMethodRefactoring>>isMethodEquivalentTo: aSelector  [
 	^true
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>isParseTreeEquivalentTo: aSelector  [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> isParseTreeEquivalentTo: aSelector [ 
 	| tree definingClass |
 	definingClass := class whoDefinesMethod: aSelector.
 	tree := definingClass parseTreeFor: aSelector.
@@ -321,19 +272,13 @@ RBExtractMethodRefactoring>>isParseTreeEquivalentTo: aSelector  [
 	^self shouldUseExistingMethod: aSelector
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>methodDelimiter [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> methodDelimiter [
 	^'#''place.holder.for.method'''
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>nameNewMethod: aSymbol [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> nameNewMethod: aSymbol [
 	| args newSend |
 	args := parameters collect: [ :parm | RBVariableNode named: parm ].
 	extractedParseTree renameSelector: aSymbol andArguments: args asArray.
@@ -354,11 +299,8 @@ RBExtractMethodRefactoring>>nameNewMethod: aSymbol [
 	modifiedParseTree := RBParseTreeRewriter replace: self methodDelimiter with: newSend in: modifiedParseTree
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>placeholderNode [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> placeholderNode [
 	| node |
 	node := RBParseTreeSearcher treeMatching: self methodDelimiter
 				in: modifiedParseTree.
@@ -366,11 +308,8 @@ RBExtractMethodRefactoring>>placeholderNode [
 	^node
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>preconditions [
+{ #category : #preconditions }
+RBExtractMethodRefactoring >> preconditions [
 	^(RBCondition definesSelector: selector in: class) 
 		& (RBCondition withBlock: 
 					[self extractMethod.
@@ -381,11 +320,8 @@ RBExtractMethodRefactoring>>preconditions [
 					true])
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>remainingTemporaries [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> remainingTemporaries [
 	| temps |
 	temps := modifiedParseTree allDefinedVariables asSet.
 	extractedParseTree allDefinedVariables 
@@ -393,11 +329,8 @@ RBExtractMethodRefactoring>>remainingTemporaries [
 	^temps
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>reorderParametersToMatch: aSelector  [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> reorderParametersToMatch: aSelector [ 
 	| tree dictionary |
 	tree := class parseTreeFor: aSelector.
 	dictionary := Dictionary new.
@@ -410,11 +343,8 @@ RBExtractMethodRefactoring>>reorderParametersToMatch: aSelector  [
 								refactoringFailure: 'An internal error occured, please report this error.']]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBExtractMethodRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream nextPutAll: ' extract: '.
@@ -427,11 +357,8 @@ RBExtractMethodRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodRefactoring>>transform [
+{ #category : #transforming }
+RBExtractMethodRefactoring >> transform [
 	| existingSelector |
 	existingSelector := self existingSelector.
 	self nameNewMethod: (existingSelector isNil 

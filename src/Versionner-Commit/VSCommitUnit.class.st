@@ -31,71 +31,49 @@ Class {
 		'projectActions',
 		'packageActions'
 	],
-	#category : #Versionner-Commit,
-	#timestamp : 'EstebanLorenzano 4/27/2015 19:42'
+	#category : #Versionner-Commit
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit class>>configurationClass: aConfigurationClass version: aVersion [
+{ #category : #'instance creation' }
+VSCommitUnit class >> configurationClass: aConfigurationClass version: aVersion [
 	^ self basicNew 
 		initializeConfigurationClass: aConfigurationClass version: aVersion;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit class>>major: aClass [
+{ #category : #'instance creation' }
+VSCommitUnit class >> major: aClass [
 	^ self 
 		configurationClass: aClass 
 		version: VSCommitVersion major
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit class>>minor: aClass [
+{ #category : #'instance creation' }
+VSCommitUnit class >> minor: aClass [
 	^ self 
 		configurationClass: aClass 
 		version: VSCommitVersion minor
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit class>>new [
+{ #category : #'instance creation' }
+VSCommitUnit class >> new [
 	self error: 'Use #configurationClass:'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit class>>patch: aClass [
+{ #category : #'instance creation' }
+VSCommitUnit class >> patch: aClass [
 	^ self 
 		configurationClass: aClass 
 		version: VSCommitVersion patch
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>allActions [
+{ #category : #accessing }
+VSCommitUnit >> allActions [
 	^ self projectActions reversed, self packageActions
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>collectCommitActions [
+{ #category : #private }
+VSCommitUnit >> collectCommitActions [
 	| developmentVersion project collector |
 	
 	(VSCommitProjectValidator basename: (self configurationClass name configurationBaseName)) validate.
@@ -114,60 +92,39 @@ VSCommitUnit>>collectCommitActions [
 	packageActions := collector packages collect: #asCommitAction as: Array
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>comment [
+{ #category : #accessing }
+VSCommitUnit >> comment [
 	^ comment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>comment: anObject [
+{ #category : #accessing }
+VSCommitUnit >> comment: anObject [
 	comment := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>commitStrategy [
+{ #category : #accessing }
+VSCommitUnit >> commitStrategy [
 	^ commitStrategy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>commitStrategy: aStrategy [
+{ #category : #accessing }
+VSCommitUnit >> commitStrategy: aStrategy [
 	commitStrategy := aStrategy.
 	self refresh
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>commitVersion [
+{ #category : #accessing }
+VSCommitUnit >> commitVersion [
 	^ commitVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>configurationClass [
+{ #category : #accessing }
+VSCommitUnit >> configurationClass [
 	^ configurationClass
 ]
 
-{
-	#category : #executing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>execute [
+{ #category : #executing }
+VSCommitUnit >> execute [
 	self validate.
 	"First commit packages"
 	self packageActions do: [ :each | each executeOn: self ].
@@ -175,47 +132,32 @@ VSCommitUnit>>execute [
 	self projectActions do: [ :each | each executeOn: self ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>initialize  [
+{ #category : #initialization }
+VSCommitUnit >> initialize [ 
 	super initialize.
 	commitStrategy := VSCommitStrategy new.
 	self collectCommitActions
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>initializeConfigurationClass: aClass  version: aVersion [
+{ #category : #initialization }
+VSCommitUnit >> initializeConfigurationClass: aClass  version: aVersion [
 	configurationClass := aClass.
 	commitVersion := aVersion.
 	self initialize
 ]
 
-{
-	#category : #showing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>open [
+{ #category : #showing }
+VSCommitUnit >> open [
 	^ VSCommitBrowser openOn: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>packageActions [
+{ #category : #accessing }
+VSCommitUnit >> packageActions [
 	^ packageActions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>project [
+{ #category : #accessing }
+VSCommitUnit >> project [
 	^ (self projectActions 
 		detect: [ :each | each project configurationClass = self configurationClass ]
 		ifNone: [ ^ nil ])
@@ -223,19 +165,13 @@ VSCommitUnit>>project [
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>projectActions [
+{ #category : #accessing }
+VSCommitUnit >> projectActions [
 	^ projectActions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>projectVersion [
+{ #category : #accessing }
+VSCommitUnit >> projectVersion [
 	| project workingCopy info |
 	project := self project ifNil: [ ^ nil ].
 	workingCopy := project workingCopy.
@@ -244,51 +180,33 @@ VSCommitUnit>>projectVersion [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>refresh [
+{ #category : #accessing }
+VSCommitUnit >> refresh [
 	self collectCommitActions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>removePackageAction: anAction  [
+{ #category : #accessing }
+VSCommitUnit >> removePackageAction: anAction [ 
 	packageActions := packageActions copyWithout: anAction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>removeProjectAction: anAction  [
+{ #category : #accessing }
+VSCommitUnit >> removeProjectAction: anAction [ 
 	projectActions := projectActions copyWithout: anAction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>repository [
+{ #category : #accessing }
+VSCommitUnit >> repository [
 	^ repository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>repository: anObject [
+{ #category : #accessing }
+VSCommitUnit >> repository: anObject [
 	repository := anObject
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitUnit>>validate [
+{ #category : #validation }
+VSCommitUnit >> validate [
 	self projectActions do: #validate.
 	self packageActions do: #validate.
 

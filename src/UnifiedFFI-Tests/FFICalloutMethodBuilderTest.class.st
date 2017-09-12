@@ -1,39 +1,26 @@
-"
-
-"
 Class {
 	#name : #FFICalloutMethodBuilderTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'architecture'
 	],
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTest>>builder  [
+{ #category : #factory }
+FFICalloutMethodBuilderTest >> builder [ 
 	^ (FFICalloutAPI inContext: nil) newBuilder
 		requestor: FFICalloutMethodBuilderTestRecuestor new;
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTest>>setUp [
+{ #category : #initialization }
+FFICalloutMethodBuilderTest >> setUp [
 	architecture := FFIArchitecture forCurrentArchitecture
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTest>>testAllAtomicTypesCall [
+{ #category : #tests }
+FFICalloutMethodBuilderTest >> testAllAtomicTypesCall [
 	| result |
 	
 	result := self builder build: [ :builder |	
@@ -67,11 +54,8 @@ FFICalloutMethodBuilderTest>>testAllAtomicTypesCall [
 		ExternalType ushort }
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTest>>testCallCreateObject [
+{ #category : #tests }
+FFICalloutMethodBuilderTest >> testCallCreateObject [
 	| result |
 	
 	result := self builder build: [ :builder |	
@@ -91,11 +75,8 @@ FFICalloutMethodBuilderTest>>testCallCreateObject [
 	self assert: result literals first argTypes first = ExternalType void asPointerType. 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTest>>testCallReturningEnumeration [
+{ #category : #tests }
+FFICalloutMethodBuilderTest >> testCallReturningEnumeration [
 	| result |
 	
 	result := self builder build: [ :builder |	
@@ -115,11 +96,8 @@ FFICalloutMethodBuilderTest>>testCallReturningEnumeration [
 	self assert: result literals first argTypes first = ExternalType ulong.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTest>>testCallSimple [
+{ #category : #tests }
+FFICalloutMethodBuilderTest >> testCallSimple [
 	| result |
 	
 	result := self builder build: [ :builder |	
@@ -138,11 +116,8 @@ FFICalloutMethodBuilderTest>>testCallSimple [
 	self assert: result literals first argTypes = { ExternalType void. ExternalType long }
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTest>>testCallWithConstant [
+{ #category : #tests }
+FFICalloutMethodBuilderTest >> testCallWithConstant [
 	| result |
 	
 	result := self builder build: [ :builder |	
@@ -160,11 +135,8 @@ FFICalloutMethodBuilderTest>>testCallWithConstant [
 	self assert: result literals first name = 'method1'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTest>>testCallWithObject [
+{ #category : #tests }
+FFICalloutMethodBuilderTest >> testCallWithObject [
 	| result |
 	
 	result := self builder build: [ :builder |	
@@ -184,11 +156,8 @@ FFICalloutMethodBuilderTest>>testCallWithObject [
 	self assert: result literals first argTypes last = ExternalType long asPointerType. 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTest>>testCallWithPointer [
+{ #category : #tests }
+FFICalloutMethodBuilderTest >> testCallWithPointer [
 	| result |
 	
 	result := self builder build: [ :builder |	
@@ -207,11 +176,8 @@ FFICalloutMethodBuilderTest>>testCallWithPointer [
 	self assert: result literals first argTypes last = ExternalType long asPointerType. 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTest>>testCallWithPointerPointer [
+{ #category : #tests }
+FFICalloutMethodBuilderTest >> testCallWithPointerPointer [
 	| result |
 	
 	result := self builder build: [ :builder |	
@@ -230,11 +196,8 @@ FFICalloutMethodBuilderTest>>testCallWithPointerPointer [
 	self assert: result literals first argTypes last = architecture externalLongType asPointerType. 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutMethodBuilderTest>>testCallWithSelf [
+{ #category : #tests }
+FFICalloutMethodBuilderTest >> testCallWithSelf [
 	| result |
 	
 	result := self builder build: [ :builder |	

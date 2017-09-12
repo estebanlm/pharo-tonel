@@ -20,15 +20,11 @@ Class {
 		'source',
 		'selector'
 	],
-	#category : #Refactoring-Core-Model,
-	#timestamp : 'NicolaiHess 5/18/2016 23:52'
+	#category : #Refactoring-Core-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod class>>for: aRBClass fromMethod: aCompiledMethod andSelector: aSymbol  [
+{ #category : #'instance creation' }
+RBMethod class >> for: aRBClass fromMethod: aCompiledMethod andSelector: aSymbol [ 
 	^(self new)
 		modelClass: aRBClass;
 		method: aCompiledMethod;
@@ -36,11 +32,8 @@ RBMethod class>>for: aRBClass fromMethod: aCompiledMethod andSelector: aSymbol  
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod class>>for: aRBClass source: aString selector: aSelector  [
+{ #category : #'instance creation' }
+RBMethod class >> for: aRBClass source: aString selector: aSelector [ 
 	^(self new)
 		modelClass: aRBClass;
 		selector: aSelector;
@@ -48,19 +41,13 @@ RBMethod class>>for: aRBClass source: aString selector: aSelector  [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>ast [
+{ #category : #accessing }
+RBMethod >> ast [
 	^ self parseTree
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>compileTree: aBRMethodNode [
+{ #category : #compiling }
+RBMethod >> compileTree: aBRMethodNode [
 	| method sourceCode change |
 	sourceCode := aBRMethodNode newSource.
 	change := self modelClass model
@@ -75,11 +62,8 @@ RBMethod>>compileTree: aBRMethodNode [
 	^ change
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>literal: anObject containsReferenceTo: aSymbol [
+{ #category : #private }
+RBMethod >> literal: anObject containsReferenceTo: aSymbol [
 	anObject = aSymbol
 		ifTrue: [ ^ true ].
 	anObject class = Array
@@ -87,70 +71,46 @@ RBMethod>>literal: anObject containsReferenceTo: aSymbol [
 	^ anObject anySatisfy: [ :each | self literal: each containsReferenceTo: aSymbol ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>method [
+{ #category : #accessing }
+RBMethod >> method [
 	^compiledMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>method: aCompiledMethod  [
+{ #category : #accessing }
+RBMethod >> method: aCompiledMethod [ 
 	compiledMethod := aCompiledMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>modelClass [
+{ #category : #accessing }
+RBMethod >> modelClass [
 	^class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>modelClass: aRBClass [
+{ #category : #accessing }
+RBMethod >> modelClass: aRBClass [
 	class := aRBClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>parseTree [
+{ #category : #accessing }
+RBMethod >> parseTree [
 	^RBParser parseMethod: self source onError: [:str :pos | ^nil]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>printOn: aStream  [
+{ #category : #printing }
+RBMethod >> printOn: aStream [ 
 	class printOn: aStream.
 	aStream
 		nextPutAll: '>>';
 		nextPutAll: self selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>protocols [
+{ #category : #accessing }
+RBMethod >> protocols [
 	^ self modelClass protocolsFor: self selector
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>refersToClassNamed: aSymbol  [
+{ #category : #testing }
+RBMethod >> refersToClassNamed: aSymbol [ 
 	| searcher |
 	searcher := RBParseTreeSearcher new.
 	searcher matches: aSymbol asString do: [:node :answer | true].
@@ -158,11 +118,8 @@ RBMethod>>refersToClassNamed: aSymbol  [
 		or: [self refersToSymbol: aSymbol]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>refersToSymbol: aSymbol  [
+{ #category : #testing }
+RBMethod >> refersToSymbol: aSymbol [ 
 	| searcher |
 	searcher := RBParseTreeSearcher new.
 	searcher
@@ -177,11 +134,8 @@ RBMethod>>refersToSymbol: aSymbol  [
 	^searcher executeTree: self parseTree initialAnswer: false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>refersToVariable: aString  [
+{ #category : #testing }
+RBMethod >> refersToVariable: aString [ 
 	| searcher tree |
 	tree := self parseTree.
 	((tree defines: aString) or: [tree body defines: aString]) 
@@ -198,34 +152,22 @@ RBMethod>>refersToVariable: aString  [
 	^searcher executeTree: self parseTree initialAnswer: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>selector [
+{ #category : #accessing }
+RBMethod >> selector [
 	^selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>selector: aSymbol  [
+{ #category : #accessing }
+RBMethod >> selector: aSymbol [ 
 	selector := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>source [
+{ #category : #accessing }
+RBMethod >> source [
 	^ source ifNil: [ source := (class realClass sourceCodeAt: selector) asString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBMethod>>source: aString  [
+{ #category : #accessing }
+RBMethod >> source: aString [ 
 	source := aString
 ]

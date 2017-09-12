@@ -4,26 +4,19 @@ I am the handle in the left top of windows used for resizing them.
 Class {
 	#name : #TopLeftGripMorph,
 	#superclass : #CornerGripMorph,
-	#category : #Morphic-Widgets-Windows-Resizing,
-	#timestamp : 'jmv 1/29/2006 17:18'
+	#category : #Morphic-Widgets-Windows-Resizing
 }
 
-{
-	#category : #'target resize',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TopLeftGripMorph>>apply: delta  [
+{ #category : #'target resize' }
+TopLeftGripMorph >> apply: delta [ 
 	| oldBounds |
 	oldBounds := target bounds.
 	target
 		bounds: (oldBounds origin + delta corner: oldBounds corner)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TopLeftGripMorph>>containsPoint: aPoint [
+{ #category : #testing }
+TopLeftGripMorph >> containsPoint: aPoint [
 	"Answer true only if on edges."
 	
 	|w|
@@ -33,11 +26,8 @@ TopLeftGripMorph>>containsPoint: aPoint [
 			containsPoint: aPoint) not]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TopLeftGripMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+TopLeftGripMorph >> drawOn: aCanvas [
 	"Draw the grip on the given canvas."
 
 	| dotBounds alphaCanvas windowBorderWidth dotBounds2 |
@@ -81,29 +71,20 @@ TopLeftGripMorph>>drawOn: aCanvas [
 		color: self dotColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TopLeftGripMorph>>gripLayoutFrame [
+{ #category : #accessing }
+TopLeftGripMorph >> gripLayoutFrame [
 	^ (0 @ 0 corner: 0 @ 0) asLayoutFrame 
 			topOffset: -27;
 		 	rightOffset: self defaultWidth
 ]
 
-{
-	#category : #'target resize',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TopLeftGripMorph>>ptName [
+{ #category : #'target resize' }
+TopLeftGripMorph >> ptName [
 	^#topLeft
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TopLeftGripMorph>>resizeCursor [
+{ #category : #accessing }
+TopLeftGripMorph >> resizeCursor [
 
 	^ Cursor resizeForEdge: #topLeft
 ]

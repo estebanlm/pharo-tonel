@@ -1,12 +1,7 @@
-Extension {
-	#name : #ClassDescription
-}
+Extension { #name : #ClassDescription }
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-ClassDescription>>findGlobalVariable: lookupBlock ifNone: notFoundBlock  [
+{ #category : #'*OpalCompiler-Core' }
+ClassDescription >> findGlobalVariable: lookupBlock ifNone: notFoundBlock [ 
 	| var |
 	var := OCLiteralVariable new.
 	var scope: self.

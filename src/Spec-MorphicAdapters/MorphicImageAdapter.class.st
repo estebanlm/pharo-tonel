@@ -4,15 +4,11 @@ I am the bridge between an ImageModel and a AlphaImageMorph
 Class {
 	#name : #MorphicImageAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicImageAdapter>>adapt: aComposableModel [
+{ #category : #initialization }
+MorphicImageAdapter >> adapt: aComposableModel [
 
 	super adapt: aComposableModel.
 	widget
@@ -21,11 +17,8 @@ MorphicImageAdapter>>adapt: aComposableModel [
 		to: self
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicImageAdapter>>buildWidget [
+{ #category : #factory }
+MorphicImageAdapter >> buildWidget [
 	| alphaImage |
 	alphaImage := AlphaImageMorph new.
 	alphaImage model: self.
@@ -43,29 +36,20 @@ MorphicImageAdapter>>buildWidget [
 	^ alphaImage
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicImageAdapter>>click [
+{ #category : #private }
+MorphicImageAdapter >> click [
 
 	^ self model action value
 ]
 
-{
-	#category : #'widget protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicImageAdapter>>getImage [
+{ #category : #'widget protocol' }
+MorphicImageAdapter >> getImage [
 
 	^ self model image
 ]
 
-{
-	#category : #'widget protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicImageAdapter>>switchAutoscale [
+{ #category : #'widget protocol' }
+MorphicImageAdapter >> switchAutoscale [
 	| layoutValue |
 	layoutValue := self model autoScale
 		ifTrue: [ #scaledAspect ]

@@ -16,15 +16,11 @@ Class {
 		'packageAnalysis',
 		'missingMethods'
 	],
-	#category : #Tool-DependencyAnalyser-Core,
-	#timestamp : 'ChristopheDemarey 6/29/2015 15:05'
+	#category : #Tool-DependencyAnalyser-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer class>>on: aPackageName [
+{ #category : #'instance creation' }
+DAMessageSendAnalyzer class >> on: aPackageName [
 	| packageAnalysis |
 	packageAnalysis := ((DAPackageRelationGraph onPackagesNamed: { aPackageName })
 				build;
@@ -35,32 +31,23 @@ DAMessageSendAnalyzer class>>on: aPackageName [
 		yourself
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer class>>packagesProvidingSelector: aSelector [
+{ #category : #utility }
+DAMessageSendAnalyzer class >> packagesProvidingSelector: aSelector [
 	^ aSelector implementors 
 		collect: [:each | each package name]
 		as: Set
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>implementedMessages [
+{ #category : #computing }
+DAMessageSendAnalyzer >> implementedMessages [
 	^ (self packageStaticDependencies 
 		add: self packageName;
 		yourself)
 		flatCollect: [ :name | (RPackageOrganizer default packageNamed: name) selectors ]
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>implementedMessagesWithManuallyResolvedDependencies [
+{ #category : #computing }
+DAMessageSendAnalyzer >> implementedMessagesWithManuallyResolvedDependencies [
 	^ (self manuallyResolvedDependencies 
 		flatCollect: [ :name | (RPackageOrganizer default packageNamed: name) selectors ]
 		as: Set)
@@ -68,53 +55,35 @@ DAMessageSendAnalyzer>>implementedMessagesWithManuallyResolvedDependencies [
 			yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>initializeWith: aDAPackage [
+{ #category : #initialization }
+DAMessageSendAnalyzer >> initializeWith: aDAPackage [
 	packageAnalysis := aDAPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>manuallyResolvedDependencies [
+{ #category : #accessing }
+DAMessageSendAnalyzer >> manuallyResolvedDependencies [
 	^ self rPackage manuallyResolvedDependencies 
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>missingDependencies [
+{ #category : #computing }
+DAMessageSendAnalyzer >> missingDependencies [
 	^ (self missingMethodsWithPotentialMatch
 		select: [ :each | each size = 1 ]) flattened asSet
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>missingMethods [
+{ #category : #accessing }
+DAMessageSendAnalyzer >> missingMethods [
 	^ self missingMethodsWithPotentialMatch keys
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>missingMethodsImplementedIn: aPackageName [
+{ #category : #computing }
+DAMessageSendAnalyzer >> missingMethodsImplementedIn: aPackageName [
 	^ (RPackageOrganizer default packageNamed: aPackageName) selectors
 		intersection: self missingMethods
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>missingMethodsWithPotentialMatch [
+{ #category : #computing }
+DAMessageSendAnalyzer >> missingMethodsWithPotentialMatch [
 	^ missingMethods ifNil: 
 		[ missingMethods := Dictionary new.
 		self unimplementedCalls do: [ :selector |
@@ -124,11 +93,8 @@ DAMessageSendAnalyzer>>missingMethodsWithPotentialMatch [
 		missingMethods ]
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>missingMethodsWithPotentialMatchAfterManuallyResolvedDependenciesAddition [
+{ #category : #computing }
+DAMessageSendAnalyzer >> missingMethodsWithPotentialMatchAfterManuallyResolvedDependenciesAddition [
 	| dictionary |
 	
 	dictionary := Dictionary new.
@@ -139,71 +105,47 @@ DAMessageSendAnalyzer>>missingMethodsWithPotentialMatchAfterManuallyResolvedDepe
 	^ dictionary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>packageName [
+{ #category : #accessing }
+DAMessageSendAnalyzer >> packageName [
 	^ packageAnalysis packageName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>packageStaticDependencies	 [
+{ #category : #accessing }
+DAMessageSendAnalyzer >> packageStaticDependencies [	
 	^ packageAnalysis dependencies 
 		collect: [:each | each target packageName ]
 		as: Set
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>packagesProvidingSelector: aSelector [
+{ #category : #computing }
+DAMessageSendAnalyzer >> packagesProvidingSelector: aSelector [
 	^ self class packagesProvidingSelector: aSelector
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>possibleDeadCode [
+{ #category : #computing }
+DAMessageSendAnalyzer >> possibleDeadCode [
 	^ self missingMethodsWithPotentialMatch
 		select: #isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>rPackage [
+{ #category : #accessing }
+DAMessageSendAnalyzer >> rPackage [
 	^ packageAnalysis rPackageSet packages detect: [ :each | each packageName = self packageName ]
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>sentMessages [
+{ #category : #computing }
+DAMessageSendAnalyzer >> sentMessages [
 	^ self rPackage methods 
 		flatCollect: #messages
 		as: Set
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>unimplementedCalls [
+{ #category : #computing }
+DAMessageSendAnalyzer >> unimplementedCalls [
 	^ self sentMessages difference: self implementedMessages
 ]
 
-{
-	#category : #computing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendAnalyzer>>unimplementedCallsInAllDependencies [
+{ #category : #computing }
+DAMessageSendAnalyzer >> unimplementedCallsInAllDependencies [
 	^ self sentMessages difference: self implementedMessagesWithManuallyResolvedDependencies
 ]

@@ -1,49 +1,30 @@
-"
-
-"
 Class {
 	#name : #HEByteString,
 	#superclass : #HEExportedLiteral,
-	#category : #Hermes-Model,
-	#timestamp : ''
+	#category : #Hermes-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEByteString class>>tag [
+{ #category : #accessing }
+HEByteString class >> tag [
 	^ 4.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEByteString>>asLiteralIn: env [
+{ #category : #converting }
+HEByteString >> asLiteralIn: env [
 	^ value
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEByteString>>doConvertValue: aValue [
+{ #category : #reading }
+HEByteString >> doConvertValue: aValue [
 	^ aValue.
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEByteString>>doReadFrom: aReader [
+{ #category : #reading }
+HEByteString >> doReadFrom: aReader [
 	value := self doConvertValue:(aReader readByteString).
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEByteString>>doWriteInto: aWriter [
+{ #category : #writing }
+HEByteString >> doWriteInto: aWriter [
 	aWriter writeByteString: value.
 ]

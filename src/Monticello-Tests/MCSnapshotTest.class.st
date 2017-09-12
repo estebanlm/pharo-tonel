@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #MCSnapshotTest,
 	#superclass : #MCTestCase,
 	#instVars : [
 		'snapshot'
 	],
-	#category : #Monticello-Tests,
-	#timestamp : ''
+	#category : #Monticello-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSnapshotTest>>setUp [
+{ #category : #running }
+MCSnapshotTest >> setUp [
 	snapshot :=  self mockSnapshot.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSnapshotTest>>testCreation [
+{ #category : #tests }
+MCSnapshotTest >> testCreation [
 	|d|
 	d :=  self mockSnapshot definitions.
 	self assert: (d anySatisfy: [:ea | ea isClassDefinition and: [ea className = #MCMockClassA]]).
@@ -32,11 +22,8 @@ MCSnapshotTest>>testCreation [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCSnapshotTest>>testInstanceReuse [
+{ #category : #tests }
+MCSnapshotTest >> testInstanceReuse [
 	| x m n y |
 	x := (MCPackage new name: self mockCategoryName) snapshot.
 	Smalltalk garbageCollect.

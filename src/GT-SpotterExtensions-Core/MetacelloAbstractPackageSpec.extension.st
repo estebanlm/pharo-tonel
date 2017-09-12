@@ -1,12 +1,7 @@
-Extension {
-	#name : #MetacelloAbstractPackageSpec
-}
+Extension { #name : #MetacelloAbstractPackageSpec }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MetacelloAbstractPackageSpec>>spotterForIncludesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MetacelloAbstractPackageSpec >> spotterForIncludesFor: aStep [
 	<spotterOrder: 1>
 	aStep listProcessor
 		title: 'Includes';
@@ -16,11 +11,8 @@ MetacelloAbstractPackageSpec>>spotterForIncludesFor: aStep [
 		wantsToDisplayOnEmptyQuery: true
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MetacelloAbstractPackageSpec>>spotterForRequiresFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MetacelloAbstractPackageSpec >> spotterForRequiresFor: aStep [
 	<spotterOrder: 2>
 	aStep listProcessor
 		title: 'Requires';

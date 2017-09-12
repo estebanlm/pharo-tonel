@@ -10,26 +10,19 @@ Class {
 		'target',
 		'checkpoints'
 	],
-	#category : #Hiedra-Rendering,
-	#timestamp : 'MartinDias 3/18/2016 21:16'
+	#category : #Hiedra-Rendering
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLink class>>linkBuilder: aLinkBuilder origin: aNode target: anotherNode [
+{ #category : #'instance creation' }
+HiLink class >> linkBuilder: aLinkBuilder origin: aNode target: anotherNode [
 
 	^ self basicNew
 		initializeLinkBuilder: aLinkBuilder origin: aNode target: anotherNode;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLink>>= other [
+{ #category : #comparing }
+HiLink >> = other [
 
 	^ self class = other class and: [
 		origin = other origin and: [ 
@@ -37,45 +30,30 @@ HiLink>>= other [
 		linkBuilder = other linkBuilder ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLink>>checkpoints [
+{ #category : #accessing }
+HiLink >> checkpoints [
 	^ checkpoints
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLink>>checkpoints: anObject [
+{ #category : #accessing }
+HiLink >> checkpoints: anObject [
 	checkpoints := anObject
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLink>>hash [
+{ #category : #comparing }
+HiLink >> hash [
 
 	^ origin hash bitXor: (target hash bitXor: linkBuilder hash)
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLink>>ifNode: nodeBlock ifLink: linkBlock [
+{ #category : #controlling }
+HiLink >> ifNode: nodeBlock ifLink: linkBlock [
 
 	^ linkBlock cull: self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLink>>initializeLinkBuilder: aLinkBuilder origin: aNode target: anotherNode [
+{ #category : #initialization }
+HiLink >> initializeLinkBuilder: aLinkBuilder origin: aNode target: anotherNode [
 
 	self initialize.
 	
@@ -84,11 +62,8 @@ HiLink>>initializeLinkBuilder: aLinkBuilder origin: aNode target: anotherNode [
 	target := anotherNode.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLink>>intermediateIndices [
+{ #category : #accessing }
+HiLink >> intermediateIndices [
 
 	| originRowIndex targetRowIndex |
 	originRowIndex := origin rowIndex.
@@ -99,36 +74,24 @@ HiLink>>intermediateIndices [
 		ifFalse: [ originRowIndex + 1 to: targetRowIndex - 1 ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLink>>isLink [
+{ #category : #testing }
+HiLink >> isLink [
 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLink>>linkBuilder [
+{ #category : #accessing }
+HiLink >> linkBuilder [
 	^ linkBuilder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLink>>origin [
+{ #category : #accessing }
+HiLink >> origin [
 	^ origin
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLink>>printOn: aStream [
+{ #category : #printing }
+HiLink >> printOn: aStream [
 
 	super printOn: aStream.
 	
@@ -140,10 +103,7 @@ HiLink>>printOn: aStream [
 		nextPut: $).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLink>>target [
+{ #category : #accessing }
+HiLink >> target [
 	^ target
 ]

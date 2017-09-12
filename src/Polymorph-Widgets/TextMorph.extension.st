@@ -1,12 +1,7 @@
-Extension {
-	#name : #TextMorph
-}
+Extension { #name : #TextMorph }
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextMorph>>optimalExtent [
+{ #category : #'*Polymorph-Widgets' }
+TextMorph >> optimalExtent [
 	"Create a new paragraph and answer its extent."
 	
 	^(Paragraph new
@@ -18,11 +13,8 @@ TextMorph>>optimalExtent [
 		extent) + (self borderWidth * 2) + (2@0) "FreeType kerning allowance"
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextMorph>>overrideExtent: newExtent [
+{ #category : #'*Polymorph-Widgets' }
+TextMorph >> overrideExtent: newExtent [
 	"If autoFit is on then override to false for the duration of the extent call."
 	
 	self isAutoFit
@@ -32,21 +24,15 @@ TextMorph>>overrideExtent: newExtent [
 				setProperty: #autoFitContents toValue: true]
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextMorph>>takesKeyboardFocus [
+{ #category : #'*Polymorph-Widgets' }
+TextMorph >> takesKeyboardFocus [
 	"Answer whether the receiver can normally take keyboard focus."
 
 	^true
 ]
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextMorph>>wantsKeyboardFocusNavigation [
+{ #category : #'*Polymorph-Widgets' }
+TextMorph >> wantsKeyboardFocusNavigation [
 	"Answer whether the receiver wants to be navigated to.
 	Answer false here (use PluggableTextMorph instead)."
 

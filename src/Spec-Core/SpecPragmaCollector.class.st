@@ -12,35 +12,25 @@ Class {
 	#classInstVars : [
 		'behavior'
 	],
-	#category : #Spec-Core-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecPragmaCollector class>>behavior: aBehavior [
+{ #category : #'instance creation' }
+SpecPragmaCollector class >> behavior: aBehavior [
 
 	^ self new
 		behavior: aBehavior;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecPragmaCollector>>allPragmas [
+{ #category : #private }
+SpecPragmaCollector >> allPragmas [
 
 	^ self allPragmasIn: (self behavior ifNil: [ ^ #() ])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecPragmaCollector>>allPragmasIn: aClass [
+{ #category : #private }
+SpecPragmaCollector >> allPragmasIn: aClass [
 
 	^ (Array
 		streamContents: [:stream | Pragma
@@ -48,35 +38,23 @@ SpecPragmaCollector>>allPragmasIn: aClass [
 									do: [:pragma | stream nextPut: pragma ]]) 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecPragmaCollector>>behavior [
+{ #category : #accessing }
+SpecPragmaCollector >> behavior [
 	^ behavior
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecPragmaCollector>>behavior: anObject [
+{ #category : #accessing }
+SpecPragmaCollector >> behavior: anObject [
 	behavior := anObject
 ]
 
-{
-	#category : #'system changes',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecPragmaCollector>>installSystemNotifications [
+{ #category : #'system changes' }
+SpecPragmaCollector >> installSystemNotifications [
 	"We do not need to register anything for spec, and if we do it will make it really slow"
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecPragmaCollector>>reset [
+{ #category : #initializing }
+SpecPragmaCollector >> reset [
 	"reinitialize current system settings"
 	self
 		noMoreAnnounceWhile: [self collected copy

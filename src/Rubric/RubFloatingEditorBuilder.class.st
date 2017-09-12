@@ -34,15 +34,11 @@ Class {
 		'customizeValuable',
 		'escapeBlock'
 	],
-	#category : #Rubric-Editing-Core-Support,
-	#timestamp : 'AlainPlantec 6/30/2015 12:55'
+	#category : #Rubric-Editing-Core-Support
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder class>>exampleCommandLauncher [
+{ #category : #example }
+RubFloatingEditorBuilder class >> exampleCommandLauncher [
 	<example>
  	^RubFloatingEditorBuilder new
 		acceptOnCR: false;
@@ -55,11 +51,8 @@ RubFloatingEditorBuilder class>>exampleCommandLauncher [
 		openEditorWithContents: 'self inspect'
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder class>>exampleEditableStringMorph [
+{ #category : #example }
+RubFloatingEditorBuilder class >> exampleEditableStringMorph [
 	<example>
 	| pane stringMorph edBuilder |
 	pane := Morph new.
@@ -97,44 +90,29 @@ RubFloatingEditorBuilder class>>exampleEditableStringMorph [
 		openInWorldExtent: (stringMorph extent translateBy:  30 @ 30)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>acceptOnCR: aBoolean [
+{ #category : #accessing }
+RubFloatingEditorBuilder >> acceptOnCR: aBoolean [
 	acceptOnCR := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>announcer [
+{ #category : #accessing }
+RubFloatingEditorBuilder >> announcer [
 	^ announcer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>announcerDo: aBlock [
+{ #category : #accessing }
+RubFloatingEditorBuilder >> announcerDo: aBlock [
 	announcer ifNil: [ ^ self ].
 	aBlock cull: announcer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>autoAccept: aBoolean [
+{ #category : #accessing }
+RubFloatingEditorBuilder >> autoAccept: aBoolean [
 	autoAccept := aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>buildEditor [
+{ #category : #private }
+RubFloatingEditorBuilder >> buildEditor [
 	editor := RubScrolledTextMorph new forbidMenu.
 	editor
 		autoAccept: autoAccept;
@@ -158,62 +136,41 @@ RubFloatingEditorBuilder>>buildEditor [
 	^ self customizedEditor
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>closeEditor [
+{ #category : #'announcement handling' }
+RubFloatingEditorBuilder >> closeEditor [
 	editor ifNil: [ ^ self ].
 	editor delete
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>customizeEditorWith: aBlock [
+{ #category : #accessing }
+RubFloatingEditorBuilder >> customizeEditorWith: aBlock [
 	customizeValuable := aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>customizedEditor [
+{ #category : #private }
+RubFloatingEditorBuilder >> customizedEditor [
 	customizeValuable cull: editor.
 	^ editor
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>defaultAnnouncer [
+{ #category : #initialization }
+RubFloatingEditorBuilder >> defaultAnnouncer [
 	^ Announcer new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>editorDo: aBlock [
+{ #category : #accessing }
+RubFloatingEditorBuilder >> editorDo: aBlock [
 	editor ifNil: [ ^ self ].
 	aBlock cull: editor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>font: aFont [
+{ #category : #accessing }
+RubFloatingEditorBuilder >> font: aFont [
 	font := aFont
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>handleListenEvent: anEvent [
+{ #category : #events-processing }
+RubFloatingEditorBuilder >> handleListenEvent: anEvent [
 	anEvent isMouse
 		ifFalse: [ ^ self ].
 	anEvent isMouseDown
@@ -222,27 +179,18 @@ RubFloatingEditorBuilder>>handleListenEvent: anEvent [
 		ifFalse: [ self closeEditor ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>initialContents [
+{ #category : #accessing }
+RubFloatingEditorBuilder >> initialContents [
 	^ initialContents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>initialContents: anObject [
+{ #category : #accessing }
+RubFloatingEditorBuilder >> initialContents: anObject [
 	initialContents := anObject asText
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>initialize [
+{ #category : #initialization }
+RubFloatingEditorBuilder >> initialize [
 	super initialize.
 	announcer := self defaultAnnouncer.
 	initialContents := ''.
@@ -253,11 +201,8 @@ RubFloatingEditorBuilder>>initialize [
 	customizeValuable := [  ]
 ]
 
-{
-	#category : #'public editing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>openEditor [
+{ #category : #'public editing' }
+RubFloatingEditorBuilder >> openEditor [
 	self buildEditor.
 	editor ifNil: [ ^ self ].
 	editor
@@ -266,68 +211,47 @@ RubFloatingEditorBuilder>>openEditor [
 	editor textArea takeKeyboardFocus
 ]
 
-{
-	#category : #'public editing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>openEditorWithContents: aText [
+{ #category : #'public editing' }
+RubFloatingEditorBuilder >> openEditorWithContents: aText [
 	self
 		initialContents: aText;
 		openEditor
 ]
 
-{
-	#category : #'public editing',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>openEditorWithContents: aText thenDo: aBlock [
+{ #category : #'public editing' }
+RubFloatingEditorBuilder >> openEditorWithContents: aText thenDo: aBlock [
 	self
 		initialContents: aText;
 		openEditor.
 	aBlock cull: editor
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>whenEditorDeleted: anAnnouncement [
+{ #category : #'announcement handling' }
+RubFloatingEditorBuilder >> whenEditorDeleted: anAnnouncement [
 	anAnnouncement morph activeHand removeEventListener: self.
 	anAnnouncement morph announcer unsubscribe: self.
 	editor := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>whenEditorEscapedDo: aBlock [
+{ #category : #accessing }
+RubFloatingEditorBuilder >> whenEditorEscapedDo: aBlock [
 	escapeBlock := aBlock
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>whenEditorLostFocus: anAnnouncement [
+{ #category : #'announcement handling' }
+RubFloatingEditorBuilder >> whenEditorLostFocus: anAnnouncement [
 	self closeEditor
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>whenKeystroke: anAnnouncement [
+{ #category : #'announcement handling' }
+RubFloatingEditorBuilder >> whenKeystroke: anAnnouncement [
 	anAnnouncement event keyCharacter = Character escape
 		ifTrue: [ escapeBlock value.
 			self closeEditor ]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>whenReturnEntered: anAnnouncement [
+{ #category : #'announcement handling' }
+RubFloatingEditorBuilder >> whenReturnEntered: anAnnouncement [
 	acceptOnCR
 		ifTrue: [ anAnnouncement accepted: true ].
 	autoAccept
@@ -339,11 +263,8 @@ RubFloatingEditorBuilder>>whenReturnEntered: anAnnouncement [
 			self closeEditor ]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>whenTextAccepted: anAnnouncement [
+{ #category : #'announcement handling' }
+RubFloatingEditorBuilder >> whenTextAccepted: anAnnouncement [
 	self
 		editorDo:
 			[ :ed | 
@@ -355,11 +276,8 @@ RubFloatingEditorBuilder>>whenTextAccepted: anAnnouncement [
 			self announcer announce: ann ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubFloatingEditorBuilder>>withEditedContentsDo: aBlock [
+{ #category : #accessing }
+RubFloatingEditorBuilder >> withEditedContentsDo: aBlock [
 	self
 		announcerDo:
 			[ :anncer | 

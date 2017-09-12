@@ -1,11 +1,6 @@
-Extension {
-	#name : #TextIndent
-}
+Extension { #name : #TextIndent }
 
-{
-	#category : #'*Text-Scanning',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-TextIndent>>emphasizeScanner: scanner [
+{ #category : #'*Text-Scanning' }
+TextIndent >> emphasizeScanner: scanner [
 	scanner indentationLevel: amount
 ]

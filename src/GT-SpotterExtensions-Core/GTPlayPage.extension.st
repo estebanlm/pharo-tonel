@@ -1,12 +1,7 @@
-Extension {
-	#name : #GTPlayPage
-}
+Extension { #name : #GTPlayPage }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>spotterActDefault [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTPlayPage >> spotterActDefault [
 	| result |
 	result := GTPlayground new openOn: self.
 	"Spotter only sets the title without installing the stash persistency.
@@ -17,11 +12,8 @@ GTPlayPage>>spotterActDefault [
 	^ result
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>spotterPreviewCodeIn: aComposite [
+{ #category : #'*GT-SpotterExtensions-Core' }
+GTPlayPage >> spotterPreviewCodeIn: aComposite [
 	<spotterPreview: 10>
 	aComposite pharoMethod
 		title: 'Preview';

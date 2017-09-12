@@ -8,38 +8,25 @@ I send these event back to my handler:
 Class {
 	#name : #OSTouchTwoFingersScrollDetector,
 	#superclass : #OSTouchScrollDetector,
-	#category : #OSWindow-Core-Gestures,
-	#timestamp : 'MerwanOuddane 7/22/2015 16:20'
+	#category : #OSWindow-Core-Gestures
 }
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchTwoFingersScrollDetector>>eventClassBeginGesture [
+{ #category : #abstract }
+OSTouchTwoFingersScrollDetector >> eventClassBeginGesture [
 	^ OSTouchTwoFingersScrollBeginEvent
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchTwoFingersScrollDetector>>eventClassEndGesture [
+{ #category : #abstract }
+OSTouchTwoFingersScrollDetector >> eventClassEndGesture [
 	^ OSTouchTwoFingersScrollEndEvent
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchTwoFingersScrollDetector>>eventClassMoveGesture [
+{ #category : #abstract }
+OSTouchTwoFingersScrollDetector >> eventClassMoveGesture [
 	^ OSTouchTwoFingersScrollMoveEvent
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchTwoFingersScrollDetector>>necessaryFingers [
+{ #category : #preconditions }
+OSTouchTwoFingersScrollDetector >> necessaryFingers [
 	^ 2
 ]

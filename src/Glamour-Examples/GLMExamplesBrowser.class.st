@@ -4,15 +4,11 @@ self new  openOn: GLMBasicExamples
 Class {
 	#name : #GLMExamplesBrowser,
 	#superclass : #GLMCompositePresentation,
-	#category : #Glamour-Examples,
-	#timestamp : 'AndreiChis 10/20/2014 10:08'
+	#category : #Glamour-Examples
 }
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExamplesBrowser class>>menuExamplesOn: aBuilder [
+{ #category : #'user interface' }
+GLMExamplesBrowser class >> menuExamplesOn: aBuilder [
 	"Add a custom menu item to the world menu"
 
 	<worldMenu>
@@ -24,21 +20,15 @@ GLMExamplesBrowser class>>menuExamplesOn: aBuilder [
 		action: [ self open ]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExamplesBrowser class>>open [
+{ #category : #'user interface' }
+GLMExamplesBrowser class >> open [
 	<script>
 	
 	self new openOn: GLMBasicExamples
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExamplesBrowser>>compose [
+{ #category : #building }
+GLMExamplesBrowser >> compose [
 	"self new openOn: GLMBasicExamples"
 
 	self tabulator with: [:browser | 
@@ -55,11 +45,8 @@ GLMExamplesBrowser>>compose [
 			andShow: [ :a | self exampleIn: a ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExamplesBrowser>>exampleBrowserForPragma: each in: aClass [
+{ #category : #private }
+GLMExamplesBrowser >> exampleBrowserForPragma: each in: aClass [
 	| exampleBrowser wrapperBrowser |
 	exampleBrowser := aClass new perform: each methodSelector.
 	wrapperBrowser := GLMTabulator new.
@@ -72,11 +59,8 @@ GLMExamplesBrowser>>exampleBrowserForPragma: each in: aClass [
 		startOn: (Smalltalk compiler evaluate: (each argumentAt: 2) logged: false)
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExamplesBrowser>>exampleIn: composer [
+{ #category : #building }
+GLMExamplesBrowser >> exampleIn: composer [
 	| dynamicPresentation |
 	dynamicPresentation := composer dynamic
 		title: 'Browser';
@@ -105,11 +89,8 @@ GLMExamplesBrowser>>exampleIn: composer [
 				[ :exampleClass :pragma | exampleClass sourceCodeAt: pragma methodSelector ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExamplesBrowser>>exampleListIn: a [
+{ #category : #building }
+GLMExamplesBrowser >> exampleListIn: a [
 	^ a list
 		title: 'Examples';
 		display: [ :exampleClass | exampleClass allExamples ];

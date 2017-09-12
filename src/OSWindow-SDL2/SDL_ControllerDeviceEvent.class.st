@@ -9,15 +9,11 @@ Class {
 		'OFFSET_TYPE',
 		'OFFSET_WHICH'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'RonieSalgado 4/10/2016 01:50'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerDeviceEvent class>>fieldsDesc [
+{ #category : #'field definition' }
+SDL_ControllerDeviceEvent class >> fieldsDesc [
 	"
 	self rebuildFieldAccessors
 	"
@@ -28,56 +24,38 @@ SDL_ControllerDeviceEvent class>>fieldsDesc [
  	)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerDeviceEvent>>timestamp [
+{ #category : #'accessing structure variables' }
+SDL_ControllerDeviceEvent >> timestamp [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_TIMESTAMP
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerDeviceEvent>>timestamp: anObject [
+{ #category : #'accessing structure variables' }
+SDL_ControllerDeviceEvent >> timestamp: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_TIMESTAMP put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerDeviceEvent>>type [
+{ #category : #'accessing structure variables' }
+SDL_ControllerDeviceEvent >> type [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_TYPE
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerDeviceEvent>>type: anObject [
+{ #category : #'accessing structure variables' }
+SDL_ControllerDeviceEvent >> type: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_TYPE put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerDeviceEvent>>which [
+{ #category : #'accessing structure variables' }
+SDL_ControllerDeviceEvent >> which [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_WHICH
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_ControllerDeviceEvent>>which: anObject [
+{ #category : #'accessing structure variables' }
+SDL_ControllerDeviceEvent >> which: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_WHICH put: anObject
 ]

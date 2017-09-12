@@ -4,15 +4,11 @@ A builder for the API of the various packages
 Class {
 	#name : #PackageAPIHelpBuilder,
 	#superclass : #HelpBuilder,
-	#category : #HelpSystem-Core-Builders,
-	#timestamp : 'TorstenBergmann 2/4/2014 21:17'
+	#category : #HelpSystem-Core-Builders
 }
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PackageAPIHelpBuilder>>build  [
+{ #category : #building }
+PackageAPIHelpBuilder >> build [ 
 	|pTopic|
 	topicToBuild := (HelpTopic named: rootToBuildFrom bookName).
 	rootToBuildFrom helpPackages do: [:package|
@@ -24,11 +20,8 @@ PackageAPIHelpBuilder>>build  [
 
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-PackageAPIHelpBuilder>>buildPackageTopic: pTopic [
+{ #category : #building }
+PackageAPIHelpBuilder >> buildPackageTopic: pTopic [
  
 	| classTopic classes |
 	classes := (RPackageSet named: pTopic title) classes 

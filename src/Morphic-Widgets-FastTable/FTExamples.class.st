@@ -5,15 +5,11 @@ See class side.
 Class {
 	#name : #FTExamples,
 	#superclass : #Object,
-	#category : #Morphic-Widgets-FastTable-Examples,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-FastTable-Examples
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>example1 [
+{ #category : #examples }
+FTExamples class >> example1 [
 	<example>
 	| list |
 
@@ -26,11 +22,8 @@ FTExamples class>>example1 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>example2 [
+{ #category : #examples }
+FTExamples class >> example2 [
 	<example>
 	| list |
 
@@ -44,11 +37,8 @@ FTExamples class>>example2 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleDragAndDrop1 [
+{ #category : #examples }
+FTExamples class >> exampleDragAndDrop1 [
 	"Show drag&drop between two lists"
 	<example>
 	| list1 list2 |
@@ -86,11 +76,8 @@ FTExamples class>>exampleDragAndDrop1 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleDragAndDrop2 [
+{ #category : #examples }
+FTExamples class >> exampleDragAndDrop2 [
 	"Show drag&drop between two lists, multiple selection"
 	<example>
 	| list1 list2 |
@@ -129,11 +116,8 @@ FTExamples class>>exampleDragAndDrop2 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleDragAndDrop3 [
+{ #category : #examples }
+FTExamples class >> exampleDragAndDrop3 [
 	"Show drag&drop between two lists, multiple selection. 
 	 Showing 50 elements, so we can test Cmd+A (select all)"
 	<example>
@@ -173,11 +157,8 @@ FTExamples class>>exampleDragAndDrop3 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleDragAndDrop4 [
+{ #category : #examples }
+FTExamples class >> exampleDragAndDrop4 [
 	"Show drag&drop in one list, with autoscroll"
 	<example>
 	| list |
@@ -193,11 +174,8 @@ FTExamples class>>exampleDragAndDrop4 [
 	^ list openInWindowLabeled: 'Autoscrolling'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleEasyList1 [
+{ #category : #examples }
+FTExamples class >> exampleEasyList1 [
 	"Show an easy list with all Morph methods"
 	<example>
 	| list |
@@ -213,11 +191,8 @@ FTExamples class>>exampleEasyList1 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleEasyList2 [
+{ #category : #examples }
+FTExamples class >> exampleEasyList2 [
 	"Show an easy list with all Morph methods and a simple menu"
 	<example>
 	| list |
@@ -242,11 +217,8 @@ FTExamples class>>exampleEasyList2 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleEasyList3 [
+{ #category : #examples }
+FTExamples class >> exampleEasyList3 [
 	"Show an easy list with all Morph methods and a simple menu, with a list header"
 	<example>
 	| list |
@@ -272,11 +244,8 @@ FTExamples class>>exampleEasyList3 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleEditableList1 [
+{ #category : #examples }
+FTExamples class >> exampleEditableList1 [
 	<example>
 	| list data|
 	data := OrderedCollection with: 'A' with: 'B' with: 'C'.
@@ -304,11 +273,8 @@ FTExamples class>>exampleEditableList1 [
 	^ list openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleFilterableList [
+{ #category : #examples }
+FTExamples class >> exampleFilterableList [
 	<example>
 	| list |
 	list := FTTableMorph new
@@ -320,11 +286,8 @@ FTExamples class>>exampleFilterableList [
 	list openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleList1 [
+{ #category : #examples }
+FTExamples class >> exampleList1 [
 	"Show a list with all Object methods"
 	<example>
 	| list |
@@ -338,11 +301,8 @@ FTExamples class>>exampleList1 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleList2 [
+{ #category : #examples }
+FTExamples class >> exampleList2 [
 	"Show a list with all Object methods and preselects one item"
 	<example>
 	| list |
@@ -359,11 +319,8 @@ FTExamples class>>exampleList2 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleList3 [
+{ #category : #examples }
+FTExamples class >> exampleList3 [
 	"Show a list with all Object methods, 
 		- preselects one element
 	 	- responds to selection changes"
@@ -382,11 +339,8 @@ FTExamples class>>exampleList3 [
 	^ list openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleList4 [
+{ #category : #examples }
+FTExamples class >> exampleList4 [
 	"Show a list with all Object methods, 
 		- preselects one element 
 		- respond to selection changes
@@ -408,11 +362,8 @@ FTExamples class>>exampleList4 [
 	^ list openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleList5 [
+{ #category : #examples }
+FTExamples class >> exampleList5 [
 	"Show a list with all Object methods, 
 		- preselects one element 
 		- respond to selection changes
@@ -436,11 +387,8 @@ FTExamples class>>exampleList5 [
 	^ list openInWindow
 ]
 
-{
-	#category : #'function examples',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleListWithExplicitFilter [
+{ #category : #'function examples' }
+FTExamples class >> exampleListWithExplicitFilter [
 	<example>
 	| list |
 	list := FTTableMorph new
@@ -452,11 +400,8 @@ FTExamples class>>exampleListWithExplicitFilter [
 	list openInWindow
 ]
 
-{
-	#category : #'function examples',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleListWithExplicitFilterAndActionButton [
+{ #category : #'function examples' }
+FTExamples class >> exampleListWithExplicitFilterAndActionButton [
 	<example>
 	| list |
 	list := FTTableMorph new
@@ -467,11 +412,8 @@ FTExamples class>>exampleListWithExplicitFilterAndActionButton [
 	list openInWindow
 ]
 
-{
-	#category : #'function examples',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleListWithExplicitFilterAndActionButton2 [
+{ #category : #'function examples' }
+FTExamples class >> exampleListWithExplicitFilterAndActionButton2 [
 	<example>
 	| list |
 	list := FTTableMorph new
@@ -482,11 +424,8 @@ FTExamples class>>exampleListWithExplicitFilterAndActionButton2 [
 	list openInWindow
 ]
 
-{
-	#category : #'function examples',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleListWithExplicitSearch [
+{ #category : #'function examples' }
+FTExamples class >> exampleListWithExplicitSearch [
 	<example>
 	| list |
 	list := FTTableMorph new
@@ -498,11 +437,8 @@ FTExamples class>>exampleListWithExplicitSearch [
 	list openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleOutline1 [
+{ #category : #examples }
+FTExamples class >> exampleOutline1 [
 	<example>
 	| list |
 	list := FTTableMorph new
@@ -518,11 +454,8 @@ FTExamples class>>exampleOutline1 [
 	list openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleOutline2 [
+{ #category : #examples }
+FTExamples class >> exampleOutline2 [
 	<example>
 	| data list |
 	data := OrderedCollection
@@ -535,11 +468,8 @@ FTExamples class>>exampleOutline2 [
 	list openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleTable1 [
+{ #category : #examples }
+FTExamples class >> exampleTable1 [
 	"Show a table with all Object methods"
 	<example>
 	| table |
@@ -562,11 +492,8 @@ FTExamples class>>exampleTable1 [
 	^ table openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleTable2 [
+{ #category : #examples }
+FTExamples class >> exampleTable2 [
 	"Show a table with all Object methods, with a fixed width"
 	<example>
 	| table |
@@ -589,11 +516,8 @@ FTExamples class>>exampleTable2 [
 	^ table openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleTable3 [
+{ #category : #examples }
+FTExamples class >> exampleTable3 [
 	"Show a table with all Object methods, with a header"
 	<example>
 	| table |
@@ -618,11 +542,8 @@ FTExamples class>>exampleTable3 [
 	^ table openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleTable4 [
+{ #category : #examples }
+FTExamples class >> exampleTable4 [
 	"Show a table with all Object methods, with a resizable header"
 	<example>
 	| table |
@@ -649,11 +570,8 @@ FTExamples class>>exampleTable4 [
 	^ table openInWindow
 ]
 
-{
-	#category : #'tree examples',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleTree1 [
+{ #category : #'tree examples' }
+FTExamples class >> exampleTree1 [
 	<example>
 	| ds |
 	ds := FTTreeDataSource
@@ -667,11 +585,8 @@ FTExamples class>>exampleTree1 [
 		openInWindow
 ]
 
-{
-	#category : #'tree examples',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleTree2 [
+{ #category : #'tree examples' }
+FTExamples class >> exampleTree2 [
 	<example>
 	| ds |
 	ds := FTTreeDataSource
@@ -686,11 +601,8 @@ FTExamples class>>exampleTree2 [
 		openInWindow
 ]
 
-{
-	#category : #'tree examples',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleTreeWithAllItemsFilter [
+{ #category : #'tree examples' }
+FTExamples class >> exampleTreeWithAllItemsFilter [
 	<example>
 	| ds |
 	ds := FTTreeDataSource
@@ -708,11 +620,8 @@ FTExamples class>>exampleTreeWithAllItemsFilter [
 		openInWindow
 ]
 
-{
-	#category : #'tree examples',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleTreeWithAllItemsSearch [
+{ #category : #'tree examples' }
+FTExamples class >> exampleTreeWithAllItemsSearch [
 	<example>
 	| ds |
 	ds := FTTreeDataSource
@@ -729,11 +638,8 @@ FTExamples class>>exampleTreeWithAllItemsSearch [
 		openInWindow
 ]
 
-{
-	#category : #'tree examples',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleTreeWithRootFilter [
+{ #category : #'tree examples' }
+FTExamples class >> exampleTreeWithRootFilter [
 	<example>
 	| ds |
 	ds := FTTreeDataSource
@@ -751,11 +657,8 @@ FTExamples class>>exampleTreeWithRootFilter [
 		openInWindow
 ]
 
-{
-	#category : #'tree examples',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleTreeWithRootSearch [
+{ #category : #'tree examples' }
+FTExamples class >> exampleTreeWithRootSearch [
 	<example>
 	| ds |
 	ds := FTTreeDataSource
@@ -772,11 +675,8 @@ FTExamples class>>exampleTreeWithRootSearch [
 		openInWindow
 ]
 
-{
-	#category : #'tree examples',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleTreeWithVisibleItemsFilter [
+{ #category : #'tree examples' }
+FTExamples class >> exampleTreeWithVisibleItemsFilter [
 	<example>
 	| ds |
 	ds := FTTreeDataSource
@@ -794,11 +694,8 @@ FTExamples class>>exampleTreeWithVisibleItemsFilter [
 		openInWindow
 ]
 
-{
-	#category : #'tree examples',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleTreeWithVisibleItemsSearch [
+{ #category : #'tree examples' }
+FTExamples class >> exampleTreeWithVisibleItemsSearch [
 	<example>
 	| ds |
 	ds := FTTreeDataSource
@@ -815,11 +712,8 @@ FTExamples class>>exampleTreeWithVisibleItemsSearch [
 		openInWindow
 ]
 
-{
-	#category : #'tree examples',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples class>>exampleexampleOneSubLevelTree [
+{ #category : #'tree examples' }
+FTExamples class >> exampleexampleOneSubLevelTree [
 	<example>
 	| ds |
 	ds := FTTreeDataSource
@@ -834,10 +728,6 @@ FTExamples class>>exampleexampleOneSubLevelTree [
 		openInWindow
 ]
 
-{
-	#category : #'see class side',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExamples>>seeClassSide [
-
+{ #category : #'see class side' }
+FTExamples >> seeClassSide [
 ]

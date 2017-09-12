@@ -4,46 +4,33 @@ I am the adapter used to build a MenuMorph from a MenuModel
 Class {
 	#name : #MorphicMenuAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuAdapter class>>adaptAsPopup: aComposableModel [
+{ #category : #'instance creation' }
+MorphicMenuAdapter class >> adaptAsPopup: aComposableModel [
 	^ self new
 		adaptAsPopup: aComposableModel;
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuAdapter>>adaptAsPopup: aComposableModel [
+{ #category : #initialization }
+MorphicMenuAdapter >> adaptAsPopup: aComposableModel [
 
 	model := aComposableModel.
 	aComposableModel addDependent: self.
 	widget := self buildWidgetPopup.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuAdapter>>basicMenuPopUp [
+{ #category : #private }
+MorphicMenuAdapter >> basicMenuPopUp [
 
 	^  MenuMorph new
 		addIfNeededTitle: self title andIcon: self icon
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuAdapter>>buildWidget [
+{ #category : #private }
+MorphicMenuAdapter >> buildWidget [
 
 	^ ToolDockingBarMorph new
 		hResizing: #spaceFill;
@@ -52,11 +39,8 @@ MorphicMenuAdapter>>buildWidget [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuAdapter>>buildWidgetPopup [
+{ #category : #private }
+MorphicMenuAdapter >> buildWidgetPopup [
 	widget := self basicMenuPopUp.
 	self menuGroups
 		do: [ :group | 
@@ -67,37 +51,25 @@ MorphicMenuAdapter>>buildWidgetPopup [
 	^ widget
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuAdapter>>icon [
+{ #category : #protocol }
+MorphicMenuAdapter >> icon [
 
 	^ self model icon
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuAdapter>>menuGroups [
+{ #category : #protocol }
+MorphicMenuAdapter >> menuGroups [
 	^ self model menuGroups reject: [ :e | e isEmpty ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuAdapter>>openAt: aPoint  [
+{ #category : #'spec protocol' }
+MorphicMenuAdapter >> openAt: aPoint [ 
 
 	self widgetDo: [ :w | w invokeAt: (aPoint + (2@7)) in: World allowKeyboard: true ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicMenuAdapter>>title [
+{ #category : #protocol }
+MorphicMenuAdapter >> title [
 
 	^ self model title
 ]

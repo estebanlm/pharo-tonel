@@ -23,15 +23,11 @@ Class {
 		'sourceTextModel',
 		'destTextModel'
 	],
-	#category : #Tool-Diff,
-	#timestamp : '<historical>'
+	#category : #Tool-Diff
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph class>>from: old to: new [
+{ #category : #'as yet unclassified' }
+DiffMorph class >> from: old to: new [
 	"Answer a new instance of the receiver with the given
 	old and new text."
 
@@ -40,11 +36,8 @@ DiffMorph class>>from: old to: new [
 		to: new
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph class>>from: old to: new contextClass: aClass [
+{ #category : #'as yet unclassified' }
+DiffMorph class >> from: old to: new contextClass: aClass [
 	"Answer a new instance of the receiver with the given
 	old and new text."
 
@@ -54,11 +47,8 @@ DiffMorph class>>from: old to: new contextClass: aClass [
 		contextClass: aClass
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>addMainMorphsWith: topOffset  [
+{ #category : #initialization }
+DiffMorph >> addMainMorphsWith: topOffset [ 
 	| halfWidth leftFraction leftOffset rightFraction rightOffset |
 	
 	halfWidth := self joinMorph width / 2.
@@ -119,11 +109,8 @@ DiffMorph>>addMainMorphsWith: topOffset  [
 			topOffset: topOffset).
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>addMorphsWithOptions [
+{ #category : #initialization }
+DiffMorph >> addMorphsWithOptions [
 
 	self 
 		addMainMorphsWith: optionsPanel height.
@@ -135,49 +122,34 @@ DiffMorph>>addMorphsWithOptions [
 			bottomOffset: optionsPanel height)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>addMorphsWithoutOptions [
+{ #category : #initialization }
+DiffMorph >> addMorphsWithoutOptions [
 	self addMainMorphsWith: 0
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>addOptionsPanel [
+{ #category : #protocol }
+DiffMorph >> addOptionsPanel [
 
 	showOptions := true.
 	self removeAllMorphs.
 	self addMorphsWithOptions
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>additionColor [
+{ #category : #'accessing colors' }
+DiffMorph >> additionColor [
 	"Answer the color used to show additions."
 
 	^ self theme diffAdditionalLineBackgroundColor 
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>additionHighlightColor [
+{ #category : #'accessing colors' }
+DiffMorph >> additionHighlightColor [
 	"Answer the color used to show addition highlights."
 	^ self theme diffAdditionalTextInLineBackgroundColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+DiffMorph >> adoptPaneColor: paneColor [
 	"Change our border color too."
 	
 	super adoptPaneColor: paneColor.
@@ -185,42 +157,30 @@ DiffMorph>>adoptPaneColor: paneColor [
 	self borderStyle baseColor: paneColor
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>applyHighlights [
+{ #category : #actions }
+DiffMorph >> applyHighlights [
 	"Apply the relevant highlights to src and dst."
 
 	self srcMorph highlights: (self joinMappings flatCollect: [:j | j src highlights]).
 	self dstMorph highlights: (self joinMappings flatCollect: [:j | j dst highlights])
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>applyJoin [
+{ #category : #actions }
+DiffMorph >> applyJoin [
 	"Apply the join mappings to the join morph."
 
 	self joinMorph mappings: self joinMappings
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>applyMap [
+{ #category : #actions }
+DiffMorph >> applyMap [
 	"Apply the join mappings to the map morph."
 
 	self mapMorph mappings: self joinMappings
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>applyPrettyPrinter [
+{ #category : #actions }
+DiffMorph >> applyPrettyPrinter [
 	"Apply pretty printer if check box is on"
 
 	(self prettyPrint and: [ self contextClass notNil ])
@@ -231,11 +191,8 @@ DiffMorph>>applyPrettyPrinter [
 				ifFalse: [ self destTextModel formatSourceCodeInView ] ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>calculateDifference [
+{ #category : #actions }
+DiffMorph >> calculateDifference [
 	"Calculate the difference of the src and dst.
 	Use src/dest morphs text, because we may want to compare the pretty printed text"
 
@@ -244,22 +201,16 @@ DiffMorph>>calculateDifference [
 			buildPatchSequence)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>calculateJoinMappings [
+{ #category : #actions }
+DiffMorph >> calculateJoinMappings [
 	"Calculate the join parameters between src and dst
 	and store in joinMappings."
 
 	self joinMappings: self calculatedJoinMappings
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>calculatedJoinMappings [
+{ #category : #actions }
+DiffMorph >> calculatedJoinMappings [
 	"Calculate the join parameters between src and dst and answer"
 
 	| sourceLine destinationLine joins destinationRunStart sourceRunStart destinationRunEnd sourceRunEnd matchDestinationStart matchSourceStart |
@@ -346,11 +297,8 @@ DiffMorph>>calculatedJoinMappings [
 	^ joins
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>calibrateScrollbar [
+{ #category : #actions }
+DiffMorph >> calibrateScrollbar [
 	"Set the scrollbar parameters to match the texts."
 
 	| maxY range delta innerH |
@@ -373,135 +321,93 @@ DiffMorph>>calibrateScrollbar [
 				min: 1.0) asFloat
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>colorForType: type [
+{ #category : #'accessing colors' }
+DiffMorph >> colorForType: type [
 	"Anwser the color to use for the given change type."
 
 	^ {self matchColor. self additionColor. self removalColor. self modificationColor}
 		at: (#(match addition removal modification) indexOf: type)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>contextClass [
+{ #category : #accessing }
+DiffMorph >> contextClass [
 	"Answer the value of contextClass"
 
 	^ contextClass 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>contextClass: aClass [
+{ #category : #accessing }
+DiffMorph >> contextClass: aClass [
 	"Set the value of contextClass"
 
 	contextClass := aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>defaultTitle [
+{ #category : #accessing }
+DiffMorph >> defaultTitle [
 	"Answer the default title label for the receiver."
 
 	^'Diff' translated
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>destTextModel [
+{ #category : #instance-creation }
+DiffMorph >> destTextModel [
 	^ destTextModel ifNil: [ destTextModel := RubScrolledTextModel new interactionModel: self ].
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>diffMapColor [
+{ #category : #'accessing colors' }
+DiffMorph >> diffMapColor [
 	"Answer the color used for the mapping bar on the left side."
 	^ self theme diffMapColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>difference [
+{ #category : #accessing }
+DiffMorph >> difference [
 	"Answer the value of difference"
 
 	^ difference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>difference: anObject [
+{ #category : #accessing }
+DiffMorph >> difference: anObject [
 	"Set the value of difference"
 
 	difference := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>doItContext [
+{ #category : #accessing }
+DiffMorph >> doItContext [
 
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>doItReceiver [
+{ #category : #accessing }
+DiffMorph >> doItReceiver [
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>dstMorph [
+{ #category : #accessing }
+DiffMorph >> dstMorph [
 	"Answer the value of dstMorph"
 
 	^ dstMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>dstMorph: anObject [
+{ #category : #accessing }
+DiffMorph >> dstMorph: anObject [
 	"Set the value of dstMorph"
 
 	dstMorph := anObject
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>edgeColor [
+{ #category : #'accessing colors' }
+DiffMorph >> edgeColor [
 	"Answer the color used to show the border of the changes."
 	^ self theme diffEdgeColor
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>from: old to: new [
+{ #category : #instance-creation }
+DiffMorph >> from: old to: new [
 	"Set the old (src) and new (dst) text."
 
 	self sourceTextModel setText: old.
@@ -516,11 +422,8 @@ DiffMorph>>from: old to: new [
 		applyMap
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>from: old to: new contextClass: aClass [
+{ #category : #instance-creation }
+DiffMorph >> from: old to: new contextClass: aClass [
 	"Set the old (src) and new (dst) text."
 
 	self contextClass: aClass.
@@ -536,46 +439,31 @@ DiffMorph>>from: old to: new contextClass: aClass [
 		applyMap
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>hideOrShowScrollBar [
+{ #category : #private }
+DiffMorph >> hideOrShowScrollBar [
 	"Do nothing"
 	
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>horizontalDestScroll: anAnnouncement [
+{ #category : #'event handling' }
+DiffMorph >> horizontalDestScroll: anAnnouncement [
 	self srcMorph scrollPane hScrollbarValueWithoutAnnouncement: anAnnouncement scrollValue
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>horizontalSourceScroll: anAnnouncement [
+{ #category : #'event handling' }
+DiffMorph >> horizontalSourceScroll: anAnnouncement [
 	self dstMorph scrollPane hScrollbarValueWithoutAnnouncement: anAnnouncement scrollValue
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>initialExtent [
+{ #category : #'user interface' }
+DiffMorph >> initialExtent [
 	"Answer the initial extent for the receiver."
 
 	^RealEstateAgent standardWindowExtent
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>initialize [
+{ #category : #initialization }
+DiffMorph >> initialize [
 	"Initialize the receiver."
 
 	| ppCheckbox |
@@ -609,11 +497,8 @@ DiffMorph>>initialize [
 		extent: self initialExtent
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>join: aJoin selected: aBoolean [
+{ #category : #actions }
+DiffMorph >> join: aJoin selected: aBoolean [
 	"Set the selection for the given join and update the
 		src dst and join morphs."
 
@@ -623,119 +508,83 @@ DiffMorph>>join: aJoin selected: aBoolean [
 	self dstMorph changed
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>joinColor [
+{ #category : #'accessing colors' }
+DiffMorph >> joinColor [
 	"Answer the color used for the join bar."
 	^ self theme diffJoinColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>joinMappings [
+{ #category : #accessing }
+DiffMorph >> joinMappings [
 	"Answer the join parameters between src and dst."
 
 	^joinMappings ifNil: [self calculateJoinMappings]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>joinMappings: aCollection [
+{ #category : #accessing }
+DiffMorph >> joinMappings: aCollection [
 	"Set the join parameters between src and dst."
 
 	joinMappings := aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>joinMorph [
+{ #category : #accessing }
+DiffMorph >> joinMorph [
 	"Answer the value of joinMorph"
 
 	^ joinMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>joinMorph: anObject [
+{ #category : #accessing }
+DiffMorph >> joinMorph: anObject [
 	"Set the value of joinMorph"
 
 	joinMorph := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>joinSectionClass [
+{ #category : #actions }
+DiffMorph >> joinSectionClass [
 	"Answer the class to use for a new join section."
 
 	^JoinSection
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>mapClicked: aFloat [
+{ #category : #'event handling' }
+DiffMorph >> mapClicked: aFloat [
 	"Update the scrollbar value to match a click in the map."
 
 	self scrollbarMorph setValue: aFloat
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>mapMorph [
+{ #category : #accessing }
+DiffMorph >> mapMorph [
 	"Answer the value of mapMorph"
 
 	^ mapMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>mapMorph: anObject [
+{ #category : #accessing }
+DiffMorph >> mapMorph: anObject [
 	"Set the value of mapMorph"
 
 	mapMorph := anObject
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>matchColor [
+{ #category : #'accessing colors' }
+DiffMorph >> matchColor [
 	"Answer the color used to show matches."
 
 	^ Color transparent
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>modificationColor [
+{ #category : #'accessing colors' }
+DiffMorph >> modificationColor [
 	"Answer the color used to show changes."
 	^ self theme diffModificatedLineBackgroundColor
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>newDstMorph [
+{ #category : #instance-creation }
+DiffMorph >> newDstMorph [
 	"Answer a new dst text morph."
 
 	^ self destTextModel newScrolledText
@@ -746,11 +595,8 @@ DiffMorph>>newDstMorph [
 		yourself
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>newHighlight [
+{ #category : #instance-creation }
+DiffMorph >> newHighlight [
 	"Anewser a new highlight."
 
 	^TextHighlightByBounds new
@@ -759,11 +605,8 @@ DiffMorph>>newHighlight [
 		borderColor: self edgeColor
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>newHighlight: type [
+{ #category : #instance-creation }
+DiffMorph >> newHighlight: type [
 	"Anewser a new highlight."
 
 	^TextHighlightByBounds new
@@ -773,11 +616,8 @@ DiffMorph>>newHighlight: type [
 		fillWidth: true
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>newJoinMorph [
+{ #category : #instance-creation }
+DiffMorph >> newJoinMorph [
 	"Answer a new join morph."
 
 	| w |
@@ -790,11 +630,8 @@ DiffMorph>>newJoinMorph [
 		color: self joinColor
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>newJoinSection [
+{ #category : #instance-creation }
+DiffMorph >> newJoinSection [
 	"Answer a new join section."
 
 	^self joinSectionClass new
@@ -808,11 +645,8 @@ DiffMorph>>newJoinSection [
 		yourself
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>newJoinSectionFrom: srcRange to: dstRange [
+{ #category : #instance-creation }
+DiffMorph >> newJoinSectionFrom: srcRange to: dstRange [
 	"Answer a new join section."
 
 	|sourceParagraphLines destinationParagraphLines sourceTopPixelPosition sourceBottomPixelPosition destinationTopPixelPosition destinationBottomPixelPosition type rectangleColor|
@@ -852,11 +686,8 @@ DiffMorph>>newJoinSectionFrom: srcRange to: dstRange [
 		to: self dstMorph textMorph paragraph
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>newMapMorph [
+{ #category : #instance-creation }
+DiffMorph >> newMapMorph [
 	"Answer a new map morph."
 
 	^(DiffMapMorph new
@@ -870,11 +701,8 @@ DiffMorph>>newMapMorph [
 			to: self
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>newMatchJoinSectionFrom: srcRange to: dstRange [
+{ #category : #instance-creation }
+DiffMorph >> newMatchJoinSectionFrom: srcRange to: dstRange [
 	"Answer a new match join section."
 
 	| spl dpl sy1 sy2 dy1 dy2 c |
@@ -897,11 +725,8 @@ DiffMorph>>newMatchJoinSectionFrom: srcRange to: dstRange [
 		createHighlightsFrom: self srcMorph textMorph paragraph to: self dstMorph textMorph paragraph
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>newPrettyPrintCheckboxMorph [
+{ #category : #instance-creation }
+DiffMorph >> newPrettyPrintCheckboxMorph [
 	"Answer a new checkbox for specifying whether to use
 	pretty printing for the diff texts."
 
@@ -914,11 +739,8 @@ DiffMorph>>newPrettyPrintCheckboxMorph [
 		help: 'If selected, pretty print will be applied to any displayed method source (eliminates trivial formatting changes)' translated
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>newScrollbarMorph [
+{ #category : #instance-creation }
+DiffMorph >> newScrollbarMorph [
 	"Answer a new scrollbar morph."
 
 	^ RubScrollBar new
@@ -928,11 +750,8 @@ DiffMorph>>newScrollbarMorph [
 		width: self theme scrollbarThickness
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>newSrcMorph [
+{ #category : #instance-creation }
+DiffMorph >> newSrcMorph [
 	"Answer a new src text morph."
 
 	^ self sourceTextModel newScrolledText
@@ -943,30 +762,21 @@ DiffMorph>>newSrcMorph [
 		yourself
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>on: aModel [
+{ #category : #protocol }
+DiffMorph >> on: aModel [
 
 	aModel addDependent: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>prettyPrint [
+{ #category : #accessing }
+DiffMorph >> prettyPrint [
 	"Answer the value of prettyPrint"
 
 	^ prettyPrint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>prettyPrint: aBoolean [
+{ #category : #accessing }
+DiffMorph >> prettyPrint: aBoolean [
 	"Set the value of prettyPrint"
 
 	prettyPrint == aBoolean ifTrue: [^self].
@@ -975,78 +785,54 @@ DiffMorph>>prettyPrint: aBoolean [
 	
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>removalColor [
+{ #category : #'accessing colors' }
+DiffMorph >> removalColor [
 	"Answer the color used to show removals."
 	^ self theme diffRemovedLinesBackgroundColor
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>removalHighlightColor [
+{ #category : #'accessing colors' }
+DiffMorph >> removalHighlightColor [
 	"Answer the color used to show removal highligths."
 	^ self theme diffRemovalHighlightColor
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>removeOptionsPanel [
+{ #category : #protocol }
+DiffMorph >> removeOptionsPanel [
 
 	showOptions := false.
 	self removeAllMorphs.
 	self addMorphsWithoutOptions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>scrollbarMorph [
+{ #category : #accessing }
+DiffMorph >> scrollbarMorph [
 	"Answer the value of scrollbarMorph"
 
 	^ scrollbarMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>scrollbarMorph: anObject [
+{ #category : #accessing }
+DiffMorph >> scrollbarMorph: anObject [
 	"Set the value of scrollbarMorph"
 
 	scrollbarMorph := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>selectedClassOrMetaClass [
+{ #category : #accessing }
+DiffMorph >> selectedClassOrMetaClass [
 	^ self contextClass 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>setOptionsPanel: aBoolean [
+{ #category : #private }
+DiffMorph >> setOptionsPanel: aBoolean [
 	"This is a private method. The implementation is based on the fact the options are set by default"
 	
 	aBoolean ifFalse: [ self removeOptionsPanel ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>showBoth [
+{ #category : #accessing }
+DiffMorph >> showBoth [
 
 	showOnlyDestination ifTrue: [ showOnlyDestination := false ].
 	showOnlySource ifTrue: [ showOnlySource := false ].
@@ -1054,20 +840,14 @@ DiffMorph>>showBoth [
 	self updateMorphs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>showOnlyDestination [
+{ #category : #accessing }
+DiffMorph >> showOnlyDestination [
 
 	^ showOnlyDestination
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>showOnlyDestination: aBoolean [
+{ #category : #accessing }
+DiffMorph >> showOnlyDestination: aBoolean [
 
 	showOnlyDestination = aBoolean ifTrue: [ ^ self ].
 	self showOnlySource: false.
@@ -1075,20 +855,14 @@ DiffMorph>>showOnlyDestination: aBoolean [
 	self updateMorphs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>showOnlySource [
+{ #category : #accessing }
+DiffMorph >> showOnlySource [
 
 	^ showOnlySource
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>showOnlySource: aBoolean [
+{ #category : #accessing }
+DiffMorph >> showOnlySource: aBoolean [
 
 	showOnlySource = aBoolean ifTrue: [ ^ self ].
 	self showOnlyDestination: false.
@@ -1096,20 +870,14 @@ DiffMorph>>showOnlySource: aBoolean [
 	self updateMorphs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>showOptions [
+{ #category : #accessing }
+DiffMorph >> showOptions [
 
 	^ showOptions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>showOptions: aBoolean [
+{ #category : #accessing }
+DiffMorph >> showOptions: aBoolean [
 
 	showOptions = aBoolean ifTrue: [ ^ self ].
 	showOptions := aBoolean.
@@ -1118,39 +886,27 @@ DiffMorph>>showOptions: aBoolean [
 		ifFalse: [ self removeOptionsPanel ]
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>sourceTextModel [
+{ #category : #instance-creation }
+DiffMorph >> sourceTextModel [
 	^ sourceTextModel ifNil: [ sourceTextModel := RubScrolledTextModel new interactionModel: self ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>srcMorph [
+{ #category : #accessing }
+DiffMorph >> srcMorph [
 	"Answer the value of srcMorph"
 
 	^ srcMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>srcMorph: anObject [
+{ #category : #accessing }
+DiffMorph >> srcMorph: anObject [
 	"Set the value of srcMorph"
 
 	srcMorph := anObject
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>themeChanged [
+{ #category : #updating }
+DiffMorph >> themeChanged [
 	"Update the scrollbar width/frame."
 
 	|offset|
@@ -1161,11 +917,8 @@ DiffMorph>>themeChanged [
 	self dstMorph layoutFrame rightOffset: offset
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>update: aSymbol [
+{ #category : #updating }
+DiffMorph >> update: aSymbol [
 
 	aSymbol == #addOptions
 		ifTrue: [ ^ self addOptionsPanel ].
@@ -1175,11 +928,8 @@ DiffMorph>>update: aSymbol [
 	^ super update: aSymbol
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>update: aSymbol with: aValue [
+{ #category : #updating }
+DiffMorph >> update: aSymbol with: aValue [
 
 	aSymbol == #showOnlyDestination
 		ifTrue: [ ^ self showOnlyDestination: aValue ].
@@ -1189,11 +939,8 @@ DiffMorph>>update: aSymbol with: aValue [
 	^ super update: aSymbol with: aValue
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>updateJoinOffsets [
+{ #category : #updating }
+DiffMorph >> updateJoinOffsets [
 	"Update the src and dst offsets in the join morph
 	to match the src and dst tex scroll offsets."
 
@@ -1203,11 +950,8 @@ DiffMorph>>updateJoinOffsets [
 		changed
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>updateMorphs [
+{ #category : #protocol }
+DiffMorph >> updateMorphs [
 
 	self removeAllMorphs.
 	
@@ -1216,22 +960,16 @@ DiffMorph>>updateMorphs [
 		ifFalse: [ self addMorphsWithoutOptions ]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>updateText [
+{ #category : #'user interface' }
+DiffMorph >> updateText [
 	"Reset the text if we have some."
 
 	(self sourceTextModel getString notNil and: [ self destTextModel getString notNil ])
 		ifTrue: [ self from: self sourceTextModel getString to: self destTextModel getString ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>vScroll: scrollValue [
+{ #category : #updating }
+DiffMorph >> vScroll: scrollValue [
 	"Called from standalone scroolbar.
 	Scroll the srcMorph and redo the join."
 
@@ -1240,11 +978,8 @@ DiffMorph>>vScroll: scrollValue [
 	self updateJoinOffsets
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffMorph>>verticalScroll: anAnnouncement [
+{ #category : #'event handling' }
+DiffMorph >> verticalScroll: anAnnouncement [
 	"Called from src when scrolled by keyboard etc.."
 
 	self srcMorph scrollPane vScrollbarValueWithoutAnnouncement: anAnnouncement scrollValue.

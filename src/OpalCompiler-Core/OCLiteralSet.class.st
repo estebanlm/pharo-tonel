@@ -9,15 +9,11 @@ Example:
 Class {
 	#name : #OCLiteralSet,
 	#superclass : #Set,
-	#category : #OpalCompiler-Core-Extras,
-	#timestamp : 'ajh 3/25/2003 00:33'
+	#category : #OpalCompiler-Core-Extras
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralSet>>add: newObject [
+{ #category : #adding }
+OCLiteralSet >> add: newObject [
 	"Include newObject as one of the receiver's elements.  If equivalent is already present don't add and return equivalent object"
 
 	| index |
@@ -28,11 +24,8 @@ OCLiteralSet>>add: newObject [
 		ifNotNil: [array at: index]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCLiteralSet>>scanFor: anObject [
+{ #category : #private }
+OCLiteralSet >> scanFor: anObject [
 	"Scan the key array for the first slot containing either a nil (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or zero if no slot is found. This method will be overridden in various subclasses that have different interpretations for matching elements."
 	| element start finish |
 	start := (anObject hash \\ array size) + 1.

@@ -14,72 +14,47 @@ Class {
 	#pools : [
 		'SDL2Constants'
 	],
-	#category : #OSWindow-SDL2,
-	#timestamp : 'MerwanOuddane 8/24/2015 17:32'
+	#category : #OSWindow-SDL2
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle class>>newWithHandle: handle attributes: attributes. [
+{ #category : #'instance creation' }
+OSSDL2WindowHandle class >> newWithHandle: handle attributes: attributes. [
 	^ self basicNew initWithHandle: handle attributes: attributes; yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>borderless [
+{ #category : #accessing }
+OSSDL2WindowHandle >> borderless [
 	^ handle getFlags anyMask: SDL_WINDOW_BORDERLESS
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>borderless: aBoolean [
+{ #category : #accessing }
+OSSDL2WindowHandle >> borderless: aBoolean [
 	handle toggleBorder: aBoolean not.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>bounds: newBounds [
+{ #category : #accessing }
+OSSDL2WindowHandle >> bounds: newBounds [
 	self position: newBounds origin;
 		extent: newBounds extent.
 ]
 
-{
-	#category : #'mouse capture',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>captureMouse [
+{ #category : #'mouse capture' }
+OSSDL2WindowHandle >> captureMouse [
 	SDL2 setRelativeMouseMode: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>clipboardText [
+{ #category : #accessing }
+OSSDL2WindowHandle >> clipboardText [
 	^ SDL2 clipboardText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>clipboardText: aText [
+{ #category : #accessing }
+OSSDL2WindowHandle >> clipboardText: aText [
 	SDL2 clipboardText: aText
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>convertButtonState: mouseState modState: modState modifiers: modifiers [
+{ #category : #'event handling' }
+OSSDL2WindowHandle >> convertButtonState: mouseState modState: modState modifiers: modifiers [
 	| shift ctrl alt gui |
 	modifiers buttons button1: (mouseState bitAnd: SDL_BUTTON_LMASK) ~= 0.
 	modifiers buttons button2: (mouseState bitAnd: SDL_BUTTON_MMASK) ~= 0.
@@ -97,11 +72,8 @@ OSSDL2WindowHandle>>convertButtonState: mouseState modState: modState modifiers:
 				leftCmd: gui; rightCmd: gui.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>convertCursor: aCursor [
+{ #category : #private }
+OSSDL2WindowHandle >> convertCursor: aCursor [
 	| result bits|
 	aCursor unhibernate.
 	bits := aCursor bits.
@@ -113,19 +85,13 @@ OSSDL2WindowHandle>>convertCursor: aCursor [
 	^ result
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>deliverGlobalEvent: aGlobalEvent [
+{ #category : #'event handling' }
+OSSDL2WindowHandle >> deliverGlobalEvent: aGlobalEvent [
 	^ osWindow deliverGlobalEvent: aGlobalEvent
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>destroy [
+{ #category : #initialize }
+OSSDL2WindowHandle >> destroy [
 	handle ifNotNil:
 			[ :validHandle | 
 			OSSDL2Driver current unregisterWindowWithId: validHandle windowID.
@@ -135,11 +101,8 @@ OSSDL2WindowHandle>>destroy [
 	osWindow := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>extent [
+{ #category : #accessing }
+OSSDL2WindowHandle >> extent [
 	| w h |
 	w := ByteArray new: 4.
 	h := ByteArray new: 4.
@@ -147,19 +110,13 @@ OSSDL2WindowHandle>>extent [
 	^ (w signedLongAt: 1) @ (h signedLongAt: 1)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>extent: newExtent [
+{ #category : #accessing }
+OSSDL2WindowHandle >> extent: newExtent [
 	handle setSizeW: newExtent x h: newExtent y
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>fullscreen: aBoolean [
+{ #category : #accessing }
+OSSDL2WindowHandle >> fullscreen: aBoolean [
 	aBoolean ifTrue: [
 		handle fullscreen: SDL_WINDOW_FULLSCREEN_DESKTOP
 	] ifFalse: [ 
@@ -167,54 +124,36 @@ OSSDL2WindowHandle>>fullscreen: aBoolean [
 	]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>getFlags [
+{ #category : #private }
+OSSDL2WindowHandle >> getFlags [
 	^ handle getFlags
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>getWMInfo [
+{ #category : #private }
+OSSDL2WindowHandle >> getWMInfo [
 	| wmInfo |
 	wmInfo := SDL_SysWMinfo new version: SDL_Version bindingVersion.
 	handle getWMInfo: wmInfo.
 	^ wmInfo
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>handle [
+{ #category : #initialize }
+OSSDL2WindowHandle >> handle [
 	^ handle
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>handleNewSDLEvent: sdlEvent [
+{ #category : #'event handling' }
+OSSDL2WindowHandle >> handleNewSDLEvent: sdlEvent [
 	^ sdlEvent accept: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>hide [
+{ #category : #accessing }
+OSSDL2WindowHandle >> hide [
 	handle hide
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>icon: aForm [
+{ #category : #accessing }
+OSSDL2WindowHandle >> icon: aForm [
 	| convertedIcon surface |
 	aForm ifNil: [ ^self ].
 	
@@ -231,62 +170,41 @@ OSSDL2WindowHandle>>icon: aForm [
 	iconSurface := surface.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>initWithHandle: aHandle attributes: attributes [
+{ #category : #initialize }
+OSSDL2WindowHandle >> initWithHandle: aHandle attributes: attributes [
 	handle := aHandle.
 	attributes applyTo: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>isValid [
+{ #category : #testing }
+OSSDL2WindowHandle >> isValid [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>isVisible [
+{ #category : #testing }
+OSSDL2WindowHandle >> isVisible [
 	^ (self getFlags bitAnd: SDL_WINDOW_SHOWN) = SDL_WINDOW_SHOWN
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>mapSpecialCharacter: symbol [
+{ #category : #'event handling' }
+OSSDL2WindowHandle >> mapSpecialCharacter: symbol [
 	^ SDL2SpecialCharacterMapping mapKeySymbol: symbol ifAbsent: [ ^ nil ]
 ]
 
-{
-	#category : #'window management',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>maximize [
+{ #category : #'window management' }
+OSSDL2WindowHandle >> maximize [
 
 	handle maximize.
 ]
 
-{
-	#category : #'window management',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>minimize [
+{ #category : #'window management' }
+OSSDL2WindowHandle >> minimize [
 
 	handle minimize.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>mousePosition [
+{ #category : #'event handling' }
+OSSDL2WindowHandle >> mousePosition [
 	| x y |
 	x := ByteArray new: 4.
 	y := ByteArray new: 4.
@@ -294,52 +212,37 @@ OSSDL2WindowHandle>>mousePosition [
 	^ ( x signedLongAt: 1) @ (y signedLongAt: 1)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>newAthensRenderer [
+{ #category : #'instance creation' }
+OSSDL2WindowHandle >> newAthensRenderer [
 	^ renderer := OSSDL2AthensRenderer for: self.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>newFormRenderer: form [
+{ #category : #'instance creation' }
+OSSDL2WindowHandle >> newFormRenderer: form [
 	^ renderer := OSSDL2FormRenderer new 
 		form: form;
 		window: self;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>newGenericRenderer [
+{ #category : #'instance creation' }
+OSSDL2WindowHandle >> newGenericRenderer [
 	^ renderer := OSSDL2GenericRenderer new 
 		window: self;
 		createSDL2Renderer;
 		yourself
 ]
 
-{
-	#category : #'*OSWindow-SDL2-OpenGL',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>newOpenGLRenderer [
+{ #category : #'*OSWindow-SDL2-OpenGL' }
+OSSDL2WindowHandle >> newOpenGLRenderer [
 	^ renderer := OSSDL2GLRenderer new 
 		window: self;
 		createContext;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>platformSpecificHandle [
+{ #category : #accessing }
+OSSDL2WindowHandle >> platformSpecificHandle [
 	| wmInfo platformID |
 	wmInfo := self getWMInfo.
 	platformID := wmInfo subsystem.
@@ -356,11 +259,8 @@ OSSDL2WindowHandle>>platformSpecificHandle [
 	self error: 'Trying to get a platform specific handle for an unsupported SDL2 platform.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>position [
+{ #category : #accessing }
+OSSDL2WindowHandle >> position [
 	| x y |
 	x := ByteArray new: ExternalType long byteSize.
 	y := ByteArray new: ExternalType long byteSize.
@@ -368,52 +268,34 @@ OSSDL2WindowHandle>>position [
 	^ ( x signedLongAt: 1) @ (y signedLongAt: 1)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>position: aPoint [
+{ #category : #accessing }
+OSSDL2WindowHandle >> position: aPoint [
 	handle setPositionX: aPoint x asInteger y: aPoint y asInteger
 ]
 
-{
-	#category : #'mouse capture',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>releaseMouse [
+{ #category : #'mouse capture' }
+OSSDL2WindowHandle >> releaseMouse [
 	SDL2 setRelativeMouseMode: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>resizable [
+{ #category : #accessing }
+OSSDL2WindowHandle >> resizable [
 	^ handle getFlags anyMask: SDL_WINDOW_RESIZABLE
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>resizable: aBoolean [
+{ #category : #accessing }
+OSSDL2WindowHandle >> resizable: aBoolean [
 	"This is not supported."
 ]
 
-{
-	#category : #'window management',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>restore [
+{ #category : #'window management' }
+OSSDL2WindowHandle >> restore [
 
 	handle restore
 ]
 
-{
-	#category : #'window management',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>setDraggableArea: aRectangle [
+{ #category : #'window management' }
+OSSDL2WindowHandle >> setDraggableArea: aRectangle [
 
 	| myCallback sdlRect |
 	
@@ -426,19 +308,13 @@ OSSDL2WindowHandle>>setDraggableArea: aRectangle [
 	^handle setHitTest: myCallback.
 ]
 
-{
-	#category : #cursor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>setMouseCursor: cursorWithMask [
+{ #category : #cursor }
+OSSDL2WindowHandle >> setMouseCursor: cursorWithMask [
 	self setMouseCursor: cursorWithMask mask: cursorWithMask maskForm
 ]
 
-{
-	#category : #cursor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>setMouseCursor: cursor mask: mask [
+{ #category : #cursor }
+OSSDL2WindowHandle >> setMouseCursor: cursor mask: mask [
 	| cursorBits maskBits extent offset sdlCursor |
 	cursorBits := self convertCursor: cursor.
 	maskBits := self convertCursor: mask.
@@ -450,62 +326,41 @@ OSSDL2WindowHandle>>setMouseCursor: cursor mask: mask [
 	currentCursor := sdlCursor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>show [
+{ #category : #accessing }
+OSSDL2WindowHandle >> show [
 	handle show
 ]
 
-{
-	#category : #cursor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>showCursor: aBoolean [
+{ #category : #cursor }
+OSSDL2WindowHandle >> showCursor: aBoolean [
 	SDL2 showCursor: (aBoolean ifTrue: [SDL_ENABLE] ifFalse: [SDL_DISABLE]).
                  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>title [
+{ #category : #accessing }
+OSSDL2WindowHandle >> title [
 	^ handle title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>title: aTitle [
+{ #category : #accessing }
+OSSDL2WindowHandle >> title: aTitle [
 	handle title: aTitle
 ]
 
-{
-	#category : #'window management',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>toggleBorderOff [
+{ #category : #'window management' }
+OSSDL2WindowHandle >> toggleBorderOff [
 
 	handle toggleBorder: false.
 ]
 
-{
-	#category : #'window management',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>toggleBorderOn [
+{ #category : #'window management' }
+OSSDL2WindowHandle >> toggleBorderOn [
 
 	handle toggleBorder: true.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>visitKeyDownEvent: event [
+{ #category : #'event handling' }
+OSSDL2WindowHandle >> visitKeyDownEvent: event [
 	| osEvent keysym |
 	keysym := event keysym.
 	osEvent := OSKeyDownEvent for: osWindow.
@@ -519,11 +374,8 @@ OSSDL2WindowHandle>>visitKeyDownEvent: event [
 	^ osEvent deliver.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>visitKeyUpEvent: event [
+{ #category : #'event handling' }
+OSSDL2WindowHandle >> visitKeyUpEvent: event [
 	| osEvent keysym |
 	keysym := event keysym.
 	osEvent := OSKeyUpEvent for: osWindow.
@@ -536,11 +388,8 @@ OSSDL2WindowHandle>>visitKeyUpEvent: event [
 	^ osEvent deliver.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>visitMouseButtonDownEvent: event [
+{ #category : #'event handling' }
+OSSDL2WindowHandle >> visitMouseButtonDownEvent: event [
 	| osEvent |
 	osEvent := OSMouseButtonPressEvent for: osWindow.
 	osEvent button: event button;
@@ -550,11 +399,8 @@ OSSDL2WindowHandle>>visitMouseButtonDownEvent: event [
 	^ osEvent deliver.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>visitMouseButtonUpEvent: event [
+{ #category : #'event handling' }
+OSSDL2WindowHandle >> visitMouseButtonUpEvent: event [
 	| osEvent |
 	osEvent := OSMouseButtonReleaseEvent for: osWindow.
 	osEvent button: event button;
@@ -564,11 +410,8 @@ OSSDL2WindowHandle>>visitMouseButtonUpEvent: event [
 	^ osEvent deliver.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>visitMouseMotionEvent: sdlEvent [
+{ #category : #'event handling' }
+OSSDL2WindowHandle >> visitMouseMotionEvent: sdlEvent [
 	| osEvent |
 	osEvent := OSMouseMoveEvent for: osWindow.
 	osEvent position: sdlEvent x @ sdlEvent y;
@@ -578,11 +421,8 @@ OSSDL2WindowHandle>>visitMouseMotionEvent: sdlEvent [
 	^ osEvent deliver.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>visitMouseWheelEvent: sdlEvent [
+{ #category : #'event handling' }
+OSSDL2WindowHandle >> visitMouseWheelEvent: sdlEvent [
 	| osEvent |
 	osEvent := OSMouseWheelEvent for: osWindow.
 	osEvent position: self mousePosition;
@@ -593,11 +433,8 @@ OSSDL2WindowHandle>>visitMouseWheelEvent: sdlEvent [
 	^ osEvent deliver.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>visitTextInputEvent: event [
+{ #category : #'event handling' }
+OSSDL2WindowHandle >> visitTextInputEvent: event [
 	| osEvent |
 	
 	osEvent := OSTextInputEvent for: osWindow.
@@ -608,11 +445,8 @@ OSSDL2WindowHandle>>visitTextInputEvent: event [
 	^ osEvent deliver.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>visitWindowEvent: windowEvent [
+{ #category : #'event handling' }
+OSSDL2WindowHandle >> visitWindowEvent: windowEvent [
 	osWindow ifNil: [ ^self ].
 	
 	windowEvent event = SDL_WINDOWEVENT_EXPOSED ifTrue: [
@@ -651,10 +485,7 @@ OSSDL2WindowHandle>>visitWindowEvent: windowEvent [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2WindowHandle>>windowId [
+{ #category : #accessing }
+OSSDL2WindowHandle >> windowId [
 	^ self handle windowID
 ]

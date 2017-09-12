@@ -18,56 +18,37 @@ Class {
 	#classInstVars : [
 		'global'
 	],
-	#category : #Random-Core,
-	#timestamp : 'SvenVanCaekenberghe 2/16/2017 17:02'
+	#category : #Random-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-SharedRandom class>>globalGenerator [
+{ #category : #accessing }
+SharedRandom class >> globalGenerator [
 	^ global
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-SharedRandom class>>initialize [
+{ #category : #initialization }
+SharedRandom class >> initialize [
 	"self initialize"
 	global := self new.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-SharedRandom>>initialize [
+{ #category : #initialization }
+SharedRandom >> initialize [
 	super initialize.
 	mutex := Semaphore forMutualExclusion.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-SharedRandom>>next [
+{ #category : #accessing }
+SharedRandom >> next [
 	^ 	mutex critical: [ super privateNextValue ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-SharedRandom>>next: anInteger into: anArray [
+{ #category : #accessing }
+SharedRandom >> next: anInteger into: anArray [
     ^ mutex critical: [ super next: anInteger into: anArray ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-SharedRandom>>nextInt: anInteger [
+{ #category : #accessing }
+SharedRandom >> nextInt: anInteger [
     ^ mutex critical: [ super nextInt: anInteger ].
 ]

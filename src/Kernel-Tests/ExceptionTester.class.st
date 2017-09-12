@@ -9,41 +9,28 @@ Class {
 		'suiteLog',
 		'iterationsBeforeTimeout'
 	],
-	#category : #Kernel-Tests-Exception,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:36'
+	#category : #Kernel-Tests-Exception
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>basicANSISignaledExceptionTestSelectors [
+{ #category : #accessing }
+ExceptionTester >> basicANSISignaledExceptionTestSelectors [
 
 	^#( simpleIsNestedTest simpleOuterTest doubleOuterTest doubleOuterPassTest doublePassOuterTest simplePassTest simpleResignalAsTest simpleResumeTest simpleRetryTest simpleRetryUsingTest simpleReturnTest)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>basicTestSelectors [
+{ #category : #accessing }
+ExceptionTester >> basicTestSelectors [
 	^ #(#simpleEnsureTest #simpleEnsureTestWithNotification #simpleEnsureTestWithUparrow #simpleEnsureTestWithError #signalFromHandlerActionTest #resumableFallOffTheEndHandler #nonResumableFallOffTheEndHandler #doubleResumeTest #simpleTimeoutWithZeroDurationTest #simpleTimeoutTest simpleNoTimeoutTest)
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>clearLog [
+{ #category : #logging }
+ExceptionTester >> clearLog [
 
 	log := nil
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>contents [
+{ #category : #logging }
+ExceptionTester >> contents [
 
 	^( self log
 		inject: (String new: 80) writeStream
@@ -55,83 +42,56 @@ ExceptionTester>>contents [
 				yourself] ) contents
 ]
 
-{
-	#category : #'pseudo actions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>doSomething [
+{ #category : #'pseudo actions' }
+ExceptionTester >> doSomething [
 
 	self log: self doSomethingString
 ]
 
-{
-	#category : #'pseudo actions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>doSomethingElse [
+{ #category : #'pseudo actions' }
+ExceptionTester >> doSomethingElse [
 
 	self log: self doSomethingElseString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>doSomethingElseString [
+{ #category : #accessing }
+ExceptionTester >> doSomethingElseString [
 
 	^'Do something else.'
 ]
 
-{
-	#category : #'pseudo actions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>doSomethingExceptional [
+{ #category : #'pseudo actions' }
+ExceptionTester >> doSomethingExceptional [
 
 	self log: self doSomethingExceptionalString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>doSomethingExceptionalString [
+{ #category : #accessing }
+ExceptionTester >> doSomethingExceptionalString [
 
 	^'Do something exceptional.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>doSomethingString [
+{ #category : #accessing }
+ExceptionTester >> doSomethingString [
 
 	^'Do something.'
 ]
 
-{
-	#category : #'pseudo actions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>doYetAnotherThing [
+{ #category : #'pseudo actions' }
+ExceptionTester >> doYetAnotherThing [
 
 	self log: self doYetAnotherThingString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>doYetAnotherThingString [
+{ #category : #accessing }
+ExceptionTester >> doYetAnotherThingString [
 
 	^'Do yet another thing.'
 ]
 
-{
-	#category : #'signaledexception tests',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>doubleOuterPassTest [
+{ #category : #'signaledexception tests' }
+ExceptionTester >> doubleOuterPassTest [
 	"uses #resume"
 
 	[[[self doSomething.
@@ -147,11 +107,8 @@ ExceptionTester>>doubleOuterPassTest [
 				do: [:ex | self doYetAnotherThing. ex resume]
 ]
 
-{
-	#category : #'signaledexception results',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>doubleOuterPassTestResults [
+{ #category : #'signaledexception results' }
+ExceptionTester >> doubleOuterPassTestResults [
 
 	^OrderedCollection new
 		add: self doSomethingString;
@@ -160,11 +117,8 @@ ExceptionTester>>doubleOuterPassTestResults [
 		yourself
 ]
 
-{
-	#category : #'signaledexception tests',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>doubleOuterTest [
+{ #category : #'signaledexception tests' }
+ExceptionTester >> doubleOuterTest [
 	"uses #resume"
 
 	[[[self doSomething.
@@ -180,11 +134,8 @@ ExceptionTester>>doubleOuterTest [
 				do: [:ex | self doYetAnotherThing. ex resume]
 ]
 
-{
-	#category : #'signaledexception tests',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>doublePassOuterTest [
+{ #category : #'signaledexception tests' }
+ExceptionTester >> doublePassOuterTest [
 	"uses #resume"
 
 	[[[self doSomething.
@@ -200,11 +151,8 @@ ExceptionTester>>doublePassOuterTest [
 				do: [:ex | self doYetAnotherThing. ex resume]
 ]
 
-{
-	#category : #'signaledexception results',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>doublePassOuterTestResults [
+{ #category : #'signaledexception results' }
+ExceptionTester >> doublePassOuterTestResults [
 
 	^OrderedCollection new
 		add: self doSomethingString;
@@ -213,11 +161,8 @@ ExceptionTester>>doublePassOuterTestResults [
 		yourself
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>doubleResumeTest [
+{ #category : #tests }
+ExceptionTester >> doubleResumeTest [
 
        [self doSomething.
        MyResumableTestError signal.
@@ -228,11 +173,8 @@ ExceptionTester>>doubleResumeTest [
                do: [:ex | ex resume].
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>doubleResumeTestResults [
+{ #category : #results }
+ExceptionTester >> doubleResumeTestResults [
 
        ^OrderedCollection new
                add: self doSomethingString;
@@ -241,58 +183,40 @@ ExceptionTester>>doubleResumeTestResults [
                yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>iterationsBeforeTimeout [
+{ #category : #accessing }
+ExceptionTester >> iterationsBeforeTimeout [
 
 	^ iterationsBeforeTimeout
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>iterationsBeforeTimeout: anInteger [
+{ #category : #accessing }
+ExceptionTester >> iterationsBeforeTimeout: anInteger [
 
 	iterationsBeforeTimeout := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>log [
+{ #category : #accessing }
+ExceptionTester >> log [
 
 	log == nil
 		ifTrue: [log := OrderedCollection new].
 	^log
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>log: aString [
+{ #category : #logging }
+ExceptionTester >> log: aString [
 
 	self log add: aString
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>logTest: aSelector [
+{ #category : #logging }
+ExceptionTester >> logTest: aSelector [
 
 	self suiteLog add: aSelector
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>logTestResult: aString [
+{ #category : #logging }
+ExceptionTester >> logTestResult: aString [
 
 	| index |
 	index := self suiteLog size.
@@ -301,29 +225,20 @@ ExceptionTester>>logTestResult: aString [
 		put: ((self suiteLog at: index), ' ', aString)
 ]
 
-{
-	#category : #'pseudo actions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>methodWithError [
+{ #category : #'pseudo actions' }
+ExceptionTester >> methodWithError [
 
 	MyTestError signal: self testString
 ]
 
-{
-	#category : #'pseudo actions',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>methodWithNotification [
+{ #category : #'pseudo actions' }
+ExceptionTester >> methodWithNotification [
 
 	MyTestNotification signal: self testString
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>nonResumableFallOffTheEndHandler [
+{ #category : #tests }
+ExceptionTester >> nonResumableFallOffTheEndHandler [
 	
 	[self doSomething.
 	MyTestError signal.
@@ -333,11 +248,8 @@ ExceptionTester>>nonResumableFallOffTheEndHandler [
 	self doYetAnotherThing
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>nonResumableFallOffTheEndHandlerResults [
+{ #category : #results }
+ExceptionTester >> nonResumableFallOffTheEndHandlerResults [
 
 	^OrderedCollection new
 		add: self doSomethingString;
@@ -346,11 +258,8 @@ ExceptionTester>>nonResumableFallOffTheEndHandlerResults [
 		yourself
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>resumableFallOffTheEndHandler [
+{ #category : #tests }
+ExceptionTester >> resumableFallOffTheEndHandler [
 
 	[self doSomething.
 	MyTestNotification signal.
@@ -360,11 +269,8 @@ ExceptionTester>>resumableFallOffTheEndHandler [
 	self doYetAnotherThing
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>resumableFallOffTheEndHandlerResults [
+{ #category : #results }
+ExceptionTester >> resumableFallOffTheEndHandlerResults [
 
 	^OrderedCollection new
 		add: self doSomethingString;
@@ -373,11 +279,8 @@ ExceptionTester>>resumableFallOffTheEndHandlerResults [
 		yourself
 ]
 
-{
-	#category : #suites,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>runAllTests [
+{ #category : #suites }
+ExceptionTester >> runAllTests [
 	"ExceptionTester new runAllTests"
 
 	self
@@ -385,11 +288,8 @@ ExceptionTester>>runAllTests [
 		runBasicANSISignaledExceptionTests
 ]
 
-{
-	#category : #suites,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>runBasicANSISignaledExceptionTests [
+{ #category : #suites }
+ExceptionTester >> runBasicANSISignaledExceptionTests [
 
 	self basicANSISignaledExceptionTestSelectors
 		do:
@@ -397,11 +297,8 @@ ExceptionTester>>runBasicANSISignaledExceptionTests [
 			self runTest: eachTestSelector]
 ]
 
-{
-	#category : #suites,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>runBasicTests [
+{ #category : #suites }
+ExceptionTester >> runBasicTests [
 
 	self basicTestSelectors
 		do:
@@ -409,11 +306,8 @@ ExceptionTester>>runBasicTests [
 			self runTest: eachTestSelector]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>runTest: aSelector [
+{ #category : #testing }
+ExceptionTester >> runTest: aSelector [
 
 	| actualResult expectedResult |
 	[ self 
@@ -433,11 +327,8 @@ ExceptionTester>>runTest: aSelector [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>signalFromHandlerActionTest [
+{ #category : #tests }
+ExceptionTester >> signalFromHandlerActionTest [
 
 	[self doSomething.
 	MyTestError signal.
@@ -448,11 +339,8 @@ ExceptionTester>>signalFromHandlerActionTest [
 			MyTestError signal]
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>signalFromHandlerActionTestResults [
+{ #category : #results }
+ExceptionTester >> signalFromHandlerActionTestResults [
 
 	^OrderedCollection new
 		add: self doSomethingString;
@@ -461,11 +349,8 @@ ExceptionTester>>signalFromHandlerActionTestResults [
 		yourself
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleEnsureTest [
+{ #category : #tests }
+ExceptionTester >> simpleEnsureTest [
 
 	[self doSomething.
 	self doSomethingElse]
@@ -474,11 +359,8 @@ ExceptionTester>>simpleEnsureTest [
 	
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleEnsureTestResults [
+{ #category : #results }
+ExceptionTester >> simpleEnsureTestResults [
 
 	^OrderedCollection new
 		add: self doSomethingString;
@@ -487,11 +369,8 @@ ExceptionTester>>simpleEnsureTestResults [
 		yourself
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleEnsureTestWithError [
+{ #category : #tests }
+ExceptionTester >> simpleEnsureTestWithError [
 
 	[self doSomething.
 	MyTestError signal.
@@ -501,11 +380,8 @@ ExceptionTester>>simpleEnsureTestWithError [
 	
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleEnsureTestWithErrorResults [
+{ #category : #results }
+ExceptionTester >> simpleEnsureTestWithErrorResults [
 
 	^OrderedCollection new
 		add: self doSomethingString;
@@ -514,11 +390,8 @@ ExceptionTester>>simpleEnsureTestWithErrorResults [
 		yourself
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleEnsureTestWithNotification [
+{ #category : #tests }
+ExceptionTester >> simpleEnsureTestWithNotification [
 
 	[self doSomething.
 	self methodWithNotification.
@@ -528,11 +401,8 @@ ExceptionTester>>simpleEnsureTestWithNotification [
 	
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleEnsureTestWithNotificationResults [
+{ #category : #results }
+ExceptionTester >> simpleEnsureTestWithNotificationResults [
 
 	^OrderedCollection new
 		add: self doSomethingString;
@@ -541,11 +411,8 @@ ExceptionTester>>simpleEnsureTestWithNotificationResults [
 		yourself
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleEnsureTestWithUparrow [
+{ #category : #tests }
+ExceptionTester >> simpleEnsureTestWithUparrow [
 
 	[self doSomething.
 	true ifTrue: [^nil].
@@ -555,11 +422,8 @@ ExceptionTester>>simpleEnsureTestWithUparrow [
 	
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleEnsureTestWithUparrowResults [
+{ #category : #results }
+ExceptionTester >> simpleEnsureTestWithUparrowResults [
 
 	^OrderedCollection new
 		add: self doSomethingString;
@@ -568,11 +432,8 @@ ExceptionTester>>simpleEnsureTestWithUparrowResults [
 		yourself
 ]
 
-{
-	#category : #'signaledexception tests',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleIsNestedTest [
+{ #category : #'signaledexception tests' }
+ExceptionTester >> simpleIsNestedTest [
 	"uses resignalAs:"
 
 	[ self doSomething.
@@ -586,11 +447,8 @@ ExceptionTester>>simpleIsNestedTest [
 				exception resignalAs: MyTestNotification new ]]
 ]
 
-{
-	#category : #'signaledexception results',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleIsNestedTestResults [
+{ #category : #'signaledexception results' }
+ExceptionTester >> simpleIsNestedTestResults [
 
 	^OrderedCollection new
 		add: self doSomethingString;
@@ -599,11 +457,8 @@ ExceptionTester>>simpleIsNestedTestResults [
 		yourself
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleNoTimeoutTest [
+{ #category : #tests }
+ExceptionTester >> simpleNoTimeoutTest [
 
 	[ self doSomething ]
 		valueWithin: 1 day onTimeout:
@@ -611,22 +466,16 @@ ExceptionTester>>simpleNoTimeoutTest [
 	
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleNoTimeoutTestResults [
+{ #category : #results }
+ExceptionTester >> simpleNoTimeoutTestResults [
 
 	^OrderedCollection new
 		add: self doSomethingString;
 		yourself
 ]
 
-{
-	#category : #'signaledexception tests',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleOuterTest [
+{ #category : #'signaledexception tests' }
+ExceptionTester >> simpleOuterTest [
 	"uses #resume"
 
 	[[self doSomething.
@@ -639,11 +488,8 @@ ExceptionTester>>simpleOuterTest [
 				do: [:ex | self doYetAnotherThing. ex resume]
 ]
 
-{
-	#category : #'signaledexception results',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleOuterTestResults [
+{ #category : #'signaledexception results' }
+ExceptionTester >> simpleOuterTestResults [
 
 	^OrderedCollection new
 		add: self doSomethingString;
@@ -652,11 +498,8 @@ ExceptionTester>>simpleOuterTestResults [
 		yourself
 ]
 
-{
-	#category : #'signaledexception tests',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simplePassTest [
+{ #category : #'signaledexception tests' }
+ExceptionTester >> simplePassTest [
 
 	[self doSomething.
 	MyTestError signal.
@@ -668,11 +511,8 @@ ExceptionTester>>simplePassTest [
 			ex pass "expecting handler in #runTest:"]
 ]
 
-{
-	#category : #'signaledexception results',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simplePassTestResults [
+{ #category : #'signaledexception results' }
+ExceptionTester >> simplePassTestResults [
 
 	^OrderedCollection new
 		add: self doSomethingString;
@@ -681,11 +521,8 @@ ExceptionTester>>simplePassTestResults [
 		yourself
 ]
 
-{
-	#category : #'signaledexception tests',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleResignalAsTest [
+{ #category : #'signaledexception tests' }
+ExceptionTester >> simpleResignalAsTest [
 	"ExceptionTester new simpleResignalAsTest"
 
 	[self doSomething.
@@ -696,11 +533,8 @@ ExceptionTester>>simpleResignalAsTest [
 			[:ex | ex resignalAs: MyTestError new]
 ]
 
-{
-	#category : #'signaledexception results',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleResignalAsTestResults [
+{ #category : #'signaledexception results' }
+ExceptionTester >> simpleResignalAsTestResults [
 
 	^OrderedCollection new
 		add: self doSomethingString;
@@ -708,11 +542,8 @@ ExceptionTester>>simpleResignalAsTestResults [
 		yourself
 ]
 
-{
-	#category : #'signaledexception tests',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleResumeTest [
+{ #category : #'signaledexception tests' }
+ExceptionTester >> simpleResumeTest [
 
 	"see if we can resume twice"
 
@@ -730,11 +561,8 @@ ExceptionTester>>simpleResumeTest [
 			ex resume: 3]
 ]
 
-{
-	#category : #'signaledexception results',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleResumeTestResults [
+{ #category : #'signaledexception results' }
+ExceptionTester >> simpleResumeTestResults [
 
 	"see if we can resume twice"
 
@@ -747,11 +575,8 @@ ExceptionTester>>simpleResumeTestResults [
 			yourself
 ]
 
-{
-	#category : #'signaledexception tests',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleRetryTest [
+{ #category : #'signaledexception tests' }
+ExceptionTester >> simpleRetryTest [
 
 	| theMeaningOfLife |
 	theMeaningOfLife := nil.
@@ -767,11 +592,8 @@ ExceptionTester>>simpleRetryTest [
 				ex retry]
 ]
 
-{
-	#category : #'signaledexception results',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleRetryTestResults [
+{ #category : #'signaledexception results' }
+ExceptionTester >> simpleRetryTestResults [
 
 	^OrderedCollection new
 			add: self doSomethingString;
@@ -781,11 +603,8 @@ ExceptionTester>>simpleRetryTestResults [
 			yourself
 ]
 
-{
-	#category : #'signaledexception tests',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleRetryUsingTest [
+{ #category : #'signaledexception tests' }
+ExceptionTester >> simpleRetryUsingTest [
 
 	[self doSomething.
 	MyTestError signal.
@@ -795,11 +614,8 @@ ExceptionTester>>simpleRetryUsingTest [
 			[:ex | ex retryUsing: [self doYetAnotherThing]]
 ]
 
-{
-	#category : #'signaledexception results',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleRetryUsingTestResults [
+{ #category : #'signaledexception results' }
+ExceptionTester >> simpleRetryUsingTestResults [
 
 	^OrderedCollection new
 			add: self doSomethingString;
@@ -807,11 +623,8 @@ ExceptionTester>>simpleRetryUsingTestResults [
 			yourself
 ]
 
-{
-	#category : #'signaledexception tests',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleReturnTest [
+{ #category : #'signaledexception tests' }
+ExceptionTester >> simpleReturnTest [
 
 	| it |
 	it :=
@@ -823,11 +636,8 @@ ExceptionTester>>simpleReturnTest [
 	it = 3 ifTrue: [self doYetAnotherThing]
 ]
 
-{
-	#category : #'signaledexception results',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleReturnTestResults [
+{ #category : #'signaledexception results' }
+ExceptionTester >> simpleReturnTestResults [
 
 	^OrderedCollection new
 		add: self doSomethingString;
@@ -835,11 +645,8 @@ ExceptionTester>>simpleReturnTestResults [
 		yourself
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleTimeoutTest [
+{ #category : #tests }
+ExceptionTester >> simpleTimeoutTest [
 
 	| n |
 	[1 to: 1000000 do: [ :i | n := i. self doSomething ] ]
@@ -848,11 +655,8 @@ ExceptionTester>>simpleTimeoutTest [
 			self doSomethingElse ]
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleTimeoutTestResults [
+{ #category : #results }
+ExceptionTester >> simpleTimeoutTestResults [
 
 	| things |
 	things := OrderedCollection new: self iterationsBeforeTimeout.
@@ -863,11 +667,8 @@ ExceptionTester>>simpleTimeoutTestResults [
 	^ things
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleTimeoutWithZeroDurationTest [
+{ #category : #tests }
+ExceptionTester >> simpleTimeoutWithZeroDurationTest [
 
 	[ self doSomething ]
 		valueWithin: 0 seconds onTimeout:
@@ -875,42 +676,30 @@ ExceptionTester>>simpleTimeoutWithZeroDurationTest [
 	
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>simpleTimeoutWithZeroDurationTestResults [
+{ #category : #results }
+ExceptionTester >> simpleTimeoutWithZeroDurationTestResults [
 
 	^OrderedCollection new
 		add: self doSomethingElseString;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>suiteLog [
+{ #category : #accessing }
+ExceptionTester >> suiteLog [
 
 	suiteLog == nil
 		ifTrue: [suiteLog := OrderedCollection new].
 	^suiteLog
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>testString [
+{ #category : #accessing }
+ExceptionTester >> testString [
 
 	^'This is only a test.'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTester>>warningTest [
+{ #category : #tests }
+ExceptionTester >> warningTest [
 
 	self log: 'About to signal warning.'.
 	Warning signal: 'Ouch'.

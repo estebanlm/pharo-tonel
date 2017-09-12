@@ -1,23 +1,15 @@
-Extension {
-	#name : #Path
-}
+Extension { #name : #Path }
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-Path class>>fromSton: stonReader [
+{ #category : #'*ston-core' }
+Path class >> fromSton: stonReader [
 	| elements |
 	elements := Array streamContents: [ :out |
 		stonReader parseListDo: [ :each | out nextPut: each ] ].
 	^ self withAll: elements
 ]
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-Path>>stonOn: stonWriter [
+{ #category : #'*ston-core' }
+Path >> stonOn: stonWriter [
 	stonWriter 
 		writeObject: self 
 		streamShortList: [ :listWriter | 

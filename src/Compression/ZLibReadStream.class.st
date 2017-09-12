@@ -4,15 +4,11 @@ A ZLib read stream
 Class {
 	#name : #ZLibReadStream,
 	#superclass : #FastInflateStream,
-	#category : #Compression-Streams,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:03'
+	#category : #Compression-Streams
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZLibReadStream>>on: aCollection from: firstIndex to: lastIndex [
+{ #category : #initialization }
+ZLibReadStream >> on: aCollection from: firstIndex to: lastIndex [
 	"Check the header of the ZLib stream."
 	| method byte |
 	super on: aCollection from: firstIndex to: lastIndex.
@@ -26,20 +22,14 @@ ZLibReadStream>>on: aCollection from: firstIndex to: lastIndex [
 
 ]
 
-{
-	#category : #crc,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZLibReadStream>>updateCrc: oldCrc from: start to: stop in: aCollection [
+{ #category : #crc }
+ZLibReadStream >> updateCrc: oldCrc from: start to: stop in: aCollection [
 	"Answer an updated CRC for the range of bytes in aCollection"
 	^ Adler32 update: oldCrc from: start to: stop in: aCollection
 ]
 
-{
-	#category : #crc,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZLibReadStream>>verifyCrc [
+{ #category : #crc }
+ZLibReadStream >> verifyCrc [
 	| stored |
 	stored := 0.
 	24 to: 0 by: -8 do: [ :i |

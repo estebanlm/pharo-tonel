@@ -21,31 +21,21 @@ Class {
 		'left',
 		'right'
 	],
-	#category : #AST-Core-Nodes,
-	#timestamp : 'NicolaiHess 8/2/2016 13:32'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode class>>selector: aSymbol arguments: valueNodes [
+{ #category : #'instance creation' }
+RBPragmaNode class >> selector: aSymbol arguments: valueNodes [
 	^ self selector: aSymbol keywordsPositions: nil arguments: valueNodes 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode class>>selector: aSymbol keywordsPositions: positionList arguments: valueNodes [
+{ #category : #'instance creation' }
+RBPragmaNode class >> selector: aSymbol keywordsPositions: positionList arguments: valueNodes [
 	^ self new selector: aSymbol keywordsPositions: positionList arguments: valueNodes 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>= anObject  [
+{ #category : #comparing }
+RBPragmaNode >> = anObject [ 
 	self == anObject ifTrue: [^true].
 	self class = anObject class ifFalse: [^false].
 	self selector = anObject selector ifFalse: [^false].
@@ -56,83 +46,56 @@ RBPragmaNode>>= anObject  [
 	^true
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visiting }
+RBPragmaNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^ aProgramNodeVisitor visitPragmaNode: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>argumentAt: keywordSelector [
+{ #category : #accessing }
+RBPragmaNode >> argumentAt: keywordSelector [
 	^ self 
 		argumentAt: keywordSelector
 		ifAbsent: [ KeyNotFound signalFor: keywordSelector ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>argumentAt: keywordSelector ifAbsent: absentBlock [
+{ #category : #accessing }
+RBPragmaNode >> argumentAt: keywordSelector ifAbsent: absentBlock [
 	self selectorParts with: self arguments do: [ :selectorPart :argument |
 		selectorPart value = keywordSelector
 			ifTrue: [ ^ argument ]].
 	^ absentBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>arguments [
+{ #category : #accessing }
+RBPragmaNode >> arguments [
 	^ arguments ifNil: [ #() ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>arguments: aLiteralCollection  [
+{ #category : #accessing }
+RBPragmaNode >> arguments: aLiteralCollection [ 
 	arguments := aLiteralCollection.
 	arguments do: [ :each | each parent: self ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>children [
+{ #category : #accessing }
+RBPragmaNode >> children [
 	^ self arguments
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>copyInContext: aDictionary  [
+{ #category : #matching }
+RBPragmaNode >> copyInContext: aDictionary [ 
 	^ self class
 		selector: self selector
 		arguments: (self arguments collect: [ :each | each copyInContext: aDictionary ])
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>defines: aName [
+{ #category : #testing }
+RBPragmaNode >> defines: aName [
 	^ self isPrimitive and: [ arguments anySatisfy: [ :each | each value = aName ] ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>equalTo: anObject withMapping: aDictionary  [
+{ #category : #comparing }
+RBPragmaNode >> equalTo: anObject withMapping: aDictionary [ 
 	self class = anObject class ifFalse: [ ^ false ].
 	self selector = anObject selector ifFalse: [ ^ false ].
 	self arguments size = anObject arguments size ifFalse: [ ^ false ].
@@ -142,19 +105,13 @@ RBPragmaNode>>equalTo: anObject withMapping: aDictionary  [
 	^ true
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>hash [
+{ #category : #comparing }
+RBPragmaNode >> hash [
 	^ self selector hash bitXor: (self hashForCollection: self arguments)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>initialize [
+{ #category : #initialization }
+RBPragmaNode >> initialize [
 
 	super initialize.
 
@@ -165,101 +122,65 @@ RBPragmaNode>>initialize [
 	selector := nil.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>isBinary [
+{ #category : #testing }
+RBPragmaNode >> isBinary [
 	^ (self isUnary or: [self isKeyword]) not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>isFaulty [
+{ #category : #testing }
+RBPragmaNode >> isFaulty [
 	^self arguments anySatisfy: #isFaulty.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>isKeyword [
+{ #category : #testing }
+RBPragmaNode >> isKeyword [
 	^(selector indexOf: $:) ~= 0.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>isPragma [
+{ #category : #testing }
+RBPragmaNode >> isPragma [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>isPrimitive [
+{ #category : #testing }
+RBPragmaNode >> isPrimitive [
 	^ #(primitive: primitive:error: primitive:error:module: primitive:module: primitive:module:error:) includes: self selector
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>isUnary [
+{ #category : #testing }
+RBPragmaNode >> isUnary [
 	^ arguments isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>keywordsIntervals [
+{ #category : #accessing }
+RBPragmaNode >> keywordsIntervals [
 	^selector keywords
 		with: self keywordsPositions 
 		collect: [:keyword :start| start to: (start = 0 ifTrue: [ -1 ] ifFalse: [ start + keyword size - 1]) ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>keywordsPositions [
+{ #category : #accessing }
+RBPragmaNode >> keywordsPositions [
 	^keywordsPositions ifNil: [ (selector keywords collect: [:char| 0 ]) asIntegerArray ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>keywordsPositions: aPositionsList [
+{ #category : #accessing }
+RBPragmaNode >> keywordsPositions: aPositionsList [
 	keywordsPositions := aPositionsList ifNotNil: [:list| list asIntegerArray ].
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>left [
+{ #category : #accessing-token }
+RBPragmaNode >> left [
 	^ left
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>left: anInteger [
+{ #category : #accessing-token }
+RBPragmaNode >> left: anInteger [
 	left := anInteger
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>match: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBPragmaNode >> match: aNode inContext: aDictionary [ 
 	aNode class = self class
 		ifFalse: [ ^ false ].
 	self selector = aNode selector
@@ -270,72 +191,48 @@ RBPragmaNode>>match: aNode inContext: aDictionary  [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>numArgs [
+{ #category : #accessing }
+RBPragmaNode >> numArgs [
 	^ self selector numArgs
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>postCopy [
+{ #category : #copying }
+RBPragmaNode >> postCopy [
 	super postCopy.
 	self arguments: (self arguments collect: [ :each | each copy ])
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>replaceNode: aNode withNode: anotherNode  [
+{ #category : #replacing }
+RBPragmaNode >> replaceNode: aNode withNode: anotherNode [ 
 	self arguments: (arguments collect: [ :each | 
 		each == aNode 
 			ifTrue: [ anotherNode ]
 			ifFalse: [ each ] ])
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>right [
+{ #category : #accessing-token }
+RBPragmaNode >> right [
 	^ right
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>right: anInteger [
+{ #category : #accessing-token }
+RBPragmaNode >> right: anInteger [
 	right := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>selector [
+{ #category : #accessing }
+RBPragmaNode >> selector [
 	^ selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>selector: aSelector  [
+{ #category : #accessing }
+RBPragmaNode >> selector: aSelector [ 
 	keywordsPositions := nil.
 	selector := aSelector asSymbol.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>selector: aSymbol keywordsPositions: positionList arguments: valueNodes [
+{ #category : #initialization }
+RBPragmaNode >> selector: aSymbol keywordsPositions: positionList arguments: valueNodes [
 	aSymbol numArgs == valueNodes size
 		ifFalse: 
 			[self error: 'Attempting to assign selector with wrong number of arguments.'].
@@ -346,36 +243,24 @@ RBPragmaNode>>selector: aSymbol keywordsPositions: positionList arguments: value
 		keywordsPositions: positionList.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>selectorParts [
+{ #category : #accessing }
+RBPragmaNode >> selectorParts [
 	^ selector keywords collect: [:keyword| keyword asSymbol ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>sentMessages [
+{ #category : #accessing }
+RBPragmaNode >> sentMessages [
 	^ super sentMessages
 		add: self selector;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>start [
+{ #category : #accessing }
+RBPragmaNode >> start [
 	^ left
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPragmaNode>>stop [
+{ #category : #accessing }
+RBPragmaNode >> stop [
 	^ right
 ]

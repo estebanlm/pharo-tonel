@@ -4,30 +4,20 @@ I know how to remove a parameter from a method
 Class {
 	#name : #SugsRemoveParameter,
 	#superclass : #SugsSuggestion,
-	#category : #SmartSuggestions-Suggestion,
-	#timestamp : '<historical>'
+	#category : #SmartSuggestions-Suggestion
 }
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsRemoveParameter>>execute [
+{ #category : #execution }
+SugsRemoveParameter >> execute [
 	(NautilusRefactoring model: context) removeParameterFor: context selectedMethod 
 ]
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsRemoveParameter>>isValidForContext [
+{ #category : #execution }
+SugsRemoveParameter >> isValidForContext [
 	^ context hasParameters
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsRemoveParameter>>label [
+{ #category : #accessing }
+SugsRemoveParameter >> label [
 	^'Remove parameter' translated
 ]

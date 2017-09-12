@@ -6,23 +6,16 @@ Try to put all the code in blocks in the setup messages, such as #title:, #displ
 Class {
 	#name : #ReInspectorPresentationsNonlazyCode,
 	#superclass : #ReAbstractRule,
-	#category : #Renraku-Rules,
-	#timestamp : 'YuriyTymchuk 1/13/2016 10:55'
+	#category : #Renraku-Rules
 }
 
-{
-	#category : #testing-interest,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInspectorPresentationsNonlazyCode class>>checksMethod [
+{ #category : #testing-interest }
+ReInspectorPresentationsNonlazyCode class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInspectorPresentationsNonlazyCode>>check: aMethod forCritiquesDo: aCriticBlock [
+{ #category : #running }
+ReInspectorPresentationsNonlazyCode >> check: aMethod forCritiquesDo: aCriticBlock [
 
 	(aMethod hasPragmaNamed: #gtInspectorPresentationOrder:) ifFalse: [ ^ self ].
 	
@@ -41,28 +34,19 @@ ReInspectorPresentationsNonlazyCode>>check: aMethod forCritiquesDo: aCriticBlock
 					by: self) ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInspectorPresentationsNonlazyCode>>group [
+{ #category : #accessing }
+ReInspectorPresentationsNonlazyCode >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInspectorPresentationsNonlazyCode>>name [
+{ #category : #accessing }
+ReInspectorPresentationsNonlazyCode >> name [
 
 	^ 'Code executed outside of the presentation setup'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReInspectorPresentationsNonlazyCode>>presentation: aPresentation isTheLeftmostRecepientIn: aStatement [
+{ #category : #private }
+ReInspectorPresentationsNonlazyCode >> presentation: aPresentation isTheLeftmostRecepientIn: aStatement [
 
 	^ (aStatement isMessage or:
 	 [ aStatement isCascade ])  and: [ 

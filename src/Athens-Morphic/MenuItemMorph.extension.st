@@ -1,34 +1,23 @@
-Extension {
-	#name : #MenuItemMorph
-}
+Extension { #name : #MenuItemMorph }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MenuItemMorph>>drawBackgroundOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+MenuItemMorph >> drawBackgroundOnAthensCanvas: anAthensCanvas [
 	(isSelected and: [ isEnabled ])
 		ifFalse: [ ^ self ].
 	anAthensCanvas setPaint: self selectionFillStyle.
 	anAthensCanvas drawShape: (0 @ 0 extent: self extent)
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MenuItemMorph>>drawIconAndLabelOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+MenuItemMorph >> drawIconAndLabelOnAthensCanvas: anAthensCanvas [
 	anAthensCanvas pathTransform
 		restoreAfter: [ 
 			self drawIconOnAthensCanvas: anAthensCanvas.
 			self drawLabelOnAthensCanvas: anAthensCanvas ]
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MenuItemMorph>>drawIconOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+MenuItemMorph >> drawIconOnAthensCanvas: anAthensCanvas [
 	self hasIcon
 		ifFalse: [ ^ self ].
 	anAthensCanvas setPaint: self iconForm.
@@ -36,11 +25,8 @@ MenuItemMorph>>drawIconOnAthensCanvas: anAthensCanvas [
 	anAthensCanvas pathTransform translateX: self iconForm width + 2 Y: 0
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MenuItemMorph>>drawLabelOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+MenuItemMorph >> drawLabelOnAthensCanvas: anAthensCanvas [
 	anAthensCanvas pathTransform translateX: 0 Y: self fontToUse getPreciseAscent.
 			anAthensCanvas
 				setPaint: self color;
@@ -48,11 +34,8 @@ MenuItemMorph>>drawLabelOnAthensCanvas: anAthensCanvas [
 				drawString: contents.
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MenuItemMorph>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+MenuItemMorph >> drawOnAthensCanvas: anAthensCanvas [
 	| bnd |
 	bnd := self bounds topLeft + self layoutInset.
 	anAthensCanvas pathTransform
@@ -63,11 +46,8 @@ MenuItemMorph>>drawOnAthensCanvas: anAthensCanvas [
 			self drawSubMenuMarkerOnAthensCanvas: anAthensCanvas ]
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MenuItemMorph>>drawSubMenuMarkerOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+MenuItemMorph >> drawSubMenuMarkerOnAthensCanvas: anAthensCanvas [
 	self hasSubMenu
 		ifFalse: [ ^ self ].
 	anAthensCanvas pathTransform

@@ -1,23 +1,15 @@
-Extension {
-	#name : #Collection
-}
+Extension { #name : #Collection }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Collection>>gtCollectionSizeThreshold [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Collection >> gtCollectionSizeThreshold [
 	"Return the maximum collection size that GT supports while showing all elements.
 	When this threshold is reached, we no longer show certain views that would take too much resources."
 
 	^ 16rFFFF "65535"
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Collection>>gtDisplayOn: stream [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Collection >> gtDisplayOn: stream [
 	self printNameOn: stream.
 	stream
 		space;
@@ -30,11 +22,8 @@ Collection>>gtDisplayOn: stream [
 		ifTrue: [ self printElementsOn: stream ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Collection>>gtInspectorItemsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Collection >> gtInspectorItemsIn: composite [
 	<gtInspectorPresentationOrder: 0> 
 	^ (composite fastList)
 		title: 'Items';

@@ -18,15 +18,11 @@ Class {
 		'wantsDropSelector',
 		'dragItemSelector'
 	],
-	#category : #Morphic-Widgets-Pluggable,
-	#timestamp : 'ar 2/12/2005 04:38'
+	#category : #Morphic-Widgets-Pluggable
 }
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>acceptDroppingMorph: aMorph event: evt [
+{ #category : #morphic }
+PluggableTreeMorph >> acceptDroppingMorph: aMorph event: evt [
 	| item dropTarget |
 
 	dropItemSelector 
@@ -45,255 +41,165 @@ PluggableTreeMorph>>acceptDroppingMorph: aMorph event: evt [
 
 ]
 
-{
-	#category : #'node access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>balloonTextForNode: node [
+{ #category : #'node access' }
+PluggableTreeMorph >> balloonTextForNode: node [
 	getHelpSelector ifNil:[^nil].
 	^model perform: getHelpSelector with: node item
 ]
 
-{
-	#category : #'node access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>contentsOfNode: node [
+{ #category : #'node access' }
+PluggableTreeMorph >> contentsOfNode: node [
 	| children |
 	getChildrenSelector ifNil:[^#()].
 	children := model perform: getChildrenSelector with: node item.
 	^children collect:[:item| PluggableTreeItemNode with: item model: self]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>dragItemSelector [
+{ #category : #accessing }
+PluggableTreeMorph >> dragItemSelector [
 	^dragItemSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>dragItemSelector: aSymbol [
+{ #category : #accessing }
+PluggableTreeMorph >> dragItemSelector: aSymbol [
 	dragItemSelector := aSymbol.
 	aSymbol ifNotNil:[self dragEnabled: true].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>dropItemSelector [
+{ #category : #accessing }
+PluggableTreeMorph >> dropItemSelector [
 	^dropItemSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>dropItemSelector: aSymbol [
+{ #category : #accessing }
+PluggableTreeMorph >> dropItemSelector: aSymbol [
 	dropItemSelector := aSymbol.
 	aSymbol ifNotNil:[self dropEnabled: true].
 ]
 
-{
-	#category : #'node access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>dropNode: srcNode on: dstNode [
+{ #category : #'node access' }
+PluggableTreeMorph >> dropNode: srcNode on: dstNode [
 	dropItemSelector ifNil:[^nil].
 	model perform: dropItemSelector with: srcNode item with: dstNode item
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>getChildrenSelector [
+{ #category : #accessing }
+PluggableTreeMorph >> getChildrenSelector [
 	^getChildrenSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>getChildrenSelector: aSymbol [
+{ #category : #accessing }
+PluggableTreeMorph >> getChildrenSelector: aSymbol [
 	getChildrenSelector := aSymbol.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>getHelpSelector [
+{ #category : #accessing }
+PluggableTreeMorph >> getHelpSelector [
 	^getHelpSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>getHelpSelector: aSymbol [
+{ #category : #accessing }
+PluggableTreeMorph >> getHelpSelector: aSymbol [
 	getHelpSelector := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>getIconSelector [
+{ #category : #accessing }
+PluggableTreeMorph >> getIconSelector [
 	^getIconSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>getIconSelector: aSymbol [
+{ #category : #accessing }
+PluggableTreeMorph >> getIconSelector: aSymbol [
 	getIconSelector := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>getLabelSelector [
+{ #category : #accessing }
+PluggableTreeMorph >> getLabelSelector [
 	^getLabelSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>getLabelSelector: aSymbol [
+{ #category : #accessing }
+PluggableTreeMorph >> getLabelSelector: aSymbol [
 	getLabelSelector := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>getRootsSelector [
+{ #category : #accessing }
+PluggableTreeMorph >> getRootsSelector [
 	^getRootsSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>getRootsSelector: aSelector [
+{ #category : #accessing }
+PluggableTreeMorph >> getRootsSelector: aSelector [
 	getRootsSelector := aSelector.
 	self update: getRootsSelector.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>getSelectedPathSelector [
+{ #category : #accessing }
+PluggableTreeMorph >> getSelectedPathSelector [
 	^getSelectedPathSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>getSelectedPathSelector: aSymbol [
+{ #category : #accessing }
+PluggableTreeMorph >> getSelectedPathSelector: aSymbol [
 	getSelectedPathSelector := aSymbol.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>hasChildrenSelector [
+{ #category : #accessing }
+PluggableTreeMorph >> hasChildrenSelector [
 	^hasChildrenSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>hasChildrenSelector: aSymbol [
+{ #category : #accessing }
+PluggableTreeMorph >> hasChildrenSelector: aSymbol [
 	hasChildrenSelector := aSymbol
 ]
 
-{
-	#category : #'node access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>hasNodeContents: node [
+{ #category : #'node access' }
+PluggableTreeMorph >> hasNodeContents: node [
 	hasChildrenSelector ifNil: [ ^ node contents isNotEmpty ].
 	^ model perform: hasChildrenSelector with: node item
 ]
 
-{
-	#category : #'node access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>iconOfNode: node [
+{ #category : #'node access' }
+PluggableTreeMorph >> iconOfNode: node [
 	getIconSelector ifNil:[^nil].
 	^model perform: getIconSelector with: node item
 ]
 
-{
-	#category : #'node access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>isDraggableNode: node [
+{ #category : #'node access' }
+PluggableTreeMorph >> isDraggableNode: node [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>keystrokeActionSelector [
+{ #category : #accessing }
+PluggableTreeMorph >> keystrokeActionSelector [
 	^keystrokeActionSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>keystrokeActionSelector: aSymbol [
+{ #category : #accessing }
+PluggableTreeMorph >> keystrokeActionSelector: aSymbol [
 	keystrokeActionSelector := aSymbol
 ]
 
-{
-	#category : #'node access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>printNode: node [
+{ #category : #'node access' }
+PluggableTreeMorph >> printNode: node [
 	getLabelSelector ifNil:[^node item printString].
 	^model perform: getLabelSelector with: node item
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>roots [
+{ #category : #accessing }
+PluggableTreeMorph >> roots [
 	^roots
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>roots: anArray [
+{ #category : #accessing }
+PluggableTreeMorph >> roots: anArray [
 	roots := anArray collect:[:item| PluggableTreeItemNode with: item model: self].
 	self list: roots.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>selectPath: path in: listItem [
+{ #category : #updating }
+PluggableTreeMorph >> selectPath: path in: listItem [
 	path isEmpty ifTrue: [^self setSelectedMorph: nil].
 	listItem withSiblingsDo: [:each | 
 		(each complexContents item = path first) ifTrue: [
@@ -314,11 +220,8 @@ PluggableTreeMorph>>selectPath: path in: listItem [
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>setSelectedMorph: aMorph [
+{ #category : #selection }
+PluggableTreeMorph >> setSelectedMorph: aMorph [
 	selectedWrapper := aMorph complexContents.
 	self selection: selectedWrapper.
 	setSelectionSelector ifNotNil:[
@@ -328,27 +231,18 @@ PluggableTreeMorph>>setSelectedMorph: aMorph [
 	].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>setSelectedSelector [
+{ #category : #accessing }
+PluggableTreeMorph >> setSelectedSelector [
 	^setSelectionSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>setSelectedSelector: aSymbol [
+{ #category : #accessing }
+PluggableTreeMorph >> setSelectedSelector: aSymbol [
 	setSelectionSelector := aSymbol
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>startDrag: anEvent  [
+{ #category : #morphic }
+PluggableTreeMorph >> startDrag: anEvent [ 
 	| aTransferMorph itemMorph passenger |
 	
 	self dragEnabled
@@ -379,11 +273,8 @@ PluggableTreeMorph>>startDrag: anEvent  [
 	anEvent hand releaseMouseFocus: self
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>update: what [
+{ #category : #updating }
+PluggableTreeMorph >> update: what [
 	what ifNil:[^self].
 	what == getRootsSelector ifTrue:[
 		self roots: (model perform: getRootsSelector)
@@ -395,27 +286,18 @@ PluggableTreeMorph>>update: what [
 	^super update: what
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>wantsDropSelector [
+{ #category : #accessing }
+PluggableTreeMorph >> wantsDropSelector [
 	^wantsDropSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>wantsDropSelector: aSymbol [
+{ #category : #accessing }
+PluggableTreeMorph >> wantsDropSelector: aSymbol [
 	wantsDropSelector := aSymbol
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>wantsDroppedMorph: aMorph event: anEvent [
+{ #category : #morphic }
+PluggableTreeMorph >> wantsDroppedMorph: aMorph event: anEvent [
 	
 	aMorph dragTransferType == #dragTransfer ifFalse: [ ^ false ].
 	
@@ -430,11 +312,8 @@ PluggableTreeMorph>>wantsDroppedMorph: aMorph event: anEvent [
 				with: aMorph passenger ]
 ]
 
-{
-	#category : #'node access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableTreeMorph>>wantsDroppedNode: srcNode on: dstNode [
+{ #category : #'node access' }
+PluggableTreeMorph >> wantsDroppedNode: srcNode on: dstNode [
 	dropItemSelector ifNil:[^false].
 	wantsDropSelector ifNil:[^true].
 	^(model perform: wantsDropSelector with: srcNode with: dstNode) == true

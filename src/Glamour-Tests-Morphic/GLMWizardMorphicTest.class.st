@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMWizardMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMWizardMorphicTest>>testClose [
+{ #category : #tests }
+GLMWizardMorphicTest >> testClose [
 	| wizard |
 	wizard := GLMWizard new.
 	(wizard genericStep: #step) show: [:a | a text ] ; size: 2.

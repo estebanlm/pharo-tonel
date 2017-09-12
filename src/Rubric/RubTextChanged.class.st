@@ -9,72 +9,47 @@ Class {
 		'stop',
 		'text'
 	],
-	#category : #Rubric-Editing-Announcements,
-	#timestamp : 'FranckWarlouzet 7/29/2015 11:17'
+	#category : #Rubric-Editing-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextChanged class>>from: start to: stop with: aText [
+{ #category : #'instance creation' }
+RubTextChanged class >> from: start to: stop with: aText [
 	^ self new from: start to: stop with: aText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextChanged>>from: startIndex to: stopIndex with: aText [
+{ #category : #accessing }
+RubTextChanged >> from: startIndex to: stopIndex with: aText [
 	self start: startIndex.
 	self stop: stopIndex.
 	self text: aText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextChanged>>start [
+{ #category : #accessing }
+RubTextChanged >> start [
 	^ start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextChanged>>start: anInteger [
+{ #category : #accessing }
+RubTextChanged >> start: anInteger [
 	start := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextChanged>>stop [
+{ #category : #accessing }
+RubTextChanged >> stop [
 	^ stop
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextChanged>>stop: anInteger [
+{ #category : #accessing }
+RubTextChanged >> stop: anInteger [
 	stop := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextChanged>>text [
+{ #category : #accessing }
+RubTextChanged >> text [
 	^ text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextChanged>>text: aText [
+{ #category : #accessing }
+RubTextChanged >> text: aText [
 	text := aText
 ]

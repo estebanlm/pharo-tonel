@@ -1,36 +1,22 @@
-Extension {
-	#name : #VSCommitAction
-}
+Extension { #name : #VSCommitAction }
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>browseOn: aBrowser [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitAction >> browseOn: aBrowser [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>currentString [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitAction >> currentString [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>displayString [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitAction >> displayString [
 	^ self subclassResponsibility
 
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitAction>>icon [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitAction >> icon [
 	^ self subclassResponsibility
 ]

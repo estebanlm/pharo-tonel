@@ -10,24 +10,17 @@ Class {
 		'pane',
 		'value'
 	],
-	#category : #Glamour-Core,
-	#timestamp : '<historical>'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPanePort>>basicValue: anObject [
+{ #category : #accessing }
+GLMPanePort >> basicValue: anObject [
 	value := anObject. 
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPanePort>>changeValueTo: anObject in: aTransmissionContext [
+{ #category : #accessing }
+GLMPanePort >> changeValueTo: anObject in: aTransmissionContext [
 	| oldValue | 
 	oldValue := self value.
 	self pane notingPresentationChangeDo: [
@@ -39,37 +32,25 @@ GLMPanePort>>changeValueTo: anObject in: aTransmissionContext [
 						in: aTransmissionContext) ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPanePort>>copyAccordingToPaneMapping: newPanesMapping inNewBrowser: anotherBrowser [
+{ #category : #copying }
+GLMPanePort >> copyAccordingToPaneMapping: newPanesMapping inNewBrowser: anotherBrowser [
 	^ (newPanesMapping at: self pane) port: self name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPanePort>>pane  [
+{ #category : #accessing }
+GLMPanePort >> pane [ 
 	 
 	^pane
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPanePort>>pane: aPane  [
+{ #category : #accessing }
+GLMPanePort >> pane: aPane [ 
 	 
 	pane := aPane
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPanePort>>printOn: aStream  [
+{ #category : #accessing }
+GLMPanePort >> printOn: aStream [ 
 	 
 	aStream 
 		nextPutAll: 'Port (pane='; 
@@ -81,47 +62,32 @@ GLMPanePort>>printOn: aStream  [
 		nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPanePort>>receive: aTransmission in: aContext [
+{ #category : #accessing }
+GLMPanePort >> receive: aTransmission in: aContext [
 	self value: aTransmission value in: aContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPanePort>>resetValue [
+{ #category : #accessing }
+GLMPanePort >> resetValue [
 	| context |
 	context := GLMTransmissionContext new.
 	context addPort: self.
 	self changeValueTo: nil in: context.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPanePort>>silentValue: anObject [
+{ #category : #accessing }
+GLMPanePort >> silentValue: anObject [
 	value := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPanePort>>value  [
+{ #category : #accessing }
+GLMPanePort >> value [ 
 	 
 	^value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPanePort>>value: anObject in: aContext [
+{ #category : #accessing }
+GLMPanePort >> value: anObject in: aContext [
 	(self validate: anObject) ifFalse: [^ self].
 	aContext addPort: self.
 	self changeValueTo: anObject in: aContext.

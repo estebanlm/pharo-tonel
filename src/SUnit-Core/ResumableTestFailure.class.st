@@ -13,24 +13,17 @@ for each element where #odd returns <false>, the element will be printed to the 
 Class {
 	#name : #ResumableTestFailure,
 	#superclass : #TestFailure,
-	#category : #SUnit-Core-Kernel,
-	#timestamp : '<historical>'
+	#category : #SUnit-Core-Kernel
 }
 
-{
-	#category : #'camp smalltalk',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ResumableTestFailure>>isResumable [
+{ #category : #'camp smalltalk' }
+ResumableTestFailure >> isResumable [
 	"Of course a ResumableTestFailure is resumable ;-)"
 
 	^true
 ]
 
-{
-	#category : #'camp smalltalk',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ResumableTestFailure>>sunitExitWith: aValue [
+{ #category : #'camp smalltalk' }
+ResumableTestFailure >> sunitExitWith: aValue [
 	self resume: aValue
 ]

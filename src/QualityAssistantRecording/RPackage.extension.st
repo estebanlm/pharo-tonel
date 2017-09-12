@@ -1,12 +1,7 @@
-Extension {
-	#name : #RPackage
-}
+Extension { #name : #RPackage }
 
-{
-	#category : #'*qualityAssistantRecording',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RPackage>>dataForQAR [
+{ #category : #'*qualityAssistantRecording' }
+RPackage >> dataForQAR [
 
 	^ super dataForQAR
 		at: #class put: self class name;

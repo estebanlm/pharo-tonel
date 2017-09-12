@@ -14,23 +14,16 @@ Class {
 	#instVars : [
 		'preDebugWindow'
 	],
-	#category : #DebuggerActions,
-	#timestamp : '<historical>'
+	#category : #DebuggerActions
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugResumeDebugAction class>>actionType [
+{ #category : #registration }
+PreDebugResumeDebugAction class >> actionType [
 	<preDebuggingAction>
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugResumeDebugAction>>executeAction [
+{ #category : #actions }
+PreDebugResumeDebugAction >> executeAction [
 
 	self session 
 		resume;
@@ -38,40 +31,28 @@ PreDebugResumeDebugAction>>executeAction [
 	self preDebugWindow close. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugResumeDebugAction>>id [
+{ #category : #accessing }
+PreDebugResumeDebugAction >> id [
 
 	^ #preDebugResume
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugResumeDebugAction>>initialize [
+{ #category : #initialization }
+PreDebugResumeDebugAction >> initialize [
 
 	super initialize.
 	self needsUpdate: false.
 	self needsValidation: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugResumeDebugAction>>preDebugWindow [
+{ #category : #accessing }
+PreDebugResumeDebugAction >> preDebugWindow [
 	
 	^ preDebugWindow
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-PreDebugResumeDebugAction>>preDebugWindow: anObject [
+{ #category : #accessing }
+PreDebugResumeDebugAction >> preDebugWindow: anObject [
 	
 	preDebugWindow := anObject
 ]

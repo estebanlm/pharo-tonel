@@ -7,25 +7,18 @@ Class {
 	#instVars : [
 		'versions'
 	],
-	#category : #Monticello-Loading,
-	#timestamp : '<historical>'
+	#category : #Monticello-Loading
 }
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader class>>loadVersion: aVersion [
+{ #category : #'public api' }
+MCVersionLoader class >> loadVersion: aVersion [
 	self new
 		addVersion: aVersion;
 		load
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>addDependency: aDependency [
+{ #category : #loading }
+MCVersionLoader >> addDependency: aDependency [
 	| dep |
 	aDependency isCurrent ifTrue: [^ self].
 	(self depAgeIsOk: aDependency) ifFalse: [^ self].
@@ -35,21 +28,15 @@ MCVersionLoader>>addDependency: aDependency [
 		ifNotNil: [(versions includes: dep) ifFalse: [self addVersion: dep]]
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>addVersion: aVersion [
+{ #category : #loading }
+MCVersionLoader >> addVersion: aVersion [
 	aVersion dependencies do: [ :ea | self addDependency: ea].
 	versions add: aVersion.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>announceLoad: aString do: aBlock [
+{ #category : #private }
+MCVersionLoader >> announceLoad: aString do: aBlock [
 	| returnValue |
 	returnValue := nil.
 	[ self announceLoadStart: aString ] ensure: [ 
@@ -58,33 +45,24 @@ MCVersionLoader>>announceLoad: aString do: aBlock [
 	^ returnValue
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>announceLoadStart: aString [
+{ #category : #private }
+MCVersionLoader >> announceLoadStart: aString [
 	SystemAnnouncer uniqueInstance announce: (MCVersionLoaderStarted new
 		versionLoader: self;
 		label: aString; 
 		yourself)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>announceLoadStop: aString [
+{ #category : #private }
+MCVersionLoader >> announceLoadStop: aString [
 	SystemAnnouncer uniqueInstance announce: (MCVersionLoaderStopped new
 		versionLoader: self;
 		label: aString; 
 		yourself)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>basicLoadWithNameLike: aString [
+{ #category : #private }
+MCVersionLoader >> basicLoadWithNameLike: aString [
 	| loader |
 	
 	self checkForModificationsIfCancel: [ ^ self] ifMerge: [ ^ self mergeVersions ].
@@ -102,11 +80,8 @@ MCVersionLoader>>basicLoadWithNameLike: aString [
 	versions do: [:ea | ea workingCopy loaded: ea]
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>checkForModificationsIfCancel: cancelBlock ifMerge: mergeBlock [
+{ #category : #checking }
+MCVersionLoader >> checkForModificationsIfCancel: cancelBlock ifMerge: mergeBlock [
 	| modifications |
 	
 	"first check if there are local packages which are dirty"
@@ -117,76 +92,52 @@ MCVersionLoader>>checkForModificationsIfCancel: cancelBlock ifMerge: mergeBlock 
 	^ self warnAboutLosingChangesTo: modifications ifCancel: cancelBlock ifMerge: mergeBlock
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>checkIfDepIsOlder: aDependency [
+{ #category : #checking }
+MCVersionLoader >> checkIfDepIsOlder: aDependency [
 	^ aDependency isOlder not 
 		or: [self confirm: 'load older dependency ', aDependency versionInfo name , '?']
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>confirmMissingDependency: aDependency [
+{ #category : #checking }
+MCVersionLoader >> confirmMissingDependency: aDependency [
 	| name |
 	name := aDependency versionInfo name.
 	(self confirm: 'Can''t find dependency ', name, '. ignore?')
 		ifFalse: [self error: 'Can''t find dependency ', name]
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>depAgeIsOk: aDependency [
+{ #category : #checking }
+MCVersionLoader >> depAgeIsOk: aDependency [
 	^ aDependency isOlder not 
 		or: [self confirm: 'load older dependency ', aDependency versionInfo name , '?']
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>ensurePackage: mcPackage  [
+{ #category : #private }
+MCVersionLoader >> ensurePackage: mcPackage [ 
 	RPackageOrganizer default registerPackageNamed: mcPackage name 
 		
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>hasLocalModifications [
+{ #category : #testing }
+MCVersionLoader >> hasLocalModifications [
 	^ self localModifications isEmpty not
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>hasVersions [
+{ #category : #testing }
+MCVersionLoader >> hasVersions [
 
 	^ versions isEmpty not
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>initialize [
+{ #category : #initialization }
+MCVersionLoader >> initialize [
 	super initialize.
 	versions := OrderedCollection new
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>load [
+{ #category : #loading }
+MCVersionLoader >> load [
 	RPackageSet withCacheDo: [   
 		| version |
 		version := versions first. 
@@ -196,48 +147,33 @@ MCVersionLoader>>load [
 				run ]
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>loadWithNameLike: aString [
+{ #category : #loading }
+MCVersionLoader >> loadWithNameLike: aString [
 	" this is THE central entrypoint for all loading (gopher, metacello, monticello, ...) "
 	^ self announceLoad: aString do: [ self basicLoadWithNameLike: aString ]
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>localModifications [
+{ #category : #checking }
+MCVersionLoader >> localModifications [
 	^ versions select: [:ea | ea package workingCopy modified].
 	
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>mergeVersions [
+{ #category : #loading }
+MCVersionLoader >> mergeVersions [
 	|merger|
 	merger :=  MCVersionMerger new.
 	merger addVersions: self localModifications.
 	merger merge.
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>warnAboutLosingChangesTo: versionCollection [
+{ #category : #checking }
+MCVersionLoader >> warnAboutLosingChangesTo: versionCollection [
 	^ (MCMergeOrLoadWarning signalFor: versionCollection).
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoader>>warnAboutLosingChangesTo: versionCollection ifCancel: cancelBlock ifMerge: mergeBlock [
+{ #category : #checking }
+MCVersionLoader >> warnAboutLosingChangesTo: versionCollection ifCancel: cancelBlock ifMerge: mergeBlock [
 	
 	| result |
 

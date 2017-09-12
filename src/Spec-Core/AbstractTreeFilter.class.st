@@ -5,15 +5,11 @@ My children should propose a filter for tree nodes
 Class {
 	#name : #AbstractTreeFilter,
 	#superclass : #Object,
-	#category : #Spec-Core-Widgets-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Widgets-Support
 }
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTreeFilter>>keepTreeNode: aNode [
+{ #category : #filtering }
+AbstractTreeFilter >> keepTreeNode: aNode [
 
 	^ false
 ]

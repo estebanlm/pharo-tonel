@@ -10,64 +10,45 @@ Class {
 	#classInstVars : [
 		'instance'
 	],
-	#category : #Komitter-Support,
-	#timestamp : '<historical>'
+	#category : #Komitter-Support
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterManager class>>current [
+{ #category : #accessing }
+KomitterManager class >> current [
 
 	^ instance ifNil: [ instance := super new ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterManager class>>new [
+{ #category : #'instance creation' }
+KomitterManager class >> new [
 
 	^ self shouldNotImplement
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterManager>>initialize [
+{ #category : #initialize }
+KomitterManager >> initialize [
 
 	super initialize.
 
 	versions := Dictionary new.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterManager>>reset [
+{ #category : #protocol }
+KomitterManager >> reset [
 
 	versions := Dictionary new
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterManager>>storeVersion: aVersion for: aPackage [
+{ #category : #protocol }
+KomitterManager >> storeVersion: aVersion for: aPackage [
 
 	versions 
 		at: aPackage
 		put: aVersion
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitterManager>>versionFor: aPackage [
+{ #category : #protocol }
+KomitterManager >> versionFor: aPackage [
 
 	^ versions 
 		at: aPackage

@@ -8,30 +8,20 @@ Class {
 	#instVars : [
 		'finalizationAction'
 	],
-	#category : #Collections-Tests-Weak,
-	#timestamp : '<historical>'
+	#category : #Collections-Tests-Weak
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MockFinalizerAction>>finalizationAction: aValuable [
+{ #category : #accessing }
+MockFinalizerAction >> finalizationAction: aValuable [
 	finalizationAction := aValuable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MockFinalizerAction>>finalize [
+{ #category : #accessing }
+MockFinalizerAction >> finalize [
 	finalizationAction value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MockFinalizerAction>>finalizeValues [
+{ #category : #accessing }
+MockFinalizerAction >> finalizeValues [
 	finalizationAction value
 ]

@@ -7,24 +7,17 @@ Class {
 	#instVars : [
 		'model'
 	],
-	#category : #NautilusCommon-Plugin-Manager,
-	#timestamp : '<historical>'
+	#category : #NautilusCommon-Plugin-Manager
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusPluginManagerTree class>>model: aModel [
+{ #category : #'instance creation' }
+NautilusPluginManagerTree class >> model: aModel [
 	
 	^ self new model: aModel
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusPluginManagerTree>>buildPluginsTree [
+{ #category : #building }
+NautilusPluginManagerTree >> buildPluginsTree [
 	| tree | 
 	tree := IdentityMorphTreeMorph on: self.
 	tree
@@ -46,46 +39,31 @@ NautilusPluginManagerTree>>buildPluginsTree [
 	^ tree
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusPluginManagerTree>>model [
+{ #category : #accessing }
+NautilusPluginManagerTree >> model [
 
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusPluginManagerTree>>model: anObject [
+{ #category : #accessing }
+NautilusPluginManagerTree >> model: anObject [
 	
 	model := anObject
 ]
 
-{
-	#category : #'t - accessing',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusPluginManagerTree>>rootItems [
+{ #category : #'t - accessing' }
+NautilusPluginManagerTree >> rootItems [
 
 	^ self model getPluginsList
 ]
 
-{
-	#category : #'t - accessing',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusPluginManagerTree>>rootNodeClassFromItem: anItem [
+{ #category : #'t - accessing' }
+NautilusPluginManagerTree >> rootNodeClassFromItem: anItem [
 	^ PluginTreeNode
 ]
 
-{
-	#category : #'t - accessing',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusPluginManagerTree>>update [
+{ #category : #'t - accessing' }
+NautilusPluginManagerTree >> update [
 
 	self updateList
 ]

@@ -7,103 +7,69 @@ Class {
 	#superclass : #ClassTestCase,
 	#traits : 'TIterateTest + TEmptyTest + TSizeTest',
 	#classTraits : 'TIterateTest classTrait + TEmptyTest classTrait + TSizeTest classTrait',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'stephane.ducasse 1/12/2009 17:41'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CollectionRootTest class>>isAbstract [
+{ #category : #'as yet unclassified' }
+CollectionRootTest class >> isAbstract [
 
 	^ self name = #CollectionRootTest
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CollectionRootTest>>collectionWithoutNilElements [
+{ #category : #requirements }
+CollectionRootTest >> collectionWithoutNilElements [
 " return a collection that doesn't includes a nil element  and that doesn't includes equal elements'"
 	self subclassResponsibility
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CollectionRootTest>>doWithoutNumber [
+{ #category : #requirements }
+CollectionRootTest >> doWithoutNumber [
 
 	^ 2
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CollectionRootTest>>element [
+{ #category : #requirements }
+CollectionRootTest >> element [
 	^ 3
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CollectionRootTest>>elementTwiceIn [
+{ #category : #requirements }
+CollectionRootTest >> elementTwiceIn [
 	^ 1 "12332312322"
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CollectionRootTest>>empty [
+{ #category : #requirements }
+CollectionRootTest >> empty [
 	self subclassResponsibility
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CollectionRootTest>>expectedElementByDetect [
+{ #category : #requirements }
+CollectionRootTest >> expectedElementByDetect [
 
 	^ -2
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CollectionRootTest>>nonEmpty [
+{ #category : #requirements }
+CollectionRootTest >> nonEmpty [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CollectionRootTest>>sizeCollection [
+{ #category : #requirements }
+CollectionRootTest >> sizeCollection [
 	"Answers a collection not empty"
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'tests - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CollectionRootTest>>testDetectIfFoundIfNoneWhenNobodyIsFound [
+{ #category : #'tests - iterate' }
+CollectionRootTest >> testDetectIfFoundIfNoneWhenNobodyIsFound [
 	| wasFound |
 	wasFound := self collectionWithoutNilElements detect: [ :each | each isNil ] ifFound: [ true ] ifNone: [ false ].
 	self deny: wasFound
 ]
 
-{
-	#category : #'tests - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CollectionRootTest>>testDetectIfFoundIfNoneWhenSomethingIsFound [
+{ #category : #'tests - iterate' }
+CollectionRootTest >> testDetectIfFoundIfNoneWhenSomethingIsFound [
 	| wasFound foundObject |
 	foundObject := nil.
 	wasFound := self collectionWithoutNilElements
@@ -117,11 +83,8 @@ CollectionRootTest>>testDetectIfFoundIfNoneWhenSomethingIsFound [
 		assert: (self collectionWithoutNilElements includes: foundObject)
 ]
 
-{
-	#category : #'tests - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CollectionRootTest>>testDetectIfFoundIfNoneWhenSomethingIsFoundIgnoringTheFoundObject [
+{ #category : #'tests - iterate' }
+CollectionRootTest >> testDetectIfFoundIfNoneWhenSomethingIsFoundIgnoringTheFoundObject [
 	"The foundBlock can be a zero argument block ignoring the object found"
 
 	| wasFound |
@@ -129,22 +92,16 @@ CollectionRootTest>>testDetectIfFoundIfNoneWhenSomethingIsFoundIgnoringTheFoundO
 	self assert: wasFound
 ]
 
-{
-	#category : #'tests - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CollectionRootTest>>testDetectIfFoundWhenNobodyIsFound [
+{ #category : #'tests - iterate' }
+CollectionRootTest >> testDetectIfFoundWhenNobodyIsFound [
 	| wasFound |
 	wasFound := false.
 	self collectionWithoutNilElements detect: [ :each | each isNil ] ifFound: [ wasFound := true ].
 	self deny: wasFound
 ]
 
-{
-	#category : #'tests - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CollectionRootTest>>testDetectIfFoundWhenSomethingIsFound [
+{ #category : #'tests - iterate' }
+CollectionRootTest >> testDetectIfFoundWhenSomethingIsFound [
 	| wasFound foundObject |
 	wasFound := false.
 	foundObject := nil.
@@ -159,11 +116,8 @@ CollectionRootTest>>testDetectIfFoundWhenSomethingIsFound [
 
 ]
 
-{
-	#category : #'tests - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CollectionRootTest>>testDetectIfFoundWhenSomethingIsFoundIgnoringTheFoundObject [
+{ #category : #'tests - iterate' }
+CollectionRootTest >> testDetectIfFoundWhenSomethingIsFoundIgnoringTheFoundObject [
 	"The foundBlock can be a zero argument block ignoring the object found"
 
 	| wasFound |
@@ -172,11 +126,8 @@ CollectionRootTest>>testDetectIfFoundWhenSomethingIsFoundIgnoringTheFoundObject 
 	self assert: wasFound
 ]
 
-{
-	#category : #'tests - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-CollectionRootTest>>testRejectNoReject [
+{ #category : #'tests - iterate' }
+CollectionRootTest >> testRejectNoReject [
 	| res collection |
 	collection := self collectionWithoutNilElements .
 	res := collection  reject: [ :each | each isNil ].

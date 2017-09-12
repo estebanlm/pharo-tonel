@@ -27,181 +27,120 @@ Class {
 		'SoundEnabled',
 		'SoundQuickStart'
 	],
-	#category : #System-Sound,
-	#timestamp : '<historical>'
+	#category : #System-Sound
 }
 
-{
-	#category : #'current ',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem class>>current [
+{ #category : #'current ' }
+SoundSystem class >> current [
 
 	^ Current ifNil: [ Current := DummySoundSystem new ]
 ]
 
-{
-	#category : #'current ',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem class>>current: aSoundSystem [
+{ #category : #'current ' }
+SoundSystem class >> current: aSoundSystem [
 
 	Current ifNotNil: [Current deactivate].
 	Current := aSoundSystem.
 	Current activate.
 ]
 
-{
-	#category : #'current ',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem class>>resetSoundSystem [
+{ #category : #'current ' }
+SoundSystem class >> resetSoundSystem [
 	Current := nil
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem class>>soundEnabled [
+{ #category : #setting }
+SoundSystem class >> soundEnabled [
 	^ SoundEnabled ifNil: [SoundEnabled := false]
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem class>>soundEnabled: aBoolean [
+{ #category : #setting }
+SoundSystem class >> soundEnabled: aBoolean [
 	SoundEnabled := aBoolean
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem class>>soundQuickStart [
+{ #category : #setting }
+SoundSystem class >> soundQuickStart [
 	^ SoundQuickStart ifNil: [SoundQuickStart := false]
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem class>>soundQuickStart: aBoolean [
+{ #category : #setting }
+SoundSystem class >> soundQuickStart: aBoolean [
 	SoundQuickStart := aBoolean
 ]
 
-{
-	#category : #'activation hooks',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem>>activate [
+{ #category : #'activation hooks' }
+SoundSystem >> activate [
 	"Hook for possible specialization when activating a sound system"
 ]
 
-{
-	#category : #beep,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem>>beep [
+{ #category : #beep }
+SoundSystem >> beep [
 	"Make a primitive beep."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #'activation hooks',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem>>deactivate [
+{ #category : #'activation hooks' }
+SoundSystem >> deactivate [
 	"Hook for possible specialization when activating a sound system"
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem>>playSampledSound: samples rate: rate [
+{ #category : #sounds }
+SoundSystem >> playSampledSound: samples rate: rate [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem>>playSoundNamed: soundName [
+{ #category : #sounds }
+SoundSystem >> playSoundNamed: soundName [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem>>playSoundNamed: soundName ifAbsentReadFrom: aifFileName [
+{ #category : #sounds }
+SoundSystem >> playSoundNamed: soundName ifAbsentReadFrom: aifFileName [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #sounds,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem>>playSoundNamedOrBeep: soundName [
+{ #category : #sounds }
+SoundSystem >> playSoundNamedOrBeep: soundName [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #'to deprecate',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem>>randomBitsFromSoundInput: bitCount [
+{ #category : #'to deprecate' }
+SoundSystem >> randomBitsFromSoundInput: bitCount [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #'to deprecate',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem>>sampledSoundChoices [
+{ #category : #'to deprecate' }
+SoundSystem >> sampledSoundChoices [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #'activation hooks',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem>>shutDown [
+{ #category : #'activation hooks' }
+SoundSystem >> shutDown [
 	"by default do nothing"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem>>soundEnabled [
+{ #category : #accessing }
+SoundSystem >> soundEnabled [
 
 	^ self class soundEnabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem>>soundEnabled: aBoolean [
+{ #category : #accessing }
+SoundSystem >> soundEnabled: aBoolean [
 
 	^ self class soundEnabled: aBoolean
 ]
 
-{
-	#category : #query,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SoundSystem>>soundNamed: soundName [
+{ #category : #query }
+SoundSystem >> soundNamed: soundName [
 
 	self subclassResponsibility
 ]

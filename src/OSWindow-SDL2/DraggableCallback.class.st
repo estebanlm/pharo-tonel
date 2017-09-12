@@ -9,24 +9,17 @@ Class {
 	#pools : [
 		'SDL2Constants'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'Matthieu 5/28/2015 14:52'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'callback spec',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-DraggableCallback class>>fnSpec [
+{ #category : #'callback spec' }
+DraggableCallback class >> fnSpec [
 
 	^'int ( SDL_Window aWindow, SDL_Point* pt, void* data )'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-DraggableCallback class>>on: aBlock [
+{ #category : #'instance creation' }
+DraggableCallback class >> on: aBlock [
 	^ self 
 		signature: self fnSpec
 		block: aBlock

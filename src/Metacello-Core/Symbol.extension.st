@@ -1,44 +1,27 @@
-Extension {
-	#name : #Symbol
-}
+Extension { #name : #Symbol }
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-Symbol>>asMetacelloAttributeList [
+{ #category : #'*Metacello-Core' }
+Symbol >> asMetacelloAttributeList [
     ^ {self}
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-Symbol>>asMetacelloAttributePath [
+{ #category : #'*Metacello-Core' }
+Symbol >> asMetacelloAttributePath [
     ^ MetacelloMethodSectionPath with: {self}
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-Symbol>>setForDo: aBlock withInMetacelloConfig: aMetacelloConstructore [
+{ #category : #'*Metacello-Core' }
+Symbol >> setForDo: aBlock withInMetacelloConfig: aMetacelloConstructore [
     aMetacelloConstructore setFor: {self} do: aBlock
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-Symbol>>setForVersion: aString withInMetacelloConfig: aMetacelloConstructore [
+{ #category : #'*Metacello-Core' }
+Symbol >> setForVersion: aString withInMetacelloConfig: aMetacelloConstructore [
     aMetacelloConstructore setFor: {self} version: aString
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-Symbol>>setPostLoadDoItInMetacelloSpec: aMetacelloSpec [
+{ #category : #'*Metacello-Core' }
+Symbol >> setPostLoadDoItInMetacelloSpec: aMetacelloSpec [
     self precedence == 0
         ifTrue: [ self error: 'Invalid selector' ].
     aMetacelloSpec
@@ -48,11 +31,8 @@ Symbol>>setPostLoadDoItInMetacelloSpec: aMetacelloSpec [
                 yourself)
 ]
 
-{
-	#category : #'*Metacello-Core',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-Symbol>>setPreLoadDoItInMetacelloSpec: aMetacelloSpec [
+{ #category : #'*Metacello-Core' }
+Symbol >> setPreLoadDoItInMetacelloSpec: aMetacelloSpec [
     self precedence == 0
         ifTrue: [ self error: 'Invalid selector' ].
     aMetacelloSpec

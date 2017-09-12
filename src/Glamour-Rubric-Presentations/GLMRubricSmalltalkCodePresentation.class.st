@@ -8,24 +8,17 @@ Class {
 		'highlightSmalltalkContext',
 		'variableBindingsBlock'
 	],
-	#category : #Glamour-Rubric-Presentations,
-	#timestamp : 'AndreiChis 10/1/2014 13:48'
+	#category : #Glamour-Rubric-Presentations
 }
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>browseIt [
+{ #category : #'actions browsing' }
+GLMRubricSmalltalkCodePresentation >> browseIt [
 
 	self announce: (GLMTextEditorRequest for: #browseIt)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>browsingSelectionActions [
+{ #category : #accessing }
+GLMRubricSmalltalkCodePresentation >> browsingSelectionActions [
 
 	^ { (GLMGenericAction new) 
 				title: 'Browse it';
@@ -78,11 +71,8 @@ GLMRubricSmalltalkCodePresentation>>browsingSelectionActions [
 				yourself. }
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>compileTextIn: aContext from:  aSession andDo: aBlock [
+{ #category : #actions }
+GLMRubricSmalltalkCodePresentation >> compileTextIn: aContext from:  aSession andDo: aBlock [
 
 	self announce: (GLMCompileText new
 		presentation: self;
@@ -91,51 +81,36 @@ GLMRubricSmalltalkCodePresentation>>compileTextIn: aContext from:  aSession andD
 		action: aBlock)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>debugSelection [
+{ #category : #actions }
+GLMRubricSmalltalkCodePresentation >> debugSelection [
 
 	self announce: GLMDebugSelection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>defaultSelectionActions [
+{ #category : #accessing }
+GLMRubricSmalltalkCodePresentation >> defaultSelectionActions [
 
 	^ self executionSelectionActions, 
 		self browsingSelectionActions,
 		self codeEditingSelectionActions
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>evaluateSelection [
+{ #category : #actions }
+GLMRubricSmalltalkCodePresentation >> evaluateSelection [
 
 	self announce: (GLMEvaluateSelection new 
 		action: [ :result | result ];
 		makeSyncronous)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>evaluateSelectionAndDo: aBlock [
+{ #category : #actions }
+GLMRubricSmalltalkCodePresentation >> evaluateSelectionAndDo: aBlock [
 
 	self announce: (GLMEvaluateSelection new action: aBlock)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>executionSelectionActions [
+{ #category : #accessing }
+GLMRubricSmalltalkCodePresentation >> executionSelectionActions [
 
 	^ { 
 		(GLMGenericAction new) 
@@ -180,102 +155,69 @@ GLMRubricSmalltalkCodePresentation>>executionSelectionActions [
 		 }
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>highlightEvaluateAndDo: aBlock [
+{ #category : #actions }
+GLMRubricSmalltalkCodePresentation >> highlightEvaluateAndDo: aBlock [
 
 	self announce: (GLMHighlightAndEvaluate new action: aBlock)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>highlightSmalltalkContext [
+{ #category : #accessing }
+GLMRubricSmalltalkCodePresentation >> highlightSmalltalkContext [
 	^ highlightSmalltalkContext isNil 
 		ifTrue: [nil] 
 		ifFalse: [highlightSmalltalkContext glamourValue: self entity]
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>implementorsOfIt [
+{ #category : #'actions browsing' }
+GLMRubricSmalltalkCodePresentation >> implementorsOfIt [
 
 	self announce: (GLMTextEditorRequest for: #implementorsOfIt)
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>installDefaultSelectionActions [
+{ #category : #rendering }
+GLMRubricSmalltalkCodePresentation >> installDefaultSelectionActions [
 
 	self defaultSelectionActions do: [ :anAction |
 		self addSelectionAction: anAction ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>printSelection [
+{ #category : #actions }
+GLMRubricSmalltalkCodePresentation >> printSelection [
 
 	self announce: GLMPrintSelection
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>profileSelection [
+{ #category : #actions }
+GLMRubricSmalltalkCodePresentation >> profileSelection [
 
 	self announce: GLMProfileSelection
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>referencesToIt [
+{ #category : #'actions browsing' }
+GLMRubricSmalltalkCodePresentation >> referencesToIt [
 
 	self announce: (GLMTextEditorRequest for: #referencesToIt)
 ]
 
-{
-	#category : #'actions browsing',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>sendersOfIt [
+{ #category : #'actions browsing' }
+GLMRubricSmalltalkCodePresentation >> sendersOfIt [
 
 	self announce: (GLMTextEditorRequest for: #sendersOfIt)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>smalltalkClass: aBlock [
+{ #category : #accessing }
+GLMRubricSmalltalkCodePresentation >> smalltalkClass: aBlock [
 	"aBlock takes as parameters the entity objects and 
 	its evaluation is expected to produce a Smalltalk class"
 	highlightSmalltalkContext := aBlock.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>variableBindings [
+{ #category : #accessing }
+GLMRubricSmalltalkCodePresentation >> variableBindings [
 	^ (variableBindingsBlock glamourValue: self entity) ifNil: [OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricSmalltalkCodePresentation>>variableBindings: aBlock [
+{ #category : #accessing }
+GLMRubricSmalltalkCodePresentation >> variableBindings: aBlock [
 	^ variableBindingsBlock := aBlock
 ]

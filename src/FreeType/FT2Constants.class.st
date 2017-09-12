@@ -189,15 +189,11 @@ Class {
 		'StyleFlagBold',
 		'StyleFlagItalic'
 	],
-	#category : #FreeType-Base,
-	#timestamp : '<historical>'
+	#category : #FreeType-Base
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FT2Constants class>>initialize [
+{ #category : #'class initialization' }
+FT2Constants class >> initialize [
 	"FT2Constants initialize"
 
 	LoadDefault := 0.

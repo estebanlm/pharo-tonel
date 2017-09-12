@@ -13,36 +13,26 @@ Class {
 		'socket',
 		'process'
 	],
-	#category : #Network-Kernel,
-	#timestamp : '<historical>'
+	#category : #Network-Kernel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ConnectionQueue class>>portNumber: anInteger queueLength: queueLength [
+{ #category : #'instance creation' }
+ConnectionQueue class >> portNumber: anInteger queueLength: queueLength [
 
 	^ self new initPortNumber: anInteger queueLength: queueLength
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ConnectionQueue>>connectionCount [
+{ #category : #public }
+ConnectionQueue >> connectionCount [
 	"Return an estimate of the number of currently queued connections. This is only an estimate since a new connection could be made, or an existing one aborted, at any moment."
 
 	self pruneStaleConnections.
 	^accessSema critical: [connections size]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ConnectionQueue>>destroy [
+{ #category : #public }
+ConnectionQueue >> destroy [
 	"Terminate the listener process and destroy all sockets in my possesion."
 
 	process ifNotNil: [
@@ -56,11 +46,8 @@ ConnectionQueue>>destroy [
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ConnectionQueue>>getConnectionOrNil [
+{ #category : #public }
+ConnectionQueue >> getConnectionOrNil [
 	"Return a connected socket, or nil if no connection has been established."
 
 	^accessSema critical: [
@@ -75,11 +62,8 @@ ConnectionQueue>>getConnectionOrNil [
 		result]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ConnectionQueue>>getConnectionOrNilLenient [
+{ #category : #public }
+ConnectionQueue >> getConnectionOrNilLenient [
 	"Return a connected socket, or nil if no connection has been established."
 
 	^accessSema critical: [
@@ -99,11 +83,8 @@ ConnectionQueue>>getConnectionOrNilLenient [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ConnectionQueue>>initPortNumber: anInteger queueLength: queueLength [
+{ #category : #private }
+ConnectionQueue >> initPortNumber: anInteger queueLength: queueLength [
 	"Private! Initialize the receiver to listen on the given port number. Up to queueLength connections will be queued."
 
 	portNumber := anInteger.
@@ -117,19 +98,13 @@ ConnectionQueue>>initPortNumber: anInteger queueLength: queueLength [
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ConnectionQueue>>isValid [
+{ #category : #public }
+ConnectionQueue >> isValid [
 	^process notNil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ConnectionQueue>>listenLoop [
+{ #category : #private }
+ConnectionQueue >> listenLoop [
 	"Private! This loop is run in a separate process. It will establish up to maxQueueLength connections on the given port."
 	"Details: When out of sockets or queue is full, retry more frequently, since a socket may become available, space may open in the queue, or a previously queued connection may be aborted by the client, making it available for a fresh connection."
 	"Note: If the machine is disconnected from the network while the server is running, the currently waiting socket will go from 'isWaitingForConnection' to 'unconnected', and attempts to create new sockets will fail. When this happens, delete the broken socket and keep trying to create a socket in case the network connection is re-established. Connecting and disconnecting was tested under PPP on Mac system 8.1. It is not if this will work on other platforms.
@@ -165,11 +140,8 @@ ConnectionQueue>>listenLoop [
 		self pruneStaleConnections]. 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ConnectionQueue>>oldStyleListenLoop [
+{ #category : #private }
+ConnectionQueue >> oldStyleListenLoop [
 	"Private! This loop is run in a separate process. It will establish up to maxQueueLength connections on the given port."
 	"Details: When out of sockets or queue is full, retry more frequently, since a socket may become available, space may open in the queue, or a previously queued connection may be aborted by the client, making it available for a fresh connection."
 	"Note: If the machine is disconnected from the network while the server is running, the currently waiting socket will go from 'isWaitingForConnection' to 'unconnected', and attempts to create new sockets will fail. When this happens, delete the broken socket and keep trying to create a socket in case the network connection is re-established. Connecting and disconnecting was tested under PPP on Mac system 8.1. It is not if this will work on other platforms."
@@ -197,11 +169,8 @@ ConnectionQueue>>oldStyleListenLoop [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ConnectionQueue>>pruneStaleConnections [
+{ #category : #private }
+ConnectionQueue >> pruneStaleConnections [
 	"Private! The client may establish a connection and then disconnect while it is still in the connection queue. This method is called periodically to prune such sockets out of the connection queue and make room for fresh connections."
 
 	accessSema critical: [

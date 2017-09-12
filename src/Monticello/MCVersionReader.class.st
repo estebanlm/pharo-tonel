@@ -10,26 +10,19 @@ Class {
 		'definitions',
 		'dependencies'
 	],
-	#category : #Monticello-Storing,
-	#timestamp : 'TorstenBergmann 2/5/2014 13:53'
+	#category : #Monticello-Storing
 }
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader class>>file: fileName streamDo: aBlock [
+{ #category : #reading }
+MCVersionReader class >> file: fileName streamDo: aBlock [
 	
 	^ FileStream 
 			readOnlyFileNamed: fileName 
 			do: [:file | aBlock value: file]
 ]
 
-{
-	#category : #'actions - file',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader class>>loadVersionFile: fileName [
+{ #category : #'actions - file' }
+MCVersionReader class >> loadVersionFile: fileName [
 	| version |
 	version := self versionFromFile: fileName.
 	version workingCopy repositoryGroup addRepository:
@@ -38,59 +31,38 @@ MCVersionReader class>>loadVersionFile: fileName [
 
 ]
 
-{
-	#category : #'actions - file',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader class>>mergeVersionFile: fileName [
+{ #category : #'actions - file' }
+MCVersionReader class >> mergeVersionFile: fileName [
 	(self versionFromFile: fileName) merge
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader class>>on: s fileName: f [
+{ #category : #reading }
+MCVersionReader class >> on: s fileName: f [
 	^ self on: s
 ]
 
-{
-	#category : #'actions - file',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader class>>openVersionFile: fileName [
+{ #category : #'actions - file' }
+MCVersionReader class >> openVersionFile: fileName [
 	(self versionFromFile: fileName) open
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader class>>versionFromFile: fileName [
+{ #category : #reading }
+MCVersionReader class >> versionFromFile: fileName [
 	^ self file: fileName streamDo: [:stream | self versionFromStream: stream]
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader class>>versionFromStream: aStream [
+{ #category : #reading }
+MCVersionReader class >> versionFromStream: aStream [
 	^ (self on: aStream) version
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader class>>versionInfoFromStream: aStream [
+{ #category : #reading }
+MCVersionReader class >> versionInfoFromStream: aStream [
 	^ (self on: aStream) info
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader>>basicVersion [
+{ #category : #accessing }
+MCVersionReader >> basicVersion [
 	^ MCVersion
 		package: self package
 		info: self info
@@ -98,86 +70,56 @@ MCVersionReader>>basicVersion [
 		dependencies: self dependencies
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader>>definitions [
+{ #category : #accessing }
+MCVersionReader >> definitions [
 	definitions ifNil: [self loadDefinitions].
 	^ definitions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader>>dependencies [
+{ #category : #accessing }
+MCVersionReader >> dependencies [
 	dependencies ifNil: [self loadDependencies].
 	^ dependencies
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader>>info [
+{ #category : #accessing }
+MCVersionReader >> info [
 	info ifNil: [self loadVersionInfo].
 	^ info
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader>>loadDefinitions [
+{ #category : #loading }
+MCVersionReader >> loadDefinitions [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader>>loadDependencies [
+{ #category : #loading }
+MCVersionReader >> loadDependencies [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader>>loadPackage [
+{ #category : #loading }
+MCVersionReader >> loadPackage [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader>>loadVersionInfo [
+{ #category : #loading }
+MCVersionReader >> loadVersionInfo [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader>>package [
+{ #category : #accessing }
+MCVersionReader >> package [
 	package ifNil: [self loadPackage].
 	^ package
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader>>snapshot [
+{ #category : #accessing }
+MCVersionReader >> snapshot [
 	^ MCSnapshot fromDefinitions: self definitions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionReader>>version [
+{ #category : #accessing }
+MCVersionReader >> version [
 	^ self basicVersion
 ]

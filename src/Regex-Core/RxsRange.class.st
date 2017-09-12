@@ -19,24 +19,17 @@ Class {
 		'first',
 		'last'
 	],
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:15'
+	#category : #Regex-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsRange class>>from: aCharacter to: anotherCharacter [
+{ #category : #'instance creation' }
+RxsRange class >> from: aCharacter to: anotherCharacter [
 
 	^self new initializeFirst: aCharacter last: anotherCharacter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsRange>>enumerateTo: aSet ignoringCase: aBoolean [
+{ #category : #accessing }
+RxsRange >> enumerateTo: aSet ignoringCase: aBoolean [
 	"Add all of the elements I represent to the collection."
 
 	first asInteger to: last asInteger do:
@@ -50,21 +43,15 @@ RxsRange>>enumerateTo: aSet ignoringCase: aBoolean [
 		ifFalse: [aSet add: character]]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsRange>>initializeFirst: aCharacter last: anotherCharacter [
+{ #category : #initialize-release }
+RxsRange >> initializeFirst: aCharacter last: anotherCharacter [
 
 	first := aCharacter.
 	last := anotherCharacter
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsRange>>isEnumerable [
+{ #category : #testing }
+RxsRange >> isEnumerable [
 
 	^true
 ]

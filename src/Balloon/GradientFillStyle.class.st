@@ -22,35 +22,25 @@ Class {
 	#classVars : [
 		'PixelRampCache'
 	],
-	#category : #Balloon-Fills,
-	#timestamp : 'efc 8/30/2005 21:44'
+	#category : #Balloon-Fills
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle class>>cleanUp [
+{ #category : #cleanup }
+GradientFillStyle class >> cleanUp [
 	"Flush caches"
 
 	self initPixelRampCache
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle class>>colors: colorArray [
+{ #category : #'instance creation' }
+GradientFillStyle class >> colors: colorArray [
 	"Create a gradient fill style from an array of equally spaced colors"
 	^self ramp: (colorArray withIndexCollect:
 		[:color :index| (index-1 asFloat / (colorArray size - 1 max: 1)) -> color]).
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle class>>initPixelRampCache [
+{ #category : #initialization }
+GradientFillStyle class >> initPixelRampCache [
 	"Create an LRUCache to use for accessing pixel ramps.
 	When a new pixel ramp is needed, a temporary GradientFillStyle
 	is created so that it can be used to create a new pixel ramp"
@@ -63,39 +53,27 @@ GradientFillStyle class>>initPixelRampCache [
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle class>>initialize [
+{ #category : #initialization }
+GradientFillStyle class >> initialize [
 	"GradientFillStyle initialize"
 	
 	self initPixelRampCache 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle class>>pixelRampCache [
+{ #category : #initialization }
+GradientFillStyle class >> pixelRampCache [
 	"Allow access to my cache of pixel ramps."
 
 	^ PixelRampCache ifNil: [ self initPixelRampCache ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle class>>ramp: colorRamp [
+{ #category : #'instance creation' }
+GradientFillStyle class >> ramp: colorRamp [
 	^self new colorRamp: colorRamp
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle class>>sample [
+{ #category : #'instance creation' }
+GradientFillStyle class >> sample [
 	"GradientFill sample"
 	^(self ramp: { 0.0 -> Color red. 0.5 -> Color green. 1.0 -> Color blue})
 		origin: 300 @ 300;
@@ -105,57 +83,39 @@ GradientFillStyle class>>sample [
 	yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle>>= anGradientFillStyle [
+{ #category : #comparing }
+GradientFillStyle >> = anGradientFillStyle [
 	"Answer whether equal."
 
 	^super = anGradientFillStyle
 		and: [self pixelRamp == anGradientFillStyle pixelRamp] "LRU should make identity equal"
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle>>asColor [
+{ #category : #converting }
+GradientFillStyle >> asColor [
 	"Guess..."
 	^colorRamp first value mixed: 0.5 with: colorRamp last value
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle>>checkTranslucency [
+{ #category : #private }
+GradientFillStyle >> checkTranslucency [
 	^colorRamp anySatisfy: [:any| any value isTranslucent]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle>>colorRamp [
+{ #category : #accessing }
+GradientFillStyle >> colorRamp [
 	^colorRamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle>>colorRamp: anArray [
+{ #category : #accessing }
+GradientFillStyle >> colorRamp: anArray [
 	colorRamp := anArray.
 	pixelRamp := nil.
 	isTranslucent := nil.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle>>computePixelRampOfSize: length [
+{ #category : #private }
+GradientFillStyle >> computePixelRampOfSize: length [
 	"Compute the pixel ramp in the receiver"
 	| bits lastValue ramp lastColor lastIndex lastWord |
 	ramp := colorRamp asSortedCollection:[:a1 :a2| a1 key < a2 key].
@@ -188,53 +148,35 @@ GradientFillStyle>>computePixelRampOfSize: length [
 	^bits
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle>>hash [
+{ #category : #comparing }
+GradientFillStyle >> hash [
 	"Hash is implemented because #= is implemented."
 	
 	^super hash bitXor: self pixelRamp hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle>>isGradientFill [
+{ #category : #testing }
+GradientFillStyle >> isGradientFill [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle>>isRadialFill [
+{ #category : #testing }
+GradientFillStyle >> isRadialFill [
 	^radial == true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle>>isTranslucent [
+{ #category : #testing }
+GradientFillStyle >> isTranslucent [
 	^isTranslucent ifNil:[isTranslucent := self checkTranslucency]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle>>mixed: fraction with: aColor [
+{ #category : #converting }
+GradientFillStyle >> mixed: fraction with: aColor [
 	^self copy colorRamp: (colorRamp collect:[:assoc| assoc key -> (assoc value mixed: fraction with: aColor)])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle>>pixelRamp [
+{ #category : #accessing }
+GradientFillStyle >> pixelRamp [
 	"Compute a pixel ramp, and cache it for future accesses"
 
 	^ pixelRamp ifNil: [
@@ -242,35 +184,23 @@ GradientFillStyle>>pixelRamp [
 		pixelRamp := self class pixelRampCache at: colorRamp ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle>>pixelRamp: aBitmap [
+{ #category : #accessing }
+GradientFillStyle >> pixelRamp: aBitmap [
 	pixelRamp := aBitmap
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle>>radial [
+{ #category : #accessing }
+GradientFillStyle >> radial [
 	^radial ifNil:[false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle>>radial: aBoolean [
+{ #category : #accessing }
+GradientFillStyle >> radial: aBoolean [
 	radial := aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-GradientFillStyle>>scaledAlphaMix: theta of: lastWord with: nextWord [
+{ #category : #private }
+GradientFillStyle >> scaledAlphaMix: theta of: lastWord with: nextWord [
 	"Open-coded version of alpha mixing two 32bit pixel words and returning the scaled pixel value."
 	| word0 word1 a0 a1 alpha v0 v1 vv value |
 	word0 := lastWord.

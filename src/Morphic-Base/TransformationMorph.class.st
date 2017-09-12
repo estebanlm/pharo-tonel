@@ -8,15 +8,11 @@ Class {
 	#superclass : #TransformMorph,
 	#traits : 'TAbleToRotate',
 	#classTraits : 'TAbleToRotate classTrait',
-	#category : #Morphic-Base-Basic,
-	#timestamp : 'AlainPlantec 5/5/2010 09:19'
+	#category : #Morphic-Base-Basic
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph class>>example1 [
+{ #category : #example }
+TransformationMorph class >> example1 [
 	| stringMorph transformationMorph |
 	stringMorph := 'vertical text' asMorph.
 	transformationMorph := TransformationMorph new asFlexOf: stringMorph.
@@ -25,11 +21,8 @@ TransformationMorph class>>example1 [
 	transformationMorph openInWorld.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>adjustAfter: changeBlock  [
+{ #category : #private }
+TransformationMorph >> adjustAfter: changeBlock [ 
 	"Cause this morph to remain cetered where it was before, and
 	choose appropriate smoothing, after a change of scale or rotation."
 
@@ -40,11 +33,8 @@ TransformationMorph>>adjustAfter: changeBlock  [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>asFlexOf: aMorph [
+{ #category : #initialization }
+TransformationMorph >> asFlexOf: aMorph [
 	"Initialize me with position and bounds of aMorph,
 	and with an offset that provides centered rotation."
 	| pos |
@@ -56,11 +46,8 @@ TransformationMorph>>asFlexOf: aMorph [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>chooseSmoothing [
+{ #category : #private }
+TransformationMorph >> chooseSmoothing [
 	"Choose appropriate smoothing, after a change of scale or rotation."
 
 	smoothing := (self scale < 1.0 or: [self angle ~= (self angle roundTo: Float pi / 2.0)]) 
@@ -68,11 +55,8 @@ TransformationMorph>>chooseSmoothing [
 		ifFalse: [1]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>computeBounds [
+{ #category : #geometry }
+TransformationMorph >> computeBounds [
 	self hasSubmorphs ifTrue:
 		[bounds := (transform localBoundsToGlobal:
 					(Rectangle merging:
@@ -81,28 +65,19 @@ TransformationMorph>>computeBounds [
 	fullBounds := bounds.
 ]
 
-{
-	#category : #'geometry etoy',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>degreesOfFlex [
+{ #category : #'geometry etoy' }
+TransformationMorph >> degreesOfFlex [
 	"Return any rotation due to flexing"
 	^ self rotationDegrees
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+TransformationMorph >> drawOn: aCanvas [
 	submorphs isEmpty ifTrue: [super drawOn: aCanvas]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>embeddedWindowOrNil [
+{ #category : #accessing }
+TransformationMorph >> embeddedWindowOrNil [
 
 	"answer nil for common morphs, yourself from system windows and first submorph for transformation morphs"
 	
@@ -114,22 +89,16 @@ TransformationMorph>>embeddedWindowOrNil [
 	^ nil.
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>extent: newExtent [
+{ #category : #geometry }
+TransformationMorph >> extent: newExtent [
 	
 	self adjustAfter:
 		[ | scaleFactor |scaleFactor := (self scale * newExtent r / self fullBounds extent r) max: 0.1.
 		self scale: (scaleFactor detentBy: 0.1 atMultiplesOf: 1.0 snap: false)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>forwardDirection [
+{ #category : #accessing }
+TransformationMorph >> forwardDirection [
 	"Return the rendee's forward direction. 
 	If I have no rendee then return 0.0 degrees "
 	| rendee |
@@ -138,32 +107,23 @@ TransformationMorph>>forwardDirection [
 		ifFalse: [^ rendee forwardDirection]
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>grabTransform [
+{ #category : #dropping/grabbing }
+TransformationMorph >> grabTransform [
 	"Return the transform for the receiver which should be applied during grabbing"
 	self renderedMorph isWorldMorph 
 		ifTrue:[^owner ifNil:[IdentityTransform new] ifNotNil:[owner grabTransform]].
 	^owner ifNil:[self transform] ifNotNil:[owner grabTransform composedWithLocal: self transform]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>hasNoScaleOrRotation [
+{ #category : #accessing }
+TransformationMorph >> hasNoScaleOrRotation [
 
 	^ transform isPureTranslation
 
 ]
 
-{
-	#category : #'geometry etoy',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>heading [
+{ #category : #'geometry etoy' }
+TransformationMorph >> heading [
 	"End recusion when necessary."
 	| rendee |
 	^ (rendee := self renderedMorph) == self 
@@ -171,77 +131,53 @@ TransformationMorph>>heading [
 		ifFalse: [rendee heading]
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>isFlexMorph [
+{ #category : #classification }
+TransformationMorph >> isFlexMorph [
 
 	^ true
 
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>isRenderer [
+{ #category : #classification }
+TransformationMorph >> isRenderer [
 
 	^ true
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>isSticky [
+{ #category : #testing }
+TransformationMorph >> isSticky [
 	submorphs isEmpty ifFalse: [^ submorphs first isSticky].
 	^false
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>layoutChanged [
+{ #category : #layout }
+TransformationMorph >> layoutChanged [
 	"Recompute bounds as a result of change"
 	self computeBounds.
 	super layoutChanged
 ]
 
-{
-	#category : #'rotate scale and flex',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>prepareForRotating [
+{ #category : #'rotate scale and flex' }
+TransformationMorph >> prepareForRotating [
 
 ]
 
-{
-	#category : #'rotate scale and flex',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>prepareForScaling [
+{ #category : #'rotate scale and flex' }
+TransformationMorph >> prepareForScaling [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>printOn: aStream  [
+{ #category : #printing }
+TransformationMorph >> printOn: aStream [ 
 	super printOn: aStream.
 	submorphs isEmpty 
 		ifTrue: [aStream nextPutAll: ' with no transformee!']
 		ifFalse: [aStream nextPutAll: ' on ' , submorphs first printString]
 ]
 
-{
-	#category : #'geometry etoy',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>referencePosition [
+{ #category : #'geometry etoy' }
+TransformationMorph >> referencePosition [
 	"Answer the  receiver's reference position, bullet-proofed against infinite recursion in the unlikely but occasionally-seen case that I am my own renderee"
 
 	| rendered |
@@ -252,11 +188,8 @@ TransformationMorph>>referencePosition [
 			[transform localPointToGlobal: rendered referencePosition]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>removeFlexShell [
+{ #category : #menu }
+TransformationMorph >> removeFlexShell [
 	"Remove the shell used to make a morph rotatable and scalable."
 
 	| oldHalo unflexed myWorld refPos aPosition |
@@ -276,22 +209,16 @@ TransformationMorph>>removeFlexShell [
 	^ unflexed
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>renderedMorph [
+{ #category : #classification }
+TransformationMorph >> renderedMorph [
 "We are a renderer. Answer appropriately."
 
 	submorphs isEmpty ifTrue: [^self].
 	^self firstSubmorph renderedMorph
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>replaceSubmorph: oldMorph by: newMorph [
+{ #category : #submorphs-add/remove }
+TransformationMorph >> replaceSubmorph: oldMorph by: newMorph [
 	| t b |
 	t := transform.
 	b := bounds.
@@ -301,37 +228,25 @@ TransformationMorph>>replaceSubmorph: oldMorph by: newMorph [
 	self layoutChanged
 ]
 
-{
-	#category : #'rotate scale and flex',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>rotationDegrees [
+{ #category : #'rotate scale and flex' }
+TransformationMorph >> rotationDegrees [
 	^ self angle radiansToDegrees negated
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>rotationDegrees: degrees [
+{ #category : #accessing }
+TransformationMorph >> rotationDegrees: degrees [
 	self adjustAfter:[self angle: degrees degreesToRadians negated]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>scaleFactor [
+{ #category : #accessing }
+TransformationMorph >> scaleFactor [
 	"Answer the scaleFactor"
 
 	^ transform scale
 ]
 
-{
-	#category : #nil,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>scaleToMatch: aPoint [
+{ #category : #nil }
+TransformationMorph >> scaleToMatch: aPoint [
 	| scaleFactor tfm originalScale |
 	tfm := transform withScale: 1.0.
 	originalScale := ((tfm localBoundsToGlobal: self renderedMorph fullBounds) corner -
@@ -345,11 +260,8 @@ TransformationMorph>>scaleToMatch: aPoint [
 	self adjustAfter:[self scale: ((scaleFactor min: 8.0) max: 0.1)].
 ]
 
-{
-	#category : #'geometry etoy',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>setDirectionFrom: aPoint [
+{ #category : #'geometry etoy' }
+TransformationMorph >> setDirectionFrom: aPoint [
 	| delta degrees inner |
 	inner := self renderedMorph.
 	inner == self ifTrue:[^self].
@@ -359,11 +271,8 @@ TransformationMorph>>setDirectionFrom: aPoint [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>stepTime [
+{ #category : #testing }
+TransformationMorph >> stepTime [
 	"Answer the stepTime of my rendered morph if posible"
 
 	| rendered |
@@ -373,22 +282,16 @@ TransformationMorph>>stepTime [
 	
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>transformedBy: aTransform [
+{ #category : #geometry }
+TransformationMorph >> transformedBy: aTransform [
 	self changed.
 	self transform: (self transform composedWithGlobal: aTransform).
 	self computeBounds.
 	self changed.
 ]
 
-{
-	#category : #'geometry etoy',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TransformationMorph>>visible: aBoolean [
+{ #category : #'geometry etoy' }
+TransformationMorph >> visible: aBoolean [
 	"Set the receiver's visibility property"
 
 	super visible: aBoolean.

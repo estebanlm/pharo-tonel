@@ -9,39 +9,26 @@ Class {
 		'declaration',
 		'shortcutName'
 	],
-	#category : #Keymapping-Settings,
-	#timestamp : '<historical>'
+	#category : #Keymapping-Settings
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMShortcutDeclaration>>categoryName [
+{ #category : #accessing }
+KMShortcutDeclaration >> categoryName [
 	^categoryName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMShortcutDeclaration>>categoryName: aCategoryName [
+{ #category : #accessing }
+KMShortcutDeclaration >> categoryName: aCategoryName [
 	categoryName := aCategoryName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMShortcutDeclaration>>defaultValue [
+{ #category : #accessing }
+KMShortcutDeclaration >> defaultValue [
 	^self realValue defaultShortcut
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMShortcutDeclaration>>realValue [
+{ #category : #accessing }
+KMShortcutDeclaration >> realValue [
 	"Answer the value of realValue"
 
 	^ declaration
@@ -49,26 +36,17 @@ KMShortcutDeclaration>>realValue [
 			declaration := KMShortcutSetting for: self shortcutName in: self categoryName]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMShortcutDeclaration>>realValue: aShortcut [
+{ #category : #accessing }
+KMShortcutDeclaration >> realValue: aShortcut [
 	self realValue accept: aShortcut.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMShortcutDeclaration>>shortcutName [
+{ #category : #accessing }
+KMShortcutDeclaration >> shortcutName [
 	^shortcutName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMShortcutDeclaration>>shortcutName: aShortcutName [
+{ #category : #accessing }
+KMShortcutDeclaration >> shortcutName: aShortcutName [
 	shortcutName := aShortcutName
 ]

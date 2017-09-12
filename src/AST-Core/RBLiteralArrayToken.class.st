@@ -6,22 +6,15 @@ I am the start of a literal array, normal literal arrays
 Class {
 	#name : #RBLiteralArrayToken,
 	#superclass : #RBValueToken,
-	#category : #AST-Core-Tokens,
-	#timestamp : 'NicolaiHess 8/22/2016 15:47'
+	#category : #AST-Core-Tokens
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayToken>>isForByteArray [
+{ #category : #testing }
+RBLiteralArrayToken >> isForByteArray [
 	^value last = $[
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBLiteralArrayToken>>isLiteralArrayToken [
+{ #category : #testing }
+RBLiteralArrayToken >> isLiteralArrayToken [
 	^true
 ]

@@ -13,25 +13,18 @@ Additionally, popup can be aligned differently
 Class {
 	#name : #GLMPopupBrickLayout,
 	#superclass : #Object,
-	#category : #Glamour-Morphic-Brick-Widgets-UI-Popup,
-	#timestamp : 'AliakseiSyrel 3/4/2017 20:25'
+	#category : #Glamour-Morphic-Brick-Widgets-UI-Popup
 }
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrickLayout>>build: aPopup trigger: aTriggerBrick content: aContentBrick [
+{ #category : #building }
+GLMPopupBrickLayout >> build: aPopup trigger: aTriggerBrick content: aContentBrick [
 	"Adds trigger and content bricks to a given popup based on my layout strategy"
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPopupBrickLayout>>open: aPopupBrick with: aRectangle [
+{ #category : #opening }
+GLMPopupBrickLayout >> open: aPopupBrick with: aRectangle [
 	"Open a given popup brick so that a trigger brick is located just above the provided
 	rectangle in global coordinates. My subclasses should implement a concrete strategy based
 	on layout direction (downward or upward).

@@ -11,15 +11,11 @@ Just run ""HelpBrowser openOn: SystemReference"".
 Class {
 	#name : #SystemReference,
 	#superclass : #Object,
-	#category : #HelpSystem-Core-Utilities,
-	#timestamp : 'tbn 4/30/2010 15:35'
+	#category : #HelpSystem-Core-Utilities
 }
 
-{
-	#category : #'help topic creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SystemReference class>>all [
+{ #category : #'help topic creation' }
+SystemReference class >> all [
 	"HelpBrowser openOn: self all "
 	
 	^(ClassAPIHelpBuilder new)
@@ -33,11 +29,8 @@ SystemReference class>>all [
 		 
 ]
 
-{
-	#category : #'help topic creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SystemReference class>>asHelpTopic  [
+{ #category : #'help topic creation' }
+SystemReference class >> asHelpTopic [ 
 	"HelpBrowser openOn: SystemReference"
 	
 	^self hierarchyFor: ProtoObject 
@@ -45,11 +38,8 @@ SystemReference class>>asHelpTopic  [
 		 
 ]
 
-{
-	#category : #'help topic creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SystemReference class>>forClass: aClass [
+{ #category : #'help topic creation' }
+SystemReference class >> forClass: aClass [
 	|root topic |
 	root := HelpTopic named: 'System reference for ', aClass name.
 	topic := ClassAPIHelpBuilder buildHelpTopicFrom: aClass.
@@ -57,11 +47,8 @@ SystemReference class>>forClass: aClass [
 	^root
 ]
 
-{
-	#category : #'help topic creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SystemReference class>>hierarchyFor: aClass [
+{ #category : #'help topic creation' }
+SystemReference class >> hierarchyFor: aClass [
 	 
 	|root topic |
 	root := HelpTopic named: 'System reference for ', aClass name.
@@ -78,11 +65,8 @@ SystemReference class>>hierarchyFor: aClass [
 		 
 ]
 
-{
-	#category : #'help topic creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SystemReference class>>hierarchyWithMethodsFor: aClass [
+{ #category : #'help topic creation' }
+SystemReference class >> hierarchyWithMethodsFor: aClass [
 	 
 	|root topic |
 	root := HelpTopic named: 'System reference for ', aClass name.

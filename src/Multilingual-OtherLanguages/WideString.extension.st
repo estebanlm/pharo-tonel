@@ -1,32 +1,21 @@
-Extension {
-	#name : #WideString
-}
+Extension { #name : #WideString }
 
-{
-	#category : #'*Multilingual-OtherLanguages',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WideString>>includesUnifiedCharacter [
+{ #category : #'*Multilingual-OtherLanguages' }
+WideString >> includesUnifiedCharacter [
 
 	^ self isUnicodeStringWithCJK
 
 ]
 
-{
-	#category : #'*Multilingual-OtherLanguages',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WideString>>isUnicodeStringWithCJK [
+{ #category : #'*Multilingual-OtherLanguages' }
+WideString >> isUnicodeStringWithCJK [
 
 	^self anySatisfy: [:char | Unicode isUnifiedKanji: char charCode]
 	
 ]
 
-{
-	#category : #'*Multilingual-OtherLanguages',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WideString>>mutateJISX0208StringToUnicode [
+{ #category : #'*Multilingual-OtherLanguages' }
+WideString >> mutateJISX0208StringToUnicode [
 
 	| c |
 	1 to: self size do: [:i |

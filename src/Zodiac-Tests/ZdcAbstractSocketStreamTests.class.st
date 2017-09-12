@@ -6,23 +6,16 @@ This is an abstract class, subclasses should implement #socketStreamClass
 Class {
 	#name : #ZdcAbstractSocketStreamTests,
 	#superclass : #TestCase,
-	#category : #Zodiac-Tests,
-	#timestamp : 'SvenVanCaekenberghe 5/17/2011 19:09'
+	#category : #Zodiac-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests class>>isAbstract  [
+{ #category : #testing }
+ZdcAbstractSocketStreamTests class >> isAbstract [ 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>bytes: size [
+{ #category : #accessing }
+ZdcAbstractSocketStreamTests >> bytes: size [
 	| count data pattern |
 	count := 0.
 	pattern := (0 to: 255) asByteArray.
@@ -33,69 +26,48 @@ ZdcAbstractSocketStreamTests>>bytes: size [
 	^ data copyFrom: 1 to: size     
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>listenBacklogSize [
+{ #category : #accessing }
+ZdcAbstractSocketStreamTests >> listenBacklogSize [
 	"Server socket backlog size (number of pending connection waiting to be accepted)"
 	
 	^ 32
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>openConnectionToHost: host port: port [
+{ #category : #private }
+ZdcAbstractSocketStreamTests >> openConnectionToHost: host port: port [
 	^ self socketStreamClass 
 		openConnectionToHost: host port: port
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>openConnectionToHostNamed: host port: port [
+{ #category : #private }
+ZdcAbstractSocketStreamTests >> openConnectionToHostNamed: host port: port [
 	^ self socketStreamClass 
 		openConnectionToHostNamed: host port: port
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>port  [
+{ #category : #accessing }
+ZdcAbstractSocketStreamTests >> port [ 
 	^ 1701
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>referenceSocketStreamOn: socket [
+{ #category : #private }
+ZdcAbstractSocketStreamTests >> referenceSocketStreamOn: socket [
 	| stream |
 	stream := SocketStream on: socket.
 	self setReferenceSocketStreamOptions: stream.
 	^ stream
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>runClient: block [
+{ #category : #private }
+ZdcAbstractSocketStreamTests >> runClient: block [
 	| semaphore |
 	semaphore := Semaphore new.
 	[ block ensure: [ semaphore signal ] ] forkAt: self serverPriority - 1.
 	semaphore wait
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>runServer: block [
+{ #category : #private }
+ZdcAbstractSocketStreamTests >> runServer: block [
 	| serverSocket semaphore |
 	serverSocket := self serverSocketOn: self port.
 	self assert: serverSocket notNil.
@@ -111,19 +83,13 @@ ZdcAbstractSocketStreamTests>>runServer: block [
 	^ semaphore
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>serverPriority [
+{ #category : #private }
+ZdcAbstractSocketStreamTests >> serverPriority [
 	^ Processor userBackgroundPriority
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>serverSocketOn: port [
+{ #category : #private }
+ZdcAbstractSocketStreamTests >> serverSocketOn: port [
 	| socket |
 	(socket := Socket newTCP)
 		setOption: 'TCP_NODELAY' value: 1;
@@ -135,11 +101,8 @@ ZdcAbstractSocketStreamTests>>serverSocketOn: port [
 	^ socket
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>setReferenceSocketStreamOptions: stream [
+{ #category : #private }
+ZdcAbstractSocketStreamTests >> setReferenceSocketStreamOptions: stream [
 	stream
 		binary;
 		shouldSignal: true;
@@ -148,48 +111,33 @@ ZdcAbstractSocketStreamTests>>setReferenceSocketStreamOptions: stream [
 		timeout: self socketStreamTimeout
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>socketBufferSize [
+{ #category : #accessing }
+ZdcAbstractSocketStreamTests >> socketBufferSize [
 	"Size in bytes for Sockets and SocketStream IO buffers"
 
 	^ 4096
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>socketStreamClass [
+{ #category : #accessing }
+ZdcAbstractSocketStreamTests >> socketStreamClass [
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>socketStreamOn: socket [
+{ #category : #private }
+ZdcAbstractSocketStreamTests >> socketStreamOn: socket [
 	^ self socketStreamClass 
 		on: socket
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>socketStreamTimeout [
+{ #category : #accessing }
+ZdcAbstractSocketStreamTests >> socketStreamTimeout [
 	"Timeout in seconds for SocketStream IO"
 	
 	^ ZnNetworkingUtils socketStreamTimeout
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>testAddOneEcho [
+{ #category : #testing }
+ZdcAbstractSocketStreamTests >> testAddOneEcho [
 	| dataSent dataRead clientStream semaphore |
 	semaphore := self runServer: [ :serverSocket | | clientSocket stream data |
 		clientSocket := serverSocket waitForAcceptFor: 10.
@@ -206,11 +154,8 @@ ZdcAbstractSocketStreamTests>>testAddOneEcho [
 	semaphore wait
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>testPlainClientRead [
+{ #category : #testing }
+ZdcAbstractSocketStreamTests >> testPlainClientRead [
 	| dataSent dataRead clientStream semaphore |
 	dataSent := #[ 6 5 4 3 2 1 ].
 	semaphore := self runServer: [ :serverSocket :mySemaphore | | clientSocket serverStream |
@@ -227,11 +172,8 @@ ZdcAbstractSocketStreamTests>>testPlainClientRead [
 	semaphore wait
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>testPlainClientRead10k [
+{ #category : #testing }
+ZdcAbstractSocketStreamTests >> testPlainClientRead10k [
 	| dataSent dataRead clientStream semaphore |
 	dataSent := self bytes: 10000.
 	semaphore := self runServer: [ :serverSocket :mySemaphore | | clientSocket serverStream |
@@ -248,11 +190,8 @@ ZdcAbstractSocketStreamTests>>testPlainClientRead10k [
 	semaphore wait
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>testPlainClientRead10kInPieces1 [
+{ #category : #testing }
+ZdcAbstractSocketStreamTests >> testPlainClientRead10kInPieces1 [
 	| dataSent dataRead clientStream semaphore |
 	dataSent := self bytes: 10000.
 	semaphore := self runServer: [ :serverSocket :mySemaphore | | clientSocket serverStream |
@@ -270,11 +209,8 @@ ZdcAbstractSocketStreamTests>>testPlainClientRead10kInPieces1 [
 	semaphore wait
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>testPlainClientRead10kInPieces2 [
+{ #category : #testing }
+ZdcAbstractSocketStreamTests >> testPlainClientRead10kInPieces2 [
 	| dataSent dataRead clientStream semaphore |
 	dataSent := self bytes: 10000.
 	semaphore := self runServer: [ :serverSocket :mySemaphore | | clientSocket serverStream |
@@ -293,11 +229,8 @@ ZdcAbstractSocketStreamTests>>testPlainClientRead10kInPieces2 [
 	semaphore wait
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>testPlainClientSkip [
+{ #category : #testing }
+ZdcAbstractSocketStreamTests >> testPlainClientSkip [
 	| dataSent dataRead clientStream semaphore |
 	dataSent := #[ 6 5 4 3 2 1 ].
 	semaphore := self runServer: [ :serverSocket :mySemaphore | | clientSocket serverStream |
@@ -314,11 +247,8 @@ ZdcAbstractSocketStreamTests>>testPlainClientSkip [
 	semaphore wait
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>testPlainClientSkip10k [
+{ #category : #testing }
+ZdcAbstractSocketStreamTests >> testPlainClientSkip10k [
 	| dataSent dataRead clientStream semaphore |
 	dataSent := #[ 6 5 4 3 2 1 ].
 	semaphore := self runServer: [ :serverSocket :mySemaphore | | clientSocket serverStream |
@@ -336,11 +266,8 @@ ZdcAbstractSocketStreamTests>>testPlainClientSkip10k [
 	semaphore wait
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>testPlainClientWrite [
+{ #category : #testing }
+ZdcAbstractSocketStreamTests >> testPlainClientWrite [
 	| dataSent dataRead clientStream semaphore |
 	semaphore := self runServer: [ :serverSocket :mySemaphore | | clientSocket serverStream |
 		clientSocket := serverSocket waitForAcceptFor: 10.
@@ -357,11 +284,8 @@ ZdcAbstractSocketStreamTests>>testPlainClientWrite [
 	semaphore wait
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>testPlainClientWrite10k [
+{ #category : #testing }
+ZdcAbstractSocketStreamTests >> testPlainClientWrite10k [
 	| dataSent dataRead clientStream semaphore |
 	semaphore := self runServer: [ :serverSocket :mySemaphore | | clientSocket serverStream |
 		clientSocket := serverSocket waitForAcceptFor: 10.
@@ -378,11 +302,8 @@ ZdcAbstractSocketStreamTests>>testPlainClientWrite10k [
 	semaphore wait
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>testPlainClientWrite10kInPieces [
+{ #category : #testing }
+ZdcAbstractSocketStreamTests >> testPlainClientWrite10kInPieces [
 	| dataSent dataRead clientStream semaphore |
 	semaphore := self runServer: [ :serverSocket :mySemaphore | | clientSocket serverStream |
 		clientSocket := serverSocket waitForAcceptFor: 10.
@@ -400,11 +321,8 @@ ZdcAbstractSocketStreamTests>>testPlainClientWrite10kInPieces [
 	semaphore wait
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>testReverseEcho [
+{ #category : #testing }
+ZdcAbstractSocketStreamTests >> testReverseEcho [
 	| dataSent dataRead clientStream semaphore data |
 	semaphore := self runServer: [ :serverSocket | | clientSocket stream |
 		clientSocket := serverSocket waitForAcceptFor: 10.
@@ -421,11 +339,8 @@ ZdcAbstractSocketStreamTests>>testReverseEcho [
 	semaphore wait
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>testReverseEcho10kFixed [
+{ #category : #testing }
+ZdcAbstractSocketStreamTests >> testReverseEcho10kFixed [
 	| dataSent dataRead clientStream semaphore |
 	semaphore := self runServer: [ :serverSocket | | clientSocket stream data |
 		clientSocket := serverSocket waitForAcceptFor: 10.
@@ -442,11 +357,8 @@ ZdcAbstractSocketStreamTests>>testReverseEcho10kFixed [
 	semaphore wait
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>testReverseEcho10kSearch [
+{ #category : #testing }
+ZdcAbstractSocketStreamTests >> testReverseEcho10kSearch [
 	| dataSent dataRead clientStream semaphore |
 	semaphore := self runServer: [ :serverSocket | | clientSocket stream data |
 		clientSocket := serverSocket waitForAcceptFor: 10.
@@ -463,11 +375,8 @@ ZdcAbstractSocketStreamTests>>testReverseEcho10kSearch [
 	semaphore wait
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZdcAbstractSocketStreamTests>>testReverseEchoUpToEnd [
+{ #category : #testing }
+ZdcAbstractSocketStreamTests >> testReverseEchoUpToEnd [
 	| dataSent dataRead clientStream semaphore data |
 	semaphore := self runServer: [ :serverSocket :mySemaphore | | clientSocket stream |
 		clientSocket := serverSocket waitForAcceptFor: 10.

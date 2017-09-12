@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMFlexiblePresentationTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFlexiblePresentationTest>>testDefault [
+{ #category : #tests }
+GLMFlexiblePresentationTest >> testDefault [
 	| browser |
 	browser := GLMTabulator new.
 	browser startOn: #(1 2 3).
@@ -21,11 +14,8 @@ GLMFlexiblePresentationTest>>testDefault [
 	self assert: (browser panes first presentations first isKindOf: GLMFlexiblePresentation).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFlexiblePresentationTest>>testDynamic [
+{ #category : #tests }
+GLMFlexiblePresentationTest >> testDynamic [
 	| browser childBrowser |
 	childBrowser := GLMFinder new.
 	browser := GLMTabulator new.

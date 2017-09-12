@@ -12,72 +12,47 @@ Class {
 		'handlerDuration',
 		'responseDuration'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/13/2014 16:00'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerTransactionTiming>>handlerDuration [
+{ #category : #accessing }
+ZnServerTransactionTiming >> handlerDuration [
 	^ handlerDuration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerTransactionTiming>>handlerDuration: anObject [
+{ #category : #accessing }
+ZnServerTransactionTiming >> handlerDuration: anObject [
 	handlerDuration := anObject
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerTransactionTiming>>initialize [
+{ #category : #initialize }
+ZnServerTransactionTiming >> initialize [
 	super initialize.
 	requestDuration := handlerDuration := responseDuration := 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerTransactionTiming>>requestDuration [
+{ #category : #accessing }
+ZnServerTransactionTiming >> requestDuration [
 	^ requestDuration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerTransactionTiming>>requestDuration: anObject [
+{ #category : #accessing }
+ZnServerTransactionTiming >> requestDuration: anObject [
 	requestDuration := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerTransactionTiming>>responseDuration [
+{ #category : #accessing }
+ZnServerTransactionTiming >> responseDuration [
 	^ responseDuration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerTransactionTiming>>responseDuration: anObject [
+{ #category : #accessing }
+ZnServerTransactionTiming >> responseDuration: anObject [
 	responseDuration := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerTransactionTiming>>totalDuration [
+{ #category : #accessing }
+ZnServerTransactionTiming >> totalDuration [
 	"requestDuration is unreliable because it contains idle wait time"
 	
 	^ handlerDuration + responseDuration 

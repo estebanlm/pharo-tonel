@@ -24,35 +24,25 @@ Class {
 		'items',
 		'autoRefresh'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 6/28/2016 11:30'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuGroupModel class>>adapterName [
+{ #category : #specs }
+MenuGroupModel class >> adapterName [
 
 	^ #MenuGroupAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuGroupModel class>>defaultSpec [
+{ #category : #specs }
+MenuGroupModel class >> defaultSpec [
 	<spec: #default>
 	
 	^ #(MenuGroupAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuGroupModel>>addItem: aBlock [
+{ #category : #api }
+MenuGroupModel >> addItem: aBlock [
 	| item |
 	
 	item := MenuItemModel new.
@@ -60,40 +50,28 @@ MenuGroupModel>>addItem: aBlock [
 	self addMenuItem: item
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuGroupModel>>addMenuItem: aMenuItem [
+{ #category : #private }
+MenuGroupModel >> addMenuItem: aMenuItem [
 
 	items add: aMenuItem.
 	self autoRefresh 
 		ifNotNil: [ aMenuItem autoRefresh: self autoRefresh ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuGroupModel>>autoRefresh [
+{ #category : #api }
+MenuGroupModel >> autoRefresh [
 
 	^ autoRefresh value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuGroupModel>>autoRefresh: aBoolean [
+{ #category : #api }
+MenuGroupModel >> autoRefresh: aBoolean [
 
 	autoRefresh value: aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuGroupModel>>buildWithSpecLayout: aSpecLayout [
+{ #category : #private }
+MenuGroupModel >> buildWithSpecLayout: aSpecLayout [
 	"Build the widget using the spec name provided as argument"
 	| adapter widget|
 	adapter := self adapterFrom: aSpecLayout model: self.
@@ -102,40 +80,28 @@ MenuGroupModel>>buildWithSpecLayout: aSpecLayout [
 	^ widget
 ]
 
-{
-	#category : #api-building,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuGroupModel>>fromSpec: aSpec [
+{ #category : #api-building }
+MenuGroupModel >> fromSpec: aSpec [
 
 	aSpec addToMenuGroupModel: self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuGroupModel>>initialize [
+{ #category : #initialization }
+MenuGroupModel >> initialize [
 	super initialize.
 	items := OrderedCollection new asValueHolder.
 	autoRefresh := nil asValueHolder.
 	autoRefresh whenChangedDo: [ :aBoolean | self menuItems do: [ :each | each autoRefresh: aBoolean ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuGroupModel>>isEmpty [
+{ #category : #testing }
+MenuGroupModel >> isEmpty [
 
 	^ items isEmpty
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MenuGroupModel>>menuItems [
+{ #category : #api }
+MenuGroupModel >> menuItems [
 
 	^ items value
 ]

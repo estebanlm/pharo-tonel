@@ -12,41 +12,28 @@ For example SUnit installs special TestExecutionEnvironment to manage all forked
 Class {
 	#name : #ExecutionEnvironment,
 	#superclass : #Object,
-	#category : #Kernel-Processes,
-	#timestamp : 'DenisKudryashov 8/29/2016 15:58'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ExecutionEnvironment>>activated [
+{ #category : #controlling }
+ExecutionEnvironment >> activated [
 	"Method is called just after installation as current environment.
 	Any preparation logic could be here"
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ExecutionEnvironment>>beActiveDuring: aBlock [
+{ #category : #controlling }
+ExecutionEnvironment >> beActiveDuring: aBlock [
 
 	CurrentExecutionEnvironment activate: self for: aBlock
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ExecutionEnvironment>>deactivated [
+{ #category : #controlling }
+ExecutionEnvironment >> deactivated [
 	"Method is called just after uninstallation when current environment become different.
 	Any cleanup logic could be here"
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ExecutionEnvironment>>prepareForNewProcess: aProcess [
+{ #category : #controlling }
+ExecutionEnvironment >> prepareForNewProcess: aProcess [
 	self subclassResponsibility 
 ]

@@ -21,15 +21,11 @@ Class {
 	#classVars : [
 		'Current'
 	],
-	#category : #Versionner-Core-Model,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot class>>current [
+{ #category : #accessing }
+MBConfigurationRoot class >> current [
 	"singleton pattern"
 	Current ifNil: [ 
 		Current := self new.
@@ -37,11 +33,8 @@ MBConfigurationRoot class>>current [
 	^Current 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot class>>reset [
+{ #category : #accessing }
+MBConfigurationRoot class >> reset [
 	"self reset"
 	| c |
 	Current ifNil: [ ^self ].
@@ -51,11 +44,8 @@ MBConfigurationRoot class>>reset [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>addConfigurationInfoFor: aConfigurationClass [
+{ #category : #actions }
+MBConfigurationRoot >> addConfigurationInfoFor: aConfigurationClass [
 	(self configurationInfoFor: aConfigurationClass) notNil
 		ifTrue: [ ^ self ].
 	self configurations
@@ -66,20 +56,14 @@ MBConfigurationRoot>>addConfigurationInfoFor: aConfigurationClass [
 	self announcer announce: MBConfigurationInfoCreated
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>announcer [
+{ #category : #accessing }
+MBConfigurationRoot >> announcer [
 
 	^announcer 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>categoryModified: anEvent [
+{ #category : #updating }
+MBConfigurationRoot >> categoryModified: anEvent [
 	"(anEvent itemClass name asString beginsWith: 'ConfigurationOf')
 		ifTrue: [  self respondToEventFor: anEvent itemClass withOperation: #modified ]"
 	| configName configClass configInfo |
@@ -92,59 +76,41 @@ MBConfigurationRoot>>categoryModified: anEvent [
 	self configurations do: [:config | config fullRecalculate ].
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>classAdded: anEvent [
+{ #category : #updating }
+MBConfigurationRoot >> classAdded: anEvent [
 
 	(anEvent classAdded name asString beginsWith: 'ConfigurationOf')
 		ifTrue: [ self respondToEventFor: anEvent classAdded withOperation: #added ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>classModified: anEvent [
+{ #category : #updating }
+MBConfigurationRoot >> classModified: anEvent [
 
 	(anEvent classAffected name asString beginsWith: 'ConfigurationOf')
 		ifTrue: [ self respondToEventFor: anEvent classAffected withOperation: #modified ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>classRemoved: anEvent [
+{ #category : #updating }
+MBConfigurationRoot >> classRemoved: anEvent [
 
 	(anEvent classRemoved originalName asString beginsWith: 'ConfigurationOf')
 		ifTrue: [ self respondToEventFor: anEvent classRemoved withOperation: #removed ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>configurationClasses [
+{ #category : #accessing }
+MBConfigurationRoot >> configurationClasses [
 	^ MetacelloToolBox configurationClasses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>configurationInfoFor: aConfigurationClass [
+{ #category : #accessing }
+MBConfigurationRoot >> configurationInfoFor: aConfigurationClass [
 
 	self configurations do: [:info | info configurationClass == aConfigurationClass theNonMetaClass  ifTrue: [ ^info ]].
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>configurations [
+{ #category : #accessing }
+MBConfigurationRoot >> configurations [
 	configurations
 		ifNil: [ 
 			configurations := (self configurationClasses
@@ -155,47 +121,32 @@ MBConfigurationRoot>>configurations [
 	^ configurations
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>initialize [
+{ #category : #initialize-release }
+MBConfigurationRoot >> initialize [
 
 	super initialize .
 	announcer := Announcer new
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>methodModified: anEvent [
+{ #category : #updating }
+MBConfigurationRoot >> methodModified: anEvent [
 
 	(anEvent methodAffected class name asString beginsWith: 'ConfigurationOf')
 		ifTrue: [  self respondToEventFor: anEvent methodAffected withOperation: #modified ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>password [
+{ #category : #accessing }
+MBConfigurationRoot >> password [
 	^ password
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>password: anObject [
+{ #category : #accessing }
+MBConfigurationRoot >> password: anObject [
 	password := anObject
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>register [
+{ #category : #updating }
+MBConfigurationRoot >> register [
 	"Set up dependencies"
 	
 	SystemAnnouncer uniqueInstance weak
@@ -214,22 +165,16 @@ MBConfigurationRoot>>register [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>removeConfigurationInfo: aConfigurationInfo [
+{ #category : #actions }
+MBConfigurationRoot >> removeConfigurationInfo: aConfigurationInfo [
 
 	aConfigurationInfo release.
 	self configurations remove: aConfigurationInfo ifAbsent: [].
 	self announcer announce: MBConfigurationInfoDeleted
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>respondToEventFor: aConfigurationClass withOperation: operation [
+{ #category : #updating }
+MBConfigurationRoot >> respondToEventFor: aConfigurationClass withOperation: operation [
 	"Events generated by SystemChangeNotifier and involve edits to the configuration itself."
 
 	| info |
@@ -244,11 +189,8 @@ MBConfigurationRoot>>respondToEventFor: aConfigurationClass withOperation: opera
 	self configurations do: [ :configInfo | configInfo recalculateIfInterestedInConfigurationInfo: info for: operation ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>unregister [
+{ #category : #updating }
+MBConfigurationRoot >> unregister [
 	"Unregister from the dependent object. Typically used when closing the browser"
 	
 	SystemAnnouncer uniqueInstance unsubscribe: self.
@@ -256,11 +198,8 @@ MBConfigurationRoot>>unregister [
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>update: anArrayOrSymbol [
+{ #category : #updating }
+MBConfigurationRoot >> update: anArrayOrSymbol [
 	"A package has been modified (loaded, removed, or updated). Find out if any configurations are managing the package.
 	Update events are coming from MCWorkingCopy."
 
@@ -290,18 +229,12 @@ MBConfigurationRoot>>update: anArrayOrSymbol [
 	self configurations do: [ :info | info recalculateIfInterestedInPackageNamed: packageName for: operation ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>username [
+{ #category : #accessing }
+MBConfigurationRoot >> username [
 	^ username
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBConfigurationRoot>>username: anObject [
+{ #category : #accessing }
+MBConfigurationRoot >> username: anObject [
 	username := anObject
 ]

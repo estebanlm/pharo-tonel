@@ -14,15 +14,11 @@ Class {
 		'getLabelSelector',
 		'label'
 	],
-	#category : #Morphic-Widgets-Scrolling,
-	#timestamp : 'gvc 7/16/2007 13:57'
+	#category : #Morphic-Widgets-Scrolling
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph class>>on: anObject getValue: getSel setValue: setSel [
+{ #category : #'as yet unclassified' }
+PluggableSliderMorph class >> on: anObject getValue: getSel setValue: setSel [
 	"Answer a new instance of the receiver with
 	the given selectors as the interface."
 
@@ -32,11 +28,8 @@ PluggableSliderMorph class>>on: anObject getValue: getSel setValue: setSel [
 		setValue: setSel
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph class>>on: anObject getValue: getSel setValue: setSel min: min max: max quantum: quantum [
+{ #category : #'as yet unclassified' }
+PluggableSliderMorph class >> on: anObject getValue: getSel setValue: setSel min: min max: max quantum: quantum [
 	"Answer a new instance of the receiver with
 	the given selectors as the interface."
 
@@ -49,11 +42,8 @@ PluggableSliderMorph class>>on: anObject getValue: getSel setValue: setSel min: 
 		setValue: setSel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+PluggableSliderMorph >> adoptPaneColor: paneColor [
 	"Pass on to the border too."
 	
 	super adoptPaneColor: paneColor.
@@ -66,11 +56,8 @@ PluggableSliderMorph>>adoptPaneColor: paneColor [
 			ifFalse: [self paneColor twiceDarker paler])
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>borderStyleToUse [
+{ #category : #protocol }
+PluggableSliderMorph >> borderStyleToUse [
 	"Answer the borderStyle that should be used for the receiver."
 	
 	^self enabled
@@ -78,31 +65,22 @@ PluggableSliderMorph>>borderStyleToUse [
 		ifFalse: [self theme sliderDisabledBorderStyleFor: self]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>defaultColor [
+{ #category : #initialization }
+PluggableSliderMorph >> defaultColor [
 	"Answer the default color/fill style for the receiver."
 	
 	^Color white
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>disable [
+{ #category : #protocol }
+PluggableSliderMorph >> disable [
 	"Disable the receiver."
 	
 	self enabled: false
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+PluggableSliderMorph >> drawOn: aCanvas [
 
 	super drawOn: aCanvas.
 	aCanvas 
@@ -115,31 +93,22 @@ PluggableSliderMorph>>drawOn: aCanvas [
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>enable [
+{ #category : #protocol }
+PluggableSliderMorph >> enable [
 	"Enable the receiver."
 	
 	self enabled: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>enabled [
+{ #category : #accessing }
+PluggableSliderMorph >> enabled [
 	"Answer the value of enabled"
 
 	^ enabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>enabled: anObject [
+{ #category : #accessing }
+PluggableSliderMorph >> enabled: anObject [
 	"Set the value of enabled"
 
 	enabled = anObject ifTrue: [^self].
@@ -150,11 +119,8 @@ PluggableSliderMorph>>enabled: anObject [
 		changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>fillStyleToUse [
+{ #category : #accessing }
+PluggableSliderMorph >> fillStyleToUse [
 	"Answer the fillStyle that should be used for the receiver."
 	
 	^self enabled
@@ -162,99 +128,69 @@ PluggableSliderMorph>>fillStyleToUse [
 		ifFalse: [self theme sliderDisabledFillStyleFor: self]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>font [
+{ #category : #drawing }
+PluggableSliderMorph >> font [
 
 	^ StandardFonts defaultFont
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>fontColor [
+{ #category : #drawing }
+PluggableSliderMorph >> fontColor [
 
 	^ self theme textColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>getEnabledSelector [
+{ #category : #accessing }
+PluggableSliderMorph >> getEnabledSelector [
 	"Answer the value of getEnabledSelector"
 
 	^ getEnabledSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>getEnabledSelector: aSymbol [
+{ #category : #accessing }
+PluggableSliderMorph >> getEnabledSelector: aSymbol [
 	"Set the value of getEnabledSelector"
 
 	getEnabledSelector := aSymbol.
 	self updateEnabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>getLabelSelector [
+{ #category : #accessing }
+PluggableSliderMorph >> getLabelSelector [
 
 	^ getLabelSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>getLabelSelector: aSymbol [
+{ #category : #accessing }
+PluggableSliderMorph >> getLabelSelector: aSymbol [
 
 	getLabelSelector := aSymbol.
 	self updateLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>getValueSelector [
+{ #category : #accessing }
+PluggableSliderMorph >> getValueSelector [
 	"Answer the value of getValueSelector"
 
 	^ getValueSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>getValueSelector: anObject [
+{ #category : #accessing }
+PluggableSliderMorph >> getValueSelector: anObject [
 	"Set the value of getValueSelector"
 
 	getValueSelector := anObject
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>handlesMouseDown: evt [
+{ #category : #'event handling' }
+PluggableSliderMorph >> handlesMouseDown: evt [
 	"Answer true." 
 
 	^true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>initialize [
+{ #category : #initialization }
+PluggableSliderMorph >> initialize [
 	"Initialize the receiver."
 
 	min := 0.
@@ -264,41 +200,29 @@ PluggableSliderMorph>>initialize [
 	self enabled: true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>initializeSlider [
+{ #category : #initialization }
+PluggableSliderMorph >> initializeSlider [
 	"Make the slider raised."
 	
 	super initializeSlider.
 	slider borderStyle: (BorderStyle raised baseColor: slider color; width: 1)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>label [
+{ #category : #accessing }
+PluggableSliderMorph >> label [
 
 	^ label
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>label: aLabel [
+{ #category : #accessing }
+PluggableSliderMorph >> label: aLabel [
 
 	label := aLabel.
 	self changed.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>labelBounds [
+{ #category : #drawing }
+PluggableSliderMorph >> labelBounds [
 	| deltaY deltaX labelWidth treshold bnd |
 	bnd := self innerBounds.
 	labelWidth := self font widthOfStringOrText: self label.
@@ -310,20 +234,14 @@ PluggableSliderMorph>>labelBounds [
 	^ bnd translateBy: deltaX @ deltaY
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>labelGap [
+{ #category : #drawing }
+PluggableSliderMorph >> labelGap [
 	
 	^ 2
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>layoutBounds: aRectangle [
+{ #category : #layout }
+PluggableSliderMorph >> layoutBounds: aRectangle [
 	"Set the bounds for laying out children of the receiver.
 	Note: written so that #layoutBounds can be changed without touching this method"
 	
@@ -331,64 +249,46 @@ PluggableSliderMorph>>layoutBounds: aRectangle [
 	self computeSlider
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>max [
+{ #category : #accessing }
+PluggableSliderMorph >> max [
 	"Answer the value of max"
 
 	^ max
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>max: anObject [
+{ #category : #accessing }
+PluggableSliderMorph >> max: anObject [
 	"Set the value of max"
 
 	max := anObject.
 	self setValue: self value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>min [
+{ #category : #accessing }
+PluggableSliderMorph >> min [
 	"Answer the value of min"
 
 	^ min
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>min: anObject [
+{ #category : #accessing }
+PluggableSliderMorph >> min: anObject [
 	"Set the value of min"
 
 	min := anObject.
 	self setValue: self value
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>minHeight [
+{ #category : #layout }
+PluggableSliderMorph >> minHeight [
 	"Answer the receiver's minimum height.
 	Give it a bit of a chance..."
 	
 	^8 max: super minHeight
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>mouseDown: anEvent [
+{ #category : #'event handling' }
+PluggableSliderMorph >> mouseDown: anEvent [
 	"Set the value directly."
 	
 	self enabled ifTrue: [
@@ -404,33 +304,24 @@ PluggableSliderMorph>>mouseDown: anEvent [
 
 ]
 
-{
-	#category : #'other events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>mouseDownInSlider: event [
+{ #category : #'other events' }
+PluggableSliderMorph >> mouseDownInSlider: event [
 	"Ignore if disabled."
 	
 	self enabled ifFalse: [^self].
 	^super mouseDownInSlider: event
 ]
 
-{
-	#category : #'other events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>mouseUpInSlider: event  [
+{ #category : #'other events' }
+PluggableSliderMorph >> mouseUpInSlider: event [ 
 
 	super mouseUpInSlider: event.
 	"label or label position may change"
 	self updateLabel.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>on: anObject getValue: getSel setValue: setSel [
+{ #category : #'instance creation' }
+PluggableSliderMorph >> on: anObject getValue: getSel setValue: setSel [
 	"Use the given selectors as the interface."
 
 	self
@@ -440,32 +331,23 @@ PluggableSliderMorph>>on: anObject getValue: getSel setValue: setSel [
 		updateValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>quantum [
+{ #category : #accessing }
+PluggableSliderMorph >> quantum [
 	"Answer the value of quantum"
 
 	^ quantum
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>quantum: anObject [
+{ #category : #accessing }
+PluggableSliderMorph >> quantum: anObject [
 	"Set the value of quantum"
 
 	quantum := anObject.
 	self setValue: self value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>scaledValue [
+{ #category : #accessing }
+PluggableSliderMorph >> scaledValue [
 	"Answer the scaled value."
 
 	|val|
@@ -475,11 +357,8 @@ PluggableSliderMorph>>scaledValue [
 	^(val max: self min) min: self max
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>scaledValue: newValue [
+{ #category : #accessing }
+PluggableSliderMorph >> scaledValue: newValue [
 	"Set the scaled value."
 
 	|val|
@@ -491,11 +370,8 @@ PluggableSliderMorph>>scaledValue: newValue [
 		ifFalse: [val - self min / (self max - self min)])
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>scrollAbsolute: event [
+{ #category : #scrolling }
+PluggableSliderMorph >> scrollAbsolute: event [
 	"Ignore if disabled."
 	
 	self enabled ifFalse: [^self].
@@ -504,11 +380,8 @@ PluggableSliderMorph>>scrollAbsolute: event [
 	self updateLabel.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>scrollPoint: event [
+{ #category : #'event handling' }
+PluggableSliderMorph >> scrollPoint: event [
 	"Scroll to the event position."
 	
 	| r p |
@@ -528,11 +401,8 @@ PluggableSliderMorph>>scrollPoint: event [
 				ifFalse:	[(r bottom - p y) asFloat / r height])]
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>setValue: newValue [
+{ #category : #'model access' }
+PluggableSliderMorph >> setValue: newValue [
 	"Called internally for propagation to model."
 
 	|scaled|
@@ -543,32 +413,23 @@ PluggableSliderMorph>>setValue: newValue [
 			self model perform: sel with: scaled]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>setValueSelector [
+{ #category : #accessing }
+PluggableSliderMorph >> setValueSelector [
 	"Answer the set selector."
 	
 	^setValueSelector
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>sliderColor: newColor [
+{ #category : #access }
+PluggableSliderMorph >> sliderColor: newColor [
 	"Set the slider colour."
 	
 	super sliderColor: newColor.
 	slider ifNotNil: [slider borderStyle baseColor: newColor]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>update: aParameter [
+{ #category : #protocol }
+PluggableSliderMorph >> update: aParameter [
 
 	aParameter = getEnabledSelector 		ifTrue: [ ^ self updateEnabled ].
 	aParameter = getValueSelector 		ifTrue: [ ^ self updateValue ].
@@ -584,11 +445,8 @@ PluggableSliderMorph>>update: aParameter [
 	aParameter first = #value: ifTrue: [ self value: aParameter second ].
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>updateEnabled [
+{ #category : #protocol }
+PluggableSliderMorph >> updateEnabled [
 	"Update the enablement state."
 
 	self model ifNotNil: [:m | 
@@ -596,11 +454,8 @@ PluggableSliderMorph>>updateEnabled [
 			self enabled: (m perform: s)]]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>updateLabel [
+{ #category : #protocol }
+PluggableSliderMorph >> updateLabel [
 	"Update the label."
 	
 	self model ifNotNil: [:m |
@@ -608,11 +463,8 @@ PluggableSliderMorph>>updateLabel [
 			self label: (m perform: selector) ]]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableSliderMorph>>updateValue [
+{ #category : #protocol }
+PluggableSliderMorph >> updateValue [
 	"Update the value."
 	
 	self model ifNotNil: [:m |

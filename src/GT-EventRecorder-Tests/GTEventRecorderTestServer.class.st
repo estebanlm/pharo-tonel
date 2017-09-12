@@ -11,15 +11,11 @@ Class {
 		'server',
 		'url'
 	],
-	#category : #GT-EventRecorder-Tests-Core,
-	#timestamp : 'JurajKubelka 11/15/2015 17:50'
+	#category : #GT-EventRecorder-Tests-Core
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTestServer>>initializeUsingDelegate: aDelegate semaphore: aSemaphore [
+{ #category : #initialization }
+GTEventRecorderTestServer >> initializeUsingDelegate: aDelegate semaphore: aSemaphore [
 	| subscription |
 	server := ZnServer on: 0.
 	server delegate: aDelegate.
@@ -39,43 +35,28 @@ GTEventRecorderTestServer>>initializeUsingDelegate: aDelegate semaphore: aSemaph
 		yourself.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTestServer>>server [
+{ #category : #accessing }
+GTEventRecorderTestServer >> server [
 	^ server
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTestServer>>stop [
+{ #category : #accessing }
+GTEventRecorderTestServer >> stop [
 	server stop
 ]
 
-{
-	#category : #subscription,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTestServer>>unsubscribeAll [
+{ #category : #subscription }
+GTEventRecorderTestServer >> unsubscribeAll [
 	ZnLogEvent announcer unsubscribe: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTestServer>>url [
+{ #category : #accessing }
+GTEventRecorderTestServer >> url [
 	^ url
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRecorderTestServer>>when: anAnnouncement do: aBlock [
+{ #category : #events }
+GTEventRecorderTestServer >> when: anAnnouncement do: aBlock [
 	"Subscribe myself for events that belongs to my ZnServer."
 	^ ZnLogEvent announcer 
 			when: anAnnouncement 

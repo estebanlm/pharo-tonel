@@ -27,23 +27,16 @@ Class {
 		'normalNames',
 		'italicNames'
 	],
-	#category : #FreeType-FontManager,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:11'
+	#category : #FreeType-FontManager
 }
 
-{
-	#category : #'known names',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser class>>italicAndObliqueNames [
+{ #category : #'known names' }
+FreeTypeNameParser class >> italicAndObliqueNames [
 	^self italicNames, self obliqueNames
 ]
 
-{
-	#category : #'known names',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser class>>italicNames [
+{ #category : #'known names' }
+FreeTypeNameParser class >> italicNames [
 	"Answer a sequence of String tokens that indicate an italic font
 	within a font family-style name"
 	"
@@ -59,11 +52,8 @@ FreeTypeNameParser class>>italicNames [
 		'kursiv').
 ]
 
-{
-	#category : #'known names',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser class>>normalNames [
+{ #category : #'known names' }
+FreeTypeNameParser class >> normalNames [
 	"Answer a sequence of String tokens that indicate a Regular
 	(i.e. non-oblique, non-italic) font within a font family-style name"
 	"
@@ -74,11 +64,8 @@ FreeTypeNameParser class>>normalNames [
 	^normalNames := #('Book' 'Normal' 'Regular' 'Roman' 'Upright').
 ]
 
-{
-	#category : #'known names',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser class>>obliqueNames [
+{ #category : #'known names' }
+FreeTypeNameParser class >> obliqueNames [
 	"Answer a sequence of String tokens that indicate an oblique font
 	within a font family-style name"
 	"
@@ -94,11 +81,8 @@ FreeTypeNameParser class>>obliqueNames [
 		'slanted').
 ]
 
-{
-	#category : #'known names',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser class>>stretchNames [
+{ #category : #'known names' }
+FreeTypeNameParser class >> stretchNames [
 	"Answer a sequence of arrays.
 	Each array has an integer stretch value as its first element (1 - 9).
 	The remaining elements are String tokens which might appear
@@ -159,11 +143,8 @@ FreeTypeNameParser class>>stretchNames [
 
 ]
 
-{
-	#category : #'known names',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser class>>weightNames [
+{ #category : #'known names' }
+FreeTypeNameParser class >> weightNames [
 	"Answer a sequence of arrays.
 	Each array has an integer weight value as its first element.
 	The remaining elements are String tokens which might appear
@@ -215,11 +196,8 @@ FreeTypeNameParser class>>weightNames [
 			
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>addStyleNameToCombinedName: aStyleString [
+{ #category : #parsing }
+FreeTypeNameParser >> addStyleNameToCombinedName: aStyleString [
 	| lcCombined lcStyleName addStyle index |
 	lcCombined := combinedName asLowercase.
 	lcStyleName := aStyleString asLowercase.
@@ -235,19 +213,13 @@ FreeTypeNameParser>>addStyleNameToCombinedName: aStyleString [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>boldFlag: aBoolean [
+{ #category : #accessing }
+FreeTypeNameParser >> boldFlag: aBoolean [
 	boldFlag := aBoolean
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>extractSlant [
+{ #category : #parsing }
+FreeTypeNameParser >> extractSlant [
 
 	|  matches start end |
 
@@ -276,11 +248,8 @@ FreeTypeNameParser>>extractSlant [
 			extractedSlantValue := LogicalFont slantItalic]		
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>extractStretch [
+{ #category : #parsing }
+FreeTypeNameParser >> extractStretch [
 	"match and remove last stretch tokens"
 	| matches start end |
 
@@ -303,11 +272,8 @@ FreeTypeNameParser>>extractStretch [
 			"tokens := self tokenize: combinedName delimiters: delimiters"].	
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>extractUpright [
+{ #category : #parsing }
+FreeTypeNameParser >> extractUpright [
 	"extract from current combined name.
 	answer new combinedName"
 	| normalTok start end | 
@@ -332,11 +298,8 @@ FreeTypeNameParser>>extractUpright [
 	
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>extractWeight [
+{ #category : #parsing }
+FreeTypeNameParser >> extractWeight [
 	"match and remove last weight tokens"
 	| matches start end |
 
@@ -361,130 +324,85 @@ FreeTypeNameParser>>extractWeight [
 			extractedWeightValue := LogicalFont weightBold]	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>extractedSlant [
+{ #category : #accessing }
+FreeTypeNameParser >> extractedSlant [
 	^extractedSlant
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>extractedSlantValue [
+{ #category : #accessing }
+FreeTypeNameParser >> extractedSlantValue [
 	^extractedSlantValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>extractedStretch [
+{ #category : #accessing }
+FreeTypeNameParser >> extractedStretch [
 	^extractedStretch
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>extractedStretchValue [
+{ #category : #accessing }
+FreeTypeNameParser >> extractedStretchValue [
 	^extractedStretchValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>extractedUpright [
+{ #category : #accessing }
+FreeTypeNameParser >> extractedUpright [
 	^extractedUpright
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>extractedWeight [
+{ #category : #accessing }
+FreeTypeNameParser >> extractedWeight [
 	^extractedWeight
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>extractedWeightValue [
+{ #category : #accessing }
+FreeTypeNameParser >> extractedWeightValue [
 	^extractedWeightValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>familyName [
+{ #category : #accessing }
+FreeTypeNameParser >> familyName [
 	^combinedName trimBoth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>familyName: familyName [
+{ #category : #accessing }
+FreeTypeNameParser >> familyName: familyName [
 	familyNameIn := familyName.
 
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>familyNameIn: familyName [
+{ #category : #accessing }
+FreeTypeNameParser >> familyNameIn: familyName [
 	familyNameIn := familyName.
 
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>initialize [
+{ #category : #initialization }
+FreeTypeNameParser >> initialize [
 	super initialize.
 	delimiters := ',.-_'.
 	Character separators do:[:c | delimiters := delimiters , c asString].
 
 ]
 
-{
-	#category : #'known names',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>italicAndObliqueNames [
+{ #category : #'known names' }
+FreeTypeNameParser >> italicAndObliqueNames [
 	^self class italicAndObliqueNames
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>italicFlag: aBoolean [
+{ #category : #accessing }
+FreeTypeNameParser >> italicFlag: aBoolean [
 	italicFlag := aBoolean
 ]
 
-{
-	#category : #'known names',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>italicNames [
+{ #category : #'known names' }
+FreeTypeNameParser >> italicNames [
 	^self class italicNames
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>lastMatchValueSequence: values [
+{ #category : #parsing }
+FreeTypeNameParser >> lastMatchValueSequence: values [
 	"answer the last contiguous tokens that match pattern tokens, 
 	or nil if not found.
 	matching is case insensitive "
@@ -504,20 +422,14 @@ FreeTypeNameParser>>lastMatchValueSequence: values [
 
 ]
 
-{
-	#category : #'known names',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>normalNames [
+{ #category : #'known names' }
+FreeTypeNameParser >> normalNames [
 	^self class normalNames
 
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>parse [
+{ #category : #parsing }
+FreeTypeNameParser >> parse [
 
 	| styleName |
 	styleNameIn := self splitBadTokensIn: styleNameIn.
@@ -536,11 +448,8 @@ FreeTypeNameParser>>parse [
 	
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>splitBadTokensIn: aString [
+{ #category : #parsing }
+FreeTypeNameParser >> splitBadTokensIn: aString [
 	"split tokens such as BoldOblique, that should be two words"
 	| str |
 	str := aString.
@@ -552,39 +461,27 @@ FreeTypeNameParser>>splitBadTokensIn: aString [
 	^str
 ]
 
-{
-	#category : #'known names',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>stretchNames [
+{ #category : #'known names' }
+FreeTypeNameParser >> stretchNames [
 	^self class stretchNames
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>styleName: styleName [
+{ #category : #accessing }
+FreeTypeNameParser >> styleName: styleName [
 	
 	styleNameIn := styleName. 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>styleNameIn: styleName [
+{ #category : #accessing }
+FreeTypeNameParser >> styleNameIn: styleName [
 	
 	styleNameIn := styleName. 
 
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>tokenize: aString  [
+{ #category : #parsing }
+FreeTypeNameParser >> tokenize: aString [ 
 	"answer an OrderedCollection of {string. start. end} tuples.
 	tokens are separated by $- $_ $, $. and whitespace"
 	| currentTokens answer start |
@@ -599,11 +496,8 @@ FreeTypeNameParser>>tokenize: aString  [
 	^answer
 ]
 
-{
-	#category : #'known names',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeNameParser>>weightNames [
+{ #category : #'known names' }
+FreeTypeNameParser >> weightNames [
 	^self class weightNames
 			
 ]

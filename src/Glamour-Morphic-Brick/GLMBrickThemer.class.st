@@ -16,109 +16,75 @@ Class {
 	#instVars : [
 		'modules'
 	],
-	#category : #Glamour-Morphic-Brick-Theme,
-	#timestamp : 'AliakseiSyrel 3/17/2015 23:01'
+	#category : #Glamour-Morphic-Brick-Theme
 }
 
-{
-	#category : #theme-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>actionThemer [
+{ #category : #theme-actions }
+GLMBrickThemer >> actionThemer [
 
 	^ GLMActionBrickThemer new
 ]
 
-{
-	#category : #brick-modules,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>addModule: aThemerModule named: aSymbol [
+{ #category : #brick-modules }
+GLMBrickThemer >> addModule: aThemerModule named: aSymbol [
 
 	self modules at: aSymbol put: aThemerModule.
 	aThemerModule themer: self.
 	^ aThemerModule
 ]
 
-{
-	#category : #brick,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>backgroundColor [
+{ #category : #brick }
+GLMBrickThemer >> backgroundColor [
 
 	^ Color transparent
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>color [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickThemer >> color [
 
 	^ self
 		registerModule: GLMBrickColorThemer new
 ]
 
-{
-	#category : #brick,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>contentBackgroundColor [
+{ #category : #brick }
+GLMBrickThemer >> contentBackgroundColor [
 
 	^ Color white
 ]
 
-{
-	#category : #brick-modules,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>doesNotUnderstand: aMessage [
+{ #category : #brick-modules }
+GLMBrickThemer >> doesNotUnderstand: aMessage [
 
 	^ self modules at: aMessage selector ifAbsent: [ super doesNotUnderstand: aMessage ]
 	
 ]
 
-{
-	#category : #brick,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>focusedBorderColor [
+{ #category : #brick }
+GLMBrickThemer >> focusedBorderColor [
 
 	^ self color peterRiver
 ]
 
-{
-	#category : #brick,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>focusedBorderWidth [
+{ #category : #brick }
+GLMBrickThemer >> focusedBorderWidth [
 
 	^ 1
 ]
 
-{
-	#category : #brick-modules,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>modules [
+{ #category : #brick-modules }
+GLMBrickThemer >> modules [
 
 	^ modules ifNil: [ modules := Dictionary new ]
 ]
 
-{
-	#category : #brick,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>normalBorderColor [
+{ #category : #brick }
+GLMBrickThemer >> normalBorderColor [
 
 	^ self color silver
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>popupEditorBorderThemer [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickThemer >> popupEditorBorderThemer [
 
 	^ self
 		registerModule: GLMBrickPopupEditBorderThemer new
@@ -126,11 +92,8 @@ GLMBrickThemer>>popupEditorBorderThemer [
 		named: #popupThemer
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>popupEditorShadowThemer [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickThemer >> popupEditorShadowThemer [
 
 	^ self
 		registerModule: [ GLMBrickPopupEditShadowThemer new ]
@@ -138,11 +101,8 @@ GLMBrickThemer>>popupEditorShadowThemer [
 		named: #popupThemer
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>popupErrorThemer [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickThemer >> popupErrorThemer [
 
 	^ self
 		registerModule: GLMBrickPopupErrorThemer new
@@ -150,11 +110,8 @@ GLMBrickThemer>>popupErrorThemer [
 		named: #popupThemer
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>popupHelpThemer [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickThemer >> popupHelpThemer [
 
 	^ self
 		registerModule: GLMBrickPopupHelpThemer new
@@ -162,11 +119,8 @@ GLMBrickThemer>>popupHelpThemer [
 		named: #popupThemer
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>popupSuccessThemer [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickThemer >> popupSuccessThemer [
 
 	^ self
 		registerModule: GLMBrickPopupSuccessThemer new
@@ -174,21 +128,15 @@ GLMBrickThemer>>popupSuccessThemer [
 		named: #popupThemer
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>popupThemer [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickThemer >> popupThemer [
 
 	^ self
 		registerModule: GLMBrickPopupThemer new
 ]
 
-{
-	#category : #brick-modules,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>registerModule: aModule [
+{ #category : #brick-modules }
+GLMBrickThemer >> registerModule: aModule [
 
 	^ self
 		registerModule: aModule
@@ -196,11 +144,8 @@ GLMBrickThemer>>registerModule: aModule [
 		named: thisContext sender selector
 ]
 
-{
-	#category : #brick-modules,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>registerModule: aModule to: aThemer [
+{ #category : #brick-modules }
+GLMBrickThemer >> registerModule: aModule to: aThemer [
 
 	^ self
 		registerModule: aModule
@@ -208,50 +153,35 @@ GLMBrickThemer>>registerModule: aModule to: aThemer [
 		named: thisContext sender selector
 ]
 
-{
-	#category : #brick-modules,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>registerModule: aModule to: aThemer named: aString [
+{ #category : #brick-modules }
+GLMBrickThemer >> registerModule: aModule to: aThemer named: aString [
 	"Registers aModule to aThemer. It stores modules in a dictionaty where a key is a selector of my caller method. It allows to customize bricks that are not added to the application (in this case they don't have access to custom themer normaly, because owner is nil) using the same api as added one."
 	^ self modules
 		at: aString
 		ifAbsent: [ aThemer addModule: aModule value named: aString ]
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>tabLabelThemer [
+{ #category : #'*Glamour-Morphic-Brick' }
+GLMBrickThemer >> tabLabelThemer [
 
 	^ self
 		registerModule: GLMBrickTabLabelThemer new
 ]
 
-{
-	#category : #brick,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>textColor [
+{ #category : #brick }
+GLMBrickThemer >> textColor [
 
 	^ self color darken
 ]
 
-{
-	#category : #brick,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>textLightColor [
+{ #category : #brick }
+GLMBrickThemer >> textLightColor [
 
 	^ Color gray
 ]
 
-{
-	#category : #brick,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemer>>textSecondaryColor [
+{ #category : #brick }
+GLMBrickThemer >> textSecondaryColor [
 
 	^ Color r:25 g: 35 b: 45 range: 255
 ]

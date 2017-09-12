@@ -10,15 +10,11 @@ Class {
 	#instVars : [
 		'polygon'
 	],
-	#category : #Athens-Core-Paths,
-	#timestamp : '<historical>'
+	#category : #Athens-Core-Paths
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPolygonTester>>includesPoint: aPoint [
+{ #category : #testing }
+AthensPolygonTester >> includesPoint: aPoint [
 "
 Thanks to Google and Randolph Franklin i don't have to reinvent this very simple algorithm.
 See [ 1 ] for details, copyrights etc.
@@ -57,11 +53,8 @@ See [ 1 ] for details, copyrights etc.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPolygonTester>>polygon: poly [
+{ #category : #accessing }
+AthensPolygonTester >> polygon: poly [
 
 	polygon := poly
 ]

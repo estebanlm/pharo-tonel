@@ -26,15 +26,11 @@ Class {
 		'cachedClassNames',
 		'cachedNonClassNames'
 	],
-	#category : #System-Support,
-	#timestamp : 'NicolaiHess 5/23/2015 23:40'
+	#category : #System-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary class>>withOrganizer: anOrganizer [
+{ #category : #'instance creation' }
+SystemDictionary class >> withOrganizer: anOrganizer [
 	| dictionary |
 	dictionary := self new.
 	dictionary organization: anOrganizer. "update too the back pointer"
@@ -42,41 +38,29 @@ SystemDictionary class>>withOrganizer: anOrganizer [
 	
 ]
 
-{
-	#category : #'classes and traits',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>allBehaviors [
+{ #category : #'classes and traits' }
+SystemDictionary >> allBehaviors [
 	"Return all the classes and traits defined in the Smalltalk SystemDictionary"
 
 	^ self allClassesAndTraits flatCollect: [:each | {each . each classSide} ]
 ]
 
-{
-	#category : #'classes and traits',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>allClasses   [
+{ #category : #'classes and traits' }
+SystemDictionary >> allClasses [  
 	"Return all the class defines in the Smalltalk SystemDictionary"
 
 	^ self classNames collect: [:name | self at: name]
 ]
 
-{
-	#category : #'classes and traits',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>allClassesAndTraits [
+{ #category : #'classes and traits' }
+SystemDictionary >> allClassesAndTraits [
 	"Return all the classes and traits defined in the Smalltalk SystemDictionary"
 
 	^ self classAndTraitNames collect: [:each | self at: each]
 ]
 
-{
-	#category : #'classes and traits',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>allClassesAndTraitsDo: aBlock [
+{ #category : #'classes and traits' }
+SystemDictionary >> allClassesAndTraitsDo: aBlock [
 	"Evaluate the argument, aBlock, for each class and trait in the system."
 	
 	^self classAndTraitNames do: [:each | aBlock value: (self at: each)]
@@ -85,41 +69,29 @@ SystemDictionary>>allClassesAndTraitsDo: aBlock [
 
 ]
 
-{
-	#category : #'classes and traits',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>allClassesDo: aBlock [
+{ #category : #'classes and traits' }
+SystemDictionary >> allClassesDo: aBlock [
 	"Evaluate the argument, aBlock, for each class in the system."
 
 	^self classNames do: [:name | aBlock value: (self at: name)]
 ]
 
-{
-	#category : #'classes and traits',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>allTraits [
+{ #category : #'classes and traits' }
+SystemDictionary >> allTraits [
 	"Return all traits defined in the Smalltalk SystemDictionary"
 
 	^ self traitNames collect: [:each | self at: each]
 ]
 
-{
-	#category : #'classes and traits',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>allTraitsDo: aBlock [
+{ #category : #'classes and traits' }
+SystemDictionary >> allTraitsDo: aBlock [
 	"Evaluate the argument, aBlock, for each trait in the system."
 
 	^self traitNames do: [:name | aBlock value: (self at: name)]
 ]
 
-{
-	#category : #'dictionary access',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>at: aKey put: anObject  [
+{ #category : #'dictionary access' }
+SystemDictionary >> at: aKey put: anObject [ 
 	"Override from Dictionary to check Undeclared and fix up
 	references to undeclared variables."
 	
@@ -130,21 +102,15 @@ SystemDictionary>>at: aKey put: anObject  [
 	^ anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>bindingOf: varName [
+{ #category : #accessing }
+SystemDictionary >> bindingOf: varName [
 	"SystemDictionaries includes symbols only"
 	
 	^ super bindingOf: varName asSymbol
 ]
 
-{
-	#category : #'class and trait names',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>classAndTraitNames [
+{ #category : #'class and trait names' }
+SystemDictionary >> classAndTraitNames [
 	"Answer a sorted collection of all class and trait (not including class-traits) names. Do not bother to sort"
 
 	
@@ -152,29 +118,20 @@ SystemDictionary>>classAndTraitNames [
 	
 ]
 
-{
-	#category : #'classes and traits',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>classNamed: className  [
+{ #category : #'classes and traits' }
+SystemDictionary >> classNamed: className [ 
 	^self classOrTraitNamed: className.
 ]
 
-{
-	#category : #'class and trait names',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>classNames [
+{ #category : #'class and trait names' }
+SystemDictionary >> classNames [
 	"Answer a sorted collection of all class names. Use the return value of #fillCaches to avoid concurrency issues."
 	
 	^cachedClassNames ifNil: [ self fillCaches at: 1 ]
 ]
 
-{
-	#category : #'classes and traits',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>classOrTraitNamed: aString [
+{ #category : #'classes and traits' }
+SystemDictionary >> classOrTraitNamed: aString [
 	"aString is either a class or trait name or a class or trait name followed by ' class' or 'classTrait' respectively.
 	Answer the class or metaclass it names."
 
@@ -199,21 +156,15 @@ SystemDictionary>>classOrTraitNamed: aString [
                                ifTrue: [ global classSide ]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>environment [
+{ #category : #accessing }
+SystemDictionary >> environment [
 	"for conversion from SmalltalkImage to SystemDictionary"
 	
 	^ self 
 ]
 
-{
-	#category : #'class and trait names',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>fillCaches [
+{ #category : #'class and trait names' }
+SystemDictionary >> fillCaches [
 	"Fill cachedClassNames and cachedNonClassNames. Return an array with the calculated values."
 
 	| classNames nonClassNames |
@@ -239,22 +190,16 @@ SystemDictionary>>fillCaches [
 	^{ classNames. nonClassNames }
 ]
 
-{
-	#category : #'class and trait names',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>flushClassNameCache [
+{ #category : #'class and trait names' }
+SystemDictionary >> flushClassNameCache [
 	"Smalltalk flushClassNameCache"
 	"Force recomputation of the cached list of class names and non-class names."
 
 	cachedClassNames := cachedNonClassNames := nil
 ]
 
-{
-	#category : #'classes and traits',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>forgetClass: aClass logged: aBool  [
+{ #category : #'classes and traits' }
+SystemDictionary >> forgetClass: aClass logged: aBool [ 
 	"Delete the class, aClass, from the system.
 	Note that this doesn't do everything required to dispose of a class - to do that use Class>>removeFromSystem."
 
@@ -264,11 +209,8 @@ SystemDictionary>>forgetClass: aClass logged: aBool  [
 	self flushClassNameCache
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>hasBindingThatBeginsWith: aString [
+{ #category : #testing }
+SystemDictionary >> hasBindingThatBeginsWith: aString [
 	"Use the cached class and non-class names for better performance."
 
 	| name searchBlock |
@@ -289,11 +231,8 @@ SystemDictionary>>hasBindingThatBeginsWith: aString [
 	^name notNil
 ]
 
-{
-	#category : #'classes and traits',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>hasClassNamed: aString [
+{ #category : #'classes and traits' }
+SystemDictionary >> hasClassNamed: aString [
 	"Answer whether there is a class of the given name, but don't intern aString if it's not alrady interned."
 
 	Symbol 
@@ -302,52 +241,37 @@ SystemDictionary>>hasClassNamed: aString [
 	^ false
 ]
 
-{
-	#category : #'system attributes',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>maxIdentityHash [
+{ #category : #'system attributes' }
+SystemDictionary >> maxIdentityHash [
 	"Answer the maximum identityHash value supported by the VM."
 	<primitive: 176>
 	^self primitiveFailed
 ]
 
-{
-	#category : #'class and trait names',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>nonClassNames [
+{ #category : #'class and trait names' }
+SystemDictionary >> nonClassNames [
 	"Answer a sorted collection of all non-class names. Use the return value of #fillCaches to avoid concurrency issues."
 	
 	^cachedNonClassNames ifNil: [ self fillCaches at: 2 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>organization [
+{ #category : #accessing }
+SystemDictionary >> organization [
 	"Return the organizer for the receiver"
 	
 	^ self at: #SystemOrganization ifAbsent: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>organization: anOrganization [
+{ #category : #accessing }
+SystemDictionary >> organization: anOrganization [
 	"Return the organizer for the receiver"
 	
 	anOrganization environment: self.
 	^self at: #SystemOrganization put: anOrganization
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>poolUsers [
+{ #category : #accessing }
+SystemDictionary >> poolUsers [
 	"Answer a dictionary of pool name -> classes that refer to it.
 	Also includes any globally know dictionaries (such as
 	Smalltalk, Undeclared etc) which although not strictly
@@ -375,29 +299,20 @@ SystemDictionary>>poolUsers [
 	^ poolUsers
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>printElementsOn: aStream [
+{ #category : #printing }
+SystemDictionary >> printElementsOn: aStream [
 	aStream nextPutAll:'(lots of globals)'
 ]
 
-{
-	#category : #'classes and traits',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>removeClassNamed: aName [
+{ #category : #'classes and traits' }
+SystemDictionary >> removeClassNamed: aName [
 	"Invoked from fileouts:  if there is currently a class in the system named aName, then remove it"
 
 	self at: aName asSymbol ifPresent: [:oldClass | oldClass removeFromSystem]
 ]
 
-{
-	#category : #'dictionary access',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>removeKey: key ifAbsent: aBlock [
+{ #category : #'dictionary access' }
+SystemDictionary >> removeKey: key ifAbsent: aBlock [
 	"Remove key (and its associated value) from the receiver. If key is not in
 	the receiver, answer the result of evaluating aBlock. Otherwise, answer
 	the value externally named by key."
@@ -406,31 +321,22 @@ SystemDictionary>>removeKey: key ifAbsent: aBlock [
 	^super removeKey: key ifAbsent: aBlock
 ]
 
-{
-	#category : #renaming,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>renameClass: aClass as: newName  [
+{ #category : #renaming }
+SystemDictionary >> renameClass: aClass [ as: newName 
 	"Rename the class, aClass, to have the title newName."
 
 	^self renameClass: aClass from: aClass name to: newName
 ]
 
-{
-	#category : #renaming,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>renameClass: aClass from: oldName  [
+{ #category : #renaming }
+SystemDictionary >> renameClass: aClass from: oldName [ 
 	"Rename the class, aClass, to have the title newName."
 
 	^self renameClass: aClass from: oldName to: aClass name
 ]
 
-{
-	#category : #renaming,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>renameClass: aClass from: oldName to: newName [
+{ #category : #renaming }
+SystemDictionary >> renameClass: aClass from: oldName to: newName [
 	"Rename the class, aClass, to have the title newName."
 
 	| oldref category |
@@ -448,11 +354,8 @@ SystemDictionary>>renameClass: aClass from: oldName to: newName [
 		SystemAnnouncer uniqueInstance classParentOf: subclass renamedFrom: oldName to: newName].
 ]
 
-{
-	#category : #renaming,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>renameClassNamed: oldName as: newName [
+{ #category : #renaming }
+SystemDictionary >> renameClassNamed: oldName [ as: newName
 	"Invoked from fileouts:  if there is currently a class in the system named oldName, then rename it to newName.  If anything untoward happens, report it in the Transcript.  "
 
 	| oldClass |
@@ -463,11 +366,8 @@ SystemDictionary>>renameClassNamed: oldName as: newName [
 	oldClass rename: newName
 ]
 
-{
-	#category : #'class and trait names',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>traitNames [
+{ #category : #'class and trait names' }
+SystemDictionary >> traitNames [
 	"Answer a SortedCollection of all traits (not including class-traits) names."
 	
 	^self nonClassNames select: [ :name |
@@ -477,10 +377,7 @@ SystemDictionary>>traitNames [
 				ifAbsent: [ false ] ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemDictionary>>veryDeepCopyWith: deepCopier [
+{ #category : #copying }
+SystemDictionary >> veryDeepCopyWith: deepCopier [
 	"Return self.  I can't be copied.  Do not record me."
 ]

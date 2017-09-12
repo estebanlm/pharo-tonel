@@ -12,32 +12,22 @@ Class {
 		'index',
 		'panel'
 	],
-	#category : #NautilusCommon-Plugin,
-	#timestamp : '<historical>'
+	#category : #NautilusCommon-Plugin
 }
 
-{
-	#category : #position,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTasksPlugin class>>defaultPosition [
+{ #category : #position }
+PackageTasksPlugin class >> defaultPosition [
 
 	^ #top
 ]
 
-{
-	#category : #position,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTasksPlugin class>>description [
+{ #category : #position }
+PackageTasksPlugin class >> description [
 	^self comment
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTasksPlugin>>buildTaskList [
+{ #category : #display }
+PackageTasksPlugin >> buildTaskList [
 	^ (PluggableListMorph
 		on: self
 		list: #tasks
@@ -50,27 +40,18 @@ PackageTasksPlugin>>buildTaskList [
 		yourself
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTasksPlugin>>display [
+{ #category : #display }
+PackageTasksPlugin >> display [
 	^panel
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTasksPlugin>>index [
+{ #category : #display }
+PackageTasksPlugin >> index [
 	^index
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTasksPlugin>>initialize [
+{ #category : #initialization }
+PackageTasksPlugin >> initialize [
 	tasks := OrderedCollection new.
 	index := 0.
 	panel := PanelMorph new
@@ -84,11 +65,8 @@ PackageTasksPlugin>>initialize [
 
 ]
 
-{
-	#category : #announcement,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTasksPlugin>>packageSelected: anAnnouncement [
+{ #category : #announcement }
+PackageTasksPlugin >> packageSelected: anAnnouncement [
 	
 	| package |
 	package := anAnnouncement package package.
@@ -101,37 +79,25 @@ PackageTasksPlugin>>packageSelected: anAnnouncement [
 	self changed: #tasks
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTasksPlugin>>selectedIndex [
+{ #category : #display }
+PackageTasksPlugin >> selectedIndex [
 	^index
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTasksPlugin>>selectedIndex: anIndex [
+{ #category : #display }
+PackageTasksPlugin >> selectedIndex: anIndex [
 	index := anIndex.
 	self updateMethodSelection: (tasks at: index ifAbsent: [ ^self ]).
 	self changed: #selectedIndex
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTasksPlugin>>tasks [
+{ #category : #display }
+PackageTasksPlugin >> tasks [
 	^tasks
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTasksPlugin>>updateMethodSelection: aMethod [
+{ #category : #display }
+PackageTasksPlugin >> updateMethodSelection: aMethod [
 
 	model ui categoryWidget
 		resetCategoryList;

@@ -11,35 +11,25 @@ Class {
 	#classInstVars : [
 		'current'
 	],
-	#category : #Ombu-Stores,
-	#timestamp : 'MartinDias 2/7/2017 11:44'
+	#category : #Ombu-Stores
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmStoreFactory class>>current [
+{ #category : #accessing }
+OmStoreFactory class >> current [
 
 	^ current ifNil: [ current := self new ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmStoreFactory class>>initialize [
+{ #category : #initialization }
+OmStoreFactory class >> initialize [
 	"
 	self initialize
 	"
 	SessionManager default registerSystemClassNamed: self name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmStoreFactory class>>reset [
+{ #category : #accessing }
+OmStoreFactory class >> reset [
 	"
 	self reset
 	"
@@ -47,69 +37,48 @@ OmStoreFactory class>>reset [
 	current := nil
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmStoreFactory class>>shutDown: aboutToQuit [
+{ #category : #'system startup' }
+OmStoreFactory class >> shutDown: aboutToQuit [
 
 	aboutToQuit ifTrue: [ self reset ]
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmStoreFactory class>>startUp: isImageStarting [
+{ #category : #'system startup' }
+OmStoreFactory class >> startUp: isImageStarting [
 
 	isImageStarting ifTrue: [ self reset ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmStoreFactory>>defaultDirectory [
+{ #category : #accessing }
+OmStoreFactory >> defaultDirectory [
 
 	^ OmSessionStore defaultBaseLocator asFileReference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmStoreFactory>>fromFile: aFileReference [
+{ #category : #accessing }
+OmStoreFactory >> fromFile: aFileReference [
 
 	^ self 
 		named: (OmFileStore globalNameFrom: aFileReference)
 		inDirectory: aFileReference parent
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmStoreFactory>>initialize [
+{ #category : #initialization }
+OmStoreFactory >> initialize [
 	super initialize.
 	
 	storeByPath := WeakValueDictionary new.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmStoreFactory>>named: aGlobalName  [
+{ #category : #accessing }
+OmStoreFactory >> named: aGlobalName [ 
 
 	^ self named: aGlobalName inDirectory: self defaultDirectory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmStoreFactory>>named: aGlobalName inDirectory: aDirectory [
+{ #category : #accessing }
+OmStoreFactory >> named: aGlobalName inDirectory: aDirectory [
 
 	| fileReference |
 	fileReference := OmFileStore fileReferenceForStoreNamed: aGlobalName inDirectory: aDirectory.
@@ -124,22 +93,16 @@ OmStoreFactory>>named: aGlobalName inDirectory: aDirectory [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmStoreFactory>>newStoreNamed: aGlobalName in: aDirectory [
+{ #category : #private }
+OmStoreFactory >> newStoreNamed: aGlobalName in: aDirectory [
 
 	^ OmBlockFileStore
 		named: aGlobalName
 		inDirectory: aDirectory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmStoreFactory>>null [
+{ #category : #accessing }
+OmStoreFactory >> null [
 
 	^ nullStore ifNil: [ nullStore := OmNullStore new ]
 ]

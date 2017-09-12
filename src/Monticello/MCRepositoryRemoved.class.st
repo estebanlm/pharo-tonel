@@ -7,22 +7,15 @@ Class {
 	#instVars : [
 		'repository'
 	],
-	#category : #Monticello-Announcements,
-	#timestamp : 'NicolaiHess 11/4/2015 23:56'
+	#category : #Monticello-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryRemoved>>repository [
+{ #category : #accessing }
+MCRepositoryRemoved >> repository [
 	^ repository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCRepositoryRemoved>>repository: anObject [
+{ #category : #accessing }
+MCRepositoryRemoved >> repository: anObject [
 	repository := anObject
 ]

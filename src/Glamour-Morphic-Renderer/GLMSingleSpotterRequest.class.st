@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMSingleSpotterRequest,
 	#superclass : #Notification,
@@ -12,15 +9,11 @@ Class {
 		'labelBlock',
 		'iconBlock'
 	],
-	#category : #Glamour-Morphic-Renderer-Spotter,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer-Spotter
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest class>>substring: testString matches: aString caseSensitive: aBoolean [
+{ #category : #utilities }
+GLMSingleSpotterRequest class >> substring: testString matches: aString caseSensitive: aBoolean [
 	"Checks if a testString is a substring of aString. The matching parts do not necessarily need to be consecutive, for example 'egli' matches 'renggli'."
 
 	| index |
@@ -35,37 +28,25 @@ GLMSingleSpotterRequest class>>substring: testString matches: aString caseSensit
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>assisted [
+{ #category : #accessing }
+GLMSingleSpotterRequest >> assisted [
 	^ assisted
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>assisted: aBoolean [
+{ #category : #accessing }
+GLMSingleSpotterRequest >> assisted: aBoolean [
 	"A boolean indicating that the typing of the user is assisted but not constrained."
 	
 	assisted := aBoolean
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>collection: aCollection [
+{ #category : #configuration }
+GLMSingleSpotterRequest >> collection: aCollection [
 	self collection: aCollection caseSensitive: false
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>collection: aCollection caseSensitive: aBoolean [
+{ #category : #configuration }
+GLMSingleSpotterRequest >> collection: aCollection caseSensitive: aBoolean [
 	"Configure this completion dialog with aCollection and match the elements case sensitive if aBoolean is true. Display the complete list if the filter is empty."
 
 	self searchBlock: [ :value |
@@ -79,71 +60,47 @@ GLMSingleSpotterRequest>>collection: aCollection caseSensitive: aBoolean [
 						caseSensitive: aBoolean ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>default [
+{ #category : #accessing }
+GLMSingleSpotterRequest >> default [
 	^ default
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>default: aString [
+{ #category : #accessing }
+GLMSingleSpotterRequest >> default: aString [
 	"The default string initially used for filtering."
 	
 	default := aString
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>defaultAction [
+{ #category : #initialize-release }
+GLMSingleSpotterRequest >> defaultAction [
 	^(GLMMorphicSingleSpotter openOn: self) answer
 ]
 
-{
-	#category : #dispatching,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>handleWith: anObject [
+{ #category : #dispatching }
+GLMSingleSpotterRequest >> handleWith: anObject [
 	^ anObject handleCompletionRequest: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>iconBlock [
+{ #category : #accessing }
+GLMSingleSpotterRequest >> iconBlock [
 	^ iconBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>iconBlock: aOneArgumentBlock [
+{ #category : #accessing }
+GLMSingleSpotterRequest >> iconBlock: aOneArgumentBlock [
 	"A one argument block answering the icon symbol for a given element."
 	
 	iconBlock := aOneArgumentBlock
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>iconFor: anObject [
+{ #category : #querying }
+GLMSingleSpotterRequest >> iconFor: anObject [
 	^ iconBlock value: anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>initialize [
+{ #category : #initialization }
+GLMSingleSpotterRequest >> initialize [
 	super initialize.
 	prompt := 'Completion Request'.
 	default := String new.
@@ -153,80 +110,53 @@ GLMSingleSpotterRequest>>initialize [
 	iconBlock := [ :value | nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>labelBlock [
+{ #category : #accessing }
+GLMSingleSpotterRequest >> labelBlock [
 	^ labelBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>labelBlock: aOneArgumentBlock [
+{ #category : #accessing }
+GLMSingleSpotterRequest >> labelBlock: aOneArgumentBlock [
 	"A one argument block answering the string for a given element."
 	
 	labelBlock := aOneArgumentBlock
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>labelFor: anObject [
+{ #category : #querying }
+GLMSingleSpotterRequest >> labelFor: anObject [
 	^ labelBlock value: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>name [
+{ #category : #accessing }
+GLMSingleSpotterRequest >> name [
 	^self prompt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>prompt [
+{ #category : #accessing }
+GLMSingleSpotterRequest >> prompt [
 	^ prompt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>prompt: aString [
+{ #category : #accessing }
+GLMSingleSpotterRequest >> prompt: aString [
 	"A string with the title for this request."
 	
 	prompt := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>searchBlock [
+{ #category : #accessing }
+GLMSingleSpotterRequest >> searchBlock [
 	^ searchBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>searchBlock: aOneArgumentBlock [
+{ #category : #accessing }
+GLMSingleSpotterRequest >> searchBlock: aOneArgumentBlock [
 	"A one argument block returning the elements for the given filter."
 	
 	searchBlock := aOneArgumentBlock
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSingleSpotterRequest>>valuesFor: anObject [
+{ #category : #querying }
+GLMSingleSpotterRequest >> valuesFor: anObject [
 	^ searchBlock value: anObject
 ]

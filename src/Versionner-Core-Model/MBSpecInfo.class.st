@@ -13,134 +13,91 @@ Class {
 		'spec',
 		'configurationInfo'
 	],
-	#category : #Versionner-Core-Model,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBSpecInfo class>>spec: aMetacelloSpec [
+{ #category : #'instance creation' }
+MBSpecInfo class >> spec: aMetacelloSpec [
 	"Create an instance of myself with the given spec"
 
 	^(super new) spec: aMetacelloSpec
 ]
 
-{
-	#category : #commands,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBSpecInfo>>cmdLoadSpecCommand [
+{ #category : #commands }
+MBSpecInfo >> cmdLoadSpecCommand [
 	<command>
 	^ MBLoadPackageCommand
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBSpecInfo>>configurationInfo [
+{ #category : #accessing }
+MBSpecInfo >> configurationInfo [
 	^ configurationInfo
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBSpecInfo>>configurationInfo: anObject [
+{ #category : #accessing }
+MBSpecInfo >> configurationInfo: anObject [
 	configurationInfo := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBSpecInfo>>currentVersionMismatch [
+{ #category : #testing }
+MBSpecInfo >> currentVersionMismatch [
 
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBSpecInfo>>isDirty [
+{ #category : #testing }
+MBSpecInfo >> isDirty [
 	| wc |
 	wc := self workingCopy.
 	wc ifNil: [ ^false ].
 	^wc needsSaving
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBSpecInfo>>packageName [
+{ #category : #accessing }
+MBSpecInfo >> packageName [
 
 	^self name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBSpecInfo>>project [
+{ #category : #accessing }
+MBSpecInfo >> project [
 	"Answer the MetacelloProject associated with the receiver."
 	
 	^self spec project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBSpecInfo>>spec [
+{ #category : #accessing }
+MBSpecInfo >> spec [
 
 	^spec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBSpecInfo>>spec: aMetacelloSpec [
+{ #category : #accessing }
+MBSpecInfo >> spec: aMetacelloSpec [
 
 	spec := aMetacelloSpec 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBSpecInfo>>typeLabel [
+{ #category : #accessing }
+MBSpecInfo >> typeLabel [
 
 	^''
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBSpecInfo>>validate [
+{ #category : #accessing }
+MBSpecInfo >> validate [
 
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBSpecInfo>>validationIcon [
+{ #category : #accessing }
+MBSpecInfo >> validationIcon [
 
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBSpecInfo>>validationIconSymbol [
+{ #category : #accessing }
+MBSpecInfo >> validationIconSymbol [
 
 	^#blank
 ]

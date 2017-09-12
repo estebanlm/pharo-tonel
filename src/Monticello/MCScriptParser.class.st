@@ -4,23 +4,16 @@ A MCScriptParser identifies script and add MCScriptDefinition.
 Class {
 	#name : #MCScriptParser,
 	#superclass : #MCDoItParser,
-	#category : #'Monticello-Chunk Format',
-	#timestamp : '<historical>'
+	#category : #'Monticello-Chunk Format'
 }
 
-{
-	#category : #'factory identification hook',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCScriptParser class>>pattern [
+{ #category : #'factory identification hook' }
+MCScriptParser class >> pattern [
 	^'(PackageInfo named: *'
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCScriptParser>>addDefinitionsTo: aCollection [
+{ #category : #actions }
+MCScriptParser >> addDefinitionsTo: aCollection [
 	| tokens definition |
 	tokens := source parseLiterals.
 	definition := MCScriptDefinition

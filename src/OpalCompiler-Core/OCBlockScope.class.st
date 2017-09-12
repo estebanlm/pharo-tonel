@@ -4,47 +4,31 @@ I modelt the scope of a block
 Class {
 	#name : #OCBlockScope,
 	#superclass : #OCAbstractMethodScope,
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCBlockScope>>hasEscapingVars [
+{ #category : #testing }
+OCBlockScope >> hasEscapingVars [
 	^ (copiedVars isEmpty and: [tempVector isEmpty]) not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCBlockScope>>inComingCopiedVars [
+{ #category : #accessing }
+OCBlockScope >> inComingCopiedVars [
 	^ copiedVars select: [:each | outerScope copiedVars includes: each].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCBlockScope>>isBlockScope [
+{ #category : #testing }
+OCBlockScope >> isBlockScope [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCBlockScope>>isInsideOptimizedLoop [
+{ #category : #testing }
+OCBlockScope >> isInsideOptimizedLoop [
 	^ self outerScope isInsideOptimizedLoop
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCBlockScope>>nextLexicalContextOf: aContext [
+{ #category : #lookup }
+OCBlockScope >> nextLexicalContextOf: aContext [
 
 	"Returns the next context to lookup a variable name from within this Scope.
 	A method should continue looking up a variable from the outerContext.
@@ -53,11 +37,8 @@ OCBlockScope>>nextLexicalContextOf: aContext [
 	^ aContext home
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCBlockScope>>nextOuterScopeContextOf: aContext [
+{ #category : #lookup }
+OCBlockScope >> nextOuterScopeContextOf: aContext [
 
 	"Returns the next context to lookup a variable name from within outer scope.
 	If it is block context then we return outer context for lookup.
@@ -65,11 +46,8 @@ OCBlockScope>>nextOuterScopeContextOf: aContext [
 	^ aContext outerContext ifNil: [ aContext ]
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCBlockScope>>outerScopeLookupVar: name inContext: aContext [
+{ #category : #lookup }
+OCBlockScope >> outerScopeLookupVar: name inContext: aContext [
 	^ self outerScope 
 		lookupVar: name
 		inContext: (self nextOuterScopeContextOf: aContext)

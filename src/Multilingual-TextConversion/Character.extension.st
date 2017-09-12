@@ -1,22 +1,14 @@
-Extension {
-	#name : #Character
-}
+Extension { #name : #Character }
 
-{
-	#category : #'*Multilingual-TextConversion',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Character>>macRomanToUnicode [
+{ #category : #'*Multilingual-TextConversion' }
+Character >> macRomanToUnicode [
 	"Convert the receiver from MacRoman Unicode."
 
 	^MacRomanTextConverter new unicodeToByte: self
 ]
 
-{
-	#category : #'*Multilingual-TextConversion',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Character>>unicodeToMacRoman [
+{ #category : #'*Multilingual-TextConversion' }
+Character >> unicodeToMacRoman [
 	"Convert the receiver from Unicode to MacRoman encoding."
 
 	^MacRomanTextConverter new byteToUnicode: self

@@ -13,15 +13,11 @@ Class {
 		'suiteErrors',
 		'progressFile'
 	],
-	#category : #JenkinsTools-Core,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:31'
+	#category : #JenkinsTools-Core
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport class>>runClasses: aCollectionOfClasses named: aString [
+{ #category : #running }
+HDTestReport class >> runClasses: aCollectionOfClasses named: aString [
 	| suite classes |
 	suite := TestSuite named: aString.
 	classes := (aCollectionOfClasses
@@ -34,30 +30,21 @@ HDTestReport class>>runClasses: aCollectionOfClasses named: aString [
 	^ self runSuite: suite
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport class>>runPackage: aString [
+{ #category : #running }
+HDTestReport class >> runPackage: aString [
 	^ self runClasses: (RPackage organizer packageNamed: aString) definedClasses named: aString
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport class>>runSuite: aTestSuite [
+{ #category : #running }
+HDTestReport class >> runSuite: aTestSuite [
 	^ self new
 		initializeOn: aTestSuite; 
 		run;
 		done
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>beginTestCase: aTestCase runBlock: aBlock [
+{ #category : #private }
+HDTestReport >> beginTestCase: aTestCase runBlock: aBlock [
 	| time |
 	progressFile 
 		nextPutAll: 'starting testcase: ' ; 
@@ -79,54 +66,36 @@ HDTestReport>>beginTestCase: aTestCase runBlock: aBlock [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>done [
+{ #category : #running }
+HDTestReport >> done [
 	"just close the file"
 	[ progressFile close ] on: Error do: []
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>endTestCase [
+{ #category : #private }
+HDTestReport >> endTestCase [
 	stream tab; nextPutAll: '</testcase>'; lf.
 	progressFile nextPutAll: 'finished' ; crlf; flush.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>hasErrors  [
+{ #category : #testing }
+HDTestReport >> hasErrors [ 
 	^ suiteErrors ~= 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>hasFailures  [
+{ #category : #testing }
+HDTestReport >> hasFailures [ 
 	^ suiteFailures ~= 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>hasFailuresOrErrors  [
+{ #category : #testing }
+HDTestReport >> hasFailuresOrErrors [ 
 	^ self hasFailures or: [ self hasErrors ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>initialize [
+{ #category : #initialization }
+HDTestReport >> initialize [
 
 	| aFile |
 
@@ -141,19 +110,13 @@ HDTestReport>>initialize [
 			encoding: 'utf8'.	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>initializeOn: aTestSuite [
+{ #category : #initialization }
+HDTestReport >> initializeOn: aTestSuite [
 	suite := aTestSuite
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>run [
+{ #category : #running }
+HDTestReport >> run [
 	Author uniqueInstance
 		ifUnknownAuthorUse: 'hudson'
 		during: [ [ 
@@ -163,21 +126,15 @@ HDTestReport>>run [
 					ensure: [ self tearDown ] ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>runAll [
+{ #category : #running }
+HDTestReport >> runAll [
 	CurrentExecutionEnvironment runTestsBy: [ 
 		suite tests do: [ :each | each run: self ]
 	]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>runCase: aTestCase [
+{ #category : #running }
+HDTestReport >> runCase: aTestCase [
 	| error stack  |
 	self
 		beginTestCase: aTestCase
@@ -202,11 +159,8 @@ HDTestReport>>runCase: aTestCase [
 	self endTestCase
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>serializeError: error of: aTestCase [
+{ #category : #running }
+HDTestReport >> serializeError: error of: aTestCase [
 	"We got an error from a test, let's serialize it so we can properly debug it later on..."
 	
 	self class environment at: #FuelOutStackDebugAction ifPresent: [ :fuelOutStackDebugAction |
@@ -226,11 +180,8 @@ HDTestReport>>serializeError: error of: aTestCase [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>setUp [
+{ #category : #running }
+HDTestReport >> setUp [
 
 	| aFile |
 	
@@ -257,11 +208,8 @@ HDTestReport>>setUp [
 			ifFalse: [ each signalInitializationError ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>stackTraceString: err of: aTestCase [
+{ #category : #private }
+HDTestReport >> stackTraceString: err of: aTestCase [
 	^ String streamContents: [ :str | 
 		| context |
 		context := err signalerContext.
@@ -270,45 +218,30 @@ HDTestReport>>stackTraceString: err of: aTestCase [
 			context := context sender ] ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>suiteErrors [
+{ #category : #accessing }
+HDTestReport >> suiteErrors [
 	^ suiteErrors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>suiteFailures [
+{ #category : #accessing }
+HDTestReport >> suiteFailures [
 	^ suiteFailures
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>suitePassing  [
+{ #category : #accessing }
+HDTestReport >> suitePassing [ 
 	^ self suiteTotal - self suiteFailures - self suiteErrors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>suiteTotal [
+{ #category : #accessing }
+HDTestReport >> suiteTotal [
 	^ suite 
 		ifNotNil: [ suite tests size ]
 		ifNil: [ 0 ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>tearDown [
+{ #category : #running }
+HDTestReport >> tearDown [
 	suite resources 
 		do: [ :each | each reset ].
 		
@@ -330,11 +263,8 @@ HDTestReport>>tearDown [
 		close
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>writeError: anError andStack: aString for: aTestCase [
+{ #category : #private }
+HDTestReport >> writeError: anError andStack: aString for: aTestCase [
 	"XML tag is now open"
 	anError
 		ifNotNil: [
@@ -347,22 +277,16 @@ HDTestReport>>writeError: anError andStack: aString for: aTestCase [
 				self writeFailure: TestFailure new stack: 'Unexpected failure' ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>writeError: error stack: stack [
+{ #category : #private }
+HDTestReport >> writeError: error stack: stack [
 	suiteErrors := suiteErrors + 1.
 	stream tab; tab; nextPutAll: '<error type="'.
 	self writeException: error stack: stack.
 	stream nextPutAll: '</error>'; lf
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>writeException: error stack: stack. [
+{ #category : #private }
+HDTestReport >> writeException: error stack: stack. [
 
 	stream 
 		nextPutAll: (self encode: error class name); 
@@ -371,11 +295,8 @@ HDTestReport>>writeException: error stack: stack. [
 		nextPutAll: (self encode: stack).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-HDTestReport>>writeFailure: error stack: stack [
+{ #category : #private }
+HDTestReport >> writeFailure: error stack: stack [
 	suiteFailures := suiteFailures + 1.
 	stream tab; tab; nextPutAll: '<failure type="'.
 	self writeException: error stack: stack.  

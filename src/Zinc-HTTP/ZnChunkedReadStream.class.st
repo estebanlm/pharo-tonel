@@ -20,88 +20,60 @@ Class {
 		'chunkCount',
 		'extraHeaders'
 	],
-	#category : #Zinc-HTTP-Streaming,
-	#timestamp : 'SvenVanCaekenberghe 1/18/2011 11:01'
+	#category : #Zinc-HTTP-Streaming
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream class>>new [
+{ #category : #'instance creation' }
+ZnChunkedReadStream class >> new [
 	^ super new initialize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream class>>on: stream [
+{ #category : #'instance creation' }
+ZnChunkedReadStream class >> on: stream [
 	^ self basicNew
 		initialize;
 		on: stream;
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>atEnd [
+{ #category : #testing }
+ZnChunkedReadStream >> atEnd [
 	self ensureChunkOrAtEnd.
 	^ atEnd
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>binary [
+{ #category : #accessing }
+ZnChunkedReadStream >> binary [
 	stream binary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>chunkCount [
+{ #category : #accessing }
+ZnChunkedReadStream >> chunkCount [
 	^ chunkCount
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>collectionSpecies [
+{ #category : #accessing }
+ZnChunkedReadStream >> collectionSpecies [
 	^ self isBinary ifTrue: [ ByteArray ] ifFalse: [ String ]
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>contents [
+{ #category : #accessing }
+ZnChunkedReadStream >> contents [
 	"This is technically not correct, but it is better than nothing"
 	
 	^ self upToEnd
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>ensureChunkBufferOfSize: size [
+{ #category : #private }
+ZnChunkedReadStream >> ensureChunkBufferOfSize: size [
 	(chunk notNil and: [ size <= chunk size ]) ifTrue: [ ^ self ].  
 	chunk := self collectionSpecies new: size.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>ensureChunkOrAtEnd [
+{ #category : #private }
+ZnChunkedReadStream >> ensureChunkOrAtEnd [
 	atEnd 
 		ifTrue: [ ^ self ].
 	(chunk isNil or: [ position >= limit ]) 
@@ -109,27 +81,18 @@ ZnChunkedReadStream>>ensureChunkOrAtEnd [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>extraHeaders [
+{ #category : #accessing }
+ZnChunkedReadStream >> extraHeaders [
 	^ extraHeaders
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>getExtraHeaders [
+{ #category : #private }
+ZnChunkedReadStream >> getExtraHeaders [
 	extraHeaders := ZnHeaders readFrom: stream
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>getNextChunk [
+{ #category : #private }
+ZnChunkedReadStream >> getNextChunk [
 	| size |
 	(size := self getNextChunkSize) = 0
 		ifTrue: [
@@ -146,40 +109,28 @@ ZnChunkedReadStream>>getNextChunk [
 			position := 0 ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>getNextChunkSize [
+{ #category : #private }
+ZnChunkedReadStream >> getNextChunkSize [
 	| line |
 	(line := (ZnLineReader on: stream) nextLine) isEmpty ifTrue: [ ^ 0 ].
 	^ Integer readFrom: (line copyUpTo: $;) base: 16
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>initialize [
+{ #category : #initialization }
+ZnChunkedReadStream >> initialize [
 	atEnd := false.
 	chunkCount := 0.
 	totalSize := 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>isBinary [
+{ #category : #testing }
+ZnChunkedReadStream >> isBinary [
 	^ stream isBinary
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>match: subCollection [
+{ #category : #accessing }
+ZnChunkedReadStream >> match: subCollection [
 	"Try to read and match the elements of subCollection. 
 	If successful return true and leave the me positioned after the match.
 	If unsuccesful return false and leave me at end."
@@ -210,21 +161,15 @@ ZnChunkedReadStream>>match: subCollection [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>next [
+{ #category : #accessing }
+ZnChunkedReadStream >> next [
 	self ensureChunkOrAtEnd.
 	self atEnd ifTrue: [ ^ nil ].
 	^ chunk at: (position := position + 1)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>next: requestedCount [
+{ #category : #accessing }
+ZnChunkedReadStream >> next: requestedCount [ 
 	"Read requestedCount elements into new collection and return it,
 	 it could be that less elements were available"
 
@@ -233,11 +178,8 @@ ZnChunkedReadStream>>next: requestedCount [
 		into: (self collectionSpecies new: requestedCount)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>next: requestedCount into: collection [
+{ #category : #accessing }
+ZnChunkedReadStream >> next: requestedCount into: collection [
 	"Read requestedCount elements into collection,
 	returning a copy if less elements are available"
 	
@@ -247,11 +189,8 @@ ZnChunkedReadStream>>next: requestedCount into: collection [
 		startingAt: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>next: requestedCount into: collection startingAt: offset [
+{ #category : #accessing }
+ZnChunkedReadStream >> next: requestedCount into: collection startingAt: offset [
 	"Read requestedCount elements into collection starting at offset,
 	returning a copy if less elements are available"
 	
@@ -265,49 +204,34 @@ ZnChunkedReadStream>>next: requestedCount into: collection startingAt: offset [
 		ifFalse: [ collection copyFrom: 1 to: offset + readCount - 1 ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>on: readStream [
+{ #category : #initialize-release }
+ZnChunkedReadStream >> on: readStream [
 	stream := readStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>peek [
+{ #category : #accessing }
+ZnChunkedReadStream >> peek [
 	self ensureChunkOrAtEnd.
 	self atEnd ifTrue: [ ^ nil ].
 	^ chunk at: (position + 1)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>position [
+{ #category : #accessing }
+ZnChunkedReadStream >> position [
 	^ self atEnd 
 		ifTrue: [ totalSize ]
 		ifFalse: [ totalSize - chunk size + position ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>printOn: aStream [
+{ #category : #printing }
+ZnChunkedReadStream >> printOn: aStream [
 	aStream 
 		nextPutAll: 'a '; 
 		nextPutAll: self class name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>readInto: collection startingAt: offset count: requestedCount [
+{ #category : #accessing }
+ZnChunkedReadStream >> readInto: collection startingAt: offset count: requestedCount [
 	"Read requestedCount elements into collection starting at offset.
 	Return the actual number of elements read."
 
@@ -325,35 +249,23 @@ ZnChunkedReadStream>>readInto: collection startingAt: offset count: requestedCou
 	^ read
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>reset [
+{ #category : #accessing }
+ZnChunkedReadStream >> reset [
 	"We don't allow it"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>skip: count [
+{ #category : #accessing }
+ZnChunkedReadStream >> skip: count [
 	count timesRepeat: [ self next ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>totalSize [
+{ #category : #accessing }
+ZnChunkedReadStream >> totalSize [
 	^ totalSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>upTo: anObject [
+{ #category : #accessing }
+ZnChunkedReadStream >> upTo: anObject [ 
 	"We use our own collectionSpecies."
 	
 	^ self collectionSpecies streamContents: [ :out | | element |
@@ -361,11 +273,8 @@ ZnChunkedReadStream>>upTo: anObject [
 			whileFalse: [ out nextPut: element ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnChunkedReadStream>>upToEnd [
+{ #category : #accessing }
+ZnChunkedReadStream >> upToEnd [
 	"We use our own collectionSpecies and read by chunk"
 
 	^ self collectionSpecies streamContents: [ :out |

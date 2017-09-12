@@ -4,15 +4,11 @@ self new open
 Class {
 	#name : #GLMSegmentWithHelpAndMouseUpActionExample,
 	#superclass : #GLMRubricExample,
-	#category : #Glamour-Rubric-Presentations-Examples,
-	#timestamp : '<historical>'
+	#category : #Glamour-Rubric-Presentations-Examples
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMSegmentWithHelpAndMouseUpActionExample>>presentation [
+{ #category : #accessing }
+GLMSegmentWithHelpAndMouseUpActionExample >> presentation [
 	^ GLMCompositePresentation new
 		with: [ :a | 
 			| t seg |

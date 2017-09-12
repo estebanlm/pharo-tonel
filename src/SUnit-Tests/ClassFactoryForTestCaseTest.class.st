@@ -7,49 +7,33 @@ Class {
 	#instVars : [
 		'factory'
 	],
-	#category : #SUnit-Tests-Core,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:17'
+	#category : #SUnit-Tests-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCaseTest class>>defaultTimeLimit [
+{ #category : #accessing }
+ClassFactoryForTestCaseTest class >> defaultTimeLimit [
 	^10 seconds
 ]
 
-{
-	#category : #history,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCaseTest class>>lastStoredRun [
+{ #category : #history }
+ClassFactoryForTestCaseTest class >> lastStoredRun [
 	^ ((Dictionary new) add: (#passed->((Set new) add: #testDefaultCategoryCleanUp; add: #testPackageCleanUp; add: #testSingleClassCreation; add: #testClassCreationInDifferentCategories; add: #testClassFastCreationInDifferentCategories; add: #testMultipleClassCreation; add: #testSingleClassFastCreation; yourself)); add: (#timeStamp->'22 November 2008 10:11:35 pm'); add: (#failures->((Set new))); add: (#errors->((Set new))); yourself)
 ]
 
-{
-	#category : #setUp-tearDown,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCaseTest>>setUp [
+{ #category : #setUp-tearDown }
+ClassFactoryForTestCaseTest >> setUp [
 	super setUp.
 	factory := ClassFactoryForTestCase new
 ]
 
-{
-	#category : #setUp-tearDown,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCaseTest>>tearDown [
+{ #category : #setUp-tearDown }
+ClassFactoryForTestCaseTest >> tearDown [
 	super tearDown.
 	factory cleanUp
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCaseTest>>testClassCreationInDifferentCategories [
+{ #category : #testing }
+ClassFactoryForTestCaseTest >> testClassCreationInDifferentCategories [
 	| firstThreeClasses lastTwoClasses |
 	3 timesRepeat: [
 		factory newSubclassOf: Object instanceVariableNames: '' classVariableNames: '' category: #One].
@@ -61,11 +45,8 @@ ClassFactoryForTestCaseTest>>testClassCreationInDifferentCategories [
 	self assert: (lastTwoClasses allSatisfy: [:class| class category = (factory packageName, '-', #Two) asSymbol]).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCaseTest>>testClassFastCreationInDifferentCategories [
+{ #category : #testing }
+ClassFactoryForTestCaseTest >> testClassFastCreationInDifferentCategories [
 	| firstThreeClasses lastTwoClasses |
 	3 timesRepeat: [
 		factory newClassInCategory: #One].
@@ -77,11 +58,8 @@ ClassFactoryForTestCaseTest>>testClassFastCreationInDifferentCategories [
 	self assert: (lastTwoClasses allSatisfy: [:class| class category = (factory packageName, '-', #Two) asSymbol]).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCaseTest>>testDefaultCategoryCleanUp [
+{ #category : #testing }
+ClassFactoryForTestCaseTest >> testDefaultCategoryCleanUp [
 	| createdClassNames allClasses allTraits |
 	
 	3 timesRepeat: [
@@ -106,11 +84,8 @@ ClassFactoryForTestCaseTest>>testDefaultCategoryCleanUp [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCaseTest>>testDuplicateClassWithNewName [
+{ #category : #testing }
+ClassFactoryForTestCaseTest >> testDuplicateClassWithNewName [
 	| createdClass |
 	
 	"Skip this tests if no compiler is available. Do not use #skip because it breaks an announcements tests"
@@ -125,11 +100,8 @@ ClassFactoryForTestCaseTest>>testDuplicateClassWithNewName [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCaseTest>>testMultipleClassCreation [
+{ #category : #testing }
+ClassFactoryForTestCaseTest >> testMultipleClassCreation [
 	5 timesRepeat: [
 		factory newClass].
 	self assert: (SystemNavigation new allClasses includesAll: factory createdClasses).
@@ -137,11 +109,8 @@ ClassFactoryForTestCaseTest>>testMultipleClassCreation [
 	self assert: (SystemOrganization listAtCategoryNamed: factory defaultCategory) asSet = factory createdClassNames asSet
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCaseTest>>testPackageCleanUp [
+{ #category : #testing }
+ClassFactoryForTestCaseTest >> testPackageCleanUp [
 	| createdClassNames allClasses |
 	3 timesRepeat: [
 		factory newClassInCategory: #One].
@@ -158,11 +127,8 @@ ClassFactoryForTestCaseTest>>testPackageCleanUp [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCaseTest>>testSingleClassCreation [
+{ #category : #testing }
+ClassFactoryForTestCaseTest >> testSingleClassCreation [
 	|class elementsInCategoryForTest |
 	class := factory 
 		newSubclassOf: Object 
@@ -175,11 +141,8 @@ ClassFactoryForTestCaseTest>>testSingleClassCreation [
 	self assert: class classPool keys asSet = #(X Y) asSet
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCaseTest>>testSingleClassFastCreation [
+{ #category : #testing }
+ClassFactoryForTestCaseTest >> testSingleClassFastCreation [
 	|class elementsInCategoryForTest |
 	class := factory newClass.
 	self assert: (SystemNavigation new allClasses includes: class).
@@ -189,11 +152,8 @@ ClassFactoryForTestCaseTest>>testSingleClassFastCreation [
 	self assert: class classPool isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCaseTest>>testSingleTraitCreation [
+{ #category : #testing }
+ClassFactoryForTestCaseTest >> testSingleTraitCreation [
 	| trait |
 	trait := factory newTrait.
 	self assert: (Smalltalk globals allTraits includes: trait).
@@ -201,11 +161,8 @@ ClassFactoryForTestCaseTest>>testSingleTraitCreation [
 	self assert: trait traits size = 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryForTestCaseTest>>testTraitCreationInDifferentCategories [
+{ #category : #testing }
+ClassFactoryForTestCaseTest >> testTraitCreationInDifferentCategories [
 	| firstThreeTraits lastTwoTraits |
 	3 timesRepeat: [
 		factory newTraitInCategory: #One].

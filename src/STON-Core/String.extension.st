@@ -1,19 +1,11 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-String>>stonContainSubObjects  [
+{ #category : #'*ston-core' }
+String >> stonContainSubObjects [ 
 	^ false
 ]
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-String>>stonOn: stonWriter [
+{ #category : #'*ston-core' }
+String >> stonOn: stonWriter [
 	stonWriter writeString: self
 ]

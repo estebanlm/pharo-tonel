@@ -6,46 +6,29 @@ I respond to the Null object pattern, since I represent the inexistance of a key
 Class {
 	#name : #KMNoShortcut,
 	#superclass : #KMKeyCombination,
-	#category : #Keymapping-KeyCombinations,
-	#timestamp : '<historical>'
+	#category : #Keymapping-KeyCombinations
 }
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMNoShortcut>>+ aKMModifier [
+{ #category : #combining }
+KMNoShortcut >> + aKMModifier [
 	^ aKMModifier
 ]
 
-{
-	#category : #combining,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMNoShortcut>>, aShortcut [
+{ #category : #combining }
+KMNoShortcut >> , aShortcut [
 	^ aShortcut
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMNoShortcut>>matches: anEventBuffer [
+{ #category : #matching }
+KMNoShortcut >> matches: anEventBuffer [
 	^ false
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMNoShortcut>>matchesCompletely: anEventBuffer [
+{ #category : #matching }
+KMNoShortcut >> matchesCompletely: anEventBuffer [
 	^ false
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMNoShortcut>>printOn: aStream [
-
+{ #category : #printing }
+KMNoShortcut >> printOn: aStream [
 ]

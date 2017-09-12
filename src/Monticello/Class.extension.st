@@ -1,12 +1,7 @@
-Extension {
-	#name : #Class
-}
+Extension { #name : #Class }
 
-{
-	#category : #'*Monticello',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Class>>asClassDefinition [
+{ #category : #'*Monticello' }
+Class >> asClassDefinition [
 	"we use a very ugly hack to encode complex slots as string with MC... later MC shoudl model Slots directly"
 	self usesSpecialVariables ifFalse: [  
 	 ^MCClassDefinition
@@ -43,10 +38,7 @@ Class>>asClassDefinition [
 
 ]
 
-{
-	#category : #'*Monticello',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Class>>classDefinitions [
+{ #category : #'*Monticello' }
+Class >> classDefinitions [
 	^ Array with: self asClassDefinition
 ]

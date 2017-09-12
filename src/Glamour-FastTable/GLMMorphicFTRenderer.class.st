@@ -35,15 +35,11 @@ Class {
 		'tableModel',
 		'tableMorph'
 	],
-	#category : #Glamour-FastTable-Morphic-Renderer,
-	#timestamp : 'CyrilFerlicot 11/10/2015 11:33'
+	#category : #Glamour-FastTable-Morphic-Renderer
 }
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>actOnContextChanged: anAnnouncement  [
+{ #category : #callbacks }
+GLMMorphicFTRenderer >> actOnContextChanged: anAnnouncement [ 
 	anAnnouncement property = #selection ifTrue: [ 
 		tableModel announcer 
 			suspendAll: self suspendedAnnouncements
@@ -51,11 +47,8 @@ GLMMorphicFTRenderer>>actOnContextChanged: anAnnouncement  [
 				tableModel explicitSelection: anAnnouncement value ] ]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>actOnPresentationRefreshRequest: anAnnouncement [
+{ #category : #callbacks }
+GLMMorphicFTRenderer >> actOnPresentationRefreshRequest: anAnnouncement [
 
 	tableMorph window ifNil: [ ^ self ].
 	tableMorph window isActive ifFalse: [ ^ self ].
@@ -65,65 +58,44 @@ GLMMorphicFTRenderer>>actOnPresentationRefreshRequest: anAnnouncement [
 	tableMorph refresh
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>actOnUpdatedPresentation: anAnnouncement [
+{ #category : #callbacks }
+GLMMorphicFTRenderer >> actOnUpdatedPresentation: anAnnouncement [
 	tableModel resetElements.
 	tableMorph refresh
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>addFastTableIn: container [
+{ #category : #adding }
+GLMMorphicFTRenderer >> addFastTableIn: container [
 	container addMorphBack: tableMorph
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>createDataSourceFrom: aPresentation [
+{ #category : #initialization }
+GLMMorphicFTRenderer >> createDataSourceFrom: aPresentation [
 	self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>createFastTable [
+{ #category : #initialization }
+GLMMorphicFTRenderer >> createFastTable [
 	^ FTTableMorph new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>dataSourceUpdated: announcement [
+{ #category : #private }
+GLMMorphicFTRenderer >> dataSourceUpdated: announcement [
 	tableModel ifNotNil: [ self unsubscribeDataSource: tableModel ].
 	tableModel := announcement newDataSource.
 	self initializeAnnouncementForDataSource
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>initializeAnnoucementForPresentation: aPresentation [
+{ #category : #private }
+GLMMorphicFTRenderer >> initializeAnnoucementForPresentation: aPresentation [
 	aPresentation when: GLMDataSourceUpdated send: #dataSourceUpdated: to: self.
 	aPresentation when: GLMContextChanged send: #actOnContextChanged: to: self.
 	aPresentation when: GLMPresentationUpdated send: #actOnUpdatedPresentation: to: self.
 	aPresentation when: GLMPresentationRefreshRequest send: #actOnPresentationRefreshRequest: to: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>initializeAnnouncementForDataSource [
+{ #category : #private }
+GLMMorphicFTRenderer >> initializeAnnouncementForDataSource [
 	tableModel announcer
 		when: GLMTreeMorphSelectionChanged
 		do: [ :ann | 
@@ -142,22 +114,16 @@ GLMMorphicFTRenderer>>initializeAnnouncementForDataSource [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>initializeTableModel: aPresentation [
+{ #category : #initialization }
+GLMMorphicFTRenderer >> initializeTableModel: aPresentation [
 	tableModel := (self createDataSourceFrom: aPresentation)
 		glamourPresentation: aPresentation;
 		yourself.
 	self specificDataSourceInitializiation
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>initializeTableMorph [
+{ #category : #initialization }
+GLMMorphicFTRenderer >> initializeTableMorph [
 	| presentation |
 	presentation := tableModel glamourPresentation.
 	tableMorph := self createFastTable.
@@ -177,11 +143,8 @@ GLMMorphicFTRenderer>>initializeTableMorph [
 	self specificTableMorphInitializiation
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>render: aPresentation [
+{ #category : #rendering }
+GLMMorphicFTRenderer >> render: aPresentation [
 	| container |
 	container := GLMMorphic containerMorph.
 	self initializeAnnoucementForPresentation: aPresentation.
@@ -194,27 +157,18 @@ GLMMorphicFTRenderer>>render: aPresentation [
 	^ container
 ]
 
-{
-	#category : #'build ui',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>setFastTableLayoutFrame: newTableMorph [
+{ #category : #'build ui' }
+GLMMorphicFTRenderer >> setFastTableLayoutFrame: newTableMorph [
 	newTableMorph layoutFrame: (LayoutFrame fractions: (0 @ 0 corner: 1 @ 1))
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>specificDataSourceInitializiation [
+{ #category : #initialization }
+GLMMorphicFTRenderer >> specificDataSourceInitializiation [
 	"Override me if you need to add something to the data source."
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>specificTableMorphColumnsInitialization [
+{ #category : #private }
+GLMMorphicFTRenderer >> specificTableMorphColumnsInitialization [
 	| presentation |
 	presentation := tableModel glamourPresentation.
 	tableMorph intercellSpacing: tableModel glamourPresentation intercellSpacing.
@@ -235,11 +189,8 @@ GLMMorphicFTRenderer>>specificTableMorphColumnsInitialization [
 						yourself ]).
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>specificTableMorphInitializiation [
+{ #category : #initialization }
+GLMMorphicFTRenderer >> specificTableMorphInitializiation [
 	"Override me if need to add something to the tableMorph."
 
 	| presentation |
@@ -261,11 +212,8 @@ GLMMorphicFTRenderer>>specificTableMorphInitializiation [
 		ifTrue: [ tableMorph explicitFunction ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>suspendedAnnouncements [
+{ #category : #private }
+GLMMorphicFTRenderer >> suspendedAnnouncements [
 	^ OrderedCollection  
 		with: GLMTreeMorphSelectionChanged 
 		with: GLMTreeMorphStrongSelectionChanged 
@@ -273,11 +221,8 @@ GLMMorphicFTRenderer>>suspendedAnnouncements [
 		with: GLMKeyStroke
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFTRenderer>>unsubscribeDataSource: aTableModel [
+{ #category : #private }
+GLMMorphicFTRenderer >> unsubscribeDataSource: aTableModel [
 	aTableModel announcer unsubscribe: self.
 	tableMorph announcer unsubscribe: aTableModel
 ]

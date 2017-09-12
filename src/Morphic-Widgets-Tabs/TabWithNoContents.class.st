@@ -7,34 +7,24 @@ Class {
 	#instVars : [
 		'tab'
 	],
-	#category : #Morphic-Widgets-Tabs-Support,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Tabs-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabWithNoContents class>>signalTab: aTab  [
+{ #category : #'instance creation' }
+TabWithNoContents class >> signalTab: aTab [ 
 	
 	^ self new
 		tab: aTab;
 		signal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabWithNoContents>>tab [
+{ #category : #accessing }
+TabWithNoContents >> tab [
 	^tab
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabWithNoContents>>tab: aTab  [
+{ #category : #accessing }
+TabWithNoContents >> tab: aTab [ 
 
 	tab := aTab
 ]

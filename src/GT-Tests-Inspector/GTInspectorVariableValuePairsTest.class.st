@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GTInspectorVariableValuePairsTest,
 	#superclass : #TestCase,
-	#category : #GT-Tests-Inspector,
-	#timestamp : ''
+	#category : #GT-Tests-Inspector
 }
 
-{
-	#category : #object,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTInspectorVariableValuePairsTest>>testArrayPairsEqualLimit [
+{ #category : #object }
+GTInspectorVariableValuePairsTest >> testArrayPairsEqualLimit [
 	| limit pairs|
 	
 	limit := 2*GTInspector indexableDisplayLimit.
@@ -23,11 +16,8 @@ GTInspectorVariableValuePairsTest>>testArrayPairsEqualLimit [
 	self assert: ((pairs collect: #key) = (1 to: limit) asOrderedCollection).
 ]
 
-{
-	#category : #object,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTInspectorVariableValuePairsTest>>testArrayPairsLong [
+{ #category : #object }
+GTInspectorVariableValuePairsTest >> testArrayPairsLong [
 		| limit pairs |
 	
 	limit := 3*GTInspector indexableDisplayLimit.
@@ -39,11 +29,8 @@ GTInspectorVariableValuePairsTest>>testArrayPairsLong [
 		addAll: (limit - GTInspector indexableDisplayLimit + 1 to: limit) asOrderedCollection; yourself)).
 ]
 
-{
-	#category : #object,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTInspectorVariableValuePairsTest>>testArrayPairsOverLimit [
+{ #category : #object }
+GTInspectorVariableValuePairsTest >> testArrayPairsOverLimit [
 	| limit pairs |
 	
 	limit := 2*GTInspector indexableDisplayLimit + 1.
@@ -55,11 +42,8 @@ GTInspectorVariableValuePairsTest>>testArrayPairsOverLimit [
 		addAll: (limit - GTInspector indexableDisplayLimit + 1 to: limit) asOrderedCollection; yourself)).
 ]
 
-{
-	#category : #object,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTInspectorVariableValuePairsTest>>testArrayPairsSmall [
+{ #category : #object }
+GTInspectorVariableValuePairsTest >> testArrayPairsSmall [
 	| pairs |
 	
 	pairs := (1 to: 10) asArray gtInspectorVariableValuePairs.
@@ -67,11 +51,8 @@ GTInspectorVariableValuePairsTest>>testArrayPairsSmall [
 	(pairs collect: #key) allSatisfy: [ :e | (pairs at: e) = e ].
 ]
 
-{
-	#category : #object,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTInspectorVariableValuePairsTest>>testArrayPairsUnderLimit [
+{ #category : #object }
+GTInspectorVariableValuePairsTest >> testArrayPairsUnderLimit [
 	| limit pairs|
 	
 	limit := 2*GTInspector indexableDisplayLimit - 1.
@@ -82,11 +63,8 @@ GTInspectorVariableValuePairsTest>>testArrayPairsUnderLimit [
 	self assert: ((pairs collect: #key) = (1 to: limit) asOrderedCollection).
 ]
 
-{
-	#category : #context,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTInspectorVariableValuePairsTest>>testContextNodes [
+{ #category : #context }
+GTInspectorVariableValuePairsTest >> testContextNodes [
 	| pairs x tempVariables indexVariables instVariables |
 	
 	x:=42.
@@ -102,11 +80,8 @@ GTInspectorVariableValuePairsTest>>testContextNodes [
 	self assert: (indexVariables sort last key) < (instVariables first key).
 ]
 
-{
-	#category : #float,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTInspectorVariableValuePairsTest>>testFloatPairs [
+{ #category : #float }
+GTInspectorVariableValuePairsTest >> testFloatPairs [
 	| pairs |
 	
 	pairs := 4.2 gtInspectorVariableValuePairs.

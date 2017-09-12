@@ -8,22 +8,15 @@ Class {
 		'SDL2Constants',
 		'SDL2Types'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'IgorStasenko 7/30/2014 18:26'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Handle class>>ffiLibraryName [
+{ #category : #'as yet unclassified' }
+SDL2Handle class >> ffiLibraryName [
 	^ SDL2 ffiLibraryName
 ]
 
-{
-	#category : #nb-library,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Handle>>ffiLibraryName [
+{ #category : #nb-library }
+SDL2Handle >> ffiLibraryName [
 	^self class ffiLibraryName
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #LazyMorphListMorph
-}
+Extension { #name : #LazyMorphListMorph }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-LazyMorphListMorph>>athensDisplay: item atRow: row on: aCanvas [
+{ #category : #'*Athens-Morphic' }
+LazyMorphListMorph >> athensDisplay: item atRow: row on: aCanvas [
 	"Display the given item at the given row on the given canvas."
 
 	row = self mouseDownRow
@@ -17,11 +12,8 @@ LazyMorphListMorph>>athensDisplay: item atRow: row on: aCanvas [
 			aCanvas drawShape: (self selectionFrameForRow: row) ]
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-LazyMorphListMorph>>drawSubmorphsOnAthensCanvas: anAthensCanvas  [
+{ #category : #'*Athens-Morphic' }
+LazyMorphListMorph >> drawSubmorphsOnAthensCanvas: anAthensCanvas [ 
 	"Display submorphs back to front"
 
 	| drawBlock|

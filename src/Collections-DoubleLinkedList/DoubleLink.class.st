@@ -11,96 +11,62 @@ Class {
 		'nextLink',
 		'previousLink'
 	],
-	#category : #Collections-DoubleLinkedList,
-	#timestamp : 'SvenVanCaekenberghe 1/12/2014 14:15'
+	#category : #Collections-DoubleLinkedList
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLink class>>value: anObject [
+{ #category : #'instance creation' }
+DoubleLink class >> value: anObject [
 	^ self new
 		value: anObject;
 		yourself
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLink>>asDoubleLink [
+{ #category : #converting }
+DoubleLink >> asDoubleLink [
 	^ self
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLink>>clearLinks [
+{ #category : #initialize }
+DoubleLink >> clearLinks [
 	nextLink := previousLink := nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLink>>hasPredecessor [
+{ #category : #testing }
+DoubleLink >> hasPredecessor [
 	^ previousLink notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLink>>hasSuccessor [
+{ #category : #testing }
+DoubleLink >> hasSuccessor [
 	^ nextLink notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLink>>nextLink [
+{ #category : #accessing }
+DoubleLink >> nextLink [
 	^ nextLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLink>>nextLink: anObject [
+{ #category : #accessing }
+DoubleLink >> nextLink: anObject [
 	nextLink := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLink>>previousLink [
+{ #category : #accessing }
+DoubleLink >> previousLink [
 	^ previousLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLink>>previousLink: anObject [
+{ #category : #accessing }
+DoubleLink >> previousLink: anObject [
 	previousLink := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLink>>value [
+{ #category : #accessing }
+DoubleLink >> value [
 	^ value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-DoubleLink>>value: anObject [
+{ #category : #accessing }
+DoubleLink >> value: anObject [
 	value := anObject
 ]

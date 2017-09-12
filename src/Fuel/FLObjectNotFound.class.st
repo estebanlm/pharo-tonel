@@ -8,15 +8,11 @@ Another possible cause is a bug in the analysis step of serialization.
 Class {
 	#name : #FLObjectNotFound,
 	#superclass : #FLSerializationError,
-	#category : #Fuel-Errors,
-	#timestamp : '<historical>'
+	#category : #Fuel-Errors
 }
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLObjectNotFound class>>signalWith: anObject [
+{ #category : #signaling }
+FLObjectNotFound class >> signalWith: anObject [
 
  	self signal: (
 		String streamContents: [ :stream |

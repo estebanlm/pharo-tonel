@@ -1,12 +1,7 @@
-Extension {
-	#name : #Behavior
-}
+Extension { #name : #Behavior }
 
-{
-	#category : #'*Slot',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Behavior>>classLayout [
+{ #category : #'*Slot' }
+Behavior >> classLayout [
 	^ layout
 		ifNil: [ 
 			| superLayout scope |
@@ -15,10 +10,7 @@ Behavior>>classLayout [
 			layout := superLayout class extending: superLayout scope: scope host: self ]
 ]
 
-{
-	#category : #'*Slot',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Behavior>>classLayout: aClassLayout [
+{ #category : #'*Slot' }
+Behavior >> classLayout: aClassLayout [
 	layout := aClassLayout
 ]

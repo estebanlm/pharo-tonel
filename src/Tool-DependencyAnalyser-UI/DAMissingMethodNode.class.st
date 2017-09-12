@@ -4,65 +4,43 @@ I'm a tree node representing a message send, at least one time, in the package u
 Class {
 	#name : #DAMissingMethodNode,
 	#superclass : #DAMethodDependencyNode,
-	#category : #Tool-DependencyAnalyser-UI-Nodes,
-	#timestamp : 'ChristopheDemarey 7/2/2015 14:07'
+	#category : #Tool-DependencyAnalyser-UI-Nodes
 }
 
-{
-	#category : #browse-nautilus,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMissingMethodNode>>browseInNautilus [
+{ #category : #browse-nautilus }
+DAMissingMethodNode >> browseInNautilus [
 	"Nothing to browse"
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMissingMethodNode>>buildChildren [
+{ #category : #api }
+DAMissingMethodNode >> buildChildren [
 	^ self messageSendNodes 
 		addAll: self methodImplementationNodes;
 		yourself
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMissingMethodNode>>hasChildren [
+{ #category : #api }
+DAMissingMethodNode >> hasChildren [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMissingMethodNode>>icon [
+{ #category : #accessing }
+DAMissingMethodNode >> icon [
 	^ self iconNamed: #testNotRunIcon
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMissingMethodNode>>label [
+{ #category : #displaying }
+DAMissingMethodNode >> label [
 	^ 'Missing method: #', self content
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMissingMethodNode>>messageSendAnalysis [
+{ #category : #accessing }
+DAMissingMethodNode >> messageSendAnalysis [
 	^ self parentNode messageSendAnalysis
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMissingMethodNode>>messageSendNodes [
+{ #category : #api }
+DAMissingMethodNode >> messageSendNodes [
 	^ self messageSendAnalysis rPackage methods
 		select: [ :method | method sendsSelector: self content ]
 		thenCollect: [ :method | 
@@ -72,11 +50,8 @@ DAMissingMethodNode>>messageSendNodes [
 				yourself ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMissingMethodNode>>methodImplementationNodes [
+{ #category : #api }
+DAMissingMethodNode >> methodImplementationNodes [
 	^ (self content implementors collect: 
 		[ :method | 
 		DAMethodImplementationNode new
@@ -86,10 +61,7 @@ DAMissingMethodNode>>methodImplementationNodes [
 		sorted: [ :a :b | a content package name < b content package name ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMissingMethodNode>>packageMethods [
+{ #category : #private }
+DAMissingMethodNode >> packageMethods [
 	^ self messageSendAnalysis rPackage methods
 ]

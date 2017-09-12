@@ -4,33 +4,23 @@ SUnit tests for literal dictionaries
 Class {
 	#name : #LiteralDictionaryTest,
 	#superclass : #DictionaryTest,
-	#category : #Compiler-Tests,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:21'
+	#category : #Compiler-Tests
 }
 
-{
-	#category : #'building suites',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralDictionaryTest class>>shouldInheritSelectors [
+{ #category : #'building suites' }
+LiteralDictionaryTest class >> shouldInheritSelectors [
 
 ^true
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralDictionaryTest>>classToBeTested [
+{ #category : #requirements }
+LiteralDictionaryTest >> classToBeTested [
 
 ^ LiteralDictionary
 ]
 
-{
-	#category : #'tests - literal specific behavior',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralDictionaryTest>>testIncludesWithEqualElementFromDifferentClasses [
+{ #category : #'tests - literal specific behavior' }
+LiteralDictionaryTest >> testIncludesWithEqualElementFromDifferentClasses [
 
 | dict |
 dict := self classToBeTested new.
@@ -42,11 +32,8 @@ self deny: (dict includesKey: 1.0).
 self assert: (dict includes: 1)
 ]
 
-{
-	#category : #problems,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralDictionaryTest>>testUnCategorizedMethods [
+{ #category : #problems }
+LiteralDictionaryTest >> testUnCategorizedMethods [
 "this test doesn't pass :"
 	| categories slips  |
 	categories := self categoriesForClass: self targetClass.

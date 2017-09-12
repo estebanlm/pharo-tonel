@@ -5,15 +5,11 @@ A MenuLineMorph is a item separator in menu.
 Class {
 	#name : #MenuLineMorph,
 	#superclass : #Morph,
-	#category : #Morphic-Base-Menus,
-	#timestamp : 'StephaneDucasse 9/28/2014 16:11'
+	#category : #Morphic-Base-Menus
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuLineMorph>>baseColor [
+{ #category : #private }
+MenuLineMorph >> baseColor [
 	^ self theme autoMenuColor
 		ifTrue: [ owner color twiceDarker ]
 		ifFalse: [ 
@@ -22,11 +18,8 @@ MenuLineMorph>>baseColor [
 				ifTrue: [ owner color twiceDarker ] ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuLineMorph>>drawOn: aCanvas  [
+{ #category : #drawing }
+MenuLineMorph >> drawOn: aCanvas [ 
 	self theme flatMenu 
 		ifFalse: [
 			aCanvas
@@ -41,11 +34,8 @@ MenuLineMorph>>drawOn: aCanvas  [
 				color: self baseColor ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuLineMorph>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #drawing }
+MenuLineMorph >> drawOnAthensCanvas: anAthensCanvas [
 	self theme flatMenu
 		ifFalse: [ 
 			anAthensCanvas setPaint: self baseColor twiceDarker.
@@ -57,37 +47,25 @@ MenuLineMorph>>drawOnAthensCanvas: anAthensCanvas [
 			anAthensCanvas drawShape: (bounds topLeft corner: bounds bottomRight) ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuLineMorph>>initialize [
+{ #category : #initialization }
+MenuLineMorph >> initialize [
 	super initialize.
 	self hResizing: #spaceFill; vResizing: #spaceFill.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuLineMorph>>isMenuLineMorph [
+{ #category : #testing }
+MenuLineMorph >> isMenuLineMorph [
 	^ true
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuLineMorph>>minHeight [
+{ #category : #layout }
+MenuLineMorph >> minHeight [
 	"Answer the receiver's minHeight"
 	^ self theme menuBorderWidth
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuLineMorph>>minWidth [
+{ #category : #layout }
+MenuLineMorph >> minWidth [
 	"Answer the receiver's minWidth"
 	^  10 
 ]

@@ -1,29 +1,18 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*zinc-resource-meta-core',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-String>>addedToZnUrl: url [
+{ #category : #'*zinc-resource-meta-core' }
+String >> addedToZnUrl: url [
 	| segments |
 	segments := self findTokens: '/'.
 	^ url withPathSegments: segments
 ]
 
-{
-	#category : #'*zinc-resource-meta-core',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-String>>asZnMimeType [
+{ #category : #'*zinc-resource-meta-core' }
+String >> asZnMimeType [
 	^ ZnMimeType fromString: self
 ]
 
-{
-	#category : #'*zinc-resource-meta-core',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-String>>asZnUrl [
+{ #category : #'*zinc-resource-meta-core' }
+String >> asZnUrl [
 	^ ZnUrl fromString: self
 ]

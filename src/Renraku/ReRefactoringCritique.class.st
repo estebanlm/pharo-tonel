@@ -8,15 +8,11 @@ Class {
 		'refactoring',
 		'alreadyExecuted'
 	],
-	#category : #Renraku-Critiques,
-	#timestamp : 'YuriyTymchuk 7/10/2016 15:43'
+	#category : #Renraku-Critiques
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRefactoringCritique>>change [
+{ #category : #accessing }
+ReRefactoringCritique >> change [
 	"return changes provided by the refactoring"
 	
 	alreadyExecuted ifFalse: [
@@ -26,36 +22,24 @@ ReRefactoringCritique>>change [
 	^ refactoring changes
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRefactoringCritique>>initialize [
+{ #category : #initialization }
+ReRefactoringCritique >> initialize [
 	
 	alreadyExecuted := false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRefactoringCritique>>providesChange [
+{ #category : #testing }
+ReRefactoringCritique >> providesChange [
 	
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRefactoringCritique>>refactoring [
+{ #category : #accessing }
+ReRefactoringCritique >> refactoring [
 	^ refactoring
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRefactoringCritique>>refactoring: anObject [
+{ #category : #accessing }
+ReRefactoringCritique >> refactoring: anObject [
 	refactoring := anObject
 ]

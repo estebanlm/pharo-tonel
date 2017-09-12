@@ -17,15 +17,11 @@ Class {
 		'lowercasePattern',
 		'indexes'
 	],
-	#category : #FuzzyMatcher,
-	#timestamp : 'HenrikNergaard 10/18/2016 16:20'
+	#category : #FuzzyMatcher
 }
 
-{
-	#category : #'utilities api',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher class>>allMatching: aPattern in: aCollection [
+{ #category : #'utilities api' }
+FuzzyMatcher class >> allMatching: aPattern [ in: aCollection
 	"Assumes that the collection is a collection of Strings"
 
 	| matcher |
@@ -35,11 +31,8 @@ FuzzyMatcher class>>allMatching: aPattern in: aCollection [
 	^ aCollection select: [ :each | matcher matches: each ]
 ]
 
-{
-	#category : #'utilities api',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher class>>allMatching: aPattern in: aCollection by: aBlockReturningString [
+{ #category : #'utilities api' }
+FuzzyMatcher class >> allMatching: aPattern in: aCollection by: aBlockReturningString [
 
 	| matcher |
 	
@@ -48,21 +41,15 @@ FuzzyMatcher class>>allMatching: aPattern in: aCollection by: aBlockReturningStr
 	^ aCollection select: [ :each | matcher matches: (aBlockReturningString value: each) ]
 ]
 
-{
-	#category : #'utilities api',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher class>>allSortedByScoreMatching: aPattern in: aCollection [
+{ #category : #'utilities api' }
+FuzzyMatcher class >> allSortedByScoreMatching: aPattern [ in: aCollection
 	"Assumes that the collection is a collection of Strings"
 	
 	^ self allSortedByScoreMatching: aPattern in: aCollection by: [ :each | each ]
 ]
 
-{
-	#category : #'utilities api',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher class>>allSortedByScoreMatching: aPattern in: aCollection by: aBlockReturningString [
+{ #category : #'utilities api' }
+FuzzyMatcher class >> allSortedByScoreMatching: aPattern in: aCollection by: aBlockReturningString [
 
 	| matcher matches |
 	
@@ -83,65 +70,44 @@ FuzzyMatcher class>>allSortedByScoreMatching: aPattern in: aCollection by: aBloc
 	
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher class>>pattern: aString [
+{ #category : #construction }
+FuzzyMatcher class >> pattern: aString [
 
 	^self new pattern: aString
 ]
 
-{
-	#category : #scoring-bonus,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>adjacencyBonus [
+{ #category : #scoring-bonus }
+FuzzyMatcher >> adjacencyBonus [
 
 	^ 5
 ]
 
-{
-	#category : #scoring-bonus,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>adjacencyIncrease [
+{ #category : #scoring-bonus }
+FuzzyMatcher >> adjacencyIncrease [
 
 	^ 1.2
 ]
 
-{
-	#category : #scoring-bonus,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>adjacentCaseEqualBonus [
+{ #category : #scoring-bonus }
+FuzzyMatcher >> adjacentCaseEqualBonus [
 
 	^ 3
 ]
 
-{
-	#category : #scoring-bonus,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>caseEqualBonus [
+{ #category : #scoring-bonus }
+FuzzyMatcher >> caseEqualBonus [
 
 	^ 7
 ]
 
-{
-	#category : #scoring-bonus,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>firstLetterBonus [
+{ #category : #scoring-bonus }
+FuzzyMatcher >> firstLetterBonus [
 
 	^ 12
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>firstScore: aString at: anIndex [
+{ #category : #private }
+FuzzyMatcher >> firstScore: aString at: anIndex [
 
 	| score |
 
@@ -156,11 +122,8 @@ FuzzyMatcher>>firstScore: aString at: anIndex [
 	^ score 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>indexScore  [
+{ #category : #private }
+FuzzyMatcher >> indexScore [ 
 
 	| sum ramp |
 	
@@ -178,11 +141,8 @@ FuzzyMatcher>>indexScore  [
 	^ sum rounded
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>initialize [
+{ #category : #initialization }
+FuzzyMatcher >> initialize [
 
 	super initialize.
 
@@ -191,29 +151,20 @@ FuzzyMatcher>>initialize [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>isSeperator: aCharacter [
+{ #category : #private }
+FuzzyMatcher >> isSeperator: aCharacter [
 	
 	^  aCharacter = $_ or: [ aCharacter = $: ] 
 ]
 
-{
-	#category : #scoring-penalty,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>leadingLetterPenalty [
+{ #category : #scoring-penalty }
+FuzzyMatcher >> leadingLetterPenalty [
 
 	^ -3
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>match: aString ifScored: aBlock [
+{ #category : #comparing }
+FuzzyMatcher >> match: aString ifScored: aBlock [
 	
 	| score |
 	
@@ -234,11 +185,8 @@ FuzzyMatcher>>match: aString ifScored: aBlock [
 	aBlock value: score.	
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>matches: aString [
+{ #category : #comparing }
+FuzzyMatcher >> matches: aString [
 
 	| idx |
 	
@@ -258,29 +206,20 @@ FuzzyMatcher>>matches: aString [
 	^ true
 ]
 
-{
-	#category : #scoring-penalty,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>maxLeadingLetterPenalty [
+{ #category : #scoring-penalty }
+FuzzyMatcher >> maxLeadingLetterPenalty [
 
 	^ -9
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>pattern [
+{ #category : #accessing }
+FuzzyMatcher >> pattern [
 
 	^ pattern 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>pattern: aString [
+{ #category : #accessing }
+FuzzyMatcher >> pattern: aString [
 
 	pattern := aString.
 	lowercasePattern := pattern asLowercase.
@@ -289,11 +228,8 @@ FuzzyMatcher>>pattern: aString [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>score: aString at: stringIndex patternAt: patternIndex [
+{ #category : #private }
+FuzzyMatcher >> score: aString at: stringIndex patternAt: patternIndex [
 
 	| score prev |
 	
@@ -316,20 +252,14 @@ FuzzyMatcher>>score: aString at: stringIndex patternAt: patternIndex [
 	^ score 
 ]
 
-{
-	#category : #scoring-bonus,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>separatorBonus [
+{ #category : #scoring-bonus }
+FuzzyMatcher >> separatorBonus [
 
 	^ 5
 ]
 
-{
-	#category : #scoring-penalty,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-FuzzyMatcher>>unmatchedLetterPenalty [
+{ #category : #scoring-penalty }
+FuzzyMatcher >> unmatchedLetterPenalty [
 
 	^ -1
 ]

@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'selector'
 	],
-	#category : #Kernel-Exceptions,
-	#timestamp : 'SvenVanCaekenberghe 4/20/2011 13:10'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SelectorException class>>signalFor: aSelector [
+{ #category : #signaling }
+SelectorException class >> signalFor: aSelector [
 	"Create and signal an exception for aSelector in the default receiver."
 	
 	^ self new
@@ -23,11 +19,8 @@ SelectorException class>>signalFor: aSelector [
 		signal
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SelectorException class>>signalFor: aSelector in: aReceiver [
+{ #category : #signaling }
+SelectorException class >> signalFor: aSelector in: aReceiver [
 	"Create and signal an exception for aSelector in aReceiver."
 
 	^ self new
@@ -36,37 +29,25 @@ SelectorException class>>signalFor: aSelector in: aReceiver [
 		signal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SelectorException>>messageText [
+{ #category : #accessing }
+SelectorException >> messageText [
 	"Overwritten to initialiaze the message text to a standard text if it has not yet been set"
 	
 	^ messageText ifNil: [ messageText := self standardMessageText ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SelectorException>>selector [
+{ #category : #accessing }
+SelectorException >> selector [
 	^ selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SelectorException>>selector: aSelector [
+{ #category : #accessing }
+SelectorException >> selector: aSelector [
 	selector := aSelector
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SelectorException>>standardMessageText [
+{ #category : #printing }
+SelectorException >> standardMessageText [
 	"Generate a standard textual description"
 	
 	^ String streamContents: [ :stream |

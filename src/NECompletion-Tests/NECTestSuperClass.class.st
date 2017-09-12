@@ -10,47 +10,31 @@ Class {
 	#classVars : [
 		'SuperClassVar'
 	],
-	#category : #NECompletion-Tests,
-	#timestamp : '<historical>'
+	#category : #NECompletion-Tests
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECTestSuperClass class>>initialize [
+{ #category : #initialization }
+NECTestSuperClass class >> initialize [
 	SuperClassVar := Dictionary new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECTestSuperClass>>initialize [
+{ #category : #initialization }
+NECTestSuperClass >> initialize [
 	superInstVar := Dictionary new
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECTestSuperClass>>testIt: aString [
+{ #category : #tests }
+NECTestSuperClass >> testIt: aString [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECTestSuperClass>>toBeOverriden: anArgument  [
+{ #category : #utils }
+NECTestSuperClass >> toBeOverriden: anArgument [ 
 	15 > 16
 		ifTrue: [self sample * anArgument ]
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECTestSuperClass>>toBeOverridenWithReturn [
+{ #category : #utils }
+NECTestSuperClass >> toBeOverridenWithReturn [
 	^ 'saga'
 ]

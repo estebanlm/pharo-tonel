@@ -34,40 +34,27 @@ Class {
 		'timerEventLoop',
 		'timingSemaphore'
 	],
-	#category : #Kernel-Processes,
-	#timestamp : 'BenComan 3/19/2015 22:55'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #snapshotting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>adjust: aDelay resumptionTimeOldBase: oldBaseTime newBase: newBaseTime [
+{ #category : #snapshotting }
+DelayScheduler >> adjust: aDelay resumptionTimeOldBase: oldBaseTime newBase: newBaseTime [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>anyActive [
+{ #category : #testing }
+DelayScheduler >> anyActive [
 	"Return true if there is any delay currently active"
 	^activeDelay notNil
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>handleTimerEvent: nowTick [
+{ #category : #'timer process' }
+DelayScheduler >> handleTimerEvent: nowTick [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>initialize [
+{ #category : #'class initialization' }
+DelayScheduler >> initialize [
 	"Delay initialize"
 	
 	"Get the current timing semaphore, or install it if there is none"
@@ -84,30 +71,21 @@ DelayScheduler>>initialize [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>millisecondsUntilResumptionTime: millisecondResumptionTime [
+{ #category : #printing }
+DelayScheduler >> millisecondsUntilResumptionTime: millisecondResumptionTime [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>nextWakeUpTime [
+{ #category : #testing }
+DelayScheduler >> nextWakeUpTime [
 	^ accessProtect
 		critical: [ activeDelay 
 				ifNil: [ 0 ]
 				ifNotNil: [ activeDelay schedulerResumptionTime ]]
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>restartTimerEventLoop [
+{ #category : #'timer process' }
+DelayScheduler >> restartTimerEventLoop [
 	"Start the timer event loop"
 	"Delay restartTimerEventLoop"
 	self stopTimerEventLoop.
@@ -116,75 +94,48 @@ DelayScheduler>>restartTimerEventLoop [
 
 ]
 
-{
-	#category : #snapshotting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>restoreResumptionTimes [
+{ #category : #snapshotting }
+DelayScheduler >> restoreResumptionTimes [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>runTimerEventLoop [
+{ #category : #'timer process' }
+DelayScheduler >> runTimerEventLoop [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #snapshotting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>saveResumptionTimes [
+{ #category : #snapshotting }
+DelayScheduler >> saveResumptionTimes [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'low priority processes',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>schedule: aDelay [
+{ #category : #'low priority processes' }
+DelayScheduler >> schedule: aDelay [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>scheduleDelay: aDelay [
+{ #category : #'timer process' }
+DelayScheduler >> scheduleDelay: aDelay [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>schedulingProcess [
+{ #category : #'timer process' }
+DelayScheduler >> schedulingProcess [
 	^ timerEventLoop 
 ]
 
-{
-	#category : #snapshotting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>shutDown [
+{ #category : #snapshotting }
+DelayScheduler >> shutDown [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>startTimerEventLoop [
+{ #category : #'timer process' }
+DelayScheduler >> startTimerEventLoop [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #snapshotting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>startUp [
+{ #category : #snapshotting }
+DelayScheduler >> startUp [
 	"Restart active delay, if any, when resuming a snapshot."
 
 	"Compare to false since it can be nil"
@@ -198,19 +149,13 @@ DelayScheduler>>startUp [
 
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>stopTimerEventLoop [
+{ #category : #'timer process' }
+DelayScheduler >> stopTimerEventLoop [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'low priority processes',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>unschedule: aDelay [
+{ #category : #'low priority processes' }
+DelayScheduler >> unschedule: aDelay [
 	accessProtect critical: [
 		finishedDelay := aDelay.
 		timingSemaphore signal.
@@ -219,10 +164,7 @@ DelayScheduler>>unschedule: aDelay [
 
 ]
 
-{
-	#category : #'timer process',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayScheduler>>unscheduleDelay: aDelay [
+{ #category : #'timer process' }
+DelayScheduler >> unscheduleDelay: aDelay [
 	self subclassResponsibility 
 ]

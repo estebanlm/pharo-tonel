@@ -20,15 +20,11 @@ Class {
 	#classVars : [
 		'Registry'
 	],
-	#category : #Deprecated70,
-	#timestamp : 'ul 12/6/2009 05:13'
+	#category : #Deprecated70
 }
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream class>>fileDoesNotExistUserHandling: fullFileName [
+{ #category : #'error handling' }
+StandardFileStream class >> fileDoesNotExistUserHandling: fullFileName [
 	| selection newName |
 	selection := UIManager default
 		chooseFrom:
@@ -44,11 +40,8 @@ StandardFileStream class>>fileDoesNotExistUserHandling: fullFileName [
 	^ self oldFileNamed: (self fullName: newName)
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream class>>fileExistsUserHandling: fullFileName [
+{ #category : #'error handling' }
+StandardFileStream class >> fileExistsUserHandling: fullFileName [
 	| file localName choice newName newFullFileName |
 	
 	file := fullFileName asFileReference.
@@ -73,22 +66,16 @@ StandardFileStream class>>fileExistsUserHandling: fullFileName [
 	Abort signal: 'Please close this to abort file opening'
 ]
 
-{
-	#category : #'file creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream class>>fileNamed: fileName [
+{ #category : #'file creation' }
+StandardFileStream class >> fileNamed: fileName [
 	"Open a file with the given name for reading and writing. If the name has no directory part, then the file will be created in the default directory. If the file already exists, its prior contents may be modified or replaced, but the file will not be truncated on close."
 
 	^ self new open: (self fullName: fileName) forWrite: true
 
 ]
 
-{
-	#category : #'file creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream class>>forceNewFileNamed: fileName  [
+{ #category : #'file creation' }
+StandardFileStream class >> forceNewFileNamed: fileName [ 
 	"Create a new file with the given name, and answer a stream opened 
 	for writing on that file. If the file already exists, delete it without 
 	asking before creating the new file."
@@ -110,11 +97,8 @@ StandardFileStream class>>forceNewFileNamed: fileName  [
 			(FileDoesNotExistException fileName: fullName) signal].
 ]
 
-{
-	#category : #'file creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream class>>isAFileNamed: fileName [
+{ #category : #'file creation' }
+StandardFileStream class >> isAFileNamed: fileName [
 	"Answer true if a file of the given name exists."
 
 	| f |
@@ -125,11 +109,8 @@ StandardFileStream class>>isAFileNamed: fileName [
 
 ]
 
-{
-	#category : #'file creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream class>>newFileNamed: fileName [
+{ #category : #'file creation' }
+StandardFileStream class >> newFileNamed: fileName [
  	"Create a new file with the given name, and answer a stream opened for writing on that file. If the file already exists, ask the user what to do."
 
 	| fullName |
@@ -143,11 +124,8 @@ StandardFileStream class>>newFileNamed: fileName [
 
 ]
 
-{
-	#category : #'file creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream class>>oldFileNamed: fileName [
+{ #category : #'file creation' }
+StandardFileStream class >> oldFileNamed: fileName [
 	"Open an existing file with the given name for reading and writing. If the name has no directory part, then the  default directory will be assumed. If the file does not exist, an exception is signaled. If the file exists, its prior contents may be modified or replaced, but the file will not be truncated on close."
 
 	| fullName |
@@ -159,11 +137,8 @@ StandardFileStream class>>oldFileNamed: fileName [
 			(FileDoesNotExistException fileName: fullName) signal]
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream class>>readOnlyFileDoesNotExistUserHandling: fullFileName [
+{ #category : #'error handling' }
+StandardFileStream class >> readOnlyFileDoesNotExistUserHandling: fullFileName [
 
 	| dir files choices selection newName fileName |
 	
@@ -189,11 +164,8 @@ StandardFileStream class>>readOnlyFileDoesNotExistUserHandling: fullFileName [
 	^ self error: 'Could not open a file'
 ]
 
-{
-	#category : #'file creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream class>>readOnlyFileNamed: fileName  [
+{ #category : #'file creation' }
+StandardFileStream class >> readOnlyFileNamed: fileName [ 
 	"Open an existing file with the given name for reading."
 
 	| fullName f |
@@ -205,28 +177,19 @@ StandardFileStream class>>readOnlyFileNamed: fileName  [
 	"StandardFileStream readOnlyFileNamed: 'kjsd.txt' "
 ]
 
-{
-	#category : #registry,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream class>>register: anObject [
+{ #category : #registry }
+StandardFileStream class >> register: anObject [
 	^self registry add: anObject
 ]
 
-{
-	#category : #registry,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream class>>registry [
+{ #category : #registry }
+StandardFileStream class >> registry [
 	^Registry ifNil: [Registry := WeakRegistry new]
 
 ]
 
-{
-	#category : #registry,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream class>>retryWithGC: execBlock until: testBlock forFileNamed: fullName [
+{ #category : #registry }
+StandardFileStream class >> retryWithGC: execBlock until: testBlock forFileNamed: fullName [
 	"Re-implemented to only force GC if a file with the given name exists"
 	| blockValue foundIt |
 	blockValue := execBlock value.
@@ -242,38 +205,26 @@ StandardFileStream class>>retryWithGC: execBlock until: testBlock forFileNamed: 
 	^execBlock value.
 ]
 
-{
-	#category : #registry,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream class>>unregister: anObject [
+{ #category : #registry }
+StandardFileStream class >> unregister: anObject [
 	^self registry remove: anObject ifAbsent:[]
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>actAsExecutor [
+{ #category : #finalization }
+StandardFileStream >> actAsExecutor [
 	super actAsExecutor.
 	name := nil.
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>ascii [
+{ #category : #modes }
+StandardFileStream >> ascii [
 	"opposite of binary"
 	buffer1 := String new: 1.
 	collection ifNotNil: [ collection := collection asString ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>atEnd [
+{ #category : #testing }
+StandardFileStream >> atEnd [
 	"Answer whether the receiver is at its end.  "
 	
 	collection ifNotNil: [
@@ -281,11 +232,8 @@ StandardFileStream>>atEnd [
 	^self primAtEnd: fileID
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>basicNext [
+{ #category : #private }
+StandardFileStream >> basicNext [
 	"Answer the next byte from this file, or nil if at the end of the file."
 	
 	| count |
@@ -303,20 +251,14 @@ StandardFileStream>>basicNext [
 		ifFalse: [ ^nil ]
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>binary [
+{ #category : #modes }
+StandardFileStream >> binary [
 	buffer1 := ByteArray new: 1.
 	collection ifNotNil: [ collection := collection asByteArray ]
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>close [
+{ #category : #open/close }
+StandardFileStream >> close [
 	"Close this file."
 
 	fileID ifNotNil: [
@@ -328,43 +270,31 @@ StandardFileStream>>close [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>closed [
+{ #category : #testing }
+StandardFileStream >> closed [
 	"Answer true if this file is closed."
 
 	^ fileID == nil or: [ (self primSizeNoError: fileID) == nil ]
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>collectionSpecies [
+{ #category : #private }
+StandardFileStream >> collectionSpecies [
 	"Answer the species of collection into which the receiver can stream"
 	
 	^buffer1 species
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>directory [
+{ #category : #accessing }
+StandardFileStream >> directory [
 	"Return the directory containing this file."
 
 	^ self fullName asFileReference parent
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>disableReadBuffering [
+{ #category : #private }
+StandardFileStream >> disableReadBuffering [
 
 	collection ifNotNil: [
 		position < readLimit
@@ -378,11 +308,8 @@ StandardFileStream>>disableReadBuffering [
 		
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>enableReadBuffering [
+{ #category : #private }
+StandardFileStream >> enableReadBuffering [
 
 	collection ifNil: [
 		buffer1 ifNotNil: [
@@ -390,11 +317,8 @@ StandardFileStream>>enableReadBuffering [
 	readLimit := position := 0
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>ensureOpen [
+{ #category : #open/close }
+StandardFileStream >> ensureOpen [
 	"Make sure that this file really is open."
 
 	self closed ifTrue: [^ self reopen].
@@ -403,29 +327,20 @@ StandardFileStream>>ensureOpen [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>file [
+{ #category : #accessing }
+StandardFileStream >> file [
 	"Answer the object representing the receiver's file.  Need for compatibility with some calls -- check senders. "
 
 	^ self
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>finalize [
+{ #category : #finalization }
+StandardFileStream >> finalize [
 	self primCloseNoError: fileID.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>findString: string [
+{ #category : #accessing }
+StandardFileStream >> findString: string [
 	"Fast version of #upToAll: to find a String in a file starting from the beginning.
 	Returns the position and also sets the position there.
 	If string is not found 0 is returned and position is unchanged."
@@ -450,11 +365,8 @@ StandardFileStream>>findString: string [
 	^0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>findStringFromEnd: string [
+{ #category : #accessing }
+StandardFileStream >> findStringFromEnd: string [
 	"Fast version to find a String in a file starting from the end.
 	Returns the position and also sets the position there.
 	If string is not found 0 is returned and position is unchanged."
@@ -477,11 +389,8 @@ StandardFileStream>>findStringFromEnd: string [
 	^0
 ]
 
-{
-	#category : #flushing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>flush [
+{ #category : #flushing }
+StandardFileStream >> flush [
 	"When writing, this flushes the write buffer the stream uses to reduce
 	the number of write() system calls it makes. This should generally be
 	used before #sync, but on Windows they do the same thing."
@@ -489,11 +398,8 @@ StandardFileStream>>flush [
 	^ self primFlush: fileID
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>flushReadBuffer [
+{ #category : #private }
+StandardFileStream >> flushReadBuffer [
 
 	collection ifNotNil: [
 		position < readLimit ifTrue: [
@@ -503,22 +409,16 @@ StandardFileStream>>flushReadBuffer [
 			self primSetPosition: fileID to: currentPosition ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>fullName [
+{ #category : #accessing }
+StandardFileStream >> fullName [
 	"Answer this file's full path name."
 
 	^ name
 
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>insertLineFeeds [
+{ #category : #utility }
+StandardFileStream >> insertLineFeeds [
 	"(FileStream oldFileNamed: 'BBfix2.st') insertLineFeeds"
 	| s crLf f |
 	crLf := String crlf.
@@ -529,77 +429,53 @@ StandardFileStream>>insertLineFeeds [
 	f close
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>isBinary [
+{ #category : #testing }
+StandardFileStream >> isBinary [
 	^ buffer1 class == ByteArray
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>isDirectory [
+{ #category : #testing }
+StandardFileStream >> isDirectory [
 	"Answer whether the receiver represents a directory.  For the post-transition case, uncertain what to do."
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>isReadOnly [
+{ #category : #testing }
+StandardFileStream >> isReadOnly [
 
 	^ rwmode not
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>localName [
+{ #category : #accessing }
+StandardFileStream >> localName [
 	^ name ifNotNil: [
 		(name findTokens: FileSystem disk delimiter asString) last]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>name [
+{ #category : #accessing }
+StandardFileStream >> name [
 	"Answer this file's full path name."
 
 	^ name
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>next [
+{ #category : #accessing }
+StandardFileStream >> next [
 	"Answer the next byte from this file, or nil if at the end of the file."
 
 	^ self basicNext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>next: n [
+{ #category : #accessing }
+StandardFileStream >> next: n [
 	"Return a string with the next n characters of the filestream in it."
 	^ self nextInto: (self collectionSpecies new: n)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>next: n into: aString startingAt: startIndex [
+{ #category : #accessing }
+StandardFileStream >> next: n into: aString startingAt: startIndex [
 	"Read n bytes into the given string.
 	Return aString or a partial copy if less than
 	n elements have been read."
@@ -611,11 +487,8 @@ StandardFileStream>>next: n into: aString startingAt: startIndex [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>next: anInteger putAll: aString startingAt: startIndex [
+{ #category : #accessing }
+StandardFileStream >> next: anInteger putAll: aString startingAt: startIndex [
 	"Store the next anInteger elements from the given collection."
 	rwmode ifFalse: [^ self error: 'Cannot write a read-only file'].
 	collection ifNotNil: [
@@ -624,11 +497,8 @@ StandardFileStream>>next: anInteger putAll: aString startingAt: startIndex [
 	^aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>nextPut: char [
+{ #category : #accessing }
+StandardFileStream >> nextPut: char [
 	"Write the given character to this file."
 
 	rwmode ifFalse: [^ self error: 'Cannot write a read-only file'].
@@ -640,11 +510,8 @@ StandardFileStream>>nextPut: char [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>nextPutAll: stringOrByteArray [
+{ #category : #accessing }
+StandardFileStream >> nextPutAll: stringOrByteArray [
 	"Write all the characters of the given string to this file."
 
 	rwmode ifFalse: [^ self error: 'Cannot write a read-only file'].
@@ -655,21 +522,15 @@ StandardFileStream>>nextPutAll: stringOrByteArray [
 
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>open [
+{ #category : #open/close }
+StandardFileStream >> open [
 	"For compatibility with a few existing things."
 
 	^ self reopen
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>open: fileName forWrite: writeMode  [
+{ #category : #open/close }
+StandardFileStream >> open: fileName forWrite: writeMode [ 
 	"Open the file with the given name. If writeMode is true, allow writing, otherwise open the file in read-only mode."
 	| f |
 	f := fileName asVmPathName.
@@ -686,11 +547,8 @@ StandardFileStream>>open: fileName forWrite: writeMode  [
 	
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>openOnHandle: aFileID name: streamName forWrite: writeMode [
+{ #category : #open/close }
+StandardFileStream >> openOnHandle: aFileID name: streamName forWrite: writeMode [
 	"Initialize the file with the given handle. If writeMode is true then
 	 allow writing, otherwise put the file in read-only mode.
 	 N.B. Do _not_ register the stream.  We do not want it to be
@@ -703,21 +561,15 @@ StandardFileStream>>openOnHandle: aFileID name: streamName forWrite: writeMode [
 	self enableReadBuffering
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>openReadOnly [
+{ #category : #open/close }
+StandardFileStream >> openReadOnly [
 	"Open the receiver as a read-only file."
 
 	^ self open: name forWrite: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>padToEndWith: aChar [
+{ #category : #accessing }
+StandardFileStream >> padToEndWith: aChar [
 	"On the Mac, files do not truncate.  One can delete the old file and write a new one, but sometime deletion fails (file still open? file stale?).  This is a sad compromise.  Just let the file be the same length but pad it with a harmless character."
 
 	| pad |
@@ -729,11 +581,8 @@ StandardFileStream>>padToEndWith: aChar [
 							withAll: pad).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>peek [
+{ #category : #accessing }
+StandardFileStream >> peek [
 	"Answer what would be returned if the message next were sent to the receiver. If the receiver is at the end, answer nil.  "
 	| next |
 	self atEnd ifTrue: [^ nil].
@@ -742,11 +591,8 @@ StandardFileStream>>peek [
 	^ next
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>peekFor: item  [
+{ #category : #accessing }
+StandardFileStream >> peekFor: item [ 
 	"Answer false and do not advance if the next element is not equal to item, or if this stream is at the end.  If the next element is equal to item, then advance over it and return true"
 	| next |
 	(next := self next) == nil ifTrue: [^ false].
@@ -755,11 +601,8 @@ StandardFileStream>>peekFor: item  [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>peekLast [
+{ #category : #accessing }
+StandardFileStream >> peekLast [
 	"Return that item just put at the end of the stream"
 
 	^ buffer1 size > 0 
@@ -768,11 +611,8 @@ StandardFileStream>>peekLast [
 
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>position [
+{ #category : #positioning }
+StandardFileStream >> position [
 	"Return the receiver's current file position."
 
 	collection ifNotNil: [
@@ -781,11 +621,8 @@ StandardFileStream>>position [
 	^self primGetPosition: fileID
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>position: pos [
+{ #category : #positioning }
+StandardFileStream >> position: pos [
 	"Set the receiver's position as indicated."
 
 	collection ifNotNil: [
@@ -807,11 +644,8 @@ StandardFileStream>>position: pos [
 	^self primSetPosition: fileID to: pos
 ]
 
-{
-	#category : #'private - primitives',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>primAtEnd: id [
+{ #category : #'private - primitives' }
+StandardFileStream >> primAtEnd: id [
 	"Answer true if the file position is at the end of the file."
 
 	<primitive: 'primitiveFileAtEnd' module: 'FilePlugin'>
@@ -819,11 +653,8 @@ StandardFileStream>>primAtEnd: id [
 
 ]
 
-{
-	#category : #'private - primitives',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>primClose: id [
+{ #category : #'private - primitives' }
+StandardFileStream >> primClose: id [
 	"Close this file."
 
 	<primitive: 'primitiveFileClose' module: 'FilePlugin'>
@@ -831,44 +662,32 @@ StandardFileStream>>primClose: id [
 
 ]
 
-{
-	#category : #'private - primitives',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>primCloseNoError: id [
+{ #category : #'private - primitives' }
+StandardFileStream >> primCloseNoError: id [
 	"Close this file. Don't raise an error if the primitive fails."
 
 	<primitive: 'primitiveFileClose' module: 'FilePlugin'>
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>primDropRequestFileHandle: dropIndex [
+{ #category : #private }
+StandardFileStream >> primDropRequestFileHandle: dropIndex [
 	"Primitive. Return the (read-only) file handle for some file that was just dropped onto the application.
 	Fail if dropIndex is out of range or the primitive is not supported."
 	<primitive: 'primitiveDropRequestFileHandle' module:'DropPlugin'>
 	^nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>primDropRequestFileName: dropIndex [
+{ #category : #private }
+StandardFileStream >> primDropRequestFileName: dropIndex [
 	"Primitive. Return the file name for some file that was just dropped onto the application.
 	Fail if dropIndex is out of range or the primitive is not supported."
 	<primitive: 'primitiveDropRequestFileName' module:'DropPlugin'>
 	^nil
 ]
 
-{
-	#category : #'private - primitives',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>primFlush: id [
+{ #category : #'private - primitives' }
+StandardFileStream >> primFlush: id [
 	"On Unix, the FilePlugin uses stdio FILE* structs which maintain their
 	own internal buffer to minimize write() syscalls. This flushes that buffer.
 	On Windows this and primSync: do the same thing."
@@ -880,11 +699,8 @@ StandardFileStream>>primFlush: id [
 	self primitiveFailed
 ]
 
-{
-	#category : #'private - primitives',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>primGetPosition: id [
+{ #category : #'private - primitives' }
+StandardFileStream >> primGetPosition: id [
 	"Get this files current position."
 
 	<primitive: 'primitiveFileGetPosition' module: 'FilePlugin'>
@@ -892,11 +708,8 @@ StandardFileStream>>primGetPosition: id [
 
 ]
 
-{
-	#category : #'private - primitives',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>primOpen: fileName writable: writableFlag [
+{ #category : #'private - primitives' }
+StandardFileStream >> primOpen: fileName writable: writableFlag [
 	"Open a file of the given name, and return the file ID obtained.
 	If writableFlag is true, then
 		if there is none with this name, then create one
@@ -910,11 +723,8 @@ StandardFileStream>>primOpen: fileName writable: writableFlag [
 
 ]
 
-{
-	#category : #'private - primitives',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>primRead: id into: byteArray startingAt: startIndex count: count [
+{ #category : #'private - primitives' }
+StandardFileStream >> primRead: id into: byteArray startingAt: startIndex count: count [
 	"Read up to count bytes of data from this file into the given string or byte array starting at the given index. Answer the number of bytes actually read."
 
 	<primitive: 'primitiveFileRead' module: 'FilePlugin'>
@@ -923,11 +733,8 @@ StandardFileStream>>primRead: id into: byteArray startingAt: startIndex count: c
 
 ]
 
-{
-	#category : #'private - primitives',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>primSetPosition: id to: anInteger [
+{ #category : #'private - primitives' }
+StandardFileStream >> primSetPosition: id to: anInteger [
 	"Set this file to the given position."
 
 	<primitive: 'primitiveFileSetPosition' module: 'FilePlugin'>
@@ -935,11 +742,8 @@ StandardFileStream>>primSetPosition: id to: anInteger [
 
 ]
 
-{
-	#category : #'private - primitives',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>primSize: id [
+{ #category : #'private - primitives' }
+StandardFileStream >> primSize: id [
 	"Answer the size of this file."
 
 	<primitive: 'primitiveFileSize' module: 'FilePlugin'>
@@ -947,11 +751,8 @@ StandardFileStream>>primSize: id [
 
 ]
 
-{
-	#category : #'private - primitives',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>primSizeNoError: id [
+{ #category : #'private - primitives' }
+StandardFileStream >> primSizeNoError: id [
 	"Answer the size of this file. Answer nil if the primitive fails; this indicates that the file handle has become stale."
 
 	<primitive: 'primitiveFileSize' module: 'FilePlugin'>
@@ -959,11 +760,8 @@ StandardFileStream>>primSizeNoError: id [
 
 ]
 
-{
-	#category : #'private - primitives',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>primSync: id [
+{ #category : #'private - primitives' }
+StandardFileStream >> primSync: id [
 	"On Unix, this syncs any written or flushed data still in the kernel file
 	system buffers to disk. On Windows this and primFlush: do the same thing"
 
@@ -973,11 +771,8 @@ StandardFileStream>>primSync: id [
 	self primitiveFailed
 ]
 
-{
-	#category : #'private - primitives',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>primTruncate: id to: anInteger [
+{ #category : #'private - primitives' }
+StandardFileStream >> primTruncate: id to: anInteger [
 	"Truncate this file to the given position."
 
 	<primitive: 'primitiveFileTruncate' module: 'FilePlugin'>
@@ -985,11 +780,8 @@ StandardFileStream>>primTruncate: id to: anInteger [
 
 ]
 
-{
-	#category : #'private - primitives',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>primWrite: id from: stringOrByteArray startingAt: startIndex count: count [
+{ #category : #'private - primitives' }
+StandardFileStream >> primWrite: id from: stringOrByteArray startingAt: startIndex count: count [
 	"Write count bytes onto this file from the given string or byte array starting at the given index. Answer the number of bytes written."
 
 	<primitive: 'primitiveFileWrite' module: 'FilePlugin'>
@@ -999,21 +791,15 @@ StandardFileStream>>primWrite: id from: stringOrByteArray startingAt: startIndex
 			ifFalse: [ 'File ', name, ' write failed' ])
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>printOn: aStream [
+{ #category : #printing }
+StandardFileStream >> printOn: aStream [
 	"Put a printed version of the receiver onto aStream."
 
 	aStream nextPutAll: self class name; nextPutAll: ': '; print: name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>readInto: byteArray startingAt: startIndex count: count [
+{ #category : #accessing }
+StandardFileStream >> readInto: byteArray startingAt: startIndex count: count [
 	"Read up to n bytes into the given byteArray.
 	Return the number of bytes actually read."
 	
@@ -1048,51 +834,36 @@ StandardFileStream>>readInto: byteArray startingAt: startIndex count: count [
 
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>readOnly [
+{ #category : #modes }
+StandardFileStream >> readOnly [
 	"Make this file read-only."
 
 	rwmode := false.
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>readOnlyCopy [
+{ #category : #copying }
+StandardFileStream >> readOnlyCopy [
 
 	^ self class readOnlyFileNamed: self name.
 
 ]
 
-{
-	#category : #modes,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>readWrite [
+{ #category : #modes }
+StandardFileStream >> readWrite [
 	"Make this file writable."
 
 	rwmode := true.
 
 ]
 
-{
-	#category : #registry,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>register [
+{ #category : #registry }
+StandardFileStream >> register [
 	^self class register: self
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>reopen [
+{ #category : #open/close }
+StandardFileStream >> reopen [
 	"Close and reopen this file. The file position is reset to zero."
 	"Details: Files that were open when a snapshot occurs are no longer valid when the snapshot is resumed. This operation re-opens the file if that has happened."
 
@@ -1105,11 +876,8 @@ StandardFileStream>>reopen [
 
 ]
 
-{
-	#category : #'dnd requests',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>requestDropStream: dropIndex [
+{ #category : #'dnd requests' }
+StandardFileStream >> requestDropStream: dropIndex [
 	"Return a read-only stream for some file the user has just dropped onto the application."
 
 	| rawName |
@@ -1124,40 +892,28 @@ StandardFileStream>>requestDropStream: dropIndex [
 	self enableReadBuffering
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>reset [
+{ #category : #positioning }
+StandardFileStream >> reset [
 	self ensureOpen.
 	self position: 0.
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>setToEnd [
+{ #category : #positioning }
+StandardFileStream >> setToEnd [
 	"Set the position of the receiver to the end of file."
 
 	self position: self size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>size [
+{ #category : #accessing }
+StandardFileStream >> size [
 	"Answer the size of the file in characters."
 
 	^ self primSize: fileID
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>skip: n [
+{ #category : #positioning }
+StandardFileStream >> skip: n [
 	"Set the character position to n characters from the current position.
 	Error if not enough characters left in the file."
 
@@ -1171,11 +927,8 @@ StandardFileStream>>skip: n [
 	self position: self position + n
 ]
 
-{
-	#category : #flushing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>sync [
+{ #category : #flushing }
+StandardFileStream >> sync [
 	"When writing, this syncs any written/flushed data still in the kernel
 	file system buffers to disk. This should generally be used after #flush,
 	but on Windows they do the same thing."
@@ -1183,40 +936,28 @@ StandardFileStream>>sync [
 	^ self primSync: fileID
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>truncate [
+{ #category : #positioning }
+StandardFileStream >> truncate [
 	"Truncate to zero"
 
 	^ self truncate: 0
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>truncate: pos [
+{ #category : #positioning }
+StandardFileStream >> truncate: pos [
 	"Truncate to this position"
 
 	self position: pos.
 	^self primTruncate: fileID to: pos
 ]
 
-{
-	#category : #registry,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>unregister [
+{ #category : #registry }
+StandardFileStream >> unregister [
 	^self class unregister: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>upTo: delim  [
+{ #category : #accessing }
+StandardFileStream >> upTo: delim [ 
 	"Fast version to speed up nextChunk"
 	| pos buffer count |
 	collection ifNotNil: [
@@ -1237,11 +978,8 @@ StandardFileStream>>upTo: delim  [
 	^ buffer , (self upTo: delim)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>upToAnyOf: delimiters do: aBlock [
+{ #category : #accessing }
+StandardFileStream >> upToAnyOf: delimiters do: aBlock [
 	"Fast version to speed up nextChunk"
 	| pos buffer count result |
 	collection ifNotNil: [
@@ -1265,11 +1003,8 @@ StandardFileStream>>upToAnyOf: delimiters do: aBlock [
 	^ buffer , (self upToAnyOf: delimiters do: aBlock)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-StandardFileStream>>upToEnd [
+{ #category : #accessing }
+StandardFileStream >> upToEnd [
 	"Answer a subcollection from the current access position through the last element of the receiver."
 
 	^self collectionSpecies streamContents: [ :newStream |

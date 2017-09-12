@@ -16,15 +16,11 @@ Class {
 		'label',
 		'subwidget'
 	],
-	#category : #Spec-PolyWidgets-Elementary,
-	#timestamp : 'Spirita 7/27/2016 16:25'
+	#category : #Spec-PolyWidgets-Elementary
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledContainer class>>abstractExample [
+{ #category : #example }
+LabelledContainer class >> abstractExample [
 	| example |
 	example := self new.
 	example
@@ -33,11 +29,8 @@ LabelledContainer class>>abstractExample [
 	^ example
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledContainer class>>example [
+{ #category : #example }
+LabelledContainer class >> example [
 	| example |
 	example := self abstractExample.
 	example content: ButtonModel.
@@ -47,11 +40,8 @@ LabelledContainer class>>example [
 	^ example
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledContainer class>>labelBottom [
+{ #category : #specs }
+LabelledContainer class >> labelBottom [
 	<spec>
 	^ SpecLayout composed
 		newColumn: [ :column | 
@@ -61,11 +51,8 @@ LabelledContainer class>>labelBottom [
 		yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledContainer class>>labelLeft [
+{ #category : #specs }
+LabelledContainer class >> labelLeft [
 	<spec>
 	^ SpecLayout composed
 		newRow: [ :row | 
@@ -75,11 +62,8 @@ LabelledContainer class>>labelLeft [
 		yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledContainer class>>labelRight [
+{ #category : #specs }
+LabelledContainer class >> labelRight [
 	<spec>
 	^ SpecLayout composed
 		newRow: [ :row | 
@@ -89,11 +73,8 @@ LabelledContainer class>>labelRight [
 		yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledContainer class>>labelTop [
+{ #category : #specs }
+LabelledContainer class >> labelTop [
 	<spec: #default>
 	^ SpecLayout composed
 		newColumn: [ :column | 
@@ -103,59 +84,38 @@ LabelledContainer class>>labelTop [
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledContainer>>content: aWidgetClass [
+{ #category : #initialization }
+LabelledContainer >> content: aWidgetClass [
 	subwidget := self instantiate: aWidgetClass.
 	self focusOrder add: subwidget
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledContainer>>doesNotUnderstand: aMessage [
+{ #category : #'error handling' }
+LabelledContainer >> doesNotUnderstand: aMessage [
 	^ aMessage sendTo: subwidget
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledContainer>>initializeWidgets [
+{ #category : #initialization }
+LabelledContainer >> initializeWidgets [
 	label := self instantiate: LabelModel.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledContainer>>label [
+{ #category : #accessing }
+LabelledContainer >> label [
 	^ label
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledContainer>>label: aString [
+{ #category : #accessing }
+LabelledContainer >> label: aString [
 	label label: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledContainer>>subwidget [
+{ #category : #accessing }
+LabelledContainer >> subwidget [
 	^ subwidget
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-LabelledContainer>>subwidget: anObject [
+{ #category : #accessing }
+LabelledContainer >> subwidget: anObject [
 	subwidget := anObject
 ]

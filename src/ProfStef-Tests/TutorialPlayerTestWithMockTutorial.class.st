@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'player'
 	],
-	#category : #ProfStef-Tests,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:53'
+	#category : #ProfStef-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-TutorialPlayerTestWithMockTutorial>>setUp [
+{ #category : #running }
+TutorialPlayerTestWithMockTutorial >> setUp [
 	| tutorial |
 	tutorial := MockTutorial new.
 	player := TutorialPlayer new tutorial: (MockTutorial new)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-TutorialPlayerTestWithMockTutorial>>testCurrentLessonIsFirstOneAtCreation [
+{ #category : #tests }
+TutorialPlayerTestWithMockTutorial >> testCurrentLessonIsFirstOneAtCreation [
 	self assert: player currentLesson title equals: 'first'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-TutorialPlayerTestWithMockTutorial>>testNavigation [
+{ #category : #tests }
+TutorialPlayerTestWithMockTutorial >> testNavigation [
 	self assert: player next title equals: 'second'.
 	self assert: player currentLesson title equals: 'second'.
 	
@@ -53,11 +43,8 @@ TutorialPlayerTestWithMockTutorial>>testNavigation [
 	self assert: player currentLesson title equals: 'first'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-TutorialPlayerTestWithMockTutorial>>testResetTutorialGoBackToFirstLesson [
+{ #category : #tests }
+TutorialPlayerTestWithMockTutorial >> testResetTutorialGoBackToFirstLesson [
 	player next; next.
 	self assert: player currentLesson title equals: 'third'.
 	
@@ -65,10 +52,7 @@ TutorialPlayerTestWithMockTutorial>>testResetTutorialGoBackToFirstLesson [
 	self assert: player currentLesson title equals: 'first'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-TutorialPlayerTestWithMockTutorial>>testSizeReturnsThree [
+{ #category : #tests }
+TutorialPlayerTestWithMockTutorial >> testSizeReturnsThree [
 	self assert: player size equals: 3.
 ]

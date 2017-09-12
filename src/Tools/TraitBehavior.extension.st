@@ -1,29 +1,18 @@
-Extension {
-	#name : #TraitBehavior
-}
+Extension { #name : #TraitBehavior }
 
-{
-	#category : #'*Tools',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-TraitBehavior>>browse [
+{ #category : #'*Tools' }
+TraitBehavior >> browse [
 
 	^  Smalltalk tools browser openOnClass: self
 ]
 
-{
-	#category : #'*Tools',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-TraitBehavior>>browseHierarchy [
+{ #category : #'*Tools' }
+TraitBehavior >> browseHierarchy [
 	self systemNavigation browseHierarchy: self
 ]
 
-{
-	#category : #'*Tools',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-TraitBehavior>>inspectAllInstances  [
+{ #category : #'*Tools' }
+TraitBehavior >> inspectAllInstances [ 
 	"Inspect all instances of the receiver."
 
 	| all allSize prefix |
@@ -37,11 +26,8 @@ instances of ', self name].
 	all asArray inspectWithLabel: (prefix, ' of ', self name)
 ]
 
-{
-	#category : #'*Tools',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-TraitBehavior>>inspectSubInstances  [
+{ #category : #'*Tools' }
+TraitBehavior >> inspectSubInstances [ 
 	"Inspect all instances of the receiver and all its subclasses.  CAUTION - don't do this for something as generic as Object!"
 
 	| all allSize prefix |

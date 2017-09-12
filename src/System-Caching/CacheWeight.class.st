@@ -16,93 +16,62 @@ Class {
 		'maximum',
 		'compute'
 	],
-	#category : #System-Caching,
-	#timestamp : '<historical>'
+	#category : #System-Caching
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheWeight>>add: value [
+{ #category : #accessing }
+CacheWeight >> add: value [
 	| weight |
 	weight := compute cull: value.
 	total := total + weight
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheWeight>>compute [
+{ #category : #accessing }
+CacheWeight >> compute [
 	^ compute
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheWeight>>compute: valuable [
+{ #category : #initialize }
+CacheWeight >> compute: valuable [
 	compute := valuable
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheWeight>>initialize [
+{ #category : #initialize }
+CacheWeight >> initialize [
 	super initialize.
 	total := 0.
 	maximum := 16.
 	compute := [ 1 ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheWeight>>isBelowMaximum [
+{ #category : #testing }
+CacheWeight >> isBelowMaximum [
 	^ total <= maximum 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheWeight>>maximum [
+{ #category : #accessing }
+CacheWeight >> maximum [
 	^ maximum
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheWeight>>maximum: integer [
+{ #category : #initialize }
+CacheWeight >> maximum: integer [
 	maximum := integer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheWeight>>remove: value [
+{ #category : #accessing }
+CacheWeight >> remove: value [
 	| weight |
 	weight := compute cull: value.
 	total := total - weight
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheWeight>>reset [
+{ #category : #initialize }
+CacheWeight >> reset [
 	total := 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-CacheWeight>>total [
+{ #category : #accessing }
+CacheWeight >> total [
 	^ total
 ]

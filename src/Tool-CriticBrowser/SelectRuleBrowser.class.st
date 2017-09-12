@@ -9,15 +9,11 @@ Class {
 		'removeTestCase',
 		'selectedRules'
 	],
-	#category : #Tool-CriticBrowser,
-	#timestamp : '<historical>'
+	#category : #Tool-CriticBrowser
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectRuleBrowser class>>items [
+{ #category : #'instance creation' }
+SelectRuleBrowser class >> items [
 
 	| rules rulesByGroup integrationRules |
 	rules := (ReRuleManager visibleRuleClasses collect: #new) sorted: [ :a :b |
@@ -33,11 +29,8 @@ SelectRuleBrowser class>>items [
 			rules: integrationRules)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectRuleBrowser class>>openWithEnvironment: anEnvironment removeTestCase: aBoolean [
+{ #category : #'instance creation' }
+SelectRuleBrowser class >> openWithEnvironment: anEnvironment removeTestCase: aBoolean [
 
 	self new
 		items: self items;
@@ -47,29 +40,20 @@ SelectRuleBrowser class>>openWithEnvironment: anEnvironment removeTestCase: aBoo
 		updateTree
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectRuleBrowser class>>title [
+{ #category : #specs }
+SelectRuleBrowser class >> title [
 	^ 'Select rules'
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectRuleBrowser>>addAllItems [
+{ #category : #api }
+SelectRuleBrowser >> addAllItems [
 	
 	toSelectModel roots do: [ :group | selectedRules addAll: group rules].
 	self updateTree.  	  
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectRuleBrowser>>addItems [
+{ #category : #api }
+SelectRuleBrowser >> addItems [
 	toSelectModel selectedItem
 		ifNotNil:
 			[ :item |
@@ -79,27 +63,18 @@ SelectRuleBrowser>>addItems [
 	self updateTree
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectRuleBrowser>>defaultRulesRootName [
+{ #category : #private }
+SelectRuleBrowser >> defaultRulesRootName [
 	^ 'Selected Rules'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectRuleBrowser>>environment: aEnv [
+{ #category : #accessing }
+SelectRuleBrowser >> environment: aEnv [
 	environment := aEnv
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectRuleBrowser>>initialize [
+{ #category : #initialization }
+SelectRuleBrowser >> initialize [
 	| wrappingBlock selectedRulesChildrenBlock rulesToSelectChildrenBlock |
 	super initialize.
 	toSelectModel := self instantiate: TreeModel.
@@ -122,31 +97,22 @@ SelectRuleBrowser>>initialize [
 	selectedModel displayBlock: wrappingBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectRuleBrowser>>isSelected: aRule [
+{ #category : #private }
+SelectRuleBrowser >> isSelected: aRule [
 	"Check the rule identifier to not run twice the same rule"
 	^ selectedRules anySatisfy: [ :rule | rule class uniqueIdentifierName = aRule class uniqueIdentifierName ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectRuleBrowser>>items: aCollection [
+{ #category : #accessing }
+SelectRuleBrowser >> items: aCollection [
 	
 	toSelectModel roots: aCollection.
 	selectedModel roots: aCollection
 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectRuleBrowser>>nextAction [
+{ #category : #api }
+SelectRuleBrowser >> nextAction [
 
 	self delete..
 	
@@ -157,41 +123,29 @@ SelectRuleBrowser>>nextAction [
 	CriticBrowser openOnWorkingConfiguration: CriticWorkingConfiguration current
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectRuleBrowser>>removeAllItems [
+{ #category : #api }
+SelectRuleBrowser >> removeAllItems [
 	
 	selectedModel roots do: [ :item |  
 		selectedRules removeAllFoundIn: item value ].
 	self updateTree 	  
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectRuleBrowser>>removeItems [
+{ #category : #api }
+SelectRuleBrowser >> removeItems [
 	
 	selectedModel selectedItem
 		ifNotNil: [ :item | selectedRules removeAllFoundIn: item content leaves ].
 	self updateTree  	  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectRuleBrowser>>removeTestCase: aBoolean [
+{ #category : #accessing }
+SelectRuleBrowser >> removeTestCase: aBoolean [
 	removeTestCase := aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-SelectRuleBrowser>>updateTree [
+{ #category : #api }
+SelectRuleBrowser >> updateTree [
 
 	toSelectModel updateTree.
 	selectedModel updateTree.  	  

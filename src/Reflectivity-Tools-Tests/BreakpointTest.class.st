@@ -8,15 +8,11 @@ Class {
 		'previousBreakpoints',
 		'cls'
 	],
-	#category : #Reflectivity-Tools-Tests,
-	#timestamp : '<historical>'
+	#category : #Reflectivity-Tools-Tests
 }
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-BreakpointTest>>newDummyClass [
+{ #category : #utils }
+BreakpointTest >> newDummyClass [
 	^ Object
 		subclass: #DummyClassForBreakpoint
 		instanceVariableNames: ''
@@ -24,22 +20,16 @@ BreakpointTest>>newDummyClass [
 		package: 'DummyPackage'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-BreakpointTest>>setUp [
+{ #category : #initialization }
+BreakpointTest >> setUp [
 	super setUp.
 	cls := self newDummyClass.
 	previousBreakpoints := Breakpoint all copy.
 	Breakpoint all removeAll.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-BreakpointTest>>tearDown [
+{ #category : #initialization }
+BreakpointTest >> tearDown [
 	| pkg |
 	super tearDown.
 	Breakpoint all addAll: previousBreakpoints.
@@ -48,11 +38,8 @@ BreakpointTest>>tearDown [
 	pkg ifNotNil: [ pkg removeFromSystem ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-BreakpointTest>>testRemoveClassWithBreakpoint [
+{ #category : #tests }
+BreakpointTest >> testRemoveClassWithBreakpoint [
 	cls compile: 'dummy ^42'.
 	self assert: Breakpoint all isEmpty.
 	Breakpoint new
@@ -64,11 +51,8 @@ BreakpointTest>>testRemoveClassWithBreakpoint [
 	self assert: Breakpoint all isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-BreakpointTest>>testRemoveMethodWithBreakpoint [
+{ #category : #tests }
+BreakpointTest >> testRemoveMethodWithBreakpoint [
 	cls compile: 'dummy ^42'.
 	self assert: Breakpoint all isEmpty.
 	Breakpoint new

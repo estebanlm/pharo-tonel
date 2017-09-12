@@ -1,12 +1,7 @@
-Extension {
-	#name : #OrderedDictionary
-}
+Extension { #name : #OrderedDictionary }
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-OrderedDictionary class>>fromSton: stonReader [
+{ #category : #'*ston-core' }
+OrderedDictionary class >> fromSton: stonReader [
 	"My instances are stored as maps."
 	
 	| dictionary |
@@ -16,11 +11,8 @@ OrderedDictionary class>>fromSton: stonReader [
 	^ dictionary
 ]
 
-{
-	#category : #'*ston-core',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-OrderedDictionary>>stonOn: stonWriter [
+{ #category : #'*ston-core' }
+OrderedDictionary >> stonOn: stonWriter [
 	"I store my instances as maps"
 	
 	stonWriter 

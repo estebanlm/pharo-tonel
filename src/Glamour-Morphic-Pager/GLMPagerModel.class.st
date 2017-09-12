@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMPagerModel,
 	#superclass : #Object,
@@ -22,129 +19,89 @@ Class {
 		'scrollingDelay',
 		'minimumPageNumberForScrollbar'
 	],
-	#category : #Glamour-Morphic-Pager-Model,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Pager-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>actualNumberOfVisiblePages [
+{ #category : #accessing }
+GLMPagerModel >> actualNumberOfVisiblePages [
 	"returns actual number of visible pages based on first and last visible page indexes"
 
 	(firstVisiblePageIndex = lastVisiblePageIndex) & (firstVisiblePageIndex = 0) ifTrue: [ ^ 0 ].
 	^ lastVisiblePageIndex - firstVisiblePageIndex + 1.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>announcer [
+{ #category : #accessing }
+GLMPagerModel >> announcer [
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>assignFocusableMorph: aMorph withPaneAt: paneIndex [
+{ #category : #focus }
+GLMPagerModel >> assignFocusableMorph: aMorph withPaneAt: paneIndex [
 	"assigns previosely focused morph with corresponding pane"
 	
 	focusedMorphs at: paneIndex put: aMorph.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>circleButtonSize [
+{ #category : #accessing }
+GLMPagerModel >> circleButtonSize [
 	^ 22
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>convertIndexToValue: anIndex [
+{ #category : #scrolling }
+GLMPagerModel >> convertIndexToValue: anIndex [
 	
 	^ self convertIndexToValue: anIndex with: self size
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>convertIndexToValue: anIndex with: numberOfPagers [
+{ #category : #private }
+GLMPagerModel >> convertIndexToValue: anIndex with: numberOfPagers [
 	"private"
 	numberOfPagers = self actualNumberOfVisiblePages
 		ifTrue: [ ^ 0 ]
 		ifFalse: [ ^ (anIndex - 1) / (numberOfPagers - self actualNumberOfVisiblePages ) ]
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>convertValueToIndex: aValue [
+{ #category : #scrolling }
+GLMPagerModel >> convertValueToIndex: aValue [
 	
 	^ (self size - self actualNumberOfVisiblePages) * aValue + 1.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>defaultNumberOfVisiblePages [
+{ #category : #accessing }
+GLMPagerModel >> defaultNumberOfVisiblePages [
 	^ 2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>defaultNumberOfVisiblePages: anInteger [
+{ #category : #accessing }
+GLMPagerModel >> defaultNumberOfVisiblePages: anInteger [
 	"use it only when the number of pages is 0"
 	self size = 0 ifFalse: [ GLMPagerException signal: 'You can change default number of visible pages only when there is no pages' ].
 	numberOfVisiblePages := anInteger.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>dependencyButtonSize [
+{ #category : #accessing }
+GLMPagerModel >> dependencyButtonSize [
 	^ self isDependenciesShown ifTrue: [ self circleButtonSize ] ifFalse: [ 0 ].
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>diminishToLeft [
+{ #category : #panes }
+GLMPagerModel >> diminishToLeft [
 
 	self actualNumberOfVisiblePages = 1 ifTrue: [ ^ self ].
 	self virtualLastVisiblePageIndex: (self lastVisiblePageIndex - 1).
 	self recomputeState.
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>diminishToRight [
+{ #category : #panes }
+GLMPagerModel >> diminishToRight [
 
 	self actualNumberOfVisiblePages = 1 ifTrue: [ ^ self ].
 	self virtualFirstVisiblePageIndex: (self firstVisiblePageIndex + 1).
 	self recomputeState.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>doNotNotifyDuring: aBlock [
+{ #category : #'as yet unclassified' }
+GLMPagerModel >> doNotNotifyDuring: aBlock [
 	|allowed|
 	allowed := self isNotificationsAllowed.
 	isNotificationsAllowed := false.
@@ -152,39 +109,27 @@ GLMPagerModel>>doNotNotifyDuring: aBlock [
 	allowed ifTrue: [ isNotificationsAllowed := true ]
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>enlargeToLeft [
+{ #category : #panes }
+GLMPagerModel >> enlargeToLeft [
 
 	self virtualFirstVisiblePageIndex: (self firstVisiblePageIndex - 1).
 	self recomputeState.
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>enlargeToRight [
+{ #category : #panes }
+GLMPagerModel >> enlargeToRight [
 
 	self virtualLastVisiblePageIndex: (self lastVisiblePageIndex + 1).
 	self recomputeState.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>firstVisiblePageIndex [
+{ #category : #accessing }
+GLMPagerModel >> firstVisiblePageIndex [
 	^ firstVisiblePageIndex
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>focusPaneAt: pageIndex [
+{ #category : #focus }
+GLMPagerModel >> focusPaneAt: pageIndex [
 	"tries to focus previosely focused morph at specified pane by its index"
 	
 	( self isFocusedMorphVisibleAt: pageIndex ) ifTrue: [
@@ -194,21 +139,15 @@ GLMPagerModel>>focusPaneAt: pageIndex [
 	].
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>focusedMorphAt: pageIndex [
+{ #category : #focus }
+GLMPagerModel >> focusedMorphAt: pageIndex [
 	"returns previosely focused morph in the pane or nil if no morph was focused"
 	
 	^ focusedMorphs at: pageIndex ifAbsent: [ nil ]
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>focusedMorphChanged: aMorph at: pageIndex [
+{ #category : #focus }
+GLMPagerModel >> focusedMorphChanged: aMorph at: pageIndex [
 	"call this method if a morph was focused in a pane with specified index. As a result corresponding pane will be marked as selected"
 	
 	
@@ -220,19 +159,13 @@ GLMPagerModel>>focusedMorphChanged: aMorph at: pageIndex [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>focusedPageIndex [
+{ #category : #accessing }
+GLMPagerModel >> focusedPageIndex [
 	^ focusedPageIndex
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>initialize [
+{ #category : #initialization }
+GLMPagerModel >> initialize [
 	super initialize.
 
 	pagesCount := 0.
@@ -248,11 +181,8 @@ GLMPagerModel>>initialize [
 	self invariant.
 ]
 
-{
-	#category : #invariant,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>invariant [
+{ #category : #invariant }
+GLMPagerModel >> invariant [
 	"If any of these exceptions rise, please notify us through moose-dev mail list. Your help is appreciated"
 	
 	self isDebug ifFalse: [ ^ self ].
@@ -283,36 +213,24 @@ GLMPagerModel>>invariant [
 	]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>isDebug [
+{ #category : #initialization }
+GLMPagerModel >> isDebug [
 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>isDependenciesShown [
+{ #category : #accessing }
+GLMPagerModel >> isDependenciesShown [
 	^ isDependenciesShown
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>isDependenciesShown: aBoolean [
+{ #category : #accessing }
+GLMPagerModel >> isDependenciesShown: aBoolean [
 	isDependenciesShown := aBoolean
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>isFocusedMorphVisibleAt: paneIndex [
+{ #category : #focus }
+GLMPagerModel >> isFocusedMorphVisibleAt: paneIndex [
 	|morph|
 	
 	morph := self focusedMorphAt: paneIndex.
@@ -320,29 +238,20 @@ GLMPagerModel>>isFocusedMorphVisibleAt: paneIndex [
 	^ morph isInWorld.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>isNotificationsAllowed [
+{ #category : #accessing }
+GLMPagerModel >> isNotificationsAllowed [
 
 	^ isNotificationsAllowed ifNil: [ isNotificationsAllowed := true ]
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>isPaneVisible: aNumber [
+{ #category : #panes }
+GLMPagerModel >> isPaneVisible: aNumber [
 
 	^ (aNumber >= self firstVisiblePageIndex) & (aNumber <= self lastVisiblePageIndex)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>lastVisiblePageIndex [
+{ #category : #accessing }
+GLMPagerModel >> lastVisiblePageIndex [
 	| lastIndex |
 	
 	lastIndex := self firstVisiblePageIndex + self numberOfVisiblePages - 1.
@@ -351,27 +260,18 @@ GLMPagerModel>>lastVisiblePageIndex [
 		ifFalse: [ lastIndex ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>minimumPageNumberForScrollbar [
+{ #category : #accessing }
+GLMPagerModel >> minimumPageNumberForScrollbar [
 	^ minimumPageNumberForScrollbar ifNil: [ 1 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>minimumPageNumberForScrollbar: aNumber [
+{ #category : #accessing }
+GLMPagerModel >> minimumPageNumberForScrollbar: aNumber [
 	minimumPageNumberForScrollbar := aNumber
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>normalizePaneIndex: anIndex [
+{ #category : #'as yet unclassified' }
+GLMPagerModel >> normalizePaneIndex: anIndex [
 	"retunes normalized pane index. For example: returns 1 if index < 1 and size if index > self size"
 	
 	anIndex < 1 ifTrue: [ ^ 1 ].
@@ -379,57 +279,39 @@ GLMPagerModel>>normalizePaneIndex: anIndex [
 	^ anIndex.
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>notifyAll: anAnnouncement [
+{ #category : #notifying }
+GLMPagerModel >> notifyAll: anAnnouncement [
 	
 	self isNotificationsAllowed ifTrue: [
 		self announcer announce: anAnnouncement ]
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>notifyFocusedPageChanged [
+{ #category : #notifying }
+GLMPagerModel >> notifyFocusedPageChanged [
 
 	self notifyAll: GLMFocusedPageChanged new.
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>notifyNumberOfVisiblePagesChanged [
+{ #category : #notifying }
+GLMPagerModel >> notifyNumberOfVisiblePagesChanged [
 
 	self notifyAll: GLMNumberOfVisiblePagesChanged new.
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>notifyPagePoped: isSmooth [
+{ #category : #notifying }
+GLMPagerModel >> notifyPagePoped: isSmooth [
 
 	self notifyAll: (GLMPagePoped new smooth: isSmooth).
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>notifyPagePoppedAndReplaced: aBrick [
+{ #category : #notifying }
+GLMPagerModel >> notifyPagePoppedAndReplaced: aBrick [
 
 	self notifyAll: (GLMPagePopedAndReplaced new brick: aBrick)
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>notifyPagePushed: aMorph scrollTo: isScroll smooth: isSmooth [
+{ #category : #notifying }
+GLMPagerModel >> notifyPagePushed: aMorph scrollTo: isScroll smooth: isSmooth [
 	
 	self notifyAll: (GLMPagePushed new morph: aMorph).
 	
@@ -439,64 +321,43 @@ GLMPagerModel>>notifyPagePushed: aMorph scrollTo: isScroll smooth: isSmooth [
 			ifFalse: [ self scrollToRight: isSmooth ] ]
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>notifyScrollPositionChanged: isSmooth [
+{ #category : #notifying }
+GLMPagerModel >> notifyScrollPositionChanged: isSmooth [
 
 	self notifyScrollPositionChanged: isSmooth callback: nil
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>notifyScrollPositionChanged: isSmooth callback: aBlock [
+{ #category : #notifying }
+GLMPagerModel >> notifyScrollPositionChanged: isSmooth callback: aBlock [
 
 	self notifyAll: (GLMPagerScrollPositionChanged new smooth: isSmooth; callback: aBlock; yourself).
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>notifyScrollerBoundsChanged: aBounds [
+{ #category : #notifying }
+GLMPagerModel >> notifyScrollerBoundsChanged: aBounds [
 
 	self notifyAll: (GLMPagerBoundsChanged new bounds: aBounds).
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>notifySelectedPageChanged [
+{ #category : #notifying }
+GLMPagerModel >> notifySelectedPageChanged [
 
 	self notifyAll:  GLMSelectedPageChanged new.
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>notifySynchronizeScrollTo: aValue  [
+{ #category : #notifying }
+GLMPagerModel >> notifySynchronizeScrollTo: aValue [ 
 	
 	self notifyAll: (GLMPagerSynchronizeScrollAnnouncement new value: aValue).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>numberOfVisiblePages [
+{ #category : #accessing }
+GLMPagerModel >> numberOfVisiblePages [
 	^ numberOfVisiblePages
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>popAndReplacePane: aMorph [
+{ #category : #panes }
+GLMPagerModel >> popAndReplacePane: aMorph [
 	
 	self doNotNotifyDuring: [ :m |
 		m popPane;
@@ -505,20 +366,14 @@ GLMPagerModel>>popAndReplacePane: aMorph [
 	self notifyPagePoppedAndReplaced: aMorph
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>popPane [
+{ #category : #panes }
+GLMPagerModel >> popPane [
 
 	self popPane: false.
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>popPane: isSmooth [
+{ #category : #panes }
+GLMPagerModel >> popPane: isSmooth [
 
 	self invariant.
 	
@@ -554,11 +409,8 @@ GLMPagerModel>>popPane: isSmooth [
 	self invariant.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>privateRecomputeIndexesAfterScrollAt: aFloat [
+{ #category : #private }
+GLMPagerModel >> privateRecomputeIndexesAfterScrollAt: aFloat [
 	"while rounding fractional part < 0.5"
 	|left right|
 	
@@ -581,11 +433,8 @@ GLMPagerModel>>privateRecomputeIndexesAfterScrollAt: aFloat [
 	
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>pushPane: aMorph smooth: aBoolean [
+{ #category : #panes }
+GLMPagerModel >> pushPane: aMorph smooth: aBoolean [
 
 	self invariant.
 	
@@ -609,20 +458,14 @@ GLMPagerModel>>pushPane: aMorph smooth: aBoolean [
 	self invariant.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>recomputeState [
+{ #category : #'as yet unclassified' }
+GLMPagerModel >> recomputeState [
 	self recomputeState: true
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>recomputeState: isSmooth [
+{ #category : #'as yet unclassified' }
+GLMPagerModel >> recomputeState: isSmooth [
 	"recomputes current model state and if necessary notifies all listeners about changes"
 	|tmpNumberOfVisiblePages notifyNumberOfVisiblePagesChanged|
 	
@@ -651,78 +494,54 @@ GLMPagerModel>>recomputeState: isSmooth [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>scrollButtonIconRenderBlock [
+{ #category : #accessing }
+GLMPagerModel >> scrollButtonIconRenderBlock [
 	^ scrollButtonIconRenderBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>scrollButtonIconRenderBlock: anObject [
+{ #category : #accessing }
+GLMPagerModel >> scrollButtonIconRenderBlock: anObject [
 	scrollButtonIconRenderBlock := anObject
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>scrollTo: aFloat smooth: isSmooth [
+{ #category : #scrolling }
+GLMPagerModel >> scrollTo: aFloat smooth: isSmooth [
 	
 	self scrollTo: aFloat smooth: isSmooth callback: nil
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>scrollTo: aFloat smooth: isSmooth callback: aBlock [
+{ #category : #scrolling }
+GLMPagerModel >> scrollTo: aFloat smooth: isSmooth callback: aBlock [
 	"notifies all listeners to scroll at the specified value"
 	
 	self privateRecomputeIndexesAfterScrollAt: aFloat.
 	self notifyScrollPositionChanged: isSmooth callback: aBlock
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>scrollToPane: pageIndex [
+{ #category : #scrolling }
+GLMPagerModel >> scrollToPane: pageIndex [
 	
 	self scrollToPane: pageIndex callback: nil
 	
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>scrollToPane: pageIndex callback: aBlock [
+{ #category : #scrolling }
+GLMPagerModel >> scrollToPane: pageIndex callback: aBlock [
 	"scrolls to specified pane specified by its index"
 
 	self scrollTo: (self convertIndexToValue: pageIndex) smooth: true callback: aBlock
 	
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>scrollToRight: isSmooth [
+{ #category : #scrolling }
+GLMPagerModel >> scrollToRight: isSmooth [
 	"notifies all listeners that it is time to scroll most right"
 
 	self scrollTo: 1.0 smooth: isSmooth
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>scrollToRightTask [
+{ #category : #scrolling }
+GLMPagerModel >> scrollToRightTask [
 
 	^ scrollToRightTask ifNil: [
 		scrollToRightTask := GLMAsyncTask new.
@@ -732,57 +551,39 @@ GLMPagerModel>>scrollToRightTask [
 			delay: self scrollingDelay ]
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>scrollingDelay [
+{ #category : #scrolling }
+GLMPagerModel >> scrollingDelay [
 
 	^ scrollingDelay ifNil: [ scrollingDelay := 100 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>scrollingDelay: anInteger [
+{ #category : #accessing }
+GLMPagerModel >> scrollingDelay: anInteger [
 
 	scrollingDelay := anInteger
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>selectToLeft [
+{ #category : #panes }
+GLMPagerModel >> selectToLeft [
 	"moves focus to left"
 	
 	self selectedPageIndex: (self selectedPageIndex - 1).
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>selectToRight [
+{ #category : #panes }
+GLMPagerModel >> selectToRight [
 	"moves focus to right"
 	
 	self selectedPageIndex: (self selectedPageIndex + 1).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>selectedPageIndex [
+{ #category : #accessing }
+GLMPagerModel >> selectedPageIndex [
 	^ selectedPageIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>selectedPageIndex: anIndex [
+{ #category : #accessing }
+GLMPagerModel >> selectedPageIndex: anIndex [
 	| normalizedIndex |
 	"changes current selected page and scrolls to it if necessary. Also if possible re-focused available morph"
 	
@@ -800,19 +601,13 @@ GLMPagerModel>>selectedPageIndex: anIndex [
 	self invariant.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>size [
+{ #category : #accessing }
+GLMPagerModel >> size [
 	^ pagesCount.
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>switchPaneTo: anIndex [
+{ #category : #scrolling }
+GLMPagerModel >> switchPaneTo: anIndex [
 	| normalizedIndex |
 	"switches pane to specified. Works as scrollToPane, but additionaly selects and focuses that pane."
 	
@@ -829,56 +624,38 @@ GLMPagerModel>>switchPaneTo: anIndex [
 	self invariant.
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>synchronizeScrollTo: aValue [
+{ #category : #scrolling }
+GLMPagerModel >> synchronizeScrollTo: aValue [
 	
 	self notifySynchronizeScrollTo: aValue.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>updatePreview: anIndex [
+{ #category : #'as yet unclassified' }
+GLMPagerModel >> updatePreview: anIndex [
 
 	self announcer announce: (GLMPagerPreviewUpdate new pageIndex: anIndex )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>virtualFirstVisiblePageIndex [
+{ #category : #private }
+GLMPagerModel >> virtualFirstVisiblePageIndex [
 	^ virtualFirstVisiblePageIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>virtualFirstVisiblePageIndex: anIndex [
+{ #category : #private }
+GLMPagerModel >> virtualFirstVisiblePageIndex: anIndex [
 
 	virtualFirstVisiblePageIndex := self normalizePaneIndex: anIndex.
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>virtualLastVisiblePageIndex [
+{ #category : #private }
+GLMPagerModel >> virtualLastVisiblePageIndex [
 
 	^ virtualLastVisiblePageIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerModel>>virtualLastVisiblePageIndex: anIndex. [
+{ #category : #private }
+GLMPagerModel >> virtualLastVisiblePageIndex: anIndex. [
 
 	virtualLastVisiblePageIndex := self normalizePaneIndex: anIndex.
 ]

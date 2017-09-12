@@ -26,26 +26,19 @@ Class {
 	#classVars : [
 		'Icons'
 	],
-	#category : #Morphic-Widgets-Tabs,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Tabs
 }
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>closeHalfOverIcon [
+{ #category : #icons }
+TabMorph class >> closeHalfOverIcon [
 
 	^ Icons
 		at: #closeHalfOverIcon
 		ifAbsentPut: [ self closeHalfOverIconContents ]
 ]
 
-{
-	#category : #icons-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>closeHalfOverIconContents [
+{ #category : #icons-contents }
+TabMorph class >> closeHalfOverIconContents [
 
 	^ Form
 		extent: 12@12
@@ -54,22 +47,16 @@ TabMorph class>>closeHalfOverIconContents [
 		offset: 0@0
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>closeIcon [
+{ #category : #icons }
+TabMorph class >> closeIcon [
 
 	^ Icons
 		at: #closeIcon
 		ifAbsentPut: [ self closeIconContents ]
 ]
 
-{
-	#category : #icons-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>closeIconContents [
+{ #category : #icons-contents }
+TabMorph class >> closeIconContents [
 
 	^ Form
 		extent: 12@12
@@ -78,22 +65,16 @@ TabMorph class>>closeIconContents [
 		offset: 0@0
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>closeOverIcon [
+{ #category : #icons }
+TabMorph class >> closeOverIcon [
 
 	^ Icons
 		at: #closeOverIcon
 		ifAbsentPut: [ self closeOverIconContents ]
 ]
 
-{
-	#category : #icons-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>closeOverIconContents [
+{ #category : #icons-contents }
+TabMorph class >> closeOverIconContents [
 
 	^ Form
 		extent: 12@12
@@ -102,28 +83,19 @@ TabMorph class>>closeOverIconContents [
 		offset: 0@0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>defaultHeight [
+{ #category : #accessing }
+TabMorph class >> defaultHeight [
 	^ 22
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>initialize [
+{ #category : #initialize }
+TabMorph class >> initialize [
 
 	Icons := Dictionary new.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>label: label icon: icon morph: morph [
+{ #category : #'instance creation' }
+TabMorph class >> label: label icon: icon morph: morph [
 
 	^ self new
 		label: label;
@@ -132,11 +104,8 @@ TabMorph class>>label: label icon: icon morph: morph [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>label: label icon: icon morph: morph actions: aCollection [
+{ #category : #'instance creation' }
+TabMorph class >> label: label icon: icon morph: morph actions: aCollection [
 
 	^ self new
 		label: label;
@@ -146,11 +115,8 @@ TabMorph class>>label: label icon: icon morph: morph actions: aCollection [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>label: label icon: icon retrievingBlock: morph [
+{ #category : #'instance creation' }
+TabMorph class >> label: label icon: icon retrievingBlock: morph [
 
 	^ self new
 		label: label;
@@ -159,11 +125,8 @@ TabMorph class>>label: label icon: icon retrievingBlock: morph [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>label: label icon: icon retrievingBlock: morph actions: aCollection [
+{ #category : #'instance creation' }
+TabMorph class >> label: label icon: icon retrievingBlock: morph actions: aCollection [
 
 	^ self new
 		label: label;
@@ -173,42 +136,30 @@ TabMorph class>>label: label icon: icon retrievingBlock: morph actions: aCollect
 		yourself
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>menuIcon [
+{ #category : #icons }
+TabMorph class >> menuIcon [
 
 	^ Smalltalk ui theme windowMenuForm
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon1 [
+{ #category : #icons }
+TabMorph class >> refreshIcon1 [
 
 	^ Icons 
 		at: #refreshIcon1
 		ifAbsentPut: [ self refreshIcon1Contents ]
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon10 [
+{ #category : #icons }
+TabMorph class >> refreshIcon10 [
 
 	^ Icons 
 		at: #refreshIcon10
 		ifAbsentPut: [ self refreshIcon10Contents ]
 ]
 
-{
-	#category : #icons-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon10Contents [
+{ #category : #icons-contents }
+TabMorph class >> refreshIcon10Contents [
 
 	^ Form
 		extent: 16@16
@@ -217,11 +168,8 @@ TabMorph class>>refreshIcon10Contents [
 		offset: 0@0
 ]
 
-{
-	#category : #icons-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon1Contents [
+{ #category : #icons-contents }
+TabMorph class >> refreshIcon1Contents [
 
 	^ Form
 		extent: 16@16
@@ -230,22 +178,16 @@ TabMorph class>>refreshIcon1Contents [
 		offset: 0@0
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon2 [
+{ #category : #icons }
+TabMorph class >> refreshIcon2 [
 
 	^ Icons 
 		at: #refreshIcon2
 		ifAbsentPut: [ self refreshIcon2Contents ]
 ]
 
-{
-	#category : #icons-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon2Contents [
+{ #category : #icons-contents }
+TabMorph class >> refreshIcon2Contents [
 
 	^ Form
 		extent: 16@16
@@ -254,22 +196,16 @@ TabMorph class>>refreshIcon2Contents [
 		offset: 0@0
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon3 [
+{ #category : #icons }
+TabMorph class >> refreshIcon3 [
 
 	^ Icons 
 		at: #refreshIcon3
 		ifAbsentPut: [ self refreshIcon3Contents ]
 ]
 
-{
-	#category : #icons-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon3Contents [
+{ #category : #icons-contents }
+TabMorph class >> refreshIcon3Contents [
 
 	^ Form
 		extent: 16@16
@@ -278,22 +214,16 @@ TabMorph class>>refreshIcon3Contents [
 		offset: 0@0
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon4 [
+{ #category : #icons }
+TabMorph class >> refreshIcon4 [
 
 	^ Icons 
 		at: #refreshIcon4
 		ifAbsentPut: [ self refreshIcon4Contents ]
 ]
 
-{
-	#category : #icons-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon4Contents [
+{ #category : #icons-contents }
+TabMorph class >> refreshIcon4Contents [
 
 	^ Form
 		extent: 16@16
@@ -302,22 +232,16 @@ TabMorph class>>refreshIcon4Contents [
 		offset: 0@0
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon5 [
+{ #category : #icons }
+TabMorph class >> refreshIcon5 [
 
 	^ Icons 
 		at: #refreshIcon5
 		ifAbsentPut: [ self refreshIcon5Contents ]
 ]
 
-{
-	#category : #icons-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon5Contents [
+{ #category : #icons-contents }
+TabMorph class >> refreshIcon5Contents [
 
 	^ Form
 		extent: 16@16
@@ -326,22 +250,16 @@ TabMorph class>>refreshIcon5Contents [
 		offset: 0@0
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon6 [
+{ #category : #icons }
+TabMorph class >> refreshIcon6 [
 
 	^ Icons 
 		at: #refreshIcon6
 		ifAbsentPut: [ self refreshIcon6Contents ]
 ]
 
-{
-	#category : #icons-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon6Contents [
+{ #category : #icons-contents }
+TabMorph class >> refreshIcon6Contents [
 
 	^ Form
 		extent: 16@16
@@ -350,22 +268,16 @@ TabMorph class>>refreshIcon6Contents [
 		offset: 0@0
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon7 [
+{ #category : #icons }
+TabMorph class >> refreshIcon7 [
 
 	^ Icons 
 		at: #refreshIcon7
 		ifAbsentPut: [ self refreshIcon7Contents ]
 ]
 
-{
-	#category : #icons-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon7Contents [
+{ #category : #icons-contents }
+TabMorph class >> refreshIcon7Contents [
 
 	^ Form
 		extent: 16@16
@@ -374,22 +286,16 @@ TabMorph class>>refreshIcon7Contents [
 		offset: 0@0
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon8 [
+{ #category : #icons }
+TabMorph class >> refreshIcon8 [
 
 	^ Icons 
 		at: #refreshIcon8
 		ifAbsentPut: [ self refreshIcon8Contents ]
 ]
 
-{
-	#category : #icons-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon8Contents [
+{ #category : #icons-contents }
+TabMorph class >> refreshIcon8Contents [
 
 	^ Form
 		extent: 16@16
@@ -398,22 +304,16 @@ TabMorph class>>refreshIcon8Contents [
 		offset: 0@0
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon9 [
+{ #category : #icons }
+TabMorph class >> refreshIcon9 [
 
 	^ Icons 
 		at: #refreshIcon9
 		ifAbsentPut: [ self refreshIcon9Contents ]
 ]
 
-{
-	#category : #icons-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph class>>refreshIcon9Contents [
+{ #category : #icons-contents }
+TabMorph class >> refreshIcon9Contents [
 
 	^ Form
 		extent: 16@16
@@ -422,57 +322,39 @@ TabMorph class>>refreshIcon9Contents [
 		offset: 0@0
 ]
 
-{
-	#category : #private-constants,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>actionOffset [
+{ #category : #private-constants }
+TabMorph >> actionOffset [
 
 	^ 4
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>actions [
+{ #category : #accessing }
+TabMorph >> actions [
 
 	^ actions
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>actions: aCollection [
+{ #category : #protocol }
+TabMorph >> actions: aCollection [
 
 	actions := aCollection.
 	self triggerEvent: #actionsChanged with: self
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>addAction: anAction [
+{ #category : #protocol }
+TabMorph >> addAction: anAction [
 
 	actions add: anAction
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>addActions: aCollection [
+{ #category : #protocol }
+TabMorph >> addActions: aCollection [
 
 	actions addAll: aCollection
 ]
 
-{
-	#category : #icons-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>addActionsToIcon [
+{ #category : #icons-actions }
+TabMorph >> addActionsToIcon [
 
 	closeIcon 
 		on: #mouseEnter send: #mouseEnterIcon to: self;
@@ -480,11 +362,8 @@ TabMorph>>addActionsToIcon [
 		on: #mouseLeave send: #mouseLeaveIcon to: self
 ]
 
-{
-	#category : #private-icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>addIcon [
+{ #category : #private-icons }
+TabMorph >> addIcon [
 
 	self
 		addMorph: closeIcon 
@@ -498,11 +377,8 @@ TabMorph>>addIcon [
 			yourself)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>addLabel [
+{ #category : #private }
+TabMorph >> addLabel [
 
 	self
 		addMorph: label 
@@ -514,11 +390,8 @@ TabMorph>>addLabel [
 			
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>addRefreshMenuItemOn: aMenu [
+{ #category : #private }
+TabMorph >> addRefreshMenuItemOn: aMenu [
 	"I have a block for retrieving my contents, so I install a menu action for this"
 	
 	retrievingBlock ifNil: [ ^ self ].
@@ -529,48 +402,33 @@ TabMorph>>addRefreshMenuItemOn: aMenu [
 		selector: #refreshContent
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>addToSelection [
+{ #category : #private }
+TabMorph >> addToSelection [
 
 	self triggerEvent: #tabAddedToSelection with: self.
 	
 	"No need to change here since the toolbar I belong to will do it"
 ]
 
-{
-	#category : #private-drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>backgroundColor [
+{ #category : #private-drawing }
+TabMorph >> backgroundColor [
 	^ state backgroundColor
 ]
 
-{
-	#category : #private-drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>borderColor [
+{ #category : #private-drawing }
+TabMorph >> borderColor [
 	"I do not use #borderColor because I want a light border"
 	^ Smalltalk ui theme lightBackgroundColor
 ]
 
-{
-	#category : #private-drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>buildBorderVertices [
+{ #category : #private-drawing }
+TabMorph >> buildBorderVertices [
 	
 	^ state buildBorderVertices
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>buildLabel: text withIcon: icon [
+{ #category : #private }
+TabMorph >> buildLabel: text withIcon: icon [
 	
 	^ (TabLabelItem tab: self)
 		morph:	text asMorph;
@@ -578,39 +436,27 @@ TabMorph>>buildLabel: text withIcon: icon [
 		yourself
 ]
 
-{
-	#category : #private-drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>buildVerticesFrom: borderVertices [
+{ #category : #private-drawing }
+TabMorph >> buildVerticesFrom: borderVertices [
 	
 	^ state buildVerticesFrom: borderVertices
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>close [
+{ #category : #protocol }
+TabMorph >> close [
 
 	closeable ifFalse: [ ^ self ].
 	self okToClose ifFalse: [ ^self ].
 	self delete
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>closeable [
+{ #category : #accessing }
+TabMorph >> closeable [
 	^ closeable
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>closeable: anObject [
+{ #category : #protocol }
+TabMorph >> closeable: anObject [
 
 	closeable := anObject.
 	anObject 
@@ -618,27 +464,18 @@ TabMorph>>closeable: anObject [
 		ifFalse: [ self hideCloseIcon ]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>defaultBounds [
+{ #category : #initialize }
+TabMorph >> defaultBounds [
 	^ 0@0 corner: 100@(self class defaultHeight)
 ]
 
-{
-	#category : #private-icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>defaultIcon [
+{ #category : #private-icons }
+TabMorph >> defaultIcon [
 	^ self iconNamed: #blankIcon
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>delete [
+{ #category : #protocol }
+TabMorph >> delete [
 
 	super delete.
 	morph ifNotNil: [morph delete].
@@ -646,11 +483,8 @@ TabMorph>>delete [
 	self triggerEvent: #tabDeleted with: self
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+TabMorph >> drawOn: aCanvas [
 	| borderVertices vertices |
 	
 	borderVertices := self buildBorderVertices.
@@ -670,20 +504,14 @@ TabMorph>>drawOn: aCanvas [
 			color: self borderColor ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>enabled [
+{ #category : #accessing }
+TabMorph >> enabled [
 	
 	^ state enabled
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>enabled: aBoolean [
+{ #category : #protocol }
+TabMorph >> enabled: aBoolean [
 
 	(state isEnabledMatchingTheState: aBoolean) ifTrue: [ ^ self ].
 	
@@ -692,11 +520,8 @@ TabMorph>>enabled: aBoolean [
 	self changed
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>extraSpaceForActions [
+{ #category : #protocol }
+TabMorph >> extraSpaceForActions [
 	| space offsets |
 	
 	space := 0.
@@ -713,76 +538,52 @@ TabMorph>>extraSpaceForActions [
 	^ space + (offsets * self actionOffset)
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>handlesMouseDown: event [
+{ #category : #'event handling' }
+TabMorph >> handlesMouseDown: event [
 
 	^ true
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>hasActions [
+{ #category : #protocol }
+TabMorph >> hasActions [
 
 	^ actions notEmpty
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>hasMenu [
+{ #category : #protocol }
+TabMorph >> hasMenu [
 
 	^ menu notNil or: [ retrievingBlock notNil ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>hideCloseIcon [
+{ #category : #protocol }
+TabMorph >> hideCloseIcon [
 
 	closeIcon hide
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>icon [
+{ #category : #protocol }
+TabMorph >> icon [
 
 	^ label icon
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>icon: anIcon [
+{ #category : #protocol }
+TabMorph >> icon: anIcon [
 
 	anIcon 
 		ifNil: [ label icon: nil ]
 		ifNotNil: [ label icon: (AlphaImageMorph new image: anIcon) ]
 ]
 
-{
-	#category : #private-constants,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>iconRightOffset [
+{ #category : #private-constants }
+TabMorph >> iconRightOffset [
 
 	^ 10
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>initialize [
+{ #category : #initialization }
+TabMorph >> initialize [
 
 	super initialize.
 	
@@ -801,46 +602,31 @@ TabMorph>>initialize [
 	self addActionsToIcon.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>label [
+{ #category : #accessing }
+TabMorph >> label [
 	^ label
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>label: aString [
+{ #category : #protocol }
+TabMorph >> label: aString [
 
 	label morph: aString asMorph
 ]
 
-{
-	#category : #private-constants,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>labelBottomOffset [
+{ #category : #private-constants }
+TabMorph >> labelBottomOffset [
 
 	^ 5
 ]
 
-{
-	#category : #private-constants,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>labelRightOffset [
+{ #category : #private-constants }
+TabMorph >> labelRightOffset [
 
 	^ 12
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>menu [
+{ #category : #accessing }
+TabMorph >> menu [
 	| newMenu |
 	
 	newMenu := MenuMorph new defaultTarget: self.
@@ -851,47 +637,32 @@ TabMorph>>menu [
 	^ newMenu
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>menu: aMenu [
+{ #category : #protocol }
+TabMorph >> menu: aMenu [
 	
 	menu := aMenu
 ]
 
-{
-	#category : #private-icons,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>menuIcon [
+{ #category : #private-icons }
+TabMorph >> menuIcon [
 	
 	^ self class menuIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>model [
+{ #category : #accessing }
+TabMorph >> model [
 
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>model: aModel [
+{ #category : #accessing }
+TabMorph >> model: aModel [
 
 	model := aModel
 ]
 
-{
-	#category : #'private-tab label',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>modifyClippingBounds: clippingBounds [
+{ #category : #'private-tab label' }
+TabMorph >> modifyClippingBounds: clippingBounds [
 	| rightOffset |
 
 	rightOffset := -10.
@@ -900,50 +671,35 @@ TabMorph>>modifyClippingBounds: clippingBounds [
 	^ clippingBounds withRight:clippingBounds right + rightOffset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>morph [
+{ #category : #accessing }
+TabMorph >> morph [
 
 	^ morph
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>morph: anObject [
+{ #category : #protocol }
+TabMorph >> morph: anObject [
 
 	morph := anObject.
 	self triggerEvent: #tabRefreshed with: self
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>mouseDown: event [
+{ #category : #'event handling' }
+TabMorph >> mouseDown: event [
 
 	self flag: 'ToDo: Add drag'
 ]
 
-{
-	#category : #icons-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>mouseEnterIcon [
+{ #category : #icons-actions }
+TabMorph >> mouseEnterIcon [
 
 	closeable ifFalse: [ ^ self ].
 	fadeOut ifNotNil: [ fadeOut terminate ].
 	closeIcon image: self class closeOverIcon
 ]
 
-{
-	#category : #icons-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>mouseLeaveIcon [
+{ #category : #icons-actions }
+TabMorph >> mouseLeaveIcon [
 
 	closeable ifFalse: [ ^ self ].
 	fadeOut ifNotNil: [ fadeOut terminate ].
@@ -953,11 +709,8 @@ TabMorph>>mouseLeaveIcon [
 		closeIcon image: self class closeIcon ] fork
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>mouseUp: event [
+{ #category : #'event handling' }
+TabMorph >> mouseUp: event [
 
 	(event commandKeyPressed or: [ event controlKeyPressed ])
 		ifTrue: [ self toggleSelection ]
@@ -967,20 +720,14 @@ TabMorph>>mouseUp: event [
 				ifFalse: [ self selected: true ] ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>okToClose [
+{ #category : #protocol }
+TabMorph >> okToClose [
 	model ifNil: [ ^true ].
 	^model okToClose
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>refreshContent [
+{ #category : #private }
+TabMorph >> refreshContent [
 	
 	morph := nil.
 	self triggerEvent: #tabEmptyContents with: self.
@@ -989,22 +736,16 @@ TabMorph>>refreshContent [
 	self softRetrieveMorph.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>removeFromSelection [
+{ #category : #private }
+TabMorph >> removeFromSelection [
 
 	self triggerEvent: #tabRemovedFromSelection with: self.
 	
 	"No need to change here since the toolbar I belong to will do it"
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>retrieveMorph: aBlock [
+{ #category : #protocol }
+TabMorph >> retrieveMorph: aBlock [
 	"This is a hard request. The result is blocking contrary to softRetrieveMorph.
 	Late binding so the morph may be built only on demand"
 
@@ -1020,41 +761,29 @@ TabMorph>>retrieveMorph: aBlock [
 				fork
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>retrievingBlock: anObject [
+{ #category : #accessing }
+TabMorph >> retrievingBlock: anObject [
 
 	retrievingBlock := anObject.
 	retrievingBlock ifNotNil: [ self softRetrieveMorph ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>selectToMe [
+{ #category : #private }
+TabMorph >> selectToMe [
 
 	self triggerEvent: #tabSelectTo with: self.
 	
 	"No need to change here since the toolbar I belong to will do it"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>selected [
+{ #category : #accessing }
+TabMorph >> selected [
 	
 	^ state selected
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>selected: aBoolean [
+{ #category : #protocol }
+TabMorph >> selected: aBoolean [
 
 	(state isSelectedMatchingTheState: aBoolean) 
 		ifTrue: [ ^ self triggerEvent: #tabResetSelection with: self ].
@@ -1068,41 +797,29 @@ TabMorph>>selected: aBoolean [
 	"No need to change here since the toolbar Ibelong to will do it"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>setActionsFrom: aBlock [
+{ #category : #accessing }
+TabMorph >> setActionsFrom: aBlock [
 
 	self actions: aBlock value
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>showCloseIcon [
+{ #category : #protocol }
+TabMorph >> showCloseIcon [
 
 	closeable
 		ifTrue: [ closeIcon show ]
 ]
 
-{
-	#category : #'private-tab label',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>showIconTreshold [
+{ #category : #'private-tab label' }
+TabMorph >> showIconTreshold [
 
 	^ closeIcon visible
 		ifTrue: [ 54 ]
 		ifFalse: [ 40 ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>silentlySelected: aBoolean [
+{ #category : #protocol }
+TabMorph >> silentlySelected: aBoolean [
 
 	(state isSelectedMatchingTheState: aBoolean) 
 		ifTrue: [ ^ self ].
@@ -1114,11 +831,8 @@ TabMorph>>silentlySelected: aBoolean [
 	"No need to change here since the toolbar Ibelong to will do it"
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>softRetrieveMorph [
+{ #category : #protocol }
+TabMorph >> softRetrieveMorph [
 	| oldIcon |
 	"Like retrieveMorph but done in a separated process"	
 	morph ifNotNil: [ ^ self ].	
@@ -1141,42 +855,30 @@ TabMorph>>softRetrieveMorph [
 	] ] forkAt: Processor activePriority - 2
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>themeChanged [
+{ #category : #protocol }
+TabMorph >> themeChanged [
 	super themeChanged.
 	morph themeChanged.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>toggleSelection [
+{ #category : #private }
+TabMorph >> toggleSelection [
 
 	self selected
 		ifTrue: [ self removeFromSelection ]
 		ifFalse: [ self addToSelection ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>updateShowIcon [
+{ #category : #protocol }
+TabMorph >> updateShowIcon [
 
 	(self selected not and: [ self width < 100 ])
 		ifTrue: [ self hideCloseIcon ]
 		ifFalse: [ self showCloseIcon ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabMorph>>waitReadyMorphFor: timeoutDuration [
+{ #category : #protocol }
+TabMorph >> waitReadyMorphFor: timeoutDuration [
 	"This method allow wait some small duration until morph will be ready.
 	Clients could use it to not show loading progress if it is really fast process.
 	Instead some blinking could happen"

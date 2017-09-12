@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloProjectSpecForLoad,
 	#superclass : #Object,
@@ -9,39 +6,26 @@ Class {
 		'useDetermineVersionForLoad',
 		'overrideProjectSpec'
 	],
-	#category : #Metacello-Core-Scripts,
-	#timestamp : ''
+	#category : #Metacello-Core-Scripts
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecForLoad>>hasOverride [
+{ #category : #testing }
+MetacelloProjectSpecForLoad >> hasOverride [
     ^ self overrideProjectSpec ~~ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecForLoad>>overrideProjectSpec [
+{ #category : #accessing }
+MetacelloProjectSpecForLoad >> overrideProjectSpec [
 	^ overrideProjectSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecForLoad>>overrideProjectSpec: anObject [
+{ #category : #accessing }
+MetacelloProjectSpecForLoad >> overrideProjectSpec: anObject [
 	overrideProjectSpec := anObject
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecForLoad>>performCurrentVersionTestAgainst: vrsn operator: anOperator targetVersionStatus: targetVersionStatus using: anMCLoader [
+{ #category : #operations }
+MetacelloProjectSpecForLoad >> performCurrentVersionTestAgainst: vrsn operator: anOperator targetVersionStatus: targetVersionStatus using: anMCLoader [
   "answer true if the current state of image is to be left as is"
 
   | currentVersion existing new |
@@ -92,11 +76,8 @@ MetacelloProjectSpecForLoad>>performCurrentVersionTestAgainst: vrsn operator: an
         signal) == existing ]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecForLoad>>performLoad [
+{ #category : #operations }
+MetacelloProjectSpecForLoad >> performLoad [
   | displayString spec |
   spec := self projectSpec.
   displayString := 'Project: ' , spec name.
@@ -119,35 +100,23 @@ MetacelloProjectSpecForLoad>>performLoad [
       (spec asProjectSpecForVersion: vrsn) loadVersion: vrsn ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecForLoad>>projectSpec [
+{ #category : #accessing }
+MetacelloProjectSpecForLoad >> projectSpec [
 	^ projectSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecForLoad>>projectSpec: anObject [
+{ #category : #accessing }
+MetacelloProjectSpecForLoad >> projectSpec: anObject [
 	projectSpec := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecForLoad>>useDetermineVersionForLoad [
+{ #category : #accessing }
+MetacelloProjectSpecForLoad >> useDetermineVersionForLoad [
     useDetermineVersionForLoad ifNil: [ useDetermineVersionForLoad := true ].
     ^ useDetermineVersionForLoad
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecForLoad>>useDetermineVersionForLoad: anObject [
+{ #category : #accessing }
+MetacelloProjectSpecForLoad >> useDetermineVersionForLoad: anObject [
 	useDetermineVersionForLoad := anObject
 ]

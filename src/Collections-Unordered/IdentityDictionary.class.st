@@ -6,15 +6,11 @@ See the comment of IdentitySet for more information.
 Class {
 	#name : #IdentityDictionary,
 	#superclass : #Dictionary,
-	#category : #Collections-Unordered,
-	#timestamp : 'ls 06/15/02 22:35'
+	#category : #Collections-Unordered
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-IdentityDictionary>>keyAtValue: value ifAbsent: exceptionBlock [
+{ #category : #private }
+IdentityDictionary >> keyAtValue: value ifAbsent: exceptionBlock [
 	"Answer the key that is the external name for the argument, value. If 
 	there is none, answer the result of evaluating exceptionBlock."
  
@@ -23,11 +19,8 @@ IdentityDictionary>>keyAtValue: value ifAbsent: exceptionBlock [
 	^ exceptionBlock value
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-IdentityDictionary>>scanFor: anObject [
+{ #category : #private }
+IdentityDictionary >> scanFor: anObject [
 	"Scan the key array for the first slot containing either a nil (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or zero if no slot is found. This method will be overridden in various subclasses that have different interpretations for matching elements."
 	| finish start element |
 	finish := array size.
@@ -46,11 +39,8 @@ IdentityDictionary>>scanFor: anObject [
 	^ 0  "No match AND no empty slot"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-IdentityDictionary>>scanForEmptySlotFor: aKey [
+{ #category : #private }
+IdentityDictionary >> scanForEmptySlotFor: aKey [
 	"Scan the key array for the first slot containing an empty slot (indicated by a nil). Answer the index of that slot. This method will be overridden in various subclasses that have different interpretations for matching elements."
 	
 	| index start |

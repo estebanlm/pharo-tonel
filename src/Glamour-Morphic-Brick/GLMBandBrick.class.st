@@ -5,24 +5,17 @@ Usually used within scroll panes
 Class {
 	#name : #GLMBandBrick,
 	#superclass : #GLMBrick,
-	#category : #Glamour-Morphic-Brick-Widgets-Core,
-	#timestamp : 'AliakseiSyrel 3/22/2015 11:35'
+	#category : #Glamour-Morphic-Brick-Widgets-Core
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBandBrick class>>exampleOpen [
+{ #category : #examples }
+GLMBandBrick class >> exampleOpen [
 	
 	self gtExample openInBrickWindowLabeled: 'Band example'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBandBrick class>>gtExample [
+{ #category : #examples }
+GLMBandBrick class >> gtExample [
 	<gtExample>
 	<label: 'Example with subbricks'>
 	
@@ -41,11 +34,8 @@ GLMBandBrick class>>gtExample [
 						hSpaceFill ) ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBandBrick>>initialize [
+{ #category : #initialization }
+GLMBandBrick >> initialize [
 	super initialize.
 	
 	self

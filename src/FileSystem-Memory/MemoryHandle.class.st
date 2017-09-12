@@ -7,157 +7,102 @@ Class {
 	#instVars : [
 		'entry'
 	],
-	#category : #FileSystem-Memory,
-	#timestamp : '<historical>'
+	#category : #FileSystem-Memory
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>at: index [
+{ #category : #public }
+MemoryHandle >> at: index [
 	^ entry at: index
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>at: index put: anObject [
+{ #category : #public }
+MemoryHandle >> at: index put: anObject [
 	^ entry at: index put: anObject
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>at: index read: aCollection startingAt: start count: count  [
+{ #category : #public }
+MemoryHandle >> at: index read: aCollection startingAt: start count: count [ 
 	^ entry at: index read: aCollection startingAt: start count: count 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>at: first write: aCollection startingAt: start count: count  [
+{ #category : #public }
+MemoryHandle >> at: first write: aCollection startingAt: start count: count [ 
 	writable ifFalse: [ self primitiveFailed ].
 	entry at: first write: aCollection startingAt: start count: count.
 ]
 
-{
-	#category : #streams-compatibility,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>binaryReadStream [
+{ #category : #streams-compatibility }
+MemoryHandle >> binaryReadStream [
 	^ entry binaryReadStream
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>close [
+{ #category : #public }
+MemoryHandle >> close [
 	self isOpen ifFalse: [ ^ self ].
 	self truncate.
 	entry := nil.
 ]
 
-{
-	#category : #stream-protocol,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>copyFrom: from to: position [
+{ #category : #stream-protocol }
+MemoryHandle >> copyFrom: from to: position [
 	^ entry copyFrom: from to: position
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>flush [
+{ #category : #public }
+MemoryHandle >> flush [
 	self truncate
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>grow [
+{ #category : #private }
+MemoryHandle >> grow [
 	entry grow
 ]
 
-{
-	#category : #stream-protocol,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>grownBy: length [
+{ #category : #stream-protocol }
+MemoryHandle >> grownBy: length [
 	entry grownBy: length
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>isOpen [
+{ #category : #testing }
+MemoryHandle >> isOpen [
 	^ entry notNil
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>open [
+{ #category : #public }
+MemoryHandle >> open [
 	entry := self basicOpen.
 ]
 
-{
-	#category : #stream-protocol,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>readStream [
+{ #category : #stream-protocol }
+MemoryHandle >> readStream [
 	"Return a readstream on my contents.
 	Using myself as target collection allows to share the internal bytearray between multiple streams."
 	^ entry readStream
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>size [
+{ #category : #public }
+MemoryHandle >> size [
 	"return the size for the interna"
 	^ entry internalSize
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>sync [
+{ #category : #public }
+MemoryHandle >> sync [
 	self flush
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>truncate [
+{ #category : #public }
+MemoryHandle >> truncate [
 	entry truncate
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>truncateTo: anInteger [
+{ #category : #public }
+MemoryHandle >> truncateTo: anInteger [
 	entry truncateTo: anInteger
 ]
 
-{
-	#category : #stream-protocol,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-MemoryHandle>>writeStream [
+{ #category : #stream-protocol }
+MemoryHandle >> writeStream [
 	"Return a writestream on my contents.
 	Using myself as target collection allows to share the internal bytearray between multiple streams."
 	^ WriteStream on: self from: 1 to: entry fileSize

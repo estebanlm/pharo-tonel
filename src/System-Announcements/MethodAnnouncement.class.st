@@ -8,116 +8,76 @@ Class {
 		'method',
 		'methodPackage'
 	],
-	#category : #System-Announcements-System-Methods,
-	#timestamp : 'CamilleTeruel 9/4/2014 14:33'
+	#category : #System-Announcements-System-Methods
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodAnnouncement>>classAffected [
+{ #category : #accessing }
+MethodAnnouncement >> classAffected [
 	^ self methodOrigin
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodAnnouncement>>isProvidedByATrait [
+{ #category : #testing }
+MethodAnnouncement >> isProvidedByATrait [
 
 	^ self methodOrigin ~= self methodClass
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodAnnouncement>>isProvidedByExtension [
+{ #category : #testing }
+MethodAnnouncement >> isProvidedByExtension [
 	^self methodOrigin package ~= self methodPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodAnnouncement>>method [
+{ #category : #accessing }
+MethodAnnouncement >> method [
 	
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodAnnouncement>>method: aCompiledMethod [
+{ #category : #accessing }
+MethodAnnouncement >> method: aCompiledMethod [
 	method := aCompiledMethod.
 	methodPackage := aCompiledMethod package
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodAnnouncement>>methodAffected [
+{ #category : #accessing }
+MethodAnnouncement >> methodAffected [
 	^self method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodAnnouncement>>methodClass [
+{ #category : #accessing }
+MethodAnnouncement >> methodClass [
 	^ method methodClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodAnnouncement>>methodOrigin [
+{ #category : #accessing }
+MethodAnnouncement >> methodOrigin [
 	^ method origin
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodAnnouncement>>methodPackage [
+{ #category : #accessing }
+MethodAnnouncement >> methodPackage [
 	^ methodPackage ifNil: [ methodPackage := method package ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodAnnouncement>>packagesAffected [
+{ #category : #accessing }
+MethodAnnouncement >> packagesAffected [
 	^{self methodPackage}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodAnnouncement>>protocol [
+{ #category : #accessing }
+MethodAnnouncement >> protocol [
 	
 	^ method protocol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodAnnouncement>>protocolsAffected [
+{ #category : #accessing }
+MethodAnnouncement >> protocolsAffected [
 	^{self protocol}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodAnnouncement>>selector [
+{ #category : #accessing }
+MethodAnnouncement >> selector [
 	
 	^ method selector
 ]

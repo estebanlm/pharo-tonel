@@ -4,15 +4,11 @@ I draw links with curved lines. See comment in superclass.
 Class {
 	#name : #HiSnakeLinkRenderer,
 	#superclass : #HiLinkRenderer,
-	#category : #Hiedra-Rendering,
-	#timestamp : '<historical>'
+	#category : #Hiedra-Rendering
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiSnakeLinkRenderer>>render [
+{ #category : #rendering }
+HiSnakeLinkRenderer >> render [
 	| linkShape previousCheckpoint nodeGap |	
 	self setPaint.
 

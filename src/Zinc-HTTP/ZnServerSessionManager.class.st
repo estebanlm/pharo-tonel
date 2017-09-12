@@ -12,42 +12,29 @@ Class {
 	#instVars : [
 		'sessions'
 	],
-	#category : #Zinc-HTTP-Support,
-	#timestamp : '<historical>'
+	#category : #Zinc-HTTP-Support
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSessionManager>>cleanupInvalidSessions [
+{ #category : #accessing }
+ZnServerSessionManager >> cleanupInvalidSessions [
 	"Remove all expired sessions"
 	
 	sessions keysAndValuesRemove: [ :key :value | value isValid not ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSessionManager>>cookieName [
+{ #category : #accessing }
+ZnServerSessionManager >> cookieName [
 	^ 'session-id'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSessionManager>>initialize [
+{ #category : #initialization }
+ZnServerSessionManager >> initialize [
 	super initialize.
 	sessions := Dictionary new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSessionManager>>newSessionForRequest: request [
+{ #category : #private }
+ZnServerSessionManager >> newSessionForRequest: request [
 	| id session |
 	id := self newSessionId.
 	session := ZnServerSession new.
@@ -56,11 +43,8 @@ ZnServerSessionManager>>newSessionForRequest: request [
 	^ session
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSessionManager>>newSessionId [
+{ #category : #private }
+ZnServerSessionManager >> newSessionId [
 	"Create a new session id.
 	If the server has a route, append it at the end with a dot as separator."
 	
@@ -75,22 +59,16 @@ ZnServerSessionManager>>newSessionId [
 						<< route ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSessionManager>>removeSessionWithId: id [
+{ #category : #accessing }
+ZnServerSessionManager >> removeSessionWithId: id [
 	"Remove the session with id.
 	If there is no such session, do nothing"
 	
 	^ sessions removeKey: id ifAbsent: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSessionManager>>sessionFor: request [
+{ #category : #accessing }
+ZnServerSessionManager >> sessionFor: request [
 	"Bind an existing session to request or create a new session"
 
 	| id |
@@ -104,11 +82,8 @@ ZnServerSessionManager>>sessionFor: request [
 	^ self newSessionForRequest: request
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSessionManager>>sessionIdFromRequest: request [
+{ #category : #private }
+ZnServerSessionManager >> sessionIdFromRequest: request [
 	| cookie |
 	cookie := request cookies 
 		detect: [ :each | each name = self cookieName ] 
@@ -116,11 +91,8 @@ ZnServerSessionManager>>sessionIdFromRequest: request [
 	^ cookie value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerSessionManager>>setSession: session in: response [
+{ #category : #accessing }
+ZnServerSessionManager >> setSession: session in: response [
 	"Bind session in response"
 
 	| cookie |

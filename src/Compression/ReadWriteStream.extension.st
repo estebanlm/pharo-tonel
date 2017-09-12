@@ -1,12 +1,7 @@
-Extension {
-	#name : #ReadWriteStream
-}
+Extension { #name : #ReadWriteStream }
 
-{
-	#category : #'*Compression',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ReadWriteStream>>asUnZippedStream [
+{ #category : #'*Compression' }
+ReadWriteStream >> asUnZippedStream [
 	| isGZip outputStream first strm archive |
 	"Decompress this file if needed, and return a stream.  No file is written.  File extension may be .gz or anything else.  Also works on archives (.zip, .gZip)."
 	strm := self binary.
@@ -32,11 +27,8 @@ ReadWriteStream>>asUnZippedStream [
 	^ outputStream
 ]
 
-{
-	#category : #'*Compression',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ReadWriteStream>>isZipArchive [
+{ #category : #'*Compression' }
+ReadWriteStream >> isZipArchive [
 	"Determine if this appears to be a valid Zip archive"
 	| sig |
 	self binary.

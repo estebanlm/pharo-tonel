@@ -1,12 +1,7 @@
-Extension {
-	#name : #RGMethodDefinition
-}
+Extension { #name : #RGMethodDefinition }
 
-{
-	#category : #'*ring-monticello',
-	#timestamp : ' 8/31/2017 07:17:02'
-}
-RGMethodDefinition>>sameAsMCDefinition: anMCMethodDefinition [
+{ #category : #'*ring-monticello' }
+RGMethodDefinition >> sameAsMCDefinition: anMCMethodDefinition [
 	^ anMCMethodDefinition selector = self selector
 		and:
 			[ 

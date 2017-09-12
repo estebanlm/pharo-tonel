@@ -4,39 +4,26 @@ Specialized version of inspector showing bytecodes symbolic representation, ast,
 Class {
 	#name : #EyeCompiledMethodInspector,
 	#superclass : #EyeInspector,
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeCompiledMethodInspector class>>label [
+{ #category : #accessing }
+EyeCompiledMethodInspector class >> label [
 	^ 'Compiled Method Inspector'
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeCompiledMethodInspector>>addAllInstVars: elements [
+{ #category : #list }
+EyeCompiledMethodInspector >> addAllInstVars: elements [
 	"Useless for compiledMethod"
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeCompiledMethodInspector>>addInstancesVariable: elements [
+{ #category : #list }
+EyeCompiledMethodInspector >> addInstancesVariable: elements [
 	"Do nothing"
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeCompiledMethodInspector>>addSpecialFields: elements [
+{ #category : #list }
+EyeCompiledMethodInspector >> addSpecialFields: elements [
 
 	elements add: (DynamicEyeElement 
 			host: self object 
@@ -69,11 +56,8 @@ EyeCompiledMethodInspector>>addSpecialFields: elements [
 			
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeCompiledMethodInspector>>addVariableFields: elements [
+{ #category : #list }
+EyeCompiledMethodInspector >> addVariableFields: elements [
 	
 	self object initialPC to: self object size do: [ :index |
 		elements add: (DynamicEyeElement 
@@ -82,10 +66,7 @@ EyeCompiledMethodInspector>>addVariableFields: elements [
 				value: (self object at: index) asString)].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeCompiledMethodInspector>>title [
+{ #category : #accessing }
+EyeCompiledMethodInspector >> title [
 	^ self object printString 
 ]

@@ -16,15 +16,11 @@ Class {
 		'greenSlider',
 		'blueSlider'
 	],
-	#category : #Spec-PolyWidgets-Support,
-	#timestamp : 'Spirita 7/21/2016 18:06'
+	#category : #Spec-PolyWidgets-Support
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBSliders class>>defaultSpec [
+{ #category : #specs }
+RGBSliders class >> defaultSpec [
 	<spec: #default>
 	^ SpecLayout composed
 		newColumn: [ :column | 
@@ -35,11 +31,8 @@ RGBSliders class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBSliders class>>example [
+{ #category : #example }
+RGBSliders class >> example [
 	| example |
 	example := self new.
 	example
@@ -49,19 +42,13 @@ RGBSliders class>>example [
 	^ example
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBSliders>>blueSlider [
+{ #category : #accessing }
+RGBSliders >> blueSlider [
 	^ blueSlider
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBSliders>>color [
+{ #category : #accessing }
+RGBSliders >> color [
 	^ (Color
 				r: redSlider value
 				g: greenSlider value
@@ -69,19 +56,13 @@ RGBSliders>>color [
 				range: 255)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBSliders>>greenSlider [
+{ #category : #accessing }
+RGBSliders >> greenSlider [
 	^ greenSlider
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBSliders>>initializeWidgets [
+{ #category : #initialization }
+RGBSliders >> initializeWidgets [
 	redSlider := self instantiate: SliderInput.
 	greenSlider := self instantiate: SliderInput.
 	blueSlider := self instantiate: SliderInput.
@@ -100,19 +81,13 @@ RGBSliders>>initializeWidgets [
 		add: blueSlider
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBSliders>>redSlider [
+{ #category : #accessing }
+RGBSliders >> redSlider [
 	^ redSlider
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBSliders>>whenChangedDo: aBlock [
+{ #category : #initialization }
+RGBSliders >> whenChangedDo: aBlock [
 	redSlider whenValueChangedDo: aBlock.
 	greenSlider whenValueChangedDo: aBlock.
 	blueSlider whenValueChangedDo: aBlock

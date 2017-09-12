@@ -5,40 +5,27 @@ RBPatternParser is a subclass of RBParser that allows the extended syntax that c
 Class {
 	#name : #RBPatternParser,
 	#superclass : #RBParser,
-	#category : #AST-Core-Parser,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Parser
 }
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternParser>>messageNodeClass [
+{ #category : #private-classes }
+RBPatternParser >> messageNodeClass [
 	^RBPatternMessageNode
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternParser>>methodNodeClass [
+{ #category : #private-classes }
+RBPatternParser >> methodNodeClass [
 	^RBPatternMethodNode
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternParser>>parseError: aString [
+{ #category : #private-parsing }
+RBPatternParser >> parseError: aString [
 
 	self error: aString
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternParser>>parseLiteralByteArrayObject [
+{ #category : #private-parsing }
+RBPatternParser >> parseLiteralByteArrayObject [
 	| node |
 	(currentToken isIdentifier and: [currentToken isPatternVariable]) 
 		ifTrue: 
@@ -50,11 +37,8 @@ RBPatternParser>>parseLiteralByteArrayObject [
 	^super parseLiteralByteArrayObject
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternParser>>parsePatternBlock: aClass  [
+{ #category : #private-parsing }
+RBPatternParser >> parsePatternBlock: aClass [ 
 	| position node |
 	position := currentToken start.
 	self step.
@@ -73,11 +57,8 @@ RBPatternParser>>parsePatternBlock: aClass  [
 	^node
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternParser>>parsePragmaLiteral [
+{ #category : #private-parsing }
+RBPatternParser >> parsePragmaLiteral [
 	| node |
 	currentToken isPatternBlock 
 		ifTrue: [ ^ self parsePatternBlock: RBPatternBlockNode ].
@@ -94,11 +75,8 @@ RBPatternParser>>parsePragmaLiteral [
 	^ super parsePragmaLiteral
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternParser>>parsePrimitiveLiteral [
+{ #category : #private-parsing }
+RBPatternParser >> parsePrimitiveLiteral [
 	| node |
 	(currentToken isIdentifier and: [currentToken isPatternVariable]) 
 		ifTrue: 
@@ -114,21 +92,15 @@ RBPatternParser>>parsePrimitiveLiteral [
 	^super parsePrimitiveLiteral
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternParser>>parsePrimitiveObject [
+{ #category : #private-parsing }
+RBPatternParser >> parsePrimitiveObject [
 	currentToken isPatternBlock 
 		ifTrue: [^self parsePatternBlock: RBPatternBlockNode].
 	^super parsePrimitiveObject
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternParser>>parseUnaryMessage [
+{ #category : #private-parsing }
+RBPatternParser >> parseUnaryMessage [
 	| node |
 	node := self parsePrimitiveObject.
 	self addCommentsTo: node.
@@ -146,11 +118,8 @@ RBPatternParser>>parseUnaryMessage [
 	^node
 ]
 
-{
-	#category : #private-parsing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternParser>>parseWrapperPatternBlockWith: wrappedNode [
+{ #category : #private-parsing }
+RBPatternParser >> parseWrapperPatternBlockWith: wrappedNode [
 	| node |
 
 	node := self parsePatternBlock: RBPatternWrapperBlockNode.
@@ -161,36 +130,24 @@ RBPatternParser>>parseWrapperPatternBlockWith: wrappedNode [
 	^ node
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternParser>>patchLiteralArrayToken [
+{ #category : #private }
+RBPatternParser >> patchLiteralArrayToken [
 	(currentToken isIdentifier and: [currentToken isPatternVariable]) 
 		ifTrue: [^self].
 	super patchLiteralArrayToken
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternParser>>pragmaNodeClass [
+{ #category : #private-classes }
+RBPatternParser >> pragmaNodeClass [
 	^RBPatternPragmaNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternParser>>scannerClass [
+{ #category : #accessing }
+RBPatternParser >> scannerClass [
 	^RBPatternScanner
 ]
 
-{
-	#category : #private-classes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternParser>>variableNodeClass [
+{ #category : #private-classes }
+RBPatternParser >> variableNodeClass [
 	^RBPatternVariableNode
 ]

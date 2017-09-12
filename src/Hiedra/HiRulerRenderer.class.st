@@ -10,15 +10,11 @@ Class {
 		'ruler',
 		'rulerBuilder'
 	],
-	#category : #Hiedra-Rendering,
-	#timestamp : '<historical>'
+	#category : #Hiedra-Rendering
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerRenderer class>>model: aModel athensCanvas: aCanvas ruler: aRuler [
+{ #category : #'instance creation' }
+HiRulerRenderer class >> model: aModel athensCanvas: aCanvas ruler: aRuler [
 	^ self basicNew
 		initializeWithModel: aModel
 		athensCanvas: aCanvas
@@ -26,28 +22,19 @@ HiRulerRenderer class>>model: aModel athensCanvas: aCanvas ruler: aRuler [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerRenderer>>canvasPointFor: aNode [
+{ #category : #private }
+HiRulerRenderer >> canvasPointFor: aNode [
 	^ (rulerBuilder centerOfColumnIndex: aNode rulerPoint x) @ (rulerBuilder centerOfRowIndex: aNode rulerPoint y)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerRenderer>>canvasPointsForAll: aCollectionOfNodes [
+{ #category : #private }
+HiRulerRenderer >> canvasPointsForAll: aCollectionOfNodes [
 	^ aCollectionOfNodes collect: [ :rulerPoint | 
 		(rulerBuilder centerOfColumnIndex: rulerPoint x) @ (rulerBuilder centerOfRowIndex: rulerPoint y) ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerRenderer>>initializeWithModel: aModel athensCanvas: aCanvas ruler: aRuler [
+{ #category : #initialize-release }
+HiRulerRenderer >> initializeWithModel: aModel athensCanvas: aCanvas ruler: aRuler [
 	self initialize.
 		
 	rulerBuilder := aModel.
@@ -55,20 +42,14 @@ HiRulerRenderer>>initializeWithModel: aModel athensCanvas: aCanvas ruler: aRuler
 	ruler := aRuler.
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerRenderer>>render [
+{ #category : #rendering }
+HiRulerRenderer >> render [
 	self renderLinks.
 	self renderNodes.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerRenderer>>renderLinks [
+{ #category : #private }
+HiRulerRenderer >> renderLinks [
 	self flag: #todo. "FIX"
 
 	ruler links do: [ :link |
@@ -79,11 +60,8 @@ HiRulerRenderer>>renderLinks [
 			render ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiRulerRenderer>>renderNodes [
+{ #category : #private }
+HiRulerRenderer >> renderNodes [
 	ruler nodes do: [ :aNode | 
 		rulerBuilder nodeBuilder renderer
 			athensCanvas: athensCanvas;

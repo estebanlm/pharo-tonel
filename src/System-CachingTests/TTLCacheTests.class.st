@@ -1,34 +1,21 @@
-"
-
-"
 Class {
 	#name : #TTLCacheTests,
 	#superclass : #LRUCacheTests,
-	#category : #System-CachingTests,
-	#timestamp : ''
+	#category : #System-CachingTests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TTLCacheTests class>>shouldInheritSelectors [
+{ #category : #testing }
+TTLCacheTests class >> shouldInheritSelectors [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TTLCacheTests>>newCache [
+{ #category : #accessing }
+TTLCacheTests >> newCache [
 	^ TTLCache new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TTLCacheTests>>testExpiring [
+{ #category : #testing }
+TTLCacheTests >> testExpiring [
 	| cache didComputeValue |
 	cache := self newCache.
 	cache timeToLive: 1 second.
@@ -47,11 +34,8 @@ TTLCacheTests>>testExpiring [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TTLCacheTests>>testRemoveStaleValues [
+{ #category : #testing }
+TTLCacheTests >> testRemoveStaleValues [
 	| cache keys |
 	cache := self newCache.
 	cache timeToLive: 1 second.

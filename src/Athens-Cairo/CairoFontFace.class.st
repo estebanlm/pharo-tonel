@@ -19,15 +19,11 @@ Class {
 		'AthensCairoDefs',
 		'FT2Constants'
 	],
-	#category : #Athens-Cairo-Text,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Text
 }
 
-{
-	#category : #finalizing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontFace class>>finalizeResourceData: handle [
+{ #category : #finalizing }
+CairoFontFace class >> finalizeResourceData: handle [
 
 "
 void                cairo_font_face_destroy             (cairo_font_face_t *font_face);
@@ -37,11 +33,8 @@ void                cairo_font_face_destroy             (cairo_font_face_t *font
 	^ self nbCall: #( void cairo_font_face_destroy (size_t handle)) 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontFace class>>fromFreetypeFace: aFace [
+{ #category : #'instance creation' }
+CairoFontFace class >> fromFreetypeFace: aFace [
 	| handle cairoFace |
 	
 	handle := aFace handle pointerAt: 1.
@@ -50,11 +43,8 @@ CairoFontFace class>>fromFreetypeFace: aFace [
 	^ cairoFace initializeWithFreetypeFace: aFace
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontFace class>>primFtFace: aFace loadFlags: flags [
+{ #category : #'instance creation' }
+CairoFontFace class >> primFtFace: aFace loadFlags: flags [
 
 "
 cairo_font_face_t * cairo_ft_font_face_create_for_ft_face
@@ -66,29 +56,20 @@ cairo_font_face_t * cairo_ft_font_face_create_for_ft_face
 	^ self nbCall: #( CairoFontFace cairo_ft_font_face_create_for_ft_face(void * aFace , int flags )) 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontFace>>initialize  [
+{ #category : #initialize-release }
+CairoFontFace >> initialize [ 
 	self autoRelease 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontFace>>initializeWithFreetypeFace: aFace [
+{ #category : #initialize-release }
+CairoFontFace >> initializeWithFreetypeFace: aFace [
 	ftFace := aFace.
 	
 	self autoRelease.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontFace>>primSetSynthesizeEmphasis: flags [
+{ #category : #private }
+CairoFontFace >> primSetSynthesizeEmphasis: flags [
 "
 void
 cairo_ft_font_face_set_synthesize (cairo_font_face_t *font_face,
@@ -99,46 +80,31 @@ cairo_ft_font_face_set_synthesize (cairo_font_face_t *font_face,
 	^ self nbCall: #( void cairo_ft_font_face_set_synthesize(self, int flags )) 
 ]
 
-{
-	#category : #'external resource management',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontFace>>resourceData  [
+{ #category : #'external resource management' }
+CairoFontFace >> resourceData [ 
 	^ handle value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontFace>>status [
+{ #category : #accessing }
+CairoFontFace >> status [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
 	^ self nbCall: #(int cairo_font_face_status (self))
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontFace>>synthesizeBold [
+{ #category : #accessing }
+CairoFontFace >> synthesizeBold [
 	self primSetSynthesizeEmphasis: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontFace>>synthesizeBoldAndOblique [
+{ #category : #accessing }
+CairoFontFace >> synthesizeBoldAndOblique [
 	self primSetSynthesizeEmphasis: 3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontFace>>synthesizeEmphasis: emphasisCode [
+{ #category : #accessing }
+CairoFontFace >> synthesizeEmphasis: emphasisCode [
 	emphasisCode = (TextEmphasis bold emphasisCode | TextEmphasis italic emphasisCode)
 		ifTrue: [ ^ self synthesizeBoldAndOblique ].
 	emphasisCode = TextEmphasis bold emphasisCode
@@ -147,10 +113,7 @@ CairoFontFace>>synthesizeEmphasis: emphasisCode [
 		ifTrue: [ ^ self synthesizeOblique ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFontFace>>synthesizeOblique [
+{ #category : #accessing }
+CairoFontFace >> synthesizeOblique [
 	self primSetSynthesizeEmphasis: 2
 ]

@@ -11,15 +11,11 @@ Class {
 		'startPosition',
 		'endPosition'
 	],
-	#category : #Ombu-Stores,
-	#timestamp : 'MartinDias 4/13/2017 20:23'
+	#category : #Ombu-Stores
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlock class>>store: anOmBlockFileStore startPosition: aStartPosition endPosition: anEndPosition firstEntryReference: anOmReference [
+{ #category : #'instance creation' }
+OmBlock class >> store: anOmBlockFileStore startPosition: aStartPosition endPosition: anEndPosition firstEntryReference: anOmReference [
 
 	^ self basicNew
 		initializeWithStore: anOmBlockFileStore
@@ -30,11 +26,8 @@ OmBlock class>>store: anOmBlockFileStore startPosition: aStartPosition endPositi
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlock>>atLocalName: aString ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
+{ #category : #accessing }
+OmBlock >> atLocalName: aString ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
 
 	| index |
 	self checkIfMustRefreshBlock.
@@ -47,44 +40,29 @@ OmBlock>>atLocalName: aString ifPresent: presentBlockClosure ifAbsent: absentBlo
 			presentBlockClosure value: (positions at: index) ]
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlock>>checkIfMustRefreshBlock [
+{ #category : #refreshing }
+OmBlock >> checkIfMustRefreshBlock [
 	
 	positions ifNil: [ self refresh ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlock>>endPosition [
+{ #category : #accessing }
+OmBlock >> endPosition [
 	^ endPosition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlock>>firstEntryReference [
+{ #category : #accessing }
+OmBlock >> firstEntryReference [
 	^ firstEntryReference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlock>>firstLocalNameAsInteger [
+{ #category : #accessing }
+OmBlock >> firstLocalNameAsInteger [
 	^ self firstEntryReference localName asInteger
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlock>>initializeWithStore: anOmBlockFileStore startPosition: aStartPosition endPosition: anEndPosition firstEntryReference: anOmReference [
+{ #category : #initialization }
+OmBlock >> initializeWithStore: anOmBlockFileStore startPosition: aStartPosition endPosition: anEndPosition firstEntryReference: anOmReference [
 
 	self initialize.
 	store := anOmBlockFileStore.
@@ -94,11 +72,8 @@ OmBlock>>initializeWithStore: anOmBlockFileStore startPosition: aStartPosition e
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlock>>lastLocalNameAsInteger [
+{ #category : #accessing }
+OmBlock >> lastLocalNameAsInteger [
 
 	self checkIfMustRefreshBlock.
 	
@@ -106,19 +81,13 @@ OmBlock>>lastLocalNameAsInteger [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlock>>positions [
+{ #category : #accessing }
+OmBlock >> positions [
 	^ positions
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlock>>printOn: aStream [
+{ #category : #printing }
+OmBlock >> printOn: aStream [
 
 	super printOn: aStream.
 	
@@ -133,21 +102,15 @@ OmBlock>>printOn: aStream [
 
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlock>>refresh [
+{ #category : #refreshing }
+OmBlock >> refresh [
 	"Read all OmEntry instances that belong to my range of file positions"
 	
 	positions := store entryPositionsStartingAt: startPosition upTo: endPosition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlock>>refreshIfNeededStartingAt: firstStreamPosition since: initialLocalName  [
+{ #category : #accessing }
+OmBlock >> refreshIfNeededStartingAt: firstStreamPosition since: initialLocalName [ 
 
 	positions isEmptyOrNil ifTrue: [ ^self ]. "Initial #refresh not yet done, so let things untouched."
 
@@ -159,18 +122,12 @@ OmBlock>>refreshIfNeededStartingAt: firstStreamPosition since: initialLocalName 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlock>>startPosition [
+{ #category : #accessing }
+OmBlock >> startPosition [
 	^ startPosition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmBlock>>store [
+{ #category : #accessing }
+OmBlock >> store [
 	^ store
 ]

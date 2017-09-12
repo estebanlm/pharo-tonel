@@ -1,12 +1,7 @@
-Extension {
-	#name : #MenuItemMorph
-}
+Extension { #name : #MenuItemMorph }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MenuItemMorph class>>gtExampleMenuItemMorphWithSubitems [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MenuItemMorph class >> gtExampleMenuItemMorphWithSubitems [
 	<gtExample>
 	<label: 'Menu item with subitems'>
 	
@@ -14,11 +9,8 @@ MenuItemMorph class>>gtExampleMenuItemMorphWithSubitems [
 		detect: [ :each | each contents = 'System' ]
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MenuItemMorph class>>gtExampleMenuItemMorphWithoutSubitems [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MenuItemMorph class >> gtExampleMenuItemMorphWithoutSubitems [
 	<gtExample>
 	<label: 'Menu item without subitems'>
 	
@@ -26,29 +18,20 @@ MenuItemMorph class>>gtExampleMenuItemMorphWithoutSubitems [
 		detect: [ :each | each contents = 'System Browser' ]
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MenuItemMorph>>spotterActDefault [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MenuItemMorph >> spotterActDefault [
 	self doButtonAction
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MenuItemMorph>>spotterItemsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MenuItemMorph >> spotterItemsFor: aStep [
 	<spotterOrder: 10>
 	self hasSubMenu ifTrue: [ 
 		self subMenu spotterItemsFor: aStep ]
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MenuItemMorph>>spotterPreviewMenuIn: aComposite [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MenuItemMorph >> spotterPreviewMenuIn: aComposite [
 	<spotterPreview: 10>
 	
 	aComposite list

@@ -4,32 +4,22 @@ I represent the Alt key modifier. Look at my superclass for a more detailed expl
 Class {
 	#name : #KMAltModifier,
 	#superclass : #KMModifier,
-	#category : #Keymapping-KeyCombinations,
-	#timestamp : '<historical>'
+	#category : #Keymapping-KeyCombinations
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMAltModifier>>eventCode [
+{ #category : #accessing }
+KMAltModifier >> eventCode [
 	^32
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMAltModifier>>initialize [
+{ #category : #initialization }
+KMAltModifier >> initialize [
 	super initialize.
 	identifier := #a.
 	name := 'Alt'.
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMAltModifier>>matchesEvent: aKeyboardEvent [
+{ #category : #matching }
+KMAltModifier >> matchesEvent: aKeyboardEvent [
 	^ aKeyboardEvent altKeyPressed
 ]

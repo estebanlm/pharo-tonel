@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MalDijkstraNode,
 	#superclass : #MalGraphNode,
@@ -12,25 +9,18 @@ Class {
 		'nextEdges',
 		'previousNodes'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstraNode>>from: aNode edge: anEdge [
+{ #category : #accessing }
+MalDijkstraNode >> from: aNode edge: anEdge [
 
 	self previousNodes add: aNode.
 	self previousEdges add: anEdge
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstraNode>>initialize [
+{ #category : #initialization }
+MalDijkstraNode >> initialize [
 
 	previousNodes := OrderedCollection new.
 	previousEdges := OrderedCollection new.
@@ -38,45 +28,30 @@ MalDijkstraNode>>initialize [
 	pathWeight := Float infinity "initialization for Dijsktra"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstraNode>>nextEdges [
+{ #category : #accessing }
+MalDijkstraNode >> nextEdges [
 
 	^ nextEdges
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstraNode>>pathWeight [
+{ #category : #accessing }
+MalDijkstraNode >> pathWeight [
 	^ pathWeight
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstraNode>>pathWeight: anObject [
+{ #category : #accessing }
+MalDijkstraNode >> pathWeight: anObject [
 	pathWeight := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstraNode>>previousEdges [
+{ #category : #accessing }
+MalDijkstraNode >> previousEdges [
 
 	^ previousEdges
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalDijkstraNode>>previousNodes [
+{ #category : #accessing }
+MalDijkstraNode >> previousNodes [
 
 	^ previousNodes
 ]

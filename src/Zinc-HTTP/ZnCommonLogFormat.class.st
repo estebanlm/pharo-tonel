@@ -19,44 +19,31 @@ Class {
 	#instVars : [
 		'combined'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 7/1/2015 16:34'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCommonLogFormat>>clientIPAddressFrom: event [
+{ #category : #private }
+ZnCommonLogFormat >> clientIPAddressFrom: event [
 	^ event request headers 
 		at: ZnConstants remoteAddressHeader 
 		ifAbsent: [ '-' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCommonLogFormat>>combined [
+{ #category : #accessing }
+ZnCommonLogFormat >> combined [
 	^ combined
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCommonLogFormat>>combined: boolean [
+{ #category : #accessing }
+ZnCommonLogFormat >> combined: boolean [
 	"If boolean is true (the default), use the 'Combined' format, 
 	adding Referer and User-Agent fields."
 	
 	combined := boolean
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCommonLogFormat>>format: event on: stream [
+{ #category : #public }
+ZnCommonLogFormat >> format: event on: stream [
 	"Output a ZnServerTransactionEvent on a text stream in Common Log Format"
 	
 	stream << (self clientIPAddressFrom: event); << ' - '.
@@ -67,11 +54,8 @@ ZnCommonLogFormat>>format: event on: stream [
 	combined ifTrue: [ self formatCombinedFields: event request on: stream ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCommonLogFormat>>formatCombinedFields: request on: stream [
+{ #category : #private }
+ZnCommonLogFormat >> formatCombinedFields: request on: stream [
 	| referer userAgent |
 	referer := request headers at: 'Referer' ifAbsent: [ '-' ].
 	userAgent := request headers at: 'User-Agent' ifAbsent: [ '-' ].
@@ -82,11 +66,8 @@ ZnCommonLogFormat>>formatCombinedFields: request on: stream [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCommonLogFormat>>formatRequest: event on: stream [
+{ #category : #private }
+ZnCommonLogFormat >> formatRequest: event on: stream [
 	| requestLine |
 	stream space.
 	requestLine := event request requestLine.
@@ -96,11 +77,8 @@ ZnCommonLogFormat>>formatRequest: event on: stream [
 	stream << $"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCommonLogFormat>>formatResponse: event on: stream [
+{ #category : #private }
+ZnCommonLogFormat >> formatResponse: event [ on: stream
 	| size |
 	stream space.
 	stream print: event response code.
@@ -112,11 +90,8 @@ ZnCommonLogFormat>>formatResponse: event on: stream [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCommonLogFormat>>formatTimestamp: timestamp on: stream [
+{ #category : #private }
+ZnCommonLogFormat >> formatTimestamp: timestamp on: stream [
 	stream nextPut: $[.
 	timestamp dayOfMonth printOn: stream base: 10 length: 2 padded: true.
 	stream nextPut: $/.
@@ -133,20 +108,14 @@ ZnCommonLogFormat>>formatTimestamp: timestamp on: stream [
 	stream nextPut: $]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCommonLogFormat>>initialize [
+{ #category : #initialize }
+ZnCommonLogFormat >> initialize [
 	super initialize.
 	combined := true.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnCommonLogFormat>>userFrom: event [
+{ #category : #private }
+ZnCommonLogFormat >> userFrom: event [
 	^ [ event request basicAuthentication first ]
 		on: Error
 		do: [ '-' ]

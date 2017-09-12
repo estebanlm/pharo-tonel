@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #SlotEnvironmentTest,
 	#superclass : #SlotSilentTest,
-	#category : #Slot-Tests,
-	#timestamp : ''
+	#category : #Slot-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotEnvironmentTest>>testBasicEnvironment [
+{ #category : #tests }
+SlotEnvironmentTest >> testBasicEnvironment [
 	| environment |
 	environment := SystemDictionary new.
 	

@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'group'
 	],
-	#category : #NautilusCommon-Announcements,
-	#timestamp : '<historical>'
+	#category : #NautilusCommon-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusGroupSelected class>>group: aGroup [
+{ #category : #'instance creation' }
+NautilusGroupSelected class >> group: aGroup [
 
 	^ self new group: aGroup
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusGroupSelected>>group [
+{ #category : #accessing }
+NautilusGroupSelected >> group [
 
 		^ group
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusGroupSelected>>group: anObject [
+{ #category : #accessing }
+NautilusGroupSelected >> group: anObject [
 	
 		group := anObject
 ]

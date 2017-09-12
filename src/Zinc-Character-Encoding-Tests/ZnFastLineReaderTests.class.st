@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnFastLineReaderTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Character-Encoding-Tests,
-	#timestamp : ''
+	#category : #Zinc-Character-Encoding-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnFastLineReaderTests>>testLinesDo [
+{ #category : #testing }
+ZnFastLineReaderTests >> testLinesDo [
 	| lines reader |
 	lines := #( 'foo' 'bar' 'last').
 	reader := ZnFastLineReader on: (Character lf join: lines) readStream.
@@ -22,11 +15,8 @@ ZnFastLineReaderTests>>testLinesDo [
 		equals: lines
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnFastLineReaderTests>>testNextLine [
+{ #category : #testing }
+ZnFastLineReaderTests >> testNextLine [
 	| reader |
 	reader := ZnFastLineReader on: 'abc' readStream.
 	self assert: reader nextLine equals: 'abc'.

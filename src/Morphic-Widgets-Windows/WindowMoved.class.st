@@ -11,46 +11,30 @@ Class {
 		'oldPosition',
 		'newPosition'
 	],
-	#category : #Morphic-Widgets-Windows-Announcements,
-	#timestamp : 'NicolaiHess 4/25/2015 23:16'
+	#category : #Morphic-Widgets-Windows-Announcements
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowMoved>>isMoved [
+{ #category : #testing }
+WindowMoved >> isMoved [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowMoved>>newPosition [
+{ #category : #accessing }
+WindowMoved >> newPosition [
 	^ newPosition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowMoved>>newPosition: anObject [
+{ #category : #accessing }
+WindowMoved >> newPosition: anObject [
 	newPosition := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowMoved>>oldPosition [
+{ #category : #accessing }
+WindowMoved >> oldPosition [
 	^ oldPosition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-WindowMoved>>oldPosition: anObject [
+{ #category : #accessing }
+WindowMoved >> oldPosition: anObject [
 	oldPosition := anObject
 ]

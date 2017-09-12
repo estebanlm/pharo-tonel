@@ -4,15 +4,11 @@ Test originally from Andreas Raab
 Class {
 	#name : #AllocationTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Exception,
-	#timestamp : 'StephaneDucasse 12/18/2009 12:03'
+	#category : #Kernel-Tests-Exception
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-AllocationTest>>testOneGigAllocation [
+{ #category : #testing }
+AllocationTest >> testOneGigAllocation [
 	"Documentating a weird bug in the allocator"
 	
 	| sz array failed |
@@ -23,11 +19,8 @@ AllocationTest>>testOneGigAllocation [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-AllocationTest>>testOneMegAllocation [
+{ #category : #testing }
+AllocationTest >> testOneMegAllocation [
 	"Documentating a weird bug in the allocator"
 	
 	| sz array failed |

@@ -14,45 +14,32 @@ Class {
 		'writingScopes',
 		'remoteNode'
 	],
-	#category : #Compiler-ParseNodes,
-	#timestamp : '<historical>'
+	#category : #Compiler-ParseNodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>accept: aVisitor [
+{ #category : #visiting }
+TempVariableNode >> accept: aVisitor [
 	^aVisitor visitTempVariableNode: self
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>addReadWithin: scopeBlock "<BlockNode>" at: location "<Integer>" [
+{ #category : #'code generation (closures)' }
+TempVariableNode >> addReadWithin: scopeBlock "<BlockNode>" at: location [ "<Integer>"
 	readingScopes ifNil: [readingScopes := Dictionary new].
 	(readingScopes at: scopeBlock ifAbsentPut: [Set new]) add: location.
 	remoteNode ifNotNil:
 		[remoteNode addReadWithin: scopeBlock at: location]
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>addWriteWithin: scopeBlock "<BlockNode>" at: location "<Integer>" [
+{ #category : #'code generation (closures)' }
+TempVariableNode >> addWriteWithin: scopeBlock "<BlockNode>" at: location [ "<Integer>"
 	writingScopes ifNil: [writingScopes := Dictionary new].
 	(writingScopes at: scopeBlock ifAbsentPut: [Set new]) add: location.
 	remoteNode ifNotNil:
 		[remoteNode addReadWithin: scopeBlock at: location]
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>analyseClosure: rootNode "<MethodNode>" [
+{ #category : #'code generation (closures)' }
+TempVariableNode >> analyseClosure: rootNode [ "<MethodNode>"
 	"Analyse whether the temporary needs to be made remote
 	 or not, and answer whether it was made remote.
 	 A temp cannot be local if it is written to remotely,
@@ -82,45 +69,30 @@ TempVariableNode>>analyseClosure: rootNode "<MethodNode>" [
 	^false
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools "<Dictionary>" [
+{ #category : #'code generation (closures)' }
+TempVariableNode >> analyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools [ "<Dictionary>"
 	self addReadWithin: scopeBlock at: rootNode locationCounter
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>assignmentCheck: encoder at: location [
+{ #category : #testing }
+TempVariableNode >> assignmentCheck: encoder at: location [
 	^(self isBlockArg or: [self isMethodArg])
 			ifTrue: [location]
 			ifFalse: [-1]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>beBlockArg [
+{ #category : #testing }
+TempVariableNode >> beBlockArg [
 	argType := #block
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>beMethodArg [
+{ #category : #testing }
+TempVariableNode >> beMethodArg [
 	argType := #method
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>beingAssignedToAnalyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools "<Dictionary>" [
+{ #category : #'code generation (closures)' }
+TempVariableNode >> beingAssignedToAnalyseTempsWithin: scopeBlock "<BlockNode>" rootNode: rootNode "<MethodNode>" assignmentPools: assignmentPools [ "<Dictionary>"
 	self addWriteWithin: scopeBlock at: rootNode locationCounter.
 	"For analysis of optimized blocks also record the set of temporaries written to
 	 within optimized blocks so that additional writes can be added at locations that
@@ -136,129 +108,87 @@ TempVariableNode>>beingAssignedToAnalyseTempsWithin: scopeBlock "<BlockNode>" ro
 			[set add: self]]
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>definingScope [
+{ #category : #'code generation (closures)' }
+TempVariableNode >> definingScope [
 	^definingScope
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>definingScope: scopeBlock  [
+{ #category : #'code generation (closures)' }
+TempVariableNode >> definingScope: scopeBlock [ 
 	"<BlockNode>"
 	definingScope ifNotNil: [self error: 'temp has more than one defining scope.  This is probably a parser error'].
 	definingScope := scopeBlock
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>emitCodeForLoad: stack encoder: encoder [
+{ #category : #'code generation' }
+TempVariableNode >> emitCodeForLoad: stack encoder: encoder [
 	remoteNode ~~ nil ifTrue:
 		[remoteNode emitCodeForLoadFor: self stack: stack encoder: encoder]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>emitCodeForStore: stack encoder: encoder [
+{ #category : #'code generation' }
+TempVariableNode >> emitCodeForStore: stack encoder: encoder [
 	remoteNode ~~ nil ifTrue:
 		[^remoteNode emitCodeForStoreInto: self stack: stack encoder: encoder].
 	encoder genStoreTemp: index
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>emitCodeForStorePop: stack encoder: encoder [
+{ #category : #'code generation' }
+TempVariableNode >> emitCodeForStorePop: stack encoder: encoder [
 	remoteNode ~~ nil ifTrue:
 		[^remoteNode emitCodeForStorePopInto: self stack: stack encoder: encoder].
 	encoder genStorePopTemp: index.
 	stack pop: 1
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>emitCodeForValue: stack encoder: encoder [
+{ #category : #'code generation' }
+TempVariableNode >> emitCodeForValue: stack encoder: encoder [
 	remoteNode ~~ nil ifTrue:
 		[^remoteNode emitCodeForValueOf: self stack: stack encoder: encoder].
 	encoder genPushTemp: index.
 	stack push: 1
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>index: anInteger [
+{ #category : #'code generation (closures)' }
+TempVariableNode >> index: anInteger [
 	"For renumbering temps in the closure compiler."
 	index := anInteger.
 	code := self code: index type: LdTempType
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>isArg [
+{ #category : #testing }
+TempVariableNode >> isArg [
 	^argType notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>isBlockArg [
+{ #category : #testing }
+TempVariableNode >> isBlockArg [
 	^#block == argType
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>isDeclaredAtMethodLevel [
+{ #category : #testing }
+TempVariableNode >> isDeclaredAtMethodLevel [
 	"For the explainer."
 	^scope = 0
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>isDefinedWithinBlockExtent: anInterval [
+{ #category : #'code generation (closures)' }
+TempVariableNode >> isDefinedWithinBlockExtent: anInterval [
 	^anInterval rangeIncludes: definingScope actualScope blockExtent first
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>isIndirectTempVector [
+{ #category : #'code generation (closures)' }
+TempVariableNode >> isIndirectTempVector [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>isMethodArg [
+{ #category : #testing }
+TempVariableNode >> isMethodArg [
 	^#method == argType
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>isReferencedWithinBlockExtent: anInterval  [
+{ #category : #'code generation (closures)' }
+TempVariableNode >> isReferencedWithinBlockExtent: anInterval [ 
 	readingScopes ~~ nil ifTrue:
 		[readingScopes do:
 			[:set "<Set of <Integer>>"|
@@ -276,70 +206,46 @@ TempVariableNode>>isReferencedWithinBlockExtent: anInterval  [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>isRemote [
+{ #category : #testing }
+TempVariableNode >> isRemote [
 	^remoteNode notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>isTemp [
+{ #category : #testing }
+TempVariableNode >> isTemp [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>isUndefTemp [
+{ #category : #testing }
+TempVariableNode >> isUndefTemp [
 	^ hasDefs not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>isUnusedTemp [
+{ #category : #testing }
+TempVariableNode >> isUnusedTemp [
 	^ hasRefs not
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>name: varName index: i type: type scope: level [
+{ #category : #initialize-release }
+TempVariableNode >> name: varName index: i type: type scope: level [
 	"Only used for initting temporary variables"
 	hasDefs := hasRefs := false.
 	scope := level.
 	^super name: varName key: varName index: i type: type
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>nowHasDef [
+{ #category : #initialize-release }
+TempVariableNode >> nowHasDef [
 	hasDefs := true
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>nowHasRef [
+{ #category : #initialize-release }
+TempVariableNode >> nowHasRef [
 	hasRefs := true
 ]
 
-{
-	#category : #'code generation (closures)',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>referenceScopesAndIndicesDo: aBinaryBlock [
+{ #category : #'code generation (closures)' }
+TempVariableNode >> referenceScopesAndIndicesDo: aBinaryBlock [
 	"Evaluate aBinaryBlock with all read or write scopes and locations.
 	 This is used to copy the reference information into RemoteTempVectorNodes"
 	readingScopes ~~ nil ifTrue:
@@ -352,27 +258,18 @@ TempVariableNode>>referenceScopesAndIndicesDo: aBinaryBlock [
 			set do: [:location| aBinaryBlock value: scopeBlock value: location]]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>remoteNode [
+{ #category : #testing }
+TempVariableNode >> remoteNode [
 	^remoteNode
 ]
 
-{
-	#category : #decompiler,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>remoteNode: aRemoteTempVectorNode [
+{ #category : #decompiler }
+TempVariableNode >> remoteNode: aRemoteTempVectorNode [
 	remoteNode := aRemoteTempVectorNode
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>scope [
+{ #category : #testing }
+TempVariableNode >> scope [
 	"Answer scope of temporary variables.
 	 Currently only the following distinctions are made:
 		 0	outer level: args and user-declared temps
@@ -382,11 +279,8 @@ TempVariableNode>>scope [
 	^scope
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>scope: level [
+{ #category : #initialize-release }
+TempVariableNode >> scope: level [
 	"Note scope of temporary variables.
 	Currently only the following distinctions are made:
 		0	outer level: args and user-declared temps
@@ -396,43 +290,31 @@ TempVariableNode>>scope: level [
 	scope := level
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>sizeCodeForLoad: encoder [
+{ #category : #'code generation' }
+TempVariableNode >> sizeCodeForLoad: encoder [
 	^remoteNode
 		ifNil: [0]
 		ifNotNil: [remoteNode sizeCodeForLoadFor: self encoder: encoder]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>sizeCodeForStore: encoder [
+{ #category : #'code generation' }
+TempVariableNode >> sizeCodeForStore: encoder [
 	remoteNode ~~ nil ifTrue:
 		[^remoteNode sizeCodeForStoreInto: self encoder: encoder].
 	self reserve: encoder.
 	^encoder sizeStoreTemp: index
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>sizeCodeForStorePop: encoder [
+{ #category : #'code generation' }
+TempVariableNode >> sizeCodeForStorePop: encoder [
 	remoteNode ~~ nil ifTrue:
 		[^remoteNode sizeCodeForStorePopInto: self encoder: encoder].
 	self reserve: encoder.
 	^encoder sizeStorePopTemp: index
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-TempVariableNode>>sizeCodeForValue: encoder [
+{ #category : #'code generation' }
+TempVariableNode >> sizeCodeForValue: encoder [
 	remoteNode ~~ nil ifTrue:
 		[^remoteNode sizeCodeForValueOf: self encoder: encoder].
 	self reserve: encoder.

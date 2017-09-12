@@ -7,38 +7,25 @@ Class {
 	#instVars : [
 		'message'
 	],
-	#category : #Network-Mail,
-	#timestamp : '<historical>'
+	#category : #Network-Mail
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-TextMessageLink class>>message: aMessage [
+{ #category : #'instance creation' }
+TextMessageLink class >> message: aMessage [
 	^self new initialize: aMessage
 ]
 
-{
-	#category : #appearance,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-TextMessageLink>>emphasizeScanner: scanner [
+{ #category : #appearance }
+TextMessageLink >> emphasizeScanner: scanner [
 	scanner textColor: Color brown
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-TextMessageLink>>initialize: message0 [
+{ #category : #initialization }
+TextMessageLink >> initialize: message0 [
 	message := message0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-TextMessageLink>>message [
+{ #category : #accessing }
+TextMessageLink >> message [
 	^message
 ]

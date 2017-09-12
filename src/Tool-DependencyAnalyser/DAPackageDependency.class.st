@@ -12,162 +12,104 @@ Class {
 		'source',
 		'target'
 	],
-	#category : #Tool-DependencyAnalyser-Core,
-	#timestamp : 'BaptisteQuide 7/11/2014 14:39'
+	#category : #Tool-DependencyAnalyser-Core
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency class>>from: aSourcePackage to: aDestinationPackage [
+{ #category : #instance-creation }
+DAPackageDependency class >> from: aSourcePackage to: aDestinationPackage [
 	^ self new initializeFrom: aSourcePackage to: aDestinationPackage
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>displayString [
+{ #category : #printing }
+DAPackageDependency >> displayString [
 	^ String streamContents: [ :stream | self printReasonOn: stream ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>hash [
+{ #category : #accessing }
+DAPackageDependency >> hash [
 	^ source hash bitXor: target hash
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>initializeFrom: aSourcePackage to: aTargetPackage [
+{ #category : #initialization }
+DAPackageDependency >> initializeFrom: aSourcePackage to: aTargetPackage [
 	source := aSourcePackage.
 	target := aTargetPackage
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>isExtensionDependency [
+{ #category : #testing }
+DAPackageDependency >> isExtensionDependency [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>isExternal [
+{ #category : #testing }
+DAPackageDependency >> isExternal [
 	^ self isInternal not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>isInheritanceDependency [
+{ #category : #testing }
+DAPackageDependency >> isInheritanceDependency [
 	^ false 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>isInternal [
+{ #category : #testing }
+DAPackageDependency >> isInternal [
 	^ self source = self target
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>isMessageSendDependency [
+{ #category : #testing }
+DAPackageDependency >> isMessageSendDependency [
 	^ false 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>isReferenceDependency [
+{ #category : #testing }
+DAPackageDependency >> isReferenceDependency [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>isTraitDependency [
+{ #category : #testing }
+DAPackageDependency >> isTraitDependency [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>numberOfDependencies [
+{ #category : #accessing }
+DAPackageDependency >> numberOfDependencies [
 	^ 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>packageName [
+{ #category : #accessing }
+DAPackageDependency >> packageName [
 	^ target packageName
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>printOn: aStream [
+{ #category : #printing }
+DAPackageDependency >> printOn: aStream [
 	self printReasonOn: aStream
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>printReasonOn: aStream [
+{ #category : #printing }
+DAPackageDependency >> printReasonOn: aStream [
 	aStream 
 		nextPutAll: source packageName;
 		nextPutAll: ' -> ';
 		nextPutAll: target packageName
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>printShortReasonOn: aStream [
+{ #category : #printing }
+DAPackageDependency >> printShortReasonOn: aStream [
 	self printReasonOn: aStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>reason [
+{ #category : #accessing }
+DAPackageDependency >> reason [
 	^ String streamContents: [ :stream | self printReasonOn: stream ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>source [
+{ #category : #accessing }
+DAPackageDependency >> source [
 	^ source
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependency>>target [
+{ #category : #accessing }
+DAPackageDependency >> target [
 	^ target
 ]

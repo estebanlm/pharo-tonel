@@ -8,39 +8,26 @@ Class {
 		'index',
 		'argName'
 	],
-	#category : #UnifiedFFI,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodArgument>>argName [
+{ #category : #accessing }
+FFIMethodArgument >> argName [
 	^ argName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodArgument>>argName: anObject [
+{ #category : #accessing }
+FFIMethodArgument >> argName: anObject [
 	argName := anObject
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodArgument>>emitArgument: aBuilder context: aContext [
+{ #category : #'emitting code' }
+FFIMethodArgument >> emitArgument: aBuilder context: aContext [
 	aBuilder pushTemp: self argName asSymbol
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodArgument>>emitArgument: aBuilder context: aContext objectClass: objectClass instVarName: aName [
+{ #category : #'emitting code' }
+FFIMethodArgument >> emitArgument: aBuilder context: aContext objectClass: objectClass instVarName: aName [
 	"If argument is an object, I need to send value of instVar aName instead it self"
 	aBuilder 
 		pushTemp: self argName asSymbol;
@@ -50,11 +37,8 @@ FFIMethodArgument>>emitArgument: aBuilder context: aContext objectClass: objectC
 		send: #instVarAt:
 ]
 
-{
-	#category : #'private emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodArgument>>emitArgumentVariableAccesingPart: aBuilder context: aContext objectClass: objectClass instVarName: aName [
+{ #category : #'private emitting code' }
+FFIMethodArgument >> emitArgumentVariableAccesingPart: aBuilder context: aContext objectClass: objectClass instVarName: aName [
 	aBuilder 
 		pushTemp: self argName asSymbol;
 		pushLiteral: (objectClass 
@@ -62,28 +46,19 @@ FFIMethodArgument>>emitArgumentVariableAccesingPart: aBuilder context: aContext 
 			ifAbsent: [ self error: 'No ', aName, ' instVar' ]).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodArgument>>index [
+{ #category : #accessing }
+FFIMethodArgument >> index [
 	"I am the index in the method. 
 	 For example, method: arg1 withArg: arg2 will have arguments at index 1 and at index 2"
 	^ index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodArgument>>index: anObject [
+{ #category : #accessing }
+FFIMethodArgument >> index: anObject [
 	index := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIMethodArgument>>rolledPointerTempName [
+{ #category : #private }
+FFIMethodArgument >> rolledPointerTempName [
 	^ self rolledPointerTempNameFor: self argName
 ]

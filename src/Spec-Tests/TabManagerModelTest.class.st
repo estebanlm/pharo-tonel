@@ -1,47 +1,31 @@
-"
-
-"
 Class {
 	#name : #TabManagerModelTest,
 	#superclass : #SpecTestCase,
 	#instVars : [
 		'redTab'
 	],
-	#category : #Spec-Tests-Core-Widgets,
-	#timestamp : ''
+	#category : #Spec-Tests-Core-Widgets
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabManagerModelTest>>classToTest [
+{ #category : #running }
+TabManagerModelTest >> classToTest [
 	^ TabManagerModel
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabManagerModelTest>>initializeTestedInstance [
+{ #category : #running }
+TabManagerModelTest >> initializeTestedInstance [
 	redTab := self redMorphTab
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabManagerModelTest>>morphicTabsFor: aManagerModel [
+{ #category : #utility }
+TabManagerModelTest >> morphicTabsFor: aManagerModel [
 	"Retrieve all tabs in the morphic world to test whether they are being properly added/removed. It is assumed that the Model has already been built."
 
 	^ (aManagerModel widget widget submorphs detect: [ :each | each class = TabBarMorph ]) tabs
 ]
 
-{
-	#category : #'tabs creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabManagerModelTest>>redMorphTab [
+{ #category : #'tabs creation' }
+TabManagerModelTest >> redMorphTab [
 	| tab |
 	tab := TabModel new.
 	tab
@@ -54,22 +38,16 @@ TabManagerModelTest>>redMorphTab [
 	^ tab
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabManagerModelTest>>testAddTabOpened [
+{ #category : #tests }
+TabManagerModelTest >> testAddTabOpened [
 	self openInstance.
 	self assertCollection: testedInstance tabs hasSameElements: #().
 	testedInstance addTab: redTab.
 	self assertCollection: testedInstance tabs hasSameElements: {redTab}
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabManagerModelTest>>testAddTabSetOwner [
+{ #category : #tests }
+TabManagerModelTest >> testAddTabSetOwner [
 	"issue #16553"
 
 	self assert: redTab owner equals: nil.
@@ -77,21 +55,15 @@ TabManagerModelTest>>testAddTabSetOwner [
 	self assert: redTab owner equals: testedInstance
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabManagerModelTest>>testAddTabUnopened [
+{ #category : #tests }
+TabManagerModelTest >> testAddTabUnopened [
 	self assertCollection: testedInstance tabs hasSameElements: #().
 	testedInstance addTab: redTab.
 	self assertCollection: testedInstance tabs hasSameElements: {redTab}
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabManagerModelTest>>testInitialSelectedTab [
+{ #category : #tests }
+TabManagerModelTest >> testInitialSelectedTab [
 	"issue 15145"
 
 	self assert: testedInstance selectedTab equals: nil.
@@ -101,11 +73,8 @@ TabManagerModelTest>>testInitialSelectedTab [
 	self assert: testedInstance selectedTab equals: redTab
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabManagerModelTest>>testRemoveTab [
+{ #category : #tests }
+TabManagerModelTest >> testRemoveTab [
 	"issue 11461"
 
 	testedInstance addTab: redTab.
@@ -114,11 +83,8 @@ TabManagerModelTest>>testRemoveTab [
 	self assertCollection: testedInstance tabs hasSameElements: #()
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabManagerModelTest>>testRemoveTabFromManager [
+{ #category : #tests }
+TabManagerModelTest >> testRemoveTabFromManager [
 	"issue 11461 - update tab collection in the model when tab has been removed in morphic"
 
 	self openInstance.
@@ -130,11 +96,8 @@ TabManagerModelTest>>testRemoveTabFromManager [
 	self assertCollection: (self morphicTabsFor: testedInstance) hasSameElements: #()
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabManagerModelTest>>testRemoveTabFromManager2 [
+{ #category : #tests }
+TabManagerModelTest >> testRemoveTabFromManager2 [
 	"issue 11461 -	update tab collection in the model when tab has been removed in morphic"
 
 	testedInstance addTab: redTab.
@@ -145,11 +108,8 @@ TabManagerModelTest>>testRemoveTabFromManager2 [
 	self assertCollection: (self morphicTabsFor: testedInstance) hasSameElements: #()
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabManagerModelTest>>testRemoveTabFromMorphic [
+{ #category : #tests }
+TabManagerModelTest >> testRemoveTabFromMorphic [
 	"issue 11461 - remove tab from morphic when it was removed from model"
 
 	testedInstance addTab: redTab.
@@ -160,11 +120,8 @@ TabManagerModelTest>>testRemoveTabFromMorphic [
 	self assertCollection: (self morphicTabsFor: testedInstance) hasSameElements: #()
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TabManagerModelTest>>testRemoveTabUnsetOwner [
+{ #category : #tests }
+TabManagerModelTest >> testRemoveTabUnsetOwner [
 	"issue 16553"
 
 	testedInstance addTab: redTab.

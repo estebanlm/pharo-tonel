@@ -11,31 +11,20 @@ Class {
 		'drawingEnabled',
 		'textArea'
 	],
-	#category : #Rubric-Editing-Core,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:02'
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph class>>key [
+{ #category : #querying }
+RubParagraph class >> key [
 	^ nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>aboutToBeUnplugged [
-
+{ #category : #private }
+RubParagraph >> aboutToBeUnplugged [
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>actionAttributesUnder: aClickPoint event: anEvent do: aBlock [
+{ #category : #editing }
+RubParagraph >> actionAttributesUnder: aClickPoint event: anEvent do: aBlock [
 	|startBlock|
 	
 	startBlock := self characterBlockAtPoint: aClickPoint.
@@ -50,19 +39,13 @@ RubParagraph>>actionAttributesUnder: aClickPoint event: anEvent do: aBlock [
 				ifNotNil: [ aBlock cull: attribute cull: boxes ]]
 ]
 
-{
-	#category : #'accessing composer',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>actualWidth [
+{ #category : #'accessing composer' }
+RubParagraph >> actualWidth [
 	^ self composer actualWidth
 ]
 
-{
-	#category : #'geometry updating',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>adjustBottomY [
+{ #category : #'geometry updating' }
+RubParagraph >> adjustBottomY [
 	| heights  bottomY verticalSize |
 	heights := self lines collect: [ :each | each lineHeight ].
 	verticalSize := heights sum.
@@ -70,22 +53,16 @@ RubParagraph>>adjustBottomY [
 	self container: (self container withBottom: bottomY truncated).
 ]
 
-{
-	#category : #'geometry updating',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>adjustRightX [
+{ #category : #'geometry updating' }
+RubParagraph >> adjustRightX [
 	| shrink |
 	shrink := self container right - self maxRightX.
 	self lines do: [ :line | line paddingWidth: (line paddingWidth - shrink)].
 	self container: (self container withRight: self maxRightX)
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>characterBlockAtPoint: aPoint  [
+{ #category : #querying }
+RubParagraph >> characterBlockAtPoint: aPoint [ 
 	"Answer a CharacterBlock for the character in the text at aPoint."
 	| line |
 	line := self lines at: (self lineIndexForPoint: aPoint).
@@ -94,11 +71,8 @@ RubParagraph>>characterBlockAtPoint: aPoint  [
 		in: line
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>characterBlockForIndex: index  [
+{ #category : #querying }
+RubParagraph >> characterBlockForIndex: index [ 
 	"Answer a CharacterBlock for the character in text at index."
 	| line |
 	line := self lines at: (self lineIndexOfCharacterIndex: index).
@@ -107,11 +81,8 @@ RubParagraph>>characterBlockForIndex: index  [
 		in: line
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>click: anEvent for: model controller: editor [
+{ #category : #editing }
+RubParagraph >> click: anEvent for: model controller: editor [
 	"Give sensitive text a chance to fire.  Display flash: (100@100 extent: 100@100)."
 	
 	| action clickPoint |
@@ -130,20 +101,14 @@ RubParagraph>>click: anEvent for: model controller: editor [
 	^ action
 ]
 
-{
-	#category : #'accessing text area',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>closingDelimiters [
+{ #category : #'accessing text area' }
+RubParagraph >> closingDelimiters [
 	^ textArea closingDelimiters
 
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>compose [
+{ #category : #composition }
+RubParagraph >> compose [
 	self
 		disableDrawingWhile: [ 
 			self uptodateComposer 
@@ -156,19 +121,13 @@ RubParagraph>>compose [
 			textArea ifNotNil: [ textArea paragraphWasComposedFrom: 1 to: self text size ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>composer [
+{ #category : #accessing }
+RubParagraph >> composer [
 	^ composer ifNil: [ composer := self newComposer ]
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>compositionExtent [
+{ #category : #composition }
+RubParagraph >> compositionExtent [
 	"Return the bounds for composing this text.  There are two cases:
 	1.  wrapped is true -- grow downward as necessary,
 	2.  wrapped is false -- grow in 2D as nexessary."
@@ -178,130 +137,88 @@ RubParagraph>>compositionExtent [
 		ifFalse: [ RubAbstractTextArea defaultMaxExtent @ RubAbstractTextArea defaultMaxExtent ]) max: self minimumCompositionExtent
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>compositionRectangle [
+{ #category : #composition }
+RubParagraph >> compositionRectangle [
 	| e tl |
 	e := self compositionExtent.
 	tl := (self container insetBy: self margins) topLeft.
 	^ tl corner: (tl x + e x - self margins right - (self margins left max: self cursorWidth)) @ e y
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>container [
+{ #category : #accessing }
+RubParagraph >> container [
 	^ container
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>container: atextContainerOrRectangle [
+{ #category : #accessing }
+RubParagraph >> container: atextContainerOrRectangle [
 	container := atextContainerOrRectangle.
 
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>containsPoint: aPoint [
+{ #category : #querying }
+RubParagraph >> containsPoint: aPoint [
 	^ (self lines at: (self lineIndexForPoint: aPoint)) rectangle
 		containsPoint: aPoint
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>copy [
+{ #category : #copying }
+RubParagraph >> copy [
 
 	^ self error: 'A ParagraphHandler should never be copied'.
 ]
 
-{
-	#category : #'accessing text area',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>cursorWidth [
+{ #category : #'accessing text area' }
+RubParagraph >> cursorWidth [
 	^ textArea cursorWidth
 
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>decoratorNamed: aKey [
+{ #category : #querying }
+RubParagraph >> decoratorNamed: aKey [
 	^ nil
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>deepCopy [
+{ #category : #copying }
+RubParagraph >> deepCopy [
 	"Don't want to copy the container (etc) or fonts in the TextStyle."
 
 	^ self error: 'A ParagraphHandler should never be deep copied'.
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>defaultCharacterBlock [
+{ #category : #querying }
+RubParagraph >> defaultCharacterBlock [
 	^ (RubCharacterBlock new
 		stringIndex: 1
 		topLeft: self lines first topLeft
 		extent: 0 @ 0) textLine: self lines first
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>defaultEmptyText [
+{ #category : #private }
+RubParagraph >> defaultEmptyText [
 	^ Text string: '' attributes: (Array with: self defaultFontChange)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>defaultFontChange [
+{ #category : #private }
+RubParagraph >> defaultFontChange [
 	^ (TextFontChange fontNumber: self textStyle defaultFontIndex)
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>disableDrawing [
+{ #category : #drawing }
+RubParagraph >> disableDrawing [
 	drawingEnabled := false
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>disableDrawingWhile: aBlock [
+{ #category : #drawing }
+RubParagraph >> disableDrawingWhile: aBlock [
 	self drawingEnabled ifFalse: [ ^ aBlock value ].
 	self disableDrawing.
 	aBlock
 		ensure: [ self enableDrawing ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>displayTextOnAthensCanvas: anAthensCanvas in: aRectangle [
+{ #category : #drawing }
+RubParagraph >> displayTextOnAthensCanvas: anAthensCanvas in: aRectangle [
 	| athensDisplayScanner offset leftInRun |
 	anAthensCanvas clipBy: aRectangle during:[
 	anAthensCanvas pathTransform
@@ -316,11 +233,8 @@ RubParagraph>>displayTextOnAthensCanvas: anAthensCanvas in: aRectangle [
 						ifTrue: [ leftInRun := athensDisplayScanner displayLine: line offset: offset leftInRun: leftInRun ] ] ] ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>drawOn: aCanvas using: aDisplayScanner at: aPosition [
+{ #category : #drawing }
+RubParagraph >> drawOn: aCanvas using: aDisplayScanner at: aPosition [
 	"Send all visible lines to the displayScanner for display"
 
 	| offset leftInRun line visibleRectangle |
@@ -335,36 +249,24 @@ RubParagraph>>drawOn: aCanvas using: aDisplayScanner at: aPosition [
 			ifTrue: [ leftInRun := aDisplayScanner displayLine: line offset: offset leftInRun: leftInRun ] ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>drawOnAthensCanvas: aCanvas bounds: aRectangle color: aColor [
+{ #category : #drawing }
+RubParagraph >> drawOnAthensCanvas: aCanvas bounds: aRectangle color: aColor [
 	aCanvas setPaint: aColor.
 	self displayTextOnAthensCanvas: aCanvas in: aRectangle
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>drawingEnabled [
+{ #category : #drawing }
+RubParagraph >> drawingEnabled [
 	^ drawingEnabled ifNil: [ drawingEnabled := true ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>enableDrawing [
+{ #category : #drawing }
+RubParagraph >> enableDrawing [
 	drawingEnabled := true
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>extent [
+{ #category : #geometry }
+RubParagraph >> extent [
 	^ self actualWidth
 		ifNil: [ self minimumExtent ]
 		ifNotNil: [ 
@@ -372,11 +274,8 @@ RubParagraph>>extent [
 				@ (self lines last bottom - self lines first top + self margins top + self margins bottom) ]
 ]
 
-{
-	#category : #'geometry updating',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>extentFromClientBottomRight: aPoint [
+{ #category : #'geometry updating' }
+RubParagraph >> extentFromClientBottomRight: aPoint [
 	| w newExtent |
 	self wrapped
 		ifFalse: [ ^ self extent ].
@@ -387,35 +286,23 @@ RubParagraph>>extentFromClientBottomRight: aPoint [
 	^ newExtent x @ self extent y
 ]
 
-{
-	#category : #'geometry updating',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>extentFromClientWidth: anInteger [
+{ #category : #'geometry updating' }
+RubParagraph >> extentFromClientWidth: anInteger [
 	^ self extentFromClientBottomRight: (anInteger @ self extent y)
 ]
 
-{
-	#category : #'mock selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>findRegex [
+{ #category : #'mock selection' }
+RubParagraph >> findRegex [
 	^ nil
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>firstLineCharacterIndexFromCharacterIndex: anIndex [
+{ #category : #querying }
+RubParagraph >> firstLineCharacterIndexFromCharacterIndex: anIndex [
 	^ (self lines at: (self lineIndexOfCharacterIndex: anIndex)) first
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>firstNonBlankCharacterBlockInLine: aLine [
+{ #category : #querying }
+RubParagraph >> firstNonBlankCharacterBlockInLine: aLine [
 	| idx str blanks |
 	idx := aLine first.
 	str := self text string.
@@ -429,46 +316,31 @@ RubParagraph>>firstNonBlankCharacterBlockInLine: aLine [
 	^ self characterBlockForIndex: aLine last 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>forLinesIn: aVisibleRect do: aBlock [
+{ #category : #drawing }
+RubParagraph >> forLinesIn: aVisibleRect do: aBlock [
 	(self lineIndexForPoint: aVisibleRect topLeft) to: 
 	(self lineIndexForPoint: aVisibleRect bottomRight) do: 
 		[:i | aBlock value: (self lines at: i) ]
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>forceCompose [
+{ #category : #composition }
+RubParagraph >> forceCompose [
 	self uptodateComposer prepareToForceComposition.
 	self compose
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>hasDecorator: aDecorator [
+{ #category : #querying }
+RubParagraph >> hasDecorator: aDecorator [
 	^ false
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>hasDecoratorNamed: aKey [
+{ #category : #querying }
+RubParagraph >> hasDecoratorNamed: aKey [
 	^ false
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>indentationOfLineIndex: lineIndex ifBlank: aBlock [
+{ #category : #querying }
+RubParagraph >> indentationOfLineIndex: lineIndex ifBlank: aBlock [
 	"Answer the number of leading tabs in the line at lineIndex.  If there are
 	 no visible characters, pass the number of tabs to aBlock and return its value.
 	 If the line is word-wrap overflow, back up a line and recur."
@@ -476,29 +348,20 @@ RubParagraph>>indentationOfLineIndex: lineIndex ifBlank: aBlock [
 	^ self composer indentationOfLineIndex: lineIndex ifBlank: aBlock
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>initialize  [
+{ #category : #initialize-release }
+RubParagraph >> initialize [ 
 	super initialize.
 	drawingEnabled := true.
 
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>key [
+{ #category : #querying }
+RubParagraph >> key [
 	^self class key
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>lastLineCharacterIndexFromCharacterIndex: anIndex [
+{ #category : #querying }
+RubParagraph >> lastLineCharacterIndexFromCharacterIndex: anIndex [
 	| targetLine |
 	targetLine := self lines at: (self lineIndexOfCharacterIndex: anIndex).
 	^ targetLine = self lines last
@@ -506,11 +369,8 @@ RubParagraph>>lastLineCharacterIndexFromCharacterIndex: anIndex [
 		ifFalse: [ targetLine last ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>lastNonBlankCharacterBlockInLine: aLine [
+{ #category : #querying }
+RubParagraph >> lastNonBlankCharacterBlockInLine: aLine [
 	| idx str blanks |
 	idx := aLine last.
 	str := self text string.
@@ -523,81 +383,54 @@ RubParagraph>>lastNonBlankCharacterBlockInLine: aLine [
 	^ self characterBlockForIndex: aLine first 
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>lineIndexForPoint: aPoint [
+{ #category : #querying }
+RubParagraph >> lineIndexForPoint: aPoint [
 	"Answer the index of the line in which to select the character nearest to aPoint."
 	^ self composer lineIndexForPoint: aPoint
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>lineIndexOfCharacterIndex: characterIndex  [
+{ #category : #querying }
+RubParagraph >> lineIndexOfCharacterIndex: characterIndex [ 
 	"Answer the line index for a given characterIndex."
 	"apparently the selector changed with NewParagraph"
 	^ self composer lineIndexOfCharacterIndex: characterIndex
 
 ]
 
-{
-	#category : #'accessing composer',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>lines [
+{ #category : #'accessing composer' }
+RubParagraph >> lines [
 	^ self composer lines
 ]
 
-{
-	#category : #'accessing text area',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>margins [
+{ #category : #'accessing text area' }
+RubParagraph >> margins [
 	^textArea margins.
 
 ]
 
-{
-	#category : #'accessing composer',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>maxRightX [
+{ #category : #'accessing composer' }
+RubParagraph >> maxRightX [
 	^ self composer maxRightX
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>minimumCompositionExtent [
+{ #category : #composition }
+RubParagraph >> minimumCompositionExtent [
 
 	^ self minimumExtent x - self margins left @ self minimumExtent y
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>minimumExtent [
+{ #category : #geometry }
+RubParagraph >> minimumExtent [
 	^ textArea minimumExtent
 ]
 
-{
-	#category : #'accessing text area',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>model [
+{ #category : #'accessing text area' }
+RubParagraph >> model [
 	^ textArea model
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>move: anEvent for: model controller: editor [
+{ #category : #editing }
+RubParagraph >> move: anEvent for: model controller: editor [
 	"Give sensitive text a chance to fire.  Display flash: (100@100 extent: 100@100)."
 	
 	| action clickPoint |
@@ -617,11 +450,8 @@ RubParagraph>>move: anEvent for: model controller: editor [
 	^ action
 ]
 
-{
-	#category : #'geometry updating',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>moveBy: aPoint [
+{ #category : #'geometry updating' }
+RubParagraph >> moveBy: aPoint [
 	container := container translateBy: aPoint.
 	self composer moveBy: aPoint.
 	textArea recomputeSelection.
@@ -629,98 +459,65 @@ RubParagraph>>moveBy: aPoint [
 
 ]
 
-{
-	#category : #'accessing composer',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>newComposer [
+{ #category : #'accessing composer' }
+RubParagraph >> newComposer [
 	^ RubTextComposer new 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>next  [
+{ #category : #accessing }
+RubParagraph >> next [ 
 	^nil
 ]
 
-{
-	#category : #'accessing composer',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>numberOfLines [
+{ #category : #'accessing composer' }
+RubParagraph >> numberOfLines [
 
 	^ self lines size
 ]
 
-{
-	#category : #'accessing composer',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>numberOfPhysicalLines [
+{ #category : #'accessing composer' }
+RubParagraph >> numberOfPhysicalLines [
 
 	^ self composer numberOfPhysicalLines
 ]
 
-{
-	#category : #'accessing text area',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>openingDelimiters [
+{ #category : #'accessing text area' }
+RubParagraph >> openingDelimiters [
 	^ textArea openingDelimiters
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>paragraph [
+{ #category : #accessing }
+RubParagraph >> paragraph [
 	^ self
 ]
 
-{
-	#category : #'accessing text area',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>pointIndex [
+{ #category : #'accessing text area' }
+RubParagraph >> pointIndex [
 	^ textArea pointIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>position [
+{ #category : #accessing }
+RubParagraph >> position [
 	^ container topLeft
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>recomposeFrom: start to: stop delta: delta [
+{ #category : #composition }
+RubParagraph >> recomposeFrom: start to: stop delta: delta [
 	self
 		disableDrawingWhile: [ 	self composer recomposeFrom: start to: stop delta: delta ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>releaseComposer [
+{ #category : #private }
+RubParagraph >> releaseComposer [
 	composer
 		ifNotNil: [ :c | 
 			c unplug.
 			composer := nil ]
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>replaceFrom: start to: stop with: aText [
+{ #category : #editing }
+RubParagraph >> replaceFrom: start to: stop with: aText [
 	"Edit the text, and then recompose the lines."
 
 	self
@@ -732,37 +529,25 @@ RubParagraph>>replaceFrom: start to: stop with: aText [
 			textArea paragraphReplacedTextFrom: start to: stop with: aText ]
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>replaceFrom: start to: stop with: aText displaying: displayBoolean  [
+{ #category : #editing }
+RubParagraph >> replaceFrom: start to: stop with: aText displaying: displayBoolean [ 
 	"Edit the text, and then recompose the lines." 
 	self composer replaceFrom: start to: stop with: aText.
 
 ]
 
-{
-	#category : #'accessing text area',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>scrollPane [
+{ #category : #'accessing text area' }
+RubParagraph >> scrollPane [
 	^ textArea scrollPane
 ]
 
-{
-	#category : #'mock selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>selection [
+{ #category : #'mock selection' }
+RubParagraph >> selection [
 	^ self textArea selection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>selectionRects [
+{ #category : #accessing }
+RubParagraph >> selectionRects [
 	"Return an array of rectangles representing the selection region."
 
 	^ self selectionStart
@@ -770,11 +555,8 @@ RubParagraph>>selectionRects [
 		ifNotNil: [ self selectionRectsFrom: self selectionStart to: self selectionStop ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>selectionRectsFrom: characterBlock1 to: characterBlock2 [
+{ #category : #accessing }
+RubParagraph >> selectionRectsFrom: characterBlock1 to: characterBlock2 [
 	"Return an array of rectangles representing the area between the two character blocks given as arguments."
 
 	| line1 line2 rects cb1 cb2 w |
@@ -809,43 +591,28 @@ RubParagraph>>selectionRectsFrom: characterBlock1 to: characterBlock2 [
 			strm nextPut: ((self lines at: line2) topLeft corner: cb2 bottomLeft) ]
 ]
 
-{
-	#category : #'accessing text area',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>selectionStart [
+{ #category : #'accessing text area' }
+RubParagraph >> selectionStart [
 	^ textArea selectionStart
 ]
 
-{
-	#category : #'accessing text area',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>selectionStop [
+{ #category : #'accessing text area' }
+RubParagraph >> selectionStop [
 	^ textArea selectionStop
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>string [
+{ #category : #accessing }
+RubParagraph >> string [
 	^ self text string
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>tabWidth [
+{ #category : #accessing }
+RubParagraph >> tabWidth [
 	^ self textStyle rubTabWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>tabWidth: anInteger [
+{ #category : #accessing }
+RubParagraph >> tabWidth: anInteger [
 	| newTextStyle tabsArray |
 	newTextStyle := self textStyle copy.
 	tabsArray := (anInteger to: 99999 by: anInteger) asArray.
@@ -856,92 +623,62 @@ RubParagraph>>tabWidth: anInteger [
 	self textArea recomputeSelection; changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>text [
+{ #category : #accessing }
+RubParagraph >> text [
 	^ text ifNil: [ text := self defaultEmptyText ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>text: aText [
+{ #category : #accessing }
+RubParagraph >> text: aText [
 	(aText string notEmpty and: [aText runs isEmpty]) 
 		ifTrue: [ aText runs: (Array with: self defaultFontChange) ].
 	text := aText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>textArea [
+{ #category : #accessing }
+RubParagraph >> textArea [
 	^ textArea
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>textArea: aClient [
+{ #category : #accessing }
+RubParagraph >> textArea: aClient [
 	"Classically, the client is a Morph which holds the text, the textstyle, the textColor.
 	client must never be nil except when I'm released"
 	textArea := aClient 
 ]
 
-{
-	#category : #'accessing text area',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>textStyle [
+{ #category : #'accessing text area' }
+RubParagraph >> textStyle [
 	^ textArea textStyle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>theme [
+{ #category : #accessing }
+RubParagraph >> theme [
 	^ UITheme current
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>totalTextHeight [
+{ #category : #querying }
+RubParagraph >> totalTextHeight [
 
 	^self lines last bottom
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>unplug [
+{ #category : #initialize-release }
+RubParagraph >> unplug [
 	self releaseComposer.
 	textArea := nil.
 	text := nil.
 	super unplug
 ]
 
-{
-	#category : #'geometry updating',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>updateClientExtent [
+{ #category : #'geometry updating' }
+RubParagraph >> updateClientExtent [
 	textArea updateExtentFromParagraph.
 
 ]
 
-{
-	#category : #'accessing composer',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>uptodateComposer [
+{ #category : #'accessing composer' }
+RubParagraph >> uptodateComposer [
 	^ self composer
 		text: self text;
 		textStyle: self textStyle;
@@ -951,11 +688,8 @@ RubParagraph>>uptodateComposer [
 		yourself
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>verticesFrom: firstIndex to: lastIndex [
+{ #category : #querying }
+RubParagraph >> verticesFrom: firstIndex to: lastIndex [
 	| firstCB lastCB firstLineIndex lastLineIndex firstLine lastLine vertices secondLine thirdLine |
 	firstCB := self characterBlockForIndex: firstIndex.
 	lastCB := self characterBlockForIndex: lastIndex.
@@ -988,29 +722,20 @@ RubParagraph>>verticesFrom: firstIndex to: lastIndex [
 	^ vertices
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>width [
+{ #category : #geometry }
+RubParagraph >> width [
 	^  self wrapped
 		ifTrue: [ self container right  -  (self container insetBy: self margins) topLeft x]
 		ifFalse: [ RubAbstractTextArea defaultMaxExtent ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>withoutDecorator [
+{ #category : #accessing }
+RubParagraph >> withoutDecorator [
 	^ self
 
 ]
 
-{
-	#category : #'accessing text area',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubParagraph>>wrapped [
+{ #category : #'accessing text area' }
+RubParagraph >> wrapped [
 	^ textArea wrapped
 ]

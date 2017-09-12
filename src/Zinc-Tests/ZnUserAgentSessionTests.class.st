@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnUserAgentSessionTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUserAgentSessionTests>>dummyCredential [
+{ #category : #accessing }
+ZnUserAgentSessionTests >> dummyCredential [
 	^ZnBasicCredential new 
 		username: 'test'; 
 		password: 'foobar';
@@ -21,22 +14,16 @@ ZnUserAgentSessionTests>>dummyCredential [
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUserAgentSessionTests>>testAccessors [
+{ #category : #testing }
+ZnUserAgentSessionTests >> testAccessors [
 	| session |
 	session := ZnUserAgentSession new.
 	self assert: (session cookieJar isKindOf: ZnCookieJar).
 	self assert: (session credentials notNil)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUserAgentSessionTests>>testAddCredential [
+{ #category : #testing }
+ZnUserAgentSessionTests >> testAddCredential [
 	| session count |
 	session := ZnUserAgentSession new.
 	count := session credentials size.
@@ -44,10 +31,7 @@ ZnUserAgentSessionTests>>testAddCredential [
 	self assert: ((session credentials size) = (count + 1))
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUserAgentSessionTests>>testWithCookieJar [
+{ #category : #testing }
+ZnUserAgentSessionTests >> testWithCookieJar [
 	self assert: ((ZnUserAgentSession withCookieJar: ZnCookieJar new) notNil)
 ]

@@ -14,26 +14,19 @@ Class {
 	#classInstVars : [
 		'useAutoRefresh'
 	],
-	#category : #Spec-Inspector,
-	#timestamp : 'MarcusDenker 1/17/2014 13:44'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #inspecting,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector class>>basicInspect: anObject  [
+{ #category : #inspecting }
+EyeInspector class >> basicInspect: anObject [ 
 	^ self new 
 		inspect: anObject;
 		openWithSpec: #inspectorSpec;
 		yourself
 ]
 
-{
-	#category : #spec,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector class>>debuggerSpec [
+{ #category : #spec }
+EyeInspector class >> debuggerSpec [
 	<spec:#default>
 	
 	^ SpecLayout composed
@@ -43,11 +36,8 @@ EyeInspector class>>debuggerSpec [
 		yourself
 ]
 
-{
-	#category : #spec,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector class>>debuggerSpecSlow [
+{ #category : #spec }
+EyeInspector class >> debuggerSpecSlow [
 	<spec>
 	
 	^ SpecLayout composed
@@ -58,49 +48,34 @@ EyeInspector class>>debuggerSpecSlow [
 		yourself
 ]
 
-{
-	#category : #inspecting,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector class>>explore: anObject  [
+{ #category : #inspecting }
+EyeInspector class >> explore: anObject [ 
 	InspectorNavigator openExplorer: (self inspector: anObject).
 	^ anObject
 ]
 
-{
-	#category : #inspecting,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector class>>inspect: anObject  [
+{ #category : #inspecting }
+EyeInspector class >> inspect: anObject [ 
 	InspectorNavigator openInspector: (self inspector: anObject).
 	^ anObject
 ]
 
-{
-	#category : #inspecting,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector class>>inspect: anObject label: aString [
+{ #category : #inspecting }
+EyeInspector class >> inspect: anObject label: aString [
 	(InspectorNavigator openInspector: (self inspector: anObject)) window title: aString.
 	^ anObject
 
 ]
 
-{
-	#category : #inspecting,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector class>>inspector: anObject  [
+{ #category : #inspecting }
+EyeInspector class >> inspector: anObject [ 
 	^ anObject class inspectorClass new
 		inspect: anObject;
 		yourself
 ]
 
-{
-	#category : #spec,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector class>>inspectorSpec [
+{ #category : #spec }
+EyeInspector class >> inspectorSpec [
 	<spec>
 	
 	^ SpecLayout composed
@@ -115,171 +90,117 @@ EyeInspector class>>inspectorSpec [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector class>>label [
+{ #category : #accessing }
+EyeInspector class >> label [
 	^ 'Default Inspector'
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector class>>registerToolsOn: registry [
+{ #category : #'tools registry' }
+EyeInspector class >> registerToolsOn: registry [
 	"Add ourselves to registry. See [Smalltalk tools]" 
 	registry 
 		register: self as: #inspector;
 		register: self as: #basicInspector.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector class>>showAllInstVars [
+{ #category : #accessing }
+EyeInspector class >> showAllInstVars [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector class>>showClass [
+{ #category : #accessing }
+EyeInspector class >> showClass [
 	^ false
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>addAllInstVars: elements [
+{ #category : #list }
+EyeInspector >> addAllInstVars: elements [
 	"Add AllInstVars to the list of elements you can access in the inspector"
 
 	elements add: (AllInstVarsEyeElement host: self object).
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>addClass: elements [
+{ #category : #list }
+EyeInspector >> addClass: elements [
 	"Add class to the list of elements you can access in the inspector"
 
 	elements add: (ClassEyeElement host: self object).
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>addInstancesVariable: elements [
+{ #category : #list }
+EyeInspector >> addInstancesVariable: elements [
 	"Add all the instance variables to the list of elements you can access in the inspector, set them so that you can modify and save them"
 
 	self object class allInstVarNames do: [:name |
 		elements add: (InstanceVariableEyeElement host: self object instVarName: name) ]
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>addSelf: elements [
+{ #category : #list }
+EyeInspector >> addSelf: elements [
 	"Add self to the list of elements you can access in the inspector"
 
 	elements add: (SelfEyeElement host: self object).
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>addSpecialFields: elements [
+{ #category : #list }
+EyeInspector >> addSpecialFields: elements [
 	"Override in subclass to add fields to the inspector. You need to choose the appropriate sublcass of AbstractEyeElement"
 	
 	"ex :
 	elements add: (AbstractEyeElement host: self object)"
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>addVariableFields: elements [
+{ #category : #list }
+EyeInspector >> addVariableFields: elements [
 	"add the variable fields to the inspector. Shorten the list for very long collection (cf limit1 and limit2), set them so that you can modify and save them"
 
 	self variableFieldsToShow do: [ :index |
 		elements add: (BasicIndexedEyeElement host: self object index: index) ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>canDiscardEdits [
+{ #category : #private }
+EyeInspector >> canDiscardEdits [
 
 	^ true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>copySelectedItemAccessorCode [
+{ #category : #actions }
+EyeInspector >> copySelectedItemAccessorCode [
 	self hasSelectedObject
 		ifFalse: [ ^ self ].
 	self selectedElement copyAccessorCode.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>description [
+{ #category : #accessing }
+EyeInspector >> description [
 	^ description
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>description: anObject [
+{ #category : #accessing }
+EyeInspector >> description: anObject [
 	description := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>doItContext [
+{ #category : #accessing }
+EyeInspector >> doItContext [
 	"Define a context where the DoIt method of the inspector should be done. To be overrriden in subclasses"
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>elements [
+{ #category : #accessing }
+EyeInspector >> elements [
 	^ self list listItems
 ]
 
-{
-	#category : #inspecting,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>explore: anObject  [
+{ #category : #inspecting }
+EyeInspector >> explore: anObject [ 
 	"This is called to open a new ObjectExplorer on the object"
 
 	^self class explore: anObject
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>generateElements [
+{ #category : #list }
+EyeInspector >> generateElements [
 	"generate the collection of elements to show in the inspector for the object inspected"
 
 	| elements |
@@ -295,11 +216,8 @@ EyeInspector>>generateElements [
 	^ elements
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>initializePresenter [
+{ #category : #initialization }
+EyeInspector >> initializePresenter [
 	"initialize the event handlings"
 
 	super initializePresenter.
@@ -309,30 +227,21 @@ EyeInspector>>initializePresenter [
 			self refreshDescription ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>initializeShortcuts [
+{ #category : #initialization }
+EyeInspector >> initializeShortcuts [
 	"initialize the inspector' shortcuts with the dictionary defined in self shortCuts"
 	self shortCuts keysAndValuesDo: [ :key :value |
 		self list bindKeyCombination: key toAction: value ]
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>initializeWidgets [
+{ #category : #initialization }
+EyeInspector >> initializeWidgets [
 	description := self newText
 ]
 
-{
-	#category : #inspecting,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>inspect: anObject  [
+{ #category : #inspecting }
+EyeInspector >> inspect: anObject [ 
 	"This is called to update the inspector model with a new object, updates the UI"
 
 	self object: anObject.
@@ -341,21 +250,15 @@ EyeInspector>>inspect: anObject  [
 	
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>inspectionMenu: aMenu [
+{ #category : #menu }
+EyeInspector >> inspectionMenu: aMenu [
 	self hasSelectedObject ifFalse: [ ^ aMenu ].
 	^ super inspectionMenu: aMenu.
 	
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>keepScrollPositionOf: specHolder during: aBlock [
+{ #category : #event-handling }
+EyeInspector >> keepScrollPositionOf: specHolder during: aBlock [
 	| scrollValue |
 	specHolder widget 
 		ifNil: [ ^ aBlock value ].
@@ -365,40 +268,28 @@ EyeInspector>>keepScrollPositionOf: specHolder during: aBlock [
 	description scrollValue: scrollValue.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>labelFor: anEyeElement [
+{ #category : #private }
+EyeInspector >> labelFor: anEyeElement [
 	^ anEyeElement label
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>limit1 [
+{ #category : #list }
+EyeInspector >> limit1 [
 	"This is the max index shown before skipping to the 
 	last limit2 elements of very long arrays"
 	
 	^ 100
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>limit2 [
+{ #category : #list }
+EyeInspector >> limit2 [
 	"This is the number of elements to show at the end of very long arrays"
 	
 	^ 10
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>list [
+{ #category : #accessing }
+EyeInspector >> list [
 	^ list ifNil: [ 
 		list := self instantiate: FastTableModel.
 		list 
@@ -408,11 +299,8 @@ EyeInspector>>list [
 			doubleClickAction: [ self diveIntoSelectedObject ]. ]
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>objectChanged [
+{ #category : #event-handling }
+EyeInspector >> objectChanged [
 	"triggered when the inspected object is changed"
 	
 	self updateList.
@@ -428,52 +316,34 @@ EyeInspector>>objectChanged [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>objectClass [
+{ #category : #accessing }
+EyeInspector >> objectClass [
 
 	^ self object class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>objectVariableSize [
+{ #category : #accessing }
+EyeInspector >> objectVariableSize [
 	^ self object basicSize
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>printDescription [
+{ #category : #event-handling }
+EyeInspector >> printDescription [
 	^ description text
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>printDescription: item [
+{ #category : #event-handling }
+EyeInspector >> printDescription: item [
 	self refreshDescription: item
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>printTimeout [
+{ #category : #accessing }
+EyeInspector >> printTimeout [
 	^ 10 seconds
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>refresh [
+{ #category : #event-handling }
+EyeInspector >> refresh [
 	"refresh the object in the inspector, updating his modified instance variables"
 
 	description hasUnacceptedEdits 
@@ -482,19 +352,13 @@ EyeInspector>>refresh [
 		ifTrue: [ self refreshDescription; updateList ]
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>refreshDescription [
+{ #category : #event-handling }
+EyeInspector >> refreshDescription [
 	self refreshDescription: self selectedElement
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>refreshDescription: item [
+{ #category : #event-handling }
+EyeInspector >> refreshDescription: item [
 	"When you select an element in the list of the inspector, print on the description textModel the element selected"
 	| newDescription |
 	item ifNil: [ ^ self ].
@@ -509,19 +373,13 @@ EyeInspector>>refreshDescription: item [
 		during: [ description text: newDescription ].
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>refreshPrintDescription [
+{ #category : #event-handling }
+EyeInspector >> refreshPrintDescription [
 	self printDescription: self selectedElement
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>saveElement [
+{ #category : #event-handling }
+EyeInspector >> saveElement [
 	"When you press Cmd+s on the description TextModel, you can save the new value in the inspected object"
 
 	|newValue|
@@ -537,11 +395,8 @@ EyeInspector>>saveElement [
 	self objectChanged
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>saveElement: newText [
+{ #category : #event-handling }
+EyeInspector >> saveElement: newText [
 	"When you press Cmd+s on the description TextModel, you can save the new value in the inspected object"
 
 	|newValue|
@@ -557,11 +412,8 @@ EyeInspector>>saveElement: newText [
 	self objectChanged.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>selectedElement [
+{ #category : #accessing }
+EyeInspector >> selectedElement [
 	^ self list selectedItem ifNil: [ 
 		"sometimes the new list model desynchronize its selected index from its selected element,
 		this mean that the inspector evaluates 'list setSelectedIndex: 1' but 'list selectedItem' still returns nil.
@@ -573,35 +425,23 @@ EyeInspector>>selectedElement [
 				aList at: currentIndex  ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>selectedIndex [
+{ #category : #accessing }
+EyeInspector >> selectedIndex [
 	^ self list selectedIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>selectedIndex: integer [
+{ #category : #accessing }
+EyeInspector >> selectedIndex: integer [
 	^ self list setSelectedIndex: integer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>selectedObject [
+{ #category : #accessing }
+EyeInspector >> selectedObject [
 	^self selectedElement value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>selectedObject: anObject [
+{ #category : #accessing }
+EyeInspector >> selectedObject: anObject [
 	"Sets the selectedElement of the inspector to anObject. If anObject is not in the list, then sets the selectedElement to 1"
 
 	self list setSelectedIndex: 1.
@@ -610,11 +450,8 @@ EyeInspector>>selectedObject: anObject [
 			ifTrue: [ self list setSelectedIndex: index ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>shortCuts [
+{ #category : #initialization }
+EyeInspector >> shortCuts [
 	| shortCuts |
 	shortCuts := super shortCuts.
 
@@ -623,43 +460,28 @@ EyeInspector>>shortCuts [
 	^ shortCuts
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>showAllInstVars [
+{ #category : #testing }
+EyeInspector >> showAllInstVars [
 	^ self class showAllInstVars
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>showClass [
+{ #category : #testing }
+EyeInspector >> showClass [
 	^ self class showClass
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>step [
+{ #category : #initialization }
+EyeInspector >> step [
 	self refresh
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>takeKeyboardFocus [
+{ #category : #private }
+EyeInspector >> takeKeyboardFocus [
 	^ self list takeKeyboardFocus
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>updateList [
+{ #category : #event-handling }
+EyeInspector >> updateList [
 	"update the list of elements displayed according to the new object"
 
 	| elements |
@@ -680,11 +502,8 @@ EyeInspector>>updateList [
 	self list menu: [ :aMenu | self inspectionMenu: aMenu ]
 ]
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeInspector>>variableFieldsToShow [
+{ #category : #list }
+EyeInspector >> variableFieldsToShow [
 	"Answers the indexes of the variable fields of the object to show.
 	Shorten the list for very long collection (cf limit1 and limit2)"
 

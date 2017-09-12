@@ -24,172 +24,120 @@ Class {
 		'aTimeZone',
 		'localTimeZoneToRestore'
 	],
-	#category : #Kernel-Tests-Chronology,
-	#timestamp : 'tlk 1/6/2004 18:27'
+	#category : #Kernel-Tests-Chronology
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>setUp [
+{ #category : #running }
+DateAndTimeEpochTest >> setUp [
      localTimeZoneToRestore := DateAndTime localTimeZone.
 	aDateAndTime :=  DateAndTime localTimeZone: TimeZone default; epoch.
 	aTimeZone := TimeZone offset: (Duration minutes: 135) name: 'Epoch Test Time Zone' abbreviation: 'ETZ'.
 	aDuration := Duration days: 1 hours: 2 minutes: 3 seconds: 4 nanoSeconds: 5 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>tearDown [
+{ #category : #running }
+DateAndTimeEpochTest >> tearDown [
      DateAndTime localTimeZone: localTimeZoneToRestore.
      "wish I could remove the time zones I added earlier, tut there is no method for that"
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testAsDate [
+{ #category : #tests }
+DateAndTimeEpochTest >> testAsDate [
 	self assert: aDateAndTime asDate =   'January 1, 1901' asDate.
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testAsDateAndTime [
+{ #category : #tests }
+DateAndTimeEpochTest >> testAsDateAndTime [
 	self assert: aDateAndTime asDateAndTime =  aDateAndTime
 	
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testAsDuration [
+{ #category : #tests }
+DateAndTimeEpochTest >> testAsDuration [
 	self assert: aDateAndTime asDuration =  0 asDuration
 	
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testAsLocal [
+{ #category : #tests }
+DateAndTimeEpochTest >> testAsLocal [
 	self assert: aDateAndTime asLocal =  aDateAndTime.
 	self assert: aDateAndTime asLocal = (aDateAndTime offset: aDateAndTime class localOffset)
 	
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testAsMonth [
+{ #category : #tests }
+DateAndTimeEpochTest >> testAsMonth [
 	self 
 		assert: aDateAndTime asMonth
 		equals: (Month year: 1901 month: 'January'). 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testAsNanoSeconds [
+{ #category : #tests }
+DateAndTimeEpochTest >> testAsNanoSeconds [
 	self assert: aDateAndTime asNanoSeconds =  0 asDuration asNanoSeconds
 	
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testAsSeconds [
+{ #category : #tests }
+DateAndTimeEpochTest >> testAsSeconds [
 	self assert: aDateAndTime asSeconds =  0 asDuration asSeconds
 	
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testAsTime [
+{ #category : #tests }
+DateAndTimeEpochTest >> testAsTime [
 	self assert: aDateAndTime asTime =  Time midnight.
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testAsUTC [
+{ #category : #tests }
+DateAndTimeEpochTest >> testAsUTC [
 	self assert: aDateAndTime asUTC =  aDateAndTime
           
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testAsWeek [
+{ #category : #tests }
+DateAndTimeEpochTest >> testAsWeek [
 	self assert: aDateAndTime asWeek = (Week starting: '12-31-1900' asDate). 
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testAsYear [
+{ #category : #tests }
+DateAndTimeEpochTest >> testAsYear [
 	self assert: aDateAndTime asYear =   (Year starting: '01-01-1901' asDate). 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testCurrent [
+{ #category : #tests }
+DateAndTimeEpochTest >> testCurrent [
 	self deny: aDateAndTime =  (DateAndTime current).
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testDateTime [
+{ #category : #tests }
+DateAndTimeEpochTest >> testDateTime [
 	self assert: aDateAndTime =  (DateAndTime date: '01-01-1901' asDate time: '00:00:00' asTime)
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testDay [
+{ #category : #tests }
+DateAndTimeEpochTest >> testDay [
 	self assert: aDateAndTime day =   DateAndTime new day
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testDayMonthYearDo [
+{ #category : #tests }
+DateAndTimeEpochTest >> testDayMonthYearDo [
 	|iterations|
 	iterations := 0.
 	self assert: (aDateAndTime dayMonthYearDo: [:eachDay :eachMonth :eachYear |  iterations := iterations + 1])  = 1.
@@ -199,108 +147,75 @@ DateAndTimeEpochTest>>testDayMonthYearDo [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testDayOfMonth [
+{ #category : #tests }
+DateAndTimeEpochTest >> testDayOfMonth [
 	self assert: aDateAndTime dayOfMonth  = 1.
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testDayOfWeek [
+{ #category : #tests }
+DateAndTimeEpochTest >> testDayOfWeek [
 	self assert: aDateAndTime dayOfWeek  = 3.
 	self assert: aDateAndTime dayOfWeekAbbreviation = 'Tue'.
 	self assert: aDateAndTime dayOfWeekName = 'Tuesday'.
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testDayOfYear [
+{ #category : #tests }
+DateAndTimeEpochTest >> testDayOfYear [
 	self assert: aDateAndTime dayOfYear  = 1.
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testDaysInMonth [
+{ #category : #tests }
+DateAndTimeEpochTest >> testDaysInMonth [
 	self assert: aDateAndTime daysInMonth  = 31.
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testDaysInYear [
+{ #category : #tests }
+DateAndTimeEpochTest >> testDaysInYear [
 	self assert: aDateAndTime daysInYear  = 365.
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testDaysLeftInYear [
+{ #category : #tests }
+DateAndTimeEpochTest >> testDaysLeftInYear [
 	self assert: aDateAndTime daysLeftInYear  = 364.
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testDuration [
+{ #category : #tests }
+DateAndTimeEpochTest >> testDuration [
 	self assert: aDateAndTime duration  = 0 asDuration.
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testEpoch [
+{ #category : #tests }
+DateAndTimeEpochTest >> testEpoch [
 	self assert: aDateAndTime =  '1901-01-01T00:00:00+00:00' asDateAndTime
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testFirstDayOfMonth [
+{ #category : #tests }
+DateAndTimeEpochTest >> testFirstDayOfMonth [
 	self assert: aDateAndTime firstDayOfMonth =   1
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testFromSeconds [
+{ #category : #tests }
+DateAndTimeEpochTest >> testFromSeconds [
 	self assert: aDateAndTime =  (DateAndTime fromSeconds: 0).
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testFromString [
+{ #category : #tests }
+DateAndTimeEpochTest >> testFromString [
 	self assert: aDateAndTime =  (DateAndTime fromString: ' 1901-01-01T00:00:00+00:00').
 	self assert: aDateAndTime =  (DateAndTime fromString: ' 1901-01-01T00:00:00').
 	self assert: aDateAndTime =  (DateAndTime fromString: ' 1901-01-01T00:00').
@@ -308,186 +223,129 @@ DateAndTimeEpochTest>>testFromString [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testHash [
+{ #category : #tests }
+DateAndTimeEpochTest >> testHash [
 	self assert: aDateAndTime hash = DateAndTime new hash
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testHour [
+{ #category : #tests }
+DateAndTimeEpochTest >> testHour [
 	self assert: aDateAndTime hour =    aDateAndTime hour24.
 	self assert: aDateAndTime hour =    0.
 	self assert: aDateAndTime hour =    aDateAndTime hours
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testHour12 [
+{ #category : #tests }
+DateAndTimeEpochTest >> testHour12 [
 	self assert: aDateAndTime hour12  = DateAndTime new hour12.
 	self assert: aDateAndTime hour12  = 12
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testIsLeapYear [
+{ #category : #tests }
+DateAndTimeEpochTest >> testIsLeapYear [
 	self deny: aDateAndTime isLeapYear
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testJulianDayNumber [
+{ #category : #tests }
+DateAndTimeEpochTest >> testJulianDayNumber [
 	self assert: aDateAndTime =  (DateAndTime julianDayNumber: 2415386).
 	self assert: aDateAndTime julianDayNumber = 2415386.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testLessThan [
+{ #category : #tests }
+DateAndTimeEpochTest >> testLessThan [
 	self assert: aDateAndTime  < (aDateAndTime + '1:00:00:00').
 	self assert: aDateAndTime + -1 < aDateAndTime.
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testMeridianAbbreviation [
+{ #category : #tests }
+DateAndTimeEpochTest >> testMeridianAbbreviation [
 	self assert: aDateAndTime meridianAbbreviation = 'AM'.
 
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testMiddleOf [
+{ #category : #tests }
+DateAndTimeEpochTest >> testMiddleOf [
 	self assert: (aDateAndTime middleOf: '2:00:00:00' asDuration) = 
 	 (Timespan starting: '12-31-1900' asDate duration: 2 days).
 	
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testMidnight [
+{ #category : #tests }
+DateAndTimeEpochTest >> testMidnight [
 	self assert: aDateAndTime midnight =  aDateAndTime
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testMinus [
+{ #category : #tests }
+DateAndTimeEpochTest >> testMinus [
 	self assert: aDateAndTime - aDateAndTime =  '0:00:00:00' asDuration.
 	self assert: aDateAndTime - '0:00:00:00' asDuration = aDateAndTime.
 	self assert: aDateAndTime - aDuration =  (DateAndTime year: 1900 month: 12 day: 30 hour: 21 minute: 56 second: 55 nanoSecond: 999999995 offset: 0 hours ).
 	" I believe this Failure is a bug in the nanosecond part of (DateAndTime >> year:month:day:hour:minute:second:nanoSecond:offset:)" 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testMinute [
+{ #category : #tests }
+DateAndTimeEpochTest >> testMinute [
 	self assert: aDateAndTime minute =  0
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testMinutes [
+{ #category : #tests }
+DateAndTimeEpochTest >> testMinutes [
 	self assert: aDateAndTime minutes = 0
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testMonth [
+{ #category : #tests }
+DateAndTimeEpochTest >> testMonth [
 	self assert: aDateAndTime month  = 1.
 	self assert: aDateAndTime monthAbbreviation = 'Jan'.
 	self assert: aDateAndTime monthName = 'January'.
 	self assert: aDateAndTime monthIndex = 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testNanoSecond [
+{ #category : #tests }
+DateAndTimeEpochTest >> testNanoSecond [
 	self assert: aDateAndTime nanoSecond =  0
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testNew [
+{ #category : #tests }
+DateAndTimeEpochTest >> testNew [
 	self assert: aDateAndTime =  (DateAndTime new).
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testNoon [
+{ #category : #tests }
+DateAndTimeEpochTest >> testNoon [
 	self assert: aDateAndTime noon = '1901-01-01T12:00:00+00:00' asDateAndTime
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testNow [
+{ #category : #tests }
+DateAndTimeEpochTest >> testNow [
 	self deny: aDateAndTime =  (DateAndTime now).
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testOffset [
+{ #category : #tests }
+DateAndTimeEpochTest >> testOffset [
 
 	self assert: aDateAndTime offset =  '0:00:00:00' asDuration.
 	self assert: (aDateAndTime offset: '-0:12:00:00') equals:  '1900-12-31T12:00:00-12:00' asDateAndTime.
 	self assert: (aDateAndTime offset: '0:12:00:00') equals:  '1901-01-01T12:00:00+12:00' asDateAndTime
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testPlus [
+{ #category : #tests }
+DateAndTimeEpochTest >> testPlus [
 	self assert: aDateAndTime + '0:00:00:00' = aDateAndTime.
 	self assert: aDateAndTime + 0 = aDateAndTime.
 	self assert: aDateAndTime + aDuration = (DateAndTime year: 1901 month: 1 day: 2 hour: 2 minute: 3 second: 4 nanoSecond: 5 offset: 0 hours )
@@ -496,170 +354,116 @@ DateAndTimeEpochTest>>testPlus [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testPrintOn [
+{ #category : #tests }
+DateAndTimeEpochTest >> testPrintOn [
 	self assert: (String streamContents: [ :str | aDateAndTime printOn: str ]) equals: '1901-01-01T00:00:00+00:00'.
 	self assert: (String streamContents: [ :str | aTimeZone printOn: str ]) equals: 'a TimeZone(ETZ)'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testSecond [
+{ #category : #tests }
+DateAndTimeEpochTest >> testSecond [
 	self assert: aDateAndTime second =  0
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testSeconds [
+{ #category : #tests }
+DateAndTimeEpochTest >> testSeconds [
 	self assert: aDateAndTime seconds =  0
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testTicks [
+{ #category : #tests }
+DateAndTimeEpochTest >> testTicks [
 	self assert: aDateAndTime ticks =  (DateAndTime julianDayNumber: 2415386) ticks.
 	self assert: aDateAndTime ticks = #(2415386 0 0)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testTicksOffset [
+{ #category : #tests }
+DateAndTimeEpochTest >> testTicksOffset [
 	self assert: aDateAndTime =  (aDateAndTime ticks:  #(2415386 0 0) offset: DateAndTime localOffset).
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testTimeZone [
+{ #category : #tests }
+DateAndTimeEpochTest >> testTimeZone [
 	self assert: aDateAndTime timeZoneName	= 'Universal Time'.
 	self assert: aDateAndTime timeZoneAbbreviation	=  'UTC'
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testTo [
+{ #category : #tests }
+DateAndTimeEpochTest >> testTo [
 	self assert: (aDateAndTime to: aDateAndTime) = (DateAndTime new to: DateAndTime new) 
 	"MessageNotUnderstood: UndefinedObject>>starting:ending:  where UndefinedObject is Timespan "
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testToBy [
+{ #category : #tests }
+DateAndTimeEpochTest >> testToBy [
 	self assert: (aDateAndTime to: aDateAndTime + 10 days by: 5 days) = 
 				(DateAndTime new to: DateAndTime new + 10 days by: 5 days ) 
 	"MessageNotUnderstood: UndefinedObject>>starting:ending:  where UndefinedObject is Timespan "
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testToByDo [
+{ #category : #tests }
+DateAndTimeEpochTest >> testToByDo [
 	"self assert: (aDateAndTime to: aDateAndTime + 10 days by: 5 days do: []) =  "
 	"MessageNotUnderstood: UndefinedObject>>starting:ending:  where UndefinedObject is Timespan "
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testToday [
+{ #category : #tests }
+DateAndTimeEpochTest >> testToday [
 	self deny: aDateAndTime =  (DateAndTime today).
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testTommorrow [
+{ #category : #tests }
+DateAndTimeEpochTest >> testTommorrow [
 	self assert: (DateAndTime today + 24 hours) =  (DateAndTime tomorrow).
 	self deny: aDateAndTime =  (DateAndTime tomorrow).
      "MessageNotUnderstood: Date class>>starting:"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testUtcOffset [
+{ #category : #tests }
+DateAndTimeEpochTest >> testUtcOffset [
      self assert: (aDateAndTime offset: '0:12:00:00') =  '1901-01-01T12:00:00+12:00' asDateAndTime
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testYear [
+{ #category : #tests }
+DateAndTimeEpochTest >> testYear [
 	self assert: aDateAndTime year = 1901.
 
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testYearDay [
+{ #category : #tests }
+DateAndTimeEpochTest >> testYearDay [
 	self assert: aDateAndTime =  (DateAndTime year: 1901 day: 1).
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testYearDayHourMinuteSecond [
+{ #category : #tests }
+DateAndTimeEpochTest >> testYearDayHourMinuteSecond [
 	self assert: aDateAndTime =  (DateAndTime year: 1901 day: 1 hour: 0 minute: 0 second: 0).
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testYearMonthDay [
+{ #category : #tests }
+DateAndTimeEpochTest >> testYearMonthDay [
 	self assert: aDateAndTime =  (DateAndTime year: 1901 month: 1 day: 1).
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testYearMonthDayHourMinuteSecond [
+{ #category : #tests }
+DateAndTimeEpochTest >> testYearMonthDayHourMinuteSecond [
 	self assert: aDateAndTime =  (DateAndTime year: 1901 month: 1 day: 1 hour: 0 minute: 0 second: 0).
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testYearMonthDayHourMinuteSecondNanosSecondOffset [
+{ #category : #tests }
+DateAndTimeEpochTest >> testYearMonthDayHourMinuteSecondNanosSecondOffset [
 	self assert: aDateAndTime =  (DateAndTime year: 1901 month: 1 day: 1 hour: 0 minute: 0 second: 0 nanoSecond: 0 offset:0 hours ).
 	self assert: ((DateAndTime year: 1 month: 1 day: 1 hour: 0 minute: 0 second: 0 nanoSecond: 0 offset: 0 hours ) +
 				(Duration days: 1 hours: 2 minutes: 3 seconds: 4  nanoSeconds: 5) ) =  	
@@ -668,11 +472,8 @@ DateAndTimeEpochTest>>testYearMonthDayHourMinuteSecondNanosSecondOffset [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateAndTimeEpochTest>>testYesterday [
+{ #category : #tests }
+DateAndTimeEpochTest >> testYesterday [
 	self deny: aDateAndTime =  (DateAndTime yesterday).
 
 ]

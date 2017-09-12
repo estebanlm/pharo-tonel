@@ -8,132 +8,89 @@ Class {
 		'model',
 		'rootNodes'
 	],
-	#category : #Spec-MorphicAdapters-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeModel class>>model: model [
+{ #category : #'instance creation' }
+SpecTreeModel class >> model: model [
 
 	^ self new
 		model: model;
 		yourself
 ]
 
-{
-	#category : #'drag and drop - private',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeModel>>acceptDroppingMorph: draggedMorph event: event inMorph: source [
+{ #category : #'drag and drop - private' }
+SpecTreeModel >> acceptDroppingMorph: draggedMorph event: event inMorph: source [
 
 	^ self model acceptDroppingMorph: draggedMorph event: event inMorph: source
 ]
 
-{
-	#category : #overrided,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeModel>>doubleClick [
+{ #category : #overrided }
+SpecTreeModel >> doubleClick [
 
 	self model doubleClick
 ]
 
-{
-	#category : #'drag and drop - private',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeModel>>dragPassengerFor: item inMorph: dragSource  [
+{ #category : #'drag and drop - private' }
+SpecTreeModel >> dragPassengerFor: item inMorph: dragSource [ 
 	
 	^ self model dragPassengerFor: item inMorph: dragSource
 ]
 
-{
-	#category : #'drag and drop - private',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeModel>>dragPassengersFor: item inMorph: dragSource [
+{ #category : #'drag and drop - private' }
+SpecTreeModel >> dragPassengersFor: item inMorph: dragSource [
 	
 	^ self model dragPassengersFor: item inMorph: dragSource
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeModel>>menu: menu shifted: b [
+{ #category : #accessing }
+SpecTreeModel >> menu: menu shifted: b [
 
 	^ self model menu: menu shifted: b
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeModel>>model [
+{ #category : #accessing }
+SpecTreeModel >> model [
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeModel>>model: anObject [
+{ #category : #accessing }
+SpecTreeModel >> model: anObject [
 	model := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeModel>>resetRootNodes [
+{ #category : #private }
+SpecTreeModel >> resetRootNodes [
 
 	rootNodes := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeModel>>rootItems [
+{ #category : #accessing }
+SpecTreeModel >> rootItems [
 
 	^ self model roots
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeModel>>rootNodeFromItem: item [
+{ #category : #accessing }
+SpecTreeModel >> rootNodeFromItem: item [
 
 	^ self model rootNodeFromItem: item
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeModel>>rootNodes [
+{ #category : #accessing }
+SpecTreeModel >> rootNodes [
 
 	^ rootNodes ifNil: [ rootNodes := super rootNodes ]
 ]
 
-{
-	#category : #'drag and drop - private',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeModel>>transferFor: passenger from:  source [
+{ #category : #'drag and drop - private' }
+SpecTreeModel >> transferFor: passenger from:  source [
 
 	^ self model transferFor: passenger from: source
 ]
 
-{
-	#category : #'drag and drop - private',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeModel>>wantsDroppedMorph: draggedMorph event: anEvent inMorph: source [
+{ #category : #'drag and drop - private' }
+SpecTreeModel >> wantsDroppedMorph: draggedMorph event: anEvent inMorph: source [
 
 	^ self model wantsDroppedMorph: draggedMorph event: anEvent inMorph: source
 ]

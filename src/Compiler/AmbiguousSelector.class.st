@@ -14,23 +14,16 @@ Class {
 	#instVars : [
 		'interval'
 	],
-	#category : #Compiler-Exceptions,
-	#timestamp : 'nice 2/23/2010 15:40'
+	#category : #Compiler-Exceptions
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AmbiguousSelector class>>signalName: aString inRange: anInterval  [
+{ #category : #'instance creation' }
+AmbiguousSelector class >> signalName: aString inRange: anInterval [ 
 	^ (self new setName: aString range: anInterval) signal
 ]
 
-{
-	#category : #handling,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AmbiguousSelector>>openMenuIn: aBlock  [
+{ #category : #handling }
+AmbiguousSelector >> openMenuIn: aBlock [ 
 	"Ask the user which selector to choose.
 	Answer the choosen selector or nil if cancellation is requested."
 	
@@ -50,11 +43,8 @@ AmbiguousSelector>>openMenuIn: aBlock  [
 	self resume: (actions at: choice ifAbsent: [nil])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-AmbiguousSelector>>setName: aString range: anInterval  [
+{ #category : #private }
+AmbiguousSelector >> setName: aString range: anInterval [ 
 	name := aString.
 	interval := anInterval
 ]

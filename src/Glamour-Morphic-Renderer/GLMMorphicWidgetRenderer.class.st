@@ -7,25 +7,18 @@ Class {
 	#instVars : [
 		'renderer'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : '<historical>'
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer class>>render: aPresentation from: aRenderer [
+{ #category : #'instance creation' }
+GLMMorphicWidgetRenderer class >> render: aPresentation from: aRenderer [
 	^ self new 
 		renderer: aRenderer;
 		render: aPresentation
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>dropDownMenuFrom: aBlock withIcon: anIcon [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> dropDownMenuFrom: aBlock withIcon: anIcon [
 	| activeForm passiveForm menuButton | 
 	
 	activeForm := anIcon.
@@ -44,29 +37,20 @@ GLMMorphicWidgetRenderer>>dropDownMenuFrom: aBlock withIcon: anIcon [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>installActionsOnModel: aMorphicModel fromPresentation: aPresentation  [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> installActionsOnModel: aMorphicModel fromPresentation: aPresentation [ 
 	aMorphicModel when: GLMMenuItemSelected do: [ :ann | ann action morphicActOn: aPresentation ].
 	aMorphicModel when: GLMKeyStroke do: [ :ann | ann action actOn: aPresentation ].
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>installKeystrokeActionsOnMorph: aMorph fromPresentation: aPresentation [
+{ #category : #rendering }
+GLMMorphicWidgetRenderer >> installKeystrokeActionsOnMorph: aMorph fromPresentation: aPresentation [
 	aPresentation allActionsWithShortcuts do: [ :each |
 		each installKeyCombinationForPresentation: aPresentation onMorph: aMorph ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>labelActionBrickFor: aPresentation [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> labelActionBrickFor: aPresentation [
 	
 	 ^ aPresentation titleAction 
 		ifNil: [ nil ]
@@ -81,11 +65,8 @@ GLMMorphicWidgetRenderer>>labelActionBrickFor: aPresentation [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>labelActionMorphFor: aPresentation [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> labelActionMorphFor: aPresentation [
 	
 	 ^ aPresentation titleAction 
 		ifNil: [ nil ]
@@ -101,11 +82,8 @@ GLMMorphicWidgetRenderer>>labelActionMorphFor: aPresentation [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>menuIn: aMenuMorph for: aPresentation [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> menuIn: aMenuMorph for: aPresentation [
 	| subMenus targetMenuMorph subMenu |
 	subMenus := Dictionary new.
 	(aPresentation allActions select: [:each | each isMenu ]) do: [ :action |
@@ -128,11 +106,8 @@ GLMMorphicWidgetRenderer>>menuIn: aMenuMorph for: aPresentation [
 	^ aMenuMorph
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>moreToolbarActions: noIconActions on: aBrowser [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> moreToolbarActions: noIconActions [ on: aBrowser
 	| menuMorph |
 	menuMorph := MenuMorph new.
 	noIconActions do: [ :each | 
@@ -146,11 +121,8 @@ GLMMorphicWidgetRenderer>>moreToolbarActions: noIconActions on: aBrowser [
 	^ menuMorph
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>morph: aMorph withTitleOf: aPresentation	 [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> morph: aMorph withTitleOf: aPresentation [	
 	| tabs |
 	tabs := LazyTabGroupMorph new.
 	tabs
@@ -170,22 +142,16 @@ GLMMorphicWidgetRenderer>>morph: aMorph withTitleOf: aPresentation	 [
 	^ tabs
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>morph: aMorph withTitleOrNilOf: aPresentation [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> morph: aMorph withTitleOrNilOf: aPresentation [
 	(aPresentation hasTitle or: [aPresentation hasTitleIcon]) ifFalse: [
 		"we render at least the toolbar"
 		^ self morph: aMorph withToolbarOf: aPresentation ].
 	^ self morph: aMorph withTitleOf: aPresentation
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>morph: aMorph withToolbarOf: aPresentation [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> morph: aMorph withToolbarOf: aPresentation [
 	| container offset dock |
 	aPresentation hasActions ifFalse: [ ^ aMorph ].
 	container := GLMMorphic containerMorph.
@@ -199,27 +165,18 @@ GLMMorphicWidgetRenderer>>morph: aMorph withToolbarOf: aPresentation [
 	^ container
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>render: aPresentation [
+{ #category : #rendering }
+GLMMorphicWidgetRenderer >> render: aPresentation [
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>renderObject: anObject [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> renderObject: anObject [
 	^ self renderer render: anObject 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>renderToolbarForPresentation: aPresentation inMorph: aMorph [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> renderToolbarForPresentation: aPresentation inMorph: aMorph [
 	| dock buttons |
 	
 	dock := aMorph theme newToolDockingBarIn: aMorph.
@@ -234,57 +191,39 @@ GLMMorphicWidgetRenderer>>renderToolbarForPresentation: aPresentation inMorph: a
 	^ dock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>renderWithTitle: aPresentation [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> renderWithTitle: aPresentation [
 	| morph |
 	morph := self renderObject: aPresentation.
 	^ self morph: morph withTitleOf: aPresentation
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>renderWithTitleOrNil: aPresentation [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> renderWithTitleOrNil: aPresentation [
 	| morph |
 	morph := self renderObject: aPresentation.
 	^ self morph: morph withTitleOrNilOf: aPresentation
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>renderWithToolbar: aPresentation [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> renderWithToolbar: aPresentation [
 	| presentationMorph |
 	presentationMorph := self renderObject: aPresentation.
 	^ self morph: presentationMorph withToolbarOf: aPresentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>renderer [
+{ #category : #accessing }
+GLMMorphicWidgetRenderer >> renderer [
 	^ renderer ifNil: [renderer := GLMMorphicRenderer new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>renderer: anObject [
+{ #category : #accessing }
+GLMMorphicWidgetRenderer >> renderer: anObject [
 	renderer := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>scrollMorphFor: aMorph [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> scrollMorphFor: aMorph [
 	^ GeneralScrollPane new
 			changeScrollerTableLayout;
 			scrollTarget: aMorph;
@@ -293,19 +232,13 @@ GLMMorphicWidgetRenderer>>scrollMorphFor: aMorph [
 	
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>theme [
+{ #category : #factory }
+GLMMorphicWidgetRenderer >> theme [
 	^ UITheme current
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>titleOrIconOf: aPresentation in: container [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> titleOrIconOf: aPresentation in: container [
 	^ aPresentation hasTitleIcon 
 		ifTrue: [
 			| image |
@@ -320,11 +253,8 @@ GLMMorphicWidgetRenderer>>titleOrIconOf: aPresentation in: container [
 		ifFalse: [ aPresentation titleValue ifNil: [''] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>titleOrIconOrNilOf: aPresentation in: container [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> titleOrIconOrNilOf: aPresentation in: container [
 	^ aPresentation hasTitleIcon 
 		ifTrue: [
 			| image |
@@ -339,11 +269,8 @@ GLMMorphicWidgetRenderer>>titleOrIconOrNilOf: aPresentation in: container [
 				ifFalse: [ nil ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicWidgetRenderer>>toolbarButtonsForPresentation: aPresentation [
+{ #category : #private }
+GLMMorphicWidgetRenderer >> toolbarButtonsForPresentation: aPresentation [
 
 	^ (aPresentation allActions select: [:each | each isButton ]) 
 		collect: [:each | |actionMorph|

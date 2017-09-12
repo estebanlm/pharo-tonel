@@ -7,48 +7,32 @@ Class {
 	#instVars : [
 		'example'
 	],
-	#category : #OSWindow-SDL2-Examples-Examples,
-	#timestamp : 'RonieSalgado 4/10/2016 02:01'
+	#category : #OSWindow-SDL2-Examples-Examples
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGenericRendererExampleEventHandler>>example [
+{ #category : #accessing }
+OSWindowGenericRendererExampleEventHandler >> example [
 	^ example
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGenericRendererExampleEventHandler>>example: anObject [
+{ #category : #accessing }
+OSWindowGenericRendererExampleEventHandler >> example: anObject [
 	example := anObject
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGenericRendererExampleEventHandler>>visitWindowCloseEvent: anEvent [
+{ #category : #visiting }
+OSWindowGenericRendererExampleEventHandler >> visitWindowCloseEvent: anEvent [
 	example destroy
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGenericRendererExampleEventHandler>>visitWindowExposeEvent: anEvent [
+{ #category : #visiting }
+OSWindowGenericRendererExampleEventHandler >> visitWindowExposeEvent: anEvent [
 	example enqueueRender.
 	anEvent suppressDefaultAction.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-OSWindowGenericRendererExampleEventHandler>>visitWindowFrameEvent: anEvent [
+{ #category : #visiting }
+OSWindowGenericRendererExampleEventHandler >> visitWindowFrameEvent: anEvent [
 	example ifNotNil: [ example update: Time millisecondClockValue *0.001. ].
 	example enqueueRender 
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #CompiledCode
-}
+Extension { #name : #CompiledCode }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-CompiledCode>>gtInspectorASTIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+CompiledCode >> gtInspectorASTIn: composite [
 	<gtInspectorPresentationOrder: 35> 
 	(GTSimpleRBTreeBrowser new treeIn: composite)
 		title: 'AST';
@@ -14,41 +9,29 @@ CompiledCode>>gtInspectorASTIn: composite [
 		
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-CompiledCode>>gtInspectorBytecodeIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+CompiledCode >> gtInspectorBytecodeIn: composite [
 	<gtInspectorPresentationOrder: 30> 
 	^ (GTBytecodeBrowser new treeIn: composite)
 		title: 'Bytecode'
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-CompiledCode>>gtInspectorBytesIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+CompiledCode >> gtInspectorBytesIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	"It makes no sense to view me as a collection of bytes"
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-CompiledCode>>gtInspectorHeaderIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+CompiledCode >> gtInspectorHeaderIn: composite [
 	<gtInspectorPresentationOrder: 40> 
 	composite text 
 		title: 'Header';
 		display: [ self headerDescription ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-CompiledCode>>gtInspectorIrIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+CompiledCode >> gtInspectorIrIn: composite [
 	<gtInspectorPresentationOrder: 35> 
 	composite text 
 		title: 'Ir';
@@ -57,19 +40,13 @@ CompiledCode>>gtInspectorIrIn: composite [
 				string copyFrom: 2 to: string size ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-CompiledCode>>gtInspectorItemsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+CompiledCode >> gtInspectorItemsIn: composite [
 	"It makes no sense to view me as a collection of items"
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-CompiledCode>>gtInspectorPragmasIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+CompiledCode >> gtInspectorPragmasIn: composite [
 	<gtInspectorPresentationOrder: 30> 
 	composite tabulator 
 		title: 'Pragmas';
@@ -98,11 +75,8 @@ CompiledCode>>gtInspectorPragmasIn: composite [
 		startOn: self
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-CompiledCode>>gtInspectorSourceIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+CompiledCode >> gtInspectorSourceIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	^ composite pharoMethod
 		title: 'Source';
@@ -113,11 +87,8 @@ CompiledCode>>gtInspectorSourceIn: composite [
 			entitled: 'Browse'
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-CompiledCode>>gtInspectorVariableNodesIn: aCollection [
+{ #category : #'*GT-InspectorExtensions-Core' }
+CompiledCode >> gtInspectorVariableNodesIn: aCollection [
 
 	aCollection addAll: (self literals collectWithIndex: [ :aLiteral :anIndex | 
 		GTInspectorDynamicNode hostObject: self label: ('literal', anIndex asString) value: aLiteral ]).

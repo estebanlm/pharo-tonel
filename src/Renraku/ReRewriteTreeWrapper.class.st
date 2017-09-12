@@ -7,34 +7,24 @@ Class {
 	#instVars : [
 		'tree'
 	],
-	#category : #Renraku-Rules-Rewrite,
-	#timestamp : 'YuriyTymchuk 7/6/2016 23:20'
+	#category : #Renraku-Rules-Rewrite
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRewriteTreeWrapper class>>on: aTree [
+{ #category : #'instance creation' }
+ReRewriteTreeWrapper class >> on: aTree [
 
 	^ self basicNew
 		initializeTree: aTree;
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRewriteTreeWrapper>>initializeTree: aTree [
+{ #category : #initialization }
+ReRewriteTreeWrapper >> initializeTree: aTree [
 	tree := aTree
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRewriteTreeWrapper>>rewriten: aNode with: aMap [
+{ #category : #actions }
+ReRewriteTreeWrapper >> rewriten: aNode with: aMap [
 
 	^ tree copyInContext: aMap
 ]

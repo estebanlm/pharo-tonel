@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #GLMBrickThemerModule,
 	#superclass : #Object,
 	#instVars : [
 		'themer'
 	],
-	#category : #Glamour-Morphic-Brick-Theme,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Theme
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemerModule>>themer [
+{ #category : #accessing }
+GLMBrickThemerModule >> themer [
 
 	^ themer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickThemerModule>>themer: anObject [
+{ #category : #accessing }
+GLMBrickThemerModule >> themer: anObject [
 	themer := anObject
 ]

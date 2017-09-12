@@ -24,33 +24,23 @@ Class {
 	#instVars : [
 		'next'
 	],
-	#category : #SortFunctions-Core,
-	#timestamp : 'nice 3/13/2014 22:25'
+	#category : #SortFunctions-Core
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ChainedSortFunction>>, aSortFunction [
+{ #category : #converting }
+ChainedSortFunction >> , aSortFunction [
 
 	self next: next , aSortFunction
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ChainedSortFunction>>next: anObject [
+{ #category : #initialize-release }
+ChainedSortFunction >> next: anObject [
 
 	next := anObject
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ChainedSortFunction>>value: anObject value: bObject [
+{ #category : #evaluating }
+ChainedSortFunction >> value: anObject [ value: bObject
 	"Refinement of the parent behavior. If the result of my collator is 0, then pass on to the next variable to work it out."
 
 	| result |

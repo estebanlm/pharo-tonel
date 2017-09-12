@@ -1,12 +1,7 @@
-Extension {
-	#name : #RGMethodDefinitionTest
-}
+Extension { #name : #RGMethodDefinitionTest }
 
-{
-	#category : #'*Manifest-Tests',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RGMethodDefinitionTest>>testArrayStringForManifest [
+{ #category : #'*Manifest-Tests' }
+RGMethodDefinitionTest >> testArrayStringForManifest [
 	| method |
 	method := thisContext method.
 
@@ -15,11 +10,8 @@ RGMethodDefinitionTest>>testArrayStringForManifest [
 		equals: { #RGMethodDefinition . { self class name asSymbol . method selector . #false } }
 ]
 
-{
-	#category : #'*Manifest-Tests',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RGMethodDefinitionTest>>testManifestReadOn [
+{ #category : #'*Manifest-Tests' }
+RGMethodDefinitionTest >> testManifestReadOn [
 	| method |
 	method := thisContext method.
 
@@ -31,11 +23,8 @@ RGMethodDefinitionTest>>testManifestReadOn [
 		equals: method asRingDefinition
 ]
 
-{
-	#category : #'*Manifest-Tests',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RGMethodDefinitionTest>>testReadFrom [
+{ #category : #'*Manifest-Tests' }
+RGMethodDefinitionTest >> testReadFrom [
 	"self debug: #testReadFrom"
 	
 	
@@ -48,11 +37,8 @@ RGMethodDefinitionTest>>testReadFrom [
 	self assert: (Object readFrom: st) = rg 
 ]
 
-{
-	#category : #'*Manifest-Tests',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RGMethodDefinitionTest>>testStoreOn [
+{ #category : #'*Manifest-Tests' }
+RGMethodDefinitionTest >> testStoreOn [
 	"self debug: #testStoreOn"
 	
 	

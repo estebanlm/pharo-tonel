@@ -22,15 +22,11 @@ Class {
 		'Uint64',
 		'Uint8'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'IgorStasenko 7/30/2014 18:45'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL2Types class>>initialize [
+{ #category : #'class initialization' }
+SDL2Types class >> initialize [
 	"
 	self initialize
 	"

@@ -4,23 +4,16 @@ This smell arises when an instance variable is not both read and written. If an 
 Class {
 	#name : #GRIvarNeitherReadNorWrittenRule,
 	#superclass : #ReAbstractRule,
-	#category : #GeneralRules,
-	#timestamp : 'YuriyTymchuk 1/12/2017 08:45'
+	#category : #GeneralRules
 }
 
-{
-	#category : #testing-interest,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRIvarNeitherReadNorWrittenRule class>>checksClass [
+{ #category : #testing-interest }
+GRIvarNeitherReadNorWrittenRule class >> checksClass [
 	^ true
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRIvarNeitherReadNorWrittenRule>>check: aClass forCritiquesDo: aCriticBlock [
+{ #category : #enumerating }
+GRIvarNeitherReadNorWrittenRule >> check: aClass forCritiquesDo: aCriticBlock [
 	| methods |
 	
 	methods := aClass withAllSubclasses flatCollect: #methods.
@@ -38,11 +31,8 @@ GRIvarNeitherReadNorWrittenRule>>check: aClass forCritiquesDo: aCriticBlock [
 				(self critiqueFor: aClass about: slot) ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRIvarNeitherReadNorWrittenRule>>critiqueFor: aClass about: aSlot [
+{ #category : #enumerating }
+GRIvarNeitherReadNorWrittenRule >> critiqueFor: aClass about: aSlot [
 	| crit |
 	crit := ReTrivialCritique
 		withAnchor: (ReVarSearchSourceAnchor
@@ -54,19 +44,13 @@ GRIvarNeitherReadNorWrittenRule>>critiqueFor: aClass about: aSlot [
 	^ crit
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRIvarNeitherReadNorWrittenRule>>name [
+{ #category : #accessing }
+GRIvarNeitherReadNorWrittenRule >> name [
 
 	^ 'Instance variable not read or not written'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRIvarNeitherReadNorWrittenRule>>severity [
+{ #category : #accessing }
+GRIvarNeitherReadNorWrittenRule >> severity [
 	^ #information
 ]

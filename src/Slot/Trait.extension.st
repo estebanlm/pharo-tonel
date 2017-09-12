@@ -1,12 +1,7 @@
-Extension {
-	#name : #Trait
-}
+Extension { #name : #Trait }
 
-{
-	#category : #'*Slot',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-Trait>>removeSlot: aSlot  [
+{ #category : #'*Slot' }
+Trait >> removeSlot: aSlot [ 
 
 	(self classLayout slots includes: aSlot)
 		ifFalse: [self error: aSlot name , ' is not one of my slots'].

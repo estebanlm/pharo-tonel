@@ -26,39 +26,26 @@ Class {
 	#classVars : [
 		'Current'
 	],
-	#category : #Zodiac-Core,
-	#timestamp : 'SvenVanCaekenberghe 5/6/2015 21:39'
+	#category : #Zodiac-Core
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcByteArrayManager class>>cleanUp [
+{ #category : #cleanup }
+ZdcByteArrayManager class >> cleanUp [
 	self current resources removeAll
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcByteArrayManager class>>current [
+{ #category : #accessing }
+ZdcByteArrayManager class >> current [
 	^ Current ifNil: [ Current := self new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcByteArrayManager class>>current: anObject [
+{ #category : #accessing }
+ZdcByteArrayManager class >> current: anObject [
 	Current := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcByteArrayManager>>byteArrayOfSize: size zero: zero [
+{ #category : #accessing }
+ZdcByteArrayManager >> byteArrayOfSize: size zero: zero [
 	"Return a ByteArray of size. If zero is true, make sure all bytes equal zero.
 	When the byte array is no longer needed, #recycle can be used to return it to the reciever.
 	It is possible that the byte array returned was previously recycled."
@@ -77,40 +64,28 @@ ZdcByteArrayManager>>byteArrayOfSize: size zero: zero [
 		^ ByteArray new: size ]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcByteArrayManager>>initialize [
+{ #category : #initialize }
+ZdcByteArrayManager >> initialize [
 	super initialize.
 	limit := 0.
 	access := Monitor new
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcByteArrayManager>>limit: newLimit [
+{ #category : #initialize }
+ZdcByteArrayManager >> limit: newLimit [
 	access critical: [ 
 		limit := newLimit.
 		limit = 0 ifTrue: [ ^ resources := nil ].
 		resources ifNotNil: [ resources removeAll ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcByteArrayManager>>poolForSize: size [
+{ #category : #private }
+ZdcByteArrayManager >> poolForSize: size [
 	^ self resources at: size ifAbsentPut: [ Array new: limit ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcByteArrayManager>>recycle: byteArray [
+{ #category : #accessing }
+ZdcByteArrayManager >> recycle: byteArray [
 	"Return byteArray, which is no longer needed, to the receiver to be recyled 
 	and reused when #byteArrayOfSize:zero: is called."
 	
@@ -125,19 +100,13 @@ ZdcByteArrayManager>>recycle: byteArray [
 		"If the pool is full, don't hold onto it" ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcByteArrayManager>>resources [
+{ #category : #private }
+ZdcByteArrayManager >> resources [
 	^ resources ifNil: [ resources := Dictionary new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-ZdcByteArrayManager>>totalSize [
+{ #category : #accessing }
+ZdcByteArrayManager >> totalSize [
 	^ resources 
 		ifNil: [ 0 ] 
 		ifNotNil: [ 

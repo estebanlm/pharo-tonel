@@ -9,15 +9,11 @@ Class {
 		'offset',
 		'baseSlotSize'
 	],
-	#category : #Slot-Examples,
-	#timestamp : 'md 7/17/2015 14:07'
+	#category : #Slot-Examples
 }
 
-{
-	#category : #'class building',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-UnlimitedInstanceVariableSlot>>calculateOffset: aClass [
+{ #category : #'class building' }
+UnlimitedInstanceVariableSlot >> calculateOffset: aClass [
 	| ivarSlots  calculatedOffset |
 	"first we get all boolean slots and sort them by index"
 	ivarSlots := aClass allSlots select: [ :each | each isKindOf: self class ].
@@ -34,11 +30,8 @@ UnlimitedInstanceVariableSlot>>calculateOffset: aClass [
 	
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-UnlimitedInstanceVariableSlot>>emitStore: methodBuilder [
+{ #category : #'code generation' }
+UnlimitedInstanceVariableSlot >> emitStore: methodBuilder [
 	| tempName |
 
 	tempName := Object new.
@@ -52,11 +45,8 @@ UnlimitedInstanceVariableSlot>>emitStore: methodBuilder [
 		send: #at:put:
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-UnlimitedInstanceVariableSlot>>emitValue: methodBuilder [
+{ #category : #'code generation' }
+UnlimitedInstanceVariableSlot >> emitValue: methodBuilder [
 
 		methodBuilder
 			pushInstVar: baseSlot index;
@@ -65,28 +55,19 @@ UnlimitedInstanceVariableSlot>>emitValue: methodBuilder [
 			
 ]
 
-{
-	#category : #'class building',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-UnlimitedInstanceVariableSlot>>growBaseSlot: aClass [
+{ #category : #'class building' }
+UnlimitedInstanceVariableSlot >> growBaseSlot: aClass [
 	baseSlot default: (baseSlot default grownBy: 1)
 ]
 
-{
-	#category : #'class building',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-UnlimitedInstanceVariableSlot>>installingIn: aClass [
+{ #category : #'class building' }
+UnlimitedInstanceVariableSlot >> installingIn: aClass [
 	super installingIn: aClass.
 	offset := self calculateOffset: aClass.
 ]
 
-{
-	#category : #'class building',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-UnlimitedInstanceVariableSlot>>layoutChanged: aClass [
+{ #category : #'class building' }
+UnlimitedInstanceVariableSlot >> layoutChanged: aClass [
 	super layoutChanged: aClass.
 	"we check on the slot level as the slot is hidden"
 	(baseSlot notNil and: [aClass classLayout hasSlotNamed: baseSlot name]) ifTrue: [
@@ -100,28 +81,19 @@ UnlimitedInstanceVariableSlot>>layoutChanged: aClass [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-UnlimitedInstanceVariableSlot>>offset [
+{ #category : #accessing }
+UnlimitedInstanceVariableSlot >> offset [
 	^offset
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-UnlimitedInstanceVariableSlot>>read: anObject [
+{ #category : #meta-object-protocol }
+UnlimitedInstanceVariableSlot >> read: anObject [
 	^(baseSlot read: anObject) at: offset
 		
 ]
 
-{
-	#category : #TODO,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-UnlimitedInstanceVariableSlot>>todo [
+{ #category : #TODO }
+UnlimitedInstanceVariableSlot >> todo [
 	'
     - adding a slots in between --> offsets need to be updated?
 	 - removing slot in the middle	
@@ -130,11 +102,8 @@ UnlimitedInstanceVariableSlot>>todo [
 	'
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-UnlimitedInstanceVariableSlot>>write: aValue to: anObject [
+{ #category : #meta-object-protocol }
+UnlimitedInstanceVariableSlot >> write: aValue to: anObject [
 	^(baseSlot read: anObject) at: offset put: aValue.
 	
 ]

@@ -1,37 +1,24 @@
-"
-
-"
 Class {
 	#name : #OCPragmaTest,
 	#superclass : #TestCase,
-	#category : #OpalCompiler-Tests-Source,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-Source
 }
 
-{
-	#category : #method-tested,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>methodDoublePragma [
+{ #category : #method-tested }
+OCPragmaTest >> methodDoublePragma [
 	^'methodDoublePragma
 		<hello: 5>
 		<hello: 2>'
 ]
 
-{
-	#category : #method-tested,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>methodNoPragma [
+{ #category : #method-tested }
+OCPragmaTest >> methodNoPragma [
 	^'methodNoPragma: aNum
 		^aNum'
 ]
 
-{
-	#category : #method-tested,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>methodPragmaAfterBeforTemps [
+{ #category : #method-tested }
+OCPragmaTest >> methodPragmaAfterBeforTemps [
 	^'methodPragmaAfterBeforTemps
 		<hello: 5>
 		| aTemp |
@@ -39,76 +26,52 @@ OCPragmaTest>>methodPragmaAfterBeforTemps [
 		<blue: true>'
 ]
 
-{
-	#category : #method-tested,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>methodPragmaTwoParam [
+{ #category : #method-tested }
+OCPragmaTest >> methodPragmaTwoParam [
 	^'methodDoublePragma
 		<hello: 5 by: 2>'
 ]
 
-{
-	#category : #method-tested,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>methodPragmaUnarayMessage [
+{ #category : #method-tested }
+OCPragmaTest >> methodPragmaUnarayMessage [
 	^'methodPragmaUnarayMessage
 		<hello>'
 ]
 
-{
-	#category : #method-tested,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>methodPrimitive [
+{ #category : #method-tested }
+OCPragmaTest >> methodPrimitive [
 	^'methodPrimitive
 		<primitive: 4>'
 ]
 
-{
-	#category : #method-tested,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>methodPrimitivePragma [
+{ #category : #method-tested }
+OCPragmaTest >> methodPrimitivePragma [
 	^'methodPrimitivePragma
 		<hello: 1>
 		<primitive: 4>
 		<hello: 1>'
 ]
 
-{
-	#category : #method-tested,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>methodPrimitiveString [
+{ #category : #method-tested }
+OCPragmaTest >> methodPrimitiveString [
 	^'methodPrimitiveString
 		<primitive: ''aFunctionName''>'
 ]
 
-{
-	#category : #method-tested,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>methodPrimitiveStringModule [
+{ #category : #method-tested }
+OCPragmaTest >> methodPrimitiveStringModule [
 	^'methodPrimitiveStringModule
 		<primitive: ''aFunctionName'' module: ''aModuleName''>'
 ]
 
-{
-	#category : #method-tested,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>methodSinglePragma [
+{ #category : #method-tested }
+OCPragmaTest >> methodSinglePragma [
 	^'methodSinglePragma
 		<hello: 5>'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>testDoublePragma [
+{ #category : #testing }
+OCPragmaTest >> testDoublePragma [
 	| aRBMethode |
 	"self debug: #testDoublePragma"
 	aRBMethode := OpalCompiler new parse: self methodDoublePragma.
@@ -117,32 +80,23 @@ OCPragmaTest>>testDoublePragma [
 	self assert: (aRBMethode compiledMethod pragmas second keyword = #hello:)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>testIsPrimitve [
+{ #category : #testing }
+OCPragmaTest >> testIsPrimitve [
 	| aRBMethode |
 
 	aRBMethode := OpalCompiler new parse: self methodPrimitive.
 	self assert: aRBMethode isPrimitive
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>testNoPragma [
+{ #category : #testing }
+OCPragmaTest >> testNoPragma [
 	"self debug: #testDoublePrimitive"
 
 	OpalCompiler new parse: self methodNoPragma
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>testPragmaAfterBeforTemp [
+{ #category : #testing }
+OCPragmaTest >> testPragmaAfterBeforTemp [
 	"self debug: #testPragmaAfterBeforTemp"
 	| aRBMethode |
 	aRBMethode := OpalCompiler new parse: self methodPragmaAfterBeforTemps.
@@ -153,11 +107,8 @@ OCPragmaTest>>testPragmaAfterBeforTemp [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>testPragmaTwoParam [
+{ #category : #testing }
+OCPragmaTest >> testPragmaTwoParam [
 	"self debug: #testPragmaAfterBeforTemp"
 	| aRBMethode |
 	aRBMethode := OpalCompiler new parse: self methodPragmaTwoParam.
@@ -167,11 +118,8 @@ OCPragmaTest>>testPragmaTwoParam [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>testPragmaUnarayMessage [
+{ #category : #testing }
+OCPragmaTest >> testPragmaUnarayMessage [
 	| aRBMethode |
 
 	aRBMethode := OpalCompiler new parse: self methodPragmaUnarayMessage.
@@ -179,33 +127,24 @@ OCPragmaTest>>testPragmaUnarayMessage [
 	self assert: (aRBMethode compiledMethod pragmas first keyword = #hello)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>testPrimitiveNumber [
+{ #category : #testing }
+OCPragmaTest >> testPrimitiveNumber [
 	| aRBMethode |
 
 	aRBMethode := OpalCompiler new parse: self methodPrimitive.
 	self assert: (aRBMethode compiledMethod primitive = 4)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>testPrimitivePragmaNumber [
+{ #category : #testing }
+OCPragmaTest >> testPrimitivePragmaNumber [
 	| aRBMethode |
 
 	aRBMethode := OpalCompiler new parse: self methodPrimitivePragma.
 	self assert: (aRBMethode compiledMethod primitive = 4)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>testPrimitiveString [
+{ #category : #testing }
+OCPragmaTest >> testPrimitiveString [
 	| aRBMethode |
 
 	aRBMethode := OpalCompiler new parse: self methodPrimitiveString.
@@ -213,11 +152,8 @@ OCPragmaTest>>testPrimitiveString [
 	self assert: (aRBMethode compiledMethod primitive = 117)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>testPrimitiveStringModule [
+{ #category : #testing }
+OCPragmaTest >> testPrimitiveStringModule [
 	| aRBMethode |
 
 	aRBMethode := OpalCompiler new parse: self methodPrimitiveStringModule.
@@ -225,11 +161,8 @@ OCPragmaTest>>testPrimitiveStringModule [
 	self assert: (aRBMethode compiledMethod primitive = 117)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCPragmaTest>>testSinglePragma [
+{ #category : #testing }
+OCPragmaTest >> testSinglePragma [
 	| aRBMethode |
 	aRBMethode := OpalCompiler new parse: self methodSinglePragma.
 	self assert: (aRBMethode compiledMethod pragmas first keyword = #hello:)

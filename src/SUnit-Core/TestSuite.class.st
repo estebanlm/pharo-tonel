@@ -12,60 +12,41 @@ Class {
 		'name',
 		'announcer'
 	],
-	#category : #SUnit-Core-Kernel,
-	#timestamp : '<historical>'
+	#category : #SUnit-Core-Kernel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite class>>named: aString [
+{ #category : #'instance creation' }
+TestSuite class >> named: aString [
 
 	^self new
 		name: aString;
 		yourself
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>addDependentToHierachy: anObject [
+{ #category : #dependencies }
+TestSuite >> addDependentToHierachy: anObject [
 	self addDependent: anObject.
 	self tests do: [ :each | each addDependentToHierachy: anObject]
 			
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>addTest: aTest [
+{ #category : #accessing }
+TestSuite >> addTest: aTest [
 	self tests add: aTest 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>addTests: aCollection  [
+{ #category : #accessing }
+TestSuite >> addTests: aCollection [ 
 	aCollection do: [:eachTest | self addTest: eachTest]
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>announceTest: aTest [
+{ #category : #announcements }
+TestSuite >> announceTest: aTest [
 	^ self testSuiteAnnouncer announce: (TestAnnouncement with: aTest).
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>debug [
+{ #category : #running }
+TestSuite >> debug [
 	self setUp.
 	[
 		self tests do: [:each | 
@@ -80,11 +61,8 @@ TestSuite>>debug [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>defaultResources [
+{ #category : #accessing }
+TestSuite >> defaultResources [
 	^self tests
 		inject: OrderedCollection new
 		into:
@@ -95,96 +73,66 @@ TestSuite>>defaultResources [
 			coll]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>name [
+{ #category : #accessing }
+TestSuite >> name [
 
 	^name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>name: aString [
+{ #category : #accessing }
+TestSuite >> name: aString [
 
 	name := aString
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>removeDependentFromHierachy: anObject [
+{ #category : #dependencies }
+TestSuite >> removeDependentFromHierachy: anObject [
 	self removeDependent: anObject.
 	self tests do: [ :each | each removeDependentFromHierachy: anObject]
 			
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>resourceClass [
+{ #category : #running }
+TestSuite >> resourceClass [
 
 	^ TestResource
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>resources [
+{ #category : #accessing }
+TestSuite >> resources [
 	resources isNil ifTrue: [resources := self defaultResources].
 	^resources
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>resources: someOrderedTestResourceClasses [
+{ #category : #accessing }
+TestSuite >> resources: someOrderedTestResourceClasses [
 	"The parameter should understand reverseDo: and should not contain duplicates."
 
 	resources := someOrderedTestResourceClasses
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>resultClass [
+{ #category : #running }
+TestSuite >> resultClass [
 
 	^ TestAsserter classForTestResult
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>run [
+{ #category : #running }
+TestSuite >> run [
 	| result |
 	result := self resultClass new.
 	self run: result.
 	^result
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>run: aResult [
+{ #category : #running }
+TestSuite >> run: aResult [
 	CurrentExecutionEnvironment runTestsBy: [
 		self runUnmanaged: aResult ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>runUnmanaged: aResult [
+{ #category : #running }
+TestSuite >> runUnmanaged: aResult [
 	self setUp.
 	[ self tests
 		do: [ :each | 
@@ -194,54 +142,36 @@ TestSuite>>runUnmanaged: aResult [
 		ensure: [ self tearDown ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>setUp [
+{ #category : #running }
+TestSuite >> setUp [
 	self resources  do: [ :each |
 			each isAvailable ifFalse: [ each signalInitializationError ]
 		].
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>subscribe: aAnnouncement do: aBlock [
+{ #category : #announcements }
+TestSuite >> subscribe: aAnnouncement do: aBlock [
 	self testSuiteAnnouncer subscribe: aAnnouncement do: aBlock
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>tearDown [
+{ #category : #running }
+TestSuite >> tearDown [
 	self resourceClass resetResources: self resources.
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>testSuiteAnnouncer [
+{ #category : #announcements }
+TestSuite >> testSuiteAnnouncer [
 	announcer ifNil:[ announcer := Announcer new.].
 	^ announcer.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>tests [
+{ #category : #accessing }
+TestSuite >> tests [
 	tests isNil ifTrue: [tests := OrderedCollection new].
 	^tests
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestSuite>>unsubscribe: anAnnouncementClass  [
+{ #category : #announcements }
+TestSuite >> unsubscribe: anAnnouncementClass [ 
 	self testSuiteAnnouncer unsubscribe: anAnnouncementClass.
 ]

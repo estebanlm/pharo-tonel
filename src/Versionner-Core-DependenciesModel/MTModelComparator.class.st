@@ -4,23 +4,16 @@ A comparator that can be used to compare a whole dependency graph.
 Class {
 	#name : #MTModelComparator,
 	#superclass : #Object,
-	#category : #Versionner-Core-DependenciesModel,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-DependenciesModel
 }
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTModelComparator class>>is: anMTProject equalsTo: anOtherMTProject [
+{ #category : #protocol }
+MTModelComparator class >> is: anMTProject equalsTo: anOtherMTProject [
 	^self new is: anMTProject equalsTo: anOtherMTProject
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTModelComparator>>is: anMTProject equalsTo: anOtherMTProject [
+{ #category : #comparing }
+MTModelComparator >> is: anMTProject equalsTo: anOtherMTProject [
 	| referenceModelIterator modelToCompareIterator |
 	
 	referenceModelIterator := MTProjectBFSIterator on: anMTProject.

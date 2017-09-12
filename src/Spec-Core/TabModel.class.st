@@ -23,161 +23,109 @@ Class {
 		'closeableHolder',
 		'selectedHolder'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 6/28/2016 10:08'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel class>>adapterName [
+{ #category : #specs }
+TabModel class >> adapterName [
 
 	^ #TabAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel class>>defaultSpec [
+{ #category : #specs }
+TabModel class >> defaultSpec [
 	<spec: #default>
 	
 	^ #(TabAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>actions [
+{ #category : #api }
+TabModel >> actions [
 
 	^ actionsHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>actions: aCollection [
+{ #category : #api }
+TabModel >> actions: aCollection [
 
 	actionsHolder value: aCollection
 ]
 
-{
-	#category : #api-valueHolder,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>actionsHolder [
+{ #category : #api-valueHolder }
+TabModel >> actionsHolder [
 
 	^ actionsHolder
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>closeable [
+{ #category : #api }
+TabModel >> closeable [
 
 	^ closeableHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>closeable: aBoolean [
+{ #category : #api }
+TabModel >> closeable: aBoolean [
 
 	closeableHolder value: aBoolean
 ]
 
-{
-	#category : #api-valueHolder,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>closeableHolder [
+{ #category : #api-valueHolder }
+TabModel >> closeableHolder [
 
 	^ closeableHolder
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>contents [
+{ #category : #api }
+TabModel >> contents [
 
 	^ morphHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>contents: aMorph [
+{ #category : #api }
+TabModel >> contents: aMorph [
 
 	morphHolder value: aMorph
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>defaultIcon [
+{ #category : #private }
+TabModel >> defaultIcon [
 
 	^ self iconNamed: #blankIcon
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>icon [
+{ #category : #api }
+TabModel >> icon [
 
 	^ iconHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>icon: aForm [
+{ #category : #api }
+TabModel >> icon: aForm [
 
 	iconHolder value: aForm
 ]
 
-{
-	#category : #api-valueHolder,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>iconHolder [
+{ #category : #api-valueHolder }
+TabModel >> iconHolder [
 
 	^ iconHolder
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>iconName: aSymbol [
+{ #category : #api }
+TabModel >> iconName: aSymbol [
 
 	iconHolder value: (self iconNamed: aSymbol)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>initialExtent [
+{ #category : #initialization }
+TabModel >> initialExtent [
 
 	^ 200@25
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>initialize [
+{ #category : #initialization }
+TabModel >> initialize [
 	"Initialization code for TabModel"
 
 	super initialize.
@@ -193,155 +141,104 @@ TabModel>>initialize [
 	selectedHolder := false asValueHolder
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>label [
+{ #category : #api }
+TabModel >> label [
 
 	^ labelHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>label: aString [
+{ #category : #api }
+TabModel >> label: aString [
 
 	labelHolder value: aString
 ]
 
-{
-	#category : #api-valueHolder,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>labelHolder [
+{ #category : #api-valueHolder }
+TabModel >> labelHolder [
 
 	^ labelHolder
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>menu [
+{ #category : #api }
+TabModel >> menu [
 
 	^ menuHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>menu: aBlock [
+{ #category : #api }
+TabModel >> menu: aBlock [
 
 	menuHolder value: aBlock
 ]
 
-{
-	#category : #api-valueHolder,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>menuHolder [
+{ #category : #api-valueHolder }
+TabModel >> menuHolder [
 
 	^ menuHolder
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>model: aComposableModel [
+{ #category : #api }
+TabModel >> model: aComposableModel [
 	aComposableModel owner: self.
 	self retrievingBlock: [ aComposableModel buildWithSpec asWidget ]
 ]
 
-{
-	#category : #api-valueHolder,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>morphHolder [
+{ #category : #api-valueHolder }
+TabModel >> morphHolder [
 
 	^ morphHolder
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>retrievingBlock [
+{ #category : #api }
+TabModel >> retrievingBlock [
 
 	^ retrievingBlockHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>retrievingBlock: aBlock [
+{ #category : #api }
+TabModel >> retrievingBlock: aBlock [
 
 	retrievingBlockHolder value: aBlock
 ]
 
-{
-	#category : #api-valueHolder,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>retrievingBlockHolder [
+{ #category : #api-valueHolder }
+TabModel >> retrievingBlockHolder [
 
 	^ retrievingBlockHolder
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>selected: aBoolean [
+{ #category : #api }
+TabModel >> selected: aBoolean [
 
 	selectedHolder value: aBoolean
 ]
 
-{
-	#category : #api-valueHolder,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>selectedHolder [
+{ #category : #api-valueHolder }
+TabModel >> selectedHolder [
 
 	^ selectedHolder
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>tabSelected  [
+{ #category : #api }
+TabModel >> tabSelected [ 
 
 	tabSelectedActionHolder value cull: self
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>tabSelectedAction [
+{ #category : #api }
+TabModel >> tabSelectedAction [
 
 	^ tabSelectedActionHolder value
 ]
 
-{
-	#category : #api-valueHolder,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>tabSelectedActionHolder [
+{ #category : #api-valueHolder }
+TabModel >> tabSelectedActionHolder [
 
 	^ tabSelectedActionHolder
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TabModel>>whenTabSelected: aBlock [
+{ #category : #api-events }
+TabModel >> whenTabSelected: aBlock [
 
 	tabSelectedActionHolder value: aBlock
 ]

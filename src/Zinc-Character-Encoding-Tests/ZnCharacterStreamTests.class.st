@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnCharacterStreamTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Character-Encoding-Tests,
-	#timestamp : ''
+	#category : #Zinc-Character-Encoding-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterStreamTests>>testNextLine [
+{ #category : #testing }
+ZnCharacterStreamTests >> testNextLine [
 	| stream |
 	stream := ZnCharacterReadStream on: 'abc' asByteArray readStream.
 	self assert: stream nextLine equals: 'abc'.
@@ -46,11 +39,8 @@ ZnCharacterStreamTests>>testNextLine [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterStreamTests>>testPeek [
+{ #category : #testing }
+ZnCharacterStreamTests >> testPeek [
 	| string bytes readStream |
 	string := 'élève en Français'.
 	bytes := ZnUTF8Encoder new encodeString: string.
@@ -63,11 +53,8 @@ ZnCharacterStreamTests>>testPeek [
 	self assert: (readStream next: 'en Français' size) equals: 'en Français'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterStreamTests>>testReadStream [
+{ #category : #testing }
+ZnCharacterStreamTests >> testReadStream [
 	| stream |
 	stream := ZnCharacterReadStream on: 'ABC' asByteArray readStream.
 	self deny: stream atEnd.
@@ -86,11 +73,8 @@ ZnCharacterStreamTests>>testReadStream [
 	self assert: stream peek isNil		
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterStreamTests>>testSimpleUTF8ReadStream [
+{ #category : #testing }
+ZnCharacterStreamTests >> testSimpleUTF8ReadStream [
 	| string bytes |
 	string := 'élève en Français'.
 	bytes := ZnUTF8Encoder new encodeString: string.
@@ -99,11 +83,8 @@ ZnCharacterStreamTests>>testSimpleUTF8ReadStream [
 		equals: string
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterStreamTests>>testSimpleUTF8WriteStream [
+{ #category : #testing }
+ZnCharacterStreamTests >> testSimpleUTF8WriteStream [
 	| string bytes stream |
 	string := 'élève en Français'.
 	bytes := ZnUTF8Encoder new encodeString: string.
@@ -114,11 +95,8 @@ ZnCharacterStreamTests>>testSimpleUTF8WriteStream [
 		equals: bytes
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnCharacterStreamTests>>testUTF8ReadStreamReadInto [
+{ #category : #testing }
+ZnCharacterStreamTests >> testUTF8ReadStreamReadInto [
 	| string bytes stream buffer |
 	string := 'élève en Français'.
 	bytes := ZnUTF8Encoder new encodeString: string.

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #SyntaxErrorNotification,
 	#superclass : #Notification,
@@ -10,15 +7,11 @@ Class {
 		'doitFlag',
 		'location'
 	],
-	#category : #OpalCompiler-Core-Exception,
-	#timestamp : ''
+	#category : #OpalCompiler-Core-Exception
 }
 
-{
-	#category : #exceptionInstantiator,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-SyntaxErrorNotification class>>inClass: aClass withCode: codeString doitFlag: doitFlag errorMessage: errorString location: location [
+{ #category : #exceptionInstantiator }
+SyntaxErrorNotification class >> inClass: aClass withCode: codeString doitFlag: doitFlag errorMessage: errorString location: location [
 	| sourceCode |
 	sourceCode := (self new
 		setClass: aClass
@@ -30,69 +23,45 @@ SyntaxErrorNotification class>>inClass: aClass withCode: codeString doitFlag: do
 	^ sourceCode
 ]
 
-{
-	#category : #exceptiondescription,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-SyntaxErrorNotification>>defaultAction [
+{ #category : #exceptiondescription }
+SyntaxErrorNotification >> defaultAction [
 
 	^ UIManager default syntaxErrorNotificationDefaultAction: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-SyntaxErrorNotification>>doitFlag [
+{ #category : #accessing }
+SyntaxErrorNotification >> doitFlag [
 	^doitFlag
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-SyntaxErrorNotification>>errorClass [
+{ #category : #accessing }
+SyntaxErrorNotification >> errorClass [
 	^inClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-SyntaxErrorNotification>>errorCode [
+{ #category : #accessing }
+SyntaxErrorNotification >> errorCode [
 	^code
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-SyntaxErrorNotification>>errorMessage [
+{ #category : #accessing }
+SyntaxErrorNotification >> errorMessage [
 	^messageText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-SyntaxErrorNotification>>location [
+{ #category : #accessing }
+SyntaxErrorNotification >> location [
 	^location
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-SyntaxErrorNotification>>messageText [
+{ #category : #accessing }
+SyntaxErrorNotification >> messageText [
 	^ super messageText
 		ifNil: [messageText := code]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-SyntaxErrorNotification>>setClass: aClass code: codeString doitFlag: aBoolean errorMessage: errorString location: anInteger [
+{ #category : #accessing }
+SyntaxErrorNotification >> setClass: aClass code: codeString doitFlag: aBoolean errorMessage: errorString location: anInteger [
 	inClass := aClass.
 	code := codeString.
 	doitFlag := aBoolean.

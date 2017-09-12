@@ -81,39 +81,26 @@ Class {
 		'isEnabled',
 		'isDoubleClickEnabled'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-Core,
-	#timestamp : 'AliakseiSyrel 3/22/2015 11:38'
+	#category : #Glamour-Morphic-Brick-Widgets-Core
 }
 
-{
-	#category : #states,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick class>>normalColorOf: aTrick [
+{ #category : #states }
+GLMInteractableBrick class >> normalColorOf: aTrick [
 	^ self pressedColor: false selectedColor: false of: aTrick
 ]
 
-{
-	#category : #states,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick class>>normalOf: aTrick [
+{ #category : #states }
+GLMInteractableBrick class >> normalOf: aTrick [
 	^ self pressed: false selected: false of: aTrick
 ]
 
-{
-	#category : #states,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick class>>pressed: isPressed of: aTrick [
+{ #category : #states }
+GLMInteractableBrick class >> pressed: isPressed of: aTrick [
 	^ self pressed: isPressed selected: false of: aTrick
 ]
 
-{
-	#category : #states,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick class>>pressed: isPressed selected: isSelected checked: isChecked of: aTrick [
+{ #category : #states }
+GLMInteractableBrick class >> pressed: isPressed selected: isSelected checked: isChecked of: aTrick [
 	"answers sender with image, corresponding specified state"
 	
 	"pressed has the highest priority"
@@ -129,27 +116,18 @@ GLMInteractableBrick class>>pressed: isPressed selected: isSelected checked: isC
 	^ aTrick normalImage.
 ]
 
-{
-	#category : #states,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick class>>pressed: isPressed selected: isSelected of: aTrick [
+{ #category : #states }
+GLMInteractableBrick class >> pressed: isPressed selected: isSelected of: aTrick [
 	^ self pressed: isPressed selected: isSelected checked: false of: aTrick
 ]
 
-{
-	#category : #states,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick class>>pressedColor: isPressed of: aTrick [
+{ #category : #states }
+GLMInteractableBrick class >> pressedColor: isPressed of: aTrick [
 	^ self pressedColor: isPressed selectedColor: false of: aTrick
 ]
 
-{
-	#category : #states,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick class>>pressedColor: isPressed selectedColor: isSelected checkedColor: isChecked of:aTrick [
+{ #category : #states }
+GLMInteractableBrick class >> pressedColor: isPressed selectedColor: isSelected checkedColor: isChecked of:aTrick [
 	"answers sender with image, corresponding specified state"
 	
 	"pressed has the highest priority"
@@ -166,35 +144,23 @@ GLMInteractableBrick class>>pressedColor: isPressed selectedColor: isSelected ch
 	^ aTrick normalColor.
 ]
 
-{
-	#category : #states,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick class>>pressedColor: isPressed selectedColor: isSelected of: aTrick [
+{ #category : #states }
+GLMInteractableBrick class >> pressedColor: isPressed selectedColor: isSelected of: aTrick [
 	^ self pressedColor: isPressed selectedColor: isSelected checkedColor: false of: aTrick
 ]
 
-{
-	#category : #states,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick class>>selected: isSelected of: aTrick [
+{ #category : #states }
+GLMInteractableBrick class >> selected: isSelected of: aTrick [
 	^ self pressed: false selected: isSelected of: aTrick
 ]
 
-{
-	#category : #states,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick class>>selectedColor: isSelected of: aTrick [
+{ #category : #states }
+GLMInteractableBrick class >> selectedColor: isSelected of: aTrick [
 	^ self pressedColor: false selectedColor: isSelected of: aTrick
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>check [
+{ #category : #brick-interactable-actions }
+GLMInteractableBrick >> check [
 	"notifies #onChecked"
 	self isChecked ifFalse: [
 		isChecked := true.
@@ -202,86 +168,56 @@ GLMInteractableBrick>>check [
 		self changed ]
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>check: aBoolean [
+{ #category : #brick-interactable-actions }
+GLMInteractableBrick >> check: aBoolean [
 	aBoolean
 		ifTrue: [ self check ]
 		ifFalse: [ self uncheck ]
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>checkedColor [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> checkedColor [
 	^ checkedColor
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>checkedColor: anObject [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> checkedColor: anObject [
 	checkedColor := anObject
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>checkedImage [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> checkedImage [
 	^ checkedImage
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>checkedImage: anObject [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> checkedImage: anObject [
 	checkedImage := anObject
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>click: anEvent [
+{ #category : #brick-interactable-actions }
+GLMInteractableBrick >> click: anEvent [
 	self announce: #onClicked event: anEvent.
 	^ false
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>currentColor [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> currentColor [
 	^ self state pressedColor: (self isPressed) selectedColor: (self isSelected) checkedColor: (self isChecked) of: self
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>currentImage [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> currentImage [
 	^ self state pressed: (self isPressed) selected: (self isSelected) checked: (self isChecked) of: self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>defaultRenderer [
+{ #category : #initialization }
+GLMInteractableBrick >> defaultRenderer [
 	^ GLMInteractableBrickRenderer new
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>depress [
+{ #category : #brick-interactable-actions }
+GLMInteractableBrick >> depress [
 	self isPressed ifTrue: [
 		isPressed := false.
 		self changed.
@@ -289,11 +225,8 @@ GLMInteractableBrick>>depress [
 	^ false
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>deselect [
+{ #category : #brick-interactable-actions }
+GLMInteractableBrick >> deselect [
 	"notifies #onMouseUnhover"
 	self isSelected ifTrue: [
 		isSelected := false.
@@ -301,65 +234,44 @@ GLMInteractableBrick>>deselect [
 		self changed ]
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>deselect: anEvent [
+{ #category : #brick-interactable-actions }
+GLMInteractableBrick >> deselect: anEvent [
 
 	self deselect
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>disable [
+{ #category : #brick-interactable-actions }
+GLMInteractableBrick >> disable [
 	isEnabled := false.
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>doubleClick: anEvent [
+{ #category : #brick-interactable-actions }
+GLMInteractableBrick >> doubleClick: anEvent [
 
 	self announce: #onDoubleClicked event: anEvent.
 	^ false
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>enable [
+{ #category : #brick-interactable-actions }
+GLMInteractableBrick >> enable [
 	
 	isEnabled := true.
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>enable: aBoolean [
+{ #category : #brick-interactable-actions }
+GLMInteractableBrick >> enable: aBoolean [
 	
 	isEnabled := aBoolean.
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>enableDoubleClick [
+{ #category : #brick-interactable-actions }
+GLMInteractableBrick >> enableDoubleClick [
 
 	isDoubleClickEnabled := true
 ]
 
-{
-	#category : #brick-morph-mouse-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>handlesMouseDown: evt [
+{ #category : #brick-morph-mouse-events }
+GLMInteractableBrick >> handlesMouseDown: evt [
 	
 	^ self isEnabled
 		ifTrue: [ true ]
@@ -367,21 +279,15 @@ GLMInteractableBrick>>handlesMouseDown: evt [
 	
 ]
 
-{
-	#category : #brick-morph-mouse-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>handlesMouseOver: evt [
+{ #category : #brick-morph-mouse-events }
+GLMInteractableBrick >> handlesMouseOver: evt [
 	^ self isEnabled
 		ifTrue: [ true ]
 		ifFalse: [ super handlesMouseDown: evt ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>initialize [
+{ #category : #initialization }
+GLMInteractableBrick >> initialize [
 	super initialize.
 	
 	isChecked := false.
@@ -391,69 +297,45 @@ GLMInteractableBrick>>initialize [
 	self disable.
 ]
 
-{
-	#category : #brick-interactable-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>isChecked [
+{ #category : #brick-interactable-testing }
+GLMInteractableBrick >> isChecked [
 	^ isChecked.
 ]
 
-{
-	#category : #brick-interactable-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>isDoubleClickEnabled [
+{ #category : #brick-interactable-testing }
+GLMInteractableBrick >> isDoubleClickEnabled [
 
 	^ isDoubleClickEnabled ifNil: [ isDoubleClickEnabled := false ]
 ]
 
-{
-	#category : #brick-interactable-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>isEnabled [
+{ #category : #brick-interactable-testing }
+GLMInteractableBrick >> isEnabled [
 	^ isEnabled
 ]
 
-{
-	#category : #brick-interactable-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>isFocused [
+{ #category : #brick-interactable-testing }
+GLMInteractableBrick >> isFocused [
 
 	^ false
 ]
 
-{
-	#category : #brick-interactable-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>isHovered [
+{ #category : #brick-interactable-testing }
+GLMInteractableBrick >> isHovered [
 	^ self isSelected
 ]
 
-{
-	#category : #brick-interactable-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>isPressed [
+{ #category : #brick-interactable-testing }
+GLMInteractableBrick >> isPressed [
 	^ isPressed.
 ]
 
-{
-	#category : #brick-interactable-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>isSelected [
+{ #category : #brick-interactable-testing }
+GLMInteractableBrick >> isSelected [
 	^ isSelected.
 ]
 
-{
-	#category : #brick-morph-mouse-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>mouseDown: evt [
+{ #category : #brick-morph-mouse-events }
+GLMInteractableBrick >> mouseDown: evt [
 	|selectors|
 	
 	self isDoubleClickEnabled ifFalse: [
@@ -474,29 +356,20 @@ GLMInteractableBrick>>mouseDown: evt [
 
 ]
 
-{
-	#category : #brick-morph-mouse-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>mouseEnter: evt [
+{ #category : #brick-morph-mouse-events }
+GLMInteractableBrick >> mouseEnter: evt [
 	super mouseEnter: evt.
 	^ self select: evt
 ]
 
-{
-	#category : #brick-morph-mouse-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>mouseLeave: evt [
+{ #category : #brick-morph-mouse-events }
+GLMInteractableBrick >> mouseLeave: evt [
 	super mouseLeave: evt.
 	^ self deselect: evt
 ]
 
-{
-	#category : #brick-morph-mouse-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>mouseUp: evt [
+{ #category : #brick-morph-mouse-events }
+GLMInteractableBrick >> mouseUp: evt [
 	super mouseUp: evt.
 	(self bounds containsPoint: evt position) & (self isPressed) ifTrue: [
 		self depress.
@@ -506,43 +379,28 @@ GLMInteractableBrick>>mouseUp: evt [
 		^ self depress ]
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>normalColor [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> normalColor [
 	^ normalColor
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>normalColor: anObject [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> normalColor: anObject [
 	normalColor := anObject
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>normalImage [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> normalImage [
 	^ normalImage
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>normalImage: anObject [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> normalImage: anObject [
 	normalImage := anObject
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>press [
+{ #category : #brick-interactable-actions }
+GLMInteractableBrick >> press [
 	self isPressed ifFalse: [
 		isPressed := true.
 		self changed.
@@ -551,43 +409,28 @@ GLMInteractableBrick>>press [
 	^ false
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>pressedColor [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> pressedColor [
 	^ pressedColor
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>pressedColor: anObject [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> pressedColor: anObject [
 	pressedColor := anObject
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>pressedImage [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> pressedImage [
 	^ pressedImage
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>pressedImage: anObject [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> pressedImage: anObject [
 	pressedImage := anObject
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>select [
+{ #category : #brick-interactable-actions }
+GLMInteractableBrick >> select [
 	"notifies #onMouseHover"
 	self isSelected ifFalse: [ 
 		isSelected := true.
@@ -595,70 +438,46 @@ GLMInteractableBrick>>select [
 		self changed ]
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>select: anEvent [
+{ #category : #brick-interactable-actions }
+GLMInteractableBrick >> select: anEvent [
 
 	self select
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>selectedColor [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> selectedColor [
 	^ selectedColor
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>selectedColor: anObject [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> selectedColor: anObject [
 	selectedColor := anObject
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>selectedImage [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> selectedImage [
 	^ selectedImage
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>selectedImage: anObject [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> selectedImage: anObject [
 	selectedImage := anObject
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>singleClick: anEvent [
+{ #category : #brick-interactable-actions }
+GLMInteractableBrick >> singleClick: anEvent [
 
 	self announce: #onSingleClicked event: anEvent
 ]
 
-{
-	#category : #brick-interactable-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>state [
+{ #category : #brick-interactable-accessing }
+GLMInteractableBrick >> state [
 
 	^ self class
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMInteractableBrick>>uncheck [
+{ #category : #brick-interactable-actions }
+GLMInteractableBrick >> uncheck [
 	"notifies #onUnchecked"
 	self isChecked ifTrue: [
 		isChecked := false.

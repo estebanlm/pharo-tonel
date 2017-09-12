@@ -8,15 +8,11 @@ Class {
 		'serializationEnvironment',
 		'materializationEnvironment'
 	],
-	#category : #FuelTests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:27'
+	#category : #FuelTests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGlobalEnvironmentTest>>setUp  [
+{ #category : #running }
+FLGlobalEnvironmentTest >> setUp [ 
 	super setUp.
 	serializationEnvironment := Dictionary new.
 	materializationEnvironment := Dictionary new.
@@ -25,11 +21,8 @@ FLGlobalEnvironmentTest>>setUp  [
 	self materializer globalEnvironment: materializationEnvironment.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGlobalEnvironmentTest>>testClassSideCompiledMethod [
+{ #category : #tests }
+FLGlobalEnvironmentTest >> testClassSideCompiledMethod [
 	"Any class-side compiled method should be serialized as global by default. On materialization, it should be found in the global environment, and the bytecodes hash must be the same."
 	
 	| classA classB |
@@ -47,11 +40,8 @@ FLGlobalEnvironmentTest>>testClassSideCompiledMethod [
 	self assert: (self resultOfSerializeAndMaterialize: classA class >> #m) == (classB class >> #m)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGlobalEnvironmentTest>>testCompiledMethod [
+{ #category : #tests }
+FLGlobalEnvironmentTest >> testCompiledMethod [
 	"Any compiled method should be serialized as global by default. On materialization, it should be found in the global environment, and the bytecodes hash must be the same."
 	
 	| classA classB |
@@ -71,11 +61,8 @@ FLGlobalEnvironmentTest>>testCompiledMethod [
 	self assert: (self resultOfSerializeAndMaterialize: classA >> #m) == (classB >> #m)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGlobalEnvironmentTest>>testCompiledMethodChanged [
+{ #category : #tests }
+FLGlobalEnvironmentTest >> testCompiledMethodChanged [
 	"A compiled methods should be serialized as global by default. On materialization, it must be found in the global environment, and the bytecodes hash must be the same. Else, raise a proper error."
 	
 	| classA classB |
@@ -97,11 +84,8 @@ FLGlobalEnvironmentTest>>testCompiledMethodChanged [
 		description: 'Serialized and materialized methods should have the same bytecodes.'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGlobalEnvironmentTest>>testConsiderCustomGlobal [
+{ #category : #tests }
+FLGlobalEnvironmentTest >> testConsiderCustomGlobal [
 	"A custom global variable is treated as global if we explicitly specify that on serialization."
 	
 	self analyzer considerGlobal: #FLGlobalVariableForTesting.
@@ -115,11 +99,8 @@ FLGlobalEnvironmentTest>>testConsiderCustomGlobal [
 	self assert: (self resultOfSerializeAndMaterialize: 42) equals: 7
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGlobalEnvironmentTest>>testConsiderCustomGlobalNotFound [
+{ #category : #tests }
+FLGlobalEnvironmentTest >> testConsiderCustomGlobalNotFound [
 	"A custom global variable is treated as global if we explicitly specify that on serialization. Then, if the variable is not defined in the materialization environment, a error should be raised."
 	
 	self analyzer considerGlobal: #FLGlobalVariableForTesting.
@@ -134,11 +115,8 @@ FLGlobalEnvironmentTest>>testConsiderCustomGlobalNotFound [
 		description: 'Raise an error since the variable is not present in materialization global environment'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGlobalEnvironmentTest>>testDontConsiderCustomGlobal [
+{ #category : #tests }
+FLGlobalEnvironmentTest >> testDontConsiderCustomGlobal [
 	"A custom global variable is not treated as global unless we explicitly specify during serialization."
 	
 	| anObject |
@@ -153,11 +131,8 @@ FLGlobalEnvironmentTest>>testDontConsiderCustomGlobal [
 	self deny: (self resultOfSerializeAndMaterialize: anObject) == anObject
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGlobalEnvironmentTest>>testGlobalClass [
+{ #category : #tests }
+FLGlobalEnvironmentTest >> testGlobalClass [
 	"A class should be global by default. On materialization, the global symbol should be found in the global environment."
 	
 	materializationEnvironment 
@@ -167,11 +142,8 @@ FLGlobalEnvironmentTest>>testGlobalClass [
 	self assert: (self resultOfSerializeAndMaterialize: Integer) == FLPerson
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGlobalEnvironmentTest>>testGlobalClassNotFound [
+{ #category : #tests }
+FLGlobalEnvironmentTest >> testGlobalClassNotFound [
 	"If a class is not defined in the materialization environment, a proper error should be raised."
 
 	self serialize: Integer.
@@ -181,11 +153,8 @@ FLGlobalEnvironmentTest>>testGlobalClassNotFound [
 		description: 'Raise an error since the class is not present in materialization global environment'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGlobalEnvironmentTest>>testGlobalMetaclass [
+{ #category : #tests }
+FLGlobalEnvironmentTest >> testGlobalMetaclass [
 	"A metaclass should be global by default. On materialization, the global symbol should be found in the global environment."
 
 	materializationEnvironment 
@@ -195,11 +164,8 @@ FLGlobalEnvironmentTest>>testGlobalMetaclass [
 	self assert: (self resultOfSerializeAndMaterialize: Integer class) == FLPerson class
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGlobalEnvironmentTest>>testGlobalMetaclassNotFound [
+{ #category : #tests }
+FLGlobalEnvironmentTest >> testGlobalMetaclassNotFound [
 	"If a class is not defined in the materialization environment, a proper error should be raised."
 	
 	self serialize: Integer class.

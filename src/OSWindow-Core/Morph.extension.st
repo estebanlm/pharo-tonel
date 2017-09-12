@@ -1,12 +1,7 @@
-Extension {
-	#name : #Morph
-}
+Extension { #name : #Morph }
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-Morph>>openInExternalWindow [
+{ #category : #'*OSWindow-Core' }
+Morph >> openInExternalWindow [
 	| world |
 	world := OSWindowWorldMorph new extent: self fullBounds extent.
 	world
@@ -24,11 +19,8 @@ Morph>>openInExternalWindow [
 	^ world open
 ]
 
-{
-	#category : #'*OSWindow-Core',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-Morph>>openInExternalWindowModalCallback: aBlock [
+{ #category : #'*OSWindow-Core' }
+Morph >> openInExternalWindowModalCallback: aBlock [
 	| world |
 	world := OSWindowWorldMorph new extent: self extent.
 	world

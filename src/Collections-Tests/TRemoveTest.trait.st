@@ -3,43 +3,28 @@ A trait for test purposes
 "
 Trait {
 	#name : #TRemoveTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:35'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveTest>>elementNotIn [
+{ #category : #requirements }
+TRemoveTest >> elementNotIn [
 " return an element not included in nonEmptyWithoutEqualElements"
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveTest>>empty [
+{ #category : #requirements }
+TRemoveTest >> empty [
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveTest>>nonEmptyWithoutEqualElements [
+{ #category : #requirements }
+TRemoveTest >> nonEmptyWithoutEqualElements [
 " return a collection without equal elements "
 	self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveTest>>test0FixtureTRemoveTest [
+{ #category : #'tests - fixture' }
+TRemoveTest >> test0FixtureTRemoveTest [
 	| duplicate |
 	self empty.
 	self nonEmptyWithoutEqualElements.
@@ -55,11 +40,8 @@ TRemoveTest>>test0FixtureTRemoveTest [
 	self deny: (self nonEmptyWithoutEqualElements includes: self elementNotIn)
 ]
 
-{
-	#category : #'tests - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveTest>>testRemoveAll [
+{ #category : #'tests - remove' }
+TRemoveTest >> testRemoveAll [
 	"self debug: #testRemoveElementThatExists"
 	| el aSubCollection collection res |
 	collection := self nonEmptyWithoutEqualElements.
@@ -70,11 +52,8 @@ TRemoveTest>>testRemoveAll [
 	self nonEmptyWithoutEqualElements do: [ :each | self assert: each = el ]
 ]
 
-{
-	#category : #'tests - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveTest>>testRemoveAllError [
+{ #category : #'tests - remove' }
+TRemoveTest >> testRemoveAllError [
 	"self debug: #testRemoveElementThatExists"
 	| el aSubCollection |
 	el := self elementNotIn.
@@ -84,11 +63,8 @@ TRemoveTest>>testRemoveAllError [
 		raise: Error
 ]
 
-{
-	#category : #'tests - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveTest>>testRemoveAllFoundIn [
+{ #category : #'tests - remove' }
+TRemoveTest >> testRemoveAllFoundIn [
 	"self debug: #testRemoveElementThatExists"
 	| el aSubCollection res |
 	el := self nonEmptyWithoutEqualElements anyOne.
@@ -98,11 +74,8 @@ TRemoveTest>>testRemoveAllFoundIn [
 	self nonEmptyWithoutEqualElements do: [ :each | self assert: each = el ]
 ]
 
-{
-	#category : #'tests - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveTest>>testRemoveAllSuchThat [
+{ #category : #'tests - remove' }
+TRemoveTest >> testRemoveAllSuchThat [
 	"self debug: #testRemoveElementThatExists"
 	| el aSubCollection |
 	el := self nonEmptyWithoutEqualElements anyOne.
@@ -112,22 +85,16 @@ TRemoveTest>>testRemoveAllSuchThat [
 	self nonEmptyWithoutEqualElements do: [ :each | self assert: each = el ]
 ]
 
-{
-	#category : #'tests - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveTest>>testRemoveElementFromEmpty [
+{ #category : #'tests - remove' }
+TRemoveTest >> testRemoveElementFromEmpty [
 	"self debug: #testRemoveElementFromEmpty"
 	self 
 		should: [ self empty remove: self nonEmptyWithoutEqualElements anyOne ]
 		raise: Error
 ]
 
-{
-	#category : #'tests - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveTest>>testRemoveElementReallyRemovesElement [
+{ #category : #'tests - remove' }
+TRemoveTest >> testRemoveElementReallyRemovesElement [
 	"self debug: #testRemoveElementReallyRemovesElement"
 	| size |
 	size := self nonEmptyWithoutEqualElements size.
@@ -135,11 +102,8 @@ TRemoveTest>>testRemoveElementReallyRemovesElement [
 	self assert: size - 1 = self nonEmptyWithoutEqualElements size
 ]
 
-{
-	#category : #'tests - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveTest>>testRemoveElementThatExists [
+{ #category : #'tests - remove' }
+TRemoveTest >> testRemoveElementThatExists [
 	"self debug: #testRemoveElementThatExists"
 
 	| el res |
@@ -148,11 +112,8 @@ TRemoveTest>>testRemoveElementThatExists [
 	self assert: res == el
 ]
 
-{
-	#category : #'tests - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TRemoveTest>>testRemoveIfAbsent [
+{ #category : #'tests - remove' }
+TRemoveTest >> testRemoveIfAbsent [
 	"self debug: #testRemoveElementThatExists"
 
 	| el res |

@@ -5,26 +5,19 @@ I'm probably ment to create diffs of class definitions.
 Class {
 	#name : #ClassDiffBuilder,
 	#superclass : #TextDiffBuilder,
-	#category : #Text-Diff,
-	#timestamp : 'HenrikSperreJohansen 5/21/2010 02:06'
+	#category : #Text-Diff
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-ClassDiffBuilder>>print: aString withAttributes: attributes on: stream [
+{ #category : #private }
+ClassDiffBuilder >> print: aString withAttributes: attributes on: stream [
 
 	stream
 		withAttributes: attributes 
 		do: [ stream nextPutAll: aString ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-ClassDiffBuilder>>split: aString [
+{ #category : #private }
+ClassDiffBuilder >> split: aString [
 	"I return an array with aString splitted by Character >> #separators."
 
 	^Array streamContents: [ :stream |

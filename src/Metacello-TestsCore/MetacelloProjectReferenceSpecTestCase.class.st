@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloProjectReferenceSpecTestCase,
 	#superclass : #MetacelloSpecTestCase,
-	#category : #Metacello-TestsCore-Specs,
-	#timestamp : ''
+	#category : #Metacello-TestsCore-Specs
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloProjectReferenceSpecTestCase>>testProjectReferenceMergeSpec [
+{ #category : #tests }
+MetacelloProjectReferenceSpecTestCase >> testProjectReferenceMergeSpec [
     | projectReferenceA projectReferenceB projectReference project |
     projectReferenceA := self projectReferenceSpec
         name: 'Project';
@@ -40,11 +33,8 @@ MetacelloProjectReferenceSpecTestCase>>testProjectReferenceMergeSpec [
     self assert: project versionString = '1.0'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloProjectReferenceSpecTestCase>>testProjectReferenceSpec [
+{ #category : #tests }
+MetacelloProjectReferenceSpecTestCase >> testProjectReferenceSpec [
     | projectReference project |
     projectReference := self projectReferenceSpec
         name: 'Project';

@@ -12,73 +12,48 @@ Class {
 	#instVars : [
 		'source'
 	],
-	#category : #'Monticello-Chunk Format',
-	#timestamp : '<historical>'
+	#category : #'Monticello-Chunk Format'
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDoItParser class>>concreteSubclasses [
+{ #category : #private }
+MCDoItParser class >> concreteSubclasses [
 	^ self allSubclasses reject: [:c | c isAbstract]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDoItParser class>>forDoit: aString [
+{ #category : #'instance creation' }
+MCDoItParser class >> forDoit: aString [
 	^ (self subclassForDoit: aString) ifNotNil: [:c | c new source: aString]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDoItParser class>>isAbstract [
+{ #category : #testing }
+MCDoItParser class >> isAbstract [
 	^ self pattern isNil
 ]
 
-{
-	#category : #'factory identification hook',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDoItParser class>>pattern [
+{ #category : #'factory identification hook' }
+MCDoItParser class >> pattern [
 	"return a pattern matching expression to identify the parser corresponding to the expression.
 	Subclasses should specialize it."
 
 	^ nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDoItParser class>>subclassForDoit: aString [
+{ #category : #'instance creation' }
+MCDoItParser class >> subclassForDoit: aString [
 	^ self concreteSubclasses detect: [:ea | ea pattern match: aString] ifNone: []
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDoItParser>>addDefinitionsTo: aCollection [
+{ #category : #actions }
+MCDoItParser >> addDefinitionsTo: aCollection [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDoItParser>>source [
+{ #category : #accessing }
+MCDoItParser >> source [
 	^ source
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDoItParser>>source: aString [
+{ #category : #accessing }
+MCDoItParser >> source: aString [
 	source := aString
 ]

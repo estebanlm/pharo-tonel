@@ -4,24 +4,17 @@ This is really only a shell for creating single-segment straight-line Shapes.
 Class {
 	#name : #LineMorph,
 	#superclass : #PolygonMorph,
-	#category : #Morphic-Base-Basic,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-Basic
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LineMorph class>>from: startPoint to: endPoint color: lineColor width: lineWidth [
+{ #category : #'instance creation' }
+LineMorph class >> from: startPoint to: endPoint color: lineColor width: lineWidth [
 
 	^ self vertices: {startPoint. endPoint}
 			color: Color black borderWidth: lineWidth borderColor: lineColor
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LineMorph class>>new [
+{ #category : #'instance creation' }
+LineMorph class >> new [
 	^ self from: 0@0 to: 50@50 color: Color black width: 2
 ]

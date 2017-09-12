@@ -13,55 +13,39 @@ Class {
 		'newName',
 		'class'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 12:23'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameClassRefactoring class>>model: aRBSmalltalk rename: aClass to: aNewName  [
+{ #category : #'instance creation' }
+RBRenameClassRefactoring class >> model: aRBSmalltalk rename: aClass to: aNewName [ 
 	^(self new)
 		model: aRBSmalltalk;
 		className: aClass name newName: aNewName;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameClassRefactoring class>>rename: aClass to: aNewName [
+{ #category : #'instance creation' }
+RBRenameClassRefactoring class >> rename: aClass to: aNewName [
 	^self new className: aClass name newName: aNewName
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameClassRefactoring>>className: aName newName: aNewName  [
+{ #category : #initialize-release }
+RBRenameClassRefactoring >> className: aName newName: aNewName [ 
 	className := aName asSymbol.
 	class := self model classNamed: className.
 	newName := aNewName asSymbol
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameClassRefactoring>>preconditions [
+{ #category : #preconditions }
+RBRenameClassRefactoring >> preconditions [
 	^((RBCondition withBlock: [class notNil and: [class isMeta not]]) 
 			& (RBCondition isValidClassName: newName) 
 			& (RBCondition isGlobal: newName in: self model) not) |
 			(RBCondition withBlock: [ self refactoringFailure: newName , ' is not a valid class name'])
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameClassRefactoring>>renameReferences [
+{ #category : #transforming }
+RBRenameClassRefactoring >> renameReferences [
 	| replacer |
 	replacer := (RBParseTreeRewriter replaceLiteral: className with: newName)
 				replace: className with: newName;
@@ -84,11 +68,8 @@ RBRenameClassRefactoring>>renameReferences [
 				using: replacer]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameClassRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBRenameClassRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream nextPutAll: ' rename: '.
@@ -99,11 +80,8 @@ RBRenameClassRefactoring>>storeOn: aStream  [
 		nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameClassRefactoring>>transform [
+{ #category : #transforming }
+RBRenameClassRefactoring >> transform [
 	self model 
 		renameClass: class
 		to: newName

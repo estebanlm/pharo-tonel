@@ -8,49 +8,33 @@ Class {
 		'name',
 		'url'
 	],
-	#category : #System-Settings-Persistence-Ston-StoredSettings,
-	#timestamp : 'JurajKubelka 10/8/2015 10:35'
+	#category : #System-Settings-Persistence-Ston-StoredSettings
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-ThemeIconsStoredSetting>>name [
+{ #category : #accessing }
+ThemeIconsStoredSetting >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-ThemeIconsStoredSetting>>name: anObject [
+{ #category : #accessing }
+ThemeIconsStoredSetting >> name: anObject [
 	name := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-ThemeIconsStoredSetting>>realValue [
+{ #category : #accessing }
+ThemeIconsStoredSetting >> realValue [
 	^ ThemeIcons new 
 		name: self name;
 		url: self url;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-ThemeIconsStoredSetting>>url [
+{ #category : #accessing }
+ThemeIconsStoredSetting >> url [
 	^ url
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-ThemeIconsStoredSetting>>url: anObject [
+{ #category : #accessing }
+ThemeIconsStoredSetting >> url: anObject [
 	url := anObject
 ]

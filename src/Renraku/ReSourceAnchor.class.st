@@ -7,69 +7,47 @@ Class {
 	#instVars : [
 		'sourceEntity'
 	],
-	#category : #Renraku-SourceAnchors,
-	#timestamp : 'YuriyTymchuk 7/10/2016 12:52'
+	#category : #Renraku-SourceAnchors
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSourceAnchor class>>entity: anEntity  [
+{ #category : #'instance creation' }
+ReSourceAnchor class >> entity: anEntity [ 
 	^ self basicNew
 		initializeEnitity: anEntity;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSourceAnchor>>entity [
+{ #category : #accessing }
+ReSourceAnchor >> entity [
 	^ self sourceEntity
 ]
 
-{
-	#category : #gt-inspector-extension,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSourceAnchor>>gtInspectorAnchorIn: composite [
+{ #category : #gt-inspector-extension }
+ReSourceAnchor >> gtInspectorAnchorIn: composite [
 	<gtInspectorPresentationOrder: 0>
 
 	^ sourceEntity glmCritiqueSourceIn: composite
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSourceAnchor>>initializeEnitity: anEntity  [
+{ #category : #initialization }
+ReSourceAnchor >> initializeEnitity: anEntity [ 
 	
 	sourceEntity := anEntity
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSourceAnchor>>interval [
+{ #category : #accessing }
+ReSourceAnchor >> interval [
 
 	^ nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSourceAnchor>>providesInterval [
+{ #category : #testing }
+ReSourceAnchor >> providesInterval [
 
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReSourceAnchor>>sourceEntity [
+{ #category : #accessing }
+ReSourceAnchor >> sourceEntity [
 	^ sourceEntity
 ]

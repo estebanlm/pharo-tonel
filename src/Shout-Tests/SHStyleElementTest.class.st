@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'element'
 	],
-	#category : #Shout-Tests-Styling,
-	#timestamp : 'AlexandreBergel 9/30/2011 15:22'
+	#category : #Shout-Tests-Styling
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHStyleElementTest>>setUp [
+{ #category : #running }
+SHStyleElementTest >> setUp [
 	element := SHStyleElement withTokens: #(#self #super #true #false).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHStyleElementTest>>testPrintOn [
+{ #category : #tests }
+SHStyleElementTest >> testPrintOn [
 	"
 	self debug: #testPrintOn
 	"
@@ -32,11 +25,8 @@ SHStyleElementTest>>testPrintOn [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SHStyleElementTest>>testStyleForTable [
+{ #category : #tests }
+SHStyleElementTest >> testStyleForTable [
 	"
 	self debug: #testStyleForTable
 	"

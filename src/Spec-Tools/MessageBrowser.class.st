@@ -22,26 +22,19 @@ Class {
 		'textConverterHolder',
 		'browsedEnvironment'
 	],
-	#category : #Spec-Tools-Senders,
-	#timestamp : '<historical>'
+	#category : #Spec-Tools-Senders
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser class>>browse: aCollection [
+{ #category : #'instance creation' }
+MessageBrowser class >> browse: aCollection [
 	"Special Version that sets the correct refreshing Block for Implentors Browser"
 	^ self new
 		messages: aCollection;
 		open
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser class>>browse: aCollection asImplementorsOf: aSymbol  [
+{ #category : #'instance creation' }
+MessageBrowser class >> browse: aCollection asImplementorsOf: aSymbol [ 
 	"Special Version that sets the correct refreshing Block for Implentors Browser"
 	^ self new
 		setRefreshingBlockForImplementorsOf: aSymbol;
@@ -50,11 +43,8 @@ MessageBrowser class>>browse: aCollection asImplementorsOf: aSymbol  [
 		open
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser class>>browse: aCollection asSendersOf: aSymbol  [
+{ #category : #'instance creation' }
+MessageBrowser class >> browse: aCollection asSendersOf: aSymbol [ 
 	"Special Version that sets the correct refreshing Block for Senders Browser"
 	^ self new
 		setRefreshingBlockForSendersOf: aSymbol;
@@ -64,11 +54,8 @@ MessageBrowser class>>browse: aCollection asSendersOf: aSymbol  [
 		open
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser class>>browse: aCollection title: aString [
+{ #category : #'instance creation' }
+MessageBrowser class >> browse: aCollection title: aString [
 	"Special Version that sets the correct refreshing Block for Implentors Browser"
 	^ self new
 		messages: aCollection;
@@ -76,11 +63,8 @@ MessageBrowser class>>browse: aCollection title: aString [
 		open
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser class>>browse: aCollection title: aString autoSelect: aSelectString [
+{ #category : #'instance creation' }
+MessageBrowser class >> browse: aCollection title: aString autoSelect: aSelectString [
 	"Special Version that sets the correct refreshing Block for Implentors Browser"
 	^ self new
 		messages: aCollection;
@@ -89,29 +73,20 @@ MessageBrowser class>>browse: aCollection title: aString autoSelect: aSelectStri
 		open
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser class>>browseImplementorsOf: aSymbol  [
+{ #category : #'instance creation' }
+MessageBrowser class >> browseImplementorsOf: aSymbol [ 
 	"Special Version that sets the correct refreshing Block for Implentors Browser"
 	^ self browse: aSymbol implementors asImplementorsOf: aSymbol
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser class>>browseSendersOf: aSymbol  [
+{ #category : #'instance creation' }
+MessageBrowser class >> browseSendersOf: aSymbol [ 
 	"Special Version that sets the correct refreshing Block for Implentors Browser"
 	^ self browse: aSymbol senders asSendersOf: aSymbol
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser class>>defaultSpec [
+{ #category : #specs }
+MessageBrowser class >> defaultSpec [
 	<spec>
 	| delta |
 	delta := 13.
@@ -122,11 +97,8 @@ MessageBrowser class>>defaultSpec [
 			yourself
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser class>>messageBrowserListMenu: aBuilder [
+{ #category : #menu }
+MessageBrowser class >> messageBrowserListMenu: aBuilder [
 	<contextMenu>
 	<messageBrowserListMenu>
 	| target model message |
@@ -174,11 +146,8 @@ MessageBrowser class>>messageBrowserListMenu: aBuilder [
 
 ]
 
-{
-	#category : #'instance creation - old',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser class>>openMessageList: messageList name: aString autoSelect: aSelector refreshingBlockSelector: aRefreshingBlockSelector [
+{ #category : #'instance creation - old' }
+MessageBrowser class >> openMessageList: messageList name: aString autoSelect: aSelector refreshingBlockSelector: aRefreshingBlockSelector [
 	
 	| browser |
 	browser := self new
@@ -194,31 +163,22 @@ MessageBrowser class>>openMessageList: messageList name: aString autoSelect: aSe
 
 ]
 
-{
-	#category : #'tool registration',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser class>>registerToolsOn: registry [
+{ #category : #'tool registration' }
+MessageBrowser class >> registerToolsOn: registry [
 
 	"Add ourselves to registry. See [Smalltalk tools]" 
 	registry register: self as: #messageList
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser class>>taskbarIconName [
+{ #category : #icons }
+MessageBrowser class >> taskbarIconName [
 	"Answer the icon for an instance of the receiver in a task bar"
 
 	^#referencesIcon
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser class>>testSpec [
+{ #category : #specs }
+MessageBrowser class >> testSpec [
 	<spec: #default>
 	
 	^ SpecLayout composed
@@ -231,20 +191,14 @@ MessageBrowser class>>testSpec [
 				
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser class>>title [
+{ #category : #specs }
+MessageBrowser class >> title [
 
 	^ 'Message Browser'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>accept: text notifying: notifyer [
+{ #category : #private }
+MessageBrowser >> accept: text notifying: notifyer [
 
 	^listModel selectedItem
 		ifNotNil: [:message | 
@@ -254,11 +208,8 @@ MessageBrowser>>accept: text notifying: notifyer [
 				notifying: notifyer ]
 ]
 
-{
-	#category : #'text selection',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>autoSelect: aSelector [
+{ #category : #'text selection' }
+MessageBrowser >> autoSelect: aSelector [
 	textModel
 		readSelectionBlock:
 			[ :text | 
@@ -268,63 +219,42 @@ MessageBrowser>>autoSelect: aSelector [
 						ifTrue: [ self intervalOf: aSelector inCode: text of: msg ] ] ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>browseClass [
+{ #category : #actions }
+MessageBrowser >> browseClass [
 	self currentMethod ifNotNil: [ :method | method methodClass browse ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>browseClassRefs [
+{ #category : #actions }
+MessageBrowser >> browseClassRefs [
 	self currentMethod ifNotNil: [ :method | 
 		model browseClassRefsOf: method methodClass ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>browseMessages [
+{ #category : #actions }
+MessageBrowser >> browseMessages [
 	self currentMethod ifNotNil: [ :method |
 		 model browseMessagesFrom: method selector ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>browseMethod [
+{ #category : #actions }
+MessageBrowser >> browseMethod [
 	self currentMethod ifNotNil: [ :method | method browse ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>browseSendersOfMessage [
+{ #category : #actions }
+MessageBrowser >> browseSendersOfMessage [
 	self currentMethod ifNotNil: [ :method |
 		model browseSendersOfMessagesFrom: method selector ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>browseVersions [
+{ #category : #actions }
+MessageBrowser >> browseVersions [
 	self currentMethod ifNotNil: [ :method |
 		model browseVersionsFrom: method compiledMethod ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>buildHierarchyForMessages: messages [
+{ #category : #testing }
+MessageBrowser >> buildHierarchyForMessages: messages [
 	| result classes |
 	self topologicSort ifFalse: [ 
 		result := IdentityDictionary new.
@@ -345,85 +275,58 @@ MessageBrowser>>buildHierarchyForMessages: messages [
 	^ result
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>buildUpdateTitle [
+{ #category : #initialization }
+MessageBrowser >> buildUpdateTitle [
 	"Trying to have a clean subscription, this method is called in #initialize"
 	
 	self updateTitle.
 	textModel text: textModel getText.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>cacheHierarchyForClasses: aCollection [
+{ #category : #testing }
+MessageBrowser >> cacheHierarchyForClasses: aCollection [
 
 	cachedHierarchy := self buildHierarchyForMessages: aCollection.
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>classModified: anAnnouncement [
+{ #category : #announcements }
+MessageBrowser >> classModified: anAnnouncement [
 	"this method forces the announcement to be handled in the UI process"
 	UIManager default defer: [ 
 		self handleClassModified: anAnnouncement ]
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>classRenamed: anAnnouncement  [
+{ #category : #announcements }
+MessageBrowser >> classRenamed: anAnnouncement [ 
 	"this method forces the announcement to be handled in the UI process"
 	UIManager default defer: [ 
 		self handleClassRenamed: anAnnouncement ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>codeFont [
+{ #category : #private }
+MessageBrowser >> codeFont [
 	^ StandardFonts codeFont
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>currentMethod [
+{ #category : #accessing }
+MessageBrowser >> currentMethod [
 	^ self selectedMessage
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>displayBlock: aBlock [
+{ #category : #api }
+MessageBrowser >> displayBlock: aBlock [
 
 	^ listModel displayBlock: aBlock
 ]
 
-{
-	#category : #private-focus,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>ensureKeyBindingsFor: aWidget [
+{ #category : #private-focus }
+MessageBrowser >> ensureKeyBindingsFor: aWidget [
 	
 	self registerListShortcutsFor: listModel
 ]
 
-{
-	#category : #'text selection',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>findFirstOccurrenceOf: searchedString in: textToSearchIn [
+{ #category : #'text selection' }
+MessageBrowser >> findFirstOccurrenceOf: searchedString [ in: textToSearchIn
 	"Return the first index of aString in textToSearchIn "
 	| firstIndex |
 	firstIndex := textToSearchIn findString: searchedString startingAt: 1.
@@ -434,11 +337,8 @@ MessageBrowser>>findFirstOccurrenceOf: searchedString in: textToSearchIn [
 	^ firstIndex
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>handleClassRenamed: anAnnouncement [
+{ #category : #announcements }
+MessageBrowser >> handleClassRenamed: anAnnouncement [
 	
 	| items selectedIndex |
 	items := listModel listItems collect: [ :rgMethod | | interestedClassName interestedClass |
@@ -456,11 +356,8 @@ MessageBrowser>>handleClassRenamed: anAnnouncement [
 	listModel setSelectedIndex: selectedIndex.
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>handleMethodAdded: anAnnouncement [
+{ #category : #announcements }
+MessageBrowser >> handleMethodAdded: anAnnouncement [
 	| item sel text boolean |
 
 	self isDisplayed ifFalse: [ ^ self ].
@@ -481,11 +378,8 @@ MessageBrowser>>handleMethodAdded: anAnnouncement [
 	boolean ifTrue: [ textModel pendingText: text ]
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>handleMethodModified: anAnnouncement [
+{ #category : #announcements }
+MessageBrowser >> handleMethodModified: anAnnouncement [
 	| item oldItem sel index text list edits |
 	self isDisplayed
 		ifFalse: [ ^ self ].
@@ -516,11 +410,8 @@ MessageBrowser>>handleMethodModified: anAnnouncement [
 	textModel hasEditingConflicts: true
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>handleMethodRemoved: anAnnouncement [
+{ #category : #announcements }
+MessageBrowser >> handleMethodRemoved: anAnnouncement [
 	| item sel itm |
 	
 	self isDisplayed ifFalse: [ ^ self ].
@@ -546,20 +437,14 @@ MessageBrowser>>handleMethodRemoved: anAnnouncement [
 	listModel setSelectedIndex: sel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>initialExtent [
+{ #category : #private }
+MessageBrowser >> initialExtent [
 
 	^ (700 min: (World extent x)) @ (550 min: (World extent y))
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>initialize [
+{ #category : #initialization }
+MessageBrowser >> initialize [
 	textConverterHolder := SourceMethodConverter new asValueHolder.
 	model := AbstractTool new.
 	topologicSortHolder := true asValueHolder.
@@ -570,22 +455,16 @@ MessageBrowser>>initialize [
 	self announcer when: WidgetBuilt send: #buildUpdateTitle to: self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>initializeDropList [
+{ #category : #initialization }
+MessageBrowser >> initializeDropList [
 
 	toolbarModel 
 		addItemLabeled: 'Source' do: [ self textConverter: SourceMethodConverter new ];
 		addItemLabeled: 'Time stamp' do: [ self textConverter: TimeStampMethodConverter new ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>initializePresenter [
+{ #category : #initialization }
+MessageBrowser >> initializePresenter [
 
 	listModel whenSelectedItemChanged: [:item |
 			toolbarModel method: item.
@@ -599,11 +478,8 @@ MessageBrowser>>initializePresenter [
 	textModel acceptBlock: [ :text :notifyer | (self accept: text notifying: notifyer)  notNil].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>initializeWidgets [
+{ #category : #initialization }
+MessageBrowser >> initializeWidgets [
 
 	listModel := self instantiate: FastTableModel.
 	textModel := self newCode.
@@ -622,19 +498,13 @@ MessageBrowser>>initializeWidgets [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>inspectMethod [
+{ #category : #actions }
+MessageBrowser >> inspectMethod [
 	self currentMethod ifNotNil: [ :m | m inspect ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>installIconStylerFor: anItem [
+{ #category : #private }
+MessageBrowser >> installIconStylerFor: anItem [
 	"icons styler are only supported for method definitions (not nil / not for comment definitions (those may occure
 	for comment or general string searches))"
 
@@ -645,28 +515,19 @@ MessageBrowser>>installIconStylerFor: anItem [
 	anItem annotateRubricText: self textModel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>intervalOf: aSelector inCode: aText of: aMethod [
+{ #category : #private }
+MessageBrowser >> intervalOf: aSelector inCode: aText of: aMethod [
 	aMethod compiledMethod ifNil: [  ^ 0 to: 0 ].
 	^ (self sourceIntervalOf: aSelector in: aMethod ast) ifEmpty: [ self searchedString: aSelector asString in: aText ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>intervalOf: aSelector inCommentText: aText [
+{ #category : #private }
+MessageBrowser >> intervalOf: aSelector inCommentText: aText [
 	^ self searchedString: aSelector asString in: aText
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>isMethodDefinition: anItem [
+{ #category : #private }
+MessageBrowser >> isMethodDefinition: anItem [
 	"an item can be nil, a compiled method, or a ring object. Whereas a ring object can be a ring method or comment definition.
 	 Some operations are only valid for compiled methods or ring object that are a method definitions"
 
@@ -677,29 +538,20 @@ MessageBrowser>>isMethodDefinition: anItem [
 		or: [  anItem isCompiledMethod ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>listModel [
+{ #category : #accessing }
+MessageBrowser >> listModel [
 	
 	^ listModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>messages [
+{ #category : #api }
+MessageBrowser >> messages [
 
 	^ listModel listItems
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>messages: aCollection [
+{ #category : #api }
+MessageBrowser >> messages: aCollection [
 
 	self cacheHierarchyForClasses: aCollection.
 	listModel items: (cachedHierarchy keys sort: [:a :b | self sortClassesInCachedHierarchy: a b: b]) asOrderedCollection.
@@ -708,99 +560,65 @@ MessageBrowser>>messages: aCollection [
 			listModel setSelectedIndex: 1 ].
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>methodAdded: anAnnouncement [
+{ #category : #announcements }
+MessageBrowser >> methodAdded: anAnnouncement [
 	"this method forces the announcement to be handled in the UI process"
 	UIManager default defer: [ 
 		self handleMethodAdded: anAnnouncement ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>methodClassNameForItem: anItem [
+{ #category : #private }
+MessageBrowser >> methodClassNameForItem: anItem [
 	^ anItem methodClass ifNotNil: [ :class | class name ] ifNil: [ '' ]
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>methodModified: anAnnouncement [
+{ #category : #announcements }
+MessageBrowser >> methodModified: anAnnouncement [
 	"this method forces the announcement to be handled in the UI process"
 	UIManager default defer:  [	
 		self handleMethodModified: anAnnouncement ]
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>methodRecategorized: aMethod [
-
+{ #category : #announcements }
+MessageBrowser >> methodRecategorized: aMethod [
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>methodRemoved: anAnnouncement [
+{ #category : #announcements }
+MessageBrowser >> methodRemoved: anAnnouncement [
 	"this method forces the announcement to be handled in the UI process"
 	UIManager default defer:  [ 
 		self handleMethodRemoved: anAnnouncement ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>model  [
+{ #category : #accessing }
+MessageBrowser >> model [ 
 	^model
 ]
 
-{
-	#category : #'messageList interface',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>open [
+{ #category : #'messageList interface' }
+MessageBrowser >> open [
 
 	^self openWithSpec
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>packageNameForItem: anItem [
+{ #category : #private }
+MessageBrowser >> packageNameForItem: anItem [
 	^ anItem package ifNil: [ '' ] ifNotNil: [ :package | package name ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>protocolNameForItem: anItem [
+{ #category : #private }
+MessageBrowser >> protocolNameForItem: anItem [
 	^ anItem category ifNil: [ '' ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>refreshingBlock: aBlock [
+{ #category : #api }
+MessageBrowser >> refreshingBlock: aBlock [
 
 	refreshingBlockHolder value: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>registerListShortcutsFor: aWidget [
+{ #category : #initialization }
+MessageBrowser >> registerListShortcutsFor: aWidget [
 
 	aWidget bindKeyCombination: PharoShortcuts current browseShortcut toAction: [ self browseMethod ].
 	aWidget bindKeyCombination: PharoShortcuts current inspectItShortcut toAction: [ self inspectMethod ].
@@ -811,11 +629,8 @@ MessageBrowser>>registerListShortcutsFor: aWidget [
 	aWidget bindKeyCombination: PharoShortcuts current removeShortcut toAction: [ self removeMethods ].
 ]
 
-{
-	#category : #announcements-registration,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>registerToAnnouncements [
+{ #category : #announcements-registration }
+MessageBrowser >> registerToAnnouncements [
 
 	SystemAnnouncer uniqueInstance weak		
 		when: MethodAdded send: #methodAdded: to: self;
@@ -825,29 +640,20 @@ MessageBrowser>>registerToAnnouncements [
 		when: ClassRenamed send: #classRenamed: to: self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>removeMethods [
+{ #category : #actions }
+MessageBrowser >> removeMethods [
 	self currentMethod ifNotNil: [ :method |
 		model removeMethod: method inClass: method methodClass ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>resetSelection [
+{ #category : #api }
+MessageBrowser >> resetSelection [
 	
 	listModel resetSelection
 ]
 
-{
-	#category : #'text selection',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>searchedString: searchedString in: aString [
+{ #category : #'text selection' }
+MessageBrowser >> searchedString: searchedString [ in: aString
 	"Return the interval that corresponds to the portion of aString "
 	"This method takes care of finding complete match to searchedString. "
 	| string interval firstIndex |
@@ -880,63 +686,42 @@ MessageBrowser>>searchedString: searchedString in: aString [
 	^ interval
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>selectedClass [
+{ #category : #api }
+MessageBrowser >> selectedClass [
 	^ self selectedMethod origin
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>selectedItem [
+{ #category : #accessing }
+MessageBrowser >> selectedItem [
 
 	^ listModel selectedItem
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>selectedMessage [
+{ #category : #api }
+MessageBrowser >> selectedMessage [
 
 	^ listModel selectedItem
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>selectedMessage: aMessage [
+{ #category : #api }
+MessageBrowser >> selectedMessage: aMessage [
 
 	listModel setSelectedItem: aMessage.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>selectedMethod [
+{ #category : #accessing }
+MessageBrowser >> selectedMethod [
 	self selectedMessage ifNil: [ ^nil ].
 	^ self selectedMessage compiledMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>selectedMethods [
+{ #category : #accessing }
+MessageBrowser >> selectedMethods [
 	^ {self selectedMessage} asOrderedCollection 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>setFocus [
+{ #category : #initialization }
+MessageBrowser >> setFocus [
 
 	self focusOrder
 		add: listModel;
@@ -944,49 +729,34 @@ MessageBrowser>>setFocus [
 		add: textModel
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>setListMenu [
+{ #category : #menus }
+MessageBrowser >> setListMenu [
 	listModel menu: [ :menu |
 		menu addAllFromPragma: 'messageBrowserListMenu' target: self ].
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>setRefreshingBlockForImplementorsOf: aSelector [
+{ #category : #api }
+MessageBrowser >> setRefreshingBlockForImplementorsOf: aSelector [
 
 	self refreshingBlock: [:message | message selector = aSelector ].
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>setRefreshingBlockForSendersOf: aSelector [
+{ #category : #api }
+MessageBrowser >> setRefreshingBlockForSendersOf: aSelector [
 	| specialIndex |
 	specialIndex := Smalltalk specialSelectorIndexOrNil: aSelector.
 	self refreshingBlock: [:method | 
 		method hasSelector: aSelector specialSelectorIndex: specialIndex ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>setSelectedIndex: anIndex [
+{ #category : #api }
+MessageBrowser >> setSelectedIndex: anIndex [
 
 	listModel setSelectedIndex: anIndex 
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>shouldRefreshItem: item fromAnnouncement: anAnnouncement [
+{ #category : #announcements }
+MessageBrowser >> shouldRefreshItem: item fromAnnouncement: anAnnouncement [
 	
 	"The refreshing block holder contains a block that accepts an item of the list, the received announcement and the message browser.
 	It will anwer a boolean indicating if the modified item should be refreshed.
@@ -998,11 +768,8 @@ MessageBrowser>>shouldRefreshItem: item fromAnnouncement: anAnnouncement [
 		cull: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>sortClassesInCachedHierarchy: aMethodDefinition b: otherMethodDefinition [
+{ #category : #testing }
+MessageBrowser >> sortClassesInCachedHierarchy: aMethodDefinition b: otherMethodDefinition [
 	"This method checks wether the cached inheritance hierarchy of a method should be before than the one of another method.
 	It compares alphabetically the hierarchy using #compare:
 	If both are alphabetically equals, it uses the size the hierarchy.
@@ -1020,122 +787,83 @@ MessageBrowser>>sortClassesInCachedHierarchy: aMethodDefinition b: otherMethodDe
 	^  aMethodHierarchy size < otherMethodHierarchy size
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>sortingBlock: aBlock [
+{ #category : #api }
+MessageBrowser >> sortingBlock: aBlock [
 
 	listModel sortingBlock: aBlock
 ]
 
-{
-	#category : #'text selection',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>sourceIntervalOf: aSelector in: aMethodNode [
+{ #category : #'text selection' }
+MessageBrowser >> sourceIntervalOf: aSelector in: aMethodNode [
     | senderNode |
     senderNode := aMethodNode allChildren detect: [ :x | x isMessage and: [ x selector = aSelector ] ] ifNone: [ ^ #() ].
     ^ senderNode keywordsPositions first to: senderNode keywordsPositions last + senderNode keywords last size - 1 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>textConverter [
+{ #category : #accessing }
+MessageBrowser >> textConverter [
 	
 	^ textConverterHolder value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>textConverter: aTextConverter [
+{ #category : #accessing }
+MessageBrowser >> textConverter: aTextConverter [
 
 	textConverterHolder value: (aTextConverter method: self textConverter method).
 	textModel aboutToStyle: self textConverter shouldShout .
 	textModel text: self textConverter getText.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>textModel [
+{ #category : #accessing }
+MessageBrowser >> textModel [
 	
 	^ textModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>textModel: aModel [
+{ #category : #accessing }
+MessageBrowser >> textModel: aModel [
 	
 	textModel := aModel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>title [
+{ #category : #private }
+MessageBrowser >> title [
 		
 	^ titleHolder value , ' [' , listModel listSize printString , ']'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>toolbarModel [
+{ #category : #accessing }
+MessageBrowser >> toolbarModel [
 	
 	^ toolbarModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>topologicSort [
+{ #category : #api }
+MessageBrowser >> topologicSort [
 	
 	^ topologicSortHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>topologicSort: aBoolean [
+{ #category : #api }
+MessageBrowser >> topologicSort: aBoolean [
 	
 	^ topologicSortHolder value: aBoolean
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>whenSelectedItemChanged: aBlock  [
+{ #category : #api-events }
+MessageBrowser >> whenSelectedItemChanged: aBlock [ 
 
 	listModel whenSelectedItemChanged: aBlock 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>windowIsClosing [
+{ #category : #private }
+MessageBrowser >> windowIsClosing [
 	
 	SystemAnnouncer uniqueInstance unsubscribe: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MessageBrowser>>wrapItem: anItem [
+{ #category : #private }
+MessageBrowser >> wrapItem: anItem [
 	| s packageName |
 	s := String
 		streamContents: [ :aStream | 

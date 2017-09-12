@@ -4,15 +4,11 @@ Notify about an undefined variable
 Class {
 	#name : #UndefinedVariable,
 	#superclass : #ParserNotification,
-	#category : #Compiler-Exceptions,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:18'
+	#category : #Compiler-Exceptions
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-UndefinedVariable>>openMenuIn: aBlock [
+{ #category : #'as yet unclassified' }
+UndefinedVariable >> openMenuIn: aBlock [
 	| caption index |
 	caption := name, ' appears to be 
 undefined at this point.

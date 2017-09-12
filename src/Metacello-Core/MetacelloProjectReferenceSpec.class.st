@@ -1,38 +1,25 @@
-"
-
-"
 Class {
 	#name : #MetacelloProjectReferenceSpec,
 	#superclass : #MetacelloAbstractPackageSpec,
 	#instVars : [
 		'projectReference'
 	],
-	#category : #Metacello-Core-Specs,
-	#timestamp : ''
+	#category : #Metacello-Core-Specs
 }
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>aboutToCopy [
+{ #category : #merging }
+MetacelloProjectReferenceSpec >> aboutToCopy [
     self projectReference className
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>answers: aListOfPairs [
+{ #category : #accessing }
+MetacelloProjectReferenceSpec >> answers: aListOfPairs [
 
 	self shouldNotImplement
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>configMethodCascadeOn: aStream member: aMember last: lastCascade indent: indent [
+{ #category : #printing }
+MetacelloProjectReferenceSpec >> configMethodCascadeOn: aStream member: aMember last: lastCascade indent: indent [
     aMember methodUpdateSelector == #'remove:'
         ifTrue: [ aStream nextPutAll: 'removeProject: ' , self name printString ]
         ifFalse: [ 
@@ -50,11 +37,8 @@ MetacelloProjectReferenceSpec>>configMethodCascadeOn: aStream member: aMember la
                 cr ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>configMethodOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloProjectReferenceSpec >> configMethodOn: aStream indent: indent [
 
 	aStream 
 		tab: indent; nextPutAll: 'spec '; cr;
@@ -66,36 +50,24 @@ MetacelloProjectReferenceSpec>>configMethodOn: aStream indent: indent [
 	aStream nextPutAll: ' ].'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>hasRepository [
+{ #category : #testing }
+MetacelloProjectReferenceSpec >> hasRepository [
     ^ self projectReference hasRepository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>includes: aCollection [
+{ #category : #accessing }
+MetacelloProjectReferenceSpec >> includes: aCollection [
 
 	self shouldNotImplement
 ]
 
-{
-	#category : #importing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>mergeImportLoads: aLoadList [
+{ #category : #importing }
+MetacelloProjectReferenceSpec >> mergeImportLoads: aLoadList [
     self projectReference mergeImportLoads: aLoadList
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>mergeMap [
+{ #category : #merging }
+MetacelloProjectReferenceSpec >> mergeMap [
 
 	| map |
 	map := super mergeMap.
@@ -103,11 +75,8 @@ MetacelloProjectReferenceSpec>>mergeMap [
 	^map
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>mergeSpec: anotherSpec [
+{ #category : #merging }
+MetacelloProjectReferenceSpec >> mergeSpec: anotherSpec [
 
 	| newSpec map anotherProjectReference |
 	newSpec := super mergeSpec: anotherSpec.
@@ -121,133 +90,88 @@ MetacelloProjectReferenceSpec>>mergeSpec: anotherSpec [
 	^newSpec
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>nonOverridable [
+{ #category : #merging }
+MetacelloProjectReferenceSpec >> nonOverridable [
 
 	^super nonOverridable, #( projectReference )
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>postCopy [
+{ #category : #copying }
+MetacelloProjectReferenceSpec >> postCopy [
 
 	super postCopy.
 	projectReference := projectReference copy.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
+{ #category : #visiting }
+MetacelloProjectReferenceSpec >> projectDo: projectBlock packageDo: packageBlock groupDo: groupBlock [
 
 	projectBlock value: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>projectLabel [
+{ #category : #accessing }
+MetacelloProjectReferenceSpec >> projectLabel [
     ^ self projectReference projectLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>projectName [
+{ #category : #accessing }
+MetacelloProjectReferenceSpec >> projectName [
 	^self projectReference name
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>projectReference [
+{ #category : #querying }
+MetacelloProjectReferenceSpec >> projectReference [
 	^ projectReference
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>projectReference: anObject [
+{ #category : #accessing }
+MetacelloProjectReferenceSpec >> projectReference: anObject [
 	projectReference := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>referencedSpec [
+{ #category : #accessing }
+MetacelloProjectReferenceSpec >> referencedSpec [
 
 	^self projectReference
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>relativeCurrentVersion [
+{ #category : #querying }
+MetacelloProjectReferenceSpec >> relativeCurrentVersion [
 
 	^self projectReference relativeCurrentVersion
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>repositories [
+{ #category : #querying }
+MetacelloProjectReferenceSpec >> repositories [
     ^ self referencedSpec repositories
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>repositorySpecs [
+{ #category : #loading }
+MetacelloProjectReferenceSpec >> repositorySpecs [
 
 	^self repositories map values
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>requires: aCollection [
+{ #category : #accessing }
+MetacelloProjectReferenceSpec >> requires: aCollection [
 
 	self shouldNotImplement
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>version [
+{ #category : #querying }
+MetacelloProjectReferenceSpec >> version [
 
 	^self projectReference version
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>versionOrNil [
+{ #category : #querying }
+MetacelloProjectReferenceSpec >> versionOrNil [
 
 	^self projectReference versionOrNil
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectReferenceSpec>>versionString: aString [
+{ #category : #querying }
+MetacelloProjectReferenceSpec >> versionString: aString [
 
 	^self projectReference versionString: aString
 ]

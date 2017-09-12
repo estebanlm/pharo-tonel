@@ -8,46 +8,30 @@ Class {
 		'protocol',
 		'classReorganized'
 	],
-	#category : #System-Announcements-System-Protocols,
-	#timestamp : '<historical>'
+	#category : #System-Announcements-System-Protocols
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ProtocolAnnouncement>>classAffected [
+{ #category : #accessing }
+ProtocolAnnouncement >> classAffected [
 	^self classReorganized
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ProtocolAnnouncement>>classReorganized [
+{ #category : #accessing }
+ProtocolAnnouncement >> classReorganized [
 	^ classReorganized
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ProtocolAnnouncement>>classReorganized: anObject [
+{ #category : #accessing }
+ProtocolAnnouncement >> classReorganized: anObject [
 	classReorganized := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ProtocolAnnouncement>>protocol [
+{ #category : #accessing }
+ProtocolAnnouncement >> protocol [
 	^ protocol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ProtocolAnnouncement>>protocol: aString [
+{ #category : #accessing }
+ProtocolAnnouncement >> protocol: aString [
 	protocol := aString
 ]

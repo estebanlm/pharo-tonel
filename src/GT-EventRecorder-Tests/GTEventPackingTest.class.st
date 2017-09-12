@@ -15,53 +15,37 @@ Class {
 		'storage',
 		'file'
 	],
-	#category : #GT-EventRecorder-Tests-Support,
-	#timestamp : '<historical>'
+	#category : #GT-EventRecorder-Tests-Support
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventPackingTest class>>isAbstract [
+{ #category : #testing }
+GTEventPackingTest class >> isAbstract [
 	^ self name = GTEventPackingTest name
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventPackingTest>>assertBundle [
+{ #category : #asserting }
+GTEventPackingTest >> assertBundle [
 	bundle := packing pack: collector.
 	self assert: bundle url equals: collector url.
 	self assert: bundle data isLiteral.
 	self assert: bundle category equals: collector category.
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventPackingTest>>assertUnpackedData [
+{ #category : #asserting }
+GTEventPackingTest >> assertUnpackedData [
 	unpackedData := announcement unpackedData.
 	self assert: unpackedData size equals: 2.
 	self assert: unpackedData first equals: event1.
 	self assert: unpackedData second equals: event2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventPackingTest>>packingClass [
+{ #category : #accessing }
+GTEventPackingTest >> packingClass [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventPackingTest>>setUp [
+{ #category : #running }
+GTEventPackingTest >> setUp [
 	super setUp.
 	event1 := GTDummyEvent new data: 'string'.
 	event2 := GTDummyEvent new data: 42.
@@ -74,22 +58,16 @@ GTEventPackingTest>>setUp [
 
 ]
 
-{
-	#category : #tests-packing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventPackingTest>>testNewAnnouncementFor [
+{ #category : #tests-packing }
+GTEventPackingTest >> testNewAnnouncementFor [
 	announcement := packing newAnnouncementFor: collector.
 	self assert: announcement serializedBy equals: packing class name.
 	self assert: announcement eventRecorderVersion equals: packing version.
 	self assert: announcement category equals: collector category.
 ]
 
-{
-	#category : #tests-packing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventPackingTest>>testNewAnnouncementFor2 [
+{ #category : #tests-packing }
+GTEventPackingTest >> testNewAnnouncementFor2 [
 	collector updateAnnouncementBlock: [ :anAnnouncement | 
 		anAnnouncement at: #testNewAnnouncementFor2 put: 42 ].
 	announcement := packing newAnnouncementFor: collector.
@@ -98,21 +76,15 @@ GTEventPackingTest>>testNewAnnouncementFor2 [
 	self assert: (announcement at: #testNewAnnouncementFor2) equals: 42.
 ]
 
-{
-	#category : #tests-packing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventPackingTest>>testPack [
+{ #category : #tests-packing }
+GTEventPackingTest >> testPack [
 	self assertBundle.
 	announcement := packing unpack: bundle data.
 	self assertUnpackedData
 ]
 
-{
-	#category : #tests-packing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventPackingTest>>testUnpackBinaryBinaryStream [
+{ #category : #tests-packing }
+GTEventPackingTest >> testUnpackBinaryBinaryStream [
 	self assertBundle.
 	file writeStreamDo: [ :aStream | 
 		aStream binary.
@@ -123,11 +95,8 @@ GTEventPackingTest>>testUnpackBinaryBinaryStream [
 
 ]
 
-{
-	#category : #tests-packing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventPackingTest>>testUnpackBinaryUnspecifiedStream [
+{ #category : #tests-packing }
+GTEventPackingTest >> testUnpackBinaryUnspecifiedStream [
 	self assertBundle.
 	file writeStreamDo: [ :aStream | 
 		aStream binary.
@@ -136,11 +105,8 @@ GTEventPackingTest>>testUnpackBinaryUnspecifiedStream [
 	self assertUnpackedData.
 ]
 
-{
-	#category : #tests-packing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventPackingTest>>testUnpackUnspecifiedBinaryStream [
+{ #category : #tests-packing }
+GTEventPackingTest >> testUnpackUnspecifiedBinaryStream [
 	self assertBundle.
 	file writeStreamDo: [ :aStream | 
 		aStream nextPutAll: bundle data ].
@@ -150,11 +116,8 @@ GTEventPackingTest>>testUnpackUnspecifiedBinaryStream [
 
 ]
 
-{
-	#category : #tests-packing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventPackingTest>>testUnpackUnspecifiedUnspecifiedStream [
+{ #category : #tests-packing }
+GTEventPackingTest >> testUnpackUnspecifiedUnspecifiedStream [
 	self assertBundle.
 	file writeStreamDo: [ :aStream | 
 		aStream nextPutAll: bundle data ].

@@ -7,31 +7,21 @@ Class {
 	#instVars : [
 		'implementedMethods'
 	],
-	#category : #Tool-DependencyAnalyser-Core,
-	#timestamp : 'ChristopheDemarey 6/25/2015 17:50'
+	#category : #Tool-DependencyAnalyser-Core
 }
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendDependency>>implementedMethods: aListOfSelectors [
+{ #category : #setting }
+DAMessageSendDependency >> implementedMethods: aListOfSelectors [
 	implementedMethods := aListOfSelectors
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendDependency>>isMessageSendDependency [
+{ #category : #testing }
+DAMessageSendDependency >> isMessageSendDependency [
 	^ true 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendDependency>>users [
+{ #category : #accessing }
+DAMessageSendDependency >> users [
 	^  (source rPackage methods
 		select: [ :method | method messages includesAny: implementedMethods ]
 		thenCollect: [ :method | method -> (method messages intersection: implementedMethods) ])

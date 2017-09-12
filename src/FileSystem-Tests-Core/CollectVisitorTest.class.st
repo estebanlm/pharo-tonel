@@ -4,15 +4,11 @@ SUnit tests for class CollectVisitor
 Class {
 	#name : #CollectVisitorTest,
 	#superclass : #AbstractEnumerationVisitorTest,
-	#category : #FileSystem-Tests-Core,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:41'
+	#category : #FileSystem-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CollectVisitorTest>>testBreadthFirst [
+{ #category : #tests }
+CollectVisitorTest >> testBreadthFirst [
 	| entries |
 	entries := CollectVisitor breadthFirst: self root.
 	self 
@@ -27,11 +23,8 @@ CollectVisitorTest>>testBreadthFirst [
 			)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CollectVisitorTest>>testPostorder [
+{ #category : #tests }
+CollectVisitorTest >> testPostorder [
 	| entries |
 	entries := CollectVisitor postorder: self root.
 	self 
@@ -46,11 +39,8 @@ CollectVisitorTest>>testPostorder [
 			)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-CollectVisitorTest>>testPreorder [
+{ #category : #tests }
+CollectVisitorTest >> testPreorder [
 	| entries |
 	entries := CollectVisitor preorder: self root.
 	self 

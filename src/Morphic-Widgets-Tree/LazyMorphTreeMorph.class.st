@@ -9,15 +9,11 @@ Class {
 	#instVars : [
 		'lazyIncrement'
 	],
-	#category : #Morphic-Widgets-Tree,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Tree
 }
 
-{
-	#category : #'initialize - release',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LazyMorphTreeMorph>>adjustSubmorphPositionsFrom: start to: stop [
+{ #category : #'initialize - release' }
+LazyMorphTreeMorph >> adjustSubmorphPositionsFrom: start to: stop [
 	"Fixed to not require setting item widths to 9999."
 	
 	| subs p |
@@ -31,20 +27,14 @@ LazyMorphTreeMorph>>adjustSubmorphPositionsFrom: start to: stop [
 
 ]
 
-{
-	#category : #'initialize - release',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LazyMorphTreeMorph>>buildRowMorphsFrom: aNodeMorph [
+{ #category : #'initialize - release' }
+LazyMorphTreeMorph >> buildRowMorphsFrom: aNodeMorph [
 	self buildRowMorphsFrom: aNodeMorph increment: self lazyIncrement.
 
 ]
 
-{
-	#category : #'initialize - release',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LazyMorphTreeMorph>>buildRowMorphsFrom: aNodeMorph increment: anIncrement [
+{ #category : #'initialize - release' }
+LazyMorphTreeMorph >> buildRowMorphsFrom: aNodeMorph increment: anIncrement [
 	
 	Cursor wait 
 		showWhile: [ | subs idx max |
@@ -54,11 +44,8 @@ LazyMorphTreeMorph>>buildRowMorphsFrom: aNodeMorph increment: anIncrement [
 			self buildRowMorphsFromIndex: idx to: max].
 ]
 
-{
-	#category : #'initialize - release',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LazyMorphTreeMorph>>buildRowMorphsFromIndex: startIndex to: stopIndex [
+{ #category : #'initialize - release' }
+LazyMorphTreeMorph >> buildRowMorphsFromIndex: startIndex to: stopIndex [
 	| rowMorphsWidths subs |
 	subs := self allNodeMorphs.
 	rowMorphsWidths := self rowMorphsWidths.
@@ -71,27 +58,18 @@ LazyMorphTreeMorph>>buildRowMorphsFromIndex: startIndex to: stopIndex [
 
 ]
 
-{
-	#category : #'lazy tree',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LazyMorphTreeMorph>>indentingItemClass [
+{ #category : #'lazy tree' }
+LazyMorphTreeMorph >> indentingItemClass [
 	
 	^ LazyMorphTreeNodeMorph
 ]
 
-{
-	#category : #'initialize - release',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LazyMorphTreeMorph>>lazyIncrement [
+{ #category : #'initialize - release' }
+LazyMorphTreeMorph >> lazyIncrement [
 	^ lazyIncrement ifNil: [ lazyIncrement := 20 ] 
 ]
 
-{
-	#category : #'initialize - release',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LazyMorphTreeMorph>>lazyIncrement: anInteger [
+{ #category : #'initialize - release' }
+LazyMorphTreeMorph >> lazyIncrement: anInteger [
 	lazyIncrement := anInteger 
 ]

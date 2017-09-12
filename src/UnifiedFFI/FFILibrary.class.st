@@ -8,100 +8,66 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #UnifiedFFI-Libraries,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Libraries
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFILibrary class>>asFFILibrary [
+{ #category : #converting }
+FFILibrary class >> asFFILibrary [
 	^ self uniqueInstance
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFILibrary class>>new [
+{ #category : #'instance creation' }
+FFILibrary class >> new [
 	self error: 'Use #uniqueInstance'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFILibrary class>>uniqueInstance  [
+{ #category : #'instance creation' }
+FFILibrary class >> uniqueInstance [ 
 	self = FFILibrary 
 		ifTrue: [ self error: 'I''m an abstract class, use one of my children.' ].
 	^ uniqueInstance ifNil: [ uniqueInstance := super new ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFILibrary>>asFFILibrary  [
+{ #category : #converting }
+FFILibrary >> asFFILibrary [ 
 	^ self
 ]
 
-{
-	#category : #'library path',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFILibrary>>ffiLibraryName [
+{ #category : #'library path' }
+FFILibrary >> ffiLibraryName [
 	^ self moduleName
 ]
 
-{
-	#category : #'accessing platform',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFILibrary>>macModuleName  [
+{ #category : #'accessing platform' }
+FFILibrary >> macModuleName [ 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFILibrary>>moduleName  [
+{ #category : #accessing }
+FFILibrary >> moduleName [ 
 	^ Smalltalk platform ffiModuleName: self
 ]
 
-{
-	#category : #'accessing platform',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFILibrary>>unix32ModuleName [
+{ #category : #'accessing platform' }
+FFILibrary >> unix32ModuleName [
 	"Point to #unixModuleName to keep backward compatibility." 
 	^ self unixModuleName
 ]
 
-{
-	#category : #'accessing platform',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFILibrary>>unix64ModuleName [
+{ #category : #'accessing platform' }
+FFILibrary >> unix64ModuleName [
 	"Point to #unixModuleName to keep backward compatibility." 
 	^ self unixModuleName
 ]
 
-{
-	#category : #'accessing platform',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFILibrary>>unixModuleName [
+{ #category : #'accessing platform' }
+FFILibrary >> unixModuleName [
 	"Kept for backward compatibility. 
 	 Users should use unix32* or unix64*"
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'accessing platform',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFILibrary>>win32ModuleName  [
+{ #category : #'accessing platform' }
+FFILibrary >> win32ModuleName [ 
 	^ self subclassResponsibility
 ]

@@ -4,31 +4,21 @@ Command to load a configuration in Versionner
 Class {
 	#name : #MBLoadConfigurationCommand,
 	#superclass : #MBDevCycleCommands,
-	#category : #Versionner-Core-Commands,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:10'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBLoadConfigurationCommand>>askForProjectName [
+{ #category : #execute }
+MBLoadConfigurationCommand >> askForProjectName [
 	^ self pickRepositoryFrom: self repositories title: 'Choose the repository where project is located'
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBLoadConfigurationCommand>>documentation [
+{ #category : #documentation }
+MBLoadConfigurationCommand >> documentation [
 	^ 'Load configuration from a repository'
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBLoadConfigurationCommand>>execute [
+{ #category : #execute }
+MBLoadConfigurationCommand >> execute [
 	| projectRepository configRef configurationInfo versionInfos versionInfo version configRefMap configNames configName |
 	projectRepository := self askForProjectName.
 	projectRepository ifNil: [ ^ self ].
@@ -50,19 +40,13 @@ MBLoadConfigurationCommand>>execute [
 		load
 ]
 
-{
-	#category : #ordering,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBLoadConfigurationCommand>>order [
+{ #category : #ordering }
+MBLoadConfigurationCommand >> order [
 
 	^'10'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBLoadConfigurationCommand>>title [
+{ #category : #accessing }
+MBLoadConfigurationCommand >> title [
 	^ 'load configuration'
 ]

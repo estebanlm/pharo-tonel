@@ -8,33 +8,23 @@ Class {
 		'passenger',
 		'source'
 	],
-	#category : #Spec-Core-Support,
-	#timestamp : 'BenjaminVanRyseghem 4/24/2014 16:44'
+	#category : #Spec-Core-Support
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TransferModel class>>adapterName [
+{ #category : #specs }
+TransferModel class >> adapterName [
 
 	^ #TransferAdapter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TransferModel>>from: aModel [
+{ #category : #accessing }
+TransferModel >> from: aModel [
 
 	source value: aModel
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TransferModel>>initialize [
+{ #category : #initialize }
+TransferModel >> initialize [
 
 	super initialize.
 
@@ -42,29 +32,20 @@ TransferModel>>initialize [
 	source := nil asValueHolder.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TransferModel>>passenger [
+{ #category : #accessing }
+TransferModel >> passenger [
 
 	^ passenger value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TransferModel>>source [
+{ #category : #accessing }
+TransferModel >> source [
 
 	^ source value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-TransferModel>>transfer: anObject [
+{ #category : #accessing }
+TransferModel >> transfer: anObject [
 
 	passenger value: anObject
 ]

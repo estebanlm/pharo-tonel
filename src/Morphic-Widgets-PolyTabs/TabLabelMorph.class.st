@@ -9,15 +9,11 @@ Class {
 		'normalLabel',
 		'selectedLabel'
 	],
-	#category : #Morphic-Widgets-PolyTabs,
-	#timestamp : 'gvc 9/23/2008 11:49'
+	#category : #Morphic-Widgets-PolyTabs
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+TabLabelMorph >> adoptPaneColor: paneColor [
 	"Use the theme for fillStyle and border."
 	
 	super adoptPaneColor: paneColor.
@@ -26,11 +22,8 @@ TabLabelMorph>>adoptPaneColor: paneColor [
 	self borderStyle: self borderStyleToUse
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>borderStyleToUse [
+{ #category : #accessing }
+TabLabelMorph >> borderStyleToUse [
 	"Answer the borderStyle that should be used for the receiver."
 	
 	^self isSelected
@@ -38,11 +31,8 @@ TabLabelMorph>>borderStyleToUse [
 		ifFalse: [self theme tabLabelNormalBorderStyleFor: self]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>extent: aPoint [
+{ #category : #geometry }
+TabLabelMorph >> extent: aPoint [
 	"Set the extent of the receiver.
 	Update the pane color for size dependent fill/border styles."
 
@@ -50,11 +40,8 @@ TabLabelMorph>>extent: aPoint [
 	self adoptPaneColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>fillStyleToUse [
+{ #category : #accessing }
+TabLabelMorph >> fillStyleToUse [
 	"Answer the basic fill style for the receiver."
 
 	^self isSelected
@@ -62,11 +49,8 @@ TabLabelMorph>>fillStyleToUse [
 		ifFalse: [self normalFillStyle]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>focusBounds [
+{ #category : #'as yet unclassified' }
+TabLabelMorph >> focusBounds [
 	"Answer the bounds for drawing the focus indication."
 
 	^(self bounds width < 6 or: [self bounds height < 6])
@@ -74,11 +58,8 @@ TabLabelMorph>>focusBounds [
 		ifFalse: [super focusBounds insetBy: (2@2 corner: 2@0)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>font: aFont [
+{ #category : #accessing }
+TabLabelMorph >> font: aFont [
 	"Set the label font"
 
 	self normalLabel allMorphsDo: [:m |
@@ -87,11 +68,8 @@ TabLabelMorph>>font: aFont [
 		(m respondsTo: #font:) ifTrue: [m font: aFont]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>initialize [
+{ #category : #initialization }
+TabLabelMorph >> initialize [
 	"Initialize the receiver."
 	
 	super initialize.
@@ -99,11 +77,8 @@ TabLabelMorph>>initialize [
 	self borderStyle: self borderStyleToUse
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>isSelected [
+{ #category : #testing }
+TabLabelMorph >> isSelected [
 	"Answer whether the tab is selected."
 
 	^self tabSelector
@@ -111,11 +86,8 @@ TabLabelMorph>>isSelected [
 		ifNotNil: [:selector | selector selectedTab == self]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>isVisible [
+{ #category : #testing }
+TabLabelMorph >> isVisible [
 	"Answer whether the tab is currently visible."
 
 	^self tabSelector
@@ -123,11 +95,8 @@ TabLabelMorph>>isVisible [
 		ifNotNil: [:selector | selector visibleTabs includes: self]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>label [
+{ #category : #accessing }
+TabLabelMorph >> label [
 	"Answer the label contents."
 
 	^self isSelected
@@ -135,11 +104,8 @@ TabLabelMorph>>label [
 		ifFalse: [self normalLabel userString ifNil: [self firstSubmorph]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>label: aStringOrMorph [
+{ #category : #accessing }
+TabLabelMorph >> label: aStringOrMorph [
 	"Change the label contents"
 
 	|l|
@@ -154,11 +120,8 @@ TabLabelMorph>>label: aStringOrMorph [
 		selected: self isSelected
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>label: aStringOrMorph selected: selectedStringOrMorph [
+{ #category : #accessing }
+TabLabelMorph >> label: aStringOrMorph selected: selectedStringOrMorph [
 	"Change the label contents"
 
 	|l s|
@@ -178,49 +141,34 @@ TabLabelMorph>>label: aStringOrMorph selected: selectedStringOrMorph [
 		selected: self isSelected
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>minWidth [
+{ #category : #layout }
+TabLabelMorph >> minWidth [
 	"Consult the theme also."
 
 	^super minWidth max: self theme buttonMinWidth
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>normalFillStyle [
+{ #category : #style }
+TabLabelMorph >> normalFillStyle [
 	"Return the normal fillStyle of the receiver."
 	
 	^self theme tabLabelNormalFillStyleFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>normalLabel [
+{ #category : #accessing }
+TabLabelMorph >> normalLabel [
 
 	^ normalLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>normalLabel: anObject [
+{ #category : #accessing }
+TabLabelMorph >> normalLabel: anObject [
 
 	normalLabel := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>selected: aBoolean [
+{ #category : #accessing }
+TabLabelMorph >> selected: aBoolean [
 	"Use the appropriate label."
 
 	self removeAllMorphs.
@@ -229,48 +177,33 @@ TabLabelMorph>>selected: aBoolean [
 		ifFalse: [self addMorph: self normalLabel]
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>selectedFillStyle [
+{ #category : #style }
+TabLabelMorph >> selectedFillStyle [
 	"Return the selected fillStyle of the receiver."
 	
 	^self theme tabLabelSelectedFillStyleFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>selectedLabel [
+{ #category : #accessing }
+TabLabelMorph >> selectedLabel [
 
 	^ selectedLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>selectedLabel: anObject [
+{ #category : #accessing }
+TabLabelMorph >> selectedLabel: anObject [
 
 	selectedLabel := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>tabSelector [
+{ #category : #accessing }
+TabLabelMorph >> tabSelector [
 
 	^ tabSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabLabelMorph>>tabSelector: anObject [
+{ #category : #accessing }
+TabLabelMorph >> tabSelector: anObject [
 
 	tabSelector := anObject
 ]

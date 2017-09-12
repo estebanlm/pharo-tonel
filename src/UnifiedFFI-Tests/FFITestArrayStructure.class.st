@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #FFITestArrayStructure,
 	#superclass : #FFIExternalStructure,
@@ -10,15 +7,11 @@ Class {
 		'OFFSET_BYTE10',
 		'OFFSET_CHAR5'
 	],
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestArrayStructure class>>fieldsDesc [
+{ #category : #'field definition' }
+FFITestArrayStructure class >> fieldsDesc [
 " self rebuildFieldAccessors "
 	^ #(
 		Char5 char5;
@@ -26,47 +19,32 @@ FFITestArrayStructure class>>fieldsDesc [
 		)
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestArrayStructure class>>initialize  [
+{ #category : #'class initialization' }
+FFITestArrayStructure class >> initialize [ 
 	Char5 := FFITypeArray ofType: 'char' size: 5.
 	Byte10 := FFITypeArray ofType: 'byte' size: 10.
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestArrayStructure>>byte10 [
+{ #category : #'accessing structure variables' }
+FFITestArrayStructure >> byte10 [
 	"This method was automatically generated"
 	^(FFITypeArray ofType: #FFIUInt8 size: 10) fromHandle: (handle copyFrom: OFFSET_BYTE10 to: OFFSET_BYTE10 + 9)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestArrayStructure>>byte10: anObject [
+{ #category : #'accessing structure variables' }
+FFITestArrayStructure >> byte10: anObject [
 	"This method was automatically generated"
 	handle replaceFrom: OFFSET_BYTE10 to: OFFSET_BYTE10 + 9 with: anObject getHandle startingAt: 1
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestArrayStructure>>char5 [
+{ #category : #'accessing structure variables' }
+FFITestArrayStructure >> char5 [
 	"This method was automatically generated"
 	^(FFITypeArray ofType: #FFICharacterType size: 5) fromHandle: (handle copyFrom: OFFSET_CHAR5 to: OFFSET_CHAR5 + 4)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFITestArrayStructure>>char5: anObject [
+{ #category : #'accessing structure variables' }
+FFITestArrayStructure >> char5: anObject [
 	"This method was automatically generated"
 	handle replaceFrom: OFFSET_CHAR5 to: OFFSET_CHAR5 + 4 with: anObject getHandle startingAt: 1
 ]

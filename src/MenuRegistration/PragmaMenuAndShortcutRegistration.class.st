@@ -10,63 +10,44 @@ Class {
 		'platform',
 		'model'
 	],
-	#category : #MenuRegistration-Core,
-	#timestamp : '<historical>'
+	#category : #MenuRegistration-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration class>>model: aModel [
+{ #category : #'instance creation' }
+PragmaMenuAndShortcutRegistration class >> model: aModel [
 
 	^ self new
 		model: aModel;
 		yourself
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>action: aBlock [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> action: aBlock [
 
 	self currentItem action: aBlock
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>arguments: anArray [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> arguments: anArray [
 
 	self currentItem arguments: anArray
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>attachShortcutCategory: aSymbol to: aClass  [
+{ #category : #initialization }
+PragmaMenuAndShortcutRegistration >> attachShortcutCategory: aSymbol to: aClass [ 
 
 	KMRepository default attachCategoryName: aSymbol to: aClass.
 ]
 
-{
-	#category : #'keymapping protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>category: aByteSymbol [
+{ #category : #'keymapping protocol' }
+PragmaMenuAndShortcutRegistration >> category: aByteSymbol [
 	
 	self currentItem
 		category: aByteSymbol
 ]
 
-{
-	#category : #'keymapping protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>category: aByteSymbol default: aKMModifiedShortcut do: aBlockClosure  [
+{ #category : #'keymapping protocol' }
+PragmaMenuAndShortcutRegistration >> category: aByteSymbol default: aKMModifiedShortcut do: aBlockClosure [ 
 	
 	self currentItem
 		category: aByteSymbol;
@@ -74,11 +55,8 @@ PragmaMenuAndShortcutRegistration>>category: aByteSymbol default: aKMModifiedSho
 		action: aBlockClosure 
 ]
 
-{
-	#category : #'keymapping protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>category: aByteSymbol default: aKMModifiedShortcut do: aBlockClosure description: aByteString  [
+{ #category : #'keymapping protocol' }
+PragmaMenuAndShortcutRegistration >> category: aByteSymbol default: aKMModifiedShortcut do: aBlockClosure description: aByteString [ 
 	
 	self currentItem
 		category: aByteSymbol;
@@ -87,11 +65,8 @@ PragmaMenuAndShortcutRegistration>>category: aByteSymbol default: aKMModifiedSho
 		help: aByteString
 ]
 
-{
-	#category : #'keymapping protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>category: aByteSymbol shortcut: aKMModifiedShortcut do: aBlockClosure  [
+{ #category : #'keymapping protocol' }
+PragmaMenuAndShortcutRegistration >> category: aByteSymbol shortcut: aKMModifiedShortcut do: aBlockClosure [ 
 	
 	self currentItem
 		category: aByteSymbol;
@@ -99,11 +74,8 @@ PragmaMenuAndShortcutRegistration>>category: aByteSymbol shortcut: aKMModifiedSh
 		action: aBlockClosure 
 ]
 
-{
-	#category : #'keymapping protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>category: aByteSymbol shortcut: aKMModifiedShortcut do: aBlockClosure description: aByteString  [
+{ #category : #'keymapping protocol' }
+PragmaMenuAndShortcutRegistration >> category: aByteSymbol shortcut: aKMModifiedShortcut do: aBlockClosure description: aByteString [ 
 	
 	self currentItem
 		category: aByteSymbol;
@@ -112,11 +84,8 @@ PragmaMenuAndShortcutRegistration>>category: aByteSymbol shortcut: aKMModifiedSh
 		help: aByteString
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>createNewItem [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> createNewItem [
 	
 	items add: self itemClass new.
 	
@@ -125,96 +94,66 @@ PragmaMenuAndShortcutRegistration>>createNewItem [
 		parent: currentRoot
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>currentItem [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> currentItem [
 
 	^ items last
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>currentRoot [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistration >> currentRoot [
 
 	^ currentRoot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>currentRoot: aMenuRegistration  [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistration >> currentRoot: aMenuRegistration [ 
 
 	currentRoot := aMenuRegistration
 ]
 
-{
-	#category : #'keymapping protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>default: aKMModifiedShortcut [
+{ #category : #'keymapping protocol' }
+PragmaMenuAndShortcutRegistration >> default: aKMModifiedShortcut [
 	
 	self currentItem
 		default: aKMModifiedShortcut
 ]
 
-{
-	#category : #'keymapping protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>description: aByteString  [
+{ #category : #'keymapping protocol' }
+PragmaMenuAndShortcutRegistration >> description: aByteString [ 
 	
 	self currentItem
 		help: aByteString
 ]
 
-{
-	#category : #'keymapping protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>do: aBlockClosure [
+{ #category : #'keymapping protocol' }
+PragmaMenuAndShortcutRegistration >> do: aBlockClosure [
 	
 	self currentItem
 		action: aBlockClosure
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>enabled: aBoolean [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistration >> enabled: aBoolean [
  
 	self currentItem enabled: aBoolean
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>enabledBlock: aBlock [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> enabledBlock: aBlock [
 
 	self currentItem enabledBlock: aBlock
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>group: aSymbol  [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> group: aSymbol [ 
 	
 	self createNewItem.
 	self currentItem group: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>handOutItems [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistration >> handOutItems [
 	"we don't want to hold a reference to the items after they are hand out to the registration"
 
 	| itemsCopy |
@@ -223,198 +162,135 @@ PragmaMenuAndShortcutRegistration>>handOutItems [
 	^ itemsCopy
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>help: aString  [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> help: aString [ 
 	
 	self currentItem help: aString 
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>icon: anIcon [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> icon: anIcon [
 	
 	self currentItem icon: anIcon
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>iconName: aSymbol [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> iconName: aSymbol [
 	"instead of forcing clients to refer to an icon builder such Smalltalk ui icons 
 	this message encapsulates it inside the builder itself. When removing uses of Smalltalk ui icons it avoid to force to subclass class with menu to inherit from Model."
 	
 	self icon: (Smalltalk ui icons iconNamed: aSymbol)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>initialize [
+{ #category : #initialization }
+PragmaMenuAndShortcutRegistration >> initialize [
 
 	super initialize.
 
 	items := OrderedCollection new.
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>item: aSymbol  [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> item: aSymbol [ 
 	
 	self createNewItem.
 	self currentItem item: aSymbol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>itemClass [
+{ #category : #private }
+PragmaMenuAndShortcutRegistration >> itemClass [
 
 	^ PragmaMenuAndShortcutRegistrationItem
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>items [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistration >> items [
 
 	^ items
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>keyText: aString [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> keyText: aString [
 	self currentItem keyText: aString
 ]
 
-{
-	#category : #'keymapping protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>keyText: aString if: aBoolean [
+{ #category : #'keymapping protocol' }
+PragmaMenuAndShortcutRegistration >> keyText: aString if: aBoolean [
 	aBoolean ifFalse: [ ^ self ].
 	self keyText: aString
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>label: aString [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> label: aString [
 	
 	self currentItem label: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>model [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistration >> model [
 
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>model: aModel [
+{ #category : #accessing }
+PragmaMenuAndShortcutRegistration >> model: aModel [
 
 	model := aModel.
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>order: anInteger  [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> order: anInteger [ 
 	
 	self currentItem order: anInteger 
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>parent: aSymbol  [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> parent: aSymbol [ 
 	
 	self currentItem parent: aSymbol 
 ]
 
-{
-	#category : #'keymapping protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>platform: anArray [
+{ #category : #'keymapping protocol' }
+PragmaMenuAndShortcutRegistration >> platform: anArray [
  
 	anArray isEmpty
 		ifTrue: [ platform := #all ]
 		ifFalse: [ platform := anArray first ]
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>precondition: aBlock  [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> precondition: aBlock [ 
 	
 	self currentItem precondition: aBlock 
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>selector: aSelector  [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> selector: aSelector [ 
 	
 	self currentItem selector: aSelector
 ]
 
-{
-	#category : #'keymapping protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>setAsGlobalCategory: aGlobalCategory [
+{ #category : #'keymapping protocol' }
+PragmaMenuAndShortcutRegistration >> setAsGlobalCategory: aGlobalCategory [
 
 	KMRepository default setAsGlobalCategory: aGlobalCategory
 ]
 
-{
-	#category : #'keymapping protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>shortcut: aSymbol [
+{ #category : #'keymapping protocol' }
+PragmaMenuAndShortcutRegistration >> shortcut: aSymbol [
 	
 	self createNewItem.
 	self currentItem shortcut: aSymbol
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>target: aSymbol  [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> target: aSymbol [ 
 
 	self currentItem target: aSymbol 
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>with: aBlock [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> with: aBlock [
 	| old itemOrGroup |
 	old := self currentRoot.
 	itemOrGroup := self currentItem item ifNil: [ self currentItem group ].
@@ -423,11 +299,8 @@ PragmaMenuAndShortcutRegistration>>with: aBlock [
 		ensure: [ self currentRoot: old ]
 ]
 
-{
-	#category : #'menu protocol',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PragmaMenuAndShortcutRegistration>>withSeparatorAfter [
+{ #category : #'menu protocol' }
+PragmaMenuAndShortcutRegistration >> withSeparatorAfter [
 
 	self currentItem withSeparatorAfter
 ]

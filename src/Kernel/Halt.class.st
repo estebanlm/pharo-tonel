@@ -69,26 +69,19 @@ Halt resetOnce
 Class {
 	#name : #Halt,
 	#superclass : #Exception,
-	#category : #Kernel-Exceptions,
-	#timestamp : 'StephaneDucasse 10/9/2016 21:44'
+	#category : #Kernel-Exceptions
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Halt class>>haltIfBlock: aBlock withCallingObjectFrom: haltSenderContext [
+{ #category : #private }
+Halt class >> haltIfBlock: aBlock withCallingObjectFrom: haltSenderContext [
 
 	(aBlock cull: haltSenderContext receiver)
 		ifTrue: [self signalIn: haltSenderContext]
 		ifFalse: [^ self].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Halt class>>haltIfCallChain: haltSenderContext contains: aSelector [
+{ #category : #private }
+Halt class >> haltIfCallChain: haltSenderContext contains: aSelector [
 	| cntxt |
 	cntxt := haltSenderContext.
 	[ cntxt isNil ] whileFalse: [ 
@@ -96,11 +89,8 @@ Halt class>>haltIfCallChain: haltSenderContext contains: aSelector [
 		cntxt := cntxt sender ]
 ]
 
-{
-	#category : #halting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Halt class>>if: condition [
+{ #category : #halting }
+Halt class >> if: condition [
 	<debuggerCompleteToSender>
 	"This is the typical message to use for inserting breakpoints during 
 	debugging.
@@ -118,30 +108,21 @@ Halt class>>if: condition [
 	]
 ]
 
-{
-	#category : #halting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Halt class>>now [
+{ #category : #halting }
+Halt class >> now [
 	<debuggerCompleteToSender>
 	self signal.
 ]
 
-{
-	#category : #halting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Halt class>>now: aString [
+{ #category : #halting }
+Halt class >> now: aString [
 	"set a breakpoint with some explanation"
 	<debuggerCompleteToSender>
 	self signal: aString
 ]
 
-{
-	#category : #halting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Halt class>>onCount: anInteger [
+{ #category : #halting }
+Halt class >> onCount: anInteger [ 
 	"Halt on the anInteger-th time through"
 	<debuggerCompleteToSender>	
 	| callingContext node | 
@@ -156,11 +137,8 @@ Halt class>>onCount: anInteger [
 	((node propertyAt: #haltCount) >= anInteger) ifTrue: [ ^self signal ].
 ]
 
-{
-	#category : #halting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Halt class>>once [
+{ #category : #halting }
+Halt class >> once [
 	"Stop once and only once the execution of the method containing the expression Halt once. If you need to get it stops another time after the first stop, use Halt resetOnce."
 
 	| callingContext senderContext node |
@@ -189,41 +167,29 @@ Halt class>>once [
 
 ]
 
-{
-	#category : #once-reset,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Halt class>>resetHaltOnCount [
+{ #category : #once-reset }
+Halt class >> resetHaltOnCount [
 	 #haltOnCount: senders do: [ :method | method ast removeProperty: #haltCount ifAbsent: [  ] ].
 ]
 
-{
-	#category : #once-reset,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Halt class>>resetOnce [
+{ #category : #once-reset }
+Halt class >> resetOnce [
 	"Once stops an expression once and only once. Halt resetOnce will rearm and make sure that the execution of a method containing Halt once will stop another time."
 	 (#haltOnce senders, #inspectOnce senders) do: [ :method | 
 		method ast sendNodes do: [ :sendNode| 
 			sendNode removeProperty: #Once ifAbsent: [  ]]]
 ]
 
-{
-	#category : #'priv handling',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Halt>>defaultAction [
+{ #category : #'priv handling' }
+Halt >> defaultAction [
 	"No one has handled this error, but now give them a chance to decide how to debug it.  If none handle this either then open debugger (see UnhandedError-defaultAction)"
 
 	^ UIManager default unhandledErrorDefaultAction: self
 	"^ UnhandledError signalForException: self" 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Halt>>signalerContext [
+{ #category : #accessing }
+Halt >> signalerContext [
 	"specialized version to find the proper context to open the debugger on.
 	This will find the first context whose method is no longer on Halt or Halt class nor is #halt method iteself."
 	^ signalContext findContextSuchThat: [ :context |

@@ -4,81 +4,53 @@ A PDDependentPackageNode is used to display a dependent package in a tree.
 Class {
 	#name : #DADependentPackageNode,
 	#superclass : #DAAbstractPackageNode,
-	#category : #Tool-DependencyAnalyser-UI-Nodes,
-	#timestamp : 'BaptisteQuide 8/3/2014 13:37'
+	#category : #Tool-DependencyAnalyser-UI-Nodes
 }
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageNode>>childNodeClassFor: anItem [
+{ #category : #api }
+DADependentPackageNode >> childNodeClassFor: anItem [
 	^ anItem nodeClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageNode>>children [
+{ #category : #accessing }
+DADependentPackageNode >> children [
 	| aCompositeDependency |
 	aCompositeDependency := self compositeDependencyTo.
 	^ aCompositeDependency dependencies
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageNode>>compositeDependencyTo [
+{ #category : #accessing }
+DADependentPackageNode >> compositeDependencyTo [
 	"should return one composite dependency anytime"
 	^ self content
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageNode>>daPackage [
+{ #category : #accessing }
+DADependentPackageNode >> daPackage [
 	^ self parentNode daPackage
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageNode>>hasChildren [
+{ #category : #testing }
+DADependentPackageNode >> hasChildren [
 	^ [ self content dependencies notEmpty ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageNode>>icon [
+{ #category : #accessing }
+DADependentPackageNode >> icon [
 	^ self iconNamed: #forwardIcon
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageNode>>isPackageNode [
+{ #category : #testing }
+DADependentPackageNode >> isPackageNode [
 	^ true
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageNode>>label [
+{ #category : #displaying }
+DADependentPackageNode >> label [
 	^ self rPackage packageName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageNode>>rPackage [
+{ #category : #accessing }
+DADependentPackageNode >> rPackage [
 	^ self content target rPackageSet
 ]

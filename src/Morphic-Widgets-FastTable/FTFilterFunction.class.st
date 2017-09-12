@@ -19,26 +19,19 @@ Class {
 		'isEditingSemaphore',
 		'filterClass'
 	],
-	#category : #Morphic-Widgets-FastTable-Functions,
-	#timestamp : 'CyrilFerlicot 10/19/2015 11:52'
+	#category : #Morphic-Widgets-FastTable-Functions
 }
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunction>>colorText: aText [
+{ #category : #updating }
+FTFilterFunction >> colorText: aText [
 	table dataSource numberOfRows ~= 0
 		ifTrue: [ aText makeAllColor: self table theme textColor ]
 		ifFalse: [ aText addAttribute: (TextColor new color: Color red) ].
 	^ aText
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunction>>filter [
+{ #category : #updating }
+FTFilterFunction >> filter [
 	pattern ifNil: [ ^ self ].
 
 	table dataSource: (pattern ifEmpty: [ initialDataSource ] ifNotEmpty: [ initialDataSource newDataSourceMatching: (filterClass pattern: pattern) ]).
@@ -49,64 +42,43 @@ FTFilterFunction>>filter [
 		ifTrue: [ self resizeWidget ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunction>>filterClass [
+{ #category : #accessing }
+FTFilterFunction >> filterClass [
 	^filterClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunction>>filterClass: aFTFilterClass [
+{ #category : #accessing }
+FTFilterFunction >> filterClass: aFTFilterClass [
 	filterClass := aFTFilterClass
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunction>>filterWith: aStringOrText [
+{ #category : #updating }
+FTFilterFunction >> filterWith: aStringOrText [
 	initialDataSource ifNil: [ self initializeFilter ].	"I do this in case the filter is use explicictly in the FT, at the first call the Filter will not be initialize."
 	pattern := aStringOrText asString trimBoth.
 	isEditingSemaphore signal
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunction>>ghostText [
+{ #category : #'widget API' }
+FTFilterFunction >> ghostText [
 	^ 'Filter...'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunction>>initialize [
+{ #category : #initialization }
+FTFilterFunction >> initialize [
 	super initialize.
 	filterClass := FTRegexFilter 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunction>>initializeFilter [
+{ #category : #initialization }
+FTFilterFunction >> initializeFilter [
 	initialDataSource := table dataSource.
 	isEditingSemaphore := Semaphore new.
 	self spawnFilterUpdateThread
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunction>>keyStroke: anEvent [
+{ #category : #'event handling' }
+FTFilterFunction >> keyStroke: anEvent [
 	self isExplicite ifTrue: [ ^false ].
 	
 	(anEvent keyCharacter = Character escape and: [ initialDataSource isNotNil ])
@@ -117,11 +89,8 @@ FTFilterFunction>>keyStroke: anEvent [
 	^ true
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunction>>patternFromString: aString [
+{ #category : #updating }
+FTFilterFunction >> patternFromString: aString [
 	" do not throw an error if the pattern is bad - important in case of auto-accepting"
 
 	^ [ aString asRegexIgnoringCase ]
@@ -129,28 +98,19 @@ FTFilterFunction>>patternFromString: aString [
 		do: [ :ex |  ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunction>>reinitializeTable [
+{ #category : #initialization }
+FTFilterFunction >> reinitializeTable [
 	table dataSource: initialDataSource.
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunction>>reset [
+{ #category : #accessing }
+FTFilterFunction >> reset [
 	"self filter"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunction>>showFilterFieldFromKeystrokeEvent: anEvent [
+{ #category : #private }
+FTFilterFunction >> showFilterFieldFromKeystrokeEvent: anEvent [
 	| text ed |
 	text := anEvent keyCharacter asString asText.
 	self initializeFilter.
@@ -165,11 +125,8 @@ FTFilterFunction>>showFilterFieldFromKeystrokeEvent: anEvent [
 	ed openEditorWithContents: (self colorText: text)
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunction>>spawnFilterUpdateThread [
+{ #category : #updating }
+FTFilterFunction >> spawnFilterUpdateThread [
 	"Runs in background, thank to Henrik Johansen for this"
 
 	[ | oldPattern |
@@ -185,10 +142,7 @@ FTFilterFunction>>spawnFilterUpdateThread [
 				ifTrue: [ self filter ] ] ] repeat ] forkAt: Processor userBackgroundPriority
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilterFunction>>textUpdated: anAnnouncement [
+{ #category : #updating }
+FTFilterFunction >> textUpdated: anAnnouncement [
 	self filterWith: field getTextFromModel
 ]

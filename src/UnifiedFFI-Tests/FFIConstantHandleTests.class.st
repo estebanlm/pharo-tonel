@@ -1,37 +1,24 @@
-"
-
-"
 Class {
 	#name : #FFIConstantHandleTests,
 	#superclass : #TestCase,
 	#classVars : [
 		'TIME_T_PTR'
 	],
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIConstantHandleTests>>getTime: t [
+{ #category : #primitives }
+FFIConstantHandleTests >> getTime: t [
      ^self ffiCall: #(long time(FFIConstantHandle *t) ) module: LibC
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIConstantHandleTests>>getTimeReturnConstantHandle: t [
+{ #category : #primitives }
+FFIConstantHandleTests >> getTimeReturnConstantHandle: t [
      ^self ffiCall: #(FFIConstantHandle time(TIME_T_PTR t) ) module: LibC
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIConstantHandleTests>>testCall [
+{ #category : #tests }
+FFIConstantHandleTests >> testCall [
 	| object time |
 	
 	object := FFIConstantHandle new.
@@ -39,11 +26,8 @@ FFIConstantHandleTests>>testCall [
 	self assert: time equals: object handle.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIConstantHandleTests>>testReturn [
+{ #category : #tests }
+FFIConstantHandleTests >> testReturn [
 	| object time |
 	
 	TIME_T_PTR := FFIExternalValueHolder ofType: 'long'.

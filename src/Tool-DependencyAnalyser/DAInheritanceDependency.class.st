@@ -10,41 +10,28 @@ Class {
 	#instVars : [
 		'superclass'
 	],
-	#category : #Tool-DependencyAnalyser-Core,
-	#timestamp : 'BaptisteQuide 7/31/2014 12:06'
+	#category : #Tool-DependencyAnalyser-Core
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAInheritanceDependency>>isInheritanceDependency [
+{ #category : #testing }
+DAInheritanceDependency >> isInheritanceDependency [
 	^ true
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAInheritanceDependency>>printReasonOn: aStream [
+{ #category : #printing }
+DAInheritanceDependency >> printReasonOn: aStream [
 	aStream
 		nextPutAll: self theClass name;
 		nextPutAll: ' inherits from ';
 		nextPutAll: self superclass name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAInheritanceDependency>>superclass [
+{ #category : #accessing }
+DAInheritanceDependency >> superclass [
 	^ superclass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAInheritanceDependency>>superclass: aClass [
+{ #category : #accessing }
+DAInheritanceDependency >> superclass: aClass [
 	superclass := aClass
 ]

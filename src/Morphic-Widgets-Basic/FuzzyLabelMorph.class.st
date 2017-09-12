@@ -8,36 +8,26 @@ Class {
 		'offset',
 		'alpha'
 	],
-	#category : #Morphic-Widgets-Basic,
-	#timestamp : 'gvc 5/18/2007 13:16'
+	#category : #Morphic-Widgets-Basic
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-FuzzyLabelMorph>>alpha [
+{ #category : #accessing }
+FuzzyLabelMorph >> alpha [
 	"Answer the value of alpha"
 
 	^ alpha
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-FuzzyLabelMorph>>alpha: anObject [
+{ #category : #accessing }
+FuzzyLabelMorph >> alpha: anObject [
 	"Set the value of alpha"
 
 	alpha := anObject.
 	self changed
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-FuzzyLabelMorph>>drawOn: aCanvas [
+{ #category : #'as yet unclassified' }
+FuzzyLabelMorph >> drawOn: aCanvas [
 	"Draw based on enablement."
 	
 	|pc fuzzColor labelColor|
@@ -76,11 +66,8 @@ alpha]
 		color: labelColor
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-FuzzyLabelMorph>>initWithContents: aString font: aFont emphasis: emphasisCode [
+{ #category : #'as yet unclassified' }
+FuzzyLabelMorph >> initWithContents: aString font: aFont emphasis: emphasisCode [
 	"Grrr, why do they do basicNew?"
 	
 	offset := 1.
@@ -88,11 +75,8 @@ FuzzyLabelMorph>>initWithContents: aString font: aFont emphasis: emphasisCode [
 	super initWithContents: aString font: aFont emphasis: emphasisCode
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-FuzzyLabelMorph>>initialize [
+{ #category : #initialization }
+FuzzyLabelMorph >> initialize [
 	"Initialize the receiver."
 
 	offset := 1.
@@ -100,42 +84,30 @@ FuzzyLabelMorph>>initialize [
 	super initialize
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-FuzzyLabelMorph>>measureContents [
+{ #category : #'as yet unclassified' }
+FuzzyLabelMorph >> measureContents [
 	"Add 2 times offset."
 	
 	^super measureContents ceiling + (self offset * 2) asPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-FuzzyLabelMorph>>offset [
+{ #category : #accessing }
+FuzzyLabelMorph >> offset [
 	"Answer the value of offset"
 
 	^ offset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-FuzzyLabelMorph>>offset: anObject [
+{ #category : #accessing }
+FuzzyLabelMorph >> offset: anObject [
 	"Set the value of offset"
 
 	offset := anObject.
 	self fitContents
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-FuzzyLabelMorph>>setWidth: width [
+{ #category : #'as yet unclassified' }
+FuzzyLabelMorph >> setWidth: width [
 	"Set the width/extent."
 	
 	self extent: width @ (self fontToUse height ceiling + (2 * self offset))

@@ -16,15 +16,11 @@ Class {
 		'model',
 		'usersModel'
 	],
-	#category : #Spec-PolyWidgets-Widgets,
-	#timestamp : 'Spirita 7/22/2016 17:01'
+	#category : #Spec-PolyWidgets-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar class>>defaultSpec [
+{ #category : #specs }
+MethodToolbar class >> defaultSpec [
 	<spec>
 	^ SpecLayout composed
 		newRow:
@@ -39,11 +35,8 @@ MethodToolbar class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar class>>example [
+{ #category : #example }
+MethodToolbar class >> example [
 	| example |
 	example := MethodToolbar new.
 	example
@@ -54,20 +47,14 @@ MethodToolbar class>>example [
 		^example 
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar class>>title [
+{ #category : #specs }
+MethodToolbar class >> title [
 
 	^ 'Toolbar'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>addAll: aWindow  withSpec: aSpec [
+{ #category : #private }
+MethodToolbar >> addAll: aWindow  withSpec: aSpec [
 
 	aWindow
 		addMorph: (self buildWithSpec: aSpec)
@@ -75,76 +62,52 @@ MethodToolbar>>addAll: aWindow  withSpec: aSpec [
 		
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>addItemLabeled: aString do: aBlock [
+{ #category : #api }
+MethodToolbar >> addItemLabeled: aString do: aBlock [
 
 	dropListModel addItemLabeled: aString do: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>browseMethod [
+{ #category : #private }
+MethodToolbar >> browseMethod [
 
 	methodHolder value
 		ifNotNil: [:aMethod | aMethod browse ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>browseModel [
+{ #category : #accessing }
+MethodToolbar >> browseModel [
 
 	^ browseModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>dropListModel [
+{ #category : #accessing }
+MethodToolbar >> dropListModel [
 
 	^ dropListModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>emptyDropList [
+{ #category : #api }
+MethodToolbar >> emptyDropList [
 	
 	dropListModel emptyList
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>implementorsMethod [
+{ #category : #private }
+MethodToolbar >> implementorsMethod [
 
 	methodHolder value
 		ifNotNil: [:aMethod | self model browseMessagesFrom: aMethod selector ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>implementorsModel [
+{ #category : #accessing }
+MethodToolbar >> implementorsModel [
 
 	^ implementorsModel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>initialize [
+{ #category : #initialization }
+MethodToolbar >> initialize [
 
 	methodHolder := nil asValueHolder.
 	model := AbstractTool new.
@@ -152,11 +115,8 @@ MethodToolbar>>initialize [
 	super initialize.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>initializeWidgets [
+{ #category : #initialization }
+MethodToolbar >> initializeWidgets [
 	browseModel := self newButton.
 	usersModel := self newButton.
 	sendersModel := self newButton.
@@ -172,29 +132,20 @@ MethodToolbar>>initializeWidgets [
 		setImplementorsModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>method: aMethod [
+{ #category : #api }
+MethodToolbar >> method: aMethod [
 
 	methodHolder value: aMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>model [
+{ #category : #accessing }
+MethodToolbar >> model [
 
 	^ model
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>registerForChanges [
+{ #category : #initialization }
+MethodToolbar >> registerForChanges [
 	methodHolder
 		whenChangedDo:
 			[ :contents | 
@@ -207,30 +158,21 @@ MethodToolbar>>registerForChanges [
 			implementorsModel state: boolean ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>sendersMethod [
+{ #category : #private }
+MethodToolbar >> sendersMethod [
 
 	methodHolder value
 		ifNotNil: [:aMethod | self model browseSendersOfMessagesFrom: aMethod selector ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>sendersModel [
+{ #category : #accessing }
+MethodToolbar >> sendersModel [
 
 	^ sendersModel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>setBrowseModel [
+{ #category : #initialization }
+MethodToolbar >> setBrowseModel [
 	
 	browseModel
 		state: false;
@@ -240,11 +182,8 @@ MethodToolbar>>setBrowseModel [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>setFocusOrder [
+{ #category : #initialization }
+MethodToolbar >> setFocusOrder [
 
 	self focusOrder
 		add: browseModel;
@@ -255,11 +194,8 @@ MethodToolbar>>setFocusOrder [
 		
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>setImplementorsModel [
+{ #category : #initialization }
+MethodToolbar >> setImplementorsModel [
 	
 	implementorsModel
 		state: false;
@@ -269,11 +205,8 @@ MethodToolbar>>setImplementorsModel [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>setSendersModel [
+{ #category : #initialization }
+MethodToolbar >> setSendersModel [
 	
 	sendersModel
 		state: false;
@@ -283,22 +216,16 @@ MethodToolbar>>setSendersModel [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>setUsersModel [
+{ #category : #initialization }
+MethodToolbar >> setUsersModel [
 	usersModel
 		state: false;
 		label: 'Users';
 		action: [ self usersMethod ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>setVersionModel [
+{ #category : #initialization }
+MethodToolbar >> setVersionModel [
 	
 	versionModel
 		state: false;
@@ -308,37 +235,25 @@ MethodToolbar>>setVersionModel [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>usersMethod [
+{ #category : #private }
+MethodToolbar >> usersMethod [
 	methodHolder value methodClass ifNotNil: [ :class | self model browseClassRefsOf: class ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>usersModel [
+{ #category : #accessing }
+MethodToolbar >> usersModel [
 	^ usersModel
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>versionMethod [
+{ #category : #private }
+MethodToolbar >> versionMethod [
 
 	methodHolder value
 		ifNotNil: [:aMethod | self model browseVersionsFrom: aMethod ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MethodToolbar>>versionModel [
+{ #category : #accessing }
+MethodToolbar >> versionModel [
 
 	^ versionModel
 ]

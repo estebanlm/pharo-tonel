@@ -76,62 +76,43 @@ Class {
 		'model',
 		'position'
 	],
-	#category : #NautilusCommon-Plugin,
-	#timestamp : 'StephaneDucasse 10/30/2014 07:31'
+	#category : #NautilusCommon-Plugin
 }
 
-{
-	#category : #position,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusPlugin class>>defaultPosition [
+{ #category : #position }
+AbstractNautilusPlugin class >> defaultPosition [
 	"Tells where in the Nautilus UI this plugin will appear. Pick an answer from #possiblePositions. By default a plugin does not have a visual representation so its position is none"
 		
 	^ #none
 ]
 
-{
-	#category : #information,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusPlugin class>>description [
+{ #category : #information }
+AbstractNautilusPlugin class >> description [
 	^ 'No description available'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusPlugin class>>isUsed [
+{ #category : #testing }
+AbstractNautilusPlugin class >> isUsed [
 	"all my sublasses are used"
 	^self name = 'AbstractNautilusPlugin'
 		ifTrue: [ super isUsed ]
 		ifFalse: [ true ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusPlugin class>>model: aModel [
+{ #category : #'instance creation' }
+AbstractNautilusPlugin class >> model: aModel [
 
 	^ self new model: aModel
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusPlugin class>>pluginName [
+{ #category : #display }
+AbstractNautilusPlugin class >> pluginName [
 
 	^ self name
 ]
 
-{
-	#category : #information,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusPlugin class>>possiblePositions [
+{ #category : #information }
+AbstractNautilusPlugin class >> possiblePositions [
 	"Return all the possible positions for a plugin. Subclasses are not intented to override this method."
 	^ {	#top.
 		#middle.
@@ -139,67 +120,46 @@ AbstractNautilusPlugin class>>possiblePositions [
 		#none. }
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusPlugin>>display [
+{ #category : #display }
+AbstractNautilusPlugin >> display [
 	" should answer a morphic object ready to be integrated into a NautilusWindow "
 	
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusPlugin>>model [
+{ #category : #accessing }
+AbstractNautilusPlugin >> model [
 
 		^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusPlugin>>model: anObject [
+{ #category : #accessing }
+AbstractNautilusPlugin >> model: anObject [
 	
 		model := anObject.
 		self registerTo: anObject
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusPlugin>>name [
+{ #category : #display }
+AbstractNautilusPlugin >> name [
 
 	^ self class name
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusPlugin>>position [
+{ #category : #display }
+AbstractNautilusPlugin >> position [
 
 	^ position ifNil: [ position := self class defaultPosition ]
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusPlugin>>position: aPosition [
+{ #category : #display }
+AbstractNautilusPlugin >> position: aPosition [
 	
 	position := aPosition
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusPlugin>>registerTo: aModel [
+{ #category : #registration }
+AbstractNautilusPlugin >> registerTo: aModel [
 
 	self subclassResponsibility
 ]

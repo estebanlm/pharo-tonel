@@ -16,15 +16,11 @@ Class {
 		'buttonRemoveAll',
 		'textPackageField'
 	],
-	#category : #Tool-DependencyAnalyser-UI-Core,
-	#timestamp : 'BaptisteQuide 7/21/2014 11:03'
+	#category : #Tool-DependencyAnalyser-UI-Core
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome class>>defaultSpec [
+{ #category : #specs }
+DAPackageDependenciesWelcome class >> defaultSpec [
 	<spec: #default>
 	^ SpecLayout composed
 		newColumn:
@@ -53,11 +49,8 @@ DAPackageDependenciesWelcome class>>defaultSpec [
 					height: 30 ] yourself
 ]
 
-{
-	#category : #'world menu',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome class>>menuCommandOn: aBuilder [
+{ #category : #'world menu' }
+DAPackageDependenciesWelcome class >> menuCommandOn: aBuilder [
 	<worldMenu>
 
 	(aBuilder item: #PackageDependencies)
@@ -68,11 +61,8 @@ DAPackageDependenciesWelcome class>>menuCommandOn: aBuilder [
 		action: [ self new open ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>actionOnAddPackage [
+{ #category : #protocol }
+DAPackageDependenciesWelcome >> actionOnAddPackage [
 	| itemsToAdd itemsChosen itemsAdded |
 	buttonAddPackage
 		action: [ 
@@ -85,11 +75,8 @@ DAPackageDependenciesWelcome>>actionOnAddPackage [
 					self updatePackageChosenLabel ] ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>actionOnOpen [
+{ #category : #protocol }
+DAPackageDependenciesWelcome >> actionOnOpen [
 	buttonOpen
 		action: [ 
 			self itemsFromPackageChosenList
@@ -98,11 +85,8 @@ DAPackageDependenciesWelcome>>actionOnOpen [
 					 ] ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>actionOnRemovePackage [
+{ #category : #protocol }
+DAPackageDependenciesWelcome >> actionOnRemovePackage [
 	| itemsAdded |
 	buttonRemovePackage
 		action: [ 
@@ -115,60 +99,39 @@ DAPackageDependenciesWelcome>>actionOnRemovePackage [
 					self updatePackageChosenLabel ] ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>buildList [
+{ #category : #actions }
+DAPackageDependenciesWelcome >> buildList [
 	self packageList items: self systemPackages.
 	self updateLabels
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>buttonAddAll [
+{ #category : #accessing }
+DAPackageDependenciesWelcome >> buttonAddAll [
 	^ buttonAddAll
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>buttonAddPackage [
+{ #category : #accessing }
+DAPackageDependenciesWelcome >> buttonAddPackage [
 	^ buttonAddPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>buttonOpen [
+{ #category : #accessing }
+DAPackageDependenciesWelcome >> buttonOpen [
 	^ buttonOpen
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>buttonRemoveAll [
+{ #category : #accessing }
+DAPackageDependenciesWelcome >> buttonRemoveAll [
 	^ buttonRemoveAll
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>buttonRemovePackage [
+{ #category : #accessing }
+DAPackageDependenciesWelcome >> buttonRemovePackage [
 	^ buttonRemovePackage
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>filterPackageList [
+{ #category : #initialization }
+DAPackageDependenciesWelcome >> filterPackageList [
 	| match itemsMatching |
 	textPackageField text
 		ifEmpty: [ self packageList items: self systemPackages ]
@@ -178,19 +141,13 @@ DAPackageDependenciesWelcome>>filterPackageList [
 			self packageList items: itemsMatching asSortedCollection ]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>initialExtent [
+{ #category : #'morphic ui' }
+DAPackageDependenciesWelcome >> initialExtent [
 	^ (800@800)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>initializeButtons [
+{ #category : #initialization }
+DAPackageDependenciesWelcome >> initializeButtons [
 	buttonOpen := self newButton
 		help: 'Open the package dependencies analysis';
 		label: 'Browse dependencies';
@@ -213,20 +170,14 @@ DAPackageDependenciesWelcome>>initializeButtons [
 		icon: (self icon: #deleteIcon)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>initializeLabels [
+{ #category : #initialization }
+DAPackageDependenciesWelcome >> initializeLabels [
 	packageLabel := self newLabel.
 	packageChosenLabel := self newLabel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>initializeLists [
+{ #category : #initialization }
+DAPackageDependenciesWelcome >> initializeLists [
 	packageList := self newList
 		multiSelection: true;
 		yourself.
@@ -235,11 +186,8 @@ DAPackageDependenciesWelcome>>initializeLists [
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>initializePresenter [
+{ #category : #initialization }
+DAPackageDependenciesWelcome >> initializePresenter [
 	self actionOnOpen;
 		actionOnAddPackage;
 		actionOnRemovePackage.
@@ -253,11 +201,8 @@ DAPackageDependenciesWelcome>>initializePresenter [
 		whenTextChanged: [ self filterPackageList ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>initializeWidgets [
+{ #category : #initialization }
+DAPackageDependenciesWelcome >> initializeWidgets [
 	self
 		initializeLists;
 		initializeLabels;
@@ -269,69 +214,45 @@ DAPackageDependenciesWelcome>>initializeWidgets [
 		entryCompletion: self packagesEntryCompletion.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>itemsFromPackageChosenList [
+{ #category : #accessing }
+DAPackageDependenciesWelcome >> itemsFromPackageChosenList [
 	^ self packageChosenList listItems
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>merge: aCollection With: anOtherCollection [
+{ #category : #merging }
+DAPackageDependenciesWelcome >> merge: aCollection With: anOtherCollection [
 	^ aCollection asSet
 		addAll: anOtherCollection;
 		yourself
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>open [
+{ #category : #actions }
+DAPackageDependenciesWelcome >> open [
 	^ self openWithSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>packageChosenLabel [
+{ #category : #accessing }
+DAPackageDependenciesWelcome >> packageChosenLabel [
 	^ packageChosenLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>packageChosenList [
+{ #category : #accessing }
+DAPackageDependenciesWelcome >> packageChosenList [
 	^ packageChosenList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>packageLabel [
+{ #category : #accessing }
+DAPackageDependenciesWelcome >> packageLabel [
 	^ packageLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>packageList [
+{ #category : #accessing }
+DAPackageDependenciesWelcome >> packageList [
 	^ packageList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>packagesEntryCompletion [
+{ #category : #accessing }
+DAPackageDependenciesWelcome >> packagesEntryCompletion [
 	| applicants |
 	applicants := self systemPackages.
 
@@ -341,70 +262,46 @@ DAPackageDependenciesWelcome>>packagesEntryCompletion [
 						and: [currApplicant asUppercase includesSubstring: currText asString asUppercase]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>selectedItemsFromPackageChosenList [
+{ #category : #accessing }
+DAPackageDependenciesWelcome >> selectedItemsFromPackageChosenList [
 	^ self packageChosenList selectedItems
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>selectedItemsFromPackageList [
+{ #category : #accessing }
+DAPackageDependenciesWelcome >> selectedItemsFromPackageList [
 	^ self packageList selectedItems
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>systemPackages [
+{ #category : #accessing }
+DAPackageDependenciesWelcome >> systemPackages [
 	^ (RPackageOrganizer default packages collect: [ :package | package packageName asString ] )asSortedCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>textPackageField [
+{ #category : #accessing }
+DAPackageDependenciesWelcome >> textPackageField [
 	^ textPackageField
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>title [
+{ #category : #'morphic ui' }
+DAPackageDependenciesWelcome >> title [
 	^ 'Package Dependencies Browser'
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>updateLabels [
+{ #category : #protocol }
+DAPackageDependenciesWelcome >> updateLabels [
 	self
 		updatePackageLabel;
 		updatePackageChosenLabel
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>updatePackageChosenLabel [
+{ #category : #protocol }
+DAPackageDependenciesWelcome >> updatePackageChosenLabel [
 	self packageChosenLabel 
 			label: packageChosenList listSize asString, ' package(s) chosen'.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependenciesWelcome>>updatePackageLabel [
+{ #category : #protocol }
+DAPackageDependenciesWelcome >> updatePackageLabel [
 	self packageLabel 
 			label: 'Choose your packages (', self packageList listSize asString, ' packages available)'.
 ]

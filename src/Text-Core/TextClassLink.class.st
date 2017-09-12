@@ -7,69 +7,47 @@ Class {
 	#instVars : [
 		'className'
 	],
-	#category : #Text-Core,
-	#timestamp : 'TorstenBergmann 1/31/2014 12:18'
+	#category : #Text-Core
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextClassLink class>>class: aClass [
+{ #category : #'as yet unclassified' }
+TextClassLink class >> class: aClass [
 	^ self className: aClass name
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextClassLink class>>className: aSymbol [
+{ #category : #'as yet unclassified' }
+TextClassLink class >> className: aSymbol [
 	^ self new
 		className: aSymbol;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextClassLink>>= anotherObject [
+{ #category : #comparing }
+TextClassLink >> = anotherObject [
 
 	^super = anotherObject and: [ className = anotherObject className ]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextClassLink>>actOnClick: anEvent for: target in: aParagraph editor: anEditor [
+{ #category : #evaluating }
+TextClassLink >> actOnClick: anEvent for: target in: aParagraph editor: anEditor [
 	anEvent shiftPressed
 		ifFalse: [ anEditor browseClassFrom: self className ]
 		ifTrue: [ anEditor referencesTo: self className ].
 	^ true
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextClassLink>>className	 [
+{ #category : #'system primitives' }
+TextClassLink >> className [	
 	^ className
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextClassLink>>className: aStringOrSymbol [
+{ #category : #accessing }
+TextClassLink >> className: aStringOrSymbol [
 	className := aStringOrSymbol asSymbol
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextClassLink>>hash [
+{ #category : #comparing }
+TextClassLink >> hash [
 
 	^(super hash + className hash) hashMultiply 
 ]

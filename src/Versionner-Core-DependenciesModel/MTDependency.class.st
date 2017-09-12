@@ -20,33 +20,23 @@ Class {
 		'dependencies',
 		'parent'
 	],
-	#category : #Versionner-Core-DependenciesModel,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-DependenciesModel
 }
 
-{
-	#category : #instantiation,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency class>>newNamed: aName [
+{ #category : #instantiation }
+MTDependency class >> newNamed: aName [
 	"Create a new dependency with the given name."
 
 	^ self new name: aName.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>><= aMTDependency [
+{ #category : #comparing }
+MTDependency >> <= aMTDependency [
 	^ self name <= aMTDependency name
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>= other [
+{ #category : #comparing }
+MTDependency >> = other [
 	(self class = other class) ifFalse: [ ^ false ].
 	(self name = other name) ifFalse: [ ^ false ].
 	(self version = other version) ifFalse: [ ^ false ].
@@ -55,132 +45,87 @@ MTDependency>>= other [
 	^ true
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>acceptVisitor: aMTProjectVisitor  [
+{ #category : #visiting }
+MTDependency >> acceptVisitor: aMTProjectVisitor [ 
 	self subclassResponsibility
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>addDependency: aDependency [
+{ #category : #protocol }
+MTDependency >> addDependency: aDependency [
 	(dependencies includes: aDependency) 
 		ifFalse: [ [ aDependency parent: self ] on: MessageNotUnderstood do: [ "ignore" ].
 				 dependencies add: aDependency ] 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>asString [
+{ #category : #displaying }
+MTDependency >> asString [
 	"Pretty print to display a dependency."
 	^ self displayString.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>dependencies [
+{ #category : #accessing }
+MTDependency >> dependencies [
 	^ dependencies
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>dependencies: aCollection [
+{ #category : #accessing }
+MTDependency >> dependencies: aCollection [
 	dependencies := aCollection.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>displayName [
+{ #category : #accessing }
+MTDependency >> displayName [
 	^ self name
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>displayString [
+{ #category : #displaying }
+MTDependency >> displayString [
 	"Pretty print to display a dependency."
 	self subclassResponsibility .
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>initialize  [
+{ #category : #initialize-release }
+MTDependency >> initialize [ 
 	dependencies  := OrderedCollection new.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>name [
+{ #category : #accessing }
+MTDependency >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>name: anObject [
+{ #category : #accessing }
+MTDependency >> name: anObject [
 	name := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>parent [
+{ #category : #accessing }
+MTDependency >> parent [
 	^ parent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>parent: anObject [
+{ #category : #accessing }
+MTDependency >> parent: anObject [
 	parent := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>printOn: aStream [
+{ #category : #printing }
+MTDependency >> printOn: aStream [
 	"Pretty print for dependencies"
 	aStream nextPutAll: self name.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>project [
+{ #category : #accessing }
+MTDependency >> project [
 	| myparent |
 	myparent := self parent.
 	[ myparent isNotNil ] whileTrue: [ [ myparent := myparent parent ] on: MessageNotUnderstood do: [ ^ myparent ] ].
 	^ myparent
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>remove [
+{ #category : #protocol }
+MTDependency >> remove [
 	"search if I am present in other groups and remove myself from these groups, 
 	then remove myself from project dependencies"
 	(self project groups select: [ :aGroup | aGroup dependencies includes: name ])
@@ -189,29 +134,20 @@ MTDependency>>remove [
 	self project announcer announce: (MTProjectModelChanged project: self)
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>removeDependency: aDependency [
+{ #category : #protocol }
+MTDependency >> removeDependency: aDependency [
 	dependencies remove: aDependency ifAbsent: [  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>version [
+{ #category : #accessing }
+MTDependency >> version [
 	"Get the specific version used for this dependency"
 	
 	^version.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependency>>version: aVersion [
+{ #category : #accessing }
+MTDependency >> version: aVersion [
 	"Set the specific version used for this dependency"
 	
 	version := aVersion.

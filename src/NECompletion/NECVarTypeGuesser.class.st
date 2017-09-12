@@ -13,15 +13,11 @@ Class {
 		'hasSend',
 		'contextCount'
 	],
-	#category : #NECompletion-Model,
-	#timestamp : '<historical>'
+	#category : #NECompletion-Model
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser class>>getClassFromTypeSuggestingName: aString  [
+{ #category : #private }
+NECVarTypeGuesser class >> getClassFromTypeSuggestingName: aString [ 
 	| firstUppercaseLetter className aStream aClass |
 	aStream := WriteStream on: String new.
 	aStream nextPut: aString first asUppercase.
@@ -45,19 +41,13 @@ NECVarTypeGuesser class>>getClassFromTypeSuggestingName: aString  [
 	^ nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser class>>variableName: aString class: aClass  [
+{ #category : #'instance creation' }
+NECVarTypeGuesser class >> variableName: aString class: aClass [ 
 	^self variableName: aString source: nil class: aClass 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser class>>variableName: aString source: sourceString class: aClass  [
+{ #category : #'instance creation' }
+NECVarTypeGuesser class >> variableName: aString source: sourceString class: aClass [ 
 	| newInstance |
 	newInstance := self basicNew initialize.
 	newInstance 
@@ -67,19 +57,13 @@ NECVarTypeGuesser class>>variableName: aString source: sourceString class: aClas
 	^ newInstance
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>blockReturnTop [
+{ #category : #'bytecode decoding' }
+NECVarTypeGuesser >> blockReturnTop [
 	contextCount := contextCount - 1
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>computeVarType [
+{ #category : #'bytecode decoding' }
+NECVarTypeGuesser >> computeVarType [
 	| info tempNames name |
 	types ifEmpty: [ ^ nil ].
 	info := types first.
@@ -95,41 +79,29 @@ NECVarTypeGuesser>>computeVarType [
 	^ info
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>initialize [
+{ #category : #initialization }
+NECVarTypeGuesser >> initialize [
 	super initialize.
 	types := OrderedCollection new.
 	hasSend := false.
 	contextCount := 0
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>interpretNextInstructionUsing: aScanner  [
+{ #category : #'bytecode decoding' }
+NECVarTypeGuesser >> interpretNextInstructionUsing: aScanner [ 
 	found := false.
 	aScanner interpretNextInstructionFor: self.
 	^found
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>methodRefs [
+{ #category : #public }
+NECVarTypeGuesser >> methodRefs [
 	^ #()
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>perform [
+{ #category : #public }
+NECVarTypeGuesser >> perform [
 	| infos infosOfMethod methodRefs |
 	variableName isEmpty
 		ifTrue: [^ nil].
@@ -151,47 +123,31 @@ NECVarTypeGuesser>>perform [
 	^ nil
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>popIntoLiteralVariable: anAssociation  [
+{ #category : #'bytecode decoding' }
+NECVarTypeGuesser >> popIntoLiteralVariable: anAssociation [ 
 	"Remove Top Of Stack And Store Into Literal Variable bytecode."
 	self reset
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>popIntoTemporaryVariable: offset  [
+{ #category : #'bytecode decoding' }
+NECVarTypeGuesser >> popIntoTemporaryVariable: offset [ 
 	"Remove Top Of Stack And Store Into Temporary Variable bytecode."
 	self reset
 
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>prepare: aCompiledMethod  [
-
+{ #category : #'bytecode decoding' }
+NECVarTypeGuesser >> prepare: aCompiledMethod [ 
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>pushActiveContext [
+{ #category : #'bytecode decoding' }
+NECVarTypeGuesser >> pushActiveContext [
 	"Push Active Context On Top Of Its Own Stack bytecode."
 	contextCount := contextCount + 1
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>pushConstant: value  [
+{ #category : #'bytecode decoding' }
+NECVarTypeGuesser >> pushConstant: value [ 
 	"Push Constant, value, on Top Of Stack bytecode."
 	| info |
 	contextCount > 0 ifTrue: [ ^ self ].
@@ -200,11 +156,8 @@ NECVarTypeGuesser>>pushConstant: value  [
 		types add: info ]
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>pushLiteralVariable: anAssociation  [
+{ #category : #'bytecode decoding' }
+NECVarTypeGuesser >> pushLiteralVariable: anAssociation [ 
 	"Push Contents Of anAssociation On Top Of Stack bytecode."
 	| info |
 	contextCount > 0 ifTrue:[^self].
@@ -215,11 +168,8 @@ NECVarTypeGuesser>>pushLiteralVariable: anAssociation  [
 	types add: info
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>pushTemporaryVariable: offset  [
+{ #category : #'bytecode decoding' }
+NECVarTypeGuesser >> pushTemporaryVariable: offset [ 
 	"Push Contents Of Temporary Variable Whose Index Is the  
 	argument, offset, On Top Of Stack bytecode."
 	| info |
@@ -229,21 +179,15 @@ NECVarTypeGuesser>>pushTemporaryVariable: offset  [
 	types add: info
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>reset [
+{ #category : #private }
+NECVarTypeGuesser >> reset [
 	contextCount > 0 ifTrue:[^self].
 	types reset.
 	hasSend := false.
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>send: selector super: supered numArgs: numberArguments  [
+{ #category : #'bytecode decoding' }
+NECVarTypeGuesser >> send: selector super: supered numArgs: numberArguments [ 
 	"Send Message With Selector, selector, bytecode. The argument,  
 	supered, indicates whether the receiver of the message is specified with 
 	'super' in the source method. The arguments of the message are found  
@@ -255,20 +199,14 @@ NECVarTypeGuesser>>send: selector super: supered numArgs: numberArguments  [
 	hasSend := true
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>setVariableName: aString source: aSourceString class: aClass  [
+{ #category : #'instance creation' }
+NECVarTypeGuesser >> setVariableName: aString source: aSourceString class: aClass [ 
 	variableName := aString.
 	receiverClass := aClass
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECVarTypeGuesser>>typeOfVarIn: aMethod  [
+{ #category : #'bytecode decoding' }
+NECVarTypeGuesser >> typeOfVarIn: aMethod [ 
 	"Answer whether the receiver references an instance variable."
 	| scanner end type infos |
 	scanner := InstructionStream on: aMethod.

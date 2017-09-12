@@ -4,14 +4,10 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestRingMonticello,
 	#superclass : #PackageManifest,
-	#category : #Ring-Monticello,
-	#timestamp : '<historical>'
+	#category : #Ring-Monticello
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:17:02'
-}
-ManifestRingMonticello class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestRingMonticello class >> manuallyResolvedDependencies [
 	^ #(#'Collections-Streams' #'Collections-Abstract')
 ]

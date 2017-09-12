@@ -7,31 +7,21 @@ Class {
 	#instVars : [
 		'action'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'AndreiChis 4/18/2016 17:37'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWindowRequest class>>for: aSelector [
+{ #category : #'instance creation' }
+GLMWindowRequest class >> for: aSelector [
 
 	^ self new action: [ :editor | editor perform: aSelector ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWindowRequest>>action [
+{ #category : #accessing }
+GLMWindowRequest >> action [
 	^ action
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMWindowRequest>>action: anObject [
+{ #category : #accessing }
+GLMWindowRequest >> action: anObject [
 	action := anObject
 ]

@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #RBAddParameterTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddParameterTest>>setUp [
+{ #category : #'set up' }
+RBAddParameterTest >> setUp [
 	super setUp.
 	model := self abstractVariableTestData.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddParameterTest>>testAddParameterForTwoArgumentMessage [
+{ #category : #tests }
+RBAddParameterTest >> testAddParameterForTwoArgumentMessage [
 	| refactoring class |
 	refactoring := RBAddParameterRefactoring 
 		addParameterToMethod: ('called:' , 'on:') asSymbol
@@ -44,11 +34,8 @@ RBAddParameterTest>>testAddParameterForTwoArgumentMessage [
 	self deny: (class directlyDefinesMethod: ('called:' , 'on:') asSymbol)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddParameterTest>>testAddParameterThatReferencesGlobalAndLiteral [
+{ #category : #tests }
+RBAddParameterTest >> testAddParameterThatReferencesGlobalAndLiteral [
 	| refactoring class |
 	refactoring := RBAddParameterRefactoring 
 		addParameterToMethod: ('test' , 'Foo:') asSymbol
@@ -63,11 +50,8 @@ RBAddParameterTest>>testAddParameterThatReferencesGlobalAndLiteral [
 	self deny: (class directlyDefinesMethod: ('test' , 'Foo:') asSymbol)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddParameterTest>>testAddParameterThatReferencesModelGlobal [
+{ #category : #tests }
+RBAddParameterTest >> testAddParameterThatReferencesModelGlobal [
 	| refactoring class |
 	refactoring := RBAddParameterRefactoring 
 		model: model
@@ -83,11 +67,8 @@ RBAddParameterTest>>testAddParameterThatReferencesModelGlobal [
 	self deny: (class directlyDefinesMethod: ('test' , 'Foo:') asSymbol)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddParameterTest>>testAddParameterThatReferencesSelf [
+{ #category : #tests }
+RBAddParameterTest >> testAddParameterThatReferencesSelf [
 	| refactoring class |
 	refactoring := RBAddParameterRefactoring 
 		addParameterToMethod: ('test' , 'Foo:') asSymbol
@@ -102,11 +83,8 @@ RBAddParameterTest>>testAddParameterThatReferencesSelf [
 	self deny: (class directlyDefinesMethod: ('test' , 'Foo:') asSymbol)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddParameterTest>>testBadInitializationCode [
+{ #category : #'failure tests' }
+RBAddParameterTest >> testBadInitializationCode [
 	self
 		shouldFail: (RBAddParameterRefactoring 
 				addParameterToMethod: #name
@@ -120,11 +98,8 @@ RBAddParameterTest>>testBadInitializationCode [
 				initializer: 'foo')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddParameterTest>>testModelBadInitializationCode [
+{ #category : #'failure tests' }
+RBAddParameterTest >> testModelBadInitializationCode [
 	| refactoring |
 	model removeClassNamed: #RBRefactoring.
 	refactoring := RBAddParameterRefactoring 
@@ -136,11 +111,8 @@ RBAddParameterTest>>testModelBadInitializationCode [
 	self shouldFail: refactoring
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddParameterTest>>testModelNonExistantName [
+{ #category : #'failure tests' }
+RBAddParameterTest >> testModelNonExistantName [
 	| refactoring |
 	(model classNamed: #RBLintRuleTest) removeMethod: #name.
 	refactoring := RBAddParameterRefactoring 
@@ -152,11 +124,8 @@ RBAddParameterTest>>testModelNonExistantName [
 	self shouldFail: refactoring
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddParameterTest>>testNonExistantName [
+{ #category : #'failure tests' }
+RBAddParameterTest >> testNonExistantName [
 	self shouldFail: (RBAddParameterRefactoring 
 			addParameterToMethod: #name1
 			in: RBLintRuleTest
@@ -164,11 +133,8 @@ RBAddParameterTest>>testNonExistantName [
 			initializer: 'nil')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddParameterTest>>testPrimitiveMethods [
+{ #category : #'failure tests' }
+RBAddParameterTest >> testPrimitiveMethods [
 	| refactoring |
 	(model classNamed: #Object) 
 		compile: 'foo <primitive: 100> ^#() primitiveFailed'

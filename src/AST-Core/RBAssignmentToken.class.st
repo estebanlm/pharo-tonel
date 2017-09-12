@@ -5,22 +5,15 @@ RBAssignmentToken is the first-class representation of the assignment token ':='
 Class {
 	#name : #RBAssignmentToken,
 	#superclass : #RBToken,
-	#category : #AST-Core-Tokens,
-	#timestamp : 'md 8/9/2005 14:51'
+	#category : #AST-Core-Tokens
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentToken>>isAssignment [
+{ #category : #testing }
+RBAssignmentToken >> isAssignment [
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentToken>>length [
+{ #category : #private }
+RBAssignmentToken >> length [
 	^2
 ]

@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'stream'
 	],
-	#category : #OpalCompiler-Core-IR-Manipulation,
-	#timestamp : 'ClementBer 10/14/2014 14:16'
+	#category : #OpalCompiler-Core-IR-Manipulation
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>label: seqNum [
+{ #category : #private }
+IRPrinterV2 >> label: seqNum [
 
 	"add tab and cr since this does not get called within interpretInstruction:"
 	stream cr.  "extra cr just to space out sequences"
@@ -25,51 +21,36 @@ IRPrinterV2>>label: seqNum [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>stream: stringWriteStream [
+{ #category : #private }
+IRPrinterV2 >> stream: stringWriteStream [
 
 	stream := stringWriteStream
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitBlockReturnTop: blockReturnTop [
+{ #category : #visiting }
+IRPrinterV2 >> visitBlockReturnTop: blockReturnTop [
 
 	stream nextPutAll: 'blockReturnTop'.
 
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitInstruction: aNode [
+{ #category : #visiting }
+IRPrinterV2 >> visitInstruction: aNode [
 	self visitNode: aNode.
 	stream cr.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitJump: jump [
+{ #category : #visiting }
+IRPrinterV2 >> visitJump: jump [
 
 	stream nextPutAll: 'goto: '.
 	jump destination orderNumber printOn: stream.
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitJumpIf: jumpIf [
+{ #category : #visiting }
+IRPrinterV2 >> visitJumpIf: jumpIf [
 
 	stream nextPutAll: 'if: '.
 	jumpIf boolean printOn: stream.
@@ -80,32 +61,23 @@ IRPrinterV2>>visitJumpIf: jumpIf [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitPop: pop [
+{ #category : #visiting }
+IRPrinterV2 >> visitPop: pop [
 
 	stream nextPutAll: 'popTop'
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitPopIntoInstVar: instVar [
+{ #category : #visiting }
+IRPrinterV2 >> visitPopIntoInstVar: instVar [
 	
 	stream nextPutAll: 'popIntoInstVar: '.
 	instVar index printOn: stream.
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitPopIntoLiteralVariable: litVar [
+{ #category : #visiting }
+IRPrinterV2 >> visitPopIntoLiteralVariable: litVar [
 	
 	| object |
 	object := litVar association.
@@ -114,11 +86,8 @@ IRPrinterV2>>visitPopIntoLiteralVariable: litVar [
 	object printOn: stream.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitPopIntoRemoteTemp: remoteTemp [
+{ #category : #visiting }
+IRPrinterV2 >> visitPopIntoRemoteTemp: remoteTemp [
 
 	stream nextPutAll: 'popIntoRemoteTemp: '.
 	remoteTemp name printOn: stream.
@@ -126,11 +95,8 @@ IRPrinterV2>>visitPopIntoRemoteTemp: remoteTemp [
 	remoteTemp tempVectorName printOn: stream
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitPopIntoTemp: tmp [
+{ #category : #visiting }
+IRPrinterV2 >> visitPopIntoTemp: tmp [
 
 	stream nextPutAll: 'popIntoTemp: '.
 	tmp name printOn: stream.
@@ -139,11 +105,8 @@ IRPrinterV2>>visitPopIntoTemp: tmp [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitPushArray: array [
+{ #category : #visiting }
+IRPrinterV2 >> visitPushArray: array [
 	
 	array cons 
 		ifTrue: [  
@@ -154,11 +117,8 @@ IRPrinterV2>>visitPushArray: array [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitPushClosureCopy: closure [
+{ #category : #visiting }
+IRPrinterV2 >> visitPushClosureCopy: closure [
 
 	stream nextPutAll: 'pushClosureCopyCopiedValues: '.
 	stream nextPutAll: closure copiedValues printString .
@@ -167,11 +127,8 @@ IRPrinterV2>>visitPushClosureCopy: closure [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitPushDup: dup [
+{ #category : #visiting }
+IRPrinterV2 >> visitPushDup: dup [
 	
 	stream nextPutAll: 'pushDup'
 
@@ -179,11 +136,8 @@ IRPrinterV2>>visitPushDup: dup [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitPushFullClosure: fullBlock [
+{ #category : #visiting }
+IRPrinterV2 >> visitPushFullClosure: fullBlock [
 
 	stream nextPutAll: 'pushFullBlock: '.
 	stream nextPutAll: fullBlock compiledBlock printString.
@@ -192,22 +146,16 @@ IRPrinterV2>>visitPushFullClosure: fullBlock [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitPushInstVar: instVar [
+{ #category : #visiting }
+IRPrinterV2 >> visitPushInstVar: instVar [
 	
 	stream nextPutAll: 'pushInstVar: '.
 	instVar index printOn: stream.
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitPushLiteral: lit [
+{ #category : #visiting }
+IRPrinterV2 >> visitPushLiteral: lit [
 
 	| object |
 	object := lit literal.
@@ -217,11 +165,8 @@ IRPrinterV2>>visitPushLiteral: lit [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitPushLiteralVariable: var [
+{ #category : #visiting }
+IRPrinterV2 >> visitPushLiteralVariable: var [
 	
 	| object |
 	object := var association.
@@ -230,11 +175,8 @@ IRPrinterV2>>visitPushLiteralVariable: var [
 	object printOn: stream.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitPushReceiver: receiver [
+{ #category : #visiting }
+IRPrinterV2 >> visitPushReceiver: receiver [
 
 	stream nextPutAll: 'pushReceiver'
 
@@ -242,11 +184,8 @@ IRPrinterV2>>visitPushReceiver: receiver [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitPushRemoteTemp: remoteTemp [
+{ #category : #visiting }
+IRPrinterV2 >> visitPushRemoteTemp: remoteTemp [
 
 	stream nextPutAll: 'pushRemoteTemp: '.
 	remoteTemp name printOn: stream.
@@ -254,11 +193,8 @@ IRPrinterV2>>visitPushRemoteTemp: remoteTemp [
 	remoteTemp tempVectorName printOn: stream
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitPushTemp: tmp [
+{ #category : #visiting }
+IRPrinterV2 >> visitPushTemp: tmp [
 
 	stream nextPutAll: 'pushTemp: '.
 	tmp name printOn: stream.
@@ -267,41 +203,29 @@ IRPrinterV2>>visitPushTemp: tmp [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitPushThisContext: ctxt [
+{ #category : #visiting }
+IRPrinterV2 >> visitPushThisContext: ctxt [
 
 	stream nextPutAll: 'pushThisContext'
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitReturn: ret [
+{ #category : #visiting }
+IRPrinterV2 >> visitReturn: ret [
 	
 	stream nextPutAll: 'returnTop'.
 
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitReturnInstVar: instVar [
+{ #category : #visiting }
+IRPrinterV2 >> visitReturnInstVar: instVar [
 	stream nextPutAll: 'returnInstVar: '.
    instVar index printOn: stream.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitReturnLiteral: lit [
+{ #category : #visiting }
+IRPrinterV2 >> visitReturnLiteral: lit [
 
 	| object |
 	object := lit literal.
@@ -311,11 +235,8 @@ IRPrinterV2>>visitReturnLiteral: lit [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitReturnReceiver: receiver [
+{ #category : #visiting }
+IRPrinterV2 >> visitReturnReceiver: receiver [
 
 	stream nextPutAll: 'returnReceiver'
 
@@ -323,11 +244,8 @@ IRPrinterV2>>visitReturnReceiver: receiver [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitSend: send [
+{ #category : #visiting }
+IRPrinterV2 >> visitSend: send [
 
 	send superOf
 		ifNil: [ stream nextPutAll: 'send: '.
@@ -340,30 +258,21 @@ IRPrinterV2>>visitSend: send [
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitSequence: instructionSequence [
+{ #category : #visiting }
+IRPrinterV2 >> visitSequence: instructionSequence [
 	self label: instructionSequence orderNumber.
 	super visitSequence: instructionSequence
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitStoreInstVar: instVar [
+{ #category : #visiting }
+IRPrinterV2 >> visitStoreInstVar: instVar [
 	stream nextPutAll: 'storeInstVar: '.
    instVar index printOn: stream.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitStoreLiteralVariable: var [
+{ #category : #visiting }
+IRPrinterV2 >> visitStoreLiteralVariable: var [
 
 	| object |
 	object := var association.
@@ -372,33 +281,24 @@ IRPrinterV2>>visitStoreLiteralVariable: var [
 	object printOn: stream.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitStoreRemoteTemp: remoteTemp [
+{ #category : #visiting }
+IRPrinterV2 >> visitStoreRemoteTemp: remoteTemp [
 	stream nextPutAll: 'storeRemoteTemp: '.
 	remoteTemp name printOn: stream.
 	stream nextPutAll: ' inVector: '.
 	remoteTemp tempVectorName printOn: stream.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitStoreTemp: tmp [
+{ #category : #visiting }
+IRPrinterV2 >> visitStoreTemp: tmp [
 
    	stream nextPutAll: 'storeTemp: '.
 	tmp name printOn: stream.
  
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrinterV2>>visitTempVector: tempVector [
+{ #category : #visiting }
+IRPrinterV2 >> visitTempVector: tempVector [
 
 	stream nextPutAll: 'createTempVectorNamed: '.
 	tempVector name printOn: stream.

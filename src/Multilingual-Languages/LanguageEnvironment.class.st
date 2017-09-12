@@ -22,95 +22,67 @@ Class {
 		'KnownEnvironments',
 		'SystemConverter'
 	],
-	#category : #Multilingual-Languages,
-	#timestamp : '<historical>'
+	#category : #Multilingual-Languages
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>canBeGlobalVarInitial: char [
+{ #category : #accessing }
+LanguageEnvironment class >> canBeGlobalVarInitial: char [
 
 	^ Unicode canBeGlobalVarInitial: char.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>canBeNonGlobalVarInitial: char [
+{ #category : #accessing }
+LanguageEnvironment class >> canBeNonGlobalVarInitial: char [
 
 	^ Unicode canBeNonGlobalVarInitial: char.
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>clearDefault [
+{ #category : #initialization }
+LanguageEnvironment class >> clearDefault [
 	SystemConverter := nil.
 	FileNameConverter := nil.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>currentPlatform [
+{ #category : #accessing }
+LanguageEnvironment class >> currentPlatform [
 
 	^ Locale currentPlatform languageEnvironment.
 
 ]
 
-{
-	#category : #'public query',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>defaultFileNameConverter [
+{ #category : #'public query' }
+LanguageEnvironment class >> defaultFileNameConverter [
 	FileNameConverter
 		ifNil: [FileNameConverter := self currentPlatform class fileNameConverterClass new].
 	^ FileNameConverter
 ]
 
-{
-	#category : #'public query',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>defaultSystemConverter [
+{ #category : #'public query' }
+LanguageEnvironment class >> defaultSystemConverter [
 	SystemConverter
 		ifNil: [ SystemConverter := self currentPlatform class systemConverterClass new ].
 	^ SystemConverter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>digitValueOf: char [
+{ #category : #accessing }
+LanguageEnvironment class >> digitValueOf: char [
 	"Answer 0-9 if the receiver is $0-$9, 10-35 if it is $A-$Z, and < 0
 	otherwise. This is used to parse literal numbers of radix 2-36."
 
 	^ Unicode digitValueOf: char.
 ]
 
-{
-	#category : #'subclass responsibilities',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>fileNameConverterClass [
+{ #category : #'subclass responsibilities' }
+LanguageEnvironment class >> fileNameConverterClass [
 
 	^UTF8TextConverter
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>initKnownEnvironments [
+{ #category : #private }
+LanguageEnvironment class >> initKnownEnvironments [
 	"LanguageEnvironment initKnownEnvironments"
 
 	| known |
@@ -124,22 +96,16 @@ LanguageEnvironment class>>initKnownEnvironments [
 	^known
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>initialize [
+{ #category : #initialization }
+LanguageEnvironment class >> initialize [
 	"LanguageEnvironment initialize"
 
 	SessionManager default 
 		registerSystemClassNamed: #LanguageEnvironment "prevent subclasses ro register themselves"
 ]
 
-{
-	#category : #'rendering support',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>isBreakableAt: index in: text [
+{ #category : #'rendering support' }
+LanguageEnvironment class >> isBreakableAt: index [ in: text
 
 	| char |
 	char := text at: index.
@@ -149,91 +115,64 @@ LanguageEnvironment class>>isBreakableAt: index in: text [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>isCharset [
+{ #category : #accessing }
+LanguageEnvironment class >> isCharset [
 
 	^ false.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>isDigit: char [
+{ #category : #accessing }
+LanguageEnvironment class >> isDigit: char [
 
 	^ Unicode isDigit: char.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>isLetter: char [
+{ #category : #accessing }
+LanguageEnvironment class >> isLetter: char [
 
 	^ Unicode isLetter: char.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>isLowercase: char [
+{ #category : #accessing }
+LanguageEnvironment class >> isLowercase: char [
 
 	^ Unicode isLowercase: char.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>isUppercase: char [
+{ #category : #accessing }
+LanguageEnvironment class >> isUppercase: char [
 
 	^ Unicode isUppercase: char.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>knownEnvironments [
+{ #category : #private }
+LanguageEnvironment class >> knownEnvironments [
 	"LanguageEnvironment knownEnvironments"
 	"KnownEnvironments := nil"
 
 	^KnownEnvironments ifNil: [KnownEnvironments := self initKnownEnvironments]
 ]
 
-{
-	#category : #'subclass responsibilities',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>leadingChar [
+{ #category : #'subclass responsibilities' }
+LanguageEnvironment class >> leadingChar [
 
 	self subclassResponsibility.
 	^ 0.
 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>localeChanged [
+{ #category : #'system startup' }
+LanguageEnvironment class >> localeChanged [
 	self startUp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>localeID: localeID [
+{ #category : #accessing }
+LanguageEnvironment class >> localeID: localeID [
 	self knownEnvironments
 		at: localeID ifPresent: [:value | ^ value ];
 		at: LocaleID default ifPresent: [ :value | ^ value ].
@@ -244,91 +183,61 @@ LanguageEnvironment class>>localeID: localeID [
 	^ self localeID: localeID
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>resetKnownEnvironments [
+{ #category : #initialization }
+LanguageEnvironment class >> resetKnownEnvironments [
 	"LanguageEnvironment resetKnownEnvironments"
 
 	KnownEnvironments := nil
 ]
 
-{
-	#category : #'language methods',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>scanSelector [
+{ #category : #'language methods' }
+LanguageEnvironment class >> scanSelector [
 
 	^ #scanMultiCharactersFrom:to:in:rightX:stopConditions:kern:
 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>startUp [
+{ #category : #'system startup' }
+LanguageEnvironment class >> startUp [
 	self clearDefault.
 ]
 
-{
-	#category : #'subclass responsibilities',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>supportedLanguages [
+{ #category : #'subclass responsibilities' }
+LanguageEnvironment class >> supportedLanguages [
 	"Return the languages that this class supports. 
 	Any translations for those languages will use this class as their environment."
 	self subclassResponsibility
 ]
 
-{
-	#category : #'subclass responsibilities',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment class>>systemConverterClass [
+{ #category : #'subclass responsibilities' }
+LanguageEnvironment class >> systemConverterClass [
 
 	self subclassResponsibility.
 	^ Latin1TextConverter.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment>>isoCountry [
+{ #category : #accessing }
+LanguageEnvironment >> isoCountry [
 	^self localeID isoCountry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment>>isoLanguage [
+{ #category : #accessing }
+LanguageEnvironment >> isoLanguage [
 	^self localeID isoLanguage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment>>leadingChar [
+{ #category : #accessing }
+LanguageEnvironment >> leadingChar [
 	^self class leadingChar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment>>localeID [
+{ #category : #accessing }
+LanguageEnvironment >> localeID [
 	^id
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-LanguageEnvironment>>localeID: anID [
+{ #category : #initialization }
+LanguageEnvironment >> localeID: anID [
 	id := anID
 ]

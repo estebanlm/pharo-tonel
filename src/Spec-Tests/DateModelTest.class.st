@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #DateModelTest,
 	#superclass : #SpecTestCase,
-	#category : #Spec-Tests-PolyWidgets-Widgets,
-	#timestamp : ''
+	#category : #Spec-Tests-PolyWidgets-Widgets
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-DateModelTest>>classToTest [
+{ #category : #running }
+DateModelTest >> classToTest [
 	^ DateModel
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-DateModelTest>>testOnDateChosen [
+{ #category : #tests }
+DateModelTest >> testOnDateChosen [
 	| mookChoseDate |
 	mookChoseDate := ChoseDate new.
 	mookChoseDate

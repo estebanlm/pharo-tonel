@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #WriteBarrierStub,
 	#superclass : #Object,
@@ -16,38 +13,25 @@ Class {
 		'var9',
 		'var10'
 	],
-	#category : #WriteBarrierTests,
-	#timestamp : ''
+	#category : #WriteBarrierTests
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierStub>>var1 [
+{ #category : #accessing }
+WriteBarrierStub >> var1 [
 	^ var1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierStub>>var10 [
+{ #category : #accessing }
+WriteBarrierStub >> var10 [
 	^ var10
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierStub>>var10: anObject [
+{ #category : #accessing }
+WriteBarrierStub >> var10: anObject [
 	var10 := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-WriteBarrierStub>>var1: anObject [
+{ #category : #accessing }
+WriteBarrierStub >> var1: anObject [
 	var1 := anObject
 ]

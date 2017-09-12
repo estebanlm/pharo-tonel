@@ -25,24 +25,17 @@ Class {
 		'bytecodeIndex',
 		'sequence'
 	],
-	#category : #OpalCompiler-Core-IR-Nodes,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-IR-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>blockReturnTop [
+{ #category : #'instance creation' }
+IRInstruction class >> blockReturnTop [
 	^ IRBlockReturnTop new
 		
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>createTempVectorNamed: aTempVectorName withVars: anArray   [
+{ #category : #'instance creation' }
+IRInstruction class >> createTempVectorNamed: aTempVectorName withVars: anArray [  
 
 	^ IRTempVector new
 		name: aTempVectorName;
@@ -50,82 +43,58 @@ IRInstruction class>>createTempVectorNamed: aTempVectorName withVars: anArray   
 		yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>popTop [
+{ #category : #'instance creation' }
+IRInstruction class >> popTop [
 	^ IRPop new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>pushClosureCopyCopiedValues: copiedValues args: arguments [
+{ #category : #'instance creation' }
+IRInstruction class >> pushClosureCopyCopiedValues: copiedValues args: arguments [
 	^IRPushClosureCopy new
 			copiedValues: copiedValues;
 			arguments: arguments;
 			yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>pushConsArray: aSize  [
+{ #category : #'instance creation' }
+IRInstruction class >> pushConsArray: aSize [ 
 	^IRPushArray new
 		size: aSize;
 		cons: true;
 		yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>pushDup [
+{ #category : #'instance creation' }
+IRInstruction class >> pushDup [
 
 	^ IRPushDup new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>pushFullClosureCompiledBlock: compiledBlock copiedValues: copiedValues [
+{ #category : #'instance creation' }
+IRInstruction class >> pushFullClosureCompiledBlock: compiledBlock copiedValues: copiedValues [
 	^IRPushFullClosure new
 			copiedValues: copiedValues;
 			compiledBlock: compiledBlock;
 			yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>pushInstVar: index [
+{ #category : #'instance creation' }
+IRInstruction class >> pushInstVar: index [
 
 	^ IRPushInstVar new 
 			index:  index; 
 			yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>pushLiteral: object [
+{ #category : #'instance creation' }
+IRInstruction class >> pushLiteral: object [
 
 	^ IRPushLiteral new
 		literal: object
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>pushLiteralVariable: object [
+{ #category : #'instance creation' }
+IRInstruction class >> pushLiteralVariable: object [
 
 	^ IRPushLiteralVariable new
 		association: object;
@@ -133,11 +102,8 @@ IRInstruction class>>pushLiteralVariable: object [
 	 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>pushNewArray: aSize [
+{ #category : #'instance creation' }
+IRInstruction class >> pushNewArray: aSize [
 	
 	^IRPushArray new
 		size: aSize;
@@ -145,68 +111,47 @@ IRInstruction class>>pushNewArray: aSize [
 		yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>pushReceiver [
+{ #category : #'instance creation' }
+IRInstruction class >> pushReceiver [
 	^ IRPushReceiver new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>pushRemoteTemp: aName inVectorAt: nameOfVector [
+{ #category : #'instance creation' }
+IRInstruction class >> pushRemoteTemp: aName inVectorAt: nameOfVector [
 	^ IRPushRemoteTemp new
 		name: aName;
 		tempVectorName: nameOfVector;
 		yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>pushTemp: aName [
+{ #category : #'instance creation' }
+IRInstruction class >> pushTemp: aName [
 	aName = 'self' ifTrue: [self error: 'use pushReceiver'].
 	^ IRPushTemp new
 		name: aName;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>pushThisContext [
+{ #category : #'instance creation' }
+IRInstruction class >> pushThisContext [
 	^ IRPushThisContext new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>returnTop [
+{ #category : #'instance creation' }
+IRInstruction class >> returnTop [
 
 	^ IRReturn new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>send: selector [
+{ #category : #'instance creation' }
+IRInstruction class >> send: selector [
 
 	^ IRSend new
 		selector: selector
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>send: selector toSuperOf: behavior [
+{ #category : #'instance creation' }
+IRInstruction class >> send: selector toSuperOf: behavior [
 
 	behavior ifNil: [self error: 'super of nil does not exist'].
 	^ IRSend new
@@ -215,396 +160,264 @@ IRInstruction class>>send: selector toSuperOf: behavior [
 		yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>storeInstVar: index [
+{ #category : #'instance creation' }
+IRInstruction class >> storeInstVar: index [
 	^ IRStoreInstVar new 
 		index: index; 
 		yourself
 	
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>storeIntoLiteralVariable: object [
+{ #category : #'instance creation' }
+IRInstruction class >> storeIntoLiteralVariable: object [
 
 	^ IRStoreLiteralVariable new
 		association: object;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>storeRemoteTemp: aName inVectorAt: nameOfVector [
+{ #category : #'instance creation' }
+IRInstruction class >> storeRemoteTemp: aName inVectorAt: nameOfVector [
 	^ IRStoreRemoteTemp new
 		name: aName;
 		tempVectorName: nameOfVector;
 		yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction class>>storeTemp: aName [
+{ #category : #'instance creation' }
+IRInstruction class >> storeTemp: aName [
 	^ IRStoreTemp new
 		name: aName;
 		yourself
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>accept: aVisitor [
+{ #category : #visiting }
+IRInstruction >> accept: aVisitor [
 	self subclassResponsibility
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>addInstructionsAfter: aCollection [
+{ #category : #adding }
+IRInstruction >> addInstructionsAfter: aCollection [
 	sequence addInstructions: aCollection after: self.
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>addInstructionsBefore: aCollection [
+{ #category : #adding }
+IRInstruction >> addInstructionsBefore: aCollection [
 	sequence addInstructions: aCollection before: self.
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>bytecodeIndex [
+{ #category : #mapping }
+IRInstruction >> bytecodeIndex [
 
 	^ bytecodeIndex
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>bytecodeIndex: index [
+{ #category : #mapping }
+IRInstruction >> bytecodeIndex: index [
 
 	bytecodeIndex := index
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>bytecodeOffset [
+{ #category : #mapping }
+IRInstruction >> bytecodeOffset [
 	| startpc |
 	startpc := self method compiledMethod initialPC.
 	self bytecodeIndex ifNil: [^startpc].
 	^self bytecodeIndex + startpc - 1.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>canBeQuickReturn [
+{ #category : #testing }
+IRInstruction >> canBeQuickReturn [
 	^ false
 ]
 
-{
-	#category : #inspector,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>children [
+{ #category : #inspector }
+IRInstruction >> children [
 	^#()
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>delete [
+{ #category : #replacing }
+IRInstruction >> delete [
 	sequence ifNil: [self error: 'This node doesn''t have a sequence'].
 	sequence remove: self.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isBlockReturnTop [
+{ #category : #testing }
+IRInstruction >> isBlockReturnTop [
 
 	^false 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isGoto [
+{ #category : #testing }
+IRInstruction >> isGoto [
 	"is unconditional jump"
 	
 	^ false 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isIf [
+{ #category : #testing }
+IRInstruction >> isIf [
 
 	^ false 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isInstVarAccess [
+{ #category : #testing }
+IRInstruction >> isInstVarAccess [
 
 	^false.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isJump [
+{ #category : #testing }
+IRInstruction >> isJump [
 	"goto or if"
 
 	^false 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isLiteralVariable [
+{ #category : #testing }
+IRInstruction >> isLiteralVariable [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isPop [
+{ #category : #testing }
+IRInstruction >> isPop [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isPushClosureCopy [
+{ #category : #testing }
+IRInstruction >> isPushClosureCopy [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isPushLiteral [
+{ #category : #testing }
+IRInstruction >> isPushLiteral [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isPushLiteral: valueTest [
+{ #category : #testing }
+IRInstruction >> isPushLiteral: valueTest [
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isRead [
+{ #category : #testing }
+IRInstruction >> isRead [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isReturn [
+{ #category : #testing }
+IRInstruction >> isReturn [
 
 	^ false 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isSelf [
+{ #category : #testing }
+IRInstruction >> isSelf [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isSend [
+{ #category : #testing }
+IRInstruction >> isSend [
 	^false.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isStore [
+{ #category : #testing }
+IRInstruction >> isStore [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isTemp [
+{ #category : #testing }
+IRInstruction >> isTemp [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>isTempVector [
+{ #category : #testing }
+IRInstruction >> isTempVector [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>method [
+{ #category : #accessing }
+IRInstruction >> method [
 	^sequence method.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>nonBodySuccessorSequences [
+{ #category : #accessing }
+IRInstruction >> nonBodySuccessorSequences [
 	^self successorSequences
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>printOn: aStream [
+{ #category : #printing }
+IRInstruction >> printOn: aStream [
 	IRPrinterV2 new
 			stream: aStream;
 			visitNode: self
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>replaceNode: aNode withNode: anotherNode  [
+{ #category : #replacing }
+IRInstruction >> replaceNode: aNode withNode: anotherNode [ 
 	self error: 'I don''t store other nodes'
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>replaceWith: aNode [
+{ #category : #replacing }
+IRInstruction >> replaceWith: aNode [
 	sequence ifNil: [self error: 'This node doesn''t have a sequence'].
 	sequence replaceNode: self withNode: aNode
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>replaceWithInstructions: aCollection  [
+{ #category : #replacing }
+IRInstruction >> replaceWithInstructions: aCollection [ 
 
 	sequence ifNil: [self error: 'This node doesn''t have a sequence'].
 	sequence replaceNode: self withNodes: aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>sequence [
+{ #category : #accessing }
+IRInstruction >> sequence [
 	^sequence
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>sequence: aSeq [
+{ #category : #accessing }
+IRInstruction >> sequence: aSeq [
 	sequence := aSeq
 ]
 
-{
-	#category : #inspector,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>sourceInterval [
+{ #category : #inspector }
+IRInstruction >> sourceInterval [
 	^self sourceNode sourceInterval
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>sourceNode [
+{ #category : #mapping }
+IRInstruction >> sourceNode [
 
 	^ sourceNode
 	
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>sourceNode: parseNode [
+{ #category : #mapping }
+IRInstruction >> sourceNode: parseNode [
 
 	sourceNode := parseNode
 	
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>sourceNodeExecuted [
+{ #category : #mapping }
+IRInstruction >> sourceNodeExecuted [
 
 	^ self sourceNode
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>successorSequences [
+{ #category : #accessing }
+IRInstruction >> successorSequences [
 	"sent to last instruction in sequence which is expected to be a jump and return instruction"
 
 	^ #()
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstruction>>transitionsToNextSequence [
+{ #category : #testing }
+IRInstruction >> transitionsToNextSequence [
 	"Does the current instruction intrinsically know how to transition to the next sequence?"
 	^ self isJump or: [self isReturn or: [self isPushClosureCopy ]]
 ]

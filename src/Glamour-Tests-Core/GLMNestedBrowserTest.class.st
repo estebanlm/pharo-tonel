@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMNestedBrowserTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMNestedBrowserTest>>testChangeInnerSelection [
+{ #category : #tests }
+GLMNestedBrowserTest >> testChangeInnerSelection [
 	"Tests setting the selection of an inner pane from the oustide. 
  
 	The test sets up a browser with two panes. The first contains a 
@@ -59,11 +52,8 @@ GLMNestedBrowserTest>>testChangeInnerSelection [
 	self assert: list2 selection equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMNestedBrowserTest>>testCondition [
+{ #category : #tests }
+GLMNestedBrowserTest >> testCondition [
 	"This tests that the nested browser is controlled by the condition"
 
 	| browser1 browser2 transmission1 |
@@ -107,11 +97,8 @@ GLMNestedBrowserTest>>testCondition [
 	self assert: browser1 panes first matchingPresentations size equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMNestedBrowserTest>>testEntityPropogation [
+{ #category : #tests }
+GLMNestedBrowserTest >> testEntityPropogation [
 	"This tests that the nested transmissions have the destination correctly set 
 	to be in the pane from the outer browser."
 
@@ -168,11 +155,8 @@ GLMNestedBrowserTest>>testEntityPropogation [
 	self assert: innerBrowser panes first presentations first rootPrototype equals: presentation
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMNestedBrowserTest>>testInnerTransmissions [
+{ #category : #tests }
+GLMNestedBrowserTest >> testInnerTransmissions [
 	"This tests that the nested transmissions have the destination correctly set 
 	to be in the pane from the outer browser."
 
@@ -213,11 +197,8 @@ GLMNestedBrowserTest>>testInnerTransmissions [
 	self assert: innerBrowser transmissions first origins first pane == browser1 panes first
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMNestedBrowserTest>>testNestedBrowsersWithMultipleOrigins [
+{ #category : #tests }
+GLMNestedBrowserTest >> testNestedBrowsersWithMultipleOrigins [
 	| browser innerBrowser transmittedOne transmittedTwo |
 	innerBrowser := GLMTabulator new.
 	innerBrowser row: #inner.

@@ -15,31 +15,21 @@ Examples:
 Class {
 	#name : #SaveCommandLineHandler,
 	#superclass : #CommandLineHandler,
-	#category : #System-BasicCommandLineHandler,
-	#timestamp : '<historical>'
+	#category : #System-BasicCommandLineHandler
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-SaveCommandLineHandler class>>commandName [
+{ #category : #accessing }
+SaveCommandLineHandler class >> commandName [
 	^ 'save'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-SaveCommandLineHandler class>>description [
+{ #category : #accessing }
+SaveCommandLineHandler class >> description [
 	^ 'Rename the image and changes file'
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-SaveCommandLineHandler>>activate [
+{ #category : #activation }
+SaveCommandLineHandler >> activate [
 	self activateHelp
 		ifTrue: [  ^ self ].
 	
@@ -54,11 +44,8 @@ SaveCommandLineHandler>>activate [
 		
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:46'
-}
-SaveCommandLineHandler>>saveImage [
+{ #category : #actions }
+SaveCommandLineHandler >> saveImage [
 	| imageName oldImageFile oldChangesFile |
 	
 	imageName := self arguments detect: [ :arg| arg ~= '--delete-old' ].

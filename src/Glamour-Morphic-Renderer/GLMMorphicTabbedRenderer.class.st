@@ -1,30 +1,20 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicTabbedRenderer,
 	#superclass : #GLMMorphicCompositeRenderer,
 	#instVars : [
 		'tabs'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicTabbedRenderer>>actOnContextChanged: ann [
+{ #category : #rendering }
+GLMMorphicTabbedRenderer >> actOnContextChanged: ann [
 	ann property = #activePresentation ifTrue: [ 
 		tabs announcer suspendAllWhile: [ tabs selectedPageIndex: (ann presentation matchingPresentations indexOf: ann value) ] ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicTabbedRenderer>>actOnPresentationToolbarUpdated: ann [
+{ #category : #rendering }
+GLMMorphicTabbedRenderer >> actOnPresentationToolbarUpdated: ann [
 	| presentations |
 
 	presentations := ann presentation matchingPresentations.
@@ -36,11 +26,8 @@ GLMMorphicTabbedRenderer>>actOnPresentationToolbarUpdated: ann [
 			action: (self labelActionMorphFor: each)]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicTabbedRenderer>>actOnPresentationUpdated: ann [
+{ #category : #rendering }
+GLMMorphicTabbedRenderer >> actOnPresentationUpdated: ann [
 	| index presentations |
 	presentations := ann presentation matchingPresentations.
 	tabs pages size to: 1 by: -1 do: [ :i | tabs removePageIndex: i ].	
@@ -58,11 +45,8 @@ GLMMorphicTabbedRenderer>>actOnPresentationUpdated: ann [
 	tabs selectedPageIndex: index.
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicTabbedRenderer>>render: aPresentation [
+{ #category : #rendering }
+GLMMorphicTabbedRenderer >> render: aPresentation [
 	| presentations index |
 	presentations := aPresentation matchingPresentations.
 	presentations isEmpty

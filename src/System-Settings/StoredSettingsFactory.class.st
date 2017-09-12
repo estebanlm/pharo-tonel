@@ -22,15 +22,11 @@ Class {
 		'storedSetting',
 		'storedSettings'
 	],
-	#category : #System-Settings-Persistence-Ston-StoredSettings-Builder,
-	#timestamp : 'JurajKubelka 10/1/2015 14:23'
+	#category : #System-Settings-Persistence-Ston-StoredSettings-Builder
 }
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>from: aSettingNode  [
+{ #category : #building }
+StoredSettingsFactory >> from: aSettingNode [ 
 	storedSetting := nil.
 	aSettingNode item acceptSettings: self. 
 	storedSetting ifNotNil: [ 
@@ -38,128 +34,83 @@ StoredSettingsFactory>>from: aSettingNode  [
 	^ storedSetting
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>fromSettingNodes: aCollectionOfSettingNodes  [
+{ #category : #building }
+StoredSettingsFactory >> fromSettingNodes: aCollectionOfSettingNodes [ 
 	storedSettings := OrderedCollection new.
 	aCollectionOfSettingNodes do: [ :eachSettingNode |
 		(self from: eachSettingNode) ifNotNil: [ :aStoredNode | storedSettings add: aStoredNode ] ].
 	^ storedSettings
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>newAbsolutePathStoredSetting [
+{ #category : #'instance creation' }
+StoredSettingsFactory >> newAbsolutePathStoredSetting [
 	^ storedSetting := AbsolutePathStoredSetting new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>newClassStoredSetting [
+{ #category : #'instance creation' }
+StoredSettingsFactory >> newClassStoredSetting [
 	^ storedSetting := ClassStoredSetting new.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>newFileLocatorStoreSetting [
+{ #category : #'instance creation' }
+StoredSettingsFactory >> newFileLocatorStoreSetting [
 	^ storedSetting := FileLocatorStoredSetting new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>newFileReferenceStoredSetting [
+{ #category : #'instance creation' }
+StoredSettingsFactory >> newFileReferenceStoredSetting [
 	^ storedSetting := AbsolutePathStoredSetting new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>newLogicalFontStoredSetting [
+{ #category : #'instance creation' }
+StoredSettingsFactory >> newLogicalFontStoredSetting [
 	^ storedSetting := LogicalFontStoredSetting new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>newRelativePathStoredSetting [
+{ #category : #'instance creation' }
+StoredSettingsFactory >> newRelativePathStoredSetting [
 	^ storedSetting := RelativePathStoredSetting new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>newStoredSetting [
+{ #category : #'instance creation' }
+StoredSettingsFactory >> newStoredSetting [
 	^ storedSetting := StoredSetting new.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>newStrikeFontStoredSetting [
+{ #category : #'instance creation' }
+StoredSettingsFactory >> newStrikeFontStoredSetting [
 	^ storedSetting := StrikeFontStoredSetting new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>newThemeIconsStoredSetting [
+{ #category : #'instance creation' }
+StoredSettingsFactory >> newThemeIconsStoredSetting [
 	^ storedSetting := ThemeIconsStoredSetting new
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>visitAbsolutePath: anAbsolutePath  [
+{ #category : #visitor }
+StoredSettingsFactory >> visitAbsolutePath: anAbsolutePath [ 
 	self newAbsolutePathStoredSetting realValue: anAbsolutePath segments
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>visitAbstractFileReference: aFileReference  [
+{ #category : #visitor }
+StoredSettingsFactory >> visitAbstractFileReference: aFileReference [ 
 	aFileReference path acceptSettings: self.
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>visitClass: aClass  [
+{ #category : #visitor }
+StoredSettingsFactory >> visitClass: aClass [ 
 	self newClassStoredSetting realValue: aClass name.
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>visitFileLocator: aFileLocator  [
+{ #category : #visitor }
+StoredSettingsFactory >> visitFileLocator: aFileLocator [ 
 	self newFileLocatorStoreSetting 
 			origin: aFileLocator origin;
 			pathSegments: aFileLocator path segments 
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>visitLogicalFont: aLogicalFont  [
+{ #category : #visitor }
+StoredSettingsFactory >> visitLogicalFont: aLogicalFont [ 
 	self newLogicalFontStoredSetting
 		fontClassName: aLogicalFont class name;
 		familyName: aLogicalFont familyName;
@@ -170,44 +121,29 @@ StoredSettingsFactory>>visitLogicalFont: aLogicalFont  [
 		slantValue: aLogicalFont slantValue.
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>visitObject: anObject  [
+{ #category : #visitor }
+StoredSettingsFactory >> visitObject: anObject [ 
 	self newStoredSetting realValue: anObject
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>visitPragmaSetting: aPragmaSetting  [
+{ #category : #visitor }
+StoredSettingsFactory >> visitPragmaSetting: aPragmaSetting [ 
 	"do nothing"
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>visitRelativePath: aRelativePath  [
+{ #category : #visitor }
+StoredSettingsFactory >> visitRelativePath: aRelativePath [ 
 	self newRelativePathStoredSetting realValue: aRelativePath segments
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>visitSettingDeclaration: aSettingDeclaration  [
+{ #category : #visitor }
+StoredSettingsFactory >> visitSettingDeclaration: aSettingDeclaration [ 
 	aSettingDeclaration realValue acceptSettings: self.
 	
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>visitStrikeFont: aStrikeFont  [
+{ #category : #visitor }
+StoredSettingsFactory >> visitStrikeFont: aStrikeFont [ 
 	self newStrikeFontStoredSetting 
 			fontClassName: aStrikeFont class name;
 			familyName: aStrikeFont familyName;
@@ -215,11 +151,8 @@ StoredSettingsFactory>>visitStrikeFont: aStrikeFont  [
 			emphasized: aStrikeFont emphasis
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSettingsFactory>>visitThemeIcons: aThemeIcons  [
+{ #category : #visitor }
+StoredSettingsFactory >> visitThemeIcons: aThemeIcons [ 
 	self newThemeIconsStoredSetting 
 			name: aThemeIcons name;
 			url: aThemeIcons url

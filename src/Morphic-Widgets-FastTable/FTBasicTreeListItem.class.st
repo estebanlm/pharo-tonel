@@ -33,15 +33,11 @@ Class {
 		'children',
 		'dataSource'
 	],
-	#category : #Morphic-Widgets-FastTable-Tree-Basic,
-	#timestamp : 'HenrikNergaard 3/27/2016 14:25'
+	#category : #Morphic-Widgets-FastTable-Tree-Basic
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>availableRows [
+{ #category : #querying }
+FTBasicTreeListItem >> availableRows [
 
 	^expanded ifTrue: [ 
 		children
@@ -51,11 +47,8 @@ FTBasicTreeListItem>>availableRows [
 	] ifFalse: [ 1 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>cellMorphFor: aDataSource [
+{ #category : #accessing }
+FTBasicTreeListItem >> cellMorphFor: aDataSource [
 
 	| morph |
 	
@@ -71,20 +64,14 @@ FTBasicTreeListItem>>cellMorphFor: aDataSource [
 	^morph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>children [
+{ #category : #accessing }
+FTBasicTreeListItem >> children [
 
 	^children
 ]
 
-{
-	#category : #button-interaction,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>collapseItem [
+{ #category : #button-interaction }
+FTBasicTreeListItem >> collapseItem [
 
 	dataSource updateAvailableRows: 1 - self availableRows.
 	
@@ -93,11 +80,8 @@ FTBasicTreeListItem>>collapseItem [
 	expanded := false.
 ]
 
-{
-	#category : #button,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>collapsedButton [
+{ #category : #button }
+FTBasicTreeListItem >> collapsedButton [
 
 	^self defaultButton
 		actionSelector: #expandItem;
@@ -106,20 +90,14 @@ FTBasicTreeListItem>>collapsedButton [
 		yourself
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>datasource: aDS [
+{ #category : #construction }
+FTBasicTreeListItem >> datasource: aDS [
 
 	dataSource := aDS
 ]
 
-{
-	#category : #button,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>defaultButton [
+{ #category : #button }
+FTBasicTreeListItem >> defaultButton [
 
 	^IconicButton new
 		target: self;
@@ -128,20 +106,14 @@ FTBasicTreeListItem>>defaultButton [
 		yourself.
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>depth: aNumber [
+{ #category : #construction }
+FTBasicTreeListItem >> depth: aNumber [
 
 	depth := aNumber 
 ]
 
-{
-	#category : #button-interaction,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>expandItem [
+{ #category : #button-interaction }
+FTBasicTreeListItem >> expandItem [
 
 	expanded := true.
 	
@@ -150,11 +122,8 @@ FTBasicTreeListItem>>expandItem [
 	dataSource updateAvailableRows: self availableRows - 1.
 ]
 
-{
-	#category : #interaction,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>expandToDepth: aNumber [
+{ #category : #interaction }
+FTBasicTreeListItem >> expandToDepth: aNumber [
 	
 	depth = aNumber ifTrue: [ ^self ].
 	
@@ -163,11 +132,8 @@ FTBasicTreeListItem>>expandToDepth: aNumber [
 	children do: [ :each | each expandToDepth: aNumber ].
 ]
 
-{
-	#category : #button,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>expandedButton [
+{ #category : #button }
+FTBasicTreeListItem >> expandedButton [
 
 	^self defaultButton
 		actionSelector: #collapseItem;
@@ -176,59 +142,41 @@ FTBasicTreeListItem>>expandedButton [
 		yourself
 ]
 
-{
-	#category : #button,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>generateButton [
+{ #category : #button }
+FTBasicTreeListItem >> generateButton [
 	^expanded 
 		ifTrue: [ self expandedButton ]
 		ifFalse: [ self collapsedButton ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>hasChildren [
+{ #category : #querying }
+FTBasicTreeListItem >> hasChildren [
 
 	^(dataSource childrenBlock value: item) isNotEmpty
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>initialize [
+{ #category : #initialization }
+FTBasicTreeListItem >> initialize [
 
 	expanded := false.
 	depth := 0.
 	children := #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>item [
+{ #category : #accessing }
+FTBasicTreeListItem >> item [
 
 	^item
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>item: anItem [
+{ #category : #construction }
+FTBasicTreeListItem >> item: anItem [
 
 	item := anItem
 ]
 
-{
-	#category : #button-interaction,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTBasicTreeListItem>>treeItemFor: anItem [
+{ #category : #button-interaction }
+FTBasicTreeListItem >> treeItemFor: anItem [
 
 	^FTBasicTreeListItem new 
 		datasource: dataSource;

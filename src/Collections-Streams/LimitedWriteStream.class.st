@@ -10,81 +10,56 @@ Class {
 		'limit',
 		'limitBlock'
 	],
-	#category : #Collections-Streams,
-	#timestamp : '<historical>'
+	#category : #Collections-Streams
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-LimitedWriteStream class>>defaultLimit [
+{ #category : #accessing }
+LimitedWriteStream class >> defaultLimit [
 	^ 1000
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-LimitedWriteStream class>>on: aCollection [
+{ #category : #'instance creation' }
+LimitedWriteStream class >> on: aCollection [
 	^ (self basicNew on: aCollection)
 		setLimit: self defaultLimit
 		limitBlock: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-LimitedWriteStream class>>on: aCollection from: firstIndex to: lastIndex [
+{ #category : #'instance creation' }
+LimitedWriteStream class >> on: aCollection from: firstIndex to: lastIndex [
 	^ (self basicNew on: aCollection from: firstIndex to: lastIndex)
 		setLimit: self defaultLimit
 		limitBlock: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-LimitedWriteStream class>>on: aCollection limit: anInteger limitBlock: aLimitBlock [
+{ #category : #'instance creation' }
+LimitedWriteStream class >> on: aCollection limit: anInteger limitBlock: aLimitBlock [
 	^ (self basicNew on: aCollection)
 		setLimit: anInteger
 		limitBlock: aLimitBlock
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-LimitedWriteStream class>>with: aCollection [
+{ #category : #'instance creation' }
+LimitedWriteStream class >> with: aCollection [
 	^ (self basicNew with: aCollection)
 		setLimit: self defaultLimit
 		limitBlock: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-LimitedWriteStream class>>with: aCollection from: firstIndex to: lastIndex [
+{ #category : #'instance creation' }
+LimitedWriteStream class >> with: aCollection from: firstIndex to: lastIndex [
 	^ (self basicNew with: aCollection from: firstIndex to: lastIndex)
 		setLimit: self defaultLimit
 		limitBlock: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-LimitedWriteStream>>limit [
+{ #category : #accessing }
+LimitedWriteStream >> limit [
 	^ limit
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-LimitedWriteStream>>limit: anInteger [
+{ #category : #accessing }
+LimitedWriteStream >> limit: anInteger [
 	limit := anInteger.
 
 	position > limit
@@ -93,27 +68,18 @@ LimitedWriteStream>>limit: anInteger [
 			limitBlock value ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-LimitedWriteStream>>limitBlock [
+{ #category : #accessing }
+LimitedWriteStream >> limitBlock [
 	^ limitBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-LimitedWriteStream>>limitBlock: aBlock [
+{ #category : #accessing }
+LimitedWriteStream >> limitBlock: aBlock [
 	limitBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-LimitedWriteStream>>nextPut: anObject [
+{ #category : #accessing }
+LimitedWriteStream >> nextPut: anObject [
 	"Ensure that the limit is not exceeded"
 
 	position >= limit
@@ -122,11 +88,8 @@ LimitedWriteStream>>nextPut: anObject [
 	^ anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-LimitedWriteStream>>nextPutAll: aCollection [
+{ #category : #accessing }
+LimitedWriteStream >> nextPutAll: aCollection [
 
 	| newEnd |
 	collection class == aCollection class 
@@ -148,20 +111,14 @@ LimitedWriteStream>>nextPutAll: aCollection [
 	^ aCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-LimitedWriteStream>>pastEndPut: anObject [
+{ #category : #private }
+LimitedWriteStream >> pastEndPut: anObject [
 	collection size >= limit ifTrue: [limitBlock value].  "Exceptional return"
 	^ super pastEndPut: anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-LimitedWriteStream>>setLimit: anInteger limitBlock: aBlock [
+{ #category : #initialization }
+LimitedWriteStream >> setLimit: anInteger limitBlock: aBlock [
 	"Limit the numer of elements this stream will write..."
 	limit := anInteger.
 

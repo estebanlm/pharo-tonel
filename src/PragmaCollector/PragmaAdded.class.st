@@ -7,6 +7,5 @@ Instance Variables
 Class {
 	#name : #PragmaAdded,
 	#superclass : #PragmaAnnouncement,
-	#category : #PragmaCollector,
-	#timestamp : 'alain.plantec 10/20/2009 11:34'
+	#category : #PragmaCollector
 }

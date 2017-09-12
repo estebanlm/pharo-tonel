@@ -1,12 +1,7 @@
-Extension {
-	#name : #SpaceTally
-}
+Extension { #name : #SpaceTally }
 
-{
-	#category : #'*Tool-SystemReporter',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>printSpaceAnalysis: threshold onStream: stream [
+{ #category : #'*Tool-SystemReporter' }
+SpaceTally >> printSpaceAnalysis: threshold onStream: stream [
 	"If threshold > 0, then only those classes with more than that number
 	of instances will be shown, and they will be sorted by total instance space.
 	If threshold = 0, then all classes will appear, sorted by name."
@@ -57,11 +52,8 @@ SpaceTally>>printSpaceAnalysis: threshold onStream: stream [
 		totalPercent: totalInstSpace
 ]
 
-{
-	#category : #'*Tool-SystemReporter',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>printSpaceAnalysisRowBlock: classNameLength onStream: stream [
+{ #category : #'*Tool-SystemReporter' }
+SpaceTally >> printSpaceAnalysisRowBlock: classNameLength onStream: stream [
 	^ [ :class :codeSpace :instanceCount :instanceSpace :percent | 
 	stream
 		nextPutAll: (class padded: #right to: classNameLength + 1 with: $ );
@@ -72,11 +64,8 @@ SpaceTally>>printSpaceAnalysisRowBlock: classNameLength onStream: stream [
 		cr ]
 ]
 
-{
-	#category : #'*Tool-SystemReporter',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-SpaceTally>>printSpaceAnalysisRowBlock: printRow totalCodeSpace: totalPercent totalInstCount: totalInstCount totalInstSpace: totalCodeSpace totalPercent: totalInstSpace [
+{ #category : #'*Tool-SystemReporter' }
+SpaceTally >> printSpaceAnalysisRowBlock: printRow totalCodeSpace: totalPercent totalInstCount: totalInstCount totalInstSpace: totalCodeSpace [ totalPercent: totalInstSpace
 	printRow
 		valueWithArguments:
 			{'Total'.

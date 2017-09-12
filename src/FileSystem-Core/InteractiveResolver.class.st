@@ -7,41 +7,28 @@ Class {
 	#instVars : [
 		'cache'
 	],
-	#category : #FileSystem-Core-Implementation,
-	#timestamp : 'cwp 11/18/2009 11:56'
+	#category : #FileSystem-Core-Implementation
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-InteractiveResolver>>flushLocalCache [
+{ #category : #accessing }
+InteractiveResolver >> flushLocalCache [
 	cache := IdentityDictionary new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-InteractiveResolver>>initialize [
+{ #category : #initialization }
+InteractiveResolver >> initialize [
 	self flushLocalCache
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-InteractiveResolver>>resolve: origin [
+{ #category : #resolving }
+InteractiveResolver >> resolve: origin [
 	^ cache at: origin ifAbsent: [self unknownOrigin: origin]
 	
 
 ]
 
-{
-	#category : #resolving,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-InteractiveResolver>>unknownOrigin: origin [
+{ #category : #resolving }
+InteractiveResolver >> unknownOrigin: origin [
 	| reference |
 	^ (next ifNotNil: [next resolve: origin]) ifNil: 
 			[reference := ResolutionRequest for: origin.

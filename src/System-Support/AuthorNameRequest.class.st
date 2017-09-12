@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'initialAnswer'
 	],
-	#category : #System-Support,
-	#timestamp : '<historical>'
+	#category : #System-Support
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-AuthorNameRequest class>>messagePrompt [
+{ #category : #accessing }
+AuthorNameRequest class >> messagePrompt [
 	^
 'Please type your full name. 
 It will be used to sign the changes you make to the image.
@@ -23,39 +19,27 @@ Spaces, accents, dashes, underscore and similar characters are not allowed
 '
 ]
 
-{
-	#category : #'exception handling',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-AuthorNameRequest>>defaultAction [
+{ #category : #'exception handling' }
+AuthorNameRequest >> defaultAction [
 	^ UIManager default
 			request: self messagePrompt
 			initialAnswer: initialAnswer
 			title: 'Author identification'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-AuthorNameRequest>>initialAnswer [
+{ #category : #accessing }
+AuthorNameRequest >> initialAnswer [
 	
 	^ initialAnswer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-AuthorNameRequest>>initialAnswer: anObject [
+{ #category : #accessing }
+AuthorNameRequest >> initialAnswer: anObject [
 	
 	initialAnswer := anObject
 ]
 
-{
-	#category : #ui-requests,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-AuthorNameRequest>>messagePrompt [
+{ #category : #ui-requests }
+AuthorNameRequest >> messagePrompt [
 	^ self class messagePrompt
 ]

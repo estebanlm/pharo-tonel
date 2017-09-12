@@ -1,42 +1,26 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicFixedPanesFinderRenderer,
 	#superclass : #GLMMorphicFinderRenderer,
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFixedPanesFinderRenderer>>actOnPaneAdded: ann [
+{ #category : #rendering }
+GLMMorphicFixedPanesFinderRenderer >> actOnPaneAdded: ann [
 	container pushPane: (self renderObject: ann pane)
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFixedPanesFinderRenderer>>actOnPaneRemoved: ann [
+{ #category : #rendering }
+GLMMorphicFixedPanesFinderRenderer >> actOnPaneRemoved: ann [
 	container popPane
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFixedPanesFinderRenderer>>actOnPaneReplaced: ann [
+{ #category : #rendering }
+GLMMorphicFixedPanesFinderRenderer >> actOnPaneReplaced: ann [
 	container popAndReplacePane: (self renderObject: ann newPane)
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicFixedPanesFinderRenderer>>render: aBrowser [
+{ #category : #rendering }
+GLMMorphicFixedPanesFinderRenderer >> render: aBrowser [
 	container := GLMPaneScroller new
 		name: 'scroller';
 		vResizing: #spaceFill;

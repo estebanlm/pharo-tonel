@@ -37,15 +37,11 @@ Class {
 		'specialWidth',
 		'lastCharacterWidth'
 	],
-	#category : #Text-Scanning,
-	#timestamp : 'nice 10/6/2013 22:04'
+	#category : #Text-Scanning
 }
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlockScanner>>characterBlockAtPoint: aPoint index: index in: textLine [
+{ #category : #scanning }
+CharacterBlockScanner >> characterBlockAtPoint: aPoint index: index [ in: textLine
 	"This method is the Morphic characterBlock finder.  It combines
 	MVC's characterBlockAtPoint:, -ForIndex:, and buildCharacterBlockIn:"
 	| runLength lineStop stopCondition |
@@ -92,11 +88,8 @@ CharacterBlockScanner>>characterBlockAtPoint: aPoint index: index in: textLine [
 							textLine: line]
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlockScanner>>cr  [
+{ #category : #'stop conditions' }
+CharacterBlockScanner >> cr [ 
 	"Answer a CharacterBlock that specifies the current location of the mouse 
 	relative to a carriage return stop condition that has just been 
 	encountered. The ParagraphEditor convention is to denote selections by 
@@ -120,11 +113,8 @@ CharacterBlockScanner>>cr  [
 		^true
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlockScanner>>crossedX [
+{ #category : #'stop conditions' }
+CharacterBlockScanner >> crossedX [
 	"Text display has wrapping. The scanner just found a character past the x 
 	location of the cursor. We know that the cursor is pointing at a character 
 	or before one."
@@ -144,11 +134,8 @@ CharacterBlockScanner>>crossedX [
 	^ true
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlockScanner>>endOfRun [
+{ #category : #'stop conditions' }
+CharacterBlockScanner >> endOfRun [
 	"Before arriving at the cursor location, the selection has encountered an 
 	end of run. Answer false if the selection continues, true otherwise. Set 
 	up indexes for building the appropriate CharacterBlock."
@@ -208,11 +195,8 @@ CharacterBlockScanner>>endOfRun [
 	^true
 ]
 
-{
-	#category : #'text attributes',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlockScanner>>indentationLevel: anInteger [
+{ #category : #'text attributes' }
+CharacterBlockScanner >> indentationLevel: anInteger [
 	super indentationLevel: anInteger.
 	nextLeftMargin := leftMargin.
 	indentationLevel timesRepeat: [
@@ -221,11 +205,8 @@ CharacterBlockScanner>>indentationLevel: anInteger [
 					rightMargin: rightMargin]
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlockScanner>>paddedSpace [
+{ #category : #'stop conditions' }
+CharacterBlockScanner >> paddedSpace [
 	"When the line is justified, the spaces will not be the same as the font's 
 	space character. A padding of extra space must be considered in trying 
 	to find which character the cursor is pointing at. Answer whether the 
@@ -245,11 +226,8 @@ CharacterBlockScanner>>paddedSpace [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlockScanner>>placeEmbeddedObject: anchoredMorph [
+{ #category : #private }
+CharacterBlockScanner >> placeEmbeddedObject: anchoredMorph [
 	"Workaround: The following should really use #textAnchorType"
 	| w |
 	anchoredMorph relativeTextAnchorPosition ifNotNil:[^true].
@@ -260,11 +238,8 @@ CharacterBlockScanner>>placeEmbeddedObject: anchoredMorph [
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlockScanner>>retrieveLastCharacterWidth [
+{ #category : #private }
+CharacterBlockScanner >> retrieveLastCharacterWidth [
 	| lastCharacter |
 	lastIndex > text size ifTrue: [^lastCharacterWidth := 0].
 	specialWidth ifNotNil: [^lastCharacterWidth := specialWidth].
@@ -275,20 +250,14 @@ CharacterBlockScanner>>retrieveLastCharacterWidth [
 	^lastCharacterWidth
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlockScanner>>setFont [
+{ #category : #'stop conditions' }
+CharacterBlockScanner >> setFont [
 	specialWidth := nil.
 	super setFont
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-CharacterBlockScanner>>tab [
+{ #category : #'stop conditions' }
+CharacterBlockScanner >> tab [
 	| nextDestX |
 	nextDestX := self plainTab.
 	lastCharacterWidth := nextDestX - destX max: 0.

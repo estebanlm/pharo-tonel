@@ -9,35 +9,25 @@ To bridge the gap between the two, Nautilus offers to inspect instance returned 
 Class {
 	#name : #MethodSampleInstanceAction,
 	#superclass : #AbstractMethodIconAction,
-	#category : #Nautilus-Widgets,
-	#timestamp : 'StephaneDucasse 8/18/2016 21:01'
+	#category : #Nautilus-Widgets
 }
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodSampleInstanceAction>>actionOrder [
+{ #category : #order }
+MethodSampleInstanceAction >> actionOrder [
 	"Return the priority of this action"
 	
 	^0
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodSampleInstanceAction>>isActionHandled [
+{ #category : #order }
+MethodSampleInstanceAction >> isActionHandled [
 
 	^ method methodClass isMeta
 		and: [ method numArgs isZero and: [ method pragmas anySatisfy: [ :each | each keyword = #sampleInstance ] ] ]
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodSampleInstanceAction>>privateActionIcon [
+{ #category : #order }
+MethodSampleInstanceAction >> privateActionIcon [
 
 	 ^IconicButton new 
 			target: self browser;

@@ -11,45 +11,32 @@ Class {
 		'method',
 		'selector'
 	],
-	#category : #Kernel-Methods,
-	#timestamp : '<historical>'
+	#category : #Kernel-Methods
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState class>>forMethod: aMethod selector: aSelector [
+{ #category : #'instance creation' }
+AdditionalMethodState class >> forMethod: aMethod selector: aSelector [
 	^(self new: 0)
 		selector: aSelector;
 		setMethod: aMethod;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState class>>new [
+{ #category : #'instance creation' }
+AdditionalMethodState class >> new [
 	^ self new: 0
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState class>>selector: aSelector with: aPropertyOrPragma [
+{ #category : #'instance creation' }
+AdditionalMethodState class >> selector: aSelector with: aPropertyOrPragma [
 	^(self new: 1)
 		selector: aSelector;
 		basicAt: 1 put: aPropertyOrPragma;
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>analogousCodeTo: aMethodProperties [
+{ #category : #testing }
+AdditionalMethodState >> analogousCodeTo: aMethodProperties [
 	| bs |
 	self class == aMethodProperties class ifFalse:
 		[^false].
@@ -62,21 +49,15 @@ AdditionalMethodState>>analogousCodeTo: aMethodProperties [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>at: aKey [
+{ #category : #accessing }
+AdditionalMethodState >> at: aKey [
 	"Answer the property value or pragma associated with aKey."
 	
 	^self at: aKey ifAbsent: [self error: 'not found']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>at: aKey ifAbsent: aBlock [
+{ #category : #accessing }
+AdditionalMethodState >> at: aKey ifAbsent: aBlock [
 	"Answer the property value or pragma associated with aKey or,
 	 if aKey isn't found, answer the result of evaluating aBlock."
 
@@ -90,11 +71,8 @@ AdditionalMethodState>>at: aKey ifAbsent: aBlock [
 	^aBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>at: aKey ifAbsentPut: aBlock [
+{ #category : #accessing }
+AdditionalMethodState >> at: aKey ifAbsentPut: aBlock [
 	"Answer the property value or pragma associated with aKey or,
 	 if aKey isn't found, answer the result of evaluating aBlock."
 
@@ -108,20 +86,14 @@ AdditionalMethodState>>at: aKey ifAbsentPut: aBlock [
 	^method propertyAt: aKey put: aBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>at: aKey ifPresent: aBlock [
+{ #category : #accessing }
+AdditionalMethodState >> at: aKey ifPresent: aBlock [
 	"Lookup the given key in the receiver. If it is present, answer the value of evaluating the given block with the value associated with the key. Otherwise, answer self."
 	^ aBlock value: (self at: aKey ifAbsent: [ ^ self ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>at: aKey put: aValue [
+{ #category : #accessing }
+AdditionalMethodState >> at: aKey put: aValue [
        "Replace the property value or pragma associated with aKey."
        | keyAlreadyExists |
        keyAlreadyExists := false.
@@ -142,11 +114,8 @@ AdditionalMethodState>>at: aKey put: aValue [
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>copyWith: aPropertyOrPragma "<Association|Pragma>" [
+{ #category : #copying }
+AdditionalMethodState >> copyWith: aPropertyOrPragma [ "<Association|Pragma>"
 	"Answer a copy of the receiver which includes aPropertyOrPragma"
 	| bs copy |
 	(Association == aPropertyOrPragma class
@@ -163,11 +132,8 @@ AdditionalMethodState>>copyWith: aPropertyOrPragma "<Association|Pragma>" [
 	^copy
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>copyWithout: aPropertyOrPragma "<Association|Pragma>" [
+{ #category : #copying }
+AdditionalMethodState >> copyWithout: aPropertyOrPragma [ "<Association|Pragma>"
 	"Answer a copy of the receiver which no longer includes aPropertyOrPragma"
 	| bs copy offset |
 	"no need to initialize here; we're copying all inst vars"
@@ -185,11 +151,8 @@ AdditionalMethodState>>copyWithout: aPropertyOrPragma "<Association|Pragma>" [
 	^copy
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>hasAtLeastTheSamePropertiesAs: aMethodProperties [
+{ #category : #testing }
+AdditionalMethodState >> hasAtLeastTheSamePropertiesAs: aMethodProperties [
 	"Answer if the recever has at least the same properties as the argument.
 	 N.B. The receiver may have additional properties and still answer true."
 	aMethodProperties keysAndValuesDo:
@@ -201,11 +164,8 @@ AdditionalMethodState>>hasAtLeastTheSamePropertiesAs: aMethodProperties [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>hasLiteralSuchThat: aBlock [
+{ #category : #testing }
+AdditionalMethodState >> hasLiteralSuchThat: aBlock [
 	"Answer true if litBlock returns true for any literal in this array, even if embedded in further array structure.
 	 This method is only intended for private use by CompiledMethod hasLiteralSuchThat:"
 	1 to: self basicSize do: [:i |
@@ -221,11 +181,8 @@ AdditionalMethodState>>hasLiteralSuchThat: aBlock [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>hasLiteralThorough: literal [
+{ #category : #testing }
+AdditionalMethodState >> hasLiteralThorough: literal [
 	"Answer true if any literal in these properties is literal,
 	 even if embedded in array structure."
 	1 to: self basicSize do: [:i |
@@ -241,11 +198,8 @@ AdditionalMethodState>>hasLiteralThorough: literal [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>includes: aPropertyOrPragma "<Association|Pragma>" [
+{ #category : #testing }
+AdditionalMethodState >> includes: aPropertyOrPragma [ "<Association|Pragma>"
 	"Test if the property or pragma is present."
 
 	1 to: self basicSize do:
@@ -255,11 +209,8 @@ AdditionalMethodState>>includes: aPropertyOrPragma "<Association|Pragma>" [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>includesKey: aKey [
+{ #category : #testing }
+AdditionalMethodState >> includesKey: aKey [
 	"Test if the property aKey or pragma with selector aKey is present."
 
 	1 to: self basicSize do:
@@ -269,11 +220,8 @@ AdditionalMethodState>>includesKey: aKey [
 	^false
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>includesProperty: aKey [
+{ #category : #properties }
+AdditionalMethodState >> includesProperty: aKey [
 	"Test if the property aKey is present."
 
 	1 to: self basicSize do: [:i |
@@ -285,27 +233,18 @@ AdditionalMethodState>>includesProperty: aKey [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>isEmpty [
+{ #category : #testing }
+AdditionalMethodState >> isEmpty [
 	^self basicSize = 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>isMethodProperties [
+{ #category : #testing }
+AdditionalMethodState >> isMethodProperties [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>keysAndValuesDo: aBlock [
+{ #category : #accessing }
+AdditionalMethodState >> keysAndValuesDo: aBlock [
 	"Enumerate the receiver with all the keys and values."
 
 	1 to: self basicSize do: [:i |
@@ -315,47 +254,32 @@ AdditionalMethodState>>keysAndValuesDo: aBlock [
 			ifFalse: [aBlock value: propertyOrPragma keyword value: propertyOrPragma]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>method [
+{ #category : #accessing }
+AdditionalMethodState >> method [
 
 	^method.
 ]
 
-{
-	#category : #decompiling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>method: aMethodNodeOrNil [
+{ #category : #decompiling }
+AdditionalMethodState >> method: aMethodNodeOrNil [
 	"For decompilation"
 	method := aMethodNodeOrNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>notEmpty [
+{ #category : #testing }
+AdditionalMethodState >> notEmpty [
 	^self basicSize > 0
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>postCopy [
+{ #category : #copying }
+AdditionalMethodState >> postCopy [
 	"After copying we must duplicate any associations and pragmas so they don't end up being shared."
 	1 to: self basicSize do:
 		[:i| self basicAt: i put: (self basicAt: i) shallowCopy]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>pragmas [
+{ #category : #accessing }
+AdditionalMethodState >> pragmas [
 	"Answer the raw messages comprising my pragmas."
 	| pragmaStream |
 	pragmaStream := WriteStream on: (Array new: self basicSize).
@@ -366,20 +290,14 @@ AdditionalMethodState>>pragmas [
 	^pragmaStream contents
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>printOn: aStream [
+{ #category : #printing }
+AdditionalMethodState >> printOn: aStream [
 	super printOn: aStream.
 	aStream space; nextPut: $(; print: self identityHash; nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>properties [
+{ #category : #accessing }
+AdditionalMethodState >> properties [
 
 	| propertyStream |
 	propertyStream := WriteStream on: (Array new: self basicSize * 2).
@@ -390,21 +308,15 @@ AdditionalMethodState>>properties [
 	^IdentityDictionary newFromPairs: propertyStream contents
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>propertyAt: aKey [
+{ #category : #properties }
+AdditionalMethodState >> propertyAt: aKey [
 	"Answer the property value associated with aKey."
 	
 	^ self propertyAt: aKey ifAbsent: [ self error: 'Property not found' ].
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>propertyAt: aKey ifAbsent: aBlock [
+{ #category : #properties }
+AdditionalMethodState >> propertyAt: aKey ifAbsent: aBlock [
 	"Answer the property value associated with aKey or, if aKey isn't found, answer the result of evaluating aBlock."
 
 	1 to: self basicSize do: [:i |
@@ -416,11 +328,8 @@ AdditionalMethodState>>propertyAt: aKey ifAbsent: aBlock [
 	^aBlock value
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>propertyKeysAndValuesDo: aBlock [
+{ #category : #properties }
+AdditionalMethodState >> propertyKeysAndValuesDo: aBlock [
 	"Enumerate the receiver with all the keys and values."
 
 	1 to: self basicSize do: [:i |
@@ -429,40 +338,28 @@ AdditionalMethodState>>propertyKeysAndValuesDo: aBlock [
 			[aBlock value: propertyOrPragma key value: propertyOrPragma value]]
 ]
 
-{
-	#category : #properties-compatibility,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>propertyValueAt: aKey [
+{ #category : #properties-compatibility }
+AdditionalMethodState >> propertyValueAt: aKey [
 	"use the version without ..Value, this methid is retained for compatibility"
 	
 	^ self propertyAt: aKey
 ]
 
-{
-	#category : #properties-compatibility,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>propertyValueAt: aKey ifAbsent: aBlock [
+{ #category : #properties-compatibility }
+AdditionalMethodState >> propertyValueAt: aKey ifAbsent: aBlock [
 	"use the version without ..Value, this methid is retained for compatibility"
 	^self propertyAt: aKey ifAbsent: aBlock
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>removeKey: aKey [
+{ #category : #properties }
+AdditionalMethodState >> removeKey: aKey [
 	"Remove the property with aKey. Answer the property or raise an error if aKey isn't found."
 	
 	^ self removeKey: aKey ifAbsent: [ self error: 'Property not found' ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>removeKey: aKey ifAbsent: aBlock [
+{ #category : #accessing }
+AdditionalMethodState >> removeKey: aKey ifAbsent: aBlock [
 	"Remove the property with aKey. Answer the value or, if aKey isn't found, answer the result of evaluating aBlock."
 	
 	1 to: self basicSize do: [:i |
@@ -476,27 +373,18 @@ AdditionalMethodState>>removeKey: aKey ifAbsent: aBlock [
 	^aBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>selector [
+{ #category : #accessing }
+AdditionalMethodState >> selector [
 	^selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>selector: aSymbol [
+{ #category : #accessing }
+AdditionalMethodState >> selector: aSymbol [
 	selector := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-AdditionalMethodState>>setMethod: aMethod [
+{ #category : #accessing }
+AdditionalMethodState >> setMethod: aMethod [
 	method := aMethod.
 	1 to: self basicSize do:
 		[:i| | propertyOrPragma "<Association|Pragma>" |

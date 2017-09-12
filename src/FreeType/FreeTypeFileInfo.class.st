@@ -11,123 +11,86 @@ Class {
 		'modificationTime',
 		'fileSize'
 	],
-	#category : #FreeType-FontManager,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:10'
+	#category : #FreeType-FontManager
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfo>>absoluteOrRelativePath [
+{ #category : #accessing }
+FreeTypeFileInfo >> absoluteOrRelativePath [
 	"Answer the value of absoluteOrRelativePath"
 
 	^ absoluteOrRelativePath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfo>>absoluteOrRelativePath: anObject [
+{ #category : #accessing }
+FreeTypeFileInfo >> absoluteOrRelativePath: anObject [
 	"Set the value of absoluteOrRelativePath"
 
 	absoluteOrRelativePath := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfo>>absolutePath [
+{ #category : #accessing }
+FreeTypeFileInfo >> absolutePath [
 	"Answer the value of absolutePath"
 
 	^ absolutePath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfo>>absolutePath: anObject [
+{ #category : #accessing }
+FreeTypeFileInfo >> absolutePath: anObject [
 	"Set the value of absolutePath"
 
 	absolutePath := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfo>>baseName [
+{ #category : #accessing }
+FreeTypeFileInfo >> baseName [
 	^ absolutePath asFileReference basename
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfo>>fileSize [
+{ #category : #accessing }
+FreeTypeFileInfo >> fileSize [
 	"Answer the value of fileSize"
 
 	^ fileSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfo>>fileSize: anObject [
+{ #category : #accessing }
+FreeTypeFileInfo >> fileSize: anObject [
 	"Set the value of fileSize"
 
 	fileSize := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfo>>locationType [
+{ #category : #accessing }
+FreeTypeFileInfo >> locationType [
 	"Answer the value of locationType"
 
 	^ locationType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfo>>locationType: anObject [
+{ #category : #accessing }
+FreeTypeFileInfo >> locationType: anObject [
 	"Set the value of locationType"
 
 	locationType := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfo>>modificationTime [
+{ #category : #accessing }
+FreeTypeFileInfo >> modificationTime [
 	"Answer the value of modificationTime"
 
 	^ modificationTime
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfo>>modificationTime: anObject [
+{ #category : #accessing }
+FreeTypeFileInfo >> modificationTime: anObject [
 	"Set the value of modificationTime"
 
 	modificationTime := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFileInfo>>printOn: aStream [
+{ #category : #printing }
+FreeTypeFileInfo >> printOn: aStream [
 	"super printOn: aStream."
 	aStream 
 		nextPutAll: familyGroupName asString, '::',styleNameExtracted asString, ' '; 

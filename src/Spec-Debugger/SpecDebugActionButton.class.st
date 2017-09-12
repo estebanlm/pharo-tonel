@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'debugActionHolder'
 	],
-	#category : #Spec-Debugger,
-	#timestamp : '<historical>'
+	#category : #Spec-Debugger
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugActionButton>>debugAction [
+{ #category : #accessing }
+SpecDebugActionButton >> debugAction [
 
 	^ debugActionHolder value 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugActionButton>>debugAction: aDebugAction [
+{ #category : #accessing }
+SpecDebugActionButton >> debugAction: aDebugAction [
 
 	debugActionHolder value: aDebugAction
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugActionButton>>initialize [
+{ #category : #initialization }
+SpecDebugActionButton >> initialize [
 
 	super initialize.
 
@@ -44,11 +34,8 @@ SpecDebugActionButton>>initialize [
 	
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDebugActionButton>>update [
+{ #category : #updating }
+SpecDebugActionButton >> update [
 
 	self debugAction ifNotNil:  [ :aDebugAction | 
 		self label: aDebugAction label.

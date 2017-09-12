@@ -1,39 +1,26 @@
-"
-
-"
 Class {
 	#name : #SessionManagerRegistrationTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'manager'
 	],
-	#category : #System-SessionManager-Tests,
-	#timestamp : ''
+	#category : #System-SessionManager-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationTest>>setUp [
+{ #category : #running }
+SessionManagerRegistrationTest >> setUp [
 	manager := SessionManager new
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationTest>>testGivenARegisteredClassHandlerShouldHasRegisteredReturnsTrue [
+{ #category : #tests }
+SessionManagerRegistrationTest >> testGivenARegisteredClassHandlerShouldHasRegisteredReturnsTrue [
 	manager registerSystemClassNamed: #Foo.
 
 	self assert: (manager hasRegistered: #Foo)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationTest>>testGivenARegisteredClassRenamedThenItsHandlerIsUpdated [
+{ #category : #tests }
+SessionManagerRegistrationTest >> testGivenARegisteredClassRenamedThenItsHandlerIsUpdated [
 	manager registerSystemClassNamed: #Foo.
 	manager renamedClass: self from: #Foo to: #Bar.
 	
@@ -42,11 +29,8 @@ SessionManagerRegistrationTest>>testGivenARegisteredClassRenamedThenItsHandlerIs
 		equals: #( Bar ).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationTest>>testGivenManyRegistrationsInDifferentCategoriesShoudlLastClassRegistrationBeTheOnlyOccurenceInStartupList [
+{ #category : #tests }
+SessionManagerRegistrationTest >> testGivenManyRegistrationsInDifferentCategoriesShoudlLastClassRegistrationBeTheOnlyOccurenceInStartupList [
 	manager registerSystemClassNamed: #Foo.
 	manager registerSystemClassNamed: #Bar.
 	manager registerGuiClassNamed: #Foo atPriority: 30.
@@ -57,11 +41,8 @@ SessionManagerRegistrationTest>>testGivenManyRegistrationsInDifferentCategoriesS
 		equals: #( Bar Foo ).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationTest>>testGivenManyRegistrationsInSameCategoryAtDifferentPriorityShoudlAClassBePresentOnlyOnceInStartupList [
+{ #category : #tests }
+SessionManagerRegistrationTest >> testGivenManyRegistrationsInSameCategoryAtDifferentPriorityShoudlAClassBePresentOnlyOnceInStartupList [
 	manager registerSystemClassNamed: #Foo.
 	manager registerSystemClassNamed: #Bar atPriority: 15.
 	manager registerSystemClassNamed: #Foo atPriority: 10.
@@ -72,11 +53,8 @@ SessionManagerRegistrationTest>>testGivenManyRegistrationsInSameCategoryAtDiffer
 		equals: #( Bar Foo ).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationTest>>testGivenManyRegistrationsInSameCategoryShoudlAClassBePresentOnlyOnceInStartupList [
+{ #category : #tests }
+SessionManagerRegistrationTest >> testGivenManyRegistrationsInSameCategoryShoudlAClassBePresentOnlyOnceInStartupList [
 	manager registerSystemClassNamed: #Foo.
 	manager registerSystemClassNamed: #Bar.
 	manager registerSystemClassNamed: #Foo.
@@ -87,10 +65,7 @@ SessionManagerRegistrationTest>>testGivenManyRegistrationsInSameCategoryShoudlAC
 		equals: #( Bar Foo ).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SessionManagerRegistrationTest>>testGivenUnknonwnHandledIdShouldHasRegisteredReturnsFalse [
+{ #category : #tests }
+SessionManagerRegistrationTest >> testGivenUnknonwnHandledIdShouldHasRegisteredReturnsFalse [
 	self deny: (manager hasRegistered: #Foo)
 ]

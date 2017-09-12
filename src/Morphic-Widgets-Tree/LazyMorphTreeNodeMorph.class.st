@@ -7,62 +7,42 @@ Class {
 	#instVars : [
 		'drawable'
 	],
-	#category : #Morphic-Widgets-Tree,
-	#timestamp : 'TorstenBergmann 9/5/2014 15:29'
+	#category : #Morphic-Widgets-Tree
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LazyMorphTreeNodeMorph>>drawOn: aCanvas [
+{ #category : #accessing }
+LazyMorphTreeNodeMorph >> drawOn: aCanvas [
 	drawable
 		ifFalse: [container buildRowMorphsFrom: self]
 		ifTrue: [super drawOn: aCanvas]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LazyMorphTreeNodeMorph>>drawSubmorphsOn: aCanvas [
+{ #category : #accessing }
+LazyMorphTreeNodeMorph >> drawSubmorphsOn: aCanvas [
 	drawable ifFalse: [^ self].
 	super drawSubmorphsOn: aCanvas.
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LazyMorphTreeNodeMorph>>drawable [
+{ #category : #drawing }
+LazyMorphTreeNodeMorph >> drawable [
 	^ drawable ifNil: [false]
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LazyMorphTreeNodeMorph>>drawable: aBoolean [
+{ #category : #drawing }
+LazyMorphTreeNodeMorph >> drawable: aBoolean [
 	drawable := aBoolean.
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LazyMorphTreeNodeMorph>>initRow [
-
+{ #category : #initialization }
+LazyMorphTreeNodeMorph >> initRow [
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-LazyMorphTreeNodeMorph>>initialize [
+{ #category : #initialization }
+LazyMorphTreeNodeMorph >> initialize [
 	super initialize.
 	drawable := false
 ]

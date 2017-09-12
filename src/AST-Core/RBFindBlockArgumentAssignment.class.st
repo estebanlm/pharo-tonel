@@ -8,50 +8,34 @@ Class {
 		'arguments',
 		'argumentAssignments'
 	],
-	#category : #AST-Core-Visitors,
-	#timestamp : 'NicolaiHess 8/23/2014 21:19'
+	#category : #AST-Core-Visitors
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBFindBlockArgumentAssignment class>>collectAssignments: aParseTree [
+{ #category : #accessing }
+RBFindBlockArgumentAssignment class >> collectAssignments: aParseTree [
 	^ (self new executeTree: aParseTree) assignments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBFindBlockArgumentAssignment>>assignments [
+{ #category : #accessing }
+RBFindBlockArgumentAssignment >> assignments [
 	^  argumentAssignments
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBFindBlockArgumentAssignment>>executeTree: aParseTree [
+{ #category : #visiting }
+RBFindBlockArgumentAssignment >> executeTree: aParseTree [
 	^ self visitNode: aParseTree
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBFindBlockArgumentAssignment>>initialize [
+{ #category : #initialization }
+RBFindBlockArgumentAssignment >> initialize [
 	super initialize.
 	arguments := Set new.
 	argumentAssignments := Set new.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBFindBlockArgumentAssignment>>is: aVar inScopeOf: anArgumentNode [
+{ #category : #private }
+RBFindBlockArgumentAssignment >> is: aVar inScopeOf: anArgumentNode [
 	"if this Var is a child of if anArgumentNode parent, then the
 assignment on aVar happens in scope of the BlockNode of this ArgumentNode "
 
@@ -65,22 +49,16 @@ assignment on aVar happens in scope of the BlockNode of this ArgumentNode "
 	^ false
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBFindBlockArgumentAssignment>>visitArgumentNode: anArgumentNode [
+{ #category : #visiting }
+RBFindBlockArgumentAssignment >> visitArgumentNode: anArgumentNode [
 	"register argument node if it is an block argument"
 
 	anArgumentNode parent isBlock
 		ifTrue: [ arguments add: anArgumentNode ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBFindBlockArgumentAssignment>>visitAssignmentNode: anAssignmentNode [
+{ #category : #visiting }
+RBFindBlockArgumentAssignment >> visitAssignmentNode: anAssignmentNode [
 	"search registered argument variable with the same name and scope"
 
 	| varName |
@@ -91,11 +69,8 @@ RBFindBlockArgumentAssignment>>visitAssignmentNode: anAssignmentNode [
 		ifFound: [ argumentAssignments add: varName ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBFindBlockArgumentAssignment>>visitTemporaryNodes: aNodeCollection [
+{ #category : #visiting }
+RBFindBlockArgumentAssignment >> visitTemporaryNodes: aNodeCollection [
 	"here our trait calls visitArgumentNodes: but we are not interested on temporary nodes -> ignore this."
 	
 ]

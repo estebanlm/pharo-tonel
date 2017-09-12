@@ -22,23 +22,16 @@ Class {
 	#instVars : [
 		'collectors'
 	],
-	#category : #GT-EventRecorder-Support,
-	#timestamp : 'JurajKubelka 11/17/2015 14:03'
+	#category : #GT-EventRecorder-Support
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventConsolidate>>collectors: aCollection  [
+{ #category : #accessing }
+GTEventConsolidate >> collectors: aCollection [ 
 	collectors := aCollection
 ]
 
-{
-	#category : #'accessing - computed',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventConsolidate>>consolidated [
+{ #category : #'accessing - computed' }
+GTEventConsolidate >> consolidated [
 	| consolidatedCollectors |
 	consolidatedCollectors := OrderedDictionary new.
 	collectors do: [ :eachCollector | | aCollector |

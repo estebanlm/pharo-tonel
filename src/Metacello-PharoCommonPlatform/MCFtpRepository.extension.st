@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCFtpRepository
-}
+Extension { #name : #MCFtpRepository }
 
-{
-	#category : #'*metacello-pharocommonplatform',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-MCFtpRepository>>asRepositorySpecFor: aMetacelloMCProject [
+{ #category : #'*metacello-pharocommonplatform' }
+MCFtpRepository >> asRepositorySpecFor: aMetacelloMCProject [
 	| dir |
 	dir := directory.
 	(directory at: 1) = $/

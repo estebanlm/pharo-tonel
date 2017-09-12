@@ -21,15 +21,11 @@ Class {
 		'properties',
 		'category'
 	],
-	#category : #Compiler-Kernel,
-	#timestamp : '<historical>'
+	#category : #Compiler-Kernel
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser class>>primitivePragmaSelectors [
+{ #category : #accessing }
+Parser class >> primitivePragmaSelectors [
 	"Answer the selectors of pragmas that specify VM primitives.
 	 Needed for compile and decomple."
 
@@ -37,11 +33,8 @@ Parser class>>primitivePragmaSelectors [
 		collect: [ :each | each methodSelector ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>addComment [
+{ #category : #private }
+Parser >> addComment [
 
 	parseNode ~~ nil
 		ifTrue: 
@@ -49,27 +42,18 @@ Parser>>addComment [
 			currentComment := nil]
 ]
 
-{
-	#category : #pragmas,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>addPragma: aPragma [
+{ #category : #pragmas }
+Parser >> addPragma: aPragma [
 	properties := properties copyWith: aPragma
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>addWarning: aString [
+{ #category : #'error handling' }
+Parser >> addWarning: aString [
 	"ignored by the default compiler."
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>advance [
+{ #category : #scanning }
+Parser >> advance [
 	| this |
 	prevMark := hereMark.
 	prevEnd := hereEnd.
@@ -87,19 +71,13 @@ Parser>>advance [
 	^this
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>allocateLiteral: lit [
+{ #category : #primitives }
+Parser >> allocateLiteral: lit [
 	encoder litIndex: lit
 ]
 
-{
-	#category : #'error correction',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>ambiguousSelector: aString inRange: anInterval [
+{ #category : #'error correction' }
+Parser >> ambiguousSelector: aString inRange: anInterval [
 	| correctedSelector userSelection offset intervalWithOffset |
 	
 	self interactive ifFalse: [
@@ -126,22 +104,16 @@ Parser>>ambiguousSelector: aString inRange: anInterval [
 	token := (correctedSelector readStream upTo: Character space) asSymbol
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>argumentName [
+{ #category : #'expression types' }
+Parser >> argumentName [
 
 	hereType == #word
 		ifFalse: [^self expected: 'Argument name'].
 	^self advance
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>assignment: varNode [
+{ #category : #'expression types' }
+Parser >> assignment: varNode [
 	" var ':=' expression => AssignmentNode."
 	| loc start |
 	(loc := varNode assignmentCheck: encoder at: prevMark + requestorOffset) >= 0
@@ -158,38 +130,26 @@ Parser>>assignment: varNode [
 	^true
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>bindArg: name [
+{ #category : #temps }
+Parser >> bindArg: name [
 
 	^ self bindTemp: name
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>bindTemp: name [
+{ #category : #temps }
+Parser >> bindTemp: name [
 
 	^name
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>bindTemp: name in: methodSelector [
+{ #category : #temps }
+Parser >> bindTemp: name [ in: methodSelector
 
 	^name
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>blockExpression [
+{ #category : #'expression types' }
+Parser >> blockExpression [
 	"[ ({:var} |) (| {temps} |) (statements) ] => BlockNode."
 
 	| blockNode variableNodes temporaryBlockVariables start |
@@ -215,11 +175,8 @@ Parser>>blockExpression [
 	variableNodes do: [:variable | variable scope: -1]
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>braceExpression [
+{ #category : #'expression types' }
+Parser >> braceExpression [
 	" { elements } => BraceNode."
 
 	| elements locations loc more |
@@ -245,19 +202,13 @@ Parser>>braceExpression [
 	^true
 ]
 
-{
-	#category : #'error correction',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>canDeclareClassVariable [
+{ #category : #'error correction' }
+Parser >> canDeclareClassVariable [
 	^encoder classEncoding ~~ UndefinedObject
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>cascade [
+{ #category : #'expression types' }
+Parser >> cascade [
 	" {; message} => CascadeNode."
 
 	| rcvr msgs |
@@ -279,11 +230,8 @@ Parser>>cascade [
 	parseNode := CascadeNode new receiver: rcvr messages: msgs
 ]
 
-{
-	#category : #'error correction',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>correctSelector: proposedKeyword wordIntervals: spots exprInterval: expInt ifAbort: abortAction [
+{ #category : #'error correction' }
+Parser >> correctSelector: proposedKeyword wordIntervals: spots exprInterval: expInt ifAbort: abortAction [
 	"Correct the proposedKeyword to some selector symbol, correcting the original text if such action is indicated.  abortAction is invoked if the proposedKeyword couldn't be converted into a valid selector.  Spots is an ordered collection of intervals within the test stream of the for each of the keyword parts."
 
 	| correctSelector userSelection |
@@ -308,11 +256,8 @@ Parser>>correctSelector: proposedKeyword wordIntervals: spots exprInterval: expI
 		ifFalse: [correctSelector]
 ]
 
-{
-	#category : #'error correction',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>correctVariable: proposedVariable interval: spot  [
+{ #category : #'error correction' }
+Parser >> correctVariable: proposedVariable interval: spot [ 
 	"Correct the proposedVariable to a known variable, or declare it as a new
 	variable if such action is requested.  We support declaring lowercase
 	variables as temps or inst-vars, and uppercase variables as Globals or 
@@ -354,11 +299,8 @@ Parser>>correctVariable: proposedVariable interval: spot  [
 	^action value
 ]
 
-{
-	#category : #'error correction',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>declareClassVar: name [
+{ #category : #'error correction' }
+Parser >> declareClassVar: name [
 	| sym class |
 	sym := name asSymbol.
 	class := encoder classEncoding.
@@ -368,11 +310,8 @@ Parser>>declareClassVar: name [
 			name: sym
 ]
 
-{
-	#category : #'error correction',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>declareGlobal: name [
+{ #category : #'error correction' }
+Parser >> declareGlobal: name [
 	| sym |
 	sym := name asSymbol.
 	^encoder
@@ -382,11 +321,8 @@ Parser>>declareGlobal: name [
 		name: sym
 ]
 
-{
-	#category : #'error correction',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>declareInstVar: name [
+{ #category : #'error correction' }
+Parser >> declareInstVar: name [
 	"Declare an instance variable.  Since the variable will get added after any existing
 	 inst vars its index is the instSize."
 	encoder classEncoding addInstVarNamed: name.
@@ -394,11 +330,8 @@ Parser>>declareInstVar: name [
 		
 ]
 
-{
-	#category : #'error correction',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>declareTempAndPaste: name [
+{ #category : #'error correction' }
+Parser >> declareTempAndPaste: name [
 	| insertion delta theTextString characterBeforeMark |
 
 	theTextString := requestor text string.
@@ -424,11 +357,8 @@ Parser>>declareTempAndPaste: name [
 	^ encoder bindAndJuggle: name
 ]
 
-{
-	#category : #'error correction',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>defineClass: className  [
+{ #category : #'error correction' }
+Parser >> defineClass: className [ 
 	"Prompts the user to define a new class."
 	
 	| classSymbol systemCategory classDefinition |
@@ -452,49 +382,34 @@ Parser>>defineClass: className  [
 		name: classSymbol
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>encoder [
+{ #category : #'public access' }
+Parser >> encoder [
 	^encoder ifNil:
 		[encoder := EncoderForV3PlusClosures new]
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>encoderClass: anEncoderClass [
+{ #category : #'public access' }
+Parser >> encoderClass: anEncoderClass [
 	encoder ifNotNil: [
 		self error: 'encoder already set'].
 	encoder := anEncoderClass new
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>endOfLastToken [
+{ #category : #scanning }
+Parser >> endOfLastToken [
 
 	^ prevEnd ifNil: [mark]
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>expected: aString  [
+{ #category : #'error handling' }
+Parser >> expected: aString [ 
 	"Notify a problem at token 'here'."
 
 	^ self notify: aString , ' expected' at: hereMark + requestorOffset
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>expression [
+{ #category : #'expression types' }
+Parser >> expression [
 
 	(hereType == #word and: [tokenType == #leftArrow])
 		ifTrue: [^ self assignment: self variable].
@@ -506,11 +421,8 @@ Parser>>expression [
 	^ true
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>externalFunctionDeclaration [
+{ #category : #primitives }
+Parser >> externalFunctionDeclaration [
 	"Parse the function declaration for a call to an external library."
 
 	| descriptorClass callType retType externalName args argType module |
@@ -564,11 +476,8 @@ Parser>>externalFunctionDeclaration [
 	^ true
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>externalType: descriptorClass [
+{ #category : #primitives }
+Parser >> externalType: descriptorClass [
 	"Parse an return an external type"
 	| xType |
 	xType := descriptorClass atomicTypeNamed: here.
@@ -586,11 +495,8 @@ Parser>>externalType: descriptorClass [
 		ifFalse:[^xType]
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>fail [
+{ #category : #'error handling' }
+Parser >> fail [
 
 	| exitBlock |
 	(encoder isNil or: [encoder == self])
@@ -600,11 +506,8 @@ Parser>>fail [
 	^exitBlock value
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>init: sourceStream notifying: req failBlock: aBlock [
+{ #category : #private }
+Parser >> init: sourceStream notifying: req failBlock: aBlock [
 
 	requestor := req.
 	failBlock := aBlock.
@@ -614,11 +517,8 @@ Parser>>init: sourceStream notifying: req failBlock: aBlock [
 	self advance
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>initPattern: aString notifying: req return: aBlock [
+{ #category : #private }
+Parser >> initPattern: aString notifying: req return: aBlock [
 
 	| result |
 	self
@@ -631,20 +531,14 @@ Parser>>initPattern: aString notifying: req return: aBlock [
 	^result
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>interactive [
+{ #category : #'error handling' }
+Parser >> interactive [
 	
 	^ UIManager default interactiveParserFor: requestor
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>match: type  [
+{ #category : #scanning }
+Parser >> match: type [ 
 	"Answer with true if next tokens type matches."
 
 	hereType == type
@@ -654,31 +548,22 @@ Parser>>match: type  [
 	^false
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>matchReturn [
+{ #category : #scanning }
+Parser >> matchReturn [
 
 	^ self match: #upArrow
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>matchToken: thing  [
+{ #category : #scanning }
+Parser >> matchToken: thing [ 
 	"Matches the token, not its type."
 
 	here = thing ifTrue: [self advance. ^true].
 	^false
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>messagePart: level repeat: repeat [
+{ #category : #'expression types' }
+Parser >> messagePart: level repeat: repeat [
 
 	| start receiver selector args precedence words keywordStart |
 	[receiver := parseNode.
@@ -736,11 +621,8 @@ Parser>>messagePart: level repeat: repeat [
 	^true
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>method: doit context: ctxt [
+{ #category : #'expression types' }
+Parser >> method: doit context: ctxt [
 	" pattern [ | temporaries ] block => MethodNode."
 
 	| sap blk prim temps messageComment methodNode |
@@ -774,29 +656,20 @@ Parser>>method: doit context: ctxt [
 		properties: properties
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>newMethodNode [
+{ #category : #'expression types' }
+Parser >> newMethodNode [
 	^self encoder methodNodeClass new
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>notify: aString  [
+{ #category : #'error handling' }
+Parser >> notify: aString [ 
 	"Notify problem at token before 'here'."
 
 	^self notify: aString at: prevMark + requestorOffset
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>notify: string at: location [
+{ #category : #'error handling' }
+Parser >> notify: string at: location [
 	requestor isNil
 		ifTrue: [(encoder == self or: [encoder isNil]) ifTrue: [^ self fail  "failure setting up syntax error"].
 				SyntaxErrorNotification
@@ -812,11 +685,8 @@ Parser>>notify: string at: location [
 	^self fail
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>offEnd: aString  [
+{ #category : #'error handling' }
+Parser >> offEnd: aString [ 
 	"Notify a problem beyond 'here' (in lookAhead token). Don't be offEnded!"
 
 	requestorOffset == nil
@@ -825,21 +695,15 @@ Parser>>offEnd: aString  [
 
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>parse: sourceStreamOrString class: behavior [
+{ #category : #'public access' }
+Parser >> parse: sourceStreamOrString class: behavior [
 
 	^ self parse: sourceStreamOrString readStream class: behavior
 		noPattern: false context: nil notifying: nil ifFail: [ self fail ]
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>parse: sourceStream class: class category: aCategory noPattern: noPattern context: ctxt notifying: req ifFail: aBlock  [
+{ #category : #'public access' }
+Parser >> parse: sourceStream class: class category: aCategory noPattern: noPattern context: ctxt notifying: req ifFail: aBlock [ 
 	"Answer a MethodNode for the argument, sourceStream, that is the root of
 	 a parse tree. Parsing is done with respect to the argument, class, to find
 	 instance, class, and pool variables; and with respect to the argument,
@@ -875,19 +739,13 @@ Parser>>parse: sourceStream class: class category: aCategory noPattern: noPatter
 
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>parse: sourceStream class: class noPattern: noPattern context: ctxt notifying: req ifFail: aBlock  [
+{ #category : #'public access' }
+Parser >> parse: sourceStream class: class noPattern: noPattern context: ctxt notifying: req ifFail: aBlock [ 
 	^self parse: sourceStream class: class category: nil noPattern: noPattern context: ctxt notifying: req ifFail: aBlock 
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>parseSelector: aString  [
+{ #category : #'public access' }
+Parser >> parseSelector: aString [ 
 	"Answer the message selector for the argument, aString, which should 
 	 parse successfully up to the temporary declaration or the end of the 
 	 method header."
@@ -899,11 +757,8 @@ Parser>>parseSelector: aString  [
 		return: [:pattern | pattern at: 1]
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>pattern: fromDoit inContext: ctxt [
+{ #category : #'expression types' }
+Parser >> pattern: fromDoit inContext: ctxt [
 	" unarySelector | binarySelector arg | keyword arg {keyword arg} =>
 	{selector, arguments, precedence}."
 	| args selector |
@@ -931,19 +786,13 @@ Parser>>pattern: fromDoit inContext: ctxt [
 	^self expected: 'Message pattern'
 ]
 
-{
-	#category : #'error correction',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>possibleVariablesFor: proposedVariable  [
+{ #category : #'error correction' }
+Parser >> possibleVariablesFor: proposedVariable [ 
 	^encoder possibleVariablesFor: proposedVariable
 ]
 
-{
-	#category : #pragmas,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>pragmaLiteral: selectorSoFar [
+{ #category : #pragmas }
+Parser >> pragmaLiteral: selectorSoFar [
 	"Read a pragma literal.  As a nicety we allow a variable name (rather
 	 than a literal string) as the second argument to primitive:error:"
 
@@ -964,11 +813,8 @@ Parser>>pragmaLiteral: selectorSoFar [
 	^self expected: 'Literal constant'
 ]
 
-{
-	#category : #pragmas,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>pragmaPrimitives [
+{ #category : #pragmas }
+Parser >> pragmaPrimitives [
 	| primitiveSelectors primitives |
 	properties isEmpty ifTrue:
 		[^0].
@@ -983,11 +829,8 @@ Parser>>pragmaPrimitives [
 	^self perform: primitives first keyword withArguments: primitives first arguments
 ]
 
-{
-	#category : #pragmas,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>pragmaSequence [
+{ #category : #pragmas }
+Parser >> pragmaSequence [
 	"Parse a sequence of method pragmas."
 	
 	[ true ] whileTrue: [
@@ -998,11 +841,8 @@ Parser>>pragmaSequence [
 			ifFalse: [ ^ self expected: '>' ] ]
 ]
 
-{
-	#category : #pragmas,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>pragmaStatement [
+{ #category : #pragmas }
+Parser >> pragmaStatement [
 	"Read a single pragma statement. Parse all generic pragmas in the form of: <key1: val1 key2: val2 ...> and remember them, including primitives."
 	
 	| selector arguments words index keyword |
@@ -1035,11 +875,8 @@ Parser>>pragmaStatement [
 	^ true
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>primaryExpression  [
+{ #category : #'expression types' }
+Parser >> primaryExpression [ 
 	hereType == #word 
 		ifTrue: 
 			[parseNode := self variable.
@@ -1075,22 +912,16 @@ Parser>>primaryExpression  [
 	^false
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>primitive: anIntegerOrString [
+{ #category : #primitives }
+Parser >> primitive: anIntegerOrString [
 	"Create indexed primitive."
 	
 	<primitive>
 	^self primitive: anIntegerOrString error: nil
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>primitive: anIntegerOrString error: errorCodeVariableOrNil [
+{ #category : #primitives }
+Parser >> primitive: anIntegerOrString error: errorCodeVariableOrNil [
 	"Create indexed primitive with optional error code."
 	
 	<primitive>
@@ -1105,33 +936,24 @@ Parser>>primitive: anIntegerOrString error: errorCodeVariableOrNil [
 				ifFalse: [self expected: 'Indexed primitive']]
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>primitive: aNameString error: errorCodeVariableOrNil module: aModuleStringOrNil [
+{ #category : #primitives }
+Parser >> primitive: aNameString error: errorCodeVariableOrNil module: aModuleStringOrNil [
 	"Create named primitive with optional error code."
 	
 	<primitive>
 	^self primitive: aNameString module: aModuleStringOrNil error: errorCodeVariableOrNil
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>primitive: aNameString module: aModuleStringOrNil [
+{ #category : #primitives }
+Parser >> primitive: aNameString module: aModuleStringOrNil [
 	"Create named primitive."
 	
 	<primitive>
 	^self primitive: aNameString module: aModuleStringOrNil error: nil
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>primitive: aNameString module: aModuleStringOrNil error: errorCodeVariableOrNil [
+{ #category : #primitives }
+Parser >> primitive: aNameString module: aModuleStringOrNil error: errorCodeVariableOrNil [
 	"Create named primitive with optional error code."
 	
 	<primitive>
@@ -1147,19 +969,13 @@ Parser>>primitive: aNameString module: aModuleStringOrNil error: errorCodeVariab
 	^117
 ]
 
-{
-	#category : #pragmas,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>properties [
+{ #category : #pragmas }
+Parser >> properties [
 	^ properties ifNil: [ properties := AdditionalMethodState new ]
 ]
 
-{
-	#category : #'error correction',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>queryUndefined [
+{ #category : #'error correction' }
+Parser >> queryUndefined [
 	| varStart varName | 
 	varName := parseNode key.
 	varStart := self endOfLastToken + requestorOffset - varName size + 1.
@@ -1167,11 +983,8 @@ Parser>>queryUndefined [
 	(UndefinedVariable name: varName) ifFalse: [^ self fail]
 ]
 
-{
-	#category : #'error correction',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>removeUnusedTemps [
+{ #category : #'error correction' }
+Parser >> removeUnusedTemps [
 	"Scan for unused temp names, and prompt the user about the prospect of removing each one found"
 
 	| str madeChanges | 
@@ -1207,31 +1020,22 @@ Parser>>removeUnusedTemps [
 	madeChanges ifTrue: [ReparseAfterSourceEditing signal]
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>startOfNextToken [
+{ #category : #scanning }
+Parser >> startOfNextToken [
 	"Return starting position in source of next token."
 
 	hereType == #doIt ifTrue: [^source position + 1].
 	^hereMark
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>statements: argNodes innerBlock: inner [
+{ #category : #'expression types' }
+Parser >> statements: argNodes innerBlock: inner [
 
 	^self statements: argNodes innerBlock: inner blockNode: BlockNode new
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>statements: argNodes innerBlock: inner blockNode: theBlockNode [
+{ #category : #'expression types' }
+Parser >> statements: argNodes innerBlock: inner blockNode: theBlockNode [
 
 	| stmts returns start |
 	"give initial comment to block, since others trail statements"
@@ -1279,11 +1083,8 @@ Parser>>statements: argNodes innerBlock: inner blockNode: theBlockNode [
 	^true
 ]
 
-{
-	#category : #'error correction',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>substituteSelector: selectorParts wordIntervals: spots [
+{ #category : #'error correction' }
+Parser >> substituteSelector: selectorParts wordIntervals: spots [
 	"Substitute the correctSelector into the (presuamed interactive) receiver."
 	| offset |
 	offset := 0.
@@ -1293,11 +1094,8 @@ Parser>>substituteSelector: selectorParts wordIntervals: spots [
 
 ]
 
-{
-	#category : #'error correction',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>substituteVariable: each atInterval: anInterval  [
+{ #category : #'error correction' }
+Parser >> substituteVariable: each atInterval: anInterval [ 
 	self 
 		substituteWord: each
 		wordInterval: anInterval
@@ -1305,11 +1103,8 @@ Parser>>substituteVariable: each atInterval: anInterval  [
 	^encoder encodeVariable: each
 ]
 
-{
-	#category : #'error correction',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>substituteWord: correctWord wordInterval: spot offset: o [
+{ #category : #'error correction' }
+Parser >> substituteWord: correctWord wordInterval: spot offset: o [
 	"Substitute the correctSelector into the (presuamed interactive) receiver."
 
 	requestor correctFrom: (spot first + o)
@@ -1320,11 +1115,8 @@ Parser>>substituteWord: correctWord wordInterval: spot offset: o [
 	^ o + correctWord size - spot size
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>temporaries [
+{ #category : #'expression types' }
+Parser >> temporaries [
 	" [ '|' (variable)* '|' ]"
 	| vars theActualText |
 	(self match: #verticalBar) ifFalse: 
@@ -1351,11 +1143,8 @@ Parser>>temporaries [
 
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>temporariesIn: methodSelector [
+{ #category : #'expression types' }
+Parser >> temporariesIn: methodSelector [
 	" [ '|' (variable)* '|' ]"
 	| vars theActualText |
 	(self match: #verticalBar) ifFalse: 
@@ -1381,11 +1170,8 @@ Parser>>temporariesIn: methodSelector [
 	^ self expected: 'Vertical bar'
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>temporaryBlockVariablesFor: aBlockNode [
+{ #category : #'expression types' }
+Parser >> temporaryBlockVariablesFor: aBlockNode [
 	"Scan and answer temporary block variables."
 
 	| variables |
@@ -1401,11 +1187,8 @@ Parser>>temporaryBlockVariablesFor: aBlockNode [
 		ifFalse: [self expected: 'Vertical bar']
 ]
 
-{
-	#category : #'expression types',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>variable [
+{ #category : #'expression types' }
+Parser >> variable [
 
 	| varName varStart varEnd |
 	varStart := self startOfNextToken + requestorOffset.
@@ -1416,11 +1199,8 @@ Parser>>variable [
 		ifUnknown: [self correctVariable: varName interval: (varStart to: varEnd)]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Parser>>warns [
+{ #category : #private }
+Parser >> warns [
 	"return whether the parser will ask the user for correction"
 	^ true
 ]

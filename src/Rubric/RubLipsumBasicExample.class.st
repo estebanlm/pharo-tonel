@@ -12,26 +12,19 @@ Class {
 	#instVars : [
 		'textModel'
 	],
-	#category : #Rubric-Editing-Widgets-Examples,
-	#timestamp : 'AlainPlantec 3/17/2014 13:38'
+	#category : #Rubric-Editing-Widgets-Examples
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLipsumBasicExample class>>openNotWrapped [
+{ #category : #examples }
+RubLipsumBasicExample class >> openNotWrapped [
 	"self openNotWrapped"
 
 	self openScrolledText: self new newScrolledTextNotWrapped.
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLipsumBasicExample class>>openScrolledText: aScrolledText [
+{ #category : #examples }
+RubLipsumBasicExample class >> openScrolledText: aScrolledText [
 
 	|  window |
 	window := StandardWindow new.
@@ -41,46 +34,31 @@ RubLipsumBasicExample class>>openScrolledText: aScrolledText [
 	window openInWorld
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLipsumBasicExample class>>openWrapped [
+{ #category : #examples }
+RubLipsumBasicExample class >> openWrapped [
 	"self openWrapped"
 	self openScrolledText: self new newScrolledTextWrapped.
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLipsumBasicExample class>>spyAnnouncer [
+{ #category : #examples }
+RubLipsumBasicExample class >> spyAnnouncer [
 	"Set it to true if you want to observe textArea announcements"
 	^ false
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLipsumBasicExample class>>title [
+{ #category : #examples }
+RubLipsumBasicExample class >> title [
 	^ 'Lorem Ipsum example'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLipsumBasicExample>>loremIpsum [
+{ #category : #accessing }
+RubLipsumBasicExample >> loremIpsum [
 	^ String loremIpsum: 81233
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLipsumBasicExample>>newScrolledText [
+{ #category : #'user interface' }
+RubLipsumBasicExample >> newScrolledText [
 	| st |
 	st := self textModel newScrolledText
 		withAdornment;
@@ -93,26 +71,17 @@ RubLipsumBasicExample>>newScrolledText [
 	^ st
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLipsumBasicExample>>newScrolledTextNotWrapped [
+{ #category : #'user interface' }
+RubLipsumBasicExample >> newScrolledTextNotWrapped [
 	^ self newScrolledText 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLipsumBasicExample>>newScrolledTextWrapped [
+{ #category : #'user interface' }
+RubLipsumBasicExample >> newScrolledTextWrapped [
 	^ self newScrolledText beWrapped
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLipsumBasicExample>>textModel [
+{ #category : #accessing }
+RubLipsumBasicExample >> textModel [
 	^ textModel ifNil: [textModel := RubScrolledTextModel new text: self loremIpsum ]
 ]

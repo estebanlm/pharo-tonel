@@ -32,87 +32,62 @@ Class {
 		'menuHolder',
 		'shortcutHolder'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 6/30/2016 09:59'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel class>>adapterName [
+{ #category : #specs }
+ButtonModel class >> adapterName [
 
 	^ #ButtonAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel class>>defaultSpec [
+{ #category : #specs }
+ButtonModel class >> defaultSpec [
 	<spec>
 	
 	^ #(ButtonAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel class>>example [
+{ #category : #example }
+ButtonModel class >> example [
 	^ self new
 		openWithSpec;
 		label: 'Click me'
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel class>>title [
+{ #category : #specs }
+ButtonModel class >> title [
 
 	^ 'Button'
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>action [
+{ #category : #api }
+ButtonModel >> action [
 	"<api: #inspect>"
 	"get the block performed when the button is clicked"
 
 	^ actionHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>action: aBlock [
+{ #category : #api }
+ButtonModel >> action: aBlock [
 	"set the block performed when the button is clicked"
 	"<api: #block getter: #getAction registration: #whenActionChangedDo:>"
 
 	actionHolder value: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>addShortcutTipFor: aString [
+{ #category : #private }
+ButtonModel >> addShortcutTipFor: aString [
 
 	^ self 
 		addShortcutTipFor: self shortcutCharacter
 		on: aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>addShortcutTipFor: aCharacter on: aString [
+{ #category : #private }
+ButtonModel >> addShortcutTipFor: aCharacter on: aString [
 	| index text |
 	
 	aString isNil ifTrue: [ ^ nil ].
@@ -128,95 +103,65 @@ ButtonModel>>addShortcutTipFor: aCharacter on: aString [
 		yourself
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>askBeforeChanging [
+{ #category : #api }
+ButtonModel >> askBeforeChanging [
 
 	^ askBeforeChangingHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>askBeforeChanging: aBoolean [
+{ #category : #api }
+ButtonModel >> askBeforeChanging: aBoolean [
 
 	askBeforeChangingHolder value: aBoolean
 ]
 
-{
-	#category : #private-focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>ensureKeyBindingsFor: widget [
+{ #category : #private-focus }
+ButtonModel >> ensureKeyBindingsFor: widget [
 
 	super ensureKeyBindingsFor: widget.
 	self shortcut ifNotNil: [ :s | self registerShortcut: s ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>font [
+{ #category : #api }
+ButtonModel >> font [
 
 	^ fontHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>font: aFont [
+{ #category : #api }
+ButtonModel >> font: aFont [
 
 	fontHolder value: aFont
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>getAction [
+{ #category : #api }
+ButtonModel >> getAction [
 	"<api: #inspect>"
 	"get the block performed when the button is clicked"
 
 	^ actionHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>icon [
+{ #category : #api }
+ButtonModel >> icon [
 
 	^ iconHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>icon: anIcon [
+{ #category : #api }
+ButtonModel >> icon: anIcon [
 
 	iconHolder value: anIcon
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>iconName: aSymbol [
+{ #category : #api }
+ButtonModel >> iconName: aSymbol [
 
 	iconHolder value: (self iconNamed: aSymbol)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>initialize [
+{ #category : #initialization }
+ButtonModel >> initialize [
 
 	super initialize.
 
@@ -247,60 +192,42 @@ ButtonModel>>initialize [
 	self bindKeyCombination: Character space toAction: [ self action ].
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>label [
+{ #category : #morphic }
+ButtonModel >> label [
 	"<api: #inspect>"
 	
  	^ self addShortcutTipFor: labelHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>label: aStringOrImageMorph [
+{ #category : #api }
+ButtonModel >> label: aStringOrImageMorph [
 	"<api: #string getter: #label registration: #whenLabelChangedDo:>"
 
 	labelHolder value: aStringOrImageMorph
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>menu [
+{ #category : #api }
+ButtonModel >> menu [
 
 	^ menuHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>menu: aMenu [
+{ #category : #api }
+ButtonModel >> menu: aMenu [
 
 	menuHolder value: aMenu
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>performAction [
+{ #category : #morphic }
+ButtonModel >> performAction [
 
 	actionHolder value value.
 	" Here I set a dummy value just to make the holder raise an event "
 	actionPerformedHolder value: nil.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>registerShortcut: newShortcut [
+{ #category : #private }
+ButtonModel >> registerShortcut: newShortcut [
 	| receiver |
 	receiver := self window.
 	(receiver isNil or: [ newShortcut isNil ]) ifTrue: [ ^ self ].
@@ -310,60 +237,42 @@ ButtonModel>>registerShortcut: newShortcut [
 		toAction: [ self performAction ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>shortcut [
+{ #category : #api }
+ButtonModel >> shortcut [
 
 	^ shortcutHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>shortcut: aShortcut [
+{ #category : #api }
+ButtonModel >> shortcut: aShortcut [
 
 	shortcutHolder value: aShortcut
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>shortcutCharacter [
+{ #category : #private }
+ButtonModel >> shortcutCharacter [
 
 	^ self shortcut 
 		ifNil: [ nil ]
 		ifNotNil: [ :s | s currentCharacter ]
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>state [
+{ #category : #morphic }
+ButtonModel >> state [
 	"<api: #inspect>"
 	^ stateHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>state: aBoolean [
+{ #category : #api }
+ButtonModel >> state: aBoolean [
 	"<api: #boolean getter: #state registration: #whenStateChangedDo:>"
 	"set if the button is highlighted"
 	
 	^ stateHolder value: aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>unregisterShortcut: oldShortcut [
+{ #category : #private }
+ButtonModel >> unregisterShortcut: oldShortcut [
 	| receiver |
 	receiver := self window.
 	(receiver isNil or: [ oldShortcut isNil ]) ifTrue: [ ^ self ].
@@ -372,50 +281,35 @@ ButtonModel>>unregisterShortcut: oldShortcut [
 		removeKeyCombination: oldShortcut 
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>whenActionChangedDo: aBlock  [
+{ #category : #api-events }
+ButtonModel >> whenActionChangedDo: aBlock [ 
 
 	actionHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>whenActionPerformedDo: aBlock [
+{ #category : #api-events }
+ButtonModel >> whenActionPerformedDo: aBlock [
 	"set a block to perform after that the button has been aclicked, and its action performed"
 
 	actionPerformedHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>whenFontChangedDo: aBlock [
+{ #category : #api-events }
+ButtonModel >> whenFontChangedDo: aBlock [
 	"set a block to perform after that the button has been aclicked, and its action performed"
 
 	fontHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>whenLabelChangedDo: aBlock [
+{ #category : #api-events }
+ButtonModel >> whenLabelChangedDo: aBlock [
 	"set a block to perform after that the button has been aclicked, and its action performed"
 
 	labelHolder whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ButtonModel>>whenStateChangedDo: aBlock [
+{ #category : #api-events }
+ButtonModel >> whenStateChangedDo: aBlock [
 	"set a block to perform after that the button has been aclicked, and its action performed"
 
 	stateHolder whenChangedDo: aBlock

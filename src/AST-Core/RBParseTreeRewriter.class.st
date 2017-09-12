@@ -10,15 +10,11 @@ Class {
 	#instVars : [
 		'tree'
 	],
-	#category : #AST-Core-Matching,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Matching
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter class>>removeTemporaryNamed: aName  [
+{ #category : #'instance creation' }
+RBParseTreeRewriter class >> removeTemporaryNamed: aName [ 
 	| rewriteRule |
 	rewriteRule := self new.
 	rewriteRule replace: '| `@temps1 ' , aName , ' `@temps2 | ``@.Statements'
@@ -26,11 +22,8 @@ RBParseTreeRewriter class>>removeTemporaryNamed: aName  [
 	^rewriteRule
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter class>>rename: varName to: newVarName  [
+{ #category : #'instance creation' }
+RBParseTreeRewriter class >> rename: varName to: newVarName [ 
 	| rewriteRule |
 	rewriteRule := self new.
 	rewriteRule
@@ -39,11 +32,8 @@ RBParseTreeRewriter class>>rename: varName to: newVarName  [
 	^rewriteRule
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter class>>rename: varName to: newVarName handler: aBlock  [
+{ #category : #'instance creation' }
+RBParseTreeRewriter class >> rename: varName to: newVarName handler: aBlock [ 
 	"Rename varName to newVarName, evaluating aBlock if there is a 
 	temporary variable with the same name as newVarName. This 
 	does not change temporary variables with varName."
@@ -60,11 +50,8 @@ RBParseTreeRewriter class>>rename: varName to: newVarName handler: aBlock  [
 	^rewriteRule
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter class>>replace: code with: newCode in: aParseTree  [
+{ #category : #accessing }
+RBParseTreeRewriter class >> replace: code with: newCode in: aParseTree [ 
 	^(self 
 		replace: code
 		with: newCode
@@ -73,11 +60,8 @@ RBParseTreeRewriter class>>replace: code with: newCode in: aParseTree  [
 		tree
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter class>>replace: code with: newCode in: aParseTree onInterval: anInterval  [
+{ #category : #accessing }
+RBParseTreeRewriter class >> replace: code with: newCode in: aParseTree onInterval: anInterval [ 
 	| rewriteRule |
 	rewriteRule := self new.
 	^rewriteRule
@@ -88,11 +72,8 @@ RBParseTreeRewriter class>>replace: code with: newCode in: aParseTree onInterval
 		tree
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter class>>replace: code with: newCode method: aBoolean  [
+{ #category : #'instance creation' }
+RBParseTreeRewriter class >> replace: code with: newCode method: aBoolean [ 
 	| rewriteRule |
 	rewriteRule := self new.
 	aBoolean 
@@ -101,11 +82,8 @@ RBParseTreeRewriter class>>replace: code with: newCode method: aBoolean  [
 	^rewriteRule
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter class>>replaceLiteral: literal with: newLiteral  [
+{ #category : #'instance creation' }
+RBParseTreeRewriter class >> replaceLiteral: literal with: newLiteral [ 
 	| rewriteRule |
 	rewriteRule := self new.
 	rewriteRule replaceTree: (RBLiteralNode value: literal)
@@ -113,11 +91,8 @@ RBParseTreeRewriter class>>replaceLiteral: literal with: newLiteral  [
 	^rewriteRule
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter class>>replaceStatements: code with: newCode in: aParseTree onInterval: anInterval  [
+{ #category : #accessing }
+RBParseTreeRewriter class >> replaceStatements: code with: newCode in: aParseTree onInterval: anInterval [ 
 	| tree replaceStmt |
 	tree := self buildTree: code method: false.
 	tree isSequence 
@@ -136,11 +111,8 @@ RBParseTreeRewriter class>>replaceStatements: code with: newCode in: aParseTree 
 		onInterval: anInterval
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter class>>variable: aVarName getter: getMethod setter: setMethod  [
+{ #category : #'instance creation' }
+RBParseTreeRewriter class >> variable: aVarName getter: getMethod setter: setMethod [ 
 	^self 
 		variable: aVarName
 		getter: getMethod
@@ -148,11 +120,8 @@ RBParseTreeRewriter class>>variable: aVarName getter: getMethod setter: setMetho
 		receiver: 'self'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter class>>variable: aVarName getter: getMethod setter: setMethod receiver: aString  [
+{ #category : #'instance creation' }
+RBParseTreeRewriter class >> variable: aVarName getter: getMethod setter: setMethod receiver: aString [ 
 	| rewriteRule |
 	rewriteRule := self new.
 	rewriteRule
@@ -162,11 +131,8 @@ RBParseTreeRewriter class>>variable: aVarName getter: getMethod setter: setMetho
 	^rewriteRule
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>executeTree: aParseTree  [
+{ #category : #accessing }
+RBParseTreeRewriter >> executeTree: aParseTree [ 
 	| oldContext |
 	oldContext := context.
 	context := SmallDictionary new.
@@ -176,212 +142,146 @@ RBParseTreeRewriter>>executeTree: aParseTree  [
 	^answer
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>foundMatch [
+{ #category : #private }
+RBParseTreeRewriter >> foundMatch [
 	answer := true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>lookForMoreMatchesInContext: oldContext  [
+{ #category : #private }
+RBParseTreeRewriter >> lookForMoreMatchesInContext: oldContext [ 
 	oldContext keysAndValuesDo: [:key :value | 
 		(key isString not and: [key recurseInto]) 
 			ifTrue: 
 				[oldContext at: key put: (value collect: [:each | self visitNode: each])]]
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>replace: searchString with: replaceString  [
+{ #category : #replacing }
+RBParseTreeRewriter >> replace: searchString with: replaceString [ 
 	self addRule: (RBStringReplaceRule searchFor: searchString
 				replaceWith: replaceString)
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>replace: searchString with: replaceString when: aBlock  [
+{ #category : #replacing }
+RBParseTreeRewriter >> replace: searchString with: replaceString when: aBlock [ 
 	self addRule: (RBStringReplaceRule 
 				searchFor: searchString
 				replaceWith: replaceString
 				when: aBlock)
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>replace: searchString withValueFrom: replaceBlock  [
+{ #category : #replacing }
+RBParseTreeRewriter >> replace: searchString withValueFrom: replaceBlock [ 
 	self addRule: (RBBlockReplaceRule searchFor: searchString
 				replaceWith: replaceBlock)
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>replace: searchString withValueFrom: replaceBlock when: conditionBlock  [
+{ #category : #replacing }
+RBParseTreeRewriter >> replace: searchString withValueFrom: replaceBlock when: conditionBlock [ 
 	self addRule: (RBBlockReplaceRule 
 				searchFor: searchString
 				replaceWith: replaceBlock
 				when: conditionBlock)
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>replaceArgument: searchString with: replaceString  [
+{ #category : #replacing }
+RBParseTreeRewriter >> replaceArgument: searchString with: replaceString [ 
 	self addArgumentRule: (RBStringReplaceRule searchFor: searchString
 				replaceWith: replaceString)
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>replaceArgument: searchString with: replaceString when: aBlock  [
+{ #category : #replacing }
+RBParseTreeRewriter >> replaceArgument: searchString with: replaceString when: aBlock [ 
 	self addArgumentRule: (RBStringReplaceRule 
 				searchFor: searchString
 				replaceWith: replaceString
 				when: aBlock)
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>replaceArgument: searchString withValueFrom: replaceBlock  [
+{ #category : #replacing }
+RBParseTreeRewriter >> replaceArgument: searchString withValueFrom: replaceBlock [ 
 	self addArgumentRule: (RBBlockReplaceRule searchFor: searchString
 				replaceWith: replaceBlock)
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>replaceArgument: searchString withValueFrom: replaceBlock when: conditionBlock  [
+{ #category : #replacing }
+RBParseTreeRewriter >> replaceArgument: searchString withValueFrom: replaceBlock when: conditionBlock [ 
 	self addArgumentRule: (RBBlockReplaceRule 
 				searchFor: searchString
 				replaceWith: replaceBlock
 				when: conditionBlock)
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>replaceMethod: searchString with: replaceString  [
+{ #category : #replacing }
+RBParseTreeRewriter >> replaceMethod: searchString with: replaceString [ 
 	self addRule: (RBStringReplaceRule searchForMethod: searchString
 				replaceWith: replaceString)
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>replaceMethod: searchString with: replaceString when: aBlock  [
+{ #category : #replacing }
+RBParseTreeRewriter >> replaceMethod: searchString with: replaceString when: aBlock [ 
 	self addRule: (RBStringReplaceRule 
 				searchForMethod: searchString
 				replaceWith: replaceString
 				when: aBlock)
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>replaceMethod: searchString withValueFrom: replaceBlock  [
+{ #category : #replacing }
+RBParseTreeRewriter >> replaceMethod: searchString withValueFrom: replaceBlock [ 
 	self addRule: (RBBlockReplaceRule searchForMethod: searchString
 				replaceWith: replaceBlock)
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>replaceMethod: searchString withValueFrom: replaceBlock when: conditionBlock  [
+{ #category : #replacing }
+RBParseTreeRewriter >> replaceMethod: searchString withValueFrom: replaceBlock when: conditionBlock [ 
 	self addRule: (RBBlockReplaceRule 
 				searchForMethod: searchString
 				replaceWith: replaceBlock
 				when: conditionBlock)
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>replaceTree: searchTree withTree: replaceTree  [
+{ #category : #replacing }
+RBParseTreeRewriter >> replaceTree: searchTree withTree: replaceTree [ 
 	self addRule: (RBStringReplaceRule searchForTree: searchTree
 				replaceWith: replaceTree)
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>replaceTree: searchTree withTree: replaceTree when: aBlock  [
+{ #category : #replacing }
+RBParseTreeRewriter >> replaceTree: searchTree withTree: replaceTree when: aBlock [ 
 	self addRule: (RBStringReplaceRule 
 				searchForTree: searchTree
 				replaceWith: replaceTree
 				when: aBlock)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>tree [
+{ #category : #accessing }
+RBParseTreeRewriter >> tree [
 	^tree
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>visitArgumentNodes: aNodeCollection  [
+{ #category : #visiting }
+RBParseTreeRewriter >> visitArgumentNodes: aNodeCollection [ 
 	^aNodeCollection collect: [:each | self visitArgumentNode: each]
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>visitArrayNode: anArrayNode [
+{ #category : #'visitor-double dispatching' }
+RBParseTreeRewriter >> visitArrayNode: anArrayNode [
 	anArrayNode statements: (anArrayNode statements collect: [:each | self visitNode: each])
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>visitAssignmentNode: anAssignmentNode  [
+{ #category : #'visitor-double dispatching' }
+RBParseTreeRewriter >> visitAssignmentNode: anAssignmentNode [ 
 	anAssignmentNode variable: (self visitNode: anAssignmentNode variable).
 	anAssignmentNode value: (self visitNode: anAssignmentNode value)
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>visitBlockNode: aBlockNode  [
+{ #category : #'visitor-double dispatching' }
+RBParseTreeRewriter >> visitBlockNode: aBlockNode [ 
 	aBlockNode arguments: (self visitArgumentNodes: aBlockNode arguments).
 	aBlockNode body: (self visitNode: aBlockNode body)
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>visitCascadeNode: aCascadeNode  [
+{ #category : #'visitor-double dispatching' }
+RBParseTreeRewriter >> visitCascadeNode: aCascadeNode [ 
 	| newMessages notFound |
 	newMessages := OrderedCollection new: aCascadeNode messages size.
 	notFound := OrderedCollection new: aCascadeNode messages size.
@@ -413,54 +313,36 @@ RBParseTreeRewriter>>visitCascadeNode: aCascadeNode  [
 	aCascadeNode messages: newMessages
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>visitLiteralArrayNode: aRBArrayLiteralNode [
+{ #category : #'visitor-double dispatching' }
+RBParseTreeRewriter >> visitLiteralArrayNode: aRBArrayLiteralNode [
 	aRBArrayLiteralNode contents: (aRBArrayLiteralNode contents collect: [ :each | self visitNode: each ])
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>visitMessageNode: aMessageNode [
+{ #category : #'visitor-double dispatching' }
+RBParseTreeRewriter >> visitMessageNode: aMessageNode [
 	aMessageNode receiver: (self visitNode: aMessageNode receiver).
 	aMessageNode arguments: (aMessageNode arguments collect: [ :each | self visitNode: each ])
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>visitMethodNode: aMethodNode [
+{ #category : #'visitor-double dispatching' }
+RBParseTreeRewriter >> visitMethodNode: aMethodNode [
 	aMethodNode arguments: (self visitArgumentNodes: aMethodNode arguments).
 	aMethodNode pragmas: (aMethodNode pragmas collect: [ :each | self visitNode: each ]).
 	aMethodNode body: (self visitNode: aMethodNode body)
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>visitPragmaNode: aPragmaNode [
+{ #category : #'visitor-double dispatching' }
+RBParseTreeRewriter >> visitPragmaNode: aPragmaNode [
 	aPragmaNode arguments: (aPragmaNode arguments collect: [ :each | self visitNode: each ])
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>visitReturnNode: aReturnNode  [
+{ #category : #'visitor-double dispatching' }
+RBParseTreeRewriter >> visitReturnNode: aReturnNode [ 
 	aReturnNode value: (self visitNode: aReturnNode value)
 ]
 
-{
-	#category : #'visitor-double dispatching',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBParseTreeRewriter>>visitSequenceNode: aSequenceNode [
+{ #category : #'visitor-double dispatching' }
+RBParseTreeRewriter >> visitSequenceNode: aSequenceNode [
 	aSequenceNode temporaries: (self visitTemporaryNodes: aSequenceNode temporaries).
 	aSequenceNode statements: (aSequenceNode statements collect: [ :each | self visitNode: each ])
 ]

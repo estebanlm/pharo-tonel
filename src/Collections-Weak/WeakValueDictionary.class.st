@@ -4,24 +4,17 @@ I am a dictionary holding only weakly on my values. Clients may expect to get a 
 Class {
 	#name : #WeakValueDictionary,
 	#superclass : #Dictionary,
-	#category : #Collections-Weak,
-	#timestamp : '<historical>'
+	#category : #Collections-Weak
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakValueDictionary>>add: anAssociation [
+{ #category : #adding }
+WeakValueDictionary >> add: anAssociation [
 	self at: anAssociation key put: anAssociation value.
 	^ anAssociation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakValueDictionary>>at: key put: anObject  [
+{ #category : #accessing }
+WeakValueDictionary >> at: key put: anObject [ 
 	"Set the value at key to be anObject.  If key is not found, create a new
 	entry for key and set is value to anObject. Answer anObject."
 	| index element |
@@ -33,11 +26,8 @@ WeakValueDictionary>>at: key put: anObject  [
 	^ anObject
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakValueDictionary>>valuesDo: aBlock  [
+{ #category : #enumerating }
+WeakValueDictionary >> valuesDo: aBlock [ 
 	"See comments in Dictionary>>valuesDo:.  The code keeps
 	a reference to the value to facilitate debugging"
 

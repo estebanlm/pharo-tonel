@@ -1,12 +1,7 @@
-Extension {
-	#name : #Time
-}
+Extension { #name : #Time }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Time>>gtInspectorDetailsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Time >> gtInspectorDetailsIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	^ composite table
 		title: [ 'Details' ];

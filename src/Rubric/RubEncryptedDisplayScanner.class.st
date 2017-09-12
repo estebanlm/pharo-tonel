@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RubEncryptedDisplayScanner,
 	#superclass : #RubDisplayScanner,
-	#category : #Rubric-TextScanning,
-	#timestamp : ''
+	#category : #Rubric-TextScanning
 }
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubEncryptedDisplayScanner>>displayLine: textLine offset: offset leftInRun: leftInRun [
+{ #category : #scanning }
+RubEncryptedDisplayScanner >> displayLine: textLine offset: offset leftInRun: leftInRun [
 	"The call on the primitive (scanCharactersFrom:to:in:rightX:) will be interrupted according to an array of stop conditions passed to the scanner at which time the code to handle the stop condition is run and the call on the primitive continued until a stop condition returns true (which means the line has terminated).  leftInRun is the # of characters left to scan in the current run; when 0, it is time to call setStopConditions."
 	| stopCondition nowLeftInRun startIndex string lastPos |
 	line := textLine.

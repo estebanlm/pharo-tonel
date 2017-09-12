@@ -14,45 +14,32 @@ Class {
 	#classVars : [
 		'ActionMaps'
 	],
-	#category : #'System-Object Events',
-	#timestamp : 'tlk 5/7/2006 20:01'
+	#category : #'System-Object Events'
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager class>>actionMapFor: anObject [
+{ #category : #accessing }
+EventManager class >> actionMapFor: anObject [
 
     ^self actionMaps
         at: anObject
         ifAbsent: [self createActionMap]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager class>>actionMaps [
+{ #category : #accessing }
+EventManager class >> actionMaps [
 
 	^ActionMaps ifNil: [ActionMaps := WeakIdentityKeyDictionary new]
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager class>>cleanUp: aggressive [
+{ #category : #cleanup }
+EventManager class >> cleanUp: aggressive [
 	"Dump all ActionMaps but only when we're aggressively cleaning"
 
 	aggressive ifTrue: [ActionMaps := nil].
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager class>>flushEvents [
+{ #category : #cleanup }
+EventManager class >> flushEvents [
 	"EventManager flushEvents"
 	
 	self actionMaps keysAndValuesDo:[:rcvr :evtDict| rcvr ifNotNil:[
@@ -63,62 +50,44 @@ EventManager class>>flushEvents [
 	EventManager actionMaps finalizeValues. 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager class>>initialize [
+{ #category : #initialization }
+EventManager class >> initialize [
 
 	"self initialize."
 	
 	SessionManager default registerSystemClassNamed: self name
 ]
 
-{
-	#category : #releasing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager class>>releaseActionMapFor: anObject [
+{ #category : #releasing }
+EventManager class >> releaseActionMapFor: anObject [
 
 	self actionMaps
 		removeKey: anObject
 		ifAbsent: []
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager class>>shutDown	 [
+{ #category : #'system startup' }
+EventManager class >> shutDown [	
 	self flushEvents.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager class>>updateableActionMapFor: anObject [
+{ #category : #accessing }
+EventManager class >> updateableActionMapFor: anObject [
 
     ^self actionMaps
         at: anObject
         ifAbsentPut: [self createActionMap]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager>>actionMap [
+{ #category : #accessing }
+EventManager >> actionMap [
 	^ actionMap
 		ifNil:  [ self createActionMap ]
 		ifNotNil: [ actionMap ]
 ]
 
-{
-	#category : #'dependents access',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager>>addDependent: anObject [
+{ #category : #'dependents access' }
+EventManager >> addDependent: anObject [
 	"Make the given object one of the receiver's dependents."
 
 	self
@@ -128,21 +97,15 @@ EventManager>>addDependent: anObject [
 	^anObject
 ]
 
-{
-	#category : #'dependents access',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager>>breakDependents [
+{ #category : #'dependents access' }
+EventManager >> breakDependents [
 	"Remove all of the receiver's dependents."
 
 	self removeActionsForEvent: self changedEventSelector
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager>>changed: aParameter  [
+{ #category : #updating }
+EventManager >> changed: aParameter [ 
 	"Receiver changed. The change is denoted by the argument aParameter. 
 	Usually the argument is a Symbol that is part of the dependent's change 
 	protocol. Inform all of the dependents."
@@ -152,50 +115,35 @@ EventManager>>changed: aParameter  [
 		with: aParameter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager>>changedEventSelector [
+{ #category : #accessing }
+EventManager >> changedEventSelector [
 
 	^#changed:
 ]
 
-{
-	#category : #'dependents access',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager>>dependents [
+{ #category : #'dependents access' }
+EventManager >> dependents [
 
 	^(self actionSequenceForEvent: self changedEventSelector) asSet
 		collect:
 			[:each | each receiver]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager>>postCopy [
+{ #category : #copying }
+EventManager >> postCopy [
 
 	super postCopy.
 	self releaseActionMap.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager>>releaseActionMap [
+{ #category : #accessing }
+EventManager >> releaseActionMap [
 
     actionMap := nil
 ]
 
-{
-	#category : #'dependents access',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager>>removeDependent: anObject [
+{ #category : #'dependents access' }
+EventManager >> removeDependent: anObject [
 	"Remove the given object as one of the receiver's dependents."
 
 	self 
@@ -204,20 +152,14 @@ EventManager>>removeDependent: anObject [
 	^ anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager>>updateEventSelector [
+{ #category : #accessing }
+EventManager >> updateEventSelector [
 
 	^#update:
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-EventManager>>updateableActionMap [
+{ #category : #accessing }
+EventManager >> updateableActionMap [
 	actionMap 
 		ifNil: [ actionMap := self createActionMap ].
 	^actionMap 

@@ -4,33 +4,23 @@ Checks ensure:, ifCurtailed:, and showWhile: blocks for assignments or returns t
 Class {
 	#name : #RBAssignmentInBlockRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 17:27'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAssignmentInBlockRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBAssignmentInBlockRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'AssignmentInBlockRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAssignmentInBlockRule>>group [
+{ #category : #accessing }
+RBAssignmentInBlockRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAssignmentInBlockRule>>initialize [
+{ #category : #initialization }
+RBAssignmentInBlockRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyOf: #(
@@ -43,18 +33,12 @@ RBAssignmentInBlockRule>>initialize [
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAssignmentInBlockRule>>name [
+{ #category : #accessing }
+RBAssignmentInBlockRule >> name [
 	^ 'Unnecessary assignment or return in block'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAssignmentInBlockRule>>rationale [
+{ #category : #accessing }
+RBAssignmentInBlockRule >> rationale [
 	^ 'Checks ensure:, ifCurtailed:, and showWhile: blocks for assignments or returns that are the last statement in the block. These assignments or returns can be moved outside the block since these messages return the value of the block.'
 ]

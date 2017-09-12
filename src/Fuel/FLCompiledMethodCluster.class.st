@@ -9,61 +9,42 @@ Class {
 	#classInstVars : [
 		'transformationForSerializing'
 	],
-	#category : #Fuel-Clusters,
-	#timestamp : '<historical>'
+	#category : #Fuel-Clusters
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLCompiledMethodCluster class>>cleanUp [
+{ #category : #cleanup }
+FLCompiledMethodCluster class >> cleanUp [
 	self initialize 
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLCompiledMethodCluster class>>clusterBucketIn: aClusterization [
+{ #category : #analyzing }
+FLCompiledMethodCluster class >> clusterBucketIn: aClusterization [
 
 	^aClusterization primitivesBucket
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLCompiledMethodCluster class>>initialize  [
+{ #category : #'class initialization' }
+FLCompiledMethodCluster class >> initialize [ 
 	self setTrailerWithSourceCode
 ]
 
-{
-	#category : #configuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLCompiledMethodCluster class>>setTrailerWithNoChange [
+{ #category : #configuring }
+FLCompiledMethodCluster class >> setTrailerWithNoChange [
 	"Make compiled methods be serialized as they are."
 
 	^ self transformationForSerializing: [:aCompiledMethod | aCompiledMethod ]
 ]
 
-{
-	#category : #configuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLCompiledMethodCluster class>>setTrailerWithNoSource [
+{ #category : #configuring }
+FLCompiledMethodCluster class >> setTrailerWithNoSource [
 	"Make compiled methods be serialized without source code."
 
 	^ self transformationForSerializing: [:aCompiledMethod |
 		aCompiledMethod copyWithTrailerBytes: CompiledMethodTrailer empty ]
 ]
 
-{
-	#category : #configuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLCompiledMethodCluster class>>setTrailerWithSourceCode [
+{ #category : #configuring }
+FLCompiledMethodCluster class >> setTrailerWithSourceCode [
 	"Make compiled methods be serialized with embedded source code."
 
 	^ self transformationForSerializing: [:aCompiledMethod | 
@@ -71,28 +52,19 @@ FLCompiledMethodCluster class>>setTrailerWithSourceCode [
 			(CompiledMethodTrailer new sourceCode: aCompiledMethod sourceCode) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLCompiledMethodCluster class>>transformationForSerializing  [
+{ #category : #accessing }
+FLCompiledMethodCluster class >> transformationForSerializing [ 
 	"Answer a block closure that receives a CompiledMethod and returns another or the same CompiledMethod ready for being serialized."
 	^ transformationForSerializing
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLCompiledMethodCluster class>>transformationForSerializing: aBlockWithOneArgument  [
+{ #category : #accessing }
+FLCompiledMethodCluster class >> transformationForSerializing: aBlockWithOneArgument [ 
 	transformationForSerializing := aBlockWithOneArgument
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLCompiledMethodCluster>>materializeInstanceWith: aDecoder [
+{ #category : #serialize/materialize }
+FLCompiledMethodCluster >> materializeInstanceWith: aDecoder [
 
 	| compiledMethod header bytecodesPlusTrailerSize |
 
@@ -107,42 +79,30 @@ FLCompiledMethodCluster>>materializeInstanceWith: aDecoder [
 	^ compiledMethod
 ]
 
-{
-	#category : #protected,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLCompiledMethodCluster>>materializeLiteralsTo: compiledMethod with: aDecoder [
+{ #category : #protected }
+FLCompiledMethodCluster >> materializeLiteralsTo: compiledMethod with: aDecoder [
 
 	1 to: compiledMethod numLiterals 
 		do: [ :index | compiledMethod literalAt: index put: aDecoder nextEncodedReference ]
 
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLCompiledMethodCluster>>materializeReferencesStepWith: aDecoder [
+{ #category : #serialize/materialize }
+FLCompiledMethodCluster >> materializeReferencesStepWith: aDecoder [
 
 	objects do: [ :aCompiledMethod | self materializeLiteralsTo: aCompiledMethod with: aDecoder ]
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLCompiledMethodCluster>>referencesOf: aCompiledMethod do: aBlock [
+{ #category : #analyzing }
+FLCompiledMethodCluster >> referencesOf: aCompiledMethod do: aBlock [
 
 	aCompiledMethod fuelPrepare.
 	1 to: aCompiledMethod numLiterals
 		do: [ :index | aBlock value: (aCompiledMethod literalAt: index) ]
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLCompiledMethodCluster>>serializeInstance: aCompiledMethodToSerialize with: anEncoder [
+{ #category : #serialize/materialize }
+FLCompiledMethodCluster >> serializeInstance: aCompiledMethodToSerialize with: anEncoder [
 	| header bytecodesPlusTrailerSize cmSize cmInitialPC aCompiledMethod |
 	"In 64 bit VMs the header is actually 64 bits wide but only 32 bits
 	contain information."
@@ -161,22 +121,16 @@ FLCompiledMethodCluster>>serializeInstance: aCompiledMethodToSerialize with: anE
 		do: [ :index | anEncoder encodeByte: (aCompiledMethod at: index) ]
 ]
 
-{
-	#category : #protected,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLCompiledMethodCluster>>serializeLiteralsOf: aCompiledMethod with: anEncoder [
+{ #category : #protected }
+FLCompiledMethodCluster >> serializeLiteralsOf: aCompiledMethod with: anEncoder [
 
 	aCompiledMethod fuelPrepare.
 	1 to: aCompiledMethod numLiterals 
 		do: [ :index | anEncoder encodeReferenceTo: (aCompiledMethod literalAt: index) ]
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLCompiledMethodCluster>>serializeReferencesStepWith: anEncoder [
+{ #category : #serialize/materialize }
+FLCompiledMethodCluster >> serializeReferencesStepWith: anEncoder [
 
 	objects do: [ :aCompiledMethod | self serializeLiteralsOf: aCompiledMethod with: anEncoder ]
 ]

@@ -9,24 +9,17 @@ Class {
 		'contours',
 		'last'
 	],
-	#category : #Athens-Balloon,
-	#timestamp : '<historical>'
+	#category : #Athens-Balloon
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonPath>>contours [
+{ #category : #accessing }
+AthensBalloonPath >> contours [
 	
 	^ contours
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonPath>>contoursForFilling [
+{ #category : #converting }
+AthensBalloonPath >> contoursForFilling [
 	"answer a collection of contours, ready for filling by balloon engine"
 	^ contours collect: [:contour |
 		contour last = contour first 
@@ -35,20 +28,14 @@ AthensBalloonPath>>contoursForFilling [
 	]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonPath>>contoursForStroke [
+{ #category : #converting }
+AthensBalloonPath >> contoursForStroke [
 	"answer a collection of contours, ready for stroking by balloon engine"
 	^ contours collect: [:contour | contour asArray ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonPath>>convertFromBuilder: aBuilder [
+{ #category : #converting }
+AthensBalloonPath >> convertFromBuilder: aBuilder [
 	| segment cContours |
 	bounds := aBuilder pathBounds.
 	segment := aBuilder pathStart.
@@ -66,11 +53,8 @@ AthensBalloonPath>>convertFromBuilder: aBuilder [
 	contours := cContours.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonPath>>duplicateLastPoint [
+{ #category : #private }
+AthensBalloonPath >> duplicateLastPoint [
 
 	contours last size < 2 ifFalse: [
 		"duplicate last contour point"
@@ -79,40 +63,28 @@ AthensBalloonPath>>duplicateLastPoint [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonPath>>numContours [
+{ #category : #accessing }
+AthensBalloonPath >> numContours [
 	^ contours size
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonPath>>paintFillsUsing: aPaint on: anAthensCanvas  [
+{ #category : #drawing }
+AthensBalloonPath >> paintFillsUsing: aPaint on: anAthensCanvas [ 
 	
 	"This method is a part of rendering dispatch  Canvas->receiver->paint"
 	
 	^ aPaint athensFillPath: self on: anAthensCanvas
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonPath>>paintStrokeUsing: paint on: anAthensCanvas  [
+{ #category : #drawing }
+AthensBalloonPath >> paintStrokeUsing: paint on: anAthensCanvas [ 
 	
 	^ paint strokePath: self on: anAthensCanvas
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonPath>>visitCloseSegment: closeSegment [
+{ #category : #converting }
+AthensBalloonPath >> visitCloseSegment: closeSegment [
 	
 	"see if its alredy closed"
 	contours last last = contours last first ifFalse: [
@@ -124,21 +96,15 @@ AthensBalloonPath>>visitCloseSegment: closeSegment [
 	]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonPath>>visitLineSegment: line [
+{ #category : #converting }
+AthensBalloonPath >> visitLineSegment: line [
 	self duplicateLastPoint.
 	contours last add: line endPoint;
 		add: line endPoint.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonPath>>visitMoveSegment: seg [
+{ #category : #converting }
+AthensBalloonPath >> visitMoveSegment: seg [
 	
 	contours ifNil: [
 		contours := OrderedCollection new ].
@@ -147,11 +113,8 @@ AthensBalloonPath>>visitMoveSegment: seg [
 	contours last add: seg endPoint.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonPath>>visitQuadSegment: quadSegment [
+{ #category : #converting }
+AthensBalloonPath >> visitQuadSegment: quadSegment [
 
 	self duplicateLastPoint.
 

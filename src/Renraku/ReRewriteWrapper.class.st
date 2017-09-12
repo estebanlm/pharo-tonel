@@ -4,15 +4,11 @@ A wrapper that provides a single interface to produce a new node from the matche
 Class {
 	#name : #ReRewriteWrapper,
 	#superclass : #Object,
-	#category : #Renraku-Rules-Rewrite,
-	#timestamp : 'YuriyTymchuk 7/6/2016 23:16'
+	#category : #Renraku-Rules-Rewrite
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReRewriteWrapper>>rewriten: aNode with: aMap [
+{ #category : #actions }
+ReRewriteWrapper >> rewriten: aNode with: aMap [
 
 	^ self subclassResponsibility 
 ]

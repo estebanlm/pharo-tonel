@@ -10,36 +10,26 @@ Class {
 	#instVars : [
 		'tt'
 	],
-	#category : #Kernel-Tests-Methods,
-	#timestamp : '<historical>'
+	#category : #Kernel-Tests-Methods
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-InstVarRefLocatorTest>>example1 [
+{ #category : #examples }
+InstVarRefLocatorTest >> example1 [
 	| ff |
 	(1 < 2) ifTrue: [tt ifNotNil: [ff := 'hallo']].
 	^ ff.
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-InstVarRefLocatorTest>>example2 [
+{ #category : #examples }
+InstVarRefLocatorTest >> example2 [
 	| ff|	
 	ff := 1.
 	(1 < 2) ifTrue: [ff ifNotNil: [ff := 'hallo']].
 	^ ff.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-InstVarRefLocatorTest>>hasInstVarRef: aMethod [
+{ #category : #private }
+InstVarRefLocatorTest >> hasInstVarRef: aMethod [
 	"Answer whether the receiver references an instance variable."
 
 	| scanner end printer |
@@ -54,33 +44,24 @@ InstVarRefLocatorTest>>hasInstVarRef: aMethod [
 	^false
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-InstVarRefLocatorTest>>testExample1 [
+{ #category : #tests }
+InstVarRefLocatorTest >> testExample1 [
 	| method |
 
 	method := self class compiledMethodAt: #example1.
 	self assert: (self hasInstVarRef: method).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-InstVarRefLocatorTest>>testExample2 [
+{ #category : #tests }
+InstVarRefLocatorTest >> testExample2 [
 	| method |
 
 	method := self class compiledMethodAt: #example2.
 	self deny: (self hasInstVarRef: method).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-InstVarRefLocatorTest>>testInstructions [
+{ #category : #tests }
+InstVarRefLocatorTest >> testInstructions [
 	Object methods
 		do: [ :method | 
 			| scanner printer end |

@@ -59,6 +59,5 @@ Class {
 		'xPpEm',
 		'yPpEm'
 	],
-	#category : #FreeType-Base,
-	#timestamp : '<historical>'
+	#category : #FreeType-Base
 }

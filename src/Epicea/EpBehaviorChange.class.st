@@ -4,76 +4,51 @@ I represent a change in a class or a trait.
 Class {
 	#name : #EpBehaviorChange,
 	#superclass : #EpCodeChange,
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 14:41'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorChange>>= other [
+{ #category : #comparing }
+EpBehaviorChange >> = other [
 
 	^ self class = other class and: [ self behaviorAffected = other behaviorAffected ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorChange>>affectedPackageName [
+{ #category : #accessing }
+EpBehaviorChange >> affectedPackageName [
 	
 	^  self behaviorAffected package
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorChange>>behaviorAffected [
+{ #category : #accessing }
+EpBehaviorChange >> behaviorAffected [
 	^ self shouldBeImplemented 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorChange>>behaviorAffectedName [
+{ #category : #accessing }
+EpBehaviorChange >> behaviorAffectedName [
 	^ self shouldBeImplemented 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorChange>>doesOverride: aCodeChange  [
+{ #category : #testing }
+EpBehaviorChange >> doesOverride: aCodeChange [ 
 	
 	^ aCodeChange class = self class and: [ 
 		aCodeChange behaviorAffectedName = self behaviorAffectedName ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorChange>>hash [
+{ #category : #comparing }
+EpBehaviorChange >> hash [
 
 	^ self class hash bitXor: self behaviorAffected hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorChange>>isEpBehaviorChange [
+{ #category : #testing }
+EpBehaviorChange >> isEpBehaviorChange [
 	^true
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorChange>>printOn: aStream [
+{ #category : #printing }
+EpBehaviorChange >> printOn: aStream [
 
 	super printOn: aStream.
 

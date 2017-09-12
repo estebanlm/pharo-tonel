@@ -23,15 +23,11 @@ Class {
 	#classInstVars : [
 		'default'
 	],
-	#category : #Zinc-HTTP-Client-Server,
-	#timestamp : '<historical>'
+	#category : #Zinc-HTTP-Client-Server
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer class>>adoptAsDefault: server [
+{ #category : #public }
+ZnSingleThreadedServer class >> adoptAsDefault: server [
 	"Adopt server as the default instance that we manage.
 	If there was a previous default, stop it.
 	Note that this is a class instance variable."
@@ -40,22 +36,16 @@ ZnSingleThreadedServer class>>adoptAsDefault: server [
 	default := server
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer class>>default [
+{ #category : #public }
+ZnSingleThreadedServer class >> default [
 	"Return the default instance that we manage.
 	Note that this is a class instance variable."
 	
 	^ default
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer class>>defaultOn: portNumber [
+{ #category : #public }
+ZnSingleThreadedServer class >> defaultOn: portNumber [
 	"Return the default instance on a given port,
 	Keep a reference to it in a class instance variable.
 	If there was no previous default instance, create a new one.
@@ -69,19 +59,13 @@ ZnSingleThreadedServer class>>defaultOn: portNumber [
 			default stop; port: portNumber; yourself ]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer class>>initialize [
+{ #category : #'class initialization' }
+ZnSingleThreadedServer class >> initialize [
 	default := nil
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer class>>on: aNumber [
+{ #category : #public }
+ZnSingleThreadedServer class >> on: aNumber [
 	"Instantiate and return a new listener on a given port,
 	send #start to it to start listening."
 
@@ -90,11 +74,8 @@ ZnSingleThreadedServer class>>on: aNumber [
 		yourself
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer class>>startDefaultOn: portNumber [
+{ #category : #public }
+ZnSingleThreadedServer class >> startDefaultOn: portNumber [
 	"Start and return the default instance on a given port.
 	Keep a reference to it in a class instance variable.
 	If there was no previous default instance, create a new one.
@@ -108,11 +89,8 @@ ZnSingleThreadedServer class>>startDefaultOn: portNumber [
 		yourself
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer class>>startOn: portNumber [
+{ #category : #public }
+ZnSingleThreadedServer class >> startOn: portNumber [
 	"Instanciate and return a new listener on a given port and start listening."
 
 	^ (self on: portNumber) 
@@ -120,11 +98,8 @@ ZnSingleThreadedServer class>>startOn: portNumber [
 		yourself
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer class>>stopDefault [
+{ #category : #public }
+ZnSingleThreadedServer class >> stopDefault [
 	"Stop and unregister the Default instance, if any, and clear it.
 	Return the stopped instance, if any."
 	
@@ -135,21 +110,15 @@ ZnSingleThreadedServer class>>stopDefault [
 	^ server
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>acceptWaitTimeout [
+{ #category : #constants }
+ZnSingleThreadedServer >> acceptWaitTimeout [
 	"How many seconds to wait for a server socket listening for an accept ?"
 	
 	^ 300
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>augmentResponse: response forRequest: request [
+{ #category : #'request handling' }
+ZnSingleThreadedServer >> augmentResponse: response forRequest: request [
 	"Our handler has produced response for request, manipulate the response before writing it"
 	
 	(self useGzipCompressionAndChunking and: [ response contentType isBinary not ])
@@ -160,11 +129,8 @@ ZnSingleThreadedServer>>augmentResponse: response forRequest: request [
 				ifFalse: [ response setTransferEncodingChunked ] ]
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>authenticateAndDelegateRequest: request [
+{ #category : #'request handling' }
+ZnSingleThreadedServer >> authenticateAndDelegateRequest: request [
 	"Handle request and return a response.
 	If we have a delegate, pass the responsability.
 	If we have no delegate, we return a page not found.
@@ -178,11 +144,8 @@ ZnSingleThreadedServer>>authenticateAndDelegateRequest: request [
 				ifNotNil: [ :delegate | delegate handleRequest: request ] ]
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>authenticateRequest: request do: block [
+{ #category : #'request handling' }
+ZnSingleThreadedServer >> authenticateRequest: request do: block [
 	"Validate request and execute block.
 	When our authenticator is not nil, pass the responsability"
 
@@ -191,22 +154,16 @@ ZnSingleThreadedServer>>authenticateRequest: request do: block [
 		ifNotNil: [ :authenticator | authenticator authenticateRequest: request do: block ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>closeDelegate [
+{ #category : #private }
+ZnSingleThreadedServer >> closeDelegate [
 	self delegate
 		ifNotNil: [ :delegate | 
 			(delegate respondsTo: #close)
 				ifTrue: [ delegate close ] ]
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>executeOneRequestResponseOn: stream [
+{ #category : #'request handling' }
+ZnSingleThreadedServer >> executeOneRequestResponseOn: stream [
 	"Execute one single HTTP request / response cycle on stream in 3 steps:
 	#readRequest: #handleRequest: and #writeResponse:on:
 	Indicate that we intend to close the connection afterwards"
@@ -223,11 +180,8 @@ ZnSingleThreadedServer>>executeOneRequestResponseOn: stream [
 			self logServerTransactionRequest: request response: response timing: timing ]
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>handleRequest: request timing: timing [
+{ #category : #'request handling' }
+ZnSingleThreadedServer >> handleRequest: request timing: timing [
 	"Handle request and return a response.
 	Do logging and timing. Set a dynamic variable referencing the server.
 	If necessary do session management in the response."
@@ -244,11 +198,8 @@ ZnSingleThreadedServer>>handleRequest: request timing: timing [
 	^ response
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>handleRequestProtected: request [
+{ #category : #'request handling' }
+ZnSingleThreadedServer >> handleRequestProtected: request [
 	"Handle request and return a response.
 	If a ZnRespond notification is signaled, return its response directly.
 	If an Error is thrown, return a HTTP Server Error response."
@@ -265,19 +216,13 @@ ZnSingleThreadedServer>>handleRequestProtected: request [
 					ZnResponse serverError: exception printString ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>initialize [
+{ #category : #initialization }
+ZnSingleThreadedServer >> initialize [
 	self loggingOn 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>initializeServerSocket [
+{ #category : #private }
+ZnSingleThreadedServer >> initializeServerSocket [
 	"Set up a new server socket and listen on it"
 	
 	serverSocket := self bindingAddress
@@ -289,32 +234,23 @@ ZnSingleThreadedServer>>initializeServerSocket [
 	self logServerSocketBound
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>isListening [
+{ #category : #testing }
+ZnSingleThreadedServer >> isListening [
 	"Return true when I have a valid server socket listening at the correct port"
 	
 	^ self serverSocket notNil
 		and: [ self serverSocket isValid and: [ self serverSocket localPort = self port ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>isRunning [
+{ #category : #testing }
+ZnSingleThreadedServer >> isRunning [
 	"Return true when I am running"
 	
 	^ self process notNil and: [ self serverSocket notNil ]
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>listenLoop [
+{ #category : #'request handling' }
+ZnSingleThreadedServer >> listenLoop [
 	"We create a listening Socket, then wait for a connection.
 	After each connection we also check that the listening Socket is still valid 
 	- if not we just make a recursive call to this method to start over."
@@ -330,22 +266,16 @@ ZnSingleThreadedServer>>listenLoop [
 		ifCurtailed: [ self releaseServerSocket ]
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>logConnectionAccepted: socket [
+{ #category : #'private logging' }
+ZnSingleThreadedServer >> logConnectionAccepted: socket [
 	logLevel < 3 ifTrue: [ ^ nil ].
 	^ (self newLogEvent: ZnConnectionAcceptedEvent)
 		address: ([ socket remoteAddress ] on: Error do: [ nil ]);
 		emit
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>logConnectionClosed: socketStream [
+{ #category : #'private logging' }
+ZnSingleThreadedServer >> logConnectionClosed: socketStream [
 	logLevel < 3 ifTrue: [ ^ nil ].
 	socketStream socket ifNil: [ ^ nil ].
 	^ (self newLogEvent: ZnServerConnectionClosedEvent)
@@ -353,11 +283,8 @@ ZnSingleThreadedServer>>logConnectionClosed: socketStream [
 		emit
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>logLevel: integer [
+{ #category : #logging }
+ZnSingleThreadedServer >> logLevel: integer [
 	"Set the log level to integer.
 	0 - no logging
 	1 - simplified transaction logging
@@ -367,11 +294,8 @@ ZnSingleThreadedServer>>logLevel: integer [
 	logLevel := integer
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>logRequest: request response: response handledStarted: initialMilliseconds [
+{ #category : #'private logging' }
+ZnSingleThreadedServer >> logRequest: request response: response handledStarted: initialMilliseconds [
 	^ logLevel < 3
 		ifTrue: [ Time millisecondsSince: initialMilliseconds ]
 		ifFalse: [ 
@@ -383,11 +307,8 @@ ZnSingleThreadedServer>>logRequest: request response: response handledStarted: i
 				duration ]
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>logRequestRead: request started: initialMilliseconds [
+{ #category : #'private logging' }
+ZnSingleThreadedServer >> logRequestRead: request started: initialMilliseconds [
 	^ logLevel < 3
 		ifTrue: [ Time millisecondsSince: initialMilliseconds ]
 		ifFalse: [ 
@@ -398,11 +319,8 @@ ZnSingleThreadedServer>>logRequestRead: request started: initialMilliseconds [
 				duration ]
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>logResponseWritten: response started: initialMilliseconds [
+{ #category : #'private logging' }
+ZnSingleThreadedServer >> logResponseWritten: response started: initialMilliseconds [
 	^ logLevel < 3
 		ifTrue: [ Time millisecondsSince: initialMilliseconds ]
 		ifFalse: [ 
@@ -413,42 +331,30 @@ ZnSingleThreadedServer>>logResponseWritten: response started: initialMillisecond
 				duration ]
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>logServerGeneric: subject [
+{ #category : #'private logging' }
+ZnSingleThreadedServer >> logServerGeneric: subject [
 	^ (self newLogEvent: ZnServerGenericLogEvent)
 		subject: subject;
 		emit
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>logServerHandlerError: exception [
+{ #category : #'private logging' }
+ZnSingleThreadedServer >> logServerHandlerError: exception [
 	^ (self newLogEvent: ZnServerHandlerErrorEvent)
 		exception: exception;
 		emit
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>logServerReadError: exception [
+{ #category : #'private logging' }
+ZnSingleThreadedServer >> logServerReadError: exception [
 	logLevel < 3 ifTrue: [ ^ nil ].
 	^ (self newLogEvent: ZnServerReadErrorEvent)
 		exception: exception;
 		emit
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>logServerSocketBound [
+{ #category : #'private logging' }
+ZnSingleThreadedServer >> logServerSocketBound [
 	logLevel < 1 ifTrue: [ ^ nil ].
 	^ (self newLogEvent: ZnServerSocketBoundEvent)
 		address: ([ serverSocket address ] on: Error do: [ nil ]);
@@ -456,11 +362,8 @@ ZnSingleThreadedServer>>logServerSocketBound [
 		emit
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>logServerSocketReleasedAddress: address port: port [
+{ #category : #'private logging' }
+ZnSingleThreadedServer >> logServerSocketReleasedAddress: address port: port [
 	logLevel < 1 ifTrue: [ ^ nil ].
 	^ (self newLogEvent: ZnServerSocketReleasedEvent)
 		address: address;
@@ -468,11 +371,8 @@ ZnSingleThreadedServer>>logServerSocketReleasedAddress: address port: port [
 		emit
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>logServerTransactionRequest: request response: response timing: timing [
+{ #category : #'private logging' }
+ZnSingleThreadedServer >> logServerTransactionRequest: request response: response timing: timing [
 	| logEventClass |
 	logLevel < 1 ifTrue: [ ^ nil ].
 	logEventClass := logLevel = 1
@@ -485,44 +385,32 @@ ZnSingleThreadedServer>>logServerTransactionRequest: request response: response 
 		emit
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>logServerWriteError: exception [
+{ #category : #'private logging' }
+ZnSingleThreadedServer >> logServerWriteError: exception [
 	logLevel < 3 ifTrue: [ ^ nil ].
 	^ (self newLogEvent: ZnServerWriteErrorEvent)
 		exception: exception;
 		emit
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>logStarted [
+{ #category : #'private logging' }
+ZnSingleThreadedServer >> logStarted [
 	logLevel < 1 ifTrue: [ ^ nil ].
 	^ (self newLogEvent: ZnServerStartedEvent)
 		description: self serverProcessName;
 		emit
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>logStopped [
+{ #category : #'private logging' }
+ZnSingleThreadedServer >> logStopped [
 	logLevel < 1 ifTrue: [ ^ nil ].
 	^ (self newLogEvent: ZnServerStoppedEvent)
 		description: self serverProcessName;
 		emit
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>logToTranscript [
+{ #category : #logging }
+ZnSingleThreadedServer >> logToTranscript [
 	"Setup logging to the Transcript.
 	If logging was completely off, turn it on"
 
@@ -530,52 +418,37 @@ ZnSingleThreadedServer>>logToTranscript [
 	ZnLogEvent logToTranscript 
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>loggingOff [
+{ #category : #logging }
+ZnSingleThreadedServer >> loggingOff [
 	"Turn logging completely off - do not generate log events."
 	
 	self logLevel: 0
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>loggingOn [
+{ #category : #logging }
+ZnSingleThreadedServer >> loggingOn [
 	"Turn full logging on - generate all log events"
 	
 	self logLevel: 3
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>newLogEvent: logEventClass [
+{ #category : #'private logging' }
+ZnSingleThreadedServer >> newLogEvent: logEventClass [
 	^ logEventClass new
 		serverId: self route;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>noteAcceptWaitTimedOut [
+{ #category : #private }
+ZnSingleThreadedServer >> noteAcceptWaitTimedOut [
 	"The accept wait on a server socket timed out (see #acceptWaitTimeout).
 	This can be used as an opportunity to do some periodic tasks."
 	
 	self periodicTasks
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>onRequestRespond: block [
+{ #category : #accessing }
+ZnSingleThreadedServer >> onRequestRespond: block [
 	"Convenience method to quickly set up a delegate.
 	On any incoming request, block will be executed with the request 
 	as argument to produce a valid response."
@@ -583,22 +456,16 @@ ZnSingleThreadedServer>>onRequestRespond: block [
 	self delegate: (ZnValueDelegate with: block)  
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>periodicTasks [
+{ #category : #private }
+ZnSingleThreadedServer >> periodicTasks [
 	"Every #acceptWaitTimeout seconds this method is called.
 	Note that during this time the server is not actively listening for connections."
 	
 	sessionManager ifNotNil: [ sessionManager cleanupInvalidSessions ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>printOn: stream [
+{ #category : #printing }
+ZnSingleThreadedServer >> printOn: stream [
 	super printOn: stream.
 	stream nextPut: $(.
 	stream nextPutAll: (self isRunning ifTrue: [ 'running' ] ifFalse: [ 'stopped' ]).
@@ -607,22 +474,16 @@ ZnSingleThreadedServer>>printOn: stream [
 	stream nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>process [
+{ #category : #accessing }
+ZnSingleThreadedServer >> process [
 	"Return the process that is running my main listening loop.
 	Will be nil when I am not running"
 	
 	^ process
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>readRequest: stream timing: timing [
+{ #category : #'request handling' }
+ZnSingleThreadedServer >> readRequest: stream timing: timing [
 	"Read a request from stream.
 	We add a virtual header containing the remote IP address of the client"
 
@@ -639,11 +500,8 @@ ZnSingleThreadedServer>>readRequest: stream timing: timing [
 	^ request
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>releaseServerSocket [
+{ #category : #private }
+ZnSingleThreadedServer >> releaseServerSocket [
 	"Release our server socket"
 	
 	| address port |
@@ -656,11 +514,8 @@ ZnSingleThreadedServer>>releaseServerSocket [
 	self logServerSocketReleasedAddress: address port: port 
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>serveConnectionOn: listeningSocket [
+{ #category : #'request handling' }
+ZnSingleThreadedServer >> serveConnectionOn: listeningSocket [
 	"We wait up to acceptWaitTimeout seconds for an incoming connection.
 	If we get one we wrap it in a SocketStream and #executeOneRequestResponseOn: on it.
 	We do not fork a worker thread/process but stay in the current one for just one request/response cycle."
@@ -678,40 +533,28 @@ ZnSingleThreadedServer>>serveConnectionOn: listeningSocket [
 			socket destroy ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>serverProcessName [
+{ #category : #private }
+ZnSingleThreadedServer >> serverProcessName [
 	^ String streamContents: [ :stream |
 		stream nextPutAll: self class name; nextPutAll: ' HTTP port '; print: self port ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>serverSocket [
+{ #category : #accessing }
+ZnSingleThreadedServer >> serverSocket [
 	"Return the server socket that I am using.
 	Will be nil when I am not running"
 	
 	^ serverSocket
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>socketStreamOn: socket [
+{ #category : #private }
+ZnSingleThreadedServer >> socketStreamOn: socket [
 	self logConnectionAccepted: socket.
 	^ ZnNetworkingUtils socketStreamOn: socket
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>start [
+{ #category : #public }
+ZnSingleThreadedServer >> start [
 	"Start me. I will start listening on my port for incoming HTTP connections.
 	If I am running, I will first stop and thus effectively restart"
 	
@@ -724,11 +567,8 @@ ZnSingleThreadedServer>>start [
 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>stop: unregister [
+{ #category : #public }
+ZnSingleThreadedServer >> stop: unregister [
 	"Stop me. I will stop listening on my port for incoming HTTP connections.
 	If unregister is true, unregister me from the list of managed instances.
 	Does nothing when I am not running"
@@ -741,11 +581,8 @@ ZnSingleThreadedServer>>stop: unregister [
 	self logStopped
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>withDefaultCharacterEncoderDo: block [
+{ #category : #private }
+ZnSingleThreadedServer >> withDefaultCharacterEncoderDo: block [
 	^ self defaultEncoder = ZnDefaultCharacterEncoder value
 			ifTrue: block
 			ifFalse: [ 
@@ -754,11 +591,8 @@ ZnSingleThreadedServer>>withDefaultCharacterEncoderDo: block [
 					during: block ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>withMaximumEntitySizeDo: block [
+{ #category : #private }
+ZnSingleThreadedServer >> withMaximumEntitySizeDo: block [
 	^ self maximumEntitySize = ZnMaximumEntitySize value
 			ifTrue: block
 			ifFalse: [ 
@@ -767,11 +601,8 @@ ZnSingleThreadedServer>>withMaximumEntitySizeDo: block [
 					during: block ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>withMaximumNumberOfDictionaryEntriesDo: block [
+{ #category : #private }
+ZnSingleThreadedServer >> withMaximumNumberOfDictionaryEntriesDo: block [
 	^ self maximumNumberOfDictionaryEntries = ZnMaximumNumberOfDictionaryEntries value
 			ifTrue: block
 			ifFalse: [ 
@@ -780,11 +611,8 @@ ZnSingleThreadedServer>>withMaximumNumberOfDictionaryEntriesDo: block [
 					during: block ]
 ]
 
-{
-	#category : #'request handling',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnSingleThreadedServer>>writeResponse: response on: stream timing: timing [
+{ #category : #'request handling' }
+ZnSingleThreadedServer >> writeResponse: response on: stream timing: timing [
 	"Write response to stream and flush the stream"
 	
 	| initialMilliseconds |

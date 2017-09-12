@@ -11,15 +11,11 @@ Class {
 		'releaseButton',
 		'commitButton'
 	],
-	#category : #Versionner-Spec-Browser,
-	#timestamp : '<historical>'
+	#category : #Versionner-Spec-Browser
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectToolBar class>>defaultSpec [
+{ #category : #specs }
+VersionnerProjectToolBar class >> defaultSpec [
 	<spec>
 
 	"Define the layout of the Versionner ToolBar"
@@ -31,43 +27,28 @@ VersionnerProjectToolBar class>>defaultSpec [
 		yourself.
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectToolBar class>>title [
+{ #category : #specs }
+VersionnerProjectToolBar class >> title [
 	^ 'Versionner Project Browser ToolBar'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectToolBar>>browser [
+{ #category : #accessing }
+VersionnerProjectToolBar >> browser [
 	^ browser.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectToolBar>>browser: aSpecBrowser [
+{ #category : #accessing }
+VersionnerProjectToolBar >> browser: aSpecBrowser [
 	browser := aSpecBrowser.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectToolBar>>commitButton [
+{ #category : #accessing }
+VersionnerProjectToolBar >> commitButton [
 	^ commitButton.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectToolBar>>executeWithDevWorkflow: aCommandClass [
+{ #category : #actions }
+VersionnerProjectToolBar >> executeWithDevWorkflow: aCommandClass [
 	browser projectPanel project
 		ifNotNil: [ :project | | cmd |
 			 cmd := aCommandClass 
@@ -81,11 +62,8 @@ VersionnerProjectToolBar>>executeWithDevWorkflow: aCommandClass [
 	browser update
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectToolBar>>initializePresenter [
+{ #category : #initialization }
+VersionnerProjectToolBar >> initializePresenter [
 	"Initialize widgets behavior"
 
 	updateButton action: [  self browser hasChanges 
@@ -98,11 +76,8 @@ VersionnerProjectToolBar>>initializePresenter [
 	commitButton action: [ (VSSaveProjectCommand target: browser project for: self) execute ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectToolBar>>initializeWidgets [
+{ #category : #initialization }
+VersionnerProjectToolBar >> initializeWidgets [
 	updateButton := (self instantiate: ButtonModel)
 		label: ' Save to development';
 		icon: (self iconNamed: #smallSaveIcon);
@@ -124,26 +99,17 @@ VersionnerProjectToolBar>>initializeWidgets [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectToolBar>>releaseButton [
+{ #category : #accessing }
+VersionnerProjectToolBar >> releaseButton [
 	^ releaseButton.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectToolBar>>releaseEnabled: aBoolean [
+{ #category : #api }
+VersionnerProjectToolBar >> releaseEnabled: aBoolean [
 	releaseButton enabled: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerProjectToolBar>>updateButton [
+{ #category : #accessing }
+VersionnerProjectToolBar >> updateButton [
 	^ updateButton.
 ]

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GTFilterSubstring,
 	#superclass : #GTOrderedFilter,
-	#category : #GT-Spotter-Filters,
-	#timestamp : ''
+	#category : #GT-Spotter-Filters
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTFilterSubstring>>applyFilterWithQuery [
+{ #category : #private }
+GTFilterSubstring >> applyFilterWithQuery [
 	| exactMatches prefixMatches otherMatches nonExactMatches |
 	"we want to distinguish between exact matches"
 	exactMatches := OrderedCollection new.
@@ -44,21 +37,15 @@ GTFilterSubstring>>applyFilterWithQuery [
 	self filteredItems: exactMatches, nonExactMatches
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTFilterSubstring>>indexForItemName: aString andQuery: aQueryString [
+{ #category : #private }
+GTFilterSubstring >> indexForItemName: aString andQuery: aQueryString [
 	^ aString 
 		findString: aQueryString
 		startingAt: 1 
 		caseSensitive: self caseSensitive
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTFilterSubstring>>queryForItem: each [
+{ #category : #private }
+GTFilterSubstring >> queryForItem: each [
 	^ query " performance optimization "
 ]

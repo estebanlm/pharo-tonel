@@ -1,17 +1,10 @@
-"
-
-"
 Class {
 	#name : #MethodToolbarTest,
 	#superclass : #SpecTestCase,
-	#category : #Spec-Tests-PolyWidgets-Toolbar,
-	#timestamp : ''
+	#category : #Spec-Tests-PolyWidgets-Toolbar
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-MethodToolbarTest>>classToTest [
+{ #category : #running }
+MethodToolbarTest >> classToTest [
 	^ MethodToolbar
 ]

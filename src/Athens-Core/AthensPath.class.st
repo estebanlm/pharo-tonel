@@ -9,6 +9,5 @@ therefore paths are not interchangeable between different surfaces.
 Class {
 	#name : #AthensPath,
 	#superclass : #AthensShape,
-	#category : #Athens-Core,
-	#timestamp : '<historical>'
+	#category : #Athens-Core
 }

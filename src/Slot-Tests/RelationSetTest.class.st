@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RelationSetTest,
 	#superclass : #TestCase,
-	#category : #Slot-Tests-Associations,
-	#timestamp : ''
+	#category : #Slot-Tests-Associations
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RelationSetTest>>testCopy [
+{ #category : #tests }
+RelationSetTest >> testCopy [
 	"A copy of an RelationSet should give us a regular Set."
 
 	| movie |
@@ -23,11 +16,8 @@ RelationSetTest>>testCopy [
 	self deny: movie actors copy class = RelationSet
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RelationSetTest>>testSelect [
+{ #category : #tests }
+RelationSetTest >> testSelect [
 
 	| movie result |
 	

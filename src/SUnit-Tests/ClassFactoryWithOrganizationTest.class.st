@@ -7,31 +7,21 @@ Class {
 	#instVars : [
 		'factory'
 	],
-	#category : #SUnit-Tests-Core,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:16'
+	#category : #SUnit-Tests-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganizationTest class>>defaultTimeLimit  [
+{ #category : #accessing }
+ClassFactoryWithOrganizationTest class >> defaultTimeLimit [ 
 	^10 seconds
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganizationTest>>assertEnvironmentOf: aBehavior [
+{ #category : #testing }
+ClassFactoryWithOrganizationTest >> assertEnvironmentOf: aBehavior [
 	self assert: aBehavior environment = self testedEnvironment
 ]
 
-{
-	#category : #setUp-tearDown,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganizationTest>>setUp [
+{ #category : #setUp-tearDown }
+ClassFactoryWithOrganizationTest >> setUp [
 	| environment |
 	super setUp.
 	environment := SystemDictionary withOrganizer: SystemOrganizer new.
@@ -39,11 +29,8 @@ ClassFactoryWithOrganizationTest>>setUp [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganizationTest>>testClassCreationInDifferentCategories [
+{ #category : #testing }
+ClassFactoryWithOrganizationTest >> testClassCreationInDifferentCategories [
 	| firstThreeClasses lastTwoClasses |
 	3 timesRepeat: [
 		factory newSubclassOf: Object instanceVariableNames: '' classVariableNames: '' category: #One].
@@ -57,11 +44,8 @@ ClassFactoryWithOrganizationTest>>testClassCreationInDifferentCategories [
 		self assertEnvironmentOf: aClass ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganizationTest>>testClassFastCreationInDifferentCategories [
+{ #category : #testing }
+ClassFactoryWithOrganizationTest >> testClassFastCreationInDifferentCategories [
 	| firstThreeClasses lastTwoClasses |
 	3 timesRepeat: [
 		factory newClassInCategory: #One].
@@ -75,11 +59,8 @@ ClassFactoryWithOrganizationTest>>testClassFastCreationInDifferentCategories [
 		self assertEnvironmentOf: aClass ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganizationTest>>testDefaultCategoryCleanUp [
+{ #category : #testing }
+ClassFactoryWithOrganizationTest >> testDefaultCategoryCleanUp [
 	| createdClassNames allClasses |
 	3 timesRepeat: [
 		factory newClass].
@@ -94,11 +75,8 @@ ClassFactoryWithOrganizationTest>>testDefaultCategoryCleanUp [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganizationTest>>testMultipleClassCreation [
+{ #category : #testing }
+ClassFactoryWithOrganizationTest >> testMultipleClassCreation [
 	5 timesRepeat: [
 		factory newClass].
 	self assert: (self testedEnvironment allClasses includesAll: factory createdClasses).
@@ -108,11 +86,8 @@ ClassFactoryWithOrganizationTest>>testMultipleClassCreation [
 		self assertEnvironmentOf: aClass ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganizationTest>>testPackageCleanUp [
+{ #category : #testing }
+ClassFactoryWithOrganizationTest >> testPackageCleanUp [
 	| createdClassNames allClasses |
 	3 timesRepeat: [
 		factory newClassInCategory: #One].
@@ -129,11 +104,8 @@ ClassFactoryWithOrganizationTest>>testPackageCleanUp [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganizationTest>>testSingleClassCreation [
+{ #category : #testing }
+ClassFactoryWithOrganizationTest >> testSingleClassCreation [
 	|class elementsInCategoryForTest |
 	class := factory 
 		newSubclassOf: Object 
@@ -148,11 +120,8 @@ ClassFactoryWithOrganizationTest>>testSingleClassCreation [
 	self assert: class classPool keys asSet = #(X Y) asSet
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganizationTest>>testSingleClassFastCreation [
+{ #category : #testing }
+ClassFactoryWithOrganizationTest >> testSingleClassFastCreation [
 	|class elementsInCategoryForTest |
 	class := factory newClass.
 	self assert: (self testedEnvironment allClasses includes: class).
@@ -164,18 +133,12 @@ ClassFactoryWithOrganizationTest>>testSingleClassFastCreation [
 	self assert: class classPool isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganizationTest>>testedEnvironment [
+{ #category : #accessing }
+ClassFactoryWithOrganizationTest >> testedEnvironment [
 	^self testedOrganization environment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-ClassFactoryWithOrganizationTest>>testedOrganization [
+{ #category : #accessing }
+ClassFactoryWithOrganizationTest >> testedOrganization [
 	^factory organization
 ]

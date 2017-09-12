@@ -8,15 +8,11 @@ Class {
 		'rgMethod',
 		'browser'
 	],
-	#category : #Spec-Tools-VersionBrowser,
-	#timestamp : 'MarcusDenker 11/6/2015 11:09'
+	#category : #Spec-Tools-VersionBrowser
 }
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser class>>browseVersionsForClass: aClass selector: aSelector  [
+{ #category : #api }
+VersionBrowser class >> browseVersionsForClass: aClass selector: aSelector [ 
 	| method |
 	method := (aClass compiledMethodAt: aSelector) ifNil: [ ^self ].
 	
@@ -25,31 +21,22 @@ VersionBrowser class>>browseVersionsForClass: aClass selector: aSelector  [
 		
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser class>>browseVersionsForMethod: aRingMethod [
+{ #category : #api }
+VersionBrowser class >> browseVersionsForMethod: aRingMethod [
 	^ self new
 		browseVersionsOf: aRingMethod
 		
 ]
 
-{
-	#category : #'tool registry',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser class>>registerToolsOn: registry [
+{ #category : #'tool registry' }
+VersionBrowser class >> registerToolsOn: registry [
 	"Add ourselves to registry. See [Smalltalk tools]" 
 	registry register: self as: #versionBrowser
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser class>>versionsBrowserListMenu: aBuilder [
+{ #category : #menu }
+VersionBrowser class >> versionsBrowserListMenu: aBuilder [
 	<contextMenu>
 	<versionBrowserListMenu>
 	| browser model |
@@ -79,55 +66,37 @@ VersionBrowser class>>versionsBrowserListMenu: aBuilder [
 		withSeparatorAfter 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser>>browseImplementors [
+{ #category : #menu }
+VersionBrowser >> browseImplementors [
 	SystemNavigation new browseAllImplementorsOf: rgMethod selector
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser>>browseSenders [
+{ #category : #menu }
+VersionBrowser >> browseSenders [
 	SystemNavigation new browseSendersOf: rgMethod selector name: 'Senders of ' , rgMethod selector autoSelect: rgMethod selector
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser>>browseVersionsOf: aMethod [
+{ #category : #'instance creation' }
+VersionBrowser >> browseVersionsOf: aMethod [
 
 	self setRGMethodFrom: aMethod.
 	^ self buildBrowser
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser>>browseVersionsOf: method class: aClass meta: meta category: msgCategory selector: aSelector [
+{ #category : #'instance creation' }
+VersionBrowser >> browseVersionsOf: method class: aClass meta: meta category: msgCategory selector: aSelector [
 
 	self setRGMethodFrom: method.
 	^ self buildBrowser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser>>browser [
+{ #category : #accessing }
+VersionBrowser >> browser [
 	^ browser
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser>>browserForList: aList [
+{ #category : #'instance creation' }
+VersionBrowser >> browserForList: aList [
 
 	browser :=  MessageBrowser new.
 	browser
@@ -156,11 +125,8 @@ VersionBrowser>>browserForList: aList [
 	^ browser.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser>>buildBrowser [
+{ #category : #'instance creation' }
+VersionBrowser >> buildBrowser [
 	| changeList b |
 
 	changeList := self buildChangeList.
@@ -180,11 +146,8 @@ VersionBrowser>>buildBrowser [
 	^ b	
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser>>buildChangeList [
+{ #category : #'instance creation' }
+VersionBrowser >> buildChangeList [
 	rgMethod sourcePointer ifNil:[ ^ #() ].
 	
 	^ (SourceFiles
@@ -196,11 +159,8 @@ VersionBrowser>>buildChangeList [
 			rg annotationNamed: #versionIndex put: i ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser>>compareTo:anOtherVersion withLabel:aLabel [
+{ #category : #menu }
+VersionBrowser >> compareTo:anOtherVersion withLabel:aLabel [
 	| diff versions selected|
 	selected := browser selectedMessage.
 	versions := Array with:anOtherVersion with: (selected).
@@ -213,19 +173,13 @@ VersionBrowser>>compareTo:anOtherVersion withLabel:aLabel [
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser>>compareToCurrentVersion [
+{ #category : #menu }
+VersionBrowser >> compareToCurrentVersion [
 	self compareTo: rgMethod withLabel:'current version'
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser>>compareToOtherVersion [
+{ #category : #menu }
+VersionBrowser >> compareToOtherVersion [
 	| labels versions index selected |
 	versions := self buildChangeList.
 	labels := versions collect: [ :version | version stamp ].
@@ -236,11 +190,8 @@ VersionBrowser>>compareToOtherVersion [
 	self compareTo: selected withLabel: selected stamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser>>displayStringsFor: aMethodVersion [
+{ #category : #accessing }
+VersionBrowser >> displayStringsFor: aMethodVersion [
 	| author version cleanStampParts |
 	
 	"a stamp is a string in the form  'GuillermoPolito 3/4/2015 14:33'"
@@ -257,11 +208,8 @@ VersionBrowser>>displayStringsFor: aMethodVersion [
 	('{' , aMethodVersion category , '}')}
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser>>revert: aChangeRecord [
+{ #category : #'instance creation' }
+VersionBrowser >> revert: aChangeRecord [
 	aChangeRecord 
 		ifNil: [self inform: 'nothing selected, so nothing done']
 		ifNotNil: [ rgMethod realClass compile: aChangeRecord sourceCode classified: aChangeRecord category withStamp: aChangeRecord stamp notifying:nil].
@@ -274,20 +222,14 @@ VersionBrowser>>revert: aChangeRecord [
 		setSelectedIndex: 1.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser>>setRGMethodFrom: aMethod [
+{ #category : #private }
+VersionBrowser >> setRGMethodFrom: aMethod [
 "asHistorical, because active RGMethods don't always have the source pointer attached"
 	rgMethod := aMethod asRingDefinition asHistorical.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser>>showDiffMorphWithConverter: aConverter [
+{ #category : #'instance creation' }
+VersionBrowser >> showDiffMorphWithConverter: aConverter [
 	| behavior |
 	
 	behavior := browser textModel behavior.
@@ -298,11 +240,8 @@ VersionBrowser>>showDiffMorphWithConverter: aConverter [
 	browser textModel behavior: behavior
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-VersionBrowser>>showSourceWithConverter: aConverter [
+{ #category : #'instance creation' }
+VersionBrowser >> showSourceWithConverter: aConverter [
 	| behavior |
 	
 	behavior := browser textModel behavior.

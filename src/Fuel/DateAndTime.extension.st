@@ -1,30 +1,19 @@
-Extension {
-	#name : #DateAndTime
-}
+Extension { #name : #DateAndTime }
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-DateAndTime>>fuelAccept: aGeneralMapper [
+{ #category : #'*Fuel' }
+DateAndTime >> fuelAccept: aGeneralMapper [
 
 	^ aGeneralMapper visitHookPrimitive: self
 
 ]
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-DateAndTime>>fuelSet: julianDay nanoSecond: nanoSeconds seconds: numberOfSeconds offset: anOffset [
+{ #category : #'*Fuel' }
+DateAndTime >> fuelSet: julianDay nanoSecond: nanoSeconds seconds: numberOfSeconds offset: anOffset [
 	self setJdn: julianDay seconds: numberOfSeconds nano: nanoSeconds offset: anOffset
 ]
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-DateAndTime class>>materializeFrom: aDecoder [
+{ #category : #'*Fuel' }
+DateAndTime class >> materializeFrom: aDecoder [
 
 	^ self basicNew
 		fuelSet: aDecoder nextEncodedUint32
@@ -36,11 +25,8 @@ DateAndTime class>>materializeFrom: aDecoder [
 		yourself.
 ]
 
-{
-	#category : #'*Fuel',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-DateAndTime>>serializeOn: anEncoder [
+{ #category : #'*Fuel' }
+DateAndTime >> serializeOn: anEncoder [
 
 	anEncoder 
 		encodeUint32: self julianDayNumberUTC;

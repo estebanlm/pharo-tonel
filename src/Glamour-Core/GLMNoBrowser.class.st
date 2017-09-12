@@ -8,58 +8,38 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'TudorGirba 2/4/2011 20:22'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMNoBrowser class>>initialize [
+{ #category : #'class initialization' }
+GLMNoBrowser class >> initialize [
 
 	self initializeUniqueInstance
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMNoBrowser class>>initializeUniqueInstance [
+{ #category : #'class initialization' }
+GLMNoBrowser class >> initializeUniqueInstance [
 
 	uniqueInstance := self basicNew initialize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMNoBrowser class>>new [
+{ #category : #'instance creation' }
+GLMNoBrowser class >> new [
 
 	^self uniqueInstance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMNoBrowser class>>uniqueInstance [
+{ #category : #accessing }
+GLMNoBrowser class >> uniqueInstance [
 
 	^uniqueInstance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMNoBrowser>>innerPortEvent: aPortEvent  [
+{ #category : #accessing }
+GLMNoBrowser >> innerPortEvent: aPortEvent [ 
 	"Needed for simulating a browser"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMNoBrowser>>lastActivePresentation: aPresentation [
-
+{ #category : #accessing }
+GLMNoBrowser >> lastActivePresentation: aPresentation [
 ]

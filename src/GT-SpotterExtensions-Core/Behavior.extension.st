@@ -1,12 +1,7 @@
-Extension {
-	#name : #Behavior
-}
+Extension { #name : #Behavior }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Behavior>>spotterClassInstanceVariablesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Behavior >> spotterClassInstanceVariablesFor: aStep [
 	<spotterOrder: 25>
 	self isTrait
 		ifTrue: [ ^ self ].
@@ -17,11 +12,8 @@ Behavior>>spotterClassInstanceVariablesFor: aStep [
 		filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Behavior>>spotterCompositionFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Behavior >> spotterCompositionFor: aStep [
 	<spotterOrder: 25>
 	aStep listProcessor
 			title: 'Composing traits';
@@ -30,11 +22,8 @@ Behavior>>spotterCompositionFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Behavior>>spotterInstanceVariablesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Behavior >> spotterInstanceVariablesFor: aStep [
 	<spotterOrder: 20>
 	self isTrait
 		ifTrue: [ ^ self ].
@@ -45,11 +34,8 @@ Behavior>>spotterInstanceVariablesFor: aStep [
 		filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Behavior>>spotterSubclassesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Behavior >> spotterSubclassesFor: aStep [
 	<spotterOrder: 50>
 	aStep listProcessor
 			title: 'All subclasses';
@@ -58,11 +44,8 @@ Behavior>>spotterSubclassesFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Behavior>>spotterSuperclassesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Behavior >> spotterSuperclassesFor: aStep [
 	<spotterOrder: 40>
 	aStep listProcessor
 			title: 'All superclasses';
@@ -71,11 +54,8 @@ Behavior>>spotterSuperclassesFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Behavior>>spotterTraitUsersFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Behavior >> spotterTraitUsersFor: aStep [
 	<spotterOrder: 20>
 	self isTrait ifFalse: [ ^ self ].
 	aStep listProcessor
@@ -85,11 +65,8 @@ Behavior>>spotterTraitUsersFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Behavior>>spotterUsedSlotsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Behavior >> spotterUsedSlotsFor: aStep [
 	<spotterOrder: 70>
 	aStep listProcessor
 			title: 'Special Slots';
@@ -98,11 +75,8 @@ Behavior>>spotterUsedSlotsFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Behavior>>spotterUsedTraitsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+Behavior >> spotterUsedTraitsFor: aStep [
 	<spotterOrder: 60>
 	aStep listProcessor
 			title: 'Uses Traits';
@@ -111,11 +85,8 @@ Behavior>>spotterUsedTraitsFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core-private',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Behavior>>withMethodsReferTo: aLiteral do: aBlock [
+{ #category : #'*GT-SpotterExtensions-Core-private' }
+Behavior >> withMethodsReferTo: aLiteral do: aBlock [
 	| specialIndex |
 	specialIndex := Smalltalk specialSelectorIndexOrNil: aLiteral.
 	self selectorsAndMethodsDo: [ :selector :method | 
@@ -124,11 +95,8 @@ Behavior>>withMethodsReferTo: aLiteral do: aBlock [
 				ifTrue: [ aBlock value: method ] ]
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core-private',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Behavior>>withThorougMethodsReferTo: aLiteral do: aBlock [
+{ #category : #'*GT-SpotterExtensions-Core-private' }
+Behavior >> withThorougMethodsReferTo: aLiteral do: aBlock [
 	| specialIndex |
 	specialIndex := Smalltalk specialSelectorIndexOrNil: aLiteral.
 	self selectorsAndMethodsDo: [ :selector :method | 

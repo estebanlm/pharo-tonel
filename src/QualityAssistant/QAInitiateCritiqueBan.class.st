@@ -4,6 +4,5 @@ Announced when a developer has clicked the skip button and is about to deal with
 Class {
 	#name : #QAInitiateCritiqueBan,
 	#superclass : #ReSingleCritiqueEvent,
-	#category : #QualityAssistant-Announcements,
-	#timestamp : 'YuriyTymchuk 8/29/2015 22:08'
+	#category : #QualityAssistant-Announcements
 }

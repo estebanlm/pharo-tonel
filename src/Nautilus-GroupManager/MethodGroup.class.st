@@ -7,26 +7,19 @@ Class {
 	#instVars : [
 		'methods'
 	],
-	#category : #Nautilus-GroupManager,
-	#timestamp : 'FranckWarlouzet 7/7/2015 09:21'
+	#category : #Nautilus-GroupManager
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodGroup class>>named: aString methods: aCollectionOfMethods [
+{ #category : #'instance creation' }
+MethodGroup class >> named: aString methods: aCollectionOfMethods [
 	^ self new
 		name: aString;
 		methods: aCollectionOfMethods;
 		yourself
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodGroup>>classes [
+{ #category : #queries }
+MethodGroup >> classes [
 	| classesCollection |
 	classesCollection := OrderedCollection new.
 	methods
@@ -34,70 +27,46 @@ MethodGroup>>classes [
 	^ classesCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodGroup>>elements [
+{ #category : #accessing }
+MethodGroup >> elements [
 	^ methods
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodGroup>>hasClassNamed: aClassName [
+{ #category : #testing }
+MethodGroup >> hasClassNamed: aClassName [
 	^ self classes includes: aClassName
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodGroup>>initialize [
+{ #category : #initialization }
+MethodGroup >> initialize [
 	super initialize.
 	methods := OrderedCollection new.
 	SystemAnnouncer uniqueInstance weak when: MethodAdded send: #methodAdded: to: self.
 	SystemAnnouncer uniqueInstance weak when: MethodModified send: #methodModified: to: self
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodGroup>>methodAdded: anAnnouncement [
+{ #category : #announcements }
+MethodGroup >> methodAdded: anAnnouncement [
 	methods add: anAnnouncement methodAdded
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodGroup>>methodModified: anAnnouncement [
+{ #category : #announcements }
+MethodGroup >> methodModified: anAnnouncement [
 	methods add: anAnnouncement newMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodGroup>>methods [
+{ #category : #accessing }
+MethodGroup >> methods [
 	^ methods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodGroup>>methods: aCollection [
+{ #category : #accessing }
+MethodGroup >> methods: aCollection [
 	methods := aCollection.
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodGroup>>methodsFor: aClass [
+{ #category : #queries }
+MethodGroup >> methodsFor: aClass [
 	| methodsForAClass |
 	methodsForAClass := OrderedCollection new.
 	aClass methods
@@ -107,11 +76,8 @@ MethodGroup>>methodsFor: aClass [
 	^ methodsForAClass
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodGroup>>methodsFor: aClass categorised: aSymbol [
+{ #category : #queries }
+MethodGroup >> methodsFor: aClass categorised: aSymbol [
 	| methodsForAClass |
 	aSymbol ifNil: [ ^ self methodsFor: aClass ].
 	methodsForAClass := OrderedCollection new.
@@ -122,11 +88,8 @@ MethodGroup>>methodsFor: aClass categorised: aSymbol [
 	^ methodsForAClass
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodGroup>>protocolsFor: aClass [
+{ #category : #queries }
+MethodGroup >> protocolsFor: aClass [
 
 	^ aClass protocols sort
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #CompiledMethod
-}
+Extension { #name : #CompiledMethod }
 
-{
-	#category : #'*System-Sources',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-CompiledMethod>>putSource: sourceStr class: class category: catName withStamp: changeStamp priorMethod: priorMethod [
+{ #category : #'*System-Sources' }
+CompiledMethod >> putSource: sourceStr class: class category: catName withStamp: changeStamp priorMethod: priorMethod [
 	^ self
 		putSource: sourceStr
 		withPreamble: [ :file | 
@@ -18,11 +13,8 @@ CompiledMethod>>putSource: sourceStr class: class category: catName withStamp: c
 			file cr ]
 ]
 
-{
-	#category : #'*System-Sources',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-CompiledMethod>>putSource: source withPreamble: preambleBlock [
+{ #category : #'*System-Sources' }
+CompiledMethod >> putSource: source withPreamble: preambleBlock [
 	"Store the source code for the receiver on an external file."
 
 	SourceFiles 

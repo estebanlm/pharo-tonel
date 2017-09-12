@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMScrollListBrick,
 	#superclass : #GLMScrollPaneBrick,
@@ -9,15 +6,11 @@ Class {
 		'visibleIndex',
 		'isUpdating'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-Scrollpane,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Widgets-Scrollpane
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick class>>example [
+{ #category : #examples }
+GLMScrollListBrick class >> example [
 	|adaptor|
 	adaptor := nil.
 	adaptor := GLMBrickListModel new
@@ -37,11 +30,8 @@ GLMScrollListBrick class>>example [
 		openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick class>>exampleCollection [
+{ #category : #examples }
+GLMScrollListBrick class >> exampleCollection [
 
 	^ GLMFoundationBrick new
 		brickRoot: (self new model: (GLMBrickListModel new on: Smalltalk allClasses));
@@ -49,11 +39,8 @@ GLMScrollListBrick class>>exampleCollection [
 		openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick class>>exampleDifferentHeights [
+{ #category : #examples }
+GLMScrollListBrick class >> exampleDifferentHeights [
 	|adaptor|
 	adaptor := nil.
 	adaptor := GLMBrickListModel new
@@ -74,11 +61,8 @@ GLMScrollListBrick class>>exampleDifferentHeights [
 		openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick class>>exampleEmptyCollection [
+{ #category : #examples }
+GLMScrollListBrick class >> exampleEmptyCollection [
 	|adaptor|
 	adaptor := nil.
 	adaptor := GLMBrickListModel new
@@ -98,11 +82,8 @@ GLMScrollListBrick class>>exampleEmptyCollection [
 			openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick class>>exampleInfinity [
+{ #category : #examples }
+GLMScrollListBrick class >> exampleInfinity [
 	|adaptor|
 	adaptor := nil.
 	adaptor := GLMBrickListModel new
@@ -122,31 +103,22 @@ GLMScrollListBrick class>>exampleInfinity [
 		openInWindow
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>addBrickBackNoLayout: aBrick [
+{ #category : #adding/removing }
+GLMScrollListBrick >> addBrickBackNoLayout: aBrick [
 
 	self band doNotLayoutDuring: [ self band addBrickBack: aBrick ].
 	^ aBrick
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>addBrickBackNoLayout: aBrick before: anotherBrick [
+{ #category : #adding/removing }
+GLMScrollListBrick >> addBrickBackNoLayout: aBrick before: anotherBrick [
 
 	self band doNotLayoutDuring: [ self band addBrick: aBrick before: anotherBrick ].
 	^ aBrick
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>addItemMorph: aMorph after: anotherMorph [
+{ #category : #adding/removing }
+GLMScrollListBrick >> addItemMorph: aMorph after: anotherMorph [
 
 	self addBrickBackNoLayout: aMorph.
 	self setBoundsOf: aMorph after: anotherMorph.
@@ -154,11 +126,8 @@ GLMScrollListBrick>>addItemMorph: aMorph after: anotherMorph [
 	^ aMorph
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>addItemMorph: aMorph before: anotherMorph [
+{ #category : #adding/removing }
+GLMScrollListBrick >> addItemMorph: aMorph before: anotherMorph [
 
 	self addBrickBackNoLayout: aMorph before: anotherMorph.
 	self setBoundsOf: aMorph before: anotherMorph.
@@ -172,20 +141,14 @@ GLMScrollListBrick>>addItemMorph: aMorph before: anotherMorph [
 	^ aMorph
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>calculateMaxVelocity [
+{ #category : #scrolling }
+GLMScrollListBrick >> calculateMaxVelocity [
 	"max velocity must depend from the height of the band"
 	^ (self height * 0.9) asInteger
 ]
 
-{
-	#category : #layouting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>doNotUpdateDuring: aBlock  [
+{ #category : #layouting }
+GLMScrollListBrick >> doNotUpdateDuring: aBlock [ 
 
 	self isUpdating ifTrue: [ ^ self ].
 	isUpdating := true.
@@ -193,39 +156,27 @@ GLMScrollListBrick>>doNotUpdateDuring: aBlock  [
 	isUpdating := false.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>gatherInvisibleItems [
+{ #category : #accessing }
+GLMScrollListBrick >> gatherInvisibleItems [
 			
 	^ self band subbricks select: [ :each | (self isPartiallyVisible: each) not ]
 ]
 
-{
-	#category : #'lazy scrolling',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>getAndRemoveInvisibleMorph: aCollection [
+{ #category : #'lazy scrolling' }
+GLMScrollListBrick >> getAndRemoveInvisibleMorph: aCollection [
 	|brick|
 	brick := self retrieveLast: aCollection.
 	^ brick ifNotNil: [ self removeBrickNoLayout: brick. brick morph ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>getIndex: aBrick  [
+{ #category : #accessing }
+GLMScrollListBrick >> getIndex: aBrick [ 
 
 	^ aBrick valueOfProperty: #brickScrollListIndex ifAbsent: [ ]
 ]
 
-{
-	#category : #'lazy scrolling',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>getMorphAt: anInteger recycled: aMorph [
+{ #category : #'lazy scrolling' }
+GLMScrollListBrick >> getMorphAt: anInteger recycled: aMorph [
 	|newMorph|
 	
 	newMorph := (self model morphAt: anInteger convert: aMorph) asBrick.
@@ -234,83 +185,56 @@ GLMScrollListBrick>>getMorphAt: anInteger recycled: aMorph [
 	^ newMorph
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>hasItems [
+{ #category : #testing }
+GLMScrollListBrick >> hasItems [
 	^ self model notNil and: [ self model count > 0 ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>initialize [
+{ #category : #initialization }
+GLMScrollListBrick >> initialize [
 	super initialize.
 	
 	self band useVerticalLinearLayout
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>invalidate [
+{ #category : #scrolling }
+GLMScrollListBrick >> invalidate [
 
 	self scrollTo: self visibleIndex
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>isFirstAdded [
+{ #category : #testing }
+GLMScrollListBrick >> isFirstAdded [
 
 	^ (self getIndex: self band firstSubbrick) = 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>isFullyVisible [
+{ #category : #testing }
+GLMScrollListBrick >> isFullyVisible [
 	self band hasSubbricks ifFalse: [ ^ true ].
 	^ self isLastAdded & self isFirstAdded & super isFullyVisible
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>isLastAdded [
+{ #category : #testing }
+GLMScrollListBrick >> isLastAdded [
 
 	^ (self getIndex: self band lastSubbrick) = self model count
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>isUpdating [
+{ #category : #testing }
+GLMScrollListBrick >> isUpdating [
 
 	^ isUpdating ifNil: [ isUpdating := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>model [
+{ #category : #accessing }
+GLMScrollListBrick >> model [
 
 	^ adaptor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>model: anAdaptor [
+{ #category : #accessing }
+GLMScrollListBrick >> model: anAdaptor [
 
 	adaptor := anAdaptor.
 	self band hasSubbricks ifFalse: [ self updateVisible ].
@@ -320,59 +244,41 @@ GLMScrollListBrick>>model: anAdaptor [
 	self update.
 ]
 
-{
-	#category : #layouting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>moveAllSubbricksBy: anInteger [
+{ #category : #layouting }
+GLMScrollListBrick >> moveAllSubbricksBy: anInteger [
 
 	self band subbricks do: [ :each | each translateY: anInteger ].
 	self band translateY: anInteger negated
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>newBand [
+{ #category : #'instance creation' }
+GLMScrollListBrick >> newBand [
 	^ super newBand height: [ :bandBrick |
 		bandBrick subbricks isEmpty
 			ifTrue: [ 0 ]
 			ifFalse: [ bandBrick lastSubbrick brickBounds bottom ] ].
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>newVerticalScrollbar [
+{ #category : #'instance creation' }
+GLMScrollListBrick >> newVerticalScrollbar [
 
 	^ GLMApproximateScrollbarBrick new
 ]
 
-{
-	#category : #brick-layout-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>onChildrenLayouted [
+{ #category : #brick-layout-events }
+GLMScrollListBrick >> onChildrenLayouted [
 	
 	self doNotUpdateDuring: [ self update ]
 ]
 
-{
-	#category : #brick-layout-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>onLayouted [
+{ #category : #brick-layout-events }
+GLMScrollListBrick >> onLayouted [
 	
 	self doNotUpdateDuring: [ self update ]
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>preventOverscrolling [
+{ #category : #scrolling }
+GLMScrollListBrick >> preventOverscrolling [
 
 	self band hasSubbricks ifFalse: [ ^ self ].
 
@@ -388,41 +294,29 @@ GLMScrollListBrick>>preventOverscrolling [
 		ifTrue: [ self moveBandBottom. "self moveAllSubbricksBy: (self band height - self band lastSubbrick brickBounds bottom)." ^ self update ]
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>removeBrickNoLayout: aBrick [
+{ #category : #adding/removing }
+GLMScrollListBrick >> removeBrickNoLayout: aBrick [
 
 	self band doNotLayoutDuring: [ self band removeBrick: aBrick ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>retrieveLast: aCollection [
+{ #category : #accessing }
+GLMScrollListBrick >> retrieveLast: aCollection [
 
 	^ aCollection isEmpty
 		ifTrue: [ nil ]
 		ifFalse: [ aCollection removeLast ]
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>scrollBy: anInteger [
+{ #category : #scrolling }
+GLMScrollListBrick >> scrollBy: anInteger [
 
 	self privateScrollPosition: anInteger.
 	self band translateY: anInteger.
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>scrollDown: anInteger [
+{ #category : #scrolling }
+GLMScrollListBrick >> scrollDown: anInteger [
 	
 	self scrollBy: (
 		self isLastAdded
@@ -430,11 +324,8 @@ GLMScrollListBrick>>scrollDown: anInteger [
 			ifFalse: [ anInteger ]) negated
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>scrollPageDown [
+{ #category : #scrolling }
+GLMScrollListBrick >> scrollPageDown [
 	
 	self
 		scrollDown: self calculateMaxVelocity;
@@ -442,11 +333,8 @@ GLMScrollListBrick>>scrollPageDown [
 		changed
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>scrollPageUp [
+{ #category : #scrolling }
+GLMScrollListBrick >> scrollPageUp [
 	
 	self
 		scrollUp: self calculateMaxVelocity;
@@ -454,11 +342,8 @@ GLMScrollListBrick>>scrollPageUp [
 		changed
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>scrollTo: anInteger [
+{ #category : #scrolling }
+GLMScrollListBrick >> scrollTo: anInteger [
 	|brick index|
 	self band doNotLayoutDuring: [ self band removeAllBricks ].
 	self moveBandTop.
@@ -481,29 +366,20 @@ GLMScrollListBrick>>scrollTo: anInteger [
 	
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>scrollToBottom [
+{ #category : #scrolling }
+GLMScrollListBrick >> scrollToBottom [
 
 	self scrollTo: self model count
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>scrollToTop [
+{ #category : #scrolling }
+GLMScrollListBrick >> scrollToTop [
 
 	self scrollTo: 1
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>scrollUp: anInteger [
+{ #category : #scrolling }
+GLMScrollListBrick >> scrollUp: anInteger [
 	
 	self scrollBy: (
 		self isFirstAdded
@@ -511,22 +387,16 @@ GLMScrollListBrick>>scrollUp: anInteger [
 			ifFalse: [ anInteger ])
 ]
 
-{
-	#category : #layouting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>setBoundsOf: aMorph after: afterMorph [
+{ #category : #layouting }
+GLMScrollListBrick >> setBoundsOf: aMorph after: afterMorph [
 	
 	aMorph
 		withWidth: self band width;
 		brickBounds: (afterMorph brickBounds bottomLeft extent: aMorph extent)
 ]
 
-{
-	#category : #layouting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>setBoundsOf: aMorph before: beforeMorph [
+{ #category : #layouting }
+GLMScrollListBrick >> setBoundsOf: aMorph before: beforeMorph [
 	|origin corner|
 	
 	aMorph withWidth: self band width.
@@ -537,29 +407,20 @@ GLMScrollListBrick>>setBoundsOf: aMorph before: beforeMorph [
 	aMorph brickBounds: (origin corner: corner)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>setIndex: anInteger in: aBrick  [
+{ #category : #accessing }
+GLMScrollListBrick >> setIndex: anInteger in: aBrick [ 
 
 	aBrick setProperty: #brickScrollListIndex toValue: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>topOffset [
+{ #category : #accessing }
+GLMScrollListBrick >> topOffset [
 
 	^ self band firstSubbrick brickBounds top
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>update [
+{ #category : #scrolling }
+GLMScrollListBrick >> update [
 	self hasItems ifFalse: [ ^ self ].
 	isUpdating := true.
 	self updateVisible.
@@ -572,11 +433,8 @@ GLMScrollListBrick>>update [
 	isUpdating := false.
 ]
 
-{
-	#category : #'lazy scrolling',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>updateVisible [
+{ #category : #'lazy scrolling' }
+GLMScrollListBrick >> updateVisible [
 	|invisible|
 	
 	self hasItems ifFalse: [ ^ self ].
@@ -592,11 +450,8 @@ GLMScrollListBrick>>updateVisible [
 	visibleIndex := self getIndex: self band firstSubbrick 
 ]
 
-{
-	#category : #'lazy scrolling',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>updateVisibleBottom: invisibleBricks [
+{ #category : #'lazy scrolling' }
+GLMScrollListBrick >> updateVisibleBottom: invisibleBricks [
 	|after|
 	
 	after := self band lastSubbrick.
@@ -609,11 +464,8 @@ GLMScrollListBrick>>updateVisibleBottom: invisibleBricks [
 			after: after ].
 ]
 
-{
-	#category : #'lazy scrolling',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>updateVisibleTop: invisibleBricks [
+{ #category : #'lazy scrolling' }
+GLMScrollListBrick >> updateVisibleTop: invisibleBricks [
 	|before|
 	
 	before := self band hasSubbricks not
@@ -630,11 +482,8 @@ GLMScrollListBrick>>updateVisibleTop: invisibleBricks [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMScrollListBrick>>visibleIndex [
+{ #category : #accessing }
+GLMScrollListBrick >> visibleIndex [
 
 	^ visibleIndex ifNil: [ visibleIndex := 1 ]
 ]

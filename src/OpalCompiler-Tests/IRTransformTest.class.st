@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #IRTransformTest,
 	#superclass : #TestCase,
-	#category : #OpalCompiler-Tests-IR,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-IR
 }
 
-{
-	#category : #'testing - adding',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRTransformTest>>testAdd [
+{ #category : #'testing - adding' }
+IRTransformTest >> testAdd [
 	
 	| iRMethod aCompiledMethod |
 
@@ -35,11 +28,8 @@ IRTransformTest>>testAdd [
 
 ]
 
-{
-	#category : #'testing - adding',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRTransformTest>>testAddBefore [
+{ #category : #'testing - adding' }
+IRTransformTest >> testAddBefore [
 	
 	| iRMethod aCompiledMethod ret |
 
@@ -64,11 +54,8 @@ IRTransformTest>>testAddBefore [
 
 ]
 
-{
-	#category : #'testing - adding',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRTransformTest>>testAddIntructions [
+{ #category : #'testing - adding' }
+IRTransformTest >> testAddIntructions [
 	
 	| iRMethod aCompiledMethod |
 
@@ -88,11 +75,8 @@ IRTransformTest>>testAddIntructions [
 
 ]
 
-{
-	#category : #'testing - adding',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRTransformTest>>testAddIntructionsBefore [
+{ #category : #'testing - adding' }
+IRTransformTest >> testAddIntructionsBefore [
 	
 	| iRMethod aCompiledMethod push |
 
@@ -111,11 +95,8 @@ IRTransformTest>>testAddIntructionsBefore [
 
 ]
 
-{
-	#category : #'testing - adding',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRTransformTest>>testAddIntructionsBeforeFromLList [
+{ #category : #'testing - adding' }
+IRTransformTest >> testAddIntructionsBeforeFromLList [
 	
 	| iRMethod aCompiledMethod push llist col |
 
@@ -140,33 +121,24 @@ IRTransformTest>>testAddIntructionsBeforeFromLList [
 
 ]
 
-{
-	#category : #'testing - enumeration',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRTransformTest>>testAllInstructions [
+{ #category : #'testing - enumeration' }
+IRTransformTest >> testAllInstructions [
 		| ir |
 
 		ir := IRBuilderTest new testPushTempTemp.
 		self assert: ir allInstructions last isReturn.
 ]
 
-{
-	#category : #'testing - enumeration',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRTransformTest>>testAllTempAccessInstructions [
+{ #category : #'testing - enumeration' }
+IRTransformTest >> testAllTempAccessInstructions [
 		| ir |
 
 		ir := IRBuilderTest new testPushTempTemp.
 		self assert: ir allTempAccessInstructions size = 1.
 ]
 
-{
-	#category : #'testing - adding',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRTransformTest>>testDelete [
+{ #category : #'testing - adding' }
+IRTransformTest >> testDelete [
 	
 	| iRMethod aCompiledMethod |
 
@@ -185,11 +157,8 @@ IRTransformTest>>testDelete [
 
 ]
 
-{
-	#category : #'testing - adding',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRTransformTest>>testReplace [
+{ #category : #'testing - adding' }
+IRTransformTest >> testReplace [
 	| iRMethod aCompiledMethod |
 	
 	iRMethod := IRBuilder new
@@ -205,11 +174,8 @@ IRTransformTest>>testReplace [
 
 ]
 
-{
-	#category : #'testing - adding',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRTransformTest>>testReplaceInstr [
+{ #category : #'testing - adding' }
+IRTransformTest >> testReplaceInstr [
 	
 	| iRMethod aCompiledMethod |
 

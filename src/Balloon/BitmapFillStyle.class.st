@@ -12,23 +12,16 @@ Class {
 		'form',
 		'tileFlag'
 	],
-	#category : #Balloon-Fills,
-	#timestamp : '<historical>'
+	#category : #Balloon-Fills
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BitmapFillStyle class>>form: aForm [
+{ #category : #'instance creation' }
+BitmapFillStyle class >> form: aForm [
 	^self new form: aForm
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BitmapFillStyle class>>fromForm: aForm [
+{ #category : #'instance creation' }
+BitmapFillStyle class >> fromForm: aForm [
 	| fs |
 	fs := self form: aForm.
 	fs origin: 0@0.
@@ -38,11 +31,8 @@ BitmapFillStyle class>>fromForm: aForm [
 	^fs
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BitmapFillStyle class>>fromUser [
+{ #category : #'instance creation' }
+BitmapFillStyle class >> fromUser [
 	| fill |
 	fill := self form: Form fromUser.
 	fill origin: 0@0.
@@ -52,76 +42,49 @@ BitmapFillStyle class>>fromUser [
 	^fill
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BitmapFillStyle>>asColor [
+{ #category : #converting }
+BitmapFillStyle >> asColor [
 	^form colorAt: 0@0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BitmapFillStyle>>direction [
+{ #category : #accessing }
+BitmapFillStyle >> direction [
 
 	^direction ifNil: [direction :=( (normal y @ normal x negated) * form width / form height ) rounded]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BitmapFillStyle>>form [
+{ #category : #accessing }
+BitmapFillStyle >> form [
 	^form
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BitmapFillStyle>>form: aForm [
+{ #category : #accessing }
+BitmapFillStyle >> form: aForm [
 	form := aForm
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BitmapFillStyle>>isBitmapFill [
+{ #category : #testing }
+BitmapFillStyle >> isBitmapFill [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BitmapFillStyle>>isTiled [
+{ #category : #testing }
+BitmapFillStyle >> isTiled [
 	"Return true if the receiver should be repeated if the fill shape is larger than the form"
 	^tileFlag == true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BitmapFillStyle>>normal [
+{ #category : #accessing }
+BitmapFillStyle >> normal [
 	^normal ifNil: [normal := ((direction y negated @ direction x) *  form height / form width ) rounded]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BitmapFillStyle>>tileFlag [
+{ #category : #accessing }
+BitmapFillStyle >> tileFlag [
 	^tileFlag
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BitmapFillStyle>>tileFlag: aBoolean [
+{ #category : #accessing }
+BitmapFillStyle >> tileFlag: aBoolean [
 	tileFlag := aBoolean
 ]

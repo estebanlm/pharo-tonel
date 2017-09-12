@@ -12,33 +12,23 @@ Class {
 	#instVars : [
 		'matcher'
 	],
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 20:56'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule class>>checksMethod [
+{ #category : #testing }
+RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'LiteralArrayContainsSuspiciousTrueFalseOrNilRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule>>basicCheck: aMethod  [
+{ #category : #running }
+RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule >> basicCheck: aMethod [ 
 	| compiledLits parsedLits |
 	compiledLits := aMethod allLiterals
 		inject: OrderedCollection new
@@ -56,28 +46,19 @@ RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule>>basicCheck: aMethod  [
 	^ false
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule>>checkMethod: aMethod  [
+{ #category : #running }
+RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule >> checkMethod: aMethod [ 
 	(self basicCheck: aMethod) ifTrue: [
 			result addMethod: aMethod ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule>>group [
+{ #category : #accessing }
+RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule >> group [
 	^ 'Potential Bugs'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule>>initialize [
+{ #category : #initialization }
+RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule >> initialize [
 	super initialize.
 	matcher := RBParseTreeSearcher new.
 	matcher 
@@ -88,11 +69,8 @@ RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule>>initialize [
 				yourself ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule>>literalTrueFalseOrNilSymbolsIn: aLiteral  [
+{ #category : #private }
+RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule >> literalTrueFalseOrNilSymbolsIn: aLiteral [ 
 	| retval |
 	aLiteral class == Array ifFalse: [ ^ #() ].
 	retval := OrderedCollection withAll: (aLiteral 
@@ -101,18 +79,12 @@ RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule>>literalTrueFalseOrNilSymbols
 	^ retval
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule>>name [
+{ #category : #accessing }
+RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule >> name [
 	^ 'Literal array contains a #true, #false, or #nil but the source doesn''t.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule>>rationale [
+{ #category : #accessing }
+RBLiteralArrayContainsSuspiciousTrueFalseOrNilRule >> rationale [
 	^ '#(true false nil) now is equal to {true. false. nil} not {#true. #false. #nil} as it used to be.'
 ]

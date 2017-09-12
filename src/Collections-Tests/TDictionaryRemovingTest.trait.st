@@ -3,61 +3,40 @@ A trait for test purposes
 "
 Trait {
 	#name : #TDictionaryRemovingTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Unordered,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:34'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryRemovingTest>>emptyDict [
+{ #category : #requirements }
+TDictionaryRemovingTest >> emptyDict [
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryRemovingTest>>keyNotInNonEmptyDict [
+{ #category : #requirements }
+TDictionaryRemovingTest >> keyNotInNonEmptyDict [
 " return a key not included in nonEmptyDict"
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryRemovingTest>>newEmptyDict [
+{ #category : #requirements }
+TDictionaryRemovingTest >> newEmptyDict [
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryRemovingTest>>nonEmptyDict [
+{ #category : #requirements }
+TDictionaryRemovingTest >> nonEmptyDict [
 	self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryRemovingTest>>test0FixtureDictionaryRemovingTest [
+{ #category : #'tests - fixture' }
+TDictionaryRemovingTest >> test0FixtureDictionaryRemovingTest [
 	self nonEmptyDict.
 	self deny: self nonEmptyDict isEmpty.
 	self keyNotInNonEmptyDict.
 	self deny: (self nonEmptyDict keys includes: self keyNotInNonEmptyDict)
 ]
 
-{
-	#category : #'test - removing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryRemovingTest>>testKeysAndValuesRemove [
+{ #category : #'test - removing' }
+TDictionaryRemovingTest >> testKeysAndValuesRemove [
 	| oldSize collection keyIn |
 	
 	collection := self nonEmptyDict .
@@ -72,21 +51,15 @@ TDictionaryRemovingTest>>testKeysAndValuesRemove [
 	self should: [ collection at: keyIn  ] raise: Error.
 ]
 
-{
-	#category : #'test - removing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryRemovingTest>>testRemove [
+{ #category : #'test - removing' }
+TDictionaryRemovingTest >> testRemove [
 
 	self should: [self nonEmptyDict remove: nil] raise: Error.
 	self should: [self nonEmptyDict remove: nil ifAbsent: ['What ever here']] raise: Error.
 ]
 
-{
-	#category : #'test - removing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryRemovingTest>>testRemoveKey [
+{ #category : #'test - removing' }
+TDictionaryRemovingTest >> testRemoveKey [
 	"self debug: #testRemoveKey"
 
 	| collection oldSize keyIn |
@@ -101,11 +74,8 @@ TDictionaryRemovingTest>>testRemoveKey [
 	self should: [collection removeKey: self keyNotInNonEmptyDict ] raise: Error
 ]
 
-{
-	#category : #'test - removing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryRemovingTest>>testRemoveKeyIfAbsent [
+{ #category : #'test - removing' }
+TDictionaryRemovingTest >> testRemoveKeyIfAbsent [
 	
 	| collection oldSize keyIn value result |
 	collection := self nonEmptyDict .

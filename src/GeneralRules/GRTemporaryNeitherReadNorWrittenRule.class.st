@@ -4,15 +4,11 @@ There is something wrong in the method as you have variables that are either nor
 Class {
 	#name : #GRTemporaryNeitherReadNorWrittenRule,
 	#superclass : #ReNodeBasedRule,
-	#category : #GeneralRules,
-	#timestamp : 'YuriyTymchuk 9/5/2016 13:52'
+	#category : #GeneralRules
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRTemporaryNeitherReadNorWrittenRule>>check: aNode forCritiquesDo: aBlock [
+{ #category : #running }
+GRTemporaryNeitherReadNorWrittenRule >> check: aNode forCritiquesDo: aBlock [
 	aNode isSequence ifTrue: [ 
 		aNode temporaries do: [ :temp |
 			self
@@ -21,11 +17,8 @@ GRTemporaryNeitherReadNorWrittenRule>>check: aNode forCritiquesDo: aBlock [
 				forCritiquesDo: aBlock ] ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRTemporaryNeitherReadNorWrittenRule>>checkTemp: aTemp followedBy: statements [
+{ #category : #running }
+GRTemporaryNeitherReadNorWrittenRule >> checkTemp: aTemp followedBy: statements [
 	| isRead isWritten |
 	isRead := isWritten := false.
 	statements do: [ :statement | 
@@ -38,27 +31,18 @@ GRTemporaryNeitherReadNorWrittenRule>>checkTemp: aTemp followedBy: statements [
 	^ (isRead and: isWritten )
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRTemporaryNeitherReadNorWrittenRule>>checkTemp: aTemp followedBy: statements forCritiquesDo: aBlock [
+{ #category : #running }
+GRTemporaryNeitherReadNorWrittenRule >> checkTemp: aTemp followedBy: statements forCritiquesDo: aBlock [
 	(self checkTemp: aTemp followedBy: statements) ifFalse: [ 
 		aBlock cull: (self critiqueFor: aTemp) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRTemporaryNeitherReadNorWrittenRule>>group [
+{ #category : #accessing }
+GRTemporaryNeitherReadNorWrittenRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRTemporaryNeitherReadNorWrittenRule>>name [
+{ #category : #accessing }
+GRTemporaryNeitherReadNorWrittenRule >> name [
 	^ 'Temporary variables not read or not written'
 ]

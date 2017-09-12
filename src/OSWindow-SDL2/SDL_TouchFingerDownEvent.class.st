@@ -4,184 +4,123 @@ SDL2 library structure
 Class {
 	#name : #SDL_TouchFingerDownEvent,
 	#superclass : #SDL_TouchFingerEvent,
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'jeanbaptistearnaud 2/26/2015 21:24'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'event type',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent class>>eventType [
+{ #category : #'event type' }
+SDL_TouchFingerDownEvent class >> eventType [
 	^ SDL_FINGERDOWN
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>accept: aVisitor [
+{ #category : #visitor }
+SDL_TouchFingerDownEvent >> accept: aVisitor [
 	^ aVisitor visitFingerDownEvent: self
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>dx [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> dx [
 	"This method was automatically generated"
 	^handle floatAt: OFFSET_DX
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>dx: anObject [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> dx: anObject [
 	"This method was automatically generated"
 	handle floatAt: OFFSET_DX put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>dy [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> dy [
 	"This method was automatically generated"
 	^handle floatAt: OFFSET_DY
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>dy: anObject [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> dy: anObject [
 	"This method was automatically generated"
 	handle floatAt: OFFSET_DY put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>fingerId [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> fingerId [
 	"This method was automatically generated"
 	^handle signedLongLongAt: OFFSET_FINGERID
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>fingerId: anObject [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> fingerId: anObject [
 	"This method was automatically generated"
 	handle signedLongLongAt: OFFSET_FINGERID put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>pressure [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> pressure [
 	"This method was automatically generated"
 	^handle floatAt: OFFSET_PRESSURE
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>pressure: anObject [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> pressure: anObject [
 	"This method was automatically generated"
 	handle floatAt: OFFSET_PRESSURE put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>timestamp [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> timestamp [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_TIMESTAMP
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>timestamp: anObject [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> timestamp: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_TIMESTAMP put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>touchId [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> touchId [
 	"This method was automatically generated"
 	^handle signedLongLongAt: OFFSET_TOUCHID
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>touchId: anObject [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> touchId: anObject [
 	"This method was automatically generated"
 	handle signedLongLongAt: OFFSET_TOUCHID put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>type [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> type [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_TYPE
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>type: anObject [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> type: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_TYPE put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>x [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> x [
 	"This method was automatically generated"
 	^handle floatAt: OFFSET_X
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>x: anObject [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> x: anObject [
 	"This method was automatically generated"
 	handle floatAt: OFFSET_X put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>y [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> y [
 	"This method was automatically generated"
 	^handle floatAt: OFFSET_Y
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_TouchFingerDownEvent>>y: anObject [
+{ #category : #'accessing structure variables' }
+SDL_TouchFingerDownEvent >> y: anObject [
 	"This method was automatically generated"
 	handle floatAt: OFFSET_Y put: anObject
 ]

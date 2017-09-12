@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'shadowColor'
 	],
-	#category : #Graphics-Canvas,
-	#timestamp : 'LaurentLaffont 2/23/2011 20:17'
+	#category : #Graphics-Canvas
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ShadowDrawingCanvas>>image: aForm at: aPoint sourceRect: sourceRect rule: rule [
+{ #category : #private }
+ShadowDrawingCanvas >> image: aForm at: aPoint sourceRect: sourceRect rule: rule [
 	"Draw the given form. For the 'paint' combination rule use stenciling otherwise simply fill the source rectangle."
 	rule = Form paint ifTrue:[
 		^myCanvas
@@ -30,46 +26,31 @@ ShadowDrawingCanvas>>image: aForm at: aPoint sourceRect: sourceRect rule: rule [
 	].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ShadowDrawingCanvas>>isShadowDrawing [
+{ #category : #testing }
+ShadowDrawingCanvas >> isShadowDrawing [
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ShadowDrawingCanvas>>mapColor: aColor [
+{ #category : #private }
+ShadowDrawingCanvas >> mapColor: aColor [
 	aColor isColor ifFalse:[^aColor]. "Should not happen but who knows..."
 	^aColor isTransparent
 		ifTrue:[aColor]
 		ifFalse:[shadowColor]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ShadowDrawingCanvas>>on: aCanvas [
+{ #category : #initialization }
+ShadowDrawingCanvas >> on: aCanvas [
 	myCanvas := aCanvas.
 	shadowColor := Color black.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ShadowDrawingCanvas>>shadowColor [
+{ #category : #accessing }
+ShadowDrawingCanvas >> shadowColor [
 	^shadowColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ShadowDrawingCanvas>>shadowColor: aColor [
+{ #category : #accessing }
+ShadowDrawingCanvas >> shadowColor: aColor [
 	shadowColor := aColor
 ]

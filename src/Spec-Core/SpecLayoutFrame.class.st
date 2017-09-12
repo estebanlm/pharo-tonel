@@ -17,51 +17,35 @@ Class {
 		'topFraction',
 		'topOffset'
 	],
-	#category : #Spec-Core-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Support
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>bottomFraction [
+{ #category : #accessing }
+SpecLayoutFrame >> bottomFraction [
 	
 	^ bottomFraction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>bottomFraction: anObject [
+{ #category : #accessing }
+SpecLayoutFrame >> bottomFraction: anObject [
 	
 	bottomFraction := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>bottomOffset [
+{ #category : #accessing }
+SpecLayoutFrame >> bottomOffset [
 	
 	^ bottomOffset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>bottomOffset: anObject [
+{ #category : #accessing }
+SpecLayoutFrame >> bottomOffset: anObject [
 	
 	bottomOffset := anObject
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>initialize [
+{ #category : #initialize }
+SpecLayoutFrame >> initialize [
 
 	super initialize.
 
@@ -75,110 +59,74 @@ SpecLayoutFrame>>initialize [
 	topOffset := 0.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>leftFraction [
+{ #category : #accessing }
+SpecLayoutFrame >> leftFraction [
 	
 	^ leftFraction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>leftFraction: anObject [
+{ #category : #accessing }
+SpecLayoutFrame >> leftFraction: anObject [
 	
 	leftFraction := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>leftOffset [
+{ #category : #accessing }
+SpecLayoutFrame >> leftOffset [
 	
 	^ leftOffset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>leftOffset: anObject [
+{ #category : #accessing }
+SpecLayoutFrame >> leftOffset: anObject [
 	
 	leftOffset := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>rightFraction [
+{ #category : #accessing }
+SpecLayoutFrame >> rightFraction [
 	
 	^ rightFraction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>rightFraction: anObject [
+{ #category : #accessing }
+SpecLayoutFrame >> rightFraction: anObject [
 	
 	rightFraction := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>rightOffset [
+{ #category : #accessing }
+SpecLayoutFrame >> rightOffset [
 	
 	^ rightOffset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>rightOffset: anObject [
+{ #category : #accessing }
+SpecLayoutFrame >> rightOffset: anObject [
 	
 	rightOffset := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>topFraction [
+{ #category : #accessing }
+SpecLayoutFrame >> topFraction [
 	
 	^ topFraction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>topFraction: anObject [
+{ #category : #accessing }
+SpecLayoutFrame >> topFraction: anObject [
 	
 	topFraction := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>topOffset [
+{ #category : #accessing }
+SpecLayoutFrame >> topOffset [
 	
 	^ topOffset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecLayoutFrame>>topOffset: anObject [
+{ #category : #accessing }
+SpecLayoutFrame >> topOffset: anObject [
 	
 	topOffset := anObject
 ]

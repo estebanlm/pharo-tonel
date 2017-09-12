@@ -7,85 +7,57 @@ Class {
 	#instVars : [
 		'patternForm'
 	],
-	#category : #'Graphics-Display Objects',
-	#timestamp : '<historical>'
+	#category : #'Graphics-Display Objects'
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm class>>with: aForm  [
+{ #category : #'instance creation' }
+InfiniteForm class >> with: aForm [ 
 	"Answer an instance of me whose pattern form is the argument, aForm."
 
 	^self new form: aForm
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>addFillStyleMenuItems: aMenu hand: aHand from: aMorph [
+{ #category : #'as yet unclassified' }
+InfiniteForm >> addFillStyleMenuItems: aMenu hand: aHand from: aMorph [
 	"Add the items for changing the current fill style of the receiver"
 
 	"prevents a walkback when control menu is built for morph with me as color"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>asColor [
+{ #category : #accessing }
+InfiniteForm >> asColor [
 	^ patternForm dominantColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>asForm [
+{ #category : #accessing }
+InfiniteForm >> asForm [
 	^ patternForm
 ]
 
-{
-	#category : #'fillstyle protocol',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>bitPatternForDepth: suspectedDepth [
+{ #category : #'fillstyle protocol' }
+InfiniteForm >> bitPatternForDepth: suspectedDepth [
 	^ patternForm
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>colorForInsets [
+{ #category : #displaying }
+InfiniteForm >> colorForInsets [
 	^ Color transparent
 ]
 
-{
-	#category : #'display box access',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>computeBoundingBox  [
+{ #category : #'display box access' }
+InfiniteForm >> computeBoundingBox [ 
 	"Refer to the comment in DisplayObject|computeBoundingBox."
 
 	^0 @ 0 corner: SmallInteger maxVal @ SmallInteger maxVal
 ]
 
-{
-	#category : #'fillstyle protocol',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>direction [
+{ #category : #'fillstyle protocol' }
+InfiniteForm >> direction [
 	^patternForm width @ 0
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>displayOn: aDisplayMedium at: aDisplayPoint clippingBox: clipRectangle rule: ruleInteger fillColor: aForm [
+{ #category : #displaying }
+InfiniteForm >> displayOn: aDisplayMedium at: aDisplayPoint clippingBox: clipRectangle rule: ruleInteger fillColor: aForm [
 	"This is the real display message, but it doesn't get used until the new
 	display protocol is installed."
 	| targetBox patternBox bb |
@@ -109,11 +81,8 @@ InfiniteForm>>displayOn: aDisplayMedium at: aDisplayPoint clippingBox: clipRecta
 			bb destOrigin: x@y; copyBits]]
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>displayOnPort: aPort at: offset [
+{ #category : #displaying }
+InfiniteForm >> displayOnPort: aPort at: offset [
 
 	| targetBox patternBox savedMap top left |
 
@@ -143,11 +112,8 @@ InfiniteForm>>displayOnPort: aPort at: offset [
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>displayOnPort: aPort offsetBy: offset [
+{ #category : #displaying }
+InfiniteForm >> displayOnPort: aPort offsetBy: offset [
 
 	| targetBox patternBox savedMap top left |
 
@@ -176,130 +142,85 @@ InfiniteForm>>displayOnPort: aPort offsetBy: offset [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>dominantColor [
+{ #category : #accessing }
+InfiniteForm >> dominantColor [
 	^ patternForm dominantColor
 ]
 
-{
-	#category : #'fillstyle protocol',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>form [
+{ #category : #'fillstyle protocol' }
+InfiniteForm >> form [
 	"Bitmap fills respond to #form"
 	^patternForm
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>form: aForm [
+{ #category : #private }
+InfiniteForm >> form: aForm [
 
 	patternForm := aForm
 ]
 
-{
-	#category : #'fillstyle protocol',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>isBitmapFill [
+{ #category : #'fillstyle protocol' }
+InfiniteForm >> isBitmapFill [
 	^true
 ]
 
-{
-	#category : #'fillstyle protocol',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>isGradientFill [
+{ #category : #'fillstyle protocol' }
+InfiniteForm >> isGradientFill [
 	^false
 ]
 
-{
-	#category : #'fillstyle protocol',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>isOrientedFill [
+{ #category : #'fillstyle protocol' }
+InfiniteForm >> isOrientedFill [
 	^true
 ]
 
-{
-	#category : #'fillstyle protocol',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>isSolidFill [
+{ #category : #'fillstyle protocol' }
+InfiniteForm >> isSolidFill [
 	^false
 ]
 
-{
-	#category : #'fillstyle protocol',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>isTiled [
+{ #category : #'fillstyle protocol' }
+InfiniteForm >> isTiled [
 	"Return true if the receiver should be drawn as a tiled pattern"
 	^true
 ]
 
-{
-	#category : #'fillstyle protocol',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>isTranslucent [
+{ #category : #'fillstyle protocol' }
+InfiniteForm >> isTranslucent [
 	"Return true since the bitmap may be translucent and we don't really want to check"
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>mightBeTranslucent [
+{ #category : #testing }
+InfiniteForm >> mightBeTranslucent [
 	"Return true since the bitmap may be translucent and we don't really want to check"
 	^true
 ]
 
-{
-	#category : #'fillstyle protocol',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>normal [
+{ #category : #'fillstyle protocol' }
+InfiniteForm >> normal [
 	^0 @ patternForm height
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>offset  [
+{ #category : #accessing }
+InfiniteForm >> offset [ 
 	"Refer to the comment in DisplayObject|offset."
 
 	^0 @ 0
 ]
 
-{
-	#category : #'fillstyle protocol',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>origin [
+{ #category : #'fillstyle protocol' }
+InfiniteForm >> origin [
 	^0@0
 ]
 
-{
-	#category : #'fillstyle protocol',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>origin: aPoint [
+{ #category : #'fillstyle protocol' }
+InfiniteForm >> origin: aPoint [
 	"Ignored"
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-InfiniteForm>>raisedColor [
+{ #category : #displaying }
+InfiniteForm >> raisedColor [
 	^ Color transparent
 ]

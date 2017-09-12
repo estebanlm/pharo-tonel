@@ -10,58 +10,39 @@ Class {
 		'project',
 		'basename'
 	],
-	#category : #Versionner-Commit,
-	#timestamp : '<historical>'
+	#category : #Versionner-Commit
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectValidator class>>basename: aString [
+{ #category : #'instance creation' }
+VSCommitProjectValidator class >> basename: aString [
 	^ self basicNew
 		initializeBasename: aString;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectValidator class>>new [
+{ #category : #'instance creation' }
+VSCommitProjectValidator class >> new [
 	self error: 'Use #project:'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectValidator class>>project: aProject [
+{ #category : #'instance creation' }
+VSCommitProjectValidator class >> project: aProject [
 	^ self basename: aProject name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectValidator>>basename [
+{ #category : #accessing }
+VSCommitProjectValidator >> basename [
 	^ basename
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectValidator>>initializeBasename: aString [
+{ #category : #initialization }
+VSCommitProjectValidator >> initializeBasename: aString [
 	basename := aString.
 	self initialize
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectValidator>>validate [
+{ #category : #validation }
+VSCommitProjectValidator >> validate [
 	| toolBox |
 	
 	[	toolBox := MetacelloToolBox configurationNamed: self basename.

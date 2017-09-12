@@ -9,70 +9,48 @@ Class {
 		'specWidget',
 		'toolbar'
 	],
-	#category : #Spec-Core-Widgets-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Widgets-Support
 }
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>cancelAction: aBlock [
+{ #category : #protocol }
+SpecDialogWindow >> cancelAction: aBlock [
 
 	self toolbar cancelAction: aBlock 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>cancelled [
+{ #category : #protocol }
+SpecDialogWindow >> cancelled [
 
 	^ self toolbar cancelled
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>close [
+{ #category : #actions }
+SpecDialogWindow >> close [
 
 	super close.
 	self toolbar cancel
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>escapePressed [
+{ #category : #actions }
+SpecDialogWindow >> escapePressed [
 
 	self toolbar triggerCancelAction
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>giveFocusToNextFrom: aModel  [
+{ #category : #focus }
+SpecDialogWindow >> giveFocusToNextFrom: aModel [ 
 
 	^ self model giveFocusToNextFrom: aModel 
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>giveFocusToPreviousFrom: aModel  [
+{ #category : #focus }
+SpecDialogWindow >> giveFocusToPreviousFrom: aModel [ 
 
 	^ self model giveFocusToPreviousFrom: aModel
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>initialExtent  [
+{ #category : #open/close }
+SpecDialogWindow >> initialExtent [ 
 
 	^ self model
 		ifNil: [ super initialExtent ]
@@ -80,22 +58,16 @@ SpecDialogWindow>>initialExtent  [
 						ifNil: [ super initialExtent ]]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>initialize [
+{ #category : #initialize }
+SpecDialogWindow >> initialize [
 
 	super initialize.
 
 	self beResizeable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>model: aModel [
+{ #category : #accessing }
+SpecDialogWindow >> model: aModel [
 
 	super model: aModel.
 
@@ -104,22 +76,16 @@ SpecDialogWindow>>model: aModel [
 	toolbar focusOrder addLast: model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>newButtonRow [
+{ #category : #accessing }
+SpecDialogWindow >> newButtonRow [
 
 	^ self toolbar 
 		ifNil: [ nil ]
 		ifNotNil: [ : t | t buildWithSpec ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>newContentMorph [
+{ #category : #accessing }
+SpecDialogWindow >> newContentMorph [
 	"Answer a new content morph."
 
 	^ self specWidget 
@@ -130,11 +96,8 @@ SpecDialogWindow>>newContentMorph [
 					vResizing: #spaceFill ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>newMainPanel [
+{ #category : #actions }
+SpecDialogWindow >> newMainPanel [
 	"Answer a new main panel."
 	| panel |
 	panel := self newDialogPanel.
@@ -143,20 +106,14 @@ SpecDialogWindow>>newMainPanel [
 	^ panel
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>okAction: aBlock [
+{ #category : #protocol }
+SpecDialogWindow >> okAction: aBlock [
 
 	self toolbar okAction: aBlock 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>setToolbarFrom: aBlock [
+{ #category : #protocol }
+SpecDialogWindow >> setToolbarFrom: aBlock [
 	| newToolbar |
 	
 	newToolbar := aBlock value.
@@ -165,39 +122,27 @@ SpecDialogWindow>>setToolbarFrom: aBlock [
 	newToolbar owner: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>specWidget [
+{ #category : #accessing }
+SpecDialogWindow >> specWidget [
 
 	^ specWidget
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>specWidget: anObject [
+{ #category : #accessing }
+SpecDialogWindow >> specWidget: anObject [
 
 	specWidget := anObject.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>toolbar [
+{ #category : #accessing }
+SpecDialogWindow >> toolbar [
 	"Lazy initialization because this method is called efore the initialize method"
 	
 	^ toolbar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecDialogWindow>>toolbar: anObject [
+{ #category : #accessing }
+SpecDialogWindow >> toolbar: anObject [
 
 	toolbar := anObject.
 	anObject owner: self.

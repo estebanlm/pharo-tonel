@@ -1,12 +1,7 @@
-Extension {
-	#name : #Workspace
-}
+Extension { #name : #Workspace }
 
-{
-	#category : #'*necompletion',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-Workspace>>completionAdditionals [
+{ #category : #'*necompletion' }
+Workspace >> completionAdditionals [
 	| additionals |
 	additionals := SortedCollection new.
 	bindings ifNotNil: 
@@ -18,11 +13,8 @@ Workspace>>completionAdditionals [
 	^ additionals
 ]
 
-{
-	#category : #'*necompletion',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-Workspace>>completionAdditionalsFromOCompletion [
+{ #category : #'*necompletion' }
+Workspace >> completionAdditionalsFromOCompletion [
 	"should spend more time to get it"
 	
 	bindings ifNil: [ ^#() ].
@@ -32,11 +24,8 @@ Workspace>>completionAdditionalsFromOCompletion [
 			type: #local ]
 ]
 
-{
-	#category : #'*necompletion',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-Workspace>>isCodeCompletionAllowed [
+{ #category : #'*necompletion' }
+Workspace >> isCodeCompletionAllowed [
 	^true
 
 ]

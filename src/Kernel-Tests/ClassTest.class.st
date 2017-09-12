@@ -8,25 +8,18 @@ Class {
 		'className',
 		'renamedName'
 	],
-	#category : #Kernel-Tests-Classes,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:31'
+	#category : #Kernel-Tests-Classes
 }
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>categoryNameForTemporaryClasses [
+{ #category : #setup }
+ClassTest >> categoryNameForTemporaryClasses [
 	"Answer the category where to classify temporarily created classes"
 
 	^'Dummy-Tests-Class' 
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>deleteClass [
+{ #category : #setup }
+ClassTest >> deleteClass [
 	| cl |
 	cl := Smalltalk globals at: className ifAbsent: [ ^ self ].
 	cl
@@ -34,11 +27,8 @@ ClassTest>>deleteClass [
 		removeFromSystemUnlogged
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>deleteRenamedClass [
+{ #category : #setup }
+ClassTest >> deleteRenamedClass [
 	| cl |
 	cl := Smalltalk globals at: renamedName ifAbsent: [ ^ self ].
 	cl
@@ -46,40 +36,28 @@ ClassTest>>deleteRenamedClass [
 		removeFromSystemUnlogged
 ]
 
-{
-	#category : #'referencing methods',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>referencingMethod1 [
+{ #category : #'referencing methods' }
+ClassTest >> referencingMethod1 [
 
 	^ ExampleForTest1
 ]
 
-{
-	#category : #'referencing methods',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>referencingMethod2 [
+{ #category : #'referencing methods' }
+ClassTest >> referencingMethod2 [
 
 	^ {ExampleForTest12. ExampleForTest1}
 ]
 
-{
-	#category : #'referencing methods',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>referencingMethod3 [
+{ #category : #'referencing methods' }
+ClassTest >> referencingMethod3 [
 
 	"no reference"
 
 	^ self
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>setUp [
+{ #category : #setup }
+ClassTest >> setUp [
 	className := #TUTU.
 	renamedName := #RenamedTUTU.
 	self deleteClass.
@@ -91,22 +69,16 @@ ClassTest>>setUp [
 		category: self categoryNameForTemporaryClasses
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>tearDown [
+{ #category : #setup }
+ClassTest >> tearDown [
 	self deleteClass.
 	self deleteRenamedClass.
 	{self unclassifiedCategory. self categoryNameForTemporaryClasses} do: [:category|
 			RPackage organizer unregisterPackageNamed: category]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testAddClassSlot [
+{ #category : #testing }
+ClassTest >> testAddClassSlot [
 
 	| tutu |
 	tutu := Smalltalk globals at: #TUTU.
@@ -116,11 +88,8 @@ ClassTest>>testAddClassSlot [
 	self assert: tutu class instVarNames = #(#'X' #'Y')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testAddInstVarName [
+{ #category : #testing }
+ClassTest >> testAddInstVarName [
 	"self run: #testAddInstVarName"
 
 	| tutu |
@@ -131,11 +100,8 @@ ClassTest>>testAddInstVarName [
 	self assert: tutu instVarNames = #('x' 'y')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testAddSlot [
+{ #category : #testing }
+ClassTest >> testAddSlot [
 	"self run: #testAddInstVarName"
 
 	| tutu |
@@ -147,11 +113,8 @@ ClassTest>>testAddSlot [
 	self assert: tutu instVarNames = #('x' 'y')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testAddSlotAnonymous [
+{ #category : #testing }
+ClassTest >> testAddSlotAnonymous [
 	"self run: #testAddInstVarName"
 
 	| tutu |
@@ -165,11 +128,8 @@ ClassTest>>testAddSlotAnonymous [
 	self assert: tutu instVarNames = #('x' 'y')
 ]
 
-{
-	#category : #'testing - access',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testAllSharedPools [
+{ #category : #'testing - access' }
+ClassTest >> testAllSharedPools [
 	"self run: #testAllSharedPools"
 
 	self assert: Point allSharedPools = OrderedCollection new.
@@ -181,11 +141,8 @@ ClassTest>>testAllSharedPools [
 	self assert: SubclassPoolUser sharedPools isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testChangingShapeDoesNotPutNilInMethodsLastLiteralKey [
+{ #category : #testing }
+ClassTest >> testChangingShapeDoesNotPutNilInMethodsLastLiteralKey [
 	"Test that when the shape of a class changes, the key of the last literal of the methods is not nil"
 	| tutu |
 	tutu := Smalltalk globals at: #TUTU.
@@ -195,11 +152,8 @@ ClassTest>>testChangingShapeDoesNotPutNilInMethodsLastLiteralKey [
 	self deny: (tutu >> #foo) allLiterals last key isNil.
 ]
 
-{
-	#category : #'testing - class variables',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testClassVarNames [
+{ #category : #'testing - class variables' }
+ClassTest >> testClassVarNames [
 
 	self assert: (Object classVarNames includes: #DependentsFields).
 	
@@ -207,28 +161,19 @@ ClassTest>>testClassVarNames [
 	self assert: (Object classVarNames = Object class classVarNames).
 ]
 
-{
-	#category : #'testing - compiling',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testCompileAll [
+{ #category : #'testing - compiling' }
+ClassTest >> testCompileAll [
 	ClassTest compileAll
 ]
 
-{
-	#category : #'testing - dependencies',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testDependencies [
+{ #category : #'testing - dependencies' }
+ClassTest >> testDependencies [
 	self assert: (ClassTest dependentClasses includes: ClassTest superclass).
 	self assert: (ClassTest dependentClasses includes: Date)
 ]
 
-{
-	#category : #'testing - access',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testHasPoolVarNamed [
+{ #category : #'testing - access' }
+ClassTest >> testHasPoolVarNamed [
 	"self debug: #testHasPoolVarNamed"
 
 	self assert: (Date usesLocalPoolVarNamed: 'DayNames').
@@ -240,11 +185,8 @@ ClassTest>>testHasPoolVarNamed [
 	self deny: (SubclassPoolUser usesLocalPoolVarNamed: 'Author').
 ]
 
-{
-	#category : #'testing - access',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testHasSharedPools [
+{ #category : #'testing - access' }
+ClassTest >> testHasSharedPools [
 	"self run: #testHasSharedPools"
 
 	self deny: Point hasSharedPools.
@@ -259,11 +201,8 @@ ClassTest>>testHasSharedPools [
 	self deny: SubclassPoolUser hasSharedPools.
 ]
 
-{
-	#category : #'testing - navigation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testMethodsReferencingClass [
+{ #category : #'testing - navigation' }
+ClassTest >> testMethodsReferencingClass [
 	self assert: (ClassTest methodsReferencingClass: (Smalltalk classNamed: #ExampleForTest111)) equals: {(ClassTest >> #testOrdersACollectionOfClassesBySuperclass)}.
 	self
 		assert: ((ClassTest methodsReferencingClass: (Smalltalk classNamed: #ExampleForTest1)) sort: [ :a :b | a name <= b name]) asArray
@@ -274,11 +213,8 @@ ClassTest>>testMethodsReferencingClass [
 	self assert: (ClassTest methodsReferencingClass: (Smalltalk classNamed: #BehaviorTest)) isEmpty
 ]
 
-{
-	#category : #'testing - navigation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testMethodsReferencingClasses [
+{ #category : #'testing - navigation' }
+ClassTest >> testMethodsReferencingClasses [
 
 	| collectionOfMethods collectionOfMethodsShouldBe |
 	
@@ -292,11 +228,8 @@ ClassTest>>testMethodsReferencingClasses [
 	self assert: collectionOfMethods asSet equals: collectionOfMethodsShouldBe asSet
 ]
 
-{
-	#category : #classcreation,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testNewSubclass [
+{ #category : #classcreation }
+ClassTest >> testNewSubclass [
 	| cls |
 	cls := Point newSubclass.
 	self assert: (cls isBehavior).
@@ -309,11 +242,8 @@ ClassTest>>testNewSubclass [
 	cls removeFromSystem.
 ]
 
-{
-	#category : #'testing - file in/out',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testOrdersACollectionOfClassesBySuperclass [
+{ #category : #'testing - file in/out' }
+ClassTest >> testOrdersACollectionOfClassesBySuperclass [
 	"self debug: #testOrdersACollectionOfClassesBySuperclass"
 	| ordered |
 	ordered := (Class superclassOrder:  
@@ -332,11 +262,8 @@ ClassTest>>testOrdersACollectionOfClassesBySuperclass [
 	
 ]
 
-{
-	#category : #'testing - file in/out',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testOrdersMetaClassAfterItsClassInstance [
+{ #category : #'testing - file in/out' }
+ClassTest >> testOrdersMetaClassAfterItsClassInstance [
 	| ordered |
 	ordered := (Class superclassOrder:  
 		(OrderedCollection 
@@ -352,11 +279,8 @@ ClassTest>>testOrdersMetaClassAfterItsClassInstance [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testPoolVariableAccessibleInClassUser [
+{ #category : #testing }
+ClassTest >> testPoolVariableAccessibleInClassUser [
 	"This test shows that a Pool Variable is accessible from the class that declare the Pool usage: here the superclass"
 	"self debug: #testInClassUser"
 	PoolDefiner initialize.
@@ -366,11 +290,8 @@ ClassTest>>testPoolVariableAccessibleInClassUser [
 	self assert: RootClassPoolUser author = 'Ducasse'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testPoolVariableAccessibleInSubclassOfClassUser [
+{ #category : #testing }
+ClassTest >> testPoolVariableAccessibleInSubclassOfClassUser [
 	"This test shows that a Pool Variable is not accessible from a subclass that declare the Pool usage: here SubFlop subclass of Flop and this is a bug. "
 	"self debug: #testInSubclassOfClassUser"
 	PoolDefiner initialize.
@@ -380,11 +301,8 @@ ClassTest>>testPoolVariableAccessibleInSubclassOfClassUser [
 	self assert: SubclassPoolUser author = 'Ducasse'
 ]
 
-{
-	#category : #'testing - navigation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testReferencedClasses [
+{ #category : #'testing - navigation' }
+ClassTest >> testReferencedClasses [
 	{(RBLintRuleTest
 		->
 			{RBRefactoryTestDataApp.
@@ -400,11 +318,8 @@ ClassTest>>testReferencedClasses [
 			self assert: assoc key referencedClasses asSet = assoc value asSet]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testRenaming [
+{ #category : #testing }
+ClassTest >> testRenaming [
 	"self debug: #testRenaming"
 
 	"self run: #testRenaming"
@@ -420,11 +335,8 @@ ClassTest>>testRenaming [
 	self assert: (ChangeSet current changedClassNames includes: newMetaclassName)
 ]
 
-{
-	#category : #'testing - access',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testSharedPoolOfVarNamed [
+{ #category : #'testing - access' }
+ClassTest >> testSharedPoolOfVarNamed [
 	"self debug: #testSharedPoolOfVarNamed"
 
 	self assert: (Date sharedPoolOfVarNamed: 'DayNames') = ChronologyConstants.
@@ -440,11 +352,8 @@ ClassTest>>testSharedPoolOfVarNamed [
 	self assert: (ClassMultiplePoolUser sharedPoolOfVarNamed: 'Gloups') = PoolDefiner.
 ]
 
-{
-	#category : #'testing - access',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testSharedPools [
+{ #category : #'testing - access' }
+ClassTest >> testSharedPools [
 	"self run: #testSharedPools"
 
 	self assert: Point sharedPools = OrderedCollection new.
@@ -456,11 +365,8 @@ ClassTest>>testSharedPools [
 	self assert: SubclassPoolUser sharedPools isEmpty
 ]
 
-{
-	#category : #classcreation,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testSubclass [
+{ #category : #classcreation }
+ClassTest >> testSubclass [
 	| cls |
 	(Smalltalk globals includesKey: #SubclassExample)
 		ifTrue: [ (Smalltalk at: #SubclassExample) removeFromSystem ].
@@ -476,11 +382,8 @@ ClassTest>>testSubclass [
 	cls removeFromSystem
 ]
 
-{
-	#category : #classcreation,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testSubclassInstanceVariableNames [
+{ #category : #classcreation }
+ClassTest >> testSubclassInstanceVariableNames [
 	| cls |
 	(Smalltalk globals includesKey: #SubclassExample)
 		ifTrue: [ (Smalltalk at: #SubclassExample) removeFromSystem ].
@@ -496,11 +399,8 @@ ClassTest>>testSubclassInstanceVariableNames [
 	cls removeFromSystem
 ]
 
-{
-	#category : #'testing - file in/out',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testSuperclassOrder [
+{ #category : #'testing - file in/out' }
+ClassTest >> testSuperclassOrder [
 	|  ordered orderedSuperclasses shuffledSuperclasses |
 	orderedSuperclasses := {ProtoObject. Object. Collection. SequenceableCollection}.
 	
@@ -513,11 +413,8 @@ ClassTest>>testSuperclassOrder [
 	self assert: ordered = orderedSuperclasses asOrderedCollection.
 ]
 
-{
-	#category : #'testing - file in/out',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testSuperclassOrderPreservingOrder [
+{ #category : #'testing - file in/out' }
+ClassTest >> testSuperclassOrderPreservingOrder [
 	| noHierarchicalRelationship ordered |
 	"a shuffled collection of direct subclasses of Collection"
 	noHierarchicalRelationship := {CharacterSet. WideCharacterSet. OrderedDictionary. DependentsArray. Bag. SmallDictionary. SequenceableCollection. HashedCollection. WeakRegistry. Matrix. Heap}.
@@ -530,11 +427,8 @@ ClassTest>>testSuperclassOrderPreservingOrder [
 	
 ]
 
-{
-	#category : #'testing - access',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>testUsesPoolVarNamed [
+{ #category : #'testing - access' }
+ClassTest >> testUsesPoolVarNamed [
 	"self debug: #testUsesPoolVarNamed"
 
 	self assert: (Date usesPoolVarNamed: 'DayNames').
@@ -546,10 +440,7 @@ ClassTest>>testUsesPoolVarNamed [
 	self assert: (SubclassPoolUser usesPoolVarNamed: 'Author').
 ]
 
-{
-	#category : #classcreation,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ClassTest>>unclassifiedCategory [
+{ #category : #classcreation }
+ClassTest >> unclassifiedCategory [
 	^#Unclassified
 ]

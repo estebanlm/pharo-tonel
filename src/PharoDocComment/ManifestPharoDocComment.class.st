@@ -4,15 +4,11 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestPharoDocComment,
 	#superclass : #PackageManifest,
-	#category : #PharoDocComment,
-	#timestamp : '<historical>'
+	#category : #PharoDocComment
 }
 
-{
-	#category : #meta-data,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-ManifestPharoDocComment class>>description ^ 'This package supports the handling (synatx highlighting and first class manipulation of small executable examples inline in method comment. [
+{ #category : #meta-data }
+ManifestPharoDocComment class >> description [ ^ 'This package supports the handling (synatx highlighting and first class manipulation of small executable examples inline in method comment. 
 
 Assuming the following method is defined
 

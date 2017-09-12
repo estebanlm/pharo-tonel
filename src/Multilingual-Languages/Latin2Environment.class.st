@@ -10,34 +10,24 @@ This class provides the support for the languages in 'Latin-2' category.  Althou
 Class {
 	#name : #Latin2Environment,
 	#superclass : #LanguageEnvironment,
-	#category : #Multilingual-Languages,
-	#timestamp : '<historical>'
+	#category : #Multilingual-Languages
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-Latin2Environment class>>initialize [
+{ #category : #'class initialization' }
+Latin2Environment class >> initialize [
 
 
 	EncodedCharSet declareEncodedCharSet: self atIndex: 14+1.
 ]
 
-{
-	#category : #'subclass responsibilities',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-Latin2Environment class>>leadingChar [
+{ #category : #'subclass responsibilities' }
+Latin2Environment class >> leadingChar [
 
 	^0
 ]
 
-{
-	#category : #'subclass responsibilities',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-Latin2Environment class>>supportedLanguages [
+{ #category : #'subclass responsibilities' }
+Latin2Environment class >> supportedLanguages [
 	"Return the languages that this class supports. 
 	Any translations for those languages will use this class as their environment."
 	
@@ -45,11 +35,8 @@ Latin2Environment class>>supportedLanguages [
 
 ]
 
-{
-	#category : #'subclass responsibilities',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-Latin2Environment class>>systemConverterClass [
+{ #category : #'subclass responsibilities' }
+Latin2Environment class >> systemConverterClass [
 
 	Smalltalk os isWin32 
 		ifTrue: [^CP1250TextConverter ].

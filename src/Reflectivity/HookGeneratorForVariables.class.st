@@ -4,6 +4,5 @@ I am a version of the HookGenerator that is used when generating hooks for  firs
 Class {
 	#name : #HookGeneratorForVariables,
 	#superclass : #HookGenerator,
-	#category : #Reflectivity-Core,
-	#timestamp : 'MarcusDenker 9/25/2015 11:08'
+	#category : #Reflectivity-Core
 }

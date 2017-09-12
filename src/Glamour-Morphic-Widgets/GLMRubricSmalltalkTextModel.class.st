@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMRubricSmalltalkTextModel,
 	#superclass : #GLMRubricTextModel,
@@ -10,15 +7,11 @@ Class {
 		'bindingsStrategy',
 		'variableBindings'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #bindings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>appendVariableBinding: anAssociationList [
+{ #category : #bindings }
+GLMRubricSmalltalkTextModel >> appendVariableBinding: anAssociationList [
 
 	anAssociationList ifNotNil: [
 		anAssociationList do: [ :anAssociation | 
@@ -28,164 +21,107 @@ GLMRubricSmalltalkTextModel>>appendVariableBinding: anAssociationList [
 					ifFalse: [ (WorkspaceVariable key: anAssociation key value: anAssociation value) ]) ] ]
 ]
 
-{
-	#category : #bindings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>bindingOf: aSymbol [
+{ #category : #bindings }
+GLMRubricSmalltalkTextModel >> bindingOf: aSymbol [
 
 	^ self bindingsStrategy cull: self variableBindings cull: aSymbol cull: self
 ]
 
-{
-	#category : #bindings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>bindingsStrategy [
+{ #category : #bindings }
+GLMRubricSmalltalkTextModel >> bindingsStrategy [
 
 	^ bindingsStrategy
 ]
 
-{
-	#category : #bindings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>bindingsStrategy: aBlock [
+{ #category : #bindings }
+GLMRubricSmalltalkTextModel >> bindingsStrategy: aBlock [
 
 	bindingsStrategy := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>doItContext [
+{ #category : #accessing }
+GLMRubricSmalltalkTextModel >> doItContext [
 	^ self glamourPresentation doItContext 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>doItReceiver [
+{ #category : #accessing }
+GLMRubricSmalltalkTextModel >> doItReceiver [
 	^ self glamourPresentation doItReceiver 
 ]
 
-{
-	#category : #bindings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>guessTypeForName: aString  [
+{ #category : #bindings }
+GLMRubricSmalltalkTextModel >> guessTypeForName: aString [ 
 	^ nil
 ]
 
-{
-	#category : #bindings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>hasBindingOf: aSymbol [
+{ #category : #bindings }
+GLMRubricSmalltalkTextModel >> hasBindingOf: aSymbol [
 
 	^ self variableBindings includesKey: aSymbol
 ]
 
-{
-	#category : #bindings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>hasBindingThatBeginsWith: aString [
+{ #category : #bindings }
+GLMRubricSmalltalkTextModel >> hasBindingThatBeginsWith: aString [
 	^ self variableBindings keys anySatisfy: [:each | each beginsWith: aString]
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>highlightSmalltalk [
+{ #category : #shout }
+GLMRubricSmalltalkTextModel >> highlightSmalltalk [
 	^ highlightSmalltalk
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>highlightSmalltalk: aBoolean [
+{ #category : #shout }
+GLMRubricSmalltalkTextModel >> highlightSmalltalk: aBoolean [
 	highlightSmalltalk := aBoolean
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>highlightSmalltalkContext [
+{ #category : #shout }
+GLMRubricSmalltalkTextModel >> highlightSmalltalkContext [
 	^ highlightSmalltalkContext
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>highlightSmalltalkContext: aClassOrMetaclass [
+{ #category : #shout }
+GLMRubricSmalltalkTextModel >> highlightSmalltalkContext: aClassOrMetaclass [
 	highlightSmalltalkContext := aClassOrMetaclass
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>isCodeCompletionAllowed  [
+{ #category : #testing }
+GLMRubricSmalltalkTextModel >> isCodeCompletionAllowed [ 
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>selectedBehavior [
+{ #category : #accessing }
+GLMRubricSmalltalkTextModel >> selectedBehavior [
 	
 	^ self highlightSmalltalkContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>selectedClassOrMetaClass [
+{ #category : #accessing }
+GLMRubricSmalltalkTextModel >> selectedClassOrMetaClass [
 	
 	^ self selectedBehavior
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>selectedMethod [
+{ #category : #accessing }
+GLMRubricSmalltalkTextModel >> selectedMethod [
 
 	^ self doItContext ifNil: [ nil ] ifNotNil: [ :aContext | aContext method ]
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>shoutAboutToStyle: aPluggableShoutMorph [
+{ #category : #shout }
+GLMRubricSmalltalkTextModel >> shoutAboutToStyle: aPluggableShoutMorph [
 	self highlightSmalltalk ifFalse: [^ false].
 	self highlightSmalltalkContext ifNotNil: [ :classOrMetaClass |
  		aPluggableShoutMorph classOrMetaClass: classOrMetaClass  ].
 	^ true
 ]
 
-{
-	#category : #bindings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>variableBindings [
+{ #category : #bindings }
+GLMRubricSmalltalkTextModel >> variableBindings [
 	^ variableBindings ifNil: [variableBindings := Dictionary new]
 ]
 
-{
-	#category : #bindings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMRubricSmalltalkTextModel>>variableBindings: aDictionary [
+{ #category : #bindings }
+GLMRubricSmalltalkTextModel >> variableBindings: aDictionary [
 	variableBindings := aDictionary
 ]

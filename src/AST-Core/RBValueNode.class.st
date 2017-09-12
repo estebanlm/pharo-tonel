@@ -19,96 +19,62 @@ Class {
 	#instVars : [
 		'parentheses'
 	],
-	#category : #AST-Core-Nodes,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueNode>>addParenthesis: anInterval  [
+{ #category : #accessing }
+RBValueNode >> addParenthesis: anInterval [ 
 	parentheses ifNil: [parentheses := OrderedCollection new: 1].
 	parentheses add: anInterval
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueNode>>asSequenceNode [
+{ #category : #converting }
+RBValueNode >> asSequenceNode [
 	^RBSequenceNode statements: {self} 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueNode>>containedBy: anInterval  [
+{ #category : #testing }
+RBValueNode >> containedBy: anInterval [ 
 	^anInterval first <= self startWithoutParentheses 
 		and: [anInterval last >= self stopWithoutParentheses]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueNode>>hasParentheses [
+{ #category : #testing }
+RBValueNode >> hasParentheses [
 	^self parentheses notEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueNode>>isValue [
+{ #category : #testing }
+RBValueNode >> isValue [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueNode>>needsParenthesis [
+{ #category : #testing }
+RBValueNode >> needsParenthesis [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueNode>>parentheses [
+{ #category : #accessing }
+RBValueNode >> parentheses [
 	^parentheses ifNil: [#()] ifNotNil: [parentheses]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueNode>>start [
+{ #category : #accessing }
+RBValueNode >> start [
 	^ parentheses ifNil: [ self startWithoutParentheses ] ifNotNil: [ parentheses last first ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueNode>>startWithoutParentheses [
+{ #category : #accessing }
+RBValueNode >> startWithoutParentheses [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueNode>>stop [
+{ #category : #accessing }
+RBValueNode >> stop [
 	^ parentheses ifNil: [ self stopWithoutParentheses ] ifNotNil: [ parentheses last last ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBValueNode>>stopWithoutParentheses [
+{ #category : #accessing }
+RBValueNode >> stopWithoutParentheses [
 	^self subclassResponsibility
 ]

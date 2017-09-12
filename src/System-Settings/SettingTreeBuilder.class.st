@@ -9,60 +9,41 @@ Class {
 		'currentParent',
 		'currentPragma'
 	],
-	#category : #System-Settings-Browser,
-	#timestamp : 'TorstenBergmann 1/31/2014 10:32'
+	#category : #System-Settings-Browser
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTreeBuilder class>>acceptableKeywords: aCollectionOfRegExps  [
+{ #category : #'instance creation' }
+SettingTreeBuilder class >> acceptableKeywords: aCollectionOfRegExps [ 
 	^ self new acceptableKeywords: aCollectionOfRegExps 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTreeBuilder>>buildPragma: aPragma [
+{ #category : #accessing }
+SettingTreeBuilder >> buildPragma: aPragma [
 	currentPragma := aPragma.
 	self perform: aPragma keyword withArguments: aPragma arguments.
 	^ nodeList
 ]
 
-{
-	#category : #'public tree building',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTreeBuilder>>group: aSymbol [
+{ #category : #'public tree building' }
+SettingTreeBuilder >> group: aSymbol [
 	^ self nodeClass: PragmaSetting name: aSymbol
 
 ]
 
-{
-	#category : #'public tree building',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTreeBuilder>>launcher: aSymbol [
+{ #category : #'public tree building' }
+SettingTreeBuilder >> launcher: aSymbol [
 	^ self nodeClass: SystemSettingLauncher name: aSymbol
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTreeBuilder>>nodeClass [
+{ #category : #accessing }
+SettingTreeBuilder >> nodeClass [
 	^ SettingNode
 ]
 
-{
-	#category : #'private tree building',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTreeBuilder>>nodeClass: aClass name: aSymbol [
+{ #category : #'private tree building' }
+SettingTreeBuilder >> nodeClass: aClass name: aSymbol [
 	| node |
 	node := self nodeClass with: aClass new.
 	node item name: aSymbol.
@@ -72,20 +53,14 @@ SettingTreeBuilder>>nodeClass: aClass name: aSymbol [
 	^ (SettingNodeBuilder new) node: node; builder: self; yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTreeBuilder>>nodeList [
+{ #category : #accessing }
+SettingTreeBuilder >> nodeList [
 	^ nodeList ifNil: [nodeList := OrderedCollection new]
 
 ]
 
-{
-	#category : #'private tree building',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTreeBuilder>>parent: aNode while: aBlock [
+{ #category : #'private tree building' }
+SettingTreeBuilder >> parent: aNode while: aBlock [
 	| oldParent |
 	oldParent := currentParent.
 	currentParent := aNode.
@@ -93,38 +68,26 @@ SettingTreeBuilder>>parent: aNode while: aBlock [
 	currentParent := oldParent
 ]
 
-{
-	#category : #'public tree building',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTreeBuilder>>pickOne: aSymbol [
+{ #category : #'public tree building' }
+SettingTreeBuilder >> pickOne: aSymbol [
 	^ self nodeClass: PickOneSettingDeclaration name: aSymbol
 
 ]
 
-{
-	#category : #'public tree building',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTreeBuilder>>range: aSymbol [
+{ #category : #'public tree building' }
+SettingTreeBuilder >> range: aSymbol [
 	^ self nodeClass: RangeSettingDeclaration name: aSymbol
 
 ]
 
-{
-	#category : #'public tree building',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTreeBuilder>>setting: aSymbol [
+{ #category : #'public tree building' }
+SettingTreeBuilder >> setting: aSymbol [
 	^ self nodeClass: SettingDeclaration name: aSymbol
 
 ]
 
-{
-	#category : #pragmas,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingTreeBuilder>>systemsettings [
+{ #category : #pragmas }
+SettingTreeBuilder >> systemsettings [
 	"Process a <systemsettings> pragma"
 
 	<settingPragmaProcessor>

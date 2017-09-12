@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #KMShortcutTest,
 	#superclass : #AbstractKeymappingTest,
-	#category : #Keymapping-Tests,
-	#timestamp : ''
+	#category : #Keymapping-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMShortcutTest>>testAsString [
+{ #category : #tests }
+KMShortcutTest >> testAsString [
 	self assert: $a asShortcut asString = 'a'.
 	self assert: $A asShortcut asString = 'A'.
 	self assert: $a ctrl asString = 'Ctrl + a'.
@@ -26,67 +19,43 @@ KMShortcutTest>>testAsString [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMShortcutTest>>testBadComposedCmdShortcutFails [
+{ #category : #tests }
+KMShortcutTest >> testBadComposedCmdShortcutFails [
 	^ self should: [ KMModifier ctrl ctrl ] raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMShortcutTest>>testChainIntegerSucceds [
+{ #category : #tests }
+KMShortcutTest >> testChainIntegerSucceds [
 	^ self assert: ($e ctrl , 1) = ($e ctrl , 1)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMShortcutTest>>testChainShortcutSucceds [
+{ #category : #tests }
+KMShortcutTest >> testChainShortcutSucceds [
 	^ self assert: ($e ctrl , $e ctrl) = ($e ctrl , $e ctrl)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMShortcutTest>>testChainSimpleCharsSucceds [
+{ #category : #tests }
+KMShortcutTest >> testChainSimpleCharsSucceds [
 	^ self assert: ($e ctrl , $e) = ($e ctrl , $e)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMShortcutTest>>testCmdIntegerSucceds [
+{ #category : #tests }
+KMShortcutTest >> testCmdIntegerSucceds [
 	^ self assert: 1 ctrl = 1 ctrl
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMShortcutTest>>testCmdKeySucceds [
+{ #category : #tests }
+KMShortcutTest >> testCmdKeySucceds [
 	^ self assert: $e ctrl = $e ctrl
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMShortcutTest>>testCmdShiftSucceds [
+{ #category : #tests }
+KMShortcutTest >> testCmdShiftSucceds [
 	^ self assert: ($1 shift ctrl matches: {self eventKey: $1 alt: false ctrl: true command: false shift: true})
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMShortcutTest>>testComplexChainMatches [
+{ #category : #tests }
+KMShortcutTest >> testComplexChainMatches [
 	|eCtrl eShift e f|
 	
 	f := self eventKey: $f.
@@ -102,30 +71,21 @@ KMShortcutTest>>testComplexChainMatches [
 	self assert: (($e ctrl, $e shift, $f) matchesCompletely: {eCtrl. eShift. f}).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMShortcutTest>>testCreation [
+{ #category : #tests }
+KMShortcutTest >> testCreation [
 	self assert: ($e asKeyCombination isKindOf: KMSingleKeyCombination).
 	self assert: ($e ctrl isKindOf: KMModifiedKeyCombination).
 	self assert: ($e ctrl alt shift command isKindOf: KMModifiedKeyCombination).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMShortcutTest>>testEventCodes [
+{ #category : #tests }
+KMShortcutTest >> testEventCodes [
 	self assert: $s meta modifier eventCode 
 		 equals: OSPlatform current defaultModifier eventCode 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMShortcutTest>>testModifiedShortcutsMatch [
+{ #category : #tests }
+KMShortcutTest >> testModifiedShortcutsMatch [
 	|a oneShift oneCommand oneCommandShift|
 	
 	a := self eventKey: $a ctrl: true.
@@ -150,19 +110,13 @@ KMShortcutTest>>testModifiedShortcutsMatch [
 	self assert: ($1 command shift matchesCompletely: {oneCommandShift}).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMShortcutTest>>testShiftKeySucceds [
+{ #category : #tests }
+KMShortcutTest >> testShiftKeySucceds [
 	^ self assert: $e shift = $e shift
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMShortcutTest>>testSimpleChainMatches [
+{ #category : #tests }
+KMShortcutTest >> testSimpleChainMatches [
 	|e eCtrl |
 	e := self eventKey: $e.
 	eCtrl := self eventKey: $e ctrl: true.
@@ -174,11 +128,8 @@ KMShortcutTest>>testSimpleChainMatches [
 	self deny: ($e ctrl matches: {e}).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMShortcutTest>>testSingleShortcutsMatch [
+{ #category : #tests }
+KMShortcutTest >> testSingleShortcutsMatch [
 	|a one home |
 	a := self eventKey: $a.
 	one := self eventKey: 1 asCharacter.
@@ -194,10 +145,7 @@ KMShortcutTest>>testSingleShortcutsMatch [
 	self assert: (1 asKeyCombination matchesCompletely: {one}).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMShortcutTest>>testTripleChainShortcutSucceds [
+{ #category : #tests }
+KMShortcutTest >> testTripleChainShortcutSucceds [
 	^ self assert: ($e ctrl , $e ctrl , $d ctrl) = ($e ctrl , $e ctrl , $d ctrl)
 ]

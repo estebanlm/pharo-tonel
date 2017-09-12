@@ -12,48 +12,32 @@ Class {
 		'requestor',
 		'compilationContext'
 	],
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : 'MarcusDenker 11/30/2016 14:10'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #'temp vars',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCRequestorScope>>allTemps [
+{ #category : #'temp vars' }
+OCRequestorScope >> allTemps [
 	^#()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCRequestorScope>>compilationContext [
+{ #category : #accessing }
+OCRequestorScope >> compilationContext [
 	^ compilationContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCRequestorScope>>compilationContext: anObject [
+{ #category : #accessing }
+OCRequestorScope >> compilationContext: anObject [
 	compilationContext := anObject
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCRequestorScope>>findVariable: aBlock ifNone: aNotFound [
+{ #category : #lookup }
+OCRequestorScope >> findVariable: aBlock ifNone: aNotFound [
 	outerScope ifNotNil: [
 		^  outerScope findVariable: aBlock ifNone: aNotFound ]
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCRequestorScope>>lookupGlobalVar: aName [
+{ #category : #lookup }
+OCRequestorScope >> lookupGlobalVar: aName [
 	"consider variables with upper case as global vars resolveable in the outer scope "
 
 	^ aName first isUppercase
@@ -61,11 +45,8 @@ OCRequestorScope>>lookupGlobalVar: aName [
 		ifFalse: [ nil ]
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCRequestorScope>>lookupVar: name [
+{ #category : #lookup }
+OCRequestorScope >> lookupVar: name [
 	| global |
 	name = 'self'
 		ifTrue: [ ^ outerScope lookupVar: name ].
@@ -88,11 +69,8 @@ OCRequestorScope>>lookupVar: name [
 	^ super lookupVar: name
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCRequestorScope>>lookupVar: name inContext: context [
+{ #category : #lookup }
+OCRequestorScope >> lookupVar: name inContext: context [
 
 	name = 'self' ifTrue: [  ^outerScope lookupVar: name inContext: context outerContext].
 	name = 'super' ifTrue: [  ^outerScope lookupVar: name inContext: context outerContext].
@@ -103,36 +81,24 @@ OCRequestorScope>>lookupVar: name inContext: context [
 	^ super lookupVar: name inContext: context outerContext.
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCRequestorScope>>newMethodScope [
+{ #category : #lookup }
+OCRequestorScope >> newMethodScope [
 	 
 	^ OCMethodScope new outerScope: (self outerScope: outerScope instanceScope) 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCRequestorScope>>requestor [
+{ #category : #accessing }
+OCRequestorScope >> requestor [
 	^ requestor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCRequestorScope>>requestor: anObject [
+{ #category : #accessing }
+OCRequestorScope >> requestor: anObject [
 	requestor := anObject
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCRequestorScope>>variableNamed: name ifAbsent: aBlock [
+{ #category : #lookup }
+OCRequestorScope >> variableNamed: name ifAbsent: aBlock [
 
 	name = 'self' ifTrue: [  ^outerScope lookupVar: name].
 	name = 'super' ifTrue: [  ^outerScope lookupVar: name].

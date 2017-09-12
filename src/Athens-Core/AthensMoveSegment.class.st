@@ -10,64 +10,42 @@ Class {
 	#instVars : [
 		'closed'
 	],
-	#category : #Athens-Core-Paths,
-	#timestamp : 'IgorStasenko 5/2/2011 05:35'
+	#category : #Athens-Core-Paths
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensMoveSegment>>accept: aVisitor [
+{ #category : #visitor }
+AthensMoveSegment >> accept: aVisitor [
 	^ aVisitor moveSegment: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensMoveSegment>>closed: aBoolean [
+{ #category : #accessing }
+AthensMoveSegment >> closed: aBoolean [
 	closed := aBoolean
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensMoveSegment>>isClosed [
+{ #category : #testing }
+AthensMoveSegment >> isClosed [
 	^ closed == true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensMoveSegment>>isMove [
+{ #category : #testing }
+AthensMoveSegment >> isMove [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensMoveSegment>>reopen: aBoolean [
+{ #category : #accessing }
+AthensMoveSegment >> reopen: aBoolean [
 	closed := aBoolean
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensMoveSegment>>sendCommandTo: aBuilder [
+{ #category : #visitor }
+AthensMoveSegment >> sendCommandTo: aBuilder [
 	^ aBuilder moveTo: point
 	
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensMoveSegment>>visitWith: visitor [
+{ #category : #visitor }
+AthensMoveSegment >> visitWith: visitor [
 
 	visitor visitMoveSegment: self
 ]

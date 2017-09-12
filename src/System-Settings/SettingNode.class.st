@@ -20,52 +20,36 @@ Class {
 		'pragma',
 		'contents'
 	],
-	#category : #System-Settings-Browser,
-	#timestamp : 'alain.plantec 4/20/2009 21:42'
+	#category : #System-Settings-Browser
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>><= other [
+{ #category : #comparing }
+SettingNode >> <= other [
 	^ self asString <= other asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>allChildren [
+{ #category : #accessing }
+SettingNode >> allChildren [
 	^ self model childrenOf: self.
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>browseDeclaration [
+{ #category : #menu }
+SettingNode >> browseDeclaration [
 	"open a browser on the method which defines myself"
 	Smalltalk tools browser
 		openOnClass: self methodClass class selector: self selector
 ]
 
-{
-	#category : #checking,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>checkForUnknownTarget [
+{ #category : #checking }
+SettingNode >> checkForUnknownTarget [
 	self parentNode ifNotNil: [:p | item target ifNil: [item target: p item target].
 		item targetSelector ifNil: [item targetSelector: p item targetSelector]].
 	self allChildren do: [:c | c checkForUnknownTarget]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>contents [
+{ #category : #accessing }
+SettingNode >> contents [
 	(self settingDeclaration hasValue
 			and: [self settingValue = false])
 		ifTrue: [^ OrderedCollection new]
@@ -76,137 +60,92 @@ SettingNode>>contents [
 					contents := self model retainedNodesFromList: contents asOrderedCollection]]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>deeplyDetect: aBlock  [
+{ #category : #menu }
+SettingNode >> deeplyDetect: aBlock [ 
 	(aBlock value: self) ifTrue: [^ self].
 	self contents do: [:sub | (sub deeplyDetect: aBlock) ifNotNil: [:found | ^ found]].
 	^ nil
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>deeplySelect: aBlock in: aCollection [
+{ #category : #menu }
+SettingNode >> deeplySelect: aBlock in: aCollection [
 	(aBlock value: self) ifTrue: [aCollection add: self].
 	self contents do: [:sub | sub deeplySelect: aBlock in: aCollection].
 	^ aCollection
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>deleteStoredValue [
+{ #category : #menu }
+SettingNode >> deleteStoredValue [
 	self persistence deleteSettingNode: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>description [
+{ #category : #accessing }
+SettingNode >> description [
 	^ self settingDeclaration description
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>exploreItem [
+{ #category : #menu }
+SettingNode >> exploreItem [
 	self settingDeclaration explore
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>helpText [
+{ #category : #accessing }
+SettingNode >> helpText [
 	^ self item description ifEmpty: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>icon [
+{ #category : #accessing }
+SettingNode >> icon [
 	^ self settingDeclaration ifNotNil: [:d | d icon ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>inputMorphFor: aContainer [
+{ #category : #accessing }
+SettingNode >> inputMorphFor: aContainer [
 	^ self settingDeclaration
 		ifNotNil: [:v | 
 			(v inputMorphFor: aContainer) ifNil: [ '' ]]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>inspectItem [
+{ #category : #menu }
+SettingNode >> inspectItem [
 	self settingDeclaration inspect
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>isAnotherValueStored [
+{ #category : #testing }
+SettingNode >> isAnotherValueStored [
 	"Return true if the another setting value is stored."
 	| storedValue |
 	storedValue := self storedValue.
 	^ storedValue notNil and: [ storedValue ~= self settingValue ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>isCurrentValueStored [
+{ #category : #testing }
+SettingNode >> isCurrentValueStored [
 	"Return true if the current setting value is stored."
 	^ self storedValue = self settingValue
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>isEmpty [
+{ #category : #testing }
+SettingNode >> isEmpty [
 	^ self contents isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>isNotCurrentValueStored [
+{ #category : #testing }
+SettingNode >> isNotCurrentValueStored [
 	"Return false if the current setting value is stored."
 	^ self isCurrentValueStored not
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>isStored [
+{ #category : #testing }
+SettingNode >> isStored [
 	"Return true if this setting node has stored value. 
 	The stored value can differ from the current value."
 	^ self storedValue notNil
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>keyStroke: anEvent from: aTreeMorph [
+{ #category : #menu }
+SettingNode >> keyStroke: anEvent from: aTreeMorph [
 	| c |
 	c := anEvent keyCharacter.
 	c = $b
@@ -219,28 +158,19 @@ SettingNode>>keyStroke: anEvent from: aTreeMorph [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>labelMorphFor: aContainer [
+{ #category : #accessing }
+SettingNode >> labelMorphFor: aContainer [
 	^ self settingDeclaration 
 		ifNotNil: [:v | v labelMorphFor: aContainer]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>loadFromDisk [
+{ #category : #menu }
+SettingNode >> loadFromDisk [
 	self persistence updateSettingNode: self
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>menu: menu shifted: b  [
+{ #category : #menu }
+SettingNode >> menu: menu shifted: b [ 
 	menu
 		add: 'Browse (b)'
 		target: self
@@ -263,197 +193,128 @@ SettingNode>>menu: menu shifted: b  [
 			enablementSelector: #isStored.
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>menuBrowse [
+{ #category : #menu }
+SettingNode >> menuBrowse [
 	self browseDeclaration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>methodClass [
+{ #category : #accessing }
+SettingNode >> methodClass [
 	^ self pragma ifNotNil: [self pragma methodClass theNonMetaClass]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>order [
+{ #category : #accessing }
+SettingNode >> order [
 	^ item order
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>order: anInteger [
+{ #category : #accessing }
+SettingNode >> order: anInteger [
 	item order: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>parent: aSymbol [
+{ #category : #accessing }
+SettingNode >> parent: aSymbol [
 	self parentName: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>parentName [
+{ #category : #accessing }
+SettingNode >> parentName [
 	^ parentName
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>parentName: aSymbol [
+{ #category : #accessing }
+SettingNode >> parentName: aSymbol [
 	parentName := aSymbol.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>parentNode [
+{ #category : #accessing }
+SettingNode >> parentNode [
 	^ self model nodeNamed: self parentName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>persistence [
+{ #category : #accessing }
+SettingNode >> persistence [
 	^ self model persistence
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>pragma [
+{ #category : #accessing }
+SettingNode >> pragma [
 	^ pragma
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>pragma: aPragma [
+{ #category : #accessing }
+SettingNode >> pragma: aPragma [
 	pragma := aPragma
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>realValue [
+{ #category : #accessing }
+SettingNode >> realValue [
 	^ self settingDeclaration realValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>realValue: anObject [
+{ #category : #accessing }
+SettingNode >> realValue: anObject [
 	self settingDeclaration realValue: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>receiverPackage [
+{ #category : #accessing }
+SettingNode >> receiverPackage [
 	^ self settingReceiver
 		ifNotNil: [self settingReceiver class package] 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>saveToDisk [
+{ #category : #menu }
+SettingNode >> saveToDisk [
 	self persistence storeSettingNode: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>selector [
+{ #category : #accessing }
+SettingNode >> selector [
 	^ self pragma ifNil: [ '' ] ifNotNil: [ :p | p methodSelector ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>settingDeclaration [
+{ #category : #accessing }
+SettingNode >> settingDeclaration [
 	^ self item
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>settingNodeIdentifier [
+{ #category : #printing }
+SettingNode >> settingNodeIdentifier [
 	^ String streamContents: [ :aStream |
 			self settingNodeIdentifierOn: aStream ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>settingNodeIdentifierOn: aWriteStream  [
+{ #category : #printing }
+SettingNode >> settingNodeIdentifierOn: aWriteStream [ 
 	parentNode 
 		ifNotNil: [ parentName settingNodeIdentifierOn: aWriteStream ]
 		ifNil: [ parentName ifNotNil: [ aWriteStream print: parentName ] ].
 	aWriteStream print: self settingDeclaration name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>settingReceiver [
+{ #category : #accessing }
+SettingNode >> settingReceiver [
 	^ item settingReceiver
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>settingValue [
+{ #category : #accessing }
+SettingNode >> settingValue [
 	^ self settingDeclaration realValue
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>storedValue [
+{ #category : #accessing }
+SettingNode >> storedValue [
 	"It returns a stored value for the setting node.
 	It returns nil value when there is no stored value."	
 	^ self persistence storedValueForSettingNode: self
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingNode>>updateAccordingTo: aFilter  [
+{ #category : #updating }
+SettingNode >> updateAccordingTo: aFilter [ 
 	(aFilter keepSettingTreeNode: self) 
 		ifFalse: [
 			self contents do: [ :n | n updateAccordingTo: aFilter].

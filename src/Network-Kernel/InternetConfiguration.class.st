@@ -10,26 +10,19 @@ Seems to work only on MacOSX
 Class {
 	#name : #InternetConfiguration,
 	#superclass : #Object,
-	#category : #Network-Kernel,
-	#timestamp : 'LaurentLaffont 6/8/2011 22:17'
+	#category : #Network-Kernel
 }
 
-{
-	#category : #'HTTP Proxy',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>configureHttpProxy [
+{ #category : #'HTTP Proxy' }
+InternetConfiguration class >> configureHttpProxy [
 
 	self useHTTPProxy 
 		ifTrue: [ self setHttpProxy ]
 		ifFalse: [ NetworkSystemSettings useHTTPProxy: false ]
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getArchiePreferred [
+{ #category : #lookups }
+InternetConfiguration class >> getArchiePreferred [
 	"Return the preferred Archie server"
 	"InternetConfiguration getArchiePreferred"
 
@@ -37,11 +30,8 @@ InternetConfiguration class>>getArchiePreferred [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getDownloadPath [
+{ #category : #lookups }
+InternetConfiguration class >> getDownloadPath [
 	"Return the download path"
 	"InternetConfiguration getDownloadPath"
 
@@ -49,11 +39,8 @@ InternetConfiguration class>>getDownloadPath [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getEmail [
+{ #category : #lookups }
+InternetConfiguration class >> getEmail [
 	"Return the  email address of user"
 	"InternetConfiguration getEmail"
 
@@ -61,11 +48,8 @@ InternetConfiguration class>>getEmail [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getFTPHost [
+{ #category : #lookups }
+InternetConfiguration class >> getFTPHost [
 	"Return the FTPHost"
 	"InternetConfiguration getFTPHost"
 
@@ -73,11 +57,8 @@ InternetConfiguration class>>getFTPHost [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getFTPProxyAccount [
+{ #category : #lookups }
+InternetConfiguration class >> getFTPProxyAccount [
 	"Return the second level FTP proxy authorisation"
 	"InternetConfiguration getFTPProxyAccount"
 
@@ -85,11 +66,8 @@ InternetConfiguration class>>getFTPProxyAccount [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getFTPProxyHost [
+{ #category : #lookups }
+InternetConfiguration class >> getFTPProxyHost [
 	"Return the FTP proxy host"
 	"InternetConfiguration getFTPProxyHost"
 
@@ -97,11 +75,8 @@ InternetConfiguration class>>getFTPProxyHost [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getFTPProxyPassword [
+{ #category : #lookups }
+InternetConfiguration class >> getFTPProxyPassword [
 	"Return the FTP proxy password"
 	"InternetConfiguration getFTPProxyPassword"
 
@@ -109,11 +84,8 @@ InternetConfiguration class>>getFTPProxyPassword [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getFTPProxyUser [
+{ #category : #lookups }
+InternetConfiguration class >> getFTPProxyUser [
 	"Return the first level FTP proxy authorisation"
 	"InternetConfiguration getFTPProxyUser"
 
@@ -121,11 +93,8 @@ InternetConfiguration class>>getFTPProxyUser [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getFingerHost [
+{ #category : #lookups }
+InternetConfiguration class >> getFingerHost [
 	"Return the default finger server"
 	"InternetConfiguration getFingerHost"
 
@@ -133,11 +102,8 @@ InternetConfiguration class>>getFingerHost [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getGopherHost [
+{ #category : #lookups }
+InternetConfiguration class >> getGopherHost [
 	"Return the default Gopher server"
 	"InternetConfiguration getGopherHost"
 
@@ -145,11 +111,8 @@ InternetConfiguration class>>getGopherHost [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getGopherProxy [
+{ #category : #lookups }
+InternetConfiguration class >> getGopherProxy [
 	"Return the  Gopher proxy"
 	"InternetConfiguration getGopherProxy"
 
@@ -157,11 +120,8 @@ InternetConfiguration class>>getGopherProxy [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getHTTPProxyHost [
+{ #category : #lookups }
+InternetConfiguration class >> getHTTPProxyHost [
 	"Return the http proxy for this client."
 	"InternetConfiguration getHTTPProxyHost"
 
@@ -169,11 +129,8 @@ InternetConfiguration class>>getHTTPProxyHost [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getIRCHost [
+{ #category : #lookups }
+InternetConfiguration class >> getIRCHost [
 	"Return the Internet Relay Chat server"
 	"InternetConfiguration getIRCHost"
 
@@ -181,11 +138,8 @@ InternetConfiguration class>>getIRCHost [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getLDAPSearchbase [
+{ #category : #lookups }
+InternetConfiguration class >> getLDAPSearchbase [
 	"Return the LDAP thing"
 	"InternetConfiguration getLDAPSearchbase"
 
@@ -193,11 +147,8 @@ InternetConfiguration class>>getLDAPSearchbase [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getLDAPServer [
+{ #category : #lookups }
+InternetConfiguration class >> getLDAPServer [
 	"Return the LDAP server"
 	"InternetConfiguration getLDAPServer"
 
@@ -205,11 +156,8 @@ InternetConfiguration class>>getLDAPServer [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getMacintoshFileTypeAndCreatorFrom: aFileName [
+{ #category : #lookups }
+InternetConfiguration class >> getMacintoshFileTypeAndCreatorFrom: aFileName [
 	"Return the application type and application signature for the file
 	 for the macintosh file system based on the file ending, the file does not need to exist
 	failure to find a signature based on the file ending, or because of primitive failure turns nil"
@@ -222,11 +170,8 @@ InternetConfiguration class>>getMacintoshFileTypeAndCreatorFrom: aFileName [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getMailAccount [
+{ #category : #lookups }
+InternetConfiguration class >> getMailAccount [
 	"Return the mail account user@host.domain"
 	"InternetConfiguration getMailAccount"
 
@@ -234,11 +179,8 @@ InternetConfiguration class>>getMailAccount [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getMailPassword  [
+{ #category : #lookups }
+InternetConfiguration class >> getMailPassword [ 
 	"Return the mail account Password "
 	"InternetConfiguration getMailPassword "
 
@@ -246,11 +188,8 @@ InternetConfiguration class>>getMailPassword  [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getNNTPHost [
+{ #category : #lookups }
+InternetConfiguration class >> getNNTPHost [
 	"Return the NNTP server"
 	"InternetConfiguration getNNTPHost"
 
@@ -258,11 +197,8 @@ InternetConfiguration class>>getNNTPHost [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getNTPHost [
+{ #category : #lookups }
+InternetConfiguration class >> getNTPHost [
 	"Return the  Network Time Protocol (NTP)"
 	"InternetConfiguration getNTPHost"
 
@@ -270,11 +206,8 @@ InternetConfiguration class>>getNTPHost [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getNewsAuthPassword [
+{ #category : #lookups }
+InternetConfiguration class >> getNewsAuthPassword [
 	"Return the Password for the authorised news servers"
 	"InternetConfiguration getNewsAuthPassword"
 
@@ -282,11 +215,8 @@ InternetConfiguration class>>getNewsAuthPassword [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getNewsAuthUsername [
+{ #category : #lookups }
+InternetConfiguration class >> getNewsAuthUsername [
 	"Return the user name for authorised news servers"
 	"InternetConfiguration getNewsAuthUsername"
 
@@ -294,11 +224,8 @@ InternetConfiguration class>>getNewsAuthUsername [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getNoProxyDomains [
+{ #category : #lookups }
+InternetConfiguration class >> getNoProxyDomains [
 	"Return a comma seperated string of domains not to proxy"
 	"InternetConfiguration getNoProxyDomains"
 
@@ -306,11 +233,8 @@ InternetConfiguration class>>getNoProxyDomains [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getOrganization [
+{ #category : #lookups }
+InternetConfiguration class >> getOrganization [
 	"Return the Organization"
 	"InternetConfiguration getOrganization"
 
@@ -318,11 +242,8 @@ InternetConfiguration class>>getOrganization [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getPhHost [
+{ #category : #lookups }
+InternetConfiguration class >> getPhHost [
 	"Return the PhHost server"
 	"InternetConfiguration getPhHost"
 
@@ -330,11 +251,8 @@ InternetConfiguration class>>getPhHost [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getRealName [
+{ #category : #lookups }
+InternetConfiguration class >> getRealName [
 	"Return the RealName"
 	"InternetConfiguration getRealName"
 
@@ -342,11 +260,8 @@ InternetConfiguration class>>getRealName [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getSMTPHost [
+{ #category : #lookups }
+InternetConfiguration class >> getSMTPHost [
 	"Return the SMTP server"
 	"InternetConfiguration getSMTPHost"
 
@@ -354,11 +269,8 @@ InternetConfiguration class>>getSMTPHost [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getSocksHost [
+{ #category : #lookups }
+InternetConfiguration class >> getSocksHost [
 	"Return the Socks server"
 	"InternetConfiguration getSocksHost"
 
@@ -366,11 +278,8 @@ InternetConfiguration class>>getSocksHost [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getTelnetHost [
+{ #category : #lookups }
+InternetConfiguration class >> getTelnetHost [
 	"Return the TelnetHost server"
 	"InternetConfiguration getTelnetHost"
 
@@ -378,11 +287,8 @@ InternetConfiguration class>>getTelnetHost [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getWAISGateway [
+{ #category : #lookups }
+InternetConfiguration class >> getWAISGateway [
 	"Return the wais gateway"
 	"InternetConfiguration getWAISGateway"
 
@@ -390,11 +296,8 @@ InternetConfiguration class>>getWAISGateway [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getWWWHomePage [
+{ #category : #lookups }
+InternetConfiguration class >> getWWWHomePage [
 	"Return the WWW home page url"
 	"InternetConfiguration getWWWHomePage"
 
@@ -402,11 +305,8 @@ InternetConfiguration class>>getWWWHomePage [
 
 ]
 
-{
-	#category : #lookups,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>getWhoisHost [
+{ #category : #lookups }
+InternetConfiguration class >> getWhoisHost [
 	"Return the WhoisHost server"
 	"InternetConfiguration getWhoisHost"
 
@@ -414,39 +314,27 @@ InternetConfiguration class>>getWhoisHost [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>initialize [
+{ #category : #initialization }
+InternetConfiguration class >> initialize [
 	SessionManager default
 		registerNetworkClassNamed: self name
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>primitiveGetMacintoshFileTypeAndCreatorFrom: aFileName [
+{ #category : #'system primitives' }
+InternetConfiguration class >> primitiveGetMacintoshFileTypeAndCreatorFrom: aFileName [
 	<primitive: 'primitiveGetMacintoshFileTypeAndCreatorFrom' module: 'InternetConfigPlugin'>
 	^'********' copy 
 ]
 
-{
-	#category : #'system primitives',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>primitiveGetStringKeyedBy: aKey [
+{ #category : #'system primitives' }
+InternetConfiguration class >> primitiveGetStringKeyedBy: aKey [
 	<primitive: 'primitiveGetStringKeyedBy' module: 'InternetConfigPlugin'>
 	^String new.
 
 ]
 
-{
-	#category : #'HTTP Proxy',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>setHttpProxy [
+{ #category : #'HTTP Proxy' }
+InternetConfiguration class >> setHttpProxy [
 
 	(self getHTTPProxyHost findTokens: ':') ifNotEmpty: [ :p |
 		NetworkSystemSettings
@@ -455,30 +343,21 @@ InternetConfiguration class>>setHttpProxy [
 			useHTTPProxy: true ]
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>shutDown [
+{ #category : #'system startup' }
+InternetConfiguration class >> shutDown [
 	Smalltalk os isMacOS
 		ifTrue: [ NetworkSystemSettings useHTTPProxy: false ]
 	
 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>startUp [
+{ #category : #'system startup' }
+InternetConfiguration class >> startUp [
 	Smalltalk os configureHttpProxy
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>useFTPProxy [
+{ #category : #tests }
+InternetConfiguration class >> useFTPProxy [
 	"Return true if UseFTPProxy"
 	"InternetConfiguration useFTPProxy"
 
@@ -486,11 +365,8 @@ InternetConfiguration class>>useFTPProxy [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>useGopherProxy [
+{ #category : #tests }
+InternetConfiguration class >> useGopherProxy [
 	"Return true if UseGopherProxy"
 	"InternetConfiguration useGopherProxy"
 
@@ -498,11 +374,8 @@ InternetConfiguration class>>useGopherProxy [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>useHTTPProxy [
+{ #category : #tests }
+InternetConfiguration class >> useHTTPProxy [
 	"Return true if UseHTTPProxy"
 	"InternetConfiguration useHTTPProxy"
 
@@ -510,11 +383,8 @@ InternetConfiguration class>>useHTTPProxy [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>usePassiveFTP [
+{ #category : #tests }
+InternetConfiguration class >> usePassiveFTP [
 	"Return true if UsePassiveFTP"
 	"InternetConfiguration usePassiveFTP"
 
@@ -522,11 +392,8 @@ InternetConfiguration class>>usePassiveFTP [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-InternetConfiguration class>>useSocks [
+{ #category : #tests }
+InternetConfiguration class >> useSocks [
 	"Return true if UseSocks"
 	"InternetConfiguration useSocks"
 

@@ -4,24 +4,17 @@ An AbstractTextChangedPlugin is a plugin which simply log each time the method d
 Class {
 	#name : #AbstractTextChangedPlugin,
 	#superclass : #AbstractNautilusPlugin,
-	#category : #NautilusCommon-Plugin,
-	#timestamp : '<historical>'
+	#category : #NautilusCommon-Plugin
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractTextChangedPlugin>>displayerChanged: anAnnouncement [
+{ #category : #private }
+AbstractTextChangedPlugin >> displayerChanged: anAnnouncement [
 
 	self logCr: anAnnouncement displayerSymbol
 ]
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractTextChangedPlugin>>registerTo: aModel [
+{ #category : #registration }
+AbstractTextChangedPlugin >> registerTo: aModel [
 
 	aModel announcer
 		when: NautilusTextDisplayerChanged send: #displayerChanged: to: self

@@ -13,71 +13,46 @@ Class {
 		'substitutionCharacter',
 		'displaySelector'
 	],
-	#category : #Graphics-Fonts,
-	#timestamp : 'tak 12/22/2004 01:45'
+	#category : #Graphics-Fonts
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>ascent [
+{ #category : #accessing }
+FixedFaceFont >> ascent [
 	^baseFont ascent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>baseFont [
+{ #category : #accessing }
+FixedFaceFont >> baseFont [
 	^baseFont
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>baseFont: aFont [
+{ #category : #accessing }
+FixedFaceFont >> baseFont: aFont [
 	baseFont := aFont
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>baseKern [
+{ #category : #accessing }
+FixedFaceFont >> baseKern [
 	^baseFont baseKern
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>characterFormAt: character  [
+{ #category : #accessing }
+FixedFaceFont >> characterFormAt: character [ 
 	^ baseFont characterFormAt: substitutionCharacter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>descent [
+{ #category : #accessing }
+FixedFaceFont >> descent [
 	^baseFont descent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>descentKern [
+{ #category : #accessing }
+FixedFaceFont >> descentKern [
 	^baseFont descentKern
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>displayErrorOn: aCanvas length: length at: aPoint kern: kernDelta  [
+{ #category : #displaying }
+FixedFaceFont >> displayErrorOn: aCanvas length: length at: aPoint kern: kernDelta [ 
 	| maskedString |
 	maskedString := String new: length.
 	maskedString atAllPut: substitutionCharacter.
@@ -90,46 +65,8 @@ FixedFaceFont>>displayErrorOn: aCanvas length: length at: aPoint kern: kernDelta
 		kern: kernDelta
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>displayErrorOn: aCanvas length: length at: aPoint kern: kernDelta baselineY: baselineY [
-	| maskedString |
-	maskedString := String new: length.
-	maskedString atAllPut: substitutionCharacter.
-	^ baseFont
-		displayString: maskedString
-		on: aCanvas
-		from: 1
-		to: length
-		at: aPoint
-		kern: kernDelta
-		baselineY: baselineY
-]
-
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>displayPasswordOn: aCanvas length: length at: aPoint kern: kernDelta  [
-	| maskedString |
-	maskedString := String new: length.
-	maskedString atAllPut: substitutionCharacter.
-	^ baseFont
-		displayString: maskedString
-		on: aCanvas
-		from: 1
-		to: length
-		at: aPoint
-		kern: kernDelta
-]
-
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>displayPasswordOn: aCanvas length: length at: aPoint kern: kernDelta baselineY: baselineY [
+{ #category : #displaying }
+FixedFaceFont >> displayErrorOn: aCanvas length: length at: aPoint kern: kernDelta baselineY: baselineY [
 	| maskedString |
 	maskedString := String new: length.
 	maskedString atAllPut: substitutionCharacter.
@@ -143,31 +80,51 @@ FixedFaceFont>>displayPasswordOn: aCanvas length: length at: aPoint kern: kernDe
 		baselineY: baselineY
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>displayString: aString on: aDisplayContext from: startIndex to: stopIndex at: aPoint kern: kernDelta  [
+{ #category : #displaying }
+FixedFaceFont >> displayPasswordOn: aCanvas length: length at: aPoint kern: kernDelta [ 
+	| maskedString |
+	maskedString := String new: length.
+	maskedString atAllPut: substitutionCharacter.
+	^ baseFont
+		displayString: maskedString
+		on: aCanvas
+		from: 1
+		to: length
+		at: aPoint
+		kern: kernDelta
+]
+
+{ #category : #displaying }
+FixedFaceFont >> displayPasswordOn: aCanvas length: length at: aPoint kern: kernDelta baselineY: baselineY [
+	| maskedString |
+	maskedString := String new: length.
+	maskedString atAllPut: substitutionCharacter.
+	^ baseFont
+		displayString: maskedString
+		on: aCanvas
+		from: 1
+		to: length
+		at: aPoint
+		kern: kernDelta
+		baselineY: baselineY
+]
+
+{ #category : #displaying }
+FixedFaceFont >> displayString: aString on: aDisplayContext from: startIndex to: stopIndex at: aPoint kern: kernDelta [ 
 	| size |
 	size := stopIndex - startIndex + 1.
 	^ self perform: displaySelector withArguments: (Array with: aDisplayContext with: size with: aPoint with: kernDelta with: aPoint y + self ascent).
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>displayString: aString on: aDisplayContext from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY [
+{ #category : #displaying }
+FixedFaceFont >> displayString: aString on: aDisplayContext from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY [
 	| size |
 	size := stopIndex - startIndex + 1.
 	^ self perform: displaySelector withArguments: (Array with: aDisplayContext with: size with: aPoint with: kernDelta with: baselineY).
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta from: fromFont  [
+{ #category : #displaying }
+FixedFaceFont >> displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta [ from: fromFont 
 	| destPoint |
 	destPoint := self
 				displayString: aString
@@ -179,11 +136,8 @@ FixedFaceFont>>displayString: aString on: aBitBlt from: startIndex to: stopIndex
 	^ Array with: stopIndex + 1 with: destPoint
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta from: fromFont baselineY: baselineY [
+{ #category : #displaying }
+FixedFaceFont >> displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta from: fromFont baselineY: baselineY [
 	| destPoint |
 	destPoint := self
 				displayString: aString
@@ -196,128 +150,83 @@ FixedFaceFont>>displayString: aString on: aBitBlt from: startIndex to: stopIndex
 	^ Array with: stopIndex + 1 with: destPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>emphasized: emph [
+{ #category : #accessing }
+FixedFaceFont >> emphasized: emph [
 	^self class new baseFont: (baseFont emphasized: emph)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>errorFont [
+{ #category : #initialization }
+FixedFaceFont >> errorFont [
 	displaySelector := #displayErrorOn:length:at:kern:baselineY:.
 	substitutionCharacter := $?.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>familyName [
+{ #category : #accessing }
+FixedFaceFont >> familyName [
 	^baseFont familyName, '-pw'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>fontSize: aNumber  [
+{ #category : #accessing }
+FixedFaceFont >> fontSize: aNumber [ 
 	self baseFont: (StrikeFont familyName: baseFont familyName size: aNumber) copy
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>glyphInfoOf: aCharacter into: glyphInfoArray [
+{ #category : #private }
+FixedFaceFont >> glyphInfoOf: aCharacter into: glyphInfoArray [
 
 	^ baseFont glyphInfoOf: substitutionCharacter into: glyphInfoArray.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>height [
+{ #category : #accessing }
+FixedFaceFont >> height [
 	^baseFont height
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>initialize [
+{ #category : #initialization }
+FixedFaceFont >> initialize [
 	super initialize.
 	baseFont := TextStyle defaultFont.
 	self passwordFont
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>installOn: aDisplayContext foregroundColor: foregroundColor backgroundColor: backgroundColor [
+{ #category : #displaying }
+FixedFaceFont >> installOn: aDisplayContext foregroundColor: foregroundColor backgroundColor: backgroundColor [
 	^baseFont installOn: aDisplayContext foregroundColor: foregroundColor backgroundColor: backgroundColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>lineGrid [
+{ #category : #accessing }
+FixedFaceFont >> lineGrid [
 	^baseFont lineGrid
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>maxAscii [
+{ #category : #accessing }
+FixedFaceFont >> maxAscii [
 	^ SmallInteger maxVal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>passwordCharacter [
+{ #category : #accessing }
+FixedFaceFont >> passwordCharacter [
 	^$*
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>passwordFont [
+{ #category : #initialization }
+FixedFaceFont >> passwordFont [
 	displaySelector := #displayPasswordOn:length:at:kern:baselineY:.
 	substitutionCharacter := $*
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>pointSize [
+{ #category : #accessing }
+FixedFaceFont >> pointSize [
 	^baseFont pointSize
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>releaseCachedState [
+{ #category : #caching }
+FixedFaceFont >> releaseCachedState [
 	baseFont releaseCachedState.
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-FixedFaceFont>>widthOf: aCharacter  [
+{ #category : #measuring }
+FixedFaceFont >> widthOf: aCharacter [ 
 	^ baseFont widthOf: substitutionCharacter
 ]

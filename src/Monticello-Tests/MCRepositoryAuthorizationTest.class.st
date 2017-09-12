@@ -1,38 +1,25 @@
-"
-
-"
 Class {
 	#name : #MCRepositoryAuthorizationTest,
 	#superclass : #TestCase,
-	#category : #Monticello-Tests,
-	#timestamp : ''
+	#category : #Monticello-Tests
 }
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCRepositoryAuthorizationTest>>assert: registry on: serverUrlString hasUser: nameString withPassword: passwordString  [
+{ #category : #asserting }
+MCRepositoryAuthorizationTest >> assert: registry on: serverUrlString hasUser: nameString withPassword: passwordString [ 
 
 	registry repositoryAt: serverUrlString credentialsDo: [ :user :password |
 		self assert: nameString equals: user.
 		self assert: passwordString equals: password ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCRepositoryAuthorizationTest>>exampleServerUrl [
+{ #category : #accessing }
+MCRepositoryAuthorizationTest >> exampleServerUrl [
 
 	^ 'http://www.squeaksource.com'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCRepositoryAuthorizationTest>>testEmptyCredentials [
+{ #category : #tests }
+MCRepositoryAuthorizationTest >> testEmptyCredentials [
 
 	| repo |
 	"Although you can do this, it's easier to use #location:. See #testNoCredentials"
@@ -41,11 +28,8 @@ MCRepositoryAuthorizationTest>>testEmptyCredentials [
 	self assert: repo password equals: ''.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCRepositoryAuthorizationTest>>testNoCredentials [
+{ #category : #tests }
+MCRepositoryAuthorizationTest >> testNoCredentials [
 
 	| repo |
 	repo := MCHttpRepository location: self exampleServerUrl.
@@ -53,11 +37,8 @@ MCRepositoryAuthorizationTest>>testNoCredentials [
 	self assert: repo password equals: ''.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCRepositoryAuthorizationTest>>testOverrideStoredCredentials [
+{ #category : #tests }
+MCRepositoryAuthorizationTest >> testOverrideStoredCredentials [
 
 	| repo registry |
 	[
@@ -73,11 +54,8 @@ MCRepositoryAuthorizationTest>>testOverrideStoredCredentials [
 		registry removeCredentialsFor: self exampleServerUrl ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCRepositoryAuthorizationTest>>testStoredCredentials [
+{ #category : #tests }
+MCRepositoryAuthorizationTest >> testStoredCredentials [
 
 	| repo registry |
 	[
@@ -92,11 +70,8 @@ MCRepositoryAuthorizationTest>>testStoredCredentials [
 		registry removeCredentialsFor: self exampleServerUrl ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCRepositoryAuthorizationTest>>testStoredCredentialsUsesMostSpecific [
+{ #category : #tests }
+MCRepositoryAuthorizationTest >> testStoredCredentialsUsesMostSpecific [
 
 	| repo registry nestedRepo |
 	[

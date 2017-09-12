@@ -15,15 +15,11 @@ Example:
 Class {
 	#name : #KeyedTree,
 	#superclass : #Dictionary,
-	#category : #Collections-Unordered,
-	#timestamp : '<historical>'
+	#category : #Collections-Unordered
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyedTree>>allKeys [
+{ #category : #accessing }
+KeyedTree >> allKeys [
 	"Answer an ordered collection of the keys of the receiver and any subtrees.
 		Please no circular references!"
 
@@ -35,22 +31,16 @@ KeyedTree>>allKeys [
 	^answer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyedTree>>atPath: anArray [
+{ #category : #accessing }
+KeyedTree >> atPath: anArray [
 	"Answer the element referenced by the give key path.
 	Signal an error if not found."
 
 	^self atPath: anArray ifAbsent: [self errorKeyNotFound: anArray]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyedTree>>atPath: anArray ifAbsent: aBlock [
+{ #category : #accessing }
+KeyedTree >> atPath: anArray ifAbsent: aBlock [
 	"Answer the element referenced by the given key path.
 	Answer the value of aBlock if not found."
 
@@ -61,11 +51,8 @@ KeyedTree>>atPath: anArray ifAbsent: aBlock [
 	^element
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyedTree>>atPath: anArray ifAbsentPut: aBlock [
+{ #category : #accessing }
+KeyedTree >> atPath: anArray ifAbsentPut: aBlock [
 	"Answer the element referenced by the given key path.
 	Answer the value of aBlock if not found after creating its path."
 
@@ -78,11 +65,8 @@ KeyedTree>>atPath: anArray ifAbsentPut: aBlock [
 	^element at: anArray last ifAbsentPut: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyedTree>>atPath: anArray put: aBlock [
+{ #category : #accessing }
+KeyedTree >> atPath: anArray put: aBlock [
 	"Answer the value of aBlock after creating its path."
 
 	|element|
@@ -94,11 +78,8 @@ KeyedTree>>atPath: anArray put: aBlock [
 	^element at: anArray last put: aBlock
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyedTree>>formattedText [
+{ #category : #printing }
+KeyedTree >> formattedText [
 	"Answer a string or text representing the receiver with indentation and, possibly, markup."
 
 	|str|
@@ -107,11 +88,8 @@ KeyedTree>>formattedText [
 	^str contents
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyedTree>>formattedTextWithDescriptions: aKeyedTree [
+{ #category : #printing }
+KeyedTree >> formattedTextWithDescriptions: aKeyedTree [
 	"Answer a string or text representing the receiver with indentation and, possibly, markup.
 	Descriptions of each item are taken from the given tree with
 	the same key structure as the receiver."
@@ -122,11 +100,8 @@ KeyedTree>>formattedTextWithDescriptions: aKeyedTree [
 	^str contents
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyedTree>>merge: aKeyedTree [
+{ #category : #adding }
+KeyedTree >> merge: aKeyedTree [
 	"Merge the given tree into the receiver, overwriting or extending elements as needed."
 
 	aKeyedTree keysAndValuesDo: [ :k :v | 
@@ -140,11 +115,8 @@ KeyedTree>>merge: aKeyedTree [
 				ifFalse: [ self at: k put: v ] ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyedTree>>postCopy [
+{ #category : #copying }
+KeyedTree >> postCopy [
 	"Must copy the associations, or later store will affect both the
 		original and the copy.
 	Copy any subtrees too!"
@@ -158,11 +130,8 @@ KeyedTree>>postCopy [
 									ifFalse: [assoc value])]]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyedTree>>putFormattedTextOn: aStream level: indentLevel indentString: aString [
+{ #category : #printing }
+KeyedTree >> putFormattedTextOn: aStream level: indentLevel indentString: aString [
 	"Place a description of the receiver on the given stream with the given indentation level."
 
 	
@@ -179,11 +148,8 @@ KeyedTree>>putFormattedTextOn: aStream level: indentLevel indentString: aString 
 					aStream cr]]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyedTree>>putFormattedTextOn: aStream withDescriptions: aKeyedTree level: indentLevel indentString: aString [
+{ #category : #printing }
+KeyedTree >> putFormattedTextOn: aStream withDescriptions: aKeyedTree level: indentLevel indentString: aString [
 	"Place a print of the receiver and associated description on the given stream with the given indentation level."
 
 	
@@ -206,22 +172,16 @@ KeyedTree>>putFormattedTextOn: aStream withDescriptions: aKeyedTree level: inden
 					aStream cr]]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyedTree>>removePath: anArray [
+{ #category : #removing }
+KeyedTree >> removePath: anArray [
 	"Remove and answer the element referenced by the given path.
 	Signal an error if not found."
 
 	^self removePath: anArray ifAbsent: [self errorKeyNotFound: anArray]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyedTree>>removePath: anArray ifAbsent: aBlock [
+{ #category : #removing }
+KeyedTree >> removePath: anArray ifAbsent: aBlock [
 	"Remove and answer the element referenced by the given path.
 	Answer the value of aBlock if not found."
 
@@ -234,21 +194,15 @@ KeyedTree>>removePath: anArray ifAbsent: aBlock [
 	^element removeKey: anArray last ifAbsent: aBlock	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyedTree>>sortBlock [
+{ #category : #accessing }
+KeyedTree >> sortBlock [
 	"Answer the block to sort tree keys with."
 
 	^[:a :b | [a <= b] on: Error do: [a class name <= b class name]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyedTree>>subtrees [
+{ #category : #accessing }
+KeyedTree >> subtrees [
 	"Answer the subtrees of the receiver."
 
 	^(self select: [:v | v isKindOf: KeyedTree]) values

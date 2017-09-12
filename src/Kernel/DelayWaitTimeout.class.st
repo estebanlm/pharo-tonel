@@ -8,24 +8,17 @@ Class {
 		'process',
 		'expired'
 	],
-	#category : #Kernel-Processes,
-	#timestamp : '<historical>'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayWaitTimeout>>isExpired [
+{ #category : #testing }
+DelayWaitTimeout >> isExpired [
 	"Did this timeout fire before the associated semaphore was signaled?"
 	^expired
 ]
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayWaitTimeout>>schedulerSignalWaitingProcess [
+{ #category : #signaling }
+DelayWaitTimeout >> schedulerSignalWaitingProcess [
 	"Release the given process from the semaphore it is waiting on.
 	This method relies on running at highest priority so that it cannot be preempted
 	by the process being released."
@@ -38,21 +31,15 @@ DelayWaitTimeout>>schedulerSignalWaitingProcess [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayWaitTimeout>>setDelay: anInteger forSemaphore: aSemaphore [
+{ #category : #private }
+DelayWaitTimeout >> setDelay: anInteger forSemaphore: aSemaphore [
 	super setDelay: anInteger forSemaphore: aSemaphore.
 	process := Processor activeProcess.
 	expired := false.
 ]
 
-{
-	#category : #waiting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayWaitTimeout>>wait [
+{ #category : #waiting }
+DelayWaitTimeout >> wait [
 	"Wait until either the semaphore is signaled or the delay times out"
 	[self schedule.
 	"It is critical that the following has no suspension point so that
@@ -66,11 +53,8 @@ DelayWaitTimeout>>wait [
 
 ]
 
-{
-	#category : #waiting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelayWaitTimeout>>waitOnCompletion: completionBlock onTimeout: timeoutBlock [
+{ #category : #waiting }
+DelayWaitTimeout >> waitOnCompletion: completionBlock onTimeout: timeoutBlock [
 	"Wait until either the semaphore is signaled or the delay times out.
 	If the delay times out execute timeoutBlock, otherwise if the semaphore is signaled execute completionBlock.
 	Return the value returned by the executed block."

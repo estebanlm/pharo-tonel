@@ -17,15 +17,11 @@ Class {
 	#name : #Path,
 	#superclass : #Object,
 	#type : #variable,
-	#category : #FileSystem-Path,
-	#timestamp : 'AlistairGrant 8/10/2017 20:55'
+	#category : #FileSystem-Path
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>* aString [
+{ #category : #'instance creation' }
+Path class >> * aString [
 	"Answer a relative path with aString as its sole segment. For example,
 	Path * 'griffle' will produce the same result as ./griffle in a unix shell.
 	The selector #* was chosen for it's visual similarity to $."
@@ -36,11 +32,8 @@ Path class>>* aString [
 	^ RelativePath with: aString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>/ aString [
+{ #category : #'instance creation' }
+Path class >> / aString [
 	"Answer an absolute path with aString as it's sole segment. The selector
 	was chosen to allow path construction with Smalltalk syntax, which 
 	neverthelesss resembles paths as they appear in a unix shell. Eg.
@@ -51,11 +44,8 @@ Path class>>/ aString [
 	^ AbsolutePath with: aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>addElement: element to: result [
+{ #category : #private }
+Path class >> addElement: element to: result [
 	element = '..'
 		ifTrue: [ ^ self addParentElementTo: result ].
 	element = ''
@@ -64,31 +54,22 @@ Path class>>addElement: element to: result [
 		ifFalse: [ result add: element ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>addEmptyElementTo: result [
+{ #category : #private }
+Path class >> addEmptyElementTo: result [
 	result isEmpty ifTrue: [result add: '']
 		
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>addParentElementTo: result [
+{ #category : #private }
+Path class >> addParentElementTo: result [
 	(result isEmpty or: [ result last = '..' ])
 		ifTrue: [ result add: '..' ]
 		ifFalse: [ result removeLast ]
 		
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>canonicalizeElements: aCollection [
+{ #category : #private }
+Path class >> canonicalizeElements: aCollection [
 	| result |
 	result := OrderedCollection new.
 	aCollection do: [ :element |
@@ -96,40 +77,28 @@ Path class>>canonicalizeElements: aCollection [
 	^ result
 ]
 
-{
-	#category : #encodings,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>delimeter [
+{ #category : #encodings }
+Path class >> delimeter [
 	"Internal path delimeter"
 	
 	^$/
 ]
 
-{
-	#category : #encodings,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>extensionDelimiter [
+{ #category : #encodings }
+Path class >> extensionDelimiter [
 	"Return the extension delimiter character."
 	^ $.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>from: aString [
+{ #category : #'instance creation' }
+Path class >> from: aString [
 	"Answer an instance of the receiver with the supplied path using the default delimiter"
 
 	^ self from: aString delimiter: self delimeter
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>from: aString delimiter: aDelimiterCharacter  [
+{ #category : #'instance creation' }
+Path class >> from: aString delimiter: aDelimiterCharacter [ 
 	"Answer a path composed of several elements delimited by aCharacter"
 	| pathClass |
 	aString isEmpty
@@ -143,29 +112,20 @@ Path class>>from: aString delimiter: aDelimiterCharacter  [
 	^ pathClass withAll: (aDelimiterCharacter split: aString)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>isAbsolutePath: aString delimiter: aCharacter [
+{ #category : #private }
+Path class >> isAbsolutePath: aString delimiter: aCharacter [
 	"Answer a boolean indicating whether the supplied path is considered absolute"
 
 	^aString first = aCharacter
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>isAbsoluteUnixPath: aString [
+{ #category : #private }
+Path class >> isAbsoluteUnixPath: aString [
 	^aString first = $/ 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>isAbsoluteWindowsPath: aString [
+{ #category : #private }
+Path class >> isAbsoluteWindowsPath: aString [
 	aString ifEmpty: [ ^ false ].
 	(aString first = $\) ifTrue: [ ^ true ]. "e.g. \file"
 	^ ((aString size > 2) and: [ aString first isLetter ])
@@ -174,11 +134,8 @@ Path class>>isAbsoluteWindowsPath: aString [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>parent [
+{ #category : #'instance creation' }
+Path class >> parent [
 	"Answer a path that resolves to the parent of the current
 	working directory. This is similar to .. in unix, but doesn't
 	rely on actual hardlinks being present in the filesystem."
@@ -186,43 +143,31 @@ Path class>>parent [
 	^ RelativePath with: '..'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>parents: anInteger [
+{ #category : #'instance creation' }
+Path class >> parents: anInteger [
 	| path |
 	path := self new: anInteger.
 	1 to: anInteger do: [:i | path at: i put: '..'].
 	^ path
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>removeRedundantSegments: segments [
+{ #category : #private }
+Path class >> removeRedundantSegments: segments [
 	"Remove redundant elements ('.' and '') from the supplied segments"
 
 	^segments select:
 		[ :segment | segment notEmpty and: [ segment ~= '.' ] ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>root [
+{ #category : #'instance creation' }
+Path class >> root [
 	"Answer the root path - ie, / on unix"
 	
 	^ AbsolutePath new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>with: aString [
+{ #category : #private }
+Path class >> with: aString [
 	"Answer an instance of the receiver representing the supplied string.
 	This should only be sent to one of the concrete subclasses, e.g. AbsolutePath and RelativePath"
 	| inst parsedCollection |
@@ -235,11 +180,8 @@ Path class>>with: aString [
 	^ inst
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>withAll: aCollection [
+{ #category : #private }
+Path class >> withAll: aCollection [
 	"Answer an instance of the receiver representing the supplied collection of strings.
 	This should only be sent to one of the concrete subclasses, e.g. AbsolutePath and RelativePath"
 	| inst parsedCollection |
@@ -254,29 +196,20 @@ Path class>>withAll: aCollection [
 	^ inst
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path class>>workingDirectory [
+{ #category : #'instance creation' }
+Path class >> workingDirectory [
 	"Answer a path that will always resolve to the current working directory."
 	
 	^ RelativePath new
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>, extension  [
+{ #category : #navigating }
+Path >> , extension [ 
 	^ self withName: self basename extension: extension
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>/ aString [
+{ #category : #navigating }
+Path >> / aString [
 	"aString is either a file or path.  If aString is relative, it is appended to the receiver, if it is absolute, an instance of the receiver with the path is answered"
 
 	aString isEmptyOrNil 
@@ -285,54 +218,36 @@ Path>>/ aString [
 	^self resolvePath: (self class from: aString)
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>><= other [
+{ #category : #comparing }
+Path >> <= other [
 	^ self fullName <= other fullName
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>= other [
+{ #category : #comparing }
+Path >> = other [
 	^ self species = other species
 		and: [self size = other size
 			and: [(1 to: self size) allSatisfy: [:i | (self at: i) = (other at: i)]]]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>asPathWith: anObject [
+{ #category : #converting }
+Path >> asPathWith: anObject [
 	^ self
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>asResolvedBy: anObject [
+{ #category : #navigating }
+Path >> asResolvedBy: anObject [
 	^ anObject resolvePath: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>base [
+{ #category : #accessing }
+Path >> base [
 	"Returns the base of the basename, i.e. /foo/gloops.taz basename is 'gloops'"
 	^ self basename copyUpTo: self extensionDelimiter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>basename [
+{ #category : #accessing }
+Path >> basename [
 	"Returns the base of the basename, 
 		i.e. 
 		/foo/gloops.taz basename is 'gloops.taz'
@@ -343,11 +258,8 @@ Path>>basename [
 	^ self at: self size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>basename: newBasename [
+{ #category : #accessing }
+Path >> basename: newBasename [
 	"change the basename"
 	self size == 0
 		"the root node"
@@ -355,11 +267,8 @@ Path>>basename: newBasename [
 	self at: self size put: newBasename
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>basenameWithoutExtension [
+{ #category : #accessing }
+Path >> basenameWithoutExtension [
 	"Returns the base of the basename but without its extension, 
 		i.e. 
 		/foo/gloops.taz basenameWithoutExtension is 'gloops'
@@ -368,11 +277,8 @@ Path>>basenameWithoutExtension [
 	^ self basename copyUpToLast: self extensionDelimiter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>basenameWithoutExtension: anExtension [
+{ #category : #accessing }
+Path >> basenameWithoutExtension: anExtension [
 	"Returns the basename without specified extension (if any)
 	('/foo/gloops.taz' asPath basenameWithoutExtension: 'taz') = 'gloops'
 	"
@@ -384,68 +290,47 @@ Path>>basenameWithoutExtension: anExtension [
 		ifFalse: [ ^ self basename ]
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>canonicalize [
+{ #category : #navigating }
+Path >> canonicalize [
 	"Answer the receiver with references to the current folder (.) and parent folder (..) removed"
 	
 	^self class withAll: (self class canonicalizeElements: self segments).
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>contains: anObject [
+{ #category : #comparing }
+Path >> contains: anObject [
 	"Return true if anObject is in a subfolder of me"
 	^ anObject isContainedBy: self
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>containsPath: aPath [
+{ #category : #comparing }
+Path >> containsPath: aPath [
 	self size < aPath size ifFalse: [^ false].
 	1	to: self size 
 		do: [:i | (self at: i) = (aPath at: i) ifFalse: [^ false]].
 	^ true
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>containsReference: aReference [
+{ #category : #comparing }
+Path >> containsReference: aReference [
 	^ false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>copyFrom: aPath [
+{ #category : #private }
+Path >> copyFrom: aPath [
 	| size |
 	size := aPath size min: self size.
 	1 to: size do: [:i | self at: i put: (aPath at: i)].
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>delimiter [
+{ #category : #accessing }
+Path >> delimiter [
 	^ $/
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>do: aBlock  [
+{ #category : #enumerating }
+Path >> do: aBlock [ 
 	1 
 		to: self size
 		do: 
@@ -454,49 +339,34 @@ Path>>do: aBlock  [
 			segment isEmpty ifFalse: [ aBlock value: segment ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>extension [
+{ #category : #accessing }
+Path >> extension [
 	"Return the extension of path basename i.e., /foo/gloops.taz extension is 'taz'"
 	
 	^ self basename copyAfterLast: self extensionDelimiter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>extensionDelimiter [
+{ #category : #accessing }
+Path >> extensionDelimiter [
 	^ self class extensionDelimiter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>extensions [
+{ #category : #accessing }
+Path >> extensions [
 	"Return the extensions of the receiver in order of appearance"
 	"(Path from: '/foo/bar.tar.gz') extensions"
 	^ (self extensionDelimiter split: self basename) allButFirst
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>fullName [
+{ #category : #accessing }
+Path >> fullName [
 	"Return the fullName of the receiver."
 	
 	^ self pathString
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>hash [
+{ #category : #comparing }
+Path >> hash [
 	| hash |
 	hash := self class identityHash.
 	1 to: self size do:
@@ -504,77 +374,50 @@ Path>>hash [
 	^ hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>isAbsolute [
+{ #category : #testing }
+Path >> isAbsolute [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>isAllParents [
+{ #category : #private }
+Path >> isAllParents [
 	1 to: self size do: [:i | (self at: i) = '..' ifFalse: [^ false]].
 	^ true
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>isChildOf: anObject [
+{ #category : #comparing }
+Path >> isChildOf: anObject [
 	^ self parent = anObject
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>isContainedBy: anObject [
+{ #category : #comparing }
+Path >> isContainedBy: anObject [
 	"DoubleDispatch helper for #contains:"
 	^ anObject containsPath: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>isEmpty [
+{ #category : #testing }
+Path >> isEmpty [
 	^ self size = 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>isRelative [
+{ #category : #testing }
+Path >> isRelative [
 	^ self isAbsolute not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>isRoot [
+{ #category : #testing }
+Path >> isRoot [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>isWorkingDirectory [
+{ #category : #testing }
+Path >> isWorkingDirectory [
 	^ self size = 0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>lengthOfStemWith: aPath [
+{ #category : #private }
+Path >> lengthOfStemWith: aPath [
 	| limit index |
 	limit := self size min: aPath size.
 	index := 1.
@@ -583,19 +426,13 @@ Path>>lengthOfStemWith: aPath [
 	^ index - 1
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>makeRelative: anObject [
+{ #category : #navigating }
+Path >> makeRelative: anObject [
 	^ anObject relativeToPath: self
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>parent [
+{ #category : #navigating }
+Path >> parent [
 	| size parent |
 	self isRoot ifTrue: [^ self].
 	self isAllParents ifTrue: [^ self / '..'].
@@ -606,11 +443,8 @@ Path>>parent [
 	^ parent
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>parentUpTo: aParentDirName [
+{ #category : #navigating }
+Path >> parentUpTo: aParentDirName [
 	"Answers the path of the parent dir with name aParentDirName or root if not found."
 
 	self withParents
@@ -620,11 +454,8 @@ Path>>parentUpTo: aParentDirName [
 	^ Path root
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>pathString [
+{ #category : #printing }
+Path >> pathString [
 	"Return a string containing the path elements of the receiver, without the 'Path *' part"
 
 	"((FileSystem workingDirectory / 'book-result' / 'W01-Welcome')
@@ -635,30 +466,21 @@ Path>>pathString [
 		self printPathOn: stream delimiter: self delimiter ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>printOn: aStream  [
+{ #category : #printing }
+Path >> printOn: aStream [ 
 	self printOn: aStream delimiter: self delimiter.
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>printOn: aStream delimiter: aCharacter [
+{ #category : #printing }
+Path >> printOn: aStream delimiter: aCharacter [
 	(1 to: self size)
 		do: [:index | aStream nextPutAll: (self at: index)]
 		separatedBy: [aStream nextPut: aCharacter]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>printPathOn: aStream [
+{ #category : #printing }
+Path >> printPathOn: aStream [
 	"Print the receiver's path on aStream (without 'Path' prepended) using the default delimiter"
 	"String streamContents: [ :str| 
 		((FileSystem workingDirectory / 'book-result' / 'W01-Welcome') 
@@ -669,11 +491,8 @@ Path>>printPathOn: aStream [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>printPathOn: aStream delimiter: aCharacter [
+{ #category : #printing }
+Path >> printPathOn: aStream delimiter: aCharacter [
 	"Print the receiver's path on aStream (without 'Path' prepended)"
 	"String streamContents: [ :str| 
 		((FileSystem workingDirectory / 'book-result' / 'W01-Welcome')
@@ -685,27 +504,18 @@ Path>>printPathOn: aStream delimiter: aCharacter [
 		separatedBy: [aStream nextPut: aCharacter]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>printWithDelimiter: aCharacter [
+{ #category : #printing }
+Path >> printWithDelimiter: aCharacter [
 	^ String streamContents: [:out | self printOn: out delimiter: aCharacter]
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>relativeTo: anObject [
+{ #category : #navigating }
+Path >> relativeTo: anObject [
 	^ anObject makeRelative: self
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>relativeToPath: aPath [
+{ #category : #navigating }
+Path >> relativeToPath: aPath [
 	"Return the receiver as relative to the argument aPath"
 
 	"(Path / 'griffle' / 'plonk' / 'nurp') 
@@ -719,30 +529,21 @@ Path>>relativeToPath: aPath [
 	^ relative
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>resolve [
+{ #category : #navigating }
+Path >> resolve [
 	^ self
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>resolve: anObject [
+{ #category : #navigating }
+Path >> resolve: anObject [
 	"Return a path in which the argument has been interpreted in the context of the receiver. Different 
 	argument types have different resolution semantics, so we use double dispatch to resolve them correctly."
 	
 	^ anObject asResolvedBy: self
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>resolvePath: aPath [
+{ #category : #navigating }
+Path >> resolvePath: aPath [
 	"Answers a path created by resolving the argument against the receiver.
 	If the argument is abolute answer the argument itself. Otherwise, concatenate the
 	two paths."
@@ -758,29 +559,20 @@ Path>>resolvePath: aPath [
 	^ self class withAll: elements
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>resolveReference: aReference [
+{ #category : #navigating }
+Path >> resolveReference: aReference [
 	^ aReference
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>resolveString: aString [
+{ #category : #navigating }
+Path >> resolveString: aString [
 	"Treat strings as relative paths with a single element."
 	
 	^ self / aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>segments [
+{ #category : #accessing }
+Path >> segments [
 	"return an array with all the path segements separated"
 	| segments |
 	
@@ -793,11 +585,8 @@ Path>>segments [
 	^ segments asArray 
 ]
 
-{
-	#category : #navigating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>withExtension: extension  [
+{ #category : #navigating }
+Path >> withExtension: extension [ 
 	| basename name |
 	basename := self basename.
 	^ (basename endsWith: extension) 
@@ -807,11 +596,8 @@ Path>>withExtension: extension  [
 			self withName: name extension: extension]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>withName: name extension: extension [
+{ #category : #private }
+Path >> withName: name extension: extension [
 	| basename |
 	basename :=String streamContents:
 		[:out |
@@ -823,11 +609,8 @@ Path>>withName: name extension: extension [
 		yourself
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:38'
-}
-Path>>withParents [
+{ #category : #enumerating }
+Path >> withParents [
 	| paths |
 	paths := OrderedCollection new.
 	1 to: self size -1 do: [ :index | paths add: ((self class new: index) copyFrom: self) ].

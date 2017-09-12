@@ -9,15 +9,11 @@ Class {
 		'category',
 		'morph'
 	],
-	#category : #Keymapping-Core,
-	#timestamp : '<historical>'
+	#category : #Keymapping-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategoryBinding class>>target: aTarget morph: aMorph category: aCategory [
+{ #category : #'instance creation' }
+KMCategoryBinding class >> target: aTarget morph: aMorph category: aCategory [
 	^self new
 		target: aTarget;
 		category: aCategory;
@@ -25,91 +21,61 @@ KMCategoryBinding class>>target: aTarget morph: aMorph category: aCategory [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategoryBinding>>category [
+{ #category : #accessing }
+KMCategoryBinding >> category [
 
 	^ category
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategoryBinding>>category: aCategory [
+{ #category : #accessing }
+KMCategoryBinding >> category: aCategory [
 	category := aCategory
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategoryBinding>>completeMatch: aKeymap buffer: aBuffer [
+{ #category : #matching }
+KMCategoryBinding >> completeMatch: aKeymap buffer: aBuffer [
 	KMLog logCompleteMatch: aKeymap.
 	KMBuffer uniqueInstance completeMatch.
 	aKeymap action cull: target value cull: morph cull: aBuffer first.
 
 ]
 
-{
-	#category : #binding,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategoryBinding>>keymapForShortcut: aKey [
+{ #category : #binding }
+KMCategoryBinding >> keymapForShortcut: aKey [
 	
 	^ category keymapForShortcut: aKey
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategoryBinding>>morph [
+{ #category : #accessing }
+KMCategoryBinding >> morph [
 
 	^ morph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategoryBinding>>morph: aMorph [
+{ #category : #accessing }
+KMCategoryBinding >> morph: aMorph [
 	morph := aMorph
 ]
 
-{
-	#category : #iterating,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategoryBinding>>nextForKmChain: aKMDispatchChain [
+{ #category : #iterating }
+KMCategoryBinding >> nextForKmChain: aKMDispatchChain [
 	^self target
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategoryBinding>>noMatch [
+{ #category : #matching }
+KMCategoryBinding >> noMatch [
 	"do nothing"
 	
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategoryBinding>>partialMatch [
+{ #category : #matching }
+KMCategoryBinding >> partialMatch [
 	"do nothing"
 	
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategoryBinding>>printOn: aStream [
+{ #category : #printing }
+KMCategoryBinding >> printOn: aStream [
 
 	aStream
 		nextPutAll: 'aKMCategoryTarget(';
@@ -117,28 +83,19 @@ KMCategoryBinding>>printOn: aStream [
 		nextPutAll: ')'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategoryBinding>>target [
+{ #category : #accessing }
+KMCategoryBinding >> target [
 
 	^ target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategoryBinding>>target: aTarget [
+{ #category : #accessing }
+KMCategoryBinding >> target: aTarget [
 	target := aTarget
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMCategoryBinding>>verifyMatchWith: anEventBuffer notifying: aListener thenDoing: anAction [
+{ #category : #matching }
+KMCategoryBinding >> verifyMatchWith: anEventBuffer notifying: aListener thenDoing: anAction [
 	self flag: #fixme. "ugly hack with array of listeners"
 	category 
 		onMatchWith:  anEventBuffer

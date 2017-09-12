@@ -9,69 +9,47 @@ Class {
 	#instVars : [
 		'comment'
 	],
-	#category : #Refactoring-Changes,
-	#timestamp : 'NicolaiHess 9/9/2016 20:28'
+	#category : #Refactoring-Changes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBCommentChange class>>comment: aString in: aClass [
+{ #category : #'instance creation' }
+RBCommentChange class >> comment: aString [ in: aClass
 	^ self new
 		changeClass: aClass;
 		comment: aString;
 		yourself
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBCommentChange>>asUndoOperation [
+{ #category : #converting }
+RBCommentChange >> asUndoOperation [
 	^ self copy
 		comment: self changeClass organization classComment;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBCommentChange>>changeClass: aBehavior [
+{ #category : #accessing }
+RBCommentChange >> changeClass: aBehavior [
 	super changeClass: aBehavior.
 	isMeta := false
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBCommentChange>>changeString [
+{ #category : #printing }
+RBCommentChange >> changeString [
 	^ 'Comment ' , self displayClassName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBCommentChange>>comment [
+{ #category : #accessing }
+RBCommentChange >> comment [
 	^ comment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBCommentChange>>comment: aString  [
+{ #category : #accessing }
+RBCommentChange >> comment: aString [ 
 	comment := aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBCommentChange>>primitiveExecute [
+{ #category : #private }
+RBCommentChange >> primitiveExecute [
 	self changeClass 
 		classComment: comment
 		stamp: self changeStamp.
@@ -79,11 +57,8 @@ RBCommentChange>>primitiveExecute [
 		classCommented: self changeClass
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBCommentChange>>printOn: aStream  [
+{ #category : #printing }
+RBCommentChange >> printOn: aStream [ 
 	aStream
 		nextPutAll: self displayClassName;
 		nextPutAll: ' classComment: ';

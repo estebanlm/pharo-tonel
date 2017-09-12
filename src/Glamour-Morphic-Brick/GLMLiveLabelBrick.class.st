@@ -14,24 +14,17 @@ Class {
 	#instVars : [
 		'textLogic'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-UI,
-	#timestamp : 'AliakseiSyrel 3/19/2015 13:23'
+	#category : #Glamour-Morphic-Brick-Widgets-UI
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLiveLabelBrick>>initialize [
+{ #category : #initialization }
+GLMLiveLabelBrick >> initialize [
 	super initialize.
 	textLogic := [ :x | x ]
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLiveLabelBrick>>step [
+{ #category : #'stepping and presenter' }
+GLMLiveLabelBrick >> step [
 	|newText|
 	newText := self textLogic value asString.
 	self text = newText ifTrue:  [ ^ self ].
@@ -39,26 +32,17 @@ GLMLiveLabelBrick>>step [
 	self doLayoutForce
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLiveLabelBrick>>textLogic  [
+{ #category : #accessing }
+GLMLiveLabelBrick >> textLogic [ 
 	^ textLogic
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLiveLabelBrick>>textLogic: aBlock [
+{ #category : #accessing }
+GLMLiveLabelBrick >> textLogic: aBlock [
 	textLogic := aBlock
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLiveLabelBrick>>wantsSteps [
+{ #category : #testing }
+GLMLiveLabelBrick >> wantsSteps [
 	^ true
 ]

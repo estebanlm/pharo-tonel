@@ -4,15 +4,11 @@ Text converter for CP1252.  Windows code page used in Western Europe.
 Class {
 	#name : #CP1252TextConverter,
 	#superclass : #ByteTextConverter,
-	#category : #Multilingual-TextConversion,
-	#timestamp : '<historical>'
+	#category : #Multilingual-TextConversion
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CP1252TextConverter class>>byteToUnicodeSpec [
+{ #category : #initialization }
+CP1252TextConverter class >> byteToUnicodeSpec [
 	"ByteTextConverter generateByteToUnicodeSpec: 'http://unicode.org/Public/MAPPINGS/VENDORS/MICSFT/WINDOWS/CP1252.TXT'"
 
 	^ #(
@@ -34,28 +30,19 @@ CP1252TextConverter class>>byteToUnicodeSpec [
 	16r00F8 16r00F9 16r00FA 16r00FB 16r00FC 16r00FD 16r00FE 16r00FF )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CP1252TextConverter class>>encodingNames  [
+{ #category : #accessing }
+CP1252TextConverter class >> encodingNames [ 
 
 	^ #('cp-1252') copy
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CP1252TextConverter class>>initialize [
+{ #category : #initialization }
+CP1252TextConverter class >> initialize [
 	self initializeTables
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-CP1252TextConverter class>>languageEnvironment [
+{ #category : #accessing }
+CP1252TextConverter class >> languageEnvironment [
 	^Latin9Environment
 ]

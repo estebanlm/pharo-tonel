@@ -14,59 +14,40 @@ Class {
 		'parts',
 		'representation'
 	],
-	#category : #Zinc-HTTP-Core,
-	#timestamp : 'SvenVanCaekenberghe 1/18/2011 11:04'
+	#category : #Zinc-HTTP-Core
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity class>>designatedMimeType [
+{ #category : #testing }
+ZnMultiPartFormDataEntity class >> designatedMimeType [
 	^ ZnMimeType multiPartFormData  
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity class>>matches: mimeType [
+{ #category : #testing }
+ZnMultiPartFormDataEntity class >> matches: mimeType [
 	^ mimeType matches: 'multipart/*' asZnMimeType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>addPart: mimePart [
+{ #category : #accessing }
+ZnMultiPartFormDataEntity >> addPart: mimePart [
 	self invalidateRepresentation.
 	self parts add: mimePart
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>computeRepresentation [
+{ #category : #private }
+ZnMultiPartFormDataEntity >> computeRepresentation [
 	representation := ByteArray streamContents: [ :stream | 
 		self writeRepresentationOn: (ZnBivalentWriteStream on: stream) ].
 	contentLength := representation size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>contentLength [
+{ #category : #accessing }
+ZnMultiPartFormDataEntity >> contentLength [
 	contentLength isNil ifTrue: [ self computeRepresentation ].
 	^ contentLength
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>contentType: object [
+{ #category : #accessing }
+ZnMultiPartFormDataEntity >> contentType: object [
 	"We only allow assignment compatible with our designated mime type.
 	The main/sub must be equal but the parameters must be allowed to be different"
 	
@@ -76,19 +57,13 @@ ZnMultiPartFormDataEntity>>contentType: object [
 		ifTrue: [ contentType := newType ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>contents [
+{ #category : #accessing }
+ZnMultiPartFormDataEntity >> contents [
 	^ self parts
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>generateBoundary [
+{ #category : #private }
+ZnMultiPartFormDataEntity >> generateBoundary [
 	^ String streamContents: [ :stream | | letters |
 			stream nextPutAll: 'Boundary-Zn-'.
 			letters := 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.
@@ -96,11 +71,8 @@ ZnMultiPartFormDataEntity>>generateBoundary [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>getBoundary [
+{ #category : #accessing }
+ZnMultiPartFormDataEntity >> getBoundary [
 	"Return the multipart/form-data MIME part boundary.
 	This should really be there, set externally or internally.
 	See #initialize and #mimeTypeWithBoundary"
@@ -108,49 +80,34 @@ ZnMultiPartFormDataEntity>>getBoundary [
 	^ (self contentType parameterAt: 'boundary') withoutQuoting 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>initialize [
+{ #category : #initialize-release }
+ZnMultiPartFormDataEntity >> initialize [
 	super initialize.
 	self contentType: self mimeTypeWithBoundary  
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>invalidateRepresentation [
+{ #category : #private }
+ZnMultiPartFormDataEntity >> invalidateRepresentation [
 	representation := nil.
 	contentLength := nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>isEmpty [
+{ #category : #testing }
+ZnMultiPartFormDataEntity >> isEmpty [
 	^ parts isNil or: [ parts isEmpty ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>mimeTypeWithBoundary [
+{ #category : #private }
+ZnMultiPartFormDataEntity >> mimeTypeWithBoundary [
 	| mimeType |
 	mimeType := self class designatedMimeType copy.
 	mimeType parameterAt: 'boundary' put: self generateBoundary.
 	^ mimeType
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>parse: bytes boundary: boundary binary: binary [
+{ #category : #private }
+ZnMultiPartFormDataEntity >> parse: bytes boundary: boundary binary: binary [
 	| next start fullBoundary |
 	fullBoundary := '--' asByteArray, boundary.
 	"Sometimes there is whitespace in front of the first boundary"
@@ -171,46 +128,31 @@ ZnMultiPartFormDataEntity>>parse: bytes boundary: boundary binary: binary [
 			ifAbsent: [ bytes size ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>partNamed: fieldName [
+{ #category : #accessing }
+ZnMultiPartFormDataEntity >> partNamed: fieldName [
 	^ self partNamed: fieldName ifNone: [ self error: 'Cannot find part named ', fieldName asString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>partNamed: fieldName ifNone: block [
+{ #category : #accessing }
+ZnMultiPartFormDataEntity >> partNamed: fieldName ifNone: block [
 	parts isNil ifTrue: [ block value ].
 	^ self parts detect: [ :each | each fieldName = fieldName ] ifNone: block
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>parts [
+{ #category : #accessing }
+ZnMultiPartFormDataEntity >> parts [
 	parts isNil ifTrue: [ parts := OrderedCollection new ].
 	^ parts
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>partsDo: block [
+{ #category : #enumerating }
+ZnMultiPartFormDataEntity >> partsDo: block [
 	parts isNil ifTrue: [ ^ self ].
 	parts do: block  
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>printContentsOn: stream [
+{ #category : #printing }
+ZnMultiPartFormDataEntity >> printContentsOn: stream [
 	super printContentsOn: stream.
 	self isEmpty
 		ifTrue: [ ^ self ].
@@ -218,11 +160,8 @@ ZnMultiPartFormDataEntity>>printContentsOn: stream [
 	self parts printElementsOn: stream
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>readBinaryFrom: stream [
+{ #category : #initialize-release }
+ZnMultiPartFormDataEntity >> readBinaryFrom: stream [
 	"Switch to streaming implementation later on"
 	
 	| bytes |
@@ -237,11 +176,8 @@ ZnMultiPartFormDataEntity>>readBinaryFrom: stream [
 	self parse: bytes boundary: self getBoundary asByteArray binary: true
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>readFrom: stream [
+{ #category : #initialize-release }
+ZnMultiPartFormDataEntity >> readFrom: stream [
 	"Switch to streaming implementation later on"
 	
 	| bytes |
@@ -256,22 +192,16 @@ ZnMultiPartFormDataEntity>>readFrom: stream [
 	self parse: bytes boundary: self getBoundary asByteArray binary: false
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>writeOn: stream [
+{ #category : #writing }
+ZnMultiPartFormDataEntity >> writeOn: stream [
 	"We always go via our representation because we need a bivalent stream"
 	
 	representation isNil ifTrue: [ self computeRepresentation ].
 	ZnUtils nextPutAll: representation on: stream
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMultiPartFormDataEntity>>writeRepresentationOn: stream [
+{ #category : #writing }
+ZnMultiPartFormDataEntity >> writeRepresentationOn: stream [
 	| boundary |
 	boundary := self getBoundary.
 	self parts do: [ :each |

@@ -22,25 +22,18 @@ Class {
 		'numberOfColumns',
 		'numberOfRows'
 	],
-	#category : #Collections-Unordered,
-	#timestamp : 'StephaneDucasse 2/15/2015 15:25'
+	#category : #Collections-Unordered
 }
 
-{
-	#category : #'special instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix class>>columnVector: aCollection [
+{ #category : #'special instance creation' }
+Matrix class >> columnVector: aCollection [
 	"Create a matrix of one column having aCollection as contents"
 
 	^ self rows: aCollection size columns: 1 contents: aCollection asArray shallowCopy
 ]
 
-{
-	#category : #'special instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix class>>diagonal: aCollection [
+{ #category : #'special instance creation' }
+Matrix class >> diagonal: aCollection [
 	|r i|
 	r := self zeros: aCollection size.
 	i := 0.
@@ -48,70 +41,49 @@ Matrix class>>diagonal: aCollection [
 	^r
 ]
 
-{
-	#category : #'special instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix class>>identity: n [
+{ #category : #'special instance creation' }
+Matrix class >> identity: n [
 	| r |
 	r := self zeros: n.
 	1 to: n do: [ :i | r at: i at: i put: 1 ].
 	^ r
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix class>>new: dimension [
+{ #category : #'instance creation' }
+Matrix class >> new: dimension [
 	"Answer a dimension*dimension matrix."
 	^ self rows: dimension columns: dimension
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix class>>new: dimemsion element: element [
+{ #category : #'instance creation' }
+Matrix class >> new: dimemsion element: element [
 	"Answer a dimemsion*dimemsion matrix with all elements set to element."
 
 	^ self rows: dimemsion columns: dimemsion element: element
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix class>>new: dimension tabulate: aTwoArgumentBlock [
+{ #category : #'instance creation' }
+Matrix class >> new: dimension tabulate: aTwoArgumentBlock [
 	"Answer a dimension*dimension matrix where it at: i at: j is aBlock value: i value: j."
 	^ self rows: dimension columns: dimension tabulate: aTwoArgumentBlock
 ]
 
-{
-	#category : #'special instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix class>>ones: dimension [
+{ #category : #'special instance creation' }
+Matrix class >> ones: dimension [
 	"Create a squared matrix of dimension full of 1"
 	^ self new: dimension element: 1
 
 ]
 
-{
-	#category : #'special instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix class>>rowVector: aCollection [
+{ #category : #'special instance creation' }
+Matrix class >> rowVector: aCollection [
 	"Create a matrix of one row having aCollection as contents"
 
 	^self rows: 1 columns: aCollection size contents: aCollection asArray shallowCopy
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix class>>rows: rowNumber columns: columnNumber [
+{ #category : #'instance creation' }
+Matrix class >> rows: rowNumber columns: columnNumber [
 	"Create a Matrix of rowNUmber rows and columnNumber columns."
 	^ self 
 		rows: rowNumber 
@@ -119,20 +91,14 @@ Matrix class>>rows: rowNumber columns: columnNumber [
 		contents: (Array new: rowNumber*columnNumber)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix class>>rows: rowNumber columns: columnNumber contents: contents [
+{ #category : #private }
+Matrix class >> rows: rowNumber columns: columnNumber contents: contents [
 	"Private! Creates a Matrix of the given size with an adequate contents."
 	^ self new rows: rowNumber columns: columnNumber contents: contents
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix class>>rows: rowNumber columns: columnNumber element: element [
+{ #category : #'instance creation' }
+Matrix class >> rows: rowNumber columns: columnNumber element: element [
 	"Create a Matrix of rowNumber rows and columnNumber columns filled with element."
 	^ self 
 		rows: rowNumber 
@@ -140,11 +106,8 @@ Matrix class>>rows: rowNumber columns: columnNumber element: element [
 		contents: ((Array new: rowNumber * columnNumber) atAllPut: element; yourself)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix class>>rows: rowNumber columns: columnNumber tabulate: aTwoArgumentBlock [
+{ #category : #'instance creation' }
+Matrix class >> rows: rowNumber columns: columnNumber tabulate: aTwoArgumentBlock [
 	"Answer a new Matrix of the given dimensions where
 	 result at: i at: j is aTwoArgumentBlock value: i value: j"
 	|a i|
@@ -157,20 +120,14 @@ Matrix class>>rows: rowNumber columns: columnNumber tabulate: aTwoArgumentBlock 
 
 ]
 
-{
-	#category : #'special instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix class>>zeros: dimension [
+{ #category : #'special instance creation' }
+Matrix class >> zeros: dimension [
 	"Create a Matrix of dimensionxdimemsion"
 	^ self new: dimension element: 0
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>, aMatrix [
+{ #category : #copying }
+Matrix >> , aMatrix [
 	"Answer a new matrix having the same number of rows as the receiver and aMatrix,
 	 its columns being the columns of the receiver followed by the columns of aMatrix."
 	|newCont newCols anArray oldCols a b c|
@@ -192,11 +149,8 @@ Matrix>>, aMatrix [
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>,, aMatrix [
+{ #category : #copying }
+Matrix >> ,, aMatrix [
 	"Answer a new matrix having the same number of columns as the receiver and aMatrix,
 	 its rows being the rows of the receiver followed by the rows of aMatrix."
 
@@ -208,143 +162,92 @@ Matrix>>,, aMatrix [
 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>= aMatrix [
+{ #category : #comparing }
+Matrix >> = aMatrix [
 	^ aMatrix class == self class
 		and: [ aMatrix numberOfRows = numberOfRows
 				and: [ aMatrix numberOfColumns = numberOfColumns 
 					and: [ aMatrix privateContents = contents ] ] ]
 ]
 
-{
-	#category : #'not implemented',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>add: newObject [
+{ #category : #'not implemented' }
+Matrix >> add: newObject [
 	self shouldNotImplement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>anyOne [
+{ #category : #accessing }
+Matrix >> anyOne [
 	"Return one element from the receiver"
 	^ contents anyOne
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>asArray [
+{ #category : #converting }
+Matrix >> asArray [
 	^ contents shallowCopy
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>asBag [
+{ #category : #converting }
+Matrix >> asBag [
 	^ contents asBag
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>asByteArray [
+{ #category : #converting }
+Matrix >> asByteArray [
 	^ contents asByteArray
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>asCharacterSet [
+{ #category : #converting }
+Matrix >> asCharacterSet [
 	^ contents asCharacterSet
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>asFloatArray [
+{ #category : #converting }
+Matrix >> asFloatArray [
 	^ contents asFloatArray
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>asIdentitySet [
+{ #category : #converting }
+Matrix >> asIdentitySet [
 	^ contents asIdentitySet
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>asIntegerArray [
+{ #category : #converting }
+Matrix >> asIntegerArray [
 	^ contents asIntegerArray
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>asOrderedCollection [
+{ #category : #converting }
+Matrix >> asOrderedCollection [
 	^ contents asOrderedCollection
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>asSet [
+{ #category : #converting }
+Matrix >> asSet [
 	^ contents asSet
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>asSortedCollection [
+{ #category : #converting }
+Matrix >> asSortedCollection [
 	^ contents asSortedCollection
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>asSortedCollection: aBlock [
+{ #category : #converting }
+Matrix >> asSortedCollection: aBlock [
 	^ contents asSortedCollection: aBlock
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>asWordArray [
+{ #category : #converting }
+Matrix >> asWordArray [
 	^ contents asWordArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>at: rowNumber at: columnNumber [
+{ #category : #accessing }
+Matrix >> at: rowNumber [ at: columnNumber
 	^ contents at: (self indexForRow: rowNumber andColumn: columnNumber)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>at: rowNumber at: columnNumber ifInvalid: value [
+{ #category : #accessing }
+Matrix >> at: rowNumber at: columnNumber ifInvalid: value [
 	"If rowNumber,columnNumber is a valid index for the receiver, answer the corresponding element. Otherwise, answer value."
 
 	(rowNumber between: 1 and: numberOfRows) ifFalse: [ ^ value ].
@@ -353,39 +256,27 @@ Matrix>>at: rowNumber at: columnNumber ifInvalid: value [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>at: rowNumber at: columnNumber incrementBy: value [
+{ #category : #accessing }
+Matrix >> at: rowNumber at: columnNumber incrementBy: value [
 	"Add a value to the element available at rowNumber,columNumber."
 
 	^ contents at: (self indexForRow: rowNumber andColumn: columnNumber) incrementBy: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>at: rowNumber at: columnNumber put: value [
+{ #category : #accessing }
+Matrix >> at: rowNumber at: columnNumber put: value [
 	"Put value at rowNumber,columnNumber"
 	^ contents at: (self indexForRow: rowNumber andColumn: columnNumber) put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>atAllPut: value [
+{ #category : #accessing }
+Matrix >> atAllPut: value [
 	"Put value as value of all the receiver elements."
 	contents atAllPut: value
 ]
 
-{
-	#category : #'row/column operations',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>atColumn: column [
+{ #category : #'row/column operations' }
+Matrix >> atColumn: column [
 
 	|p|
 	p := (self indexForRow: 1 andColumn: column)-numberOfColumns.
@@ -393,11 +284,8 @@ Matrix>>atColumn: column [
 
 ]
 
-{
-	#category : #'row/column operations',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>atColumn: column put: aCollection [
+{ #category : #'row/column operations' }
+Matrix >> atColumn: column put: aCollection [
 	| p |
 	aCollection size = numberOfRows ifFalse: [ self error: 'wrong column size' ].
 	p := (self indexForRow: 1 andColumn: column) - numberOfColumns.
@@ -406,11 +294,8 @@ Matrix>>atColumn: column put: aCollection [
 
 ]
 
-{
-	#category : #'row/column operations',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>atRow: rowNumber [
+{ #category : #'row/column operations' }
+Matrix >> atRow: rowNumber [
 	(rowNumber between: 1 and: numberOfRows)
 		ifFalse: [self error: '1st subscript out of range'].
 	^ contents 
@@ -418,11 +303,8 @@ Matrix>>atRow: rowNumber [
 			to: rowNumber*numberOfColumns
 ]
 
-{
-	#category : #'row/column operations',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>atRow: row put: aCollection [
+{ #category : #'row/column operations' }
+Matrix >> atRow: row put: aCollection [
 	|p|
 
 	aCollection size = numberOfColumns ifFalse: [self error: 'wrong row size'].
@@ -431,11 +313,8 @@ Matrix>>atRow: row put: aCollection [
 	^aCollection
 ]
 
-{
-	#category : #'accessing submatrices',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>atRows: rs columns: cs [
+{ #category : #'accessing submatrices' }
+Matrix >> atRows: rs columns: cs [
 	"Answer a Matrix obtained by slicing the receiver.
 	 rs and cs should be sequenceable collections of positive integers."
 
@@ -443,11 +322,8 @@ Matrix>>atRows: rs columns: cs [
 		self at: (rs at: r) at: (cs at: c)]
 ]
 
-{
-	#category : #'accessing submatrices',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>atRows: r1 to: r2 columns: c1 to: c2 [
+{ #category : #'accessing submatrices' }
+Matrix >> atRows: r1 to: r2 columns: c1 [ to: c2
 	"Answer a submatrix [r1..r2][c1..c2] of the receiver."
 	|rd cd|
 
@@ -457,11 +333,8 @@ Matrix>>atRows: r1 to: r2 columns: c1 to: c2 [
 
 ]
 
-{
-	#category : #'accessing submatrices',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>atRows: r1 to: r2 columns: c1 to: c2 ifInvalid: element [
+{ #category : #'accessing submatrices' }
+Matrix >> atRows: r1 to: r2 columns: c1 to: c2 ifInvalid: element [
 	"Answer a submatrix [r1..r2][c1..c2] of the receiver.
 	 Portions of the result outside the bounds of the original matrix are filled in with element."
 	|rd cd|
@@ -471,11 +344,8 @@ Matrix>>atRows: r1 to: r2 columns: c1 to: c2 ifInvalid: element [
 
 ]
 
-{
-	#category : #'accessing submatrices',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>atRows: r1 to: r2 columns: c1 to: c2 put: aMatrix [
+{ #category : #'accessing submatrices' }
+Matrix >> atRows: r1 to: r2 columns: c1 to: c2 put: aMatrix [
 	"Set the [r1..r2][c1..c2] submatrix of the receiver
 	 from the [1..r2-r1+1][1..c2-c1+1] submatrix of aMatrix.
 	 As long as aMatrix responds to at:at: and accepts arguments in the range shown,
@@ -491,11 +361,8 @@ Matrix>>atRows: r1 to: r2 columns: c1 to: c2 put: aMatrix [
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>collect: aBlock [
+{ #category : #enumerating }
+Matrix >> collect: aBlock [
 	"Answer a new matrix with transformed elements; transformations should be independent."
 
 	^self class 
@@ -504,60 +371,42 @@ Matrix>>collect: aBlock [
 		contents: (contents collect: aBlock)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>columnCount [
+{ #category : #accessing }
+Matrix >> columnCount [
 	^ numberOfColumns
 ]
 
-{
-	#category : #'row/column operations',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>diagonal [
+{ #category : #'row/column operations' }
+Matrix >> diagonal [
 	"Answer (1 to: (numberOfRows min: numberOfColumns)) collect: [:i | self at: i at: i]"
 	|i|
 	i := numberOfColumns negated.
 	^ (1 to: (numberOfRows min: numberOfColumns)) collect: [:j | contents at: (i := i + numberOfColumns + 1)]
 ]
 
-{
-	#category : #'not implemented',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>difference: aCollection [
+{ #category : #'not implemented' }
+Matrix >> difference: aCollection [
 	"Union is in because the result is always a Set.
 	 Difference and intersection are out because the result is like the receiver,
 	 and with irregular seleection that cannot be."
 	self shouldNotImplement
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>do: aBlock [
+{ #category : #enumerating }
+Matrix >> do: aBlock [
 	"Pass elements to aBlock one at a time in row-major order."
 	contents do: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>extent [
+{ #category : #accessing }
+Matrix >> extent [
     "Answer the receiver's dimensions as point."
 
     ^ self numberOfColumns @ self numberOfRows
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>hash [
+{ #category : #comparing }
+Matrix >> hash [
 	"I'm really not sure what would be a good hash function here.
 	 The essential thing is that it must be compatible with #=, and
 	 this satisfies that requirement."
@@ -565,63 +414,42 @@ Matrix>>hash [
 	^contents hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>identityIncludes: anObject [
+{ #category : #testing }
+Matrix >> identityIncludes: anObject [
 	^ contents identityIncludes: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>identityIndexOf: anElement [
+{ #category : #accessing }
+Matrix >> identityIndexOf: anElement [
 	
 	^ self identityIndexOf: anElement ifAbsent: [ 0@0 ]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>identityIndexOf: anElement ifAbsent: anExceptionBlock [
+{ #category : #accessing }
+Matrix >> identityIndexOf: anElement ifAbsent: anExceptionBlock [
 	^self rowAndColumnForIndex:
 		 (contents identityIndexOf: anElement ifAbsent: [^anExceptionBlock value])
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>includes: anObject [
+{ #category : #testing }
+Matrix >> includes: anObject [
 	^ contents includes: anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>includesAll: aCollection [
+{ #category : #testing }
+Matrix >> includesAll: aCollection [
 	^ contents includesAll: aCollection
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>includesAny: aCollection [
+{ #category : #testing }
+Matrix >> includesAny: aCollection [
 	^ contents includesAny: aCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>indexForRow: row andColumn: column [
+{ #category : #private }
+Matrix >> indexForRow: row andColumn: column [
 	(row between: 1 and: numberOfRows)
 		ifFalse: [self error: '1st subscript out of range'].
 	(column between: 1 and: numberOfColumns)
@@ -629,22 +457,16 @@ Matrix>>indexForRow: row andColumn: column [
 	^(row-1) * numberOfColumns + column
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>indexOf: anElement [
+{ #category : #accessing }
+Matrix >> indexOf: anElement [
 	"If there are integers r, c such that (self at: r at: c) = anElement, answer some such r@c, otherwise answer 0@0. The order in which the receiver are searched is UNSPECIFIED except that it is the same as the order used by #indexOf:ifAbsent: and #readStream."
 
 	^self indexOf: anElement ifAbsent: [0@0]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>indexOf: anElement ifAbsent: anExceptionBlock [
+{ #category : #accessing }
+Matrix >> indexOf: anElement ifAbsent: anExceptionBlock [
 	"If there are integers r, c such that (self at: r at: c) = anElement, answer some such r@c, otherwise answer the result of anExceptionBlock."
 
 	^self rowAndColumnForIndex:
@@ -652,11 +474,8 @@ Matrix>>indexOf: anElement ifAbsent: anExceptionBlock [
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>indicesCollect: aBlock [
+{ #category : #enumerating }
+Matrix >> indicesCollect: aBlock [
 	
 	| r i |
 	r := Array new: numberOfRows * numberOfColumns.
@@ -667,21 +486,15 @@ Matrix>>indicesCollect: aBlock [
 	^ self class rows: numberOfRows columns: numberOfColumns contents: r
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>indicesDo: aBlock [
+{ #category : #enumerating }
+Matrix >> indicesDo: aBlock [
 	1 to: numberOfRows do: [ :row |
 		1 to: numberOfColumns do: [ :column |
 			aBlock value: row value: column]].
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>indicesInject: start into: aBlock [
+{ #category : #enumerating }
+Matrix >> indicesInject: start into: aBlock [
 
 	|current|
 	current := start.
@@ -691,22 +504,16 @@ Matrix>>indicesInject: start into: aBlock [
 	^ current
 ]
 
-{
-	#category : #'not implemented',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>intersection: aCollection [
+{ #category : #'not implemented' }
+Matrix >> intersection: aCollection [
 	"Union is in because the result is always a Set.
 	 Difference and intersection are out because the result is like the receiver,
 	 and with irregular seleection that cannot be."
 	self shouldNotImplement
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>isSequenceable [
+{ #category : #testing }
+Matrix >> isSequenceable [
 	"LIE so that arithmetic on matrices will work.
 	 What matters for arithmetic is not that there should be random indexing
 	 but that the structure should be stable and independent of the values of
@@ -714,60 +521,39 @@ Matrix>>isSequenceable [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>numberOfColumns [
+{ #category : #accessing }
+Matrix >> numberOfColumns [
 	^ numberOfColumns
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>numberOfColumns: anObject [
+{ #category : #accessing }
+Matrix >> numberOfColumns: anObject [
 	numberOfColumns := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>numberOfRows [
+{ #category : #accessing }
+Matrix >> numberOfRows [
 	^ numberOfRows
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>numberOfRows: anObject [
+{ #category : #accessing }
+Matrix >> numberOfRows: anObject [
 	numberOfRows := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>occurrencesOf: anObject [
+{ #category : #testing }
+Matrix >> occurrencesOf: anObject [
 	^ contents occurrencesOf: anObject
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>postCopy [
+{ #category : #copying }
+Matrix >> postCopy [
 	super postCopy.
 	contents := contents copy
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>printOn: aStream [
+{ #category : #printing }
+Matrix >> printOn: aStream [
 
 	aStream nextPutAll: '('.
 	(1 to: self numberOfRows) 
@@ -779,84 +565,57 @@ Matrix>>printOn: aStream [
 	aStream nextPutAll: ' )'.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>privateContents [
+{ #category : #private }
+Matrix >> privateContents [
 	"Only used in #, #,, and #= so far.
 	 It used to be called #contents, but that clashes with Collection>>contents."
 
 	^ contents
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>readStream [
+{ #category : #converting }
+Matrix >> readStream [
 	"Answer a ReadStream that returns all the elements of the receiver in some UNSPECIFIED order."
 	^ contents readStream
 ]
 
-{
-	#category : #'not implemented',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>reject: aBlock [
+{ #category : #'not implemented' }
+Matrix >> reject: aBlock [
 	self shouldNotImplement
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>remove: anObject ifAbsent: anExceptionBlock [
+{ #category : #removing }
+Matrix >> remove: anObject ifAbsent: anExceptionBlock [
 	self shouldNotImplement
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>removeAll [
+{ #category : #removing }
+Matrix >> removeAll [
 
 	self shouldNotImplement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>replaceAll: oldObject with: newObject [
+{ #category : #accessing }
+Matrix >> replaceAll: oldObject with: newObject [
 	"Replace all occurrences of oldObject with newObject in the receiver."
 	contents replaceAll: oldObject with: newObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>rowAndColumnForIndex: index [
+{ #category : #private }
+Matrix >> rowAndColumnForIndex: index [
 	|t|
 
 	t := index - 1.
 	^(t // numberOfColumns + 1)@(t \\ numberOfColumns + 1)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>rowCount [
+{ #category : #accessing }
+Matrix >> rowCount [
 	^numberOfRows
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>rows: rows columns: columns contents: anArray [
+{ #category : #private }
+Matrix >> rows: rows columns: columns contents: anArray [
 	[rows isInteger and: [rows >= 0]] assert.
 	[columns isInteger and: [columns >= 0]] assert.
 	[rows * columns = anArray size] assert.
@@ -866,43 +625,28 @@ Matrix>>rows: rows columns: columns contents: anArray [
 	^self
 ]
 
-{
-	#category : #'not implemented',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>select: aBlock [
+{ #category : #'not implemented' }
+Matrix >> select: aBlock [
 	self shouldNotImplement
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>shuffled [
+{ #category : #copying }
+Matrix >> shuffled [
 	^self class rows: numberOfRows columns: numberOfColumns contents: (contents shuffled)
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>shuffledBy: aRandom [
+{ #category : #copying }
+Matrix >> shuffledBy: aRandom [
 	^self class rows: numberOfRows columns: numberOfColumns contents: (contents copy shuffleBy: aRandom)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>size [
+{ #category : #accessing }
+Matrix >> size [
 	^ contents size
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>storeOn: aStream [
+{ #category : #printing }
+Matrix >> storeOn: aStream [
 	aStream nextPut: $(; nextPutAll: self class name;
 		nextPutAll: ' rows: '; store: numberOfRows;
 		nextPutAll: ' columns: '; store: numberOfColumns;
@@ -910,20 +654,14 @@ Matrix>>storeOn: aStream [
 		nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>swap: r1 at: c1 with: r2 at: c2 [
+{ #category : #accessing }
+Matrix >> swap: r1 at: c1 with: r2 [ at: c2
 	contents swap: (self indexForRow: r1 andColumn: c1)
 			 with: (self indexForRow: r2 andColumn: c2)
 ]
 
-{
-	#category : #'row/column operations',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>swapColumn: anIndex withColumn: anotherIndex [
+{ #category : #'row/column operations' }
+Matrix >> swapColumn: anIndex withColumn: anotherIndex [
 	|a b|
 
 	a := self indexForRow: 1 andColumn: anIndex.
@@ -935,11 +673,8 @@ Matrix>>swapColumn: anIndex withColumn: anotherIndex [
 
 ]
 
-{
-	#category : #'row/column operations',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>swapRow: anIndex withRow: anotherIndex [
+{ #category : #'row/column operations' }
+Matrix >> swapRow: anIndex withRow: anotherIndex [
 	| a b |
 	a := self indexForRow: anIndex andColumn: 1.
 	b := self indexForRow: anotherIndex andColumn: 1.
@@ -950,20 +685,14 @@ Matrix>>swapRow: anIndex withRow: anotherIndex [
 
 ]
 
-{
-	#category : #'row/column operations',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>transposed [
+{ #category : #'row/column operations' }
+Matrix >> transposed [
 	[numberOfRows = numberOfColumns] assert.
 	^ self indicesCollect: [ :row :column | self at: column at: row ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>with: aCollection collect: aBlock [
+{ #category : #enumerating }
+Matrix >> with: aCollection collect: aBlock [
 	"aCollection must support #at:at: and be at least as large as the receiver."
 
 	^self withIndicesCollect: [:each :row :column |
@@ -971,11 +700,8 @@ Matrix>>with: aCollection collect: aBlock [
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>with: aCollection do: aBlock [
+{ #category : #enumerating }
+Matrix >> with: aCollection do: aBlock [
 	"aCollection must support #at:at: and be at least as large as the receiver."
 
 	self withIndicesDo: [:each :row :column |
@@ -983,22 +709,16 @@ Matrix>>with: aCollection do: aBlock [
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>with: aCollection inject: startingValue into: aBlock [
+{ #category : #enumerating }
+Matrix >> with: aCollection inject: startingValue into: aBlock [
 	"aCollection must support #at:at: and be at least as large as the receiver."
 
 	^ self withIndicesInject: startingValue into: [:value :each :row :column |
 			aBlock value: value value: each value: (aCollection at: row at: column)]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>withIndicesCollect: aBlock [
+{ #category : #enumerating }
+Matrix >> withIndicesCollect: aBlock [
 	
 	|i r|
 	i := 0.
@@ -1011,11 +731,8 @@ Matrix>>withIndicesCollect: aBlock [
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>withIndicesDo: aBlock [
+{ #category : #enumerating }
+Matrix >> withIndicesDo: aBlock [
 	
 	| i |
 	i := 0.
@@ -1025,11 +742,8 @@ Matrix>>withIndicesDo: aBlock [
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Matrix>>withIndicesInject: start into: aBlock [
+{ #category : #enumerating }
+Matrix >> withIndicesInject: start into: aBlock [
 	
 	| i current |
 	i := 0.

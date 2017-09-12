@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MalGraphStructure,
 	#superclass : #MalGraphAlgorithm,
@@ -8,58 +5,39 @@ Class {
 		'nodeClass',
 		'edgeClass'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphStructure>>edgeClass [
+{ #category : #configuration }
+MalGraphStructure >> edgeClass [
 
 	^ edgeClass
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphStructure>>edgeClass: anObject [
+{ #category : #configuration }
+MalGraphStructure >> edgeClass: anObject [
 	edgeClass := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphStructure>>edgeModels [
+{ #category : #accessing }
+MalGraphStructure >> edgeModels [
 
 	^ self edges collect: [:e | e model]
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphStructure>>nodeClass [
+{ #category : #configuration }
+MalGraphStructure >> nodeClass [
 
 	^ nodeClass
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphStructure>>nodeClass: anObject [
+{ #category : #configuration }
+MalGraphStructure >> nodeClass: anObject [
 	nodeClass := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalGraphStructure>>nodeModels [
+{ #category : #accessing }
+MalGraphStructure >> nodeModels [
 
 	^ self nodes collect: [:n | n model]
 ]

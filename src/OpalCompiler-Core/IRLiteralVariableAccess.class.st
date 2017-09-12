@@ -11,38 +11,25 @@ Class {
 	#instVars : [
 		'association'
 	],
-	#category : #OpalCompiler-Core-IR-Nodes,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-IR-Nodes
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRLiteralVariableAccess>>association  [
+{ #category : #accessing }
+IRLiteralVariableAccess >> association [ 
 	^association
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRLiteralVariableAccess>>association: anAssociation [
+{ #category : #accessing }
+IRLiteralVariableAccess >> association: anAssociation [
 	association := anAssociation
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRLiteralVariableAccess>>isLiteralVariable [
+{ #category : #testing }
+IRLiteralVariableAccess >> isLiteralVariable [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRLiteralVariableAccess>>name [
+{ #category : #accessing }
+IRLiteralVariableAccess >> name [
 	^association key
 ]

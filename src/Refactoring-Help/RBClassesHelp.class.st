@@ -7,23 +7,16 @@ ignore any method / method comments.
 Class {
 	#name : #RBClassesHelp,
 	#superclass : #Model,
-	#category : #Refactoring-Help,
-	#timestamp : 'NicolaiHess 7/27/2016 22:17'
+	#category : #Refactoring-Help
 }
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBClassesHelp class>>asHelpTopic [
+{ #category : #building }
+RBClassesHelp class >> asHelpTopic [
 	^ self buildClassHierarchyHelpFrom: self rootHelpClass
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBClassesHelp class>>buildClassHierarchyHelpFrom: aRootClass [
+{ #category : #building }
+RBClassesHelp class >> buildClassHierarchyHelpFrom: aRootClass [
 	| topic |
 	topic := HelpTopic named: aRootClass name.
 	topic iconName: #classIcon.
@@ -33,10 +26,7 @@ RBClassesHelp class>>buildClassHierarchyHelpFrom: aRootClass [
 	^ topic
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBClassesHelp class>>rootHelpClass [
+{ #category : #building }
+RBClassesHelp class >> rootHelpClass [
 	^ self subclassResponsibility 
 ]

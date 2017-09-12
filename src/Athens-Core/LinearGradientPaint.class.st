@@ -18,61 +18,42 @@ Class {
 		'start',
 		'stop'
 	],
-	#category : #Athens-Core-Paints,
-	#timestamp : '<historical>'
+	#category : #Athens-Core-Paints
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-LinearGradientPaint class>>from: aStartPoint  to: aStopPoint [
+{ #category : #'as yet unclassified' }
+LinearGradientPaint class >> from: aStartPoint  to: aStopPoint [
 	^ self new start: aStartPoint; stop: aStopPoint; yourself.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-LinearGradientPaint>>asAthensPaintOn: aCanvas [
+{ #category : #converting }
+LinearGradientPaint >> asAthensPaintOn: aCanvas [
 	^ aCanvas surface
 			createLinearGradient: self colorRamp
 				start: self start 
 				stop: self stop
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-LinearGradientPaint>>start [
+{ #category : #accessing }
+LinearGradientPaint >> start [
 
 	^ start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-LinearGradientPaint>>start: anObject [
+{ #category : #accessing }
+LinearGradientPaint >> start: anObject [
 	
 	start := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-LinearGradientPaint>>stop [
+{ #category : #accessing }
+LinearGradientPaint >> stop [
 
 	^ stop
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-LinearGradientPaint>>stop: anObject [
+{ #category : #accessing }
+LinearGradientPaint >> stop: anObject [
 	
 	stop := anObject
 ]

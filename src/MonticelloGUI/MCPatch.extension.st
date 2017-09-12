@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCPatch
-}
+Extension { #name : #MCPatch }
 
-{
-	#category : #'*MonticelloGUI',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCPatch>>browse [
+{ #category : #'*MonticelloGUI' }
+MCPatch >> browse [
 
 	^ (MCPatchBrowser forPatch: self) show
 ]

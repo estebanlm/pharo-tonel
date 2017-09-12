@@ -1,12 +1,7 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-String>>asBrick [
+{ #category : #'*Glamour-Morphic-Brick' }
+String >> asBrick [
 
 	^ GLMLabelBrick new
 		text: self asString;

@@ -26,22 +26,15 @@ Class {
 	#instVars : [
 		'realValue'
 	],
-	#category : #System-Settings-Persistence-Ston-StoredSettings,
-	#timestamp : 'JurajKubelka 6/20/2015 19:36'
+	#category : #System-Settings-Persistence-Ston-StoredSettings
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSetting>>realValue [
+{ #category : #accessing }
+StoredSetting >> realValue [
 	^ realValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-StoredSetting>>realValue: anObject [
+{ #category : #accessing }
+StoredSetting >> realValue: anObject [
 	realValue := anObject
 ]

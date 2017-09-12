@@ -17,15 +17,11 @@ Class {
 		'name',
 		'start'
 	],
-	#category : #AST-Core-Nodes,
-	#timestamp : 'NicolaiHess 8/2/2016 14:22'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode class>>identifierNamed: anIdentifierName at: aPosition [
+{ #category : #'instance creation' }
+RBVariableNode class >> identifierNamed: anIdentifierName at: aPosition [
 	
 	anIdentifierName = 'self'
 		ifTrue: [ ^ RBSelfNode named: anIdentifierName start: aPosition ].
@@ -36,237 +32,156 @@ RBVariableNode class>>identifierNamed: anIdentifierName at: aPosition [
 	^ self named: anIdentifierName start: aPosition.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode class>>named: aName [
+{ #category : #'instance creation' }
+RBVariableNode class >> named: aName [
 	^self named: aName start: 0.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode class>>named: aName start: aPosition [
+{ #category : #'instance creation' }
+RBVariableNode class >> named: aName start: aPosition [
 	^self new 
 		named: aName start: aPosition; 
 		yourself.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>= anObject  [
+{ #category : #comparing }
+RBVariableNode >> = anObject [ 
 	self == anObject ifTrue: [^true].
 	((anObject isKindOf: self class) or: [self isKindOf: anObject class]) 
 		ifFalse: [^false].
 	^self name = anObject name
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visiting }
+RBVariableNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^aProgramNodeVisitor visitVariableNode: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>adaptToSemanticNode [
+{ #category : #converting }
+RBVariableNode >> adaptToSemanticNode [
 	
 	self primitiveChangeClassTo: self binding semanticNodeClass new
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>copyInContext: aDictionary  [
+{ #category : #matching }
+RBVariableNode >> copyInContext: aDictionary [ 
 	^ self class named: name.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>equalTo: anObject withMapping: aDictionary  [
+{ #category : #comparing }
+RBVariableNode >> equalTo: anObject withMapping: aDictionary [ 
 	^self class = anObject class and: 
 			[(aDictionary at: self name ifAbsentPut: [anObject name]) = anObject name]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>hasIncompleteIdentifier [
+{ #category : #testing }
+RBVariableNode >> hasIncompleteIdentifier [
 	^ self binding isUndeclared
 		ifTrue: [ (self scope findVariable: [ :v | v name beginsWith: self name ] ifNone: [ nil ]) notNil]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>hash [
+{ #category : #comparing }
+RBVariableNode >> hash [
 	^self name hash
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>initialize [
+{ #category : #initialize }
+RBVariableNode >> initialize [
 	super initialize.
 	name := ''.
 	start := 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>isDefinition [
+{ #category : #testing }
+RBVariableNode >> isDefinition [
 	^self parent isSequence
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>isFaulty [
+{ #category : #testing }
+RBVariableNode >> isFaulty [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>isImmediateNode [
+{ #category : #testing }
+RBVariableNode >> isImmediateNode [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>isRead [
+{ #category : #testing }
+RBVariableNode >> isRead [
 	^ self isWrite not and: [ self isUsed ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>isVariable [
+{ #category : #testing }
+RBVariableNode >> isVariable [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>isWrite [
+{ #category : #testing }
+RBVariableNode >> isWrite [
 	^ self parent notNil and: [ self parent isAssignment and: [ self parent variable == self ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>name [
+{ #category : #accessing }
+RBVariableNode >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>name: aName [
+{ #category : #accessing }
+RBVariableNode >> name: aName [
 	name := aName asSymbol.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>named: aName start: aPosition [
+{ #category : #initialize-release }
+RBVariableNode >> named: aName start: aPosition [
 
 	self name: aName.
 	self start: aPosition.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>needsParenthesis [
+{ #category : #testing }
+RBVariableNode >> needsParenthesis [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>precedence [
+{ #category : #accessing }
+RBVariableNode >> precedence [
 	^0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>references: aVariableName  [
+{ #category : #testing }
+RBVariableNode >> references: aVariableName [ 
 	^self name = aVariableName
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>replaceSourceFrom: aNode  [
+{ #category : #replacing }
+RBVariableNode >> replaceSourceFrom: aNode [ 
 	self addReplacement: (RBStringReplacement 
 				replaceFrom: aNode start
 				to: aNode stop
 				with: self name)
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>replaceSourceWith: aNode [
+{ #category : #replacing }
+RBVariableNode >> replaceSourceWith: aNode [
 	self addReplacement: (RBStringReplacement 
 				replaceFrom: self start
 				to: self stop
 				with: aNode formattedCode)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>start [
+{ #category : #accessing }
+RBVariableNode >> start [
 	^ start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>start: aPosition [
+{ #category : #accessing }
+RBVariableNode >> start: aPosition [
 	start := aPosition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>startForReplacement [
+{ #category : #accessing }
+RBVariableNode >> startForReplacement [
 	"Return the start of the variable,  taking into account characters before the variable.
 	This method is used when unused temporary variables are removed"
 	| src t |
@@ -276,18 +191,12 @@ RBVariableNode>>startForReplacement [
 	^ t + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>startWithoutParentheses [
+{ #category : #accessing }
+RBVariableNode >> startWithoutParentheses [
 	^ start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBVariableNode>>stopWithoutParentheses [
+{ #category : #accessing }
+RBVariableNode >> stopWithoutParentheses [
 	^ start + name size - 1.
 ]

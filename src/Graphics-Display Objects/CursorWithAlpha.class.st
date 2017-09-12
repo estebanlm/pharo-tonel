@@ -7,40 +7,27 @@ Class {
 	#instVars : [
 		'fallback'
 	],
-	#category : #'Graphics-Display Objects',
-	#timestamp : '<historical>'
+	#category : #'Graphics-Display Objects'
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CursorWithAlpha>>asCursorForm [
+{ #category : #converting }
+CursorWithAlpha >> asCursorForm [
 
 	^ Form newFrom: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CursorWithAlpha>>fallback [
+{ #category : #accessing }
+CursorWithAlpha >> fallback [
 	^fallback ifNil: [NormalCursor]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CursorWithAlpha>>fallback: aCursor [
+{ #category : #accessing }
+CursorWithAlpha >> fallback: aCursor [
 	fallback := aCursor
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CursorWithAlpha>>primBeCursor [
+{ #category : #primitives }
+CursorWithAlpha >> primBeCursor [
 	<primitive: 101>
 	self fallback primBeCursor
 ]

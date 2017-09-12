@@ -1,37 +1,24 @@
-"
-
-"
 Class {
 	#name : #GTInspectorHelp,
 	#superclass : #CustomHelp,
-	#category : #GT-Inspector,
-	#timestamp : ''
+	#category : #GT-Inspector
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorHelp class>>bookName  [
+{ #category : #accessing }
+GTInspectorHelp class >> bookName [ 
 	^'GT Inspector'
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorHelp class>>contact [
+{ #category : #documentation }
+GTInspectorHelp class >> contact [
 	^ HelpTopic 
 		title: 'Contact'
 		contents: 
 'This Help has been written by Alexandre Bergel <alexandre.bergel AT me.com>. Feel free to get in touch. December 16, 2015.'
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorHelp class>>extensions [
+{ #category : #documentation }
+GTInspectorHelp class >> extensions [
 		
 	^ HelpTopic 
 		title: 'Extensions'
@@ -44,11 +31,8 @@ You can also browse this list by inspecting:
 ', self extensionsString
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorHelp class>>extensionsString [
+{ #category : #documentation }
+GTInspectorHelp class >> extensionsString [
 	| methods title |
 	^ String streamContents: [ :s |
 		((GTInspector inspectorExtendingMethods groupedBy: #methodClass)
@@ -72,38 +56,26 @@ GTInspectorHelp class>>extensionsString [
 			s cr ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorHelp class>>key [
+{ #category : #accessing }
+GTInspectorHelp class >> key [
 	^ self name
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorHelp class>>overview [
+{ #category : #documentation }
+GTInspectorHelp class >> overview [
 	^ HelpTopic 
 		title: 'Overview'
 		contents: 
 'GT Inspector is a moldable inspector that is part of Pharo and was developed as part of the Glamorous Toolkit project (http://gt.moosetechnology.org)'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorHelp class>>pages [
+{ #category : #accessing }
+GTInspectorHelp class >> pages [
 	^#(overview table roassal extensions)
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorHelp class>>roassal [
+{ #category : #documentation }
+GTInspectorHelp class >> roassal [
 	^ HelpTopic 
 		title: 'Roassal'
 		contents: 
@@ -147,11 +119,8 @@ You can give the method name you wish. The pragma: <gtInspectorPresentationOrder
 '
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorHelp class>>table [
+{ #category : #documentation }
+GTInspectorHelp class >> table [
 	^ HelpTopic 
 		title: 'Table'
 		contents: 

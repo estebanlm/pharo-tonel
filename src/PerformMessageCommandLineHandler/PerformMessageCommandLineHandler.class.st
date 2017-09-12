@@ -14,50 +14,34 @@ Examples:
 Class {
 	#name : #PerformMessageCommandLineHandler,
 	#superclass : #CommandLineHandler,
-	#category : #PerformMessageCommandLineHandler,
-	#timestamp : 'PavelKrivanek 8/11/2017 15:19'
+	#category : #PerformMessageCommandLineHandler
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PerformMessageCommandLineHandler class>>answerUltimateQuestion [
+{ #category : #testing }
+PerformMessageCommandLineHandler class >> answerUltimateQuestion [
 
 	Smalltalk exit: 42.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PerformMessageCommandLineHandler class>>commandName [
+{ #category : #accessing }
+PerformMessageCommandLineHandler class >> commandName [
 	^ 'perform'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PerformMessageCommandLineHandler class>>description [
+{ #category : #accessing }
+PerformMessageCommandLineHandler class >> description [
 	^ 'Perform given message on a specified class or global'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PerformMessageCommandLineHandler class>>printReversed: aString times: aStringWithNumber [
+{ #category : #testing }
+PerformMessageCommandLineHandler class >> printReversed: aString times: aStringWithNumber [
 
 	aStringWithNumber asInteger timesRepeat: [ 
 		Stdio stdout nextPutAll: aString reversed; lf. ]
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PerformMessageCommandLineHandler>>activate [
+{ #category : #activation }
+PerformMessageCommandLineHandler >> activate [
 	| aClass aMessage arguments messageArguments |
 	self activateHelp
 		ifTrue: [ ^ self ].

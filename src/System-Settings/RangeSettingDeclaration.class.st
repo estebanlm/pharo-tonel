@@ -14,23 +14,16 @@ Class {
 	#instVars : [
 		'range'
 	],
-	#category : #System-Settings-Core,
-	#timestamp : 'alain.plantec 4/7/2009 23:03'
+	#category : #System-Settings-Core
 }
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-RangeSettingDeclaration>>hasEditableList [
+{ #category : #'user interface' }
+RangeSettingDeclaration >> hasEditableList [
 	^ false
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-RangeSettingDeclaration>>inputWidget [
+{ #category : #'user interface' }
+RangeSettingDeclaration >> inputWidget [
 	^ (self theme newRowIn: World for: {(self theme 
 							newTextEntryIn: World 
 							for: self
@@ -56,27 +49,18 @@ RangeSettingDeclaration>>inputWidget [
 				yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-RangeSettingDeclaration>>range [
+{ #category : #accessing }
+RangeSettingDeclaration >> range [
 	^ range 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-RangeSettingDeclaration>>range: anInterval [
+{ #category : #accessing }
+RangeSettingDeclaration >> range: anInterval [
 	range := anInterval
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-RangeSettingDeclaration>>realValue: aValue [
+{ #category : #accessing }
+RangeSettingDeclaration >> realValue: aValue [
 	aValue
 		ifNil: [self settingReceiver perform: self setSelector with: nil]
 		ifNotNil: [self settingReceiver perform: self setSelector with: ((aValue max: self range first) min: self range last)].

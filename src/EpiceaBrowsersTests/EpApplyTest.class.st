@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #EpApplyTest,
 	#superclass : #EpLogBrowserOperationFactoryTest,
-	#category : #EpiceaBrowsersTests-Integration,
-	#timestamp : ''
+	#category : #EpiceaBrowsersTests-Integration
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>applyInputEntry [
+{ #category : #tests }
+EpApplyTest >> applyInputEntry [
 
 	EpLogBrowserOperationFactory new
 		logBrowserModel: (EpLogBrowserModel newWithLog: monitor log);
@@ -22,11 +15,8 @@ EpApplyTest>>applyInputEntry [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testBehaviorNameChange [
+{ #category : #tests }
+EpApplyTest >> testBehaviorNameChange [
 
 	| aClass oldName newName |
 	aClass := classFactory newClass.
@@ -42,11 +32,8 @@ EpApplyTest>>testBehaviorNameChange [
 	self assert: aClass name equals: newName.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testCategoryAdditionWithCategoryRemoved [
+{ #category : #tests }
+EpApplyTest >> testCategoryAdditionWithCategoryRemoved [
 
 	| organization aCategory |
 	organization := self class environment organization.
@@ -62,11 +49,8 @@ EpApplyTest>>testCategoryAdditionWithCategoryRemoved [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testCategoryRemovalWithCategoryAdded [
+{ #category : #tests }
+EpApplyTest >> testCategoryRemovalWithCategoryAdded [
 
 	| organization aCategory |
 	organization := self class environment organization.
@@ -83,11 +67,8 @@ EpApplyTest>>testCategoryRemovalWithCategoryAdded [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testCategoryRename [
+{ #category : #tests }
+EpApplyTest >> testCategoryRename [
 
 	| organization aCategory anotherCategory |
 	organization := self class environment organization.
@@ -107,11 +88,8 @@ EpApplyTest>>testCategoryRename [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testClassAdditionWithCategoryChanged [
+{ #category : #tests }
+EpApplyTest >> testClassAdditionWithCategoryChanged [
 
 	| aClass aCategory anotherCategory |
 	aClass := classFactory newClass.
@@ -126,11 +104,8 @@ EpApplyTest>>testClassAdditionWithCategoryChanged [
 	self assert: aClass category equals: aCategory
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testClassAdditionWithClassRemoved [
+{ #category : #tests }
+EpApplyTest >> testClassAdditionWithClassRemoved [
 
 	| aClass className |
 	aClass := classFactory newClass.
@@ -145,11 +120,8 @@ EpApplyTest>>testClassAdditionWithClassRemoved [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testClassAdditionWithInstanceVariablesChanged [
+{ #category : #tests }
+EpApplyTest >> testClassAdditionWithInstanceVariablesChanged [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -162,11 +134,8 @@ EpApplyTest>>testClassAdditionWithInstanceVariablesChanged [
 	self assert: aClass instVarNames equals: #()
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testClassAdditionWithMetaclassInstanceVariablesChanged [
+{ #category : #tests }
+EpApplyTest >> testClassAdditionWithMetaclassInstanceVariablesChanged [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -179,11 +148,8 @@ EpApplyTest>>testClassAdditionWithMetaclassInstanceVariablesChanged [
 	self assert: aClass theMetaClass instVarNames equals: #()
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testClassAdditionWithSuperclassChanged [
+{ #category : #tests }
+EpApplyTest >> testClassAdditionWithSuperclassChanged [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -196,11 +162,8 @@ EpApplyTest>>testClassAdditionWithSuperclassChanged [
 	self assert: aClass superclass equals: Object
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testClassModificationWithClassRemoved [
+{ #category : #tests }
+EpApplyTest >> testClassModificationWithClassRemoved [
 
 	| aClass className |
 	aClass := classFactory newClass.
@@ -218,11 +181,8 @@ EpApplyTest>>testClassModificationWithClassRemoved [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testClassRemovalWithClassAdded [
+{ #category : #tests }
+EpApplyTest >> testClassRemovalWithClassAdded [
 
 	| aClass className |
 	aClass := classFactory newClass.
@@ -240,11 +200,8 @@ EpApplyTest>>testClassRemovalWithClassAdded [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testMethodAdditionWithMethodRemoved [
+{ #category : #tests }
+EpApplyTest >> testMethodAdditionWithMethodRemoved [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -261,11 +218,8 @@ EpApplyTest>>testMethodAdditionWithMethodRemoved [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testMethodAdditionWithProtocolChanged [
+{ #category : #tests }
+EpApplyTest >> testMethodAdditionWithProtocolChanged [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -280,11 +234,8 @@ EpApplyTest>>testMethodAdditionWithProtocolChanged [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testMethodAdditionWithSourceCodeChanged [
+{ #category : #tests }
+EpApplyTest >> testMethodAdditionWithSourceCodeChanged [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -299,11 +250,8 @@ EpApplyTest>>testMethodAdditionWithSourceCodeChanged [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testMethodModificationWithMethodRemoved [
+{ #category : #tests }
+EpApplyTest >> testMethodModificationWithMethodRemoved [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -321,11 +269,8 @@ EpApplyTest>>testMethodModificationWithMethodRemoved [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testMethodRemovalWithMethodAdded [
+{ #category : #tests }
+EpApplyTest >> testMethodRemovalWithMethodAdded [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -342,11 +287,8 @@ EpApplyTest>>testMethodRemovalWithMethodAdded [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testProtocolAddition [
+{ #category : #tests }
+EpApplyTest >> testProtocolAddition [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -361,11 +303,8 @@ EpApplyTest>>testProtocolAddition [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testProtocolRemoval [
+{ #category : #tests }
+EpApplyTest >> testProtocolRemoval [
 
 	| aClass |
 	aClass := classFactory newClass.
@@ -381,11 +320,8 @@ EpApplyTest>>testProtocolRemoval [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testTraitAdditionWithTraitRemoved [
+{ #category : #tests }
+EpApplyTest >> testTraitAdditionWithTraitRemoved [
 
 	| aTrait traitName |
 	aTrait := classFactory newTrait.
@@ -400,11 +336,8 @@ EpApplyTest>>testTraitAdditionWithTraitRemoved [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testTraitModification [
+{ #category : #tests }
+EpApplyTest >> testTraitModification [
 	<expectedFailure>
 
 	| aTrait traitName anotherTrait |
@@ -428,11 +361,8 @@ EpApplyTest>>testTraitModification [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpApplyTest>>testTraitRemovalWithTraitAdded [
+{ #category : #tests }
+EpApplyTest >> testTraitRemovalWithTraitAdded [
 
 	| aTrait traitName |
 	aTrait := classFactory newTrait.

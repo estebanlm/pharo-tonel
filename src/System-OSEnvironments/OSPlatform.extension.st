@@ -1,11 +1,6 @@
-Extension {
-	#name : #OSPlatform
-}
+Extension { #name : #OSPlatform }
 
-{
-	#category : #'*System-OSEnvironments',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-OSPlatform>>environment [
+{ #category : #'*System-OSEnvironments' }
+OSPlatform >> environment [
 	^ OSEnvironment current.
 ]

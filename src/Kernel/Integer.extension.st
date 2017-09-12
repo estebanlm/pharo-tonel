@@ -1,11 +1,6 @@
-Extension {
-	#name : #Integer
-}
+Extension { #name : #Integer }
 
-{
-	#category : #'*Kernel-Chronology',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Integer>>asSeconds [
+{ #category : #'*Kernel-Chronology' }
+Integer >> asSeconds [
 	^ Duration seconds: self
 ]

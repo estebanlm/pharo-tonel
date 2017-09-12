@@ -5,23 +5,16 @@ Class {
 	#name : #BoxedFloat64,
 	#superclass : #Float,
 	#type : #words,
-	#category : #Kernel-Numbers,
-	#timestamp : 'eem 11/25/2014 07:54'
+	#category : #Kernel-Numbers
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64 class>>basicNew [
+{ #category : #'instance creation' }
+BoxedFloat64 class >> basicNew [
 	^self basicNew: 2
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64 class>>basicNew: sizeRequested [
+{ #category : #'instance creation' }
+BoxedFloat64 class >> basicNew: sizeRequested [ 
 	"Primitive. Answer an instance of this class with the number
 	 of indexable variables specified by the argument, sizeRequested.
 	 Fail if this class is not indexable or if the argument is not a
@@ -39,11 +32,8 @@ BoxedFloat64 class>>basicNew: sizeRequested [
 	self primitiveFailed
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>* aNumber [
+{ #category : #arithmetic }
+BoxedFloat64 >> * aNumber [ 
 	"Primitive. Answer the result of multiplying the receiver by aNumber.
 	Fail if the argument is not a Float. Essential. See Object documentation
 	whatIsAPrimitive."
@@ -52,11 +42,8 @@ BoxedFloat64>>* aNumber [
 	^ aNumber adaptToFloat: self andSend: #*
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>+ aNumber [
+{ #category : #arithmetic }
+BoxedFloat64 >> + aNumber [ 
 	"Primitive. Answer the sum of the receiver and aNumber. Essential.
 	Fail if the argument is not a Float. See Object documentation
 	whatIsAPrimitive."
@@ -65,11 +52,8 @@ BoxedFloat64>>+ aNumber [
 	^ aNumber adaptToFloat: self andSend: #+
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>- aNumber [
+{ #category : #arithmetic }
+BoxedFloat64 >> - aNumber [ 
 	"Primitive. Answer the difference between the receiver and aNumber.
 	Fail if the argument is not a Float. Essential. See Object documentation
 	whatIsAPrimitive."
@@ -78,11 +62,8 @@ BoxedFloat64>>- aNumber [
 	^ aNumber adaptToFloat: self andSend: #-
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>/ aNumber [
+{ #category : #arithmetic }
+BoxedFloat64 >> / aNumber [ 
 	"Primitive. Answer the result of dividing receiver by aNumber.
 	Fail if the argument is not a Float. Essential. See Object documentation
 	whatIsAPrimitive."
@@ -92,11 +73,8 @@ BoxedFloat64>>/ aNumber [
 	^aNumber adaptToFloat: self andSend: #/
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>< aNumber [
+{ #category : #comparing }
+BoxedFloat64 >> < aNumber [ 
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is less than the argument. Otherwise return false.
 	Fail if the argument is not a Float. Essential. See Object documentation
@@ -106,11 +84,8 @@ BoxedFloat64>>< aNumber [
 	^ aNumber adaptToFloat: self andCompare: #<
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>><= aNumber [
+{ #category : #comparing }
+BoxedFloat64 >> <= aNumber [ 
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is less than or equal to the argument. Otherwise return
 	false. Fail if the argument is not a Float. Optional. See Object
@@ -120,11 +95,8 @@ BoxedFloat64>><= aNumber [
 	^ aNumber adaptToFloat: self andCompare: #<=
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>= aNumber [
+{ #category : #comparing }
+BoxedFloat64 >> = aNumber [ 
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is equal to the argument. Otherwise return false.
 	Fail if the argument is not a Float. Essential. See Object documentation
@@ -135,11 +107,8 @@ BoxedFloat64>>= aNumber [
 	^ aNumber adaptToFloat: self andCompare: #=
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>> aNumber [
+{ #category : #comparing }
+BoxedFloat64 >> > aNumber [ 
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is greater than the argument. Otherwise return false.
 	Fail if the argument is not a Float. Essential. See Object documentation
@@ -149,11 +118,8 @@ BoxedFloat64>>> aNumber [
 	^ aNumber adaptToFloat: self andCompare: #>
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>>= aNumber [
+{ #category : #comparing }
+BoxedFloat64 >> >= aNumber [ 
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is greater than or equal to the argument. Otherwise return
 	false. Fail if the argument is not a Float. Optional. See Object documentation 
@@ -163,11 +129,8 @@ BoxedFloat64>>>= aNumber [
 	^ aNumber adaptToFloat: self andCompare: #>=
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>arcTan [
+{ #category : #'mathematical functions' }
+BoxedFloat64 >> arcTan [
 	"Answer the angle in radians.
 	 Optional. See Object documentation whatIsAPrimitive."
 
@@ -191,11 +154,8 @@ BoxedFloat64>>arcTan [
 	^ theta
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>exp [
+{ #category : #'mathematical functions' }
+BoxedFloat64 >> exp [
 	"Answer E raised to the receiver power.
 	 Optional. See Object documentation whatIsAPrimitive." 
 
@@ -228,11 +188,8 @@ BoxedFloat64>>exp [
 	^ base * correction
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>exponent [
+{ #category : #'truncation and round off' }
+BoxedFloat64 >> exponent [
 	"Primitive. Consider the receiver to be represented as a power of two
 	multiplied by a mantissa (between one and two). Answer with the
 	SmallInteger to whose power two is raised. Optional. See Object
@@ -251,11 +208,8 @@ BoxedFloat64>>exponent [
 	^self negated exponent
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>fractionPart [
+{ #category : #'truncation and round off' }
+BoxedFloat64 >> fractionPart [
 	"Primitive. Answer a Float whose value is the difference between the 
 	receiver and the receiver's asInteger value. Optional. See Object 
 	documentation whatIsAPrimitive."
@@ -264,11 +218,8 @@ BoxedFloat64>>fractionPart [
 	^self - self truncated asFloat
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>ln [
+{ #category : #'mathematical functions' }
+BoxedFloat64 >> ln [
 	"Answer the natural logarithm of the receiver.
 	 Optional. See Object documentation whatIsAPrimitive."
 
@@ -308,11 +259,8 @@ BoxedFloat64>>ln [
 	"2.718284 ln 1.0"
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>sin [
+{ #category : #'mathematical functions' }
+BoxedFloat64 >> sin [
 	"Answer the sine of the receiver taken as an angle in radians.
 	 Optional. See Object documentation whatIsAPrimitive."
 
@@ -342,11 +290,8 @@ BoxedFloat64>>sin [
 	^ sum
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>sqrt [
+{ #category : #'mathematical functions' }
+BoxedFloat64 >> sqrt [
 	"Answer the square root of the receiver. 
 	 Optional. See Object documentation whatIsAPrimitive."
 	| exp guess eps delta |
@@ -371,11 +316,8 @@ BoxedFloat64>>sqrt [
 	^ guess
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>timesTwoPower: anInteger [
+{ #category : #'mathematical functions' }
+BoxedFloat64 >> timesTwoPower: anInteger [ 
 	"Primitive. Answer with the receiver multiplied by 2.0 raised
 	to the power of the argument.
 	Optional. See Object documentation whatIsAPrimitive."
@@ -388,11 +330,8 @@ BoxedFloat64>>timesTwoPower: anInteger [
 	^ self * (2.0 raisedToInteger: anInteger)
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>truncated [
+{ #category : #'truncation and round off' }
+BoxedFloat64 >> truncated [
 	"Answer with a SmallInteger equal to the value of the receiver without 
 	its fractional part. The primitive fails if the truncated value cannot be 
 	represented as a SmallInteger. In that case, the code below will compute 
@@ -418,11 +357,8 @@ BoxedFloat64>>truncated [
 		
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-BoxedFloat64>>~= aNumber [
+{ #category : #comparing }
+BoxedFloat64 >> ~= aNumber [ 
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is not equal to the argument. Otherwise return false.
 	Fail if the argument is not a Float. Optional. See Object documentation

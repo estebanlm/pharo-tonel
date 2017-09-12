@@ -8,39 +8,26 @@ Class {
 	#instVars : [
 		'objectClass'
 	],
-	#category : #UnifiedFFI-Types,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Types
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType class>>externalType [
+{ #category : #accessing }
+FFIExternalReferenceType class >> externalType [
 	^ ExternalType void asPointerType
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType class>>naturalPointerArity [
+{ #category : #private }
+FFIExternalReferenceType class >> naturalPointerArity [
 	^ 1
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType class>>objectClass: aClass [
+{ #category : #'instance creation' }
+FFIExternalReferenceType class >> objectClass: aClass [
 	^ self new objectClass: aClass
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType>>basicEmitArgument: aBuilder context: aContext [
+{ #category : #'emitting code' }
+FFIExternalReferenceType >> basicEmitArgument: aBuilder context: aContext [
  	self loader
 		emitArgument: aBuilder 
 		context: aContext 
@@ -48,30 +35,21 @@ FFIExternalReferenceType>>basicEmitArgument: aBuilder context: aContext [
 		instVarName: self instanceVariableName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType>>basicHandle: aHandle at: index [
+{ #category : #private }
+FFIExternalReferenceType >> basicHandle: aHandle at: index [
 	^ self objectClass fromHandle: (aHandle pointerAt: index)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType>>basicHandle: aHandle at: index put: value [
+{ #category : #private }
+FFIExternalReferenceType >> basicHandle: aHandle at: index put: value [
 	value getHandle isExternalAddress 
 		ifFalse: [ self error: 'value needs to be an ExternalAddress' ].
 	^ aHandle pointerAt: index put: value getHandle
 
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType>>emitReturn: aBuilder resultTempVar: resultVar context: aContext [
+{ #category : #'emitting code' }
+FFIExternalReferenceType >> emitReturn: aBuilder resultTempVar: resultVar context: aContext [
 	^ aBuilder 
 		addTemp: #tmpResult;
 		"keep invoke result into the tmpResult var"
@@ -94,11 +72,8 @@ FFIExternalReferenceType>>emitReturn: aBuilder resultTempVar: resultVar context:
 		returnTop	
 ]
 
-{
-	#category : #'emitting code',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType>>emitReturnArgument: builder context: aContext [
+{ #category : #'emitting code' }
+FFIExternalReferenceType >> emitReturnArgument: builder context: aContext [
 	self loader 
 		emitPointerArityUnpack: builder
 		type: self
@@ -107,77 +82,49 @@ FFIExternalReferenceType>>emitReturnArgument: builder context: aContext [
 		instVarName: self instanceVariableName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType>>externalTypeAlignment [
+{ #category : #accessing }
+FFIExternalReferenceType >> externalTypeAlignment [
 	"this is always a pointer"
 	^ self pointerAlignment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType>>externalTypeSize [
+{ #category : #accessing }
+FFIExternalReferenceType >> externalTypeSize [
 	"this is always a pointer"
 	^ self pointerSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType>>instanceVariableName [
+{ #category : #accessing }
+FFIExternalReferenceType >> instanceVariableName [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType>>needsArityUnpacking [
+{ #category : #testing }
+FFIExternalReferenceType >> needsArityUnpacking [
 	"Referenced types by default can be ''unpacked'' if it needs also to be rolled"
 	^ self needsArityPacking
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType>>objectClass [
+{ #category : #accessing }
+FFIExternalReferenceType >> objectClass [
 	^ objectClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType>>objectClass: aClass [
+{ #category : #accessing }
+FFIExternalReferenceType >> objectClass: aClass [
 	objectClass := aClass
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType>>prepareAsSelfFromCalloutDeclaration [
-
+{ #category : #initialization }
+FFIExternalReferenceType >> prepareAsSelfFromCalloutDeclaration [
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType>>printOn: aStream [
+{ #category : #printing }
+FFIExternalReferenceType >> printOn: aStream [
 	aStream << self className << '(' << objectClass name << ')'
 ]
 
-{
-	#category : #'stack parameter classification',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalReferenceType>>stackValueParameterClass [
+{ #category : #'stack parameter classification' }
+FFIExternalReferenceType >> stackValueParameterClass [
 	^ #integer
 ]

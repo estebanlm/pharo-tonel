@@ -4,36 +4,26 @@ I'm an abstract class grouping generic methods for managing packages/classes/gro
 Class {
 	#name : #AbstractTool,
 	#superclass : #Model,
-	#category : #Tool-Base,
-	#timestamp : '<historical>'
+	#category : #Tool-Base
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool class>>defineClassTemplate  [
+{ #category : #private }
+AbstractTool class >> defineClassTemplate [ 
 	^ '{1} subclass: #{2}
 		instanceVariableNames: '''' 
 		classVariableNames: ''''
 		package: ''{3}'''
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool class>>defineTraitTemplate  [
+{ #category : #private }
+AbstractTool class >> defineTraitTemplate [ 
 	^ 'Trait named: #{1}
 	uses: {2}
 	package: ''{3}'''
 ]
 
-{
-	#category : #'world menu',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool class>>menuCommandOn: aBuilder [
+{ #category : #'world menu' }
+AbstractTool class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #Tools)
 		order: 1.0;
@@ -41,11 +31,8 @@ AbstractTool class>>menuCommandOn: aBuilder [
 		iconName: #toolsIcon
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool class>>protocolSuggestionsFor: aClass [
+{ #category : #private }
+AbstractTool class >> protocolSuggestionsFor: aClass [
 
 	| allExistingProtocols interestingProtocols reject |
 	reject := Set new.
@@ -60,11 +47,8 @@ AbstractTool class>>protocolSuggestionsFor: aClass [
 	^ interestingProtocols asOrderedCollection sort: [ :a :b | a asLowercase < b asLowercase ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool class>>requestProtocolNameFor: aClass initialAnswer: aString [
+{ #category : #private }
+AbstractTool class >> requestProtocolNameFor: aClass initialAnswer: aString [
 	| ui |
 	ui := ListDialogWindow new
 		getList: [ :r | (self protocolSuggestionsFor: aClass) select: [ :e | r search: e ] ];
@@ -76,19 +60,13 @@ AbstractTool class>>requestProtocolNameFor: aClass initialAnswer: aString [
 	^ ui chooseFromOwner: World
 ]
 
-{
-	#category : #'world menu',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool class>>theme [
+{ #category : #'world menu' }
+AbstractTool class >> theme [
 	^ Smalltalk ui theme 
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>addCategoryIn: aClass before: aCategory [
+{ #category : #class }
+AbstractTool >> addCategoryIn: aClass before: aCategory [
 	"Present a choice of categories or prompt for a new category name 
 	and add it before the current selection, or at the end if no current selection"
 
@@ -104,11 +82,8 @@ AbstractTool>>addCategoryIn: aClass before: aCategory [
 	^ newName
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>addClassIn: aPackage [
+{ #category : #class }
+AbstractTool >> addClassIn: aPackage [
 	" Add a new class in the provided package. A dialog will be opened to let the user set the class definition "
 
 	| classSymbol systemCategory proposedSuperclass classDefinition newClass  |
@@ -133,11 +108,8 @@ AbstractTool>>addClassIn: aPackage [
 	newClass ifNotNil: [self browseClass: newClass].
 ]
 
-{
-	#category : #package,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>addPackageBasedOn: aPackage [
+{ #category : #package }
+AbstractTool >> addPackageBasedOn: aPackage [
 
 	| name initialAnswer package |
 	initialAnswer := aPackage ifNil: [''] ifNotNil: [:p | p name].
@@ -148,11 +120,8 @@ AbstractTool>>addPackageBasedOn: aPackage [
 	^ package
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>addTraitIn: aPackage [
+{ #category : #class }
+AbstractTool >> addTraitIn: aPackage [
 	" add a new class in the provided package. A dialog will be opened to let the user set the class definition "
 	|  systemCategory classDefinition newTrait |
 	
@@ -173,11 +142,8 @@ AbstractTool>>addTraitIn: aPackage [
 	self browseClass: newTrait.
 ]
 
-{
-	#category : #package,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>alertInvalidPackageName:name [
+{ #category : #package }
+AbstractTool >> alertInvalidPackageName:name [
 	| errorMessage |
 
 	(name isNil or: [ name isEmpty ]) ifTrue: [ ^ self ]. "User cancelled the action"
@@ -189,11 +155,8 @@ A package name can not begin with a *' ].
 	UIManager default inform: errorMessage
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>browseClassRefsOf: aClass [
+{ #category : #class }
+AbstractTool >> browseClassRefsOf: aClass [
 
 	| class |
 	aClass ifNil: [ ^self ].
@@ -204,11 +167,8 @@ AbstractTool>>browseClassRefsOf: aClass [
 
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>browseClassVarRefsOf: aClass [
+{ #category : #class }
+AbstractTool >> browseClassVarRefsOf: aClass [
 
 	| cls |
 	cls := aClass theNonMetaClass.
@@ -216,51 +176,36 @@ AbstractTool>>browseClassVarRefsOf: aClass [
 		ifTrue: [self systemNavigation browseClassVarRefs: cls]
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>browseInstVarDefsOf: aClass [
+{ #category : #class }
+AbstractTool >> browseInstVarDefsOf: aClass [
 
 	(aClass notNil and: [aClass isTrait not])
 		ifTrue: [self systemNavigation browseInstVarDefs: aClass]
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>browseInstVarRefsOf: aClass [
+{ #category : #class }
+AbstractTool >> browseInstVarRefsOf: aClass [
 
 	(aClass notNil and: [aClass isTrait not])
 		ifTrue: [self systemNavigation browseInstVarRefs: aClass]
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>browseMessagesFrom: aSelector [
+{ #category : #method }
+AbstractTool >> browseMessagesFrom: aSelector [
 	" badly named, it browses implementors "
 
 	self getSelectorAndSendQuery: #browseAllImplementorsOf: to: self systemNavigation with: {} selector: aSelector
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>browseSendersOfMessagesFrom: aSelector [
+{ #category : #method }
+AbstractTool >> browseSendersOfMessagesFrom: aSelector [
 	"Present a menu of the currently selected message, as well as all messages sent by it.  Open a message set browser of all senders of the selector chosen."
 
 	self getSelectorAndSendQuery: #browseAllSendersOf: to: self systemNavigation with: {} selector: aSelector
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>browseUnusedMethodsOf: aClass [
+{ #category : #class }
+AbstractTool >> browseUnusedMethodsOf: aClass [
 	| classes unsent messageList |
 	
 	aClass
@@ -279,11 +224,8 @@ AbstractTool>>browseUnusedMethodsOf: aClass [
 	self systemNavigation browseMessageList: messageList name: 'Unsent Methods in ' , aClass name
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>browseVersionsFrom: aMethod [
+{ #category : #method }
+AbstractTool >> browseVersionsFrom: aMethod [
 	"Create and schedule a Versions Browser, showing all versions of the 
 	currently selected message. Answer the browser or nil."
 
@@ -294,11 +236,8 @@ AbstractTool>>browseVersionsFrom: aMethod [
 				
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>categorizeMethods: aCollection of: aClass from: aCategory [
+{ #category : #method }
+AbstractTool >> categorizeMethods: aCollection of: aClass from: aCategory [
 	"Present a choice of categories or prompt for a new category name and add it before the current selection, or at the end if no current selection"
 	
 	| labels lines newName |
@@ -320,11 +259,8 @@ AbstractTool>>categorizeMethods: aCollection of: aClass from: aCategory [
 					suppressIfDefault: true ].
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>compileANewClassFrom: aString notifying: aController startingFrom: aClass [
+{ #category : #class }
+AbstractTool >> compileANewClassFrom: aString notifying: aController startingFrom: aClass [
 	
 	" Copied from Browser "
 	
@@ -364,11 +300,8 @@ Is this really what you want to do?') asText makeBoldFrom: 1 to: newClassName si
 		ifFalse: [ nil ]
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>compileANewMethodInClass: aClass categorized: aCategory from: aString notifyng: aController [
+{ #category : #method }
+AbstractTool >> compileANewMethodInClass: aClass categorized: aCategory from: aString notifyng: aController [
 
 	| selector existingMethod targetClass |
 	
@@ -391,11 +324,8 @@ AbstractTool>>compileANewMethodInClass: aClass categorized: aCategory from: aStr
 	^ targetClass compile: aString classified: aCategory notifying: aController.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>confirmAndRemoveCategory: aCategory inClass: aClass [
+{ #category : #private }
+AbstractTool >> confirmAndRemoveCategory: aCategory inClass: aClass [
 	| question answer |
 	question := 'Are you sure you want to\remove the protocol {1}\and all its methods?'.
 	answer := self confirm: (question withCRs format: {aCategory}).
@@ -403,11 +333,8 @@ AbstractTool>>confirmAndRemoveCategory: aCategory inClass: aClass [
 	^ answer
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>copyClasses: aCollection [
+{ #category : #class }
+AbstractTool >> copyClasses: aCollection [
 	
 	| needsRefresh lastDuplicate | 
 	
@@ -424,11 +351,8 @@ AbstractTool>>copyClasses: aCollection [
 	^(needsRefresh -> lastDuplicate)
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>defaultGetSelectorAndSendQuery: array to: queryPerformer with: querySelector [
+{ #category : #method }
+AbstractTool >> defaultGetSelectorAndSendQuery: array to: queryPerformer with: querySelector [
 	| selector |
 	
 	selector := UIManager default request: 'Type selector:' initialAnswer: 'flag:'.
@@ -444,11 +368,8 @@ AbstractTool>>defaultGetSelectorAndSendQuery: array to: queryPerformer with: que
 				ifFalse: [ self inform: 'no such selector' ] ]
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>defineTrait: defString notifying: aController   [
+{ #category : #class }
+AbstractTool >> defineTrait: defString notifying: aController [  
 
 	| defTokens keywdIx envt oldTrait newTraitName trait |
 	self selectedClass isTrait ifTrue:[oldTrait := self selectedClass].
@@ -470,11 +391,8 @@ Is this really what you want to do?') asText makeBoldFrom: 1 to: newTraitName si
 	^ trait
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>do: aBlock on: aCollection displaying: aString [
+{ #category : #private }
+AbstractTool >> do: aBlock on: aCollection displaying: aString [
 
 	| job |
 	aCollection ifEmpty: [ ^ self ].
@@ -489,20 +407,14 @@ AbstractTool>>do: aBlock on: aCollection displaying: aString [
 		run.
 ]
 
-{
-	#category : #category,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>fileOutCategories: aCollection from: aClass [
+{ #category : #category }
+AbstractTool >> fileOutCategories: aCollection from: aClass [
 
 	aCollection do: [:name | aClass fileOutCategory: name ]
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>fileOutClasses: aCollection [
+{ #category : #class }
+AbstractTool >> fileOutClasses: aCollection [
 	"Print a description of the selected class onto a file whose name is the 
 	category name followed by .st."
 
@@ -512,11 +424,8 @@ AbstractTool>>fileOutClasses: aCollection [
 		displaying: 'Filing out classes...'.
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>fileOutMethods: aCollection [
+{ #category : #method }
+AbstractTool >> fileOutMethods: aCollection [
 
 	self 
 		do: [ :method | method methodClass fileOutMethod: method selector ]
@@ -524,11 +433,8 @@ AbstractTool>>fileOutMethods: aCollection [
 		displaying: 'Filing out methods...'.
 ]
 
-{
-	#category : #package,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>fileOutPackages: aCollection [
+{ #category : #package }
+AbstractTool >> fileOutPackages: aCollection [
 
 	self 
 		do: [ :package |  package item package fileOut ]
@@ -536,11 +442,8 @@ AbstractTool>>fileOutPackages: aCollection [
 		displaying: 'Filing out packages...'.
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>getSelectorAndSendQuery: querySelector to: queryPerformer with: queryArgs selector: aSelector [
+{ #category : #method }
+AbstractTool >> getSelectorAndSendQuery: querySelector to: queryPerformer with: queryArgs selector: aSelector [
 	"Obtain a selector relevant to the current context, and then send the querySelector to the queryPerformer with the selector obtained and queryArgs as its arguments.  If no message is currently selected, then obtain a method name from a user type-in"
 	| strm array |
 	
@@ -558,30 +461,21 @@ AbstractTool>>getSelectorAndSendQuery: querySelector to: queryPerformer with: qu
 	queryPerformer perform: querySelector withArguments: array.
 ]
 
-{
-	#category : #icon,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>icon: aSymbol [
+{ #category : #icon }
+AbstractTool >> icon: aSymbol [
 	"Return the icon associated with the argument."
 	self flag: #remove.
 	^ self iconNamed: aSymbol
 ]
 
-{
-	#category : #package,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>isValidPackageName: name [
+{ #category : #package }
+AbstractTool >> isValidPackageName: name [
 
 	^ (name isNil or: [ name isEmpty or: [ name first = $* ]]) not
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>methodHierarchyFrom: aMethod [
+{ #category : #method }
+AbstractTool >> methodHierarchyFrom: aMethod [
 	"Create and schedule a method browser on the hierarchy of implementors."
 
 	aMethod ifNil: [ ^ self ].
@@ -590,11 +484,8 @@ AbstractTool>>methodHierarchyFrom: aMethod [
 			selector: aMethod selector
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>moveMethod: aMethod inPackage: aPackage [
+{ #category : #method }
+AbstractTool >> moveMethod: aMethod inPackage: aPackage [
 
 	aMethod methodClass organization
 				classify: aMethod selector
@@ -602,11 +493,8 @@ AbstractTool>>moveMethod: aMethod inPackage: aPackage [
 				suppressIfDefault: true.
 ]
 
-{
-	#category : #category,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>removeCategory: aCategory inClass: aClass [
+{ #category : #category }
+AbstractTool >> removeCategory: aCategory inClass: aClass [
 	| protocol |
 	aCategory ifNil: [ ^ false ].
 	self okToChange ifFalse: [ ^ false].
@@ -618,11 +506,8 @@ AbstractTool>>removeCategory: aCategory inClass: aClass [
 	
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>removeClass: aClass [
+{ #category : #class }
+AbstractTool >> removeClass: aClass [
 	"Remove the selected class from the system, at interactive user request.  Make certain the user really wants to do this, since it is not reversible.  Answer true if removal actually happened."
 
 	| message className classToRemove result |
@@ -640,11 +525,8 @@ AbstractTool>>removeClass: aClass [
 	^ result
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>removeClassMessageFor: className [
+{ #category : #class }
+AbstractTool >> removeClassMessageFor: className [
 	^ 'Are you certain that you
 want to REMOVE the class ' , className
 		,
@@ -652,11 +534,8 @@ want to REMOVE the class ' , className
 from the system?'
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>removeClasses: aCollection [
+{ #category : #class }
+AbstractTool >> removeClasses: aCollection [
 	"Remove the selected classes from the system.  Check that the user really wants to do this, since it is not reversible.  Answer true if removal actually happened."
 
 	| classNames classesToRemove result |
@@ -676,11 +555,8 @@ AbstractTool>>removeClasses: aCollection [
 	^ result
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>removeClassesMessageFor: classNames [
+{ #category : #class }
+AbstractTool >> removeClassesMessageFor: classNames [
 	^ 'Are you certain that you
 want to REMOVE the classes ' , classNames
 		,
@@ -688,20 +564,14 @@ want to REMOVE the classes ' , classNames
 from the system?'
 ]
 
-{
-	#category : #category,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>removeEmptyCategoriesFrom: aClass [
+{ #category : #category }
+AbstractTool >> removeEmptyCategoriesFrom: aClass [
 
 	aClass organization removeEmptyCategories.
 ]
 
-{
-	#category : #category,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>removeEmptyUnclassifiedCategoryFrom: aClass [
+{ #category : #category }
+AbstractTool >> removeEmptyUnclassifiedCategoryFrom: aClass [
 	"Remove the 'as yet unclassified' category from the class if empty"
 
 	| protocolOrganizer |
@@ -711,11 +581,8 @@ AbstractTool>>removeEmptyUnclassifiedCategoryFrom: aClass [
 		ifFound: [ :unclassifiedProtocol | protocolOrganizer removeProtocol: unclassifiedProtocol ]
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>removeMethod: aMethod inClass: aClass [
+{ #category : #method }
+AbstractTool >> removeMethod: aMethod inClass: aClass [
 	"If a message is selected, create a Confirmer so the user can verify that  
 	the currently selected message should be removed from the system. If 
 	so, remove it. "
@@ -738,11 +605,8 @@ AbstractTool>>removeMethod: aMethod inClass: aClass [
 	^ true
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>removeMethods: aCollection inClass: aClass [
+{ #category : #method }
+AbstractTool >> removeMethods: aCollection inClass: aClass [
 	"If a message is selected, create a Confirmer so the user can verify that  
 	the currently selected message should be removed from the system. If 
 	so, remove it. "
@@ -771,21 +635,15 @@ AbstractTool>>removeMethods: aCollection inClass: aClass [
 	^ true
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>removedClassHasSubclassesMessageFor: className [
+{ #category : #class }
+AbstractTool >> removedClassHasSubclassesMessageFor: className [
 
 	^ className, ' has subclasses.
 Do you really want to REMOVE it from the system ?'
 ]
 
-{
-	#category : #category,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>renameCategory: aCategory from: aClass [
+{ #category : #category }
+AbstractTool >> renameCategory: aCategory from: aClass [
 	"Prompt for a new category name and add it before the
 	current selection, or at the end if no current selection"
 	
@@ -807,11 +665,8 @@ AbstractTool>>renameCategory: aCategory from: aClass [
 	^ newName
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>renameClass: aClass [
+{ #category : #class }
+AbstractTool >> renameClass: aClass [
 	| oldName newName obs |
 
 	aClass ifNil: [ ^ self ].
@@ -831,11 +686,8 @@ AbstractTool>>renameClass: aClass [
 	^ newName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>renamePackage: anRPackage [
+{ #category : #private }
+AbstractTool >> renamePackage: anRPackage [
 
 	| newName |
 	newName := UIManager default 
@@ -848,11 +700,8 @@ AbstractTool>>renamePackage: anRPackage [
 		ifFalse: [ self alertInvalidPackageName:newName ].
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>showUnreferencedClassVarsOf: aClass [
+{ #category : #class }
+AbstractTool >> showUnreferencedClassVarsOf: aClass [
 	"Search for all class variables known to the selected class, and put up a 
 	list of those that have no references anywhere in the system. The 
 	search includes superclasses, so that you don't need to navigate your 
@@ -885,11 +734,8 @@ class variables in
 	UIManager default inform: aReport
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractTool>>showUnreferencedInstVarsOf: aClass [
+{ #category : #class }
+AbstractTool >> showUnreferencedInstVarsOf: aClass [
 	"Search for all instance variables known to the selected class, and put up a list of those that have no references anywhere in the system.  The search includes superclasses, so that you don't need to navigate your way to the class that defines each inst variable in order to determine whether it is unreferenced"
 
 	|  aList aReport |

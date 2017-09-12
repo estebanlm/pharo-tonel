@@ -1,12 +1,7 @@
-Extension {
-	#name : #VSCommitStrategy
-}
+Extension { #name : #VSCommitStrategy }
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitStrategy>>options [
+{ #category : #'*Versionner-Commit-UI' }
+VSCommitStrategy >> options [
 	^ {  
 	{ 'Nest projects?'. 				#shouldNestProjects}.
 	{ 'Commit projects?'. 			#shouldCommitProjects}.

@@ -14,15 +14,11 @@ Class {
 		'okToolbar',
 		'categoryList'
 	],
-	#category : #Keymapping-Tools-Spec,
-	#timestamp : '<historical>'
+	#category : #Keymapping-Tools-Spec
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription class>>defaultSpec [
+{ #category : #specs }
+KMDescription class >> defaultSpec [
 	<spec>
 	
 	^ SpecLayout composed
@@ -36,11 +32,8 @@ KMDescription class>>defaultSpec [
 				add: #okToolbar height: 25 ]
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription class>>example [
+{ #category : #example }
+KMDescription class >> example [
 
 	| d |
 	d := KMDescription new.
@@ -48,29 +41,20 @@ KMDescription class>>example [
 	d openWithSpec
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription class>>title [
+{ #category : #specs }
+KMDescription class >> title [
 
 	^ 'Shortcuts description'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription>>categories [
+{ #category : #accessing }
+KMDescription >> categories [
 	
 	^ categories
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription>>categories: aCollectionOfSymbols [
+{ #category : #api }
+KMDescription >> categories: aCollectionOfSymbols [
 	| cats |
 	
 	cats := aCollectionOfSymbols collect: [:e | KMRepository default categoryForName: e].
@@ -78,54 +62,36 @@ KMDescription>>categories: aCollectionOfSymbols [
 	self updateShortcutList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription>>categoryList [
+{ #category : #accessing }
+KMDescription >> categoryList [
 	
 	^ categoryList
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription>>collectDescriptionShortcut [
+{ #category : #initialization }
+KMDescription >> collectDescriptionShortcut [
 	collectingBlock := [ :e | {(e description asString) . ':' . (e shortcut asString)} ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription>>collectShortcutDescription [
+{ #category : #initialization }
+KMDescription >> collectShortcutDescription [
 	collectingBlock := [:e | {e shortcut asString. ':'. e description asString} ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription>>initCategoryList: aCollection [
+{ #category : #initialization }
+KMDescription >> initCategoryList: aCollection [
 	categoryList emptyList.
 	aCollection do: [ :cat | categoryList addItemLabeled: cat name do: [ self updateShortcutList ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription>>initialExtent [
+{ #category : #private }
+KMDescription >> initialExtent [
 
 	^  (600@350)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription>>initialize [
+{ #category : #initialization }
+KMDescription >> initialize [
 
 	categories := nil asValueHolder.
 	sortingBlock := [:a :b | a first < b first ].
@@ -134,21 +100,15 @@ KMDescription>>initialize [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription>>initializePresenter [
+{ #category : #initialization }
+KMDescription >> initializePresenter [
 		
 	categories whenChangedDo: [:col | self initCategoryList:col ].
 	okToolbar okAction: [ self delete ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription>>initializeWidgets [
+{ #category : #initialization }
+KMDescription >> initializeWidgets [
 
 	categoryList := self newDropList.
 	shortcutList := self newMultiColumnList.
@@ -172,38 +132,26 @@ KMDescription>>initializeWidgets [
 			state: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription>>okToolbar [
+{ #category : #accessing }
+KMDescription >> okToolbar [
 	
 	^ okToolbar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription>>orderingList [
+{ #category : #accessing }
+KMDescription >> orderingList [
 	
 	^ orderingList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription>>shortcutList [
+{ #category : #accessing }
+KMDescription >> shortcutList [
 	
 	^ shortcutList
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMDescription>>updateShortcutList [
+{ #category : #initialization }
+KMDescription >> updateShortcutList [
 	| cat items |
 	cat := categories value at: self categoryList selectedIndex.
 	items := (cat entriesAt: #all) keymaps collect: [ :e | collectingBlock value: e ].

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ReCritiqueTest,
 	#superclass : #ReCodeBasedTestCase,
-	#category : #Renraku-Test,
-	#timestamp : ''
+	#category : #Renraku-Test
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReCritiqueTest>>testBan [
+{ #category : #tests }
+ReCritiqueTest >> testBan [
 	| criticToSkip |
 		
 	criticToSkip := testClass critiques detect: [ :critic |
@@ -24,11 +17,8 @@ ReCritiqueTest>>testBan [
 		critic rule class = ScreamerRule ]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReCritiqueTest>>testBan1 [
+{ #category : #tests }
+ReCritiqueTest >> testBan1 [
 	| criticToSkip |
 	
 		
@@ -41,11 +31,8 @@ ReCritiqueTest>>testBan1 [
 		critic rule class = ScreamerRule ]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReCritiqueTest>>testDescription [
+{ #category : #tests }
+ReCritiqueTest >> testDescription [
 	| rule critic |
 	
 	rule := (RBLintRule allSubclasses select: #isVisible)	 anyOne new.
@@ -54,11 +41,8 @@ ReCritiqueTest>>testDescription [
 	self assert: critic description equals: rule rationale
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReCritiqueTest>>testRule [
+{ #category : #tests }
+ReCritiqueTest >> testRule [
 	| rule critic |
 	
 	rule := (RBLintRule allSubclasses select: #isVisible)	 anyOne new.
@@ -67,11 +51,8 @@ ReCritiqueTest>>testRule [
 	self assert: critic rule equals: rule
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReCritiqueTest>>testTarget [
+{ #category : #tests }
+ReCritiqueTest >> testTarget [
 	| rule critic |
 	
 	rule := (RBLintRule allSubclasses select: #isVisible)	 anyOne new.
@@ -80,11 +61,8 @@ ReCritiqueTest>>testTarget [
 	self assert: critic sourceAnchor entity equals: thisContext method
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReCritiqueTest>>testTitle [
+{ #category : #tests }
+ReCritiqueTest >> testTitle [
 	| rule critic |
 	
 	rule := (RBLintRule allSubclasses select: #isVisible)	 anyOne new.

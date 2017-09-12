@@ -14,26 +14,19 @@ Class {
 		'cachedHierarchy',
 		'showHierarchy'
 	],
-	#category : #Nautilus-Widgets,
-	#timestamp : 'StephaneDucasse 11/11/2015 16:12'
+	#category : #Nautilus-Widgets
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>abstractColorAdjust: aColor [
+{ #category : #private }
+ClassWidget >> abstractColorAdjust: aColor [
 			
 	^aColor luminance > 0.5
 			ifTrue: [ aColor twiceDarker ]
 			ifFalse: [ aColor twiceLighter ]
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>buildClassesList [
+{ #category : #'item creation' }
+ClassWidget >> buildClassesList [
 	classesList := self class listClass new
 				basicWrapSelector: #classWrapper:;
 				keystrokeSelector: #keyPressedOnList:shifted:;
@@ -62,19 +55,13 @@ ClassWidget>>buildClassesList [
 	^ classesList
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>buildPackageGroupHierarchyFor: aPackageGroup [
+{ #category : #private }
+ClassWidget >> buildPackageGroupHierarchyFor: aPackageGroup [
 	^ self cachedHierarchy class buildHierarchyFor: aPackageGroup in: self model browsedEnvironment
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>buildTabbedNameOf: anElement [
+{ #category : #private }
+ClassWidget >> buildTabbedNameOf: anElement [
 			
 	| tab size stringMorph |
 	
@@ -99,56 +86,38 @@ ClassWidget>>buildTabbedNameOf: anElement [
 	^ stringMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>cachedHierarchy [
+{ #category : #accessing }
+ClassWidget >> cachedHierarchy [
 	
 	^ cachedHierarchy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>cachedHierarchy: anObject [
+{ #category : #accessing }
+ClassWidget >> cachedHierarchy: anObject [
 	
 	cachedHierarchy := anObject
 ]
 
-{
-	#category : #'private list model',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>classIconFor: anItem [
+{ #category : #'private list model' }
+ClassWidget >> classIconFor: anItem [
 	^ self model classIconFor: anItem
 ]
 
-{
-	#category : #'private list model',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>classListSize [
+{ #category : #'private list model' }
+ClassWidget >> classListSize [
 	^ self getClassesList size
 ]
 
-{
-	#category : #'private list model',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>classSelectionAt: anIndex [
+{ #category : #'private list model' }
+ClassWidget >> classSelectionAt: anIndex [
 	
 	| elt |
 	elt := self getClassesList at: anIndex ifAbsent: [ ^false ].
 	^ self classesSelection at: elt ifAbsent: [ false ]
 ]
 
-{
-	#category : #'private list model',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>classSelectionAt: anIndex put: aBoolean [
+{ #category : #'private list model' }
+ClassWidget >> classSelectionAt: anIndex put: aBoolean [
 	| elt |
 	aBoolean ifNil: [ ^ self ].
 	elt := self getClassesList at: anIndex ifAbsent: [ ^ self ].
@@ -156,77 +125,53 @@ ClassWidget>>classSelectionAt: anIndex put: aBoolean [
 	self model changed: #hasSelectedSelections
 ]
 
-{
-	#category : #'private list model',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>classWrapper: anElement [
+{ #category : #'private list model' }
+ClassWidget >> classWrapper: anElement [
 	^ self sortHierarchically
 		ifTrue: [ self buildTabbedNameOf: anElement ]
 		ifFalse: [  self wrapFlat: anElement  ]
 ]
 
-{
-	#category : #'private list model',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>classesMenu: aMenu shifted: aBoolean [
+{ #category : #'private list model' }
+ClassWidget >> classesMenu: aMenu shifted: aBoolean [
 	self model classesMenu: aMenu shifted: aBoolean.
 	^ aMenu
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>classesSelection [
+{ #category : #private }
+ClassWidget >> classesSelection [
 	
 	^ classesSelection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>createClassHierarchyFor: aPackageGroup [
+{ #category : #private }
+ClassWidget >> createClassHierarchyFor: aPackageGroup [
 
 	aPackageGroup ifNil: [ ^ {}].
 	self cachedHierarchy: (self buildPackageGroupHierarchyFor: aPackageGroup asNautilusSelection).
 	^ self cachedHierarchy sortedElements
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>createClassListFor: aPackageGroup [
+{ #category : #private }
+ClassWidget >> createClassListFor: aPackageGroup [
 
 	aPackageGroup ifNil: [ ^ {}].
 	^ (SortAlphabeticallyClassList buildListFor: aPackageGroup asNautilusSelection in: self model browsedEnvironment) sortedElements
 ]
 
-{
-	#category : #'private list model',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>doubleClick [
+{ #category : #'private list model' }
+ClassWidget >> doubleClick [
 	self model fullBrowse
 ]
 
-{
-	#category : #'private list model',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>doubleClick: ann [
+{ #category : #'private list model' }
+ClassWidget >> doubleClick: ann [
 	ann event shiftPressed ifTrue: [ ^ self openFloatingEditorToRenameAtIndex: ann selectedRowIndex  ].
 	self model fullBrowse
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>dragPassengersFor: item inMorph: dragSource [
+{ #category : #'drag and drop' }
+ClassWidget >> dragPassengersFor: item inMorph: dragSource [
 	| transferType object |
 	(dragSource isKindOf: self class listClass)
 		ifFalse: [ ^ nil ].
@@ -237,11 +182,8 @@ ClassWidget>>dragPassengersFor: item inMorph: dragSource [
 	^ nil
 ]
 
-{
-	#category : #'private list model',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>dropInClass: aCollection inARow: aRow [
+{ #category : #'private list model' }
+ClassWidget >> dropInClass: aCollection inARow: aRow [
 	| receiver |
 	aRow>0 ifTrue: [  
 		receiver := self getClassesList at: aRow.
@@ -252,37 +194,25 @@ ClassWidget>>dropInClass: aCollection inARow: aRow [
 		self model dropInAClass: aCollection into: receiver]
 ]
 
-{
-	#category : #'private list model',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>getClassItem: anIndex [
+{ #category : #'private list model' }
+ClassWidget >> getClassItem: anIndex [
 	^ self getClassesList at: anIndex
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>getClassesList [
+{ #category : #protocol }
+ClassWidget >> getClassesList [
 
 	^ classesListElements ifNil: [ classesListElements := self loadClassesListElements ].
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>hasFocus [
+{ #category : #protocol }
+ClassWidget >> hasFocus [
 	
 	^ classesList hasKeyboardFocus
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>initialize [
+{ #category : #initialization }
+ClassWidget >> initialize [
 
 	super initialize.
 
@@ -293,11 +223,8 @@ ClassWidget>>initialize [
 	showHierarchy := false.
 ]
 
-{
-	#category : #'private list model',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>keyPressedOnList: anEvent shifted: aBoolean [
+{ #category : #'private list model' }
+ClassWidget >> keyPressedOnList: anEvent shifted: aBoolean [
 		| aCharacter |
 
 	aCharacter := anEvent keyCharacter.
@@ -306,47 +233,32 @@ ClassWidget>>keyPressedOnList: anEvent shifted: aBoolean [
 	(aCharacter == self model class previousFocusKey) ifTrue: [ ^ self model giveFocusToPackage ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>loadClassHierarchyListElements [
+{ #category : #private }
+ClassWidget >> loadClassHierarchyListElements [
 	^ self cachedHierarchy sortedElements 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>loadClassesListElements [
+{ #category : #private }
+ClassWidget >> loadClassesListElements [
 	^ self showHierarchy
 		ifTrue: [ self loadClassHierarchyListElements ]
 		ifFalse: [ self loadPackageClassListElements ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>loadPackageClassListElements [
+{ #category : #private }
+ClassWidget >> loadPackageClassListElements [
 	^ self sortHierarchically
 		ifTrue: [ self createClassHierarchyFor: self model selectedPackageGroup ]
 		ifFalse: [ self createClassListFor:self model selectedPackageGroup ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>okToChange [
+{ #category : #protocol }
+ClassWidget >> okToChange [
 	^ model okToChange
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>openFloatingEditorToRenameAtIndex: anIndex [
+{ #category : #protocol }
+ClassWidget >> openFloatingEditorToRenameAtIndex: anIndex [
 	| selectedRowMorph ed clsMorph vScroll font cls |
 	cls := self model selectedClass theNonMetaClass.
 	vScroll := self vScrollValue.
@@ -375,11 +287,8 @@ ClassWidget>>openFloatingEditorToRenameAtIndex: anIndex [
 	ed openEditorWithContents: cls name asString thenDo: [ :editor | editor selectAll  ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>renameClass: aClass toBe: aString [
+{ #category : #protocol }
+ClassWidget >> renameClass: aClass toBe: aString [
 	| newName oldName obs |
 	aString isEmptyOrNil ifTrue: [ ^ self ].	"Cancel returns"
 	newName := aString asSymbol.
@@ -395,44 +304,29 @@ ClassWidget>>renameClass: aClass toBe: aString [
 	^ newName
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>resetClassList [
+{ #category : #protocol }
+ClassWidget >> resetClassList [
 	classesListElements := nil.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>resetClassSelection [
+{ #category : #protocol }
+ClassWidget >> resetClassSelection [
 	self classesSelection removeAll
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>selectClass: aClass [
+{ #category : #protocol }
+ClassWidget >> selectClass: aClass [
 	self classesSelection at: aClass theNonMetaClass put: true.
 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>selectedClass [
+{ #category : #protocol }
+ClassWidget >> selectedClass [
 	^ self selectedClasses ifEmpty:[ nil]  ifNotEmpty:[: col | col first]
 ]
 
-{
-	#category : #'private list model',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>selectedClassIndex [
+{ #category : #'private list model' }
+ClassWidget >> selectedClassIndex [
 	| item |
 	item := self selectedClass.
 	self model showInstance
@@ -440,11 +334,8 @@ ClassWidget>>selectedClassIndex [
 	^ self getClassesList indexOf: item
 ]
 
-{
-	#category : #'private list model',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>selectedClassIndex: anInteger [
+{ #category : #'private list model' }
+ClassWidget >> selectedClassIndex: anInteger [
 	| selection |
 	
 	selection := self getClassesList at: anInteger ifAbsent: [nil].
@@ -456,11 +347,8 @@ ClassWidget>>selectedClassIndex: anInteger [
 	self model changed: #currentHistoryIndex.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>selectedClasses [
+{ #category : #protocol }
+ClassWidget >> selectedClasses [
 
 	| associations |
 	associations := self classesSelection associations select: [:assoc | assoc value ].
@@ -468,84 +356,57 @@ ClassWidget>>selectedClasses [
 	^ associations select: [:each | each notNil ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>setCachedHierarchyClass: aClass [
+{ #category : #private }
+ClassWidget >> setCachedHierarchyClass: aClass [
     
 	self cachedHierarchy: (SortHierarchically buildHierarchyForClass: aClass) 
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>showHierarchy [
+{ #category : #protocol }
+ClassWidget >> showHierarchy [
 	
 	^ showHierarchy
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>showHierarchy: aBoolean [
+{ #category : #protocol }
+ClassWidget >> showHierarchy: aBoolean [
 
 	(showHierarchy := aBoolean)
 		ifTrue: [ self selectedClass ifNotNil: [ :class | self setCachedHierarchyClass: class ] ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>showHierarchy: aBoolean forClass: class [
+{ #category : #protocol }
+ClassWidget >> showHierarchy: aBoolean forClass: class [
 
 	(showHierarchy := aBoolean)
 		ifTrue: [ class ifNotNil: [ self setCachedHierarchyClass: class ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>sortHierarchically [
+{ #category : #accessing }
+ClassWidget >> sortHierarchically [
 	^ self model sortHierarchically
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>takeKeyboardFocus [
+{ #category : #protocol }
+ClassWidget >> takeKeyboardFocus [
 
 	classesList takeKeyboardFocus
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>vScrollValue [
+{ #category : #protocol }
+ClassWidget >> vScrollValue [
 
 	^ classesList scrollValue y
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>vScrollValue: aNumber [
+{ #category : #protocol }
+ClassWidget >> vScrollValue: aNumber [
 
 	^ classesList vScrollValue: aNumber
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>wantsDroppedMorph: transferMorph event: anEvent inMorph: destinationLM [
+{ #category : #'drag and drop' }
+ClassWidget >> wantsDroppedMorph: transferMorph event: anEvent inMorph: destinationLM [
 	| srcType dstType |
 	"only want drops on lists (not, for example, on pluggable texts)"
 	(destinationLM isKindOf: self class listClass)
@@ -561,11 +422,8 @@ ClassWidget>>wantsDroppedMorph: transferMorph event: anEvent inMorph: destinatio
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-ClassWidget>>wrapFlat: anElement [
+{ #category : #private }
+ClassWidget >> wrapFlat: anElement [
 	| result |
 	result := anElement name.
 	^ self model selectedPackage

@@ -18,15 +18,11 @@ Class {
 		'PersistentTemps',
 		'Properties'
 	],
-	#category : #Slot-Variables,
-	#timestamp : ''
+	#category : #Slot-Variables
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable class>>initialize [
+{ #category : #'class initialization' }
+TemporaryVariable class >> initialize [
 	Properties
 		ifNil: [ self initializeProperties ]
 		ifNotNil: [ | newDict | 
@@ -37,51 +33,36 @@ TemporaryVariable class>>initialize [
 		
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable class>>initializeProperties [
+{ #category : #'class initialization' }
+TemporaryVariable class >> initializeProperties [
 	Properties := WeakIdentityKeyDictionary new.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable class>>name: aName block: aBlock [
+{ #category : #'instance creation' }
+TemporaryVariable class >> name: aName block: aBlock [
 	^(self new 
 		name: aName;
 		method: aBlock method;
 		startpc: aBlock startpc) yourselfOrSaved.		
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable class>>name: aName context: aContext [
+{ #category : #'instance creation' }
+TemporaryVariable class >> name: aName context: aContext [
 	^aContext isBlock
 		ifTrue: [ self name: aName block: aContext closure ]
 		ifFalse: [ self name: aName method: aContext method ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable class>>name: aName method: aMethod [
+{ #category : #'instance creation' }
+TemporaryVariable class >> name: aName method: aMethod [
 	^(self new 
 		name: aName;
 		method: aMethod) yourselfOrSaved
 	
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>= other [
+{ #category : #comparing }
+TemporaryVariable >> = other [
 	self == other
 		ifTrue: [ ^ true ].
 	^ (self species == other species) 
@@ -90,160 +71,109 @@ TemporaryVariable>>= other [
 			and: [ startpc = other startpc ] ] ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>ensureProperties [
+{ #category : #properties }
+TemporaryVariable >> ensureProperties [
 	method saveTemp: self.
 	^ Properties at: self ifAbsentPut: WeakKeyDictionary new
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>hasProperty: aKey [
+{ #category : #properties }
+TemporaryVariable >> hasProperty: aKey [
 	"Test if the property aKey is present."
 	^self properties 
 		ifNil: [false]
 		ifNotNil: [:prop | prop includesKey: aKey]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>hash [
+{ #category : #comparing }
+TemporaryVariable >> hash [
 
 	^ (name hash
 		bitXor: method hash)
 		bitXor: (startpc ifNil: [0])
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>isFromBlock [
+{ #category : #testing }
+TemporaryVariable >> isFromBlock [
 	^startpc isNotNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>method [
+{ #category : #accessing }
+TemporaryVariable >> method [
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>method: anObject [
+{ #category : #accessing }
+TemporaryVariable >> method: anObject [
 	method := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>name [
+{ #category : #accessing }
+TemporaryVariable >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>name: anObject [
+{ #category : #accessing }
+TemporaryVariable >> name: anObject [
 	name := anObject
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>properties [
+{ #category : #properties }
+TemporaryVariable >> properties [
 	^ Properties at: self ifAbsent: nil
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>propertyAt: propName [
+{ #category : #properties }
+TemporaryVariable >> propertyAt: propName [
 	^ self
 		propertyAt: propName
 		ifAbsent: [ nil ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>propertyAt: propName ifAbsent: aBlock [
+{ #category : #properties }
+TemporaryVariable >> propertyAt: propName ifAbsent: aBlock [
 	self properties ifNil: [^aBlock value].
 	^ self properties
 		at: propName
 		ifAbsent: aBlock
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>propertyAt: aKey ifAbsentPut: aBlock [
+{ #category : #properties }
+TemporaryVariable >> propertyAt: aKey ifAbsentPut: aBlock [
 	"Answer the property associated with aKey or, if aKey isn't found store the result of evaluating aBlock as new value."
 	
 	^ self propertyAt: aKey ifAbsent: [ self propertyAt: aKey put: aBlock value ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>propertyAt: propName put: propValue [
+{ #category : #properties }
+TemporaryVariable >> propertyAt: propName put: propValue [
 	^ self ensureProperties
 		at: propName
 		put: propValue
 ]
 
-{
-	#category : #'reflecive api',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>readInContext: aContext [
+{ #category : #'reflecive api' }
+TemporaryVariable >> readInContext: aContext [
 	^aContext tempNamed: name
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>removePropertiesIfEmpty [
+{ #category : #properties }
+TemporaryVariable >> removePropertiesIfEmpty [
 	^ Properties at: self ifPresent: [ :dict |
 		dict ifEmpty: [ 
 			method removeSavedTemp: self.
 			Properties removeKey: self ] ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>removeProperty: propName [
+{ #category : #properties }
+TemporaryVariable >> removeProperty: propName [
 	^ self
 		removeProperty: propName
 		ifAbsent: [ nil ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>removeProperty: propName ifAbsent: aBlock [
+{ #category : #properties }
+TemporaryVariable >> removeProperty: propName ifAbsent: aBlock [
 	| property |
 	self properties ifNil: [^aBlock value].
 	property := self properties
@@ -253,35 +183,23 @@ TemporaryVariable>>removeProperty: propName ifAbsent: aBlock [
 	^ property
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>startpc [
+{ #category : #accessing }
+TemporaryVariable >> startpc [
 	^ startpc
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>startpc: anObject [
+{ #category : #accessing }
+TemporaryVariable >> startpc: anObject [
 	startpc := anObject
 ]
 
-{
-	#category : #'reflecive api',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>write: aValue InContext: aContext [
+{ #category : #'reflecive api' }
+TemporaryVariable >> write: aValue InContext: aContext [
 	aContext tempNamed: name put: aValue
 ]
 
-{
-	#category : #'saved temps',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-TemporaryVariable>>yourselfOrSaved [
+{ #category : #'saved temps' }
+TemporaryVariable >> yourselfOrSaved [
 	method savedTemps ifNil: [ ^self  ].	
 	^method savedTemps 
 		detect:  	[ :each | each = self ]

@@ -5,31 +5,21 @@ Class {
 	#name : #SmallFloat64,
 	#superclass : #Float,
 	#type : #immediate,
-	#category : #Kernel-Numbers,
-	#timestamp : 'eem 11/25/2014 07:54'
+	#category : #Kernel-Numbers
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64 class>>basicNew [
+{ #category : #'instance creation' }
+SmallFloat64 class >> basicNew [
 	self error: 'SmallFloat64s can only be created by performing arithmetic'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64 class>>basicNew: anInteger [
+{ #category : #'instance creation' }
+SmallFloat64 class >> basicNew: anInteger [
 	^self basicNew
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>* aNumber [
+{ #category : #arithmetic }
+SmallFloat64 >> * aNumber [ 
 	"Primitive. Answer the result of multiplying the receiver by aNumber.
 	Fail if the argument is not a Float. Essential. See Object documentation
 	whatIsAPrimitive."
@@ -38,11 +28,8 @@ SmallFloat64>>* aNumber [
 	^ aNumber adaptToFloat: self andSend: #*
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>+ aNumber [
+{ #category : #arithmetic }
+SmallFloat64 >> + aNumber [ 
 	"Primitive. Answer the sum of the receiver and aNumber. Essential.
 	Fail if the argument is not a Float. See Object documentation
 	whatIsAPrimitive."
@@ -51,11 +38,8 @@ SmallFloat64>>+ aNumber [
 	^ aNumber adaptToFloat: self andSend: #+
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>- aNumber [
+{ #category : #arithmetic }
+SmallFloat64 >> - aNumber [ 
 	"Primitive. Answer the difference between the receiver and aNumber.
 	Fail if the argument is not a Float. Essential. See Object documentation
 	whatIsAPrimitive."
@@ -64,11 +48,8 @@ SmallFloat64>>- aNumber [
 	^ aNumber adaptToFloat: self andSend: #-
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>/ aNumber [
+{ #category : #arithmetic }
+SmallFloat64 >> / aNumber [ 
 	"Primitive. Answer the result of dividing receiver by aNumber.
 	Fail if the argument is not a Float. Essential. See Object documentation
 	whatIsAPrimitive."
@@ -78,11 +59,8 @@ SmallFloat64>>/ aNumber [
 	^aNumber adaptToFloat: self andSend: #/
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>< aNumber [
+{ #category : #comparing }
+SmallFloat64 >> < aNumber [ 
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is less than the argument. Otherwise return false.
 	Fail if the argument is not a Float. Essential. See Object documentation
@@ -92,11 +70,8 @@ SmallFloat64>>< aNumber [
 	^ aNumber adaptToFloat: self andCompare: #<
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>><= aNumber [
+{ #category : #comparing }
+SmallFloat64 >> <= aNumber [ 
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is less than or equal to the argument. Otherwise return
 	false. Fail if the argument is not a Float. Optional. See Object
@@ -106,11 +81,8 @@ SmallFloat64>><= aNumber [
 	^ aNumber adaptToFloat: self andCompare: #<=
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>= aNumber [
+{ #category : #comparing }
+SmallFloat64 >> = aNumber [ 
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is equal to the argument. Otherwise return false.
 	Fail if the argument is not a Float. Essential. See Object documentation
@@ -121,11 +93,8 @@ SmallFloat64>>= aNumber [
 	^ aNumber adaptToFloat: self andCompare: #=
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>> aNumber [
+{ #category : #comparing }
+SmallFloat64 >> > aNumber [ 
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is greater than the argument. Otherwise return false.
 	Fail if the argument is not a Float. Essential. See Object documentation
@@ -135,11 +104,8 @@ SmallFloat64>>> aNumber [
 	^ aNumber adaptToFloat: self andCompare: #>
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>>= aNumber [
+{ #category : #comparing }
+SmallFloat64 >> >= aNumber [ 
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is greater than or equal to the argument. Otherwise return
 	false. Fail if the argument is not a Float. Optional. See Object documentation 
@@ -149,11 +115,8 @@ SmallFloat64>>>= aNumber [
 	^ aNumber adaptToFloat: self andCompare: #>=
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>arcTan [
+{ #category : #'mathematical functions' }
+SmallFloat64 >> arcTan [
 	"Answer the angle in radians.
 	 Optional. See Object documentation whatIsAPrimitive."
 
@@ -177,38 +140,26 @@ SmallFloat64>>arcTan [
 	^ theta
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>clone [
+{ #category : #copying }
+SmallFloat64 >> clone [
 	"Answer the receiver, because SmallFloat64s are unique."
 	^self
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>copy [
+{ #category : #copying }
+SmallFloat64 >> copy [
 	"Answer the receiver, because SmallFloat64s are unique."
 	^self
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>deepCopy [
+{ #category : #copying }
+SmallFloat64 >> deepCopy [
 	"Answer the receiver, because SmallFloat64s are unique."
 	^self
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>exp [
+{ #category : #'mathematical functions' }
+SmallFloat64 >> exp [
 	"Answer E raised to the receiver power.
 	 Optional. See Object documentation whatIsAPrimitive." 
 
@@ -241,11 +192,8 @@ SmallFloat64>>exp [
 	^ base * correction
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>exponent [
+{ #category : #'truncation and round off' }
+SmallFloat64 >> exponent [
 	"Primitive. Consider the receiver to be represented as a power of two
 	multiplied by a mantissa (between one and two). Answer with the
 	SmallInteger to whose power two is raised. Optional. See Object
@@ -264,11 +212,8 @@ SmallFloat64>>exponent [
 	^self negated exponent
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>fractionPart [
+{ #category : #'truncation and round off' }
+SmallFloat64 >> fractionPart [
 	"Primitive. Answer a Float whose value is the difference between the 
 	receiver and the receiver's asInteger value. Optional. See Object 
 	documentation whatIsAPrimitive."
@@ -277,21 +222,15 @@ SmallFloat64>>fractionPart [
 	^self - self truncated asFloat
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>identityHash [
+{ #category : #comparing }
+SmallFloat64 >> identityHash [
 	"Answer an integer unique to the receiver."
 	<primitive: 171>
 	^self primitiveFailed
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>ln [
+{ #category : #'mathematical functions' }
+SmallFloat64 >> ln [
 	"Answer the natural logarithm of the receiver.
 	 Optional. See Object documentation whatIsAPrimitive."
 
@@ -331,20 +270,14 @@ SmallFloat64>>ln [
 	"2.718284 ln 1.0"
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>shallowCopy [
+{ #category : #copying }
+SmallFloat64 >> shallowCopy [
 	"Answer the receiver, because SmallFloat64s are unique."
 	^self
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>sin [
+{ #category : #'mathematical functions' }
+SmallFloat64 >> sin [
 	"Answer the sine of the receiver taken as an angle in radians.
 	 Optional. See Object documentation whatIsAPrimitive."
 
@@ -374,11 +307,8 @@ SmallFloat64>>sin [
 	^ sum
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>sqrt [
+{ #category : #'mathematical functions' }
+SmallFloat64 >> sqrt [
 	"Answer the square root of the receiver. 
 	 Optional. See Object documentation whatIsAPrimitive."
 	| exp guess eps delta |
@@ -403,11 +333,8 @@ SmallFloat64>>sqrt [
 	^ guess
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>timesTwoPower: anInteger [
+{ #category : #'mathematical functions' }
+SmallFloat64 >> timesTwoPower: anInteger [ 
 	"Primitive. Answer with the receiver multiplied by 2.0 raised
 	to the power of the argument.
 	Optional. See Object documentation whatIsAPrimitive."
@@ -420,11 +347,8 @@ SmallFloat64>>timesTwoPower: anInteger [
 	^ self * (2.0 raisedToInteger: anInteger)
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>truncated [
+{ #category : #'truncation and round off' }
+SmallFloat64 >> truncated [
 	"Answer with a SmallInteger equal to the value of the receiver without 
 	its fractional part. The primitive fails if the truncated value cannot be 
 	represented as a SmallInteger. In that case, the code below will compute 
@@ -450,20 +374,14 @@ SmallFloat64>>truncated [
 		
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>veryDeepCopyWith: deepCopier [
+{ #category : #copying }
+SmallFloat64 >> veryDeepCopyWith: deepCopier [
 	"Answer the receiver, because SmallFloat64s are unique."
 	^self
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-SmallFloat64>>~= aNumber [
+{ #category : #comparing }
+SmallFloat64 >> ~= aNumber [ 
 	"Primitive. Compare the receiver with the argument and return true
 	if the receiver is not equal to the argument. Otherwise return false.
 	Fail if the argument is not a Float. Optional. See Object documentation

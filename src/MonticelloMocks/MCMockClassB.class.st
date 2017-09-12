@@ -16,6 +16,5 @@ Class {
 	#classInstVars : [
 		'ciVar'
 	],
-	#category : #MonticelloMocks,
-	#timestamp : ''
+	#category : #MonticelloMocks
 }

@@ -3,17 +3,11 @@ Kernel trait for Behavior categorization
 "
 Trait {
 	#name : #TBehaviorCategorization,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Traits-Kernel-Traits,
-	#timestamp : 'TorstenBergmann 2/4/2014 20:37'
+	#category : #Traits-Kernel-Traits
 }
 
-{
-	#category : #organization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehaviorCategorization>>category [
+{ #category : #organization }
+TBehaviorCategorization >> category [
 	"Answer the system organization category for the receiver. First check whether the
 	category name stored in the ivar is still correct and only if this fails look it up
 	(latter is much more expensive)"
@@ -30,11 +24,8 @@ TBehaviorCategorization>>category [
 	^ result
 ]
 
-{
-	#category : #organization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TBehaviorCategorization>>category: aString  [
+{ #category : #organization }
+TBehaviorCategorization >> category: aString [ 
 	"Categorize the receiver under the system category, aString, removing it from 
 	any previous categorization."
 

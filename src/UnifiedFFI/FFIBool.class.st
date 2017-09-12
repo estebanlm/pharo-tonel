@@ -5,54 +5,35 @@ Represented as single byte on C side.
 Class {
 	#name : #FFIBool,
 	#superclass : #FFIExternalType,
-	#category : #UnifiedFFI-Types,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Types
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIBool class>>externalType [
+{ #category : #accessing }
+FFIBool class >> externalType [
 	^ ExternalType bool
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIBool class>>externalTypeAlignment [
+{ #category : #accessing }
+FFIBool class >> externalTypeAlignment [
 	^ 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIBool class>>externalTypeSize [
+{ #category : #accessing }
+FFIBool class >> externalTypeSize [
 	^ 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIBool>>basicHandle: aHandle at: index [
+{ #category : #private }
+FFIBool >> basicHandle: aHandle at: index [
 	^ aHandle booleanAt: index
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIBool>>basicHandle: aHandle at: index put: value [
+{ #category : #private }
+FFIBool >> basicHandle: aHandle at: index put: value [
 	^ aHandle booleanAt: index put: value
 ]
 
-{
-	#category : #'stack parameter classification',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIBool>>stackValueParameterClass [
+{ #category : #'stack parameter classification' }
+FFIBool >> stackValueParameterClass [
 	^ #integer
 ]

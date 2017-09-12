@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #BMPReadWriterTest,
 	#superclass : #TestCase,
-	#category : #Graphics-Tests-Files,
-	#timestamp : ''
+	#category : #Graphics-Tests-Files
 }
 
-{
-	#category : #data,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BMPReadWriterTest>>bmpData16bit [
+{ #category : #data }
+BMPReadWriterTest >> bmpData16bit [
 	"Created via:
 		(Base64MimeConverter mimeEncode: 
 			(FileStream readOnlyFileNamed: 'bmptest16b.bmp') binary)
@@ -25,11 +18,8 @@ BMPReadWriterTest>>bmpData16bit [
 AHwAfAAAAAAAAAAAAHwAfAB8AHwAAA==' readStream) contents
 ]
 
-{
-	#category : #data,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BMPReadWriterTest>>bmpData24bit [
+{ #category : #data }
+BMPReadWriterTest >> bmpData24bit [
 	"Created via:
 		(Base64MimeConverter mimeEncode: 
 			(FileStream readOnlyFileNamed: 'bmptest24.bmp') binary)
@@ -43,11 +33,8 @@ AP8AAP8AAP8AAP8A/wAA/wAA/wAA/wAAAP8AAP8AAP8AAP8A/wAA/wAA/wAA/wAAAP8AAP8A
 AAD/AAD/AAAAAAAAAAAAAAAAAAD/AAD/AAD/AAD/' readStream) contents
 ]
 
-{
-	#category : #data,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BMPReadWriterTest>>bmpData32bit [
+{ #category : #data }
+BMPReadWriterTest >> bmpData32bit [
 	"Created via:
 		(Base64MimeConverter mimeEncode: 
 			(FileStream readOnlyFileNamed: 'bmptest32b.bmp') binary)
@@ -63,11 +50,8 @@ AAD/AAAA/wAAAAAAAAAAAAAAAAAAAAAAAAD/AAAA/wAAAP8AAAD/AAAA'
 readStream) contents
 ]
 
-{
-	#category : #data,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BMPReadWriterTest>>bmpData4bit [
+{ #category : #data }
+BMPReadWriterTest >> bmpData4bit [
 	"Created via:
 		(Base64MimeConverter mimeEncode: 
 			(FileStream readOnlyFileNamed: 'bmptest4.bmp') binary)
@@ -98,11 +82,8 @@ wMBgAMDAgADAwKAA8Pv/AKSgoACAgIAAAAD/AAD/AAAA//8A/wAAAP8A/wD//wAA////APr6
 AAAAAPn5+fk=' readStream) contents
 ]
 
-{
-	#category : #data,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BMPReadWriterTest>>bmpData8bit [
+{ #category : #data }
+BMPReadWriterTest >> bmpData8bit [
 	"Created via:
 		(Base64MimeConverter mimeEncode: 
 			(FileStream readOnlyFileNamed: 'bmptest8.bmp') binary)
@@ -133,11 +114,8 @@ wMBgAMDAgADAwKAA8Pv/AKSgoACAgIAAAAD/AAD/AAAA//8A/wAAAP8A/wD//wAA////APr6
 AAAAAPn5+fk=' readStream) contents
 ]
 
-{
-	#category : #data,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BMPReadWriterTest>>bmpDataR5G6B5 [
+{ #category : #data }
+BMPReadWriterTest >> bmpDataR5G6B5 [
 	"This is a BMP file based on BitmapV4Header which is currently unsupported."
 	"Created via:
 		(Base64MimeConverter mimeEncode: 
@@ -152,11 +130,8 @@ APgA+AAAAAAAAAAAAPgA+AD4APgAAAAAAAAAAAD4APgA+AD4AAA='
 readStream) contents
 ]
 
-{
-	#category : #data,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BMPReadWriterTest>>bmpDataX4R4G4B4 [
+{ #category : #data }
+BMPReadWriterTest >> bmpDataX4R4G4B4 [
 	"This is a BMP file based on BitmapV4Header which is currently unsupported."
 	"Created via:
 		(Base64MimeConverter mimeEncode: 
@@ -171,11 +146,8 @@ AA8ADwAAAAAAAAAAAA8ADwAPAA8AAAAAAAAAAAAPAA8ADwAPAAA='
 readStream) contents
 ]
 
-{
-	#category : #data,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BMPReadWriterTest>>bmpDataX8R8G8B8 [
+{ #category : #data }
+BMPReadWriterTest >> bmpDataX8R8G8B8 [
 	"This is a BMP file based on BitmapV4Header which is currently unsupported."
 	"Created via:
 		(Base64MimeConverter mimeEncode: 
@@ -193,11 +165,8 @@ AP8AAA=='
 readStream) contents
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BMPReadWriterTest>>testBmp16Bit [
+{ #category : #reading }
+BMPReadWriterTest >> testBmp16Bit [
 	| reader form |
 	reader := BMPReadWriter new on: self bmpData16bit readStream.
 	form := reader nextImage.
@@ -209,11 +178,8 @@ BMPReadWriterTest>>testBmp16Bit [
 	self assert: (form pixelValueAt: 1 @ 1) = 32768
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BMPReadWriterTest>>testBmp24Bit [
+{ #category : #reading }
+BMPReadWriterTest >> testBmp24Bit [
 	| reader form |
 	reader := BMPReadWriter new on: (ReadStream on: self bmpData24bit).
 	form := reader nextImage.
@@ -225,11 +191,8 @@ BMPReadWriterTest>>testBmp24Bit [
 
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BMPReadWriterTest>>testBmp32Bit [
+{ #category : #reading }
+BMPReadWriterTest >> testBmp32Bit [
 	| reader form |
 	reader := BMPReadWriter new on: self bmpData32bit readStream.
 	form := reader nextImage.
@@ -240,11 +203,8 @@ BMPReadWriterTest>>testBmp32Bit [
 	self assert: (form pixelValueAt: 1 @ 1) = 4278190080
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BMPReadWriterTest>>testBmp4Bit [
+{ #category : #reading }
+BMPReadWriterTest >> testBmp4Bit [
 	| reader form |
 	reader := BMPReadWriter new on: self bmpData4bit readStream.
 	form := reader nextImage.
@@ -255,11 +215,8 @@ BMPReadWriterTest>>testBmp4Bit [
 	self assert: (form colorAt: 4 @ 4) = Color white
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-BMPReadWriterTest>>testBmp8Bit [
+{ #category : #reading }
+BMPReadWriterTest >> testBmp8Bit [
 	| reader form |
 	reader := BMPReadWriter new on: self bmpData8bit readStream.
 	form := reader nextImage.

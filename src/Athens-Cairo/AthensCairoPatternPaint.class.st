@@ -15,51 +15,35 @@ Class {
 	#pools : [
 		'AthensCairoDefs'
 	],
-	#category : #Athens-Cairo-Paints,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Paints
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint class>>finalizeResourceData: handle [
+{ #category : #private }
+AthensCairoPatternPaint class >> finalizeResourceData: handle [
 
 	self primDestroyPattern: handle value 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint class>>primDestroyPattern: aHandle [
+{ #category : #private }
+AthensCairoPatternPaint class >> primDestroyPattern: aHandle [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
 	self nbCall: #(void cairo_pattern_destroy (ulong aHandle) )
  
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>asAthensPaintOn: anAthensCanvas	 [
+{ #category : #converting }
+AthensCairoPatternPaint >> asAthensPaintOn: anAthensCanvas [	
 	^ self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>asStrokePaintOn: aCanvas [
+{ #category : #converting }
+AthensCairoPatternPaint >> asStrokePaintOn: aCanvas [
 	^ aCanvas surface createStrokePaintFor: self
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>athensFillPath: path on: aCanvas  [
+{ #category : #drawing }
+AthensCairoPatternPaint >> athensFillPath: path on: aCanvas [ 
 
 	aCanvas
 		newPath;
@@ -70,11 +54,8 @@ AthensCairoPatternPaint>>athensFillPath: path on: aCanvas  [
 	aCanvas fill.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>athensFillRectangle: aRectangle on: aCanvas [
+{ #category : #drawing }
+AthensCairoPatternPaint >> athensFillRectangle: aRectangle on: aCanvas [
 	"This is a terminal method in rendering dispatch scheme
 	canvas->shape->paint. See AthensCanvas>>fillShape: "
 
@@ -89,11 +70,8 @@ AthensCairoPatternPaint>>athensFillRectangle: aRectangle on: aCanvas [
 	aCanvas fill
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>athensLoadOn: anAthensCanvas  [
+{ #category : #drawing }
+AthensCairoPatternPaint >> athensLoadOn: anAthensCanvas [ 
 	"
 	Note: The pattern's transformation matrix will be locked to the user space in effect at the time of cairo_set_source(). This means that further modifications of the current transformation matrix will not affect the source pattern. See cairo_pattern_set_matrix().
 	"
@@ -106,49 +84,34 @@ AthensCairoPatternPaint>>athensLoadOn: anAthensCanvas  [
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>defaultExtend [
+{ #category : #initialize-release }
+AthensCairoPatternPaint >> defaultExtend [
 "The default extend mode is CAIRO_EXTEND_NONE for surface patterns and CAIRO_EXTEND_PAD for gradient patterns.
 "
 	
 	^  CAIRO_EXTEND_NONE
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>initialize [
+{ #category : #initialize-release }
+AthensCairoPatternPaint >> initialize [
 	handle value = 0 
 		ifTrue: [ self error: 'Error creating new paint' ].
 	"register to be finalized"
 	FFIExternalResourceManager addResource: self data: handle.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>isPatternTypeMismatch [
+{ #category : #testing }
+AthensCairoPatternPaint >> isPatternTypeMismatch [
 	^ self status = CAIRO_STATUS_PATTERN_TYPE_MISMATCH.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>isSuccess [
+{ #category : #testing }
+AthensCairoPatternPaint >> isSuccess [
 	^ self status  =	CAIRO_STATUS_SUCCESS
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>loadOnCairoCanvas: aCanvas [
+{ #category : #drawing }
+AthensCairoPatternPaint >> loadOnCairoCanvas: aCanvas [
 	"
 	Note: The pattern's transformation matrix will be locked to the user space in effect at the time of cairo_set_source(). This means that further modifications of the current transformation matrix will not affect the source pattern. See cairo_pattern_set_matrix().
 	"
@@ -161,11 +124,8 @@ AthensCairoPatternPaint>>loadOnCairoCanvas: aCanvas [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>maskOn: anAthensCanvas [
+{ #category : #drawing }
+AthensCairoPatternPaint >> maskOn: anAthensCanvas [
 "
 A drawing operator that paints the current source using the alpha channel of pattern as a mask. (Opaque areas of pattern are painted with the source, transparent areas are not painted.)
 "
@@ -174,20 +134,14 @@ A drawing operator that paints the current source using the alpha channel of pat
 	^ self nbCall: #(void cairo_mask(cairo_t anAthensCanvas, self))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>noRepeat [
+{ #category : #accessing }
+AthensCairoPatternPaint >> noRepeat [
 	self primSetExtend: CAIRO_EXTEND_NONE.
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>primSetExtend: extend [
+{ #category : #primitives }
+AthensCairoPatternPaint >> primSetExtend: extend [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
@@ -196,37 +150,25 @@ AthensCairoPatternPaint>>primSetExtend: extend [
 		
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>primSetSourceOn: aCanvas [
+{ #category : #primitives }
+AthensCairoPatternPaint >> primSetSourceOn: aCanvas [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^ self nbCall: #(void cairo_set_source ( cairo_t  aCanvas,  self))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>reflect [
+{ #category : #accessing }
+AthensCairoPatternPaint >> reflect [
 	self primSetExtend: CAIRO_EXTEND_REFLECT.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>repeat [
+{ #category : #accessing }
+AthensCairoPatternPaint >> repeat [
 	self primSetExtend: CAIRO_EXTEND_REPEAT.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>setExtend: aSymbol [
+{ #category : #accessing }
+AthensCairoPatternPaint >> setExtend: aSymbol [
 	"
 	typedef enum {
     CAIRO_EXTEND_NONE,
@@ -244,11 +186,8 @@ AthensCairoPatternPaint>>setExtend: aSymbol [
 	self primSetExtend: enum.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>setMatrix: m [
+{ #category : #accessing }
+AthensCairoPatternPaint >> setMatrix: m [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
@@ -259,11 +198,8 @@ AthensCairoPatternPaint>>setMatrix: m [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoPatternPaint>>status [
+{ #category : #accessing }
+AthensCairoPatternPaint >> status [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^ self nbCall: #(int cairo_pattern_status (cairo_pattern_t  self))

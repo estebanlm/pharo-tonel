@@ -1,22 +1,14 @@
-Extension {
-	#name : #CompiledMethodTrailer
-}
+Extension { #name : #CompiledMethodTrailer }
 
-{
-	#category : #'*Compression-Streams',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-CompiledMethodTrailer>>decodeEmbeddedSourceZip [
+{ #category : #'*Compression-Streams' }
+CompiledMethodTrailer >> decodeEmbeddedSourceZip [
 
 	"data is string with method's source code, compressed using zip compression"
 	self decodeZip.
 ]
 
-{
-	#category : #'*Compression-Streams',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-CompiledMethodTrailer>>decodeZip [
+{ #category : #'*Compression-Streams' }
+CompiledMethodTrailer >> decodeZip [
 	"data := <trailer> unzip utf8ToSqueak"
 	
 	| len bytes |
@@ -27,22 +19,16 @@ CompiledMethodTrailer>>decodeZip [
 	data := (ZipReadStream on: bytes) contents asString convertFromEncoding: 'utf8'
 ]
 
-{
-	#category : #'*Compression-Streams',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-CompiledMethodTrailer>>encodeEmbeddedSourceZip [
+{ #category : #'*Compression-Streams' }
+CompiledMethodTrailer >> encodeEmbeddedSourceZip [
 
 	"data is string with method's source code, encode it using Zip compression method"
 	self encodeUsingZip
 
 ]
 
-{
-	#category : #'*Compression-Streams',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-CompiledMethodTrailer>>encodeUsingZip [
+{ #category : #'*Compression-Streams' }
+CompiledMethodTrailer >> encodeUsingZip [
 
 	"data is string, encode it using gzip compression"
 	| utf8str stream length encodedLength |

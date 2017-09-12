@@ -4,6 +4,5 @@ I am raised when the right bounds of the text area are changed
 Class {
 	#name : #RubExtentChanged,
 	#superclass : #RubBoundsChanged,
-	#category : #Rubric-Editing-Announcements,
-	#timestamp : 'FranckWarlouzet 7/29/2015 10:50'
+	#category : #Rubric-Editing-Announcements
 }

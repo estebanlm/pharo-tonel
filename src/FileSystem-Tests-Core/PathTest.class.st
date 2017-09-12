@@ -5,15 +5,11 @@ Class {
 	#name : #PathTest,
 	#superclass : #TestCase,
 	#type : #variable,
-	#category : #FileSystem-Tests-Core,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:44'
+	#category : #FileSystem-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testAbsolutePath [
+{ #category : #tests }
+PathTest >> testAbsolutePath [
 
 	| path |
 
@@ -32,22 +28,16 @@ PathTest>>testAbsolutePath [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testAbsolutePrintString [
+{ #category : #tests }
+PathTest >> testAbsolutePrintString [
 	| path actual |
 	path := Path / 'plonk' / 'griffle'.
 	actual := path printString.
 	self assert: actual equals: 'Path / ''plonk'' / ''griffle'''
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testAbsoluteWithParents [
+{ #category : #tests }
+PathTest >> testAbsoluteWithParents [
 	| path allPaths |
 	path := Path / 'plonk' / 'griffle' / 'nurb'.
 	allPaths := path withParents.
@@ -68,11 +58,8 @@ PathTest>>testAbsoluteWithParents [
 	self assert: allPaths fourth == path
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testAsReference [
+{ #category : #tests }
+PathTest >> testAsReference [
 	| path reference |
 	path := Path * 'plonk'.
 	reference := path asFileReference.
@@ -80,21 +67,15 @@ PathTest>>testAsReference [
 	self assert: reference path equals: path
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testBasename [
+{ #category : #tests }
+PathTest >> testBasename [
 	| path |
 	path := Path * 'plonk' / 'griffle'.
 	self assert: path basename equals: 'griffle'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testBasenameWithoutExtension [
+{ #category : #tests }
+PathTest >> testBasenameWithoutExtension [
 	"self debug: #testBasenameWithoutExtension"
 	| path |
 	path := Path * 'plonk' / 'griffle'.
@@ -116,11 +97,8 @@ PathTest>>testBasenameWithoutExtension [
 	self assert: (path basenameWithoutExtension: 'taz') equals: 'griffle.taz.zork'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testCanonicalization [
+{ #category : #tests }
+PathTest >> testCanonicalization [
 
 	| ref |
 
@@ -147,33 +125,24 @@ PathTest>>testCanonicalization [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testCommaAddsExtension [
+{ #category : #tests }
+PathTest >> testCommaAddsExtension [
 	| path result |
 	path := Path * 'plonk' .
 	result := path, 'griffle'.
 	self assert: result basename equals: 'plonk.griffle'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testCommaAddsExtensionAgain [
+{ #category : #tests }
+PathTest >> testCommaAddsExtensionAgain [
 	| path result |
 	path := Path * 'plonk.griffle'.
 	result := path, 'nurp'.
 	self assert: result basename equals: 'plonk.griffle.nurp'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testContains [
+{ #category : #tests }
+PathTest >> testContains [
 	| ancestor descendent |
 	ancestor := Path / 'plonk'.
 	descendent := Path / 'plonk' / 'griffle' / 'bork'.
@@ -181,11 +150,8 @@ PathTest>>testContains [
 	self deny: (descendent contains: ancestor)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testContainsLocator [
+{ #category : #tests }
+PathTest >> testContainsLocator [
 	| ancestor descendent |
 	ancestor := FileLocator imageDirectory resolve path.
 	descendent := FileLocator image / 'griffle'.
@@ -193,11 +159,8 @@ PathTest>>testContainsLocator [
 	self deny: (descendent contains: ancestor)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testEqual [
+{ #category : #tests }
+PathTest >> testEqual [
 	| a b |
 	a := Path * 'plonk'.
 	b := Path * 'plonk'.
@@ -205,11 +168,8 @@ PathTest>>testEqual [
 	self assert: a equals: b.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testExtendingPath [
+{ #category : #tests }
+PathTest >> testExtendingPath [
 
 	| ref |
 
@@ -243,11 +203,8 @@ PathTest>>testExtendingPath [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testExtensions [
+{ #category : #tests }
+PathTest >> testExtensions [
 	self 
 		assertCollection: (Path from: 'foo') extensions asArray
 		equals: #().
@@ -262,11 +219,8 @@ PathTest>>testExtensions [
 		equals: #( '1' 'tar' 'gz').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testFullName [
+{ #category : #tests }
+PathTest >> testFullName [
 
 	| path |
 
@@ -276,11 +230,8 @@ PathTest>>testFullName [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testGrandchildOfPath [
+{ #category : #tests }
+PathTest >> testGrandchildOfPath [
 	| griffle  nurb |
 	griffle := Path / 'griffle'.
 	nurb := griffle / 'plonk' / 'nurb'.
@@ -288,41 +239,29 @@ PathTest>>testGrandchildOfPath [
 	self deny: (nurb isChildOf: griffle).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testIsAbsolute [
+{ #category : #tests }
+PathTest >> testIsAbsolute [
 	self assert: (Path / 'plonk') isAbsolute
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testIsAbsoluteWindowsPathReturnsFalseWhenNoWindowsAbsolutePathProvided [
+{ #category : #tests }
+PathTest >> testIsAbsoluteWindowsPathReturnsFalseWhenNoWindowsAbsolutePathProvided [
   
 	self deny: (Path isAbsoluteWindowsPath: 'tmp').
 	self deny: (Path isAbsoluteWindowsPath: '/tmp').
 	self deny: (Path isAbsoluteWindowsPath: '/tmp/test').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testIsAbsoluteWindowsPathReturnsTrueWhenWindowsAbsolutePathProvided [
+{ #category : #tests }
+PathTest >> testIsAbsoluteWindowsPathReturnsTrueWhenWindowsAbsolutePathProvided [
   
 	self assert: (Path isAbsoluteWindowsPath: 'A:\').
 	self assert: (Path isAbsoluteWindowsPath: 'c:\').
 	self assert: (Path isAbsoluteWindowsPath: 'c:\test').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testIsChildOfPath [
+{ #category : #tests }
+PathTest >> testIsChildOfPath [
 	| parent child |
 	parent := Path / 'griffle'.
 	child := parent / 'nurb'.
@@ -330,11 +269,8 @@ PathTest>>testIsChildOfPath [
 	self deny: (parent isChildOf: child)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testIsChildOfReference [
+{ #category : #tests }
+PathTest >> testIsChildOfReference [
 	| parent child |
 	parent := Path / 'griffle'.
 	child := (FileSystem memory referenceTo: parent / 'nurb').
@@ -342,59 +278,38 @@ PathTest>>testIsChildOfReference [
 	self deny: (parent isChildOf: child)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testIsEmpty [
+{ #category : #tests }
+PathTest >> testIsEmpty [
 	self assert: (Path workingDirectory) isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testIsNotAbsolute [
+{ #category : #tests }
+PathTest >> testIsNotAbsolute [
 	self deny: (Path * 'plonk') isAbsolute
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testIsNotRelative [
+{ #category : #tests }
+PathTest >> testIsNotRelative [
 	self deny: (Path / 'plonk') isRelative
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testIsNotRoot [
+{ #category : #tests }
+PathTest >> testIsNotRoot [
 	self deny: (Path / 'plonk') isRoot
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testIsRelative [
+{ #category : #tests }
+PathTest >> testIsRelative [
 	self assert: (Path * 'plonk') isRelative
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testIsRoot [
+{ #category : #tests }
+PathTest >> testIsRoot [
 	self assert: Path root isRoot
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testMakeRelative [
+{ #category : #tests }
+PathTest >> testMakeRelative [
 	"self run: #testMakeRelative"
 	
 	| parent child relative |
@@ -404,11 +319,8 @@ PathTest>>testMakeRelative [
 	self assert: relative equals: (Path parent / 'plonk' / 'nurp')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testMakeRelativeFrom2RelativePaths [
+{ #category : #tests }
+PathTest >> testMakeRelativeFrom2RelativePaths [
 	"Related to issue: 14846 MakeRelative-method-applied-on-two-relative-paths-is-not-working"
 
 	| parent child relative |
@@ -418,11 +330,8 @@ PathTest>>testMakeRelativeFrom2RelativePaths [
 	self assert: relative equals: Path parent / 'plonk' / 'nurp'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testParent [
+{ #category : #tests }
+PathTest >> testParent [
 	| path parent |
 	path := (Path * 'plonk') / 'griffle'.
 	parent := path parent.
@@ -430,11 +339,8 @@ PathTest>>testParent [
 	self assert: (parent at: 1) equals: 'plonk'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testParentParent [
+{ #category : #tests }
+PathTest >> testParentParent [
 	| path  |
 	path := (Path * '..') parent.
 	self assert: path size equals: 2.
@@ -442,11 +348,8 @@ PathTest>>testParentParent [
 	self assert: (path at: 2) equals: '..'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testParentResolution [
+{ #category : #tests }
+PathTest >> testParentResolution [
 	| base relative absolute |
 	base := Path / 'plonk' / 'pinto'.
 	relative := Path parent / 'griffle' / 'zonk'.
@@ -456,11 +359,8 @@ PathTest>>testParentResolution [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testParentUpTo [
+{ #category : #tests }
+PathTest >> testParentUpTo [
 	| a b c |
 	a := Path / 'testParentUpTo' / 'A'.
 	b := Path / 'testParentUpTo' / 'A' / 'B'.
@@ -471,11 +371,8 @@ PathTest>>testParentUpTo [
 	self assert: Path root equals: (c parentUpTo: 'notAParent')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testParse [
+{ #category : #tests }
+PathTest >> testParse [
 	"self run: #testParse"
 	
 	| path |
@@ -488,11 +385,8 @@ PathTest>>testParse [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testParseBogus [
+{ #category : #tests }
+PathTest >> testParseBogus [
 	"self run: #testParseBogus"
 	
 	| path |
@@ -504,22 +398,16 @@ PathTest>>testParseBogus [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testParseTrailingSlash [
+{ #category : #tests }
+PathTest >> testParseTrailingSlash [
 	| path |
 	path := Path from: 'griffle/' delimiter: $/.
 	self assert: path size equals: 1.
 	self assert: (path at: 1) equals: 'griffle'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testParseWindowsPathWithUnixDelimiters [
+{ #category : #tests }
+PathTest >> testParseWindowsPathWithUnixDelimiters [
 	"self run: #testParse"
 	
 	| path |
@@ -531,11 +419,8 @@ PathTest>>testParseWindowsPathWithUnixDelimiters [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testPathString [
+{ #category : #tests }
+PathTest >> testPathString [
 
 	| path |
 
@@ -546,11 +431,8 @@ PathTest>>testPathString [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testPrintPathOn [
+{ #category : #tests }
+PathTest >> testPrintPathOn [
 
 	| pathString pathSrc path |
 
@@ -569,11 +451,8 @@ PathTest>>testPrintPathOn [
 	self assert: pathSrc equals: pathString
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testPrintPathOnDelimiter [
+{ #category : #tests }
+PathTest >> testPrintPathOnDelimiter [
 
 	| pathString pathSrc path |
 
@@ -594,31 +473,22 @@ PathTest>>testPrintPathOnDelimiter [
 	self assert: pathSrc equals: pathString
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testPrintRelativeWithParent [
+{ #category : #tests }
+PathTest >> testPrintRelativeWithParent [
 	| path |
 	path := Path parent / 'foo'.
 	self assert: (path printWithDelimiter: $/) equals: '../foo'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testPrintWithDelimiter [
+{ #category : #tests }
+PathTest >> testPrintWithDelimiter [
 	| path |
 	path := (Path * 'plonk') / 'griffle'.
 	self assert: (path printWithDelimiter: $%) equals: 'plonk%griffle'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testRedundantSeparators [
+{ #category : #tests }
+PathTest >> testRedundantSeparators [
 
 	| ref |
 
@@ -638,11 +508,8 @@ PathTest>>testRedundantSeparators [
 	self assert: ref segments equals: #('a' 'b' 'c' 'foo' '..' 'bar')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testRelativeFromString [
+{ #category : #tests }
+PathTest >> testRelativeFromString [
 
 	| path |
 	
@@ -654,11 +521,8 @@ PathTest>>testRelativeFromString [
 	self assert: (path at: 2) equals: 'griffle'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testRelativeFromStringNormalization [
+{ #category : #tests }
+PathTest >> testRelativeFromStringNormalization [
 
 	| path |
 	
@@ -669,11 +533,8 @@ PathTest>>testRelativeFromStringNormalization [
 	self assert: path segments equals: #('plonk' '..' 'griffle').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testRelativeFromStringNormalizationParent [
+{ #category : #tests }
+PathTest >> testRelativeFromStringNormalizationParent [
 
 	| path |
 	
@@ -684,11 +545,8 @@ PathTest>>testRelativeFromStringNormalizationParent [
 	self assert: path segments equals: #('plonk' '..' '..' 'griffle')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testRelativeFromStringParent [
+{ #category : #tests }
+PathTest >> testRelativeFromStringParent [
 
 	| path |
 	
@@ -700,22 +558,16 @@ PathTest>>testRelativeFromStringParent [
 	self assert: (path at: 2) equals: '..'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testRelativePrintString [
+{ #category : #tests }
+PathTest >> testRelativePrintString [
 	| path actual |
 	path := Path * 'plonk' / 'griffle'.
 	actual := path printString.
 	self assert: actual equals: 'Path * ''plonk'' / ''griffle'''
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testRelativeTo [
+{ #category : #tests }
+PathTest >> testRelativeTo [
 	"self run: #testRelativeTo"
 	"aPath relativeTo: aParent returns a new path relative to the parent"
 	
@@ -726,11 +578,8 @@ PathTest>>testRelativeTo [
 	self assert: relative equals: (Path * 'plonk' / 'nurp')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testRelativeToBranch [
+{ #category : #tests }
+PathTest >> testRelativeToBranch [
 	| parent child relative |
 	parent := Path / 'griffle' / 'bibb'.
 	child := Path / 'griffle' / 'plonk' / 'nurp'.
@@ -738,11 +587,8 @@ PathTest>>testRelativeToBranch [
 	self assert: relative  equals: (Path parent / 'plonk' / 'nurp')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testRelativeWithParents [
+{ #category : #tests }
+PathTest >> testRelativeWithParents [
 	| path allPaths |
 	path := Path * 'plonk' / 'griffle' / 'nurb'.
 	allPaths := path withParents.
@@ -759,22 +605,16 @@ PathTest>>testRelativeWithParents [
 	self assert: allPaths third == path
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testResolveAbsolute [
+{ #category : #tests }
+PathTest >> testResolveAbsolute [
 	| path |
 	path := Path / 'griffle'.
 	self assert: path resolve == path.
 	self assert: path isAbsolute
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testResolvePath [
+{ #category : #tests }
+PathTest >> testResolvePath [
 	"self debug: #testResolvePath"
 	
 	| path |
@@ -802,22 +642,16 @@ PathTest>>testResolvePath [
 		equals: (Path / 'grandfather')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testResolveRelative [
+{ #category : #tests }
+PathTest >> testResolveRelative [
 	| path |
 	path := Path * 'griffle'.
 	self assert: path resolve == path.
 	self assert: path isRelative
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testResolveString [
+{ #category : #tests }
+PathTest >> testResolveString [
 	"self debug: #testResolveString"
 
 	| path result |
@@ -829,32 +663,23 @@ PathTest>>testResolveString [
 	self assert: (result at: 2) equals: 'griffle'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testRootParent [
+{ #category : #tests }
+PathTest >> testRootParent [
 	| root |
 	root := Path root.
 	self assert: root parent == root
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testRootPrintString [
+{ #category : #tests }
+PathTest >> testRootPrintString [
 	| path actual |
 	path := Path root.
 	actual := path printString.
 	self assert: actual equals: 'Path root'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testSiblingOfPath [
+{ #category : #tests }
+PathTest >> testSiblingOfPath [
 	| griffle  nurb |
 	griffle := Path / 'griffle'.
 	nurb := Path / 'nurb'.
@@ -862,11 +687,8 @@ PathTest>>testSiblingOfPath [
 	self deny: (nurb isChildOf: griffle).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testSimpleResolution [
+{ #category : #tests }
+PathTest >> testSimpleResolution [
 	| base relative absolute |
 	base := Path / 'plonk'.
 	relative := (Path * 'griffle') / 'zonk'.
@@ -878,11 +700,8 @@ PathTest>>testSimpleResolution [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testSlash [
+{ #category : #tests }
+PathTest >> testSlash [
 	| path actual |
 	path := Path * 'plonk'.
 	actual := path / 'griffle'.
@@ -890,87 +709,63 @@ PathTest>>testSlash [
 	self assert: (actual printWithDelimiter: $/) equals: 'plonk/griffle'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testUnequalContent [
+{ #category : #tests }
+PathTest >> testUnequalContent [
 	| a b |
 	a := Path * 'plonk'.
 	b := Path * 'griffle'.
 	self deny: a = b.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testUnequalSize [
+{ #category : #tests }
+PathTest >> testUnequalSize [
 	| a b |
 	a := Path * 'plonk'.
 	b := (Path * 'plonk') / 'griffle'.
 	self deny: a = b.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testUnixAbsolutePathName [
+{ #category : #tests }
+PathTest >> testUnixAbsolutePathName [
 
 	self assert: (Path from: '/test') isAbsolute.
 	self assert: (Path from: '/etc/bin') isAbsolute.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testWindowsAbsolutePathName [
+{ #category : #tests }
+PathTest >> testWindowsAbsolutePathName [
   
 	self assert: (Path from: 'A:\') isAbsolute.
 	self assert: (Path from: 'c:\') isAbsolute.
 	self assert: (Path from: 'c:\test') isAbsolute.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testWithExtentionAddsExtension [
+{ #category : #tests }
+PathTest >> testWithExtentionAddsExtension [
 	| path result |
 	path := Path * 'plonk'.
 	result := path withExtension: 'griffle'.
 	self assert: result basename equals: 'plonk.griffle'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testWithExtentionReplacesExtension [
+{ #category : #tests }
+PathTest >> testWithExtentionReplacesExtension [
 	| path result |
 	path := Path * 'plonk.griffle'.
 	result := path withExtension: 'griffle'.
 	self assert: result basename equals: 'plonk.griffle'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testWorkingDirPrintString [
+{ #category : #tests }
+PathTest >> testWorkingDirPrintString [
 	| path actual |
 	path := Path workingDirectory. 
 	actual := path printString.
 	self assert: actual equals: 'Path workingDirectory'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-PathTest>>testWorkingDirectoryParent [
+{ #category : #tests }
+PathTest >> testWorkingDirectoryParent [
 	| path |
 	path := Path workingDirectory parent.
 	self assert: path size equals: 1.

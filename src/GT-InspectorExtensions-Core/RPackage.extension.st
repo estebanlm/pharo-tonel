@@ -1,12 +1,7 @@
-Extension {
-	#name : #RPackage
-}
+Extension { #name : #RPackage }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-RPackage>>gtInspectorDefinedClassesIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+RPackage >> gtInspectorDefinedClassesIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	composite list
 		title: 'Classes';
@@ -15,11 +10,8 @@ RPackage>>gtInspectorDefinedClassesIn: composite [
 		tags: [ :each | each category ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-RPackage>>gtInspectorTagsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+RPackage >> gtInspectorTagsIn: composite [
 	<gtInspectorPresentationOrder: 40>
 	composite list
 		title: 'Tags';

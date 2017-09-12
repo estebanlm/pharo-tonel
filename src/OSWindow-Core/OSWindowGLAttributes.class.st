@@ -30,79 +30,51 @@ Class {
 		'DefaultStencilSize',
 		'DefaultSwapControl'
 	],
-	#category : #OSWindow-Core-OpenGL,
-	#timestamp : 'IgorStasenko 7/30/2014 16:38'
+	#category : #OSWindow-Core-OpenGL
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes class>>defaultAlphaSize [
+{ #category : #'as yet unclassified' }
+OSWindowGLAttributes class >> defaultAlphaSize [
 	^ DefaultAlphaSize
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes class>>defaultBlueSize [
+{ #category : #'as yet unclassified' }
+OSWindowGLAttributes class >> defaultBlueSize [
 	^ DefaultBlueSize
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes class>>defaultDepthSize [
+{ #category : #'as yet unclassified' }
+OSWindowGLAttributes class >> defaultDepthSize [
 	^ DefaultDepthSize
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes class>>defaultDoubleBuffer [
+{ #category : #'as yet unclassified' }
+OSWindowGLAttributes class >> defaultDoubleBuffer [
 	^ DefaultDoubleBuffer
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes class>>defaultGreenSize [
+{ #category : #'as yet unclassified' }
+OSWindowGLAttributes class >> defaultGreenSize [
 	^ DefaultGreenSize
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes class>>defaultRedSize [
+{ #category : #'as yet unclassified' }
+OSWindowGLAttributes class >> defaultRedSize [
 	^ DefaultRedSize
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes class>>defaultStencilSize [
+{ #category : #'as yet unclassified' }
+OSWindowGLAttributes class >> defaultStencilSize [
 	^ DefaultStencilSize
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes class>>defaultSwapControl [
+{ #category : #'as yet unclassified' }
+OSWindowGLAttributes class >> defaultSwapControl [
 	^ DefaultSwapControl
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes class>>initialize [
+{ #category : #'as yet unclassified' }
+OSWindowGLAttributes class >> initialize [
 	"
 	self initialize
 	"
@@ -121,101 +93,68 @@ OSWindowGLAttributes class>>initialize [
 	DefaultProfileType := 1.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>alphaSize [
+{ #category : #accessing }
+OSWindowGLAttributes >> alphaSize [
 	
 	^ alphaSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>alphaSize: anObject [
+{ #category : #accessing }
+OSWindowGLAttributes >> alphaSize: anObject [
 	
 	alphaSize := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>blueSize [
+{ #category : #accessing }
+OSWindowGLAttributes >> blueSize [
 	
 	^ blueSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>blueSize: anObject [
+{ #category : #accessing }
+OSWindowGLAttributes >> blueSize: anObject [
 	
 	blueSize := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>depthSize [
+{ #category : #accessing }
+OSWindowGLAttributes >> depthSize [
 	
 	^ depthSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>depthSize: anObject [
+{ #category : #accessing }
+OSWindowGLAttributes >> depthSize: anObject [
 	
 	depthSize := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>doubleBuffer [
+{ #category : #accessing }
+OSWindowGLAttributes >> doubleBuffer [
 	
 	^ doubleBuffer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>doubleBuffer: anObject [
+{ #category : #accessing }
+OSWindowGLAttributes >> doubleBuffer: anObject [
 	
 	doubleBuffer := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>greenSize [
+{ #category : #accessing }
+OSWindowGLAttributes >> greenSize [
 	
 	^ greenSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>greenSize: anObject [
+{ #category : #accessing }
+OSWindowGLAttributes >> greenSize: anObject [
 	
 	greenSize := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>initialize [
+{ #category : #initialization }
+OSWindowGLAttributes >> initialize [
 	redSize := DefaultRedSize.
 	greenSize := DefaultGreenSize.
 	blueSize := DefaultBlueSize.
@@ -229,102 +168,66 @@ OSWindowGLAttributes>>initialize [
 	profileType := DefaultProfileType.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>majorVersion [
+{ #category : #accessing }
+OSWindowGLAttributes >> majorVersion [
 	^ majorVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>majorVersion: anObject [
+{ #category : #accessing }
+OSWindowGLAttributes >> majorVersion: anObject [
 	majorVersion := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>minorVersion [
+{ #category : #accessing }
+OSWindowGLAttributes >> minorVersion [
 	^ minorVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>minorVersion: anObject [
+{ #category : #accessing }
+OSWindowGLAttributes >> minorVersion: anObject [
 	minorVersion := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>profileType [
+{ #category : #accessing }
+OSWindowGLAttributes >> profileType [
 	^ profileType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>profileType: anObject [
+{ #category : #accessing }
+OSWindowGLAttributes >> profileType: anObject [
 	profileType := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>redSize [
+{ #category : #accessing }
+OSWindowGLAttributes >> redSize [
 	
 	^ redSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>redSize: anObject [
+{ #category : #accessing }
+OSWindowGLAttributes >> redSize: anObject [
 	
 	redSize := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>stencilSize [
+{ #category : #accessing }
+OSWindowGLAttributes >> stencilSize [
 	^ stencilSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>stencilSize: aStencilSize [
+{ #category : #accessing }
+OSWindowGLAttributes >> stencilSize: aStencilSize [
 	stencilSize := aStencilSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>swapControl [
+{ #category : #accessing }
+OSWindowGLAttributes >> swapControl [
 	
 	^ swapControl
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGLAttributes>>swapControl: anObject [
+{ #category : #accessing }
+OSWindowGLAttributes >> swapControl: anObject [
 	
 	swapControl := anObject
 ]

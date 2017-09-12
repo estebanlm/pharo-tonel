@@ -16,23 +16,16 @@ Class {
 		'response',
 		'timing'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 15:18'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerTransactionEvent>>duration [
+{ #category : #accessing }
+ZnServerTransactionEvent >> duration [
 	^ timing totalDuration
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerTransactionEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnServerTransactionEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream space.
 	request requestLine printMethodAndUriOn: stream.
@@ -43,50 +36,32 @@ ZnServerTransactionEvent>>printContentsOn: stream [
 	stream space; print: self duration; nextPutAll: 'ms'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerTransactionEvent>>request [
+{ #category : #accessing }
+ZnServerTransactionEvent >> request [
 	^ request
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerTransactionEvent>>request: anObject [
+{ #category : #accessing }
+ZnServerTransactionEvent >> request: anObject [
 	request := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerTransactionEvent>>response [
+{ #category : #accessing }
+ZnServerTransactionEvent >> response [
 	^ response
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerTransactionEvent>>response: anObject [
+{ #category : #accessing }
+ZnServerTransactionEvent >> response: anObject [
 	response := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerTransactionEvent>>timing [
+{ #category : #accessing }
+ZnServerTransactionEvent >> timing [
 	^ timing
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerTransactionEvent>>timing: anObject [
+{ #category : #accessing }
+ZnServerTransactionEvent >> timing: anObject [
 	timing := anObject
 ]

@@ -4,23 +4,16 @@ I am a general suggestion context for a monticello tools. I give the Suggestion 
 Class {
 	#name : #SugsMonticelloToolContext,
 	#superclass : #SugsAbstractContext,
-	#category : #SmartSuggestions-Menu,
-	#timestamp : 'GuillermoPolito 2/10/2016 16:29'
+	#category : #SmartSuggestions-Menu
 }
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsMonticelloToolContext>>selectedMethod [
+{ #category : #selection }
+SugsMonticelloToolContext >> selectedMethod [
 	
 	^ nil
 ]
 
-{
-	#category : #refactoring,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsMonticelloToolContext>>sourceTextArea [
+{ #category : #refactoring }
+SugsMonticelloToolContext >> sourceTextArea [
 	^ model window submorphs detect: [:ea | ea respondsTo: #getTextSelector ].
 ]

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #TableLayoutProperties,
 	#superclass : #LayoutProperties,
@@ -19,71 +16,46 @@ Class {
 		'minCellSize',
 		'maxCellSize'
 	],
-	#category : #Morphic-Base-Layouts,
-	#timestamp : ''
+	#category : #Morphic-Base-Layouts
 }
 
-{
-	#category : #'table defaults',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>cellInset [
+{ #category : #'table defaults' }
+TableLayoutProperties >> cellInset [
 	^cellInset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>cellInset: aNumber [
+{ #category : #accessing }
+TableLayoutProperties >> cellInset: aNumber [
 	cellInset := aNumber
 ]
 
-{
-	#category : #'table defaults',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>cellPositioning [
+{ #category : #'table defaults' }
+TableLayoutProperties >> cellPositioning [
 	^cellPositioning
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>cellPositioning: aSymbol [
+{ #category : #accessing }
+TableLayoutProperties >> cellPositioning: aSymbol [
 	cellPositioning := aSymbol
 ]
 
-{
-	#category : #'table defaults',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>cellSpacing [
+{ #category : #'table defaults' }
+TableLayoutProperties >> cellSpacing [
 	^cellSpacing
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>cellSpacing: aSymbol [
+{ #category : #accessing }
+TableLayoutProperties >> cellSpacing: aSymbol [
 	cellSpacing := aSymbol.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>includesTableProperties [
+{ #category : #testing }
+TableLayoutProperties >> includesTableProperties [
 	^true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>initialize [
+{ #category : #initialization }
+TableLayoutProperties >> initialize [
 	super initialize.
 	cellSpacing := listSpacing := wrapDirection := #none.
 	cellPositioning := #center.
@@ -95,162 +67,102 @@ TableLayoutProperties>>initialize [
 
 ]
 
-{
-	#category : #'table defaults',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>layoutInset [
+{ #category : #'table defaults' }
+TableLayoutProperties >> layoutInset [
 	^layoutInset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>layoutInset: aNumber [
+{ #category : #accessing }
+TableLayoutProperties >> layoutInset: aNumber [
 	layoutInset := aNumber
 ]
 
-{
-	#category : #'table defaults',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>listCentering [
+{ #category : #'table defaults' }
+TableLayoutProperties >> listCentering [
 	^listCentering
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>listCentering: aSymbol [
+{ #category : #accessing }
+TableLayoutProperties >> listCentering: aSymbol [
 	listCentering := aSymbol
 ]
 
-{
-	#category : #'table defaults',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>listDirection [
+{ #category : #'table defaults' }
+TableLayoutProperties >> listDirection [
 	^listDirection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>listDirection: aSymbol [
+{ #category : #accessing }
+TableLayoutProperties >> listDirection: aSymbol [
 	listDirection := aSymbol.
 ]
 
-{
-	#category : #'table defaults',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>listSpacing [
+{ #category : #'table defaults' }
+TableLayoutProperties >> listSpacing [
 	^listSpacing
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>listSpacing: aSymbol [
+{ #category : #accessing }
+TableLayoutProperties >> listSpacing: aSymbol [
 	listSpacing := aSymbol
 ]
 
-{
-	#category : #'table defaults',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>maxCellSize [
+{ #category : #'table defaults' }
+TableLayoutProperties >> maxCellSize [
 	^maxCellSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>maxCellSize: aNumber [
+{ #category : #accessing }
+TableLayoutProperties >> maxCellSize: aNumber [
 	maxCellSize := aNumber.
 ]
 
-{
-	#category : #'table defaults',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>minCellSize [
+{ #category : #'table defaults' }
+TableLayoutProperties >> minCellSize [
 	^minCellSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>minCellSize: aNumber [
+{ #category : #accessing }
+TableLayoutProperties >> minCellSize: aNumber [
 	minCellSize := aNumber.
 ]
 
-{
-	#category : #'table defaults',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>reverseTableCells [
+{ #category : #'table defaults' }
+TableLayoutProperties >> reverseTableCells [
 	^reverseTableCells
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>reverseTableCells: aBool [
+{ #category : #accessing }
+TableLayoutProperties >> reverseTableCells: aBool [
 	reverseTableCells := aBool
 ]
 
-{
-	#category : #'table defaults',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>rubberBandCells [
+{ #category : #'table defaults' }
+TableLayoutProperties >> rubberBandCells [
 	^rubberBandCells
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>rubberBandCells: aBool [
+{ #category : #accessing }
+TableLayoutProperties >> rubberBandCells: aBool [
 	rubberBandCells := aBool.
 ]
 
-{
-	#category : #'table defaults',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>wrapCentering [
+{ #category : #'table defaults' }
+TableLayoutProperties >> wrapCentering [
 	^wrapCentering
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>wrapCentering: aSymbol [
+{ #category : #accessing }
+TableLayoutProperties >> wrapCentering: aSymbol [
 	wrapCentering := aSymbol
 ]
 
-{
-	#category : #'table defaults',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>wrapDirection [
+{ #category : #'table defaults' }
+TableLayoutProperties >> wrapDirection [
 	^wrapDirection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayoutProperties>>wrapDirection: aSymbol [
+{ #category : #accessing }
+TableLayoutProperties >> wrapDirection: aSymbol [
 	wrapDirection := aSymbol
 ]

@@ -11,15 +11,11 @@ Class {
 		'items',
 		'parentMenu'
 	],
-	#category : #Morphic-Base-Menus,
-	#timestamp : 'StephaneDucasse 9/30/2014 20:21'
+	#category : #Morphic-Base-Menus
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec class>>exampleWithOneSingleItem [
+{ #category : #example }
+PluggableMenuSpec class >> exampleWithOneSingleItem [
 	"self exampleWithOneSingleItem"
 	
 	| s |
@@ -28,11 +24,8 @@ PluggableMenuSpec class>>exampleWithOneSingleItem [
 	s asMenuMorph popUpInWorld
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec class>>exampleWithSubMenu [
+{ #category : #example }
+PluggableMenuSpec class >> exampleWithSubMenu [
 	"
 	self exampleWithSubMenu
 	"
@@ -46,11 +39,8 @@ PluggableMenuSpec class>>exampleWithSubMenu [
 	s asMenuMorph popUpInWorld
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec class>>exampleWithTwoSimpleItems [
+{ #category : #example }
+PluggableMenuSpec class >> exampleWithTwoSimpleItems [
 	"self exampleWithTwoSimpleItems"
 	| s |
 	s := (self withModel: Transcript ) label: 'Hello'. 
@@ -59,28 +49,19 @@ PluggableMenuSpec class>>exampleWithTwoSimpleItems [
 	s asMenuMorph popUpInWorld
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec class>>withModel: aModel [
+{ #category : #'instance creation' }
+PluggableMenuSpec class >> withModel: aModel [
 	^ self new model: aModel
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>add: aString [
+{ #category : #construction }
+PluggableMenuSpec >> add: aString [
 	^ self add: aString action: nil
 	
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>add: aString action: aMessageSend [
+{ #category : #construction }
+PluggableMenuSpec >> add: aString action: aMessageSend [
 	| item |
 	item := self addMenuItem.
 	item label: aString translated.
@@ -88,11 +69,8 @@ PluggableMenuSpec>>add: aString action: aMessageSend [
 	^item
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>add: aString selector: aMessageSend [
+{ #category : #construction }
+PluggableMenuSpec >> add: aString selector: aMessageSend [
 	| item |
 	item := self addMenuItem.
 	item label: aString translated.
@@ -100,27 +78,18 @@ PluggableMenuSpec>>add: aString selector: aMessageSend [
 	^item
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>add: aString selector: aSelector argumentList: anArray [
+{ #category : #construction }
+PluggableMenuSpec >> add: aString selector: aSelector argumentList: anArray [
 	^ self add: aString action: (MessageSend receiver: model selector: aSelector arguments: anArray)
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>add: aString target: anObject selector: aSelector argumentList: anArray [
+{ #category : #construction }
+PluggableMenuSpec >> add: aString target: anObject selector: aSelector argumentList: anArray [
 	^ self add: aString translated action: (MessageSend receiver: anObject selector: aSelector arguments: anArray)
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>addList: aList [
+{ #category : #construction }
+PluggableMenuSpec >> addList: aList [
 	"Add the given items to this menu, where each item is a pair (<string> <actionSelector>)..  If an element of the list is simply the symobl $-, add a line to the receiver.  The optional third element of each entry, if present, provides balloon help."
 
 	aList
@@ -140,32 +109,23 @@ PluggableMenuSpec>>addList: aList [
 						ifTrue: [ item icon: (self theme iconNamed: tuple fourth) ] ] ]
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>addMenuItem [
+{ #category : #construction }
+PluggableMenuSpec >> addMenuItem [
 	| item |
 	item := self newMenuItem.
 	self items add: item.
 	^item
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>addSeparator [
+{ #category : #construction }
+PluggableMenuSpec >> addSeparator [
 	self items isEmpty
 		ifTrue: [ ^ nil ].
 	self items last separator: true
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>asMenuMorph [
+{ #category : #morphic }
+PluggableMenuSpec >> asMenuMorph [
 	| prior menu myitems |
 	prior := parentMenu.
 	parentMenu := menu := self morphClass new.
@@ -180,66 +140,42 @@ PluggableMenuSpec>>asMenuMorph [
 	^ menu
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>buildWith: aBuilder [
+{ #category : #morphic }
+PluggableMenuSpec >> buildWith: aBuilder [
 	^ self asMenuMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>items [
+{ #category : #accessing }
+PluggableMenuSpec >> items [
 	^ items ifNil: [ items := OrderedCollection new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>label [
+{ #category : #accessing }
+PluggableMenuSpec >> label [
 	^ label
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>label: aString [
+{ #category : #accessing }
+PluggableMenuSpec >> label: aString [
 	label := aString.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>model [
+{ #category : #accessing }
+PluggableMenuSpec >> model [
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>model: anObject  [
+{ #category : #accessing }
+PluggableMenuSpec >> model: anObject [ 
 	model := anObject
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>morphClass [
+{ #category : #morphic }
+PluggableMenuSpec >> morphClass [
 	^ MenuMorph
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-PluggableMenuSpec>>newMenuItem [
+{ #category : #construction }
+PluggableMenuSpec >> newMenuItem [
 	^ PluggableMenuItemSpec new
 ]

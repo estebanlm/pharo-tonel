@@ -8,31 +8,21 @@ Class {
 		'compilationContext',
 		'node'
 	],
-	#category : #OpalCompiler-Core-Exception,
-	#timestamp : 'ajh 7/7/2004 17:36'
+	#category : #OpalCompiler-Core-Exception
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticWarning>>compilationContext [
+{ #category : #accessing }
+OCSemanticWarning >> compilationContext [
 	^ compilationContext 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticWarning>>compilationContext: anObject [
+{ #category : #accessing }
+OCSemanticWarning >> compilationContext: anObject [
 	compilationContext := anObject
 ]
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticWarning>>defaultAction [
+{ #category : #correcting }
+OCSemanticWarning >> defaultAction [
 	
 	compilationContext interactive ifFalse: [ ^nil ].
 	^self openMenuIn: 
@@ -40,69 +30,45 @@ OCSemanticWarning>>defaultAction [
 		UIManager default chooseFrom: labels lines: lines title: caption]
 ]
 
-{
-	#category : #'accessing - compatibility',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticWarning>>errorCode [
+{ #category : #'accessing - compatibility' }
+OCSemanticWarning >> errorCode [
 	self requestor ifNil: [
 		^ self node methodNode asString ].
 	^ self requestor contents
 ]
 
-{
-	#category : #'accessing - compatibility',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticWarning>>errorMessage [
+{ #category : #'accessing - compatibility' }
+OCSemanticWarning >> errorMessage [
 	^ self messageText
 ]
 
-{
-	#category : #'accessing - compatibility',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticWarning>>location [
+{ #category : #'accessing - compatibility' }
+OCSemanticWarning >> location [
 	^ self node sourceInterval first
 ]
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticWarning>>methodClass [
+{ #category : #correcting }
+OCSemanticWarning >> methodClass [
 	^node methodNode methodClass
 ]
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticWarning>>methodNode [
+{ #category : #correcting }
+OCSemanticWarning >> methodNode [
 	^node methodNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticWarning>>node [
+{ #category : #accessing }
+OCSemanticWarning >> node [
 	^node 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticWarning>>node: anObject [
+{ #category : #accessing }
+OCSemanticWarning >> node: anObject [
 	node := anObject
 ]
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticWarning>>notify: aString at: location [
+{ #category : #correcting }
+OCSemanticWarning >> notify: aString at: location [
 	"Refer to the comment in Object|notify:."
 
 	^self requestor 
@@ -118,18 +84,12 @@ OCSemanticWarning>>notify: aString at: location [
 					in: self requestor text]
 ]
 
-{
-	#category : #correcting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticWarning>>openMenuIn: aBlock [
+{ #category : #correcting }
+OCSemanticWarning >> openMenuIn: aBlock [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticWarning>>requestor [
+{ #category : #accessing }
+OCSemanticWarning >> requestor [
 	^ compilationContext requestor
 ]

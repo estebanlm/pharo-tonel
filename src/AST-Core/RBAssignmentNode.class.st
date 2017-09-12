@@ -16,26 +16,19 @@ Class {
 		'assignment',
 		'value'
 	],
-	#category : #AST-Core-Nodes,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode class>>variable: aVariableNode value: aValueNode  [
+{ #category : #'instance creation' }
+RBAssignmentNode class >> variable: aVariableNode value: aValueNode [ 
 	^self 
 		variable: aVariableNode
 		value: aValueNode
 		position: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode class>>variable: aVariableNode value: aValueNode position: anInteger  [
+{ #category : #'instance creation' }
+RBAssignmentNode class >> variable: aVariableNode value: aValueNode position: anInteger [ 
 	^(self new)
 		variable: aVariableNode
 			value: aValueNode
@@ -43,69 +36,45 @@ RBAssignmentNode class>>variable: aVariableNode value: aValueNode position: anIn
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>= anObject  [
+{ #category : #comparing }
+RBAssignmentNode >> = anObject [ 
 	self == anObject ifTrue: [^true].
 	self class = anObject class ifFalse: [^false].
 	^self variable = anObject variable and: [self value = anObject value]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visiting }
+RBAssignmentNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^aProgramNodeVisitor visitAssignmentNode: self
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>assignment [
+{ #category : #accessing-token }
+RBAssignmentNode >> assignment [
 	^ assignment
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>assignment: anInteger [
+{ #category : #accessing-token }
+RBAssignmentNode >> assignment: anInteger [
 	assignment := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>assignmentOperator [
+{ #category : #accessing }
+RBAssignmentNode >> assignmentOperator [
 	^  ':=' 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>assignmentPosition [
+{ #category : #accessing }
+RBAssignmentNode >> assignmentPosition [
 	^ assignment
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>assigns: aVariableName  [
+{ #category : #testing }
+RBAssignmentNode >> assigns: aVariableName [ 
 	^variable name = aVariableName or: [value assigns: aVariableName]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>bestNodeFor: anInterval  [
+{ #category : #querying }
+RBAssignmentNode >> bestNodeFor: anInterval [ 
 	(self intersectsInterval: anInterval) ifFalse: [^nil].
 	(self containedBy: anInterval) ifTrue: [^self].
 	assignment ifNil: [^super bestNodeFor: anInterval].
@@ -119,119 +88,80 @@ RBAssignmentNode>>bestNodeFor: anInterval  [
 			node notNil ifTrue: [^node]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>children [
+{ #category : #accessing }
+RBAssignmentNode >> children [
 	^Array with: value with: variable
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>copyInContext: aDictionary  [
+{ #category : #matching }
+RBAssignmentNode >> copyInContext: aDictionary [ 
 	^ self class new
 		variable: (self variable copyInContext: aDictionary);
 		value: (self value copyInContext: aDictionary);
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>directlyUses: aNode  [
+{ #category : #testing }
+RBAssignmentNode >> directlyUses: aNode [ 
 	^aNode = value ifTrue: [true] ifFalse: [self isDirectlyUsed]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>equalTo: anObject withMapping: aDictionary  [
+{ #category : #comparing }
+RBAssignmentNode >> equalTo: anObject withMapping: aDictionary [ 
 	^self class = anObject class and: 
 			[(self variable equalTo: anObject variable withMapping: aDictionary) 
 				and: [self value equalTo: anObject value withMapping: aDictionary]]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>hash [
+{ #category : #comparing }
+RBAssignmentNode >> hash [
 	^self variable hash bitXor: self value hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>isAssignment [
+{ #category : #testing }
+RBAssignmentNode >> isAssignment [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>isFaulty [
+{ #category : #testing }
+RBAssignmentNode >> isFaulty [
 	^self variable isFaulty or: [ self value isFaulty].
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>match: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBAssignmentNode >> match: aNode inContext: aDictionary [ 
 	aNode class = self class ifFalse: [^false].
 	^(variable match: aNode variable inContext: aDictionary)
 		and: [value match: aNode value inContext: aDictionary]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>needsParenthesis [
+{ #category : #testing }
+RBAssignmentNode >> needsParenthesis [
 	^parent
 		ifNil: [false]
 		ifNotNil: [self precedence > parent precedence]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>postCopy [
+{ #category : #copying }
+RBAssignmentNode >> postCopy [
 	super postCopy.
 	self variable: self variable copy.
 	self value: self value copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>precedence [
+{ #category : #accessing }
+RBAssignmentNode >> precedence [
 	^5
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>replaceNode: aNode withNode: anotherNode  [
+{ #category : #replacing }
+RBAssignmentNode >> replaceNode: aNode withNode: anotherNode [ 
 	value == aNode ifTrue: [self value: anotherNode].
 	variable == aNode ifTrue: [self variable: anotherNode]
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>replaceSourceWith: aNode  [
+{ #category : #replacing }
+RBAssignmentNode >> replaceSourceWith: aNode [ 
 	"Check if we need to convert the assignment. Also check if we are being replaced with a setter message send. If so, create the replacements to edit the original source."
 
 	(aNode isAssignment and: [ aNode assignmentOperator ~= self assignmentOperator ]) ifTrue: [
@@ -264,69 +194,45 @@ RBAssignmentNode>>replaceSourceWith: aNode  [
 				with: aNode receiver name , ' ' , aNode selector)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>startWithoutParentheses [
+{ #category : #accessing }
+RBAssignmentNode >> startWithoutParentheses [
 	^variable start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>stopWithoutParentheses [
+{ #category : #accessing }
+RBAssignmentNode >> stopWithoutParentheses [
 	^value stop
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>uses: aNode  [
+{ #category : #testing }
+RBAssignmentNode >> uses: aNode [ 
 	^aNode = value ifTrue: [true] ifFalse: [self isUsed]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>value [
+{ #category : #accessing }
+RBAssignmentNode >> value [
 	^value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>value: aValueNode  [
+{ #category : #accessing }
+RBAssignmentNode >> value: aValueNode [ 
 	value := aValueNode.
 	value parent: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>variable [
+{ #category : #accessing }
+RBAssignmentNode >> variable [
 	^variable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>variable: varNode  [
+{ #category : #accessing }
+RBAssignmentNode >> variable: varNode [ 
 	variable := varNode.
 	variable parent: self
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBAssignmentNode>>variable: aVariableNode value: aValueNode position: anInteger  [
+{ #category : #initialize-release }
+RBAssignmentNode >> variable: aVariableNode value: aValueNode position: anInteger [ 
 	self variable: aVariableNode.
 	self value: aValueNode.
 	assignment := anInteger

@@ -10,54 +10,35 @@ Class {
 		'compiledBlock',
 		'copiedValues'
 	],
-	#category : #OpalCompiler-Core-IR-Nodes,
-	#timestamp : 'ClementBera 6/27/2016 11:11'
+	#category : #OpalCompiler-Core-IR-Nodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushFullClosure>>accept: aVisitor [
+{ #category : #visiting }
+IRPushFullClosure >> accept: aVisitor [
 	^ aVisitor visitPushFullClosure: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushFullClosure>>compiledBlock [
+{ #category : #accessing }
+IRPushFullClosure >> compiledBlock [
 	^ compiledBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushFullClosure>>compiledBlock: anObject [
+{ #category : #accessing }
+IRPushFullClosure >> compiledBlock: anObject [
 	compiledBlock := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushFullClosure>>copiedValues [
+{ #category : #accessing }
+IRPushFullClosure >> copiedValues [
 	^ copiedValues
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushFullClosure>>copiedValues: anObject [
+{ #category : #accessing }
+IRPushFullClosure >> copiedValues: anObject [
 	copiedValues := anObject
 ]
 
-{
-	#category : #debugging,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushFullClosure>>indexForVarNamed: aName [
+{ #category : #debugging }
+IRPushFullClosure >> indexForVarNamed: aName [
 	^ sourceNode ir indexForVarNamed: aName
 ]

@@ -6,15 +6,11 @@ ProfStef goOn: HowToMakeYourOwnTutorial.
 Class {
 	#name : #HowToMakeYourOwnTutorial,
 	#superclass : #AbstractTutorial,
-	#category : #ProfStef-Core,
-	#timestamp : 'StephaneDucasse 7/28/2015 17:10'
+	#category : #ProfStef-Core
 }
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-HowToMakeYourOwnTutorial>>createLessonFactoryMethods [
+{ #category : #lessons }
+HowToMakeYourOwnTutorial >> createLessonFactoryMethods [
 	^ Lesson 
 title: 'Lesson factory methods'
 lesson: 
@@ -55,11 +51,8 @@ classified: ''lessons''.
 ProfStef next.'.
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-HowToMakeYourOwnTutorial>>implementTutorial [
+{ #category : #lessons }
+HowToMakeYourOwnTutorial >> implementTutorial [
 	^ Lesson 
 title: 'Implement tutorial method'
 lesson: 
@@ -78,11 +71,8 @@ classified: ''tutorial''.
 ProfStef next.'.
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-HowToMakeYourOwnTutorial>>runYourTutorial [
+{ #category : #lessons }
+HowToMakeYourOwnTutorial >> runYourTutorial [
 	^ Lesson 
 title: 'Run your tutorial'
 lesson: 
@@ -91,11 +81,8 @@ lesson:
 ProfStef goOn: HowToDebug.'.
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-HowToMakeYourOwnTutorial>>subclassAbstractTutorial [
+{ #category : #lessons }
+HowToMakeYourOwnTutorial >> subclassAbstractTutorial [
 	^ Lesson 
 title: 'AbstractTutorial'
 lesson: 
@@ -112,11 +99,8 @@ AbstractTutorial subclass: #HowToDebug
 ProfStef next.'
 ]
 
-{
-	#category : #tutorial,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-HowToMakeYourOwnTutorial>>tutorial  [
+{ #category : #tutorial }
+HowToMakeYourOwnTutorial >> tutorial [ 
 	^ #(
 subclassAbstractTutorial
 createLessonFactoryMethods

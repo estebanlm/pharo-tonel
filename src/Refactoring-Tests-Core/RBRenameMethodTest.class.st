@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBRenameMethodTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameMethodTest>>testExistingSelector [
+{ #category : #'failure tests' }
+RBRenameMethodTest >> testExistingSelector [
 	self shouldFail: (RBRenameMethodRefactoring 
 			renameMethod: #checkClass:
 			in: RBBasicLintRuleTest
@@ -20,11 +13,8 @@ RBRenameMethodTest>>testExistingSelector [
 			permutation: (1 to: 1))
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameMethodTest>>testMultipleSelectors [
+{ #category : #'failure tests' }
+RBRenameMethodTest >> testMultipleSelectors [
 	self shouldWarn: (RBRenameMethodRefactoring 
 			renameMethod: #checkClass:
 			in: RBBasicLintRuleTest
@@ -32,11 +22,8 @@ RBRenameMethodTest>>testMultipleSelectors [
 			permutation: (1 to: 1))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameMethodTest>>testRenameMethodPermuteArgs [
+{ #category : #tests }
+RBRenameMethodTest >> testRenameMethodPermuteArgs [
 	| refactoring class |
 	refactoring := RBRenameMethodRefactoring
 		renameMethod: ('demoRenameMethod:' , 'PermuteArgs:') asSymbol
@@ -60,11 +47,8 @@ RBRenameMethodTest>>testRenameMethodPermuteArgs [
 				= (RBParser parseMethod: 'demoExampleCall ^self demoRenameMethod: 2 PermuteArgs: 1')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameMethodTest>>testRenamePermuteArgs [
+{ #category : #tests }
+RBRenameMethodTest >> testRenamePermuteArgs [
 	| refactoring class |
 	refactoring := RBRenameMethodRefactoring 
 		renameMethod: ('rename:' , 'two:') asSymbol
@@ -77,11 +61,8 @@ RBRenameMethodTest>>testRenamePermuteArgs [
 	self assert: (class parseTreeFor: #exampleCall) = (RBParser parseMethod: 'exampleCall ^self rename: 2 two: 1')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameMethodTest>>testRenamePrimitive [
+{ #category : #tests }
+RBRenameMethodTest >> testRenamePrimitive [
 	| refactoring count |
 	count := 0.
 	model allReferencesTo: #basicAt:put: do: [:method | count := count + 1].
@@ -102,11 +83,8 @@ RBRenameMethodTest>>testRenamePrimitive [
 	self assert: count = 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameMethodTest>>testRenameTestMethod [
+{ #category : #tests }
+RBRenameMethodTest >> testRenameTestMethod [
 	| refactoring class |
 	refactoring := RBRenameMethodRefactoring 
 		renameMethod: ('rename' , 'ThisMethod:') asSymbol
@@ -124,11 +102,8 @@ RBRenameMethodTest>>testRenameTestMethod [
 	self deny: (class directlyDefinesMethod: ('rename' , 'ThisMethod:') asSymbol)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameMethodTest>>testRenameTestMethod1 [
+{ #category : #tests }
+RBRenameMethodTest >> testRenameTestMethod1 [
 	| refactoring class |
 	refactoring := RBRenameMethodRefactoring 
 		renameMethod: ('testMethod1') asSymbol

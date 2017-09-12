@@ -8,44 +8,31 @@ Class {
 	#instVars : [
 		'model'
 	],
-	#category : #Nautilus-Acceptors,
-	#timestamp : '<historical>'
+	#category : #Nautilus-Acceptors
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractAcceptor class>>model: model [
+{ #category : #'instance creation' }
+AbstractAcceptor class >> model: model [
 
 	^ self new
 		model: model;
 		yourself
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractAcceptor>>accept: aText notifying: aController [
+{ #category : #protocol }
+AbstractAcceptor >> accept: aText notifying: aController [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractAcceptor>>model [
+{ #category : #accessing }
+AbstractAcceptor >> model [
 
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractAcceptor>>model: anObject [
+{ #category : #accessing }
+AbstractAcceptor >> model: anObject [
 	
 	model := anObject
 ]

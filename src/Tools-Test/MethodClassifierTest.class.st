@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MethodClassifierTest,
 	#superclass : #TestCase,
-	#category : #Tools-Test-Base,
-	#timestamp : ''
+	#category : #Tools-Test-Base
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MethodClassifierTest>>testProtocolForKnownKeywordSuffixOfSelector [
+{ #category : #tests }
+MethodClassifierTest >> testProtocolForKnownKeywordSuffixOfSelector [
 	| classifier |
 	classifier := MethodClassifier new.
 	classifier class keywordSuffixMapping
@@ -34,11 +27,8 @@ MethodClassifierTest>>testProtocolForKnownKeywordSuffixOfSelector [
 						deny: (classifier protocolForKnownKeywordSuffixOfSelector: (suffix , 'More:') asSymbol) = protocol ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MethodClassifierTest>>testProtocolForKnownPrefixOfSelector [
+{ #category : #tests }
+MethodClassifierTest >> testProtocolForKnownPrefixOfSelector [
 	| classifier |
 	classifier := MethodClassifier new.
 	classifier class prefixMapping

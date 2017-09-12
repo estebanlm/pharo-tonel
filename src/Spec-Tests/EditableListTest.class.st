@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #EditableListTest,
 	#superclass : #SpecTestCase,
-	#category : #Spec-Tests-PolyWidgets-ListAndTree,
-	#timestamp : ''
+	#category : #Spec-Tests-PolyWidgets-ListAndTree
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-EditableListTest>>classToTest [
+{ #category : #running }
+EditableListTest >> classToTest [
 	^ EditableList
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-EditableListTest>>testMoveElementAtTo [
+{ #category : #tests }
+EditableListTest >> testMoveElementAtTo [
 	testedInstance list: {'AAA' . 'BBB' . 'CCC'}.
 	testedInstance moveElementAt: 1 to: 3.
 	self

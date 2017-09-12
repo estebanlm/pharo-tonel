@@ -1,12 +1,7 @@
-Extension {
-	#name : #GZipReadStream
-}
+Extension { #name : #GZipReadStream }
 
-{
-	#category : #'*System-FileRegistry',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GZipReadStream class>>fileReaderServicesForFile: fullName suffix: suffix [
+{ #category : #'*System-FileRegistry' }
+GZipReadStream class >> fileReaderServicesForFile: fullName suffix: suffix [
 	<fileService>
 	| services |
 	suffix = 'gz' | (suffix = '*')
@@ -21,11 +16,8 @@ GZipReadStream class>>fileReaderServicesForFile: fullName suffix: suffix [
 	^ services
 ]
 
-{
-	#category : #'*System-FileRegistry',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GZipReadStream class>>serviceDecompressToFile [
+{ #category : #'*System-FileRegistry' }
+GZipReadStream class >> serviceDecompressToFile [
 
 	^ FileModifyingSimpleServiceEntry 
 				provider: self 
@@ -34,11 +26,8 @@ GZipReadStream class>>serviceDecompressToFile [
 				description: 'Decompress to file'
 ]
 
-{
-	#category : #'*System-FileRegistry',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GZipReadStream class>>serviceFileIn [
+{ #category : #'*System-FileRegistry' }
+GZipReadStream class >> serviceFileIn [
 	"Answer a service for filing in an entire file"
 
 	^ SimpleServiceEntry 
@@ -51,11 +40,8 @@ GZipReadStream class>>serviceFileIn [
 
 ]
 
-{
-	#category : #'*System-FileRegistry',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GZipReadStream class>>serviceFileIntoNewChangeSet [
+{ #category : #'*System-FileRegistry' }
+GZipReadStream class >> serviceFileIntoNewChangeSet [
 	"Answer a service for filing in an entire file"
 	^ SimpleServiceEntry
 		provider: self
@@ -65,11 +51,8 @@ GZipReadStream class>>serviceFileIntoNewChangeSet [
 		buttonLabel: 'Install'
 ]
 
-{
-	#category : #'*System-FileRegistry',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GZipReadStream class>>serviceViewDecompress [
+{ #category : #'*System-FileRegistry' }
+GZipReadStream class >> serviceViewDecompress [
 
 	^ SimpleServiceEntry 
 				provider: self 
@@ -79,11 +62,8 @@ GZipReadStream class>>serviceViewDecompress [
 
 ]
 
-{
-	#category : #'*System-FileRegistry',
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GZipReadStream class>>services [
+{ #category : #'*System-FileRegistry' }
+GZipReadStream class >> services [
 
 	^ Array 
 		with: self serviceViewDecompress

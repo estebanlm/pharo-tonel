@@ -14,42 +14,29 @@ Class {
 		'emptyOrganizer',
 		'oldAnnouncer'
 	],
-	#category : #RPackage-Tests,
-	#timestamp : '<historical>'
+	#category : #RPackage-Tests
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>addXCategory [
+{ #category : #utilities }
+RPackageMCSynchronisationTest >> addXCategory [
 	Smalltalk globals organization addCategory: 'XXXXX'.
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>addXMatchCategory [
+{ #category : #utilities }
+RPackageMCSynchronisationTest >> addXMatchCategory [
 	Smalltalk globals organization addCategory: 'XXXXX-YYYY'.
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>addXYCategory [
+{ #category : #utilities }
+RPackageMCSynchronisationTest >> addXYCategory [
 
 	self addXCategory.
 	self addYCategory.
 			
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>addXYZCategory [
+{ #category : #utilities }
+RPackageMCSynchronisationTest >> addXYZCategory [
 
 	self addXCategory.
 	self addYCategory.
@@ -57,31 +44,22 @@ RPackageMCSynchronisationTest>>addXYZCategory [
 			
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>addYCategory [
+{ #category : #utilities }
+RPackageMCSynchronisationTest >> addYCategory [
 
 	Smalltalk globals organization addCategory: 'YYYYY'.
 			
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>addZCategory [
+{ #category : #utilities }
+RPackageMCSynchronisationTest >> addZCategory [
 
 	Smalltalk globals organization addCategory: 'ZZZZZ'.
 			
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>cleanClassesPackagesAndCategories [
+{ #category : #setup }
+RPackageMCSynchronisationTest >> cleanClassesPackagesAndCategories [
 
 		|mCPackage|
 		Smalltalk removeClassNamed: 'NewClass'.
@@ -135,29 +113,20 @@ RPackageMCSynchronisationTest>>cleanClassesPackagesAndCategories [
 			
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>createMethodNamed: methodName inClass: aClass inCategory: aCategoryName  [
+{ #category : #private }
+RPackageMCSynchronisationTest >> createMethodNamed: methodName inClass: aClass inCategory: aCategoryName [ 
 
 	^ aClass compile: (methodName, ' ^nil') classified: aCategoryName.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>createMethodNamed: methodName inClassSideOfClass: aClass inCategory: aCategoryName  [
+{ #category : #private }
+RPackageMCSynchronisationTest >> createMethodNamed: methodName inClassSideOfClass: aClass inCategory: aCategoryName [ 
 
 	^ aClass classSide compile: (methodName, ' ^nil') classified: aCategoryName.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>createNewClassNamed: aName [
+{ #category : #private }
+RPackageMCSynchronisationTest >> createNewClassNamed: aName [
 	
 	| cls |
 	cls := Object subclass: aName
@@ -168,11 +137,8 @@ RPackageMCSynchronisationTest>>createNewClassNamed: aName [
 	^ cls
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>createNewClassNamed: aName inCategory: aCategoryName [
+{ #category : #private }
+RPackageMCSynchronisationTest >> createNewClassNamed: aName inCategory: aCategoryName [
 	
 	| cls |
 	cls := Object subclass: aName asSymbol
@@ -183,11 +149,8 @@ RPackageMCSynchronisationTest>>createNewClassNamed: aName inCategory: aCategoryN
 	^ cls
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>createNewTraitNamed: aName inCategory: aCategoryName [
+{ #category : #private }
+RPackageMCSynchronisationTest >> createNewTraitNamed: aName inCategory: aCategoryName [
 	
 	| trait |
 	trait := Trait named: aName asSymbol
@@ -196,40 +159,28 @@ RPackageMCSynchronisationTest>>createNewTraitNamed: aName inCategory: aCategoryN
 	^ trait
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>emptyOrganizer  [
+{ #category : #accessing }
+RPackageMCSynchronisationTest >> emptyOrganizer [ 
 
 	^ emptyOrganizer
 ]
 
-{
-	#category : #'announcer handling',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>initializeAnnouncers [
+{ #category : #'announcer handling' }
+RPackageMCSynchronisationTest >> initializeAnnouncers [
 	super initializeAnnouncers.
 	
 	oldAnnouncer := MCWorkingCopy announcer.
 	MCWorkingCopy announcer: announcerForTest.
 ]
 
-{
-	#category : #'announcer handling',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>restoreAnnouncers [
+{ #category : #'announcer handling' }
+RPackageMCSynchronisationTest >> restoreAnnouncers [
 	super restoreAnnouncers.
 	MCWorkingCopy announcer: oldAnnouncer.
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>setUp  [
+{ #category : #setup }
+RPackageMCSynchronisationTest >> setUp [ 
 	super setUp.
 	
 	emptyOrganizer := self organizer debuggingName: 'MCSynchronisation Package Organizer'; yourself.
@@ -239,21 +190,15 @@ RPackageMCSynchronisationTest>>setUp  [
 		ifNil: [ Author fullName: 'Tester' ].
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>tearDown [
+{ #category : #setup }
+RPackageMCSynchronisationTest >> tearDown [
 	MCWorkingCopy removeDependent: self emptyOrganizer.
 	self cleanClassesPackagesAndCategories.
 	super tearDown.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>testCategoryMatching [
+{ #category : #tests }
+RPackageMCSynchronisationTest >> testCategoryMatching [
 	
 	self assert: (self organizer category: 'Compression-Archives' matches: 'Compression').
 	self deny: (self organizer category: 'Compression' matches: 'Compression-Archives').
@@ -262,11 +207,8 @@ RPackageMCSynchronisationTest>>testCategoryMatching [
 	self deny: (self organizer category: 'XXXX' matches: 'Compression-Archives').
 ]
 
-{
-	#category : #'to move to a simple RPackage test case',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>testNotRepackagedAnnouncementWhenModifyMethodByMovingInSameExtensionCategory [
+{ #category : #'to move to a simple RPackage test case' }
+RPackageMCSynchronisationTest >> testNotRepackagedAnnouncementWhenModifyMethodByMovingInSameExtensionCategory [
 	
 	| ann class firstPackage secondPackage|
 	
@@ -288,11 +230,8 @@ RPackageMCSynchronisationTest>>testNotRepackagedAnnouncementWhenModifyMethodByMo
 	self assert: ann isNil.
 ]
 
-{
-	#category : #'to move to a simple RPackage test case',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>testNotRepackagedAnnouncementWhenMovingClassicCategories [
+{ #category : #'to move to a simple RPackage test case' }
+RPackageMCSynchronisationTest >> testNotRepackagedAnnouncementWhenMovingClassicCategories [
 
 	| ann class firstPackage secondPackage|
 	
@@ -314,11 +253,8 @@ RPackageMCSynchronisationTest>>testNotRepackagedAnnouncementWhenMovingClassicCat
 	self assert: ann isNil.
 ]
 
-{
-	#category : #'to move to a simple RPackage test case',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>testRepackagedAnnouncementWhenModifyMethodByMovingFromClassicCategoryToExtensionCategory [
+{ #category : #'to move to a simple RPackage test case' }
+RPackageMCSynchronisationTest >> testRepackagedAnnouncementWhenModifyMethodByMovingFromClassicCategoryToExtensionCategory [
 	
 	| ann class firstPackage secondPackage|
 	
@@ -345,11 +281,8 @@ RPackageMCSynchronisationTest>>testRepackagedAnnouncementWhenModifyMethodByMovin
 	self assert: ann isNil.
 ]
 
-{
-	#category : #'to move to a simple RPackage test case',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>testRepackagedAnnouncementWhenModifyMethodByMovingFromDifferentExtensionCategories [
+{ #category : #'to move to a simple RPackage test case' }
+RPackageMCSynchronisationTest >> testRepackagedAnnouncementWhenModifyMethodByMovingFromDifferentExtensionCategories [
 
 	| ann class firstPackage secondPackage thirdPackage |
 	
@@ -373,11 +306,8 @@ RPackageMCSynchronisationTest>>testRepackagedAnnouncementWhenModifyMethodByMovin
 	self assert: ann newPackage equals: thirdPackage.
 ]
 
-{
-	#category : #'to move to a simple RPackage test case',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>testRepackagedAnnouncementWhenModifyMethodByMovingFromExtensionCategoryToClassicCategory [
+{ #category : #'to move to a simple RPackage test case' }
+RPackageMCSynchronisationTest >> testRepackagedAnnouncementWhenModifyMethodByMovingFromExtensionCategoryToClassicCategory [
 
 	| ann class firstPackage secondPackage|
 	
@@ -399,11 +329,8 @@ RPackageMCSynchronisationTest>>testRepackagedAnnouncementWhenModifyMethodByMovin
 	self assert: ann newPackage equals: firstPackage.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageMCSynchronisationTest>>testisDefinedAsPackageOrSubPackageInMC [
+{ #category : #tests }
+RPackageMCSynchronisationTest >> testisDefinedAsPackageOrSubPackageInMC [
 	"test whether a given category is defined as a MC package or whether it is defined as top part of package"
 	
 	"self debug: #testisDefinedAsSubPackageInMC"

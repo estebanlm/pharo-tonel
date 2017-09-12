@@ -14,67 +14,48 @@ Class {
 		'listSource',
 		'maxWidth'
 	],
-	#category : #Morphic-Widgets-Pluggable,
-	#timestamp : 'efc 8/6/2005 11:34'
+	#category : #Morphic-Widgets-Pluggable
 }
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>adjustHeight [
+{ #category : #drawing }
+LazyListMorph >> adjustHeight [
 	"private.  Adjust our height to match that of the underlying list"
 	self height: (listItems size max: 1) * font height
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>adjustWidth [
+{ #category : #drawing }
+LazyListMorph >> adjustWidth [
 	"private.  Adjust our width to match that of the underlying list"
 	self width: ((listSource width max: self hUnadjustedScrollRange) + 20). 
 
 ]
 
-{
-	#category : #'row management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>backgroundColorForRow: row  [
+{ #category : #'row management' }
+LazyListMorph >> backgroundColorForRow: row [ 
 	"Answer the color for the row text."
 	^ (self isRowSelected: row )
 		ifTrue: [ listSource selectionColorToUse ]
 		ifFalse: [ self theme backgroundColor ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>bottomVisibleRowForCanvas: aCanvas [
+{ #category : #drawing }
+LazyListMorph >> bottomVisibleRowForCanvas: aCanvas [
         "return the bottom visible row in aCanvas's clip rectangle"
         ^self rowAtLocation: aCanvas clipRect bottomLeft.
 
 ]
 
-{
-	#category : #'row management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>colorForRow: row  [
+{ #category : #'row management' }
+LazyListMorph >> colorForRow: row [ 
 	"Answer the color for the row text."
 	^ (self isRowSelected: row )
 		ifTrue: [ self theme selectionTextColor ]
 		ifFalse: [ self color ]
 ]
 
-{
-	#category : #'row management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>display: item atRow: row on: aCanvas [
+{ #category : #'row management' }
+LazyListMorph >> display: item atRow: row on: aCanvas [
 	"Display the given item at the given row on the given
 	canvas."
 
@@ -99,11 +80,8 @@ LazyListMorph>>display: item atRow: row on: aCanvas [
 				dashes: #(1 1) ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>drawBackgroundForPotentialDrop: row on: aCanvas [
+{ #category : #drawing }
+LazyListMorph >> drawBackgroundForPotentialDrop: row on: aCanvas [
 	| selectionDrawBounds |
 	"shade the background darker, if this row is a potential drop target"
 
@@ -112,11 +90,8 @@ LazyListMorph>>drawBackgroundForPotentialDrop: row on: aCanvas [
 	aCanvas fillRectangle: selectionDrawBounds color:  self color muchLighter darker
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>drawBackgroundForRow: row on: aCanvas color: aColor [
+{ #category : #drawing }
+LazyListMorph >> drawBackgroundForRow: row on: aCanvas color: aColor [
 	| frame  |
 	"shade the background darker, if this row is selected"
  	frame := self selectionFrameForRow: row.
@@ -125,29 +100,20 @@ LazyListMorph>>drawBackgroundForRow: row on: aCanvas color: aColor [
 		color: aColor
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>drawBackgroundForSearchedRow: row on: aCanvas [
+{ #category : #drawing }
+LazyListMorph >> drawBackgroundForSearchedRow: row on: aCanvas [
 	
 	self drawBackgroundForRow: row on: aCanvas color: listSource secondarySelectionColor
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>drawBackgroundForSelectedRow: row on: aCanvas [
+{ #category : #drawing }
+LazyListMorph >> drawBackgroundForSelectedRow: row on: aCanvas [
 
 	self drawBackgroundForRow: row on: aCanvas color: listSource selectionColorToUse
 ]
 
-{
-	#category : #'list management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>drawBoundsForRow: row [
+{ #category : #'list management' }
+LazyListMorph >> drawBoundsForRow: row [
 	"calculate the bounds that row should be drawn at.  This might be outside our bounds!"
 
 	| topLeft drawBounds item height |
@@ -160,11 +126,8 @@ LazyListMorph>>drawBoundsForRow: row [
 	^ drawBounds
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>drawOn: aCanvas  [
+{ #category : #drawing }
+LazyListMorph >> drawOn: aCanvas [ 
 	listItems isEmpty
 		ifTrue: [^ self].
 		
@@ -196,11 +159,8 @@ LazyListMorph>>drawOn: aCanvas  [
 		ifTrue: [self highlightPotentialDropRow: listSource potentialDropRow on: aCanvas]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>drawSelectionOn: aCanvas [
+{ #category : #drawing }
+LazyListMorph >> drawSelectionOn: aCanvas [
 	"Draw the selection background."
 	
 	selectedRow ifNil: [ ^self ].
@@ -209,11 +169,8 @@ LazyListMorph>>drawSelectionOn: aCanvas [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>drawSeparatorAfter: aRow on: aCanvas [
+{ #category : #drawing }
+LazyListMorph >> drawSeparatorAfter: aRow on: aCanvas [
 
 	| frame rectangle height separatorColor |
 	height := listSource separatorSize.
@@ -223,39 +180,27 @@ LazyListMorph>>drawSeparatorAfter: aRow on: aCanvas [
 	aCanvas fillRectangle: rectangle color:  separatorColor
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>font [
+{ #category : #drawing }
+LazyListMorph >> font [
 	"return the font used for drawing.  The response is never nil"
 	^font
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>font: newFont [
+{ #category : #drawing }
+LazyListMorph >> font: newFont [
 	font := (newFont ifNil: [ TextStyle default defaultFont ]).
 	self adjustHeight.
 	self changed.
 ]
 
-{
-	#category : #'list access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>getListItem: index [
+{ #category : #'list access' }
+LazyListMorph >> getListItem: index [
 	"grab a list item directly from the model"
 	^listSource getListItem: index
 ]
 
-{
-	#category : #'list access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>getListSize [
+{ #category : #'list access' }
+LazyListMorph >> getListSize [
 	"return the number of items in the list"
 	^listSource 
 		ifNil: [ 0 ]
@@ -264,11 +209,8 @@ LazyListMorph>>getListSize [
 	
 ]
 
-{
-	#category : #'row management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>hUnadjustedScrollRange [
+{ #category : #'row management' }
+LazyListMorph >> hUnadjustedScrollRange [
 "Ok, this is a bit messed up. We need to return the width of the widest item in the list. If we grab every item in the list, it defeats the purpose of LazyListMorph. If we don't, then we don't know the size. 
 
 This is a compromise -- find the widest of the first 30 items, then double it, This width will be updated as new items are installed, so it will always be correct for the visible items. If you know a better way, please chime in."
@@ -297,22 +239,16 @@ This is a compromise -- find the widest of the first 30 items, then double it, T
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>highlightPotentialDropRow: row  on: aCanvas [
+{ #category : #drawing }
+LazyListMorph >> highlightPotentialDropRow: row  on: aCanvas [
 	| drawBounds  |
 	drawBounds := self drawBoundsForRow: row.
 	drawBounds := drawBounds intersect: self bounds ifNone: [ ^ self ].
 	aCanvas frameRectangle: drawBounds color: Color blue
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>initialize [
+{ #category : #initialization }
+LazyListMorph >> initialize [
 	super initialize.
 	self color: self theme textColor.
 	font := StandardFonts listFont.
@@ -322,11 +258,8 @@ LazyListMorph>>initialize [
 	self adjustHeight.
 ]
 
-{
-	#category : #'row management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>isRowSelected: row  [
+{ #category : #'row management' }
+LazyListMorph >> isRowSelected: row [ 
 	"Answer true if the arg row is selected"
 	^ ((selectedRow notNil
 				and: [row = selectedRow])
@@ -334,11 +267,8 @@ LazyListMorph>>isRowSelected: row  [
 
 ]
 
-{
-	#category : #'list access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>item: index [
+{ #category : #'list access' }
+LazyListMorph >> item: index [
 	"return the index-th item, using the 'listItems' cache"
 	| newItem itemWidth |
 	(index between: 1 and: listItems size)
@@ -356,11 +286,8 @@ LazyListMorph>>item: index [
 	^listItems at: index
 ]
 
-{
-	#category : #'row management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>listChanged [
+{ #category : #'row management' }
+LazyListMorph >> listChanged [
 	"set newList to be the list of strings to display"
 	listItems := Array new: self getListSize withAll: nil.
 	self removeAllMorphs.
@@ -373,31 +300,22 @@ LazyListMorph>>listChanged [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>listSource: aListSource [
+{ #category : #initialization }
+LazyListMorph >> listSource: aListSource [
 	"set the source of list items -- typically a PluggableListMorph"
 	listSource := aListSource.
 	self listChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>mouseDownRow [
+{ #category : #accessing }
+LazyListMorph >> mouseDownRow [
 	"Answer the row that should have mouse down highlighting if any."
 
 	^self valueOfProperty: #mouseDownRow
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>mouseDownRow: anInteger [
+{ #category : #accessing }
+LazyListMorph >> mouseDownRow: anInteger [
 	"Set the row that should have mouse down highlighting or nil if none."
 
 	anInteger = self mouseDownRow ifTrue: [^self].
@@ -406,11 +324,8 @@ LazyListMorph>>mouseDownRow: anInteger [
 	self mouseDownRowFrameChanged
 ]
 
-{
-	#category : #'row management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>mouseDownRowFrameChanged [
+{ #category : #'row management' }
+LazyListMorph >> mouseDownRowFrameChanged [
 	"Invalidate frame of the current mouse down row if any."
 	
 	|frame row|
@@ -419,11 +334,8 @@ LazyListMorph>>mouseDownRowFrameChanged [
 	self invalidRect: frame
 ]
 
-{
-	#category : #'list management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>rowAtLocation: aPoint [
+{ #category : #'list management' }
+LazyListMorph >> rowAtLocation: aPoint [
 	"return the number of the row at aPoint"
 	| y |
 	y := aPoint y.
@@ -431,31 +343,22 @@ LazyListMorph>>rowAtLocation: aPoint [
 	^((y - self top // (font height)) + 1) min: listItems size max: 0
 ]
 
-{
-	#category : #'row management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>selectRow: index [
+{ #category : #'row management' }
+LazyListMorph >> selectRow: index [
 	"Select the index-th row."
 	
 	selectedRows add: index.
 	self invalidRect: (self selectionFrameForRow: index)
 ]
 
-{
-	#category : #'list management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>selectedRow [
+{ #category : #'list management' }
+LazyListMorph >> selectedRow [
 	"return the currently selected row, or nil if none is selected"
 	^selectedRow
 ]
 
-{
-	#category : #'row management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>selectedRow: index [
+{ #category : #'row management' }
+LazyListMorph >> selectedRow: index [
 	"Select the index-th row.  if nil, remove the current selection."
 	
 	selectedRow ifNotNil: [self selectionFrameChanged].
@@ -463,11 +366,8 @@ LazyListMorph>>selectedRow: index [
 	selectedRow ifNotNil: [self selectionFrameChanged]
 ]
 
-{
-	#category : #'row management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>selectionFrameChanged [
+{ #category : #'row management' }
+LazyListMorph >> selectionFrameChanged [
 	"Invalidate frame of the current selection if any."
 	
 	| frame |
@@ -478,11 +378,8 @@ LazyListMorph>>selectionFrameChanged [
 	self invalidRect: frame
 ]
 
-{
-	#category : #'row management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>selectionFrameForRow: row [
+{ #category : #'row management' }
+LazyListMorph >> selectionFrameForRow: row [
 	"Answer the selection frame rectangle."
 
 	|frame| 
@@ -495,32 +392,23 @@ LazyListMorph>>selectionFrameForRow: row [
 	^frame
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>topVisibleRowForCanvas: aCanvas [
+{ #category : #drawing }
+LazyListMorph >> topVisibleRowForCanvas: aCanvas [
         "return the top visible row in aCanvas's clip rectangle"
         ^self rowAtLocation: aCanvas clipRect topLeft.
 
 ]
 
-{
-	#category : #'row management',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>unselectRow: index [
+{ #category : #'row management' }
+LazyListMorph >> unselectRow: index [
 	"Unselect the index-th row."
 	
 	selectedRows remove: index ifAbsent: [^self].
 	self invalidRect: (self selectionFrameForRow: index)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-LazyListMorph>>userString [
+{ #category : #accessing }
+LazyListMorph >> userString [
 	"Do I have a text string to be searched on?"
 
 	^ String streamContents: [:strm |

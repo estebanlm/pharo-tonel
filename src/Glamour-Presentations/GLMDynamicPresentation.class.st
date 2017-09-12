@@ -10,15 +10,11 @@ Class {
 		'presentationTransformation',
 		'cachedPresentation'
 	],
-	#category : #Glamour-Presentations,
-	#timestamp : 'tg 9/20/2009 14:25'
+	#category : #Glamour-Presentations
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDynamicPresentation>>cachedPresentation [
+{ #category : #rendering }
+GLMDynamicPresentation >> cachedPresentation [
 	"currentPresentation applies the transformation dynamically.
 	This means that calling it twice, will retrieve two different objects.
 	To solve the problem, cachedPresentation stores the last currentPresentation, and 
@@ -26,11 +22,8 @@ GLMDynamicPresentation>>cachedPresentation [
 	^ cachedPresentation
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDynamicPresentation>>currentPresentation  [
+{ #category : #rendering }
+GLMDynamicPresentation >> currentPresentation [ 
 	| composite |
 	composite := GLMCompositePresentation new.
 	self presentationTransformation glamourValue: (
@@ -43,20 +36,14 @@ GLMDynamicPresentation>>currentPresentation  [
 "	^ self displayValue pane: self pane"
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDynamicPresentation>>initialize  [
+{ #category : #initialize-release }
+GLMDynamicPresentation >> initialize [ 
 	super initialize.
 	presentationTransformation := [ :aComposite :each | aComposite custom: each ]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDynamicPresentation>>outerPortEvent: aPortEvent [
+{ #category : #events }
+GLMDynamicPresentation >> outerPortEvent: aPortEvent [
 	
 	super outerPortEvent: aPortEvent.
 	"Propage the event to cached presentations"
@@ -64,63 +51,42 @@ GLMDynamicPresentation>>outerPortEvent: aPortEvent [
 		self cachedPresentation outerPortEvent: aPortEvent ] 
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDynamicPresentation>>presentation: aBlock [
+{ #category : #scripting }
+GLMDynamicPresentation >> presentation: aBlock [
 	self presentationTransformation: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDynamicPresentation>>presentationTransformation [
+{ #category : #accessing }
+GLMDynamicPresentation >> presentationTransformation [
 	^ presentationTransformation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDynamicPresentation>>presentationTransformation: anObject [
+{ #category : #accessing }
+GLMDynamicPresentation >> presentationTransformation: anObject [
 	presentationTransformation := anObject
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDynamicPresentation>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMDynamicPresentation >> renderGlamorouslyOn: aRenderer [ 
 	self registerAnnouncements.
 	^ aRenderer renderDynamicPresentation: self
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDynamicPresentation>>updateToolbar [
+{ #category : #updating }
+GLMDynamicPresentation >> updateToolbar [
 	super updateToolbar.
 	cachedPresentation ifNotNil: [ 
 		cachedPresentation updateToolbar.
 		cachedPresentation presentations do: #updateToolbar ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDynamicPresentation>>with: aBlock [
+{ #category : #scripting }
+GLMDynamicPresentation >> with: aBlock [
 	self presentationTransformation: aBlock
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMDynamicPresentation>>withAllPanesAndPresentationsDo: aBlock [
+{ #category : #enumerating }
+GLMDynamicPresentation >> withAllPanesAndPresentationsDo: aBlock [
 	super withAllPanesAndPresentationsDo: aBlock.
 	self cachedPresentation ifNotNil: [ :presentation | presentation withAllPanesAndPresentationsDo: aBlock ]
 ]

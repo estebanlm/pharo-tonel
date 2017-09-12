@@ -1,50 +1,33 @@
-Extension {
-	#name : #Morph
-}
+Extension { #name : #Morph }
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>activate [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> activate [
 	"Mark the receiver and submorphs as active (foreground)."
 
 	self submorphsDo: [:m | m activate]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>collapse [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> collapse [
 	CollapsedMorph new beReplacementFor: self
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>containingWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> containingWindow [
 	"Answer a window that contains the receiver"
 
 	^ self ownerThatIsA: SystemWindow
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>dialogWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> dialogWindow [
 	"Answer the receiver's dialog window."
 
 	^self ownerThatIsA: DialogWindow
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>embedInWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> embedInWindow [
 
 	| window worldToUse |
 
@@ -58,11 +41,8 @@ Morph>>embedInWindow [
 	window activate
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>embeddedInMorphicWindowLabeled: labelString [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> embeddedInMorphicWindowLabeled: labelString [
 	| window |
 	window := (SystemWindow labelled: labelString) model: nil.
 	window setStripeColorsFrom:  (self theme windowColorFor: self).
@@ -70,30 +50,21 @@ Morph>>embeddedInMorphicWindowLabeled: labelString [
 	^ window
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>initialColorInSystemWindow: aSystemWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> initialColorInSystemWindow: aSystemWindow [
 	"Answer the colour the receiver should be when added to a SystemWindow."
 
 	^Color white
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>isInSystemWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> isInSystemWindow [
 	"answer if the receiver is in a system window"
 	^ owner isMorph and:[owner isSystemWindow or:[owner isInSystemWindow]]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>isWindowActive: aSystemWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> isWindowActive: aSystemWindow [
 	"Answer whether the given window is active.
 	Implement in morphs that are designed to embed system windows.
 	Delegate to owner."
@@ -101,21 +72,15 @@ Morph>>isWindowActive: aSystemWindow [
 	^self owner ifNil: [true] ifNotNil: [:o | o isWindowActive: aSystemWindow]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>modalLockTo: aSystemWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> modalLockTo: aSystemWindow [
 	"Lock the receiver as a modal owner of the given window."
 
 	self lock
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>nextMorphAcrossInWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> nextMorphAcrossInWindow [
 	"Answer the next morph in the window. Traverse
 	from the receiver to its next sibling or owner's next sibling etc."
 
@@ -123,11 +88,8 @@ Morph>>nextMorphAcrossInWindow [
 		(self owner ifNil: [^self]) nextMorphAcrossInWindow]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>nextMorphInWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> nextMorphInWindow [
 	"Answer the next morph in the window. Traverse
 	from the receiver to its first child or next sibling or owner's next sibling etc."
 
@@ -136,11 +98,8 @@ Morph>>nextMorphInWindow [
 		ifFalse: [self nextMorphAcrossInWindow]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>nextMorphWantingFocus [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> nextMorphWantingFocus [
 	"Answer the next morph that wants keyboard focus."
 
 	|m|
@@ -152,30 +111,21 @@ Morph>>nextMorphWantingFocus [
 	
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>openInWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> openInWindow [
 
 	^self openInWindowLabeled: self defaultLabel
 
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>openInWindowLabeled: aString [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> openInWindowLabeled: aString [
 
 	^self openInWindowLabeled: aString inWorld: self currentWorld
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>openInWindowLabeled: aString inWorld: aWorld [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> openInWindowLabeled: aString inWorld: aWorld [
 	"Changed to include the inset margin in the bound calculation."
 
 	| window extent |
@@ -200,11 +150,8 @@ Morph>>openInWindowLabeled: aString inWorld: aWorld [
 
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>openModal: aSystemWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> openModal: aSystemWindow [
 	"Open the given window locking the receiver until it is dismissed.
 	Answer the system window.
 	Restore the original keyboard focus when closed."
@@ -244,11 +191,8 @@ Morph>>openModal: aSystemWindow [
 	^aSystemWindow
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>previousMorphInWindow [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> previousMorphInWindow [
 	"Answer the next morph in the window. Traverse
 	from the receiver to its previous sibling's last submorph (recursive)
 	or owner's previous sibling's last submorph (recursive) etc."
@@ -258,11 +202,8 @@ Morph>>previousMorphInWindow [
 		ifFalse: [self owner]
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>previousMorphWantingFocus [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> previousMorphWantingFocus [
 	"Answer the previous morph that wants keyboard focus."
 
 	|m|
@@ -274,22 +215,16 @@ Morph>>previousMorphWantingFocus [
 	
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>shadowOffsetRectangle [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> shadowOffsetRectangle [
 	"Answer a rectangle describing the offsets to the
 	receiver's bounds for a drop shadow."
 
 	^self shadowOffset negated corner: self shadowOffset
 ]
 
-{
-	#category : #'*Morphic-Widgets-Windows',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Morph>>window [
+{ #category : #'*Morphic-Widgets-Windows' }
+Morph >> window [
 	"Answer the receiver's window."
 
 	^self ownerThatIsA: SystemWindow

@@ -22,71 +22,49 @@ Class {
 		'id',
 		'selector'
 	],
-	#category : #DebuggerActions,
-	#timestamp : '<historical>'
+	#category : #DebuggerActions
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-MessageSendDebugAction>>arguments [
+{ #category : #accessing }
+MessageSendDebugAction >> arguments [
 
 	^ #()
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-MessageSendDebugAction>>executeAction [
+{ #category : #actions }
+MessageSendDebugAction >> executeAction [
 	
 	self receiver 
 		perform: self selector
 		withEnoughArguments: self arguments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-MessageSendDebugAction>>id [
+{ #category : #accessing }
+MessageSendDebugAction >> id [
 
 	^ id
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-MessageSendDebugAction>>id: aSymbol [
+{ #category : #accessing }
+MessageSendDebugAction >> id: aSymbol [
 	
 	id := aSymbol 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-MessageSendDebugAction>>receiver [
+{ #category : #accessing }
+MessageSendDebugAction >> receiver [
 
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-MessageSendDebugAction>>selector [
+{ #category : #accessing }
+MessageSendDebugAction >> selector [
 
 	^ selector ifNil: [ self id ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-MessageSendDebugAction>>selector: aSymbol [
+{ #category : #accessing }
+MessageSendDebugAction >> selector: aSymbol [
 
 	selector := aSymbol
 ]

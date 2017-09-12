@@ -9,15 +9,11 @@ Class {
 		'StandardSize',
 		'UsedStrategy'
 	],
-	#category : #Morphic-Core-Worlds,
-	#timestamp : '<historical>'
+	#category : #Morphic-Core-Worlds
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>assignCollapseFrameFor: aSSView  [
+{ #category : #utilities }
+RealEstateAgent class >> assignCollapseFrameFor: aSSView [ 
 	"Offer up a location along the left edge of the screen for a collapsed
 	SSView. Make sure it doesn't overlap any other collapsed frames."
 	| grid otherFrames topLeft viewBox collapsedFrame extent newFrame verticalBorderDistance top |
@@ -49,11 +45,8 @@ RealEstateAgent class>>assignCollapseFrameFor: aSSView  [
 	^ 0 @ 0 extent: extent
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>assignCollapsePointFor: aSSView  [
+{ #category : #utilities }
+RealEstateAgent class >> assignCollapsePointFor: aSSView [ 
 	"Offer up a location along the left edge of the screen for a collapsed
 	SSView. Make sure it doesn't overlap any other collapsed frames."
 	| grid otherFrames y free topLeft viewBox |
@@ -75,11 +68,8 @@ RealEstateAgent class>>assignCollapsePointFor: aSSView  [
 	^ 0 @ 0
 ]
 
-{
-	#category : #strategy,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>cascadeFor: aView initialExtent: initialExtent world: aWorld [
+{ #category : #strategy }
+RealEstateAgent class >> cascadeFor: aView initialExtent: initialExtent world: aWorld [
 
 	| position allowedArea |
 	allowedArea := self maximumUsableAreaInWorld: aWorld.
@@ -90,11 +80,8 @@ RealEstateAgent class>>cascadeFor: aView initialExtent: initialExtent world: aWo
 		translatedAndSquishedToBeWithin: allowedArea
 ]
 
-{
-	#category : #framing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>initialFrameFor: aView initialExtent: initialExtent world: aWorld  [
+{ #category : #framing }
+RealEstateAgent class >> initialFrameFor: aView initialExtent: initialExtent world: aWorld [ 
 	"Find a plausible initial screen area for the supplied view, which
 	should be a StandardSystemView, taking into account the
 	'reverseWindowStagger' Preference, the size needed, and other
@@ -104,32 +91,23 @@ RealEstateAgent class>>initialFrameFor: aView initialExtent: initialExtent world
 	
 ]
 
-{
-	#category : #framing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>initialFrameFor: aView world: aWorld [
+{ #category : #framing }
+RealEstateAgent class >> initialFrameFor: aView world: aWorld [
 	"Find a plausible initial screen area for the supplied view.  See called method."
 
 	^ self initialFrameFor: aView initialExtent: aView initialExtent world: aWorld
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>initialize [
+{ #category : #'class initialization' }
+RealEstateAgent class >> initialize [
 	"RealEstateAgent initialize"
 
 	StaggerOffset := 20 @ 40.
 	StandardSize := 700@500.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>maximumUsableArea [
+{ #category : #accessing }
+RealEstateAgent class >> maximumUsableArea [
 
 	| allowedArea |
 	allowedArea := Display usableArea.
@@ -137,11 +115,8 @@ RealEstateAgent class>>maximumUsableArea [
 	^allowedArea
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>maximumUsableAreaInWorld: aWorldOrNil [
+{ #category : #accessing }
+RealEstateAgent class >> maximumUsableAreaInWorld: aWorldOrNil [
 
 	| allowedArea |
 	allowedArea := Display usableArea.
@@ -150,39 +125,27 @@ RealEstateAgent class>>maximumUsableAreaInWorld: aWorldOrNil [
 	^allowedArea
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>screenTopSetback [
+{ #category : #settings }
+RealEstateAgent class >> screenTopSetback [
 	^ 0
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>scrollBarSetback [
+{ #category : #settings }
+RealEstateAgent class >> scrollBarSetback [
 	^ 16-3 "width = 16; inset from border by 3"
 
 ]
 
-{
-	#category : #strategy,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>staggerFor: aView initialExtent: initialExtent world: aWorld [
+{ #category : #strategy }
+RealEstateAgent class >> staggerFor: aView initialExtent: initialExtent world: aWorld [
 
 	^ self strictlyStaggeredInitialFrameFor: aView
 				initialExtent: initialExtent
 				world: aWorld
 ]
 
-{
-	#category : #strategy,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>standardFor: aView initialExtent: initialExtent world: aWorld [
+{ #category : #strategy }
+RealEstateAgent class >> standardFor: aView initialExtent: initialExtent world: aWorld [
 
 	| allOrigins screenRight screenBottom putativeOrigin putativeFrame allowedArea staggerOrigin otherFrames |
 	allowedArea := self maximumUsableAreaInWorld: aWorld.
@@ -213,11 +176,8 @@ RealEstateAgent class>>standardFor: aView initialExtent: initialExtent world: aW
 		translatedAndSquishedToBeWithin: allowedArea
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>standardPositionsInWorld: aWorldOrNil [
+{ #category : #accessing }
+RealEstateAgent class >> standardPositionsInWorld: aWorldOrNil [
 	"Return a list of standard window positions -- this may have one, two, or four of them, depending on the size and shape of the display screen.  "
 
 	| anArea aList  midX midY |
@@ -235,29 +195,20 @@ RealEstateAgent class>>standardPositionsInWorld: aWorldOrNil [
 	^ aList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>standardSize [
+{ #category : #accessing }
+RealEstateAgent class >> standardSize [
 
 	^ StandardSize 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>standardSize: extent [
+{ #category : #accessing }
+RealEstateAgent class >> standardSize: extent [
 
 	StandardSize := extent
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>standardWindowExtent [
+{ #category : #settings }
+RealEstateAgent class >> standardWindowExtent [
 	"Answer the standard default extent for new windows. "
 	| effectiveExtent width strips height grid allowedArea maxLevel |
 	effectiveExtent := self maximumUsableArea extent - (self scrollBarSetback @ self screenTopSetback).
@@ -289,11 +240,8 @@ RealEstateAgent class>>standardWindowExtent [
 	^ width @ height max: StandardSize "RealEstateAgent standardWindowExtent"
 ]
 
-{
-	#category : #framing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>strictlyStaggeredInitialFrameFor: aStandardSystemView initialExtent: initialExtent world: aWorld [
+{ #category : #framing }
+RealEstateAgent class >> strictlyStaggeredInitialFrameFor: aStandardSystemView initialExtent: initialExtent world: aWorld [
 	"This method implements a staggered window placement policy that I (di) like.
 	Basically it provides for up to 4 windows, staggered from each of the 4 corners.
 	The windows are staggered so that there will always be a corner visible."
@@ -333,27 +281,18 @@ RealEstateAgent class>>strictlyStaggeredInitialFrameFor: aStandardSystemView ini
 		translatedAndSquishedToBeWithin: allowedArea
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>usedStrategy [
+{ #category : #settings }
+RealEstateAgent class >> usedStrategy [
 	^ UsedStrategy ifNil: [UsedStrategy := #staggerFor:initialExtent:world:]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>usedStrategy: aSelector [
+{ #category : #settings }
+RealEstateAgent class >> usedStrategy: aSelector [
 	UsedStrategy := aSelector
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>windowColumnsDesired [
+{ #category : #settings }
+RealEstateAgent class >> windowColumnsDesired [
 	"Answer how many separate vertical columns of windows are
 	wanted."
 	^ (self usedStrategy = #staggerFor:initialExtent:world:)
@@ -363,11 +302,8 @@ RealEstateAgent class>>windowColumnsDesired [
 				ifFalse: [1]]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-RealEstateAgent class>>windowRowsDesired [
+{ #category : #settings }
+RealEstateAgent class >> windowRowsDesired [
 	"Answer how many separate horizontal rows of windows are wanted."
 	^ (self usedStrategy = #staggerFor:initialExtent:world:)
 		ifTrue: [1]

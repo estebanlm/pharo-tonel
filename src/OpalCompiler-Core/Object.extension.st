@@ -1,12 +1,7 @@
-Extension {
-	#name : #Object
-}
+Extension { #name : #Object }
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-Object>>mustBeBooleanInMagic: context [
+{ #category : #'*OpalCompiler-Core' }
+Object >> mustBeBooleanInMagic: context [
 	"Permits to redefine methods inlined by compiler.
 	Take the ast node corresponding to the mustBeBoolean error, compile it on the with Opal fly and executes it as a DoIt. Then resume the execution of the context."
 

@@ -8,15 +8,11 @@ I show  all individual elements by name, as well as a UTC representation.
 Class {
 	#name : #EyeDateAndTimeInspector,
 	#superclass : #EyeInspector,
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeDateAndTimeInspector>>addSpecialFields: elements [
+{ #category : #list }
+EyeDateAndTimeInspector >> addSpecialFields: elements [
 
 	elements add: (DynamicEyeElement 
 		host: self object 

@@ -4,33 +4,23 @@ Checks for messages that are sent but not implemented by a global. Reported meth
 Class {
 	#name : #RBSendsUnknownMessageToGlobalRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 23:01'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSendsUnknownMessageToGlobalRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBSendsUnknownMessageToGlobalRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'SendsUnknownMessageToGlobalRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSendsUnknownMessageToGlobalRule>>group [
+{ #category : #accessing }
+RBSendsUnknownMessageToGlobalRule >> group [
 	^ 'Bugs'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSendsUnknownMessageToGlobalRule>>initialize [
+{ #category : #initialization }
+RBSendsUnknownMessageToGlobalRule >> initialize [
 	super initialize.
 	self matcher 
 		matches: '`{:node :context | node isVariable and: [ Smalltalk includesKey: node name asSymbol ] } `@message: `@args'
@@ -45,18 +35,12 @@ RBSendsUnknownMessageToGlobalRule>>initialize [
 				ifFalse: [ answer ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSendsUnknownMessageToGlobalRule>>name [
+{ #category : #accessing }
+RBSendsUnknownMessageToGlobalRule >> name [
 	^ 'Sends unknown message to global'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSendsUnknownMessageToGlobalRule>>severity [
+{ #category : #accessing }
+RBSendsUnknownMessageToGlobalRule >> severity [
 	^ #error
 ]

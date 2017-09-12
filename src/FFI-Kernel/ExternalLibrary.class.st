@@ -9,24 +9,17 @@ Class {
 	#instVars : [
 		'name'
 	],
-	#category : #FFI-Kernel,
-	#timestamp : '<historical>'
+	#category : #FFI-Kernel
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalLibrary class>>moduleName [
+{ #category : #accessing }
+ExternalLibrary class >> moduleName [
 	"Return the name of the module for this library"
 	^nil
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalLibrary>>forceLoading [
+{ #category : #initialize-release }
+ExternalLibrary >> forceLoading [
 	"Primitive. Force loading the given library.
 	The primitive will fail if the library is not available
 	or if anything is wrong with the receiver."
@@ -34,28 +27,19 @@ ExternalLibrary>>forceLoading [
 	^self externalCallFailed "The primitive will set the error code"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalLibrary>>handle [
+{ #category : #accessing }
+ExternalLibrary >> handle [
 	^handle
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalLibrary>>initialize [
+{ #category : #initialize-release }
+ExternalLibrary >> initialize [
 	"Initialize the receiver"
 	name := self class moduleName.
 	handle := ExternalAddress new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalLibrary>>name [
+{ #category : #accessing }
+ExternalLibrary >> name [
 	^name
 ]

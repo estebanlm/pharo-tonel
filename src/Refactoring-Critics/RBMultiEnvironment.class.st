@@ -1,40 +1,27 @@
-"
-
-"
 Class {
 	#name : #RBMultiEnvironment,
 	#superclass : #RBBrowserEnvironmentWrapper,
 	#instVars : [
 		'environmentDictionaries'
 	],
-	#category : #Refactoring-Critics,
-	#timestamp : ''
+	#category : #Refactoring-Critics
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMultiEnvironment>>addClass: aClass into: aValue  [
+{ #category : #adding }
+RBMultiEnvironment >> addClass: aClass into: aValue [ 
 	(environmentDictionaries at: aValue ifAbsentPut: [RBSelectorEnvironment new]) 
 		addClass: aClass
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMultiEnvironment>>addClass: aClass selector: aSymbol into: aValue  [
+{ #category : #adding }
+RBMultiEnvironment >> addClass: aClass selector: aSymbol into: aValue [ 
 	(environmentDictionaries at: aValue ifAbsentPut: [RBSelectorEnvironment new]) 
 		addClass: aClass
 		selector: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMultiEnvironment>>asSelectorEnvironment [
+{ #category : #accessing }
+RBMultiEnvironment >> asSelectorEnvironment [
 	| s |
 	s := RBSelectorEnvironment new.
 	s label: self label.
@@ -45,113 +32,74 @@ RBMultiEnvironment>>asSelectorEnvironment [
 	  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMultiEnvironment>>environments [
+{ #category : #accessing }
+RBMultiEnvironment >> environments [
 	^environmentDictionaries keys
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMultiEnvironment>>includesCategory: aCategory [
+{ #category : #testing }
+RBMultiEnvironment >> includesCategory: aCategory [
 	^ (super includesCategory: aCategory) and: [ environmentDictionaries anySatisfy: [ :env | env includesCategory: aCategory ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMultiEnvironment>>includesClass: aClass [
+{ #category : #testing }
+RBMultiEnvironment >> includesClass: aClass [
 	^ (super includesClass: aClass) and: [ environmentDictionaries anySatisfy: [ :env | env includesClass: aClass ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMultiEnvironment>>includesProtocol: aProtocol in: aClass [
+{ #category : #testing }
+RBMultiEnvironment >> includesProtocol: aProtocol [ in: aClass
 	^ (super includesProtocol: aProtocol in: aClass) and: [ environmentDictionaries anySatisfy: [ :env | env includesProtocol: aProtocol in: aClass ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMultiEnvironment>>includesSelector: aSelector in: aClass [
+{ #category : #testing }
+RBMultiEnvironment >> includesSelector: aSelector [ in: aClass
 	^ (super includesSelector: aSelector in: aClass) and: [ environmentDictionaries anySatisfy: [ :env | env includesSelector: aSelector in: aClass ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMultiEnvironment>>initialize [
+{ #category : #initialization }
+RBMultiEnvironment >> initialize [
 	super initialize.
 	environmentDictionaries := Dictionary new.
 	environment := RBSelectorEnvironment new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMultiEnvironment>>isEmpty [
+{ #category : #testing }
+RBMultiEnvironment >> isEmpty [
 	^environmentDictionaries isEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMultiEnvironment>>packages [
+{ #category : #accessing }
+RBMultiEnvironment >> packages [
 	self shouldBeImplemented
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMultiEnvironment>>problemCount [
+{ #category : #accessing }
+RBMultiEnvironment >> problemCount [
 	^environmentDictionaries size
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMultiEnvironment>>removeClass: aClass [
+{ #category : #removing }
+RBMultiEnvironment >> removeClass: aClass [
 	environmentDictionaries keysDo: [ :key |
 		(environmentDictionaries at: key) removeClass: aClass ]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMultiEnvironment>>removeClass: aClass into: aValue  [
+{ #category : #removing }
+RBMultiEnvironment >> removeClass: aClass into: aValue [ 
 	(environmentDictionaries at: aValue ifAbsent: [RBSelectorEnvironment new]) 
 		removeClass: aClass
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMultiEnvironment>>removeClass: aClass selector: aSelector into: aValue  [
+{ #category : #removing }
+RBMultiEnvironment >> removeClass: aClass selector: aSelector into: aValue [ 
 	(environmentDictionaries at: aValue ifAbsentPut: [RBSelectorEnvironment new]) 
 		removeClass: aClass
 		selector: aSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMultiEnvironment>>selectEnvironment: aValue  [
+{ #category : #accessing }
+RBMultiEnvironment >> selectEnvironment: aValue [ 
 	environment := environmentDictionaries at: aValue
 				ifAbsent: [RBSelectorEnvironment new]
 ]

@@ -112,26 +112,19 @@ Class {
 	#classInstVars : [
 		'default'
 	],
-	#category : #RPackage-Core,
-	#timestamp : '<historical>'
+	#category : #RPackage-Core
 }
 
-{
-	#category : #singleton,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer class>>default [
+{ #category : #singleton }
+RPackageOrganizer class >> default [
 	"WARNING: Since this component can be changed (i.e. for testing) you should NOT use it directly. 
 	  Use RPackage class>>#organizer instead"
 	
 	^ default ifNil: [  default := self new ]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer class>>initialize [
+{ #category : #'class initialization' }
+RPackageOrganizer class >> initialize [
 	"You need manually filll the data: 
 	
 	self initializeDefaultFromMC.
@@ -139,20 +132,14 @@ RPackageOrganizer class>>initialize [
 	is the usual way (but is not in this package by default, it depends on MC)"
 ]
 
-{
-	#category : #quieries,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer class>>isPackageDefinedForClass: aClass [
+{ #category : #quieries }
+RPackageOrganizer class >> isPackageDefinedForClass: aClass [
 
 	^ (self default packageOf: aClass) notNil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer class>>methodAdded: anEvent [
+{ #category : #private }
+RPackageOrganizer class >> methodAdded: anEvent [
 	"precondition: package exist, class exist"
 	
 	| methodCategory |
@@ -164,31 +151,22 @@ RPackageOrganizer class>>methodAdded: anEvent [
 		].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer class>>packageClass [
+{ #category : #private }
+RPackageOrganizer class >> packageClass [
 
 	^ RPackage
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer class>>registerInterestToSystemAnnouncement [
+{ #category : #'class initialization' }
+RPackageOrganizer class >> registerInterestToSystemAnnouncement [
 
 	self default unregisterInterestToSystemAnnouncement.
 	"To make sure that we do not have it twice registered"
 	self default registerInterestToSystemAnnouncement
 ]
 
-{
-	#category : #singleton,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer class>>resetDefault [
+{ #category : #singleton }
+RPackageOrganizer class >> resetDefault [
 
 	"self resetDefault"
 	default  ifNotNil: [
@@ -202,31 +180,22 @@ RPackageOrganizer class>>resetDefault [
 	self packageClass initialize
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer class>>setDefault: anOrganizer  [
+{ #category : #private }
+RPackageOrganizer class >> setDefault: anOrganizer [ 
 	default ifNotNil: [ default unregister ].
 	default := anOrganizer.
 	default register.
 	RPackage organizer: nil.
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer class>>unregisterInterestToSystemAnnouncement [
+{ #category : #'class initialization' }
+RPackageOrganizer class >> unregisterInterestToSystemAnnouncement [
 
 	self default unregisterInterestToSystemAnnouncement
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>addMethod: method [
+{ #category : #private }
+RPackageOrganizer >> addMethod: method [
 	"we have to register the method in the parent RPackage of the class. 
 	to do that, we first have to look if the method is an extension from an external package:"
 
@@ -241,19 +210,13 @@ RPackageOrganizer>>addMethod: method [
 	rPackage addMethod: method
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>announcer  [
+{ #category : #'system integration' }
+RPackageOrganizer >> announcer [ 
 	^SystemAnnouncer uniqueInstance private
 ]
 
-{
-	#category : #initialization-data,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>basicInitializeFromPackagesList: aPackagesList [
+{ #category : #initialization-data }
+RPackageOrganizer >> basicInitializeFromPackagesList: aPackagesList [
 
 	aPackagesList
 		do: [ :packageName | 
@@ -285,11 +248,8 @@ RPackageOrganizer>>basicInitializeFromPackagesList: aPackagesList [
 		displayingProgress: 'Importing extensions'.
 ]
 
-{
-	#category : #'private registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>basicRegisterPackage: aPackage [
+{ #category : #'private registration' }
+RPackageOrganizer >> basicRegisterPackage: aPackage [
 	"A new package is now available and declared in the receiver. Note that it is a low level implementation method since it does not deal with package contained information and does not update the related mapping tables."
 	
 	packages 
@@ -304,11 +264,8 @@ RPackageOrganizer>>basicRegisterPackage: aPackage [
 	^ aPackage
 ]
 
-{
-	#category : #'private registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>basicUnregisterPackage: aPackage [
+{ #category : #'private registration' }
+RPackageOrganizer >> basicUnregisterPackage: aPackage [
 	"Unregister the specified package from the list of registered packages. Raise the announcement RPackageUnregistered. This is a low level action. It does not unregister the back pointer from classes to packages or any other information managed by the organizer"
 	
 	packages
@@ -322,11 +279,8 @@ RPackageOrganizer>>basicUnregisterPackage: aPackage [
 			ifNotNil: [ :mcPackage | mcPackage workingCopy unregister ]].
 ]
 
-{
-	#category : #'private registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>basicUnregisterPackageNamed: aSymbolName [
+{ #category : #'private registration' }
+RPackageOrganizer >> basicUnregisterPackageNamed: aSymbolName [
 	"Unregister the specified package from the list of registered packages. Raise the RPackageUnregistered announcement. This is a low level action. It does not unregister the back pointer from classes to packages or any other information managed by the organizer"
 	
 	packages
@@ -335,11 +289,8 @@ RPackageOrganizer>>basicUnregisterPackageNamed: aSymbolName [
 	
 ]
 
-{
-	#category : #'system compatibility',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>category: categoryName matches: prefix [
+{ #category : #'system compatibility' }
+RPackageOrganizer >> category: categoryName matches: prefix [
 	| prefixSize catSize |
 	
 	categoryName ifNil: [ ^false ].
@@ -351,47 +302,32 @@ RPackageOrganizer>>category: categoryName matches: prefix [
 	^(categoryName at: prefix size + 1 ifAbsent: [ ^true ]) = $-
 ]
 
-{
-	#category : #'private registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>checkPackageExistsOrRegister: packageName [
+{ #category : #'private registration' }
+RPackageOrganizer >> checkPackageExistsOrRegister: packageName [
 	(self packages 
 		anySatisfy: [ :each | self category: packageName matches: each packageName ])
 		ifFalse: [ (RPackage named: packageName capitalized) register ] 
 ]
 
-{
-	#category : #'private testing',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>debuggingName [
+{ #category : #'private testing' }
+RPackageOrganizer >> debuggingName [
 
 	^ debuggingName 
 ]
 
-{
-	#category : #'private testing',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>debuggingName: aString [
+{ #category : #'private testing' }
+RPackageOrganizer >> debuggingName: aString [
 
 	debuggingName := aString
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>defineUnpackagedClassesPackage [
+{ #category : #initialization }
+RPackageOrganizer >> defineUnpackagedClassesPackage [
 	^ self ensureExistAndRegisterPackageNamed: self packageClass defaultPackageName
 ]
 
-{
-	#category : #'private registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>ensureExistAndRegisterPackageNamed: aSymbol [
+{ #category : #'private registration' }
+RPackageOrganizer >> ensureExistAndRegisterPackageNamed: aSymbol [
 	"A new package is now available and declared in the receiver."
 	
 	| package |
@@ -410,29 +346,20 @@ RPackageOrganizer>>ensureExistAndRegisterPackageNamed: aSymbol [
 	^ package
 ]
 
-{
-	#category : #'package access from class',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>extendingPackagesOf: aClass [
+{ #category : #'package access from class' }
+RPackageOrganizer >> extendingPackagesOf: aClass [
 	"Returns the packages extending the class aClass"
 	^ classExtendingPackagesMapping at: aClass theNonMetaClass name ifAbsent: [#()]
 ]
 
-{
-	#category : #'package access from class',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>extendingPackagesOfClassNamed: aName [
+{ #category : #'package access from class' }
+RPackageOrganizer >> extendingPackagesOfClassNamed: aName [
 	"Returns the packages extending the class named a Symbol"
 	^ classExtendingPackagesMapping at: aName asSymbol ifAbsent: [#()]
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>fullyRemoveClassNamed: className [
+{ #category : #'system integration' }
+RPackageOrganizer >> fullyRemoveClassNamed: className [
 	"Remove the class, the class backpointer, the extensions and the extension backPointer from the receiver and the class involved with the class named: className. className is a class name and should not be a metaclass one. "	
 	| rPackage |	
 		
@@ -446,11 +373,8 @@ RPackageOrganizer>>fullyRemoveClassNamed: className [
 	
 ]
 
-{
-	#category : #'package access from class',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>globalPackageOf: aClass [
+{ #category : #'package access from class' }
+RPackageOrganizer >> globalPackageOf: aClass [
 	"this method should return the 'global' parent package of aClass, that means the package holding the (possible) subcategory in which aClass is concretely defined. For example, 'Object package' returns Kernel-Object, whereas 'PackageOrganizer packageOf: Object' returns Kernel. So I guess that all use of 'packageOf' should be replaced by this method  "
 
 	"RPackageOrganizer default globalPackageOf: Object"
@@ -462,11 +386,8 @@ RPackageOrganizer>>globalPackageOf: aClass [
 		ifNone: [ classPackage ]
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>hasPackageExactlyMatchingExtensionName: anExtensionName [
+{ #category : #'system integration' }
+RPackageOrganizer >> hasPackageExactlyMatchingExtensionName: anExtensionName [
 	| extension |
 	extension := anExtensionName asSymbol.
 	"fast version"
@@ -480,11 +401,8 @@ RPackageOrganizer>>hasPackageExactlyMatchingExtensionName: anExtensionName [
 	^ false
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>hasPackageForProtocol: aProtocolName inClass: aClass [
+{ #category : #'system integration' }
+RPackageOrganizer >> hasPackageForProtocol: aProtocolName inClass: aClass [
 	"According aProtocolName is an extension protocol, will look for a matching package. If no matching package is found ,  return nil. If aProtocolName is not an extension protocol, return the parent package of aClass"
 	
 	|tmpProtocol|
@@ -492,11 +410,8 @@ RPackageOrganizer>>hasPackageForProtocol: aProtocolName inClass: aClass [
 	^ (tmpProtocol beginsWith: '*') not or: [ self hasPackageMatchingExtensionName:  (tmpProtocol copyWithout: $*) ]
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>hasPackageMatchingExtensionName: anExtensionName [
+{ #category : #'system integration' }
+RPackageOrganizer >> hasPackageMatchingExtensionName: anExtensionName [
 
 	(self hasPackageExactlyMatchingExtensionName: anExtensionName)
 		ifTrue: [ ^true ].
@@ -508,11 +423,8 @@ RPackageOrganizer>>hasPackageMatchingExtensionName: anExtensionName [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>hasRegistered [
+{ #category : #testing }
+RPackageOrganizer >> hasRegistered [
 	"return true if this package organizer has already registered interest to system events and Monticello changes "
 	
 	^ self announcer hasSubscriber: self
@@ -525,38 +437,26 @@ RPackageOrganizer>>hasRegistered [
 	^ (actionSequence isNil not) and: [(MCWorkingCopy myDependents includes: self)]"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>includesPackage: aPackage [
+{ #category : #testing }
+RPackageOrganizer >> includesPackage: aPackage [
 	"Answer whether the receiver get a package as registered."
 	^ self includesPackageNamed: aPackage name
 ]
 
-{
-	#category : #'private testing',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>includesPackageBackPointerForClass: aClass [
+{ #category : #'private testing' }
+RPackageOrganizer >> includesPackageBackPointerForClass: aClass [
 
 	^ classPackageMapping includesKey: aClass instanceSide name asSymbol
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>includesPackageNamed: aSymbol [
+{ #category : #testing }
+RPackageOrganizer >> includesPackageNamed: aSymbol [
 	"Answer whether the receiver get a package named aSymbol as registered."
 	^ packages includesKey:  aSymbol asSymbol
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>initialize [
+{ #category : #initialization }
+RPackageOrganizer >> initialize [
 	super initialize.
 	
 	packages := IdentityDictionary new.
@@ -567,11 +467,8 @@ RPackageOrganizer>>initialize [
 	self defineUnpackagedClassesPackage
 ]
 
-{
-	#category : #initialization-data,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>initializeExtensionsFor: aBehavior protocol: aProtocol [
+{ #category : #initialization-data }
+RPackageOrganizer >> initializeExtensionsFor: aBehavior protocol: aProtocol [
 	| package protocolName nonTraitMethods|
 	
 	protocolName := (aProtocol name allButFirst) trimBoth.
@@ -586,11 +483,8 @@ RPackageOrganizer>>initializeExtensionsFor: aBehavior protocol: aProtocol [
 		do: [ :eachSelector | package addMethod: aBehavior >> eachSelector ]
 ]
 
-{
-	#category : #initialization-data,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>initializeFor: aBehavior [
+{ #category : #initialization-data }
+RPackageOrganizer >> initializeFor: aBehavior [
 	| package |
 		
 	package := self packageMatchingExtensionName: aBehavior category.
@@ -605,21 +499,15 @@ RPackageOrganizer>>initializeFor: aBehavior [
 	self registerPackage: package forClass: aBehavior.
 ]
 
-{
-	#category : #initialization-data,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>initializeFromPackagesList: aPackagesList [
+{ #category : #initialization-data }
+RPackageOrganizer >> initializeFromPackagesList: aPackagesList [
  	RPackage 
 		withOrganizer: self  
 		do:  [  self basicInitializeFromPackagesList: aPackagesList ].
 ]
 
-{
-	#category : #initialization-data,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>initializeMethodsFor: aBehavior [
+{ #category : #initialization-data }
+RPackageOrganizer >> initializeMethodsFor: aBehavior [
 	| package |
 	
 	package := aBehavior package.  
@@ -631,31 +519,22 @@ RPackageOrganizer>>initializeMethodsFor: aBehavior [
 				do: [ :eachSelector | package addMethod: (aBehavior >> eachSelector) ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packageClass [
+{ #category : #accessing }
+RPackageOrganizer >> packageClass [
 	"Return the system class that represent packages."
 	
 	^ RPackage
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packageDefiningOrExtendingMethod: aCompiledMethod [
+{ #category : #accessing }
+RPackageOrganizer >> packageDefiningOrExtendingMethod: aCompiledMethod [
 	^ self packageDefiningOrExtendingSelector: aCompiledMethod selector inClass: aCompiledMethod methodClass
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packageDefiningOrExtendingSelector: aSelector inClass: aClass [
+{ #category : #accessing }
+RPackageOrganizer >> packageDefiningOrExtendingSelector: aSelector inClass: aClass [
 	"this implementation is slower
 		aClass packages detect: [:each | each includesSelector: aSelector ofClass: aClass ]"
 
@@ -675,11 +554,8 @@ RPackageOrganizer>>packageDefiningOrExtendingSelector: aSelector inClass: aClass
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packageDefiningOrExtendingSelector: aSelector inClassNamed: aClassNameSymbol [
+{ #category : #accessing }
+RPackageOrganizer >> packageDefiningOrExtendingSelector: aSelector inClassNamed: aClassNameSymbol [
 	"this implementation is slower
 		aClass packages detect: [:each | each includesSelector: aSelector ofClass: aClass ]"
 	| classPackage |
@@ -694,11 +570,8 @@ RPackageOrganizer>>packageDefiningOrExtendingSelector: aSelector inClassNamed: a
 		ifNone: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packageDefiningOrExtendingSelector: aSelector inMetaclassNamed: aClassNameSymbol [
+{ #category : #accessing }
+RPackageOrganizer >> packageDefiningOrExtendingSelector: aSelector inMetaclassNamed: aClassNameSymbol [
 	"this implementation is slower
 		aClass packages detect: [:each | each includesSelector: aSelector ofClass: aClass ]"
 	| classPackage |
@@ -713,11 +586,8 @@ RPackageOrganizer>>packageDefiningOrExtendingSelector: aSelector inMetaclassName
 		ifNone: [ nil ]
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packageExactlyMatchingExtensionName: anExtensionName [
+{ #category : #'system integration' }
+RPackageOrganizer >> packageExactlyMatchingExtensionName: anExtensionName [
 	"only look for a package for which the name match 'anExtensionName', making no difference about case. Return nil if no package is found"
 	
 	| extension |
@@ -730,11 +600,8 @@ RPackageOrganizer>>packageExactlyMatchingExtensionName: anExtensionName [
 	^ nil
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packageForProtocol: aProtocolName inClass: aClass [
+{ #category : #'system integration' }
+RPackageOrganizer >> packageForProtocol: aProtocolName inClass: aClass [
 	"According aProtocolName is an extension protocol, will look for a matching package. If no matching package is found ,  return nil. If aProtocolName is not an extension protocol, return the parent package of aClass"
 	
 	|tmpProtocol|
@@ -744,11 +611,8 @@ RPackageOrganizer>>packageForProtocol: aProtocolName inClass: aClass [
 		ifFalse: [ aClass package ]
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packageMatchingExtensionName: anExtensionName [
+{ #category : #'system integration' }
+RPackageOrganizer >> packageMatchingExtensionName: anExtensionName [
 
 	"return nil if no package is not found"
 	| tmpPackageName |
@@ -771,11 +635,8 @@ RPackageOrganizer>>packageMatchingExtensionName: anExtensionName [
 		ifFalse: [ self packageNamed: tmpPackageName ]
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packageMatchingExtensionName: aString includingClass: aClass [
+{ #category : #'system integration' }
+RPackageOrganizer >> packageMatchingExtensionName: aString includingClass: aClass [
 	| package categoryName |
 	
 	categoryName := aString.
@@ -791,21 +652,15 @@ RPackageOrganizer>>packageMatchingExtensionName: aString includingClass: aClass 
 	^ package
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packageNamed: aSymbol [
+{ #category : #accessing }
+RPackageOrganizer >> packageNamed: aSymbol [
 	^ self 
 		packageNamed: aSymbol 
 		ifAbsent: [ KeyNotFound signalFor: aSymbol ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packageNamed: aSymbol  ifAbsent: errorBlock [
+{ #category : #accessing }
+RPackageOrganizer >> packageNamed: aSymbol  ifAbsent: errorBlock [
 	^ packages 
 		at: aSymbol asSymbol 
 		ifAbsent: errorBlock
@@ -813,11 +668,8 @@ RPackageOrganizer>>packageNamed: aSymbol  ifAbsent: errorBlock [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packageNamedIgnoreCase: aSymbol ifAbsent: aBlock [
+{ #category : #private }
+RPackageOrganizer >> packageNamedIgnoreCase: aSymbol ifAbsent: aBlock [
 	"In case of extensions, I can need to take a package ignoring name"
 	self packagesDo: [  :each | 
 		(each name sameAs: aSymbol) 
@@ -826,86 +678,59 @@ RPackageOrganizer>>packageNamedIgnoreCase: aSymbol ifAbsent: aBlock [
 	^ aBlock value.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packageNames [
+{ #category : #accessing }
+RPackageOrganizer >> packageNames [
 	^ packages keys
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packageNamesDo: aBlock [
+{ #category : #accessing }
+RPackageOrganizer >> packageNamesDo: aBlock [
 	^ packages keysDo: aBlock
 ]
 
-{
-	#category : #'package access from class',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packageOf: aClass [
+{ #category : #'package access from class' }
+RPackageOrganizer >> packageOf: aClass [
 
 	^ classPackageMapping 
 		at: aClass theNonMetaClass originalName
 		ifAbsent: [self packageNamed: self packageClass defaultPackageName]
 ]
 
-{
-	#category : #'package access from class',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packageOfClassNamed: aName [
+{ #category : #'package access from class' }
+RPackageOrganizer >> packageOfClassNamed: aName [
 
 	self flag: self. "shouldProbablyReturnUnunpackagedPackage instead of nil"
 	^ classPackageMapping at: aName asSymbol ifAbsent: [nil]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packages [
+{ #category : #accessing }
+RPackageOrganizer >> packages [
 	
 	^ packages values
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>packagesDo: aBlock [
+{ #category : #accessing }
+RPackageOrganizer >> packagesDo: aBlock [
 	
 	packages valuesDo: aBlock
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>printOn: aStream [
+{ #category : #printing }
+RPackageOrganizer >> printOn: aStream [
 
 	super printOn: aStream.
 	debuggingName ifNotNil: [aStream nextPutAll: debuggingName ].  
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>register [
+{ #category : #initialization }
+RPackageOrganizer >> register [
 
 	"self registerInterestToMC."
 	self registerInterestToSystemAnnouncement.
 ]
 
-{
-	#category : #'private registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>registerExtendingPackage: aPackage forClass: aClass  [
+{ #category : #'private registration' }
+RPackageOrganizer >> registerExtendingPackage: aPackage forClass: aClass [ 
 
 	| cur |
 	cur := classExtendingPackagesMapping at: aClass theNonMetaClass name ifAbsent: [nil].
@@ -914,11 +739,8 @@ RPackageOrganizer>>registerExtendingPackage: aPackage forClass: aClass  [
 		ifFalse: [cur add: aPackage]
 ]
 
-{
-	#category : #'private registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>registerExtendingPackage: aPackage forClassName: aClassName  [
+{ #category : #'private registration' }
+RPackageOrganizer >> registerExtendingPackage: aPackage forClassName: aClassName [ 
 
 	| cur |
 	cur := classExtendingPackagesMapping at: aClassName asSymbol ifAbsent: [nil].
@@ -927,11 +749,8 @@ RPackageOrganizer>>registerExtendingPackage: aPackage forClassName: aClassName  
 		ifFalse: [cur add: aPackage]
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>registerInterestToAnnouncer: anAnnouncer	 [
+{ #category : #'system integration' }
+RPackageOrganizer >> registerInterestToAnnouncer: anAnnouncer [	
 	"There should be only one"
 	anAnnouncer unsubscribe: self.
 	
@@ -962,22 +781,16 @@ RPackageOrganizer>>registerInterestToAnnouncer: anAnnouncer	 [
 				to: self	].
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>registerInterestToSystemAnnouncement [
+{ #category : #'system integration' }
+RPackageOrganizer >> registerInterestToSystemAnnouncement [
 	"self registerInterestToSystemAnnouncement"
 	<systemEventRegistration>
 	
 	self registerInterestToAnnouncer: self announcer
 ]
 
-{
-	#category : #'public registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>registerPackage: aPackage [
+{ #category : #'public registration' }
+RPackageOrganizer >> registerPackage: aPackage [
 	"A new package is now available and declared in the receiver. "
 	
 	self validateCanBeAddedPackage: aPackage.
@@ -993,22 +806,16 @@ RPackageOrganizer>>registerPackage: aPackage [
 	^ aPackage
 ]
 
-{
-	#category : #'private registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>registerPackage: aPackage forClass: aClass  [
+{ #category : #'private registration' }
+RPackageOrganizer >> registerPackage: aPackage forClass: aClass [ 
 	(aPackage includesClass: aClass) 
 		ifFalse: 
 			[self error: aPackage name , ' does not includes the class ' , aClass name].
 	^classPackageMapping at: aClass theNonMetaClass name put: aPackage
 ]
 
-{
-	#category : #'private registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>registerPackage: aPackage forClassName: aClassNameSymbol [
+{ #category : #'private registration' }
+RPackageOrganizer >> registerPackage: aPackage forClassName: aClassNameSymbol [
 	"Register aPackage as the package of the class aClassNameSymbol. The package should contain the class in its class definitions."
 	
 	(aPackage includesClassNamed: aClassNameSymbol asSymbol) 
@@ -1017,21 +824,15 @@ RPackageOrganizer>>registerPackage: aPackage forClassName: aClassNameSymbol [
 	^classPackageMapping at: aClassNameSymbol put: aPackage
 ]
 
-{
-	#category : #'public registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>registerPackageNamed: aString  [
+{ #category : #'public registration' }
+RPackageOrganizer >> registerPackageNamed: aString [ 
 	^ self 
 		packageNamed: aString asSymbol
 		ifAbsent: [ (RPackage named: aString asSymbol) register ]
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>renamePackage: rPackage from: oldName to: newName  [
+{ #category : #'system integration' }
+RPackageOrganizer >> renamePackage: rPackage from: oldName to: newName [ 
 	| classesAndProtocolsToRename |
 	
 	rPackage name: newName. 
@@ -1053,29 +854,20 @@ RPackageOrganizer>>renamePackage: rPackage from: oldName to: newName  [
 				toBe: '*', newName ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>reportBogusBehaviorOf: aSelector [
+{ #category : #private }
+RPackageOrganizer >> reportBogusBehaviorOf: aSelector [
 
 	self logCr: 'RPackage log: Something wrong around ', aSelector asString , 'since the removeKey: is called on not present information.'.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>reportExtraRemovalOf: aClass [
+{ #category : #private }
+RPackageOrganizer >> reportExtraRemovalOf: aClass [
 
 	self logCr:  'The class ',  aClass name printString, 'is removed twice'.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>stopNotification [
+{ #category : #private }
+RPackageOrganizer >> stopNotification [
 	"(self instVarNamed: #default) stopNotification"
 	
 	"pay attention that we can break the system using this method"
@@ -1086,11 +878,8 @@ RPackageOrganizer>>stopNotification [
 		wc removeDependent: self].
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>systemCategoryAddedActionFrom: ann [
+{ #category : #'system integration' }
+RPackageOrganizer >> systemCategoryAddedActionFrom: ann [
 	| package |
 	
 	package := self packageMatchingExtensionName: ann categoryName asString.
@@ -1099,11 +888,8 @@ RPackageOrganizer>>systemCategoryAddedActionFrom: ann [
 	package addClassTag: ann categoryName asSymbol.
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>systemCategoryRemovedActionFrom: ann [
+{ #category : #'system integration' }
+RPackageOrganizer >> systemCategoryRemovedActionFrom: ann [
 	"When a system category is removed, we may: remove a tag, or remove a rpackage. If we remove a RPackage, unregister the linked MCWorkingCopy. If it is a tag, do nothing? (from what I know of RPackage, the tag should already have disappeared because it would have been empty)."
 
 	| rPackage categoryName categoryNameSymbol managers |
@@ -1124,11 +910,8 @@ RPackageOrganizer>>systemCategoryRemovedActionFrom: ann [
 		ifNotNil: [ :mcWorkingCopy | mcWorkingCopy unregister ]
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>systemCategoryRenamedActionFrom: ann [
+{ #category : #'system integration' }
+RPackageOrganizer >> systemCategoryRenamedActionFrom: ann [
 	| rPackage oldName newName |
 
 	oldName := ann oldCategoryName asSymbol.
@@ -1147,11 +930,8 @@ RPackageOrganizer>>systemCategoryRenamedActionFrom: ann [
 
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>systemClassAddedActionFrom: ann [
+{ #category : #'system integration' }
+RPackageOrganizer >> systemClassAddedActionFrom: ann [
 	| class rPackage categoryNameSymbol |
 	
 	class := ann classAffected.
@@ -1164,11 +944,8 @@ RPackageOrganizer>>systemClassAddedActionFrom: ann [
 
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>systemClassRecategorizedActionFrom: ann [
+{ #category : #'system integration' }
+RPackageOrganizer >> systemClassRecategorizedActionFrom: ann [
 	| class newRPackage newRPackageTag oldRPackage newCategoryName oldCategoryName|
 	
 	class := ann classAffected.	
@@ -1187,11 +964,8 @@ RPackageOrganizer>>systemClassRecategorizedActionFrom: ann [
 		toTag: newRPackageTag
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>systemClassRemovedActionFrom: ann [
+{ #category : #'system integration' }
+RPackageOrganizer >> systemClassRemovedActionFrom: ann [
 	"A class has been removed, we should update the package adequately."
 	
 	| class className rPackage categoryName |	
@@ -1202,11 +976,8 @@ RPackageOrganizer>>systemClassRemovedActionFrom: ann [
 	
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>systemClassRenamedActionFrom: ann [
+{ #category : #'system integration' }
+RPackageOrganizer >> systemClassRenamedActionFrom: ann [
 	"When a class is renamed, we update its package as well as the organizer"
 	
 	| newName oldName class rPackage extendingRPackages packageName |
@@ -1239,11 +1010,8 @@ RPackageOrganizer>>systemClassRenamedActionFrom: ann [
 	
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>systemClassReorganizedActionFrom: ann [
+{ #category : #'system integration' }
+RPackageOrganizer >> systemClassReorganizedActionFrom: ann [
 	"when a class is reorganized, we have to check if an extension has not been added"
 	| clazz classOrganization |
 
@@ -1255,11 +1023,8 @@ RPackageOrganizer>>systemClassReorganizedActionFrom: ann [
 
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>systemMethodAddedActionFrom: ann [
+{ #category : #'system integration' }
+RPackageOrganizer >> systemMethodAddedActionFrom: ann [
 	| method |
 	
 	"If the method origin is not the one of the event, we do not care about that method"
@@ -1271,11 +1036,8 @@ RPackageOrganizer>>systemMethodAddedActionFrom: ann [
 	self addMethod: method
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>systemMethodModifiedActionFrom: ann [
+{ #category : #'system integration' }
+RPackageOrganizer >> systemMethodModifiedActionFrom: ann [
 
 	"this annoucement can correspond to several kind of modifications:
 		=> a method has been renamed
@@ -1311,11 +1073,8 @@ RPackageOrganizer>>systemMethodModifiedActionFrom: ann [
 	
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>systemMethodRecategorizedActionFrom: ann [
+{ #category : #'system integration' }
+RPackageOrganizer >> systemMethodRecategorizedActionFrom: ann [
 	"a protocol has been renamed
 	a method has been removed. // WILL BE TREATED WITH SystemMethodRemovedAnnouncement
 	a method has been moved to another category 
@@ -1365,11 +1124,8 @@ RPackageOrganizer>>systemMethodRecategorizedActionFrom: ann [
 				to: destinationPackage ]
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>systemMethodRemovedActionFrom: ann [
+{ #category : #'system integration' }
+RPackageOrganizer >> systemMethodRemovedActionFrom: ann [
 
 	| method methodPackage |
 	method := ann method.
@@ -1389,38 +1145,26 @@ RPackageOrganizer>>systemMethodRemovedActionFrom: ann [
 		]
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>systemProtocolAddedActionFrom: ann [
+{ #category : #'system integration' }
+RPackageOrganizer >> systemProtocolAddedActionFrom: ann [
 
 	"for now I don't see anything to do'"
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>systemProtocolRemovedActionFrom: ann [
+{ #category : #'system integration' }
+RPackageOrganizer >> systemProtocolRemovedActionFrom: ann [
 	"to be unregistered"
 	
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>unregister [
+{ #category : #initialization }
+RPackageOrganizer >> unregister [
 	SystemAnnouncer uniqueInstance unsubscribe: self.
 ]
 
-{
-	#category : #'private registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>unregisterExtendingPackage: aPackage forClass: aClass [
+{ #category : #'private registration' }
+RPackageOrganizer >> unregisterExtendingPackage: aPackage forClass: aClass [
 	| extendingPackageForClass |
 	
 	extendingPackageForClass := classExtendingPackagesMapping 
@@ -1432,11 +1176,8 @@ RPackageOrganizer>>unregisterExtendingPackage: aPackage forClass: aClass [
 			ifAbsent: [] "not happy with this one" ]
 ]
 
-{
-	#category : #'private registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>unregisterExtendingPackage: aPackage forClassName: aClassName [
+{ #category : #'private registration' }
+RPackageOrganizer >> unregisterExtendingPackage: aPackage forClassName: aClassName [
 	
 	| cur |
 	cur := classExtendingPackagesMapping at: aClassName asSymbol ifAbsent: [nil].
@@ -1444,21 +1185,15 @@ RPackageOrganizer>>unregisterExtendingPackage: aPackage forClassName: aClassName
 		ifFalse: [cur remove: aPackage ifAbsent: [] "not happy with this one"]
 ]
 
-{
-	#category : #'system integration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>unregisterInterestToSystemAnnouncement [
+{ #category : #'system integration' }
+RPackageOrganizer >> unregisterInterestToSystemAnnouncement [
 	"self unregisterInterestToSystemAnnouncement"
 
 	SystemAnnouncer uniqueInstance unsubscribe: self
 ]
 
-{
-	#category : #'public registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>unregisterPackage: aPackage [
+{ #category : #'public registration' }
+RPackageOrganizer >> unregisterPackage: aPackage [
 	"Unregister the specified package from the list of registered packages. Raise the announcement RPackageUnregistered."
 
 	self basicUnregisterPackage: aPackage.
@@ -1471,11 +1206,8 @@ RPackageOrganizer>>unregisterPackage: aPackage [
 	^ aPackage
 ]
 
-{
-	#category : #'private registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>unregisterPackage: aPackage forClass: aClass  [
+{ #category : #'private registration' }
+RPackageOrganizer >> unregisterPackage: aPackage forClass: aClass [ 
 	"unregister the back pointer mapping from classes to packages."
 		
 	^classPackageMapping 
@@ -1483,11 +1215,8 @@ RPackageOrganizer>>unregisterPackage: aPackage forClass: aClass  [
 		ifAbsent: [ self reportExtraRemovalOf: aClass ]
 ]
 
-{
-	#category : #'private registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>unregisterPackage: aPackage forClassName: aClassName [
+{ #category : #'private registration' }
+RPackageOrganizer >> unregisterPackage: aPackage forClassName: aClassName [
 	"Unregister the package back pointer for a given class. The class should not belong to the package anymore before removing the back pointer."
 
 	(aPackage includesClassNamed: aClassName asSymbol) 
@@ -1496,11 +1225,8 @@ RPackageOrganizer>>unregisterPackage: aPackage forClassName: aClassName [
 	^classPackageMapping removeKey: aClassName asSymbol ifAbsent: [self reportBogusBehaviorOf: #unregisterPackage:forClassName:  ]
 ]
 
-{
-	#category : #'public registration',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>unregisterPackageNamed: symbol [
+{ #category : #'public registration' }
+RPackageOrganizer >> unregisterPackageNamed: symbol [
 	"Unregister the specified package from the list of registered packages. Raise the announcement RPackageUnregistered."
 	
 	| aPackage |
@@ -1510,32 +1236,23 @@ RPackageOrganizer>>unregisterPackageNamed: symbol [
 	^ aPackage
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>validateCanBeAddedPackage: aPackage 	 [
+{ #category : #private }
+RPackageOrganizer >> validateCanBeAddedPackage: aPackage [ 	
 	self 
 		validateCanBeAddedPackageName: aPackage categoryName 
 		tagName: nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>validateCanBeAddedPackage: aPackage tagName: aSymbol [
+{ #category : #private }
+RPackageOrganizer >> validateCanBeAddedPackage: aPackage tagName: aSymbol [
 	aPackage name = aSymbol ifTrue: [ ^ self ].
 	self 
 		validateCanBeAddedPackageName: aPackage categoryName, '-', aSymbol
 		tagName: nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-RPackageOrganizer>>validateCanBeAddedPackageName: packageName tagName: tagName  [
+{ #category : #private }
+RPackageOrganizer >> validateCanBeAddedPackageName: packageName tagName: tagName [ 
 	| package |
 	
 	package := self 

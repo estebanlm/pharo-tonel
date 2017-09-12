@@ -4,23 +4,16 @@ SUnit tests for FileSystemDirectoryEntry
 Class {
 	#name : #DirectoryEntryTest,
 	#superclass : #TestCase,
-	#category : #FileSystem-Tests-Core,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:38'
+	#category : #FileSystem-Tests-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-DirectoryEntryTest>>entry [
+{ #category : #accessing }
+DirectoryEntryTest >> entry [
 	^ FileLocator image resolve entry
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-DirectoryEntryTest>>testCreationTimeIsADateAndTimeInstance [
+{ #category : #tests }
+DirectoryEntryTest >> testCreationTimeIsADateAndTimeInstance [
 	"While creation is the message sent to a directory entry, creation returns a DateAndTime object"
 
 	| creation |
@@ -29,49 +22,34 @@ DirectoryEntryTest>>testCreationTimeIsADateAndTimeInstance [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-DirectoryEntryTest>>testIsDirectory [
+{ #category : #tests }
+DirectoryEntryTest >> testIsDirectory [
 	| ref entry |
 	ref := FileLocator imageDirectory resolve.
 	entry := ref entry.
 	self assert: entry isDirectory
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-DirectoryEntryTest>>testIsFile [
+{ #category : #tests }
+DirectoryEntryTest >> testIsFile [
 	self assert: self entry isFile.
 	self deny: self entry isDirectory
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-DirectoryEntryTest>>testIsNotDirectory [
+{ #category : #tests }
+DirectoryEntryTest >> testIsNotDirectory [
 	self deny: self entry isDirectory
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-DirectoryEntryTest>>testIsNotFile [
+{ #category : #tests }
+DirectoryEntryTest >> testIsNotFile [
 	| ref |
 	ref := FileLocator imageDirectory resolve.
 	self deny: ref entry isFile
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-DirectoryEntryTest>>testModificationTimeIsADateAndTimeInstance [
+{ #category : #tests }
+DirectoryEntryTest >> testModificationTimeIsADateAndTimeInstance [
 	"While modification is the message sent to a directory entry, modification returns a DateAndTime object"
 
 	| modification |
@@ -80,21 +58,15 @@ DirectoryEntryTest>>testModificationTimeIsADateAndTimeInstance [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-DirectoryEntryTest>>testReference [
+{ #category : #tests }
+DirectoryEntryTest >> testReference [
 	| ref entry |
 	ref := FileLocator image resolve.
 	entry := ref entry.
 	self assert: entry reference = ref
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-DirectoryEntryTest>>testSize [
+{ #category : #tests }
+DirectoryEntryTest >> testSize [
 	self assert: self entry size isInteger
 ]

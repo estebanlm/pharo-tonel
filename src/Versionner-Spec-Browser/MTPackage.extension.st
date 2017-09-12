@@ -1,11 +1,6 @@
-Extension {
-	#name : #MTPackage
-}
+Extension { #name : #MTPackage }
 
-{
-	#category : #'*Versionner-Spec-Browser',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTPackage>>treeNodeClass [
+{ #category : #'*Versionner-Spec-Browser' }
+MTPackage >> treeNodeClass [
 	^VSPackageLeafNode
 ]

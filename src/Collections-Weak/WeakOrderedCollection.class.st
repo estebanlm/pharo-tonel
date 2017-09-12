@@ -8,14 +8,10 @@ For more details, read my tests in WeakOrderedCollectionTest.
 Class {
 	#name : #WeakOrderedCollection,
 	#superclass : #OrderedCollection,
-	#category : #Collections-Weak,
-	#timestamp : '<historical>'
+	#category : #Collections-Weak
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakOrderedCollection class>>arrayType [
+{ #category : #'as yet unclassified' }
+WeakOrderedCollection class >> arrayType [
 	^ WeakArray
 ]

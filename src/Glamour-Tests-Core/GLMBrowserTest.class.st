@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMBrowserTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrowserTest>>testAddPane [
+{ #category : #tests }
+GLMBrowserTest >> testAddPane [
 	| browser pane |
 	browser := GLMBrowser new.
 	self assert: browser panes isEmpty.
@@ -21,11 +14,8 @@ GLMBrowserTest>>testAddPane [
 	self assert: pane browser equals: browser
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrowserTest>>testAddTransmissions [
+{ #category : #tests }
+GLMBrowserTest >> testAddTransmissions [
 	| browser transmission |
 	browser := GLMBrowser new.
 	self assert: browser transmissions isEmpty.
@@ -34,11 +24,8 @@ GLMBrowserTest>>testAddTransmissions [
 	self assert: transmission browser equals: browser
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrowserTest>>testCompositeInTheParentPane [
+{ #category : #tests }
+GLMBrowserTest >> testCompositeInTheParentPane [
 	| browser |
 	browser := GLMBrowser new.
 	self assert: (browser pane presentations isKindOf: GLMCompositePresentation).
@@ -46,11 +33,8 @@ GLMBrowserTest>>testCompositeInTheParentPane [
 	self assert: browser pane presentations first equals: browser
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrowserTest>>testHasStatusbar [
+{ #category : #tests }
+GLMBrowserTest >> testHasStatusbar [
 	| browser |
 	browser := GLMBrowser new.
 	self deny: browser hasStatusbar.
@@ -60,11 +44,8 @@ GLMBrowserTest>>testHasStatusbar [
 	self assert: browser statusbarPane == browser panes first
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrowserTest>>testStatusbarTransmissions [
+{ #category : #tests }
+GLMBrowserTest >> testStatusbarTransmissions [
 	| browser pane |
 	browser := GLMBrowser new.
 	browser addStatusbar.
@@ -77,11 +58,8 @@ GLMBrowserTest>>testStatusbarTransmissions [
 	self assert: (browser transmissions first presentations first isKindOf: GLMLabelPresentation)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrowserTest>>testStatusbarTransmissionsTriggered [
+{ #category : #tests }
+GLMBrowserTest >> testStatusbarTransmissionsTriggered [
 	| browser pane |
 	browser := GLMTabulator new.
 	browser addStatusbar.
@@ -97,11 +75,8 @@ GLMBrowserTest>>testStatusbarTransmissionsTriggered [
 	self assert: (browser statusbarPane presentations first isKindOf: GLMLabelPresentation)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrowserTest>>testTransmissionTriggeredAnnounced [
+{ #category : #tests }
+GLMBrowserTest >> testTransmissionTriggeredAnnounced [
 	| browser announcements pane1 pane2 transmission |
 	announcements := OrderedCollection new.
 	browser := GLMBrowser new.
@@ -121,11 +96,8 @@ GLMBrowserTest>>testTransmissionTriggeredAnnounced [
 	self assert: announcements size equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrowserTest>>testUnregisterAnnouncements [
+{ #category : #tests }
+GLMBrowserTest >> testUnregisterAnnouncements [
 	| announcer presentation browser pane |
 	announcer := Announcer new.
 	browser := GLMBrowser new.
@@ -140,11 +112,8 @@ GLMBrowserTest>>testUnregisterAnnouncements [
 	self assert: announcer numberOfSubscriptions equals: 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrowserTest>>testUnregisterAnnouncementsWhenRemovingPane [
+{ #category : #tests }
+GLMBrowserTest >> testUnregisterAnnouncementsWhenRemovingPane [
 	| announcer presentation browser pane |
 	announcer := Announcer new.
 	browser := GLMBrowser new.
@@ -159,11 +128,8 @@ GLMBrowserTest>>testUnregisterAnnouncementsWhenRemovingPane [
 	self assert: announcer numberOfSubscriptions equals: 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrowserTest>>testUnregisterAnnouncementsWhenUpdatingPane [
+{ #category : #tests }
+GLMBrowserTest >> testUnregisterAnnouncementsWhenUpdatingPane [
 	| announcer browser |
 	announcer := Announcer new.
 	browser := GLMTabulator new.
@@ -180,11 +146,8 @@ GLMBrowserTest>>testUnregisterAnnouncementsWhenUpdatingPane [
 	self assert: announcer numberOfSubscriptions equals: 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrowserTest>>testUnregisterAnnouncementsWhenUpdatingPaneWithTwoAnnouncers [
+{ #category : #tests }
+GLMBrowserTest >> testUnregisterAnnouncementsWhenUpdatingPaneWithTwoAnnouncers [
 	| announcer browser announcer2 |
 	announcer := Announcer new.
 	announcer2 := Announcer new.
@@ -207,11 +170,8 @@ GLMBrowserTest>>testUnregisterAnnouncementsWhenUpdatingPaneWithTwoAnnouncers [
 	self assert: announcer2 numberOfSubscriptions equals: 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrowserTest>>testUpdateRecomputesMatchingPresentations [
+{ #category : #tests }
+GLMBrowserTest >> testUpdateRecomputesMatchingPresentations [
 	| browser collection matchingPresentationsChangedAnnounced | 
 	collection := GLMAnnouncingCollection new.
 	collection add: 1.
@@ -228,11 +188,8 @@ GLMBrowserTest>>testUpdateRecomputesMatchingPresentations [
 	self assert: matchingPresentationsChangedAnnounced
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrowserTest>>testWatcherCopy [
+{ #category : #tests }
+GLMBrowserTest >> testWatcherCopy [
 	| browser pane transmission browserCopy |
 	browser := GLMBrowser new.
 	pane := GLMPane named: 'one'.
@@ -250,11 +207,8 @@ GLMBrowserTest>>testWatcherCopy [
 	self assert: (browserCopy watcherPane port: #entity) value equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrowserTest>>testWatcherCreation [
+{ #category : #tests }
+GLMBrowserTest >> testWatcherCreation [
 	| browser |
 	browser := GLMBrowser new.
 	self assert: browser watcherPane name equals: #'_watcher'.

@@ -7,35 +7,25 @@ Class {
 	#instVars : [
 		'origin'
 	],
-	#category : #Slot-ClassBuilder,
-	#timestamp : 'MartinDias 1/28/2014 16:22'
+	#category : #Slot-ClassBuilder
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModificationPropagation class>>propagate: aModification to: aClass [
+{ #category : #'instance creation' }
+ClassModificationPropagation class >> propagate: aModification to: aClass [
 	^ self new
 		propagate: aModification
 		to: aClass
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModificationPropagation>>apply [
+{ #category : #public }
+ClassModificationPropagation >> apply [
 	super apply.
 	self copyTraitCompositionAndMethods.
 	^ newClass
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModificationPropagation>>copyTraitCompositionAndMethods [
+{ #category : #private }
+ClassModificationPropagation >> copyTraitCompositionAndMethods [
 	newClass traitComposition: self target traitComposition.
 	(self target methods select: #isFromTrait)
 		do: [ :m | newClass methodDict at: m selector put: m ].
@@ -45,27 +35,18 @@ ClassModificationPropagation>>copyTraitCompositionAndMethods [
 			t addUser: newClass ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModificationPropagation>>isPropagation [
+{ #category : #testing }
+ClassModificationPropagation >> isPropagation [
 	^true
 ]
 
-{
-	#category : #migrating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModificationPropagation>>methodModification [
+{ #category : #migrating }
+ClassModificationPropagation >> methodModification [
 	^ origin methodModification
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModificationPropagation>>propagate: aModification to: aTarget [
+{ #category : #public }
+ClassModificationPropagation >> propagate: aModification to: aTarget [
 	origin := aModification.
 	target := aTarget.
 	self classLayout: (target classLayout 
@@ -73,10 +54,7 @@ ClassModificationPropagation>>propagate: aModification to: aTarget [
 		to: origin newLayout).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModificationPropagation>>superclass [
+{ #category : #accessing }
+ClassModificationPropagation >> superclass [
 	^ origin newClass
 ]

@@ -11,52 +11,36 @@ Class {
 		'logBrowserModel',
 		'sourceEntries'
 	],
-	#category : #EpiceaBrowsers-Visitors,
-	#timestamp : 'MartinDias 4/14/2017 15:15'
+	#category : #EpiceaBrowsers-Visitors
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>behaviorNamed: aSymbol ifPresent: presentBlock [
+{ #category : #private }
+EpApplyPreviewer >> behaviorNamed: aSymbol ifPresent: presentBlock [
 
 	^ (self environment classOrTraitNamed: aSymbol) 
 		ifNil: [ self ]
 		ifNotNil: presentBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>environment [
+{ #category : #accessing }
+EpApplyPreviewer >> environment [
 
 	^ environment ifNil: [ self class environment ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>environment: anObject [
+{ #category : #accessing }
+EpApplyPreviewer >> environment: anObject [
 	environment := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>includesCategory: aString [
+{ #category : #private }
+EpApplyPreviewer >> includesCategory: aString [
 
 	^ self environment organization includesCategory: aString
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>visitBehaviorCategoryChange: aChange [
+{ #category : #visitor }
+EpApplyPreviewer >> visitBehaviorCategoryChange: aChange [
 
 	self
 		behaviorNamed: aChange behaviorAffectedName
@@ -75,11 +59,8 @@ EpApplyPreviewer>>visitBehaviorCategoryChange: aChange [
 	^ #()
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>visitBehaviorCommentChange: aChange [
+{ #category : #visitor }
+EpApplyPreviewer >> visitBehaviorCommentChange: aChange [
 
 	self
 		behaviorNamed: aChange behaviorAffectedName
@@ -95,11 +76,8 @@ EpApplyPreviewer>>visitBehaviorCommentChange: aChange [
 	^ #()
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>visitBehaviorNameChange: aChange [
+{ #category : #visitor }
+EpApplyPreviewer >> visitBehaviorNameChange: aChange [
 
 	self 
 		behaviorNamed: aChange oldName
@@ -112,44 +90,32 @@ EpApplyPreviewer>>visitBehaviorNameChange: aChange [
 	^ #()
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>visitCategoryAddition: aChange [
+{ #category : #visitor }
+EpApplyPreviewer >> visitCategoryAddition: aChange [
 
 	^ (self includesCategory: aChange categoryName)
 			ifTrue: [ #() ]
 			ifFalse: [ { aChange } ]
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>visitCategoryRemoval: aChange [
+{ #category : #visitor }
+EpApplyPreviewer >> visitCategoryRemoval: aChange [
 
 	^ (self includesCategory: aChange categoryName)
 			ifTrue: [ { aChange } ]
 			ifFalse: [ #() ]
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>visitCategoryRename: aChange [
+{ #category : #visitor }
+EpApplyPreviewer >> visitCategoryRename: aChange [
 
 	^ (self includesCategory: aChange oldCategoryName)
 		ifTrue: [ { aChange } ]
 		ifFalse: [ #() ]
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>visitClassChange: aChange [
+{ #category : #visitor }
+EpApplyPreviewer >> visitClassChange: aChange [
 
 	self
 		behaviorNamed: aChange behaviorAffectedName
@@ -162,11 +128,8 @@ EpApplyPreviewer>>visitClassChange: aChange [
 	^ { EpClassAddition class: aChange behaviorAffected }
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>visitClassRemoval: aChange [
+{ #category : #visitor }
+EpApplyPreviewer >> visitClassRemoval: aChange [
 
 	self 
 		behaviorNamed: aChange behaviorAffectedName
@@ -175,31 +138,22 @@ EpApplyPreviewer>>visitClassRemoval: aChange [
 	^ #()
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>visitCodeChange: aChange [
+{ #category : #visitor }
+EpApplyPreviewer >> visitCodeChange: aChange [
 	"Default behavior for any change."
 		
 	self error: 'Shouldn''t happen'. ^ {aChange}
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>visitEvent: aChange [
+{ #category : #visitor }
+EpApplyPreviewer >> visitEvent: aChange [
 	"Generic events do not apply any code change"
 
 	^ #()
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>visitMethodChange: aChange [
+{ #category : #visitor }
+EpApplyPreviewer >> visitMethodChange: aChange [
 	"Addition and Modification come here"
 
 	self 
@@ -219,11 +173,8 @@ EpApplyPreviewer>>visitMethodChange: aChange [
 
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>visitMethodRemoval: aChange [
+{ #category : #visitor }
+EpApplyPreviewer >> visitMethodRemoval: aChange [
 
 	self 
 		behaviorNamed: aChange behaviorAffectedName
@@ -240,11 +191,8 @@ EpApplyPreviewer>>visitMethodRemoval: aChange [
 
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>visitProtocolAddition: aChange [
+{ #category : #visitor }
+EpApplyPreviewer >> visitProtocolAddition: aChange [
 
 	self 
 		behaviorNamed: aChange behaviorAffectedName
@@ -256,11 +204,8 @@ EpApplyPreviewer>>visitProtocolAddition: aChange [
 	^ #()
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>visitProtocolRemoval: aChange [
+{ #category : #visitor }
+EpApplyPreviewer >> visitProtocolRemoval: aChange [
 
 	self 
 		behaviorNamed: aChange behaviorAffectedName
@@ -272,11 +217,8 @@ EpApplyPreviewer>>visitProtocolRemoval: aChange [
 	^ #()
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>visitTraitChange: aChange [
+{ #category : #visitor }
+EpApplyPreviewer >> visitTraitChange: aChange [
 
 	self
 		behaviorNamed: aChange behaviorAffectedName
@@ -286,11 +228,8 @@ EpApplyPreviewer>>visitTraitChange: aChange [
 	^ { EpTraitAddition trait: aChange behaviorAffected }
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpApplyPreviewer>>visitTraitRemoval: aChange [
+{ #category : #visitor }
+EpApplyPreviewer >> visitTraitRemoval: aChange [
 
 	self 
 		behaviorNamed: aChange behaviorAffectedName

@@ -1,21 +1,13 @@
-Extension {
-	#name : #Object
-}
+Extension { #name : #Object }
 
-{
-	#category : #'*GT-Inspector',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Object>>gtDisplayOn: stream [
+{ #category : #'*GT-Inspector' }
+Object >> gtDisplayOn: stream [
 	"This offers a means to customize how the object is shown in the inspector"
 	^ self printOn: stream
 ]
 
-{
-	#category : #'*GT-Inspector',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Object>>gtDisplayString [
+{ #category : #'*GT-Inspector' }
+Object >> gtDisplayString [
 	"This offers a means to customize how the object is shown in the inspector.
 	Do not override this method. Override gtDisplayOn: instead"
 		
@@ -26,45 +18,30 @@ Object>>gtDisplayString [
 	^ limitedString , ' ...'
 ]
 
-{
-	#category : #'*GT-Inspector',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Object>>gtInspectorHash [
+{ #category : #'*GT-Inspector' }
+Object >> gtInspectorHash [
 
 	^ self identityHash.
 ]
 
-{
-	#category : #'*GT-Inspector',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Object>>gtInspectorIcon [
+{ #category : #'*GT-Inspector' }
+Object >> gtInspectorIcon [
 	^ self iconOrThumbnailOfSize: 16
 ]
 
-{
-	#category : #'*GT-Inspector',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Object>>gtInspectorInterestingObject [
+{ #category : #'*GT-Inspector' }
+Object >> gtInspectorInterestingObject [
 	^ self
 ]
 
-{
-	#category : #'*GT-Inspector',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Object>>gtInspectorRawIn: composite [
+{ #category : #'*GT-Inspector' }
+Object >> gtInspectorRawIn: composite [
 	"This is the most basic presentation showing the state of the object"
 	^ composite custom: GTObjectVariablesBrowser new
 ]
 
-{
-	#category : #'*GT-Inspector',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Object>>gtInspectorVariableNodesIn: aCollection [
+{ #category : #'*GT-Inspector' }
+Object >> gtInspectorVariableNodesIn: aCollection [
 	"This is a helper method that adds to the given collection all nodes modeling named and 
 	indexed attributes for the current object.
 	Subclasses can override it to specialize what appears in the variables presentation."
@@ -87,11 +64,8 @@ Object>>gtInspectorVariableNodesIn: aCollection [
 			GTInspectorSlotNode hostObject: self slot: slot ]))
 ]
 
-{
-	#category : #'*GT-Inspector',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Object>>gtInspectorVariableValuePairs [
+{ #category : #'*GT-Inspector' }
+Object >> gtInspectorVariableValuePairs [
 	"This is a helper method that returns a collection of 
 		variable_name -> value
 	for the current object.

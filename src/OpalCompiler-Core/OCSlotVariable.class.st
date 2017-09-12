@@ -11,81 +11,53 @@ Class {
 	#instVars : [
 		'slot'
 	],
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : 'MarcusDenker 7/2/2014 14:26'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSlotVariable class>>semanticNodeClass [
+{ #category : #accessing }
+OCSlotVariable class >> semanticNodeClass [
 
 	^RBInstanceVariableNode
 ]
 
-{
-	#category : #emitting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSlotVariable>>emitStore: methodBuilder [
+{ #category : #emitting }
+OCSlotVariable >> emitStore: methodBuilder [
 
 	slot emitStore: methodBuilder
 ]
 
-{
-	#category : #emitting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSlotVariable>>emitValue: methodBuilder [
+{ #category : #emitting }
+OCSlotVariable >> emitValue: methodBuilder [
 
 	slot emitValue: methodBuilder
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSlotVariable>>isInstance [
+{ #category : #testing }
+OCSlotVariable >> isInstance [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSlotVariable>>name [
+{ #category : #accessing }
+OCSlotVariable >> name [
 	^ slot name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSlotVariable>>name: aString [
+{ #category : #accessing }
+OCSlotVariable >> name: aString [
 	slot name: aString asSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSlotVariable>>slot [
+{ #category : #accessing }
+OCSlotVariable >> slot [
 	^ slot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSlotVariable>>slot: aSlot [
+{ #category : #accessing }
+OCSlotVariable >> slot: aSlot [
 	slot := aSlot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSlotVariable>>variable [
+{ #category : #accessing }
+OCSlotVariable >> variable [
 	^slot
 ]

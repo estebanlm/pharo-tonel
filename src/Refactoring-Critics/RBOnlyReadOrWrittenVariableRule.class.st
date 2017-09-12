@@ -4,34 +4,24 @@ This smell arises when an instance variable is not both read and written. If an 
 Class {
 	#name : #RBOnlyReadOrWrittenVariableRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 20:49'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBOnlyReadOrWrittenVariableRule class>>isVisible [
+{ #category : #testing }
+RBOnlyReadOrWrittenVariableRule class >> isVisible [
 
 	self flag: 'The functionality was moved to GRIvarNeitherReadNorWrittenRule, but as this rule is used by Monkey, and Monkey is not using Renraku model yet, the rule is hidden'.
 	^ false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBOnlyReadOrWrittenVariableRule class>>new [
+{ #category : #'instance creation' }
+RBOnlyReadOrWrittenVariableRule class >> new [
 	
 	^ GRIvarNeitherReadNorWrittenRule asRBRule 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBOnlyReadOrWrittenVariableRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBOnlyReadOrWrittenVariableRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'OnlyReadOrWrittenVariableRule'

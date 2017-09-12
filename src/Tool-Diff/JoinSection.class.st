@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #JoinSection,
 	#superclass : #Model,
@@ -15,15 +12,11 @@ Class {
 		'additionHighlightColor',
 		'removalHighlightColor'
 	],
-	#category : #Tool-Diff,
-	#timestamp : ''
+	#category : #Tool-Diff
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>addHighlightsFrom: srcBlock to: dstBlock to: aCollection color: aColor [
+{ #category : #adding }
+JoinSection >> addHighlightsFrom: srcBlock to: dstBlock to: aCollection color: aColor [
 	"Add the highlights required for the given character blocks
 	of a paragraph. May be up to three highlights depending
 	on the line spans."
@@ -45,69 +38,48 @@ JoinSection>>addHighlightsFrom: srcBlock to: dstBlock to: aCollection color: aCo
 							bounds: (dstBlock textLine topLeft corner: dstBlock bottomRight))]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>additionHighlightColor [
+{ #category : #accessing }
+JoinSection >> additionHighlightColor [
 	^ additionHighlightColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>additionHighlightColor: anObject [
+{ #category : #accessing }
+JoinSection >> additionHighlightColor: anObject [
 	additionHighlightColor := anObject.
 	self updateHighlights
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>borderColor [
+{ #category : #accessing }
+JoinSection >> borderColor [
 	"Answer the value of borderColor"
 
 	^ borderColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>borderColor: aColor [
+{ #category : #accessing }
+JoinSection >> borderColor: aColor [
 	"Set the value of borderColor"
 
 	borderColor := aColor.
 	self updateHighlights
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>borderColorToUse [
+{ #category : #'as yet unclassified' }
+JoinSection >> borderColorToUse [
 	"Answer the border color to use."
 	
 	^self borderColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>borderWidth [
+{ #category : #accessing }
+JoinSection >> borderWidth [
 	"Answer the value of borderWidth"
 
 	^ borderWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>borderWidth: anInteger [
+{ #category : #accessing }
+JoinSection >> borderWidth: anInteger [
 	"Set the value of borderWidth"
 
 	borderWidth := anInteger.
@@ -117,11 +89,8 @@ JoinSection>>borderWidth: anInteger [
 		self dst highlight borderWidth: anInteger]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>clicked [
+{ #category : #'as yet unclassified' }
+JoinSection >> clicked [
 	"The receiver or a highlight was clicked."
 
 	self wantsClick
@@ -129,21 +98,15 @@ JoinSection>>clicked [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>containsPoint: aPoint [
+{ #category : #testing }
+JoinSection >> containsPoint: aPoint [
 	"Answer whether the receiver contains the given point."
 
 	^self shape containsPoint: aPoint
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>createHighlights [
+{ #category : #'as yet unclassified' }
+JoinSection >> createHighlights [
 	"Create and store the src and dst highlights."
 
 	|s d|
@@ -163,11 +126,8 @@ JoinSection>>createHighlights [
 	self dst highlights: d
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>createHighlightsFrom: srcPara to: dstPara [
+{ #category : #'as yet unclassified' }
+JoinSection >> createHighlightsFrom: srcPara to: dstPara [
 	"Create and store the src and dst highlights.
 	Use the given paragraphs to determine inline
 	diffs."
@@ -227,11 +187,8 @@ JoinSection>>createHighlightsFrom: srcPara to: dstPara [
 						color: self removalHighlightColor ] ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>drawMapOn: aCanvas in: rect scale: scale [
+{ #category : #'as yet unclassified' }
+JoinSection >> drawMapOn: aCanvas in: rect scale: scale [
 	"Draw the join on the given canvas scaled into the given rectangle."
 	
 	self type = #match ifTrue: [^self].
@@ -243,11 +200,8 @@ JoinSection>>drawMapOn: aCanvas in: rect scale: scale [
 		borderColor: self borderColorToUse
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>drawOn: aCanvas [
+{ #category : #drawing }
+JoinSection >> drawOn: aCanvas [
 	"Draw the join on the given canvas."
 	
 	|v bc|
@@ -270,73 +224,52 @@ JoinSection>>drawOn: aCanvas [
 			color: bc]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>dst [
+{ #category : #accessing }
+JoinSection >> dst [
 	"Answer the value of dst"
 
 	^ dst
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>dst: anObject [
+{ #category : #accessing }
+JoinSection >> dst: anObject [
 	"Set the value of dst"
 
 	dst := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>dstColor: aColor [
+{ #category : #accessing }
+JoinSection >> dstColor: aColor [
 	"Set the dst color"
 
 	self dst color: aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>dstLineRange: anInterval [
+{ #category : #accessing }
+JoinSection >> dstLineRange: anInterval [
 	"Set the dst lineRange."
 
 	self dst lineRange: anInterval
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>dstOffset: aPoint [
+{ #category : #accessing }
+JoinSection >> dstOffset: aPoint [
 	"Set the dst offset."
 
 	self dst offset:  aPoint.
 	self updateShape
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>dstRange: anInterval [
+{ #category : #accessing }
+JoinSection >> dstRange: anInterval [
 	"Set the dst range."
 
 	self dst range: anInterval.
 	self updateShape
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>fillStyleFor: rect [
+{ #category : #'as yet unclassified' }
+JoinSection >> fillStyleFor: rect [
 	"Answer the fillStyle to use for the given rectangle."
 	
 	^self src color = self dst color
@@ -346,11 +279,8 @@ JoinSection>>fillStyleFor: rect [
 				origin: rect topLeft]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>initialize [
+{ #category : #initialization }
+JoinSection >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -364,11 +294,8 @@ JoinSection>>initialize [
 		type: #modification
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>newHighlight [
+{ #category : #'instance creation' }
+JoinSection >> newHighlight [
 	"Anwser a new highlight."
 
 	^TextHighlightByBounds new
@@ -377,130 +304,91 @@ JoinSection>>newHighlight [
 		fillWidth: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>removalHighlightColor [
+{ #category : #accessing }
+JoinSection >> removalHighlightColor [
 	^ removalHighlightColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>removalHighlightColor: anObject [
+{ #category : #accessing }
+JoinSection >> removalHighlightColor: anObject [
 	removalHighlightColor := anObject.
 	self updateHighlights.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>shape [
+{ #category : #accessing }
+JoinSection >> shape [
 	"Answer the value of shape"
 
 	^ shape
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>shape: anObject [
+{ #category : #accessing }
+JoinSection >> shape: anObject [
 	"Set the value of shape"
 
 	shape := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>src [
+{ #category : #accessing }
+JoinSection >> src [
 	"Answer the value of src"
 
 	^ src
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>src: anObject [
+{ #category : #accessing }
+JoinSection >> src: anObject [
 	"Set the value of src"
 
 	src := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>srcColor: aColor [
+{ #category : #accessing }
+JoinSection >> srcColor: aColor [
 	"Set the src color."
 
 	self src color: aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>srcLineRange: anInterval [
+{ #category : #accessing }
+JoinSection >> srcLineRange: anInterval [
 	"Set the src lneRange."
 
 	self src lineRange: anInterval
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>srcOffset: aPoint [
+{ #category : #accessing }
+JoinSection >> srcOffset: aPoint [
 	"Set the src offset"
 
 	self src offset:  aPoint.
 	self updateShape
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>srcRange: anInterval [
+{ #category : #accessing }
+JoinSection >> srcRange: anInterval [
 	"Set the  src range"
 
 	self src range: anInterval.
 	self updateShape
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>type [
+{ #category : #accessing }
+JoinSection >> type [
 	"Answer the value of type"
 
 	^ type
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>type: anObject [
+{ #category : #accessing }
+JoinSection >> type: anObject [
 	"Set the value of type"
 
 	type := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>updateHighlights [
+{ #category : #accessing }
+JoinSection >> updateHighlights [
 	"Update the highlight border colors."
 
 	|bc|
@@ -512,11 +400,8 @@ JoinSection>>updateHighlights [
 		self dst highlight borderColor: bc]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>updateShape [
+{ #category : #'as yet unclassified' }
+JoinSection >> updateShape [
 	"Update the receiver's shape."
 
 	(self src range isNil or: [self dst range isNil]) ifTrue: [^self].
@@ -525,31 +410,22 @@ JoinSection>>updateShape [
 		(self width @ self dst range last) + self dst offset. (0@self src range last) + self src offset})
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>wantsClick [
+{ #category : #'as yet unclassified' }
+JoinSection >> wantsClick [
 	"Don't if we are transparent for now."
 
 	^(self src color isTransparent and: [self dst color isTransparent]) not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>width [
+{ #category : #accessing }
+JoinSection >> width [
 	"Answer the value of width"
 
 	^ width
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-JoinSection>>width: anObject [
+{ #category : #accessing }
+JoinSection >> width: anObject [
 	"Set the value of width"
 
 	width := anObject.

@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #RadioButtonModelTest,
 	#superclass : #SpecTestCase,
-	#category : #Spec-Tests-Core-Widgets,
-	#timestamp : ''
+	#category : #Spec-Tests-Core-Widgets
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RadioButtonModelTest>>classToTest [
+{ #category : #running }
+RadioButtonModelTest >> classToTest [
 	^  RadioButtonModel
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RadioButtonModelTest>>testCanDeselectByClick [
+{ #category : #tests }
+RadioButtonModelTest >> testCanDeselectByClick [
 	self deny: testedInstance canDeselectByClick.
 	testedInstance click.
 	self assert: testedInstance state.
@@ -31,11 +21,8 @@ RadioButtonModelTest>>testCanDeselectByClick [
 	self deny: testedInstance state
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RadioButtonModelTest>>testToggleState [
+{ #category : #tests }
+RadioButtonModelTest >> testToggleState [
 	self deny: testedInstance state.
 	testedInstance toggleState.
 	self assert: testedInstance state

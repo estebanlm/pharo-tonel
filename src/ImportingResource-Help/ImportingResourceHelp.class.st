@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #ImportingResourceHelp,
 	#superclass : #CustomHelp,
-	#category : #ImportingResource-Help,
-	#timestamp : ''
+	#category : #ImportingResource-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ImportingResourceHelp class>>bookName  [
+{ #category : #accessing }
+ImportingResourceHelp class >> bookName [ 
 	^'Importing Resources'
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ImportingResourceHelp class>>encodingAndDecoding [
+{ #category : #documentation }
+ImportingResourceHelp class >> encodingAndDecoding [
 	^ HelpTopic 
 		title: 'Encoding and Decoding'
 		contents: (self heading: 'Encoding and Decoding'),
@@ -34,11 +24,8 @@ The method #mimeDecodeToBytes: reads mime64 strings from a stream. The example u
  '
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ImportingResourceHelp class>>encodingAndDecodingImage [
+{ #category : #documentation }
+ImportingResourceHelp class >> encodingAndDecodingImage [
 	^ HelpTopic 
 		title: 'Encoding and Decoding Image'
 		contents: (self heading: 'Encoding and Decoding Image'),
@@ -75,11 +62,8 @@ Object new image
 '
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ImportingResourceHelp class>>importingIcon [
+{ #category : #documentation }
+ImportingResourceHelp class >> importingIcon [
 	^ HelpTopic 
 		title: 'Importing Icon'
 		contents: 
@@ -103,11 +87,8 @@ Note that icons classes are GT-compatible. Simply inspect the expression: Matrix
  '
 ]
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ImportingResourceHelp class>>overview [
+{ #category : #documentation }
+ImportingResourceHelp class >> overview [
 	^ HelpTopic 
 		title: 'Overview'
 		contents: (self heading: 'Overview'),
@@ -117,10 +98,7 @@ ImportingResourceHelp class>>overview [
  '
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-ImportingResourceHelp class>>pages [
+{ #category : #accessing }
+ImportingResourceHelp class >> pages [
 	^#(overview encodingAndDecoding encodingAndDecodingImage)
 ]

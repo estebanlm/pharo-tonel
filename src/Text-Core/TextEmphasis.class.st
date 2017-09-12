@@ -13,143 +13,94 @@ Class {
 		'emphasisCode',
 		'setMode'
 	],
-	#category : #Text-Core,
-	#timestamp : '<historical>'
+	#category : #Text-Core
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextEmphasis class>>bold [
+{ #category : #'as yet unclassified' }
+TextEmphasis class >> bold [
 	^ self new emphasisCode: 1
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextEmphasis class>>italic [
+{ #category : #'as yet unclassified' }
+TextEmphasis class >> italic [
 	^ self new emphasisCode: 2
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextEmphasis class>>narrow [
+{ #category : #'as yet unclassified' }
+TextEmphasis class >> narrow [
 	^ TextKern kern: -1
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextEmphasis class>>normal [
+{ #category : #'as yet unclassified' }
+TextEmphasis class >> normal [
 	^ self new emphasisCode: 0
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextEmphasis class>>struckOut [
+{ #category : #'as yet unclassified' }
+TextEmphasis class >> struckOut [
 	^ self new emphasisCode: 16
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextEmphasis class>>underlined [
+{ #category : #'as yet unclassified' }
+TextEmphasis class >> underlined [
 	^ self new emphasisCode: 4
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextEmphasis>>= other  [
+{ #category : #comparing }
+TextEmphasis >> = other [ 
 	^ (other class == self class) 
 		and: [other emphasisCode = emphasisCode]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextEmphasis>>dominatedByCmd0 [
+{ #category : #testing }
+TextEmphasis >> dominatedByCmd0 [
 	"Cmd-0 should turn off emphasis"
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextEmphasis>>dominates: other [
+{ #category : #accessing }
+TextEmphasis >> dominates: other [
 	(emphasisCode = 0 and: [other dominatedByCmd0]) ifTrue: [^ true].
 	^ (other class == self class)
 		and: [emphasisCode = other emphasisCode]
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextEmphasis>>emphasisCode [
+{ #category : #styling }
+TextEmphasis >> emphasisCode [
 	^ emphasisCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextEmphasis>>emphasisCode: int [
+{ #category : #accessing }
+TextEmphasis >> emphasisCode: int [
 	emphasisCode := int.
 	setMode := true
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextEmphasis>>hash [
+{ #category : #comparing }
+TextEmphasis >> hash [
 	"#hash is re-implemented because #= is re-implemented"
 	^emphasisCode hash
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextEmphasis>>printOn: strm [
+{ #category : #printing }
+TextEmphasis >> printOn: strm [
 	super printOn: strm.
 	strm nextPutAll: ' code: '; print: emphasisCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextEmphasis>>set [
+{ #category : #accessing }
+TextEmphasis >> set [
 	^ setMode and: [emphasisCode ~= 0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextEmphasis>>turnOff [
+{ #category : #accessing }
+TextEmphasis >> turnOff [
 	setMode := false
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextEmphasis>>writeScanOn: strm [
+{ #category : #styling }
+TextEmphasis >> writeScanOn: strm [
 
 	emphasisCode = 1 ifTrue: [strm nextPut: $b].
 	emphasisCode = 2 ifTrue: [strm nextPut: $i].

@@ -1,23 +1,15 @@
-Extension {
-	#name : #OSWindow
-}
+Extension { #name : #OSWindow }
 
-{
-	#category : #'*OSWindow-VM',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow class>>resetVMWindow [
+{ #category : #'*OSWindow-VM' }
+OSWindow class >> resetVMWindow [
 	"self resetVMWindow"
 	VMWindow := nil.
 	
 
 ]
 
-{
-	#category : #'*OSWindow-VM',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindow class>>vmWindow [
+{ #category : #'*OSWindow-VM' }
+OSWindow class >> vmWindow [
 	| attributes |
 	^ VMWindow ifNil: [ 
 		attributes := OSWindowAttributes new.

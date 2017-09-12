@@ -9,15 +9,11 @@ Class {
 		'endPoint',
 		'contourStartPt'
 	],
-	#category : #Athens-Core-Paths,
-	#timestamp : '<historical>'
+	#category : #Athens-Core-Paths
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathSegmentConverter>>convert: aPath [
+{ #category : #converting }
+AthensPathSegmentConverter >> convert: aPath [
 	"pipe the path segments to destination, converting
 	segments on the way"
 	
@@ -29,10 +25,7 @@ AthensPathSegmentConverter>>convert: aPath [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathSegmentConverter>>dest: aDest [
+{ #category : #accessing }
+AthensPathSegmentConverter >> dest: aDest [
 	dest := aDest
 ]

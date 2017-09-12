@@ -4,54 +4,38 @@ I am an abstract superclass for collections that have a well-defined order assoc
 Class {
 	#name : #SequenceableCollection,
 	#superclass : #Collection,
-	#category : #Collections-Abstract,
-	#timestamp : '<historical>'
+	#category : #Collections-Abstract
 }
 
-{
-	#category : #'stream creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection class>><< blockWithArg [
+{ #category : #'stream creation' }
+SequenceableCollection class >> << blockWithArg [
 	^ self streamContents: blockWithArg
 ]
 
-{
-	#category : #'stream creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection class>>new: newSize streamContents: blockWithArg [
+{ #category : #'stream creation' }
+SequenceableCollection class >> new: newSize streamContents: blockWithArg [
 	| stream |
 	stream := WriteStream on: (self streamSpecies new: newSize).
 	blockWithArg value: stream.
 	^ stream contents
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection class>>ofSize: n [
+{ #category : #'instance creation' }
+SequenceableCollection class >> ofSize: n [
 	"Create a new collection of size n with nil as its elements.
 	This method exists because OrderedCollection new: n creates an
 	empty collection,  not one of size n."
 	^ self new: n
 ]
 
-{
-	#category : #'stream creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection class>>streamContents: blockWithArg [
+{ #category : #'stream creation' }
+SequenceableCollection class >> streamContents: blockWithArg [
 
 	^ self new: 100 streamContents: blockWithArg
 ]
 
-{
-	#category : #'stream creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection class>>streamContents: blockWithArg limitedTo: sizeLimit [
+{ #category : #'stream creation' }
+SequenceableCollection class >> streamContents: blockWithArg limitedTo: sizeLimit [
 	| stream |
 	stream :=
 		LimitedWriteStream
@@ -66,20 +50,14 @@ String streamContents: [:s | 1000 timesRepeat: [s nextPutAll: 'Junk']] limitedTo
 "
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection class>>streamSpecies [
+{ #category : #accessing }
+SequenceableCollection class >> streamSpecies [
 	"I return the class that is used for streaming. If override consider overriding #new:streamContents:"
 	^ self
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>, otherCollection  [
+{ #category : #copying }
+SequenceableCollection >> , otherCollection [ 
 	"Concatenate two Strings or Collections."
 	
 	^ self copyReplaceFrom: self size + 1
@@ -91,11 +69,8 @@ SequenceableCollection>>, otherCollection  [
 "
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>= otherCollection  [
+{ #category : #comparing }
+SequenceableCollection >> = otherCollection [ 
 	"Answer true if the receiver is equivalent to the otherCollection.
 	First test for identity, then rule out different species and sizes of
 	collections. As a last resort, examine each element of the receiver
@@ -106,30 +81,21 @@ SequenceableCollection>>= otherCollection  [
 	^ self hasEqualElements: otherCollection
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>@ aCollection  [
+{ #category : #converting }
+SequenceableCollection >> @ aCollection [ 
 	^ self with: aCollection collect: [:a :b | a @ b]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>after: target [
+{ #category : #accessing }
+SequenceableCollection >> after: target [
 	"Answer the element after target.  Raise an error if target is not
 	in the receiver, or if there are no elements after it."
 
 	^ self after: target ifAbsent: [self errorNotFound: target]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>after: target ifAbsent: exceptionBlock [
+{ #category : #accessing }
+SequenceableCollection >> after: target ifAbsent: exceptionBlock [
 	"Answer the element after target.  Answer the result of evaluation
 	the exceptionBlock if target is not in the receiver, or if there are 
 	no elements after it."
@@ -141,75 +107,54 @@ SequenceableCollection>>after: target ifAbsent: exceptionBlock [
 		ifFalse: [self at: index + 1]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>allButFirst [
+{ #category : #accessing }
+SequenceableCollection >> allButFirst [
 	"Answer a copy of the receiver containing all but the first
 	element. Raise an error if there are not enough elements."
 
 	^ self allButFirst: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>allButFirst: n [
+{ #category : #accessing }
+SequenceableCollection >> allButFirst: n [
 	"Answer a copy of the receiver containing all but the first n
 	elements. Raise an error if there are not enough elements."
 
 	^ self copyFrom: n + 1 to: self size
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>allButFirstDo: block [
+{ #category : #enumerating }
+SequenceableCollection >> allButFirstDo: block [
 
 	2 to: self size do:
 		[:index | block value: (self at: index)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>allButLast [
+{ #category : #accessing }
+SequenceableCollection >> allButLast [
 	"Answer a copy of the receiver containing all but the last
 	element. Raise an error if there are not enough elements."
 
 	^ self allButLast: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>allButLast: n [
+{ #category : #accessing }
+SequenceableCollection >> allButLast: n [
 	"Answer a copy of the receiver containing all but the last n
 	elements. Raise an error if there are not enough elements."
 
 	^ self copyFrom: 1 to: self size - n
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>allButLastDo: block [
+{ #category : #enumerating }
+SequenceableCollection >> allButLastDo: block [
 
 	1 to: self size - 1 do:
 		[:index | block value: (self at: index)]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>allPairsDo: aBinaryBlock [
+{ #category : #enumerating }
+SequenceableCollection >> allPairsDo: aBinaryBlock [
 	"
 	Iterate over all the pairs of the receiver and apply the binaryBlock
 	to each pair. 
@@ -224,48 +169,33 @@ SequenceableCollection>>allPairsDo: aBinaryBlock [
 	self do: [:first| self do: [:second| aBinaryBlock value: first value: second]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>anyOne [
+{ #category : #accessing }
+SequenceableCollection >> anyOne [
 	^ self first
 ]
 
-{
-	#category : #splitjoin,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>appendTo: aCollection [
+{ #category : #splitjoin }
+SequenceableCollection >> appendTo: aCollection [
 	"double dispatch for join:"
 	^ aCollection addAllLast: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>asArray [
+{ #category : #converting }
+SequenceableCollection >> asArray [
 	"Answer an Array whose elements are the elements of the receiver."
 
 	^ Array withAll: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>asByteArray [
+{ #category : #converting }
+SequenceableCollection >> asByteArray [
 	"Answer a ByteArray whose elements are the elements of the receiver."
 
 	^ ByteArray withAll: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>asDigitsAt: anInteger in: aCollection do: aBlock [
+{ #category : #private }
+SequenceableCollection >> asDigitsAt: anInteger in: aCollection do: aBlock [
 	"(0 to: 1) asDigitsToPower: 4 do: [:each | Transcript cr; show: each printString]"
 
 	self do: 
@@ -276,11 +206,8 @@ SequenceableCollection>>asDigitsAt: anInteger in: aCollection do: aBlock [
 			ifFalse: [self asDigitsAt: anInteger + 1 in: aCollection do: aBlock]].
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>asDigitsToPower: anInteger do: aBlock [
+{ #category : #enumerating }
+SequenceableCollection >> asDigitsToPower: anInteger do: aBlock [
 	"Repeatedly value aBlock with a single Array.  Adjust the collection
 	so that aBlock is presented all (self size raisedTo: anInteger) possible 
 	combinations of the receiver's elements taken as digits of an anInteger long number."
@@ -291,11 +218,8 @@ SequenceableCollection>>asDigitsToPower: anInteger do: aBlock [
 	self asDigitsAt: 1 in: aCollection do: aBlock
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>asFloatArray [
+{ #category : #converting }
+SequenceableCollection >> asFloatArray [
 	"Answer a FloatArray whose elements are the elements of the receiver, in 
 	the same order."
 
@@ -305,11 +229,8 @@ SequenceableCollection>>asFloatArray [
 	^floatArray
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>asIntegerArray [
+{ #category : #converting }
+SequenceableCollection >> asIntegerArray [
 	"Answer an IntegerArray whose elements are the elements of the receiver, in 
 	the same order."
 
@@ -319,11 +240,8 @@ SequenceableCollection>>asIntegerArray [
 	^intArray
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>asStringWithCr [
+{ #category : #converting }
+SequenceableCollection >> asStringWithCr [
 	"Convert to a string with returns between items.  Elements are
 usually strings.
 	 Useful for labels for PopUpMenus."
@@ -337,11 +255,8 @@ usually strings.
 	^ labelStream contents
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>asWordArray [
+{ #category : #converting }
+SequenceableCollection >> asWordArray [
 	"Answer a WordArray whose elements are the elements of the receiver, in 
 	the same order."
 
@@ -351,11 +266,8 @@ SequenceableCollection>>asWordArray [
 	^wordArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>at: index ifAbsent: exceptionBlock  [
+{ #category : #accessing }
+SequenceableCollection >> at: index ifAbsent: exceptionBlock [ 
 	"Answer the element at my position index. If I do not contain an element 
 	at index, answer the result of evaluating the argument, exceptionBlock."
 
@@ -363,19 +275,13 @@ SequenceableCollection>>at: index ifAbsent: exceptionBlock  [
 	^ exceptionBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>at: index incrementBy: value [
+{ #category : #accessing }
+SequenceableCollection >> at: index incrementBy: value [
 	^self at: index put: (self at: index) + value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>atAll: indexArray [
+{ #category : #accessing }
+SequenceableCollection >> atAll: indexArray [
 	"Answer a new collection like the receiver which contains all elements
 	of the receiver at the indices of indexArray."
 	"#('one' 'two' 'three' 'four') atAll: #(3 2 4)"
@@ -388,22 +294,16 @@ SequenceableCollection>>atAll: indexArray [
 	^ newCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>atAll: aCollection put: anObject  [
+{ #category : #accessing }
+SequenceableCollection >> atAll: aCollection put: anObject [ 
 	"Put anObject at every index specified by the elements of aCollection."
 
 	aCollection do: [:index | self at: index put: anObject].
 	^ anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>atAll: indexArray putAll: valueArray [
+{ #category : #accessing }
+SequenceableCollection >> atAll: indexArray putAll: valueArray [
 	"Store the elements of valueArray into the slots
 	of this collection selected by indexArray."
 
@@ -411,11 +311,8 @@ SequenceableCollection>>atAll: indexArray putAll: valueArray [
 	^ valueArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>atAllPut: anObject  [
+{ #category : #accessing }
+SequenceableCollection >> atAllPut: anObject [ 
 	"Put anObject at every one of the receiver's indices."
 
 	| size |
@@ -424,44 +321,32 @@ SequenceableCollection>>atAllPut: anObject  [
 		ifFalse: [1 to: size do: [:index | self at: index put: anObject]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>atLast: indexFromEnd [
+{ #category : #accessing }
+SequenceableCollection >> atLast: indexFromEnd [
 	"Return element at indexFromEnd from the last position.
 	 atLast: 1, returns the last element"
 
 	^ self atLast: indexFromEnd ifAbsent: [self error: 'index out of range']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>atLast: indexFromEnd ifAbsent: block [
+{ #category : #accessing }
+SequenceableCollection >> atLast: indexFromEnd ifAbsent: block [
 	"Return element at indexFromEnd from the last position.
 	 atLast: 1 ifAbsent: [] returns the last element"
 
 	^ self at: self size + 1 - indexFromEnd ifAbsent: block
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>atLast: indexFromEnd put: obj [
+{ #category : #accessing }
+SequenceableCollection >> atLast: indexFromEnd put: obj [
 	"Set the element at indexFromEnd from the last position.
 	 atLast: 1 put: obj, sets the last element"
 
 	^ self at: self size + 1 - indexFromEnd put: obj
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>atPin: index  [
+{ #category : #accessing }
+SequenceableCollection >> atPin: index [ 
 	"Return the index'th element of me if possible.
 	Return the first or last element if index is out of bounds."
 
@@ -470,22 +355,16 @@ SequenceableCollection>>atPin: index  [
 	^ self at: index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>atWrap: index  [
+{ #category : #accessing }
+SequenceableCollection >> atWrap: index [ 
 	"Answer the index'th element of the receiver.  If index is out of bounds,
 	let it wrap around from the end to the beginning until it is in bounds."
 
 	^ self at: index - 1 \\ self size + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>atWrap: index put: value [
+{ #category : #accessing }
+SequenceableCollection >> atWrap: index put: value [
 	"Store value into the index'th element of the receiver.  If index is out
 	of bounds, let it wrap around from the end to the beginning until it 
 	is in bounds. Answer value."
@@ -493,11 +372,8 @@ SequenceableCollection>>atWrap: index put: value [
 	^ self at: index  - 1 \\ self size + 1 put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>before: target [
+{ #category : #accessing }
+SequenceableCollection >> before: target [
 	"Answer the receiver's element immediately before target. Raise an
 	error if target is not an element of the receiver, or if there are no 
 	elements before it (i.e. it is the first element)."
@@ -505,11 +381,8 @@ SequenceableCollection>>before: target [
 	^ self before: target ifAbsent: [self errorNotFound: target]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>before: target ifAbsent: exceptionBlock [
+{ #category : #accessing }
+SequenceableCollection >> before: target ifAbsent: exceptionBlock [
 	"Answer the receiver's element immediately before target. Answer
 	the result of evaluating the exceptionBlock if target is not an element
 	of the receiver, or if there are no elements before it."
@@ -521,31 +394,22 @@ SequenceableCollection>>before: target ifAbsent: exceptionBlock [
 		ifFalse: [self at: index - 1]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>beginsWith: aSequenceableCollection [
+{ #category : #testing }
+SequenceableCollection >> beginsWith: aSequenceableCollection [
 	"Answer true if the receiver starts with the argument collection"
 	(aSequenceableCollection isEmpty or: [self size < aSequenceableCollection size]) ifTrue: [^false].
 	aSequenceableCollection withIndexDo: [:each :index | (self at: index) ~= each ifTrue: [^false]].
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>beginsWithAnyOf: aCollection [
+{ #category : #testing }
+SequenceableCollection >> beginsWithAnyOf: aCollection [
 	"Return true if the receiver starts with any of the elements in aCollection."
 	^aCollection anySatisfy:[:prefix| self beginsWith: prefix]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>collect: aBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> collect: aBlock [ 
 	"Evaluate aBlock with each of the receiver's elements as the argument.  
 	Collect the resulting values into a collection like the receiver. Answer  
 	the new collection."
@@ -558,11 +422,8 @@ SequenceableCollection>>collect: aBlock  [
 	^ newCollection
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>collect: aBlock from: firstIndex to: lastIndex [
+{ #category : #enumerating }
+SequenceableCollection >> collect: aBlock from: firstIndex to: lastIndex [
 	"Refer to the comment in Collection|collect:."
 
 	| size result j |
@@ -573,11 +434,8 @@ SequenceableCollection>>collect: aBlock from: firstIndex to: lastIndex [
 	^ result
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>collect: collectBlock thenReject: rejectBlock [
+{ #category : #enumerating }
+SequenceableCollection >> collect: collectBlock thenReject: rejectBlock [
 	"Optimized version of Collection>>#thenReject:"
 	
 	| each |
@@ -589,11 +447,8 @@ SequenceableCollection>>collect: collectBlock thenReject: rejectBlock [
 				ifFalse: [ stream nextPut: each ]]]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>collect: collectBlock thenSelect: selectBlock [
+{ #category : #enumerating }
+SequenceableCollection >> collect: collectBlock thenSelect: selectBlock [
 	"Optimized version of Collection>>#collect:thenSelect:"
 	
 	| each |
@@ -605,20 +460,14 @@ SequenceableCollection>>collect: collectBlock thenSelect: selectBlock [
 				ifTrue: [ stream nextPut: each ]]]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>collectWithIndex: elementAndIndexBlock [
+{ #category : #enumerating }
+SequenceableCollection >> collectWithIndex: elementAndIndexBlock [
 	"Use the new version with consistent naming"
 	^ self withIndexCollect: elementAndIndexBlock
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>combinations [
+{ #category : #enumerating }
+SequenceableCollection >> combinations [
 	"Return all the combinations of elements of the receiver. Note that comabinations does not include the empty element contrary to the mathematical definition of combinations."
 
 	"#(1 2 3 4) combinations 
@@ -630,11 +479,8 @@ SequenceableCollection>>combinations [
 					self combinations: take atATimeDo: [ :combination | stream nextPut: combination copy ] ] ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>combinations: kk atATimeDo: aBlock [
+{ #category : #enumerating }
+SequenceableCollection >> combinations: kk atATimeDo: aBlock [
 	"Take the items in the receiver, kk at a time, and evaluate the block for each combination.  Hand in an array of elements of self as the block argument.  Each combination only occurs once, and order of the elements does not matter.  There are (self size take: kk) combinations."
 	" 'abcde' combinations: 3 atATimeDo: [:each | Transcript cr; show: each printString]"
 
@@ -643,11 +489,8 @@ SequenceableCollection>>combinations: kk atATimeDo: aBlock [
 	self combinationsAt: 1 in: aCollection after: 0 do: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>combinationsAt: jj in: aCollection after: nn do: aBlock [
+{ #category : #private }
+SequenceableCollection >> combinationsAt: jj in: aCollection after: nn do: aBlock [
 	"Choose k of N items and put in aCollection.  jj-1 already chosen.  Indexes of items are in numerical order, to avoid the same combo being used twice.  In this slot, we are allowed to use items in self indexed by nn+1 to self size.  nn is the index used for position jj-1."
 
 	nn + 1 to: self size do: [ :index | 
@@ -662,11 +505,8 @@ SequenceableCollection>>combinationsAt: jj in: aCollection after: nn do: aBlock 
 					do: aBlock ] ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>concatenation [
+{ #category : #converting }
+SequenceableCollection >> concatenation [
 	|result index|
 
 	result := Array new: (self inject: 0 into: [:sum :each | sum + each size]).
@@ -675,11 +515,8 @@ SequenceableCollection>>concatenation [
 	^result
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>copyAfter: anElement [
+{ #category : #copying }
+SequenceableCollection >> copyAfter: anElement [
 	"Answer a copy of the receiver from after the first occurence
 	of anElement up to the end. If no such element exists, answer 
 	an empty copy."
@@ -687,11 +524,8 @@ SequenceableCollection>>copyAfter: anElement [
 	^ self allButFirst: (self indexOf: anElement ifAbsent: [^ self copyEmpty])
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>copyAfterLast: anElement [
+{ #category : #copying }
+SequenceableCollection >> copyAfterLast: anElement [
 	"Answer a copy of the receiver from after the last occurence
 	of anElement up to the end. If no such element exists, answer 
 	an empty copy."
@@ -699,19 +533,13 @@ SequenceableCollection>>copyAfterLast: anElement [
 	^ self allButFirst: (self lastIndexOf: anElement ifAbsent: [^ self copyEmpty])
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>copyEmpty [
+{ #category : #copying }
+SequenceableCollection >> copyEmpty [
 	^ self species new: 0
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>copyFrom: start to: stop  [
+{ #category : #copying }
+SequenceableCollection >> copyFrom: start to: stop [ 
 	"Answer a copy of a subset of the receiver, starting from element at 
 	index start until element at index stop."
 
@@ -724,11 +552,8 @@ SequenceableCollection>>copyFrom: start to: stop  [
 		startingAt: start
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>copyReplaceAll: oldSubCollection with: newCollection [
+{ #category : #copying }
+SequenceableCollection >> copyReplaceAll: oldSubCollection with: newCollection [
 	"Answer a copy of the receiver in which all occurrences of
 	oldSubCollection have been replaced by newCollection "
 
@@ -748,11 +573,8 @@ SequenceableCollection>>copyReplaceAll: oldSubCollection with: newCollection [
 	^ aString
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>copyReplaceFrom: start to: stop with: replacementCollection  [
+{ #category : #copying }
+SequenceableCollection >> copyReplaceFrom: start to: stop with: replacementCollection [ 
 	"Answer a copy of the receiver satisfying the following conditions: If 
 	stop is less than start, then this is an insertion; stop should be exactly 
 	start-1, start = 1 means insert before the first character, start = size+1 
@@ -784,44 +606,32 @@ SequenceableCollection>>copyReplaceFrom: start to: stop with: replacementCollect
 	^newSequenceableCollection
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>copyUpThrough: anElement [
+{ #category : #copying }
+SequenceableCollection >> copyUpThrough: anElement [
     "Answer all elements up to and including anObject. If there
      is no such object, answer a copy of the receiver."
 
 	^self first: (self indexOf: anElement ifAbsent: [^ self copy])
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>copyUpTo: anElement  [
+{ #category : #copying }
+SequenceableCollection >> copyUpTo: anElement [ 
 	"Answer all elements up to but not including anObject. If there
 	is no such object, answer a copy of the receiver."
 
 	^ self first: (self indexOf: anElement ifAbsent: [^ self copy]) - 1
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>copyUpToLast: anElement [
+{ #category : #copying }
+SequenceableCollection >> copyUpToLast: anElement [
 	"Answer a copy of the receiver from index 1 to the last occurrence of 
 	anElement, not including anElement."
 
 	^ self first: (self lastIndexOf: anElement ifAbsent: [^ self copy]) - 1
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>copyWith: newElement  [
+{ #category : #copying }
+SequenceableCollection >> copyWith: newElement [ 
 	"Answer a copy of the receiver that is 1 bigger than the receiver and has 
 	newElement at the last element."
 
@@ -836,11 +646,8 @@ SequenceableCollection>>copyWith: newElement  [
 	^newIC
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>copyWithFirst: newElement  [
+{ #category : #copying }
+SequenceableCollection >> copyWithFirst: newElement [ 
 	"Answer a copy of the receiver that is 1 bigger than the receiver with newElement as the first element."
 
 	| newIC |
@@ -854,22 +661,16 @@ SequenceableCollection>>copyWithFirst: newElement  [
 	^ newIC
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>copyWithoutFirst [
+{ #category : #copying }
+SequenceableCollection >> copyWithoutFirst [
 	"Deprecatd. Return a copy of the receiver which doesn't include
 	the first element."
 
 	^ self allButFirst
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>copyWithoutIndex: index [
+{ #category : #copying }
+SequenceableCollection >> copyWithoutIndex: index [
 	"Return a copy containing all elements except the index-th."
 
 	| copy |
@@ -879,21 +680,15 @@ SequenceableCollection>>copyWithoutIndex: index [
 	^ copy
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>do: aBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> do: aBlock [ 
 	"Refer to the comment in Collection|do:."
 	1 to: self size do:
 		[:index | aBlock value: (self at: index)]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>do: elementBlock separatedBy: separatorBlock [
+{ #category : #enumerating }
+SequenceableCollection >> do: elementBlock separatedBy: separatorBlock [
 	"Evaluate the elementBlock for all elements in the receiver,
 	and evaluate the separatorBlock between."
 
@@ -903,11 +698,8 @@ SequenceableCollection>>do: elementBlock separatedBy: separatorBlock [
 		elementBlock value: (self at: index)]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>do: aBlock without: anItem [
+{ #category : #enumerating }
+SequenceableCollection >> do: aBlock without: anItem [
 	"Enumerate all elements in the receiver.
 	Execute aBlock for those elements that are not equal to the given item"
 	"Refer to the comment in Collection|do:."
@@ -915,11 +707,8 @@ SequenceableCollection>>do: aBlock without: anItem [
 		[:index | anItem = (self at: index) ifFalse:[aBlock value: (self at: index)]]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>doWithIndex: elementAndIndexBlock [
+{ #category : #enumerating }
+SequenceableCollection >> doWithIndex: elementAndIndexBlock [
 	"Just like with:do: except that the iteration index supplies the second argument to the block. 
 	#(11 22 13) doWithIndex: [ :each :i | Transcript show: (each * each + i) ;cr ].
 	prints: 
@@ -931,22 +720,16 @@ SequenceableCollection>>doWithIndex: elementAndIndexBlock [
 	^ self withIndexDo: elementAndIndexBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>eighth [
+{ #category : #accessing }
+SequenceableCollection >> eighth [
 	"Answer the eighth element of the receiver.
 	Raise an error if there are not enough elements."
 
 	^ self at: 8
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>endsWith: aSequenceableCollection [
+{ #category : #testing }
+SequenceableCollection >> endsWith: aSequenceableCollection [
 	"Answer true if the receiver ends with the argument collection"
 	
 	| start |
@@ -956,40 +739,28 @@ SequenceableCollection>>endsWith: aSequenceableCollection [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>endsWithAnyOf: aCollection [
+{ #category : #testing }
+SequenceableCollection >> endsWithAnyOf: aCollection [
 	"Return true if the receiver ends with any of the elements in aCollection."
 	^aCollection anySatisfy:[:suffix| self endsWith: suffix]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>errorOutOfBounds [
+{ #category : #private }
+SequenceableCollection >> errorOutOfBounds [
 
 	SubscriptOutOfBounds signal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>fifth [
+{ #category : #accessing }
+SequenceableCollection >> fifth [
 	"Answer the fifth element of the receiver.
 	Raise an error if there are not enough elements."
 
 	^ self at: 5
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>findBinary: aBlock [
+{ #category : #enumerating }
+SequenceableCollection >> findBinary: aBlock [
 	"Search for an element in the receiver using binary search.
 	The argument aBlock is a one-element block returning
 		0 	- if the element is the one searched for
@@ -1005,11 +776,8 @@ SequenceableCollection>>findBinary: aBlock [
 		ifNone: [ self errorNotFound: aBlock ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>findBinary: aBlock do: actionBlock ifNone: exceptionBlock [
+{ #category : #enumerating }
+SequenceableCollection >> findBinary: aBlock do: actionBlock ifNone: exceptionBlock [
 	"Search for an element in the receiver using binary search.
 	The argument aBlock is a one-element block returning
 		0 	- if the element is the one searched for
@@ -1047,11 +815,8 @@ SequenceableCollection>>findBinary: aBlock do: actionBlock ifNone: exceptionBloc
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>findBinary: aBlock ifNone: exceptionBlock [
+{ #category : #enumerating }
+SequenceableCollection >> findBinary: aBlock ifNone: exceptionBlock [
 	"Search for an element in the receiver using binary search.
 	The argument aBlock is a one-element block returning
 		0 	- if the element is the one searched for
@@ -1066,11 +831,8 @@ SequenceableCollection>>findBinary: aBlock ifNone: exceptionBlock [
 		ifNone: exceptionBlock
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>findBinaryIndex: aBlock [
+{ #category : #enumerating }
+SequenceableCollection >> findBinaryIndex: aBlock [
 	"Search for an element in the receiver using binary search.
 	The argument aBlock is a one-element block returning
 		0 	- if the element is the one searched for
@@ -1086,11 +848,8 @@ SequenceableCollection>>findBinaryIndex: aBlock [
 		ifNone: [ self errorNotFound: aBlock ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>findBinaryIndex: aBlock do: actionBlock ifNone: exceptionBlock [
+{ #category : #enumerating }
+SequenceableCollection >> findBinaryIndex: aBlock do: actionBlock ifNone: exceptionBlock [
 	"Search for an element in the receiver using binary search.
 	The argument aBlock is a one-element block returning
 		0 	- if the element is the one searched for
@@ -1132,11 +891,8 @@ SequenceableCollection>>findBinaryIndex: aBlock do: actionBlock ifNone: exceptio
 	^ exceptionBlock cull: high cull: low
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>findBinaryIndex: aBlock ifNone: exceptionBlock [
+{ #category : #enumerating }
+SequenceableCollection >> findBinaryIndex: aBlock ifNone: exceptionBlock [
 	"Search for an element in the receiver using binary search.
 	The argument aBlock is a one-element block returning
 		0 	- if the element is the one searched for
@@ -1151,11 +907,8 @@ SequenceableCollection>>findBinaryIndex: aBlock ifNone: exceptionBlock [
 		ifNone: exceptionBlock
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>findFirst: aBlock [
+{ #category : #enumerating }
+SequenceableCollection >> findFirst: aBlock [
 	"Return the index of my first element for which aBlock evaluates as true."
 
 	| index |
@@ -1165,11 +918,8 @@ SequenceableCollection>>findFirst: aBlock [
 	^ 0
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>findLast: aBlock [
+{ #category : #enumerating }
+SequenceableCollection >> findLast: aBlock [
 	"Return the index of my last element for which aBlock evaluates as true."
 
 	| index |
@@ -1179,32 +929,23 @@ SequenceableCollection>>findLast: aBlock [
 	^ 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>first [
+{ #category : #accessing }
+SequenceableCollection >> first [
 	"Answer the first element of the receiver"
 
 	^ self at: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>first: n [
+{ #category : #accessing }
+SequenceableCollection >> first: n [
 	"Answer the first n elements of the receiver.
 	Raise an error if there are not enough elements."
 
 	^ self copyFrom: 1 to: n
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>flatCollect: aBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> flatCollect: aBlock [ 
 	"Evaluate aBlock for each of the receiver's elements and answer the
 	list of all resulting values flatten one level. Assumes that aBlock returns some kind
 	of collection for each element. optimized version for Sequencable Collection and subclasses
@@ -1217,11 +958,8 @@ SequenceableCollection>>flatCollect: aBlock  [
 	^ stream contents
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>forceTo: length paddingStartWith: elem  [
+{ #category : #copying }
+SequenceableCollection >> forceTo: length paddingStartWith: elem [ 
 	"Force the length of the collection to length, padding  
 	the beginning of the result if necessary with elem.  
 	Note that this makes a copy."
@@ -1240,11 +978,8 @@ SequenceableCollection>>forceTo: length paddingStartWith: elem  [
 	^ newCollection
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>forceTo: length paddingWith: elem [
+{ #category : #copying }
+SequenceableCollection >> forceTo: length paddingWith: elem [
 	"Force the length of the collection to length, padding
 	if necessary with elem.  Note that this makes a copy."
 
@@ -1254,32 +989,23 @@ SequenceableCollection>>forceTo: length paddingWith: elem [
 	^ newCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>fourth [
+{ #category : #accessing }
+SequenceableCollection >> fourth [
 	"Answer the fourth element of the receiver.
 	Raise an error if there are not enough elements."
 
 	^ self at: 4
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>from: start to: stop do: aBlock [
+{ #category : #enumerating }
+SequenceableCollection >> from: start to: stop do: aBlock [
 	"Evaluate aBlock for all elements between start and stop (inclusive)."
 
 	start to: stop do: [:index | aBlock value: (self at: index)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>from: startIndex to: endIndex put: anObject [
+{ #category : #accessing }
+SequenceableCollection >> from: startIndex to: endIndex put: anObject [
 	"Put anObject in all indexes between startIndex 
 	and endIndex. Very fast. Faster than to:do: for
 	more than 26 positions. Answer anObject"
@@ -1302,11 +1028,8 @@ SequenceableCollection>>from: startIndex to: endIndex put: anObject [
 	^anObject
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>groupsOf: n atATimeCollect: aBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> groupsOf: n atATimeCollect: aBlock [ 
 	"Evaluate aBlock with my elements taken n at a time. Ignore any leftovers at the end. 
 	Allows use of a flattened array for things that naturally group into groups of n. 
 	If aBlock has a single argument, pass it an array of n items, otherwise, pass the items as separate arguments. See also pairsDo:"
@@ -1339,11 +1062,8 @@ SequenceableCollection>>groupsOf: n atATimeCollect: aBlock  [
 				ifFalse: [aBlock valueWithArguments: args]]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>groupsOf: n atATimeDo: aBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> groupsOf: n atATimeDo: aBlock [ 
 	"Evaluate aBlock with my elements taken n at a time. Ignore any leftovers at the end.
 	Allows use of a flattened 
 	array for things that naturally group into groups of n.
@@ -1361,11 +1081,8 @@ SequenceableCollection>>groupsOf: n atATimeDo: aBlock  [
 				ifFalse: [ aBlock valueWithArguments: args ]].
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>grownBy: length [
+{ #category : #copying }
+SequenceableCollection >> grownBy: length [
 	"Answer a copy of receiver collection with size grown by length"
 
 	| newCollection size |
@@ -1375,11 +1092,8 @@ SequenceableCollection>>grownBy: length [
 	^ newCollection
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>hasEqualElements: otherCollection [
+{ #category : #comparing }
+SequenceableCollection >> hasEqualElements: otherCollection [
 	"Answer whether the receiver's size is the same as otherCollection's
 	size, and each of the receiver's elements equal the corresponding 
 	element of otherCollection.
@@ -1394,11 +1108,8 @@ SequenceableCollection>>hasEqualElements: otherCollection [
 	^ true
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>hash [
+{ #category : #comparing }
+SequenceableCollection >> hash [
 	| hash |
 
 	hash := self species hash.
@@ -1406,22 +1117,16 @@ SequenceableCollection>>hash [
 	^hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>identityIndexOf: anElement  [
+{ #category : #accessing }
+SequenceableCollection >> identityIndexOf: anElement [ 
 	"Answer the index of anElement within the receiver. If the receiver does 
 	not contain anElement, answer 0."
 
 	^self identityIndexOf: anElement ifAbsent: [0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>identityIndexOf: anElement ifAbsent: exceptionBlock [
+{ #category : #accessing }
+SequenceableCollection >> identityIndexOf: anElement ifAbsent: exceptionBlock [
 	"Answer the index of anElement within the receiver. If the receiver does 
 	not contain anElement, answer the result of evaluating the argument, 
 	exceptionBlock."
@@ -1430,32 +1135,23 @@ SequenceableCollection>>identityIndexOf: anElement ifAbsent: exceptionBlock [
 	^ exceptionBlock value
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>includes: anObject [
+{ #category : #testing }
+SequenceableCollection >> includes: anObject [
 	"Answer whether anObject is one of the receiver's elements."
 
 	^ (self indexOf: anObject) ~= 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>indexOf: anElement [
+{ #category : #accessing }
+SequenceableCollection >> indexOf: anElement [
 	"Answer the index of the first occurrence of anElement within the  
 	receiver. If the receiver does not contain anElement, answer 0."
 
 	^ self indexOf: anElement ifAbsent: 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>indexOf: anElement ifAbsent: exceptionBlock [
+{ #category : #accessing }
+SequenceableCollection >> indexOf: anElement ifAbsent: exceptionBlock [
 	"Answer the index of the first occurence of anElement within the  
 	receiver. If the receiver does not contain anElement, answer the 
 	result of evaluating the argument, exceptionBlock."
@@ -1463,21 +1159,15 @@ SequenceableCollection>>indexOf: anElement ifAbsent: exceptionBlock [
 	^ self indexOf: anElement startingAt: 1 ifAbsent: exceptionBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>indexOf: anElement startingAt: start [
+{ #category : #accessing }
+SequenceableCollection >> indexOf: anElement startingAt: start [
        "Answer the index of the first occurence of anElement after start within the receiver. If the receiver does not contain anElement, answer 0."
 
 	^self indexOf: anElement startingAt: start ifAbsent: 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>indexOf: anElement startingAt: start ifAbsent: exceptionBlock [
+{ #category : #accessing }
+SequenceableCollection >> indexOf: anElement startingAt: start ifAbsent: exceptionBlock [
 	"Answer the index of the first occurence of anElement after start
 	within the receiver. If the receiver does not contain anElement, 
 	answer the 	result of evaluating the argument, exceptionBlock."
@@ -1488,44 +1178,32 @@ SequenceableCollection>>indexOf: anElement startingAt: start ifAbsent: exception
 	^ exceptionBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>indexOfAnyOf: aCollection [
+{ #category : #accessing }
+SequenceableCollection >> indexOfAnyOf: aCollection [
 	"Answer the index of the first occurence of any element included in aCollection within the receiver.
 	If the receiver does not contain anElement, answer zero, which is an invalid index."
 
 	^self indexOfAnyOf: aCollection startingAt: 1 ifAbsent: [0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>indexOfAnyOf: aCollection ifAbsent: exceptionBlock [
+{ #category : #accessing }
+SequenceableCollection >> indexOfAnyOf: aCollection ifAbsent: exceptionBlock [
 	"Answer the index of the first occurence of any element included in aCollection within the receiver.
 	If the receiver does not contain anElement, answer the result of evaluating the argument, exceptionBlock."
 
 	^self indexOfAnyOf: aCollection startingAt: 1 ifAbsent: exceptionBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>indexOfAnyOf: aCollection startingAt: start [
+{ #category : #accessing }
+SequenceableCollection >> indexOfAnyOf: aCollection startingAt: start [
 	"Answer the index of the first occurence of any element included in aCollection after start within the receiver.
 	If the receiver does not contain anElement, answer zero, which is an invalid index."
 
 	^self indexOfAnyOf: aCollection startingAt: start ifAbsent: [0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>indexOfAnyOf: aCollection startingAt: start ifAbsent: exceptionBlock [
+{ #category : #accessing }
+SequenceableCollection >> indexOfAnyOf: aCollection startingAt: start ifAbsent: exceptionBlock [
 	"Answer the index of the first occurence of any element included in aCollection after start within the receiver.
 	If the receiver does not contain anElement, answer the result of evaluating the argument, exceptionBlock.
 	Note: it is user responsibility to provide aCollection that behaves relatevily fast when asked for includes: (like a Set)"
@@ -1536,11 +1214,8 @@ SequenceableCollection>>indexOfAnyOf: aCollection startingAt: start ifAbsent: ex
 	^ exceptionBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>indexOfSubCollection: aSubCollection startingAt: anIndex  [
+{ #category : #accessing }
+SequenceableCollection >> indexOfSubCollection: aSubCollection startingAt: anIndex [ 
 	"Answer the index of the receiver's first element, such that that element 
 	equals the first element of aSubCollection, and the next elements equal 
 	the rest of the elements of aSubCollection. Begin the search at element 
@@ -1552,11 +1227,8 @@ SequenceableCollection>>indexOfSubCollection: aSubCollection startingAt: anIndex
 		ifAbsent: [0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>indexOfSubCollection: sub startingAt: start ifAbsent: exceptionBlock [
+{ #category : #accessing }
+SequenceableCollection >> indexOfSubCollection: sub startingAt: start ifAbsent: exceptionBlock [
 	"Answer the index of the receiver's first element, such that that element 
 	equals the first element of sub, and the next elements equal 
 	the rest of the elements of sub. Begin the search at element 
@@ -1576,37 +1248,25 @@ SequenceableCollection>>indexOfSubCollection: sub startingAt: start ifAbsent: ex
 	^ exceptionBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>integerAt: index [
+{ #category : #accessing }
+SequenceableCollection >> integerAt: index [
 	"Return the integer at the given index"
 	^self at: index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>integerAt: index put: value [
+{ #category : #accessing }
+SequenceableCollection >> integerAt: index put: value [
 	"Return the integer at the given index"
 	^self at: index put: value
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>isSequenceable [
+{ #category : #converting }
+SequenceableCollection >> isSequenceable [
 	^ true
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>isSorted [
+{ #category : #sorting }
+SequenceableCollection >> isSorted [
 	"Return true if the receiver is sorted by the given criterion.
 	Optimization for isSortedBy: [:a :b | a <= b]."
 
@@ -1621,11 +1281,8 @@ SequenceableCollection>>isSorted [
 	^ true
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>isSortedBy: aBlock [
+{ #category : #sorting }
+SequenceableCollection >> isSortedBy: aBlock [
 	"Return true if the receiver is sorted by the given criterion."
 
 	| lastElm elm |
@@ -1639,11 +1296,8 @@ SequenceableCollection>>isSortedBy: aBlock [
 	^ true
 ]
 
-{
-	#category : #splitjoin,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>join: aCollection [
+{ #category : #splitjoin }
+SequenceableCollection >> join: aCollection [
 	"NB: this implementation only works for Array, since WriteStreams only work for Arrays and Strings. (!)
 	Overridden in OrderedCollection and SortedCollection."
 	^ self class
@@ -1652,30 +1306,21 @@ SequenceableCollection>>join: aCollection [
 				separatedBy: [stream nextPutAll: self]]
 ]
 
-{
-	#category : #splitjoin,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>joinTo: stream [
+{ #category : #splitjoin }
+SequenceableCollection >> joinTo: stream [
 	"double dispatch for join:"
 	^ stream nextPutAll: self
 ]
 
-{
-	#category : #splitjoin,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>joinUsing: joiner [
+{ #category : #splitjoin }
+SequenceableCollection >> joinUsing: joiner [
 	"joiner - character, string or sequenceable collection
 	returns collection of the same collection class as 'joiner', or a String"
 	^ joiner join: self
 ]
 
-{
-	#category : #splitjoin,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>joinUsing: joiner last: last  [
+{ #category : #splitjoin }
+SequenceableCollection >> joinUsing: joiner last: last [ 
 	"#(1 2 3 4) joinUsing: ', ' last: 'and'. => '1, 2, 3 and 4"
 	(self size = 0) ifTrue: [  ^ '' ].
 	(self size = 1) ifTrue: [  ^ self first asString ].
@@ -1684,31 +1329,22 @@ SequenceableCollection>>joinUsing: joiner last: last  [
 				with: self last)
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>keysAndValuesDo: aBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> keysAndValuesDo: aBlock [ 
 	"Enumerate the receiver with all the keys (aka indices) and values."
 
 	1 to: self size do: [:index | aBlock value: index value: (self at: index)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>last [
+{ #category : #accessing }
+SequenceableCollection >> last [
 	"Answer the last element of the receiver"
 
 	^ self at: self size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>last: n [
+{ #category : #accessing }
+SequenceableCollection >> last: n [
 	"Answer the last n elements of the receiver.  
 	Raise an error if there are not enough elements."
 
@@ -1717,33 +1353,24 @@ SequenceableCollection>>last: n [
 	^ self copyFrom: size - n + 1 to: size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>lastIndexOf: anElement [
+{ #category : #accessing }
+SequenceableCollection >> lastIndexOf: anElement [
 	"Answer the index of the last occurence of anElement within the 
 	receiver. If the receiver does not contain anElement, answer 0."
 
 	^ self lastIndexOf: anElement startingAt: self size ifAbsent: [0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>lastIndexOf: anElement ifAbsent: exceptionBlock [
+{ #category : #accessing }
+SequenceableCollection >> lastIndexOf: anElement ifAbsent: exceptionBlock [
 	"Answer the index of the last occurence of anElement within the  
 	receiver. If the receiver does not contain anElement, answer the
 	result of evaluating the argument, exceptionBlock."
 	^self lastIndexOf: anElement startingAt: self size ifAbsent: exceptionBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>lastIndexOf: anElement startingAt: lastIndex ifAbsent: exceptionBlock [
+{ #category : #accessing }
+SequenceableCollection >> lastIndexOf: anElement startingAt: lastIndex ifAbsent: exceptionBlock [
 	"Answer the index of the last occurence of anElement within the  
 	receiver. If the receiver does not contain anElement, answer the
 	result of evaluating the argument, exceptionBlock."
@@ -1754,11 +1381,8 @@ SequenceableCollection>>lastIndexOf: anElement startingAt: lastIndex ifAbsent: e
 	^ exceptionBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>lastIndexOfAnyOf: aCollection startingAt: lastIndex ifAbsent: exceptionBlock [
+{ #category : #accessing }
+SequenceableCollection >> lastIndexOfAnyOf: aCollection startingAt: lastIndex ifAbsent: exceptionBlock [
 	"Answer the index of the last occurence of anElement within the  
 	receiver. If the receiver does not contain anElement, answer the
 	result of evaluating the argument, exceptionBlock."
@@ -1769,11 +1393,8 @@ SequenceableCollection>>lastIndexOfAnyOf: aCollection startingAt: lastIndex ifAb
 	^ exceptionBlock value
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>mergeFirst: first middle: middle last: last into: dst by: aBlock [
+{ #category : #sorting }
+SequenceableCollection >> mergeFirst: first middle: middle last: last into: dst by: aBlock [
 	"Private. Merge the sorted ranges [first..middle] and [middle+1..last] 
 	of the receiver into the range [first..last] of dst."
 
@@ -1799,11 +1420,8 @@ SequenceableCollection>>mergeFirst: first middle: middle last: last into: dst by
 		ifFalse: [dst replaceFrom: out + 1 to: last with: self startingAt: i2]
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>mergeSortFrom: startIndex to: stopIndex by: aBlock [
+{ #category : #sorting }
+SequenceableCollection >> mergeSortFrom: startIndex to: stopIndex by: aBlock [
 	"Sort the given range of indices using the mergesort algorithm.
 	Mergesort is a worst-case O(N log N) sorting algorithm that usually
 	does only half as many comparisons as heapsort or quicksort."
@@ -1827,11 +1445,8 @@ SequenceableCollection>>mergeSortFrom: startIndex to: stopIndex by: aBlock [
 		by: aBlock
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>mergeSortFrom: first to: last src: src dst: dst by: aBlock [
+{ #category : #sorting }
+SequenceableCollection >> mergeSortFrom: first to: last src: src dst: dst by: aBlock [
 	"Private. Split the range to be sorted in half, sort each half, and 
 	merge the two half-ranges into dst."
 
@@ -1843,39 +1458,27 @@ SequenceableCollection>>mergeSortFrom: first to: last src: src dst: dst by: aBlo
 	src mergeFirst: first middle: middle last: last into: dst by: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>middle [
+{ #category : #accessing }
+SequenceableCollection >> middle [
 	"Answer the middle element of the receiver."
 	^ self at: self size // 2 + 1
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>nextToLast [
+{ #category : #enumerating }
+SequenceableCollection >> nextToLast [
 	^self at: self size - 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>ninth [
+{ #category : #accessing }
+SequenceableCollection >> ninth [
 	"Answer the ninth element of the receiver.
 	Raise an error if there are not enough elements."
 
 	^ self at: 9
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>overlappingPairsCollect: aBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> overlappingPairsCollect: aBlock [ 
 	"Answer the result of evaluating aBlock with all of the overlapping pairs of my elements."
 	| retval |
 	retval := self species ofSize: self size - 1.
@@ -1884,33 +1487,24 @@ SequenceableCollection>>overlappingPairsCollect: aBlock  [
 	^retval
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>overlappingPairsDo: aBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> overlappingPairsDo: aBlock [ 
 	"Emit overlapping pairs of my elements into aBlock"
 
 	1 to: self size - 1
 		do: [:i | aBlock value: (self at: i) value: (self at: i + 1)]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>overlappingPairsWithIndexDo: aBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> overlappingPairsWithIndexDo: aBlock [ 
 	"Emit overlapping pairs of my elements into aBlock, along with an index."
 
 	1 to: self size - 1
 		do: [:i | aBlock value: (self at: i) value: (self at: i + 1) value: i ]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>paddedWith: otherCollection do: twoArgBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> paddedWith: otherCollection do: twoArgBlock [ 
 	"Evaluate twoArgBlock with corresponding elements from this collection and otherCollection.
 	Missing elements from either will be passed as nil."
 	1 to: (self size max: otherCollection size) do:
@@ -1918,11 +1512,8 @@ SequenceableCollection>>paddedWith: otherCollection do: twoArgBlock  [
 				value: (otherCollection at: index ifAbsent: [])]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>pairsCollect: aBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> pairsCollect: aBlock [ 
 	"Evaluate aBlock with my elements taken two at a time, and return an Array with the results"
 
 	^ (1 to: self size // 2) collect:
@@ -1933,11 +1524,8 @@ SequenceableCollection>>pairsCollect: aBlock  [
 "
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>pairsDo: aBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> pairsDo: aBlock [ 
 	"Evaluate aBlock with my elements taken two at a time.  If there's an odd number of items, ignore the last one.  Allows use of a flattened array for things that naturally group into pairs.  See also pairsCollect:"
 
 	1 to: self size // 2 do:
@@ -1948,11 +1536,8 @@ SequenceableCollection>>pairsDo: aBlock  [
 "
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>permutationsDo: aBlock [
+{ #category : #enumerating }
+SequenceableCollection >> permutationsDo: aBlock [
 	"Repeatly value aBlock with a single copy of the receiver. Reorder the copy
 	so that aBlock is presented all (self size factorial) possible permutations."
 	"(1 to: 4) permutationsDo: [:each | Transcript cr; show: each printString]"
@@ -1960,11 +1545,8 @@ SequenceableCollection>>permutationsDo: aBlock [
 	self shallowCopy permutationsStartingAt: 1 do: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>permutationsStartingAt: anInteger do: aBlock [
+{ #category : #private }
+SequenceableCollection >> permutationsStartingAt: anInteger do: aBlock [
 	"#(1 2 3 4) permutationsDo: [:each | Transcript cr; show: each printString]"
 
 	anInteger > self size ifTrue: [^self].
@@ -1975,11 +1557,8 @@ SequenceableCollection>>permutationsStartingAt: anInteger do: aBlock [
 		self swap: anInteger with: i]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>polynomialEval: thisX [
+{ #category : #enumerating }
+SequenceableCollection >> polynomialEval: thisX [
 	| sum valToPower |
 	"Treat myself as the coeficients of a polynomial in X.  Evaluate it with thisX.  First element is the constant and last is the coeficient for the highest power."
 	"  #(1 2 3) polynomialEval: 2   "   "is 3*X^2 + 2*X + 1 with X = 2"
@@ -1992,27 +1571,18 @@ SequenceableCollection>>polynomialEval: thisX [
 	^ sum
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>putOn: aStream [
+{ #category : #streaming }
+SequenceableCollection >> putOn: aStream [
 	self do: [ :each | each putOn: aStream ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>readStream [
+{ #category : #converting }
+SequenceableCollection >> readStream [
 	^ ReadStream on: self
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>reduce: aBlock [
+{ #category : #enumerating }
+SequenceableCollection >> reduce: aBlock [
 	"Fold the result of the receiver into aBlock. The argument aBlock must take two or more arguments. It applies the argument, binaryBlock cumulatively to the elements of the receiver. For sequenceable collections the elements will be used in order, for unordered collections the order is unspecified."
 	
 	"#(1 2 3) reduce: [ :a :b | a + b ]
@@ -2023,11 +1593,8 @@ SequenceableCollection>>reduce: aBlock [
 	^ self reduceLeft: aBlock
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>reduceLeft: aBlock [
+{ #category : #enumerating }
+SequenceableCollection >> reduceLeft: aBlock [
 	"Fold the result of the receiver from left to right into aBlock. The argument aBlock must take two or more arguments."
 
 	"#(1 2 3) reduceLeft: [ :a :b | a - b ].
@@ -2048,11 +1615,8 @@ SequenceableCollection>>reduceLeft: aBlock [
 	^ arguments first
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>reduceRight: aBlock [
+{ #category : #enumerating }
+SequenceableCollection >> reduceRight: aBlock [
 	"Fold the result of the receiver from right to left into aBlock. The argument aBlock must take two or more arguments."
 
 	"#(1 2 3) reduceRight: [ :a :b | a - b ].
@@ -2073,11 +1637,8 @@ SequenceableCollection>>reduceRight: aBlock [
 	^ arguments last
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>reject: rejectBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> reject: rejectBlock [ 
 	"Optimized version of Collection>>#reject:"
 	
 	| each |
@@ -2088,11 +1649,8 @@ SequenceableCollection>>reject: rejectBlock  [
 				ifFalse: [ stream nextPut: each ]]]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>reject: rejectBlock thenCollect: collectBlock [
+{ #category : #enumerating }
+SequenceableCollection >> reject: rejectBlock thenCollect: collectBlock [
 	"Optimized version of Collection>>#reject:thenCollect:"
 	
 	| each |
@@ -2103,11 +1661,8 @@ SequenceableCollection>>reject: rejectBlock thenCollect: collectBlock [
 				ifFalse: [ stream nextPut: (collectBlock value: each) ]]]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>reject: rejectBlock thenDo: aBlock [
+{ #category : #enumerating }
+SequenceableCollection >> reject: rejectBlock thenDo: aBlock [
 	"Refer to the comment in Collection>>#reject:thenDo:"
 	
 	|  each |
@@ -2117,21 +1672,15 @@ SequenceableCollection>>reject: rejectBlock thenDo: aBlock [
 			ifFalse: [ aBlock value: each ]].
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>remove: oldObject ifAbsent: anExceptionBlock  [
+{ #category : #removing }
+SequenceableCollection >> remove: oldObject ifAbsent: anExceptionBlock [ 
 	"SequencableCollections cannot implement removing."
 
 	self shouldNotImplement
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>replace: aBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> replace: aBlock [ 
 	"Evaluate aBlock with each of the receiver's elements as the argument.  
 	Collect the resulting values into self."
 
@@ -2139,11 +1688,8 @@ SequenceableCollection>>replace: aBlock  [
 		self at: index put: (aBlock value: (self at: index)) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>replaceAll: oldObject with: newObject  [
+{ #category : #accessing }
+SequenceableCollection >> replaceAll: oldObject with: newObject [ 
 	"Replace all occurences of oldObject with newObject"
 	| index |
 	index := self
@@ -2159,11 +1705,8 @@ SequenceableCollection>>replaceAll: oldObject with: newObject  [
 						ifAbsent: [0]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>replaceFrom: start to: stop with: replacement  [
+{ #category : #accessing }
+SequenceableCollection >> replaceFrom: start to: stop with: replacement [ 
 	"This destructively replaces elements from start to stop in the receiver. 
 	Answer the receiver itself. Use copyReplaceFrom:to:with: for 
 	insertion/deletion which may alter the size of the result."
@@ -2173,11 +1716,8 @@ SequenceableCollection>>replaceFrom: start to: stop with: replacement  [
 	^self replaceFrom: start to: stop with: replacement startingAt: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>replaceFrom: start to: stop with: replacement startingAt: repStart  [
+{ #category : #accessing }
+SequenceableCollection >> replaceFrom: start to: stop with: replacement startingAt: repStart [ 
 	"This destructively replaces elements from start to stop in the receiver 
 	starting at index, repStart, in the sequenceable collection, 
 	replacementCollection. Answer the receiver. No range checks are 
@@ -2190,21 +1730,15 @@ SequenceableCollection>>replaceFrom: start to: stop with: replacement startingAt
 		whileTrue: [self at: index put: (replacement at: repOff + index)]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>reverse [
+{ #category : #converting }
+SequenceableCollection >> reverse [
 	"Answer a copy of the receiver with element order reversed, as expected by ANSI."
 
 	^ self reversed
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>reverseDo: aBlock [
+{ #category : #enumerating }
+SequenceableCollection >> reverseDo: aBlock [
 	"Evaluate aBlock with each of the receiver's elements as the argument, 
 	starting with the last element and taking each in sequence up to the 
 	first. For SequenceableCollections, this is the reverse of the enumeration 
@@ -2213,11 +1747,8 @@ SequenceableCollection>>reverseDo: aBlock [
 	self size to: 1 by: -1 do: [:index | aBlock value: (self at: index)]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>reverseWith: aSequenceableCollection do: aBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> reverseWith: aSequenceableCollection do: aBlock [ 
 	"Evaluate aBlock with each of the receiver's elements, in reverse order, 
 	along with the  corresponding element, also in reverse order, from 
 	aSequencableCollection. "
@@ -2229,11 +1760,8 @@ SequenceableCollection>>reverseWith: aSequenceableCollection do: aBlock  [
 				value: (aSequenceableCollection at: index)]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>reverseWithIndexDo: elementAndIndexBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> reverseWithIndexDo: elementAndIndexBlock [ 
 	"Just like reverseWith:do: except that the iteration index supplies the second argument to the block."
 	self size to: 1 by: -1 do: [:index |
 		elementAndIndexBlock
@@ -2241,11 +1769,8 @@ SequenceableCollection>>reverseWithIndexDo: elementAndIndexBlock  [
 			value: index]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>reversed [
+{ #category : #converting }
+SequenceableCollection >> reversed [
 	"Answer a copy of the receiver with element order reversed."
 	"Example: 'frog' reversed"
 
@@ -2258,22 +1783,16 @@ SequenceableCollection>>reversed [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>second [
+{ #category : #accessing }
+SequenceableCollection >> second [
 	"Answer the second element of the receiver.
 	Raise an error if there are not enough elements."
 
 	^ self at: 2
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>select: aBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> select: aBlock [ 
 	"Optimized version of Collection>>#select:"
 	
 	| each |
@@ -2283,11 +1802,8 @@ SequenceableCollection>>select: aBlock  [
 				ifTrue: [ stream nextPut: each ]]]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>select: selectBlock thenCollect: collectBlock [
+{ #category : #enumerating }
+SequenceableCollection >> select: selectBlock thenCollect: collectBlock [
 	"Optimized version of Collection>>#select:thenCollect:"
 	
 	| each |
@@ -2297,11 +1813,8 @@ SequenceableCollection>>select: selectBlock thenCollect: collectBlock [
 				ifTrue: [ stream nextPut: (collectBlock value: each) ]]]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>select: selectBock thenDo: aBlock [
+{ #category : #enumerating }
+SequenceableCollection >> select: selectBock thenDo: aBlock [
 	"Refer to the comment in Collection>>#select:thenDo:"
 	
 	| each |
@@ -2310,78 +1823,54 @@ SequenceableCollection>>select: selectBock thenDo: aBlock [
 			ifTrue: [ aBlock value: each ]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>seventh [
+{ #category : #accessing }
+SequenceableCollection >> seventh [
 	"Answer the seventh element of the receiver.
 	Raise an error if there are not enough elements."
 
 	^ self at: 7
 ]
 
-{
-	#category : #shuffling,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>shuffle [
+{ #category : #shuffling }
+SequenceableCollection >> shuffle [
 	^ self shuffleBy: Random new
 ]
 
-{
-	#category : #shuffling,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>shuffleBy: aRandom [
+{ #category : #shuffling }
+SequenceableCollection >> shuffleBy: aRandom [
 	"Durstenfeld's version of the Fisher-Yates shuffle"
 
 	self size to: 2 by: -1 do: [ :i | 
 		self swap: i with: (aRandom nextInt: i) ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>shuffled [
+{ #category : #copying }
+SequenceableCollection >> shuffled [
 	^ self copy shuffle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>sixth [
+{ #category : #accessing }
+SequenceableCollection >> sixth [
 	"Answer the sixth element of the receiver.
 	Raise an error if there are not enough elements."
 
 	^ self at: 6
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>size [
+{ #category : #accessing }
+SequenceableCollection >> size [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>sort [
+{ #category : #sorting }
+SequenceableCollection >> sort [
 	"Sort this collection into ascending order using the '<=' operator."
 
 	self sort: [:a :b | a <= b]
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>sort: aSortBlock  [
+{ #category : #sorting }
+SequenceableCollection >> sort: aSortBlock [ 
 	"Sort this array using aSortBlock. The block should take two arguments
 	and return true if the first element should preceed the second one."
 
@@ -2391,22 +1880,16 @@ SequenceableCollection>>sort: aSortBlock  [
 		by: aSortBlock
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>sorted [
+{ #category : #sorting }
+SequenceableCollection >> sorted [
 	"Return a new sequenceable collection which contains the same elements as self but its 
 elements are sorted in ascending order using the #'<=' operator."
 	
 	^self sorted: [ :a :b| a <= b ]
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>sorted: aSortBlockOrNil [
+{ #category : #sorting }
+SequenceableCollection >> sorted: aSortBlockOrNil [
 	"Return a new sequenceable collection which contains the same elements as self but its 
 elements are sorted by aSortBlockOrNil. The block should take two arguments and return true if 
 the first element should preceed the second one. If aSortBlock is nil then <= is used for 
@@ -2415,11 +1898,8 @@ comparison."
 	^self copy sort: aSortBlockOrNil
 ]
 
-{
-	#category : #splitjoin,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>split: aSequenceableCollection indicesDo: aBlock [
+{ #category : #splitjoin }
+SequenceableCollection >> split: aSequenceableCollection indicesDo: aBlock [
 	
 	"Split a collection by myself as a delimitier.
 	see Object >> split: for optimized version for single delimiters.
@@ -2444,41 +1924,29 @@ SequenceableCollection>>split: aSequenceableCollection indicesDo: aBlock [
 
 ]
 
-{
-	#category : #splitjoin,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>splitOn: splitter  [
+{ #category : #splitjoin }
+SequenceableCollection >> splitOn: splitter [ 
 	"splitter - can be a subsequence, a Block or a Regex (String receiver only).
 	Any other object used as a splitter is treated as an Array containing that object."
 	^ splitter split: self
 ]
 
-{
-	#category : #splitjoin,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>splitOn: splitter do: aBlock [
+{ #category : #splitjoin }
+SequenceableCollection >> splitOn: splitter do: aBlock [
 	"splitter - can be a subsequence, a Block or a Regex (String receiver only).
 	Any other object used as a splitter is treated as an Array containing that object."
 	^ splitter split: self do: aBlock
 ]
 
-{
-	#category : #splitjoin,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>splitOn: splitter indicesDo: aBlock [
+{ #category : #splitjoin }
+SequenceableCollection >> splitOn: splitter indicesDo: aBlock [
 	"splitter - can be a subsequence, a Block or a Regex (String receiver only).
 	Any other object used as a splitter is treated as an Array containing that object."
 	^ splitter split: self indicesDo: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>swap: oneIndex with: anotherIndex  [
+{ #category : #accessing }
+SequenceableCollection >> swap: oneIndex with: anotherIndex [ 
 	"Move the element at oneIndex to anotherIndex, and vice-versa."
 
 	| element |
@@ -2487,22 +1955,16 @@ SequenceableCollection>>swap: oneIndex with: anotherIndex  [
 	self at: anotherIndex put: element
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>third [
+{ #category : #accessing }
+SequenceableCollection >> third [
 	"Answer the third element of the receiver.
 	Raise an error if there are not enough elements."
 
 	^ self at: 3
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>with: otherCollection collect: twoArgBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> with: otherCollection collect: twoArgBlock [ 
 	"Collect and return the result of evaluating twoArgBlock with corresponding elements from this collection and otherCollection."
 	| result |
 	otherCollection size = self size ifFalse: [self errorSizeMismatch].
@@ -2515,11 +1977,8 @@ SequenceableCollection>>with: otherCollection collect: twoArgBlock  [
 	^ result
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>with: otherCollection do: twoArgBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> with: otherCollection do: twoArgBlock [ 
 	"Evaluate twoArgBlock with corresponding elements from this collection and otherCollection."
 	otherCollection size = self size ifFalse: [self errorSizeMismatch].
 	1 to: self size do:
@@ -2528,11 +1987,8 @@ SequenceableCollection>>with: otherCollection do: twoArgBlock  [
 				value: (otherCollection at: index)]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>withIndexCollect: elementAndIndexBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> withIndexCollect: elementAndIndexBlock [ 
 	"Just like with:collect: except that the iteration index supplies the second argument to the block."
 	| result |
 	result := self species new: self size.
@@ -2544,11 +2000,8 @@ SequenceableCollection>>withIndexCollect: elementAndIndexBlock  [
 	^ result
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>withIndexDo: elementAndIndexBlock  [
+{ #category : #enumerating }
+SequenceableCollection >> withIndexDo: elementAndIndexBlock [ 
 	"Just like with:do: except that the iteration index supplies the second argument to the block. 
 	#(11 22 13) withWithDo: [ :each :i | Transcript show: (each * each + i) ;cr ].
 	prints: 
@@ -2563,10 +2016,7 @@ SequenceableCollection>>withIndexDo: elementAndIndexBlock  [
 			value: index]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-SequenceableCollection>>writeStream [
+{ #category : #converting }
+SequenceableCollection >> writeStream [
 	^ WriteStream on: self
 ]

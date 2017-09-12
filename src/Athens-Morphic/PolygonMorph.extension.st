@@ -1,12 +1,7 @@
-Extension {
-	#name : #PolygonMorph
-}
+Extension { #name : #PolygonMorph }
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PolygonMorph>>adjustSegmentPointsForArrows [
+{ #category : #'*Athens-Morphic' }
+PolygonMorph >> adjustSegmentPointsForArrows [
 	" In the list of vertices, adjust first and last entry if this polygon uses arrows."
 
 	| verts |
@@ -30,11 +25,8 @@ PolygonMorph>>adjustSegmentPointsForArrows [
 	^ verts
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PolygonMorph>>asAthensCurvedOpenPathOn: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+PolygonMorph >> asAthensCurvedOpenPathOn: anAthensCanvas [
 "like asAthensCurvedPathOn: but use quadratic curve for start and end points"
 	| points |
 	points := self computeCurvedSegmentCtrlPoints.
@@ -58,11 +50,8 @@ PolygonMorph>>asAthensCurvedOpenPathOn: anAthensCanvas [
 			builder ]
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PolygonMorph>>asAthensCurvedPathOn: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+PolygonMorph >> asAthensCurvedPathOn: anAthensCanvas [
 	| points |
 	points := self computeCurvedSegmentCtrlPoints.
 	^ anAthensCanvas
@@ -84,11 +73,8 @@ PolygonMorph>>asAthensCurvedPathOn: anAthensCanvas [
 			builder ]
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PolygonMorph>>asAthensLinePathOn: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+PolygonMorph >> asAthensLinePathOn: anAthensCanvas [
 	| verts |
 	verts := self adjustSegmentPointsForArrows.
 	^ anAthensCanvas
@@ -103,11 +89,8 @@ PolygonMorph>>asAthensLinePathOn: anAthensCanvas [
 			builder ]
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PolygonMorph>>asAthensPathOn: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+PolygonMorph >> asAthensPathOn: anAthensCanvas [
 	^ self isCurvy
 		ifTrue: [ 
 			self isOpen
@@ -116,11 +99,8 @@ PolygonMorph>>asAthensPathOn: anAthensCanvas [
 		ifFalse: [ self asAthensLinePathOn: anAthensCanvas ]
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PolygonMorph>>computeCurvedSegmentCtrlPoints [
+{ #category : #'*Athens-Morphic' }
+PolygonMorph >> computeCurvedSegmentCtrlPoints [
 	"compute control points for the curved polygon.
 For every vertice C take the two edges L and R. Compute the line T between the midpoints of L and R.
 Use T is the tangent on the C. T is divided by the C with the same ration as L/R.
@@ -153,11 +133,8 @@ for the current vertice C.
 	^ ctrls
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PolygonMorph>>drawArrowOnAthensCanvas: anAthensCanvas at: endPoint from: priorPoint [
+{ #category : #'*Athens-Morphic' }
+PolygonMorph >> drawArrowOnAthensCanvas: anAthensCanvas at: endPoint from: priorPoint [
 	"Draw a triangle oriented along the line from priorPoint to  
 	endPoint. Answer the wingBase."
 
@@ -183,11 +160,8 @@ PolygonMorph>>drawArrowOnAthensCanvas: anAthensCanvas at: endPoint from: priorPo
 	^ wingBase
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PolygonMorph>>drawArrowsOnAthensCanvas: aAthensCanvas  [
+{ #category : #'*Athens-Morphic' }
+PolygonMorph >> drawArrowsOnAthensCanvas: aAthensCanvas [ 
 	"Answer (possibly modified) endpoints for border drawing"
 	"ArrowForms are computed only upon demand"
 	| array |
@@ -217,11 +191,8 @@ PolygonMorph>>drawArrowsOnAthensCanvas: aAthensCanvas  [
 	^array
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PolygonMorph>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #'*Athens-Morphic' }
+PolygonMorph >> drawOnAthensCanvas: anAthensCanvas [
 	| border shape stroke |
 	border := self borderStyle.
 	shape := self asAthensPathOn: anAthensCanvas.
@@ -241,21 +212,15 @@ PolygonMorph>>drawOnAthensCanvas: anAthensCanvas [
 	self drawArrowsOnAthensCanvas: anAthensCanvas
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PolygonMorph>>hasTwoColorDash [
+{ #category : #'*Athens-Morphic' }
+PolygonMorph >> hasTwoColorDash [
 	" return true if the dash spec has another color"
 
 	^ self dashedBorder notNil and: [ self dashedBorder size > 2 ]
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PolygonMorph>>setDashOnStroke: anAthensStrokePaint [
+{ #category : #'*Athens-Morphic' }
+PolygonMorph >> setDashOnStroke: anAthensStrokePaint [
 	| d commonOffset |
 	d := self dashedBorder.
 	commonOffset := d size > 3
@@ -268,11 +233,8 @@ PolygonMorph>>setDashOnStroke: anAthensStrokePaint [
 		offset: commonOffset
 ]
 
-{
-	#category : #'*Athens-Morphic',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-PolygonMorph>>setSecondColorDashOnStroke: anAthensStrokePaint [
+{ #category : #'*Athens-Morphic' }
+PolygonMorph >> setSecondColorDashOnStroke: anAthensStrokePaint [
 	| d c commonOffset |
 	d := self dashedBorder.
 	c := d third.

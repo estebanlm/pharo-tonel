@@ -46,15 +46,11 @@ Error reason codes:
 Class {
 	#name : #MetacelloMCVersionValidator,
 	#superclass : #MetacelloVersionValidator,
-	#category : #Metacello-MC-Validation,
-	#timestamp : 'dkh 1/26/2012 09:49'
+	#category : #Metacello-MC-Validation
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionValidator class>>populateReasonCodeDescriptions [
+{ #category : #private }
+MetacelloMCVersionValidator class >> populateReasonCodeDescriptions [
     "update MetacelloMCVersionValidator class comment to include any changes to descriptions"
 
     | dict |
@@ -83,56 +79,38 @@ MetacelloMCVersionValidator class>>populateReasonCodeDescriptions [
     ^ dict
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionValidator class>>validateConfigurationLoad: configurationClass [
+{ #category : #'instance creation' }
+MetacelloMCVersionValidator class >> validateConfigurationLoad: configurationClass [
 	^ ((self new)
 		configurationClass: configurationClass;
 		yourself) validateProjectLoad
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionValidator class>>validateConfigurationLoad: configurationClass version: versionString [
+{ #category : #'instance creation' }
+MetacelloMCVersionValidator class >> validateConfigurationLoad: configurationClass version: versionString [
 	^self validateConfigurationLoad: configurationClass version: versionString loads: #()
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionValidator class>>validateConfigurationLoad: configurationClass version: versionString loads: loadList [
+{ #category : #'instance creation' }
+MetacelloMCVersionValidator class >> validateConfigurationLoad: configurationClass version: versionString loads: loadList [
 	^ ((self new)
 		configurationClass: configurationClass;
 		yourself) validateProjectVersionLoad: versionString loads: loadList
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionValidator>>criticalWarningReasonCodes [
+{ #category : #private }
+MetacelloMCVersionValidator >> criticalWarningReasonCodes [
 	^ super criticalWarningReasonCodes
 		, #(#noLoadableVersions #noTests #testDeprecation #loadDeprecation #noVersionSpecified #'missingRecommendedProjectSpecField' )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionValidator>>errorReasonCodes [
+{ #category : #private }
+MetacelloMCVersionValidator >> errorReasonCodes [
 	^ super errorReasonCodes, #(#loadError #testFailures )
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionValidator>>validateBaselineVersionSpec: versionSpec [
+{ #category : #validation }
+MetacelloMCVersionValidator >> validateBaselineVersionSpec: versionSpec [
     | projectNames packageNames groupNames versionMessage |
     self
         validateDoIts: versionSpec
@@ -275,11 +253,8 @@ MetacelloMCVersionValidator>>validateBaselineVersionSpec: versionSpec [
                 reasonCode: #'shadowedNames' ]
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionValidator>>validateCleanLoadAndTestsForVersion: version loads: loadList [
+{ #category : #loading }
+MetacelloMCVersionValidator >> validateCleanLoadAndTestsForVersion: version loads: loadList [
 	| cleanLoad cleanTests |
 	cleanTests := cleanLoad := false.
 	[ 
@@ -340,11 +315,8 @@ MetacelloMCVersionValidator>>validateCleanLoadAndTestsForVersion: version loads:
 				ifFalse: [ MetacelloCleanLoadNotification signal: version ] ]
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionValidator>>validateProjectLoad [
+{ #category : #loading }
+MetacelloMCVersionValidator >> validateProjectLoad [
 	| issues project versions currentVersion collectedIssues |
 	(issues := self validateProject select: [ :issue | issue isError ]) notEmpty
 		ifTrue: [ ^ issues ].
@@ -374,11 +346,8 @@ MetacelloMCVersionValidator>>validateProjectLoad [
 	^ self validationReport
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionValidator>>validateProjectVersionLoad: versionString loads: loadList [
+{ #category : #loading }
+MetacelloMCVersionValidator >> validateProjectVersionLoad: versionString loads: loadList [
 	| issues project currentVersion version |
 	(issues := (self validateProjectVersion: versionString) select: [ :issue | issue isError ]) notEmpty
 		ifTrue: [ ^ issues ].
@@ -397,11 +366,8 @@ MetacelloMCVersionValidator>>validateProjectVersionLoad: versionString loads: lo
 	^ self validationReport
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionValidator>>validateVersionLoad: version loads: loadList [
+{ #category : #loading }
+MetacelloMCVersionValidator >> validateVersionLoad: version loads: loadList [
 	| list |
 	list := loadList asOrderedCollection.
 	list isEmpty
@@ -411,11 +377,8 @@ MetacelloMCVersionValidator>>validateVersionLoad: version loads: loadList [
 	version load: list
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionValidator>>validateVersionSpec: versionSpec [
+{ #category : #private }
+MetacelloMCVersionValidator >> validateVersionSpec: versionSpec [
   versionSpec blessing value == #'broken'
     ifTrue: [ ^ self ].
   versionSpec
@@ -497,11 +460,8 @@ MetacelloMCVersionValidator>>validateVersionSpec: versionSpec [
   self validateBaselineVersionSpec: versionSpec
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionValidator>>validateVersionSpecForSymbolicVersion: versionSpec symbolicVersion: symbolicVersionString [
+{ #category : #private }
+MetacelloMCVersionValidator >> validateVersionSpecForSymbolicVersion: versionSpec symbolicVersion: symbolicVersionString [
 	| blessing |
 	versionSpec blessing value == #broken
 		ifTrue: [ ^ self ].
@@ -517,11 +477,8 @@ MetacelloMCVersionValidator>>validateVersionSpecForSymbolicVersion: versionSpec 
 				reasonCode: #notDevelopmentVersion ]
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionValidator>>validateVersionTests: version [
+{ #category : #loading }
+MetacelloMCVersionValidator >> validateVersionTests: version [
 	| testCases cleanTests |
 	testCases := IdentitySet new.
 	cleanTests := true.
@@ -555,10 +512,7 @@ MetacelloMCVersionValidator>>validateVersionTests: version [
 	^ cleanTests
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMCVersionValidator>>warningReasonCodes [
+{ #category : #private }
+MetacelloMCVersionValidator >> warningReasonCodes [
 	^ super warningReasonCodes, #(#loadWarning #notDevelopmentVersion #stableDevelopmentVersion)
 ]

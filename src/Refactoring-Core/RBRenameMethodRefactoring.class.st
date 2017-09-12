@@ -14,15 +14,11 @@ Class {
 	#instVars : [
 		'hasPermutedArguments'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 14:10'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameMethodRefactoring class>>model: aRBSmalltalk renameMethod: aSelector in: aClass to: newSelector permutation: aMap  [
+{ #category : #'instance creation' }
+RBRenameMethodRefactoring class >> model: aRBSmalltalk renameMethod: aSelector in: aClass to: newSelector permutation: aMap [ 
 	^(self new)
 		model: aRBSmalltalk;
 		renameMethod: aSelector
@@ -32,50 +28,35 @@ RBRenameMethodRefactoring class>>model: aRBSmalltalk renameMethod: aSelector in:
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameMethodRefactoring class>>renameMethod: aSelector in: aClass to: newSelector permutation: aMap  [
+{ #category : #'instance creation' }
+RBRenameMethodRefactoring class >> renameMethod: aSelector in: aClass to: newSelector permutation: aMap [ 
 	^self new renameMethod: aSelector
 		in: aClass
 		to: newSelector
 		permutation: aMap
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameMethodRefactoring>>hasPermutedArguments [
+{ #category : #testing }
+RBRenameMethodRefactoring >> hasPermutedArguments [
 	^hasPermutedArguments isNil 
 		ifTrue: [hasPermutedArguments := super hasPermutedArguments]
 		ifFalse: [hasPermutedArguments]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameMethodRefactoring>>implementorsCanBePrimitives [
+{ #category : #testing }
+RBRenameMethodRefactoring >> implementorsCanBePrimitives [
 	^self hasPermutedArguments not
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameMethodRefactoring>>myConditions [
+{ #category : #preconditions }
+RBRenameMethodRefactoring >> myConditions [
 	^RBCondition withBlock: [oldSelector numArgs = newSelector numArgs]
 		errorString: newSelector printString 
 				, ' doesn''t have the correct number of arguments.'
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameMethodRefactoring>>parseTreeRewriter [
+{ #category : #transforming }
+RBRenameMethodRefactoring >> parseTreeRewriter [
 	| rewriteRule oldString newString |
 	oldString := self buildSelectorString: oldSelector.
 	newString := self buildSelectorString: newSelector
@@ -88,11 +69,8 @@ RBRenameMethodRefactoring>>parseTreeRewriter [
 	^rewriteRule
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameMethodRefactoring>>preconditions [
+{ #category : #preconditions }
+RBRenameMethodRefactoring >> preconditions [
 	| newCondition |
 	newCondition := (RBCondition 
 							withBlock: [newSelector = oldSelector]
@@ -103,11 +81,8 @@ RBRenameMethodRefactoring>>preconditions [
 	^newCondition | super preconditions
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRenameMethodRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBRenameMethodRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream

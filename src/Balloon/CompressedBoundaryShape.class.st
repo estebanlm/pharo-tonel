@@ -28,23 +28,16 @@ Class {
 		'lineFills',
 		'fillStyles'
 	],
-	#category : #Balloon-Geometry,
-	#timestamp : '<historical>'
+	#category : #Balloon-Geometry
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompressedBoundaryShape class>>points: pointList leftFills: leftFillList rightFills: rightFillList fillStyles: fillStyleList lineWidths: lineWidthList lineFills: lineFillList [
+{ #category : #'instance creation' }
+CompressedBoundaryShape class >> points: pointList leftFills: leftFillList rightFills: rightFillList fillStyles: fillStyleList lineWidths: lineWidthList lineFills: lineFillList [
 	^self new setPoints: pointList leftFills: leftFillList rightFills: rightFillList fillStyles: fillStyleList lineWidths: lineWidthList lineFills: lineFillList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompressedBoundaryShape>>bounds [
+{ #category : #accessing }
+CompressedBoundaryShape >> bounds [
 	| min max width |
 	points isEmpty ifTrue:[^0@0 corner: 1@1].
 	min := max := points first.
@@ -57,59 +50,38 @@ CompressedBoundaryShape>>bounds [
 	^(min corner: max) insetBy: (width negated asPoint)
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompressedBoundaryShape>>collectFills: aBlock [
+{ #category : #editing }
+CompressedBoundaryShape >> collectFills: aBlock [
 	fillStyles := fillStyles collect: aBlock.
 ]
 
-{
-	#category : #editing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompressedBoundaryShape>>copyAndCollectFills: aBlock [
+{ #category : #editing }
+CompressedBoundaryShape >> copyAndCollectFills: aBlock [
 	^self copy collectFills: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompressedBoundaryShape>>fillStyles [
+{ #category : #accessing }
+CompressedBoundaryShape >> fillStyles [
 	^fillStyles
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompressedBoundaryShape>>leftFills [
+{ #category : #accessing }
+CompressedBoundaryShape >> leftFills [
 	^leftFills
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompressedBoundaryShape>>lineFills [
+{ #category : #accessing }
+CompressedBoundaryShape >> lineFills [
 	^lineFills
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompressedBoundaryShape>>lineWidths [
+{ #category : #accessing }
+CompressedBoundaryShape >> lineWidths [
 	^lineWidths
 ]
 
-{
-	#category : #morphing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompressedBoundaryShape>>morphFrom: srcShape to: dstShape at: ratio [
+{ #category : #morphing }
+CompressedBoundaryShape >> morphFrom: srcShape to: dstShape at: ratio [
 	| scale unscale srcPoints dstPoints pt1 pt2 x y |
 	scale := (ratio * 1024) asInteger.
 	scale < 0 ifTrue:[scale := 0].
@@ -125,35 +97,23 @@ CompressedBoundaryShape>>morphFrom: srcShape to: dstShape at: ratio [
 		points at: i put: x@y].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompressedBoundaryShape>>numSegments [
+{ #category : #accessing }
+CompressedBoundaryShape >> numSegments [
 	^points size // 3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompressedBoundaryShape>>points [
+{ #category : #accessing }
+CompressedBoundaryShape >> points [
 	^points
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompressedBoundaryShape>>rightFills [
+{ #category : #accessing }
+CompressedBoundaryShape >> rightFills [
 	^rightFills
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompressedBoundaryShape>>segments [
+{ #category : #accessing }
+CompressedBoundaryShape >> segments [
 	"Return all the segments in the receiver"
 	| out |
 	out := Array new writeStream.
@@ -161,11 +121,8 @@ CompressedBoundaryShape>>segments [
 	^out contents
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompressedBoundaryShape>>segmentsDo: aBlock [
+{ #category : #enumerating }
+CompressedBoundaryShape >> segmentsDo: aBlock [
 	"Enumerate all segments in the receiver and execute aBlock"
 	| p1 p2 p3 |
 	1 to: points size by: 3 do:[:i|
@@ -180,11 +137,8 @@ CompressedBoundaryShape>>segmentsDo: aBlock [
 	].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompressedBoundaryShape>>setPoints: pointList leftFills: leftFillList rightFills: rightFillList fillStyles: fillStyleList lineWidths: lineWidthList lineFills: lineFillList [
+{ #category : #private }
+CompressedBoundaryShape >> setPoints: pointList leftFills: leftFillList rightFills: rightFillList fillStyles: fillStyleList lineWidths: lineWidthList lineFills: lineFillList [
 	points := pointList.
 	leftFills := leftFillList.
 	rightFills := rightFillList.

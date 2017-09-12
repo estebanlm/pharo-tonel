@@ -10,71 +10,46 @@ Class {
 		'name',
 		'vars'
 	],
-	#category : #OpalCompiler-Core-IR-Nodes,
-	#timestamp : 'MarcusDenker 8/11/2014 10:17'
+	#category : #OpalCompiler-Core-IR-Nodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTempVector>>accept: aVisitor [
+{ #category : #visiting }
+IRTempVector >> accept: aVisitor [
 	^ aVisitor visitTempVector: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTempVector>>indexForVarNamed: aName [
+{ #category : #accessing }
+IRTempVector >> indexForVarNamed: aName [
 	^vars indexOf: aName
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTempVector>>initialize  [
+{ #category : #initialization }
+IRTempVector >> initialize [ 
 	vars := Dictionary new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTempVector>>isTempVector [
+{ #category : #testing }
+IRTempVector >> isTempVector [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTempVector>>name [
+{ #category : #accessing }
+IRTempVector >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTempVector>>name: anObject [
+{ #category : #accessing }
+IRTempVector >> name: anObject [
 	name := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTempVector>>vars [
+{ #category : #accessing }
+IRTempVector >> vars [
 	^ vars
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRTempVector>>vars: anObject [
+{ #category : #accessing }
+IRTempVector >> vars: anObject [
 	vars := anObject.
 ]

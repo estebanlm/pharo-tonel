@@ -35,15 +35,11 @@ Class {
 		'packagePattern',
 		'packageIndex'
 	],
-	#category : #SUnit-UI,
-	#timestamp : '<historical>'
+	#category : #SUnit-UI
 }
 
-{
-	#category : #'world menu',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner class>>menuCommandOn: aBuilder [
+{ #category : #'world menu' }
+TestRunner class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'Test Runner')
 		parent: #MostUsedTools;
@@ -53,58 +49,40 @@ TestRunner class>>menuCommandOn: aBuilder [
 		icon: self taskbarIcon
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner class>>open [
+{ #category : #instance-creation }
+TestRunner class >> open [
 	^ self new open
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner class>>registerToolsOn: registry [
+{ #category : #initialization }
+TestRunner class >> registerToolsOn: registry [
 
 	"Add ourselves to registry. See [Smalltalk tools]" 
 	registry register: self as: #testRunner
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner class>>taskbarIconName [
+{ #category : #icons }
+TestRunner class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^#testRunnerIcon
 ]
 
-{
-	#category : #theme,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner class>>theme [
+{ #category : #theme }
+TestRunner class >> theme [
 	^ Smalltalk ui theme
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>addDeclaredPackagesUnderTestTo: listOfPackages  [
+{ #category : #actions }
+TestRunner >> addDeclaredPackagesUnderTestTo: listOfPackages [ 
 	classesSelected do: 
 		[ :class | 
 		(class class includesSelector: #packageNamesUnderTest) ifTrue: 
 			[ class packageNamesUnderTest do: [ :name | listOfPackages add: (RPackage organizer packageNamed: name) ] ] ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>addMethodsUnderTestIn: listOfPackages to: methods  [
+{ #category : #actions }
+TestRunner >> addMethodsUnderTestIn: listOfPackages to: methods [ 
 	listOfPackages
 		do: [:package | package isNil
 				ifFalse: [package methodReferences
@@ -114,75 +92,51 @@ TestRunner>>addMethodsUnderTestIn: listOfPackages to: methods  [
 								ifFalse: [methods add: method]]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>allSelectedTestSuites [
+{ #category : #accessing }
+TestRunner >> allSelectedTestSuites [
 	"Return the suite for all the selected test case classes"
 	
 	^ classesSelected select: [ :each | each isAbstract not] thenCollect: [:each | each suite].
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>baseClass [
+{ #category : #factory }
+TestRunner >> baseClass [
 	^ TestCase
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>browseClass [
+{ #category : #accessing-classes }
+TestRunner >> browseClass [
 
 	^ (classes at: classIndex ifAbsent: [ ^ self ]) browse
 ]
 
-{
-	#category : #browsing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>browseSelectedErrorTest [
+{ #category : #browsing }
+TestRunner >> browseSelectedErrorTest [
 
 	errorSelected ifNil: [^self].
 	self browseSelectedTest: errorSelected
 ]
 
-{
-	#category : #browsing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>browseSelectedFailedTest [
+{ #category : #browsing }
+TestRunner >> browseSelectedFailedTest [
 
 	failedSelected ifNil: [^self].
 	self browseSelectedTest: failedSelected
 ]
 
-{
-	#category : #browsing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>browseSelectedTest: aTest [
+{ #category : #browsing }
+TestRunner >> browseSelectedTest: aTest [
 	(aTest class lookupSelector: aTest selector) browse
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>browserEnvironment [
+{ #category : #private }
+TestRunner >> browserEnvironment [
 	^ Smalltalk globals classNamed: #BrowserEnvironment
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>build [
+{ #category : #building }
+TestRunner >> build [
 	"self new build openInWorld"
 	
 	| window |
@@ -204,11 +158,8 @@ TestRunner>>build [
 	
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>buildButtons [
+{ #category : #building }
+TestRunner >> buildButtons [
 	^ PanelMorph new
 		changeTableLayout;
 		listDirection: #leftToRight;
@@ -229,11 +180,8 @@ TestRunner>>buildButtons [
 		yourself.
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>buildClasses [
+{ #category : #building }
+TestRunner >> buildClasses [
 
 	^ PluggableListMorph new
 		on: self
@@ -247,11 +195,8 @@ TestRunner>>buildClasses [
 		yourself
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>buildClassesSearch [
+{ #category : #building }
+TestRunner >> buildClassesSearch [
 	
 	^ SearchMorph new
 		model: self;
@@ -260,11 +205,8 @@ TestRunner>>buildClassesSearch [
 		yourself
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>buildErrors [
+{ #category : #building }
+TestRunner >> buildErrors [
 	^ PluggableListMorph new
 			on: self 
 			list: #errorList
@@ -275,11 +217,8 @@ TestRunner>>buildErrors [
 	
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>buildFailures [
+{ #category : #building }
+TestRunner >> buildFailures [
 	^ PluggableListMorph new
 			on: self 
 			list: #failedList
@@ -292,11 +231,8 @@ TestRunner>>buildFailures [
 		name: 'Failure List'"
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>buildPackageSearch [
+{ #category : #building }
+TestRunner >> buildPackageSearch [
 
 	^ SearchMorph new
 		model: self;
@@ -305,11 +241,8 @@ TestRunner>>buildPackageSearch [
 		yourself
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>buildPackages [
+{ #category : #building }
+TestRunner >> buildPackages [
 
 	^ PluggableListMorph new
 		on: self
@@ -323,11 +256,8 @@ TestRunner>>buildPackages [
 		yourself
 ]
 
-{
-	#category : #newbuilding,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>buildStatus [
+{ #category : #newbuilding }
+TestRunner >> buildStatus [
 
 	^ (PluggableTextFieldMorph
 		on: self 
@@ -341,19 +271,13 @@ TestRunner>>buildStatus [
 	
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>buttonHeight [
+{ #category : #building }
+TestRunner >> buttonHeight [
 	^ self theme buttonMinHeight + 4
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>buttons [
+{ #category : #accessing-ui }
+TestRunner >> buttons [
 	^ #(( 'Run Selected' #runAll 'Run all selected tests' #hasRunnable )
 		( 'Run Profiled' #runProfiled 'Run tests and profile' #hasRunnable )
 		( 'Run Coverage' #runCoverage 'Run test and check code coverage' #hasRunnable )
@@ -362,47 +286,32 @@ TestRunner>>buttons [
 		( 'File out results' #fileOutResults 'File out test results' #hasFailuresOrErrors))
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>buttonsFrame [
+{ #category : #building }
+TestRunner >> buttonsFrame [
 	^LayoutFrame new topFraction: 1 offset: self buttonHeight negated
 		
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>classAt: anInteger [
+{ #category : #accessing-classes }
+TestRunner >> classAt: anInteger [
 	^ classesSelected includes: (classes at: anInteger ifAbsent: [ ^ false ]).
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>classAt: anInteger put: aBoolean [
+{ #category : #accessing-classes }
+TestRunner >> classAt: anInteger put: aBoolean [
 	classesSelected := classesSelected
 		perform: (aBoolean ifTrue: [ #copyWith: ] ifFalse: [ #copyWithout: ])
 		with: (classes at: anInteger ifAbsent: [ ^ self ]).
 	self changed: #classSelected; changed: #hasRunnable.
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>classForTestSuite [
+{ #category : #factory }
+TestRunner >> classForTestSuite [
 	^ TestSuite
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>classList [
+{ #category : #accessing-classes }
+TestRunner >> classList [
 	| offset |
 	classes isEmpty ifTrue: [ ^ classes ].
 	offset := classes first allSuperclasses size.
@@ -418,11 +327,8 @@ TestRunner>>classList [
 					yourself ] ].
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>classMenu: aMenu [
+{ #category : #accessing-classes }
+TestRunner >> classMenu: aMenu [
 	^ aMenu
 		addTitle: 'Classes';
 		add: 'Browse' selector: #browseClass;
@@ -440,39 +346,27 @@ TestRunner>>classMenu: aMenu [
 		yourself.
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>classSearchUpdate: aPattern [
+{ #category : #building }
+TestRunner >> classSearchUpdate: aPattern [
 	classPattern := (aPattern isNil or: [ aPattern trimBoth isEmpty ])
 		ifTrue: [ nil ]
 		ifFalse: [ aPattern asRegexIgnoringCase ].
 	self updateClasses.
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>classSelected [
+{ #category : #accessing-classes }
+TestRunner >> classSelected [
 	^ classIndex
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>classSelected: anInteger [
+{ #category : #accessing-classes }
+TestRunner >> classSelected: anInteger [
 	classIndex := anInteger.
 	self changed: #classSelected
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>classesFrame [
+{ #category : #building }
+TestRunner >> classesFrame [
 	^LayoutFrame new
 		leftFraction: 0.25;
 		topOffset: (Smalltalk ui theme textFont height + 13);
@@ -480,11 +374,8 @@ TestRunner>>classesFrame [
 		bottomOffset: self buttonHeight negated
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>classesSearchFrame [
+{ #category : #building }
+TestRunner >> classesSearchFrame [
 	^LayoutFrame new
 		leftFraction: 0.25;
 		rightFraction: 0.5;
@@ -492,11 +383,8 @@ TestRunner>>classesSearchFrame [
 		bottomOffset: (StandardFonts defaultFont height + 10)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>collectCoverageFor: methods [
+{ #category : #actions }
+TestRunner >> collectCoverageFor: methods [
 	| wrappers suite |
 	wrappers := methods collect: [ :each | TestCoverage on: each ].
 	suite := self
@@ -517,11 +405,8 @@ TestRunner>>collectCoverageFor: methods [
 	self saveResultInHistory
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>debug: aTestCase [
+{ #category : #actions }
+TestRunner >> debug: aTestCase [
 	self
 		debugSuite:
 			(self classForTestSuite new
@@ -529,38 +414,26 @@ TestRunner>>debug: aTestCase [
 				yourself)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>debugSuite: aTestSuite [
+{ #category : #actions }
+TestRunner >> debugSuite: aTestSuite [
 	self executeSuite: aTestSuite as: [ :aSuite | aSuite debug ].
 ]
 
-{
-	#category : #accessing-testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>errorList [
+{ #category : #accessing-testing }
+TestRunner >> errorList [
 	^ errorList collect: [ :each | each printString ].
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>errorListFrame [
+{ #category : #building }
+TestRunner >> errorListFrame [
 	^LayoutFrame new
 		leftFraction: 0.5;
 		topFraction: 0.5;
 		bottomOffset: self buttonHeight negated
 ]
 
-{
-	#category : #accessing-menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>errorMenu: aMenu [
+{ #category : #accessing-menu }
+TestRunner >> errorMenu: aMenu [
 	"Add the browse item only if an item is selected"
 
 	self statusMenu: aMenu.
@@ -568,29 +441,20 @@ TestRunner>>errorMenu: aMenu [
 	^aMenu
 ]
 
-{
-	#category : #accessing-testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>errorSelected [
+{ #category : #accessing-testing }
+TestRunner >> errorSelected [
 	^ errorList indexOf: errorSelected.
 ]
 
-{
-	#category : #accessing-testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>errorSelected: anInteger [
+{ #category : #accessing-testing }
+TestRunner >> errorSelected: anInteger [
 	errorSelected := errorList at: anInteger ifAbsent: nil.
 	self changed: #errorSelected.
 	errorSelected ifNotNil: [ self debug: errorSelected ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>errorTestSuites [
+{ #category : #accessing }
+TestRunner >> errorTestSuites [
 	^ errorList
 		collect: [ :each | 
 			self classForTestSuite new
@@ -601,11 +465,8 @@ TestRunner>>errorTestSuites [
 				yourself ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>excludeClassesNotUnderTestFrom: methods [
+{ #category : #actions }
+TestRunner >> excludeClassesNotUnderTestFrom: methods [
 	classesSelected
 		do: [ :class | 
 			(class class includesSelector: #classNamesNotUnderTest)
@@ -620,11 +481,8 @@ TestRunner>>excludeClassesNotUnderTestFrom: methods [
 									theClass class methods do: [ :each | methods remove: each methodReference ifAbsent: [  ] ] ] ] ] ]
 ]
 
-{
-	#category : #processing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>executeSuite: aTestSuite as: aBlock [
+{ #category : #processing }
+TestRunner >> executeSuite: aTestSuite as: aBlock [
 " The block defines how to interact with the suite. run with a result or debug "
 	aTestSuite subscribe:TestAnnouncement do: self updateUIBlock.
 	[ aBlock cull: aTestSuite cull: result  ] ensure: [
@@ -635,67 +493,46 @@ TestRunner>>executeSuite: aTestSuite as: aBlock [
 
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>extent [
+{ #category : #accessing-ui }
+TestRunner >> extent [
 	^ 640 @ 480
 ]
 
-{
-	#category : #accessing-testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>failedList [
+{ #category : #accessing-testing }
+TestRunner >> failedList [
 	^ failedList collect: [ :each | each printString ].
 ]
 
-{
-	#category : #accessing-testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>failedSelected [
+{ #category : #accessing-testing }
+TestRunner >> failedSelected [
 	^ failedList indexOf: failedSelected.
 ]
 
-{
-	#category : #accessing-testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>failedSelected: anInteger [
+{ #category : #accessing-testing }
+TestRunner >> failedSelected: anInteger [
 	failedSelected := failedList at: anInteger ifAbsent: nil.
 	self changed: #failedSelected.
 	failedSelected ifNotNil: [ self debug: failedSelected ].
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>failureListFrame [
+{ #category : #building }
+TestRunner >> failureListFrame [
 	^LayoutFrame new
 		leftFraction: 0.5;
 		bottomFraction: 0.5;
 		topOffset: self statusHeight
 ]
 
-{
-	#category : #accessing-menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>failureMenu: aMenu [
+{ #category : #accessing-menu }
+TestRunner >> failureMenu: aMenu [
 	"Add the browse item only if an item is selected"
 	
 	failedSelected ifNotNil: [aMenu add: 'Browse test' selector: #browseSelectedFailedTest].
 	^ aMenu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>failureTestSuites [
+{ #category : #accessing }
+TestRunner >> failureTestSuites [
 	^ failedList
 		collect: [ :each | 
 			self classForTestSuite new
@@ -706,11 +543,8 @@ TestRunner>>failureTestSuites [
 				yourself ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>fileOutResults [
+{ #category : #actions }
+TestRunner >> fileOutResults [
 	"Save current test results into text file."
 	"Generate a filename like 'tests_Version_23_May_2010_9-19-20_am.txt' "
 
@@ -727,11 +561,8 @@ TestRunner>>fileOutResults [
 		ensure: [stream close].
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>filterClasses [
+{ #category : #accessing-classes }
+TestRunner >> filterClasses [
 	| pattern |
 	pattern := UIManager default 
 		request: 'Pattern to select tests:' 
@@ -745,11 +576,8 @@ TestRunner>>filterClasses [
 		changed: #hasRunnable
 ]
 
-{
-	#category : #accessing-packages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>filterPackages [
+{ #category : #accessing-packages }
+TestRunner >> filterPackages [
 	| pattern |
 	pattern := UIManager default 
 		request: 'Pattern to select package:' 
@@ -760,11 +588,8 @@ TestRunner>>filterPackages [
 	self changed: #allSelections; changed: #packageSelected; updateClasses
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>findClassesForPackages: aCollection [
+{ #category : #utilities }
+TestRunner >> findClassesForPackages: aCollection [
 	| items |
 	aCollection isEmpty
 		ifTrue: [ ^ self baseClass withAllSubclasses asSet ].
@@ -777,11 +602,8 @@ TestRunner>>findClassesForPackages: aCollection [
 	^ items asSet
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>findPackages [
+{ #category : #utilities }
+TestRunner >> findPackages [
 	| visible |
 	visible := Set new.
 	self baseClass withAllSubclassesDo: [ :each |
@@ -794,11 +616,8 @@ TestRunner>>findPackages [
 				ifTrue: [ stream nextPut: each ] ] ].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>generateDefaultFileOutResultsName [
+{ #category : #actions }
+TestRunner >> generateDefaultFileOutResultsName [
 	
 	| filename |
 	filename := String
@@ -814,35 +633,23 @@ TestRunner>>generateDefaultFileOutResultsName [
 	^ filename copyReplaceAll: ':' with: '-'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>hasErrors [
+{ #category : #testing }
+TestRunner >> hasErrors [
 	^ result hasErrors.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>hasFailures [
+{ #category : #testing }
+TestRunner >> hasFailures [
 	^ result hasFailures.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>hasFailuresOrErrors [
+{ #category : #testing }
+TestRunner >> hasFailuresOrErrors [
 	^ result hasFailures | result hasErrors.
 ]
 
-{
-	#category : #'history saving',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>hasProgress [
+{ #category : #'history saving' }
+TestRunner >> hasProgress [
 
 	result classesTested do: [:cls |
 		(cls class includesSelector: #lastStoredRun)
@@ -850,36 +657,24 @@ TestRunner>>hasProgress [
 	^ false
 ]
 
-{
-	#category : #'history saving',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>hasResults [
+{ #category : #'history saving' }
+TestRunner >> hasResults [
 
 	^ result notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>hasRunnable [
+{ #category : #testing }
+TestRunner >> hasRunnable [
 	^ classesSelected notEmpty.
 ]
 
-{
-	#category : #'history saving',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>historyMenuList [
+{ #category : #'history saving' }
+TestRunner >> historyMenuList [
 	^ {'** save current result **'}, (self previousRun collect: [:ts | ts printString])
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>initialize [
+{ #category : #initialization }
+TestRunner >> initialize [
 	super initialize.
 	failedList := errorList := Array new.
 	SystemAnnouncer uniqueInstance weak
@@ -889,67 +684,46 @@ TestRunner>>initialize [
 	self update; resetResult
 ]
 
-{
-	#category : #accessing-ui,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>label [
+{ #category : #accessing-ui }
+TestRunner >> label [
 	^ 'Test Runner' 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>label: aString forSuite: aTestSuite [
+{ #category : #private }
+TestRunner >> label: aString forSuite: aTestSuite [
 	^ String streamContents: [ :stream |
 		stream nextPutAll: 'Running '; print: aTestSuite tests size; space; nextPutAll: aString.
 		aTestSuite tests size > 1 ifTrue: [ stream nextPut: $s ] ]. 
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>open [
+{ #category : #building }
+TestRunner >> open [
 
 	^ self build openInWorld
 	
 
 ]
 
-{
-	#category : #accessing-packages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>packageAt: anIndex [
+{ #category : #accessing-packages }
+TestRunner >> packageAt: anIndex [
 	^ packagesSelected includes: (packages at: anIndex ifAbsent: [ ^ false ]).
 ]
 
-{
-	#category : #accessing-packages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>packageAt: anInteger put: aBoolean [
+{ #category : #accessing-packages }
+TestRunner >> packageAt: anInteger put: aBoolean [
 	packagesSelected := packagesSelected
 		perform: (aBoolean ifTrue: [ #copyWith: ] ifFalse: [ #copyWithout: ])
 		with: (packages at: anInteger ifAbsent: [ ^ self ]).
 	self changed: #packageSelected; updateClasses.
 ]
 
-{
-	#category : #accessing-packages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>packageList [
+{ #category : #accessing-packages }
+TestRunner >> packageList [
 	^ packages
 ]
 
-{
-	#category : #accessing-packages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>packageMenu: aMenu [
+{ #category : #accessing-packages }
+TestRunner >> packageMenu: aMenu [
 	^ aMenu
 		addTitle: 'Packages';
 		add: 'Select all' selector: #selectAllPackages;
@@ -962,69 +736,48 @@ TestRunner>>packageMenu: aMenu [
 		yourself.
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>packageSearchFrame [
+{ #category : #building }
+TestRunner >> packageSearchFrame [
 	^LayoutFrame new
 		rightFraction: 0.25;
 		bottomFraction: 0 offset: (Smalltalk ui theme textFont height + 10)
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>packageSearchUpdate: aPattern [
+{ #category : #building }
+TestRunner >> packageSearchUpdate: aPattern [
 	packagePattern := (aPattern isNil or: [ aPattern trimBoth isEmpty ])
 		ifTrue: [ nil ]
 		ifFalse: [ [aPattern asRegexIgnoringCase] on: RegexSyntaxError do: [ nil ] ].
 	self updatePackages.
 ]
 
-{
-	#category : #accessing-packages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>packageSelected [
+{ #category : #accessing-packages }
+TestRunner >> packageSelected [
 	^ packageIndex 
 ]
 
-{
-	#category : #accessing-packages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>packageSelected: anInteger [
+{ #category : #accessing-packages }
+TestRunner >> packageSelected: anInteger [
 	packageIndex := anInteger.
 	self changed: #packageSelected.
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>packagesFrame [
+{ #category : #building }
+TestRunner >> packagesFrame [
 	^LayoutFrame new
 		rightFraction: 0.25;
 		topOffset: (Smalltalk ui theme textFont height + 13);
 		bottomOffset: self buttonHeight negated
 ]
 
-{
-	#category : #'history saving',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>previousRun [
+{ #category : #'history saving' }
+TestRunner >> previousRun [
 
 	^ previousRun ifNil: [ previousRun := OrderedCollection new ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>promptForPackages [
+{ #category : #actions }
+TestRunner >> promptForPackages [
 	| choosenpackages |
 	choosenpackages := (RPackageOrganizer default packages
 				reject: [:package | (package packageName beginsWith: 'Kernel')
@@ -1043,47 +796,32 @@ TestRunner>>promptForPackages [
 	^ choosenpackages
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>resetResult [
+{ #category : #actions }
+TestRunner >> resetResult [
 
 	self result: TestAsserter classForTestResult new ; updateResults.
 ]
 
-{
-	#category : #accessing-testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>result [
+{ #category : #accessing-testing }
+TestRunner >> result [
 	^ result
 ]
 
-{
-	#category : #accessing-testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>result: aResult [
+{ #category : #accessing-testing }
+TestRunner >> result: aResult [
 	result := aResult
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>runAll [
+{ #category : #actions }
+TestRunner >> runAll [
 
 	self resetResult.
 	self runTestSuites: self allSelectedTestSuites.
 	self saveResultInHistory
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>runCoverage [
+{ #category : #actions }
+TestRunner >> runCoverage [
 	| myPackages methods |
 	myPackages := Set new.
 	self addDeclaredPackagesUnderTestTo: myPackages.
@@ -1100,57 +838,39 @@ TestRunner>>runCoverage [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>runErrors [
+{ #category : #actions }
+TestRunner >> runErrors [
 	self result instVarNamed: 'errors' put: OrderedCollection new.
 	self runTestSuites: self errorTestSuites.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>runFailures [
+{ #category : #actions }
+TestRunner >> runFailures [
 	self result instVarNamed: 'failures' put: Set new.
 	self runTestSuites: self failureTestSuites.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>runProfiled [
+{ #category : #actions }
+TestRunner >> runProfiled [
 	MessageTally spyOn: [ self runAll ].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>runSuite: aTestSuite [
+{ #category : #actions }
+TestRunner >> runSuite: aTestSuite [
 	self executeSuite: aTestSuite as: [ :aSuite :aResult | aSuite run: aResult ].
 	self updateResults
 
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>runTest: aTestCase [
+{ #category : #actions }
+TestRunner >> runTest: aTestCase [
 	aTestCase run: result.
 	self updateStatus: true.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>runTestSuites: testSuites  [
+{ #category : #actions }
+TestRunner >> runTestSuites: testSuites [ 
 	CurrentExecutionEnvironment runTestsBy: [
 		testSuites
 			do: [:testSuite | self runSuite: testSuite]
@@ -1158,19 +878,13 @@ TestRunner>>runTestSuites: testSuites  [
 	]
 ]
 
-{
-	#category : #'history saving',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>saveResultInHistory [
+{ #category : #'history saving' }
+TestRunner >> saveResultInHistory [
 	result dispatchResultsIntoHistory
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>selectAllClasses [
+{ #category : #accessing-classes }
+TestRunner >> selectAllClasses [
 	"Fixed to update all selections now that the
 	selection invalidation has been optimised."
 	
@@ -1181,20 +895,14 @@ TestRunner>>selectAllClasses [
 		changed: #hasRunnable
 ]
 
-{
-	#category : #accessing-packages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>selectAllPackages [
+{ #category : #accessing-packages }
+TestRunner >> selectAllPackages [
 	packagesSelected := packages asSet.
 	self changed: #allSelections; changed: #packageSelected; updateClasses
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>selectAllUnitTests [
+{ #category : #accessing-classes }
+TestRunner >> selectAllUnitTests [
 	classesSelected := classes asSet select: [ :eachClass | eachClass isUnitTest ].
 	self
 		changed: #allSelections;
@@ -1202,11 +910,8 @@ TestRunner>>selectAllUnitTests [
 		changed: #hasRunnable
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>selectInverseClasses [
+{ #category : #accessing-classes }
+TestRunner >> selectInverseClasses [
 	"Fixed to update all selections now that the
 	selection invalidation has been optimised."
 	
@@ -1219,22 +924,16 @@ TestRunner>>selectInverseClasses [
 		changed: #hasRunnable
 ]
 
-{
-	#category : #accessing-packages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>selectInversePackages [
+{ #category : #accessing-packages }
+TestRunner >> selectInversePackages [
 	packagesSelected := packages asSet 
 		removeAll: packagesSelected;
 		yourself.
 	self changed: #allSelections; changed: #packageSelected; updateClasses
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>selectNoClasses [
+{ #category : #accessing-classes }
+TestRunner >> selectNoClasses [
 	"Fixed to update all selections now that the
 	selection invalidation has been optimised."
 	
@@ -1245,20 +944,14 @@ TestRunner>>selectNoClasses [
 		changed: #hasRunnable
 ]
 
-{
-	#category : #accessing-packages,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>selectNoPackages [
+{ #category : #accessing-packages }
+TestRunner >> selectNoPackages [
 	packagesSelected := Set new.
 	self changed: #allSelections; changed: #packageSelected; updateClasses
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>selectSubclasses [
+{ #category : #accessing-classes }
+TestRunner >> selectSubclasses [
 	"Fixed to update all selections now that the
 	selection invalidation has been optimised."
 	
@@ -1274,11 +967,8 @@ TestRunner>>selectSubclasses [
 		changed: #hasRunnable
 ]
 
-{
-	#category : #'history saving',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>showDiffWith: aTestResult [
+{ #category : #'history saving' }
+TestRunner >> showDiffWith: aTestResult [
 	| string diff |
 
 	diff := result diff: aTestResult.
@@ -1300,11 +990,8 @@ TestRunner>>showDiffWith: aTestResult [
 	
 ]
 
-{
-	#category : #'history saving',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>showHistoryMenu [
+{ #category : #'history saving' }
+TestRunner >> showHistoryMenu [
 	| selectionIndex selectedPreviousResult actionIndex |
 	selectionIndex := UIManager default chooseFrom: self historyMenuList title: 'History:'.
 
@@ -1320,11 +1007,8 @@ TestRunner>>showHistoryMenu [
 	actionIndex = 2 ifTrue: [ self showDiffWith: selectedPreviousResult].	
 ]
 
-{
-	#category : #'history saving',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>showProgress [
+{ #category : #'history saving' }
+TestRunner >> showProgress [
 	| testCaseClasses d string |
 	testCaseClasses := (self suiteForAllSelected tests collect: [:testCase | testCase class]) asSet.
 	
@@ -1373,11 +1057,8 @@ TestRunner>>showProgress [
 	
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>sortClass: aFirstClass before: aSecondClass [
+{ #category : #utilities }
+TestRunner >> sortClass: aFirstClass before: aSecondClass [
 	| first second |
 	first := aFirstClass withAllSuperclasses reversed.
 	second := aSecondClass withAllSuperclasses reversed.
@@ -1387,11 +1068,8 @@ TestRunner>>sortClass: aFirstClass before: aSecondClass [
 	^ second includes: aFirstClass.
 ]
 
-{
-	#category : #accessing-testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>statusColor [
+{ #category : #accessing-testing }
+TestRunner >> statusColor [
 	result hasErrors 
 		ifTrue: [ ^ self theme dangerBackgroundColor ].
 	result hasFailures 
@@ -1399,29 +1077,20 @@ TestRunner>>statusColor [
 	^ self theme successBackgroundColor
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>statusFrame [
+{ #category : #building }
+TestRunner >> statusFrame [
 	^ LayoutFrame new
 		leftFraction: 0.5;
 		bottomFraction: 0 offset: self statusHeight
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>statusHeight [
+{ #category : #building }
+TestRunner >> statusHeight [
 	^ self theme textFont height * 4
 ]
 
-{
-	#category : #accessing-menu,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>statusMenu: aMenu [
+{ #category : #accessing-menu }
+TestRunner >> statusMenu: aMenu [
 	^ aMenu
 		add: 'History' selector: #showHistoryMenu;
 		add: 'Store result as progress reference' selector: #storeResultIntoTestCases;
@@ -1429,29 +1098,20 @@ TestRunner>>statusMenu: aMenu [
 		yourself
 ]
 
-{
-	#category : #accessing-testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>statusText [
+{ #category : #accessing-testing }
+TestRunner >> statusText [
 	^ result printString.
 ]
 
-{
-	#category : #'history saving',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>storeResultIntoTestCases [
+{ #category : #'history saving' }
+TestRunner >> storeResultIntoTestCases [
 
 	result classesTested do: [:testCaseCls | testCaseCls generateLastStoredRunMethod ]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>suiteForAllSelected [
+{ #category : #accessing }
+TestRunner >> suiteForAllSelected [
 	"Return the suite for all the selected test case classes"
 
 	^ self classForTestSuite new
@@ -1463,19 +1123,13 @@ TestRunner>>suiteForAllSelected [
 			suite name: (self label: 'Test' forSuite: suite) ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>update [
+{ #category : #updating }
+TestRunner >> update [
 	self updatePackages; updateClasses
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>updateClasses [
+{ #category : #updating }
+TestRunner >> updateClasses [
 	| classesForCategories |
 	classesForCategories := self findClassesForPackages: packagesSelected.
 	
@@ -1495,11 +1149,8 @@ TestRunner>>updateClasses [
 		changed: #hasRunnable.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>updatePackages [
+{ #category : #updating }
+TestRunner >> updatePackages [
 	packages := self findPackages.
 	packageIndex := 0.
 	packagesSelected := packagesSelected isNil
@@ -1510,11 +1161,8 @@ TestRunner>>updatePackages [
 	self changed: #packageList; changed: #packageSelected.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>updateResults [
+{ #category : #updating }
+TestRunner >> updateResults [
 	"<lint: #expect rule: #guardingClause>"
 	"<lint: #expect rule: #longMethods>"
 
@@ -1541,11 +1189,8 @@ TestRunner>>updateResults [
 			changed: #hasFailuresOrErrors  ].
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>updateStatus: aBoolean [
+{ #category : #updating }
+TestRunner >> updateStatus: aBoolean [
 	"Update the status display, at most once a second if aBoolean is true."
 
 	(aBoolean and: [ lastUpdate = Time totalSeconds ])
@@ -1554,19 +1199,13 @@ TestRunner>>updateStatus: aBoolean [
 	lastUpdate := Time totalSeconds.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>updateUIBlock [
+{ #category : #updating }
+TestRunner >> updateUIBlock [
 	^ testAnnouncementBlock ifNil: [
 		testAnnouncementBlock :=  [ :announcement | self updateStatus: true ] ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TestRunner>>windowIsClosing [
+{ #category : #private }
+TestRunner >> windowIsClosing [
 	SystemAnnouncer uniqueInstance unsubscribe: self
 ]

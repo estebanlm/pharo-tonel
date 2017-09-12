@@ -7,32 +7,22 @@ Class {
 	#instVars : [
 		'entryReferences'
 	],
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 14:38'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #triggering,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperation>>asEpiceaEvent [
+{ #category : #triggering }
+EpLogBrowserOperation >> asEpiceaEvent [
 
 	^ self
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperation>>copyWithEntryReferences: aCollectionOfEntryReferences [
+{ #category : #copying }
+EpLogBrowserOperation >> copyWithEntryReferences: aCollectionOfEntryReferences [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #triggering,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperation>>doInJob: aBlock [
+{ #category : #triggering }
+EpLogBrowserOperation >> doInJob: aBlock [
 	"Evaluate the block. This is a workaround to make Job consider me as the Job's owner."
 
 	^ [ aBlock value ] asJob
@@ -40,28 +30,19 @@ EpLogBrowserOperation>>doInJob: aBlock [
 		run
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperation>>entryReferences [
+{ #category : #accessing }
+EpLogBrowserOperation >> entryReferences [
 	^ entryReferences
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperation>>initializeWith: aCollectionOfEntryReferences [
+{ #category : #initializing }
+EpLogBrowserOperation >> initializeWith: aCollectionOfEntryReferences [
 	self initialize.
 	entryReferences := aCollectionOfEntryReferences
 ]
 
-{
-	#category : #triggering,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogBrowserOperation>>isEpiceaInterestingJobOwner [
+{ #category : #triggering }
+EpLogBrowserOperation >> isEpiceaInterestingJobOwner [
 
 	^ true
 ]

@@ -9,36 +9,26 @@ Class {
 	#instVars : [
 		'method'
 	],
-	#category : #Tool-Base,
-	#timestamp : '<historical>'
+	#category : #Tool-Base
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMethodConverter class>>method: aMessage [
+{ #category : #'instance creation' }
+AbstractMethodConverter class >> method: aMessage [
 
 	^ self new
 		method: aMessage;
 		yourself
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMethodConverter>>getText [
+{ #category : #protocol }
+AbstractMethodConverter >> getText [
 
 	method ifNil: [ ^ '' ].	
 	^ self internalGetText
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMethodConverter>>getTextFor: aMethod [
+{ #category : #protocol }
+AbstractMethodConverter >> getTextFor: aMethod [
 
 	method := aMethod.
 	method ifNil: [ ^ '' ].
@@ -46,38 +36,26 @@ AbstractMethodConverter>>getTextFor: aMethod [
 	^ self internalGetText
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMethodConverter>>internalGetText [
+{ #category : #private }
+AbstractMethodConverter >> internalGetText [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMethodConverter>>method [
+{ #category : #accessing }
+AbstractMethodConverter >> method [
 
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMethodConverter>>method: aMessage [
+{ #category : #accessing }
+AbstractMethodConverter >> method: aMessage [
 
 	method := aMessage
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-AbstractMethodConverter>>shouldShout [
+{ #category : #initialization }
+AbstractMethodConverter >> shouldShout [
 
 	^ false
 ]

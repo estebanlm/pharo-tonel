@@ -4,26 +4,19 @@ SUnit tests to guide users with fuel serialization
 Class {
 	#name : #FLUserGuidesTest,
 	#superclass : #FLSerializationTest,
-	#category : #FuelTests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:30'
+	#category : #FuelTests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLUserGuidesTest>>tearDown [
+{ #category : #running }
+FLUserGuidesTest >> tearDown [
 	super tearDown.
 	#('demo.fuel' 'numbers.fuel' 'number.fuel.zip' 'example.FL' ) 
 		do: [:each | self deleteFileNamed: each ].
 		
 ]
 
-{
-	#category : #'tests-Managing Globals',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLUserGuidesTest>>testConsiderGlobal [
+{ #category : #'tests-Managing Globals' }
+FLUserGuidesTest >> testConsiderGlobal [
 	
 	| aSerializer anArray materializedArray |
 	"Prepare an array whose two elements are system globals."
@@ -51,11 +44,8 @@ FLUserGuidesTest>>testConsiderGlobal [
 	[ (Smalltalk at: #GlobalSet2) ~~ materializedArray second ] assert
 ]
 
-{
-	#category : #'tests-Getting Started',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLUserGuidesTest>>testDemo [
+{ #category : #'tests-Getting Started' }
+FLUserGuidesTest >> testDemo [
 
 | sourceArray loadedArray |
 sourceArray := 
@@ -78,11 +68,8 @@ loadedArray := FLMaterializer materializeFromFileNamed: 'example.FL'.
 loadedArray third value.
 ]
 
-{
-	#category : #'tests-Getting Started',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLUserGuidesTest>>testFileShortcuts [
+{ #category : #'tests-Getting Started' }
+FLUserGuidesTest >> testFileShortcuts [
 
 | materializedString |
 FLSerializer serialize: 'stringToSerialize' toFileNamed: 'demo.fuel'. 
@@ -90,11 +77,8 @@ materializedString := FLMaterializer materializeFromFileNamed: 'demo.fuel'.
 
 ]
 
-{
-	#category : #'tests-Getting Started',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLUserGuidesTest>>testFileStream [
+{ #category : #'tests-Getting Started' }
+FLUserGuidesTest >> testFileStream [
 
 	| materializedString |
 	FLPlatform current
@@ -111,11 +95,8 @@ FLUserGuidesTest>>testFileStream [
 				materializeFrom: aStream ) root ]
 ]
 
-{
-	#category : #'tests-Getting Started',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLUserGuidesTest>>testGZip [
+{ #category : #'tests-Getting Started' }
+FLUserGuidesTest >> testGZip [
 
 	| materialization |
 	FLPlatform current
@@ -135,11 +116,8 @@ FLUserGuidesTest>>testGZip [
 				materializeFrom: gzip ]
 ]
 
-{
-	#category : #'tests-Getting Started',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLUserGuidesTest>>testMemoryStream [
+{ #category : #'tests-Getting Started' }
+FLUserGuidesTest >> testMemoryStream [
 
 | anArray materializedString |
 anArray := FLSerializer serializeToByteArray: 'stringToSerialize'. 
@@ -148,11 +126,8 @@ materializedString := FLMaterializer materializeFromByteArray: anArray.
 
 ]
 
-{
-	#category : #'tests-Customizing Graph',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLUserGuidesTest>>testPluggableSubstitution [
+{ #category : #'tests-Customizing Graph' }
+FLUserGuidesTest >> testPluggableSubstitution [
 
 	| objectToSerialize aSerializer |
 	
@@ -175,11 +150,8 @@ FLUserGuidesTest>>testPluggableSubstitution [
 				root ]
 ]
 
-{
-	#category : #'tests-Getting Started',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLUserGuidesTest>>testShowingProgressBar [
+{ #category : #'tests-Getting Started' }
+FLUserGuidesTest >> testShowingProgressBar [
 
 	(Smalltalk globals includesKey: #FLProgressSerialization) ifFalse: [
 		" Needs:

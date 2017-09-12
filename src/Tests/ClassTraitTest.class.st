@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ClassTraitTest,
 	#superclass : #TraitsTestCase,
-	#category : #Tests-Traits,
-	#timestamp : ''
+	#category : #Tests-Traits
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ClassTraitTest>>testChanges [
+{ #category : #testing }
+ClassTraitTest >> testChanges [
 	"Test the most important features to ensure that
 	general functionality of class traits are working."
 
@@ -36,11 +29,8 @@ ClassTraitTest>>testChanges [
 	self assert: (self c2 class organization categoryOfElement: #m1ClassSide) equals: #mycategory
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ClassTraitTest>>testConflictsAliasesAndExclusions [
+{ #category : #testing }
+ClassTraitTest >> testConflictsAliasesAndExclusions [
 	"conflict"
 
 	self t1 classTrait compile: 'm2ClassSide: x ^99' classified: 'mycategory'.
@@ -61,11 +51,8 @@ ClassTraitTest>>testConflictsAliasesAndExclusions [
 	self assert: (self c2 m2ClassSideAlias2: 13) = 13
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ClassTraitTest>>testInitialization [
+{ #category : #testing }
+ClassTraitTest >> testInitialization [
 	"self run: #testInitialization"
 	| classTrait |
 	classTrait := self t1 classTrait.
@@ -85,11 +72,8 @@ ClassTraitTest>>testInitialization [
 	self assert: (self c2 m2ClassSide: 17) = 17
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ClassTraitTest>>testIsClassOrTrait [
+{ #category : #testing }
+ClassTraitTest >> testIsClassOrTrait [
 
 	self 
 		assert: TBehavior isClassOrTrait;
@@ -99,11 +83,8 @@ ClassTraitTest>>testIsClassOrTrait [
 		assert: TBehavior classTrait isClassOrTrait.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-ClassTraitTest>>testUsers [
+{ #category : #testing }
+ClassTraitTest >> testUsers [
 	self assert: self t2 classSide traitUsers size = 3.
 	self assert: (self t2 classSide traitUsers includesAll: {				
 		(self t4 classTrait).

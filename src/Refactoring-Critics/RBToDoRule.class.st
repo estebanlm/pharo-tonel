@@ -4,33 +4,23 @@ Checks for use of to:do: when a do:, with:do: or timesRepeat: when should be use
 Class {
 	#name : #RBToDoRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 22:58'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBToDoRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBToDoRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'ToDoRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBToDoRule>>group [
+{ #category : #accessing }
+RBToDoRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBToDoRule>>initialize [
+{ #category : #initialization }
+RBToDoRule >> initialize [
 	super initialize.
 	self matcher 
 		matches: '1 to: ``@object size do: [:`each | | `@temps | `@.Statements]'
@@ -49,10 +39,7 @@ RBToDoRule>>initialize [
 				ifFalse: [ answer ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBToDoRule>>name [
+{ #category : #accessing }
+RBToDoRule >> name [
 	^ 'Uses to:do: instead of do:, with:do: or timesRepeat:'
 ]

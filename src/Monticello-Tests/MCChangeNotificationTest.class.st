@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #MCChangeNotificationTest,
 	#superclass : #MCTestCase,
 	#instVars : [
 		'workingCopy'
 	],
-	#category : #Monticello-Tests,
-	#timestamp : ''
+	#category : #Monticello-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCChangeNotificationTest>>foreignMethod [
+{ #category : #private }
+MCChangeNotificationTest >> foreignMethod [
 	"see testForeignMethodModified"
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCChangeNotificationTest>>modifiedEventFor: aSelector ofClass: aClass [
+{ #category : #events }
+MCChangeNotificationTest >> modifiedEventFor: aSelector ofClass: aClass [
 	| method |
 	method := aClass compiledMethodAt: aSelector.
 	^ MethodModified 
@@ -33,11 +23,8 @@ MCChangeNotificationTest>>modifiedEventFor: aSelector ofClass: aClass [
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCChangeNotificationTest>>setUp [
+{ #category : #running }
+MCChangeNotificationTest >> setUp [
 
        "FIXME: Unregister Monticellomocks if it got created in another test
        (for example MCMethodDefinitionTest may create it implicitly).
@@ -53,11 +40,8 @@ MCChangeNotificationTest>>setUp [
        workingCopy := MCWorkingCopy forPackage: self mockPackage.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCChangeNotificationTest>>testCoreMethodModified [
+{ #category : #tests }
+MCChangeNotificationTest >> testCoreMethodModified [
 	| event |
 	workingCopy modified: false.
 	event := self modifiedEventFor: #one ofClass: self mockClassA.
@@ -65,11 +49,8 @@ MCChangeNotificationTest>>testCoreMethodModified [
 	self assert: workingCopy modified
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCChangeNotificationTest>>testExtMethodModified [
+{ #category : #tests }
+MCChangeNotificationTest >> testExtMethodModified [
 	| event mref |
 	workingCopy modified: false.
 	mref := workingCopy packageSet extensionMethods first.
@@ -78,11 +59,8 @@ MCChangeNotificationTest>>testExtMethodModified [
 	self assert: workingCopy modified
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCChangeNotificationTest>>testForeignMethodModified [
+{ #category : #tests }
+MCChangeNotificationTest >> testForeignMethodModified [
 	| event |
 	workingCopy modified: false.
 	event := self modifiedEventFor: #foreignMethod ofClass: self class.

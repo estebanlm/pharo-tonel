@@ -9,15 +9,11 @@ Class {
 	#instVars : [
 		'bindings'
 	],
-	#category : #Spec-Core,
-	#timestamp : '<historical>'
+	#category : #Spec-Core
 }
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecAdapterBindings>>initialize [
+{ #category : #initialize }
+SpecAdapterBindings >> initialize [
 
 	super initialize.
 
@@ -25,11 +21,8 @@ SpecAdapterBindings>>initialize [
 	self initializeBindings
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecAdapterBindings>>initializeBindings [
+{ #category : #initialize }
+SpecAdapterBindings >> initializeBindings [
 	"This implementation is stupid, but it exposes all the container which need to be bound"
 	
 	^ bindings
@@ -63,11 +56,8 @@ SpecAdapterBindings>>initializeBindings [
 		yourself
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecAdapterBindings>>translateSymbol: aSymbol [
+{ #category : #protocol }
+SpecAdapterBindings >> translateSymbol: aSymbol [
 
 	^ bindings 
 		at: aSymbol

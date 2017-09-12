@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #FFIExternalArrayTests,
 	#superclass : #TestCase,
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArrayTests>>testAt [
+{ #category : #tests }
+FFIExternalArrayTests >> testAt [
 	| externalArray |
 	
 	externalArray := FFIExternalArray newType: 'int' size: 10.
@@ -21,11 +14,8 @@ FFIExternalArrayTests>>testAt [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArrayTests>>testAtPut [
+{ #category : #tests }
+FFIExternalArrayTests >> testAtPut [
 	| externalArray |
 	
 	externalArray := FFIExternalArray newType: 'int' size: 1.
@@ -33,11 +23,8 @@ FFIExternalArrayTests>>testAtPut [
 	self assert: (externalArray at: 1) equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArrayTests>>testExternalAt [
+{ #category : #tests }
+FFIExternalArrayTests >> testExternalAt [
 	| externalArray |
 	
 	[
@@ -52,11 +39,8 @@ FFIExternalArrayTests>>testExternalAt [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArrayTests>>testExternalAtPut [
+{ #category : #tests }
+FFIExternalArrayTests >> testExternalAtPut [
 	| externalArray |
 	
 	[	
@@ -67,11 +51,8 @@ FFIExternalArrayTests>>testExternalAtPut [
 		externalArray free ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArrayTests>>testExternalAtPutFloat [
+{ #category : #tests }
+FFIExternalArrayTests >> testExternalAtPutFloat [
 	| random array |
 	random := Random new.
 	[
@@ -81,11 +62,8 @@ FFIExternalArrayTests>>testExternalAtPutFloat [
 	ensure: [ array free ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArrayTests>>testResolveType [
+{ #category : #tests }
+FFIExternalArrayTests >> testResolveType [
 	self assert: (FFIExternalArray resolveType: 'int') class equals: FFIInt32.
 	self assert: (FFIExternalArray resolveType: 'String') class equals: FFIExternalString.
 	self assert: (FFIExternalArray resolveType: 'char') class equals: FFICharacterType.

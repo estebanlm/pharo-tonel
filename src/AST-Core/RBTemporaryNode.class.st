@@ -6,32 +6,22 @@ Parsing a method or block code will just use RBVariableNodes for block/method ar
 Class {
 	#name : #RBTemporaryNode,
 	#superclass : #RBVariableNode,
-	#category : #AST-Core-Nodes,
-	#timestamp : 'NicolaiHess 8/2/2016 14:40'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBTemporaryNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visiting }
+RBTemporaryNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^aProgramNodeVisitor visitTemporaryNode: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBTemporaryNode>>isBlockVar [
+{ #category : #testing }
+RBTemporaryNode >> isBlockVar [
 	"true if a variable node is defined by a node whos parent is a block"
 
 	^  (self whoDefines: self name) parent isBlock
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBTemporaryNode>>isTemp [
+{ #category : #testing }
+RBTemporaryNode >> isTemp [
 	^ true
 ]

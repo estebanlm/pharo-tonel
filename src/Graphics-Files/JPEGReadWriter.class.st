@@ -75,15 +75,11 @@ Class {
 		'QuantizationTableSize',
 		'SampleOffset'
 	],
-	#category : #Graphics-Files,
-	#timestamp : '<historical>'
+	#category : #Graphics-Files
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter class>>initialize [
+{ #category : #initialization }
+JPEGReadWriter class >> initialize [
 	"JPEGReadWriter initialize"
 	"general constants"
 	DCTSize := 8.
@@ -228,20 +224,14 @@ JPEGReadWriter class>>initialize [
 		add: 225 -> #parseAPPn
 ]
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter class>>typicalFileExtensions [
+{ #category : #'image reading/writing' }
+JPEGReadWriter class >> typicalFileExtensions [
 	"Answer a collection of file extensions (lowercase) which files that I can read might commonly have"
 	^#('jpg' 'jpeg')
 ]
 
-{
-	#category : #'image reading/writing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter class>>understandsImageFormat: aStream [
+{ #category : #'image reading/writing' }
+JPEGReadWriter class >> understandsImageFormat: aStream [
 	(PluginBasedJPEGReadWriter understandsImageFormat: aStream) ifTrue:[^false].
 	aStream reset.
 	aStream next = 16rFF ifFalse: [^ false].
@@ -249,11 +239,8 @@ JPEGReadWriter class>>understandsImageFormat: aStream [
 	^true
 ]
 
-{
-	#category : #'colorspace conversion',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>colorConvertFloatYCbCrMCU [
+{ #category : #'colorspace conversion' }
+JPEGReadWriter >> colorConvertFloatYCbCrMCU [
 	| ySampleStream crSampleStream cbSampleStream y cb cr red green blue bits |
 	ySampleStream := currentComponents at: 1.
 	cbSampleStream := currentComponents at: 2.
@@ -277,11 +264,8 @@ JPEGReadWriter>>colorConvertFloatYCbCrMCU [
 				put: 4278190080 + (red << 16) + (green << 8) + blue ]
 ]
 
-{
-	#category : #'colorspace conversion',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>colorConvertGrayscaleMCU [
+{ #category : #'colorspace conversion' }
+JPEGReadWriter >> colorConvertGrayscaleMCU [
 	| ySampleStream y bits |
 	ySampleStream := currentComponents at: 1.
 	ySampleStream resetSampleStream.
@@ -302,11 +286,8 @@ JPEGReadWriter>>colorConvertGrayscaleMCU [
 				put: 4278190080 + (y << 16) + (y << 8) + y ]
 ]
 
-{
-	#category : #'colorspace conversion',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>colorConvertIntYCbCrMCU [
+{ #category : #'colorspace conversion' }
+JPEGReadWriter >> colorConvertIntYCbCrMCU [
 	| ySampleStream crSampleStream cbSampleStream y cb cr red green blue bits |
 	ySampleStream := currentComponents at: 1.
 	cbSampleStream := currentComponents at: 2.
@@ -354,11 +335,8 @@ JPEGReadWriter>>colorConvertIntYCbCrMCU [
 				put: 4278190080 + (red bitShift: 16) + (green bitShift: 8) + blue ]
 ]
 
-{
-	#category : #'colorspace conversion',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>colorConvertMCU [
+{ #category : #'colorspace conversion' }
+JPEGReadWriter >> colorConvertMCU [
 
 	^ currentComponents size = 3
 		ifTrue:
@@ -371,20 +349,14 @@ JPEGReadWriter>>colorConvertMCU [
 		ifFalse: [self primColorConvertGrayscaleMCU]
 ]
 
-{
-	#category : #dct,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>dctFloatRangeLimit: value [
+{ #category : #dct }
+JPEGReadWriter >> dctFloatRangeLimit: value [
 
 	^ (value / 8.0) + FloatSampleOffset.
 ]
 
-{
-	#category : #'huffman encoding',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>decodeBlockInto: anArray component: aColorComponent dcTable: huffmanDC acTable: huffmanAC  [
+{ #category : #'huffman encoding' }
+JPEGReadWriter >> decodeBlockInto: anArray component: aColorComponent dcTable: huffmanDC acTable: huffmanAC [ 
 	| byte i zeroCount |
 	byte := stream decodeValueFrom: huffmanDC.
 	byte ~= 0 ifTrue: 
@@ -417,11 +389,8 @@ JPEGReadWriter>>decodeBlockInto: anArray component: aColorComponent dcTable: huf
 		i := i + 1 ]
 ]
 
-{
-	#category : #'huffman encoding',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>decodeMCU [
+{ #category : #'huffman encoding' }
+JPEGReadWriter >> decodeMCU [
 	| comp ci |
 	(restartInterval ~= 0 and: [ restartsToGo = 0 ]) ifTrue: [ self processRestart ].
 	1 
@@ -439,37 +408,25 @@ JPEGReadWriter>>decodeMCU [
 	restartsToGo := restartsToGo - 1
 ]
 
-{
-	#category : #'huffman encoding',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>getBits: requestedBits [
+{ #category : #'huffman encoding' }
+JPEGReadWriter >> getBits: requestedBits [
 	^stream getBits: requestedBits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>hACTable [
+{ #category : #accessing }
+JPEGReadWriter >> hACTable [
 	hACTable ifNil: [ hACTable := Array new: HuffmanTableSize ].
 	^ hACTable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>hDCTable [
+{ #category : #accessing }
+JPEGReadWriter >> hDCTable [
 	hDCTable ifNil: [ hDCTable := Array new: HuffmanTableSize ].
 	^ hDCTable
 ]
 
-{
-	#category : #dct,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>idctBlockFloat: anArray component: aColorComponent  [
+{ #category : #dct }
+JPEGReadWriter >> idctBlockFloat: anArray component: aColorComponent [ 
 	| t0 t1 t2 t3 t4 t5 t6 t7 t10 t11 t12 t13 z5 z10 z11 z12 z13 qt ws |
 	qt := self qTable at: aColorComponent qTableIndex.
 	ws := Array new: DCTSize2.
@@ -585,19 +542,13 @@ JPEGReadWriter>>idctBlockFloat: anArray component: aColorComponent  [
 			put: (self dctFloatRangeLimit: t3 - t4) ]
 ]
 
-{
-	#category : #dct,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>idctBlockInt: anArray component: aColorComponent [
+{ #category : #dct }
+JPEGReadWriter >> idctBlockInt: anArray component: aColorComponent [
 	^self idctBlockInt: anArray qt: (self qTable at: aColorComponent qTableIndex)
 ]
 
-{
-	#category : #dct,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>idctBlockInt: anArray qt: qt  [
+{ #category : #dct }
+JPEGReadWriter >> idctBlockInt: anArray qt: qt [ 
 	| ws anACTerm dcval z1 z2 z3 z4 z5 t0 t1 t2 t3 t10 t11 t12 t13 shift |
 	ws := Array new: DCTSize2.
 
@@ -752,11 +703,8 @@ JPEGReadWriter>>idctBlockInt: anArray qt: qt  [
 				put: (self sampleRangeLimit: (t13 - t0) // shift + SampleOffset) ]
 ]
 
-{
-	#category : #dct,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>idctMCU [
+{ #category : #dct }
+JPEGReadWriter >> idctMCU [
 	| comp fp ci |
 	fp := self useFloatingPoint.
 	1 
@@ -776,11 +724,8 @@ JPEGReadWriter>>idctMCU [
 						qt: (qTable at: comp qTableIndex) ] ]
 ]
 
-{
-	#category : #'marker parsing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>initialSOSSetup [
+{ #category : #'marker parsing' }
+JPEGReadWriter >> initialSOSSetup [
 	mcuWidth := (components detectMax: [ :c | c widthInBlocks ]) widthInBlocks.
 	mcuHeight := (components detectMax: [ :c | c heightInBlocks ]) heightInBlocks.
 	components do: 
@@ -792,21 +737,15 @@ JPEGReadWriter>>initialSOSSetup [
 	stream resetBitBuffer
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>nextImage [
+{ #category : #'public access' }
+JPEGReadWriter >> nextImage [
 
 	^ self nextImageDitheredToDepth: Display depth
 
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>nextImageDitheredToDepth: depth  [
+{ #category : #'public access' }
+JPEGReadWriter >> nextImageDitheredToDepth: depth [ 
 	| form xStep yStep x y bb |
 	ditherMask := DitherMasks 
 		at: depth
@@ -847,48 +786,33 @@ JPEGReadWriter>>nextImageDitheredToDepth: depth  [
 	^ form
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>nextPutImage: aForm [
+{ #category : #'public access' }
+JPEGReadWriter >> nextPutImage: aForm [
 	self error: 'JPEGReadWriter supports decoding, for encoding, look at PluginBasedJPEGReadWriter'
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>notSupported: aString [
+{ #category : #'error handling' }
+JPEGReadWriter >> notSupported: aString [
 
 	self error: aString , ' is not currently supported'
 ]
 
-{
-	#category : #'marker parsing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>okToIgnoreMarker: aMarker [
+{ #category : #'marker parsing' }
+JPEGReadWriter >> okToIgnoreMarker: aMarker [
 
 	^ (((16rE0 to: 16rEF) includes: aMarker) "unhandled APPn markers"
 		or: [aMarker = 16rDC or: [aMarker = 16rFE]]) "DNL or COM markers"
 		or: [aMarker = 16r99] "Whatever that is"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>on: aStream  [
+{ #category : #private }
+JPEGReadWriter >> on: aStream [ 
 	super on: aStream.
 	stream := JPEGReadStream on: stream upToEnd
 ]
 
-{
-	#category : #'marker parsing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>parseAPPn [
+{ #category : #'marker parsing' }
+JPEGReadWriter >> parseAPPn [
 	| length buffer thumbnailLength markerStart |
 	markerStart := self position.
 	length := self nextWord.
@@ -909,22 +833,16 @@ JPEGReadWriter>>parseAPPn [
 	self next: length
 ]
 
-{
-	#category : #'marker parsing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>parseDecoderRestartInterval [
+{ #category : #'marker parsing' }
+JPEGReadWriter >> parseDecoderRestartInterval [
 	| length |
 	length := self nextWord.
 	length = 4 ifFalse: [ self error: 'DRI length incorrect' ].
 	restartInterval := self nextWord
 ]
 
-{
-	#category : #'marker parsing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>parseFirstMarker [
+{ #category : #'marker parsing' }
+JPEGReadWriter >> parseFirstMarker [
 	| marker |
 	self next = 255 ifFalse: [ self error: 'JFIF marker expected' ].
 	marker := self next.
@@ -933,11 +851,8 @@ JPEGReadWriter>>parseFirstMarker [
 	self parseStartOfInput
 ]
 
-{
-	#category : #'marker parsing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>parseHuffmanTable [
+{ #category : #'marker parsing' }
+JPEGReadWriter >> parseHuffmanTable [
 	| length markerStart index bits count huffVal isACTable hTable |
 	markerStart := self position.
 	length := self nextWord.
@@ -965,20 +880,14 @@ JPEGReadWriter>>parseHuffmanTable [
 					put: hTable ] ]
 ]
 
-{
-	#category : #'marker parsing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>parseNOP [
+{ #category : #'marker parsing' }
+JPEGReadWriter >> parseNOP [
 
 	"don't need to do anything, here"
 ]
 
-{
-	#category : #'marker parsing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>parseNextMarker [
+{ #category : #'marker parsing' }
+JPEGReadWriter >> parseNextMarker [
 	"Parse the next marker of the stream"
 	| byte discardedBytes |
 	discardedBytes := 0.
@@ -997,11 +906,8 @@ JPEGReadWriter>>parseNextMarker [
 					ifFalse: [ self error: 'marker ' , byte printStringHex , ' cannot be handled' ] ])
 ]
 
-{
-	#category : #'marker parsing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>parseQuantizationTable [
+{ #category : #'marker parsing' }
+JPEGReadWriter >> parseQuantizationTable [
 	| length markerStart n prec value table |
 	markerStart := self position.
 	length := self nextWord.
@@ -1028,11 +934,8 @@ JPEGReadWriter>>parseQuantizationTable [
 			put: table ]
 ]
 
-{
-	#category : #'marker parsing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>parseStartOfFile [
+{ #category : #'marker parsing' }
+JPEGReadWriter >> parseStartOfFile [
 	| length markerStart value n |
 	markerStart := self position.
 	length := self nextWord.
@@ -1060,22 +963,16 @@ JPEGReadWriter>>parseStartOfFile [
 					widthInBlocks: (value bitAnd: 16r0F);" ]
 ]
 
-{
-	#category : #'marker parsing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>parseStartOfInput [
+{ #category : #'marker parsing' }
+JPEGReadWriter >> parseStartOfInput [
 	restartInterval := 0.
 	densityUnit := 0.
 	xDensity := 1.
 	yDensity := 1
 ]
 
-{
-	#category : #'marker parsing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>parseStartOfScan [
+{ #category : #'marker parsing' }
+JPEGReadWriter >> parseStartOfScan [
 	| length n id value dcNum acNum comp |
 	length := self nextWord.
 	n := self next.
@@ -1106,11 +1003,8 @@ JPEGReadWriter>>parseStartOfScan [
 	sosSeen := true
 ]
 
-{
-	#category : #'marker parsing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>perScanSetup [
+{ #category : #'marker parsing' }
+JPEGReadWriter >> perScanSetup [
 	mcusPerRow := (width / (mcuWidth * DCTSize)) ceiling.
 	mcuRowsInScan := (height / (mcuHeight * DCTSize)) ceiling.
 	(currentComponents size = 3 or: [ currentComponents size = 1 ]) ifFalse: [ self error: 'JPEG color space not recognized' ].
@@ -1132,129 +1026,90 @@ JPEGReadWriter>>perScanSetup [
 	restartsToGo := restartInterval
 ]
 
-{
-	#category : #'colorspace conversion',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>primColorConvertGrayscaleMCU [
+{ #category : #'colorspace conversion' }
+JPEGReadWriter >> primColorConvertGrayscaleMCU [
 	self primColorConvertGrayscaleMCU: (currentComponents at: 1)
 			bits: mcuImageBuffer bits
 			residuals: residuals
 			ditherMask: ditherMask.
 ]
 
-{
-	#category : #'colorspace conversion',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>primColorConvertGrayscaleMCU: componentArray bits: bits residuals: residualArray ditherMask: mask [
+{ #category : #'colorspace conversion' }
+JPEGReadWriter >> primColorConvertGrayscaleMCU: componentArray bits: bits residuals: residualArray ditherMask: mask [
 	<primitive: 'primitiveColorConvertGrayscaleMCU' module: 'JPEGReaderPlugin'>
 	"JPEGReaderPlugin doPrimitive: #primitiveColorConvertGrayscaleMCU."
 	^self colorConvertGrayscaleMCU
 ]
 
-{
-	#category : #'colorspace conversion',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>primColorConvertIntYCbCrMCU [
+{ #category : #'colorspace conversion' }
+JPEGReadWriter >> primColorConvertIntYCbCrMCU [
 	self primColorConvertYCbCrMCU: currentComponents
 			bits: mcuImageBuffer bits
 			residuals: residuals
 			ditherMask: ditherMask.
 ]
 
-{
-	#category : #'colorspace conversion',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>primColorConvertYCbCrMCU: componentArray bits: bits residuals: residualArray ditherMask: mask [
+{ #category : #'colorspace conversion' }
+JPEGReadWriter >> primColorConvertYCbCrMCU: componentArray bits: bits residuals: residualArray ditherMask: mask [
 	<primitive: 'primitiveColorConvertMCU' module: 'JPEGReaderPlugin'>
 	^self colorConvertIntYCbCrMCU
 ]
 
-{
-	#category : #'huffman encoding',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>primDecodeBlockInto: sampleBuffer component: comp dcTable: dcTable acTable: acTable stream: jpegStream [
+{ #category : #'huffman encoding' }
+JPEGReadWriter >> primDecodeBlockInto: sampleBuffer component: comp dcTable: dcTable acTable: acTable stream: jpegStream [
 	<primitive: 'primitiveDecodeMCU' module: 'JPEGReaderPlugin'>
 	^self decodeBlockInto: sampleBuffer component: comp dcTable: dcTable acTable: acTable
 ]
 
-{
-	#category : #dct,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>primIdctBlockInt: anArray component: aColorComponent [
+{ #category : #dct }
+JPEGReadWriter >> primIdctBlockInt: anArray component: aColorComponent [
 	^self primIdctInt: anArray qt: (self qTable at: aColorComponent qTableIndex)
 ]
 
-{
-	#category : #dct,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>primIdctInt: anArray qt: qt [
+{ #category : #dct }
+JPEGReadWriter >> primIdctInt: anArray qt: qt [
 	<primitive: 'primitiveIdctInt' module: 'JPEGReaderPlugin'>
 	^self idctBlockInt: anArray qt: qt
 ]
 
-{
-	#category : #'huffman encoding',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>processRestart [
+{ #category : #'huffman encoding' }
+JPEGReadWriter >> processRestart [
 	stream resetBitBuffer.
 	self parseNextMarker.
 	currentComponents do: [ :c | c priorDCValue: 0 ].
 	restartsToGo := restartInterval
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>qTable [
+{ #category : #accessing }
+JPEGReadWriter >> qTable [
 	qTable ifNil: [ qTable := Array new: QuantizationTableSize ].
 	^ qTable
 ]
 
-{
-	#category : #'colorspace conversion',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>sampleFloatRangeLimit: aNumber [
+{ #category : #'colorspace conversion' }
+JPEGReadWriter >> sampleFloatRangeLimit: aNumber [
 
 	^ (aNumber rounded max: 0) min: MaxSample
 ]
 
-{
-	#category : #'colorspace conversion',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>sampleRangeLimit: aNumber [
+{ #category : #'colorspace conversion' }
+JPEGReadWriter >> sampleRangeLimit: aNumber [
 
 	aNumber < 0 ifTrue: [^ 0].
 	aNumber > MaxSample ifTrue: [^ MaxSample].
 	^ aNumber
 ]
 
-{
-	#category : #'huffman encoding',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>scaleAndSignExtend: aNumber inFieldWidth: w [
+{ #category : #'huffman encoding' }
+JPEGReadWriter >> scaleAndSignExtend: aNumber inFieldWidth: w [
 
 	aNumber < (1 bitShift: (w - 1))
 		ifTrue: [^aNumber - (1 bitShift: w) + 1]
 		ifFalse: [^aNumber]
 ]
 
-{
-	#category : #dct,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>scaleQuantizationTable: table  [
+{ #category : #dct }
+JPEGReadWriter >> scaleQuantizationTable: table [ 
 	| index |
 	index := 1.
 	1 
@@ -1272,31 +1127,22 @@ JPEGReadWriter>>scaleQuantizationTable: table  [
 	^ table
 ]
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>setStream: aStream  [
+{ #category : #'public access' }
+JPEGReadWriter >> setStream: aStream [ 
 	"Feed it in from an existing source"
 	stream := JPEGReadStream on: aStream upToEnd
 ]
 
-{
-	#category : #'marker parsing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>skipMarker [
+{ #category : #'marker parsing' }
+JPEGReadWriter >> skipMarker [
 	| length markerStart |
 	markerStart := self position.
 	length := self nextWord.
 	self next: length - (self position - markerStart)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>understandsImageFormat [
+{ #category : #testing }
+JPEGReadWriter >> understandsImageFormat [
 	"Answer true if the image stream format is understood by this decoder."
 	self next = 16rFF ifFalse: [^ false].
 	self next = 16rD8 ifFalse: [^ false].
@@ -1304,11 +1150,8 @@ JPEGReadWriter>>understandsImageFormat [
 
 ]
 
-{
-	#category : #preferences,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadWriter>>useFloatingPoint [
+{ #category : #preferences }
+JPEGReadWriter >> useFloatingPoint [
 
 	^ false
 ]

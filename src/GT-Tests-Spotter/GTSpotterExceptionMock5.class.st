@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GTSpotterExceptionMock5,
 	#superclass : #Object,
-	#category : #GT-Tests-Spotter-Exceptions-Mocks,
-	#timestamp : ''
+	#category : #GT-Tests-Spotter-Exceptions-Mocks
 }
 
-{
-	#category : #mocks,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterExceptionMock5>>mockProcessorFor: aSpotterStep [
+{ #category : #mocks }
+GTSpotterExceptionMock5 >> mockProcessorFor: aSpotterStep [
 	" No Exceptions expected ! "
 	<spotterOrder: 1>
 	self assert: GTCurrentSpotterExceptionHandler value notNil.

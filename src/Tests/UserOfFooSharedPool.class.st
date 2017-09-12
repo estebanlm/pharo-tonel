@@ -7,14 +7,10 @@ Class {
 	#pools : [
 		'FooSharedPool'
 	],
-	#category : #Tests-System,
-	#timestamp : 'NicoPaez 10/17/2010 14:45'
+	#category : #Tests-System
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UserOfFooSharedPool>>simpleMethod [
+{ #category : #'as yet unclassified' }
+UserOfFooSharedPool >> simpleMethod [
 	^FooValue1
 ]

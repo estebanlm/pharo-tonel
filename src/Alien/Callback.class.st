@@ -78,23 +78,16 @@ Class {
 	#classInstVars : [
 		'concreteClass'
 	],
-	#category : #Alien-Core,
-	#timestamp : ''
+	#category : #Alien-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback class>>abi [
+{ #category : #accessing }
+Callback class >> abi [
 	^ABI
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback class>>block: aBlock "<BlockContext>" argsClass: argsProxyClass "<Alien class>" "^<Callback>" [
+{ #category : #'instance creation' }
+Callback class >> block: aBlock "<BlockContext>" argsClass: argsProxyClass [ "<Alien class>" "^<Callback>"
 	"Answer a Callback that evaluates aBlock and whose thunk should conform to the C calling convention."
 	<legacy>
 	^self new
@@ -103,11 +96,8 @@ Callback class>>block: aBlock "<BlockContext>" argsClass: argsProxyClass "<Alien
 		argsProxyClass: argsProxyClass
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback class>>block: aBlock "<BlockContext>" stdcallArgsClass: argsProxyClass "<Alien class>" "^<Callback>" [
+{ #category : #'instance creation' }
+Callback class >> block: aBlock "<BlockContext>" stdcallArgsClass: argsProxyClass [ "<Alien class>" "^<Callback>"
 	"Answer a Callback that evaluates aBlock and whose thunk should conform to the
 	 stdcall (Pascal) calling convention with a stack size of argsProxyClass dataSize."
 	<legacy>
@@ -117,11 +107,8 @@ Callback class>>block: aBlock "<BlockContext>" stdcallArgsClass: argsProxyClass 
 		argsProxyClass: argsProxyClass
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback class>>ensureNotifiedAtStartup [
+{ #category : #'class initialization' }
+Callback class >> ensureNotifiedAtStartup [
 	"Callback needs to be notified at system startup to clear the ThunkToCallbackMap and determine concreteClass."
 	self ~~ Callback ifTrue: [^self].
 	(Smalltalk classNamed: #SessionManager)
@@ -132,11 +119,8 @@ Callback class>>ensureNotifiedAtStartup [
 		ifNil: [Smalltalk addToStartUpList: self after: FFICallbackThunk]
 ]
 
-{
-	#category : #evaluation,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback class>>evaluateCallbackForContext: callbackContext "<VMCallbackContext32|VMCallbackContext64> ^<FFICallbackReturnValue>" [
+{ #category : #evaluation }
+Callback class >> evaluateCallbackForContext: callbackContext [ "<VMCallbackContext32|VMCallbackContext64> ^<FFICallbackReturnValue>"
 	(ThunkToCallbackMap
 		at: callbackContext thunkp
 		ifAbsent: [^self error: 'could not locate Callback instance corresponding to thunk address'])
@@ -146,11 +130,8 @@ Callback class>>evaluateCallbackForContext: callbackContext "<VMCallbackContext3
 			^callback valueInContext: callbackContext]
 ]
 
-{
-	#category : #evaluation,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback class>>evaluateCallbackForThunk: thunkPtr "<Integer>" stack: stackPtr "<Integer>" "^<FFICallbackReturnValue>" [
+{ #category : #evaluation }
+Callback class >> evaluateCallbackForThunk: thunkPtr "<Integer>" stack: stackPtr [ "<Integer>" "^<FFICallbackReturnValue>"
 	<legacy>
 	| callback |
 	callback := ThunkToCallbackMap
@@ -161,19 +142,13 @@ Callback class>>evaluateCallbackForThunk: thunkPtr "<Integer>" stack: stackPtr "
 		ifFalse: [^callback valueWithStackPointer: stackPtr]
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback class>>finalizeValues [
+{ #category : #finalization }
+Callback class >> finalizeValues [
 	FlushThunkToCallbackMap := true
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback class>>initialize [
+{ #category : #'class initialization' }
+Callback class >> initialize [
 	"Callback initialize"
 	self ensureNotifiedAtStartup.
 	[self startUp: false] "Monticello... grrr...."
@@ -183,32 +158,23 @@ Callback class>>initialize [
 		[UIManager default inform: 'this version of Callbacks requires the callback selector to be\#invokeCallbackContext:.  recreate the specialObjects Array.' withCRs]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback class>>newForPlatform [
+{ #category : #'instance creation' }
+Callback class >> newForPlatform [
 	"Answer an instance of the subclass for this platform's ABI, if any."
 	^concreteClass
 		ifNotNil: [:cc| cc new]
 		ifNil: [self error: 'could not find a concrete Callback class for this platform']
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback class>>signature: signature "<String>" block: aBlock "<BlockClosure> ^<Callback>" [
+{ #category : #'instance creation' }
+Callback class >> signature: signature "<String>" block: aBlock [ "<BlockClosure> ^<Callback>"
 	"Answer a Callback that evaluates aBlock whose C signature is signature 
 	 and whose thunk should conform to the C calling convention."
 	^self newForPlatform signature: signature block: aBlock
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback class>>startUp: isInANewSession [
+{ #category : #'class initialization' }
+Callback class >> startUp: isInANewSession [
 	"Callback startUp: false"
 	| prevMap |
 	concreteClass := subclasses detect: [:subclass| subclass isForCurrentPlatform] ifNone: [].
@@ -224,11 +190,8 @@ Callback class>>startUp: isInANewSession [
 			ThunkToCallbackMap at: thunkAddress put: callback]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback>>addToThunkTable [
+{ #category : #private }
+Callback >> addToThunkTable [
 	FlushThunkToCallbackMap ifTrue:
 		[FlushThunkToCallbackMap := false.
 		 ThunkToCallbackMap keys do:
@@ -236,11 +199,8 @@ Callback>>addToThunkTable [
 	ThunkToCallbackMap at: thunk addressField put: self
 ]
 
-{
-	#category : #evaluation,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback>>block: aBlock "<BlockClosure>" thunk: thunkWrapper "<FFICallbackThunk>" argsProxyClass: argsWrapperClass "<Alien class>" [
+{ #category : #evaluation }
+Callback >> block: aBlock "<BlockClosure>" thunk: thunkWrapper "<FFICallbackThunk>" argsProxyClass: argsWrapperClass [ "<Alien class>"
 	<legacy>
 	block := aBlock.
 	thunk := thunkWrapper.
@@ -250,11 +210,8 @@ Callback>>block: aBlock "<BlockClosure>" thunk: thunkWrapper "<FFICallbackThunk>
 	self addToThunkTable
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback>>evaluatorForSignature: signature "<String|Array>" [
+{ #category : #private }
+Callback >> evaluatorForSignature: signature [ "<String|Array>"
 	"Search the methods marked with the signature: primtiive for those that match signature.
 	 signature is typically a literal Array for the function's C signature, e.g. #(int (*)(int, char *))."
 	Pragma withPragmasIn: self class do:
@@ -265,29 +222,20 @@ Callback>>evaluatorForSignature: signature "<String|Array>" [
 	self error: 'could not find Callback signature'
 ]
 
-{
-	#category : #signatures,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback>>intcharstarRetint: callbackContext regs: regsAlien [
+{ #category : #signatures }
+Callback >> intcharstarRetint: callbackContext regs: regsAlien [
 	<signature: #(int (*)(int, char *))>
 	self subclassResponsibility
 ]
 
-{
-	#category : #signatures,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback>>intcharstarRetint: callbackContext sp: spAlien [
+{ #category : #signatures }
+Callback >> intcharstarRetint: callbackContext sp: spAlien [
 	<signature: #(int (*)(int, char *))>
 	self subclassResponsibility
 ]
 
-{
-	#category : #'instance initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback>>signature: signature "<String>" block: aBlock "<BlockClosure>" [
+{ #category : #'instance initialization' }
+Callback >> signature: signature "<String>" block: aBlock [ "<BlockClosure>"
 	| method |
 	method := self evaluatorForSignature: signature.
 	block := aBlock.
@@ -300,30 +248,21 @@ Callback>>signature: signature "<String>" block: aBlock "<BlockClosure>" [
 	self addToThunkTable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback>>thunk [
+{ #category : #accessing }
+Callback >> thunk [
 	^thunk
 ]
 
-{
-	#category : #evaluation,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback>>valueInContext: callbackContext "<VMCallbackContext32|VMCallbackContext64> ^<Integer>" [
+{ #category : #evaluation }
+Callback >> valueInContext: callbackContext [ "<VMCallbackContext32|VMCallbackContext64> ^<Integer>"
 	"Perform the evaluator with arguments derived from the callback context in an order most appropriate for the ABI.
 	 On x86 the order is callbackContext, stackPointerAlien.
 	 On ``RISCS'' it is callbackContext, integerRegsAlien, stackPointerAlien, floatRegsAlien"
 	self subclassResponsibility
 ]
 
-{
-	#category : #evaluation,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback>>valueWithContext: vmCallbackContext "<VMCallbackContext32>" "^<Integer>" [
+{ #category : #evaluation }
+Callback >> valueWithContext: vmCallbackContext [ "<VMCallbackContext32>" "^<Integer>"
 	<legacy>
 	^block
 		value: (argsProxyClass
@@ -332,11 +271,8 @@ Callback>>valueWithContext: vmCallbackContext "<VMCallbackContext32>" "^<Integer
 		value: vmCallbackContext
 ]
 
-{
-	#category : #evaluation,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback>>valueWithStackPointer: stackPtr "<Integer>" "^<FFICallbackReturnValue>" [
+{ #category : #evaluation }
+Callback >> valueWithStackPointer: stackPtr [ "<Integer>" "^<FFICallbackReturnValue>"
 	<legacy>
 	| resultProxy |
 	block
@@ -345,20 +281,14 @@ Callback>>valueWithStackPointer: stackPtr "<Integer>" "^<FFICallbackReturnValue>
 	^resultProxy
 ]
 
-{
-	#category : #signatures,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback>>voidstarvoidstarRetint: callbackContext regs: regsAlien [
+{ #category : #signatures }
+Callback >> voidstarvoidstarRetint: callbackContext regs: regsAlien [
 	<signature: #(int (*)(const void *, const void *))>
 	self subclassResponsibility
 ]
 
-{
-	#category : #signatures,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Callback>>voidstarvoidstarRetint: callbackContext sp: spAlien [
+{ #category : #signatures }
+Callback >> voidstarvoidstarRetint: callbackContext sp: spAlien [
 	<signature: #(int (*)(const void *, const void *))>
 	self subclassResponsibility
 ]

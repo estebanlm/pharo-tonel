@@ -9,23 +9,16 @@ HelpBrowser  openOn: AnnouncementsHelp
 Class {
 	#name : #Announcement,
 	#superclass : #Object,
-	#category : #Announcements-Core,
-	#timestamp : 'VincentBlondeau 1/27/2017 14:52'
+	#category : #Announcements-Core
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcement class>>, anAnnouncementClass [
+{ #category : #public }
+Announcement class >> , anAnnouncementClass [
 	^ AnnouncementSet with: self with: anAnnouncementClass
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcement class>>- anotherAnnouncement [
+{ #category : #public }
+Announcement class >> - anotherAnnouncement [
 	"Create an announcement set containing the receiver 
 	and anotherAnnouncement as exclusion."
 
@@ -35,47 +28,32 @@ Announcement class>>- anotherAnnouncement [
 		yourself
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcement class>>asAnnouncement [
+{ #category : #converting }
+Announcement class >> asAnnouncement [
 	^ self new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcement class>>handlesAnnouncement: anAnnouncement [
+{ #category : #testing }
+Announcement class >> handlesAnnouncement: anAnnouncement [
 	"The receiver acts as a filter to determine whether subscribers who used the receiver as signaling tag (event identifier class or symbol) should receive incoming announcement. In particular, registering to a superclass will receive the announcements from all subclasses."
 
 
 	^ anAnnouncement class == self or: [ anAnnouncement class inheritsFrom: self ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcement class>>where: instancesFilterBlock [
+{ #category : #converting }
+Announcement class >> where: instancesFilterBlock [
 
 	^AnnouncementDeliveryCondition for: self where: instancesFilterBlock 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcement>>asAnnouncement [
+{ #category : #converting }
+Announcement >> asAnnouncement [
 	^ self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-Announcement>>prepareForDelivery [
+{ #category : #initialization }
+Announcement >> prepareForDelivery [
 	"This method will be executed once before subscriptions delivery.
 	If nobody subscribed on me this method will not be called.
 	It allows to put some heavy initialization logic here. It will be executed only 

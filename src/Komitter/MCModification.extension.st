@@ -1,21 +1,13 @@
-Extension {
-	#name : #MCModification
-}
+Extension { #name : #MCModification }
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCModification>>isMethodPatch [
+{ #category : #'*Komitter-UI' }
+MCModification >> isMethodPatch [
 
 	^ obsoletion isMethodDefinition
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCModification>>koClass [
+{ #category : #'*Komitter-UI' }
+MCModification >> koClass [
 	| klass |
 	klass := obsoletion koClass.
 	klass ifNil: [ ^ nil ].
@@ -25,11 +17,8 @@ MCModification>>koClass [
 	^ klass
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCModification>>koDefinition [
+{ #category : #'*Komitter-UI' }
+MCModification >> koDefinition [
 	
 	^  (KomitDefinition definition: self definition)
 		operation: self;
@@ -37,20 +26,14 @@ MCModification>>koDefinition [
 		yourself
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCModification>>koDestinationText [
+{ #category : #'*Komitter-UI' }
+MCModification >> koDestinationText [
 
 	^ modification koDestinationText
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCModification>>koMethod [
+{ #category : #'*Komitter-UI' }
+MCModification >> koMethod [
 	
 	^ (KomitMethod method: self definition)
 		operation: self;
@@ -58,20 +41,14 @@ MCModification>>koMethod [
 		yourself
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCModification>>koSourceText [
+{ #category : #'*Komitter-UI' }
+MCModification >> koSourceText [
 
 	^ obsoletion koSourceText
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCModification>>selector [
+{ #category : #'*Komitter-UI' }
+MCModification >> selector [
 
 	^ obsoletion selector
 ]

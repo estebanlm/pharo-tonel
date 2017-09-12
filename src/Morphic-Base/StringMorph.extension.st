@@ -1,21 +1,13 @@
-Extension {
-	#name : #StringMorph
-}
+Extension { #name : #StringMorph }
 
-{
-	#category : #'*Morphic-Base-Widgets',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StringMorph>>heightToDisplayInList: aList [
+{ #category : #'*Morphic-Base-Widgets' }
+StringMorph >> heightToDisplayInList: aList [
 
 	^ self contents heightToDisplayInList: aList 
 ]
 
-{
-	#category : #'*Morphic-Base-MorphTreeWidget',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StringMorph>>rowMorphForNode: aNode inColumn: aColumn [
+{ #category : #'*Morphic-Base-MorphTreeWidget' }
+StringMorph >> rowMorphForNode: aNode inColumn: aColumn [
 	| hasIcon |
 	hasIcon := (aColumn container iconBlock value: aNode) notNil.
 	(aColumn isFirstColumn and: [hasIcon]) 
@@ -25,11 +17,8 @@ StringMorph>>rowMorphForNode: aNode inColumn: aColumn [
 	^ self 
 ]
 
-{
-	#category : #'*Morphic-Base-Widgets',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-StringMorph>>widthToDisplayInList: aList [
+{ #category : #'*Morphic-Base-Widgets' }
+StringMorph >> widthToDisplayInList: aList [
 
 	^ self contents widthToDisplayInList: aList 
 ]

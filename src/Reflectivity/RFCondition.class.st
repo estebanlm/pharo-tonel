@@ -14,91 +14,60 @@ Class {
 		'condition',
 		'linkCondition'
 	],
-	#category : #Reflectivity-Links,
-	#timestamp : 'MarcusDenker 5/3/2015 13:49'
+	#category : #Reflectivity-Links
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFCondition class>>for: aCondition [
+{ #category : #'as yet unclassified' }
+RFCondition class >> for: aCondition [
 	^self new linkCondition: aCondition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFCondition>>condition: aBlockOrBoolean [
+{ #category : #accessing }
+RFCondition >> condition: aBlockOrBoolean [
 	condition := aBlockOrBoolean
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFCondition>>cull: arguments [
+{ #category : #evaluating }
+RFCondition >> cull: arguments [
 	"in case of my wrapped link expects arguments"
 
 	^ condition
 		and: [ linkCondition perform: linkCondition valueSelector withArguments: {arguments} ]
 ]
 
-{
-	#category : #enable/disable,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFCondition>>disable [
+{ #category : #enable/disable }
+RFCondition >> disable [
 	condition := false.
 ]
 
-{
-	#category : #enable/disable,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFCondition>>enable [
+{ #category : #enable/disable }
+RFCondition >> enable [
 	condition := true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFCondition>>initialize [
+{ #category : #initialization }
+RFCondition >> initialize [
 	condition := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFCondition>>linkCondition: aBlockOrBoolean [
+{ #category : #accessing }
+RFCondition >> linkCondition: aBlockOrBoolean [
 		linkCondition := aBlockOrBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFCondition>>reifications [
+{ #category : #accessing }
+RFCondition >> reifications [
 	(condition isKindOf: Boolean) ifTrue: [ ^#() ].
 	^condition argumentNames. 
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFCondition>>value [
+{ #category : #evaluating }
+RFCondition >> value [
 	^condition and: [ linkCondition value ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFCondition>>valueSelector [
+{ #category : #accessing }
+RFCondition >> valueSelector [
 	linkCondition numArgs isZero
 		ifTrue: [ ^ #value ]
 		ifFalse: [ ^ #cull: ]

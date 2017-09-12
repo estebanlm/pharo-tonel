@@ -1,9 +1,5 @@
-"
-
-"
 Class {
 	#name : #GTSpotterA3,
 	#superclass : #TestCase,
-	#category : #GT-Tests-Spotter,
-	#timestamp : ''
+	#category : #GT-Tests-Spotter
 }

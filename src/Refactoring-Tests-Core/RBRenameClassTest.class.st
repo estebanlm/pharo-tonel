@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBRenameClassTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameClassTest>>testBadName [
+{ #category : #'failure tests' }
+RBRenameClassTest >> testBadName [
 	self
 		shouldFail: (RBRenameClassRefactoring 
 				rename: RBLintRuleTest
@@ -22,28 +15,19 @@ RBRenameClassTest>>testBadName [
 				to: #'Ob ject')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameClassTest>>testExistingName [
+{ #category : #'failure tests' }
+RBRenameClassTest >> testExistingName [
 	self shouldFail: (RBRenameClassRefactoring rename: self class to: #Object)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameClassTest>>testMetaClassFailure [
+{ #category : #'failure tests' }
+RBRenameClassTest >> testMetaClassFailure [
 	self 
 		shouldFail: (RBRenameClassRefactoring rename: self class class to: #Foo)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameClassTest>>testModelRenameClass [
+{ #category : #tests }
+RBRenameClassTest >> testModelRenameClass [
 	| refactoring class |
 	model 
 		defineClass: 'Object subclass: #Foo instanceVariableNames: ''a'' classVariableNames: '''' poolDictionaries: '''' category: #''Refactory-Test data'''.
@@ -65,11 +49,8 @@ RBRenameClassTest>>testModelRenameClass [
 	self assert: class superclass name = #Thing
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameClassTest>>testModelRenameSequenceClass [
+{ #category : #tests }
+RBRenameClassTest >> testModelRenameSequenceClass [
 	model 
 		defineClass: 'Object subclass: #Foo1 
 			instanceVariableNames: '''' 
@@ -95,11 +76,8 @@ RBRenameClassTest>>testModelRenameSequenceClass [
 		= (RBParser parseMethod: 'objectName ^ #(Foo3)')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameClassTest>>testRenameClass [
+{ #category : #tests }
+RBRenameClassTest >> testRenameClass [
 	| refactoring class |
 	refactoring := RBRenameClassRefactoring 
 				rename: (Smalltalk at: ('RBClass' , 'ToRename') asSymbol)
@@ -123,11 +101,8 @@ RBRenameClassTest>>testRenameClass [
 								^RBNewClassName new')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBRenameClassTest>>testUnmarkRemovedClassIfRenameTargetClass [
+{ #category : #tests }
+RBRenameClassTest >> testUnmarkRemovedClassIfRenameTargetClass [
 	"Unmark a removed class if we rename another class to the removed class name.
 rename class A to C (class A is marked as removed)
 rename class B to A

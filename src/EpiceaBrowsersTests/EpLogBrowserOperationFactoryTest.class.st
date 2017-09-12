@@ -8,25 +8,18 @@ Class {
 		'inputEntry',
 		'inputEntries'
 	],
-	#category : #EpiceaBrowsersTests-Integration,
-	#timestamp : 'MartinDias 2/21/2017 16:48'
+	#category : #EpiceaBrowsersTests-Integration
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogBrowserOperationFactoryTest>>setHeadAsInputEntry [
+{ #category : #tests }
+EpLogBrowserOperationFactoryTest >> setHeadAsInputEntry [
 
 	inputEntry := monitor log head.
 	inputEntries := { monitor log head }
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpLogBrowserOperationFactoryTest>>setMonitorLogAsInputEntries [
+{ #category : #tests }
+EpLogBrowserOperationFactoryTest >> setMonitorLogAsInputEntries [
 
 	inputEntries := monitor log entries.
 	inputEntry := nil. "Not used"

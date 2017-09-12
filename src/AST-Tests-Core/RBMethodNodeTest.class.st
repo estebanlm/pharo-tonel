@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBMethodNodeTest,
 	#superclass : #TestCase,
-	#category : #AST-Tests-Core,
-	#timestamp : ''
+	#category : #AST-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RBMethodNodeTest>>testSelectorAndArgumentNames [
+{ #category : #tests }
+RBMethodNodeTest >> testSelectorAndArgumentNames [
 	self assert:
 		(RBParser parseMethod: 'one ^ self') selectorAndArgumentNames =
 			'one'.

@@ -1,12 +1,7 @@
-Extension {
-	#name : #MetacelloSpec
-}
+Extension { #name : #MetacelloSpec }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-MetacelloSpec>>gtInspectorCodeIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+MetacelloSpec >> gtInspectorCodeIn: composite [
 	<gtInspectorPresentationOrder: 40>
 	composite pharoScript 
 		title: 'Code';

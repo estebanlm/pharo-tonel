@@ -8,55 +8,36 @@ Class {
 		'parent',
 		'treeMorph'
 	],
-	#category : #Tool-FileList,
-	#timestamp : 'TorstenBergmann 2/4/2014 20:43'
+	#category : #Tool-FileList
 }
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileListGrid>>fileListMenu: aMenuMorph  [
+{ #category : #menus }
+FileListGrid >> fileListMenu: aMenuMorph [ 
 	^ parent fileListMenu: aMenuMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileListGrid>>parent [
+{ #category : #accessing }
+FileListGrid >> parent [
 	^ parent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileListGrid>>parent: aFileList [
+{ #category : #accessing }
+FileListGrid >> parent: aFileList [
 	parent := aFileList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileListGrid>>rootItems [
+{ #category : #accessing }
+FileListGrid >> rootItems [
 	^ parent fileList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileListGrid>>rootNodeClassFromItem: anItem [
+{ #category : #accessing }
+FileListGrid >> rootNodeClassFromItem: anItem [
 	^ FileListGridNode
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileListGrid>>treeMorph [
+{ #category : #'user interface' }
+FileListGrid >> treeMorph [
 	treeMorph ifNil: [ 
 		treeMorph := (self treeMorphClass on: self)
 			columns: {

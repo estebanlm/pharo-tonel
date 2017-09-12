@@ -8,52 +8,36 @@ Class {
 		'nonIdentityOrderedAssociations',
 		'identityOrderedAssociations'
 	],
-	#category : #Collections-Tests-Sequenceable,
-	#timestamp : 'monty 10/1/2016 02:03'
+	#category : #Collections-Tests-Sequenceable
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest class>>shouldInheritSelectors [
+{ #category : #testing }
+OrderedDictionaryTest class >> shouldInheritSelectors [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>absentKey [
+{ #category : #accessing }
+OrderedDictionaryTest >> absentKey [
 	self isTestingIdentityDictionary
 		ifTrue: [^ self identityAbsentKey]
 		ifFalse: [^ self nonIdentityAbsentKey]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>absentValue [
+{ #category : #accessing }
+OrderedDictionaryTest >> absentValue [
 	^ 'absentValue'
 ]
 
-{
-	#category : #assertions,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>assertDictionary: aFirstDictionary doesNotEqual: aSecondDictionary [
+{ #category : #assertions }
+OrderedDictionaryTest >> assertDictionary: aFirstDictionary doesNotEqual: aSecondDictionary [
 	"test symmetric inequality"
 	self
 		deny: aFirstDictionary = aSecondDictionary;
 		deny: aSecondDictionary = aFirstDictionary
 ]
 
-{
-	#category : #assertions,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>assertDictionary: aFirstDictionary equals: aSecondDictionary [
+{ #category : #assertions }
+OrderedDictionaryTest >> assertDictionary: aFirstDictionary equals: aSecondDictionary [
 	"test reflixive and symmetric equality"
 	self
 		assert: aFirstDictionary = aFirstDictionary;
@@ -62,21 +46,15 @@ OrderedDictionaryTest>>assertDictionary: aFirstDictionary equals: aSecondDiction
 		assert: aSecondDictionary = aFirstDictionary
 ]
 
-{
-	#category : #assertions,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>assertIsArray: anArray withElements: aCollection [
+{ #category : #assertions }
+OrderedDictionaryTest >> assertIsArray: anArray withElements: aCollection [
 	self
 		assert: anArray isArray;
 		assert: anArray = aCollection asArray
 ]
 
-{
-	#category : #assertions,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>assertIsDictionary: aFirstDictionary copiedFrom: aSecondDictionary withOrderedAssociations: anAssociationCollection [
+{ #category : #assertions }
+OrderedDictionaryTest >> assertIsDictionary: aFirstDictionary copiedFrom: aSecondDictionary withOrderedAssociations: anAssociationCollection [
 	self
 		deny: aFirstDictionary == aSecondDictionary;
 		deny: aFirstDictionary dictionary == aSecondDictionary dictionary;
@@ -91,11 +69,8 @@ OrderedDictionaryTest>>assertIsDictionary: aFirstDictionary copiedFrom: aSecondD
 		withOrderedAssociations: anAssociationCollection.
 ]
 
-{
-	#category : #assertions,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>assertIsDictionary: anObject withOrderedAssociations: anAssociationCollection [
+{ #category : #assertions }
+OrderedDictionaryTest >> assertIsDictionary: anObject withOrderedAssociations: anAssociationCollection [
 	"tests that anObject is an instance of the correct dictionary class
 	with the specified ordered associations"
 	self
@@ -116,11 +91,8 @@ OrderedDictionaryTest>>assertIsDictionary: anObject withOrderedAssociations: anA
 		self assert: (anObject associations at: i) value = each value].
 ]
 
-{
-	#category : #assertions,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>assertIsDictionary: anObject withUnorderedAssociations: anAssociationCollection [
+{ #category : #assertions }
+OrderedDictionaryTest >> assertIsDictionary: anObject withUnorderedAssociations: anAssociationCollection [
 	"tests that anObject is an instance of the correct dictionary class
 	with the specified associations, but ignoring the order"
 	self
@@ -130,11 +102,8 @@ OrderedDictionaryTest>>assertIsDictionary: anObject withUnorderedAssociations: a
 		self assert: (anObject includesAssociation: each)].
 ]
 
-{
-	#category : #assertions,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>assertKey: aKey wasRemovedfrom: aDictionary [
+{ #category : #assertions }
+OrderedDictionaryTest >> assertKey: aKey wasRemovedfrom: aDictionary [
 	self deny: (aDictionary includesKey: aKey).
 	aDictionary keys asArray, aDictionary orderedKeys asArray do: [:each |
 		self deny:
@@ -143,83 +112,53 @@ OrderedDictionaryTest>>assertKey: aKey wasRemovedfrom: aDictionary [
 				ifFalse: [each = aKey])].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>changedOrderedAssociations [
+{ #category : #accessing }
+OrderedDictionaryTest >> changedOrderedAssociations [
 	^ self orderedAssociations collect: [:each | each key -> self newValue]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>changedOrderedAssociationsFirst: anInteger [
+{ #category : #accessing }
+OrderedDictionaryTest >> changedOrderedAssociationsFirst: anInteger [
 	^ self changedOrderedAssociations first: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>collectClass [
+{ #category : #accessing }
+OrderedDictionaryTest >> collectClass [
 	^ Array
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>defaultCapacity [
+{ #category : #accessing }
+OrderedDictionaryTest >> defaultCapacity [
 	^ self emptyInternalDictionary capacity
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>dictionaryClass [
+{ #category : #accessing }
+OrderedDictionaryTest >> dictionaryClass [
 	^ OrderedDictionary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>dictionaryWithOrderedAssociations [
+{ #category : #accessing }
+OrderedDictionaryTest >> dictionaryWithOrderedAssociations [
 	^ self dictionaryClass newFrom: self orderedAssociations
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>emptyDictionary [
+{ #category : #accessing }
+OrderedDictionaryTest >> emptyDictionary [
 	^ self dictionaryClass new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>emptyInternalDictionary [
+{ #category : #accessing }
+OrderedDictionaryTest >> emptyInternalDictionary [
 	^ self internalDictionaryClass new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>identityAbsentKey [
+{ #category : #accessing }
+OrderedDictionaryTest >> identityAbsentKey [
 	^ self orderedKeys first copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>identityOrderedAssociations [
+{ #category : #accessing }
+OrderedDictionaryTest >> identityOrderedAssociations [
 	"Returns ordered associations to use for identity dictionaries.
 	The keys are all #= equal but #== different, so only an
 	identity dictionary will be able to distinguish them."
@@ -238,53 +177,35 @@ OrderedDictionaryTest>>identityOrderedAssociations [
 	^ identityOrderedAssociations collect: [:each | each copy].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>internalDictionaryClass [
+{ #category : #accessing }
+OrderedDictionaryTest >> internalDictionaryClass [
 	self isTestingIdentityDictionary
 		ifTrue: [^ IdentityDictionary]
 		ifFalse: [^ Dictionary]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>internalDictionaryWithAssociations [
+{ #category : #accessing }
+OrderedDictionaryTest >> internalDictionaryWithAssociations [
 	^ self internalDictionaryClass newFrom: self orderedAssociations
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>isTestingIdentityDictionary [
+{ #category : #testing }
+OrderedDictionaryTest >> isTestingIdentityDictionary [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>newValue [
+{ #category : #accessing }
+OrderedDictionaryTest >> newValue [
 	^ 'newValue'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>nonIdentityAbsentKey [
+{ #category : #accessing }
+OrderedDictionaryTest >> nonIdentityAbsentKey [
 	^ 'absentKey'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>nonIdentityOrderedAssociations [
+{ #category : #accessing }
+OrderedDictionaryTest >> nonIdentityOrderedAssociations [
 	"Returns ordered associations to use for non-identity dictionaries.
 	The keys are all #= and #== different and are returned out of their
 	natural sort order."
@@ -302,77 +223,50 @@ OrderedDictionaryTest>>nonIdentityOrderedAssociations [
 	^ nonIdentityOrderedAssociations collect: [:each | each copy].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>orderedAssociations [
+{ #category : #accessing }
+OrderedDictionaryTest >> orderedAssociations [
 	self isTestingIdentityDictionary
 		ifTrue: [^ self identityOrderedAssociations]
 		ifFalse: [^ self nonIdentityOrderedAssociations]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>orderedAssociationsAllButFirst: anInteger [
+{ #category : #accessing }
+OrderedDictionaryTest >> orderedAssociationsAllButFirst: anInteger [
 	^ self orderedAssociations allButFirst: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>orderedAssociationsFirst: anInteger [
+{ #category : #accessing }
+OrderedDictionaryTest >> orderedAssociationsFirst: anInteger [
 	^ self orderedAssociations first: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>orderedKeys [
+{ #category : #accessing }
+OrderedDictionaryTest >> orderedKeys [
 	^ self orderedAssociations collect: [:each | each key]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>orderedKeysFirst: anInteger [
+{ #category : #accessing }
+OrderedDictionaryTest >> orderedKeysFirst: anInteger [
 	^ self orderedKeys first: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>orderedValues [
+{ #category : #accessing }
+OrderedDictionaryTest >> orderedValues [
 	^ self orderedAssociations collect: [:each | each value]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>orderedValuesFirst: anInteger [
+{ #category : #accessing }
+OrderedDictionaryTest >> orderedValuesFirst: anInteger [
 	^ self orderedValues first: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>otherOrderedDictionaryClasses [
+{ #category : #accessing }
+OrderedDictionaryTest >> otherOrderedDictionaryClasses [
 	^ OrderedDictionary withAllSubclasses copyWithout: self dictionaryClass
 ]
 
-{
-	#category : #assertions,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>should: aBlock enumerate: aCollection [
+{ #category : #assertions }
+OrderedDictionaryTest >> should: aBlock enumerate: aCollection [
 	| enumerated |
 
 	enumerated := OrderedCollection new.
@@ -380,11 +274,8 @@ OrderedDictionaryTest>>should: aBlock enumerate: aCollection [
 	self assert: enumerated = aCollection asOrderedCollection.
 ]
 
-{
-	#category : #assertions,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>should: aBlock enumerate: aFirstCollection and: aSecondCollection [
+{ #category : #assertions }
+OrderedDictionaryTest >> should: aBlock enumerate: aFirstCollection and: aSecondCollection [
 	| firstEnumerated secondEnumerated |
 
 	firstEnumerated := OrderedCollection new.
@@ -397,11 +288,8 @@ OrderedDictionaryTest>>should: aBlock enumerate: aFirstCollection and: aSecondCo
 		assert: secondEnumerated = aSecondCollection asOrderedCollection.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testAdd [
+{ #category : #tests }
+OrderedDictionaryTest >> testAdd [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -434,11 +322,8 @@ OrderedDictionaryTest>>testAdd [
 				(self orderedAssociationsAllButFirst: i)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testAddAll [
+{ #category : #tests }
+OrderedDictionaryTest >> testAddAll [
 	| dictionary addedAssociations |
 
 	dictionary := self emptyDictionary.
@@ -465,11 +350,8 @@ OrderedDictionaryTest>>testAddAll [
 		withOrderedAssociations: self changedOrderedAssociations.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testAssociationAt [
+{ #category : #tests }
+OrderedDictionaryTest >> testAssociationAt [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -482,11 +364,8 @@ OrderedDictionaryTest>>testAssociationAt [
 		self assert: (dictionary associationAt: each key) = each].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testAssociationAtIfAbsent [
+{ #category : #tests }
+OrderedDictionaryTest >> testAssociationAtIfAbsent [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -503,11 +382,8 @@ OrderedDictionaryTest>>testAssociationAtIfAbsent [
 				ifAbsent: [self fail]) = each].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testAssociationAtIfPresent [
+{ #category : #tests }
+OrderedDictionaryTest >> testAssociationAtIfPresent [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -529,11 +405,8 @@ OrderedDictionaryTest>>testAssociationAtIfPresent [
 				ifPresent: [self newValue]) = self newValue].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testAssociations [
+{ #category : #tests }
+OrderedDictionaryTest >> testAssociations [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -547,11 +420,8 @@ OrderedDictionaryTest>>testAssociations [
 			withElements: (self orderedAssociationsFirst: i)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testAssociationsDo [
+{ #category : #tests }
+OrderedDictionaryTest >> testAssociationsDo [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -565,11 +435,8 @@ OrderedDictionaryTest>>testAssociationsDo [
 			enumerate: (self orderedAssociationsFirst: i)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testAssociationsSelect [
+{ #category : #tests }
+OrderedDictionaryTest >> testAssociationsSelect [
 	| dictionary |
 
 	dictionary := self dictionaryWithOrderedAssociations.
@@ -585,11 +452,8 @@ OrderedDictionaryTest>>testAssociationsSelect [
 					selectedAssociations includes: each])].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testAt [
+{ #category : #tests }
+OrderedDictionaryTest >> testAt [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -602,11 +466,8 @@ OrderedDictionaryTest>>testAt [
 		self assert: (dictionary at: each key) = each value].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testAtIfAbsent [
+{ #category : #tests }
+OrderedDictionaryTest >> testAtIfAbsent [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -623,11 +484,8 @@ OrderedDictionaryTest>>testAtIfAbsent [
 				ifAbsent: [self fail]) = each value].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testAtIfAbsentPut [
+{ #category : #tests }
+OrderedDictionaryTest >> testAtIfAbsentPut [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -642,11 +500,8 @@ OrderedDictionaryTest>>testAtIfAbsentPut [
 				ifAbsentPut: [self fail]) = each value].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testAtIfPresent [
+{ #category : #tests }
+OrderedDictionaryTest >> testAtIfPresent [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -669,11 +524,8 @@ OrderedDictionaryTest>>testAtIfPresent [
 				ifPresent: [self newValue]) = self newValue].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testAtIfPresentIfAbsent [
+{ #category : #tests }
+OrderedDictionaryTest >> testAtIfPresentIfAbsent [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -698,11 +550,8 @@ OrderedDictionaryTest>>testAtIfPresentIfAbsent [
 				ifAbsent: [self fail]) = self newValue].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testAtPut [
+{ #category : #tests }
+OrderedDictionaryTest >> testAtPut [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -727,11 +576,8 @@ OrderedDictionaryTest>>testAtPut [
 				(self orderedAssociationsAllButFirst: i)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testBindingsDo [
+{ #category : #tests }
+OrderedDictionaryTest >> testBindingsDo [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -745,11 +591,8 @@ OrderedDictionaryTest>>testBindingsDo [
 			enumerate: (self orderedAssociationsFirst: i)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testCapacity [
+{ #category : #tests }
+OrderedDictionaryTest >> testCapacity [
 	"The current Dictionary implementation allocates more than specified.
 	The amount allocated may change in the future but it likely won't ever
 	be less than specified, so a >= test is used throughout."
@@ -774,11 +617,8 @@ OrderedDictionaryTest>>testCapacity [
 			raise: Error].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testCollect [
+{ #category : #tests }
+OrderedDictionaryTest >> testCollect [
 	| dictionary |
 
 	dictionary := self dictionaryWithOrderedAssociations.
@@ -790,11 +630,8 @@ OrderedDictionaryTest>>testCollect [
 			(self orderedAssociations collect: [:each | each key -> each value hash]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testCopy [
+{ #category : #tests }
+OrderedDictionaryTest >> testCopy [
 	| dictionary copy |
 
 	dictionary := self dictionaryWithOrderedAssociations.
@@ -808,11 +645,8 @@ OrderedDictionaryTest>>testCopy [
 		withOrderedAssociations: self orderedAssociations.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testCopyEmpty [
+{ #category : #tests }
+OrderedDictionaryTest >> testCopyEmpty [
 	| dictionary copy |
 
 	dictionary := self dictionaryWithOrderedAssociations.
@@ -826,11 +660,8 @@ OrderedDictionaryTest>>testCopyEmpty [
 		withOrderedAssociations: #().
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testDeclareFrom [
+{ #category : #tests }
+OrderedDictionaryTest >> testDeclareFrom [
 	| dictionary otherDictionary |
 
 	dictionary := self emptyDictionary.
@@ -856,11 +687,8 @@ OrderedDictionaryTest>>testDeclareFrom [
 		withOrderedAssociations: self orderedAssociations.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testDictionary [
+{ #category : #tests }
+OrderedDictionaryTest >> testDictionary [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -874,11 +702,8 @@ OrderedDictionaryTest>>testDictionary [
 		assert: dictionary dictionary = self internalDictionaryWithAssociations.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testDictionaryPublicProtocolCompatibility [
+{ #category : #tests }
+OrderedDictionaryTest >> testDictionaryPublicProtocolCompatibility [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -894,11 +719,8 @@ OrderedDictionaryTest>>testDictionaryPublicProtocolCompatibility [
 						do: [:each | self assert: (assoc key respondsTo: each)]]].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testDo [
+{ #category : #tests }
+OrderedDictionaryTest >> testDo [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -912,11 +734,8 @@ OrderedDictionaryTest>>testDo [
 			enumerate: (self orderedValuesFirst: i)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testEquals [
+{ #category : #tests }
+OrderedDictionaryTest >> testEquals [
 	| dictionaryOne dictionaryTwo |
 
 	dictionaryOne := self emptyDictionary.
@@ -948,11 +767,8 @@ OrderedDictionaryTest>>testEquals [
 		equals: dictionaryTwo.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testEqualsDictionary [
+{ #category : #tests }
+OrderedDictionaryTest >> testEqualsDictionary [
 	self
 		assertDictionary: self emptyDictionary
 		doesNotEqual: self emptyInternalDictionary.
@@ -962,11 +778,8 @@ OrderedDictionaryTest>>testEqualsDictionary [
 		doesNotEqual: self internalDictionaryWithAssociations.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testEqualsOtherOrderedDictionaries [
+{ #category : #tests }
+OrderedDictionaryTest >> testEqualsOtherOrderedDictionaries [
 	self otherOrderedDictionaryClasses do: [:each |
 		self
 			assertDictionary: self emptyDictionary
@@ -976,11 +789,8 @@ OrderedDictionaryTest>>testEqualsOtherOrderedDictionaries [
 			doesNotEqual: (each newFrom: self orderedAssociations)]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testHash [
+{ #category : #tests }
+OrderedDictionaryTest >> testHash [
 	| dictionary otherDictionary internalDictionary otherInternalDictionary |
 
 	dictionary := self emptyDictionary.
@@ -1001,11 +811,8 @@ OrderedDictionaryTest>>testHash [
 		self assert: dictionary hash = otherDictionary hash].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testIdentityIndexOfKey [
+{ #category : #tests }
+OrderedDictionaryTest >> testIdentityIndexOfKey [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1018,11 +825,8 @@ OrderedDictionaryTest>>testIdentityIndexOfKey [
 			assert: (dictionary identityIndexOfKey: each key copy) = 0].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testIdentityIndexOfKeyIfAbsent [
+{ #category : #tests }
+OrderedDictionaryTest >> testIdentityIndexOfKeyIfAbsent [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1043,11 +847,8 @@ OrderedDictionaryTest>>testIdentityIndexOfKeyIfAbsent [
 				ifAbsent: [self absentValue]) = self absentValue].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testIncludes [
+{ #category : #tests }
+OrderedDictionaryTest >> testIncludes [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1058,11 +859,8 @@ OrderedDictionaryTest>>testIncludes [
 		self assert: (dictionary includes: each value)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testIncludesAssociation [
+{ #category : #tests }
+OrderedDictionaryTest >> testIncludesAssociation [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1077,11 +875,8 @@ OrderedDictionaryTest>>testIncludesAssociation [
 			assert: (dictionary includesAssociation: each key -> each value)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testIncludesIdentity [
+{ #category : #tests }
+OrderedDictionaryTest >> testIncludesIdentity [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1094,11 +889,8 @@ OrderedDictionaryTest>>testIncludesIdentity [
 			deny: (dictionary includesIdentity: each value copy)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testIncludesKey [
+{ #category : #tests }
+OrderedDictionaryTest >> testIncludesKey [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1109,11 +901,8 @@ OrderedDictionaryTest>>testIncludesKey [
 		self assert: (dictionary includesKey: each key)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testIndexOfKey [
+{ #category : #tests }
+OrderedDictionaryTest >> testIndexOfKey [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1124,11 +913,8 @@ OrderedDictionaryTest>>testIndexOfKey [
 		self assert: (dictionary indexOfKey: each key) = i].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testIndexOfKeyIfAbsent [
+{ #category : #tests }
+OrderedDictionaryTest >> testIndexOfKeyIfAbsent [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1145,19 +931,13 @@ OrderedDictionaryTest>>testIndexOfKeyIfAbsent [
 				ifAbsent: [self fail]) = i].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testIsDictionary [
+{ #category : #tests }
+OrderedDictionaryTest >> testIsDictionary [
 	self assert: self dictionaryClass new isDictionary
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testKeyAtIdentityValue [
+{ #category : #tests }
+OrderedDictionaryTest >> testKeyAtIdentityValue [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1173,11 +953,8 @@ OrderedDictionaryTest>>testKeyAtIdentityValue [
 			raise: Error].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testKeyAtIdentityValueIfAbsent [
+{ #category : #tests }
+OrderedDictionaryTest >> testKeyAtIdentityValueIfAbsent [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1198,11 +975,8 @@ OrderedDictionaryTest>>testKeyAtIdentityValueIfAbsent [
 				ifAbsent: [self absentKey]) = self absentKey].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testKeyAtIndex [
+{ #category : #tests }
+OrderedDictionaryTest >> testKeyAtIndex [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1218,11 +992,8 @@ OrderedDictionaryTest>>testKeyAtIndex [
 		self assert: (dictionary keyAtIndex: i) = each key].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testKeyAtIndexIfAbsent [
+{ #category : #tests }
+OrderedDictionaryTest >> testKeyAtIndexIfAbsent [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1243,11 +1014,8 @@ OrderedDictionaryTest>>testKeyAtIndexIfAbsent [
 				ifAbsent: [self fail]) = each key].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testKeyAtValue [
+{ #category : #tests }
+OrderedDictionaryTest >> testKeyAtValue [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1260,11 +1028,8 @@ OrderedDictionaryTest>>testKeyAtValue [
 		self assert: (dictionary keyAtValue: each value) = each key].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testKeyAtValueIfAbsent [
+{ #category : #tests }
+OrderedDictionaryTest >> testKeyAtValueIfAbsent [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1281,11 +1046,8 @@ OrderedDictionaryTest>>testKeyAtValueIfAbsent [
 				ifAbsent: [self fail]) = each key].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testKeyForIdentity [
+{ #category : #tests }
+OrderedDictionaryTest >> testKeyForIdentity [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1298,11 +1060,8 @@ OrderedDictionaryTest>>testKeyForIdentity [
 			assert: (dictionary keyForIdentity: each value copy) isNil].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testKeys [
+{ #category : #tests }
+OrderedDictionaryTest >> testKeys [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1316,11 +1075,8 @@ OrderedDictionaryTest>>testKeys [
 			withElements: (self orderedKeysFirst: i)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testKeysAndValuesDo [
+{ #category : #tests }
+OrderedDictionaryTest >> testKeysAndValuesDo [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1336,11 +1092,8 @@ OrderedDictionaryTest>>testKeysAndValuesDo [
 			and: (self orderedValuesFirst: i)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testKeysAndValuesRemove [
+{ #category : #tests }
+OrderedDictionaryTest >> testKeysAndValuesRemove [
 	| dictionary |
 
 	dictionary := self dictionaryWithOrderedAssociations.
@@ -1369,11 +1122,8 @@ OrderedDictionaryTest>>testKeysAndValuesRemove [
 	self assert: dictionary isEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testKeysDo [
+{ #category : #tests }
+OrderedDictionaryTest >> testKeysDo [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1387,11 +1137,8 @@ OrderedDictionaryTest>>testKeysDo [
 			enumerate: (self orderedKeysFirst: i)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testKeysSortedSafely [
+{ #category : #tests }
+OrderedDictionaryTest >> testKeysSortedSafely [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1406,11 +1153,8 @@ OrderedDictionaryTest>>testKeysSortedSafely [
 			withElements: (self orderedKeysFirst: i) sorted].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testNewFrom [
+{ #category : #tests }
+OrderedDictionaryTest >> testNewFrom [
 	| dictionary |
 	
 	dictionary := self dictionaryClass newFrom: self orderedAssociations.
@@ -1427,11 +1171,8 @@ OrderedDictionaryTest>>testNewFrom [
 		withUnorderedAssociations: self orderedAssociations.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testNewFromPairs [
+{ #category : #tests }
+OrderedDictionaryTest >> testNewFromPairs [
 	| pairs |
 
 	pairs := OrderedCollection new.
@@ -1448,11 +1189,8 @@ OrderedDictionaryTest>>testNewFromPairs [
 				(self orderedAssociationsFirst: (i / 2) floor)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testOccurancesOf [
+{ #category : #tests }
+OrderedDictionaryTest >> testOccurancesOf [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1464,11 +1202,8 @@ OrderedDictionaryTest>>testOccurancesOf [
 		self assert: (dictionary occurrencesOf: self newValue) = i]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testRemoveAll [
+{ #category : #tests }
+OrderedDictionaryTest >> testRemoveAll [
 	| dictionary removedKeys |
 
 	dictionary := self dictionaryWithOrderedAssociations.
@@ -1483,11 +1218,8 @@ OrderedDictionaryTest>>testRemoveAll [
 			wasRemovedfrom: dictionary].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testRemoveKey [
+{ #category : #tests }
+OrderedDictionaryTest >> testRemoveKey [
 	| dictionary |
 
 	dictionary := self dictionaryWithOrderedAssociations.
@@ -1505,11 +1237,8 @@ OrderedDictionaryTest>>testRemoveKey [
 			raise: Error]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testRemoveKeyIfAbsent [
+{ #category : #tests }
+OrderedDictionaryTest >> testRemoveKeyIfAbsent [
 	| dictionary |
 
 	dictionary := self dictionaryWithOrderedAssociations.
@@ -1531,11 +1260,8 @@ OrderedDictionaryTest>>testRemoveKeyIfAbsent [
 				ifAbsent: [self absentValue]) = self absentValue]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testRemoveKeys [
+{ #category : #tests }
+OrderedDictionaryTest >> testRemoveKeys [
 	0 to: self orderedAssociations size do: [:i | | dictionary keysToRemove |
 		dictionary := self dictionaryWithOrderedAssociations.
 
@@ -1556,11 +1282,8 @@ OrderedDictionaryTest>>testRemoveKeys [
 			withOrderedAssociations: (self orderedAssociationsAllButFirst: i)]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testSelect [
+{ #category : #tests }
+OrderedDictionaryTest >> testSelect [
 	| dictionary |
 
 	dictionary := self dictionaryWithOrderedAssociations.
@@ -1576,11 +1299,8 @@ OrderedDictionaryTest>>testSelect [
 					selectedValues includes: each value])].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testSize [
+{ #category : #tests }
+OrderedDictionaryTest >> testSize [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1595,11 +1315,8 @@ OrderedDictionaryTest>>testSize [
 		self assert: dictionary size = (i - 1)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testValues [
+{ #category : #tests }
+OrderedDictionaryTest >> testValues [
 	| dictionary |
 
 	dictionary := self emptyDictionary.
@@ -1613,11 +1330,8 @@ OrderedDictionaryTest>>testValues [
 			withElements: (self orderedValuesFirst: i)].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OrderedDictionaryTest>>testValuesDo [
+{ #category : #tests }
+OrderedDictionaryTest >> testValuesDo [
 	| dictionary |
 
 	dictionary := self emptyDictionary.

@@ -8,50 +8,34 @@ Class {
 	#instVars : [
 		'subwidget'
 	],
-	#category : #Spec-Layout,
-	#timestamp : 'webwarrior 6/9/2014 19:37'
+	#category : #Spec-Layout
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTableLayoutAdd class>>subwidget: aSymbol [
+{ #category : #'instance creation' }
+SpecTableLayoutAdd class >> subwidget: aSymbol [
 	^ self new 
 		subwidget: aSymbol;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTableLayoutAdd>>generateArguments [
+{ #category : #'instance creation' }
+SpecTableLayoutAdd >> generateArguments [
 	self arguments: {{subwidget}}
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTableLayoutAdd>>initialize [
+{ #category : #initialization }
+SpecTableLayoutAdd >> initialize [
 	super initialize.
 	self selector: #add:
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTableLayoutAdd>>subwidget [
+{ #category : #accessing }
+SpecTableLayoutAdd >> subwidget [
 	^ subwidget
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTableLayoutAdd>>subwidget: aSpec [
+{ #category : #accessing }
+SpecTableLayoutAdd >> subwidget: aSpec [
 	subwidget := aSpec isSymbol
 		ifTrue: [{#model. aSpec}]
 		ifFalse: [

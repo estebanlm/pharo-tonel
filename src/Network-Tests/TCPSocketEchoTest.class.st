@@ -19,15 +19,11 @@ Note: this example deliberately does not use SocketStream to show how to use Soc
 Class {
 	#name : #TCPSocketEchoTest,
 	#superclass : #TestCase,
-	#category : #Network-Tests-Kernel,
-	#timestamp : 'SvenVanCaekenberghe 3/3/2015 14:03'
+	#category : #Network-Tests-Kernel
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TCPSocketEchoTest>>clientSend: message [
+{ #category : #testing }
+TCPSocketEchoTest >> clientSend: message [
 	"Send message to the local TCP echo service and return the result"
 	
 	| socket |
@@ -39,41 +35,29 @@ TCPSocketEchoTest>>clientSend: message [
 			ensure: [ socket closeAndDestroy ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TCPSocketEchoTest>>localhost [
+{ #category : #accessing }
+TCPSocketEchoTest >> localhost [
 	"Return the host address where the TCP echo service runs, the local host address"
 	
 	^ NetNameResolver localHostAddress
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TCPSocketEchoTest>>port [
+{ #category : #accessing }
+TCPSocketEchoTest >> port [
 	"Return the port where the TCP echo service runs"
 
 	^ 6666
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TCPSocketEchoTest>>runServer [
+{ #category : #testing }
+TCPSocketEchoTest >> runServer [
 	"Run and return a local TCP echo server"
 	
 	^ self withTCPEchoServer: [ :process | process ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TCPSocketEchoTest>>testEcho [
+{ #category : #testing }
+TCPSocketEchoTest >> testEcho [
 	| socket message result |
 	socket := Socket newTCP.
 	[ 
@@ -88,11 +72,8 @@ TCPSocketEchoTest>>testEcho [
 	self clientSend: #quit
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TCPSocketEchoTest>>withTCPEchoServer: block [
+{ #category : #private }
+TCPSocketEchoTest >> withTCPEchoServer: block [
 	"Run a local TCP echo server on localhost:port and execute block.
 	Optionally pass the new process to block. When quit is received, stop the server"
 	

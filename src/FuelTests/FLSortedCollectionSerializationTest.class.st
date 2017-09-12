@@ -10,15 +10,11 @@ Class {
 	#classVars : [
 		'ClassVariableForTesting'
 	],
-	#category : #FuelTests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:30'
+	#category : #FuelTests
 }
 
-{
-	#category : #'sorted collections for testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSortedCollectionSerializationTest class>>sortedCollectionForTestingWithClassVariable. [
+{ #category : #'sorted collections for testing' }
+FLSortedCollectionSerializationTest class >> sortedCollectionForTestingWithClassVariable. [
 	^  SortedCollection sortBlock: [:a :b | 
 		ClassVariableForTesting 
 			ifTrue: [ a <= b ] 
@@ -26,29 +22,20 @@ FLSortedCollectionSerializationTest class>>sortedCollectionForTestingWithClassVa
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSortedCollectionSerializationTest>>classVariableForTesting [
+{ #category : #accessing }
+FLSortedCollectionSerializationTest >> classVariableForTesting [
 	
 	^ ClassVariableForTesting
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSortedCollectionSerializationTest>>classVariableForTesting: anObject [
+{ #category : #accessing }
+FLSortedCollectionSerializationTest >> classVariableForTesting: anObject [
 	
 	ClassVariableForTesting := anObject 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSortedCollectionSerializationTest>>sortedBlockClosureWithInstanceVariable [
+{ #category : #running }
+FLSortedCollectionSerializationTest >> sortedBlockClosureWithInstanceVariable [
 	^ SortedCollection
 		sortBlock: [ :a :b | 
 			instanceVariableForTesting
@@ -56,11 +43,8 @@ FLSortedCollectionSerializationTest>>sortedBlockClosureWithInstanceVariable [
 				ifFalse: [ a >= b ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSortedCollectionSerializationTest>>testSortedCollection [
+{ #category : #tests }
+FLSortedCollectionSerializationTest >> testSortedCollection [
 	"Tests that a SortedCollection works fine after materialization. 
 	Note: Equality can not be used to assert, since its behavior is this:
 	| x y |
@@ -80,11 +64,8 @@ FLSortedCollectionSerializationTest>>testSortedCollection [
 	self assert: aSortedCollection asArray = materialized asArray.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSortedCollectionSerializationTest>>testSortedCollectionWithClassVariableChanges [
+{ #category : #tests }
+FLSortedCollectionSerializationTest >> testSortedCollectionWithClassVariableChanges [
 	"Tests serialization of a SortedCollection whose sortBlock has a reference to a class variable and its value is changed. See also FLBlockClosureSerializationTest >> testBlockClosureWithClassVariableChanges  and FLCompiledMethodSerializationTest >> testMethodChangingClassVariable"
 
 	| aSortedCollection materialized mmethod index |
@@ -106,11 +87,8 @@ FLSortedCollectionSerializationTest>>testSortedCollectionWithClassVariableChange
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSortedCollectionSerializationTest>>testSortedCollectionWithClassVariableReference [
+{ #category : #tests }
+FLSortedCollectionSerializationTest >> testSortedCollectionWithClassVariableReference [
 	"Tests serialization of a SortedCollection whose sortBlock has a reference to the outer context. 
 	Note: Equality can not be used to assert, since its behavior is this:
 	| x y |
@@ -131,11 +109,8 @@ FLSortedCollectionSerializationTest>>testSortedCollectionWithClassVariableRefere
 	self assert: aSortedCollection asArray = materialized asArray.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSortedCollectionSerializationTest>>testSortedCollectionWithInstanceVariableReference [
+{ #category : #tests }
+FLSortedCollectionSerializationTest >> testSortedCollectionWithInstanceVariableReference [
 	"Tests serialization of a SortedCollection whose sortBlock has a reference to the outer context. 
 	Note: Equality can not be used to assert, since its behavior is this:
 	| x y |
@@ -155,11 +130,8 @@ FLSortedCollectionSerializationTest>>testSortedCollectionWithInstanceVariableRef
 	self assert: aSortedCollection asArray = #(3 2 1)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLSortedCollectionSerializationTest>>testSortedCollectionWithInstanceVariableReferenceChange [
+{ #category : #tests }
+FLSortedCollectionSerializationTest >> testSortedCollectionWithInstanceVariableReferenceChange [
 	"IMPORTANT: this test is to demonstrate a limitation.  Unfortunatly there is nothing we can do to solve this problem. The sortBlock was serialized with a method context with different receiver, different temps, etc.
 	Tests serialization of a SortedCollection whose sortBlock has a reference to the outer context. 
 	Note: Equality can not be used to assert, since its behavior is this:

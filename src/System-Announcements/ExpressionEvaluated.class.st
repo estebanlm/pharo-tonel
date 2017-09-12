@@ -8,77 +8,52 @@ Class {
 		'context',
 		'expressionEvaluated'
 	],
-	#category : #System-Announcements-System-Base,
-	#timestamp : '<historical>'
+	#category : #System-Announcements-System-Base
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ExpressionEvaluated class>>expression: theEvaluatedExpression [
+{ #category : #'instance creation' }
+ExpressionEvaluated class >> expression: theEvaluatedExpression [
 	^self expression: theEvaluatedExpression context: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ExpressionEvaluated class>>expression: theEvaluatedExpression context: anExecutionContext [
+{ #category : #'instance creation' }
+ExpressionEvaluated class >> expression: theEvaluatedExpression context: anExecutionContext [
 	^self new
 			expressionEvaluated: theEvaluatedExpression;
 			context: anExecutionContext;
 			yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ExpressionEvaluated>>context [
+{ #category : #accessing }
+ExpressionEvaluated >> context [
 	
 	^ context
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ExpressionEvaluated>>context: anObject [
+{ #category : #accessing }
+ExpressionEvaluated >> context: anObject [
 	
 	context := anObject
 ]
 
-{
-	#category : #'temporal for remove',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ExpressionEvaluated>>expression [
+{ #category : #'temporal for remove' }
+ExpressionEvaluated >> expression [
 	^self expressionEvaluated
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ExpressionEvaluated>>expressionEvaluated [
+{ #category : #accessing }
+ExpressionEvaluated >> expressionEvaluated [
 	
 	^ expressionEvaluated
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ExpressionEvaluated>>expressionEvaluated: anObject [
+{ #category : #accessing }
+ExpressionEvaluated >> expressionEvaluated: anObject [
 	
 	expressionEvaluated := anObject
 ]
 
-{
-	#category : #'temporal for remove',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ExpressionEvaluated>>item [
+{ #category : #'temporal for remove' }
+ExpressionEvaluated >> item [
 	^expressionEvaluated
 ]

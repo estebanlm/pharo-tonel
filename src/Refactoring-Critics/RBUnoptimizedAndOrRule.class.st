@@ -4,33 +4,23 @@ Checks for inefficient nesting of logical conditions.
 Class {
 	#name : #RBUnoptimizedAndOrRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 22:54'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnoptimizedAndOrRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBUnoptimizedAndOrRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'UnoptimizedAndOrRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnoptimizedAndOrRule>>group [
+{ #category : #accessing }
+RBUnoptimizedAndOrRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnoptimizedAndOrRule>>initialize [
+{ #category : #initialization }
+RBUnoptimizedAndOrRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyOf: #(
@@ -39,10 +29,7 @@ RBUnoptimizedAndOrRule>>initialize [
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnoptimizedAndOrRule>>name [
+{ #category : #accessing }
+RBUnoptimizedAndOrRule >> name [
 	^ 'Uses "(a and: [b]) and: [c]" instead of "a and: [b and: [c]]"'
 ]

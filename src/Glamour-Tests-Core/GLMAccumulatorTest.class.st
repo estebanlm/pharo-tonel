@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMAccumulatorTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAccumulatorTest>>testCopy [
+{ #category : #tests }
+GLMAccumulatorTest >> testCopy [
 	| accumulator presentation copiedAccumulator |
 	accumulator := GLMAccumulator new.
 	presentation := GLMPresentation new.
@@ -28,11 +21,8 @@ GLMAccumulatorTest>>testCopy [
 	self assert: copiedAccumulator transmissions first origins first pane == copiedAccumulator pane
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAccumulatorTest>>testCustomTransmissions [
+{ #category : #tests }
+GLMAccumulatorTest >> testCustomTransmissions [
 	| accumulator presentation |
 	accumulator := GLMAccumulator new.
 	presentation := GLMPresentation new.
@@ -45,11 +35,8 @@ GLMAccumulatorTest>>testCustomTransmissions [
 	self assert: (accumulator pane port: #otherPort) value equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAccumulatorTest>>testNoDuplicatePaneCreation [
+{ #category : #tests }
+GLMAccumulatorTest >> testNoDuplicatePaneCreation [
 	| accumulator presentation |
 	accumulator := GLMAccumulator new.
 	presentation := GLMPresentation new.
@@ -62,11 +49,8 @@ GLMAccumulatorTest>>testNoDuplicatePaneCreation [
 	self assert: accumulator panes size equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAccumulatorTest>>testPaneAddedAnnouncement [
+{ #category : #tests }
+GLMAccumulatorTest >> testPaneAddedAnnouncement [
 	| accumulator presentation annoumcementsCount |
 	accumulator := GLMAccumulator new.
 	presentation := GLMPresentation new.
@@ -77,11 +61,8 @@ GLMAccumulatorTest>>testPaneAddedAnnouncement [
 	self assert: annoumcementsCount equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAccumulatorTest>>testPaneCreation [
+{ #category : #tests }
+GLMAccumulatorTest >> testPaneCreation [
 	| accumulator presentation |
 	accumulator := GLMAccumulator new.
 	presentation := GLMPresentation new.
@@ -98,11 +79,8 @@ GLMAccumulatorTest>>testPaneCreation [
 	self assert: accumulator panes last presentations first rootPrototype equals: presentation
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAccumulatorTest>>testPaneName [
+{ #category : #tests }
+GLMAccumulatorTest >> testPaneName [
 	| accumulator presentation |
 	accumulator := GLMAccumulator new.
 	presentation := GLMPresentation new.
@@ -113,11 +91,8 @@ GLMAccumulatorTest>>testPaneName [
 	self assert: accumulator panes last name equals: '2'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAccumulatorTest>>testPaneRemovedAnnouncement [
+{ #category : #tests }
+GLMAccumulatorTest >> testPaneRemovedAnnouncement [
 	| accumulator presentation annoumcementsCount |
 	accumulator := GLMAccumulator new.
 	presentation := GLMPresentation new.
@@ -130,11 +105,8 @@ GLMAccumulatorTest>>testPaneRemovedAnnouncement [
 	self assert: annoumcementsCount equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAccumulatorTest>>testPaneSelectedAnnouncement [
+{ #category : #tests }
+GLMAccumulatorTest >> testPaneSelectedAnnouncement [
 	| accumulator presentation annoumcementsCount otherAnnoumcementsCount |
 	accumulator := GLMAccumulator new.
 	presentation := GLMPresentation new.
@@ -152,11 +124,8 @@ GLMAccumulatorTest>>testPaneSelectedAnnouncement [
 	self assert: otherAnnoumcementsCount equals: 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAccumulatorTest>>testPublishToOutside [
+{ #category : #tests }
+GLMAccumulatorTest >> testPublishToOutside [
 	| accumulator presentation |
 	accumulator := GLMAccumulator new.
 	presentation := GLMPresentation new.
@@ -166,11 +135,8 @@ GLMAccumulatorTest>>testPublishToOutside [
 	self assert: (accumulator pane port: #selection) value equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAccumulatorTest>>testPublishToOutsideWhenEmbedded [
+{ #category : #tests }
+GLMAccumulatorTest >> testPublishToOutsideWhenEmbedded [
 	| browser accumulator actualAccumulator |
 	browser := GLMTabulator new.
 	accumulator := GLMAccumulator new.
@@ -210,11 +176,8 @@ GLMAccumulatorTest>>testPublishToOutsideWhenEmbedded [
 	self assert: (actualAccumulator pane port: #anotherPort) value equals: 42
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAccumulatorTest>>testRemovePaneIndex [
+{ #category : #tests }
+GLMAccumulatorTest >> testRemovePaneIndex [
 	| accumulator presentation |
 	accumulator := GLMAccumulator new.
 	presentation := GLMPresentation new.

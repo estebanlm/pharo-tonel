@@ -4,15 +4,11 @@ At May 09, 2003 Tim Olson sent a bug report to the Squeak developers list that i
 Class {
 	#name : #TextAndTextStreamTest,
 	#superclass : #TestCase,
-	#category : #Text-Tests,
-	#timestamp : '<historical>'
+	#category : #Text-Tests
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>example1: size [
+{ #category : #examples }
+TextAndTextStreamTest >> example1: size [
 
    | ts text |
 
@@ -24,11 +20,8 @@ TextAndTextStreamTest>>example1: size [
   
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>example2 [
+{ #category : #examples }
+TextAndTextStreamTest >> example2 [
 
       | ts text |
 
@@ -41,11 +34,8 @@ TextAndTextStreamTest>>example2 [
   
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>replacementAtStartExample3 [
+{ #category : #examples }
+TextAndTextStreamTest >> replacementAtStartExample3 [
 
    | text1  replacement  length  |
 
@@ -60,11 +50,8 @@ TextAndTextStreamTest>>replacementAtStartExample3 [
 
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>replacementExample3 [
+{ #category : #examples }
+TextAndTextStreamTest >> replacementExample3 [
 
   " for a Text  t,
      the following assertion should always hold:
@@ -89,11 +76,8 @@ TextAndTextStreamTest>>replacementExample3 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testAddStringToTextStream [
+{ #category : #tests }
+TextAndTextStreamTest >> testAddStringToTextStream [
 
 	"It is possible to add a string into a TextStream.
 	This test verifies that the created text has text attributes for all its characters. "
@@ -109,31 +93,22 @@ TextAndTextStreamTest>>testAddStringToTextStream [
 
 ]
 
-{
-	#category : #test-errors,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testAddingAttributesBeforeBeg [
+{ #category : #test-errors }
+TextAndTextStreamTest >> testAddingAttributesBeforeBeg [
 	| aText |
 	aText := 'foo' asText.
 	self should: [aText addAttribute: TextColor red from: 0 to: aText size] raise: Error.
 ]
 
-{
-	#category : #test-errors,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testAddingAttributesPastTheEnd [
+{ #category : #test-errors }
+TextAndTextStreamTest >> testAddingAttributesPastTheEnd [
 	| aText |
 	aText := 'foo' asText.
 	self should: [aText addAttribute: TextColor red from: 2 to: aText size + 1] raise: Error.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testExampleText1 [
+{ #category : #tests }
+TextAndTextStreamTest >> testExampleText1 [
 	"self run: #testExampleText1"
 	"inspired by a bug report from Tim Olson.
 	Text attributes are lost when the stream collection is expanded.
@@ -149,11 +124,8 @@ TextAndTextStreamTest>>testExampleText1 [
       
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testExampleText2 [
+{ #category : #tests }
+TextAndTextStreamTest >> testExampleText2 [
 	"a Text looses its attributes when it is reversed "
 	
 	| text1 text2 |
@@ -164,11 +136,8 @@ TextAndTextStreamTest>>testExampleText2 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testIncludesSubstring [
+{ #category : #tests }
+TextAndTextStreamTest >> testIncludesSubstring [
 	"test that Text correctly checks that the supplied substring is present (case sensitive)"
 	self assert: ('testing this string' asText includesSubstring: 'ring').
 	self assert: ('éèàôüößäóñíá' asText includesSubstring: '').
@@ -177,11 +146,8 @@ TextAndTextStreamTest>>testIncludesSubstring [
 	self deny: ('kjdsnlksjdf' asText includesSubstring: 'K')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testIncludesSubstringCaseSensitive [
+{ #category : #tests }
+TextAndTextStreamTest >> testIncludesSubstringCaseSensitive [
 	"test that Text correctly checks that the supplied substring is present,
 	both case sensitive and case insensitive"
 	self deny: ('test this string' asText includesSubstring: 'Ring' caseSensitive: true).
@@ -191,31 +157,22 @@ TextAndTextStreamTest>>testIncludesSubstringCaseSensitive [
 	self assert: ('123éàôüöß' asText includesSubstring: 'ÀÔ' caseSensitive: false)
 ]
 
-{
-	#category : #test-errors,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testRemovingAttributesBeforeBeg [
+{ #category : #test-errors }
+TextAndTextStreamTest >> testRemovingAttributesBeforeBeg [
 	| aText |
 	aText := Text string: 'foo' attribute: TextColor red .
 	self should: [aText removeAttribute: TextColor red from: 0 to: aText size] raise: Error.
 ]
 
-{
-	#category : #test-errors,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testRemovingAttributesPastTheEnd [
+{ #category : #test-errors }
+TextAndTextStreamTest >> testRemovingAttributesPastTheEnd [
 	| aText |
 	aText := Text string: 'foo' attribute: TextColor red .
 	self should: [aText addAttribute: TextColor red from: 2 to: aText size + 1] raise: Error.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testRunArrayAdjacentMerge [
+{ #category : #tests }
+TextAndTextStreamTest >> testRunArrayAdjacentMerge [
 
 	"this demonstrates that adjancent runs with equal attributes are merged. "
 	| runArray |
@@ -227,11 +184,8 @@ TextAndTextStreamTest>>testRunArrayAdjacentMerge [
 	self assert: (runArray runs size = 2). 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testRunArrayInvariant [
+{ #category : #tests }
+TextAndTextStreamTest >> testRunArrayInvariant [
 
 	"this verifies that the fundamental invariant of a RunArray is always satisfied. "
 	"see comment below"
@@ -260,11 +214,8 @@ TextAndTextStreamTest>>testRunArrayInvariant [
 The assertion itself explains the meaning of the cached values."
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testRunArrayReversal [
+{ #category : #tests }
+TextAndTextStreamTest >> testRunArrayReversal [
 
   	"this tests the reversal of a  RunArray "
 	| runArray |
@@ -276,11 +227,8 @@ TextAndTextStreamTest>>testRunArrayReversal [
 	self assert: (runArray reversed runs size = 3). 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testRunArrayRunsAreNotMerged [
+{ #category : #tests }
+TextAndTextStreamTest >> testRunArrayRunsAreNotMerged [
 
 	" this demonstrates that different runs are not merged "
 	| runArray |
@@ -292,11 +240,8 @@ TextAndTextStreamTest>>testRunArrayRunsAreNotMerged [
 	self assert: (runArray runs size = 3). 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testRunArrayRunsSize [
+{ #category : #tests }
+TextAndTextStreamTest >> testRunArrayRunsSize [
 
  	"this demonstrates that the size of a run array is the sum of the sizes of its runs. "
 	| runArray |
@@ -308,22 +253,16 @@ TextAndTextStreamTest>>testRunArrayRunsSize [
 	self assert: (runArray size = 15). 
 ]
 
-{
-	#category : #test-errors,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testSettingRunsOfWrongSize [
+{ #category : #test-errors }
+TextAndTextStreamTest >> testSettingRunsOfWrongSize [
 	| aText newRuns |
 	aText := 'foo' asText.
 	newRuns := aText runs copyReplaceFrom: 2 to: 1 with: (Array with: TextColor red).
 	self should: [aText runs: newRuns] raise: Error.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testTextEmphasisRangeDetection1 [
+{ #category : #tests }
+TextAndTextStreamTest >> testTextEmphasisRangeDetection1 [
 
 	"this tests the detection of the range of a text attribute. "
 	| text startPos boldStyle |
@@ -354,11 +293,8 @@ TextAndTextStreamTest>>testTextEmphasisRangeDetection1 [
 					ifFalse: [range first = idx & (range size = 0)]])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testTextEmphasisRangeDetection2 [
+{ #category : #tests }
+TextAndTextStreamTest >> testTextEmphasisRangeDetection2 [
 
 	"this tests the detection of the range of a text attribute.
 	Here the searched attribute spans three runs. The objective of the test is whether the entire range is always found."
@@ -390,11 +326,8 @@ TextAndTextStreamTest>>testTextEmphasisRangeDetection2 [
 						ifFalse: [range first = idx & (range size = 0)]])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testTextEmphasisRangeDetection3 [
+{ #category : #tests }
+TextAndTextStreamTest >> testTextEmphasisRangeDetection3 [
 
 	"this tests the detection of the range of a text attribute.
     Here the searched attribute spans three runs. The the range to be detected begins at text position 1. The objective of the test is whether the entire range is always found."
@@ -436,11 +369,8 @@ TextAndTextStreamTest>>testTextEmphasisRangeDetection3 [
                     [range first = idx & (range size = 0)]])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testTextEmphasisRangeDetection4 [
+{ #category : #tests }
+TextAndTextStreamTest >> testTextEmphasisRangeDetection4 [
 
 	"this tests the detection of the range of a text attribute.
 	Here the searched attribute spans three runs. The the range to be detected extends to the end of the text . The objective of the test is whether the 
@@ -484,11 +414,8 @@ TextAndTextStreamTest>>testTextEmphasisRangeDetection4 [
                   ifFalse: [range first = idx & (range size = 0)]])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testTextReplacement1 [
+{ #category : #tests }
+TextAndTextStreamTest >> testTextReplacement1 [
 
 	"for a Text  t,
      the following assertion should always hold:
@@ -510,11 +437,8 @@ TextAndTextStreamTest>>testTextReplacement1 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testTextReplacement2 [
+{ #category : #tests }
+TextAndTextStreamTest >> testTextReplacement2 [
 
 
   	"for a Text  t,
@@ -538,11 +462,8 @@ TextAndTextStreamTest>>testTextReplacement2 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testTextReplacement3 [
+{ #category : #tests }
+TextAndTextStreamTest >> testTextReplacement3 [
 
 	"for a Text  t,
 	the following assertion should always hold:
@@ -553,11 +474,8 @@ TextAndTextStreamTest>>testTextReplacement3 [
 	self should: [self replacementExample3]  raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testTextReplacementAtStartPos1 [
+{ #category : #tests }
+TextAndTextStreamTest >> testTextReplacementAtStartPos1 [
 
 	"for a Text  t,
      the following assertion should always hold:
@@ -577,11 +495,8 @@ TextAndTextStreamTest>>testTextReplacementAtStartPos1 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testTextReplacementAtStartPos2 [
+{ #category : #tests }
+TextAndTextStreamTest >> testTextReplacementAtStartPos2 [
 
   	"for a Text  t,
      the following assertion should always hold:
@@ -601,11 +516,8 @@ TextAndTextStreamTest>>testTextReplacementAtStartPos2 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testTextReplacementAtStartPos3 [
+{ #category : #tests }
+TextAndTextStreamTest >> testTextReplacementAtStartPos3 [
 
 	"for a Text  t,
 	the following assertion should always hold:
@@ -616,11 +528,8 @@ TextAndTextStreamTest>>testTextReplacementAtStartPos3 [
 	self should: [self replacementAtStartExample3] raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextAndTextStreamTest>>testTextStreamAdjacentRunsWithIdentitcalAttributes [
+{ #category : #tests }
+TextAndTextStreamTest >> testTextStreamAdjacentRunsWithIdentitcalAttributes [
 
 	"This test verifies that adjacent runs with identical attributes are coalesced."
 

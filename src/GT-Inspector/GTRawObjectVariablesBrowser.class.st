@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'cachedHashes'
 	],
-	#category : #GT-Inspector,
-	#timestamp : 'TudorGirba 1/4/2016 20:45'
+	#category : #GT-Inspector
 }
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>basicVariableNodesFor: anObject [
+{ #category : #'private building' }
+GTRawObjectVariablesBrowser >> basicVariableNodesFor: anObject [
 
 	^ #()
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>basicVariableNodesFor: anObject in: aCollection [
+{ #category : #'private building' }
+GTRawObjectVariablesBrowser >> basicVariableNodesFor: anObject in: aCollection [
 
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>childrenVariableNodesForNode: aNode [
+{ #category : #'private building' }
+GTRawObjectVariablesBrowser >> childrenVariableNodesForNode: aNode [
 	| variableNodes |
 
 	"Nil should have now a single child: `self`. For now this is needed for
@@ -46,11 +36,8 @@ GTRawObjectVariablesBrowser>>childrenVariableNodesForNode: aNode [
 	^ variableNodes
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>compose [
+{ #category : #building }
+GTRawObjectVariablesBrowser >> compose [
 	self title: 'Raw'.
 	self tabulator with: [ :browser |
 		browser row: #variables; row: #evaluator.
@@ -70,11 +57,8 @@ GTRawObjectVariablesBrowser>>compose [
 	self wantsAutomaticRefresh: true
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>evaluatorIn: composite [
+{ #category : #'private building' }
+GTRawObjectVariablesBrowser >> evaluatorIn: composite [
 	^ composite pharoScript
 		doItReceiver: [ :object | object ];
 		smalltalkClass: [ :object | object class ];
@@ -92,11 +76,8 @@ GTRawObjectVariablesBrowser>>evaluatorIn: composite [
 		installDefaultSelectionActions
 ]
 
-{
-	#category : #'private - updating',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>generateCacheFor: anObject [
+{ #category : #'private - updating' }
+GTRawObjectVariablesBrowser >> generateCacheFor: anObject [
 	| valuesCache |
 	
 	valuesCache := OrderedDictionary new.
@@ -108,11 +89,8 @@ GTRawObjectVariablesBrowser>>generateCacheFor: anObject [
 	^ valuesCache
 ]
 
-{
-	#category : #'private - updating',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>generateHashFor: anObject  [
+{ #category : #'private - updating' }
+GTRawObjectVariablesBrowser >> generateHashFor: anObject [ 
 
 	^ (self basicVariableNodesFor: anObject)
 		inject: anObject gtInspectorHash
@@ -121,55 +99,37 @@ GTRawObjectVariablesBrowser>>generateHashFor: anObject  [
 	
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>iconFor: anObject [
+{ #category : #'private building' }
+GTRawObjectVariablesBrowser >> iconFor: anObject [
 		
 	^ [ (anObject gtInspectorIcon)
 		ifNil: [ anObject class systemIcon ] ]
 			on: Error do: [ :error | self iconFor: anObject error: error ]
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>iconFor: anEyeElement error: error [
+{ #category : #'private building' }
+GTRawObjectVariablesBrowser >> iconFor: anEyeElement error: error [
 	^ self iconNamed: #smallWarningIcon
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>printStringOf: anObject [
+{ #category : #'private building' }
+GTRawObjectVariablesBrowser >> printStringOf: anObject [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'private - updating',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>rebuildCacheFor: anObject [
+{ #category : #'private - updating' }
+GTRawObjectVariablesBrowser >> rebuildCacheFor: anObject [
 
 	cachedHashes := self generateCacheFor: anObject
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>requestRefresh [
+{ #category : #stepping }
+GTRawObjectVariablesBrowser >> requestRefresh [
 	(self presentations first paneNamed: #variables) presentations first requestRefresh
 ]
 
-{
-	#category : #'private - updating',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>shouldRefresh [
+{ #category : #'private - updating' }
+GTRawObjectVariablesBrowser >> shouldRefresh [
 	|newCache result|
 
 	newCache := self generateCacheFor: self entity.
@@ -178,11 +138,8 @@ GTRawObjectVariablesBrowser>>shouldRefresh [
 	^ result
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>stringWithoutInitialCommentFrom: aString [
+{ #category : #'private building' }
+GTRawObjectVariablesBrowser >> stringWithoutInitialCommentFrom: aString [
 	^ (aString trimLeft isEmpty not and: [ aString trimLeft first = $" ])
 		ifFalse: [ aString trimRight ]
 		ifTrue: [|startIndex doubleQuoteCounter|
@@ -204,11 +161,8 @@ GTRawObjectVariablesBrowser>>stringWithoutInitialCommentFrom: aString [
 				to: aString size) trimBoth ]
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>updateVariableNode: aNode basedOn: aString [
+{ #category : #'private building' }
+GTRawObjectVariablesBrowser >> updateVariableNode: aNode basedOn: aString [
 	| aResult |
 
 	aResult := aNode hostObject class compiler
@@ -221,11 +175,8 @@ GTRawObjectVariablesBrowser>>updateVariableNode: aNode basedOn: aString [
 	aNode save: aResult
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>variableNodesFor: anObject [
+{ #category : #'private building' }
+GTRawObjectVariablesBrowser >> variableNodesFor: anObject [
 	| variableNodes |
 
 	"Nil should have now a single child: `self`. For now this is needed for
@@ -238,11 +189,8 @@ GTRawObjectVariablesBrowser>>variableNodesFor: anObject [
 	^ variableNodes
 ]
 
-{
-	#category : #'private building',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTRawObjectVariablesBrowser>>variablesIn: composite [
+{ #category : #'private building' }
+GTRawObjectVariablesBrowser >> variablesIn: composite [
 	^ composite fastTreeTable
 		useCache;
 		hasChildren: [ :aNode | aNode key ~= 'self' ];

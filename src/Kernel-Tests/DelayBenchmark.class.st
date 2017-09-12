@@ -13,34 +13,24 @@ Class {
 		'ExitCount',
 		'Running'
 	],
-	#category : #Kernel-Tests-Processes,
-	#timestamp : 'BenComan 10/26/2014 11:54'
+	#category : #Kernel-Tests-Processes
 }
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayBenchmark class>>run [
+{ #category : #action }
+DelayBenchmark class >> run [
 	"DelayBenchmark run"
 	self new bench.
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayBenchmark class>>runAll [
+{ #category : #action }
+DelayBenchmark class >> runAll [
 	"DelayBenchmark runAll"
 	Transcript clear.
 	DelayScheduler allSubclasses do: [ :delayScheudlerClass | self new bench: delayScheudlerClass ].
 ]
 
-{
-	#category : #benchmarks,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayBenchmark>>bench [
+{ #category : #benchmarks }
+DelayBenchmark >> bench [
 	"DelayBenchmark runAll."
 	"DelayBenchmark run."
 	| sampleSetSeeds trialOfNumberConcurrent completed |
@@ -75,11 +65,8 @@ completed wait.
 		
 ]
 
-{
-	#category : #benchmarks,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayBenchmark>>bench: aDelaySchedulerClass [
+{ #category : #benchmarks }
+DelayBenchmark >> bench: aDelaySchedulerClass [
 	| schedulerClassToRestore |
 	
 	self assert: (aDelaySchedulerClass inheritsFrom: DelayScheduler).
@@ -90,11 +77,8 @@ DelayBenchmark>>bench: aDelaySchedulerClass [
 	] ensure: [ Delay delaySchedulerClass: schedulerClassToRestore].
 ]
 
-{
-	#category : #support,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayBenchmark>>generateDelayProcesses: numberConcurrent priority: priority maxDuration: maxDuration fromSeed: seed  [
+{ #category : #support }
+DelayBenchmark >> generateDelayProcesses: numberConcurrent priority: priority maxDuration: maxDuration fromSeed: seed [ 
 	| randomGenerator sampleDurations sampleIndex | 
 	"Pre-generate a series of random durations to remove such time for such generation from trial" 
 	"Seed to help reproducability between trials."
@@ -126,11 +110,8 @@ DelayBenchmark>>generateDelayProcesses: numberConcurrent priority: priority maxD
 
 ]
 
-{
-	#category : #support,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayBenchmark>>trialConcurrent: numberConcurrentDelays priority: priority maxDuration: maxDuration fromSeed: seed  [
+{ #category : #support }
+DelayBenchmark >> trialConcurrent: numberConcurrentDelays priority: priority maxDuration: maxDuration fromSeed: seed [ 
 
 	| delayProcesses |
 	delayProcesses := self 

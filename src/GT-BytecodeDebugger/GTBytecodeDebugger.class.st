@@ -4,78 +4,53 @@ I am a debugger that provides the ability to step through the execution at the b
 Class {
 	#name : #GTBytecodeDebugger,
 	#superclass : #GTGenericStackDebugger,
-	#category : #GT-BytecodeDebugger-UI,
-	#timestamp : 'AndreiChis 12/30/2015 10:49'
+	#category : #GT-BytecodeDebugger-UI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebugger class>>defaultTitle [
+{ #category : #accessing }
+GTBytecodeDebugger class >> defaultTitle [
 
 	^ 'Bytecode'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebugger class>>helpClass [
+{ #category : #accessing }
+GTBytecodeDebugger class >> helpClass [
 	^ GTBytecodeDebuggerHelp
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebugger class>>register [
+{ #category : #'tools registry' }
+GTBytecodeDebugger class >> register [
 
 	self registerToolsOn: Smalltalk tools.
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebugger class>>registerToolsOn: registry [
+{ #category : #'tools registry' }
+GTBytecodeDebugger class >> registerToolsOn: registry [
 
 	"Add ourselves to registry. See [Smalltalk tools]" 
 	registry registerDebugger: self withRank: 5.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebugger class>>sessionClass [
+{ #category : #accessing }
+GTBytecodeDebugger class >> sessionClass [
 
 	^ GTBytecodeDebuggerSession
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebugger class>>variablesBrowserClass [
+{ #category : #accessing }
+GTBytecodeDebugger class >> variablesBrowserClass [
 
 	^ GTBytecodeDebuggerVariablesBrowser
 ]
 
-{
-	#category : #'building actions',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebugger>>bytecodeActionsPragmas [
+{ #category : #'building actions' }
+GTBytecodeDebugger >> bytecodeActionsPragmas [
 
 	^ #( bytecodeCodeDebuggingAction )
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebugger>>bytecodeIn: aComposite forContext: aContext [
+{ #category : #'building presentations' }
+GTBytecodeDebugger >> bytecodeIn: aComposite forContext: aContext [
 
 	(self methodBytecodeWidgetIn: aComposite forContext: aContext)
 		initialize: [ :bytecodePresentation |
@@ -83,29 +58,20 @@ GTBytecodeDebugger>>bytecodeIn: aComposite forContext: aContext [
 		with: [ :bytecode | self installActionsForRootPragmas: self bytecodeActionsPragmas in: bytecode ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebugger>>bytecodePane [
+{ #category : #accessing }
+GTBytecodeDebugger >> bytecodePane [
 
 	^ self browser paneNamed: #bytecode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebugger>>bytecodePresentation [
+{ #category : #accessing }
+GTBytecodeDebugger >> bytecodePresentation [
 	
 	^ self bytecodePane presentations first
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebugger>>debuggerStructureIn: browser [
+{ #category : #building }
+GTBytecodeDebugger >> debuggerStructureIn: browser [
 	
 	browser
 		row: #stack;
@@ -116,11 +82,8 @@ GTBytecodeDebugger>>debuggerStructureIn: browser [
 		
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebugger>>debuggerTransmissionsIn: browser [
+{ #category : #building }
+GTBytecodeDebugger >> debuggerTransmissionsIn: browser [
 
 	super debuggerTransmissionsIn: browser.
 	browser transmit
@@ -130,11 +93,8 @@ GTBytecodeDebugger>>debuggerTransmissionsIn: browser [
 
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebugger>>decompiledCodeWidgetIn: composite forContext: aContext [
+{ #category : #'building presentations' }
+GTBytecodeDebugger >> decompiledCodeWidgetIn: composite forContext: aContext [
 
 	^ composite pharoMethod
 		title: 'Decompiled';
@@ -144,11 +104,8 @@ GTBytecodeDebugger>>decompiledCodeWidgetIn: composite forContext: aContext [
 		doItContext: [  aContext ]
 ]
 
-{
-	#category : #printing/formatting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebugger>>formatBytecode: aBytecode [
+{ #category : #printing/formatting }
+GTBytecodeDebugger >> formatBytecode: aBytecode [
 	| textAttributes|
 	
 	textAttributes := {TextColor new color: Smalltalk ui theme textColor}.
@@ -159,11 +116,8 @@ GTBytecodeDebugger>>formatBytecode: aBytecode [
 		attributes: textAttributes
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebugger>>methodBytecodeWidgetIn: aComposite forContext: aContext [
+{ #category : #'building presentations' }
+GTBytecodeDebugger >> methodBytecodeWidgetIn: aComposite forContext: aContext [
 
 	^ aComposite tree
 		title: 'Bytecode';
@@ -178,11 +132,8 @@ GTBytecodeDebugger>>methodBytecodeWidgetIn: aComposite forContext: aContext [
 					ifNotNil: [:selectedBytecode| selectedBytecode sourceInterval]) ] 
 ]
 
-{
-	#category : #'building presentations',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-GTBytecodeDebugger>>methodCodeIn: composite forContext: aContext [
+{ #category : #'building presentations' }
+GTBytecodeDebugger >> methodCodeIn: composite forContext: aContext [
 
 	(self methodCodeWidgetIn: composite forContext: aContext)
 		with: [ :code | self installCodeActionsFor: code ].

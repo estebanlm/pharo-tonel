@@ -4,33 +4,23 @@ Literal arrays containing only characters can more efficiently represented as st
 Class {
 	#name : #RBLiteralArrayCharactersRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 22:12'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayCharactersRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBLiteralArrayCharactersRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'LiteralArrayCharactersRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayCharactersRule>>group [
+{ #category : #accessing }
+RBLiteralArrayCharactersRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayCharactersRule>>initialize [
+{ #category : #initialization }
+RBLiteralArrayCharactersRule >> initialize [
 	super initialize.
 	self matcher 
 		matches: '`#literal'
@@ -43,21 +33,15 @@ RBLiteralArrayCharactersRule>>initialize [
 				ifFalse: [ answer ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayCharactersRule>>isArrayOfCharacters: anArray  [
+{ #category : #private }
+RBLiteralArrayCharactersRule >> isArrayOfCharacters: anArray [ 
 	anArray isEmpty ifTrue: [^false].
 	1 to: anArray size
 		do: [:each | (anArray at: each) class == Character ifFalse: [^false]].
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBLiteralArrayCharactersRule>>name [
+{ #category : #accessing }
+RBLiteralArrayCharactersRule >> name [
 	^ 'Literal array contains only characters'
 ]

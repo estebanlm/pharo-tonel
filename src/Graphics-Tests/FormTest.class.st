@@ -4,15 +4,11 @@ Various tests for class form.
 Class {
 	#name : #FormTest,
 	#superclass : #ClassTestCase,
-	#category : #Graphics-Tests-Primitives,
-	#timestamp : 'ar 7/21/2007 21:39'
+	#category : #Graphics-Tests-Primitives
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-FormTest>>test32BitFormBlackShouldStayBlackAfterSave [
+{ #category : #tests }
+FormTest >> test32BitFormBlackShouldStayBlackAfterSave [
 	"Solve bug: https://pharo.fogbugz.com/f/cases/14619/Strange-behavior-of-TestRunner-Icon"
 
 	| blackForm |
@@ -20,22 +16,16 @@ FormTest>>test32BitFormBlackShouldStayBlackAfterSave [
 	self assert: blackForm colorsUsed first equals: Color black
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-FormTest>>test32BitTranslucentBlackIsBlack [
+{ #category : #tests }
+FormTest >> test32BitTranslucentBlackIsBlack [
 	|form|
 	form := Form extent: 1@1 depth: 32.
 	form colorAt: 0@0 put: (Color black alpha: 0.0).
 	self assert:  0 equals: (form pixelValueAt: 0@0)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-FormTest>>testIsAllWhite	"self run: #testIsAllWhite" [
+{ #category : #tests }
+FormTest >> testIsAllWhite [	"self run: #testIsAllWhite"
 	"Make sure #isAllWhite works for all bit depths"
 	
 	#(-32 -16 -8 -4 -2 -1 1 2 4 8 16 32) do:[:d| | form |

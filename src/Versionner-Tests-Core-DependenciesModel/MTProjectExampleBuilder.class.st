@@ -5,15 +5,11 @@ A MTProjectExampleBuilder is used to create some MTProjects with dummy data or t
 Class {
 	#name : #MTProjectExampleBuilder,
 	#superclass : #Object,
-	#category : #Versionner-Tests-Core-DependenciesModel,
-	#timestamp : '<historical>'
+	#category : #Versionner-Tests-Core-DependenciesModel
 }
 
-{
-	#category : #'building projects',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProjectExampleBuilder class>>projectA [
+{ #category : #'building projects' }
+MTProjectExampleBuilder class >> projectA [
 	| project allGroup smallGroup |
 	
 	project := MTProject 
@@ -37,11 +33,8 @@ MTProjectExampleBuilder class>>projectA [
 	^ project
 ]
 
-{
-	#category : #'building projects',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProjectExampleBuilder class>>projectB [
+{ #category : #'building projects' }
+MTProjectExampleBuilder class >> projectB [
 	| project allGroup smallGroup |
 	
 	project := MTProject 
@@ -64,11 +57,8 @@ MTProjectExampleBuilder class>>projectB [
 	^ project
 ]
 
-{
-	#category : #'building projects',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProjectExampleBuilder class>>projectC [
+{ #category : #'building projects' }
+MTProjectExampleBuilder class >> projectC [
 	| project |
 	
 	project := MTProject 

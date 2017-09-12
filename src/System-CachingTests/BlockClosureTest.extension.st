@@ -1,12 +1,7 @@
-Extension {
-	#name : #BlockClosureTest
-}
+Extension { #name : #BlockClosureTest }
 
-{
-	#category : #'*System-CachingTests',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-BlockClosureTest>>testMemoizedDictionary [
+{ #category : #'*System-CachingTests' }
+BlockClosureTest >> testMemoizedDictionary [
 	| cache factorial result |
 	cache := Dictionary new.
 	factorial := 0. "avoid not-initialised warning when saving method source"
@@ -16,11 +11,8 @@ BlockClosureTest>>testMemoizedDictionary [
 	self assert: cache associations equals: { 1->1.   2->2.   3->6.   4->24.   5->120 }.
 ]
 
-{
-	#category : #'*System-CachingTests',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-BlockClosureTest>>testMemoizedLRUCache [
+{ #category : #'*System-CachingTests' }
+BlockClosureTest >> testMemoizedLRUCache [
 	| cache factorial result |
 	cache := LRUCache new maximumWeight: 3.
 	factorial := 0. "avoid not-initialised warning when saving method source"

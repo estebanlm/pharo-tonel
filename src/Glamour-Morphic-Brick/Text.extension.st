@@ -1,12 +1,7 @@
-Extension {
-	#name : #Text
-}
+Extension { #name : #Text }
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Text>>asBrick [
+{ #category : #'*Glamour-Morphic-Brick' }
+Text >> asBrick [
 
 	^ self asString asBrick
 ]

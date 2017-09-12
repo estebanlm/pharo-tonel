@@ -7,58 +7,39 @@ Class {
 	#instVars : [
 		'thisContextSample'
 	],
-	#category : #FuelTests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:32'
+	#category : #FuelTests
 }
 
-{
-	#category : #'closures for testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLContextSerializationTest class>>blockClosureContextTesting [
+{ #category : #'closures for testing' }
+FLContextSerializationTest class >> blockClosureContextTesting [
 	^ [self class] asContext
 ]
 
-{
-	#category : #'closures for testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLContextSerializationTest class>>blockClosureContextTestingWithSender: aSenderContext [
+{ #category : #'closures for testing' }
+FLContextSerializationTest class >> blockClosureContextTestingWithSender: aSenderContext [
 	^ [self class] asContextWithSender: aSenderContext
 ]
 
-{
-	#category : #'closures for testing',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLContextSerializationTest class>>blockClosureContextWithOutPointerTesting [
+{ #category : #'closures for testing' }
+FLContextSerializationTest class >> blockClosureContextWithOutPointerTesting [
 	| string |
 	string := 'test'.
 	^ [self class. string asUppercase] asContext
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLContextSerializationTest class>>thisContextSample [
+{ #category : #running }
+FLContextSerializationTest class >> thisContextSample [
 	^ thisContext copy
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLContextSerializationTest>>setUp [
+{ #category : #running }
+FLContextSerializationTest >> setUp [
 	super setUp.
 	thisContextSample := self class thisContextSample.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLContextSerializationTest>>testContext [
+{ #category : #tests }
+FLContextSerializationTest >> testContext [
 	"This test should be improved"
 	| context1  materializedContext1  |
 	context1 := (Context newForMethod: FLPair >> #method1).
@@ -73,11 +54,8 @@ FLContextSerializationTest>>testContext [
 	context1 assertWellMaterializedInto: materializedContext1 in: self.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLContextSerializationTest>>testContextThisContext [
+{ #category : #tests }
+FLContextSerializationTest >> testContextThisContext [
 
 	| materializedContext context |
 	context := thisContextSample.
@@ -97,11 +75,8 @@ FLContextSerializationTest>>testContextThisContext [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLContextSerializationTest>>testContextWithClosure [
+{ #category : #tests }
+FLContextSerializationTest >> testContextWithClosure [
 	"This test should be improved"
 	| context1  materializedContext1  |
 	context1 := self class blockClosureContextTesting.
@@ -111,11 +86,8 @@ FLContextSerializationTest>>testContextWithClosure [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLContextSerializationTest>>testContextWithClosureAndSender [
+{ #category : #tests }
+FLContextSerializationTest >> testContextWithClosureAndSender [
 	"This test should be improved"
 	| context1  materializedContext2  context2 |
 	
@@ -134,11 +106,8 @@ FLContextSerializationTest>>testContextWithClosureAndSender [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLContextSerializationTest>>testContextWithClosureContextWithOutPointerTesting [
+{ #category : #tests }
+FLContextSerializationTest >> testContextWithClosureContextWithOutPointerTesting [
 	"This test should be improved"
 	| context1  materializedContext1  |
 	context1 := self class blockClosureContextWithOutPointerTesting.
@@ -150,11 +119,8 @@ FLContextSerializationTest>>testContextWithClosureContextWithOutPointerTesting [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLContextSerializationTest>>testContextWithNilPc [
+{ #category : #tests }
+FLContextSerializationTest >> testContextWithNilPc [
 	"This test should be improved"
 	| context1  materializedContext1  |
 	context1 := (Context newForMethod: FLPair >> #method1).
@@ -169,11 +135,8 @@ FLContextSerializationTest>>testContextWithNilPc [
 	context1 assertWellMaterializedInto: materializedContext1 in: self.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLContextSerializationTest>>testContextWithSender [
+{ #category : #tests }
+FLContextSerializationTest >> testContextWithSender [
 	"This test should be improved"
 	| context1 context2 materializedContext1 |
 	context1 := (Context newForMethod: FLPair >> #method1).
@@ -198,11 +161,8 @@ FLContextSerializationTest>>testContextWithSender [
 	context1 assertWellMaterializedInto: materializedContext1 in: self.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLContextSerializationTest>>testContextWithTemp [
+{ #category : #tests }
+FLContextSerializationTest >> testContextWithTemp [
 	"This test should be improved"
 	| context1  materializedContext1  |
 	context1 := (Context newForMethod: FLPair >> #methodWithTemp).
@@ -219,11 +179,8 @@ FLContextSerializationTest>>testContextWithTemp [
 	context1 assertWellMaterializedInto: materializedContext1 in: self.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLContextSerializationTest>>testDoIt [
+{ #category : #tests }
+FLContextSerializationTest >> testDoIt [
 	"Serialization of DoIt methods should be possible by default.
 	Note: apparently this test didn't use to terminate some times.
 	I've added the #valueWithin:onTimeout: as a fallback for that."	

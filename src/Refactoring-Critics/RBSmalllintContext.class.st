@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RBSmalllintContext,
 	#superclass : #Object,
@@ -17,43 +14,30 @@ Class {
 		'superMessages',
 		'messages'
 	],
-	#category : #Refactoring-Critics,
-	#timestamp : ''
+	#category : #Refactoring-Critics
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext class>>newNoCache [
+{ #category : #'instance creation' }
+RBSmalllintContext class >> newNoCache [
 	^self basicNew
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>addLiteralsFor: aCompiledMethod [
+{ #category : #private }
+RBSmalllintContext >> addLiteralsFor: aCompiledMethod [
 	2 to: aCompiledMethod numLiterals - 1
 		do: [ :index | self checkLiteral: (aCompiledMethod objectAt: index) ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>buildParseTree [
+{ #category : #private }
+RBSmalllintContext >> buildParseTree [
 	| tree |
 	tree := self selectedClass parseTreeFor: self selector.
 	tree isNil ifTrue: [^RBParser parseMethod: 'method'].
 	^tree
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>checkLiteral: aLiteral  [
+{ #category : #private }
+RBSmalllintContext >> checkLiteral: aLiteral [ 
 	(aLiteral isSymbol or: [aLiteral isVariableBinding])
 		ifTrue: [literals add: aLiteral]
 		ifFalse: 
@@ -61,52 +45,37 @@ RBSmalllintContext>>checkLiteral: aLiteral  [
 				ifTrue: [aLiteral do: [:each | self checkLiteral: each]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>compiledMethod [
+{ #category : #accessing }
+RBSmalllintContext >> compiledMethod [
 	^compiledMethod notNil
 		ifTrue: [compiledMethod]
 		ifFalse: [compiledMethod := class compiledMethodAt: selector]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>computeLiterals [
+{ #category : #private }
+RBSmalllintContext >> computeLiterals [
 	literalSemaphore := Semaphore new.
 	literalProcess := [self primitiveComputeLiterals] fork
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>computeLiteralsForClass: aClass  [
+{ #category : #private }
+RBSmalllintContext >> computeLiteralsForClass: aClass [ 
 	(selectors addAll: aClass selectors) do: 
 			[:sel | 
 			self computeLiteralsForSelector: sel in: aClass.
 			Processor yield]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>computeLiteralsForSelector: aSelector in: aClass  [
+{ #category : #private }
+RBSmalllintContext >> computeLiteralsForSelector: aSelector in: aClass [ 
 	| method |
 	method := aClass compiledMethodAt: aSelector ifAbsent: [nil].
 	method isNil ifTrue: [^self].
 	self addLiteralsFor: method
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>computeMessages [
+{ #category : #private }
+RBSmalllintContext >> computeMessages [
 	| searcher |
 	selfMessages := Set new.
 	superMessages := Set new.
@@ -122,19 +91,13 @@ RBSmalllintContext>>computeMessages [
 	searcher executeTree: self parseTree initialAnswer: nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>implements: aSelector  [
+{ #category : #testing }
+RBSmalllintContext >> implements: aSelector [ 
 	^self selectors includes: aSelector
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>includesBehaviorNamed: aClassName [
+{ #category : #testing }
+RBSmalllintContext >> includesBehaviorNamed: aClassName [
 	| current |
 	current := self selectedClass.
 	[ current isNil ] whileFalse: [
@@ -144,38 +107,26 @@ RBSmalllintContext>>includesBehaviorNamed: aClassName [
 	^ false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>initialize [
+{ #category : #initialization }
+RBSmalllintContext >> initialize [
 	self computeLiterals
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>instVarNames [
+{ #category : #accessing }
+RBSmalllintContext >> instVarNames [
 	^self selectedClass allInstVarNames
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>isAbstract: aClass  [
+{ #category : #testing }
+RBSmalllintContext >> isAbstract: aClass [ 
 	^(aClass isMeta or: 
 			[(self literals includes: aClass name)
 				or: [self literals includes: (Smalltalk globals associationAt: aClass name)]])
 		not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>literals [
+{ #category : #accessing }
+RBSmalllintContext >> literals [
 	literalSemaphore isNil
 		ifTrue: 
 			[literals isNil ifTrue: 
@@ -185,30 +136,21 @@ RBSmalllintContext>>literals [
 	^literals
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>messages [
+{ #category : #accessing }
+RBSmalllintContext >> messages [
 	messages isNil ifTrue: [self computeMessages].
 	^messages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>parseTree [
+{ #category : #accessing }
+RBSmalllintContext >> parseTree [
 	^parseTree isNil
 		ifTrue: [parseTree := self buildParseTree]
 		ifFalse: [parseTree]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>primitiveComputeLiterals [
+{ #category : #private }
+RBSmalllintContext >> primitiveComputeLiterals [
 	| semaphore |
 	literals := IdentitySet new: 25000.
 	literals addAll: self specialSelectors keys.
@@ -221,11 +163,8 @@ RBSmalllintContext>>primitiveComputeLiterals [
 	^literalProcess := nil
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>printOn: aStream [
+{ #category : #printing }
+RBSmalllintContext >> printOn: aStream [
 	super printOn: aStream.
 	self selectedClass isNil ifFalse: [ 
 		aStream nextPut: $ ; nextPutAll: self selectedClass name.
@@ -233,70 +172,46 @@ RBSmalllintContext>>printOn: aStream [
 			aStream nextPutAll: '>>'; print: self selector ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>protocol [
+{ #category : #accessing }
+RBSmalllintContext >> protocol [
 	^self selectedClass whichCategoryIncludesSelector: self selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>protocols [
+{ #category : #accessing }
+RBSmalllintContext >> protocols [
 	^Array with: self protocol
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>release [
+{ #category : #initialize-release }
+RBSmalllintContext >> release [
 	literalProcess notNil ifTrue: [literalProcess terminate].
 	super release
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>selectedClass [
+{ #category : #accessing }
+RBSmalllintContext >> selectedClass [
 	^class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>selectedClass: anObject  [
+{ #category : #accessing }
+RBSmalllintContext >> selectedClass: anObject [ 
 	class := anObject.
 	self selector: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>selector [
+{ #category : #accessing }
+RBSmalllintContext >> selector [
 	^selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>selector: anObject  [
+{ #category : #accessing }
+RBSmalllintContext >> selector: anObject [ 
 	selector := anObject.
 	parseTree := compiledMethod := selfMessages := superMessages := messages := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>selectors [
+{ #category : #accessing }
+RBSmalllintContext >> selectors [
 	literalSemaphore isNil
 		ifTrue: 
 			[selectors isNil ifTrue: 
@@ -306,37 +221,25 @@ RBSmalllintContext>>selectors [
 	^selectors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>selfMessages [
+{ #category : #accessing }
+RBSmalllintContext >> selfMessages [
 	selfMessages isNil ifTrue: [self computeMessages].
 	^selfMessages
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>signalProcesses: aSemaphore  [
+{ #category : #private }
+RBSmalllintContext >> signalProcesses: aSemaphore [ 
 	aSemaphore isNil ifTrue: [^self].
 	[aSemaphore isEmpty] whileFalse: [aSemaphore signal]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>sourceCode [
+{ #category : #accessing }
+RBSmalllintContext >> sourceCode [
 	^self selectedClass sourceCodeAt: self selector ifAbsent: [ '' ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>specialSelectors [
+{ #category : #private }
+RBSmalllintContext >> specialSelectors [
 	| answer |
 	answer := IdentityDictionary new.
 	(Smalltalk specialSelectors select: [:sel | sel isSymbol]) do:
@@ -344,19 +247,13 @@ RBSmalllintContext>>specialSelectors [
 	^answer.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>superMessages [
+{ #category : #accessing }
+RBSmalllintContext >> superMessages [
 	superMessages isNil ifTrue: [self computeMessages].
 	^superMessages
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintContext>>uses: anObject  [
+{ #category : #testing }
+RBSmalllintContext >> uses: anObject [ 
 	^self literals includes: anObject
 ]

@@ -17,70 +17,45 @@ Class {
 		'window',
 		'surface'
 	],
-	#category : #OSWindow-Core,
-	#timestamp : 'RonieSalgado 5/27/2016 13:47'
+	#category : #OSWindow-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowPlatformSpecificHandle>>display [
+{ #category : #accessing }
+OSWindowPlatformSpecificHandle >> display [
 	^ display
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowPlatformSpecificHandle>>display: anObject [
+{ #category : #accessing }
+OSWindowPlatformSpecificHandle >> display: anObject [
 	display := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowPlatformSpecificHandle>>platform [
+{ #category : #accessing }
+OSWindowPlatformSpecificHandle >> platform [
 	^ platform
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowPlatformSpecificHandle>>platform: anObject [
+{ #category : #accessing }
+OSWindowPlatformSpecificHandle >> platform: anObject [
 	platform := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowPlatformSpecificHandle>>surface [
+{ #category : #accessing }
+OSWindowPlatformSpecificHandle >> surface [
 	^ surface
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowPlatformSpecificHandle>>surface: anObject [
+{ #category : #accessing }
+OSWindowPlatformSpecificHandle >> surface: anObject [
 	surface := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowPlatformSpecificHandle>>window [
+{ #category : #accessing }
+OSWindowPlatformSpecificHandle >> window [
 	^ window
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowPlatformSpecificHandle>>window: anObject [
+{ #category : #accessing }
+OSWindowPlatformSpecificHandle >> window: anObject [
 	window := anObject
 ]

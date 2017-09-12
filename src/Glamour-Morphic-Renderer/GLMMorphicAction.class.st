@@ -4,14 +4,10 @@ A GLMMorphicAction is special GLMAction that is only active when rendering Glamo
 Class {
 	#name : #GLMMorphicAction,
 	#superclass : #GLMAction,
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : '<historical>'
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicAction>>worksWithMorphic [
+{ #category : #testing }
+GLMMorphicAction >> worksWithMorphic [
 	^ true
 ]

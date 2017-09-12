@@ -26,460 +26,300 @@ Class {
 		'DefaultPrettyPrintContext',
 		'FormatAsYouReadPolicy'
 	],
-	#category : #BlueInk-Core,
-	#timestamp : 'StephaneDucasse 3/31/2015 16:12'
+	#category : #BlueInk-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>announceASettingChange [
+{ #category : #private }
+BIConfigurableFormatter class >> announceASettingChange [
 	SystemAnnouncer uniqueInstance announce: BISettingsChanged 
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>format: aParseTree  [
+{ #category : #public }
+BIConfigurableFormatter class >> format: aParseTree [ 
 	^self format: aParseTree withIndents: 0
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>format: aParseTree withIndents: anInteger  [
+{ #category : #public }
+BIConfigurableFormatter class >> format: aParseTree withIndents: anInteger [ 
 	^ self new
 		indent: anInteger;
 		format: aParseTree
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>formatAsYouReadPolicy [
+{ #category : #accessing }
+BIConfigurableFormatter class >> formatAsYouReadPolicy [
 	^ FormatAsYouReadPolicy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>formatAsYouReadPolicy: anObject [
+{ #category : #accessing }
+BIConfigurableFormatter class >> formatAsYouReadPolicy: anObject [
 	FormatAsYouReadPolicy := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>formatCommentWithStatements [
+{ #category : #accessing }
+BIConfigurableFormatter class >> formatCommentWithStatements [
 	^ DefaultPrettyPrintContext formatCommentWithStatements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>formatCommentWithStatements: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter class >> formatCommentWithStatements: aBoolean [
 	DefaultPrettyPrintContext formatCommentWithStatements: aBoolean.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>indentString [
+{ #category : #accessing }
+BIConfigurableFormatter class >> indentString [
 	^ DefaultPrettyPrintContext indentString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>indentString: aString [
+{ #category : #accessing }
+BIConfigurableFormatter class >> indentString: aString [
 	DefaultPrettyPrintContext indentString: aString.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>indentsForKeywords [
+{ #category : #accessing }
+BIConfigurableFormatter class >> indentsForKeywords [
 	^ DefaultPrettyPrintContext indentsForKeywords
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>indentsForKeywords: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter class >> indentsForKeywords: anInteger [
 	DefaultPrettyPrintContext indentsForKeywords: anInteger.
 	self announceASettingChange
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>initialize [
+{ #category : #initialization }
+BIConfigurableFormatter class >> initialize [
 	"self initialize"
 
 	FormatAsYouReadPolicy := false.
 	DefaultPrettyPrintContext := BIPrettyPrinterContext new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>keepBlockInMessage [
+{ #category : #accessing }
+BIConfigurableFormatter class >> keepBlockInMessage [
 	^ DefaultPrettyPrintContext keepBlockInMessage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>keepBlockInMessage: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter class >> keepBlockInMessage: aBoolean [
 	DefaultPrettyPrintContext keepBlockInMessage: aBoolean.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>lineUpBlockBrackets [
+{ #category : #accessing }
+BIConfigurableFormatter class >> lineUpBlockBrackets [
 	^ DefaultPrettyPrintContext lineUpBlockBrackets
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>lineUpBlockBrackets: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter class >> lineUpBlockBrackets: aBoolean [
 	DefaultPrettyPrintContext lineUpBlockBrackets: aBoolean.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>maxLineLength [
+{ #category : #accessing }
+BIConfigurableFormatter class >> maxLineLength [
 	^ DefaultPrettyPrintContext maxLineLength
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>maxLineLength: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter class >> maxLineLength: anInteger [
 	DefaultPrettyPrintContext maxLineLength: anInteger.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>methodSignatureOnMultipleLines [
+{ #category : #accessing }
+BIConfigurableFormatter class >> methodSignatureOnMultipleLines [
 	^ DefaultPrettyPrintContext methodSignatureOnMultipleLines
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>methodSignatureOnMultipleLines: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter class >> methodSignatureOnMultipleLines: aBoolean [
 	DefaultPrettyPrintContext methodSignatureOnMultipleLines: aBoolean.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>minimumNewLinesBetweenStatements [
+{ #category : #accessing }
+BIConfigurableFormatter class >> minimumNewLinesBetweenStatements [
 	^ DefaultPrettyPrintContext minimumNewLinesBetweenStatements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>minimumNewLinesBetweenStatements: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter class >> minimumNewLinesBetweenStatements: anInteger [
 	DefaultPrettyPrintContext minimumNewLinesBetweenStatements: anInteger.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>multiLineMessages [
+{ #category : #accessing }
+BIConfigurableFormatter class >> multiLineMessages [
 	^ DefaultPrettyPrintContext multiLineMessages printString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>multiLineMessages: aString [
+{ #category : #accessing }
+BIConfigurableFormatter class >> multiLineMessages: aString [
 	DefaultPrettyPrintContext multiLineMessages: (self compiler evaluate: aString).
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>newLineAfterCascade [
+{ #category : #accessing }
+BIConfigurableFormatter class >> newLineAfterCascade [
 	^ DefaultPrettyPrintContext newLineAfterCascade
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>newLineAfterCascade: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter class >> newLineAfterCascade: aBoolean [
 	DefaultPrettyPrintContext newLineAfterCascade: aBoolean.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>newLineBeforeFirstCascade [
+{ #category : #accessing }
+BIConfigurableFormatter class >> newLineBeforeFirstCascade [
 	^ DefaultPrettyPrintContext newLineBeforeFirstCascade
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>newLineBeforeFirstCascade: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter class >> newLineBeforeFirstCascade: aBoolean [
 	DefaultPrettyPrintContext newLineBeforeFirstCascade: aBoolean.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>newLineBeforeFirstKeyword [
+{ #category : #accessing }
+BIConfigurableFormatter class >> newLineBeforeFirstKeyword [
 	^ DefaultPrettyPrintContext newLineBeforeFirstKeyword
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>newLineBeforeFirstKeyword: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter class >> newLineBeforeFirstKeyword: aBoolean [
 	DefaultPrettyPrintContext newLineBeforeFirstKeyword: aBoolean.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>newLinesAfterMethodComment [
+{ #category : #accessing }
+BIConfigurableFormatter class >> newLinesAfterMethodComment [
 	^ DefaultPrettyPrintContext newLinesAfterMethodComment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>newLinesAfterMethodComment: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter class >> newLinesAfterMethodComment: anInteger [
 	DefaultPrettyPrintContext newLinesAfterMethodComment: anInteger.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>newLinesAfterMethodPattern [
+{ #category : #accessing }
+BIConfigurableFormatter class >> newLinesAfterMethodPattern [
 	^ DefaultPrettyPrintContext newLinesAfterMethodPattern
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>newLinesAfterMethodPattern: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter class >> newLinesAfterMethodPattern: anInteger [
 	DefaultPrettyPrintContext newLinesAfterMethodPattern: anInteger.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>newLinesAfterTemporaries [
+{ #category : #accessing }
+BIConfigurableFormatter class >> newLinesAfterTemporaries [
 	^ DefaultPrettyPrintContext newLinesAfterTemporaries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>newLinesAfterTemporaries: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter class >> newLinesAfterTemporaries: anInteger [
 	DefaultPrettyPrintContext newLinesAfterTemporaries: anInteger.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>numberOfArgumentsForMultiLine [
+{ #category : #accessing }
+BIConfigurableFormatter class >> numberOfArgumentsForMultiLine [
 	^ DefaultPrettyPrintContext numberOfArgumentsForMultiLine
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>numberOfArgumentsForMultiLine: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter class >> numberOfArgumentsForMultiLine: anInteger [
 	DefaultPrettyPrintContext numberOfArgumentsForMultiLine: anInteger.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>oneLineMessages [
+{ #category : #accessing }
+BIConfigurableFormatter class >> oneLineMessages [
 	^ DefaultPrettyPrintContext oneLineMessages printString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>oneLineMessages: aString [
+{ #category : #accessing }
+BIConfigurableFormatter class >> oneLineMessages: aString [
 	DefaultPrettyPrintContext oneLineMessages: (self compiler evaluate: aString).
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>periodsAsTerminators [
+{ #category : #accessing }
+BIConfigurableFormatter class >> periodsAsTerminators [
 	^ DefaultPrettyPrintContext periodsAtEndOfBlock and: [ DefaultPrettyPrintContext periodsAtEndOfMethod ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>periodsAsTerminators: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter class >> periodsAsTerminators: aBoolean [
 	DefaultPrettyPrintContext periodsAtEndOfBlock: aBoolean.
 	DefaultPrettyPrintContext periodsAtEndOfMethod: aBoolean.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>periodsAtEndOfBlock [
+{ #category : #accessing }
+BIConfigurableFormatter class >> periodsAtEndOfBlock [
 	^ DefaultPrettyPrintContext periodsAtEndOfBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>periodsAtEndOfBlock: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter class >> periodsAtEndOfBlock: aBoolean [
 	DefaultPrettyPrintContext periodsAtEndOfBlock: aBoolean.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>periodsAtEndOfMethod [
+{ #category : #accessing }
+BIConfigurableFormatter class >> periodsAtEndOfMethod [
 	^ DefaultPrettyPrintContext periodsAtEndOfMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>periodsAtEndOfMethod: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter class >> periodsAtEndOfMethod: aBoolean [
 	DefaultPrettyPrintContext periodsAtEndOfMethod: aBoolean.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>retainBlankLinesBeforeComments [
+{ #category : #accessing }
+BIConfigurableFormatter class >> retainBlankLinesBeforeComments [
 	^ DefaultPrettyPrintContext retainBlankLinesBeforeComments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>retainBlankLinesBeforeComments: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter class >> retainBlankLinesBeforeComments: aBoolean [
 	DefaultPrettyPrintContext retainBlankLinesBeforeComments: aBoolean.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>retainBlankLinesBetweenStatements [
+{ #category : #accessing }
+BIConfigurableFormatter class >> retainBlankLinesBetweenStatements [
 	^ DefaultPrettyPrintContext retainBlankLinesBetweenStatements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>retainBlankLinesBetweenStatements: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter class >> retainBlankLinesBetweenStatements: aBoolean [
 	DefaultPrettyPrintContext retainBlankLinesBetweenStatements: aBoolean.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>selectorAndArgumentCombinedMaxSize [
+{ #category : #accessing }
+BIConfigurableFormatter class >> selectorAndArgumentCombinedMaxSize [
 	^ DefaultPrettyPrintContext selectorAndArgumentCombinedMaxSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>selectorAndArgumentCombinedMaxSize: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter class >> selectorAndArgumentCombinedMaxSize: anInteger [
 	DefaultPrettyPrintContext selectorAndArgumentCombinedMaxSize: anInteger.
 	self announceASettingChange
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>settingsOn: aBuilder [
+{ #category : #settings }
+BIConfigurableFormatter class >> settingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #blueInkFormatter)
 		target: self;
@@ -535,113 +375,74 @@ BIConfigurableFormatter class>>settingsOn: aBuilder [
 				label: 'Use traditional binary precedence for parentheses' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>stringFollowingReturn [
+{ #category : #accessing }
+BIConfigurableFormatter class >> stringFollowingReturn [
 	^ DefaultPrettyPrintContext stringFollowingReturn
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>stringFollowingReturn: aString [
+{ #category : #accessing }
+BIConfigurableFormatter class >> stringFollowingReturn: aString [
 	DefaultPrettyPrintContext stringFollowingReturn: aString.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>stringInsideBlocks [
+{ #category : #accessing }
+BIConfigurableFormatter class >> stringInsideBlocks [
 	^ DefaultPrettyPrintContext stringInsideBlocks
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>stringInsideBlocks: aString [
+{ #category : #accessing }
+BIConfigurableFormatter class >> stringInsideBlocks: aString [
 	DefaultPrettyPrintContext stringInsideBlocks: aString.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>stringInsideParentheses [
+{ #category : #accessing }
+BIConfigurableFormatter class >> stringInsideParentheses [
 	^ DefaultPrettyPrintContext stringInsideParentheses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>stringInsideParentheses: aString [
+{ #category : #accessing }
+BIConfigurableFormatter class >> stringInsideParentheses: aString [
 	DefaultPrettyPrintContext stringInsideParentheses: aString.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>traditionalBinaryPrecedenceArray [
+{ #category : #accessing }
+BIConfigurableFormatter class >> traditionalBinaryPrecedenceArray [
 	^ DefaultPrettyPrintContext traditionalBinaryPrecedenceArray printString 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>traditionalBinaryPrecedenceArray: aString [
+{ #category : #accessing }
+BIConfigurableFormatter class >> traditionalBinaryPrecedenceArray: aString [
 	DefaultPrettyPrintContext traditionalBinaryPrecedenceArray: (self compiler evaluate: aString).
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>useBasicCommentFormat [
+{ #category : #accessing }
+BIConfigurableFormatter class >> useBasicCommentFormat [
 	^ DefaultPrettyPrintContext useBasicCommentFormat
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>useBasicCommentFormat: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter class >> useBasicCommentFormat: aBoolean [
 	DefaultPrettyPrintContext useBasicCommentFormat: aBoolean.
 	self announceASettingChange
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>useTraditionalBinaryPrecedenceForParentheses [
+{ #category : #accessing }
+BIConfigurableFormatter class >> useTraditionalBinaryPrecedenceForParentheses [
 	^ DefaultPrettyPrintContext useTraditionalBinaryPrecedenceForParentheses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter class>>useTraditionalBinaryPrecedenceForParentheses: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter class >> useTraditionalBinaryPrecedenceForParentheses: aBoolean [
 	DefaultPrettyPrintContext useTraditionalBinaryPrecedenceForParentheses: aBoolean.
 	self announceASettingChange
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>addNewLinesBeforeStatementStartingAt: anInteger  [
+{ #category : #private }
+BIConfigurableFormatter >> addNewLinesBeforeStatementStartingAt: anInteger [ 
 	| newLines |
 	newLines := self minimumNewLinesBetweenStatements 
 				max: (self retainBlankLinesBetweenStatements 
@@ -650,30 +451,21 @@ BIConfigurableFormatter>>addNewLinesBeforeStatementStartingAt: anInteger  [
 	newLines = 0 ifTrue: [self space] ifFalse: [self newLines: newLines] 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>addSpaceIfNeededForLastArgument: aPragmaNode [
+{ #category : #private }
+BIConfigurableFormatter >> addSpaceIfNeededForLastArgument: aPragmaNode [
 	aPragmaNode isUnary
 		ifTrue: [ ^ self ].
 	(self pragmaArgumentNeedsSeparator: aPragmaNode arguments last)
 		ifTrue: [ self space ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>basicFormatCommentFor: aComment [
+{ #category : #private }
+BIConfigurableFormatter >> basicFormatCommentFor: aComment [
 	codeStream nextPutAll: (originalSource copyFrom: aComment start to: aComment stop).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>bracketWith: bracketString around: aBlock [
+{ #category : #private }
+BIConfigurableFormatter >> bracketWith: bracketString around: aBlock [
 	bracketString isEmpty
 		ifTrue: [ ^ aBlock value ].
 	codeStream nextPut: bracketString first.
@@ -681,64 +473,43 @@ BIConfigurableFormatter>>bracketWith: bracketString around: aBlock [
 		ensure: [ codeStream nextPut: bracketString last ] 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>characterSeparatorMethodSignatureFor: aMethodNode [
+{ #category : #private }
+BIConfigurableFormatter >> characterSeparatorMethodSignatureFor: aMethodNode [
 	^ [ 
 	(self needsMethodSignatureOnMultipleLinesFor: aMethodNode)
 		ifTrue: [ self newLine ]
 		ifFalse: [ self space ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>codeStream [
+{ #category : #accessing }
+BIConfigurableFormatter >> codeStream [
 	^ codeStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>codeStream: anObject [
+{ #category : #accessing }
+BIConfigurableFormatter >> codeStream: anObject [
 	codeStream := anObject
 ]
 
-{
-	#category : #'public interface',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>containerWidth: anInteger [
+{ #category : #'public interface' }
+BIConfigurableFormatter >> containerWidth: anInteger [
 	self installNewValueInContext: {(#maxLineLength: -> anInteger)}
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>currentLineLength [
+{ #category : #private }
+BIConfigurableFormatter >> currentLineLength [
 	^ codeStream position - lineStart
 ]
 
-{
-	#category : #'public interface',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>format: aParseTree [
+{ #category : #'public interface' }
+BIConfigurableFormatter >> format: aParseTree [
 	originalSource := aParseTree source.
 	self visitNode: aParseTree.
 	^ codeStream contents
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatArray: anArrayNode [
+{ #category : #private-formatting }
+BIConfigurableFormatter >> formatArray: anArrayNode [
 	| current | 
 	(anArrayNode statements reject: [ :each | each className = 'RBLiteralValueNode' ])
 		ifEmpty: [ 
@@ -755,11 +526,8 @@ BIConfigurableFormatter>>formatArray: anArrayNode [
 		ifNotEmpty: [ self formatSequenceNodeStatementsFor: anArrayNode ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatBlock: aBlockNode [
+{ #category : #private-formatting }
+BIConfigurableFormatter >> formatBlock: aBlockNode [
 	codeStream nextPutAll: self stringInsideBlocks.
 	self formatBlockArgumentsFor: aBlockNode.
 	self formatBlockCommentFor: aBlockNode.
@@ -769,11 +537,8 @@ BIConfigurableFormatter>>formatBlock: aBlockNode [
 		ifFalse: [ codeStream nextPutAll: self stringInsideBlocks ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatBlockArgumentsFor: aBlockNode [
+{ #category : #private-formatting }
+BIConfigurableFormatter >> formatBlockArgumentsFor: aBlockNode [
 	aBlockNode arguments isEmpty
 		ifTrue: [ ^ self ].
 	aBlockNode arguments
@@ -788,11 +553,8 @@ BIConfigurableFormatter>>formatBlockArgumentsFor: aBlockNode [
 		ifTrue: [ self newLine ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatBlockCommentFor: aBlockNode [
+{ #category : #private-formatting }
+BIConfigurableFormatter >> formatBlockCommentFor: aBlockNode [
 	originalSource isNil
 		ifTrue: [  ^ self ].
 	aBlockNode comments
@@ -805,27 +567,18 @@ BIConfigurableFormatter>>formatBlockCommentFor: aBlockNode [
 				ifTrue: [  self newLine ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatCommentWithStatements [
+{ #category : #accessing }
+BIConfigurableFormatter >> formatCommentWithStatements [
 	^ context formatCommentWithStatements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatCommentWithStatements: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter >> formatCommentWithStatements: aBoolean [
 	context formatCommentWithStatements: aBoolean
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatCommentsFor: aNode [
+{ #category : #private-formatting }
+BIConfigurableFormatter >> formatCommentsFor: aNode [
 	originalSource isNil
 		ifTrue: [ ^ self ].
 	aNode comments
@@ -835,11 +588,8 @@ BIConfigurableFormatter>>formatCommentsFor: aNode [
 			self newLine ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatMessageNodeInAMessageStreamFor: aMessageNode [
+{ #category : #private }
+BIConfigurableFormatter >> formatMessageNodeInAMessageStreamFor: aMessageNode [
 	| messageStream |
 	messageStream := WriteStream on: (String new: 100).
 	self
@@ -854,11 +604,8 @@ BIConfigurableFormatter>>formatMessageNodeInAMessageStreamFor: aMessageNode [
 		^ messageStream 
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatMethodBodyFor: aMethodNode [
+{ #category : #private-formatting }
+BIConfigurableFormatter >> formatMethodBodyFor: aMethodNode [
 	self
 		indentAround:
 			[ 
@@ -868,11 +615,8 @@ BIConfigurableFormatter>>formatMethodBodyFor: aMethodNode [
 			self visitNode: aMethodNode body ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatMethodCommentFor: aMethodNode [
+{ #category : #private-formatting }
+BIConfigurableFormatter >> formatMethodCommentFor: aMethodNode [
 	originalSource isNil
 		ifTrue: [ ^ self ].
 	aMethodNode comments
@@ -886,11 +630,8 @@ BIConfigurableFormatter>>formatMethodCommentFor: aMethodNode [
 			self newLines: self newLinesAfterMethodComment ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatMethodPatternFor: aMethodNode [
+{ #category : #private-formatting }
+BIConfigurableFormatter >> formatMethodPatternFor: aMethodNode [
 	aMethodNode arguments isEmpty
 		ifTrue: [ codeStream nextPutAll: aMethodNode selector ]
 		ifFalse: [ 
@@ -899,19 +640,13 @@ BIConfigurableFormatter>>formatMethodPatternFor: aMethodNode [
 				ifFalse: [ self privateFormatMethodPatternMonoLineFor: aMethodNode ] ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatPragmasFor: aMethodNode [
+{ #category : #private-formatting }
+BIConfigurableFormatter >> formatPragmasFor: aMethodNode [
 	aMethodNode pragmas do: [ :each | self visitNode: each; newLine ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatSelectorAndArguments: aMessageNode [
+{ #category : #private-formatting }
+BIConfigurableFormatter >> formatSelectorAndArguments: aMessageNode [
 	| newLineBetweenArguments |
 	newLineBetweenArguments := self isMultiLineMessage: aMessageNode.
 	self
@@ -932,11 +667,8 @@ BIConfigurableFormatter>>formatSelectorAndArguments: aMessageNode [
 						ifFalse: [ [ self space ] ]) ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatSelectorAndArguments: aMessageNode firstSeparator: firstBlock restSeparator: restBlock [
+{ #category : #private-formatting }
+BIConfigurableFormatter >> formatSelectorAndArguments: aMessageNode firstSeparator: firstBlock restSeparator: restBlock [
 	| separatorBlock |
 	separatorBlock := firstBlock.
 	aMessageNode isUnary
@@ -956,11 +688,8 @@ BIConfigurableFormatter>>formatSelectorAndArguments: aMessageNode firstSeparator
 							self handleLineForArgument: argument ] ] ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatSequenceNodeStatementsFor: aSequenceNode [
+{ #category : #private-formatting }
+BIConfigurableFormatter >> formatSequenceNodeStatementsFor: aSequenceNode [
 	| statements |
 	statements := aSequenceNode statements.
 	statements isEmpty
@@ -982,11 +711,8 @@ BIConfigurableFormatter>>formatSequenceNodeStatementsFor: aSequenceNode [
 					addNewLinesBeforeStatementStartingAt: (statements at: i + 1) start ] ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatStatementCommentsFor: aStatementNode [
+{ #category : #private-formatting }
+BIConfigurableFormatter >> formatStatementCommentsFor: aStatementNode [
 	originalSource isNil
 		ifTrue: [ ^ self ].
 	self formatCommentWithStatements
@@ -1005,11 +731,8 @@ BIConfigurableFormatter>>formatStatementCommentsFor: aStatementNode [
 			self resizeCommentFor: each startingAt: self currentLineLength ]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formatTemporariesFor: aSequenceNode [
+{ #category : #private }
+BIConfigurableFormatter >> formatTemporariesFor: aSequenceNode [
 	aSequenceNode temporaries isEmpty
 		ifTrue: [ ^ self ].
 	self
@@ -1027,11 +750,8 @@ BIConfigurableFormatter>>formatTemporariesFor: aSequenceNode [
 	self newLines: self newLinesAfterTemporaries
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>formattedSourceFor: aNode [
+{ #category : #private }
+BIConfigurableFormatter >> formattedSourceFor: aNode [
 	^ lookaheadCode
 		at: aNode
 		ifAbsentPut: [ 
@@ -1041,11 +761,8 @@ BIConfigurableFormatter>>formattedSourceFor: aNode [
 				format: aNode ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>handleLineForArgument: anArgument [
+{ #category : #private }
+BIConfigurableFormatter >> handleLineForArgument: anArgument [
 	(self keepBlockInMessage and: [ anArgument isBlock ])
 		ifTrue: [ (self willBeMultiline: anArgument)
 				ifTrue: [ (self formattedSourceFor: anArgument) lines first size > self maxLineLength
@@ -1064,21 +781,15 @@ BIConfigurableFormatter>>handleLineForArgument: anArgument [
 	self visitNode: anArgument
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>handleLineForSelector: selector withSeparatorBlock: aBlock [
+{ #category : #private }
+BIConfigurableFormatter >> handleLineForSelector: selector withSeparatorBlock: aBlock [
 	(self isLineTooLong: selector)
 		ifTrue: [ self newLine ]
 		ifFalse: [ aBlock value ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>hasAMultiLineMessageArgument: anArgumentsCollection [
+{ #category : #private }
+BIConfigurableFormatter >> hasAMultiLineMessageArgument: anArgumentsCollection [
 	^ anArgumentsCollection
 		anySatisfy: [ :each | 
 			self isInCascadeNode
@@ -1089,77 +800,50 @@ BIConfigurableFormatter>>hasAMultiLineMessageArgument: anArgumentsCollection [
 						around: [ self willBeMultiline: each ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>indent [
+{ #category : #accessing }
+BIConfigurableFormatter >> indent [
 	^ indent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>indent: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter >> indent: anInteger [
 
 	indent := anInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>indent: anInteger around: aBlock  [
+{ #category : #private }
+BIConfigurableFormatter >> indent: anInteger around: aBlock [ 
 	self indent: self indent + anInteger.
 	^aBlock ensure: [self indent: self indent - anInteger]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>indentAround: aBlock  [
+{ #category : #private }
+BIConfigurableFormatter >> indentAround: aBlock [ 
 	self indent: 1 around: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>indentString [
+{ #category : #accessing }
+BIConfigurableFormatter >> indentString [
 	^ context indentString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>indentString: aString [
+{ #category : #accessing }
+BIConfigurableFormatter >> indentString: aString [
 	context indentString: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>indentsForKeywords [
+{ #category : #accessing }
+BIConfigurableFormatter >> indentsForKeywords [
 	^ context indentsForKeywords
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>indentsForKeywords: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter >> indentsForKeywords: anInteger [
 	context indentsForKeywords: anInteger
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>initialize [
+{ #category : #initialization }
+BIConfigurableFormatter >> initialize [
 	super initialize.
 	lineStart := 0.
 	self indent: 0.
@@ -1169,20 +853,14 @@ BIConfigurableFormatter>>initialize [
 	context := DefaultPrettyPrintContext
 ]
 
-{
-	#category : #'public interface',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>installNewContext: aContext [
+{ #category : #'public interface' }
+BIConfigurableFormatter >> installNewContext: aContext [
 
 	context := aContext
 ]
 
-{
-	#category : #'public interface',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>installNewValueInContext: aCol [
+{ #category : #'public interface' }
+BIConfigurableFormatter >> installNewValueInContext: aCol [
 	"self new installNewValueInContext: { (#cascadedMessageInsideParentheses: -> true) }"
 	
 	context := context copy.
@@ -1190,36 +868,24 @@ BIConfigurableFormatter>>installNewValueInContext: aCol [
 	aCol do: [ :each | self perform: each key with: each value]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>isInCascadeNode [
+{ #category : #accessing }
+BIConfigurableFormatter >> isInCascadeNode [
 	^ isInCascadeNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>isInCascadeNode: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter >> isInCascadeNode: aBoolean [
 	isInCascadeNode := aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>isLineTooLong: aString [
+{ #category : #private }
+BIConfigurableFormatter >> isLineTooLong: aString [
 	^ self currentLineLength + (aString indexOf: Character cr ifAbsent: [ aString size ])
 		>= self maxLineLength
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>isMultiLineMessage: aMessageNode [
+{ #category : #private }
+BIConfigurableFormatter >> isMultiLineMessage: aMessageNode [
 	(self multiLineMessages includes: aMessageNode selector)
 		ifTrue: [ ^ true ].
 	(self oneLineMessages includes: aMessageNode selector)
@@ -1233,131 +899,83 @@ BIConfigurableFormatter>>isMultiLineMessage: aMessageNode [
 	^ self isLineTooLong: (self formatMessageNodeInAMessageStreamFor: aMessageNode) contents
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>isNonEmptySingleLineBlock: aBlockNode [
+{ #category : #private }
+BIConfigurableFormatter >> isNonEmptySingleLineBlock: aBlockNode [
 	^ ((self willBeMultiline: aBlockNode body) or: [ aBlockNode body statements isEmpty ]) not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>keepBlockInMessage [
+{ #category : #accessing }
+BIConfigurableFormatter >> keepBlockInMessage [
 	^ context keepBlockInMessage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>keepBlockInMessage: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter >> keepBlockInMessage: aBoolean [
 	context keepBlockInMessage: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>lineStart [
+{ #category : #accessing }
+BIConfigurableFormatter >> lineStart [
 	^ lineStart
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>lineStart: anObject [
+{ #category : #accessing }
+BIConfigurableFormatter >> lineStart: anObject [
 	lineStart := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>lineUpBlockBrackets [
+{ #category : #accessing }
+BIConfigurableFormatter >> lineUpBlockBrackets [
 	^ context lineUpBlockBrackets
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>lineUpBlockBrackets: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter >> lineUpBlockBrackets: aBoolean [
 	context lineUpBlockBrackets: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>maxLineLength [
+{ #category : #accessing }
+BIConfigurableFormatter >> maxLineLength [
 	^ context maxLineLength
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>maxLineLength: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter >> maxLineLength: anInteger [
 	context maxLineLength: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>methodSignatureOnMultipleLines [
+{ #category : #accessing }
+BIConfigurableFormatter >> methodSignatureOnMultipleLines [
 	^ context methodSignatureOnMultipleLines
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>methodSignatureOnMultipleLines: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter >> methodSignatureOnMultipleLines: aBoolean [
 	context methodSignatureOnMultipleLines: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>minimumNewLinesBetweenStatements [
+{ #category : #accessing }
+BIConfigurableFormatter >> minimumNewLinesBetweenStatements [
 	^ context minimumNewLinesBetweenStatements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>minimumNewLinesBetweenStatements: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter >> minimumNewLinesBetweenStatements: anInteger [
 	context minimumNewLinesBetweenStatements: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>multiLineMessages [
+{ #category : #accessing }
+BIConfigurableFormatter >> multiLineMessages [
 	^ context multiLineMessages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>multiLineMessages: anArray [
+{ #category : #accessing }
+BIConfigurableFormatter >> multiLineMessages: anArray [
 	context multiLineMessages: anArray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>needsMethodSignatureOnMultipleLinesFor: aMethodNode [
+{ #category : #private }
+BIConfigurableFormatter >> needsMethodSignatureOnMultipleLinesFor: aMethodNode [
 	| cpt |
 	cpt := 0.
 	self methodSignatureOnMultipleLines
@@ -1373,11 +991,8 @@ BIConfigurableFormatter>>needsMethodSignatureOnMultipleLinesFor: aMethodNode [
 		ifFalse: [ ^ false ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>needsParenthesisFor: aNode [
+{ #category : #private }
+BIConfigurableFormatter >> needsParenthesisFor: aNode [
 	| parent grandparent |
 	aNode ifNil: [ ^ false ].
 	aNode isValue
@@ -1413,67 +1028,43 @@ BIConfigurableFormatter>>needsParenthesisFor: aNode [
 		and: [ self precedenceOf: parent selector greaterThan: aNode selector ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>newLine [
+{ #category : #private }
+BIConfigurableFormatter >> newLine [
 	self newLines: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>newLineAfterCascade [
+{ #category : #accessing }
+BIConfigurableFormatter >> newLineAfterCascade [
 	^ context newLineAfterCascade
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>newLineAfterCascade: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter >> newLineAfterCascade: aBoolean [
 	context newLineAfterCascade: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>newLineBeforeFirstCascade [
+{ #category : #accessing }
+BIConfigurableFormatter >> newLineBeforeFirstCascade [
 	^ context newLineBeforeFirstCascade
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>newLineBeforeFirstCascade: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter >> newLineBeforeFirstCascade: aBoolean [
 	context newLineBeforeFirstCascade: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>newLineBeforeFirstKeyword [
+{ #category : #accessing }
+BIConfigurableFormatter >> newLineBeforeFirstKeyword [
 	^ context newLineBeforeFirstKeyword
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>newLineBeforeFirstKeyword: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter >> newLineBeforeFirstKeyword: aBoolean [
 	context newLineBeforeFirstKeyword: aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>newLines: anInteger [
+{ #category : #private }
+BIConfigurableFormatter >> newLines: anInteger [
 	anInteger + self indentString size = 0
 		ifTrue: 
 			[ codeStream space ].
@@ -1487,59 +1078,38 @@ BIConfigurableFormatter>>newLines: anInteger [
 			[ codeStream nextPutAll: self indentString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>newLinesAfterMethodComment [
+{ #category : #accessing }
+BIConfigurableFormatter >> newLinesAfterMethodComment [
 	^ context newLinesAfterMethodComment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>newLinesAfterMethodComment: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter >> newLinesAfterMethodComment: anInteger [
 	context newLinesAfterMethodComment: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>newLinesAfterMethodPattern [
+{ #category : #accessing }
+BIConfigurableFormatter >> newLinesAfterMethodPattern [
 	^ context newLinesAfterMethodPattern
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>newLinesAfterMethodPattern: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter >> newLinesAfterMethodPattern: anInteger [
 	context newLinesAfterMethodPattern: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>newLinesAfterTemporaries [
+{ #category : #accessing }
+BIConfigurableFormatter >> newLinesAfterTemporaries [
 	^ context newLinesAfterTemporaries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>newLinesAfterTemporaries: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter >> newLinesAfterTemporaries: anInteger [
 	context newLinesAfterTemporaries: anInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>newLinesBeforeStartingAt: anIndex [
+{ #category : #private }
+BIConfigurableFormatter >> newLinesBeforeStartingAt: anIndex [
 	| count cr lf index char |
 	originalSource ifNil: [ ^ 0 ].
 	(anIndex isNil or: [ anIndex > originalSource size ])
@@ -1561,100 +1131,64 @@ BIConfigurableFormatter>>newLinesBeforeStartingAt: anIndex [
 	^ count
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>numberOfArgumentsForMultiLine [
+{ #category : #accessing }
+BIConfigurableFormatter >> numberOfArgumentsForMultiLine [
 	^ context numberOfArgumentsForMultiLine
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>numberOfArgumentsForMultiLine: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter >> numberOfArgumentsForMultiLine: anInteger [
 	context numberOfArgumentsForMultiLine: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>oneLineMessages [
+{ #category : #accessing }
+BIConfigurableFormatter >> oneLineMessages [
 	^ context oneLineMessages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>oneLineMessages: anArray [
+{ #category : #accessing }
+BIConfigurableFormatter >> oneLineMessages: anArray [
 	context oneLineMessages: anArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>periodsAsTerminators [
+{ #category : #accessing }
+BIConfigurableFormatter >> periodsAsTerminators [
 	^ context periodsAtEndOfBlock and: [ context periodsAtEndOfMethod ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>periodsAsTerminators: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter >> periodsAsTerminators: aBoolean [
 	context periodsAtEndOfBlock: aBoolean.
 	context periodsAtEndOfMethod: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>periodsAtEndOfBlock [
+{ #category : #accessing }
+BIConfigurableFormatter >> periodsAtEndOfBlock [
 	^ context periodsAtEndOfBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>periodsAtEndOfBlock: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter >> periodsAtEndOfBlock: aBoolean [
 	context periodsAtEndOfBlock: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>periodsAtEndOfMethod [
+{ #category : #accessing }
+BIConfigurableFormatter >> periodsAtEndOfMethod [
 	^ context periodsAtEndOfMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>periodsAtEndOfMethod: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter >> periodsAtEndOfMethod: aBoolean [
 	context periodsAtEndOfMethod: aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>pragmaArgumentNeedsSeparator: anArgumentNode [
+{ #category : #private }
+BIConfigurableFormatter >> pragmaArgumentNeedsSeparator: anArgumentNode [
 	^ anArgumentNode value isSymbol and: [ anArgumentNode value isBinary ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>precedenceOf: parentSelector greaterThan: childSelector [
+{ #category : #private }
+BIConfigurableFormatter >> precedenceOf: parentSelector greaterThan: childSelector [
 	"Put parenthesis around things that are preceived to have 'lower' precedence. For example, 'a + b * c' 
 	-> '(a + b) * c' but 'a * b + c' -> 'a * b + c'"
 
@@ -1669,11 +1203,8 @@ BIConfigurableFormatter>>precedenceOf: parentSelector greaterThan: childSelector
 	^ childIndex < parentIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>privateFormatMethodPatternMonoLineFor: aMethodNode [
+{ #category : #private }
+BIConfigurableFormatter >> privateFormatMethodPatternMonoLineFor: aMethodNode [
 	self
 		with: aMethodNode selectorParts
 		and: aMethodNode arguments
@@ -1684,11 +1215,8 @@ BIConfigurableFormatter>>privateFormatMethodPatternMonoLineFor: aMethodNode [
 		separatedBy: (self characterSeparatorMethodSignatureFor: aMethodNode)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>privateFormatMethodPatternMultiLineFor: aMethodNode [
+{ #category : #private }
+BIConfigurableFormatter >> privateFormatMethodPatternMultiLineFor: aMethodNode [
 	| selectors arguments |
 	arguments := aMethodNode arguments.
 	selectors := aMethodNode selectorParts.
@@ -1708,11 +1236,8 @@ BIConfigurableFormatter>>privateFormatMethodPatternMultiLineFor: aMethodNode [
 	self newLines: 1
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>resizeComment: aComment withFirstLineShorterOf: anIndex [
+{ #category : #utility }
+BIConfigurableFormatter >> resizeComment: aComment withFirstLineShorterOf: anIndex [
 	| cutComment firstLine currentCharPos |
 	currentCharPos := 1.
 	firstLine := (aComment contents withNoLineLongerThan: self maxLineLength - anIndex)
@@ -1730,11 +1255,8 @@ BIConfigurableFormatter>>resizeComment: aComment withFirstLineShorterOf: anIndex
 			self resizeStringDependingOnWindowSizeFor: cutComment ]
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>resizeCommentFor: aComment startingAt: anIndex [
+{ #category : #utility }
+BIConfigurableFormatter >> resizeCommentFor: aComment startingAt: anIndex [
 	codeStream nextPut: $".
 	"Hack to keep the right comment in pop up like cmd n, cmd m..."
 	self maxLineLength < 50
@@ -1750,11 +1272,8 @@ BIConfigurableFormatter>>resizeCommentFor: aComment startingAt: anIndex [
 	codeStream nextPut: $"
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>resizeStringDependingOnWindowSizeFor: aComment [
+{ #category : #utility }
+BIConfigurableFormatter >> resizeStringDependingOnWindowSizeFor: aComment [
 	| resizedComment |
 	resizedComment := aComment contents withNoLineLongerThan: self maxLineLength.
 	1 to: resizedComment size do: [ :i | 
@@ -1763,192 +1282,123 @@ BIConfigurableFormatter>>resizeStringDependingOnWindowSizeFor: aComment [
 			ifTrue: [ self indent timesRepeat: [ codeStream nextPutAll: self indentString ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>retainBlankLinesBeforeComments [
+{ #category : #accessing }
+BIConfigurableFormatter >> retainBlankLinesBeforeComments [
 	^ context retainBlankLinesBeforeComments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>retainBlankLinesBeforeComments: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter >> retainBlankLinesBeforeComments: aBoolean [
 	context retainBlankLinesBeforeComments: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>retainBlankLinesBetweenStatements [
+{ #category : #accessing }
+BIConfigurableFormatter >> retainBlankLinesBetweenStatements [
 	^ context retainBlankLinesBetweenStatements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>retainBlankLinesBetweenStatements: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter >> retainBlankLinesBetweenStatements: aBoolean [
 	context retainBlankLinesBetweenStatements: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>selectorAndArgumentCombinedMaxSize [
+{ #category : #accessing }
+BIConfigurableFormatter >> selectorAndArgumentCombinedMaxSize [
 	^ context selectorAndArgumentCombinedMaxSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>selectorAndArgumentCombinedMaxSize: anInteger [
+{ #category : #accessing }
+BIConfigurableFormatter >> selectorAndArgumentCombinedMaxSize: anInteger [
 	context selectorAndArgumentCombinedMaxSize: anInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>space [
+{ #category : #private }
+BIConfigurableFormatter >> space [
 	codeStream space
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>stringFollowingReturn [
+{ #category : #accessing }
+BIConfigurableFormatter >> stringFollowingReturn [
 	^ context stringFollowingReturn
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>stringFollowingReturn: aString [
+{ #category : #accessing }
+BIConfigurableFormatter >> stringFollowingReturn: aString [
 	context stringFollowingReturn: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>stringInsideBlocks [
+{ #category : #accessing }
+BIConfigurableFormatter >> stringInsideBlocks [
 	^ context stringInsideBlocks
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>stringInsideBlocks: aString [
+{ #category : #accessing }
+BIConfigurableFormatter >> stringInsideBlocks: aString [
 	context stringInsideBlocks: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>stringInsideParentheses [
+{ #category : #accessing }
+BIConfigurableFormatter >> stringInsideParentheses [
 	^ context stringInsideParentheses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>stringInsideParentheses: aString [
+{ #category : #accessing }
+BIConfigurableFormatter >> stringInsideParentheses: aString [
 	context stringInsideParentheses: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>traditionalBinaryPrecedenceArray [
+{ #category : #accessing }
+BIConfigurableFormatter >> traditionalBinaryPrecedenceArray [
 	^ context traditionalBinaryPrecedenceArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>traditionalBinaryPrecedenceArray: anArray [
+{ #category : #accessing }
+BIConfigurableFormatter >> traditionalBinaryPrecedenceArray: anArray [
 	context traditionalBinaryPrecedenceAray: anArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>useBasicCommentFormat  [
+{ #category : #accessing }
+BIConfigurableFormatter >> useBasicCommentFormat [ 
 	^ context useBasicCommentFormat 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>useBasicCommentFormat: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter >> useBasicCommentFormat: aBoolean [
 	context useBasicCommentFormat: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>useTraditionalBinaryPrecedenceForParentheses [
+{ #category : #accessing }
+BIConfigurableFormatter >> useTraditionalBinaryPrecedenceForParentheses [
 	^ context useTraditionalBinaryPrecedenceForParentheses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>useTraditionalBinaryPrecedenceForParentheses: aBoolean [
+{ #category : #accessing }
+BIConfigurableFormatter >> useTraditionalBinaryPrecedenceForParentheses: aBoolean [
 	context useTraditionalBinaryPrecedenceForParentheses: aBoolean
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>visitArrayNode: anArrayNode [
+{ #category : #visiting }
+BIConfigurableFormatter >> visitArrayNode: anArrayNode [
 	self bracketWith: '{}' around: [ self formatArray: anArrayNode ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>visitAssignmentNode: anAssignmentNode  [
+{ #category : #visiting }
+BIConfigurableFormatter >> visitAssignmentNode: anAssignmentNode [ 
 	self visitNode: anAssignmentNode variable.
 	codeStream space; nextPutAll: anAssignmentNode assignmentOperator; space.
 	self visitNode: anAssignmentNode value
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>visitBlockNode: aBlockNode [
+{ #category : #visiting }
+BIConfigurableFormatter >> visitBlockNode: aBlockNode [
 	self
 		bracketWith: '[]'
 		around: [ self formatBlock: aBlockNode ].
 	
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>visitCascadeNode: aCascadeNode [
+{ #category : #visiting }
+BIConfigurableFormatter >> visitCascadeNode: aCascadeNode [
 	self isInCascadeNode: true.
 	self visitNode: aCascadeNode receiver.
 	self
@@ -1976,11 +1426,8 @@ BIConfigurableFormatter>>visitCascadeNode: aCascadeNode [
 	self isInCascadeNode: false
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>visitLiteralArrayNode: aRBArrayLiteralNode  [
+{ #category : #visiting }
+BIConfigurableFormatter >> visitLiteralArrayNode: aRBArrayLiteralNode [ 
 	| brackets |
 	codeStream nextPut: $#.
 	brackets := aRBArrayLiteralNode isForByteArray 
@@ -1992,11 +1439,8 @@ BIConfigurableFormatter>>visitLiteralArrayNode: aRBArrayLiteralNode  [
 				separatedBy: [self space]]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>visitLiteralNode: aLiteralNode [
+{ #category : #visiting }
+BIConfigurableFormatter >> visitLiteralNode: aLiteralNode [
 	aLiteralNode value isLiteral
 		ifFalse: [ 
 
@@ -2004,29 +1448,20 @@ BIConfigurableFormatter>>visitLiteralNode: aLiteralNode [
 		ifTrue: [ self writeString: aLiteralNode sourceText ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>visitMessageNode: aMessageNode  [
+{ #category : #visiting }
+BIConfigurableFormatter >> visitMessageNode: aMessageNode [ 
 	self visitNode: aMessageNode receiver.
 	self formatSelectorAndArguments: aMessageNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>visitMethodNode: aMethodNode  [
+{ #category : #visiting }
+BIConfigurableFormatter >> visitMethodNode: aMethodNode [ 
 	self formatMethodPatternFor: aMethodNode.
 	self formatMethodBodyFor: aMethodNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>visitNode: aNode [
+{ #category : #visiting }
+BIConfigurableFormatter >> visitNode: aNode [
 	| needsParenthesis |
 	(lookaheadCode includesKey: aNode)
 		ifTrue: [ ^ self writeString: (lookaheadCode at: aNode) ].
@@ -2046,22 +1481,16 @@ BIConfigurableFormatter>>visitNode: aNode [
 				ifTrue: [ codeStream nextPutAll: self stringInsideParentheses ] ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>visitPatternBlockNode: aRBPatternBlockNode  [
+{ #category : #visiting }
+BIConfigurableFormatter >> visitPatternBlockNode: aRBPatternBlockNode [ 
 	codeStream nextPut: $`.
 	self 
 		bracketWith: '{}' 
 		around: [self formatBlock: aRBPatternBlockNode]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>visitPatternWrapperBlockNode: aRBPatternWrapperBlockNode [
+{ #category : #visiting }
+BIConfigurableFormatter >> visitPatternWrapperBlockNode: aRBPatternWrapperBlockNode [
 	self visitNode: aRBPatternWrapperBlockNode wrappedNode.
 	codeStream nextPut: $`.
 	self 
@@ -2069,11 +1498,8 @@ BIConfigurableFormatter>>visitPatternWrapperBlockNode: aRBPatternWrapperBlockNod
 		around: [self formatBlock: aRBPatternWrapperBlockNode]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>visitPragmaNode: aPragmaNode [
+{ #category : #visiting }
+BIConfigurableFormatter >> visitPragmaNode: aPragmaNode [
 	codeStream nextPut: $<.
 	self 
 		formatSelectorAndArguments: aPragmaNode 
@@ -2085,48 +1511,33 @@ BIConfigurableFormatter>>visitPragmaNode: aPragmaNode [
 	codeStream nextPut: $>
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>visitReturnNode: aReturnNode  [
+{ #category : #visiting }
+BIConfigurableFormatter >> visitReturnNode: aReturnNode [ 
 	codeStream
 		nextPut: $^;
 		nextPutAll: self stringFollowingReturn.
 	self visitNode: aReturnNode value
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>visitSequenceNode: aSequenceNode [
+{ #category : #visiting }
+BIConfigurableFormatter >> visitSequenceNode: aSequenceNode [
 	self formatTemporariesFor: aSequenceNode.
 	self formatCommentsFor: aSequenceNode.
 	self formatSequenceNodeStatementsFor: aSequenceNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>visitVariableNode: aVariableNode  [
+{ #category : #visiting }
+BIConfigurableFormatter >> visitVariableNode: aVariableNode [ 
 	codeStream nextPutAll: aVariableNode name
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>willBeMultiline: aNode  [
+{ #category : #private }
+BIConfigurableFormatter >> willBeMultiline: aNode [ 
 	^(self formattedSourceFor: aNode) includes: Character cr
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>with: firstCollection and: secondCollection do: aBlock separatedBy: separatorBlock [
+{ #category : #utility }
+BIConfigurableFormatter >> with: firstCollection and: secondCollection do: aBlock separatedBy: separatorBlock [
 	firstCollection isEmpty
 		ifTrue: [ ^ self ].
 	aBlock value: firstCollection first value: secondCollection first.
@@ -2135,11 +1546,8 @@ BIConfigurableFormatter>>with: firstCollection and: secondCollection do: aBlock 
 		aBlock value: (firstCollection at: i) value: (secondCollection at: i) ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIConfigurableFormatter>>writeString: aString [
+{ #category : #private }
+BIConfigurableFormatter >> writeString: aString [
 	| index |
 	index := aString lastIndexOf: Character cr ifAbsent: [ 0 ].
 	 codeStream nextPutAll: aString .

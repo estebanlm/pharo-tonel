@@ -46,83 +46,58 @@ Class {
 	#classVars : [
 		'Registry'
 	],
-	#category : #Files-Core,
-	#timestamp : 'GuillermoPolito 6/5/2015 11:08'
+	#category : #Files-Core
 }
 
-{
-	#category : #'file creation',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File class>>named: fileName [
+{ #category : #'file creation' }
+File class >> named: fileName [
 	"Open a file with the given name for reading and writing. If the name has no directory part, then the file will be created in the default directory. If the file already exists, its prior contents may be modified or replaced, but the file will not be truncated on close."
 
 	^ self new named: fileName
 ]
 
-{
-	#category : #'file creation',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File class>>openAndTruncateForWriteFileNamed: aName [
+{ #category : #'file creation' }
+File class >> openAndTruncateForWriteFileNamed: aName [
 
 	^ (self named: aName)
 		delete;
 		openForWrite
 ]
 
-{
-	#category : #'file creation',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File class>>openForReadFileNamed: aName [
+{ #category : #'file creation' }
+File class >> openForReadFileNamed: aName [
 
 	^ (self named: aName)
 		openForRead
 ]
 
-{
-	#category : #'file creation',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File class>>openForWriteFileNamed: aName [
+{ #category : #'file creation' }
+File class >> openForWriteFileNamed: aName [
 
 	^ (self named: aName) openForWrite
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File class>>primClose: id [
+{ #category : #primitives }
+File class >> primClose: id [
 	"Close this file."
 
 	<primitive: 'primitiveFileClose' module: 'FilePlugin'>
 	self primitiveFailed
 ]
 
-{
-	#category : #registry,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File class>>register: anObject [
+{ #category : #registry }
+File class >> register: anObject [
 	^self registry add: anObject
 ]
 
-{
-	#category : #registry,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File class>>registry [
+{ #category : #registry }
+File class >> registry [
 	^Registry ifNil: [Registry := WeakRegistry new]
 
 ]
 
-{
-	#category : #registry,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File class>>retryWithGC: execBlock until: testBlock forFileNamed: fullName [
+{ #category : #registry }
+File class >> retryWithGC: execBlock until: testBlock forFileNamed: fullName [
 	"Some platforms, like Windows, will fail if we try to open a file twice.
 	However, sometimes it may happen that a file was unreferenced and should be garbage-collected.
 	The purpose of this method is to try to open the file, and if it fails, launch a garbage collection to try to close the unreferenced files.
@@ -144,19 +119,13 @@ File class>>retryWithGC: execBlock until: testBlock forFileNamed: fullName [
 	^execBlock value.
 ]
 
-{
-	#category : #registry,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File class>>unregister: anObject [
+{ #category : #registry }
+File class >> unregister: anObject [
 	^self registry remove: anObject ifAbsent:[]
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File>>basicOpenForWrite: writeMode  [
+{ #category : #open/close }
+File >> basicOpenForWrite: writeMode [ 
 	"Open the file with the given name. If writeMode is true, allow writing, otherwise open the file in read-only mode."
 	^ self class
 		retryWithGC: [ self primOpen: name writable: writeMode ]
@@ -164,11 +133,8 @@ File>>basicOpenForWrite: writeMode  [
 		forFileNamed: name
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File>>delete [
+{ #category : #open/close }
+File >> delete [
 	"We retries with GC because in some platforms open files cannot be open"
 	self class
 		retryWithGC: [ self primDelete: name ]
@@ -178,11 +144,8 @@ File>>delete [
 		ifTrue: [ (CannotDeleteFileException new messageText: 'Could not delete file ' , name,'. Check the file is not open.') signal ].
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File>>exists [
+{ #category : #open/close }
+File >> exists [
 
 	| handle |
 	"We open it for read. If the returned handle is nil, the file could not be opened"
@@ -192,58 +155,40 @@ File>>exists [
 	^ true
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File>>name [
+{ #category : #'instance creation' }
+File >> name [
 
 	^ name
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File>>named: fileName [
+{ #category : #'instance creation' }
+File >> named: fileName [
 
 	name := fileName
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File>>openForAppend [
+{ #category : #open/close }
+File >> openForAppend [
 
 	| stream |
 	stream := self openForWrite: true.
 	^ stream setToEnd; yourself
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File>>openForRead [
+{ #category : #open/close }
+File >> openForRead [
 
 	^ self openForWrite: false
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File>>openForWrite [
+{ #category : #open/close }
+File >> openForWrite [
 
 	^ self openForWrite: true
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File>>openForWrite: writeMode  [
+{ #category : #open/close }
+File >> openForWrite: writeMode [ 
 	"Open the file with the given name. If writeMode is true, allow writing, otherwise open the file in read-only mode."
 	| fileHandle |
 	fileHandle := self basicOpenForWrite: writeMode.
@@ -253,11 +198,8 @@ File>>openForWrite: writeMode  [
 		yourself
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File>>primDelete: aFileName [
+{ #category : #primitives }
+File >> primDelete: aFileName [
 	"Delete the file of the given name. 
 	Return self if the primitive succeeds, nil otherwise."
 
@@ -265,11 +207,8 @@ File>>primDelete: aFileName [
 	^ nil
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File>>primOpen: fileName writable: writableFlag [
+{ #category : #primitives }
+File >> primOpen: fileName writable: writableFlag [
 	"Open a file of the given name, and return the file ID obtained.
 	If writableFlag is true, then
 		if there is none with this name, then create one
@@ -283,48 +222,33 @@ File>>primOpen: fileName writable: writableFlag [
 
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File>>readStream [
+{ #category : #streaming }
+File >> readStream [
 	
 	^ self openForRead
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File>>readStreamDo: aBlock [
+{ #category : #streaming }
+File >> readStreamDo: aBlock [
 	| stream |
 	stream := self readStream.
 	^ [ aBlock value: stream ]
 		ensure: [ stream close ]
 ]
 
-{
-	#category : #registry,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File>>unregister [
+{ #category : #registry }
+File >> unregister [
 	^self class unregister: self
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File>>writeStream [
+{ #category : #streaming }
+File >> writeStream [
 
 	^ self openForWrite
 ]
 
-{
-	#category : #streaming,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-File>>writeStreamDo: aBlock [
+{ #category : #streaming }
+File >> writeStreamDo: aBlock [
 	| stream |
 	stream := self writeStream.
 	^ [ aBlock value: stream ]

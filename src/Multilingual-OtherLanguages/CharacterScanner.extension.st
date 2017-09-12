@@ -1,23 +1,15 @@
-Extension {
-	#name : #CharacterScanner
-}
+Extension { #name : #CharacterScanner }
 
-{
-	#category : #'*Multilingual-OtherLanguages',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CharacterScanner>>isBreakableAt: index in: sourceString in: encodingClass [
+{ #category : #'*Multilingual-OtherLanguages' }
+CharacterScanner >> isBreakableAt: index [ in: sourceString in: encodingClass
 "check with the encoding whether the character at index is a breakable character.
 Only the JISX0208 & JapaneseEnvironments  ever return true, so only the scanJapaneseCharacters... method calls this"
 	^ encodingClass isBreakableAt: index in: sourceString.
 
 ]
 
-{
-	#category : #'*Multilingual-OtherLanguages',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CharacterScanner>>registerBreakableIndex [
+{ #category : #'*Multilingual-OtherLanguages' }
+CharacterScanner >> registerBreakableIndex [
 
 	"Record left x and character index of the line-wrappable point. 
 	The default implementation here does nothing."
@@ -26,11 +18,8 @@ CharacterScanner>>registerBreakableIndex [
 
 ]
 
-{
-	#category : #'*Multilingual-OtherLanguages',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CharacterScanner>>scanJapaneseCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX  [
+{ #category : #'*Multilingual-OtherLanguages' }
+CharacterScanner >> scanJapaneseCharactersFrom: startIndex to: stopIndex in: sourceString rightX: rightX [ 
 "this is a scanning method for
 multibyte Japanese characters in a WideString - hence the isBreakable:in:in:
 a font that does not do character-pair kerning "

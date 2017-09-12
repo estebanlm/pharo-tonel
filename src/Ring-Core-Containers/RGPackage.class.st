@@ -10,34 +10,24 @@ Class {
 	#instVars : [
 		'package'
 	],
-	#category : #Ring-Core-Containers,
-	#timestamp : 'VeronicaUquillas 4/20/2011 17:18'
+	#category : #Ring-Core-Containers
 }
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>addElement: aRGDefinition in: aCollection [
+{ #category : #adding/removing }
+RGPackage >> addElement: aRGDefinition [ in: aCollection
 
 	aRGDefinition package: self.
 	super addElement: aRGDefinition in: aCollection.
 ]
 
-{
-	#category : #'managing container',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>addInContainer: anRGContainer [
+{ #category : #'managing container' }
+RGPackage >> addInContainer: anRGContainer [
 
 	anRGContainer addPackage: self
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>addMethod: aRGMethodDefinition [
+{ #category : #adding/removing }
+RGPackage >> addMethod: aRGMethodDefinition [
 	"aRGMethodDefinition needs to satisfy the status isMethod"
 
 	aRGMethodDefinition isMethod ifFalse:[ ^self ].
@@ -49,103 +39,73 @@ RGPackage>>addMethod: aRGMethodDefinition [
 			ifFalse:[ super methods ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>categories [
+{ #category : #accessing }
+RGPackage >> categories [
 	"Retrieves class categories of the receiver"
 	
 	^self elements at: #categories
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>categories: aCollection [
+{ #category : #accessing }
+RGPackage >> categories: aCollection [
 	"Set the class categories collection"
 	
 	self elements at: #categories put: (aCollection asOrderedCollection)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>classNames [
+{ #category : #accessing }
+RGPackage >> classNames [
 
 	^ self classes isDictionary
 		ifTrue: [ self classes keys ]
 		ifFalse:[ self classes collect:[ :class|  class name ] ]	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>classes [
+{ #category : #accessing }
+RGPackage >> classes [
 	"Retrieves a collection (by default a dictionary) of classes defined in the receiver and classes holding extension methods"
 	
 	^self definedClasses, self extendedClasses 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>definedClassNames [
+{ #category : #accessing }
+RGPackage >> definedClassNames [
 
 	^ super classNames
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>definedTraits [
+{ #category : #accessing }
+RGPackage >> definedTraits [
 	"Retrieves the traits defined in the receiver"
 
 	^self traits
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>definesClass: aRGBehaviorDefinition [
+{ #category : #testing }
+RGPackage >> definesClass: aRGBehaviorDefinition [
 	"Returns true if the receiver includes aRGBehaviorDefinition in the defined classes"
 
 	^ self includesClass: aRGBehaviorDefinition
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>definesOrExtendsClass: aRGBehaviorDefinition [
+{ #category : #testing }
+RGPackage >> definesOrExtendsClass: aRGBehaviorDefinition [
 	"Returns true whether the class, aRGBehaviorDefinition, is one locally defined classes of the receiver or 
 	if the receiver extends such class (that is defined in another package)"
 	
 	^ (self definesClass: aRGBehaviorDefinition) or:[ self extendsClass: aRGBehaviorDefinition ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>extendedClassNames [
+{ #category : #accessing }
+RGPackage >> extendedClassNames [
 
 	^ self extendedClasses isDictionary
 		ifTrue: [ self extendedClasses keys ]
 		ifFalse:[ self extendedClasses collect:[ :each| each name ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>extendedClasses [
+{ #category : #accessing }
+RGPackage >> extendedClasses [
 	"Retrieves the classes holding the extension methods and returns a dictionary as well"
 	|  classesOfExt |
 	classesOfExt := Dictionary new.
@@ -157,51 +117,36 @@ RGPackage>>extendedClasses [
 	^classesOfExt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>extendedSelectors [
+{ #category : #accessing }
+RGPackage >> extendedSelectors [
 	"Retrieves the names of the methods"
 	
 	^ self extensionMethods keys
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>extendsClass: aRGBehaviorDefinition [
+{ #category : #testing }
+RGPackage >> extendsClass: aRGBehaviorDefinition [
 	"Returns true if the receiver extends aRGBehaviorDefinition (that is defined in another package)"
 	
 	^ self extendedClasses includes: aRGBehaviorDefinition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>extensionMethods [
+{ #category : #accessing }
+RGPackage >> extensionMethods [
 	"Retrieves extension methods"
 	
 	^self elements at: #extensionMethods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>extensionMethods: aCollection [
+{ #category : #accessing }
+RGPackage >> extensionMethods: aCollection [
 	"Set the extension methods collection"
 	
 	self elements at: #extensionMethods put: aCollection
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>initialize [
+{ #category : #initialization }
+RGPackage >> initialize [
 
 	super initialize.
 	self withoutPackages.	"By default the receiver has no child packages"
@@ -209,20 +154,14 @@ RGPackage>>initialize [
 	self categories: OrderedCollection new.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>isPackage [
+{ #category : #testing }
+RGPackage >> isPackage [
 
 	^true
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>lookupClassNamed: className [
+{ #category : #lookup }
+RGPackage >> lookupClassNamed: className [
 	"Look for the class named className in the receiver's defined classes or in any of its package children"
 	| class |
 	
@@ -235,22 +174,16 @@ RGPackage>>lookupClassNamed: className [
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>methods [
+{ #category : #accessing }
+RGPackage >> methods [
 	"Retrieves all the methods defined in the receiver. 
 	#methods holds the methods of defined classes"
 	
 	^super methods, self extensionMethods 
 ]
 
-{
-	#category : #metrics,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>numberOfLinesOfCode [
+{ #category : #metrics }
+RGPackage >> numberOfLinesOfCode [
 	
 	^ self 
 		annotationNamed: #numberOfLinesOfCode
@@ -261,41 +194,29 @@ RGPackage>>numberOfLinesOfCode [
 			number ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>package [
+{ #category : #accessing }
+RGPackage >> package [
 	"Retrieves the  package in which self is contained"
 
 	^package
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>package: aRGPackage [
+{ #category : #accessing }
+RGPackage >> package: aRGPackage [
 	"Sets the outer package of the receiver if exists"
 
 	package:= aRGPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>parent [
+{ #category : #accessing }
+RGPackage >> parent [
 	"Retrieves the environment linked to this package"
 	
 	^self environment
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>printOn: aStream [
+{ #category : #printing }
+RGPackage >> printOn: aStream [
 	aStream
 		nextPutAll: self class name;
 		nextPutAll: '(';
@@ -303,20 +224,14 @@ RGPackage>>printOn: aStream [
 		nextPutAll: ')'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>realPackage [
+{ #category : #accessing }
+RGPackage >> realPackage [
 
 	^ RPackageOrganizer default packageNamed: self name
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>removeMethod: aRGMethodDefinition [
+{ #category : #adding/removing }
+RGPackage >> removeMethod: aRGMethodDefinition [
 
 	self 
 		removeElement: aRGMethodDefinition 
@@ -325,11 +240,8 @@ RGPackage>>removeMethod: aRGMethodDefinition [
 				ifFalse:[ super methods ])
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RGPackage>>withoutCategories [
+{ #category : #adding/removing }
+RGPackage >> withoutCategories [
 
 	self removeElementsCategorized: #categories
 ]

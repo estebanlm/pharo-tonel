@@ -38,15 +38,11 @@ Class {
 		'ticksPerMSec',
 		'totalTicks'
 	],
-	#category : #Tool-Profilers,
-	#timestamp : '<historical>'
+	#category : #Tool-Profilers
 }
 
-{
-	#category : #LICENSE,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AndreasSystemProfiler class>>LICENSE [
+{ #category : #LICENSE }
+AndreasSystemProfiler class >> LICENSE [
 	^'Project Squeak
 
 	In Memory of Andreas Raab.  Author, Friend, Colleague. 	http://forum.world.st/In-Memory-of-Andreas-Raab-td4663424.html
@@ -63,29 +59,20 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.'
 ]
 
-{
-	#category : #spying,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AndreasSystemProfiler class>>default [
+{ #category : #spying }
+AndreasSystemProfiler class >> default [
 	^self new
 ]
 
-{
-	#category : #spying,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AndreasSystemProfiler class>>spyFor: seconds [
+{ #category : #spying }
+AndreasSystemProfiler class >> spyFor: seconds [
 	"Run the system profiler for the specified number of seconds"
 	"self spyFor: 5"
 	^self spyOn: [ (Delay forSeconds: seconds) wait ].
 ]
 
-{
-	#category : #spying,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AndreasSystemProfiler class>>spyOn: aBlock [
+{ #category : #spying }
+AndreasSystemProfiler class >> spyOn: aBlock [
 	"The main method for profiling and showing the report "
 
 	"self spyOn: [ 10000 timesRepeat: [ 3.14159 printString ] ]"
@@ -96,11 +83,8 @@ AndreasSystemProfiler class>>spyOn: aBlock [
 		ensure: [ profiler doReport ]
 ]
 
-{
-	#category : #spying,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AndreasSystemProfiler class>>spyOnWorldFor: seconds [
+{ #category : #spying }
+AndreasSystemProfiler class >> spyOnWorldFor: seconds [
 	"Run the system profiler for the specified number of seconds,
 	 spying on the morphic world in which it was launched. 
 	 Handy for running Workspace do-its."
@@ -111,40 +95,28 @@ AndreasSystemProfiler class>>spyOnWorldFor: seconds [
 			whileTrue: [ World doOneCycle ]].
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AndreasSystemProfiler>>doReport [
+{ #category : #reporting }
+AndreasSystemProfiler >> doReport [
 	"Report the results of this profiler run"
 	UIManager default edit: self report label: 'Spy Results'.
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AndreasSystemProfiler>>report [
+{ #category : #reporting }
+AndreasSystemProfiler >> report [
 	"Answer a report, with cutoff percentage of each element of the tree"
 	^String streamContents: [ :s | self report: s ]
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AndreasSystemProfiler>>report: strm  [
+{ #category : #reporting }
+AndreasSystemProfiler >> report: strm [ 
 	"Print a report, with cutoff percentage of each element of the tree 
 	(leaves, roots, tree)=2, on the stream, strm."
 
 	self report: strm cutoff: 1
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AndreasSystemProfiler>>report: strm cutoff: threshold  [
+{ #category : #reporting }
+AndreasSystemProfiler >> report: strm cutoff: threshold [ 
 	tallyRoot ifNil: [ strm nextPutAll: 'The profiler has not been run'. ^ self ].
 	
 	tallyRoot tally isZero
@@ -161,11 +133,8 @@ AndreasSystemProfiler>>report: strm cutoff: threshold  [
 	].
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AndreasSystemProfiler>>reportGCStatsOn: str [
+{ #category : #reporting }
+AndreasSystemProfiler >> reportGCStatsOn: str [
 	| oldSpaceEnd youngSpaceEnd memoryEnd fullGCs fullGCTime incrGCs incrGCTime tenureCount upTime rootOverflows |
 	upTime := totalTime.
 	oldSpaceEnd			:= vmStats at: 1.
@@ -216,11 +185,8 @@ AndreasSystemProfiler>>reportGCStatsOn: str [
 
 ]
 
-{
-	#category : #reporting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AndreasSystemProfiler>>reportProcessStatsOn: str [
+{ #category : #reporting }
+AndreasSystemProfiler >> reportProcessStatsOn: str [
 	| totalSwitches pageOverflows pageDivorces actualSwitches |
 	vmStats size >= 61 ifFalse: [ ^ self ]. "don't try this on the closure VM"
 	totalSwitches := vmStats at: 56.
@@ -237,11 +203,8 @@ AndreasSystemProfiler>>reportProcessStatsOn: str [
 
 ]
 
-{
-	#category : #profiling,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AndreasSystemProfiler>>runProfilerProcess [
+{ #category : #profiling }
+AndreasSystemProfiler >> runProfilerProcess [
 	"Run the profiler process"
 	| process tallyStart tallyTicks tallyStop method leaf |
 	tallyRoot := QSystemTally new class: nil method: nil.
@@ -268,11 +231,8 @@ AndreasSystemProfiler>>runProfilerProcess [
 
 ]
 
-{
-	#category : #profiling,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AndreasSystemProfiler>>spyOn: aBlock [
+{ #category : #profiling }
+AndreasSystemProfiler >> spyOn: aBlock [
 	"Profile system activity during execution of aBlock. 
 	The argument is the desired samples per *milli* second.
 	Mostly for polymorphism with MessageTally."
@@ -281,11 +241,8 @@ AndreasSystemProfiler>>spyOn: aBlock [
 
 ]
 
-{
-	#category : #profiling,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AndreasSystemProfiler>>startProfiling [
+{ #category : #profiling }
+AndreasSystemProfiler >> startProfiling [
 	"Start the profiler process taking samplesPerMsec samples per *milli* second"
 	| t0 |
 	semaphore := Semaphore new.
@@ -304,11 +261,8 @@ AndreasSystemProfiler>>startProfiling [
 
 ]
 
-{
-	#category : #profiling,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-AndreasSystemProfiler>>stopProfiling [
+{ #category : #profiling }
+AndreasSystemProfiler >> stopProfiling [
 	"Stop the profiler process"
 	Smalltalk profileSemaphore: nil.
 	Smalltalk profileStart: 0. "<- profile stops now"

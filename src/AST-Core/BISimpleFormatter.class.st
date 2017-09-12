@@ -17,78 +17,53 @@ Class {
 	#classVars : [
 		'FormatAsYouReadPolicy'
 	],
-	#category : #AST-Core-Formatter,
-	#timestamp : 'StephaneDucasse 8/7/2015 15:08'
+	#category : #AST-Core-Formatter
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter class>>format: aParseTree  [
+{ #category : #public }
+BISimpleFormatter class >> format: aParseTree [ 
 	^self format: aParseTree withIndents: 0
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter class>>format: aParseTree withIndents: anInteger  [
+{ #category : #public }
+BISimpleFormatter class >> format: aParseTree withIndents: anInteger [ 
 	^ self new
 		indent: anInteger;
 		format: aParseTree
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter class>>formatAsYouReadPolicy [
+{ #category : #initialization }
+BISimpleFormatter class >> formatAsYouReadPolicy [
 	^ FormatAsYouReadPolicy
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter class>>formatAsYouReadPolicy: anObject [
+{ #category : #initialization }
+BISimpleFormatter class >> formatAsYouReadPolicy: anObject [
 	FormatAsYouReadPolicy := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter class>>initialize [
+{ #category : #initialization }
+BISimpleFormatter class >> initialize [
   "self initialize"
   FormatAsYouReadPolicy := false.
  
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>addSpaceIfNeededForLastArgument: aPragmaNode [
+{ #category : #private }
+BISimpleFormatter >> addSpaceIfNeededForLastArgument: aPragmaNode [
 	aPragmaNode isUnary
 		ifTrue: [ ^ self ].
 	(self pragmaArgumentNeedsSeparator: aPragmaNode arguments last)
 		ifTrue: [ self space ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>basicFormatCommentFor: aComment [
+{ #category : #private }
+BISimpleFormatter >> basicFormatCommentFor: aComment [
 	codeStream nextPutAll: (originalSource copyFrom: aComment start to: aComment stop).
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>bracketWith: bracketString around: aBlock [
+{ #category : #private }
+BISimpleFormatter >> bracketWith: bracketString around: aBlock [
 	bracketString isEmpty
 		ifTrue: [ ^ aBlock value ].
 	codeStream nextPut: bracketString first.
@@ -96,45 +71,30 @@ BISimpleFormatter>>bracketWith: bracketString around: aBlock [
 		ensure: [ codeStream nextPut: bracketString last ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>codeStream [
+{ #category : #accessing }
+BISimpleFormatter >> codeStream [
 	^ codeStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>codeStream: anObject [
+{ #category : #accessing }
+BISimpleFormatter >> codeStream: anObject [
 	codeStream := anObject
 ]
 
-{
-	#category : #'public interface',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>containerWidth: anInteger [
+{ #category : #'public interface' }
+BISimpleFormatter >> containerWidth: anInteger [
 	"nothing done on purpose"
 ]
 
-{
-	#category : #'public interface',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>format: aParseTree [
+{ #category : #'public interface' }
+BISimpleFormatter >> format: aParseTree [
 	originalSource := aParseTree source.
 	self visitNode: aParseTree.
 	^ codeStream contents
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>formatArray: anArrayNode [
+{ #category : #private-formatting }
+BISimpleFormatter >> formatArray: anArrayNode [
 	anArrayNode statements
 		do: [ :each | 
 				self visitNode: each ]
@@ -143,11 +103,8 @@ BISimpleFormatter>>formatArray: anArrayNode [
 				self newLine ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>formatBlock: aBlockNode [
+{ #category : #private-formatting }
+BISimpleFormatter >> formatBlock: aBlockNode [
 	self formatBlockArgumentsFor: aBlockNode.
 	self space.
 	self visitNode: aBlockNode body.
@@ -156,11 +113,8 @@ BISimpleFormatter>>formatBlock: aBlockNode [
 
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>formatBlockArgumentsFor: aBlockNode [
+{ #category : #private-formatting }
+BISimpleFormatter >> formatBlockArgumentsFor: aBlockNode [
 	aBlockNode arguments isEmpty
 		ifTrue: [ ^ self ].
 	aBlockNode arguments
@@ -173,11 +127,8 @@ BISimpleFormatter>>formatBlockArgumentsFor: aBlockNode [
 	codeStream nextPutAll: '| '
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>formatCommentsFor: aNode [
+{ #category : #private-formatting }
+BISimpleFormatter >> formatCommentsFor: aNode [
 	originalSource isNil
 		ifTrue: [ ^ self ].
 	aNode comments
@@ -187,11 +138,8 @@ BISimpleFormatter>>formatCommentsFor: aNode [
 			self newLine ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>formatMethodBodyFor: aMethodNode [
+{ #category : #private-formatting }
+BISimpleFormatter >> formatMethodBodyFor: aMethodNode [
 	self
 		indentAround:
 			[ 
@@ -201,11 +149,8 @@ BISimpleFormatter>>formatMethodBodyFor: aMethodNode [
 			self visitNode: aMethodNode body ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>formatMethodCommentFor: aNode [
+{ #category : #private-formatting }
+BISimpleFormatter >> formatMethodCommentFor: aNode [
 	originalSource isNil
 		ifTrue: [ ^ self ].
 	aNode comments
@@ -215,29 +160,20 @@ BISimpleFormatter>>formatMethodCommentFor: aNode [
 			self newLine ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>formatMethodPatternFor: aMethodNode [
+{ #category : #private-formatting }
+BISimpleFormatter >> formatMethodPatternFor: aMethodNode [
 	aMethodNode arguments isEmpty
 		ifTrue: [ codeStream nextPutAll: aMethodNode selector ]
 		ifFalse: [ self privateFormatMethodPatternMonoLineFor: aMethodNode ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>formatPragmasFor: aMethodNode [
+{ #category : #private-formatting }
+BISimpleFormatter >> formatPragmasFor: aMethodNode [
 	aMethodNode pragmas do: [ :each | self visitNode: each; newLine ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>formatSelectorAndArguments: aMessageNode [
+{ #category : #private-formatting }
+BISimpleFormatter >> formatSelectorAndArguments: aMessageNode [
 	
 	self
 		indent: 2
@@ -248,11 +184,8 @@ BISimpleFormatter>>formatSelectorAndArguments: aMessageNode [
 				restSeparator: [ self space ] ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>formatSelectorAndArguments: aMessageNode firstSeparator: firstBlock restSeparator: restBlock [
+{ #category : #private-formatting }
+BISimpleFormatter >> formatSelectorAndArguments: aMessageNode firstSeparator: firstBlock restSeparator: restBlock [
 	aMessageNode isUnary
 		ifTrue: [ 
 			self space.
@@ -268,11 +201,8 @@ BISimpleFormatter>>formatSelectorAndArguments: aMessageNode firstSeparator: firs
 							self handleLineForArgument: argument ] ] ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>formatSequenceNodeStatementsFor: aSequenceNode [
+{ #category : #private-formatting }
+BISimpleFormatter >> formatSequenceNodeStatementsFor: aSequenceNode [
 	| statements |
 	statements := aSequenceNode statements.
 	statements isEmpty
@@ -288,11 +218,8 @@ BISimpleFormatter>>formatSequenceNodeStatementsFor: aSequenceNode [
 			ifTrue: [  ] ]
 ]
 
-{
-	#category : #private-formatting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>formatStatementCommentsFor: aStatementNode [
+{ #category : #private-formatting }
+BISimpleFormatter >> formatStatementCommentsFor: aStatementNode [
 	originalSource isNil
 		ifTrue: [ ^ self ].
 	aStatementNode statementComments
@@ -302,11 +229,8 @@ BISimpleFormatter>>formatStatementCommentsFor: aStatementNode [
 			 self basicFormatCommentFor: each ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>formatTemporariesFor: aSequenceNode [
+{ #category : #private }
+BISimpleFormatter >> formatTemporariesFor: aSequenceNode [
 	aSequenceNode temporaries isEmpty
 		ifTrue: [ ^ self ].
 	self
@@ -323,11 +247,8 @@ BISimpleFormatter>>formatTemporariesFor: aSequenceNode [
 	self newLine.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>formattedSourceFor: aNode [
+{ #category : #private }
+BISimpleFormatter >> formattedSourceFor: aNode [
 	^ lookaheadCode
 		at: aNode
 		ifAbsentPut: [ 
@@ -336,62 +257,41 @@ BISimpleFormatter>>formattedSourceFor: aNode [
 				format: aNode ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>handleLineForArgument: anArgument [
+{ #category : #private }
+BISimpleFormatter >> handleLineForArgument: anArgument [
   self space.
   self visitNode: anArgument
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>indent [
+{ #category : #accessing }
+BISimpleFormatter >> indent [
 	^ indent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>indent: anInteger [
+{ #category : #accessing }
+BISimpleFormatter >> indent: anInteger [
 
 	indent := anInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>indent: anInteger around: aBlock  [
+{ #category : #private }
+BISimpleFormatter >> indent: anInteger around: aBlock [ 
 	self indent: self indent + anInteger.
 	^aBlock ensure: [self indent: self indent - anInteger]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>indentAround: aBlock  [
+{ #category : #private }
+BISimpleFormatter >> indentAround: aBlock [ 
 	self indent: 1 around: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>indentString [
+{ #category : #accessing }
+BISimpleFormatter >> indentString [
 	^ '  '
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>initialize [
+{ #category : #initialization }
+BISimpleFormatter >> initialize [
 	super initialize.
 	lineStart := 0.
 	self indent: 0.
@@ -400,27 +300,18 @@ BISimpleFormatter>>initialize [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>lineStart [
+{ #category : #accessing }
+BISimpleFormatter >> lineStart [
 	^ lineStart
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>lineStart: anObject [
+{ #category : #accessing }
+BISimpleFormatter >> lineStart: anObject [
 	lineStart := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>needsParenthesisFor: aNode [
+{ #category : #private }
+BISimpleFormatter >> needsParenthesisFor: aNode [
   | parent |
   aNode ifNil: [ ^false ].
   aNode isValue ifFalse: [ ^false ].
@@ -437,19 +328,13 @@ BISimpleFormatter>>needsParenthesisFor: aNode [
    ^self precedenceOf: parent selector greaterThan: aNode selector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>newLine [
+{ #category : #private }
+BISimpleFormatter >> newLine [
 	self newLines: 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>newLines: anInteger [
+{ #category : #private }
+BISimpleFormatter >> newLines: anInteger [
 	anInteger + self indentString size = 0
 		ifTrue: 
 			[ codeStream space ].
@@ -463,19 +348,13 @@ BISimpleFormatter>>newLines: anInteger [
 			[ codeStream nextPutAll: self indentString ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>pragmaArgumentNeedsSeparator: anArgumentNode [
+{ #category : #private }
+BISimpleFormatter >> pragmaArgumentNeedsSeparator: anArgumentNode [
 	^ anArgumentNode value isSymbol and: [ anArgumentNode value isBinary ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>precedenceOf: parentSelector greaterThan: childSelector [
+{ #category : #private }
+BISimpleFormatter >> precedenceOf: parentSelector greaterThan: childSelector [
   "Put parenthesis around things that are preceived to have 'lower' precedence. For example, 'a + b * c' 
 	-> '(a + b) * c' but 'a * b + c' -> 'a * b + c'"
   | childIndex parentIndex |
@@ -486,11 +365,8 @@ BISimpleFormatter>>precedenceOf: parentSelector greaterThan: childSelector [
   ^childIndex < parentIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>privateFormatMethodPatternMonoLineFor: aMethodNode [
+{ #category : #private }
+BISimpleFormatter >> privateFormatMethodPatternMonoLineFor: aMethodNode [
 	self
 		with: aMethodNode selectorParts
 		and: aMethodNode arguments
@@ -501,56 +377,38 @@ BISimpleFormatter>>privateFormatMethodPatternMonoLineFor: aMethodNode [
 		separatedBy: [ self space ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>space [
+{ #category : #private }
+BISimpleFormatter >> space [
 	codeStream space
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>traditionalBinaryPrecedenceArray [
+{ #category : #accessing }
+BISimpleFormatter >> traditionalBinaryPrecedenceArray [
 	^  #(#($| $& $?) #($= $~ $< $>) #($- $+) #($* $/ $% $\) #($@))
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>visitArrayNode: anArrayNode [
+{ #category : #visiting }
+BISimpleFormatter >> visitArrayNode: anArrayNode [
 	self bracketWith: '{}' around: [ self formatArray: anArrayNode ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>visitAssignmentNode: anAssignmentNode  [
+{ #category : #visiting }
+BISimpleFormatter >> visitAssignmentNode: anAssignmentNode [ 
 	self visitNode: anAssignmentNode variable.
 	codeStream space; nextPutAll: anAssignmentNode assignmentOperator; space.
 	self visitNode: anAssignmentNode value
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>visitBlockNode: aBlockNode [
+{ #category : #visiting }
+BISimpleFormatter >> visitBlockNode: aBlockNode [
 	self
 		bracketWith: '[]'
 		around: [ self formatBlock: aBlockNode ].
 	
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>visitCascadeNode: aCascadeNode [
+{ #category : #visiting }
+BISimpleFormatter >> visitCascadeNode: aCascadeNode [
 
 	self visitNode: aCascadeNode receiver.
 	self
@@ -566,11 +424,8 @@ BISimpleFormatter>>visitCascadeNode: aCascadeNode [
 	
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>visitLiteralArrayNode: aRBArrayLiteralNode  [
+{ #category : #visiting }
+BISimpleFormatter >> visitLiteralArrayNode: aRBArrayLiteralNode [ 
 	| brackets |
 	codeStream nextPut: $#.
 	brackets := aRBArrayLiteralNode isForByteArray 
@@ -582,11 +437,8 @@ BISimpleFormatter>>visitLiteralArrayNode: aRBArrayLiteralNode  [
 				separatedBy: [self space]]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>visitLiteralNode: aLiteralNode [
+{ #category : #visiting }
+BISimpleFormatter >> visitLiteralNode: aLiteralNode [
 	aLiteralNode value isLiteral
 		ifFalse: [ 
 
@@ -594,29 +446,20 @@ BISimpleFormatter>>visitLiteralNode: aLiteralNode [
 		ifTrue: [ self writeString: aLiteralNode sourceText ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>visitMessageNode: aMessageNode  [
+{ #category : #visiting }
+BISimpleFormatter >> visitMessageNode: aMessageNode [ 
 	self visitNode: aMessageNode receiver.
 	self formatSelectorAndArguments: aMessageNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>visitMethodNode: aMethodNode  [
+{ #category : #visiting }
+BISimpleFormatter >> visitMethodNode: aMethodNode [ 
 	self formatMethodPatternFor: aMethodNode.
 	self formatMethodBodyFor: aMethodNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>visitNode: aNode [
+{ #category : #visiting }
+BISimpleFormatter >> visitNode: aNode [
 	| needsParenthesis |
 	(lookaheadCode includesKey: aNode)
 		ifTrue: [ ^ self writeString: (lookaheadCode at: aNode) ].
@@ -629,22 +472,16 @@ BISimpleFormatter>>visitNode: aNode [
 		around: [ super visitNode: aNode ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>visitPatternBlockNode: aRBPatternBlockNode  [
+{ #category : #visiting }
+BISimpleFormatter >> visitPatternBlockNode: aRBPatternBlockNode [ 
 	codeStream nextPut: $`.
 	self 
 		bracketWith: '{}' 
 		around: [self formatBlock: aRBPatternBlockNode]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>visitPatternWrapperBlockNode: aRBPatternWrapperBlockNode [
+{ #category : #visiting }
+BISimpleFormatter >> visitPatternWrapperBlockNode: aRBPatternWrapperBlockNode [
 	self visitNode: aRBPatternWrapperBlockNode wrappedNode.
 	codeStream nextPut: $`.
 	self 
@@ -652,11 +489,8 @@ BISimpleFormatter>>visitPatternWrapperBlockNode: aRBPatternWrapperBlockNode [
 		around: [self formatBlock: aRBPatternWrapperBlockNode]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>visitPragmaNode: aPragmaNode [
+{ #category : #visiting }
+BISimpleFormatter >> visitPragmaNode: aPragmaNode [
 	codeStream nextPut: $<.
 	self 
 		formatSelectorAndArguments: aPragmaNode 
@@ -668,38 +502,26 @@ BISimpleFormatter>>visitPragmaNode: aPragmaNode [
 	codeStream nextPut: $>
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>visitReturnNode: aReturnNode  [
+{ #category : #visiting }
+BISimpleFormatter >> visitReturnNode: aReturnNode [ 
 	codeStream nextPut: $^.
 	self visitNode: aReturnNode value
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>visitSequenceNode: aSequenceNode [
+{ #category : #visiting }
+BISimpleFormatter >> visitSequenceNode: aSequenceNode [
 	self formatTemporariesFor: aSequenceNode.
 	self formatCommentsFor: aSequenceNode.
 	self formatSequenceNodeStatementsFor: aSequenceNode
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>visitVariableNode: aVariableNode  [
+{ #category : #visiting }
+BISimpleFormatter >> visitVariableNode: aVariableNode [ 
 	codeStream nextPutAll: aVariableNode name
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>with: firstCollection and: secondCollection do: aBlock separatedBy: separatorBlock [
+{ #category : #utility }
+BISimpleFormatter >> with: firstCollection and: secondCollection do: aBlock separatedBy: separatorBlock [
 	firstCollection isEmpty
 		ifTrue: [ ^ self ].
 	aBlock value: firstCollection first value: secondCollection first.
@@ -708,11 +530,8 @@ BISimpleFormatter>>with: firstCollection and: secondCollection do: aBlock separa
 		aBlock value: (firstCollection at: i) value: (secondCollection at: i) ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-BISimpleFormatter>>writeString: aString [
+{ #category : #private }
+BISimpleFormatter >> writeString: aString [
 	| index |
 	index := aString lastIndexOf: Character cr ifAbsent: [ 0 ].
 	 codeStream nextPutAll: aString .

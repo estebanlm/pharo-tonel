@@ -4,34 +4,24 @@ I am a regex refactoring replacing method sources.
 Class {
 	#name : #RBSourceRegexRefactoring,
 	#superclass : #RBRegexRefactoring,
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 19:41'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSourceRegexRefactoring>>parseMethod: aString [
+{ #category : #private }
+RBSourceRegexRefactoring >> parseMethod: aString [
 	^ [ RBParser parseMethod: aString ]
 		on: Error do: [ :err | nil ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSourceRegexRefactoring>>parseSelector: aSelector [
+{ #category : #private }
+RBSourceRegexRefactoring >> parseSelector: aSelector [
 	^ [ RBParser parseMethodPattern: aSelector ]
 		on: Error
 		do: [ nil ]
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSourceRegexRefactoring>>transform [
+{ #category : #transforming }
+RBSourceRegexRefactoring >> transform [
 	| original replacement protocols |
 	self model allClassesDo: [ :class |
 		class selectors do: [ :selector |

@@ -7,59 +7,40 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #Ombu-Entries,
-	#timestamp : 'MartinDias 4/14/2014 23:28'
+	#category : #Ombu-Entries
 }
 
-{
-	#category : #'ston persistence',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmNullReference class>>fromSton: stonReader [
+{ #category : #'ston persistence' }
+OmNullReference class >> fromSton: stonReader [
 
 	stonReader parseListDo: [ :each :index | "nothing to read" ].
 
 	^ self uniqueInstance
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmNullReference class>>uniqueInstance [
+{ #category : #'instance creation' }
+OmNullReference class >> uniqueInstance [
 	^ uniqueInstance ifNil: [ uniqueInstance := self new ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmNullReference>>isNull [
+{ #category : #testing }
+OmNullReference >> isNull [
 	^ true
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmNullReference>>printOn: aStream [
+{ #category : #printing }
+OmNullReference >> printOn: aStream [
 	aStream 
 		nextPutAll: 'null:reference'
 ]
 
-{
-	#category : #'ston persistence',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmNullReference>>stonContainSubObjects  [
+{ #category : #'ston persistence' }
+OmNullReference >> stonContainSubObjects [ 
 	^ false
 ]
 
-{
-	#category : #'ston persistence',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmNullReference>>stonOn: stonWriter [
+{ #category : #'ston persistence' }
+OmNullReference >> stonOn: stonWriter [
 
 	stonWriter 
 		writeObject: self 

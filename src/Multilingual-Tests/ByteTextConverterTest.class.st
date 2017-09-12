@@ -4,25 +4,18 @@ SUnit tests for ByteTextConverter
 Class {
 	#name : #ByteTextConverterTest,
 	#superclass : #TestCase,
-	#category : #Multilingual-Tests-TextConversion,
-	#timestamp : 'TorstenBergmann 2/5/2014 10:18'
+	#category : #Multilingual-Tests-TextConversion
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-ByteTextConverterTest>>testConversionToFrom [
+{ #category : #testing }
+ByteTextConverterTest >> testConversionToFrom [
 	"Non regresson test for http://code.google.com/p/pharo/issues/detail?id=986"
 
 	self assert: (('äöü' convertToEncoding: 'mac-roman') convertFromEncoding: 'mac-roman') = 'äöü'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-ByteTextConverterTest>>testLatin2ToUnicodeConversion [
+{ #category : #testing }
+ByteTextConverterTest >> testLatin2ToUnicodeConversion [
         | latin2Characters utfCodePoints decodingStream unicodeString |
 
         latin2Characters := #[16rBE 16rFD 16rE1 16rC8] asString.
@@ -42,11 +35,8 @@ ByteTextConverterTest>>testLatin2ToUnicodeConversion [
 	self assert: (unicodeString at: 4) charCode = (utfCodePoints at: 4) .
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-ByteTextConverterTest>>testUnicodeToLatin2Conversion [
+{ #category : #testing }
+ByteTextConverterTest >> testUnicodeToLatin2Conversion [
         | latin2Bytes internalString encodingStream encodedBytes  |
 
         latin2Bytes := #[16rBE 16rFD 16rE1 16rC8] .

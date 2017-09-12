@@ -11,42 +11,29 @@ Class {
 		'january23rd2004',
 		'june2nd1973'
 	],
-	#category : #Kernel-Tests-Chronology,
-	#timestamp : 'brp 7/26/2003 16:58'
+	#category : #Kernel-Tests-Chronology
 }
 
-{
-	#category : #coverage,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>classToBeTested [
+{ #category : #coverage }
+DateTest >> classToBeTested [
 
 	^ self dateClass
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>dateClass [
+{ #category : #private }
+DateTest >> dateClass [
 
 	^ Date
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>epoch [
+{ #category : #helpers }
+DateTest >> epoch [
 
 	^ Date year: 1901 month: 1 day: 1
 ]
 
-{
-	#category : #coverage,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>selectorsToBeIgnored [
+{ #category : #coverage }
+DateTest >> selectorsToBeIgnored [
 
 	 | deprecated private special |
 	deprecated := #().
@@ -56,22 +43,16 @@ DateTest>>selectorsToBeIgnored [
 	^ super selectorsToBeIgnored, deprecated, private, special
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>setUp [
+{ #category : #running }
+DateTest >> setUp [
 
 	june2nd1973 := self dateClass year: 1973 day: 153.
 	january23rd2004 := Date readFrom: '01-23-2004' readStream.
 	aTime := Time readFrom: '12:34:56 pm' readStream
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testAccessing [
+{ #category : #tests }
+DateTest >> testAccessing [
 
 	self	
 		assert: june2nd1973 day equals: 153;
@@ -84,33 +65,24 @@ DateTest>>testAccessing [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testAddDays [
+{ #category : #tests }
+DateTest >> testAddDays [
 
 	self assert: (january23rd2004 addDays: 0) equals: '2004-01-23' asDate.	
 	self assert: (january23rd2004 addDays: 31) equals: '2004-02-23' asDate.
 	self assert: (january23rd2004 addDays: 366) equals: '2005-01-23' asDate.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testAddMonths [
+{ #category : #tests }
+DateTest >> testAddMonths [
 
 	self assert: (january23rd2004 addMonths: 0) equals: '2004-01-23' asDate.
 	self assert: (january23rd2004 addMonths: 1) equals: '2004-02-23' asDate.
 	self assert: (january23rd2004 addMonths: 12) equals: '2005-01-23' asDate.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testArithmetic [
+{ #category : #tests }
+DateTest >> testArithmetic [
 
 	| laterDate |
 	laterDate := june2nd1973 addDays: 32.
@@ -122,20 +94,14 @@ DateTest>>testArithmetic [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testAsDate [
+{ #category : #tests }
+DateTest >> testAsDate [
 
 	self assert: january23rd2004 asDate equals: january23rd2004.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testAsSeconds [
+{ #category : #tests }
+DateTest >> testAsSeconds [
 
 	| secondsSinceEpoch dateUTC dateEDT datePST |
 	self useTimeZone: 'UTC' during: [
@@ -160,11 +126,8 @@ DateTest>>testAsSeconds [
 	self assert: dateUTC asSeconds  equals: datePST asSeconds - (8*3600).	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testComparing [
+{ #category : #tests }
+DateTest >> testComparing [
 
 	| sameDate laterDate earlierDate |
 	sameDate := june2nd1973 asString asDate.
@@ -181,11 +144,8 @@ DateTest>>testComparing [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testDayMonthYearDo [
+{ #category : #tests }
+DateTest >> testDayMonthYearDo [
 	
 	january23rd2004 dayMonthYearDo: [ :day :month :year | 
 		self assert: day equals: 23.
@@ -193,11 +153,8 @@ DateTest>>testDayMonthYearDo [
 		self assert: year equals: 2004 ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testDayOfWeek [
+{ #category : #tests }
+DateTest >> testDayOfWeek [
 
 	| dayNames sundayIndex |
 	
@@ -210,11 +167,8 @@ DateTest>>testDayOfWeek [
 		self assert: dayIndex equals: i ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testDaysInMonthForYear [
+{ #category : #tests }
+DateTest >> testDaysInMonthForYear [
 
 	self assert: (Date daysInMonth: #February forYear: 2008) equals: 29.	
 	self assert: (Date daysInMonth: #February forYear: 2000) equals: 29.	
@@ -222,11 +176,8 @@ DateTest>>testDaysInMonthForYear [
 	self assert: (Date daysInMonth: #July forYear: 2100) equals: 31.	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testDaysInYear [
+{ #category : #tests }
+DateTest >> testDaysInYear [
 
 	self assert: (Date daysInYear: 2000) equals: 366.	
 	self assert: (Date daysInYear: 2008) equals: 366.	
@@ -234,39 +185,27 @@ DateTest>>testDaysInYear [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testDuration [
+{ #category : #tests }
+DateTest >> testDuration [
 
 	self assert: january23rd2004 duration equals: 24 hours.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testEqual [
+{ #category : #tests }
+DateTest >> testEqual [
 
 	self assert: january23rd2004 = 'January 23, 2004' asDate.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testFirstWeekdayOfMonthYear [
+{ #category : #tests }
+DateTest >> testFirstWeekdayOfMonthYear [
 
 	self assert: (Date firstWeekdayOfMonth: 'January' year: 2004) equals: 5.	
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testFromDays [
+{ #category : #tests }
+DateTest >> testFromDays [
 
 	| march18th1627 epochFromDays june2nd1973FromDays march18th1627FromDays january23rd2004FromDays |
 
@@ -284,11 +223,8 @@ DateTest>>testFromDays [
 	self assert: january23rd2004FromDays equals: (january23rd2004 translateTo: 0).	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testFromSeconds [
+{ #category : #tests }
+DateTest >> testFromSeconds [
 
 	| d |
 	d := self dateClass fromSeconds: june2nd1973 asSeconds. 
@@ -296,11 +232,8 @@ DateTest>>testFromSeconds [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testFromString [
+{ #category : #tests }
+DateTest >> testFromString [
  	"The fromString method requires month, day and year delemited by a valid date delimiter"
 	
 	| d |
@@ -314,11 +247,8 @@ DateTest>>testFromString [
 	self assert: d equals: june2nd1973.	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testIndexOfMonth [
+{ #category : #tests }
+DateTest >> testIndexOfMonth [
 
 	self assert: (Date indexOfMonth: #January) equals: 1.	
 	self assert: (Date indexOfMonth: #December) equals: 12.
@@ -326,11 +256,8 @@ DateTest>>testIndexOfMonth [
 	self should: [ Date indexOfMonth: #NonExistantMonth ] raise: Error.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testInquiries [
+{ #category : #tests }
+DateTest >> testInquiries [
 
 	self	
 		assert: june2nd1973 dayOfMonth equals: 2;
@@ -342,11 +269,8 @@ DateTest>>testInquiries [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testIsLeapYear  [
+{ #category : #tests }
+DateTest >> testIsLeapYear [ 
 
 	| dateInLeapYear dateInNonLeapYear |
 	dateInLeapYear := january23rd2004.
@@ -358,28 +282,19 @@ DateTest>>testIsLeapYear  [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testJulianDayNumber [
+{ #category : #tests }
+DateTest >> testJulianDayNumber [
 
 	self assert: (january23rd2004 translateTo: 0) equals: (Date julianDayNumber: ((4713+2004)*365 +1323) offset: 0 hour).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testMmddyyyy [
+{ #category : #tests }
+DateTest >> testMmddyyyy [
 	self assert: january23rd2004 mmddyyyy equals: '1/23/2004'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testNameOfDay [
+{ #category : #tests }
+DateTest >> testNameOfDay [
 
 	| dayNames firstDayName |
 	
@@ -392,11 +307,8 @@ DateTest>>testNameOfDay [
 		self assert: dayName equals: (dayNames at: i) ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testNameOfMonth [
+{ #category : #tests }
+DateTest >> testNameOfMonth [
 
 	self assert: (Date nameOfMonth: 1) equals: #January.	
 	self assert: (Date nameOfMonth: 12) equals: #December.
@@ -406,11 +318,8 @@ DateTest>>testNameOfMonth [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testNew [
+{ #category : #tests }
+DateTest >> testNew [
 	| instance epoch |
 	instance := self dateClass new.
 	epoch := self epoch.
@@ -422,64 +331,46 @@ DateTest>>testNew [
 		equals: epoch.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testNewDayMonthYear [
+{ #category : #tests }
+DateTest >> testNewDayMonthYear [
 
 	self assert: (Date year: 2004 month: 1 day: 23) equals: january23rd2004.	
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testNewDayYear [
+{ #category : #tests }
+DateTest >> testNewDayYear [
 
 	self assert: (Date year: 2004 day: 23) equals: january23rd2004	
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testNext [
+{ #category : #tests }
+DateTest >> testNext [
 
 	| nextDay |
 	nextDay := june2nd1973 next.
 	self assert: nextDay equals: '3 June, 1973' asDate.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testPrevious [
+{ #category : #tests }
+DateTest >> testPrevious [
 
 	| previousDay |
 	previousDay := june2nd1973 previous.
 	self assert: previousDay equals: '1 June, 1973' asDate.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testPreviousByName [
+{ #category : #tests }
+DateTest >> testPreviousByName [
 
 	self assert: (january23rd2004 previous: #Friday) equals: '2004-01-16' asDate.
 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testPrintFormat [
+{ #category : #tests }
+DateTest >> testPrintFormat [
 
 	| format monthTypes |
 	format := DatePrintFormatTester on: january23rd2004.
@@ -514,27 +405,18 @@ DateTest>>testPrintFormat [
 		assert: (june2nd1973 printFormat: #(1 2 3 0 1 1 1)) = '261973'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testPrintOn [
+{ #category : #tests }
+DateTest >> testPrintOn [
 	self assert: (String streamContents: [ :str | january23rd2004 printOn: str ]) equals: '23 January 2004'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testPrintOnFormat [
+{ #category : #tests }
+DateTest >> testPrintOnFormat [
 	self assert: (String streamContents: [ :str | january23rd2004 printOn: str format: #(3 2 1 $* 2 2) ]) equals: '04*Jan*23'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testReadFrom [
+{ #category : #tests }
+DateTest >> testReadFrom [
 
 	| s1 s2 s3 s4 s5 | 
 	s1 := '2 June 1973' readStream.
@@ -550,11 +432,8 @@ DateTest>>testReadFrom [
 		assert: (self dateClass readFrom: s4) equals: june2nd1973.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testStarting [
+{ #category : #tests }
+DateTest >> testStarting [
 
 	| aDateAndTime anyTime |
 	anyTime := '13:12' asTime.
@@ -562,19 +441,13 @@ DateTest>>testStarting [
 	self assert: (Date starting: aDateAndTime) equals: january23rd2004.  
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testStoreOn [
+{ #category : #tests }
+DateTest >> testStoreOn [
 	self assert: (String streamContents: [ :str | january23rd2004 storeOn: str ]) equals: '''23 January 2004'' asDate'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testStoring [
+{ #category : #tests }
+DateTest >> testStoring [
 
 	| expected actual |
 	expected := '''2 June 1973'' asDate'.
@@ -585,11 +458,8 @@ DateTest>>testStoring [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testSubtractDate [
+{ #category : #tests }
+DateTest >> testSubtractDate [
 
 	self assert: (january23rd2004 subtractDate: january23rd2004 previous) equals: 1.	
 	self assert: (january23rd2004 subtractDate: january23rd2004) equals: 0.	
@@ -597,52 +467,37 @@ DateTest>>testSubtractDate [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testSubtractDays [
+{ #category : #tests }
+DateTest >> testSubtractDays [
 
 	self assert: (january23rd2004 subtractDays: 0) equals: '2004-01-23' asDate.	
 	self assert: (january23rd2004 subtractDays: 30) equals: '2003-12-24' asDate.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testTomorrow [
+{ #category : #tests }
+DateTest >> testTomorrow [
 
 	"Not a great test: could falsely fail if midnight come in between the two executions"
 	self assert: Date tomorrow equals: Date today + 1 day.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testWeekday [
+{ #category : #tests }
+DateTest >> testWeekday [
 
 	self assert: january23rd2004 weekday equals: #Friday.	
 	self assert: january23rd2004 weekdayIndex equals: 6.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testYesterday [
+{ #category : #tests }
+DateTest >> testYesterday [
 
 	"Not a great test: could falsely fail if midnight come in between the two executions"
 	self assert: Date yesterday equals: Date today - 1 day.
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DateTest>>testYyyymmdd [
+{ #category : #tests }
+DateTest >> testYyyymmdd [
 
 	self assert: january23rd2004 yyyymmdd equals: '2004-01-23'
 ]

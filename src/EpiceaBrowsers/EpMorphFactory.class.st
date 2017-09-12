@@ -7,23 +7,16 @@ Class {
 	#classInstVars : [
 		'defaultInstance'
 	],
-	#category : #EpiceaBrowsers-UI-Common,
-	#timestamp : 'MartinDias 8/11/2016 23:03'
+	#category : #EpiceaBrowsers-UI-Common
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphFactory class>>default [
+{ #category : #accessing }
+EpMorphFactory class >> default [
 	^ defaultInstance ifNil: [ defaultInstance := self new ]
 ]
 
-{
-	#category : #strings,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphFactory>>emphasizedStringFor: aString [
+{ #category : #strings }
+EpMorphFactory >> emphasizedStringFor: aString [
 
 	| morph |
 	morph := aString asMorph
@@ -36,11 +29,8 @@ EpMorphFactory>>emphasizedStringFor: aString [
 	^ morph
 ]
 
-{
-	#category : #strings,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphFactory>>pillWith: aString  [
+{ #category : #strings }
+EpMorphFactory >> pillWith: aString [ 
 	
 	^ (self wrapping: aString)
 		borderWidth: 1;
@@ -49,11 +39,8 @@ EpMorphFactory>>pillWith: aString  [
 		yourself
 ]
 
-{
-	#category : #generic,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphFactory>>rowWithAll: someMophs [
+{ #category : #generic }
+EpMorphFactory >> rowWithAll: someMophs [
 
 	^ Morph new
 		changeTableLayout;
@@ -66,29 +53,20 @@ EpMorphFactory>>rowWithAll: someMophs [
 		yourself
 ]
 
-{
-	#category : #strings,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphFactory>>secondaryStringFor: aString [
+{ #category : #strings }
+EpMorphFactory >> secondaryStringFor: aString [
 
 	^ self stringFor: aString color: self secondaryTextColor
 ]
 
-{
-	#category : #colors,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphFactory>>secondaryTextColor [
+{ #category : #colors }
+EpMorphFactory >> secondaryTextColor [
 
 	^ Smalltalk ui theme caretColor mixed: 0.5 with: Color gray
 ]
 
-{
-	#category : #generic,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphFactory>>semiTransparent: aForm  [
+{ #category : #generic }
+EpMorphFactory >> semiTransparent: aForm [ 
 
 	^ AlphaImageMorph new 
 		image: aForm; 
@@ -96,49 +74,34 @@ EpMorphFactory>>semiTransparent: aForm  [
 		yourself
 ]
 
-{
-	#category : #generic,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphFactory>>smallGap [
+{ #category : #generic }
+EpMorphFactory >> smallGap [
 
 	^ self wrapping: ''
 ]
 
-{
-	#category : #colors,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphFactory>>softerTextColor [
+{ #category : #colors }
+EpMorphFactory >> softerTextColor [
 
 	^ self textColor mixed: 0.1 with: Color gray
 ]
 
-{
-	#category : #strings,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphFactory>>stringFor: aString color: aColor [
+{ #category : #strings }
+EpMorphFactory >> stringFor: aString color: aColor [
 
 	^ aString asMorph
 		color: aColor;
 		yourself
 ]
 
-{
-	#category : #colors,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphFactory>>textColor [
+{ #category : #colors }
+EpMorphFactory >> textColor [
 
 	^ Smalltalk ui theme textColor
 ]
 
-{
-	#category : #strings,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMorphFactory>>wrapping: aMorphOrString [
+{ #category : #strings }
+EpMorphFactory >> wrapping: aMorphOrString [
 
 	^ Morph new
 		changeTableLayout;

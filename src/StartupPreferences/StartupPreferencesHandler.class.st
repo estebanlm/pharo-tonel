@@ -8,15 +8,11 @@ Class {
 		'firstLink',
 		'actions'
 	],
-	#category : #StartupPreferences,
-	#timestamp : '<historical>'
+	#category : #StartupPreferences
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesHandler>>buildActionList [
+{ #category : #actions }
+StartupPreferencesHandler >> buildActionList [
 	"All found files will be executed."
 	
 	| directories |
@@ -27,21 +23,15 @@ StartupPreferencesHandler>>buildActionList [
 	^ directories
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesHandler>>initialize [
+{ #category : #initialization }
+StartupPreferencesHandler >> initialize [
 
 	super initialize.
 	actions := self buildActionList.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesHandler>>lookInFolder: folder [
+{ #category : #private }
+StartupPreferencesHandler >> lookInFolder: folder [
 
 	| result |
 
@@ -59,11 +49,8 @@ StartupPreferencesHandler>>lookInFolder: folder [
 		ifFalse: [ result ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesHandler>>lookInFolder: folder forFilesMatching: pattern [
+{ #category : #private }
+StartupPreferencesHandler >> lookInFolder: folder forFilesMatching: pattern [
 
 	| result files |
 	result := OrderedCollection new.
@@ -77,32 +64,23 @@ StartupPreferencesHandler>>lookInFolder: folder forFilesMatching: pattern [
 		ifFalse: [ result ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesHandler>>lookInGeneralPreferencesFolder [
+{ #category : #actions }
+StartupPreferencesHandler >> lookInGeneralPreferencesFolder [
 
 	^ StartupPreferencesLoader preferencesGeneralFolder 
 		ifNotNil: [ :folder | self lookInFolder:  folder forFilesMatching: '*.st' ].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesHandler>>lookInImageFolder [
+{ #category : #actions }
+StartupPreferencesHandler >> lookInImageFolder [
 
 	^ self 
 		lookInFolder: FileSystem workingDirectory 
 		forFilesMatching: StartupPreferencesLoader startupScriptName.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesHandler>>lookInPreferencesVersionFolder [
+{ #category : #actions }
+StartupPreferencesHandler >> lookInPreferencesVersionFolder [
 
 	^ StartupPreferencesLoader preferencesVersionFolder 
 		ifNotNil: [ :folder | 
@@ -111,11 +89,8 @@ StartupPreferencesHandler>>lookInPreferencesVersionFolder [
 				forFilesMatching: '*.st' ].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-StartupPreferencesHandler>>perform [
+{ #category : #actions }
+StartupPreferencesHandler >> perform [
 
 	| results |
 	results := OrderedCollection new.

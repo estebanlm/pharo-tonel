@@ -4,26 +4,19 @@ Tests for MetaLink
 Class {
 	#name : #MetaLinkTest,
 	#superclass : #TestCase,
-	#category : #Reflectivity-Tests,
-	#timestamp : 'MarcusDenker 3/1/2015 18:23'
+	#category : #Reflectivity-Tests
 }
 
-{
-	#category : #'tests - misc',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MetaLinkTest>>testAvailableReifications [
+{ #category : #'tests - misc' }
+MetaLinkTest >> testAvailableReifications [
 	self assert: (RBMessageNode new availableReifications includes: #receiver).
 	self assert: (RBMessageNode new availableReifications includes: #value).
 	self assert: ((ReflectivityExamples classVariableNamed: #ClassVar) availableReifications includes: #name).
 	self deny: ((ReflectivityExamples classVariableNamed: #ClassVar) availableReifications includes: #selector).
 ]
 
-{
-	#category : #'tests - simple',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MetaLinkTest>>testBlockLink [
+{ #category : #'tests - simple' }
+MetaLinkTest >> testBlockLink [
 	| link |
 	link := MetaLink new 
 	metaObject: [1+2].
@@ -32,11 +25,8 @@ MetaLinkTest>>testBlockLink [
 	self assert: link selector = #value.
 ]
 
-{
-	#category : #'tests - simple',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MetaLinkTest>>testConditionLink [
+{ #category : #'tests - simple' }
+MetaLinkTest >> testConditionLink [
 	| link |
 	link := MetaLink new 
 	metaObject: [1+2];
@@ -48,11 +38,8 @@ MetaLinkTest>>testConditionLink [
 	self assert: link hasCondition.
 ]
 
-{
-	#category : #'tests - simple',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MetaLinkTest>>testCotrolInstead [
+{ #category : #'tests - simple' }
+MetaLinkTest >> testCotrolInstead [
 	| link |
 	link := MetaLink new 
 	metaObject: [1+2];
@@ -66,11 +53,8 @@ MetaLinkTest>>testCotrolInstead [
 	
 ]
 
-{
-	#category : #'tests - simple',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MetaLinkTest>>testCotrolLink [
+{ #category : #'tests - simple' }
+MetaLinkTest >> testCotrolLink [
 	| link |
 	link := MetaLink new 
 	metaObject: [1+2];
@@ -81,11 +65,8 @@ MetaLinkTest>>testCotrolLink [
 	self assert: link control = #after.
 ]
 
-{
-	#category : #'tests - options',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MetaLinkTest>>testLinkOption [
+{ #category : #'tests - options' }
+MetaLinkTest >> testLinkOption [
 	| link |
 	link := MetaLink new 
 		options: #(+option1 -option2).
@@ -94,11 +75,8 @@ MetaLinkTest>>testLinkOption [
 	self deny: link option2.
 ]
 
-{
-	#category : #'tests - options',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MetaLinkTest>>testLinkOptionsDefault [
+{ #category : #'tests - options' }
+MetaLinkTest >> testLinkOptionsDefault [
 	| link |
 	link := MetaLink new.
 
@@ -106,21 +84,15 @@ MetaLinkTest>>testLinkOptionsDefault [
 	self deny: link optionCompileOnLinkInstallation.
 ]
 
-{
-	#category : #'tests - options',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MetaLinkTest>>testOptionFor [
+{ #category : #'tests - options' }
+MetaLinkTest >> testOptionFor [
 
 	self assert: (((ReflectivityExamples>>#exampleMethodWithMetaLinkOptions) ast optionsFor: MetaLink new) includes: #optionCompileOnLinkInstallation).
 	self assert: (((ReflectivityExamples class>>#exampleMethodWithMetaLinkOptionsViaClass) ast optionsFor: MetaLink new) includes: #optionCompileOnLinkInstallation).
 ]
 
-{
-	#category : #'tests - simple',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MetaLinkTest>>testReificationError [
+{ #category : #'tests - simple' }
+MetaLinkTest >> testReificationError [
 	| link |
 	link := MetaLink new 
 		metaObject: #unknown.
@@ -128,11 +100,8 @@ MetaLinkTest>>testReificationError [
 	self should: [ (ReflectivityExamples classVariableNamed: #ClassVar) link: link ] raise: Error.
 ]
 
-{
-	#category : #'tests - simple',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MetaLinkTest>>testSimpleHaltLink [
+{ #category : #'tests - simple' }
+MetaLinkTest >> testSimpleHaltLink [
 	| link |
 	link := MetaLink new 
 	metaObject: Halt;

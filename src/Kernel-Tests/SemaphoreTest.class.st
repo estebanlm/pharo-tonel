@@ -7,23 +7,16 @@ Instance Variables none; does not have common test fixture accross all tests (be
 Class {
 	#name : #SemaphoreTest,
 	#superclass : #ClassTestCase,
-	#category : #Kernel-Tests-Processes,
-	#timestamp : 'tlk 5/5/2006 13:32'
+	#category : #Kernel-Tests-Processes
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SemaphoreTest>>criticalError [
+{ #category : #private }
+SemaphoreTest >> criticalError [
 	Processor activeProcess terminate
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SemaphoreTest>>testAfterCriticalWait	"self run: #testSemaAfterCriticalWait" [
+{ #category : #tests }
+SemaphoreTest >> testAfterCriticalWait [	"self run: #testSemaAfterCriticalWait"
 	"This tests whether a semaphore that has just left the wait in Semaphore>>critical:
 	leaves it with signaling the associated semaphore."
 	| s p |
@@ -39,33 +32,24 @@ SemaphoreTest>>testAfterCriticalWait	"self run: #testSemaAfterCriticalWait" [
 	self assert:(s instVarNamed: #excessSignals) = 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SemaphoreTest>>testCritical [
+{ #category : #tests }
+SemaphoreTest >> testCritical [
 	| lock |
 	lock := Semaphore forMutualExclusion.
 	[lock critical: [self criticalError]] forkAt: Processor userInterruptPriority.
 	self assert: lock isSignaled
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SemaphoreTest>>testCriticalIfError [
+{ #category : #tests }
+SemaphoreTest >> testCriticalIfError [
 	| lock |
 	lock := Semaphore forMutualExclusion.
 	[lock critical: [self criticalError ifError:[]]] forkAt: Processor userInterruptPriority.
 	self assert: lock isSignaled
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SemaphoreTest>>testInCriticalWait	"self run: #testSemaInCriticalWait" [
+{ #category : #tests }
+SemaphoreTest >> testInCriticalWait [	"self run: #testSemaInCriticalWait"
 	"This tests whether a semaphore that has entered the wait in Semaphore>>critical:
 	leaves it without signaling the associated semaphore."
 	| s p |
@@ -77,11 +61,8 @@ SemaphoreTest>>testInCriticalWait	"self run: #testSemaInCriticalWait" [
 	self assert:(s instVarNamed: #excessSignals) = 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SemaphoreTest>>testMutualExclusion [
+{ #category : #tests }
+SemaphoreTest >> testMutualExclusion [
 
 	| lock steps |
 	steps := OrderedCollection new.
@@ -105,11 +86,8 @@ SemaphoreTest>>testMutualExclusion [
 	self assert: (steps hasEqualElements: #(startProcess1 startCritical1 startProcess2 endCritical1 startCritical2 endCritical2)).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SemaphoreTest>>testReturnsAsManyWaitsAsSignalsReceived [
+{ #category : #tests }
+SemaphoreTest >> testReturnsAsManyWaitsAsSignalsReceived [
 
 	| semaphore semaphoreReturnedOnce semaphoreReturnedTwice |
 	semaphoreReturnedOnce := semaphoreReturnedTwice := false.
@@ -134,11 +112,8 @@ SemaphoreTest>>testReturnsAsManyWaitsAsSignalsReceived [
 	self assert: semaphoreReturnedTwice.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SemaphoreTest>>testSchedulesFIFO [
+{ #category : #tests }
+SemaphoreTest >> testSchedulesFIFO [
 	"Based only on wait time, independent of process priority"
 
 	| semaphore waitingLongestResumed higherPriorityResumed |
@@ -162,11 +137,8 @@ SemaphoreTest>>testSchedulesFIFO [
 	self assert: higherPriorityResumed.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SemaphoreTest>>testSimpleCommunication [
+{ #category : #tests }
+SemaphoreTest >> testSimpleCommunication [
 	"A process waiting on a signal will not proceed until one is sent"
 
 	| semaphore wasBlockStarted wasBlockFinished |
@@ -189,11 +161,8 @@ SemaphoreTest>>testSimpleCommunication [
 	self assert: wasBlockFinished.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SemaphoreTest>>testWaitAndWaitTimeoutTogether [
+{ #category : #tests }
+SemaphoreTest >> testWaitAndWaitTimeoutTogether [
 	| semaphore value waitProcess waitTimeoutProcess |
 	semaphore := Semaphore new.
 	
@@ -214,11 +183,8 @@ SemaphoreTest>>testWaitAndWaitTimeoutTogether [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SemaphoreTest>>testWaitTimeDuration [
+{ #category : #tests }
+SemaphoreTest >> testWaitTimeDuration [
 	"Ensure that wait: aDuration behaves properly"
 
 	"Ensure that a timed out wait: aDuration returns true from the wait"
@@ -229,11 +195,8 @@ SemaphoreTest>>testWaitTimeDuration [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SemaphoreTest>>testWaitTimeDurationWithCompletionAndTimeoutBlocks [
+{ #category : #tests }
+SemaphoreTest >> testWaitTimeDurationWithCompletionAndTimeoutBlocks [
 	"Ensure that wait:onCompletion:onTimeout: behaves properly"
 
 	"Ensure that a timed out wait:onCompletion:onTimeout: returns the value of the timeout block"
@@ -250,11 +213,8 @@ SemaphoreTest>>testWaitTimeDurationWithCompletionAndTimeoutBlocks [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SemaphoreTest>>testWaitTimeoutMSecs [
+{ #category : #tests }
+SemaphoreTest >> testWaitTimeoutMSecs [
 	"Ensure that waitTimeoutMSecs behaves properly"
 
 	"Ensure that a timed out waitTimeoutMSecs: returns true from the wait"
@@ -265,11 +225,8 @@ SemaphoreTest>>testWaitTimeoutMSecs [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SemaphoreTest>>testWaitTimeoutSecondsOnCompletionOnTimeout [
+{ #category : #tests }
+SemaphoreTest >> testWaitTimeoutSecondsOnCompletionOnTimeout [
 	"Ensure that waitTimeoutSeconds:onCompletion:onTimeout: behaves properly"
 
 	"Ensure that a timed out waitTimeoutSeconds:onCompletion:onTimeout: returns the value of the timeout block"

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #LazyTabGroupTest,
 	#superclass : #TestCase,
@@ -8,15 +5,11 @@ Class {
 		'window',
 		'tabs'
 	],
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #'setup - tear down',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-LazyTabGroupTest>>setUp [
+{ #category : #'setup - tear down' }
+LazyTabGroupTest >> setUp [
 	tabs := LazyTabGroupMorph new.
 	tabs addLazyPage: (PanelMorph new fillStyle: (SolidFillStyle color: Color red)) label: 'one'.
 	tabs addLazyPage: (PanelMorph new fillStyle: (SolidFillStyle color: Color yellow)) label: (GLMLabelBrick new text: 'two').
@@ -24,30 +17,21 @@ LazyTabGroupTest>>setUp [
 
 ]
 
-{
-	#category : #'setup - tear down',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-LazyTabGroupTest>>tearDown [
+{ #category : #'setup - tear down' }
+LazyTabGroupTest >> tearDown [
 	window ifNotNil: [window delete]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-LazyTabGroupTest>>testIsRendered [
+{ #category : #tests }
+LazyTabGroupTest >> testIsRendered [
 	self assert: tabs pages first isRendered not.
 	tabs selectedPageIndex: 1.
 	self assert: tabs pages first isRendered.
 	self assert: tabs pages second isRendered not
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-LazyTabGroupTest>>testPageChangedAnnouncement [
+{ #category : #tests }
+LazyTabGroupTest >> testPageChangedAnnouncement [
 	| announcement page |
 	announcement := 0.
 	tabs announcer
@@ -60,11 +44,8 @@ LazyTabGroupTest>>testPageChangedAnnouncement [
 	self assert: (page isKindOf: LazyTabPage)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-LazyTabGroupTest>>testPageRemovedAnnouncement [
+{ #category : #tests }
+LazyTabGroupTest >> testPageRemovedAnnouncement [
 	| announcement |
 	announcement := 0.
 	tabs announcer when: LazyTabPageRemoved do: [ :ann | announcement := announcement + 1 ].
@@ -73,30 +54,21 @@ LazyTabGroupTest>>testPageRemovedAnnouncement [
 	self assert: announcement equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-LazyTabGroupTest>>testRemoveAllPages [
+{ #category : #tests }
+LazyTabGroupTest >> testRemoveAllPages [
 	tabs removePage: tabs pages first.
 	tabs removePage: tabs pages first.
 	self assert: tabs pages isEmpty.
 	self assert: tabs contentMorph submorphs isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-LazyTabGroupTest>>testRemovePage [
+{ #category : #tests }
+LazyTabGroupTest >> testRemovePage [
 	tabs removePage: tabs pages first.
 	self assert: tabs pages size equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-LazyTabGroupTest>>testSimpleCreation [
+{ #category : #tests }
+LazyTabGroupTest >> testSimpleCreation [
 	self assert: tabs pages size equals: 2
 ]

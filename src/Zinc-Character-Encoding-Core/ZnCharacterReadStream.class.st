@@ -10,31 +10,21 @@ Part of Zinc HTTP Components.
 Class {
 	#name : #ZnCharacterReadStream,
 	#superclass : #ZnEncodedReadStream,
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : '<historical>'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterReadStream>>collectionSpecies [
+{ #category : #accessing }
+ZnCharacterReadStream >> collectionSpecies [
 	^ String
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterReadStream>>nextElement [
+{ #category : #private }
+ZnCharacterReadStream >> nextElement [
 	^ self encoder nextFromStream: stream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterReadStream>>nextLine [
+{ #category : #accessing }
+ZnCharacterReadStream >> nextLine [
 	"Read a CR, LF or CRLF terminated line, returning the contents of the line without the EOL. Return nil when the receiver is #atEnd."
 	
 	self atEnd ifTrue: [ ^ nil ].
@@ -50,11 +40,8 @@ ZnCharacterReadStream>>nextLine [
 						ifFalse: [ out nextPut: char ] ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnCharacterReadStream>>readInto: collection startingAt: offset count: requestedCount  [
+{ #category : #accessing }
+ZnCharacterReadStream >> readInto: collection startingAt: offset count: requestedCount [ 
 	"Read count elements and place them in collection starting at offset.
 	Return the number of elements actually read."
 	

@@ -9,68 +9,46 @@ Class {
 		'provides',
 		'requires'
 	],
-	#category : #Monticello-Mocks,
-	#timestamp : 'TorstenBergmann 2/5/2014 13:52'
+	#category : #Monticello-Mocks
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDependentItem>><= other [
+{ #category : #comparing }
+MCMockDependentItem >> <= other [
 	^ self name <= other name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDependentItem>>name [
+{ #category : #accessing }
+MCMockDependentItem >> name [
 
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDependentItem>>name: aString [
+{ #category : #accessing }
+MCMockDependentItem >> name: aString [
 
 	name := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDependentItem>>provides: anArray [
+{ #category : #accessing }
+MCMockDependentItem >> provides: anArray [
 
 	provides := anArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDependentItem>>provisions [
+{ #category : #accessing }
+MCMockDependentItem >> provisions [
 
 	^ provides ifNil: [#()]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDependentItem>>requirements [
+{ #category : #comparing }
+MCMockDependentItem >> requirements [
 
 	^ requires ifNil: [#()]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDependentItem>>requires: anArray [
+{ #category : #accessing }
+MCMockDependentItem >> requires: anArray [
 
 	requires := anArray
 ]

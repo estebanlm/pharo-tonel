@@ -1,60 +1,41 @@
-"
-
-"
 Class {
 	#name : #OmFileStoreTest,
 	#superclass : #OmStoreTest,
-	#category : #OmbuTests,
-	#timestamp : ''
+	#category : #OmbuTests
 }
 
-{
-	#category : #resources,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmFileStoreTest>>directoryForTests [
+{ #category : #resources }
+OmFileStoreTest >> directoryForTests [
 
 	^ FileSystem workingDirectory
 ]
 
-{
-	#category : #resources,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmFileStoreTest>>setUpOtherStore [
+{ #category : #resources }
+OmFileStoreTest >> setUpOtherStore [
 
 	^ OmFileStore 
 		named: 'testingOtherStore', UUID new asString36
 		inDirectory: self directoryForTests ensureCreateDirectory
 ]
 
-{
-	#category : #resources,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmFileStoreTest>>setUpStore	 [
+{ #category : #resources }
+OmFileStoreTest >> setUpStore [	
 
 	^ OmFileStore 
 		named: 'testingStore', UUID new asString36
 		inDirectory: self directoryForTests ensureCreateDirectory
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmFileStoreTest>>tearDown [
+{ #category : #running }
+OmFileStoreTest >> tearDown [
 	super tearDown.
 	
 	store fileReference ensureDelete.
 	otherStore fileReference ensureDelete.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmFileStoreTest>>testEnsureDeleteFile [
+{ #category : #tests }
+OmFileStoreTest >> testEnsureDeleteFile [
 	| loadedStore |
 	store newEntry: (OmEntry content: 42).
 	store flush.
@@ -72,11 +53,8 @@ OmFileStoreTest>>testEnsureDeleteFile [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmFileStoreTest>>testIsOutdated [
+{ #category : #tests }
+OmFileStoreTest >> testIsOutdated [
 
 	self deny: store isOutdated.
 	store newEntry: (OmEntry content: 42).
@@ -86,11 +64,8 @@ OmFileStoreTest>>testIsOutdated [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmFileStoreTest>>testLoadFromCorruptFile1 [
+{ #category : #tests }
+OmFileStoreTest >> testLoadFromCorruptFile1 [
 	"Bad character"
 
 	| loadedStore |
@@ -111,11 +86,8 @@ OmFileStoreTest>>testLoadFromCorruptFile1 [
 		raise: OmFileStoreReadingError
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmFileStoreTest>>testLoadFromCorruptFile2 [
+{ #category : #tests }
+OmFileStoreTest >> testLoadFromCorruptFile2 [
 	"Bad class name"
 
 	| loadedStore |
@@ -136,11 +108,8 @@ OmFileStoreTest>>testLoadFromCorruptFile2 [
 		raise: OmFileStoreReadingError
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmFileStoreTest>>testLoadFromCorruptFile3 [
+{ #category : #tests }
+OmFileStoreTest >> testLoadFromCorruptFile3 [
 	"Bad class name. Last entry."
 
 	| loadedStore |
@@ -160,11 +129,8 @@ OmFileStoreTest>>testLoadFromCorruptFile3 [
 		raise: OmFileStoreReadingError
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmFileStoreTest>>testLoadFromCorruptFile4 [
+{ #category : #tests }
+OmFileStoreTest >> testLoadFromCorruptFile4 [
 	"Content is corrupted"
 
 	| loadedStore |
@@ -195,11 +161,8 @@ OmFileStoreTest>>testLoadFromCorruptFile4 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmFileStoreTest>>testLoadFromFile [
+{ #category : #tests }
+OmFileStoreTest >> testLoadFromFile [
 	| loadedStore |
 	store newEntry: (OmEntry content: 42).
 	store flush.

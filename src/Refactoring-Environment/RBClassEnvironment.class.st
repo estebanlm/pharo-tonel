@@ -12,62 +12,43 @@ Class {
 		'classes',
 		'metaClasses'
 	],
-	#category : #Refactoring-Environment,
-	#timestamp : 'NicolaiHess 4/27/2015 21:23'
+	#category : #Refactoring-Environment
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment class>>class: aClass [
+{ #category : #'instance creation' }
+RBClassEnvironment class >> class: aClass [
 	^ self classes: { aClass }
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment class>>classes: aCollection [
+{ #category : #'instance creation' }
+RBClassEnvironment class >> classes: aCollection [
 	^ self
 		onEnvironment: self default
 		classes: aCollection
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment class>>onEnvironment: anEnvironment classes: aCollection [
+{ #category : #'instance creation' }
+RBClassEnvironment class >> onEnvironment: anEnvironment classes: aCollection [
 	^(self onEnvironment: anEnvironment)
 		classes: aCollection; yourself
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>addClass: aClass  [
+{ #category : #adding }
+RBClassEnvironment >> addClass: aClass [ 
 	aClass isMeta
 		ifTrue: [ metaClasses add: aClass soleInstance name ]
 		ifFalse: [ classes add: aClass name ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>addClassAndMetaClassFor: aClassOrMetaClass [
+{ #category : #adding }
+RBClassEnvironment >> addClassAndMetaClassFor: aClassOrMetaClass [
 	self
 		addClass: aClassOrMetaClass theMetaClass;
 		addClass: aClassOrMetaClass theNonMetaClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>asSelectorEnvironment [
+{ #category : #accessing }
+RBClassEnvironment >> asSelectorEnvironment [
 
 	^RBSelectorEnvironment new
 		searchStrings:#();
@@ -77,22 +58,16 @@ RBClassEnvironment>>asSelectorEnvironment [
 		yourself.
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>classNames [
+{ #category : #accessing-classes }
+RBClassEnvironment >> classNames [
 	^ IdentitySet new
 		addAll: classes;
 		addAll: metaClasses;
 		yourself
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>classSelectorDictionary [
+{ #category : #printing }
+RBClassEnvironment >> classSelectorDictionary [
 	^ classes 
 		inject: (IdentityDictionary new: classes size)
 		into: [ :answer :class |
@@ -101,19 +76,13 @@ RBClassEnvironment>>classSelectorDictionary [
 				yourself ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>classes: aCollection  [
+{ #category : #initialize-release }
+RBClassEnvironment >> classes: aCollection [ 
 	aCollection do: [ :each | self addClass: each ]
 ]
 
-{
-	#category : #accessing-classes,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>classesDo: aBlock  [
+{ #category : #accessing-classes }
+RBClassEnvironment >> classesDo: aBlock [ 
 	classes do: [ :each | 
 		| class |
 		class := self systemDictionary at: each ifAbsent: [ nil ].
@@ -126,11 +95,8 @@ RBClassEnvironment>>classesDo: aBlock  [
 			ifTrue: [ aBlock value: class theMetaClass ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>defaultLabel [
+{ #category : #private }
+RBClassEnvironment >> defaultLabel [
 	| stream |
 	stream := String new writeStream.
 	classes do: 
@@ -140,20 +106,14 @@ RBClassEnvironment>>defaultLabel [
 	^stream contents
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>definesClass: aClass [
+{ #category : #testing }
+RBClassEnvironment >> definesClass: aClass [
 	
 	^ self includesClass: aClass
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>includesCategory: aCategory [
+{ #category : #testing }
+RBClassEnvironment >> includesCategory: aCategory [
 	^ (super includesCategory: aCategory) and: [
 		(environment classNamesFor: aCategory)
 			inject: false
@@ -166,48 +126,33 @@ RBClassEnvironment>>includesCategory: aCategory [
 						or: [ self includesClass: class class ]]]]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>includesClass: aClass  [
+{ #category : #testing }
+RBClassEnvironment >> includesClass: aClass [ 
 	^(aClass isMeta
 		ifTrue: [metaClasses includes: aClass soleInstance name]
 		ifFalse: [classes includes: aClass name])
 			and: [super includesClass: aClass]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>initialize [
+{ #category : #initialization }
+RBClassEnvironment >> initialize [
 	super initialize.
 	classes := IdentitySet new.
 	metaClasses := IdentitySet new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>isClassEnvironment [
+{ #category : #testing }
+RBClassEnvironment >> isClassEnvironment [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>isEmpty [
+{ #category : #testing }
+RBClassEnvironment >> isEmpty [
 	^classes isEmpty and: [metaClasses isEmpty]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>metaClassSelectorDictionary [
+{ #category : #printing }
+RBClassEnvironment >> metaClassSelectorDictionary [
 	^ metaClasses 
 		inject: (IdentityDictionary new: metaClasses size)
 		into: [ :answer :class |
@@ -216,58 +161,40 @@ RBClassEnvironment>>metaClassSelectorDictionary [
 				yourself ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>packages [
+{ #category : #accessing }
+RBClassEnvironment >> packages [
 	^ self classes collect: #package
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>postCopy [
+{ #category : #copying }
+RBClassEnvironment >> postCopy [
 	super postCopy.
 	classes := classes copy.
 	metaClasses := metaClasses copy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>problemCount [
+{ #category : #accessing }
+RBClassEnvironment >> problemCount [
 	^self numberClasses
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>removeClass: aClass  [
+{ #category : #removing }
+RBClassEnvironment >> removeClass: aClass [ 
 	aClass isMeta
 		ifTrue: [metaClasses remove: aClass soleInstance name ifAbsent: []]
 		ifFalse: [classes remove: aClass name ifAbsent: []]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>selectors [
+{ #category : #accessing }
+RBClassEnvironment >> selectors [
 
 	^ Array streamContents: [ :stream |
 		self classesDo: [ :class | 
 			self selectorsForClass: class do: [ :selector | stream nextPut: selector ] ] ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBClassEnvironment>>storeOn: aStream [
+{ #category : #printing }
+RBClassEnvironment >> storeOn: aStream [
 	aStream nextPut: $(.
 	super storeOn: aStream.
 	aStream nextPutAll: ' classes: (('.

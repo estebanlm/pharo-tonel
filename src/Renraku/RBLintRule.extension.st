@@ -1,41 +1,27 @@
-Extension {
-	#name : #RBLintRule
-}
+Extension { #name : #RBLintRule }
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBLintRule>>anchorFor: anEntity [
+{ #category : #'*renraku' }
+RBLintRule >> anchorFor: anEntity [
 
 	^ ReSourceAnchor
 			entity: anEntity
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBLintRule>>check: anEntity [
+{ #category : #'*renraku' }
+RBLintRule >> check: anEntity [
 
 	^ self check: anEntity ifNoCritiques: [ "do nothing" ]
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBLintRule>>check: anEntity forCritiquesDo: aCriticBlock [
+{ #category : #'*renraku' }
+RBLintRule >> check: anEntity forCritiquesDo: aCriticBlock [
 
 	(self basicCheck: anEntity)
 		ifTrue: [ aCriticBlock cull: (self critiqueFor: anEntity) ]
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBLintRule>>check: anEntity forCritiquesDo: aCriticBlock ifNone: alternativeBlock [
+{ #category : #'*renraku' }
+RBLintRule >> check: anEntity forCritiquesDo: aCriticBlock ifNone: alternativeBlock [
 	| encounteredCritique |
 	
 	encounteredCritique := false.
@@ -47,11 +33,8 @@ RBLintRule>>check: anEntity forCritiquesDo: aCriticBlock ifNone: alternativeBloc
 	encounteredCritique ifFalse: alternativeBlock
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBLintRule>>check: anEntity ifNoCritiques: alternativeBlock [
+{ #category : #'*renraku' }
+RBLintRule >> check: anEntity ifNoCritiques: alternativeBlock [
 	| critics |
 	
 	critics := OrderedCollection new.
@@ -59,29 +42,20 @@ RBLintRule>>check: anEntity ifNoCritiques: alternativeBlock [
 	^ critics
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBLintRule class>>checksAST [
+{ #category : #'*renraku' }
+RBLintRule class >> checksAST [
 
 	^ false
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBLintRule class>>checksNode [
+{ #category : #'*renraku' }
+RBLintRule class >> checksNode [
 
 	^ false
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBLintRule>>critiqueFor: anEntity [
+{ #category : #'*renraku' }
+RBLintRule >> critiqueFor: anEntity [
 
 	^ ReTrivialCritique
 		withAnchor: (self anchorFor: anEntity)

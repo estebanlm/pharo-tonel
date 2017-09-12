@@ -19,15 +19,11 @@ Class {
 		'collectorForAssignment',
 		'collectorForBlock'
 	],
-	#category : #SmartSuggestions-Suggestion,
-	#timestamp : '<historical>'
+	#category : #SmartSuggestions-Suggestion
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>cleanUp [
+{ #category : #cleanup }
+SugsSuggestionFactory class >> cleanUp [
 	<script>
 	collectorForInstancesVariable := nil.
 	collectorForTemporaryVariable := nil.
@@ -43,11 +39,8 @@ SugsSuggestionFactory class>>cleanUp [
 	collectorForBlock := nil.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>collectCommandsFrom: aPragmaCollector [
+{ #category : #private }
+SugsSuggestionFactory class >> collectCommandsFrom: aPragmaCollector [
 	| commands |
 	commands := SortedCollection
 		sortBlock: [ :st :nd | st position <= nd position ].
@@ -58,247 +51,166 @@ SugsSuggestionFactory class>>collectCommandsFrom: aPragmaCollector [
 	^ commands
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>collectorForAssignment [
+{ #category : #private }
+SugsSuggestionFactory class >> collectorForAssignment [
 	^ collectorForAssignment ifNil: [collectorForAssignment := self createCollector: #assignmentCommand].
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>collectorForBlock [
+{ #category : #private }
+SugsSuggestionFactory class >> collectorForBlock [
 	^ collectorForBlock ifNil: [collectorForBlock:= self createCollector: #blockCommand].
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>collectorForClass  [
+{ #category : #private }
+SugsSuggestionFactory class >> collectorForClass [ 
 	^ collectorForClass ifNil: [collectorForClass := self createCollector: #classCommand].
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>collectorForClassVariable  [
+{ #category : #private }
+SugsSuggestionFactory class >> collectorForClassVariable [ 
 	^ collectorForClassVariable ifNil: [collectorForClassVariable := self createCollector: #classVarCommand].
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>collectorForInstancesVariable  [
+{ #category : #private }
+SugsSuggestionFactory class >> collectorForInstancesVariable [ 
 	^ collectorForInstancesVariable ifNil: [collectorForInstancesVariable := self createCollector: #instVarCommand].
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>collectorForLiteral [
+{ #category : #private }
+SugsSuggestionFactory class >> collectorForLiteral [
 	^ collectorForLiteral ifNil: [collectorForLiteral := self createCollector: #literalCommand].
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>collectorForMessage [
+{ #category : #private }
+SugsSuggestionFactory class >> collectorForMessage [
 	^ collectorForMessage ifNil: [collectorForMessage := self createCollector: #messageCommand].
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>collectorForMethod  [
+{ #category : #private }
+SugsSuggestionFactory class >> collectorForMethod [ 
 	^ collectorForMethod ifNil: [collectorForMethod := self createCollector: #methodCommand].
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>collectorForSourceCode  [
+{ #category : #private }
+SugsSuggestionFactory class >> collectorForSourceCode [ 
 	^ collectorForSourceCode ifNil: [collectorForSourceCode := self createCollector: #sourceCodeCommand].
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>collectorForTemporaryVariable  [
+{ #category : #private }
+SugsSuggestionFactory class >> collectorForTemporaryVariable [ 
 	^ collectorForTemporaryVariable  ifNil: [collectorForTemporaryVariable := self createCollector: #tempVarCommand].
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>collectorForUndeclaredVariable  [
+{ #category : #private }
+SugsSuggestionFactory class >> collectorForUndeclaredVariable [ 
 	^ collectorForUndeclaredVariable ifNil: [collectorForUndeclaredVariable := self createCollector: #undeclaredVarCommand].
 
 ]
 
-{
-	#category : #literal,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>commandsFoLiteralNode [
+{ #category : #literal }
+SugsSuggestionFactory class >> commandsFoLiteralNode [
 	^self collectCommandsFrom: self collectorForLiteral .
 ]
 
-{
-	#category : #assignment,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>commandsForAssignment [
+{ #category : #assignment }
+SugsSuggestionFactory class >> commandsForAssignment [
 	^self collectCommandsFrom: self collectorForAssignment.
 ]
 
-{
-	#category : #block,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>commandsForBlock [
+{ #category : #block }
+SugsSuggestionFactory class >> commandsForBlock [
 	^self collectCommandsFrom: self collectorForBlock.
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>commandsForClass [
+{ #category : #class }
+SugsSuggestionFactory class >> commandsForClass [
 	^self collectCommandsFrom: self collectorForClass.
 ]
 
-{
-	#category : #class-var,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>commandsForClassVariable [
+{ #category : #class-var }
+SugsSuggestionFactory class >> commandsForClassVariable [
 	^self collectCommandsFrom: self collectorForClassVariable.
 ]
 
-{
-	#category : #inst-var,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>commandsForInstanceVariable [
+{ #category : #inst-var }
+SugsSuggestionFactory class >> commandsForInstanceVariable [
 	^self collectCommandsFrom: self collectorForInstancesVariable .
 	
 
 ]
 
-{
-	#category : #messages,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>commandsForMessage [
+{ #category : #messages }
+SugsSuggestionFactory class >> commandsForMessage [
 	^self collectCommandsFrom: self collectorForMessage.
 
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>commandsForMethod [
+{ #category : #methods }
+SugsSuggestionFactory class >> commandsForMethod [
 	^self collectCommandsFrom: self collectorForMethod.
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>commandsForSource [
+{ #category : #source }
+SugsSuggestionFactory class >> commandsForSource [
 
 	^self collectCommandsFrom: self collectorForSourceCode .
 
 ]
 
-{
-	#category : #temp-var,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>commandsForTemporaryVariable [
+{ #category : #temp-var }
+SugsSuggestionFactory class >> commandsForTemporaryVariable [
 	^self collectCommandsFrom: self collectorForTemporaryVariable .
 ]
 
-{
-	#category : #unknown-var,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>commandsForUndeclaredVariable [
+{ #category : #unknown-var }
+SugsSuggestionFactory class >> commandsForUndeclaredVariable [
 	^self collectCommandsFrom: self collectorForUndeclaredVariable  .
 ]
 
-{
-	#category : #inst-var,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createAccesorsFor [
+{ #category : #inst-var }
+SugsSuggestionFactory class >> createAccesorsFor [
 	<instVarCommand>
 	^ SugsCreateInstanceVarAccessors
 		icon: (self iconNamed: #smallLanguageIcon)
 		position: 100
 ]
 
-{
-	#category : #inst-var,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createAccessesToVariable [
+{ #category : #inst-var }
+SugsSuggestionFactory class >> createAccessesToVariable [
 	<instVarCommand>
 	^ SugsAccessesToInstVar
 		icon: (self iconNamed: #smallInspectItIcon)
 		position: 50
 ]
 
-{
-	#category : #class-var,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createAccessors [
+{ #category : #class-var }
+SugsSuggestionFactory class >> createAccessors [
 	<classVarCommand>
 	^ SugsCreateClassVarAccessors
 		icon: (self iconNamed: #smallLanguageIcon)
 		position: 30
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createAddParameter [
+{ #category : #methods }
+SugsSuggestionFactory class >> createAddParameter [
 	<methodCommand>
 	^ SugsAddParameter
 		icon: (self iconNamed: #smallPushpinIcon)
 		position: 200
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createBreakCommand [
+{ #category : #methods }
+SugsSuggestionFactory class >> createBreakCommand [
 	<globalCommand>
 	^ SugsBreakAlwaysSuggestion
 		icon: (self iconNamed: #smallCancelIcon)
@@ -306,11 +218,8 @@ SugsSuggestionFactory class>>createBreakCommand [
 		keyText: 'b,a'
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createBreakConditionCommand [
+{ #category : #methods }
+SugsSuggestionFactory class >> createBreakConditionCommand [
 	<globalCommand>
 	^ SugsBreakConditionSuggestion
 		icon: (self iconNamed: #smallCancelIcon)
@@ -318,11 +227,8 @@ SugsSuggestionFactory class>>createBreakConditionCommand [
 		keyText: 'b,c'
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createBreakOnceCommand [
+{ #category : #methods }
+SugsSuggestionFactory class >> createBreakOnceCommand [
 	<globalCommand>
 	^ SugsBreakOnceSuggestion
 		icon: (self iconNamed: #smallCancelIcon)
@@ -330,22 +236,16 @@ SugsSuggestionFactory class>>createBreakOnceCommand [
 		keyText: 'b,o'
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createBrowseReferences [
+{ #category : #class }
+SugsSuggestionFactory class >> createBrowseReferences [
 	<classCommand>
 	^ SugsBrowseClassReferences
 		icon: (self iconNamed: #smallInspectItIcon)
 		position: 10
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createCollector: key  [
+{ #category : #private }
+SugsSuggestionFactory class >> createCollector: key [ 
 	| collector |
 	collector :=  PragmaCollector filter: [:pragma | pragma keyword=key].
 	collector reset.
@@ -354,11 +254,8 @@ SugsSuggestionFactory class>>createCollector: key  [
 
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createCounterCommand [
+{ #category : #methods }
+SugsSuggestionFactory class >> createCounterCommand [
 	<methodCommand>
 	<messageCommand>
 	<assignmentCommand>
@@ -370,22 +267,16 @@ SugsSuggestionFactory class>>createCounterCommand [
 		position: 18
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createDeprecateMethod [
+{ #category : #methods }
+SugsSuggestionFactory class >> createDeprecateMethod [
 	<methodCommand>
 	^ SugsDeprecateMethod
 		icon: (self iconNamed: #smallLanguageIcon)
 		position: 125
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createExtractMethod [
+{ #category : #source }
+SugsSuggestionFactory class >> createExtractMethod [
 	<messageCommand>
 	<literalCommand>
 	<blockCommand>
@@ -394,22 +285,16 @@ SugsSuggestionFactory class>>createExtractMethod [
 		position: 50
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createExtractSentences [
+{ #category : #source }
+SugsSuggestionFactory class >> createExtractSentences [
 	<sourceCodeCommand>
 	^ SugsExtractStatements
 		icon: (self iconNamed: #smallUpdateIcon)
 		position: 10
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createExtractToLocalVariable [
+{ #category : #source }
+SugsSuggestionFactory class >> createExtractToLocalVariable [
 	<sourceCodeCommand>
 	<messageCommand>
 	<literalCommand>
@@ -419,11 +304,8 @@ SugsSuggestionFactory class>>createExtractToLocalVariable [
 		position: 20
 ]
 
-{
-	#category : #messages,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createFindImplementors [
+{ #category : #messages }
+SugsSuggestionFactory class >> createFindImplementors [
 	<messageCommand>
 	^ SugsFindImplementors
 		icon: (self iconNamed: #smallFindIcon)
@@ -431,11 +313,8 @@ SugsSuggestionFactory class>>createFindImplementors [
 		keyText: 'm'
 ]
 
-{
-	#category : #messages,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createFindSenders [
+{ #category : #messages }
+SugsSuggestionFactory class >> createFindSenders [
 	<methodCommand>
 	<messageCommand>
 	^ SugsFindSenders
@@ -444,11 +323,8 @@ SugsSuggestionFactory class>>createFindSenders [
 		keyText: 'n'
 ]
 
-{
-	#category : #source,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createFormatSourceCode [
+{ #category : #source }
+SugsSuggestionFactory class >> createFormatSourceCode [
 	<methodCommand>
 	<sourceCodeCommand>
 	^ SugsFormatCode
@@ -457,88 +333,64 @@ SugsSuggestionFactory class>>createFormatSourceCode [
 		keyText: 'u'
 ]
 
-{
-	#category : #messages,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createInline [
+{ #category : #messages }
+SugsSuggestionFactory class >> createInline [
 	<messageCommand>
 	^ SugsInline
 		icon: (self iconNamed: #smallRightFlushIcon)
 		position: 100
 ]
 
-{
-	#category : #assignment,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createInlineTemporary [
+{ #category : #assignment }
+SugsSuggestionFactory class >> createInlineTemporary [
 	<assignmentCommand>
 	^ SugsInlineTemporary
 		icon: (self iconNamed: #smallLanguageIcon)
 		position: 10
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createMoveMethod [
+{ #category : #methods }
+SugsSuggestionFactory class >> createMoveMethod [
 	<methodCommand>
 	^ SugsDelegateMethod
 		icon: (self iconNamed: #smallRedoIcon)
 		position: 210
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createPullUp [
+{ #category : #methods }
+SugsSuggestionFactory class >> createPullUp [
 	<methodCommand>
 	^ SugsPullUpMethod
 		icon: (self iconNamed: #smallRedoIcon)
 		position: 100
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createPushDown [
+{ #category : #methods }
+SugsSuggestionFactory class >> createPushDown [
 	<methodCommand>
 	^ SugsPushDownMethod
 		icon: (self iconNamed: #smallUndoIcon)
 		position: 101
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createRemoveMethod [
+{ #category : #methods }
+SugsSuggestionFactory class >> createRemoveMethod [
 	<methodCommand>
 	^ SugsRemoveMethod
 		icon: (self iconNamed: #smallCancelIcon)
 		position: 20
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createRemoveParameter [
+{ #category : #methods }
+SugsSuggestionFactory class >> createRemoveParameter [
 	<methodCommand>
 	^ SugsRemoveParameter
 		icon: (self iconNamed: #smallCancelIcon)
 		position: 210
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createRenameClass [
+{ #category : #class }
+SugsSuggestionFactory class >> createRenameClass [
 	<classCommand>
 	^ SugsRenameClass
 		icon: (self iconNamed: #smallLanguageIcon)
@@ -546,11 +398,8 @@ SugsSuggestionFactory class>>createRenameClass [
 		keyText: 'r'
 ]
 
-{
-	#category : #class-var,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createRenameClassVariable [
+{ #category : #class-var }
+SugsSuggestionFactory class >> createRenameClassVariable [
 	<classVarCommand>
 	^ SugsRenameClassVar
 		icon: (self iconNamed: #smallLanguageIcon)
@@ -558,11 +407,8 @@ SugsSuggestionFactory class>>createRenameClassVariable [
 		keyText: 'r'
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createRenameMethod [
+{ #category : #methods }
+SugsSuggestionFactory class >> createRenameMethod [
 	<methodCommand>
 	^ SugsRenameMethod
 		icon: (self iconNamed: #smallLanguageIcon)
@@ -570,11 +416,8 @@ SugsSuggestionFactory class>>createRenameMethod [
 		keyText: 'r,m'
 ]
 
-{
-	#category : #temp-var,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createRenameTemporaryVariable [
+{ #category : #temp-var }
+SugsSuggestionFactory class >> createRenameTemporaryVariable [
 	<tempVarCommand>
 	^ SugsRenameTemporaryVar
 		icon: (self iconNamed: #smallLanguageIcon)
@@ -582,11 +425,8 @@ SugsSuggestionFactory class>>createRenameTemporaryVariable [
 		keyText: 'r'
 ]
 
-{
-	#category : #inst-var,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createRenameVariable [
+{ #category : #inst-var }
+SugsSuggestionFactory class >> createRenameVariable [
 	<instVarCommand>
 	^ SugsRenameInstanceVar
 		icon: (self iconNamed: #smallLanguageIcon)
@@ -594,33 +434,24 @@ SugsSuggestionFactory class>>createRenameVariable [
 		keyText: 'r'
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createSwapMethod [
+{ #category : #methods }
+SugsSuggestionFactory class >> createSwapMethod [
 	<methodCommand>
 	^ SugsSwapMethod new
 		icon: (self iconNamed: #smallRedoIcon);
 		position: 50
 ]
 
-{
-	#category : #class-var,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createUseAccessorToVar [
+{ #category : #class-var }
+SugsSuggestionFactory class >> createUseAccessorToVar [
 	<classVarCommand>
 	^ SugsUseAccessorsForClassVar
 		icon: (self iconNamed: #smallLanguageIcon)
 		position: 10
 ]
 
-{
-	#category : #unknown-var,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createVariableCorrection [
+{ #category : #unknown-var }
+SugsSuggestionFactory class >> createVariableCorrection [
 	"	<undeclaredVarCommand>"
 
 	"Unable because it's not fully implemented"
@@ -635,22 +466,16 @@ SugsSuggestionFactory class>>createVariableCorrection [
 		icon: (self iconNamed: #smallFindIcon)
 ]
 
-{
-	#category : #inst-var,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createVariableStoresInto [
+{ #category : #inst-var }
+SugsSuggestionFactory class >> createVariableStoresInto [
 	<instVarCommand>
 	^ SugsStoresIntoInstVar
 		icon: (self iconNamed: #smallInspectItIcon)
 		position: 60
 ]
 
-{
-	#category : #methods,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>createWatchpointCommand [
+{ #category : #methods }
+SugsSuggestionFactory class >> createWatchpointCommand [
 	<methodCommand>
 	<messageCommand>
 	<assignmentCommand>
@@ -662,19 +487,13 @@ SugsSuggestionFactory class>>createWatchpointCommand [
 		position: 18
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>globalCollector [
+{ #category : #private }
+SugsSuggestionFactory class >> globalCollector [
 	^ collectorForAll ifNil: [collectorForAll  := self createCollector: #globalCommand].
 
 ]
 
-{
-	#category : #global,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsSuggestionFactory class>>globalCommands [
+{ #category : #global }
+SugsSuggestionFactory class >> globalCommands [
 	^self collectCommandsFrom: self globalCollector.
 ]

@@ -8,31 +8,21 @@ Class {
 		'endPoint',
 		'angle'
 	],
-	#category : #Athens-Core-Paths,
-	#timestamp : 'IgorStasenko 3/7/2012 13:41'
+	#category : #Athens-Core-Paths
 }
 
-{
-	#category : #accessors,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensArcSegment>>angle [
+{ #category : #accessors }
+AthensArcSegment >> angle [
 	^ angle
 ]
 
-{
-	#category : #accessors,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensArcSegment>>endPoint [
+{ #category : #accessors }
+AthensArcSegment >> endPoint [
 	^ endPoint
 ]
 
-{
-	#category : #accessors,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensArcSegment>>endPoint: pt angle: a [
+{ #category : #accessors }
+AthensArcSegment >> endPoint: pt angle: a [
 
 	endPoint := pt.
 	angle := a

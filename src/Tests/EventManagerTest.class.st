@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #EventManagerTest,
 	#superclass : #ClassTestCase,
@@ -9,15 +6,11 @@ Class {
 		'eventListener',
 		'succeeded'
 	],
-	#category : #'Tests-Object Events',
-	#timestamp : ''
+	#category : #'Tests-Object Events'
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>addArg1: arg1
+{ #category : #private }
+EventManagerTest >> addArg1: arg1
 addArg2: arg2 [
 
 	eventListener
@@ -25,56 +18,38 @@ addArg2: arg2 [
 		add: arg2
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>getFalse [
+{ #category : #private }
+EventManagerTest >> getFalse [
 
 	^false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>getFalse: anArg [
+{ #category : #private }
+EventManagerTest >> getFalse: anArg [
 
 	^false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>getTrue [
+{ #category : #private }
+EventManagerTest >> getTrue [
 
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>getTrue: anArg [
+{ #category : #private }
+EventManagerTest >> getTrue: anArg [
 
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>heardEvent [
+{ #category : #private }
+EventManagerTest >> heardEvent [
 
 	succeeded := true
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>setUp [
+{ #category : #running }
+EventManagerTest >> setUp [
 
 	super setUp.
 	eventSource := EventManager new.
@@ -82,11 +57,8 @@ EventManagerTest>>setUp [
 	succeeded := false
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>tearDown [
+{ #category : #running }
+EventManagerTest >> tearDown [
 
 	eventSource releaseActionMap.
 	eventSource := nil.
@@ -95,41 +67,29 @@ EventManagerTest>>tearDown [
 
 ]
 
-{
-	#category : #'running-dependent action',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testBlockReceiverNoArgs [
+{ #category : #'running-dependent action' }
+EventManagerTest >> testBlockReceiverNoArgs [
 	eventSource when: #anEvent evaluate:[self heardEvent].
 	eventSource triggerEvent: #anEvent.
 	self should: [succeeded]
 ]
 
-{
-	#category : #'running-dependent action',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testBlockReceiverOneArg [
+{ #category : #'running-dependent action' }
+EventManagerTest >> testBlockReceiverOneArg [
 	eventSource when: #anEvent: evaluate:[:arg1| eventListener add: arg1].
 	eventSource triggerEvent: #anEvent: with: 9.
 	self should: [eventListener includes: 9]
 ]
 
-{
-	#category : #'running-dependent action',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testBlockReceiverTwoArgs [
+{ #category : #'running-dependent action' }
+EventManagerTest >> testBlockReceiverTwoArgs [
 	eventSource when: #anEvent:info: evaluate:[:arg1 :arg2| self addArg1: arg1 addArg2: arg2].
 	eventSource triggerEvent: #anEvent:info: withArguments: #( 9 42 ).
 	self should: [(eventListener includes: 9) and: [eventListener includes: 42]]
 ]
 
-{
-	#category : #running-copying,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testCopy [
+{ #category : #running-copying }
+EventManagerTest >> testCopy [
 	"Ensure that the actionMap is zapped when
 	you make a copy of anEventManager"
 
@@ -138,11 +98,8 @@ EventManagerTest>>testCopy [
 	self assert: eventSource copy actionMap keys isEmpty
 ]
 
-{
-	#category : #'running-broadcast query',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testMultipleValueSuppliers [
+{ #category : #'running-broadcast query' }
+EventManagerTest >> testMultipleValueSuppliers [
 
 	eventSource
 		when: #needsValue
@@ -156,11 +113,8 @@ EventManagerTest>>testMultipleValueSuppliers [
 	self should: [succeeded]
 ]
 
-{
-	#category : #'running-broadcast query',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testMultipleValueSuppliersEventHasArguments [
+{ #category : #'running-broadcast query' }
+EventManagerTest >> testMultipleValueSuppliersEventHasArguments [
 
 	eventSource
 		when: #needsValue:
@@ -174,33 +128,24 @@ EventManagerTest>>testMultipleValueSuppliersEventHasArguments [
 	self should: [succeeded]
 ]
 
-{
-	#category : #'running-dependent action',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testNoArgumentEvent [
+{ #category : #'running-dependent action' }
+EventManagerTest >> testNoArgumentEvent [
 
 	eventSource when: #anEvent send: #heardEvent to: self.
 	eventSource triggerEvent: #anEvent.
 	self should: [succeeded]
 ]
 
-{
-	#category : #'running-dependent action supplied arguments',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testNoArgumentEventDependentSuppliedArgument [
+{ #category : #'running-dependent action supplied arguments' }
+EventManagerTest >> testNoArgumentEventDependentSuppliedArgument [
 
 	eventSource when: #anEvent send: #add: to: eventListener with: 'boundValue'.
 	eventSource triggerEvent: #anEvent.
 	self should: [eventListener includes: 'boundValue']
 ]
 
-{
-	#category : #'running-dependent action supplied arguments',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testNoArgumentEventDependentSuppliedArguments [
+{ #category : #'running-dependent action supplied arguments' }
+EventManagerTest >> testNoArgumentEventDependentSuppliedArguments [
 
 	eventSource 
 		when: #anEvent 
@@ -211,22 +156,16 @@ EventManagerTest>>testNoArgumentEventDependentSuppliedArguments [
 	self should: [(eventListener includes: 'hello') and: [eventListener includes: 'world']]
 ]
 
-{
-	#category : #'running-dependent action',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testOneArgumentEvent [
+{ #category : #'running-dependent action' }
+EventManagerTest >> testOneArgumentEvent [
 
 	eventSource when: #anEvent: send: #add: to: eventListener.
 	eventSource triggerEvent: #anEvent: with: 9.
 	self should: [eventListener includes: 9]
 ]
 
-{
-	#category : #'running-remove actions',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testRemoveActionsForEvent [
+{ #category : #'running-remove actions' }
+EventManagerTest >> testRemoveActionsForEvent [
 
 	eventSource
 		when: #anEvent send: #size to: eventListener;
@@ -236,11 +175,8 @@ EventManagerTest>>testRemoveActionsForEvent [
 	self shouldnt: [eventSource hasActionForEvent: #anEvent]
 ]
 
-{
-	#category : #'running-remove actions',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testRemoveActionsTwiceForEvent [
+{ #category : #'running-remove actions' }
+EventManagerTest >> testRemoveActionsTwiceForEvent [
 
 	eventSource
 		when: #anEvent send: #size to: eventListener;
@@ -252,11 +188,8 @@ EventManagerTest>>testRemoveActionsTwiceForEvent [
 	self assert: (eventSource hasActionForEvent: #anEvent) not.
 ]
 
-{
-	#category : #'running-remove actions',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testRemoveActionsWithReceiver [
+{ #category : #'running-remove actions' }
+EventManagerTest >> testRemoveActionsWithReceiver [
 
 	| action |
 	eventSource
@@ -271,11 +204,8 @@ EventManagerTest>>testRemoveActionsWithReceiver [
 	self assert: ((eventSource hasActionsWithReceiver: self) not)
 ]
 
-{
-	#category : #'running-dependent value',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testReturnValueWithManyListeners [
+{ #category : #'running-dependent value' }
+EventManagerTest >> testReturnValueWithManyListeners [
 
 	| value newListener |
 	newListener := 'busybody'.
@@ -291,22 +221,16 @@ EventManagerTest>>testReturnValueWithManyListeners [
 	self should: [value == newListener]
 ]
 
-{
-	#category : #'running-dependent value',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testReturnValueWithNoListeners [
+{ #category : #'running-dependent value' }
+EventManagerTest >> testReturnValueWithNoListeners [
 
 	| value |
 	value := eventSource triggerEvent: #needsValue.
 	self should: [value == nil]
 ]
 
-{
-	#category : #'running-dependent value',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testReturnValueWithOneListener [
+{ #category : #'running-dependent value' }
+EventManagerTest >> testReturnValueWithOneListener [
 
 	| value |
 	eventSource
@@ -317,11 +241,8 @@ EventManagerTest>>testReturnValueWithOneListener [
 	self should: [value == eventListener]
 ]
 
-{
-	#category : #'running-broadcast query',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testSingleValueSupplier [
+{ #category : #'running-broadcast query' }
+EventManagerTest >> testSingleValueSupplier [
 
 	eventSource
 		when: #needsValue
@@ -331,11 +252,8 @@ EventManagerTest>>testSingleValueSupplier [
 	self should: [succeeded]
 ]
 
-{
-	#category : #'running-dependent action',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EventManagerTest>>testTwoArgumentEvent [
+{ #category : #'running-dependent action' }
+EventManagerTest >> testTwoArgumentEvent [
 
 	eventSource when: #anEvent:info: send: #addArg1:addArg2: to: self.
 	eventSource triggerEvent: #anEvent:info: withArguments: #( 9 42 ).

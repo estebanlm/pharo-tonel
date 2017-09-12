@@ -4,32 +4,22 @@ I represent a layout that places all children of some morph in their given Layou
 Class {
 	#name : #ProportionalLayout,
 	#superclass : #LayoutPolicy,
-	#category : #Morphic-Base-Layouts,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-Layouts
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProportionalLayout>>isProportionalLayout [
+{ #category : #testing }
+ProportionalLayout >> isProportionalLayout [
 	^true
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProportionalLayout>>layout: aMorph in: newBounds [
+{ #category : #layout }
+ProportionalLayout >> layout: aMorph in: newBounds [
 	"Compute the layout for the given morph based on the new bounds"
 	aMorph submorphsDo:[:m| m layoutProportionallyIn: newBounds].
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ProportionalLayout>>minExtentOf: aMorph in: newBounds [
+{ #category : #layout }
+ProportionalLayout >> minExtentOf: aMorph [ in: newBounds
 	"Return the minimal size aMorph's children would require given the new bounds"
 	| min |
 	min := 0@0.

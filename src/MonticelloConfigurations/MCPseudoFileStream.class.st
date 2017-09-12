@@ -7,22 +7,15 @@ Class {
 	#instVars : [
 		'localName'
 	],
-	#category : #MonticelloConfigurations,
-	#timestamp : '<historical>'
+	#category : #MonticelloConfigurations
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCPseudoFileStream>>localName [
+{ #category : #accessing }
+MCPseudoFileStream >> localName [
 	^localName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-MCPseudoFileStream>>localName: aString [
+{ #category : #accessing }
+MCPseudoFileStream >> localName: aString [
 	localName := aString
 ]

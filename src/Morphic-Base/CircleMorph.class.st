@@ -10,53 +10,37 @@ Class {
 		'originalCenter',
 		'originalAngle'
 	],
-	#category : #Morphic-Base-Basic,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-Basic
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph class>>exampleCircleMorph [
+{ #category : #example }
+CircleMorph class >> exampleCircleMorph [
 	(CircleMorph new)
 	 extent: 50 @ 50;color: Color blue;
 	 openInWorld.
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>bounds: aRectangle [
+{ #category : #geometry }
+CircleMorph >> bounds: aRectangle [
 	| size |
 	size := aRectangle width min: aRectangle height.
 	super bounds: (Rectangle origin: aRectangle origin extent: size @ size).
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>defaultBounds [
+{ #category : #initialization }
+CircleMorph >> defaultBounds [
 
 	^0@0 extent: 40@40
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>defaultColor [
+{ #category : #initialization }
+CircleMorph >> defaultColor [
 
 	^Color green lighter
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>extent: aPoint [
+{ #category : #geometry }
+CircleMorph >> extent: aPoint [
 	| size oldRotationCenter |
 	oldRotationCenter := self rotationCenter.
 	size := aPoint x min: aPoint y.
@@ -64,90 +48,63 @@ CircleMorph>>extent: aPoint [
 	self rotationCenter: oldRotationCenter.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>initialize [
+{ #category : #initialization }
+CircleMorph >> initialize [
 	super initialize. 
 	referencePosition := self center.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>originalCenter [
+{ #category : #accessing }
+CircleMorph >> originalCenter [
 	^ originalCenter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>originalCenter: anObject [
+{ #category : #accessing }
+CircleMorph >> originalCenter: anObject [
 	originalCenter := anObject
 ]
 
-{
-	#category : #'rotate scale and flex',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>prepareForRotating [
+{ #category : #'rotate scale and flex' }
+CircleMorph >> prepareForRotating [
 	"When rotating from a halo, I can do this without a flex shell"
 
 	^ self
 
 ]
 
-{
-	#category : #'rotate scale and flex',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>prepareForScaling [
+{ #category : #'rotate scale and flex' }
+CircleMorph >> prepareForScaling [
 	"When scaling from a halo, I can do this without a flex shell"
 
 	^ self
 
 ]
 
-{
-	#category : #'rotate scale and flex',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>privateMoveBy: delta [
+{ #category : #'rotate scale and flex' }
+CircleMorph >> privateMoveBy: delta [
 	referencePosition := referencePosition + delta.
 	originalCenter := (originalCenter ifNil: [ self center ]) + delta.
 	super privateMoveBy: delta
 ]
 
-{
-	#category : #'geometry etoy',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>referencePosition [
+{ #category : #'geometry etoy' }
+CircleMorph >> referencePosition [
 	"Return the current reference position of the receiver"
 
 	^ referencePosition
 ]
 
-{
-	#category : #'geometry etoy',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>rotationCenter [
+{ #category : #'geometry etoy' }
+CircleMorph >> rotationCenter [
 	"Return the rotation center of the receiver. The rotation center defines the relative offset inside the receiver's bounds for locating the reference position."
 	| refPos |
 	refPos := self referencePosition.
 	^ (refPos - self bounds origin) / self bounds extent asFloatPoint
 ]
 
-{
-	#category : #'geometry etoy',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>rotationCenter: aPointOrNil [
+{ #category : #'geometry etoy' }
+CircleMorph >> rotationCenter: aPointOrNil [
 	"Set the new rotation center of the receiver. The rotation center defines the relative offset inside the receiver's bounds for locating the reference position."
 
 	| newRef box |
@@ -157,20 +114,14 @@ CircleMorph>>rotationCenter: aPointOrNil [
 			self setRotationCenterFrom: newRef ]
 ]
 
-{
-	#category : #'rotate scale and flex',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>rotationDegrees [
+{ #category : #'rotate scale and flex' }
+CircleMorph >> rotationDegrees [
 
 	^ self forwardDirection
 ]
 
-{
-	#category : #'rotate scale and flex',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>rotationDegrees: degrees [
+{ #category : #'rotate scale and flex' }
+CircleMorph >> rotationDegrees: degrees [
 	| ref newPos flex origAngle origCenter |
 	ref := self referencePosition.
 	origAngle := originalAngle ifNil: [ self heading ].
@@ -186,11 +137,8 @@ CircleMorph>>rotationDegrees: degrees [
 	self changed
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>setRotationCenterFrom: aPoint [
+{ #category : #menus }
+CircleMorph >> setRotationCenterFrom: aPoint [
 	"Called by halo rotation code.
 	Circles store their referencePosition."
 
@@ -199,11 +147,8 @@ CircleMorph>>setRotationCenterFrom: aPoint [
 	originalAngle := self heading
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-CircleMorph>>transformedBy: aTransform [
+{ #category : #geometry }
+CircleMorph >> transformedBy: aTransform [
 	aTransform isIdentity ifTrue:[^self].
 	^self center: (aTransform localPointToGlobal: self center).
 

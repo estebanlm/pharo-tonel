@@ -10,61 +10,42 @@ Class {
 	#instVars : [
 		'model'
 	],
-	#category : #Nautilus-Widgets,
-	#timestamp : 'StephaneDucasse 11/11/2015 16:12'
+	#category : #Nautilus-Widgets
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractWidget class>>listClass [
+{ #category : #accessing }
+AbstractWidget class >> listClass [
 	^ FTPluggableIconListMorphAdaptor
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractWidget class>>model: model [
+{ #category : #'instance creation' }
+AbstractWidget class >> model: model [
 
 	^ self new
 		model: model;
 		yourself
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractWidget>>dragTransferTypeForMorph: dragSource  [
+{ #category : #'drag and drop' }
+AbstractWidget >> dragTransferTypeForMorph: dragSource [ 
 
 	^(dragSource isKindOf: self class listClass)
 		ifTrue: [ dragSource getListElementSelector ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractWidget>>hasFocus [
+{ #category : #accessing }
+AbstractWidget >> hasFocus [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractWidget>>model [
+{ #category : #accessing }
+AbstractWidget >> model [
 
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractWidget>>model: anObject [
+{ #category : #accessing }
+AbstractWidget >> model: anObject [
 
 	model ifNotNil: [  model removeDependent: self].
 	anObject ifNotNil: [  anObject addDependent:self].
@@ -72,19 +53,13 @@ AbstractWidget>>model: anObject [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractWidget>>takeKeyboardFocus [
+{ #category : #accessing }
+AbstractWidget >> takeKeyboardFocus [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractWidget>>update: aSymbol [
+{ #category : #updating }
+AbstractWidget >> update: aSymbol [
 
 	self changed: aSymbol
 ]

@@ -11,23 +11,16 @@ Class {
 		'encoder',
 		'bs'
 	],
-	#category : #Athens-Cairo-Text,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Text
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoUTF8Converter>>buffer [
+{ #category : #accessing }
+CairoUTF8Converter >> buffer [
 	^ buffer
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoUTF8Converter>>checkBufferSpace: minimalSize [
+{ #category : #converting }
+CairoUTF8Converter >> checkBufferSpace: minimalSize [
 	| size |
 	
 	size := buffer ifNil: [ 0 ] ifNotNil: [ buffer size ].
@@ -40,11 +33,8 @@ CairoUTF8Converter>>checkBufferSpace: minimalSize [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoUTF8Converter>>convert: aString from: start to: end [
+{ #category : #converting }
+CairoUTF8Converter >> convert: aString from: start to: end [
 
 	self checkBufferSpace: 4*(end-start + 2).
 	bs reset.
@@ -59,11 +49,8 @@ CairoUTF8Converter>>convert: aString from: start to: end [
 	^ bs position.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoUTF8Converter>>convertChar: aCharacter  [
+{ #category : #converting }
+CairoUTF8Converter >> convertChar: aCharacter [ 
 
 	self checkBufferSpace: 8.
 
@@ -73,10 +60,7 @@ CairoUTF8Converter>>convertChar: aCharacter  [
 	^ buffer
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoUTF8Converter>>initialize [
+{ #category : #initialize }
+CairoUTF8Converter >> initialize [
 	encoder := ZnUTF8Encoder new.
 ]

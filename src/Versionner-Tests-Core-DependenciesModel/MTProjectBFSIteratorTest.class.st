@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MTProjectBFSIteratorTest,
 	#superclass : #TestCase,
-	#category : #Versionner-Tests-Core-DependenciesModel,
-	#timestamp : ''
+	#category : #Versionner-Tests-Core-DependenciesModel
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProjectBFSIteratorTest>>testNext [
+{ #category : #tests }
+MTProjectBFSIteratorTest >> testNext [
 	| iterator currentElement |
 	
 	iterator := MTProjectBFSIterator on: MTProjectExampleBuilder projectA.

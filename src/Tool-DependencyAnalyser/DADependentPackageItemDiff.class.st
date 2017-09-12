@@ -7,39 +7,26 @@ Class {
 	#instVars : [
 		'parent'
 	],
-	#category : #Tool-DependencyAnalyser-Diff,
-	#timestamp : 'BaptisteQuide 8/7/2014 12:15'
+	#category : #Tool-DependencyAnalyser-Diff
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageItemDiff>>hasChanged [
+{ #category : #testing }
+DADependentPackageItemDiff >> hasChanged [
 	^ self isNew or: [ self isRemoved ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageItemDiff>>parent [
+{ #category : #accessing }
+DADependentPackageItemDiff >> parent [
 	^ parent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageItemDiff>>parent: anObject [
+{ #category : #accessing }
+DADependentPackageItemDiff >> parent: anObject [
 	parent := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DADependentPackageItemDiff>>printOn: aStream  [
+{ #category : #printing }
+DADependentPackageItemDiff >> printOn: aStream [ 
 	aStream 
 		nextPutAll: content packageName;
 		nextPutAll: ' Parent : ';

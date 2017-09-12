@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMTabulatorTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabulatorTest>>testComplex [
+{ #category : #tests }
+GLMTabulatorTest >> testComplex [
 	| layout |
 	layout := GLMTabulator new.
 	layout
@@ -30,11 +23,8 @@ GLMTabulatorTest>>testComplex [
 	self assert: layout cell children first children last children size equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabulatorTest>>testOneSimpleColumnAndOneNested [
+{ #category : #tests }
+GLMTabulatorTest >> testOneSimpleColumnAndOneNested [
 	| layout |
 	layout := GLMTabulator new.
 	layout
@@ -47,11 +37,8 @@ GLMTabulatorTest>>testOneSimpleColumnAndOneNested [
 	self assert: layout cell children first children size equals: 3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabulatorTest>>testOneSimpleRowAndOneNested [
+{ #category : #tests }
+GLMTabulatorTest >> testOneSimpleRowAndOneNested [
 	| layout |
 	layout := GLMTabulator new.
 	layout addRow: #first.
@@ -64,11 +51,8 @@ GLMTabulatorTest>>testOneSimpleRowAndOneNested [
 	self assert: layout cell children last children size equals: 3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabulatorTest>>testSimpleColumns [
+{ #category : #tests }
+GLMTabulatorTest >> testSimpleColumns [
 	| layout |
 	layout := GLMTabulator new.
 	layout addColumn: #first.
@@ -76,11 +60,8 @@ GLMTabulatorTest>>testSimpleColumns [
 	self assert: layout cell children size equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTabulatorTest>>testSimpleRows [
+{ #category : #tests }
+GLMTabulatorTest >> testSimpleRows [
 	| layout |
 	layout := GLMTabulator new.
 	layout addRow: #first.

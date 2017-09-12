@@ -19,155 +19,100 @@ Class {
 		'mapped',
 		'hasMapping'
 	],
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'RonieSalgado 4/10/2016 06:39'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>accept: aVisitor [
+{ #category : #visitor }
+OSJoyAxisEvent >> accept: aVisitor [
 	^ aVisitor visitJoyAxisEvent: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>axis [
+{ #category : #accessing }
+OSJoyAxisEvent >> axis [
 	
 	^ axis
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>axis: anObject [
+{ #category : #accessing }
+OSJoyAxisEvent >> axis: anObject [
 	
 	axis := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>hasMapping [
+{ #category : #accessing }
+OSJoyAxisEvent >> hasMapping [
 	^ hasMapping
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>hasMapping: anObject [
+{ #category : #accessing }
+OSJoyAxisEvent >> hasMapping: anObject [
 	hasMapping := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>isLeftX [
+{ #category : #testing }
+OSJoyAxisEvent >> isLeftX [
 	^ axis == 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>isLeftY [
+{ #category : #testing }
+OSJoyAxisEvent >> isLeftY [
 	^ axis == 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>isPreferredEvent [
+{ #category : #testing }
+OSJoyAxisEvent >> isPreferredEvent [
 	^ mapped or: hasMapping not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>isRightX [
+{ #category : #testing }
+OSJoyAxisEvent >> isRightX [
 	^ axis == 2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>isRightY [
+{ #category : #testing }
+OSJoyAxisEvent >> isRightY [
 	^ axis == 3
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>isTriggerLeft [
+{ #category : #testing }
+OSJoyAxisEvent >> isTriggerLeft [
 	^ axis == 4
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>isTriggerRight [
+{ #category : #testing }
+OSJoyAxisEvent >> isTriggerRight [
 	^ axis == 5
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>mapped [
+{ #category : #accessing }
+OSJoyAxisEvent >> mapped [
 	^ mapped
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>mapped: anObject [
+{ #category : #accessing }
+OSJoyAxisEvent >> mapped: anObject [
 	mapped := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>value [
+{ #category : #accessing }
+OSJoyAxisEvent >> value [
 	^ value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>value: anObject [
+{ #category : #accessing }
+OSJoyAxisEvent >> value: anObject [
 	
 	value := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>which [
+{ #category : #accessing }
+OSJoyAxisEvent >> which [
 	
 	^ which
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyAxisEvent>>which: anObject [
+{ #category : #accessing }
+OSJoyAxisEvent >> which: anObject [
 	
 	which := anObject
 ]

@@ -5,39 +5,26 @@ I optimize checks for existing files by doing a head request instead of reloadin
 Class {
 	#name : #MCSqueaksourceRepository,
 	#superclass : #MCHttpRepository,
-	#category : #MonticelloRemoteRepositories,
-	#timestamp : '<historical>'
+	#category : #MonticelloRemoteRepositories
 }
 
-{
-	#category : #'creation template',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSqueaksourceRepository class>>baseURL [
+{ #category : #'creation template' }
+MCSqueaksourceRepository class >> baseURL [
 	^ 'http://squeaksource.com/'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSqueaksourceRepository class>>description [
+{ #category : #accessing }
+MCSqueaksourceRepository class >> description [
 	^ 'squeaksource.com'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSqueaksourceRepository class>>isResponsibleFor: aUrl [
+{ #category : #testing }
+MCSqueaksourceRepository class >> isResponsibleFor: aUrl [
 	^ aUrl includesSubstring: 'squeaksource.com/'
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSqueaksourceRepository>>includesFileNamed: aString [
+{ #category : #interface }
+MCSqueaksourceRepository >> includesFileNamed: aString [
 	
 	"avoid the slower default method and simply do a head request "
 	self httpClient
@@ -51,11 +38,8 @@ MCSqueaksourceRepository>>includesFileNamed: aString [
 	^ true
 ]
 
-{
-	#category : #interface,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCSqueaksourceRepository>>includesVersionNamed: aString [
+{ #category : #interface }
+MCSqueaksourceRepository >> includesVersionNamed: aString [
 	"directly do a filename check since squeaksource only stores mcz"
 	^ self includesFileNamed: aString, '.mcz'
 ]

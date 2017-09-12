@@ -19,25 +19,18 @@ Class {
 	#classVars : [
 		'Default'
 	],
-	#category : #Tool-Catalog-Base,
-	#timestamp : 'SvenVanCaekenberghe 4/1/2016 14:00'
+	#category : #Tool-Catalog-Base
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProvider class>>default [
+{ #category : #accessing }
+CatalogProvider class >> default [
 	"Return my default shared instance that caches the catalog data"
 	
 	^ Default ifNil: [ Default := self new ]
 ]
 
-{
-	#category : #installation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProvider class>>install: aProjectName version: aVersion [
+{ #category : #installation }
+CatalogProvider class >> install: aProjectName version: aVersion [
 	"
 		self install: 'Mustache' version: #stable
 	"
@@ -47,11 +40,8 @@ CatalogProvider class>>install: aProjectName version: aVersion [
 		ifNone: [ self error: 'Project ', aProjectName , ' not found' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProvider class>>projectNamed: projectName [
+{ #category : #accessing }
+CatalogProvider class >> projectNamed: projectName [
 	"Lookup and return a particular project in the catalog, else fail with NotFound"
 	
 	"self projectNamed: 'ZTimestamp'"
@@ -61,31 +51,22 @@ CatalogProvider class>>projectNamed: projectName [
 		ifNone: [ NotFound signalFor: projectName in: self default ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProvider>>loadProjects [
+{ #category : #private }
+CatalogProvider >> loadProjects [
 	^ [ self retrieveProjects collect: [ :each | CatalogProject fromDictionary: each ] ]
 		on: ConnectionTimedOut do: [ :e | projects "Answer old version" ] 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProvider>>loadProjectsIfNeeded [
+{ #category : #private }
+CatalogProvider >> loadProjectsIfNeeded [
 	self shouldLoadProjects ifFalse: [ ^ self ].
 	projects := self loadProjects.
 	session := Smalltalk session.
 	lastModified := DateAndTime now
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProvider>>projects [
+{ #category : #accessing }
+CatalogProvider >> projects [
 	"Return the list of projects known in the central catalog.
 	This data is retrieved over the internet.
 	I will cache this data for 24 hours."
@@ -94,21 +75,15 @@ CatalogProvider>>projects [
 	^ projects ifNil: [ #() ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProvider>>reset [
+{ #category : #actions }
+CatalogProvider >> reset [
 	"Reset my cached data so that I will reload it on next access"
 	
 	projects := lastModified := session := nil.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProvider>>retrieveProjects [
+{ #category : #private }
+CatalogProvider >> retrieveProjects [
 	^ ZnClient new
 		systemPolicy;
 		beOneShot;
@@ -120,11 +95,8 @@ CatalogProvider>>retrieveProjects [
 		get
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProvider>>shouldLoadProjects [
+{ #category : #private }
+CatalogProvider >> shouldLoadProjects [
 	^ session ~= Smalltalk session 
 		or: [ lastModified notNil and: [ DateAndTime now - lastModified > 24 hours ] ]
 ]

@@ -7,24 +7,17 @@ Class {
 	#instVars : [
 		'collector'
 	],
-	#category : #GT-Spotter-EventRecorder-Tests,
-	#timestamp : '<historical>'
+	#category : #GT-Spotter-EventRecorder-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterEventCollectorTest>>setUp [
+{ #category : #running }
+GTSpotterEventCollectorTest >> setUp [
 	super setUp.
 	collector := GTSpotterEventCollector new
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterEventCollectorTest>>testBundle [
+{ #category : #tests }
+GTSpotterEventCollectorTest >> testBundle [
 	| events bundle |
 	"collecting data"
 	events := OrderedCollection new.
@@ -62,10 +55,7 @@ GTSpotterEventCollectorTest>>testBundle [
 	self assert: bundle third class equals: GTSpotterRecorderExitAnnouncementEvent.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterEventCollectorTest>>testPostponedEvents [
+{ #category : #tests }
+GTSpotterEventCollectorTest >> testPostponedEvents [
 	self assert: collector postponedEvents isNil
 ]

@@ -9,23 +9,16 @@ Class {
 	#instVars : [
 		'written'
 	],
-	#category : #Monticello-Storing,
-	#timestamp : '<historical>'
+	#category : #Monticello-Storing
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfoWriter>>isWritten: aVersionInfo [
+{ #category : #testing }
+MCVersionInfoWriter >> isWritten: aVersionInfo [
 	^ self written includes: aVersionInfo
 ]
 
-{
-	#category : #serialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfoWriter>>writeVersionInfo: aVersionInfo [
+{ #category : #serialization }
+MCVersionInfoWriter >> writeVersionInfo: aVersionInfo [
 	(self isWritten: aVersionInfo)
 		ifTrue: [^ stream nextPutAll: '(id '; print: aVersionInfo id asString; nextPut: $) ].
 	stream nextPut: $(.
@@ -42,18 +35,12 @@ MCVersionInfoWriter>>writeVersionInfo: aVersionInfo [
 	self wrote: aVersionInfo
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfoWriter>>written [
+{ #category : #accessing }
+MCVersionInfoWriter >> written [
 	^ written ifNil: [written := Set new]
 ]
 
-{
-	#category : #serialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionInfoWriter>>wrote: aVersionInfo [
+{ #category : #serialization }
+MCVersionInfoWriter >> wrote: aVersionInfo [
 	self written add: aVersionInfo
 ]

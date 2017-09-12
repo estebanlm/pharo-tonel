@@ -8,47 +8,34 @@ Class {
 	#instVars : [
 		'value'
 	],
-	#category : #Collections-Support,
-	#timestamp : 'mvl 3/11/2007 20:04'
+	#category : #Collections-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WeakKeyAssociation class>>expired [
+{ #category : #'instance creation' }
+WeakKeyAssociation class >> expired [
 	"Answer an object that is already expired. Used for printing"
 	^(self key: nil value: nil)
 		expire;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WeakKeyAssociation class>>key: newKey value: newValue [
+{ #category : #'instance creation' }
+WeakKeyAssociation class >> key: newKey value: newValue [
 	"Answer an instance of me with the arguments as the key and value of 
 	the association."
 
 	^(self basicNew: 1) key: newKey value: newValue
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WeakKeyAssociation>>< aLookupKey  [
+{ #category : #comparing }
+WeakKeyAssociation >> < aLookupKey [ 
 	"Refer to the comment in Magnitude|<."
 
 	^self key < aLookupKey key
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WeakKeyAssociation>>= aLookupKey [
+{ #category : #comparing }
+WeakKeyAssociation >> = aLookupKey [
 
 	"XXX why doesn't this consider the value? mvl"
 
@@ -57,11 +44,8 @@ WeakKeyAssociation>>= aLookupKey [
 		ifFalse: [^false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WeakKeyAssociation>>expire [
+{ #category : #accessing }
+WeakKeyAssociation >> expire [
     "Release the value if the key has gone. Return true if a modification was made."
 	(self basicAt: 1) ifNil:[
 		value == self ifTrue:[^false].
@@ -71,91 +55,64 @@ WeakKeyAssociation>>expire [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WeakKeyAssociation>>expired [
+{ #category : #accessing }
+WeakKeyAssociation >> expired [
 	^value == self
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WeakKeyAssociation>>hash [
+{ #category : #comparing }
+WeakKeyAssociation >> hash [
 	"Hash is reimplemented because = is implemented."
 
 	^self key hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WeakKeyAssociation>>isVariableBinding [
+{ #category : #testing }
+WeakKeyAssociation >> isVariableBinding [
 	"Return true if I represent a literal variable binding"
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WeakKeyAssociation>>key [
+{ #category : #accessing }
+WeakKeyAssociation >> key [
 	"Answer the lookup key of the receiver."
 
 	^self basicAt: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WeakKeyAssociation>>key: anObject  [
+{ #category : #accessing }
+WeakKeyAssociation >> key: anObject [ 
 	"Store the argument, anObject, as the lookup key of the receiver."
 
 	self basicAt: 1 put:  anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WeakKeyAssociation>>key: aKey value: anObject  [
+{ #category : #accessing }
+WeakKeyAssociation >> key: aKey value: anObject [ 
 	"Store the arguments as the variables of the receiver."
 
 	self basicAt: 1 put: aKey.
 	value := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WeakKeyAssociation>>name [
+{ #category : #accessing }
+WeakKeyAssociation >> name [
 
 	^ self key isString
 		ifTrue: [self key]
 		ifFalse: [self key printString]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WeakKeyAssociation>>printOn: aStream [
+{ #category : #printing }
+WeakKeyAssociation >> printOn: aStream [
 
 	self key printOn: aStream.
 	aStream nextPutAll: '->'.
 	value printOn: aStream
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WeakKeyAssociation>>storeOn: aStream [
+{ #category : #printing }
+WeakKeyAssociation >> storeOn: aStream [
 	"Store in the format (key->value)"
 	aStream 
 		nextPut: $(;
@@ -171,21 +128,15 @@ WeakKeyAssociation>>storeOn: aStream [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WeakKeyAssociation>>value [
+{ #category : #accessing }
+WeakKeyAssociation >> value [
 	"Answer the value of the receiver."
 
 	^ value == self ifTrue:[nil] ifFalse:[value]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-WeakKeyAssociation>>value: anObject  [
+{ #category : #accessing }
+WeakKeyAssociation >> value: anObject [ 
 	"Store the argument, anObject, as the value of the receiver."
 
 	anObject == self ifTrue: [self error: 'Using the WeakAssociation as its own value'].

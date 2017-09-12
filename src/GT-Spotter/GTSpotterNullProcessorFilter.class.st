@@ -4,25 +4,18 @@ I implement a filtering strategy for processors that always returns true. Use me
 Class {
 	#name : #GTSpotterNullProcessorFilter,
 	#superclass : #GTSpotterProcessorFilter,
-	#category : #GT-Spotter-Model,
-	#timestamp : 'AndreiChis 7/7/2015 16:36'
+	#category : #GT-Spotter-Model
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterNullProcessorFilter>>configurationBlockForProcessorsCreatedBy: aMethod [
+{ #category : #testing }
+GTSpotterNullProcessorFilter >> configurationBlockForProcessorsCreatedBy: aMethod [
 	"No need to configure anything."
 	
 	^ [ :processor | ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterNullProcessorFilter>>shouldEnableProcessorsCreateBy: aMethod [
+{ #category : #testing }
+GTSpotterNullProcessorFilter >> shouldEnableProcessorsCreateBy: aMethod [
 	"Enable everything."
 	
 	^ true

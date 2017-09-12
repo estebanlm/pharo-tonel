@@ -10,31 +10,21 @@ Class {
 	#instVars : [
 		'clientId'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/12/2014 15:25'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientLogEvent>>clientId [
+{ #category : #accessing }
+ZnClientLogEvent >> clientId [
 	^ clientId
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientLogEvent>>clientId: anObject [
+{ #category : #accessing }
+ZnClientLogEvent >> clientId: anObject [
 	clientId := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientLogEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnClientLogEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	clientId ifNotNil: [ stream space; << clientId ]
 ]

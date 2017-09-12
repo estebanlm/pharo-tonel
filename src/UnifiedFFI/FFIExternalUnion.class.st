@@ -5,15 +5,11 @@ I put all of my fields at the same offset, which is zero.
 Class {
 	#name : #FFIExternalUnion,
 	#superclass : #FFIExternalStructure,
-	#category : #UnifiedFFI-Objects,
-	#timestamp : 'RonieSalgado 5/4/2016 13:38'
+	#category : #UnifiedFFI-Objects
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalUnion class>>compileFields: specArray withAccessors: defineBoolean [
+{ #category : #private }
+FFIExternalUnion class >> compileFields: specArray withAccessors: defineBoolean [
 	| totalSize fieldSpec |
 			
 	fieldSpec := self fieldSpec.
@@ -37,10 +33,7 @@ FFIExternalUnion class>>compileFields: specArray withAccessors: defineBoolean [
 	^ compiledSpec
 ]
 
-{
-	#category : #'register marshalling',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalUnion class>>emitFlatStructureLayoutInto: flatStructureLayout [
+{ #category : #'register marshalling' }
+FFIExternalUnion class >> emitFlatStructureLayoutInto: flatStructureLayout [
 	flatStructureLayout addMemoryFieldSize: self structureSize alignment: self structureAlignment
 ]

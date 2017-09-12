@@ -18,25 +18,18 @@ Class {
 		'traitComposition',
 		'localSelectors'
 	],
-	#category : #Kernel-Classes,
-	#timestamp : '<historical>'
+	#category : #Kernel-Classes
 }
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>acceptsLoggingOfCompilation [
+{ #category : #compiling }
+Metaclass >> acceptsLoggingOfCompilation [
 	"Answer whether the receiver's method submisions and class defintions should be logged to the changes file and to the current change set.  The metaclass follows the rule of the class itself."
 
 	^ self theNonMetaClass acceptsLoggingOfCompilation
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>addInstVarNamed: aString [
+{ #category : #'instance variables' }
+Metaclass >> addInstVarNamed: aString [ 
 	"Add the argument, aString, as one of the receiver's instance variables."
 
 	| fullString |
@@ -46,19 +39,13 @@ Metaclass>>addInstVarNamed: aString [
 	self instanceVariableNames: fullString
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>addObsoleteSubclass: aClass [
+{ #category : #'class hierarchy' }
+Metaclass >> addObsoleteSubclass: aClass [
 	"Do nothing."
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>addSlot: aClassSlot [
+{ #category : #'instance variables' }
+Metaclass >> addSlot: aClassSlot [
 
 	<localMetaclassMethod> 
     "This method is supposed to be local in Metaclass because of a good reason.
@@ -68,19 +55,13 @@ Metaclass>>addSlot: aClassSlot [
 	^self theNonMetaClass addClassSlot: aClassSlot
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>addSubclass: aClass [
+{ #category : #'class hierarchy' }
+Metaclass >> addSubclass: aClass [
 	"Do nothing."
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>adoptInstance: oldInstance from: oldMetaClass [
+{ #category : #initialize-release }
+Metaclass >> adoptInstance: oldInstance from: oldMetaClass [ 
 	"Recreate any existing instances of the argument, oldClass, as instances of 
 	the receiver, which is a newly changed class. Permute variables as 
 	necessary."
@@ -94,11 +75,8 @@ Metaclass>>adoptInstance: oldInstance from: oldMetaClass [
 		map: (self instVarMappingFrom: oldMetaClass)
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>assertConsistantCompositionsForNew: aTraitComposition [
+{ #category : #composition }
+Metaclass >> assertConsistantCompositionsForNew: aTraitComposition [
 	"Applying or modifying a trait composition on the class side
 	of a behavior has some restrictions."
 
@@ -124,11 +102,8 @@ Metaclass>>assertConsistantCompositionsForNew: aTraitComposition [
 				for existing traits or add a trait which does not have any methods on the class side.)']
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>baseClass [
+{ #category : #'accessing parallel hierarchy' }
+Metaclass >> baseClass [
 
 	<localMetaclassMethod> 
     "This method is supposed to be local in Metaclass because of a good reason.
@@ -138,11 +113,8 @@ Metaclass>>baseClass [
 	^thisClass.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>basicLocalSelectors [
+{ #category : #accessing }
+Metaclass >> basicLocalSelectors [
 	"Direct accessor for the instance variable localSelectors.
 	Since localSelectors is lazily initialized, this may 
 	return nil, which means that all selectors are local."
@@ -155,11 +127,8 @@ Metaclass>>basicLocalSelectors [
 	^ localSelectors
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>basicLocalSelectors: aSetOrNil [
+{ #category : #accessing }
+Metaclass >> basicLocalSelectors: aSetOrNil [
 
 	<localMetaclassMethod> 
     "This method is supposed to be local in Metaclass because of a good reason.
@@ -169,11 +138,8 @@ Metaclass>>basicLocalSelectors: aSetOrNil [
 	localSelectors := aSetOrNil
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>binding [
+{ #category : #compiling }
+Metaclass >> binding [
 	"return an association that can be used as the binding
 	 To share it between methods, reuse an existing one if possible"
 	^self methodDict 
@@ -181,39 +147,27 @@ Metaclass>>binding [
 		ifNotEmpty: [:dict | dict anyOne classBinding]
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>bindingOf: varName [
+{ #category : #compiling }
+Metaclass >> bindingOf: varName [
 
 	^self theNonMetaClass classBindingOf: varName
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>canZapMethodDictionary [
+{ #category : #testing }
+Metaclass >> canZapMethodDictionary [
 	"Return true if it is safe to zap the method dictionary on #obsolete"
 	self soleInstance == nil
 		ifTrue:[^true]
 		ifFalse:[^self soleInstance canZapMethodDictionary]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>category [
+{ #category : #accessing }
+Metaclass >> category [
 	^ self theNonMetaClass category
 ]
 
-{
-	#category : #'accessing parallel hierarchy',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>classClass [
+{ #category : #'accessing parallel hierarchy' }
+Metaclass >> classClass [
 
 	<localMetaclassMethod> 
     "This method is supposed to be local in Metaclass because of a good reason.
@@ -223,32 +177,23 @@ Metaclass>>classClass [
 	^self
 ]
 
-{
-	#category : #'pool variables',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>classPool [
+{ #category : #'pool variables' }
+Metaclass >> classPool [
 	"Answer the dictionary of class variables."
 
 	^self theNonMetaClass classPool
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>classVarNames [
+{ #category : #'accessing instances and variables' }
+Metaclass >> classVarNames [
 	"Answer a set of the names of the class variables defined in the receiver's instance."
 	
 	self theNonMetaClass ifNil: [ ^ Set new ].
 	^self theNonMetaClass classVarNames
 ]
 
-{
-	#category : #fileIn/Out,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>definition [
+{ #category : #fileIn/Out }
+Metaclass >> definition [
 	"Refer to the comment in ClassDescription|definition."
 
 	^ String streamContents: 
@@ -273,11 +218,8 @@ Metaclass>>definition [
 							nextPutAll: self slotDefinitionString]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>environment [
+{ #category : #accessing }
+Metaclass >> environment [
 
 	<localMetaclassMethod> 
     "This method is supposed to be local in Metaclass because of a good reason.
@@ -287,30 +229,21 @@ Metaclass>>environment [
 	^thisClass environment
 ]
 
-{
-	#category : #'accessing hierarchy protocol',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>hasClassSide [
+{ #category : #'accessing hierarchy protocol' }
+Metaclass >> hasClassSide [
 	^false
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>initializeFrom: anotherClassTrait [
+{ #category : #initialize }
+Metaclass >> initializeFrom: anotherClassTrait [
 	self traitComposition: self traitComposition copyTraitExpression.
 	self methodDict: self methodDict copy.
 	self localSelectors: self localSelectors copy.
 	self basicOrganization: self organization copy.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>instanceVariableNames: instVarString [
+{ #category : #initialize-release }
+Metaclass >> instanceVariableNames: instVarString [ 
 	"Declare additional named variables for my instance."
 	| theClass |
 	theClass := self theNonMetaClass.
@@ -329,19 +262,13 @@ Metaclass>>instanceVariableNames: instVarString [
 	^ theClass theMetaClass
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>isAnonymous [
+{ #category : #testing }
+Metaclass >> isAnonymous [
 	^self soleInstance isAnonymous 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>isClass [
+{ #category : #testing }
+Metaclass >> isClass [
 
 	<localMetaclassMethod> 
     "This method is supposed to be local in Metaclass because of a good reason.
@@ -351,19 +278,13 @@ Metaclass>>isClass [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>isMeta [
+{ #category : #testing }
+Metaclass >> isMeta [
 	^ true
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>isMetaclassOfClassOrNil [
+{ #category : #'class hierarchy' }
+Metaclass >> isMetaclassOfClassOrNil [
 	
 	
 	^ self theNonMetaClass 
@@ -371,39 +292,27 @@ Metaclass>>isMetaclassOfClassOrNil [
 		ifNotNil: [ :nonMetaClass | nonMetaClass == Class ] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>isObsolete [
+{ #category : #testing }
+Metaclass >> isObsolete [
 	"Return true if the receiver is obsolete"
 	^self soleInstance == nil "Either no thisClass"
 		or:[self soleInstance classSide ~~ self "or I am not the class of thisClass"
 			or:[self soleInstance isObsolete]] "or my instance is obsolete"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>isSelfEvaluating [
+{ #category : #testing }
+Metaclass >> isSelfEvaluating [
 	^self isObsolete not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>isUsed [
+{ #category : #testing }
+Metaclass >> isUsed [
 	"Metaclasses are used by default"
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>name [
+{ #category : #accessing }
+Metaclass >> name [
 	"Answer a String that is the name of the receiver, either 'Metaclass' or 
 	the name of the receiver's class followed by ' class'."
 
@@ -412,11 +321,8 @@ Metaclass>>name [
 		ifFalse: [ thisClass name asString, ' class' ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>new [
+{ #category : #'instance creation' }
+Metaclass >> new [
 	"The receiver can only have one instance. Create it or complain that
 	one already exists."
 
@@ -425,11 +331,8 @@ Metaclass>>new [
 		ifFalse: [self error: 'A Metaclass should only have one instance!']
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>newAnonymousSubclass [
+{ #category : #'instance creation' }
+Metaclass >> newAnonymousSubclass [
 
 	<localMetaclassMethod> 
     "This method is supposed to be local in Metaclass because of a good reason.
@@ -439,11 +342,8 @@ Metaclass>>newAnonymousSubclass [
 	^self theNonMetaClass newAnonymousSubclass class
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>noteNewBaseTraitCompositionApplied: aTraitComposition [
+{ #category : #composition }
+Metaclass >> noteNewBaseTraitCompositionApplied: aTraitComposition [
 	"The argument is the new trait composition of my base trait - add
 	the new traits or remove non existing traits on my class side composition.
 	(Each class trait in my composition has its base trait on the instance side
@@ -464,11 +364,8 @@ Metaclass>>noteNewBaseTraitCompositionApplied: aTraitComposition [
 	self setTraitComposition: newComposition
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>obsoleteSubclasses [
+{ #category : #'class hierarchy' }
+Metaclass >> obsoleteSubclasses [
 	"Answer the receiver's subclasses."
 
 	self isMetaclassOfClassOrNil ifTrue: [ ^ #() ].
@@ -476,21 +373,15 @@ Metaclass>>obsoleteSubclasses [
 	^ self theNonMetaClass obsoleteSubclasses collect: [ :aSubclass | aSubclass theMetaClass ]
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>possibleVariablesFor: misspelled continuedFrom: oldResults [
+{ #category : #compiling }
+Metaclass >> possibleVariablesFor: misspelled continuedFrom: oldResults [
 
 	^ self theNonMetaClass possibleVariablesFor: misspelled continuedFrom: oldResults
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>postCopy [
+{ #category : #copying }
+Metaclass >> postCopy [
 	"Don't share the reference to the sole instance."
 
 	<localMetaclassMethod> 
@@ -502,11 +393,8 @@ Metaclass>>postCopy [
 	thisClass := nil.
 ]
 
-{
-	#category : #'instance variables',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>removeInstVarNamed: aString [
+{ #category : #'instance variables' }
+Metaclass >> removeInstVarNamed: aString [ 
 	"Remove the argument, aString, as one of the receiver's instance variables."
 
 	| newArray newString |
@@ -518,27 +406,18 @@ Metaclass>>removeInstVarNamed: aString [
 	self instanceVariableNames: newString
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>removeSubclass: aClass [
+{ #category : #'class hierarchy' }
+Metaclass >> removeSubclass: aClass [
 	"Do nothing."
 ]
 
-{
-	#category : #'pool variables',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>sharedPools [
+{ #category : #'pool variables' }
+Metaclass >> sharedPools [
 	^OrderedCollection new.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>slots: slotsDefinition [
+{ #category : #initialize-release }
+Metaclass >> slots: slotsDefinition [ 
 	"Declare additional named variables for my instance."
 	| theClass |
 	theClass := self theNonMetaClass.
@@ -557,21 +436,15 @@ Metaclass>>slots: slotsDefinition [
 	^ theClass theMetaClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>soleInstance [
+{ #category : #accessing }
+Metaclass >> soleInstance [
 	"The receiver has only one instance. Answer it."
 
 	^thisClass
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>subclasses [
+{ #category : #'class hierarchy' }
+Metaclass >> subclasses [
 	"Answer the receiver's subclasses."
 	
 	self isMetaclassOfClassOrNil ifTrue: [ ^ #() ].
@@ -579,11 +452,8 @@ Metaclass>>subclasses [
 	^ self theNonMetaClass subclasses collect: [ :aSubclass | aSubclass theMetaClass ].
 ]
 
-{
-	#category : #'class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>subclassesDo: aBlock [
+{ #category : #'class hierarchy' }
+Metaclass >> subclassesDo: aBlock [
 	"Evaluate aBlock for each of the receiver's immediate subclasses."
 	
 	self isMetaclassOfClassOrNil ifTrue: [ ^ self ].
@@ -591,11 +461,8 @@ Metaclass>>subclassesDo: aBlock [
 	self theNonMetaClass subclasses do: [ :each | aBlock value: each theMetaClass ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>traitComposition [
+{ #category : #accessing }
+Metaclass >> traitComposition [
 
 	<localMetaclassMethod> 
     "This method is supposed to be local in Metaclass because of a good reason.
@@ -606,11 +473,8 @@ Metaclass>>traitComposition [
 	^traitComposition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>traitComposition: aTraitComposition [
+{ #category : #accessing }
+Metaclass >> traitComposition: aTraitComposition [
 
 	<localMetaclassMethod> 
     "This method is supposed to be local in Metaclass because of a good reason.
@@ -620,11 +484,8 @@ Metaclass>>traitComposition: aTraitComposition [
 	traitComposition := aTraitComposition
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>uses: aTraitCompositionOrArray [
+{ #category : #composition }
+Metaclass >> uses: aTraitCompositionOrArray [
 	| copyOfOldTrait newComposition |
 	copyOfOldTrait := self copy.
 	newComposition := aTraitCompositionOrArray asTraitComposition.
@@ -635,11 +496,8 @@ Metaclass>>uses: aTraitCompositionOrArray [
 		classModificationAppliedTo: self
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>uses: aTraitCompositionOrArray instanceVariableNames: instVarString [
+{ #category : #initialize-release }
+Metaclass >> uses: aTraitCompositionOrArray instanceVariableNames: instVarString [ 
 	| newComposition newMetaClass copyOfOldMetaClass |
 	
 	copyOfOldMetaClass := self copy.
@@ -653,11 +511,8 @@ Metaclass>>uses: aTraitCompositionOrArray instanceVariableNames: instVarString [
 		classDefinitionChangedFrom: copyOfOldMetaClass to: newMetaClass
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>uses: aTraitCompositionOrArray slots: slotArray [
+{ #category : #initialize-release }
+Metaclass >> uses: aTraitCompositionOrArray slots: slotArray [ 
 	| newComposition newMetaClass copyOfOldMetaClass |
 	
 	copyOfOldMetaClass := self copy.
@@ -671,11 +526,8 @@ Metaclass>>uses: aTraitCompositionOrArray slots: slotArray [
 		classDefinitionChangedFrom: copyOfOldMetaClass to: newMetaClass
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>veryDeepCopyWith: deepCopier [
+{ #category : #copying }
+Metaclass >> veryDeepCopyWith: deepCopier [
 
 	<localMetaclassMethod> 
     "This method is supposed to be local in Metaclass because of a good reason.
@@ -685,21 +537,15 @@ Metaclass>>veryDeepCopyWith: deepCopier [
 	"Return self.  Must be created, not copied.  Do not record me."
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>wantsChangeSetLogging [
+{ #category : #compiling }
+Metaclass >> wantsChangeSetLogging [
 	"Answer whether code submitted for the receiver should be remembered by the changeSet mechanism.The metaclass follows the rule of the class itself."
 
 	^ self theNonMetaClass wantsChangeSetLogging
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Metaclass>>wantsRecompilationProgressReported [
+{ #category : #compiling }
+Metaclass >> wantsRecompilationProgressReported [
 	"The metaclass follows the rule of the class itself."
 
 	^ self theNonMetaClass wantsRecompilationProgressReported

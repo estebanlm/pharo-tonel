@@ -48,23 +48,16 @@ Class {
 		'GZipNameFlag',
 		'GZipReservedFlags'
 	],
-	#category : #Compression-Streams,
-	#timestamp : '<historical>'
+	#category : #Compression-Streams
 }
 
-{
-	#category : #'pool initialization',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-GZipConstants class>>gzipMagic [
+{ #category : #'pool initialization' }
+GZipConstants class >> gzipMagic [
 	^GZipMagic
 ]
 
-{
-	#category : #'pool initialization',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-GZipConstants class>>initialize [
+{ #category : #'pool initialization' }
+GZipConstants class >> initialize [
 	"GZipConstants initialize"
 	GZipMagic := 16r8B1F.		"GZIP magic number"
 	GZipDeflated := 8.			"Compression method"

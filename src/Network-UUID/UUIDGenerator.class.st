@@ -56,35 +56,25 @@ Class {
 	#classVars : [
 		'Default'
 	],
-	#category : #Network-UUID,
-	#timestamp : 'SvenVanCaekenberghe 12/11/2016 16:58'
+	#category : #Network-UUID
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUIDGenerator class>>default [
+{ #category : #accessing }
+UUIDGenerator class >> default [
 	"Return the default UUID generator.
 	Sharing an instance is more efficient and correct."
 	
 	^ Default ifNil: [ Default := self new ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUIDGenerator class>>initialize [
+{ #category : #initialization }
+UUIDGenerator class >> initialize [
 	SessionManager default
 		registerNetworkClassNamed: self name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUIDGenerator class>>next [
+{ #category : #accessing }
+UUIDGenerator class >> next [
 	"Return a UUID using the shared generator"
 	
 	"self next"
@@ -94,32 +84,23 @@ UUIDGenerator class>>next [
 	^ self default next
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUIDGenerator class>>startUp [
+{ #category : #'system startup' }
+UUIDGenerator class >> startUp [
 	"Whenever the image comes up, reset so that a new node ID is computed."
 	
 	Default := nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUIDGenerator>>clockOn: stream [
+{ #category : #private }
+UUIDGenerator >> clockOn: stream [
 	| microseconds |
 	microseconds := Time microsecondClockValue.
 	1 to: 8 do: [ :each |
 		stream nextPut: (microseconds digitAt: each) ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUIDGenerator>>computeNodeIdentifier [
+{ #category : #private }
+UUIDGenerator >> computeNodeIdentifier [
 	| nodeData |
 	nodeData := String streamContents: [ :out |
 		Smalltalk at: #NetNameResolver ifPresent: [ :netNameResolver |
@@ -133,11 +114,8 @@ UUIDGenerator>>computeNodeIdentifier [
 	^ (MD5 hashMessage: nodeData) hash asByteArrayOfSize: 4
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUIDGenerator>>initialize [
+{ #category : #initialize }
+UUIDGenerator >> initialize [
 	super initialize.
 	random := Random new.
 	lock := Semaphore forMutualExclusion.
@@ -145,11 +123,8 @@ UUIDGenerator>>initialize [
 	counter := self nextRandom16
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUIDGenerator>>next [
+{ #category : #accessing }
+UUIDGenerator >> next [
 	"Return the next UUID, see my class comment"
 	
 	| uuid |
@@ -158,28 +133,19 @@ UUIDGenerator>>next [
 	^ uuid
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUIDGenerator>>nextCounter16 [
+{ #category : #private }
+UUIDGenerator >> nextCounter16 [
 	counter := (counter + 1) \\ 16r10000.
 	^ counter
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUIDGenerator>>nextRandom16 [
+{ #category : #private }
+UUIDGenerator >> nextRandom16 [
 	^ (random nextInt: 16r10000) - 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUIDGenerator>>placeFields: uuid [
+{ #category : #private }
+UUIDGenerator >> placeFields: uuid [
 	"Fill the fields of uuid, effectively generating a new UUID in place, see my class comment"
 	
 	| byteStream |
@@ -193,21 +159,15 @@ UUIDGenerator>>placeFields: uuid [
 		self setVariantAndVersion: uuid ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUIDGenerator>>randomGenerator [
+{ #category : #accessing }
+UUIDGenerator >> randomGenerator [
 	"Return the Random generator that I use"
 	
 	^ random
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-UUIDGenerator>>setVariantAndVersion: uuid [
+{ #category : #private }
+UUIDGenerator >> setVariantAndVersion: uuid [
 	"Set the version (top four most significant bits) to 0, an undefined version in RFC 4122"
 	uuid at: 7 put: ((uuid at: 7) bitAnd: 2r1111).
 	"Set the variant (top two most significant bits) to '10', the RFC 4122 variant"

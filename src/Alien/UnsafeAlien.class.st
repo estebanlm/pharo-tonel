@@ -16,15 +16,11 @@ Class {
 	#instVars : [
 		'nonPointerObject'
 	],
-	#category : #Alien-Core,
-	#timestamp : ''
+	#category : #Alien-Core
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-UnsafeAlien class>>ensureInSpecialObjectsArray [
+{ #category : #'class initialization' }
+UnsafeAlien class >> ensureInSpecialObjectsArray [
 	"UnsafeAlien must be in the specialObjectsArray to enable the Newsqueak FFI.
 	 Because of the bootstrap the specialObjectsArray may already have been
 	 partially initialized with the callback selector and to be large enough (as part of
@@ -52,11 +48,8 @@ UnsafeAlien class>>ensureInSpecialObjectsArray [
 		[Smalltalk specialObjectsArray at: index put: self]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-UnsafeAlien class>>exampleSprintf [
+{ #category : #examples }
+UnsafeAlien class >> exampleSprintf [
 	"Call the libc sprintf function."
 	"UnsafeAlien exampleSprintf"
 	| r s |
@@ -69,29 +62,20 @@ UnsafeAlien class>>exampleSprintf [
 	^s copyFrom: 1 to: (r signedLongAt: 1) - 1 "trim the null byte"
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-UnsafeAlien class>>forPointerTo: anObject [
+{ #category : #'instance creation' }
+UnsafeAlien class >> forPointerTo: anObject [
 	(anObject class instSpec between: 6 and: 8) ifFalse:
 		[^self error: 'only use UnsafeAlien on instances of isBits classes (other than CompiledMethod)!'].
 	^self new nonPointerObject: anObject
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-UnsafeAlien class>>initialize [
+{ #category : #'class initialization' }
+UnsafeAlien class >> initialize [
 	"UnsafeAlien initialize"
 	self ensureInSpecialObjectsArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-UnsafeAlien>>object [
+{ #category : #accessing }
+UnsafeAlien >> object [
 	^nonPointerObject
 ]

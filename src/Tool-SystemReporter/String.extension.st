@@ -1,12 +1,7 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*Tool-SystemReporter',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-String>>padded: leftOrRight to: length with: aCharacter [
+{ #category : #'*Tool-SystemReporter' }
+String >> padded: leftOrRight to: length with: aCharacter [
 
 	| result paddingLength |
 	(paddingLength := length - self size) <= 0 ifTrue: [ ^ self ].

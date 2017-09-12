@@ -5,22 +5,15 @@ Class {
 	#name : #SocketAddress,
 	#superclass : #ByteArray,
 	#type : #bytes,
-	#category : #Network-Kernel,
-	#timestamp : '<historical>'
+	#category : #Network-Kernel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketAddress class>>fromOldByteAddress: byteArray [
+{ #category : #'instance creation' }
+SocketAddress class >> fromOldByteAddress: byteArray [
 	^self newFrom: byteArray
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-SocketAddress>>asSocketAddress [
+{ #category : #converting }
+SocketAddress >> asSocketAddress [
 
 ]

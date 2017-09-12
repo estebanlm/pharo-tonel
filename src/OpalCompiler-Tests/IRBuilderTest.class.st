@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #IRBuilderTest,
 	#superclass : #TestCase,
@@ -10,40 +7,27 @@ Class {
 	#classVars : [
 		'TestToPush'
 	],
-	#category : #OpalCompiler-Tests-IR,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-IR
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest class>>compilerClass [
+{ #category : #'as yet unclassified' }
+IRBuilderTest class >> compilerClass [
 	^ OpalCompiler
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest class>>testToPush [
+{ #category : #accessing }
+IRBuilderTest class >> testToPush [
 	^TestToPush
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest class>>testToPush: anObject [
+{ #category : #accessing }
+IRBuilderTest class >> testToPush: anObject [
 
 	TestToPush := anObject
 ]
 
-{
-	#category : #'testing - builder',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testBuildMethod [
+{ #category : #'testing - builder' }
+IRBuilderTest >> testBuildMethod [
 	|  aCompiledMethod |
 	
 	aCompiledMethod := IRBuilder buildMethod: [ : builder | 
@@ -55,11 +39,8 @@ IRBuilderTest>>testBuildMethod [
 	self assert: (aCompiledMethod isKindOf: CompiledMethod).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testDup [
+{ #category : #testing }
+IRBuilderTest >> testDup [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder buildIR: [ : builder | 
@@ -75,11 +56,8 @@ IRBuilderTest>>testDup [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testInstVar [
+{ #category : #testing }
+IRBuilderTest >> testInstVar [
 
 	| iRMethod aCompiledMethod  |
 	iRMethod := IRBuilder new
@@ -97,11 +75,8 @@ IRBuilderTest>>testInstVar [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testJumpAheadTo [
+{ #category : #testing }
+IRBuilderTest >> testJumpAheadTo [
 
 	| iRMethod aCompiledMethod iRBuilder |
 	iRBuilder := IRBuilder new.
@@ -123,11 +98,8 @@ IRBuilderTest>>testJumpAheadTo [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testJumpAheadToIf [
+{ #category : #testing }
+IRBuilderTest >> testJumpAheadToIf [
 
 	| iRMethod aCompiledMethod |
 	
@@ -147,11 +119,8 @@ IRBuilderTest>>testJumpAheadToIf [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testJumpBackTo [
+{ #category : #testing }
+IRBuilderTest >> testJumpBackTo [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -172,11 +141,8 @@ IRBuilderTest>>testJumpBackTo [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testLiteralArray [
+{ #category : #testing }
+IRBuilderTest >> testLiteralArray [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -192,11 +158,8 @@ IRBuilderTest>>testLiteralArray [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testLiteralBoolean [
+{ #category : #testing }
+IRBuilderTest >> testLiteralBoolean [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -212,11 +175,8 @@ IRBuilderTest>>testLiteralBoolean [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testLiteralCharacter [
+{ #category : #testing }
+IRBuilderTest >> testLiteralCharacter [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -232,11 +192,8 @@ IRBuilderTest>>testLiteralCharacter [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testLiteralFloat [
+{ #category : #testing }
+IRBuilderTest >> testLiteralFloat [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -252,11 +209,8 @@ IRBuilderTest>>testLiteralFloat [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testLiteralInteger [
+{ #category : #testing }
+IRBuilderTest >> testLiteralInteger [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -272,11 +226,8 @@ IRBuilderTest>>testLiteralInteger [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testLiteralNil [
+{ #category : #testing }
+IRBuilderTest >> testLiteralNil [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -292,11 +243,8 @@ IRBuilderTest>>testLiteralNil [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testLiteralString [
+{ #category : #testing }
+IRBuilderTest >> testLiteralString [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -313,11 +261,8 @@ IRBuilderTest>>testLiteralString [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testLiteralSymbol [
+{ #category : #testing }
+IRBuilderTest >> testLiteralSymbol [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -334,11 +279,8 @@ IRBuilderTest>>testLiteralSymbol [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testLiteralVariableClass [
+{ #category : #testing }
+IRBuilderTest >> testLiteralVariableClass [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -355,11 +297,8 @@ IRBuilderTest>>testLiteralVariableClass [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testLiteralVariableClassVariable [
+{ #category : #testing }
+IRBuilderTest >> testLiteralVariableClassVariable [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -375,11 +314,8 @@ IRBuilderTest>>testLiteralVariableClassVariable [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testLiteralVariableGlobale [
+{ #category : #testing }
+IRBuilderTest >> testLiteralVariableGlobale [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -396,11 +332,8 @@ IRBuilderTest>>testLiteralVariableGlobale [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testPopTop [
+{ #category : #testing }
+IRBuilderTest >> testPopTop [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -417,11 +350,8 @@ IRBuilderTest>>testPopTop [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testPushClosureCopyNoCopied [
+{ #category : #'testing - blocks' }
+IRBuilderTest >> testPushClosureCopyNoCopied [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -443,11 +373,8 @@ IRBuilderTest>>testPushClosureCopyNoCopied [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testPushClosureCopyNoCopiedArg [
+{ #category : #'testing - blocks' }
+IRBuilderTest >> testPushClosureCopyNoCopiedArg [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -470,11 +397,8 @@ IRBuilderTest>>testPushClosureCopyNoCopiedArg [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testPushClosureCopyNoCopiedArgNamed [
+{ #category : #'testing - blocks' }
+IRBuilderTest >> testPushClosureCopyNoCopiedArgNamed [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -497,11 +421,8 @@ IRBuilderTest>>testPushClosureCopyNoCopiedArgNamed [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testPushClosureCopyOneCopied [
+{ #category : #'testing - blocks' }
+IRBuilderTest >> testPushClosureCopyOneCopied [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -524,11 +445,8 @@ IRBuilderTest>>testPushClosureCopyOneCopied [
 	^iRMethod
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testPushClosureCopyOneCopiedArg [
+{ #category : #'testing - blocks' }
+IRBuilderTest >> testPushClosureCopyOneCopiedArg [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -555,11 +473,8 @@ IRBuilderTest>>testPushClosureCopyOneCopiedArg [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testPushClosureCopyOneCopiedTemp [
+{ #category : #'testing - blocks' }
+IRBuilderTest >> testPushClosureCopyOneCopiedTemp [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -589,11 +504,8 @@ IRBuilderTest>>testPushClosureCopyOneCopiedTemp [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testPushClosureCopyOneCopiedTempArg [
+{ #category : #'testing - blocks' }
+IRBuilderTest >> testPushClosureCopyOneCopiedTempArg [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -624,11 +536,8 @@ IRBuilderTest>>testPushClosureCopyOneCopiedTempArg [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testPushConsArray [
+{ #category : #testing }
+IRBuilderTest >> testPushConsArray [
 
 	| iRMethod aCompiledMethod receiver |
 	iRMethod := IRBuilder new
@@ -647,11 +556,8 @@ IRBuilderTest>>testPushConsArray [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testPushConsArray2 [
+{ #category : #testing }
+IRBuilderTest >> testPushConsArray2 [
 
 	| iRMethod aCompiledMethod receiver |
 	iRMethod := IRBuilder new
@@ -670,11 +576,8 @@ IRBuilderTest>>testPushConsArray2 [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testPushNewArray [
+{ #category : #testing }
+IRBuilderTest >> testPushNewArray [
 
 	| iRMethod aCompiledMethod receiver |
 	iRMethod := IRBuilder new
@@ -693,11 +596,8 @@ IRBuilderTest>>testPushNewArray [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testPushSelf [
+{ #category : #testing }
+IRBuilderTest >> testPushSelf [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -715,11 +615,8 @@ IRBuilderTest>>testPushSelf [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testPushTempArgument [
+{ #category : #testing }
+IRBuilderTest >> testPushTempArgument [
 
 	| iRMethod aCompiledMethod  |
 	iRMethod := IRBuilder new
@@ -740,11 +637,8 @@ IRBuilderTest>>testPushTempArgument [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testPushTempTemp [
+{ #category : #testing }
+IRBuilderTest >> testPushTempTemp [
 
 	| iRMethod aCompiledMethod  |
 	iRMethod := IRBuilder new
@@ -762,11 +656,8 @@ IRBuilderTest>>testPushTempTemp [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testPushThisContext [
+{ #category : #testing }
+IRBuilderTest >> testPushThisContext [
 
 	| iRMethod aCompiledMethod  |
 	iRMethod := IRBuilder new
@@ -782,11 +673,8 @@ IRBuilderTest>>testPushThisContext [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testRemoteTemp [
+{ #category : #'testing - blocks' }
+IRBuilderTest >> testRemoteTemp [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -814,11 +702,8 @@ IRBuilderTest>>testRemoteTemp [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testRemoteTempNested [
+{ #category : #'testing - blocks' }
+IRBuilderTest >> testRemoteTempNested [
 
 	| iRMethod aCompiledMethod |
 
@@ -854,11 +739,8 @@ IRBuilderTest>>testRemoteTempNested [
 	
 ]
 
-{
-	#category : #'testing - blocks',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testRemoteTempShadowed [
+{ #category : #'testing - blocks' }
+IRBuilderTest >> testRemoteTempShadowed [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -883,11 +765,8 @@ IRBuilderTest>>testRemoteTempShadowed [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testReturnInstVar [
+{ #category : #testing }
+IRBuilderTest >> testReturnInstVar [
 
 	| iRMethod aCompiledMethod  |
 	iRMethod := IRBuilder new
@@ -903,11 +782,8 @@ IRBuilderTest>>testReturnInstVar [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testReturnTop [
+{ #category : #testing }
+IRBuilderTest >> testReturnTop [
 
 	| iRMethod aCompiledMethod |
 	iRMethod := IRBuilder new
@@ -922,11 +798,8 @@ IRBuilderTest>>testReturnTop [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testSendSuper [
+{ #category : #testing }
+IRBuilderTest >> testSendSuper [
 
 	| iRMethod aCompiledMethod  |
 	iRMethod := IRBuilder new
@@ -944,11 +817,8 @@ IRBuilderTest>>testSendSuper [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testStoreIntoVariable [
+{ #category : #testing }
+IRBuilderTest >> testStoreIntoVariable [
 
 	| iRMethod aCompiledMethod  |
 	iRMethod := IRBuilder new
@@ -968,11 +838,8 @@ IRBuilderTest>>testStoreIntoVariable [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testStoreIvar [
+{ #category : #testing }
+IRBuilderTest >> testStoreIvar [
 
 	| iRMethod aCompiledMethod  |
 	iRMethod := IRBuilder new
@@ -988,11 +855,8 @@ IRBuilderTest>>testStoreIvar [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testStorePopIntoVariable [
+{ #category : #testing }
+IRBuilderTest >> testStorePopIntoVariable [
 
 	| iRMethod aCompiledMethod  |
 	iRMethod := IRBuilder new
@@ -1014,11 +878,8 @@ IRBuilderTest>>testStorePopIntoVariable [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testStorePopIvar [
+{ #category : #testing }
+IRBuilderTest >> testStorePopIvar [
 
 	| iRMethod aCompiledMethod  |
 	iRMethod := IRBuilder new
@@ -1036,11 +897,8 @@ IRBuilderTest>>testStorePopIvar [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-IRBuilderTest>>testStoreTemp [
+{ #category : #testing }
+IRBuilderTest >> testStoreTemp [
 
 	| iRMethod aCompiledMethod  |
 	iRMethod := IRBuilder new

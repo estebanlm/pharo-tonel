@@ -7,32 +7,22 @@ Class {
 	#instVars : [
 		'repository'
 	],
-	#category : #MonticelloRemoteRepositories,
-	#timestamp : '<historical>'
+	#category : #MonticelloRemoteRepositories
 }
 
-{
-	#category : #signalling,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCPermissionDenied class>>signalFor: aRepository [
+{ #category : #signalling }
+MCPermissionDenied class >> signalFor: aRepository [
 	^ self new
 		repository: aRepository;
 		signal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCPermissionDenied>>repository [
+{ #category : #accessing }
+MCPermissionDenied >> repository [
 	^ repository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-MCPermissionDenied>>repository: anObject [
+{ #category : #accessing }
+MCPermissionDenied >> repository: anObject [
 	repository := anObject
 ]

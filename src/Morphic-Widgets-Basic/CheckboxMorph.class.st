@@ -16,15 +16,11 @@ Class {
 		'getEnabledSelector',
 		'labelClickable'
 	],
-	#category : #Morphic-Widgets-Basic,
-	#timestamp : 'gvc 5/18/2007 13:47'
+	#category : #Morphic-Widgets-Basic
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph class>>on: anObject selected: getSelectionSel changeSelected: setSelectionSel [
+{ #category : #'as yet unclassified' }
+CheckboxMorph class >> on: anObject selected: getSelectionSel changeSelected: setSelectionSel [
 	"Answer a new instance of the receiver on the given model using
 	the given selectors as the interface."
 
@@ -34,41 +30,29 @@ CheckboxMorph class>>on: anObject selected: getSelectionSel changeSelected: setS
 		changeSelected: setSelectionSel
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>beCheckbox [
+{ #category : #protocol }
+CheckboxMorph >> beCheckbox [
 	"Change the button to be a checkbox."
 	
 	self buttonMorph beCheckbox
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>beRadioButton [
+{ #category : #protocol }
+CheckboxMorph >> beRadioButton [
 	"Change the button to be a radio button."
 	
 	self buttonMorph beRadioButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>buttonMorph [
+{ #category : #accessing }
+CheckboxMorph >> buttonMorph [
 	"Answer the value of buttonMorph"
 
 	^ buttonMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>buttonMorph: aMorph [
+{ #category : #accessing }
+CheckboxMorph >> buttonMorph: aMorph [
 	"Set the value of buttonMorph"
 
 	buttonMorph ifNotNil: [
@@ -80,32 +64,23 @@ CheckboxMorph>>buttonMorph: aMorph [
 		addMorphFront: aMorph
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>buttonMouseDown: evt [
+{ #category : #'event handling' }
+CheckboxMorph >> buttonMouseDown: evt [
 	"Sent from the checkbox button to handle focus."
 
 	self wantsKeyboardFocusOnMouseDown ifTrue: [
 		self takeKeyboardFocus]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>disable [
+{ #category : #protocol }
+CheckboxMorph >> disable [
 	"Disable the receiver."
 	
 	self enabled: false
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>drawSubmorphsOn: aCanvas  [
+{ #category : #drawing }
+CheckboxMorph >> drawSubmorphsOn: aCanvas [ 
 	"Display submorphs back to front.
 	Draw the focus here since we are using inset bounds
 	for the focus rectangle."
@@ -114,31 +89,22 @@ CheckboxMorph>>drawSubmorphsOn: aCanvas  [
 	self hasKeyboardFocus ifTrue: [self drawKeyboardFocusOn: aCanvas]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>enable [
+{ #category : #protocol }
+CheckboxMorph >> enable [
 	"Enable the receiver."
 	
 	self enabled: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>enabled [
+{ #category : #accessing }
+CheckboxMorph >> enabled [
 	"Answer the value of enabled"
 
 	^ enabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>enabled: aBoolean [
+{ #category : #accessing }
+CheckboxMorph >> enabled: aBoolean [
 	"Set the value of enabled"
 
 	enabled := aBoolean.
@@ -147,102 +113,72 @@ CheckboxMorph>>enabled: aBoolean [
 	self changed: #enabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>font [
+{ #category : #accessing }
+CheckboxMorph >> font [
 	"Answer the label font"
 
 	^self labelMorph font
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>font: aFont [
+{ #category : #accessing }
+CheckboxMorph >> font: aFont [
 	"Set the label font"
 
 	self labelMorph font: aFont
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>getEnabledSelector [
+{ #category : #accessing }
+CheckboxMorph >> getEnabledSelector [
 	"Answer the value of getEnabledSelector"
 
 	^ getEnabledSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>getEnabledSelector: anObject [
+{ #category : #accessing }
+CheckboxMorph >> getEnabledSelector: anObject [
 	"Set the value of getEnabledSelector"
 
 	getEnabledSelector := anObject.
 	self updateEnabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>getLabelSelector [
+{ #category : #accessing }
+CheckboxMorph >> getLabelSelector [
 
 	^ getLabelSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>getLabelSelector: anObject [
+{ #category : #accessing }
+CheckboxMorph >> getLabelSelector: anObject [
 
 	getLabelSelector := anObject.
 	self updateLabel.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>getStateSelector [
+{ #category : #accessing }
+CheckboxMorph >> getStateSelector [
 	"Answer the value of getStateSelector"
 
 	^ getStateSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>getStateSelector: anObject [
+{ #category : #accessing }
+CheckboxMorph >> getStateSelector: anObject [
 	"Set the value of getStateSelector"
 
 	getStateSelector := anObject.
 	self updateSelection
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>handlesKeyboard: evt [
+{ #category : #'event handling' }
+CheckboxMorph >> handlesKeyboard: evt [
 	"Yes, we do it here."
 	
 	^true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>initialize [
+{ #category : #initialization }
+CheckboxMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -264,22 +200,16 @@ CheckboxMorph>>initialize [
 		on: #mouseUp send: #updateButton: to: self
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>isSelected [
+{ #category : #protocol }
+CheckboxMorph >> isSelected [
 	"Answer whether the receiver is selected."
 
 	self model ifNil: [^false].
 	^self model perform: (self getStateSelector ifNil: [^false])
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>keyStroke: event  [
+{ #category : #'event handling' }
+CheckboxMorph >> keyStroke: event [ 
 	"Process keys navigation and space to toggle."
 	
 	(self navigationKey: event) ifTrue: [^self].
@@ -287,11 +217,8 @@ CheckboxMorph>>keyStroke: event  [
 		ifTrue: [self toggleSelected]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>keyboardFocusChange: aBoolean [
+{ #category : #'event handling' }
+CheckboxMorph >> keyboardFocusChange: aBoolean [
 	"The message is sent to a morph when its keyboard focus changes.
 	Update for focus feedback."
 	
@@ -299,21 +226,15 @@ CheckboxMorph>>keyboardFocusChange: aBoolean [
 	self focusChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>label [
+{ #category : #accessing }
+CheckboxMorph >> label [
 	"Answer the contents of the label morph."
 
 	^(self labelMorph ifNil: [^'']) contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>label: aStringOrMorph [
+{ #category : #accessing }
+CheckboxMorph >> label: aStringOrMorph [
 	"Set the label morph or label morph contents."
 
 	self labelMorph: (aStringOrMorph isMorph
@@ -322,41 +243,29 @@ CheckboxMorph>>label: aStringOrMorph [
 				self newLabel])
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>labelClickable: aBoolean [
+{ #category : #protocol }
+CheckboxMorph >> labelClickable: aBoolean [
 
 	labelClickable := aBoolean.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>labelClicked [
+{ #category : #'event handling' }
+CheckboxMorph >> labelClicked [
 
 	labelClickable ifTrue: [ self toggleSelected ].
 	
 	self doAnnounce: (LabelClicked source: self stateChanged: labelClickable).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>labelMorph [
+{ #category : #accessing }
+CheckboxMorph >> labelMorph [
 	"Answer the value of labelMorph"
 
 	^ labelMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>labelMorph: aMorph [
+{ #category : #accessing }
+CheckboxMorph >> labelMorph: aMorph [
 	"Set the value of labelMorph"
 
 	labelMorph ifNotNil: [labelMorph delete].
@@ -366,11 +275,8 @@ CheckboxMorph>>labelMorph: aMorph [
 	self enabled: self enabled.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>listRenderOn: aCanvas atRow: aRow bounds: drawBounds color: drawColor backgroundColor: backgroundColor from: aMorph [
+{ #category : #drawing }
+CheckboxMorph >> listRenderOn: aCanvas atRow: aRow bounds: drawBounds color: drawColor backgroundColor: backgroundColor from: aMorph [
 
 	self color: backgroundColor.
 	self bounds: drawBounds.
@@ -378,11 +284,8 @@ CheckboxMorph>>listRenderOn: aCanvas atRow: aRow bounds: drawBounds color: drawC
 	aMorph addMorph: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>newButtonMorph [
+{ #category : #private }
+CheckboxMorph >> newButtonMorph [
 	"Answer a new button morph"
 
 	^(CheckboxButtonMorph new
@@ -393,31 +296,22 @@ CheckboxMorph>>newButtonMorph [
 		on: #mouseDown send: #buttonMouseDown: to: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>newLabel [
+{ #category : #private }
+CheckboxMorph >> newLabel [
 	"Answer a new label morph"
 
 	^self theme checkboxLabelFor: self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>newLabelMorph [
+{ #category : #private }
+CheckboxMorph >> newLabelMorph [
 	"Answer a new label morph"
 	^	(LabelMorph contents: self label)
 			on: #mouseDown send: #toggleSelected to: self; yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>on: anObject selected: getSelectionSel changeSelected: setSelectionSel [
+{ #category : #initialization }
+CheckboxMorph >> on: anObject selected: getSelectionSel changeSelected: setSelectionSel [
 	"Set the receiver to the given model parameterized by the given message selectors."
 
 	self
@@ -427,41 +321,29 @@ CheckboxMorph>>on: anObject selected: getSelectionSel changeSelected: setSelecti
 		updateSelection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>setStateSelector [
+{ #category : #accessing }
+CheckboxMorph >> setStateSelector [
 	"Answer the value of setStateSelector"
 
 	^ setStateSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>setStateSelector: anObject [
+{ #category : #accessing }
+CheckboxMorph >> setStateSelector: anObject [
 	"Set the value of setStateSelector"
 
 	setStateSelector := anObject
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>takesKeyboardFocus [
+{ #category : #'focus handling' }
+CheckboxMorph >> takesKeyboardFocus [
 	"Answer whether the receiver can normally take keyboard focus."
 
 	^true
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>toggleSelected [
+{ #category : #protocol }
+CheckboxMorph >> toggleSelected [
 	"Toggle the selection state."
 
 	self takeKeyboardFocus.
@@ -475,11 +357,8 @@ CheckboxMorph>>toggleSelected [
 	self updateSelection.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>update: aParameter  [
+{ #category : #updating }
+CheckboxMorph >> update: aParameter [ 
 	"Refer to the comment in View|update:."
 
 	aParameter == self getStateSelector ifTrue: 
@@ -499,11 +378,8 @@ CheckboxMorph>>update: aParameter  [
 	aParameter first = #label: ifTrue: [ self label: aParameter second ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>updateButton: evt [
+{ #category : #updating }
+CheckboxMorph >> updateButton: evt [
 	"Update the button due to mouse activity in the receiver."
 
 	self enabled ifFalse: [^self].
@@ -523,11 +399,8 @@ CheckboxMorph>>updateButton: evt [
 					self buttonMorph state == #pressed ifTrue: [^self buttonMorph state: #off]]]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>updateButtonDown: evt [
+{ #category : #updating }
+CheckboxMorph >> updateButtonDown: evt [
 	"Check for keyboard focus."
 
 	self wantsKeyboardFocusOnMouseDown ifTrue: [
@@ -535,11 +408,8 @@ CheckboxMorph>>updateButtonDown: evt [
 	self updateButton: evt
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>updateEnabled [
+{ #category : #updating }
+CheckboxMorph >> updateEnabled [
 	"Update the enablement state."
 
 	self model ifNotNil: [
@@ -547,11 +417,8 @@ CheckboxMorph>>updateEnabled [
 			self enabled: (self model perform: self getEnabledSelector)]]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>updateLabel [
+{ #category : #updating }
+CheckboxMorph >> updateLabel [
 	"Update the label."
 
 	self model ifNotNil: [
@@ -559,22 +426,16 @@ CheckboxMorph>>updateLabel [
 			self label: (self model perform: self getLabelSelector)]]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>updateSelection [
+{ #category : #updating }
+CheckboxMorph >> updateSelection [
 	"Update the selection state."
 
 	self buttonMorph ifNotNil: [:m | m selected: self isSelected].
 	self changed: #isSelected
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-CheckboxMorph>>wantsKeyboardFocusOnMouseDown [
+{ #category : #'focus handling' }
+CheckboxMorph >> wantsKeyboardFocusOnMouseDown [
 	"Answer whether the receiver would like keyboard focus
 	on a mouse down event. use a property here for apps that want to take keyboard
 	focus when the button is pressed (so that other morphs can, e.g. accept on focus change)."

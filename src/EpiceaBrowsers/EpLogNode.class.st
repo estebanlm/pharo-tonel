@@ -7,62 +7,43 @@ Class {
 	#instVars : [
 		'referencedNodes'
 	],
-	#category : #EpiceaBrowsers-UI-Graph,
-	#timestamp : 'MartinDias 1/20/2017 13:24'
+	#category : #EpiceaBrowsers-UI-Graph
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNode>>globalName [
+{ #category : #accessing }
+EpLogNode >> globalName [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNode>>initialize [
+{ #category : #initialization }
+EpLogNode >> initialize [
 	super initialize.
 	
 	referencedNodes := Set new.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNode>>isMonitor [
+{ #category : #testing }
+EpLogNode >> isMonitor [
 
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNode>>log [
+{ #category : #accessing }
+EpLogNode >> log [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNode>>modificationTime [
+{ #category : #accessing }
+EpLogNode >> modificationTime [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNode>>populateReferencedNodesWith: nodes [
+{ #category : #initialization }
+EpLogNode >> populateReferencedNodesWith: nodes [
 
 	self referencedGlobalNames do: [ :referencedGlobalName |
 		nodes
@@ -71,11 +52,8 @@ EpLogNode>>populateReferencedNodesWith: nodes [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNode>>referencedGlobalNames [
+{ #category : #accessing }
+EpLogNode >> referencedGlobalNames [
 
 	| firstEntry priorReference |
 	firstEntry := self log firstEntryIfAbsent: [ ^ self referencedGlobalNamesIfEmptyLog ].
@@ -88,20 +66,14 @@ EpLogNode>>referencedGlobalNames [
 	^ { priorReference globalName }
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNode>>referencedGlobalNamesIfEmptyLog [
+{ #category : #accessing }
+EpLogNode >> referencedGlobalNamesIfEmptyLog [
 
 	^ #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLogNode>>referencedNodes [
+{ #category : #accessing }
+EpLogNode >> referencedNodes [
 	"Answer the referenced nodes, that were populated previously by #populateReferencedNodesWith:"
 	
 	^ referencedNodes

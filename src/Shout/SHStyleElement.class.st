@@ -9,15 +9,11 @@ Class {
 		'color',
 		'emphasis'
 	],
-	#category : #Shout-Styling,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:23'
+	#category : #Shout-Styling
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStyleElement class>>settingInputWidgetForNode: aSettingNode  [
+{ #category : #settings }
+SHStyleElement class >> settingInputWidgetForNode: aSettingNode [ 
 	| theme |
 	theme := UITheme builder.
 	^ theme newRow: {theme
@@ -35,39 +31,27 @@ SHStyleElement class>>settingInputWidgetForNode: aSettingNode  [
 			 width: 100}
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStyleElement class>>withTokens: aCollection  [
+{ #category : #instance-creation }
+SHStyleElement class >> withTokens: aCollection [ 
 	^ self new tokens: aCollection;
 		 yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStyleElement>>color [
+{ #category : #accessing }
+SHStyleElement >> color [
 	^ color
 		ifNil: [color := Color colorFrom: (SHPreferences customStyleTable
 							detect: [:e | self tokens first = e first]) second]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStyleElement>>color: anObject  [
+{ #category : #accessing }
+SHStyleElement >> color: anObject [ 
 	color := anObject.
 	SHPreferences applyStyle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStyleElement>>emphasis [
+{ #category : #accessing }
+SHStyleElement >> emphasis [
 	| style |
 	^ emphasis
 		ifNil: [style := SHPreferences customStyleTable
@@ -80,30 +64,21 @@ SHStyleElement>>emphasis [
 				ifFalse: [#normal]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStyleElement>>emphasis: anObject  [
+{ #category : #accessing }
+SHStyleElement >> emphasis: anObject [ 
 	emphasis := anObject.
 	SHPreferences applyStyle
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStyleElement>>emphasisAsArray [
+{ #category : #styling }
+SHStyleElement >> emphasisAsArray [
 	^ self emphasis = 'bold italic'
 		ifTrue: [#(#bold #italic )]
 		ifFalse: [self emphasis]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStyleElement>>printOn: aStream [
+{ #category : #printing }
+SHStyleElement >> printOn: aStream [
 	super printOn: aStream.
 	color isNil
 		ifFalse: [ 
@@ -122,11 +97,8 @@ SHStyleElement>>printOn: aStream [
 				nextPutAll: tokens printString ]
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStyleElement>>styleForTable [
+{ #category : #styling }
+SHStyleElement >> styleForTable [
 	^ self tokens
 		collect: [:token | 
 			| style |
@@ -137,18 +109,12 @@ SHStyleElement>>styleForTable [
 			style asArray]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStyleElement>>tokens [
+{ #category : #accessing }
+SHStyleElement >> tokens [
 	^ tokens
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHStyleElement>>tokens: anObject  [
+{ #category : #accessing }
+SHStyleElement >> tokens: anObject [ 
 	tokens := anObject
 ]

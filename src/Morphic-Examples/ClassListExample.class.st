@@ -8,33 +8,23 @@ Class {
 	#instVars : [
 		'rootClass'
 	],
-	#category : #Morphic-Examples-MorphTreeWidget,
-	#timestamp : 'AlainPlantec 1/22/2010 15:10'
+	#category : #Morphic-Examples-MorphTreeWidget
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListExample class>>example [
+{ #category : #examples }
+ClassListExample class >> example [
 
 	^self new openOn: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListExample>>keyStroke: anEvent from: aTreeMorph [
+{ #category : #accessing }
+ClassListExample >> keyStroke: anEvent from: aTreeMorph [
 	self selectedNode
 		ifNotNil: [:current | current keyStroke: anEvent from: aTreeMorph]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListExample>>menu: menu shifted: b  [
+{ #category : #accessing }
+ClassListExample >> menu: menu shifted: b [ 
 	"Set up the menu to apply to the receiver's, 
 	honoring the #shifted boolean"
 	super menu: menu shifted: b.
@@ -43,20 +33,14 @@ ClassListExample>>menu: menu shifted: b  [
 	^ menu
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListExample>>open [
+{ #category : #'instance creation' }
+ClassListExample >> open [
 	^ self openOn: Object
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListExample>>openOn: aClass [
+{ #category : #'instance creation' }
+ClassListExample >> openOn: aClass [
 	| window |
 	self rootClass: aClass.
 	window := StandardWindow new model: self.
@@ -69,43 +53,28 @@ ClassListExample>>openOn: aClass [
 	^ window
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListExample>>rootClass [
+{ #category : #accessing }
+ClassListExample >> rootClass [
 	^ rootClass ifNil: [rootClass := Object]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListExample>>rootClass: aClass [
+{ #category : #accessing }
+ClassListExample >> rootClass: aClass [
 	 rootClass := aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListExample>>rootItems [
+{ #category : #accessing }
+ClassListExample >> rootItems [
 	^ self rootClass allSubclasses asArray sort: [:a :b | a name < b name ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListExample>>rootNodeClassFromItem: anItem [
+{ #category : #accessing }
+ClassListExample >> rootNodeClassFromItem: anItem [
 	^ClassListNodeExample
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassListExample>>treeMorph [
+{ #category : #'user interface' }
+ClassListExample >> treeMorph [
 	| treeMorph baseColor oddColor evenColor |
 	baseColor := Color lightBlue lighter.
 	oddColor := (GradientFillStyle

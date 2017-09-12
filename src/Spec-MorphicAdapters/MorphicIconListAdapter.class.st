@@ -4,15 +4,11 @@ I am the adapter used to bridge an IconListModel and a PluggableIconListMorph
 Class {
 	#name : #MorphicIconListAdapter,
 	#superclass : #MorphicListAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicIconListAdapter>>buildWidget [
+{ #category : #factory }
+MorphicIconListAdapter >> buildWidget [
 
 	^ PluggableIconListMorph new
 		    	model: self ;
@@ -35,11 +31,8 @@ MorphicIconListAdapter>>buildWidget [
 			yourself
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicIconListAdapter>>getIconFor: anItem [
+{ #category : #'widget API' }
+MorphicIconListAdapter >> getIconFor: anItem [
 
 	^ self model getIconFor: anItem
 ]

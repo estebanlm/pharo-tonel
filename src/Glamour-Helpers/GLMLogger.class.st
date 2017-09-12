@@ -8,49 +8,33 @@ Class {
 		'nullInstance',
 		'instance'
 	],
-	#category : #Glamour-Helpers,
-	#timestamp : 'tg 5/24/2010 17:00'
+	#category : #Glamour-Helpers
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMLogger class>>instance [
+{ #category : #accessing }
+GLMLogger class >> instance [
 	^ instance ifNil: [
 		instance := self nullInstance ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMLogger class>>instance: aLogger [
+{ #category : #accessing }
+GLMLogger class >> instance: aLogger [
 	instance := aLogger 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMLogger class>>nullInstance  [
+{ #category : #accessing }
+GLMLogger class >> nullInstance [ 
 	^ nullInstance ifNil: [
 		nullInstance := GLMNullLogger new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMLogger class>>reset [
+{ #category : #accessing }
+GLMLogger class >> reset [
 	instance := nil
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMLogger>>logAnnouncement: anAnnouncement from: aGLMObject  [
+{ #category : #logging }
+GLMLogger >> logAnnouncement: anAnnouncement from: aGLMObject [ 
 	
 	
 ]

@@ -18,15 +18,11 @@ its argument is not present in array,
 Class {
 	#name : #Set,
 	#superclass : #HashedCollection,
-	#category : #Collections-Unordered,
-	#timestamp : '<historical>'
+	#category : #Collections-Unordered
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set class>>newFrom: aCollection [
+{ #category : #'instance creation' }
+Set class >> newFrom: aCollection [
 	"Answer an instance of me containing the same elements as aCollection."
 	| newCollection |
 	newCollection := self new: aCollection size.
@@ -38,21 +34,15 @@ Set class>>newFrom: aCollection [
 "
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set class>>sizeFor: nElements [
+{ #category : #'instance creation' }
+Set class >> sizeFor: nElements [
 	"Large enough size to hold nElements with some slop (see fullCheck)"
 
 	^ HashTableSizes atLeast: nElements * 4 // 3
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>= aSet [
+{ #category : #testing }
+Set >> = aSet [
 	self == aSet ifTrue: [^ true].	"stop recursion"
 	(aSet isKindOf: Set) ifFalse: [^ false].
 	self size = aSet size ifFalse: [^ false].
@@ -60,11 +50,8 @@ Set>>= aSet [
 	^ true
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>add: newObject [
+{ #category : #adding }
+Set >> add: newObject [
 	"Include newObject as one of the receiver's elements, but only if
 	not already present. Answer newObject."
 
@@ -74,27 +61,18 @@ Set>>add: newObject [
 	^ newObject
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>add: newObject withOccurrences: anInteger [
+{ #category : #adding }
+Set >> add: newObject withOccurrences: anInteger [
 	^ self add: newObject
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>asSet [
+{ #category : #converting }
+Set >> asSet [
 	^self
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>collect: aBlock  [
+{ #category : #enumerating }
+Set >> collect: aBlock [ 
 	"Evaluate aBlock with each of the receiver's elements as the argument.  
 	Collect the resulting values into a collection like the receiver. Answer  
 	the new collection."
@@ -105,11 +83,8 @@ Set>>collect: aBlock  [
 	^ newSet
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>copyWithout: oldElement  [
+{ #category : #removing }
+Set >> copyWithout: oldElement [ 
 	"Answer a copy of the receiver that does not contain any
 	elements equal to oldElement."
 
@@ -118,11 +93,8 @@ Set>>copyWithout: oldElement  [
 		yourself
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>difference: aCollection [
+{ #category : #enumerating }
+Set >> difference: aCollection [
 	"Answer the set theoretic difference of two collections. Optimized version for Sets where no intermediate Set is necessary"
 
 	"#(a b c d e f) difference:  #(a b z k)
@@ -138,11 +110,8 @@ Set>>difference: aCollection [
 	^ set
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>do: aBlock  [
+{ #category : #enumerating }
+Set >> do: aBlock [ 
 	tally = 0 ifTrue: [^ self].
 	1 to: array size do:
 		[:index |
@@ -150,11 +119,8 @@ Set>>do: aBlock  [
 		(each := array at: index) ifNotNil: [aBlock value: each enclosedSetElement]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>fixCollisionsFrom: start [
+{ #category : #private }
+Set >> fixCollisionsFrom: start [
 	"The element at start has been removed and replaced by nil.
 	This method moves forward from there, relocating any entries
 	that had been placed below due to collisions with this one"
@@ -167,11 +133,8 @@ Set>>fixCollisionsFrom: start [
 			array swap: index with: newIndex ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>grow [
+{ #category : #private }
+Set >> grow [
 	"Grow the elements array and reinsert the old elements"
 
 	| oldElements |
@@ -185,19 +148,13 @@ Set>>grow [
 				ifFalse: [ self noCheckAdd: each enclosedSetElement] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>includes: anObject  [
+{ #category : #testing }
+Set >> includes: anObject [ 
 	^ (array at: (self findElementOrNil: anObject)) ~~ nil
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>intersection: aCollection [
+{ #category : #enumerating }
+Set >> intersection: aCollection [
 	"Answer the set theoretic intersection of two collections.
 	Optimized version for Sets where no intermediate Set is necessary"
 
@@ -212,11 +169,8 @@ Set>>intersection: aCollection [
 	^ outputSet
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>isHealthy [
+{ #category : #testing }
+Set >> isHealthy [
 	"Test that object hashes match their positions stored in set's array,
 	answer true if everything ok, false otherwise
 	
@@ -230,11 +184,8 @@ Set>>isHealthy [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>like: anObject [
+{ #category : #accessing }
+Set >> like: anObject [
 	"Answer an object in the receiver that is equal to anObject,
 	nil if no such object is found. Relies heavily on hash properties.
 	Note, use #like:ifAbsent: if you need to match against nil as element"
@@ -242,11 +193,8 @@ Set>>like: anObject [
 	^ self like: anObject ifAbsent: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>like: anObject ifAbsent: aBlock [
+{ #category : #accessing }
+Set >> like: anObject ifAbsent: aBlock [
 	"Answer an object in the receiver that is equal to anObject,
 	or evaluate the block if not found. Relies heavily on hash properties"
 	| element |
@@ -254,21 +202,15 @@ Set>>like: anObject ifAbsent: aBlock [
 	^ element ifNil: [ aBlock value ] ifNotNil: [ element enclosedSetElement ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>noCheckAdd: anObject [
+{ #category : #private }
+Set >> noCheckAdd: anObject [
 	"This method should be deprecated"
 	array at: (self findElementOrNil: anObject) put: anObject asSetElement.
 	tally := tally + 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>noCheckNoGrowFillFrom: anArray [
+{ #category : #private }
+Set >> noCheckNoGrowFillFrom: anArray [
 	"Add the elements of anArray except nils to me assuming that I don't contain any of them, they are unique and I have more free space than they require."
 
 	1 to: anArray size do: [ :index |
@@ -278,39 +220,27 @@ Set>>noCheckNoGrowFillFrom: anArray [
 				put: object ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>occurrencesOf: anObject  [
+{ #category : #testing }
+Set >> occurrencesOf: anObject [ 
 	^ (self includes: anObject) ifTrue: [1] ifFalse: [0]
 ]
 
-{
-	#category : #copy,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>postCopy [
+{ #category : #copy }
+Set >> postCopy [
 	super postCopy.
 	array := array copy
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>rehash [
+{ #category : #private }
+Set >> rehash [
 	| newSelf |
 	newSelf := self species new: self size.
 	self do: [:each | newSelf noCheckAdd: each].
 	array := newSelf array
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>remove: oldObject ifAbsent: aBlock [
+{ #category : #removing }
+Set >> remove: oldObject ifAbsent: aBlock [
 
 	| index |
 	index := self findElementOrNil: oldObject.
@@ -321,11 +251,8 @@ Set>>remove: oldObject ifAbsent: aBlock [
 	^ oldObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>scanFor: anObject [
+{ #category : #private }
+Set >> scanFor: anObject [
 	"Scan the key array for the first slot containing either a nil (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or raise an error if no slot is found. This method will be overridden in various subclasses that have different interpretations for matching elements."
 
 	| index start |
@@ -338,11 +265,8 @@ Set>>scanFor: anObject [
 	self errorNoFreeSpace
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-Set>>withArray: anArray [
+{ #category : #private }
+Set >> withArray: anArray [
 	"private -- for use only in copy"
 	"I want to get a conflict"
 	array := anArray

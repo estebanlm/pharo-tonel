@@ -4,31 +4,21 @@ I'm a font setting for Source Code Pro fonts.
 Class {
 	#name : #SourceCodeFonts,
 	#superclass : #Object,
-	#category : #EmbeddedFreeType,
-	#timestamp : '<historical>'
+	#category : #EmbeddedFreeType
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts class>>codeFontName  [
+{ #category : #accessing }
+SourceCodeFonts class >> codeFontName [ 
 	^ 'Source Code Pro'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts class>>defaultFontName [
+{ #category : #accessing }
+SourceCodeFonts class >> defaultFontName [
 	^ 'Source Sans Pro'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts class>>fontButton: aString size: size  [
+{ #category : #accessing }
+SourceCodeFonts class >> fontButton: aString size: size [ 
 	^ (Smalltalk ui theme 
 		newButtonIn: World
 			for: self
@@ -42,19 +32,13 @@ SourceCodeFonts class>>fontButton: aString size: size  [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts class>>fontName [
+{ #category : #accessing }
+SourceCodeFonts class >> fontName [
 	^ 'Source Code Pro'
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts class>>fontSourceCodeRow [
+{ #category : #settings }
+SourceCodeFonts class >> fontSourceCodeRow [
 	| theme |
 	
 	theme := Smalltalk ui theme.
@@ -69,11 +53,8 @@ SourceCodeFonts class>>fontSourceCodeRow [
 		
 ]
 
-{
-	#category : #'font registration',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts class>>registerFonts: freeTypeFontManager [
+{ #category : #'font registration' }
+SourceCodeFonts class >> registerFonts: freeTypeFontManager [
 	{ SourceSansProRegular. SourceCodeProRegular } do: [ :each |
 		| font |
 		font := each new.
@@ -82,11 +63,8 @@ SourceCodeFonts class>>registerFonts: freeTypeFontManager [
 			baseName: font originalFileName ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts class>>setSourceCodeFonts: pointSize [
+{ #category : #accessing }
+SourceCodeFonts class >> setSourceCodeFonts: pointSize [
 	StandardFonts
 		setAllStandardFontsTo: (LogicalFont familyName: self defaultFontName pointSize: pointSize);
 		haloFont: (LogicalFont familyName: self defaultFontName pointSize: pointSize - 1);
@@ -97,19 +75,13 @@ SourceCodeFonts class>>setSourceCodeFonts: pointSize [
 		codeFont: (LogicalFont familyName: self fontName pointSize: pointSize)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts class>>setSourceCodeFontsDefault [
+{ #category : #accessing }
+SourceCodeFonts class >> setSourceCodeFontsDefault [
 	self setSourceCodeFonts: self sizeSmall
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts class>>settingsOn: aBuilder [
+{ #category : #settings }
+SourceCodeFonts class >> settingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #useSourceCode)
 		parent: #appearance;
@@ -122,66 +94,41 @@ SourceCodeFonts class>>settingsOn: aBuilder [
 		dialog: [ self fontSourceCodeRow ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts class>>sizeHuge [
+{ #category : #accessing }
+SourceCodeFonts class >> sizeHuge [
 	^ 22
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts class>>sizeLarge [
+{ #category : #accessing }
+SourceCodeFonts class >> sizeLarge [
 	^ 16
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts class>>sizeMedium  [
+{ #category : #accessing }
+SourceCodeFonts class >> sizeMedium [ 
 	^ 13
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts class>>sizeSmall  [
+{ #category : #accessing }
+SourceCodeFonts class >> sizeSmall [ 
 	^ 10
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts class>>sizeVeryLarge [
+{ #category : #accessing }
+SourceCodeFonts class >> sizeVeryLarge [
 	^ 18
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts class>>useSourceCode [
+{ #category : #accessing }
+SourceCodeFonts class >> useSourceCode [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts class>>useSourceCode: aBoolean [
+{ #category : #accessing }
+SourceCodeFonts class >> useSourceCode: aBoolean [
 	
 ]
 
-{
-	#category : #notes,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SourceCodeFonts>>seeClassSide [
-
+{ #category : #notes }
+SourceCodeFonts >> seeClassSide [
 ]

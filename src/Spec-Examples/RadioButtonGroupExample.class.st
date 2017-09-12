@@ -15,15 +15,11 @@ Class {
 		'morph2',
 		'morph3'
 	],
-	#category : #Spec-Examples-Morphic,
-	#timestamp : 'Spirita 7/28/2016 14:30'
+	#category : #Spec-Examples-Morphic
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RadioButtonGroupExample class>>defaultSpec [
+{ #category : #specs }
+RadioButtonGroupExample class >> defaultSpec [
 	<spec: #default>
 	
 	^ SpecLayout composed
@@ -36,64 +32,43 @@ RadioButtonGroupExample class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RadioButtonGroupExample class>>example [
+{ #category : #example }
+RadioButtonGroupExample class >> example [
 	^ self new openWithSpec
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RadioButtonGroupExample class>>title [
+{ #category : #specs }
+RadioButtonGroupExample class >> title [
 
 	^ 'Radio Button Group Example'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RadioButtonGroupExample>>button1 [
+{ #category : #accessing }
+RadioButtonGroupExample >> button1 [
 
 	^ button1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RadioButtonGroupExample>>button2 [
+{ #category : #accessing }
+RadioButtonGroupExample >> button2 [
 
 	^ button2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RadioButtonGroupExample>>button3 [
+{ #category : #accessing }
+RadioButtonGroupExample >> button3 [
 
 	^ button3
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RadioButtonGroupExample>>container [
+{ #category : #accessing }
+RadioButtonGroupExample >> container [
 
 	^ container asSpecAdapter
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RadioButtonGroupExample>>initialize [
+{ #category : #initialization }
+RadioButtonGroupExample >> initialize [
 
 	self initializeMorphs.
 	super initialize.
@@ -104,11 +79,8 @@ RadioButtonGroupExample>>initialize [
 		listDirection: #bottomToLeft.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RadioButtonGroupExample>>initializeMorphs [
+{ #category : #initialization }
+RadioButtonGroupExample >> initializeMorphs [
 
 	morph1 := Morph new
 					color: Color red;
@@ -127,11 +99,8 @@ RadioButtonGroupExample>>initializeMorphs [
 					yourself.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RadioButtonGroupExample>>initializePresenter [
+{ #category : #initialization }
+RadioButtonGroupExample >> initializePresenter [
 
 	self on: button1 show: morph1.
 	self on: button2 show: morph2.
@@ -139,11 +108,8 @@ RadioButtonGroupExample>>initializePresenter [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RadioButtonGroupExample>>initializeWidgets [
+{ #category : #initialization }
+RadioButtonGroupExample >> initializeWidgets [
 	button1 := self instantiate: RadioButtonModel.
 	button2 := self instantiate: RadioButtonModel.
 	button3 := self instantiate: RadioButtonModel.
@@ -154,21 +120,15 @@ RadioButtonGroupExample>>initializeWidgets [
 	self setGroup
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RadioButtonGroupExample>>on: button show: aMorph [
+{ #category : #initialization }
+RadioButtonGroupExample >> on: button show: aMorph [
 
 	button whenActivatedDo: [ container addMorph: aMorph ].
 	button whenDeactivatedDo: [ container removeMorph: aMorph ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RadioButtonGroupExample>>setFocus [
+{ #category : #initialization }
+RadioButtonGroupExample >> setFocus [
 	
 	self focusOrder
 		add: button1;
@@ -177,11 +137,8 @@ RadioButtonGroupExample>>setFocus [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RadioButtonGroupExample>>setGroup [
+{ #category : #initialization }
+RadioButtonGroupExample >> setGroup [
 RadioButtonGroupModel new
 		addRadioButton: button1;
 		addRadioButton: button2;

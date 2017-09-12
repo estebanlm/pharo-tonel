@@ -10,15 +10,11 @@ Class {
 		'protocol',
 		'methodOrigin'
 	],
-	#category : #System-Announcements-System-Methods,
-	#timestamp : 'cyrilledelaunay 1/18/2011 14:43'
+	#category : #System-Announcements-System-Methods
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRemoved class>>methodRemoved: aCompiledMethod protocol: aProtocol origin: aBehavior [
+{ #category : #'instance creation' }
+MethodRemoved class >> methodRemoved: aCompiledMethod protocol: aProtocol origin: aBehavior [
 	^self new
 		method: aCompiledMethod;
 		protocol: aProtocol;
@@ -26,44 +22,29 @@ MethodRemoved class>>methodRemoved: aCompiledMethod protocol: aProtocol origin: 
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRemoved>>methodOrigin [
+{ #category : #accessing }
+MethodRemoved >> methodOrigin [
 	^ methodOrigin
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRemoved>>methodOrigin: anObject [
+{ #category : #accessing }
+MethodRemoved >> methodOrigin: anObject [
 	methodOrigin := anObject 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRemoved>>methodRemoved [
+{ #category : #accessing }
+MethodRemoved >> methodRemoved [
 	
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRemoved>>protocol [
+{ #category : #accessing }
+MethodRemoved >> protocol [
 	^ protocol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodRemoved>>protocol: anObject [
+{ #category : #accessing }
+MethodRemoved >> protocol: anObject [
 	
 	protocol := anObject
 ]

@@ -8,71 +8,46 @@ Class {
 		'compilationContext',
 		'node'
 	],
-	#category : #OpalCompiler-Core-Exception,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-Exception
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticError>>compilationContext [
+{ #category : #accessing }
+OCSemanticError >> compilationContext [
 	^ compilationContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticError>>compilationContext: anObject [
+{ #category : #accessing }
+OCSemanticError >> compilationContext: anObject [
 	compilationContext := anObject
 ]
 
-{
-	#category : #exceptiondescription,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticError>>defaultAction [
+{ #category : #exceptiondescription }
+OCSemanticError >> defaultAction [
 	^self notify:  messageText at: node start.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticError>>methodClass [
+{ #category : #accessing }
+OCSemanticError >> methodClass [
 	^self methodNode methodClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticError>>methodNode [
+{ #category : #accessing }
+OCSemanticError >> methodNode [
 	^node methodNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticError>>node [
+{ #category : #accessing }
+OCSemanticError >> node [
 	^ node
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticError>>node: aNode [
+{ #category : #accessing }
+OCSemanticError >> node: aNode [
 	node := aNode
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCSemanticError>>notify: aString at: location [
+{ #category : #'error handling' }
+OCSemanticError >> notify: aString at: location [
 	"Refer to the comment in Object|notify:."
 
 	^compilationContext requestor 

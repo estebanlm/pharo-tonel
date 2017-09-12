@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'presentationsFactory'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'DamienCassou 7/9/2011 23:02'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #accessing-convenience,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentStrategy>>addPresentation: aPresentation [
+{ #category : #accessing-convenience }
+GLMPresentStrategy >> addPresentation: aPresentation [
 	|currentPresentations|
 	
 	currentPresentations  := self presentations.
@@ -24,19 +20,13 @@ GLMPresentStrategy>>addPresentation: aPresentation [
 		composite add: aPresentation copy ]
 ]
 
-{
-	#category : #accessing-convenience,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentStrategy>>addPresentations: aCollection [
+{ #category : #accessing-convenience }
+GLMPresentStrategy >> addPresentations: aCollection [
 	aCollection do: [:each | self addPresentation: each ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentStrategy>>presentations [
+{ #category : #accessing }
+GLMPresentStrategy >> presentations [
 	<debuggingStone: #presentationCreation label: 'Presentation creation'>
 	| presentations |
 	presentations := GLMCompositePresentation new.
@@ -46,26 +36,17 @@ GLMPresentStrategy>>presentations [
 	^ presentations
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentStrategy>>presentations: anObject [
+{ #category : #accessing }
+GLMPresentStrategy >> presentations: anObject [
 	"self presentationsFactory: anObject "
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentStrategy>>presentationsFactory [
+{ #category : #accessing }
+GLMPresentStrategy >> presentationsFactory [
 	^ presentationsFactory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMPresentStrategy>>presentationsFactory: anObject [
+{ #category : #accessing }
+GLMPresentStrategy >> presentationsFactory: anObject [
 	presentationsFactory := anObject
 ]

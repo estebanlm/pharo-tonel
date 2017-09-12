@@ -17,165 +17,110 @@ Class {
 		'numLock',
 		'buttons'
 	],
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'IgorStasenko 7/30/2014 17:42'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>alt [
+{ #category : #accessing }
+OSStateModifiers >> alt [
 	^ leftAlt or: [  rightAlt ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>buttons [
+{ #category : #accessing }
+OSStateModifiers >> buttons [
 	^ buttons
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>capsLock [
+{ #category : #accessing }
+OSStateModifiers >> capsLock [
 	
 	^ capsLock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>capsLock: anObject [
+{ #category : #accessing }
+OSStateModifiers >> capsLock: anObject [
 	
 	capsLock := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>cmd [
+{ #category : #accessing }
+OSStateModifiers >> cmd [
 	^ leftCmd or: [  rightCmd ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>ctrl [
+{ #category : #accessing }
+OSStateModifiers >> ctrl [
 	^ leftCtrl or: [  rightCtrl ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>initialize [
+{ #category : #initialization }
+OSStateModifiers >> initialize [
 	leftAlt := leftCmd := leftCtrl := leftShift := rightAlt := rightCmd := rightCtrl := rightShift :=
 	capsLock := numLock := false.
 	buttons := OSButtonState new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>leftAlt [
+{ #category : #accessing }
+OSStateModifiers >> leftAlt [
 	
 	^ leftAlt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>leftAlt: anObject [
+{ #category : #accessing }
+OSStateModifiers >> leftAlt: anObject [
 	
 	leftAlt := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>leftCmd [
+{ #category : #accessing }
+OSStateModifiers >> leftCmd [
 	
 	^ leftCmd
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>leftCmd: anObject [
+{ #category : #accessing }
+OSStateModifiers >> leftCmd: anObject [
 	
 	leftCmd := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>leftCtrl [
+{ #category : #accessing }
+OSStateModifiers >> leftCtrl [
 	
 	^ leftCtrl
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>leftCtrl: anObject [
+{ #category : #accessing }
+OSStateModifiers >> leftCtrl: anObject [
 	
 	leftCtrl := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>leftShift [
+{ #category : #accessing }
+OSStateModifiers >> leftShift [
 	
 	^ leftShift
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>leftShift: anObject [
+{ #category : #accessing }
+OSStateModifiers >> leftShift: anObject [
 	
 	leftShift := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>numLock [
+{ #category : #accessing }
+OSStateModifiers >> numLock [
 	
 	^ numLock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>numLock: anObject [
+{ #category : #accessing }
+OSStateModifiers >> numLock: anObject [
 	
 	numLock := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>printOn: aStream [
+{ #category : #printing }
+OSStateModifiers >> printOn: aStream [
 	aStream nextPutAll: self class name; space; nextPut: $[.
 	leftAlt ifTrue: [ aStream nextPutAll: 'leftAlt'; space ].
 	leftCmd ifTrue: [ aStream nextPutAll: 'leftCmd'; space ].
@@ -191,82 +136,55 @@ OSStateModifiers>>printOn: aStream [
 	aStream nextPut: $]; space; print: buttons
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>rightAlt [
+{ #category : #accessing }
+OSStateModifiers >> rightAlt [
 	
 	^ rightAlt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>rightAlt: anObject [
+{ #category : #accessing }
+OSStateModifiers >> rightAlt: anObject [
 	
 	rightAlt := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>rightCmd [
+{ #category : #accessing }
+OSStateModifiers >> rightCmd [
 	
 	^ rightCmd
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>rightCmd: anObject [
+{ #category : #accessing }
+OSStateModifiers >> rightCmd: anObject [
 	
 	rightCmd := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>rightCtrl [
+{ #category : #accessing }
+OSStateModifiers >> rightCtrl [
 	
 	^ rightCtrl
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>rightCtrl: anObject [
+{ #category : #accessing }
+OSStateModifiers >> rightCtrl: anObject [
 	
 	rightCtrl := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>rightShift [
+{ #category : #accessing }
+OSStateModifiers >> rightShift [
 	
 	^ rightShift
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>rightShift: anObject [
+{ #category : #accessing }
+OSStateModifiers >> rightShift: anObject [
 	
 	rightShift := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSStateModifiers>>shift [
+{ #category : #accessing }
+OSStateModifiers >> shift [
 	^ leftShift or: [  rightShift ]
 ]

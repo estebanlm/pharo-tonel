@@ -35,15 +35,11 @@ Class {
 		'falsepositiveModel',
 		'transformModel'
 	],
-	#category : #Tool-CriticBrowser,
-	#timestamp : '<historical>'
+	#category : #Tool-CriticBrowser
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticToolbar class>>defaultSpec [
+{ #category : #specs }
+CriticToolbar class >> defaultSpec [
 <spec>
 
 	^SpecLayout composed
@@ -55,48 +51,33 @@ CriticToolbar class>>defaultSpec [
 			]  height: 25
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticToolbar>>browseCritic [
+{ #category : #private }
+CriticToolbar >> browseCritic [
 
 	criticHolder value ifNotNil: [ :elem | elem sourceAnchor entity browse ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticToolbar>>browseModel [
+{ #category : #accessing }
+CriticToolbar >> browseModel [
 
 	^ browseModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticToolbar>>critic: aCritic [
+{ #category : #api }
+CriticToolbar >> critic: aCritic [
 
 	criticHolder value: aCritic.
 	transformModel enabled: (aCritic isNotNil and: [ aCritic providesChange ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticToolbar>>falsepositiveModel [
+{ #category : #accessing }
+CriticToolbar >> falsepositiveModel [
 
 	^ falsepositiveModel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticToolbar>>initialize [
+{ #category : #initialization }
+CriticToolbar >> initialize [
 
 	super initialize.
 	criticHolder := nil asValueHolder.
@@ -111,19 +92,12 @@ CriticToolbar>>initialize [
 	self registerForChanges.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticToolbar>>initializeWidgets [
-
+{ #category : #initialization }
+CriticToolbar >> initializeWidgets [
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticToolbar>>registerForChanges [
+{ #category : #initialization }
+CriticToolbar >> registerForChanges [
 
 	criticHolder whenChangedDo: [ :contents |
 		| boolean |
@@ -135,22 +109,16 @@ CriticToolbar>>registerForChanges [
 
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticToolbar>>rule: aRule [
+{ #category : #api }
+CriticToolbar >> rule: aRule [
 	
 	ruleHolder value: aRule. 
 	
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticToolbar>>setBrowseModel [
+{ #category : #initialization }
+CriticToolbar >> setBrowseModel [
 	
 	browseModel
 		state: false;
@@ -160,11 +128,8 @@ CriticToolbar>>setBrowseModel [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticToolbar>>setFalsepositiveModel [
+{ #category : #initialization }
+CriticToolbar >> setFalsepositiveModel [
 	
 	falsepositiveModel
 		state: false;
@@ -174,11 +139,8 @@ CriticToolbar>>setFalsepositiveModel [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticToolbar>>setFocusOrder [
+{ #category : #initialization }
+CriticToolbar >> setFocusOrder [
 
 	self focusOrder
 		add: browseModel;
@@ -187,11 +149,8 @@ CriticToolbar>>setFocusOrder [
 		
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticToolbar>>setTransformModel [
+{ #category : #initialization }
+CriticToolbar >> setTransformModel [
 	
 	transformModel
 		state: false;
@@ -201,31 +160,22 @@ CriticToolbar>>setTransformModel [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticToolbar>>transformCritic [
+{ #category : #private }
+CriticToolbar >> transformCritic [
 	 criticHolder value
 		ifNotNil: [:critic | critic change execute ]
 	
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticToolbar>>transformModel [
+{ #category : #accessing }
+CriticToolbar >> transformModel [
 
 	^ transformModel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticToolbar>>whenFalsePositiveClickedDo: aBlock [
+{ #category : #initialization }
+CriticToolbar >> whenFalsePositiveClickedDo: aBlock [
 
 	self falsepositiveModel whenActionPerformedDo: aBlock
 ]

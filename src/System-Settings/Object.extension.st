@@ -1,27 +1,16 @@
-Extension {
-	#name : #Object
-}
+Extension { #name : #Object }
 
-{
-	#category : #'*System-Settings',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Object>>acceptSettings: aVisitor  [
+{ #category : #'*System-Settings' }
+Object >> acceptSettings: aVisitor [ 
 	^ aVisitor visitObject: self
 ]
 
-{
-	#category : #'*System-Settings-Browser',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Object>>settingFixedDomainValueNodeFrom: aSettingNode  [
+{ #category : #'*System-Settings-Browser' }
+Object >> settingFixedDomainValueNodeFrom: aSettingNode [ 
 	^ aSettingNode fixedDomainValueNodeForObject: self
 ]
 
-{
-	#category : #'*System-Settings-Browser',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-Object>>settingStoreOn: aStream [
+{ #category : #'*System-Settings-Browser' }
+Object >> settingStoreOn: aStream [
 	^ self storeOn: aStream
 ]

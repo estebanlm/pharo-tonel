@@ -7,90 +7,62 @@ Class {
 	#instVars : [
 		'method'
 	],
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 14:49'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodRemoval class>>method: aCompiledMethod [
+{ #category : #'instance creation' }
+EpMethodRemoval class >> method: aCompiledMethod [
 
 	^ self basicNew
 		initializeWithMethod: aCompiledMethod;
 		yourself
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodRemoval>>accept: aVisitor [
+{ #category : #visitor }
+EpMethodRemoval >> accept: aVisitor [
 
 	^ aVisitor visitMethodRemoval: self 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodRemoval>>affectedPackageName [
+{ #category : #accessing }
+EpMethodRemoval >> affectedPackageName [
 
 	^ method package
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodRemoval>>initializeWithMethod: aCompiledMethod [
+{ #category : #initialization }
+EpMethodRemoval >> initializeWithMethod: aCompiledMethod [
 
 	self initialize.
 	method := aCompiledMethod asEpiceaRingDefinition.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodRemoval>>methodAffected [
+{ #category : #accessing }
+EpMethodRemoval >> methodAffected [
 
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodRemoval>>methodRemoved [
+{ #category : #accessing }
+EpMethodRemoval >> methodRemoved [
 
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodRemoval>>protocol [
+{ #category : #accessing }
+EpMethodRemoval >> protocol [
 
 	^ method protocol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodRemoval>>selector [
+{ #category : #accessing }
+EpMethodRemoval >> selector [
 
 	^ method selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMethodRemoval>>sourceCode [
+{ #category : #accessing }
+EpMethodRemoval >> sourceCode [
 
 	^ method sourceCode
 ]

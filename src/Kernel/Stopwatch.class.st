@@ -8,15 +8,11 @@ Class {
 		'timespans',
 		'state'
 	],
-	#category : #Kernel-Chronology,
-	#timestamp : '<historical>'
+	#category : #Kernel-Chronology
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Stopwatch>>activate [
+{ #category : #actions }
+Stopwatch >> activate [
 
 	self isSuspended ifTrue:
 		[self timespans add: 
@@ -25,11 +21,8 @@ Stopwatch>>activate [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Stopwatch>>duration [
+{ #category : #accessing }
+Stopwatch >> duration [
 
 	| ts last |
 	self isSuspended 
@@ -46,43 +39,31 @@ Stopwatch>>duration [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Stopwatch>>end [
+{ #category : #accessing }
+Stopwatch >> end [
 
 	^ self timespans last next
 
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Stopwatch>>isActive [
+{ #category : #testing }
+Stopwatch >> isActive [
 
 	^ self state = #active
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Stopwatch>>isSuspended [
+{ #category : #testing }
+Stopwatch >> isSuspended [
 
 	^ self state = #suspended
 
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Stopwatch>>printOn: aStream [
+{ #category : #printing }
+Stopwatch >> printOn: aStream [
 
 	super printOn: aStream.
 	aStream
@@ -95,11 +76,8 @@ Stopwatch>>printOn: aStream [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Stopwatch>>reActivate [
+{ #category : #actions }
+Stopwatch >> reActivate [
 
 	self 
 		suspend;
@@ -107,11 +85,8 @@ Stopwatch>>reActivate [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Stopwatch>>reset [
+{ #category : #actions }
+Stopwatch >> reset [
 
 	self suspend.
 	timespans := nil.
@@ -119,42 +94,30 @@ Stopwatch>>reset [
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Stopwatch>>start [
+{ #category : #actions }
+Stopwatch >> start [
 
 	^ self timespans first start
 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Stopwatch>>state [
+{ #category : #accessing }
+Stopwatch >> state [
 
 	^ state ifNil: [ state := #suspended ]
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Stopwatch>>state: aSymbol [
+{ #category : #private }
+Stopwatch >> state: aSymbol [
 
 	state := aSymbol
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Stopwatch>>suspend [
+{ #category : #actions }
+Stopwatch >> suspend [
 
 	| ts |
 	self isActive ifTrue:
@@ -164,11 +127,8 @@ Stopwatch>>suspend [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Stopwatch>>timespans [
+{ #category : #accessing }
+Stopwatch >> timespans [
 
 	^ timespans ifNil: [ timespans := OrderedCollection new ]
 

@@ -1,17 +1,10 @@
-"
-
-"
 Class {
 	#name : #SearchableTreeTest,
 	#superclass : #SpecTestCase,
-	#category : #Spec-Tests-PolyWidgets-ListAndTree,
-	#timestamp : ''
+	#category : #Spec-Tests-PolyWidgets-ListAndTree
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SearchableTreeTest>>classToTest [
+{ #category : #running }
+SearchableTreeTest >> classToTest [
 	^ SearchableTree
 ]

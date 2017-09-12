@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MCGitBasedNetworkRepository,
 	#superclass : #MCFileTreeRepository,
@@ -16,43 +13,30 @@ Class {
 		'siteUsername',
 		'sitePassword'
 	],
-	#category : #Metacello-GitBasedRepository,
-	#timestamp : ''
+	#category : #Metacello-GitBasedRepository
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>basicDescription [
+{ #category : #accessing }
+MCGitBasedNetworkRepository class >> basicDescription [
   ^ self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>cacheDirectory [
+{ #category : #private }
+MCGitBasedNetworkRepository class >> cacheDirectory [
   self resetCacheDirectoryIfInvalid.
   repoCacheDirectory ifNil: [ repoCacheDirectory := self defaultCacheDirectory ].
   ^ repoCacheDirectory
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>cacheDirectory: aDirectory [
+{ #category : #private }
+MCGitBasedNetworkRepository class >> cacheDirectory: aDirectory [
   "explicitly set repoCacheDirectory"
 
   repoCacheDirectory := aDirectory
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>cacheDirectoryFor: projectPath [
+{ #category : #private }
+MCGitBasedNetworkRepository class >> cacheDirectoryFor: projectPath [
 	| cacheDirectory projectDirectory |
 	
 	cacheDirectory := self cacheDirectory.
@@ -61,19 +45,13 @@ MCGitBasedNetworkRepository class>>cacheDirectoryFor: projectPath [
 	^ projectDirectory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>cacheDirectoryPath [
+{ #category : #accessing }
+MCGitBasedNetworkRepository class >> cacheDirectoryPath [
   ^ MCFileTreeFileUtils current directoryPathString: self cacheDirectory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>cacheDirectoryPath: aString [
+{ #category : #accessing }
+MCGitBasedNetworkRepository class >> cacheDirectoryPath: aString [
   self
     cacheDirectory:
       (aString
@@ -81,11 +59,8 @@ MCGitBasedNetworkRepository class>>cacheDirectoryPath: aString [
         ifNotEmpty: [ MetacelloPlatform current fileHandleOn: aString ])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>defaultCacheDirectory [
+{ #category : #private }
+MCGitBasedNetworkRepository class >> defaultCacheDirectory [
   | defaultDirectory cacheDirectory |
   defaultDirectory := MetacelloPlatform current defaultDirectory.
   cacheDirectory := MetacelloPlatform current
@@ -95,54 +70,36 @@ MCGitBasedNetworkRepository class>>defaultCacheDirectory [
   ^ cacheDirectory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>description [
+{ #category : #accessing }
+MCGitBasedNetworkRepository class >> description [
   ^ self basicDescription , '://'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>downloadCache [
+{ #category : #accessing }
+MCGitBasedNetworkRepository class >> downloadCache [
   repoDownloadCache ifNil: [ repoDownloadCache := Dictionary new ].
   ^ repoDownloadCache
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>downloadCacheKey: projectPath version: versionString [
+{ #category : #accessing }
+MCGitBasedNetworkRepository class >> downloadCacheKey: projectPath version: versionString [
   ^ projectPath , ':::' , versionString
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>flushDownloadCache [
+{ #category : #initialization }
+MCGitBasedNetworkRepository class >> flushDownloadCache [
   "self flushDownloadCache"
 
   repoDownloadCache := nil
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>flushProjectEntry: projectPath version: versionString [
+{ #category : #utility }
+MCGitBasedNetworkRepository class >> flushProjectEntry: projectPath version: versionString [
     self downloadCache removeKey: (self downloadCacheKey: projectPath version: versionString) ifAbsent: [  ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>initialize [
+{ #category : #initialization }
+MCGitBasedNetworkRepository class >> initialize [
   "self initialize"
 
 	SessionManager default 
@@ -152,46 +109,31 @@ MCGitBasedNetworkRepository class>>initialize [
 	self resetCacheDirectoryIfInvalid.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>isAbstract [
+{ #category : #accessing }
+MCGitBasedNetworkRepository class >> isAbstract [
     "abstract as far as creating new repositories interactively? yes"
 
     ^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>isEnabled [
+{ #category : #testing }
+MCGitBasedNetworkRepository class >> isEnabled [
 
 	^false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>location: locationUrl [
+{ #category : #'instance creation' }
+MCGitBasedNetworkRepository class >> location: locationUrl [
     ^ self location: locationUrl version: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>location: locationUrl version: versionString [
+{ #category : #'instance creation' }
+MCGitBasedNetworkRepository class >> location: locationUrl version: versionString [
     ^ self parseLocation: locationUrl version: versionString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>parseLocation: locationUrl version: versionString [
+{ #category : #private }
+MCGitBasedNetworkRepository class >> parseLocation: locationUrl version: versionString [
   "self 
 	parseLocation: 'github://dalehenrich/MetacelloRepository:master/monticello/repos/itory/path'
 	version: nil
@@ -231,11 +173,8 @@ MCGitBasedNetworkRepository class>>parseLocation: locationUrl version: versionSt
     repoPath: repoPath
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>parseProjectVersionField: parseBlock desc: desc versionDelim: versionDelim [
+{ #category : #private }
+MCGitBasedNetworkRepository class >> parseProjectVersionField: parseBlock desc: desc versionDelim: versionDelim [
   "Issue #234: have to allow for commitish containing slashes"
 
   | strm done escaped repoDelim |
@@ -271,11 +210,8 @@ MCGitBasedNetworkRepository class>>parseProjectVersionField: parseBlock desc: de
     value: (desc copyFrom: repoDelim + 1 to: desc size)
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>projectDirectoryFrom: projectPath version: versionString [
+{ #category : #utility }
+MCGitBasedNetworkRepository class >> projectDirectoryFrom: projectPath version: versionString [
   | mcPlatform theCacheDirectory projectDirectory downloadCacheKey cachePath pid |
   downloadCacheKey := self downloadCacheKey: projectPath version: versionString.
   mcPlatform := MetacelloPlatform current.
@@ -321,19 +257,13 @@ MCGitBasedNetworkRepository class>>projectDirectoryFrom: projectPath version: ve
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>projectTagsUrlFor: aProjectPath [
+{ #category : #private }
+MCGitBasedNetworkRepository class >> projectTagsUrlFor: aProjectPath [
   self subclassResponsibility
 ]
 
-{
-	#category : #'version patterns',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>projectVersionFromString: aString [
+{ #category : #'version patterns' }
+MCGitBasedNetworkRepository class >> projectVersionFromString: aString [
   "strip leading $v if present and return an instance of MetacelloVersionNumber"
 
   | versionString |
@@ -343,19 +273,13 @@ MCGitBasedNetworkRepository class>>projectVersionFromString: aString [
   ^ MetacelloVersionNumber fromString: versionString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>projectZipUrlFor: projectPath versionString: versionString [
+{ #category : #private }
+MCGitBasedNetworkRepository class >> projectZipUrlFor: projectPath versionString: versionString [
   self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>resetCacheDirectoryIfInvalid [
+{ #category : #private }
+MCGitBasedNetworkRepository class >> resetCacheDirectoryIfInvalid [
   "Reset if invalid"
 
   repoCacheDirectory notNil
@@ -364,43 +288,28 @@ MCGitBasedNetworkRepository class>>resetCacheDirectoryIfInvalid [
         ifFalse: [ repoCacheDirectory := nil ] ]
 ]
 
-{
-	#category : #'site credentials',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>sitePassword [
+{ #category : #'site credentials' }
+MCGitBasedNetworkRepository class >> sitePassword [
   ^ sitePassword
 ]
 
-{
-	#category : #'site credentials',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>sitePassword: aString [
+{ #category : #'site credentials' }
+MCGitBasedNetworkRepository class >> sitePassword: aString [
   sitePassword := aString
 ]
 
-{
-	#category : #'site credentials',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>siteUsername [
+{ #category : #'site credentials' }
+MCGitBasedNetworkRepository class >> siteUsername [
   ^ siteUsername
 ]
 
-{
-	#category : #'site credentials',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>siteUsername: aString [
+{ #category : #'site credentials' }
+MCGitBasedNetworkRepository class >> siteUsername: aString [
   siteUsername := aString
 ]
 
-{
-	#category : #'site credentials',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>siteUsername: username sitePassword: pass [
+{ #category : #'site credentials' }
+MCGitBasedNetworkRepository class >> siteUsername: username sitePassword: pass [
   "MCBitbucketRepository siteUsername: '' sitePassword: ''"
 
   "MCGitHubRepository siteUsername: '' sitePassword: ''"
@@ -410,44 +319,32 @@ MCGitBasedNetworkRepository class>>siteUsername: username sitePassword: pass [
     sitePassword: pass
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository class>>startUp: resuming [
+{ #category : #'system startup' }
+MCGitBasedNetworkRepository class >> startUp: resuming [
     "Flush the GitHub download cache"
 
     resuming
         ifTrue: [ self flushDownloadCache ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>asRepositorySpecFor: aMetacelloMCProject [
+{ #category : #accessing }
+MCGitBasedNetworkRepository >> asRepositorySpecFor: aMetacelloMCProject [
   ^ aMetacelloMCProject repositorySpec
 		description: self description;
 		type: self class basicDescription;
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>canUpgradeTo: anMCGitBasedRepository [
+{ #category : #initialize-release }
+MCGitBasedNetworkRepository >> canUpgradeTo: anMCGitBasedRepository [
   (anMCGitBasedRepository isKindOf: self class)
     ifFalse: [ ^ false ].
   ^ self projectPath = anMCGitBasedRepository projectPath
     and: [ self repoPath = anMCGitBasedRepository repoPath ]
 ]
 
-{
-	#category : #descriptions,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>description [
+{ #category : #descriptions }
+MCGitBasedNetworkRepository >> description [
   | desc |
   desc := self class description , self projectPath , ':'
     , self projectVersionEscaped.
@@ -456,11 +353,8 @@ MCGitBasedNetworkRepository>>description [
   ^ desc , '/' , self repoPath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>directory [
+{ #category : #accessing }
+MCGitBasedNetworkRepository >> directory [
   directory
     ifNil: [ 
       directory := self class
@@ -479,19 +373,13 @@ MCGitBasedNetworkRepository>>directory [
   ^ directory
 ]
 
-{
-	#category : #descriptions,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>directoryDescription [
+{ #category : #descriptions }
+MCGitBasedNetworkRepository >> directoryDescription [
     ^ self directory pathName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>downloadJSONTags [
+{ #category : #private }
+MCGitBasedNetworkRepository >> downloadJSONTags [
   | tagsUrl jsonObject |
   tagsUrl := self projectTagsUrlFor: self projectPath.
   jsonObject := MetacelloPlatform current
@@ -501,11 +389,8 @@ MCGitBasedNetworkRepository>>downloadJSONTags [
   ^ self normalizeTagsData: jsonObject
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>flushCache [
+{ #category : #initialize-release }
+MCGitBasedNetworkRepository >> flushCache [
   "the directory acts like a cache since we download the directory from a git-based repository (github, bitbucket, etc.)"
 
   [ super flushCache ]
@@ -520,20 +405,14 @@ MCGitBasedNetworkRepository>>flushCache [
   directory := nil
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>flushForScriptGet [
+{ #category : #initialize-release }
+MCGitBasedNetworkRepository >> flushForScriptGet [
     self class flushProjectEntry: self projectPath version: self projectVersion.
     directory := nil
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>hasNoLoadConflicts: anMCGitBasedRepository [
+{ #category : #initialize-release }
+MCGitBasedNetworkRepository >> hasNoLoadConflicts: anMCGitBasedRepository [
   (anMCGitBasedRepository isKindOf: self class)
     ifFalse: [ ^ false ].
   ^ self projectPath = anMCGitBasedRepository projectPath
@@ -542,97 +421,64 @@ MCGitBasedNetworkRepository>>hasNoLoadConflicts: anMCGitBasedRepository [
         and: [ self projectVersion = anMCGitBasedRepository projectVersion ] ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>hash [
+{ #category : #comparing }
+MCGitBasedNetworkRepository >> hash [
     ^ self description hash
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>initialize [
+{ #category : #initialize-release }
+MCGitBasedNetworkRepository >> initialize [
     super initialize.
     directory := nil.	"we'll lazily create the directory instance"
     self readonly: true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>isValid [
+{ #category : #testing }
+MCGitBasedNetworkRepository >> isValid [
     ^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>metacelloProjectClassFor: aScriptEngine [
+{ #category : #accessing }
+MCGitBasedNetworkRepository >> metacelloProjectClassFor: aScriptEngine [
     ^ MetacelloMCBaselineProject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>normalizeTagsData: jsonObject [
+{ #category : #private }
+MCGitBasedNetworkRepository >> normalizeTagsData: jsonObject [
   ^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>projectPath [
+{ #category : #accessing }
+MCGitBasedNetworkRepository >> projectPath [
     ^ projectPath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>projectPath: anObject [
+{ #category : #accessing }
+MCGitBasedNetworkRepository >> projectPath: anObject [
     projectPath := anObject
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>projectPath: aProjectPath projectVersion: aProjectVersion repoPath: aRepoPath [
+{ #category : #initialize-release }
+MCGitBasedNetworkRepository >> projectPath: aProjectPath projectVersion: aProjectVersion repoPath: aRepoPath [
   self projectPath: aProjectPath.
   self projectVersion: aProjectVersion.	"Important that projectVersion be set AFTER projectPath"
   self repoPath: aRepoPath
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>projectTagsUrlFor: aProjectPath [
+{ #category : #private }
+MCGitBasedNetworkRepository >> projectTagsUrlFor: aProjectPath [
   ^ self class projectTagsUrlFor: aProjectPath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>projectVersion [
+{ #category : #accessing }
+MCGitBasedNetworkRepository >> projectVersion [
     (projectVersion == nil or: [ projectVersion isEmpty ])
         ifTrue: [ projectVersion := 'master' ].
     ^ projectVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>projectVersion: aString [
+{ #category : #accessing }
+MCGitBasedNetworkRepository >> projectVersion: aString [
   "Important that projectVersion be set AFTER projectPath, as projectPath needed for resolving projectVersionPattern"
 
   | x |
@@ -650,11 +496,8 @@ MCGitBasedNetworkRepository>>projectVersion: aString [
     ifFalse: [ projectVersion := aString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>projectVersionEscaped [
+{ #category : #accessing }
+MCGitBasedNetworkRepository >> projectVersionEscaped [
   | pv |
   pv := self projectVersion.
   (projectVersion includes: $/)
@@ -662,59 +505,41 @@ MCGitBasedNetworkRepository>>projectVersionEscaped [
   ^ pv
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>projectVersionPattern [
+{ #category : #accessing }
+MCGitBasedNetworkRepository >> projectVersionPattern [
   "do not set projectVersionPattern unless it _is_ a pattern: includes $#, %*, or $?"
 
   projectVersionPattern ifNil: [ ^ self projectVersion ].
   ^ projectVersionPattern
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>projectVersionPattern: aString [
+{ #category : #accessing }
+MCGitBasedNetworkRepository >> projectVersionPattern: aString [
   "do not set projectVersionPattern unless it _is_ a pattern: includes $#, %*, or $?"
 
   projectVersionPattern := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>repoPath [
+{ #category : #accessing }
+MCGitBasedNetworkRepository >> repoPath [
   repoPath ifNil: [ repoPath := '' ].
   ^ repoPath
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>repoPath: anObject [
+{ #category : #accessing }
+MCGitBasedNetworkRepository >> repoPath: anObject [
     repoPath := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>repositoryBranchName [
+{ #category : #accessing }
+MCGitBasedNetworkRepository >> repositoryBranchName [
   "for git-based network repos, answer the value of the projectVersion field"
 
   ^ self projectVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>repositoryVersionString [
+{ #category : #accessing }
+MCGitBasedNetworkRepository >> repositoryVersionString [
   "for git-based network repos, answer the SHA associated with the download: a commit SHA or tag SHA"
 
   | versionComponents versionElement pathElements gitBasedPath repositoryDirPath projectDirPath projectDir projectVersionDir |
@@ -735,11 +560,8 @@ MCGitBasedNetworkRepository>>repositoryVersionString [
   ^ versionComponents last
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MCGitBasedNetworkRepository>>resolveProjectVersionPattern: aString [
+{ #category : #private }
+MCGitBasedNetworkRepository >> resolveProjectVersionPattern: aString [
   "aString must conform to the syntax for MetacelloVersionNumber with the exception that aString may have a leading $v which is stripped before conversion to a MetacelloVersionNumber patterm"
 
   | patternString tagDictionary matchingTags tagAssocs sortedMatchingTags theTag |

@@ -4,60 +4,41 @@ SUnit tests for the disk filesystem
 Class {
 	#name : #DiskFileSystemTest,
 	#superclass : #FileSystemTest,
-	#category : #FileSystem-Tests-Disk,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:44'
+	#category : #FileSystem-Tests-Disk
 }
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-DiskFileSystemTest>>createFileSystem [
+{ #category : #initialize-release }
+DiskFileSystemTest >> createFileSystem [
 	^ FileSystem store: (DiskStore activeClass createDefault)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-DiskFileSystemTest>>testDefaultWorkingDirectory [
+{ #category : #tests }
+DiskFileSystemTest >> testDefaultWorkingDirectory [
 	| ref |
 	ref := filesystem workingDirectory.
 	self assert: (('File @ ', Smalltalk vm imagePath) beginsWith: ref asString)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-DiskFileSystemTest>>testEqual [
+{ #category : #tests }
+DiskFileSystemTest >> testEqual [
 	| other |
 	other := self createFileSystem.
 	self assert: filesystem = other
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-DiskFileSystemTest>>testIsDirectory [
+{ #category : #tests }
+DiskFileSystemTest >> testIsDirectory [
 	self assert: (filesystem isDirectory: FileLocator imageDirectory resolve path)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-DiskFileSystemTest>>testIsDiskFileSystem [
+{ #category : #tests }
+DiskFileSystemTest >> testIsDiskFileSystem [
 	self assert: filesystem isDiskFileSystem.
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-DiskFileSystemTest>>testMoveMemoryToDisk [
+{ #category : #tests }
+DiskFileSystemTest >> testMoveMemoryToDisk [
 	"Test moving a file from the memory filesystem to the disk filesystem.
 	This ensures that the copyAndDelete:to: is called correctly."
 	| memfs out testString old new |

@@ -8,34 +8,24 @@ Class {
 	#instVars : [
 		'rootClass'
 	],
-	#category : #Morphic-Examples-MorphTreeWidget,
-	#timestamp : 'AlainPlantec 1/18/2010 16:20'
+	#category : #Morphic-Examples-MorphTreeWidget
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeExample class>>example [
+{ #category : #examples }
+ClassTreeExample class >> example [
 
 	ClassTreeExample new openOn: Object
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeExample>>keyStroke: anEvent from: aTreeMorph  [
+{ #category : #accessing }
+ClassTreeExample >> keyStroke: anEvent from: aTreeMorph [ 
 	self selectedNode
 		ifNotNil: [:current | current keyStroke: anEvent from: aTreeMorph]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeExample>>menu: menu shifted: b  [
+{ #category : #accessing }
+ClassTreeExample >> menu: menu shifted: b [ 
 	"Set up the menu to apply to the receiver's, 
 	honoring the #shifted boolean"
 	super menu: menu shifted: b.
@@ -50,20 +40,14 @@ ClassTreeExample>>menu: menu shifted: b  [
 	^ menu
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeExample>>open [
+{ #category : #'instance creation' }
+ClassTreeExample >> open [
 	^ self openOn: Object
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeExample>>openOn: aClass [
+{ #category : #'instance creation' }
+ClassTreeExample >> openOn: aClass [
 	| window |
 	self rootClass: aClass.
 	window := StandardWindow new model: self.
@@ -76,43 +60,28 @@ ClassTreeExample>>openOn: aClass [
 	^ window
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeExample>>rootClass [
+{ #category : #accessing }
+ClassTreeExample >> rootClass [
 	^ rootClass ifNil: [rootClass := Object]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeExample>>rootClass: aClass [
+{ #category : #accessing }
+ClassTreeExample >> rootClass: aClass [
 	 rootClass := aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeExample>>rootItems [
+{ #category : #accessing }
+ClassTreeExample >> rootItems [
 	^ OrderedCollection with: self rootClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeExample>>rootNodeClassFromItem: anItem [
+{ #category : #accessing }
+ClassTreeExample >> rootNodeClassFromItem: anItem [
 	^ ClassTreeNodeExample
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeExample>>treeMorph [
+{ #category : #'user interface' }
+ClassTreeExample >> treeMorph [
 	| treeMorph |
 	treeMorph := (MorphTreeMorph on: self)
 				beMultiple;

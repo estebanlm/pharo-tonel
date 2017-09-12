@@ -25,24 +25,17 @@ Class {
 		'NormalTextAttributes',
 		'RemoveTextAttributes'
 	],
-	#category : #Text-Diff,
-	#timestamp : 'HenrikSperreJohansen 5/21/2010 02:00'
+	#category : #Text-Diff
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder class>>buildDisplayPatchFrom: sourceText to: destinationText [
+{ #category : #'instance creation' }
+TextDiffBuilder class >> buildDisplayPatchFrom: sourceText to: destinationText [
 
 	^(self from: sourceText to: destinationText) buildDisplayPatch
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder class>>buildDisplayPatchFrom: sourceText to: destinationText inClass: sourceClass  [
+{ #category : #'instance creation' }
+TextDiffBuilder class >> buildDisplayPatchFrom: sourceText to: destinationText inClass: sourceClass [ 
 
 	^self 
 		buildDisplayPatchFrom: sourceText 
@@ -52,11 +45,8 @@ TextDiffBuilder class>>buildDisplayPatchFrom: sourceText to: destinationText inC
 		
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder class>>buildDisplayPatchFrom: srcString to: dstString inClass: srcClass prettyDiffs: prettyDiffs  [
+{ #category : #'instance creation' }
+TextDiffBuilder class >> buildDisplayPatchFrom: srcString to: dstString inClass: srcClass prettyDiffs: prettyDiffs [ 
 	"Build a display patch for mapping via diffs from srcString to dstString
 	in the given class. If prettyDiffs is true, do the diffing for pretty-printed forms"
 
@@ -70,11 +60,8 @@ TextDiffBuilder class>>buildDisplayPatchFrom: srcString to: dstString inClass: s
 		inClass: srcClass) buildDisplayPatch
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder class>>differatorSettingsOn: aBuilder  [
+{ #category : #settings }
+TextDiffBuilder class >> differatorSettingsOn: aBuilder [ 
 	<systemsettings>
 	(aBuilder group: #differator) 
 		label: 'Code Diffs';
@@ -93,86 +80,59 @@ TextDiffBuilder class>>differatorSettingsOn: aBuilder  [
 		]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder class>>diffsWithPrettyPrint [
+{ #category : #settings }
+TextDiffBuilder class >> diffsWithPrettyPrint [
 	^ DiffsWithPrettyPrint ifNil: [DiffsWithPrettyPrint := false]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder class>>diffsWithPrettyPrint: aBoolean [
+{ #category : #settings }
+TextDiffBuilder class >> diffsWithPrettyPrint: aBoolean [
 	DiffsWithPrettyPrint := aBoolean
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder class>>from: srcString to: dstString [
+{ #category : #'instance creation' }
+TextDiffBuilder class >> from: srcString to: dstString [
 
 	^self new from: srcString to: dstString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder class>>from: srcString to: dstString inClass: srcClass [
+{ #category : #'instance creation' }
+TextDiffBuilder class >> from: srcString to: dstString inClass: srcClass [
 	"srcClass not used when not pretty printing, but have it for polymorphism with PrettyTextDiffBuilder"
 
 	^self new from: srcString to: dstString
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder class>>ignoreLineEndings [
+{ #category : #settings }
+TextDiffBuilder class >> ignoreLineEndings [
 	"Answer a boolean telling if line endings differences should be ignored or emphasized"
 	
 	^IgnoreLineEndings ifNil: [ true ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder class>>ignoreLineEndings: aBoolean [
+{ #category : #settings }
+TextDiffBuilder class >> ignoreLineEndings: aBoolean [
 	"Setting for  if line ending differences should be ignored or emphasized"
 	
 	IgnoreLineEndings := aBoolean
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder class>>initialize [
+{ #category : #'class initialization' }
+TextDiffBuilder class >> initialize [
 
 	self initializeTextAttributes
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder class>>initializeTextAttributes [
+{ #category : #'class initialization' }
+TextDiffBuilder class >> initializeTextAttributes [
 
 	InsertTextAttributes :=  {TextEmphasis bold. TextColor color: Color green muchDarker}.
 	RemoveTextAttributes := {TextEmphasis bold. TextColor color: Color red darker} .
 	NormalTextAttributes :={ TextEmphasis normal }
 ]
 
-{
-	#category : #'creating patches',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder>>buildDisplayPatch [
+{ #category : #'creating patches' }
+TextDiffBuilder >> buildDisplayPatch [
 
 	^Text streamContents: [ :stream |
 		self 
@@ -184,11 +144,8 @@ TextDiffBuilder>>buildDisplayPatch [
 				self print: string withAttributes: RemoveTextAttributes on: stream ] ]
 ]
 
-{
-	#category : #'creating patches',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder>>buildPatchSequence [
+{ #category : #'creating patches' }
+TextDiffBuilder >> buildPatchSequence [
 	"This method is only implemented for backwards compatibility and testing."
 
 	^Array streamContents: [ :stream |
@@ -201,11 +158,8 @@ TextDiffBuilder>>buildPatchSequence [
 				stream nextPut: #remove -> (string copyWithout: Character cr) ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder>>findMatches [
+{ #category : #private }
+TextDiffBuilder >> findMatches [
 	"I find the matching pairs of xLines and yLines. First I filter out all lines that can't have a pair, then I find the longest common subsequence of the remaining elements. Finally I mark the matching pairs."
 
 	| temp lcs xFilteredLines yFilteredLines xNumbers yNumbers |
@@ -229,22 +183,16 @@ TextDiffBuilder>>findMatches [
 			lcs := lcs at: 3 ]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder>>from: xString to: yString [
+{ #category : #initialize }
+TextDiffBuilder >> from: xString to: yString [
 
 	xLines := (self split: xString asString) replace: [ :each | DiffElement string: each ].
 	yLines := (self split: yString asString) replace: [ :each | DiffElement string: each ].
 	self findMatches
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder>>lcsFor: xFilteredLines and: yFilteredLines [
+{ #category : #private }
+TextDiffBuilder >> lcsFor: xFilteredLines and: yFilteredLines [
 	"I find one of the longest common subsequences of my the arguments. I assume that none of my arguments are empty. I return nil or an Array which represents a list. The first two elements are the matching line numbers, the last is the next node in the list or nil if there are no more elements. The list containts the longest common subsequence. I'm a modified version of the greedy lcs algorithm from the 6th page of 'An O(ND) Difference Algorithm and Its Variations (1986)' by Eugene W. Myers"
 
 	| n m v lcss max |
@@ -272,11 +220,8 @@ TextDiffBuilder>>lcsFor: xFilteredLines and: yFilteredLines [
 	self error
 ]
 
-{
-	#category : #'creating patches',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder>>patchSequenceDoIfMatch: matchBlock ifInsert: insertBlock ifRemove: removeBlock [
+{ #category : #'creating patches' }
+TextDiffBuilder >> patchSequenceDoIfMatch: matchBlock ifInsert: insertBlock ifRemove: removeBlock [
 	"I'm the general purpose method to iterate through the patch sequence. See my senders to learn how to use me."
 
 	| xLine xLineStream |
@@ -291,11 +236,8 @@ TextDiffBuilder>>patchSequenceDoIfMatch: matchBlock ifInsert: insertBlock ifRemo
 	[ (xLine := xLineStream next) isNil ] whileFalse: [ removeBlock value: xLine string ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder>>print: aString withAttributes: attributes on: stream [
+{ #category : #private }
+TextDiffBuilder >> print: aString withAttributes: attributes on: stream [
 
 	stream
 		withAttributes: attributes 
@@ -307,11 +249,8 @@ TextDiffBuilder>>print: aString withAttributes: attributes on: stream [
 						ifFalse: [ stream cr ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TextDiffBuilder>>split: aString [
+{ #category : #private }
+TextDiffBuilder >> split: aString [
 	"I return an Array of strings which are the lines extracted from aString. All lines contain the line separator characters, or not depending on preference."
 
 	^Array streamContents: [ :stream |

@@ -1,12 +1,7 @@
-Extension {
-	#name : #Workspace
-}
+Extension { #name : #Workspace }
 
-{
-	#category : #'*SUnit-UITesting',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-Workspace>>hasUnacceptedEdits [
+{ #category : #'*SUnit-UITesting' }
+Workspace >> hasUnacceptedEdits [
 	"Answer true if any of the views on this model has unaccepted edits."
 
 	self dependents

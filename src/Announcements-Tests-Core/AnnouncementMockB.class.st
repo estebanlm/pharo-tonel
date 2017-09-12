@@ -7,31 +7,21 @@ Class {
 	#instVars : [
 		'parameter'
 	],
-	#category : #Announcements-Tests-Core-Mocks,
-	#timestamp : 'Tbn 11/12/2010 10:54'
+	#category : #Announcements-Tests-Core-Mocks
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncementMockB class>>with: anObject [
+{ #category : #'instance creation' }
+AnnouncementMockB class >> with: anObject [
 	^self new 
 		parameter: anObject 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncementMockB>>parameter [
+{ #category : #accessing }
+AnnouncementMockB >> parameter [
 	^ parameter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-AnnouncementMockB>>parameter: anObject [
+{ #category : #accessing }
+AnnouncementMockB >> parameter: anObject [
 	parameter := anObject
 ]

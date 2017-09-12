@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MBLoadConfigurationCommandTest,
 	#superclass : #TestCase,
-	#category : #Versionner-Tests-Core-Commands,
-	#timestamp : ''
+	#category : #Versionner-Tests-Core-Commands
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBLoadConfigurationCommandTest>>testExecute  [
+{ #category : #tests }
+MBLoadConfigurationCommandTest >> testExecute [ 
 	| block clsName |
 	block := [(MBLoadConfigurationCommand target: nil) execute].
 	clsName := 'ConfigurationOfHomeSweetHome'.

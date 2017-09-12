@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #ReflectivityReificationTest,
 	#superclass : #TestCase,
@@ -8,39 +5,26 @@ Class {
 		'tag',
 		'link'
 	],
-	#category : #Reflectivity-Tests,
-	#timestamp : ''
+	#category : #Reflectivity-Tests
 }
 
-{
-	#category : #tagging,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>tagExec [
+{ #category : #tagging }
+ReflectivityReificationTest >> tagExec [
 	tag := #yes
 ]
 
-{
-	#category : #tagging,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>tagExec: aTag [
+{ #category : #tagging }
+ReflectivityReificationTest >> tagExec: aTag [
 	tag := aTag.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>tearDown [
+{ #category : #running }
+ReflectivityReificationTest >> tearDown [
 	link ifNotNil: [link uninstall].
 ]
 
-{
-	#category : #'tests - variablenodes',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testAccessTemp [
+{ #category : #'tests - variablenodes' }
+ReflectivityReificationTest >> testAccessTemp [
 	| varNode instance |
 	varNode := (ReflectivityExamples>>#exampleAssignment) ast body statements second.
 	link := MetaLink new 
@@ -55,11 +39,8 @@ ReflectivityReificationTest>>testAccessTemp [
 	self assert: (tag = 3).
 ]
 
-{
-	#category : #'tests - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyClassVariableClass [
+{ #category : #'tests - variables' }
+ReflectivityReificationTest >> testReifyClassVariableClass [
 	| classVar instance |
 	classVar := ReflectivityExamples classVariableNamed: #ClassVar.
 	link := MetaLink new 
@@ -75,11 +56,8 @@ ReflectivityReificationTest>>testReifyClassVariableClass [
 	self assert: (tag == ReflectivityExamples).
 ]
 
-{
-	#category : #'tests - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyClassVariableContext [
+{ #category : #'tests - variables' }
+ReflectivityReificationTest >> testReifyClassVariableContext [
 	| classVar instance |
 	classVar := ReflectivityExamples classVariableNamed: #ClassVar.
 	link := MetaLink new 
@@ -95,11 +73,8 @@ ReflectivityReificationTest>>testReifyClassVariableContext [
 	self assert: (tag class == Context).
 ]
 
-{
-	#category : #'tests - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyClassVariableEntity [
+{ #category : #'tests - variables' }
+ReflectivityReificationTest >> testReifyClassVariableEntity [
 	| classVar instance |
 	classVar := ReflectivityExamples classVariableNamed: #ClassVar.
 	link := MetaLink new 
@@ -115,11 +90,8 @@ ReflectivityReificationTest>>testReifyClassVariableEntity [
 	self assert: (tag = classVar).
 ]
 
-{
-	#category : #'tests - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyClassVariableLink [
+{ #category : #'tests - variables' }
+ReflectivityReificationTest >> testReifyClassVariableLink [
 	| classVar instance |
 	classVar := ReflectivityExamples classVariableNamed: #ClassVar.
 	link := MetaLink new 
@@ -135,11 +107,8 @@ ReflectivityReificationTest>>testReifyClassVariableLink [
 	self assert: (tag == link).
 ]
 
-{
-	#category : #'tests - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyClassVariableName [
+{ #category : #'tests - variables' }
+ReflectivityReificationTest >> testReifyClassVariableName [
 	| classVar instance |
 	classVar := ReflectivityExamples classVariableNamed: #ClassVar.
 	link := MetaLink new 
@@ -155,11 +124,8 @@ ReflectivityReificationTest>>testReifyClassVariableName [
 	self assert: (tag = #ClassVar).
 ]
 
-{
-	#category : #'tests - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyClassVariableObject [
+{ #category : #'tests - variables' }
+ReflectivityReificationTest >> testReifyClassVariableObject [
 	| classVar instance |
 	classVar := ReflectivityExamples classVariableNamed: #ClassVar.
 	link := MetaLink new 
@@ -175,11 +141,8 @@ ReflectivityReificationTest>>testReifyClassVariableObject [
 	self assert: (tag class == ReflectivityExamples).
 ]
 
-{
-	#category : #'tests - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyClassVariableValue [
+{ #category : #'tests - variables' }
+ReflectivityReificationTest >> testReifyClassVariableValue [
 	| classVar instance |
 	classVar := ReflectivityExamples classVariableNamed: #ClassVar.
 	link := MetaLink new 
@@ -195,11 +158,8 @@ ReflectivityReificationTest>>testReifyClassVariableValue [
 	self assert: (tag = #AClassVar).
 ]
 
-{
-	#category : #'tests - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyClassVariableVariable [
+{ #category : #'tests - variables' }
+ReflectivityReificationTest >> testReifyClassVariableVariable [
 	| classVar instance |
 	classVar := ReflectivityExamples classVariableNamed: #ClassVar.
 	link := MetaLink new 
@@ -215,11 +175,8 @@ ReflectivityReificationTest>>testReifyClassVariableVariable [
 	self assert: (tag = classVar).
 ]
 
-{
-	#category : #'tests - allnodes',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyEntity [
+{ #category : #'tests - allnodes' }
+ReflectivityReificationTest >> testReifyEntity [
 	| varNode instance |
 	varNode := (ReflectivityExamples>>#exampleIvarRead) ast body statements last value.
 	link := MetaLink new 
@@ -235,11 +192,8 @@ ReflectivityReificationTest>>testReifyEntity [
 
 ]
 
-{
-	#category : #'tests - variablenodes',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyGlobalName [
+{ #category : #'tests - variablenodes' }
+ReflectivityReificationTest >> testReifyGlobalName [
 	| varNode instance |
 	varNode := (ReflectivityExamples>>#exampleGlobalRead) ast body statements last value.
 	link := MetaLink new 
@@ -254,11 +208,8 @@ ReflectivityReificationTest>>testReifyGlobalName [
 	self assert: (tag = #GlobalForTesting).
 ]
 
-{
-	#category : #'tests - variablenodes',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyGlobalValue [
+{ #category : #'tests - variablenodes' }
+ReflectivityReificationTest >> testReifyGlobalValue [
 	| varNode instance |
 	varNode := (ReflectivityExamples>>#exampleGlobalRead) ast body statements last value.
 	link := MetaLink new 
@@ -273,11 +224,8 @@ ReflectivityReificationTest>>testReifyGlobalValue [
 	self assert: (tag = GlobalForTesting).
 ]
 
-{
-	#category : #'tests - variablenodes',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyGlobalVariable [
+{ #category : #'tests - variablenodes' }
+ReflectivityReificationTest >> testReifyGlobalVariable [
 	| varNode instance |
 	varNode := (ReflectivityExamples>>#exampleGlobalRead) ast body statements last value.
 	link := MetaLink new 
@@ -293,11 +241,8 @@ ReflectivityReificationTest>>testReifyGlobalVariable [
 
 ]
 
-{
-	#category : #'tests - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyGlobalVariableValue [
+{ #category : #'tests - variables' }
+ReflectivityReificationTest >> testReifyGlobalVariableValue [
 	| globalVar instance |
 	globalVar := GlobalForTesting binding.
 	link := MetaLink new 
@@ -313,11 +258,8 @@ ReflectivityReificationTest>>testReifyGlobalVariableValue [
 	self assert: (tag = #GlobalForTesting).
 ]
 
-{
-	#category : #'tests - variablenodes',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyIvarName [
+{ #category : #'tests - variablenodes' }
+ReflectivityReificationTest >> testReifyIvarName [
 	| varNode instance |
 	varNode := (ReflectivityExamples>>#exampleIvarRead) ast body statements last value.
 	link := MetaLink new 
@@ -332,11 +274,8 @@ ReflectivityReificationTest>>testReifyIvarName [
 	self assert: (tag = 'ivar').
 ]
 
-{
-	#category : #'tests - variablenodes',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyIvarValue [
+{ #category : #'tests - variablenodes' }
+ReflectivityReificationTest >> testReifyIvarValue [
 	| varNode instance |
 	varNode := (ReflectivityExamples>>#exampleIvarRead) ast body statements last value.
 	link := MetaLink new 
@@ -351,11 +290,8 @@ ReflectivityReificationTest>>testReifyIvarValue [
 	self assert: (tag = 33).
 ]
 
-{
-	#category : #'tests - variablenodes',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyIvarVariable [
+{ #category : #'tests - variablenodes' }
+ReflectivityReificationTest >> testReifyIvarVariable [
 	| varNode instance |
 	varNode := (ReflectivityExamples>>#exampleIvarRead) ast body statements last value.
 	link := MetaLink new 
@@ -370,11 +306,8 @@ ReflectivityReificationTest>>testReifyIvarVariable [
 	self assert: (tag isKindOf: Slot).
 ]
 
-{
-	#category : #'tests - method',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyMethodArgs [
+{ #category : #'tests - method' }
+ReflectivityReificationTest >> testReifyMethodArgs [
 	| sendNode instance|
 	sendNode := (ReflectivityExamples>>#exampleWithArg:) ast.
 	link := MetaLink new 
@@ -391,11 +324,8 @@ ReflectivityReificationTest>>testReifyMethodArgs [
 
 ]
 
-{
-	#category : #'tests - method',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyMethodArgsAfter [
+{ #category : #'tests - method' }
+ReflectivityReificationTest >> testReifyMethodArgsAfter [
 	| methodNode instance|
 	methodNode := (ReflectivityExamples>>#exampleWithArg:) ast.
 	link := MetaLink new 
@@ -413,11 +343,8 @@ ReflectivityReificationTest>>testReifyMethodArgsAfter [
 
 ]
 
-{
-	#category : #'tests - method',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyMethodReceiver [
+{ #category : #'tests - method' }
+ReflectivityReificationTest >> testReifyMethodReceiver [
 	| sendNode instance|
 	sendNode := (ReflectivityExamples>>#exampleMethod) ast.
 	link := MetaLink new 
@@ -434,11 +361,8 @@ ReflectivityReificationTest>>testReifyMethodReceiver [
 
 ]
 
-{
-	#category : #'tests - method',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyMethodSelector [
+{ #category : #'tests - method' }
+ReflectivityReificationTest >> testReifyMethodSelector [
 	| sendNode instance|
 	sendNode := (ReflectivityExamples>>#exampleMethod) ast.
 	link := MetaLink new 
@@ -455,11 +379,8 @@ ReflectivityReificationTest>>testReifyMethodSelector [
 
 ]
 
-{
-	#category : #'tests - method',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyMethodThisContext [
+{ #category : #'tests - method' }
+ReflectivityReificationTest >> testReifyMethodThisContext [
 	| sendNode instance|
 	sendNode := (ReflectivityExamples>>#exampleMethod) ast.
 	link := MetaLink new 
@@ -476,11 +397,8 @@ ReflectivityReificationTest>>testReifyMethodThisContext [
 
 ]
 
-{
-	#category : #'tests - assignment',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyNewValueAssignment [
+{ #category : #'tests - assignment' }
+ReflectivityReificationTest >> testReifyNewValueAssignment [
 	| varNode instance|
 	varNode := (ReflectivityExamples>>#exampleAssignment) assignmentNodes first.
 	link := MetaLink new 
@@ -496,11 +414,8 @@ ReflectivityReificationTest>>testReifyNewValueAssignment [
 
 ]
 
-{
-	#category : #'tests - allnodes',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyNode [
+{ #category : #'tests - allnodes' }
+ReflectivityReificationTest >> testReifyNode [
 	| varNode instance |
 	varNode := (ReflectivityExamples>>#exampleIvarRead) ast body statements last value.
 	link := MetaLink new 
@@ -517,11 +432,8 @@ ReflectivityReificationTest>>testReifyNode [
 
 ]
 
-{
-	#category : #'tests - allnodes',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyObject [
+{ #category : #'tests - allnodes' }
+ReflectivityReificationTest >> testReifyObject [
 	| sendNode instance|
 	sendNode := (ReflectivityExamples>>#exampleMethod) ast body statements first value.
 	link := MetaLink new 
@@ -539,11 +451,8 @@ ReflectivityReificationTest>>testReifyObject [
 
 ]
 
-{
-	#category : #'tests - sends',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyReceiverOnSendWithArguments [
+{ #category : #'tests - sends' }
+ReflectivityReificationTest >> testReifyReceiverOnSendWithArguments [
 	| sendNode instance beforeSize |
 	sendNode := (ReflectivityExamples>>#exampleSendNoReturn) ast body statements last.
 	beforeSize := 0.
@@ -561,11 +470,8 @@ ReflectivityReificationTest>>testReifyReceiverOnSendWithArguments [
 	self assert: beforeSize equals: 2.
 ]
 
-{
-	#category : #'tests - return',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyReturnValue [
+{ #category : #'tests - return' }
+ReflectivityReificationTest >> testReifyReturnValue [
 	| returnNode instance |
 	returnNode := (ReflectivityExamples>>#exampleAssignment) ast body statements last.
 	link := MetaLink new 
@@ -580,11 +486,8 @@ ReflectivityReificationTest>>testReifyReturnValue [
 	self assert: (tag = 3).
 ]
 
-{
-	#category : #'tests - sends',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifySendAll [
+{ #category : #'tests - sends' }
+ReflectivityReificationTest >> testReifySendAll [
 	| sendNode instance|
 	sendNode := (ReflectivityExamples>>#exampleMethod) ast body statements first value.
 	link := MetaLink new 
@@ -599,11 +502,8 @@ ReflectivityReificationTest>>testReifySendAll [
 
 ]
 
-{
-	#category : #'tests - sends',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifySendArgsAsArray [
+{ #category : #'tests - sends' }
+ReflectivityReificationTest >> testReifySendArgsAsArray [
 	| sendNode instance|
 	sendNode := (ReflectivityExamples>>#exampleMethod) ast body statements first value.
 	link := MetaLink new 
@@ -623,11 +523,8 @@ ReflectivityReificationTest>>testReifySendArgsAsArray [
 	
 ]
 
-{
-	#category : #'tests - sends',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifySendArguments [
+{ #category : #'tests - sends' }
+ReflectivityReificationTest >> testReifySendArguments [
 	| sendNode instance|
 	sendNode := (ReflectivityExamples>>#exampleMethod) ast body statements first value.
 	link := MetaLink new 
@@ -644,11 +541,8 @@ ReflectivityReificationTest>>testReifySendArguments [
 
 ]
 
-{
-	#category : #'tests - sends',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifySendArguments2 [
+{ #category : #'tests - sends' }
+ReflectivityReificationTest >> testReifySendArguments2 [
 	| sendNode instance|
 	sendNode := (ReflectivityExamples>>#exampleSendTwoArgs) ast body statements first value.
 	link := MetaLink new 
@@ -665,11 +559,8 @@ ReflectivityReificationTest>>testReifySendArguments2 [
 
 ]
 
-{
-	#category : #'tests - sends',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifySendReceiver [
+{ #category : #'tests - sends' }
+ReflectivityReificationTest >> testReifySendReceiver [
 	| sendNode instance|
 	sendNode := (ReflectivityExamples>>#exampleMethod) ast body statements first value.
 	link := MetaLink new 
@@ -686,11 +577,8 @@ ReflectivityReificationTest>>testReifySendReceiver [
 
 ]
 
-{
-	#category : #'tests - sends',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifySendSelector [
+{ #category : #'tests - sends' }
+ReflectivityReificationTest >> testReifySendSelector [
 	| sendNode instance|
 	sendNode := (ReflectivityExamples>>#exampleMethod) ast body statements first value.
 	link := MetaLink new 
@@ -706,11 +594,8 @@ ReflectivityReificationTest>>testReifySendSelector [
 	self assert: (tag = #+).
 ]
 
-{
-	#category : #'tests - sends',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifySendThisContext [
+{ #category : #'tests - sends' }
+ReflectivityReificationTest >> testReifySendThisContext [
 	| sendNode instance|
 	sendNode := (ReflectivityExamples>>#exampleMethod) ast body statements first value.
 	link := MetaLink new 
@@ -726,11 +611,8 @@ ReflectivityReificationTest>>testReifySendThisContext [
 	self assert: (tag class = Context).
 ]
 
-{
-	#category : #'tests - sends',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifySendValue [
+{ #category : #'tests - sends' }
+ReflectivityReificationTest >> testReifySendValue [
 	| sendNode instance|
 	sendNode := (ReflectivityExamples>>#exampleMethod) ast body statements first value.
 	link := MetaLink new 
@@ -748,11 +630,8 @@ ReflectivityReificationTest>>testReifySendValue [
 	self assert: (tag = 5).
 ]
 
-{
-	#category : #'tests - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifySlotClass [
+{ #category : #'tests - variables' }
+ReflectivityReificationTest >> testReifySlotClass [
 	| iVar instance |
 	iVar := ReflectivityExamples slotNamed: #ivar.
 	link := MetaLink new 
@@ -768,11 +647,8 @@ ReflectivityReificationTest>>testReifySlotClass [
 	self assert: (tag = ReflectivityExamples).
 ]
 
-{
-	#category : #'tests - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifySlotName [
+{ #category : #'tests - variables' }
+ReflectivityReificationTest >> testReifySlotName [
 	| iVar instance |
 	iVar := ReflectivityExamples slotNamed: #ivar.
 	link := MetaLink new 
@@ -788,11 +664,8 @@ ReflectivityReificationTest>>testReifySlotName [
 	self assert: (tag = #ivar).
 ]
 
-{
-	#category : #'tests - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifySlotValue [
+{ #category : #'tests - variables' }
+ReflectivityReificationTest >> testReifySlotValue [
 	| iVar instance |
 	iVar := ReflectivityExamples slotNamed: #ivar.
 	link := MetaLink new 
@@ -808,11 +681,8 @@ ReflectivityReificationTest>>testReifySlotValue [
 	self assert: (tag = 33).
 ]
 
-{
-	#category : #'tests - variables',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifySlotVariable [
+{ #category : #'tests - variables' }
+ReflectivityReificationTest >> testReifySlotVariable [
 	| iVar instance |
 	iVar := ReflectivityExamples slotNamed: #ivar.
 	link := MetaLink new 
@@ -828,11 +698,8 @@ ReflectivityReificationTest>>testReifySlotVariable [
 	self assert: (tag = iVar).
 ]
 
-{
-	#category : #'tests - variablenodes',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyTempName [
+{ #category : #'tests - variablenodes' }
+ReflectivityReificationTest >> testReifyTempName [
 	| varNode instance |
 	varNode := (ReflectivityExamples>>#exampleAssignment) ast body statements first variable.
 	link := MetaLink new 
@@ -847,11 +714,8 @@ ReflectivityReificationTest>>testReifyTempName [
 	self assert: (tag ='temp').
 ]
 
-{
-	#category : #'tests - variablenodes',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyTempNewValue [
+{ #category : #'tests - variablenodes' }
+ReflectivityReificationTest >> testReifyTempNewValue [
 	| varNode instance|
 	varNode := (ReflectivityExamples>>#exampleAssignment) ast body statements first variable.
 	link := MetaLink new 
@@ -866,11 +730,8 @@ ReflectivityReificationTest>>testReifyTempNewValue [
 	self assert: (tag = 3).
 ]
 
-{
-	#category : #'tests - variablenodes',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ReflectivityReificationTest>>testReifyTempValue [
+{ #category : #'tests - variablenodes' }
+ReflectivityReificationTest >> testReifyTempValue [
 	| varNode instance |
 	varNode := (ReflectivityExamples>>#exampleAssignment) ast body statements last value.
 	link := MetaLink new 

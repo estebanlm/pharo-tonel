@@ -20,15 +20,11 @@ Class {
 		'arguments',
 		'keyword'
 	],
-	#category : #Kernel-Pragmas,
-	#timestamp : '<historical>'
+	#category : #Kernel-Pragmas
 }
 
-{
-	#category : #finding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma class>>allNamed: aSymbol from: aSubClass to: aSuperClass [
+{ #category : #finding }
+Pragma class >> allNamed: aSymbol from: aSubClass to: aSuperClass [
 	"Answer a collection of all pragmas found in methods of all classes between aSubClass and aSuperClass (inclusive) whose keyword is aSymbol."
 	
 	^ Array streamContents: [ :stream |
@@ -40,31 +36,22 @@ Pragma class>>allNamed: aSymbol from: aSubClass to: aSuperClass [
 				ifTrue: [ ^ stream contents ] ] ].
 ]
 
-{
-	#category : #finding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma class>>allNamed: aSymbol from: aSubClass to: aSuperClass sortedByArgument: anInteger [
+{ #category : #finding }
+Pragma class >> allNamed: aSymbol from: aSubClass to: aSuperClass sortedByArgument: anInteger [
 	"Answer a collection of all pragmas found in methods of all classes between aSubClass and aSuperClass (inclusive) whose keyword is aSymbol, sorted according to argument anInteger."
 
 	^ self allNamed: aSymbol from: aSubClass to: aSuperClass sortedUsing: [ :a :b | (a argumentAt: anInteger) < (b argumentAt: anInteger) ].
 ]
 
-{
-	#category : #finding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma class>>allNamed: aSymbol from: aSubClass to: aSuperClass sortedUsing: aSortBlock [
+{ #category : #finding }
+Pragma class >> allNamed: aSymbol from: aSubClass to: aSuperClass sortedUsing: aSortBlock [
 	"Answer a collection of all pragmas found in methods of all classes between aSubClass and aSuperClass (inclusive) whose keyword is aSymbol, sorted according to aSortBlock."
 	
 	^ (self allNamed: aSymbol from: aSubClass to: aSuperClass) sort: aSortBlock.
 ]
 
-{
-	#category : #finding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma class>>allNamed: aSymbol in: aClass [
+{ #category : #finding }
+Pragma class >> allNamed: aSymbol in: aClass [
 	"Answer a collection of all pragmas found in methods of aClass whose keyword is aSymbol."
 	
 	^ Array streamContents: [ :stream |
@@ -73,31 +60,22 @@ Pragma class>>allNamed: aSymbol in: aClass [
 				ifTrue: [ stream nextPut: pragma ] ] ].
 ]
 
-{
-	#category : #finding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma class>>allNamed: aSymbol in: aClass sortedByArgument: anInteger [
+{ #category : #finding }
+Pragma class >> allNamed: aSymbol in: aClass sortedByArgument: anInteger [
 	"Answer a collection of all pragmas found in methods of aClass whose keyword is aSymbol, sorted according to argument anInteger."
 
 	^ self allNamed: aSymbol in: aClass sortedUsing: [ :a :b | (a argumentAt: anInteger) < (b argumentAt: anInteger) ].
 ]
 
-{
-	#category : #finding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma class>>allNamed: aSymbol in: aClass sortedUsing: aSortBlock [
+{ #category : #finding }
+Pragma class >> allNamed: aSymbol in: aClass sortedUsing: aSortBlock [
 	"Answer a collection of all pragmas found in methods of aClass whose keyword is aSymbol, sorted according to aSortBlock."
 	
 	^ (self allNamed: aSymbol in: aClass) sort: aSortBlock.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma class>>for: aMethod selector: aSelector arguments: anArray [
+{ #category : #'instance creation' }
+Pragma class >> for: aMethod selector: aSelector arguments: anArray [
 	^self new
 		setMethod: aMethod;
 		setKeyword: aSelector;
@@ -105,30 +83,21 @@ Pragma class>>for: aMethod selector: aSelector arguments: anArray [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma class>>keyword: aSymbol arguments: anArray [
+{ #category : #private }
+Pragma class >> keyword: aSymbol arguments: anArray [
 	^ self new
 		setKeyword: aSymbol;
 		setArguments: anArray;
 		yourself.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma class>>withPragmasIn: aClass do: aBlock [
+{ #category : #private }
+Pragma class >> withPragmasIn: aClass do: aBlock [
 	aClass selectorsAndMethodsDo: [ :selector :method | method pragmas do: aBlock ].
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>= aPragma [
+{ #category : #comparing }
+Pragma >> = aPragma [
 
 	self == aPragma ifTrue: [^true].
 	self species == aPragma species ifFalse: [^false].
@@ -140,61 +109,43 @@ Pragma>>= aPragma [
 	^true.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>analogousCodeTo: anObject [
+{ #category : #comparing }
+Pragma >> analogousCodeTo: anObject [ 
 	^self class == anObject class
 	  and: [keyword == anObject keyword
 	  and: [arguments = anObject arguments]]
 ]
 
-{
-	#category : #accessing-pragma,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>argumentAt: anInteger [
+{ #category : #accessing-pragma }
+Pragma >> argumentAt: anInteger [
 	"Answer one of the arguments of the pragma."
 	
 	^ self arguments at: anInteger.
 ]
 
-{
-	#category : #accessing-pragma,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>arguments [
+{ #category : #accessing-pragma }
+Pragma >> arguments [
 	"Answer the arguments of the receiving pragma. For a pragma defined as <key1: val1 key2: val2> this will answer #(val1 val2)."
 	
 	^ arguments
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>hasLiteral: aLiteral [
+{ #category : #testing }
+Pragma >> hasLiteral: aLiteral [
 	^keyword == aLiteral 
 	   or: [arguments hasLiteral: aLiteral]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>hasLiteralSuchThat: aBlock [
+{ #category : #testing }
+Pragma >> hasLiteralSuchThat: aBlock [
 	"Answer true if litBlock returns true for any literal in the receiver, even if embedded in further array structure.
 	 This method is only intended for private use by CompiledMethod hasLiteralSuchThat:"
 	^(aBlock value: keyword)
 	   or: [arguments hasLiteralSuchThat: aBlock]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>hash [
+{ #category : #comparing }
+Pragma >> hash [
 
 	| hash |
 
@@ -204,83 +155,59 @@ Pragma>>hash [
 	^hash.
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>key [
+{ #category : #querying }
+Pragma >> key [
 	"Answer the keyword of the pragma (the selector of its message pattern).
 	 This accessor provides polymorphism with Associations used for properties."
 	^keyword
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>keyword [
+{ #category : #accessing }
+Pragma >> keyword [
 	"Answer the keyword of the pragma (the selector of its message pattern).
 	 For a pragma defined as <key1: val1 key2: val2> this will answer #key1:key2:."
 	
 	^ keyword
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>message [
+{ #category : #accessing }
+Pragma >> message [
 	"Answer the message of the receiving pragma."
 	
 	^ Message selector: self keyword arguments: self arguments. 
 ]
 
-{
-	#category : #accessing-method,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>method [
+{ #category : #accessing-method }
+Pragma >> method [
 	"Answer the compiled-method containing the pragma."
 	
 	^ method
 ]
 
-{
-	#category : #accessing-method,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>methodClass [
+{ #category : #accessing-method }
+Pragma >> methodClass [
 	"Answer the class of the method containing the pragma."
 	
 	^ method methodClass
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>methodSelector [
+{ #category : #view }
+Pragma >> methodSelector [
 	"Answer the selector of the method containing the pragma.
 	 Do not confuse this with the selector of the pragma's message pattern."
 	
 	^method selector
 ]
 
-{
-	#category : #accessing-pragma,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>numArgs [
+{ #category : #accessing-pragma }
+Pragma >> numArgs [
 	"Answer the number of arguments in the pragma."
 
 	^ self arguments size.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>printOn: aStream [
+{ #category : #printing }
+Pragma >> printOn: aStream [
 	aStream nextPut: $<.
 	self keyword precedence = 1
 		ifTrue: [ aStream nextPutAll: self keyword ]
@@ -291,45 +218,30 @@ Pragma>>printOn: aStream [
 	aStream nextPut: $>.
 ]
 
-{
-	#category : #sending,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>sendTo: anObject [
+{ #category : #sending }
+Pragma >> sendTo: anObject [
 	"Send the pragma keyword together with its arguments to anObject and answer the result."
 	
 	^ anObject perform: self keyword withArguments: self arguments
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>setArguments: anArray [
+{ #category : #initialization }
+Pragma >> setArguments: anArray [
 	arguments := anArray
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>setKeyword: aSymbol [
+{ #category : #initialization }
+Pragma >> setKeyword: aSymbol [
 	keyword := aSymbol
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>setMethod: aCompiledMethod [
+{ #category : #initialization }
+Pragma >> setMethod: aCompiledMethod [
 	method := aCompiledMethod
 ]
 
-{
-	#category : #processing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Pragma>>withArgumentsDo: aBlock [
+{ #category : #processing }
+Pragma >> withArgumentsDo: aBlock [
 	"Pass the arguments of the receiving pragma into aBlock and answer the result."
 	
 	^ aBlock valueWithArguments: self arguments

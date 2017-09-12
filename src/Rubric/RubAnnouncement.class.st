@@ -4,6 +4,5 @@ I am an abstract announcement class. Extend me if you want to use an announcemen
 Class {
 	#name : #RubAnnouncement,
 	#superclass : #Announcement,
-	#category : #Rubric-Editing-Announcements,
-	#timestamp : 'FranckWarlouzet 7/29/2015 10:20'
+	#category : #Rubric-Editing-Announcements
 }

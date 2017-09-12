@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MTDependencyTest,
 	#superclass : #TestCase,
@@ -8,15 +5,11 @@ Class {
 		'version',
 		'project'
 	],
-	#category : #Versionner-Tests-Core-DependenciesModel,
-	#timestamp : ''
+	#category : #Versionner-Tests-Core-DependenciesModel
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependencyTest>>setUp [
+{ #category : #'as yet unclassified' }
+MTDependencyTest >> setUp [
 	| visitor |
 	
 	visitor := MCModel2MTModelVisitor new.
@@ -25,11 +18,8 @@ MTDependencyTest>>setUp [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependencyTest>>testProject [
+{ #category : #'as yet unclassified' }
+MTDependencyTest >> testProject [
 	| dependency |
 	
 	dependency := project dependencyNamed: 'Core'.
@@ -43,20 +33,14 @@ MTDependencyTest>>testProject [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependencyTest>>testRemove [
+{ #category : #'as yet unclassified' }
+MTDependencyTest >> testRemove [
 	(project dependencyNamed: 'XML-Writer-Core') remove.
 	self assert: ((project dependencyNamed:  'XML-Writer-Core') = nil).
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependencyTest>>testRemoveGroup [
+{ #category : #'as yet unclassified' }
+MTDependencyTest >> testRemoveGroup [
 	(project dependencyNamed: 'Core') remove.
 	self assert: (project dependencyNamed: 'Core') = nil.
 	self assert: ((project dependencyNamed: 'default') dependencies includes: 'Core') not

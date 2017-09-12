@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RubExtraSelectionDecorator,
 	#superclass : #RubParagraphDecorator,
@@ -9,33 +6,23 @@ Class {
 		'findReplaceShapes',
 		'secondarySelectionShapes'
 	],
-	#category : #Rubric-Editing-Core,
-	#timestamp : ''
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubExtraSelectionDecorator class>>key [
+{ #category : #querying }
+RubExtraSelectionDecorator class >> key [
 	^ #findReplaceSelection
 ]
 
-{
-	#category : #computation,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubExtraSelectionDecorator>>cleanUpText [
+{ #category : #computation }
+RubExtraSelectionDecorator >> cleanUpText [
 	self text removeAttribute: RubTextSelectionColor findReplaceSelection.
 	self text removeAttribute: RubTextSelectionColor secondarySelection.
 
 ]
 
-{
-	#category : #computation,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubExtraSelectionDecorator>>computeFindReplaceShapesFrom: topLeft to: bottomRight [
+{ #category : #computation }
+RubExtraSelectionDecorator >> computeFindReplaceShapesFrom: topLeft [ to: bottomRight
 	| topLeftBlk |
 	findReplaceShapes := nil.
 	self findRegex ifNil: [ ^self ].
@@ -55,11 +42,8 @@ RubExtraSelectionDecorator>>computeFindReplaceShapesFrom: topLeft to: bottomRigh
 	^ findReplaceShapes
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubExtraSelectionDecorator>>computeSecondarySelectionShapesFrom: topLeft to: bottomRight [
+{ #category : #drawing }
+RubExtraSelectionDecorator >> computeSecondarySelectionShapesFrom: topLeft [ to: bottomRight
 	| primary secondarySelRanges otherRanges topLeftBlk |
 	primary := self primarySelectionInterval.
 	topLeftBlk := self characterBlockAtPoint: topLeft.
@@ -83,20 +67,14 @@ RubExtraSelectionDecorator>>computeSecondarySelectionShapesFrom: topLeft to: bot
 				borderColor: RubTextSelectionColor secondarySelection backgroundColor muchDarker]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubExtraSelectionDecorator>>computeSelectionShapesFor: aRectangle [
+{ #category : #drawing }
+RubExtraSelectionDecorator >> computeSelectionShapesFor: aRectangle [
 	self computeFindReplaceShapesFrom: aRectangle topLeft to: aRectangle bottomRight.
 	self computeSecondarySelectionShapesFrom: aRectangle topLeft to: aRectangle bottomRight
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubExtraSelectionDecorator>>drawAllSelectionShapesOn: aCanvas [
+{ #category : #drawing }
+RubExtraSelectionDecorator >> drawAllSelectionShapesOn: aCanvas [
 
 	findReplaceShapes ifNotNil: [ 
 		findReplaceShapes do: [ :selblock | 
@@ -111,20 +89,14 @@ RubExtraSelectionDecorator>>drawAllSelectionShapesOn: aCanvas [
 	]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubExtraSelectionDecorator>>drawAllSelectionShapesOnAthensCanvas: anAthensCanvas [
+{ #category : #drawing }
+RubExtraSelectionDecorator >> drawAllSelectionShapesOnAthensCanvas: anAthensCanvas [
 	findReplaceShapes ifNotNil: [ findReplaceShapes do: [ :selblock | self drawSelectionShape: selblock onAthensCanvas: anAthensCanvas ] ].
 	secondarySelectionShapes ifNotNil: [ secondarySelectionShapes do: [ :selblock | self drawSelectionShape:  selblock onAthensCanvas: anAthensCanvas] ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubExtraSelectionDecorator>>drawOn: aCanvas [
+{ #category : #drawing }
+RubExtraSelectionDecorator >> drawOn: aCanvas [
 
 	(Display depth < 3 or: [ aCanvas isShadowDrawing ]) ifTrue: [ ^ self ].		
 	
@@ -133,22 +105,16 @@ RubExtraSelectionDecorator>>drawOn: aCanvas [
 	self drawAllSelectionShapesOn: aCanvas
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubExtraSelectionDecorator>>drawOnAthensCanvas: anAthensCanvas [
+{ #category : #drawing }
+RubExtraSelectionDecorator >> drawOnAthensCanvas: anAthensCanvas [
 	super drawOnAthensCanvas: anAthensCanvas.
 	self computeSelectionShapesFor: anAthensCanvas clipRect.
 	self cleanUpText.
 	self drawAllSelectionShapesOnAthensCanvas: anAthensCanvas
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubExtraSelectionDecorator>>drawSelectionShape: aSelBlock on: aCanvas [
+{ #category : #drawing }
+RubExtraSelectionDecorator >> drawSelectionShape: aSelBlock [ on: aCanvas
 	"Display a SelectionShape if it does not overlap vith the regular selection"
 	
 	| startIdx stopIdx  |
@@ -172,11 +138,8 @@ RubExtraSelectionDecorator>>drawSelectionShape: aSelBlock on: aCanvas [
 	aSelBlock drawOn: aCanvas 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubExtraSelectionDecorator>>drawSelectionShape: aSelBlock onAthensCanvas: anAthensCanvas [
+{ #category : #drawing }
+RubExtraSelectionDecorator >> drawSelectionShape: aSelBlock onAthensCanvas: anAthensCanvas [
 	"Display a SelectionShape if it does not overlap vith the regular selection"
 	| startIdx stopIdx  |
 	startIdx := aSelBlock firstIndex.
@@ -196,19 +159,13 @@ RubExtraSelectionDecorator>>drawSelectionShape: aSelBlock onAthensCanvas: anAthe
 	aSelBlock drawOnAthensCanvas: anAthensCanvas
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubExtraSelectionDecorator>>findRegex [
+{ #category : #accessing }
+RubExtraSelectionDecorator >> findRegex [
 	^ self paragraph textArea ifNotNil: [ :textArea | textArea findRegex ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubExtraSelectionDecorator>>hasValidSelection [
+{ #category : #testing }
+RubExtraSelectionDecorator >> hasValidSelection [
 
 	| paragraph |
 	
@@ -221,11 +178,8 @@ RubExtraSelectionDecorator>>hasValidSelection [
 	]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubExtraSelectionDecorator>>primarySelectionInterval [
+{ #category : #accessing }
+RubExtraSelectionDecorator >> primarySelectionInterval [
 	
 	self paragraph ifNotNil: [ :paragraph | 
 		paragraph textArea ifNotNil: [ :textArea | 

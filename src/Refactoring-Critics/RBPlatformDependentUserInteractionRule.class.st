@@ -6,33 +6,23 @@ This rule should be updated.
 Class {
 	#name : #RBPlatformDependentUserInteractionRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 23:08'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBPlatformDependentUserInteractionRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBPlatformDependentUserInteractionRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'PlatformDependentUserInteractionRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBPlatformDependentUserInteractionRule>>group [
+{ #category : #accessing }
+RBPlatformDependentUserInteractionRule >> group [
 	^ 'Potential Bugs'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBPlatformDependentUserInteractionRule>>initialize [
+{ #category : #initialization }
+RBPlatformDependentUserInteractionRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyOf: #(
@@ -50,26 +40,17 @@ RBPlatformDependentUserInteractionRule>>initialize [
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBPlatformDependentUserInteractionRule>>name [
+{ #category : #accessing }
+RBPlatformDependentUserInteractionRule >> name [
 	^ 'Platform dependent user interaction'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBPlatformDependentUserInteractionRule>>rationale [
+{ #category : #accessing }
+RBPlatformDependentUserInteractionRule >> rationale [
 	^ 'Check the methods that  use platform dependent user interactions.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBPlatformDependentUserInteractionRule>>severity [
+{ #category : #accessing }
+RBPlatformDependentUserInteractionRule >> severity [
 	^ #error
 ]

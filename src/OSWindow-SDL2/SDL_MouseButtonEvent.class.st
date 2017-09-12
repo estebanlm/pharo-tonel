@@ -16,15 +16,11 @@ Class {
 		'OFFSET_X',
 		'OFFSET_Y'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'IgorStasenko 7/30/2014 18:44'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'fields description',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent class>>fieldsDesc [
+{ #category : #'fields description' }
+SDL_MouseButtonEvent class >> fieldsDesc [
 	"
 	self initializeAccessors
 	"
@@ -42,182 +38,122 @@ SDL_MouseButtonEvent class>>fieldsDesc [
  	)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>button [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> button [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_BUTTON
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>button: anObject [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> button: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_BUTTON put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>padding1 [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> padding1 [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_PADDING1
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>padding1: anObject [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> padding1: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_PADDING1 put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>padding2 [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> padding2 [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_PADDING2
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>padding2: anObject [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> padding2: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_PADDING2 put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>state [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> state [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_STATE
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>state: anObject [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> state: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_STATE put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>timestamp [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> timestamp [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_TIMESTAMP
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>timestamp: anObject [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> timestamp: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_TIMESTAMP put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>type [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> type [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_TYPE
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>type: anObject [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> type: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_TYPE put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>which [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> which [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_WHICH
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>which: anObject [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> which: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_WHICH put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>windowID [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> windowID [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_WINDOWID
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>windowID: anObject [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> windowID: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_WINDOWID put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>x [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> x [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_X
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>x: anObject [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> x: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_X put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>y [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> y [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_Y
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_MouseButtonEvent>>y: anObject [
+{ #category : #'accessing structure variables' }
+SDL_MouseButtonEvent >> y: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_Y put: anObject
 ]

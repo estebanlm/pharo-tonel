@@ -1,12 +1,7 @@
-Extension {
-	#name : #Float
-}
+Extension { #name : #Float }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Float>>gtInspectorFloatIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Float >> gtInspectorFloatIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	^ composite table
 		title: 'Float';
@@ -24,11 +19,8 @@ Float>>gtInspectorFloatIn: composite [
 		send: #value
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Float>>gtInspectorVariableNodesIn: aCollection [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Float >> gtInspectorVariableNodesIn: aCollection [
 	
 	aCollection
 		add: (GTInspectorDynamicNode hostObject: self label: '1' value: (self at: 1));

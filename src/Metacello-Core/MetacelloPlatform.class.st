@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloPlatform,
 	#superclass : #Object,
@@ -11,114 +8,77 @@ Class {
 	#classVars : [
 		'Current'
 	],
-	#category : #Metacello-Core-Model,
-	#timestamp : ''
+	#category : #Metacello-Core-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform class>>current [
+{ #category : #accessing }
+MetacelloPlatform class >> current [
 	Current
 		ifNil: [Current := MetacelloPlatform new].
 	^ Current
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform class>>initialize [
+{ #category : #initialize-release }
+MetacelloPlatform class >> initialize [
   "noop ... use #select"
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform class>>select [
+{ #category : #initialize-release }
+MetacelloPlatform class >> select [
   Current := self new
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform class>>unselect [
+{ #category : #initialize-release }
+MetacelloPlatform class >> unselect [
   MetacelloPlatform current class = self
     ifTrue: [ Current := nil ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>authorName [
+{ #category : #utilities }
+MetacelloPlatform >> authorName [
 
 	Smalltalk at: #Author ifPresent: [:cl | ^cl perform: #initials ].
 	^'no developer initials'
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>authorName: aString [
+{ #category : #utilities }
+MetacelloPlatform >> authorName: aString [
 	"Primarily used for testing"
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>bypassGoferLoadUpdateCategories [
+{ #category : #accessing }
+MetacelloPlatform >> bypassGoferLoadUpdateCategories [
 
 	bypassGoferLoadUpdateCategories == nil ifTrue: [ bypassGoferLoadUpdateCategories := false ].
 	^ bypassGoferLoadUpdateCategories
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>bypassGoferLoadUpdateCategories: anObject [
+{ #category : #accessing }
+MetacelloPlatform >> bypassGoferLoadUpdateCategories: anObject [
 	bypassGoferLoadUpdateCategories := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>bypassProgressBars [
+{ #category : #accessing }
+MetacelloPlatform >> bypassProgressBars [
 
 	bypassProgressBars == nil ifTrue: [ bypassProgressBars := false ].
 	^ bypassProgressBars
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>bypassProgressBars: anObject [
+{ #category : #accessing }
+MetacelloPlatform >> bypassProgressBars: anObject [
 	bypassProgressBars := anObject
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>clearCurrentVersionCache [
+{ #category : #caching }
+MetacelloPlatform >> clearCurrentVersionCache [
 	MetacelloClearStackCacheNotification signal: #(#currentVersion #currentVersionAgainst: #currentVersionInfo)
 ]
 
-{
-	#category : #'package cache',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>clearPackageCache [
+{ #category : #'package cache' }
+MetacelloPlatform >> clearPackageCache [
   "make sure that the package cache is empty, by hook or by crook"
 
   | cache dir |
@@ -133,20 +93,14 @@ MetacelloPlatform>>clearPackageCache [
         do: [ :ignore |  ] ]
 ]
 
-{
-	#category : #notification,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>collection: aCollection do: aBlock displaying: aString [
+{ #category : #notification }
+MetacelloPlatform >> collection: aCollection do: aBlock displaying: aString [
 
 	aCollection do: aBlock
 ]
 
-{
-	#category : #'user interaction',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>confirm: aString [
+{ #category : #'user interaction' }
+MetacelloPlatform >> confirm: aString [
 	
 	^(Smalltalk hasClassNamed: #UIManager)
 		ifTrue: [ (Smalltalk classNamed: #UIManager) default perform: #confirm: with: aString ]
@@ -156,20 +110,14 @@ MetacelloPlatform>>confirm: aString [
 			true ]
 ]
 
-{
-	#category : #reflection,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>copyClass: oldClass as: newName inCategory: newCategoryName [
+{ #category : #reflection }
+MetacelloPlatform >> copyClass: oldClass as: newName inCategory: newCategoryName [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #'repository creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>createRepository: aRepositorySpec [
+{ #category : #'repository creation' }
+MetacelloPlatform >> createRepository: aRepositorySpec [
   | type |
   type := aRepositorySpec type.
   type = 'http'
@@ -229,31 +177,22 @@ MetacelloPlatform>>createRepository: aRepositorySpec [
   ^ nil
 ]
 
-{
-	#category : #'file system',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>defaultDirectory [
+{ #category : #'file system' }
+MetacelloPlatform >> defaultDirectory [
 	"Get the image default directory"
 	
 	^self fileDirectoryClass default
 ]
 
-{
-	#category : #'package cache',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>defaultPackageCache [
+{ #category : #'package cache' }
+MetacelloPlatform >> defaultPackageCache [
   "Apparently the MCCacheRepository api is changing in Pharo"
 
   ^ MCCacheRepository default
 ]
 
-{
-	#category : #attributes,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>defaultPlatformAttributes [
+{ #category : #attributes }
+MetacelloPlatform >> defaultPlatformAttributes [
   | versionString |
   Smalltalk
     at: #'SystemVersion'
@@ -271,57 +210,39 @@ MetacelloPlatform>>defaultPlatformAttributes [
   ^ #(#'gemstone')
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>defaultRepositoryDescription [
+{ #category : #scripting }
+MetacelloPlatform >> defaultRepositoryDescription [
     ^ 'http://www.squeaksource.com/MetacelloRepository'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>defaultTimeout [
+{ #category : #tests }
+MetacelloPlatform >> defaultTimeout [
 	"squeak compatability"
 	^60
 ]
 
-{
-	#category : #'file system',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>directoryFromPath: adirectoryPath relativeTo: anotherDirectoryPath [
+{ #category : #'file system' }
+MetacelloPlatform >> directoryFromPath: adirectoryPath relativeTo: anotherDirectoryPath [
 	"Get a handle on the following path: anotherDirectoryPath/adirectoryPath"
 	^ anotherDirectoryPath directoryNamed: adirectoryPath
 ]
 
-{
-	#category : #notification,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>do: aBlock displaying: aString [
+{ #category : #notification }
+MetacelloPlatform >> do: aBlock displaying: aString [
 
 	aBlock value
 ]
 
-{
-	#category : #'github/bitbucket support',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>downloadErrorFileNameFor: zipFileName [
+{ #category : #'github/bitbucket support' }
+MetacelloPlatform >> downloadErrorFileNameFor: zipFileName [
   | pid |
   pid := self processPID.
   ^ '/tmp/curl-' , pid , '-' , (zipFileName select: [ :c | c isAlphaNumeric ])
     , '.err'
 ]
 
-{
-	#category : #'github/bitbucket support',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>downloadJSON: url eTagsCache: eTagsCache eTagsKey: eTagsKey username: username pass: pass [
+{ #category : #'github/bitbucket support' }
+MetacelloPlatform >> downloadJSON: url eTagsCache: eTagsCache eTagsKey: eTagsKey username: username pass: pass [
   "return result of parsing JSON downloaded from url. username:pass may be nil, but calls will be subject to severe rate limits."
 
   "To minimize GitHub rate limiting problems, we are caching the ETags for the tag request: https://developer.github.com/v3/#conditional-requests"
@@ -329,51 +250,36 @@ MetacelloPlatform>>downloadJSON: url eTagsCache: eTagsCache eTagsKey: eTagsKey u
   ^ self downloadJSON: url username: username pass: pass
 ]
 
-{
-	#category : #'github/bitbucket support',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>downloadJSON: url username: username pass: pass [
+{ #category : #'github/bitbucket support' }
+MetacelloPlatform >> downloadJSON: url username: username pass: pass [
   "return result of parsing JSON downloaded from url. username:pass may be nil, but calls will be subject to severe rate limits."
 
   self subclassResponsibility
 ]
 
-{
-	#category : #'github/bitbucket support',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>downloadZipArchive: url to: outputFileName [
+{ #category : #'github/bitbucket support' }
+MetacelloPlatform >> downloadZipArchive: url to: outputFileName [
   "download zip archive from <url> into <outputFileName>"
 
   self subclassResponsibility
 ]
 
-{
-	#category : #'file system',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>ensureDirectoryExists: aDirectoryHandle [
+{ #category : #'file system' }
+MetacelloPlatform >> ensureDirectoryExists: aDirectoryHandle [
 	"Ensure the directory exists."
 
 	^ aDirectoryHandle assureExistence ; yourself
 ]
 
-{
-	#category : #'github/bitbucket support',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>extractRepositoryFrom: zipFile to: directory [
+{ #category : #'github/bitbucket support' }
+MetacelloPlatform >> extractRepositoryFrom: zipFile [ to: directory
     "unzip <zipFile> into <directory>"
 
     self subclassResponsibility
 ]
 
-{
-	#category : #'repository creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>extractTypeFromDescription: description [
+{ #category : #'repository creation' }
+MetacelloPlatform >> extractTypeFromDescription: description [
   description == nil
     ifTrue: [ ^ nil ].
   ((description beginsWith: '/') or: [ description second = $: ])
@@ -391,115 +297,79 @@ MetacelloPlatform>>extractTypeFromDescription: description [
   ^ 'http'
 ]
 
-{
-	#category : #'github/bitbucket support',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>fileDirectoryClass [
+{ #category : #'github/bitbucket support' }
+MetacelloPlatform >> fileDirectoryClass [
 
 	^ self class environment at: #FileDirectory 
 ]
 
-{
-	#category : #'file system',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>fileHandleOn: aPath [
+{ #category : #'file system' }
+MetacelloPlatform >> fileHandleOn: aPath [
 	"Get an handle on a file."
 
 	^ self fileDirectoryClass on: aPath
 ]
 
-{
-	#category : #'git support',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>gitBranchNameFor: aDirectory [
+{ #category : #'git support' }
+MetacelloPlatform >> gitBranchNameFor: aDirectory [
   "return current branch for git repository located at <aDirectory>, if <aDirectory> is not a git repository, return nil"
 
   ^ nil
 ]
 
-{
-	#category : #'git support',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>gitCommitShaFor: aDirectory [
+{ #category : #'git support' }
+MetacelloPlatform >> gitCommitShaFor: aDirectory [
   "return SHA for git repository located at <aDirectory>, if <aDirectory> is not a git repository, return nil"
 
   ^ nil
 ]
 
-{
-	#category : #reflection,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>globalNamed: globalName [
+{ #category : #reflection }
+MetacelloPlatform >> globalNamed: globalName [
 
 	^Smalltalk at: globalName
 ]
 
-{
-	#category : #reflection,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>globalNamed: globalName ifAbsent: absentBlock [
+{ #category : #reflection }
+MetacelloPlatform >> globalNamed: globalName ifAbsent: absentBlock [
 
 	^Smalltalk at: globalName ifAbsent: absentBlock
 ]
 
-{
-	#category : #monticello,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>newVersionForWorkingCopy: aWorkingCopy [
+{ #category : #monticello }
+MetacelloPlatform >> newVersionForWorkingCopy: aWorkingCopy [
   ^ aWorkingCopy newVersion
 ]
 
-{
-	#category : #'repository creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>packageInfoFor: aMCWorkingCopy [
+{ #category : #'repository creation' }
+MetacelloPlatform >> packageInfoFor: aMCWorkingCopy [
   ^ aMCWorkingCopy packageInfo
 ]
 
-{
-	#category : #'file system',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>parentDirectoryOf: aFileHandler [
+{ #category : #'file system' }
+MetacelloPlatform >> parentDirectoryOf: aFileHandler [
 	"Get the parent directory of this file."
 	
 	^ aFileHandler containingDirectory
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>primeStackCacheWith: aDictionary doing: noArgBlock [
+{ #category : #caching }
+MetacelloPlatform >> primeStackCacheWith: aDictionary doing: noArgBlock [
 
 	self 
 		useStackCacheDuring: [:dict | ^noArgBlock value ] 
 		defaultDictionary: aDictionary
 ]
 
-{
-	#category : #'github/bitbucket support',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>processPID [
+{ #category : #'github/bitbucket support' }
+MetacelloPlatform >> processPID [
   "return pid of process as string if available"
 
   ^ ''
 ]
 
-{
-	#category : #'file system',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>readStreamOn: aFileHandle do: aBlock [
+{ #category : #'file system' }
+MetacelloPlatform >> readStreamOn: aFileHandle do: aBlock [
 	"Get a read stream on the file handle and execute some actions on it."
 	| stream |
 	stream := aFileHandle readStream.
@@ -507,38 +377,26 @@ MetacelloPlatform>>readStreamOn: aFileHandle do: aBlock [
 		ensure: [ stream close ]
 ]
 
-{
-	#category : #'file system',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>recursiveDelete: aDirectory [
+{ #category : #'file system' }
+MetacelloPlatform >> recursiveDelete: aDirectory [
 	"delete this directory and all children of it"
 
 	^  aDirectory recursiveDelete
 ]
 
-{
-	#category : #'repository creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>registerPackageNamed: packageName [
+{ #category : #'repository creation' }
+MetacelloPlatform >> registerPackageNamed: packageName [
   ^ (Smalltalk at: #'PackageInfo') registerPackageName: packageName
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>stackCacheFor: cacheName at: key doing: aBlock [
+{ #category : #caching }
+MetacelloPlatform >> stackCacheFor: cacheName at: key doing: aBlock [
 
 	^self stackCacheFor: cacheName cacheClass: Dictionary at: key doing: aBlock
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>stackCacheFor: cacheName cacheClass: cacheClass at: key doing: aBlock [
+{ #category : #caching }
+MetacelloPlatform >> stackCacheFor: cacheName cacheClass: cacheClass at: key doing: aBlock [
 
 	self 
 		useStackCacheDuring: [:dict | | cache |
@@ -555,47 +413,32 @@ MetacelloPlatform>>stackCacheFor: cacheName cacheClass: cacheClass at: key doing
 		defaultDictionary: nil
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>string: aString includesSubstring: aSubstring [
+{ #category : #utilities }
+MetacelloPlatform >> string: aString includesSubstring: aSubstring [
 	"abstract String>>includesSubstring: to have the same message on all supported platforms."
 
 	^aString includesSubString: aSubstring
 ]
 
-{
-	#category : #system,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>suspendSystemUpdateEventsDuring: aBlock [
+{ #category : #system }
+MetacelloPlatform >> suspendSystemUpdateEventsDuring: aBlock [
 	"Wraps call to the system evetn manager to tell it that we want to suspend events during execution of aBlock"
 	(self class environment at: #SystemChangeNotifier) uniqueInstance doSilently: aBlock
 ]
 
-{
-	#category : #'file system',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>tempFileFor: aName suffix: aSuffixString [
+{ #category : #'file system' }
+MetacelloPlatform >> tempFileFor: aName suffix: aSuffixString [
 	^ '/tmp/' , aName , aSuffixString
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>timestamp [
+{ #category : #utilities }
+MetacelloPlatform >> timestamp [
 
 	^DateAndTime now printString
 ]
 
-{
-	#category : #transactions,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>transact: aBlock [
+{ #category : #transactions }
+MetacelloPlatform >> transact: aBlock [
 	"On GemStone, we want to optionally abort before command execution and commit after 
 	 common execution. Other plaforms don't need to do anything special.
 	 Returning out of block, skips commit."
@@ -603,11 +446,8 @@ MetacelloPlatform>>transact: aBlock [
 	aBlock value
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloPlatform>>useStackCacheDuring: aBlock defaultDictionary: defaultDictionary [
+{ #category : #caching }
+MetacelloPlatform >> useStackCacheDuring: aBlock defaultDictionary: defaultDictionary [
 	| dict |
 	dict := MetacelloStackCacheNotification signal.
 	dict == nil

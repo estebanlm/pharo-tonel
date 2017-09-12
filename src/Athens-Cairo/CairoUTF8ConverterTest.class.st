@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'encoder'
 	],
-	#category : #Athens-Cairo-Tests,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoUTF8ConverterTest>>setUp [
+{ #category : #running }
+CairoUTF8ConverterTest >> setUp [
 	encoder := CairoUTF8Converter new.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoUTF8ConverterTest>>testEncodingString [
+{ #category : #tests }
+CairoUTF8ConverterTest >> testEncodingString [
 	|  pos |
 
 	
@@ -34,11 +27,8 @@ CairoUTF8ConverterTest>>testEncodingString [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoUTF8ConverterTest>>testReusingConverterShouldReplaceOldData [
+{ #category : #tests }
+CairoUTF8ConverterTest >> testReusingConverterShouldReplaceOldData [
 	| buf |
 	buf := encoder convertChar: 223 asCharacter.
 	
@@ -50,11 +40,8 @@ CairoUTF8ConverterTest>>testReusingConverterShouldReplaceOldData [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoUTF8ConverterTest>>testUnicodencodingShouldTerminateWithNull [
+{ #category : #tests }
+CairoUTF8ConverterTest >> testUnicodencodingShouldTerminateWithNull [
 	| buf |
 	buf := encoder convertChar: $a.
 	

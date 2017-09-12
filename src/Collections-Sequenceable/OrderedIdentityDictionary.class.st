@@ -19,30 +19,20 @@ Examples
 Class {
 	#name : #OrderedIdentityDictionary,
 	#superclass : #OrderedDictionary,
-	#category : #Collections-Sequenceable,
-	#timestamp : 'VincentBlondeau 4/1/2016 22:41'
+	#category : #Collections-Sequenceable
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedIdentityDictionary>>dictionaryClass [
+{ #category : #accessing }
+OrderedIdentityDictionary >> dictionaryClass [
 	^ IdentityDictionary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedIdentityDictionary>>indexOfKey: aKey ifAbsent: aBlock [
+{ #category : #accessing }
+OrderedIdentityDictionary >> indexOfKey: aKey ifAbsent: aBlock [
 	^ self identityIndexOfKey: aKey ifAbsent: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedIdentityDictionary>>orderedKeysIndexOf: aKey [
+{ #category : #private }
+OrderedIdentityDictionary >> orderedKeysIndexOf: aKey [
 	^ orderedKeys identityIndexOf: aKey
 ]

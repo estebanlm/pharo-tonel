@@ -41,15 +41,11 @@ Class {
 		'array',
 		'includesNil'
 	],
-	#category : #Fuel-Collections,
-	#timestamp : 'HenrikSperreJohansen 12/16/2011 12:55'
+	#category : #Fuel-Collections
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentitySet>>add: anObject [
+{ #category : #adding }
+FLLargeIdentitySet >> add: anObject [
 
 	| hash |
 	anObject ifNil: [ 
@@ -82,11 +78,8 @@ FLLargeIdentitySet>>add: anObject [
 	^anObject
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentitySet>>addIfNotPresent: anObject ifPresentDo: aBlock [
+{ #category : #adding }
+FLLargeIdentitySet >> addIfNotPresent: anObject ifPresentDo: aBlock [
 
 	| hash |
 	anObject ifNil: [ 
@@ -121,11 +114,8 @@ FLLargeIdentitySet>>addIfNotPresent: anObject ifPresentDo: aBlock [
 	^anObject
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentitySet>>do: aBlock [
+{ #category : #enumerating }
+FLLargeIdentitySet >> do: aBlock [
 
 	tally = 0 ifTrue: [ ^self ].
 	includesNil ifTrue: [ aBlock value: nil ].
@@ -136,11 +126,8 @@ FLLargeIdentitySet>>do: aBlock [
 			aBlock value: (subArray at: index) ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentitySet>>includes: anObject [
+{ #category : #testing }
+FLLargeIdentitySet >> includes: anObject [
 
 	anObject ifNil: [ ^includesNil ].
 	^(array at: (anObject largeIdentityHash \\ 4096 + 1))
@@ -148,22 +135,16 @@ FLLargeIdentitySet>>includes: anObject [
 		ifNotNil: [ :list | list fuelPointsTo: anObject ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentitySet>>initialize [
+{ #category : #initialization }
+FLLargeIdentitySet >> initialize [
 
 	super initialize.
 	array := Array new: 4096.
 	includesNil := false
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentitySet>>postCopy [
+{ #category : #copying }
+FLLargeIdentitySet >> postCopy [
 
 	super postCopy.
 	array := array copy.
@@ -172,11 +153,8 @@ FLLargeIdentitySet>>postCopy [
 			array at: index put: list copy ] ]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLargeIdentitySet>>remove: anObject ifAbsent: aBlock [
+{ #category : #removing }
+FLLargeIdentitySet >> remove: anObject ifAbsent: aBlock [
 
 	| list hash size |
 	anObject ifNil: [

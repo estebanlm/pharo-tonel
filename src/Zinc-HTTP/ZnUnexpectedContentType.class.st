@@ -12,68 +12,46 @@ Class {
 		'expectedContentType',
 		'actualContentType'
 	],
-	#category : #Zinc-HTTP-Exceptions,
-	#timestamp : 'SvenVanCaekenberghe 12/20/2011 12:52'
+	#category : #Zinc-HTTP-Exceptions
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnexpectedContentType class>>expected: expectedMimeType actual: actualMimeType [
+{ #category : #'instance creation' }
+ZnUnexpectedContentType class >> expected: expectedMimeType actual: actualMimeType [
 	^ self new
 		expectedContentType: expectedMimeType;
 		actualContentType: actualMimeType;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnexpectedContentType>>actualContentType [
+{ #category : #accessing }
+ZnUnexpectedContentType >> actualContentType [
 	^ actualContentType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnexpectedContentType>>actualContentType: anObject [
+{ #category : #accessing }
+ZnUnexpectedContentType >> actualContentType: anObject [
 	actualContentType := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnexpectedContentType>>expectedContentType [
+{ #category : #accessing }
+ZnUnexpectedContentType >> expectedContentType [
 	^ expectedContentType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnexpectedContentType>>expectedContentType: anObject [
+{ #category : #accessing }
+ZnUnexpectedContentType >> expectedContentType: anObject [
 	expectedContentType := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnexpectedContentType>>messageText [
+{ #category : #accessing }
+ZnUnexpectedContentType >> messageText [
 	"Overwritten to initialiaze the message text to a standard text if it has not yet been set"
 	
 	^ messageText ifNil: [ messageText := self standardMessageText ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnexpectedContentType>>standardMessageText [
+{ #category : #accessing }
+ZnUnexpectedContentType >> standardMessageText [
 	"Generate a standard textual description"
 	
 	^ String streamContents: [ :stream |

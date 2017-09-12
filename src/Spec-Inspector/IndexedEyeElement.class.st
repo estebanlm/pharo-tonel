@@ -4,30 +4,20 @@ I am an eye element for indexable fields. (at:)
 Class {
 	#name : #IndexedEyeElement,
 	#superclass : #BasicIndexedEyeElement,
-	#category : #Spec-Inspector-Element,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector-Element
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-IndexedEyeElement>>accessorCode [
+{ #category : #accessing }
+IndexedEyeElement >> accessorCode [
 	^ '(self at: ', self index asString, ')'
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-IndexedEyeElement>>save: aValue [
+{ #category : #action }
+IndexedEyeElement >> save: aValue [
 	self host at: self index put: aValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-IndexedEyeElement>>value [
+{ #category : #accessing }
+IndexedEyeElement >> value [
 	^ self host at: self index
 ]

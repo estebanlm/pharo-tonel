@@ -1,11 +1,6 @@
-Extension {
-	#name : #Context
-}
+Extension { #name : #Context }
 
-{
-	#category : #'*Spec-Inspector',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-Context class>>inspectorClass [
+{ #category : #'*Spec-Inspector' }
+Context class >> inspectorClass [
 	^ EyeMethodContextInspector
 ]

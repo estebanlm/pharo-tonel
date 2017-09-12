@@ -4,24 +4,17 @@ I'm an relation slot  that  describes the one or zero side of an association.
 Class {
 	#name : #ToOneRelationSlot,
 	#superclass : #RelationSlot,
-	#category : #Slot-Examples-Associations,
-	#timestamp : 'JanVanDeSandt 2/27/2015 11:26'
+	#category : #Slot-Examples-Associations
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ToOneRelationSlot>>isToOneSlot [
+{ #category : #testing }
+ToOneRelationSlot >> isToOneSlot [
 
 	^true
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ToOneRelationSlot>>write: newValue to: anObject [
+{ #category : #meta-object-protocol }
+ToOneRelationSlot >> write: newValue to: anObject [
 
 	| oldValue |
 
@@ -38,10 +31,7 @@ ToOneRelationSlot>>write: newValue to: anObject [
 	super write: newValue to: anObject
 ]
 
-{
-	#category : #internal,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ToOneRelationSlot>>writeInverse: newValue to: anObject [
+{ #category : #internal }
+ToOneRelationSlot >> writeInverse: newValue to: anObject [
 	^anObject instVarAt: index put: newValue
 ]

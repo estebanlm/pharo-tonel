@@ -4,39 +4,26 @@ I am modelling the push self bytecode
 Class {
 	#name : #IRPushReceiver,
 	#superclass : #IRAccess,
-	#category : #OpalCompiler-Core-IR-Nodes,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-IR-Nodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushReceiver>>accept: aVisitor [
+{ #category : #visiting }
+IRPushReceiver >> accept: aVisitor [
 	^ aVisitor visitPushReceiver: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushReceiver>>canBeQuickReturn [
+{ #category : #testing }
+IRPushReceiver >> canBeQuickReturn [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushReceiver>>isSelf [
+{ #category : #testing }
+IRPushReceiver >> isSelf [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPushReceiver>>quickRetNode [
+{ #category : #accessing }
+IRPushReceiver >> quickRetNode [
 	^ IRReturnReceiver new
 	
 ]

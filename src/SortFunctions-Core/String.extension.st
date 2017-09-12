@@ -1,12 +1,7 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*SortFunctions-Core-comparing',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-String>>threeWayCompareTo: anotherObject [
+{ #category : #'*SortFunctions-Core-comparing' }
+String >> threeWayCompareTo: anotherObject [
 	"Do a three-way comparison between the receiver and anotherObject, returning
 	-1 if self < anotherObject
 	0 if self = anotherObject

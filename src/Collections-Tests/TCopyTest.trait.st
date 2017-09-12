@@ -6,60 +6,39 @@ Note that the order is not garanteed -- see TEqualityTest for that.
 "
 Trait {
 	#name : #TCopyTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'stephane.ducasse 1/16/2009 19:07'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>collectionNotIncluded [
+{ #category : #requirements }
+TCopyTest >> collectionNotIncluded [
 " return a collection for wich each element is not included in 'nonEmpty' "
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>collectionWithElementsToRemove [
+{ #category : #requirements }
+TCopyTest >> collectionWithElementsToRemove [
 " return a collection of elements included in 'nonEmpty'  "
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>elementToAdd [
+{ #category : #requirements }
+TCopyTest >> elementToAdd [
 " return an element of type 'nonEmpy' elements'type'  not  yet included in nonEmpty" 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>empty [
+{ #category : #requirements }
+TCopyTest >> empty [
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>nonEmpty [
+{ #category : #requirements }
+TCopyTest >> nonEmpty [
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>test0CopyTest [
+{ #category : #'tests - fixture' }
+TCopyTest >> test0CopyTest [
 	self empty.
 	self assert: self empty size = 0.
 	self nonEmpty.
@@ -73,11 +52,8 @@ TCopyTest>>test0CopyTest [
 	self collectionNotIncluded do: [ :each | self deny: (self nonEmpty includes: each) ]
 ]
 
-{
-	#category : #'tests - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>testCopyEmptyWith [
+{ #category : #'tests - copy' }
+TCopyTest >> testCopyEmptyWith [
 	"self debug: #testCopyWith"
 	| res anElement |
 	anElement := self elementToAdd.
@@ -86,11 +62,8 @@ TCopyTest>>testCopyEmptyWith [
 	self assert: (res includes: (anElement value))
 ]
 
-{
-	#category : #'tests - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>testCopyEmptyWithout [
+{ #category : #'tests - copy' }
+TCopyTest >> testCopyEmptyWithout [
 	"self debug: #testCopyEmptyWithout"
 	| res |
 	res := self empty copyWithout: self elementToAdd.
@@ -98,11 +71,8 @@ TCopyTest>>testCopyEmptyWithout [
 	self deny: (res includes: self elementToAdd)
 ]
 
-{
-	#category : #'tests - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>testCopyEmptyWithoutAll [
+{ #category : #'tests - copy' }
+TCopyTest >> testCopyEmptyWithoutAll [
 	"self debug: #testCopyEmptyWithoutAll"
 	| res |
 	res := self empty copyWithoutAll: self collectionWithElementsToRemove.
@@ -110,11 +80,8 @@ TCopyTest>>testCopyEmptyWithoutAll [
 	self collectionWithElementsToRemove do: [ :each | self deny: (res includes: each) ]
 ]
 
-{
-	#category : #'tests - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>testCopyEquals [
+{ #category : #'tests - copy' }
+TCopyTest >> testCopyEquals [
 	"self debug: #testCopySameClass"
 	"A copy should be equivalent to the things it's a copy of"
 	
@@ -123,11 +90,8 @@ TCopyTest>>testCopyEquals [
 	self assert: copy  = self nonEmpty.
 ]
 
-{
-	#category : #'tests - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>testCopyNonEmptyWith [
+{ #category : #'tests - copy' }
+TCopyTest >> testCopyNonEmptyWith [
 	"self debug: #testCopyNonEmptyWith"
 	| res anElement |
 	anElement := self elementToAdd .
@@ -139,11 +103,8 @@ TCopyTest>>testCopyNonEmptyWith [
 	self nonEmpty do: [ :each | res includes: each ]
 ]
 
-{
-	#category : #'tests - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>testCopyNonEmptyWithout [
+{ #category : #'tests - copy' }
+TCopyTest >> testCopyNonEmptyWithout [
 	"self debug: #testCopyNonEmptyWithout"
 	
 	| res anElementOfTheCollection |
@@ -160,11 +121,8 @@ TCopyTest>>testCopyNonEmptyWithout [
 
 ]
 
-{
-	#category : #'tests - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>testCopyNonEmptyWithoutAll [
+{ #category : #'tests - copy' }
+TCopyTest >> testCopyNonEmptyWithoutAll [
 	"self debug: #testCopyNonEmptyWithoutAll"
 	| res |
 	res := self nonEmpty copyWithoutAll: self collectionWithElementsToRemove.
@@ -177,11 +135,8 @@ TCopyTest>>testCopyNonEmptyWithoutAll [
 		(self collectionWithElementsToRemove includes: each) ifFalse: [ self assert: (res includes: each) ] ]
 ]
 
-{
-	#category : #'tests - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>testCopyNonEmptyWithoutAllNotIncluded [
+{ #category : #'tests - copy' }
+TCopyTest >> testCopyNonEmptyWithoutAllNotIncluded [
 	"self debug: #testCopyNonEmptyWithoutAllNotIncluded"
 	| res |
 	res := self nonEmpty copyWithoutAll: self collectionNotIncluded.
@@ -191,11 +146,8 @@ TCopyTest>>testCopyNonEmptyWithoutAllNotIncluded [
 	self nonEmpty do: [ :each | self assert: (res includes: each) ]
 ]
 
-{
-	#category : #'tests - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>testCopyNonEmptyWithoutNotIncluded [
+{ #category : #'tests - copy' }
+TCopyTest >> testCopyNonEmptyWithoutNotIncluded [
 	"self debug: #testCopyNonEmptyWithoutNotIncluded"
 	| res |
 	res := self nonEmpty copyWithout: self elementToAdd.
@@ -205,11 +157,8 @@ TCopyTest>>testCopyNonEmptyWithoutNotIncluded [
 	self nonEmpty do: [ :each | self assert: (res includes: each) ]
 ]
 
-{
-	#category : #'tests - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>testCopyNotSame [
+{ #category : #'tests - copy' }
+TCopyTest >> testCopyNotSame [
 	"self debug: #testCopySameClass"
 	"A copy of a collection should always be of the same class as the instance it copies"
 	
@@ -218,11 +167,8 @@ TCopyTest>>testCopyNotSame [
 	self deny: copy  == self nonEmpty.
 ]
 
-{
-	#category : #'tests - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopyTest>>testCopySameClass [
+{ #category : #'tests - copy' }
+TCopyTest >> testCopySameClass [
 	"self debug: #testCopySameClass"
 	"A copy of a collection should always be of the same class as the instance it copies"
 	

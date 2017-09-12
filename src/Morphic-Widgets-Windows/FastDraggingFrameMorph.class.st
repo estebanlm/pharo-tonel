@@ -25,15 +25,11 @@ Class {
 		'startGap',
 		'location'
 	],
-	#category : #Morphic-Widgets-Windows-Widgets,
-	#timestamp : 'AlainPlantec 2/22/2012 23:23'
+	#category : #Morphic-Widgets-Windows-Widgets
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph class>>forDragging: aWindow clickedAt: aPoint [
+{ #category : #'instance creation' }
+FastDraggingFrameMorph class >> forDragging: aWindow clickedAt: aPoint [
 	| b |
 	b := self new.
 	b target: aWindow.
@@ -41,11 +37,8 @@ FastDraggingFrameMorph class>>forDragging: aWindow clickedAt: aPoint [
 	^ b
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph class>>forResizing: aWindow fromLocation: aSideOrCorner [
+{ #category : #'instance creation' }
+FastDraggingFrameMorph class >> forResizing: aWindow fromLocation: aSideOrCorner [
 	| b  |
 	b := self new.	
 	b target: aWindow.
@@ -53,91 +46,61 @@ FastDraggingFrameMorph class>>forResizing: aWindow fromLocation: aSideOrCorner [
 	^ b 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph>>defaultBorderColor  [
+{ #category : #initialization }
+FastDraggingFrameMorph >> defaultBorderColor [ 
 	^ Color gray 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph>>defaultBorderWidth [
+{ #category : #initialization }
+FastDraggingFrameMorph >> defaultBorderWidth [
 	^ 2.
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph>>defaultColor  [
+{ #category : #initialization }
+FastDraggingFrameMorph >> defaultColor [ 
 	^ Color gray alpha: 0.15.
 	
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph>>draggedTo: aPoint [
+{ #category : #'event handling' }
+FastDraggingFrameMorph >> draggedTo: aPoint [
 	self position: aPoint + startGap
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph>>handlesMouseDown: evt [
+{ #category : #'event handling' }
+FastDraggingFrameMorph >> handlesMouseDown: evt [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph>>isForDragging [
+{ #category : #testing }
+FastDraggingFrameMorph >> isForDragging [
 	^ location isNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph>>location: aSymbol [
+{ #category : #accessing }
+FastDraggingFrameMorph >> location: aSymbol [
 	"The symbol wich represents the corner or the edge grip location (#topLeft, #top ..., #bottomLeft or #left)"
 	location := aSymbol
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph>>mouseDown: evt [
+{ #category : #'event handling' }
+FastDraggingFrameMorph >> mouseDown: evt [
 	"Normally, should not be possible"
 	self delete 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph>>mouseMove: evt [
+{ #category : #'event handling' }
+FastDraggingFrameMorph >> mouseMove: evt [
 	self isForDragging 
 		ifTrue: [self draggedTo: evt position]
 		ifFalse: [self reframedTo: evt position]
 
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph>>mouseUp: evt  [
+{ #category : #'event handling' }
+FastDraggingFrameMorph >> mouseUp: evt [ 
 	target
 		ifNotNil: [Display
 				deferUpdatesIn: Display boundingBox
@@ -145,48 +108,33 @@ FastDraggingFrameMorph>>mouseUp: evt  [
 	self delete
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph>>reframedTo: aPoint  [
+{ #category : #'event handling' }
+FastDraggingFrameMorph >> reframedTo: aPoint [ 
 	self
 		bounds: (self bounds withSideOrCorner: location setToPoint: aPoint)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph>>startGap: aPoint [
+{ #category : #accessing }
+FastDraggingFrameMorph >> startGap: aPoint [
 	"APoint is the distance between the window position and the first click position" 
 	startGap := aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph>>target [
+{ #category : #accessing }
+FastDraggingFrameMorph >> target [
 	^ target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph>>target: aSystemWindow  [
+{ #category : #accessing }
+FastDraggingFrameMorph >> target: aSystemWindow [ 
 	target := aSystemWindow.
 	self color: (target paneColor alpha: 0.35).
 	self bounds: aSystemWindow bounds.
 	self currentHand newMouseFocus: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-FastDraggingFrameMorph>>wantsToBeTopmost [
+{ #category : #accessing }
+FastDraggingFrameMorph >> wantsToBeTopmost [
 	"Answer if the receiver want to be one of the topmost objects in 
 	its owner"
 	^ true

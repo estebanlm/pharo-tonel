@@ -11,31 +11,21 @@ Part of Zinc HTTP Components.
 Class {
 	#name : #ZnHttpSaveContentsToFile,
 	#superclass : #ZnUrlOperation,
-	#category : #Zinc-HTTP-Client-Server,
-	#timestamp : 'SvenVanCaekenberghe 6/25/2014 17:36'
+	#category : #Zinc-HTTP-Client-Server
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHttpSaveContentsToFile class>>operation [
+{ #category : #accessing }
+ZnHttpSaveContentsToFile class >> operation [
 	^ #saveContentsToFile:
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHttpSaveContentsToFile class>>schemes [
+{ #category : #accessing }
+ZnHttpSaveContentsToFile class >> schemes [
 	^ #( #http #https )
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnHttpSaveContentsToFile>>performOperation [
+{ #category : #operations }
+ZnHttpSaveContentsToFile >> performOperation [
 	"Download the HTTP(S) resource specified by url to the file in argument.
 	Return a file reference on the file that's just been downloaded.
 	If something goes wrong, an exception will be signalled."

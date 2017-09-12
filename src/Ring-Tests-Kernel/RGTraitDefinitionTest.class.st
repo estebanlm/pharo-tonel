@@ -4,15 +4,11 @@ SUnit tests for trait definitions
 Class {
 	#name : #RGTraitDefinitionTest,
 	#superclass : #TestCase,
-	#category : #Ring-Tests-Kernel,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:09'
+	#category : #Ring-Tests-Kernel
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGTraitDefinitionTest>>testAddingMethods [
+{ #category : #testing }
+RGTraitDefinitionTest >> testAddingMethods [
 	| newMethod newClass |
 	
 	newClass:= RGTraitDefinition named:  #TSortable.
@@ -45,11 +41,8 @@ RGTraitDefinitionTest>>testAddingMethods [
 	self assert: ((newClass compiledMethodNamed: #foo) isNil)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGTraitDefinitionTest>>testAsTraitDefinition [
+{ #category : #testing }
+RGTraitDefinitionTest >> testAsTraitDefinition [
 
 	| newTrait |
 	newTrait:= TBehavior asRingDefinition.
@@ -65,11 +58,8 @@ RGTraitDefinitionTest>>testAsTraitDefinition [
 	self assert: (newTrait theMetaClass traitCompositionSource = '{}').
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGTraitDefinitionTest>>testAsTraitDefinition2 [
+{ #category : #testing }
+RGTraitDefinitionTest >> testAsTraitDefinition2 [
 
 	| newTrait newClass newSlice |
 	newClass := MOPTestClassC asRingDefinitionWithMethods: false withSuperclasses: false withSubclasses: true withPackages: false.
@@ -86,11 +76,8 @@ RGTraitDefinitionTest>>testAsTraitDefinition2 [
 	self assert: newTrait subclasses isEmpty.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGTraitDefinitionTest>>testExistingTrait [
+{ #category : #testing }
+RGTraitDefinitionTest >> testExistingTrait [
 	| newClass metaClass |
 	
 	newClass:= RGTraitDefinition named:  #TSortable.
@@ -108,11 +95,8 @@ RGTraitDefinitionTest>>testExistingTrait [
 	self assert: (metaClass realClass = TSortable theMetaClass).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGTraitDefinitionTest>>testNonExistingClass [
+{ #category : #testing }
+RGTraitDefinitionTest >> testNonExistingClass [
 	| newClass |
 	
 	newClass:= RGTraitDefinition named:  #TConnection.
@@ -130,11 +114,8 @@ RGTraitDefinitionTest>>testNonExistingClass [
 	self assert: (newClass hasProtocols not).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGTraitDefinitionTest>>testTraitEquality [
+{ #category : #testing }
+RGTraitDefinitionTest >> testTraitEquality [
 
 	| newClass |
 	self assert: TSortable asRingDefinition = TSortable asRingDefinition.

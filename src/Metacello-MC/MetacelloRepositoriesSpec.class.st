@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #MetacelloRepositoriesSpec,
 	#superclass : #MetacelloMemberListSpec,
-	#category : #Metacello-MC-Specs,
-	#timestamp : ''
+	#category : #Metacello-MC-Specs
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositoriesSpec>>add: aStringOrSpec [
+{ #category : #actions }
+MetacelloRepositoriesSpec >> add: aStringOrSpec [
 
 	aStringOrSpec addToMetacelloRepositories: self
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositoriesSpec>>canUpgradeTo: aMetacelloRepositoriesSpec [
+{ #category : #scripting }
+MetacelloRepositoriesSpec >> canUpgradeTo: aMetacelloRepositoriesSpec [
   | repositorySpecs anotherRepositorySpecs |
   repositorySpecs := self map values
     sort: [ :a :b | a description <= b description ].
@@ -38,11 +28,8 @@ MetacelloRepositoriesSpec>>canUpgradeTo: aMetacelloRepositoriesSpec [
   ^ false
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositoriesSpec>>compareEqual: aMetacelloProjectSpec [
+{ #category : #scripting }
+MetacelloRepositoriesSpec >> compareEqual: aMetacelloProjectSpec [
     | repositorySpecs anotherRepositorySpecs |
     repositorySpecs := (self map values sort: [ :a :b | a description <= b description ])
         collect: [ :each | each description ].
@@ -51,11 +38,8 @@ MetacelloRepositoriesSpec>>compareEqual: aMetacelloProjectSpec [
     ^ repositorySpecs = anotherRepositorySpecs
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositoriesSpec>>configMethodCascadeOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloRepositoriesSpec >> configMethodCascadeOn: aStream indent: indent [
 
 	| repositorySpecs |
 	repositorySpecs := self map values sort: [:a :b | a description <= b description ].
@@ -69,11 +53,8 @@ MetacelloRepositoriesSpec>>configMethodCascadeOn: aStream indent: indent [
 					lastCascade: index >= repositorySpecs size ]]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositoriesSpec>>configMethodOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloRepositoriesSpec >> configMethodOn: aStream indent: indent [
 
 	aStream 
 		tab: indent; 
@@ -82,11 +63,8 @@ MetacelloRepositoriesSpec>>configMethodOn: aStream indent: indent [
 	self configMethodCascadeOn: aStream indent: indent
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositoriesSpec>>hasNoLoadConflicts: aMetacelloRepositoriesSpec [
+{ #category : #scripting }
+MetacelloRepositoriesSpec >> hasNoLoadConflicts: aMetacelloRepositoriesSpec [
   | repositorySpecs anotherRepositorySpecs |
   repositorySpecs := self map values
     sort: [ :a :b | a description <= b description ].
@@ -103,54 +81,36 @@ MetacelloRepositoriesSpec>>hasNoLoadConflicts: aMetacelloRepositoriesSpec [
   ^ true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositoriesSpec>>merge: aRepositorySpec [
+{ #category : #actions }
+MetacelloRepositoriesSpec >> merge: aRepositorySpec [
 
 	aRepositorySpec mergeIntoMetacelloRepositories: self
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositoriesSpec>>metacelloRegistrationHash [
+{ #category : #scripting }
+MetacelloRepositoriesSpec >> metacelloRegistrationHash [
     ^ ((self map values sort: [ :a :b | a description <= b description ]) collect: [ :each | each description ]) hash
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositoriesSpec>>remove: aRepositorySpec [
+{ #category : #actions }
+MetacelloRepositoriesSpec >> remove: aRepositorySpec [
 
 	aRepositorySpec removeFromMetacelloRepositories: self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositoriesSpec>>repository: aStringOrSpec [
+{ #category : #actions }
+MetacelloRepositoriesSpec >> repository: aStringOrSpec [
 
 	aStringOrSpec addToMetacelloRepositories: self
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositoriesSpec>>repository: anObject constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloRepositoriesSpec >> repository: anObject constructor: aVersionConstructor [
     aVersionConstructor repositoryForRepositories: anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositoriesSpec>>repository: description username: username password: password [
+{ #category : #actions }
+MetacelloRepositoriesSpec >> repository: description username: username password: password [
 
 	| spec |
 	spec := 
@@ -166,10 +126,7 @@ MetacelloRepositoriesSpec>>repository: description username: username password: 
 			yourself)
 ]
 
-{
-	#category : #construction,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositoriesSpec>>repository: aString username: username password: password constructor: aVersionConstructor [
+{ #category : #construction }
+MetacelloRepositoriesSpec >> repository: aString username: username password: password constructor: aVersionConstructor [
     aVersionConstructor repositoryForRepositories: aString username: username password: password
 ]

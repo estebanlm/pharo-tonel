@@ -13,76 +13,52 @@ Main methods:
 "
 Trait {
 	#name : #TGLMScriptingAPITablePresentation,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Glamour-Presentations,
-	#timestamp : 'AndreiChis 2/6/2017 14:25'
+	#category : #Glamour-Presentations
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-TGLMScriptingAPITablePresentation classSide>>defaultIntercellSpacing [
+{ #category : #accessing }
+TGLMScriptingAPITablePresentation classSide >> defaultIntercellSpacing [
 	^ 3@1 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-TGLMScriptingAPITablePresentation>>addColumn: aColumn [
+{ #category : #accessing }
+TGLMScriptingAPITablePresentation >> addColumn: aColumn [
 	self columns add: aColumn
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-TGLMScriptingAPITablePresentation>>column: aBlockOrString evaluated: aBlock [
+{ #category : #scripting }
+TGLMScriptingAPITablePresentation >> column: aBlockOrString evaluated: aBlock [
 	self addColumn: (GLMTableColumn new 
 		title: aBlockOrString; 
 		computation: aBlock)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-TGLMScriptingAPITablePresentation>>column: aBlockOrString evaluated: aBlock modified: aModifiedBlock [
+{ #category : #scripting }
+TGLMScriptingAPITablePresentation >> column: aBlockOrString evaluated: aBlock modified: aModifiedBlock [
 	self addColumn: (GLMTableColumn new 
 		title: aBlockOrString;
 		computation: aBlock;
 		modifiedBlock: aModifiedBlock)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-TGLMScriptingAPITablePresentation>>column: aBlockOrString evaluated: aBlock sortedBy: aSortingBlock [
+{ #category : #scripting }
+TGLMScriptingAPITablePresentation >> column: aBlockOrString evaluated: aBlock sortedBy: aSortingBlock [
 	self addColumn: (GLMTableColumn new 
 		title: aBlockOrString; 
 		computation: aBlock;
 		sortBlock: aSortingBlock)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-TGLMScriptingAPITablePresentation>>column: aBlockOrString evaluated: aBlock tags: anObject  [
+{ #category : #scripting }
+TGLMScriptingAPITablePresentation >> column: aBlockOrString evaluated: aBlock tags: anObject [ 
 	self addColumn: (GLMTableColumn new 
 		title: aBlockOrString; 
 		computation: aBlock;
 		tags: anObject)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-TGLMScriptingAPITablePresentation>>column: aBlockOrString evaluated: aBlock tags: anObject filtered: anotherObject [
+{ #category : #scripting }
+TGLMScriptingAPITablePresentation >> column: aBlockOrString evaluated: aBlock tags: anObject filtered: anotherObject [
 	self addColumn: (GLMTableColumn new 
 		title: aBlockOrString; 
 		computation: aBlock;
@@ -90,11 +66,8 @@ TGLMScriptingAPITablePresentation>>column: aBlockOrString evaluated: aBlock tags
 		tagsFilter: anotherObject)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-TGLMScriptingAPITablePresentation>>column: aBlockOrString evaluated: aBlock tags: anObject sortedBy: aSortingBlock [
+{ #category : #scripting }
+TGLMScriptingAPITablePresentation >> column: aBlockOrString evaluated: aBlock tags: anObject sortedBy: aSortingBlock [
 	self addColumn: (GLMTableColumn new 
 		title: aBlockOrString; 
 		computation: aBlock;
@@ -102,11 +75,8 @@ TGLMScriptingAPITablePresentation>>column: aBlockOrString evaluated: aBlock tags
 		sortBlock: aSortingBlock)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-TGLMScriptingAPITablePresentation>>column: aBlockOrString evaluated: aBlock width: aNumber  [
+{ #category : #scripting }
+TGLMScriptingAPITablePresentation >> column: aBlockOrString evaluated: aBlock width: aNumber [ 
 	self addColumn: (GLMTableColumn new 
 		title: aBlockOrString; 
 		computation: aBlock;
@@ -114,11 +84,8 @@ TGLMScriptingAPITablePresentation>>column: aBlockOrString evaluated: aBlock widt
 		yourself)	
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-TGLMScriptingAPITablePresentation>>column: aBlockOrString evaluated: aBlock width: aNumber tags: anObject [
+{ #category : #scripting }
+TGLMScriptingAPITablePresentation >> column: aBlockOrString evaluated: aBlock width: aNumber tags: anObject [
 	self addColumn: (GLMTableColumn new 
 		title: aBlockOrString; 
 		computation: aBlock;
@@ -127,11 +94,8 @@ TGLMScriptingAPITablePresentation>>column: aBlockOrString evaluated: aBlock widt
 		yourself)	
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-TGLMScriptingAPITablePresentation>>column: aBlockOrString evaluated: aBlock width: aNumber tags: anObject sortedBy: aSortingBlock [
+{ #category : #scripting }
+TGLMScriptingAPITablePresentation >> column: aBlockOrString evaluated: aBlock width: aNumber tags: anObject sortedBy: aSortingBlock [
 	self addColumn: (GLMTableColumn new 
 		title: aBlockOrString; 
 		computation: aBlock;
@@ -141,45 +105,30 @@ TGLMScriptingAPITablePresentation>>column: aBlockOrString evaluated: aBlock widt
 		yourself)	
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-TGLMScriptingAPITablePresentation>>column: aGlamourColumn valueFor: anObject [
+{ #category : #callbacks }
+TGLMScriptingAPITablePresentation >> column: aGlamourColumn valueFor: anObject [
 	^ aGlamourColumn computation glamourValue: 
 		(anObject asGlamorousMultiValue,
 		 self entity asGlamorousMultiValue,
 		 self asGlamorousMultiValue)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-TGLMScriptingAPITablePresentation>>columns [
+{ #category : #accessing }
+TGLMScriptingAPITablePresentation >> columns [
 	self explicitRequirement
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-TGLMScriptingAPITablePresentation>>hideHeader [
+{ #category : #scripting }
+TGLMScriptingAPITablePresentation >> hideHeader [
 	self explicitRequirement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-TGLMScriptingAPITablePresentation>>shouldShowHeader [
+{ #category : #accessing }
+TGLMScriptingAPITablePresentation >> shouldShowHeader [
 	self explicitRequirement
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-TGLMScriptingAPITablePresentation>>titleValueOfColumn: aColumn [
+{ #category : #callbacks }
+TGLMScriptingAPITablePresentation >> titleValueOfColumn: aColumn [
 	^ aColumn title glamourValue: self entity
 ]

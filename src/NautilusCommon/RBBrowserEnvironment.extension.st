@@ -1,12 +1,7 @@
-Extension {
-	#name : #RBBrowserEnvironment
-}
+Extension { #name : #RBBrowserEnvironment }
 
-{
-	#category : #'*NautilusCommon',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RBBrowserEnvironment>>asSystemNavigationEnvironment [
+{ #category : #'*NautilusCommon' }
+RBBrowserEnvironment >> asSystemNavigationEnvironment [
 
 	| env globalsNames |
 	"Optimization for the default environment AKA Smalltalk"
@@ -28,22 +23,16 @@ RBBrowserEnvironment>>asSystemNavigationEnvironment [
 	^ env
 ]
 
-{
-	#category : #'*NautilusCommon',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RBBrowserEnvironment>>traits [
+{ #category : #'*NautilusCommon' }
+RBBrowserEnvironment >> traits [
 	| traits |
 	traits := IdentitySet new: 4096.
 	self traitsDo: [ :each | traits add: each ].
 	^ traits
 ]
 
-{
-	#category : #'*NautilusCommon',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-RBBrowserEnvironment>>traitsDo: aBlock [
+{ #category : #'*NautilusCommon' }
+RBBrowserEnvironment >> traitsDo: aBlock [
 
 	self systemDictionary allTraitsDo: [ :each | 
 		(self includesClass: each)

@@ -10,34 +10,24 @@ Class {
 	#pools : [
 		'SDL2Constants'
 	],
-	#category : #OSWindow-SDL2-OpenGL,
-	#timestamp : 'IgorStasenko 7/30/2014 18:22'
+	#category : #OSWindow-SDL2-OpenGL
 }
 
-{
-	#category : #misc,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2GLRenderer>>checkThread [
+{ #category : #misc }
+OSSDL2GLRenderer >> checkThread [
 	OSWindowRenderThread isThisThread ifFalse: [ ^ 'GL Renderer must be used inside the OSWindowRenderThread' ]
 ]
 
-{
-	#category : #misc,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2GLRenderer>>createContext [
+{ #category : #misc }
+OSSDL2GLRenderer >> createContext [
 	self onRenderThreadBlocking: [
 		context := SDL2 glCreateContext: window handle.
 	]
 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2GLRenderer>>destroy [
+{ #category : #initialize }
+OSSDL2GLRenderer >> destroy [
 	self onRenderThreadBlocking: [
 		context ifNotNil: [ context delete ].
 		context := nil.
@@ -45,20 +35,14 @@ OSSDL2GLRenderer>>destroy [
 	
 ]
 
-{
-	#category : #misc,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2GLRenderer>>getProcAddress: procName [
+{ #category : #misc }
+OSSDL2GLRenderer >> getProcAddress: procName [
 	self checkThread.
 	^ SDL2 glGetProcAddress: procName
 ]
 
-{
-	#category : #misc,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2GLRenderer>>makeCurrent: aWindow [
+{ #category : #misc }
+OSSDL2GLRenderer >> makeCurrent: aWindow [
 	| windowHandle |
 	context ifNil: [ ^ false ].
 	
@@ -71,28 +55,19 @@ OSSDL2GLRenderer>>makeCurrent: aWindow [
 	
 ]
 
-{
-	#category : #misc,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2GLRenderer>>swapBuffers: aWindow [
+{ #category : #misc }
+OSSDL2GLRenderer >> swapBuffers: aWindow [
 	self checkThread.
 	SDL2 glSwapWindow: aWindow handle.
 ]
 
-{
-	#category : #'updating screen',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2GLRenderer>>updateAll [
+{ #category : #'updating screen' }
+OSSDL2GLRenderer >> updateAll [
 	"Do nothing here"
 
 ]
 
-{
-	#category : #'updating screen',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2GLRenderer>>updateRectangle: rectangle [
+{ #category : #'updating screen' }
+OSSDL2GLRenderer >> updateRectangle: rectangle [
 	"Do nothing here"
 ]

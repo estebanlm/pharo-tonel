@@ -4,33 +4,23 @@ Checks precedence ordering of & and | with equality operators. Since | and & hav
 Class {
 	#name : #RBBooleanPrecedenceRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:17'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBooleanPrecedenceRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBBooleanPrecedenceRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'BooleanPrecedenceRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBooleanPrecedenceRule>>group [
+{ #category : #accessing }
+RBBooleanPrecedenceRule >> group [
 	^ 'Potential Bugs'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBooleanPrecedenceRule>>initialize [
+{ #category : #initialization }
+RBBooleanPrecedenceRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyOf: #(
@@ -45,18 +35,12 @@ RBBooleanPrecedenceRule>>initialize [
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBooleanPrecedenceRule>>name [
+{ #category : #accessing }
+RBBooleanPrecedenceRule >> name [
 	^ 'Uses A | B = C instead of A | (B = C)'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBooleanPrecedenceRule>>severity [
+{ #category : #accessing }
+RBBooleanPrecedenceRule >> severity [
 	^ #error
 ]

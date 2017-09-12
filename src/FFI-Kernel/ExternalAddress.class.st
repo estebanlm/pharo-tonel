@@ -8,25 +8,18 @@ Class {
 	#classInstVars : [
 		'wordSize'
 	],
-	#category : #FFI-Kernel,
-	#timestamp : '<historical>'
+	#category : #FFI-Kernel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress class>>allocate: byteSize [
+{ #category : #'instance creation' }
+ExternalAddress class >> allocate: byteSize [
 	"Primitive. Allocate an object on the external heap."
 	<primitive:'primitiveFFIAllocate' module:'SqueakFFIPrims'>
 	^self primitiveFailed
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress class>>gcallocate: byteSize [
+{ #category : #'instance creation' }
+ExternalAddress class >> gcallocate: byteSize [
 	"Primitive. Allocate an object on the external heap.
 	The external memory will be freed when i am garbage collected.
 	BEWARE: there should be no copy of self, nor any pointer to a sub part..."
@@ -37,48 +30,33 @@ ExternalAddress class>>gcallocate: byteSize [
 	^externalAddress
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress class>>initialize [
+{ #category : #'class initialization' }
+ExternalAddress class >> initialize [
 	wordSize := Smalltalk wordSize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress class>>loadSymbol: moduleSymbol module: module  [
+{ #category : #'instance creation' }
+ExternalAddress class >> loadSymbol: moduleSymbol [ module: module 
 	<primitive: 'primitiveLoadSymbolFromModule' module: 'SqueakFFIPrims'>
 	^ self primitiveFailed
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress class>>new [
+{ #category : #'instance creation' }
+ExternalAddress class >> new [
 	"External addresses are either four or eight bytes long."
 	^super new: wordSize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress class>>new: n [
+{ #category : #'instance creation' }
+ExternalAddress class >> new: n [
 	"Only create ExternalAddresses of the right size."
 	^n = wordSize
 		ifTrue: [super new: n]
 		ifFalse: [self shouldNotImplement]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress class>>startUp: resuming [
+{ #category : #'class initialization' }
+ExternalAddress class >> startUp: resuming [
 	"If starting the image afresh all external addresses should be zero.
 	 In addition, if the word size has changed then external addresses shoiuld be resized.
 	 The two steps are combined for efficiency."
@@ -93,19 +71,13 @@ ExternalAddress class>>startUp: resuming [
 				[instances do: [:addr| addr beNull]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress class>>wordSize [
+{ #category : #accessing }
+ExternalAddress class >> wordSize [
 	^wordSize
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress>>+ offset [
+{ #category : #arithmetic }
+ExternalAddress >> + offset [
 	"Create an address that is offset by the given number of bytes.
 	More tricky than one would think due to the FFI's handling of ExternalAddress
 	as pointer to an object so that 'self unsignedLongAt: ' would dereference."
@@ -119,88 +91,61 @@ ExternalAddress>>+ offset [
 	^bytes asExternalPointer
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress>>asByteArrayPointer [
+{ #category : #private }
+ExternalAddress >> asByteArrayPointer [
 	"Answer a ByteArray containing a copy of pointer to the contents of the receiver."
 	| sz |
 	^(ByteArray basicNew: (sz := self class wordSize))
 		replaceFrom: 1 to: sz with: self startingAt: 1 "answers self"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress>>asExternalPointer [
+{ #category : #private }
+ExternalAddress >> asExternalPointer [
 	"No need to convert."
 	^self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress>>asInteger [
+{ #category : #converting }
+ExternalAddress >> asInteger [
 	"convert address to integer"
 	^ self asByteArrayPointer integerAt: 1 size: self class wordSize signed: false
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress>>beNull [
+{ #category : #initialize-release }
+ExternalAddress >> beNull [
 	"Make the receiver a NULL pointer"
 	self atAllPut: 0.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress>>byteAt: byteOffset [
+{ #category : #accessing }
+ExternalAddress >> byteAt: byteOffset [
 	"Go through a different primitive since the receiver describes data in the outside world"
 	^self unsignedByteAt: byteOffset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress>>byteAt: byteOffset put: value [
+{ #category : #accessing }
+ExternalAddress >> byteAt: byteOffset put: value [
 	"Go through a different primitive since the receiver describes data in the outside world"
 	^self unsignedByteAt: byteOffset put: value
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress>>clone [
+{ #category : #copying }
+ExternalAddress >> clone [
 
 	<primitive: 148>
 	self primitiveFailed
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress>>finalize [
+{ #category : #initialize-release }
+ExternalAddress >> finalize [
 	"I am an executor (a copy) of an ExternalAddress that was just garbage collected.
 	I must finalize. my mission is to free memory"
 	self isNull ifTrue: [^self].
 	self free
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress>>free [
+{ #category : #initialize-release }
+ExternalAddress >> free [
 	"Primitive. Free the object pointed to on the external heap.
 	Dangerous - may break your system if the receiver hasn't been
 	allocated by ExternalAddress class>>allocate:. No checks are done."
@@ -208,11 +153,8 @@ ExternalAddress>>free [
 	^self primitiveFailed
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress>>fromInteger: address [
+{ #category : #converting }
+ExternalAddress >> fromInteger: address [
 	"set my handle to point at address."
 	"Do we really need this? bf 2/21/2001 23:48"
 
@@ -231,40 +173,28 @@ ExternalAddress>>fromInteger: address [
 			basicAt: 8 put: (pointer byteAt: 8)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress>>isExternalAddress [
+{ #category : #accessing }
+ExternalAddress >> isExternalAddress [
 	"Return true if the receiver describes the address of an object in the outside world"
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress>>isNull [
+{ #category : #testing }
+ExternalAddress >> isNull [
 	"Answer true if I am a null pointer"
 	1 to: self size do:[:i| (self at: i) = 0 ifFalse:[^false]].
 	^true
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress>>printOn: aStream [
+{ #category : #printing }
+ExternalAddress >> printOn: aStream [
 	"print this as a hex address ('@ 16rFFFFFFFF') to distinguish it from ByteArrays"
 
 	aStream nextPutAll: '@ '; nextPutAll: (self asInteger storeStringBase: 16 length: 11 padded: true)
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalAddress>>shallowCopy [
+{ #category : #copying }
+ExternalAddress >> shallowCopy [
 	"Re-implemented to avoid superclass call to #new:"
 	"But superclass's shallowCopy sends basicNew: and basicNew: is ok. eem 2/21/2016 15:31"
 	^self clone

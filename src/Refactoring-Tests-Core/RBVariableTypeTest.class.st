@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBVariableTypeTest,
 	#superclass : #RBRefactoringBrowserTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBVariableTypeTest>>testBasicLintRuleTypes [
+{ #category : #tests }
+RBVariableTypeTest >> testBasicLintRuleTypes [
 	| typer types |
 	typer := RBRefactoryTyper new.
 	types := typer 
@@ -33,11 +26,8 @@ RBVariableTypeTest>>testBasicLintRuleTypes [
 	typer printString
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBVariableTypeTest>>testCompositeLintRuleTypes [
+{ #category : #tests }
+RBVariableTypeTest >> testCompositeLintRuleTypes [
 	| typer types |
 	typer := RBRefactoryTyper new runOn: RBCompositeLintRuleTest.
 	types := typer guessTypesFor: 'rules'.
@@ -48,11 +38,8 @@ RBVariableTypeTest>>testCompositeLintRuleTypes [
 	typer printString
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBVariableTypeTest>>testLintRuleTypes [
+{ #category : #tests }
+RBVariableTypeTest >> testLintRuleTypes [
 	| typer types |
 	typer := RBRefactoryTyper new.
 	types := typer 
@@ -62,11 +49,8 @@ RBVariableTypeTest>>testLintRuleTypes [
 	self assert: (types includes: (typer model classFor: String))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBVariableTypeTest>>testParseTreeTypes [
+{ #category : #tests }
+RBVariableTypeTest >> testParseTreeTypes [
 	| types model |
 	model := RBClassModelFactory rbNamespace new.
 	types := RBRefactoryTyper 

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMExpanderTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExpanderTest>>testAllowNilConditionWhenEmbedded [
+{ #category : #tests }
+GLMExpanderTest >> testAllowNilConditionWhenEmbedded [
 	| expander tabulator |
 	expander := GLMExpander new.
 	expander allowNil.
@@ -30,11 +23,8 @@ GLMExpanderTest>>testAllowNilConditionWhenEmbedded [
 	self should: [ tabulator startOn: 1 ] raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExpanderTest>>testConditionWhenEmbedded [
+{ #category : #tests }
+GLMExpanderTest >> testConditionWhenEmbedded [
 	| expander tabulator |
 	expander := GLMExpander new.
 	expander display: [ :x :y | x + y ].
@@ -51,19 +41,13 @@ GLMExpanderTest>>testConditionWhenEmbedded [
 	self shouldnt: [ tabulator startOn: 1 ] raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExpanderTest>>testCreation [
+{ #category : #tests }
+GLMExpanderTest >> testCreation [
 	self assert: GLMExpander new panes isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExpanderTest>>testPresentations [
+{ #category : #tests }
+GLMExpanderTest >> testPresentations [
 	| expander |
 	expander := GLMExpander new.
 	expander show: [ :a | a text ].
@@ -74,11 +58,8 @@ GLMExpanderTest>>testPresentations [
 	self assert: (expander panes first presentations first isKindOf: GLMRubricTextPresentation)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExpanderTest>>testSimple [
+{ #category : #tests }
+GLMExpanderTest >> testSimple [
 	| expander |
 	expander := GLMExpander new.
 	expander startOn: #(#a #b #c).

@@ -9,59 +9,40 @@ Class {
 		'activeFingers',
 		'eventHandler'
 	],
-	#category : #OSWindow-Core-Gestures,
-	#timestamp : 'MerwanOuddane 7/22/2015 16:07'
+	#category : #OSWindow-Core-Gestures
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchGestureDetector class>>onDeviceId: anInteger [
+{ #category : #'instance creation' }
+OSTouchGestureDetector class >> onDeviceId: anInteger [
 	^ self new deviceId: anInteger
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchGestureDetector class>>reinitializeAllSubclasses [
+{ #category : #initialization }
+OSTouchGestureDetector class >> reinitializeAllSubclasses [
 	"self reinitializeAllSubclasses"
 	self allSubclassesDo: [ :each | each initialize ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchGestureDetector class>>touchGestureSettingsOn: aBuilder [
+{ #category : #settings }
+OSTouchGestureDetector class >> touchGestureSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #touchGestures)
 		parent: #appearance;
 		label: 'Touch Gestures'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchGestureDetector>>activeFingers [
+{ #category : #accessing }
+OSTouchGestureDetector >> activeFingers [
 	^ activeFingers
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchGestureDetector>>activeFingers: anObject [
+{ #category : #accessing }
+OSTouchGestureDetector >> activeFingers: anObject [
 	activeFingers := anObject
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchGestureDetector>>centerOfAllFingers [
+{ #category : #factory }
+OSTouchGestureDetector >> centerOfAllFingers [
 	| fingersPosition sum cpt |
 	cpt := 0.
 	sum := 0@0.
@@ -76,42 +57,27 @@ OSTouchGestureDetector>>centerOfAllFingers [
 	^ sum / cpt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchGestureDetector>>deviceId [
+{ #category : #accessing }
+OSTouchGestureDetector >> deviceId [
 	^ deviceId
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchGestureDetector>>deviceId: anInteger [
+{ #category : #accessing }
+OSTouchGestureDetector >> deviceId: anInteger [
 	deviceId := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchGestureDetector>>eventHandler [
+{ #category : #accessing }
+OSTouchGestureDetector >> eventHandler [
 	^ eventHandler
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchGestureDetector>>eventHandler: anObject [
+{ #category : #accessing }
+OSTouchGestureDetector >> eventHandler: anObject [
 	eventHandler := anObject
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchGestureDetector>>sendToEventHandler: anEvent [
+{ #category : #factory }
+OSTouchGestureDetector >> sendToEventHandler: anEvent [
 	eventHandler handleGestureEvent: anEvent
 ]

@@ -34,177 +34,119 @@ Class {
 		'numberOfDisplay',
 		'input'
 	],
-	#category : #Glamour-Browsers-Wizards,
-	#timestamp : 'TorstenBergmann 3/10/2015 22:00'
+	#category : #Glamour-Browsers-Wizards
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>atBeginning  [
+{ #category : #testing }
+GLMAbstractWizardStep >> atBeginning [ 
 
 	^ self numberOfDisplay = 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>atEnd [
+{ #category : #testing }
+GLMAbstractWizardStep >> atEnd [
 
 	^ self size = self numberOfDisplay 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>decrementNumberOfDisplay  [
+{ #category : #accessing }
+GLMAbstractWizardStep >> decrementNumberOfDisplay [ 
 
 	self numberOfDisplay: self numberOfDisplay - 1
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>from: aSymbol [
+{ #category : #scripting }
+GLMAbstractWizardStep >> from: aSymbol [
 
 	self previousStep: aSymbol  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>incrementNumberOfDisplay [
+{ #category : #accessing }
+GLMAbstractWizardStep >> incrementNumberOfDisplay [
 
 	self numberOfDisplay: self numberOfDisplay + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>input [
+{ #category : #accessing }
+GLMAbstractWizardStep >> input [
 
 	^ input 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>input: anObject [
+{ #category : #accessing }
+GLMAbstractWizardStep >> input: anObject [
 
 	input := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>name [
+{ #category : #accessing }
+GLMAbstractWizardStep >> name [
 
 	^ name ifNil: [name := '']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>name: aSymbolOrABlock [
+{ #category : #accessing }
+GLMAbstractWizardStep >> name: aSymbolOrABlock [
 
 	name := aSymbolOrABlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>numberOfDisplay [
+{ #category : #accessing }
+GLMAbstractWizardStep >> numberOfDisplay [
 	
 	^ numberOfDisplay ifNil: [numberOfDisplay := 0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>numberOfDisplay: aNumber [
+{ #category : #accessing }
+GLMAbstractWizardStep >> numberOfDisplay: aNumber [
 	
 	numberOfDisplay := aNumber
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>overBeginning  [
+{ #category : #testing }
+GLMAbstractWizardStep >> overBeginning [ 
 
 	^ self numberOfDisplay < 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>overEnd [
+{ #category : #testing }
+GLMAbstractWizardStep >> overEnd [
 
 	^ self size < self numberOfDisplay 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>presentationBlock [
+{ #category : #accessing }
+GLMAbstractWizardStep >> presentationBlock [
 
 	^ presentationBlock 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>presentationBlock: aBlock [
+{ #category : #accessing }
+GLMAbstractWizardStep >> presentationBlock: aBlock [
 
 	presentationBlock :=  aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>previousStep [
+{ #category : #accessing }
+GLMAbstractWizardStep >> previousStep [
 
 	^ previousStep ifNil: [previousStep := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>previousStep: aSymbol [
+{ #category : #accessing }
+GLMAbstractWizardStep >> previousStep: aSymbol [
 
 	self previousStep add: aSymbol
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>show: aBlock [
+{ #category : #scripting }
+GLMAbstractWizardStep >> show: aBlock [
 
 	self presentationBlock: aBlock  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMAbstractWizardStep>>size [
+{ #category : #accessing }
+GLMAbstractWizardStep >> size [
 
 	^ self subclassResponsibility 
 ]

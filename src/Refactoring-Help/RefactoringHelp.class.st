@@ -4,15 +4,11 @@ This is a custom help book for the refactoring framework.
 Class {
 	#name : #RefactoringHelp,
 	#superclass : #CustomHelp,
-	#category : #Refactoring-Help,
-	#timestamp : 'NicolaiHess 7/27/2016 21:14'
+	#category : #Refactoring-Help
 }
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RefactoringHelp class>>about [
+{ #category : #pages }
+RefactoringHelp class >> about [
 	^HelpTopic
 		title: 'About'
 		contents: 
@@ -30,27 +26,18 @@ That''s why all of the classes of this framework start with the prefix ''RB''.
 '
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RefactoringHelp class>>bookDescription [
+{ #category : #accessing }
+RefactoringHelp class >> bookDescription [
 	^ self comment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RefactoringHelp class>>bookName [
+{ #category : #accessing }
+RefactoringHelp class >> bookName [
 	^ 'Refactoring Framework'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RefactoringHelp class>>coreComponents [
+{ #category : #pages }
+RefactoringHelp class >> coreComponents [
 	^HelpTopic
 		title: 'Core Components'
 		contents: 
@@ -88,11 +75,8 @@ by a RBRefactoryChange, its subclass or a composition of refactory changes.
 '
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RefactoringHelp class>>overview [
+{ #category : #pages }
+RefactoringHelp class >> overview [
 	^HelpTopic
 		title: 'Overview'
 		contents: 
@@ -109,10 +93,7 @@ This search capability - search for code "patterns" - can be used to detect comm
 '
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RefactoringHelp class>>pages [
+{ #category : #accessing }
+RefactoringHelp class >> pages [
 	^#( about overview coreComponents RBBrowserSupportHelp RBRefactoringExamplesHelp RBRefactoringCoreHelp)
 ]

@@ -15,42 +15,29 @@ Class {
 	#classInstVars : [
 		'wasOpenedBefore'
 	],
-	#category : #QualityAssistant,
-	#timestamp : 'YuriyTymchuk 4/16/2015 14:48'
+	#category : #QualityAssistant
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph class>>cleanUp [
+{ #category : #cleanup }
+QANautilusPluginMorph class >> cleanUp [
 
 	wasOpenedBefore := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph class>>wasOpenedBefore [
+{ #category : #accessing }
+QANautilusPluginMorph class >> wasOpenedBefore [
 
 	^ wasOpenedBefore ifNil: [ wasOpenedBefore := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph class>>wasOpenedBefore: aBoolean [
+{ #category : #accessing }
+QANautilusPluginMorph class >> wasOpenedBefore: aBoolean [
 
 	wasOpenedBefore := aBoolean 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+QANautilusPluginMorph >> adoptPaneColor: paneColor [
 	super adoptPaneColor: paneColor.
 	
 	"I have no idea how to solve this in a different way.
@@ -60,29 +47,20 @@ QANautilusPluginMorph>>adoptPaneColor: paneColor [
 		(Smalltalk ui theme listNormalBorderStyleFor: listMorph).
 ]
 
-{
-	#category : #list-morph,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>allowToSelect [
+{ #category : #list-morph }
+QANautilusPluginMorph >> allowToSelect [
 	^ true
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>classCommented: anAnnouncement  [
+{ #category : #'announcement handling' }
+QANautilusPluginMorph >> classCommented: anAnnouncement [ 
 
 	anAnnouncement classCommented == entity ifTrue: [ 
 		self updateList ]
 ]
 
-{
-	#category : #list-morph,
-	#timestamp : 'AutoDeprecationRefactoring 8/31/2017 15:37'
-}
-QANautilusPluginMorph>>displayCritique: aCritique [
+{ #category : #list-morph }
+QANautilusPluginMorph >> displayCritique: aCritique [
 	| listItem |
 	listItem := Morph new
 		layoutPolicy: TableLayout new;
@@ -128,65 +106,44 @@ QANautilusPluginMorph>>displayCritique: aCritique [
 	^ listItem
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>entity [
+{ #category : #accessing }
+QANautilusPluginMorph >> entity [
 	^ entity
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>entity: anEntity [
+{ #category : #accessing }
+QANautilusPluginMorph >> entity: anEntity [
 
 	entity := anEntity.
 	self updateList
 ]
 
-{
-	#category : #'task handling',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>excecuteTask [
+{ #category : #'task handling' }
+QANautilusPluginMorph >> excecuteTask [
 	
 	self stopTask; setTaskAction.
 	updateTask execute.
 ]
 
-{
-	#category : #list-morph,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>getCritiques [
+{ #category : #list-morph }
+QANautilusPluginMorph >> getCritiques [
 
 	^ critiques
 ]
 
-{
-	#category : #list-morph,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>iconFor: item at: anIndex [
+{ #category : #list-morph }
+QANautilusPluginMorph >> iconFor: item at: anIndex [
 	^  item icon
 ]
 
-{
-	#category : #list-morph,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>iconMaxSize [
+{ #category : #list-morph }
+QANautilusPluginMorph >> iconMaxSize [
 
 	^ 16 @ 16
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>initialize [
+{ #category : #initialization }
+QANautilusPluginMorph >> initialize [
 	super initialize.
 	
 	critiques := #().
@@ -210,11 +167,8 @@ QANautilusPluginMorph>>initialize [
 	self subscribe
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>initializeList [
+{ #category : #initialization }
+QANautilusPluginMorph >> initializeList [
 	listMorph := NonfocusablePluggableIconListMorph new
 		model: self;
 		getListSelector: #getCritiques;
@@ -233,11 +187,8 @@ QANautilusPluginMorph>>initializeList [
 		
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>initializeProgress [
+{ #category : #initialization }
+QANautilusPluginMorph >> initializeProgress [
 
 	progressMorph := BorderedMorph new
 		layoutPolicy: TableLayout new;
@@ -257,70 +208,49 @@ QANautilusPluginMorph>>initializeProgress [
 	 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>initializeUpdateTask [
+{ #category : #initialization }
+QANautilusPluginMorph >> initializeUpdateTask [
 
 	updateTask := GLMAsyncTask new
 		priority: Processor userBackgroundPriority;
 		yourself.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>intoWorld: aWorld [
+{ #category : #initialize }
+QANautilusPluginMorph >> intoWorld: aWorld [
 
 	updateTask isTerminated ifTrue: [ self setTaskAction ].
 
 	super intoWorld: aWorld
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>methodModified: anAnnouncement  [
+{ #category : #'announcement handling' }
+QANautilusPluginMorph >> methodModified: anAnnouncement [ 
 
 	anAnnouncement method == entity ifTrue: [ 
 		self updateList ]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>outOfWorld: aWorld [
+{ #category : #initialize }
+QANautilusPluginMorph >> outOfWorld: aWorld [
 
 	self stopTask.
 	
 	super outOfWorld: aWorld.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>pluginDelegate [
+{ #category : #accessing }
+QANautilusPluginMorph >> pluginDelegate [
 	^ pluginDelegate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>pluginDelegate: anObject [
+{ #category : #accessing }
+QANautilusPluginMorph >> pluginDelegate: anObject [
 	pluginDelegate := anObject
 ]
 
-{
-	#category : #list-morph,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>selected: index [
+{ #category : #list-morph }
+QANautilusPluginMorph >> selected: index [
 	| critique |
 
 	(index == 0 or:
@@ -333,11 +263,8 @@ QANautilusPluginMorph>>selected: index [
 		clickedOnFor: entity.
 ]
 
-{
-	#category : #'task handling',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>setTaskAction [
+{ #category : #'task handling' }
+QANautilusPluginMorph >> setTaskAction [
 
 	updateTask
 		doInBackground: [
@@ -348,11 +275,8 @@ QANautilusPluginMorph>>setTaskAction [
 		onCompleted: [ self taskCompleted ]
 ]
 
-{
-	#category : #'task handling',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>stopTask [
+{ #category : #'task handling' }
+QANautilusPluginMorph >> stopTask [
 
 	updateTask ifNotNil: [ 
 		updateTask 
@@ -362,22 +286,16 @@ QANautilusPluginMorph>>stopTask [
 	]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>subscribe [
+{ #category : #initialization }
+QANautilusPluginMorph >> subscribe [
 
 	SystemAnnouncer uniqueInstance weak
 		when: ClassCommented send: #classCommented: to: self;
 		when: MethodRecategorized send: #methodModified: to: self.
 ]
 
-{
-	#category : #'task handling',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>taskCompleted [
+{ #category : #'task handling' }
+QANautilusPluginMorph >> taskCompleted [
 
 	listMorph
 	updateList;
@@ -391,11 +309,8 @@ QANautilusPluginMorph>>taskCompleted [
 								of: entity ].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-QANautilusPluginMorph>>updateList [
+{ #category : #actions }
+QANautilusPluginMorph >> updateList [
 
 	self removeAllMorphs.
 	self addMorphFront: progressMorph.

@@ -7,61 +7,42 @@ Class {
 	#instVars : [
 		'state'
 	],
-	#category : #System-Hashing-MD5,
-	#timestamp : 'ul 3/3/2008 23:40'
+	#category : #System-Hashing-MD5
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5 class>>blockSize [
+{ #category : #accessing }
+MD5 class >> blockSize [
 	^ 64
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5 class>>hashSize [
+{ #category : #accessing }
+MD5 class >> hashSize [
 	^ 16
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5 class>>isPluginAvailable [
+{ #category : #testing }
+MD5 class >> isPluginAvailable [
 
 	<primitive: 'primitivePluginAvailable' module: 'MD5Plugin'>
 	^false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5 class>>new [
+{ #category : #'instance creation' }
+MD5 class >> new [
 
 	self isPluginAvailable 
 		ifTrue: [ ^self basicNew ]
 		ifFalse: [ ^MD5NonPrimitive basicNew ]
 ]
 
-{
-	#category : #private-buffers,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5>>finalValue [
+{ #category : #private-buffers }
+MD5 >> finalValue [
 
 	^state
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5>>hashStream: aPositionableStream [
+{ #category : #accessing }
+MD5 >> hashStream: aPositionableStream [
 
 	| startPosition buf bitLength |
 	self initialize.
@@ -84,11 +65,8 @@ MD5>>hashStream: aPositionableStream [
 	^ self finalValue
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5>>initialize [
+{ #category : #initialization }
+MD5 >> initialize [
 	"Some magic numbers to get the process started"
 
 	state :=  #[1 35 69 103 137 171 205 239 254 220 186 152 118 84 50 16]
@@ -96,31 +74,22 @@ MD5>>initialize [
 
 ]
 
-{
-	#category : #private-buffers,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5>>primProcessBuffer: aByteArray withState: s [
+{ #category : #private-buffers }
+MD5 >> primProcessBuffer: aByteArray withState: s [
 
 	<primitive: 'primitiveProcessBufferWithState' module: 'MD5Plugin'>
 	self primitiveFailed
 ]
 
-{
-	#category : #private-buffers,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5>>processBuffer: aByteArray [
+{ #category : #private-buffers }
+MD5 >> processBuffer: aByteArray [
 
 	self primProcessBuffer: aByteArray withState: state.
 	
 ]
 
-{
-	#category : #private-buffers,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5>>processFinalBuffer: aByteArray bitLength: bitLength  [
+{ #category : #private-buffers }
+MD5 >> processFinalBuffer: aByteArray bitLength: bitLength [ 
 	"Pad the buffer until we have an even 64 bytes, then transform"
 	| out |
 	out := ByteArray new: 64.
@@ -158,11 +127,8 @@ MD5>>processFinalBuffer: aByteArray bitLength: bitLength  [
 	self processBuffer: out
 ]
 
-{
-	#category : #private-buffers,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5>>storeLength: bitLength in: aByteArray  [
+{ #category : #private-buffers }
+MD5 >> storeLength: bitLength in: aByteArray [ 
 	"Fill in the final 8 bytes of the given ByteArray with a 64-bit
 	little-endian representation of the original message length in bits."
 	| n i |

@@ -4,15 +4,11 @@ I am an adpater to bridge a DiffModel and a DiffMorph
 Class {
 	#name : #MorphicDiffAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDiffAdapter>>buildWidget [
+{ #category : #factory }
+MorphicDiffAdapter >> buildWidget [
 
 	^ DiffMorph new  
 		on: self ;
@@ -25,125 +21,86 @@ MorphicDiffAdapter>>buildWidget [
 		yourself
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDiffAdapter>>contextClass [
+{ #category : #'widget API' }
+MorphicDiffAdapter >> contextClass [
 
 	^ self model contextClass
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDiffAdapter>>contextClass: aClass [
+{ #category : #'spec protocol' }
+MorphicDiffAdapter >> contextClass: aClass [
 	self widgetDo: [ :w | 
 		w 
 			contextClass: aClass;
 			updateText ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDiffAdapter>>leftText [
+{ #category : #'widget API' }
+MorphicDiffAdapter >> leftText [
 
 	^ self model leftText
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDiffAdapter>>leftText: aText [
+{ #category : #'spec protocol' }
+MorphicDiffAdapter >> leftText: aText [
 
 	self widgetDo: [ :w | 
 		w sourceTextModel setText: aText.
 		w updateText ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDiffAdapter>>rightText [
+{ #category : #'widget API' }
+MorphicDiffAdapter >> rightText [
 
 	^ self model rightText
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDiffAdapter>>rightText: aText [
+{ #category : #'spec protocol' }
+MorphicDiffAdapter >> rightText: aText [
 	self
 		widgetDo: [ :w | 
 			w destTextModel setText: aText.
 			w updateText ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDiffAdapter>>showBoth [
+{ #category : #'spec protocol' }
+MorphicDiffAdapter >> showBoth [
 
 	self widgetDo: [ :w | w showBoth ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDiffAdapter>>showOnlyDestination [
+{ #category : #'widget API' }
+MorphicDiffAdapter >> showOnlyDestination [
 
 	^ self model showOnlyDestination
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDiffAdapter>>showOnlyDestination: aBoolean [
+{ #category : #'spec protocol' }
+MorphicDiffAdapter >> showOnlyDestination: aBoolean [
 
 	self widgetDo: [ :w | w showOnlyDestination: aBoolean ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDiffAdapter>>showOnlySource [
+{ #category : #'widget API' }
+MorphicDiffAdapter >> showOnlySource [
 
 	^ self model showOnlySource
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDiffAdapter>>showOnlySource: aBoolean [
+{ #category : #'spec protocol' }
+MorphicDiffAdapter >> showOnlySource: aBoolean [
 
 	self widgetDo: [ :w | w showOnlySource: aBoolean ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDiffAdapter>>showOptions [
+{ #category : #'widget API' }
+MorphicDiffAdapter >> showOptions [
 
 	^ self model showOptions
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDiffAdapter>>showOptions: aBoolean [
+{ #category : #'spec protocol' }
+MorphicDiffAdapter >> showOptions: aBoolean [
 
 	self widgetDo: [ :w | w showOptions: aBoolean ]
 ]

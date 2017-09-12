@@ -16,44 +16,31 @@ Class {
 	#pools : [
 		'SDL2Constants'
 	],
-	#category : #OSWindow-SDL2,
-	#timestamp : 'Matthieu 5/28/2015 12:10'
+	#category : #OSWindow-SDL2
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2AthensRenderer class>>for: aWindowHandle [
+{ #category : #'instance creation' }
+OSSDL2AthensRenderer class >> for: aWindowHandle [
 	^ self basicNew 
 		initializeWindowHandle: aWindowHandle;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2AthensRenderer class>>new  [
+{ #category : #'instance creation' }
+OSSDL2AthensRenderer class >> new [ 
 	self error: 'Use #for:'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2AthensRenderer>>createSDLSurfaceWithExtent: extent [
+{ #category : #private }
+OSSDL2AthensRenderer >> createSDLSurfaceWithExtent: extent [
 	surfaceForm ifNotNil: [ surfaceForm destroySurface ].
 	"createRGBSurfaceForCairoWidth creates the surface with autoRelease."
 	sdlSurface := SDL2 createRGBSurfaceForCairoWidth: extent x height: extent y.
 	surfaceForm := OSSDL2ExternalForm extent: extent depth: 32 bits: sdlSurface pixels.
 ]
 
-{
-	#category : #deleting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2AthensRenderer>>destroy [
+{ #category : #deleting }
+OSSDL2AthensRenderer >> destroy [
 	
 	super destroy.
 	sdlSurface := nil.
@@ -61,11 +48,8 @@ OSSDL2AthensRenderer>>destroy [
 	renderer := nil.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2AthensRenderer>>initialize [
+{ #category : #initialization }
+OSSDL2AthensRenderer >> initialize [
 
 	super initialize.
 	sdlSurface := nil.
@@ -73,11 +57,8 @@ OSSDL2AthensRenderer>>initialize [
 	renderer := nil.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2AthensRenderer>>initializeWindowHandle: aWindowHandle  [
+{ #category : #initialization }
+OSSDL2AthensRenderer >> initializeWindowHandle: aWindowHandle [ 
 	self initialize.
 	self window: aWindowHandle.
 	renderer := window handle createDefaultRenderer.
@@ -86,19 +67,13 @@ OSSDL2AthensRenderer>>initializeWindowHandle: aWindowHandle  [
 		
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2AthensRenderer>>prepareForDrawing [
+{ #category : #drawing }
+OSSDL2AthensRenderer >> prepareForDrawing [
 	textureExtent ~= window extent ifTrue: [ self resized ].
 ]
 
-{
-	#category : #'updating screen',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2AthensRenderer>>present [
+{ #category : #'updating screen' }
+OSSDL2AthensRenderer >> present [
 	self validate ifFalse: [ ^ self ].
 	renderer
 		clear;
@@ -106,19 +81,13 @@ OSSDL2AthensRenderer>>present [
 		present
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2AthensRenderer>>primitiveUpdateRectangle: rectangle externalForm: externalForm [
+{ #category : #private }
+OSSDL2AthensRenderer >> primitiveUpdateRectangle: rectangle externalForm: externalForm [
 	externalForm copy: rectangle from: surfaceForm to: rectangle origin rule: Form over
 ]
 
-{
-	#category : #'updating resources',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2AthensRenderer>>resetResources [
+{ #category : #'updating resources' }
+OSSDL2AthensRenderer >> resetResources [
 	| extent |
 	self checkSession.
 	extent := self window extent.
@@ -132,29 +101,20 @@ OSSDL2AthensRenderer>>resetResources [
 	textureExtent := extent.
 ]
 
-{
-	#category : #'updating screen',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2AthensRenderer>>resized [
+{ #category : #'updating screen' }
+OSSDL2AthensRenderer >> resized [
 	self resetResources.
 	super resized
 ]
 
-{
-	#category : #'updating screen',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2AthensRenderer>>updateAll [
+{ #category : #'updating screen' }
+OSSDL2AthensRenderer >> updateAll [
 	self validate ifFalse: [ ^ self ].
 	texture updateTexturePixels: sdlSurface pixels pitch: sdlSurface pitch.
 ]
 
-{
-	#category : #'updating screen',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2AthensRenderer>>updateRectangle: aRectangle [
+{ #category : #'updating screen' }
+OSSDL2AthensRenderer >> updateRectangle: aRectangle [
 	| intersection pitchHolder externalForm |
 	self validate ifFalse: [ ^ self ].
 	intersection := aRectangle
@@ -178,11 +138,8 @@ OSSDL2AthensRenderer>>updateRectangle: aRectangle [
 
 ]
 
-{
-	#category : #'updating screen',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2AthensRenderer>>updateRectangles: allDamage [
+{ #category : #'updating screen' }
+OSSDL2AthensRenderer >> updateRectangles: allDamage [
 	| pitchHolder externalForm intersection |
 	self validate
 		ifFalse: [ ^ self ].
@@ -212,11 +169,8 @@ OSSDL2AthensRenderer>>updateRectangles: allDamage [
 
 ]
 
-{
-	#category : #'updating screen',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2AthensRenderer>>validate [
+{ #category : #'updating screen' }
+OSSDL2AthensRenderer >> validate [
 	self checkSession.
 	(texture isNil or: [ texture isNull ]) ifTrue: [ ^ false ].	
 	window extent ~= textureExtent ifTrue: [ ^ false ].

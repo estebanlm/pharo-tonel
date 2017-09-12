@@ -4,15 +4,11 @@ A transform morph that allows the use of a layout policy to arrange submorphs.
 Class {
 	#name : #TransformWithLayoutMorph,
 	#superclass : #TransformMorph,
-	#category : #Morphic-Widgets-Scrolling,
-	#timestamp : 'gvc 5/18/2007 10:18'
+	#category : #Morphic-Widgets-Scrolling
 }
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TransformWithLayoutMorph>>doLayoutIn: layoutBounds  [
+{ #category : #layout }
+TransformWithLayoutMorph >> doLayoutIn: layoutBounds [ 
 	"Compute a new layout based on the given layout bounds."
 
 	"Note: Testing for #bounds or #layoutBounds would be sufficient to
@@ -32,11 +28,8 @@ TransformWithLayoutMorph>>doLayoutIn: layoutBounds  [
 		ifFalse: [self invalidRect: (priorBounds quickMerge: box)]
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TransformWithLayoutMorph>>fullBounds [
+{ #category : #layout }
+TransformWithLayoutMorph >> fullBounds [
 	"Do the ordinary thing. See comment in superclass."
 
 	^self perform: #fullBounds withArguments: #() inSuperclass: Morph

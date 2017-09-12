@@ -4,34 +4,24 @@ Specialized list item wrapper for dependents
 Class {
 	#name : #MCDependentsWrapper,
 	#superclass : #ListItemWrapper,
-	#category : #MonticelloGUI,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:53'
+	#category : #MonticelloGUI
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCDependentsWrapper>>= anMCDependentsWrapper [
+{ #category : #comparing }
+MCDependentsWrapper >> = anMCDependentsWrapper [
 
 	self class = anMCDependentsWrapper class ifFalse: [^ false].
 	^ (self item package name = anMCDependentsWrapper item package name) and: [self model = anMCDependentsWrapper model].
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCDependentsWrapper>>asString [
+{ #category : #converting }
+MCDependentsWrapper >> asString [
 	^item description
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCDependentsWrapper>>contents [
+{ #category : #accessing }
+MCDependentsWrapper >> contents [
 	| list workingCopies |
 	workingCopies := model unsortedWorkingCopies.
 	list := item requiredPackages collect: 
@@ -41,19 +31,13 @@ MCDependentsWrapper>>contents [
 	^list collect: [:each | self class with: each model: model]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCDependentsWrapper>>hasContents [
+{ #category : #accessing }
+MCDependentsWrapper >> hasContents [
 	^item requiredPackages isEmpty not
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCDependentsWrapper>>hash [
+{ #category : #comparing }
+MCDependentsWrapper >> hash [
 	^ (self item package name hash * 37) + self model hash 
 
 ]

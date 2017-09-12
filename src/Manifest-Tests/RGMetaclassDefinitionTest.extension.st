@@ -1,12 +1,7 @@
-Extension {
-	#name : #RGMetaclassDefinitionTest
-}
+Extension { #name : #RGMetaclassDefinitionTest }
 
-{
-	#category : #'*Manifest-Tests',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RGMetaclassDefinitionTest>>testArrayStringForManifest [
+{ #category : #'*Manifest-Tests' }
+RGMetaclassDefinitionTest >> testArrayStringForManifest [
 	| class |
 	class := self class class.
 
@@ -15,11 +10,8 @@ RGMetaclassDefinitionTest>>testArrayStringForManifest [
 		equals: { #RGMetaclassDefinition . { class name asSymbol . self class name asSymbol } }
 ]
 
-{
-	#category : #'*Manifest-Tests',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RGMetaclassDefinitionTest>>testManifestReadOn [
+{ #category : #'*Manifest-Tests' }
+RGMetaclassDefinitionTest >> testManifestReadOn [
 	| class |
 	class := self class.
 

@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #MethodWidgetTest,
 	#superclass : #TestCase,
-	#category : #Nautilus-Tests,
-	#timestamp : ''
+	#category : #Nautilus-Tests
 }
 
-{
-	#category : #mock,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-MethodWidgetTest>>foo [
+{ #category : #mock }
+MethodWidgetTest >> foo [
 	<script: 'self new'>
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-MethodWidgetTest>>testElementInCacheShouldBeNotNil [
+{ #category : #tests }
+MethodWidgetTest >> testElementInCacheShouldBeNotNil [
 
 	MethodWidget resetMethodIconCache.
 	self assert: (MethodWidget new methodIconFor: (self class >> #foo)) target notNil.

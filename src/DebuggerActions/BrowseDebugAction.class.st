@@ -5,15 +5,11 @@ A BrowseDebugAction is a debugging actions sending a unary message to the stack 
 Class {
 	#name : #BrowseDebugAction,
 	#superclass : #MessageSendDebugAction,
-	#category : #DebuggerActions,
-	#timestamp : '<historical>'
+	#category : #DebuggerActions
 }
 
-{
-	#category : #'actions creation',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-BrowseDebugAction class>>debugActionsFor: aDebugger [
+{ #category : #'actions creation' }
+BrowseDebugAction class >> debugActionsFor: aDebugger [
 	<contextMenuDebuggingAction>
 	| initilOrder |
 	
@@ -79,22 +75,16 @@ BrowseDebugAction class>>debugActionsFor: aDebugger [
 	 }
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-BrowseDebugAction>>initialize [
+{ #category : #initialization }
+BrowseDebugAction >> initialize [
 
 	super initialize.
 	self needsUpdate: false.
 	self needsValidation: false.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-BrowseDebugAction>>receiver [
+{ #category : #accessing }
+BrowseDebugAction >> receiver [
 
 	^ self debugger stack
 ]

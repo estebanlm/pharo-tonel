@@ -15,15 +15,11 @@ Class {
 		'withSearch',
 		'pageSearchText'
 	],
-	#category : #Morphic-Widgets-Tree-Pagination,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Tree-Pagination
 }
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar class>>createIconMethods [
+{ #category : #icons }
+MorphTreeNavigationBar class >> createIconMethods [
 	"self createIconMethods"
 	#('smallToLeft' 'smallToRight' 'smallToLeftEnd' 'smallToRightEnd' 'smallDieze' 'smallVerticalResizing')
 		do: [:n | | form |
@@ -31,19 +27,13 @@ MorphTreeNavigationBar class>>createIconMethods [
 			self class compile: (n, 'Icon', String cr, String tab, '^ ', form storeString) classified: #icons]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar class>>on: aTreeMorph pageSize: aPageSize [
+{ #category : #'instance creation' }
+MorphTreeNavigationBar class >> on: aTreeMorph pageSize: aPageSize [
 	^ self new treeMorph: aTreeMorph  pageSize: aPageSize
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar class>>smallDiezeIcon [
+{ #category : #icons }
+MorphTreeNavigationBar class >> smallDiezeIcon [
 	^ (Form
 	extent: 16@16
 	depth: 32
@@ -51,11 +41,8 @@ MorphTreeNavigationBar class>>smallDiezeIcon [
 	offset: 0@0)
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar class>>smallToLeftEndIcon [
+{ #category : #icons }
+MorphTreeNavigationBar class >> smallToLeftEndIcon [
 	^ (Form
 	extent: 16@16
 	depth: 32
@@ -63,11 +50,8 @@ MorphTreeNavigationBar class>>smallToLeftEndIcon [
 	offset: 0@0)
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar class>>smallToLeftIcon [
+{ #category : #icons }
+MorphTreeNavigationBar class >> smallToLeftIcon [
 	^ (Form
 	extent: 16@16
 	depth: 32
@@ -75,11 +59,8 @@ MorphTreeNavigationBar class>>smallToLeftIcon [
 	offset: 0@0)
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar class>>smallToRightEndIcon [
+{ #category : #icons }
+MorphTreeNavigationBar class >> smallToRightEndIcon [
 	^ (Form
 	extent: 16@16
 	depth: 32
@@ -87,11 +68,8 @@ MorphTreeNavigationBar class>>smallToRightEndIcon [
 	offset: 0@0)
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar class>>smallToRightIcon [
+{ #category : #icons }
+MorphTreeNavigationBar class >> smallToRightIcon [
 	^ (Form
 	extent: 16@16
 	depth: 32
@@ -99,11 +77,8 @@ MorphTreeNavigationBar class>>smallToRightIcon [
 	offset: 0@0)
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar class>>smallVerticalResizingIcon [
+{ #category : #icons }
+MorphTreeNavigationBar class >> smallVerticalResizingIcon [
 	^ (Form
 	extent: 16@16
 	depth: 32
@@ -111,11 +86,8 @@ MorphTreeNavigationBar class>>smallVerticalResizingIcon [
 	offset: 0@0)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>asDisabledForm: aForm [
+{ #category : #accessing }
+MorphTreeNavigationBar >> asDisabledForm: aForm [
 	| disa |
 	disa := aForm copy.
 	(aForm colorsUsed reject: [:c | c = Color transparent])
@@ -124,11 +96,8 @@ MorphTreeNavigationBar>>asDisabledForm: aForm [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>basicButton [
+{ #category : #accessing }
+MorphTreeNavigationBar >> basicButton [
 	| button |
 	^ (button := SimpleButtonMorph new)
 		clipSubmorphs: true;
@@ -148,11 +117,8 @@ MorphTreeNavigationBar>>basicButton [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>basicIcon [
+{ #category : #accessing }
+MorphTreeNavigationBar >> basicIcon [
 	| button |
 	^ (button := IconicButton new)
 		clipSubmorphs: true;
@@ -172,19 +138,13 @@ MorphTreeNavigationBar>>basicIcon [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>buildPanel [
+{ #category : #accessing }
+MorphTreeNavigationBar >> buildPanel [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>buttonLabel: aLabel actionSelector: aSelector arguments: aCollection getEnabled: enableSelector help: helpText [
+{ #category : #accessing }
+MorphTreeNavigationBar >> buttonLabel: aLabel actionSelector: aSelector arguments: aCollection getEnabled: enableSelector help: helpText [
 
 	| b |
 	b := (aLabel isString ifTrue: [self basicButton] ifFalse: [self basicIcon])
@@ -205,22 +165,16 @@ MorphTreeNavigationBar>>buttonLabel: aLabel actionSelector: aSelector arguments:
 	
 ]
 
-{
-	#category : #navigation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>changePageSize: aNumberOrNil [
+{ #category : #navigation }
+MorphTreeNavigationBar >> changePageSize: aNumberOrNil [
 	aNumberOrNil
 		ifNotNil: [self updateForNewPageSize: aNumberOrNil]
 		ifNil: [treeMorph removePager]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>computedBounds [
+{ #category : #accessing }
+MorphTreeNavigationBar >> computedBounds [
 	| tb tbw yGap |
 	tb := treeMorph bounds.
 	tbw := treeMorph borderWidth.
@@ -229,20 +183,14 @@ MorphTreeNavigationBar>>computedBounds [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>computedHeight [
+{ #category : #accessing }
+MorphTreeNavigationBar >> computedHeight [
 	^ computedHeight
 		ifNil: [computedHeight := self computedHeightFromContents + self layoutInset asPoint y + self cellInset asPoint y]
 ]
 
-{
-	#category : #navigation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>computedHeightFromContents [
+{ #category : #navigation }
+MorphTreeNavigationBar >> computedHeightFromContents [
 	| h |
 	h := 0.
 	self submorphsDo: [:sm | h := h max: sm height].
@@ -250,19 +198,13 @@ MorphTreeNavigationBar>>computedHeightFromContents [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>handlesMouseDown: anEvent [
+{ #category : #private }
+MorphTreeNavigationBar >> handlesMouseDown: anEvent [
 	^ true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>initialize [
+{ #category : #initialization }
+MorphTreeNavigationBar >> initialize [
 	super initialize.
 	self hResizing: #spaceFill;
 		 vResizing: #rigid;
@@ -276,46 +218,30 @@ MorphTreeNavigationBar>>initialize [
 		 borderColor: Color lightGray
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>mouseDown: anEvent [
-
+{ #category : #private }
+MorphTreeNavigationBar >> mouseDown: anEvent [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>nodeList [
+{ #category : #accessing }
+MorphTreeNavigationBar >> nodeList [
 	^ treeMorph nodeList
 ]
 
-{
-	#category : #navigation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>pageOfNodeIndex: anIndex [
+{ #category : #navigation }
+MorphTreeNavigationBar >> pageOfNodeIndex: anIndex [
 	^ (anIndex > 0 and: [anIndex <= self nodeList size])
 		ifTrue: [((anIndex - 1) // pageSize) + 1]
 		ifFalse: [nil]
 			
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>pageSearchText [
+{ #category : #accessing }
+MorphTreeNavigationBar >> pageSearchText [
 	^ pageSearchText ifNil: [pageSearchText := '']
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>pageSearchText: aString [
+{ #category : #accessing }
+MorphTreeNavigationBar >> pageSearchText: aString [
 	| founds chosen chosenNode |
 	pageSearchText := aString.
 	self changed: #pageSearchText.
@@ -344,27 +270,18 @@ MorphTreeNavigationBar>>pageSearchText: aString [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>pageSize [
+{ #category : #accessing }
+MorphTreeNavigationBar >> pageSize [
 	^ pageSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>pageSize: anInteger [
+{ #category : #accessing }
+MorphTreeNavigationBar >> pageSize: anInteger [
 	pageSize := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>pageSizeInput: aString [
+{ #category : #accessing }
+MorphTreeNavigationBar >> pageSizeInput: aString [
 	| input |
 	input := aString trimBoth.
 	input ifEmpty: [input := '1'].
@@ -386,35 +303,23 @@ MorphTreeNavigationBar>>pageSizeInput: aString [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>pagerColor [
+{ #category : #accessing }
+MorphTreeNavigationBar >> pagerColor [
 	^ treeMorph pagerColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>preferedFont [
+{ #category : #accessing }
+MorphTreeNavigationBar >> preferedFont [
 	^ self balloonFont 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>spacer: hsize [
+{ #category : #accessing }
+MorphTreeNavigationBar >> spacer: hsize [
 	^ (Morph new) color: Color transparent; extent: hsize @ (self hasSubmorphs  ifTrue: [self computedHeight] ifFalse: [(self preferedFont height + 8)]); yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>textEntryLabel: aLabel get: getSel set: setSel help: helpText class: aClass [
+{ #category : #accessing }
+MorphTreeNavigationBar >> textEntryLabel: aLabel get: getSel set: setSel help: helpText class: aClass [
  	| pt |
 	pt := PluggableTextFieldMorph new
 		convertTo: aClass;
@@ -442,64 +347,43 @@ MorphTreeNavigationBar>>textEntryLabel: aLabel get: getSel set: setSel help: hel
 	^pt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>treeMorph: aTreeMorph  [
+{ #category : #accessing }
+MorphTreeNavigationBar >> treeMorph: aTreeMorph [ 
 	treeMorph := aTreeMorph.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>treeMorph: aTreeMorph pageSize: anInteger [
+{ #category : #accessing }
+MorphTreeNavigationBar >> treeMorph: aTreeMorph pageSize: anInteger [
 	self treeMorph: aTreeMorph.
 	self pageSize: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>updateContents [
+{ #category : #accessing }
+MorphTreeNavigationBar >> updateContents [
 	self bounds: self computedBounds.
 	self color: treeMorph pagerColor.
 
 ]
 
-{
-	#category : #navigation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>updateForNewPageSize: aPageSize [
+{ #category : #navigation }
+MorphTreeNavigationBar >> updateForNewPageSize: aPageSize [
 	pageSize := aPageSize max: 1.
 	self changed: #pageSize
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>vScrollBarValue: scrollValue [
+{ #category : #'user interface' }
+MorphTreeNavigationBar >> vScrollBarValue: scrollValue [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>withSearch [
+{ #category : #accessing }
+MorphTreeNavigationBar >> withSearch [
 	^ withSearch ifNil: [withSearch := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeNavigationBar>>withSearch: aBoolean [
+{ #category : #accessing }
+MorphTreeNavigationBar >> withSearch: aBoolean [
 	withSearch := aBoolean.
 	self buildPanel
 ]

@@ -4,6 +4,5 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestMultilingualTextConverterOtherLanguages,
 	#superclass : #PackageManifest,
-	#category : #Multilingual-TextConverterOtherLanguages,
-	#timestamp : '<historical>'
+	#category : #Multilingual-TextConverterOtherLanguages
 }

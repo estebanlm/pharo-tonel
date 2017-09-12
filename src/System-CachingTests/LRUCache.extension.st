@@ -1,12 +1,7 @@
-Extension {
-	#name : #LRUCache
-}
+Extension { #name : #LRUCache }
 
-{
-	#category : #'*System-CachingTests',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-LRUCache>>testSupportGetCachedAssociations [
+{ #category : #'*System-CachingTests' }
+LRUCache >> testSupportGetCachedAssociations [
 	| result |
 	result := OrderedCollection new.
 	self keysAndValuesDo: [ :key :value |

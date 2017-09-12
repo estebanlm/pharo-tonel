@@ -25,31 +25,21 @@ Class {
 	#pools : [
 		'AthensCairoDefs'
 	],
-	#category : #Athens-Cairo-Text,
-	#timestamp : 'SeanDeNigris 4/4/2014 13:33'
+	#category : #Athens-Cairo-Text
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFreetypeFontRenderer>>advance [
+{ #category : #accessing }
+CairoFreetypeFontRenderer >> advance [
 	^ advance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFreetypeFontRenderer>>advance: aPoint  [
+{ #category : #accessing }
+CairoFreetypeFontRenderer >> advance: aPoint [ 
 	advance := aPoint
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFreetypeFontRenderer>>applyKerningOn: aGlyphs of: aString from: start to: end [
+{ #category : #private }
+CairoFreetypeFontRenderer >> applyKerningOn: aGlyphs of: aString from: start to: end [
 	"Apply kerning on a glyphs that represent aString from
 	start to end"
 	|kerning  previous|
@@ -63,20 +53,14 @@ CairoFreetypeFontRenderer>>applyKerningOn: aGlyphs of: aString from: start to: e
 		previous := current ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFreetypeFontRenderer>>canvas: aCairoCanvas [
+{ #category : #accessing }
+CairoFreetypeFontRenderer >> canvas: aCairoCanvas [
 	
 	canvas := aCairoCanvas.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFreetypeFontRenderer>>convertString: utf8String len: strlen ofFont: aScaledFont toGlyphs: glyphs numGlyphs: numGlyphs x: x y: y [
+{ #category : #private }
+CairoFreetypeFontRenderer >> convertString: utf8String len: strlen ofFont: aScaledFont toGlyphs: glyphs numGlyphs: numGlyphs x: x [ y: y
 "
 all of this for using 
 http://www.cairographics.org/manual/cairo-User-Fonts.html#cairo-user-scaled-font-text-to-glyphs-func-t
@@ -97,11 +81,8 @@ http://www.cairographics.org/manual/cairo-User-Fonts.html#cairo-user-scaled-font
 			0))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFreetypeFontRenderer>>font: aFreetypeFont  [
+{ #category : #accessing }
+CairoFreetypeFontRenderer >> font: aFreetypeFont [ 
 
 	font := CairoScaledFont fromFreetypeFont: aFreetypeFont.
 	fontExtents := font extents.
@@ -109,47 +90,32 @@ CairoFreetypeFontRenderer>>font: aFreetypeFont  [
 
 ]
 
-{
-	#category : #'accessing - font metrics',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFreetypeFontRenderer>>fontAscent [
+{ #category : #'accessing - font metrics' }
+CairoFreetypeFontRenderer >> fontAscent [
 	^ fontExtents ascent
 ]
 
-{
-	#category : #'accessing - font metrics',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFreetypeFontRenderer>>fontHeight [
+{ #category : #'accessing - font metrics' }
+CairoFreetypeFontRenderer >> fontHeight [
 	^ fontExtents height
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFreetypeFontRenderer>>freeGlyphs: glyphs [
+{ #category : #private }
+CairoFreetypeFontRenderer >> freeGlyphs: glyphs [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
 	^self nbCall: #( void cairo_glyph_free (void *glyphs))
 ]
 
-{
-	#category : #'accessing - font metrics',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFreetypeFontRenderer>>getGlyphWidth: aCharacter [
+{ #category : #'accessing - font metrics' }
+CairoFreetypeFontRenderer >> getGlyphWidth: aCharacter [
 	utfConverter convert: aCharacter asString from: 1 to: 1.
 	font getExtentsOf: utfConverter buffer into: glyphExtents.
 	^ glyphExtents x_advance
 ]
 
-{
-	#category : #'accessing - font metrics',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFreetypeFontRenderer>>glyphsOf: aString from: start to: end [
+{ #category : #'accessing - font metrics' }
+CairoFreetypeFontRenderer >> glyphsOf: aString from: start to: end [
 	| len ptr glyphs lenValue glyphsSize utf8Len error |
 
 	len := end-start+1.
@@ -190,31 +156,22 @@ CairoFreetypeFontRenderer>>glyphsOf: aString from: start to: end [
 	^ glyphs
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFreetypeFontRenderer>>initialize  [
+{ #category : #initialize }
+CairoFreetypeFontRenderer >> initialize [ 
 	utfConverter := CairoUTF8Converter new.
 	advance := 0@0.
 	cache := CairoBackendCache soleInstance.
 	glyphExtents := CairoTextExtents new.
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFreetypeFontRenderer>>render: aString [
+{ #category : #rendering }
+CairoFreetypeFontRenderer >> render: aString [
 
 	^ self renderCharacters: aString from: 1 to: aString size
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFreetypeFontRenderer>>renderCharacters: aString from: start to: end [
+{ #category : #rendering }
+CairoFreetypeFontRenderer >> renderCharacters: aString from: start to: end [
 	| glyphs |
 
 	glyphs := self glyphsOf: aString from: start to: end.
@@ -222,11 +179,8 @@ CairoFreetypeFontRenderer>>renderCharacters: aString from: start to: end [
 	^ self advance
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFreetypeFontRenderer>>renderGlyphs: cairoGlyphs [
+{ #category : #rendering }
+CairoFreetypeFontRenderer >> renderGlyphs: cairoGlyphs [
 
 	font lock.
 	canvas 
@@ -241,10 +195,7 @@ CairoFreetypeFontRenderer>>renderGlyphs: cairoGlyphs [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoFreetypeFontRenderer>>setColor: aColor  [
+{ #category : #accessing }
+CairoFreetypeFontRenderer >> setColor: aColor [ 
 	(canvas setPaint: aColor )
 ]

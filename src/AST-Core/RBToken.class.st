@@ -16,185 +16,118 @@ Class {
 		'sourcePointer',
 		'comments'
 	],
-	#category : #AST-Core-Tokens,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Tokens
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken class>>start: anInterval  [
+{ #category : #'instance creation' }
+RBToken class >> start: anInterval [ 
 	^self new start: anInterval
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>comments [
+{ #category : #accessing }
+RBToken >> comments [
 	^comments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>comments: anObject [
+{ #category : #accessing }
+RBToken >> comments: anObject [
 	comments := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>isAssignment [
+{ #category : #testing }
+RBToken >> isAssignment [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>isBinary [
+{ #category : #testing }
+RBToken >> isBinary [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>isError [
+{ #category : #testing }
+RBToken >> isError [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>isIdentifier [
+{ #category : #testing }
+RBToken >> isIdentifier [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>isKeyword [
+{ #category : #testing }
+RBToken >> isKeyword [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>isKeywordPattern [
+{ #category : #testing }
+RBToken >> isKeywordPattern [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>isLiteralArrayToken [
+{ #category : #testing }
+RBToken >> isLiteralArrayToken [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>isLiteralToken [
+{ #category : #testing }
+RBToken >> isLiteralToken [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>isNumberLiteralToken [
+{ #category : #testing }
+RBToken >> isNumberLiteralToken [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>isPatternBlock [
+{ #category : #testing }
+RBToken >> isPatternBlock [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>isPatternVariable [
+{ #category : #testing }
+RBToken >> isPatternVariable [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>isPrimitiveKeyword [
+{ #category : #testing }
+RBToken >> isPrimitiveKeyword [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>isSpecial [
+{ #category : #testing }
+RBToken >> isSpecial [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>length [
+{ #category : #accessing }
+RBToken >> length [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>printOn: aStream  [
+{ #category : #printing }
+RBToken >> printOn: aStream [ 
 	aStream
 		nextPut: $ ;
 		nextPutAll: self class name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>removePositions [
+{ #category : #accessing }
+RBToken >> removePositions [
 	sourcePointer := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>start [
+{ #category : #accessing }
+RBToken >> start [
 	^ sourcePointer ifNil: [ 0 ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>start: anInteger  [
+{ #category : #initialize-release }
+RBToken >> start: anInteger [ 
 	sourcePointer := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBToken>>stop [
+{ #category : #accessing }
+RBToken >> stop [
 	^ sourcePointer 
 		ifNil: [ -1 ]
 		ifNotNil: [ self start + self length - 1 ]

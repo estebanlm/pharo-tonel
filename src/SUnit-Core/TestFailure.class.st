@@ -4,34 +4,24 @@ The test framework distinguishes between failures and errors.  A failure is an e
 Class {
 	#name : #TestFailure,
 	#superclass : #Exception,
-	#category : #SUnit-Core-Kernel,
-	#timestamp : '<historical>'
+	#category : #SUnit-Core-Kernel
 }
 
-{
-	#category : #'camp smalltalk',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestFailure>>defaultAction [
+{ #category : #'camp smalltalk' }
+TestFailure >> defaultAction [
 
 	Processor activeProcess
 		debug: self signalerContext
 		title: self description
 ]
 
-{
-	#category : #'camp smalltalk',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestFailure>>isResumable [
+{ #category : #'camp smalltalk' }
+TestFailure >> isResumable [
 	
 	^ false
 ]
 
-{
-	#category : #'camp smalltalk',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TestFailure>>sunitAnnounce: aTestCase toResult: aTestResult [
+{ #category : #'camp smalltalk' }
+TestFailure >> sunitAnnounce: aTestCase toResult: aTestResult [
 	aTestResult addFailure: aTestCase.
 ]

@@ -11,15 +11,11 @@ Class {
 		'filterField',
 		'kmTable'
 	],
-	#category : #Spec-Tools-Keymapping,
-	#timestamp : 'NicolaiHess 2/16/2015 14:58'
+	#category : #Spec-Tools-Keymapping
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser class>>defaultSpec [
+{ #category : #specs }
+KeymapBrowser class >> defaultSpec [
 	<spec>
 	^ SpecLayout composed
 		newColumn: [ :c | c newRow: [ :r | 
@@ -31,11 +27,8 @@ KeymapBrowser class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #'system menu',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser class>>keymapBrowserMenuOn: aBuilder  [
+{ #category : #'system menu' }
+KeymapBrowser class >> keymapBrowserMenuOn: aBuilder [ 
 	"I build a menu"
 	<worldMenu>
 	(aBuilder item: #'Keymap Browser')
@@ -46,19 +39,13 @@ KeymapBrowser class>>keymapBrowserMenuOn: aBuilder  [
 		help: 'List all know shortcuts and Keymapping categories'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser class>>taskbarIconName [
+{ #category : #accessing }
+KeymapBrowser class >> taskbarIconName [
 	^ #keymapBrowserIcon
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser>>browseDefinitionOfSelectedShortcut [
+{ #category : #private }
+KeymapBrowser >> browseDefinitionOfSelectedShortcut [
 	| selection action class selector |
 	selection := self kmTable selectedItem.
 	selection ifNil: [ ^ self ].
@@ -69,27 +56,18 @@ KeymapBrowser>>browseDefinitionOfSelectedShortcut [
 	Smalltalk tools browser openOnClass: class selector: selector highlight: selection shortcutName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser>>clearFilterButton [
+{ #category : #accessing }
+KeymapBrowser >> clearFilterButton [
 	^ clearFilterButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser>>clearFilterButton: anObject [
+{ #category : #accessing }
+KeymapBrowser >> clearFilterButton: anObject [
 	clearFilterButton := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser>>collectAllShortcuts [
+{ #category : #private }
+KeymapBrowser >> collectAllShortcuts [
 	| collection |
 	collection := OrderedCollection new.
 	KMRepository default categories
@@ -105,35 +83,23 @@ KeymapBrowser>>collectAllShortcuts [
 	self kmTable items: collection.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser>>filterField [
+{ #category : #accessing }
+KeymapBrowser >> filterField [
 	^ filterField
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser>>filterField: anObject [
+{ #category : #accessing }
+KeymapBrowser >> filterField: anObject [
 	filterField := anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser>>initialExtent [
+{ #category : #protocol }
+KeymapBrowser >> initialExtent [
 	^ 600@300
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser>>initializePresenter [
+{ #category : #initialization }
+KeymapBrowser >> initializePresenter [
 	filterField
 		whenTextChanged: [ :text | 
 			clearFilterButton enabled: text isNotEmpty.
@@ -141,11 +107,8 @@ KeymapBrowser>>initializePresenter [
 	clearFilterButton action: [ filterField text: '' ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser>>initializeWidgets [
+{ #category : #initialization }
+KeymapBrowser >> initializeWidgets [
 	self title: 'Keymap Browser'.
 	kmTable := self newMultiColumnList.
 	kmTable displayBlock: [ :item | self wrapItem: item ].
@@ -161,11 +124,8 @@ KeymapBrowser>>initializeWidgets [
 	self collectAllShortcuts
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser>>inspectActionOfSelectedShortcut [
+{ #category : #private }
+KeymapBrowser >> inspectActionOfSelectedShortcut [
 	| selection action   |
 	selection := self kmTable selectedItem.
 	selection ifNil: [ ^ self ].
@@ -174,27 +134,18 @@ KeymapBrowser>>inspectActionOfSelectedShortcut [
 	action inspect
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser>>kmTable [
+{ #category : #accessing }
+KeymapBrowser >> kmTable [
 	^ kmTable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser>>kmTable: anObject [
+{ #category : #accessing }
+KeymapBrowser >> kmTable: anObject [
 	kmTable := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser>>menu: aMenu shifted: aBoolean [
+{ #category : #private }
+KeymapBrowser >> menu: aMenu shifted: aBoolean [
 	(aMenu add: 'Refresh' target: self selector: #collectAllShortcuts) 
 	icon: (self iconNamed: #smallUpdateIcon).
 	self kmTable selectedItem ifNil:[^ aMenu].
@@ -205,11 +156,8 @@ KeymapBrowser>>menu: aMenu shifted: aBoolean [
 	^ aMenu
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser>>setFilter: aFilterText [
+{ #category : #private }
+KeymapBrowser >> setFilter: aFilterText [
 	aFilterText isEmpty
 		ifTrue: [ self kmTable resetFilteringBlock ]
 		ifFalse: [ self kmTable
@@ -217,11 +165,8 @@ KeymapBrowser>>setFilter: aFilterText [
 						(self wrapItem: item) anySatisfy: [ :s | s includesSubstring: aFilterText caseSensitive: false ] ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KeymapBrowser>>wrapItem: aKMShortcutDeclaration [
+{ #category : #private }
+KeymapBrowser >> wrapItem: aKMShortcutDeclaration [
 	| name categorie |
 	name := aKMShortcutDeclaration shortcutName.
 	categorie := aKMShortcutDeclaration categoryName.

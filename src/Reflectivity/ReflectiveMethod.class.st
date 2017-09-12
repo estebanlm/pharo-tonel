@@ -17,51 +17,35 @@ Class {
 		'compiledMethod',
 		'linkCount'
 	],
-	#category : #Reflectivity-Core,
-	#timestamp : 'MarcusDenker 2/25/2015 18:00'
+	#category : #Reflectivity-Core
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod class>>on: aCompiledMethod  [
+{ #category : #'as yet unclassified' }
+ReflectiveMethod class >> on: aCompiledMethod [ 
 	^self new
 		compiledMethod: aCompiledMethod
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>ast [
+{ #category : #accessing }
+ReflectiveMethod >> ast [
 	^ast
 ]
 
-{
-	#category : #evaluation,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>compileAndInstallCompiledMethod [
+{ #category : #evaluation }
+ReflectiveMethod >> compileAndInstallCompiledMethod [
 	(compiledMethod isRealPrimitive and: [ast hasMetalink]) ifTrue: [ self generatePrimitiveWrapper ].
 	self recompileAST.
 	self installCompiledMethod.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>compiledMethod [
+{ #category : #accessing }
+ReflectiveMethod >> compiledMethod [
 	^compiledMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>compiledMethod: aCompiledMethod [
+{ #category : #accessing }
+ReflectiveMethod >> compiledMethod: aCompiledMethod [
 
 	compiledMethod := aCompiledMethod.
 	class := aCompiledMethod methodClass.
@@ -73,27 +57,18 @@ ReflectiveMethod>>compiledMethod: aCompiledMethod [
 		to: self
 ]
 
-{
-	#category : #invalidate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>createTwin [
+{ #category : #invalidate }
+ReflectiveMethod >> createTwin [
 	"do nothing"
 ]
 
-{
-	#category : #invalidate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>decreaseLinkCount [
+{ #category : #invalidate }
+ReflectiveMethod >> decreaseLinkCount [
 	linkCount := linkCount - 1.
 ]
 
-{
-	#category : #invalidate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>destroyTwin [
+{ #category : #invalidate }
+ReflectiveMethod >> destroyTwin [
 	(ast hasProperty: #wrappedPrimitive) ifTrue: [  ast :=  compiledMethod parseTree].
 	self recompileAST.
 	self installCompiledMethod.
@@ -101,29 +76,20 @@ ReflectiveMethod>>destroyTwin [
 	SystemAnnouncer uniqueInstance unsubscribe: self
 ]
 
-{
-	#category : #forwarding,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>doesNotUnderstand: aMessage [
+{ #category : #forwarding }
+ReflectiveMethod >> doesNotUnderstand: aMessage [
 	^aMessage sendTo: compiledMethod
 
 ]
 
-{
-	#category : #forwarding,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>flushCache [
+{ #category : #forwarding }
+ReflectiveMethod >> flushCache [
 	"See MethodDictionary class comment."
 	<primitive: 116>
 ]
 
-{
-	#category : #evaluation,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>generatePrimitiveWrapper [
+{ #category : #evaluation }
+ReflectiveMethod >> generatePrimitiveWrapper [
 	| wrappedMethod send wrapperMethod |
 	OCASTSemanticCleaner clean: ast.
 	ast compilationContext 
@@ -148,126 +114,84 @@ ReflectiveMethod>>generatePrimitiveWrapper [
 	ast := wrapperMethod.
 ]
 
-{
-	#category : #'inspector extensions',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>gtInspectorASTIn: composite [
+{ #category : #'inspector extensions' }
+ReflectiveMethod >> gtInspectorASTIn: composite [
 	<gtInspectorPresentationOrder: 35> 
 	self compiledMethod gtInspectorASTIn: composite
 ]
 
-{
-	#category : #'inspector extensions',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>gtInspectorIrIn: composite [
+{ #category : #'inspector extensions' }
+ReflectiveMethod >> gtInspectorIrIn: composite [
 	<gtInspectorPresentationOrder: 35> 
 	self compiledMethod gtInspectorIrIn: composite
 ]
 
-{
-	#category : #'inspector extensions',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>gtInspectorPragmasIn: composite [
+{ #category : #'inspector extensions' }
+ReflectiveMethod >> gtInspectorPragmasIn: composite [
 	<gtInspectorPresentationOrder: 30> 
 	self compiledMethod gtInspectorPragmasIn: composite
 ]
 
-{
-	#category : #'inspector extensions',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>gtInspectorSourceIn: composite [
+{ #category : #'inspector extensions' }
+ReflectiveMethod >> gtInspectorSourceIn: composite [
 	<gtInspectorPresentationOrder: 30> 
 	self compiledMethod gtInspectorSourceIn: composite
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>hasLinks [
+{ #category : #testing }
+ReflectiveMethod >> hasLinks [
 	^self linkCount > 0.
 ]
 
-{
-	#category : #invalidate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>increaseLinkCount [
+{ #category : #invalidate }
+ReflectiveMethod >> increaseLinkCount [
 	linkCount := self linkCount + 1.
 ]
 
-{
-	#category : #invalidate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>installCompiledMethod [
+{ #category : #invalidate }
+ReflectiveMethod >> installCompiledMethod [
 	self installMethod: compiledMethod.
 	ASTCache default at: compiledMethod put: ast.
 ]
 
-{
-	#category : #invalidate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>installLink: aMetaLink [
+{ #category : #invalidate }
+ReflectiveMethod >> installLink: aMetaLink [
 	self increaseLinkCount.
 	(self ast hasOption: #optionCompileOnLinkInstallation for: aMetaLink) 
 		ifTrue: [ self compileAndInstallCompiledMethod ].
 	SystemAnnouncer uniqueInstance announce: (MetalinkChanged new link: aMetaLink)	
 ]
 
-{
-	#category : #invalidate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>installMethod: aMethod [
+{ #category : #invalidate }
+ReflectiveMethod >> installMethod: aMethod [
 	| selector |
 	selector := aMethod selector.
 	"add to method dictionary."
 	class methodDict at: selector put: aMethod.
 ]
 
-{
-	#category : #invalidate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>installReflectiveMethod [
+{ #category : #invalidate }
+ReflectiveMethod >> installReflectiveMethod [
 	self installMethod: self
 ]
 
-{
-	#category : #invalidate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>invalidate [
+{ #category : #invalidate }
+ReflectiveMethod >> invalidate [
 	"nop: I am already installed"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>linkCount [
+{ #category : #accessing }
+ReflectiveMethod >> linkCount [
 	^linkCount ifNil: [ linkCount := 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>linkCount: aNumber [
+{ #category : #accessing }
+ReflectiveMethod >> linkCount: aNumber [
 	linkCount := aNumber
 ]
 
-{
-	#category : #invalidate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>metaLinkOptions [
+{ #category : #invalidate }
+ReflectiveMethod >> metaLinkOptions [
 	^{
 	#invalidate -> #( + optionCompileOnLinkInstallation).
 	#increaseLinkCount -> #( + optionCompileOnLinkInstallation).
@@ -290,19 +214,13 @@ ReflectiveMethod>>metaLinkOptions [
 	}
 ]
 
-{
-	#category : #forwarding,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>methodClass: aClass [
+{ #category : #forwarding }
+ReflectiveMethod >> methodClass: aClass [
 	^compiledMethod methodClass: aClass
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>printOn: aStream  [
+{ #category : #printing }
+ReflectiveMethod >> printOn: aStream [ 
 	"Overrides method inherited from the byte arrayed collection."
 
 	aStream 
@@ -312,11 +230,8 @@ ReflectiveMethod>>printOn: aStream  [
 		nextPutAll: ' (ReflectiveMethod)'.
 ]
 
-{
-	#category : #evaluation,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>recompileAST [
+{ #category : #evaluation }
+ReflectiveMethod >> recompileAST [
 	| links |
 	OCASTSemanticCleaner clean: ast.
 	ast compilationContext 
@@ -327,27 +242,18 @@ ReflectiveMethod>>recompileAST [
 	compiledMethod reflectiveMethod: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>reflectiveMethod [
+{ #category : #accessing }
+ReflectiveMethod >> reflectiveMethod [
 	^self
 ]
 
-{
-	#category : #'ast cache',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>reinstallASTInCache [
+{ #category : #'ast cache' }
+ReflectiveMethod >> reinstallASTInCache [
 	ASTCache default at: compiledMethod put: ast
 ]
 
-{
-	#category : #invalidate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>removeLink: aMetaLink [
+{ #category : #invalidate }
+ReflectiveMethod >> removeLink: aMetaLink [
 	(aMetaLink optionCompileOnLinkInstallation or: [ compiledMethod isRealPrimitive ])
 		ifTrue: [ self compileAndInstallCompiledMethod ]
 		ifFalse: [ compiledMethod invalidate ].
@@ -357,107 +263,71 @@ ReflectiveMethod>>removeLink: aMetaLink [
 		
 ]
 
-{
-	#category : #evaluation,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>run: aSelector with: anArray in: aReceiver	 [
+{ #category : #evaluation }
+ReflectiveMethod >> run: aSelector with: anArray in: aReceiver [	
 	"we install the old one as the compiler might need it"
 	self installCompiledMethod.
 	self compileAndInstallCompiledMethod.
 	^aReceiver rFwithArgs: anArray executeMethod: compiledMethod
 ]
 
-{
-	#category : #forwarding,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>selector  [
+{ #category : #forwarding }
+ReflectiveMethod >> selector [ 
 	^compiledMethod selector
 ]
 
-{
-	#category : #forwarding,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>selector: aSymbol [
+{ #category : #forwarding }
+ReflectiveMethod >> selector: aSymbol [
 	^compiledMethod selector: aSymbol
 ]
 
-{
-	#category : #spotter,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>spotterActDefault [
+{ #category : #spotter }
+ReflectiveMethod >> spotterActDefault [
 	^ self compiledMethod spotterActDefault
 ]
 
-{
-	#category : #spotter,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>spotterForBytecodesFor: aStep [
+{ #category : #spotter }
+ReflectiveMethod >> spotterForBytecodesFor: aStep [
 	<spotterOrder: 15>
 	compiledMethod spotterForBytecodesFor: aStep
 ]
 
-{
-	#category : #spotter,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>spotterForImplementorsFor: aStep [
+{ #category : #spotter }
+ReflectiveMethod >> spotterForImplementorsFor: aStep [
 	<spotterOrder: 10>
 	self compiledMethod spotterForImplementorsFor: aStep
 ]
 
-{
-	#category : #spotter,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>spotterForMessagesFor: aStep [
+{ #category : #spotter }
+ReflectiveMethod >> spotterForMessagesFor: aStep [
 	<spotterOrder: 12>
 	self compiledMethod spotterForMessagesFor: aStep
 ]
 
-{
-	#category : #spotter,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>spotterForSendersFor: aStep [
+{ #category : #spotter }
+ReflectiveMethod >> spotterForSendersFor: aStep [
 	<spotterOrder: 11>
 	self compiledMethod spotterForSendersFor: aStep
 ]
 
-{
-	#category : #spotter,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>spotterItemsFor: aStep [
+{ #category : #spotter }
+ReflectiveMethod >> spotterItemsFor: aStep [
 	"do nothing for compiled method"
 ]
 
-{
-	#category : #spotter,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>spotterMethodClassFor: aStep [
+{ #category : #spotter }
+ReflectiveMethod >> spotterMethodClassFor: aStep [
 	<spotterOrder: 50>
 	self compiledMethod spotterMethodClassFor: aStep
 ]
 
-{
-	#category : #spotter,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>spotterPreviewCodeIn: aComposite [
+{ #category : #spotter }
+ReflectiveMethod >> spotterPreviewCodeIn: aComposite [
 	<spotterPreview: 10>
 	self compiledMethod spotterPreviewCodeIn: aComposite
 ]
 
-{
-	#category : #spotter,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-ReflectiveMethod>>spotterSelectFor: aStep [
+{ #category : #spotter }
+ReflectiveMethod >> spotterSelectFor: aStep [
 	self compiledMethod spotterSelectFor: aStep
 ]

@@ -11,51 +11,35 @@ Class {
 	#instVars : [
 		'platform'
 	],
-	#category : #Keymapping-Pragmas,
-	#timestamp : '<historical>'
+	#category : #Keymapping-Pragmas
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMBuilder class>>keymap [
+{ #category : #'instance creation' }
+KMBuilder class >> keymap [
 	^self keymap: #all
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMBuilder class>>keymap: aPlatform [
+{ #category : #'instance creation' }
+KMBuilder class >> keymap: aPlatform [
 	(#( all Unix MacOSX Windows ) includes: aPlatform) ifFalse: [ self error: aPlatform, ' is not a valid platform' ].
 	^self new
 		platform: aPlatform;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMBuilder>>platform: aPlatform [
+{ #category : #accessing }
+KMBuilder >> platform: aPlatform [
 	platform := aPlatform
 ]
 
-{
-	#category : #keymap-building,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMBuilder>>setAsGlobalCategory: aGlobalCategory [
+{ #category : #keymap-building }
+KMBuilder >> setAsGlobalCategory: aGlobalCategory [
 
 	KMRepository default setAsGlobalCategory: aGlobalCategory
 ]
 
-{
-	#category : #keymap-building,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-KMBuilder>>shortcut: aKeymapName [
+{ #category : #keymap-building }
+KMBuilder >> shortcut: aKeymapName [
 	^KMKeymapBuilder 
 		for: aKeymapName
 		platform: platform

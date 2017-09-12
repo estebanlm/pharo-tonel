@@ -9,73 +9,48 @@ Class {
 		'value',
 		'tag'
 	],
-	#category : #GT-Inspector,
-	#timestamp : 'AndreiChis 2/20/2017 11:45'
+	#category : #GT-Inspector
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorDynamicNode class>>hostObject: anObject label: aString value: anotherObject [
+{ #category : #'instance creation' }
+GTInspectorDynamicNode class >> hostObject: anObject label: aString value: anotherObject [
 	^ (self hostObject: anObject) 
 		label: aString;
 		rawValue: anotherObject;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorDynamicNode>>key [
+{ #category : #accessing }
+GTInspectorDynamicNode >> key [
 	^ label
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorDynamicNode>>label [
+{ #category : #accessing }
+GTInspectorDynamicNode >> label [
 	^ label
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorDynamicNode>>label: aString [
+{ #category : #accessing }
+GTInspectorDynamicNode >> label: aString [
 	label := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorDynamicNode>>rawValue [
+{ #category : #accessing }
+GTInspectorDynamicNode >> rawValue [
 	^ value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorDynamicNode>>rawValue: anObject [
+{ #category : #accessing }
+GTInspectorDynamicNode >> rawValue: anObject [
 	value := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorDynamicNode>>variableTag [
+{ #category : #accessing }
+GTInspectorDynamicNode >> variableTag [
 	^  tag ifNil: [ super variableTag ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorDynamicNode>>variableTag: aTag [
+{ #category : #accessing }
+GTInspectorDynamicNode >> variableTag: aTag [
 	tag := aTag
 ]

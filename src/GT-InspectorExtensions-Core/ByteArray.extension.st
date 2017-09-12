@@ -1,12 +1,7 @@
-Extension {
-	#name : #ByteArray
-}
+Extension { #name : #ByteArray }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-ByteArray>>gtInspectorBytesIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+ByteArray >> gtInspectorBytesIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	^ composite table
 		title: 'Bytes';

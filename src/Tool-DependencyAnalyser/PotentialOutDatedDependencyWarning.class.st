@@ -8,69 +8,47 @@ Class {
 		'package',
 		'dependency'
 	],
-	#category : #Tool-DependencyAnalyser-Core,
-	#timestamp : 'ChristopheDemarey 9/4/2015 14:26'
+	#category : #Tool-DependencyAnalyser-Core
 }
 
-{
-	#category : #signaling,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-PotentialOutDatedDependencyWarning class>>signalDependency: dependencyName on: aPackageName [
+{ #category : #signaling }
+PotentialOutDatedDependencyWarning class >> signalDependency: dependencyName on: aPackageName [
 	^ self basicNew 
 		initializeWithDependency: dependencyName on: aPackageName;
 		signal;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-PotentialOutDatedDependencyWarning>>= anObject [
+{ #category : #comparing }
+PotentialOutDatedDependencyWarning >> = anObject [
 	self == anObject ifTrue: [ ^ true ].
 	self class = anObject class ifFalse: [ ^ false ].
 	^ (package == anObject package) and: [ dependency == anObject dependency ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-PotentialOutDatedDependencyWarning>>dependency [
+{ #category : #accessing }
+PotentialOutDatedDependencyWarning >> dependency [
 	^ dependency
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-PotentialOutDatedDependencyWarning>>hash [
+{ #category : #comparing }
+PotentialOutDatedDependencyWarning >> hash [
 	^ package hash bitXor: dependency hash
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-PotentialOutDatedDependencyWarning>>initializeWithDependency: aDependencyName on: aPackageName  [
+{ #category : #initialization }
+PotentialOutDatedDependencyWarning >> initializeWithDependency: aDependencyName on: aPackageName [ 
 	dependency := aDependencyName.
 	package := aPackageName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-PotentialOutDatedDependencyWarning>>messageText [
+{ #category : #accessing }
+PotentialOutDatedDependencyWarning >> messageText [
 	^ messageText 
 		ifNil: [ package , ': ' , dependency , ' dependency declared in the package Manifest as manuallyResolvedDependencies not detected as a dependency!' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-PotentialOutDatedDependencyWarning>>package [
+{ #category : #accessing }
+PotentialOutDatedDependencyWarning >> package [
 	^ package
 ]

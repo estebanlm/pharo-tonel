@@ -8,66 +8,44 @@ Class {
 	#instVars : [
 		'textModel'
 	],
-	#category : #Reflectivity-Tools-Breakpoints,
-	#timestamp : 'mcamp 11/17/2015 11:33'
+	#category : #Reflectivity-Tools-Breakpoints
 }
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler class>>shouldStyle [
+{ #category : #options }
+IconStyler class >> shouldStyle [
 	^true
 ]
 
-{
-	#category : #style,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler class>>style: textModel [
+{ #category : #style }
+IconStyler class >> style: textModel [
 	^self new textModel: textModel.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler class>>styleText: textModel withAst: ast [
+{ #category : #api }
+IconStyler class >> styleText: textModel withAst: ast [
 	self allSubclassesDo: [ :styleClass | 
 			styleClass shouldStyle
 				ifTrue: [ ast acceptVisitor: (styleClass style: textModel) ] ]
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>addIconMethodStyle: aMethodNode [
+{ #category : #styling }
+IconStyler >> addIconMethodStyle: aMethodNode [
 	self addIconStyle: aMethodNode from: 1 to: 0
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>addIconStyle: aNode [
+{ #category : #styling }
+IconStyler >> addIconStyle: aNode [
 	self addIconStyle: aNode from: aNode start to: aNode stop.
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>addIconStyle: aNode from: start to: stop [
+{ #category : #styling }
+IconStyler >> addIconStyle: aNode from: start to: stop [
 	
 	self addIconStyle: aNode from: start to: stop color: self highlightColor 
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>addIconStyle: aNode from: start to: stop color: aColor [
+{ #category : #styling }
+IconStyler >> addIconStyle: aNode from: start to: stop color: aColor [
 	|conf|
 	(self shouldStyleNode: aNode) ifFalse: [ ^self ].
 	conf := RubConfigurationChange new.
@@ -85,245 +63,161 @@ IconStyler>>addIconStyle: aNode from: start to: stop color: aColor [
 	textModel announce: conf
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>borderColor  [
+{ #category : #defaults }
+IconStyler >> borderColor [ 
 	^Color gray
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>highlightColor [
+{ #category : #defaults }
+IconStyler >> highlightColor [
 	^(Color green alpha: 0.1)
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>iconBlock: aNode [
+{ #category : #defaults }
+IconStyler >> iconBlock: aNode [
 	^ [ ] 
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>iconFor: aNode [
+{ #category : #defaults }
+IconStyler >> iconFor: aNode [
 	^nil
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>iconLabel: aNode [
+{ #category : #defaults }
+IconStyler >> iconLabel: aNode [
 	^ ''
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>iconLabelBlock: aNode [
+{ #category : #defaults }
+IconStyler >> iconLabelBlock: aNode [
 	^ [self iconLabel: aNode]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>shouldStyleNode: aNode [
+{ #category : #testing }
+IconStyler >> shouldStyleNode: aNode [
 	^false 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>textModel [
+{ #category : #accessing }
+IconStyler >> textModel [
 	^ textModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>textModel: anObject [
+{ #category : #accessing }
+IconStyler >> textModel: anObject [
 	textModel := anObject
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitArgumentNode: anArgumentNode  [
+{ #category : #visiting }
+IconStyler >> visitArgumentNode: anArgumentNode [ 
 	self addIconStyle: anArgumentNode.
 	super visitArgumentNode: anArgumentNode.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitArrayNode: anArrayNode  [
+{ #category : #visiting }
+IconStyler >> visitArrayNode: anArrayNode [ 
 	self addIconStyle: anArrayNode.
 	super visitArrayNode: anArrayNode.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitAssignmentNode: anAssignmentNode  [
+{ #category : #visiting }
+IconStyler >> visitAssignmentNode: anAssignmentNode [ 
 	self addIconStyle: anAssignmentNode.
 	super visitAssignmentNode: anAssignmentNode.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitBlockNode: aBlockNode  [
+{ #category : #visiting }
+IconStyler >> visitBlockNode: aBlockNode [ 
 	self addIconStyle: aBlockNode.
 	super visitBlockNode: aBlockNode.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitCascadeNode: aCascadeNode  [
+{ #category : #visiting }
+IconStyler >> visitCascadeNode: aCascadeNode [ 
 	self addIconStyle: aCascadeNode.
 	super visitCascadeNode: aCascadeNode.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitGlobalNode: aSelfNode  [
+{ #category : #visiting }
+IconStyler >> visitGlobalNode: aSelfNode [ 
 	self addIconStyle: aSelfNode.
 	super visitGlobalNode: aSelfNode.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitInstanceVariableNode: aSelfNode  [
+{ #category : #visiting }
+IconStyler >> visitInstanceVariableNode: aSelfNode [ 
 	self addIconStyle: aSelfNode.
 	super visitInstanceVariableNode: aSelfNode.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitLiteralArrayNode: aRBLiteralArrayNode  [
+{ #category : #visiting }
+IconStyler >> visitLiteralArrayNode: aRBLiteralArrayNode [ 
 	self addIconStyle: aRBLiteralArrayNode.
 	super visitLiteralArrayNode: aRBLiteralArrayNode.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitLiteralNode: aLiteralNode  [
+{ #category : #visiting }
+IconStyler >> visitLiteralNode: aLiteralNode [ 
 	self addIconStyle: aLiteralNode.
 	super visitLiteralNode: aLiteralNode.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitMessageNode: aMessageNode  [
+{ #category : #visiting }
+IconStyler >> visitMessageNode: aMessageNode [ 
 	self addIconStyle: aMessageNode.
 	super visitMessageNode: aMessageNode.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitMethodNode: aMethodNode  [
+{ #category : #visiting }
+IconStyler >> visitMethodNode: aMethodNode [ 
 	self addIconMethodStyle: aMethodNode.
 	super visitMethodNode: aMethodNode.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitParseErrorNode: anErrorNode  [
+{ #category : #visiting }
+IconStyler >> visitParseErrorNode: anErrorNode [ 
 	self addIconStyle: anErrorNode.
 	super visitParseErrorNode: anErrorNode.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitPragmaNode: aPragmaNode  [
+{ #category : #visiting }
+IconStyler >> visitPragmaNode: aPragmaNode [ 
 	self addIconStyle: aPragmaNode.
 	super visitPragmaNode: aPragmaNode.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitReturnNode: aReturnNode  [
+{ #category : #visiting }
+IconStyler >> visitReturnNode: aReturnNode [ 
 	self addIconStyle: aReturnNode.
 	super visitReturnNode: aReturnNode 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitSelfNode: aSelfNode  [
+{ #category : #visiting }
+IconStyler >> visitSelfNode: aSelfNode [ 
 	self addIconStyle: aSelfNode.
 	super visitSelfNode: aSelfNode 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitSequenceNode: aSequenceNode  [
+{ #category : #visiting }
+IconStyler >> visitSequenceNode: aSequenceNode [ 
 	self addIconStyle: aSequenceNode.
 	super visitSequenceNode: aSequenceNode.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitSuperNode: aSuperNode  [
+{ #category : #visiting }
+IconStyler >> visitSuperNode: aSuperNode [ 
 	self addIconStyle: aSuperNode.
 	super visitSuperNode: aSuperNode.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitTemporaryNode: aNode  [
+{ #category : #visiting }
+IconStyler >> visitTemporaryNode: aNode [ 
 	self addIconStyle: aNode.
 	super visitTemporaryNode: aNode.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IconStyler>>visitThisContextNode: aThisContextNode  [
+{ #category : #visiting }
+IconStyler >> visitThisContextNode: aThisContextNode [ 
 	self addIconStyle: aThisContextNode.
 	super visitThisContextNode: aThisContextNode.
 ]

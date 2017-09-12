@@ -1,12 +1,7 @@
-Extension {
-	#name : #Date
-}
+Extension { #name : #Date }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Date>>gtInspectorDetailsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Date >> gtInspectorDetailsIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	^ composite table
 		title: [ 'Details' ];
@@ -23,11 +18,8 @@ Date>>gtInspectorDetailsIn: composite [
 		send: #value
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Date>>gtInspectorPreviewIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Date >> gtInspectorPreviewIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	composite morph
 		title: 'Calendar';

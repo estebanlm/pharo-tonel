@@ -5,47 +5,31 @@ Class {
 	#name : #ByteSymbol,
 	#superclass : #Symbol,
 	#type : #bytes,
-	#category : #Collections-Strings,
-	#timestamp : '<historical>'
+	#category : #Collections-Strings
 }
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol class>>findFirstInString: aString inSet: inclusionMap startingAt: start [
+{ #category : #primitives }
+ByteSymbol class >> findFirstInString: aString inSet: inclusionMap startingAt: start [
 	^ByteString findFirstInString: aString  inSet: inclusionMap startingAt: start
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol class>>indexOfAscii: anInteger inString: aString startingAt: start [
+{ #category : #primitives }
+ByteSymbol class >> indexOfAscii: anInteger inString: aString startingAt: start [
 	^ByteString indexOfAscii: anInteger inString: aString startingAt: start
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol class>>stringHash: aString initialHash: speciesHash [
+{ #category : #primitives }
+ByteSymbol class >> stringHash: aString initialHash: speciesHash [
 	^ByteString stringHash: aString initialHash: speciesHash
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol class>>translate: aString from: start  to: stop  table: table [
+{ #category : #primitives }
+ByteSymbol class >> translate: aString from: start  to: stop  table: table [
 	^ByteString translate: aString from: start  to: stop  table: table
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol>>asByteArray [
+{ #category : #converting }
+ByteSymbol >> asByteArray [
 	| ba sz |
 	sz := self byteSize.
 	ba := ByteArray new: sz.
@@ -53,19 +37,13 @@ ByteSymbol>>asByteArray [
 	^ba
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol>>asOctetString [
+{ #category : #converting }
+ByteSymbol >> asOctetString [
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol>>at: index  [
+{ #category : #accessing }
+ByteSymbol >> at: index [ 
 	"Primitive. Answer the Character stored in the field of the receiver
 	indexed by the argument. Fail if the index argument is not an Integer or
 	is out of bounds. Essential. See Object documentation whatIsAPrimitive."
@@ -74,11 +52,8 @@ ByteSymbol>>at: index  [
 	^ Character value: (super at: index)
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol>>beginsWith: prefix [
+{ #category : #comparing }
+ByteSymbol >> beginsWith: prefix [
 	"Answer whether the receiver begins with the given prefix string.
 	The comparison is case-sensitive."
 
@@ -96,65 +71,44 @@ ByteSymbol>>beginsWith: prefix [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol>>byteAt: index [
+{ #category : #accessing }
+ByteSymbol >> byteAt: index [
 	<primitive: 60>
 	^(self at: index) asciiValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol>>byteAt: anInteger put: anObject  [
+{ #category : #accessing }
+ByteSymbol >> byteAt: anInteger put: anObject [ 
 	"You cannot modify the receiver."
 	self errorNoModification
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol>>byteSize [
+{ #category : #accessing }
+ByteSymbol >> byteSize [
 	^self size
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol>>findSubstring: key in: body startingAt: start matchTable: matchTable [
+{ #category : #comparing }
+ByteSymbol >> findSubstring: key in: body startingAt: start matchTable: matchTable [
 	"Answer the index in the string body at which the substring key first occurs, at or beyond start.  The match is determined using matchTable, which can be used to effect, eg, case-insensitive matches.  If no match is found, zero will be returned."
 	<primitive: 'primitiveFindSubstring' module: 'MiscPrimitivePlugin'>
 	^super findSubstring: key in: body startingAt: start matchTable: matchTable
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol>>hasWideCharacterFrom: start to: stop [
+{ #category : #testing }
+ByteSymbol >> hasWideCharacterFrom: start to: stop [
 	"Always false because I only contains byte characters"
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol>>indexOfAnyOf: aCollection startingAt: start [
+{ #category : #accessing }
+ByteSymbol >> indexOfAnyOf: aCollection startingAt: start [
 	"Use double dispatching for speed"
 	^aCollection findFirstInByteString: self startingAt: start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol>>indexOfAnyOf: aCollection startingAt: start ifAbsent: aBlock [
+{ #category : #accessing }
+ByteSymbol >> indexOfAnyOf: aCollection startingAt: start ifAbsent: aBlock [
 	"Use double dispatching for speed"
 	| index |
 	^(index := aCollection findFirstInByteString: self startingAt: start) = 0
@@ -162,20 +116,14 @@ ByteSymbol>>indexOfAnyOf: aCollection startingAt: start ifAbsent: aBlock [
 		ifFalse: [index]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol>>isByteString [
+{ #category : #testing }
+ByteSymbol >> isByteString [
 	"Answer whether the receiver is a ByteString"
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol>>isOctetString [
+{ #category : #testing }
+ByteSymbol >> isOctetString [
 	"Answer whether the receiver can be represented as a byte string. 
 	This is different from asking whether the receiver *is* a ByteString 
 	(i.e., #isByteString)"
@@ -183,11 +131,8 @@ ByteSymbol>>isOctetString [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol>>privateAt: index put: aCharacter [
+{ #category : #private }
+ByteSymbol >> privateAt: index put: aCharacter [
 	"Primitive. Store the Character in the field of the receiver indicated by
 	the index. Fail if the index is not an Integer or is out of bounds, or if
 	the argument is not a Character. Essential. See Object documentation
@@ -201,21 +146,15 @@ ByteSymbol>>privateAt: index put: aCharacter [
 		ifFalse: [self errorNonIntegerIndex]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol>>species [
+{ #category : #accessing }
+ByteSymbol >> species [
 	"Answer the preferred class for reconstructing the receiver."
 	^ByteString
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:45'
-}
-ByteSymbol>>string: aString [
+{ #category : #private }
+ByteSymbol >> string: aString [
 	1 to: aString size do: [:j | 
 		self privateAt: j put: (aString at: j)].
 	^self

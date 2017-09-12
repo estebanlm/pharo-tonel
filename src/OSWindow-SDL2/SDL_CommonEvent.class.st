@@ -8,15 +8,11 @@ Class {
 		'OFFSET_TIMESTAMP',
 		'OFFSET_TYPE'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'IgorStasenko 7/30/2014 18:43'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'fields description',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_CommonEvent class>>fieldsDesc [
+{ #category : #'fields description' }
+SDL_CommonEvent class >> fieldsDesc [
 	"
 	self initializeAccessors
 	"
@@ -26,46 +22,31 @@ SDL_CommonEvent class>>fieldsDesc [
  	)
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_CommonEvent>>accept: aVisitor [
+{ #category : #visitor }
+SDL_CommonEvent >> accept: aVisitor [
 	^ aVisitor visitCommonEvent: self
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_CommonEvent>>timestamp [
+{ #category : #'accessing structure variables' }
+SDL_CommonEvent >> timestamp [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_TIMESTAMP
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_CommonEvent>>timestamp: anObject [
+{ #category : #'accessing structure variables' }
+SDL_CommonEvent >> timestamp: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_TIMESTAMP put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_CommonEvent>>type [
+{ #category : #'accessing structure variables' }
+SDL_CommonEvent >> type [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_TYPE
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_CommonEvent>>type: anObject [
+{ #category : #'accessing structure variables' }
+SDL_CommonEvent >> type: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_TYPE put: anObject
 ]

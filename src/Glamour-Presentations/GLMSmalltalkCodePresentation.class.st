@@ -24,24 +24,17 @@ Class {
 		'variableBindingsBlock',
 		'isForScripting'
 	],
-	#category : #Glamour-Presentations,
-	#timestamp : 'AndreiChis 10/3/2014 18:37'
+	#category : #Glamour-Presentations
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSmalltalkCodePresentation>>beForScripting [
+{ #category : #actions }
+GLMSmalltalkCodePresentation >> beForScripting [
 
 	isForScripting := true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSmalltalkCodePresentation>>compileTextIn: aContext from:  aSession andDo: aBlock [
+{ #category : #actions }
+GLMSmalltalkCodePresentation >> compileTextIn: aContext from:  aSession andDo: aBlock [
 
 	self announce: (GLMCompileText new
 		presentation: self;
@@ -50,20 +43,14 @@ GLMSmalltalkCodePresentation>>compileTextIn: aContext from:  aSession andDo: aBl
 		action: aBlock)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSmalltalkCodePresentation>>debugSelection [
+{ #category : #actions }
+GLMSmalltalkCodePresentation >> debugSelection [
 
 	self announce: GLMDebugSelection
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSmalltalkCodePresentation>>defaultSelectionActions [
+{ #category : #rendering }
+GLMSmalltalkCodePresentation >> defaultSelectionActions [
 
 	^ { 
 		(GLMGenericAction new) 
@@ -100,112 +87,76 @@ GLMSmalltalkCodePresentation>>defaultSelectionActions [
 		 }
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSmalltalkCodePresentation>>evaluateSelection [
+{ #category : #actions }
+GLMSmalltalkCodePresentation >> evaluateSelection [
 
 	self evaluateSelectionAndDo: [ :result | result ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSmalltalkCodePresentation>>evaluateSelectionAndDo: aBlock [
+{ #category : #actions }
+GLMSmalltalkCodePresentation >> evaluateSelectionAndDo: aBlock [
 
 	self announce: (GLMEvaluateSelection new action: aBlock)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSmalltalkCodePresentation>>highlightSmalltalkContext [
+{ #category : #accessing }
+GLMSmalltalkCodePresentation >> highlightSmalltalkContext [
 	^ highlightSmalltalkContext isNil 
 		ifTrue: [nil] 
 		ifFalse: [highlightSmalltalkContext glamourValue: self entity]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSmalltalkCodePresentation>>installDefaultSelectionActions [
+{ #category : #rendering }
+GLMSmalltalkCodePresentation >> installDefaultSelectionActions [
 
 	self defaultSelectionActions do: [ :anAction |
 		self addSelectionAction: anAction ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSmalltalkCodePresentation>>isForScripting [
+{ #category : #accessing }
+GLMSmalltalkCodePresentation >> isForScripting [
 
 	^ isForScripting ifNil: [ false ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSmalltalkCodePresentation>>printSelection [
+{ #category : #actions }
+GLMSmalltalkCodePresentation >> printSelection [
 
 	self announce: GLMPrintSelection
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSmalltalkCodePresentation>>profileSelection [
+{ #category : #actions }
+GLMSmalltalkCodePresentation >> profileSelection [
 
 	self announce: GLMProfileSelection
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSmalltalkCodePresentation>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMSmalltalkCodePresentation >> renderGlamorouslyOn: aRenderer [ 
 	self deprecated:  'Use GLMPharoMethodPresentation GLMPharoScriptPresentation instead.'.
 	self registerAnnouncements.
 	^ aRenderer renderSmalltalkCodePresentation: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSmalltalkCodePresentation>>smalltalkClass: aBlock [
+{ #category : #accessing }
+GLMSmalltalkCodePresentation >> smalltalkClass: aBlock [
 	"aBlock takes as parameters the entity objects and 
 	its evaluation is expected to produce a Smalltalk class"
 	highlightSmalltalkContext := aBlock.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSmalltalkCodePresentation>>updateVariableBindings [
+{ #category : #accessing }
+GLMSmalltalkCodePresentation >> updateVariableBindings [
 
 	self announce: (GLMVariableBindingsChanged new presentation: self).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSmalltalkCodePresentation>>variableBindings [
+{ #category : #accessing }
+GLMSmalltalkCodePresentation >> variableBindings [
 	^ (variableBindingsBlock glamourValue: self entity) ifNil: [OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMSmalltalkCodePresentation>>variableBindings: aBlock [
+{ #category : #accessing }
+GLMSmalltalkCodePresentation >> variableBindings: aBlock [
 	^ variableBindingsBlock := aBlock
 ]

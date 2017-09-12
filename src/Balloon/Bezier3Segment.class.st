@@ -11,15 +11,11 @@ Class {
 		'via1',
 		'via2'
 	],
-	#category : #Balloon-Geometry,
-	#timestamp : '<historical>'
+	#category : #Balloon-Geometry
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment class>>convertBezier3ToBezier2: vertices [
+{ #category : #utilities }
+Bezier3Segment class >> convertBezier3ToBezier2: vertices [
 	| pa pts index c |
 	pts := OrderedCollection new.
 	1 to: vertices size // 4 do:
@@ -36,28 +32,19 @@ Bezier3Segment class>>convertBezier3ToBezier2: vertices [
 	^ pa
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment class>>from: p1 to: p2 [
+{ #category : #'instance creation' }
+Bezier3Segment class >> from: p1 to: p2 [
 	^ self new from: p1 via: (p1 interpolateTo: p2 at: 0.3333) and: (p1
 interpolateTo: p2 at: 0.66667) to: p2
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment class>>from: p1 via: p2 and: p3 to: p4 [
+{ #category : #'instance creation' }
+Bezier3Segment class >> from: p1 via: p2 and: p3 to: p4 [
 	^ self new from: p1 via: p2 and: p3 to: p4
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment class>>makeEllipseSegments: aRectangle [
+{ #category : #utilities }
+Bezier3Segment class >> makeEllipseSegments: aRectangle [
 	"Answer a set of bezier segments approximating an ellipsoid fitting the given rectangle.
 	This method creates four bezier segments (one for each quadrant) approximating the oval."
 	"EXAMPLE: 
@@ -84,11 +71,8 @@ Bezier3Segment class>>makeEllipseSegments: aRectangle [
 	^self makeEllipseSegments: aRectangle count: 4
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment class>>makeEllipseSegments: aRectangle count: segmentCount [
+{ #category : #utilities }
+Bezier3Segment class >> makeEllipseSegments: aRectangle count: segmentCount [
 	"Answer a set of bezier segments approximating an ellipsoid fitting the given rectangle.
 	This method creates segmentCount bezier segments (one for each quadrant) approximating the oval."
 	| count angle center scale |
@@ -102,11 +86,8 @@ Bezier3Segment class>>makeEllipseSegments: aRectangle count: segmentCount [
 	].
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment class>>makePieSegment: aRectangle from: angle1 to: angle2 [
+{ #category : #utilities }
+Bezier3Segment class >> makePieSegment: aRectangle from: angle1 to: angle2 [
 	"Create a single pie segment for the oval inscribed in aRectangle between angle1 and angle2. If angle1 is less than angle2 this method creates a CW pie segment, otherwise it creates a CCW pie segment."
 	| seg center scale |
 	angle1 > angle2 ifTrue:["ccw"
@@ -120,11 +101,8 @@ Bezier3Segment class>>makePieSegment: aRectangle from: angle1 to: angle2 [
 	^self controlPoints: (seg controlPoints collect:[:pt| pt * scale + center])
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment class>>makePieSegments: aRectangle from: angle1 to: angle2 [
+{ #category : #utilities }
+Bezier3Segment class >> makePieSegments: aRectangle from: angle1 to: angle2 [
 	"Create a series of cubic bezier segments for the oval inscribed in aRectangle between angle1 and angle2. The segments are oriented clockwise, to get counter-clockwise segments simply switch angle1 and angle2."
 	angle2 < angle1 ifTrue:[
 		"ccw segments"
@@ -143,11 +121,8 @@ Bezier3Segment class>>makePieSegments: aRectangle from: angle1 to: angle2 [
 
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment class>>makeUnitPieSegmentFrom: angle1 to: angle2 [
+{ #category : #utilities }
+Bezier3Segment class >> makeUnitPieSegmentFrom: angle1 to: angle2 [
 	"Create a clockwise unit pie segment from angle1 to angle2, that is a pie segment for a circle centered at zero with radius one. Note: This method can be used to create at most a quarter circle."
 	| pt1 pt2 rad1 rad2 |
 	rad1 := angle1 degreesToRadians.
@@ -157,11 +132,8 @@ Bezier3Segment class>>makeUnitPieSegmentFrom: angle1 to: angle2 [
 	^self makeUnitPieSegmentWith: pt1 and: pt2
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment class>>makeUnitPieSegmentWith: point1 and: point2 [
+{ #category : #utilities }
+Bezier3Segment class >> makeUnitPieSegmentWith: point1 and: point2 [
 	"Create a clockwise unit pie segment from point1 to point2, that is a pie segment for a circle centered at zero with radius one."
 	| pt1 pt2 dir1 dir2 mid length scale cp1 cp2 pt3 magic |
 	"point1 and point2 are the points on the unit circle
@@ -197,11 +169,8 @@ Bezier3Segment class>>makeUnitPieSegmentWith: point1 and: point2 [
 		to: pt2
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>asBezier2Points: error [
+{ #category : #converting }
+Bezier3Segment >> asBezier2Points: error [
 	"Demote a cubic bezier to a set of approximating quadratic beziers.
 	Should convert to forward differencing someday"
 
@@ -222,39 +191,27 @@ Bezier3Segment>>asBezier2Points: error [
 	
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>asBezier2Segments [
+{ #category : #converting }
+Bezier3Segment >> asBezier2Segments [
 	"Demote a cubic bezier to a set of approximating quadratic beziers."
 	^self asBezier2Segments: 0.5
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>asBezierShape [
+{ #category : #converting }
+Bezier3Segment >> asBezierShape [
 	"Demote a cubic bezier to a set of approximating quadratic beziers."
 	^self asBezierShape: 0.5
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>asBezierShape: error [
+{ #category : #converting }
+Bezier3Segment >> asBezierShape: error [
 	"Demote a cubic bezier to a set of approximating quadratic beziers.
 	Should convert to forward differencing someday"
 	^(self asBezier2Points: error) asPointArray.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>asPointArray [
+{ #category : #converting }
+Bezier3Segment >> asPointArray [
 	| p |
 	p := PointArray new: 4.
 	p at: 1 put: start.
@@ -264,32 +221,23 @@ Bezier3Segment>>asPointArray [
 	^ p
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>asTangentSegment [
+{ #category : #converting }
+Bezier3Segment >> asTangentSegment [
 	^Bezier2Segment 
 		from: via1-start 
 		via: via2-via1
 		to: end-via2
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>bezier2SegmentCount [
+{ #category : #private }
+Bezier3Segment >> bezier2SegmentCount [
 	"Compute the number of quadratic bezier segments needed to approximate
 	this cubic with less than a 1-pixel error"
 	^ self bezier2SegmentCount: 1.0
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>bezier2SegmentCount: pixelError [
+{ #category : #converting }
+Bezier3Segment >> bezier2SegmentCount: pixelError [
 	"Compute the number of quadratic bezier segments needed to approximate
 	this cubic with no more than a specified error"
 	| a |
@@ -300,11 +248,8 @@ Bezier3Segment>>bezier2SegmentCount: pixelError [
 
 ]
 
-{
-	#category : #'bezier clipping',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>bezierClipHeight: dir [
+{ #category : #'bezier clipping' }
+Bezier3Segment >> bezierClipHeight: dir [
 	"Check if the argument overlaps the receiver somewhere 
 	along the line from start to end. Optimized for speed."
 	| u dirX dirY dx dy uMin uMax |
@@ -328,54 +273,36 @@ Bezier3Segment>>bezierClipHeight: dir [
 	^uMin@uMax
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>bounds [
+{ #category : #accessing }
+Bezier3Segment >> bounds [
 	^ ((super bounds encompassing: via1) encompassing: via2)
 ]
 
-{
-	#category : #'vector functions',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>controlPoints [
+{ #category : #'vector functions' }
+Bezier3Segment >> controlPoints [
 	^{start. via1. via2. end}
 ]
 
-{
-	#category : #'vector functions',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>controlPointsDo: aBlock [
+{ #category : #'vector functions' }
+Bezier3Segment >> controlPointsDo: aBlock [
 	aBlock value: start; value: via1; value: via2; value: end
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>degree [
+{ #category : #accessing }
+Bezier3Segment >> degree [
 	^3
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>from: aPoint1 via: aPoint2 and: aPoint3 to: aPoint4 [
+{ #category : #initialization }
+Bezier3Segment >> from: aPoint1 via: aPoint2 and: aPoint3 to: aPoint4 [
 	start := aPoint1.
 	via1 := aPoint2.
 	via2 := aPoint3.
 	end := aPoint4
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>initializeFrom: controlPoints [
+{ #category : #initialization }
+Bezier3Segment >> initializeFrom: controlPoints [
 	controlPoints size = 4 ifFalse:[self error:'Wrong number of control points'].
 	start := controlPoints at: 1.
 	via1 := controlPoints at: 2.
@@ -383,20 +310,14 @@ Bezier3Segment>>initializeFrom: controlPoints [
 	end := controlPoints at: 4.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>length [
+{ #category : #accessing }
+Bezier3Segment >> length [
 	"Answer a gross approximation of the length of the receiver"
 	^(start distanceTo: via1) + (via1 distanceTo: via2) + (via2 distanceTo: end)
 ]
 
-{
-	#category : #'vector functions',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>lineSegments: steps do: aBlock [
+{ #category : #'vector functions' }
+Bezier3Segment >> lineSegments: steps do: aBlock [
 	"Evaluate aBlock with the receiver's line segments"
 	"Note: We could use forward differencing here."
 	| last deltaStep t next |
@@ -410,11 +331,8 @@ Bezier3Segment>>lineSegments: steps do: aBlock [
 		t := t + deltaStep].
 ]
 
-{
-	#category : #'vector functions',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>lineSegmentsDo: aBlock [
+{ #category : #'vector functions' }
+Bezier3Segment >> lineSegmentsDo: aBlock [
 	"Evaluate aBlock with the receiver's line segments"
 	"Note: We could use forward differencing here."
 	| steps last deltaStep t next |
@@ -429,11 +347,8 @@ Bezier3Segment>>lineSegmentsDo: aBlock [
 		t := t + deltaStep].
 ]
 
-{
-	#category : #'vector functions',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>outlineSegment: width [
+{ #category : #'vector functions' }
+Bezier3Segment >> outlineSegment: width [
 	| tan1 nrm1 tan2 nrm2 newStart newVia1 newEnd newVia2 dist |
 	tan1 := (via1 - start) normalized.
 	nrm1 := tan1 * width.
@@ -450,11 +365,8 @@ Bezier3Segment>>outlineSegment: width [
 
 ]
 
-{
-	#category : #'vector functions',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>tangentAt: parameter [
+{ #category : #'vector functions' }
+Bezier3Segment >> tangentAt: parameter [
 	| tan1 tan2 tan3 t1 t2 t3 |
 	tan1 := via1 - start.
 	tan2 := via2 - via1.
@@ -465,19 +377,13 @@ Bezier3Segment>>tangentAt: parameter [
 	^(tan1 * t1) + (tan2 * t2) + (tan3 * t3)
 ]
 
-{
-	#category : #'vector functions',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>tangentAtEnd [
+{ #category : #'vector functions' }
+Bezier3Segment >> tangentAtEnd [
 	^end - via2
 ]
 
-{
-	#category : #'vector functions',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>tangentAtMid [
+{ #category : #'vector functions' }
+Bezier3Segment >> tangentAtMid [
 	| tan1 tan2 tan3 |
 	tan1 := via1 - start.
 	tan2 := via2 - via1.
@@ -486,19 +392,13 @@ Bezier3Segment>>tangentAtMid [
 
 ]
 
-{
-	#category : #'vector functions',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>tangentAtStart [
+{ #category : #'vector functions' }
+Bezier3Segment >> tangentAtStart [
 	^via1 - start
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>valueAt: t [
+{ #category : #accessing }
+Bezier3Segment >> valueAt: t [
 	| a b c d |
 
 	"| p1 p2 p3 |
@@ -518,34 +418,22 @@ Bezier3Segment>>valueAt: t [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>via1 [
+{ #category : #accessing }
+Bezier3Segment >> via1 [
 	^via1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>via1: aPoint [
+{ #category : #accessing }
+Bezier3Segment >> via1: aPoint [
 	via1 := aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>via2 [
+{ #category : #accessing }
+Bezier3Segment >> via2 [
 	^via2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-Bezier3Segment>>via2: aPoint [
+{ #category : #accessing }
+Bezier3Segment >> via2: aPoint [
 	via2 := aPoint
 ]

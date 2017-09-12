@@ -5,15 +5,11 @@ Turn the version into a release. It therefore appears as #stable afterward"".
 Class {
 	#name : #VSReleaseDevelopmentVersionCommand,
 	#superclass : #VSDevCycleCommand,
-	#category : #Versionner-Core-Commands,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSReleaseDevelopmentVersionCommand>>baselineFor: aVersion [
+{ #category : #actions }
+VSReleaseDevelopmentVersionCommand >> baselineFor: aVersion [
 	"Return the baseline on which this version relies on"
 	| baselineVersionString |
 	
@@ -21,11 +17,8 @@ VSReleaseDevelopmentVersionCommand>>baselineFor: aVersion [
 	^ aVersion project version: baselineVersionString
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSReleaseDevelopmentVersionCommand>>execute [
+{ #category : #execute }
+VSReleaseDevelopmentVersionCommand >> execute [
 	|  devVersion releaseDialog |
 
 	[ devVersion := workflow developmentVersion ]
@@ -40,33 +33,24 @@ VSReleaseDevelopmentVersionCommand>>execute [
 				andSolveSymbolic: releaseDialog model isSymbolicVersionResolutionChecked ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSReleaseDevelopmentVersionCommand>>mcVersionFor: aVersionString [
+{ #category : #actions }
+VSReleaseDevelopmentVersionCommand >> mcVersionFor: aVersionString [
 	| config |
 	
 	config := workflow project configurationClass.
 	^ config project version: aVersionString
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSReleaseDevelopmentVersionCommand>>projectReference: projectName configurationFrom: aMCVersion  [
+{ #category : #actions }
+VSReleaseDevelopmentVersionCommand >> projectReference: projectName configurationFrom: aMCVersion [ 
 	| fullProjectSpec |
 
 	fullProjectSpec := (aMCVersion spec packageNamed: projectName) projectReference.
 	^ fullProjectSpec projectClassProject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSReleaseDevelopmentVersionCommand>>release: releaseVersionString andSolveSymbolic: needsSymbolicVersionResolution [
+{ #category : #actions }
+VSReleaseDevelopmentVersionCommand >> release: releaseVersionString andSolveSymbolic: needsSymbolicVersionResolution [
 	releaseVersionString ifNil: [	
 		UIManager default inform: 'Release aborted! Specify a valid release version string.'.
 		^ self ].
@@ -78,11 +62,8 @@ VSReleaseDevelopmentVersionCommand>>release: releaseVersionString andSolveSymbol
 	do: [ :error | (VSConfigurationValidationIssuesDisplayCommand target: error for: self) execute]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSReleaseDevelopmentVersionCommand>>resolveSymbolicVersionsIn: aVersion [
+{ #category : #actions }
+VSReleaseDevelopmentVersionCommand >> resolveSymbolicVersionsIn: aVersion [
 	| metacelloToolBox | 
 	
 	metacelloToolBox := MetacelloToolBox new.
@@ -105,10 +86,7 @@ VSReleaseDevelopmentVersionCommand>>resolveSymbolicVersionsIn: aVersion [
 	metacelloToolBox commitMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSReleaseDevelopmentVersionCommand>>title [
+{ #category : #accessing }
+VSReleaseDevelopmentVersionCommand >> title [
 	^ 'release from development version'
 ]

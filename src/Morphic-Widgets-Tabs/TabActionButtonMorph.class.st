@@ -9,26 +9,19 @@ Class {
 	#instVars : [
 		'icon'
 	],
-	#category : #Morphic-Widgets-Tabs-Support,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Tabs-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabActionButtonMorph class>>forAction: anAction [
+{ #category : #'instance creation' }
+TabActionButtonMorph class >> forAction: anAction [
 
 	^ self new
 		forAction: anAction;
 		yourself
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabActionButtonMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+TabActionButtonMorph >> drawOn: aCanvas [
 
 	super drawOn: aCanvas.
 	icon ifNil: [ ^ self ].
@@ -38,11 +31,8 @@ TabActionButtonMorph>>drawOn: aCanvas [
 		at: self topLeft
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabActionButtonMorph>>forAction: anAction [
+{ #category : #'instance creation' }
+TabActionButtonMorph >> forAction: anAction [
 	| baseColor |
 	
 	baseColor := Smalltalk ui theme baseColor.
@@ -70,11 +60,8 @@ TabActionButtonMorph>>forAction: anAction [
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabActionButtonMorph>>icon: anObject [
+{ #category : #accessing }
+TabActionButtonMorph >> icon: anObject [
 	
 	icon := anObject
 ]

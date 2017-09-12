@@ -9,15 +9,11 @@ Class {
 	#instVars : [
 		'destinationClass'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 21:22'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPushDownClassVariableRefactoring>>findDestinationClass [
+{ #category : #preconditions }
+RBPushDownClassVariableRefactoring >> findDestinationClass [
 	| classes |
 	classes := class withAllSubclasses reject: [ :each |
 		(each whichSelectorsReferToClassVariable: variableName) isEmpty
@@ -36,11 +32,8 @@ RBPushDownClassVariableRefactoring>>findDestinationClass [
 	^ destinationClass
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPushDownClassVariableRefactoring>>preconditions [
+{ #category : #preconditions }
+RBPushDownClassVariableRefactoring >> preconditions [
 	"Preconditions are that only one subclass refers to the class variable."
 
 	^(RBCondition definesClassVariable: variableName in: class) 
@@ -49,20 +42,14 @@ RBPushDownClassVariableRefactoring>>preconditions [
 					true])
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPushDownClassVariableRefactoring>>signalMultipleReferenceError [
+{ #category : #preconditions }
+RBPushDownClassVariableRefactoring >> signalMultipleReferenceError [
 	self signalReferenceError: ('Multiple subclasses reference <1s>' 
 				expandMacrosWith: variableName)
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPushDownClassVariableRefactoring>>signalReferenceError: errorString  [
+{ #category : #preconditions }
+RBPushDownClassVariableRefactoring >> signalReferenceError: errorString [ 
 	class realClass isNil 
 		ifTrue: [ self refactoringError: errorString ]
 		ifFalse: [| classVarName error |
@@ -75,21 +62,15 @@ RBPushDownClassVariableRefactoring>>signalReferenceError: errorString  [
 						in: class realClass)]]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPushDownClassVariableRefactoring>>signalStillReferencedError [
+{ #category : #preconditions }
+RBPushDownClassVariableRefactoring >> signalStillReferencedError [
 	self signalReferenceError: ('<1p> has references to <2s>' 
 				expandMacrosWith: class
 				with: variableName)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBPushDownClassVariableRefactoring>>transform [
+{ #category : #transforming }
+RBPushDownClassVariableRefactoring >> transform [
 	class removeClassVariable: variableName.
 	destinationClass isNil ifTrue: [^self].
 	destinationClass addClassVariable: variableName

@@ -22,77 +22,55 @@ Class {
 		'previewType',
 		'previewMorph'
 	],
-	#category : #Tool-FileList,
-	#timestamp : 'StephaneDucasse 7/6/2014 14:56'
+	#category : #Tool-FileList
 }
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow class>>taskbarIconName [
+{ #category : #icons }
+FileDialogWindow class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^#smallOpenIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>actionSelector [
+{ #category : #accessing }
+FileDialogWindow >> actionSelector [
 	"Answer the value of actionSelector"
 
 	^ actionSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>actionSelector: anObject [
+{ #category : #accessing }
+FileDialogWindow >> actionSelector: anObject [
 	"Set the value of actionSelector"
 
 	actionSelector := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>addInitialPanel [
+{ #category : #actions }
+FileDialogWindow >> addInitialPanel [
 	"Add the panel."
 
 	super addInitialPanel.
 	self selectDirectory: FileSystem disk workingDirectory 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>answer [
+{ #category : #accessing }
+FileDialogWindow >> answer [
 	"Answer the result of performing the action selector."
 	
 	self cancelled ifTrue: [^nil].
 	^answer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>answer: anObject [
+{ #category : #accessing }
+FileDialogWindow >> answer: anObject [
 	"Set the answer."
 	
 	answer := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>answerDirectory [
+{ #category : #accessing }
+FileDialogWindow >> answerDirectory [
 	"Set the receiver to answer a directory."
 	
 	self actionSelector: #selectedAnyFileDirectory.
@@ -100,66 +78,48 @@ FileDialogWindow>>answerDirectory [
 	self changed: #okEnabled
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>answerFileEntry [
+{ #category : #actions }
+FileDialogWindow >> answerFileEntry [
 	"Set the receiver to answer the selected file entry."
 	
 	self actionSelector: #selectedFileEntry.
 	self changed: #okEnabled
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>answerFileName [
+{ #category : #actions }
+FileDialogWindow >> answerFileName [
 	"Set the receiver to answer the selected file name."
 	
 	self actionSelector: #selectedFileName.
 	self changed: #okEnabled
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>answerOpenFile [
+{ #category : #actions }
+FileDialogWindow >> answerOpenFile [
 	"Set the receiver to answer a new file stream on an existing file."
 	
 	self actionSelector: #openSelectedFile.
 	self changed: #okEnabled
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>answerPathName [
+{ #category : #actions }
+FileDialogWindow >> answerPathName [
 	"Set the receiver to answer the selected path name."
 	
 	self actionSelector: #selectedPathName.
 	self changed: #okEnabled
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>answerSaveFile [
+{ #category : #actions }
+FileDialogWindow >> answerSaveFile [
 	"Set the receiver to answer a new file stream."
 	
 	self actionSelector: #saveSelectedFile.
 	self changed: #okEnabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>cache: dir [
+{ #category : #accessing }
+FileDialogWindow >> cache: dir [
 	"Cache the contents of the given directory and answer them."
 
 	self entryCacheDirectory = dir
@@ -170,11 +130,8 @@ FileDialogWindow>>cache: dir [
 	^self entryCache
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>clearEntryCache [
+{ #category : #actions }
+FileDialogWindow >> clearEntryCache [
 	"Clear the entry cache."
 
 	self
@@ -182,31 +139,22 @@ FileDialogWindow>>clearEntryCache [
 		entryCacheDirectory: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>defaultExtension [
+{ #category : #accessing }
+FileDialogWindow >> defaultExtension [
 	"Answer the value of defaultExtension"
 
 	^ defaultExtension
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>defaultExtension: anObject [
+{ #category : #accessing }
+FileDialogWindow >> defaultExtension: anObject [
 	"Set the value of defaultExtension"
 
 	defaultExtension := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>defaultFileSelectionBlock [
+{ #category : #accessing }
+FileDialogWindow >> defaultFileSelectionBlock [
 	"Answer the default file selection block."
 
 	^[:entry |
@@ -215,11 +163,8 @@ FileDialogWindow>>defaultFileSelectionBlock [
 			ifFalse: [self fileNamePattern match: entry basename]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>defaultFileSortBlock [
+{ #category : #accessing }
+FileDialogWindow >> defaultFileSortBlock [
 	"Answer the default file stor block"
 
 	^[:entry1 :entry2 |
@@ -232,21 +177,15 @@ FileDialogWindow>>defaultFileSortBlock [
 									ifFalse: [entry1 basename <= entry2 basename]]]]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>defaultLabel [
+{ #category : #actions }
+FileDialogWindow >> defaultLabel [
 	"Answer the default label for the receiver."
 
 	^'File' translated
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>deleteFileOrDirectory [
+{ #category : #actions }
+FileDialogWindow >> deleteFileOrDirectory [
 	"Delete the selected file or directory."
 
 	|entry|
@@ -270,52 +209,37 @@ FileDialogWindow>>deleteFileOrDirectory [
 							updateFiles]].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>dirEntriesOrEmptyListFor: aDirectory [
+{ #category : #private }
+FileDialogWindow >> dirEntriesOrEmptyListFor: aDirectory [
 |entries|
 	aDirectory isReadable ifFalse:[ ^ #()].
 	entries := [aDirectory entries] on: DirectoryDoesNotExist do:[#()].
 	^ entries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>directories [
+{ #category : #accessing }
+FileDialogWindow >> directories [
 	"Answer the value of directories"
 
 	^ directories
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>directories: anObject [
+{ #category : #accessing }
+FileDialogWindow >> directories: anObject [
 	"Set the value of directories"
 
 	directories := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>directoriesFor: item [
+{ #category : #private }
+FileDialogWindow >> directoriesFor: item [
 	"Answer the filtered entries."
 	
 	^item directories
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>directoryFileSelectionBlock [
+{ #category : #accessing }
+FileDialogWindow >> directoryFileSelectionBlock [
 	"Answer the directory file selection block."
 
 	^[:de |
@@ -324,31 +248,22 @@ FileDialogWindow>>directoryFileSelectionBlock [
 			ifFalse: [false]] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>directoryTreeMorph [
+{ #category : #accessing }
+FileDialogWindow >> directoryTreeMorph [
 	"Answer the value of directoryTreeMorph"
 
 	^ directoryTreeMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>directoryTreeMorph: anObject [
+{ #category : #accessing }
+FileDialogWindow >> directoryTreeMorph: anObject [
 	"Set the value of directoryTreeMorph"
 
 	directoryTreeMorph := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>doubleClickFile [
+{ #category : #actions }
+FileDialogWindow >> doubleClickFile [
 	"If the selected entry is a directory then navigate it
 	otherwise ok the dialog."
 	
@@ -365,91 +280,64 @@ FileDialogWindow>>doubleClickFile [
 		ifFalse: [self ok]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>entryCache [
+{ #category : #accessing }
+FileDialogWindow >> entryCache [
 	"Answer the value of entryCache"
 
 	^ entryCache
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>entryCache: anObject [
+{ #category : #accessing }
+FileDialogWindow >> entryCache: anObject [
 	"Set the value of entryCache"
 
 	entryCache := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>entryCacheDirectory [
+{ #category : #accessing }
+FileDialogWindow >> entryCacheDirectory [
 	"Answer the value of entryCacheDirectory"
 
 	^ entryCacheDirectory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>entryCacheDirectory: anObject [
+{ #category : #accessing }
+FileDialogWindow >> entryCacheDirectory: anObject [
 	"Set the value of entryCacheDirectory"
 
 	entryCacheDirectory := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>fileListMorph [
+{ #category : #accessing }
+FileDialogWindow >> fileListMorph [
 	"Answer the value of fileListMorph"
 
 	^ fileListMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>fileListMorph: anObject [
+{ #category : #accessing }
+FileDialogWindow >> fileListMorph: anObject [
 	"Set the value of fileListMorph"
 
 	fileListMorph := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>fileNamePattern [
+{ #category : #accessing }
+FileDialogWindow >> fileNamePattern [
 	"Answer the file name pattern to filter on."
 	
 	^self fileNameText trimBoth, '*'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>fileNameText [
+{ #category : #accessing }
+FileDialogWindow >> fileNameText [
 	"Answer the typed file name."
 
 	^fileNameText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>fileNameText: aString [
+{ #category : #accessing }
+FileDialogWindow >> fileNameText: aString [
 	"The typed file name has changed."
 
 	fileNameText = aString asString ifTrue: [^self].
@@ -461,52 +349,37 @@ FileDialogWindow>>fileNameText: aString [
 	self selectFileFromPattern
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>fileSelectionBlock [
+{ #category : #accessing }
+FileDialogWindow >> fileSelectionBlock [
 	"Answer the value of fileSelectionBlock"
 
 	^ fileSelectionBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>fileSelectionBlock: anObject [
+{ #category : #accessing }
+FileDialogWindow >> fileSelectionBlock: anObject [
 	"Set the value of fileSelectionBlock"
 
 	fileSelectionBlock := anObject.
 	self updateFiles
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>fileSortBlock [
+{ #category : #accessing }
+FileDialogWindow >> fileSortBlock [
 	"Answer the value of fileSortBlock"
 
 	^ fileSortBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>fileSortBlock: anObject [
+{ #category : #accessing }
+FileDialogWindow >> fileSortBlock: anObject [
 	"Set the value of fileSortBlock"
 
 	fileSortBlock := anObject
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>files [
+{ #category : #enumerating }
+FileDialogWindow >> files [
 	"Answer the contents of the selected directory."
 
 	self selectedFileDirectory ifNil: [ ^#() ].
@@ -517,31 +390,22 @@ FileDialogWindow>>files [
 		filteredCache asSortedCollection: self fileSortBlock ].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>hasParentDirectory [
+{ #category : #testing }
+FileDialogWindow >> hasParentDirectory [
 	"Answer whether the selected directory in the tree part has a parent."
 
 	^ self selectedFileDirectory ifNotNil: [ :dir | dir isRoot not ] ifNil: [ false ].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>hasSelectedFileOrDirectory [
+{ #category : #testing }
+FileDialogWindow >> hasSelectedFileOrDirectory [
 	"Answer whether a file or directopry is selected in the file list."
 
 	^ self selectedFileIndex ~= 0
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>iconFor: anEntry [
+{ #category : #'widget API' }
+FileDialogWindow >> iconFor: anEntry [
 	"Answer the icon to use for the directory entry."
 
 	^ anEntry isDirectory
@@ -551,11 +415,8 @@ FileDialogWindow>>iconFor: anEntry [
 				ifFalse: [ self iconNamed: #smallLeftFlushIcon ] ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>initialDirectories [
+{ #category : #actions }
+FileDialogWindow >> initialDirectories [
 	"Answer the initial directories."
 	
 	| dirList |
@@ -572,19 +433,13 @@ FileDialogWindow>>initialDirectories [
 	^dirList
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>initialExtent [
+{ #category : #initialization }
+FileDialogWindow >> initialExtent [
 	^ 750@550
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>initialize [
+{ #category : #initialization }
+FileDialogWindow >> initialize [
 	"Initialize the receiver."
 
 	selectedFileIndex := 0.
@@ -598,11 +453,8 @@ FileDialogWindow>>initialize [
 	super initialize. "Must be at end or signals error. No idea why - SeanDeNigris"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>isImageFile: aString [
+{ #category : #testing }
+FileDialogWindow >> isImageFile: aString [
 	"Answer whether the file name indicates an image file."
 
 	aString ifNil: [^false].
@@ -610,21 +462,15 @@ FileDialogWindow>>isImageFile: aString [
 		includes: aString asFileReference extension asLowercase
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>isResizeable [
+{ #category : #accessing }
+FileDialogWindow >> isResizeable [
 	"Answer whether we are not we can be resized."
 
 	^true
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>newActionButtonRow [
+{ #category : #'instance creation' }
+FileDialogWindow >> newActionButtonRow [
 	"Answer a new row with the action buttons."
 	
 	^(self newRow: {
@@ -634,11 +480,8 @@ FileDialogWindow>>newActionButtonRow [
 		listCentering: #bottomRight
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>newContentMorph [
+{ #category : #actions }
+FileDialogWindow >> newContentMorph [
 	"Answer a new content morph."
 
 	self
@@ -660,11 +503,8 @@ FileDialogWindow>>newContentMorph [
 		vResizing: #spaceFill
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>newDeleteButton [
+{ #category : #'instance creation' }
+FileDialogWindow >> newDeleteButton [
 	"Answer a new delete button."
 
 	^ self
@@ -677,11 +517,8 @@ FileDialogWindow>>newDeleteButton [
 		help: 'Press to delete the selected file or directory' translated
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>newDirectory [
+{ #category : #'instance creation' }
+FileDialogWindow >> newDirectory [
 	"Create a new directory within the selected directory."
 
 	|dir dirName title|
@@ -713,11 +550,8 @@ FileDialogWindow>>newDirectory [
 		updateDirectories
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>newDirectoryTree [
+{ #category : #'instance creation' }
+FileDialogWindow >> newDirectoryTree [
 	"Answer a new directory tree."
 	
 	^(self newTreeFor: self
@@ -728,11 +562,8 @@ FileDialogWindow>>newDirectoryTree [
 		minWidth: 180
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>newFileList [
+{ #category : #'instance creation' }
+FileDialogWindow >> newFileList [
 	"Answer a new file list."
 	
 	^(self
@@ -748,11 +579,8 @@ FileDialogWindow>>newFileList [
 		minWidth: 200
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>newFileNameTextEntry [
+{ #category : #'instance creation' }
+FileDialogWindow >> newFileNameTextEntry [
 	"Answer a new file name text entry morph."
 
 	^self
@@ -763,11 +591,8 @@ FileDialogWindow>>newFileNameTextEntry [
 		help: 'File name filter pattern' translated
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>newImagePreviewMorph [
+{ #category : #'instance creation' }
+FileDialogWindow >> newImagePreviewMorph [
 	"Answer a new image preview morph."
 
 	^ImagePreviewMorph new
@@ -776,11 +601,8 @@ FileDialogWindow>>newImagePreviewMorph [
 		size: self previewSize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>newNewDirectoryButton [
+{ #category : #'instance creation' }
+FileDialogWindow >> newNewDirectoryButton [
 	"Answer a new 'new directory' button."
 
 	^ self
@@ -795,11 +617,8 @@ FileDialogWindow>>newNewDirectoryButton [
 				translated
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>newOKButton [
+{ #category : #controls }
+FileDialogWindow >> newOKButton [
 	"Answer a new OK button."
 
 	^self
@@ -807,11 +626,8 @@ FileDialogWindow>>newOKButton [
 		getEnabled: #okEnabled
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>newPreviewMorph [
+{ #category : #'instance creation' }
+FileDialogWindow >> newPreviewMorph [
 	"Answer a new preview morph."
 
 	self previewType == #image ifTrue: [^self newImagePreviewMorph].
@@ -819,11 +635,8 @@ FileDialogWindow>>newPreviewMorph [
 	^nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>newTextPreviewMorph [
+{ #category : #'instance creation' }
+FileDialogWindow >> newTextPreviewMorph [
 	"Answer a new text preview morph."
 
 	^(self newTextEditorFor: self getText: nil setText: nil getEnabled: nil)
@@ -835,11 +648,8 @@ FileDialogWindow>>newTextPreviewMorph [
 		enabled: false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>newUpButton [
+{ #category : #'instance creation' }
+FileDialogWindow >> newUpButton [
 	"Answer a new up one directory level button."
 
 	^ self
@@ -852,11 +662,8 @@ FileDialogWindow>>newUpButton [
 		help: 'Press to switch to the parent of the current directory' translated
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>ok [
+{ #category : #actions }
+FileDialogWindow >> ok [
 	"Apply the changes and close."
 
 	self cancelled: false.
@@ -868,11 +675,8 @@ FileDialogWindow>>ok [
 	super ok
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>okEnabled [
+{ #category : #testing }
+FileDialogWindow >> okEnabled [
 	"Answer wether the ok button should be enabled."
 
 	(#(selectedAnyFileDirectory selectedPathName)
@@ -884,11 +688,8 @@ FileDialogWindow>>okEnabled [
 	^self selectedFileName notNil and: [self selectedFileEntry isDirectory not]
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>openSelectedFile [
+{ #category : #open/close }
+FileDialogWindow >> openSelectedFile [
 	"Open a stream on the selected file if available and return it."
 
 	|d f fileRef |
@@ -899,63 +700,45 @@ FileDialogWindow>>openSelectedFile [
 	^ fileRef exists ifTrue: [ fileRef readStream ] ifFalse: nil  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>previewMorph [
+{ #category : #accessing }
+FileDialogWindow >> previewMorph [
 	"Answer the value of previewMorph"
 
 	^ previewMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>previewMorph: anObject [
+{ #category : #accessing }
+FileDialogWindow >> previewMorph: anObject [
 	"Set the value of previewMorph"
 
 	previewMorph := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>previewSize [
+{ #category : #accessing }
+FileDialogWindow >> previewSize [
 	"Answer the size of preview to use."
 
 	self previewType == #text ifTrue: [^256@256].
 	^128@128
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>previewType [
+{ #category : #accessing }
+FileDialogWindow >> previewType [
 	"Answer the value of previewType"
 
 	^ previewType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>previewType: anObject [
+{ #category : #accessing }
+FileDialogWindow >> previewType: anObject [
 	"Set the value of previewType.
 	See #updatePreview for supported types."
 
 	previewType := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>saveForcedSelectedFile [
+{ #category : #actions }
+FileDialogWindow >> saveForcedSelectedFile [
 	"Open a stream on the selected file if available and return it."
 
 	|d f|
@@ -965,11 +748,8 @@ FileDialogWindow>>saveForcedSelectedFile [
 	^d forceNewFileNamed: f
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>saveSelectedFile [
+{ #category : #actions }
+FileDialogWindow >> saveSelectedFile [
 	"Open a stream on the selected file if available and return it."
 
 	|d f|
@@ -991,21 +771,15 @@ Overwrite the file?' translated format: {f printString})
 			ifTrue: [ f delete ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>selectDirectory: aFileReference [
+{ #category : #actions }
+FileDialogWindow >> selectDirectory: aFileReference [
 	"Expand and select the given directory."
 
 	self changed: #(openPath), aFileReference pathSegments
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>selectFileFromPattern [
+{ #category : #actions }
+FileDialogWindow >> selectFileFromPattern [
 	"If there is a single file matching the pattern then select it.
 	If none then try for a directory."
 
@@ -1021,22 +795,16 @@ FileDialogWindow>>selectFileFromPattern [
 	self selectedFileIndex: 0
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>selectParentDirectory [
+{ #category : #actions }
+FileDialogWindow >> selectParentDirectory [
 	"Switch to the parent directory."
 
 	self hasParentDirectory ifFalse: [^self].
 	self selectDirectory: self selectedFileDirectory asFileReference parent
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>selectPathName: aString [
+{ #category : #actions }
+FileDialogWindow >> selectPathName: aString [
 	"Select the directory and set the file name text
 	from the given string."
 
@@ -1054,11 +822,8 @@ FileDialogWindow>>selectPathName: aString [
 	self fileNameText: reference basename.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>selectedAnyFileDirectory [
+{ #category : #actions }
+FileDialogWindow >> selectedAnyFileDirectory [
 	"If a directory is selected in the 'File' pane, return that. Otherwise, return the directory selected in 'Directory pane (i.e. the tree)"
 
 	| selectedFile isDirectorySelected |
@@ -1069,21 +834,15 @@ FileDialogWindow>>selectedAnyFileDirectory [
 			ifFalse: [ self selectedFileDirectory ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>selectedDirectory [
+{ #category : #accessing }
+FileDialogWindow >> selectedDirectory [
 	"Answer the value of selectedDirectory"
 
 	^ selectedDirectory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>selectedDirectory: anObject [
+{ #category : #accessing }
+FileDialogWindow >> selectedDirectory: anObject [
 	"Set the value of selectedDirectory"
 
 	selectedDirectory := anObject.
@@ -1093,62 +852,44 @@ FileDialogWindow>>selectedDirectory: anObject [
 		updateFiles
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>selectedFileDirectory [
+{ #category : #actions }
+FileDialogWindow >> selectedFileDirectory [
 	"Answer the selected file directory in the tree part."
 
 	^ (self selectedDirectory ifNil: [^nil]) item
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>selectedFileEntry [
+{ #category : #actions }
+FileDialogWindow >> selectedFileEntry [
 	"Answer the selected file."
 
 	self selectedFileIndex = 0 ifTrue: [^nil].
 	^self files at: self selectedFileIndex ifAbsent: [nil]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>selectedFileIndex [
+{ #category : #accessing }
+FileDialogWindow >> selectedFileIndex [
 	"Answer the value of selectedFileIndex"
 
 	^ selectedFileIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>selectedFileIndex: anObject [
+{ #category : #accessing }
+FileDialogWindow >> selectedFileIndex: anObject [
 	"Set the value of selectedFileIndex"
 
 	selectedFileIndex := anObject.
 	self updateSelectedFile
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>selectedFileName [
+{ #category : #actions }
+FileDialogWindow >> selectedFileName [
 
 	^ self selectedFileEntry ifNotNil: [ :dir | dir basename ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>selectedPathName [
+{ #category : #actions }
+FileDialogWindow >> selectedPathName [
 	"Answer the name of the selected path."
 
 	selectedDirectory := self selectedFileDirectory ifNil: [^nil].
@@ -1157,32 +898,23 @@ FileDialogWindow>>selectedPathName [
 		ifNotNil: [ :filename | (selectedDirectory / filename) fullName ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>showDirectoriesInFileList [
+{ #category : #accessing }
+FileDialogWindow >> showDirectoriesInFileList [
 	"Answer the value of showDirectoriesInFileList"
 
 	^ showDirectoriesInFileList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>showDirectoriesInFileList: anObject [
+{ #category : #accessing }
+FileDialogWindow >> showDirectoriesInFileList: anObject [
 	"Set the value of showDirectoriesInFileList"
 
 	showDirectoriesInFileList := anObject.
 	self updateFiles
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>updateDirectories [
+{ #category : #actions }
+FileDialogWindow >> updateDirectories [
 	"Update the directory tree and reselect the current."
 
 	|dir|
@@ -1192,21 +924,15 @@ FileDialogWindow>>updateDirectories [
 	self updateFiles
 ]
 
-{
-	#category : #update,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>updateFiles [
+{ #category : #update }
+FileDialogWindow >> updateFiles [
 	"Notify that the files have changed."
 
 	self changed: #files
 ]
 
-{
-	#category : #update,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>updateImagePreview [
+{ #category : #update }
+FileDialogWindow >> updateImagePreview [
 	"Update the image preview."
 
 	|str form|
@@ -1225,22 +951,16 @@ FileDialogWindow>>updateImagePreview [
 		size: self previewSize
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>updatePreview [
+{ #category : #actions }
+FileDialogWindow >> updatePreview [
 	"Update the preview."
 
 	self previewType == #image ifTrue: [self updateImagePreview].
 	self previewType == #text ifTrue: [self updateTextPreview]
 ]
 
-{
-	#category : #update,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>updateSelectedDirectory [
+{ #category : #update }
+FileDialogWindow >> updateSelectedDirectory [
 	"Notify that the selected directory has changed."
 
 	self
@@ -1250,11 +970,8 @@ FileDialogWindow>>updateSelectedDirectory [
 		changed: #hasParentDirectory
 ]
 
-{
-	#category : #update,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>updateSelectedFile [
+{ #category : #update }
+FileDialogWindow >> updateSelectedFile [
 	"Notify that the selected file has changed."
 
 	self
@@ -1267,11 +984,8 @@ FileDialogWindow>>updateSelectedFile [
 	self updatePreview
 ]
 
-{
-	#category : #update,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>updateTextPreview [
+{ #category : #update }
+FileDialogWindow >> updateTextPreview [
 	"Update the text preview."
 
 	|str text|
@@ -1285,11 +999,8 @@ FileDialogWindow>>updateTextPreview [
 		setText: text
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-FileDialogWindow>>validExtensions: aList [
+{ #category : #actions }
+FileDialogWindow >> validExtensions: aList [
 	"Set the filter for the files to be those with the given extensions."
 	
 	aList notEmpty

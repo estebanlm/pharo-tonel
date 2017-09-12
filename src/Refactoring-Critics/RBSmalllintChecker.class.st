@@ -14,36 +14,26 @@ Class {
 		'context',
 		'methodBlock'
 	],
-	#category : #Refactoring-Critics,
-	#timestamp : '<historical>'
+	#category : #Refactoring-Critics
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintChecker class>>newWithContext [
+{ #category : #'instance creation' }
+RBSmalllintChecker class >> newWithContext [
 	^(self new)
 		context: RBSmalllintContext new;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintChecker class>>runRule: aLintRule [
+{ #category : #'instance creation' }
+RBSmalllintChecker class >> runRule: aLintRule [
 	(self new)
 		rule: aLintRule;
 		run.
 	^aLintRule
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintChecker class>>runRule: aLintRule onEnvironment: aBrowserEnvironment [
+{ #category : #'instance creation' }
+RBSmalllintChecker class >> runRule: aLintRule onEnvironment: aBrowserEnvironment [
 	aLintRule resetResult.
 	(self new)
 		rule: aLintRule;
@@ -52,19 +42,13 @@ RBSmalllintChecker class>>runRule: aLintRule onEnvironment: aBrowserEnvironment 
 	^aLintRule
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintChecker>>checkClass: aClass  [
+{ #category : #private }
+RBSmalllintChecker >> checkClass: aClass [ 
 	(environment includesClass: aClass) ifTrue: [rule checkClass: aClass]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintChecker>>checkMethodsForClass: aClass [
+{ #category : #private }
+RBSmalllintChecker >> checkMethodsForClass: aClass [
 	^ environment
 		selectorsForClass: aClass
 		do: [ :each | 
@@ -72,71 +56,47 @@ RBSmalllintChecker>>checkMethodsForClass: aClass [
 			methodBlock value ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintChecker>>checkPackage: aRPackage [
+{ #category : #private }
+RBSmalllintChecker >> checkPackage: aRPackage [
 	(environment includesPackage: aRPackage) 
 		ifTrue: [rule checkPackage: aRPackage]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintChecker>>context: aSmalllintContext  [
+{ #category : #accessing }
+RBSmalllintChecker >> context: aSmalllintContext [ 
 	context := aSmalllintContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintChecker>>environment: aBrowserEnvironment  [
+{ #category : #accessing }
+RBSmalllintChecker >> environment: aBrowserEnvironment [ 
 	environment := aBrowserEnvironment
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintChecker>>initialize [
+{ #category : #initialization }
+RBSmalllintChecker >> initialize [
 	methodBlock := [].
 	environment := RBBrowserEnvironment new.
 	context := RBSmalllintContext newNoCache
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintChecker>>methodBlock: aBlock  [
+{ #category : #accessing }
+RBSmalllintChecker >> methodBlock: aBlock [ 
 	methodBlock := aBlock
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintChecker>>release [
+{ #category : #initialize-release }
+RBSmalllintChecker >> release [
 	context release.
 	super release
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintChecker>>rule: aLintRule  [
+{ #category : #accessing }
+RBSmalllintChecker >> rule: aLintRule [ 
 	rule := aLintRule
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBSmalllintChecker>>run [
+{ #category : #actions }
+RBSmalllintChecker >> run [
 	environment classesAndTraits
 		do: [ :class |
 			self checkClass: class.

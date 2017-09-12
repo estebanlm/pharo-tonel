@@ -1,45 +1,29 @@
-"
-
-"
 Class {
 	#name : #EpTriggeringIntegrationTest,
 	#superclass : #EpEnabledIntegrationTest,
-	#category : #EpiceaTests-Integration,
-	#timestamp : ''
+	#category : #EpiceaTests-Integration
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTriggeringIntegrationTest>>changesBrowserOpenedWindows [
+{ #category : #accessing }
+EpTriggeringIntegrationTest >> changesBrowserOpenedWindows [
 
 	^ ChangesBrowser allSubInstances reject: [ :each | each window isClosed ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTriggeringIntegrationTest>>monticelloRepository [
+{ #category : #accessing }
+EpTriggeringIntegrationTest >> monticelloRepository [
 
 	^ GoferResource current monticelloRepository
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTriggeringIntegrationTest>>resources [
+{ #category : #accessing }
+EpTriggeringIntegrationTest >> resources [
 
 	^ super resources copyWith: GoferResource
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTriggeringIntegrationTest>>testMCVersionLoad [
+{ #category : #tests }
+EpTriggeringIntegrationTest >> testMCVersionLoad [
 	
 	| gofer anEntry |
 	gofer := Gofer new.
@@ -60,11 +44,8 @@ EpTriggeringIntegrationTest>>testMCVersionLoad [
 		description: 'It did not recognize that the code change was triggered by other event.'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTriggeringIntegrationTest>>testNoTrigger [
+{ #category : #tests }
+EpTriggeringIntegrationTest >> testNoTrigger [
 	
 	classFactory newClass.
 	[ classFactory newClass ] asJob run.
@@ -76,11 +57,8 @@ EpTriggeringIntegrationTest>>testNoTrigger [
 		self deny: (anEntry tags includesKey: EpLog triggererReferenceKey) ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpTriggeringIntegrationTest>>testRefactoring [
+{ #category : #tests }
+EpTriggeringIntegrationTest >> testRefactoring [
 	"Really hacky"
 
 	| aClass newName nautilus windowsAfter windowsBefore anEntry |

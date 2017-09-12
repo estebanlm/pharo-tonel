@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'announcer'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : 'TudorGirba 7/14/2011 09:45'
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPluggableTextMorph>>announceSelection: aString from: start to: stop [
+{ #category : #'interactive error protocol' }
+GLMPluggableTextMorph >> announceSelection: aString from: start to: stop [
 	self announcer announce: (
 		GLMSelectedTextChanged new 
 			start: start; 
@@ -23,60 +19,42 @@ GLMPluggableTextMorph>>announceSelection: aString from: start to: stop [
 			selectedText: aString )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPluggableTextMorph>>announcer [
+{ #category : #accessing }
+GLMPluggableTextMorph >> announcer [
 	^ announcer ifNil: [announcer := GLMAnnouncer new]
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPluggableTextMorph>>evaluateSelectionAndDo: aBlock [
+{ #category : #do-its }
+GLMPluggableTextMorph >> evaluateSelectionAndDo: aBlock [
 
 	^ self handleEdit: [textMorph editor evaluateSelectionAndDo: aBlock]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPluggableTextMorph>>handleEdit: editBlock [
+{ #category : #private }
+GLMPluggableTextMorph >> handleEdit: editBlock [
 	"We override this hook method to intercept pasting in the text morph.
 	When pasting happens, we update the text port"
 	super handleEdit: editBlock.
 	self announcer announce: (GLMTextChanged new text: self text)
 ]
 
-{
-	#category : #'interactive error protocol',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPluggableTextMorph>>selectFrom: start to: stop [
+{ #category : #'interactive error protocol' }
+GLMPluggableTextMorph >> selectFrom: start to: stop [
 	| result |
 	result := super selectFrom: start to: stop.
 	self announcer announce: (GLMSelectedTextChanged new start: start; end: stop).
 	^ result
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPluggableTextMorph>>selectLine [
+{ #category : #'new selection' }
+GLMPluggableTextMorph >> selectLine [
 
 	self handleEdit: [ 
 		textMorph editor lineSelectAndEmptyCheck: [^ nil] ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPluggableTextMorph>>textMorphClass [
+{ #category : #private }
+GLMPluggableTextMorph >> textMorphClass [
 	"this is needed for intercepting the shortcuts"
 	^ GLMTextMorphForEditView
 ]

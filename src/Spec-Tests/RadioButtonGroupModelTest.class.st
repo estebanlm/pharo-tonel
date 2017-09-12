@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RadioButtonGroupModelTest,
 	#superclass : #SpecTestCase,
@@ -8,32 +5,22 @@ Class {
 		'radio1',
 		'radio2'
 	],
-	#category : #Spec-Tests-Core-Widgets,
-	#timestamp : ''
+	#category : #Spec-Tests-Core-Widgets
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RadioButtonGroupModelTest>>classToTest [
+{ #category : #running }
+RadioButtonGroupModelTest >> classToTest [
 	^ RadioButtonGroupModel
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RadioButtonGroupModelTest>>initializeTestedInstance [
+{ #category : #running }
+RadioButtonGroupModelTest >> initializeTestedInstance [
 	radio1 := RadioButtonModel new.
 	radio2 := RadioButtonModel new
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RadioButtonGroupModelTest>>testAddRadioButton [
+{ #category : #tests }
+RadioButtonGroupModelTest >> testAddRadioButton [
 	self assert: testedInstance buttons size == 0.
 	testedInstance
 		addRadioButton: radio1;
@@ -41,11 +28,8 @@ RadioButtonGroupModelTest>>testAddRadioButton [
 	self assert: testedInstance buttons size == 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RadioButtonGroupModelTest>>testAddingFocusOrder [
+{ #category : #tests }
+RadioButtonGroupModelTest >> testAddingFocusOrder [
 	testedInstance
 		addRadioButton: radio1;
 		addRadioButton: radio2.
@@ -53,31 +37,22 @@ RadioButtonGroupModelTest>>testAddingFocusOrder [
 	self assert: (testedInstance giveFocusToNextFrom: radio1)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RadioButtonGroupModelTest>>testCurrentActivated [
+{ #category : #tests }
+RadioButtonGroupModelTest >> testCurrentActivated [
 	testedInstance addRadioButton: radio1.
 	self assert: testedInstance currentActivated equals: nil.
 	radio1 click.
 	self assert: testedInstance currentActivated equals: radio1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RadioButtonGroupModelTest>>testDefault [
+{ #category : #tests }
+RadioButtonGroupModelTest >> testDefault [
 	testedInstance addRadioButton: radio1.
 	self assert: radio1 state == false
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RadioButtonGroupModelTest>>testLinkRadioButton [
+{ #category : #tests }
+RadioButtonGroupModelTest >> testLinkRadioButton [
 	testedInstance
 		addRadioButton: radio1;
 		addRadioButton: radio2.
@@ -91,11 +66,8 @@ RadioButtonGroupModelTest>>testLinkRadioButton [
 	self assert: radio2 state == true
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-RadioButtonGroupModelTest>>testRebuildWidget [
+{ #category : #tests }
+RadioButtonGroupModelTest >> testRebuildWidget [
 	testedInstance
 		addRadioButton: radio1;
 		addRadioButton: radio2.

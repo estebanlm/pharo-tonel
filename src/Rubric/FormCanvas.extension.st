@@ -1,12 +1,7 @@
-Extension {
-	#name : #FormCanvas
-}
+Extension { #name : #FormCanvas }
 
-{
-	#category : #'*Rubric-Editing-Core',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-FormCanvas>>rubParagraph: para bounds: bounds color: c [
+{ #category : #'*Rubric-Editing-Core' }
+FormCanvas >> rubParagraph: para bounds: bounds color: c [
 
 	| scanner |
 	self setPaintColor: c.

@@ -13,15 +13,11 @@ Class {
 		'packagePattern',
 		'searchWidget'
 	],
-	#category : #Nautilus,
-	#timestamp : '<historical>'
+	#category : #Nautilus
 }
 
-{
-	#category : #keymapping,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI class>>buildHistoryShortcutsOn: aBuilder [
+{ #category : #keymapping }
+NautilusUI class >> buildHistoryShortcutsOn: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #previous)
@@ -38,11 +34,8 @@ NautilusUI class>>buildHistoryShortcutsOn: aBuilder [
 	
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI class>>notifyTitle: title contents: contents color: aColor [
+{ #category : #'widget method' }
+NautilusUI class >> notifyTitle: title contents: contents color: aColor [
 
 	 GrowlMorph 
 		openWithLabel: title
@@ -53,11 +46,8 @@ NautilusUI class>>notifyTitle: title contents: contents color: aColor [
 	
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI class>>packagesFixMenu: aBuilder [
+{ #category : #menu }
+NautilusUI class >> packagesFixMenu: aBuilder [
 	<contextMenu>
 	<nautilusGlobalPackageTreeFixMenu>
 	
@@ -101,11 +91,8 @@ NautilusUI class>>packagesFixMenu: aBuilder [
 		help: 'Open the same browser'.
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI class>>runTestForAMethod: aMethod notifying: aBoolean [
+{ #category : #'menus behavior' }
+NautilusUI class >> runTestForAMethod: aMethod notifying: aBoolean [
 	| testMethod testClass testResult color |
 	(testMethod := aMethod asTestMethod) ifNil: [ ^ self ].
 	testClass := testMethod methodClass.
@@ -125,11 +112,8 @@ NautilusUI class>>runTestForAMethod: aMethod notifying: aBoolean [
 		color: color
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI class>>toggleBreakpointIn: aMethod [
+{ #category : #'menus behavior' }
+NautilusUI class >> toggleBreakpointIn: aMethod [
 	"Install or uninstall a halt-on-entry breakpoint"
 
 	aMethod ifNil: [ ^ self ].
@@ -141,11 +125,8 @@ NautilusUI class>>toggleBreakpointIn: aMethod [
 	SystemAnnouncer uniqueInstance methodChangedFrom: aMethod to: aMethod oldProtocol: aMethod protocol
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>addCategory [
+{ #category : #'menus behavior' }
+NautilusUI >> addCategory [
 	"Present a choice of categories or prompt for a new category name and add it before the current selection, or at the end if no current selection"
 	| newName |
 	
@@ -164,11 +145,8 @@ NautilusUI>>addCategory [
 		giveFocusToSourceCodeArea.
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>addClassCategory  [
+{ #category : #'menus behavior' }
+NautilusUI >> addClassCategory [ 
 	| package |
 
 	package := self addClassCategoryBasedOn: self selectedPackage.
@@ -177,11 +155,8 @@ NautilusUI>>addClassCategory  [
 		self updatePackageView ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>addClassCategoryBasedOn: aSelection [
+{ #category : #private }
+NautilusUI >> addClassCategoryBasedOn: aSelection [
 	| name package packageTag |
 
 	packageTag := nil.
@@ -200,19 +175,13 @@ NautilusUI>>addClassCategoryBasedOn: aSelection [
 	^ packageTag
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>addClassIn: aPackage [
+{ #category : #class }
+NautilusUI >> addClassIn: aPackage [
 	super addClassIn: aPackage asNautilusSelection item.
 ]
 
-{
-	#category : #package,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>addPackageBasedOn: aPackage [
+{ #category : #package }
+NautilusUI >> addPackageBasedOn: aPackage [
 	[ ^ super addPackageBasedOn: aPackage ]
 	on: RPackageConflictError 
 	do: [ :e | UIManager default inform: e messageText, '. You need to use promote/demote options instead.' ].
@@ -220,11 +189,8 @@ NautilusUI>>addPackageBasedOn: aPackage [
 	^ nil
 ]
 
-{
-	#category : #package,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>addPackagesAsGroup: aCollection [
+{ #category : #package }
+NautilusUI >> addPackagesAsGroup: aCollection [
 	| group |
 	
 	aCollection isEmptyOrNil ifTrue: [ ^ nil ].
@@ -234,47 +200,32 @@ NautilusUI>>addPackagesAsGroup: aCollection [
 	^ group
 ]
 
-{
-	#category : #class,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>addTraitIn: aPackage [
+{ #category : #class }
+NautilusUI >> addTraitIn: aPackage [
 	super addTraitIn: aPackage asNautilusSelection item.
 ]
 
-{
-	#category : #package,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>alertCategoryName: tagName exitstsAlreadyIn: package [
+{ #category : #package }
+NautilusUI >> alertCategoryName: tagName exitstsAlreadyIn: package [
 	| errorMessage |
 	errorMessage := String
 		streamContents: [ :stream | stream << 'Category named ' << tagName << ' already exists in package ' << package name ].
 	UIManager default inform: errorMessage
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>allLabel [
+{ #category : #'widget method' }
+NautilusUI >> allLabel [
 
 	^ AllProtocol defaultName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>basicRemoveClasses: aCollection  [
+{ #category : #private }
+NautilusUI >> basicRemoveClasses: aCollection [ 
 		aCollection do: #removeFromSystem.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>basicRenamePackage: aPackage  [
+{ #category : #private }
+NautilusUI >> basicRenamePackage: aPackage [ 
 
 	| newName |
 	newName := UIManager default 
@@ -288,11 +239,8 @@ NautilusUI>>basicRenamePackage: aPackage  [
 		ifFalse: [ self alertInvalidPackageName:newName ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>basicSelectPackage: aPackage [
+{ #category : #accessing }
+NautilusUI >> basicSelectPackage: aPackage [
 	| selection |
 			
 	selection := aPackage asNautilusSelection.
@@ -301,11 +249,8 @@ NautilusUI>>basicSelectPackage: aPackage [
 	self listSelectItem: selection.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>basicShowHierarchy [
+{ #category : #private }
+NautilusUI >> basicShowHierarchy [
 	"Prepares the class panel to show hierarchies"
 	
 	self selectedClass ifNil: [ ^ self ].	"Since the double clic comes after a simple clic and simple clic deselects selected item, we are forced to have this guard. A alternative would be to change the simple clic but the side effects are too big"
@@ -314,11 +259,8 @@ NautilusUI>>basicShowHierarchy [
 	self resetClassesList.	
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>buildCategoryWidget [
+{ #category : #'widget category' }
+NautilusUI >> buildCategoryWidget [
 	| categoriesList |
 	
 	categoriesList := categoryWidget buildCategoriesList.	
@@ -330,22 +272,16 @@ NautilusUI>>buildCategoryWidget [
 	^categoriesList
 ]
 
-{
-	#category : #'widget class',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>buildClassWidget [
+{ #category : #'widget class' }
+NautilusUI >> buildClassWidget [
 	| classesList |
 	classesList := classWidget buildClassesList.
 	self setShortcuts: #NautilusClassShortcuts to: classesList.
 	^ classesList
 ]
 
-{
-	#category : #'build ui lists',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>buildFirstColumn: aWindow [
+{ #category : #'build ui lists' }
+NautilusUI >> buildFirstColumn: aWindow [
 	^ PanelMorph new
 		changeProportionalLayout;
 		addMorph: self buildPackageSearch
@@ -362,11 +298,8 @@ NautilusUI>>buildFirstColumn: aWindow [
 		yourself
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>buildMethodWidget [
+{ #category : #'widget method' }
+NautilusUI >> buildMethodWidget [
 	| methodsList |
 	
 	methodsList := methodWidget buildMethodsList.	
@@ -379,11 +312,8 @@ NautilusUI>>buildMethodWidget [
 
 ]
 
-{
-	#category : #'package filter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>buildPackageSearch [
+{ #category : #'package filter' }
+NautilusUI >> buildPackageSearch [
 	"It is an search dialog which filters package list"
 	| textMorph |
 	
@@ -404,30 +334,21 @@ NautilusUI>>buildPackageSearch [
 	^ searchWidget
 ]
 
-{
-	#category : #'widget package',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>buildPackageWidget [
+{ #category : #'widget package' }
+NautilusUI >> buildPackageWidget [
 	| packagesList |
 	packagesList := packageWidget buildPackagesList.
 	self setShortcuts: #NautilusPackageShortcuts to: packagesList.
 	^ packagesList
 ]
 
-{
-	#category : #'test creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>buildTestPackageNameFrom:aClass [
+{ #category : #'test creation' }
+NautilusUI >> buildTestPackageNameFrom:aClass [
 	^ aClass package categoryName asString, '-Tests' 
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>buildTestSelectorFor: aMethod [
+{ #category : #'widget method' }
+NautilusUI >> buildTestSelectorFor: aMethod [
 
 	^ String streamContents: [:s || capitalize |
 		capitalize := true.
@@ -443,38 +364,26 @@ NautilusUI>>buildTestSelectorFor: aMethod [
 			
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>categoriesLabel [
+{ #category : #'widget category' }
+NautilusUI >> categoriesLabel [
 
 	^ categoryWidget categoriesLabel
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>categoriesMenu: aMenu shifted: b [
+{ #category : #'widget category' }
+NautilusUI >> categoriesMenu: aMenu shifted: b [
 
 	^ aMenu becomeForward: (self categoryMenuBuilder menu)
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>categoriesSelection [
+{ #category : #'widget category' }
+NautilusUI >> categoriesSelection [
 
 	^ categoryWidget categoriesSelection
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>categorizeMethod [
+{ #category : #'menus behavior' }
+NautilusUI >> categorizeMethod [
 
 	"Present a choice of categories or prompt for a new category name and add it before the current selection, or at the end if no current selection"
 	| aCollection aClass |
@@ -487,49 +396,34 @@ NautilusUI>>categorizeMethod [
 	self updateCategoryAndMethodList.
 ]
 
-{
-	#category : #package,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>category: aClassTag existsIn: aPackage [
+{ #category : #package }
+NautilusUI >> category: aClassTag existsIn: aPackage [
 	aPackage classTagNamed: aClassTag ifPresent:[^ true].
 	^ false.
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>categorySelectionChanged [
+{ #category : #'widget category' }
+NautilusUI >> categorySelectionChanged [
 
 	self resetMethodsList
 	methodWidget updateMethodList.
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>categoryWidget [
+{ #category : #'widget category' }
+NautilusUI >> categoryWidget [
 
 	^ categoryWidget
 ]
 
-{
-	#category : #'package filter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>class: aClass matchPackagePatternString: aString  [
+{ #category : #'package filter' }
+NautilusUI >> class: aClass matchPackagePatternString: aString [ 
 	| pattern |
 	pattern := self createPackagePattern: aString.
 	^ self package: aClass package matchPackagePattern: pattern
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>classAdded: anAnnouncement  [
+{ #category : #'system announcements' }
+NautilusUI >> classAdded: anAnnouncement [ 
 	| class |
 	
 	window ifNil: [ ^ self ].
@@ -544,30 +438,21 @@ NautilusUI>>classAdded: anAnnouncement  [
 			
 ]
 
-{
-	#category : #'widget class',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>classWidget [
+{ #category : #'widget class' }
+NautilusUI >> classWidget [
 
 	^ classWidget
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>clearPackageSelections [
+{ #category : #private }
+NautilusUI >> clearPackageSelections [
 	self resetClassesList.
 	self resetPackageGroupsListSelection.
 
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>compareTwoMethods [
+{ #category : #'menus behavior' }
+NautilusUI >> compareTwoMethods [
 	
 	(DiffModel new
 		showOptions: true;
@@ -579,11 +464,8 @@ NautilusUI>>compareTwoMethods [
 	
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>compileAMethodFromCategory: aCategory withSource: aString notifying: aController [
+{ #category : #'source code area' }
+NautilusUI >> compileAMethodFromCategory: aCategory withSource: aString notifying: aController [
 	| category selector class  method |
 	category := aCategory.
 	class := self selectedClass ifNil: [ ^ Error signal: 'Should not happen!' ].
@@ -607,30 +489,21 @@ NautilusUI>>compileAMethodFromCategory: aCategory withSource: aString notifying:
 	
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>compileSource: aText notifying: aController [
+{ #category : #'source code area' }
+NautilusUI >> compileSource: aText notifying: aController [
 	aText ifEmpty: [ ^ self ].
 	acceptor accept: aText asString notifying: aController.
 ]
 
-{
-	#category : #'package filter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>createPackagePattern: aPatternString [
+{ #category : #'package filter' }
+NautilusUI >> createPackagePattern: aPatternString [
 	^ (aPatternString isNil or: [ aPatternString trimBoth isEmpty ])
 		ifTrue: [ nil ]
 		ifFalse: [ self ensureSafePackagePattern: aPatternString ]
 ]
 
-{
-	#category : #'history behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>currentHistoryIndex [
+{ #category : #'history behavior' }
+NautilusUI >> currentHistoryIndex [
 
 	| index item |
 	index := 1 min: self getHistoryList size.
@@ -643,11 +516,8 @@ NautilusUI>>currentHistoryIndex [
 		ifFalse: [ 0 ]
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>debugTest [
+{ #category : #'debugging actions' }
+NautilusUI >> debugTest [
 	| method |
 	method := self selectedMethod.
 	method asTestMethod 
@@ -655,11 +525,8 @@ NautilusUI>>debugTest [
 			self debugTest: testMethod ]
 ]
 
-{
-	#category : #'debugging actions',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>debugTest: aMethod [
+{ #category : #'debugging actions' }
+NautilusUI >> debugTest: aMethod [
 	| breakpoint  |
 	breakpoint := Breakpoint new
 		node: aMethod ast;
@@ -667,11 +534,8 @@ NautilusUI>>debugTest: aMethod [
 	[aMethod methodClass run: aMethod selector] ensure: [ breakpoint remove ].
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>defaultClassDescriptor [
+{ #category : #'source code area' }
+NautilusUI >> defaultClassDescriptor [
 	| string |
 	string := Slot showSlotClassDefinition
 		ifTrue: [ 
@@ -687,11 +551,8 @@ NautilusUI>>defaultClassDescriptor [
 	^ self selectedPackage ifNotNil: [ :package | string , package categoryName , '''' ] ifNil: [ string , '''' ]
 ]
 
-{
-	#category : #menu-packages,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>demoteSelectedPackageAsPackageWithTag [
+{ #category : #menu-packages }
+NautilusUI >> demoteSelectedPackageAsPackageWithTag [
 
 	| packages |
 	packages := self selectedPackages.
@@ -703,11 +564,8 @@ NautilusUI>>demoteSelectedPackageAsPackageWithTag [
 
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>dropMethod: aCollectionOfMethods inARow: aRow [
+{ #category : #'drag and drop' }
+NautilusUI >> dropMethod: aCollectionOfMethods inARow: aRow [
 
 	| newProtocol |
 	aRow = 0 ifFalse:  [
@@ -716,86 +574,59 @@ NautilusUI>>dropMethod: aCollectionOfMethods inARow: aRow [
 		self selectedMethod: nil]
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>elementsMenu: aMenu shifted: b [
+{ #category : #'widget category' }
+NautilusUI >> elementsMenu: aMenu shifted: b [
 
 	^ aMenu becomeForward: (self methodMenuBuilder menu)
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>enableCategorySingleSelection [
+{ #category : #'widget category' }
+NautilusUI >> enableCategorySingleSelection [
 
 	^ self selectedCategories size <= 1
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>enableMethodDualSelection [
+{ #category : #'widget method' }
+NautilusUI >> enableMethodDualSelection [
 
 	^ self selectedMethods size = 2
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>enableMethodSingleSelection [
+{ #category : #'widget method' }
+NautilusUI >> enableMethodSingleSelection [
 
 	^ self selectedMethods size <= 1
 ]
 
-{
-	#category : #'package filter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>ensureSafePackagePattern: aPattern [
+{ #category : #'package filter' }
+NautilusUI >> ensureSafePackagePattern: aPattern [
 	^ [ aPattern asRegexIgnoringCase ]
 		on: RegexSyntaxError
 		do: [ :ex | self fixPackagePattern: aPattern ex: ex ]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>fileOutCategories [
+{ #category : #'menus behavior' }
+NautilusUI >> fileOutCategories [
 
 	self fileOutCategories: self selectedCategories from: self selectedClass
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>fileOutMethods [
+{ #category : #'menus behavior' }
+NautilusUI >> fileOutMethods [
 
 	self fileOutMethods: self selectedMethods
 ]
 
-{
-	#category : #package,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>fileOutPackages: aCollection [
+{ #category : #package }
+NautilusUI >> fileOutPackages: aCollection [
 	self 
 		do: [ :package | package asNautilusSelection item fileOut ]
 		on: aCollection
 		displaying: 'Filing out packages...'.
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>findMethod [
+{ #category : #'menus behavior' }
+NautilusUI >> findMethod [
 	"Search for a method in the lookup of the selected class"
 
 	| foundMethod class |
@@ -817,11 +648,8 @@ NautilusUI>>findMethod [
 	self updateCategoryAndMethodList
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>findProtocol [
+{ #category : #'menus behavior' }
+NautilusUI >> findProtocol [
 	"Search for a method in the lookup of the selected class"
 
 	| foundProtocol class |
@@ -842,11 +670,8 @@ NautilusUI>>findProtocol [
 	self updateCategoryAndMethodList
 ]
 
-{
-	#category : #'package filter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>fixPackagePattern: aPattern ex: anException [
+{ #category : #'package filter' }
+NautilusUI >> fixPackagePattern: aPattern ex: anException [
 	| fixedPattern |
 	fixedPattern := aPattern copyReplaceAll: '*' with: '.*' .
 
@@ -855,20 +680,14 @@ NautilusUI>>fixPackagePattern: aPattern ex: anException [
 		do: [ :ex | '.*' asRegexIgnoringCase ]
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>forceSelectedMethod: aMethod  [
+{ #category : #'widget method' }
+NautilusUI >> forceSelectedMethod: aMethod [ 
 	
 	self model package: self selectedPackage class: self selectedClass protocol: self selectedCategory method: aMethod.
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>fullBrowse [
+{ #category : #'menus behavior' }
+NautilusUI >> fullBrowse [
 	| ret |
 	ret := self model class
 		openOnPackage: self selectedPackage
@@ -886,11 +705,8 @@ NautilusUI>>fullBrowse [
 	^ret.
 ]
 
-{
-	#category : #'private dispatch',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>fullBrowseFromPackage: aPackage [
+{ #category : #'private dispatch' }
+NautilusUI >> fullBrowseFromPackage: aPackage [
 	self model class
 		openOnPackage: aPackage
 		class: self selectedClass
@@ -904,11 +720,8 @@ NautilusUI>>fullBrowseFromPackage: aPackage [
 		showCategories: true
 ]
 
-{
-	#category : #'private dispatch',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>fullBrowseFromTag: aPackageTag [
+{ #category : #'private dispatch' }
+NautilusUI >> fullBrowseFromTag: aPackageTag [
 	self model class
 		openOnPackage: aPackageTag asNautilusSelection
 		class: self selectedClass
@@ -922,20 +735,14 @@ NautilusUI>>fullBrowseFromTag: aPackageTag [
 		showCategories: true
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>generateSourceCodeForTestFrom: aMethod [
+{ #category : #'widget method' }
+NautilusUI >> generateSourceCodeForTestFrom: aMethod [
 
 	^ self buildTestSelectorFor: aMethod.
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>generateTestMethodFor: aMethod [
+{ #category : #'widget method' }
+NautilusUI >> generateTestMethodFor: aMethod [
 
 	"generate a test method for aMethod and return the generated method"
 	| class testMethodName|
@@ -948,11 +755,8 @@ NautilusUI>>generateTestMethodFor: aMethod [
 	^ nil
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>generateTestMethodsAndFocus: aBoolean [
+{ #category : #'menus behavior' }
+NautilusUI >> generateTestMethodsAndFocus: aBoolean [
 	"generate testing methods for the selected methods in the test class"
 
 	"I assume the test class is named #{MyClassName}Test"
@@ -973,69 +777,45 @@ NautilusUI>>generateTestMethodsAndFocus: aBoolean [
 			self updatePackageGroupAndClassList ]
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>getCategories [
+{ #category : #'widget category' }
+NautilusUI >> getCategories [
 
 	^ categoryWidget getCategories
 ]
 
-{
-	#category : #'history behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>getHistoryList [
+{ #category : #'history behavior' }
+NautilusUI >> getHistoryList [
 	^ self model historyEntries reversed
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>getMethods [
+{ #category : #'widget category' }
+NautilusUI >> getMethods [
 
 	^ methodWidget getMethods
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>giveFocusToClass [
+{ #category : #focus }
+NautilusUI >> giveFocusToClass [
 	self giveFocusTo: self classWidget
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>giveFocusToMethod [
+{ #category : #focus }
+NautilusUI >> giveFocusToMethod [
 	self giveFocusTo: methodWidget
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>giveFocusToProtocol [
+{ #category : #focus }
+NautilusUI >> giveFocusToProtocol [
 	self giveFocusTo: categoryWidget
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>groups [
+{ #category : #accessing }
+NautilusUI >> groups [
 	^ self model groupsManager groups.
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>highlightCategory: aMethod [
+{ #category : #'widget method' }
+NautilusUI >> highlightCategory: aMethod [
 
 		aMethod 
 			ifNotNil: [ | category index |
@@ -1047,21 +827,15 @@ NautilusUI>>highlightCategory: aMethod [
 							categoryWidget searchedElement: index] ] ]
 ]
 
-{
-	#category : #'history behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>historyChanged [
+{ #category : #'history behavior' }
+NautilusUI >> historyChanged [
 	self setWindowTitle.
 	self changed: #getHistoryList.
 	self changed: #currentHistoryIndex
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>initialize [
+{ #category : #initialization }
+NautilusUI >> initialize [
 	super initialize.
 	categoryWidget := CategoryWidget model: self.
 	methodWidget := MethodWidget model: self.
@@ -1069,41 +843,29 @@ NautilusUI>>initialize [
 	packageWidget := PackageWidget model: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>interestedInClass: aClass [
+{ #category : #accessing }
+NautilusUI >> interestedInClass: aClass [
 
 	"answer if the browser is showing content related to aClass"
 	
 	^ (aClass = self selectedClass) or: [ aClass users includes: self selectedClass  ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>isSelectedPackage: aSelection  [
+{ #category : #private }
+NautilusUI >> isSelectedPackage: aSelection [ 
          aSelection 
       ifNil:[^ self selectedPackage isNil]
 	ifNotNil:[^ aSelection asNautilusSelection = self selectedPackage ]	
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>keyPressedOnElement: anEvent [
+{ #category : #'widget category' }
+NautilusUI >> keyPressedOnElement: anEvent [
 
 		^ self methodWidget keyPressedOnElement: anEvent
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>keyPressedOnList: anEvent shifted: aBoolean [
+{ #category : #'events handling' }
+NautilusUI >> keyPressedOnList: anEvent shifted: aBoolean [
 	(anEvent keyCharacter == self class nextFocusKey
 		and: [ (self packageWidget canExpand not or: [ self packageWidget isExpanded ]) ]) 
 		ifTrue: [  
@@ -1114,11 +876,8 @@ NautilusUI>>keyPressedOnList: anEvent shifted: aBoolean [
 
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>keyPressedOnTree: anEvent target: aMorph  [
+{ #category : #'events handling' }
+NautilusUI >> keyPressedOnTree: anEvent target: aMorph [ 
 	(anEvent keyCharacter == self class nextFocusKey
 		and: [ (aMorph canExpand not or: [ aMorph isExpanded ]) ]) 
 		ifTrue: [  
@@ -1129,19 +888,13 @@ NautilusUI>>keyPressedOnTree: anEvent target: aMorph  [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>listClearSelection [
+{ #category : #private }
+NautilusUI >> listClearSelection [
 	self packageWidget deselectAll.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>listSelectItem: anObject  [
+{ #category : #private }
+NautilusUI >> listSelectItem: anObject [ 
 	| selection |
 	
 	selection := anObject asNautilusSelection.
@@ -1151,11 +904,8 @@ NautilusUI>>listSelectItem: anObject  [
 	self packageWidget scrollSelectionIntoView.
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>menu: aMenu shifted: aBoolean  [
+{ #category : #menus }
+NautilusUI >> menu: aMenu shifted: aBoolean [ 
 	self selectedPackage ifNil: [ ^ aMenu ].
 
 	^ self selectedPackage 
@@ -1164,11 +914,8 @@ NautilusUI>>menu: aMenu shifted: aBoolean  [
 		target: self
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>metaLinkModified: anAnnouncement  [
+{ #category : #'system announcements' }
+NautilusUI >> metaLinkModified: anAnnouncement [ 
 	| method|
 	window ifNil: [ ^ self ].
 	window isDisplayed ifFalse: [ ^ self ].
@@ -1183,11 +930,8 @@ NautilusUI>>metaLinkModified: anAnnouncement  [
 				self highlightCategory: method]
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>methodAdded: anAnnouncement [
+{ #category : #'system announcements' }
+NautilusUI >> methodAdded: anAnnouncement [
 	
 	| method |
 	window ifNil: [ ^ self ].
@@ -1203,11 +947,8 @@ NautilusUI>>methodAdded: anAnnouncement [
 				ifTrue: [ self changed: #instanceButtonLabel ] ]
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>methodModified: anAnnouncement  [
+{ #category : #'system announcements' }
+NautilusUI >> methodModified: anAnnouncement [ 
 	| collection nonMetaMethodClass |
 
 	window ifNil: [ ^ self ].
@@ -1237,11 +978,8 @@ NautilusUI>>methodModified: anAnnouncement  [
 				ifFalse: [self updateCategoryAndMethodList  ] ]
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>methodRecategorized: anAnnouncement [
+{ #category : #'system announcements' }
+NautilusUI >> methodRecategorized: anAnnouncement [
 	
 	window ifNil: [ ^ self ].
 	window isDisplayed ifFalse: [ ^ self ].
@@ -1250,11 +988,8 @@ NautilusUI>>methodRecategorized: anAnnouncement [
 		ifTrue: [self updateCategoryAndMethodList ]
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>methodRemoved: anAnnouncement [
+{ #category : #'system announcements' }
+NautilusUI >> methodRemoved: anAnnouncement [
 	| method |
 	window ifNil: [ ^ self ].
 	window isDisplayed
@@ -1274,11 +1009,8 @@ NautilusUI>>methodRemoved: anAnnouncement [
 				ifTrue: [ self changed: #instanceButtonLabel ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>methodSortBlock [
+{ #category : #private }
+NautilusUI >> methodSortBlock [
 	^ [ :a :b |
 		"If one is binary and the other isn't, sort the binary first.
 		Otherwise, sort them by Character values."
@@ -1287,29 +1019,20 @@ NautilusUI>>methodSortBlock [
 			ifFalse: [ a selector isBinary ] ]
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>methodWidget [
+{ #category : #'widget method' }
+NautilusUI >> methodWidget [
 
 	^ methodWidget
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>methodsForCategories: aCollection [
+{ #category : #'widget method' }
+NautilusUI >> methodsForCategories: aCollection [
 
 	^ aCollection flatCollect: [:e | self methodsForCategory: e ]
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>methodsForCategory: aCategory [
+{ #category : #'widget method' }
+NautilusUI >> methodsForCategory: aCategory [
 	| methods class env |
 	class := self selectedClass.
 	class ifNil: [ ^ #() ].
@@ -1320,20 +1043,14 @@ NautilusUI>>methodsForCategory: aCategory [
 	^ methods sort: self methodSortBlock.
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>methodsIconsCache [
+{ #category : #'widget method' }
+NautilusUI >> methodsIconsCache [
 	
 	^ self methodWidget methodsIconsCache
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>methodsInARestrictedEnvironment: env forCategory: aCategory  in: class [
+{ #category : #'widget method' }
+NautilusUI >> methodsInARestrictedEnvironment: env forCategory: aCategory  in: class [
 	| mthds selectors |
 	
 	aCategory = self allLabel
@@ -1344,11 +1061,8 @@ NautilusUI>>methodsInARestrictedEnvironment: env forCategory: aCategory  in: cla
 	^ mthds
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>methodsInSystemEnvironmentForCategory: aCategory  in: class [
+{ #category : #'widget method' }
+NautilusUI >> methodsInSystemEnvironmentForCategory: aCategory  in: class [
 	
 	aCategory = self allLabel
 		ifTrue: [ ^ class methods asOrderedCollection ].
@@ -1356,29 +1070,20 @@ NautilusUI>>methodsInSystemEnvironmentForCategory: aCategory  in: class [
 	^ (class methodsInProtocol: aCategory) asOrderedCollection
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>methodsLabel [
+{ #category : #'widget method' }
+NautilusUI >> methodsLabel [
 
 	^ methodWidget methodsLabel
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>methodsSelection [
+{ #category : #'widget method' }
+NautilusUI >> methodsSelection [
 
 	^ methodWidget methodsSelection
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>move: item from: oldCategory to: newCategory isCopy: isCopy [
+{ #category : #'drag and drop' }
+NautilusUI >> move: item from: oldCategory to: newCategory isCopy: isCopy [
 
 	| category |
 	category := newCategory.
@@ -1393,11 +1098,8 @@ NautilusUI>>move: item from: oldCategory to: newCategory isCopy: isCopy [
 			self selectedMethod: item ] 
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>moveMethodToPackage [
+{ #category : #'menus behavior' }
+NautilusUI >> moveMethodToPackage [
 	"Search for a package from a pattern or from the recent list"	
 	
 	| foundPackage  |	
@@ -1410,41 +1112,29 @@ NautilusUI>>moveMethodToPackage [
 
 ]
 
-{
-	#category : #'history behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>next [
+{ #category : #'history behavior' }
+NautilusUI >> next [
 	self model hasNext 
 		ifFalse: [ ^ self ].
 	"show the next item in history"
 	self model next
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>notifyTitle: title contents: contents [
+{ #category : #'widget method' }
+NautilusUI >> notifyTitle: title contents: contents [
 
 	 GrowlMorph 
 		openWithLabel: title
 		contents: contents
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>notifyTitle: title contents: contents color: aColor [
+{ #category : #'widget method' }
+NautilusUI >> notifyTitle: title contents: contents color: aColor [
 	^self class notifyTitle: title contents: contents color: aColor
 ]
 
-{
-	#category : #open,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>open [
+{ #category : #open }
+NautilusUI >> open [
 	| focus |
 	super open.
 	window takeKeyboardFocus.
@@ -1468,65 +1158,44 @@ NautilusUI>>open [
 	self giveFocusTo: focus.
 ]
 
-{
-	#category : #'package filter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>package: aRPackage matchPackagePattern: aPattern  [
+{ #category : #'package filter' }
+NautilusUI >> package: aRPackage matchPackagePattern: aPattern [ 
 	^ aPattern
 		ifNil: [ true ]
 		ifNotNil: [ :pattern | (pattern search: aRPackage name) or:[
 				aRPackage classTags anySatisfy: [:tag | pattern search: tag name]]]
 ]
 
-{
-	#category : #'menu pragmas',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>packageFixPragma [
+{ #category : #'menu pragmas' }
+NautilusUI >> packageFixPragma [
 	^ 'nautilusGlobalPackageTreeFixMenu'
 ]
 
-{
-	#category : #'package filter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>packageMatchPattern: aRPackage  [
+{ #category : #'package filter' }
+NautilusUI >> packageMatchPattern: aRPackage [ 
 	^ self package: aRPackage matchPackagePattern: self packagePattern
 ]
 
-{
-	#category : #'package filter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>packagePattern [
+{ #category : #'package filter' }
+NautilusUI >> packagePattern [
 	^ packagePattern
 ]
 
-{
-	#category : #'package filter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>packagePatternString [
+{ #category : #'package filter' }
+NautilusUI >> packagePatternString [
 	
 	^ searchWidget searchString
 ]
 
-{
-	#category : #'package filter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>packagePatternString: aStringOrNil [
+{ #category : #'package filter' }
+NautilusUI >> packagePatternString: aStringOrNil [
 	
 	aStringOrNil ifNil: [ ^ self ].
 	searchWidget content: aStringOrNil
 ]
 
-{
-	#category : #'package filter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>packageSearchUpdate: aPatternString [
+{ #category : #'package filter' }
+NautilusUI >> packageSearchUpdate: aPatternString [
 	packagePatternString = aPatternString ifTrue: [ ^ self ].
 	packagePatternString := aPatternString.
 	packagePattern := self createPackagePattern: aPatternString.
@@ -1534,55 +1203,37 @@ NautilusUI>>packageSearchUpdate: aPatternString [
 	self updatePackages
 ]
 
-{
-	#category : #'widget package',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>packageWidget [
+{ #category : #'widget package' }
+NautilusUI >> packageWidget [
 
 	^ packageWidget
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>packages  [
+{ #category : #accessing }
+NautilusUI >> packages [ 
 	^ self model packages
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>parentOfClass: aClass [
+{ #category : #private }
+NautilusUI >> parentOfClass: aClass [
 	^ self model parentOfClass: aClass
 ]
 
-{
-	#category : #'history behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>previous [
+{ #category : #'history behavior' }
+NautilusUI >> previous [
 	self model hasPrevious 
 		ifFalse: [ ^ self ].
 	"show the previous item in the history"
 	self model previous
 ]
 
-{
-	#category : #menu-packages,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>promoteSelectedPackageTagAsPackage [
+{ #category : #menu-packages }
+NautilusUI >> promoteSelectedPackageTagAsPackage [
 	self selectedPackage item promoteAsRPackage
 ]
 
-{
-	#category : #'private dispatch',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>registerSelectionGroup: aSelection [
+{ #category : #'private dispatch' }
+NautilusUI >> registerSelectionGroup: aSelection [
 	self model selectedGroup: aSelection item.
 	
 	self flag: #todo. "I need to refactor to remove the need of groups"
@@ -1596,11 +1247,8 @@ NautilusUI>>registerSelectionGroup: aSelection [
 
 ]
 
-{
-	#category : #'private dispatch',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>registerSelectionPackage: aSelection [
+{ #category : #'private dispatch' }
+NautilusUI >> registerSelectionPackage: aSelection [
 
 	| selectedClass |
 	
@@ -1613,20 +1261,14 @@ NautilusUI>>registerSelectionPackage: aSelection [
 	self packageWidget selectPackage: aSelection item.
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>removeAllFromMethodsIconsCache: aMethod [
+{ #category : #'widget method' }
+NautilusUI >> removeAllFromMethodsIconsCache: aMethod [
 
 	methodWidget removeAllFromMethodsIconsCache: aMethod
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>removeCategories [
+{ #category : #'menus behavior' }
+NautilusUI >> removeCategories [
 
 	self selectedClass 
 		ifNotNil: [:class |
@@ -1644,31 +1286,22 @@ NautilusUI>>removeCategories [
 					categoryWidget vScrollValue: scroll. ]]
 ]
 
-{
-	#category : #'private dispatch',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>removeClassCategory: packageTag  [
+{ #category : #'private dispatch' }
+NautilusUI >> removeClassCategory: packageTag [ 
 	self basicRemoveClasses: packageTag classes.
 	packageTag asNautilusSelection item removeFromPackage.
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>removeGroups [
+{ #category : #'menus behavior' }
+NautilusUI >> removeGroups [
 	self okToChange ifFalse: [ ^ self ].
 	
 	super removeGroups.
 	self updatePackageView.
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>removeMethod: aMethod inClass: aClass [
+{ #category : #'menus behavior' }
+NautilusUI >> removeMethod: aMethod inClass: aClass [
 	"If a message is selected, create a Confirmer so the user can verify that  
 	the currently selected message should be removed from the system. If 
 	so, remove it. "
@@ -1680,11 +1313,8 @@ NautilusUI>>removeMethod: aMethod inClass: aClass [
 	^result
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>removeMethods [
+{ #category : #'menus behavior' }
+NautilusUI >> removeMethods [
 
 	self selectedClass 
 		ifNotNil: [:class |
@@ -1706,11 +1336,8 @@ NautilusUI>>removeMethods [
 						vScrollValue: scroll. ]]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>removeNonLocalSelector: aSymbol [
+{ #category : #'menus behavior' }
+NautilusUI >> removeNonLocalSelector: aSymbol [
 	| traits isAlias |
 	traits := self selectedClassOrMetaClass traitsProvidingSelector: aSymbol.
 	isAlias := self selectedClassOrMetaClass isLocalAliasSelector: aSymbol.
@@ -1724,20 +1351,14 @@ NautilusUI>>removeNonLocalSelector: aSymbol [
 	
 ]
 
-{
-	#category : #'private dispatch',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>removePackageCategory: packageSelection [
+{ #category : #'private dispatch' }
+NautilusUI >> removePackageCategory: packageSelection [
 
 	packageSelection item removeFromSystem.
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>removePackages [
+{ #category : #'menus behavior' }
+NautilusUI >> removePackages [
 	| names packages |
 	
 	packages := self selectedPackages. 
@@ -1753,11 +1374,8 @@ NautilusUI>>removePackages [
 			self updatePackageView ]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>renameCategory [
+{ #category : #'menus behavior' }
+NautilusUI >> renameCategory [
 	"Prompt for a new category name and add it before the
 	current selection, or at the end if no current selection"
 
@@ -1781,11 +1399,8 @@ NautilusUI>>renameCategory [
 	categoryWidget vScrollValue: vScroll
 ]
 
-{
-	#category : #'private dispatch',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>renameClassCategory: packageTag [
+{ #category : #'private dispatch' }
+NautilusUI >> renameClassCategory: packageTag [
 	| newName oldName |
 
 	oldName := packageTag name.
@@ -1804,28 +1419,19 @@ NautilusUI>>renameClassCategory: packageTag [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>renamePackage: aSelection [
+{ #category : #private }
+NautilusUI >> renamePackage: aSelection [
 	aSelection asNautilusSelection renameTarget: self. 
 
 ]
 
-{
-	#category : #'private dispatch',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>renamePackageCategory: package [
+{ #category : #'private dispatch' }
+NautilusUI >> renamePackageCategory: package [
 	self basicRenamePackage: package
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>resetAllListSelections [
+{ #category : #selection }
+NautilusUI >> resetAllListSelections [
 
 	self resetPackageGroupsListSelection.
 	self resetClassesListSelection.
@@ -1833,79 +1439,52 @@ NautilusUI>>resetAllListSelections [
 	self resetMethodsListSelection.
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>resetCategoriesList [
+{ #category : #selection }
+NautilusUI >> resetCategoriesList [
 	self categoryWidget resetCategoryList
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>resetCategoriesListSelection [
+{ #category : #selection }
+NautilusUI >> resetCategoriesListSelection [
 
 	categoryWidget resetCategorySelection
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>resetClassesList [
+{ #category : #selection }
+NautilusUI >> resetClassesList [
 	self classWidget resetClassList
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>resetClassesListSelection [
+{ #category : #selection }
+NautilusUI >> resetClassesListSelection [
 
 	classWidget resetClassSelection 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>resetMethodsList [
+{ #category : #selection }
+NautilusUI >> resetMethodsList [
 	self methodWidget resetMethodList
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>resetMethodsListSelection [
+{ #category : #selection }
+NautilusUI >> resetMethodsListSelection [
 
 	methodWidget resetMethodSelection
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>resetPackageGroupsListSelection [
+{ #category : #selection }
+NautilusUI >> resetPackageGroupsListSelection [
 	self packageWidget resetPackagesSelection.
 	self packageWidget resetGroupsSelection.
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>restrictedBrowsePackages: selections [
+{ #category : #'menus behavior' }
+NautilusUI >> restrictedBrowsePackages: selections [
 	^ super restrictedBrowsePackages: (selections collect: [ :each | each asNautilusSelection item ])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>runPackagesTestsNotifying: aBoolean [
+{ #category : #private }
+NautilusUI >> runPackagesTestsNotifying: aBoolean [
 	| packages classes label |
 
 	(packages := self selectedPackages) ifNil: [ ^ self ].
@@ -1922,27 +1501,18 @@ NautilusUI>>runPackagesTestsNotifying: aBoolean [
 	aBoolean ifTrue: [ self notifyTestResultFrom: packages classes: classes labeled: label ].
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>runTestForAMethod: aMethod notifying: aBoolean [
+{ #category : #'menus behavior' }
+NautilusUI >> runTestForAMethod: aMethod notifying: aBoolean [
 	^self class runTestForAMethod: aMethod notifying: aBoolean
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectNextMethod [
+{ #category : #selection }
+NautilusUI >> selectNextMethod [
 	methodWidget selectNextMethod
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectPackageFor: aClass [
+{ #category : #private }
+NautilusUI >> selectPackageFor: aClass [
 	"I'm called to properly select a class pache/tag.
 	 Since we are showing root tags as packages when their are the only ones, we need to determine 
 	 if we are going to select the package or the tag..."
@@ -1957,30 +1527,21 @@ NautilusUI>>selectPackageFor: aClass [
 				ifFalse: [ tag ])
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedCategories [
+{ #category : #'widget category' }
+NautilusUI >> selectedCategories [
 
 	^ categoryWidget selectedCategories
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedCategory [
+{ #category : #'widget category' }
+NautilusUI >> selectedCategory [
 
 	^ (self model 
 			ifNil: [ ^ nil ]) selectedCategory
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedCategory: protocol [
+{ #category : #'widget category' }
+NautilusUI >> selectedCategory: protocol [
 	self okToChange
 		ifTrue: [ 
 			self resetMethodsList.
@@ -1999,20 +1560,14 @@ NautilusUI>>selectedCategory: protocol [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedCategoryInternally: anObject [
+{ #category : #accessing }
+NautilusUI >> selectedCategoryInternally: anObject [
 	self resetMethodsListSelection.
 	anObject ifNotNil: [ self giveFocusTo: categoryWidget ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedClass: aClass belongsToPackageSelection: aPackage [
+{ #category : #private }
+NautilusUI >> selectedClass: aClass belongsToPackageSelection: aPackage [
 	"test whether the class belongs to a selected package. But if
 we are in hierarchy view, the membership is more difficult to compute. Now, I just
 assmume, if hierarchy view is enabled, selecting this class is what we want"
@@ -2020,11 +1575,8 @@ assmume, if hierarchy view is enabled, selecting this class is what we want"
 	^ (aPackage includesClass: aClass) or: [ self showHierarchy ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedClass: aClass withSelection: aPackage [
+{ #category : #private }
+NautilusUI >> selectedClass: aClass withSelection: aPackage [
 	self model
 		package: aPackage
 		class: aClass.
@@ -2033,11 +1585,8 @@ NautilusUI>>selectedClass: aClass withSelection: aPackage [
 	self updatePackageGroupAndClassList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedClassWithoutChangingSelection: aClass [
+{ #category : #accessing }
+NautilusUI >> selectedClassWithoutChangingSelection: aClass [
 	"protocol: accessing"
 
 	self resetCategoriesList.
@@ -2057,11 +1606,8 @@ NautilusUI>>selectedClassWithoutChangingSelection: aClass [
 			self updateOnClassSelection ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedClassWithoutChangingSelectionInternally: aClass [
+{ #category : #accessing }
+NautilusUI >> selectedClassWithoutChangingSelectionInternally: aClass [
 	| package packageChanged |
 	package := self selectedPackage.
 	self showHierarchy
@@ -2084,11 +1630,8 @@ NautilusUI>>selectedClassWithoutChangingSelectionInternally: aClass [
 	self changed: #isAClassSelected
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedFromPackageGroupView: aNode [
+{ #category : #accessing }
+NautilusUI >> selectedFromPackageGroupView: aNode [
 	| selections |
 
 	selections := aNode selectedNodes collect: [ :each |each asNautilusSelection].
@@ -2103,11 +1646,8 @@ NautilusUI>>selectedFromPackageGroupView: aNode [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedGroup: aGroup [
+{ #category : #accessing }
+NautilusUI >> selectedGroup: aGroup [
 	" Force package selection, not used by the lists "
 
 	self okToChange ifFalse: [ ^ self ].
@@ -2128,20 +1668,14 @@ NautilusUI>>selectedGroup: aGroup [
 	
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedMethod [
+{ #category : #'widget method' }
+NautilusUI >> selectedMethod [
 
 	^ self model selectedMethod 
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedMethod: aMethod  [
+{ #category : #'widget method' }
+NautilusUI >> selectedMethod: aMethod [ 
 
 	self okToChange
 		ifTrue: [
@@ -2160,20 +1694,14 @@ NautilusUI>>selectedMethod: aMethod  [
 	^false 
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedMethods [
+{ #category : #'widget method' }
+NautilusUI >> selectedMethods [
 
 	^ methodWidget selectedMethods
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedPackage: aPackage [
+{ #category : #accessing }
+NautilusUI >> selectedPackage: aPackage [
 	" Force package selection, not used by the lists "
 	
 	self okToChange ifFalse: [ ^ self ].
@@ -2193,22 +1721,16 @@ NautilusUI>>selectedPackage: aPackage [
 	
 ]
 
-{
-	#category : #'widget package',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedPackageIncludes: aClass [
+{ #category : #'widget package' }
+NautilusUI >> selectedPackageIncludes: aClass [
 ^ (self selectedPackage notNil) and:[
 	 (self selectedPackage classes includes: aClass ) or:[
 		self selectedPackage classes includes: aClass class ].
 	]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedPackageWithoutChangingSelection: aSelection [
+{ #category : #accessing }
+NautilusUI >> selectedPackageWithoutChangingSelection: aSelection [
 	| class |
 	self okToChange
 		ifFalse: [ ^ self ].
@@ -2222,20 +1744,14 @@ NautilusUI>>selectedPackageWithoutChangingSelection: aSelection [
 	self commentTextModel setInitialText: self getComments.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>selectedProtocol [
+{ #category : #accessing }
+NautilusUI >> selectedProtocol [
 	^ self selectedCategory 
 		ifNotNil: [ :protocolName | self selectedClass organization protocolNamed: protocolName ]
 ]
 
-{
-	#category : #'history behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>setHistory: anIndex [
+{ #category : #'history behavior' }
+NautilusUI >> setHistory: anIndex [
 	| entry |
 	anIndex == self currentHistoryIndex ifTrue: [ ^ self ].
 	entry := self getHistoryList at: anIndex ifAbsent: [ nil ].
@@ -2244,11 +1760,8 @@ NautilusUI>>setHistory: anIndex [
 	self changed: #currentHistoryIndex.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>showHierarchy: aBoolean [
+{ #category : #accessing }
+NautilusUI >> showHierarchy: aBoolean [
 	|selectedClass|
 	
 	(selectedClass := self selectedClass) ifNil: [ ^ self ]. "Since the double clic comes after a simple clic and simple clic deselects selected item, we are forced to have this guard. A alternative would be to change the simple clic but the side effects are too big"
@@ -2271,11 +1784,8 @@ NautilusUI>>showHierarchy: aBoolean [
 	self changed: #hierarchyButtonState
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>signatureFor: aSelector [
+{ #category : #'widget method' }
+NautilusUI >> signatureFor: aSelector [
 
 	^ (aSelector includes: $:)
 		ifTrue: [ | col |
@@ -2288,11 +1798,8 @@ NautilusUI>>signatureFor: aSelector [
 		ifFalse: [ aSelector ]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>toggleBreakConditionOnEntryIn: aMethod [
+{ #category : #'menus behavior' }
+NautilusUI >> toggleBreakConditionOnEntryIn: aMethod [
 	"Install or uninstall a halt-on-entry breakpoint"
 
 	aMethod ifNil: [ ^ self ].
@@ -2305,22 +1812,16 @@ NautilusUI>>toggleBreakConditionOnEntryIn: aMethod [
 		]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>toggleBreakOnceOnEntryIn: aMethod [
+{ #category : #'menus behavior' }
+NautilusUI >> toggleBreakOnceOnEntryIn: aMethod [
 	"Install or uninstall a halt-on-entry breakpoint"
 
 	aMethod ifNil: [ ^ self ].
 	aMethod hasBreakpoint ifFalse: [ Breakpoint new node: aMethod ast; once; install]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>toggleBreakpoint [
+{ #category : #'menus behavior' }
+NautilusUI >> toggleBreakpoint [
 	| savedSelectedMethodIndex savedVscroll |
 	self selectedMethod ifNil: [ ^ self ].
 
@@ -2334,11 +1835,8 @@ NautilusUI>>toggleBreakpoint [
 	savedVscroll := methodWidget vScrollValue: savedVscroll
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>toggleBreakpointCondition [
+{ #category : #'menus behavior' }
+NautilusUI >> toggleBreakpointCondition [
 	| savedSelectedMethodIndex savedVscroll |
 	self selectedMethod ifNil: [ ^ self ].
 	savedSelectedMethodIndex := methodWidget selectedMethodIndex.
@@ -2351,11 +1849,8 @@ NautilusUI>>toggleBreakpointCondition [
 	savedVscroll := methodWidget vScrollValue: savedVscroll
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>toggleBreakpointOnce [
+{ #category : #'menus behavior' }
+NautilusUI >> toggleBreakpointOnce [
 	| savedSelectedMethodIndex savedVscroll |
 	self selectedMethod ifNil: [ ^ self ].
 	savedSelectedMethodIndex := methodWidget selectedMethodIndex.
@@ -2368,11 +1863,8 @@ NautilusUI>>toggleBreakpointOnce [
 	savedVscroll := methodWidget vScrollValue: savedVscroll
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>unselectClass [
+{ #category : #private }
+NautilusUI >> unselectClass [
 	acceptor := ClassDefinitionAcceptor model: self.
 	self resetClassesListSelection.
 	self model
@@ -2380,41 +1872,29 @@ NautilusUI>>unselectClass [
 	self updateOnClassSelection
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>updateCategoryAndMethodList [
+{ #category : #updating }
+NautilusUI >> updateCategoryAndMethodList [
 	self resetCategoriesList.
 	categoryWidget updateCategoryList.
 	self resetMethodsList.
 	methodWidget updateMethodList
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>updateCategoryAndMethodList: aMethodOrNil [
+{ #category : #updating }
+NautilusUI >> updateCategoryAndMethodList: aMethodOrNil [
 	self resetCategoriesList.
 	categoryWidget updateCategoryList.
 	self resetMethodsList.
 	methodWidget updateMethodList: aMethodOrNil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>updateGroupView  [
+{ #category : #private }
+NautilusUI >> updateGroupView [ 
 	self updatePackageView
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>updateOnClassSelection [
+{ #category : #private }
+NautilusUI >> updateOnClassSelection [
 	self changed: #hierarchyButtonEnabled.
 	self changed: #browseVariablesButtonEnabled.
 	self setWindowTitle.
@@ -2427,11 +1907,8 @@ NautilusUI>>updateOnClassSelection [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>updatePackageGroupAndClassList [
+{ #category : #private }
+NautilusUI >> updatePackageGroupAndClassList [
 	| selectedPackage selectedClass |
 	
 	
@@ -2449,19 +1926,13 @@ NautilusUI>>updatePackageGroupAndClassList [
 		ifTrue: [ self selectedClass: selectedClass ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>updatePackageView [
+{ #category : #private }
+NautilusUI >> updatePackageView [
 	self packageWidget updatePackageView
 ]
 
-{
-	#category : #'package filter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>updatePackages [
+{ #category : #'package filter' }
+NautilusUI >> updatePackages [
 	| package |
 	package := self selectedPackage.
 	package 
@@ -2472,19 +1943,13 @@ NautilusUI>>updatePackages [
 		ifNil: [ self packageWidget updateContentsWithPreviouslyExpanded: #() ]
 ]
 
-{
-	#category : #'package filter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>useLastPackagePatternString [
+{ #category : #'package filter' }
+NautilusUI >> useLastPackagePatternString [
 	self packagePatternString: SharedPackageFilterPatternsHolder instance lastValue
 ]
 
-{
-	#category : #'package filter',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>useLastPackagePatternStringForClass: aClass [
+{ #category : #'package filter' }
+NautilusUI >> useLastPackagePatternStringForClass: aClass [
 	| patternString |
 	patternString := SharedPackageFilterPatternsHolder instance lastValue.
 	patternString ifNil: [ ^ self ].
@@ -2493,10 +1958,7 @@ NautilusUI>>useLastPackagePatternStringForClass: aClass [
 	self packagePatternString: patternString.
 ]
 
-{
-	#category : #'history behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusUI>>wrapHistory: anEntry [
+{ #category : #'history behavior' }
+NautilusUI >> wrapHistory: anEntry [
 	^ StringMorph contents: anEntry key asHistoryString
 ]

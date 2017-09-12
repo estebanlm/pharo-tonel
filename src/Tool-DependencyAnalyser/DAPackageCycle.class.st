@@ -10,78 +10,53 @@ Class {
 	#instVars : [
 		'packages'
 	],
-	#category : #Tool-DependencyAnalyser-Core,
-	#timestamp : 'BaptisteQuide 7/11/2014 11:59'
+	#category : #Tool-DependencyAnalyser-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle class>>new [
+{ #category : #'instance creation' }
+DAPackageCycle class >> new [
 	^ self basicNew initialize; yourself.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>><= aPDPackageCycle [
+{ #category : #comparing }
+DAPackageCycle >> <= aPDPackageCycle [
 	^ (self size) <= (aPDPackageCycle size)
 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>= aPDPackageCycle [
+{ #category : #comparing }
+DAPackageCycle >> = aPDPackageCycle [
 	(aPDPackageCycle isKindOf: self class) ifFalse: [ ^ false ]. 
 	^ self size = aPDPackageCycle size and: [ self packages includesAll: aPDPackageCycle packages ].
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>> aPDPackageCycle [
+{ #category : #comparing }
+DAPackageCycle >> > aPDPackageCycle [
 	^ (self size) > (aPDPackageCycle size)
 
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>addAllPackages: aCollection [
+{ #category : #adding }
+DAPackageCycle >> addAllPackages: aCollection [
 	
 	aCollection do: [ :package | self addPackage: package].
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>addPackage: aPDPackage [
+{ #category : #adding }
+DAPackageCycle >> addPackage: aPDPackage [
 	packages add: aPDPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>dependentPackagesFrom: aPackage [
+{ #category : #accessing }
+DAPackageCycle >> dependentPackagesFrom: aPackage [
 	"only the dependent packages from the cycle"
 	^ aPackage dependentPackages select: [ :package |
 		self packages includes: package
 		 ]
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>displayString [
+{ #category : #displaying }
+DAPackageCycle >> displayString [
 	^ String streamContents: [ :stream |
 		stream
 			nextPutAll: 'A cycle of ';
@@ -92,84 +67,54 @@ DAPackageCycle>>displayString [
 			separatedBy: [ stream space ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>hasOutgoingDependencies: aPackage [
+{ #category : #testing }
+DAPackageCycle >> hasOutgoingDependencies: aPackage [
 	^ aPackage dependencies anySatisfy: [ :dependency | (self packages includes: (dependency target)) not ].
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>hash [
+{ #category : #comparing }
+DAPackageCycle >> hash [
 	^ self packages hash.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>initialize [
+{ #category : #initialization }
+DAPackageCycle >> initialize [
 	super initialize.
 	packages := OrderedCollection new.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>isAtLeastInCycle: aCollectionOfPDPackage [
+{ #category : #testing }
+DAPackageCycle >> isAtLeastInCycle: aCollectionOfPDPackage [
 	^ aCollectionOfPDPackage anySatisfy: [ :package | self isInCycle: package ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>isInCycle: aPackage [
+{ #category : #testing }
+DAPackageCycle >> isInCycle: aPackage [
 	^ packages includes: aPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>packageAt: anInteger [
+{ #category : #accessing }
+DAPackageCycle >> packageAt: anInteger [
 	^ packages at: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>packages [
+{ #category : #accessing }
+DAPackageCycle >> packages [
 	^ packages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>packages: anObject [
+{ #category : #accessing }
+DAPackageCycle >> packages: anObject [
 	packages := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>removeOutgoingDependencies [
+{ #category : #actions }
+DAPackageCycle >> removeOutgoingDependencies [
 	self packages do: [ :package | self removeOutgoingDependencies: package ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>removeOutgoingDependencies: aPackage [
+{ #category : #private }
+DAPackageCycle >> removeOutgoingDependencies: aPackage [
 	
 	| removals |
 	packages := packages copy.
@@ -178,18 +123,12 @@ DAPackageCycle>>removeOutgoingDependencies: aPackage [
 	removals do: [ :each | aPackage remove: each ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>reversedCycle [
+{ #category : #accessing }
+DAPackageCycle >> reversedCycle [
 	packages := packages reversed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageCycle>>size [
+{ #category : #accessing }
+DAPackageCycle >> size [
 	^ packages size
 ]

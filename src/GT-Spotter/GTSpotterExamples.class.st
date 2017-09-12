@@ -6,25 +6,18 @@ I provide examples for the class GTSpotter as class side methods.
 Class {
 	#name : #GTSpotterExamples,
 	#superclass : #Object,
-	#category : #GT-Spotter-Model,
-	#timestamp : 'AndreiChis 9/24/2015 19:54'
+	#category : #GT-Spotter-Model
 }
 
-{
-	#category : #'examples - basic',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExamples class>>gtExampleBasic [
+{ #category : #'examples - basic' }
+GTSpotterExamples class >> gtExampleBasic [
 	<gtExample>
 	<label: 'Basic Spotter object'>
 	^ GTSpotter new
 ]
 
-{
-	#category : #'examples - filtering',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExamples class>>gtExampleCustomImplementorsSearchOn: aSpotter [
+{ #category : #'examples - filtering' }
+GTSpotterExamples class >> gtExampleCustomImplementorsSearchOn: aSpotter [
 	<gtExample>
 	<label: 'Custom implementors search'>
 	<description: 'A spotter for searching through the implementors of a 
@@ -41,11 +34,8 @@ GTSpotterExamples class>>gtExampleCustomImplementorsSearchOn: aSpotter [
 				candidatesLimit: 50 ])
 ]
 
-{
-	#category : #'examples - filtering',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExamples class>>gtExampleCustomImplementorsSearchWithNavigationOn: aSpotter [
+{ #category : #'examples - filtering' }
+GTSpotterExamples class >> gtExampleCustomImplementorsSearchWithNavigationOn: aSpotter [
 	<gtExample>
 	<label: 'Custom implementors search with navigation'>
 	<description: 'A spotter for searching through the implementors of a method that 
@@ -64,11 +54,8 @@ GTSpotterExamples class>>gtExampleCustomImplementorsSearchWithNavigationOn: aSpo
 				candidatesLimit: 50 ])
 ]
 
-{
-	#category : #'examples - filtering',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExamples class>>gtExampleHelpSearchOn: aSpotter [
+{ #category : #'examples - filtering' }
+GTSpotterExamples class >> gtExampleHelpSearchOn: aSpotter [
 	<gtExample>
 	<label: 'Help search'>
 	<description: 'A spotter for searching through help pages.'>
@@ -80,11 +67,8 @@ GTSpotterExamples class>>gtExampleHelpSearchOn: aSpotter [
 			HelpTopic>>#spotterForHelpTopicFor:}
 ]
 
-{
-	#category : #'examples - filtering',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExamples class>>gtExampleImplementorsSearchOn: aSpotter [
+{ #category : #'examples - filtering' }
+GTSpotterExamples class >> gtExampleImplementorsSearchOn: aSpotter [
 	<gtExample>
 	<label: 'Implementors search on single method'>
 	<description: 'A spotter for searching through the implementors of a method.'>
@@ -95,21 +79,15 @@ GTSpotterExamples class>>gtExampleImplementorsSearchOn: aSpotter [
 			CompiledMethod>>#spotterForImplementorsFor:}
 ]
 
-{
-	#category : #'examples - basic',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExamples class>>gtExampleOnCompliedMethod [
+{ #category : #'examples - basic' }
+GTSpotterExamples class >> gtExampleOnCompliedMethod [
 	<gtExample>
 	<label: 'Spotter on compiled method'>
 	^ GTSpotter on: Object>>#copy
 ]
 
-{
-	#category : #'examples - basic',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExamples class>>gtExampleWithOneStepFrom: aSpotter [
+{ #category : #'examples - basic' }
+GTSpotterExamples class >> gtExampleWithOneStepFrom: aSpotter [
 	<gtExample>
 	<label: 'Spotter object with one step'>
 	<dependsOn: #gtExampleBasic>
@@ -120,11 +98,8 @@ GTSpotterExamples class>>gtExampleWithOneStepFrom: aSpotter [
 	^ aSpotter
 ]
 
-{
-	#category : #'examples - filtering',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExamples class>>gtExampleWorldMenuSearchOn: aSpotter [
+{ #category : #'examples - filtering' }
+GTSpotterExamples class >> gtExampleWorldMenuSearchOn: aSpotter [
 	<gtExample>
 	<label: 'World menu search'>
 	<description: 'A spotter for searching through the world menu'>

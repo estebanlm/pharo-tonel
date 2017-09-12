@@ -8,15 +8,11 @@ Class {
 		'defaultKeymappingIndex',
 		'textArea'
 	],
-	#category : #Rubric-Editing-Core,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:22'
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #keymapping,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor class>>buildPatchShortcutsForSelectAllInWindowsOn: aBuilder [
+{ #category : #keymapping }
+RubTextEditor class >> buildPatchShortcutsForSelectAllInWindowsOn: aBuilder [
 	<keymap>
 	"this is because for some reason Ctrl+a means Ctrl+home on Windows"
 	(aBuilder shortcut: #selectAllPatchForWin) 
@@ -27,11 +23,8 @@ RubTextEditor class>>buildPatchShortcutsForSelectAllInWindowsOn: aBuilder [
 
 ]
 
-{
-	#category : #keymapping,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor class>>buildShortcutsOn: aBuilder [
+{ #category : #keymapping }
+RubTextEditor class >> buildShortcutsOn: aBuilder [
 	"We are defining the bindings twice because we want to support 
 	both Cmd and Ctrl for Windows and Linux. This should happen at least as long as in the development environment
 	both of these are supported.
@@ -118,39 +111,27 @@ RubTextEditor class>>buildShortcutsOn: aBuilder [
 		description: 'Compare selection to clipboard'.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor class>>forTextArea: aMorph [
+{ #category : #'instance creation' }
+RubTextEditor class >> forTextArea: aMorph [
 	^ self new textArea: aMorph
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>accept [
+{ #category : #'menu messages' }
+RubTextEditor >> accept [
 	"Save the current text of the text being edited as the current acceptable version for purposes of canceling.  Allow my morph to take appropriate action"
 	self canChangeText 
 		ifTrue: [textArea acceptContents]
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>accept: aKeyboardEvent  [
+{ #category : #'menu messages' }
+RubTextEditor >> accept: aKeyboardEvent [ 
 	"Save the current text of the text being edited as the current acceptable version for purposes of canceling.  Allow my morph to take appropriate action"
 	self accept.
 	^ true
 ]
 
-{
-	#category : #'undo-redo private',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>addDeleteSelectionUndoRecord [
+{ #category : #'undo-redo private' }
+RubTextEditor >> addDeleteSelectionUndoRecord [
 	| undoText redoText undoRec |
 	undoText := self selection.
 	redoText := self nullText.
@@ -159,20 +140,14 @@ RubTextEditor>>addDeleteSelectionUndoRecord [
 		undoArray:	{textArea. #redoTypeIn:interval:.	{undoText.	(self selectionInterval first to: self selectionInterval first - 1)}}
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>addString: aString [
+{ #category : #'typing support' }
+RubTextEditor >> addString: aString [
 	"Think of a better name"
 	self zapSelectionWith: (Text string: aString attributes: self emphasisHere)
 ]
 
-{
-	#category : #'undo-redo private',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>addTypeInUndoRecord [
+{ #category : #'undo-redo private' }
+RubTextEditor >> addTypeInUndoRecord [
 	| begin stop undoText redoText |
 	begin := self startOfTyping min: self stopIndex. 
 	stop := self stopIndex max: self startOfTyping.
@@ -189,20 +164,14 @@ RubTextEditor>>addTypeInUndoRecord [
 
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>afterSelectionInsertAndSelect: aString [
+{ #category : #'new selection' }
+RubTextEditor >> afterSelectionInsertAndSelect: aString [
 
 	self insertAndSelect: aString at: self stopIndex 
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>again [
+{ #category : #'menu messages' }
+RubTextEditor >> again [
 	"Text substitution. If the left shift key is down, the substitution is
 	made throughout the entire Paragraph. Otherwise, only the next 
 	possible substitution is made"
@@ -210,43 +179,31 @@ RubTextEditor>>again [
 	
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>align [
+{ #category : #'menu messages' }
+RubTextEditor >> align [
 	"Align text according to the next greater alignment value,
 	cycling among leftFlush, rightFlush, center, and justified."
 	self changeAlignment.
 
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>align: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubTextEditor >> align: aKeyboardEvent [
 	"Triggered by Cmd-u;  cycle through alignment alternatives."
 
 	self align.
 	^ true
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>alignmentChoices [
+{ #category : #constants }
+RubTextEditor >> alignmentChoices [
 	"Return the symbols representing the TextAlignment operations to get a text aligned."
 	
 	^ #(leftFlush centered justified rightFlush)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>applyAttribute: aTextAttribute [
+{ #category : #private }
+RubTextEditor >> applyAttribute: aTextAttribute [
 	"The user selected aTextAttribute via shortcut, menu or other means.
 	If there is a selection, apply the attribute to the selection.
 	In any case use the attribute for the user input (emphasisHere)"
@@ -258,29 +215,20 @@ RubTextEditor>>applyAttribute: aTextAttribute [
 	self recomputeSelection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>applyTextFont: aFont [
+{ #category : #private }
+RubTextEditor >> applyTextFont: aFont [
 	self applyAttribute: (TextFontReference toFont: aFont).
 
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>atEndOfLineInsertAndSelect: aString [
+{ #category : #'new selection' }
+RubTextEditor >> atEndOfLineInsertAndSelect: aString [
 
 	self insertAndSelect: aString at: (self encompassParagraph: self selectionInterval) last + 1.
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>backTo: startIndex [
+{ #category : #'typing support' }
+RubTextEditor >> backTo: startIndex [
 	"Backspace typing"
 	self stopIndex > startIndex ifTrue: [
 		self selectFrom: startIndex to: self stopIndex - 1.
@@ -289,22 +237,16 @@ RubTextEditor>>backTo: startIndex [
 	^ false
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>backWord [
+{ #category : #'typing/selecting keys' }
+RubTextEditor >> backWord [
 	"If the selection is not a caret, delete it and leave it in the backspace buffer.
 	 Else, delete the word before the caret."
 	^ self backWord: nil
 
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>backWord: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+RubTextEditor >> backWord: aKeyboardEvent [
 	"If the selection is not a caret, delete it and leave it in the backspace buffer.
 	 Else, delete the word before the caret."
 
@@ -321,11 +263,8 @@ RubTextEditor>>backWord: aKeyboardEvent [
 	^false
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>backspace: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+RubTextEditor >> backspace: aKeyboardEvent [
 	| result startIndex |
 	result := aKeyboardEvent shiftPressed
 		ifTrue: [ self backWord: aKeyboardEvent keyCharacter ]
@@ -347,73 +286,49 @@ RubTextEditor>>backspace: aKeyboardEvent [
 	^ result
 ]
 
-{
-	#category : #obsolete-parenblinking,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>blinkParenAt: parenLocation  [
+{ #category : #obsolete-parenblinking }
+RubTextEditor >> blinkParenAt: parenLocation [ 
 	"kept because NECController is sending it to me"
 ]
 
-{
-	#category : #obsolete-parenblinking,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>blinkPrevParen: aCharacter [
+{ #category : #obsolete-parenblinking }
+RubTextEditor >> blinkPrevParen: aCharacter [
 	"kept because NECController is sending it to me"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>canChangeText [
+{ #category : #testing }
+RubTextEditor >> canChangeText [
 	^ textArea canChangeText
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>cancel [
+{ #category : #'menu messages' }
+RubTextEditor >> cancel [
 	"Cancel the changes made so far to this text"
 
 	self canChangeText
 		ifTrue: [ textArea cancelEdits ]
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>cancel: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubTextEditor >> cancel: aKeyboardEvent [
 	"Cancel unsubmitted changes."
 	self cancel.
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>caret [
+{ #category : #accessing }
+RubTextEditor >> caret [
 	"Return the index position of the caret"
 	^ self startIndex 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>caseSensitiveFinds [
+{ #category : #settings }
+RubTextEditor >> caseSensitiveFinds [
 	^ textArea caseSensitiveFinds
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>changeAlignment [
+{ #category : #'menu messages' }
+RubTextEditor >> changeAlignment [
 	"Interactively change the alignment of the text currently being edited."
 	| reply  |
 	reply := UIManager default 
@@ -424,11 +339,8 @@ RubTextEditor>>changeAlignment [
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>changeEmphasis [
+{ #category : #'menu messages' }
+RubTextEditor >> changeEmphasis [
 
 	|  reply code align menuList startIndex attribute choices |
 	choices := self emphasisChoices.
@@ -450,11 +362,8 @@ RubTextEditor>>changeEmphasis [
 	^ true
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>changeEmphasis: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubTextEditor >> changeEmphasis: aKeyboardEvent [
 	"Change the emphasis of the current selection or prepare to accept characters with the change in emphasis. Emphasis change amounts to a font change.  Keeps typeahead."
 
 	"control 0..9 -> 0..9"
@@ -497,11 +406,8 @@ RubTextEditor>>changeEmphasis: aKeyboardEvent [
 	^true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>changeEmphasisOrAlignment [
+{ #category : #'menu messages' }
+RubTextEditor >> changeEmphasisOrAlignment [
 	| aList reply  code align menuList startIndex attribute |
 	startIndex := self startIndex.
 	align := self text alignmentAt: startIndex ifAbsent: [ 0 ].
@@ -527,11 +433,8 @@ RubTextEditor>>changeEmphasisOrAlignment [
 	^ true
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>changeLfToCr: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubTextEditor >> changeLfToCr: aKeyboardEvent [
 	"Replace all LFs by CRs.
 	Triggered by Cmd-U -- useful when getting code from FTP sites
 	jmv- Modified to als change crlf by cr"
@@ -544,11 +447,8 @@ RubTextEditor>>changeLfToCr: aKeyboardEvent [
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>changeTextFont [
+{ #category : #'menu messages' }
+RubTextEditor >> changeTextFont [
 	"Present a menu of available fonts, and if one is chosen, apply it to the current selection."
 
 	textArea
@@ -566,19 +466,13 @@ RubTextEditor>>changeTextFont [
 				ifTrue: [ textArea takeKeyboardFocus ] ]
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>chooseAlignment [
+{ #category : #'menu messages' }
+RubTextEditor >> chooseAlignment [
 	self changeAlignment
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>chooseColor [
+{ #category : #'editing keys' }
+RubTextEditor >> chooseColor [
 	"Make a new Text Color Attribute, let the user pick a color, and return the attribute"
 
 	| attribute |	
@@ -589,20 +483,14 @@ RubTextEditor>>chooseColor [
 
 ]
 
-{
-	#category : #'undo-redo private',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>clearUndoManager: aKeyboardEvent [
+{ #category : #'undo-redo private' }
+RubTextEditor >> clearUndoManager: aKeyboardEvent [
 	^ self editingState clearUndoManager: aKeyboardEvent.
 
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>click: event [
+{ #category : #events }
+RubTextEditor >> click: event [
 	| p |
 	self closeTypeIn.
 	p := self paragraph characterBlockAtPoint: event cursorPoint.
@@ -612,29 +500,20 @@ RubTextEditor>>click: event [
 	textArea announce: (RubMouseClick with: event)
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>clipboardText [
+{ #category : #'menu messages' }
+RubTextEditor >> clipboardText [
 
 	^ Clipboard clipboardText
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>clipboardTextPut: text [
+{ #category : #'menu messages' }
+RubTextEditor >> clipboardTextPut: text [
 
 	^ Clipboard clipboardText: text
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>closeTypeIn [
+{ #category : #'typing support' }
+RubTextEditor >> closeTypeIn [
 	"See comment in openTypeIn. It is important to call
 	closeTypeIn before executing any non-typing key, making a new selection, etc. It is
 	called automatically for menu commands."
@@ -643,28 +522,19 @@ RubTextEditor>>closeTypeIn [
 			self doneTyping]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>closingDelimiters [
+{ #category : #accessing }
+RubTextEditor >> closingDelimiters [
 	^ ')]}'
 
 ]
 
-{
-	#category : #keymapping,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>cmdActions [
+{ #category : #keymapping }
+RubTextEditor >> cmdActions [
 	^ self defaultKeymappingIndex at: #command
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>compareToClipboard [
+{ #category : #'menu messages' }
+RubTextEditor >> compareToClipboard [
 	"Check to see if whether the receiver's text is the same as the text currently on the clipboard, and inform the user."
 	| s1 s2 |
 	s1 := self clipboardText string.
@@ -675,48 +545,33 @@ RubTextEditor>>compareToClipboard [
 		title: 'Comparison to Clipboard Text'
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>compareToClipboard: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubTextEditor >> compareToClipboard: aKeyboardEvent [
 	"Compare the receiver to the text on the clipboard."
 
 	self compareToClipboard.
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>completionAround:  aBlock keyStroke: anEvent [
+{ #category : #private }
+RubTextEditor >> completionAround:  aBlock keyStroke: anEvent [
 	" No code completion for simple text editor, so nothing special to do here around the block execution"
 	aBlock value
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>compose [
+{ #category : #private }
+RubTextEditor >> compose [
 	^textArea compose
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>computeSelectionIntervalForCurrentLine [
+{ #category : #'new selection' }
+RubTextEditor >> computeSelectionIntervalForCurrentLine [
 
 	^ self encompassParagraph: self selectionInterval
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>copyHiddenInfo [
+{ #category : #'editing keys' }
+RubTextEditor >> copyHiddenInfo [
 	"In TextLinks, TextDoits, TextColor, and TextURLs, there is hidden
 info.  Copy that to the clipboard.  You can paste it and see what it is.
 Usually enclosed in <>."
@@ -724,11 +579,8 @@ Usually enclosed in <>."
 	^ self clipboardTextPut: self hiddenInfo asText
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>copySelection [
+{ #category : #'menu messages' }
+RubTextEditor >> copySelection [
 	"Copy the current selection and store it in the paste buffer, unless a caret.  Undoer & Redoer: undoCutCopy"
 
 	self lineSelectAndEmptyCheck: [^ self].
@@ -737,22 +589,16 @@ RubTextEditor>>copySelection [
 
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>copySelection: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubTextEditor >> copySelection: aKeyboardEvent [
 	"Copy the current text selection."
 
 	self copySelection.
 	^true
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>correctFrom: start to: stop with: aString [
+{ #category : #'new selection' }
+RubTextEditor >> correctFrom: start to: stop with: aString [
 	"Make a correction in the model that the user has authorised from somewhere else in the system (such as from the compilier).  
 	The user's selection is not changed, only corrected."
 	| wasShowing userSelection delta loc |
@@ -767,11 +613,8 @@ RubTextEditor>>correctFrom: start to: stop with: aString [
 
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>crWithIndent: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+RubTextEditor >> crWithIndent: aKeyboardEvent [
 	"Replace the current text selection with CR followed by as many tabs
 	as on the current line (+/- bracket count) -- initiated by Shift-Return."
 	| char s i tabCount crChars|
@@ -790,22 +633,16 @@ RubTextEditor>>crWithIndent: aKeyboardEvent [
 	^ false
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>crlf: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+RubTextEditor >> crlf: aKeyboardEvent [
 	"Append a line feed character to the stream of characters."
 
 	self addString: String crlf.
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>currentCharacterStyleOrNil [
+{ #category : #accessing }
+RubTextEditor >> currentCharacterStyleOrNil [
 	"Answer the CharacterStyle for the current selection or cursor location if any"
 
 	^self hasSelection
@@ -813,11 +650,8 @@ RubTextEditor>>currentCharacterStyleOrNil [
 		ifFalse: [ self text characterStyleOrNilIfApplying: self emphasisHere ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>currentParagraphStyle [
+{ #category : #accessing }
+RubTextEditor >> currentParagraphStyle [
 	"Answer the TextStyle for the current selection or cursor location if any"
 	
 	| i t |
@@ -828,11 +662,8 @@ RubTextEditor>>currentParagraphStyle [
 		ifFalse: [ self text textStyleAt: i ]
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>cursorDown: aKeyboardEvent  [
+{ #category : #'nonediting/nontyping keys' }
+RubTextEditor >> cursorDown: aKeyboardEvent [ 
 
 	"Private - Move cursor from position in current line to same position in
 	next line. If next line too short, put at end. If shift key down,
@@ -850,11 +681,8 @@ RubTextEditor>>cursorDown: aKeyboardEvent  [
 	^true
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>cursorEnd: aKeyboardEvent [
+{ #category : #'nonediting/nontyping keys' }
+RubTextEditor >> cursorEnd: aKeyboardEvent [
 	"Private - Move cursor end of current line."
 
 	| string |
@@ -868,11 +696,8 @@ RubTextEditor>>cursorEnd: aKeyboardEvent [
 	^ true
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>cursorHome: aKeyboardEvent [
+{ #category : #'nonediting/nontyping keys' }
+RubTextEditor >> cursorHome: aKeyboardEvent [
 	"Private - Move cursor from position in current line to beginning of
 	current line. If control key is pressed put cursor at beginning of text"
 
@@ -886,11 +711,8 @@ RubTextEditor>>cursorHome: aKeyboardEvent [
 	^ true
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>cursorLeft: aKeyboardEvent  [
+{ #category : #'nonediting/nontyping keys' }
+RubTextEditor >> cursorLeft: aKeyboardEvent [ 
 	"Private - Move cursor left one character if nothing selected, otherwise 
 	move cursor to beginning of selection. If the shift key is down, start 
 	selecting or extending current selection. Don't allow cursor past 
@@ -905,11 +727,8 @@ RubTextEditor>>cursorLeft: aKeyboardEvent  [
 	^ true
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>cursorPageDown: aKeyboardEvent  [
+{ #category : #'nonediting/nontyping keys' }
+RubTextEditor >> cursorPageDown: aKeyboardEvent [ 
 
 	self closeTypeIn.
 	self 
@@ -924,11 +743,8 @@ RubTextEditor>>cursorPageDown: aKeyboardEvent  [
 	^true
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>cursorPageUp: aKeyboardEvent  [
+{ #category : #'nonediting/nontyping keys' }
+RubTextEditor >> cursorPageUp: aKeyboardEvent [ 
 
 	self closeTypeIn.
 	self 
@@ -943,11 +759,8 @@ RubTextEditor>>cursorPageUp: aKeyboardEvent  [
 	^true
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>cursorRight: aKeyboardEvent  [
+{ #category : #'nonediting/nontyping keys' }
+RubTextEditor >> cursorRight: aKeyboardEvent [ 
 	"Private - Move cursor right one character if nothing selected, 
 	otherwise move cursor to end of selection. If the shift key is down, 
 	start selecting characters or extending already selected characters. 
@@ -962,22 +775,16 @@ RubTextEditor>>cursorRight: aKeyboardEvent  [
 	^ true
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>cursorTopHome: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+RubTextEditor >> cursorTopHome: aKeyboardEvent [
 	"Put cursor at beginning of text -- invoked from cmd-H shortcut, useful for keyboards that have no home key."
 
 	self selectAt: 1.
 	^ true
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>cursorUp: aKeyboardEvent  [
+{ #category : #'nonediting/nontyping keys' }
+RubTextEditor >> cursorUp: aKeyboardEvent [ 
 "Private - Move cursor from position in current line to same position in
 prior line. If prior line too short, put at end"
 
@@ -993,11 +800,8 @@ prior line. If prior line too short, put at end"
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>cut [
+{ #category : #private }
+RubTextEditor >> cut [
 	"Cut out the current selection and redisplay the paragraph if necessary.  Undoer & Redoer: undoCutCopy:"
 
 	self lineSelectAndEmptyCheck: [^ self].
@@ -1007,22 +811,16 @@ RubTextEditor>>cut [
 
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>cut: aKeyboardEvent  [
+{ #category : #'editing keys' }
+RubTextEditor >> cut: aKeyboardEvent [ 
 	"Cut out the current text selection."
 
 	self cut.
 	^true
 ]
 
-{
-	#category : #keymapping,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>defaultCommandKeymapping [
+{ #category : #keymapping }
+RubTextEditor >> defaultCommandKeymapping [
 	| cmdMap |
 		
 	cmdMap := Array new: 256 withAll: #noop:.	"use temp in case of a crash"
@@ -1046,19 +844,13 @@ RubTextEditor>>defaultCommandKeymapping [
 	^ cmdMap
 ]
 
-{
-	#category : #keymapping,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>defaultKeymappingIndex [
+{ #category : #keymapping }
+RubTextEditor >> defaultKeymappingIndex [
 	^defaultKeymappingIndex ifNil: [ defaultKeymappingIndex := self newDefaultKeymappingIndex ]
 ]
 
-{
-	#category : #keymapping,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>defaultShiftCommandKeymapping [
+{ #category : #keymapping }
+RubTextEditor >> defaultShiftCommandKeymapping [
 	"Initialize the shift-command-key (or control-key) shortcut table."
 
 	| cmdMap |
@@ -1086,20 +878,14 @@ RubTextEditor>>defaultShiftCommandKeymapping [
 	^ cmdMap
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>deselect [
+{ #category : #accessing-selection }
+RubTextEditor >> deselect [
 	"If the text selection is visible on the screen, reverse its highlight."
 	" ***** screw this logic ***** selectionShowing ifTrue: [self reverseSelection] "
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>dispatch: aKeyboardEvent [
+{ #category : #'typing support' }
+RubTextEditor >> dispatch: aKeyboardEvent [
 	"Carry out the action associated with this character, if any.
 	Type-ahead is passed so some routines can flush or use it."
 
@@ -1110,11 +896,8 @@ RubTextEditor>>dispatch: aKeyboardEvent [
 	^ self normalCharacter: aKeyboardEvent
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>dispatchCommandOn: aKeyboardEvent return: return [
+{ #category : #'typing support' }
+RubTextEditor >> dispatchCommandOn: aKeyboardEvent return: return [
 	| asciiValue  |
 	asciiValue := aKeyboardEvent keyValue.	
 	"Special keys overwrite crtl+key combinations - at least on Windows. To resolve this
@@ -1132,11 +915,8 @@ RubTextEditor>>dispatchCommandOn: aKeyboardEvent return: return [
 	^ false
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>dispatchEnterOn: aKeyboardEvent return: aBlock [
+{ #category : #'typing support' }
+RubTextEditor >> dispatchEnterOn: aKeyboardEvent return: aBlock [
 	aKeyboardEvent keyValue = Character cr asciiValue
 		ifFalse: [ ^ false ].
 	aKeyboardEvent controlKeyPressed
@@ -1148,30 +928,21 @@ RubTextEditor>>dispatchEnterOn: aKeyboardEvent return: aBlock [
 	aBlock value: (self crWithIndent: aKeyboardEvent)
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>doAgainMany: aKeyboardEvent  [
+{ #category : #'typing/selecting keys' }
+RubTextEditor >> doAgainMany: aKeyboardEvent [ 
 	"Do the previous thing again repeatedly."
 
 	self closeTypeIn.
 	^ true
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>doneTyping [
+{ #category : #'typing support' }
+RubTextEditor >> doneTyping [
 	self startOfTyping: nil
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>doubleClick: evt [
+{ #category : #events }
+RubTextEditor >> doubleClick: evt [
 	| here |
 	self closeTypeIn.	"no matter what, if shift is pressed extend the selection"
 	here := self pointIndex.
@@ -1184,11 +955,8 @@ RubTextEditor>>doubleClick: evt [
 	self storeSelectionInText
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>duplicate: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubTextEditor >> duplicate: aKeyboardEvent [
 	"Paste the current selection over the prior selection, if it is non-overlapping and
 	 legal.  Undoer & Redoer: undoAndReselect."
 
@@ -1202,46 +970,31 @@ RubTextEditor>>duplicate: aKeyboardEvent [
 	^true
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>editPrimarySelectionSeparately [
+{ #category : #accessing-selection }
+RubTextEditor >> editPrimarySelectionSeparately [
 	textArea editPrimarySelectionSeparately
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>editingState [
+{ #category : #accessing }
+RubTextEditor >> editingState [
 	^ textArea editingState
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>emphasisChoices [
+{ #category : #constants }
+RubTextEditor >> emphasisChoices [
 	"Return the list of emphasis that are possible to apply on the currently edited text morph"
 	
 	^  #(normal bold italic narrow underlined struckOut).	
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>emphasisHere [
+{ #category : #accessing }
+RubTextEditor >> emphasisHere [
 	^ textArea emphasisHere
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>enclose: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubTextEditor >> enclose: aKeyboardEvent [
 	"Insert or remove bracket characters around the current selection."
 
 	| left right startIndex stopIndex oldSelection which text |
@@ -1267,50 +1020,35 @@ RubTextEditor>>enclose: aKeyboardEvent [
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>encompassParagraph: anInterval [
+{ #category : #private }
+RubTextEditor >> encompassParagraph: anInterval [
 	"Return an interval that includes anInterval, and that comprises one or several whole paragraphs in the receiver.
 	Answer starts at the position following a cr (or eventually 1) and ends at a cr (or eventually at self size)"
 	^ self string encompassParagraph: anInterval
 
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>escape  [
+{ #category : #'nonediting/nontyping keys' }
+RubTextEditor >> escape [ 
 	textArea escapePressed .
 	
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>escape: aKeyboardEvent [
+{ #category : #'nonediting/nontyping keys' }
+RubTextEditor >> escape: aKeyboardEvent [
 	textArea escapePressed.
 	^ false  
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>exchange [
+{ #category : #'menu messages' }
+RubTextEditor >> exchange [
 	"See comment in exchangeWith:"
 
 	self exchangeWith: self editingState previousInterval
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>exchange: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubTextEditor >> exchange: aKeyboardEvent [
 	"Exchange the current and prior selections."
 
 	self closeTypeIn.
@@ -1318,11 +1056,8 @@ RubTextEditor>>exchange: aKeyboardEvent [
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>exchangeWith: prior [
+{ #category : #private }
+RubTextEditor >> exchangeWith: prior [
 	"If the prior selection is non-overlapping and legal, exchange the text of
 	 it with the current selection and leave the currently selected text selected
 	 in the location of the prior selection (or leave a caret after a non-caret if it was
@@ -1357,28 +1092,19 @@ RubTextEditor>>exchangeWith: prior [
 			[textArea flash]
 ]
 
-{
-	#category : #'undo-redo private',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>exploreUndoManager: aKeyboardEvent [
+{ #category : #'undo-redo private' }
+RubTextEditor >> exploreUndoManager: aKeyboardEvent [
 	^ self editingState exploreUndoManager: aKeyboardEvent
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>find [
+{ #category : #'menu messages' }
+RubTextEditor >> find [
 	"Prompt the user for a string to search for, and search the receiver from the current selection onward for it."
 	textArea openFindDialog
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>find: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+RubTextEditor >> find: aKeyboardEvent [
 	"Prompt the user for what to find, then find it, searching from the current selection onward."
 
 	self closeTypeIn.
@@ -1386,11 +1112,8 @@ RubTextEditor>>find: aKeyboardEvent [
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findAgain [
+{ #category : #'menu messages' }
+RubTextEditor >> findAgain [
 	"Find the text-to-find again."
 	| where |
 	where := self findReplaceService findNext.
@@ -1401,22 +1124,16 @@ RubTextEditor>>findAgain [
 
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findAgain: aKeyboardEvent  [
+{ #category : #'typing/selecting keys' }
+RubTextEditor >> findAgain: aKeyboardEvent [ 
 	"Find the desired text again."
 	self closeTypeIn.
 	self findAgain.
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findAgainAndReplace [
+{ #category : #'menu messages' }
+RubTextEditor >> findAgainAndReplace [
 	"Find the text-to-find again and eventually replace it with the current replace text."
 	| where |
 	where := self findAgain.
@@ -1426,33 +1143,24 @@ RubTextEditor>>findAgainAndReplace [
 
 ]
 
-{
-	#category : #find-select,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findAll: aRegex endingAt: searchIdx  [
+{ #category : #find-select }
+RubTextEditor >> findAll: aRegex endingAt: searchIdx [ 
 	| ranges |
 	ranges := aRegex matchingRangesIn: (self string copyFrom: 1 to: searchIdx).
 	^ ranges 
 			
 ]
 
-{
-	#category : #find-select,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findAll: aRegex startingAt: searchIdx  [
+{ #category : #find-select }
+RubTextEditor >> findAll: aRegex startingAt: searchIdx [ 
 	| ranges |
 	ranges := aRegex matchingRangesIn: (self string copyFrom: searchIdx to: self string size).
 	^ ranges collect: [:i | i + searchIdx - 1]
 			
 ]
 
-{
-	#category : #find-select,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findAndSelect: aRegex startingAt: anIndex searchBackwards: searchBackwards [
+{ #category : #find-select }
+RubTextEditor >> findAndSelect: aRegex startingAt: anIndex searchBackwards: searchBackwards [
 	| oldSelectionInterval where |
 	self closeTypeIn.
 	oldSelectionInterval := self selectionInterval.
@@ -1464,33 +1172,24 @@ RubTextEditor>>findAndSelect: aRegex startingAt: anIndex searchBackwards: search
 	^ where
 ]
 
-{
-	#category : #find-select,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findAndSelectNextOccurenceOf: aRegex [
+{ #category : #find-select }
+RubTextEditor >> findAndSelectNextOccurenceOf: aRegex [
 	| where |
 	where := self findNext: aRegex startingAt: self stopIndex.
 	where ifNotNil: [self selectInterval: where].
 	^ where
 ]
 
-{
-	#category : #find-select,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findAndSelectPreviousOccurenceOf: aRegex [
+{ #category : #find-select }
+RubTextEditor >> findAndSelectPreviousOccurenceOf: aRegex [
 	| where |
 	where := self findPrevious: aRegex startingAt: self startIndex.
 	where isNil ifFalse: [self selectInterval: where].
 	^ where
 ]
 
-{
-	#category : #find-select,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findNext: aRegex startingAt: searchIdx  [
+{ #category : #find-select }
+RubTextEditor >> findNext: aRegex startingAt: searchIdx [ 
 	| strm match range |
 	strm := (self string copyFrom: searchIdx to: self string size) readStream.
 	aRegex searchStream: strm.
@@ -1499,22 +1198,16 @@ RubTextEditor>>findNext: aRegex startingAt: searchIdx  [
 	^ range
 ]
 
-{
-	#category : #find-select,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findNextString: aSubstring startingAt: searchIdx  [
+{ #category : #find-select }
+RubTextEditor >> findNextString: aSubstring startingAt: searchIdx [ 
 	| idx |
 	idx := self string findString: aSubstring startingAt: searchIdx.
 	^ idx isZero ifFalse: [idx to: idx + aSubstring size - 1]
 			
 ]
 
-{
-	#category : #find-select,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findPrevious: aRegex startingAt: searchIdx  [
+{ #category : #find-select }
+RubTextEditor >> findPrevious: aRegex startingAt: searchIdx [ 
 	| allRanges |
 	allRanges := self findAll: aRegex endingAt: searchIdx.
 	^ allRanges notEmpty
@@ -1522,93 +1215,60 @@ RubTextEditor>>findPrevious: aRegex startingAt: searchIdx  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findRegex [
+{ #category : #accessing }
+RubTextEditor >> findRegex [
 	^ self findReplaceService findRegex
 ]
 
-{
-	#category : #find-select,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findReplaceService [
+{ #category : #find-select }
+RubTextEditor >> findReplaceService [
 	^ RubFindReplaceService default
 ]
 
-{
-	#category : #find-select,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findText [
+{ #category : #find-select }
+RubTextEditor >> findText [
 	^ self findReplaceService findText
 ]
 
-{
-	#category : #find-select,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findText: aStringOrText [
+{ #category : #find-select }
+RubTextEditor >> findText: aStringOrText [
 	self findReplaceService findText: aStringOrText 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findText: aString isRegex: aBoolean [
+{ #category : #accessing }
+RubTextEditor >> findText: aString isRegex: aBoolean [
 	self findReplaceService findText: aString isRegex: aBoolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findText: aString isRegex: isRegex caseSensitive: caseSensitive entireWordsOnly: entireWordsOnly [
+{ #category : #private }
+RubTextEditor >> findText: aString isRegex: isRegex caseSensitive: caseSensitive entireWordsOnly: entireWordsOnly [
 	self findReplaceService findText: aString isRegex: isRegex caseSensitive: caseSensitive entireWordsOnly: entireWordsOnly
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>findText: aString isRegex: isRegex entireWordsOnly: entireWordsOnly [
+{ #category : #private }
+RubTextEditor >> findText: aString isRegex: isRegex entireWordsOnly: entireWordsOnly [
 	self findReplaceService findText: aString isRegex: isRegex entireWordsOnly: entireWordsOnly
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>flash [
+{ #category : #displaying }
+RubTextEditor >> flash [
 	^ textArea flash
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>focusChanged [
+{ #category : #private }
+RubTextEditor >> focusChanged [
 	"Nothing to do by default"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>fontToUse [
+{ #category : #accessing }
+RubTextEditor >> fontToUse [
 	^ self text fontAt: self startIndex
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>forwardDelete: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+RubTextEditor >> forwardDelete: aKeyboardEvent [
 	"Delete forward over the next character"
 
 	self closeTypeIn.
@@ -1626,11 +1286,8 @@ RubTextEditor>>forwardDelete: aKeyboardEvent [
 	^ false
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>getHighlightInterval [
+{ #category : #accessing-selection }
+RubTextEditor >> getHighlightInterval [
 	"Answer the interval that is or should be highligted."
 
 	^ self hasSelection 
@@ -1638,35 +1295,23 @@ RubTextEditor>>getHighlightInterval [
 		ifFalse: [ self computeSelectionIntervalForCurrentLine ]
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>hasCursor [
+{ #category : #accessing-selection }
+RubTextEditor >> hasCursor [
 	^self markBlock = self pointBlock
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>hasError [
+{ #category : #testing }
+RubTextEditor >> hasError [
 	^ false 
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>hasSelection [
+{ #category : #accessing-selection }
+RubTextEditor >> hasSelection [
 	^ self pointIndex ~= self markIndex
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>hiddenInfo [
+{ #category : #'editing keys' }
+RubTextEditor >> hiddenInfo [
 	"In TextLinks, TextDoits, TextColor, and TextURLs, there is hidden info.  Return the entire string that was used by Cmd-6 to create this text attribute.  Usually enclosed in < >."
 
 	| attrList |
@@ -1681,11 +1326,8 @@ RubTextEditor>>hiddenInfo [
 	^ self selection asString, '[No hidden info]'
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>highlightAndEmptyCheck: returnBlock [
+{ #category : #'menu messages' }
+RubTextEditor >> highlightAndEmptyCheck: returnBlock [
 	| selectionInterval |
 
 	selectionInterval := self getHighlightInterval.
@@ -1693,22 +1335,16 @@ RubTextEditor>>highlightAndEmptyCheck: returnBlock [
 	self highlightInterval: selectionInterval
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>highlightInterval: anInterval [
+{ #category : #'new selection' }
+RubTextEditor >> highlightInterval: anInterval [
 
 	self textArea 
 		ensureAndGetNewHighlightSegmentFrom: anInterval first 
 		to: anInterval last + 1.
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>highlightedTextAsStream [
+{ #category : #accessing-selection }
+RubTextEditor >> highlightedTextAsStream [
 	"Answer a ReadStream on the text in the paragraph that is currently highlighted."
 
 	| highlightedInterval |
@@ -1716,22 +1352,16 @@ RubTextEditor>>highlightedTextAsStream [
 	^ (self string copyFrom: highlightedInterval first to: highlightedInterval last) readStream
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>hoverHighlightInterval: anInterval [
+{ #category : #'new selection' }
+RubTextEditor >> hoverHighlightInterval: anInterval [
 
 	self textArea 
 		ensureAndGetNewHoverHighlightSegmentFrom: anInterval first 
 		to: anInterval last + 1.
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>inOutdent: aKeyboardEvent delta: delta [
+{ #category : #'editing keys' }
+RubTextEditor >> inOutdent: aKeyboardEvent delta: delta [
 	"Add/remove a tab at the front of every line occupied by the selection. 
 	Derived from work by Larry Tesler back in December 1985."
 
@@ -1798,21 +1428,15 @@ RubTextEditor>>inOutdent: aKeyboardEvent delta: delta [
 	^ true
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>indent: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubTextEditor >> indent: aKeyboardEvent [
 	"Add a tab at the front of every line occupied by the selection."
 
 	^ self inOutdent: aKeyboardEvent delta: 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>indent: delta fromStream: inStream toStream: outStream [
+{ #category : #private }
+RubTextEditor >> indent: delta fromStream: inStream toStream: outStream [
 	"Append the contents of inStream to outStream, adding or deleting delta or -delta
 	 tabs at the beginning, and after every CR except a final CR.  Do not add tabs
 	 to totally empty lines, and be sure nothing but tabs are removed from lines."
@@ -1838,19 +1462,13 @@ RubTextEditor>>indent: delta fromStream: inStream toStream: outStream [
 				skip := ch == cr ifTrue: [delta] ifFalse: [skip + 1]]]
 ]
 
-{
-	#category : #keymapping,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>initializeShortcuts: aKMDispatcher [
+{ #category : #keymapping }
+RubTextEditor >> initializeShortcuts: aKMDispatcher [
 	aKMDispatcher attachCategory: RubTextEditor name
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>insertAndSelect: aString at: anInteger [
+{ #category : #'new selection' }
+RubTextEditor >> insertAndSelect: aString at: anInteger [
 
 	self replace: (anInteger to: anInteger - 1)
 		with: (Text string: (' ' , aString)
@@ -1858,11 +1476,8 @@ RubTextEditor>>insertAndSelect: aString at: anInteger [
 		and: [self ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>isCaretBehindChar [
+{ #category : #testing }
+RubTextEditor >> isCaretBehindChar [
 	"Return true if the cursor position is after an alphanumeric character, otherwise false."
 
 	| cursorPosition |
@@ -1870,11 +1485,8 @@ RubTextEditor>>isCaretBehindChar [
 		(self text at: cursorPosition - 1) isAlphaNumeric ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>isDisjointFrom: anInterval [
+{ #category : #private }
+RubTextEditor >> isDisjointFrom: anInterval [
 	"Answer true if anInterval is a caret not touching or within the current
 	 interval, or if anInterval is a non-caret that does not overlap the current
 	 selection."
@@ -1886,35 +1498,23 @@ RubTextEditor>>isDisjointFrom: anInterval [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>isSimpleEditor  [
+{ #category : #testing }
+RubTextEditor >> isSimpleEditor [ 
 	^ false 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>isSmalltalkEditor [
+{ #category : #testing }
+RubTextEditor >> isSmalltalkEditor [
 	^ false 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>isTextEditor [
+{ #category : #testing }
+RubTextEditor >> isTextEditor [
 	^ true 
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>keystroke: aKeyboardEvent [
+{ #category : #'typing support' }
+RubTextEditor >> keystroke: aKeyboardEvent [
 	textArea announce: ((RubKeystroke with: aKeyboardEvent) morph: self).
 	(self dispatch: aKeyboardEvent)
 		ifTrue: [ "If not a normal character"
@@ -1932,22 +1532,16 @@ RubTextEditor>>keystroke: aKeyboardEvent [
 	self storeSelectionInText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>lastFont	 [
+{ #category : #accessing }
+RubTextEditor >> lastFont [	
 	"Answer the Font for to be used if positioned at the end of the text"
 	| t |	
 	t := self text.	
 	^ t fontAt: t size + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>lastParagraphStyle [
+{ #category : #accessing }
+RubTextEditor >> lastParagraphStyle [
 	"Answer the TextStyle for to be used if positioned at the end of the text"
 	
 	| t |
@@ -1957,33 +1551,24 @@ RubTextEditor>>lastParagraphStyle [
 		ifFalse: [ self text textStyleAt: t size +1 ]
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>lf: aKeyboardEvent  [
+{ #category : #'typing/selecting keys' }
+RubTextEditor >> lf: aKeyboardEvent [ 
 	"Append a line feed character to the stream of characters."
 
 	self addString: Character lf asString.
 	^false
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>lineSelectAndEmptyCheck: returnBlock [
+{ #category : #'menu messages' }
+RubTextEditor >> lineSelectAndEmptyCheck: returnBlock [
 	"If the current selection is an insertion point, expand it to be the entire current line; if after that's done the selection is still empty, then evaluate the returnBlock, which will typically consist of '[^ self]' in the caller -- check senders of this method to understand this."
 
 	self selectLine.  "if current selection is an insertion point, then first select the entire line in which occurs before proceeding"
 	self hasSelection ifFalse: [textArea flash.  ^ returnBlock value]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>lines [
+{ #category : #private }
+RubTextEditor >> lines [
 	"Compute lines based on logical line breaks, not optical (which may change due to line wrapping of the editor).
 	Subclasses using kinds of Paragraphs can instead use the service provided by it.
 	"
@@ -2006,11 +1591,8 @@ RubTextEditor>>lines [
 	^lines
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>makeCapitalized: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubTextEditor >> makeCapitalized: aKeyboardEvent [
 	"Force the current selection to uppercase.  Triggered by Cmd-z."
 
 	| prev |
@@ -2022,11 +1604,8 @@ RubTextEditor>>makeCapitalized: aKeyboardEvent [
 	^ true
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>makeLowercase: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubTextEditor >> makeLowercase: aKeyboardEvent [
 	"Force the current selection to lowercase.  Triggered by Cmd-X."
 
 	self closeTypeIn.
@@ -2034,11 +1613,8 @@ RubTextEditor>>makeLowercase: aKeyboardEvent [
 	^ true
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>makeUppercase: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubTextEditor >> makeUppercase: aKeyboardEvent [
 	"Force the current selection to uppercase.  Triggered by Cmd-Y."
 
 	self closeTypeIn.
@@ -2046,52 +1622,34 @@ RubTextEditor>>makeUppercase: aKeyboardEvent [
 	^ true
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>markBlock [
+{ #category : #accessing-selection }
+RubTextEditor >> markBlock [
 	^ textArea markBlock
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>markIndex [
+{ #category : #accessing-selection }
+RubTextEditor >> markIndex [
 	^ textArea markIndex
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>markIndex: markIndex pointIndex: pointIndex [
+{ #category : #accessing-selection }
+RubTextEditor >> markIndex: markIndex pointIndex: pointIndex [
 	textArea markIndex: markIndex pointIndex: pointIndex
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>model [
+{ #category : #accessing }
+RubTextEditor >> model [
 	^ textArea model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>morph [
+{ #category : #accessing }
+RubTextEditor >> morph [
 	^ textArea
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>moveCursor: directionBlock forward: forward specialBlock: specialBlock event: aKeyboardEvent [
+{ #category : #private }
+RubTextEditor >> moveCursor: directionBlock forward: forward specialBlock: specialBlock event: aKeyboardEvent [
 	"Private - Move cursor.
 	directionBlock is a one argument Block that computes the new Position from a given one.
 	specialBlock is a one argumentBlock that computes the new position from a given one under the alternate semantics.
@@ -2108,31 +1666,22 @@ RubTextEditor>>moveCursor: directionBlock forward: forward specialBlock: special
 	self setEmphasisHereFromTextForward: forward
 ]
 
-{
-	#category : #keymapping,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>newDefaultKeymappingIndex [
+{ #category : #keymapping }
+RubTextEditor >> newDefaultKeymappingIndex [
 	defaultKeymappingIndex := IdentityDictionary new.
 	defaultKeymappingIndex at: #command put: self defaultCommandKeymapping.
 	defaultKeymappingIndex at: #shiftCommand put: self defaultShiftCommandKeymapping.
 	^ defaultKeymappingIndex 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>nextCharacterIfAbsent: aBlock [
+{ #category : #accessing }
+RubTextEditor >> nextCharacterIfAbsent: aBlock [
 
 	^ self text at: self startIndex ifAbsent: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>nextWord: position [
+{ #category : #private }
+RubTextEditor >> nextWord: position [
 	| string index  initialIsAlphaNumeric |
 	string := self string.
 	index := position.
@@ -2145,21 +1694,15 @@ RubTextEditor>>nextWord: position [
 	^ index
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>noop: aKeyboardEvent  [
+{ #category : #'editing keys' }
+RubTextEditor >> noop: aKeyboardEvent [ 
 	"Unimplemented keyboard command; just ignore it."
 
 	^ true
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>normalCharacter: aKeyboardEvent  [
+{ #category : #'typing/selecting keys' }
+RubTextEditor >> normalCharacter: aKeyboardEvent [ 
 	"A nonspecial character is to be added to the stream of characters."
 
 	self hasSelection 
@@ -2168,31 +1711,22 @@ RubTextEditor>>normalCharacter: aKeyboardEvent  [
 	^false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>nullText [
+{ #category : #private }
+RubTextEditor >> nullText [
 
 	^Text string: '' attributes: self emphasisHere
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>offerFontMenu [
+{ #category : #'menu messages' }
+RubTextEditor >> offerFontMenu [
 	"Present a menu of available fonts, and if one is chosen, apply it to the current selection.  
 	Use only names of Fonts of this paragraph  "
 	
 	^self changeTextFont
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>offerFontMenu: aKeyboardEvent  [
+{ #category : #'editing keys' }
+RubTextEditor >> offerFontMenu: aKeyboardEvent [ 
 	"The user typed the command key that requests a font change; Offer the font menu."
 
 	self closeTypeIn.
@@ -2200,22 +1734,16 @@ RubTextEditor>>offerFontMenu: aKeyboardEvent  [
 	^ true
 ]
 
-{
-	#category : #deprecated,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>offerMenuFromEsc: aKeyboardEvent [
+{ #category : #deprecated }
+RubTextEditor >> offerMenuFromEsc: aKeyboardEvent [
 	"The escape key was hit while the receiver has the keyboard focus; take action"
  	ActiveEvent shiftPressed 
 		ifFalse: [ self raiseContextMenu: aKeyboardEvent].
 	^ false 	
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>openTypeIn [
+{ #category : #'typing support' }
+RubTextEditor >> openTypeIn [
 	"Set up startOfTyping to keep track of the leftmost backspace.
 	 You can't undo typing until after closeTypeIn."
 
@@ -2224,38 +1752,26 @@ RubTextEditor>>openTypeIn [
 			self startOfTyping: self startIndex]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>openingDelimiters [
+{ #category : #accessing }
+RubTextEditor >> openingDelimiters [
 	^ '([{'
 
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>oppositeDelimiterSelection [
+{ #category : #accessing-selection }
+RubTextEditor >> oppositeDelimiterSelection [
 	^ RubTextSelectionColor oppositeDelimiterSelection
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>outdent: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubTextEditor >> outdent: aKeyboardEvent [
 	"Remove a tab from the front of every line occupied by the selection."
 
 	^ self inOutdent: aKeyboardEvent delta: -1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>pageHeight [
+{ #category : #private }
+RubTextEditor >> pageHeight [
 	| howManyLines visibleHeight totalHeight ratio |
 	howManyLines := self paragraph numberOfLines.
 	visibleHeight := self visibleHeight.
@@ -2264,19 +1780,13 @@ RubTextEditor>>pageHeight [
 	^(ratio * howManyLines) rounded - 2
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>paragraph [
+{ #category : #private }
+RubTextEditor >> paragraph [
 	^ textArea paragraph
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>paste [
+{ #category : #'menu messages' }
+RubTextEditor >> paste [
 	"Paste the text from the shared buffer over the current selection and 
 	redisplay if necessary.  Undoer & Redoer: undoAndReselect."
 
@@ -2284,11 +1794,8 @@ RubTextEditor>>paste [
 		[self selectAt: self pointIndex]
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>paste: aKeyboardEvent  [
+{ #category : #'editing keys' }
+RubTextEditor >> paste: aKeyboardEvent [ 
 	"Replace the current text selection by the text in the shared buffer."
 
 	self closeTypeIn.
@@ -2296,11 +1803,8 @@ RubTextEditor>>paste: aKeyboardEvent  [
 	^true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>pasteRecent [
+{ #category : #'menu messages' }
+RubTextEditor >> pasteRecent [
 	"Paste an item chose from RecentClippings."
 
 	| clipping |
@@ -2309,11 +1813,8 @@ RubTextEditor>>pasteRecent [
 	^ self paste
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>performCmdActionsWith: aKeyboardEvent shifted: aBoolean return: return [
+{ #category : #'typing support' }
+RubTextEditor >> performCmdActionsWith: aKeyboardEvent shifted: aBoolean return: return [
 	| asciiValue actions action|
 	asciiValue := aKeyboardEvent keyValue + 1.
 	actions := aBoolean
@@ -2324,36 +1825,24 @@ RubTextEditor>>performCmdActionsWith: aKeyboardEvent shifted: aBoolean return: r
 	return value: ( self perform: action with: aKeyboardEvent).
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>pointBlock [
+{ #category : #accessing-selection }
+RubTextEditor >> pointBlock [
 	^ textArea pointBlock
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>pointIndex [
+{ #category : #accessing-selection }
+RubTextEditor >> pointIndex [
 	^ textArea pointIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>previousCharacterIfAbsent: aBlock [
+{ #category : #accessing }
+RubTextEditor >> previousCharacterIfAbsent: aBlock [
 
 	^ self text at: self startIndex - 1 ifAbsent: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>previousWord: position [
+{ #category : #private }
+RubTextEditor >> previousWord: position [
 	| string index  initialIsAlphaNumeric |
 	string := self string.
 	index := position.
@@ -2364,20 +1853,14 @@ RubTextEditor>>previousWord: position [
 	^ index + 1
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>raiseContextMenu: aKeyboardEvent [
+{ #category : #'nonediting/nontyping keys' }
+RubTextEditor >> raiseContextMenu: aKeyboardEvent [
 
 	^ textArea yellowButtonActivity: ActiveEvent shiftPressed
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>recomputeSelection [
+{ #category : #accessing-selection }
+RubTextEditor >> recomputeSelection [
 	"The same characters are selected but their coordinates may have changed.
 	Redetermine the selection according to the start and stop block indices; 
 	do not highlight."
@@ -2385,52 +1868,37 @@ RubTextEditor>>recomputeSelection [
 	textArea recomputeSelection
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>redo [
+{ #category : #'menu messages' }
+RubTextEditor >> redo [
 	"redo previous edit"
 
 	self editingState redo ifFalse: [textArea flash]. 
 
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>redo: aKeyboardEvent  [
+{ #category : #'editing keys' }
+RubTextEditor >> redo: aKeyboardEvent [ 
 	"Redo the last edit."
 
 	self redo.
 	^true
 ]
 
-{
-	#category : #'undo-redo private',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>redoArray: doArray undoArray: undoArray [
+{ #category : #'undo-redo private' }
+RubTextEditor >> redoArray: doArray undoArray: undoArray [
 	self editingState redoArray: doArray undoArray: undoArray
 ]
 
-{
-	#category : #undoers-redoers,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>redoTypeIn: aText interval: anInterval [
+{ #category : #undoers-redoers }
+RubTextEditor >> redoTypeIn: aText interval: anInterval [
 	self selectInterval: anInterval.
 	self replace: self selectionInterval with: aText and:
 		[self selectInterval: (anInterval first to: anInterval first + aText size - 1)].
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>replace: xoldInterval with: newText and: selectingBlock  [
+{ #category : #accessing }
+RubTextEditor >> replace: xoldInterval with: newText and: selectingBlock [ 
 	"Replace the text in oldInterval with newText and
 	execute selectingBlock to establish the new selection.
 	Create an UndoRecord to allow perfect undoing."
@@ -2447,11 +1915,8 @@ RubTextEditor>>replace: xoldInterval with: newText and: selectingBlock  [
 			undoArray: {textArea. #undoTypeIn:interval:. {prevSel. currInterval first to: currInterval first + newText size - 1}}]
 ]
 
-{
-	#category : #find-select,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>replaceAll: aRegex with: aText [
+{ #category : #find-select }
+RubTextEditor >> replaceAll: aRegex with: aText [
 	self
 		undoRedoTransaction: [ 
 			| selec ranges |
@@ -2464,11 +1929,8 @@ RubTextEditor>>replaceAll: aRegex with: aText [
 			self selectInterval: selec ]
 ]
 
-{
-	#category : #find-select,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>replaceAll: aRegex with: aText startingAt: startIdx [
+{ #category : #find-select }
+RubTextEditor >> replaceAll: aRegex with: aText startingAt: startIdx [
 	self
 		undoRedoTransaction: [ 
 			| selec ranges |
@@ -2481,29 +1943,20 @@ RubTextEditor>>replaceAll: aRegex with: aText startingAt: startIdx [
 			self selectInterval: selec ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>replaceSelectionWith: aText [
+{ #category : #accessing }
+RubTextEditor >> replaceSelectionWith: aText [
 	self replace: self selectionInterval with: aText and: []
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>replaceTextFrom: start to: stop with: aText [
+{ #category : #accessing }
+RubTextEditor >> replaceTextFrom: start to: stop with: aText [
 	self replace: (start to: stop - 1) with: aText and: []
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>resetState [
+{ #category : #private }
+RubTextEditor >> resetState [
 	"Establish the initial conditions for editing the paragraph: place cursor 
 	before first character, set the emphasis to that of the first character"
 
@@ -2515,11 +1968,8 @@ RubTextEditor>>resetState [
 	self setEmphasisHereFromText
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>sameColumn: start newLine: lineBlock forward: isForward [
+{ #category : #private }
+RubTextEditor >> sameColumn: start newLine: lineBlock forward: isForward [
 	"Private - Compute the index in my text
 	with the line number derived from lineBlock,"
 	" a one argument block accepting the old line number.
@@ -2550,11 +2000,8 @@ RubTextEditor>>sameColumn: start newLine: lineBlock forward: isForward [
 	^offsetAtTargetLine + column min: targetEOL.
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>saveContentsInFile [
+{ #category : #'menu messages' }
+RubTextEditor >> saveContentsInFile [
 	"Save the receiver's contents string to a file, prompting the user for a file-name.  Suggest a reasonable file-name."
 
 	| fileName stringToSave parentWindow labelToUse suggestedName lastIndex |
@@ -2594,20 +2041,14 @@ RubTextEditor>>saveContentsInFile [
 				close]
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>scrollBy: ignore  [
+{ #category : #scrolling }
+RubTextEditor >> scrollBy: ignore [ 
 	"Ignore scroll requests."
 
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>search: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+RubTextEditor >> search: aKeyboardEvent [
 	"Invoked by Ctrl-S.  Same as 'again', but always uses the existing findText
 	 from current FindReplaceService"
 
@@ -2616,28 +2057,19 @@ RubTextEditor>>search: aKeyboardEvent [
 	^true
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>select [
+{ #category : #accessing-selection }
+RubTextEditor >> select [
 	"select what and how ?"
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectAll [
+{ #category : #'typing/selecting keys' }
+RubTextEditor >> selectAll [
 
 	self selectFrom: 1 to: self string size
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectAll: aKeyboardEvent  [
+{ #category : #'typing/selecting keys' }
+RubTextEditor >> selectAll: aKeyboardEvent [ 
 	"select everything"
 
 	self closeTypeIn.
@@ -2645,22 +2077,16 @@ RubTextEditor>>selectAll: aKeyboardEvent  [
 	^ true
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectAt: characterIndex  [
+{ #category : #'new selection' }
+RubTextEditor >> selectAt: characterIndex [ 
 	"Place the caret before the character at characterIndex.
 	 Be sure it is in view."
 
 	self selectFrom: characterIndex to: characterIndex - 1
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectCurrentTypeIn: aKeyboardEvent  [
+{ #category : #'nonediting/nontyping keys' }
+RubTextEditor >> selectCurrentTypeIn: aKeyboardEvent [ 
 	"Select what would be replaced by an undo (e.g., the last typeIn)."
 
 	self closeTypeIn.
@@ -2668,11 +2094,8 @@ RubTextEditor>>selectCurrentTypeIn: aKeyboardEvent  [
 	^ true
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectFrom: start to: stop [
+{ #category : #'new selection' }
+RubTextEditor >> selectFrom: start to: stop [
 	"Select the specified characters inclusive."
 	self selectInvisiblyFrom: start to: stop.
 	self closeTypeIn.
@@ -2682,22 +2105,16 @@ RubTextEditor>>selectFrom: start to: stop [
 		ifTrue: [self setEmphasisHereFromTextForward: true ]
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectInterval: anInterval [
+{ #category : #'new selection' }
+RubTextEditor >> selectInterval: anInterval [
 	"Select the specified characters inclusive.
 	 Be sure the selection is in view."
 
 	self selectFrom: anInterval first to: anInterval last
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectInvisiblyAt: characterIndex  [
+{ #category : #'new selection' }
+RubTextEditor >> selectInvisiblyAt: characterIndex [ 
 	"Place the caret before the character at characterIndex.
 	 Be sure it is in view but vithout any further action."
 	
@@ -2705,41 +2122,29 @@ RubTextEditor>>selectInvisiblyAt: characterIndex  [
 
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectInvisiblyFrom: start to: stop [
+{ #category : #'new selection' }
+RubTextEditor >> selectInvisiblyFrom: start to: stop [
 	"Select the designated characters, inclusive.  Make no visual changes."
 
 	self markIndex: start pointIndex: stop + 1
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectInvisiblyMark: mark point: point [
+{ #category : #'new selection' }
+RubTextEditor >> selectInvisiblyMark: mark point: point [
 	"Select the designated characters, inclusive.  Make no visual changes."
 
 	self markIndex: mark pointIndex: point + 1
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectLine [
+{ #category : #'new selection' }
+RubTextEditor >> selectLine [
 	"Make the receiver's selection, if it currently consists of an insertion point only, encompass the current line."
 	self hasSelection ifTrue: [^self].
 	self selectInterval: self computeSelectionIntervalForCurrentLine
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectMark: mark point: point [
+{ #category : #'new selection' }
+RubTextEditor >> selectMark: mark point: point [
 	"Select the specified characters inclusive.
 	 Be sure the selection is in view."
 
@@ -2748,11 +2153,8 @@ RubTextEditor>>selectMark: mark point: point [
 		self selectInvisiblyMark: mark point: point]
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectWord [
+{ #category : #'new selection' }
+RubTextEditor >> selectWord [
 	"Select delimited text or word--the result of double-clicking."
 
 	| openDelimiter closeDelimiter direction match level leftDelimiters rightDelimiters
@@ -2818,31 +2220,22 @@ RubTextEditor>>selectWord [
 		ifFalse: [self selectFrom: here + 1 to: stop]
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectWord: aKeyboardEvent [
+{ #category : #'nonediting/nontyping keys' }
+RubTextEditor >> selectWord: aKeyboardEvent [
 
 	self closeTypeIn.
 	self selectWord.
 	^ true
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selection [
+{ #category : #accessing-selection }
+RubTextEditor >> selection [
 	"Answer the text in the paragraph that is currently selected."
 	^self text copyFrom: self startIndex to: self stopIndex - 1 
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectionAsStream [
+{ #category : #accessing-selection }
+RubTextEditor >> selectionAsStream [
 	"Answer a ReadStream on the text in the paragraph that is currently 
 	selected."
 
@@ -2850,56 +2243,38 @@ RubTextEditor>>selectionAsStream [
 		on: (self string copyFrom: self startIndex to: self stopIndex - 1)
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectionInterval [
+{ #category : #accessing-selection }
+RubTextEditor >> selectionInterval [
 	"Answer the interval that is currently selected."
 
 	^self startIndex to: self stopIndex - 1 
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectionStart [
+{ #category : #accessing-selection }
+RubTextEditor >> selectionStart [
 	^ textArea selectionStart
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>selectionStop [
+{ #category : #accessing-selection }
+RubTextEditor >> selectionStop [
 	^ textArea selectionStop
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>setEmphasisHere [
+{ #category : #private }
+RubTextEditor >> setEmphasisHere [
 	self editingState
 		emphasisHere:
 			((self text attributesAt: (self pointIndex - 1 max: 1) forStyle: self textStyle) select: [ :att | att mayBeExtended ])
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>setEmphasisHereFromText [
+{ #category : #'typing support' }
+RubTextEditor >> setEmphasisHereFromText [
 
 	self setEmphasisHereFromTextForward: true
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>setEmphasisHereFromTextForward: lookForward [
+{ #category : #'typing support' }
+RubTextEditor >> setEmphasisHereFromTextForward: lookForward [
 
 	| i t forward delta prevIsSeparator nextIsSeparator |
 	i := self pointIndex.
@@ -2916,11 +2291,8 @@ RubTextEditor>>setEmphasisHereFromTextForward: lookForward [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>setIndices: shiftPressed forward: forward [
+{ #category : #private }
+RubTextEditor >> setIndices: shiftPressed forward: forward [
 	"Little helper method that sets the moving and fixed indices according to some flags."
 	| indices |
 	indices := Dictionary new.
@@ -2942,41 +2314,29 @@ RubTextEditor>>setIndices: shiftPressed forward: forward [
 	^indices
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>setSearch: aString [
+{ #category : #'menu messages' }
+RubTextEditor >> setSearch: aString [
 	"Make the current selection, if any, be the current search string."
 	self findText: aString isRegex: false.
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>setSearchString [
+{ #category : #'menu messages' }
+RubTextEditor >> setSearchString [
 	"Make the current selection, if any, be the current search string."
 	self closeTypeIn.
 	self setSearch: self selection string.
 	^ true
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>setSearchString: aKeyboardEvent [
+{ #category : #'nonediting/nontyping keys' }
+RubTextEditor >> setSearchString: aKeyboardEvent [
 	"Establish the current selection as the current search string."
 	^ self setSearchString
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>setSelectorSearch: aStringOrText  [
+{ #category : #'menu messages' }
+RubTextEditor >> setSelectorSearch: aStringOrText [ 
 	"Make the current selection as a selector search in current FindReplaceService."
 	| regex |
 	regex := aStringOrText asString trimBoth.
@@ -2986,19 +2346,13 @@ RubTextEditor>>setSelectorSearch: aStringOrText  [
 	^ true
 ]
 
-{
-	#category : #keymapping,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>shiftCmdActions [
+{ #category : #keymapping }
+RubTextEditor >> shiftCmdActions [
 	^self defaultKeymappingIndex at: #shiftCommand 
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>shiftEnclose: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubTextEditor >> shiftEnclose: aKeyboardEvent [
 	"Insert or remove bracket characters around the current selection."
 
 	| char left right startIndex stopIndex oldSelection which text |
@@ -3029,11 +2383,8 @@ RubTextEditor>>shiftEnclose: aKeyboardEvent [
 	^true
 ]
 
-{
-	#category : #keymapping,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>specialShiftCmdKeys [
+{ #category : #keymapping }
+RubTextEditor >> specialShiftCmdKeys [
 
 "Private - return array of key codes that represent single keys acting
 as if shift-command were also being pressed"
@@ -3054,73 +2405,49 @@ as if shift-command were also being pressed"
 	)
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>startIndex [
+{ #category : #accessing-selection }
+RubTextEditor >> startIndex [
 	^ textArea startIndex
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>startOfTyping [
+{ #category : #'typing support' }
+RubTextEditor >> startOfTyping [
 	^ self editingState startOfTyping  
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>startOfTyping: anIntegerIndex [
+{ #category : #'typing support' }
+RubTextEditor >> startOfTyping: anIntegerIndex [
 	self editingState startOfTyping:  anIntegerIndex
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>stopIndex [
+{ #category : #accessing-selection }
+RubTextEditor >> stopIndex [
 	^ textArea stopIndex
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>storeSelectionInText [
+{ #category : #accessing-selection }
+RubTextEditor >> storeSelectionInText [
 	self theme currentSettings haveSelectionTextColor 
 		ifTrue: [
 			self text removeAttribute: RubTextSelectionColor primarySelection.
 			self text addAttribute: RubTextSelectionColor primarySelection from: self startIndex to: self stopIndex - 1]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>string [
+{ #category : #accessing }
+RubTextEditor >> string [
 
 	^self text string
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>swapChars [
+{ #category : #'editing keys' }
+RubTextEditor >> swapChars [
 	"Triggered byCmd-Y;.  Swap two characters, either those straddling the insertion point, or the two that comprise the selection.  Suggested by Ted Kaehler.  "
 
 	^ self swapChars: nil
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>swapChars: aKeyboardEvent [
+{ #category : #'editing keys' }
+RubTextEditor >> swapChars: aKeyboardEvent [
 	"Triggered byCmd-Y;.  Swap two characters, either those straddling the insertion point, or the two that comprise the selection.  Suggested by Ted Kaehler.  "
 
 	| currentSelection aString chars |
@@ -3140,195 +2467,132 @@ RubTextEditor>>swapChars: aKeyboardEvent [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>text [
+{ #category : #accessing }
+RubTextEditor >> text [
 	"Answer the text of the paragraph being edited."
 
 	^ textArea text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>textArea [
+{ #category : #accessing }
+RubTextEditor >> textArea [
 	^ textArea
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>textArea: atextArea [
+{ #category : #accessing }
+RubTextEditor >> textArea: atextArea [
 	textArea := atextArea.
 	self resetState.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>textStyle [
+{ #category : #accessing }
+RubTextEditor >> textStyle [
 	^ textArea textStyle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>textStyle: aTextStyle [
+{ #category : #private }
+RubTextEditor >> textStyle: aTextStyle [
 	textArea textStyle: aTextStyle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>textWasAccepted [
+{ #category : #private }
+RubTextEditor >> textWasAccepted [
 	self closeTypeIn.
 	^ self accept
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>theme [
+{ #category : #accessing }
+RubTextEditor >> theme [
 	^ UITheme current
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>totalTextHeight [
+{ #category : #accessing }
+RubTextEditor >> totalTextHeight [
 
 	^self paragraph totalTextHeight
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>transformFrom: owner [
+{ #category : #accessing }
+RubTextEditor >> transformFrom: owner [
 	^textArea transformFrom: owner
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>tripleClick: evt [
+{ #category : #events }
+RubTextEditor >> tripleClick: evt [
 	self closeTypeIn.	"no matter what, if shift is pressed extend the selection"
 	self selectLine.
 	self setEmphasisHereFromText.
 	self storeSelectionInText.
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>undo [
+{ #category : #'menu messages' }
+RubTextEditor >> undo [
 	"Undo  previous edit."
 	self closeTypeIn.
 	self editingState undo ifFalse: [textArea flash]. 
 
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>undo: aKeyboardEvent  [
+{ #category : #'editing keys' }
+RubTextEditor >> undo: aKeyboardEvent [ 
 	"Undo the last edit."
 
 	self undo.
 	^true
 ]
 
-{
-	#category : #undoers-redoers,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>undoRedoExchange: aninterval with: anotherInterval [
+{ #category : #undoers-redoers }
+RubTextEditor >> undoRedoExchange: aninterval with: anotherInterval [
 	self selectInvisiblyFrom: aninterval first to: aninterval last.
 	self exchangeWith: anotherInterval
 
 ]
 
-{
-	#category : #find-select,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>undoRedoTransaction: aBlock [
+{ #category : #find-select }
+RubTextEditor >> undoRedoTransaction: aBlock [
 	self editingState undoRedoTransaction: aBlock
 ]
 
-{
-	#category : #undoers-redoers,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>undoTypeIn: aText interval: anInterval [
+{ #category : #undoers-redoers }
+RubTextEditor >> undoTypeIn: aText interval: anInterval [
 	self selectInterval: anInterval.
 	self replace: anInterval with: aText and:
 		[self selectInterval: (anInterval first to: anInterval first - 1)].
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>unplug [
+{ #category : #private }
+RubTextEditor >> unplug [
 	textArea := nil.
 	super unplug
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>unselect [
+{ #category : #accessing-selection }
+RubTextEditor >> unselect [
 	textArea unselect
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>visibleHeight [
+{ #category : #accessing }
+RubTextEditor >> visibleHeight [
 
 	^textArea owner bounds height
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>walkAlongDisplayedLine [
+{ #category : #settings }
+RubTextEditor >> walkAlongDisplayedLine [
 	^ textArea walkAlongDisplayedLine
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>wordAtCaret [
+{ #category : #accessing }
+RubTextEditor >> wordAtCaret [
 
 	^self paragraph text asString wordBefore: self startIndex - 1
 
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextEditor>>zapSelectionWith: aText [
+{ #category : #accessing-selection }
+RubTextEditor >> zapSelectionWith: aText [
 	| start stop |
 	self canChangeText
 		ifFalse: [ ^ self ].

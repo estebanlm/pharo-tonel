@@ -21,15 +21,11 @@ Class {
 		'currentlyActivated',
 		'canDeselectByClick'
 	],
-	#category : #Spec-Core-Widgets-Support,
-	#timestamp : 'Spirita 7/19/2016 11:16'
+	#category : #Spec-Core-Widgets-Support
 }
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroup>>addRadioButton: aButton [
+{ #category : #api }
+RadioButtonGroup >> addRadioButton: aButton [
 
 	buttons do: [:b | 
 		aButton whenActivatedDo: [ b privateSetState: false ].
@@ -42,66 +38,45 @@ RadioButtonGroup>>addRadioButton: aButton [
 	aButton privateSetState: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroup>>buttons [
+{ #category : #accessing }
+RadioButtonGroup >> buttons [
 	^ buttons
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroup>>canDeselectByClick [
+{ #category : #api }
+RadioButtonGroup >> canDeselectByClick [
 	"Return true clicking on a selected radio button deselects it"
 
 	^ canDeselectByClick value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroup>>canDeselectByClick: aBoolean [
+{ #category : #api }
+RadioButtonGroup >> canDeselectByClick: aBoolean [
 	"Set if clicking on a selected radio button can deselect it"
 	
 	canDeselectByClick value: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroup>>currentlyActivated [
+{ #category : #accessing }
+RadioButtonGroup >> currentlyActivated [
 	^ currentlyActivated
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroup>>currentlyActivated: anObject [
+{ #category : #accessing }
+RadioButtonGroup >> currentlyActivated: anObject [
 	currentlyActivated := anObject
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroup>>default: aButton [
+{ #category : #api }
+RadioButtonGroup >> default: aButton [
 
 	aButton privateSetState: true.
 	aButton takeKeyboardFocus.
 	aButton whenBuiltDo: [ aButton privateSetState: true ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroup>>initialize [
+{ #category : #initialization }
+RadioButtonGroup >> initialize [
 
 	super initialize.
 
@@ -113,21 +88,15 @@ RadioButtonGroup>>initialize [
 		buttons do: [ :each | each canDeselectByClick: aBoolean ]].
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroup>>whenCanDeselectByClickChanged: aBlock [
+{ #category : #api-events }
+RadioButtonGroup >> whenCanDeselectByClickChanged: aBlock [
 	"This method is triggered when `canDeselectByClick` changes"
 	
 	canDeselectByClick whenChangedDo: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-RadioButtonGroup>>whenCurrentlyActivatedChanged: aBlock [
+{ #category : #api-events }
+RadioButtonGroup >> whenCurrentlyActivatedChanged: aBlock [
 	"This method is triggered when `canDeselectByClick` changes"
 	
 	currentlyActivated whenChangedDo: aBlock

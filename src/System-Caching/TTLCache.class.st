@@ -26,15 +26,11 @@ Class {
 	#instVars : [
 		'timeToLive'
 	],
-	#category : #System-Caching,
-	#timestamp : '<historical>'
+	#category : #System-Caching
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TTLCache>>at: key ifAbsentPut: block [
+{ #category : #accessing }
+TTLCache >> at: key ifAbsentPut: block [
 	"Overwritten - see the comment of the method that I overwrite.
 	In case of a hit, the cached value's timestamp is checked to see if its age
 	does not exceed the allowed timeToLive. If so, the stale value is recomputed."
@@ -54,11 +50,8 @@ TTLCache>>at: key ifAbsentPut: block [
 		^ self handleHit: association ifStale: block ]
 ]
 
-{
-	#category : #'private ',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TTLCache>>handleHit: association ifStale: block [
+{ #category : #'private ' }
+TTLCache >> handleHit: association ifStale: block [
 	"In case of a hit, the cached value's timestamp is check to see if its age
 	does not exceed the allowed timeToLive. If so, the stale value is recomputed."
 
@@ -73,58 +66,40 @@ TTLCache>>handleHit: association ifStale: block [
 	^ link value value
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TTLCache>>initialize [
+{ #category : #initialize }
+TTLCache >> initialize [
 	super initialize.
 	self timeToLive: 1 hour
 ]
 
-{
-	#category : #'private ',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TTLCache>>isStale: association [
+{ #category : #'private ' }
+TTLCache >> isStale: association [
 	"Delegate the decision to the association itself 
 	with our time to live as default"
 	
 	^ association isStale: timeToLive
 ]
 
-{
-	#category : #'private ',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TTLCache>>newAssociationKey: key value: value [
+{ #category : #'private ' }
+TTLCache >> newAssociationKey: key value: value [
 	"Override this method in a subclass to customise expiration behavior"
 	
 	^ TTLAssociation key: key value: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TTLCache>>now [
+{ #category : #accessing }
+TTLCache >> now [
 	^ Time totalSeconds
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TTLCache>>printElementsOn: stream [
+{ #category : #printing }
+TTLCache >> printElementsOn: stream [
 	super printElementsOn: stream.
 	stream space; print: timeToLive asDuration
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TTLCache>>removeStaleValues [
+{ #category : #removing }
+TTLCache >> removeStaleValues [
 	"Go over all cached values and remove those that are stale.
 	Remove a collection of the keys that were removed."
 
@@ -138,11 +113,8 @@ TTLCache>>removeStaleValues [
 		keysToRemove ]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-TTLCache>>timeToLive: duration [
+{ #category : #initialize }
+TTLCache >> timeToLive: duration [
 	"Set how old computed values can be before they become stale.
 	When stale, a value will be computed again based on the block passed in.
 	Specify either an Integer or a Duration, both will be converted to seconds."

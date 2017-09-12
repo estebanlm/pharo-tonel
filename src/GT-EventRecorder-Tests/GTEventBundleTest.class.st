@@ -11,15 +11,11 @@ Class {
 		'url',
 		'entity'
 	],
-	#category : #GT-EventRecorder-Tests-Support,
-	#timestamp : '<historical>'
+	#category : #GT-EventRecorder-Tests-Support
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventBundleTest>>setUp [
+{ #category : #running }
+GTEventBundleTest >> setUp [
 	super setUp.
 	bundle := GTEventBundle new.
 	data := #[1 2 3 4].
@@ -28,21 +24,15 @@ GTEventBundleTest>>setUp [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventBundleTest>>testData [
+{ #category : #tests }
+GTEventBundleTest >> testData [
 	"It is really important that it is the same object."
 	bundle data: data.
 	self assert: bundle data == bundle data.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventBundleTest>>testEntity [
+{ #category : #tests }
+GTEventBundleTest >> testEntity [
 	bundle data: data.
 	entity := bundle entity.
 	self assert: (entity isKindOf: ZnByteArrayEntity).

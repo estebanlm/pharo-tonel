@@ -15,26 +15,19 @@ Class {
 		'CurveAngleTolerance',
 		'DistanceEps'
 	],
-	#category : #Athens-Core-Paths,
-	#timestamp : 'IgorStasenko 5/1/2011 21:50'
+	#category : #Athens-Core-Paths
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensBezierConverter class>>initialize [
+{ #category : #'as yet unclassified' }
+AthensBezierConverter class >> initialize [
 
 	CollinearityEps := 1e-30.
 	DistanceEps := 1e-30.
 	CurveAngleTolerance := 0.01.
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensBezierConverter>>angleBetween: p1 and: p2 ifDegenerate: aBlock [
+{ #category : #helpers }
+AthensBezierConverter >> angleBetween: p1 and: p2 ifDegenerate: aBlock [
 
 " Calculate an angle (in radians) between two vectors. 
 Evaluate a block, in case if calculation not possible because one of the vectors has zero length "
@@ -55,11 +48,8 @@ Evaluate a block, in case if calculation not possible because one of the vectors
 	^ (dot2 / n2) arcCos
 ]
 
-{
-	#category : #'converting path commands',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensBezierConverter>>curveVia: pt1 to: pt2 [
+{ #category : #'converting path commands' }
+AthensBezierConverter >> curveVia: pt1 to: pt2 [
 
 
 	self	 recursiveBezier2_x1: endPoint x y1: endPoint y
@@ -67,21 +57,15 @@ AthensBezierConverter>>curveVia: pt1 to: pt2 [
 		x3: pt2 x y3: pt2 y
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensBezierConverter>>initialize [
+{ #category : #initialize-release }
+AthensBezierConverter >> initialize [
 
 	distanceTolerance := 0.5.
 	angleTolerance := 0.1 . 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensBezierConverter>>isFlatBezier2_x1: x1 y1: y1 x2: x2 y2: y2 x3: x3 y3: y3 [
+{ #category : #testing }
+AthensBezierConverter >> isFlatBezier2_x1: x1 y1: y1 x2: x2 y2: y2 x3: x3 y3: y3 [
 
 	| dx dy d da angle |
 	
@@ -133,11 +117,8 @@ AthensBezierConverter>>isFlatBezier2_x1: x1 y1: y1 x2: x2 y2: y2 x3: x3 y3: y3 [
 	^ false
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensBezierConverter>>recursiveBezier2_x1: x1 y1: y1 x2: x2 y2: y2 x3: x3 y3: y3 [
+{ #category : #helpers }
+AthensBezierConverter >> recursiveBezier2_x1: x1 y1: y1 x2: x2 y2: y2 x3: x3 y3: y3 [
 
 	"recursively subdive bezier curve as long as #isFlatBezier2.. answers false "
 

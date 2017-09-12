@@ -16,15 +16,11 @@ Class {
 		'superclass',
 		'subclasses'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 5/21/2016 01:45'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddClassRefactoring class>>addClass: aName superclass: aClass subclasses: aCollection category: aSymbol [
+{ #category : #'instance creation' }
+RBAddClassRefactoring class >> addClass: aName superclass: aClass subclasses: aCollection category: aSymbol [
 	^self new
 		addClass: aName
 		superclass: aClass
@@ -32,11 +28,8 @@ RBAddClassRefactoring class>>addClass: aName superclass: aClass subclasses: aCol
 		category: aSymbol
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddClassRefactoring class>>model: aRBSmalltalk addClass: aName superclass: aClass subclasses: aCollection category: aSymbol  [
+{ #category : #'instance creation' }
+RBAddClassRefactoring class >> model: aRBSmalltalk addClass: aName superclass: aClass subclasses: aCollection category: aSymbol [ 
 	^(self new)
 		model: aRBSmalltalk;
 		addClass: aName
@@ -46,22 +39,16 @@ RBAddClassRefactoring class>>model: aRBSmalltalk addClass: aName superclass: aCl
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddClassRefactoring>>addClass: aName superclass: aClass subclasses: aCollection category: aSymbol  [
+{ #category : #initialize-release }
+RBAddClassRefactoring >> addClass: aName superclass: aClass subclasses: aCollection category: aSymbol [ 
 	self className: aName.
 	superclass := self classObjectFor: aClass.
 	subclasses := aCollection collect: [:each | self classObjectFor: each].
 	category := aSymbol
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddClassRefactoring>>preconditions [
+{ #category : #preconditions }
+RBAddClassRefactoring >> preconditions [
 	| cond |
 	cond := ((RBCondition isMetaclass: superclass) 
 				errorMacro: 'Superclass must not be a metaclass') not.
@@ -79,11 +66,8 @@ RBAddClassRefactoring>>preconditions [
 					errorMacro: 'Invalid category name')
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddClassRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBAddClassRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream
@@ -98,11 +82,8 @@ RBAddClassRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBAddClassRefactoring>>transform [
+{ #category : #transforming }
+RBAddClassRefactoring >> transform [
 	(self model)
 		defineClass: ('<1p> subclass: #<2s> instanceVariableNames: '''' classVariableNames: '''' poolDictionaries: '''' category: <3p>' 
 					expandMacrosWith: superclass

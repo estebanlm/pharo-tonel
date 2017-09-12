@@ -1,80 +1,51 @@
-Extension {
-	#name : #Object
-}
+Extension { #name : #Object }
 
-{
-	#category : #'*GT-Spotter',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Object>>asSpotterCandidateLink [
+{ #category : #'*GT-Spotter' }
+Object >> asSpotterCandidateLink [
 
 	^ GTSpotterCandidateLink value: self
 ]
 
-{
-	#category : #'*GT-Spotter',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Object>>asSpotterProcessorLink [
+{ #category : #'*GT-Spotter' }
+Object >> asSpotterProcessorLink [
 
 	^ GTSpotterProcessorLink value: self
 ]
 
-{
-	#category : #'*GT-Spotter',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Object>>gtFilter [
+{ #category : #'*GT-Spotter' }
+Object >> gtFilter [
 	^ GTFilterBlock gtFilter
 		
 ]
 
-{
-	#category : #'*GT-Spotter',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Object>>gtIterator [
+{ #category : #'*GT-Spotter' }
+Object >> gtIterator [
 	^ Error signal: 'This is not a spotter iterator'
 ]
 
-{
-	#category : #'*GT-Spotter',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Object>>gtListFilter [
+{ #category : #'*GT-Spotter' }
+Object >> gtListFilter [
 	^ GTFilterSubstring new
 ]
 
-{
-	#category : #'*GT-Spotter',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Object>>hasDynamicItems [
+{ #category : #'*GT-Spotter' }
+Object >> hasDynamicItems [
 	^ false
 ]
 
-{
-	#category : #'*GT-Spotter',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Object>>spotterActDefault [
+{ #category : #'*GT-Spotter' }
+Object >> spotterActDefault [
 	^ self inspect
 ]
 
-{
-	#category : #'*GT-Spotter',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Object>>spotterActDefault: aStep [
+{ #category : #'*GT-Spotter' }
+Object >> spotterActDefault: aStep [
 	aStep exit.
 	self spotterActDefault
 ]
 
-{
-	#category : #'*GT-Spotter',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Object>>spotterPreviewIn: aComposite inContext: aSpotter [
+{ #category : #'*GT-Spotter' }
+Object >> spotterPreviewIn: aComposite inContext: aSpotter [
 	| pragmas |
 	pragmas := Pragma
 		allNamed: #spotterPreview:
@@ -96,11 +67,8 @@ Object>>spotterPreviewIn: aComposite inContext: aSpotter [
 				ifTrue: [ ^ self ] ]
 ]
 
-{
-	#category : #'*GT-Spotter',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Object>>spotterPreviewRawIn: aComposite [
+{ #category : #'*GT-Spotter' }
+Object >> spotterPreviewRawIn: aComposite [
 	<spotterPreview: 40>
 
 	aComposite table
@@ -117,11 +85,8 @@ Object>>spotterPreviewRawIn: aComposite [
 	self flag: 'move "entity: self" somewhere else, maybe'
 ]
 
-{
-	#category : #'*GT-Spotter',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Object>>spotterProcessorsFor: aSpotterStep [
+{ #category : #'*GT-Spotter' }
+Object >> spotterProcessorsFor: aSpotterStep [
 	"This is a utility method that collects all extensions (processors) for the current object.
 	By default, it simply looks for the #spotterOrder: pragma.
 	The step can decice whether or not an extension should be enabled.
@@ -141,11 +106,8 @@ Object>>spotterProcessorsFor: aSpotterStep [
 					with: (aSpotterStep processorsFilter configurationBlockForProcessorsCreatedBy: pragma method)]
 ]
 
-{
-	#category : #'*GT-Spotter',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Object>>spotterProcessorsFor: aSpotterStep pragma: aPragma [
+{ #category : #'*GT-Spotter' }
+Object >> spotterProcessorsFor: aSpotterStep pragma: aPragma [
 	" if there is a problem with the definition of one or more processors, let the other processors continue to work "
 
 	[ | processorsSize addedProcessorsSize |

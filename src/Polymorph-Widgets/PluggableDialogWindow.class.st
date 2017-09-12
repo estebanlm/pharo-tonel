@@ -11,15 +11,11 @@ Class {
 		'applyChangesSelector',
 		'defaultFocusMorph'
 	],
-	#category : #Polymorph-Widgets-Windows,
-	#timestamp : 'gvc 8/8/2007 14:08'
+	#category : #Polymorph-Widgets-Windows
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>applyChanges [
+{ #category : #'as yet unclassified' }
+PluggableDialogWindow >> applyChanges [
 	"Apply the changes."
 
 	super applyChanges.
@@ -27,87 +23,60 @@ PluggableDialogWindow>>applyChanges [
 		self model perform: s withEnoughArguments: {self}]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>applyChangesSelector [
+{ #category : #accessing }
+PluggableDialogWindow >> applyChangesSelector [
 	"Answer the value of applyChangesSelector"
 
 	^ applyChangesSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>applyChangesSelector: anObject [
+{ #category : #accessing }
+PluggableDialogWindow >> applyChangesSelector: anObject [
 	"Set the value of applyChangesSelector"
 
 	applyChangesSelector := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>buttons [
+{ #category : #accessing }
+PluggableDialogWindow >> buttons [
 	"Answer the value of buttons"
 
 	^ buttons
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>buttons: anObject [
+{ #category : #accessing }
+PluggableDialogWindow >> buttons: anObject [
 	"Set the value of buttons"
 
 	buttons := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>contentMorph [
+{ #category : #accessing }
+PluggableDialogWindow >> contentMorph [
 	"Answer the value of contentMorph"
 
 	^ contentMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>contentMorph: anObject [
+{ #category : #accessing }
+PluggableDialogWindow >> contentMorph: anObject [
 	"Set the value of contentMorph"
 
 	contentMorph := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>defaultFocusMorph [
+{ #category : #'as yet unclassified' }
+PluggableDialogWindow >> defaultFocusMorph [
 	^ defaultFocusMorph ifNil: [super defaultFocusMorph]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>defaultFocusMorph: aMorph [
+{ #category : #'as yet unclassified' }
+PluggableDialogWindow >> defaultFocusMorph: aMorph [
 	defaultFocusMorph := aMorph
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>initialize [
+{ #category : #initialization }
+PluggableDialogWindow >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -115,69 +84,48 @@ PluggableDialogWindow>>initialize [
 		buttons: super newButtons
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>newButtons [
+{ #category : #'as yet unclassified' }
+PluggableDialogWindow >> newButtons [
 	"Answer  the plugged buttons."
 
 	^self buttons
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>newContentMorph [
+{ #category : #'as yet unclassified' }
+PluggableDialogWindow >> newContentMorph [
 	"Answer the plugged content."
 	
 	^self contentMorph  
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>statusValue [
+{ #category : #'as yet unclassified' }
+PluggableDialogWindow >> statusValue [
 	^statusValue
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>statusValue: val [
+{ #category : #'as yet unclassified' }
+PluggableDialogWindow >> statusValue: val [
 	statusValue := val
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>useDefaultOKButton [
+{ #category : #'as yet unclassified' }
+PluggableDialogWindow >> useDefaultOKButton [
 	"Set the buttons to be just an OK button.
 	Only effective before the model is set."
 	
 	self buttons: {self newOKButton isDefault: true}
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>useDefaultOKCancelButton [
+{ #category : #'as yet unclassified' }
+PluggableDialogWindow >> useDefaultOKCancelButton [
 	"Set the buttons to be a default OK button and a cancel button.
 	Only effective before the model is set."
 	
 	self buttons: super newButtons
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PluggableDialogWindow>>useOKDefaultCancelButton [
+{ #category : #'as yet unclassified' }
+PluggableDialogWindow >> useOKDefaultCancelButton [
 	"Set the buttons to be an OK button and a default cancel button.
 	Only effective before the model is set."
 	

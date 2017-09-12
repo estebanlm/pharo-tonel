@@ -45,15 +45,11 @@ Class {
 		'PackagesIconsCache',
 		'PreviousFocusKey'
 	],
-	#category : #Nautilus,
-	#timestamp : 'FranckWarlouzet 6/17/2015 10:37'
+	#category : #Nautilus
 }
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>analyzeSubMenu: aBuilder [
+{ #category : #menu }
+AbstractNautilusUI class >> analyzeSubMenu: aBuilder [
 	<contextMenu>
 	<nautilusGlobalClassMenu>
 	| target |
@@ -63,11 +59,8 @@ AbstractNautilusUI class>>analyzeSubMenu: aBuilder [
 	target selectedClass buildAnalyzeSubMenu: aBuilder.
 ]
 
-{
-	#category : #'icons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>arrowDown: aMethod [
+{ #category : #'icons behavior' }
+AbstractNautilusUI class >> arrowDown: aMethod [
 
 	| methods methodsNames index |
 	methods := aMethod methodClass allSubclasses flatCollect: [:each | each methods ].
@@ -83,11 +76,8 @@ AbstractNautilusUI class>>arrowDown: aMethod [
 	
 ]
 
-{
-	#category : #'icons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>arrowUp: aMethod [
+{ #category : #'icons behavior' }
+AbstractNautilusUI class >> arrowUp: aMethod [
 	| newMethod |
 	newMethod := aMethod methodClass superclass lookupSelector: aMethod selector.
 	newMethod
@@ -95,11 +85,8 @@ AbstractNautilusUI class>>arrowUp: aMethod [
 		ifNotNil: [ Nautilus openOnMethod: newMethod ]
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>buildAddShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+AbstractNautilusUI class >> buildAddShortcutsOn: aBuilder [
 	<keymap>
 	(aBuilder shortcut: #newClass)
 		category: #NautilusGlobalShortcuts
@@ -123,11 +110,8 @@ AbstractNautilusUI class>>buildAddShortcutsOn: aBuilder [
 		description: 'Create a new group'
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>buildBrowseShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+AbstractNautilusUI class >> buildBrowseShortcutsOn: aBuilder [
 	<keymap>
 	(aBuilder shortcut: #browseSenders)
 		category: #NautilusGlobalShortcuts
@@ -201,11 +185,8 @@ AbstractNautilusUI class>>buildBrowseShortcutsOn: aBuilder [
 		description: 'Browse variables of the selected class'
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>buildButtonsShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+AbstractNautilusUI class >> buildButtonsShortcutsOn: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #showInstanceSide)
@@ -234,11 +215,8 @@ AbstractNautilusUI class>>buildButtonsShortcutsOn: aBuilder [
 
 ]
 
-{
-	#category : #shortcut-old,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>buildClassShortcutsOn: aBuilder [
+{ #category : #shortcut-old }
+AbstractNautilusUI class >> buildClassShortcutsOn: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #fullBrowse)
@@ -320,11 +298,8 @@ AbstractNautilusUI class>>buildClassShortcutsOn: aBuilder [
 		description: 'Remove the selected classes'
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>buildCopyShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+AbstractNautilusUI class >> buildCopyShortcutsOn: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #copyClass)
@@ -334,11 +309,8 @@ AbstractNautilusUI class>>buildCopyShortcutsOn: aBuilder [
 		description: 'Copy the selected classes'.
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>buildExtraShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+AbstractNautilusUI class >> buildExtraShortcutsOn: aBuilder [
 	<keymap>
 	(aBuilder shortcut: #openBrowser)
 		category: #NautilusGlobalShortcuts
@@ -362,11 +334,8 @@ AbstractNautilusUI class>>buildExtraShortcutsOn: aBuilder [
 		description: 'ToggleBytecodes'
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>buildFindShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+AbstractNautilusUI class >> buildFindShortcutsOn: aBuilder [
 	<keymap>
 	(aBuilder shortcut: #findClass)
 		category: #NautilusGlobalShortcuts
@@ -405,11 +374,8 @@ AbstractNautilusUI class>>buildFindShortcutsOn: aBuilder [
 		description: 'Find a method'
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>buildGotoNavigationShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+AbstractNautilusUI class >> buildGotoNavigationShortcutsOn: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #jumpToClass)
@@ -443,11 +409,8 @@ AbstractNautilusUI class>>buildGotoNavigationShortcutsOn: aBuilder [
 		description: 'Jump to test class'.
 ]
 
-{
-	#category : #shortcut-old,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>buildGroupShortcutsOn: aBuilder [
+{ #category : #shortcut-old }
+AbstractNautilusUI class >> buildGroupShortcutsOn: aBuilder [
 	<keymap>
 	(aBuilder shortcut: #fullBrowse)
 		category: #NautilusGroupShortcuts
@@ -483,11 +446,8 @@ AbstractNautilusUI class>>buildGroupShortcutsOn: aBuilder [
 		description: 'Remove the selected groups'
 ]
 
-{
-	#category : #shortcut-old,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>buildPackageShortcutsOn: aBuilder [
+{ #category : #shortcut-old }
+AbstractNautilusUI class >> buildPackageShortcutsOn: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #fullBrowse)
@@ -533,11 +493,8 @@ AbstractNautilusUI class>>buildPackageShortcutsOn: aBuilder [
 		description: 'Remove the selected packages'.
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>buildRecategorizeShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+AbstractNautilusUI class >> buildRecategorizeShortcutsOn: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #recategorizeMethod)
@@ -553,11 +510,8 @@ AbstractNautilusUI class>>buildRecategorizeShortcutsOn: aBuilder [
 		description: 'Categorize the selected class'.
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>buildRefactoringShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+AbstractNautilusUI class >> buildRefactoringShortcutsOn: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #generateInitialize)
@@ -597,11 +551,8 @@ AbstractNautilusUI class>>buildRefactoringShortcutsOn: aBuilder [
 		description: 'Categorize all uncategorized and remove empty'.
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>buildRemoveShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+AbstractNautilusUI class >> buildRemoveShortcutsOn: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #removeClass)
@@ -635,11 +586,8 @@ AbstractNautilusUI class>>buildRemoveShortcutsOn: aBuilder [
 		description: 'Remove the selected groups'.
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>buildRenameShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+AbstractNautilusUI class >> buildRenameShortcutsOn: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #renameClass)
@@ -667,11 +615,8 @@ AbstractNautilusUI class>>buildRenameShortcutsOn: aBuilder [
 		description: 'Rename the selected group'.
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>buildRunTestKeymappingsOn: aBuilder [
+{ #category : #shortcuts }
+AbstractNautilusUI class >> buildRunTestKeymappingsOn: aBuilder [
 	<keymap>
 	(aBuilder shortcut: #runTestForClasses)
 		category: #NautilusGlobalShortcuts
@@ -690,11 +635,8 @@ AbstractNautilusUI class>>buildRunTestKeymappingsOn: aBuilder [
 		description: 'runTestFor the selected methods'
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>classesFixMenu: aBuilder [
+{ #category : #menu }
+AbstractNautilusUI class >> classesFixMenu: aBuilder [
 	<contextMenu>
 	<nautilusGlobalClassFixMenu>
 	| target |
@@ -733,11 +675,8 @@ AbstractNautilusUI class>>classesFixMenu: aBuilder [
 		help: 'Open the same browser'.
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>classesMenu: aBuilder [
+{ #category : #menu }
+AbstractNautilusUI class >> classesMenu: aBuilder [
 	<contextMenu>
 	<nautilusGlobalClassMenu>
 	| target |
@@ -810,11 +749,8 @@ AbstractNautilusUI class>>classesMenu: aBuilder [
 		order: 1800
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>groupsFixMenu: aBuilder [
+{ #category : #menu }
+AbstractNautilusUI class >> groupsFixMenu: aBuilder [
 	<contextMenu>
 	<nautilusGlobalGroupFixMenu>
 	| target |
@@ -840,11 +776,8 @@ AbstractNautilusUI class>>groupsFixMenu: aBuilder [
 		order: 999.
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>groupsMenu: aBuilder [
+{ #category : #menu }
+AbstractNautilusUI class >> groupsMenu: aBuilder [
 	<contextMenu>
 	<nautilusGlobalGroupMenu>
 	| target |
@@ -886,19 +819,13 @@ AbstractNautilusUI class>>groupsMenu: aBuilder [
 						order: 1400 ] ]
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>icon [
+{ #category : #icons }
+AbstractNautilusUI class >> icon [
 	^ self iconNamed: #nautilusIcon 
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>initialize [
+{ #category : #'class initialization' }
+AbstractNautilusUI class >> initialize [
 	" self initialize "
 	PackagesIconsCache := WeakIdentityKeyDictionary new.
 	
@@ -908,37 +835,25 @@ AbstractNautilusUI class>>initialize [
 	self registerSystemAnnouncements.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>nextFocusKey [
+{ #category : #accessing }
+AbstractNautilusUI class >> nextFocusKey [
 
 	^ NextFocusKey
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>on: aNautilus [
+{ #category : #'instance creation' }
+AbstractNautilusUI class >> on: aNautilus [
 
 	^ self new model: aNautilus
 ]
 
-{
-	#category : #'menu pragmas',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>packageFixPragma [
+{ #category : #'menu pragmas' }
+AbstractNautilusUI class >> packageFixPragma [
 	^ 'nautilusGlobalPackageFixMenu'
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>packagesFixMenu: aBuilder [
+{ #category : #menu }
+AbstractNautilusUI class >> packagesFixMenu: aBuilder [
 	<contextMenu>
 	<nautilusGlobalPackageFixMenu>
 	| target |
@@ -975,29 +890,20 @@ AbstractNautilusUI class>>packagesFixMenu: aBuilder [
 		help: 'Open the same browser'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>packagesIconsCache [
+{ #category : #accessing }
+AbstractNautilusUI class >> packagesIconsCache [
 
 		^ PackagesIconsCache
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>packagesIconsCache: anObject [
+{ #category : #accessing }
+AbstractNautilusUI class >> packagesIconsCache: anObject [
 	
 		PackagesIconsCache := anObject
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>packagesMenu: aBuilder [
+{ #category : #menu }
+AbstractNautilusUI class >> packagesMenu: aBuilder [
 	<contextMenu>
 	<nautilusGlobalPackageMenu>
 	| package target |
@@ -1050,11 +956,8 @@ AbstractNautilusUI class>>packagesMenu: aBuilder [
 	self packagesMenuGroupsItems: aBuilder
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>packagesMenuGroupsItems:aBuilder [
+{ #category : #menu }
+AbstractNautilusUI class >> packagesMenuGroupsItems:aBuilder [
 	| target order |
 	target := aBuilder model.
 	order := 0.
@@ -1079,20 +982,14 @@ AbstractNautilusUI class>>packagesMenuGroupsItems:aBuilder [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>previousFocusKey [
+{ #category : #accessing }
+AbstractNautilusUI class >> previousFocusKey [
 
 	^ PreviousFocusKey
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>registerSystemAnnouncements [
+{ #category : #'class initialization' }
+AbstractNautilusUI class >> registerSystemAnnouncements [
 	SystemAnnouncer uniqueInstance unsubscribe: self.
 	SystemAnnouncer uniqueInstance weak
 		when: IconSetChanged
@@ -1100,20 +997,14 @@ AbstractNautilusUI class>>registerSystemAnnouncements [
 		to: self
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>resetIconCaches [
+{ #category : #icons }
+AbstractNautilusUI class >> resetIconCaches [
 	PackagesIconsCache removeAll.
 	MethodWidget resetMethodIconCache.
 ]
 
-{
-	#category : #'icons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>runClassInitializeMethod: aMethod [
+{ #category : #'icons behavior' }
+AbstractNautilusUI class >> runClassInitializeMethod: aMethod [
 	"Perform the method as an example method"
  	|selectedClass|
 	(UIManager default confirm: 'Would you like to (re)initialize the class')
@@ -1124,31 +1015,22 @@ AbstractNautilusUI class>>runClassInitializeMethod: aMethod [
 	 
 ]
 
-{
-	#category : #'icons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>runExamplarMethod: aMethod [
+{ #category : #'icons behavior' }
+AbstractNautilusUI class >> runExamplarMethod: aMethod [
 	"Perform the method as an example method. Now since this is an examplar (an bare instance of the class) with in addition inspect it so that the user can get a cool inspector to play with it."
  
 	(aMethod methodClass baseClass perform: aMethod selector) inspect
 ]
 
-{
-	#category : #'icons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>runExampleMethod: aMethod [
+{ #category : #'icons behavior' }
+AbstractNautilusUI class >> runExampleMethod: aMethod [
 	"Perform the method as an example method"
  
 	aMethod methodClass baseClass perform: aMethod selector
 ]
 
-{
-	#category : #'icons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>saveDirtyPackages: aCollection  [
+{ #category : #'icons behavior' }
+AbstractNautilusUI class >> saveDirtyPackages: aCollection [ 
 	
 	
 	aCollection isEmptyOrNil ifTrue: [ ^ self ].
@@ -1166,27 +1048,18 @@ AbstractNautilusUI class>>saveDirtyPackages: aCollection  [
 	
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI class>>taskbarIconName [
+{ #category : #icons }
+AbstractNautilusUI class >> taskbarIconName [
 	^#nautilusIcon 
 ]
 
-{
-	#category : #'group announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>aGroupContentHasBeenModified: anAnnouncement [
+{ #category : #'group announcements' }
+AbstractNautilusUI >> aGroupContentHasBeenModified: anAnnouncement [
 	self updateGroupView
 ]
 
-{
-	#category : #'group announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>aGroupHasBeenAdded: anAnnouncement [
+{ #category : #'group announcements' }
+AbstractNautilusUI >> aGroupHasBeenAdded: anAnnouncement [
 	"(NautilusUI methodDict at: #aGroupHasBeenRegistered:) getSource"
 
 	| group |
@@ -1198,11 +1071,8 @@ AbstractNautilusUI>>aGroupHasBeenAdded: anAnnouncement [
 		ifTrue: [ self updateGroupView ]
 ]
 
-{
-	#category : #'group announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>aGroupHasBeenRemoved: anAnnouncement [
+{ #category : #'group announcements' }
+AbstractNautilusUI >> aGroupHasBeenRemoved: anAnnouncement [
 	 "(NautilusUI methodDict at: #aGroupHasBeenRegistered:) getSource"
 
 	window ifNil: [ ^ self ].
@@ -1215,38 +1085,26 @@ AbstractNautilusUI>>aGroupHasBeenRemoved: anAnnouncement [
 			self updateCategoryAndMethodList ]
 ]
 
-{
-	#category : #'group announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>aGroupHasBeenRenamed: anAnnouncement [
+{ #category : #'group announcements' }
+AbstractNautilusUI >> aGroupHasBeenRenamed: anAnnouncement [
 	"(NautilusUI methodDict at: #aGroupHasBeenRegistered:) getSource"
 
 	self aGroupHasBeenAdded: anAnnouncement 
 ]
 
-{
-	#category : #'comment pane',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>acceptCommentFromView [
+{ #category : #'comment pane' }
+AbstractNautilusUI >> acceptCommentFromView [
 	self commentTextModel acceptEditsInView
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>acceptSourceCodeFromView [
+{ #category : #'source code area' }
+AbstractNautilusUI >> acceptSourceCodeFromView [
 
 	self sourceTextModel acceptEditsInView
 ]
 
-{
-	#category : #'build ui',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>addAll: aWindow [
+{ #category : #'build ui' }
+AbstractNautilusUI >> addAll: aWindow [
 	| topHeight middleHeight bottomMorph bottomHeight delta |
 	delta := 0.
 	bottomHeight := 0.
@@ -1315,30 +1173,21 @@ AbstractNautilusUI>>addAll: aWindow [
 			bottomMorph color: Color transparent ]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>addCategory [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> addCategory [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>addClass [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> addClass [
 	| package |
 	package := self selectedPackage 
 		ifNil: [ RPackageOrganizer default packageNamed: RPackage defaultPackageName ].
 	self addClassIn: package.
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>addIconStyle [
+{ #category : #styling }
+AbstractNautilusUI >> addIconStyle [
 
 	self selectedMethod ifNil: [ ^self ].
 	IconStyler styleText: self sourceTextModel withAst: self selectedMethod ast.
@@ -1346,11 +1195,8 @@ AbstractNautilusUI>>addIconStyle [
 		self selectedMethod annotateRubricText: self sourceTextModel ]
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>addModelItemsToWindowMenu: aMenu [
+{ #category : #menus }
+AbstractNautilusUI >> addModelItemsToWindowMenu: aMenu [
 	"Add model-related items to the window menu"
 
 	aMenu addLine;
@@ -1364,11 +1210,8 @@ AbstractNautilusUI>>addModelItemsToWindowMenu: aMenu [
 		selector: #openShortcutDescription.
 ]
 
-{
-	#category : #group,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>addNewGroup [
+{ #category : #group }
+AbstractNautilusUI >> addNewGroup [
 	| group |
 	[ group := self groupsManager createAnEmptyStaticGroup ]
 		on: GroupAlreadyExists
@@ -1376,11 +1219,8 @@ AbstractNautilusUI>>addNewGroup [
 	GroupAnnouncer uniqueInstance announce: (AGroupHasBeenAdded group: group into: self)
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>addPackage [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> addPackage [
 
 	| package |
 	package := self addPackageBasedOn: self selectedPackage.
@@ -1389,19 +1229,13 @@ AbstractNautilusUI>>addPackage [
 			self updatePackageViewAndMove ]
 ]
 
-{
-	#category : #group,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>addPackages: aCollection inGroup: aGroup [
+{ #category : #group }
+AbstractNautilusUI >> addPackages: aCollection inGroup: aGroup [
 	aGroup addPackages: aCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>addSubclassesOf: aClass in: result withIndex: index [
+{ #category : #private }
+AbstractNautilusUI >> addSubclassesOf: aClass in: result withIndex: index [
 
 	| classes |
 	classes := aClass subclasses "self selectedPackage
@@ -1413,11 +1247,8 @@ AbstractNautilusUI>>addSubclassesOf: aClass in: result withIndex: index [
 		self addSubclassesOf: each theNonMetaClass in: result withIndex: index + 1 ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>addSubclassesOf: aClass in: result withIndex: index fromRestrictedCollection: aCollection [
+{ #category : #private }
+AbstractNautilusUI >> addSubclassesOf: aClass in: result withIndex: index fromRestrictedCollection: aCollection [
 
 	| classes |
 
@@ -1429,163 +1260,109 @@ AbstractNautilusUI>>addSubclassesOf: aClass in: result withIndex: index fromRest
 		self addSubclassesOf: each in: result withIndex: index + 1 fromRestrictedCollection: aCollection ]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>addTrait [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> addTrait [
 
 	self selectedPackage ifNotNil: [:package | self addTraitIn: package ]
 	
 	" No need of update, announcements will do the job "
 ]
 
-{
-	#category : #group,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>alertGroupExisting: name [
+{ #category : #group }
+AbstractNautilusUI >> alertGroupExisting: name [
 	UIManager default alert: 'The group named ' , name , ' already exists' title: 'Already exists'
 ]
 
-{
-	#category : #'announcement registration',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>announce: anAnnouncement [
+{ #category : #'announcement registration' }
+AbstractNautilusUI >> announce: anAnnouncement [
 
 	^ self model announce: anAnnouncement
 ]
 
-{
-	#category : #'announcement registration',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>announcer [
+{ #category : #'announcement registration' }
+AbstractNautilusUI >> announcer [
 
 	^ self model announcer
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>asYetUnclassifiedString [
+{ #category : #private }
+AbstractNautilusUI >> asYetUnclassifiedString [
 
 	^ Protocol unclassified.
 ]
 
-{
-	#category : #dispatch,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>basicRenameClass: aClass [
+{ #category : #dispatch }
+AbstractNautilusUI >> basicRenameClass: aClass [
 
 	self renameClass: aClass
 ]
 
-{
-	#category : #'plugins announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseClass: aClass [
+{ #category : #'plugins announcements' }
+AbstractNautilusUI >> browseClass: aClass [
 	self selectedPackage: (self parentOfClass: aClass).
 	self selectedClass: aClass.
 	self updatePackageGroupAndClassList
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseClassRefs [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> browseClassRefs [
 	
 	self browseClassRefsOf: self selectedClass.
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseClassVarRefs [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> browseClassVarRefs [
 
 	self browseClassVarRefsOf: self selectedClass
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseInstVarDefs  [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> browseInstVarDefs [ 
 
 	self browseInstVarDefsOf: self selectedClass
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseInstVarRefs  [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> browseInstVarRefs [ 
 
 	self browseInstVarRefsOf: self selectedClass
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseMessages [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> browseMessages [
 	self selectedMethod ifNil: [ ^ self inform: 'No method selected' ].
 	self browseMessagesFrom: self selectedMethod selector
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseScopedButtonAction [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> browseScopedButtonAction [
 	self restrictedBrowsePackage
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseScopedButtonEnabled [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> browseScopedButtonEnabled [
 	^ self selectedPackage notNil
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseScopedButtonLabel [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> browseScopedButtonLabel [
 	^ 'Scoped'
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseScopedButtonState [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> browseScopedButtonState [
 	^ false
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseSendersOfMessages [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> browseSendersOfMessages [
 	"Present a menu of the currently selected message, as well as all messages sent by it.  Open a message set browser of all senders of the selector chosen."
 
 	self selectedMethod ifNotNil: [ :met | self browseSendersOfMessagesFrom: met selector ]
 ]
 
-{
-	#category : #'plugins announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseSuperclass [
+{ #category : #'plugins announcements' }
+AbstractNautilusUI >> browseSuperclass [
 
 	self selectedClass
 		ifNil: [ ^ self ]
@@ -1593,28 +1370,19 @@ AbstractNautilusUI>>browseSuperclass [
 			self browseSuperclassOf: class ]
 ]
 
-{
-	#category : #'plugins announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseSuperclassOf: class [
+{ #category : #'plugins announcements' }
+AbstractNautilusUI >> browseSuperclassOf: class [
 	^ self browseClass: class superclass
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseUnusedMethods [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> browseUnusedMethods [
 	
 	self browseUnusedMethodsOf: self selectedClass
 ]
 
-{
-	#category : #button-variables,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseVariableReferences [
+{ #category : #button-variables }
+AbstractNautilusUI >> browseVariableReferences [
 
 	| mainMenu classVarSubMenu |
 
@@ -1665,67 +1433,46 @@ AbstractNautilusUI>>browseVariableReferences [
 
 ]
 
-{
-	#category : #button-variables,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseVariablesButtonAction [
+{ #category : #button-variables }
+AbstractNautilusUI >> browseVariablesButtonAction [
 
 	self browseVariableReferences
 ]
 
-{
-	#category : #button-variables,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseVariablesButtonEnabled [
+{ #category : #button-variables }
+AbstractNautilusUI >> browseVariablesButtonEnabled [
 
 	^ self selectedClass notNil
 ]
 
-{
-	#category : #button-variables,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseVariablesButtonLabel [
+{ #category : #button-variables }
+AbstractNautilusUI >> browseVariablesButtonLabel [
 
 	^ 'Variables'
 ]
 
-{
-	#category : #button-variables,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseVariablesButtonState [
+{ #category : #button-variables }
+AbstractNautilusUI >> browseVariablesButtonState [
 
 	^ false
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browseVersions [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> browseVersions [
 	"Create and schedule a Versions Browser, showing all versions of the 
 	currently selected message. Answer the browser or nil."
 	self selectedMethod ifNil: [ ^ self inform: 'No method selected' ].
 	self browseVersionsFrom: self selectedMethod
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>browsedEnvironment [
+{ #category : #private }
+AbstractNautilusUI >> browsedEnvironment [
 
 	^ self model browsedEnvironment
 ]
 
-{
-	#category : #'build ui plugins',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildBottomPlugins [
+{ #category : #'build ui plugins' }
+AbstractNautilusUI >> buildBottomPlugins [
 
 	| bottom container |
 	bottom := self model plugins select: [:each | each position = #bottom ].
@@ -1746,11 +1493,8 @@ AbstractNautilusUI>>buildBottomPlugins [
 	^ container
 ]
 
-{
-	#category : #'build ui buttons',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildBrowseScopedButton [
+{ #category : #'build ui buttons' }
+AbstractNautilusUI >> buildBrowseScopedButton [
 	^ (PluggableButtonMorph
 		on: self
 		getState: #browseScopedButtonState
@@ -1764,11 +1508,8 @@ AbstractNautilusUI>>buildBrowseScopedButton [
 		yourself
 ]
 
-{
-	#category : #'build ui buttons',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildBrowseVariablesButton [
+{ #category : #'build ui buttons' }
+AbstractNautilusUI >> buildBrowseVariablesButton [
 	^ (PluggableButtonMorph
 		on: self
 		getState: #browseVariablesButtonState
@@ -1782,11 +1523,8 @@ AbstractNautilusUI>>buildBrowseVariablesButton [
 		yourself
 ]
 
-{
-	#category : #'build ui',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildButtonsBar [
+{ #category : #'build ui' }
+AbstractNautilusUI >> buildButtonsBar [
 	| arrows buttons |
 	arrows := PanelMorph new
 		changeProportionalLayout;
@@ -1825,46 +1563,31 @@ AbstractNautilusUI>>buildButtonsBar [
 		yourself
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildCategoryWidget [
+{ #category : #'widget category' }
+AbstractNautilusUI >> buildCategoryWidget [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'widget class',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildClassWidget [
+{ #category : #'widget class' }
+AbstractNautilusUI >> buildClassWidget [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'build ui text',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildCodePane [
+{ #category : #'build ui text' }
+AbstractNautilusUI >> buildCodePane [
 	^ self buildNewCodeSourceAreaRubric
 	
 ]
 
-{
-	#category : #'code panel',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildCodePanelWithComment [
+{ #category : #'code panel' }
+AbstractNautilusUI >> buildCodePanelWithComment [
 
 	commentWidget := self buildNewCommentText.
 	self buildCodePanelWithCommentOnRight 
 ]
 
-{
-	#category : #'code panel',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildCodePanelWithCommentOnRight [
+{ #category : #'code panel' }
+AbstractNautilusUI >> buildCodePanelWithCommentOnRight [
 	| splitter delta  |
 	
 	splitter := ProportionalSplitterMorph new.
@@ -1886,22 +1609,16 @@ AbstractNautilusUI>>buildCodePanelWithCommentOnRight [
 						topLeftOffset: delta@0 ; bottomRightOffset: 0@0).
 ]
 
-{
-	#category : #'code panel',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildCodePanelWithoutComment [
+{ #category : #'code panel' }
+AbstractNautilusUI >> buildCodePanelWithoutComment [
 	sourceCodePanel removeAllMorphs.
 	self commentTextModel announcer unsubscribe: self.
 	commentTextModel := nil.
 	sourceCodePanel addMorph: sourceTextWidget fullFrame: LayoutFrame identity
 ]
 
-{
-	#category : #'build ui',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildColumns: aWindow height: height [
+{ #category : #'build ui' }
+AbstractNautilusUI >> buildColumns: aWindow height: height [
 	aWindow
 		addMorph: (self buildFirstColumn: aWindow)
 		fullFrame:
@@ -1920,11 +1637,8 @@ AbstractNautilusUI>>buildColumns: aWindow height: height [
 			((0.72 @ 0 corner: 1 @ self navigationAreaProportion) asLayoutFrame topOffset: height)
 ]
 
-{
-	#category : #'build ui buttons',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildCommentButton [
+{ #category : #'build ui buttons' }
+AbstractNautilusUI >> buildCommentButton [
 	^ (PluggableToggleButtonMorph
 		on: self
 		getState: #commentButtonState
@@ -1938,11 +1652,8 @@ AbstractNautilusUI>>buildCommentButton [
 		yourself
 ]
 
-{
-	#category : #'build ui lists',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildFirstColumn: aWindow [
+{ #category : #'build ui lists' }
+AbstractNautilusUI >> buildFirstColumn: aWindow [
 	^ PanelMorph new
 		changeProportionalLayout;
 		addMorph: self buildPackageWidget
@@ -1953,20 +1664,14 @@ AbstractNautilusUI>>buildFirstColumn: aWindow [
 		yourself
 ]
 
-{
-	#category : #'build ui lists',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildFourthColumn: aWindow [
+{ #category : #'build ui lists' }
+AbstractNautilusUI >> buildFourthColumn: aWindow [
 		
 	^ self buildMethodWidget
 ]
 
-{
-	#category : #'build ui buttons',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildHierarchyButton [
+{ #category : #'build ui buttons' }
+AbstractNautilusUI >> buildHierarchyButton [
 	^ (PluggableToggleButtonMorph
 		on: self
 		getState: #hierarchyButtonState
@@ -1982,11 +1687,8 @@ AbstractNautilusUI>>buildHierarchyButton [
 		yourself
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildInitializeCodeFor: aClass  [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> buildInitializeCodeFor: aClass [ 
 
 	^ String streamContents: [:str | 
 		str << 'initialize';cr.
@@ -1996,11 +1698,8 @@ AbstractNautilusUI>>buildInitializeCodeFor: aClass  [
 	
 ]
 
-{
-	#category : #'build ui buttons',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildInstanceButton [
+{ #category : #'build ui buttons' }
+AbstractNautilusUI >> buildInstanceButton [
 	^ (PluggableToggleButtonMorph
 		on: self
 		getState: #instanceButtonState
@@ -2014,19 +1713,13 @@ AbstractNautilusUI>>buildInstanceButton [
 		yourself
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildMethodWidget [
+{ #category : #'widget method' }
+AbstractNautilusUI >> buildMethodWidget [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'build ui plugins',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildMiddlePlugins [
+{ #category : #'build ui plugins' }
+AbstractNautilusUI >> buildMiddlePlugins [
 
 	| middle container |
 	middle := self model plugins select: [:each | each position = #middle ].
@@ -2047,11 +1740,8 @@ AbstractNautilusUI>>buildMiddlePlugins [
 	^ container
 ]
 
-{
-	#category : #'build ui lists',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildNavigationList [
+{ #category : #'build ui lists' }
+AbstractNautilusUI >> buildNavigationList [
 	| navigation |
 	navigation := (DropListMorph
 		on: self
@@ -2067,11 +1757,8 @@ AbstractNautilusUI>>buildNavigationList [
 	^ navigation
 ]
 
-{
-	#category : #'build ui buttons',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildNavigationNextButton [
+{ #category : #'build ui buttons' }
+AbstractNautilusUI >> buildNavigationNextButton [
 	^ IconicButton new
 		target: self;
 		actionSelector: #next;
@@ -2082,11 +1769,8 @@ AbstractNautilusUI>>buildNavigationNextButton [
 		yourself
 ]
 
-{
-	#category : #'build ui buttons',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildNavigationPreviousButton [
+{ #category : #'build ui buttons' }
+AbstractNautilusUI >> buildNavigationPreviousButton [
 	^ IconicButton new
 		target: self;
 		actionSelector: #previous;
@@ -2097,11 +1781,8 @@ AbstractNautilusUI>>buildNavigationPreviousButton [
 		yourself
 ]
 
-{
-	#category : #'build ui text',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildNewCodeSourceAreaRubric [
+{ #category : #'build ui text' }
+AbstractNautilusUI >> buildNewCodeSourceAreaRubric [
 	| scrolledText |
 	scrolledText := self sourceTextModel newScrolledText
 		beForSmalltalkCode;
@@ -2122,11 +1803,8 @@ AbstractNautilusUI>>buildNewCodeSourceAreaRubric [
 	^ scrolledText
 ]
 
-{
-	#category : #'build ui text',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildNewCommentText [
+{ #category : #'build ui text' }
+AbstractNautilusUI >> buildNewCommentText [
 	| scrolledText |
 	scrolledText := self commentTextModel newScrolledText
 		beForSmalltalkComment; 
@@ -2141,19 +1819,13 @@ AbstractNautilusUI>>buildNewCommentText [
 	^ scrolledText
 ]
 
-{
-	#category : #'widget package',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildPackageWidget [
+{ #category : #'widget package' }
+AbstractNautilusUI >> buildPackageWidget [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'build ui lists',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildSecondColumn: aWindow [
+{ #category : #'build ui lists' }
+AbstractNautilusUI >> buildSecondColumn: aWindow [
 	| buttons buttonSize |
 	buttonSize := StandardFonts defaultFont pixelSize + 10.
 	buttons := PanelMorph new.
@@ -2176,11 +1848,8 @@ AbstractNautilusUI>>buildSecondColumn: aWindow [
 		yourself
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildSetUpCodeFor: aClass  [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> buildSetUpCodeFor: aClass [ 
 	
 	^ String streamContents: [:str | str << 'setUp';cr.
 		str tab << '"Setting up code for '<<aClass name<<'"';cr;cr.
@@ -2188,11 +1857,8 @@ AbstractNautilusUI>>buildSetUpCodeFor: aClass  [
 	
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildTearDownCodeFor: aClass  [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> buildTearDownCodeFor: aClass [ 
 	
 	^ String streamContents: [:str | str << 'tearDown';cr.
 		str tab << '"Tearing down code for '<<aClass name<<'"';cr;cr.
@@ -2200,11 +1866,8 @@ AbstractNautilusUI>>buildTearDownCodeFor: aClass  [
 	
 ]
 
-{
-	#category : #'test creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildTestClassDefinitionFrom: aClass [
+{ #category : #'test creation' }
+AbstractNautilusUI >> buildTestClassDefinitionFrom: aClass [
 
 	^ 'TestCase subclass: ', (self buildTestClassNameFrom: aClass) printString, '
 	instanceVariableNames: ''''
@@ -2213,38 +1876,26 @@ AbstractNautilusUI>>buildTestClassDefinitionFrom: aClass [
 	package: ''',(self buildTestPackageNameFrom:aClass),''''
 ]
 
-{
-	#category : #'test creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildTestClassNameFrom: aClass [
+{ #category : #'test creation' }
+AbstractNautilusUI >> buildTestClassNameFrom: aClass [
 	
 	^ (aClass name asString,'Test') asSymbol
 ]
 
-{
-	#category : #'test creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildTestPackageNameFrom:aClass [
+{ #category : #'test creation' }
+AbstractNautilusUI >> buildTestPackageNameFrom:aClass [
 
 	^ aClass package name asString, '-Tests' 
 ]
 
-{
-	#category : #'build ui lists',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildThirdColumn: aWindow [
+{ #category : #'build ui lists' }
+AbstractNautilusUI >> buildThirdColumn: aWindow [
 
 	^ self buildCategoryWidget
 ]
 
-{
-	#category : #'build ui',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildTopBarOn: aWindow height: topHeight [
+{ #category : #'build ui' }
+AbstractNautilusUI >> buildTopBarOn: aWindow height: topHeight [
 	aWindow
 		addMorph: self buildButtonsBar
 		fullFrame:
@@ -2256,11 +1907,8 @@ AbstractNautilusUI>>buildTopBarOn: aWindow height: topHeight [
 				rightOffset: 1)
 ]
 
-{
-	#category : #'build ui plugins',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildTopPlugins [
+{ #category : #'build ui plugins' }
+AbstractNautilusUI >> buildTopPlugins [
 
 	| top container |
 	top := self model plugins select: [:each | each position = #top ].
@@ -2280,11 +1928,8 @@ AbstractNautilusUI>>buildTopPlugins [
 	^ container
 ]
 
-{
-	#category : #button-variables,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buildVariableMenuFor: aMenu variablesFrom: aBlockOrSymbol menuItemBy: aMenuItemBlock [
+{ #category : #button-variables }
+AbstractNautilusUI >> buildVariableMenuFor: aMenu variablesFrom: aBlockOrSymbol menuItemBy: aMenuItemBlock [
 
 	self selectedClass withAllSuperclasses reverseDo: [ :class |
 		| vars |
@@ -2300,19 +1945,13 @@ AbstractNautilusUI>>buildVariableMenuFor: aMenu variablesFrom: aBlockOrSymbol me
 	
 ]
 
-{
-	#category : #'build ui',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>buttonsBarHeight [
+{ #category : #'build ui' }
+AbstractNautilusUI >> buttonsBarHeight [
 	^ StandardFonts defaultFont pixelSize + 14
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>categorizeAllUncategorizedMethods [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> categorizeAllUncategorizedMethods [
 	"Categorize methods by looking in parent classes for a method category.
 	In addition, it automatically removed empty categories"
 	self selectedClass ifNotNil: [ :aClass | | methods |
@@ -2321,54 +1960,36 @@ AbstractNautilusUI>>categorizeAllUncategorizedMethods [
 	self removeEmptyCategories
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>categorizeMethod [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> categorizeMethod [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'menu builder',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>categoryMenuBuilder [
+{ #category : #'menu builder' }
+AbstractNautilusUI >> categoryMenuBuilder [
 
 	^ PragmaMenuBuilder withAllPragmaKeywords: {self commonPragma. self categoryPragma} model: self
 ]
 
-{
-	#category : #'menu pragmas',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>categoryPragma [
+{ #category : #'menu pragmas' }
+AbstractNautilusUI >> categoryPragma [
 	^'nautilusGlobalProtocolMenu'
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>categoryWidget [
+{ #category : #'widget category' }
+AbstractNautilusUI >> categoryWidget [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>changed: aSymbol [
+{ #category : #updating }
+AbstractNautilusUI >> changed: aSymbol [
 
 	super changed: aSymbol.
 	self announce: (NautilusChanged symbol: aSymbol)
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>classCommented: anAnnouncement [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> classCommented: anAnnouncement [
     " announcement handled when a class has been commented " 
     | aClass |
 
@@ -2380,11 +2001,8 @@ AbstractNautilusUI>>classCommented: anAnnouncement [
         ifTrue: [ self updateClassView ]
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>classDefinitionModified: anAnnouncement [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> classDefinitionModified: anAnnouncement [
 	| class |
 	window ifNil: [ ^ self ].
 	window isDisplayed
@@ -2402,19 +2020,13 @@ AbstractNautilusUI>>classDefinitionModified: anAnnouncement [
 							self removeFromPackagesIconsCache: class package ] ] ]
 ]
 
-{
-	#category : #'menu pragmas',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>classFixPragma [
+{ #category : #'menu pragmas' }
+AbstractNautilusUI >> classFixPragma [
 	^'nautilusGlobalClassFixMenu'
 ]
 
-{
-	#category : #icon,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>classIconFor: aClass [
+{ #category : #icon }
+AbstractNautilusUI >> classIconFor: aClass [
 	(aClass isTestCase and: [ aClass isAbstract not and: [ aClass hasTestSelectors ] ])
 		ifTrue: [ | icon button |
 			icon :=  self iconNamed: #testNotRunIcon.
@@ -2449,20 +2061,14 @@ AbstractNautilusUI>>classIconFor: aClass [
 	^ aClass systemIcon
 ]
 
-{
-	#category : #'menu builder',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>classMenuBuilder [
+{ #category : #'menu builder' }
+AbstractNautilusUI >> classMenuBuilder [
 
 	^ PragmaMenuBuilder withAllPragmaKeywords: {self classFixPragma. self classPragma} model: self
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>classParentRenamed: anAnnouncement [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> classParentRenamed: anAnnouncement [
 	| class |
 	window ifNil: [ ^ self ].
 	window isDisplayed
@@ -2476,19 +2082,13 @@ AbstractNautilusUI>>classParentRenamed: anAnnouncement [
 				ifFalse: [ self updateSourceCodeAreaWith: self sourceCode ] ]
 ]
 
-{
-	#category : #'menu pragmas',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>classPragma [
+{ #category : #'menu pragmas' }
+AbstractNautilusUI >> classPragma [
 	^'nautilusGlobalClassMenu'
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>classRecategorized: anAnnouncement [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> classRecategorized: anAnnouncement [
 	
 	window ifNil: [ ^ self ].
 	window isDisplayed ifFalse: [ ^ self ].
@@ -2498,11 +2098,8 @@ AbstractNautilusUI>>classRecategorized: anAnnouncement [
 			ifTrue: [ self updatePackageGroupAndClassList ]]
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>classRemoved: anAnnouncement [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> classRemoved: anAnnouncement [
 	| class oldPackage |
 	window ifNil: [ ^ self ].
 	window isDisplayed
@@ -2524,11 +2121,8 @@ AbstractNautilusUI>>classRemoved: anAnnouncement [
 			self updatePackageGroupAndClassList ]
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>classRenamed: anAnnouncement [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> classRenamed: anAnnouncement [
 	| class |
 	class := anAnnouncement classRenamed.
 	self setWindowTitle.
@@ -2543,11 +2137,8 @@ AbstractNautilusUI>>classRenamed: anAnnouncement [
 				ifFalse: [ self updateSourceCodeAreaWith: self sourceCode ] ]
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>classReorganized: anAnnouncement [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> classReorganized: anAnnouncement [
 	
 	window ifNil: [ ^ self ].
 	window isDisplayed ifFalse: [ ^ self ].
@@ -2555,45 +2146,30 @@ AbstractNautilusUI>>classReorganized: anAnnouncement [
 		ifTrue: [ self updatePackageGroupAndClassList ]
 ]
 
-{
-	#category : #'widget class',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>classWidget [
+{ #category : #'widget class' }
+AbstractNautilusUI >> classWidget [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'menu builder',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>classesMenu: aMenu shifted: aBoolean  [
+{ #category : #'menu builder' }
+AbstractNautilusUI >> classesMenu: aMenu shifted: aBoolean [ 
 
 	^ aMenu addAllFrom: self classMenuBuilder menu.
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>clearUserEditFlag [
+{ #category : #'source code area' }
+AbstractNautilusUI >> clearUserEditFlag [
 	
 	self changed: #clearUserEdits
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>close [
+{ #category : #displaying }
+AbstractNautilusUI >> close [
 	window close
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>codePaneMenu: aMenu shifted: shifted  [
+{ #category : #'source code area' }
+AbstractNautilusUI >> codePaneMenu: aMenu shifted: shifted [ 
 	"Note that unless we override perform:orSendTo:, 
 	PluggableTextController will respond to all menu items in a 
 	text pane"
@@ -2604,53 +2180,35 @@ AbstractNautilusUI>>codePaneMenu: aMenu shifted: shifted  [
 	^ aMenu addAllFrom: donorMenu
 ]
 
-{
-	#category : #'browser compatibility',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>codeTextMorph [
+{ #category : #'browser compatibility' }
+AbstractNautilusUI >> codeTextMorph [
 
 	^ sourceTextWidget 
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>commentButtonAction: aBoolean [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> commentButtonAction: aBoolean [
 	self toggleShowComment
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>commentButtonIcon [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> commentButtonIcon [
 	^ self iconNamed: #commentsIcon
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>commentButtonLabel [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> commentButtonLabel [
 	^ ' Com.'
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>commentButtonState [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> commentButtonState [
 
 	^ self showComment
 ]
 
-{
-	#category : #'comment pane',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>commentTextModel [
+{ #category : #'comment pane' }
+AbstractNautilusUI >> commentTextModel [
 	^ commentTextModel
 		ifNil: [ 
 			commentTextModel := RubScrolledTextModel new
@@ -2658,27 +2216,18 @@ AbstractNautilusUI>>commentTextModel [
 				yourself ]
 ]
 
-{
-	#category : #'menu pragmas',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>commonPragma [
+{ #category : #'menu pragmas' }
+AbstractNautilusUI >> commonPragma [
 	^'nautilusGlobalCommonMenu'
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>compareTwoMethods [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> compareTwoMethods [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>compileAClassFrom: aString notifying: aController [
+{ #category : #'source code area' }
+AbstractNautilusUI >> compileAClassFrom: aString notifying: aController [
 	self sourceTextModel clearUserEdits.
 	(self
 		compileANewClassFrom: aString
@@ -2692,35 +2241,23 @@ AbstractNautilusUI>>compileAClassFrom: aString notifying: aController [
 			self updatePackageGroupAndClassList ]
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>compileAMethodFromCategory: aCategory withSource: aString notifying: aController [
+{ #category : #'source code area' }
+AbstractNautilusUI >> compileAMethodFromCategory: aCategory withSource: aString notifying: aController [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>compileSource: aText notifying: aController [
+{ #category : #'source code area' }
+AbstractNautilusUI >> compileSource: aText notifying: aController [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>contentSelection [
+{ #category : #accessing }
+AbstractNautilusUI >> contentSelection [
 	^ contentSelection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>copyCategory: anObject toTheClass: aClass [
+{ #category : #private }
+AbstractNautilusUI >> copyCategory: anObject toTheClass: aClass [
 	
 	| originClass methods |
 	originClass := self selectedClass.
@@ -2728,11 +2265,8 @@ AbstractNautilusUI>>copyCategory: anObject toTheClass: aClass [
 	methods do: [:meth | self copyMethod: meth toTheClass: aClass ].
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>copyClasses [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> copyClasses [
 	
 	| association |
 	self okToChange ifFalse: [^ self].
@@ -2743,11 +2277,8 @@ AbstractNautilusUI>>copyClasses [
 			self updateClassView]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>copyMethod: aMethod toTheClass: aClass  [
+{ #category : #private }
+AbstractNautilusUI >> copyMethod: aMethod toTheClass: aClass [ 
 	| newMethod |
 	
 	aMethod realClass = aClass ifTrue: [ ^ self ].
@@ -2763,11 +2294,8 @@ AbstractNautilusUI>>copyMethod: aMethod toTheClass: aClass  [
 							newMethod := aClass compile: aMethod sourceCode classified: aMethod category]
 ]
 
-{
-	#category : #'test creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>createTestForClass: aClass [
+{ #category : #'test creation' }
+AbstractNautilusUI >> createTestForClass: aClass [
 	| definition testClass className |
 	aClass ifNil: [ ^ nil ].
 	aClass isTestCase
@@ -2795,20 +2323,14 @@ AbstractNautilusUI>>createTestForClass: aClass [
 	^ testClass
 ]
 
-{
-	#category : #'test creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>createTestForSelectedClass [
+{ #category : #'test creation' }
+AbstractNautilusUI >> createTestForSelectedClass [
  
 	self createTestForClass: self selectedClass theNonMetaClass 
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>defaultClassDescriptor [
+{ #category : #'source code area' }
+AbstractNautilusUI >> defaultClassDescriptor [
 	| string |
 	string := Slot showSlotClassDefinition 
 		ifTrue: [  
@@ -2826,46 +2348,31 @@ AbstractNautilusUI>>defaultClassDescriptor [
 		ifNotNil: [:package | string, package name, '''' ]
 ]
 
-{
-	#category : #menu-packages,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>demoteSelectedPackageAsPackageWithTag [
+{ #category : #menu-packages }
+AbstractNautilusUI >> demoteSelectedPackageAsPackageWithTag [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>doItContext [
+{ #category : #'source code area' }
+AbstractNautilusUI >> doItContext [
 
 	^ nil
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>doItReceiver [
+{ #category : #'source code area' }
+AbstractNautilusUI >> doItReceiver [
 
 	^ self selectedClass 
 		ifNotNil: [:class | class theNonMetaClass ]
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>doubleClickOnPackage [
+{ #category : #'events handling' }
+AbstractNautilusUI >> doubleClickOnPackage [
 	self selectedPackage ifNil: [ ^ self ] ifNotNil: [ :package | self model class openOnPackage: package ]
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>dragPassengersFor: item inMorph: dragSource [
+{ #category : #'drag and drop' }
+AbstractNautilusUI >> dragPassengersFor: item inMorph: dragSource [
 	| transferType object |
 	object := item originalObject.
 	(dragSource isKindOf: AbstractWidget listClass)
@@ -2885,21 +2392,15 @@ AbstractNautilusUI>>dragPassengersFor: item inMorph: dragSource [
 				ifFalse: [ nil ] ]
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>dragTransferTypeForMorph: dragSource  [
+{ #category : #'drag and drop' }
+AbstractNautilusUI >> dragTransferTypeForMorph: dragSource [ 
 
 	^(dragSource isKindOf: AbstractWidget listClass)
 		ifTrue: [ dragSource getListElementSelector ]
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>dropInAClass: aCollection into: aClass [
+{ #category : #'drag and drop' }
+AbstractNautilusUI >> dropInAClass: aCollection into: aClass [
 
 	aCollection do: [:anObject | 
 		(anObject isBehavior)
@@ -2916,83 +2417,56 @@ AbstractNautilusUI>>dropInAClass: aCollection into: aClass [
 							ifFalse: [ self moveMethod: anObject toTheClass: aClass autoRemove: false ]]]]
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>dropInAPackage: aCollection into: receiver [
+{ #category : #'drag and drop' }
+AbstractNautilusUI >> dropInAPackage: aCollection into: receiver [
 	aCollection
 		do: [ :aClassOrAMethod | aClassOrAMethod dropIn: receiver forNautilusUI: self ]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>enableSingleClassSelection [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> enableSingleClassSelection [
 
 	^ self selectedClasses size <= 1
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>enableSingleMenuItems [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> enableSingleMenuItems [
 
 	^ self packageWidget selectedPackages size <= 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>extensionColor [
+{ #category : #private }
+AbstractNautilusUI >> extensionColor [
 	^ Smalltalk ui theme classExtensionColor
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>fileOutClass [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> fileOutClass [
 	"Print a description of the selected class onto a file whose name is the 
 	category name followed by .st."
 
 	self fileOutClasses: self selectedClasses
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>fileOutMethods [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> fileOutMethods [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>fileOutPackage [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> fileOutPackage [
 
 	self fileOutPackages: self selectedPackages
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>findClass [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> findClass [
 	"Search for a class from a pattern or from the recent list"
 	self findClass: (SearchFacade classSearchInEnvironment: self browsedEnvironment).
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>findClass: aSearchInstance [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> findClass: aSearchInstance [
 	"select the class returned by the search block"
 
 	| aClass |
@@ -3005,22 +2479,16 @@ AbstractNautilusUI>>findClass: aSearchInstance [
 	self updatePackageGroupAndClassList
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>findClassInHierarchy [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> findClassInHierarchy [
 	"Search for a subclass of the selected class from a pattern or from the recent list"
 	
 	self selectedClass ifNotNil: [ :class| 
 		self findClass: (SearchFacade hierarchySearchFor: class theNonMetaClass)].
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>findPackage [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> findPackage [
 
 	"Search for a package from a pattern or from the recent list"
 	| foundPackage |
@@ -3032,50 +2500,35 @@ AbstractNautilusUI>>findPackage [
 
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>findSubclass [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> findSubclass [
 	"Search for a subclass of the selected class from a pattern or from the recent list"
 	
 	self selectedClass ifNotNil: [ :class| 
 		self findClass: (SearchFacade subclassSearchFor: class theNonMetaClass)].
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>findSuperclass [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> findSuperclass [
 	"Search for a superclass of the selected class from a pattern or from the recent list"
 	self selectedClass ifNotNil: [ :class| 
 		self findClass: (SearchFacade superclassSearchFor: class theNonMetaClass)].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>flashPackage [
+{ #category : #private }
+AbstractNautilusUI >> flashPackage [
 
 	^ nil
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>flashSourceCodeArea [
+{ #category : #'source code area' }
+AbstractNautilusUI >> flashSourceCodeArea [
 
 	self sourceTextModel reconfigureViewWith: [ :scrolledText | scrolledText textArea flash ]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>forceGenerateInitialize [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> forceGenerateInitialize [
 
 	self selectedClass ifNotNil: [:class || code |
 		(class isMeta not and: [class isTestCase])
@@ -3093,44 +2546,29 @@ AbstractNautilusUI>>forceGenerateInitialize [
 		self giveFocusToSourceCodeArea ]
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>forceSelectedMethod: aMethod [
+{ #category : #'widget method' }
+AbstractNautilusUI >> forceSelectedMethod: aMethod [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>fullBrowse [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> fullBrowse [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>fullDisplayedComment [
+{ #category : #accessing }
+AbstractNautilusUI >> fullDisplayedComment [
 	^ fullDisplayedComment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>fullDisplayedComment: anObject [
+{ #category : #accessing }
+AbstractNautilusUI >> fullDisplayedComment: anObject [
 	fullDisplayedComment := anObject
 ]
 
-{
-	#category : #'test creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>generateCommentForTestClass: testClass from: aClass [
+{ #category : #'test creation' }
+AbstractNautilusUI >> generateCommentForTestClass: testClass from: aClass [
 
 	^ String streamContents: [:stream || name |
 			name := testClass name. 
@@ -3140,11 +2578,8 @@ AbstractNautilusUI>>generateCommentForTestClass: testClass from: aClass [
 			stream << name << ' is a test class for testing the behavior of '<< aClass name ]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>generateInitialize [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> generateInitialize [
 	
 	self selectedClass ifNotNil: [:class || code protocol |
 		protocol := 'initialization'.
@@ -3170,11 +2605,8 @@ AbstractNautilusUI>>generateInitialize [
 		self giveFocusToSourceCodeArea ]
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>getComments [
+{ #category : #'source code area' }
+AbstractNautilusUI >> getComments [
 	^ self selectedClass
 		ifNil: [ self selectedPackage
 				ifNil: [ '' ]
@@ -3185,56 +2617,38 @@ AbstractNautilusUI>>getComments [
 		ifNotNil: [ :class | class comment ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>getPackagesWithoutExtensionsList [
+{ #category : #private }
+AbstractNautilusUI >> getPackagesWithoutExtensionsList [
 	
 	^ self model packagesWithoutExtensions sort: [:a :b | a name <= b name ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>giveFocusTo: aMorph [
+{ #category : #private }
+AbstractNautilusUI >> giveFocusTo: aMorph [
 
 	self hasFocus ifTrue: [aMorph takeKeyboardFocus]
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>giveFocusToPackage [
+{ #category : #focus }
+AbstractNautilusUI >> giveFocusToPackage [
 
 	self giveFocusTo: self packageWidget
 ]
 
-{
-	#category : #focus,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>giveFocusToSourceCodeArea [
+{ #category : #focus }
+AbstractNautilusUI >> giveFocusToSourceCodeArea [
 	self sourceTextModel 
 		reconfigureViewWith: [ :scrolledText | 
 			scrolledText textArea takeKeyboardFocus ]
 ]
 
-{
-	#category : #'menu pragmas',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>groupFixPragma [
+{ #category : #'menu pragmas' }
+AbstractNautilusUI >> groupFixPragma [
 	^'nautilusGlobalGroupFixMenu'
 ]
 
-{
-	#category : #icon,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>groupIconFor: aGroup [
+{ #category : #icon }
+AbstractNautilusUI >> groupIconFor: aGroup [
 	| icon |
 	
 	icon := IconicButton new 
@@ -3249,55 +2663,37 @@ AbstractNautilusUI>>groupIconFor: aGroup [
 	^ icon
 ]
 
-{
-	#category : #'menu builder',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>groupMenuBuilder [
+{ #category : #'menu builder' }
+AbstractNautilusUI >> groupMenuBuilder [
 
 	^ PragmaMenuBuilder withAllPragmaKeywords: {self groupFixPragma. self groupPragma} model: self
 ]
 
-{
-	#category : #'menu pragmas',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>groupPragma [
+{ #category : #'menu pragmas' }
+AbstractNautilusUI >> groupPragma [
 	^'nautilusGlobalGroupMenu'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>groupsLabel [
+{ #category : #private }
+AbstractNautilusUI >> groupsLabel [
 
 	^ 'Groups'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>groupsManager [
+{ #category : #accessing }
+AbstractNautilusUI >> groupsManager [
 	^ self model groupsManager
 ]
 
-{
-	#category : #'menu builder',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>groupsMenu: aMenu shifted: aBoolean  [
+{ #category : #'menu builder' }
+AbstractNautilusUI >> groupsMenu: aMenu shifted: aBoolean [ 
 	" Morphic's menus are filled up when pragma's one are returned from a method, so I have to substitute the morphic menu by the pragma one "
 	
 	^ aMenu addAllFrom: (self groupMenuBuilder menu)
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>hasFocus [
+{ #category : #displaying }
+AbstractNautilusUI >> hasFocus [
 
 	^ window hasKeyboardFocus or: 
 		[ self packageWidget hasFocus or:
@@ -3307,11 +2703,8 @@ AbstractNautilusUI>>hasFocus [
 		[ sourceTextArea hasKeyboardFocus ]"]]]]
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>hierarchyButtonAction: aBoolean [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> hierarchyButtonAction: aBoolean [
 
 	self hierarchyButtonEnabled
 		ifTrue: [ 
@@ -3319,44 +2712,29 @@ AbstractNautilusUI>>hierarchyButtonAction: aBoolean [
 			self changed: #hierarchyButtonEnabled. ]
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>hierarchyButtonEnabled [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> hierarchyButtonEnabled [
 	^ self selectedClass notNil or: [ self showHierarchy ]
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>hierarchyButtonIcon [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> hierarchyButtonIcon [
 	^ self iconNamed: #hierarchyIcon
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>hierarchyButtonLabel [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> hierarchyButtonLabel [
 	^ ' Hier.'
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>hierarchyButtonState [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> hierarchyButtonState [
 
 	^ self showHierarchy
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>highlight: autoSelectString [
+{ #category : #'source code area' }
+AbstractNautilusUI >> highlight: autoSelectString [
 	| first |
 
 	first := self sourceTextModel getString findString: autoSelectString.
@@ -3364,11 +2742,8 @@ AbstractNautilusUI>>highlight: autoSelectString [
 	self updateSourceCodeAreaWith: self sourceCode
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>initialize [
+{ #category : #initialization }
+AbstractNautilusUI >> initialize [
 	super initialize.
 	shouldUpdateTitle := true.
 	contentSelection := nil.
@@ -3376,37 +2751,25 @@ AbstractNautilusUI>>initialize [
 	fullDisplayedComment := false
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>inspectMethod [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> inspectMethod [
 	 self selectedMethod ifNil: [ ^ self ].
 	 self selectedMethod inspect
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>inspectMethods [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> inspectMethods [
 	 self selectedClass ifNil: [ ^ self ].
 	 self selectedClass methods inspect
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>instanceButtonAction: aBoolean [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> instanceButtonAction: aBoolean [
 	self toggleShowInstance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>instanceButtonHelpTextFor: buttonStateBoolean [
+{ #category : #accessing }
+AbstractNautilusUI >> instanceButtonHelpTextFor: buttonStateBoolean [
 
 	^ buttonStateBoolean 
 		ifFalse: [ 'Show the class side' ]
@@ -3414,19 +2777,13 @@ AbstractNautilusUI>>instanceButtonHelpTextFor: buttonStateBoolean [
 
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>instanceButtonIcon [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> instanceButtonIcon [
 	^ self iconNamed: #classIcon
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>instanceButtonLabel [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> instanceButtonLabel [
 	| label |
 	label := 'Class' asMorph emphasis: 2.
 	^ self selectedClass
@@ -3437,46 +2794,31 @@ AbstractNautilusUI>>instanceButtonLabel [
 				ifFalse: [ label ] ]
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>instanceButtonState [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> instanceButtonState [
 
 	^ "false" self showInstance not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>instanceButtonWidget [
+{ #category : #accessing }
+AbstractNautilusUI >> instanceButtonWidget [
 	^ instanceButtonWidget 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>isAClassSelected [
+{ #category : #private }
+AbstractNautilusUI >> isAClassSelected [
 
 	^ self selectedClass notNil
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>keyPressedOnElement: anEvent [
+{ #category : #'events handling' }
+AbstractNautilusUI >> keyPressedOnElement: anEvent [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'events handling',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>listMouseDown: anEvent [
+{ #category : #'events handling' }
+AbstractNautilusUI >> listMouseDown: anEvent [
 
 	self showHierarchy
 		ifTrue: [ 
@@ -3485,20 +2827,14 @@ AbstractNautilusUI>>listMouseDown: anEvent [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>loadList [
+{ #category : #private }
+AbstractNautilusUI >> loadList [
 	
 	^  self getPackagesWithoutExtensionsList
 ]
 
-{
-	#category : #'monticello announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>mcPackageModified: anAnnouncement [
+{ #category : #'monticello announcements' }
+AbstractNautilusUI >> mcPackageModified: anAnnouncement [
 	" handled when a package become dirty "
 	
 	| rpackages |
@@ -3513,11 +2849,8 @@ AbstractNautilusUI>>mcPackageModified: anAnnouncement [
 			self updatePackageView ]
 ]
 
-{
-	#category : #'monticello announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>mcWorkingCopyCreated: anAnnouncement [
+{ #category : #'monticello announcements' }
+AbstractNautilusUI >> mcWorkingCopyCreated: anAnnouncement [
 	| package rpackage |
 	window ifNil: [^ self ].
 	window isDisplayed ifFalse: [ ^ self ].
@@ -3531,11 +2864,8 @@ AbstractNautilusUI>>mcWorkingCopyCreated: anAnnouncement [
 			self updatePackageView ]
 ]
 
-{
-	#category : #'monticello announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>mcWorkingCopyDeleted: anAnnouncement [
+{ #category : #'monticello announcements' }
+AbstractNautilusUI >> mcWorkingCopyDeleted: anAnnouncement [
 	| package rpackages |
 	
 	window ifNil: [^ self ].
@@ -3550,11 +2880,8 @@ AbstractNautilusUI>>mcWorkingCopyDeleted: anAnnouncement [
 	self updatePackageView
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>mergeGroups [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> mergeGroups [
 
 	| group |
 	group := self mergeGroups: self packageWidget selectedGroups.
@@ -3566,117 +2893,78 @@ AbstractNautilusUI>>mergeGroups [
 
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>methodAdded: anAnnouncement [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> methodAdded: anAnnouncement [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>methodHierarchy [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> methodHierarchy [
 	"Create and schedule a method browser on the hierarchy of implementors."
 
 	self methodHierarchyFrom: self selectedMethod
 ]
 
-{
-	#category : #'menu builder',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>methodMenuBuilder [
+{ #category : #'menu builder' }
+AbstractNautilusUI >> methodMenuBuilder [
 
 	^ PragmaMenuBuilder withAllPragmaKeywords: {self commonPragma. self methodPragma} model: self
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>methodModified: anAnnouncement  [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> methodModified: anAnnouncement [ 
 	
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #'menu pragmas',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>methodPragma [
+{ #category : #'menu pragmas' }
+AbstractNautilusUI >> methodPragma [
 	^'nautilusGlobalMethodMenu'
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>methodRecategorized: anAnnouncement [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> methodRecategorized: anAnnouncement [
 	
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>methodRemoved: anAnnouncement [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> methodRemoved: anAnnouncement [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>methodWidget [
+{ #category : #'widget method' }
+AbstractNautilusUI >> methodWidget [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>methodsForCategories: aCollection [
+{ #category : #'widget method' }
+AbstractNautilusUI >> methodsForCategories: aCollection [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>methodsForCategory: aCategory [
+{ #category : #'widget method' }
+AbstractNautilusUI >> methodsForCategory: aCategory [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>methodsIconsCache [
+{ #category : #'widget method' }
+AbstractNautilusUI >> methodsIconsCache [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>model [
+{ #category : #accessing }
+AbstractNautilusUI >> model [
 
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>model: aNautilusModel [
+{ #category : #accessing }
+AbstractNautilusUI >> model: aNautilusModel [
 
 	model := aNautilusModel.
 
@@ -3685,11 +2973,8 @@ AbstractNautilusUI>>model: aNautilusModel [
 	aNautilusModel selectedClass ifNotNil: [:p | self classWidget selectClass: p].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>moveCategory: anObject toTheClass: aClass [
+{ #category : #private }
+AbstractNautilusUI >> moveCategory: anObject toTheClass: aClass [
 	
 	| originClass methods |
 	originClass := self selectedClass.
@@ -3702,11 +2987,8 @@ AbstractNautilusUI>>moveCategory: anObject toTheClass: aClass [
 			self selectedCategory: nil ].
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>moveInPackage [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> moveInPackage [
 
 	"Present a choice of categories or prompt for a new category name and add it before the current selection, or at the end if no current selection"
 	| foundPackage |
@@ -3720,11 +3002,8 @@ AbstractNautilusUI>>moveInPackage [
 	self updatePackageGroupAndClassList
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>moveMethod: aMethod toTheClass: aClass autoRemove: autoRemove [
+{ #category : #private }
+AbstractNautilusUI >> moveMethod: aMethod toTheClass: aClass autoRemove: autoRemove [
 	
 	aMethod realClass = aClass ifTrue: [ ^ self ].
 	aClass methodDict
@@ -3755,36 +3034,24 @@ AbstractNautilusUI>>moveMethod: aMethod toTheClass: aClass autoRemove: autoRemov
 										ifEmpty: [ originClass removeProtocol: oldCategory ]]]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>moveMethodToPackage [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> moveMethodToPackage [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'build ui',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>navigationAreaProportion [
+{ #category : #'build ui' }
+AbstractNautilusUI >> navigationAreaProportion [
 	^ 0.47
 ]
 
-{
-	#category : #default,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>noMethodsString [
+{ #category : #default }
+AbstractNautilusUI >> noMethodsString [
 
 	^ Protocol nullCategory
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>notifyTestResultFrom: packages classes: classes labeled: label [
+{ #category : #private }
+AbstractNautilusUI >> notifyTestResultFrom: packages classes: classes labeled: label [
 	| color |
 	color := Color gray.
 	(classes anySatisfy: [ :e | e hasPassedTest ])
@@ -3799,19 +3066,13 @@ AbstractNautilusUI>>notifyTestResultFrom: packages classes: classes labeled: lab
 		color: color
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>notifyTitle: title contents: contents color: aColor [
+{ #category : #'widget method' }
+AbstractNautilusUI >> notifyTitle: title contents: contents color: aColor [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>okToChange [
+{ #category : #updating }
+AbstractNautilusUI >> okToChange [
 
 	| answer |
 	
@@ -3835,11 +3096,8 @@ AbstractNautilusUI>>okToChange [
 	
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>okToChangeComment [
+{ #category : #'source code area' }
+AbstractNautilusUI >> okToChangeComment [
 
 	| answer |
 	commentTextModel canDiscardEdits ifTrue: [^ true].
@@ -3851,20 +3109,14 @@ AbstractNautilusUI>>okToChangeComment [
 
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>okToChangeSourceAndComment [
+{ #category : #'source code area' }
+AbstractNautilusUI >> okToChangeSourceAndComment [
 
 	^ self okToChange and: [ self okToChangeComment ]
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>open [
+{ #category : #displaying }
+AbstractNautilusUI >> open [
 	window := NautilusWindow new model: self.
 	self addAll: window.
 	self setWindowTitle.
@@ -3875,20 +3127,14 @@ AbstractNautilusUI>>open [
 	
 ]
 
-{
-	#category : #'plugins announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>openClass: aClass [
+{ #category : #'plugins announcements' }
+AbstractNautilusUI >> openClass: aClass [
 	aClass ifNil: [ ^ self ].
 	self open browseClass: aClass
 ]
 
-{
-	#category : #'icons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>openCommentEditor: aClass [
+{ #category : #'icons behavior' }
+AbstractNautilusUI >> openCommentEditor: aClass [
 	| newComment |
 
 	newComment := Smalltalk ui theme
@@ -3902,40 +3148,28 @@ AbstractNautilusUI>>openCommentEditor: aClass [
 		ifNotNil: [ aClass theNonMetaClass comment: newComment asString ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>openDialogWouldYouInstall: aMethod into: aClass [
+{ #category : #private }
+AbstractNautilusUI >> openDialogWouldYouInstall: aMethod into: aClass [
 
 	"open a dialog to ask user if he wants to override the existing method or not"
 	^ UIManager default confirm: 'Are you sure you want to override the method ', aMethod selector, ' in ', aClass name label: 'Override' 
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>openGroupManager [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> openGroupManager [
 	(PackageCreatorTreeModel new groups: self groupsManager) open
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>openShortcutDescription [
+{ #category : #shortcuts }
+AbstractNautilusUI >> openShortcutDescription [
 
 	KMDescription new
 		categories: #(NautilusGlobalShortcuts "NautilusClassShortcuts NautilusSourceCodeShortcuts NautilusPackageShortcuts NautilusProtocolShortcuts NautilusMethodShortcuts") sort;
 		openWithSpec
 ]
 
-{
-	#category : #'plugins announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>openSubclass [
+{ #category : #'plugins announcements' }
+AbstractNautilusUI >> openSubclass [
 	"Search for a superclass of the selected class from a pattern or from the recent list"
 
 	self selectedClass ifNotNil: [ :class| | search |
@@ -3943,49 +3177,34 @@ AbstractNautilusUI>>openSubclass [
 		self openClass: (search chooseFromOwner: self window) ].
 ]
 
-{
-	#category : #'plugins announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>openSuperclass [
+{ #category : #'plugins announcements' }
+AbstractNautilusUI >> openSuperclass [
 	"Search for a superclass of the selected class from a pattern or from the recent list"
 
 	self selectedClass ifNotNil: [ :class| 
 		self openClass: class superclass ].
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>packageChanged: anAnnouncement [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> packageChanged: anAnnouncement [
 	window isDisplayed
 		ifFalse: [ ^ self ].
 	self updatePackageView
 ]
 
-{
-	#category : #'comment pane',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>packageCommentEmptyOrUnchanged [
+{ #category : #'comment pane' }
+AbstractNautilusUI >> packageCommentEmptyOrUnchanged [
 	^ commentTextModel getText isEmpty
 		or: [ commentTextModel getText asString = PackageManifest description ]
 ]
 
-{
-	#category : #'menu pragmas',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>packageFixPragma [
+{ #category : #'menu pragmas' }
+AbstractNautilusUI >> packageFixPragma [
 	^ 'nautilusGlobalPackageFixMenu'
 ]
 
-{
-	#category : #icon,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>packageIconFor: aPackage [
+{ #category : #icon }
+AbstractNautilusUI >> packageIconFor: aPackage [
 	| mcpackage |
 	
 	PackagesIconsCache
@@ -4024,37 +3243,25 @@ AbstractNautilusUI>>packageIconFor: aPackage [
 	^ PackagesIconsCache at: aPackage put: (self iconNamed: #packageIcon)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>packageLabel [
+{ #category : #private }
+AbstractNautilusUI >> packageLabel [
 
 	^'Packages'
 ]
 
-{
-	#category : #'menu builder',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>packageMenuBuilder [
+{ #category : #'menu builder' }
+AbstractNautilusUI >> packageMenuBuilder [
 
 	^ PragmaMenuBuilder withAllPragmaKeywords: {self packageFixPragma. self packagePragma} model: self
 ]
 
-{
-	#category : #'menu pragmas',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>packagePragma [
+{ #category : #'menu pragmas' }
+AbstractNautilusUI >> packagePragma [
 	^ 'nautilusGlobalPackageMenu'
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>packageRegistered: anAnnouncement [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> packageRegistered: anAnnouncement [
 	window ifNil: [ ^ self ].
 	window isDisplayed
 		ifFalse: [ ^ self ].
@@ -4066,21 +3273,15 @@ AbstractNautilusUI>>packageRegistered: anAnnouncement [
 	self updatePackageView
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>packageRenamed: anAnnouncement [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> packageRenamed: anAnnouncement [
 	window isDisplayed
 		ifFalse: [ ^ self ].
 	self updatePackageView
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>packageUnregistred: anAnnouncement [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> packageUnregistred: anAnnouncement [
 	| package |
 	package := anAnnouncement package.
 	self selectedPackage = package
@@ -4091,61 +3292,40 @@ AbstractNautilusUI>>packageUnregistred: anAnnouncement [
 	self updatePackageView
 ]
 
-{
-	#category : #'widget package',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>packageWidget [
+{ #category : #'widget package' }
+AbstractNautilusUI >> packageWidget [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'menu builder',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>packagesMenu: aMenu shifted: aBoolean  [
+{ #category : #'menu builder' }
+AbstractNautilusUI >> packagesMenu: aMenu shifted: aBoolean [ 
 	^ aMenu addAllFrom: (self packageMenuBuilder menu)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>parentOfClass: aClass  [
+{ #category : #private }
+AbstractNautilusUI >> parentOfClass: aClass [ 
 	^ aClass package.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>parentOfSelectedPackage [
+{ #category : #private }
+AbstractNautilusUI >> parentOfSelectedPackage [
 	^ self selectedPackage node parentNode
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>pendingText: aString [
+{ #category : #'source code area' }
+AbstractNautilusUI >> pendingText: aString [
 
 	self updateSourceCodeAreaWith: aString.
 	self sourceTextModel hasUnacceptedEdits: true
 ]
 
-{
-	#category : #menu-packages,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>promoteSelectedPackageTagAsPackage [
+{ #category : #menu-packages }
+AbstractNautilusUI >> promoteSelectedPackageTagAsPackage [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'comment pane',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>promptForCancel [
+{ #category : #'comment pane' }
+AbstractNautilusUI >> promptForCancel [
 	"Ask for the appropriate action to take when unaccepted contents
 	would be overwritten."
 
@@ -4160,30 +3340,21 @@ AbstractNautilusUI>>promptForCancel [
 	
 ]
 
-{
-	#category : #NOCompletion,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>receiverClass [
+{ #category : #NOCompletion }
+AbstractNautilusUI >> receiverClass [
 
 	^ self selectedClass
 ]
 
-{
-	#category : #'announcement registration',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>registerToAnnouncements [
+{ #category : #'announcement registration' }
+AbstractNautilusUI >> registerToAnnouncements [
 	self registerToSystemAnnouncements.
 	self registerToTestAnnouncements. 
 	self registerToGroupAnnouncements. 
 ]
 
-{
-	#category : #'announcement registration',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>registerToGroupAnnouncements [
+{ #category : #'announcement registration' }
+AbstractNautilusUI >> registerToGroupAnnouncements [
 	GroupAnnouncer uniqueInstance weak
 		when: AGroupHasBeenAdded send: #aGroupHasBeenAdded: to: self;
 		when: AGroupHasBeenRemoved send: #aGroupHasBeenRemoved: to: self;
@@ -4191,11 +3362,8 @@ AbstractNautilusUI>>registerToGroupAnnouncements [
 		when: AGroupContentHasBeenModified send: #aGroupContentHasBeenModified: to: self
 ]
 
-{
-	#category : #'announcement registration',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>registerToSystemAnnouncements [
+{ #category : #'announcement registration' }
+AbstractNautilusUI >> registerToSystemAnnouncements [
 	self browsedEnvironment packageOrganizer announcer weak
 		when: RPackageRegistered send: #packageRegistered: to: self;
 		when: RPackageUnregistered send: #packageUnregistred: to: self;
@@ -4221,11 +3389,8 @@ AbstractNautilusUI>>registerToSystemAnnouncements [
 
 ]
 
-{
-	#category : #'announcement registration',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>registerToTestAnnouncements [
+{ #category : #'announcement registration' }
+AbstractNautilusUI >> registerToTestAnnouncements [
 	| testCaseClass |
 	testCaseClass := Smalltalk at: #TestCase ifAbsent:[^ self].
 	testCaseClass historyAnnouncer weak
@@ -4233,11 +3398,8 @@ AbstractNautilusUI>>registerToTestAnnouncements [
 		when: (Smalltalk at: #TestSuiteEnded) send: #testRan: to: self.
 ]
 
-{
-	#category : #'icon caches',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>removeClassFromMethodsIconsCache: aClass [
+{ #category : #'icon caches' }
+AbstractNautilusUI >> removeClassFromMethodsIconsCache: aClass [
 
 	self methodsIconsCache keysDo: [:method | 
 		" for overrides "
@@ -4246,11 +3408,8 @@ AbstractNautilusUI>>removeClassFromMethodsIconsCache: aClass [
 				self methodsIconsCache removeKey: method ifAbsent: [ ]]].
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>removeClasses [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> removeClasses [
 	"Remove the selected classes from the system, at interactive user request.  Make sure the user really wants to do this, since it is not reversible.  Answer true if removal actually happened."
 
 	| result scroll |
@@ -4266,11 +3425,8 @@ AbstractNautilusUI>>removeClasses [
 	^ result
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>removeEmptyCategories [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> removeEmptyCategories [
 
 	self okToChange ifFalse: [^ self].
 	(self methodsForCategory: self selectedCategory) 
@@ -4281,19 +3437,13 @@ AbstractNautilusUI>>removeEmptyCategories [
 	self updateCategoryAndMethodList.
 ]
 
-{
-	#category : #group,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>removeFromGroupPackages: aCollectionOfPackages [
+{ #category : #group }
+AbstractNautilusUI >> removeFromGroupPackages: aCollectionOfPackages [
 	self parentOfSelectedPackage item removePackages: aCollectionOfPackages
 ]
 
-{
-	#category : #'icon caches',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>removeFromMethodsIconsCache: aMethod [
+{ #category : #'icon caches' }
+AbstractNautilusUI >> removeFromMethodsIconsCache: aMethod [
 	self methodsIconsCache removeKey: aMethod ifAbsent: [  ].
 
 	"If aMethod is a TestCase test method or if it's tested by one, then
@@ -4307,20 +3457,14 @@ AbstractNautilusUI>>removeFromMethodsIconsCache: aMethod [
 				self methodsIconsCache removeKey: each ifAbsent: [  ] ] ].
 ]
 
-{
-	#category : #'icon caches',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>removeFromPackagesIconsCache: aPackage [
+{ #category : #'icon caches' }
+AbstractNautilusUI >> removeFromPackagesIconsCache: aPackage [
 
 	PackagesIconsCache removeKey: aPackage ifAbsent: [].
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>removeGroups [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> removeGroups [
 
 	self okToChange ifFalse: [ ^ self ].
 	self packageWidget selectedGroups
@@ -4331,11 +3475,8 @@ AbstractNautilusUI>>removeGroups [
 		
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>removeIconStyle [
+{ #category : #styling }
+AbstractNautilusUI >> removeIconStyle [
 	|conf|
 	
 	conf := RubConfigurationChange new.
@@ -4344,11 +3485,8 @@ AbstractNautilusUI>>removeIconStyle [
 	self sourceTextModel announce: conf.
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>removePackages [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> removePackages [
 
 	| names |
 	self selectedPackages 
@@ -4374,11 +3512,8 @@ from the system?'.
 					self packageWidget vScrollValue: scroll ]]
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>removeShortcuts: groupSymbol from: aMorph [
+{ #category : #shortcuts }
+AbstractNautilusUI >> removeShortcuts: groupSymbol from: aMorph [
 	Nautilus useOldStyleKeys ifFalse: [ ^self ].
 	
 	(aMorph kmDispatcher includesKeymapCategory: groupSymbol)
@@ -4389,29 +3524,20 @@ AbstractNautilusUI>>removeShortcuts: groupSymbol from: aMorph [
 
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>renameCategory [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> renameCategory [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>renameClass [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> renameClass [
 	self okToChange ifFalse: [ ^ self ].
 	self selectedClass ifNil: [ ^ self ].
 	self basicRenameClass: self selectedClass theNonMetaClass
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>renameGroup [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> renameGroup [
 
 	| group |
 	group := self selectedGroup.
@@ -4422,118 +3548,79 @@ AbstractNautilusUI>>renameGroup [
 	self updatePackageGroupAndClassList
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>renamePackage [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> renamePackage [
 
 	self selectedPackages do: [ :package | self renamePackage: package ].
 	self updatePackageView.
 	
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>resetAllListSelections [
+{ #category : #selection }
+AbstractNautilusUI >> resetAllListSelections [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>resetCategoriesList [
+{ #category : #selection }
+AbstractNautilusUI >> resetCategoriesList [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>resetCategoriesListSelection [
+{ #category : #selection }
+AbstractNautilusUI >> resetCategoriesListSelection [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>resetClassesList [
+{ #category : #selection }
+AbstractNautilusUI >> resetClassesList [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>resetClassesListSelection [
+{ #category : #selection }
+AbstractNautilusUI >> resetClassesListSelection [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>resetIconStyle [
+{ #category : #styling }
+AbstractNautilusUI >> resetIconStyle [
 	
 	self removeIconStyle.
 	self addIconStyle.
 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>resetMethodsList [
+{ #category : #selection }
+AbstractNautilusUI >> resetMethodsList [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>resetMethodsListSelection [
+{ #category : #selection }
+AbstractNautilusUI >> resetMethodsListSelection [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>resetPackageGroupsListSelection [
+{ #category : #selection }
+AbstractNautilusUI >> resetPackageGroupsListSelection [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>restrictedBrowse [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> restrictedBrowse [
 	self selectedClass
 		ifNil: [ self restrictedBrowsePackage ]
 		ifNotNil: [ self restrictedBrowseClass ]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>restrictedBrowseClass [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> restrictedBrowseClass [
 	self selectedClass
 		ifNil: [ ^ self ]
 		ifNotNil: [ :class |
 			self restrictedBrowseClasses: {class} ]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>restrictedBrowseClasses: classes [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> restrictedBrowseClasses: classes [
 
 	| newEnvironment |
 	newEnvironment := self browsedEnvironment forClasses: (classes collect:#theNonMetaClass).
@@ -4542,20 +3629,14 @@ AbstractNautilusUI>>restrictedBrowseClasses: classes [
 		inEnvironment: newEnvironment 
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>restrictedBrowseGroup [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> restrictedBrowseGroup [
 
 	self restrictedBrowseGroups: self packageWidget selectedGroups
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>restrictedBrowseGroups: aCollection [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> restrictedBrowseGroups: aCollection [
 	aCollection
 		ifNotEmpty: [ | environment |
 			environment := aCollection allButFirst
@@ -4564,11 +3645,8 @@ AbstractNautilusUI>>restrictedBrowseGroups: aCollection [
 			self model class openOnGroup: aCollection first inEnvironment: environment ]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>restrictedBrowsePackage [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> restrictedBrowsePackage [
 
 	self selectedPackages
 		ifEmpty: [ ^ self ]
@@ -4576,11 +3654,8 @@ AbstractNautilusUI>>restrictedBrowsePackage [
 			^ self restrictedBrowsePackages: packages ]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>restrictedBrowsePackageRegex [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> restrictedBrowsePackageRegex [
 	| regex |
 	
 	regex := self selectedPackages
@@ -4593,22 +3668,16 @@ AbstractNautilusUI>>restrictedBrowsePackageRegex [
 	self restrictedBrowsePackages: (self browsedEnvironment packages select: [ :package| regex matches: package name ] )
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>restrictedBrowsePackages: packages [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> restrictedBrowsePackages: packages [
 	| newEnvironment |
 	newEnvironment := self browsedEnvironment forPackages: packages.
 	 self model class 
 		openOnPackage: self selectedPackage inEnvironment: newEnvironment
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>restrictedBrowseSubclasses [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> restrictedBrowseSubclasses [
 
 	self selectedClass
 		ifNil: [ ^ self ]
@@ -4616,11 +3685,8 @@ AbstractNautilusUI>>restrictedBrowseSubclasses [
 			self restrictedBrowseClasses: class withAllSubclasses]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>restrictedBrowseSuperclasses [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> restrictedBrowseSuperclasses [
 
 	self selectedClass
 		ifNil: [ ^ self ]
@@ -4628,22 +3694,16 @@ AbstractNautilusUI>>restrictedBrowseSuperclasses [
 			self restrictedBrowseClasses: class withAllSuperclasses ]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>restrictedBrowseTraitUsers [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> restrictedBrowseTraitUsers [
 	self selectedClass
 		ifNil: [ ^ self ]
 		ifNotNil: [ :class |
 			self restrictedBrowseTraitUsers: class users ]
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>restrictedBrowseTraitUsers: users [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> restrictedBrowseTraitUsers: users [
 
 	| newEnvironment |
 	users ifEmpty: [ ^ self ].
@@ -4653,30 +3713,21 @@ AbstractNautilusUI>>restrictedBrowseTraitUsers: users [
 		inEnvironment: newEnvironment 
 ]
 
-{
-	#category : #'icons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>runClassTests [
+{ #category : #'icons behavior' }
+AbstractNautilusUI >> runClassTests [
 
 	self runClassTests: self selectedClasses notifying: true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>runClassTests: aCollection notifying: aBoolean [
+{ #category : #private }
+AbstractNautilusUI >> runClassTests: aCollection notifying: aBoolean [
 
 	(aCollection allSatisfy: [:each | each isTestCase ]) ifFalse: [ ^ self ].
 	aCollection do: [:class | self runTestsOfClass: class notifying: aBoolean ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>runPackagesTestsNotifying: aBoolean [
+{ #category : #private }
+AbstractNautilusUI >> runPackagesTestsNotifying: aBoolean [
 	self selectedPackages
 		ifNotNil: [ :packages | 
 			| classes label |
@@ -4692,20 +3743,14 @@ AbstractNautilusUI>>runPackagesTestsNotifying: aBoolean [
 					[ self notifyTestResultFrom: packages classes: classes labeled: label ] ]
 ]
 
-{
-	#category : #'icons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>runTestForAMethod: aMethod notifying: anObject [
+{ #category : #'icons behavior' }
+AbstractNautilusUI >> runTestForAMethod: aMethod notifying: anObject [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>runTestForMethods: aCollection notifying: aBoolean [
+{ #category : #private }
+AbstractNautilusUI >> runTestForMethods: aCollection notifying: aBoolean [
 
 	aCollection
 		do: [ :each | 
@@ -4713,11 +3758,8 @@ AbstractNautilusUI>>runTestForMethods: aCollection notifying: aBoolean [
 				ifTrue: [ self runTestForAMethod: each notifying: aBoolean ]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>runTestsOfClass: aClass notifying: aBoolean [
+{ #category : #private }
+AbstractNautilusUI >> runTestsOfClass: aClass notifying: aBoolean [
 	| color result |
 	aClass resetHistory.
 	result := aClass suite run.
@@ -4735,11 +3777,8 @@ AbstractNautilusUI>>runTestsOfClass: aClass notifying: aBoolean [
 		color: color
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>runTestsOfGroups: aCollection notifying: aBoolean [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> runTestsOfGroups: aCollection notifying: aBoolean [
 	
 	| classes label |
 	label := 'Group: '.
@@ -4753,46 +3792,31 @@ AbstractNautilusUI>>runTestsOfGroups: aCollection notifying: aBoolean [
 					contents: label,((aCollection collect: #name) joinUsing: ', ') ]
 ]
 
-{
-	#category : #selection,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectNextMethod [
+{ #category : #selection }
+AbstractNautilusUI >> selectNextMethod [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'SmalltalkEditor compatibility',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedBehavior [
+{ #category : #'SmalltalkEditor compatibility' }
+AbstractNautilusUI >> selectedBehavior [
 
 	^ self selectedClass
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedCategory [
+{ #category : #'widget category' }
+AbstractNautilusUI >> selectedCategory [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'widget category',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedCategory: anObject [
+{ #category : #'widget category' }
+AbstractNautilusUI >> selectedCategory: anObject [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedClass [
+{ #category : #accessing }
+AbstractNautilusUI >> selectedClass [
 	| class |
 	class := self model selectedClass.
 	(self model selectedCategory isNil and: [ self model selectedMethod isNil ])
@@ -4801,11 +3825,8 @@ AbstractNautilusUI>>selectedClass [
 	^ class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedClass: aClass [
+{ #category : #accessing }
+AbstractNautilusUI >> selectedClass: aClass [
 	self okToChangeSourceAndComment
 		ifFalse: [ ^ self ].
 	self resetClassesListSelection.
@@ -4813,54 +3834,36 @@ AbstractNautilusUI>>selectedClass: aClass [
 	self selectedClassWithoutChangingSelection: aClass
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedClassDescription [
+{ #category : #'source code area' }
+AbstractNautilusUI >> selectedClassDescription [
 
 	^ self selectedClass definitionForNautilus
 
 ]
 
-{
-	#category : #NOCompletion,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedClassOrMetaClass [
+{ #category : #NOCompletion }
+AbstractNautilusUI >> selectedClassOrMetaClass [
 	self selectedCategory ifNil: [ self selectedMethod ifNil: [ ^ nil ] ].
 	^ self selectedClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedClassWithoutChangingSelection: aClass  [
+{ #category : #accessing }
+AbstractNautilusUI >> selectedClassWithoutChangingSelection: aClass [ 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedClasses [
+{ #category : #private }
+AbstractNautilusUI >> selectedClasses [
 	^ self classWidget selectedClasses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedGroup [
+{ #category : #accessing }
+AbstractNautilusUI >> selectedGroup [
 	^ self model selectedGroup
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedGroupWithoutChangingSelection: anObject [
+{ #category : #accessing }
+AbstractNautilusUI >> selectedGroupWithoutChangingSelection: anObject [
 
 	self okToChange
 		ifTrue: [
@@ -4871,46 +3874,31 @@ AbstractNautilusUI>>selectedGroupWithoutChangingSelection: anObject [
 			self updateClassView ]
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedMethod [
+{ #category : #'widget method' }
+AbstractNautilusUI >> selectedMethod [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'widget method',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedMethod: aMethod [
+{ #category : #'widget method' }
+AbstractNautilusUI >> selectedMethod: aMethod [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedMethodSource [
+{ #category : #'source code area' }
+AbstractNautilusUI >> selectedMethodSource [
 	self selectedMethod ifNil: [ ^ '' ].
 	^ self selectedMethod sourceCode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedPackage [
+{ #category : #accessing }
+AbstractNautilusUI >> selectedPackage [
 	^ self model selectedPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedPackage: aPackage [
+{ #category : #accessing }
+AbstractNautilusUI >> selectedPackage: aPackage [
 	"Force package selection, not used by the lists "
 	self okToChange
 		ifTrue: [
@@ -4921,20 +3909,14 @@ AbstractNautilusUI>>selectedPackage: aPackage [
 			self selectedPackageWithoutChangingSelection: aPackage ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedPackageGroup [
+{ #category : #accessing }
+AbstractNautilusUI >> selectedPackageGroup [
 	"give selected element from package/group pane, whatever is selected"
 	^ self packageWidget selectedPackageGroup
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedPackageWithoutChangingSelection: aPackage [
+{ #category : #accessing }
+AbstractNautilusUI >> selectedPackageWithoutChangingSelection: aPackage [
 	self okToChange
 		ifTrue:
 			[ | class |
@@ -4949,11 +3931,8 @@ AbstractNautilusUI>>selectedPackageWithoutChangingSelection: aPackage [
 			self updateCategoryAndMethodList ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedPackageWithoutChangingSelectionInternally: aPackage [
+{ #category : #accessing }
+AbstractNautilusUI >> selectedPackageWithoutChangingSelectionInternally: aPackage [
 	| class |
 	class := self selectedClass.
 	(self showHierarchy not and: [ class notNil and: [ class package ~= aPackage ] ])
@@ -4964,52 +3943,34 @@ AbstractNautilusUI>>selectedPackageWithoutChangingSelectionInternally: aPackage 
 	self updateCategoryAndMethodList
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectedPackages [
+{ #category : #private }
+AbstractNautilusUI >> selectedPackages [
 	^ self packageWidget selectedPackages
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectionInterval [
+{ #category : #accessing }
+AbstractNautilusUI >> selectionInterval [
 	^ sourceCodeSelectionInterval
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>selectionInterval: anInterval [
+{ #category : #accessing }
+AbstractNautilusUI >> selectionInterval: anInterval [
 	sourceCodeSelectionInterval := anInterval
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>setCommentShorcutsTo: aList [
+{ #category : #shortcuts }
+AbstractNautilusUI >> setCommentShorcutsTo: aList [
 
 	aList attachKeymapCategory: #NautilusCommentShortcuts targetting: self
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>setGroupShorcutsTo: aList [
+{ #category : #shortcuts }
+AbstractNautilusUI >> setGroupShorcutsTo: aList [
 	aList attachKeymapCategory: #NautilusGroupShortcuts targetting: self
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>setShortcuts: groupSymbol to: aMorph [
+{ #category : #shortcuts }
+AbstractNautilusUI >> setShortcuts: groupSymbol to: aMorph [
 	aMorph 
 		attachKeymapCategory: (	Nautilus useOldStyleKeys 
 			ifTrue: [ groupSymbol ]
@@ -5018,28 +3979,19 @@ AbstractNautilusUI>>setShortcuts: groupSymbol to: aMorph [
 
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>setSourceCodeShorcutsTo: aList [
+{ #category : #shortcuts }
+AbstractNautilusUI >> setSourceCodeShorcutsTo: aList [
 
 	aList attachKeymapCategory: #NautilusSourceCodeShortcuts targetting: self
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>setStylerClass: aClass [
+{ #category : #'source code area' }
+AbstractNautilusUI >> setStylerClass: aClass [
 	self sourceTextModel reconfigureViewWith: [ :scrolledText | scrolledText textArea classOrMetaClass: aClass ]
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>setWindowTitle [
+{ #category : #displaying }
+AbstractNautilusUI >> setWindowTitle [
 
 	| title |
 	shouldUpdateTitle ifFalse: [ ^ self ].
@@ -5056,28 +4008,18 @@ AbstractNautilusUI>>setWindowTitle [
 	window title: title.
 ]
 
-{
-	#category : #'scroll bar events',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>shiftedTextPaneMenuRequest [
-
+{ #category : #'scroll bar events' }
+AbstractNautilusUI >> shiftedTextPaneMenuRequest [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>showComment [
+{ #category : #accessing }
+AbstractNautilusUI >> showComment [
 
 	^ self model showComment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>showComment: aBoolean [
+{ #category : #accessing }
+AbstractNautilusUI >> showComment: aBoolean [
 	
 	self okToChangeComment
 		ifFalse: [ ^ self ].
@@ -5086,29 +4028,20 @@ AbstractNautilusUI>>showComment: aBoolean [
 	self updateCodePanel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>showHierarchy [
+{ #category : #accessing }
+AbstractNautilusUI >> showHierarchy [
 
 	^ self model showHierarchy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>showInstance [
+{ #category : #accessing }
+AbstractNautilusUI >> showInstance [
 
 	^ self model showInstance
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>showInstance: aBoolean [
+{ #category : #accessing }
+AbstractNautilusUI >> showInstance: aBoolean [
 
 	self okToChangeSourceAndComment
 		ifTrue:[
@@ -5126,22 +4059,16 @@ AbstractNautilusUI>>showInstance: aBoolean [
 			self changed: #instanceButtonLabel ]
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>showScriptCode: anAnnouncement [
+{ #category : #'source code area' }
+AbstractNautilusUI >> showScriptCode: anAnnouncement [
 	self setStylerClass: nil.
 	self sourceTextModel setText: self sourceCode.
 	self sourceTextModel clearUndoManager.
 	self sourceTextModel hasUnacceptedEdits: false.
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>showSourceCode: anAnnouncement [
+{ #category : #'source code area' }
+AbstractNautilusUI >> showSourceCode: anAnnouncement [
 	| formatter |
 	formatter := RBProgramNode formatterClass.
 	self sourceTextModel setText: self sourceCode.
@@ -5153,11 +4080,8 @@ AbstractNautilusUI>>showSourceCode: anAnnouncement [
 	self sourceTextModel hasUnacceptedEdits: false
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>showUnreferencedClassVars [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> showUnreferencedClassVars [
 	"Search for all class variables known to the selected class, and put up a 
 	list of those that have no references anywhere in the system. The 
 	search includes superclasses, so that you don't need to navigate your 
@@ -5166,30 +4090,21 @@ AbstractNautilusUI>>showUnreferencedClassVars [
 	self showUnreferencedClassVarsOf: self selectedClass.
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>showUnreferencedInstVars [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> showUnreferencedInstVars [
 	"Search for all instance variables known to the selected class, and put up a list of those that have no references anywhere in the system.  The search includes superclasses, so that you don't need to navigate your way to the class that defines each inst variable in order to determine whether it is unreferenced"
 
 	self showUnreferencedInstVarsOf: self selectedClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>sortHierarchically [
+{ #category : #accessing }
+AbstractNautilusUI >> sortHierarchically [
 
 	^ self model sortHierarchically
 ]
 
-{
-	#category : #'source code area',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>sourceCode [
+{ #category : #'source code area' }
+AbstractNautilusUI >> sourceCode [
 
 	^self selectedClass 
 		ifNil: [ self defaultClassDescriptor]
@@ -5203,11 +4118,8 @@ AbstractNautilusUI>>sourceCode [
 		
 ]
 
-{
-	#category : #'browser compatibility',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>sourceCode: aText  [
+{ #category : #'browser compatibility' }
+AbstractNautilusUI >> sourceCode: aText [ 
 
 	self okToChange
 		ifTrue: [ 
@@ -5215,19 +4127,13 @@ AbstractNautilusUI>>sourceCode: aText  [
 			self giveFocusToSourceCodeArea ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>sourceCodeContainer [
+{ #category : #accessing }
+AbstractNautilusUI >> sourceCodeContainer [
 	^ sourceCodeContainer
 ]
 
-{
-	#category : #'menu builder',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>sourceCodeMenu: aMenu shifted: shifted [
+{ #category : #'menu builder' }
+AbstractNautilusUI >> sourceCodeMenu: aMenu shifted: shifted [
 	| menu |
 	menu := (PragmaMenuBuilder
 		pragmaKeyword: self sourceTextWidget editingModeClass menuKeyword
@@ -5239,63 +4145,42 @@ AbstractNautilusUI>>sourceCodeMenu: aMenu shifted: shifted [
 		yourself
 ]
 
-{
-	#category : #'menu builder',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>sourceCodeMenuBuilder [
+{ #category : #'menu builder' }
+AbstractNautilusUI >> sourceCodeMenuBuilder [
 
 	^ PragmaMenuBuilder pragmaKeyword: self sourceCodePragma model: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>sourceCodePanel [
+{ #category : #accessing }
+AbstractNautilusUI >> sourceCodePanel [
 	^ sourceCodePanel
 ]
 
-{
-	#category : #'menu pragmas',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>sourceCodePragma [
+{ #category : #'menu pragmas' }
+AbstractNautilusUI >> sourceCodePragma [
 	^ 'nautilusGlobalSourceCodeMenu'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>sourceTextModel [
+{ #category : #accessing }
+AbstractNautilusUI >> sourceTextModel [
 	^ sourceTextModel ifNil: [ sourceTextModel := RubScrolledTextModel new interactionModel: self ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>sourceTextWidget [
+{ #category : #accessing }
+AbstractNautilusUI >> sourceTextWidget [
 	^ sourceTextWidget 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>systemNavigation [
+{ #category : #private }
+AbstractNautilusUI >> systemNavigation [
 
 	^ SystemNavigation new 
 			browsedEnvironment: self browsedEnvironment;
 			yourself
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>testCaseStarted: anAnnouncement [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> testCaseStarted: anAnnouncement [
 	| class selector |
 	window ifNil: [ ^ self ].
 	window isDisplayed ifFalse: [ ^ self ].
@@ -5310,11 +4195,8 @@ AbstractNautilusUI>>testCaseStarted: anAnnouncement [
 				updateMethodList ]
 ]
 
-{
-	#category : #'system announcements',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>testRan: anAnnouncement [
+{ #category : #'system announcements' }
+AbstractNautilusUI >> testRan: anAnnouncement [
 	| testCaseClass classTested |
 	window ifNil: [ ^ self ].
 	window isDisplayed
@@ -5335,29 +4217,20 @@ AbstractNautilusUI>>testRan: anAnnouncement [
 				updateCategoryAndMethodList ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>title [
+{ #category : #private }
+AbstractNautilusUI >> title [
 	^ 'Nautilus - System Browser'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>title: aString [
+{ #category : #accessing }
+AbstractNautilusUI >> title: aString [
 
 	shouldUpdateTitle := false.
 	window title: aString
 ]
 
-{
-	#category : #'menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>toggleBytecodes [
+{ #category : #'menus behavior' }
+AbstractNautilusUI >> toggleBytecodes [
 	self selectedMethod ifNil: [ ^ self ].
 	self
 		updateSourceCodeAreaWith:
@@ -5366,21 +4239,15 @@ AbstractNautilusUI>>toggleBytecodes [
 				ifFalse: [ self selectedMethod symbolic ])
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>toggleShowComment [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> toggleShowComment [
 	self showComment: self showComment not.
 	self changed: #commentButtonState
 	
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>toggleShowFullComment [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> toggleShowFullComment [
 
 	self showComment ifFalse: [ ^ self ].
 	sourceCodePanel removeAllMorphs.
@@ -5390,20 +4257,14 @@ AbstractNautilusUI>>toggleShowFullComment [
 
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>toggleShowHierarchy [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> toggleShowHierarchy [
 
 	self showHierarchy: self showHierarchy not.
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>toggleShowInstance [
+{ #category : #'buttons behavior' }
+AbstractNautilusUI >> toggleShowInstance [
 
 	self showInstance: self showInstance not.
 	self changed: #instanceButtonState.
@@ -5412,149 +4273,104 @@ AbstractNautilusUI>>toggleShowInstance [
 	instanceButtonWidget helpText: (self instanceButtonHelpTextFor: self instanceButtonState).
 ]
 
-{
-	#category : #'announcement registration',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>unregisterAPlugin: aPlugin [
+{ #category : #'announcement registration' }
+AbstractNautilusUI >> unregisterAPlugin: aPlugin [
 
 	self announcer unsubscribe: aPlugin
 ]
 
-{
-	#category : #'announcement registration',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>unregisterAllPlugins [
+{ #category : #'announcement registration' }
+AbstractNautilusUI >> unregisterAllPlugins [
 
 	self announcer subscriptions reset
 ]
 
-{
-	#category : #'announcement registration',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>unregisterToAnnouncements [
+{ #category : #'announcement registration' }
+AbstractNautilusUI >> unregisterToAnnouncements [
 	self unregisterToSystemAnnouncements.
 	self unregisterToTestAnnouncements. 
 	self unregisterToGroupAnnouncements. 
 ]
 
-{
-	#category : #'announcement registration',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>unregisterToGroupAnnouncements [
+{ #category : #'announcement registration' }
+AbstractNautilusUI >> unregisterToGroupAnnouncements [
 	GroupAnnouncer uniqueInstance unsubscribe: self.
 
 ]
 
-{
-	#category : #'announcement registration',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>unregisterToSystemAnnouncements [
+{ #category : #'announcement registration' }
+AbstractNautilusUI >> unregisterToSystemAnnouncements [
 	self browsedEnvironment packageOrganizer announcer
 	     unsubscribe: self.
 	SystemAnnouncer uniqueInstance unsubscribe: self.
 
 ]
 
-{
-	#category : #'announcement registration',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>unregisterToTestAnnouncements [
+{ #category : #'announcement registration' }
+AbstractNautilusUI >> unregisterToTestAnnouncements [
 	| testCaseClass |
 	testCaseClass := Smalltalk at: #TestCase ifAbsent:[^ self].
 	testCaseClass historyAnnouncer unsubscribe: self.
 
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>updateCategoryAndMethodList [
+{ #category : #updating }
+AbstractNautilusUI >> updateCategoryAndMethodList [
 	"abstractly defined here to silence a critic in #testRan:"
 	self subclassResponsibility
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>updateCategoryAndMethodList: aMethodOrNil [
+{ #category : #updating }
+AbstractNautilusUI >> updateCategoryAndMethodList: aMethodOrNil [
 	"abstractly defined here because #updateCategoryAndMethodList is too"
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>updateClassView [
+{ #category : #private }
+AbstractNautilusUI >> updateClassView [
 
 	self resetClassesList.
 	self changed: #getClassItem: 
 ]
 
-{
-	#category : #'code panel',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>updateCodePanel [
+{ #category : #'code panel' }
+AbstractNautilusUI >> updateCodePanel [
 	sourceCodePanel removeAllMorphs.
 	self model showComment
 		ifTrue: [ self buildCodePanelWithComment ]
 		ifFalse: [ self buildCodePanelWithoutComment ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>updateGroupView [
+{ #category : #private }
+AbstractNautilusUI >> updateGroupView [
 
 	self changed: #getPackageItem:
 ]
 
-{
-	#category : #'comment pane',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>updatePackageComment [
+{ #category : #'comment pane' }
+AbstractNautilusUI >> updatePackageComment [
 	self selectedPackage packageComment = commentTextModel getText asString
 		ifTrue: [ ^ self ].
 	self selectedPackage
 		packageComment: commentTextModel getText asString printString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>updatePackageGroupAndClassList [
+{ #category : #private }
+AbstractNautilusUI >> updatePackageGroupAndClassList [
 
 	self resetClassesList.
 	self changed: #getPackageItem:.
 	self changed: #getClassItem:
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>updatePackageViewAndMove [
+{ #category : #private }
+AbstractNautilusUI >> updatePackageViewAndMove [
 			
 	self changed: #getPackageItem:
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>updatePackageViewContent [
+{ #category : #private }
+AbstractNautilusUI >> updatePackageViewContent [
 
 	| vScrollValue |
 	vScrollValue := self packageWidget scrollValue y.
@@ -5562,21 +4378,15 @@ AbstractNautilusUI>>updatePackageViewContent [
 	self packageWidget vScrollValue: vScrollValue
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>updateSourceCodeAreaWith: aText [
+{ #category : #updating }
+AbstractNautilusUI >> updateSourceCodeAreaWith: aText [
 	self sourceTextModel setText: aText.
 	self sourceTextModel hasUnacceptedEdits: false.
 	
 ]
 
-{
-	#category : #button-variables,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>variablesMenuEntry: aClass items: aCollection in: aMenu using: aBlock [
+{ #category : #button-variables }
+AbstractNautilusUI >> variablesMenuEntry: aClass items: aCollection in: aMenu using: aBlock [
 	| menu |
 	aCollection ifEmpty: [ ^ self ].
 	menu := aMenu.
@@ -5615,11 +4425,8 @@ AbstractNautilusUI>>variablesMenuEntry: aClass items: aCollection in: aMenu usin
 						do: [ :variable | aBlock value: variable value: aClass value: menu ] ] ]
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>wantsDroppedMorph: transferMorph event: anEvent inMorph: destinationLM [
+{ #category : #'drag and drop' }
+AbstractNautilusUI >> wantsDroppedMorph: transferMorph event: anEvent inMorph: destinationLM [
 	"We are only interested in TransferMorphs as wrappers for             
 	informations. If their content is really interesting for us, will             
 	determined later in >>acceptDroppingMorph:event:."
@@ -5644,11 +4451,8 @@ AbstractNautilusUI>>wantsDroppedMorph: transferMorph event: anEvent inMorph: des
 	^ false
 ]
 
-{
-	#category : #'comment pane',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>whenExtendCommentSwitch: anAnnouncement [
+{ #category : #'comment pane' }
+AbstractNautilusUI >> whenExtendCommentSwitch: anAnnouncement [
 	"when you press the comment button."
 	self fullDisplayedComment
 		ifFalse: [ self toggleShowFullComment ] 
@@ -5656,29 +4460,20 @@ AbstractNautilusUI>>whenExtendCommentSwitch: anAnnouncement [
 	self fullDisplayedComment: self fullDisplayedComment not.
 ]
 
-{
-	#category : #'source text events',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>whenTextAcceptedInView: anAnnouncement [
+{ #category : #'source text events' }
+AbstractNautilusUI >> whenTextAcceptedInView: anAnnouncement [
 
 	self compileSource: self sourceTextModel getString notifying: sourceTextWidget
 ]
 
-{
-	#category : #'source text events',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>whenTextAreaSelectionChanged: aSelectionChangedAnnounce [
+{ #category : #'source text events' }
+AbstractNautilusUI >> whenTextAreaSelectionChanged: aSelectionChangedAnnounce [
 	self selectionInterval: aSelectionChangedAnnounce morph textArea selectionInterval.
 	contentSelection :=  aSelectionChangedAnnounce morph textArea selection
 ]
 
-{
-	#category : #'comment pane',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>whenTextUpdatedInCommentPane: anAnnouncement [
+{ #category : #'comment pane' }
+AbstractNautilusUI >> whenTextUpdatedInCommentPane: anAnnouncement [
 	self selectedClass
 		ifNotNil: [ :class | 
 			commentTextModel getText = class classCommentBlank
@@ -5689,18 +4484,12 @@ AbstractNautilusUI>>whenTextUpdatedInCommentPane: anAnnouncement [
 				ifTrue: [ self updatePackageComment] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>window [
+{ #category : #accessing }
+AbstractNautilusUI >> window [
 	^ window
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-AbstractNautilusUI>>window: anObject [
+{ #category : #accessing }
+AbstractNautilusUI >> window: anObject [
 	window := anObject
 ]

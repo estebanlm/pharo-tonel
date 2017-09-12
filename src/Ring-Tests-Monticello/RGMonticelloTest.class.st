@@ -4,15 +4,11 @@ SUnit tests for monticello
 Class {
 	#name : #RGMonticelloTest,
 	#superclass : #TestCase,
-	#category : #Ring-Tests-Monticello,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:10'
+	#category : #Ring-Tests-Monticello
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RGMonticelloTest>>testAsMCMethodDefinition [
+{ #category : #testing }
+RGMonticelloTest >> testAsMCMethodDefinition [
 	
 	| ringMethod mcMethod |
 	
@@ -27,11 +23,8 @@ RGMonticelloTest>>testAsMCMethodDefinition [
 	self assert: mcMethod source = (OrderedCollection>>#size) sourceCode
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RGMonticelloTest>>testConvertingMCClassDefinition [
+{ #category : #testing }
+RGMonticelloTest >> testConvertingMCClassDefinition [
 	| mcClass ringClass |
 	
 	mcClass := OrderedCollection asClassDefinition.
@@ -43,11 +36,8 @@ RGMonticelloTest>>testConvertingMCClassDefinition [
 	self deny: (ringClass isSameRevisionAs: SortedCollection asRingDefinition)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RGMonticelloTest>>testConvertingMCMethodDefinition [
+{ #category : #testing }
+RGMonticelloTest >> testConvertingMCMethodDefinition [
 	| mcMethod ringMethod |
 	
 	ringMethod := (OrderedCollection >> #add: ) asRingDefinition.
@@ -58,11 +48,8 @@ RGMonticelloTest>>testConvertingMCMethodDefinition [
 	self deny: (ringMethod isSameRevisionAs: ((OrderedCollection >> #addAll: ) asRingDefinition))
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RGMonticelloTest>>testConvertingMCOrganizationDefinition [
+{ #category : #testing }
+RGMonticelloTest >> testConvertingMCOrganizationDefinition [
 	| mcOrganization ringOrganization mcOrganization2 |
 	
 	mcOrganization := MCOrganizationDefinition categories: {#'Ring-Core-Kernel' . #'Ring-Core-Definitions'}.
@@ -73,11 +60,8 @@ RGMonticelloTest>>testConvertingMCOrganizationDefinition [
 	self deny: (ringOrganization isSameRevisionAs: mcOrganization2 asRingDefinition)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RGMonticelloTest>>testConvertingMCTraitDefinition [
+{ #category : #testing }
+RGMonticelloTest >> testConvertingMCTraitDefinition [
 	| mcClass ringClass |
 	
 	mcClass := TSortable asClassDefinition.

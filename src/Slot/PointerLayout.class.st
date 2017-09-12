@@ -7,41 +7,28 @@ Class {
 	#instVars : [
 		'slotScope'
 	],
-	#category : #Slot-Layout,
-	#timestamp : '<historical>'
+	#category : #Slot-Layout
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>= other [
+{ #category : #comparing }
+PointerLayout >> = other [
 	^ super = other
 		ifFalse: [  false ]
 		ifTrue: [ self slotScope = other slotScope ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>allSlots [
+{ #category : #accessing }
+PointerLayout >> allSlots [
 	^ slotScope flatten
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>allVisibleSlots [
+{ #category : #accessing }
+PointerLayout >> allVisibleSlots [
 	^ slotScope allVisibleSlots
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>checkInheritedSlots [
+{ #category : #validation }
+PointerLayout >> checkInheritedSlots [
 	
 	self host superclass 
 		ifNil: [ ^ self ].
@@ -61,22 +48,16 @@ PointerLayout>>checkInheritedSlots [
 			description: [ 'Slot "', localSlot name, '" index at position ', index asString, ' conflicts with slot "', slot name, '" in ', self host superclass asString ]].
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>checkIntegrity [
+{ #category : #validation }
+PointerLayout >> checkIntegrity [
 	self
 		checkSanity;
 		checkParentScopes;
 		checkInheritedSlots
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>checkParentScopes [
+{ #category : #validation }
+PointerLayout >> checkParentScopes [
 	| parentScope superclassScope |
 	parentScope := self slotScope parentScope.
 	self host superclass ifNil: [ ^ self ].
@@ -86,22 +67,16 @@ PointerLayout>>checkParentScopes [
 		description: 'Parent slot scope is out of sync'
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>checkSanity [
+{ #category : #validation }
+PointerLayout >> checkSanity [
 	super checkSanity.
 	self 
 		checkSlotNames;
 		checkSlotIndices
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>checkSlotIndices [
+{ #category : #validation }
+PointerLayout >> checkSlotIndices [
 	| slots current |
 	slots := slotScope flatten select: [:each | each size > 0]. "skip slots that have no index"
 	[ slots size > 1 ] whileTrue: [
@@ -109,11 +84,8 @@ PointerLayout>>checkSlotIndices [
 			self assert: slots first index = (current index + current size) ]
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>checkSlotNames [
+{ #category : #validation }
+PointerLayout >> checkSlotNames [
 	| slots current |
 	slots := slotScope allVisibleSlots.
 	[ slots isEmpty ] whileFalse: [
@@ -128,11 +100,8 @@ PointerLayout>>checkSlotNames [
 						signal ]]]
 ]
 
-{
-	#category : #diff,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>computeChangesFrom: other in: modification [
+{ #category : #diff }
+PointerLayout >> computeChangesFrom: other in: modification [
 	| additions changes removals copies |
 	other hasSlots ifFalse: [ ^ modification additions: self allSlots asArray ].
 	
@@ -154,113 +123,74 @@ PointerLayout>>computeChangesFrom: other in: modification [
 		removals: removals asArray.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>definesSlotNamed: aString  [
+{ #category : #api }
+PointerLayout >> definesSlotNamed: aString [ 
 	^self resolveSlot: aString ifFound: [ true ] ifNone: [ false ].
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>extend [
+{ #category : #extending }
+PointerLayout >> extend [
 	"Answer a default layout extending me."
 
 	^ self extend: self slotScope extend
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>extend: aScope [
+{ #category : #extending }
+PointerLayout >> extend: aScope [
 	^ self species new slotScope: aScope
 ]
 
-{
-	#category : #reshaping,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>extendAgain: aLayout with: someScope [
+{ #category : #reshaping }
+PointerLayout >> extendAgain: aLayout with: someScope [
 	| result |
 	result := aLayout copy.
 	result slotScope: someScope.
 	^ result
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>extendEphemeron: newScope [
+{ #category : #extending }
+PointerLayout >> extendEphemeron: newScope [
 
 	^ EphemeronLayout new slotScope: newScope
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>extendVariable: newScope [
+{ #category : #extending }
+PointerLayout >> extendVariable: newScope [
 	^ VariableLayout new slotScope: newScope
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>extendWeak: newScope [
+{ #category : #extending }
+PointerLayout >> extendWeak: newScope [
 	^ WeakLayout new slotScope: newScope
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>fieldSize [
+{ #category : #accessing }
+PointerLayout >> fieldSize [
 	^ slotScope fieldSize
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>hasFields [
+{ #category : #testing }
+PointerLayout >> hasFields [
 	^ slotScope hasFields
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>hasSlots [
+{ #category : #testing }
+PointerLayout >> hasSlots [
 	^ slotScope hasSlots
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>hash [
+{ #category : #comparing }
+PointerLayout >> hash [
 	^ self class hash bitXor: self slotScope hash
 ]
 
-{
-	#category : #'instance initialization',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>initializeInstance: anInstance [
+{ #category : #'instance initialization' }
+PointerLayout >> initializeInstance: anInstance [
 	self allSlotsDo: [ :slot | slot initialize: anInstance ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>instVarIndexFor: aString ifAbsent: aBlockClosure [
+{ #category : #accessing }
+PointerLayout >> instVarIndexFor: aString ifAbsent: aBlockClosure [
 	| idx |
 	idx := 1.
 	slotScope do: [:each |
@@ -270,95 +200,62 @@ PointerLayout>>instVarIndexFor: aString ifAbsent: aBlockClosure [
 	^aBlockClosure value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>instVarNames [
+{ #category : #accessing }
+PointerLayout >> instVarNames [
 	^ slotScope visibleSlotNames
 ]
 
-{
-	#category : #diff,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>popSlot: aSlot from: collection [
+{ #category : #diff }
+PointerLayout >> popSlot: aSlot from: collection [
 	collection withIndexDo: [ :slot :index |
 		slot name == aSlot name
 			ifTrue: [ ^ collection removeAt: index ]].
 	^ nil
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>postCopy [
+{ #category : #copying }
+PointerLayout >> postCopy [
 	slotScope := slotScope copy
 ]
 
-{
-	#category : #reshaping,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>reshapeTo: aModification [
+{ #category : #reshaping }
+PointerLayout >> reshapeTo: aModification [
 	| newScope |
 	newScope := slotScope rebase: aModification originalScope to: aModification newScope.
 	^ aModification newLayout extendAgain: self with: newScope.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>resolveSlot: aName [
+{ #category : #accessing }
+PointerLayout >> resolveSlot: aName [
 	^ slotScope atName: aName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>resolveSlot: aName ifFound: foundBlock ifNone: noneBlock [
+{ #category : #accessing }
+PointerLayout >> resolveSlot: aName ifFound: foundBlock ifNone: noneBlock [
 	^ slotScope atName: aName ifFound: foundBlock ifNone: noneBlock
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>size  [
+{ #category : #testing }
+PointerLayout >> size [ 
 	^ slotScope fieldSize
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>slotNamed: aName  [
+{ #category : #api }
+PointerLayout >> slotNamed: aName [ 
 	^self resolveSlot: aName asSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>slotScope [
+{ #category : #accessing }
+PointerLayout >> slotScope [
 	^ slotScope
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>slotScope: anObject [
+{ #category : #accessing }
+PointerLayout >> slotScope: anObject [
 	slotScope := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-PointerLayout>>slots [
+{ #category : #accessing }
+PointerLayout >> slots [
 	^ slotScope slots
 ]

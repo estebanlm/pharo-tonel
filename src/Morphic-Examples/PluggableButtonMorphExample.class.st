@@ -9,88 +9,60 @@ Class {
 		'state',
 		'icon'
 	],
-	#category : #Morphic-Examples-Widgets,
-	#timestamp : '<historical>'
+	#category : #Morphic-Examples-Widgets
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample class>>exampleButton [
+{ #category : #examples }
+PluggableButtonMorphExample class >> exampleButton [
 	<example>
 	self new buildButton openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample class>>exampleButtonFont [
+{ #category : #examples }
+PluggableButtonMorphExample class >> exampleButtonFont [
 	<example>
 	self new buildButton
 		font: (LogicalFont familyName: 'Source Sans Pro' pointSize: 24);
 	  openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample class>>exampleButtonNoLabel [
+{ #category : #examples }
+PluggableButtonMorphExample class >> exampleButtonNoLabel [
 	<example>
 	self new buildButtonNoLabel openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample class>>exampleButtonWithIcon [
+{ #category : #examples }
+PluggableButtonMorphExample class >> exampleButtonWithIcon [
 	<example>
 	self new buildButtonWithIcon openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample class>>exampleButtonWithIconBottom [
+{ #category : #examples }
+PluggableButtonMorphExample class >> exampleButtonWithIconBottom [
 	<example>
 	self new buildButtonWithIconBottom openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample class>>exampleButtonWithIconRight [
+{ #category : #examples }
+PluggableButtonMorphExample class >> exampleButtonWithIconRight [
 	<example>
 	self new buildButtonWithIconRight openInWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample class>>exampleButtonWithIconTop [
+{ #category : #examples }
+PluggableButtonMorphExample class >> exampleButtonWithIconTop [
 	<example>
 	self new buildButtonWithIconTop openInWindow
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample>>action [
+{ #category : #actions }
+PluggableButtonMorphExample >> action [
 	self inform: 'Button pressed'
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample>>buildButton [
+{ #category : #building }
+PluggableButtonMorphExample >> buildButton [
 	^ PluggableButtonMorph
 		on: self 
 		getState: nil
@@ -99,11 +71,8 @@ PluggableButtonMorphExample>>buildButton [
 		menu: nil. 	
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample>>buildButtonNoLabel [
+{ #category : #building }
+PluggableButtonMorphExample >> buildButtonNoLabel [
 	^ PluggableButtonMorph
 		on: self 
 		getState: nil 
@@ -113,11 +82,8 @@ PluggableButtonMorphExample>>buildButtonNoLabel [
 		menu: nil. 	
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample>>buildButtonWithIcon [
+{ #category : #building }
+PluggableButtonMorphExample >> buildButtonWithIcon [
 	^ PluggableButtonMorph
 		on: self 
 		getState: nil 
@@ -127,11 +93,8 @@ PluggableButtonMorphExample>>buildButtonWithIcon [
 		menu: nil. 	
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample>>buildButtonWithIconBottom [
+{ #category : #building }
+PluggableButtonMorphExample >> buildButtonWithIconBottom [
 	^ (PluggableButtonMorph
 		on: self 
 		getState: nil 
@@ -142,11 +105,8 @@ PluggableButtonMorphExample>>buildButtonWithIconBottom [
 		beIconBottom. 	
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample>>buildButtonWithIconRight [
+{ #category : #building }
+PluggableButtonMorphExample >> buildButtonWithIconRight [
 	^ (PluggableButtonMorph
 		on: self 
 		getState: nil 
@@ -157,11 +117,8 @@ PluggableButtonMorphExample>>buildButtonWithIconRight [
 		beIconRight. 	
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample>>buildButtonWithIconTop [
+{ #category : #building }
+PluggableButtonMorphExample >> buildButtonWithIconTop [
 	^ (PluggableButtonMorph
 		on: self 
 		getState: nil 
@@ -172,61 +129,40 @@ PluggableButtonMorphExample>>buildButtonWithIconTop [
 		beIconTop. 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample>>icon [
+{ #category : #accessing }
+PluggableButtonMorphExample >> icon [
 	^ icon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample>>icon: anObject [
+{ #category : #accessing }
+PluggableButtonMorphExample >> icon: anObject [
 	icon := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample>>initialize [
+{ #category : #initialization }
+PluggableButtonMorphExample >> initialize [
 	super initialize.
 	label := 'Test label'.
 	state := #on.
 	icon := self iconNamed: #smallOkIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample>>label [
+{ #category : #accessing }
+PluggableButtonMorphExample >> label [
 	^ label
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample>>label: anObject [
+{ #category : #accessing }
+PluggableButtonMorphExample >> label: anObject [
 	label := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample>>state [
+{ #category : #accessing }
+PluggableButtonMorphExample >> state [
 	^ state
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PluggableButtonMorphExample>>state: anObject [
+{ #category : #accessing }
+PluggableButtonMorphExample >> state: anObject [
 	state := anObject
 ]

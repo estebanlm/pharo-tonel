@@ -63,15 +63,11 @@ Class {
 	#instVars : [
 		'project'
 	],
-	#category : #Metacello-Base,
-	#timestamp : 'dkh 5/30/2012 16:31'
+	#category : #Metacello-Base
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf class>>bootstrapMetacelloFrom: repositoryUrl [
+{ #category : #private }
+ConfigurationOf class >> bootstrapMetacelloFrom: repositoryUrl [
   "Corresponds to version 1.0.0-beta.32.6"
 
   "KEEP MetacelloConfigTemplate class>>ensureMetacelloBaseConfiguration in synch!"
@@ -100,11 +96,8 @@ ConfigurationOf class>>bootstrapMetacelloFrom: repositoryUrl [
   self bootstrapPackage: platformPkg from: repositoryUrl
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf class>>bootstrapPackage: aString from: aPath [
+{ #category : #private }
+ConfigurationOf class >> bootstrapPackage: aString from: aPath [
     | repository version |
     repository := (MCCacheRepository default includesVersionNamed: aString)
         ifTrue: [ MCCacheRepository default ]
@@ -119,11 +112,8 @@ ConfigurationOf class>>bootstrapPackage: aString from: aPath [
                     version workingCopy repositoryGroup addRepository: repository ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf class>>ensureGoferVersion: goferVersion repositoryUrl: repositoryUrl [
+{ #category : #private }
+ConfigurationOf class >> ensureGoferVersion: goferVersion repositoryUrl: repositoryUrl [
     "load the p=file goferVersion if Gofer isn't loaded or an earlier version of Gofer is currently loaded"
 
     | goferVersionNumber wc pName |
@@ -138,21 +128,15 @@ ConfigurationOf class>>ensureGoferVersion: goferVersion repositoryUrl: repositor
         ifTrue: [ self bootstrapPackage: goferVersion from: repositoryUrl ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf class>>ensureMetacello [
+{ #category : #private }
+ConfigurationOf class >> ensureMetacello [
     "Bootstrap Metacello and load the 'botstrap' group"
 
     self ensureMetacello: #('batch')
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf class>>ensureMetacello: loadList [
+{ #category : #private }
+ConfigurationOf class >> ensureMetacello: loadList [
   "Bootstrap Metacello, retry using alternate repository, if primary repository is not accessible"
 
   Smalltalk
@@ -210,28 +194,19 @@ ConfigurationOf class>>ensureMetacello: loadList [
           'retry with alternate repository failed: ' , error description printString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf class>>project [
+{ #category : #accessing }
+ConfigurationOf class >> project [
 
 	^self new project
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf class>>retry: aBlock [
+{ #category : #private }
+ConfigurationOf class >> retry: aBlock [
     self retry: aBlock retryCount: 3
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf class>>retry: aBlock retryCount: retryCount [
+{ #category : #private }
+ConfigurationOf class >> retry: aBlock retryCount: retryCount [
     | count |
     count := 1.
     [ true ]
@@ -259,11 +234,8 @@ ConfigurationOf class>>retry: aBlock retryCount: retryCount [
             count := count + 1 ]
 ]
 
-{
-	#category : #'unloading Metacello',
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf class>>unloadMetacello [
+{ #category : #'unloading Metacello' }
+ConfigurationOf class >> unloadMetacello [
 	"Unload the classes that implement Metacello. Metacello is not needed once a project has been loaded, so it can safely be unloaded."
 
 	"self unloadMetacello"
@@ -277,11 +249,8 @@ ConfigurationOf class>>unloadMetacello [
 	gofer unload.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf class>>validate [
+{ #category : #accessing }
+ConfigurationOf class >> validate [
 	"Check the configuration for Errors, Critical Warnings, and Warnings (see class comment for MetacelloMCVersionValidator for more information). 
 	Errors identify specification issues that will result in unexpected behaviour when you load the configuration. 
 	Critical Warnings identify specification issues that may result in unexpected behavior when you load the configuration.
@@ -294,11 +263,8 @@ ConfigurationOf class>>validate [
 	^ ((Smalltalk at: #MetacelloToolBox) validateConfiguration: self debug: #() recurse: false) explore
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf>>bleedingEdge  [
+{ #category : #defaults }
+ConfigurationOf >> bleedingEdge [ 
 	"override if different behavior desired.
 	 Use:
 		self versionDoesNotExistError: #bleedingEdge
@@ -309,22 +275,16 @@ ConfigurationOf>>bleedingEdge  [
 	^self defaultBleedingEdgeVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf>>customProjectAttributes [
+{ #category : #accessing }
+ConfigurationOf >> customProjectAttributes [
     "Edit to return a collection of any custom attributes e.g. for conditional loading: Array with: #'Condition1' with: #'Condition2.
 	For more information see: http://code.google.com/p/metacello/wiki/CustomProjectAttrributes "
 
     ^ #()
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf>>defaultBleedingEdgeVersion [
+{ #category : #defaults }
+ConfigurationOf >> defaultBleedingEdgeVersion [
 	| bleedingEdgeVersion |
 	bleedingEdgeVersion := (self project map values select: [ :version | version blessing == #baseline ])
 		detectMax: [ :version | version ].
@@ -332,11 +292,8 @@ ConfigurationOf>>defaultBleedingEdgeVersion [
 	^ bleedingEdgeVersion versionString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf>>project [
+{ #category : #accessing }
+ConfigurationOf >> project [
     ^ project
         ifNil: [ 
             "Bootstrap Metacello if it is not already loaded"
@@ -348,37 +305,25 @@ ConfigurationOf>>project [
             project ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf>>project: aProject [
+{ #category : #accessing }
+ConfigurationOf >> project: aProject [
 
 	project ifNil: [ self class ensureMetacello ].
 	project := aProject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf>>projectClass [
+{ #category : #accessing }
+ConfigurationOf >> projectClass [
     ^ MetacelloMCProject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf>>versionDoesNotExistError: versionStringOrSymbol [
+{ #category : #private }
+ConfigurationOf >> versionDoesNotExistError: versionStringOrSymbol [
 
 	((Smalltalk at: #MetacelloSymbolicVersionDoesNotExistError) project: self project versionString: versionStringOrSymbol) signal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:47'
-}
-ConfigurationOf>>versionNumberClass [
+{ #category : #accessing }
+ConfigurationOf >> versionNumberClass [
     ^ MetacelloSemanticVersionNumber
 ]

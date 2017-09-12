@@ -4,15 +4,11 @@ Some examples of the action of a pretty printing option
 Class {
 	#name : #BIFormatSettingsExample,
 	#superclass : #Object,
-	#category : #BlueInk-Core,
-	#timestamp : 'FranckWarlouzet 7/27/2015 13:39'
+	#category : #BlueInk-Core
 }
 
-{
-	#category : #prettyPrintOptionRelated,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIFormatSettingsExample>>cascadedMessageInsideParenthesesExample [
+{ #category : #prettyPrintOptionRelated }
+BIFormatSettingsExample >> cascadedMessageInsideParenthesesExample [
 	"option on :
 	(self bar)
 			foo;
@@ -26,11 +22,8 @@ BIFormatSettingsExample>>cascadedMessageInsideParenthesesExample [
 			foo"
 ]
 
-{
-	#category : #prettyPrintOptionRelated,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIFormatSettingsExample>>keepBlockInMessageExample [
+{ #category : #prettyPrintOptionRelated }
+BIFormatSettingsExample >> keepBlockInMessageExample [
 	"option on:
 	
 	self foo
@@ -49,11 +42,8 @@ BIFormatSettingsExample>>keepBlockInMessageExample [
 	
 ]
 
-{
-	#category : #prettyPrintOptionRelated,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIFormatSettingsExample>>lineUpBlockBracketsExample [
+{ #category : #prettyPrintOptionRelated }
+BIFormatSettingsExample >> lineUpBlockBracketsExample [
 	"option on:
 	self foo
 	or: [ 
@@ -68,11 +58,8 @@ BIFormatSettingsExample>>lineUpBlockBracketsExample [
 			]"
 ]
 
-{
-	#category : #prettyPrintOptionRelated,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIFormatSettingsExample>>newLineAfterCascadeExample [
+{ #category : #prettyPrintOptionRelated }
+BIFormatSettingsExample >> newLineAfterCascadeExample [
 	"option on:
 		self
 			foo;
@@ -84,11 +71,8 @@ BIFormatSettingsExample>>newLineAfterCascadeExample [
 		foo; foo; foo"
 ]
 
-{
-	#category : #prettyPrintOptionRelated,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIFormatSettingsExample>>newLineBeforeFirstCascadeExample [
+{ #category : #prettyPrintOptionRelated }
+BIFormatSettingsExample >> newLineBeforeFirstCascadeExample [
 	"option on:
 		self
 			foo;
@@ -101,11 +85,8 @@ BIFormatSettingsExample>>newLineBeforeFirstCascadeExample [
 			foo"
 ]
 
-{
-	#category : #prettyPrintOptionRelated,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-BIFormatSettingsExample>>newLineBeforeFirstKeywordExample [
+{ #category : #prettyPrintOptionRelated }
+BIFormatSettingsExample >> newLineBeforeFirstKeywordExample [
 	"option on: 
 		self
 		foo

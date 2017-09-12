@@ -4,15 +4,11 @@ SUnit tests for fuel serialization of weak objects
 Class {
 	#name : #FLWeakObjectsTest,
 	#superclass : #FLSerializationTest,
-	#category : #FuelTests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:29'
+	#category : #FuelTests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLWeakObjectsTest>>testAssociationWithWeak [
+{ #category : #tests }
+FLWeakObjectsTest >> testAssociationWithWeak [
 	"This tests an association with weak values. InstVar1 is a fixed instance variable, hence they are strong and hence should not be replaed by nil. Instead, 'weak' is stored in the variable part of FLWeakClassMock, so it is weak and so it should have been replaced by nil."
 	| weak association materializedAssociation |
 	
@@ -28,11 +24,8 @@ FLWeakObjectsTest>>testAssociationWithWeak [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLWeakObjectsTest>>testAssociationWithWeakFinalizationList [
+{ #category : #tests }
+FLWeakObjectsTest >> testAssociationWithWeakFinalizationList [
 	"This tests an association with WeakFInalizationList as its value."
 	| weak association materializedAssociation object list |
 	
@@ -50,11 +43,8 @@ FLWeakObjectsTest>>testAssociationWithWeakFinalizationList [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLWeakObjectsTest>>testWeakAndNoStrongReferenceFromGraph [
+{ #category : #tests }
+FLWeakObjectsTest >> testWeakAndNoStrongReferenceFromGraph [
 	"This tests when there are weak objects inside the graph to serialize but there are no strong references from the graph."
 	| weak graph obj1 obj2 materializedGraph |
 	obj1 := 11.
@@ -74,11 +64,8 @@ FLWeakObjectsTest>>testWeakAndNoStrongReferenceFromGraph [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLWeakObjectsTest>>testWeakWithStrongReferenceFromGraph [
+{ #category : #tests }
+FLWeakObjectsTest >> testWeakWithStrongReferenceFromGraph [
 	"This tests when there are weak objects inside the graph to serialize and there are also strong references from the graph."
 	| weak graph obj1 obj2 materializedGraph |
 	obj1 := 11.
@@ -99,11 +86,8 @@ FLWeakObjectsTest>>testWeakWithStrongReferenceFromGraph [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLWeakObjectsTest>>testWeakWithStrongReferenceFromGraph2 [
+{ #category : #tests }
+FLWeakObjectsTest >> testWeakWithStrongReferenceFromGraph2 [
 	"This tests when there are weak objects inside the graph to serialize and there are also strong references from the graph."
 	| weak graph obj1 obj2 materializedGraph |
 	obj1 := 11.

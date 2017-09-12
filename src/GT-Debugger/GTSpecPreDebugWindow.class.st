@@ -7,24 +7,17 @@ I receive a instance to a full debugger that I'll open if the user continues deb
 Class {
 	#name : #GTSpecPreDebugWindow,
 	#superclass : #SpecPreDebugWindow,
-	#category : #GT-Debugger-UI,
-	#timestamp : 'AndreiChis 2/18/2016 11:43'
+	#category : #GT-Debugger-UI
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpecPreDebugWindow>>clear [
+{ #category : #actions }
+GTSpecPreDebugWindow >> clear [
 
 	self debugger ifNotNil: [ :aDebugger | aDebugger windowIsClosing ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpecPreDebugWindow>>columnsFor: aContext [
+{ #category : #printing }
+GTSpecPreDebugWindow >> columnsFor: aContext [
 
 	^ { 
 		self debugger formatStackClassColumnForContext: aContext.
@@ -32,20 +25,14 @@ GTSpecPreDebugWindow>>columnsFor: aContext [
 		self debugger formatStackExtraColumnForContext: aContext  }
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpecPreDebugWindow>>initialExtent [
+{ #category : #api }
+GTSpecPreDebugWindow >> initialExtent [
 
 	^ 700 @ 180
 ]
 
-{
-	#category : #'initialization widgets',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpecPreDebugWindow>>initializeStackPane [
+{ #category : #'initialization widgets' }
+GTSpecPreDebugWindow >> initializeStackPane [
 	
 	self stackPane
 		displayBlock: [ :aContext | self columnsFor: aContext ];
@@ -57,11 +44,8 @@ GTSpecPreDebugWindow>>initializeStackPane [
 		
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpecPreDebugWindow>>openFullDebugger [
+{ #category : #actions }
+GTSpecPreDebugWindow >> openFullDebugger [
 	| currentDebugger |
 	
 	currentDebugger := self debugger.

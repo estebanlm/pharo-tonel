@@ -4,14 +4,10 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestSystemCommandLine,
 	#superclass : #PackageManifest,
-	#category : #System-CommandLine,
-	#timestamp : '<historical>'
+	#category : #System-CommandLine
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-ManifestSystemCommandLine class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestSystemCommandLine class >> manuallyResolvedDependencies [
 	^ #(#'System-Support')
 ]

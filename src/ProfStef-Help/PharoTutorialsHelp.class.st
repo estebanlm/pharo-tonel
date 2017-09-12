@@ -4,31 +4,21 @@ I'm a HelpSystem book which list all Pharo tutorials
 Class {
 	#name : #PharoTutorialsHelp,
 	#superclass : #PharoTutorialHelp,
-	#category : #ProfStef-Help,
-	#timestamp : 'CamilloBruni 2/22/2014 18:59'
+	#category : #ProfStef-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-PharoTutorialsHelp class>>bookName  [
+{ #category : #accessing }
+PharoTutorialsHelp class >> bookName [ 
 	^ 'Browse tutorials'
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-PharoTutorialsHelp class>>builder [
+{ #category : #defaults }
+PharoTutorialsHelp class >> builder [
 	^ PharoTutorialHelpTutorialBuilder
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-PharoTutorialsHelp class>>menuCommandOn: aBuilder  [
+{ #category : #menu }
+PharoTutorialsHelp class >> menuCommandOn: aBuilder [ 
 	<worldMenu> 
 	(aBuilder item: #'Pharo Tutorials')
 			parent: #Help;

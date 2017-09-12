@@ -10,33 +10,23 @@ Class {
 		'textModel',
 		'textEditBrick'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-UI-Popup,
-	#timestamp : 'AliakseiSyrel 2/28/2017 09:18'
+	#category : #Glamour-Morphic-Brick-Widgets-UI-Popup
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditorPopupBrick class>>exampleBorderOpen [
+{ #category : #examples }
+GLMEditorPopupBrick class >> exampleBorderOpen [
 	
 	self gtExampleBorder openCenteredInBrickWindowLabeled: 'All Popup Types'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditorPopupBrick class>>exampleShadowOpen [
+{ #category : #examples }
+GLMEditorPopupBrick class >> exampleShadowOpen [
 	
 	self gtExampleShadow openCenteredInBrickWindowLabeled: 'All Popup Types'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditorPopupBrick class>>gtExampleBorder [
+{ #category : #examples }
+GLMEditorPopupBrick class >> gtExampleBorder [
 	<gtExample>
 	<label: 'Example of editable popup with border'>
 
@@ -52,11 +42,8 @@ GLMEditorPopupBrick class>>gtExampleBorder [
 		yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditorPopupBrick class>>gtExampleShadow [
+{ #category : #examples }
+GLMEditorPopupBrick class >> gtExampleShadow [
 	<gtExample>
 	<label: 'Example of editable popup with shadow'>
 
@@ -72,31 +59,22 @@ GLMEditorPopupBrick class>>gtExampleShadow [
 		yourself
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditorPopupBrick>>acceptContents: anAnnouncement [
+{ #category : #visiting }
+GLMEditorPopupBrick >> acceptContents: anAnnouncement [
 	self announce: #textAccepted event: anAnnouncement.
 	self close
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditorPopupBrick>>initialize [
+{ #category : #initialization }
+GLMEditorPopupBrick >> initialize [
 	super initialize.
 
 	"self themer: self themer popupEditorShadowThemer themer."
 	self themer: self themer popupEditorBorderThemer themer
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditorPopupBrick>>newTextEditField [
+{ #category : #'instance creation' }
+GLMEditorPopupBrick >> newTextEditField [
 
 	^ GLMRubEditingAreaBrick new
 		wrapped: false;
@@ -109,20 +87,14 @@ GLMEditorPopupBrick>>newTextEditField [
 		yourself
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditorPopupBrick>>onCreated [
+{ #category : #events-processing }
+GLMEditorPopupBrick >> onCreated [
 
 	self textEditBrick: self newTextEditField
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditorPopupBrick>>onOpened [
+{ #category : #events-processing }
+GLMEditorPopupBrick >> onOpened [
 	super onOpened.
 
 	self textEditBrick
@@ -130,38 +102,26 @@ GLMEditorPopupBrick>>onOpened [
 		selectAll
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditorPopupBrick>>textEditBrick [
+{ #category : #accessing }
+GLMEditorPopupBrick >> textEditBrick [
 	^ textEditBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditorPopupBrick>>textEditBrick: aBrick [
+{ #category : #accessing }
+GLMEditorPopupBrick >> textEditBrick: aBrick [
 	textEditBrick := aBrick.
 	
 	self contentBrick addBrickBack: self textEditBrick.
 	self textEditBrick rubric announcer when: RubTextAcceptRequest send: #acceptContents: to: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditorPopupBrick>>textModel [
+{ #category : #accessing }
+GLMEditorPopupBrick >> textModel [
 	^ textModel ifNil: [ textModel := '' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMEditorPopupBrick>>textModel: aTextModel [
+{ #category : #accessing }
+GLMEditorPopupBrick >> textModel: aTextModel [
 	textModel := aTextModel.
 	
 	self textEditBrick ifNotNil: [ :aTextEditBrick | aTextEditBrick text: self textModel ]

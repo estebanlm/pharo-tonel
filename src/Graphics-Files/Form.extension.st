@@ -1,12 +1,7 @@
-Extension {
-	#name : #Form
-}
+Extension { #name : #Form }
 
-{
-	#category : #'*Graphics-Files-FileRegistry',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form class>>fileReaderServicesForFile: fullName suffix: suffix [
+{ #category : #'*Graphics-Files-FileRegistry' }
+Form class >> fileReaderServicesForFile: fullName suffix: suffix [
 	<fileService>
 
 	^((ImageReadWriter allTypicalFileExtensions add: '*'; add: 'form'; yourself)
@@ -16,11 +11,8 @@ Form class>>fileReaderServicesForFile: fullName suffix: suffix [
 
 ]
 
-{
-	#category : #'*Graphics-Files',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form class>>fromBinaryStream: aBinaryStream [
+{ #category : #'*Graphics-Files' }
+Form class >> fromBinaryStream: aBinaryStream [
 	"Read a Form or ColorForm from given file, using the first byte of the file to guess its format. Currently handles: GIF, uncompressed BMP, and both old and new DisplayObject writeOn: formats, JPEG, and PCX. Return nil if the file could not be read or was of an unrecognized format."
 
 	| firstByte |
@@ -39,11 +31,8 @@ Form class>>fromBinaryStream: aBinaryStream [
 
 ]
 
-{
-	#category : #'*Graphics-Files',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form class>>fromFileNamed: fileName  [
+{ #category : #'*Graphics-Files' }
+Form class >> fromFileNamed: fileName [ 
 	"Read a Form or ColorForm from the given file."
 	
 	^ FileStream 
@@ -54,11 +43,8 @@ Form class>>fromFileNamed: fileName  [
 		
 ]
 
-{
-	#category : #'*Graphics-Files-FileRegistry',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form class>>openImageInWindow: fullName  [
+{ #category : #'*Graphics-Files-FileRegistry' }
+Form class >> openImageInWindow: fullName [ 
 	"Handle five file formats: GIF, JPG, PNG, Form storeOn: (run coded), and
 	BMP. Fail if file format is not recognized."
 	
@@ -67,11 +53,8 @@ Form class>>openImageInWindow: fullName  [
 	(World drawingClass withForm: image) openInWorld
 ]
 
-{
-	#category : #'*Graphics-Files',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form>>readNativeResourceFrom: byteStream [
+{ #category : #'*Graphics-Files' }
+Form >> readNativeResourceFrom: byteStream [
 	| img aStream |
 	(byteStream isKindOf: FileStream) ifTrue:[
 		"Ugly, but ImageReadWriter will send #reset which is implemented as #reopen and we may not be able to do so."
@@ -93,11 +76,8 @@ Form>>readNativeResourceFrom: byteStream [
 	img := nil.
 ]
 
-{
-	#category : #'*Graphics-Files-FileRegistry',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form class>>serviceImageAsBackground [
+{ #category : #'*Graphics-Files-FileRegistry' }
+Form class >> serviceImageAsBackground [
 	"Answer a service for setting the desktop background from a given graphical file's contents"
 
 	^ SimpleServiceEntry 
@@ -108,11 +88,8 @@ Form class>>serviceImageAsBackground [
 		buttonLabel: 'Background'
 ]
 
-{
-	#category : #'*Graphics-Files-FileRegistry',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form class>>serviceOpenImageInWindow [
+{ #category : #'*Graphics-Files-FileRegistry' }
+Form class >> serviceOpenImageInWindow [
 	"Answer a service for opening a graphic in a window"
 
 	^ SimpleServiceEntry 
@@ -123,39 +100,27 @@ Form class>>serviceOpenImageInWindow [
 		buttonLabel: 'Open'
 ]
 
-{
-	#category : #'*Graphics-Files-FileRegistry',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form class>>services [
+{ #category : #'*Graphics-Files-FileRegistry' }
+Form class >> services [
 
 	^ Array 
 		with: self serviceOpenImageInWindow
 		with: self serviceImageAsBackground 
 ]
 
-{
-	#category : #'*Graphics-Files-FileRegistry',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form class>>setBackgroundFromImageFileNamed: aFileName [
+{ #category : #'*Graphics-Files-FileRegistry' }
+Form class >> setBackgroundFromImageFileNamed: aFileName [
 
 	(self fromFileNamed: aFileName) setAsBackground
 ]
 
-{
-	#category : #'*Graphics-Files',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form>>writeBMPfileNamed: fName  "Display writeBMPfileNamed: 'display.bmp'" [
+{ #category : #'*Graphics-Files' }
+Form >> writeBMPfileNamed: fName [  "Display writeBMPfileNamed: 'display.bmp'"
 	BMPReadWriter putForm: self onFileNamed: fName
 ]
 
-{
-	#category : #'*Graphics-Files',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form>>writeJPEGfileNamed: fileName  [
+{ #category : #'*Graphics-Files' }
+Form >> writeJPEGfileNamed: fileName [ 
 	"Write a JPEG file to the given filename using default settings"
 
 	self writeJPEGfileNamed: fileName progressive: false
@@ -166,11 +131,8 @@ Form fromUser writeJPEGfileNamed: 'yourPatch.jpeg'
 "
 ]
 
-{
-	#category : #'*Graphics-Files',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form>>writeJPEGfileNamed: fileName  progressive: aBoolean [
+{ #category : #'*Graphics-Files' }
+Form >> writeJPEGfileNamed: fileName  progressive: aBoolean [
 	"Write a JPEG file to the given filename using default settings.  Make it progressive or not, depending on the boolean argument"
 
 	PluginBasedJPEGReadWriter putForm: self quality: -1 "default" progressiveJPEG: aBoolean onFileNamed: fileName
@@ -181,20 +143,14 @@ Form fromUser writeJPEGfileNamed: 'yourPatch.jpeg' progressive: true
 "
 ]
 
-{
-	#category : #'*Graphics-Files',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form>>writeOnMovie: file [
+{ #category : #'*Graphics-Files' }
+Form >> writeOnMovie: file [
 	"Write just my bits on the file."
 	self unhibernate.
 	bits writeUncompressedOn: file
 ]
 
-{
-	#category : #'*Graphics-Files',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form>>writePNGFileNamed: fileName   [
+{ #category : #'*Graphics-Files' }
+Form >> writePNGFileNamed: fileName [  
 	PNGReadWriter putForm: self onFileNamed: fileName
 ]

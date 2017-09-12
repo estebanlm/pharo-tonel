@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #MetacelloTutorialConfig,
 	#superclass : #Object,
 	#instVars : [
 		'project'
 	],
-	#category : #Metacello-Tutorial,
-	#timestamp : ''
+	#category : #Metacello-Tutorial
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig class>>bootstrapPackage: aString from: aPath  [
+{ #category : #private }
+MetacelloTutorialConfig class >> bootstrapPackage: aString from: aPath [ 
 	| repository version |
 	repository := MCHttpRepository
 				location: aPath
@@ -29,11 +22,8 @@ MetacelloTutorialConfig class>>bootstrapPackage: aString from: aPath  [
 			version workingCopy repositoryGroup addRepository: repository]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig class>>ensureMetacello [
+{ #category : #private }
+MetacelloTutorialConfig class >> ensureMetacello [
 	"Bootstrap Gofer (if necessary), bootstrap ConfigurationOfMetacello (using old Gofer API), then load the latest 
 	version of Metacello itself."
 
@@ -51,30 +41,21 @@ MetacelloTutorialConfig class>>ensureMetacello [
 		(Smalltalk at: #ConfigurationOfMetacello) perform: #load ]
 ]
 
-{
-	#category : #'metacello tool support',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig class>>isMetacelloConfig [
+{ #category : #'metacello tool support' }
+MetacelloTutorialConfig class >> isMetacelloConfig [
 	"Answer true and the Metacello tools will operate on you"
 	
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig class>>project [
+{ #category : #accessing }
+MetacelloTutorialConfig class >> project [
 
 	^self new project
 ]
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>baseline07: spec  [
+{ #category : #baselines }
+MetacelloTutorialConfig >> baseline07: spec [ 
 	<version: '0.7-baseline'>
 	
 	spec for: #common do: [
@@ -88,11 +69,8 @@ MetacelloTutorialConfig>>baseline07: spec  [
 
 ]
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>baseline10: spec  [
+{ #category : #baselines }
+MetacelloTutorialConfig >> baseline10: spec [ 
 	<version: '1.0-baseline'>
 	
 	spec for: #common do: [
@@ -111,11 +89,8 @@ MetacelloTutorialConfig>>baseline10: spec  [
 
 ]
 
-{
-	#category : #baselines,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>baseline13: spec  [
+{ #category : #baselines }
+MetacelloTutorialConfig >> baseline13: spec [ 
 	<version: '1.3-baseline'>
 	
 	spec for: #common do: [
@@ -141,11 +116,8 @@ MetacelloTutorialConfig>>baseline13: spec  [
 		spec package: 'Example-Platform' with: 'Example-Platform.squeak'.].
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson01 [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson01 [
 " [ see metod: #version01: ]
 Version 0.1 represents the simplest version specification possible. 
 
@@ -191,11 +163,8 @@ Metacello runs (#pharo, #squeak, #gemstone and #squeakCommon).
 "
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson02 [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson02 [
 "  [ see method: #version02: ]
 For version 0.2, we've simply updated the package version to 'Example-Core-anon.9', which 
 can be confirmed by printing the following expression:
@@ -205,11 +174,8 @@ can be confirmed by printing the following expression:
 "
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson03 [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson03 [
 "   [ see method: #version03: ]
 For version 0.3, we've updated the package version to 'Example-Core-anon.10' and added an additional 
 package 'Example-Tests-anon.3', which can be confirmed by printing the following expression:
@@ -222,11 +188,8 @@ each package is redundant.
 "
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson04 [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson04 [
 "   [ see method: #version04: ]
 The specification for version 0.4 is basically the same as version 0.3. Instead of listing a 
 repository with each package we specify a project repository that applies to all packages.
@@ -239,11 +202,8 @@ Compare the printStrings for the specs for each version:
 "
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson05 [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson05 [
 "   [ see method: #version05: ]
 For version 0.5 we've added an additional package to the mix: 'Example-AddOn':
 
@@ -277,11 +237,8 @@ dependencies.
 "
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson06 [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson06 [
 "   [ see method: #version06: ]
 In version 0.6 we've added dependency information in the form of the #requires: directive.
 Both 'Example-Tests' and  'Example-AddOn' require 'Example-Core' to be loaded before they are
@@ -299,11 +256,8 @@ version to version while the structural information will remain relatively stati
 "
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson07 [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson07 [
 "   [ see method: #baseline07: and #version07: ]
 For version 0.7, we are ceating a baseline version specification which is expected to be used
 across several versions and the version specification which is restricted to the file versions.
@@ -344,11 +298,8 @@ Of course when a number of developers are working on a project it may be useful 
 "
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson08 [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson08 [
 "   [ see method: #version08: ]
 In version 0.8 we've simply updated the package versions, which can be seen by comparing the 
 results of loading version 0.7 and 0.8:
@@ -359,11 +310,8 @@ results of loading version 0.7 and 0.8:
 "
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson10 [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson10 [
 "   [ see method: #baseline10: #version10: ]
 In #baseline10: we've added two things: the 'Example-AddOnTests' package and a specification for 
 groups. 
@@ -397,11 +345,8 @@ follows:
 "
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson11 [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson11 [
 "   [ see method: #version11: ]
 In version 0.11 we've defined a couple of attributes that are expected to be used all of the time
 in a version specification:
@@ -415,11 +360,8 @@ The following lessons cover each of these attributes in more detail.
 "
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson11Author [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson11Author [
 "  [ see method: #version11: ]
 The author of a version can be defined:
 
@@ -431,11 +373,8 @@ author as defined in the image.
 "
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson11Blessing [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson11Blessing [
 "   [ see method: #version11: ]
 A version can be tagged with a blessing like #alpha, #beta, #release, #development or any 
 other tag that you find useful. The blessing for version 1.1 is #development
@@ -483,11 +422,8 @@ the previous expression should load the absolute bleeding edge of the project.
 "
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson11Descripton [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson11Descripton [
 "  [ see method: #version11: ]
 A description can be defined for a version:
 
@@ -496,11 +432,8 @@ A description can be defined for a version:
 "
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson11Timestamp [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson11Timestamp [
 "  [ see method: #version11: ]
 The timestamp of a version can be defined:
 
@@ -513,11 +446,8 @@ The timestamp is a String
 "
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson12DoIts [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson12DoIts [
 "  [ see methods: #version12: #preloadForCore #postloadForCore:package: ]
 Occassionally, you find that you need to perform an expression either before a package is loaded, or
 after a package is loaded. To do that in Metacello, you can define a preLoadDoIt selector and a 
@@ -535,11 +465,8 @@ loaded packageSpec is the second optional argument.
 "
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson13 [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson13 [
 "  [ see methods: #baseline13: #version13: ]
 For version 1.3 we are adding a platform specific package 'Example-Platform'. 'Example-Platform'
 requires 'Example-Core'. On GemStone, Pharo and Squeak, a branch of the 'Example-Platform' package 
@@ -578,41 +505,29 @@ _before_ any packages that require the parent package.
 "
 ]
 
-{
-	#category : #lessons,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>lesson14 [
+{ #category : #lessons }
+MetacelloTutorialConfig >> lesson14 [
 "
 STILL UNDER CONSTRUCTION: Open your browsers on the class MetacelloProjectRefTutorial to continue the tutorial.
 "
 ]
 
-{
-	#category : #doits,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>postloadForCore: loader package: packageSpec [
+{ #category : #doits }
+MetacelloTutorialConfig >> postloadForCore: loader package: packageSpec [
 
 	Transcript cr; 
 		show: '#postloadForCore executed, Loader: ', loader printString, 
 			' spec: ', packageSpec printString.
 ]
 
-{
-	#category : #doits,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>preloadForCore [
+{ #category : #doits }
+MetacelloTutorialConfig >> preloadForCore [
 
 	Transcript cr; show: '#preloadForCore executed'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>project [
+{ #category : #accessing }
+MetacelloTutorialConfig >> project [
 	"NOTE: The MetacelloNullRecordingMCSpecLoader is being used to prevent packages
 		from being loaded, see MetacelloConfigTemplate>>project for an example #project
 		method that loads the package for real"
@@ -627,11 +542,8 @@ MetacelloTutorialConfig>>project [
 		project ]
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>version01: spec  [
+{ #category : #versions }
+MetacelloTutorialConfig >> version01: spec [ 
 	<version: '0.1'>
 	
 	spec for: #common do: [
@@ -643,11 +555,8 @@ MetacelloTutorialConfig>>version01: spec  [
 
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>version02: spec  [
+{ #category : #versions }
+MetacelloTutorialConfig >> version02: spec [ 
 	<version: '0.2'>
 	
 	spec for: #common do: [
@@ -659,11 +568,8 @@ MetacelloTutorialConfig>>version02: spec  [
 
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>version03: spec  [
+{ #category : #versions }
+MetacelloTutorialConfig >> version03: spec [ 
 	<version: '0.3'>
 	
 	spec for: #common do: [
@@ -679,11 +585,8 @@ MetacelloTutorialConfig>>version03: spec  [
 
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>version04: spec  [
+{ #category : #versions }
+MetacelloTutorialConfig >> version04: spec [ 
 	<version: '0.4'>
 	
 	spec for: #common do: [
@@ -694,11 +597,8 @@ MetacelloTutorialConfig>>version04: spec  [
 
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>version05: spec  [
+{ #category : #versions }
+MetacelloTutorialConfig >> version05: spec [ 
 	<version: '0.5'>
 	
 	spec for: #common do: [
@@ -710,11 +610,8 @@ MetacelloTutorialConfig>>version05: spec  [
 
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>version06: spec  [
+{ #category : #versions }
+MetacelloTutorialConfig >> version06: spec [ 
 	<version: '0.6'>
 	
 	spec for: #common do: [
@@ -732,11 +629,8 @@ MetacelloTutorialConfig>>version06: spec  [
 
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>version07: spec  [
+{ #category : #versions }
+MetacelloTutorialConfig >> version07: spec [ 
 	<version: '0.7' imports: #('0.7-baseline')>
 	
 	spec for: #common do: [
@@ -747,11 +641,8 @@ MetacelloTutorialConfig>>version07: spec  [
 
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>version08: spec  [
+{ #category : #versions }
+MetacelloTutorialConfig >> version08: spec [ 
 	<version: '0.8' imports: #('0.7-baseline')>
 	
 	spec for: #common do: [
@@ -762,11 +653,8 @@ MetacelloTutorialConfig>>version08: spec  [
 
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>version10: spec  [
+{ #category : #versions }
+MetacelloTutorialConfig >> version10: spec [ 
 	<version: '1.0' imports: #('1.0-baseline')>
 	
 	spec for: #common do: [
@@ -778,11 +666,8 @@ MetacelloTutorialConfig>>version10: spec  [
 
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>version11: spec  [
+{ #category : #versions }
+MetacelloTutorialConfig >> version11: spec [ 
 	<version: '1.1' imports: #('1.0-baseline')>
 	
 	spec for: #common do: [
@@ -798,11 +683,8 @@ MetacelloTutorialConfig>>version11: spec  [
 
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>version12: spec  [
+{ #category : #versions }
+MetacelloTutorialConfig >> version12: spec [ 
 	<version: '1.2' imports: #('1.0-baseline')>
 	
 	spec for: #common do: [
@@ -822,11 +704,8 @@ MetacelloTutorialConfig>>version12: spec  [
 
 ]
 
-{
-	#category : #versions,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MetacelloTutorialConfig>>version13: spec  [
+{ #category : #versions }
+MetacelloTutorialConfig >> version13: spec [ 
 	<version: '1.3' imports: #('1.3-baseline')>
 	
 	spec for: #common do: [

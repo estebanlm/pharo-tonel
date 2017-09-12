@@ -8,104 +8,67 @@ Class {
 		'obsoletion',
 		'modification'
 	],
-	#category : #Monticello-Patching,
-	#timestamp : '<historical>'
+	#category : #Monticello-Patching
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification class>>of: base to: target [
+{ #category : #instance-creation }
+MCModification class >> of: base to: target [
 	^ self new initializeWithBase: base target: target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification>>baseDefinition [
+{ #category : #accessing }
+MCModification >> baseDefinition [
 	^ obsoletion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification>>basicApplyTo: anObject [
+{ #category : #accessing }
+MCModification >> basicApplyTo: anObject [
 	anObject modifyDefinition: obsoletion to: modification
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification>>definition [
+{ #category : #accessing }
+MCModification >> definition [
 	^ modification
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification>>fromSource [
+{ #category : #accessing }
+MCModification >> fromSource [
 	^ obsoletion source
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification>>initializeWithBase: base target: target [
+{ #category : #initializing }
+MCModification >> initializeWithBase: base target: target [
 	obsoletion := base.
 	modification := target.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification>>inverse [
+{ #category : #accessing }
+MCModification >> inverse [
 	^ MCModification of: modification to: obsoletion
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification>>isClassPatch [
+{ #category : #testing }
+MCModification >> isClassPatch [
 	^obsoletion isClassDefinition
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification>>isModification [
+{ #category : #testing }
+MCModification >> isModification [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification>>modification [
+{ #category : #accessing }
+MCModification >> modification [
 	^ modification
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification>>obsoletion [
+{ #category : #accessing }
+MCModification >> obsoletion [
 	^ obsoletion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification>>printAnnotations: request on: aStream [
+{ #category : #accessing }
+MCModification >> printAnnotations: request [ on: aStream
 	aStream nextPutAll: 'old: '.
 	obsoletion printAnnotations: request on: aStream.
 	aStream cr.
@@ -113,20 +76,14 @@ MCModification>>printAnnotations: request on: aStream [
 	modification printAnnotations: request on: aStream.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification>>summarySuffix [
+{ #category : #accessing }
+MCModification >> summarySuffix [
 	^ modification summarySuffixOver: obsoletion
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification>>summarySuffixOver: previousDefinition [
+{ #category : #printing }
+MCModification >> summarySuffixOver: previousDefinition [
 	| sourceChanged categoryChanged timeStampChanged |
 	sourceChanged := self source ~= previousDefinition source.
 	timeStampChanged := self timeStamp ~= previousDefinition timeStamp.
@@ -145,26 +102,17 @@ MCModification>>summarySuffixOver: previousDefinition [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification>>targetClass [
+{ #category : #accessing }
+MCModification >> targetClass [
 	^ obsoletion actualClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification>>targetDefinition [
+{ #category : #accessing }
+MCModification >> targetDefinition [
 	^ modification
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCModification>>toSource [
+{ #category : #accessing }
+MCModification >> toSource [
 	^ modification diffSource
 ]

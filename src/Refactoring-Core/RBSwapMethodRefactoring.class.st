@@ -10,34 +10,24 @@ Class {
 		'target',
 		'selector'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 14:03'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSwapMethodRefactoring class>>model: aRBSmalltalk swapMethod: aSelector in: aClass [
+{ #category : #instance-creation }
+RBSwapMethodRefactoring class >> model: aRBSmalltalk swapMethod: aSelector in: aClass [
 	^ self new 
 		model: aRBSmalltalk;
 		swapMethod: aSelector in: aClass;
 		yourself
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSwapMethodRefactoring class>>swapMethod: aSelector in: aClass [
+{ #category : #instance-creation }
+RBSwapMethodRefactoring class >> swapMethod: aSelector in: aClass [
 	^ self new swapMethod: aSelector in: aClass
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSwapMethodRefactoring>>checkInstVars [
+{ #category : #preconditions }
+RBSwapMethodRefactoring >> checkInstVars [
 	class instanceVariableNames do: [ :each |
 		(target instanceVariableNames includes: each) ifFalse: [
 			((class whichSelectorsReferToInstanceVariable: each) includes: selector) ifTrue: [
@@ -45,21 +35,15 @@ RBSwapMethodRefactoring>>checkInstVars [
 					refactoringError: ('<1p> refers to <2s>, which is not defined in <3p>' expandMacrosWith: selector with: each with: target) ] ] ]
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSwapMethodRefactoring>>preconditions [
+{ #category : #preconditions }
+RBSwapMethodRefactoring >> preconditions [
 	^ (RBCondition definesSelector: selector in: class)
 		& (RBCondition definesSelector: selector in: target) not
 		& (RBCondition withBlock: [ self checkInstVars. true ])
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSwapMethodRefactoring>>swapMethod: aSelector in: aClass  [
+{ #category : #initialization }
+RBSwapMethodRefactoring >> swapMethod: aSelector in: aClass [ 
 	class := self classObjectFor: aClass.
 	target := self classObjectFor: (class isMeta 
 			ifTrue: [ class theNonMetaClass ]
@@ -67,11 +51,8 @@ RBSwapMethodRefactoring>>swapMethod: aSelector in: aClass  [
 	selector := aSelector
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBSwapMethodRefactoring>>transform [
+{ #category : #transforming }
+RBSwapMethodRefactoring >> transform [
 	target compile: (class sourceCodeFor: selector) classified: (class protocolsFor: selector).
 	class removeMethod: selector
 ]

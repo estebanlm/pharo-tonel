@@ -1,12 +1,7 @@
-Extension {
-	#name : #Class
-}
+Extension { #name : #Class }
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Class>>asFullRingDefinition [
+{ #category : #'*Ring-Core-Kernel' }
+Class >> asFullRingDefinition [
 	"A behavior is converted to a ring class including its variables, methods, direct superclass, direct subclasses and the package in which is loaded.
 	Active methods are generated and each knows its package as well.
 	Note that for its direct superclass and subclasses no full definitions are requested. If you need to traverse hierarchies use #asRingDefinitionWithMethods:withSuperclasses:withSubclasses:withPackages:"
@@ -42,11 +37,8 @@ Class>>asFullRingDefinition [
 	^ rgClass
 ]
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Class>>asRingDefinition [
+{ #category : #'*Ring-Core-Kernel' }
+Class >> asRingDefinition [
 	"A behavior is converted to a ring class. Only the receiver and its variables (instance, class, pools) are converted.
 	Methods, superclasses, subclasses are not generated"
 	
@@ -72,11 +64,8 @@ Class>>asRingDefinition [
 	^ ring
 ]
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Class>>asRingDefinitionWithMethods: methodsBoolean withSuperclasses: supersBoolean withSubclasses: subsBoolean withPackageKeys: packageKeys in: aRGSlice [
+{ #category : #'*Ring-Core-Kernel' }
+Class >> asRingDefinitionWithMethods: methodsBoolean withSuperclasses: supersBoolean withSubclasses: subsBoolean withPackageKeys: packageKeys [ in: aRGSlice
 	| rgClass rgMethod rgSuper rgSub subs |
 	rgClass := self asRingDefinition.
 	aRGSlice loadClass: rgClass using: packageKeys.
@@ -124,11 +113,8 @@ Class>>asRingDefinitionWithMethods: methodsBoolean withSuperclasses: supersBoole
 	^ rgClass
 ]
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Class>>asRingDefinitionWithMethods: methodsBoolean withSuperclasses: supersBoolean withSubclasses: subsBoolean withPackages: packsBoolean [
+{ #category : #'*Ring-Core-Kernel' }
+Class >> asRingDefinitionWithMethods: methodsBoolean withSuperclasses: supersBoolean withSubclasses: subsBoolean withPackages: packsBoolean [
 	"Retrieves a ring class/trait based on the receiver.
 	The data loaded in the class/trait (active methods, superclasses, subclasses and packages) is requested by the users.
 	As it may need to traverse hierarchies for retrieving super and subclasses a ring slice is created as the container for every class, method and package.

@@ -4,14 +4,10 @@ aFinger just move.
 Class {
 	#name : #OSTouchActionPointerMoveEvent,
 	#superclass : #OSTouchActionPointerEvent,
-	#category : #OSWindow-Core-Events-Touch,
-	#timestamp : '<historical>'
+	#category : #OSWindow-Core-Events-Touch
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchActionPointerMoveEvent>>accept: aVisitor [
+{ #category : #visitor }
+OSTouchActionPointerMoveEvent >> accept: aVisitor [
 	^aVisitor visitTouchPointerMoveEvent: self.
 ]

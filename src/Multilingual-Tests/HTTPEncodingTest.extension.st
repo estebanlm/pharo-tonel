@@ -1,12 +1,7 @@
-Extension {
-	#name : #HTTPEncodingTest
-}
+Extension { #name : #HTTPEncodingTest }
 
-{
-	#category : #'*Multilingual-Tests-OtherLanguages',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-HTTPEncodingTest>>testPercentEncodingHiragana [
+{ #category : #'*Multilingual-Tests-OtherLanguages' }
+HTTPEncodingTest >> testPercentEncodingHiragana [
 	| hiraA hiraO hiraAO encodedHiraA encodedHiraO encodedHiraAO |
 	"Make Japanese String from unicode. see http://www.unicode.org/charts/PDF/U3040.pdf"
 	hiraA := (Character value: 16r3042) asString.	"HIRAGANA LETTER A"

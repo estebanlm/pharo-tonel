@@ -9,33 +9,23 @@ Class {
 		'noButton',
 		'cancelButton'
 	],
-	#category : #Polymorph-Widgets-Windows,
-	#timestamp : 'gvc 9/23/2008 11:59'
+	#category : #Polymorph-Widgets-Windows
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CustomQuestionDialogWindow>>cancelButton [
+{ #category : #accessing }
+CustomQuestionDialogWindow >> cancelButton [
 
 	^ cancelButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CustomQuestionDialogWindow>>cancelButton: anObject [
+{ #category : #accessing }
+CustomQuestionDialogWindow >> cancelButton: anObject [
 
 	cancelButton := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CustomQuestionDialogWindow>>cancelText: aStringOrText help: helpString [
+{ #category : #'as yet unclassified' }
+CustomQuestionDialogWindow >> cancelText: aStringOrText help: helpString [
 	"Set the cancel button label.
 	if the text is nil, remove the button."
 
@@ -47,11 +37,8 @@ CustomQuestionDialogWindow>>cancelText: aStringOrText help: helpString [
 					setBalloonText: helpString]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CustomQuestionDialogWindow>>default: defaultOption [
+{ #category : #'as yet unclassified' }
+CustomQuestionDialogWindow >> default: defaultOption [
 	"Set the default button."
 
 	defaultOption
@@ -61,41 +48,29 @@ CustomQuestionDialogWindow>>default: defaultOption [
 					ifFalse: [self noButton isDefault: true]]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CustomQuestionDialogWindow>>defaultCancelButton [
+{ #category : #'as yet unclassified' }
+CustomQuestionDialogWindow >> defaultCancelButton [
 	"Answer a default cancel button."
 
 	^self newCancelButton
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CustomQuestionDialogWindow>>defaultNoButton [
+{ #category : #'as yet unclassified' }
+CustomQuestionDialogWindow >> defaultNoButton [
 	"Answer a default no button."
 
 	^self newNoButton
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CustomQuestionDialogWindow>>defaultYesButton [
+{ #category : #'as yet unclassified' }
+CustomQuestionDialogWindow >> defaultYesButton [
 	"Answer a default yes button."
 
 	^self newYesButton
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CustomQuestionDialogWindow>>initialize [
+{ #category : #initialization }
+CustomQuestionDialogWindow >> initialize [
 	"Initialize the receiver."
 
 	self
@@ -105,41 +80,29 @@ CustomQuestionDialogWindow>>initialize [
 	super initialize
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CustomQuestionDialogWindow>>newButtons [
+{ #category : #'as yet unclassified' }
+CustomQuestionDialogWindow >> newButtons [
 	"Answer new buttons as appropriate."
 
 	^{self yesButton. self noButton. self cancelButton}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CustomQuestionDialogWindow>>noButton [
+{ #category : #accessing }
+CustomQuestionDialogWindow >> noButton [
 	"Answer the value of noButton"
 
 	^ noButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CustomQuestionDialogWindow>>noButton: anObject [
+{ #category : #accessing }
+CustomQuestionDialogWindow >> noButton: anObject [
 	"Set the value of noButton"
 
 	noButton := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CustomQuestionDialogWindow>>noText: aStringOrText help: helpString [
+{ #category : #'as yet unclassified' }
+CustomQuestionDialogWindow >> noText: aStringOrText help: helpString [
 	"Set the no button label.
 	if the text is nil, remove the button."
 
@@ -151,31 +114,22 @@ CustomQuestionDialogWindow>>noText: aStringOrText help: helpString [
 					setBalloonText: helpString]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CustomQuestionDialogWindow>>yesButton [
+{ #category : #accessing }
+CustomQuestionDialogWindow >> yesButton [
 	"Answer the value of yesButton"
 
 	^ yesButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CustomQuestionDialogWindow>>yesButton: anObject [
+{ #category : #accessing }
+CustomQuestionDialogWindow >> yesButton: anObject [
 	"Set the value of yesButton"
 
 	yesButton := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CustomQuestionDialogWindow>>yesText: aStringOrText help: helpString [
+{ #category : #'as yet unclassified' }
+CustomQuestionDialogWindow >> yesText: aStringOrText help: helpString [
 	"Set the yes button label.
 	if the text is nil, remove the button."
 

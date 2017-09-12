@@ -14,46 +14,30 @@ Class {
 	#instVars : [
 		'allocatedByCairo'
 	],
-	#category : #Athens-Cairo-Text,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Text
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoGlyphsArray class>>externalNew: size  [
+{ #category : #'instance creation' }
+CairoGlyphsArray class >> externalNew: size [ 
 	^ self externalNewType: CairoGlyph size: size
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoGlyphsArray class>>new [
+{ #category : #'instance creation' }
+CairoGlyphsArray class >> new [
 	^ self new: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoGlyphsArray class>>new: size  [
+{ #category : #'instance creation' }
+CairoGlyphsArray class >> new: size [ 
 	^ self newType: CairoGlyph size: size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoGlyphsArray>>allocatedByCairo [
+{ #category : #accessing }
+CairoGlyphsArray >> allocatedByCairo [
 	^ allocatedByCairo 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-CairoGlyphsArray>>allocatedByCairo: aBoolean [
+{ #category : #accessing }
+CairoGlyphsArray >> allocatedByCairo: aBoolean [
 	allocatedByCairo := aBoolean
 ]

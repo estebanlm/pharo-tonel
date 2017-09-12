@@ -7,15 +7,11 @@ FTExamples example2.
 Class {
 	#name : #FTExampleDataSource,
 	#superclass : #FTSimpleDataSource,
-	#category : #Morphic-Widgets-FastTable-Examples,
-	#timestamp : 'EstebanLorenzano 6/3/2015 17:12'
+	#category : #Morphic-Widgets-FastTable-Examples
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleDataSource>>cellColumn: column row: rowIndex [
+{ #category : #accessing }
+FTExampleDataSource >> cellColumn: column row: rowIndex [ 
 	^ FTCellMorph new
 		color: (self colorFor: rowIndex);
 		cellInset: 5;
@@ -24,20 +20,14 @@ FTExampleDataSource>>cellColumn: column row: rowIndex [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleDataSource>>colorFor: index [
+{ #category : #private }
+FTExampleDataSource >> colorFor: index [
 	index odd ifTrue: [ ^ Smalltalk ui theme lightBackgroundColor ].
 	^ Smalltalk ui theme backgroundColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleDataSource>>iconFor: index [
+{ #category : #private }
+FTExampleDataSource >> iconFor: index [
 	| class |
 	class := self elementAt: index.
 	((class

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMTreeMorphSelectionChanged,
 	#superclass : #Announcement,
@@ -8,38 +5,25 @@ Class {
 		'selectionValue',
 		'selectionPathValue'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphSelectionChanged>>selectionPathValue [
+{ #category : #accessing }
+GLMTreeMorphSelectionChanged >> selectionPathValue [
 	^ selectionPathValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphSelectionChanged>>selectionPathValue: anObject [
+{ #category : #accessing }
+GLMTreeMorphSelectionChanged >> selectionPathValue: anObject [
 	selectionPathValue := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphSelectionChanged>>selectionValue [
+{ #category : #accessing }
+GLMTreeMorphSelectionChanged >> selectionValue [
 	^ selectionValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphSelectionChanged>>selectionValue: anObject [
+{ #category : #accessing }
+GLMTreeMorphSelectionChanged >> selectionValue: anObject [
 	selectionValue := anObject
 ]

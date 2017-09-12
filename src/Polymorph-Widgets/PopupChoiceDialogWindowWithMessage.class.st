@@ -17,45 +17,32 @@ Class {
 		'textFont',
 		'message'
 	],
-	#category : #Polymorph-Widgets-Windows,
-	#timestamp : 'LaurentLaffont 3/4/2011 22:43'
+	#category : #Polymorph-Widgets-Windows
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindowWithMessage>>icon [
+{ #category : #accessing }
+PopupChoiceDialogWindowWithMessage >> icon [
 	"Answer an icon for the receiver."
 
 	^ self iconNamed: #questionIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindowWithMessage>>iconMorph [
+{ #category : #accessing }
+PopupChoiceDialogWindowWithMessage >> iconMorph [
 	"Answer the value of iconMorph"
 
 	^ iconMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindowWithMessage>>iconMorph: anObject [
+{ #category : #accessing }
+PopupChoiceDialogWindowWithMessage >> iconMorph: anObject [
 	"Set the value of iconMorph"
 
 	iconMorph := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindowWithMessage>>initialExtent [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindowWithMessage >> initialExtent [
 	"Answer the initial extent for the receiver.
 	Adjust the text if the text	would be wider than 1/2 the display width."
 	
@@ -70,29 +57,20 @@ PopupChoiceDialogWindowWithMessage>>initialExtent [
 	^ext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindowWithMessage>>message [
+{ #category : #accessing }
+PopupChoiceDialogWindowWithMessage >> message [
 	
 	^ message
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindowWithMessage>>message: aStringOrText [
+{ #category : #accessing }
+PopupChoiceDialogWindowWithMessage >> message: aStringOrText [
 	
 	message := aStringOrText
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindowWithMessage>>newContentMorph [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindowWithMessage >> newContentMorph [
 	| top bottom |
 	self textMorph: self newTextMorph.
 	self text: self message.
@@ -102,31 +80,22 @@ PopupChoiceDialogWindowWithMessage>>newContentMorph [
 	^ self newGroupboxFor: (self newColumn: {top. bottom}).
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindowWithMessage>>newIconMorph [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindowWithMessage >> newIconMorph [
 	"Answer an icon for the receiver."
 	
 	^ImageMorph new form: self icon
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindowWithMessage>>newTextMorph [
+{ #category : #'as yet unclassified' }
+PopupChoiceDialogWindowWithMessage >> newTextMorph [
 	"Answer a text morph."
 	
 	^self newText: ''
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindowWithMessage>>text: aStringOrText [
+{ #category : #accessing }
+PopupChoiceDialogWindowWithMessage >> text: aStringOrText [
 	"Set the text."
 	
 	|t|
@@ -137,41 +106,29 @@ PopupChoiceDialogWindowWithMessage>>text: aStringOrText [
 	self textMorph newContents: t
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindowWithMessage>>textFont [
+{ #category : #accessing }
+PopupChoiceDialogWindowWithMessage >> textFont [
 	"Answer the text font."
 	
 	^textFont
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindowWithMessage>>textFont: aFont [
+{ #category : #accessing }
+PopupChoiceDialogWindowWithMessage >> textFont: aFont [
 	"Set the text font."
 	
 	textFont :=  aFont
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindowWithMessage>>textMorph [
+{ #category : #accessing }
+PopupChoiceDialogWindowWithMessage >> textMorph [
 	"Answer the value of textMorph"
 
 	^ textMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-PopupChoiceDialogWindowWithMessage>>textMorph: anObject [
+{ #category : #accessing }
+PopupChoiceDialogWindowWithMessage >> textMorph: anObject [
 	"Set the value of textMorph"
 
 	textMorph := anObject

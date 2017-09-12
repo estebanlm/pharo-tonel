@@ -11,14 +11,10 @@ ZnDefaultCharacterEncoder
 Class {
 	#name : #ZnDefaultCharacterEncoder,
 	#superclass : #DynamicVariable,
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : 'SvenVanCaekenberghe 5/10/2017 17:10'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnDefaultCharacterEncoder>>default [
+{ #category : #accessing }
+ZnDefaultCharacterEncoder >> default [
 	^ ZnUTF8Encoder new
 ]

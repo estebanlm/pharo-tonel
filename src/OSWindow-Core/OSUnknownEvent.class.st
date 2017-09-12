@@ -8,32 +8,22 @@ Class {
 	#instVars : [
 		'data'
 	],
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'IgorStasenko 7/30/2014 17:25'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSUnknownEvent>>accept: aVisitor [
+{ #category : #visitor }
+OSUnknownEvent >> accept: aVisitor [
 	^ aVisitor visitUnknownEvent: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSUnknownEvent>>data [
+{ #category : #accessing }
+OSUnknownEvent >> data [
 	
 	^ data
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSUnknownEvent>>data: anObject [
+{ #category : #accessing }
+OSUnknownEvent >> data: anObject [
 	
 	data := anObject
 ]

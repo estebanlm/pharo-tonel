@@ -18,33 +18,23 @@ collection allSatisfy: [ :each | condition ]
 Class {
 	#name : #RBAllAnyNoneSatisfyRule,
 	#superclass : #RBTransformationRule,
-	#category : #Refactoring-Critics-TransformationRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 17:33'
+	#category : #Refactoring-Critics-TransformationRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAllAnyNoneSatisfyRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBAllAnyNoneSatisfyRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'AllAnyNoneSatisfyRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAllAnyNoneSatisfyRule>>group [
+{ #category : #accessing }
+RBAllAnyNoneSatisfyRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAllAnyNoneSatisfyRule>>initialize [
+{ #category : #initialization }
+RBAllAnyNoneSatisfyRule >> initialize [
 	super initialize.
 	self rewriteRule
 	
@@ -103,18 +93,12 @@ RBAllAnyNoneSatisfyRule>>initialize [
 				`@condition ]'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAllAnyNoneSatisfyRule>>name [
+{ #category : #accessing }
+RBAllAnyNoneSatisfyRule >> name [
 	^ 'Replace with #allSatisfy:, #anySatisfy: or #noneSatisfy:'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAllAnyNoneSatisfyRule>>rationale [
+{ #category : #accessing }
+RBAllAnyNoneSatisfyRule >> rationale [
 	^ 'Replace ad-hoc implementations (using explicit logic based on do:) of allSatisfy:, anySatisfy: and noneSatisfy: by the adequate calls to #allSatisfy:, #anySatisfy: or #noneSatisfy:. '
 ]

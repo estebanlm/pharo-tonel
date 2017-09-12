@@ -1,12 +1,7 @@
-Extension {
-	#name : #ReMissingMethodCritique
-}
+Extension { #name : #ReMissingMethodCritique }
 
-{
-	#category : #'*qualityAssistantRecording',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReMissingMethodCritique>>dataForQAREntityless [
+{ #category : #'*qualityAssistantRecording' }
+ReMissingMethodCritique >> dataForQAREntityless [
 
 	^ super dataForQAREntityless
 		at: #missingSelector put: selector obfuscatedIfNecessary;

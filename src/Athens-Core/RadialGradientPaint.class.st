@@ -17,15 +17,11 @@ Class {
 		'radius',
 		'focalPoint'
 	],
-	#category : #Athens-Core-Paints,
-	#timestamp : '<historical>'
+	#category : #Athens-Core-Paints
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-RadialGradientPaint>>asAthensPaintOn: aCanvas [
+{ #category : #converting }
+RadialGradientPaint >> asAthensPaintOn: aCanvas [
 	^ aCanvas surface
 		createRadialGradient:  colorRamp
 		center: center
@@ -33,56 +29,38 @@ RadialGradientPaint>>asAthensPaintOn: aCanvas [
 		focalPoint: focalPoint 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-RadialGradientPaint>>center [
+{ #category : #accessing }
+RadialGradientPaint >> center [
 	
 	^ center
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-RadialGradientPaint>>center: aPoint [
+{ #category : #accessing }
+RadialGradientPaint >> center: aPoint [
 
 	center := aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-RadialGradientPaint>>focalPoint [
+{ #category : #accessing }
+RadialGradientPaint >> focalPoint [
 	
 	^ focalPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-RadialGradientPaint>>focalPoint: aPoint [
+{ #category : #accessing }
+RadialGradientPaint >> focalPoint: aPoint [
 
 	focalPoint := aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-RadialGradientPaint>>radius [
+{ #category : #accessing }
+RadialGradientPaint >> radius [
 	
 	^ radius
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-RadialGradientPaint>>radius: aNumber [
+{ #category : #accessing }
+RadialGradientPaint >> radius: aNumber [
 
 	radius := aNumber
 ]

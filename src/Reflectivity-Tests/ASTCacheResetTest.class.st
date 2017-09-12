@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #ASTCacheResetTest,
 	#superclass : #TestCase,
@@ -10,31 +7,21 @@ Class {
 		'link',
 		'node'
 	],
-	#category : #Reflectivity-Tests,
-	#timestamp : ''
+	#category : #Reflectivity-Tests
 }
 
-{
-	#category : #'test material',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ASTCacheResetTest>>annotatedMethod [
+{ #category : #'test material' }
+ASTCacheResetTest >> annotatedMethod [
 	^ 42
 ]
 
-{
-	#category : #'test material',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ASTCacheResetTest>>increment [
+{ #category : #'test material' }
+ASTCacheResetTest >> increment [
 	counter := counter + 1
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ASTCacheResetTest>>setUp [
+{ #category : #running }
+ASTCacheResetTest >> setUp [
 	cache := ASTCache default copy.
 	counter := 0.
 	link := MetaLink new
@@ -44,20 +31,14 @@ ASTCacheResetTest>>setUp [
 	node link: link
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ASTCacheResetTest>>tearDown [
+{ #category : #running }
+ASTCacheResetTest >> tearDown [
 	ASTCache default: cache.
 	node removeLink: link
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-ASTCacheResetTest>>testCacheResetPreserveLinks [
+{ #category : #tests }
+ASTCacheResetTest >> testCacheResetPreserveLinks [
 	self annotatedMethod.
 	self assert: counter equals: 1.
 	ASTCache reset.

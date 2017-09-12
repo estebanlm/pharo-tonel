@@ -20,77 +20,55 @@ Here are some example of my protocol:
 Class {
 	#name : #Magnitude,
 	#superclass : #Object,
-	#category : #Kernel-Numbers,
-	#timestamp : 'sd 9/4/2005 10:14'
+	#category : #Kernel-Numbers
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Magnitude>>< aMagnitude [
+{ #category : #testing }
+Magnitude >> < aMagnitude [ 
 	"Answer whether the receiver is less than the argument."
 
 	^self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Magnitude>><= aMagnitude [
+{ #category : #testing }
+Magnitude >> <= aMagnitude [ 
 	"Answer whether the receiver is less than or equal to the argument."
 
 	^(self > aMagnitude) not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Magnitude>>= aMagnitude [
+{ #category : #testing }
+Magnitude >> = aMagnitude [ 
 	"Compare the receiver with the argument and answer with true if the 
 	receiver is equal to the argument. Otherwise answer false."
 
 	^self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Magnitude>>> aMagnitude [
+{ #category : #testing }
+Magnitude >> > aMagnitude [ 
 	"Answer whether the receiver is greater than the argument."
 
 	^aMagnitude < self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Magnitude>>>= aMagnitude [
+{ #category : #testing }
+Magnitude >> >= aMagnitude [ 
 	"Answer whether the receiver is greater than or equal to the argument."
 
 	^aMagnitude <= self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Magnitude>>between: min and: max [
+{ #category : #testing }
+Magnitude >> between: min and: max [ 
 	"Answer whether the receiver is less than or equal to the argument, max, 
 	and greater than or equal to the argument, min."
 
 	^self >= min and: [self <= max]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Magnitude>>compareWith: anotherMagnitude ifLesser: lesserBlock ifEqual: equalBlock ifGreater: greaterBlock [
+{ #category : #comparing }
+Magnitude >> compareWith: anotherMagnitude ifLesser: lesserBlock ifEqual: equalBlock ifGreater: greaterBlock [
 
 	^ self < anotherMagnitude
 		ifTrue: lesserBlock
@@ -100,21 +78,15 @@ Magnitude>>compareWith: anotherMagnitude ifLesser: lesserBlock ifEqual: equalBlo
 				ifFalse: greaterBlock ]
 ]
 
-{
-	#category : #hash,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Magnitude>>hash [
+{ #category : #hash }
+Magnitude >> hash [
 	"Hash must be redefined whenever = is redefined."
 
 	^self subclassResponsibility
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Magnitude>>max: aMagnitude [
+{ #category : #comparing }
+Magnitude >> max: aMagnitude [ 
 	"Answer the receiver or the argument, whichever has the greater 
 	magnitude."
 
@@ -123,11 +95,8 @@ Magnitude>>max: aMagnitude [
 		ifFalse: [^aMagnitude]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Magnitude>>min: aMagnitude [
+{ #category : #comparing }
+Magnitude >> min: aMagnitude [ 
 	"Answer the receiver or the argument, whichever has the lesser 
 	magnitude."
 
@@ -136,11 +105,8 @@ Magnitude>>min: aMagnitude [
 		ifFalse: [^aMagnitude]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Magnitude>>min: aMin max: aMax [
+{ #category : #comparing }
+Magnitude >> min: aMin max: aMax [ 
 
 	^ (self min: aMin) max: aMax
 ]

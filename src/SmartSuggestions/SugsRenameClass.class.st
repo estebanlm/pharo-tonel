@@ -4,22 +4,15 @@ I know how to rename a class
 Class {
 	#name : #SugsRenameClass,
 	#superclass : #SugsSuggestion,
-	#category : #SmartSuggestions-Suggestion,
-	#timestamp : '<historical>'
+	#category : #SmartSuggestions-Suggestion
 }
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsRenameClass>>execute [
+{ #category : #execution }
+SugsRenameClass >> execute [
 	(NautilusRefactoring model: context) renameClass: context bindedSelectedClass.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsRenameClass>>label [
+{ #category : #accessing }
+SugsRenameClass >> label [
 	^'Rename class' translated
 ]

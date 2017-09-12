@@ -4,33 +4,23 @@ SUnit tests for MemoryFileSystem
 Class {
 	#name : #MemoryFileSystemTest,
 	#superclass : #FileSystemTest,
-	#category : #FileSystem-Tests-Memory,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:48'
+	#category : #FileSystem-Tests-Memory
 }
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-MemoryFileSystemTest>>createFileSystem [
+{ #category : #initialize-release }
+MemoryFileSystemTest >> createFileSystem [
 	^ FileSystem memory
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-MemoryFileSystemTest>>testEqual [
+{ #category : #tests }
+MemoryFileSystemTest >> testEqual [
 	| other |
 	other := self createFileSystem.
 	self deny: filesystem = other
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-MemoryFileSystemTest>>testIsMemoryFileSystem [
+{ #category : #tests }
+MemoryFileSystemTest >> testIsMemoryFileSystem [
 	self assert: filesystem isMemoryFileSystem.
 	
 ]

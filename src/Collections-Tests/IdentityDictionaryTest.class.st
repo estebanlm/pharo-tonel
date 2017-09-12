@@ -4,41 +4,28 @@ SUnit tests for identity dictionaries
 Class {
 	#name : #IdentityDictionaryTest,
 	#superclass : #DictionaryTest,
-	#category : #Collections-Tests-Unordered,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:20'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #'building suites',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IdentityDictionaryTest class>>shouldInheritSelectors [
+{ #category : #'building suites' }
+IdentityDictionaryTest class >> shouldInheritSelectors [
 
 ^true
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IdentityDictionaryTest>>canBeUnhealthy [
+{ #category : #requirements }
+IdentityDictionaryTest >> canBeUnhealthy [
 	^ false
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IdentityDictionaryTest>>classToBeTested [
+{ #category : #requirements }
+IdentityDictionaryTest >> classToBeTested [
 
 	^ IdentityDictionary
 ]
 
-{
-	#category : #'tests - identity',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-IdentityDictionaryTest>>testIdentity [
+{ #category : #'tests - identity' }
+IdentityDictionaryTest >> testIdentity [
 	| dict key |
 	dict := self classToBeTested new.
 	key := 'key'.

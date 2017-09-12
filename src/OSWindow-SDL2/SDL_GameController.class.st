@@ -10,59 +10,40 @@ Class {
 		'SDL2Constants',
 		'SDL2Types'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'RonieSalgado 4/10/2016 00:12'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #closing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_GameController>>close [
+{ #category : #closing }
+SDL_GameController >> close [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	^ self nbCall: #( void SDL_GameControllerClose(self ) )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_GameController>>getAttached [
+{ #category : #accessing }
+SDL_GameController >> getAttached [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	^ self nbCall: #( SDL_bool SDL_GameControllerGetAttached(self) )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_GameController>>getAxis: axis [
+{ #category : #accessing }
+SDL_GameController >> getAxis: axis [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	^ self nbCall: #( Sint16 SDL_GameControllerGetAxis(self , int axis) )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_GameController>>getButton: button [
+{ #category : #accessing }
+SDL_GameController >> getButton: button [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	^ self nbCall: #( Uint8 SDL_GameControllerGetButton(self , int button) )
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_GameController>>isGameController [
+{ #category : #testing }
+SDL_GameController >> isGameController [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_GameController>>name [
+{ #category : #accessing }
+SDL_GameController >> name [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	^ self nbCall: #( String SDL_GameControllerName(self) )
 ]

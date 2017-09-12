@@ -8,15 +8,11 @@ Instead of raising syntax errors at runtime, they are raised at compile time.
 Class {
 	#name : #OCCompileWithFailureTest,
 	#superclass : #TestCase,
-	#category : #OpalCompiler-Tests-Source,
-	#timestamp : 'MarcusDenker 5/9/2015 12:06'
+	#category : #OpalCompiler-Tests-Source
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompileWithFailureTest>>testEvalSimpleMethodWithError [
+{ #category : #tests }
+OCCompileWithFailureTest >> testEvalSimpleMethodWithError [
 	| ast cm |
 	ast := OpalCompiler new
 				source: 'method 3+';

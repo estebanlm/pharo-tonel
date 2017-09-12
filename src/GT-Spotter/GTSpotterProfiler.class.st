@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #GTSpotterProfiler,
 	#superclass : #KMCategory,
-	#category : #GT-Spotter-Utils,
-	#timestamp : ''
+	#category : #GT-Spotter-Utils
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProfiler class>>isGlobalCategory [
+{ #category : #testing }
+GTSpotterProfiler class >> isGlobalCategory [
 	^ true
 ]
 
-{
-	#category : #profiling,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProfiler class>>profileOneCycle [
+{ #category : #profiling }
+GTSpotterProfiler class >> profileOneCycle [
 	"Tally only the UI process"
 	
 	(self confirm: 'MessageTally the UI process one cycle')
@@ -42,11 +32,8 @@ GTSpotterProfiler class>>profileOneCycle [
 				[ done ] whileFalse: [ World doOneCycle ] ] ]
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProfiler>>keymapProfileOneCycle [
+{ #category : #shortcuts }
+GTSpotterProfiler >> keymapProfileOneCycle [
 	"KMRepository reset"
 	<shortcut>
 	^ KMKeymap

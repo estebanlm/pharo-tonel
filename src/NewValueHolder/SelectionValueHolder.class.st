@@ -8,15 +8,11 @@ Class {
 		'index',
 		'selection'
 	],
-	#category : #NewValueHolder,
-	#timestamp : 'BenjaminVanRyseghem 1/23/2014 15:18'
+	#category : #NewValueHolder
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SelectionValueHolder class>>index: indexValueHolder selection: selectionValueHolder [
+{ #category : #'instance creation' }
+SelectionValueHolder class >> index: indexValueHolder selection: selectionValueHolder [
 
 	^ self new
 		index: indexValueHolder;
@@ -24,30 +20,21 @@ SelectionValueHolder class>>index: indexValueHolder selection: selectionValueHol
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SelectionValueHolder>>index [
+{ #category : #accessing }
+SelectionValueHolder >> index [
 
 	^ index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SelectionValueHolder>>index: anIndex [
+{ #category : #accessing }
+SelectionValueHolder >> index: anIndex [
 
 	index := anIndex.
 	self valueChanged: index
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SelectionValueHolder>>initialize [
+{ #category : #initialization }
+SelectionValueHolder >> initialize [
 
 	super initialize.
 	index := 0 asValueHolder.
@@ -57,41 +44,29 @@ SelectionValueHolder>>initialize [
 	selection whenChangedSend: #valueChanged to: self.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SelectionValueHolder>>reset [
+{ #category : #protocol }
+SelectionValueHolder >> reset [
 
 	self index value: 0.
 	self selection value: nil.
 	self valueChanged
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SelectionValueHolder>>selection [
+{ #category : #accessing }
+SelectionValueHolder >> selection [
 
 	^ selection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SelectionValueHolder>>selection: aSelection [
+{ #category : #accessing }
+SelectionValueHolder >> selection: aSelection [
 
 	selection := aSelection.
 	self valueChanged: selection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SelectionValueHolder>>value [
+{ #category : #accessing }
+SelectionValueHolder >> value [
 
 	^ {index. selection}
 ]

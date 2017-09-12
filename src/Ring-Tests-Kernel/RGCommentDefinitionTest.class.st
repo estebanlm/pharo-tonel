@@ -4,15 +4,11 @@ SUnit tests for comment definitions
 Class {
 	#name : #RGCommentDefinitionTest,
 	#superclass : #TestCase,
-	#category : #Ring-Tests-Kernel,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:09'
+	#category : #Ring-Tests-Kernel
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGCommentDefinitionTest>>testActiveComment [
+{ #category : #testing }
+RGCommentDefinitionTest >> testActiveComment [
 
 	| rgComment |
 	rgComment := RGCommentDefinition realClass: RGClassDefinition.
@@ -43,11 +39,8 @@ RGCommentDefinitionTest>>testActiveComment [
 	self assert: rgComment content ~= ''
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGCommentDefinitionTest>>testCommentFromSourceFile [
+{ #category : #testing }
+RGCommentDefinitionTest >> testCommentFromSourceFile [
 	| rgComment |
 	
 	rgComment := (RGCommentDefinition realClass: RGClassDefinition) asHistorical.
@@ -57,11 +50,8 @@ RGCommentDefinitionTest>>testCommentFromSourceFile [
 	self assert: rgComment stamp notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGCommentDefinitionTest>>testCommentWithoutAuthor [
+{ #category : #testing }
+RGCommentDefinitionTest >> testCommentWithoutAuthor [
 	| newComment |
 	
 	newComment:= RGCommentDefinition new
@@ -72,11 +62,8 @@ RGCommentDefinitionTest>>testCommentWithoutAuthor [
 	self assert: (newComment hasAuthor not).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGCommentDefinitionTest>>testNewComment [
+{ #category : #testing }
+RGCommentDefinitionTest >> testNewComment [
 	| newComment |
 	
 	newComment:= RGCommentDefinition new
@@ -97,11 +84,8 @@ RGCommentDefinitionTest>>testNewComment [
 	self assert: (newComment environment = Smalltalk globals).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGCommentDefinitionTest>>testSorting [
+{ #category : #testing }
+RGCommentDefinitionTest >> testSorting [
 
 	| rgComm1 rgComm2 |
 	rgComm1 := RGCommentDefinition realClass: RGClassDefinition.
@@ -109,11 +93,8 @@ RGCommentDefinitionTest>>testSorting [
 	self assert: rgComm1 <= rgComm2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGCommentDefinitionTest>>testingConversion [
+{ #category : #testing }
+RGCommentDefinitionTest >> testingConversion [
 	
 	| rgComm |
 	rgComm := RGCommentDefinition realClass: RGClassDefinition.

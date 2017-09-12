@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #SlotTraitsTest,
 	#superclass : #SlotSilentTest,
-	#category : #Slot-Tests,
-	#timestamp : ''
+	#category : #Slot-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotTraitsTest>>testClassWithClassTrait [
+{ #category : #tests }
+SlotTraitsTest >> testClassWithClassTrait [
 
 	self assert: TOne traitUsers isEmpty.
 	self assert: TOne classTrait traitUsers isEmpty.
@@ -27,11 +20,8 @@ SlotTraitsTest>>testClassWithClassTrait [
 	self assert: aClass one equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotTraitsTest>>testClassWithTrait [
+{ #category : #tests }
+SlotTraitsTest >> testClassWithTrait [
 
 	self assert: TOne traitUsers isEmpty.
 	self assert: TOne classTrait traitUsers isEmpty.
@@ -46,11 +36,8 @@ SlotTraitsTest>>testClassWithTrait [
 	self assert: aClass new one equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotTraitsTest>>testClassWithTrait2 [
+{ #category : #tests }
+SlotTraitsTest >> testClassWithTrait2 [
 
 	self assert: TOne traitUsers isEmpty.
 	self assert: TOne classTrait traitUsers isEmpty.
@@ -66,11 +53,8 @@ SlotTraitsTest>>testClassWithTrait2 [
 	self assert: aClass new classOne equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotTraitsTest>>testModifyClassTraitComposition [
+{ #category : #tests }
+SlotTraitsTest >> testModifyClassTraitComposition [
 	"Tests that when modifing the trait composition on class-side, the old methods are removed from the method dictionary, and the new ones are added."
 
 	self make: [ :builder | 
@@ -104,11 +88,8 @@ SlotTraitsTest>>testModifyClassTraitComposition [
 	self deny: (aClass canUnderstand: #two).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotTraitsTest>>testModifyTraitComposition [
+{ #category : #tests }
+SlotTraitsTest >> testModifyTraitComposition [
 	"Tests that when modifing the trait composition, the old methods are removed from the method dictionary, and the new ones are added."
 	
 	self make: [ :builder | 
@@ -144,11 +125,8 @@ SlotTraitsTest>>testModifyTraitComposition [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotTraitsTest>>testRemoveClassTrait [
+{ #category : #tests }
+SlotTraitsTest >> testRemoveClassTrait [
 	"Tests that when removing a trait from class-side, its methods are removed from the method dictionary."
 
 	aClass := self make: [ :builder | 
@@ -163,11 +141,8 @@ SlotTraitsTest>>testRemoveClassTrait [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotTraitsTest>>testRemoveTrait [
+{ #category : #tests }
+SlotTraitsTest >> testRemoveTrait [
 	"Tests that when removing a trait from a class, its methods are removed from the method dictionary."
 	
 	self make: [ :builder | 
@@ -182,11 +157,8 @@ SlotTraitsTest>>testRemoveTrait [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotTraitsTest>>testTraitUsersAfterClassReshape [
+{ #category : #tests }
+SlotTraitsTest >> testTraitUsersAfterClassReshape [
 
 	aClass := self make: [ :builder | 
 		builder
@@ -229,11 +201,8 @@ SlotTraitsTest>>testTraitUsersAfterClassReshape [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotTraitsTest>>testTraitUsersAfterMetaclassReshape [
+{ #category : #tests }
+SlotTraitsTest >> testTraitUsersAfterMetaclassReshape [
 
 	aClass := self make: [ :builder | 
 		builder

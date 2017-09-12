@@ -10,35 +10,23 @@ Set, Bag, Dictionary.
 "
 Trait {
 	#name : #TIterateTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'stephane.ducasse 10/6/2008 17:49'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>collectionWithoutNilElements [
+{ #category : #requirements }
+TIterateTest >> collectionWithoutNilElements [
 " return a collection that doesn't includes a nil element  and that doesn't includes equal elements'"
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>empty [
+{ #category : #requirements }
+TIterateTest >> empty [
 
 	self explicitRequirement
 ]
 
-{
-	#category : #'test - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>test0FixtureIterateTest [
+{ #category : #'test - fixture' }
+TIterateTest >> test0FixtureIterateTest [
 	| res |
 	self collectionWithoutNilElements.
 	self assert: (self collectionWithoutNilElements occurrencesOf: nil) = 0.
@@ -49,11 +37,8 @@ TIterateTest>>test0FixtureIterateTest [
 	self assert: res = false
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testAllSatisfy [
+{ #category : #'tests - iterating' }
+TIterateTest >> testAllSatisfy [
 
 	| element |
 	" when all element  satisfy the condition, should return true : "
@@ -67,21 +52,15 @@ TIterateTest>>testAllSatisfy [
 	self deny: ( self collectionWithoutNilElements  allSatisfy: [:each | (each = element) not] ).
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testAllSatisfyEmpty [
+{ #category : #'tests - iterating' }
+TIterateTest >> testAllSatisfyEmpty [
 
 	self assert: ( self empty allSatisfy: [:each | false]).
 	
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testAnySastify [
+{ #category : #'tests - iterating' }
+TIterateTest >> testAnySastify [
 
 	| element |
 	" when all elements satisty the condition, should return true :"
@@ -96,11 +75,8 @@ TIterateTest>>testAnySastify [
 
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testBasicCollect [
+{ #category : #'tests - iterating' }
+TIterateTest >> testBasicCollect [
 
 	| res index |
 	index := 0.
@@ -114,11 +90,8 @@ TIterateTest>>testBasicCollect [
 	 
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testBasicCollectEmpty [
+{ #category : #'tests - iterating' }
+TIterateTest >> testBasicCollectEmpty [
 
 	| res |
 	res := self empty collect: [:each | each class].
@@ -126,11 +99,8 @@ TIterateTest>>testBasicCollectEmpty [
 	
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testBasicCollectThenDo [
+{ #category : #'tests - iterating' }
+TIterateTest >> testBasicCollectThenDo [
 
 	| result index |
 	index := 0.
@@ -145,37 +115,25 @@ TIterateTest>>testBasicCollectThenDo [
 	 
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testCollectOnEmpty [
+{ #category : #'tests - iterating' }
+TIterateTest >> testCollectOnEmpty [
 	self assert: (self empty collect: [:e | self fail]) isEmpty
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testCollectThenDoOnEmpty [
+{ #category : #'tests - iterating' }
+TIterateTest >> testCollectThenDoOnEmpty [
 
 	self assert: (self empty collect: [:e | self fail] thenDo: [ self fail ]) isEmpty
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testCollectThenSelectOnEmpty [
+{ #category : #'tests - iterating' }
+TIterateTest >> testCollectThenSelectOnEmpty [
 
 	self assert: (self empty collect: [:e | self fail] thenSelect: [:e | self fail ]) isEmpty
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testDetect [
+{ #category : #'tests - iterating' }
+TIterateTest >> testDetect [
 
 	| res element |
 	element := self collectionWithoutNilElements anyOne .
@@ -187,11 +145,8 @@ TIterateTest>>testDetect [
 	
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testDetectIfNone [
+{ #category : #'tests - iterating' }
+TIterateTest >> testDetectIfNone [
 
 	| res element |
 	res := self collectionWithoutNilElements  detect: [:each | each notNil not] ifNone: [100].
@@ -205,11 +160,8 @@ TIterateTest>>testDetectIfNone [
 	
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testDo2 [
+{ #category : #'tests - iterating' }
+TIterateTest >> testDo2 [
 	"dc: Bad test, it assumes that a new instance of #speciesClass allows addition with #add:. This is not the case of Interval for which species is Array."
 	"res := self speciesClass new.  
 	self collection do: [:each | res add: each class].
@@ -233,11 +185,8 @@ TIterateTest>>testDo2 [
 	
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testDoSeparatedBy [
+{ #category : #'tests - iterating' }
+TIterateTest >> testDoSeparatedBy [
 	| string expectedString beforeFirst |
 	
 	string := ''.
@@ -256,11 +205,8 @@ TIterateTest>>testDoSeparatedBy [
 	self assert: expectedString = string
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testDoWithout [
+{ #category : #'tests - iterating' }
+TIterateTest >> testDoWithout [
 	"self debug: #testDoWithout"
 	
 	| res element collection |
@@ -274,11 +220,8 @@ TIterateTest>>testDoWithout [
 	
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testInjectInto [
+{ #category : #'tests - iterating' }
+TIterateTest >> testInjectInto [
 	|result|
 	result:= self collectionWithoutNilElements 
 		inject: 0
@@ -287,11 +230,8 @@ TIterateTest>>testInjectInto [
 	self assert: self collectionWithoutNilElements size = result .
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testNoneSatisfy [
+{ #category : #'tests - iterating' }
+TIterateTest >> testNoneSatisfy [
 
 	| element |
 	self assert: ( self collectionWithoutNilElements  noneSatisfy: [:each | each notNil not ] ).
@@ -299,21 +239,15 @@ TIterateTest>>testNoneSatisfy [
 	self deny: ( self collectionWithoutNilElements  noneSatisfy: [:each | (each = element)not ] ).
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testNoneSatisfyEmpty [
+{ #category : #'tests - iterating' }
+TIterateTest >> testNoneSatisfyEmpty [
 
 	self assert: ( self empty noneSatisfy: [:each | false]).
 	
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testReject [
+{ #category : #'tests - iterating' }
+TIterateTest >> testReject [
 
 	| res element |
 	res := self collectionWithoutNilElements reject: [:each | each notNil not].
@@ -327,11 +261,8 @@ TIterateTest>>testReject [
 	
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testRejectAllThenCollect [
+{ #category : #'tests - iterating' }
+TIterateTest >> testRejectAllThenCollect [
 	| result |
 	
 	result := self collectionWithoutNilElements 
@@ -341,11 +272,8 @@ TIterateTest>>testRejectAllThenCollect [
 	self assert: result isEmpty
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testRejectAllThenDo [
+{ #category : #'tests - iterating' }
+TIterateTest >> testRejectAllThenDo [
 	| result |
 	
 	result := self collectionWithoutNilElements 
@@ -355,11 +283,8 @@ TIterateTest>>testRejectAllThenDo [
 	self assert: result equals: self collectionWithoutNilElements
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testRejectEmpty [
+{ #category : #'tests - iterating' }
+TIterateTest >> testRejectEmpty [
 
 	| res |
 	res := self empty reject: [:each | each odd].
@@ -367,11 +292,8 @@ TIterateTest>>testRejectEmpty [
 	
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testRejectNoReject [
+{ #category : #'tests - iterating' }
+TIterateTest >> testRejectNoReject [
 
 	| res |
 	res := self collectionWithoutNilElements  reject: [:each | each notNil not].
@@ -379,11 +301,8 @@ TIterateTest>>testRejectNoReject [
 	
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testRejectThenCollect [
+{ #category : #'tests - iterating' }
+TIterateTest >> testRejectThenCollect [
 
 	| result index selectIndex pivot |
 	
@@ -411,20 +330,14 @@ TIterateTest>>testRejectThenCollect [
 	 
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testRejectThenCollectEmpty [
+{ #category : #'tests - iterating' }
+TIterateTest >> testRejectThenCollectEmpty [
 
 	self assert: (self empty reject: [:e | self fail ] thenCollect: [ :each| self fail ]) isEmpty
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testRejectThenDo [
+{ #category : #'tests - iterating' }
+TIterateTest >> testRejectThenDo [
 
 	| result index rejectIndex |
 	
@@ -446,20 +359,14 @@ TIterateTest>>testRejectThenDo [
 	 
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testRejectThenDoOnEmpty [
+{ #category : #'tests - iterating' }
+TIterateTest >> testRejectThenDoOnEmpty [
 
 	self assert: (self empty reject: [:e | self fail ] thenDo: [ self fail ]) isEmpty
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testSelect [
+{ #category : #'tests - iterating' }
+TIterateTest >> testSelect [
 
 	| result element |
 	result := self collectionWithoutNilElements select: [ :each | each notNil].
@@ -471,11 +378,8 @@ TIterateTest>>testSelect [
 	
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testSelectNoneThenCollect [
+{ #category : #'tests - iterating' }
+TIterateTest >> testSelectNoneThenCollect [
 	| result |
 	
 	result := self collectionWithoutNilElements 
@@ -485,11 +389,8 @@ TIterateTest>>testSelectNoneThenCollect [
 	self assert: result isEmpty
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testSelectNoneThenDo [
+{ #category : #'tests - iterating' }
+TIterateTest >> testSelectNoneThenDo [
 	| result |
 	
 	result := self collectionWithoutNilElements 
@@ -499,21 +400,15 @@ TIterateTest>>testSelectNoneThenDo [
 	self assert: result equals: self collectionWithoutNilElements
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testSelectOnEmpty [
+{ #category : #'tests - iterating' }
+TIterateTest >> testSelectOnEmpty [
 
 	self assert: (self empty select: [:e | self fail]) isEmpty
 	
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testSelectThenCollect [
+{ #category : #'tests - iterating' }
+TIterateTest >> testSelectThenCollect [
 
 	| result index selectIndex pivot |
 	
@@ -541,20 +436,14 @@ TIterateTest>>testSelectThenCollect [
 	 
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testSelectThenCollectOnEmpty [
+{ #category : #'tests - iterating' }
+TIterateTest >> testSelectThenCollectOnEmpty [
 
 	self assert: (self empty select: [:e | self fail ] thenCollect: [ self fail ]) isEmpty
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testSelectThenDo [
+{ #category : #'tests - iterating' }
+TIterateTest >> testSelectThenDo [
 
 	| result index selectIndex |
 	
@@ -576,20 +465,14 @@ TIterateTest>>testSelectThenDo [
 	 
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testSelectThenDoOnEmpty [
+{ #category : #'tests - iterating' }
+TIterateTest >> testSelectThenDoOnEmpty [
 
 	self assert: (self empty select: [:e | self fail ] thenDo: [ self fail ]) isEmpty
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TIterateTest>>testSumNumbers [
+{ #category : #'tests - iterating' }
+TIterateTest >> testSumNumbers [
 	|result|
 	result:= self collectionWithoutNilElements 
 		sumNumbers: [ :ele | ele notNil ifTrue: [ 1 ] ifFalse: [ 0 ]].

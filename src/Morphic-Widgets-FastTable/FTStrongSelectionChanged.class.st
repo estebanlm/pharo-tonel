@@ -32,49 +32,33 @@ Class {
 		'selectedRowIndex',
 		'event'
 	],
-	#category : #Morphic-Widgets-FastTable-Announcement,
-	#timestamp : 'CyrilFerlicot 11/17/2015 12:45'
+	#category : #Morphic-Widgets-FastTable-Announcement
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTStrongSelectionChanged class>>rowIndex: aNumber event: anEvent [
+{ #category : #'instance creation' }
+FTStrongSelectionChanged class >> rowIndex: aNumber event: anEvent [
 	^ self new 
 		selectedRowIndex: aNumber;
 		event: anEvent;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTStrongSelectionChanged>>event [
+{ #category : #accessing }
+FTStrongSelectionChanged >> event [
 	^ event 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTStrongSelectionChanged>>event: anEvent [
+{ #category : #accessing }
+FTStrongSelectionChanged >> event: anEvent [
 	event := anEvent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTStrongSelectionChanged>>selectedRowIndex [
+{ #category : #accessing }
+FTStrongSelectionChanged >> selectedRowIndex [
 	^ selectedRowIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTStrongSelectionChanged>>selectedRowIndex: anObject [
+{ #category : #accessing }
+FTStrongSelectionChanged >> selectedRowIndex: anObject [
 	selectedRowIndex := anObject
 ]

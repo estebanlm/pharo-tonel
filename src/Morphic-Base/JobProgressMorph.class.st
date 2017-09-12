@@ -21,32 +21,22 @@ Class {
 		'BarHeight',
 		'BarWidth'
 	],
-	#category : #Morphic-Base-ProgressBar,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-ProgressBar
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph class>>job: aJob [
+{ #category : #'instance creation' }
+JobProgressMorph class >> job: aJob [
 	^ self new initializeJob: aJob
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>beComplete [
+{ #category : #API }
+JobProgressMorph >> beComplete [
 
 	self close.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>changed [
+{ #category : #updating }
+JobProgressMorph >> changed [
 
 	| msRefreshRate isTimeForRefresh |
 	msRefreshRate := 60 "roughly 16 times per second".
@@ -55,96 +45,66 @@ JobProgressMorph>>changed [
 		super changed ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>close [
+{ #category : #private }
+JobProgressMorph >> close [
 
 	SystemProgressMorph uniqueInstance close: self.
 	self removeDependent: SystemProgressMorph uniqueInstance.
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>current [
+{ #category : #API }
+JobProgressMorph >> current [
 
 	^ bar value.
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>current: aNumber [
+{ #category : #API }
+JobProgressMorph >> current: aNumber [
 
 	bar value: aNumber.
 	self changed.
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>debug [
+{ #category : #action }
+JobProgressMorph >> debug [
 	job isRunning ifTrue: [ job debug ].
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>decrement [
+{ #category : #API }
+JobProgressMorph >> decrement [
 
 	bar decrement.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>do: aBlock [
+{ #category : #private }
+JobProgressMorph >> do: aBlock [
 
 	self changed. "We may be in the UI thread, so this will give us a change to dsiplay ourselves before the block starts"
 	^ [ aBlock value: self ] ensure: [ self close ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>forceRefreshOnNextChange [
+{ #category : #private }
+JobProgressMorph >> forceRefreshOnNextChange [
 
 	lastRefresh := 0.
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>increment [
+{ #category : #API }
+JobProgressMorph >> increment [
 
 	bar increment.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>initialize [
+{ #category : #initialization }
+JobProgressMorph >> initialize [
 
 	super initialize.
 
 	self addDependent: SystemProgressMorph uniqueInstance.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>initializeJob: aJob [
+{ #category : #private }
+JobProgressMorph >> initializeJob: aJob [
 
 	super initialize.
 	
@@ -172,28 +132,19 @@ JobProgressMorph>>initializeJob: aJob [
 	self updateLayout.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>job: aJob [
+{ #category : #accessing }
+JobProgressMorph >> job: aJob [
 	job := aJob
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>label [
+{ #category : #API }
+JobProgressMorph >> label [
 	
 	^ self labelMorph contents.
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>label: aString [
+{ #category : #API }
+JobProgressMorph >> label: aString [
 
 	self label isEmpty ifTrue: [ 
 		aString isEmptyOrNil 
@@ -213,104 +164,71 @@ JobProgressMorph>>label: aString [
 	self changed: #width
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>labelMorph [
+{ #category : #private }
+JobProgressMorph >> labelMorph [
 
 	^ labelMorph.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>lastRefresh [
+{ #category : #accessing }
+JobProgressMorph >> lastRefresh [
 	^ lastRefresh ifNil: [  lastRefresh := 0 ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>max: aNumber [
+{ #category : #private }
+JobProgressMorph >> max: aNumber [
  
 	endValue := aNumber
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>progress [
+{ #category : #API }
+JobProgressMorph >> progress [
 
 	^ bar progress
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>progress: aNormalizedNumber [
+{ #category : #API }
+JobProgressMorph >> progress: aNormalizedNumber [
 	bar progress = aNormalizedNumber
 		ifFalse: [ 
 			bar progress: aNormalizedNumber.
 			self changed: #progressValue ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>refresh [
+{ #category : #private }
+JobProgressMorph >> refresh [
 
 	lastRefresh := Time millisecondClockValue.	
 	self width: (labelMorph width) + 25.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>result [
+{ #category : #private }
+JobProgressMorph >> result [
 
 	^ result
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>result: anObject [
+{ #category : #private }
+JobProgressMorph >> result: anObject [
 	lock critical: [ 
 		hasResult := true.
 		result := anObject ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>start: aNumber [
+{ #category : #private }
+JobProgressMorph >> start: aNumber [
 
 	startValue := aNumber.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>startAt: aNumber [
+{ #category : #private }
+JobProgressMorph >> startAt: aNumber [
  
 	startValue := aNumber.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JobProgressMorph>>updateLayout [
+{ #category : #private }
+JobProgressMorph >> updateLayout [
 
 	labelMorph contents isEmpty
 		ifFalse: [ self addMorphBack: labelMorph].

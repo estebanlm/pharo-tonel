@@ -11,74 +11,49 @@ Class {
 		'customMenuActions',
 		'text'
 	],
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #spec,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector class>>debuggerSpec [
+{ #category : #spec }
+EyeAbstractInspector class >> debuggerSpec [
 	<spec:#default>
 	^ self inspectorSpec
 ]
 
-{
-	#category : #spec,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector class>>inspectorSpec [
+{ #category : #spec }
+EyeAbstractInspector class >> inspectorSpec [
 	<spec>
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector class>>label [
+{ #category : #accessing }
+EyeAbstractInspector class >> label [
 	"Override to return a proper label displayd in the inspector choice"
 	^ self name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector class>>taskbarIconName [
+{ #category : #accessing }
+EyeAbstractInspector class >> taskbarIconName [
 	^#smallInspectItIcon
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>close [
+{ #category : #event-handling }
+EyeAbstractInspector >> close [
 	"Override in sublcasses for special actions"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>customMenuActions [
+{ #category : #accessing }
+EyeAbstractInspector >> customMenuActions [
 	^ customMenuActions ifNil: [ customMenuActions := [  ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>customMenuActions: anObject [
+{ #category : #accessing }
+EyeAbstractInspector >> customMenuActions: anObject [
 	customMenuActions := anObject
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>diveInto: anObject [
+{ #category : #event-handling }
+EyeAbstractInspector >> diveInto: anObject [
 	self owner ifNotNil: [ :navigator | 
 		(navigator respondsTo: #diveInto:)
 			ifTrue: [ ^ navigator diveInto: anObject ] ].
@@ -86,27 +61,18 @@ EyeAbstractInspector>>diveInto: anObject [
 	self inspectInNewWindow: anObject.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>diveIntoSelectedObject [
+{ #category : #actions }
+EyeAbstractInspector >> diveIntoSelectedObject [
 	self selectedObjectDo: [ :anObject | self diveInto: anObject ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>hasSelectedObject [
+{ #category : #testing }
+EyeAbstractInspector >> hasSelectedObject [
 	^ self selectedElement isNotNil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>initialize [
+{ #category : #initialization }
+EyeAbstractInspector >> initialize [
 
 	"The inspected object will be stored in the valueObject object to be able to use WhenObjectChanged:"
 	
@@ -115,47 +81,31 @@ EyeAbstractInspector>>initialize [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>initializePresenter [
+{ #category : #initialization }
+EyeAbstractInspector >> initializePresenter [
 	object whenChangedDo: [ self objectChanged ].
 	self text
 		whenBuiltDo: [ :w | w widget editingMode classOrMetaClass: self object class ].
 	self initializeShortcuts
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>initializeShortcuts [
+{ #category : #initialization }
+EyeAbstractInspector >> initializeShortcuts [
 	"override to add custom shortcuts to your model"
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>initializeWidgets [
-
+{ #category : #initialization }
+EyeAbstractInspector >> initializeWidgets [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>inspect: anObject  [
+{ #category : #accessing }
+EyeAbstractInspector >> inspect: anObject [ 
 	self object: anObject.
 	
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>inspectionMenu: aMenu [
+{ #category : #menu }
+EyeAbstractInspector >> inspectionMenu: aMenu [
 	| menuModel |
 	self hasSelectedObject ifFalse: [ ^ aMenu ].
 	menuModel := MenuModel new.
@@ -165,11 +115,8 @@ EyeAbstractInspector>>inspectionMenu: aMenu [
 	^aMenu
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>inspectionSubMenu: aMenu [
+{ #category : #menu }
+EyeAbstractInspector >> inspectionSubMenu: aMenu [
 
 	aMenu addGroup: [:aGroup |
 		aGroup addItem: [ :item |
@@ -188,56 +135,38 @@ EyeAbstractInspector>>inspectionSubMenu: aMenu [
 	]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>labelFor: anEyeElement error: error [
+{ #category : #api }
+EyeAbstractInspector >> labelFor: anEyeElement error: error [
 	^ 'Error while accessing label of ', anEyeElement accessorCode printString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>object [
+{ #category : #accessing }
+EyeAbstractInspector >> object [
 
 	^ object value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>object: anObject [
+{ #category : #accessing }
+EyeAbstractInspector >> object: anObject [
 
 	object value: anObject
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>objectChanged [
+{ #category : #event-handling }
+EyeAbstractInspector >> objectChanged [
 	"triggered when the inspected object is changed"
 	self subclassResponsibility
 ]
 
-{
-	#category : #event-handling,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>ownerChanged [
+{ #category : #event-handling }
+EyeAbstractInspector >> ownerChanged [
 	self
 		customMenuActions: self owner customMenuActions;
 		takeKeyboardFocus
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>refreshSubMenu: aMenu [
+{ #category : #menu }
+EyeAbstractInspector >> refreshSubMenu: aMenu [
 	"Add a refresh button in the inspector. Not used anymore since there is this loop in initializeInspectorLoop."
 
 	aMenu 
@@ -248,45 +177,30 @@ EyeAbstractInspector>>refreshSubMenu: aMenu [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>selectedElement [
+{ #category : #accessing }
+EyeAbstractInspector >> selectedElement [
 	"return the currently selected object wrapper / eye-element"
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>selectedElementDo: aBlock [
+{ #category : #accessing }
+EyeAbstractInspector >> selectedElementDo: aBlock [
 	self selectedElement ifNotNil: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>selectedObject [
+{ #category : #accessing }
+EyeAbstractInspector >> selectedObject [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>selectedObjectDo: aBlock [
+{ #category : #accessing }
+EyeAbstractInspector >> selectedObjectDo: aBlock [
 	self selectedElement ifNotNil: [ :element |
 		aBlock value: element value ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>shortCuts [
+{ #category : #initialization }
+EyeAbstractInspector >> shortCuts [
 	"Answers a dictionary of the shortcuts usable in EyeInspector"
 
 	|shortCuts|
@@ -304,29 +218,20 @@ EyeAbstractInspector>>shortCuts [
 	^shortCuts
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>text [
+{ #category : #accessing }
+EyeAbstractInspector >> text [
 	^ text ifNil: [ 
 		text := self newCode.
 		text aboutToStyle: true. ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>title [
+{ #category : #accessing }
+EyeAbstractInspector >> title [
 	^ self object class printString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeAbstractInspector>>variants [
+{ #category : #accessing }
+EyeAbstractInspector >> variants [
 	| variants defaultInspectorClass |
 	
 	variants := OrderedCollection new.

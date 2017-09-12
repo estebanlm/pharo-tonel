@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCClassTraitDefinition
-}
+Extension { #name : #MCClassTraitDefinition }
 
-{
-	#category : #'*Ring-Monticello',
-	#timestamp : ' 8/31/2017 07:17:02'
-}
-MCClassTraitDefinition>>asRingDefinition [
+{ #category : #'*Ring-Monticello' }
+MCClassTraitDefinition >> asRingDefinition [
 
 	^(RGMetatraitDefinition named:  baseTrait)
 		traitCompositionSource: self classTraitCompositionString;
@@ -14,11 +9,8 @@ MCClassTraitDefinition>>asRingDefinition [
 		yourself
 ]
 
-{
-	#category : #'*Ring-Monticello',
-	#timestamp : ' 8/31/2017 07:17:02'
-}
-MCClassTraitDefinition>>classDefinitionString [
+{ #category : #'*Ring-Monticello' }
+MCClassTraitDefinition >> classDefinitionString [
 
 	^self definitionString
 ]

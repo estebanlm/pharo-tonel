@@ -8,6 +8,5 @@ Class {
 	#instVars : [
 		'name'
 	],
-	#category : #Versionner-Core-DependenciesModel,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-DependenciesModel
 }

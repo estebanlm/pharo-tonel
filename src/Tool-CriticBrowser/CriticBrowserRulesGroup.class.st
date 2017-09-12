@@ -8,15 +8,11 @@ Class {
 		'name',
 		'rules'
 	],
-	#category : #Tool-CriticBrowser,
-	#timestamp : 'SlotIntegrationTest 7/13/2016 01:09'
+	#category : #Tool-CriticBrowser
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowserRulesGroup class>>named: aString rules: aCollection [
+{ #category : #'instance creation' }
+CriticBrowserRulesGroup class >> named: aString rules: aCollection [
 
 	^ self new
 		name: aString;
@@ -24,52 +20,34 @@ CriticBrowserRulesGroup class>>named: aString rules: aCollection [
 		yourself
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowserRulesGroup>>do: aBlock [
+{ #category : #enumerating }
+CriticBrowserRulesGroup >> do: aBlock [
 
 	rules do: aBlock
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowserRulesGroup>>isComposite [
+{ #category : #testing }
+CriticBrowserRulesGroup >> isComposite [
 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowserRulesGroup>>name [
+{ #category : #accessing }
+CriticBrowserRulesGroup >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowserRulesGroup>>name: anObject [
+{ #category : #accessing }
+CriticBrowserRulesGroup >> name: anObject [
 	name := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowserRulesGroup>>rules [
+{ #category : #accessing }
+CriticBrowserRulesGroup >> rules [
 	^ rules
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-CriticBrowserRulesGroup>>rules: anObject [
+{ #category : #accessing }
+CriticBrowserRulesGroup >> rules: anObject [
 	rules := anObject
 ]

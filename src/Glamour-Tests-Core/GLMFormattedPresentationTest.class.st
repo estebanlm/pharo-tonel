@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMFormattedPresentationTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormattedPresentationTest>>testFormat [
+{ #category : #tests }
+GLMFormattedPresentationTest >> testFormat [
 	| presentation |
 	presentation := GLMFormatedPresentation new.
 	presentation format: [ :c | c ].

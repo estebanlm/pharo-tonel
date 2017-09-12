@@ -11,31 +11,21 @@ Class {
 		'frame',
 		'spike'
 	],
-	#category : #Athens-Examples,
-	#timestamp : '<historical>'
+	#category : #Athens-Examples
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensFlakeDemo>>circle [
+{ #category : #'as yet unclassified' }
+AthensFlakeDemo >> circle [
 	^ circle 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensFlakeDemo>>defaultExtent [
+{ #category : #'as yet unclassified' }
+AthensFlakeDemo >> defaultExtent [
 	^ 800@800
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensFlakeDemo>>drawCircles: canvas [
+{ #category : #'as yet unclassified' }
+AthensFlakeDemo >> drawCircles: canvas [
 
 	canvas pathTransform restoreAfter: [
 		
@@ -59,22 +49,16 @@ AthensFlakeDemo>>drawCircles: canvas [
 	]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensFlakeDemo>>drawOn: aCanvas [
+{ #category : #'as yet unclassified' }
+AthensFlakeDemo >> drawOn: aCanvas [
 
 	self render.
 	surface displayOnMorphicCanvas: aCanvas at: bounds origin. 
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensFlakeDemo>>drawSpike: canvas [
+{ #category : #'as yet unclassified' }
+AthensFlakeDemo >> drawSpike: canvas [
 
 
 	|  dist |
@@ -106,11 +90,8 @@ AthensFlakeDemo>>drawSpike: canvas [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensFlakeDemo>>initialize  [
+{ #category : #'as yet unclassified' }
+AthensFlakeDemo >> initialize [ 
 
 	super initialize.
 	self extent: self defaultExtent.
@@ -143,11 +124,8 @@ AthensFlakeDemo>>initialize  [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensFlakeDemo>>render  [
+{ #category : #'as yet unclassified' }
+AthensFlakeDemo >> render [ 
 
 	surface drawDuring: [:canvas | 
 		canvas pathTransform loadIdentity.
@@ -171,20 +149,14 @@ AthensFlakeDemo>>render  [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensFlakeDemo>>step [
+{ #category : #'as yet unclassified' }
+AthensFlakeDemo >> step [
 	frame := Time millisecondClockValue / 100.
 	
 	self changed
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensFlakeDemo>>stepTime [
+{ #category : #'as yet unclassified' }
+AthensFlakeDemo >> stepTime [
 	^ 0
 ]

@@ -7,31 +7,21 @@ Class {
 	#instVars : [
 		'emptyClass'
 	],
-	#category : #SmartSuggestions-Tests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:42'
+	#category : #SmartSuggestions-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionTest>>addMethodToDelegate [
+{ #category : #private }
+SugsSuggestionTest >> addMethodToDelegate [
 	self emptyClass compile: 'methodToDelegate<n><t>2+5. <n><t>OrderedCollection new.' expandMacros classified: #testing
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionTest>>addVariable: name to: aClass [
+{ #category : #private }
+SugsSuggestionTest >> addVariable: name to: aClass [
 	name first isUppercase ifTrue: [ aClass addClassVarNamed: name] ifFalse: [aClass addInstVarNamed: name].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionTest>>createAccessorsFor: varName in: aClass [
+{ #category : #private }
+SugsSuggestionTest >> createAccessorsFor: varName in: aClass [
 
 	self createGetter: varName in: aClass.	
 	self createSetter: varName in: aClass .
@@ -39,11 +29,8 @@ SugsSuggestionTest>>createAccessorsFor: varName in: aClass [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionTest>>createClass: symbol [
+{ #category : #private }
+SugsSuggestionTest >> createClass: symbol [
 	| newClass |
 	
 	newClass := Object 
@@ -55,19 +42,13 @@ SugsSuggestionTest>>createClass: symbol [
 	^newClass.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionTest>>createContext: selectedVariableName [
+{ #category : #private }
+SugsSuggestionTest >> createContext: selectedVariableName [
 	^ SugsMockContext for: self emptyClass selectedVariable: selectedVariableName 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionTest>>createGetter: varName in: aClass [
+{ #category : #private }
+SugsSuggestionTest >> createGetter: varName in: aClass [
 	| target name |
 
 	target := self targetFor: varName in: aClass.
@@ -79,11 +60,8 @@ SugsSuggestionTest>>createGetter: varName in: aClass [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionTest>>createSetter: varName in: aClass  [
+{ #category : #private }
+SugsSuggestionTest >> createSetter: varName in: aClass [ 
 	| target name |
 	
 	target := self targetFor: varName in: aClass.
@@ -95,19 +73,13 @@ SugsSuggestionTest>>createSetter: varName in: aClass  [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionTest>>emptyClass [
+{ #category : #private }
+SugsSuggestionTest >> emptyClass [
 	^ emptyClass
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionTest>>nameFor: varName [
+{ #category : #private }
+SugsSuggestionTest >> nameFor: varName [
 	| name |
 	
 	name:= varName copy.
@@ -115,28 +87,19 @@ SugsSuggestionTest>>nameFor: varName [
 	^name.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionTest>>removeClass: aClass [
+{ #category : #private }
+SugsSuggestionTest >> removeClass: aClass [
 	aClass removeFromSystem.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionTest>>setUp [
+{ #category : #initialize-release }
+SugsSuggestionTest >> setUp [
 	super setUp.
 	emptyClass  := self createClass: #TestWithAccessors.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionTest>>tearDown [
+{ #category : #initialize-release }
+SugsSuggestionTest >> tearDown [
 	super tearDown.
 	self removeClass: emptyClass .
 ]

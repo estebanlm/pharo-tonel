@@ -1,38 +1,25 @@
-"
-
-"
 Class {
 	#name : #MetacelloProjectSpecLoadConflict,
 	#superclass : #MetacelloProjectSpecLoadError,
-	#category : #Metacello-Core-Exceptions-Errors,
-	#timestamp : ''
+	#category : #Metacello-Core-Exceptions-Errors
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecLoadConflict>>isResumable [
+{ #category : #private }
+MetacelloProjectSpecLoadConflict >> isResumable [
 	"Determine whether an exception is resumable."
 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecLoadConflict>>possibleVersions [
+{ #category : #accessing }
+MetacelloProjectSpecLoadConflict >> possibleVersions [
     "not applicable to a Conflict error"
 
     self shouldNotImplement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloProjectSpecLoadConflict>>versionString [
+{ #category : #accessing }
+MetacelloProjectSpecLoadConflict >> versionString [
     "not applicable to a Conflict error"
 
     self shouldNotImplement

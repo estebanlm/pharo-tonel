@@ -1,54 +1,34 @@
-Extension {
-	#name : #Form
-}
+Extension { #name : #Form }
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form>>asAlphaImageMorph [
+{ #category : #'*Morphic-Base' }
+Form >> asAlphaImageMorph [
 
 	^ AlphaImageMorph new image: self
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form>>asMorph [
+{ #category : #'*Morphic-Base' }
+Form >> asMorph [
 	^ImageMorph new form: self
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form class>>floodFillTolerance [
+{ #category : #'*Morphic-Base' }
+Form class >> floodFillTolerance [
 	^ FloodFillTolerance ifNil: [FloodFillTolerance := 0.0]
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form>>floodFillTolerance [
+{ #category : #'*Morphic-Base' }
+Form >> floodFillTolerance [
 	^ self class floodFillTolerance
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form>>iconOrThumbnailOfSize: aNumberOrPoint  [
+{ #category : #'*Morphic-Base' }
+Form >> iconOrThumbnailOfSize: aNumberOrPoint [ 
 	"Answer an appropiate form to represent the receiver"
 	^ self scaledIntoFormOfSize: aNumberOrPoint
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form>>scaledIntoFormOfSize: aNumberOrPoint  [
+{ #category : #'*Morphic-Base' }
+Form >> scaledIntoFormOfSize: aNumberOrPoint [ 
 	"Scale and center the receiver into a form of a given size"
 
 	| extent scale scaledForm result |
@@ -74,11 +54,8 @@ Form>>scaledIntoFormOfSize: aNumberOrPoint  [
 
 ]
 
-{
-	#category : #'*Morphic-Base-Support',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Form>>stencil [
+{ #category : #'*Morphic-Base-Support' }
+Form >> stencil [
 	"return a 1-bit deep, black-and-white stencil of myself"
 
 	| canvas |

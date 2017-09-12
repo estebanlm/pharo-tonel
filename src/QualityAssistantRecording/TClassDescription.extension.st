@@ -1,12 +1,7 @@
-Extension {
-	#name : #TClassDescription
-}
+Extension { #name : #TClassDescription }
 
-{
-	#category : #'*qualityAssistantRecording',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-TClassDescription>>dataForQAR [
+{ #category : #'*qualityAssistantRecording' }
+TClassDescription >> dataForQAR [
 
 	^ super dataForQAR
 		at: #class put: self class name;

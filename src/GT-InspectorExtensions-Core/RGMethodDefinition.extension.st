@@ -1,34 +1,23 @@
-Extension {
-	#name : #RGMethodDefinition
-}
+Extension { #name : #RGMethodDefinition }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-RGMethodDefinition>>gtInspectorImplementorsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+RGMethodDefinition >> gtInspectorImplementorsIn: composite [
 	<gtInspectorPresentationOrder: 4>
 	composite list 
 		title: 'Implementors';
 		display: [ self compiledMethod implementors ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-RGMethodDefinition>>gtInspectorSendersIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+RGMethodDefinition >> gtInspectorSendersIn: composite [
 	<gtInspectorPresentationOrder: 2>
 	composite list 
 		title: 'Senders';
 		display: [ self compiledMethod senders ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-RGMethodDefinition>>gtInspectorSourceIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+RGMethodDefinition >> gtInspectorSourceIn: composite [
 	<gtInspectorPresentationOrder: 00>
 	^ composite pharoMethod 
 		title: 'Source';

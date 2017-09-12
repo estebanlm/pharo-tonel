@@ -8,159 +8,101 @@ Class {
 		'action',
 		'arguments'
 	],
-	#category : #Morphic-Widgets-Tree-Announcements,
-	#timestamp : 'TorstenBergmann 9/5/2014 15:25'
+	#category : #Morphic-Widgets-Tree-Announcements
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest class>>chunkSize: anInteger [
+{ #category : #'instance creation' }
+MorphTreeChangeRequest class >> chunkSize: anInteger [
 	^ self new action: #chunkSize:; arguments: (Array with: anInteger)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest class>>collapseAll [
+{ #category : #'instance creation' }
+MorphTreeChangeRequest class >> collapseAll [
 	^ self new action: #collapseAll
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest class>>collapseNodePath: aNodePath [
+{ #category : #'instance creation' }
+MorphTreeChangeRequest class >> collapseNodePath: aNodePath [
 	^ self new action: #collapseNodePath:; arguments: (Array with: aNodePath) 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest class>>deselectAll [
+{ #category : #'instance creation' }
+MorphTreeChangeRequest class >> deselectAll [
 	^ self new action: #deselectAll
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest class>>enabled [
+{ #category : #'instance creation' }
+MorphTreeChangeRequest class >> enabled [
 	^ self new action: #enabledFromModel
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest class>>expandAll [
+{ #category : #'instance creation' }
+MorphTreeChangeRequest class >> expandAll [
 	^ self new action: #expandAll
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest class>>expandAllFromNode: aNode [
+{ #category : #'instance creation' }
+MorphTreeChangeRequest class >> expandAllFromNode: aNode [
 	^ self new action: #expandAllFromNode:; arguments: (Array with: aNode)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest class>>expandItemPath: anItemPath [
+{ #category : #'instance creation' }
+MorphTreeChangeRequest class >> expandItemPath: anItemPath [
 	^ self new action: #expandItemPath:; arguments: (Array with: anItemPath)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest class>>expandNodePath: aNodePath [
+{ #category : #'instance creation' }
+MorphTreeChangeRequest class >> expandNodePath: aNodePath [
 	^ self new action: #expandNodePath:; arguments: (Array with: aNodePath)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest class>>expandRoots [
+{ #category : #'instance creation' }
+MorphTreeChangeRequest class >> expandRoots [
 	^ self new action: #expandRoots
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest class>>pageSize: anInteger [
+{ #category : #'instance creation' }
+MorphTreeChangeRequest class >> pageSize: anInteger [
 	^ self new action: #pageSize:; arguments: (Array with: anInteger)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest class>>selectAll [
+{ #category : #'instance creation' }
+MorphTreeChangeRequest class >> selectAll [
 	^ self new action: #selectAll
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest class>>selectItems: itemsList [
+{ #category : #'instance creation' }
+MorphTreeChangeRequest class >> selectItems: itemsList [
 	^ self new action: #selectItems:; arguments: (Array with: itemsList)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest class>>updateList [
+{ #category : #'instance creation' }
+MorphTreeChangeRequest class >> updateList [
 	^ self new action: #updateList
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest class>>updateSelectionFromModel [
+{ #category : #'instance creation' }
+MorphTreeChangeRequest class >> updateSelectionFromModel [
 	^ self new action: #updateSelectionFromModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest>>action: aSymbol [
+{ #category : #accessing }
+MorphTreeChangeRequest >> action: aSymbol [
 	action := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest>>arguments [
+{ #category : #accessing }
+MorphTreeChangeRequest >> arguments [
 	^ arguments ifNil: [Array new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest>>arguments: anArray [
+{ #category : #accessing }
+MorphTreeChangeRequest >> arguments: anArray [
 	arguments := anArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeChangeRequest>>change: aTreeMorph [
+{ #category : #accessing }
+MorphTreeChangeRequest >> change: aTreeMorph [
 	action ifNil: [^self].
 	aTreeMorph perform: action withEnoughArguments: self arguments
 ]

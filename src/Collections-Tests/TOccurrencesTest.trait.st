@@ -3,42 +3,27 @@ A trait for test purposes
 "
 Trait {
 	#name : #TOccurrencesTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:34'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TOccurrencesTest>>collectionWithoutEqualElements [
+{ #category : #requirements }
+TOccurrencesTest >> collectionWithoutEqualElements [
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TOccurrencesTest>>elementNotInForOccurrences [
+{ #category : #requirements }
+TOccurrencesTest >> elementNotInForOccurrences [
 " return an element notIncluded in #collectionWithoutEqualElements"
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TOccurrencesTest>>empty [
+{ #category : #requirements }
+TOccurrencesTest >> empty [
 	self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TOccurrencesTest>>test0FixtureOccurrencesTest [
+{ #category : #'tests - fixture' }
+TOccurrencesTest >> test0FixtureOccurrencesTest [
 	| tmp |
 	self empty.
 	self assert: self empty isEmpty.
@@ -53,32 +38,23 @@ TOccurrencesTest>>test0FixtureOccurrencesTest [
 	self deny: (self collectionWithoutEqualElements includes: self elementNotInForOccurrences)
 ]
 
-{
-	#category : #'tests - occurrencesOf',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TOccurrencesTest>>testOccurrencesOf [
+{ #category : #'tests - occurrencesOf' }
+TOccurrencesTest >> testOccurrencesOf [
 	| collection |
 	collection := self collectionWithoutEqualElements .
 	
 	collection do: [ :each | self assert: (collection occurrencesOf: each) = 1 ].
 ]
 
-{
-	#category : #'tests - occurrencesOf',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TOccurrencesTest>>testOccurrencesOfEmpty [
+{ #category : #'tests - occurrencesOf' }
+TOccurrencesTest >> testOccurrencesOfEmpty [
 	| result |
 	result := self empty occurrencesOf: (self collectionWithoutEqualElements anyOne).
 	self assert: result = 0
 ]
 
-{
-	#category : #'tests - occurrencesOf',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TOccurrencesTest>>testOccurrencesOfNotIn [
+{ #category : #'tests - occurrencesOf' }
+TOccurrencesTest >> testOccurrencesOfNotIn [
 	| result |
 	result := self collectionWithoutEqualElements occurrencesOf: self elementNotInForOccurrences.
 	self assert: result = 0

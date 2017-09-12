@@ -1,40 +1,27 @@
-"
-
-"
 Class {
 	#name : #PharoBootstrapRuleTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'checkerBackup'
 	],
-	#category : #Kernel-Tests-Rules,
-	#timestamp : ''
+	#category : #Kernel-Tests-Rules
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PharoBootstrapRuleTest>>setUp [
+{ #category : #running }
+PharoBootstrapRuleTest >> setUp [
 	checkerBackup := PharoBootstrapRule
 		classVarNamed: 'DependencyChecker'.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PharoBootstrapRuleTest>>tearDown [
+{ #category : #running }
+PharoBootstrapRuleTest >> tearDown [
 	PharoBootstrapRule
 		classVarNamed: 'DependencyChecker' 
 		put: checkerBackup.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PharoBootstrapRuleTest>>testRuleDoesNotFailIfAppliedOnNonBootstrapPackage [
+{ #category : #tests }
+PharoBootstrapRuleTest >> testRuleDoesNotFailIfAppliedOnNonBootstrapPackage [
 	| rule critiques |
 	rule := PharoBootstrapRule new.
 	rule class 
@@ -46,11 +33,8 @@ PharoBootstrapRuleTest>>testRuleDoesNotFailIfAppliedOnNonBootstrapPackage [
 	self assert: critiques isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PharoBootstrapRuleTest>>testRuleDoesNotFailIfNoNewExternalDependency [
+{ #category : #tests }
+PharoBootstrapRuleTest >> testRuleDoesNotFailIfNoNewExternalDependency [
 	| rule critiques |
 	rule := PharoBootstrapRule new.
 	rule class 
@@ -62,11 +46,8 @@ PharoBootstrapRuleTest>>testRuleDoesNotFailIfNoNewExternalDependency [
 	self assert: critiques isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-PharoBootstrapRuleTest>>testRuleFailsIfAnyNewExternalDependencyFound [
+{ #category : #tests }
+PharoBootstrapRuleTest >> testRuleFailsIfAnyNewExternalDependencyFound [
 	| rule packageUnderTest critiques |
 	rule := PharoBootstrapRule new.
 	rule class 

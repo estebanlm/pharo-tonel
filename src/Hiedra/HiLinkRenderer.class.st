@@ -11,49 +11,33 @@ Class {
 		'linkBuilder',
 		'rulerBuilder'
 	],
-	#category : #Hiedra-Rendering,
-	#timestamp : '<historical>'
+	#category : #Hiedra-Rendering
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLinkRenderer>>addCheckpoint: aPoint [
+{ #category : #accessing }
+HiLinkRenderer >> addCheckpoint: aPoint [
 	checkpoints add: aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLinkRenderer>>checkpoints: aCollectionOfPoints [
+{ #category : #accessing }
+HiLinkRenderer >> checkpoints: aCollectionOfPoints [
 	checkpoints := aCollectionOfPoints
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLinkRenderer>>initialize [
+{ #category : #initialization }
+HiLinkRenderer >> initialize [
 	super initialize.
 	
 	checkpoints := OrderedCollection new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLinkRenderer>>linkBuilder: aHiLinkBuilder  [
+{ #category : #accessing }
+HiLinkRenderer >> linkBuilder: aHiLinkBuilder [ 
 	linkBuilder := aHiLinkBuilder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLinkRenderer>>linkModel: aHiLinkBuilder  [
+{ #category : #accessing }
+HiLinkRenderer >> linkModel: aHiLinkBuilder [ 
 	self 
 		deprecated: 'Use linkBuilder: instead'
 		on: 	'17 March 2016' 
@@ -61,19 +45,13 @@ HiLinkRenderer>>linkModel: aHiLinkBuilder  [
 	^ self linkBuilder: aHiLinkBuilder 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLinkRenderer>>rulerBuilder: aHiRulerBuilder  [
+{ #category : #accessing }
+HiLinkRenderer >> rulerBuilder: aHiRulerBuilder [ 
 	rulerBuilder := aHiRulerBuilder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLinkRenderer>>rulerModel: aHiRulerBuilder  [
+{ #category : #accessing }
+HiLinkRenderer >> rulerModel: aHiRulerBuilder [ 
 	self 
 		deprecated: 'Use rulerBuilder: instead'
 		on: 	'17 March 2016' 
@@ -81,11 +59,8 @@ HiLinkRenderer>>rulerModel: aHiRulerBuilder  [
 	^ self rulerBuilder: aHiRulerBuilder 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-HiLinkRenderer>>setPaint [
+{ #category : #accessing }
+HiLinkRenderer >> setPaint [
 "	| paint |
 	paint := athensCanvas surface 
 		createLinearGradient: { 0 -> linkBuilder color muchLighter.  1 -> linkBuilder color } 

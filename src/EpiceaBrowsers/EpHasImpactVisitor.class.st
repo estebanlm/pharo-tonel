@@ -9,47 +9,34 @@ Class {
 	#instVars : [
 		'environment'
 	],
-	#category : #EpiceaBrowsers-Visitors,
-	#timestamp : 'MartinDias 4/5/2017 18:56'
+	#category : #EpiceaBrowsers-Visitors
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor class>>inEnvironment: anEnvironment [
+{ #category : #'instance creation' }
+EpHasImpactVisitor class >> inEnvironment: anEnvironment [
 
 	^ self basicNew 
 		initializeWith: anEnvironment;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor>>behaviorNamed: aSymbol ifPresent: presentBlock [
+{ #category : #private }
+EpHasImpactVisitor >> behaviorNamed: aSymbol ifPresent: presentBlock [
 
 	^ (environment classOrTraitNamed: aSymbol) 
 		ifNil: [ self ]
 		ifNotNil: presentBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor>>initializeWith: anEnvironment [
+{ #category : #initialization }
+EpHasImpactVisitor >> initializeWith: anEnvironment [
 
 	self initialize.
 	environment := anEnvironment.
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor>>visitBehaviorCategoryChange: aChange [
+{ #category : #visitor }
+EpHasImpactVisitor >> visitBehaviorCategoryChange: aChange [
 
 	self
 		behaviorNamed: aChange behaviorAffectedName
@@ -59,11 +46,8 @@ EpHasImpactVisitor>>visitBehaviorCategoryChange: aChange [
 	^ true
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor>>visitBehaviorChange: aChange [
+{ #category : #visitor }
+EpHasImpactVisitor >> visitBehaviorChange: aChange [
 
 	self flag: #todo. "Remove when ready"
 	Halt if: [ ({EpClassAddition. EpClassModification. EpTraitAddition. EpTraitModification} includes: aChange class) not ].
@@ -78,11 +62,8 @@ Halt if: [ aChange behaviorAffectedName = 'EpApplyPreviewer' and: [
 	^ true
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor>>visitBehaviorCommentChange: aChange [
+{ #category : #visitor }
+EpHasImpactVisitor >> visitBehaviorCommentChange: aChange [
 
 	self
 		behaviorNamed: aChange behaviorAffectedName
@@ -93,11 +74,8 @@ EpHasImpactVisitor>>visitBehaviorCommentChange: aChange [
 	^ true
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor>>visitBehaviorNameChange: aChange [
+{ #category : #visitor }
+EpHasImpactVisitor >> visitBehaviorNameChange: aChange [
 
 	self 
 		behaviorNamed: aChange oldName
@@ -106,39 +84,27 @@ EpHasImpactVisitor>>visitBehaviorNameChange: aChange [
 	^ false
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor>>visitCategoryAddition: aChange [
+{ #category : #visitor }
+EpHasImpactVisitor >> visitCategoryAddition: aChange [
 
 	^ (environment organization includesCategory: aChange categoryName) not
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor>>visitCategoryRemoval: aChange [
+{ #category : #visitor }
+EpHasImpactVisitor >> visitCategoryRemoval: aChange [
 	
 	^ environment organization includesCategory: aChange categoryName
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor>>visitCategoryRename: aChange [
+{ #category : #visitor }
+EpHasImpactVisitor >> visitCategoryRename: aChange [
 
 	^ environment organization includesCategory: aChange oldCategoryName
 
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor>>visitClassRemoval: aChange [
+{ #category : #visitor }
+EpHasImpactVisitor >> visitClassRemoval: aChange [
 
 	self 
 		behaviorNamed: aChange behaviorAffectedName
@@ -147,19 +113,13 @@ EpHasImpactVisitor>>visitClassRemoval: aChange [
 	^ false
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor>>visitCodeChange: aChange [
+{ #category : #visitor }
+EpHasImpactVisitor >> visitCodeChange: aChange [
 	^ self error: 'shouldn''t happen'
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor>>visitMethodChange: aChange [
+{ #category : #visitor }
+EpHasImpactVisitor >> visitMethodChange: aChange [
 	"Addition and Modification come here"
 
 	self 
@@ -175,11 +135,8 @@ EpHasImpactVisitor>>visitMethodChange: aChange [
 	^ true "If class is not present"
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor>>visitMethodRemoval: aChange [
+{ #category : #visitor }
+EpHasImpactVisitor >> visitMethodRemoval: aChange [
 
 	self 
 		behaviorNamed: aChange behaviorAffectedName
@@ -194,11 +151,8 @@ EpHasImpactVisitor>>visitMethodRemoval: aChange [
 
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor>>visitProtocolAddition: aProtocolAddition [
+{ #category : #visitor }
+EpHasImpactVisitor >> visitProtocolAddition: aProtocolAddition [
 
 	self 
 		behaviorNamed: aProtocolAddition behaviorAffectedName
@@ -208,11 +162,8 @@ EpHasImpactVisitor>>visitProtocolAddition: aProtocolAddition [
 	^ true
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor>>visitProtocolRemoval: aProtocolRemoved [
+{ #category : #visitor }
+EpHasImpactVisitor >> visitProtocolRemoval: aProtocolRemoved [
 
 	self 
 		behaviorNamed: aProtocolRemoved behaviorAffectedName
@@ -222,11 +173,8 @@ EpHasImpactVisitor>>visitProtocolRemoval: aProtocolRemoved [
 	^ true
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpHasImpactVisitor>>visitTraitRemoval: aChange [
+{ #category : #visitor }
+EpHasImpactVisitor >> visitTraitRemoval: aChange [
 
 	self 
 		behaviorNamed: aChange behaviorAffectedName

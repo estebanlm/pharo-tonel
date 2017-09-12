@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'list'
 	],
-	#category : #Spec-Tests-Utils,
-	#timestamp : 'Spirita 7/28/2016 11:15'
+	#category : #Spec-Tests-Utils
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestingComposableModel class>>defaultSpec [
+{ #category : #specs }
+TestingComposableModel class >> defaultSpec [
 	<spec>
 
 	^ SpecLayout composed
@@ -23,44 +19,29 @@ TestingComposableModel class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestingComposableModel class>>testingSpec [
+{ #category : #specs }
+TestingComposableModel class >> testingSpec [
 	^ {#RubPluggableTextMorph. #model:. #model. }
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestingComposableModel class>>title [
+{ #category : #specs }
+TestingComposableModel class >> title [
 
 	^ 'You should not see me !'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestingComposableModel>>getText [
+{ #category : #accessing }
+TestingComposableModel >> getText [
 	^ Text new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestingComposableModel>>initializeWidgets [
+{ #category : #initialization }
+TestingComposableModel >> initializeWidgets [
 	list := self newList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-TestingComposableModel>>list [
+{ #category : #accessing }
+TestingComposableModel >> list [
 
 	^ list
 ]

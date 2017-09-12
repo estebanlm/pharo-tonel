@@ -12,77 +12,52 @@ Class {
 		'headers',
 		'stream'
 	],
-	#category : #Zinc-HTTP-Streaming,
-	#timestamp : '<historical>'
+	#category : #Zinc-HTTP-Streaming
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityWriter>>contentType [
+{ #category : #accessing }
+ZnEntityWriter >> contentType [
 	^ (self headers includesKey: 'Content-Type') 
 		ifTrue: [ self headers contentType ] 
 		ifFalse: [ ZnMimeType default ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityWriter>>headers [
+{ #category : #accessing }
+ZnEntityWriter >> headers [
 	^ headers
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityWriter>>headers: znHeaders [
+{ #category : #accessing }
+ZnEntityWriter >> headers: znHeaders [
 	headers := znHeaders
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityWriter>>isChunked [
+{ #category : #testing }
+ZnEntityWriter >> isChunked [
 	| transferEncoding |
 	transferEncoding := self headers at: 'Transfer-Encoding' ifAbsent: [ ^ false ].
 	^ transferEncoding = 'chunked' or: [ transferEncoding beginsWith: 'chunked' ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityWriter>>isGzipped [
+{ #category : #testing }
+ZnEntityWriter >> isGzipped [
 	| contentEncoding |
 	contentEncoding := self headers at: 'Content-Encoding' ifAbsent: [ ^ false ].
 	^ contentEncoding = 'gzip'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityWriter>>stream [
+{ #category : #accessing }
+ZnEntityWriter >> stream [
 	^ stream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityWriter>>stream: writeStream [
+{ #category : #accessing }
+ZnEntityWriter >> stream: writeStream [
 	stream := writeStream
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnEntityWriter>>writeEntity: entity [
+{ #category : #public }
+ZnEntityWriter >> writeEntity: entity [
 	| actualStream gzipStream bufferedStream chunkedStream isChunked |
 	actualStream := stream.
 	chunkedStream := gzipStream := bufferedStream := nil.

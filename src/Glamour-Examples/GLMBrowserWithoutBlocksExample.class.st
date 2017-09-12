@@ -4,15 +4,11 @@ self openOn: 42
 Class {
 	#name : #GLMBrowserWithoutBlocksExample,
 	#superclass : #GLMCompositePresentation,
-	#category : #Glamour-Examples,
-	#timestamp : '<historical>'
+	#category : #Glamour-Examples
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrowserWithoutBlocksExample>>compose [
+{ #category : #'as yet unclassified' }
+GLMBrowserWithoutBlocksExample >> compose [
 	| wrapper |
 	wrapper := self wrapper.
 	wrapper show: [ :a |
@@ -20,10 +16,7 @@ GLMBrowserWithoutBlocksExample>>compose [
 			display: (MessageSend receiver: self selector: #displayList:) ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrowserWithoutBlocksExample>>displayList: aNumber [
+{ #category : #'as yet unclassified' }
+GLMBrowserWithoutBlocksExample >> displayList: aNumber [
 	^ 1 to: aNumber
 ]

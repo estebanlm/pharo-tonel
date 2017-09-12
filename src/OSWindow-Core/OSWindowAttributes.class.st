@@ -43,95 +43,61 @@ Class {
 		'DefaultVisible',
 		'DefaultWindowCentered'
 	],
-	#category : #OSWindow-Core,
-	#timestamp : 'IgorStasenko 7/30/2014 16:18'
+	#category : #OSWindow-Core
 }
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes class>>defaultBorderless [
+{ #category : #defaults }
+OSWindowAttributes class >> defaultBorderless [
 	^ DefaultBorderless
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes class>>defaultExtent [
+{ #category : #defaults }
+OSWindowAttributes class >> defaultExtent [
 	^ DefaultExtent
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes class>>defaultFullscreen [
+{ #category : #defaults }
+OSWindowAttributes class >> defaultFullscreen [
 	^ DefaultFullscreen
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes class>>defaultMaximized [
+{ #category : #defaults }
+OSWindowAttributes class >> defaultMaximized [
 	^ DefaultMaximized
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes class>>defaultMinimized [
+{ #category : #defaults }
+OSWindowAttributes class >> defaultMinimized [
 	^ DefaultMinimized
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes class>>defaultPosition [
+{ #category : #defaults }
+OSWindowAttributes class >> defaultPosition [
 	^ DefaultPosition
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes class>>defaultResizable [
+{ #category : #defaults }
+OSWindowAttributes class >> defaultResizable [
 	^ DefaultResizable
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes class>>defaultTitle [
+{ #category : #defaults }
+OSWindowAttributes class >> defaultTitle [
 	^ DefaultTitle
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes class>>defaultVisible [
+{ #category : #defaults }
+OSWindowAttributes class >> defaultVisible [
 	^ DefaultVisible
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes class>>defaultWindowCentered [
+{ #category : #defaults }
+OSWindowAttributes class >> defaultWindowCentered [
 	^ DefaultWindowCentered
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes class>>initialize [
+{ #category : #'class initialization' }
+OSWindowAttributes class >> initialize [
 	"
 	self initialize
 	"
@@ -148,151 +114,100 @@ OSWindowAttributes class>>initialize [
 	DefaultMinimized := false.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes class>>newWithNullDriver [
+{ #category : #'instance creation' }
+OSWindowAttributes class >> newWithNullDriver [
 	^ self new preferableDriver: OSNullWindowDriver new; yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>applyTo: window [
+{ #category : #accessing }
+OSWindowAttributes >> applyTo: window [
 	window title: self title;
 		icon: self icon.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>borderless [
+{ #category : #accessing }
+OSWindowAttributes >> borderless [
 	^ borderless
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>borderless: anObject [
+{ #category : #accessing }
+OSWindowAttributes >> borderless: anObject [
 	borderless := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>bounds [
+{ #category : #accessing }
+OSWindowAttributes >> bounds [
 	^ position extent: extent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>bounds: aRectangle [
+{ #category : #accessing }
+OSWindowAttributes >> bounds: aRectangle [
 	position := aRectangle origin.
 	extent := aRectangle extent.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>createWindowHandleFor: osWindow [
+{ #category : #private }
+OSWindowAttributes >> createWindowHandleFor: osWindow [
 	^ (preferableDriver
 		ifNil: [ preferableDriver := OSWindowDriver current ])
 		createWindowWithAttributes: self
 		osWindow: osWindow
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>extent [
+{ #category : #accessing }
+OSWindowAttributes >> extent [
 	^ extent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>extent: newExtent [
+{ #category : #accessing }
+OSWindowAttributes >> extent: newExtent [
 	extent := newExtent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>fullscreen [
+{ #category : #accessing }
+OSWindowAttributes >> fullscreen [
 	
 	^ fullscreen
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>fullscreen: anObject [
+{ #category : #accessing }
+OSWindowAttributes >> fullscreen: anObject [
 	
 	fullscreen := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>glAttributes [
+{ #category : #accessing }
+OSWindowAttributes >> glAttributes [
 	
 	^ glAttributes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>glAttributes: anObject [
+{ #category : #accessing }
+OSWindowAttributes >> glAttributes: anObject [
 	
 	glAttributes := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>height [
+{ #category : #accessing }
+OSWindowAttributes >> height [
 	^ extent y
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>icon [
+{ #category : #accessing }
+OSWindowAttributes >> icon [
 	
 	^ icon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>icon: anObject [
+{ #category : #accessing }
+OSWindowAttributes >> icon: anObject [
 	
 	icon := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>initialize [
+{ #category : #initialization }
+OSWindowAttributes >> initialize [
 	visible := self class defaultVisible.
 	position := self class defaultPosition.
 	extent := self class defaultExtent.
@@ -308,174 +223,111 @@ OSWindowAttributes>>initialize [
 	glAttributes := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>maximized [
+{ #category : #accessing }
+OSWindowAttributes >> maximized [
 	^ maximized
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>maximized: aBoolean [
+{ #category : #accessing }
+OSWindowAttributes >> maximized: aBoolean [
 	maximized := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>minimized [
+{ #category : #accessing }
+OSWindowAttributes >> minimized [
 	^ minimized
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>minimized: aBoolean [
+{ #category : #accessing }
+OSWindowAttributes >> minimized: aBoolean [
 	minimized := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>position [
+{ #category : #accessing }
+OSWindowAttributes >> position [
 	^ position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>position: aPoint [
+{ #category : #accessing }
+OSWindowAttributes >> position: aPoint [
 	position := aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>preferableDriver [
+{ #category : #accessing }
+OSWindowAttributes >> preferableDriver [
 	
 	^ preferableDriver
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>preferableDriver: anObject [
+{ #category : #accessing }
+OSWindowAttributes >> preferableDriver: anObject [
 	
 	preferableDriver := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>resizable [
+{ #category : #accessing }
+OSWindowAttributes >> resizable [
 	^ resizable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>resizable: aBoolean [
+{ #category : #accessing }
+OSWindowAttributes >> resizable: aBoolean [
 	resizable := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>screenId [
+{ #category : #accessing }
+OSWindowAttributes >> screenId [
 	^ screenId
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>screenId: newScreenId [
+{ #category : #accessing }
+OSWindowAttributes >> screenId: newScreenId [
 	screenId := newScreenId
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>title [
+{ #category : #accessing }
+OSWindowAttributes >> title [
 	
 	^ title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>title: anObject [
+{ #category : #accessing }
+OSWindowAttributes >> title: anObject [
 	
 	title := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>visible [
+{ #category : #accessing }
+OSWindowAttributes >> visible [
 	^ visible
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>visible: aBoolean [
+{ #category : #accessing }
+OSWindowAttributes >> visible: aBoolean [
 	visible := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>width [
+{ #category : #accessing }
+OSWindowAttributes >> width [
 	^ extent x
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>windowCentered [
+{ #category : #accessing }
+OSWindowAttributes >> windowCentered [
 	^ windowCentered
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>windowCentered: aBoolean [
+{ #category : #accessing }
+OSWindowAttributes >> windowCentered: aBoolean [
 	windowCentered := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>x [
+{ #category : #accessing }
+OSWindowAttributes >> x [
 	^ position x
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowAttributes>>y [
+{ #category : #accessing }
+OSWindowAttributes >> y [
 	^ position y
 ]

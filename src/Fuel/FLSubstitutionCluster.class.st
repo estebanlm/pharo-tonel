@@ -22,24 +22,17 @@ Class {
 		'substitutions',
 		'substitutes'
 	],
-	#category : #Fuel-Clusters,
-	#timestamp : 'MartinDias 1/9/2012 15:04'
+	#category : #Fuel-Clusters
 }
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSubstitutionCluster class>>clusterBucketIn: aClusterization [
+{ #category : #analyzing }
+FLSubstitutionCluster class >> clusterBucketIn: aClusterization [
 
 	^aClusterization substitutionsBucket
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSubstitutionCluster>>add: anObject substitutedBy: anotherObject traceWith: aAnalysis [
+{ #category : #analyzing }
+FLSubstitutionCluster >> add: anObject substitutedBy: anotherObject traceWith: aAnalysis [
 
 	substitutions 
 		at: anObject 
@@ -49,52 +42,37 @@ FLSubstitutionCluster>>add: anObject substitutedBy: anotherObject traceWith: aAn
 			aAnalysis trace: anotherObject ].
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSubstitutionCluster>>initializeAnalyzing [
+{ #category : #initialize-release }
+FLSubstitutionCluster >> initializeAnalyzing [
 
 	super initializeAnalyzing.
 	substitutions := IdentityDictionary new.
 	substitutes := IdentitySet new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSubstitutionCluster>>isSubstitute: anObject [
+{ #category : #accessing }
+FLSubstitutionCluster >> isSubstitute: anObject [
 
 	^ substitutes identityIncludes: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSubstitutionCluster>>objects [
+{ #category : #accessing }
+FLSubstitutionCluster >> objects [
 	"This cluster does not have objects"
 	
 	^#()
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSubstitutionCluster>>printOn: aStream [
+{ #category : #printing }
+FLSubstitutionCluster >> printOn: aStream [
 
 	super printOn: aStream.
 	aStream nextPutAll: '->'.
 	substitutions printElementsOn: aStream
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSubstitutionCluster>>registerIndexesOn: anEncoder [
+{ #category : #serialize/materialize }
+FLSubstitutionCluster >> registerIndexesOn: anEncoder [
 	substitutions keysAndValuesDo: [ :anObject :theSubstitution | 
 		| substitutionIndex |
 		substitutionIndex := anEncoder objectsIndexes at: theSubstitution.
@@ -103,10 +81,7 @@ FLSubstitutionCluster>>registerIndexesOn: anEncoder [
 			put: substitutionIndex ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSubstitutionCluster>>substitutions [
+{ #category : #accessing }
+FLSubstitutionCluster >> substitutions [
 	^ substitutions 
 ]

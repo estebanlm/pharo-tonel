@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'sentMessages'
 	],
-	#category : #Tool-DependencyAnalyser-UI-Nodes,
-	#timestamp : 'ChristopheDemarey 8/17/2015 16:24'
+	#category : #Tool-DependencyAnalyser-UI-Nodes
 }
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendDependencyNode>>label [
+{ #category : #displaying }
+DAMessageSendDependencyNode >> label [
 	^ String streamContents: [ :stream |
 		stream
 			nextPutAll: self content methodClass asString;
@@ -26,10 +22,7 @@ DAMessageSendDependencyNode>>label [
 			stream nextPutAll: message ] ]
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAMessageSendDependencyNode>>sentMessages: aListOfSelectors  [
+{ #category : #setting }
+DAMessageSendDependencyNode >> sentMessages: aListOfSelectors [ 
 	sentMessages := aListOfSelectors
 ]

@@ -1,38 +1,24 @@
-Extension {
-	#name : #MTPackage
-}
+Extension { #name : #MTPackage }
 
-{
-	#category : #'*Versionner-Commit',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MTPackage>>asCommitAction [
+{ #category : #'*Versionner-Commit' }
+MTPackage >> asCommitAction [
 	^ VSCommitPackageAction package: self
 ]
 
-{
-	#category : #'*Versionner-Commit',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MTPackage>>isDirty [
+{ #category : #'*Versionner-Commit' }
+MTPackage >> isDirty [
 	^ self workingCopy 
 		ifNotNil: [ :wc | wc modified ]
 		ifNil: [ false ]
 ]
 
-{
-	#category : #'*Versionner-Commit',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MTPackage>>repository [
+{ #category : #'*Versionner-Commit' }
+MTPackage >> repository [
 	^ self project repository
 ]
 
-{
-	#category : #'*Versionner-Commit',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MTPackage>>workingCopy [
+{ #category : #'*Versionner-Commit' }
+MTPackage >> workingCopy [
 	^ MCWorkingCopy allManagers 
 		detect: [ :each | each packageName = self name ]
 		ifNone: [ nil ]

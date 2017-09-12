@@ -1,19 +1,11 @@
-Extension {
-	#name : #AbstractFont
-}
+Extension { #name : #AbstractFont }
 
-{
-	#category : #'*Athens-Text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AbstractFont>>getPreciseDescent [
+{ #category : #'*Athens-Text' }
+AbstractFont >> getPreciseDescent [
 	^ self descent
 ]
 
-{
-	#category : #'*Athens-Text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AbstractFont>>getPreciseHeight [
+{ #category : #'*Athens-Text' }
+AbstractFont >> getPreciseHeight [
 	^ self height
 ]

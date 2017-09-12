@@ -8,32 +8,22 @@ Class {
 	#instVars : [
 		'filesystem'
 	],
-	#category : #FileSystem-Tests-Core,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:39'
+	#category : #FileSystem-Tests-Core
 }
 
-{
-	#category : #support,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>createFile: aPath [
+{ #category : #support }
+FileReferenceTest >> createFile: aPath [
 	filesystem ensureCreateDirectory: aPath parent.
 	(filesystem writeStreamOn: aPath) close
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>setUp [
+{ #category : #running }
+FileReferenceTest >> setUp [
 	filesystem := FileSystem memory.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testAllChildren [
+{ #category : #tests }
+FileReferenceTest >> testAllChildren [
 	"allChildren returns all the files and folders recursively nested in a reference"
 	<publicTest>
 	"self debug: #testAllChildren"
@@ -54,11 +44,8 @@ FileReferenceTest>>testAllChildren [
 	self assert: (children collect: [:ea | ea basename]) = #('alpha' 'beta' 'gamma' 'delta')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testAllDirectories [
+{ #category : #tests }
+FileReferenceTest >> testAllDirectories [
 	"allDirectories returns all folders recursively nested in a reference"
 	<publicTest>
 	"self debug: #testAllDirectories"
@@ -80,11 +67,8 @@ FileReferenceTest>>testAllDirectories [
 	self assert: (children collect: [:ea | ea basename]) = #('alpha' 'beta' 'gamma' 'delta')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testAllEntries [
+{ #category : #tests }
+FileReferenceTest >> testAllEntries [
 	| ref entries |
 	filesystem createDirectory: '/alpha'.
 	filesystem createDirectory: '/alpha/beta'.
@@ -101,11 +85,8 @@ FileReferenceTest>>testAllEntries [
 	self assert: (entries collect: [:ea | ea basename]) = #('alpha' 'beta' 'gamma' 'delta')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testAsAbsoluteConverted [
+{ #category : #tests }
+FileReferenceTest >> testAsAbsoluteConverted [
 	"Converts a relative reference to absolute, and asserts
 	that it's absolute and still has the same path."
 	
@@ -116,31 +97,22 @@ FileReferenceTest>>testAsAbsoluteConverted [
 	self assert: (absolute path at: 1) = 'plonk'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testAsAbsoluteIdentity [
+{ #category : #tests }
+FileReferenceTest >> testAsAbsoluteIdentity [
 	| ref |
 	ref := filesystem / 'plonk'.
 	self assert: ref asAbsolute == ref
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testAsReference [
+{ #category : #tests }
+FileReferenceTest >> testAsReference [
 	| ref |
 	ref := filesystem * 'plonk'.
 	self assert: ref asFileReference == ref
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testBaseAndExtension [
+{ #category : #tests }
+FileReferenceTest >> testBaseAndExtension [
 	"self debug: #testBaseAndExtension"
 	
 	| noExtension simpleExtension complexExtension |
@@ -158,11 +130,8 @@ FileReferenceTest>>testBaseAndExtension [
 	self assert: complexExtension extension equals: 'txt'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testBasename [
+{ #category : #tests }
+FileReferenceTest >> testBasename [
 	"self debug: #testBasename"
 	
 	| ref |
@@ -177,11 +146,8 @@ FileReferenceTest>>testBasename [
 	self assert: ref basename = 'griffle.taz'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testBasenameWithoutExtension [
+{ #category : #tests }
+FileReferenceTest >> testBasenameWithoutExtension [
 	"self debug: #testBasenameWithoutExtension"
 	
 	| ref |
@@ -208,11 +174,8 @@ FileReferenceTest>>testBasenameWithoutExtension [
 	self assert: (ref basenameWithoutExtension: 'taz') equals: 'griffle.taz.zork'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testCanonicalization [
+{ #category : #tests }
+FileReferenceTest >> testCanonicalization [
 
 	| ref |
 
@@ -239,11 +202,8 @@ FileReferenceTest>>testCanonicalization [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testChildDirectories [
+{ #category : #tests }
+FileReferenceTest >> testChildDirectories [
 	| childDirectories |
 	filesystem createDirectory: '/beta'.
 	filesystem createDirectory: '/gamma'.	
@@ -258,11 +218,8 @@ FileReferenceTest>>testChildDirectories [
 		self assert: each isDirectory description: 'Collection should not contain references to files.' ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testChildFiles [
+{ #category : #tests }
+FileReferenceTest >> testChildFiles [
 	| childFiles |
 	filesystem createDirectory: '/beta'.
 	filesystem createDirectory: '/gamma'.	
@@ -277,11 +234,8 @@ FileReferenceTest>>testChildFiles [
 		self assert: each isFile description: 'Collection should not contain references to directories.' ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testChildOfPath [
+{ #category : #tests }
+FileReferenceTest >> testChildOfPath [
 	| parent  child |
 	parent := Path / 'griffle'.
 	child := filesystem / 'griffle' / 'nurb'.
@@ -289,11 +243,8 @@ FileReferenceTest>>testChildOfPath [
 	self deny: (parent isChildOf: child).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testChildOfReference [
+{ #category : #tests }
+FileReferenceTest >> testChildOfReference [
 	| parent  child |
 	parent := filesystem / 'griffle'.
 	child := filesystem / 'griffle' / 'nurb'.
@@ -301,11 +252,8 @@ FileReferenceTest>>testChildOfReference [
 	self deny: (parent isChildOf: child).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testChildren [
+{ #category : #tests }
+FileReferenceTest >> testChildren [
 	| ref children |
 	filesystem createDirectory: '/alpha'.
 	filesystem createDirectory: '/alpha/beta'.
@@ -321,63 +269,45 @@ FileReferenceTest>>testChildren [
 		self assert: (#('beta' 'gamma') includes: child basename)]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testCommaAddsExtension [
+{ #category : #tests }
+FileReferenceTest >> testCommaAddsExtension [
 	| ref result |
 	ref := filesystem * 'plonk'.
 	result := ref, 'griffle'.
 	self assert: result basename = 'plonk.griffle'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testCommaAddsExtensionAgain [
+{ #category : #tests }
+FileReferenceTest >> testCommaAddsExtensionAgain [
 	| ref result |
 	ref := filesystem * 'plonk.griffle'.
 	result := ref, 'nurp'.
 	self assert: result basename = 'plonk.griffle.nurp'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testContainsLocator [
+{ #category : #tests }
+FileReferenceTest >> testContainsLocator [
 	| ref |
 	ref := FileLocator imageDirectory resolve parent.
 	self assert: (ref contains: FileLocator image)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testContainsPath [
+{ #category : #tests }
+FileReferenceTest >> testContainsPath [
 	| ref |
 	ref := filesystem  * 'griffle'.
 	self assert: (ref contains: (ref / 'nurp') path)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testContainsReference [
+{ #category : #tests }
+FileReferenceTest >> testContainsReference [
 	| ref |
 	ref := filesystem * 'griffle'.
 	self assert: (ref contains: ref / 'nurp')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testContents [
+{ #category : #tests }
+FileReferenceTest >> testContents [
 	| ref contents |
 	
 	contents := '12345 abcdf!'.
@@ -389,11 +319,8 @@ FileReferenceTest>>testContents [
 	self assert: ref contents asString equals: contents
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testDeleteAll [
+{ #category : #tests }
+FileReferenceTest >> testDeleteAll [
 	"allChildren returns all the files and folders recursively nested in a reference"
 	<publicTest>
 	"self debug: #testDeleteAll"
@@ -412,11 +339,8 @@ FileReferenceTest>>testDeleteAll [
 	self deny: (ref / 'beta' / 'gamma') exists.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testDeleteAllChildren [
+{ #category : #tests }
+FileReferenceTest >> testDeleteAllChildren [
 	"allChildren returns all the files and folders recursively nested in a reference"
 	<publicTest>
 	"self debug: #testDeleteAllChildren"
@@ -435,11 +359,8 @@ FileReferenceTest>>testDeleteAllChildren [
 	self deny: (ref / 'beta' / 'gamma') exists.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testDeleteIfAbsent [
+{ #category : #tests }
+FileReferenceTest >> testDeleteIfAbsent [
 	| flag reference |
 	flag := false.
 	reference := filesystem / 'plonk'.
@@ -454,53 +375,38 @@ FileReferenceTest>>testDeleteIfAbsent [
 	self assert: flag.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testDoesntContainLocator [
+{ #category : #tests }
+FileReferenceTest >> testDoesntContainLocator [
 	| ref |
 	ref := filesystem * 'griffle'. 
 	self deny: (ref contains: FileLocator image)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testDoesntContainPath [
+{ #category : #tests }
+FileReferenceTest >> testDoesntContainPath [
 	| ref |
 	ref := filesystem * 'griffle'.
 	self deny: (ref contains: (Path * 'nurp'))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testDoesntContainReferenceFileSystem [
+{ #category : #tests }
+FileReferenceTest >> testDoesntContainReferenceFileSystem [
 	| ref other |
 	ref := filesystem  * 'griffle'.
 	other := FileSystem memory / 'griffle' / 'nurp'.
 	self deny: (ref contains: other)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testDoesntContainReferencePath [
+{ #category : #tests }
+FileReferenceTest >> testDoesntContainReferencePath [
 	| ref other |
 	ref := filesystem * 'griffle'.
 	other := filesystem * 'nurp'.
 	self deny: (ref contains: other)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testEnsureDelete [
+{ #category : #tests }
+FileReferenceTest >> testEnsureDelete [
 	| reference |
 	reference := filesystem / 'plonk'.	"Deletes the file if it exists"
 	reference ensureCreateFile.
@@ -510,11 +416,8 @@ FileReferenceTest>>testEnsureDelete [
 	reference ensureDelete
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testEntries [
+{ #category : #tests }
+FileReferenceTest >> testEntries [
 
 	| ref entries |
 	filesystem createDirectory: '/alpha'.
@@ -531,11 +434,8 @@ FileReferenceTest>>testEntries [
 		self assert: (#('beta' 'gamma') includes: entry reference basename)]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testEqual [
+{ #category : #tests }
+FileReferenceTest >> testEqual [
 
 	| a b |
 	a := filesystem * 'plonk'.
@@ -544,11 +444,8 @@ FileReferenceTest>>testEqual [
 	self assert: a = b.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testEqualityRelativeVsAbsolute [
+{ #category : #tests }
+FileReferenceTest >> testEqualityRelativeVsAbsolute [
 
 	| f1 f2 |
 
@@ -557,11 +454,8 @@ FileReferenceTest>>testEqualityRelativeVsAbsolute [
 	self assert: f1 equals: f2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testExists [
+{ #category : #tests }
+FileReferenceTest >> testExists [
 
 	| reference |
 	reference := filesystem / 'plonk'.
@@ -573,11 +467,8 @@ FileReferenceTest>>testExists [
 	self deny: reference exists. 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testGlob [
+{ #category : #tests }
+FileReferenceTest >> testGlob [
 	| ref children |
 	filesystem createDirectory: '/alpha'.
 	filesystem createDirectory: '/alpha/beta'.
@@ -595,11 +486,8 @@ FileReferenceTest>>testGlob [
 	self assert: children first basename = #gamma.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testGrandchildOfReference [
+{ #category : #tests }
+FileReferenceTest >> testGrandchildOfReference [
 	| griffle  nurb |
 	griffle := filesystem / 'griffle'.
 	nurb := filesystem / 'griffle' / 'plonk' / 'nurb'.
@@ -607,11 +495,8 @@ FileReferenceTest>>testGrandchildOfReference [
 	self deny: (nurb isChildOf: griffle).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testHasChildren [
+{ #category : #tests }
+FileReferenceTest >> testHasChildren [
 	<publicTest>
 	"self debug: #testHasChildren"
 	| ref children |
@@ -628,11 +513,8 @@ FileReferenceTest>>testHasChildren [
 	self deny: (ref / 'beta' / 'gamma') hasChildren.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testHasDirectories [
+{ #category : #tests }
+FileReferenceTest >> testHasDirectories [
 	<publicTest>
 	"self debug: #testHasDirectories"
 	| ref children |
@@ -649,11 +531,8 @@ FileReferenceTest>>testHasDirectories [
 	self deny: (ref / 'beta' / 'gamma') hasDirectories.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testHasFiles [
+{ #category : #tests }
+FileReferenceTest >> testHasFiles [
 	<publicTest>
 	"self debug: #testHasFiles"
 	| ref children |
@@ -669,11 +548,8 @@ FileReferenceTest>>testHasFiles [
 	self deny: (ref / 'beta' / 'gamma') hasFiles.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testIndicator [
+{ #category : #tests }
+FileReferenceTest >> testIndicator [
 	"self debug: #testIndicator"
 	
 	| ref |
@@ -696,59 +572,38 @@ FileReferenceTest>>testIndicator [
 	 self assert: ref indicator equals: '' ] ensure: [ref delete].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testIsAbsolute [
+{ #category : #tests }
+FileReferenceTest >> testIsAbsolute [
 	self assert: (filesystem / 'plonk') isAbsolute
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testIsNotAbsolute [
+{ #category : #tests }
+FileReferenceTest >> testIsNotAbsolute [
 	self deny: (filesystem * 'plonk') isAbsolute
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testIsNotRelative [
+{ #category : #tests }
+FileReferenceTest >> testIsNotRelative [
 	self deny: (filesystem / 'plonk') isRelative
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testIsNotRoot [
+{ #category : #tests }
+FileReferenceTest >> testIsNotRoot [
 	self deny: (filesystem / 'plonk') isRoot
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testIsRelative [
+{ #category : #tests }
+FileReferenceTest >> testIsRelative [
 	self assert: (filesystem * 'plonk') isRelative
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testIsRoot [
+{ #category : #tests }
+FileReferenceTest >> testIsRoot [
 	self assert: (filesystem root) isRoot
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testMakeRelative [
+{ #category : #tests }
+FileReferenceTest >> testMakeRelative [
 	"self run: #testMakeRelative"
 
 	| parent child relative |
@@ -758,11 +613,8 @@ FileReferenceTest>>testMakeRelative [
 	self assert: relative = (Path * 'plonk' / 'nurb')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testParent [
+{ #category : #tests }
+FileReferenceTest >> testParent [
 	| ref parent |
 	ref := filesystem * 'plonk' / 'griffle'.
 	parent := ref parent.
@@ -770,11 +622,8 @@ FileReferenceTest>>testParent [
 	self assert: (parent path at: 1) = 'plonk'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testParentResolutionWithAbsoluteReference [
+{ #category : #tests }
+FileReferenceTest >> testParentResolutionWithAbsoluteReference [
 	| base relative absolute |
 	base := (filesystem / '/plonk' / 'pinto').
 	relative := (FileSystem memory / 'griffle' / 'zonk').
@@ -787,11 +636,8 @@ FileReferenceTest>>testParentResolutionWithAbsoluteReference [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testParentResolutionWithPath [
+{ #category : #tests }
+FileReferenceTest >> testParentResolutionWithPath [
 	| base relative absolute |
 	base := filesystem / 'plonk' / 'pinto'.
 	relative := Path parent / 'griffle' / 'zonk'.
@@ -801,11 +647,8 @@ FileReferenceTest>>testParentResolutionWithPath [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testParentResolutionWithReference [
+{ #category : #tests }
+FileReferenceTest >> testParentResolutionWithReference [
 	| base relative absolute |
 	base := (filesystem / 'plonk' / 'pinto').
 	relative := (filesystem referenceTo: '../griffle/zonk').
@@ -816,11 +659,8 @@ FileReferenceTest>>testParentResolutionWithReference [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testParentResolutionWithRemoteReference [
+{ #category : #tests }
+FileReferenceTest >> testParentResolutionWithRemoteReference [
 	| base relative absolute |
 	base := (filesystem / 'plonk' / 'pinto').
 	relative := (FileSystem memory referenceTo: '../griffle/zonk').
@@ -831,11 +671,8 @@ FileReferenceTest>>testParentResolutionWithRemoteReference [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testParentUpTo [
+{ #category : #tests }
+FileReferenceTest >> testParentUpTo [
 	| base a b c |
 	[ 
 		base := filesystem workingDirectory.
@@ -852,11 +689,8 @@ FileReferenceTest>>testParentUpTo [
 	]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testPathRelativeTo [
+{ #category : #tests }
+FileReferenceTest >> testPathRelativeTo [
 	| parent childPath relative |
 	parent := filesystem / 'griffle'.
 	childPath := Path / 'griffle' / 'plonk' / 'nurb'.
@@ -864,11 +698,8 @@ FileReferenceTest>>testPathRelativeTo [
 	self assert: relative = (Path * 'plonk' / 'nurb')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testReadStream [
+{ #category : #tests }
+FileReferenceTest >> testReadStream [
 	| ref stream path |
 	path := Path * 'plonk'.
 	filesystem store createFile: path.
@@ -877,11 +708,8 @@ FileReferenceTest>>testReadStream [
 		ensure: [ stream ifNotNil: [ stream close ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testReadStreamDo [
+{ #category : #tests }
+FileReferenceTest >> testReadStreamDo [
 	| ref path s |
 	path := Path * 'plonk'.
 	filesystem store createFile: path.
@@ -892,11 +720,8 @@ FileReferenceTest>>testReadStreamDo [
 			s := stream ].
 ]
 
-{
-	#category : #'tests stream',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testReadStreamDoNotFound [
+{ #category : #'tests stream' }
+FileReferenceTest >> testReadStreamDoNotFound [
 	| ref |
 	ref := filesystem / 'plonk'.
 	self
@@ -904,11 +729,8 @@ FileReferenceTest>>testReadStreamDoNotFound [
 		raise: FileDoesNotExist 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testReadStreamDoifAbsent [
+{ #category : #tests }
+FileReferenceTest >> testReadStreamDoifAbsent [
 	| ref path s |
 	path := Path * 'plonk'.
 	filesystem store createFile: path.
@@ -920,11 +742,8 @@ FileReferenceTest>>testReadStreamDoifAbsent [
 		ifAbsent: [ self signalFailure: 'The file exists!' ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testReadStreamDoifAbsentNot [
+{ #category : #tests }
+FileReferenceTest >> testReadStreamDoifAbsentNot [
 	| ref pass |
 	pass := false.
 	ref := filesystem * 'plonk'.
@@ -934,11 +753,8 @@ FileReferenceTest>>testReadStreamDoifAbsentNot [
 	self assert: pass
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testReadStreamIfAbsent [
+{ #category : #tests }
+FileReferenceTest >> testReadStreamIfAbsent [
 	| ref stream path |
 	path := Path * 'plonk'.
 	filesystem store createFile: path.
@@ -949,11 +765,8 @@ FileReferenceTest>>testReadStreamIfAbsent [
 		ensure: [ stream ifNotNil: [ stream close ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testReadStreamNotFound [
+{ #category : #tests }
+FileReferenceTest >> testReadStreamNotFound [
 	| ref  |
 	ref := filesystem * 'plonk'.
 	self
@@ -961,11 +774,8 @@ FileReferenceTest>>testReadStreamNotFound [
 		raise: FileDoesNotExist 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testRelativeToPath [
+{ #category : #tests }
+FileReferenceTest >> testRelativeToPath [
 	| parentPath child relative |
 	parentPath := Path / 'griffle'.
 	child := filesystem / 'griffle' / 'plonk' / 'nurb'.
@@ -973,11 +783,8 @@ FileReferenceTest>>testRelativeToPath [
 	self assert: relative = (Path * 'plonk' / 'nurb')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testRelativeToReference [
+{ #category : #tests }
+FileReferenceTest >> testRelativeToReference [
 	| parent child relative |
 	parent := filesystem / 'griffle'.
 	child := filesystem  / 'griffle' / 'plonk' / 'nurb'.
@@ -985,11 +792,8 @@ FileReferenceTest>>testRelativeToReference [
 	self assert: relative = (Path * 'plonk' / 'nurb')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testRename [
+{ #category : #tests }
+FileReferenceTest >> testRename [
 
 	| file newName tmp originalPwd originalFullName |
 	[
@@ -1009,11 +813,8 @@ FileReferenceTest>>testRename [
 	].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testRenameTargetExists [
+{ #category : #tests }
+FileReferenceTest >> testRenameTargetExists [
 
 	| existingFile fileToRename |
 	[
@@ -1025,31 +826,22 @@ FileReferenceTest>>testRenameTargetExists [
 			fileToRename delete ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testResolve [
+{ #category : #tests }
+FileReferenceTest >> testResolve [
 	| ref |
 	ref := filesystem / 'griffle'.
 	self assert: ref resolve == ref
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testRootParent [
+{ #category : #tests }
+FileReferenceTest >> testRootParent [
 	| root |
 	root := filesystem root.
 	self assert: root parent == root
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testSiblingOfReference [
+{ #category : #tests }
+FileReferenceTest >> testSiblingOfReference [
 	| griffle  nurb |
 	griffle := filesystem / 'griffle'.
 	nurb := filesystem / 'nurb'.
@@ -1057,11 +849,8 @@ FileReferenceTest>>testSiblingOfReference [
 	self deny: (nurb isChildOf: griffle).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testSimpleResolution [
+{ #category : #tests }
+FileReferenceTest >> testSimpleResolution [
 	| base relative absolute |
 	base := filesystem / 'plonk'.
 	relative := (Path * 'griffle') / 'zonk'.
@@ -1074,11 +863,8 @@ FileReferenceTest>>testSimpleResolution [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testSlash [
+{ #category : #tests }
+FileReferenceTest >> testSlash [
 	| ref result |
 	ref := filesystem * 'plonk'.
 	result := ref / 'griffle'.
@@ -1089,44 +875,32 @@ FileReferenceTest>>testSlash [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testTempFilePrefixSuffix [
+{ #category : #tests }
+FileReferenceTest >> testTempFilePrefixSuffix [
 	| fileRef |
 	fileRef := FileReference newTempFilePrefix: 'FileReference' suffix: 'Test'.
 	self assert: (fileRef isKindOf: FileReference).
 	self assert: fileRef exists not.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testUnequalContent [
+{ #category : #tests }
+FileReferenceTest >> testUnequalContent [
 	| a b |
 	a := filesystem * 'plonk'.
 	b := filesystem * 'griffle'.
 	self deny: a = b.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testUnequalSize [
+{ #category : #tests }
+FileReferenceTest >> testUnequalSize [
 	| a b |
 	a := filesystem * 'plonk'.
 	b := filesystem / 'plonk' / 'griffle'.
 	self deny: a = b.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testWithExtentionAddsExtension [
+{ #category : #tests }
+FileReferenceTest >> testWithExtentionAddsExtension [
 	| ref result |
 	ref := filesystem * 'plonk'.
 	result := ref withExtension: 'griffle'.
@@ -1134,11 +908,8 @@ FileReferenceTest>>testWithExtentionAddsExtension [
 	self assert: result basename = 'plonk.griffle'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testWithExtentionReplacesExtension [
+{ #category : #tests }
+FileReferenceTest >> testWithExtentionReplacesExtension [
 	| ref result |
 	ref := filesystem * 'plonk.griffle'.
 	result := ref withExtension: 'nurp'.
@@ -1146,11 +917,8 @@ FileReferenceTest>>testWithExtentionReplacesExtension [
 	self assert: result basename = 'plonk.nurp'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testWithoutExtension [
+{ #category : #tests }
+FileReferenceTest >> testWithoutExtension [
 	| ref newRef |
 	ref := filesystem * 'plonk' / 'griffle.txt'.
 	newRef := ref withoutExtension.
@@ -1158,33 +926,24 @@ FileReferenceTest>>testWithoutExtension [
 	self assert: newRef basename equals: 'griffle'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testWorkingDirectoryParent [
+{ #category : #tests }
+FileReferenceTest >> testWorkingDirectoryParent [
 	| wd |
 	wd := filesystem referenceTo: Path workingDirectory.
 	self assert: wd parent path size = 1.
 	self assert: (wd parent path at: 1) = '..'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testWriteStream [
+{ #category : #tests }
+FileReferenceTest >> testWriteStream [
 	| ref stream |
 	ref := filesystem / 'plonk'.
 	[stream := ref writeStream.]
 		ensure: [stream ifNotNil: [stream close]]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testWriteStreamDo [
+{ #category : #tests }
+FileReferenceTest >> testWriteStreamDo [
 	| ref s |
 	ref := filesystem / 'plonk'.
 	ref writeStreamDo:
@@ -1194,11 +953,8 @@ FileReferenceTest>>testWriteStreamDo [
 		
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testWriteStreamDoExists [
+{ #category : #tests }
+FileReferenceTest >> testWriteStreamDoExists [
 	| ref s path |
 	path := Path * 'plonk'.
 	filesystem store createFile: path.
@@ -1209,11 +965,8 @@ FileReferenceTest>>testWriteStreamDoExists [
 			self deny: stream isNil ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testWriteStreamDoifPresent [
+{ #category : #tests }
+FileReferenceTest >> testWriteStreamDoifPresent [
 	| ref s |
 	ref := filesystem / 'plonk'.
 	ref 
@@ -1225,11 +978,8 @@ FileReferenceTest>>testWriteStreamDoifPresent [
 		
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testWriteStreamDoifPresentNot [
+{ #category : #tests }
+FileReferenceTest >> testWriteStreamDoifPresentNot [
 	| ref pass path |
 	pass := false.
 	path := Path * 'plonk'.
@@ -1239,11 +989,8 @@ FileReferenceTest>>testWriteStreamDoifPresentNot [
 	self assert: pass
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testWriteStreamExists [
+{ #category : #tests }
+FileReferenceTest >> testWriteStreamExists [
 	| ref stream path |
 	path := Path * 'plonk'.
 	filesystem store createFile: path.
@@ -1252,22 +999,16 @@ FileReferenceTest>>testWriteStreamExists [
 		ensure: [ stream ifNotNil: [ stream close ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testWriteStreamifPresent [
+{ #category : #tests }
+FileReferenceTest >> testWriteStreamifPresent [
 	| ref stream |
 	ref := filesystem / 'plonk'.
 	[stream := ref writeStreamIfPresent: [self signalFailure: 'Should not reach here']]
 		ensure: [stream ifNotNil: [stream close]]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-FileReferenceTest>>testWriteStreamifPresentExists [
+{ #category : #tests }
+FileReferenceTest >> testWriteStreamifPresentExists [
 	| ref pass path |
 	pass := false.
 	path := Path * 'plonk'.

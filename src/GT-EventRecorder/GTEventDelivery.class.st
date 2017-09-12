@@ -24,15 +24,11 @@ Class {
 		'queue',
 		'preSuspendingAction'
 	],
-	#category : #GT-EventRecorder-Support,
-	#timestamp : 'AndreiChis 10/13/2015 00:35'
+	#category : #GT-EventRecorder-Support
 }
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>activate [
+{ #category : #activation }
+GTEventDelivery >> activate [
 	"Initialize a delivery process."
 	^ mutex critical: [ 
 			self offerPermission.
@@ -40,35 +36,23 @@ GTEventDelivery>>activate [
 			process ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>add: aGTEventBundle [
+{ #category : #adding }
+GTEventDelivery >> add: aGTEventBundle [
 	queue nextPut: aGTEventBundle
 ]
 
-{
-	#category : #announce,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>announceSuspendingDelivery [
+{ #category : #announce }
+GTEventDelivery >> announceSuspendingDelivery [
 	preSuspendingAction ifNotNil: #value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>announcer [
+{ #category : #accessing }
+GTEventDelivery >> announcer [
 	^ self recorder ifNotNil: #announcer
 ]
 
-{
-	#category : #delivery,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>bundles [
+{ #category : #delivery }
+GTEventDelivery >> bundles [
 	"Be careful about using this method. You will loose data if you call it externaly."
 	| eventBundles |
 	eventBundles := OrderedCollection new.
@@ -76,11 +60,8 @@ GTEventDelivery>>bundles [
 	^ eventBundles
 ]
 
-{
-	#category : #deactivation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>deactivate [
+{ #category : #deactivation }
+GTEventDelivery >> deactivate [
 	^ mutex critical: [ | oldProcess |
 		self withdrawPermission.
 		delay ifNotNil: [ :aDelay | aDelay delaySemaphore signal ].
@@ -89,22 +70,16 @@ GTEventDelivery>>deactivate [
 		oldProcess ]
 ]
 
-{
-	#category : #delivery,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>deliver: aBoolean [
+{ #category : #delivery }
+GTEventDelivery >> deliver: aBoolean [
 	| bundles |
 	bundles := GTEventMultiBundleFactory fromBundles: self bundles.
 	bundles do: [ :eachGTEventMultiBundle |
 		self deliver: eachGTEventMultiBundle signalProgress: aBoolean ]
 ]
 
-{
-	#category : #delivery,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>deliver: aGTEventMultiBundle signalProgress: aBoolean [
+{ #category : #delivery }
+GTEventDelivery >> deliver: aGTEventMultiBundle signalProgress: aBoolean [
 	^ (ZnClient new
 			beOneShot;
 			timeout: 5;
@@ -118,11 +93,8 @@ GTEventDelivery>>deliver: aGTEventMultiBundle signalProgress: aBoolean [
 			response)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>deliveryCycle [
+{ #category : #initialization }
+GTEventDelivery >> deliveryCycle [
 	delay := self standardDuration asDelay.
 	self announceSuspendingDelivery.
 	delay wait.
@@ -130,19 +102,13 @@ GTEventDelivery>>deliveryCycle [
 	self hasPermission ifTrue: [ self packAndDeliver: false ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>hasPermission [
+{ #category : #testing }
+GTEventDelivery >> hasPermission [
 	^ permission
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>initialize [
+{ #category : #initialization }
+GTEventDelivery >> initialize [
 	super initialize.
 	mutex := Mutex new.
 	queue := WaitfreeQueue new.
@@ -150,85 +116,58 @@ GTEventDelivery>>initialize [
 	preSuspendingAction := nil.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>initializeProcess [
+{ #category : #initialization }
+GTEventDelivery >> initializeProcess [
 	process := [ [ self hasPermission ] whileTrue: [ self deliveryCycle ] ]
 		forkAt: Processor userBackgroundPriority
 		named: self printProcessName
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>isActive [
+{ #category : #testing }
+GTEventDelivery >> isActive [
 	^ self isInactive not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>isGlobalRecorder [
+{ #category : #testing }
+GTEventDelivery >> isGlobalRecorder [
 	^ self recorder 
 			ifNil: false
 			ifNotNil: #isGlobalRecorder
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>isInactive [
+{ #category : #testing }
+GTEventDelivery >> isInactive [
 	^ mutex critical: [ 
 		process isNil or: [
 			process isTerminated or: [
 				process isTerminating ] ] ]
 ]
 
-{
-	#category : #delivery,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>now [
+{ #category : #delivery }
+GTEventDelivery >> now [
 	"for testing purpose"
 	delay ifNotNil: [ :aDelay | aDelay delaySemaphore signal. aDelay unschedule. ]
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>offerPermission [
+{ #category : #activation }
+GTEventDelivery >> offerPermission [
 	mutex critical: [ permission := true ]
 ]
 
-{
-	#category : #delivery,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>packAndDeliver: aBoolean. [
+{ #category : #delivery }
+GTEventDelivery >> packAndDeliver: aBoolean. [
 	recorder pack.
 	self deliver: aBoolean.
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>preSuspendingAction: aBlockClosure  [
+{ #category : #initialization }
+GTEventDelivery >> preSuspendingAction: aBlockClosure [ 
 	preSuspendingAction := aBlockClosure
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>printOn: aStream [
+{ #category : #printing }
+GTEventDelivery >> printOn: aStream [
 	super printOn: aStream.
 	aStream
 		space;
@@ -251,20 +190,14 @@ GTEventDelivery>>printOn: aStream [
 		nextPut: $]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>printProcessName [
+{ #category : #printing }
+GTEventDelivery >> printProcessName [
 	^ String streamContents: [ :aStream |
 		self printProcessNameOn: aStream ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>printProcessNameOn: aStream [
+{ #category : #printing }
+GTEventDelivery >> printProcessNameOn: aStream [
 	aStream
 		nextPutAll: self className.
 	self isGlobalRecorder
@@ -273,42 +206,27 @@ GTEventDelivery>>printProcessNameOn: aStream [
 	aStream nextPutAll: 'delivery process'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>recorder [
+{ #category : #accessing }
+GTEventDelivery >> recorder [
 	^ recorder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>recorder: anObject [
+{ #category : #accessing }
+GTEventDelivery >> recorder: anObject [
 	recorder := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>size [
+{ #category : #accessing }
+GTEventDelivery >> size [
 	^ queue size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>standardDuration [
+{ #category : #accessing }
+GTEventDelivery >> standardDuration [
 	^ 20 minutes
 ]
 
-{
-	#category : #deactivation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventDelivery>>withdrawPermission [
+{ #category : #deactivation }
+GTEventDelivery >> withdrawPermission [
 	mutex critical: [ permission := false ]
 ]

@@ -4,23 +4,16 @@ How to create help topics from code
 Class {
 	#name : #HelpHowToHelpTopicsFromCode,
 	#superclass : #HelpHowToHelpTopics,
-	#category : #HelpSystem-Core-Help,
-	#timestamp : 'TorstenBergmann 2/4/2014 21:17'
+	#category : #HelpSystem-Core-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopicsFromCode class>>bookName [
+{ #category : #accessing }
+HelpHowToHelpTopicsFromCode class >> bookName [
 	^'Custom help from code'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopicsFromCode class>>overview [
+{ #category : #pages }
+HelpHowToHelpTopicsFromCode class >> overview [
 	^HelpTopic
 		title: 'Overview'
 		contents:	
@@ -37,19 +30,13 @@ Typically the object does not convert itself to a help topic structure, usually 
 A much more convenient and reproducable way is to implement custom help classes. This allows you to implement and manage your help texts using the standard development and code management tools. These custom help classes are subclasses of "CustomHelp" and are automatically included into the standard help browser. '
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopicsFromCode class>>pages [
+{ #category : #accessing }
+HelpHowToHelpTopicsFromCode class >> pages [
 	^#(overview step1 step2 step3 step4 step5 step6 step7)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopicsFromCode class>>step1 [
+{ #category : #pages }
+HelpHowToHelpTopicsFromCode class >> step1 [
 	^HelpTopic 
 		title: 'Step 1 - Create a class for the book'
 		contents:
@@ -69,11 +56,8 @@ The class category used should end with "-Help" so it is easy to recognize that 
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopicsFromCode class>>step2 [
+{ #category : #pages }
+HelpHowToHelpTopicsFromCode class >> step2 [
 	^HelpTopic
 		title: 'Step 2 - Provide a book name'
 		contents:
@@ -93,11 +77,8 @@ Additionaly you can specify #bookDescription which will be displayed in the Help
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopicsFromCode class>>step3 [
+{ #category : #pages }
+HelpHowToHelpTopicsFromCode class >> step3 [
 	^HelpTopic
 		title: 'Step 3 - Implement pages using methods'
 		contents:
@@ -126,11 +107,8 @@ Later we may add support for better help contents than just plain text (markup d
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopicsFromCode class>>step4 [
+{ #category : #pages }
+HelpHowToHelpTopicsFromCode class >> step4 [
 	^HelpTopic
 		title: 'Step 4 - Defining the page order'
 		contents:
@@ -145,11 +123,8 @@ By implementing the class method #pages you return a collection of method select
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopicsFromCode class>>step5 [
+{ #category : #pages }
+HelpHowToHelpTopicsFromCode class >> step5 [
 	^HelpTopic
 		title: 'Step 5 - Test your help'
 		contents:
@@ -164,11 +139,8 @@ By using
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopicsFromCode class>>step6 [
+{ #category : #pages }
+HelpHowToHelpTopicsFromCode class >> step6 [
 	^HelpTopic
 		title: 'Step 6 - Add more structure'
 		contents:
@@ -190,11 +162,8 @@ class and reopen the help browser.
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpHowToHelpTopicsFromCode class>>step7 [
+{ #category : #pages }
+HelpHowToHelpTopicsFromCode class >> step7 [
 	^HelpTopic
 		title: 'Step 7 - Tips and Tricks'
 		contents:

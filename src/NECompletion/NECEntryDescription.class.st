@@ -9,63 +9,44 @@ Class {
 		'description',
 		'label'
 	],
-	#category : #NECompletion-Model,
-	#timestamp : '<historical>'
+	#category : #NECompletion-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntryDescription class>>label: firstString  [
+{ #category : #'instance creation' }
+NECEntryDescription class >> label: firstString [ 
 	^ self new
 		setLabel: firstString
 		title: '(unknown)'
 		description: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntryDescription class>>label: firstString title: secondString description: thirdString  [
+{ #category : #'instance creation' }
+NECEntryDescription class >> label: firstString title: secondString description: thirdString [ 
 	^ self new 
 		setLabel: firstString
 		title: secondString
 		description: thirdString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntryDescription>>description [
+{ #category : #accessing }
+NECEntryDescription >> description [
 (	description isNil or:[description isEmpty]) ifTrue:[^'-'].
 	^ description
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntryDescription>>label [
+{ #category : #accessing }
+NECEntryDescription >> label [
 	^ label
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntryDescription>>setLabel: firstString title: secondString description: thirdString  [
+{ #category : #initialize-release }
+NECEntryDescription >> setLabel: firstString title: secondString description: thirdString [ 
 	label := firstString.
 	title := secondString.
 	description := thirdString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECEntryDescription>>title [
+{ #category : #accessing }
+NECEntryDescription >> title [
 ^ title
 ]

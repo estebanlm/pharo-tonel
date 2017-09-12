@@ -1,12 +1,7 @@
-Extension {
-	#name : #ClassDescription
-}
+Extension { #name : #ClassDescription }
 
-{
-	#category : #'*System-Sources',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassDescription>>logMethodSource: aText forMethod: aCompiledMethod inCategory: category withStamp: changeStamp [
+{ #category : #'*System-Sources' }
+ClassDescription >> logMethodSource: aText forMethod: aCompiledMethod inCategory: category withStamp: changeStamp [
 	aCompiledMethod
 		putSource: aText
 		class: self

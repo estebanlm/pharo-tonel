@@ -16,15 +16,11 @@ Class {
 		'addToListSel',
 		'content'
 	],
-	#category : #Polymorph-Widgets,
-	#timestamp : 'LaurentLaffont 3/31/2011 21:04'
+	#category : #Polymorph-Widgets
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph class>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel useIndex: useIndex addToList: addToListSel class: aClass getEnabled: getEnabledSel  [
+{ #category : #'as yet unclassified' }
+EditableDropListMorph class >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel useIndex: useIndex addToList: addToListSel class: aClass getEnabled: getEnabledSel [ 
 	^ self
 		on: anObject
 		list: getListSel
@@ -37,11 +33,8 @@ EditableDropListMorph class>>on: anObject list: getListSel selected: getSelectio
 		default: '' 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph class>>on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel useIndex: useIndex addToList: addToListSel class: aClass getEnabled: getEnabledSel default: aDefaultValue [
+{ #category : #'as yet unclassified' }
+EditableDropListMorph class >> on: anObject list: getListSel selected: getSelectionSel changeSelected: setSelectionSel useIndex: useIndex addToList: addToListSel class: aClass getEnabled: getEnabledSel default: aDefaultValue [
 	^ (super
 		on: anObject
 		list: getListSel
@@ -54,83 +47,56 @@ EditableDropListMorph class>>on: anObject list: getListSel selected: getSelectio
 		 yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>addToListSel: aSelector [
+{ #category : #private }
+EditableDropListMorph >> addToListSel: aSelector [
 	addToListSel := aSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+EditableDropListMorph >> adoptPaneColor: paneColor [
 	"Clear the fill style of the text."
 	
 	super adoptPaneColor: paneColor.
 	self contentMorph fillStyle: Color transparent 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>content [
+{ #category : #accessing }
+EditableDropListMorph >> content [
 	^ content
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>content: anObject  [
+{ #category : #accessing }
+EditableDropListMorph >> content: anObject [ 
 	content := anObject.
 	self model perform: addToListSel with: content.
 	self listSelectionIndex: (self list indexOf: content).
 	self updateList
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>convertTo: aClass  [
+{ #category : #private }
+EditableDropListMorph >> convertTo: aClass [ 
 	self contentMorph convertTo: aClass 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>converter [
+{ #category : #accessing }
+EditableDropListMorph >> converter [
 	^ self contentMorph converter
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>default: anObject  [
+{ #category : #private }
+EditableDropListMorph >> default: anObject [ 
 	self contentMorph default: anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>defaultContents [
+{ #category : #private }
+EditableDropListMorph >> defaultContents [
 	"needs nothing to activate the ghostText"
 	^ ''
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>enabled: aBoolean [
+{ #category : #accessing }
+EditableDropListMorph >> enabled: aBoolean [
 	"Set the value of enabled"
 	
 	super enabled: aBoolean.
@@ -139,60 +105,42 @@ EditableDropListMorph>>enabled: aBoolean [
 		fillStyle: Color transparent 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>font: aFont [
+{ #category : #accessing }
+EditableDropListMorph >> font: aFont [
 	"Set the list and content font"
 
 	self listMorph font: aFont.
 	self contentMorph font: aFont
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>ghostText: aText [
+{ #category : #protocol }
+EditableDropListMorph >> ghostText: aText [
 	self contentMorph ghostText: aText
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>layoutInsetToUse [
+{ #category : #private }
+EditableDropListMorph >> layoutInsetToUse [
 	"Answer the layout inset that should be used."
 
 	^ 0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>listHeight [
+{ #category : #private }
+EditableDropListMorph >> listHeight [
 	"Answer the height for the list."
 	^(self listMorph listMorph height + 12) min: 200
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>minHeight [
+{ #category : #layout }
+EditableDropListMorph >> minHeight [
 	"Answer the minimum height for the drop list."
 	
 	^self theme textFont height + 7
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>newContentMorph [
+{ #category : #drawing }
+EditableDropListMorph >> newContentMorph [
 	"Answer a new content morph"
 	
 	| pt |
@@ -221,28 +169,19 @@ EditableDropListMorph>>newContentMorph [
 	^ pt
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>objectAsString: anObject [
+{ #category : #private }
+EditableDropListMorph >> objectAsString: anObject [
 	^ self converter objectAsString: anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>updateContentMorphWith: aString [
+{ #category : #private }
+EditableDropListMorph >> updateContentMorphWith: aString [
 
 	content := aString.
 	self contentMorph setText: aString
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-EditableDropListMorph>>wantsFrameAdornments: aBoolean [
+{ #category : #protocol }
+EditableDropListMorph >> wantsFrameAdornments: aBoolean [
 	self contentMorph wantsFrameAdornments: aBoolean
 ]

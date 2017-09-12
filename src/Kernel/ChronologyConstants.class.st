@@ -16,15 +16,11 @@ Class {
 		'SecondsInMinute',
 		'SqueakEpoch'
 	],
-	#category : #Kernel-Chronology,
-	#timestamp : 'brp 3/12/2004 14:34'
+	#category : #Kernel-Chronology
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ChronologyConstants class>>initialize [
+{ #category : #'class initialization' }
+ChronologyConstants class >> initialize [
 	"ChronologyConstants initialize"
 	SqueakEpoch := 2415386. 		"Julian day number of 1 Jan 1901" 
 	SecondsInDay := 86400.

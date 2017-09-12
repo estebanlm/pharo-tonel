@@ -1,12 +1,7 @@
-Extension {
-	#name : #Context
-}
+Extension { #name : #Context }
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-Context>>executedPC [
+{ #category : #'*OpalCompiler-Core' }
+Context >> executedPC [
 	"If this context is already perform message send and waiting return 
 	then executed PC is previous one. So we start analazing with previous PC.
 	If there was no sends yet then we just need current pc corrected by push operations.
@@ -27,43 +22,28 @@ Context>>executedPC [
 	^ executedPC
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-Context>>isBlockReturn: aPC [
+{ #category : #'*OpalCompiler-Core' }
+Context >> isBlockReturn: aPC [
 	^method encoderClass isBlockReturnAt: aPC in: method.
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-Context>>isPushLiteralNil: aPC [
+{ #category : #'*OpalCompiler-Core' }
+Context >> isPushLiteralNil: aPC [
 	^ (self method at: aPC) = method encoderClass pushNilByte
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-Context>>isPushTemp: aPC [
+{ #category : #'*OpalCompiler-Core' }
+Context >> isPushTemp: aPC [
 	^ self method encoderClass isPushTempAt: aPC in: method
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-Context>>isReturnAt: aPC [
+{ #category : #'*OpalCompiler-Core' }
+Context >> isReturnAt: aPC [
 	^method encoderClass isReturnAt: aPC in: method.
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-Context>>neighborPCWithCorrectMapping [
+{ #category : #'*OpalCompiler-Core' }
+Context >> neighborPCWithCorrectMapping [
 	"Answer a pc inside the enclosing block or mathod that is correctly mapped to an AST node"
 	"This is an ugly and temporary fix for Pharo 3. 
 	Must be removed as soon as mappings are fixed"
@@ -82,11 +62,8 @@ Context>>neighborPCWithCorrectMapping [
 	^ neighborPC
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-Context>>previousPcWithCorrectMapping [
+{ #category : #'*OpalCompiler-Core' }
+Context >> previousPcWithCorrectMapping [
 	"Answer a pc inside the enclosing block or mathod that is correctly mapped to an AST node"
 	"This is an ugly and temporary fix for Pharo 3. 
 	Must be removed as soon as mappings are fixed"
@@ -105,22 +82,16 @@ Context>>previousPcWithCorrectMapping [
 	^ neighborPC
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-Context>>sourceNode [
+{ #category : #'*OpalCompiler-Core' }
+Context >> sourceNode [
 	"Return the source node of the method or the block corresponding to the receiver"
 	^ (method sourceNodeForPC: self neighborPCWithCorrectMapping) enclosingMethodOrBlockNode
 	"Uncomment the following once the pc->AST mapping is fixed"
 	"^ (method sourceNodeForPC: (pc ifNil: [ self startpc ])) enclosingMethodOrBlockNode"
 ]
 
-{
-	#category : #'*OpalCompiler-Core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-Context>>sourceNodeExecuted [
+{ #category : #'*OpalCompiler-Core' }
+Context >> sourceNodeExecuted [
 	"When down in the stack, I return the node that executed"
 	^ (method sourceNodeExecutedForPC: self executedPC) 
 	"Uncomment the following once the pc->AST mapping is fixed"

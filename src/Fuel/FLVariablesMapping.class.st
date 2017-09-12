@@ -16,15 +16,11 @@ Class {
 		'notIgnoredVariables',
 		'references'
 	],
-	#category : #Fuel-Clusters,
-	#timestamp : 'MartinDias 8/1/2011 03:01'
+	#category : #Fuel-Clusters
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLVariablesMapping class>>materializing: aClass from: aDecoder [
+{ #category : #'instance creation' }
+FLVariablesMapping class >> materializing: aClass from: aDecoder [
 	
 	^ self basicNew
 		initializeWithClass: aClass;
@@ -32,11 +28,8 @@ FLVariablesMapping class>>materializing: aClass from: aDecoder [
 		yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLVariablesMapping class>>newAnalyzing: anAnalysis references: aCollection [
+{ #category : #'instance creation' }
+FLVariablesMapping class >> newAnalyzing: anAnalysis references: aCollection [
 
 	^ self basicNew
 		initializeWithClass: anAnalysis references: aCollection;
@@ -44,11 +37,8 @@ FLVariablesMapping class>>newAnalyzing: anAnalysis references: aCollection [
 		yourself
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLVariablesMapping>>initializeAnalyzing [
+{ #category : #serialize/materialize }
+FLVariablesMapping >> initializeAnalyzing [
 
 	notIgnoredVariables := self instanceVariableNamesToSerialize.
 	
@@ -56,11 +46,8 @@ FLVariablesMapping>>initializeAnalyzing [
 		collect: [ :name | theClass instVarIndexFor: name ].
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLVariablesMapping>>initializeMaterializingFrom: aDecoder [
+{ #category : #serialize/materialize }
+FLVariablesMapping >> initializeMaterializingFrom: aDecoder [
 
 	notIgnoredVariables := (1 to: aDecoder nextEncodedByte) collect: [ :index | aDecoder nextEncodedString ].
 
@@ -70,30 +57,21 @@ FLVariablesMapping>>initializeMaterializingFrom: aDecoder [
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLVariablesMapping>>initializeWithClass: aClass [
+{ #category : #initialize-release }
+FLVariablesMapping >> initializeWithClass: aClass [
 	self initialize.
 	theClass := aClass
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLVariablesMapping>>initializeWithClass: aClass references: aCollection [
+{ #category : #initialize-release }
+FLVariablesMapping >> initializeWithClass: aClass references: aCollection [
 	self initialize.
 	theClass := aClass.
 	references := aCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLVariablesMapping>>instanceVariableNamesToSerialize [
+{ #category : #private }
+FLVariablesMapping >> instanceVariableNamesToSerialize [
 
 	| ignoredInstanceVariableNames instanceVariableNamesToSerialize |
 	ignoredInstanceVariableNames := theClass fuelIgnoredInstanceVariableNames.
@@ -106,11 +84,8 @@ FLVariablesMapping>>instanceVariableNamesToSerialize [
 	^ instanceVariableNamesToSerialize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLVariablesMapping>>map: sourceName to: destinationName [
+{ #category : #accessing }
+FLVariablesMapping >> map: sourceName to: destinationName [
 
 	| indexOfVariableToMap |
 	indexOfVariableToMap := notIgnoredVariables indexOf: sourceName.
@@ -123,11 +98,8 @@ FLVariablesMapping>>map: sourceName to: destinationName [
 
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLVariablesMapping>>materializeReferencesOf: anObject with: aDecoder  [
+{ #category : #serialize/materialize }
+FLVariablesMapping >> materializeReferencesOf: anObject with: aDecoder [ 
 
 	mapping do: [ :index | 
 			| reference |
@@ -138,38 +110,26 @@ FLVariablesMapping>>materializeReferencesOf: anObject with: aDecoder  [
 					put: reference ]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLVariablesMapping>>references [
+{ #category : #accessing }
+FLVariablesMapping >> references [
 	^ references
 ]
 
-{
-	#category : #analyzing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLVariablesMapping>>referencesOf: anObject do: aBlock [
+{ #category : #analyzing }
+FLVariablesMapping >> referencesOf: anObject do: aBlock [
 
 	mapping do: [ :index | aBlock value: (anObject instVarAt: index) ].
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLVariablesMapping>>serializeOn: anEncoder [
+{ #category : #serialize/materialize }
+FLVariablesMapping >> serializeOn: anEncoder [
 
 	anEncoder encodeByte: notIgnoredVariables size.	
 	notIgnoredVariables do: [ :name | anEncoder encodeString: name ].
 ]
 
-{
-	#category : #serialize/materialize,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLVariablesMapping>>serializeReferencesOf: anObject with: anEncoder  [
+{ #category : #serialize/materialize }
+FLVariablesMapping >> serializeReferencesOf: anObject with: anEncoder [ 
 
 	(self references at: anObject ifAbsent: [ ^ self ]) do: [ :value |
 		anEncoder encodeReferenceTo: value ].

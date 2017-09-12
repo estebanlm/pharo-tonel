@@ -11,15 +11,11 @@ Class {
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : #System-SessionManager,
-	#timestamp : 'ChristopheDemarey 10/9/2015 11:51'
+	#category : #System-SessionManager
 }
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-UIManagerSessionHandler class>>initialize [
+{ #category : #initialize-release }
+UIManagerSessionHandler class >> initialize [
 	"has to be executed at the end of the GUI category"
 	SessionManager default 
 		register: self uniqueInstance
@@ -27,36 +23,24 @@ UIManagerSessionHandler class>>initialize [
 		atPriority: SmallInteger maxVal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-UIManagerSessionHandler class>>uniqueInstance [
+{ #category : #accessing }
+UIManagerSessionHandler class >> uniqueInstance [
 	^ UniqueInstance ifNil: [ UniqueInstance := self new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-UIManagerSessionHandler>>handledId [
+{ #category : #accessing }
+UIManagerSessionHandler >> handledId [
 	^ self class name
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-UIManagerSessionHandler>>shutdown: isImageQuitting [
+{ #category : #handlers }
+UIManagerSessionHandler >> shutdown: isImageQuitting [
 	"Prepare the shutdown and the next startup"
 	UIManager default: StartupUIManager new
 ]
 
-{
-	#category : #handlers,
-	#timestamp : ' 8/31/2017 07:16:58'
-}
-UIManagerSessionHandler>>startup: isImageStarting [
+{ #category : #handlers }
+UIManagerSessionHandler >> startup: isImageStarting [
 	"Install the right UIManager"
 	UIManager default: UIManager forCurrentSystemConfiguration.
 ]

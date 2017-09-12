@@ -16,15 +16,11 @@ Class {
 		'classVariables',
 		'sharedPools'
 	],
-	#category : #Slot-ClassBuilder,
-	#timestamp : '<historical>'
+	#category : #Slot-ClassBuilder
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification class>>modify: aClass extend: aSuperclass withLayoutType: layoutClass slots: someSlots sharedVariables: someClassVariables sharedPools: someSharedPools traitComposition: aTraitComposition  [
+{ #category : #'instance creation' }
+ClassModification class >> modify: aClass extend: aSuperclass withLayoutType: layoutClass slots: someSlots sharedVariables: someClassVariables sharedPools: someSharedPools traitComposition: aTraitComposition [ 
 	^ self new
 		target: aClass;
 		superclass: aSuperclass;
@@ -35,27 +31,18 @@ ClassModification class>>modify: aClass extend: aSuperclass withLayoutType: layo
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>additions [
+{ #category : #accessing }
+ClassModification >> additions [
 	^ additions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>additions: aCollection [
+{ #category : #accessing }
+ClassModification >> additions: aCollection [
 	additions := aCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>buildModificationMapFor: aModification [
+{ #category : #private }
+ClassModification >> buildModificationMapFor: aModification [
 	aModification slotShift: (ShiftedField new shift: slotShift).
 	
 	aModification size = 0 
@@ -76,56 +63,38 @@ ClassModification>>buildModificationMapFor: aModification [
 	^ aModification
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>changes [
+{ #category : #accessing }
+ClassModification >> changes [
 	^ changes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>classVariables [
+{ #category : #accessing }
+ClassModification >> classVariables [
 	
 	^ classVariables
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>classVariables: anObject [
+{ #category : #accessing }
+ClassModification >> classVariables: anObject [
 	
 	classVariables := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>computeChange [
+{ #category : #private }
+ClassModification >> computeChange [
 	super computeChange.
 	layout computeChangesFrom: target classLayout in: self.
 	slotShift := layout fieldSize - target classLayout fieldSize.
 	self propagate.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>copies [
+{ #category : #accessing }
+ClassModification >> copies [
 	^ copies
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>initialize [
+{ #category : #initialization }
+ClassModification >> initialize [
 	super initialize.
 	changes := IdentityDictionary new.
 	copies := IdentityDictionary new.
@@ -133,22 +102,16 @@ ClassModification>>initialize [
 	additions := {}.
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>installSlotAddition: slot on: aModification [
+{ #category : #installing }
+ClassModification >> installSlotAddition: slot [ on: aModification
 	0 to: slot size - 1 do: [ :idx |
 		(AddedField new
 			newSlot: slot;
 			fieldIndex: idx) installOn: aModification  ]
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>installSlotChangeFrom: oldSlot to: newSlot on: aModification [
+{ #category : #installing }
+ClassModification >> installSlotChangeFrom: oldSlot to: newSlot on: aModification [
 	0 to: newSlot size - 1 do: [ :idx |
  		(ModifiedField new
 			newSlot: newSlot;
@@ -156,52 +119,37 @@ ClassModification>>installSlotChangeFrom: oldSlot to: newSlot on: aModification 
 			fieldIndex: idx) installOn: aModification ]
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>installSlotCopiedFrom: oldSlot to: newSlot on: aModification [
+{ #category : #installing }
+ClassModification >> installSlotCopiedFrom: oldSlot to: newSlot on: aModification [
 	0 to: newSlot size - 1 do: [ :idx |
  		(UnmodifiedField new
 			slot: newSlot;
 			fieldIndex: idx) installOn: aModification ]
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>installSlotRemoval: slot on: aModification [
+{ #category : #installing }
+ClassModification >> installSlotRemoval: slot on: aModification [
 	0 to: slot size - 1 do: [ :idx |
 		(RemovedField new
 			originalSlot: slot;
 			fieldIndex: idx) installOn: aModification ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>instanceModification [
+{ #category : #accessing }
+ClassModification >> instanceModification [
 	| map |
 	map := InstanceModification new: layout fieldSize.
 	^ self buildModificationMapFor: map
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>isPropagation [
+{ #category : #testing }
+ClassModification >> isPropagation [
 
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>layoutClass: layoutClass slots: slotArray [
+{ #category : #accessing }
+ClassModification >> layoutClass: layoutClass slots: slotArray [
 	| parentLayout newScope newLayout |
 	parentLayout := self superLayout.
 	newScope := parentLayout slotScope extend: slotArray.
@@ -209,159 +157,105 @@ ClassModification>>layoutClass: layoutClass slots: slotArray [
 	self layout: newLayout
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>methodModification [
+{ #category : #accessing }
+ClassModification >> methodModification [
 	^ methodModification ifNil: [
 		methodModification := MethodModification new: target classLayout fieldSize.
 		self buildModificationMapFor: methodModification ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>modifiesClassVariables [
+{ #category : #testing }
+ClassModification >> modifiesClassVariables [
 	"Note: The meta class has the same class variables as it's non-meta class"
 
 	^ target isInstanceSide and: [ target classVariables ~= classVariables ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>modifiesFormat [
+{ #category : #testing }
+ClassModification >> modifiesFormat [
 
 	^ (layout format = target classLayout format) not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>modifiesSharedPools [
+{ #category : #testing }
+ClassModification >> modifiesSharedPools [
 
 	^ (target sharedPoolsString = sharedPools) not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>modifiesSlots [
+{ #category : #testing }
+ClassModification >> modifiesSlots [
 
 	^ (changes isEmpty and: [ removals isEmpty and: [ additions isEmpty ]]) not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>modifiesSuperclass [
+{ #category : #testing }
+ClassModification >> modifiesSuperclass [
 
 	^ (target superclass == superclass) not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>newScope [
+{ #category : #accessing }
+ClassModification >> newScope [
 	^ layout slotScope
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>originalScope [
+{ #category : #accessing }
+ClassModification >> originalScope [
 	^ target classLayout slotScope
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>removals [
+{ #category : #accessing }
+ClassModification >> removals [
 	^ removals
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>removals: aCollection [
+{ #category : #accessing }
+ClassModification >> removals: aCollection [
 	removals := aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>sharedPools [
+{ #category : #accessing }
+ClassModification >> sharedPools [
 	
 	^ sharedPools
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>sharedPools: anObject [
+{ #category : #accessing }
+ClassModification >> sharedPools: anObject [
 	
 	sharedPools := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>slotShift [
+{ #category : #accessing }
+ClassModification >> slotShift [
 	^ slotShift
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>superLayout [
+{ #category : #accessing }
+ClassModification >> superLayout [
 	^ superclass
 		ifNil: [ EmptyLayout instance ]
 		ifNotNil: [ superclass classLayout ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>superclass [
+{ #category : #accessing }
+ClassModification >> superclass [
 	^ superclass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>superclass: aClass [
+{ #category : #accessing }
+ClassModification >> superclass: aClass [
 	superclass := aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>traitComposition [
+{ #category : #accessing }
+ClassModification >> traitComposition [
 	^ traitComposition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ClassModification>>traitComposition: aTraitComposition [
+{ #category : #accessing }
+ClassModification >> traitComposition: aTraitComposition [
 	" We copy the trait composition since we might want "
 	" to update the slot indices if the composition is partly stateful "
 	traitComposition := aTraitComposition copyTraitExpression

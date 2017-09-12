@@ -12,66 +12,44 @@ Class {
 	#instVars : [
 		'answerBlock'
 	],
-	#category : #AST-Core-Matching,
-	#timestamp : 'md 8/9/2005 14:56'
+	#category : #AST-Core-Matching
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSearchRule class>>searchFor: aString thenDo: aBlock  [
+{ #category : #'instance creation' }
+RBSearchRule class >> searchFor: aString thenDo: aBlock [ 
 	^self new searchFor: aString thenDo: aBlock
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSearchRule class>>searchForMethod: aString thenDo: aBlock  [
+{ #category : #'instance creation' }
+RBSearchRule class >> searchForMethod: aString thenDo: aBlock [ 
 	^self new searchForMethod: aString thenDo: aBlock
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSearchRule class>>searchForTree: aBRProgramNode thenDo: aBlock  [
+{ #category : #'instance creation' }
+RBSearchRule class >> searchForTree: aBRProgramNode thenDo: aBlock [ 
 	^self new searchForTree: aBRProgramNode thenDo: aBlock
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSearchRule>>canMatch: aProgramNode  [
+{ #category : #testing }
+RBSearchRule >> canMatch: aProgramNode [ 
 	owner answer: (answerBlock value: aProgramNode value: owner answer).
 	^true
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSearchRule>>searchFor: aString thenDo: aBlock  [
+{ #category : #initialize-release }
+RBSearchRule >> searchFor: aString thenDo: aBlock [ 
 	self searchString: aString.
 	answerBlock := aBlock
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSearchRule>>searchForMethod: aString thenDo: aBlock  [
+{ #category : #initialize-release }
+RBSearchRule >> searchForMethod: aString thenDo: aBlock [ 
 	self methodSearchString: aString.
 	answerBlock := aBlock
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBSearchRule>>searchForTree: aBRProgramNode thenDo: aBlock  [
+{ #category : #initialize-release }
+RBSearchRule >> searchForTree: aBRProgramNode thenDo: aBlock [ 
 	searchTree := aBRProgramNode.
 	answerBlock := aBlock
 ]

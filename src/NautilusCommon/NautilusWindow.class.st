@@ -6,15 +6,11 @@ Maybe I'm useless, but right now I'm not on the top of the to do list
 Class {
 	#name : #NautilusWindow,
 	#superclass : #StandardWindow,
-	#category : #NautilusCommon,
-	#timestamp : '<historical>'
+	#category : #NautilusCommon
 }
 
-{
-	#category : #about,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusWindow>>aboutText [
+{ #category : #about }
+NautilusWindow >> aboutText [
 
 	^'Nautilus is a new browser for Pharo Smalltalk based on RPackage and Announcements with fancy goodies:
 	- groups
@@ -33,20 +29,14 @@ NautilusWindow>>aboutText [
 Made by Benjamin Van Ryseghem and friends'
 ]
 
-{
-	#category : #about,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusWindow>>aboutTitle [
+{ #category : #about }
+NautilusWindow >> aboutTitle [
 
 	^'About Nautilus'
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusWindow>>delete [
+{ #category : #open/close }
+NautilusWindow >> delete [
 	
 	| mod |
 	mod := self model.
@@ -55,19 +45,13 @@ NautilusWindow>>delete [
 		ifNotNil: [ mod announce: (WindowClosed new window: self) ]
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusWindow>>hasFocus [
+{ #category : #'event handling' }
+NautilusWindow >> hasFocus [
 
 	^ ActiveHand keyboardFocus == self
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusWindow>>initialExtent [
+{ #category : #open/close }
+NautilusWindow >> initialExtent [
 	^ 850@620
 ]

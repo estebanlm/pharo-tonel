@@ -39,96 +39,65 @@ Class {
 		'dataSource',
 		'pattern'
 	],
-	#category : #Morphic-Widgets-FastTable-Tree,
-	#timestamp : 'CyrilFerlicot 11/3/2015 14:06'
+	#category : #Morphic-Widgets-FastTable-Tree
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeFunctionStrategy class>>filterWith: aRegex dataSource: aDataSource [
+{ #category : #instance-creation }
+FTTreeFunctionStrategy class >> filterWith: aRegex dataSource: aDataSource [
 	^ self new
 		pattern: aRegex;
 		dataSource: aDataSource;
 		filter
 ]
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeFunctionStrategy class>>searchWith: aString dataSource: aDataSource [
+{ #category : #instance-creation }
+FTTreeFunctionStrategy class >> searchWith: aString dataSource: aDataSource [
 	^ self new pattern: aString; dataSource: aDataSource; search
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeFunctionStrategy>>dataSource [
+{ #category : #accessing }
+FTTreeFunctionStrategy >> dataSource [
 	^ dataSource
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeFunctionStrategy>>dataSource: anObject [
+{ #category : #accessing }
+FTTreeFunctionStrategy >> dataSource: anObject [
 	dataSource := anObject
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeFunctionStrategy>>filter [
+{ #category : #action }
+FTTreeFunctionStrategy >> filter [
 	"I need to return a new dataSource that filter my dataSource."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeFunctionStrategy>>isMatching: anItem [
+{ #category : #accessing }
+FTTreeFunctionStrategy >> isMatching: anItem [
 	^ (dataSource toString: anItem) beginsWith: pattern
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeFunctionStrategy>>optionalOperations [
+{ #category : #action }
+FTTreeFunctionStrategy >> optionalOperations [
 	^ pattern isEmptyOrNil
 		ifTrue: [ #() ]
 		ifFalse: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeFunctionStrategy>>pattern: aStringOrRegex [
+{ #category : #accessing }
+FTTreeFunctionStrategy >> pattern: aStringOrRegex [
 	pattern := aStringOrRegex
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeFunctionStrategy>>realSearch [
+{ #category : #action }
+FTTreeFunctionStrategy >> realSearch [
 	"I need to return a collection of index that match the elements I find."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTTreeFunctionStrategy>>search [
+{ #category : #action }
+FTTreeFunctionStrategy >> search [
 	^ self optionalOperations 
 		ifNotNil: [ :res | res ]
 		ifNil: [ self realSearch]

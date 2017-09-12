@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #MetacelloVersionMethodSpec,
 	#superclass : #MetacelloMethodSpec,
 	#instVars : [
 		'imports'
 	],
-	#category : #Metacello-Core-Constructors,
-	#timestamp : ''
+	#category : #Metacello-Core-Constructors
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSpec>>addMethodSection: attributePath versionSpec: versionSpec [
+{ #category : #adding }
+MetacelloVersionMethodSpec >> addMethodSection: attributePath versionSpec: versionSpec [
     | attributeList methodSection index sections found |
     attributeList := attributePath last.
     methodSection := MetacelloVersionMethodSection new
@@ -45,11 +38,8 @@ MetacelloVersionMethodSpec>>addMethodSection: attributePath versionSpec: version
         ifFalse: [ self methodSections add: methodSection ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSpec>>findMethodSection: attributeOrPath sectionIndex: sectionIndex [
+{ #category : #adding }
+MetacelloVersionMethodSpec >> findMethodSection: attributeOrPath sectionIndex: sectionIndex [
     | attributePath index sections found |
     attributePath := attributeOrPath asMetacelloAttributePath.
     index := 1.
@@ -70,28 +60,19 @@ MetacelloVersionMethodSpec>>findMethodSection: attributeOrPath sectionIndex: sec
     self error: 'Method section for attribute: ' , attributePath printString , ' not found.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSpec>>imports [
+{ #category : #accessing }
+MetacelloVersionMethodSpec >> imports [
 	imports == nil ifTrue: [ imports := #() ].
 	^ imports
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSpec>>imports: anObject [
+{ #category : #accessing }
+MetacelloVersionMethodSpec >> imports: anObject [
 	imports := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSpec>>methodSection: methodSection pre: preBlock last: last post: postBlock indent: indent [
+{ #category : #private }
+MetacelloVersionMethodSpec >> methodSection: methodSection pre: preBlock last: last post: postBlock indent: indent [
 	| list |
 	methodSection ~~ self
 		ifTrue: [ preBlock value: methodSection value: indent ].
@@ -109,11 +90,8 @@ MetacelloVersionMethodSpec>>methodSection: methodSection pre: preBlock last: las
 		ifTrue: [ postBlock value: methodSection value: indent value: last ]
 ]
 
-{
-	#category : #'method generation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSpec>>methodSelectorAndPragma: aSelector imports: importList versionString: aString on: strm [
+{ #category : #'method generation' }
+MetacelloVersionMethodSpec >> methodSelectorAndPragma: aSelector imports: importList versionString: aString [ on: strm
 	strm
 		nextPutAll: aSelector asString , ' spec';
 		cr;
@@ -133,11 +111,8 @@ MetacelloVersionMethodSpec>>methodSelectorAndPragma: aSelector imports: importLi
 		cr
 ]
 
-{
-	#category : #'method generation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSpec>>methodSource [
+{ #category : #'method generation' }
+MetacelloVersionMethodSpec >> methodSource [
     | strm |
     strm := WriteStream on: String new.
     self
@@ -163,11 +138,8 @@ MetacelloVersionMethodSpec>>methodSource [
     ^ strm contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionMethodSpec>>versionString: aStringOrSymbol [
+{ #category : #accessing }
+MetacelloVersionMethodSpec >> versionString: aStringOrSymbol [
 
 	aStringOrSymbol isSymbol ifTrue: [ self error: 'Version string ', aStringOrSymbol printString, ' for version method must be a String' ].
 	super versionString: aStringOrSymbol

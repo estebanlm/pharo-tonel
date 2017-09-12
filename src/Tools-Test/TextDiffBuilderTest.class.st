@@ -5,37 +5,27 @@ Tests from L. Uzonyi (from squeak trunk System.ul207and 208)
 Class {
 	#name : #TextDiffBuilderTest,
 	#superclass : #TestCase,
-	#category : #Tools-Test-DiffBuilder,
-	#timestamp : 'StephaneDucasse 1/3/2010 22:34'
+	#category : #Tools-Test-DiffBuilder
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextDiffBuilderTest>>convertToString: array [
+{ #category : #private }
+TextDiffBuilderTest >> convertToString: array [
 
 	^String streamContents: [ :stream |
 		array do: [ :each |
 			stream nextPutAll: each asString; cr ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextDiffBuilderTest>>patchSequenceFor: x and: y [
+{ #category : #private }
+TextDiffBuilderTest >> patchSequenceFor: x and: y [
 
 	^(TextDiffBuilder
 		from: (self convertToString: x)
 		to:  (self convertToString: y)) buildPatchSequence
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextDiffBuilderTest>>testEmptyLcs1 [
+{ #category : #tests }
+TextDiffBuilderTest >> testEmptyLcs1 [
 
 	| patch |
 	patch := self patchSequenceFor: #(a b c) and: #().
@@ -43,11 +33,8 @@ TextDiffBuilderTest>>testEmptyLcs1 [
 	self assert: (patch allSatisfy: [ :each | each key = #remove ])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextDiffBuilderTest>>testEmptyLcs2 [
+{ #category : #tests }
+TextDiffBuilderTest >> testEmptyLcs2 [
 
 	| patch |
 	patch := self patchSequenceFor: #() and: #(a b c).
@@ -55,11 +42,8 @@ TextDiffBuilderTest>>testEmptyLcs2 [
 	self assert: (patch allSatisfy: [ :each | each key = #insert ])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextDiffBuilderTest>>testEmptyLcs3 [
+{ #category : #tests }
+TextDiffBuilderTest >> testEmptyLcs3 [
 
 	| patch |
 	patch := self patchSequenceFor: #(a b c) and: #(d e f g).
@@ -69,22 +53,16 @@ TextDiffBuilderTest>>testEmptyLcs3 [
 		each key = #insert ifTrue: [ self assert: ('defg' includes: each value first) ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextDiffBuilderTest>>testEmptySequences [
+{ #category : #tests }
+TextDiffBuilderTest >> testEmptySequences [
 
 	| patch |
 	patch := self patchSequenceFor: #() and: #().
 	self assert: patch isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextDiffBuilderTest>>testIfPatchIsMinimal [
+{ #category : #tests }
+TextDiffBuilderTest >> testIfPatchIsMinimal [
 
 	| patch |
 	patch := self patchSequenceFor: #(a a a b) and: #(a b a a).
@@ -98,11 +76,8 @@ TextDiffBuilderTest>>testIfPatchIsMinimal [
 			ifFalse: [ self assert: each value first = $b ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextDiffBuilderTest>>testIfSequence1 [
+{ #category : #tests }
+TextDiffBuilderTest >> testIfSequence1 [
 
 	| patch |
 	patch := self patchSequenceFor: #(a b c d) and: #(d c b a).
@@ -116,11 +91,8 @@ TextDiffBuilderTest>>testIfSequence1 [
 			ifFalse: [ self assert: ('abc' includes: each value first) ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextDiffBuilderTest>>testIfSequence2 [
+{ #category : #tests }
+TextDiffBuilderTest >> testIfSequence2 [
 
 	| patch |
 	patch := self patchSequenceFor: #(a b c d) and: #(c d b a).
@@ -134,11 +106,8 @@ TextDiffBuilderTest>>testIfSequence2 [
 			ifFalse: [ self assert: ('ab' includes: each value first) ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextDiffBuilderTest>>testIfSequence3 [
+{ #category : #tests }
+TextDiffBuilderTest >> testIfSequence3 [
 
 	| patch |
 	patch := self patchSequenceFor: #(a b c d) and: #(b d c a).
@@ -152,11 +121,8 @@ TextDiffBuilderTest>>testIfSequence3 [
 			ifFalse: [ self assert: ('ac' includes: each value first) ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextDiffBuilderTest>>testIfSequence4 [
+{ #category : #tests }
+TextDiffBuilderTest >> testIfSequence4 [
 
 	| patch |
 	patch := self patchSequenceFor: #(a b c d) and: #(d b c a).
@@ -170,11 +136,8 @@ TextDiffBuilderTest>>testIfSequence4 [
 			ifFalse: [ self assert: ('ad' includes: each value first) ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextDiffBuilderTest>>testIfSequence5 [
+{ #category : #tests }
+TextDiffBuilderTest >> testIfSequence5 [
 
 	| patch matches nonMatches |
 	patch := self patchSequenceFor: #(a b c d) and: #(c d a b).
@@ -191,11 +154,8 @@ TextDiffBuilderTest>>testIfSequence5 [
 			ifFalse: [ self assert: (nonMatches includes: each value first) ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextDiffBuilderTest>>testIfSequence6 [
+{ #category : #tests }
+TextDiffBuilderTest >> testIfSequence6 [
 
 	| patch |
 	patch := self patchSequenceFor: #(a b c d) and: #(d a b c).
@@ -209,11 +169,8 @@ TextDiffBuilderTest>>testIfSequence6 [
 			ifFalse: [ self assert: each value first = $d ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextDiffBuilderTest>>testSameSequence [
+{ #category : #tests }
+TextDiffBuilderTest >> testSameSequence [
 
 	| patch |
 	patch := self patchSequenceFor: #(a b c) and: #(a b c).
@@ -221,11 +178,8 @@ TextDiffBuilderTest>>testSameSequence [
 	self assert: (patch allSatisfy: [ :each | each key = #match ])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-TextDiffBuilderTest>>testSameSequenceWithRepetitions [
+{ #category : #tests }
+TextDiffBuilderTest >> testSameSequenceWithRepetitions [
 
 	| patch |
 	patch := self patchSequenceFor: #(a a b a) and: #(a a b a).

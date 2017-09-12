@@ -12,91 +12,63 @@ Class {
 		'ui',
 		'object'
 	],
-	#category : #Spec-Examples-Wrapper,
-	#timestamp : 'Spirita 7/27/2016 10:55'
+	#category : #Spec-Examples-Wrapper
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicSpecExample class>>exampleInt [
+{ #category : #example }
+DynamicSpecExample class >> exampleInt [
 	^ self new open: 42
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicSpecExample class>>exampleNil [
+{ #category : #example }
+DynamicSpecExample class >> exampleNil [
 	^ self new
 		open: nil
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicSpecExample class>>exampleString [
+{ #category : #example }
+DynamicSpecExample class >> exampleString [
 	^ self new
 		open: 'Hello World'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicSpecExample class>>object: object [
+{ #category : #'instance creation' }
+DynamicSpecExample class >> object: object [
 
 	^ self new
 		object: object;
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicSpecExample>>initialize [
+{ #category : #initialization }
+DynamicSpecExample >> initialize [
 
 	super initialize.
 	object := nil asValueHolder.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicSpecExample>>object [
+{ #category : #accessing }
+DynamicSpecExample >> object [
 
 	^ object value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicSpecExample>>object: anObject [
+{ #category : #accessing }
+DynamicSpecExample >> object: anObject [
 	
 	object value: anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicSpecExample>>open [
+{ #category : #protocol }
+DynamicSpecExample >> open [
 
 	object value ifNil: [ ^ self openOnNil ].
 	object value isInteger ifTrue: [ ^ self openOnInteger ].
 	object value isString ifTrue: [ ^ self openOnString ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicSpecExample>>open: anObject [
+{ #category : #protocol }
+DynamicSpecExample >> open: anObject [
 	anObject ifNil: [ ^ self openOnNil ].
 	anObject isInteger
 		ifTrue: [ ^ self openOnInteger: anObject ].
@@ -104,11 +76,8 @@ DynamicSpecExample>>open: anObject [
 		ifTrue: [ ^ self openOnString: anObject ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicSpecExample>>openOnInteger [
+{ #category : #protocol }
+DynamicSpecExample >> openOnInteger [
 	<script: '(DynamicSpecExample object: 42) open'>
 	
 	| ui layout |
@@ -145,32 +114,23 @@ DynamicSpecExample>>openOnInteger [
 	ui openWithSpecLayout: layout.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicSpecExample>>openOnInteger: anInteger [
+{ #category : #protocol }
+DynamicSpecExample >> openOnInteger: anInteger [
 	ui := OpenOnIntExample new: anInteger.
 	ui
 		extent: 100 @ 100;
 		openWithSpec
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicSpecExample>>openOnNil [
+{ #category : #protocol }
+DynamicSpecExample >> openOnNil [
 	ui := OpenOnNilExample new.
 	ui 
 		extent: 200 @ 100; openWithSpec
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicSpecExample>>openOnString [
+{ #category : #protocol }
+DynamicSpecExample >> openOnString [
 	<script: '(DynamicSpecExample object: ''Pharo'') open'>
 	
 	| ui layout bottomLayout temp |	
@@ -228,21 +188,15 @@ DynamicSpecExample>>openOnString [
 	ui openWithSpecLayout: layout.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicSpecExample>>openOnString: aString [
+{ #category : #protocol }
+DynamicSpecExample >> openOnString: aString [
 	ui := OpenOnStringExample new:aString.
 	ui 
 		extent: 300 @ 200;openWithSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicSpecExample>>title [
+{ #category : #accessing }
+DynamicSpecExample >> title [
 
 	^ 'Dynamic Examples'
 ]

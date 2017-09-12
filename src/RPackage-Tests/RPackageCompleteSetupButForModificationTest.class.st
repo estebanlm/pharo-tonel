@@ -14,15 +14,11 @@ Class {
 		'a3',
 		'b2'
 	],
-	#category : #RPackage-Tests,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:59'
+	#category : #RPackage-Tests
 }
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageCompleteSetupButForModificationTest>>setUp [
+{ #category : #setup }
+RPackageCompleteSetupButForModificationTest >> setUp [
 	super setUp.
 	p1 := self createNewPackageNamed: self p1Name.
 	p2 := self createNewPackageNamed: self p2Name.
@@ -54,11 +50,8 @@ RPackageCompleteSetupButForModificationTest>>setUp [
 
 ]
 
-{
-	#category : #'test addition',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageCompleteSetupButForModificationTest>>testAddMethod [
+{ #category : #'test addition' }
+RPackageCompleteSetupButForModificationTest >> testAddMethod [
 	"self debug: #testAddMethod"
 	
 	self assert: (p1 includesSelector: #methodDefinedInP1 ofClass: a1).
@@ -71,11 +64,8 @@ RPackageCompleteSetupButForModificationTest>>testAddMethod [
 	
 ]
 
-{
-	#category : #'test addition',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageCompleteSetupButForModificationTest>>testBasicRemoveClass [
+{ #category : #'test addition' }
+RPackageCompleteSetupButForModificationTest >> testBasicRemoveClass [
 	"we remove a class we check that it is not in the package anymore"
 	"self debug: #testBasicRemoveClass"	
 
@@ -98,11 +88,8 @@ RPackageCompleteSetupButForModificationTest>>testBasicRemoveClass [
 
 ]
 
-{
-	#category : #'test starting situation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageCompleteSetupButForModificationTest>>testExtensionMethodOfClass [
+{ #category : #'test starting situation' }
+RPackageCompleteSetupButForModificationTest >> testExtensionMethodOfClass [
 	"self debug: #testExtensionMethodOfClass"
 	
 	"P1 
@@ -132,11 +119,8 @@ RPackageCompleteSetupButForModificationTest>>testExtensionMethodOfClass [
 	self assert: (p3 extensionMethodsForClass: a2) size = 1.
 ]
 
-{
-	#category : #'test addition',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageCompleteSetupButForModificationTest>>testRemoveMethod [
+{ #category : #'test addition' }
+RPackageCompleteSetupButForModificationTest >> testRemoveMethod [
 	"self debug: #testRemoveMethod"
 	
 	p1 removeMethod: a1 >> #methodDefinedInP1.
@@ -144,11 +128,8 @@ RPackageCompleteSetupButForModificationTest>>testRemoveMethod [
 	
 ]
 
-{
-	#category : #'test addition',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageCompleteSetupButForModificationTest>>testRemoveMethodDoesNotRemoveFromClass [
+{ #category : #'test addition' }
+RPackageCompleteSetupButForModificationTest >> testRemoveMethodDoesNotRemoveFromClass [
 	"we remove a method so it is not in the package but also not from the class anymore"
 	"self debug: #testRemoveMethodDoesNotRemoveFromClass"
 	
@@ -157,21 +138,15 @@ RPackageCompleteSetupButForModificationTest>>testRemoveMethodDoesNotRemoveFromCl
 	self assert: (a1 selectors includes: #methodDefinedInP1)
 ]
 
-{
-	#category : #'test addition',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageCompleteSetupButForModificationTest>>testRemoveShouldRaiseErrorWhenMethodIsNotInPackage [
+{ #category : #'test addition' }
+RPackageCompleteSetupButForModificationTest >> testRemoveShouldRaiseErrorWhenMethodIsNotInPackage [
 	"self debug: #testRemoveShouldRaiseErrorWhenMethodIsNotInPackage"
 	
 	self should: [p2 removeMethod: a2>>#methodDefinedZork] raise: Error
 ]
 
-{
-	#category : #'test starting situation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageCompleteSetupButForModificationTest>>testStartingSituation [
+{ #category : #'test starting situation' }
+RPackageCompleteSetupButForModificationTest >> testStartingSituation [
 	"self debug: #testStartingSituation"
 	
 	self deny: (p2 includesClass: b1).

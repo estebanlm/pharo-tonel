@@ -1,41 +1,28 @@
-"
-
-"
 Class {
 	#name : #EpCodeChangeIntegrationTest,
 	#superclass : #EpEnabledIntegrationTest,
 	#instVars : [
 		'aClass'
 	],
-	#category : #EpiceaTests-Integration,
-	#timestamp : ''
+	#category : #EpiceaTests-Integration
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>categoryNameForTesting [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> categoryNameForTesting [
 
 	^ #'EpiceaTestingWith-A-Really-WeirdCategoryName'
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>tearDown [
+{ #category : #running }
+EpCodeChangeIntegrationTest >> tearDown [
 	super tearDown.
 	
 	self class environment organization removeCategory: self categoryNameForTesting
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testBehaviorCommentChange [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testBehaviorCommentChange [
 
 	aClass := classFactory newClass.
 
@@ -46,11 +33,8 @@ EpCodeChangeIntegrationTest>>testBehaviorCommentChange [
 	self assert: (self countLogEventsWith: EpBehaviorCommentChange) equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testCategoryAddition [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testCategoryAddition [
 
 	self assert: (self countLogEventsWith: EpCategoryAddition) equals: 0.
 
@@ -60,11 +44,8 @@ EpCodeChangeIntegrationTest>>testCategoryAddition [
 	self assert: (self allLogEventsWith: EpCategoryAddition) first affectedPackageName equals: self categoryNameForTesting
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testCategoryRemoval [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testCategoryRemoval [
 
 	self class environment organization addCategory: self categoryNameForTesting.
 
@@ -76,11 +57,8 @@ EpCodeChangeIntegrationTest>>testCategoryRemoval [
 	self assert: (self allLogEventsWith: EpCategoryRemoval) first affectedPackageName equals: self categoryNameForTesting
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testClassAddition [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testClassAddition [
 
 	self assert: (self countLogEventsWith: EpClassAddition) equals: 0.
 
@@ -90,11 +68,8 @@ EpCodeChangeIntegrationTest>>testClassAddition [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testClassInstanceVariableAddition [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testClassInstanceVariableAddition [
 
 	aClass := classFactory newClass.
 
@@ -106,11 +81,8 @@ EpCodeChangeIntegrationTest>>testClassInstanceVariableAddition [
 	self assert: (self allLogEventsWith: EpClassModification) first hasMetaclassChanges
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testClassInstanceVariableRemoval [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testClassInstanceVariableRemoval [
 
 	aClass := classFactory newClass.
 	aClass class addInstVarNamed: #x.
@@ -123,11 +95,8 @@ EpCodeChangeIntegrationTest>>testClassInstanceVariableRemoval [
 	self assert: ((self allLogEventsWith: EpClassModification) allSatisfy: #hasMetaclassChanges)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testClassModificationOfTraitComposition [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testClassModificationOfTraitComposition [
 	<expectedFailure>
 	"Failure: Currently, there is no system announcement when the trait composition is changed. 
 	Epicea, confussingly, only registers method addition and modification events 
@@ -144,11 +113,8 @@ EpCodeChangeIntegrationTest>>testClassModificationOfTraitComposition [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testClassRemoval [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testClassRemoval [
 
 	| className events |
 	aClass := classFactory newClass.
@@ -162,11 +128,8 @@ EpCodeChangeIntegrationTest>>testClassRemoval [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testInstanceVariableAddition [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testInstanceVariableAddition [
 
 	aClass := classFactory newClass.
 
@@ -178,11 +141,8 @@ EpCodeChangeIntegrationTest>>testInstanceVariableAddition [
 	self assert: (self allLogEventsWith: EpClassModification) first hasNonMetaclassChanges
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testInstanceVariableRemoval [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testInstanceVariableRemoval [
 
 	aClass := classFactory 
 		newSubclassOf: Object 
@@ -197,11 +157,8 @@ EpCodeChangeIntegrationTest>>testInstanceVariableRemoval [
 	self assert: (self allLogEventsWith: EpClassModification) first hasNonMetaclassChanges
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testMetaclassInstanceVariableAddition [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testMetaclassInstanceVariableAddition [
 
 	aClass := classFactory newClass.
 
@@ -211,11 +168,8 @@ EpCodeChangeIntegrationTest>>testMetaclassInstanceVariableAddition [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testMetaclassInstanceVariableAdditionWithTrait [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testMetaclassInstanceVariableAdditionWithTrait [
 
 	| aTrait |
 	aClass := classFactory newClass.
@@ -227,11 +181,8 @@ EpCodeChangeIntegrationTest>>testMetaclassInstanceVariableAdditionWithTrait [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testMethodAddition [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testMethodAddition [
 
 	aClass := classFactory newClass.
 	aClass compile: 'fortyTwo ^42'.
@@ -239,11 +190,8 @@ EpCodeChangeIntegrationTest>>testMethodAddition [
 	self assert: (self countLogEventsWith: EpMethodAddition) equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testMethodModificationOfProtocol [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testMethodModificationOfProtocol [
 
 	| events event |
 	aClass := classFactory newClass.
@@ -258,11 +206,8 @@ EpCodeChangeIntegrationTest>>testMethodModificationOfProtocol [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testMethodModificationOfSourceCode [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testMethodModificationOfSourceCode [
 
 	| events event |
 	aClass := classFactory newClass.
@@ -277,11 +222,8 @@ EpCodeChangeIntegrationTest>>testMethodModificationOfSourceCode [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testMethodModificationWithWideString [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testMethodModificationWithWideString [
 
 	aClass := classFactory newClass.
 	aClass compile: self wideStringSourceCode.
@@ -290,11 +232,8 @@ EpCodeChangeIntegrationTest>>testMethodModificationWithWideString [
 	self assert: (self countLogEventsWith: EpMethodModification) equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testMethodProtocolChange [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testMethodProtocolChange [
 
 	aClass := classFactory newClass.
 	aClass compile: 'fortyTwo ^42' classified: #accessing.
@@ -303,11 +242,8 @@ EpCodeChangeIntegrationTest>>testMethodProtocolChange [
 	self assert: (self countLogEventsWith: EpMethodModification) equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testMethodRecompilationShouldNotLog [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testMethodRecompilationShouldNotLog [
 
 	| headBeforeRecompiling |
 	aClass := classFactory newClass.
@@ -320,11 +256,8 @@ EpCodeChangeIntegrationTest>>testMethodRecompilationShouldNotLog [
 	self assert: monitor head == headBeforeRecompiling
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testProtocolAddition [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testProtocolAddition [
 
 	aClass := classFactory newClass.
 	aClass organization addCategory: #testing42.
@@ -332,11 +265,8 @@ EpCodeChangeIntegrationTest>>testProtocolAddition [
 	self assert: (self countLogEventsWith: EpProtocolAddition) equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testProtocolRemoval [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testProtocolRemoval [
 
 	aClass := classFactory newClass.
 	aClass compile: 'fortyTwo ^42' classified: #testing42.
@@ -345,11 +275,8 @@ EpCodeChangeIntegrationTest>>testProtocolRemoval [
 	self assert: (self countLogEventsWith: EpProtocolRemoval) equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testProtocolRemovalOfUnclassifiedProtocol [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testProtocolRemovalOfUnclassifiedProtocol [
 	"This protocol is not relevant then it's not logged."
 
 	aClass := classFactory newClass.
@@ -359,11 +286,8 @@ EpCodeChangeIntegrationTest>>testProtocolRemovalOfUnclassifiedProtocol [
 	self assert: (self countLogEventsWith: EpProtocolRemoval) equals: 0
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testRedundantClassDefinition [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testRedundantClassDefinition [
 
 	aClass := classFactory newClass.
 
@@ -379,11 +303,8 @@ EpCodeChangeIntegrationTest>>testRedundantClassDefinition [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testRemoveTraitFromComposition [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testRemoveTraitFromComposition [
 
 	aClass := classFactory newClassUsing: TSizeTest.
 
@@ -399,11 +320,8 @@ EpCodeChangeIntegrationTest>>testRemoveTraitFromComposition [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testTraitAddition [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testTraitAddition [
 
 	| trait category events event |
 	trait := classFactory newTrait.
@@ -415,11 +333,8 @@ EpCodeChangeIntegrationTest>>testTraitAddition [
 	self assert: event behaviorAffected category equals: category.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testTraitModificationOfTraitComposition [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testTraitModificationOfTraitComposition [
 	<expectedFailure>
 	"Failure: Currently, there is no system announcement when the trait composition is changed. 
 	Epicea, confussingly, only registers method addition and modification events 
@@ -436,11 +351,8 @@ EpCodeChangeIntegrationTest>>testTraitModificationOfTraitComposition [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>testTraitRemoval [
+{ #category : #tests }
+EpCodeChangeIntegrationTest >> testTraitRemoval [
 
 	| trait category events event |
 	trait := classFactory newTrait.
@@ -453,11 +365,8 @@ EpCodeChangeIntegrationTest>>testTraitRemoval [
 	self assert: event behaviorAffected category equals: category.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-EpCodeChangeIntegrationTest>>wideStringSourceCode [
+{ #category : #running }
+EpCodeChangeIntegrationTest >> wideStringSourceCode [
 	
 	^ 
 'pangrams

@@ -32,24 +32,17 @@ Class {
 		'unhoverAction',
 		'clickAction'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-Basic,
-	#timestamp : 'AliakseiSyrel 3/22/2015 12:20'
+	#category : #Glamour-Morphic-Brick-Widgets-Basic
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionButtonBrick class>>exampleOpen [
+{ #category : #examples }
+GLMActionButtonBrick class >> exampleOpen [
 
 	self gtExample openCenteredInBrickWindowLabeled: 'Action button example'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionButtonBrick class>>gtExample [
+{ #category : #examples }
+GLMActionButtonBrick class >> gtExample [
 	<gtExample>
 	<label: 'Action button with icon and dynamic background color'>
 	
@@ -65,20 +58,14 @@ GLMActionButtonBrick class>>gtExample [
 			padding: 5
 ]
 
-{
-	#category : #action-button-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionButtonBrick>>action: anObject [
+{ #category : #action-button-actions }
+GLMActionButtonBrick >> action: anObject [
 
 	clickAction := anObject
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionButtonBrick>>click: anEvent [
+{ #category : #brick-interactable-actions }
+GLMActionButtonBrick >> click: anEvent [
 	
 	clickAction ifNil: [ ^ false ].
 	clickAction brickValue: self withEnoughArguments: { anEvent }.
@@ -86,21 +73,15 @@ GLMActionButtonBrick>>click: anEvent [
 	^ true
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionButtonBrick>>deselect: anEvent [
+{ #category : #brick-interactable-actions }
+GLMActionButtonBrick >> deselect: anEvent [
 	super deselect: anEvent.
 	
 	unhoverAction ifNotNil: [ :a | a brickValue: self withEnoughArguments: { anEvent } ]
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionButtonBrick>>hShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMActionButtonBrick >> hShrinkWrap [
 
 	self width: [
 		self vPadding + 
@@ -115,58 +96,40 @@ GLMActionButtonBrick>>hShrinkWrap [
 							ifNotNil: [ self icon width max: self hoverIcon width ] ] ]) ]
 ]
 
-{
-	#category : #action-button-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionButtonBrick>>hoverAction: anObject [
+{ #category : #action-button-actions }
+GLMActionButtonBrick >> hoverAction: anObject [
 
 	hoverAction := anObject
 ]
 
-{
-	#category : #action-button-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionButtonBrick>>hoverIcon [
+{ #category : #action-button-accessing }
+GLMActionButtonBrick >> hoverIcon [
 
 	^ self selectedImage
 ]
 
-{
-	#category : #action-button-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionButtonBrick>>hoverIcon: anImage [
+{ #category : #action-button-accessing }
+GLMActionButtonBrick >> hoverIcon: anImage [
 
 	self selectedImage: anImage.
 	self doLayoutForce
 ]
 
-{
-	#category : #action-button-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionButtonBrick>>icon [
+{ #category : #action-button-accessing }
+GLMActionButtonBrick >> icon [
 
 	^ self normalImage
 ]
 
-{
-	#category : #action-button-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionButtonBrick>>icon: anImage [
+{ #category : #action-button-accessing }
+GLMActionButtonBrick >> icon: anImage [
 
 	self normalImage: anImage.
 	self doLayoutForce
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionButtonBrick>>initialize [
+{ #category : #initialization }
+GLMActionButtonBrick >> initialize [
 	super initialize.
 	
 	self
@@ -175,30 +138,21 @@ GLMActionButtonBrick>>initialize [
 		enable
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionButtonBrick>>select: anEvent [
+{ #category : #brick-interactable-actions }
+GLMActionButtonBrick >> select: anEvent [
 	super select: anEvent.
 	
 	hoverAction ifNotNil: [ :a | a brickValue: self withEnoughArguments: { anEvent } ]
 ]
 
-{
-	#category : #action-button-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionButtonBrick>>unhoverAction: anObject [
+{ #category : #action-button-actions }
+GLMActionButtonBrick >> unhoverAction: anObject [
 
 	unhoverAction := anObject
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMActionButtonBrick>>vShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMActionButtonBrick >> vShrinkWrap [
 
 	self height: [
 		self vPadding + 

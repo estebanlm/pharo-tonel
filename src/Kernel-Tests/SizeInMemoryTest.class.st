@@ -4,15 +4,11 @@ SUnit tests for the size of objects in memory
 Class {
 	#name : #SizeInMemoryTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Objects,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:44'
+	#category : #Kernel-Tests-Objects
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SizeInMemoryTest>>testSizeInMemoryCompactClasses [
+{ #category : #tests }
+SizeInMemoryTest >> testSizeInMemoryCompactClasses [
 	self skip.
 	"One word for the header + one word per instance variable"
 	self assert:  (Association key: 'aKey' value: 23) sizeInMemory = 12.
@@ -23,11 +19,8 @@ SizeInMemoryTest>>testSizeInMemoryCompactClasses [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SizeInMemoryTest>>testSizeInMemoryLargeInstances [
+{ #category : #tests }
+SizeInMemoryTest >> testSizeInMemoryLargeInstances [
 	"Two words for the object header + a world per instance variable"
 
 	self assert: Smalltalk allClasses sizeInMemory = 20.
@@ -37,11 +30,8 @@ SizeInMemoryTest>>testSizeInMemoryLargeInstances [
 				= (Smalltalk wordSize * 3 + (Smalltalk allClasses asArray size * Smalltalk wordSize))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SizeInMemoryTest>>testSizeInMemoryNormalClasses [
+{ #category : #tests }
+SizeInMemoryTest >> testSizeInMemoryNormalClasses [
 	"Two word for the header + one word per instance variable"
 	self assert: Date today sizeInMemory = 16.
 
@@ -53,11 +43,8 @@ SizeInMemoryTest>>testSizeInMemoryNormalClasses [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SizeInMemoryTest>>testSizeInMemoryOfByteObjects [
+{ #category : #tests }
+SizeInMemoryTest >> testSizeInMemoryOfByteObjects [
 	"Byte objects should be padded to words"
 	self assert: 'a' sizeInMemory equals: 12.
 	self assert: 'abcd' sizeInMemory equals: 12.
@@ -66,22 +53,16 @@ SizeInMemoryTest>>testSizeInMemoryOfByteObjects [
 	self assert: 'abcdefghi' sizeInMemory equals: 20.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SizeInMemoryTest>>testSizeInMemoryOfCharacters [
+{ #category : #tests }
+SizeInMemoryTest >> testSizeInMemoryOfCharacters [
 	self assert: 0 asCharacter sizeInMemory isZero.
 	self assert: 255 asCharacter sizeInMemory isZero.
 	self assert: 256 asCharacter sizeInMemory isZero.
 	self assert: 16r10FFFF asCharacter sizeInMemory isZero
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-SizeInMemoryTest>>testSizeInMemorySmallIntegers [
+{ #category : #tests }
+SizeInMemoryTest >> testSizeInMemorySmallIntegers [
 	self assert: SmallInteger minVal sizeInMemory isZero.
 	self assert: 0 sizeInMemory isZero.
 	self assert: SmallInteger maxVal sizeInMemory isZero.

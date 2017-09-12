@@ -1,22 +1,14 @@
-Extension {
-	#name : #Pragma
-}
+Extension { #name : #Pragma }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Pragma>>gtDisplayOn: stream [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Pragma >> gtDisplayOn: stream [
 	self method gtDisplayOn: stream.
 	stream space.
 	self printOn: stream
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Pragma class>>gtInspectorAnnotatedMethodsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Pragma class >> gtInspectorAnnotatedMethodsIn: composite [
 	<gtInspectorPresentationOrder: 30> 
 	composite table 
 		title: 'All';
@@ -36,11 +28,8 @@ Pragma class>>gtInspectorAnnotatedMethodsIn: composite [
 		send: #value
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Pragma>>gtInspectorSourceIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Pragma >> gtInspectorSourceIn: composite [
 	<gtInspectorPresentationOrder: 30> 
 	self method gtInspectorSourceIn: composite
 ]

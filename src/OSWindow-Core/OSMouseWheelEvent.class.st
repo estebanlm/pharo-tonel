@@ -8,50 +8,34 @@ Class {
 		'scrollHorizontal',
 		'scrollVertical'
 	],
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'IgorStasenko 7/30/2014 17:23'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSMouseWheelEvent>>accept: aVisitor [
+{ #category : #visitor }
+OSMouseWheelEvent >> accept: aVisitor [
 	^ aVisitor visitMouseWheelEvent: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSMouseWheelEvent>>scrollHorizontal [
+{ #category : #accessing }
+OSMouseWheelEvent >> scrollHorizontal [
 	
 	^ scrollHorizontal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSMouseWheelEvent>>scrollHorizontal: anObject [
+{ #category : #accessing }
+OSMouseWheelEvent >> scrollHorizontal: anObject [
 	
 	scrollHorizontal := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSMouseWheelEvent>>scrollVertical [
+{ #category : #accessing }
+OSMouseWheelEvent >> scrollVertical [
 	
 	^ scrollVertical
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSMouseWheelEvent>>scrollVertical: anObject [
+{ #category : #accessing }
+OSMouseWheelEvent >> scrollVertical: anObject [
 	
 	scrollVertical := anObject
 ]

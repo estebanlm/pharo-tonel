@@ -4,24 +4,17 @@ SUnit test for the push down suggestions
 Class {
 	#name : #SugsSuggestionPushDownTest,
 	#superclass : #SugsSuggestionTest,
-	#category : #SmartSuggestions-Tests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:44'
+	#category : #SmartSuggestions-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionPushDownTest>>createContext: subclass [
+{ #category : #private }
+SugsSuggestionPushDownTest >> createContext: subclass [
 	
 	^SugsMockContext for: subclass .
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionPushDownTest>>createSubclassFrom: superClass named: symbol [
+{ #category : #private }
+SugsSuggestionPushDownTest >> createSubclassFrom: superClass named: symbol [
 	| newClass |
 	
 	newClass := superClass 
@@ -33,22 +26,16 @@ SugsSuggestionPushDownTest>>createSubclassFrom: superClass named: symbol [
 	^newClass.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionPushDownTest>>createSuggestionPushDown: context [
+{ #category : #private }
+SugsSuggestionPushDownTest >> createSuggestionPushDown: context [
 	
 	^ SugsSuggestionFactory createPushDown 
 		context:context;
 		yourself.
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionPushDownTest>>testPushDownWithSubclassIsValid [
+{ #category : #method }
+SugsSuggestionPushDownTest >> testPushDownWithSubclassIsValid [
 	| suggestion subclass |
 
 	subclass := self createSubclassFrom: self emptyClass named: #TestSuggestionsSubclass.
@@ -59,11 +46,8 @@ SugsSuggestionPushDownTest>>testPushDownWithSubclassIsValid [
 	self removeClass: subclass.
 ]
 
-{
-	#category : #method,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsSuggestionPushDownTest>>testPushDownWithoutSubclassIsNotValid [
+{ #category : #method }
+SugsSuggestionPushDownTest >> testPushDownWithoutSubclassIsNotValid [
 	| suggestion |
 
 	self addMethodToDelegate.

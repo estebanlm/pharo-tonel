@@ -7,59 +7,40 @@ Class {
 	#instVars : [
 		'variableName'
 	],
-	#category : #Text-Core,
-	#timestamp : 'TorstenBergmann 1/31/2014 12:19'
+	#category : #Text-Core
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextVariableLink class>>variableName: aSymbol [
+{ #category : #'as yet unclassified' }
+TextVariableLink class >> variableName: aSymbol [
 	^ self new
 		variableName: aSymbol;
 		yourself
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextVariableLink>>= anotherObject [
+{ #category : #'as yet unclassified' }
+TextVariableLink >> = anotherObject [
 
 	^super = anotherObject and: [ variableName = anotherObject variableName ]
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextVariableLink>>actOnClick: anEvent for: aNautilusUI in: aParagraph editor: anEditor [
+{ #category : #evaluating }
+TextVariableLink >> actOnClick: anEvent for: aNautilusUI in: aParagraph editor: anEditor [
 	anEditor referencesTo: self variableName.
 	^ true
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextVariableLink>>hash [
+{ #category : #'as yet unclassified' }
+TextVariableLink >> hash [
 
 	^(super hash + variableName hash) hashMultiply 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextVariableLink>>variableName [
+{ #category : #accessing }
+TextVariableLink >> variableName [
 	^ variableName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-TextVariableLink>>variableName: aString [
+{ #category : #accessing }
+TextVariableLink >> variableName: aString [
 	variableName := aString
 ]

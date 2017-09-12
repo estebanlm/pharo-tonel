@@ -31,15 +31,11 @@ Class {
 		'q',
 		'r'
 	],
-	#category : #Random-Core,
-	#timestamp : 'BenComan 9/28/2015 23:37'
+	#category : #Random-Core
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Random class>>bucketTest: randy [
+{ #category : #testing }
+Random class >> bucketTest: randy [
 	"Execute this:   Random bucketTest: Random new"
 	" A quick-and-dirty bucket test. Prints nbuckets values on the
 Transcript.
@@ -68,19 +64,13 @@ more; go get coffee.
 		Transcript show: (buckets at: nb) printString, ' ' ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Random class>>seed: anInteger  [
+{ #category : #'instance creation' }
+Random class >> seed: anInteger [ 
 	^self new seed: anInteger
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Random>>initialize [
+{ #category : #initialization }
+Random >> initialize [
 	self useClockBasedSeed.
 	a := 16r000041A7 asFloat.    " magic constant =      16807 = 7^5"
 	m := 16r7FFFFFFF asFloat.    " magic constant = 2147483647 = 2^31 - 1"
@@ -89,38 +79,26 @@ Random>>initialize [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Random>>next [
+{ #category : #accessing }
+Random >> next [
 	"Answer a random Float in the interval [0 to 1)."
 
 	^ self privateNextValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Random>>next: anInteger [
+{ #category : #accessing }
+Random >> next: anInteger [
 	^ self next: anInteger into: (Array new: anInteger)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Random>>next: anInteger into: anArray [
+{ #category : #accessing }
+Random >> next: anInteger into: anArray [
 	1 to: anInteger do: [:index | anArray at: index put: self privateNextValue].
 	^ anArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Random>>nextInt: anInteger [
+{ #category : #accessing }
+Random >> nextInt: anInteger [
 	"Answer a random integer in the interval [1, anInteger].
 	Handle large numbers too (for cryptography)."
 
@@ -130,11 +108,8 @@ Random>>nextInt: anInteger [
 	^ (self privateNextValue * anInteger) truncated + 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Random>>privateNextSeed [
+{ #category : #private }
+Random >> privateNextSeed [
 	"This method generates random instances of Integer 	in the interval
 	0 to 16r7FFFFFFF. This method does NOT update the seed; repeated sends
 	answer the same value. The algorithm is described in detail in [1]"
@@ -148,32 +123,23 @@ Random>>privateNextSeed [
 		ifFalse: [aLoRHi + m].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Random>>privateNextValue [
+{ #category : #private }
+Random >> privateNextValue [
 	"Answer a random Float in the interval [0 to 1)."
 
 	^ (seed := self privateNextSeed) / m
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Random>>seed [
+{ #category : #private }
+Random >> seed [
 	"Since [1] says... 
 	    'After initialization the ideal solution is to hide seed from the user'
 	...this method is placed in the 'private' protocol. Perhaps it sould even be deleted."
 	^ seed
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Random>>seed: aNumber [
+{ #category : #initialization }
+Random >> seed: aNumber [
 	"Refer #privateNextSeed and [1], seed should be positive"
 	| newSeed |
 	newSeed := aNumber.
@@ -183,22 +149,16 @@ Random>>seed: aNumber [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Random>>useClockBasedSeed [
+{ #category : #initialization }
+Random >> useClockBasedSeed [
 	"Set a reasonable Park-Miller starting seed [1] based on the ms clock."
 
 	[ seed := (Time millisecondClockValue bitAnd: 16r3FFFFFFF) bitXor: self hash.
 	seed = 0 ] whileTrue: [ "Try again if ever get a seed = 0" ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:42'
-}
-Random>>useUnixRandomGeneratorSeed [
+{ #category : #initialization }
+Random >> useUnixRandomGeneratorSeed [
 	"Try to seed the receiver using random bytes from a Unix OS' /dev/random.
 	Return true if we succeeded, false otherwise.
 	Note that this might block until the OS thinks it has enough entropy."

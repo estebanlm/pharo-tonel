@@ -8,15 +8,11 @@ Class {
 		'family',
 		'styleName'
 	],
-	#category : #FontInfrastructure,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:08'
+	#category : #FontInfrastructure
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FontFamilyMemberAbstract>>asLogicalFontOfPointSize: pointSize [
+{ #category : #converting }
+FontFamilyMemberAbstract >> asLogicalFontOfPointSize: pointSize [
 	^LogicalFont
 		familyName: self family familyName 
 		pointSize: pointSize 
@@ -25,19 +21,13 @@ FontFamilyMemberAbstract>>asLogicalFontOfPointSize: pointSize [
 		slantValue: self slantValue
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FontFamilyMemberAbstract>>closenessVector [
+{ #category : #comparing }
+FontFamilyMemberAbstract >> closenessVector [
 	^self closenessVectorForStretch: self stretchValue slant: self slantValue weight: self weightValue
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FontFamilyMemberAbstract>>closenessVectorForStretch: stretch slant: slant weight: weight [
+{ #category : #comparing }
+FontFamilyMemberAbstract >> closenessVectorForStretch: stretch slant: slant weight: weight [
 	| normalizedSlant |
 	normalizedSlant := slant.
 	normalizedSlant ~= 0 ifTrue:[
@@ -46,27 +36,18 @@ FontFamilyMemberAbstract>>closenessVectorForStretch: stretch slant: slant weight
 	^{(stretch - LogicalFont stretchRegular) * 11. slant * 7. ((weight - LogicalFont weightRegular) / 100) * 5}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FontFamilyMemberAbstract>>family [
+{ #category : #accessing }
+FontFamilyMemberAbstract >> family [
 	^family
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FontFamilyMemberAbstract>>family: aFontFamily [
+{ #category : #accessing }
+FontFamilyMemberAbstract >> family: aFontFamily [
 	family := aFontFamily
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FontFamilyMemberAbstract>>isCloserMatchThan: otherMember toStretch: inputStretch weight: inputWeight slant: inputSlant  [
+{ #category : #comparing }
+FontFamilyMemberAbstract >> isCloserMatchThan: otherMember toStretch: inputStretch weight: inputWeight slant: inputSlant [ 
 	| inputVector vector otherVector distance otherDistance dotProduct otherDotProduct |
 	
 	inputVector := self closenessVectorForStretch: inputStretch slant: inputSlant weight: inputWeight.
@@ -97,46 +78,31 @@ FontFamilyMemberAbstract>>isCloserMatchThan: otherMember toStretch: inputStretch
 	^false 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FontFamilyMemberAbstract>>slantValue [
+{ #category : #accessing }
+FontFamilyMemberAbstract >> slantValue [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FontFamilyMemberAbstract>>stretchValue [
+{ #category : #accessing }
+FontFamilyMemberAbstract >> stretchValue [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FontFamilyMemberAbstract>>styleName [
+{ #category : #accessing }
+FontFamilyMemberAbstract >> styleName [
 	"Answer the value of styleName"
 
 	^ styleName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FontFamilyMemberAbstract>>styleName: anObject [
+{ #category : #accessing }
+FontFamilyMemberAbstract >> styleName: anObject [
 	"Set the value of styleName"
 
 	styleName := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FontFamilyMemberAbstract>>weightValue [
+{ #category : #accessing }
+FontFamilyMemberAbstract >> weightValue [
 	self subclassResponsibility
 ]

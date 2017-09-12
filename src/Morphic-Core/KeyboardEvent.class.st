@@ -9,15 +9,11 @@ Class {
 		'charCode',
 		'scanCode'
 	],
-	#category : #Morphic-Core-Events,
-	#timestamp : '<historical>'
+	#category : #Morphic-Core-Events
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>= aMorphicEvent [
+{ #category : #comparing }
+KeyboardEvent >> = aMorphicEvent [
 	super = aMorphicEvent ifFalse:[^false].
 	buttons = aMorphicEvent buttons ifFalse: [^ false].
 	keyValue = aMorphicEvent keyValue ifFalse: [^ false].
@@ -25,11 +21,8 @@ KeyboardEvent>>= aMorphicEvent [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>hasSpecialCTRLKeyValue [
+{ #category : #testing }
+KeyboardEvent >> hasSpecialCTRLKeyValue [
 "
 	4 - Character end
 	1 - Character home
@@ -38,108 +31,72 @@ KeyboardEvent>>hasSpecialCTRLKeyValue [
 	^ self controlKeyPressed and: [ keyValue <= 26 & (keyValue ~= 4) & (keyValue ~= 1) ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>hash [
+{ #category : #comparing }
+KeyboardEvent >> hash [
 	^buttons hash + keyValue hash
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>isKeyDown [
+{ #category : #testing }
+KeyboardEvent >> isKeyDown [
 	^self type == #keyDown
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>isKeyUp [
+{ #category : #testing }
+KeyboardEvent >> isKeyUp [
 	^self type == #keyUp
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>isKeyboard [
+{ #category : #testing }
+KeyboardEvent >> isKeyboard [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>isKeystroke [
+{ #category : #testing }
+KeyboardEvent >> isKeystroke [
 	^self type == #keystroke
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>isMouseMove [
+{ #category : #testing }
+KeyboardEvent >> isMouseMove [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>isUserInterrupt [
+{ #category : #testing }
+KeyboardEvent >> isUserInterrupt [
 
 	^ UserInterruptHandler cmdDotEnabled and: [ self keyCharacter = $. and: [ self commandKeyPressed ] ].
 	
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>key [
+{ #category : #keyboard }
+KeyboardEvent >> key [
 	^Smalltalk os keyForValue: keyValue
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>keyCharacter [
+{ #category : #keyboard }
+KeyboardEvent >> keyCharacter [
 	"Answer the character corresponding this keystroke. This is defined only for keystroke events."
 
 	^Unicode value: charCode
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>keyString [
+{ #category : #keyboard }
+KeyboardEvent >> keyString [
 	"Answer the string value for this keystroke. This is defined only for keystroke events."
 
 	^ String streamContents: [ :s | self printKeyStringOn: s ]
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>keyValue [
+{ #category : #keyboard }
+KeyboardEvent >> keyValue [
 	"Answer the ascii value for this keystroke. This is defined only for keystroke events."
 
 	^ keyValue
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>printKeyStringOn: aStream [
+{ #category : #printing }
+KeyboardEvent >> printKeyStringOn: aStream [
 	"Print a readable string representing the receiver on a given stream"
 
 	| kc inBrackets firstBracket keyString |
@@ -188,11 +145,8 @@ KeyboardEvent>>printKeyStringOn: aStream [
 	inBrackets ifTrue: [aStream nextPut: $> ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>printOn: aStream [
+{ #category : #printing }
+KeyboardEvent >> printOn: aStream [
 	"Print the receiver on a stream"
 
 	aStream nextPut: $[.
@@ -202,27 +156,18 @@ KeyboardEvent>>printOn: aStream [
 	aStream nextPut: $]
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>scanCode [
+{ #category : #keyboard }
+KeyboardEvent >> scanCode [
 	^scanCode
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>scanCode: anInt [
+{ #category : #initialize }
+KeyboardEvent >> scanCode: anInt [
 	scanCode := anInt
 ]
 
-{
-	#category : #dispatching,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>sentTo: anObject [
+{ #category : #dispatching }
+KeyboardEvent >> sentTo: anObject [
 	"Dispatch the receiver into anObject"
 	type == #keystroke ifTrue:[^anObject handleKeystroke: self].
 	type == #keyDown ifTrue:[^anObject handleKeyDown: self].
@@ -230,11 +175,8 @@ KeyboardEvent>>sentTo: anObject [
 	^super sentTo: anObject.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>setType: aSymbol buttons: anInteger position: pos keyValue: aValue charCode: anInt hand: aHand stamp: stamp [
+{ #category : #private }
+KeyboardEvent >> setType: aSymbol buttons: anInteger position: pos keyValue: aValue charCode: anInt hand: aHand stamp: stamp [
 	type := aSymbol.
 	buttons := anInteger.
 	position := pos.
@@ -245,11 +187,8 @@ KeyboardEvent>>setType: aSymbol buttons: anInteger position: pos keyValue: aValu
 	timeStamp := stamp.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>setType: aSymbol buttons: anInteger position: pos keyValue: aValue hand: aHand stamp: stamp [
+{ #category : #private }
+KeyboardEvent >> setType: aSymbol buttons: anInteger position: pos keyValue: aValue hand: aHand stamp: stamp [
 	type := aSymbol.
 	buttons := anInteger.
 	position := pos.
@@ -259,11 +198,8 @@ KeyboardEvent>>setType: aSymbol buttons: anInteger position: pos keyValue: aValu
 	timeStamp := stamp.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-KeyboardEvent>>storeOn: aStream [
+{ #category : #printing }
+KeyboardEvent >> storeOn: aStream [
 
 	aStream nextPutAll: type.
 	aStream space.

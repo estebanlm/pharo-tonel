@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #EphemeronTests,
 	#superclass : #TestCase,
-	#category : #Tests-Finalization,
-	#timestamp : ''
+	#category : #Tests-Finalization
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EphemeronTests>>testEphemeronAreNotFinalizedIfCollected [
+{ #category : #tests }
+EphemeronTests >> testEphemeronAreNotFinalizedIfCollected [
 
 	| finalized theKey ephemeron |
 	Smalltalk supportsQueueingFinalization ifFalse: [ ^ self skip ].
@@ -29,11 +22,8 @@ EphemeronTests>>testEphemeronAreNotFinalizedIfCollected [
 	self deny: finalized.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EphemeronTests>>testEphemeronIsNotRemovedFromRegistryUponFinalizationIfKeyIsReferenced [
+{ #category : #tests }
+EphemeronTests >> testEphemeronIsNotRemovedFromRegistryUponFinalizationIfKeyIsReferenced [
 
 	| finalized theKey registry |
 	Smalltalk supportsQueueingFinalization ifFalse: [ ^ self skip ].
@@ -50,11 +40,8 @@ EphemeronTests>>testEphemeronIsNotRemovedFromRegistryUponFinalizationIfKeyIsRefe
 	self assert: registry size equals: 1.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EphemeronTests>>testEphemeronIsRemovedFromRegistryUponFinalization [
+{ #category : #tests }
+EphemeronTests >> testEphemeronIsRemovedFromRegistryUponFinalization [
 
 	| finalized theKey registry |
 	Smalltalk supportsQueueingFinalization ifFalse: [ ^ self skip ].
@@ -72,11 +59,8 @@ EphemeronTests>>testEphemeronIsRemovedFromRegistryUponFinalization [
 	self assert: registry isEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EphemeronTests>>testEphemeronKeyIsFinalizedWhenKeyIsNotHoldStrongly [
+{ #category : #tests }
+EphemeronTests >> testEphemeronKeyIsFinalizedWhenKeyIsNotHoldStrongly [
 
 	| finalized theKey ephemeron |
 	Smalltalk supportsQueueingFinalization ifFalse: [ ^ self skip ].
@@ -93,11 +77,8 @@ EphemeronTests>>testEphemeronKeyIsFinalizedWhenKeyIsNotHoldStrongly [
 	self assert: finalized.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EphemeronTests>>testEphemeronKeyIsNotFinalizedWhenKeyIsHoldStrongly [
+{ #category : #tests }
+EphemeronTests >> testEphemeronKeyIsNotFinalizedWhenKeyIsHoldStrongly [
 
 	| finalized theKey ephemeron |
 	Smalltalk supportsQueueingFinalization ifFalse: [ ^ self skip ].
@@ -113,11 +94,8 @@ EphemeronTests>>testEphemeronKeyIsNotFinalizedWhenKeyIsHoldStrongly [
 	self deny: finalized.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EphemeronTests>>testInterconnectedEphemeronsAreCollectedIfKeysAreNotReferencedFromTheOutside [
+{ #category : #tests }
+EphemeronTests >> testInterconnectedEphemeronsAreCollectedIfKeysAreNotReferencedFromTheOutside [
 
 	| finalized1 finalized2 theKey theValue ephemeron1 ephemeron2 |
 	Smalltalk supportsQueueingFinalization ifFalse: [ ^ self skip ].
@@ -136,11 +114,8 @@ EphemeronTests>>testInterconnectedEphemeronsAreCollectedIfKeysAreNotReferencedFr
 	self assert: (finalized1 and: finalized2).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EphemeronTests>>testInterconnectedEphemeronsAreNotCollectedIfAKeyIsReferencedFromTheOutside [
+{ #category : #tests }
+EphemeronTests >> testInterconnectedEphemeronsAreNotCollectedIfAKeyIsReferencedFromTheOutside [
 
 	| finalized1 finalized2 theKey theValue ephemeron1 ephemeron2 |
 	Smalltalk supportsQueueingFinalization ifFalse: [ ^ self skip ].
@@ -160,11 +135,8 @@ EphemeronTests>>testInterconnectedEphemeronsAreNotCollectedIfAKeyIsReferencedFro
 	self deny: finalized2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-EphemeronTests>>testInterconnectedEphemeronsAreNotCollectedIfTheOtherKeyIsReferencedFromTheOutside [
+{ #category : #tests }
+EphemeronTests >> testInterconnectedEphemeronsAreNotCollectedIfTheOtherKeyIsReferencedFromTheOutside [
 
 	| finalized1 finalized2 theKey theValue ephemeron1 ephemeron2 |
 	Smalltalk supportsQueueingFinalization ifFalse: [ ^ self skip ].

@@ -12,39 +12,26 @@ Class {
 		'functionName',
 		'arguments'
 	],
-	#category : #UnifiedFFI,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionSpec>>addArgument: anArgument [
+{ #category : #accessing }
+FFIFunctionSpec >> addArgument: anArgument [
 	^ arguments add: anArgument
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionSpec>>arguments [
+{ #category : #accessing }
+FFIFunctionSpec >> arguments [
 	^ arguments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionSpec>>arguments: anObject [
+{ #category : #accessing }
+FFIFunctionSpec >> arguments: anObject [
 	arguments := anObject
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionSpec>>asArraySpec [
+{ #category : #converting }
+FFIFunctionSpec >> asArraySpec [
 	^ String streamContents: [ :stream | 
 		stream nextPutAll: '#( '.
 		self printType: returnType on: stream.
@@ -67,11 +54,8 @@ FFIFunctionSpec>>asArraySpec [
 		stream nextPutAll: '))' ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionSpec>>asArraySpecArrayedArgs [
+{ #category : #converting }
+FFIFunctionSpec >> asArraySpecArrayedArgs [
 	^ String streamContents: [ :stream | |index|
 		stream nextPutAll: '#( '.
 		self printType: returnType on: stream.
@@ -97,11 +81,8 @@ FFIFunctionSpec>>asArraySpecArrayedArgs [
 		stream nextPutAll: '))' ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionSpec>>asMethodSelectorAndArguments [
+{ #category : #converting }
+FFIFunctionSpec >> asMethodSelectorAndArguments [
 	^ String streamContents: [ :stream | 
 		stream nextPutAll: functionName.
 		arguments ifNotEmpty: [
@@ -124,11 +105,8 @@ FFIFunctionSpec>>asMethodSelectorAndArguments [
 						nextPutAll: each first ]]]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionSpec>>asMethodSelectorAndArrayOfArguments [
+{ #category : #converting }
+FFIFunctionSpec >> asMethodSelectorAndArrayOfArguments [
 	^ String streamContents: [ :stream | 
 		stream
 			nextPutAll: functionName;
@@ -141,61 +119,40 @@ FFIFunctionSpec>>asMethodSelectorAndArrayOfArguments [
 		stream nextPut: $" ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionSpec>>functionName [
+{ #category : #accessing }
+FFIFunctionSpec >> functionName [
 	^ functionName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionSpec>>functionName: anObject [
+{ #category : #accessing }
+FFIFunctionSpec >> functionName: anObject [
 	functionName := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionSpec>>initialize [
+{ #category : #initialization }
+FFIFunctionSpec >> initialize [
 	super initialize.
 	arguments := OrderedCollection new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionSpec>>isAnonymous [
+{ #category : #testing }
+FFIFunctionSpec >> isAnonymous [
 	^ self functionName isNil
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionSpec>>printType: typeAndArity on: stream [
+{ #category : #converting }
+FFIFunctionSpec >> printType: typeAndArity on: stream [
 	stream nextPutAll: typeAndArity first.
 	typeAndArity second timesRepeat: [ stream nextPut: $* ].
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionSpec>>returnType [
+{ #category : #accessing }
+FFIFunctionSpec >> returnType [
 	^ returnType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionSpec>>returnType: anObject [
+{ #category : #accessing }
+FFIFunctionSpec >> returnType: anObject [
 	returnType := anObject
 ]

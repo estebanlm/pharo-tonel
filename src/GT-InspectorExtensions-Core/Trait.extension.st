@@ -1,12 +1,7 @@
-Extension {
-	#name : #Trait
-}
+Extension { #name : #Trait }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Trait>>gtInspectorAllReferencesIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Trait >> gtInspectorAllReferencesIn: composite [
 	"This provides a list of all methods provided by the current class"
 	<gtInspectorPresentationOrder: 20>
 	composite list 
@@ -17,11 +12,8 @@ Trait>>gtInspectorAllReferencesIn: composite [
 		tags: [ :each | { each package name } ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Trait>>gtInspectorAllReferencesOutsideIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Trait >> gtInspectorAllReferencesOutsideIn: composite [
 	"This provides a list of all methods provided by the current class"
 	<gtInspectorPresentationOrder: 20>
 	composite list 
@@ -33,11 +25,8 @@ Trait>>gtInspectorAllReferencesOutsideIn: composite [
 		tags: [ :each | { each package name } ]
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Trait>>gtInspectorCommentIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Trait >> gtInspectorCommentIn: composite [
 	"This provides an editable comment of the current class"
 	<gtInspectorPresentationOrder: 20>
 	composite text 
@@ -50,22 +39,16 @@ Trait>>gtInspectorCommentIn: composite [
 			entitled: 'Accept'
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Trait>>gtInspectorDefinitionIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Trait >> gtInspectorDefinitionIn: composite [
 	<gtInspectorPresentationOrder: 15>
 	composite pharoScript 
 		title: 'Definition';
 		display: [ self definition ] 
 ]
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-Trait>>gtInspectorMethodsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+Trait >> gtInspectorMethodsIn: composite [
 	"This provides a list of all methods provided by the current class"
 	<gtInspectorPresentationOrder: 20>
 	composite list 

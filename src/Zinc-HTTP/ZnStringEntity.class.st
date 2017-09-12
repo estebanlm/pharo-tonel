@@ -17,93 +17,65 @@ Class {
 		'string',
 		'encoder'
 	],
-	#category : #Zinc-HTTP-Core,
-	#timestamp : '<historical>'
+	#category : #Zinc-HTTP-Core
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity class>>designatedMimeType [
+{ #category : #testing }
+ZnStringEntity class >> designatedMimeType [
 	"I have no designated mime type, I can handle all non-binary content.
 	See #concreteSubclassForType: "
 	
 	^ nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity class>>html: string [
+{ #category : #'instance creation' }
+ZnStringEntity class >> html: string [
 	^ (self type: ZnMimeType textHtml)
 		string: string;
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity class>>matches: mimeType [
+{ #category : #testing }
+ZnStringEntity class >> matches: mimeType [
 	"I have no designated mime type, I can handle all non-binary content.
 	See #concreteSubclassForType: "
 	
 	^ false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity class>>text: string [
+{ #category : #'instance creation' }
+ZnStringEntity class >> text: string [
 	^ (self type: ZnMimeType textPlain)
 		string: string;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity class>>xml: string [
+{ #category : #'instance creation' }
+ZnStringEntity class >> xml: string [
 	^ (self type: ZnMimeType applicationXml)
 		string: string;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>= other [
+{ #category : #comparing }
+ZnStringEntity >> = other [
 	^ super = other and: [ self string = other string ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>computeContentLength [
+{ #category : #private }
+ZnStringEntity >> computeContentLength [
 	self string isNil ifTrue: [ ^ self ].
 	contentLength := self encoder encodedByteCountForString: string
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>contentLength [
+{ #category : #accessing }
+ZnStringEntity >> contentLength [
 	contentLength isNil ifTrue: [ self computeContentLength ].
 	^ contentLength
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>contentType: object [
+{ #category : #accessing }
+ZnStringEntity >> contentType: object [
 	"We only allow assignment compatible with our designated mime type"
 	
 	| newType |
@@ -117,53 +89,35 @@ ZnStringEntity>>contentType: object [
 					self invalidateEncoder ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>contents [
+{ #category : #accessing }
+ZnStringEntity >> contents [
 	^ self string
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>encoder [
+{ #category : #accessing }
+ZnStringEntity >> encoder [
 	self initializeEncoder.
 	^ encoder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>encoder: anEncoding [
+{ #category : #accessing }
+ZnStringEntity >> encoder: anEncoding [
 	(encoder notNil and: [ anEncoding ~= encoder ]) ifTrue: [ self invalidateContentLength ].
 	encoder := anEncoding
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>hasEncoder [
+{ #category : #private }
+ZnStringEntity >> hasEncoder [
 	^ encoder notNil
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>hash [
+{ #category : #comparing }
+ZnStringEntity >> hash [
 	^ super hash bitXor: self string hash
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>initializeEncoder [
+{ #category : #private }
+ZnStringEntity >> initializeEncoder [
 	"If the content-type specifies an encoding, use that.
 	If not, use the value of ZnDefaultCharacterEncoder,
 	if that is not set, fall back to UTF-8"
@@ -180,45 +134,30 @@ ZnStringEntity>>initializeEncoder [
 	self encoder: newEncoder
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>invalidateContentLength [
+{ #category : #private }
+ZnStringEntity >> invalidateContentLength [
 	self contentLength: nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>invalidateEncoder [
+{ #category : #private }
+ZnStringEntity >> invalidateEncoder [
 	self encoder: nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>isEmpty [
+{ #category : #testing }
+ZnStringEntity >> isEmpty [ 
 	^ self string isNil or: [ self string isEmpty ] 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>printContentsOn: stream [
+{ #category : #printing }
+ZnStringEntity >> printContentsOn: stream [
 	super printContentsOn: stream.
 	self string notNil ifTrue: [ 
 		stream space; nextPutAll: self string ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>readFrom: stream [
+{ #category : #initialize-release }
+ZnStringEntity >> readFrom: stream [
 	| buffer totalRead read readStream stringStream total |
 	total := self contentLength.
 	readStream := total ifNotNil: [ ZnLimitedReadStream on: stream limit: total ] ifNil: [ stream ].
@@ -248,36 +187,24 @@ ZnStringEntity>>readFrom: stream [
 	self string: (stringStream ifNil: [ String new ] ifNotNil: [ stringStream contents ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>readStream [
+{ #category : #accessing }
+ZnStringEntity >> readStream [
 	^ self string readStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>string [
+{ #category : #accessing }
+ZnStringEntity >> string [
 	^ string
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>string: aString [
+{ #category : #accessing }
+ZnStringEntity >> string: aString [
 	(string notNil and: [ aString ~= string ]) ifTrue: [ self invalidateContentLength ].
 	string := aString
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnStringEntity>>writeOn: stream [
+{ #category : #writing }
+ZnStringEntity >> writeOn: stream [
 	| totalWritten toWrite total  |
 	self initializeEncoder.
 	totalWritten := 0.

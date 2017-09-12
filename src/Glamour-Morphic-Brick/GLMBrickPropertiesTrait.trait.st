@@ -5,24 +5,17 @@ Trait {
 	#name : #GLMBrickPropertiesTrait,
 	#traits : 'GLMBrickExtensionTrait',
 	#classTraits : 'GLMBrickExtensionTrait classTrait',
-	#category : #Glamour-Morphic-Brick-Traits,
-	#timestamp : 'AliakseiSyrel 1/30/2015 10:49'
+	#category : #Glamour-Morphic-Brick-Traits
 }
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>announce: anAnnouncement [
+{ #category : #brick-properties-events }
+GLMBrickPropertiesTrait >> announce: anAnnouncement [
 
 	self announcer announce: anAnnouncement
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>announce: aSymbol event: anEvent [
+{ #category : #brick-properties-events }
+GLMBrickPropertiesTrait >> announce: aSymbol event: anEvent [
 
 	self announcer subscriptions glmSubscriptions do: [ :each |
 		each announcementClass = aSymbol ifTrue: [
@@ -31,275 +24,185 @@ GLMBrickPropertiesTrait>>announce: aSymbol event: anEvent [
 					on: UnhandledError fork: [:ex | ex pass ] ] ] ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>announcer [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> announcer [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>border [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> border [
 
 	^ self valueOfProperty: #brickBorder ifAbsentPut: [ GLMBrickBorder new ]
 	
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>border: aBorder [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> border: aBorder [
 
 	self setProperty: #brickBorder toValue: aBorder
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>borderColor [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> borderColor [
 	
 	^ self border color
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>borderColor: anObject [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> borderColor: anObject [
 	<brickBuilderProperty: #'Look&Feel' name: 'Border color' as: #brickBuilderEvaluate getter: #borderColor model: #GLMUIBuilderTextFieldProperty>
 
 	self border color: anObject
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>borderDo: aBlock [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> borderDo: aBlock [
 
 	aBlock cull: self border.
 	^ self
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>borderWidth [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> borderWidth [
 
 	^ self border width
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>borderWidth: anObject [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> borderWidth: anObject [
 	<brickBuilderProperty: #'Look&Feel' name: 'Border width' as: #brickBuilderEvaluate getter: #borderWidth model: #GLMUIBuilderTextFieldProperty>
 
 	self border width: anObject
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>color [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> color [
 
 	^ self valueOfProperty: #brickBackgroundColor ifAbsent: [ self themer backgroundColor ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>color: aColor [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> color: aColor [
 	<brickBuilderProperty: #'Look&Feel' name: 'Color' as: #brickBuilderEvaluate getter: #color model: #GLMUIBuilderTextFieldProperty>
 
 	self setProperty: #brickBackgroundColor toValue: aColor
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>data [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> data [
 
 	^ self valueOfProperty: #brickDataObject ifAbsentPut: [ nil ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>data: anObject [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> data: anObject [
 
 	^ self setProperty: #brickDataObject  toValue:  anObject
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>hasProperty: aSymbol [
+{ #category : #private-extension }
+GLMBrickPropertiesTrait >> hasProperty: aSymbol [
 
 	^ self explicitRequirement
 ]
 
-{
-	#category : #brick-properties-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>isColorSet [
+{ #category : #brick-properties-testing }
+GLMBrickPropertiesTrait >> isColorSet [
 
 	^ self hasProperty: #brickBackgroundColor
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>markBorderColor: aColor width: anInteger [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> markBorderColor: aColor width: anInteger [
 
 	self setProperty: #brickMarkBorderColor toValue: aColor.
 	self setProperty: #brickMarkBorderWidth toValue: anInteger
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>onThemerChanged [
+{ #category : #brick-properties-events }
+GLMBrickPropertiesTrait >> onThemerChanged [
 
 ]
 
-{
-	#category : #private-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>privateThemer [
+{ #category : #private-properties }
+GLMBrickPropertiesTrait >> privateThemer [
 
 	^ self valueOfProperty: #brickThemer ifAbsentPut: [ nil ]
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>removeProperty: aSymbol [
+{ #category : #private-extension }
+GLMBrickPropertiesTrait >> removeProperty: aSymbol [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>renderer [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> renderer [
 
 	^ self valueOfProperty: #brickRenderer ifAbsentPut: [ nil ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>renderer: aRenderer [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> renderer: aRenderer [
 
 	self setProperty: #brickRenderer toValue: aRenderer
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>setProperty: aSymbol toValue: anObject [
+{ #category : #private-extension }
+GLMBrickPropertiesTrait >> setProperty: aSymbol toValue: anObject [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>shadowColor [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> shadowColor [
 
 	^ self valueOfProperty: #brickShadowColor ifAbsentPut: [ Color transparent ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>shadowColor: aColor [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> shadowColor: aColor [
 	<brickBuilderProperty: #'Look&Feel' name: 'Shadow Color' as: #brickBuilderEvaluate getter: #shadowColor model: #GLMUIBuilderTextFieldProperty>
 
 	self setProperty: #brickShadowColor toValue: aColor
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>shadowInset [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> shadowInset [
 	^ self valueOfProperty: #brickShadowInset ifAbsentPut: [ 0 ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>shadowInset: aNumber [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> shadowInset: aNumber [
 	self setProperty: #brickShadowInset toValue: aNumber
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>shadowOffset [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> shadowOffset [
 	^ self valueOfProperty: #brickShadowOffset ifAbsentPut: [ 0@0 ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>shadowOffset: aPoint [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> shadowOffset: aPoint [
 	self setProperty: #brickShadowOffset toValue: aPoint
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>shadowWidth [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> shadowWidth [
 
 	^ self valueOfProperty: #brickShadowWidth ifAbsentPut: [ 0 ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>shadowWidth: anInteger [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> shadowWidth: anInteger [
 	<brickBuilderProperty: #'Look&Feel' name: 'Shadow Width' as: #asInteger getter: #shadowWidth model: #GLMUIBuilderTextFieldProperty>
 
 	self setProperty: #brickShadowWidth toValue: anInteger
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>themer [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> themer [
 
 	^ self privateThemer
 		ifNotNil: [ self privateThemer ]
@@ -308,76 +211,52 @@ GLMBrickPropertiesTrait>>themer [
 			ifFalse: [ self theme brickThemer ] ]
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>themer: aThemer [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> themer: aThemer [
 
 	self setProperty: #brickThemer toValue: aThemer.
 	self themerChanged
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>themerChanged [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> themerChanged [
 
 	self onThemerChanged.
 	self subbricks do: #themerChanged
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>valueOfProperty: aSymbol [
+{ #category : #private-extension }
+GLMBrickPropertiesTrait >> valueOfProperty: aSymbol [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>valueOfProperty: aSymbol ifAbsent: aBlock [
+{ #category : #private-extension }
+GLMBrickPropertiesTrait >> valueOfProperty: aSymbol ifAbsent: aBlock [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #private-extension,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>valueOfProperty: aSymbol ifAbsentPut: aBlock  [
+{ #category : #private-extension }
+GLMBrickPropertiesTrait >> valueOfProperty: aSymbol ifAbsentPut: aBlock [ 
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>when: aventName do: aBlock [
+{ #category : #brick-properties-events }
+GLMBrickPropertiesTrait >> when: aventName do: aBlock [
 
 	self announcer when: aventName do: aBlock
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>when: aventName send: aSymbol to: aReceiver [
+{ #category : #brick-properties-events }
+GLMBrickPropertiesTrait >> when: aventName send: aSymbol to: aReceiver [
 
 	self announcer when: aventName send: aSymbol to: aReceiver
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickPropertiesTrait>>with: aBlock [
+{ #category : #brick-properties }
+GLMBrickPropertiesTrait >> with: aBlock [
 
 	aBlock cull: self
 ]

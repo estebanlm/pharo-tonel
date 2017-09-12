@@ -11,15 +11,11 @@ Class {
 		'stepparents',
 		'roots'
 	],
-	#category : #Monticello-Versioning,
-	#timestamp : 'TorstenBergmann 2/6/2014 08:10'
+	#category : #Monticello-Versioning
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSorter>>addAllAncestorsOf: aVersionInfo to: aSet [
+{ #category : #adding }
+MCVersionSorter >> addAllAncestorsOf: aVersionInfo [ to: aSet
 	(aSet includes: aVersionInfo) ifTrue: [^ self].
 	aSet add: aVersionInfo.
 	(self knownAncestorsOf: aVersionInfo) do:
@@ -27,19 +23,13 @@ MCVersionSorter>>addAllAncestorsOf: aVersionInfo to: aSet [
 		self addAllAncestorsOf: ea to: aSet]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSorter>>addAllVersionInfos: aCollection [
+{ #category : #adding }
+MCVersionSorter >> addAllVersionInfos: aCollection [
 	aCollection do: [:ea | self addVersionInfo: ea]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSorter>>addToCurrentLayer: aVersionInfo [
+{ #category : #adding }
+MCVersionSorter >> addToCurrentLayer: aVersionInfo [
 	| layer |
 	layer := layers at: depthIndex.
 	(layer includes: aVersionInfo) ifFalse:
@@ -54,65 +44,44 @@ MCVersionSorter>>addToCurrentLayer: aVersionInfo [
 	^ false 
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSorter>>addVersionInfo: aVersionInfo [
+{ #category : #adding }
+MCVersionSorter >> addVersionInfo: aVersionInfo [
 	roots add: aVersionInfo.
 	self registerStepChildrenOf: aVersionInfo seen: Set new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSorter>>allAncestorsOf: aVersionInfo [
+{ #category : #accessing }
+MCVersionSorter >> allAncestorsOf: aVersionInfo [
 	| all |
 	all := Set new.
 	self addAllAncestorsOf: aVersionInfo to: all.
 	^ all
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSorter>>initialize [
+{ #category : #initialization }
+MCVersionSorter >> initialize [
 	super initialize.
 	stepparents := Dictionary new.
 	roots := OrderedCollection new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSorter>>knownAncestorsOf: aVersionInfo [
+{ #category : #accessing }
+MCVersionSorter >> knownAncestorsOf: aVersionInfo [
 	^ aVersionInfo ancestors, (self stepParentsOf: aVersionInfo) asArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSorter>>layers [
+{ #category : #accessing }
+MCVersionSorter >> layers [
 	^ layers
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSorter>>popLayer [
+{ #category : #private }
+MCVersionSorter >> popLayer [
 	depthIndex := depthIndex - 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSorter>>processVersionInfo: aVersionInfo [
+{ #category : #private }
+MCVersionSorter >> processVersionInfo: aVersionInfo [
 	(self addToCurrentLayer: aVersionInfo) ifTrue:
 		[self pushLayer.
 		(self knownAncestorsOf: aVersionInfo) do: [:ea | self processVersionInfo: ea].
@@ -120,32 +89,23 @@ MCVersionSorter>>processVersionInfo: aVersionInfo [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSorter>>pushLayer [
+{ #category : #private }
+MCVersionSorter >> pushLayer [
 	depthIndex := depthIndex + 1.
 	depthIndex > layers size ifTrue: [layers add: OrderedCollection new].
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSorter>>registerStepChildrenOf: aVersionInfo seen: aSet [
+{ #category : #private }
+MCVersionSorter >> registerStepChildrenOf: aVersionInfo seen: aSet [
 	(aSet includes: aVersionInfo) ifTrue: [^ self].
 	aSet add: aVersionInfo.
 	aVersionInfo stepChildren do: [:ea | (self stepParentsOf: ea) add: aVersionInfo].
 	aVersionInfo ancestors do: [:ea | self registerStepChildrenOf: ea seen: aSet].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSorter>>sortedVersionInfos [
+{ #category : #accessing }
+MCVersionSorter >> sortedVersionInfos [
 	layers := OrderedCollection with: OrderedCollection new.
 	depthIndex := 1.
 	depths := Dictionary new.
@@ -153,10 +113,7 @@ MCVersionSorter>>sortedVersionInfos [
 	^ layers flatCollect: [:ea | ea]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionSorter>>stepParentsOf: aVersionInfo [
+{ #category : #accessing }
+MCVersionSorter >> stepParentsOf: aVersionInfo [
 	^ (stepparents at: aVersionInfo ifAbsentPut: [Set new])
 ]

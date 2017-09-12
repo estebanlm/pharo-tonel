@@ -11,43 +11,30 @@ Class {
 	#instVars : [
 		'expectedCrc'
 	],
-	#category : #Compression-Streams,
-	#timestamp : 'nk 3/7/2004 18:54'
+	#category : #Compression-Streams
 }
 
-{
-	#category : #crc,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipReadStream>>expectedCrc: aNumberOrNil [
+{ #category : #crc }
+ZipReadStream >> expectedCrc: aNumberOrNil [
 	"If expectedCrc is set, it will be compared against the calculated CRC32 in verifyCrc.
 	This number should be the number read from the Zip header (which is the bitwise complement of my crc if all is working correctly)"
 	expectedCrc := aNumberOrNil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipReadStream>>on: aCollection from: firstIndex to: lastIndex [
+{ #category : #initialization }
+ZipReadStream >> on: aCollection from: firstIndex to: lastIndex [
 	super on: aCollection from: firstIndex to: lastIndex.
 	crc := 16rFFFFFFFF.
 	expectedCrc := nil.
 ]
 
-{
-	#category : #crc,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipReadStream>>updateCrc: oldCrc from: start to: stop in: aCollection [
+{ #category : #crc }
+ZipReadStream >> updateCrc: oldCrc from: start to: stop in: aCollection [
 	^ZipWriteStream updateCrc: oldCrc from: start to: stop in: aCollection
 ]
 
-{
-	#category : #crc,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipReadStream>>verifyCrc [
+{ #category : #crc }
+ZipReadStream >> verifyCrc [
 	"Verify the CRC-32 checksum calculated from the input against the expected CRC-32, if any.
 	Answer the calculated CRC-32 in any case.
 	Note that the CRC-32 used in Zip files is actually the bit inverse of the calculated value, so that is what is returned."

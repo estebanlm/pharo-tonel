@@ -4,57 +4,38 @@ I'm a specific store for Unix file systems
 Class {
 	#name : #UnixStore,
 	#superclass : #DiskStore,
-	#category : #FileSystem-Disk,
-	#timestamp : '<historical>'
+	#category : #FileSystem-Disk
 }
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-UnixStore class>>delimiter [
+{ #category : #public }
+UnixStore class >> delimiter [
 	^ $/
 ]
 
-{
-	#category : #current,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-UnixStore class>>isActiveClass [
+{ #category : #current }
+UnixStore class >> isActiveClass [
 	^ Smalltalk os isUnix and: [ super isActiveClass ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-UnixStore class>>isCaseSensitive [
+{ #category : #public }
+UnixStore class >> isCaseSensitive [
 	"except for OSX the default is case sensitive"
 	^ Smalltalk os isMacOSX not
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-UnixStore class>>maxFileNameLength [
+{ #category : #public }
+UnixStore class >> maxFileNameLength [
 
 	^ 255
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-UnixStore class>>separator  [
+{ #category : #public }
+UnixStore class >> separator [ 
 	^ $:
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-UnixStore>>checkName: aFileName fixErrors: fixing [
+{ #category : #public }
+UnixStore >> checkName: aFileName fixErrors: fixing [
 	"Check if the file name contains any invalid characters"
 	| fName |
 	fName := super checkName: aFileName fixErrors: fixing.

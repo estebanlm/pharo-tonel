@@ -4,15 +4,11 @@ Specialized version of inspector showing values only
 Class {
 	#name : #EyeSetInspector,
 	#superclass : #EyeCollectionInspector,
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeSetInspector>>addVariableFields: elements [
+{ #category : #list }
+EyeSetInspector >> addVariableFields: elements [
 	"add the variable fields to the inspector. Shorten the list for very long collection (cf limit1 and limit2), set them so that you can modify and save them"
 	| externalIndex |
 	externalIndex := 1.

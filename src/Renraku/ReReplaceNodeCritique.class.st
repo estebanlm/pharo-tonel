@@ -8,15 +8,11 @@ Class {
 		'oldNode',
 		'newNode'
 	],
-	#category : #Renraku-Critiques,
-	#timestamp : 'YuriyTymchuk 7/7/2016 09:21'
+	#category : #Renraku-Critiques
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReReplaceNodeCritique class>>rule: aRule achor: anAnchor oldNode: aNode newNode: anotherNode [
+{ #category : #'instance creation' }
+ReReplaceNodeCritique class >> rule: aRule achor: anAnchor oldNode: aNode newNode: anotherNode [
 
 	^ self basicNew 
 		initializeRule: aRule
@@ -25,11 +21,8 @@ ReReplaceNodeCritique class>>rule: aRule achor: anAnchor oldNode: aNode newNode:
 		newNode: anotherNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReReplaceNodeCritique>>change [
+{ #category : #accessing }
+ReReplaceNodeCritique >> change [
 	"creates new AST by replacing the node. Then the 'add method' change is generated from new AST"
 
 	| newTree newTreeNode |
@@ -45,11 +38,8 @@ ReReplaceNodeCritique>>change [
 		in: sourceAnchor entity methodClass
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReReplaceNodeCritique>>initializeRule: aRule sourceAnchor: anAnchor oldNode: aNode newNode: anotherNode [
+{ #category : #initialization }
+ReReplaceNodeCritique >> initializeRule: aRule sourceAnchor: anAnchor oldNode: aNode newNode: anotherNode [
 
 	self initializeRule: aRule sourceAnchor: anAnchor.
 	oldNode := aNode.
@@ -57,11 +47,8 @@ ReReplaceNodeCritique>>initializeRule: aRule sourceAnchor: anAnchor oldNode: aNo
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReReplaceNodeCritique>>providesChange [
+{ #category : #testing }
+ReReplaceNodeCritique >> providesChange [
 
 	^ sourceAnchor entity isCompiledMethod
 ]

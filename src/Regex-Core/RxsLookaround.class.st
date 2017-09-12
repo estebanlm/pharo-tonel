@@ -10,58 +10,39 @@ Class {
 		'piece',
 		'positive'
 	],
-	#category : #Regex-Core,
-	#timestamp : '<historical>'
+	#category : #Regex-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsLookaround class>>with: anRsxPiece [
+{ #category : #'instance creation' }
+RxsLookaround class >> with: anRsxPiece [
 	^ self new
 		initializePiece: anRsxPiece
 ]
 
-{
-	#category : #initailize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsLookaround>>beNegative [
+{ #category : #initailize-release }
+RxsLookaround >> beNegative [
 	positive := false
 ]
 
-{
-	#category : #initailize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsLookaround>>bePositive [
+{ #category : #initailize-release }
+RxsLookaround >> bePositive [
 	positive := true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsLookaround>>dispatchTo: aBuilder [
+{ #category : #accessing }
+RxsLookaround >> dispatchTo: aBuilder [
 	"Inform the matcher of the kind of the node, and it
 	will do whatever it has to."
 	^aBuilder syntaxLookaround: self
 ]
 
-{
-	#category : #initailize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsLookaround>>initializePiece: anRsxPiece [
+{ #category : #initailize-release }
+RxsLookaround >> initializePiece: anRsxPiece [
 	super initialize.
 	piece := anRsxPiece.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxsLookaround>>piece [
+{ #category : #accessing }
+RxsLookaround >> piece [
 	^ piece
 ]

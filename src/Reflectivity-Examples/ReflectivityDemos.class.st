@@ -9,24 +9,17 @@ Class {
 	#classVars : [
 		'Link'
 	],
-	#category : #Reflectivity-Examples,
-	#timestamp : 'MarcusDenker 3/16/2017 11:09'
+	#category : #Reflectivity-Examples
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReflectivityDemos>>cleanUp [
+{ #category : #cleanup }
+ReflectivityDemos >> cleanUp [
 	<script: 'self new cleanUp'>
 	Link ifNotNil: [ :link | link uninstall. Link := nil ]
 ]
 
-{
-	#category : #demos,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReflectivityDemos>>demoSelfSendLogging [
+{ #category : #demos }
+ReflectivityDemos >> demoSelfSendLogging [
 	<script: 'self new demoSelfSendLogging'>
 	
 	"Running this method, Open first a Transcript and then the TabsExample.	

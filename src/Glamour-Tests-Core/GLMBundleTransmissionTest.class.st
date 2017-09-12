@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMBundleTransmissionTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBundleTransmissionTest>>testCopy [
+{ #category : #tests }
+GLMBundleTransmissionTest >> testCopy [
 	| transmission newTransmission | 
 	transmission := GLMTransmission new. 
 	transmission addActiveOrigin: ((GLMSimplePort new) name: #port1; value: 1). 
@@ -26,11 +19,8 @@ GLMBundleTransmissionTest>>testCopy [
 	self assert: transmission originReferences first ~= newTransmission originReferences first.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBundleTransmissionTest>>testPorts [
+{ #category : #tests }
+GLMBundleTransmissionTest >> testPorts [
 	"Tests that the origins are set up properly and that their order is retained."
 
 	| transmission |
@@ -80,11 +70,8 @@ GLMBundleTransmissionTest>>testPorts [
 	self assert: transmission destination name equals: #port5
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBundleTransmissionTest>>testPresentations [
+{ #category : #tests }
+GLMBundleTransmissionTest >> testPresentations [
 	"Tests that the presentations are set up correctly."
 
 	| transmission presentation1 presentation2 presentation3 |
@@ -115,11 +102,8 @@ GLMBundleTransmissionTest>>testPresentations [
 	self assert: (transmission transmissionStrategy presentations at: 3) ~~ presentation3
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBundleTransmissionTest>>testTransmitting [
+{ #category : #tests }
+GLMBundleTransmissionTest >> testTransmitting [
 	"Tests that the origins are set up properly and that their order is retained."
 
 	| transmission |
@@ -154,11 +138,8 @@ GLMBundleTransmissionTest>>testTransmitting [
 	self assert: transmission destination value equals: (GLMMultiValue withAll: #(1 2 3 4))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBundleTransmissionTest>>testTriggerConditions  [
+{ #category : #tests }
+GLMBundleTransmissionTest >> testTriggerConditions [ 
 	"Tests that the transmission is triggered only when the active origins change." 
 	 
 	| transmission port1 port2 | 
@@ -172,11 +153,8 @@ GLMBundleTransmissionTest>>testTriggerConditions  [
 	self assert: (transmission originatesAt: port2) not
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBundleTransmissionTest>>testTriggerConditionsWithParentPort  [
+{ #category : #tests }
+GLMBundleTransmissionTest >> testTriggerConditionsWithParentPort [ 
 	 
 	| transmission presentation | 
 	transmission := GLMTransmission new. 

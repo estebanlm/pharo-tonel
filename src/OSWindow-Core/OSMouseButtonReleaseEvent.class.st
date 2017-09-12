@@ -4,14 +4,10 @@ i am delivered when user releases a mouse button
 Class {
 	#name : #OSMouseButtonReleaseEvent,
 	#superclass : #OSMouseButtonEvent,
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'IgorStasenko 7/30/2014 17:23'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSMouseButtonReleaseEvent>>accept: aVisitor [
+{ #category : #visitor }
+OSMouseButtonReleaseEvent >> accept: aVisitor [
 	^ aVisitor visitMouseButtonReleaseEvent: self
 ]

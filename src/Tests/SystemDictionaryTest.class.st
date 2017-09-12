@@ -1,73 +1,48 @@
-"
-
-"
 Class {
 	#name : #SystemDictionaryTest,
 	#superclass : #DictionaryTest,
-	#category : #Tests-System,
-	#timestamp : ''
+	#category : #Tests-System
 }
 
-{
-	#category : #'building suites',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemDictionaryTest class>>shouldInheritSelectors [
+{ #category : #'building suites' }
+SystemDictionaryTest class >> shouldInheritSelectors [
 
 ^true
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemDictionaryTest>>canBeUnhealthy [
+{ #category : #requirements }
+SystemDictionaryTest >> canBeUnhealthy [
 	"uses GlobalVariables instead of associations"
 	^ false
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemDictionaryTest>>classToBeTested [
+{ #category : #requirements }
+SystemDictionaryTest >> classToBeTested [
 
 ^ SystemDictionary
 ]
 
-{
-	#category : #problems,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemDictionaryTest>>testClassComment [
+{ #category : #problems }
+SystemDictionaryTest >> testClassComment [
 	self should: [self targetClass organization hasComment].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemDictionaryTest>>testClassOrTraitNamedReturnsClassForClasses [
+{ #category : #tests }
+SystemDictionaryTest >> testClassOrTraitNamedReturnsClassForClasses [
 	"self debug: #testClassOrTraitNamedReturnsClassForClasses"
 	self assert: Object ==  (Smalltalk globals classOrTraitNamed: 'Object').
 	self assert: Object ==  (Smalltalk globals classOrTraitNamed: #Object).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemDictionaryTest>>testClassOrTraitNamedReturnsNilForGlobals [
+{ #category : #tests }
+SystemDictionaryTest >> testClassOrTraitNamedReturnsNilForGlobals [
 	"self debug: #testClassOrTraitNamedReturnsNilForGlobals"
 	self assert: nil = (Smalltalk globals classOrTraitNamed: 'Undeclared').
 	self assert: nil = (Smalltalk globals classOrTraitNamed: #Undeclared).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemDictionaryTest>>testEnvironmentOfOrganization [
+{ #category : #tests }
+SystemDictionaryTest >> testEnvironmentOfOrganization [
 	"self debug: #testEnvironmentOfOrganization"
 	
 	| aDictionary |	
@@ -76,11 +51,8 @@ SystemDictionaryTest>>testEnvironmentOfOrganization [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemDictionaryTest>>testOrganizationPerInstance [
+{ #category : #tests }
+SystemDictionaryTest >> testOrganizationPerInstance [
 	"self debug: #testOrganizationPerInstance"
 	
 	| aDictionary otherDictionary |	
@@ -90,35 +62,23 @@ SystemDictionaryTest>>testOrganizationPerInstance [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemDictionaryTest>>testOtherInstancesOfSystemDictionaryAsString [
+{ #category : #tests }
+SystemDictionaryTest >> testOtherInstancesOfSystemDictionaryAsString [
 	self deny: SystemDictionary new asString = 'Smalltalk'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemDictionaryTest>>testOtherInstancesOfSystemDictionaryPrintString [
+{ #category : #tests }
+SystemDictionaryTest >> testOtherInstancesOfSystemDictionaryPrintString [
 	self deny: SystemDictionary new printString = 'Smalltalk'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemDictionaryTest>>testOtherInstancesOfSystemDictionarySelfEvaluating [
+{ #category : #tests }
+SystemDictionaryTest >> testOtherInstancesOfSystemDictionarySelfEvaluating [
 	self deny: SystemDictionary new isSelfEvaluating
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemDictionaryTest>>testSetOrganizationSetBackPointer [
+{ #category : #tests }
+SystemDictionaryTest >> testSetOrganizationSetBackPointer [
 	"self debug: #testSetOrganizationSetBackPointer"
 	
 	| sd so |
@@ -130,35 +90,23 @@ SystemDictionaryTest>>testSetOrganizationSetBackPointer [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemDictionaryTest>>testSmalltalkAsString [
+{ #category : #tests }
+SystemDictionaryTest >> testSmalltalkAsString [
 	self assert: Smalltalk asString = 'Smalltalk'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemDictionaryTest>>testSmalltalkPrintString [
+{ #category : #tests }
+SystemDictionaryTest >> testSmalltalkPrintString [
 	self assert: Smalltalk printString = 'Smalltalk'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemDictionaryTest>>testSmalltalkSelfEvaluating [
+{ #category : #tests }
+SystemDictionaryTest >> testSmalltalkSelfEvaluating [
 	self assert: Smalltalk isSelfEvaluating
 ]
 
-{
-	#category : #problems,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemDictionaryTest>>testUnCategorizedMethods [
+{ #category : #problems }
+SystemDictionaryTest >> testUnCategorizedMethods [
 	| categories slips  |	categories := self categoriesForClass: self targetClass.
 	slips := categories select: [:each | each = #'as yet unclassified'].
 	self should: [slips isEmpty].	

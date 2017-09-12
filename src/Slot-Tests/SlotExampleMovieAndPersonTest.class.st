@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #SlotExampleMovieAndPersonTest,
 	#superclass : #TestCase,
-	#category : #Slot-Tests-Associations,
-	#timestamp : ''
+	#category : #Slot-Tests-Associations
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovieAndPersonTest>>testAddActors [
+{ #category : #tests }
+SlotExampleMovieAndPersonTest >> testAddActors [
 
 	| m1 m2 p1 p2 |
 	
@@ -32,11 +25,8 @@ SlotExampleMovieAndPersonTest>>testAddActors [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovieAndPersonTest>>testAddAndRemoveActors [
+{ #category : #tests }
+SlotExampleMovieAndPersonTest >> testAddAndRemoveActors [
 
 	| m1 m2 p1 p2 |
 	
@@ -56,11 +46,8 @@ SlotExampleMovieAndPersonTest>>testAddAndRemoveActors [
 	self should: [ m2 removeActor: p2 ] raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovieAndPersonTest>>testAddMovieDirector [
+{ #category : #tests }
+SlotExampleMovieAndPersonTest >> testAddMovieDirector [
 
 	| movie person |
 	
@@ -73,11 +60,8 @@ SlotExampleMovieAndPersonTest>>testAddMovieDirector [
 	self assert: person directedMovies anyOne equals: movie.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovieAndPersonTest>>testAddMovieDirectorInvalid [
+{ #category : #tests }
+SlotExampleMovieAndPersonTest >> testAddMovieDirectorInvalid [
 
 	| person |
 	
@@ -86,11 +70,8 @@ SlotExampleMovieAndPersonTest>>testAddMovieDirectorInvalid [
 	self should: [ person directedMovies add: 'not-a-movie' ] raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovieAndPersonTest>>testAddMovieDirectorTwice [
+{ #category : #tests }
+SlotExampleMovieAndPersonTest >> testAddMovieDirectorTwice [
 
 	| movie person |
 	
@@ -103,11 +84,8 @@ SlotExampleMovieAndPersonTest>>testAddMovieDirectorTwice [
 	self assert: person directedMovies anyOne equals: movie.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovieAndPersonTest>>testChangeMovieDirector [
+{ #category : #tests }
+SlotExampleMovieAndPersonTest >> testChangeMovieDirector [
 
 	| movie p1 p2 |
 	
@@ -126,11 +104,8 @@ SlotExampleMovieAndPersonTest>>testChangeMovieDirector [
 	self assert: p2 directedMovies anyOne equals: movie.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovieAndPersonTest>>testNewMovie [
+{ #category : #tests }
+SlotExampleMovieAndPersonTest >> testNewMovie [
 
 	| movie |
 	
@@ -141,11 +116,8 @@ SlotExampleMovieAndPersonTest>>testNewMovie [
 	self assert: movie actors isEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovieAndPersonTest>>testNewPerson [
+{ #category : #tests }
+SlotExampleMovieAndPersonTest >> testNewPerson [
 
 	| person |
 	
@@ -155,11 +127,8 @@ SlotExampleMovieAndPersonTest>>testNewPerson [
 	self assert: person directedMovies isEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovieAndPersonTest>>testSetAndRemoveMovieDirector [
+{ #category : #tests }
+SlotExampleMovieAndPersonTest >> testSetAndRemoveMovieDirector [
 
 	| movie person |
 	
@@ -175,11 +144,8 @@ SlotExampleMovieAndPersonTest>>testSetAndRemoveMovieDirector [
 	self assert: person directedMovies isEmpty.	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovieAndPersonTest>>testSetAndUnsetMovieDirector [
+{ #category : #tests }
+SlotExampleMovieAndPersonTest >> testSetAndUnsetMovieDirector [
 
 	| movie person |
 	
@@ -195,11 +161,8 @@ SlotExampleMovieAndPersonTest>>testSetAndUnsetMovieDirector [
 	self assert: person directedMovies isEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovieAndPersonTest>>testSetMovieDirector [
+{ #category : #tests }
+SlotExampleMovieAndPersonTest >> testSetMovieDirector [
 
 	| movie person |
 	
@@ -212,11 +175,8 @@ SlotExampleMovieAndPersonTest>>testSetMovieDirector [
 	self assert: person directedMovies anyOne equals: movie.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovieAndPersonTest>>testSetMovieDirectorInvalid [
+{ #category : #tests }
+SlotExampleMovieAndPersonTest >> testSetMovieDirectorInvalid [
 
 	| movie |
 	
@@ -226,11 +186,8 @@ SlotExampleMovieAndPersonTest>>testSetMovieDirectorInvalid [
 	self assert: movie director isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExampleMovieAndPersonTest>>testSetMovieDirectorTwice [
+{ #category : #tests }
+SlotExampleMovieAndPersonTest >> testSetMovieDirectorTwice [
 
 	| movie person |
 	

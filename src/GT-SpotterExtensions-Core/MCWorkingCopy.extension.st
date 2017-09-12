@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCWorkingCopy
-}
+Extension { #name : #MCWorkingCopy }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MCWorkingCopy>>gtDisplayOn: stream [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MCWorkingCopy >> gtDisplayOn: stream [
 	ancestry ancestors isEmpty 
 		ifTrue: [ 
 			super gtDisplayOn: stream. stream nextPutAll: ' (unsaved)' ]
@@ -16,11 +11,8 @@ MCWorkingCopy>>gtDisplayOn: stream [
 		
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MCWorkingCopy>>spotterAllRepositoriesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MCWorkingCopy >> spotterAllRepositoriesFor: aStep [
 	<spotterOrder: 20>
 	aStep listProcessor
 		title: 'All other repositories';
@@ -32,11 +24,8 @@ MCWorkingCopy>>spotterAllRepositoriesFor: aStep [
 		filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MCWorkingCopy>>spotterAncestorsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MCWorkingCopy >> spotterAncestorsFor: aStep [
 	<spotterOrder: 2>
 	self flag: #maybeRewriteForDirectStreaming.
 	aStep listProcessor
@@ -45,11 +34,8 @@ MCWorkingCopy>>spotterAncestorsFor: aStep [
 		filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MCWorkingCopy>>spotterCommit: workingCopy in: aRepository [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MCWorkingCopy >> spotterCommit: workingCopy [ in: aRepository
 	| newVersion |
 
 	newVersion := workingCopy newVersionIn: aRepository.
@@ -60,11 +46,8 @@ MCWorkingCopy>>spotterCommit: workingCopy in: aRepository [
 		ensure: [ (MCVersionInspector new version: newVersion) show ]]
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MCWorkingCopy>>spotterMonticelloPackageFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MCWorkingCopy >> spotterMonticelloPackageFor: aStep [
 	<spotterOrder: 21>
 	aStep listProcessor
 		title: 'Monticello Package';
@@ -73,11 +56,8 @@ MCWorkingCopy>>spotterMonticelloPackageFor: aStep [
 		filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MCWorkingCopy>>spotterPackageFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MCWorkingCopy >> spotterPackageFor: aStep [
 	<spotterOrder: 21>
 	self flag: #maybeRewriteForDirectStreaming.
 	aStep listProcessor
@@ -90,11 +70,8 @@ MCWorkingCopy>>spotterPackageFor: aStep [
 		filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MCWorkingCopy>>spotterPackageRepositoriesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MCWorkingCopy >> spotterPackageRepositoriesFor: aStep [
 	<spotterOrder: 10>
 	aStep listProcessor
 		title: 'Package repositories';

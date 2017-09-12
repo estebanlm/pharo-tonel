@@ -4,15 +4,11 @@ SUnit tests for MessageTally
 Class {
 	#name : #MessageTallyTest,
 	#superclass : #TestCase,
-	#category : #Tools-Test-Profilers,
-	#timestamp : 'TorstenBergmann 2/4/2014 20:46'
+	#category : #Tools-Test-Profilers
 }
 
-{
-	#category : #tallying,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MessageTallyTest>>testClosedTally [
+{ #category : #tallying }
+MessageTallyTest >> testClosedTally [
 
 	| tally |
 	tally := MessageTally
@@ -26,11 +22,8 @@ MessageTallyTest>>testClosedTally [
 	self assert: (tally receivers isNil)
 ]
 
-{
-	#category : #basic,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MessageTallyTest>>testInstantiation [
+{ #category : #basic }
+MessageTallyTest >> testInstantiation [
 
 	| messageTally |
 	messageTally := MessageTally new.
@@ -38,11 +31,8 @@ MessageTallyTest>>testInstantiation [
 	self assert: (messageTally tally = 0)
 ]
 
-{
-	#category : #sampling,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MessageTallyTest>>testSampling1 [
+{ #category : #sampling }
+MessageTallyTest >> testSampling1 [
 
 	| tally |
 	tally := MessageTally
@@ -58,11 +48,8 @@ MessageTallyTest>>testSampling1 [
 
 ]
 
-{
-	#category : #tallying,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MessageTallyTest>>testTallySends [
+{ #category : #tallying }
+MessageTallyTest >> testTallySends [
 	"
 	self debug: #testTallySends
 	"
@@ -127,11 +114,8 @@ MessageTallyTest>>testTallySends [
 
 ]
 
-{
-	#category : #tallying,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-MessageTallyTest>>testTallyShouldNotContainsAReturn [
+{ #category : #tallying }
+MessageTallyTest >> testTallyShouldNotContainsAReturn [
 
 	"The block passed to MessageTally should not have a ^ "
 	

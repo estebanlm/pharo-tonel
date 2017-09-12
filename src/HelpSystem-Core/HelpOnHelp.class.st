@@ -4,23 +4,16 @@ Welcome to Pharo Smalltalk Help System
 Class {
 	#name : #HelpOnHelp,
 	#superclass : #CustomHelp,
-	#category : #HelpSystem-Core-Help,
-	#timestamp : 'tbn 2/12/2010 14:27'
+	#category : #HelpSystem-Core-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpOnHelp class>>bookName [
+{ #category : #accessing }
+HelpOnHelp class >> bookName [
 	^'Help on Help'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpOnHelp class>>introduction [
+{ #category : #pages }
+HelpOnHelp class >> introduction [
 	"This method was automatically generated. Edit it using:"
 	"HelpOnHelp edit: #introduction"
 	^HelpTopic
@@ -35,18 +28,12 @@ There is a predefined mechanism allowing you to have help contents stored as sou
 !' readStream nextChunkText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpOnHelp class>>key [
+{ #category : #accessing }
+HelpOnHelp class >> key [
 	^'HelpOnHelp'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpOnHelp class>>pages [
+{ #category : #accessing }
+HelpOnHelp class >> pages [
 	^#(introduction HelpHowToHelpTopics HelpAPIDocumentation)
 ]

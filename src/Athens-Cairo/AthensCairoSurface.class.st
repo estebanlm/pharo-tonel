@@ -28,33 +28,23 @@ Class {
 		'dispatch',
 		'dispatchStruct'
 	],
-	#category : #Athens-Cairo,
-	#timestamp : 'IgorStasenko 4/29/2014 17:05'
+	#category : #Athens-Cairo
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>asExternalTypeOn: generator  [
+{ #category : #converting }
+AthensCairoSurface class >> asExternalTypeOn: generator [ 
 	"use handle ivar to hold my instance (cairo_surface_t)"
 	^ FFIExternalObjectType objectClass: self
 ]
 
-{
-	#category : #'session management',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>checkSession [
+{ #category : #'session management' }
+AthensCairoSurface class >> checkSession [
 	session == Smalltalk session 
 		ifFalse: [ self initializeForNewSession ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>createFromFile: aFileName ifFailed: aBlock [
+{ #category : #'instance creation' }
+AthensCairoSurface class >> createFromFile: aFileName ifFailed: aBlock [
 	"Right now, this protocol is Cairo backend only. "
 	
  	| surface cstring |
@@ -68,11 +58,8 @@ AthensCairoSurface class>>createFromFile: aFileName ifFailed: aBlock [
 	^ surface .
 ]
 
-{
-	#category : #'surface plugin callbacks',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>createGetSurfaceFormatFn [
+{ #category : #'surface plugin callbacks' }
+AthensCairoSurface class >> createGetSurfaceFormatFn [
 	"
 		int getSurfaceFormat(sqIntptr_t handle, int* width, int* height, int* depth, int* isMSB);
 
@@ -93,11 +80,8 @@ AthensCairoSurface class>>createGetSurfaceFormatFn [
 			on: Error do: [ :e | 0 "Error happened" ]]
 ]
 
-{
-	#category : #'surface plugin callbacks',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>createLockSurfaceFn [
+{ #category : #'surface plugin callbacks' }
+AthensCairoSurface class >> createLockSurfaceFn [
 	"
 	int lockSurface(sqIntptr_t handle, int *pitch, int x, int y, int w, int h);
 		Lock the bits of the surface.
@@ -138,11 +122,8 @@ AthensCairoSurface class>>createLockSurfaceFn [
 			self get_data: handle ]
 ]
 
-{
-	#category : #'surface plugin callbacks',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>createShowSurfaceFn [
+{ #category : #'surface plugin callbacks' }
+AthensCairoSurface class >> createShowSurfaceFn [
 	"
 	int showSurface(sqIntptr_t handle, int x, int y, int w, int h);
 		Display the contents of the surface on the actual screen.
@@ -157,11 +138,8 @@ AthensCairoSurface class>>createShowSurfaceFn [
 		block: [ :handle :x :y :w :h | 0 ""Do nothing"" ]"
 ]
 
-{
-	#category : #'surface plugin callbacks',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>createUnlockSurfaceFn [
+{ #category : #'surface plugin callbacks' }
+AthensCairoSurface class >> createUnlockSurfaceFn [
 	"
 		int unlockSurface(sqIntptr_t handle, int x, int y, int w, int h);
 		Unlock the bits of a (possibly modified) surface after BitBlt completed.
@@ -177,22 +155,16 @@ AthensCairoSurface class>>createUnlockSurfaceFn [
 		block: [ :handle :x :y :w :h | 0 ""Do nothing"" ]"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>destroyContextHandle: aHandle [
+{ #category : #private }
+AthensCairoSurface class >> destroyContextHandle: aHandle [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
 	^self nbCall: #( 	void cairo_destroy (size_t aHandle) )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>destroySurfaceHandle: handle [
+{ #category : #private }
+AthensCairoSurface class >> destroySurfaceHandle: handle [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	
 	^self nbCall: #( void cairo_surface_destroy ( ulong handle ) )
@@ -200,37 +172,25 @@ AthensCairoSurface class>>destroySurfaceHandle: handle [
 
 ]
 
-{
-	#category : #'surface plugin callbacks',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>dispatchStruct [
+{ #category : #'surface plugin callbacks' }
+AthensCairoSurface class >> dispatchStruct [
 	self checkSession.
 	^ dispatchStruct
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>extent: anExtent [
+{ #category : #'instance creation' }
+AthensCairoSurface class >> extent: anExtent [
 	^ self extent: anExtent format: CAIRO_FORMAT_ARGB32
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>extent: anExtent format: aFormat [
+{ #category : #'instance creation' }
+AthensCairoSurface class >> extent: anExtent format: aFormat [
 	^ ( self primImage: aFormat width: anExtent x height: anExtent y + 1) initialize
 
 ]
 
-{
-	#category : #'finalize resources',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>finalizeResourceData: data [
+{ #category : #'finalize resources' }
+AthensCairoSurface class >> finalizeResourceData: data [
 	| handle id contextHandle |
 	handle := data first.
 	id := data second.
@@ -246,11 +206,8 @@ AthensCairoSurface class>>finalizeResourceData: data [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>findSurface: surfaceId [
+{ #category : #private }
+AthensCairoSurface class >> findSurface: surfaceId [
 	| buf |
 	buf := ByteArray new: 4.  "sizeof(int)"
 	
@@ -262,11 +219,8 @@ AthensCairoSurface class>>findSurface: surfaceId [
 	^ nil. 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>fromForm: aForm [
+{ #category : #'instance creation' }
+AthensCairoSurface class >> fromForm: aForm [
 	| form surface newBits |
 	
 	form := aForm unhibernate; asFormOfDepth: 32.
@@ -292,43 +246,28 @@ AthensCairoSurface class>>fromForm: aForm [
 	^ surface.
 ]
 
-{
-	#category : #'surface plugin callbacks',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>get_data: surface [
+{ #category : #'surface plugin callbacks' }
+AthensCairoSurface class >> get_data: surface [
 	^ self ffiCall: #(void *cairo_image_surface_get_data (void *surface))
 ]
 
-{
-	#category : #'surface plugin callbacks',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>get_height: surface [
+{ #category : #'surface plugin callbacks' }
+AthensCairoSurface class >> get_height: surface [
 	^ self ffiCall: #(int cairo_image_surface_get_height (void *surface))
 ]
 
-{
-	#category : #'surface plugin callbacks',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>get_stride: surface [
+{ #category : #'surface plugin callbacks' }
+AthensCairoSurface class >> get_stride: surface [
 	^ self ffiCall: #(int cairo_image_surface_get_stride (void *surface))
 ]
 
-{
-	#category : #'surface plugin callbacks',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>get_width: surface [
+{ #category : #'surface plugin callbacks' }
+AthensCairoSurface class >> get_width: surface [
 	^ self ffiCall: #(int cairo_image_surface_get_width (void *surface))
 ]
 
-{
-	#category : #'session management',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>initializeForNewSession [
+{ #category : #'session management' }
+AthensCairoSurface class >> initializeForNewSession [
 	session := Smalltalk session.
 	"create a dispatch structure"
 	dispatchStruct := SQSurfaceDispatch externalNew.
@@ -341,11 +280,8 @@ AthensCairoSurface class>>initializeForNewSession [
 	dispatch := dispatchStruct getHandle.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>ioFindSurface: id dispatch: dispPtr handle: handlePtr [
+{ #category : #private }
+AthensCairoSurface class >> ioFindSurface: id dispatch: dispPtr handle: handlePtr [
 "	int ioFindSurface(int surfaceID, sqSurfaceDispatch *fn, int *surfaceHandle);
 		Find the surface with the given ID, and, optionally,
 		the given set of surface functions. The registered handle
@@ -359,11 +295,8 @@ AthensCairoSurface class>>ioFindSurface: id dispatch: dispPtr handle: handlePtr 
 	self nbCall: #( bool ioFindSurface(int id, void * dispPtr, int *handlePtr) ) module: #SurfacePlugin
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>ioFindSurface: id handle: handlePtr [
+{ #category : #private }
+AthensCairoSurface class >> ioFindSurface: id handle: handlePtr [
 "	int ioFindSurface(int surfaceID, sqSurfaceDispatch *fn, int *surfaceHandle);
 		Find the surface with the given ID, and, optionally,
 		the given set of surface functions. The registered handle
@@ -377,11 +310,8 @@ AthensCairoSurface class>>ioFindSurface: id handle: handlePtr [
 	self nbCall: #( bool ioFindSurface(int id, 0 , int *handlePtr) ) module: #SurfacePlugin
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>ioRegisterSurface: aCairoSurfaceHandle dispatch: sqSurfaceDispatchPtr surfaceId: idHolder [
+{ #category : #private }
+AthensCairoSurface class >> ioRegisterSurface: aCairoSurfaceHandle dispatch: sqSurfaceDispatchPtr surfaceId: idHolder [
 "
 	int ioRegisterSurface(int surfaceHandle, sqSurfaceDispatch *fn, int *surfaceID);
 
@@ -396,11 +326,8 @@ AthensCairoSurface class>>ioRegisterSurface: aCairoSurfaceHandle dispatch: sqSur
 	self nbCall: #(bool ioRegisterSurface(int aCairoSurfaceHandle, void *sqSurfaceDispatchPtr, void *idHolder)) module: #SurfacePlugin
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>ioUnregisterSurface: aCairoSurfaceId [
+{ #category : #private }
+AthensCairoSurface class >> ioUnregisterSurface: aCairoSurfaceId [
 "
 	ioUnregisterSurface:
 	Unregister the surface with the given id.
@@ -413,11 +340,8 @@ AthensCairoSurface class>>ioUnregisterSurface: aCairoSurfaceId [
 	self nbCall: #( int ioUnregisterSurface(ulong aCairoSurfaceId) ) module: #SurfacePlugin
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>primCreateFromFile: aFileName [
+{ #category : #private }
+AthensCairoSurface class >> primCreateFromFile: aFileName [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin> 
 	
@@ -425,11 +349,8 @@ AthensCairoSurface class>>primCreateFromFile: aFileName [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>primImage: aFormat width: aWidth height: aHeight [
+{ #category : #private }
+AthensCairoSurface class >> primImage: aFormat width: aWidth height: aHeight [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^self nbCall: #(AthensCairoSurface cairo_image_surface_create (int aFormat,
@@ -439,11 +360,8 @@ AthensCairoSurface class>>primImage: aFormat width: aWidth height: aHeight [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>primImageFromData: data width: width height: height pitch: stride [
+{ #category : #private }
+AthensCairoSurface class >> primImageFromData: data width: width height: height pitch: stride [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^self nbCall: #(AthensCairoSurface cairo_image_surface_create_for_data (
@@ -456,11 +374,8 @@ AthensCairoSurface class>>primImageFromData: data width: width height: height pi
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>primWidth: aWidth height: aHeight [
+{ #category : #private }
+AthensCairoSurface class >> primWidth: aWidth height: aHeight [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^self nbCall: #( AthensCairoSurface cairo_image_surface_create (
@@ -469,11 +384,8 @@ AthensCairoSurface class>>primWidth: aWidth height: aHeight [
 						int aHeight) )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>registerSurface: anAthensCairoSurface [
+{ #category : #private }
+AthensCairoSurface class >> registerSurface: anAthensCairoSurface [
 	"register the cairo surface with surface plugin,
 	so, it can be used directly by bitblt operations.
 	Answer an id and unique session object"
@@ -490,37 +402,25 @@ AthensCairoSurface class>>registerSurface: anAthensCairoSurface [
 	^ id
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>unregisterSurfaceWithId: anAthensCairoSurfaceId [
+{ #category : #private }
+AthensCairoSurface class >> unregisterSurfaceWithId: anAthensCairoSurfaceId [
 
 	self ioUnregisterSurface: anAthensCairoSurfaceId
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface class>>width: aWidth height: aHeight [
+{ #category : #'instance creation' }
+AthensCairoSurface class >> width: aWidth height: aHeight [
 	^ (self primWidth: aWidth height: aHeight+1) initialize
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>asAthensPaintOn: aCanvas [
+{ #category : #converting }
+AthensCairoSurface >> asAthensPaintOn: aCanvas [
 	^ AthensCairoPatternSurfacePaint createForSurface: self.
  
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>asForm [
+{ #category : #converting }
+AthensCairoSurface >> asForm [
 	"create a form and copy an image data there"
 	self checkSession.
 	self flush.
@@ -529,19 +429,13 @@ AthensCairoSurface>>asForm [
 		yourself
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>attemptToRecurseDrawing [
+{ #category : #drawing }
+AthensCairoSurface >> attemptToRecurseDrawing [
 	^ self 
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>cacheAt: anObject ifAbsentPut: aBlock [
+{ #category : #caching }
+AthensCairoSurface >> cacheAt: anObject ifAbsentPut: aBlock [
 	"Answer an object from surface's cache identified by anObject,
 	if there is no cached object under such identifier, evaluate a block
 	and put it into cache. Then answer the result of evaluation.
@@ -550,28 +444,19 @@ AthensCairoSurface>>cacheAt: anObject ifAbsentPut: aBlock [
 	^ CairoBackendCache soleInstance at: anObject ifAbsentPut: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>checkSession [
+{ #category : #private }
+AthensCairoSurface >> checkSession [
 	session == Smalltalk session ifFalse: [ 
 		self error: 'Attempt to use invalid external resource (left from previous session)' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>clear [
+{ #category : #accessing }
+AthensCairoSurface >> clear [
 	^ self clear: Color transparent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>clear: clearPaint [
+{ #category : #accessing }
+AthensCairoSurface >> clear: clearPaint [
 	currentCanvas pathTransform restoreAfter: [
 		currentCanvas pathTransform loadIdentity.
 		currentCanvas paintMode restoreAfter: [
@@ -585,11 +470,8 @@ AthensCairoSurface>>clear: clearPaint [
 
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>createFormPaint: aForm  [
+{ #category : #paints }
+AthensCairoSurface >> createFormPaint: aForm [ 
 	"here we should convert form to cairo surface"
 	
 	| newSurface |
@@ -601,11 +483,8 @@ AthensCairoSurface>>createFormPaint: aForm  [
 
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>createLinearGradient: aColorRamp start: aStartPoint stop: aStopPoint [
+{ #category : #paints }
+AthensCairoSurface >> createLinearGradient: aColorRamp start: aStartPoint stop: aStopPoint [
 	^ AthensCairoGradientPaint 
 		createLinearGradient: aColorRamp 
 		start: aStartPoint 
@@ -613,19 +492,13 @@ AthensCairoSurface>>createLinearGradient: aColorRamp start: aStartPoint stop: aS
 	
 ]
 
-{
-	#category : #creation,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>createPath: aPathCreatingBlock [
+{ #category : #creation }
+AthensCairoSurface >> createPath: aPathCreatingBlock [
 	^ builder createPath:  aPathCreatingBlock 
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>createRadialGradient: colorRamp center: aCenter radius: aRadius focalPoint: fp [
+{ #category : #paints }
+AthensCairoSurface >> createRadialGradient: colorRamp center: aCenter radius: aRadius focalPoint: fp [
 	^AthensCairoGradientPaint	
 		radialBetween: fp
 		extending: 0
@@ -634,29 +507,20 @@ AthensCairoSurface>>createRadialGradient: colorRamp center: aCenter radius: aRad
 		withColorRamp: colorRamp
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>createSolidColorPaint: aColor  [
+{ #category : #paints }
+AthensCairoSurface >> createSolidColorPaint: aColor [ 
 
 	^ AthensCairoSolidPaint new color: aColor
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>createStrokePaintFor: aPaint [
+{ #category : #paints }
+AthensCairoSurface >> createStrokePaintFor: aPaint [
 
 	^ AthensCairoStrokePaint new fillPaint: aPaint
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>drawDuring: aBlock [
+{ #category : #drawing }
+AthensCairoSurface >> drawDuring: aBlock [
 
 	"You may draw on receiver only when inside a block and only using provided canvas object.
 	This ensures releasing system resources used after finishing drawing"
@@ -674,19 +538,13 @@ AthensCairoSurface>>drawDuring: aBlock [
 	].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>extent [
+{ #category : #accessing }
+AthensCairoSurface >> extent [
 	^ self width @ self height
 ]
 
-{
-	#category : #'rendering dispatch',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>fillPath: aPath withSolidColor: aColor  [
+{ #category : #'rendering dispatch' }
+AthensCairoSurface >> fillPath: aPath withSolidColor: aColor [ 
 
 	self loadSolidColor: aColor.
 	
@@ -697,11 +555,8 @@ AthensCairoSurface>>fillPath: aPath withSolidColor: aColor  [
 	
 ]
 
-{
-	#category : #'rendering dispatch',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>fillRectangle: aRectangle withSolidColor: aColor [
+{ #category : #'rendering dispatch' }
+AthensCairoSurface >> fillRectangle: aRectangle withSolidColor: aColor [
 
 	self loadSolidColor: aColor.
 	
@@ -712,22 +567,16 @@ AthensCairoSurface>>fillRectangle: aRectangle withSolidColor: aColor [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>flush [
+{ #category : #private }
+AthensCairoSurface >> flush [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^self nbCall: #( void cairo_surface_flush (self) )
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>flushCacheAt: anObject [
+{ #category : #caching }
+AthensCairoSurface >> flushCacheAt: anObject [
 
 	"Flush (delete) any cached value(s) identified by given object, anObject.
 	Do nothing if there's no cached values stored for given object.
@@ -738,11 +587,8 @@ AthensCairoSurface>>flushCacheAt: anObject [
 	CairoBackendCache soleInstance removeAt: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>getDataPtr [
+{ #category : #accessing }
+AthensCairoSurface >> getDataPtr [
 	"get a pointer to surface bitmap data"
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
@@ -753,49 +599,34 @@ AthensCairoSurface>>getDataPtr [
 
 ]
 
-{
-	#category : #'text support',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>getFreetypeFontRendererFor: aFreetypeFont  [
+{ #category : #'text support' }
+AthensCairoSurface >> getFreetypeFontRendererFor: aFreetypeFont [ 
 	"answer the same instance, just reset it's font and advance"
 	
 	^ ftFontRenderer font: aFreetypeFont; advance: 0@0; yourself
 ]
 
-{
-	#category : #'text support',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>getStrikeFontRendererFor: aStrikeFont  [
+{ #category : #'text support' }
+AthensCairoSurface >> getStrikeFontRendererFor: aStrikeFont [ 
 	"answer the same instance, just reset it's font and advance"
 	
 	^ AthensStrikeFontRenderer on: context  forFont: aStrikeFont.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>handle [
+{ #category : #accessing }
+AthensCairoSurface >> handle [
 	^ handle value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>height [
+{ #category : #accessing }
+AthensCairoSurface >> height [
 	
 	^self privateHeight - 1
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>initialize [
+{ #category : #initialize-release }
+AthensCairoSurface >> initialize [
 	"the handle should be set already since we using an NB callout to create an instance"
 	handle value = 0 ifTrue: [ 
 		self error: 'Error creating new surface' ].
@@ -813,38 +644,26 @@ AthensCairoSurface>>initialize [
 	FFIExternalResourceManager addResource: self.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>isSuccess [
+{ #category : #testing }
+AthensCairoSurface >> isSuccess [
 	^ self status  =	CAIRO_STATUS_SUCCESS
 ]
 
-{
-	#category : #'rendering dispatch',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>loadSolidColor: aColor [
+{ #category : #'rendering dispatch' }
+AthensCairoSurface >> loadSolidColor: aColor [
 	currentCanvas setSourceR: aColor red g: aColor green b: aColor blue a: aColor alpha; resetDash
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>markDirty [
+{ #category : #private }
+AthensCairoSurface >> markDirty [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^self nbCall: #( void cairo_surface_mark_dirty (self) )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>newCanvas [
+{ #category : #private }
+AthensCairoSurface >> newCanvas [
 	"Answer a preinitialized instance of AthensCanvas.
 	Private to receiver and its subclasses, override seldom"
 	
@@ -853,21 +672,15 @@ AthensCairoSurface>>newCanvas [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>primCreateCanvas [
+{ #category : #private }
+AthensCairoSurface >> primCreateCanvas [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin error: errorCode>
 	^self nbCall: #( AthensCairoCanvas cairo_create (self) )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>privSetDefaults [
+{ #category : #private }
+AthensCairoSurface >> privSetDefaults [
 	"reset matrices"
 	currentCanvas pathTransform loadIdentity.
 	currentCanvas paintTransform loadIdentity.
@@ -876,11 +689,8 @@ AthensCairoSurface>>privSetDefaults [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>privateHeight [
+{ #category : #private }
+AthensCairoSurface >> privateHeight [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^self nbCall: #(
@@ -889,19 +699,13 @@ AthensCairoSurface>>privateHeight [
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>resourceData [
+{ #category : #initialize-release }
+AthensCairoSurface >> resourceData [
 	^ { handle value. id. context handle }
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>status [
+{ #category : #accessing }
+AthensCairoSurface >> status [
 
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
@@ -909,20 +713,14 @@ AthensCairoSurface>>status [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>statusToString: aCairoStatusT [
+{ #category : #private }
+AthensCairoSurface >> statusToString: aCairoStatusT [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	^ self nbCall: #(String   cairo_status_to_string  (cairo_status_t aCairoStatusT))
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>stride [
+{ #category : #accessing }
+AthensCairoSurface >> stride [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^self nbCall: #(
@@ -931,11 +729,8 @@ AthensCairoSurface>>stride [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>width [
+{ #category : #accessing }
+AthensCairoSurface >> width [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^self nbCall: #(
@@ -944,11 +739,8 @@ AthensCairoSurface>>width [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoSurface>>writeToPng: aFileName [
+{ #category : #converting }
+AthensCairoSurface >> writeToPng: aFileName [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	self nbCall: #(void cairo_surface_write_to_png (self, String aFileName) )

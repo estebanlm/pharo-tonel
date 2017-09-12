@@ -4,15 +4,11 @@ You are referencing a variable that is not declared anywhere. There is no temp, 
 Class {
 	#name : #GRUndeclaredVariableRule,
 	#superclass : #ReNodeBasedRule,
-	#category : #GeneralRules,
-	#timestamp : 'YuriyTymchuk 1/27/2017 11:19'
+	#category : #GeneralRules
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRUndeclaredVariableRule>>check: aNode forCritiquesDo: aCriticBlock [
+{ #category : #running }
+GRUndeclaredVariableRule >> check: aNode forCritiquesDo: aCriticBlock [
 	
 	(aNode isVariable and: [
 	 aNode isUndeclared ]) ifTrue: [ 
@@ -20,36 +16,24 @@ GRUndeclaredVariableRule>>check: aNode forCritiquesDo: aCriticBlock [
 			self critiqueFor: aNode) ]
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRUndeclaredVariableRule>>critiqueFor: aNode [
+{ #category : #helpers }
+GRUndeclaredVariableRule >> critiqueFor: aNode [
 	^ (super critiqueFor: aNode)
 		tinyHint: aNode name;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRUndeclaredVariableRule>>group [
+{ #category : #accessing }
+GRUndeclaredVariableRule >> group [
 	^ 'Bugs'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRUndeclaredVariableRule>>name [
+{ #category : #accessing }
+GRUndeclaredVariableRule >> name [
 	^ 'References an undeclared variable'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-GRUndeclaredVariableRule>>severity [
+{ #category : #accessing }
+GRUndeclaredVariableRule >> severity [
 	^ #error
 ]

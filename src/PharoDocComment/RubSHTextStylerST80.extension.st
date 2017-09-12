@@ -1,12 +1,7 @@
-Extension {
-	#name : #RubSHTextStylerST80
-}
+Extension { #name : #RubSHTextStylerST80 }
 
-{
-	#category : #'*PharoDocComment',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RubSHTextStylerST80>>styleDocComment: aRBComment [
+{ #category : #'*PharoDocComment' }
+RubSHTextStylerST80 >> styleDocComment: aRBComment [
 	aRBComment pharoDocCommentNodes
 		do: [ :pharoDocComment | 
 			self styleDocExpression: pharoDocComment expression in: aRBComment.
@@ -17,11 +12,8 @@ RubSHTextStylerST80>>styleDocComment: aRBComment [
 			self styleDocExpression: pharoDocComment result in: aRBComment ]
 ]
 
-{
-	#category : #'*PharoDocComment',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RubSHTextStylerST80>>styleDocExpression: aPharoDocExpression in: aRBComment [
+{ #category : #'*PharoDocComment' }
+RubSHTextStylerST80 >> styleDocExpression: aPharoDocExpression in: aRBComment [
 	| expressionText expressionNode expressionInterval |
 	expressionNode := aPharoDocExpression expressionCode.
 	expressionText := expressionNode source asText.
@@ -34,21 +26,15 @@ RubSHTextStylerST80>>styleDocExpression: aPharoDocExpression in: aRBComment [
 			charAttr from: expressionInterval first + index to: expressionInterval first + index put: (expressionText attributesAt: ij) ]
 ]
 
-{
-	#category : #'*PharoDocComment',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RubSHTextStylerST80>>visitMethodComments: comments [
+{ #category : #'*PharoDocComment' }
+RubSHTextStylerST80 >> visitMethodComments: comments [
 	comments do: [ :comment | self addStyle: #comment from: comment start to: comment stop ].
 	PharoDocCommentNode docCommentEnabled
 		ifTrue: [ comments do: [ :comment | self styleDocComment: comment ] ]
 ]
 
-{
-	#category : #'*PharoDocComment',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RubSHTextStylerST80>>visitMethodNode: aMethodNode [
+{ #category : #'*PharoDocComment' }
+RubSHTextStylerST80 >> visitMethodNode: aMethodNode [
 	| link |
 	self visitMethodComments: aMethodNode comments.
 	aMethodNode arguments do: [ :argument | self addStyle: #patternArg forNode: argument ].

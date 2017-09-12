@@ -1,38 +1,25 @@
-"
-
-"
 Class {
 	#name : #DelayMicrosecondSchedulerTest,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Processes,
-	#timestamp : ''
+	#category : #Kernel-Tests-Processes
 }
 
-{
-	#category : #support,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayMicrosecondSchedulerTest>>busyWaitMilliseconds: milliseconds [
+{ #category : #support }
+DelayMicrosecondSchedulerTest >> busyWaitMilliseconds: milliseconds [
 	| waitUntil |
 	waitUntil := Time millisecondClockValue + milliseconds.
 	[ Time millisecondClockValue < waitUntil ] whileTrue.
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayMicrosecondSchedulerTest>>tearDown 	 [
+{ #category : #running }
+DelayMicrosecondSchedulerTest >> tearDown [ 	
 	"Trigger system timingSempaphore, in case it was replaced"
 	Delay testCaseSupportTimingSemaphore signal
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayMicrosecondSchedulerTest>>testDurationLessThanMaxTicks [
+{ #category : #tests }
+DelayMicrosecondSchedulerTest >> testDurationLessThanMaxTicks [
 	"In #handleTimerEvent the maximum tick is hardcoded as 1000 milliseconds.
 	 Test when delay duration is less than this.
 		- duration is in milliseconds.
@@ -53,11 +40,8 @@ DelayMicrosecondSchedulerTest>>testDurationLessThanMaxTicks [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayMicrosecondSchedulerTest>>testDurationMoreThanMaxTicks [
+{ #category : #tests }
+DelayMicrosecondSchedulerTest >> testDurationMoreThanMaxTicks [
 	"In #handleTimerEvent the maximum tick is hardcoded as 1000 milliseconds.
 	 Test when delay duration is less than this.
 		- duration is in milliseconds.
@@ -79,11 +63,8 @@ DelayMicrosecondSchedulerTest>>testDurationMoreThanMaxTicks [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayMicrosecondSchedulerTest>>testForMilliseconds [
+{ #category : #tests }
+DelayMicrosecondSchedulerTest >> testForMilliseconds [
 	| scheduler delay preTick postTick actualDuration |
 	scheduler := DelayMicrosecondScheduler new.
 	delay := Delay forMilliseconds: 1000.
@@ -101,11 +82,8 @@ DelayMicrosecondSchedulerTest>>testForMilliseconds [
 	self assert: actualDuration <= 1050.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayMicrosecondSchedulerTest>>testForSeconds [
+{ #category : #tests }
+DelayMicrosecondSchedulerTest >> testForSeconds [
 	| scheduler delay preTick postTick actualDuration |
 	scheduler := DelayMicrosecondScheduler new.
 	delay := Delay forSeconds: 1.
@@ -123,11 +101,8 @@ DelayMicrosecondSchedulerTest>>testForSeconds [
 	self assert: actualDuration <= 1050.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayMicrosecondSchedulerTest>>testMillisecondsToGo [
+{ #category : #tests }
+DelayMicrosecondSchedulerTest >> testMillisecondsToGo [
 	| delay scheduler millisecondsToGo |
 	scheduler := DelayMicrosecondScheduler new.
 	delay := Delay forMilliseconds: 100.
@@ -139,11 +114,8 @@ DelayMicrosecondSchedulerTest>>testMillisecondsToGo [
 	self assert: millisecondsToGo <= 60.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-DelayMicrosecondSchedulerTest>>testTestInterferenceWithSystemTimingSemaphore [
+{ #category : #tests }
+DelayMicrosecondSchedulerTest >> testTestInterferenceWithSystemTimingSemaphore [
 	| scheduler delay higherPriorityProcess delayExpired |
 	
 	self skip. 

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #SortFunctionTest,
 	#superclass : #TestCase,
-	#category : #SortFunctions-Tests,
-	#timestamp : ''
+	#category : #SortFunctions-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunctionTest>>testAsSortFunction [
+{ #category : #tests }
+SortFunctionTest >> testAsSortFunction [
 
 	| function |
 	function := #name ascending.
@@ -25,11 +18,8 @@ SortFunctionTest>>testAsSortFunction [
 	self assert: function equals: function asSortFunction.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunctionTest>>testDirectionToggling [
+{ #category : #tests }
+SortFunctionTest >> testDirectionToggling [
 
 	| function |
 	function := #x ascending.
@@ -52,11 +42,8 @@ SortFunctionTest>>testDirectionToggling [
 	self deny: (function value: 2 @ 2 value: 1 @ 1)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunctionTest>>testSingleArgBlock [
+{ #category : #tests }
+SortFunctionTest >> testSingleArgBlock [
 
 	| function block |
 	block := [:point | point x / point y].
@@ -74,11 +61,8 @@ SortFunctionTest>>testSingleArgBlock [
 	self assert: (function value: 3 @ 2 value: 1 @ 1)
 ]
 
-{
-	#category : #'tests - sorting',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunctionTest>>testSorting [
+{ #category : #'tests - sorting' }
+SortFunctionTest >> testSorting [
 	| data sorted |
 	data := { 2@10. 5@5. 10@4. 3@8. 1@1. 11@11 }.
 	sorted := data sorted: #x ascending.
@@ -93,11 +77,8 @@ SortFunctionTest>>testSorting [
 	self assert: sorted equals: { 11@11. 2@10. 3@8. 5@5. 10@4. 1@1 }.
 ]
 
-{
-	#category : #'tests - sorting',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunctionTest>>testSortingChained [
+{ #category : #'tests - sorting' }
+SortFunctionTest >> testSortingChained [
 	| data sorted |
 	data := { 1@10. 5@5. 10@4. 3@8. 1@1. 10@10 }.
 	sorted := data sorted: #x ascending , #y ascending.
@@ -109,11 +90,8 @@ SortFunctionTest>>testSortingChained [
 
 ]
 
-{
-	#category : #'tests - sorting',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunctionTest>>testSortingChainedWithUndefined [
+{ #category : #'tests - sorting' }
+SortFunctionTest >> testSortingChainedWithUndefined [
 	| data sorted |
 	data := { 1@10. 5@5. 10@4. 10@nil. 3@8. 1@1. 10@10 }.
 	sorted := data sorted: #x ascending , #y ascending undefinedFirst.
@@ -125,11 +103,8 @@ SortFunctionTest>>testSortingChainedWithUndefined [
 
 ]
 
-{
-	#category : #'tests - sorting',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunctionTest>>testSortingWithUndefined [
+{ #category : #'tests - sorting' }
+SortFunctionTest >> testSortingWithUndefined [
 	| data sorted |
 	data := { 2@10. 5@5. 10@4. Point new. 3@8. 1@1. 11@11 }.
 	sorted := data sorted: #x ascending undefinedFirst.
@@ -142,11 +117,8 @@ SortFunctionTest>>testSortingWithUndefined [
 	self assert: sorted equals: { Point new. 11@11. 2@10. 3@8. 5@5. 10@4. 1@1 }.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunctionTest>>testTwoArgBlock [
+{ #category : #tests }
+SortFunctionTest >> testTwoArgBlock [
 
 	| function block |
 	block :=
@@ -168,11 +140,8 @@ SortFunctionTest>>testTwoArgBlock [
 	self assert: (function value: -2 value: 1)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunctionTest>>testUnarySymbol [
+{ #category : #tests }
+SortFunctionTest >> testUnarySymbol [
 
 	| function |
 	function := #x ascending.
@@ -189,11 +158,8 @@ SortFunctionTest>>testUnarySymbol [
 	self assert: (function value: 2 @ 2 value: 1 @ 1)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunctionTest>>testUndefinedFirstUnary [
+{ #category : #tests }
+SortFunctionTest >> testUndefinedFirstUnary [
 
 	| function |
 	function := #y ascending undefinedFirst.
@@ -210,11 +176,8 @@ SortFunctionTest>>testUndefinedFirstUnary [
 	self deny: (function value: 2 @ 2 value: 1 @ 3)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-SortFunctionTest>>testUndefinedLastUnary [
+{ #category : #tests }
+SortFunctionTest >> testUndefinedLastUnary [
 
 	| function |
 	function := #y ascending undefinedLast.

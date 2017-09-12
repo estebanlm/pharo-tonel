@@ -1,12 +1,7 @@
-Extension {
-	#name : #RBCascadeNode
-}
+Extension { #name : #RBCascadeNode }
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBCascadeNode>>leftmostChainReceiver [
+{ #category : #'*renraku' }
+RBCascadeNode >> leftmostChainReceiver [
 
 	^ self receiver isMessage
 		ifTrue: [ self receiver receiver ]

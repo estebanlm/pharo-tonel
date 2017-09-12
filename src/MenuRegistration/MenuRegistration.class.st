@@ -169,23 +169,16 @@ Class {
 		'ordering',
 		'precondition'
 	],
-	#category : #MenuRegistration-Core,
-	#timestamp : 'AlainPlantec 2/16/2010 23:17'
+	#category : #MenuRegistration-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration class>>owner: aMenuRegistration [
+{ #category : #'instance creation' }
+MenuRegistration class >> owner: aMenuRegistration [
 	^ self new owner: aMenuRegistration
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>action: aMessageSendOrABlock [
+{ #category : #'spec accessing' }
+MenuRegistration >> action: aMessageSendOrABlock [
 	"set the action of the menu"
 	
 	aMessageSendOrABlock isBlock 
@@ -198,42 +191,30 @@ MenuRegistration>>action: aMessageSendOrABlock [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>addItem: anItem  [
+{ #category : #accessing }
+MenuRegistration >> addItem: anItem [ 
 	"Add a MenuRegistration"
 	self ensureItemList add: anItem
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>arguments: anArray [
+{ #category : #'spec accessing' }
+MenuRegistration >> arguments: anArray [
 	"set the arguments for an item with an action"
 	self spec action 
 		ifNil: [self spec action: (MessageSend receiver: self itemReceiver selector: nil arguments: anArray)]
 		ifNotNil: [self spec action arguments: anArray]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>assignOrderWithBlock: aBlock  [
+{ #category : #accessing }
+MenuRegistration >> assignOrderWithBlock: aBlock [ 
 	"Compute recursively MenuRegistration order"
 	self itemList 
 		ifNotNil: [self itemList: (aBlock value: self itemList).
 				self itemList do: [:rded | rded assignOrderWithBlock: aBlock]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>buildMenuSpec: aMenu  [
+{ #category : #accessing }
+MenuRegistration >> buildMenuSpec: aMenu [ 
 	"recursiveley build the menu spec aMenu passed as argument"
 	self itemList
 		ifNotNil: [:l | 
@@ -248,19 +229,13 @@ MenuRegistration>>buildMenuSpec: aMenu  [
 		ifFalse: [aMenu items add: self spec]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>builder [
+{ #category : #accessing }
+MenuRegistration >> builder [
 	^ owner builder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>collectMisplacedItemsIn: aCollection [
+{ #category : #accessing }
+MenuRegistration >> collectMisplacedItemsIn: aCollection [
 	"Select recursively all MenuRegistration with a parentName 
 	different from its owner name. 	This is possible since a parent name 
 	can be given in order to force a menu item placement. 
@@ -276,11 +251,8 @@ MenuRegistration>>collectMisplacedItemsIn: aCollection [
 		l do: [:item | item collectMisplacedItemsIn: aCollection]]
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>enabled: aBooleanOrABlock [
+{ #category : #'spec accessing' }
+MenuRegistration >> enabled: aBooleanOrABlock [
 
 	aBooleanOrABlock == true
 		ifTrue: [ 
@@ -293,110 +265,74 @@ MenuRegistration>>enabled: aBooleanOrABlock [
 	self spec enabled: (aBooleanOrABlock cull: self model).
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>enabledBlock [
+{ #category : #'spec accessing' }
+MenuRegistration >> enabledBlock [
 	^ self spec enabledBlock
 
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>enabledBlock: aBlock [
+{ #category : #'spec accessing' }
+MenuRegistration >> enabledBlock: aBlock [
 
 	self spec enabledBlock: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>ensureItemList [
+{ #category : #accessing }
+MenuRegistration >> ensureItemList [
 	"Return the list of MenuRegistration instances"
 	^ itemList ifNil: [itemList := OrderedCollection new]
 ]
 
-{
-	#category : #'sub item creating',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>group: aSymbol [
+{ #category : #'sub item creating' }
+MenuRegistration >> group: aSymbol [
 	^ (self item: aSymbol) isGroup: true
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>help: anHelpText [
+{ #category : #'spec accessing' }
+MenuRegistration >> help: anHelpText [
 	"set the help text"
 	self spec help: anHelpText
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>icon: aForm [
+{ #category : #'spec accessing' }
+MenuRegistration >> icon: aForm [
 	"set the icon that is shown in the menu"
 	self spec icon: aForm
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>initialize [
+{ #category : #initialization }
+MenuRegistration >> initialize [
 	super initialize.
 	isGroup := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>isGroup: aBoolean [
+{ #category : #accessing }
+MenuRegistration >> isGroup: aBoolean [
 	isGroup := aBoolean
 ]
 
-{
-	#category : #'sub item creating',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>item: aSymbol [
+{ #category : #'sub item creating' }
+MenuRegistration >> item: aSymbol [
 	"set my name and my label with aSymbol (the label and the name as the same by default) and register myself as a child of my owner"
 	^ (self builder newSubItem) name: aSymbol; label: aSymbol asString
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>itemList [
+{ #category : #accessing }
+MenuRegistration >> itemList [
 	"Return my children"
 	^ itemList 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>itemList: aCollection [
+{ #category : #accessing }
+MenuRegistration >> itemList: aCollection [
 	"Set the list of MenuRegistration"
 	 itemList := aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>itemNamed: aName [
+{ #category : #accessing }
+MenuRegistration >> itemNamed: aName [
 	"Return the MenuRegistration named aName or nil if none is found"
 	| result |
 	self name = aName ifTrue: [^ self].
@@ -406,185 +342,122 @@ MenuRegistration>>itemNamed: aName [
 		ifNotNil: [ result itemNamed: aName ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>itemReceiver [
+{ #category : #accessing }
+MenuRegistration >> itemReceiver [
 	^ self target ifNil: [owner itemReceiver]
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>keyText: aString [
+{ #category : #'spec accessing' }
+MenuRegistration >> keyText: aString [
 	self spec keyText: aString
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>label  [
+{ #category : #'spec accessing' }
+MenuRegistration >> label [ 
 	"return my label"
 	^ self spec label
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>label: aLabel [
+{ #category : #'spec accessing' }
+MenuRegistration >> label: aLabel [
 	"set the label that is shown in the menu"
 	self spec label: aLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>model [
+{ #category : #accessing }
+MenuRegistration >> model [
 	^ self builder model
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>name [
+{ #category : #'spec accessing' }
+MenuRegistration >> name [
 	"returns my name which is used as a key (should unique over all the menu items"
 	^ self spec name
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>name: aSymbol [
+{ #category : #'spec accessing' }
+MenuRegistration >> name: aSymbol [
 	"set my name (should be unique over all menu items"
 	self spec name: aSymbol
 ]
 
-{
-	#category : #'sub item creating',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>newSubItem [
+{ #category : #'sub item creating' }
+MenuRegistration >> newSubItem [
 	| reg |
 	reg := self class owner: self.
 	self addItem: reg.
 	^ reg
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>order [
+{ #category : #accessing }
+MenuRegistration >> order [
 	^ order
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>order: aNumber  [
+{ #category : #accessing }
+MenuRegistration >> order: aNumber [ 
 	"Set the value of order"
 
 	order := aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>owner [
+{ #category : #accessing }
+MenuRegistration >> owner [
 	^ owner
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>owner: anItem [
+{ #category : #accessing }
+MenuRegistration >> owner: anItem [
 	owner := anItem
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>parent: aSymbol [
+{ #category : #accessing }
+MenuRegistration >> parent: aSymbol [
 	self parentName: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>parentName [
+{ #category : #accessing }
+MenuRegistration >> parentName [
 	^ parentName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>parentName: aSymbol [
+{ #category : #accessing }
+MenuRegistration >> parentName: aSymbol [
 	parentName := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>precondition [
+{ #category : #accessing }
+MenuRegistration >> precondition [
 	^ precondition ifNil: [[true]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>precondition: aValuable [
+{ #category : #accessing }
+MenuRegistration >> precondition: aValuable [
 	precondition := aValuable
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>printOn: aStream [
+{ #category : #printing }
+MenuRegistration >> printOn: aStream [
 
 	super printOn: aStream.
 	aStream << ' ( ' << self name asString << ' ) '
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>release [
+{ #category : #initialize-release }
+MenuRegistration >> release [
 	itemList := nil.
 	self releaseActionMap.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>removeItem: anItem [
+{ #category : #accessing }
+MenuRegistration >> removeItem: anItem [
 	"Remove a MenuRegistration"
 	self itemList remove: anItem 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>reset [
+{ #category : #initialize-release }
+MenuRegistration >> reset [
 	itemList 
 		ifNotNil: [
 			itemList do: [:i | i reset].
@@ -593,22 +466,16 @@ MenuRegistration>>reset [
 
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>selector: aSymbol [
+{ #category : #'spec accessing' }
+MenuRegistration >> selector: aSymbol [
 	"set the selector for item with an action"
 	self spec action 
 		ifNil: [self spec action: (MessageSend receiver: self itemReceiver selector: aSymbol)]
 		ifNotNil: [self spec action selector: aSymbol]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>sort: aSortBlock [
+{ #category : #accessing }
+MenuRegistration >> sort: aSortBlock [
 	"Sort the tree recursively"
 	self itemList
 		ifNotNil: [
@@ -616,48 +483,33 @@ MenuRegistration>>sort: aSortBlock [
 		self itemList do: [:rded | rded sort: aSortBlock] ]
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>spec [
+{ #category : #'spec accessing' }
+MenuRegistration >> spec [
 	"return my PluggableMenuItemSpec"
 	^ spec ifNil: [spec := PluggableMenuItemSpec new]
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>target [
+{ #category : #'spec accessing' }
+MenuRegistration >> target [
 	^ self spec action ifNotNil: [:action | action receiver]
 
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>target: anObject [
+{ #category : #'spec accessing' }
+MenuRegistration >> target: anObject [
 	"set the target for the action"
 	self spec action 
 		ifNil: [self spec action: (MessageSend receiver: (anObject ifNil: [owner itemReceiver]) selector: nil)]
 		ifNotNil: [self spec action receiver: anObject]
 ]
 
-{
-	#category : #'sub item creating',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>with: aBlock [
+{ #category : #'sub item creating' }
+MenuRegistration >> with: aBlock [
 	self builder currentRoot: self while: aBlock
 ]
 
-{
-	#category : #'spec accessing',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuRegistration>>withSeparatorAfter [
+{ #category : #'spec accessing' }
+MenuRegistration >> withSeparatorAfter [
 	"add a separator line after me"
 	self spec separator: true
 ]

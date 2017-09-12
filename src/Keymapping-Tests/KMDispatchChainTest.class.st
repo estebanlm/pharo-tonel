@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #KMDispatchChainTest,
 	#superclass : #AbstractKeymappingTest,
-	#category : #Keymapping-Tests,
-	#timestamp : ''
+	#category : #Keymapping-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMDispatchChainTest>>testGlobalIsFirst [
+{ #category : #tests }
+KMDispatchChainTest >> testGlobalIsFirst [
 	| chain first |
 	first := nil.
 	chain := KMDispatchChain from: (KmGlobalDispatcher new) andDispatcher: (KMDispatcher new).
@@ -20,11 +13,8 @@ KMDispatchChainTest>>testGlobalIsFirst [
 	self assert: first isGlobalDispatcher.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMDispatchChainTest>>testPassesOnTheTarget [
+{ #category : #tests }
+KMDispatchChainTest >> testPassesOnTheTarget [
 	| chain dispatcher passed |
 	dispatcher := KMDispatcher target: Morph new.
 	passed := false.
@@ -33,11 +23,8 @@ KMDispatchChainTest>>testPassesOnTheTarget [
 	self assert: passed
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-KMDispatchChainTest>>testTargetDoesNotIterateTheNil [
+{ #category : #tests }
+KMDispatchChainTest >> testTargetDoesNotIterateTheNil [
 	| chain |
 	chain := KMDispatchChain from: (KmGlobalDispatcher new) andDispatcher: (KMDispatcher new).
 	chain do: [ :target | self assert: target notNil ].

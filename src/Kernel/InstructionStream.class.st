@@ -15,15 +15,11 @@ Class {
 	#classVars : [
 		'SpecialConstants'
 	],
-	#category : #Kernel-Methods,
-	#timestamp : '<historical>'
+	#category : #Kernel-Methods
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream class>>initialize [
+{ #category : #'class initialization' }
+InstructionStream class >> initialize [
 	"Initialize an array of special constants returned by single-bytecode returns."
 
 	SpecialConstants := 
@@ -33,11 +29,8 @@ InstructionStream class>>initialize [
 
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream class>>instVarNamesAndOffsetsDo: aBinaryBlock [
+{ #category : #compiling }
+InstructionStream class >> instVarNamesAndOffsetsDo: aBinaryBlock [
 	"This is part of the interface between the compiler and a class's instance or field names.
 	 We override here to arrange that the compiler will use MaybeContextInstanceVariableNodes
 	 for instances variables of Context or any of its superclasses and subclasses.  The
@@ -52,29 +45,20 @@ InstructionStream class>>instVarNamesAndOffsetsDo: aBinaryBlock [
 		[:i| aBinaryBlock value: (self instVarNames at: i) value: (i + superInstSize) negated]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream class>>isContextClass [
+{ #category : #testing }
+InstructionStream class >> isContextClass [
 	^false
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream class>>on: method [
+{ #category : #'instance creation' }
+InstructionStream class >> on: method [ 
 	"Answer an instance of me on the argument, method."
 
 	^self new method: method pc: method initialPC
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>addSelectorTo: set [
+{ #category : #scanning }
+InstructionStream >> addSelectorTo: set [ 
 	"If this instruction is a send, add its selector to set."
 
 	| selectorOrSelf |
@@ -82,106 +66,73 @@ InstructionStream>>addSelectorTo: set [
 		[set add: selectorOrSelf]
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>atEnd [
+{ #category : #decoding }
+InstructionStream >> atEnd [
 
 	^ pc > self method endPC
 ]
 
-{
-	#category : #'debugger access',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>debuggerMap [
+{ #category : #'debugger access' }
+InstructionStream >> debuggerMap [
 	^self method debuggerMap
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>firstByte [
+{ #category : #scanning }
+InstructionStream >> firstByte [
 	"Answer the first byte of the current bytecode."
 
 	^self method at: pc
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>followingByte [
+{ #category : #scanning }
+InstructionStream >> followingByte [
 	"Answer the next bytecode."
 
 	^self method at: pc + 1
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>followingBytecode [
+{ #category : #scanning }
+InstructionStream >> followingBytecode [
 	"Answer the bytecode of the following bytecode (different to nextByte)."
 
 	^self method at: self followingPc
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>followingPc [
+{ #category : #scanning }
+InstructionStream >> followingPc [
 	"Answer the pc of the following bytecode."
 
 	^self nextPc: (self method at: pc)
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>fourthByte [
+{ #category : #scanning }
+InstructionStream >> fourthByte [
 	"Answer the fourth byte of the current bytecode."
 
 	^self method at: pc + 3
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>interpret [
+{ #category : #decoding }
+InstructionStream >> interpret [
 	| endPC |
 	endPC := self method endPC.
 	[pc > endPC] whileFalse: [self interpretNextInstructionFor: self]
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>interpretJump [
+{ #category : #decoding }
+InstructionStream >> interpretJump [
 	^ self method encoderClass interpretJumpIn: self
 
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>interpretJumpIfCond [
+{ #category : #decoding }
+InstructionStream >> interpretJumpIfCond [
 	^ self method encoderClass interpretJumpIfCondIn: self
 
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>interpretNext2ByteSistaV1Instruction: bytecode for: client extA: extA extB: extB startPC: startPC [
+{ #category : #decoding }
+InstructionStream >> interpretNext2ByteSistaV1Instruction: bytecode for: client extA: extA extB: extB startPC: startPC [
 	"Send to the argument, client, a message that specifies the next instruction.
 	 This method handles the two-byte codes.
 	 For a table of the bytecode set, see EncoderForV1's class comment."
@@ -238,11 +189,8 @@ InstructionStream>>interpretNext2ByteSistaV1Instruction: bytecode for: client ex
 	^self unusedBytecode: client at: startPC
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>interpretNext3ByteSistaV1Instruction: bytecode for: client extA: extA extB: extB startPC: startPC [
+{ #category : #decoding }
+InstructionStream >> interpretNext3ByteSistaV1Instruction: bytecode for: client extA: extA extB: extB startPC: startPC [
 	"Send to the argument, client, a message that specifies the next instruction.
 	 This method handles the three-byte codes.
 	 For a table of the bytecode set, see EncoderForSistaV1's class comment."
@@ -281,21 +229,15 @@ InstructionStream>>interpretNext3ByteSistaV1Instruction: bytecode for: client ex
 	^self unusedBytecode: client at: startPC
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>interpretNextInstructionFor: client [
+{ #category : #decoding }
+InstructionStream >> interpretNextInstructionFor: client [ 
 	"Send to the argument, client, a message that specifies the type of the 
 	next instruction."
 	^ self method encoderClass interpretNextInstructionFor: client  in: self
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>interpretNextSistaV1InstructionFor: client [
+{ #category : #decoding }
+InstructionStream >> interpretNextSistaV1InstructionFor: client [
 	"Send to the argument, client, a message that specifies the next instruction."
 
 	| byte div16 offset method extA extB savedPC |
@@ -401,11 +343,8 @@ InstructionStream>>interpretNextSistaV1InstructionFor: client [
 	^self interpretNext3ByteSistaV1Instruction: byte for: client extA: extA extB: extB startPC: savedPC
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>interpretNextV3PlusClosureInstructionFor: client [
+{ #category : #decoding }
+InstructionStream >> interpretNextV3PlusClosureInstructionFor: client [ 
 	"Send to the argument, client, a message that specifies the type of the 
 	next instruction."
 
@@ -548,11 +487,8 @@ InstructionStream>>interpretNextV3PlusClosureInstructionFor: client [
 					numArgs: type-13]"
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>interpretSistaV1ExtendedPush: extB for: client [
+{ #category : #decoding }
+InstructionStream >> interpretSistaV1ExtendedPush: extB for: client [ 
 	"Implement the extended push for non-zero extensions."
 	"*	82			01010010			Push thisContext, (then Extend B = 1 => push
 	thisProcess) "
@@ -564,11 +500,8 @@ InstructionStream>>interpretSistaV1ExtendedPush: extB for: client [
 
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>interpretSistaV1Jump [
+{ #category : #decoding }
+InstructionStream >> interpretSistaV1Jump [
 	"If the instruction at pc is an unconditional jump, interpret it, advancing
 	the pc,
 	and answering the jump distance. Otherwise answer nil."
@@ -606,11 +539,8 @@ InstructionStream>>interpretSistaV1Jump [
 
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>interpretSistaV1JumpIfCond [
+{ #category : #decoding }
+InstructionStream >> interpretSistaV1JumpIfCond [
 	"If the instruction at pc is a conditional jump, interpret it, advancing
 	the pc,
 	and answering the jump distance. Otherwise answer nil."
@@ -652,11 +582,8 @@ InstructionStream>>interpretSistaV1JumpIfCond [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>interpretV3ClosuresExtension: offset in: method for: client [
+{ #category : #'as yet unclassified' }
+InstructionStream >> interpretV3ClosuresExtension: offset in: method for: client [
 	| type offset2 byte2 byte3 byte4 |
 	offset <= 6 ifTrue: 
 		["Extended op codes 128-134"
@@ -726,11 +653,8 @@ InstructionStream>>interpretV3ClosuresExtension: offset in: method for: client [
 		blockSize: (byte3 * 256) + byte4
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>interpretV3PlusClosureExtension: offset in: method for: client [
+{ #category : #decoding }
+InstructionStream >> interpretV3PlusClosureExtension: offset in: method for: client [
 	| type offset2 byte2 byte3 byte4 |
 	offset <= 6 ifTrue: 
 		["Extended op codes 128-134"
@@ -798,11 +722,8 @@ InstructionStream>>interpretV3PlusClosureExtension: offset in: method for: clien
 		blockSize: (byte3 * 256) + byte4
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>interpretV3PlusClosureJump [
+{ #category : #decoding }
+InstructionStream >> interpretV3PlusClosureJump [
 
 	| byte |
 	byte := self method at: pc.
@@ -813,11 +734,8 @@ InstructionStream>>interpretV3PlusClosureJump [
 	^nil
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>interpretV3PlusClosureJumpIfCond [
+{ #category : #decoding }
+InstructionStream >> interpretV3PlusClosureJumpIfCond [
 
 	| byte |
 	byte := self method at: pc.
@@ -828,82 +746,58 @@ InstructionStream>>interpretV3PlusClosureJumpIfCond [
 	^nil
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>method [
+{ #category : #scanning }
+InstructionStream >> method [
 	"Answer the compiled method that supplies the receiver's bytecodes."
 
 	^sender		"method access when used alone (not as part of a context)"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>method: method pc: startpc [
+{ #category : #private }
+InstructionStream >> method: method pc: startpc [
 
 	sender := method. 
 	"allows this class to stand alone as a method scanner"
 	pc := startpc
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>nextByte [
+{ #category : #scanning }
+InstructionStream >> nextByte [
 	"Answer the next bytecode."
 
 	^self method at: pc
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>nextInstruction [
+{ #category : #scanning }
+InstructionStream >> nextInstruction [
 	"Return the next bytecode instruction as a message that an InstructionClient would understand.  This advances the pc by one instruction."
 
 	^ self interpretNextInstructionFor: MessageCatcher new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>nextPc: currentByte [
+{ #category : #private }
+InstructionStream >> nextPc: currentByte [
 	"Answer the pc of the next bytecode following the current one, given the current bytecode.
 	 Skips the extension bytecodes."
 	
 	^ pc + (self method encoderClass bytecodeSize: currentByte)
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>pc [
+{ #category : #scanning }
+InstructionStream >> pc [
 	"Answer the index of the next bytecode."
 
 	^pc
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>pc: anInteger [
+{ #category : #private }
+InstructionStream >> pc: anInteger [
 
 	pc := anInteger
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>peekInstruction [
+{ #category : #scanning }
+InstructionStream >> peekInstruction [
 	"Return the next bytecode instruction as a message that an InstructionClient would understand.  The pc remains unchanged."
 
 	| currentPc instruction |
@@ -913,20 +807,14 @@ InstructionStream>>peekInstruction [
 	^ instruction
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>previousPc [
+{ #category : #scanning }
+InstructionStream >> previousPc [
 
 	^self method pcPreviousTo: pc
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>scanFor: scanBlock [
+{ #category : #scanning }
+InstructionStream >> scanFor: scanBlock [
 	"Answer the index of the first bytecode for which scanBlock
 	 answers true when supplied with that bytecode."
 
@@ -940,31 +828,22 @@ InstructionStream>>scanFor: scanBlock [
 	^false
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>secondByte [
+{ #category : #scanning }
+InstructionStream >> secondByte [
 	"Answer the second byte of the current bytecode."
 
 	^self method at: pc + 1
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>selectorToSendOrSelf [
+{ #category : #scanning }
+InstructionStream >> selectorToSendOrSelf [
 	"If this instruction is a send, answer the selector, otherwise answer self."
  
 	^ self method encoderClass selectorToSendOrItselfFor: self in: self method at: pc 
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>skipBackBeforeJump [
+{ #category : #scanning }
+InstructionStream >> skipBackBeforeJump [
 	"Assuming that the receiver is positioned just after a jump, skip back one or two bytes,
 	 depending on the size of the previous jump instruction."
 	| scanner client prevPc |
@@ -979,118 +858,82 @@ InstructionStream>>skipBackBeforeJump [
 	self jump: prevPc - pc
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>thirdByte [
+{ #category : #scanning }
+InstructionStream >> thirdByte [
 	"Answer the third byte of the current bytecode."
 
 	^self method at: pc + 2
 ]
 
-{
-	#category : #decoding,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>unusedBytecode: client at: startPC [
+{ #category : #decoding }
+InstructionStream >> unusedBytecode: client at: startPC [
 	^ client unusedBytecode
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>willBlockReturn [
+{ #category : #testing }
+InstructionStream >> willBlockReturn [
 
 	^ self method encoderClass isBlockReturnAt: pc in: self method
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>willCreateBlock [
+{ #category : #testing }
+InstructionStream >> willCreateBlock [
 	"next bytecode is a block creation"
 
 	^ self method encoderClass isCreateBlockAt: pc in: self method
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>willJump [
+{ #category : #testing }
+InstructionStream >> willJump [
 	"unconditionally"
 
 	^ self method encoderClass isJumpAt: pc in: self method
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>willJumpIfFalse [
+{ #category : #testing }
+InstructionStream >> willJumpIfFalse [
 	"Answer whether the next bytecode is a jump-if-false."
 
 	^ self method encoderClass isBranchIfFalseAt: pc in: self method
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>willJumpIfTrue [
+{ #category : #testing }
+InstructionStream >> willJumpIfTrue [ 
 	"Answer whether the next bytecode is a jump-if-true."
  
 	^ self method encoderClass isBranchIfTrueAt: pc in: self method
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>willJustPop [
+{ #category : #testing }
+InstructionStream >> willJustPop [
 
 	^ self method encoderClass isJustPopAt: pc in: self method
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>willReturn [
+{ #category : #testing }
+InstructionStream >> willReturn [
 	"Answer whether the next bytecode is a return."
 
 	^ self method encoderClass isReturnAt: pc in: self method
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>willSend [
+{ #category : #testing }
+InstructionStream >> willSend [
 	"Answer whether the next bytecode is a message-send."
 
 	^ self method encoderClass isSendAt: pc in: self method
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>willStore [
+{ #category : #testing }
+InstructionStream >> willStore [
 	"Answer whether the next bytecode is a store or store-pop"
 
 	^ self method encoderClass isStoreAt: pc in: self method
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-InstructionStream>>willStorePop [
+{ #category : #testing }
+InstructionStream >> willStorePop [
 	"Answer whether the next bytecode is a store-pop."
 
 	^ self method encoderClass isStorePopAt: pc in: self method

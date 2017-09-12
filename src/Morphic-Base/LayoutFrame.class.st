@@ -25,15 +25,11 @@ Class {
 		'bottomFraction',
 		'bottomOffset'
 	],
-	#category : #Morphic-Base-Layouts,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-Layouts
 }
 
-{
-	#category : #'costly instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame class>>fractions: fractionsOrNil [
+{ #category : #'costly instance creation' }
+LayoutFrame class >> fractions: fractionsOrNil [
 	"Do not use this API if you do not have already have the rectangles that should be passed as argument. 
 	If you are creating the rectangles representing the numbers you need, better use the accessors: 
 	(LayoutFrame identity
@@ -50,11 +46,8 @@ LayoutFrame class>>fractions: fractionsOrNil [
 	^ self fractions: fractionsOrNil offsets: nil
 ]
 
-{
-	#category : #'costly instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame class>>fractions: fractionsOrNil offsets: offsetsOrNil [
+{ #category : #'costly instance creation' }
+LayoutFrame class >> fractions: fractionsOrNil offsets: offsetsOrNil [
 	"Do not use this API if you do not have already have the rectangles that should be passed as arguments. 
 	If you are creating the rectangles representing the numbers you need, better use the accessors: 
 	(LayoutFrame identity
@@ -75,30 +68,21 @@ LayoutFrame class>>fractions: fractionsOrNil offsets: offsetsOrNil [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame class>>identity [
+{ #category : #'instance creation' }
+LayoutFrame class >> identity [
 	"by default a layout frame is initialized to represent the identity transformation"
 	^ self new
 ]
 
-{
-	#category : #'costly instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame class>>offsets: offsetsOrNil [
+{ #category : #'costly instance creation' }
+LayoutFrame class >> offsets: offsetsOrNil [
 	"read comment of fractions:offsets: please!"
 	
 	^ self fractions: nil offsets: offsetsOrNil
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>= aFrame [
+{ #category : #comparing }
+LayoutFrame >> = aFrame [
 	^self species = aFrame species
 		and:[ self leftFraction == aFrame leftFraction
 		and:[ self leftOffset == aFrame leftOffset
@@ -110,11 +94,8 @@ LayoutFrame>>= aFrame [
 		and:[ self bottomOffset == aFrame bottomOffset]]]]]]]]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>asArray [
+{ #category : #converting }
+LayoutFrame >> asArray [
 	 
 	^ { leftFraction . 
 		topFraction .
@@ -126,71 +107,47 @@ LayoutFrame>>asArray [
 		bottomOffset } 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>asLayoutFrame [
+{ #category : #converting }
+LayoutFrame >> asLayoutFrame [
 	 ^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>bottomFraction [
+{ #category : #accessing }
+LayoutFrame >> bottomFraction [
 	^ bottomFraction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>bottomFraction: aNumber [
+{ #category : #accessing }
+LayoutFrame >> bottomFraction: aNumber [
 	bottomFraction := aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>bottomFraction: aNumber offset: anInteger [
+{ #category : #accessing }
+LayoutFrame >> bottomFraction: aNumber offset: anInteger [
 
 	bottomFraction := aNumber.
 	bottomOffset := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>bottomOffset [
+{ #category : #accessing }
+LayoutFrame >> bottomOffset [
 	^bottomOffset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>bottomOffset: anInteger [
+{ #category : #accessing }
+LayoutFrame >> bottomOffset: anInteger [
 	bottomOffset := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>bottomRightOffset: aPoint [
+{ #category : #accessing }
+LayoutFrame >> bottomRightOffset: aPoint [
 
 	bottomOffset := aPoint y.
 	rightOffset := aPoint x.
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>center: targetMorph with: anotherMorph [
+{ #category : #layout }
+LayoutFrame >> center: targetMorph with: anotherMorph [
 	"Change the receiver to center the targetMorph with anotherMorph. 
 	Note the targetMorph is the morph on which the receiver will be applied.
 	anotherMorph is often the morph containing the targetMorph. 
@@ -201,30 +158,21 @@ LayoutFrame>>center: targetMorph with: anotherMorph [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>fractionRectangle [
+{ #category : #accessing }
+LayoutFrame >> fractionRectangle [
 	"Return a rectangle representing the fraction part of layout frame: i.e left@top corner: right@bottom"
 	
 	^ leftFraction @ topFraction corner: rightFraction @ bottomFraction 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>fractions: fractionsOrNil [
+{ #category : #accessing }
+LayoutFrame >> fractions: fractionsOrNil [
 
 	^ self fractions: fractionsOrNil offsets: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>fractions: fractionsOrNil offsets: offsetsOrNil [
+{ #category : #accessing }
+LayoutFrame >> fractions: fractionsOrNil offsets: offsetsOrNil [
 
 	| fractions offsets |
 
@@ -239,11 +187,8 @@ LayoutFrame>>fractions: fractionsOrNil offsets: offsetsOrNil [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>fromArray: anArray [
+{ #category : #accessing }
+LayoutFrame >> fromArray: anArray [
 	| str |
 	str := anArray readStream.
 	
@@ -252,21 +197,15 @@ LayoutFrame>>fromArray: anArray [
 	 ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>hasNoOffsets [
+{ #category : #testing }
+LayoutFrame >> hasNoOffsets [
 
 	^ leftOffset = 0 and: [rightOffset = 0  and: [ topOffset = 0 and: [ bottomOffset = 0 ]]].
 	
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>hash [
+{ #category : #comparing }
+LayoutFrame >> hash [
 	^(((((((( self species hash
 		+ leftFraction hash) hashMultiply
 		+ leftOffset hash) hashMultiply
@@ -279,11 +218,8 @@ LayoutFrame>>hash [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>initialize [
+{ #category : #initialization }
+LayoutFrame >> initialize [
 	"initialize defaults:
 	 - all offsets are zero
 	 - fraction frame is maximum"
@@ -293,71 +229,47 @@ LayoutFrame>>initialize [
 	rightFraction := bottomFraction := 1.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>isSelfEvaluating [
+{ #category : #printing }
+LayoutFrame >> isSelfEvaluating [
 	^ false
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>layout: oldBounds in: newBounds [
+{ #category : #layout }
+LayoutFrame >> layout: oldBounds in: newBounds [
 	"Return the proportional rectangle insetting the given bounds"
 
 	^ self transform: newBounds 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>leftFraction [
+{ #category : #accessing }
+LayoutFrame >> leftFraction [
 	^leftFraction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>leftFraction: aNumber [
+{ #category : #accessing }
+LayoutFrame >> leftFraction: aNumber [
 	leftFraction := aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>leftFraction: aNumber offset: anInteger [
+{ #category : #accessing }
+LayoutFrame >> leftFraction: aNumber offset: anInteger [
 
 	leftFraction := aNumber.
 	leftOffset := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>leftOffset [
+{ #category : #accessing }
+LayoutFrame >> leftOffset [
 	^leftOffset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>leftOffset: anInteger [
+{ #category : #accessing }
+LayoutFrame >> leftOffset: anInteger [
 	leftOffset := anInteger
 ]
 
-{
-	#category : #'objects from disk',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>negateBottomRightOffsets [
+{ #category : #'objects from disk' }
+LayoutFrame >> negateBottomRightOffsets [
 
 	bottomOffset := bottomOffset negated.
 	rightOffset := rightOffset negated.
@@ -365,11 +277,8 @@ LayoutFrame>>negateBottomRightOffsets [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>printOn: aStream [
+{ #category : #printing }
+LayoutFrame >> printOn: aStream [
 
 	super printOn: aStream.
 	aStream nextPutAll: ' ( '.
@@ -384,105 +293,69 @@ LayoutFrame>>printOn: aStream [
 		nextPutAll: 'px ) '
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>rightFraction [
+{ #category : #accessing }
+LayoutFrame >> rightFraction [
 	^rightFraction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>rightFraction: aNumber [
+{ #category : #accessing }
+LayoutFrame >> rightFraction: aNumber [
 	rightFraction := aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>rightFraction: aNumber offset: anInteger [
+{ #category : #accessing }
+LayoutFrame >> rightFraction: aNumber offset: anInteger [
 
 	rightFraction := aNumber.
 	rightOffset := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>rightOffset [
+{ #category : #accessing }
+LayoutFrame >> rightOffset [
 	^rightOffset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>rightOffset: anInteger [
+{ #category : #accessing }
+LayoutFrame >> rightOffset: anInteger [
 	rightOffset := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>topFraction [
+{ #category : #accessing }
+LayoutFrame >> topFraction [
 	^topFraction
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>topFraction: aNumber [
+{ #category : #accessing }
+LayoutFrame >> topFraction: aNumber [
 	topFraction := aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>topFraction: aNumber offset: anInteger [
+{ #category : #accessing }
+LayoutFrame >> topFraction: aNumber offset: anInteger [
 
 	topFraction := aNumber.
 	topOffset := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>topLeftOffset: aPoint [
+{ #category : #accessing }
+LayoutFrame >> topLeftOffset: aPoint [
 
 	topOffset := aPoint y.
 	leftOffset := aPoint x.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>topOffset [
+{ #category : #accessing }
+LayoutFrame >> topOffset [
 	^topOffset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>topOffset: anInteger [
+{ #category : #accessing }
+LayoutFrame >> topOffset: anInteger [
 	topOffset := anInteger
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutFrame>>transform: outerReferenceRectangle [
+{ #category : #transforming }
+LayoutFrame >> transform: outerReferenceRectangle [
 	"Answer a new rectangle which transformed by receiver relative to outerReferenceRectangle.
 	If it is not possible to place a outerReferenceRectangle *inside*  this reference rectangle, then result will be zero-width (or zero-height) rectangle. Basically you transform to obtain a subrectangle area inside the reference rectangle"
 	

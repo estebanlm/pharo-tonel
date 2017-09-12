@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMTreeMorphNodeModel,
 	#superclass : #MorphTreeNodeModel,
@@ -9,24 +6,17 @@ Class {
 		'containerTree',
 		'onSelection'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>= anObject [
+{ #category : #testing }
+GLMTreeMorphNodeModel >> = anObject [
 	"This is needed to handle the update of the whole list while still preserving the selection"
 	^ self species = anObject species and: [ self item = anObject item ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>allContents [
+{ #category : #accessing }
+GLMTreeMorphNodeModel >> allContents [
 	^ self childrenItems
 		collect: [ :d | 
 			(self class with: d)
@@ -35,11 +25,8 @@ GLMTreeMorphNodeModel>>allContents [
 				yourself ]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>buttonForTag: each filter: filter [
+{ #category : #callbacks }
+GLMTreeMorphNodeModel >> buttonForTag: each filter: filter [
 	| button |
 
 	button := GLMMorphic 
@@ -53,43 +40,28 @@ GLMTreeMorphNodeModel>>buttonForTag: each filter: filter [
 	^ button
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>childrenItems [
+{ #category : #accessing }
+GLMTreeMorphNodeModel >> childrenItems [
 	^ (self containerTree glamourPresentation childrenValueOf: self item atLevel: self path size) ifNil: [OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>containerTree [
+{ #category : #accessing }
+GLMTreeMorphNodeModel >> containerTree [
 	^ containerTree
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>containerTree: anObject [
+{ #category : #accessing }
+GLMTreeMorphNodeModel >> containerTree: anObject [
 	containerTree := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>contents [
+{ #category : #accessing }
+GLMTreeMorphNodeModel >> contents [
 	^ contents ifNil: [ contents := self allContents select: [ :each | each shouldBeDisplayed ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>displayText [
+{ #category : #accessing }
+GLMTreeMorphNodeModel >> displayText [
 	^ (UITheme current 
 		newTextIn: World
 		text: (self containerTree glamourPresentation formatedDisplayValueOf: self item))
@@ -97,11 +69,8 @@ GLMTreeMorphNodeModel>>displayText [
 			yourself
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>elementColumn [
+{ #category : #callbacks }
+GLMTreeMorphNodeModel >> elementColumn [
 	| rowElements |
 	
 	rowElements := OrderedCollection new
@@ -112,61 +81,40 @@ GLMTreeMorphNodeModel>>elementColumn [
 	^ (UITheme current newRowIn: World for: rowElements).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>enabled [
+{ #category : #testing }
+GLMTreeMorphNodeModel >> enabled [
 	^ true
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>executeMenuAction: anAction [
+{ #category : #menu }
+GLMTreeMorphNodeModel >> executeMenuAction: anAction [
 	self containerTree announce: (GLMMenuItemSelected action: anAction)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>expandParentPath [
+{ #category : #accessing }
+GLMTreeMorphNodeModel >> expandParentPath [
 "	self openItemPath: anArray"
 	self containerTree expandNodePath: self path
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>helpText [
+{ #category : #accessing }
+GLMTreeMorphNodeModel >> helpText [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>icon [
+{ #category : #accessing }
+GLMTreeMorphNodeModel >> icon [
 	^ self containerTree glamourPresentation iconFor: self item
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>keyStroke: aCharacter from: aTreeMorph  [
+{ #category : #menu }
+GLMTreeMorphNodeModel >> keyStroke: aCharacter from: aTreeMorph [ 
 	^ false
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>menu: aMenuMorph shifted: b  [
+{ #category : #menu }
+GLMTreeMorphNodeModel >> menu: aMenuMorph shifted: b [ 
 	| subMenus targetMenuMorph subMenu allActions|
 	subMenus := Dictionary new.
 	allActions := self containerTree allMenuActions.
@@ -192,11 +140,8 @@ GLMTreeMorphNodeModel>>menu: aMenuMorph shifted: b  [
 	^ aMenuMorph
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>modified: aGlamourColumn with: aText [
+{ #category : #callbacks }
+GLMTreeMorphNodeModel >> modified: aGlamourColumn with: aText [
 
 	aGlamourColumn modifiedBlock
 		cull: aText
@@ -204,37 +149,25 @@ GLMTreeMorphNodeModel>>modified: aGlamourColumn with: aText [
 		cull: self containerTree glamourPresentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>parentNode [
+{ #category : #accessing }
+GLMTreeMorphNodeModel >> parentNode [
 	^ parentNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>parentNode: aNode [
+{ #category : #accessing }
+GLMTreeMorphNodeModel >> parentNode: aNode [
 	parentNode := aNode
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>path [
+{ #category : #accessing }
+GLMTreeMorphNodeModel >> path [
 	"returns the list of nodes to the root"
 	^ self pathIn: OrderedCollection new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>pathIn: aCollection  [
+{ #category : #accessing }
+GLMTreeMorphNodeModel >> pathIn: aCollection [ 
 	self parentNode ifNotNil: [
 		(aCollection includes: self parentNode)
 			ifFalse: [self parentNode pathIn: aCollection]].
@@ -242,37 +175,25 @@ GLMTreeMorphNodeModel>>pathIn: aCollection  [
 	^ aCollection
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>printOn: aStream [
+{ #category : #printing }
+GLMTreeMorphNodeModel >> printOn: aStream [
 	aStream nextPutAll: 'a NodeModel with '.
 	aStream nextPutAll: self item printString.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>resetContents [
+{ #category : #actions }
+GLMTreeMorphNodeModel >> resetContents [
 	contents := nil
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>resetContentsRecursively  [
+{ #category : #actions }
+GLMTreeMorphNodeModel >> resetContentsRecursively [ 
 	self resetContents.
 	self allContents do: [:each | each resetContentsRecursively]
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>rowMorphForColumn: aGlamourColumn [
+{ #category : #callbacks }
+GLMTreeMorphNodeModel >> rowMorphForColumn: aGlamourColumn [
 	| rowElements contentMorph tagMorphs |
 		
 	aGlamourColumn modifiedBlock
@@ -313,28 +234,19 @@ GLMTreeMorphNodeModel>>rowMorphForColumn: aGlamourColumn [
 	^ (UITheme current newRowIn: World for: rowElements)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>selectItem [
+{ #category : #actions }
+GLMTreeMorphNodeModel >> selectItem [
 
 	self containerTree explicitlySelectItem: self item
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>shouldBeDisplayed [
+{ #category : #testing }
+GLMTreeMorphNodeModel >> shouldBeDisplayed [
 	^ self shouldBeDisplayedByTags and: [ self shouldBeDisplayedByText ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>shouldBeDisplayedByTags [
+{ #category : #testing }
+GLMTreeMorphNodeModel >> shouldBeDisplayedByTags [
 	| nodeTags |
 	self flag: 'it looks like this method does not really get called for children'.
 "	self item mooseName = #'org::easymock' ifTrue: [self haltOnce ].
@@ -346,11 +258,8 @@ GLMTreeMorphNodeModel>>shouldBeDisplayedByTags [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>shouldBeDisplayedByText [
+{ #category : #testing }
+GLMTreeMorphNodeModel >> shouldBeDisplayedByText [
 	self containerTree shouldFilterByTextInput ifFalse: [ ^ true ].
 	self withContentsDo: 
 		[ :node | 
@@ -362,11 +271,8 @@ GLMTreeMorphNodeModel>>shouldBeDisplayedByText [
 	^ false
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>tagMorphsFrom: aTagProvider [
+{ #category : #callbacks }
+GLMTreeMorphNodeModel >> tagMorphsFrom: aTagProvider [
 	| tagMorphs tags tagsFilter |
 	tagMorphs := OrderedCollection new.
 	tags:= self containerTree glamourPresentation tagsFor: self item fromProvider: aTagProvider to: #show.
@@ -377,38 +283,26 @@ GLMTreeMorphNodeModel>>tagMorphsFrom: aTagProvider [
 	^ tagMorphs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>textBackgroundColor [
+{ #category : #accessing }
+GLMTreeMorphNodeModel >> textBackgroundColor [
 	^ self containerTree glamourPresentation textBackgroundColorFor: self item
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>toggleFilteringByTag: aTag  [
+{ #category : #callbacks }
+GLMTreeMorphNodeModel >> toggleFilteringByTag: aTag [ 
 	self containerTree toggleFilteringByTag: aTag
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>valueFor: aGlamourColumn [
+{ #category : #accessing }
+GLMTreeMorphNodeModel >> valueFor: aGlamourColumn [
 
 	^ self containerTree glamourPresentation 
 			column: aGlamourColumn
 			valueFor: self item
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMTreeMorphNodeModel>>withContentsDo: aBlock [
+{ #category : #enumerating }
+GLMTreeMorphNodeModel >> withContentsDo: aBlock [
 	aBlock value: self.
 	self containerTree glamourPresentation allowsRecursiveSearch ifTrue: [  
 		self contents do: [:each | each withContentsDo: aBlock ] ]

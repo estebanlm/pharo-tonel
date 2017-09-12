@@ -3,35 +3,23 @@ A trait for test purposes
 "
 Trait {
 	#name : #TDictionaryIncludesTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Unordered,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:33'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesTest>>keyNotInNonEmpty [
+{ #category : #requirements }
+TDictionaryIncludesTest >> keyNotInNonEmpty [
 	" return a key not included in nonEmpty"
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesTest>>nonEmpty [
+{ #category : #requirements }
+TDictionaryIncludesTest >> nonEmpty [
 
 ^self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesTest>>test0FixtureDictionaryIncludes [
+{ #category : #'tests - fixture' }
+TDictionaryIncludesTest >> test0FixtureDictionaryIncludes [
 	| in |
 	self nonEmpty.
 	self deny: self nonEmpty isEmpty.
@@ -51,11 +39,8 @@ TDictionaryIncludesTest>>test0FixtureDictionaryIncludes [
 	self assert: in = false
 ]
 
-{
-	#category : #'tests - dictionary including',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesTest>>testIncludesAssociation [
+{ #category : #'tests - dictionary including' }
+TDictionaryIncludesTest >> testIncludesAssociation [
 
 	|  nonExistantAssociation associationIn keyIn valueIn |
 
@@ -76,11 +61,8 @@ TDictionaryIncludesTest>>testIncludesAssociation [
 
 ]
 
-{
-	#category : #'tests - dictionary including',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesTest>>testIncludesComportementForDictionnary [
+{ #category : #'tests - dictionary including' }
+TDictionaryIncludesTest >> testIncludesComportementForDictionnary [
 	| valueIn collection keyIn |
 	collection := self nonEmpty.
 	valueIn := collection values anyOne.
@@ -91,11 +73,8 @@ TDictionaryIncludesTest>>testIncludesComportementForDictionnary [
 	self deny: (collection includes: keyIn)
 ]
 
-{
-	#category : #'tests - dictionary including',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesTest>>testIncludesIdentityBasicComportement [
+{ #category : #'tests - dictionary including' }
+TDictionaryIncludesTest >> testIncludesIdentityBasicComportement [
 
 | valueIn collection |
 collection := self nonEmpty .
@@ -105,11 +84,8 @@ self assert: (collection includesIdentity: valueIn ) .
 self deny: (collection includesIdentity: self valueNotInNonEmpty ).
 ]
 
-{
-	#category : #'tests - dictionary including',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesTest>>testIncludesKey [
+{ #category : #'tests - dictionary including' }
+TDictionaryIncludesTest >> testIncludesKey [
 
 	| collection keyIn nonExistantKey |
 
@@ -121,11 +97,8 @@ TDictionaryIncludesTest>>testIncludesKey [
 	self deny: ( collection includesKey: nonExistantKey ).
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TDictionaryIncludesTest>>valueNotInNonEmpty [
+{ #category : #requirements }
+TDictionaryIncludesTest >> valueNotInNonEmpty [
 	" return a value not included in nonEmpty"
 	^ self explicitRequirement
 ]

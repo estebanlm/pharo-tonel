@@ -1,12 +1,7 @@
-Extension {
-	#name : #TextStyle
-}
+Extension { #name : #TextStyle }
 
-{
-	#category : #'*Rubric',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TextStyle>>privateTabsArray: anArray [
+{ #category : #'*Rubric' }
+TextStyle >> privateTabsArray: anArray [
 	"DefaultTab := anArray first.
 	DefaultTabsArray := anArray."
 	tabsArray := anArray.
@@ -14,10 +9,7 @@ TextStyle>>privateTabsArray: anArray [
 
 ]
 
-{
-	#category : #'*Rubric',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-TextStyle>>rubTabWidth [
+{ #category : #'*Rubric' }
+TextStyle >> rubTabWidth [
 	 ^ tabsArray first
 ]

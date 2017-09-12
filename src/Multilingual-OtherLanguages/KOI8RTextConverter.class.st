@@ -4,15 +4,11 @@ A KOI8RTextConverter class is used to convert cyrillic inputs.
 Class {
 	#name : #KOI8RTextConverter,
 	#superclass : #ByteTextConverter,
-	#category : #Multilingual-OtherLanguages,
-	#timestamp : '<historical>'
+	#category : #Multilingual-OtherLanguages
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-KOI8RTextConverter class>>byteToUnicodeSpec [
+{ #category : #initialization }
+KOI8RTextConverter class >> byteToUnicodeSpec [
 	"ByteTextConverter generateByteToUnicodeSpec: 'http://unicode.org/Public/MAPPINGS/VENDORS/MISC/KOI8-R.TXT'"
 
 	^ #(
@@ -34,28 +30,19 @@ KOI8RTextConverter class>>byteToUnicodeSpec [
 	16r042C 16r042B 16r0417 16r0428 16r042D 16r0429 16r0427 16r042A )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-KOI8RTextConverter class>>encodingNames  [
+{ #category : #accessing }
+KOI8RTextConverter class >> encodingNames [ 
 
 	^ #('koi8-r') copy
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-KOI8RTextConverter class>>initialize [
+{ #category : #'as yet unclassified' }
+KOI8RTextConverter class >> initialize [
 	self initializeTables
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-KOI8RTextConverter class>>languageEnvironment [
+{ #category : #accessing }
+KOI8RTextConverter class >> languageEnvironment [
 	^RussianEnvironment
 ]

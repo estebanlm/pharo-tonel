@@ -6,39 +6,26 @@ Parsing a method or block code will just use RBVariableNodes for block/method ar
 Class {
 	#name : #RBArgumentNode,
 	#superclass : #RBVariableNode,
-	#category : #AST-Core-Nodes,
-	#timestamp : 'NicolaiHess 8/2/2016 14:40'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArgumentNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visiting }
+RBArgumentNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^aProgramNodeVisitor visitArgumentNode: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArgumentNode>>adaptToSemanticNode [
+{ #category : #converting }
+RBArgumentNode >> adaptToSemanticNode [
 	" I can't provide more semantics "
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArgumentNode>>isArgument [
+{ #category : #testing }
+RBArgumentNode >> isArgument [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArgumentNode>>isBlockVar [
+{ #category : #testing }
+RBArgumentNode >> isBlockVar [
 	"true if a variable node is defined by a block node"
 
 	^ (self whoDefines: self name) isBlock

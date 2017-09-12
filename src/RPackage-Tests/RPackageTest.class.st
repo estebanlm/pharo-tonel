@@ -4,26 +4,19 @@ SUnit tests for RPackage
 Class {
 	#name : #RPackageTest,
 	#superclass : #RPackageTestCase,
-	#category : #RPackage-Tests,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:01'
+	#category : #RPackage-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTest>>tearDown  [
+{ #category : #running }
+RPackageTest >> tearDown [ 
 	super tearDown.
 	#(TestClass TestClassOther) 
 		do: [ :each | 
 			self class environment at: each ifPresent: #removeFromSystem ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTest>>testActualClassTags [
+{ #category : #tests }
+RPackageTest >> testActualClassTags [
 
 	| packageWithoutClassTags packageWithClassTags |
 	packageWithoutClassTags := RPackageOrganizer default packageOf: Announcement.
@@ -34,11 +27,8 @@ RPackageTest>>testActualClassTags [
 	self assert: packageWithClassTags actualClassTags equals: packageWithClassTags classTags
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTest>>testAddClass [
+{ #category : #tests }
+RPackageTest >> testAddClass [
 	| package1 package2 class done |
 
 	package1 := (RPackage named: #Test1) register.
@@ -61,11 +51,8 @@ RPackageTest>>testAddClass [
 	self assert: ((package2 classTagNamed: #Test2 ifAbsent: [ nil ]) includesClass: class).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTest>>testAddClassFromTag [
+{ #category : #tests }
+RPackageTest >> testAddClassFromTag [
 	| package1 package2 class |
 
 	package1 := (RPackage named: #Test1) register.
@@ -86,11 +73,8 @@ RPackageTest>>testAddClassFromTag [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTest>>testAnonymousClassAndSelector [
+{ #category : #tests }
+RPackageTest >> testAnonymousClassAndSelector [
 	"jgeidel test case from issue 12628."
 
 	"Make sure we don't have a registration or a package for the method."
@@ -105,11 +89,8 @@ RPackageTest>>testAnonymousClassAndSelector [
 	ghost organization classify: #rpackagetest under: '*rpackagetest'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTest>>testDemoteToRPackageNamed [
+{ #category : #tests }
+RPackageTest >> testDemoteToRPackageNamed [
 	| package1 package2 class  |
 
 	package1 := (RPackage named: #'Test1-TAG1') register.
@@ -125,11 +106,8 @@ RPackageTest>>testDemoteToRPackageNamed [
 	self assert: ((package2 classTagNamed: 'TAG1') classes includes: class).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTest>>testDemoteToRPackageNamedExistingPackage [
+{ #category : #tests }
+RPackageTest >> testDemoteToRPackageNamedExistingPackage [
 	| package1 package2 packageExisting class  |
 
 	package1 := (RPackage named: #'Test1-TAG1') register.
@@ -147,11 +125,8 @@ RPackageTest>>testDemoteToRPackageNamedExistingPackage [
 	self assert: ((package2 classTagNamed: 'TAG1') classes includes: class).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTest>>testDemoteToRPackageNamedMultilevelPackage1 [
+{ #category : #tests }
+RPackageTest >> testDemoteToRPackageNamedMultilevelPackage1 [
 	| package1 package2  class  |
 
 	package1 := (RPackage named: #'Test1-TAG1-X1') register.
@@ -167,11 +142,8 @@ RPackageTest>>testDemoteToRPackageNamedMultilevelPackage1 [
 	self assert: ((package2 classTagNamed: 'TAG1-X1') classes includes: class).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTest>>testDemoteToRPackageNamedMultilevelPackage2 [
+{ #category : #tests }
+RPackageTest >> testDemoteToRPackageNamedMultilevelPackage2 [
 	| package1 package2  class  |
 
 	package1 := (RPackage named: #'Test1-TAG1-X1') register.
@@ -187,11 +159,8 @@ RPackageTest>>testDemoteToRPackageNamedMultilevelPackage2 [
 	self assert: ((package2 classTagNamed: 'X1') classes includes: class).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTest>>testDemoteToRPackageNamedWithExtension [
+{ #category : #tests }
+RPackageTest >> testDemoteToRPackageNamedWithExtension [
 	| packageOriginal packageDemoted class classOther |
 
 	packageOriginal := (RPackage named: #'Test1-TAG1') register.
@@ -214,33 +183,24 @@ RPackageTest>>testDemoteToRPackageNamedWithExtension [
 
 ]
 
-{
-	#category : #tests-MC,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTest>>testMcPackage [
+{ #category : #tests-MC }
+RPackageTest >> testMcPackage [
 
 	| rPackage |
 	rPackage := self organizer registerPackageNamed: #Test1.
 	self assert: rPackage mcPackage equals: (MCPackage new name: #Test1).
 ]
 
-{
-	#category : #tests-MC,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTest>>testMcWorkingCopy [
+{ #category : #tests-MC }
+RPackageTest >> testMcWorkingCopy [
 
 	| rPackage |
 	rPackage := self organizer registerPackageNamed: #Test1.
 	self assert: rPackage mcWorkingCopy equals: (MCWorkingCopy forPackage: (MCPackage new name: #Test1)).
 ]
 
-{
-	#category : #'tests - properties',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTest>>testPropertyAtPut [
+{ #category : #'tests - properties' }
+RPackageTest >> testPropertyAtPut [
 
 	| testValue package |
 	
@@ -256,11 +216,8 @@ RPackageTest>>testPropertyAtPut [
 	self assert: package properties isNil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTest>>testRenameToMakesMCDirty [
+{ #category : #tests }
+RPackageTest >> testRenameToMakesMCDirty [
 	| package |
 	
 	package := (RPackage named: #'Test1') register.

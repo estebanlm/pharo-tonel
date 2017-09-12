@@ -4,42 +4,29 @@ Update
 Class {
 	#name : #GoferUpdate,
 	#superclass : #GoferWorking,
-	#category : #Gofer-Core,
-	#timestamp : 'TorstenBergmann 2/5/2014 09:36'
+	#category : #Gofer-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferUpdate>>addReference: aReference [
+{ #category : #private }
+GoferUpdate >> addReference: aReference [
 	super addReference: aReference.
 	self model addVersion: ((self referenceFor: aReference)
 		 resolveWith: self gofer) version
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferUpdate>>defaultModel [
+{ #category : #private }
+GoferUpdate >> defaultModel [
 	^ MCVersionLoader new
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferUpdate>>execute [
+{ #category : #running }
+GoferUpdate >> execute [
 	self model hasVersions
 		ifTrue: [ self model load ].
 	self gofer cleanup
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferUpdate>>referenceFor: aReference [
+{ #category : #private }
+GoferUpdate >> referenceFor: aReference [
 	^ aReference
 ]

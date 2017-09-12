@@ -12,73 +12,48 @@ Is adopted as the theme for Pharo3, but it was renamed to avoid collisions with 
 Class {
 	#name : #Pharo3Theme,
 	#superclass : #UIThemeWatery,
-	#category : #Polymorph-Widgets-Themes,
-	#timestamp : '<historical>'
+	#category : #Polymorph-Widgets-Themes
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme class>>baseColor [
+{ #category : #accessing }
+Pharo3Theme class >> baseColor [
 	^ Color r: 210 g: 210 b: 210 range: 255
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme class>>basePassiveBackgroundColor [
+{ #category : #accessing }
+Pharo3Theme class >> basePassiveBackgroundColor [
 	^ Color r: 245 g: 245 b: 245 range: 255
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme class>>baseSelectionColor [
+{ #category : #accessing }
+Pharo3Theme class >> baseSelectionColor [
 	^ Color r: 97 g: 163 b: 225 range: 255
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme class>>darkBaseColor [
+{ #category : #accessing }
+Pharo3Theme class >> darkBaseColor [
 	^ Color r: 200 g: 200 b: 200 range: 255
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme class>>isAbstract [
+{ #category : #testing }
+Pharo3Theme class >> isAbstract [
 	"Answer whether the receiver is considered to be abstract."
 
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme class>>lightBaseColor [
+{ #category : #accessing }
+Pharo3Theme class >> lightBaseColor [
 	^ Color r: 230 g: 230 b: 230 range: 255
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme class>>lightSelectionColor [
+{ #category : #accessing }
+Pharo3Theme class >> lightSelectionColor [
 	^ Color r: 175 g: 213 b: 250 range: 255
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme class>>newDefaultSettings [
+{ #category : #settings }
+Pharo3Theme class >> newDefaultSettings [
 	self setPreferredPreferences.
 	
 	^super newDefaultSettings
@@ -96,21 +71,15 @@ Pharo3Theme class>>newDefaultSettings [
 		flatMenu: true
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme class>>setPreferredPreferences [
+{ #category : #settings }
+Pharo3Theme class >> setPreferredPreferences [
 	"NECPreferences 
 		expandPrefixes: true;
 		popupShowWithShortcut: Character tab asShortcut."
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme class>>setPreferredShoutColors [
+{ #category : #settings }
+Pharo3Theme class >> setPreferredShoutColors [
 	"self setPreferredShoutColors"
 
 	SHTextStylerST80 styleTable: 
@@ -226,57 +195,39 @@ Pharo3Theme class>>setPreferredShoutColors [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme class>>themeName [
+{ #category : #accessing }
+Pharo3Theme class >> themeName [
 	^ 'Pharo3'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme class>>veryLightSelectionColor [
+{ #category : #accessing }
+Pharo3Theme class >> veryLightSelectionColor [
 	^ self lightSelectionColor muchLighter
 ]
 
-{
-	#category : #'accessing colors',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>balloonBackgroundColor [
+{ #category : #'accessing colors' }
+Pharo3Theme >> balloonBackgroundColor [
 
 	^ (Color r: 1.0 g: 1.0 b: 0.71 alpha: 1.0)
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>buttonCornerStyleIn: aThemedMorph [
+{ #category : #border-styles-buttons }
+Pharo3Theme >> buttonCornerStyleIn: aThemedMorph [
 	"If asked, we only allow square corners"
 	
 	^ #square
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>buttonLabelForText: aTextOrString [
+{ #category : #label-styles }
+Pharo3Theme >> buttonLabelForText: aTextOrString [
 	"Answer the label to use for the given text."
 	^aTextOrString isString
 		ifTrue: [(LabelMorph contents: aTextOrString) color: self textColor ]
 		ifFalse: [super buttonLabelForText: aTextOrString]
 ]
 
-{
-	#category : #border-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>buttonNormalBorderStyleFor: aButton [
+{ #category : #border-styles-buttons }
+Pharo3Theme >> buttonNormalBorderStyleFor: aButton [
 	"Return the normal button borderStyle for the given button."
 
 	| outerColor |
@@ -288,63 +239,45 @@ Pharo3Theme>>buttonNormalBorderStyleFor: aButton [
 					baseColor: outerColor
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>buttonNormalFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+Pharo3Theme >> buttonNormalFillStyleFor: aButton [
 	"Return the normal button fillStyle for the given button."
 	
 	(aButton valueOfProperty: #noFill ifAbsent: [false]) ifTrue: [^ SolidFillStyle color: Color transparent ].
 	^ self glamorousNormalFillStyleFor: aButton height: aButton height
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>buttonSelectedFillStyleFor: aButton [
+{ #category : #fill-styles-buttons }
+Pharo3Theme >> buttonSelectedFillStyleFor: aButton [
 	"Return the normal button fillStyle for the given button."
 	
 	^ SolidFillStyle color: (self glamorousLightSelectionColorFor: aButton)
 	
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>checkboxForm [
+{ #category : #forms }
+Pharo3Theme >> checkboxForm [
 	"Answer the form to use for a normal checkbox."
 
 	^self  checkboxUnselectedForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>checkboxSelectedForm [
+{ #category : #forms }
+Pharo3Theme >> checkboxSelectedForm [
 	"Answer the form to use for a selected checkbox."
 
 	^ self iconNamed: #checkboxSelectedForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>checkboxUnselectedForm [
+{ #category : #forms }
+Pharo3Theme >> checkboxUnselectedForm [
 	"Answer the form to use for a selected checkbox."
 
 	^ self iconNamed: #checkboxUnselectedForm
 ]
 
-{
-	#category : #'watcher window',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>configureWatcherWindowLabelAreaFor: aWindow [
+{ #category : #'watcher window' }
+Pharo3Theme >> configureWatcherWindowLabelAreaFor: aWindow [
 	"Configure the label area for the given Watcher window."
 
 	|padding|
@@ -368,11 +301,8 @@ Pharo3Theme>>configureWatcherWindowLabelAreaFor: aWindow [
 		addMorphBack: (Morph new extent: aWindow class borderWidth @ 0)
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>configureWindowBorderFor: aWindow [
+{ #category : #border-styles }
+Pharo3Theme >> configureWindowBorderFor: aWindow [
 "	super configureWindowBorderFor: aWindow.
 	aWindow roundedCorners: #()"
 	| aStyle |
@@ -385,20 +315,14 @@ Pharo3Theme>>configureWindowBorderFor: aWindow [
 	aWindow borderStyle: aStyle.
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>configureWindowDropShadowFor: aWindow [
+{ #category : #border-styles }
+Pharo3Theme >> configureWindowDropShadowFor: aWindow [
 
 	aWindow hasDropShadow: false
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>createMenuBoxFor: aSystemWindow [
+{ #category : #label-styles }
+Pharo3Theme >> createMenuBoxFor: aSystemWindow [
 	"Answer a button for the window menu."
 	
 "	^aSystemWindow createBox
@@ -433,127 +357,85 @@ Pharo3Theme>>createMenuBoxFor: aSystemWindow [
 	^msb
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>dialogWindowPreferredCornerStyleFor: aDialogWindow [
+{ #category : #defaults }
+Pharo3Theme >> dialogWindowPreferredCornerStyleFor: aDialogWindow [
 	"Answer the preferred corner style for the given dialog."
 
 	^ self windowPreferredCornerStyleFor:aDialogWindow
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>dockingBarNormalFillStyleFor: aToolDockingBar [
+{ #category : #fill-styles }
+Pharo3Theme >> dockingBarNormalFillStyleFor: aToolDockingBar [
 	^ SolidFillStyle color: Color transparent
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>dropListDisabledFillStyleFor: aDropList [
+{ #category : #fill-styles }
+Pharo3Theme >> dropListDisabledFillStyleFor: aDropList [
 	"Return the disabled fillStyle for the given drop list."
 	
 	^ self textEditorDisabledFillStyleFor: aDropList
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>dropListNormalBorderStyleFor: aDropList [
+{ #category : #border-styles }
+Pharo3Theme >> dropListNormalBorderStyleFor: aDropList [
 	"Return the normal borderStyle for the given drop list"
 
 	^ self buttonNormalBorderStyleFor: aDropList
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>dropListNormalFillStyleFor: aDropList [
+{ #category : #fill-styles }
+Pharo3Theme >> dropListNormalFillStyleFor: aDropList [
 	"Return the normal fillStyle for the given drop list."
 	
 	^ SolidFillStyle color: Color white
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>errorPopperBackgroundColor [
+{ #category : #basic-colors }
+Pharo3Theme >> errorPopperBackgroundColor [
 	^ Color paleRed
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>expanderTitleNormalFillStyleFor: anExpanderTitle [
+{ #category : #fill-styles }
+Pharo3Theme >> expanderTitleNormalFillStyleFor: anExpanderTitle [
 	"Return the normal expander title fillStyle for the given expander title."
 	
 	^ self buttonNormalFillStyleFor: anExpanderTitle
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>glamorousBaseColorFor: aButton [
+{ #category : #private }
+Pharo3Theme >> glamorousBaseColorFor: aButton [
 	^ self class baseColor
 	"unfortunately, it looks like paneColor does not always return the wanted color"
 	"aButton paneColorOrNil ifNil: [Color r: 200 g: 200 b: 200 range: 255]"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>glamorousBasePassiveBackgroundColorFor: aButton [
+{ #category : #private }
+Pharo3Theme >> glamorousBasePassiveBackgroundColorFor: aButton [
 	^ self class basePassiveBackgroundColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>glamorousBaseSelectionColorFor: aButton [
+{ #category : #private }
+Pharo3Theme >> glamorousBaseSelectionColorFor: aButton [
 	^ self class baseSelectionColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>glamorousDarkBaseColorFor: aButton [
+{ #category : #private }
+Pharo3Theme >> glamorousDarkBaseColorFor: aButton [
 	^ self class darkBaseColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>glamorousLightColorFor: aButton [
+{ #category : #private }
+Pharo3Theme >> glamorousLightColorFor: aButton [
 	^ self class lightBaseColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>glamorousLightSelectionColorFor: aMorph [
+{ #category : #private }
+Pharo3Theme >> glamorousLightSelectionColorFor: aMorph [
 	^ self class lightSelectionColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>glamorousNormalFillStyleFor: aMorph height: anInteger [
+{ #category : #private }
+Pharo3Theme >> glamorousNormalFillStyleFor: aMorph height: anInteger [
 	"Return the normal button fillStyle for the given button."
 	
 "	| baseColor |
@@ -564,11 +446,8 @@ Pharo3Theme>>glamorousNormalFillStyleFor: aMorph height: anInteger [
 	^ SolidFillStyle color: (self glamorousLightColorFor: aMorph)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>glamorousNormalFillStyleWithBaseColor: aColor for: aMorph height: anInteger	 [
+{ #category : #private }
+Pharo3Theme >> glamorousNormalFillStyleWithBaseColor: aColor for: aMorph height: anInteger [	
 	| top bottom |
 	top := aColor darker.
 	bottom := aColor.
@@ -580,22 +459,16 @@ Pharo3Theme>>glamorousNormalFillStyleWithBaseColor: aColor for: aMorph height: a
 		radial: false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>glamorousSelectedFillStyleFor: aMorph height: anInteger [
+{ #category : #private }
+Pharo3Theme >> glamorousSelectedFillStyleFor: aMorph height: anInteger [
 	
 
 	^ SolidFillStyle color: (self glamorousLightSelectionColorFor:  aMorph)
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>glamorousVeryLightFillStyleFor: aMorph height: anInteger [
+{ #category : #private }
+Pharo3Theme >> glamorousVeryLightFillStyleFor: aMorph height: anInteger [
 	"Return the very light button fillStyle for the given button."
 	
 "	| baseColor |
@@ -605,19 +478,13 @@ Pharo3Theme>>glamorousVeryLightFillStyleFor: aMorph height: anInteger [
 	^ SolidFillStyle color: (self glamorousVeyLightSelectionColorFor: aMorph)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>glamorousVeyLightSelectionColorFor: aMorph [
+{ #category : #private }
+Pharo3Theme >> glamorousVeyLightSelectionColorFor: aMorph [
 	^ self class veryLightSelectionColor
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>groupPanelBorderStyleFor: aGroupPanel [
+{ #category : #border-styles }
+Pharo3Theme >> groupPanelBorderStyleFor: aGroupPanel [
 	"Answer the normal border style for a group panel."
 
 	^ SimpleBorder new
@@ -625,19 +492,13 @@ Pharo3Theme>>groupPanelBorderStyleFor: aGroupPanel [
 		baseColor: ((self glamorousBaseColorFor: aGroupPanel))
 ]
 
-{
-	#category : #'growl - specific',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>growlBorderColorFor: aGrowlMorph [
+{ #category : #'growl - specific' }
+Pharo3Theme >> growlBorderColorFor: aGrowlMorph [
 	^ Color white alpha: 0.5
 ]
 
-{
-	#category : #'growl - specific',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>growlDismissHandleFor: aGrowlMorph [
+{ #category : #'growl - specific' }
+Pharo3Theme >> growlDismissHandleFor: aGrowlMorph [
 	| form image |
 	form := self windowCloseForm.
 	image := ImageMorph new.
@@ -646,27 +507,18 @@ Pharo3Theme>>growlDismissHandleFor: aGrowlMorph [
 	^ image
 ]
 
-{
-	#category : #'growl - specific',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>growlFillColorFor: aGrowlMorph [
+{ #category : #'growl - specific' }
+Pharo3Theme >> growlFillColorFor: aGrowlMorph [
 	^ Color darkGray alpha: 0.5
 ]
 
-{
-	#category : #'growl - specific',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>growlLabelColorFor: aGrowlMorph [
+{ #category : #'growl - specific' }
+Pharo3Theme >> growlLabelColorFor: aGrowlMorph [
 	^ Color white twiceDarker
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>initializeForms [
+{ #category : #initialize-release }
+Pharo3Theme >> initializeForms [
 	"Initialize the receiver's image forms."
 
 	|inactiveForm|
@@ -681,66 +533,45 @@ Pharo3Theme>>initializeForms [
 		at: #windowMaximizePassive put: inactiveForm
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>listDisabledFillStyleFor: aList [
+{ #category : #fill-styles }
+Pharo3Theme >> listDisabledFillStyleFor: aList [
 	"Return the disabled fillStyle for the given list."
 	
 	^ self textEditorDisabledFillStyleFor: aList
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>menuItemInDockingBarSelectedFillStyleFor: aMenuItem [
+{ #category : #fill-styles-buttons }
+Pharo3Theme >> menuItemInDockingBarSelectedFillStyleFor: aMenuItem [
 	"Answer the selected fill style to use for the given menu item that is in a docking bar."
 	^ self buttonSelectedFillStyleFor: aMenuItem
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>menuPinForm [
+{ #category : #forms }
+Pharo3Theme >> menuPinForm [
 	"Answer the form to use for the pin button of a menu."
 
 	^ self iconNamed: #menuPinForm
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>morphTreeSplitterNormalFillStyleFor: aSplitter	 [
+{ #category : #fill-styles }
+Pharo3Theme >> morphTreeSplitterNormalFillStyleFor: aSplitter [	
 	^ self splitterNormalFillStyleFor: aSplitter
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>morphTreeSplitterPressedFillStyleFor: aSplitter	 [
+{ #category : #fill-styles }
+Pharo3Theme >> morphTreeSplitterPressedFillStyleFor: aSplitter [	
 	^ self splitterPressedFillStyleFor: aSplitter
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>newCheckboxMarkerForm [
+{ #category : #forms }
+Pharo3Theme >> newCheckboxMarkerForm [
 	"Answer a new checkbox marker form."
 
 	^ self iconNamed: #checkboxMarkerForm
 ]
 
-{
-	#category : #'morph creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>newFocusIndicatorMorphFor: aMorph [
+{ #category : #'morph creation' }
+Pharo3Theme >> newFocusIndicatorMorphFor: aMorph [
 	"Answer a new focus indicator for the given morph."
 
 	^ BorderedMorph new
@@ -751,111 +582,78 @@ Pharo3Theme>>newFocusIndicatorMorphFor: aMorph [
 		bounds: aMorph focusBounds
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>newRadioButtonMarkerForm [
+{ #category : #forms }
+Pharo3Theme >> newRadioButtonMarkerForm [
 	"Answer a new radio button marker form. We make it empty because we already have the selected radio button take care of the state."
 
 	^ self iconNamed: #radioButtonMarkerForm
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>newRadioMarkerForm [
+{ #category : #initialize-release }
+Pharo3Theme >> newRadioMarkerForm [
 	"Answer a new checkbox marker form."
 
 	^Form extent: 12@12 depth: 32
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>newWindowCloseForm [
+{ #category : #forms }
+Pharo3Theme >> newWindowCloseForm [
 	"Answer a new form for a window close box."
 
 	^ self iconNamed: #windowCloseForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>newWindowCloseOverForm [
+{ #category : #forms }
+Pharo3Theme >> newWindowCloseOverForm [
 	"Answer a new form for a window menu box."
 
 	^ self newWindowCloseForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>newWindowMaximizeForm [
+{ #category : #forms }
+Pharo3Theme >> newWindowMaximizeForm [
 	"Answer a new form for a window maximize box."
 
 	^ self iconNamed: #windowMaximizeForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>newWindowMaximizeOverForm [
+{ #category : #forms }
+Pharo3Theme >> newWindowMaximizeOverForm [
 	"Answer a new form for a window menu box."
 
 	^ self newWindowMaximizeForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>newWindowMenuForm [
+{ #category : #forms }
+Pharo3Theme >> newWindowMenuForm [
 	"Answer a new form for a window menu box."
 
 	^ self iconNamed: #windowMenuForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>newWindowMenuPassiveForm [
+{ #category : #forms }
+Pharo3Theme >> newWindowMenuPassiveForm [
 	"Answer a new form for a window menu box."
 
 	^ self iconNamed: #windowMenuInactiveForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>newWindowMinimizeForm [
+{ #category : #forms }
+Pharo3Theme >> newWindowMinimizeForm [
 	"Answer a new form for a window minimize box."
 
 	^ self iconNamed: #windowMinimizeForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>newWindowMinimizeOverForm [
+{ #category : #forms }
+Pharo3Theme >> newWindowMinimizeOverForm [
 	"Answer a new form for a window menu box."
 
 	^ self newWindowMinimizeForm
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>plainGroupPanelBorderStyleFor: aGroupPanel [
+{ #category : #border-styles }
+Pharo3Theme >> plainGroupPanelBorderStyleFor: aGroupPanel [
 	"Answer the normal border style for a plain group panel."
 
 	^SimpleBorder new
@@ -863,85 +661,58 @@ Pharo3Theme>>plainGroupPanelBorderStyleFor: aGroupPanel [
 		baseColor: Color transparent
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>progressBarFillStyleFor: aProgressBar [
+{ #category : #fill-styles }
+Pharo3Theme >> progressBarFillStyleFor: aProgressBar [
 	^ self glamorousBasePassiveBackgroundColorFor: aProgressBar
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>progressBarProgressFillStyleFor: aProgressBar [
+{ #category : #fill-styles }
+Pharo3Theme >> progressBarProgressFillStyleFor: aProgressBar [
 	^ (self glamorousLightSelectionColorFor: aProgressBar)
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>progressFillStyleFor: aProgress [
+{ #category : #fill-styles }
+Pharo3Theme >> progressFillStyleFor: aProgress [
 	"Return the progress fillStyle for the given progress morph."
 	^ self windowActiveFillStyleFor: aProgress  
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>radioButtonForm [
+{ #category : #forms }
+Pharo3Theme >> radioButtonForm [
 	"Answer the form to use for a normal radio button."
 
 	^ self iconNamed: #radioButtonUnselectedForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>radioButtonSelectedForm [
+{ #category : #forms }
+Pharo3Theme >> radioButtonSelectedForm [
 	"Answer the form to use for a selected radio button."
 
 	^ self iconNamed: #radioButtonSelectedForm
 ]
 
-{
-	#category : #scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>scrollBarButtonArrowVertices: aRectangle  [
+{ #category : #scrollbars }
+Pharo3Theme >> scrollBarButtonArrowVertices: aRectangle [ 
 	^ self verticesForSimpleArrow: aRectangle
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>scrollbarNormalButtonFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+Pharo3Theme >> scrollbarNormalButtonFillStyleFor: aScrollbar [
 	"Return the normal scrollbar button fillStyle for the given scrollbar."
 	
 	^ self scrollbarNormalThumbFillStyleFor: aScrollbar
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>scrollbarNormalFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+Pharo3Theme >> scrollbarNormalFillStyleFor: aScrollbar [
 	"Return the normal scrollbar fillStyle for the given scrollbar."
 	
 	^ "(self glamorousBaseColorFor: aScrollbar) muchLighter"
 	Color r: 245 g: 245 b: 245 range: 255
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>scrollbarNormalThumbBorderStyleFor: aScrollbar [
+{ #category : #border-styles-scrollbars }
+Pharo3Theme >> scrollbarNormalThumbBorderStyleFor: aScrollbar [
 	"Return the normal thumb borderStyle for the given scrollbar."
 
 	^ BorderStyle simple
@@ -949,11 +720,8 @@ Pharo3Theme>>scrollbarNormalThumbBorderStyleFor: aScrollbar [
 		baseColor: Color transparent
 ]
 
-{
-	#category : #fill-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>scrollbarNormalThumbFillStyleFor: aScrollbar [
+{ #category : #fill-styles-scrollbars }
+Pharo3Theme >> scrollbarNormalThumbFillStyleFor: aScrollbar [
 	"Return the normal scrollbar fillStyle for the given scrollbar."
 	
 	"^ (self glamorousNormalFillStyleWithBaseColor: aScrollbar paneColor for:  aScrollbar height: aScrollbar height)
@@ -964,19 +732,13 @@ Pharo3Theme>>scrollbarNormalThumbFillStyleFor: aScrollbar [
 	^ self  glamorousNormalFillStyleFor: aScrollbar height: aScrollbar height
 ]
 
-{
-	#category : #border-styles-scrollbars,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>scrollbarPagingAreaCornerStyleIn: aThemedMorph	 [
+{ #category : #border-styles-scrollbars }
+Pharo3Theme >> scrollbarPagingAreaCornerStyleIn: aThemedMorph [	
 	^#square
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>scrollbarPressedThumbFillStyleFor: aScrollbar [
+{ #category : #forms }
+Pharo3Theme >> scrollbarPressedThumbFillStyleFor: aScrollbar [
 	"Return the pressed scrollbar thumb fillStyle for the given scrollbar."
 		"Return the normal scrollbar fillStyle for the given scrollbar."
 	
@@ -988,41 +750,29 @@ Pharo3Theme>>scrollbarPressedThumbFillStyleFor: aScrollbar [
 	^ self glamorousSelectedFillStyleFor: aScrollbar height: aScrollbar height
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>separatorFillStyleFor: aSeparator [
+{ #category : #fill-styles }
+Pharo3Theme >> separatorFillStyleFor: aSeparator [
 	"Return the separator fillStyle for the given separator."
 	
 	^ SolidFillStyle color: (self glamorousBaseColorFor: aSeparator) darker
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>sliderDisabledFillStyleFor: aSlider [
+{ #category : #fill-styles }
+Pharo3Theme >> sliderDisabledFillStyleFor: aSlider [
 	"Return the disabled fillStyle for the given slider."
 	
 	^ self textEditorDisabledFillStyleFor: aSlider
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>splitterNormalFillStyleFor: aSplitter [
+{ #category : #fill-styles }
+Pharo3Theme >> splitterNormalFillStyleFor: aSplitter [
 	"Return the normal splitter fillStyle for the given splitter."
 	
 	^ SolidFillStyle color: Color transparent
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>splitterPressedFillStyleFor: aSplitter [
+{ #category : #fill-styles }
+Pharo3Theme >> splitterPressedFillStyleFor: aSplitter [
 	"Return the pressed splitter fillStyle for the given splitter."
 	
 	|aColor|
@@ -1035,59 +785,41 @@ Pharo3Theme>>splitterPressedFillStyleFor: aSplitter [
 		radial: false
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>subgroupColorFrom: paneColor [
+{ #category : #basic-colors }
+Pharo3Theme >> subgroupColorFrom: paneColor [
 	"Answer the colour for a subgroup given the pane colour."
 
 	^ self glamorousLightColorFor: paneColor" self class baseColor"
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>tabLabelNormalBorderStyleFor: aTabLabel [
+{ #category : #border-styles }
+Pharo3Theme >> tabLabelNormalBorderStyleFor: aTabLabel [
 "	^SimpleBorder new
 		width: 0;
 		baseColor: (self buttonBaseColorFor: aTabLabel) darker
 "	^ self buttonNormalBorderStyleFor: aTabLabel
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>tabLabelNormalFillStyleFor: aTabLabel [
+{ #category : #fill-styles-buttons }
+Pharo3Theme >> tabLabelNormalFillStyleFor: aTabLabel [
 	^ self buttonNormalFillStyleFor: aTabLabel 
 ]
 
-{
-	#category : #fill-styles-buttons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>tabLabelSelectedFillStyleFor: aTabLabel [
+{ #category : #fill-styles-buttons }
+Pharo3Theme >> tabLabelSelectedFillStyleFor: aTabLabel [
 	^ self buttonSelectedFillStyleFor: aTabLabel 
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>tabPanelBorderStyleFor: aTabGroup [
+{ #category : #border-styles }
+Pharo3Theme >> tabPanelBorderStyleFor: aTabGroup [
 	^ Pharo3TabPanelBorder new 
 		width: 1;
 		baseColor: ((self glamorousDarkBaseColorFor: aTabGroup));
 		tabSelector: aTabGroup tabSelectorMorph
 ]
 
-{
-	#category : #basic-colors,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>taskbarButtonLabelColorFor: aButton [
+{ #category : #basic-colors }
+Pharo3Theme >> taskbarButtonLabelColorFor: aButton [
 	"Answer the colour for the label of the given taskbar button."
 
 	^aButton model
@@ -1098,152 +830,104 @@ Pharo3Theme>>taskbarButtonLabelColorFor: aButton [
 				ifFalse: [Color gray darker]]
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>taskbarFillStyleFor: aTaskbar [
+{ #category : #fill-styles }
+Pharo3Theme >> taskbarFillStyleFor: aTaskbar [
 	^ "self buttonNormalFillStyleFor: aTaskbar"
 	SolidFillStyle color: Color transparent 
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>taskbarThumbnailCornerStyleFor: aMorph [
+{ #category : #border-styles }
+Pharo3Theme >> taskbarThumbnailCornerStyleFor: aMorph [
 	"Answer the corner style for the taskbar thumbnail/tasklist."
 	
 	^#square
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>taskbarThumbnailNormalBorderStyleFor: aWindow [
+{ #category : #border-styles }
+Pharo3Theme >> taskbarThumbnailNormalBorderStyleFor: aWindow [
 	^ self buttonNormalBorderStyleFor: aWindow
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>textEditorDisabledFillStyleFor: aTextEditor [
+{ #category : #fill-styles }
+Pharo3Theme >> textEditorDisabledFillStyleFor: aTextEditor [
 	"Return the disabled fillStyle for the given text editor."
 	
 	^self glamorousBasePassiveBackgroundColorFor: aTextEditor
 ]
 
-{
-	#category : #border-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>textEditorNormalBorderStyleFor: aTextEditor [
+{ #category : #border-styles }
+Pharo3Theme >> textEditorNormalBorderStyleFor: aTextEditor [
 	"Return the normal text editor borderStyle for the given text editor."
 
 	^self buttonNormalBorderStyleFor: aTextEditor
 ]
 
-{
-	#category : #'watcher window',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>watcherWindowActiveFillStyleFor: aWindow [
+{ #category : #'watcher window' }
+Pharo3Theme >> watcherWindowActiveFillStyleFor: aWindow [
 
 	^ SolidFillStyle color: (Color veryVeryLightGray alpha: 0.6)
 ]
 
-{
-	#category : #'watcher window',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>watcherWindowInactiveFillStyleFor: aWindow [
+{ #category : #'watcher window' }
+Pharo3Theme >> watcherWindowInactiveFillStyleFor: aWindow [
 
 	^ SolidFillStyle color: (Color veryVeryLightGray alpha: 0.6)
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>windowActiveFillStyleFor: aWindow [
+{ #category : #fill-styles }
+Pharo3Theme >> windowActiveFillStyleFor: aWindow [
 	"We do not want the lighting effect when the window goes inactive"
 	^SolidFillStyle color: self class baseColor
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>windowActiveTitleFillStyleFor: aWindow [
+{ #category : #fill-styles }
+Pharo3Theme >> windowActiveTitleFillStyleFor: aWindow [
 	^ "self glamorousNormalFillStyleFor: aWindow height: aWindow labelHeight"
 	SolidFillStyle color: Color transparent
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>windowClosePassiveForm [
+{ #category : #forms }
+Pharo3Theme >> windowClosePassiveForm [
 	"Answer the form to use for passive (background) window close buttons"
 
 	^ self iconNamed: #windowCloseInactiveForm
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>windowInactiveFillStyleFor: aWindow [
+{ #category : #fill-styles }
+Pharo3Theme >> windowInactiveFillStyleFor: aWindow [
 	"We do not want the lighting effect when the window goes inactive"
 	^self windowActiveFillStyleFor: aWindow
 ]
 
-{
-	#category : #fill-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>windowInactiveTitleFillStyleFor: aWindow [
+{ #category : #fill-styles }
+Pharo3Theme >> windowInactiveTitleFillStyleFor: aWindow [
 	"We do not want the lighting effect when the window goes inactive"
 	^ SolidFillStyle color: Color transparent
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>windowMaximizePassiveForm [
+{ #category : #forms }
+Pharo3Theme >> windowMaximizePassiveForm [
 	"Answer the form to use for passive (background) window maximize/restore buttons"
 
 	^ self iconNamed: #windowMaximizeInactiveForm
 ]
 
-{
-	#category : #label-styles,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>windowMenuPassiveForm [
+{ #category : #label-styles }
+Pharo3Theme >> windowMenuPassiveForm [
 	"Answer the form to use for passive (background) window menu buttons"
 
 	^self newWindowMenuPassiveForm
 ]
 
-{
-	#category : #forms,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>windowMinimizePassiveForm [
+{ #category : #forms }
+Pharo3Theme >> windowMinimizePassiveForm [
 	"Answer the form to use for passive (background) window minimize buttons"
 
 	^ self iconNamed: #windowMinimizeInactiveForm
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Pharo3Theme>>windowShadowColor [
+{ #category : #defaults }
+Pharo3Theme >> windowShadowColor [
 	"Answer the window shadow color to use."
 
 	^ Color gray

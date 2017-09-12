@@ -8,49 +8,31 @@ I contains some functionnalities used by all the Glamour related data sources li
 "
 Trait {
 	#name : #TGLMFastTable,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Glamour-FastTable-Model,
-	#timestamp : 'CyrilFerlicot 11/10/2015 11:45'
+	#category : #Glamour-FastTable-Model
 }
 
-{
-	#category : #'accessing - cache',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable classSide>>defaultCache [
+{ #category : #'accessing - cache' }
+TGLMFastTable classSide >> defaultCache [
 	^ LRUCache new maximumWeight: 128
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>allMenuActions [
+{ #category : #accessing }
+TGLMFastTable >> allMenuActions [
 	^ self glamourPresentation allSelectionActions select: #hasTitle
 ]
 
-{
-	#category : #announcing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>announcer [
+{ #category : #announcing }
+TGLMFastTable >> announcer [
 	self explicitRequirement
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>basicElements [
+{ #category : #private }
+TGLMFastTable >> basicElements [
 	^ self glamourPresentation displayValue
 ]
 
-{
-	#category : #'accessing - cache',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>cacheAt: aKey for: anElement ifAbsentPut: aBlock [
+{ #category : #'accessing - cache' }
+TGLMFastTable >> cacheAt: aKey for: anElement ifAbsentPut: aBlock [
 	| elementCache |
 	
 	self shouldUseCache ifFalse: [ 
@@ -64,125 +46,86 @@ TGLMFastTable>>cacheAt: aKey for: anElement ifAbsentPut: aBlock [
 		ifNotNil: [ :anObject | elementCache at: aKey ifAbsentPut: [ anObject ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>calculateElements [
+{ #category : #private }
+TGLMFastTable >> calculateElements [
 	^ self tagsToFilterBy 
 		ifEmpty: [ self basicElements ]
 		ifNotEmpty: [ self basicElements select: [ :each | self elementShouldBeDisplayed: each ]. ]
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>collectionToDragPassenger: aCollection [
+{ #category : #private }
+TGLMFastTable >> collectionToDragPassenger: aCollection [
 	^ aCollection size = 1
 		ifTrue: [ aCollection anyOne ] 
 		ifFalse: [ aCollection ]
 ]
 
-{
-	#category : #cache,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>dataCache [
+{ #category : #cache }
+TGLMFastTable >> dataCache [
 	self explicitRequirement
 ]
 
-{
-	#category : #cache,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>dataCacheFor: anElement. [
+{ #category : #cache }
+TGLMFastTable >> dataCacheFor: anElement. [
 
 	^ self dataCache at: anElement ifAbsentPut: [ Dictionary new ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>elementOrZeroAt: rowIndex [
+{ #category : #private }
+TGLMFastTable >> elementOrZeroAt: rowIndex [
 	^ rowIndex = 0 
 		ifTrue: [ 0 ] 
 		ifFalse: [ self elementAt: rowIndex ] 
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>elementShouldBeDisplayed: anObject [
+{ #category : #private }
+TGLMFastTable >> elementShouldBeDisplayed: anObject [
 	| elementTags |
 	self tagsToFilterBy ifEmpty: [ ^ true ].
 	elementTags := self glamourPresentation tagsFor: anObject to: #filter.
 	^ self tagsToFilterBy allSatisfy: [ :each | elementTags includes: each ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>executeMenuAction: anAction [
+{ #category : #menu }
+TGLMFastTable >> executeMenuAction: anAction [
 	self announcer announce: (GLMMenuItemSelected action: anAction)
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>explicitSelection: anObject  [
+{ #category : #selecting }
+TGLMFastTable >> explicitSelection: anObject [ 
 	self table selectRowIndex: (self elements indexOf: anObject)
 ]
 
-{
-	#category : #'accessing - cache',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>formatedDisplayValueOf: anElement [
+{ #category : #'accessing - cache' }
+TGLMFastTable >> formatedDisplayValueOf: anElement [
 	^ self 
 		cacheAt: #formatedDisplayValue 
 		for: anElement 
 		ifAbsentPut: [ self glamourPresentation formatedDisplayValueOf: anElement ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>glamourPresentation [
+{ #category : #accessing }
+TGLMFastTable >> glamourPresentation [
 	self explicitRequirement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>glamourPresentation: anObject [
+{ #category : #accessing }
+TGLMFastTable >> glamourPresentation: anObject [
 	self explicitRequirement
 ]
 
-{
-	#category : #'accessing - cache',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>iconFor: anElement [
+{ #category : #'accessing - cache' }
+TGLMFastTable >> iconFor: anElement [
 	^ self 
 		cacheAt: #icon 
 		for: anElement 
 		ifAbsentPut: [ self glamourPresentation icon cull: anElement ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>menuColumn: column row: rowIndex [
+{ #category : #menu }
+TGLMFastTable >> menuColumn: column row: rowIndex [
 	| menu subMenus targetMenuMorph subMenu |
 	
 	menu := UIManager default newMenuIn: self table for: self.
@@ -207,37 +150,25 @@ TGLMFastTable>>menuColumn: column row: rowIndex [
 	^ menu
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>newDataSourceMatching: aFTFilter [
+{ #category : #'instance creation' }
+TGLMFastTable >> newDataSourceMatching: aFTFilter [
 	^ (super newDataSourceMatching: aFTFilter)
 		glamourPresentation: self glamourPresentation;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>readyToBeDisplayed [
+{ #category : #private }
+TGLMFastTable >> readyToBeDisplayed [
 	self glamourPresentation announcer announce: (GLMDataSourceUpdated newDataSource: self).
 ]
 
-{
-	#category : #cache,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>resetDataCache [
+{ #category : #cache }
+TGLMFastTable >> resetDataCache [
 	self explicitRequirement
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>selection: ann [
+{ #category : #selecting }
+TGLMFastTable >> selection: ann [
 	| selection |
 	selection := ann newSelectedRowIndexes select: [ :each | each ~= 0 ] thenCollect: [ :each | self elementAt: each ].
 	selection
@@ -253,47 +184,32 @@ TGLMFastTable>>selection: ann [
 						yourself) ]
 ]
 
-{
-	#category : #'accessing - cache',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>shouldUseCache [
+{ #category : #'accessing - cache' }
+TGLMFastTable >> shouldUseCache [
 	^ self glamourPresentation shouldUseCache
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>strongSelection: ann [
+{ #category : #selecting }
+TGLMFastTable >> strongSelection: ann [
 	self announcer announce: (GLMTreeMorphStrongSelectionChanged new 
 		strongSelectionValue: (self elementAt: ann selectedRowIndex);
 		yourself)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>toString: anObject [
+{ #category : #'instance creation' }
+TGLMFastTable >> toString: anObject [
 	^ self glamourPresentation hasFilterBlock
 		ifTrue: [ anObject ]
 		ifFalse: [ super toString: anObject ]
 ]
 
-{
-	#category : #announcing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>when: anAnnouncementClass do: aBlock [
+{ #category : #announcing }
+TGLMFastTable >> when: anAnnouncementClass do: aBlock [
 	self announcer when: anAnnouncementClass do: aBlock
 ]
 
-{
-	#category : #announcing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-TGLMFastTable>>when: anAnnouncementClass send: selector to: target [
+{ #category : #announcing }
+TGLMFastTable >> when: anAnnouncementClass send: selector [ to: target
 	self announcer 
 		when: anAnnouncementClass 
 		send: selector 

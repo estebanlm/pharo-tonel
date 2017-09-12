@@ -4,15 +4,11 @@ SUnit tests for packages
 Class {
 	#name : #RGPackageTest,
 	#superclass : #TestCase,
-	#category : #Ring-Tests-Containers,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:08'
+	#category : #Ring-Tests-Containers
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RGPackageTest>>testAddingClass [
+{ #category : #testing }
+RGPackageTest >> testAddingClass [
 	| newPackage newClass |
 	
 	newPackage:= RGPackage named: #'Collections-Sequenceable'.
@@ -24,11 +20,8 @@ RGPackageTest>>testAddingClass [
 	self assert: ((newPackage classNamed: #OrderedCollection) == newClass)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RGPackageTest>>testAddingPackage [
+{ #category : #testing }
+RGPackageTest >> testAddingPackage [
 	| newPackage childPackage |
 	
 	newPackage:= RGPackage named: #'Collections'.
@@ -42,11 +35,8 @@ RGPackageTest>>testAddingPackage [
 	self assert: (childPackage package = newPackage).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RGPackageTest>>testNewPackage [
+{ #category : #testing }
+RGPackageTest >> testNewPackage [
 	| newPackage |
 	
 	newPackage:= RGPackage named: 'Collections-Sequenceable'.

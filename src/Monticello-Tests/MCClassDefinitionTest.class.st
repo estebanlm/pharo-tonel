@@ -1,81 +1,53 @@
-"
-
-"
 Class {
 	#name : #MCClassDefinitionTest,
 	#superclass : #MCTestCase,
 	#instVars : [
 		'previousChangeSet'
 	],
-	#category : #Monticello-Tests,
-	#timestamp : ''
+	#category : #Monticello-Tests
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest class>>classAComment [
+{ #category : #'as yet unclassified' }
+MCClassDefinitionTest class >> classAComment [
 	^ 'This is a mock class. The Monticello tests manipulated it to simulate a developer modifying code in the image.'
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest class>>classACommentStamp [
+{ #category : #'as yet unclassified' }
+MCClassDefinitionTest class >> classACommentStamp [
 	^  'cwp 8/10/2003 16:43'
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest class>>restoreClassAComment [
+{ #category : #'as yet unclassified' }
+MCClassDefinitionTest class >> restoreClassAComment [
 	Smalltalk globals
 		at: #MCMockClassA
 		ifPresent: [ :a | a classComment: self classAComment stamp: self classACommentStamp ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest>>classAComment [
+{ #category : #private }
+MCClassDefinitionTest >> classAComment [
 	^ self class classAComment
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest>>creationMessage [
+{ #category : #private }
+MCClassDefinitionTest >> creationMessage [
 	^ MessageSend
 		receiver: MCClassDefinition
 		selector: #name:superclassName:category:instVarNames:classVarNames:poolDictionaryNames:classInstVarNames:type:comment:commentStamp:
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest>>setUp [
+{ #category : #running }
+MCClassDefinitionTest >> setUp [
 	Smalltalk globals at: #MCMockClassC ifPresent: [ :c | c removeFromSystem ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest>>tearDown [
+{ #category : #running }
+MCClassDefinitionTest >> tearDown [
 	Smalltalk globals at: #MCMockClassC ifPresent: [ :c | c removeFromSystem ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest>>testCannotLoad [
+{ #category : #tests }
+MCClassDefinitionTest >> testCannotLoad [
 	| d |
 	self deny: (Smalltalk hasClassNamed: 'MCMockClassC').
 	d :=  self mockClass: 'MCMockClassC' super: 'NotAnObject'.
@@ -83,11 +55,8 @@ MCClassDefinitionTest>>testCannotLoad [
 	self deny: (Smalltalk hasClassNamed: 'MCMockClassC').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest>>testComparison [
+{ #category : #tests }
+MCClassDefinitionTest >> testComparison [
 	| d1 d2 d3 d4 |
 	d1 := self mockClass: 'A' super: 'X'.
 	d2 := self mockClass: 'A' super: 'Y'.
@@ -104,11 +73,8 @@ MCClassDefinitionTest>>testComparison [
 	self deny: (d4 isRevisionOf: d2).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest>>testCreation [
+{ #category : #tests }
+MCClassDefinitionTest >> testCreation [
 	| d |
 	d :=  self mockClassA asClassDefinition.
 	self assert: d className = #MCMockClassA.
@@ -123,32 +89,23 @@ MCClassDefinitionTest>>testCreation [
 	self assert: d commentStamp = self mockClassA organization commentStamp
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest>>testDefinitionString [
+{ #category : #tests }
+MCClassDefinitionTest >> testDefinitionString [
 	| d |
 	d := self mockClassA asClassDefinition.
 	self assert: d definitionString = self mockClassA definition.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest>>testEquals [
+{ #category : #tests }
+MCClassDefinitionTest >> testEquals [
 	| a b |
 	a := self mockClass: 'ClassA' super: 'SuperA'.
 	b := self mockClass: 'ClassA' super: 'SuperA'.
 	self assert: a = b
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest>>testEqualsSensitivity [
+{ #category : #tests }
+MCClassDefinitionTest >> testEqualsSensitivity [
 	| message a b defA args defB |
 	message := self creationMessage.
 	a := #(ClassA SuperA CategoryA #(iVarA) #(CVarA) #(PoolA) #(ciVarA)
@@ -164,11 +121,8 @@ MCClassDefinitionTest>>testEqualsSensitivity [
 				self deny: defA = defB.]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest>>testKindOfSubclass [
+{ #category : #tests }
+MCClassDefinitionTest >> testKindOfSubclass [
 	| classes |
 	classes := {self mockClassA. String. Context. WeakArray. Float}.
 	classes do: [:c | | d |
@@ -177,11 +131,8 @@ MCClassDefinitionTest>>testKindOfSubclass [
 	].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest>>testLoadAndUnload [
+{ #category : #tests }
+MCClassDefinitionTest >> testLoadAndUnload [
 	| d c |
 	d := self mockClass: 'MCMockClassC' super: 'Object'.
 	d load.
@@ -199,11 +150,8 @@ MCClassDefinitionTest>>testLoadAndUnload [
 	self deny: (Smalltalk hasClassNamed: 'MCMockClassC')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest>>testValidTraitComposition [
+{ #category : #tests }
+MCClassDefinitionTest >> testValidTraitComposition [
 	"Related to http://code.google.com/p/pharo/issues/detail?id=2148"
 
 	| d className cls |
@@ -228,11 +176,8 @@ MCClassDefinitionTest>>testValidTraitComposition [
 	self assert: ((Smalltalk at: #MCMockClassC) traitComposition allTraits includes: Trait1)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest>>testValidTraitComposition2 [
+{ #category : #tests }
+MCClassDefinitionTest >> testValidTraitComposition2 [
 	"Related to http://code.google.com/p/pharo/issues/detail?id=2148"
 
 	| d className cls |
@@ -257,11 +202,8 @@ MCClassDefinitionTest>>testValidTraitComposition2 [
 	self assert: ((Smalltalk at: #MCMockClassC) traitComposition allTraits includes: Trait1)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest>>testValidTraitComposition3 [
+{ #category : #tests }
+MCClassDefinitionTest >> testValidTraitComposition3 [
 	"Related to http://code.google.com/p/pharo/issues/detail?id=2148"
 
 	| d className cls |
@@ -288,11 +230,8 @@ MCClassDefinitionTest>>testValidTraitComposition3 [
 	self assert: ((Smalltalk at: #MCMockClassC) traitComposition allTraits includes: Trait2)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCClassDefinitionTest>>testValidTraitComposition4 [
+{ #category : #tests }
+MCClassDefinitionTest >> testValidTraitComposition4 [
 	"Related to http://code.google.com/p/pharo/issues/detail?id=2598"
 
 	| d className cls |

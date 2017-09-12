@@ -8,97 +8,63 @@ Class {
 	#instVars : [
 		'dependencies'
 	],
-	#category : #Tool-DependencyAnalyser-UI-Nodes,
-	#timestamp : 'ChristopheDemarey 7/8/2015 14:17'
+	#category : #Tool-DependencyAnalyser-UI-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAssemblyNode class>>newWith: aCollection  [
+{ #category : #'instance creation' }
+DAAssemblyNode class >> newWith: aCollection [ 
 	^ self basicNew
 		initializeWith: aCollection;
 		yourself
 ]
 
-{
-	#category : #browse-nautilus,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAssemblyNode>>browseInNautilus [
+{ #category : #browse-nautilus }
+DAAssemblyNode >> browseInNautilus [
 	"nothing to browse"
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAssemblyNode>>childNodeClassFor: anItem [
+{ #category : #api }
+DAAssemblyNode >> childNodeClassFor: anItem [
 	^ DADependentPackageNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAssemblyNode>>children [
+{ #category : #accessing }
+DAAssemblyNode >> children [
 	^ dependencies
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAssemblyNode>>daPackage [
+{ #category : #accessing }
+DAAssemblyNode >> daPackage [
 	^ self parentNode daPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAssemblyNode>>dependencies [
+{ #category : #accessing }
+DAAssemblyNode >> dependencies [
 	^ dependencies
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAssemblyNode>>hasChildren [
+{ #category : #testing }
+DAAssemblyNode >> hasChildren [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAssemblyNode>>icon [
+{ #category : #accessing }
+DAAssemblyNode >> icon [
 	^ self iconNamed: #forwardIcon
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAssemblyNode>>includes: aPackageName [
+{ #category : #testing }
+DAAssemblyNode >> includes: aPackageName [
 	^ (self dependencies collect: #packageName) includes: aPackageName
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAssemblyNode>>initializeWith: aCollection  [
+{ #category : #initialization }
+DAAssemblyNode >> initializeWith: aCollection [ 
 	self initialize.
 	dependencies := aCollection
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAAssemblyNode>>label [
+{ #category : #displaying }
+DAAssemblyNode >> label [
 	^ self content
 ]

@@ -26,15 +26,11 @@ Class {
 		'OFFSET_RMASK',
 		'OFFSET_RSHIFT'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'IgorStasenko 7/30/2014 18:44'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'fields description',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat class>>fieldsDesc [
+{ #category : #'fields description' }
+SDL_PixelFormat class >> fieldsDesc [
 	"
 	self initializeAccessors
 	"
@@ -62,362 +58,242 @@ SDL_PixelFormat class>>fieldsDesc [
  	)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Aloss [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Aloss [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_ALOSS
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Aloss: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Aloss: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_ALOSS put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Amask [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Amask [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_AMASK
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Amask: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Amask: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_AMASK put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Ashift [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Ashift [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_ASHIFT
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Ashift: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Ashift: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_ASHIFT put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>BitsPerPixel [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> BitsPerPixel [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_BITSPERPIXEL
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>BitsPerPixel: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> BitsPerPixel: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_BITSPERPIXEL put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Bloss [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Bloss [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_BLOSS
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Bloss: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Bloss: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_BLOSS put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Bmask [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Bmask [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_BMASK
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Bmask: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Bmask: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_BMASK put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Bshift [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Bshift [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_BSHIFT
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Bshift: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Bshift: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_BSHIFT put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>BytesPerPixel [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> BytesPerPixel [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_BYTESPERPIXEL
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>BytesPerPixel: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> BytesPerPixel: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_BYTESPERPIXEL put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Gloss [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Gloss [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_GLOSS
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Gloss: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Gloss: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_GLOSS put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Gmask [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Gmask [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_GMASK
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Gmask: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Gmask: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_GMASK put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Gshift [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Gshift [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_GSHIFT
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Gshift: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Gshift: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_GSHIFT put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Rloss [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Rloss [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_RLOSS
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Rloss: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Rloss: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_RLOSS put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Rmask [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Rmask [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_RMASK
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Rmask: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Rmask: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_RMASK put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Rshift [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Rshift [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_RSHIFT
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>Rshift: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> Rshift: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_RSHIFT put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>format [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> format [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_FORMAT
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>format: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> format: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_FORMAT put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>next [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> next [
 	"This method was automatically generated"
 	^SDL_PixelFormat fromHandle: (handle pointerAt: OFFSET_NEXT)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>next: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> next: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_NEXT put: anObject getHandle.
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>pad1 [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> pad1 [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_PAD1
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>pad1: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> pad1: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_PAD1 put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>pad2 [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> pad2 [
 	"This method was automatically generated"
 	^handle unsignedByteAt: OFFSET_PAD2
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>pad2: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> pad2: anObject [
 	"This method was automatically generated"
 	handle unsignedByteAt: OFFSET_PAD2 put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>palette [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> palette [
 	"This method was automatically generated"
 	^SDL_Palette fromHandle: (handle pointerAt: OFFSET_PALETTE)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>palette: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> palette: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_PALETTE put: anObject getHandle.
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>refcount [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> refcount [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_REFCOUNT
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_PixelFormat>>refcount: anObject [
+{ #category : #'accessing structure variables' }
+SDL_PixelFormat >> refcount: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_REFCOUNT put: anObject
 ]

@@ -7,41 +7,28 @@ Class {
 	#instVars : [
 		'actionBlock'
 	],
-	#category : #Refactoring-Core-Support,
-	#timestamp : 'lr 10/5/2010 16:17'
+	#category : #Refactoring-Core-Support
 }
 
-{
-	#category : #signalling,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoringError class>>signal: aString with: aBlock  [
+{ #category : #signalling }
+RBRefactoringError class >> signal: aString with: aBlock [ 
 	^ self new
 		actionBlock: aBlock;
 		signal: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoringError>>actionBlock [
+{ #category : #accessing }
+RBRefactoringError >> actionBlock [
 	^ actionBlock
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoringError>>actionBlock: aBlock  [
+{ #category : #accessing }
+RBRefactoringError >> actionBlock: aBlock [ 
 	actionBlock := aBlock
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoringError>>isResumable [
+{ #category : #testing }
+RBRefactoringError >> isResumable [
 	^ true
 ]

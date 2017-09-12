@@ -15,15 +15,11 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #Glamour-Morphic-Widgets,
-	#timestamp : '<historical>'
+	#category : #Glamour-Morphic-Widgets
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow class>>buildKeymapsOn: aBuilder [
+{ #category : #'instance creation' }
+GLMWatcherWindow class >> buildKeymapsOn: aBuilder [
 	<keymap>
 	
 	(aBuilder shortcut: #openGlamourWatcher) 
@@ -34,48 +30,33 @@ GLMWatcherWindow class>>buildKeymapsOn: aBuilder [
 	aBuilder attachShortcutCategory: #Glamour to: Morph.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow class>>reset  [
+{ #category : #'instance creation' }
+GLMWatcherWindow class >> reset [ 
 	"self reset"
 	uniqueInstance := nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow class>>uniqueInstance  [
+{ #category : #'instance creation' }
+GLMWatcherWindow class >> uniqueInstance [ 
 	^ uniqueInstance ifNil: [uniqueInstance := self new]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>activeFillStyle [
+{ #category : #settings }
+GLMWatcherWindow >> activeFillStyle [
 	"Return the active fillStyle for the receiver."
 
 	^ self theme watcherWindowActiveFillStyleFor: self
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>activeTitleFillStyle [
+{ #category : #settings }
+GLMWatcherWindow >> activeTitleFillStyle [
 	"Return the active title fillStyle for the receiver."
 	
 	^ SolidFillStyle color: Color transparent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>addContent: aBlockWhoseValueReturnsAMorph [
+{ #category : #accessing }
+GLMWatcherWindow >> addContent: aBlockWhoseValueReturnsAMorph [
 	| newMorph |
 
 	"if we are still rendering some contents for another watcher,
@@ -95,11 +76,8 @@ GLMWatcherWindow>>addContent: aBlockWhoseValueReturnsAMorph [
 	process resume
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>addContentsMorph [
+{ #category : #initialize }
+GLMWatcherWindow >> addContentsMorph [
 	self contentsMorph: GLMMorphic emptyMorph.
 	self contentsMorph
 		layoutFrame: (LayoutFrame fractions: (0 @ 0 corner: 1 @ 1) offsets: (10@10 corner: -10@(-10)));
@@ -108,81 +86,54 @@ GLMWatcherWindow>>addContentsMorph [
 	self addMorphBack: self contentsMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>contentsMorph [
+{ #category : #accessing }
+GLMWatcherWindow >> contentsMorph [
 	^ contentsMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>contentsMorph: anObject [
+{ #category : #accessing }
+GLMWatcherWindow >> contentsMorph: anObject [
 	contentsMorph := anObject
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>defaultBorderStyle [
+{ #category : #settings }
+GLMWatcherWindow >> defaultBorderStyle [
 	^ FillStyleBorder color: (Color white darker alpha: 0.5) width: 10
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>defaultFillStyle [
+{ #category : #initialize }
+GLMWatcherWindow >> defaultFillStyle [
 	^ SolidFillStyle color: Color transparent
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>delete  [
+{ #category : #open/close }
+GLMWatcherWindow >> delete [ 
 	super delete. 
 	isOpen := false
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>fastFramingOn [
+{ #category : #initialize }
+GLMWatcherWindow >> fastFramingOn [
 
 	^self theme settings fastDragging and: [self isFlexed not]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>inactiveFillStyle [
+{ #category : #settings }
+GLMWatcherWindow >> inactiveFillStyle [
 	"Return the active title fillStyle for the receiver."
 	
 	^ self theme watcherWindowInactiveFillStyleFor: self
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>inactiveTitleFillStyle [
+{ #category : #settings }
+GLMWatcherWindow >> inactiveTitleFillStyle [
 	"Return the active title fillStyle for the receiver."
 	
 	^ SolidFillStyle color: Color transparent
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>initialize [
+{ #category : #initialize }
+GLMWatcherWindow >> initialize [
 	super initialize.
 	self fillStyle: self defaultFillStyle.
 "	self borderStyle: self defaultBorderStyle."
@@ -197,31 +148,22 @@ GLMWatcherWindow>>initialize [
 		do: [ self hide ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>morphicLayerNumber [
+{ #category : #accessing }
+GLMWatcherWindow >> morphicLayerNumber [
 	"We want this preview to be always on top"
 	
 	^ 10
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>openInWorld [
+{ #category : #open/close }
+GLMWatcherWindow >> openInWorld [
 	super openInWorld.
 	isOpen := true.
 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>replaceBoxes [
+{ #category : #initialize }
+GLMWatcherWindow >> replaceBoxes [
 	"Rebuild the various boxes."
 	
 	labelArea removeAllMorphs.
@@ -231,33 +173,24 @@ GLMWatcherWindow>>replaceBoxes [
 	self isActive ifFalse: [labelArea passivate]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>taskbarTask [
+{ #category : #settings }
+GLMWatcherWindow >> taskbarTask [
 	"Answer a new taskbar task for the receiver.
 	Answer nil if not required."
 
 	^nil
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>toggleOpen  [
+{ #category : #open/close }
+GLMWatcherWindow >> toggleOpen [ 
 	isOpen ifFalse: [ ^ self openInWorld ].
 	self visible 
 		ifTrue: [self hide] 
 		ifFalse: [self show]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMWatcherWindow>>wantsExpandBox [
+{ #category : #settings }
+GLMWatcherWindow >> wantsExpandBox [
 	"Answer whether I'd like an expand box"
 
 	^ false

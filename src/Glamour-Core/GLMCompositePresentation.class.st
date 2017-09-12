@@ -8,15 +8,11 @@ Class {
 		'presentations',
 		'arrangement'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'tg 2/20/2010 14:51'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation class>>gtExampleCompositePresentation [
+{ #category : #examples }
+GLMCompositePresentation class >> gtExampleCompositePresentation [
 	<gtExample>
 
 	^ self new
@@ -25,340 +21,223 @@ GLMCompositePresentation class>>gtExampleCompositePresentation [
 		tree
 ]
 
-{
-	#category : #openning,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation class>>openOn: anObject  [
+{ #category : #openning }
+GLMCompositePresentation class >> openOn: anObject [ 
 	^ self new openOn: anObject
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>accordionArrangement [
+{ #category : #scripting }
+GLMCompositePresentation >> accordionArrangement [
 	^ self arrangement: GLMAccordionArrangement new
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>accumulator  [
+{ #category : #scripting }
+GLMCompositePresentation >> accumulator [ 
 	^ self custom: GLMAccumulator new
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>actionList [
+{ #category : #scripting }
+GLMCompositePresentation >> actionList [
 	^ self custom: GLMActionListPresentation new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>add: aPresentation [
+{ #category : #accessing }
+GLMCompositePresentation >> add: aPresentation [
 	self pane notingPresentationChangeDo: [
 		self presentations add: aPresentation.
 		aPresentation pane: self pane ].
 	^ aPresentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>allSatisfy: aBlock [
+{ #category : #accessing }
+GLMCompositePresentation >> allSatisfy: aBlock [
 	^ self presentations allSatisfy: aBlock 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>anySatisfy: aBlock [
+{ #category : #accessing }
+GLMCompositePresentation >> anySatisfy: aBlock [
 	^ self presentations anySatisfy: aBlock 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>arrangement [
+{ #category : #accessing }
+GLMCompositePresentation >> arrangement [
 	^ arrangement ifNil: [arrangement := GLMTabbedArrangement of: self]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>arrangement: anArrangement [
+{ #category : #accessing }
+GLMCompositePresentation >> arrangement: anArrangement [
 	anArrangement composite: self.
 	^ arrangement := anArrangement
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>at: aNumber [
+{ #category : #accessing }
+GLMCompositePresentation >> at: aNumber [
 	^ self presentations at: aNumber 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>clear [
+{ #category : #accessing }
+GLMCompositePresentation >> clear [
 	arrangement := nil.
 	presentations := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>collect: aBlock [
+{ #category : #accessing }
+GLMCompositePresentation >> collect: aBlock [
 	^ self copy presentations: (self presentations collect: aBlock ); yourself
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>compose [
+{ #category : #building }
+GLMCompositePresentation >> compose [
 	"by default this method is empty.
 	override this method in subclasses to define a custom browser"
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>composite: aBlock [
+{ #category : #scripting }
+GLMCompositePresentation >> composite: aBlock [
 	| composite |
 	composite := GLMCompositePresentation new.
 	aBlock value: composite.
 	^ self custom: composite
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>custom: aPresentation [
+{ #category : #scripting }
+GLMCompositePresentation >> custom: aPresentation [
 	^ self add: aPresentation "sourceContext: thisContext sender"
 ]
 
-{
-	#category : #'scripting opening',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>defaultRenderer  [
+{ #category : #'scripting opening' }
+GLMCompositePresentation >> defaultRenderer [ 
 	 
 	^GLMRenderer subclasses first new
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>diff [
+{ #category : #scripting }
+GLMCompositePresentation >> diff [
 	^ self custom: GLMDiffPresentation new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>do: aBlock [
+{ #category : #accessing }
+GLMCompositePresentation >> do: aBlock [
 	^ self presentations do: aBlock 
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>dropDownList [
+{ #category : #scripting }
+GLMCompositePresentation >> dropDownList [
 	^ self custom: GLMDropDownListPresentation new
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>dynamic [
+{ #category : #scripting }
+GLMCompositePresentation >> dynamic [
 	^ self custom: GLMDynamicPresentation new
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>finder [
+{ #category : #scripting }
+GLMCompositePresentation >> finder [
 	^ self custom: GLMFinder new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>first [
+{ #category : #accessing }
+GLMCompositePresentation >> first [
 	^ self presentations first
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>includes: aPresentation [
+{ #category : #accessing }
+GLMCompositePresentation >> includes: aPresentation [
 	^ self presentations includes: aPresentation 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>initialize  [
+{ #category : #initialization }
+GLMCompositePresentation >> initialize [ 
 	super initialize.
 	self compose
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>initializePresentation [
+{ #category : #initialization }
+GLMCompositePresentation >> initializePresentation [
 
 	super initializePresentation.
 	self do: [:each| each initializePresentation]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>isEmpty [
+{ #category : #accessing }
+GLMCompositePresentation >> isEmpty [
 	^ self presentations isEmpty
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>label [
+{ #category : #scripting }
+GLMCompositePresentation >> label [
 	^ self custom: GLMLabelPresentation new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>last [
+{ #category : #accessing }
+GLMCompositePresentation >> last [
 	^ self presentations last
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>list  [
+{ #category : #scripting }
+GLMCompositePresentation >> list [ 
 	^ self custom: GLMListPresentation new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>matchingPresentations [
+{ #category : #accessing }
+GLMCompositePresentation >> matchingPresentations [
 	^ self presentations select: [:each | each matches]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>morph [
+{ #category : #scripting }
+GLMCompositePresentation >> morph [
 	^ self custom: GLMMorphPresentation new
 ]
 
-{
-	#category : #'scripting opening',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>open  [
+{ #category : #'scripting opening' }
+GLMCompositePresentation >> open [ 
 	 
 	^self openWith: self defaultRenderer
 ]
 
-{
-	#category : #'scripting opening',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>openOn: anObject  [
+{ #category : #'scripting opening' }
+GLMCompositePresentation >> openOn: anObject [ 
 	 
 	^self 
 		openOn: anObject 
 		with: self defaultRenderer
 ]
 
-{
-	#category : #'scripting opening',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>openOn: anObject with: aRenderer  [
+{ #category : #'scripting opening' }
+GLMCompositePresentation >> openOn: anObject with: aRenderer [ 
 	 
 	self startOn: anObject. 
 	^ self openWith: aRenderer
 ]
 
-{
-	#category : #'scripting opening',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>openWith: aRenderer  [
+{ #category : #'scripting opening' }
+GLMCompositePresentation >> openWith: aRenderer [ 
 	 
 	^ aRenderer open: self
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>outerPortEvent: aPortEvent [
+{ #category : #events }
+GLMCompositePresentation >> outerPortEvent: aPortEvent [
 	super outerPortEvent: aPortEvent.
 	self do: [:each| each outerPortEvent: aPortEvent]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>pane [
+{ #category : #accessing }
+GLMCompositePresentation >> pane [
 	^ pane ifNil: [
 		pane := (GLMPane named: 'root' in: GLMNoBrowser new) 
 				presentations: self; 
 				yourself]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>pane: aPane  [
+{ #category : #accessing }
+GLMCompositePresentation >> pane: aPane [ 
 	super pane: aPane.
 	self presentations do: [:each | each pane: aPane ]
 ]
 
-{
-	#category : #comparison,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>postCopy [
+{ #category : #comparison }
+GLMCompositePresentation >> postCopy [
 	super postCopy.
 	presentations ifNotNil: [ :arg | 
 		presentations := presentations collect: [ :each | each copy ] ].
@@ -367,181 +246,118 @@ GLMCompositePresentation>>postCopy [
 		arrangement composite: self ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>presentations [
+{ #category : #accessing }
+GLMCompositePresentation >> presentations [
 	^ presentations ifNil: [presentations := OrderedCollection new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>presentations: anObject [
+{ #category : #accessing }
+GLMCompositePresentation >> presentations: anObject [
 	presentations := anObject
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>renderGlamorouslyOn: aRenderer [
+{ #category : #rendering }
+GLMCompositePresentation >> renderGlamorouslyOn: aRenderer [
 	"we delegate to the arrangement to dispatch the type of the actual arrangement of the nested presentations"
 	self registerAnnouncements.
 	^ self arrangement renderGlamorouslyOn: aRenderer
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>resetAnnouncer [
+{ #category : #announcements }
+GLMCompositePresentation >> resetAnnouncer [
 	super resetAnnouncer.
 	self presentations do: [:each | each resetAnnouncer ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>second [
+{ #category : #accessing }
+GLMCompositePresentation >> second [
 	^ self presentations second
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>select: aBlock [
+{ #category : #accessing }
+GLMCompositePresentation >> select: aBlock [
 	^ self presentations select: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>size [
+{ #category : #accessing }
+GLMCompositePresentation >> size [
 	^ self presentations size
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>smalltalkCode [
+{ #category : #scripting }
+GLMCompositePresentation >> smalltalkCode [
 	self deprecated: 'Use #pharoMethod (if you need to display a method) 
 	or #pharoScript (if you need to display snippets of code that do not belong to a method)'.
 	^ self custom: GLMSmalltalkCodePresentation new
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>stackedArrangement [
+{ #category : #scripting }
+GLMCompositePresentation >> stackedArrangement [
 	^ self stackedVerticallyArrangement
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>stackedVerticallyArrangement [
+{ #category : #scripting }
+GLMCompositePresentation >> stackedVerticallyArrangement [
 	^ self arrangement: (GLMStackedVerticallyArrangement of: self)
 ]
 
-{
-	#category : #'scripting opening',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>startOn: anObject  [
+{ #category : #'scripting opening' }
+GLMCompositePresentation >> startOn: anObject [ 
 	
 	self entity: anObject
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>tabbedArrangement [
+{ #category : #scripting }
+GLMCompositePresentation >> tabbedArrangement [
 	^ self arrangement: GLMTabbedArrangement new
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>table [
+{ #category : #scripting }
+GLMCompositePresentation >> table [
 	^ self custom: GLMTablePresentation new
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>tabulator [
+{ #category : #scripting }
+GLMCompositePresentation >> tabulator [
 	^ self custom: GLMTabulator new
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>text  [
+{ #category : #scripting }
+GLMCompositePresentation >> text [ 
 	^ self custom: GLMRubricTextPresentation new
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>tree  [
+{ #category : #scripting }
+GLMCompositePresentation >> tree [ 
 	^ self custom: GLMTreePresentation new
 ]
 
-{
-	#category : #announcements,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>unregisterFromAllAnnouncements [
+{ #category : #announcements }
+GLMCompositePresentation >> unregisterFromAllAnnouncements [
 	super unregisterFromAllAnnouncements.
 	self presentations do: [:each | each unregisterFromAllAnnouncements ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>update [
+{ #category : #updating }
+GLMCompositePresentation >> update [
 	self pane ports do: [:each |
 		(self validate: each value on: each) ifFalse: [each resetValue] ].
 	self presentations do: [ :each | each update ].
 	self announce: (GLMPresentationUpdated new presentation: self).
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>verticallyStackedArrangement [
+{ #category : #scripting }
+GLMCompositePresentation >> verticallyStackedArrangement [
 	^ self stackedVerticallyArrangement
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>withAllPanesAndPresentationsDo: aBlock [
+{ #category : #enumerating }
+GLMCompositePresentation >> withAllPanesAndPresentationsDo: aBlock [
 	super withAllPanesAndPresentationsDo: aBlock.
 	self do: [:each | each withAllPanesAndPresentationsDo: aBlock ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositePresentation>>wrapper [
+{ #category : #scripting }
+GLMCompositePresentation >> wrapper [
 	^ self custom: GLMWrapper new
 ]

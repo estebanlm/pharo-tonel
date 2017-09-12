@@ -1,11 +1,6 @@
-Extension {
-	#name : #FileSystemStore
-}
+Extension { #name : #FileSystemStore }
 
-{
-	#category : #'*FileSystem-Disk',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-FileSystemStore>>isDiskFileSystem [
+{ #category : #'*FileSystem-Disk' }
+FileSystemStore >> isDiskFileSystem [
 	^ false
 ]

@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #ZnRequestTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnRequestTests>>testBasicAuthenticate [
+{ #category : #testing }
+ZnRequestTests >> testBasicAuthenticate [
 	| request |
 	request := ZnRequest new.
 	request setBasicAuthenticationUsername: 'user' password: 'secret'.
 	self assert: (request headers at: 'Authorization') = 'Basic dXNlcjpzZWNyZXQ='
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnRequestTests>>testCookiesParsing [
+{ #category : #testing }
+ZnRequestTests >> testCookiesParsing [
 	| input request cookies testCookie1 testCookie2 |
 	input := 'GET /foo.html HTTP/1.1', String crlf, 
 		'Cookie: testCookie1=123; testCookie2=321', String crlf,
@@ -45,11 +35,8 @@ ZnRequestTests>>testCookiesParsing [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnRequestTests>>testCookiesWriting [
+{ #category : #testing }
+ZnRequestTests >> testCookiesWriting [
 	|  client testCookie1 testCookie2 cookieString cookies|
 	client := ZnClient new.
 	client url: 'http://www.example.com'.
@@ -69,11 +56,8 @@ ZnRequestTests>>testCookiesWriting [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnRequestTests>>testMergedFields [
+{ #category : #testing }
+ZnRequestTests >> testMergedFields [
 	| request form mergedFields |
 	request := ZnRequest post: 'http://host.com/foo?x=1&y=2&x=3'.
 	form := ZnApplicationFormUrlEncodedEntity new.
@@ -89,11 +73,8 @@ ZnRequestTests>>testMergedFields [
 	self assert: (mergedFields at: #z) sorted equals: #('100' '200')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnRequestTests>>testReading [
+{ #category : #testing }
+ZnRequestTests >> testReading [
 	| input request |
 	input := 'GET /foo.html HTTP/1.1', String crlf, 
 		'Host: foo.com', String crlf, 
@@ -107,11 +88,8 @@ ZnRequestTests>>testReading [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnRequestTests>>testReadingWithEntity [
+{ #category : #testing }
+ZnRequestTests >> testReadingWithEntity [
 	| input request |
 	input := 'GET /foo.html HTTP/1.1', String crlf, 
 		'Host: foo.com', String crlf, 
@@ -129,11 +107,8 @@ ZnRequestTests>>testReadingWithEntity [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnRequestTests>>testUrl [
+{ #category : #testing }
+ZnRequestTests >> testUrl [
 	| url request input |
 	url := 'http://zn.stfx.eu/zn/small.thml' asZnUrl.
 	request := ZnRequest get: url.

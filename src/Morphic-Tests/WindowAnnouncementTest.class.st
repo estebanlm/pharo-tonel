@@ -1,30 +1,20 @@
-"
-
-"
 Class {
 	#name : #WindowAnnouncementTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'window'
 	],
-	#category : #Morphic-Tests-WindowNotification,
-	#timestamp : ''
+	#category : #Morphic-Tests-WindowNotification
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-WindowAnnouncementTest>>tearDown  [
+{ #category : #running }
+WindowAnnouncementTest >> tearDown [ 
 	super tearDown.
 	window ifNotNil: [ window delete ]
 ]
 
-{
-	#category : #'tests - window change',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-WindowAnnouncementTest>>testCollapsing [
+{ #category : #'tests - window change' }
+WindowAnnouncementTest >> testCollapsing [
 	| t |
 	window := SystemWindow labelled: 'foo'.
 	t := 0.
@@ -36,11 +26,8 @@ WindowAnnouncementTest>>testCollapsing [
 
 ]
 
-{
-	#category : #'tests - window change',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-WindowAnnouncementTest>>testMoving [
+{ #category : #'tests - window change' }
+WindowAnnouncementTest >> testMoving [
 	| t oldBounds  event |
 	window := SystemWindow labelled: 'foo'.
 	t := 0.
@@ -70,11 +57,8 @@ WindowAnnouncementTest>>testMoving [
 
 ]
 
-{
-	#category : #'tests - window change',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-WindowAnnouncementTest>>testResizing [
+{ #category : #'tests - window change' }
+WindowAnnouncementTest >> testResizing [
 	| t oldBounds newBounds |
 	window := SystemWindow labelled: 'foo'.
 	window setProperty: #minimumExtent toValue: 1@1.
@@ -89,11 +73,8 @@ WindowAnnouncementTest>>testResizing [
 
 ]
 
-{
-	#category : #'tests - window creation and deletion',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-WindowAnnouncementTest>>testResizingClosing [
+{ #category : #'tests - window creation and deletion' }
+WindowAnnouncementTest >> testResizingClosing [
 	| coll |
 
 	window := SystemWindow labelled: 'foo'.
@@ -117,11 +98,8 @@ WindowAnnouncementTest>>testResizingClosing [
 	window := nil
 ]
 
-{
-	#category : #'tests - window change',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-WindowAnnouncementTest>>testScrolling [
+{ #category : #'tests - window change' }
+WindowAnnouncementTest >> testScrolling [
 	"This test tests the scrolling values of a scrollpane. We create a reeeeeally big (enormous) morph, to be sure its size is bigger than the screen and therefore its enclosing window has scrollbars.
 	When screen sizes become bigger, you should increase the value, or fix morphic, what happens first :).
 	"
@@ -147,11 +125,8 @@ WindowAnnouncementTest>>testScrolling [
 	window := nil
 ]
 
-{
-	#category : #'tests - window creation and deletion',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-WindowAnnouncementTest>>testWindowCreation [
+{ #category : #'tests - window creation and deletion' }
+WindowAnnouncementTest >> testWindowCreation [
 	| t oldBounds newBounds |
 	t := 0.
 	World announcer when: WindowResizing do: [:ann | t := t + 1].
@@ -167,11 +142,8 @@ WindowAnnouncementTest>>testWindowCreation [
 
 ]
 
-{
-	#category : #'tests - window creation and deletion',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-WindowAnnouncementTest>>testWindowCreationAndDeletion [
+{ #category : #'tests - window creation and deletion' }
+WindowAnnouncementTest >> testWindowCreationAndDeletion [
 	
 	| t newWindowCreated |
 	t := 0.
@@ -189,11 +161,8 @@ WindowAnnouncementTest>>testWindowCreationAndDeletion [
 
 ]
 
-{
-	#category : #'tests - window creation and deletion',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-WindowAnnouncementTest>>testWindowLabelling [
+{ #category : #'tests - window creation and deletion' }
+WindowAnnouncementTest >> testWindowLabelling [
 	"Test change of label for a window."
 	
 	| labels win |

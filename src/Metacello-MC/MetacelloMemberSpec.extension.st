@@ -1,57 +1,37 @@
-Extension {
-	#name : #MetacelloMemberSpec
-}
+Extension { #name : #MetacelloMemberSpec }
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMemberSpec>>addToMetacelloPackages: aMetacelloPackagesSpec [
+{ #category : #'*metacello-mc' }
+MetacelloMemberSpec >> addToMetacelloPackages: aMetacelloPackagesSpec [
 
 	aMetacelloPackagesSpec addMember: self
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMemberSpec>>addToMetacelloRepositories: aMetacelloRepositoriesSpec [
+{ #category : #'*metacello-mc' }
+MetacelloMemberSpec >> addToMetacelloRepositories: aMetacelloRepositoriesSpec [
 
 	aMetacelloRepositoriesSpec addMember: self
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMemberSpec>>mergeIntoMetacelloPackages: aMetacelloPackagesSpec [
+{ #category : #'*metacello-mc' }
+MetacelloMemberSpec >> mergeIntoMetacelloPackages: aMetacelloPackagesSpec [
 
 	aMetacelloPackagesSpec addMember: self
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMemberSpec>>mergeIntoMetacelloRepositories: aMetacelloRepositoriesSpec [
+{ #category : #'*metacello-mc' }
+MetacelloMemberSpec >> mergeIntoMetacelloRepositories: aMetacelloRepositoriesSpec [
 
 	aMetacelloRepositoriesSpec addMember: self
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMemberSpec>>removeFromMetacelloPackages: aMetacelloPackagesSpec [
+{ #category : #'*metacello-mc' }
+MetacelloMemberSpec >> removeFromMetacelloPackages: aMetacelloPackagesSpec [
 
 	aMetacelloPackagesSpec addMember: self
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloMemberSpec>>removeFromMetacelloRepositories: aMetacelloRepositoriesSpec [
+{ #category : #'*metacello-mc' }
+MetacelloMemberSpec >> removeFromMetacelloRepositories: aMetacelloRepositoriesSpec [
 
 	aMetacelloRepositoriesSpec addMember: self
 ]

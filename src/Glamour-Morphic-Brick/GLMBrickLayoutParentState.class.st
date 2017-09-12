@@ -1,48 +1,32 @@
-"
-
-"
 Class {
 	#name : #GLMBrickLayoutParentState,
 	#superclass : #GLMBrickLayoutState,
 	#instVars : [
 		'percent'
 	],
-	#category : #Glamour-Morphic-Brick-Layouts,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Layouts
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutParentState>>defaultPercent [
+{ #category : #initialization }
+GLMBrickLayoutParentState >> defaultPercent [
 
 	^ 100
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutParentState>>initialize [
+{ #category : #initialization }
+GLMBrickLayoutParentState >> initialize [
 	super initialize.
 	
 	percent := self defaultPercent
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutParentState>>isOnParent [
+{ #category : #testing }
+GLMBrickLayoutParentState >> isOnParent [
 	^ true
 ]
 
-{
-	#category : #layouting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutParentState>>layout: aBrick on: aTraverser [
+{ #category : #layouting }
+GLMBrickLayoutParentState >> layout: aBrick on: aTraverser [
 
 	aBrick owner ifNil: [ ^ aTraverser markClean: aBrick ].
 	(aTraverser isDependsOnChildren: aBrick owner) ifTrue: [ Error signal: 'Circle dependency detected!' ].
@@ -57,11 +41,8 @@ GLMBrickLayoutParentState>>layout: aBrick on: aTraverser [
 	aTraverser layoutChildrenOf: aBrick
 ]
 
-{
-	#category : #layouting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutParentState>>layoutPolicy: aBrick on: aTraverser [
+{ #category : #layouting }
+GLMBrickLayoutParentState >> layoutPolicy: aBrick on: aTraverser [
 
 	^ (aBrick owner
 		ifNil: [ aBrick ]
@@ -71,36 +52,24 @@ GLMBrickLayoutParentState>>layoutPolicy: aBrick on: aTraverser [
 				ifFalse: [ aBrick ] ]) layoutPolicy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutParentState>>percent [
+{ #category : #accessing }
+GLMBrickLayoutParentState >> percent [
 	^ percent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutParentState>>percent: anObject [
+{ #category : #accessing }
+GLMBrickLayoutParentState >> percent: anObject [
 	percent := anObject
 ]
 
-{
-	#category : #layouting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutParentState>>updateHeight: aBrick on: aLayout [
+{ #category : #layouting }
+GLMBrickLayoutParentState >> updateHeight: aBrick on: aLayout [
 
 	aBrick outerHeight: (aLayout normalizeHeight: (aLayout heightParentDependency: aBrick) of: aBrick)
 ]
 
-{
-	#category : #layouting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickLayoutParentState>>updateWidth: aBrick on: aLayout [
+{ #category : #layouting }
+GLMBrickLayoutParentState >> updateWidth: aBrick on: aLayout [
 
 	aBrick outerWidth: (aLayout normalizeWidth: (aLayout widthParentDependency: aBrick) of: aBrick)
 ]

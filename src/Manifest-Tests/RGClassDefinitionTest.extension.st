@@ -1,12 +1,7 @@
-Extension {
-	#name : #RGClassDefinitionTest
-}
+Extension { #name : #RGClassDefinitionTest }
 
-{
-	#category : #'*Manifest-Tests',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RGClassDefinitionTest>>testArrayStringForManifest [
+{ #category : #'*Manifest-Tests' }
+RGClassDefinitionTest >> testArrayStringForManifest [
 	| class |
 	class := self class.
 
@@ -15,11 +10,8 @@ RGClassDefinitionTest>>testArrayStringForManifest [
 		equals: { #RGClassDefinition . { class name asSymbol } }
 ]
 
-{
-	#category : #'*Manifest-Tests',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RGClassDefinitionTest>>testManifestReadOn [
+{ #category : #'*Manifest-Tests' }
+RGClassDefinitionTest >> testManifestReadOn [
 	| class |
 	class := self class.
 

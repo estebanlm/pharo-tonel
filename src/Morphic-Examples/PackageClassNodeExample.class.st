@@ -4,39 +4,26 @@ Example for a package class node
 Class {
 	#name : #PackageClassNodeExample,
 	#superclass : #PackageAbstractNodeExample,
-	#category : #Morphic-Examples-MorphTreeWidget,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:55'
+	#category : #Morphic-Examples-MorphTreeWidget
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PackageClassNodeExample>>browseItem [
+{ #category : #accessing }
+PackageClassNodeExample >> browseItem [
 	Smalltalk tools browser openOnClass: self item
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PackageClassNodeExample>>childNodeClassFromItem: anItem [
+{ #category : #menu }
+PackageClassNodeExample >> childNodeClassFromItem: anItem [
 	^PackageMethodCategoryNodeExample
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PackageClassNodeExample>>childrenItems [
+{ #category : #menu }
+PackageClassNodeExample >> childrenItems [
 	^ self item organization categories 
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PackageClassNodeExample>>methodsInCategory: aCat [
+{ #category : #menu }
+PackageClassNodeExample >> methodsInCategory: aCat [
 	^ self item  selectorsInProtocol: aCat
 ]

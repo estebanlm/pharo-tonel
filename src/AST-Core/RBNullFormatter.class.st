@@ -12,63 +12,44 @@ Class {
 	#classVars : [
 		'FormatAsYouReadPolicy'
 	],
-	#category : #AST-Core-Formatter,
-	#timestamp : 'StephaneDucasse 8/6/2015 19:10'
+	#category : #AST-Core-Formatter
 }
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBNullFormatter class>>formatAsYouReadPolicy [
+{ #category : #initialize }
+RBNullFormatter class >> formatAsYouReadPolicy [
 	"Return whether the formatter is continously formatting"
 
 	^ FormatAsYouReadPolicy ifNil: [ FormatAsYouReadPolicy := false ]
 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBNullFormatter class>>formatAsYouReadPolicy: aBoolean [
+{ #category : #initialize }
+RBNullFormatter class >> formatAsYouReadPolicy: aBoolean [
 	"Return whether the formatter is continously formatting"
 
 	FormatAsYouReadPolicy := aBoolean
 ]
 
-{
-	#category : #'public interface',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBNullFormatter>>containerWidth: anInteger [
+{ #category : #'public interface' }
+RBNullFormatter >> containerWidth: anInteger [
 	"doing nothing on purpose"
 ]
 
-{
-	#category : #'public interface',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBNullFormatter>>format: aParseTree  [
+{ #category : #'public interface' }
+RBNullFormatter >> format: aParseTree [ 
 	^ aParseTree source
 		ifNil: [	self visitNode: aParseTree.
 					codeStream contents ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBNullFormatter>>initialize [
+{ #category : #initialization }
+RBNullFormatter >> initialize [
 	super initialize.
 	codeStream := (String new: 256) writeStream.
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBNullFormatter>>visitMethodNode: aMethodNode [
+{ #category : #visiting }
+RBNullFormatter >> visitMethodNode: aMethodNode [
 	codeStream 
 		nextPutAll: aMethodNode selector;
 		cr;

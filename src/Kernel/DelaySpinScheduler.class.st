@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #DelaySpinScheduler,
 	#superclass : #DelayMicrosecondScheduler,
-	#category : #Kernel-Processes,
-	#timestamp : ''
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #'low priority processes',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelaySpinScheduler>>schedule: aDelay [
+{ #category : #'low priority processes' }
+DelaySpinScheduler >> schedule: aDelay [
 	"Depends on implicit semantics of bytecode inlining and cooperative multitasking 
 	 such that no interuption can occur between the nil test, assignment & signal."
 	
@@ -31,11 +24,8 @@ DelaySpinScheduler>>schedule: aDelay [
   	"Probably the whileTrue loop is not needed, its just for safety."
 ]
 
-{
-	#category : #'low priority processes',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-DelaySpinScheduler>>unschedule: aDelay [
+{ #category : #'low priority processes' }
+DelaySpinScheduler >> unschedule: aDelay [
 	"Depends on implicit semantics of bytecode inlining and cooperative multitasking 
 	 such that no interuption can occur between the nil test, assignment & signal."
 	

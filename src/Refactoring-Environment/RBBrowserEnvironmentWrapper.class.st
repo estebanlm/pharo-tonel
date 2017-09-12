@@ -10,142 +10,93 @@ Class {
 	#instVars : [
 		'environment'
 	],
-	#category : #Refactoring-Environment,
-	#timestamp : 'NicolaiHess 4/27/2015 21:22'
+	#category : #Refactoring-Environment
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper class>>new [
+{ #category : #'instance creation' }
+RBBrowserEnvironmentWrapper class >> new [
 	^ self onEnvironment: RBBrowserEnvironment new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper class>>onEnvironment: anEnvironment  [
+{ #category : #'instance creation' }
+RBBrowserEnvironmentWrapper class >> onEnvironment: anEnvironment [ 
 	^(self basicNew)
 		initialize;
 		onEnvironment: anEnvironment;
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper>>definesClass: aClass [
+{ #category : #testing }
+RBBrowserEnvironmentWrapper >> definesClass: aClass [
 	^ environment definesClass: aClass
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper>>environment [
+{ #category : #private }
+RBBrowserEnvironmentWrapper >> environment [
 	^ environment
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper>>includesCategory: aCategory [
+{ #category : #testing }
+RBBrowserEnvironmentWrapper >> includesCategory: aCategory [
 	^environment includesCategory: aCategory
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper>>includesClass: aClass [
+{ #category : #testing }
+RBBrowserEnvironmentWrapper >> includesClass: aClass [
 	^environment includesClass: aClass
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper>>includesPackage: aRPackage  [
+{ #category : #testing }
+RBBrowserEnvironmentWrapper >> includesPackage: aRPackage [ 
 	^ self packages includes: aRPackage
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper>>includesProtocol: aProtocol in: aClass [
+{ #category : #testing }
+RBBrowserEnvironmentWrapper >> includesProtocol: aProtocol [ in: aClass
 	^(self includesClass: aClass)
 		and: [environment includesProtocol: aProtocol in: aClass]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper>>includesSelector: aSelector in: aClass [
+{ #category : #testing }
+RBBrowserEnvironmentWrapper >> includesSelector: aSelector [ in: aClass
 	^(self includesClass: aClass)
 		and: [environment includesSelector: aSelector in: aClass]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper>>isEmpty [
+{ #category : #testing }
+RBBrowserEnvironmentWrapper >> isEmpty [
 	self classesDo: [:each | ^false].
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper>>isSystem [
+{ #category : #testing }
+RBBrowserEnvironmentWrapper >> isSystem [
 	^false
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper>>onEnvironment: anEnvironment [
+{ #category : #initialize-release }
+RBBrowserEnvironmentWrapper >> onEnvironment: anEnvironment [
 	environment := anEnvironment
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper>>packageNames [
+{ #category : #private }
+RBBrowserEnvironmentWrapper >> packageNames [
 	^ self packages collect: [ :each | each packageName ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper>>packages [
+{ #category : #accessing }
+RBBrowserEnvironmentWrapper >> packages [
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper>>rootEnvironment [
+{ #category : #private }
+RBBrowserEnvironmentWrapper >> rootEnvironment [
 	^ environment rootEnvironment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper>>selectionIntervalFor: aString  [
+{ #category : #accessing }
+RBBrowserEnvironmentWrapper >> selectionIntervalFor: aString [ 
 	| interval |
 	interval := super selectionIntervalFor: aString.
 	^interval notNil 
@@ -153,11 +104,8 @@ RBBrowserEnvironmentWrapper>>selectionIntervalFor: aString  [
 		ifFalse: [environment selectionIntervalFor: aString]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper>>storeOn: aStream  [
+{ #category : #printing }
+RBBrowserEnvironmentWrapper >> storeOn: aStream [ 
 	aStream
 		nextPutAll: '(';
 		nextPutAll: self class name;
@@ -166,10 +114,7 @@ RBBrowserEnvironmentWrapper>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-RBBrowserEnvironmentWrapper>>systemDictionary [
+{ #category : #private }
+RBBrowserEnvironmentWrapper >> systemDictionary [
 	^ environment systemDictionary
 ]

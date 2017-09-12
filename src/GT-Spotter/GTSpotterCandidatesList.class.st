@@ -12,15 +12,11 @@ Class {
 		'announcer',
 		'processorLinksMap'
 	],
-	#category : #GT-Spotter-Model,
-	#timestamp : 'TudorGirba 11/26/2014 15:08'
+	#category : #GT-Spotter-Model
 }
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>addAllCandidates: aCollection in: aProcessor [
+{ #category : #adding/removing }
+GTSpotterCandidatesList >> addAllCandidates: aCollection in: aProcessor [
 	| allLinks |
 	allLinks := OrderedCollection new.
 	aCollection
@@ -40,11 +36,8 @@ GTSpotterCandidatesList>>addAllCandidates: aCollection in: aProcessor [
 				yourself)
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>addCandidate: anObjectOrLink in: aProcessor [
+{ #category : #adding/removing }
+GTSpotterCandidatesList >> addCandidate: anObjectOrLink [ in: aProcessor
 	"before adding candidates we need to define all categories, because their order is important"
 	|processorLink candidateLink|
 	
@@ -66,11 +59,8 @@ GTSpotterCandidatesList>>addCandidate: anObjectOrLink in: aProcessor [
 	
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>addProcessor: aProcessor [
+{ #category : #adding/removing }
+GTSpotterCandidatesList >> addProcessor: aProcessor [
 	|processorLink|
 	
 	processorLink := aProcessor asSpotterProcessorLink.
@@ -81,28 +71,19 @@ GTSpotterCandidatesList>>addProcessor: aProcessor [
 	^ processorLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>announcer [
+{ #category : #accessing }
+GTSpotterCandidatesList >> announcer [
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>candidates [
+{ #category : #accessing }
+GTSpotterCandidatesList >> candidates [
 
 	^ candidates ifNil: [ candidates := GTSpotterDoubleLinkedList new ]
 ]
 
-{
-	#category : #candidates,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>getCandidateLink: aCandiate in: aProcessor [
+{ #category : #candidates }
+GTSpotterCandidatesList >> getCandidateLink: aCandiate [ in: aProcessor
 	"returns a corresponding candidateLink, that belongs to a processor"
 	(self getCandidateLinks: (self getProcessorLink: aProcessor))
 		do: [ :each | each value = aCandiate ifTrue: [ ^ each ] ].
@@ -111,11 +92,8 @@ GTSpotterCandidatesList>>getCandidateLink: aCandiate in: aProcessor [
 	
 ]
 
-{
-	#category : #candidates,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>getCandidateLinks: aProcessorLink [
+{ #category : #candidates }
+GTSpotterCandidatesList >> getCandidateLinks: aProcessorLink [
 	"returns all candidate links that belongs to a processor link"
 	|list head tail current|
 	
@@ -138,60 +116,42 @@ GTSpotterCandidatesList>>getCandidateLinks: aProcessorLink [
 	
 ]
 
-{
-	#category : #processors,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>getProcessorLink: aProcessor [
+{ #category : #processors }
+GTSpotterCandidatesList >> getProcessorLink: aProcessor [
 
 	^ self processorLinksMap at: aProcessor ifAbsentPut: [ self addProcessor: aProcessor ]
 ]
 
-{
-	#category : #processors,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>getProcessorLinkByCandidateLink: aCandidateLink [
+{ #category : #processors }
+GTSpotterCandidatesList >> getProcessorLinkByCandidateLink: aCandidateLink [
 
 	^ aCandidateLink processorLink
 ]
 
-{
-	#category : #candidates,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>head [
+{ #category : #candidates }
+GTSpotterCandidatesList >> head [
 
 	^ self candidates head
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>isEmpty [
+{ #category : #testing }
+GTSpotterCandidatesList >> isEmpty [
 	"Return true if there are no candidates in the list, false otherwise"
 	<return: #Boolean>
 
 	^ self candidates isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>isNotEmpty [
+{ #category : #testing }
+GTSpotterCandidatesList >> isNotEmpty [
 	"Return true if there is at least one candidate in the list, false otherwise"
 	<return: #Boolean>
 
 	^ self isEmpty not
 ]
 
-{
-	#category : #processors,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>nextProcessorLinkOf: aProcessorLink [
+{ #category : #processors }
+GTSpotterCandidatesList >> nextProcessorLinkOf: aProcessorLink [
 	"returns next processor link, that has more than zero candidates.
 	if passed processor is the last one, will continue searching from the beginning"
 	|current|
@@ -210,29 +170,20 @@ GTSpotterCandidatesList>>nextProcessorLinkOf: aProcessorLink [
 	
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>notifyAllCandidatesRemoved [
+{ #category : #notifying }
+GTSpotterCandidatesList >> notifyAllCandidatesRemoved [
 
 	self announcer announce: (GTSpotterAllCandidatesRemoved new)
 ]
 
-{
-	#category : #notifying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>notifyCandidateAdded: aCandidateLink in: aProcessor [
+{ #category : #notifying }
+GTSpotterCandidatesList >> notifyCandidateAdded: aCandidateLink [ in: aProcessor
 
 	self announcer announce: (GTSpotterCandidateAdded new candidateLink: aCandidateLink; category: aProcessor; yourself).
 ]
 
-{
-	#category : #'stream handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>onAmountChanged: anInteger in: aProcessor [
+{ #category : #'stream handling' }
+GTSpotterCandidatesList >> onAmountChanged: anInteger in: aProcessor [
 	"Amount must be non-negative"
 	self assert: anInteger >= 0.
 	
@@ -241,11 +192,8 @@ GTSpotterCandidatesList>>onAmountChanged: anInteger in: aProcessor [
 	self announcer announce: (GTSpotterCandidatesAmountChanged new amount: anInteger; category: aProcessor; yourself)
 ]
 
-{
-	#category : #processors,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>previousProcessorLinkOf: aProcessorLink [
+{ #category : #processors }
+GTSpotterCandidatesList >> previousProcessorLinkOf: aProcessorLink [
 	"returns previous processor link, that has more than zero candidates.
 	if passed processor is the first one, will continue searching from the end"
 	|current|
@@ -264,11 +212,8 @@ GTSpotterCandidatesList>>previousProcessorLinkOf: aProcessorLink [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>privateAddCandidate: aCandidateLink inEmpty: aProcessorLink [
+{ #category : #private }
+GTSpotterCandidatesList >> privateAddCandidate: aCandidateLink inEmpty: aProcessorLink [
 	| head current |
 		
 	current := aProcessorLink.	"not nil"
@@ -291,11 +236,8 @@ GTSpotterCandidatesList>>privateAddCandidate: aCandidateLink inEmpty: aProcessor
 	^ aCandidateLink
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>privateAddCandidate: aCandidateLink inNotEmpty: aProcessorLink [
+{ #category : #private }
+GTSpotterCandidatesList >> privateAddCandidate: aCandidateLink inNotEmpty: aProcessorLink [
 	
 	"aCandidateLink weight
 		ifNotNil: [ ^ self privateAddCandidate: aCandidateLink weightedIn: aProcessorLink ]."
@@ -307,31 +249,22 @@ GTSpotterCandidatesList>>privateAddCandidate: aCandidateLink inNotEmpty: aProces
 	^ aCandidateLink
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>privateAddCandidate: aCandidateLink weightedIn: aProcessorLink [
+{ #category : #private }
+GTSpotterCandidatesList >> privateAddCandidate: aCandidateLink weightedIn: aProcessorLink [
 
 	^ aProcessorLink isFull
 		ifTrue: [ self privateAddCandidate: aCandidateLink weightedInFull: aProcessorLink ]
 		ifFalse: [ self privateAddCandidate: aCandidateLink weightedInNotFull: aProcessorLink ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>privateAddCandidate: aCandidateLink weightedInFull: aProcessorLink [
+{ #category : #private }
+GTSpotterCandidatesList >> privateAddCandidate: aCandidateLink weightedInFull: aProcessorLink [
 
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>privateAddCandidate: aCandidateLink weightedInNotFull: aProcessorLink [
+{ #category : #private }
+GTSpotterCandidatesList >> privateAddCandidate: aCandidateLink weightedInNotFull: aProcessorLink [
 	|head tail|
 	
 	head := aProcessorLink headLink.
@@ -347,41 +280,29 @@ GTSpotterCandidatesList>>privateAddCandidate: aCandidateLink weightedInNotFull: 
 		ifTrue: [  ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>processorLinksMap [
+{ #category : #accessing }
+GTSpotterCandidatesList >> processorLinksMap [
 
 	^ processorLinksMap ifNil: [ processorLinksMap := Dictionary new ]
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>processors [
+{ #category : #accessing }
+GTSpotterCandidatesList >> processors [
 
 	^ categories ifNil: [ categories := GTSpotterDoubleLinkedList new ].
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>removeAllCandidates [
+{ #category : #adding/removing }
+GTSpotterCandidatesList >> removeAllCandidates [
 
 	self processors linksDo: [ :each | each clear ].
 	self candidates removeAll.
 	self notifyAllCandidatesRemoved
 ]
 
-{
-	#category : #adding/removing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>removeAllCandidatesOf: aProcessor [
+{ #category : #adding/removing }
+GTSpotterCandidatesList >> removeAllCandidatesOf: aProcessor [
 	|processorLink head tail current|
 	
 	processorLink := self getProcessorLink: aProcessor.
@@ -412,20 +333,14 @@ GTSpotterCandidatesList>>removeAllCandidatesOf: aProcessor [
 	
 ]
 
-{
-	#category : #candidates,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>tail [
+{ #category : #candidates }
+GTSpotterCandidatesList >> tail [
 
 	^ self candidates tail
 ]
 
-{
-	#category : #candidates,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidatesList>>updateCycleConnectionFor: aCandidateLink [
+{ #category : #candidates }
+GTSpotterCandidatesList >> updateCycleConnectionFor: aCandidateLink [
 
 	"if link is the last setting nextLink to head"
 	(self candidates tail = aCandidateLink) ifTrue: [

@@ -8,15 +8,11 @@ Class {
 		'definition',
 		'newName'
 	],
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 14:37'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCopy class>>fromBehavior: aClass newName: aName  [
+{ #category : #'instance creation' }
+EpBehaviorCopy class >> fromBehavior: aClass newName: aName [ 
 
 	^ self basicNew
 		initializeWithBehavior: aClass 
@@ -24,39 +20,27 @@ EpBehaviorCopy class>>fromBehavior: aClass newName: aName  [
 		yourself
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCopy>>accept: aVisitor  [
+{ #category : #visitor }
+EpBehaviorCopy >> accept: aVisitor [ 
 	^ aVisitor visitBehaviorCopy: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCopy>>definition [
+{ #category : #accessing }
+EpBehaviorCopy >> definition [
 	
 	^ definition
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCopy>>initializeWithBehavior: aClass newName: aName [
+{ #category : #initialize }
+EpBehaviorCopy >> initializeWithBehavior: aClass newName: aName [
 	self initialize.
 	
 	definition := aClass asEpiceaRingDefinition.
 	newName := aName asSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCopy>>newName [
+{ #category : #accessing }
+EpBehaviorCopy >> newName [
 	
 	^ newName
 ]

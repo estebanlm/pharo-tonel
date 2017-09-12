@@ -8,59 +8,40 @@ Class {
 	#instVars : [
 		'prototype'
 	],
-	#category : #SUnit-Core-Utilities,
-	#timestamp : 'StephaneDucasse 12/28/2014 11:26'
+	#category : #SUnit-Core-Utilities
 }
 
-{
-	#category : #default,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-PrototypeTester class>>defaultRuns [
+{ #category : #default }
+PrototypeTester class >> defaultRuns [
 	"Returns the default number of times to test"
 	^ 50
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-PrototypeTester class>>with: aPrototype [
+{ #category : #'instance creation' }
+PrototypeTester class >> with: aPrototype [
 	^ self new prototype:aPrototype
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-PrototypeTester>>prototype [
+{ #category : #accessing }
+PrototypeTester >> prototype [
 	"Get a prototype"
 	^ prototype copy 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-PrototypeTester>>prototype: aPrototype  [
+{ #category : #accessing }
+PrototypeTester >> prototype: aPrototype [ 
 	"Set my prototype"
 	prototype := aPrototype copy 
 ]
 
-{
-	#category : #operation,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-PrototypeTester>>result [
+{ #category : #operation }
+PrototypeTester >> result [
 	"Perform the test the default number of times"
 	^ self resultFor: self class defaultRuns 
 ]
 
-{
-	#category : #operation,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-PrototypeTester>>resultFor: runs  [
+{ #category : #operation }
+PrototypeTester >> resultFor: runs [ 
 	"Test that equality is the same over runs and answer the result"
 	
 	self subclassResponsibility

@@ -29,23 +29,16 @@ Class {
 	#classInstVars : [
 		'repositoryURLToNameMappings'
 	],
-	#category : #Tool-Catalog-Base,
-	#timestamp : 'StephaneDucasse 8/16/2015 11:17'
+	#category : #Tool-Catalog-Base
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject class>>availableRepositoryURLStrings [
+{ #category : #private }
+CatalogProject class >> availableRepositoryURLStrings [
 	^ self repositoryURLToNameMappings keys
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject class>>createRepositoryURLtoNameMappings [
+{ #category : #private }
+CatalogProject class >> createRepositoryURLtoNameMappings [
 	"Return a mapping between repositories URLs and their user names"
 
 	^ Dictionary new
@@ -57,21 +50,15 @@ CatalogProject class>>createRepositoryURLtoNameMappings [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject class>>fromDictionary: aDictionary [
+{ #category : #'instance creation' }
+CatalogProject class >> fromDictionary: aDictionary [
 	^ self new 
 		fromDictionary: aDictionary;
 		yourself
 ]
 
-{
-	#category : #GT-InspectorExtensions-Core,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject class>>gtBasicExample [
+{ #category : #GT-InspectorExtensions-Core }
+CatalogProject class >> gtBasicExample [
 	<gtExample>
 	^ self new fromDictionary: 
 		(Dictionary new
@@ -81,78 +68,51 @@ CatalogProject class>>gtBasicExample [
 			yourself)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject class>>pharoCurrentDottedName [
+{ #category : #private }
+CatalogProject class >> pharoCurrentDottedName [
 	^ 'Pharo' , SystemVersion current major asString , '.', SystemVersion current minor asString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject class>>pharoCurrentMajorName [
+{ #category : #private }
+CatalogProject class >> pharoCurrentMajorName [
     
     ^ 'Pharo', SystemVersion current major asString, '0'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject class>>pharoDistributionRepository [
+{ #category : #private }
+CatalogProject class >> pharoDistributionRepository [
 	"Returns the correct pharo distribution url"
 
 	^ 'http://smalltalkhub.com/mc/Pharo/MetaRepoFor' , self pharoCurrentMajorName , '/main'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject class>>repositoryURLToNameMappings [
+{ #category : #accessing }
+CatalogProject class >> repositoryURLToNameMappings [
 	^ repositoryURLToNameMappings ifNil: [ repositoryURLToNameMappings := self createRepositoryURLtoNameMappings ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject class>>unknownRepository [
+{ #category : #accessing }
+CatalogProject class >> unknownRepository [
 	^ 'Unknown'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>allKeywords [
+{ #category : #accessing }
+CatalogProject >> allKeywords [
 	^ self keywords copyWithFirst: self repositoryName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>contactInfo [
+{ #category : #accessing }
+CatalogProject >> contactInfo [
 	^ contactInfo
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>description [
+{ #category : #accessing }
+CatalogProject >> description [
 	^ description
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>fromDictionary: aDictionary  [
+{ #category : #initialization }
+CatalogProject >> fromDictionary: aDictionary [ 
 	name := aDictionary at: #name.
 	packageName := aDictionary at: #packageName.
 	repositoryUrl := aDictionary at: #repositoryUrl.
@@ -165,11 +125,8 @@ CatalogProject>>fromDictionary: aDictionary  [
 		collect: #asLowercase.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>fullDescription [
+{ #category : #accessing }
+CatalogProject >> fullDescription [
 	^ String streamContents: [ :stream | 
 		self description
 		   ifNil: [ stream << '<No Description Provided>' ]
@@ -180,11 +137,8 @@ CatalogProject>>fullDescription [
 				stream << self contactInfo ] ]
 ]
 
-{
-	#category : #gt-inspector-extension,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>gtInspectorDetailsIn: composite [
+{ #category : #gt-inspector-extension }
+CatalogProject >> gtInspectorDetailsIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	^ composite table
 		title: 'Project';
@@ -200,11 +154,8 @@ CatalogProject>>gtInspectorDetailsIn: composite [
 		send: #value
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>installStableVersion  [
+{ #category : #installing }
+CatalogProject >> installStableVersion [ 
 	  Metacello new
 		repository: self repositoryUrl, '/',self name;
 		configuration: self name;
@@ -212,11 +163,8 @@ CatalogProject>>installStableVersion  [
 		load
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>installVersion: aStringOrSymbol  [
+{ #category : #installing }
+CatalogProject >> installVersion: aStringOrSymbol [ 
 	[ Gofer it 
 			url: self repositoryUrl;
 			configurationOf: self name;
@@ -224,99 +172,66 @@ CatalogProject>>installVersion: aStringOrSymbol  [
 	on: Warning do: [ :w | w resume: true ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>isAvailableForCurrentPharo [
+{ #category : #testing }
+CatalogProject >> isAvailableForCurrentPharo [
 	^ self repositoryName = Smalltalk version
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>keywords [
+{ #category : #accessing }
+CatalogProject >> keywords [
 	^ keywords
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>loadConfiguration  [
+{ #category : #installing }
+CatalogProject >> loadConfiguration [ 
 	Gofer it 
 		url: self repositoryUrl;
 		configurationOf: self name;
 		load
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>matches: aString  [
+{ #category : #testing }
+CatalogProject >> matches: aString [ 
 	^ (self matches: self name with: aString)
 		or: [ self keywords anySatisfy: [ :each | self matches: each with: aString ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>matches: aString with: subString [
+{ #category : #private }
+CatalogProject >> matches: aString with: subString [
 	^ aString
 		includesSubstring: subString 
 		caseSensitive: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>name [
+{ #category : #accessing }
+CatalogProject >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>packageName [
+{ #category : #accessing }
+CatalogProject >> packageName [
 	^ packageName
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>printOn: stream  [
+{ #category : #printing }
+CatalogProject >> printOn: stream [ 
 	stream << 'Project(' << self name << ')'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>repositoryName [
+{ #category : #accessing }
+CatalogProject >> repositoryName [
 	^ self class repositoryURLToNameMappings 
 		at: self repositoryUrl
 		ifAbsent: [ self class unknownRepository ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>repositoryUrl [
+{ #category : #accessing }
+CatalogProject >> repositoryUrl [
 	^ repositoryUrl
 ]
 
-{
-	#category : #gt-spotter-extension,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogProject>>spotterPreviewIn: aComposite [
+{ #category : #gt-spotter-extension }
+CatalogProject >> spotterPreviewIn: aComposite [
 	<spotterPreview: 10>
 	^ aComposite table
 		title: 'Catalog Project';

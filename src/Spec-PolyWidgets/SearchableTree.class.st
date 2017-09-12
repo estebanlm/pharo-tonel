@@ -11,15 +11,11 @@ Class {
 		'label',
 		'button'
 	],
-	#category : #Spec-PolyWidgets-ListAndTree,
-	#timestamp : '<historical>'
+	#category : #Spec-PolyWidgets-ListAndTree
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree class>>defaultSpec [
+{ #category : #specs }
+SearchableTree class >> defaultSpec [
 	<spec: #default>
 	
 	^ SpecLayout composed
@@ -32,20 +28,14 @@ SearchableTree class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree class>>example [
+{ #category : #examples }
+SearchableTree class >> example [
 	^ self new
 		openWithSpec
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree class>>searchAtBottom [
+{ #category : #specs }
+SearchableTree class >> searchAtBottom [
 	<spec: #default>
 	
 	^ SpecLayout composed
@@ -60,159 +50,108 @@ SearchableTree class>>searchAtBottom [
 		yourself
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>autoAccept: aBoolean [
+{ #category : #api }
+SearchableTree >> autoAccept: aBoolean [
 
 	inputField autoAccept: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>autoMultiSelection: aBoolean [
+{ #category : #api }
+SearchableTree >> autoMultiSelection: aBoolean [
 
 	tree autoMultiSelection: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>button [
+{ #category : #accessing }
+SearchableTree >> button [
 
 	^ button
 ]
 
-{
-	#category : #api-compatibility,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>childrenBlock [
+{ #category : #api-compatibility }
+SearchableTree >> childrenBlock [
 	
 	^ tree childrenBlock
 ]
 
-{
-	#category : #api-compatibility,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>childrenBlock: aBlock [
+{ #category : #api-compatibility }
+SearchableTree >> childrenBlock: aBlock [
 	
 	tree childrenBlock: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>columnInset: anInteger [
+{ #category : #api }
+SearchableTree >> columnInset: anInteger [
 
 	tree columnInset: anInteger
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>columns [
+{ #category : #api }
+SearchableTree >> columns [
 	
 	^ tree columns
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>columns: aCollection [
+{ #category : #api }
+SearchableTree >> columns: aCollection [
 	
 	tree columns: aCollection
 ]
 
-{
-	#category : #api-compatibility,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>displayBlock [
+{ #category : #api-compatibility }
+SearchableTree >> displayBlock [
 
 	^ tree displayBlock
 ]
 
-{
-	#category : #api-compatibility,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>displayBlock: aBlock [
+{ #category : #api-compatibility }
+SearchableTree >> displayBlock: aBlock [
 	
 	tree displayBlock: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>doubleClick: aBlock [
+{ #category : #api }
+SearchableTree >> doubleClick: aBlock [
 
 	tree doubleClick: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>evenRowColor: aColor [
+{ #category : #api }
+SearchableTree >> evenRowColor: aColor [
 
 	tree evenRowColor: aColor
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>highlightedItem: aTreeNodeModel [
+{ #category : #api }
+SearchableTree >> highlightedItem: aTreeNodeModel [
 	
 	tree highlightedItem: aTreeNodeModel
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>iconBlock: aBlock [
+{ #category : #api }
+SearchableTree >> iconBlock: aBlock [
 	
 	tree iconBlock: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>initialize [
+{ #category : #initialization }
+SearchableTree >> initialize [
 
 	super initialize.
 
 	roots := OrderedCollection new asValueHolder
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>initializePresenter [
+{ #category : #initialization }
+SearchableTree >> initializePresenter [
 
 	inputField whenTextChanged: [ :text | self updateRootFor: text ].
 		
 	tree whenTreeUpdated: [ inputField text: '' ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>initializeWidgets [
+{ #category : #initialization }
+SearchableTree >> initializeWidgets [
 
 	tree := self newTree.
 	inputField := self newTextInput.
@@ -247,263 +186,176 @@ SearchableTree>>initializeWidgets [
 		add: inputField
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>inputField [
+{ #category : #accessing }
+SearchableTree >> inputField [
 	^ inputField
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>isCheckList: aBoolean [
+{ #category : #api }
+SearchableTree >> isCheckList: aBoolean [
 
 	tree isCheckList: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>keyStrokeAction: aBlock [
+{ #category : #api }
+SearchableTree >> keyStrokeAction: aBlock [
 
 	tree keyStrokeAction: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>label [
+{ #category : #accessing }
+SearchableTree >> label [
 	^ label
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>menu [
+{ #category : #api }
+SearchableTree >> menu [
 	
 	^ tree menu
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>menu: aBlock [
+{ #category : #api }
+SearchableTree >> menu: aBlock [
 	
 	tree menu: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>multiSelection: aBoolean [
+{ #category : #api }
+SearchableTree >> multiSelection: aBoolean [
 
 	tree multiSelection: aBoolean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>preferedPaneColor: aColor [
+{ #category : #api }
+SearchableTree >> preferedPaneColor: aColor [
 
 	tree preferedPaneColor: aColor
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>resetSelection [
+{ #category : #api }
+SearchableTree >> resetSelection [
 
 	tree resetSelection
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>resizerWidth: anInteger [
+{ #category : #api }
+SearchableTree >> resizerWidth: anInteger [
 
 	tree resizerWidth: anInteger
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>rootNodeHolder [
+{ #category : #api }
+SearchableTree >> rootNodeHolder [
 
 	^ tree rootNodeHolder
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>rootNodeHolder: aBlock [
+{ #category : #api }
+SearchableTree >> rootNodeHolder: aBlock [
 
 	tree rootNodeHolder: aBlock
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>roots [
+{ #category : #api }
+SearchableTree >> roots [
 	
 	^ tree roots
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>roots: aCollection [
+{ #category : #api }
+SearchableTree >> roots: aCollection [
 
 	roots value: aCollection asOrderedCollection.	
 	tree roots: aCollection asOrderedCollection
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>rowInset: anInteger [
+{ #category : #api }
+SearchableTree >> rowInset: anInteger [
 
 	tree rowInset: anInteger
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>secondSelection: anItem [
+{ #category : #api }
+SearchableTree >> secondSelection: anItem [
 	
 	tree secondSelection: anItem
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>selectedItem [
+{ #category : #api }
+SearchableTree >> selectedItem [
 	
 	^ tree selectedItem
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>selectedItem: anItem [
+{ #category : #api }
+SearchableTree >> selectedItem: anItem [
 	
 	tree selectedItem: anItem
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>selectedItems [
+{ #category : #api }
+SearchableTree >> selectedItems [
 	
 	^ tree selectedItems
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>selectedItems: aCollection [
+{ #category : #api }
+SearchableTree >> selectedItems: aCollection [
 	
 	tree selectedItems: aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>tree [
+{ #category : #accessing }
+SearchableTree >> tree [
 	^ tree
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>updateRootFor: aText [
+{ #category : #updating }
+SearchableTree >> updateRootFor: aText [
 	| aFilter |
 	
 	aFilter := TokenTreeFilter token: aText.
 	tree filterWith: aFilter
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>updateTree [
+{ #category : #api }
+SearchableTree >> updateTree [
 	
 	tree updateTree
 ]
 
-{
-	#category : #api-events-compatibility,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>whenChildrenBlockChanged: aBlock [
+{ #category : #api-events-compatibility }
+SearchableTree >> whenChildrenBlockChanged: aBlock [
 	
 	tree whenChildrenBlockChanged: aBlock
 ]
 
-{
-	#category : #api-events-compatibility,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>whenDisplayBlockChanged: aBlock [
+{ #category : #api-events-compatibility }
+SearchableTree >> whenDisplayBlockChanged: aBlock [
 	
 	tree whenDisplayBlockChanged: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>whenMenuChanged: aBlock [
+{ #category : #api-events }
+SearchableTree >> whenMenuChanged: aBlock [
 	
 	tree whenMenuChanged: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>whenRootsChanged: aBlock [
+{ #category : #api-events }
+SearchableTree >> whenRootsChanged: aBlock [
 
 	roots whenChangedDo: aBlock
 ]
 
-{
-	#category : #'list api-events',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>whenSelectedItemChanged: aBlock [
+{ #category : #'list api-events' }
+SearchableTree >> whenSelectedItemChanged: aBlock [
 
 	tree whenSelectedItemChanged: aBlock
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SearchableTree>>whenSelectedItemsChanged: aBlock [
+{ #category : #api-events }
+SearchableTree >> whenSelectedItemsChanged: aBlock [
 	
 	tree whenSelectedItemsChanged: aBlock
 ]

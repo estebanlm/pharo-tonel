@@ -4,15 +4,11 @@ SUnit tests for keyed trees
 Class {
 	#name : #KeyedTreeTest,
 	#superclass : #TestCase,
-	#category : #Collections-Tests-Unordered,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:29'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-KeyedTreeTest>>testAtPath [
+{ #category : #'as yet unclassified' }
+KeyedTreeTest >> testAtPath [
 	"Test the at path method for success and failure modes."
 
 	|tree t2|
@@ -32,11 +28,8 @@ KeyedTreeTest>>testAtPath [
 	self should: [tree atPath: #(3)] raise: self defaultTestError.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-KeyedTreeTest>>testAtPathIfAbsent [
+{ #category : #'as yet unclassified' }
+KeyedTreeTest >> testAtPathIfAbsent [
 	"Test the at path if absent method for success and failure modes."
 
 	|tree t2|
@@ -56,11 +49,8 @@ KeyedTreeTest>>testAtPathIfAbsent [
 	self should: [(tree atPath: #(3) ifAbsent: [#missing]) = #missing].
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-KeyedTreeTest>>testAtPathIfAbsentPut [
+{ #category : #'as yet unclassified' }
+KeyedTreeTest >> testAtPathIfAbsentPut [
 	"Test the at path if absent put method for success and failure modes."
 
 	|tree t2|
@@ -83,11 +73,8 @@ KeyedTreeTest>>testAtPathIfAbsentPut [
 	self should: [(tree atPath: #(3)) = #yetAnotherNew].
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-KeyedTreeTest>>testAtPathPut [
+{ #category : #'as yet unclassified' }
+KeyedTreeTest >> testAtPathPut [
 	"Test the at path put method for success and failure modes."
 
 	|tree t2|
@@ -108,11 +95,8 @@ KeyedTreeTest>>testAtPathPut [
 	self should: [(tree atPath: #(1 four one)) = #anotherNew].
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-KeyedTreeTest>>testCopy [
+{ #category : #'as yet unclassified' }
+KeyedTreeTest >> testCopy [
 	"Test the copy method for success and failure modes."
 
 	|c tree t2 t3|
@@ -133,11 +117,8 @@ KeyedTreeTest>>testCopy [
 	self shouldnt: [(c atPath: #(1 four)) == t3].
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-KeyedTreeTest>>testMerge [
+{ #category : #'as yet unclassified' }
+KeyedTreeTest >> testMerge [
 	"Test the merge method for success and failure modes."
 
 	|t1 t2 m|
@@ -172,11 +153,8 @@ KeyedTreeTest>>testMerge [
 	self should: [(m atPath: #(1 3 2)) = '1-3-2'].
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-KeyedTreeTest>>testRemovePath [
+{ #category : #'as yet unclassified' }
+KeyedTreeTest >> testRemovePath [
 	"Test the remove path method for success and failure modes."
 
 	|tree|
@@ -195,11 +173,8 @@ KeyedTreeTest>>testRemovePath [
 	self should: [(tree atPath: #(2) ifAbsent: []) = nil].
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-KeyedTreeTest>>testRemovePathIfAbsent [
+{ #category : #'as yet unclassified' }
+KeyedTreeTest >> testRemovePathIfAbsent [
 	"Test the remove path if absent method for success and failure modes."
 
 	|tree|
@@ -218,11 +193,8 @@ KeyedTreeTest>>testRemovePathIfAbsent [
 	self should: [(tree atPath: #(2) ifAbsent: []) = nil].
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-KeyedTreeTest>>testSubtrees [
+{ #category : #'as yet unclassified' }
+KeyedTreeTest >> testSubtrees [
 	"Test the subtrees method for success and failure modes."
 
 	|t1 t2 t3 t4|

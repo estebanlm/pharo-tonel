@@ -9,60 +9,41 @@ Class {
 		'newCategory',
 		'class'
 	],
-	#category : #Epicea-Model,
-	#timestamp : 'MartinDias 12/12/2014 14:42'
+	#category : #Epicea-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCategoryChange class>>oldCategory: anOldCategory newCategory: aNewCategory class: aClass [
+{ #category : #'instance creation' }
+EpBehaviorCategoryChange class >> oldCategory: anOldCategory newCategory: aNewCategory class: aClass [
 
 	^ self basicNew 
 		initializeOldCategory: anOldCategory newCategory: aNewCategory class: aClass;
 		yourself
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCategoryChange>>accept: aVisitor [
+{ #category : #visitor }
+EpBehaviorCategoryChange >> accept: aVisitor [
 
 	^ aVisitor visitBehaviorCategoryChange: self 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCategoryChange>>behaviorAffected [
+{ #category : #accessing }
+EpBehaviorCategoryChange >> behaviorAffected [
 	^ self classAffected
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCategoryChange>>behaviorAffectedName [
+{ #category : #accessing }
+EpBehaviorCategoryChange >> behaviorAffectedName [
 	^ self classAffected name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCategoryChange>>classAffected [
+{ #category : #accessing }
+EpBehaviorCategoryChange >> classAffected [
 
 	^ class
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCategoryChange>>initializeOldCategory: anOldCategory newCategory: aNewCategory class: aClass [
+{ #category : #initialize }
+EpBehaviorCategoryChange >> initializeOldCategory: anOldCategory newCategory: aNewCategory class: aClass [
 
 	self initialize.
 	oldCategory := anOldCategory.
@@ -70,20 +51,14 @@ EpBehaviorCategoryChange>>initializeOldCategory: anOldCategory newCategory: aNew
 	class := aClass asEpiceaRingDefinition.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCategoryChange>>newCategory [
+{ #category : #accessing }
+EpBehaviorCategoryChange >> newCategory [
 
 	^ newCategory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpBehaviorCategoryChange>>oldCategory [
+{ #category : #accessing }
+EpBehaviorCategoryChange >> oldCategory [
 
 	^ oldCategory
 ]

@@ -10,232 +10,147 @@ Class {
 		'link',
 		'entity'
 	],
-	#category : #Reflectivity-Links,
-	#timestamp : 'MarcusDenker 4/29/2015 15:40'
+	#category : #Reflectivity-Links
 }
 
-{
-	#category : #'plugin interface',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification class>>allKeys [
+{ #category : #'plugin interface' }
+RFReification class >> allKeys [
 	^self subclasses collect: [:plugin | plugin key]
 ]
 
-{
-	#category : #'plugin interface',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification class>>entities [
+{ #category : #'plugin interface' }
+RFReification class >> entities [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification class>>entity: aNodeOrVar link: aLink  [
+{ #category : #'instance creation' }
+RFReification class >> entity: aNodeOrVar link: aLink [ 
 	^self new
 		link: aLink;
 		entity: aNodeOrVar.
 ]
 
-{
-	#category : #'plugin interface',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification class>>for: aSelector [
+{ #category : #'plugin interface' }
+RFReification class >> for: aSelector [
 	^ self subclasses detect: [ :class | class key = aSelector ]
 ]
 
-{
-	#category : #'plugin interface',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification class>>key [
+{ #category : #'plugin interface' }
+RFReification class >> key [
 	^self subclassResponsibility
 ]
 
-{
-	#category : #acccessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>entity: aRBMessageNode  [
+{ #category : #acccessing }
+RFReification >> entity: aRBMessageNode [ 
 	entity := aRBMessageNode
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForClassVariable [
+{ #category : #generate }
+RFReification >> genForClassVariable [
 	^self genForLiteralVariable
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForGlobalVariable [
+{ #category : #generate }
+RFReification >> genForGlobalVariable [
 	^self genForLiteralVariable
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForInstanceVariableSlot [
+{ #category : #generate }
+RFReification >> genForInstanceVariableSlot [
 	"overriden in subclass if needed"
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForLiteralVariable [
+{ #category : #generate }
+RFReification >> genForLiteralVariable [
 	"overriden in subclass if needed"
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForRBArgumentNode [
+{ #category : #generate }
+RFReification >> genForRBArgumentNode [
 	^self genForRBTemporaryNode
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForRBAssignmentNode [
+{ #category : #generate }
+RFReification >> genForRBAssignmentNode [
 	^self genForRBProgramNode
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForRBBlockNode [
+{ #category : #generate }
+RFReification >> genForRBBlockNode [
 	^self genForRBProgramNode
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForRBCascadeNode [
+{ #category : #generate }
+RFReification >> genForRBCascadeNode [
 	^self genForRBProgramNode 
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForRBGlobalNode [
+{ #category : #generate }
+RFReification >> genForRBGlobalNode [
 	^self genForRBVariableNode 
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForRBInstanceVariableNode [
+{ #category : #generate }
+RFReification >> genForRBInstanceVariableNode [
 	^self genForRBVariableNode 
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForRBLiteralNode [
+{ #category : #generate }
+RFReification >> genForRBLiteralNode [
 	^self genForRBProgramNode
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForRBLiteralValueNode [
+{ #category : #generate }
+RFReification >> genForRBLiteralValueNode [
 	^self genForRBProgramNode 
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForRBMessageNode [
+{ #category : #generate }
+RFReification >> genForRBMessageNode [
 	^self genForRBProgramNode 
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForRBMethodNode [
+{ #category : #generate }
+RFReification >> genForRBMethodNode [
 	^self genForRBProgramNode 
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForRBProgramNode [
+{ #category : #generate }
+RFReification >> genForRBProgramNode [
 	"overriden in subclass if needed"
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForRBReturnNode [
+{ #category : #generate }
+RFReification >> genForRBReturnNode [
 	^self genForRBProgramNode
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForRBSelfNode [
+{ #category : #generate }
+RFReification >> genForRBSelfNode [
 	^self genForRBProgramNode 
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForRBSequenceNode [
+{ #category : #generate }
+RFReification >> genForRBSequenceNode [
 	^self genForRBProgramNode
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForRBTemporaryNode [
+{ #category : #generate }
+RFReification >> genForRBTemporaryNode [
 	^self genForRBVariableNode
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>genForRBVariableNode [
+{ #category : #generate }
+RFReification >> genForRBVariableNode [
 	^self genForRBProgramNode
 ]
 
-{
-	#category : #acccessing,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>link: anUndefinedObject  [
+{ #category : #acccessing }
+RFReification >> link: anUndefinedObject [ 
 	link := anUndefinedObject
 ]
 
-{
-	#category : #generate,
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-RFReification>>preamble: aNode [
+{ #category : #generate }
+RFReification >> preamble: aNode [
 	^#()
 ]

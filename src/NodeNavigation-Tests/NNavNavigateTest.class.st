@@ -4,15 +4,11 @@ I tests the navigations directions
 Class {
 	#name : #NNavNavigateTest,
 	#superclass : #TestCase,
-	#category : #NodeNavigation-Tests,
-	#timestamp : '<historical>'
+	#category : #NodeNavigation-Tests
 }
 
-{
-	#category : #sibling,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NNavNavigateTest>>testNextBrotherItsTheNextOfTheChilds [
+{ #category : #sibling }
+NNavNavigateTest >> testNextBrotherItsTheNextOfTheChilds [
 	| bigBrother littleBrother brother parent |
 	
 	parent := RBSequenceNode new.
@@ -28,11 +24,8 @@ NNavNavigateTest>>testNextBrotherItsTheNextOfTheChilds [
 
 ]
 
-{
-	#category : #sibling-prev,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NNavNavigateTest>>testNextBrotherItsThePreviousOfTheChilds [
+{ #category : #sibling-prev }
+NNavNavigateTest >> testNextBrotherItsThePreviousOfTheChilds [
 	| bigBrother middleBrother littleBrother brother parent |
 	
 	parent := RBSequenceNode new.
@@ -51,11 +44,8 @@ NNavNavigateTest>>testNextBrotherItsThePreviousOfTheChilds [
 
 ]
 
-{
-	#category : #sibling-prev,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NNavNavigateTest>>testNextBrotherWhenItsTheFirstItsTheLast [
+{ #category : #sibling-prev }
+NNavNavigateTest >> testNextBrotherWhenItsTheFirstItsTheLast [
 	| bigBrother middleBrother littleBrother brother parent |
 	
 	parent := RBSequenceNode new.
@@ -72,11 +62,8 @@ NNavNavigateTest>>testNextBrotherWhenItsTheFirstItsTheLast [
 	self assert: brother equals: littleBrother .
 ]
 
-{
-	#category : #sibling,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NNavNavigateTest>>testNextBrotherWhenItsTheLasItsTheFirst [
+{ #category : #sibling }
+NNavNavigateTest >> testNextBrotherWhenItsTheLasItsTheFirst [
 	| bigBrother littleBrother brother parent |
 	
 	parent := RBSequenceNode new.
@@ -90,11 +77,8 @@ NNavNavigateTest>>testNextBrotherWhenItsTheLasItsTheFirst [
 	self assert: brother equals: bigBrother .
 ]
 
-{
-	#category : #children,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NNavNavigateTest>>testNextChildWhenHasChildsIsTheBiggerOne [
+{ #category : #children }
+NNavNavigateTest >> testNextChildWhenHasChildsIsTheBiggerOne [
 	| bigBrother littleBrother child parentRenamed |
 	
 	parentRenamed := RBSequenceNode new.
@@ -108,11 +92,8 @@ NNavNavigateTest>>testNextChildWhenHasChildsIsTheBiggerOne [
 	self assert: child equals: bigBrother .
 ]
 
-{
-	#category : #children,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NNavNavigateTest>>testNextChildWhenItHasNotChildsItIsNil [
+{ #category : #children }
+NNavNavigateTest >> testNextChildWhenItHasNotChildsItIsNil [
 	| child parent |
 	
 	parent := RBSequenceNode new.
@@ -121,11 +102,8 @@ NNavNavigateTest>>testNextChildWhenItHasNotChildsItIsNil [
 	self assert: child isNil .
 ]
 
-{
-	#category : #sibling,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NNavNavigateTest>>testNotBrotherWhenOrphan [
+{ #category : #sibling }
+NNavNavigateTest >> testNotBrotherWhenOrphan [
 	| orphanNode brother |
 	
 	orphanNode := RBVariableNode named: 'roque'.
@@ -133,11 +111,8 @@ NNavNavigateTest>>testNotBrotherWhenOrphan [
 	self assert: brother isNil.
 ]
 
-{
-	#category : #sibling-prev,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NNavNavigateTest>>testNotPreviousBrotherWhenOrphan [
+{ #category : #sibling-prev }
+NNavNavigateTest >> testNotPreviousBrotherWhenOrphan [
 	| orphanNode brother |
 	
 	orphanNode := RBVariableNode named: 'roque'.
@@ -145,11 +120,8 @@ NNavNavigateTest>>testNotPreviousBrotherWhenOrphan [
 	self assert: brother isNil.
 ]
 
-{
-	#category : #sibling,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NNavNavigateTest>>testSameNodeIsTheBrotherWhenOnlyChild [
+{ #category : #sibling }
+NNavNavigateTest >> testSameNodeIsTheBrotherWhenOnlyChild [
 	| uniqueChildNode brother parent |
 	
 	parent := RBSequenceNode new.

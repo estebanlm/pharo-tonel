@@ -1,40 +1,27 @@
-"
-
-"
 Class {
 	#name : #GLMPagerModelTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'pagerModel'
 	],
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>createSimplePaneMorph [
+{ #category : #private }
+GLMPagerModelTest >> createSimplePaneMorph [
 
 	^ Morph new
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>setUp [
+{ #category : #running }
+GLMPagerModelTest >> setUp [
 
 	pagerModel := GLMPagerModel new scrollingDelay: 0.
 	pagerModel defaultNumberOfVisiblePages: 2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>testDiminishToLeft [
+{ #category : #tests }
+GLMPagerModelTest >> testDiminishToLeft [
 	|counter left|
 	
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
@@ -68,11 +55,8 @@ GLMPagerModelTest>>testDiminishToLeft [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>testDiminishToRight [
+{ #category : #tests }
+GLMPagerModelTest >> testDiminishToRight [
 	|counter right|
 	
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
@@ -106,11 +90,8 @@ GLMPagerModelTest>>testDiminishToRight [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>testEmptyPopPane [
+{ #category : #tests }
+GLMPagerModelTest >> testEmptyPopPane [
 	| count |
 	
 	count := 0.
@@ -132,11 +113,8 @@ GLMPagerModelTest>>testEmptyPopPane [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>testEnlargeToLeft [
+{ #category : #tests }
+GLMPagerModelTest >> testEnlargeToLeft [
 	|counter right |
 	
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
@@ -174,11 +152,8 @@ GLMPagerModelTest>>testEnlargeToLeft [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>testEnlargeToRight [
+{ #category : #tests }
+GLMPagerModelTest >> testEnlargeToRight [
 	|counter left|
 	
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
@@ -218,11 +193,8 @@ GLMPagerModelTest>>testEnlargeToRight [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>testIsPaneVisible [
+{ #category : #tests }
+GLMPagerModelTest >> testIsPaneVisible [
 
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
@@ -241,11 +213,8 @@ GLMPagerModelTest>>testIsPaneVisible [
 	self assert: (pagerModel isPaneVisible: 6) equals: true.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>testModelInitialization [
+{ #category : #tests }
+GLMPagerModelTest >> testModelInitialization [
 
 	self assert: pagerModel size equals: 0.
 	self assert: pagerModel firstVisiblePageIndex equals: 0.
@@ -254,11 +223,8 @@ GLMPagerModelTest>>testModelInitialization [
 	self assert: pagerModel numberOfVisiblePages equals: 2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>testOnePanePush [
+{ #category : #tests }
+GLMPagerModelTest >> testOnePanePush [
 	
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
 	
@@ -269,11 +235,8 @@ GLMPagerModelTest>>testOnePanePush [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>testOneReplacePane [
+{ #category : #tests }
+GLMPagerModelTest >> testOneReplacePane [
 	
 	pagerModel popAndReplacePane: self createSimplePaneMorph.
 
@@ -284,11 +247,8 @@ GLMPagerModelTest>>testOneReplacePane [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>testPanePushAnnouncement [
+{ #category : #tests }
+GLMPagerModelTest >> testPanePushAnnouncement [
 	| count currentAnn paneMorph |
 	
 	count := 0.
@@ -309,11 +269,8 @@ GLMPagerModelTest>>testPanePushAnnouncement [
 	self assert: count equals: 4.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>testPopLastPageOf5 [
+{ #category : #tests }
+GLMPagerModelTest >> testPopLastPageOf5 [
 	
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
@@ -328,11 +285,8 @@ GLMPagerModelTest>>testPopLastPageOf5 [
 	self assert: pagerModel numberOfVisiblePages equals: 2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>testPopOnePage [
+{ #category : #tests }
+GLMPagerModelTest >> testPopOnePage [
 	
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
@@ -344,11 +298,8 @@ GLMPagerModelTest>>testPopOnePage [
 	self assert: pagerModel numberOfVisiblePages equals: 2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>testPrivateRecomputeIndexesAfterScrollAt [
+{ #category : #tests }
+GLMPagerModelTest >> testPrivateRecomputeIndexesAfterScrollAt [
 
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
 	
@@ -404,11 +355,8 @@ GLMPagerModelTest>>testPrivateRecomputeIndexesAfterScrollAt [
 	self assert: pagerModel lastVisiblePageIndex equals: 6.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>testSelectToLeft [
+{ #category : #tests }
+GLMPagerModelTest >> testSelectToLeft [
 
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
@@ -458,11 +406,8 @@ GLMPagerModelTest>>testSelectToLeft [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>testSelectToRight [
+{ #category : #tests }
+GLMPagerModelTest >> testSelectToRight [
 
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
@@ -510,11 +455,8 @@ GLMPagerModelTest>>testSelectToRight [
 	self assert: pagerModel lastVisiblePageIndex equals: 6.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPagerModelTest>>testSelectionChangeAfterPopOfLastPage [
+{ #category : #tests }
+GLMPagerModelTest >> testSelectionChangeAfterPopOfLastPage [
 	
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.
 	pagerModel pushPane: self createSimplePaneMorph smooth: false.

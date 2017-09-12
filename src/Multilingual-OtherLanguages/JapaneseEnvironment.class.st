@@ -5,33 +5,23 @@ This class provides the Japanese support.  Since it has been used most other tha
 Class {
 	#name : #JapaneseEnvironment,
 	#superclass : #LanguageEnvironment,
-	#category : #Multilingual-OtherLanguages,
-	#timestamp : '<historical>'
+	#category : #Multilingual-OtherLanguages
 }
 
-{
-	#category : #'language methods',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-JapaneseEnvironment class>>fromJISX0208String: aString [
+{ #category : #'language methods' }
+JapaneseEnvironment class >> fromJISX0208String: aString [
 
 	^ aString collect: [:each | Character leadingChar: JapaneseEnvironment leadingChar code: (each asUnicode)].
 
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-JapaneseEnvironment class>>initialize [
+{ #category : #'class initialization' }
+JapaneseEnvironment class >> initialize [
 	EncodedCharSet declareEncodedCharSet: self atIndex: 5+1.
 ]
 
-{
-	#category : #'rendering support',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-JapaneseEnvironment class>>isBreakableAt: index in: text [
+{ #category : #'rendering support' }
+JapaneseEnvironment class >> isBreakableAt: index [ in: text
 
 	| prev |
 	index = 1 ifTrue: [^ false].
@@ -41,51 +31,36 @@ JapaneseEnvironment class>>isBreakableAt: index in: text [
 
 ]
 
-{
-	#category : #'subclass responsibilities',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-JapaneseEnvironment class>>leadingChar [
+{ #category : #'subclass responsibilities' }
+JapaneseEnvironment class >> leadingChar [
 
 	^ 5.
 
 ]
 
-{
-	#category : #'language methods',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-JapaneseEnvironment class>>scanMultibyteCharactersFrom: startIndex to: stopIndex in: aWideString with: aCharacterScanner rightX: rightX font: aFont [
+{ #category : #'language methods' }
+JapaneseEnvironment class >> scanMultibyteCharactersFrom: startIndex to: stopIndex in: aWideString with: aCharacterScanner rightX: rightX font: aFont [
 	"scanning multibyte Japanese strings"
 	^aFont scanMultibyteJapaneseCharactersFrom: startIndex to: stopIndex in: aWideString with: aCharacterScanner rightX: rightX
 ]
 
-{
-	#category : #'language methods',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-JapaneseEnvironment class>>scanSelector [
+{ #category : #'language methods' }
+JapaneseEnvironment class >> scanSelector [
 
 	^ #scanJapaneseCharactersFrom:to:in:rightX:stopConditions:kern:
 
 ]
 
-{
-	#category : #'subclass responsibilities',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-JapaneseEnvironment class>>supportedLanguages [
+{ #category : #'subclass responsibilities' }
+JapaneseEnvironment class >> supportedLanguages [
 	"Return the languages that this class supports. 
 	Any translations for those languages will use this class as their environment."
 	
 	^#('ja' 'ja-etoys' )
 ]
 
-{
-	#category : #'subclass responsibilities',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-JapaneseEnvironment class>>systemConverterClass [
+{ #category : #'subclass responsibilities' }
+JapaneseEnvironment class >> systemConverterClass [
 	| encoding |
 
 	Smalltalk os isWin32 
@@ -104,11 +79,8 @@ JapaneseEnvironment class>>systemConverterClass [
 	^UTF8TextConverter
 ]
 
-{
-	#category : #'language methods',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-JapaneseEnvironment class>>traditionalCharsetClass [
+{ #category : #'language methods' }
+JapaneseEnvironment class >> traditionalCharsetClass [
 
 	^ JISX0208.
 

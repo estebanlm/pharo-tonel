@@ -10,83 +10,55 @@ Class {
 		'stream',
 		'encoder'
 	],
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : 'SvenVanCaekenberghe 1/26/2016 10:17'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEncodedStream class>>defaultEncoder [
+{ #category : #accessing }
+ZnEncodedStream class >> defaultEncoder [
 	^ ZnUTF8Encoder new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEncodedStream class>>on: wrappedStream [
+{ #category : #'instance creation' }
+ZnEncodedStream class >> on: wrappedStream [
 	^ self new
 		on: wrappedStream;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEncodedStream class>>on: wrappedStream encoding: encoding [
+{ #category : #'instance creation' }
+ZnEncodedStream class >> on: wrappedStream encoding: encoding [
 	^ self new
 		on: wrappedStream;
 		encoding: encoding;
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEncodedStream>>close [
+{ #category : #initialize-release }
+ZnEncodedStream >> close [
 	stream close
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEncodedStream>>encoder [
+{ #category : #accessing }
+ZnEncodedStream >> encoder [
 	^ encoder ifNil: [ encoder := self class defaultEncoder ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEncodedStream>>encoder: characterEncoder [
+{ #category : #initialize-release }
+ZnEncodedStream >> encoder: characterEncoder [
 	encoder := characterEncoder
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEncodedStream>>encoding: encoding [
+{ #category : #initialize-release }
+ZnEncodedStream >> encoding: encoding [
 	encoder := encoding asZnCharacterEncoder
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEncodedStream>>on: wrappedStream [
+{ #category : #initialize-release }
+ZnEncodedStream >> on: wrappedStream [
 	stream := wrappedStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnEncodedStream>>wrappedStream [
+{ #category : #accessing }
+ZnEncodedStream >> wrappedStream [
 	^ stream
 ]

@@ -23,91 +23,60 @@ Class {
 		'flags',
 		'nextCell'
 	],
-	#category : #Morphic-Base-Layouts,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-Layouts
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>addExtraSpace: aPoint [
+{ #category : #accessing }
+LayoutCell >> addExtraSpace: aPoint [
 	extraSpace 
 		ifNil:[extraSpace := aPoint]
 		ifNotNil:[extraSpace := extraSpace + aPoint]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>cellSize [
+{ #category : #accessing }
+LayoutCell >> cellSize [
 	^cellSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>cellSize: aPoint [
+{ #category : #accessing }
+LayoutCell >> cellSize: aPoint [
 	cellSize := aPoint
 ]
 
-{
-	#category : #collection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>do: aBlock [
+{ #category : #collection }
+LayoutCell >> do: aBlock [
 	aBlock value: self.
 	nextCell ifNotNil:[nextCell do: aBlock].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>extraSpace [
+{ #category : #accessing }
+LayoutCell >> extraSpace [
 	^extraSpace ifNil:[0@0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>extraSpace: aPoint [
+{ #category : #accessing }
+LayoutCell >> extraSpace: aPoint [
 	extraSpace := aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>flags [
+{ #category : #accessing }
+LayoutCell >> flags [
 	^flags ifNil: [ 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>hSpaceFill [
+{ #category : #accessing }
+LayoutCell >> hSpaceFill [
 	^self flags anyMask: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>hSpaceFill: aBool [
+{ #category : #accessing }
+LayoutCell >> hSpaceFill: aBool [
 	flags := aBool ifTrue:[self flags bitOr: 1] ifFalse:[self flags bitClear: 1].
 
 ]
 
-{
-	#category : #collection,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>inject: thisValue into: binaryBlock  [
+{ #category : #collection }
+LayoutCell >> inject: thisValue into: binaryBlock [ 
 	"Accumulate a running value associated with evaluating the argument, 
 	binaryBlock, with the current value of the argument, thisValue, and the 
 	receiver as block arguments. For instance, to sum the numeric elements 
@@ -120,27 +89,18 @@ LayoutCell>>inject: thisValue into: binaryBlock  [
 	^nextValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>nextCell [
+{ #category : #accessing }
+LayoutCell >> nextCell [
 	^nextCell
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>nextCell: aCell [
+{ #category : #accessing }
+LayoutCell >> nextCell: aCell [
 	nextCell := aCell
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>size [
+{ #category : #accessing }
+LayoutCell >> size [
 	| n cell |
 	n := 0.
 	cell := self.
@@ -150,35 +110,23 @@ LayoutCell>>size [
 	^n
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>target [
+{ #category : #accessing }
+LayoutCell >> target [
 	^target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>target: newTarget [
+{ #category : #accessing }
+LayoutCell >> target: newTarget [
 	target := newTarget
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>vSpaceFill [
+{ #category : #accessing }
+LayoutCell >> vSpaceFill [
 	^self flags anyMask: 2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-LayoutCell>>vSpaceFill: aBool [
+{ #category : #accessing }
+LayoutCell >> vSpaceFill: aBool [
 	flags := aBool ifTrue:[self flags bitOr: 2] ifFalse:[self flags bitClear: 2].
 
 ]

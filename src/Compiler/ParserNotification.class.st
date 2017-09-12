@@ -7,41 +7,28 @@ Class {
 	#instVars : [
 		'name'
 	],
-	#category : #Compiler-Exceptions,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:18'
+	#category : #Compiler-Exceptions
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParserNotification class>>name: aString [
+{ #category : #'as yet unclassified' }
+ParserNotification class >> name: aString [
 	^ (self new setName: aString) signal
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParserNotification>>defaultAction [
+{ #category : #'as yet unclassified' }
+ParserNotification >> defaultAction [
 	
 	self openMenuIn: 
 		[:labels :lines :caption | 
 		UIManager default chooseFrom: labels lines: lines title: caption]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParserNotification>>openMenuIn: aBlock [
+{ #category : #'as yet unclassified' }
+ParserNotification >> openMenuIn: aBlock [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ParserNotification>>setName: aString [
+{ #category : #'as yet unclassified' }
+ParserNotification >> setName: aString [
 	name := aString
 ]

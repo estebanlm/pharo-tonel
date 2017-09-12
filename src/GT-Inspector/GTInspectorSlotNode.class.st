@@ -7,25 +7,18 @@ Class {
 	#instVars : [
 		'slot'
 	],
-	#category : #GT-Inspector,
-	#timestamp : 'AndreiChis 2/27/2017 11:20'
+	#category : #GT-Inspector
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorSlotNode class>>hostObject: anObject slot: aSlot [
+{ #category : #'instance creation' }
+GTInspectorSlotNode class >> hostObject: anObject slot: aSlot [
 	^ (self hostObject: anObject)
 		slot: aSlot;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorSlotNode>>browsingActionsForNode [
+{ #category : #accessing }
+GTInspectorSlotNode >> browsingActionsForNode [
 
 	^ {
 			GLMGenericAction new 
@@ -37,62 +30,41 @@ GTInspectorSlotNode>>browsingActionsForNode [
 		}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorSlotNode>>errorMessage [
+{ #category : #accessing }
+GTInspectorSlotNode >> errorMessage [
 	^ 'error obtaining attribute value'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorSlotNode>>inspectorActionsForNode [
+{ #category : #accessing }
+GTInspectorSlotNode >> inspectorActionsForNode [
 	"Return a collection of available inspector actions associated with a variable node"
 	<return: #Collection of: #GLMAction>
 
 	^ self browsingActionsForNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorSlotNode>>key [
+{ #category : #accessing }
+GTInspectorSlotNode >> key [
 	^ self slot name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorSlotNode>>rawValue [
+{ #category : #accessing }
+GTInspectorSlotNode >> rawValue [
 	^ self hostObject readSlot: slot
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorSlotNode>>save: anObject [
+{ #category : #actions }
+GTInspectorSlotNode >> save: anObject [
 	self hostObject writeSlot: self slot value: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorSlotNode>>slot [
+{ #category : #accessing }
+GTInspectorSlotNode >> slot [
 	^ slot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorSlotNode>>slot: aSlot [
+{ #category : #accessing }
+GTInspectorSlotNode >> slot: aSlot [
 
 	self
 		assert: [ aSlot isNotNil ]
@@ -101,10 +73,7 @@ GTInspectorSlotNode>>slot: aSlot [
 	slot := aSlot.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorSlotNode>>variableTag [
+{ #category : #accessing }
+GTInspectorSlotNode >> variableTag [
 	^ 'attribute'
 ]

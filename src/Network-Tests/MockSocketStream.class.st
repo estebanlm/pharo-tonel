@@ -9,106 +9,69 @@ Class {
 		'inStream',
 		'outStream'
 	],
-	#category : #Network-Tests-Kernel,
-	#timestamp : 'TorstenBergmann 2/5/2014 10:10'
+	#category : #Network-Tests-Kernel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MockSocketStream class>>on: socket [
+{ #category : #'instance creation' }
+MockSocketStream class >> on: socket [
 	^self basicNew initialize
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MockSocketStream>>atEnd [
+{ #category : #testing }
+MockSocketStream >> atEnd [
 	^self inStream atEnd.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MockSocketStream>>atEnd: aBoolean [
+{ #category : #accessing }
+MockSocketStream >> atEnd: aBoolean [
 	atEnd := aBoolean.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MockSocketStream>>inStream [
+{ #category : #accessing }
+MockSocketStream >> inStream [
 	^inStream
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MockSocketStream>>initialize [
+{ #category : #initialization }
+MockSocketStream >> initialize [
 	super initialize.
 	self resetInStream.
 	self resetOutStream.
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MockSocketStream>>nextLine [
+{ #category : #'stream in' }
+MockSocketStream >> nextLine [
 	^self nextLineCrLf
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MockSocketStream>>nextLineCrLf [
+{ #category : #'stream in' }
+MockSocketStream >> nextLineCrLf [
 	^(self upToAll: String crlf).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MockSocketStream>>outStream [
+{ #category : #accessing }
+MockSocketStream >> outStream [
 	^outStream
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MockSocketStream>>resetInStream [
+{ #category : #'stream in' }
+MockSocketStream >> resetInStream [
 	inStream := String new writeStream.
 ]
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MockSocketStream>>resetOutStream [
+{ #category : #'stream out' }
+MockSocketStream >> resetOutStream [
 	outStream := String new writeStream.
 ]
 
-{
-	#category : #'stream out',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MockSocketStream>>sendCommand: aString [
+{ #category : #'stream out' }
+MockSocketStream >> sendCommand: aString [
 	self outStream
 		nextPutAll: aString;
 		nextPutAll: String crlf.
 ]
 
-{
-	#category : #'stream in',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MockSocketStream>>upToAll: delims [
+{ #category : #'stream in' }
+MockSocketStream >> upToAll: delims [
 	^self inStream upToAll: delims.
 ]

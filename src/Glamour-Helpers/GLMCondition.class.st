@@ -4,6 +4,5 @@ GLMCondition is the abstract class for defininf a boolean condition applied on s
 Class {
 	#name : #GLMCondition,
 	#superclass : #Object,
-	#category : #Glamour-Helpers,
-	#timestamp : 'TudorGirba 7/14/2011 10:53'
+	#category : #Glamour-Helpers
 }

@@ -11,23 +11,16 @@ OSPlatform current.
 Class {
 	#name : #Win64Platform,
 	#superclass : #WinPlatform,
-	#category : #System-Platforms,
-	#timestamp : 'EstebanLorenzano 3/6/2017 17:16'
+	#category : #System-Platforms
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Win64Platform class>>isActivePlatform [
+{ #category : #testing }
+Win64Platform class >> isActivePlatform [
 	"Answer whether the receiver is the active platform"
 	^ self currentPlatformName = 'Win64'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Win64Platform>>isWin64 [
+{ #category : #testing }
+Win64Platform >> isWin64 [
 	^ true
 ]

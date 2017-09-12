@@ -12,91 +12,60 @@ Class {
 	#classVars : [
 		'CalloutAPIClass'
 	],
-	#category : #UnifiedFFI,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPI class>>calloutAPIClass [
+{ #category : #accessing }
+FFICalloutAPI class >> calloutAPIClass [
 	^ CalloutAPIClass ifNil: [ CalloutAPIClass := self defaultCalloutAPIClass ]
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPI class>>calloutAPIClass: aClass [
+{ #category : #accessing }
+FFICalloutAPI class >> calloutAPIClass: aClass [
 	CalloutAPIClass := aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPI class>>defaultCalloutAPIClass [
+{ #category : #accessing }
+FFICalloutAPI class >> defaultCalloutAPIClass [
 	^ FFICalloutAPI	
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPI class>>inContext: aContext [
+{ #category : #'instance creation' }
+FFICalloutAPI class >> inContext: aContext [
 	^ self basicNew 
 		initializeContext: aContext;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPI class>>new  [
+{ #category : #'instance creation' }
+FFICalloutAPI class >> new [ 
 	self error: 'Use #inContext'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPI>>callingConvention [
+{ #category : #private }
+FFICalloutAPI >> callingConvention [
 	^ callingConvention
 ]
 
-{
-	#category : #'call conventions',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPI>>cdecl [
+{ #category : #'call conventions' }
+FFICalloutAPI >> cdecl [
 	callingConvention := #cdecl
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPI>>context [
+{ #category : #accessing }
+FFICalloutAPI >> context [
 	^ context
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPI>>convention: aCallingConvention [
+{ #category : #accessing }
+FFICalloutAPI >> convention: aCallingConvention [
 	"It can be #cdecl or #stdcall"
 	callingConvention := aCallingConvention
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPI>>function: functionSignature module: moduleNameOrLibrary [
+{ #category : #action }
+FFICalloutAPI >> function: functionSignature module: moduleNameOrLibrary [
 	| sender ffiMethod |
 	
 	sender := context ifNil: [thisContext sender sender].
@@ -125,53 +94,35 @@ FFICalloutAPI>>function: functionSignature module: moduleNameOrLibrary [
 		executeMethod: ffiMethod)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPI>>initialize [
+{ #category : #initialization }
+FFICalloutAPI >> initialize [
 	callingConvention := #cdecl.
 	options := #().
 	super initialize
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPI>>initializeContext: aContext [
+{ #category : #initialization }
+FFICalloutAPI >> initializeContext: aContext [
 	context := aContext.
 	self initialize
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPI>>newBuilder [
+{ #category : #action }
+FFICalloutAPI >> newBuilder [
 	^ FFICalloutMethodBuilder calloutAPI: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPI>>options [
+{ #category : #accessing }
+FFICalloutAPI >> options [
 	^ options
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPI>>options: anObject [
+{ #category : #accessing }
+FFICalloutAPI >> options: anObject [
 	options := anObject
 ]
 
-{
-	#category : #'call conventions',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICalloutAPI>>stdcall [
+{ #category : #'call conventions' }
+FFICalloutAPI >> stdcall [
 	callingConvention := #stdcall
 ]

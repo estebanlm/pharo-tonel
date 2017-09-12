@@ -8,49 +8,33 @@ Class {
 		'index',
 		'slotName'
 	],
-	#category : #GT-Inspector,
-	#timestamp : 'AndreiChis 2/27/2017 11:20'
+	#category : #GT-Inspector
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorProtoObjectNode class>>hostObject: anObject index: index slotName: aSlotName [
+{ #category : #'instance creation' }
+GTInspectorProtoObjectNode class >> hostObject: anObject index: index slotName: aSlotName [
 	^ (self hostObject: anObject)
 		index: index slotName: aSlotName;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorProtoObjectNode>>index: anIndex slotName: aSlotName [
+{ #category : #accessing }
+GTInspectorProtoObjectNode >> index: anIndex slotName: aSlotName [
 	index := anIndex.
 	slotName := aSlotName.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorProtoObjectNode>>key [
+{ #category : #accessing }
+GTInspectorProtoObjectNode >> key [
 	^ slotName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorProtoObjectNode>>rawValue  [
+{ #category : #accessing }
+GTInspectorProtoObjectNode >> rawValue [ 
 	^ thisContext object: self hostObject instVarAt: index 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorProtoObjectNode>>variableTag [
+{ #category : #accessing }
+GTInspectorProtoObjectNode >> variableTag [
 	^ 'attribute'
 ]

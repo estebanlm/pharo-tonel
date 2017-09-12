@@ -4,15 +4,11 @@ SUnit tests for UUID
 Class {
 	#name : #UUIDTest,
 	#superclass : #TestCase,
-	#category : #Tests-UUID,
-	#timestamp : 'TorstenBergmann 2/5/2014 10:12'
+	#category : #Tests-UUID
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDTest>>testBasic [
+{ #category : #testing }
+UUIDTest >> testBasic [
 	| uuid |
 	uuid := UUID new.
 	self assert: uuid size equals: 16.
@@ -20,11 +16,8 @@ UUIDTest>>testBasic [
 	self deny: uuid = UUID new.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDTest>>testComparison [
+{ #category : #testing }
+UUIDTest >> testComparison [
 	|a b|
 	
 	a := UUID fromString: '0608b9dc-02e4-4dd0-9f8a-ea45160df641'.
@@ -47,11 +40,8 @@ UUIDTest>>testComparison [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDTest>>testNilUUID [
+{ #category : #testing }
+UUIDTest >> testNilUUID [
 	| nilUUIDRepresentation |
 	nilUUIDRepresentation := '00000000-0000-0000-0000-000000000000'.
 	self assert: UUID nilUUID isNilUUID.
@@ -60,11 +50,8 @@ UUIDTest>>testNilUUID [
 	self deny: UUID new isNilUUID 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDTest>>testString [
+{ #category : #testing }
+UUIDTest >> testString [
 
 	| s1 s2 s3 |
 	
@@ -82,11 +69,8 @@ UUIDTest>>testString [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-UUIDTest>>testString36 [
+{ #category : #testing }
+UUIDTest >> testString36 [
 	| uuid |
 	uuid := UUID new.
 	self assert: (uuid asString36 allSatisfy: [ :e | e isAlphaNumeric ]).

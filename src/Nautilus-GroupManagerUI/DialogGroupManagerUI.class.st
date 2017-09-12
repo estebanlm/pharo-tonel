@@ -10,26 +10,19 @@ Class {
 		'groupTreeModel',
 		'groupTree'
 	],
-	#category : #Nautilus-GroupManagerUI,
-	#timestamp : 'TorstenBergmann 2/4/2014 21:12'
+	#category : #Nautilus-GroupManagerUI
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI class>>on: aModel [
+{ #category : #'instance creation' }
+DialogGroupManagerUI class >> on: aModel [
 
 	^ self basicNew 
 		groupManager: aModel;
 		initialize.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>addAGroup [
+{ #category : #private }
+DialogGroupManagerUI >> addAGroup [
 
 	| group |
 	group := self groupManager groups createAnEmptyStaticGroup.
@@ -38,29 +31,20 @@ DialogGroupManagerUI>>addAGroup [
 	GroupAnnouncer uniqueInstance announce: (AGroupHasBeenAdded group: group into: self)
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>addAction [
+{ #category : #'buttons behavior' }
+DialogGroupManagerUI >> addAction [
 
 	self addAGroup
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>addLabel [
+{ #category : #'buttons behavior' }
+DialogGroupManagerUI >> addLabel [
 	
 	^ 'Create'
 ]
 
-{
-	#category : #'button behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>addSelectedPackageInSelectedGroup [
+{ #category : #'button behavior' }
+DialogGroupManagerUI >> addSelectedPackageInSelectedGroup [
 	| selection |
 	selection := self groupTreeModel selection selectedNodePath.
 	selection ifNil: [ ^ self ].
@@ -73,20 +57,14 @@ DialogGroupManagerUI>>addSelectedPackageInSelectedGroup [
 					groupTreeModel hardlySelectItem: group ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>applyChanges [
+{ #category : #private }
+DialogGroupManagerUI >> applyChanges [
 
 	self valid
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>buildAddButton [
+{ #category : #'item creation' }
+DialogGroupManagerUI >> buildAddButton [
 	^ IconicButton new
 		target: self;
 		actionSelector: #addAction;
@@ -97,11 +75,8 @@ DialogGroupManagerUI>>buildAddButton [
 		yourself
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>buildAddSelectedPackageInSelectedGroupButton [
+{ #category : #'item creation' }
+DialogGroupManagerUI >> buildAddSelectedPackageInSelectedGroupButton [
 	^ IconicButton new
 		target: self;
 		actionSelector: #addSelectedPackageInSelectedGroup;
@@ -112,11 +87,8 @@ DialogGroupManagerUI>>buildAddSelectedPackageInSelectedGroupButton [
 		yourself
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>buildEmptyGroupButton [
+{ #category : #'item creation' }
+DialogGroupManagerUI >> buildEmptyGroupButton [
 	^ IconicButton new
 		target: self;
 		actionSelector: #emptySelectedGroup;
@@ -127,11 +99,8 @@ DialogGroupManagerUI>>buildEmptyGroupButton [
 		yourself
 ]
 
-{
-	#category : #tree,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>buildGroupsTree [
+{ #category : #tree }
+DialogGroupManagerUI >> buildGroupsTree [
 
 	groupTree := (MorphTreeMorph on: self groupTreeModel)
 		beSingle;
@@ -146,11 +115,8 @@ DialogGroupManagerUI>>buildGroupsTree [
 	^groupTree buildContents.
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>buildPackageTree [
+{ #category : #'item creation' }
+DialogGroupManagerUI >> buildPackageTree [
 	| morph |
 	self groupManager announcer when: MorphTreeSelectionChanged send: #itemSelected: to: self.
 	self groupManager ghostString: 'Search ...'.
@@ -159,11 +125,8 @@ DialogGroupManagerUI>>buildPackageTree [
 	^ morph
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>buildRemoveButton [
+{ #category : #'item creation' }
+DialogGroupManagerUI >> buildRemoveButton [
 	^ IconicButton new
 		target: self;
 		actionSelector: #removeAction;
@@ -174,11 +137,8 @@ DialogGroupManagerUI>>buildRemoveButton [
 		yourself
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>buildRemoveSelectedPackageFromSelectedGroupButton [
+{ #category : #'item creation' }
+DialogGroupManagerUI >> buildRemoveSelectedPackageFromSelectedGroupButton [
 	^ IconicButton new
 		target: self;
 		actionSelector: #removeSelectedPackageFromSelectedGroup;
@@ -189,11 +149,8 @@ DialogGroupManagerUI>>buildRemoveSelectedPackageFromSelectedGroupButton [
 		yourself
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>buildRenameButton [
+{ #category : #'item creation' }
+DialogGroupManagerUI >> buildRenameButton [
 	^ IconicButton new
 		target: self;
 		actionSelector: #renameAction;
@@ -204,11 +161,8 @@ DialogGroupManagerUI>>buildRenameButton [
 		yourself
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>buildTextMorph [
+{ #category : #display }
+DialogGroupManagerUI >> buildTextMorph [
 	| textMorph |
 	textMorph := self textModel newScrolledText
 		beForPlainText;
@@ -219,20 +173,14 @@ DialogGroupManagerUI>>buildTextMorph [
 	^ textMorph
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>centering [
+{ #category : #display }
+DialogGroupManagerUI >> centering [
 	self left: ((World width / 2) - (self width /2)).
 	self top: ((World height / 2) - (self height /2))
 ]
 
-{
-	#category : #'button behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>emptySelectedGroup [
+{ #category : #'button behavior' }
+DialogGroupManagerUI >> emptySelectedGroup [
 	| groupToRemove confirmation |
 	self removeState
 		ifFalse: [ ^ self ].
@@ -249,37 +197,25 @@ DialogGroupManagerUI>>emptySelectedGroup [
 					groupTreeModel hardlySelectItem: group ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>groupManager [
+{ #category : #accessing }
+DialogGroupManagerUI >> groupManager [
 
 	^ groupManager
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>groupManager: aModel [
+{ #category : #accessing }
+DialogGroupManagerUI >> groupManager: aModel [
 
 	groupManager := aModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>groupTree [
+{ #category : #accessing }
+DialogGroupManagerUI >> groupTree [
 	^ groupTree
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>groupTreeBox [
+{ #category : #'item creation' }
+DialogGroupManagerUI >> groupTreeBox [
 	^ GroupboxMorph new
 		addContentMorph: self buildGroupsTree;
 		addContentMorph:
@@ -294,59 +230,38 @@ DialogGroupManagerUI>>groupTreeBox [
 		vResizing: #spaceFill.
 ]
 
-{
-	#category : #tree,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>groupTreeModel [
+{ #category : #tree }
+DialogGroupManagerUI >> groupTreeModel [
 	^ groupTreeModel ifNil: [ groupTreeModel := self groupTreeModelClass new model: self ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>groupTreeModelClass [
+{ #category : #private }
+DialogGroupManagerUI >> groupTreeModelClass [
 	^ GroupCreatorTreeModel
 ]
 
-{
-	#category : #tree,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>groups [
+{ #category : #tree }
+DialogGroupManagerUI >> groups [
 	^ self groupManager groups groups select: [ :group | group isFillable and: [ group isReadOnly not ] ]
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>initialExtent [
+{ #category : #display }
+DialogGroupManagerUI >> initialExtent [
 	^ 500 @ 600
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>isResizeable [
+{ #category : #display }
+DialogGroupManagerUI >> isResizeable [
 	^true
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>itemSelected: anAnnouncement [
+{ #category : #'event handling' }
+DialogGroupManagerUI >> itemSelected: anAnnouncement [
 	self groupManager selectedElements: anAnnouncement selection selectedItems
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>newContentMorph [
+{ #category : #'item creation' }
+DialogGroupManagerUI >> newContentMorph [
 	^ self
 		newColumn:
 			{self packageTreeBox.
@@ -359,20 +274,14 @@ DialogGroupManagerUI>>newContentMorph [
 				vResizing: #spaceFill}
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>openInWorld [
+{ #category : #display }
+DialogGroupManagerUI >> openInWorld [
 	super openInWorld.
 	self centering
 ]
 
-{
-	#category : #'item creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>packageTreeBox [
+{ #category : #'item creation' }
+DialogGroupManagerUI >> packageTreeBox [
 	^ GroupboxMorph new
 		addContentMorph: self buildPackageTree;
 		label: 'Select an item:';
@@ -380,31 +289,22 @@ DialogGroupManagerUI>>packageTreeBox [
 		vResizing: #spaceFill
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>removeAGroup [
+{ #category : #private }
+DialogGroupManagerUI >> removeAGroup [
 	self groupManager groups removeAGroup: self selectedGroup.
 	groupTree updateList.
 	groupTreeModel selection: nil.
 	groupTreeModel changed: #selection
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>removeAction [
+{ #category : #'buttons behavior' }
+DialogGroupManagerUI >> removeAction [
 	self removeState
 		ifTrue: [ self removeAGroup ]
 ]
 
-{
-	#category : #'button behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>removeSelectedPackageFromSelectedGroup [
+{ #category : #'button behavior' }
+DialogGroupManagerUI >> removeSelectedPackageFromSelectedGroup [
 	| packageToRemove selection |
 	selection := self groupTreeModel selection selectedNodePath.
 	selection ifNil: [ ^ self ].
@@ -418,56 +318,38 @@ DialogGroupManagerUI>>removeSelectedPackageFromSelectedGroup [
 					groupTreeModel hardlySelectItem: group ] ]
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>removeState [
+{ #category : #'buttons behavior' }
+DialogGroupManagerUI >> removeState [
 
 	^ self selectedGroup notNil
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>renameAction [
+{ #category : #'buttons behavior' }
+DialogGroupManagerUI >> renameAction [
 self renameState ifTrue: [  
 	self renameGroup ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>renameGroup [
+{ #category : #private }
+DialogGroupManagerUI >> renameGroup [
 
 	self groupManager groups renameAGroup: self selectedGroup.	
 	groupTree updateList.
 ]
 
-{
-	#category : #'buttons behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>renameState [
+{ #category : #'buttons behavior' }
+DialogGroupManagerUI >> renameState [
 
 	^ self selectedGroup notNil
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>selectedElements [
+{ #category : #display }
+DialogGroupManagerUI >> selectedElements [
 	^ self groupManager selectedElements
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>selectedGroup [
+{ #category : #private }
+DialogGroupManagerUI >> selectedGroup [
 	
 	^ self selectedNode 
 		ifNil: [ nil ]
@@ -477,47 +359,31 @@ DialogGroupManagerUI>>selectedGroup [
 				ifFalse: [ node parentNode item ]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>selectedNode [
+{ #category : #private }
+DialogGroupManagerUI >> selectedNode [
 
 	^ self groupTreeModel selectedNode
 ]
 
-{
-	#category : #tree,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>setSelectedNodeItem: anItem [
+{ #category : #tree }
+DialogGroupManagerUI >> setSelectedNodeItem: anItem [
 	| node |
 	node := groupTree listManager nodeMorphsWithAllNodeItems: {anItem}.
 	groupTree listManager selectedItems: node.
 	^ node
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>textModel [
+{ #category : #accessing }
+DialogGroupManagerUI >> textModel [
 	^ textModel ifNil: [ textModel := RubScrolledTextModel new interactionModel: self ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>updateSelectedNode [
+{ #category : #private }
+DialogGroupManagerUI >> updateSelectedNode [
 
 	self changed: #removeState
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-DialogGroupManagerUI>>valid [
-
+{ #category : #private }
+DialogGroupManagerUI >> valid [
 ]

@@ -1,48 +1,31 @@
-Extension {
-	#name : #Morph
-}
+Extension { #name : #Morph }
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Morph>>asBrick [
+{ #category : #'*Glamour-Morphic-Brick' }
+Morph >> asBrick [
 	
 	^ GLMMorphBrick on: self
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Morph>>brickApi [
+{ #category : #'*Glamour-Morphic-Brick' }
+Morph >> brickApi [
 
 	^ self valueOfProperty: #brickApi ifAbsentPut: [ GLMBrickMorphWrapper on: self ]
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Morph>>brickDoubleLink [
+{ #category : #'*Glamour-Morphic-Brick' }
+Morph >> brickDoubleLink [
 
 	^ self valueOfProperty: #brickDoubleLink ifAbsentPut: [ nil ]
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Morph>>brickDoubleLink: aDoubleLink [
+{ #category : #'*Glamour-Morphic-Brick' }
+Morph >> brickDoubleLink: aDoubleLink [
 
 	self setProperty: #brickDoubleLink toValue: aDoubleLink
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Morph>>brickImageForm: aBackground [
+{ #category : #'*Glamour-Morphic-Brick' }
+Morph >> brickImageForm: aBackground [
 	| background form brickBorder |
 	
 	self isBrick ifFalse: [
@@ -61,30 +44,21 @@ Morph>>brickImageForm: aBackground [
 	^ form
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Morph>>brickThemer [
+{ #category : #'*Glamour-Morphic-Brick' }
+Morph >> brickThemer [
 	^ (self nearestOwnerThat: [ :each | (each isKindOf: GLMFoundationBrick) | (each isKindOf: GLMBrick) ])
 		ifNotNil: [ :brick | brick themer ]
 		ifNil: [ self theme brickThemer ]
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Morph>>brickThemerChanged [
+{ #category : #'*Glamour-Morphic-Brick' }
+Morph >> brickThemerChanged [
 
 	self submorphs do: #brickThemerChanged
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Morph>>brickTransparentImageForm [
+{ #category : #'*Glamour-Morphic-Brick' }
+Morph >> brickTransparentImageForm [
 	|background form brickBorder|
 	
 	self isBrick ifTrue: [ 
@@ -101,22 +75,16 @@ Morph>>brickTransparentImageForm [
 	^ form
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Morph>>exportAsPNGSilently [
+{ #category : #'*Glamour-Morphic-Brick' }
+Morph >> exportAsPNGSilently [
 	| fName time |
 	time := (DateAndTime now asString copyReplaceAll: ':' with: '-') copyReplaceAll: '.' with: '-'.
 	fName := self externalName, time , '.png'.
 	PNGReadWriter putForm: self imageForm onFileNamed: fName
 ]
 
-{
-	#category : #'*Glamour-Morphic-Brick',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-Morph>>isBrick [
+{ #category : #'*Glamour-Morphic-Brick' }
+Morph >> isBrick [
 
 	^ false
 ]

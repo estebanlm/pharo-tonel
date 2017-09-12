@@ -4,23 +4,16 @@ Command to revert a package in versionner
 Class {
 	#name : #MBRevertPackageCommand,
 	#superclass : #MBAbstractPackageCommand,
-	#category : #Versionner-Core-Commands,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:06'
+	#category : #Versionner-Core-Commands
 }
 
-{
-	#category : #documentation,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBRevertPackageCommand>>documentation [
+{ #category : #documentation }
+MBRevertPackageCommand >> documentation [
 	^ 'Revert the changes that have been made to this package.'
 ]
 
-{
-	#category : #execute,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBRevertPackageCommand>>execute [
+{ #category : #execute }
+MBRevertPackageCommand >> execute [
 
 	self pickAncestorVersionInfo ifNotNil: [:info |
 		(target workingCopy repositoryGroup versionWithInfo: info
@@ -29,11 +22,8 @@ MBRevertPackageCommand>>execute [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBRevertPackageCommand>>pickAncestorVersionInfo [
+{ #category : #private }
+MBRevertPackageCommand >> pickAncestorVersionInfo [
 	| ancestors |
 	ancestors := target workingCopy ancestry breadthFirstAncestors.
 	^self uiManager 
@@ -43,10 +33,7 @@ MBRevertPackageCommand>>pickAncestorVersionInfo [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBRevertPackageCommand>>title [
+{ #category : #accessing }
+MBRevertPackageCommand >> title [
 	^ 'revert'
 ]

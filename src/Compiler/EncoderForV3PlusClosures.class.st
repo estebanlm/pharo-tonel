@@ -14,23 +14,16 @@ For now we impose upon you to synchronise any and all changes between these two 
 Class {
 	#name : #EncoderForV3PlusClosures,
 	#superclass : #EncoderForV3,
-	#category : #Compiler-Kernel,
-	#timestamp : '<historical>'
+	#category : #Compiler-Kernel
 }
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>backJumpBytecodeSize [
+{ #category : #'bytecode decoding' }
+EncoderForV3PlusClosures class >> backJumpBytecodeSize [
 	^ 2
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>bindingReadScanBlockFor: litIndex using: scanner [
+{ #category : #'compiled method support' }
+EncoderForV3PlusClosures class >> bindingReadScanBlockFor: litIndex using: scanner [
 	"Answer a block argument for InstructionStream>>scanFor: that answers true
 	 for reads of the value of the binding with zero-relative index litVarIndex.
 	 N.B. Don't assume the compiler uses the most compact encoding available."
@@ -48,11 +41,8 @@ EncoderForV3PlusClosures class>>bindingReadScanBlockFor: litIndex using: scanner
 							 and: [scanner thirdByte = litIndex]]]]]]
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>bindingWriteScanBlockFor: litVarIndex using: scanner [
+{ #category : #'compiled method support' }
+EncoderForV3PlusClosures class >> bindingWriteScanBlockFor: litVarIndex using: scanner [
 	"Answer a block argument for InstructionStream>>scanFor: that answers true
 	 for writes of the value of the binding with zero-relative index litVarIndex.
 	 N.B. Don't assume the compiler uses the most compact encoding available."
@@ -65,11 +55,8 @@ EncoderForV3PlusClosures class>>bindingWriteScanBlockFor: litVarIndex using: sca
 				 and: [scanner thirdByte = litVarIndex]]]]
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>bytecodeSize: bytecode [
+{ #category : #'instruction stream support' }
+EncoderForV3PlusClosures class >> bytecodeSize: bytecode [
 	"Answer the number of bytes in the bytecode."
 	bytecode <= 125 ifTrue:
 		[^1].
@@ -85,20 +72,14 @@ EncoderForV3PlusClosures class>>bytecodeSize: bytecode [
 	^nil
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>callPrimitiveCode [
+{ #category : #'bytecode decoding' }
+EncoderForV3PlusClosures class >> callPrimitiveCode [
 	"139	11101111	iiiiiiii jjjjjjjj	Call Primitive #iiiiiiii + (jjjjjjjj * 256)"
 	^139
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>instVarReadScanBlockFor: varIndexCode using: scanner [
+{ #category : #'compiled method support' }
+EncoderForV3PlusClosures class >> instVarReadScanBlockFor: varIndexCode using: scanner [
 	"Answer a block argument for InstructionStream>>scanFor: that answers true
 	 for reads of the inst var with zero-relative index varIndexCode.
 	 N.B. Don't assume the compiler uses the most compact encoding available."
@@ -114,11 +95,8 @@ EncoderForV3PlusClosures class>>instVarReadScanBlockFor: varIndexCode using: sca
 						 and: [scanner thirdByte = varIndexCode]]]]]
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>instVarWriteScanBlockFor: varIndexCode using: scanner [
+{ #category : #'compiled method support' }
+EncoderForV3PlusClosures class >> instVarWriteScanBlockFor: varIndexCode using: scanner [
 	"Answer a block argument for InstructionStream>>scanFor: that answers true
 	 for writes of the inst var with zero-relative index varIndexCode.
 	 N.B. Don't assume the compiler uses the most compact encoding available."
@@ -135,46 +113,31 @@ EncoderForV3PlusClosures class>>instVarWriteScanBlockFor: varIndexCode using: sc
 							 and: [scanner thirdByte = varIndexCode]]]]]]
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>interpretJumpIfCondIn: anInstructionStream [
+{ #category : #'instruction stream support' }
+EncoderForV3PlusClosures class >> interpretJumpIfCondIn: anInstructionStream [
 	"Double-dispatch through the encoder to select the correct conditional jump decoder for the instruction set."
 	^anInstructionStream interpretV3PlusClosureJumpIfCond
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>interpretJumpIn: anInstructionStream [
+{ #category : #'instruction stream support' }
+EncoderForV3PlusClosures class >> interpretJumpIn: anInstructionStream [
 	"Double-dispatch through the encoder to select the correct unconditional jump decoder for the instruction set."
 	^ anInstructionStream interpretV3PlusClosureJump
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>interpretNextInstructionFor: aClient in: anInstructionStream [
+{ #category : #'instruction stream support' }
+EncoderForV3PlusClosures class >> interpretNextInstructionFor: aClient [ in: anInstructionStream
 	"Double-dispatch through the encoder to select the correct instruction set decoder."
 	^ anInstructionStream interpretNextV3PlusClosureInstructionFor: aClient
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>isBlockReturnAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForV3PlusClosures class >> isBlockReturnAt: pc in: method [
 	^ (method at: pc) =  125
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>isBranchIfFalseAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForV3PlusClosures class >> isBranchIfFalseAt: pc in: method [
 	"Answer whether the bytecode at pc is a conditional branch-if-false."
 	
 	
@@ -183,11 +146,8 @@ EncoderForV3PlusClosures class>>isBranchIfFalseAt: pc in: method [
 	^(byte between: 152 and: 159) or: [byte between: 172 and: 175]
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>isBranchIfTrueAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForV3PlusClosures class >> isBranchIfTrueAt: pc in: method [
 	"Answer whether the bytecode at pc is a conditional branch-if-true."
 	
 	| byte |
@@ -195,19 +155,13 @@ EncoderForV3PlusClosures class>>isBranchIfTrueAt: pc in: method [
 	^ byte between: 168 and: 171
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>isCreateBlockAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForV3PlusClosures class >> isCreateBlockAt: pc in: method [
 	^ (method at: pc) = 143
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>isJumpAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForV3PlusClosures class >> isJumpAt: pc in: method [
 	"Answer whether the bytecode at pc is an (unconditional) jump."
 
 	| byte |
@@ -215,31 +169,22 @@ EncoderForV3PlusClosures class>>isJumpAt: pc in: method [
 	^ (byte between: 144 and: 151) or: [byte between: 160 and: 167]
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>isJustPopAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForV3PlusClosures class >> isJustPopAt: pc in: method [
 	"Answer whether the bytecode at pc is a pop."
 
 	^ (method at: pc) = 135
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>isReturnAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForV3PlusClosures class >> isReturnAt: pc in: method [
 	"Answer whether the bytecode at pc is a return from block."
 	
 	^(method at: pc) between: 120 and: 125
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>isSendAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForV3PlusClosures class >> isSendAt: pc in: method [
 	"Answer whether the bytecode at pc is a message-send."
 	
 	| byte |
@@ -249,11 +194,8 @@ EncoderForV3PlusClosures class>>isSendAt: pc in: method [
 		byte >= 176 or: [ "long sends" byte <= 134]]
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>isStoreAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForV3PlusClosures class >> isStoreAt: pc in: method [
 	"Answer whether the bytecode at pc is a store or store-pop."
 
 	| byte |
@@ -281,11 +223,8 @@ EncoderForV3PlusClosures class>>isStoreAt: pc in: method [
 						byte = 142]]]]]]
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>isStorePopAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForV3PlusClosures class >> isStorePopAt: pc in: method [
 	"Answer whether the bytecode at pc is a store or store-pop."
 	
 	| byte |
@@ -301,11 +240,8 @@ EncoderForV3PlusClosures class>>isStorePopAt: pc in: method [
 			byte between: 96 and: 111 ]]
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>markerOrNilFor: compiledMethod [
+{ #category : #'compiled method support' }
+EncoderForV3PlusClosures class >> markerOrNilFor: compiledMethod [
 	"What is a marker method?  It is method with body like 
 		'self subclassResponsibility' or '^ self subclassResponsibility' 
 	used to indicate ('mark') a special property.
@@ -334,31 +270,22 @@ EncoderForV3PlusClosures class>>markerOrNilFor: compiledMethod [
 	^ compiledMethod literalAt: 1
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>nonExtensionBytecodeAt: pc in: method [
+{ #category : #'instruction stream support' }
+EncoderForV3PlusClosures class >> nonExtensionBytecodeAt: pc in: method [
 	"Answer the actual bytecode at pc in method, skipping past any preceeding extensions."
 	^ method at: pc
 ]
 
-{
-	#category : #'block closure support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>numLocalTempsForBlockAt: startpc in: method [
+{ #category : #'block closure support' }
+EncoderForV3PlusClosures class >> numLocalTempsForBlockAt: startpc in: method [
 	"4 = size of push closure copy bytecode"
 	^ BlockLocalTempCounter
 		tempCountForBlockAt: startpc - 4 
 		in: method 
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>prepareMethod: compiledMethod forSimulationWith: numArgs [
+{ #category : #'compiled method support' }
+EncoderForV3PlusClosures class >> prepareMethod: compiledMethod forSimulationWith: numArgs [
 	| xpc |
 	xpc := compiledMethod initialPC.
 	"long store temp"
@@ -368,11 +295,8 @@ EncoderForV3PlusClosures class>>prepareMethod: compiledMethod forSimulationWith:
 			compiledMethod at: xpc + 3 put: (16r10 + numArgs)]
 ]
 
-{
-	#category : #'instruction stream support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>selectorToSendOrItselfFor: anInstructionStream in: method at: pc [
+{ #category : #'instruction stream support' }
+EncoderForV3PlusClosures class >> selectorToSendOrItselfFor: anInstructionStream in: method at: pc [
 	"If anInstructionStream is at a send bytecode then answer the send's selector,
 	 otherwise answer anInstructionStream itself.  The rationale for answering
 	 anInstructionStream instead of, say, nil, is that potentially any existing object
@@ -400,11 +324,8 @@ EncoderForV3PlusClosures class>>selectorToSendOrItselfFor: anInstructionStream i
 	^ anInstructionStream
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>sendsToSuperFor: compiledMethod [
+{ #category : #'compiled method support' }
+EncoderForV3PlusClosures class >> sendsToSuperFor: compiledMethod [
 	"Answer whether the receiver sends any message to super."
 	| scanner |
 	scanner := InstructionStream on: compiledMethod.
@@ -413,48 +334,33 @@ EncoderForV3PlusClosures class>>sendsToSuperFor: compiledMethod [
 						and: [scanner followingByte between: 16r20 and: 16r3F]]]
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>specialLiterals [
+{ #category : #'bytecode decoding' }
+EncoderForV3PlusClosures class >> specialLiterals [
 	^ #(true false nil -1 0 1 2) 
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>stackDeltaForPrimitive: primitiveIndex in: method [
+{ #category : #'bytecode decoding' }
+EncoderForV3PlusClosures class >> stackDeltaForPrimitive: primitiveIndex in: method [
 	"We do not use inlined primitive in v3PlusClosure bytecode set"
 	^ 0
 ]
 
-{
-	#category : #'compiled method support',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>supportsClosures [
+{ #category : #'compiled method support' }
+EncoderForV3PlusClosures class >> supportsClosures [
 	"Answer if the instruction set supports closures (contains
 	 closure creation and indirect temp access bytecodes)."
 
 	^true
 ]
 
-{
-	#category : #'bytecode decoding',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures class>>unusedBytecode [
+{ #category : #'bytecode decoding' }
+EncoderForV3PlusClosures class >> unusedBytecode [
 	"Answer the opcode of a single-byte unused bytecode, if it exists in the encoder's bytecode set, or nil if not."
 	^ 126
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures>>genCallPrimitive: primitiveIndex [
+{ #category : #'bytecode generation' }
+EncoderForV3PlusClosures >> genCallPrimitive: primitiveIndex [
 	"139	11101111	iiiiiiii jjjjjjjj	Call Primitive #iiiiiiii + (jjjjjjjj * 256)"
 	(primitiveIndex < 1 or: [primitiveIndex > 65535]) ifTrue:
 		[self outOfRangeError: 'primitive index' index: primitiveIndex range: 1 to: 65535].
@@ -464,11 +370,8 @@ EncoderForV3PlusClosures>>genCallPrimitive: primitiveIndex [
 		nextPut: (primitiveIndex bitShift: -8)
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures>>genPushClosureCopyNumCopiedValues: numCopied numArgs: numArgs jumpSize: jumpSize [
+{ #category : #'bytecode generation' }
+EncoderForV3PlusClosures >> genPushClosureCopyNumCopiedValues: numCopied numArgs: numArgs jumpSize: jumpSize [
 	"143 	10001111 llllkkkk jjjjjjjj iiiiiiii	Push Closure Num Copied llll Num Args kkkk BlockSize jjjjjjjjiiiiiiii"
 	(jumpSize < 0 or: [jumpSize > 65535]) ifTrue:
 		[^self outOfRangeError: 'block size' index: jumpSize range: 0 to: 65535].
@@ -483,11 +386,8 @@ EncoderForV3PlusClosures>>genPushClosureCopyNumCopiedValues: numCopied numArgs: 
 		nextPut: (jumpSize bitAnd: 16rFF)
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures>>genPushConsArray: size [
+{ #category : #'bytecode generation' }
+EncoderForV3PlusClosures >> genPushConsArray: size [
 	(size < 0 or: [size > 127]) ifTrue:
 		[^self outOfRangeError: 'numElements' index: size range: 0 to: 127].
 	"138 	10001010 1kkkkkkk 	Push (Array new: kkkkkkk)"
@@ -496,11 +396,8 @@ EncoderForV3PlusClosures>>genPushConsArray: size [
 		nextPut: size + 128
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures>>genPushNewArray: size [
+{ #category : #'bytecode generation' }
+EncoderForV3PlusClosures >> genPushNewArray: size [
 	(size < 0 or: [size > 127]) ifTrue:
 		[^self outOfRangeError: 'numElements' index: size range: 0 to: 127].
 	"138 	10001010 0kkkkkkk 	Pop kkkkkkk into: (Array new: kkkkkkk)"
@@ -509,11 +406,8 @@ EncoderForV3PlusClosures>>genPushNewArray: size [
 		nextPut: size
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures>>genPushRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
+{ #category : #'bytecode generation' }
+EncoderForV3PlusClosures >> genPushRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 	(tempIndex >= 0 and: [tempIndex < 256
 	 and: [tempVectorIndex >= 0 and: [tempVectorIndex < 256]]]) ifTrue:
 		["140 	10001100 kkkkkkkk jjjjjjjj 	Push Temp At kkkkkkkk In Temp Vector At: jjjjjjjj"
@@ -528,11 +422,8 @@ EncoderForV3PlusClosures>>genPushRemoteTemp: tempIndex inVectorAt: tempVectorInd
 		[^self outOfRangeError: 'tempVectorIndex' index: tempVectorIndex range: 0 to: 255]
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures>>genStorePopRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
+{ #category : #'bytecode generation' }
+EncoderForV3PlusClosures >> genStorePopRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 	"142 	10001110 kkkkkkkk jjjjjjjj 	Pop and Store Temp At kkkkkkkk In Temp Vector At: jjjjjjjj"
 	(tempIndex >= 0 and: [tempIndex < 256
 	 and: [tempVectorIndex >= 0 and: [tempVectorIndex < 256]]]) ifTrue:
@@ -547,11 +438,8 @@ EncoderForV3PlusClosures>>genStorePopRemoteTemp: tempIndex inVectorAt: tempVecto
 		[^self outOfRangeError: 'tempVectorIndex' index: tempVectorIndex range: 0 to: 255]
 ]
 
-{
-	#category : #'bytecode generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures>>genStoreRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
+{ #category : #'bytecode generation' }
+EncoderForV3PlusClosures >> genStoreRemoteTemp: tempIndex inVectorAt: tempVectorIndex [
 	"141 	10001101 kkkkkkkk jjjjjjjj 	Store Temp At kkkkkkkk In Temp Vector At: jjjjjjjj"
 	(tempIndex >= 0 and: [tempIndex < 256
 	 and: [tempVectorIndex >= 0 and: [tempVectorIndex < 256]]]) ifTrue:
@@ -566,10 +454,7 @@ EncoderForV3PlusClosures>>genStoreRemoteTemp: tempIndex inVectorAt: tempVectorIn
 		[^self outOfRangeError: 'tempVectorIndex' index: tempVectorIndex range: 0 to: 255]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-EncoderForV3PlusClosures>>supportsClosureOpcodes [
+{ #category : #testing }
+EncoderForV3PlusClosures >> supportsClosureOpcodes [
 	^true
 ]

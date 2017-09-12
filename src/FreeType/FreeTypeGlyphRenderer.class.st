@@ -11,34 +11,24 @@ Class {
 	#classInstVars : [
 		'current'
 	],
-	#category : #FreeType-GlyphRendering,
-	#timestamp : 'tween 4/4/2007 09:48'
+	#category : #FreeType-GlyphRendering
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeGlyphRenderer class>>current [
+{ #category : #'instance creation' }
+FreeTypeGlyphRenderer class >> current [
 	"
 	FreeTypeGlyphRenderer current
 	"
 	^current ifNil:[current := self new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeGlyphRenderer class>>current: aKindOfFreeTypeGlyphRender [
+{ #category : #accessing }
+FreeTypeGlyphRenderer class >> current: aKindOfFreeTypeGlyphRender [
 	current := aKindOfFreeTypeGlyphRender
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeGlyphRenderer>>convert8To32: aGlyphForm [
+{ #category : #private }
+FreeTypeGlyphRenderer >> convert8To32: aGlyphForm [
 		"convert aGlyphForm from the 8 bit deep form produced by FreeType, where each byte represents the intensity of a single pixel, to a 32 bit deep form" 
 	| w h s answer rowstart bytes word littleEndian shift v a colorVal |
 
@@ -66,11 +56,8 @@ FreeTypeGlyphRenderer>>convert8To32: aGlyphForm [
 	^answer
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeGlyphRenderer>>convert8to32: aGlyphForm colorValue: foreColorValue [
+{ #category : #private }
+FreeTypeGlyphRenderer >> convert8to32: aGlyphForm colorValue: foreColorValue [
 	"convert from the 8 bit deep form produced by FreeType, where each byte represents the intensity of a single pixel, to a 32 bit deep form with pixels of color foreColorValue " 
 	| w h s answer rowstart bytes word littleEndian shift v a colorVal foreColorVal foreColorA foreColorR foreColorG foreColorB r g b |
 
@@ -106,11 +93,8 @@ FreeTypeGlyphRenderer>>convert8to32: aGlyphForm colorValue: foreColorValue [
 	^answer
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeGlyphRenderer>>fixBytesForMono: aGlyphForm [
+{ #category : #private }
+FreeTypeGlyphRenderer >> fixBytesForMono: aGlyphForm [
 	"On Windows, the bits in each byte are in reverse order, and inverted.
 	i.e. 2r10100000 should be 2r11111010  to display correctly.
 	This needs further investigation"
@@ -130,11 +114,8 @@ FreeTypeGlyphRenderer>>fixBytesForMono: aGlyphForm [
 	^aGlyphForm
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeGlyphRenderer>>glyphOf: aCharacter colorValue: aColorValue mono: monoBoolean subpixelPosition: sub font: aFreeTypeFont [
+{ #category : #public }
+FreeTypeGlyphRenderer >> glyphOf: aCharacter colorValue: aColorValue mono: monoBoolean subpixelPosition: sub font: aFreeTypeFont [
 
 	| f |
 	f := self 
@@ -151,11 +132,8 @@ FreeTypeGlyphRenderer>>glyphOf: aCharacter colorValue: aColorValue mono: monoBoo
 	
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeGlyphRenderer>>mode41GlyphOf: aCharacter colorValue: aColorValue mono: monoBoolean subpixelPosition: sub font: aFreeTypeFont [
+{ #category : #public }
+FreeTypeGlyphRenderer >> mode41GlyphOf: aCharacter colorValue: aColorValue mono: monoBoolean subpixelPosition: sub font: aFreeTypeFont [
 
 	| f |
 	f := self 
@@ -172,11 +150,8 @@ FreeTypeGlyphRenderer>>mode41GlyphOf: aCharacter colorValue: aColorValue mono: m
 	^f
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeGlyphRenderer>>renderGlyph: aCharacter depth: depth subpixelPosition: sub font: aFreeTypeFont [
+{ #category : #private }
+FreeTypeGlyphRenderer >> renderGlyph: aCharacter depth: depth subpixelPosition: sub font: aFreeTypeFont [
 	"Glyphs are either 1 or 8 bit deep. For 32 bpp we use 8 bits, otherwise 1"
 	| em form glyph charCode slant extraWidth extraHeight boldExtra offsetX offsetY s synthBoldStrength face |
 
@@ -236,11 +211,8 @@ FreeTypeGlyphRenderer>>renderGlyph: aCharacter depth: depth subpixelPosition: su
 	^form
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeGlyphRenderer>>subGlyphOf: aCharacter colorValue: aColorValue mono: monoBoolean subpixelPosition: sub font: aFreeTypeFont [
+{ #category : #public }
+FreeTypeGlyphRenderer >> subGlyphOf: aCharacter colorValue: aColorValue mono: monoBoolean subpixelPosition: sub font: aFreeTypeFont [
 	"the default renderer does not support sub-pixel anti-aliasing,
 	so answer an ordinary glyph"
 	^self mode41GlyphOf: aCharacter colorValue: aColorValue mono: monoBoolean subpixelPosition: sub font: aFreeTypeFont

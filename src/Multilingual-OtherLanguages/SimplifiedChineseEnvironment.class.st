@@ -4,44 +4,31 @@ This class provides the Simplified Chinese support (Used mainly in Mainland Chin
 Class {
 	#name : #SimplifiedChineseEnvironment,
 	#superclass : #LanguageEnvironment,
-	#category : #Multilingual-OtherLanguages,
-	#timestamp : '<historical>'
+	#category : #Multilingual-OtherLanguages
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SimplifiedChineseEnvironment class>>initialize [
+{ #category : #'class initialization' }
+SimplifiedChineseEnvironment class >> initialize [
 
 	EncodedCharSet declareEncodedCharSet: self atIndex: 6+1.
 ]
 
-{
-	#category : #'subclass responsibilities',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SimplifiedChineseEnvironment class>>leadingChar [
+{ #category : #'subclass responsibilities' }
+SimplifiedChineseEnvironment class >> leadingChar [
 
 	^0
 ]
 
-{
-	#category : #'subclass responsibilities',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SimplifiedChineseEnvironment class>>supportedLanguages [
+{ #category : #'subclass responsibilities' }
+SimplifiedChineseEnvironment class >> supportedLanguages [
 	"Return the languages that this class supports. 
 	Any translations for those languages will use this class as their environment."
 	
 	^#('zh' )
 ]
 
-{
-	#category : #'language methods',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SimplifiedChineseEnvironment class>>traditionalCharsetClass [
+{ #category : #'language methods' }
+SimplifiedChineseEnvironment class >> traditionalCharsetClass [
 
 	^ GB2312
 

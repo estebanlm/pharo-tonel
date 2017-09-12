@@ -11,15 +11,11 @@ Class {
 	#classInstVars : [
 		'disabledExtensions'
 	],
-	#category : #GT-Spotter-Model,
-	#timestamp : 'TudorGirba 1/21/2016 22:55'
+	#category : #GT-Spotter-Model
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExtensionSettings class>>catalogSettingsOn: aBuilder [
+{ #category : #settings }
+GTSpotterExtensionSettings class >> catalogSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #gtspotter)
 		parent: #gt;
@@ -48,27 +44,18 @@ GTSpotterExtensionSettings class>>catalogSettingsOn: aBuilder [
 				
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExtensionSettings class>>disableProcessorDefinedInMethod: aMethod [
+{ #category : #settings }
+GTSpotterExtensionSettings class >> disableProcessorDefinedInMethod: aMethod [
 	self disabledExtensions add: (self internalKeyForMethod: aMethod)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExtensionSettings class>>disabledExtensions [
+{ #category : #private }
+GTSpotterExtensionSettings class >> disabledExtensions [
 	^ disabledExtensions ifNil: [ disabledExtensions := Set new ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExtensionSettings class>>doesNotUnderstand: aMessage [
+{ #category : #private }
+GTSpotterExtensionSettings class >> doesNotUnderstand: aMessage [
 	aMessage arguments isEmpty
 		ifTrue: [ ^ (self disabledExtensions includes: aMessage selector) not ].
 	aMessage arguments size = 1
@@ -83,19 +70,13 @@ GTSpotterExtensionSettings class>>doesNotUnderstand: aMessage [
 	^ super doesNotUnderstand: aMessage
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExtensionSettings class>>enableProcessorDefinedInMethod: aMethod [
+{ #category : #settings }
+GTSpotterExtensionSettings class >> enableProcessorDefinedInMethod: aMethod [
 	self disabledExtensions remove: (self internalKeyForMethod: aMethod)
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExtensionSettings class>>groupedAndSortedSpotterExtensions [
+{ #category : #settings }
+GTSpotterExtensionSettings class >> groupedAndSortedSpotterExtensions [
 	"Return a list of associations in which:
 		the key is a class
 		the value is the list of spotter extensions.
@@ -107,19 +88,13 @@ GTSpotterExtensionSettings class>>groupedAndSortedSpotterExtensions [
 	^ groupedExtensions asSortedCollection: [ :a1 :a2 | a1 key name < a2 key name ]. 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExtensionSettings class>>internalKeyForMethod: each [
+{ #category : #private }
+GTSpotterExtensionSettings class >> internalKeyForMethod: each [
 	^ (each methodClass name , '_' , each selector allButLast) asSymbol
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExtensionSettings class>>shouldSpotterIgnoreProcessorDefinedInMethod: aCompiledMethod [
+{ #category : #settings }
+GTSpotterExtensionSettings class >> shouldSpotterIgnoreProcessorDefinedInMethod: aCompiledMethod [
 	"
 	Return a boolean value indicating if the spotter extension method, provided as argument, has to be disabled or not
 	 
@@ -128,11 +103,8 @@ GTSpotterExtensionSettings class>>shouldSpotterIgnoreProcessorDefinedInMethod: a
 	^ self disabledExtensions includes: aCompiledMethod methodClass name, '_', aCompiledMethod selector allButLast
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterExtensionSettings class>>spotterExtensionTitleOf: extensionAsCompiledMethod [
+{ #category : #settings }
+GTSpotterExtensionSettings class >> spotterExtensionTitleOf: extensionAsCompiledMethod [
 	"
 	Return an approximation of a description of the extension provided as argument.
 	The argument has to be a compiled method representing a Spotter extension

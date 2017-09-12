@@ -1,33 +1,20 @@
-"
-
-"
 Class {
 	#name : #GTMockSpotter,
 	#superclass : #GTSpotter,
-	#category : #GT-Tests-Spotter-Scripting-Mocks,
-	#timestamp : ''
+	#category : #GT-Tests-Spotter-Scripting-Mocks
 }
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTMockSpotter>>defaultExceptionHandler [
+{ #category : #accessing-defaults }
+GTMockSpotter >> defaultExceptionHandler [
 	^ GTSpotterDebuggingExceptionHandler new
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTMockSpotter>>defaultPagerModel [
+{ #category : #accessing-defaults }
+GTMockSpotter >> defaultPagerModel [
 	^ GLMMockPagerModel new
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTMockSpotter>>defaultStep [
+{ #category : #accessing-defaults }
+GTMockSpotter >> defaultStep [
 	^ GTMockSpotterStep new
 ]

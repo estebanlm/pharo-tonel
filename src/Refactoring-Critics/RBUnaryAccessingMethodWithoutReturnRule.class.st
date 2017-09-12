@@ -4,32 +4,22 @@ Checks for any unary ""accessing"" methods without explicit return statements.
 Class {
 	#name : #RBUnaryAccessingMethodWithoutReturnRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'monty 6/12/2015 17:22'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnaryAccessingMethodWithoutReturnRule class>>checksMethod [
+{ #category : #testing }
+RBUnaryAccessingMethodWithoutReturnRule class >> checksMethod [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnaryAccessingMethodWithoutReturnRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBUnaryAccessingMethodWithoutReturnRule class >> uniqueIdentifierName [
 
 	^ 'UnaryAccessingMethodWithoutReturnRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnaryAccessingMethodWithoutReturnRule>>basicCheck: aMethod [
+{ #category : #running }
+RBUnaryAccessingMethodWithoutReturnRule >> basicCheck: aMethod [
 	(aMethod numArgs > 0 or: [ aMethod isAbstract ])
 		ifTrue: [ ^ false ].
 	((aMethod methodClass organization categoryOfElement: aMethod selector) asString
@@ -42,27 +32,18 @@ RBUnaryAccessingMethodWithoutReturnRule>>basicCheck: aMethod [
 	^ true
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnaryAccessingMethodWithoutReturnRule>>checkMethod: aMethod [
+{ #category : #running }
+RBUnaryAccessingMethodWithoutReturnRule >> checkMethod: aMethod [
 	(self basicCheck: aMethod)
 		ifTrue: [ result addMethod: aMethod ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnaryAccessingMethodWithoutReturnRule>>group [
+{ #category : #accessing }
+RBUnaryAccessingMethodWithoutReturnRule >> group [
 	^ 'Potential Bugs'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBUnaryAccessingMethodWithoutReturnRule>>name [
+{ #category : #accessing }
+RBUnaryAccessingMethodWithoutReturnRule >> name [
 	^ 'Unary "accessing" method without explicit return'
 ]

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MBCommandMetacelloTests,
 	#superclass : #MBCommandTests,
-	#category : #Versionner-Tests-Core-Commands,
-	#timestamp : ''
+	#category : #Versionner-Tests-Core-Commands
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommandMetacelloTests>>testAddConfigurationCmd [
+{ #category : #tests }
+MBCommandMetacelloTests >> testAddConfigurationCmd [
 
 	| versionString packageNames projectNames project version packages projects |
 	self tearDownPackages addAll: #('ConfigurationOfMBFooTests' 'MBFooCommandTestA' 'MBFooCommandTestB'). "must be BEFORE the load"
@@ -41,19 +34,12 @@ MBCommandMetacelloTests>>testAddConfigurationCmd [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommandMetacelloTests>>testConfigurationChanges [
-
+{ #category : #tests }
+MBCommandMetacelloTests >> testConfigurationChanges [
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommandMetacelloTests>>testRemoveVersionCmd01 [
+{ #category : #tests }
+MBCommandMetacelloTests >> testRemoveVersionCmd01 [
 	"Issue 117: Removing a version does not update the #development/#stable symbolic versions."
 
 	| configName class configurationRoot configInfo versionInfo cmd |
@@ -78,11 +64,8 @@ MBCommandMetacelloTests>>testRemoveVersionCmd01 [
 	self should: [ class project version: '1.0' ] raise: MetacelloVersionDoesNotExistError
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommandMetacelloTests>>testRemoveVersionCmd02 [
+{ #category : #tests }
+MBCommandMetacelloTests >> testRemoveVersionCmd02 [
 	"Remove a bleedingEdge version that is imported ... should abort the operation"
 
 	| configName class configurationRoot configInfo versionInfo cmd versionString |
@@ -104,11 +87,8 @@ MBCommandMetacelloTests>>testRemoveVersionCmd02 [
 	self assert: versionString = (class project version: #bleedingEdge) versionString
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommandMetacelloTests>>testRemoveVersionCmd03 [
+{ #category : #tests }
+MBCommandMetacelloTests >> testRemoveVersionCmd03 [
 	"Remove a bleedingEdge version with no imports"
 
 	| configName class configurationRoot configInfo versionInfo cmd versionString |
@@ -132,11 +112,8 @@ MBCommandMetacelloTests>>testRemoveVersionCmd03 [
 	self should: [ class project version: versionString ] raise: MetacelloVersionDoesNotExistError
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommandMetacelloTests>>testRemoveVersionCmd04 [
+{ #category : #tests }
+MBCommandMetacelloTests >> testRemoveVersionCmd04 [
 	"Remove a bleedingEdge version with no imports"
 
 	| configName class configurationRoot configInfo versionInfo cmd versionString |
@@ -160,11 +137,8 @@ MBCommandMetacelloTests>>testRemoveVersionCmd04 [
 	self should: [ class project version: versionString ] raise: MetacelloVersionDoesNotExistError
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBCommandMetacelloTests>>testUsernamePassword [
+{ #category : #tests }
+MBCommandMetacelloTests >> testUsernamePassword [
 	
 	| cmd configInfo |
 	gofer version: 'ConfigurationOfMBFooTests-dkh.1'.

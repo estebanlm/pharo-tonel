@@ -7,15 +7,11 @@ This is the unit test for the class MailAddressParser. Unit tests are a good way
 Class {
 	#name : #MailAddressParserTest,
 	#superclass : #TestCase,
-	#category : #Network-Tests-RFC822,
-	#timestamp : '<historical>'
+	#category : #Network-Tests-RFC822
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MailAddressParserTest>>testAddressesIn [
+{ #category : #tests }
+MailAddressParserTest >> testAddressesIn [
 
 	| testString correctAnswer |
 
@@ -26,11 +22,8 @@ correctAnswer := #('joe@lama.com' 'joe2@lama.com' 'joe3@lama.com' 'joe4' 'joe5@a
 	self assert: (MailAddressParser addressesIn: testString) equals:  correctAnswer
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MailAddressParserTest>>testAmpersand [
+{ #category : #tests }
+MailAddressParserTest >> testAmpersand [
 
 	| testString correctAnswer |
 

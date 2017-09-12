@@ -32,15 +32,11 @@ Class {
 		'FullscreenMargin',
 		'TopWindow'
 	],
-	#category : #Morphic-Widgets-Windows-Widgets,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Windows-Widgets
 }
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>borderWidth [
+{ #category : #initializing }
+SystemWindow class >> borderWidth [
 
 	"Making changes to this for some reason requires repositioning of CornerGripMorphs.
 	Edit BorderedMorph#addCornerGrip and play with offsets to get them right if you increase
@@ -50,11 +46,8 @@ SystemWindow class>>borderWidth [
 	^ self theme windowBorderWidthFor: self
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>closeBoxImage [
+{ #category : #initializing }
+SystemWindow class >> closeBoxImage [
 	"Supplied here because we don't necessarily have ComicBold"
 
 	^ CloseBoxImage ifNil: [CloseBoxImage := (Form
@@ -64,11 +57,8 @@ SystemWindow class>>closeBoxImage [
 	offset: 0@0)]
 ]
 
-{
-	#category : #'top window',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>closeTopWindow [
+{ #category : #'top window' }
+SystemWindow class >> closeTopWindow [
 	"Try to close the top window.  It may of course decline"
 	TopWindow ifNotNil: [ :window | 
 		TopWindow := nil. 
@@ -77,11 +67,8 @@ SystemWindow class>>closeTopWindow [
 
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>collapseBoxImage [
+{ #category : #initializing }
+SystemWindow class >> collapseBoxImage [
 	"Supplied here because we don't necessarily have ComicBold"
 
 	^ CollapseBoxImage ifNil: [ CollapseBoxImage := (Form
@@ -91,11 +78,8 @@ SystemWindow class>>collapseBoxImage [
 	offset: 0@0)]
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>expandBoxImage [
+{ #category : #initializing }
+SystemWindow class >> expandBoxImage [
 
 	^ (Form
 	extent: 10@10
@@ -104,55 +88,37 @@ SystemWindow class>>expandBoxImage [
 	offset: 0@0)
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>fullscreenMargin [
+{ #category : #settings }
+SystemWindow class >> fullscreenMargin [
 	^ FullscreenMargin ifNil: [FullscreenMargin := 25]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>fullscreenMargin: anInteger [
+{ #category : #settings }
+SystemWindow class >> fullscreenMargin: anInteger [
 	FullscreenMargin := anInteger
 ]
 
-{
-	#category : #'private-menu building',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>icons [
+{ #category : #'private-menu building' }
+SystemWindow class >> icons [
 
 	^ Smalltalk ui icons.
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>initialize [
+{ #category : #initializing }
+SystemWindow class >> initialize [
 
 	CollapseBoxImage := nil.
 	CloseBoxImage := nil.
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>labelled: labelString [
+{ #category : #'instance creation' }
+SystemWindow class >> labelled: labelString [
 	^self new setLabel: labelString
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>menuBoxImage [
+{ #category : #initializing }
+SystemWindow class >> menuBoxImage [
 
 	^ (Form
 	extent: 10@10
@@ -161,11 +127,8 @@ SystemWindow class>>menuBoxImage [
 	offset: 0@0)
 ]
 
-{
-	#category : #'top window',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>noteTopWindowIn: aWorld [
+{ #category : #'top window' }
+SystemWindow class >> noteTopWindowIn: aWorld [
 	"Clear the current top window and activate the topmost visible window"
 	
 	TopWindow := nil.
@@ -176,51 +139,36 @@ SystemWindow class>>noteTopWindowIn: aWorld [
 			^m activate]]
 ]
 
-{
-	#category : #'top window',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>sendTopWindowToBack [
+{ #category : #'top window' }
+SystemWindow class >> sendTopWindowToBack [
  	"Send the top window of the world to the back. Relies on #submorphs array being ordered top to bottom. "
 	ActiveWorld submorphs 
 		detect: [ :morph | morph isSystemWindow ] 
 		ifFound: [ :morph | morph sendToBack ].
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>taskbarIconName [
+{ #category : #icons }
+SystemWindow class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^#smallWindowIcon
 ]
 
-{
-	#category : #'top window',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>topWindow [
+{ #category : #'top window' }
+SystemWindow class >> topWindow [
 	^ TopWindow
 ]
 
-{
-	#category : #'top window',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>wakeUpTopWindowUponStartup [
+{ #category : #'top window' }
+SystemWindow class >> wakeUpTopWindowUponStartup [
 	TopWindow ifNotNil:
 		[TopWindow isCollapsed ifFalse:
 			[TopWindow model ifNotNil:
 				[TopWindow model modelWakeUpIn: TopWindow]]]
 ]
 
-{
-	#category : #'menu items',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>windowMenuOn: aBuilder [
+{ #category : #'menu items' }
+SystemWindow class >> windowMenuOn: aBuilder [
 	"To inject your custom items in a specific place, note that each item increases in order by 1. For example, if you wanted your item to be the second item, you could give it an #order: 1.5"
 
 	<windowMenu>
@@ -268,11 +216,8 @@ SystemWindow class>>windowMenuOn: aBuilder [
 				action: [ aBuilder model setWindowColor ] ]
 ]
 
-{
-	#category : #'top window',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow class>>windowsIn: aWorld satisfying: windowBlock [
+{ #category : #'top window' }
+SystemWindow class >> windowsIn: aWorld satisfying: windowBlock [
 	| windows |
 
 	windows := OrderedCollection new.
@@ -288,11 +233,8 @@ SystemWindow class>>windowsIn: aWorld satisfying: windowBlock [
 	^ windows
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>activate [
+{ #category : #activation }
+SystemWindow >> activate [
 	"Activate the owner too."
 	
 	self activatedModalChild ifTrue: [ ^self ].
@@ -310,21 +252,15 @@ SystemWindow>>activate [
 	self positionModalOwner.
 ]
 
-{
-	#category : #'top window',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>activateAndForceLabelToShow [
+{ #category : #'top window' }
+SystemWindow >> activateAndForceLabelToShow [
 	self activate.
 	bounds top < 0 ifTrue:
 		[self position: (self position x @ 0)]
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>activatedModalChild [
+{ #category : #activation }
+SystemWindow >> activatedModalChild [
 
 	self modalChild ifNotNil: [ :modalChild |
 		modalChild owner ifNotNil: [ 
@@ -338,11 +274,8 @@ SystemWindow>>activatedModalChild [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addCloseBox [
+{ #category : #initialization }
+SystemWindow >> addCloseBox [
 	"If I have a labelArea, add a close box to it"
 	| frame |
 	labelArea
@@ -353,11 +286,8 @@ SystemWindow>>addCloseBox [
 	labelArea addMorphBack: closeBox
 ]
 
-{
-	#category : #'menu actions',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addCustomMenuItems: aCustomMenu hand: aHandMorph [
+{ #category : #'menu actions' }
+SystemWindow >> addCustomMenuItems: aCustomMenu hand: aHandMorph [
 	super addCustomMenuItems: aCustomMenu hand: aHandMorph.
 "template..."
 	aCustomMenu addLine.
@@ -365,43 +295,31 @@ SystemWindow>>addCustomMenuItems: aCustomMenu hand: aHandMorph [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addLabelArea [
+{ #category : #initialization }
+SystemWindow >> addLabelArea [
 
 	labelArea :=self theme newWindowHeaderFor: self.
 	self addMorph: labelArea.
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addMorph: aMorph frame: rectangle [
+{ #category : #panes }
+SystemWindow >> addMorph: aMorph frame: rectangle [
 	
 	^ self addMorph: aMorph fullFrame: rectangle 
 
 
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>addPaneSplittersIfNeeded [
+{ #category : #activation }
+SystemWindow >> addPaneSplittersIfNeeded [
 
 	(isCollapsed not 
 		and: [ self paneMorphs isNotEmpty and: [self splitters isEmpty]])
 			ifTrue: [self addPaneSplitters].
 ]
 
-{
-	#category : #'top window',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>adjustBorderUponActivationWhenLabeless [
+{ #category : #'top window' }
+SystemWindow >> adjustBorderUponActivationWhenLabeless [
 	"Adjust the border upon, um, activation when, um, labelless"
 
 	| aWidth |
@@ -409,11 +327,8 @@ SystemWindow>>adjustBorderUponActivationWhenLabeless [
 		[self acquireBorderWidth: aWidth]
 ]
 
-{
-	#category : #'top window',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>adjustBorderUponDeactivationWhenLabeless [
+{ #category : #'top window' }
+SystemWindow >> adjustBorderUponDeactivationWhenLabeless [
 	"Adjust the border upon deactivation when, labelless"
 
 	| aWidth |
@@ -421,11 +336,8 @@ SystemWindow>>adjustBorderUponDeactivationWhenLabeless [
 		[self acquireBorderWidth: aWidth]
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>amendSteppingStatus [
+{ #category : #stepping }
+SystemWindow >> amendSteppingStatus [
 	"Circumstances having changed, find out whether stepping is wanted and assure that the new policy is carried out"
 
 	self wantsSteps
@@ -435,20 +347,14 @@ SystemWindow>>amendSteppingStatus [
 			[self stopStepping]
 ]
 
-{
-	#category : #announcement,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>announce: anAnnouncement [
+{ #category : #announcement }
+SystemWindow >> announce: anAnnouncement [
 	"announcer is lazy initialized. If announcer is not set, this means that there is no listener, no need to propagate the announcement therefore"
 	self doAnnounce: anAnnouncement 
 ]
 
-{
-	#category : #announcement,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>announceActivated [
+{ #category : #announcement }
+SystemWindow >> announceActivated [
 
 	self announce: (
 		WindowActivated new 
@@ -457,11 +363,8 @@ SystemWindow>>announceActivated [
 	).
 ]
 
-{
-	#category : #announcement,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>announceDeActivated [
+{ #category : #announcement }
+SystemWindow >> announceDeActivated [
 
 	self announce: (
 		WindowDeActivated new 
@@ -470,19 +373,13 @@ SystemWindow>>announceDeActivated [
 	).
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>applyModelExtent [
+{ #category : #initialization }
+SystemWindow >> applyModelExtent [
 	self extent: model initialExtent 
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>basicActivate [
+{ #category : #activation }
+SystemWindow >> basicActivate [
 	"Bring me to the front and make me able to respond to mouse and keyboard."
 
 	| outerMorph |
@@ -515,11 +412,8 @@ SystemWindow>>basicActivate [
 
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>beResizeable [
+{ #category : #controls }
+SystemWindow >> beResizeable [
 
 	isResizeable := true.
 	
@@ -527,11 +421,8 @@ SystemWindow>>beResizeable [
 	self isResizeable ifTrue: [ self addGripsIfWanted ]
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>beTopWindow [
+{ #category : #activation }
+SystemWindow >> beTopWindow [
 	
 	| oldTopWindow |
 	
@@ -543,11 +434,8 @@ SystemWindow>>beTopWindow [
 	self announceActivated.
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>beUnresizeable [
+{ #category : #controls }
+SystemWindow >> beUnresizeable [
 
 	isResizeable := false.
 	
@@ -555,11 +443,8 @@ SystemWindow>>beUnresizeable [
 	self isResizeable ifFalse: [ self removeGrips ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>boxExtent [
+{ #category : #initialization }
+SystemWindow >> boxExtent [
 	"answer the extent to use in all the buttons.  
 	The label height is used to be proportional to the standard window label font"
 	
@@ -567,47 +452,32 @@ SystemWindow>>boxExtent [
 	^ (14 @ 14) max: label height @ label height 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>canBeMaximized [
+{ #category : #testing }
+SystemWindow >> canBeMaximized [
 	"Answer whether we are not we can be maximised."
 
 	^ self isResizeable and: [ self isNotMaximized ]
 ]
 
-{
-	#category : #'menu actions',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>changeColor [
+{ #category : #'menu actions' }
+SystemWindow >> changeColor [
 	"Change the color of the receiver -- triggered, e.g. from a menu.  This variant allows the recolor triggered from the window's halo recolor handle to have the same result as choosing change-window-color from the window-title menu"
 	self setWindowColor 
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>close [
+{ #category : #open/close }
+SystemWindow >> close [
 	^ self delete
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>collapse [
+{ #category : #resize/collapse }
+SystemWindow >> collapse [
 	self isCollapsed ifFalse:[self collapseOrExpand].
 
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>collapseOrExpand [
+{ #category : #resize/collapse }
+SystemWindow >> collapseOrExpand [
 	"Collapse or expand the window, depending on existing state.
 	Use the taskbar if present, otherwise do as normal."
 	
@@ -649,27 +519,18 @@ SystemWindow>>collapseOrExpand [
 			yourself).
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>collapsedFrame [
+{ #category : #resize/collapse }
+SystemWindow >> collapsedFrame [
 	^ collapsedFrame
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>colorForInsets [
+{ #category : #drawing }
+SystemWindow >> colorForInsets [
 	^self paneColor colorForInsets
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>createBox [
+{ #category : #initialization }
+SystemWindow >> createBox [
 	"create a button with default to be used in the label area"
 	"Transcript show: self paneColor asString;  
 	cr."
@@ -683,11 +544,8 @@ SystemWindow>>createBox [
 	^ box
 ]
 
-{
-	#category : #'menu actions',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>createWindowGroup [
+{ #category : #'menu actions' }
+SystemWindow >> createWindowGroup [
 
   | group pos ext |
   
@@ -701,38 +559,26 @@ SystemWindow>>createWindowGroup [
   
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>defaultBorderColor [
+{ #category : #initialization }
+SystemWindow >> defaultBorderColor [
 	"answer the default border color/fill style for the receiver"
 	^ #raised.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>defaultColor [
+{ #category : #initialization }
+SystemWindow >> defaultColor [
 	"answer the default color/fill style for the receiver"
 	^ self theme backgroundColor
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>defaultIsResizeable [
+{ #category : #controls }
+SystemWindow >> defaultIsResizeable [
 
 	^ true
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>delete [
+{ #category : #open/close }
+SystemWindow >> delete [
 	"Should activate window before asking model if okToChange
 	since likely that a confirmation dialog will be requested.
 	Don't if not owned by the world though."
@@ -766,78 +612,54 @@ SystemWindow>>delete [
 
 ]
 
-{
-	#category : #'menu actions',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>deleteCloseBox [
+{ #category : #'menu actions' }
+SystemWindow >> deleteCloseBox [
 	closeBox ifNotNil:
 		[closeBox delete.
 		closeBox := nil]
 ]
 
-{
-	#category : #'menu building',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>discoveredMenuPragmaKeyword [
+{ #category : #'menu building' }
+SystemWindow >> discoveredMenuPragmaKeyword [
 
 	^ 'windowMenu'.
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>doFastFrameDrag: grabPoint [
+{ #category : #events }
+SystemWindow >> doFastFrameDrag: grabPoint [
 	"Do fast frame dragging from the given point"
 
 	(FastDraggingFrameMorph forDragging: self clickedAt: grabPoint) openInWorld
 
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>doFastWindowReframe: aSideOrCornerName [
+{ #category : #resize/collapse }
+SystemWindow >> doFastWindowReframe: aSideOrCornerName [
 	"Do fast frame resizing  from the given corner or side"
 
 	(FastDraggingFrameMorph forResizing: self fromLocation: aSideOrCornerName) openInWorld
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>embeddable [
+{ #category : #accessing }
+SystemWindow >> embeddable [
 	^ embeddable ifNil: [embeddable := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>embeddable: aBoolean [
+{ #category : #accessing }
+SystemWindow >> embeddable: aBoolean [
 	embeddable := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>embeddedWindowOrNil [
+{ #category : #accessing }
+SystemWindow >> embeddedWindowOrNil [
 
 	"answer nil for common morphs, yourself from system windows and first submorph for transformation morphs"
 	
 	^ self 
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>existingPaneColor [
+{ #category : #panes }
+SystemWindow >> existingPaneColor [
 	"Answer the existing pane color for the window, obtaining it from the first paneMorph if any, and fall back on using the second stripe color if necessary."
 
 	| aColor |
@@ -846,20 +668,14 @@ SystemWindow>>existingPaneColor [
 	^aColor.
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>expand [
+{ #category : #resize/collapse }
+SystemWindow >> expand [
 	self isCollapsed ifTrue:[self collapseOrExpand].
 
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>extent: aPoint  [
+{ #category : #resize/collapse }
+SystemWindow >> extent: aPoint [ 
 	"Set the receiver's extent to value provided. Respect my minimumExtent."
 
 	| newExtent w oldExtent|
@@ -900,21 +716,15 @@ SystemWindow>>extent: aPoint  [
 
 ]
 
-{
-	#category : #label,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>externalName [
+{ #category : #label }
+SystemWindow >> externalName [
 	"Answer the name by which the receiver is known in the UI"
 
 	^ labelString
 ]
 
-{
-	#category : #'menu building',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>fallbackMenuOn: menu [
+{ #category : #'menu building' }
+SystemWindow >> fallbackMenuOn: menu [
 	"Build the menu that is put up if something is going wrong with the menubuilder"
 	
 	menu
@@ -926,47 +736,32 @@ SystemWindow>>fallbackMenuOn: menu [
 	menu lastItem icon: self theme windowCloseForm.
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>fastFramingOn [
+{ #category : #resize/collapse }
+SystemWindow >> fastFramingOn [
 
 	^self theme settings fastDragging and: [self isFlexed not]
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>fullFrame [
+{ #category : #resize/collapse }
+SystemWindow >> fullFrame [
 	^ fullFrame
 ]
 
-{
-	#category : #'menu actions',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>fullscreenBounds [
+{ #category : #'menu actions' }
+SystemWindow >> fullscreenBounds [
 	"Answer the bounds that the receiver would take if expanded to fullscreen."
 	
 	^ (RealEstateAgent maximumUsableAreaInWorld: self world) insetBy: self fullscreenMargin 
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>fullscreenMargin [
+{ #category : #settings }
+SystemWindow >> fullscreenMargin [
 	^ self class fullscreenMargin
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>getBoundsWithFlex [
+{ #category : #resize/collapse }
+SystemWindow >> getBoundsWithFlex [
 	"Return the lastest bounds rectangle with origin forced to global coordinates"
 
 	self isFlexed
@@ -976,20 +771,14 @@ SystemWindow>>getBoundsWithFlex [
 
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>getCollapsedFrame [
+{ #category : #resize/collapse }
+SystemWindow >> getCollapsedFrame [
 
 	^RealEstateAgent assignCollapseFrameFor: self.
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>grabSelfOrTopRenderer: evt [
+{ #category : #events }
+SystemWindow >> grabSelfOrTopRenderer: evt [
 
 	| renderer |
 	
@@ -1002,11 +791,8 @@ SystemWindow>>grabSelfOrTopRenderer: evt [
 	]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>gradientWithColor: aColor [
+{ #category : #initialization }
+SystemWindow >> gradientWithColor: aColor [
 
 	| ramp |
 	ramp := {0.0 -> Color white. 1.0 -> aColor}.
@@ -1018,11 +804,8 @@ SystemWindow>>gradientWithColor: aColor [
 		normal: 223 @ 0.
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>handleListenEvent: evt [
+{ #category : #events }
+SystemWindow >> handleListenEvent: evt [
 	"Make sure we lock our contents after DnD has finished"
 	evt isMouse ifFalse:[^self].
 	evt hand hasSubmorphs ifTrue:[^self]. "still dragging"
@@ -1030,59 +813,41 @@ SystemWindow>>handleListenEvent: evt [
 	evt hand removeMouseListener: self.
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>handlesMouseDown: evt  [
+{ #category : #events }
+SystemWindow >> handlesMouseDown: evt [ 
 	"If I am not the topWindow, then I will only respond to dragging by the title bar.
 	Any other click will only bring me to the top"
 	
 	^ self isEmbedded not
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>handlesMouseOverDragging: evt [
+{ #category : #events }
+SystemWindow >> handlesMouseOverDragging: evt [
 	^true
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>hasUnacceptedEdits  [
+{ #category : #compatibility }
+SystemWindow >> hasUnacceptedEdits [ 
 
 	^ (self submorphs select: [:e | e respondsTo: #hasUnacceptedEdits ]) anySatisfy: [:e | e hasUnacceptedEdits ]
 ]
 
-{
-	#category : #thumbnail,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>icon [
+{ #category : #thumbnail }
+SystemWindow >> icon [
 	"Answer a form with an icon to represent the receiver"
 
 	^ self iconNamed: #windowIcon
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>initialExtent [
+{ #category : #open/close }
+SystemWindow >> initialExtent [
 	^ (self model respondsTo: #initialExtent)
 		ifTrue: [self model initialExtent]
 		ifFalse: [RealEstateAgent standardWindowExtent]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>initialize [
+{ #category : #initialization }
+SystemWindow >> initialize [
 	"Initialize a system window. Add label, stripes, etc., if desired"
 	
 	super initialize.
@@ -1104,39 +869,27 @@ SystemWindow>>initialize [
 	updatablePanes := Array new
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>isCollapsed [
+{ #category : #resize/collapse }
+SystemWindow >> isCollapsed [
 	^ isCollapsed
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>isDisplayed [
+{ #category : #testing }
+SystemWindow >> isDisplayed [
 	" Answer true if I am currently displayed in the World"
 	
 	^ self world notNil
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>isResizeable [
+{ #category : #controls }
+SystemWindow >> isResizeable [
 	"Answer whether we are not we can be resized."
 
 	^ isResizeable ifNil: [ isResizeable := self defaultIsResizeable ]
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>isResizeable: aBoolean [
+{ #category : #controls }
+SystemWindow >> isResizeable: aBoolean [
 
 	aBoolean = isResizeable ifTrue: [ ^ self ].
 	aBoolean
@@ -1144,54 +897,36 @@ SystemWindow>>isResizeable: aBoolean [
 		ifFalse: [ self beUnresizeable ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>isSystemWindow [
+{ #category : #testing }
+SystemWindow >> isSystemWindow [
 "answer whatever the receiver is a SystemWindow"
 	^ true
 ]
 
-{
-	#category : #'top window',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>isTopWindow [
+{ #category : #'top window' }
+SystemWindow >> isTopWindow [
 
 	^self == TopWindow 
 ]
 
-{
-	#category : #label,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>label [
+{ #category : #label }
+SystemWindow >> label [
 	^ labelString
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>labelRect [
+{ #category : #geometry }
+SystemWindow >> labelRect [
 	^ self innerBounds withHeight: self labelHeight.
 
 ]
 
-{
-	#category : #label,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>labelWidgetAllowance [
+{ #category : #label }
+SystemWindow >> labelWidgetAllowance [
 	^ labelWidgetAllowance ifNil: [self setLabelWidgetAllowance]
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>layoutBounds [
+{ #category : #layout }
+SystemWindow >> layoutBounds [
 	"Bounds of pane area only."
 	| box |
 
@@ -1199,11 +934,8 @@ SystemWindow>>layoutBounds [
 	^box withTop: box top + self labelHeight
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>makeMeVisible  [
+{ #category : #drawing }
+SystemWindow >> makeMeVisible [ 
 
 	self world extent > (0@0) ifFalse: [^ self].
 
@@ -1218,11 +950,8 @@ SystemWindow>>makeMeVisible  [
 
 ]
 
-{
-	#category : #'menu actions',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>makeSecondTopmost [
+{ #category : #'menu actions' }
+SystemWindow >> makeSecondTopmost [
 	| aWorld |
 	aWorld := self world.
 	aWorld submorphs
@@ -1232,51 +961,36 @@ SystemWindow>>makeSecondTopmost [
 			aWorld addMorph: self behind: nextWindow ]
 ]
 
-{
-	#category : #'menu actions',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>makeUnclosable [
+{ #category : #'menu actions' }
+SystemWindow >> makeUnclosable [
 	mustNotClose := true.
 	self deleteCloseBox
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>maximumExtent [
+{ #category : #initialization }
+SystemWindow >> maximumExtent [
 	"This returns the maximum extent that the morph may be expanded to.
 	Return nil if this property has not been set."
 
 	^ self valueOfProperty: #maximumExtent
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>maximumExtent: aPoint [
+{ #category : #initialization }
+SystemWindow >> maximumExtent: aPoint [
 	"This returns the maximum extent that the morph may be expanded to.
 	Return nil if this property has not been set."
 
 	^ self setProperty: #maximumExtent toValue: aPoint
 ]
 
-{
-	#category : #'menu building',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>menuBuilder [
+{ #category : #'menu building' }
+SystemWindow >> menuBuilder [
 
 	^ menuBuilder ifNil: [ menuBuilder := PragmaMenuBuilder pragmaKeyword: self discoveredMenuPragmaKeyword model: self ].
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>minimizeOrRestore [
+{ #category : #resize/collapse }
+SystemWindow >> minimizeOrRestore [
 	"Collapse or expand the window, depending on existing state"
 	
 	|mc windowEvent |
@@ -1321,11 +1035,8 @@ SystemWindow>>minimizeOrRestore [
 	self announce: windowEvent.
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>mouseDown: evt [
+{ #category : #events }
+SystemWindow >> mouseDown: evt [
 	"Changed to properly process the mouse down event if passing to
 	submorphs."
 		
@@ -1346,11 +1057,8 @@ SystemWindow>>mouseDown: evt [
 	
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>mouseEnterDragging: evt [
+{ #category : #events }
+SystemWindow >> mouseEnterDragging: evt [
 	"unlock children for drop operations"
 	(self isTopWindow not and:[evt hand hasSubmorphs]) ifTrue:[
 		self submorphsDo:[:m| m unlock].
@@ -1358,11 +1066,8 @@ SystemWindow>>mouseEnterDragging: evt [
 	].
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>mouseLeaveDragging: evt [
+{ #category : #events }
+SystemWindow >> mouseLeaveDragging: evt [
 	"lock children after drop operations"
 	(self isTopWindow not and:[evt hand hasSubmorphs]) ifTrue:[
 		self lockInactivePortions.
@@ -1370,11 +1075,8 @@ SystemWindow>>mouseLeaveDragging: evt [
 	].
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>mouseMove: evt [
+{ #category : #events }
+SystemWindow >> mouseMove: evt [
 	"Handle a mouse-move event"
 
 	self basicIsSticky ifFalse:[
@@ -1384,29 +1086,20 @@ SystemWindow>>mouseMove: evt [
 	]. 
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>mouseUp: evt [
+{ #category : #events }
+SystemWindow >> mouseUp: evt [
 	| cp |
 	cp := evt cursorPoint.
 	submorphs do: [:m | (m containsPoint: cp) ifTrue: [m mouseUp: evt]]
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>mustNotClose [
+{ #category : #open/close }
+SystemWindow >> mustNotClose [
 	^ mustNotClose == true
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>navigateFocus [
+{ #category : #activation }
+SystemWindow >> navigateFocus [
 
 	self rememberedKeyboardFocus
 		ifNil: [self navigateFocusForward]
@@ -1421,11 +1114,8 @@ SystemWindow>>navigateFocus [
 		].
 ]
 
-{
-	#category : #'menu actions',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>offerWindowMenu [
+{ #category : #'menu actions' }
+SystemWindow >> offerWindowMenu [
 	| aMenu |
 	aMenu := self buildWindowMenu.
 	model ifNotNil:
@@ -1433,20 +1123,14 @@ SystemWindow>>offerWindowMenu [
 	aMenu popUpEvent: self currentEvent in: self world
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>openAsIs [
+{ #category : #open/close }
+SystemWindow >> openAsIs [
 	^self openAsIsIn: self currentWorld
 
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>openAsIsIn: aWorld [
+{ #category : #open/close }
+SystemWindow >> openAsIsIn: aWorld [
 	"This msg and its callees result in the window being activeOnlyOnTop.
 	Play the open sound if the preference is enabled."
 	
@@ -1464,62 +1148,44 @@ SystemWindow>>openAsIsIn: aWorld [
 
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>openInWorld: aWorld [
+{ #category : #open/close }
+SystemWindow >> openInWorld: aWorld [
 	"This msg and its callees result in the window being activeOnlyOnTop"
 	self bounds: (RealEstateAgent initialFrameFor: self world: aWorld).
 	^self openAsIsIn: aWorld.
 
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>openInWorld: aWorld extent: extent [
+{ #category : #open/close }
+SystemWindow >> openInWorld: aWorld extent: extent [
 	"This msg and its callees result in the window being activeOnlyOnTop"
 	self position: (RealEstateAgent initialFrameFor: self initialExtent: extent world: aWorld) topLeft; extent: extent.
 	^self openAsIsIn: aWorld
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>openInWorldExtent: extent [
+{ #category : #open/close }
+SystemWindow >> openInWorldExtent: extent [
 	"This msg and its callees result in the window being activeOnlyOnTop"
 
 	self openInWorld: self currentWorld extent: extent
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>openModal [
+{ #category : #open/close }
+SystemWindow >> openModal [
 
 	self openInWorld.
 	Smalltalk ui theme runModal: self.
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>paneColor: aColor [
+{ #category : #panes }
+SystemWindow >> paneColor: aColor [
 	self setProperty: #paneColor toValue: aColor.
 
 	self adoptPaneColor: aColor.
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>paneColorToUse [
+{ #category : #panes }
+SystemWindow >> paneColorToUse [
 	^ Display depth <= 2
 		ifTrue:
 			[Color white]
@@ -1527,29 +1193,20 @@ SystemWindow>>paneColorToUse [
 			[self paneColor]
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>paneMorphSatisfying: aBlock [
+{ #category : #panes }
+SystemWindow >> paneMorphSatisfying: aBlock [
 	^ paneMorphs detect: aBlock ifNone: [ nil ]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>paneMorphs [
+{ #category : #geometry }
+SystemWindow >> paneMorphs [
 	"Nominally private but a need for obtaining this from the outside arose"
 	
 	^ paneMorphs
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>paneWithLongestSide: sideBlock near: aPoint  [
+{ #category : #resize/collapse }
+SystemWindow >> paneWithLongestSide: sideBlock near: aPoint [ 
 	| thePane theSide theLen |
 	theLen := 0.
 	paneMorphs do:
@@ -1564,21 +1221,15 @@ SystemWindow>>paneWithLongestSide: sideBlock near: aPoint  [
 	^ thePane
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>panelRect [
+{ #category : #geometry }
+SystemWindow >> panelRect [
 	"Answer the area below the title bar which is devoted to panes."
 
 	^ self innerBounds insetBy: (0 @ self labelHeight corner: 0 @ 0)
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>position: newPos [
+{ #category : #geometry }
+SystemWindow >> position: newPos [
 	| oldPos |
 	isCollapsed
 		ifTrue: [ oldPos := collapsedFrame origin ]
@@ -1598,11 +1249,8 @@ SystemWindow>>position: newPos [
 
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>positionModalOwner [
+{ #category : #activation }
+SystemWindow >> positionModalOwner [
 
 	self modalOwner ifNotNil: [ :modalOwner |
 		(modalOwner isKindOf: SystemWindow) ifTrue: [ 
@@ -1612,22 +1260,16 @@ SystemWindow>>positionModalOwner [
 
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>positionSubmorphs [
+{ #category : #open/close }
+SystemWindow >> positionSubmorphs [
 	"Feels like overkill, but effect needed"
 	super positionSubmorphs.
 	self submorphsDo:
 		[:aMorph | aMorph positionSubmorphs]
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>privateBePassive [
+{ #category : #activation }
+SystemWindow >> privateBePassive [
 	"private"
 	self isInWorld ifFalse: [ ^self ].
 	
@@ -1641,11 +1283,8 @@ SystemWindow>>privateBePassive [
 	
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>putLabelItemsInLabelArea [
+{ #category : #layout }
+SystemWindow >> putLabelItemsInLabelArea [
 	"Put label items into the label area, if there is one"
 
 	labelArea ifNotNil:
@@ -1658,19 +1297,13 @@ SystemWindow>>putLabelItemsInLabelArea [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>raisedColor [
+{ #category : #drawing }
+SystemWindow >> raisedColor [
 	^self paneColor raisedColor
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>reframePanesAdjoining: growingPane along: side to: aDisplayBox  [
+{ #category : #resize/collapse }
+SystemWindow >> reframePanesAdjoining: growingPane along: side to: aDisplayBox [ 
 	| delta newRect minDim theMin horiz |
 	growingPane ifNil: [^ self].  "As from click outside"
 	newRect := aDisplayBox.
@@ -1702,11 +1335,8 @@ SystemWindow>>reframePanesAdjoining: growingPane along: side to: aDisplayBox  [
 	self extent: self extent
 ]
 
-{
-	#category : #label,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>relabel [
+{ #category : #label }
+SystemWindow >> relabel [
 	| newLabel |
 	newLabel := UIManager default 
 		request: 'New title for this window' translated
@@ -1715,22 +1345,16 @@ SystemWindow>>relabel [
 	self setLabel: newLabel
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>removeMenuBox [
+{ #category : #geometry }
+SystemWindow >> removeMenuBox [
 	menuBox ifNotNil:
 		[menuBox delete.
 		menuBox := nil].
 
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>replacePane: oldPane with: newPane [
+{ #category : #panes }
+SystemWindow >> replacePane: oldPane with: newPane [
 	"Make newPane exactly occupy the position and extent of oldPane"
 
 	| aLayoutFrame hadDep |
@@ -1752,29 +1376,20 @@ SystemWindow>>replacePane: oldPane with: newPane [
 
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>restoreDefaultPaneColor [
+{ #category : #panes }
+SystemWindow >> restoreDefaultPaneColor [
 	"Useful when changing from monochrome to color display"
 
 	self setStripeColorsFrom: self paneColor.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>scrollBarColor [
+{ #category : #drawing }
+SystemWindow >> scrollBarColor [
 	^self paneColor
 ]
 
-{
-	#category : #'menu actions',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>sendToBack [
+{ #category : #'menu actions' }
+SystemWindow >> sendToBack [
     "Relies on #submorphs array being ordered top to bottom."
 	| otherSystemWindows |
 	otherSystemWindows := self world submorphs select: [ :morph | morph isSystemWindow and: morph ~~ self ].
@@ -1784,11 +1399,8 @@ SystemWindow>>sendToBack [
 	].
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>setBoundsWithFlex: newFrame [
+{ #category : #resize/collapse }
+SystemWindow >> setBoundsWithFlex: newFrame [
 	"Set bounds from newFrame with origin preserved from global coordinates"
 
 	self isFlexed
@@ -1797,11 +1409,8 @@ SystemWindow>>setBoundsWithFlex: newFrame [
 		ifFalse: [super bounds: newFrame].
 ]
 
-{
-	#category : #label,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>setLabel: aString [
+{ #category : #label }
+SystemWindow >> setLabel: aString [
 	| frame announcement |
 	labelString := aString.
 	announcement := (WindowLabelled new 
@@ -1834,22 +1443,16 @@ SystemWindow>>setLabel: aString [
 
 ]
 
-{
-	#category : #label,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>setLabelFont: aFont [
+{ #category : #label }
+SystemWindow >> setLabelFont: aFont [
 
 	label ifNil: [^ self].
 	label font: aFont.
 
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>setPaneRectsFromBounds [
+{ #category : #geometry }
+SystemWindow >> setPaneRectsFromBounds [
 	"Reset proportional specs from actual bounds, eg, after reframing panes"
 	| layoutBounds |
 	layoutBounds := self layoutBounds.
@@ -1869,11 +1472,8 @@ SystemWindow>>setPaneRectsFromBounds [
 	].
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>setUpdatablePanesFrom: getSelectors [
+{ #category : #panes }
+SystemWindow >> setUpdatablePanesFrom: getSelectors [
 	| aList possibles |
 	"Set my updatablePanes inst var to the list of panes which are list panes with the given get-list selectors.  Order is important here!  Note that the method is robust in the face of panes not found, but a warning is printed in the transcript in each such case"
 	aList := OrderedCollection new.
@@ -1887,11 +1487,8 @@ SystemWindow>>setUpdatablePanesFrom: getSelectors [
 	updatablePanes := aList asArray
 ]
 
-{
-	#category : #'menu actions',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>setWindowColor [
+{ #category : #'menu actions' }
+SystemWindow >> setWindowColor [
 	"Allow the user to select a new basic color for the window"
 
 	(UIManager default chooseColor: self paneColor)
@@ -1899,20 +1496,14 @@ SystemWindow>>setWindowColor [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>shouldDropOnMouseUp [
+{ #category : #testing }
+SystemWindow >> shouldDropOnMouseUp [
 	"Return true for consistency with fastdrag"
 	^true
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>stepAt: millisecondClockValue [
+{ #category : #stepping }
+SystemWindow >> stepAt: millisecondClockValue [
 	"If the receiver is not collapsed, step it, after first stepping the model."
 
 	(isCollapsed not or: [self wantsStepsWhenCollapsed]) ifTrue:
@@ -1922,32 +1513,23 @@ SystemWindow>>stepAt: millisecondClockValue [
 "Since this method ends up calling step, the model-stepping logic should not be duplicated there."
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>stepTime [
+{ #category : #stepping }
+SystemWindow >> stepTime [
 	^ model
 		ifNotNil: [model stepTimeIn: self]
 		ifNil: [200] "milliseconds"
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>taskbarIcon [
+{ #category : #icons }
+SystemWindow >> taskbarIcon [
 	"Answer the icon for the receiver in a task bar."
 
 	self model ifNotNil: [self model taskbarIcon ifNotNil: [:ico | ^ico]].
 	^super taskbarIcon
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>toggleClosable [
+{ #category : #open/close }
+SystemWindow >> toggleClosable [
 	"Reinstate the close box. Go via theme to maintain box order."
 	
 	mustNotClose 
@@ -1955,116 +1537,80 @@ SystemWindow>>toggleClosable [
 	ifFalse: [ self makeUnclosable ]
 ]
 
-{
-	#category : #'top window',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>topWindow [
+{ #category : #'top window' }
+SystemWindow >> topWindow [
 	^ self class topWindow
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>unexpandedFrame [
+{ #category : #resize/collapse }
+SystemWindow >> unexpandedFrame [
 	"Return the frame size of an unexpanded window"
 
 	^ self valueOfProperty: #unexpandedFrame
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>unexpandedFrame: aRectangle [
+{ #category : #resize/collapse }
+SystemWindow >> unexpandedFrame: aRectangle [
 	"Set the frame size of an unexpanded window"
 
 	^ self setProperty: #unexpandedFrame toValue: aRectangle
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>updatablePanes [
+{ #category : #panes }
+SystemWindow >> updatablePanes [
 	"Answer the list of panes, in order, which should be sent the #verifyContents message"
 	^ updatablePanes ifNil: [updatablePanes := #()]
 ]
 
-{
-	#category : #label,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>update: aSymbol [
+{ #category : #label }
+SystemWindow >> update: aSymbol [
 	aSymbol = #relabel
 		ifTrue: [^ model ifNotNil: [ self setLabel: model labelString ] ].
 	aSymbol = #close
 		ifTrue: [self delete]
 ]
 
-{
-	#category : #panes,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>updatePaneColors [
+{ #category : #panes }
+SystemWindow >> updatePaneColors [
 	"Useful when changing from monochrome to color display"
 
 	self setStripeColorsFrom: self paneColorToUse.
 ]
 
-{
-	#category : #'top window',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>updatePanesFromSubmorphs [
+{ #category : #'top window' }
+SystemWindow >> updatePanesFromSubmorphs [
 	"Having removed some submorphs, make sure this is reflected in my paneMorphs."
 	paneMorphs := paneMorphs select: [ :pane | submorphs includes: pane ].
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>wantsExpandBox [
+{ #category : #resize/collapse }
+SystemWindow >> wantsExpandBox [
 	"Answer whether I'd like an expand box"
 
 	^ true
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>wantsHalo [
+{ #category : #events }
+SystemWindow >> wantsHalo [
 	^ false
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>wantsSteps [
+{ #category : #stepping }
+SystemWindow >> wantsSteps [
 	"Return true if the model wants its view to be stepped.  For an open system window, we give the model to offer an opinion"
 
 	^ isCollapsed not and: [model wantsStepsIn: self]
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>wantsStepsWhenCollapsed [
+{ #category : #stepping }
+SystemWindow >> wantsStepsWhenCollapsed [
 	"Default is not to bother updating collapsed windows"
 
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>wantsToBeCachedByHand [
+{ #category : #testing }
+SystemWindow >> wantsToBeCachedByHand [
 	"Return true if the receiver wants to be cached by the hand when it is dragged around."
 
 	self isTranslucentButNotTransparent
@@ -2082,28 +1628,19 @@ SystemWindow>>wantsToBeCachedByHand [
 	^ true
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>wantsToBeDroppedInto: aMorph [
+{ #category : #events }
+SystemWindow >> wantsToBeDroppedInto: aMorph [
 	"Return true if it's okay to drop the receiver into aMorph"
 	^ aMorph isWorldMorph or: [self embeddable]
 ]
 
-{
-	#category : #'menu actions',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>wantsYellowButtonMenu [
+{ #category : #'menu actions' }
+SystemWindow >> wantsYellowButtonMenu [
 	"Answer true if the receiver wants a yellow button menu"
 	^ false
 ]
 
-{
-	#category : #label,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SystemWindow>>widthOfFullLabelText [
+{ #category : #label }
+SystemWindow >> widthOfFullLabelText [
 	^StandardFonts windowTitleFont widthOfString: labelString
 ]

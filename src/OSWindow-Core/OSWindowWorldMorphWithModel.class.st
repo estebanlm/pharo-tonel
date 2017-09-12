@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'model'
 	],
-	#category : #OSWindow-Core-Morphic,
-	#timestamp : 'RonieSalgado 9/9/2016 18:06'
+	#category : #OSWindow-Core-Morphic
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorphWithModel>>model  [
+{ #category : #accessing }
+OSWindowWorldMorphWithModel >> model [ 
     ^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorphWithModel>>model: anObject [
+{ #category : #accessing }
+OSWindowWorldMorphWithModel >> model: anObject [
     "Set my model and make me me a dependent of the given object."
 
     model ifNotNil: [model removeDependent: self].

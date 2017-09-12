@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #DiffChangeMorph,
 	#superclass : #ComposableMorph,
@@ -8,15 +5,11 @@ Class {
 		'diffMorph',
 		'descriptionMorph'
 	],
-	#category : #Tool-Diff,
-	#timestamp : ''
+	#category : #Tool-Diff
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph class>>from: old label: oldLabel to: new label: newLabel contextClass: aClass [
+{ #category : #'instance creation' }
+DiffChangeMorph class >> from: old label: oldLabel to: new label: newLabel contextClass: aClass [
 	"Answer a new instance of the receiver with the given
 	old and new text and descriptions."
 
@@ -28,11 +21,8 @@ DiffChangeMorph class>>from: old label: oldLabel to: new label: newLabel context
 		toDescription: newLabel
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>adoptPaneColor: paneColor [
+{ #category : #actions }
+DiffChangeMorph >> adoptPaneColor: paneColor [
 	"Change the fill styles on the descriptions."
 	
 	super adoptPaneColor: paneColor.
@@ -42,11 +32,8 @@ DiffChangeMorph>>adoptPaneColor: paneColor [
 	
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>buildUI [
+{ #category : #initialization }
+DiffChangeMorph >> buildUI [
 
 	|descriptionHeight|
 
@@ -65,71 +52,50 @@ DiffChangeMorph>>buildUI [
 		updateDescriptionFillStyle: self paneColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>defaultTitle [
+{ #category : #accessing }
+DiffChangeMorph >> defaultTitle [
 	"Answer the default title label for the receiver."
 
 	^'Change Diff' translated
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>descriptionMorph [
+{ #category : #accessing }
+DiffChangeMorph >> descriptionMorph [
 	"Answer the value of descriptionMorph"
 
 	^ descriptionMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>descriptionMorph: anObject [
+{ #category : #accessing }
+DiffChangeMorph >> descriptionMorph: anObject [
 	"Set the value of descriptionMorph"
 
 	descriptionMorph := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>diffMorph [
+{ #category : #accessing }
+DiffChangeMorph >> diffMorph [
 	"Answer the value of diffMorph"
 
 	^ diffMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>diffMorph: anObject [
+{ #category : #accessing }
+DiffChangeMorph >> diffMorph: anObject [
 	"Set the value of diffMorph"
 
 	diffMorph := anObject
 ]
 
-{
-	#category : #hooks,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>diffMorphClass [
+{ #category : #hooks }
+DiffChangeMorph >> diffMorphClass [
 	"Answer a the class to use for a new diff morph."
 
 	^DiffMorph
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>from: old to: new contextClass: aClass [
+{ #category : #actions }
+DiffChangeMorph >> from: old to: new contextClass: aClass [
 	"Set the old (src) and new (dst) text."
 
 	self diffMorph
@@ -138,61 +104,43 @@ DiffChangeMorph>>from: old to: new contextClass: aClass [
 		contextClass: aClass
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>fromDescription: aString [
+{ #category : #actions }
+DiffChangeMorph >> fromDescription: aString [
 	"Set the description for the left-hand side of the patch,
 	typically 'currently in image'."
 
 	self fromDescriptionMorph contents: aString
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>fromDescriptionMorph [
+{ #category : #actions }
+DiffChangeMorph >> fromDescriptionMorph [
 	"Answer the morph for the source description."
 
 	^self descriptionMorph firstSubmorph firstSubmorph
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>initialColorInSystemWindow: aSystemWindow [
+{ #category : #initialization }
+DiffChangeMorph >> initialColorInSystemWindow: aSystemWindow [
 	"Answer the colour the receiver should be when added to a SystemWindow."
 
 	^Color transparent
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>initialExtent [
+{ #category : #'user interface' }
+DiffChangeMorph >> initialExtent [
 	"Answer the initial extent for the receiver."
 
 	^RealEstateAgent standardWindowExtent
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>initialize [
+{ #category : #initialization }
+DiffChangeMorph >> initialize [
 	super initialize.
 	self buildUI
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>newDescriptionMorph [
+{ #category : #actions }
+DiffChangeMorph >> newDescriptionMorph [
 	"Answer a new morph for the descriptions of the source and destination."
 
 	^(self newColumn: {
@@ -207,11 +155,8 @@ DiffChangeMorph>>newDescriptionMorph [
 		
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>newDiffMorph [
+{ #category : #actions }
+DiffChangeMorph >> newDiffMorph [
 	"Answer a new morph for the source difference."
 
 	^self diffMorphClass new
@@ -220,32 +165,23 @@ DiffChangeMorph>>newDiffMorph [
 		yourself
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>toDescription: aString [
+{ #category : #actions }
+DiffChangeMorph >> toDescription: aString [
 	"Set the description for the right-hand side of the patch,
 	typically 'incoming' or 'changed'."
 
 	self toDescriptionMorph contents: aString
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>toDescriptionMorph [
+{ #category : #actions }
+DiffChangeMorph >> toDescriptionMorph [
 	"Answer the morph for the destination description."
 
 	^self descriptionMorph lastSubmorph firstSubmorph
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DiffChangeMorph>>updateDescriptionFillStyle: aColor [
+{ #category : #actions }
+DiffChangeMorph >> updateDescriptionFillStyle: aColor [
 	"Change the colours on the descriptions."
 	
 	self descriptionMorph fillStyle: aColor.

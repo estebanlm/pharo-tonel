@@ -9,120 +9,83 @@ Class {
 	#instVars : [
 		'transformations'
 	],
-	#category : #Traits-Composition,
-	#timestamp : '<historical>'
+	#category : #Traits-Composition
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition class>>with: aTraitTransformation [
+{ #category : #'instance creation' }
+TraitComposition class >> with: aTraitTransformation [
 	^self new
 		add: aTraitTransformation;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition class>>with: aTraitTransformation with: anotherTraitTransformation [
+{ #category : #'instance creation' }
+TraitComposition class >> with: aTraitTransformation [ with: anotherTraitTransformation
 	^self new
 		add: aTraitTransformation;
 		add: anotherTraitTransformation;
 		yourself
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>+ aTraitExpression [
+{ #category : #composition }
+TraitComposition >> + aTraitExpression [
 	^ aTraitExpression addCompositionOnLeft: self.
 
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>- anArray [
+{ #category : #composition }
+TraitComposition >> - anArray [
 	"the modifier operators #@ and #- bind stronger than +"
 	
 	self transformations: (self transformations collect: [ :t | t - anArray ])
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>@ anArrayOfAssociations [
+{ #category : #composition }
+TraitComposition >> @ anArrayOfAssociations [
 	"the modifier operators #@ and #- bind stronger than +"
 
 	self transformations: (self transformations collect: [ :t | t @ anArrayOfAssociations ]).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>add: aTraitTransformation [
+{ #category : #accessing }
+TraitComposition >> add: aTraitTransformation [
 	self errorIfNotAddable: aTraitTransformation.
 	self transformations addLast: aTraitTransformation
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>addCompositionOnLeft: aTraitComposition [
+{ #category : #testing }
+TraitComposition >> addCompositionOnLeft: aTraitComposition [
 	self transformations do: [ :each | aTraitComposition add: each ].
 	^ aTraitComposition
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>addOnTheLeft: aTrait  [
+{ #category : #composition }
+TraitComposition >> addOnTheLeft: aTrait [ 
 	self errorIfNotAddable: aTrait.
 	self transformations addFirst: aTrait
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>allSelectors [
+{ #category : #enquiries }
+TraitComposition >> allSelectors [
 	^ Array streamContents: [ :stream | 
 		self transformations do: [ :transformation | stream nextPutAll: transformation allSelectors ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>allTraits [
+{ #category : #accessing }
+TraitComposition >> allTraits [
 	^self traits flatCollect: [:trait |
 		trait hasTraitComposition
 			ifTrue: [trait traitComposition allTraits copyWith: trait]
 			ifFalse: [Array with: trait]]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>asTraitComposition [
+{ #category : #converting }
+TraitComposition >> asTraitComposition [
 	^self
 ]
 
-{
-	#category : #error-handling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>assertValidUser: aBehavior [
+{ #category : #error-handling }
+TraitComposition >> assertValidUser: aBehavior [
 	"Assert that this trait composition set for aBehavior
 	does not introduce a cycle."
 	
@@ -130,11 +93,8 @@ TraitComposition>>assertValidUser: aBehavior [
 		TraitCompositionException signal: 'Cycle in compositions:  The composition (in)directly includes this trait!']
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>changedSelectorsComparedTo: oldComposition [
+{ #category : #enquiries }
+TraitComposition >> changedSelectorsComparedTo: oldComposition [
 	| changedSelectors traits |
 	changedSelectors := IdentitySet new.
 	traits := self traits asIdentitySet addAll: oldComposition traits asIdentitySet; yourself.
@@ -150,20 +110,14 @@ TraitComposition>>changedSelectorsComparedTo: oldComposition [
 	^changedSelectors
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>copy [
+{ #category : #copying }
+TraitComposition >> copy [
 	self error: 'should not be called'.
 	^super copy
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>copyTraitExpression [
+{ #category : #copying }
+TraitComposition >> copyTraitExpression [
 	| newCopy |
 	newCopy := self shallowCopy.
 	newCopy transformations: (self transformations collect: [ :each | each copyTraitExpression ]).
@@ -171,11 +125,8 @@ TraitComposition>>copyTraitExpression [
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>copyWithExclusionOf: aSymbol to: aTrait [
+{ #category : #copying }
+TraitComposition >> copyWithExclusionOf: aSymbol to: aTrait [
 	| composition transformation |
 	composition := self copyTraitExpression.
 	transformation := (composition transformationOfTrait: aTrait).
@@ -185,11 +136,8 @@ TraitComposition>>copyWithExclusionOf: aSymbol to: aTrait [
 		yourself
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>copyWithoutAlias: aSymbol of: aTrait [
+{ #category : #copying }
+TraitComposition >> copyWithoutAlias: aSymbol of: aTrait [
 	| composition transformation |
 	composition := self copyTraitExpression.
 	transformation := (composition transformationOfTrait: aTrait).
@@ -200,46 +148,31 @@ TraitComposition>>copyWithoutAlias: aSymbol of: aTrait [
 		yourself
 ]
 
-{
-	#category : #error-handling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>errorIfNotAddable: aTraitTransformation [
+{ #category : #error-handling }
+TraitComposition >> errorIfNotAddable: aTraitTransformation [
 	(self includesTrait: aTraitTransformation trait) ifTrue: [
 		^TraitCompositionException
 			signal: 'Trait ' , aTraitTransformation trait asString, ' already in composition']
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>includesMethod: aSelector [
+{ #category : #private }
+TraitComposition >> includesMethod: aSelector [
 	^(self methodDescriptionForSelector: aSelector) isEmpty not
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>includesTrait: aTrait [
+{ #category : #private }
+TraitComposition >> includesTrait: aTrait [
 	^self traits includes: aTrait
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>initialize [
+{ #category : #initialization }
+TraitComposition >> initialize [
 	super initialize.
 	transformations := OrderedCollection new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>isAliasSelector: aSymbol [
+{ #category : #private }
+TraitComposition >> isAliasSelector: aSymbol [
 	"Return true if the selector aSymbol is an alias defined
 	in this or in another composition somewhere deeper in 
 	the tree of traits compositions."
@@ -250,19 +183,13 @@ TraitComposition>>isAliasSelector: aSymbol [
 	^methodDescription isAliasSelector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>isEmpty [
+{ #category : #private }
+TraitComposition >> isEmpty [
 	^self transformations isEmpty
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>isLocalAliasSelector: aSymbol [
+{ #category : #private }
+TraitComposition >> isLocalAliasSelector: aSymbol [
 	"Return true if the selector aSymbol is an alias defined
 	in this composition."
 
@@ -272,11 +199,8 @@ TraitComposition>>isLocalAliasSelector: aSymbol [
 	^methodDescription isLocalAliasSelector
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>methodDescriptionForSelector: aSymbol [
+{ #category : #enquiries }
+TraitComposition >> methodDescriptionForSelector: aSymbol [
 	"Return a TraitMethodDescription for the selector aSymbol."
 
 	| description |
@@ -286,11 +210,8 @@ TraitComposition>>methodDescriptionForSelector: aSymbol [
 	^description
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>methodDescriptionsForSelector: aSymbol [
+{ #category : #enquiries }
+TraitComposition >> methodDescriptionsForSelector: aSymbol [
 	"Return a collection of TraitMethodDescriptions for aSymbol and all the 
 	aliases of aSymbol."
 
@@ -304,29 +225,20 @@ TraitComposition>>methodDescriptionsForSelector: aSymbol [
 	^collection
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>normalizeTransformations [
+{ #category : #composition }
+TraitComposition >> normalizeTransformations [
 	self transformations: (
 		self transformations collect: [:each |
 			each normalized])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>notEmpty [
+{ #category : #private }
+TraitComposition >> notEmpty [
 	^self isEmpty not
 ]
 
-{
-	#category : #alias,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>originSelectorOf: aSelector [
+{ #category : #alias }
+TraitComposition >> originSelectorOf: aSelector [
  
 	self isEmpty ifTrue: [ ^ aSelector ].
 	self transformations do:[ :transformation | 
@@ -336,20 +248,14 @@ TraitComposition>>originSelectorOf: aSelector [
 	^aSelector
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>postCopy [
+{ #category : #copying }
+TraitComposition >> postCopy [
 	super postCopy.
 	transformations := transformations collect: [:each | each copy].
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>printOn: aStream [
+{ #category : #printing }
+TraitComposition >> printOn: aStream [
 	
 	self transformations isEmptyOrNil
 		ifFalse: [
@@ -368,46 +274,31 @@ TraitComposition>>printOn: aStream [
 		ifTrue: [aStream nextPutAll: '{}']
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>printString [
+{ #category : #printing }
+TraitComposition >> printString [
 	^String streamContents: [:stream |
 		self printOn: stream]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>remove: aTransformation [
+{ #category : #accessing }
+TraitComposition >> remove: aTransformation [
 	self transformations
 		remove: aTransformation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>removeFromComposition: aTrait [
+{ #category : #accessing }
+TraitComposition >> removeFromComposition: aTrait [
 	self remove:
 		(self transformationOfTrait: aTrait)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>size [
+{ #category : #accessing }
+TraitComposition >> size [
 	^transformations size
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>syntacticallyEquals: aTraitComposition [
+{ #category : #comparing }
+TraitComposition >> syntacticallyEquals: aTraitComposition [
 	"Test syntactic equivalence of this trait composition with another. 
 	The order of the transformations is taken into account. For example, A + B ~= B + A."
 
@@ -421,11 +312,8 @@ TraitComposition>>syntacticallyEquals: aTraitComposition [
 	^ true
 ]
 
-{
-	#category : #enquiries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>traitProvidingSelector: aSymbol [
+{ #category : #enquiries }
+TraitComposition >> traitProvidingSelector: aSymbol [
 	"Return the trait which originally provides the method aSymbol or return nil
 	if trait composition does not provide this selector or there is a conflict.
 	Take aliases into account. Return the trait which the aliased method is defined in."
@@ -438,20 +326,14 @@ TraitComposition>>traitProvidingSelector: aSymbol [
 	^locatedMethod methodClass traitOrClassOfSelector: locatedMethod selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>traits [
+{ #category : #accessing }
+TraitComposition >> traits [
 	^self transformations collect: [:each |
 		each trait]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>transformationOfTrait: aTrait [
+{ #category : #accessing }
+TraitComposition >> transformationOfTrait: aTrait [
 	"Return the transformation which holds aTrait
 	or nil if this composition doesn't include aTrait."
 	
@@ -460,18 +342,12 @@ TraitComposition>>transformationOfTrait: aTrait [
 		ifNone: [nil]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>transformations [
+{ #category : #accessing }
+TraitComposition >> transformations [
 	^transformations
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitComposition>>transformations: aCollection [
+{ #category : #testing }
+TraitComposition >> transformations: aCollection [
 	transformations := aCollection
 ]

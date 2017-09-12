@@ -13,62 +13,40 @@ Class {
 		'mapped',
 		'hasMapping'
 	],
-	#category : #OSWindow-Core-Events,
-	#timestamp : 'RonieSalgado 4/10/2016 06:39'
+	#category : #OSWindow-Core-Events
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyDeviceEvent>>hasMapping [
+{ #category : #accessing }
+OSJoyDeviceEvent >> hasMapping [
 	^ hasMapping
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyDeviceEvent>>hasMapping: anObject [
+{ #category : #accessing }
+OSJoyDeviceEvent >> hasMapping: anObject [
 	hasMapping := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyDeviceEvent>>isPreferredEvent [
+{ #category : #testing }
+OSJoyDeviceEvent >> isPreferredEvent [
 	^ mapped or: hasMapping not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyDeviceEvent>>mapped [
+{ #category : #accessing }
+OSJoyDeviceEvent >> mapped [
 	^ mapped
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyDeviceEvent>>mapped: anObject [
+{ #category : #accessing }
+OSJoyDeviceEvent >> mapped: anObject [
 	mapped := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyDeviceEvent>>which [
+{ #category : #accessing }
+OSJoyDeviceEvent >> which [
 	^ which
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSJoyDeviceEvent>>which: anObject [
+{ #category : #accessing }
+OSJoyDeviceEvent >> which: anObject [
 	which := anObject
 ]

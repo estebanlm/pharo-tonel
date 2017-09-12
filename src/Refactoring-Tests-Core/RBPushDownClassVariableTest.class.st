@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBPushDownClassVariableTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownClassVariableTest>>testModelNonExistantName [
+{ #category : #'failure tests' }
+RBPushDownClassVariableTest >> testModelNonExistantName [
 	model 
 		defineClass: 'Object subclass: #SomeClass instanceVariableNames: '''' classVariableNames: '''' poolDictionaries: '''' category: #''Refactory-Test data'''.
 	self shouldFail: (RBPushDownClassVariableRefactoring 
@@ -21,11 +14,8 @@ RBPushDownClassVariableTest>>testModelNonExistantName [
 				class: (model classNamed: #SomeClass))
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownClassVariableTest>>testModelPushDownToMultipleSubclassesFailure [
+{ #category : #'failure tests' }
+RBPushDownClassVariableTest >> testModelPushDownToMultipleSubclassesFailure [
 	model 
 		defineClass: 'Object subclass: #SomeClass instanceVariableNames: '''' classVariableNames: ''Foo'' poolDictionaries: '''' category: #''Refactory-Test data'''.
 	model 
@@ -41,11 +31,8 @@ RBPushDownClassVariableTest>>testModelPushDownToMultipleSubclassesFailure [
 				class: (model classNamed: #SomeClass))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownClassVariableTest>>testModelPushDownVariable [
+{ #category : #tests }
+RBPushDownClassVariableTest >> testModelPushDownVariable [
 	| class |
 	model 
 		defineClass: 'Object subclass: #SomeClass instanceVariableNames: '''' classVariableNames: ''Foo'' poolDictionaries: '''' category: #''Refactory-Test data'''.
@@ -61,11 +48,8 @@ RBPushDownClassVariableTest>>testModelPushDownVariable [
 	self assert: (class directlyDefinesClassVariable: #Foo)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownClassVariableTest>>testModelPushDownVariableToClassDownTwoLevels [
+{ #category : #tests }
+RBPushDownClassVariableTest >> testModelPushDownVariableToClassDownTwoLevels [
 	| class |
 	model defineClass: 'Object subclass: #SomeClass instanceVariableNames: '''' classVariableNames: ''Foo'' poolDictionaries: '''' category: #''Refactory-Test data'''.
 	model defineClass: 'SomeClass subclass: #Subclass instanceVariableNames: '''' classVariableNames: '''' poolDictionaries: '''' category: #''Refactory-Test data'''.
@@ -84,11 +68,8 @@ RBPushDownClassVariableTest>>testModelPushDownVariableToClassDownTwoLevels [
 	self assert: (class directlyDefinesClassVariable: #Foo)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownClassVariableTest>>testModelPushDownVariableToMultipleClassesInSameHierarchy [
+{ #category : #tests }
+RBPushDownClassVariableTest >> testModelPushDownVariableToMultipleClassesInSameHierarchy [
 	| class |
 	model 
 		defineClass: 'Object subclass: #SomeClass instanceVariableNames: '''' classVariableNames: ''Foo'' poolDictionaries: '''' category: #''Refactory-Test data'''.
@@ -108,11 +89,8 @@ RBPushDownClassVariableTest>>testModelPushDownVariableToMultipleClassesInSameHie
 	self assert: (class directlyDefinesClassVariable: #Foo)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownClassVariableTest>>testModelRemoveUnusedVariable [
+{ #category : #tests }
+RBPushDownClassVariableTest >> testModelRemoveUnusedVariable [
 	model 
 		defineClass: 'Object subclass: #SomeClass instanceVariableNames: '''' classVariableNames: ''Foo'' poolDictionaries: '''' category: #''Refactory-Test data'''.
 	self 
@@ -127,21 +105,15 @@ RBPushDownClassVariableTest>>testModelRemoveUnusedVariable [
 	self deny: ((model classNamed: #Subclass) directlyDefinesVariable: #Foo)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownClassVariableTest>>testNonExistantName [
+{ #category : #'failure tests' }
+RBPushDownClassVariableTest >> testNonExistantName [
 	self shouldFail: (RBPushDownClassVariableRefactoring 
 			variable: #Foo
 			class: RBBasicLintRuleTest)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownClassVariableTest>>testPushDownClassVariable [
+{ #category : #tests }
+RBPushDownClassVariableTest >> testPushDownClassVariable [
 	| refactoring |
 	refactoring := RBPushDownClassVariableRefactoring 
 		variable: #Foo1

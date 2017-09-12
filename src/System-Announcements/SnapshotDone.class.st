@@ -9,30 +9,20 @@ Class {
 	#instVars : [
 		'isNewImage'
 	],
-	#category : #System-Announcements-System-Base,
-	#timestamp : '<historical>'
+	#category : #System-Announcements-System-Base
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SnapshotDone class>>isNewImage: aBoolean [
+{ #category : #'instance creation' }
+SnapshotDone class >> isNewImage: aBoolean [
 	 ^ self new isNewImage: aBoolean.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SnapshotDone>>isNewImage [
+{ #category : #accessing }
+SnapshotDone >> isNewImage [
 	^ isNewImage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SnapshotDone>>isNewImage: anObject [
+{ #category : #accessing }
+SnapshotDone >> isNewImage: anObject [
 	isNewImage := anObject
 ]

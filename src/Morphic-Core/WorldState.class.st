@@ -33,140 +33,94 @@ Class {
 		'ServerMode',
 		'ShowUpdateOptionInWorldMenu'
 	],
-	#category : #Morphic-Core-Worlds,
-	#timestamp : 'ls 7/10/2003 19:30'
+	#category : #Morphic-Core-Worlds
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>MinCycleLapse: milliseconds [
+{ #category : #accessing }
+WorldState class >> MinCycleLapse: milliseconds [
 	"set the minimum amount of time that may transpire between two calls to doOneCycle"
 	MinCycleLapse := milliseconds ifNotNil: [ milliseconds rounded ].
 ]
 
-{
-	#category : #'deferred message',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>addDeferredUIMessage: aValuable [
+{ #category : #'deferred message' }
+WorldState class >> addDeferredUIMessage: aValuable [
 	"aValuable will be executed in the next UI rendering cycle"
 	self deferredUIMessages nextPut: aValuable
 
 
 ]
 
-{
-	#category : #'testing os',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>canSurrenderToOS: aBoolean [
+{ #category : #'testing os' }
+WorldState class >> canSurrenderToOS: aBoolean [
 
 	CanSurrenderToOS := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>debugShowDamage [
+{ #category : #accessing }
+WorldState class >> debugShowDamage [
 	^ DebugShowDamage ifNil: [DebugShowDamage := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>debugShowDamage: aBoolean [
+{ #category : #accessing }
+WorldState class >> debugShowDamage: aBoolean [
 	DebugShowDamage := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>defaultWorldMenu [
+{ #category : #settings }
+WorldState class >> defaultWorldMenu [
 	self desktopMenuTitle: 'World'.
 	self desktopMenuPragmaKeyword: 'worldMenu'.
 ]
 
-{
-	#category : #'deferred message',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>defer: aValuable [
+{ #category : #'deferred message' }
+WorldState class >> defer: aValuable [
 	"aValuable will be executed in the next UI rendering cycle"
 	self addDeferredUIMessage: aValuable.
 
 
 ]
 
-{
-	#category : #'deferred message',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>deferredUIMessages [
+{ #category : #'deferred message' }
+WorldState class >> deferredUIMessages [
 
 	^DeferredUIMessages ifNil: [DeferredUIMessages := WaitfreeQueue  new].
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>desktopMenuPragmaKeyword: aString [
+{ #category : #settings }
+WorldState class >> desktopMenuPragmaKeyword: aString [
 	DesktopMenuPragmaKeyword := aString.
 	World resetWorldMenu.
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>desktopMenuTitle: aString [
+{ #category : #settings }
+WorldState class >> desktopMenuTitle: aString [
 	DesktopMenuTitle := aString
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>discoveredMenuPragmaKeyword [
+{ #category : #settings }
+WorldState class >> discoveredMenuPragmaKeyword [
 	^ DesktopMenuPragmaKeyword ifNil: [DesktopMenuPragmaKeyword := 'worldMenu']
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>discoveredMenuTitle [
+{ #category : #settings }
+WorldState class >> discoveredMenuTitle [
 	^ DesktopMenuTitle ifNil: [DesktopMenuTitle := 'World']
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>easySelectingWorld [
+{ #category : #settings }
+WorldState class >> easySelectingWorld [
 	^ EasySelectingWorld ifNil: [EasySelectingWorld := false]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>easySelectingWorld: aBoolean [
+{ #category : #settings }
+WorldState class >> easySelectingWorld: aBoolean [
 	EasySelectingWorld := aBoolean
 ]
 
-{
-	#category : #'world menu items',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>helpOn: aBuilder [
+{ #category : #'world menu items' }
+WorldState class >> helpOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #Help)
 		order: 4.0;
@@ -174,42 +128,30 @@ WorldState class>>helpOn: aBuilder [
 		withSeparatorAfter
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>initialize [
+{ #category : #initialization }
+WorldState class >> initialize [
 	"WorldState initialize"
 
 	MinCycleLapse := 20.		"allows 50 frames per second..."
 	DeferredUIMessages := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>lastCycleTime [
+{ #category : #accessing }
+WorldState class >> lastCycleTime [
 
 	^LastCycleTime
 ]
 
-{
-	#category : #'world menu items',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>mostUsedToolsOn: aBuilder [
+{ #category : #'world menu items' }
+WorldState class >> mostUsedToolsOn: aBuilder [
 	<worldMenu>
 	(aBuilder group: #MostUsedTools)
 		withSeparatorAfter;
 		order: 0
 ]
 
-{
-	#category : #'world menu items',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>quitItemsOn: aBuilder [
+{ #category : #'world menu items' }
+WorldState class >> quitItemsOn: aBuilder [
 	<worldMenu>
 	(aBuilder group: #QuitPharo)
 		order: 9999;
@@ -236,11 +178,8 @@ WorldState class>>quitItemsOn: aBuilder [
 				iconName: #smallQuitIcon ]
 ]
 
-{
-	#category : #'world menu items',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>quitSession [
+{ #category : #'world menu items' }
+WorldState class >> quitSession [
 	| save |
 	save := UIManager default confirm: 'Save changes before quitting?' translated orCancel: [ ^ self ].
 	save 
@@ -249,21 +188,15 @@ WorldState class>>quitSession [
  
 ]
 
-{
-	#category : #'world menu items',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>saveAndQuit [
+{ #category : #'world menu items' }
+WorldState class >> saveAndQuit [
 	Cursor write showWhile: [
 		Smalltalk snapshot: true andQuit: true
 	]
 ]
 
-{
-	#category : #'world menu items',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>saveAs [
+{ #category : #'world menu items' }
+WorldState class >> saveAs [
 	| reference |
 	reference := UIManager default 
 		fileSave: 'Save Image as?' 
@@ -274,11 +207,8 @@ WorldState class>>saveAs [
 	reference ifNotNil: [ Smalltalk saveAs: reference parent / (reference basenameWithoutExtension: 'image') ]
 ]
 
-{
-	#category : #'world menu items',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>saveSession [
+{ #category : #'world menu items' }
+WorldState class >> saveSession [
 	Cursor write showWhile: [
 		Smalltalk
 			snapshot: true
@@ -286,11 +216,8 @@ WorldState class>>saveSession [
 	]
 ]
 
-{
-	#category : #'world menu items',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>screenShotCommandOn: aBuilder [
+{ #category : #'world menu items' }
+WorldState class >> screenShotCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #Screenshot)
 		parent: #Tools;
@@ -301,91 +228,61 @@ WorldState class>>screenShotCommandOn: aBuilder [
 		iconName: #smallScreenshotIcon
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>serverMode [
+{ #category : #settings }
+WorldState class >> serverMode [
 	^ ServerMode ifNil: [ServerMode := false]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>serverMode: aBoolean [
+{ #category : #settings }
+WorldState class >> serverMode: aBoolean [
 	(aBoolean = true or: [aBoolean = false or: [aBoolean isNil]])
 		ifTrue: [ServerMode := aBoolean]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>showUpdateOptionInWorldMenu [
+{ #category : #settings }
+WorldState class >> showUpdateOptionInWorldMenu [
 	^ ShowUpdateOptionInWorldMenu ifNil: [ShowUpdateOptionInWorldMenu := true]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>showUpdateOptionInWorldMenu: aBoolean [
+{ #category : #settings }
+WorldState class >> showUpdateOptionInWorldMenu: aBoolean [
 	ShowUpdateOptionInWorldMenu := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState class>>theme [
+{ #category : #accessing }
+WorldState class >> theme [
 	^ Smalltalk ui theme
 ]
 
-{
-	#category : #hands,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>activeHand [
+{ #category : #hands }
+WorldState >> activeHand [
 	^ activeHand
 ]
 
-{
-	#category : #hands,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>activeHand: aHand [
+{ #category : #hands }
+WorldState >> activeHand: aHand [
 	ActiveHand := aHand.
 	activeHand := aHand
 ]
 
-{
-	#category : #hands,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>addHand: aHandMorph [
+{ #category : #hands }
+WorldState >> addHand: aHandMorph [
 	"Add the given hand to the list of hands for this world."
 
 	hands := (hands copyWithout: aHandMorph) copyWith: aHandMorph.
 
 ]
 
-{
-	#category : #alarms,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>adjustAlarmTimes: nowTime [
+{ #category : #alarms }
+WorldState >> adjustAlarmTimes: nowTime [
 	"Adjust the alarm times after some clock weirdness (such as roll-over, image-startup etc)"
 	| deltaTime |
 	deltaTime := nowTime - lastAlarmTime.
 	self alarms do:[:alarm| alarm scheduledTime: alarm scheduledTime + deltaTime].
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>adjustWakeupTimes: now [
+{ #category : #stepping }
+WorldState >> adjustWakeupTimes: now [
 	"Fix the wakeup times in my step list. This is necessary when this world has been restarted after a pause, say because some other view had control, after a snapshot, or because the millisecond clock has wrapped around. (The latter is a rare occurence with a 32-bit clock!)"
 	| deltaTime |
 	deltaTime := now - lastStepTime.
@@ -394,11 +291,8 @@ WorldState>>adjustWakeupTimes: now [
 
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>adjustWakeupTimesIfNecessary [
+{ #category : #stepping }
+WorldState >> adjustWakeupTimesIfNecessary [
 	"Fix the wakeup times in my step list if necessary. This is needed after a snapshot, after a long pause (say because some other view had control or because the user was selecting from an MVC-style menu) or when the millisecond clock wraps around (a very rare occurence with a 32-bit clock!)."
 
 	| now |
@@ -408,30 +302,21 @@ WorldState>>adjustWakeupTimesIfNecessary [
 
 ]
 
-{
-	#category : #alarms,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>alarmSortBlock [
+{ #category : #alarms }
+WorldState >> alarmSortBlock [
 	^[ :alarm1 :alarm2 | 
 		alarm1 scheduledTime < alarm2 scheduledTime.
 	]
 ]
 
-{
-	#category : #alarms,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>alarms [
+{ #category : #alarms }
+WorldState >> alarms [
 
 	^alarms ifNil: [alarms := Heap sortBlock: self alarmSortBlock]
 ]
 
-{
-	#category : #canvas,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>assuredCanvas [
+{ #category : #canvas }
+WorldState >> assuredCanvas [
 
 	(canvas isNil or: [(canvas extent ~= viewBox extent) or: [canvas form depth ~= Display depth]])
 		ifTrue:
@@ -440,31 +325,22 @@ WorldState>>assuredCanvas [
 	^ self canvas
 ]
 
-{
-	#category : #canvas,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>canvas [
+{ #category : #canvas }
+WorldState >> canvas [
 
 	^ canvas
 ]
 
-{
-	#category : #canvas,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>canvas: x  [
+{ #category : #canvas }
+WorldState >> canvas: x [ 
 	canvas := x.
 	damageRecorder 
 		ifNil: [damageRecorder := DamageRecorder new]
 		ifNotNil: [damageRecorder doFullRepaint]
 ]
 
-{
-	#category : #'update cycle',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>checkIfUpdateNeeded [
+{ #category : #'update cycle' }
+WorldState >> checkIfUpdateNeeded [
 
 	damageRecorder updateIsNeeded ifTrue: [^true].
 	hands do: [:h | (h hasChanged and: [h needsToBeDrawn]) ifTrue: [^true]].
@@ -472,21 +348,15 @@ WorldState>>checkIfUpdateNeeded [
 
 ]
 
-{
-	#category : #cleaning,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>cleanStepList [
+{ #category : #cleaning }
+WorldState >> cleanStepList [
 	"ensure that we have a cleaner block"
 	^stepList sortBlock: self stepListSortBlock
 
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>cleanseStepListForWorld: aWorld [
+{ #category : #stepping }
+WorldState >> cleanseStepListForWorld: aWorld [
 	"Remove morphs from the step list that are not in this World"
 
 	| deletions morphToStep |
@@ -507,56 +377,38 @@ WorldState>>cleanseStepListForWorld: aWorld [
 			ifFalse:[self removeAlarm: entry selector for: entry receiver]].
 ]
 
-{
-	#category : #'object filein',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>convertAlarms [
+{ #category : #'object filein' }
+WorldState >> convertAlarms [
 	
 	alarms ifNotNil: [alarms sortBlock: self alarmSortBlock].	"ensure cleaner block"
 
 
 ]
 
-{
-	#category : #'deferred message',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>defer: aValuable [
+{ #category : #'deferred message' }
+WorldState >> defer: aValuable [
 	"aValuable will be executed in the next UI rendering cycle"
 	self class defer: aValuable
 ]
 
-{
-	#category : #'worldmenu building',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>discoveredMenuOn: aBuilder [
+{ #category : #'worldmenu building' }
+WorldState >> discoveredMenuOn: aBuilder [
 
 	^ aBuilder menuEntitled: self discoveredMenuTitle
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>discoveredMenuPragmaKeyword [
+{ #category : #settings }
+WorldState >> discoveredMenuPragmaKeyword [
 	^ self class discoveredMenuPragmaKeyword
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>discoveredMenuTitle [
+{ #category : #settings }
+WorldState >> discoveredMenuTitle [
 	^ self class discoveredMenuTitle
 ]
 
-{
-	#category : #'update cycle',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>displayWorld: aWorld submorphs: submorphs [
+{ #category : #'update cycle' }
+WorldState >> displayWorld: aWorld submorphs: submorphs [
 	"Update this world's display."
 
 	| deferredUpdateMode handsToDraw allDamage |
@@ -588,11 +440,8 @@ WorldState>>displayWorld: aWorld submorphs: submorphs [
 
 ]
 
-{
-	#category : #'update cycle',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>displayWorldSafely: aWorld [
+{ #category : #'update cycle' }
+WorldState >> displayWorldSafely: aWorld [
 	"Update this world's display and keep track of errors during draw methods."
 
 	[aWorld displayWorld] ifError: [:err :rcvr |
@@ -617,11 +466,8 @@ WorldState>>displayWorldSafely: aWorld [
 	].
 ]
 
-{
-	#category : #'update cycle',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>doDeferredUpdatingFor: aWorld [
+{ #category : #'update cycle' }
+WorldState >> doDeferredUpdatingFor: aWorld [
         "If this platform supports deferred updates, then make my canvas be the Display (or a rectangular portion of it), set the Display to deferred update mode, and answer true. Otherwise, do nothing and answer false. One can set the class variable DisableDeferredUpdates to true to completely disable the deferred updating feature."
 
 	(Display deferUpdates: true) ifNil: [^ false].  "deferred updates not supported"
@@ -632,32 +478,23 @@ WorldState>>doDeferredUpdatingFor: aWorld [
 
 ]
 
-{
-	#category : #canvas,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>doFullRepaint [
+{ #category : #canvas }
+WorldState >> doFullRepaint [
 
 	damageRecorder doFullRepaint
 
 ]
 
-{
-	#category : #'update cycle',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>doOneCycleFor: aWorld [
+{ #category : #'update cycle' }
+WorldState >> doOneCycleFor: aWorld [
 	"Do one cycle of the interaction loop. This method is called repeatedly when the world is running. This is a moderately private method; a better alternative is usually either to wait for events or to check the state of things from #step methods."
 
 	self interCyclePause: MinCycleLapse.
 	self doOneCycleNowFor: aWorld.
 ]
 
-{
-	#category : #'update cycle',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>doOneCycleNowFor: aWorld [
+{ #category : #'update cycle' }
+WorldState >> doOneCycleNowFor: aWorld [
 	"Immediately do one cycle of the interaction loop.
 	This should not be called directly, but only via doOneCycleFor:"
 
@@ -678,11 +515,8 @@ WorldState>>doOneCycleNowFor: aWorld [
 	self displayWorldSafely: aWorld.
 ]
 
-{
-	#category : #'update cycle',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>doOneSubCycleFor: aWorld [
+{ #category : #'update cycle' }
+WorldState >> doOneSubCycleFor: aWorld [
 	"Like doOneCycle, but preserves activeHand."
 
 	| currentHand |
@@ -691,11 +525,8 @@ WorldState>>doOneSubCycleFor: aWorld [
 	self activeHand: currentHand.
 ]
 
-{
-	#category : #'update cycle',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>drawWorld: aWorld submorphs: submorphs invalidAreasOn: aCanvas  [
+{ #category : #'update cycle' }
+WorldState >> drawWorld: aWorld submorphs: submorphs invalidAreasOn: aCanvas [ 
 	"Redraw the damaged areas of the given canvas and clear the damage list. Return a collection of the areas that
 were redrawn."
 
@@ -745,11 +576,8 @@ were redrawn."
 	^validList
 ]
 
-{
-	#category : #'worldmenu building',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>fallbackMenuOn: menu [
+{ #category : #'worldmenu building' }
+WorldState >> fallbackMenuOn: menu [
 	"Build the menu that is put up if something is going wrong with the menubuilder"
 	
 	menu addTitle: 'Fallback menu'.
@@ -773,21 +601,15 @@ WorldState>>fallbackMenuOn: menu [
 		selector: #quitSession.
 ]
 
-{
-	#category : #'update cycle',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>forceDamageToScreen: allDamage [
+{ #category : #'update cycle' }
+WorldState >> forceDamageToScreen: allDamage [
 
 	Display forceDamageToScreen: allDamage.
 	
 ]
 
-{
-	#category : #'update cycle',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>handleFatalDrawingError: errMsg [
+{ #category : #'update cycle' }
+WorldState >> handleFatalDrawingError: errMsg [
 	"Handle a fatal drawing error."
 	Display deferUpdates: false. "Just in case"
 	self primitiveError: errMsg.
@@ -795,38 +617,26 @@ WorldState>>handleFatalDrawingError: errMsg [
 	"Hm... we should jump into a 'safe' worldState here, but how do we find it?!"
 ]
 
-{
-	#category : #hands,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>hands [
+{ #category : #hands }
+WorldState >> hands [
 
 	^ hands
 ]
 
-{
-	#category : #hands,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>handsDo: aBlock [
+{ #category : #hands }
+WorldState >> handsDo: aBlock [
 
 	^ hands do: aBlock
 ]
 
-{
-	#category : #hands,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>handsReverseDo: aBlock [
+{ #category : #hands }
+WorldState >> handsReverseDo: aBlock [
 
 	^ hands reverseDo: aBlock
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>initialize [
+{ #category : #initialization }
+WorldState >> initialize [
 
 	super initialize.
 	hands := Array new.
@@ -837,11 +647,8 @@ WorldState>>initialize [
 	self viewBox: Display boundingBox
 ]
 
-{
-	#category : #'update cycle',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>interCyclePause: milliSecs [
+{ #category : #'update cycle' }
+WorldState >> interCyclePause: milliSecs [
 	"delay enough that the previous cycle plus the amount of delay will equal milliSecs.  If the cycle is already expensive, then no delay occurs.  However, if the system is idly waiting for interaction from the user, the method will delay for a proportionally long time and cause the overall CPU usage of Squeak to be low.
 	If self serverMode returns true then, always do a complete delay of 50ms, independant of my argument. This prevents the freezing problem described in Mantis #6581"
 
@@ -865,40 +672,28 @@ WorldState>>interCyclePause: milliSecs [
 	CanSurrenderToOS := true.
 ]
 
-{
-	#category : #hands,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>is: hand overlappingDamagedAreaIn: damageList [
+{ #category : #hands }
+WorldState >> is: hand overlappingDamagedAreaIn: damageList [
 	| handBounds |
 	handBounds := hand fullBounds.
 	^ damageList anySatisfy: [ :r | r intersects: handBounds ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>isEasySelecting [
+{ #category : #settings }
+WorldState >> isEasySelecting [
 	^ self class easySelectingWorld
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>isStepping: aMorph [
+{ #category : #stepping }
+WorldState >> isStepping: aMorph [
 	"Return true if the given morph is in the step list."
 	lastStepMessage ifNotNil:[(lastStepMessage receiver == aMorph) ifTrue:[^true]].
 	stepList do:[:entry| entry receiver == aMorph ifTrue:[^true]].
 	^ false
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>isStepping: aMorph selector: aSelector [
+{ #category : #stepping }
+WorldState >> isStepping: aMorph selector: aSelector [
 	"Return true if the given morph is in the step list."
 	lastStepMessage ifNotNil:[
 		(lastStepMessage receiver == aMorph and:[lastStepMessage selector == aSelector])
@@ -907,30 +702,21 @@ WorldState>>isStepping: aMorph selector: aSelector [
 	^ false
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>listOfSteppingMorphs [
+{ #category : #stepping }
+WorldState >> listOfSteppingMorphs [
 	^stepList collect:[:entry| entry receiver].
 
 ]
 
-{
-	#category : #canvas,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>recordDamagedRect: damageRect [
+{ #category : #canvas }
+WorldState >> recordDamagedRect: damageRect [
 
 	damageRecorder ifNotNil: [damageRecorder recordInvalidRect: damageRect truncated]
 
 ]
 
-{
-	#category : #alarms,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>removeAlarm: aSelector for: aTarget [
+{ #category : #alarms }
+WorldState >> removeAlarm: aSelector for: aTarget [
 	"Remove the alarm with the given selector"
 
 	self alarms
@@ -938,11 +724,8 @@ WorldState>>removeAlarm: aSelector for: aTarget [
 		ifFound: [ :alarm | self alarms remove: alarm ]
 ]
 
-{
-	#category : #hands,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>removeHand: aHandMorph [
+{ #category : #hands }
+WorldState >> removeHand: aHandMorph [
 	"Remove the given hand from the list of hands for this world."
 
 	(hands includes: aHandMorph) ifFalse: [^self].
@@ -952,31 +735,22 @@ WorldState>>removeHand: aHandMorph [
 
 ]
 
-{
-	#category : #canvas,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>resetDamageRecorder [
+{ #category : #canvas }
+WorldState >> resetDamageRecorder [
 
 	damageRecorder reset
 
 ]
 
-{
-	#category : #'worldmenu building',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>resetWorldMenu [
+{ #category : #'worldmenu building' }
+WorldState >> resetWorldMenu [
 	menuBuilder 
 		ifNotNil: [menuBuilder reset.
 			menuBuilder := nil]
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>runLocalStepMethodsIn: aWorld  [
+{ #category : #stepping }
+WorldState >> runLocalStepMethodsIn: aWorld [ 
 	"Run morph 'step' methods (LOCAL TO THIS WORLD) whose time has come. Purge any morphs that are no longer in this world.
 	ar 3/13/1999: Remove buggy morphs from the step list so that they don't raise repeated errors."
 
@@ -1007,11 +781,8 @@ WorldState>>runLocalStepMethodsIn: aWorld  [
 	ActiveWorld := priorWorld
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>runStepMethodsIn: aWorld [
+{ #category : #stepping }
+WorldState >> runStepMethodsIn: aWorld [
 	"Perform periodic activity inbetween event cycles"
 	
 	| queue nextInQueue|
@@ -1024,48 +795,33 @@ WorldState>>runStepMethodsIn: aWorld [
 	Transcript stepGlobal.
 ]
 
-{
-	#category : #hands,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>selectHandsToDrawForDamage: damageList [
+{ #category : #hands }
+WorldState >> selectHandsToDrawForDamage: damageList [
 	"Select the set of hands that must be redrawn because either (a) the hand itself has changed or (b) the hand intersects some damage rectangle."
 
 	^ hands
 		select: [ :hand | hand needsToBeDrawn and: [ hand hasChanged or: [ self is: hand overlappingDamagedAreaIn: damageList ] ] ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>serverMode [
+{ #category : #settings }
+WorldState >> serverMode [
 	^ self class serverMode
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>stepListSize [
+{ #category : #initialization }
+WorldState >> stepListSize [
 	^ stepList size
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>stepListSortBlock [
+{ #category : #stepping }
+WorldState >> stepListSortBlock [
 	^[ :stepMsg1 :stepMsg2 | 
 		stepMsg1 scheduledTime <= stepMsg2 scheduledTime
 	]
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>stopStepping: aMorph [
+{ #category : #stepping }
+WorldState >> stopStepping: aMorph [
 	"Remove the given morph from the step list."
 	lastStepMessage ifNotNil:[
 		(lastStepMessage receiver == aMorph) ifTrue:[lastStepMessage := nil]].
@@ -1073,11 +829,8 @@ WorldState>>stopStepping: aMorph [
 
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>stopStepping: aMorph selector: aSelector [
+{ #category : #stepping }
+WorldState >> stopStepping: aMorph selector: aSelector [
 	"Remove the given morph from the step list."
 	lastStepMessage ifNotNil:[
 		(lastStepMessage receiver == aMorph and:[lastStepMessage selector == aSelector])
@@ -1085,11 +838,8 @@ WorldState>>stopStepping: aMorph selector: aSelector [
 	stepList removeAll: (stepList select:[:stepMsg| stepMsg receiver == aMorph and:[stepMsg selector == aSelector]]).
 ]
 
-{
-	#category : #alarms,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>triggerAlarmsBefore: nowTime [
+{ #category : #alarms }
+WorldState >> triggerAlarmsBefore: nowTime [
 	"Trigger all pending alarms that are to be executed before nowTime."
 	| pending |
 	lastAlarmTime ifNil:[lastAlarmTime := nowTime].
@@ -1101,28 +851,19 @@ WorldState>>triggerAlarmsBefore: nowTime [
 	lastAlarmTime := nowTime.
 ]
 
-{
-	#category : #canvas,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>viewBox [
+{ #category : #canvas }
+WorldState >> viewBox [
 
 	^ viewBox
 ]
 
-{
-	#category : #canvas,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>viewBox: x [
+{ #category : #canvas }
+WorldState >> viewBox: x [
 
 	viewBox := x
 ]
 
-{
-	#category : #'worldmenu building',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-WorldState>>worldMenu [
+{ #category : #'worldmenu building' }
+WorldState >> worldMenu [
 	^self  menuBuilder menuEntitled: self discoveredMenuTitle.
 ]

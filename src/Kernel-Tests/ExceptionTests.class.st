@@ -4,47 +4,31 @@ SUnit tests for exceptions
 Class {
 	#name : #ExceptionTests,
 	#superclass : #TestCase,
-	#category : #Kernel-Tests-Exception,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:36'
+	#category : #Kernel-Tests-Exception
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>assertSuccess: anExceptionTester [
+{ #category : #private }
+ExceptionTests >> assertSuccess: anExceptionTester [
 	self should: [ ( anExceptionTester suiteLog first) endsWith:  'succeeded'].
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testDoubleOuterPass [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testDoubleOuterPass [
 	self assertSuccess: (ExceptionTester new runTest: #doubleOuterPassTest ) 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testDoublePassOuter [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testDoublePassOuter [
 	self assertSuccess: (ExceptionTester new runTest: #doublePassOuterTest ) 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testDoubleResume [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testDoubleResume [
 	self assertSuccess: (ExceptionTester new runTest: #doubleResumeTest ) 
 ]
 
-{
-	#category : #testing-handling,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testHandlerContext [
+{ #category : #testing-handling }
+ExceptionTests >> testHandlerContext [
 	"A test ensuring that when evaluating the action block the exception environment is set to the handler context."
 
 	| result |
@@ -60,11 +44,8 @@ ExceptionTests>>testHandlerContext [
 	self assert: 'handler 1' = result description: 'Incorrect handler'
 ]
 
-{
-	#category : #testing-handling,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testHandlerFromAction [
+{ #category : #testing-handling }
+ExceptionTests >> testHandlerFromAction [
 	"A test ensuring that nested exceptions work as expected."
 
 	| result |
@@ -80,11 +61,8 @@ ExceptionTests>>testHandlerFromAction [
 	self assert: 'outer' = result description: 'Incorrect handler'
 ]
 
-{
-	#category : #testing-handling,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testHandlingExceptionSetWithExclusion [
+{ #category : #testing-handling }
+ExceptionTests >> testHandlingExceptionSetWithExclusion [
 
 	| wasHandled  |
 
@@ -102,11 +80,8 @@ ExceptionTests>>testHandlingExceptionSetWithExclusion [
 	self deny: wasHandled
 ]
 
-{
-	#category : #testing-handling,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testHandlingWhenThereIsSomeExclusionButDontApplies [
+{ #category : #testing-handling }
+ExceptionTests >> testHandlingWhenThereIsSomeExclusionButDontApplies [
 
 	| wasHandled result |
 
@@ -125,11 +100,8 @@ ExceptionTests>>testHandlingWhenThereIsSomeExclusionButDontApplies [
 		assert: result isNil
 ]
 
-{
-	#category : #testing-handling,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testHandlingWithExclusion [
+{ #category : #testing-handling }
+ExceptionTests >> testHandlingWithExclusion [
 
 	| wasHandled  |
 
@@ -147,11 +119,8 @@ ExceptionTests>>testHandlingWithExclusion [
 	self deny: wasHandled
 ]
 
-{
-	#category : #testing-handling,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testHandlingWithSeveralExclusions [
+{ #category : #testing-handling }
+ExceptionTests >> testHandlingWithSeveralExclusions [
 	| wasHandled |
 	wasHandled := false.
 	self
@@ -175,11 +144,8 @@ ExceptionTests>>testHandlingWithSeveralExclusions [
 	self deny: wasHandled.
 ]
 
-{
-	#category : #testing-handling,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testHandlingWithSeveralExclusionsAndExceptionSetsHandling [
+{ #category : #testing-handling }
+ExceptionTests >> testHandlingWithSeveralExclusionsAndExceptionSetsHandling [
 
 	| wasHandled result |
 
@@ -212,27 +178,18 @@ ExceptionTests>>testHandlingWithSeveralExclusionsAndExceptionSetsHandling [
 		assert: result isNil.	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testNoTimeout [
+{ #category : #testing }
+ExceptionTests >> testNoTimeout [
 	self assertSuccess: (ExceptionTester new runTest: #simpleNoTimeoutTest ) 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testNonResumableFallOffTheEndHandler [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testNonResumableFallOffTheEndHandler [
 	self assertSuccess: (ExceptionTester new runTest: #nonResumableFallOffTheEndHandler ) 
 ]
 
-{
-	#category : #testing-outer,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testNonResumableOuter [
+{ #category : #testing-outer }
+ExceptionTests >> testNonResumableOuter [
 
 	self should: [
 		[Error signal. 4] 
@@ -242,11 +199,8 @@ ExceptionTests>>testNonResumableOuter [
 
 ]
 
-{
-	#category : #testing-outer,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testNonResumablePass [
+{ #category : #testing-outer }
+ExceptionTests >> testNonResumablePass [
 
 	self should: [
 		[Error signal. 4] 
@@ -256,19 +210,13 @@ ExceptionTests>>testNonResumablePass [
 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testResumableFallOffTheEndHandler [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testResumableFallOffTheEndHandler [
 	self assertSuccess: (ExceptionTester new runTest: #resumableFallOffTheEndHandler ) 
 ]
 
-{
-	#category : #testing-outer,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testResumableOuter [
+{ #category : #testing-outer }
+ExceptionTests >> testResumableOuter [
 
 	| result |
 	result := [Notification signal. 4] 
@@ -278,11 +226,8 @@ ExceptionTests>>testResumableOuter [
 
 ]
 
-{
-	#category : #testing-outer,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testResumablePass [
+{ #category : #testing-outer }
+ExceptionTests >> testResumablePass [
 
 	| result |
 	result := [Notification signal. 4] 
@@ -292,114 +237,72 @@ ExceptionTests>>testResumablePass [
 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testSignalFromHandlerActionTest [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testSignalFromHandlerActionTest [
 	self assertSuccess: (ExceptionTester new runTest: #signalFromHandlerActionTest ) 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testSimpleEnsure [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testSimpleEnsure [
 	self assertSuccess: (ExceptionTester new runTest: #simpleEnsureTest ) 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testSimpleEnsureTestWithError [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testSimpleEnsureTestWithError [
 	self assertSuccess: (ExceptionTester new runTest: #simpleEnsureTestWithError ) 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testSimpleEnsureTestWithNotification [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testSimpleEnsureTestWithNotification [
 	self assertSuccess: (ExceptionTester new runTest: #simpleEnsureTestWithNotification ) 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testSimpleEnsureTestWithUparrow [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testSimpleEnsureTestWithUparrow [
 	self assertSuccess: (ExceptionTester new runTest: #simpleEnsureTestWithUparrow ) 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testSimpleIsNested [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testSimpleIsNested [
 	self assertSuccess: (ExceptionTester new runTest: #simpleIsNestedTest ) 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testSimpleOuter [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testSimpleOuter [
 	self assertSuccess: (ExceptionTester new runTest: #simpleOuterTest ) 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testSimplePass [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testSimplePass [
 	self assertSuccess: (ExceptionTester new runTest: #simplePassTest ) 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testSimpleResignalAs [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testSimpleResignalAs [
 	self assertSuccess: (ExceptionTester new runTest: #simpleResignalAsTest ) 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testSimpleResume [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testSimpleResume [
 	self assertSuccess: (ExceptionTester new runTest: #simpleResumeTest ) 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testSimpleRetry [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testSimpleRetry [
 	self assertSuccess: (ExceptionTester new runTest: #simpleRetryTest ) 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testSimpleRetryUsing [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testSimpleRetryUsing [
 	self assertSuccess: (ExceptionTester new runTest: #simpleRetryUsingTest ) 
 ]
 
-{
-	#category : #testing-exceptiontester,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testSimpleReturn [
+{ #category : #testing-exceptiontester }
+ExceptionTests >> testSimpleReturn [
 	self assertSuccess: (ExceptionTester new runTest: #simpleReturnTest ) 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ExceptionTests>>testTimeoutWithZeroDuration [
+{ #category : #testing }
+ExceptionTests >> testTimeoutWithZeroDuration [
 	self assertSuccess: (ExceptionTester new runTest: #simpleTimeoutWithZeroDurationTest ) 
 ]

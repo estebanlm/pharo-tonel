@@ -13,15 +13,11 @@ Class {
 		'monitorLog',
 		'refreshDeferrer'
 	],
-	#category : #EpiceaBrowsers-UI-Unified,
-	#timestamp : 'MartinDias 3/31/2017 00:35'
+	#category : #EpiceaBrowsers-UI-Unified
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnifiedBrowserModel class>>open [
+{ #category : #'instance creation' }
+EpUnifiedBrowserModel class >> open [
 
 	^ self new
 		refresh;
@@ -29,11 +25,8 @@ EpUnifiedBrowserModel class>>open [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnifiedBrowserModel class>>spec [
+{ #category : #accessing }
+EpUnifiedBrowserModel class >> spec [
 	<spec: #default>
 
 	^ SpecLayout composed
@@ -44,29 +37,20 @@ EpUnifiedBrowserModel class>>spec [
 				add: #logModel origin: 0.4@0 corner: 1@1 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnifiedBrowserModel class>>taskbarIconName [
+{ #category : #accessing }
+EpUnifiedBrowserModel class >> taskbarIconName [
 
 	^ #recoverLostChangesIcon
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnifiedBrowserModel class>>title [
+{ #category : #specs }
+EpUnifiedBrowserModel class >> title [
 
 	^ 'Epicea - Code Changes'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnifiedBrowserModel class>>worldMenuItemOn: aBuilder [
+{ #category : #accessing }
+EpUnifiedBrowserModel class >> worldMenuItemOn: aBuilder [
 	<worldMenu>
 
 	(aBuilder item: 'Code Changes')
@@ -76,19 +60,13 @@ EpUnifiedBrowserModel class>>worldMenuItemOn: aBuilder [
 		order: 0.5
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnifiedBrowserModel>>initialExtent  [
+{ #category : #api }
+EpUnifiedBrowserModel >> initialExtent [ 
 	^ 950 @ 650
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnifiedBrowserModel>>initializePresenter [
+{ #category : #initialization }
+EpUnifiedBrowserModel >> initializePresenter [
 
 	super initializePresenter.
 	
@@ -99,11 +77,8 @@ EpUnifiedBrowserModel>>initializePresenter [
 	self initializeWorkaroundToRefreshOnMonitorLogAnnouncement.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnifiedBrowserModel>>initializeRefreshOnSessionUpdate [
+{ #category : #initialization }
+EpUnifiedBrowserModel >> initializeRefreshOnSessionUpdate [
 
 	| updatesAnnouncer |
 	updatesAnnouncer := EpMonitor current sessionStore announcer.
@@ -118,22 +93,16 @@ EpUnifiedBrowserModel>>initializeRefreshOnSessionUpdate [
 			updatesAnnouncer unsubscribe: self ] ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnifiedBrowserModel>>initializeWidgets [
+{ #category : #initialization }
+EpUnifiedBrowserModel >> initializeWidgets [
 
 	self instantiateModels: {
 		#logNodesModel -> #EpLogNodeGraphModel.
 		#logModel -> #EpLogBrowserModel }
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnifiedBrowserModel>>initializeWorkaroundToRefreshOnMonitorLogAnnouncement [
+{ #category : #initialization }
+EpUnifiedBrowserModel >> initializeWorkaroundToRefreshOnMonitorLogAnnouncement [
 
 	monitorLog := EpMonitor current log.
 	refreshDeferrer := OmDeferrer 
@@ -151,36 +120,24 @@ EpUnifiedBrowserModel>>initializeWorkaroundToRefreshOnMonitorLogAnnouncement [
 			monitorLog announcer unsubscribe: refreshDeferrer ] ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnifiedBrowserModel>>logModel [
+{ #category : #accessing }
+EpUnifiedBrowserModel >> logModel [
 	^ logModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnifiedBrowserModel>>logNodesModel [
+{ #category : #accessing }
+EpUnifiedBrowserModel >> logNodesModel [
 	^ logNodesModel
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnifiedBrowserModel>>refresh [
+{ #category : #refreshing }
+EpUnifiedBrowserModel >> refresh [
 
 	logNodesModel refresh.
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnifiedBrowserModel>>refreshIfMonitorLogSelected [
+{ #category : #refreshing }
+EpUnifiedBrowserModel >> refreshIfMonitorLogSelected [
 	"See initializeWorkaroundToRefreshOnMonitorLogAnnouncement"
 	
 	| item |
@@ -190,11 +147,8 @@ EpUnifiedBrowserModel>>refreshIfMonitorLogSelected [
 	logModel refresh.
 ]
 
-{
-	#category : #refreshing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpUnifiedBrowserModel>>refreshWithLogSelected: item [
+{ #category : #refreshing }
+EpUnifiedBrowserModel >> refreshWithLogSelected: item [
 
 	| freshLog |
 	freshLog := item

@@ -4,14 +4,10 @@ I define the type for FFIExternalArray objects.
 Class {
 	#name : #FFIExternalArrayType,
 	#superclass : #FFIExternalReferenceType,
-	#category : #UnifiedFFI-Types,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Types
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArrayType>>instanceVariableName [
+{ #category : #accessing }
+FFIExternalArrayType >> instanceVariableName [
 	^ #handle
 ]

@@ -4,23 +4,16 @@ This is the chapter of the refactoring help book about the class refactoring ava
 Class {
 	#name : #RBBrowserClassRefactoringHelp,
 	#superclass : #RBBrowserSupportHelp,
-	#category : #Refactoring-Help,
-	#timestamp : 'NicolaiHess 7/27/2016 21:31'
+	#category : #Refactoring-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserClassRefactoringHelp class>>bookName [
+{ #category : #accessing }
+RBBrowserClassRefactoringHelp class >> bookName [
 	^ 'Class Refactorings'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserClassRefactoringHelp class>>generateAccessorRefactoring [
+{ #category : #pages }
+RBBrowserClassRefactoringHelp class >> generateAccessorRefactoring [
 	^HelpTopic
 		title: 'Generate Accessor'
 		contents: 
@@ -30,11 +23,8 @@ Generates setter and getter methods for every instance variable defined in this 
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserClassRefactoringHelp class>>generateSubclassRefactoring [
+{ #category : #pages }
+RBBrowserClassRefactoringHelp class >> generateSubclassRefactoring [
 	^HelpTopic
 		title: 'Generate Subclass'
 		contents: 
@@ -45,11 +35,8 @@ The name of the new class needs to be a valid class name, not yet used as any gl
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserClassRefactoringHelp class>>generateSuperclassRefactoring [
+{ #category : #pages }
+RBBrowserClassRefactoringHelp class >> generateSuperclassRefactoring [
 	^HelpTopic
 		title: 'Generate Superclass'
 		contents: 
@@ -60,11 +47,8 @@ The name of the new class needs to be a valid class name, not yet used as any gl
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserClassRefactoringHelp class>>insertSubclassRefactoring [
+{ #category : #pages }
+RBBrowserClassRefactoringHelp class >> insertSubclassRefactoring [
 	^HelpTopic
 		title: 'Insert Subclass'
 		contents: 
@@ -75,11 +59,8 @@ The name of the new class needs to be a valid class name, not yet used as any gl
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserClassRefactoringHelp class>>insertSuperclassRefactoring [
+{ #category : #pages }
+RBBrowserClassRefactoringHelp class >> insertSuperclassRefactoring [
 	^HelpTopic
 		title: 'Insert Superclass'
 		contents: 
@@ -90,50 +71,35 @@ The name of the new class needs to be a valid class name, not yet used as any gl
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserClassRefactoringHelp class>>pages [
+{ #category : #accessing }
+RBBrowserClassRefactoringHelp class >> pages [
 	^ #(renameClassRefactoring removeClassRefactoring generateAccessorRefactoring generateSuperclassRefactoring insertSuperclassRefactoring insertSubclassRefactoring generateSubclassRefactoring realizeClassRefactoring splitClassRefactoring)
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserClassRefactoringHelp class>>realizeClassRefactoring [
+{ #category : #pages }
+RBBrowserClassRefactoringHelp class >> realizeClassRefactoring [
 	^HelpTopic
 		title: 'Realize'
 		contents: RBRealizeClassRefactoring comment
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserClassRefactoringHelp class>>removeClassRefactoring [
+{ #category : #pages }
+RBBrowserClassRefactoringHelp class >> removeClassRefactoring [
 	^HelpTopic
 		title: 'Remove'
 		contents: RBRemoveClassRefactoring comment
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserClassRefactoringHelp class>>renameClassRefactoring [
+{ #category : #pages }
+RBBrowserClassRefactoringHelp class >> renameClassRefactoring [
 	^HelpTopic
 		title: 'Rename'
 		contents: RBRenameClassRefactoring comment
 
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-RBBrowserClassRefactoringHelp class>>splitClassRefactoring [
+{ #category : #pages }
+RBBrowserClassRefactoringHelp class >> splitClassRefactoring [
 	^HelpTopic
 		title: 'Split'
 		contents: RBSplitClassRefactoring comment

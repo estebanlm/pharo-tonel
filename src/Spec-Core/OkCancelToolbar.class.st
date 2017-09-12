@@ -9,15 +9,11 @@ Class {
 		'cancelAction',
 		'cancelled'
 	],
-	#category : #Spec-Core-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Support
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkCancelToolbar class>>defaultSpec [
+{ #category : #specs }
+OkCancelToolbar class >> defaultSpec [
 	<spec>
 	
 	^ SpecLayout composed
@@ -27,95 +23,65 @@ OkCancelToolbar class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkCancelToolbar class>>title [
+{ #category : #specs }
+OkCancelToolbar class >> title [
 
 	^ 'Ok Cancel'
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkCancelToolbar>>cancel [
+{ #category : #api }
+OkCancelToolbar >> cancel [
 
 	self cancelled: true
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkCancelToolbar>>cancelAction [
+{ #category : #api }
+OkCancelToolbar >> cancelAction [
 
 	^ cancelAction value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkCancelToolbar>>cancelAction: aBlock [
+{ #category : #api }
+OkCancelToolbar >> cancelAction: aBlock [
 
 	^ cancelAction value: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkCancelToolbar>>cancelButton [
+{ #category : #accessing }
+OkCancelToolbar >> cancelButton [
 
 	^ cancelButton
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkCancelToolbar>>cancelled [
+{ #category : #api }
+OkCancelToolbar >> cancelled [
 
 	^ cancelled value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkCancelToolbar>>cancelled: aBoolean [
+{ #category : #api }
+OkCancelToolbar >> cancelled: aBoolean [
 
 	cancelled value: aBoolean
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkCancelToolbar>>initialize [
+{ #category : #initialization }
+OkCancelToolbar >> initialize [
 
 	cancelled := false asValueHolder.
 	cancelAction := [ true ] asValueHolder.
 	super initialize.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkCancelToolbar>>initializePresenter [
+{ #category : #initialization }
+OkCancelToolbar >> initializePresenter [
 
 	super initializePresenter.
 	cancelButton action: [ self performCancelAction ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkCancelToolbar>>initializeWidgets [
+{ #category : #initialization }
+OkCancelToolbar >> initializeWidgets [
 
 	super initializeWidgets.
 	cancelButton := self newButton.
@@ -125,11 +91,8 @@ OkCancelToolbar>>initializeWidgets [
 		add: cancelButton
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkCancelToolbar>>performCancelAction [
+{ #category : #api }
+OkCancelToolbar >> performCancelAction [
 
 	^ cancelAction value value == false
 		ifFalse: [ 
@@ -137,11 +100,8 @@ OkCancelToolbar>>performCancelAction [
 			owner ifNil: [ self delete ] ifNotNil: [ owner delete ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkCancelToolbar>>registerCancelButtonEvents [
+{ #category : #initialization }
+OkCancelToolbar >> registerCancelButtonEvents [
 
 	cancelButton 
 		label: 'Cancel';
@@ -149,11 +109,8 @@ OkCancelToolbar>>registerCancelButtonEvents [
 		state: false
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-OkCancelToolbar>>triggerCancelAction [
+{ #category : #api }
+OkCancelToolbar >> triggerCancelAction [
 
 	self performCancelAction
 ]

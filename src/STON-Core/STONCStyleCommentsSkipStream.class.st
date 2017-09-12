@@ -29,66 +29,44 @@ Class {
 		'delimiter',
 		'escape'
 	],
-	#category : #STON-Core,
-	#timestamp : 'SvenVanCaekenberghe 7/17/2015 13:50'
+	#category : #STON-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream class>>on: readStream [
+{ #category : #'instance creation' }
+STONCStyleCommentsSkipStream class >> on: readStream [
 	^ self new
 		on: readStream;
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>atEnd [
+{ #category : #testing }
+STONCStyleCommentsSkipStream >> atEnd [
 	^ self peek isNil
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>close [
+{ #category : #initialize-release }
+STONCStyleCommentsSkipStream >> close [
 	stream close
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>collectionSpecies [
+{ #category : #accessing }
+STONCStyleCommentsSkipStream >> collectionSpecies [
 	^ String
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>consumeComment [
+{ #category : #private }
+STONCStyleCommentsSkipStream >> consumeComment [
 	stream peek = $/ ifTrue: [ self consumeToEOL ].
 	stream peek = $* ifTrue: [ self consumeToCommentEnd ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>consumeToCommentEnd [
+{ #category : #private }
+STONCStyleCommentsSkipStream >> consumeToCommentEnd [
 	[ stream atEnd or: [ stream next = $* and: [ stream peekFor: $/ ] ] ] whileFalse
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>consumeToEOL [
+{ #category : #private }
+STONCStyleCommentsSkipStream >> consumeToEOL [
 	| eol char |
 	eol := false.
 	[ eol ] whileFalse: [ 
@@ -102,22 +80,16 @@ STONCStyleCommentsSkipStream>>consumeToEOL [
 						stream peekFor: Character lf ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>escape [
+{ #category : #private }
+STONCStyleCommentsSkipStream >> escape [
 	"Return true when we previously read a backslash escape inside a string, 
 	so that the next string delimiter should be returned as is"
 	
 	^ escape = true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>handleStringDelimiter: char [
+{ #category : #private }
+STONCStyleCommentsSkipStream >> handleStringDelimiter: char [
 	self escape
 		ifTrue: [ escape := false ]
 		ifFalse: [ 
@@ -129,29 +101,20 @@ STONCStyleCommentsSkipStream>>handleStringDelimiter: char [
 	^ char
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>insideString [
+{ #category : #private }
+STONCStyleCommentsSkipStream >> insideString [
 	"Return true when we are currently inside a string where comments should be ignored."
 	
 	^ (delimiter = $') | (delimiter = $")
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>isBinary [
+{ #category : #testing }
+STONCStyleCommentsSkipStream >> isBinary [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>next [
+{ #category : #accessing }
+STONCStyleCommentsSkipStream >> next [
 	^ peekedCharacter
 		ifNil: [ 
 			stream atEnd
@@ -162,11 +125,8 @@ STONCStyleCommentsSkipStream>>next [
 			character ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>next: requestedCount  [
+{ #category : #accessing }
+STONCStyleCommentsSkipStream >> next: requestedCount [ 
 	"Read requestedCount elements into new collection and return it,
 	 it could be that less elements were available"
 
@@ -175,11 +135,8 @@ STONCStyleCommentsSkipStream>>next: requestedCount  [
 		into: (self collectionSpecies new: requestedCount)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>next: requestedCount into: collection [
+{ #category : #accessing }
+STONCStyleCommentsSkipStream >> next: requestedCount into: collection [
 	"Read requestedCount elements into collection,
 	returning a copy if less elements are available"
 	
@@ -189,11 +146,8 @@ STONCStyleCommentsSkipStream>>next: requestedCount into: collection [
 		startingAt: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>next: requestedCount into: collection startingAt: offset [
+{ #category : #accessing }
+STONCStyleCommentsSkipStream >> next: requestedCount into: collection startingAt: offset [
 	"Read requestedCount elements into collection starting at offset,
 	returning a copy if less elements are available"
 	
@@ -207,11 +161,8 @@ STONCStyleCommentsSkipStream>>next: requestedCount into: collection startingAt: 
 		ifFalse: [ collection copyFrom: 1 to: offset + readCount - 1 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>nextLine [
+{ #category : #accessing }
+STONCStyleCommentsSkipStream >> nextLine [
 	"Read a CR, LF or CRLF terminated line, returning the contents of the line without the EOL. Return nil when the receiver is #atEnd."
 	
 	self atEnd ifTrue: [ ^ nil ].
@@ -227,11 +178,8 @@ STONCStyleCommentsSkipStream>>nextLine [
 						ifFalse: [  out nextPut: char ] ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>nextNonCommentChar [
+{ #category : #private }
+STONCStyleCommentsSkipStream >> nextNonCommentChar [
 	| char |
 	char := stream next.
 	(self insideString and: [ char = $\ ])
@@ -250,19 +198,13 @@ STONCStyleCommentsSkipStream>>nextNonCommentChar [
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>on: readStream [
+{ #category : #initialize-release }
+STONCStyleCommentsSkipStream >> on: readStream [
 	stream := readStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>peek [
+{ #category : #accessing }
+STONCStyleCommentsSkipStream >> peek [
 	^ peekedCharacter
 		ifNil: [
 			stream atEnd
@@ -271,11 +213,8 @@ STONCStyleCommentsSkipStream>>peek [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>peekFor: object [
+{ #category : #accessing }
+STONCStyleCommentsSkipStream >> peekFor: object [
 	^ self peek = object
 		ifTrue: [ 
 			self next.
@@ -283,19 +222,13 @@ STONCStyleCommentsSkipStream>>peekFor: object [
 		ifFalse: [ false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>position [
+{ #category : #accessing }
+STONCStyleCommentsSkipStream >> position [
 	^ stream position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>readInto: collection startingAt: offset count: requestedCount  [
+{ #category : #accessing }
+STONCStyleCommentsSkipStream >> readInto: collection startingAt: offset count: requestedCount [ 
 	"Read count elements and place them in collection starting at offset.
 	Return the number of elements actually read."
 	
@@ -319,39 +252,27 @@ STONCStyleCommentsSkipStream>>readInto: collection startingAt: offset count: req
 				count: requestedCount - 1) + 1 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>skip: count [
+{ #category : #accessing }
+STONCStyleCommentsSkipStream >> skip: count [
 	count timesRepeat: [ self next ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>upTo: anObject 	 [
+{ #category : #accessing }
+STONCStyleCommentsSkipStream >> upTo: anObject [ 	
 	^ self collectionSpecies 
 		streamContents: [ :out | | element |
 			[ self atEnd or: [ (element := self next) = anObject ] ] whileFalse: [ 
 				out nextPut: element ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>upToEnd [
+{ #category : #accessing }
+STONCStyleCommentsSkipStream >> upToEnd [
 	^ self collectionSpecies
 		streamContents: [ :collectionStream | 
 			[ self atEnd ] whileFalse: [ collectionStream nextPut: self next ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONCStyleCommentsSkipStream>>wrappedStream [
+{ #category : #accessing }
+STONCStyleCommentsSkipStream >> wrappedStream [
 	^ stream
 ]

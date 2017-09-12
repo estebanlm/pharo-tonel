@@ -1,52 +1,32 @@
-Extension {
-	#name : #MCWorkingCopyBrowser
-}
+Extension { #name : #MCWorkingCopyBrowser }
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCWorkingCopyBrowser>>commitNewMajor [
+{ #category : #'*Versionner-Commit-UI' }
+MCWorkingCopyBrowser >> commitNewMajor [
 	(VSCommitUnit major: self configurationClass) open
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCWorkingCopyBrowser>>commitNewMinor [
+{ #category : #'*Versionner-Commit-UI' }
+MCWorkingCopyBrowser >> commitNewMinor [
 	(VSCommitUnit minor: self configurationClass) open
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCWorkingCopyBrowser>>commitNewPatch [
+{ #category : #'*Versionner-Commit-UI' }
+MCWorkingCopyBrowser >> commitNewPatch [
 	(VSCommitUnit patch: self configurationClass) open
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCWorkingCopyBrowser>>configurationClass [
+{ #category : #'*Versionner-Commit-UI' }
+MCWorkingCopyBrowser >> configurationClass [
 	^ Smalltalk globals at: workingCopy package name asSymbol 
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCWorkingCopyBrowser>>openWithVersionner [
+{ #category : #'*Versionner-Commit-UI' }
+MCWorkingCopyBrowser >> openWithVersionner [
 	VersionnerProjectBrowser openOn: (MBConfigurationInfo  configurationClass: self configurationClass)
 ]
 
-{
-	#category : #'*Versionner-Commit-UI',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-MCWorkingCopyBrowser>>versionCommitMenuSpec [
+{ #category : #'*Versionner-Commit-UI' }
+MCWorkingCopyBrowser >> versionCommitMenuSpec [
 	<contextMenu: #configuration>
 	
 	^ #(#('Commit new PATCH version' #commitNewPatch) 

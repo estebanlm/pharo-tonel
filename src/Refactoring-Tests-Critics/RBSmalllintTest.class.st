@@ -1,46 +1,30 @@
-"
-
-"
 Class {
 	#name : #RBSmalllintTest,
 	#superclass : #TestCase,
-	#category : #Refactoring-Tests-Critics,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Critics
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest class>>packageNamesUnderTest [
+{ #category : #accessing }
+RBSmalllintTest class >> packageNamesUnderTest [
 	^ #('Refactoring-Critics')
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>assertEnvironment: superEnvironment hasAllClassesInEnvironment: subEnvironment [
+{ #category : #private }
+RBSmalllintTest >> assertEnvironment: superEnvironment hasAllClassesInEnvironment: subEnvironment [
 	subEnvironment classesDo: [ :class |
 		self assert: (superEnvironment includesClass: class) ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>assertEnvironment: superEnvironment hasAllSelectorsInEnvironment: subEnvironment [
+{ #category : #private }
+RBSmalllintTest >> assertEnvironment: superEnvironment hasAllSelectorsInEnvironment: subEnvironment [
 	subEnvironment classesDo: [ :class | 
 		(subEnvironment selectorsForClass: class) 
 			do: [ :selector |
 				self assert: (superEnvironment includesSelector: selector in: class) ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>assertIsValidRule: aRule [
+{ #category : #private }
+RBSmalllintTest >> assertIsValidRule: aRule [
 	self
 		assert: (aRule name isString and: [ aRule name notEmpty ])
 		description: 'Missing rule name'.
@@ -55,41 +39,29 @@ RBSmalllintTest>>assertIsValidRule: aRule [
 		description: 'Invalid severity'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>assertResultOfRule: aLintRule hasSameClassesAsEnvironment: anEnvironment [
+{ #category : #private }
+RBSmalllintTest >> assertResultOfRule: aLintRule hasSameClassesAsEnvironment: anEnvironment [
 	| resultEnvironment |
 	resultEnvironment := aLintRule result.
 	self assertEnvironment: resultEnvironment hasAllClassesInEnvironment: anEnvironment.
 	self assertEnvironment: anEnvironment hasAllClassesInEnvironment: resultEnvironment
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>assertResultOfRule: aLintRule hasSameSelectorsAsEnvironment: anEnvironment [
+{ #category : #private }
+RBSmalllintTest >> assertResultOfRule: aLintRule hasSameSelectorsAsEnvironment: anEnvironment [
 	| resultEnvironment |
 	resultEnvironment := aLintRule result.
 	self assertEnvironment: resultEnvironment hasAllSelectorsInEnvironment: anEnvironment.
 	self assertEnvironment: anEnvironment hasAllSelectorsInEnvironment: resultEnvironment
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>classAndMetaClassRuleFor: aTestSelector [
+{ #category : #private }
+RBSmalllintTest >> classAndMetaClassRuleFor: aTestSelector [
 	self classAndMetaClassRuleFor: aTestSelector plusClasses: #()
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>classAndMetaClassRuleFor: aTestSelector plusClasses: aCollectionOfTestedClasses [
+{ #category : #private }
+RBSmalllintTest >> classAndMetaClassRuleFor: aTestSelector plusClasses: aCollectionOfTestedClasses [
 	| rule expectedResultClasses expectedResultEnvironment |
 	rule := self
 		runRuleFor: aTestSelector
@@ -105,56 +77,38 @@ RBSmalllintTest>>classAndMetaClassRuleFor: aTestSelector plusClasses: aCollectio
 		hasSameClassesAsEnvironment: expectedResultEnvironment
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>classEnvironmentWith: aClass [
+{ #category : #private }
+RBSmalllintTest >> classEnvironmentWith: aClass [
 	^ self classEnvironmentWithAll: (Array with: aClass)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>classEnvironmentWithAll: aClassCollection [
+{ #category : #private }
+RBSmalllintTest >> classEnvironmentWithAll: aClassCollection [
 	| classEnvironment |
 	classEnvironment := RBClassEnvironment new.
 	aClassCollection do: [ :each | classEnvironment addClass: each ].
 	^ classEnvironment
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>classEnvironmentWithAllObjectClasses [
+{ #category : #private }
+RBSmalllintTest >> classEnvironmentWithAllObjectClasses [
 	^ self classEnvironmentWithAll: RBSmalllintTestSuperclassObject withAllSubclasses
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>classNamed: aSymbol [
+{ #category : #private }
+RBSmalllintTest >> classNamed: aSymbol [
 	^ self class environment
 		at: aSymbol
 		ifAbsent: [ self error: aSymbol asString , ' class not found' ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>classRuleFor: aTestSelector [
+{ #category : #private }
+RBSmalllintTest >> classRuleFor: aTestSelector [
 	^ self classRuleFor: aTestSelector plusClasses: #()
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>classRuleFor: aTestSelector plusClasses: aCollectionOfTestedClasses [
+{ #category : #private }
+RBSmalllintTest >> classRuleFor: aTestSelector plusClasses: aCollectionOfTestedClasses [
 	| rule expectedResultEnvironment |
 	rule := self
 		runRuleFor: aTestSelector
@@ -168,58 +122,40 @@ RBSmalllintTest>>classRuleFor: aTestSelector plusClasses: aCollectionOfTestedCla
 		hasSameClassesAsEnvironment: expectedResultEnvironment
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>currentSelector [
+{ #category : #private }
+RBSmalllintTest >> currentSelector [
 	^ testSelector
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>objectClassFor: aTestSelector [
+{ #category : #private }
+RBSmalllintTest >> objectClassFor: aTestSelector [
 	^ self classNamed:
 		('RBSmalllintTest',
 		(aTestSelector asString allButFirst: 4 "'test' size"),
 		'Object') asSymbol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>objectClassSelectorFor: aTestSelector [
+{ #category : #private }
+RBSmalllintTest >> objectClassSelectorFor: aTestSelector [
 	^ (aTestSelector asString allButFirst: 4) "'test' size"
 		uncapitalized asSymbol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>ruleClassFor: aTestSelector [
+{ #category : #private }
+RBSmalllintTest >> ruleClassFor: aTestSelector [
 	^ self classNamed:
 		('RB',
 		(aTestSelector asString allButFirst: 4), "'test' size"
 		'Rule') asSymbol.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>ruleFor: aTestSelector [
+{ #category : #private }
+RBSmalllintTest >> ruleFor: aTestSelector [
 	self ruleFor: aTestSelector plusSelectors: #()
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>ruleFor: aTestSelector plusSelectors: aCollectionOfTestedSelectors [
+{ #category : #private }
+RBSmalllintTest >> ruleFor: aTestSelector plusSelectors: aCollectionOfTestedSelectors [
 	| rule expectedResultEnvironment |
 	rule := self
 		runRuleFor: aTestSelector
@@ -237,11 +173,8 @@ RBSmalllintTest>>ruleFor: aTestSelector plusSelectors: aCollectionOfTestedSelect
 		hasSameSelectorsAsEnvironment: expectedResultEnvironment
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>runRuleFor: aTestSelector onEnvironment: anEnvironment [
+{ #category : #private }
+RBSmalllintTest >> runRuleFor: aTestSelector onEnvironment: anEnvironment [
 	| rule |
 	rule := (self ruleClassFor: aTestSelector) new.
 	self assertIsValidRule: rule.
@@ -251,306 +184,195 @@ RBSmalllintTest>>runRuleFor: aTestSelector onEnvironment: anEnvironment [
 	^ rule.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testAddRemoveDependents [
+{ #category : #tests }
+RBSmalllintTest >> testAddRemoveDependents [
 	self classRuleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testAsOrderedCollectionNotNeeded [
+{ #category : #tests }
+RBSmalllintTest >> testAsOrderedCollectionNotNeeded [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testAssignmentInBlock [
+{ #category : #tests }
+RBSmalllintTest >> testAssignmentInBlock [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testAssignmentInIfTrue [
+{ #category : #tests }
+RBSmalllintTest >> testAssignmentInIfTrue [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testAssignmentWithoutEffect [
+{ #category : #tests }
+RBSmalllintTest >> testAssignmentWithoutEffect [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testAtIfAbsent [
+{ #category : #tests }
+RBSmalllintTest >> testAtIfAbsent [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testBadMessage [
+{ #category : #tests }
+RBSmalllintTest >> testBadMessage [
 	self ruleFor: self currentSelector plusSelectors: #(badMessage collectionMessagesToExternalObject)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testBooleanPrecedence [
+{ #category : #tests }
+RBSmalllintTest >> testBooleanPrecedence [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testClassNotReferenced [
+{ #category : #tests }
+RBSmalllintTest >> testClassNotReferenced [
 	self classAndMetaClassRuleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testCodeCruftLeftInMethods [
+{ #category : #tests }
+RBSmalllintTest >> testCodeCruftLeftInMethods [
 	self ruleFor: self currentSelector plusSelectors: #(haltClassMentioned flagged transcriptMentioned debbuggingMessageSent)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testCollectSelectNotUsed [
+{ #category : #tests }
+RBSmalllintTest >> testCollectSelectNotUsed [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testCollectionMessagesToExternalObject [
+{ #category : #tests }
+RBSmalllintTest >> testCollectionMessagesToExternalObject [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testCollectionProtocol [
+{ #category : #tests }
+RBSmalllintTest >> testCollectionProtocol [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testContains [
+{ #category : #tests }
+RBSmalllintTest >> testContains [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testDefinesEqualNotHash [
+{ #category : #tests }
+RBSmalllintTest >> testDefinesEqualNotHash [
 	self classRuleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testDetectContains [
+{ #category : #tests }
+RBSmalllintTest >> testDetectContains [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testEmptyExceptionHandler [
+{ #category : #tests }
+RBSmalllintTest >> testEmptyExceptionHandler [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testEndTrueFalse [
+{ #category : #tests }
+RBSmalllintTest >> testEndTrueFalse [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testEqualNotUsed [
+{ #category : #tests }
+RBSmalllintTest >> testEqualNotUsed [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testEqualsTrue [
+{ #category : #tests }
+RBSmalllintTest >> testEqualsTrue [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testEquivalentSuperclassMethods [
+{ #category : #tests }
+RBSmalllintTest >> testEquivalentSuperclassMethods [
 	^ self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testExtraBlock [
+{ #category : #tests }
+RBSmalllintTest >> testExtraBlock [
 	self 
 		ruleFor: self currentSelector
 		plusSelectors: #(#testMethod1 )
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testFileBlocks [
+{ #category : #tests }
+RBSmalllintTest >> testFileBlocks [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testFloatEqualityComparison [
+{ #category : #tests }
+RBSmalllintTest >> testFloatEqualityComparison [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testFullBlocks [
+{ #category : #tests }
+RBSmalllintTest >> testFullBlocks [
 	"skip this test in squeak"
 
 "	self blockRuleFor: self currentSelector
 		plusSelectors: #(#caller1 #fullBlocks #detectContains #fileBlocks #moveDefinition #caller #assignmentInBlock #equalNotUsed #stringConcatenation #noMoveDefinition #referencesConditionFor: #returnInEnsure)"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testGuardingClause [
+{ #category : #tests }
+RBSmalllintTest >> testGuardingClause [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testIfTrueReturns [
+{ #category : #tests }
+RBSmalllintTest >> testIfTrueReturns [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testJustSendsSuper [
+{ #category : #tests }
+RBSmalllintTest >> testJustSendsSuper [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testLiteralArrayCharacters [
+{ #category : #tests }
+RBSmalllintTest >> testLiteralArrayCharacters [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testLiteralArrayContainsComma [
+{ #category : #tests }
+RBSmalllintTest >> testLiteralArrayContainsComma [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testLongMethods [
+{ #category : #tests }
+RBSmalllintTest >> testLongMethods [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testMinMax [
+{ #category : #tests }
+RBSmalllintTest >> testMinMax [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testModifiesCollection [
+{ #category : #tests }
+RBSmalllintTest >> testModifiesCollection [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testMultiplePeriodsTerminatingStatement [
+{ #category : #tests }
+RBSmalllintTest >> testMultiplePeriodsTerminatingStatement [
 	self
 		ruleFor: self currentSelector
 		plusSelectors: #(multiplePeriodsTerminatingAssignmentStatement)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testNoClassComment [
+{ #category : #tests }
+RBSmalllintTest >> testNoClassComment [
 	self classAndMetaClassRuleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testPrecedence [
+{ #category : #tests }
+RBSmalllintTest >> testPrecedence [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testRBMissingSubclassResponsibilityRule [
+{ #category : #tests }
+RBSmalllintTest >> testRBMissingSubclassResponsibilityRule [
 	| sup sub1 sub2 |
 	sup := Object subclass: 'MySuperclass' instanceVariableNames: '' classVariableNames: '' poolDictionaries: '' category: self class category.
 	sub1 := sup subclass: 'MySubclass1' instanceVariableNames: '' classVariableNames: '' poolDictionaries: '' category: self class category.
@@ -580,134 +402,86 @@ RBSmalllintTest>>testRBMissingSubclassResponsibilityRule [
 	sup  removeFromSystem
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testRefersToClass [
+{ #category : #tests }
+RBSmalllintTest >> testRefersToClass [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testReturnInEnsure [
+{ #category : #tests }
+RBSmalllintTest >> testReturnInEnsure [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testReturnsBooleanAndOther [
+{ #category : #tests }
+RBSmalllintTest >> testReturnsBooleanAndOther [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testReturnsIfTrue [
+{ #category : #tests }
+RBSmalllintTest >> testReturnsIfTrue [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testSearchingLiteral [
+{ #category : #tests }
+RBSmalllintTest >> testSearchingLiteral [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testSendsDifferentSuper [
+{ #category : #tests }
+RBSmalllintTest >> testSendsDifferentSuper [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testShouldntRaiseError [
+{ #category : #tests }
+RBSmalllintTest >> testShouldntRaiseError [
 	self
 		ruleFor: self currentSelector
 		plusSelectors: #(shouldntRaiseException)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testSizeCheck [
+{ #category : #tests }
+RBSmalllintTest >> testSizeCheck [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testStringConcatenation [
+{ #category : #tests }
+RBSmalllintTest >> testStringConcatenation [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testTempVarOverridesInstVar [
+{ #category : #tests }
+RBSmalllintTest >> testTempVarOverridesInstVar [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testTempsReadBeforeWritten [
+{ #category : #tests }
+RBSmalllintTest >> testTempsReadBeforeWritten [
 	self ruleFor: self currentSelector
 		plusSelectors: #(#inlineTemporary #noMoveDefinition #tempsReadBeforeWritten #equalNotUsed #fileBlocks #referencesConditionFor:)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testThreeElementPoint [
+{ #category : #tests }
+RBSmalllintTest >> testThreeElementPoint [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testToDo [
+{ #category : #tests }
+RBSmalllintTest >> testToDo [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testToDoCollect [
+{ #category : #tests }
+RBSmalllintTest >> testToDoCollect [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testToDoWithIncrement [
+{ #category : #tests }
+RBSmalllintTest >> testToDoWithIncrement [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testUnaryAccessingMethodWithoutReturn [
+{ #category : #tests }
+RBSmalllintTest >> testUnaryAccessingMethodWithoutReturn [
 	self
 		ruleFor: self currentSelector
 		plusSelectors:
@@ -715,27 +489,18 @@ RBSmalllintTest>>testUnaryAccessingMethodWithoutReturn [
 				#unaryAccessingBranchingStatementMethodWithoutReturn)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testUnclassifiedMethods [
+{ #category : #tests }
+RBSmalllintTest >> testUnclassifiedMethods [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testUncommonMessageSend [
+{ #category : #tests }
+RBSmalllintTest >> testUncommonMessageSend [
 	self ruleFor: self currentSelector plusSelectors: {#uncommonMessageSend2}
 ]
 
-{
-	#category : #'test unique identifier',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testUniqueIdentifierName [
+{ #category : #'test unique identifier' }
+RBSmalllintTest >> testUniqueIdentifierName [
 
 	| idToRules |
 
@@ -746,42 +511,27 @@ RBSmalllintTest>>testUniqueIdentifierName [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testUnoptimizedAndOr [
+{ #category : #tests }
+RBSmalllintTest >> testUnoptimizedAndOr [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testUsesAdd [
+{ #category : #tests }
+RBSmalllintTest >> testUsesAdd [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testUsesTrue [
+{ #category : #tests }
+RBSmalllintTest >> testUsesTrue [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testWhileTrue [
+{ #category : #tests }
+RBSmalllintTest >> testWhileTrue [
 	self ruleFor: self currentSelector
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RBSmalllintTest>>testYourselfNotUsed [
+{ #category : #tests }
+RBSmalllintTest >> testYourselfNotUsed [
 	self ruleFor: self currentSelector
 ]

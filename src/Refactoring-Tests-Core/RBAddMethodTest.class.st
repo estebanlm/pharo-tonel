@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #RBAddMethodTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #'set up',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddMethodTest>>setUp [
+{ #category : #'set up' }
+RBAddMethodTest >> setUp [
 	super setUp.
 	model := self abstractVariableTestData.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddMethodTest>>testAddMethod [
+{ #category : #tests }
+RBAddMethodTest >> testAddMethod [
 	| refactoring |
 	refactoring := RBAddMethodRefactoring 
 		addMethod: 'printString1 ^super printString'
@@ -31,33 +21,24 @@ RBAddMethodTest>>testAddMethod [
 	self assert: ((refactoring model classNamed: #RBBasicLintRuleTest) parseTreeFor: #printString1) = (RBParser parseMethod: 'printString1 ^super printString')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddMethodTest>>testBadMethod [
+{ #category : #'failure tests' }
+RBAddMethodTest >> testBadMethod [
 	self shouldFail: (RBAddMethodRefactoring 
 			addMethod: 'asdf ^super ^printString'
 			toClass: RBBasicLintRuleTest
 			inProtocols: #(#accessing ))
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddMethodTest>>testExistingSelector [
+{ #category : #'failure tests' }
+RBAddMethodTest >> testExistingSelector [
 	self shouldFail: (RBAddMethodRefactoring 
 			addMethod: 'printString ^super printString'
 			toClass: RBBasicLintRuleTest
 			inProtocols: #(#accessing ))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddMethodTest>>testModelAddMethod [
+{ #category : #tests }
+RBAddMethodTest >> testModelAddMethod [
 	| refactoring class |
 	class := model metaclassNamed: #Bar.
 	refactoring := RBAddMethodRefactoring 
@@ -70,11 +51,8 @@ RBAddMethodTest>>testModelAddMethod [
 				= (RBParser parseMethod: 'printString1 ^super printString')
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddMethodTest>>testModelExistingSelector [
+{ #category : #'failure tests' }
+RBAddMethodTest >> testModelExistingSelector [
 	| refactoring |
 	refactoring := RBAddMethodRefactoring 
 				model: model
@@ -84,11 +62,8 @@ RBAddMethodTest>>testModelExistingSelector [
 	self shouldFail: refactoring
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBAddMethodTest>>testModelInheritedSelector [
+{ #category : #'failure tests' }
+RBAddMethodTest >> testModelInheritedSelector [
 	| refactoring |
 	refactoring := RBAddMethodRefactoring 
 				model: model

@@ -19,15 +19,11 @@ Class {
 		'pharoLogo',
 		'esugBallon'
 	],
-	#category : #Athens-Examples,
-	#timestamp : 'TorstenBergmann 9/5/2014 17:38'
+	#category : #Athens-Examples
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph class>>example [
+{ #category : #examples }
+AthensDemoMorph class >> example [
 	"self example"
 	
 	| demo model window |
@@ -42,67 +38,43 @@ AthensDemoMorph class>>example [
 	window title: 'Athens demos'
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>backColor [
+{ #category : #initialize-release }
+AthensDemoMorph >> backColor [
 	^ Color white.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>carColor [
+{ #category : #accessing }
+AthensDemoMorph >> carColor [
 	^ Color veryVeryLightGray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>chasisDecoratorColor [
+{ #category : #accessing }
+AthensDemoMorph >> chasisDecoratorColor [
 	^ Color black
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>chasisLineColor [
+{ #category : #accessing }
+AthensDemoMorph >> chasisLineColor [
 	^ Color white
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>coloredCarColor [
+{ #category : #accessing }
+AthensDemoMorph >> coloredCarColor [
 	^ Color red
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>defaultExtent [
+{ #category : #accessing }
+AthensDemoMorph >> defaultExtent [
 	^ 400@400
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>drawBackgroundOn: aCanvas [
+{ #category : #drawing }
+AthensDemoMorph >> drawBackgroundOn: aCanvas [
 	aCanvas setPaint: Color veryLightGray; drawShape: (0@0 extent: 1@1)
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>drawCarOn: aCanvas [
+{ #category : #drawing }
+AthensDemoMorph >> drawCarOn: aCanvas [
 	"chasis -----------------------------------------------------------------------"
 		| p stroke wheel decorator |
 	p := aCanvas createPath:[:b|
@@ -159,11 +131,8 @@ AthensDemoMorph>>drawCarOn: aCanvas [
 			
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+AthensDemoMorph >> drawOn: aCanvas [
 
 	self render.
 
@@ -171,11 +140,8 @@ AthensDemoMorph>>drawOn: aCanvas [
 		drawImage: surface asForm at: self bounds origin
 ]
 
-{
-	#category : #figures,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>figure10: aCanvas [
+{ #category : #figures }
+AthensDemoMorph >> figure10: aCanvas [
 	| pt ellipsePath patternPaint rectangle |
 	ellipsePath := aCanvas createPath: [ :builder |
 		builder
@@ -202,22 +168,16 @@ AthensDemoMorph>>figure10: aCanvas [
 
 ]
 
-{
-	#category : #figures,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>figure1: aCanvas [
+{ #category : #figures }
+AthensDemoMorph >> figure1: aCanvas [
 	aCanvas
 		setPaint: self carColor;
 		drawShape: (50@100 extent: 300@200) 
 		
 ]
 
-{
-	#category : #figures,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>figure2: aCanvas [
+{ #category : #figures }
+AthensDemoMorph >> figure2: aCanvas [
 	| pt path |
 	
 	path := aCanvas createPath: [:builder |
@@ -240,11 +200,8 @@ AthensDemoMorph>>figure2: aCanvas [
 
 ]
 
-{
-	#category : #figures,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>figure3: aCanvas [
+{ #category : #figures }
+AthensDemoMorph >> figure3: aCanvas [
 	| pt path |
 	
 	path := aCanvas createPath: [:builder |
@@ -267,11 +224,8 @@ AthensDemoMorph>>figure3: aCanvas [
 
 ]
 
-{
-	#category : #figures,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>figure4: aCanvas [
+{ #category : #figures }
+AthensDemoMorph >> figure4: aCanvas [
 	| path stroke |
 	
 	path := self roundedRectanglePathOn: aCanvas.
@@ -287,11 +241,8 @@ AthensDemoMorph>>figure4: aCanvas [
 	aCanvas draw. 
 ]
 
-{
-	#category : #figures,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>figure5: aCanvas [
+{ #category : #figures }
+AthensDemoMorph >> figure5: aCanvas [
 	| wheels |
 	self figure4: aCanvas.
 
@@ -311,11 +262,8 @@ AthensDemoMorph>>figure5: aCanvas [
 		drawShape: wheels
 ]
 
-{
-	#category : #figures,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>figure6: aCanvas [
+{ #category : #figures }
+AthensDemoMorph >> figure6: aCanvas [
 	| pt c linearGradient |
 	
 	self figure5: aCanvas.
@@ -339,11 +287,8 @@ AthensDemoMorph>>figure6: aCanvas [
 		
 ]
 
-{
-	#category : #figures,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>figure7: aCanvas [
+{ #category : #figures }
+AthensDemoMorph >> figure7: aCanvas [
 	| pt |
 
 	self drawBackgroundOn: aCanvas.
@@ -364,11 +309,8 @@ AthensDemoMorph>>figure7: aCanvas [
 		
 ]
 
-{
-	#category : #figures,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>figure8: aCanvas [
+{ #category : #figures }
+AthensDemoMorph >> figure8: aCanvas [
 	| pt |
 	pt := aCanvas pathTransform.
 	pt restoreAfter:[
@@ -388,11 +330,8 @@ AthensDemoMorph>>figure8: aCanvas [
 		
 ]
 
-{
-	#category : #figures,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>figure9: aCanvas [
+{ #category : #figures }
+AthensDemoMorph >> figure9: aCanvas [
 	| pt ellipsePath patternPaint |
 	ellipsePath := aCanvas createPath: [ :builder |
 		builder
@@ -414,11 +353,8 @@ AthensDemoMorph>>figure9: aCanvas [
 	aCanvas draw.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>figures [
+{ #category : #initialize-release }
+AthensDemoMorph >> figures [
 	^ #(
 	figure1:
 	figure2:
@@ -435,11 +371,8 @@ AthensDemoMorph>>figures [
 	
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>initialize  [
+{ #category : #initialize-release }
+AthensDemoMorph >> initialize [ 
 	| ref loadFileFailBlock|
 	super initialize.
 	self extent: self defaultExtent.
@@ -459,33 +392,24 @@ AthensDemoMorph>>initialize  [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>nextFigure [
+{ #category : #accessing }
+AthensDemoMorph >> nextFigure [
 
 	current := current + 1.
 	
 	current > self figures size ifTrue: [ current := 1 ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>prevFigure [
+{ #category : #accessing }
+AthensDemoMorph >> prevFigure [
 
 	current := current - 1.
 	
 	current < 1 ifTrue: [ current := self figures size ].
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>render  [
+{ #category : #drawing }
+AthensDemoMorph >> render [ 
 
 	surface drawDuring: [:canvas | 
 		surface clear.
@@ -497,11 +421,8 @@ AthensDemoMorph>>render  [
 
 ]
 
-{
-	#category : #figures,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>roundedRectanglePathOn: aCanvas [
+{ #category : #figures }
+AthensDemoMorph >> roundedRectanglePathOn: aCanvas [
 
 	^ aCanvas createPath: [:builder |
 		builder
@@ -520,27 +441,18 @@ AthensDemoMorph>>roundedRectanglePathOn: aCanvas [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>step [
+{ #category : #accessing }
+AthensDemoMorph >> step [
 	frame := frame + 1.
 	self changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>stepTime [
+{ #category : #accessing }
+AthensDemoMorph >> stepTime [
 	^ 0
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensDemoMorph>>wheelColor [
+{ #category : #drawing }
+AthensDemoMorph >> wheelColor [
 	^ Color brown darker
 ]

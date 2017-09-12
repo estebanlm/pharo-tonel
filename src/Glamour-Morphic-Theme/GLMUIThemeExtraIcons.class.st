@@ -7,414 +7,260 @@ Class {
 	#classInstVars : [
 		'icons'
 	],
-	#category : #Glamour-Morphic-Theme,
-	#timestamp : 'TudorGirba 1/30/2011 22:55'
+	#category : #Glamour-Morphic-Theme
 }
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousAccept [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousAccept [
 	^ self iconNamed: #glamorousAccept
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousAdd [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousAdd [
 	^ self iconNamed: #glamorousAdd
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousAlarm [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousAlarm [
 	^ self iconNamed: #glamorousAlarm
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousBookmark [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousBookmark [
 	^ self iconNamed: #glamorousBookmark
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousBrowse [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousBrowse [
 	^ self iconNamed: #glamorousBrowse
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousBug [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousBug [
 	^ self iconNamed: #glamorousBug
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousCancel [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousCancel [
 	^ self iconNamed: #glamorousCancel
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousClose [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousClose [
 	^ self iconNamed: #glamorousClose
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousDown [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousDown [
 	^ self iconNamed: #glamorousDown
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousDropDown [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousDropDown [
 	^ self iconNamed: #glamorousDropDown
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousEdit [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousEdit [
 	^ self iconNamed: #glamorousEdit
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousExample [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousExample [
 	^ self iconNamed: #glamorousExample
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousFolder [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousFolder [
 	^ self iconNamed: #glamorousFolder
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousGo [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousGo [
 	^ self iconNamed: #glamorousGo
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousGrayCircle [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousGrayCircle [
 	^ self iconNamed: #glamorousGrayCircle
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousGrayCircleEmpty [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousGrayCircleEmpty [
 	^ self iconNamed: #glamorousGrayCircleEmpty
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousGreenCircle [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousGreenCircle [
 	^ self iconNamed: #glamorousGreenCircle
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousHelp [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousHelp [
 	^ self iconNamed: #glamorousHelp
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousInspect [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousInspect [
 	^ self iconNamed: #glamorousInspect
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousInto [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousInto [
 	^ self iconNamed: #glamorousInto
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousLargeGrayCircleEmphasized [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousLargeGrayCircleEmphasized [
 	^ self iconNamed: #glamorousLargeGrayCircleEmphasized
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousLeft [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousLeft [
 	^ self iconNamed: #glamorousLeft
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousLeftSide [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousLeftSide [
 	^ self iconNamed: #glamorousLeftSide
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousMore [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousMore [
 	^ self iconNamed: #glamorousMore
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousOpen [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousOpen [
 	^ self iconNamed: #glamorousOpen
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousOpenFromUrl [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousOpenFromUrl [
 	^ self iconNamed: #glamorousOpenFromUrl
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousOver [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousOver [
 	^ self iconNamed: #glamorousOver
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousPlay [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousPlay [
 	^ self iconNamed: #glamorousPlay
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousRedCircle [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousRedCircle [
 	^ self iconNamed: #glamorousRedCircle
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousRedo [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousRedo [
 	^ self iconNamed: #glamorousRedo
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousRefresh [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousRefresh [
 	^ self iconNamed: #glamorousRefresh
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousRemove [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousRemove [
 	^ self iconNamed: #glamorousRemove
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousRestart [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousRestart [
 	^ self iconNamed: #glamorousRestart
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousRight [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousRight [
 	^ self iconNamed: #glamorousRight
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousRightSide [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousRightSide [
 	^ self iconNamed: #glamorousRightSide
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousSave [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousSave [
 	^ self iconNamed: #glamorousSave
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousSaveToUrl [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousSaveToUrl [
 	^ self iconNamed: #glamorousSaveToUrl
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousSearch [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousSearch [
 	^ self iconNamed: #glamorousSearch
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousSpawn [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousSpawn [
 	^ self iconNamed: #glamorousSpawn
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousThrough [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousThrough [
 	^ self iconNamed: #glamorousThrough
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousTrash [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousTrash [
 	^ self iconNamed: #glamorousTrash
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousUndo [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousUndo [
 	^ self iconNamed: #glamorousUndo
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousUp [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousUp [
 	^ self iconNamed: #glamorousUp
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousZoomIn [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousZoomIn [
 	^ self iconNamed: #glamorousZoomIn
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousZoomOut [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousZoomOut [
 	^ self iconNamed: #glamorousZoomOut
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamorousZoomToFit [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamorousZoomToFit [
 	^ self iconNamed: #glamorousZoomToFit
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamourousNextFailure [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamourousNextFailure [
 	^ self iconNamed: #glamourousNextFailure
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamourousNextParser [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamourousNextParser [
 	^ self iconNamed: #glamourousNextParser
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>glamourousNextProduction [
+{ #category : #icons }
+GLMUIThemeExtraIcons class >> glamourousNextProduction [
 	^ self iconNamed: #glamourousNextProduction
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>icons [
+{ #category : #utils }
+GLMUIThemeExtraIcons class >> icons [
 	^ icons ifNil: [icons := Dictionary new] 
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMUIThemeExtraIcons class>>resetIcons [
+{ #category : #utils }
+GLMUIThemeExtraIcons class >> resetIcons [
 	icons := nil
 ]

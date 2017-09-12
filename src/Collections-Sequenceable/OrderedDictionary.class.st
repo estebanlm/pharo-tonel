@@ -47,31 +47,21 @@ Class {
 		'dictionary',
 		'orderedKeys'
 	],
-	#category : #Collections-Sequenceable,
-	#timestamp : 'VincentBlondeau 4/1/2016 18:22'
+	#category : #Collections-Sequenceable
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary class>>new [
+{ #category : #'instance creation' }
+OrderedDictionary class >> new [
 	^ self new: 10
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary class>>new: aCapacity [
+{ #category : #'instance creation' }
+OrderedDictionary class >> new: aCapacity [
 	^ self basicNew initialize: aCapacity
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary class>>newFrom: anAssociationCollection [
+{ #category : #'instance creation' }
+OrderedDictionary class >> newFrom: anAssociationCollection [
 	| newDictionary |
 
 	newDictionary := self new: anAssociationCollection size.
@@ -82,11 +72,8 @@ OrderedDictionary class>>newFrom: anAssociationCollection [
 	^ newDictionary.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary class>>newFromPairs: aSequenceableCollection [
+{ #category : #'instance creation' }
+OrderedDictionary class >> newFromPairs: aSequenceableCollection [
 	| newDictionary |
 
 	newDictionary := self new: (aSequenceableCollection size / 2) floor.
@@ -97,11 +84,8 @@ OrderedDictionary class>>newFromPairs: aSequenceableCollection [
 	^ newDictionary.
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>= anObject [
+{ #category : #comparing }
+OrderedDictionary >> = anObject [
 	self == anObject
 		ifTrue: [^ true].
 
@@ -115,11 +99,8 @@ OrderedDictionary>>= anObject [
 	^ true.
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>add: anAssociation [
+{ #category : #adding }
+OrderedDictionary >> add: anAssociation [
 	| oldSize |
 
 	oldSize := dictionary size.
@@ -132,11 +113,8 @@ OrderedDictionary>>add: anAssociation [
 	^ anAssociation.
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>addAll: anAssociationCollection [
+{ #category : #adding }
+OrderedDictionary >> addAll: anAssociationCollection [
 	"Since Collection implements #associationsDo:, this method can accept
 	any collection of associations including Arrays and OrderedCollections"
 
@@ -144,35 +122,23 @@ OrderedDictionary>>addAll: anAssociationCollection [
 	^ anAssociationCollection.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>associationAt: aKey [
+{ #category : #accessing }
+OrderedDictionary >> associationAt: aKey [
 	^ dictionary associationAt: aKey
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>associationAt: aKey ifAbsent: aBlock [
+{ #category : #accessing }
+OrderedDictionary >> associationAt: aKey ifAbsent: aBlock [
 	^ dictionary associationAt: aKey ifAbsent: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>associationAt: aKey ifPresent: aBlock [
+{ #category : #accessing }
+OrderedDictionary >> associationAt: aKey ifPresent: aBlock [
 	^ dictionary associationAt: aKey ifPresent: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>associations [
+{ #category : #accessing }
+OrderedDictionary >> associations [
 	| associations i |
 
 	associations := Array new: self size.
@@ -183,81 +149,54 @@ OrderedDictionary>>associations [
 	^ associations.
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>associationsDo: aBlock [
+{ #category : #enumerating }
+OrderedDictionary >> associationsDo: aBlock [
 	self keysDo: [:each | aBlock value: (self associationAt: each)]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>associationsSelect: aBlock [
+{ #category : #enumerating }
+OrderedDictionary >> associationsSelect: aBlock [
 	^ self species newFrom: (self associations select: aBlock)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>at: aKey [
+{ #category : #accessing }
+OrderedDictionary >> at: aKey [
 	^ dictionary at: aKey
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>at: aKey ifAbsent: aBlock [
+{ #category : #accessing }
+OrderedDictionary >> at: aKey ifAbsent: aBlock [
 	^ dictionary at: aKey ifAbsent: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>at: aKey ifAbsentPut: aBlock [
+{ #category : #accessing }
+OrderedDictionary >> at: aKey ifAbsentPut: aBlock [
 	^ self at: aKey ifAbsent: [self at: aKey put: aBlock value]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>at: aKey ifPresent: aBlock [
+{ #category : #accessing }
+OrderedDictionary >> at: aKey ifPresent: aBlock [
 	^ dictionary at: aKey ifPresent: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>at: aKey ifPresent: aPresentBlock ifAbsent: anAbsentBlock [
+{ #category : #accessing }
+OrderedDictionary >> at: aKey ifPresent: aPresentBlock ifAbsent: anAbsentBlock [
 	^ dictionary
 		at: aKey
 		ifPresent: aPresentBlock
 		ifAbsent: anAbsentBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>at: aKey ifPresent: aPresentBlock ifAbsentPut: anAbsentBlock [
+{ #category : #accessing }
+OrderedDictionary >> at: aKey ifPresent: aPresentBlock ifAbsentPut: anAbsentBlock [
 	^ dictionary
 		at: aKey
 		ifPresent: aPresentBlock
 		ifAbsentPut: anAbsentBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>at: aKey put: aValue [
+{ #category : #accessing }
+OrderedDictionary >> at: aKey put: aValue [
 	| oldSize |
 
 	oldSize := dictionary size.
@@ -270,45 +209,30 @@ OrderedDictionary>>at: aKey put: aValue [
 	^ aValue.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>bindingOf: varName [
+{ #category : #accessing }
+OrderedDictionary >> bindingOf: varName [
 	^ self associationAt: varName ifAbsent: [nil]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>bindingsDo: aBlock [
+{ #category : #enumerating }
+OrderedDictionary >> bindingsDo: aBlock [
 	self associationsDo: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>capacity [
+{ #category : #accessing }
+OrderedDictionary >> capacity [
 	^ dictionary capacity
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>collect: aBlock [
+{ #category : #enumerating }
+OrderedDictionary >> collect: aBlock [
 	^ self species newFrom:
 		(self associations collect: [:each |
 			each key -> (aBlock value: each value)])
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>declare: aKey from: aDictionary [
+{ #category : #adding }
+OrderedDictionary >> declare: aKey from: aDictionary [
 	(self includesKey: aKey)
 		ifTrue: [^ self].
 
@@ -319,43 +243,28 @@ OrderedDictionary>>declare: aKey from: aDictionary [
 		ifFalse: [self add: aKey -> nil]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>dictionary [
+{ #category : #private }
+OrderedDictionary >> dictionary [
 	^ dictionary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>dictionaryClass [
+{ #category : #accessing }
+OrderedDictionary >> dictionaryClass [
 	^ Dictionary
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>do: aBlock [
+{ #category : #enumerating }
+OrderedDictionary >> do: aBlock [
 	self valuesDo: aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>errorInvalidIndex: anIndex [
+{ #category : #private }
+OrderedDictionary >> errorInvalidIndex: anIndex [
 	SubscriptOutOfBounds signalFor: anIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>growOrderedKeys [
+{ #category : #private }
+OrderedDictionary >> growOrderedKeys [
 	orderedKeys :=
 		(Array new: ((orderedKeys size * 1.5) asInteger max: 10))
 			replaceFrom: 1
@@ -364,196 +273,127 @@ OrderedDictionary>>growOrderedKeys [
 			startingAt: 1.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>hasBindingThatBeginsWith: aString [
+{ #category : #testing }
+OrderedDictionary >> hasBindingThatBeginsWith: aString [
 	^ dictionary hasBindingThatBeginsWith: aString
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>hash [
+{ #category : #comparing }
+OrderedDictionary >> hash [
 	^ dictionary hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>identityIndexOfKey: aKey [
+{ #category : #accessing }
+OrderedDictionary >> identityIndexOfKey: aKey [
 	^ self identityIndexOfKey: aKey ifAbsent: [0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>identityIndexOfKey: aKey ifAbsent: aBlock [
+{ #category : #accessing }
+OrderedDictionary >> identityIndexOfKey: aKey ifAbsent: aBlock [
 	1 to: self size do: [:i |
 		(orderedKeys at: i) == aKey
 			ifTrue: [^ i]].
 	^ aBlock value.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>includes: anObject [
+{ #category : #testing }
+OrderedDictionary >> includes: anObject [
 	^ dictionary includes: anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>includesAssociation: anAssociation [
+{ #category : #testing }
+OrderedDictionary >> includesAssociation: anAssociation [
 	^ dictionary includesAssociation: anAssociation
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>includesIdentity: anObject [
+{ #category : #testing }
+OrderedDictionary >> includesIdentity: anObject [
 	^ dictionary includesIdentity: anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>includesKey: aKey [
+{ #category : #testing }
+OrderedDictionary >> includesKey: aKey [
 	^ dictionary includesKey: aKey
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>indexOfKey: aKey [
+{ #category : #accessing }
+OrderedDictionary >> indexOfKey: aKey [
 	^ self indexOfKey: aKey ifAbsent: [0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>indexOfKey: aKey ifAbsent: aBlock [
+{ #category : #accessing }
+OrderedDictionary >> indexOfKey: aKey ifAbsent: aBlock [
 	1 to: self size do: [:i |
 		(orderedKeys at: i) = aKey
 			ifTrue: [^ i]].
 	^ aBlock value.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>initialize: aCapacity [
+{ #category : #initialization }
+OrderedDictionary >> initialize: aCapacity [
 	dictionary := self dictionaryClass new: aCapacity.
 	orderedKeys := Array new: aCapacity.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>isDictionary [
+{ #category : #testing }
+OrderedDictionary >> isDictionary [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>isHealthy [
+{ #category : #testing }
+OrderedDictionary >> isHealthy [
 	^ dictionary isHealthy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>keyAtIdentityValue: aValue [
+{ #category : #accessing }
+OrderedDictionary >> keyAtIdentityValue: aValue [
 	^ dictionary keyAtIdentityValue: aValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>keyAtIdentityValue: aValue ifAbsent: aBlock [
+{ #category : #accessing }
+OrderedDictionary >> keyAtIdentityValue: aValue ifAbsent: aBlock [
 	^ dictionary keyAtIdentityValue: aValue ifAbsent: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>keyAtIndex: anIndex [
+{ #category : #accessing }
+OrderedDictionary >> keyAtIndex: anIndex [
 	^ self keyAtIndex: anIndex ifAbsent: [self errorInvalidIndex: anIndex]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>keyAtIndex: anIndex ifAbsent: aBlock [
+{ #category : #accessing }
+OrderedDictionary >> keyAtIndex: anIndex ifAbsent: aBlock [
 	(anIndex > 0 and: [anIndex <= self size])
 		ifTrue: [^ orderedKeys at: anIndex]
 		ifFalse: [^ aBlock value]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>keyAtValue: aValue [
+{ #category : #accessing }
+OrderedDictionary >> keyAtValue: aValue [
 	^ dictionary keyAtValue: aValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>keyAtValue: aValue ifAbsent: aBlock [
+{ #category : #accessing }
+OrderedDictionary >> keyAtValue: aValue ifAbsent: aBlock [
 	^ dictionary keyAtValue: aValue ifAbsent: aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>keyForIdentity: anObject [
+{ #category : #accessing }
+OrderedDictionary >> keyForIdentity: anObject [
 	^ dictionary keyForIdentity: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>keys [
+{ #category : #accessing }
+OrderedDictionary >> keys [
 	^ orderedKeys copyFrom: 1 to: self size
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>keysAndValuesDo: aBlock [
+{ #category : #enumerating }
+OrderedDictionary >> keysAndValuesDo: aBlock [
 	self keysDo: [:each | aBlock value: each value: (self at: each)]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>keysAndValuesRemove: aTwoArgumentBlock [
+{ #category : #removing }
+OrderedDictionary >> keysAndValuesRemove: aTwoArgumentBlock [
 	| removedAssociations |
 
 	removedAssociations := OrderedCollection new.
@@ -563,43 +403,28 @@ OrderedDictionary>>keysAndValuesRemove: aTwoArgumentBlock [
 	removedAssociations do: [:each | self removeKey: each key].
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>keysDo: aBlock [
+{ #category : #enumerating }
+OrderedDictionary >> keysDo: aBlock [
 	1 to: self size do: [:i | aBlock value: (orderedKeys at: i)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>keysSortedSafely [
+{ #category : #accessing }
+OrderedDictionary >> keysSortedSafely [
 	^ dictionary keysSortedSafely
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>orderedKeys [
+{ #category : #private }
+OrderedDictionary >> orderedKeys [
 	^ orderedKeys
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>orderedKeysIndexOf: aKey [
+{ #category : #private }
+OrderedDictionary >> orderedKeysIndexOf: aKey [
 	^ orderedKeys indexOf: aKey
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>orderedKeysRemove: aRemovedKey [
+{ #category : #private }
+OrderedDictionary >> orderedKeysRemove: aRemovedKey [
 	| index |
 
 	index := self orderedKeysIndexOf: aRemovedKey.
@@ -618,20 +443,14 @@ OrderedDictionary>>orderedKeysRemove: aRemovedKey [
 		put: nil.
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>postCopy [
+{ #category : #copying }
+OrderedDictionary >> postCopy [
 	orderedKeys := orderedKeys copy.
 	dictionary := dictionary copy.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>printElementsOn: aStream [
+{ #category : #printing }
+OrderedDictionary >> printElementsOn: aStream [
 	aStream nextPut: $(.
 	self size > 100
 		ifTrue: [
@@ -648,28 +467,19 @@ OrderedDictionary>>printElementsOn: aStream [
 	aStream nextPut: $).
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>remove: anObject ifAbsent: aBlock [
+{ #category : #removing }
+OrderedDictionary >> remove: anObject ifAbsent: aBlock [
 	self shouldNotImplement
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>removeAll [
+{ #category : #removing }
+OrderedDictionary >> removeAll [
 	1 to: self size do: [:i | orderedKeys at: i put: nil].
 	dictionary removeAll.
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>removeKey: aKey [
+{ #category : #removing }
+OrderedDictionary >> removeKey: aKey [
 	| value |
 
 	value := dictionary removeKey: aKey.
@@ -677,11 +487,8 @@ OrderedDictionary>>removeKey: aKey [
 	^ value.
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>removeKey: aKey ifAbsent: aBlock [
+{ #category : #removing }
+OrderedDictionary >> removeKey: aKey ifAbsent: aBlock [
 	| oldSize value |
 
 	oldSize := dictionary size.
@@ -691,11 +498,8 @@ OrderedDictionary>>removeKey: aKey ifAbsent: aBlock [
 	^ value.
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>removeKeys: aKeyCollection [
+{ #category : #removing }
+OrderedDictionary >> removeKeys: aKeyCollection [
 	"Fast removal of multiple keys; returns self to avoid
 	having to create a removed value collection and does not
 	raise errors."
@@ -727,51 +531,33 @@ OrderedDictionary>>removeKeys: aKeyCollection [
 						ifAbsent: [nil]]]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>removeUnreferencedKeys [
+{ #category : #removing }
+OrderedDictionary >> removeUnreferencedKeys [
 	^ self unreferencedKeys do: [:each | self removeKey: each]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>select: aBlock [
+{ #category : #enumerating }
+OrderedDictionary >> select: aBlock [
 	^ self species newFrom:
 		(self associations select: [:each | aBlock value: each value])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>size [
+{ #category : #accessing }
+OrderedDictionary >> size [
 	^ dictionary size
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>unreferencedKeys [
+{ #category : #private }
+OrderedDictionary >> unreferencedKeys [
 	^ Dictionary unreferencedKeysIn: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>values [
+{ #category : #accessing }
+OrderedDictionary >> values [
 	^ self associations collect: [:each | each value]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-OrderedDictionary>>valuesDo: aBlock [
+{ #category : #enumerating }
+OrderedDictionary >> valuesDo: aBlock [
 	self keysDo: [:each | aBlock value: (self at: each)]
 ]

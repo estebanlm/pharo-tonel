@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicListingRenderer,
 	#superclass : #GLMMorphicWidgetRenderer,
@@ -8,15 +5,11 @@ Class {
 		'treeMorph',
 		'treeModel'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicListingRenderer>>actOnContextChanged: anAnnouncement  [
+{ #category : #rendering }
+GLMMorphicListingRenderer >> actOnContextChanged: anAnnouncement [ 
 	anAnnouncement property = #selection ifTrue: [ 
 		treeModel announcer 
 			suspendAll: self suspendedAnnouncements
@@ -24,30 +17,21 @@ GLMMorphicListingRenderer>>actOnContextChanged: anAnnouncement  [
 				treeMorph model explicitSelection: anAnnouncement value ] ] 
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicListingRenderer>>actOnUpdatedPresentation: anAnnouncement [
+{ #category : #rendering }
+GLMMorphicListingRenderer >> actOnUpdatedPresentation: anAnnouncement [
 	treeMorph model updateRoots.
 	self flag: 'Calling update list explicitly here is a hack. This should be solvable by the model through a notification mechanism'.
 	treeMorph updateList
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicListingRenderer>>newTreeMorph [
+{ #category : #private }
+GLMMorphicListingRenderer >> newTreeMorph [
 
 	^ GLMPaginatedMorphTreeMorph new
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicListingRenderer>>render: aPresentation [
+{ #category : #rendering }
+GLMMorphicListingRenderer >> render: aPresentation [
 	| container textInput |
 	treeModel := GLMTreeMorphModel new glamourPresentation: aPresentation.
 	container := GLMMorphic containerMorph.
@@ -80,11 +64,8 @@ GLMMorphicListingRenderer>>render: aPresentation [
 	^ container
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicListingRenderer>>suspendedAnnouncements [
+{ #category : #private }
+GLMMorphicListingRenderer >> suspendedAnnouncements [
 	^ OrderedCollection  
 		with: GLMTreeMorphSelectionChanged 
 		with: GLMTreeMorphStrongSelectionChanged 
@@ -92,11 +73,8 @@ GLMMorphicListingRenderer>>suspendedAnnouncements [
 		with: GLMKeyStroke
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicListingRenderer>>textInputFor: aTreeModel withHelpMessage: helpStringMessage [
+{ #category : #private }
+GLMMorphicListingRenderer >> textInputFor: aTreeModel withHelpMessage: helpStringMessage [
 	| textInput |
 	textInput := self theme
 		newTextEntryIn: nil
@@ -112,11 +90,8 @@ GLMMorphicListingRenderer>>textInputFor: aTreeModel withHelpMessage: helpStringM
 	^ textInput
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicListingRenderer>>treeMorphFor: tmpTreeModel and: aPresentation [
+{ #category : #private }
+GLMMorphicListingRenderer >> treeMorphFor: tmpTreeModel and: aPresentation [
 	| tmpTreeMorph columns |
 	tmpTreeMorph := self newTreeMorph.
 	tmpTreeMorph

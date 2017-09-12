@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloSymbolicVersionMethodSpec,
 	#superclass : #MetacelloMethodSpec,
-	#category : #Metacello-Core-Constructors,
-	#timestamp : ''
+	#category : #Metacello-Core-Constructors
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSymbolicVersionMethodSpec>>addMethodSection: attribute versionString: aString [
+{ #category : #adding }
+MetacelloSymbolicVersionMethodSpec >> addMethodSection: attribute versionString: aString [
     self methodSections
         add:
             (MetacelloSymbolicVersionSpec new
@@ -21,11 +14,8 @@ MetacelloSymbolicVersionMethodSpec>>addMethodSection: attribute versionString: a
                 yourself)
 ]
 
-{
-	#category : #'method generation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSymbolicVersionMethodSpec>>methodSource [
+{ #category : #'method generation' }
+MetacelloSymbolicVersionMethodSpec >> methodSource [
     | strm |
     strm := WriteStream on: String new.
     self symbolicMethodSelectorAndPragma: self selector symbolicVersionSymbol: self versionString on: strm.
@@ -45,11 +35,8 @@ MetacelloSymbolicVersionMethodSpec>>methodSource [
     ^ strm contents
 ]
 
-{
-	#category : #'method generation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSymbolicVersionMethodSpec>>symbolicMethodSelectorAndPragma: aSelector symbolicVersionSymbol: symbolicVersionSymbol on: strm [
+{ #category : #'method generation' }
+MetacelloSymbolicVersionMethodSpec >> symbolicMethodSelectorAndPragma: aSelector symbolicVersionSymbol: symbolicVersionSymbol [ on: strm
 	strm
 		nextPutAll: aSelector asString , ' spec';
 		cr;
@@ -59,11 +46,8 @@ MetacelloSymbolicVersionMethodSpec>>symbolicMethodSelectorAndPragma: aSelector s
 		cr
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloSymbolicVersionMethodSpec>>versionString: aStringOrSymbol [
+{ #category : #accessing }
+MetacelloSymbolicVersionMethodSpec >> versionString: aStringOrSymbol [
 
 	aStringOrSymbol isSymbol ifFalse: [ self error: 'Version symbol ', aStringOrSymbol printString, ' for symbolic version method must be a Symbol' ].
 	super versionString: aStringOrSymbol

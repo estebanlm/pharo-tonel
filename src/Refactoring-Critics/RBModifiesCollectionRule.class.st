@@ -12,33 +12,23 @@ aCol copy do: [ :each |  ... aCol remove:... ]
 Class {
 	#name : #RBModifiesCollectionRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 23:09'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBModifiesCollectionRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBModifiesCollectionRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'ModifiesCollectionRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBModifiesCollectionRule>>group [
+{ #category : #accessing }
+RBModifiesCollectionRule >> group [
 	^ 'Potential Bugs'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBModifiesCollectionRule>>initialize [
+{ #category : #initialization }
+RBModifiesCollectionRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyOf: #(
@@ -56,11 +46,8 @@ RBModifiesCollectionRule>>initialize [
 				ifFalse: [ answer ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBModifiesCollectionRule>>modifiesTree: aCollectionTree in: aParseTree  [
+{ #category : #private }
+RBModifiesCollectionRule >> modifiesTree: aCollectionTree in: aParseTree [ 
 	| notifier args |
 	notifier := RBParseTreeSearcher new.
 	args := Array with: (RBPatternVariableNode named: '`@object').
@@ -75,18 +62,12 @@ RBModifiesCollectionRule>>modifiesTree: aCollectionTree in: aParseTree  [
 	^notifier executeTree: aParseTree initialAnswer: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBModifiesCollectionRule>>name [
+{ #category : #accessing }
+RBModifiesCollectionRule >> name [
 	^ 'Modifies collection while iterating over it'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBModifiesCollectionRule>>rationale [
+{ #category : #accessing }
+RBModifiesCollectionRule >> rationale [
 	^ 'Checks for remove:''s of elements inside of collection iteration methods such as do:. '
 ]

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #HEMethod,
 	#superclass : #HEAbstractExported,
@@ -12,57 +9,38 @@ Class {
 		'bytecode',
 		'protocol'
 	],
-	#category : #Hermes-Model,
-	#timestamp : ''
+	#category : #Hermes-Model
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod class>>for: aMethod [
+{ #category : #'instance creation' }
+HEMethod class >> for: aMethod [
 	^ self new
 		fromMethod: aMethod;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>bytecode [
+{ #category : #accessing }
+HEMethod >> bytecode [
 	^ bytecode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>bytecode: anObject [
+{ #category : #accessing }
+HEMethod >> bytecode: anObject [
 	bytecode := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>className [
+{ #category : #accessing }
+HEMethod >> className [
 	^ className
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>className: anObject [
+{ #category : #accessing }
+HEMethod >> className: anObject [
 	className := anObject
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>fillLiteralsAndBytecode: aMethod [
+{ #category : #'instance creation' }
+HEMethod >> fillLiteralsAndBytecode: aMethod [
 	| literalSpace |
 	
 	header := aMethod header.
@@ -77,97 +55,64 @@ HEMethod>>fillLiteralsAndBytecode: aMethod [
 	literals := literals copyWith: nil asExportedLiteral.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>fromMethod: aMethod [
+{ #category : #'instance creation' }
+HEMethod >> fromMethod: aMethod [
 	name := aMethod selector.
 	className := aMethod methodClass name.
 	protocol := aMethod protocol.
 	self fillLiteralsAndBytecode: aMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>header [
+{ #category : #accessing }
+HEMethod >> header [
 	^ header
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>header: anObject [
+{ #category : #accessing }
+HEMethod >> header: anObject [
 	header := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>literals [
+{ #category : #accessing }
+HEMethod >> literals [
 	^ literals
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>literals: anObject [
+{ #category : #accessing }
+HEMethod >> literals: anObject [
 	literals := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>name [
+{ #category : #accessing }
+HEMethod >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>name: anObject [
+{ #category : #accessing }
+HEMethod >> name: anObject [
 	name := anObject
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>printOn: aStream [
+{ #category : #printing }
+HEMethod >> printOn: aStream [
 	aStream
 		nextPutAll: 'HEMethod ( ';
 		nextPutAll: name printString;
 		nextPutAll: ' )'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>protocol [
+{ #category : #accessing }
+HEMethod >> protocol [
 	^ protocol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>protocol: anObject [
+{ #category : #accessing }
+HEMethod >> protocol: anObject [
 	protocol := anObject
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>readFrom: aReader [
+{ #category : #reading }
+HEMethod >> readFrom: aReader [
 	| numberOfLiterals |
 	name := aReader readByteSymbol.
 	className := aReader readByteSymbol.
@@ -180,11 +125,8 @@ HEMethod>>readFrom: aReader [
 	1 to: numberOfLiterals do: [ :idx | literals at:idx put: (HEExportedLiteral readFrom: aReader) ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEMethod>>writeInto: aWriter [
+{ #category : #writing }
+HEMethod >> writeInto: aWriter [
 	aWriter writeByteString: name.
 	aWriter writeByteString: className.
 	aWriter writeByteString: protocol.

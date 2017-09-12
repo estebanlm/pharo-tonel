@@ -17,40 +17,27 @@ Class {
 		'size',
 		'orientation'
 	],
-	#category : #Spec-Layout,
-	#timestamp : 'webwarrior 6/12/2014 14:16'
+	#category : #Spec-Layout
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTableLayoutAddSpacer class>>sized: aNumber [
+{ #category : #'instance creation' }
+SpecTableLayoutAddSpacer class >> sized: aNumber [
 	^ self new size: aNumber
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTableLayoutAddSpacer class>>weighted: aNumber [
+{ #category : #'instance creation' }
+SpecTableLayoutAddSpacer class >> weighted: aNumber [
 	^ self new spaceFillWeight: aNumber
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTableLayoutAddSpacer>>asSpecElements [
+{ #category : #protocol }
+SpecTableLayoutAddSpacer >> asSpecElements [
 	self generateArguments.
 	^ super asSpecElements
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTableLayoutAddSpacer>>generateArguments [
+{ #category : #'instance creation' }
+SpecTableLayoutAddSpacer >> generateArguments [
 	| resizingMode resizing width height dimensions |
 	width := 0.
 	height := 0.
@@ -76,11 +63,8 @@ SpecTableLayoutAddSpacer>>generateArguments [
 	self arguments: { {subwidget} , resizing , dimensions }
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTableLayoutAddSpacer>>initialize [
+{ #category : #initialization }
+SpecTableLayoutAddSpacer >> initialize [
 	subwidget := #(PanelMorph).
 	spaceFillWeight := 1.
 	size := 0.
@@ -88,28 +72,19 @@ SpecTableLayoutAddSpacer>>initialize [
 	super initialize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTableLayoutAddSpacer>>orientation: aSymbol [
+{ #category : #accessing }
+SpecTableLayoutAddSpacer >> orientation: aSymbol [
 	((aSymbol == #horizontal) | (aSymbol == #vertical))
 		ifFalse: [ Error signal: 'orientation must be either #horizontal or #vertical' ]
 		ifTrue: [ orientation := aSymbol ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTableLayoutAddSpacer>>size: aNumber [
+{ #category : #accessing }
+SpecTableLayoutAddSpacer >> size: aNumber [
 	size := aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTableLayoutAddSpacer>>spaceFillWeight: aNumber [
+{ #category : #accessing }
+SpecTableLayoutAddSpacer >> spaceFillWeight: aNumber [
 	spaceFillWeight := aNumber
 ]

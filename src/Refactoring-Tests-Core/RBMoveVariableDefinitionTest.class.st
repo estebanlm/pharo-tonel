@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBMoveVariableDefinitionTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBMoveVariableDefinitionTest>>testMoveDefinition [
+{ #category : #tests }
+RBMoveVariableDefinitionTest >> testMoveDefinition [
 	| refactoring |
 	refactoring := RBMoveVariableDefinitionRefactoring 
 		bindTight: (self 
@@ -34,11 +27,8 @@ RBMoveVariableDefinitionTest>>testMoveDefinition [
 										temp odd]')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBMoveVariableDefinitionTest>>testMoveDefinitionIntoBlockThatIsAReceiverOfACascadedMessage [
+{ #category : #tests }
+RBMoveVariableDefinitionTest >> testMoveDefinitionIntoBlockThatIsAReceiverOfACascadedMessage [
 	| refactoring |
 	refactoring := RBMoveVariableDefinitionRefactoring 
 		bindTight: (self 
@@ -60,11 +50,8 @@ RBMoveVariableDefinitionTest>>testMoveDefinitionIntoBlockThatIsAReceiverOfACasca
 									yourself')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBMoveVariableDefinitionTest>>testNoMoveDefinition [
+{ #category : #tests }
+RBMoveVariableDefinitionTest >> testNoMoveDefinition [
 	self shouldFail: (RBMoveVariableDefinitionRefactoring 
 			bindTight: (self 
 					convertInterval: (21 to: 24)
@@ -73,11 +60,8 @@ RBMoveVariableDefinitionTest>>testNoMoveDefinition [
 			selector: #noMoveDefinition)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBMoveVariableDefinitionTest>>testNonExistantName [
+{ #category : #tests }
+RBMoveVariableDefinitionTest >> testNonExistantName [
 	self
 		shouldFail: (RBMoveVariableDefinitionRefactoring 
 				bindTight: (1 to: 10)

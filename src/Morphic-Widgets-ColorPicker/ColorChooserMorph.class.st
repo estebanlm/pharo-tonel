@@ -11,26 +11,19 @@ Class {
 		'enabled',
 		'getEnabledSelector'
 	],
-	#category : #Morphic-Widgets-ColorPicker,
-	#timestamp : 'gvc 5/18/2007 13:45'
+	#category : #Morphic-Widgets-ColorPicker
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChooserMorph class>>example [
+{ #category : #example }
+ColorChooserMorph class >> example [
 
 	^ (ColorChooserMorph 
 		on: (BorderedMorph new) 
 		color: #color changeColor: #color:) openInWorld
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChooserMorph class>>on: anObject color: getSel changeColor: setSel [
+{ #category : #'instance creation' }
+ColorChooserMorph class >> on: anObject color: getSel changeColor: setSel [
 	"Answer a new instance of the receiver on the given model using
 	the given selectors as the interface."
 	"(ColorChooserMorph on: (BorderedMorph new) color: #color changeColor: #color:) openInWorld"
@@ -40,11 +33,8 @@ ColorChooserMorph class>>on: anObject color: getSel changeColor: setSel [
 		changeColor: setSel
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChooserMorph>>chooseColor [
+{ #category : #services }
+ColorChooserMorph >> chooseColor [
 	"Popup the color picker for now."
 
 	|newColor|
@@ -58,21 +48,15 @@ ColorChooserMorph>>chooseColor [
 	self setColorSelector ifNotNil: [self model perform: self setColorSelector with: newColor]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChooserMorph>>enabled [
+{ #category : #accessing }
+ColorChooserMorph >> enabled [
 	"Answer the enabled state of the receiver."
 	
 	^enabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChooserMorph>>enabled: aBoolean [
+{ #category : #accessing }
+ColorChooserMorph >> enabled: aBoolean [
 	"Set the enabled state of the receiver."
 
 	enabled := aBoolean.
@@ -80,43 +64,31 @@ ColorChooserMorph>>enabled: aBoolean [
 	self changed: #enabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChooserMorph>>getEnabledSelector [
+{ #category : #accessing }
+ColorChooserMorph >> getEnabledSelector [
 	"Answer the value of getEnabledSelector"
 
 	^ getEnabledSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChooserMorph>>getEnabledSelector: anObject [
+{ #category : #accessing }
+ColorChooserMorph >> getEnabledSelector: anObject [
 	"Set the value of getEnabledSelector"
 
 	getEnabledSelector := anObject.
 	self updateEnabled
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChooserMorph>>initialize [
+{ #category : #initialization }
+ColorChooserMorph >> initialize [
 	"Initialize the receiver."
 
 	enabled := true.
 	super initialize
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChooserMorph>>newContentMorph [
+{ #category : #building }
+ColorChooserMorph >> newContentMorph [
 	"Answer a new button morph"
 
 	|b|
@@ -134,11 +106,8 @@ ColorChooserMorph>>newContentMorph [
 	^b
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChooserMorph>>on: anObject color: getColSel changeColor: setColSel [
+{ #category : #'instance creation' }
+ColorChooserMorph >> on: anObject color: getColSel changeColor: setColSel [
 	"Set the receiver to the given model parameterized by the given message selectors."
 
 	self
@@ -146,31 +115,22 @@ ColorChooserMorph>>on: anObject color: getColSel changeColor: setColSel [
 		setColorSelector: setColSel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChooserMorph>>setColorSelector [
+{ #category : #accessing }
+ColorChooserMorph >> setColorSelector [
 	"Answer the value of setColorSelector"
 
 	^ setColorSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChooserMorph>>setColorSelector: anObject [
+{ #category : #accessing }
+ColorChooserMorph >> setColorSelector: anObject [
 	"Set the value of setColorSelector"
 
 	setColorSelector := anObject
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChooserMorph>>update: aSymbol  [
+{ #category : #updating }
+ColorChooserMorph >> update: aSymbol [ 
 	"Refer to the comment in View|update:."
 
 	super update: aSymbol.
@@ -179,11 +139,8 @@ ColorChooserMorph>>update: aSymbol  [
 		^ self]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChooserMorph>>updateEnabled [
+{ #category : #updating }
+ColorChooserMorph >> updateEnabled [
 	"Update the enablement state."
 
 	self model ifNotNil: [

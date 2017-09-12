@@ -3,27 +3,18 @@ Trait providing useful theme-related methods.
 "
 Trait {
 	#name : #TEasilyThemed,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Polymorph-Widgets,
-	#timestamp : 'gvc 5/18/2007 11:55'
+	#category : #Polymorph-Widgets
 }
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>abort: aStringOrText [
+{ #category : #services }
+TEasilyThemed >> abort: aStringOrText [
 	"Open an error dialog."
 
 	^self abort: aStringOrText title: 'Error' translated
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>abort: aStringOrText title: aString [
+{ #category : #services }
+TEasilyThemed >> abort: aStringOrText title: aString [
 	"Open an error dialog."
 
 	^self theme
@@ -32,21 +23,15 @@ TEasilyThemed>>abort: aStringOrText title: aString [
 		title: aString
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>alert: aStringOrText [
+{ #category : #services }
+TEasilyThemed >> alert: aStringOrText [
 	"Open an alert dialog."
 
 	^self alert: aStringOrText title: 'Alert' translated
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>alert: aStringOrText title: aString [
+{ #category : #services }
+TEasilyThemed >> alert: aStringOrText title: aString [
 	"Open an alert dialog."
 
 	^self
@@ -55,11 +40,8 @@ TEasilyThemed>>alert: aStringOrText title: aString [
 		configure: [:d | ]
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>alert: aStringOrText title: aString configure: aBlock [
+{ #category : #services }
+TEasilyThemed >> alert: aStringOrText title: aString configure: aBlock [
 	"Open an alert dialog.
 	Configure the dialog with the 1 argument block
 	before opening modally."
@@ -71,11 +53,8 @@ TEasilyThemed>>alert: aStringOrText title: aString configure: aBlock [
 		configure: aBlock
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>centeredAlert: aStringOrText title: aString configure: aBlock [
+{ #category : #services }
+TEasilyThemed >> centeredAlert: aStringOrText title: aString configure: aBlock [
 	"Open an alert dialog.
 	Configure the dialog with the 1 argument block
 	before opening modally."
@@ -87,21 +66,15 @@ TEasilyThemed>>centeredAlert: aStringOrText title: aString configure: aBlock [
 		configure: aBlock
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>chooseColor [
+{ #category : #services }
+TEasilyThemed >> chooseColor [
 	"Answer the result of a color selector dialog ."
 
 	^self chooseColor: Color black
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>chooseColor: aColor  [
+{ #category : #services }
+TEasilyThemed >> chooseColor: aColor [ 
 	"Answer the result of a color selector dialog with the given color."
 
 	^self theme
@@ -110,11 +83,8 @@ TEasilyThemed>>chooseColor: aColor  [
 		color: aColor
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>chooseColor: aColor title: title [
+{ #category : #services }
+TEasilyThemed >> chooseColor: aColor title: title [
 	"Answer the result of a color selector dialog with the given title and initial colour."
 
 	^self theme
@@ -123,11 +93,8 @@ TEasilyThemed>>chooseColor: aColor title: title [
 		color: aColor
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>chooseDirectory: title  [
+{ #category : #services }
+TEasilyThemed >> chooseDirectory: title [ 
 	"Answer the result of a file dialog with the given title, answer a directory."
 
 	^self
@@ -135,11 +102,8 @@ TEasilyThemed>>chooseDirectory: title  [
 		path: nil
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>chooseDirectory: title path: path [
+{ #category : #services }
+TEasilyThemed >> chooseDirectory: title path: path [
 	"Answer the result of a file dialog with the given title, answer a directory."
 
 	^self theme
@@ -148,11 +112,8 @@ TEasilyThemed>>chooseDirectory: title path: path [
 		path: path
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>chooseDropList: aStringOrText list: aList [
+{ #category : #services }
+TEasilyThemed >> chooseDropList: aStringOrText list: aList [
 	"Open a drop list chooser dialog."
 
 	^self
@@ -161,11 +122,8 @@ TEasilyThemed>>chooseDropList: aStringOrText list: aList [
 		list: aList
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>chooseDropList: aStringOrText title: aString list: aList [
+{ #category : #services }
+TEasilyThemed >> chooseDropList: aStringOrText title: aString list: aList [
 	"Open a drop list chooser dialog."
 
 	^self theme
@@ -175,11 +133,8 @@ TEasilyThemed>>chooseDropList: aStringOrText title: aString list: aList [
 		list: aList
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>chooseFileName: title extensions: exts path: path preview: preview [
+{ #category : #services }
+TEasilyThemed >> chooseFileName: title extensions: exts path: path preview: preview [
 	"Answer the result of a file name chooser dialog with the given title, extensions
 	to show, path and preview type."
 
@@ -191,21 +146,15 @@ TEasilyThemed>>chooseFileName: title extensions: exts path: path preview: previe
 		preview: preview
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>chooseFont [
+{ #category : #services }
+TEasilyThemed >> chooseFont [
 	"Answer the result of a font selector dialog."
 
 	^self chooseFont: nil
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>chooseFont: aFont  [
+{ #category : #services }
+TEasilyThemed >> chooseFont: aFont [ 
 	"Answer the result of a font selector dialog with the given initial font."
 
 	^self theme
@@ -214,21 +163,15 @@ TEasilyThemed>>chooseFont: aFont  [
 		font: aFont
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>deny: aStringOrText [
+{ #category : #services }
+TEasilyThemed >> deny: aStringOrText [
 	"Open a denial dialog."
 
 	^self deny: aStringOrText title: 'Access Denied' translated
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>deny: aStringOrText title: aString [
+{ #category : #services }
+TEasilyThemed >> deny: aStringOrText title: aString [
 	"Open a denial dialog."
 
 	^self theme
@@ -237,11 +180,8 @@ TEasilyThemed>>deny: aStringOrText title: aString [
 		title: aString
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>fileOpen: title [
+{ #category : #services }
+TEasilyThemed >> fileOpen: title [
 	"Answer the result of a file open dialog with the given title."
 
 	^self
@@ -249,11 +189,8 @@ TEasilyThemed>>fileOpen: title [
 		extensions: nil
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>fileOpen: title extensions: exts [
+{ #category : #services }
+TEasilyThemed >> fileOpen: title extensions: exts [
 	"Answer the result of a file open dialog with the given title and extensions to show."
 
 	^self
@@ -262,11 +199,8 @@ TEasilyThemed>>fileOpen: title extensions: exts [
 		path: nil
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>fileOpen: title extensions: exts path: path [
+{ #category : #services }
+TEasilyThemed >> fileOpen: title extensions: exts path: path [
 	"Answer the result of a file open dialog with the given title, extensions to show and path."
 
 	^self 
@@ -276,11 +210,8 @@ TEasilyThemed>>fileOpen: title extensions: exts path: path [
 		preview: nil
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>fileOpen: title extensions: exts path: path preview: preview [
+{ #category : #services }
+TEasilyThemed >> fileOpen: title extensions: exts path: path preview: preview [
 	"Answer the result of a file open dialog with the given title, extensions to show, path and preview type."
 
 	^self theme
@@ -291,11 +222,8 @@ TEasilyThemed>>fileOpen: title extensions: exts path: path preview: preview [
 		preview: preview
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>fileSave: title [
+{ #category : #services }
+TEasilyThemed >> fileSave: title [
 	"Answer the result of a file save dialog with the given title."
 
 	^self
@@ -304,11 +232,8 @@ TEasilyThemed>>fileSave: title [
 		path: nil
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>fileSave: title extensions: exts [
+{ #category : #services }
+TEasilyThemed >> fileSave: title extensions: exts [
 	"Answer the result of a file save dialog with the given title."
 
 	^self
@@ -317,11 +242,8 @@ TEasilyThemed>>fileSave: title extensions: exts [
 		path: nil
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>fileSave: title extensions: exts path: path [
+{ #category : #services }
+TEasilyThemed >> fileSave: title extensions: exts path: path [
 	"Answer the result of a file save dialog with the given title, extensions to show and path."
 
 	^self theme
@@ -331,11 +253,8 @@ TEasilyThemed>>fileSave: title extensions: exts path: path [
 		path: path
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>fileSave: title initialAnswer: aFileName extensions: exts path: path [
+{ #category : #services }
+TEasilyThemed >> fileSave: title initialAnswer: aFileName extensions: exts path: path [
 
 	^self theme
 		fileSaveIn: self
@@ -345,11 +264,8 @@ TEasilyThemed>>fileSave: title initialAnswer: aFileName extensions: exts path: p
 		path: path
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>fileSave: title path: path [
+{ #category : #services }
+TEasilyThemed >> fileSave: title path: path [
 	"Answer the result of a file save open dialog with the given title."
 
 	^self
@@ -358,11 +274,8 @@ TEasilyThemed>>fileSave: title path: path [
 		path: path
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>longMessage: aStringOrText title: aString [
+{ #category : #services }
+TEasilyThemed >> longMessage: aStringOrText title: aString [
 	"Open a (long) message dialog."
 
 	^self theme
@@ -371,21 +284,15 @@ TEasilyThemed>>longMessage: aStringOrText title: aString [
 		title: aString
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>message: aStringOrText [
+{ #category : #services }
+TEasilyThemed >> message: aStringOrText [
 	"Open a message dialog."
 
 	^self message: aStringOrText title: 'Information' translated
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>message: aStringOrText title: aString [
+{ #category : #services }
+TEasilyThemed >> message: aStringOrText title: aString [
 	"Open a message dialog."
 
 	^self theme
@@ -394,11 +301,8 @@ TEasilyThemed>>message: aStringOrText title: aString [
 		title: aString
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newAlphaImage: aForm help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newAlphaImage: aForm help: helpText [
 	"Answer an alpha image morph."
 
 	^self theme
@@ -407,11 +311,8 @@ TEasilyThemed>>newAlphaImage: aForm help: helpText [
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newAlphaSelector: aModel getAlpha: getSel setAlpha: setSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newAlphaSelector: aModel getAlpha: getSel setAlpha: setSel help: helpText [
 	"Answer an alpha channel selector with the given selectors."
 
 	^self theme
@@ -422,11 +323,8 @@ TEasilyThemed>>newAlphaSelector: aModel getAlpha: getSel setAlpha: setSel help: 
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newAutoAcceptTextEntryFor: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel font: aFont help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newAutoAcceptTextEntryFor: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel font: aFont help: helpText [
 	"Answer a text entry for the given model."
 
 	^self theme
@@ -440,11 +338,8 @@ TEasilyThemed>>newAutoAcceptTextEntryFor: aModel get: getSel set: setSel class: 
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newAutoAcceptTextEntryFor: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel font: aFont help: helpText entryCompletion: anEntryCompletion [
+{ #category : #controls }
+TEasilyThemed >> newAutoAcceptTextEntryFor: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel font: aFont help: helpText entryCompletion: anEntryCompletion [
 	"Answer a text entry for the given model."
 
 	^self theme
@@ -459,11 +354,8 @@ TEasilyThemed>>newAutoAcceptTextEntryFor: aModel get: getSel set: setSel class: 
 		entryCompletion: anEntryCompletion
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newAutoAcceptTextEntryFor: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newAutoAcceptTextEntryFor: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText [
 	"Answer a text entry for the given model."
 
 	^self theme
@@ -476,11 +368,8 @@ TEasilyThemed>>newAutoAcceptTextEntryFor: aModel get: getSel set: setSel class: 
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newAutoAcceptTextEntryFor: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText entryCompletion: anEntryCompletion [
+{ #category : #controls }
+TEasilyThemed >> newAutoAcceptTextEntryFor: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText entryCompletion: anEntryCompletion [
 	"Answer a text entry for the given model."
 
 	^self theme
@@ -494,11 +383,8 @@ TEasilyThemed>>newAutoAcceptTextEntryFor: aModel get: getSel set: setSel class: 
 		entryCompletion: anEntryCompletion
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newAutoAcceptTextEntryFor: aModel getText: getSel setText: setSel getEnabled: enabledSel font: aFont help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newAutoAcceptTextEntryFor: aModel getText: getSel setText: setSel getEnabled: enabledSel font: aFont help: helpText [
 	"Answer a text entry for the given model."
 
 	^self theme
@@ -513,11 +399,8 @@ TEasilyThemed>>newAutoAcceptTextEntryFor: aModel getText: getSel setText: setSel
 
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newAutoAcceptTextEntryFor: aModel getText: getSel setText: setSel getEnabled: enabledSel font: aFont help: helpText entryCompletion: anEntryCompletion [
+{ #category : #controls }
+TEasilyThemed >> newAutoAcceptTextEntryFor: aModel getText: getSel setText: setSel getEnabled: enabledSel font: aFont help: helpText entryCompletion: anEntryCompletion [
 	"Answer a text entry for the given model."
 
 	^self theme
@@ -533,11 +416,8 @@ TEasilyThemed>>newAutoAcceptTextEntryFor: aModel getText: getSel setText: setSel
 
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newAutoAcceptTextEntryFor: aModel getText: getSel setText: setSel getEnabled: enabledSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newAutoAcceptTextEntryFor: aModel getText: getSel setText: setSel getEnabled: enabledSel help: helpText [
 	"Answer a text entry for the given model."
 
 	^self theme
@@ -550,11 +430,8 @@ TEasilyThemed>>newAutoAcceptTextEntryFor: aModel getText: getSel setText: setSel
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newAutoAcceptTextEntryFor: aModel getText: getSel setText: setSel getEnabled: enabledSel help: helpText entryCompletion: anEntryCompletion [
+{ #category : #controls }
+TEasilyThemed >> newAutoAcceptTextEntryFor: aModel getText: getSel setText: setSel getEnabled: enabledSel help: helpText entryCompletion: anEntryCompletion [
 	"Answer a text entry for the given model."
 
 	^self theme
@@ -568,11 +445,8 @@ TEasilyThemed>>newAutoAcceptTextEntryFor: aModel getText: getSel setText: setSel
 		entryCompletion: anEntryCompletion
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newBalloonHelp: aTextStringOrMorph for: aMorph [
+{ #category : #controls }
+TEasilyThemed >> newBalloonHelp: aTextStringOrMorph for: aMorph [
 	"Answer a new balloon help with the given contents for aMorph
 	at a given corner."
 
@@ -583,11 +457,8 @@ TEasilyThemed>>newBalloonHelp: aTextStringOrMorph for: aMorph [
 		corner: #bottomLeft
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newBalloonHelp: aTextStringOrMorph for: aMorph corner: cornerSymbol [
+{ #category : #controls }
+TEasilyThemed >> newBalloonHelp: aTextStringOrMorph for: aMorph corner: cornerSymbol [
 	"Answer a new balloon help with the given contents for aMorph
 	at a given corner."
 
@@ -598,11 +469,8 @@ TEasilyThemed>>newBalloonHelp: aTextStringOrMorph for: aMorph corner: cornerSymb
 		corner: cornerSymbol
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newBracketSliderFor: aModel getValue: getSel setValue: setSel min: minValue max: maxValue quantum: quantum getEnabled: enabledSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newBracketSliderFor: aModel getValue: getSel setValue: setSel min: minValue max: maxValue quantum: quantum getEnabled: enabledSel help: helpText [
 	"Answer a bracket slider with the given selectors."
 
 	^self theme
@@ -617,11 +485,8 @@ TEasilyThemed>>newBracketSliderFor: aModel getValue: getSel setValue: setSel min
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newBracketSliderFor: aModel getValue: getSel setValue: setSel min: minValue max: maxValue quantum: quantum help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newBracketSliderFor: aModel getValue: getSel setValue: setSel min: minValue max: maxValue quantum: quantum help: helpText [
 	"Answer a bracket slider with the given selectors."
 
 	^self
@@ -635,11 +500,8 @@ TEasilyThemed>>newBracketSliderFor: aModel getValue: getSel setValue: setSel min
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newButtonFor: aModel action: actionSel getEnabled: enabledSel label: stringOrText help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newButtonFor: aModel action: actionSel getEnabled: enabledSel label: stringOrText help: helpText [
 	"Answer a new button."
 
 	^self
@@ -652,11 +514,8 @@ TEasilyThemed>>newButtonFor: aModel action: actionSel getEnabled: enabledSel lab
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newButtonFor: aModel action: actionSel label: stringOrText help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newButtonFor: aModel action: actionSel label: stringOrText help: helpText [
 	"Answer a new button."
 
 	^self
@@ -669,11 +528,8 @@ TEasilyThemed>>newButtonFor: aModel action: actionSel label: stringOrText help: 
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newButtonFor: aModel getState: stateSel action: actionSel arguments: args getEnabled: enabledSel getLabel: labelSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newButtonFor: aModel getState: stateSel action: actionSel arguments: args getEnabled: enabledSel getLabel: labelSel help: helpText [
 	"Answer a new button."
 
 	^self theme
@@ -686,11 +542,8 @@ TEasilyThemed>>newButtonFor: aModel getState: stateSel action: actionSel argumen
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newButtonFor: aModel getState: stateSel action: actionSel arguments: args getEnabled: enabledSel label: stringOrText help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newButtonFor: aModel getState: stateSel action: actionSel arguments: args getEnabled: enabledSel label: stringOrText help: helpText [
 	"Answer a new button."
 
 	^self theme
@@ -703,11 +556,8 @@ TEasilyThemed>>newButtonFor: aModel getState: stateSel action: actionSel argumen
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newButtonFor: aModel getState: stateSel action: actionSel arguments: args getEnabled: enabledSel labelForm: aForm help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newButtonFor: aModel getState: stateSel action: actionSel arguments: args getEnabled: enabledSel labelForm: aForm help: helpText [
 	"Answer a new button."
 
 	^self theme
@@ -720,11 +570,8 @@ TEasilyThemed>>newButtonFor: aModel getState: stateSel action: actionSel argumen
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newButtonLabel: aString [
+{ #category : #controls }
+TEasilyThemed >> newButtonLabel: aString [
 	"Answer a new button text label."
 
 	^self
@@ -733,11 +580,8 @@ TEasilyThemed>>newButtonLabel: aString [
 		getEnabled: nil
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newButtonLabelFor: aModel label: aString getEnabled: enabledSel [
+{ #category : #controls }
+TEasilyThemed >> newButtonLabelFor: aModel label: aString getEnabled: enabledSel [
 	"Answer a new button text label."
 
 	^self theme
@@ -747,21 +591,15 @@ TEasilyThemed>>newButtonLabelFor: aModel label: aString getEnabled: enabledSel [
 		getEnabled: enabledSel
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newCancelButton [
+{ #category : #controls }
+TEasilyThemed >> newCancelButton [
 	"Answer a new cancel button."
 
 	^self newCancelButtonFor: self
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newCancelButtonFor: aModel [
+{ #category : #controls }
+TEasilyThemed >> newCancelButtonFor: aModel [
 	"Answer a new cancel button."
 
 	^self theme
@@ -769,11 +607,8 @@ TEasilyThemed>>newCancelButtonFor: aModel [
 		for: aModel
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newCheckboxFor: aModel getSelected: getSel setSelected: setSel getEnabled: enabledSel getLabel: labelSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newCheckboxFor: aModel getSelected: getSel setSelected: setSel getEnabled: enabledSel getLabel: labelSel help: helpText [
 	"Answer a checkbox with the given label."
 
 	^self theme
@@ -786,11 +621,8 @@ TEasilyThemed>>newCheckboxFor: aModel getSelected: getSel setSelected: setSel ge
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newCheckboxFor: aModel getSelected: getSel setSelected: setSel getEnabled: enabledSel label: stringOrText help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newCheckboxFor: aModel getSelected: getSel setSelected: setSel getEnabled: enabledSel label: stringOrText help: helpText [
 	"Answer a checkbox with the given label."
 
 	^self theme
@@ -803,11 +635,8 @@ TEasilyThemed>>newCheckboxFor: aModel getSelected: getSel setSelected: setSel ge
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newCheckboxFor: aModel getSelected: getSel setSelected: setSel label: stringOrText help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newCheckboxFor: aModel getSelected: getSel setSelected: setSel label: stringOrText help: helpText [
 	"Answer a checkbox with the given label."
 
 	^self theme
@@ -820,21 +649,15 @@ TEasilyThemed>>newCheckboxFor: aModel getSelected: getSel setSelected: setSel la
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newCloseButton [
+{ #category : #controls }
+TEasilyThemed >> newCloseButton [
 	"Answer a new close button."
 
 	^self newCloseButtonFor: self 
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newCloseButtonFor: aModel [
+{ #category : #controls }
+TEasilyThemed >> newCloseButtonFor: aModel [
 	"Answer a new close button."
 
 	^self theme
@@ -842,11 +665,8 @@ TEasilyThemed>>newCloseButtonFor: aModel [
 		for: aModel
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newCloseControlFor: aModel action: aValuable help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newCloseControlFor: aModel action: aValuable help: helpText [
 	"Answer a new cancel button."
 
 	^self theme
@@ -856,11 +676,8 @@ TEasilyThemed>>newCloseControlFor: aModel action: aValuable help: helpText [
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newColorChooserFor: aModel getColor: getSel setColor: setSel getEnabled: enabledSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newColorChooserFor: aModel getColor: getSel setColor: setSel getEnabled: enabledSel help: helpText [
 	"Answer a color chooser with the given selectors."
 
 	^self theme
@@ -872,11 +689,8 @@ TEasilyThemed>>newColorChooserFor: aModel getColor: getSel setColor: setSel getE
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newColorChooserFor: aModel getColor: getSel setColor: setSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newColorChooserFor: aModel getColor: getSel setColor: setSel help: helpText [
 	"Answer a color chooser with the given selectors."
 
 	^self theme
@@ -888,11 +702,8 @@ TEasilyThemed>>newColorChooserFor: aModel getColor: getSel setColor: setSel help
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newColorPresenterFor: aModel getColor: getSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newColorPresenterFor: aModel getColor: getSel help: helpText [
 	"Answer a color presenter with the given selectors."
 
 	^self theme
@@ -902,11 +713,8 @@ TEasilyThemed>>newColorPresenterFor: aModel getColor: getSel help: helpText [
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newColumn: controls [
+{ #category : #controls }
+TEasilyThemed >> newColumn: controls [
 	"Answer a morph laid out with a column of controls."
 
 	^self theme
@@ -914,22 +722,16 @@ TEasilyThemed>>newColumn: controls [
 		for: controls
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newDialogPanel [
+{ #category : #controls }
+TEasilyThemed >> newDialogPanel [
 	"Answer a new main dialog panel."
 
 	^self theme
 		newDialogPanelIn: self
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newDropListFor: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newDropListFor: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel help: helpText [
 	"Answer a drop list for the given model."
 
 	^self theme
@@ -943,11 +745,8 @@ TEasilyThemed>>newDropListFor: aModel list: listSel getSelected: getSel setSelec
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newDropListFor: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel useIndex: useIndex help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newDropListFor: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel useIndex: useIndex help: helpText [
 	"Answer a drop list for the given model."
 
 	^self theme
@@ -961,11 +760,8 @@ TEasilyThemed>>newDropListFor: aModel list: listSel getSelected: getSel setSelec
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newDropListFor: aModel list: listSel getSelected: getSel setSelected: setSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newDropListFor: aModel list: listSel getSelected: getSel setSelected: setSel help: helpText [
 	"Answer a drop list for the given model."
 
 	^self
@@ -978,11 +774,8 @@ TEasilyThemed>>newDropListFor: aModel list: listSel getSelected: getSel setSelec
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newEditableDropListFor: aModel list: listSel getSelected: getSel setSelected: setSel addToList: addSel class: aClass default: defaultValue ghostText: ghostText getEnabled: enabledSel useIndex: useIndex help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newEditableDropListFor: aModel list: listSel getSelected: getSel setSelected: setSel addToList: addSel class: aClass default: defaultValue ghostText: ghostText getEnabled: enabledSel useIndex: useIndex help: helpText [
 	"Answer an editable drop list for the given model."
 
 	^self theme
@@ -1000,11 +793,8 @@ TEasilyThemed>>newEditableDropListFor: aModel list: listSel getSelected: getSel 
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newEditableDropListFor: aModel list: listSel getSelected: getSel setSelected: setSel addToList: addSel ghostText: ghostText getEnabled: enabledSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newEditableDropListFor: aModel list: listSel getSelected: getSel setSelected: setSel addToList: addSel ghostText: ghostText getEnabled: enabledSel help: helpText [
 	"Answer an editable drop list for the given model."
 
 	^self theme
@@ -1022,11 +812,8 @@ TEasilyThemed>>newEditableDropListFor: aModel list: listSel getSelected: getSel 
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newEmbeddedMenu [
+{ #category : #controls }
+TEasilyThemed >> newEmbeddedMenu [
 	"Answer a new menu."
 
 	^self theme
@@ -1034,11 +821,8 @@ TEasilyThemed>>newEmbeddedMenu [
 		for: self
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newExpander: aString [
+{ #category : #controls }
+TEasilyThemed >> newExpander: aString [
 	"Answer an expander with the given label."
 
 	^self theme
@@ -1047,11 +831,8 @@ TEasilyThemed>>newExpander: aString [
 		forAll: #()
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newExpander: aString for: aControl [
+{ #category : #controls }
+TEasilyThemed >> newExpander: aString for: aControl [
 	"Answer an expander with the given label and control."
 
 	^self theme
@@ -1060,11 +841,8 @@ TEasilyThemed>>newExpander: aString for: aControl [
 		forAll: {aControl}
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newExpander: aString forAll: controls [
+{ #category : #controls }
+TEasilyThemed >> newExpander: aString forAll: controls [
 	"Answer an expander with the given label and controls."
 
 	^self theme
@@ -1073,11 +851,8 @@ TEasilyThemed>>newExpander: aString forAll: controls [
 		forAll: controls
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newFuzzyLabel: aString [
+{ #category : #controls }
+TEasilyThemed >> newFuzzyLabel: aString [
 	"Answer a new fuzzy label."
 
 	^self theme
@@ -1089,11 +864,8 @@ TEasilyThemed>>newFuzzyLabel: aString [
 		getEnabled: nil
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newFuzzyLabelFor: aModel label: aString getEnabled: enabledSel [
+{ #category : #controls }
+TEasilyThemed >> newFuzzyLabelFor: aModel label: aString getEnabled: enabledSel [
 	"Answer a new fuzzy label."
 
 	^self theme
@@ -1105,11 +877,8 @@ TEasilyThemed>>newFuzzyLabelFor: aModel label: aString getEnabled: enabledSel [
 		getEnabled: enabledSel
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newFuzzyLabelFor: aModel label: aString offset: offset alpha: alpha getEnabled: enabledSel [
+{ #category : #controls }
+TEasilyThemed >> newFuzzyLabelFor: aModel label: aString offset: offset alpha: alpha getEnabled: enabledSel [
 	"Answer a new fuzzy label."
 
 	^self theme
@@ -1121,22 +890,16 @@ TEasilyThemed>>newFuzzyLabelFor: aModel label: aString offset: offset alpha: alp
 		getEnabled: enabledSel
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newGroupbox [
+{ #category : #controls }
+TEasilyThemed >> newGroupbox [
 	"Answer a plain groupbox."
 
 	^self theme
 		newGroupboxIn: self
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newGroupbox: aString [
+{ #category : #controls }
+TEasilyThemed >> newGroupbox: aString [
 	"Answer a groupbox with the given label."
 
 	^self theme
@@ -1144,11 +907,8 @@ TEasilyThemed>>newGroupbox: aString [
 		label: aString
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newGroupbox: aString for: control [
+{ #category : #controls }
+TEasilyThemed >> newGroupbox: aString for: control [
 	"Answer a groupbox with the given label and control."
 
 	^self theme
@@ -1157,11 +917,8 @@ TEasilyThemed>>newGroupbox: aString for: control [
 		for: control
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newGroupbox: aString forAll: controls [
+{ #category : #controls }
+TEasilyThemed >> newGroupbox: aString forAll: controls [
 	"Answer a groupbox with the given label and controls."
 
 	^self theme
@@ -1170,11 +927,8 @@ TEasilyThemed>>newGroupbox: aString forAll: controls [
 		forAll: controls
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newGroupboxFor: control [
+{ #category : #controls }
+TEasilyThemed >> newGroupboxFor: control [
 	"Answer a plain groupbox with the given control."
 
 	^self theme
@@ -1182,11 +936,8 @@ TEasilyThemed>>newGroupboxFor: control [
 		for: control
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newGroupboxForAll: controls [
+{ #category : #controls }
+TEasilyThemed >> newGroupboxForAll: controls [
 	"Answer a plain groupbox with the given controls."
 
 	^self theme
@@ -1194,11 +945,8 @@ TEasilyThemed>>newGroupboxForAll: controls [
 		forAll: controls
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newHSVASelector: aColor help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newHSVASelector: aColor help: helpText [
 	"Answer a hue-saturation-volume selector with the given color."
 
 	^self theme
@@ -1207,11 +955,8 @@ TEasilyThemed>>newHSVASelector: aColor help: helpText [
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newHSVSelector: aColor help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newHSVSelector: aColor help: helpText [
 	"Answer a hue-saturation-volume selector with the given color."
 
 	^self theme
@@ -1220,11 +965,8 @@ TEasilyThemed>>newHSVSelector: aColor help: helpText [
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newHueSelector: aModel getHue: getSel setHue: setSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newHueSelector: aModel getHue: getSel setHue: setSel help: helpText [
 	"Answer a hue selector with the given selectors."
 
 	^self theme
@@ -1235,11 +977,8 @@ TEasilyThemed>>newHueSelector: aModel getHue: getSel setHue: setSel help: helpTe
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newImage: aForm [
+{ #category : #controls }
+TEasilyThemed >> newImage: aForm [
 	"Answer a new image."
 
 	^self theme
@@ -1247,11 +986,8 @@ TEasilyThemed>>newImage: aForm [
 		form: aForm
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newImage: aForm size: aPoint [
+{ #category : #controls }
+TEasilyThemed >> newImage: aForm size: aPoint [
 	"Answer a new image."
 
 	^self theme
@@ -1260,11 +996,8 @@ TEasilyThemed>>newImage: aForm size: aPoint [
 		size: aPoint
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newImageFor: aModel get: getSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newImageFor: aModel get: getSel help: helpText [
 	"Answer a text entry for the given model."
 
 	^self theme
@@ -1274,11 +1007,8 @@ TEasilyThemed>>newImageFor: aModel get: getSel help: helpText [
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newIncrementalSliderFor: aModel getValue: getSel setValue: setSel min: min max: max quantum: quantum getEnabled: enabledSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newIncrementalSliderFor: aModel getValue: getSel setValue: setSel min: min max: max quantum: quantum getEnabled: enabledSel help: helpText [
 	"Answer an inremental slider with the given selectors."
 
 	^self theme
@@ -1293,11 +1023,8 @@ TEasilyThemed>>newIncrementalSliderFor: aModel getValue: getSel setValue: setSel
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newLabel: aString [
+{ #category : #controls }
+TEasilyThemed >> newLabel: aString [
 	"Answer a new text label."
 
 	^self
@@ -1306,11 +1033,8 @@ TEasilyThemed>>newLabel: aString [
 		getEnabled: nil
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newLabelFor: aModel getLabel: labelSel getEnabled: enabledSel [
+{ #category : #controls }
+TEasilyThemed >> newLabelFor: aModel getLabel: labelSel getEnabled: enabledSel [
 	"Answer a new text label."
 
 	^self theme
@@ -1320,11 +1044,8 @@ TEasilyThemed>>newLabelFor: aModel getLabel: labelSel getEnabled: enabledSel [
 		getEnabled: enabledSel
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newLabelFor: aModel label: aString getEnabled: enabledSel [
+{ #category : #controls }
+TEasilyThemed >> newLabelFor: aModel label: aString getEnabled: enabledSel [
 	"Answer a new text label."
 
 	^self theme
@@ -1334,11 +1055,8 @@ TEasilyThemed>>newLabelFor: aModel label: aString getEnabled: enabledSel [
 		getEnabled: enabledSel
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newLabelGroup: labelsAndControls [
+{ #category : #controls }
+TEasilyThemed >> newLabelGroup: labelsAndControls [
 	"Answer a morph laid out with a column of labels and a column of associated controls.
 	Controls having a vResizing value of #spaceFill will
 	cause their row to use #spaceFill also, otherwise #shrinkWrap."
@@ -1348,11 +1066,8 @@ TEasilyThemed>>newLabelGroup: labelsAndControls [
 		for: labelsAndControls
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newLabelGroup: labelsAndControls font: aFont labelColor: aColor [
+{ #category : #controls }
+TEasilyThemed >> newLabelGroup: labelsAndControls font: aFont labelColor: aColor [
 	"Answer a morph laid out with a column of labels and a column of associated controls.
 	Controls having a vResizing value of #spaceFill will
 	cause their row to use #spaceFill also, otherwise #shrinkWrap."
@@ -1365,11 +1080,8 @@ TEasilyThemed>>newLabelGroup: labelsAndControls font: aFont labelColor: aColor [
 
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newListFor: aModel list: listSelector selected: getSelector changeSelected: setSelector getEnabled: enabledSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newListFor: aModel list: listSelector selected: getSelector changeSelected: setSelector getEnabled: enabledSel help: helpText [
 	"Answer a list for the given model."
 
 	^self theme
@@ -1382,11 +1094,8 @@ TEasilyThemed>>newListFor: aModel list: listSelector selected: getSelector chang
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newListFor: aModel list: listSelector selected: getSelector changeSelected: setSelector help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newListFor: aModel list: listSelector selected: getSelector changeSelected: setSelector help: helpText [
 	"Answer a list for the given model."
 
 	^self
@@ -1398,11 +1107,8 @@ TEasilyThemed>>newListFor: aModel list: listSelector selected: getSelector chang
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newListFor: aModel list: listSelector selected: getSelector changeSelected: setSelector icon: iconSelector getEnabled: enabledSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newListFor: aModel list: listSelector selected: getSelector changeSelected: setSelector icon: iconSelector getEnabled: enabledSel help: helpText [
 	"Answer a list for the given model."
 
 	^self theme
@@ -1416,11 +1122,8 @@ TEasilyThemed>>newListFor: aModel list: listSelector selected: getSelector chang
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newMenu [
+{ #category : #controls }
+TEasilyThemed >> newMenu [
 	"Answer a new menu."
 
 	^self theme
@@ -1428,11 +1131,8 @@ TEasilyThemed>>newMenu [
 		for: self
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newMenuFor: aModel [
+{ #category : #controls }
+TEasilyThemed >> newMenuFor: aModel [
 	"Answer a new menu."
 
 	^self theme
@@ -1440,11 +1140,8 @@ TEasilyThemed>>newMenuFor: aModel [
 		for: aModel
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newMorphDropListFor: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newMorphDropListFor: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel help: helpText [
 	"Answer a morph drop list for the given model."
 
 	^self 
@@ -1457,11 +1154,8 @@ TEasilyThemed>>newMorphDropListFor: aModel list: listSel getSelected: getSel set
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newMorphDropListFor: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel useIndex: useIndex help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newMorphDropListFor: aModel list: listSel getSelected: getSel setSelected: setSel getEnabled: enabledSel useIndex: useIndex help: helpText [
 	"Answer a morph drop list for the given model."
 
 	^self theme
@@ -1475,11 +1169,8 @@ TEasilyThemed>>newMorphDropListFor: aModel list: listSel getSelected: getSel set
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newMorphDropListFor: aModel list: listSel getSelected: getSel setSelected: setSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newMorphDropListFor: aModel list: listSel getSelected: getSel setSelected: setSel help: helpText [
 	"Answer a morph drop list for the given model."
 
 	^self 
@@ -1492,11 +1183,8 @@ TEasilyThemed>>newMorphDropListFor: aModel list: listSel getSelected: getSel set
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newMorphListFor: aModel list: listSelector getSelected: getSelector setSelected: setSelector getEnabled: enabledSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newMorphListFor: aModel list: listSelector getSelected: getSelector setSelected: setSelector getEnabled: enabledSel help: helpText [
 	"Answer a morph list for the given model."
 
 	^self theme
@@ -1509,11 +1197,8 @@ TEasilyThemed>>newMorphListFor: aModel list: listSelector getSelected: getSelect
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newMorphListFor: aModel list: listSelector getSelected: getSelector setSelected: setSelector help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newMorphListFor: aModel list: listSelector getSelected: getSelector setSelected: setSelector help: helpText [
 	"Answer a morph list for the given model."
 
 	^self
@@ -1525,11 +1210,8 @@ TEasilyThemed>>newMorphListFor: aModel list: listSelector getSelected: getSelect
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newMultistateButton [
+{ #category : #controls }
+TEasilyThemed >> newMultistateButton [
 	"Answer a new multistate button morph.
 	To be usable it needs to have fill styles assigned to various states along
 	with mouse-up/down actions."
@@ -1538,21 +1220,15 @@ TEasilyThemed>>newMultistateButton [
 		newMultistateButtonIn: self
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newNoButton [
+{ #category : #controls }
+TEasilyThemed >> newNoButton [
 	"Answer a new No button."
 
 	^self newNoButtonFor: self
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newNoButtonFor: aModel [
+{ #category : #controls }
+TEasilyThemed >> newNoButtonFor: aModel [
 	"Answer a new No button."
 
 	^self theme
@@ -1560,21 +1236,15 @@ TEasilyThemed>>newNoButtonFor: aModel [
 		for: aModel
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newOKButton [
+{ #category : #controls }
+TEasilyThemed >> newOKButton [
 	"Answer a new OK button."
 
 	^self newOKButtonFor: self
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newOKButtonFor: aModel [
+{ #category : #controls }
+TEasilyThemed >> newOKButtonFor: aModel [
 	"Answer a new OK button."
 
 	^self
@@ -1582,11 +1252,8 @@ TEasilyThemed>>newOKButtonFor: aModel [
 		getEnabled: nil
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newOKButtonFor: aModel getEnabled: enabledSel [
+{ #category : #controls }
+TEasilyThemed >> newOKButtonFor: aModel getEnabled: enabledSel [
 	"Answer a new OK button."
 
 	^self theme
@@ -1595,11 +1262,8 @@ TEasilyThemed>>newOKButtonFor: aModel getEnabled: enabledSel [
 		getEnabled: enabledSel
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newOverflowRowForAll: aCollectionOfMorphs [
+{ #category : #controls }
+TEasilyThemed >> newOverflowRowForAll: aCollectionOfMorphs [
 	"Answer a new overflow row morph that provides a drop down for
 	the given contents that are unable to fit the bounds."
 	
@@ -1608,33 +1272,24 @@ TEasilyThemed>>newOverflowRowForAll: aCollectionOfMorphs [
 		forAll: aCollectionOfMorphs
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newPanel [
+{ #category : #controls }
+TEasilyThemed >> newPanel [
 	"Answer a new panel."
 
 	^self theme
 		newPanelIn: self
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newPluggableDialogWindow [
+{ #category : #controls }
+TEasilyThemed >> newPluggableDialogWindow [
 	"Answer a new pluggable dialog."
 
 	^self
 		newPluggableDialogWindow: 'Dialog'
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newPluggableDialogWindow: title [
+{ #category : #controls }
+TEasilyThemed >> newPluggableDialogWindow: title [
 	"Answer a new pluggable dialog with the given content."
 
 	^self
@@ -1642,11 +1297,8 @@ TEasilyThemed>>newPluggableDialogWindow: title [
 		for: nil
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newPluggableDialogWindow: title for: contentMorph [
+{ #category : #controls }
+TEasilyThemed >> newPluggableDialogWindow: title for: contentMorph [
 	"Answer a new pluggable dialog with the given content."
 
 	^self theme
@@ -1655,11 +1307,8 @@ TEasilyThemed>>newPluggableDialogWindow: title for: contentMorph [
 		for: contentMorph
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newRadioButtonFor: aModel getSelected: getSel setSelected: setSel getEnabled: enabledSel label: stringOrText help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newRadioButtonFor: aModel getSelected: getSel setSelected: setSel getEnabled: enabledSel label: stringOrText help: helpText [
 	"Answer a checkbox (radio button appearance) with the given label."
 
 	^self theme
@@ -1672,11 +1321,8 @@ TEasilyThemed>>newRadioButtonFor: aModel getSelected: getSel setSelected: setSel
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newRadioButtonFor: aModel getSelected: getSel setSelected: setSel label: stringOrText help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newRadioButtonFor: aModel getSelected: getSel setSelected: setSel label: stringOrText help: helpText [
 	"Answer a checkbox (radio button appearance) with the given label."
 
 	^self
@@ -1688,11 +1334,8 @@ TEasilyThemed>>newRadioButtonFor: aModel getSelected: getSel setSelected: setSel
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newRow [
+{ #category : #controls }
+TEasilyThemed >> newRow [
 	"Answer a morph laid out as a row."
 
 	^self theme
@@ -1700,11 +1343,8 @@ TEasilyThemed>>newRow [
 		for: #()
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newRow: controls [
+{ #category : #controls }
+TEasilyThemed >> newRow: controls [
 	"Answer a morph laid out with a row of controls."
 
 	^self theme
@@ -1712,11 +1352,8 @@ TEasilyThemed>>newRow: controls [
 		for: controls
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newSVSelector: aColor help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newSVSelector: aColor help: helpText [
 	"Answer a saturation-volume selector with the given color."
 
 	^self theme
@@ -1725,11 +1362,8 @@ TEasilyThemed>>newSVSelector: aColor help: helpText [
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newScrollPaneFor: aMorph [
+{ #category : #controls }
+TEasilyThemed >> newScrollPaneFor: aMorph [
 	"Answer a new scroll pane morph to scroll the given morph."
 	
 	^self theme
@@ -1737,22 +1371,16 @@ TEasilyThemed>>newScrollPaneFor: aMorph [
 		for: aMorph
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newSeparator [
+{ #category : #controls }
+TEasilyThemed >> newSeparator [
 	"Answer an horizontal separator."
 
 	^self theme
 		newSeparatorIn: self
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newSliderFor: aModel getValue: getSel setValue: setSel getEnabled: enabledSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newSliderFor: aModel getValue: getSel setValue: setSel getEnabled: enabledSel help: helpText [
 	"Answer a slider with the given selectors."
 
 	^self theme
@@ -1767,11 +1395,8 @@ TEasilyThemed>>newSliderFor: aModel getValue: getSel setValue: setSel getEnabled
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newSliderFor: aModel getValue: getSel setValue: setSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newSliderFor: aModel getValue: getSel setValue: setSel help: helpText [
 	"Answer a slider with the given selectors."
 
 	^self theme
@@ -1786,11 +1411,8 @@ TEasilyThemed>>newSliderFor: aModel getValue: getSel setValue: setSel help: help
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newSliderFor: aModel getValue: getSel setValue: setSel min: min max: max quantum: quantum getEnabled: enabledSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newSliderFor: aModel getValue: getSel setValue: setSel min: min max: max quantum: quantum getEnabled: enabledSel help: helpText [
 	"Answer a slider with the given selectors."
 
 	^self theme
@@ -1805,11 +1427,8 @@ TEasilyThemed>>newSliderFor: aModel getValue: getSel setValue: setSel min: min m
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newStack [
+{ #category : #controls }
+TEasilyThemed >> newStack [
 	"Answer a morph laid out as a stack."
 
 	^self theme
@@ -1817,11 +1436,8 @@ TEasilyThemed>>newStack [
 		for: #()
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newStack: controls [
+{ #category : #controls }
+TEasilyThemed >> newStack: controls [
 	"Answer a morph laid out with a stack of controls."
 
 	^self theme
@@ -1829,11 +1445,8 @@ TEasilyThemed>>newStack: controls [
 		for: controls
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newString: aStringOrText [
+{ #category : #controls }
+TEasilyThemed >> newString: aStringOrText [
 	"Answer a new embossed string."
 
 	^self theme
@@ -1843,11 +1456,8 @@ TEasilyThemed>>newString: aStringOrText [
 		style: #plain
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newString: aStringOrText font: aFont style: aStyle [
+{ #category : #controls }
+TEasilyThemed >> newString: aStringOrText font: aFont style: aStyle [
 	"Answer a new embossed string."
 
 	^self theme
@@ -1857,11 +1467,8 @@ TEasilyThemed>>newString: aStringOrText font: aFont style: aStyle [
 		style: aStyle
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newString: aStringOrText style: aStyle [
+{ #category : #controls }
+TEasilyThemed >> newString: aStringOrText style: aStyle [
 	"Answer a new embossed string."
 
 	^self theme
@@ -1871,11 +1478,8 @@ TEasilyThemed>>newString: aStringOrText style: aStyle [
 		style: aStyle
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newTabGroup: labelsAndPages [
+{ #category : #controls }
+TEasilyThemed >> newTabGroup: labelsAndPages [
 	"Answer a tab group with the given tab labels associated with pages."
 
 	^self theme
@@ -1883,11 +1487,8 @@ TEasilyThemed>>newTabGroup: labelsAndPages [
 		for: labelsAndPages
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newText: aStringOrText [
+{ #category : #controls }
+TEasilyThemed >> newText: aStringOrText [
 	"Answer a new text."
 
 	^self theme
@@ -1895,11 +1496,8 @@ TEasilyThemed>>newText: aStringOrText [
 		text: aStringOrText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newTextEditorFor: aModel getText: getSel setText: setSel [
+{ #category : #controls }
+TEasilyThemed >> newTextEditorFor: aModel getText: getSel setText: setSel [
 	"Answer a text editor for the given model."
 
 	^self
@@ -1909,11 +1507,8 @@ TEasilyThemed>>newTextEditorFor: aModel getText: getSel setText: setSel [
 		getEnabled: nil
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newTextEditorFor: aModel getText: getSel setText: setSel getEnabled: enabledSel  [
+{ #category : #controls }
+TEasilyThemed >> newTextEditorFor: aModel getText: getSel setText: setSel getEnabled: enabledSel [ 
 	"Answer a text editor for the given model."
 
 	^self 
@@ -1924,11 +1519,8 @@ TEasilyThemed>>newTextEditorFor: aModel getText: getSel setText: setSel getEnabl
 		menu: nil
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newTextEditorFor: aModel getText: getSel setText: setSel getEnabled: enabledSel menu: menuSelector [
+{ #category : #controls }
+TEasilyThemed >> newTextEditorFor: aModel getText: getSel setText: setSel getEnabled: enabledSel menu: menuSelector [
 	"Answer a text editor for the given model."
 
 	^self theme
@@ -1940,11 +1532,8 @@ TEasilyThemed>>newTextEditorFor: aModel getText: getSel setText: setSel getEnabl
 		menu: menuSelector
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newTextEntryFor: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newTextEntryFor: aModel get: getSel set: setSel class: aClass getEnabled: enabledSel help: helpText [
 	"Answer a text entry for the given model."
 
 	^self theme
@@ -1957,11 +1546,8 @@ TEasilyThemed>>newTextEntryFor: aModel get: getSel set: setSel class: aClass get
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newTextEntryFor: aModel getText: getSel setText: setSel getEnabled: enabledSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newTextEntryFor: aModel getText: getSel setText: setSel getEnabled: enabledSel help: helpText [
 	"Answer a text entry for the given model."
 
 	^self theme
@@ -1974,11 +1560,8 @@ TEasilyThemed>>newTextEntryFor: aModel getText: getSel setText: setSel getEnable
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newTextEntryFor: aModel getText: getSel setText: setSel getEnabled: enabledSel help: helpText entryCompletion: anEntryCompletion [
+{ #category : #controls }
+TEasilyThemed >> newTextEntryFor: aModel getText: getSel setText: setSel getEnabled: enabledSel help: helpText entryCompletion: anEntryCompletion [
 
 	"Answer a text entry for the given model."
 
@@ -1993,11 +1576,8 @@ TEasilyThemed>>newTextEntryFor: aModel getText: getSel setText: setSel getEnable
 		entryCompletion: anEntryCompletion
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newTextEntryFor: aModel getText: getSel setText: setSel help: helpText [
+{ #category : #controls }
+TEasilyThemed >> newTextEntryFor: aModel getText: getSel setText: setSel help: helpText [
 	"Answer a text entry for the given model."
 
 	^self
@@ -2009,11 +1589,8 @@ TEasilyThemed>>newTextEntryFor: aModel getText: getSel setText: setSel help: hel
 		help: helpText
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newTitle: aString for: control [
+{ #category : #controls }
+TEasilyThemed >> newTitle: aString for: control [
 	"Answer a morph laid out with a column with a title."
 
 	^self theme
@@ -2022,44 +1599,32 @@ TEasilyThemed>>newTitle: aString for: control [
 		for: control
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newToolDockingBar [
+{ #category : #controls }
+TEasilyThemed >> newToolDockingBar [
 	"Answer a tool docking bar."
 
 	^self theme
 		newToolDockingBarIn: self
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newToolSpacer [
+{ #category : #controls }
+TEasilyThemed >> newToolSpacer [
 	"Answer a tool spacer."
 
 	^self theme
 		newToolSpacerIn: self
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newToolbar [
+{ #category : #controls }
+TEasilyThemed >> newToolbar [
 	"Answer a toolbar."
 
 	^self theme
 		newToolbarIn: self
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newToolbar: controls [
+{ #category : #controls }
+TEasilyThemed >> newToolbar: controls [
 	"Answer a toolbar with the given controls."
 
 	^self theme
@@ -2067,22 +1632,16 @@ TEasilyThemed>>newToolbar: controls [
 		for: controls
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newToolbarHandle [
+{ #category : #controls }
+TEasilyThemed >> newToolbarHandle [
 	"Answer a toolbar handle."
 
 	^self theme
 		newToolbarHandleIn: self
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newTreeFor: aModel list: listSelector selected: getSelector changeSelected: setSelector [
+{ #category : #controls }
+TEasilyThemed >> newTreeFor: aModel list: listSelector selected: getSelector changeSelected: setSelector [
 	"Answer a new tree morph."
 	
 	^self theme
@@ -2093,22 +1652,16 @@ TEasilyThemed>>newTreeFor: aModel list: listSelector selected: getSelector chang
 		changeSelected: setSelector
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newVerticalSeparator [
+{ #category : #controls }
+TEasilyThemed >> newVerticalSeparator [
 	"Answer a vertical separator."
 
 	^self theme
 		newVerticalSeparatorIn: self
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newWindowFor: aModel title: titleString [
+{ #category : #controls }
+TEasilyThemed >> newWindowFor: aModel title: titleString [
 	"Answer a new window morph."
 	
 	^self theme
@@ -2117,21 +1670,15 @@ TEasilyThemed>>newWindowFor: aModel title: titleString [
 		title: titleString
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newYesButton [
+{ #category : #controls }
+TEasilyThemed >> newYesButton [
 	"Answer a new Yes button."
 
 	^self newYesButtonFor: self
 ]
 
-{
-	#category : #controls,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>newYesButtonFor: aModel [
+{ #category : #controls }
+TEasilyThemed >> newYesButtonFor: aModel [
 	"Answer a new yes button."
 
 	^self theme
@@ -2139,21 +1686,15 @@ TEasilyThemed>>newYesButtonFor: aModel [
 		for: aModel
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>proceed: aStringOrText [
+{ #category : #services }
+TEasilyThemed >> proceed: aStringOrText [
 	"Open a proceed dialog."
 
 	^self proceed: aStringOrText title: 'Proceed' translated
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>proceed: aStringOrText title: aString [
+{ #category : #services }
+TEasilyThemed >> proceed: aStringOrText title: aString [
 	"Open a proceed dialog and answer true if not cancelled, false otherwise."
 
 	^self theme
@@ -2162,21 +1703,15 @@ TEasilyThemed>>proceed: aStringOrText title: aString [
 		title: aString
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>question: aStringOrText [
+{ #category : #services }
+TEasilyThemed >> question: aStringOrText [
 	"Open a question dialog."
 
 	^self question: aStringOrText title: 'Question' translated
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>question: aStringOrText title: aString [
+{ #category : #services }
+TEasilyThemed >> question: aStringOrText title: aString [
 	"Open a question dialog and answer true if yes,
 	false if no and nil if cancelled."
 
@@ -2186,21 +1721,15 @@ TEasilyThemed>>question: aStringOrText title: aString [
 		title: aString
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>questionWithoutCancel: aStringOrText [
+{ #category : #services }
+TEasilyThemed >> questionWithoutCancel: aStringOrText [
 	"Open a question dialog."
 
 	^self questionWithoutCancel: aStringOrText title: 'Question' translated
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>questionWithoutCancel: aStringOrText title: aString [
+{ #category : #services }
+TEasilyThemed >> questionWithoutCancel: aStringOrText title: aString [
 	"Open a question dialog and answer true if yes,
 	false if no and nil if cancelled."
 
@@ -2210,21 +1739,15 @@ TEasilyThemed>>questionWithoutCancel: aStringOrText title: aString [
 		title: aString
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>textEntry: aStringOrText [
+{ #category : #services }
+TEasilyThemed >> textEntry: aStringOrText [
 	"Open a text entry dialog."
 
 	^self textEntry: aStringOrText title: 'Entry' translated
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>textEntry: aStringOrText title: aString [
+{ #category : #services }
+TEasilyThemed >> textEntry: aStringOrText title: aString [
 	"Open a text entry dialog."
 
 	^self
@@ -2233,11 +1756,8 @@ TEasilyThemed>>textEntry: aStringOrText title: aString [
 		entryText: ''
 ]
 
-{
-	#category : #services,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>textEntry: aStringOrText title: aString entryText: defaultEntryText [
+{ #category : #services }
+TEasilyThemed >> textEntry: aStringOrText title: aString entryText: defaultEntryText [
 	"Open a text entry dialog."
 
 	^self theme
@@ -2247,11 +1767,8 @@ TEasilyThemed>>textEntry: aStringOrText title: aString entryText: defaultEntryTe
 		entryText: defaultEntryText
 ]
 
-{
-	#category : #theme,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TEasilyThemed>>theme [
+{ #category : #theme }
+TEasilyThemed >> theme [
 	"Answer the ui theme that provides controls."
 
 	^ Smalltalk ui theme

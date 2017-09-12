@@ -1,11 +1,6 @@
-Extension {
-	#name : #SyntaxErrorDebugger
-}
+Extension { #name : #SyntaxErrorDebugger }
 
-{
-	#category : #'*SmartSuggestions',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SyntaxErrorDebugger>>sugsContext [
+{ #category : #'*SmartSuggestions' }
+SyntaxErrorDebugger >> sugsContext [
 	^ SugsSyntaxErrorDebuggerContext model: self
 ]

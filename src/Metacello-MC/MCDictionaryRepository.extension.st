@@ -1,12 +1,7 @@
-Extension {
-	#name : #MCDictionaryRepository
-}
+Extension { #name : #MCDictionaryRepository }
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MCDictionaryRepository>>asRepositorySpecFor: aMetacelloMCProject [
+{ #category : #'*metacello-mc' }
+MCDictionaryRepository >> asRepositorySpecFor: aMetacelloMCProject [
 
 	| desc |
 	desc := self description.
@@ -17,11 +12,8 @@ MCDictionaryRepository>>asRepositorySpecFor: aMetacelloMCProject [
 		yourself
 ]
 
-{
-	#category : #'*metacello-mc',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MCDictionaryRepository>>versionInfoFromVersionNamed: aString [
+{ #category : #'*metacello-mc' }
+MCDictionaryRepository >> versionInfoFromVersionNamed: aString [
 
 	| versions |
 	versions := self dictionary values select: [:version | version info name beginsWith: aString ].

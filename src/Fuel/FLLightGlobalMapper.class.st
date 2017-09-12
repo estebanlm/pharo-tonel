@@ -9,26 +9,19 @@ Class {
 	#instVars : [
 		'globals'
 	],
-	#category : #Fuel-Mappers,
-	#timestamp : '<historical>'
+	#category : #Fuel-Mappers
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGlobalMapper class>>for: globalSymbols in: globalEnvironment [
+{ #category : #'instance creation' }
+FLLightGlobalMapper class >> for: globalSymbols in: globalEnvironment [
 
 	^ self basicNew
 		initializeWith: (self valuesFor: globalSymbols in: globalEnvironment);
 		yourself.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGlobalMapper class>>valuesFor: globalSymbols in: globalEnvironment [
+{ #category : #private }
+FLLightGlobalMapper class >> valuesFor: globalSymbols in: globalEnvironment [
 	"Some globals, like ActiveHand have a nil value in the Smalltalk globals. Therefore, we cannot map nil to globalCluster. We could filter before in #defaultGlobalSymbols but that means that not even the Association will be consider global."
 	| values |
 	values := IdentitySet new: globalSymbols size.
@@ -42,21 +35,15 @@ FLLightGlobalMapper class>>valuesFor: globalSymbols in: globalEnvironment [
 	^ values
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGlobalMapper>>initializeWith: someObjects [
+{ #category : #initialize-release }
+FLLightGlobalMapper >> initializeWith: someObjects [
 
 	self initialize.
 	globals := someObjects.
 ]
 
-{
-	#category : #mapping,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLLightGlobalMapper>>mapAndTrace: anObject [
+{ #category : #mapping }
+FLLightGlobalMapper >> mapAndTrace: anObject [
 	"Uses the Chain of Responsibility pattern to answer the cluster which maps with the received object."
 
 	(globals includes: anObject) 

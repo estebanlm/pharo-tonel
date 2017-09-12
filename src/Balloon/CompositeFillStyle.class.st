@@ -7,35 +7,25 @@ Class {
 	#instVars : [
 		'fillStyles'
 	],
-	#category : #Balloon-Fills,
-	#timestamp : 'gvc 9/23/2008 12:05'
+	#category : #Balloon-Fills
 }
 
-{
-	#category : #build,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle class>>fillStyles: aCollection [
+{ #category : #build }
+CompositeFillStyle class >> fillStyles: aCollection [
 	"Answer a new instance of the receiver with the specfied fill styles."
 
 	^self new fillStyles: aCollection
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>addFillStyleMenuItems: aMenu hand: aHand from: aMorph [
+{ #category : #adding }
+CompositeFillStyle >> addFillStyleMenuItems: aMenu hand: aHand from: aMorph [
 	"Add the items for changing the current fill style of the receiver"
 	aMenu add: 'change origin' target: self selector: #changeOriginIn:event: argument: aMorph.
 	aMenu add: 'change orientation' target: self selector: #changeOrientationIn:event: argument: aMorph.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>asColor [
+{ #category : #converting }
+CompositeFillStyle >> asColor [
 	"Answer a colour that is a best match to the receiver.
 	Simple approach for the moment."
 	
@@ -44,11 +34,8 @@ CompositeFillStyle>>asColor [
 		ifNotEmpty: [self fillStyles last asColor]
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>changeOrientationIn: aMorph event: evt [
+{ #category : #action }
+CompositeFillStyle >> changeOrientationIn: aMorph event: evt [
 	"Interactively change the origin of the receiver"
 	| handle |
 	handle := HandleMorph new forEachPointDo:[:pt|
@@ -59,11 +46,8 @@ CompositeFillStyle>>changeOrientationIn: aMorph event: evt [
 	handle startStepping.
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>changeOriginIn: aMorph event: evt [
+{ #category : #action }
+CompositeFillStyle >> changeOriginIn: aMorph event: evt [
 	"Interactively change the origin of the receiver"
 	| handle |
 	handle := HandleMorph new forEachPointDo:[:pt|
@@ -73,11 +57,8 @@ CompositeFillStyle>>changeOriginIn: aMorph event: evt [
 	handle startStepping.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>direction [
+{ #category : #accessing }
+CompositeFillStyle >> direction [
 	"Answer an effective direction of any oriented fill styles.
 	Answer the bottom-right maxima."
 
@@ -91,11 +72,8 @@ CompositeFillStyle>>direction [
 	^dir ifNil: [0@0] "just in case"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>direction: aPoint [
+{ #category : #accessing }
+CompositeFillStyle >> direction: aPoint [
 	"Change the effective direction of any oriented fill styles."
 
 	|delta|
@@ -105,11 +83,8 @@ CompositeFillStyle>>direction: aPoint [
 			fs direction: fs direction + delta]]
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>fillRectangle: aRectangle on: aCanvas [
+{ #category : #action }
+CompositeFillStyle >> fillRectangle: aRectangle on: aCanvas [
 	"Fill the given rectangle on the given canvas with the receiver.
 	Render from bottom to top."
 	
@@ -117,33 +92,24 @@ CompositeFillStyle>>fillRectangle: aRectangle on: aCanvas [
 		fs fillRectangle: aRectangle on: aCanvas]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>fillStyles [
+{ #category : #accessing }
+CompositeFillStyle >> fillStyles [
 	"Answer the value of fillStyles. The first item in the collection is considered
 	to be topmost when rendered."
 
 	^ fillStyles
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>fillStyles: aCollection [
+{ #category : #accessing }
+CompositeFillStyle >> fillStyles: aCollection [
 	"Set the value of fillStyles. The first item in the collection is considered
 	to be topmost when rendering."
 
 	fillStyles := aCollection
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>initialize [
+{ #category : #initialization }
+CompositeFillStyle >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -151,22 +117,16 @@ CompositeFillStyle>>initialize [
 		fillStyles: OrderedCollection new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>isCompositeFill [
+{ #category : #testing }
+CompositeFillStyle >> isCompositeFill [
 	"Answer whether the receiver is a composite fill.
 	True for kinds of the receiver's class."
 
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>isGradientFill [
+{ #category : #testing }
+CompositeFillStyle >> isGradientFill [
 	"Answer whether any of the composited fill styles are gradients."
 
 	self fillStyles reverseDo: [:fs |
@@ -174,11 +134,8 @@ CompositeFillStyle>>isGradientFill [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>isOrientedFill [
+{ #category : #testing }
+CompositeFillStyle >> isOrientedFill [
 	"Answer whether any of the composited fill styles are oriented."
 
 	self fillStyles reverseDo: [:fs |
@@ -186,31 +143,22 @@ CompositeFillStyle>>isOrientedFill [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>isTranslucent [
+{ #category : #testing }
+CompositeFillStyle >> isTranslucent [
 	"Answer whether all of the composited fill styles are transparent."
 
 	^self fillStyles allSatisfy: [:fs | fs isTranslucent]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>isTransparent [
+{ #category : #testing }
+CompositeFillStyle >> isTransparent [
 	"Answer whether all of the composited fill styles are transparent."
 
 	^self fillStyles allSatisfy: [:fs | fs isTransparent]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>normal [
+{ #category : #accessing }
+CompositeFillStyle >> normal [
 	"Answer an effective normal of any oriented fill styles.
 	Answer the top-left minima (probably not an accurate assumption)."
 
@@ -224,11 +172,8 @@ CompositeFillStyle>>normal [
 	^normal ifNil: [0@0] "just in case"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>normal: aPoint [
+{ #category : #accessing }
+CompositeFillStyle >> normal: aPoint [
 	"Change the effective normal of any oriented fill styles."
 
 	|delta|
@@ -243,11 +188,8 @@ CompositeFillStyle>>normal: aPoint [
 			fs normal: fs normal + delta]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>origin [
+{ #category : #accessing }
+CompositeFillStyle >> origin [
 	"Answer an effective origin of any oriented fill styles.
 	Answer the top-left minima."
 
@@ -261,11 +203,8 @@ CompositeFillStyle>>origin [
 	^origin ifNil: [0@0] "just in case"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-CompositeFillStyle>>origin: aPoint [
+{ #category : #accessing }
+CompositeFillStyle >> origin: aPoint [
 	"Change the effective origin of any oriented fill styles."
 
 	|delta|

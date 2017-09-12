@@ -7,33 +7,23 @@ Class {
 	#classVars : [
 		'Default'
 	],
-	#category : #Nautilus,
-	#timestamp : '<historical>'
+	#category : #Nautilus
 }
 
-{
-	#category : #singleton,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusMonticello class>>default [
+{ #category : #singleton }
+NautilusMonticello class >> default [
 
 	^ Default ifNil: [ Default := self basicNew initialize ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusMonticello class>>new [
+{ #category : #'instance creation' }
+NautilusMonticello class >> new [
 
 	^ self default
 ]
 
-{
-	#category : #'monticello menus',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusMonticello class>>packagesChangesMenu: aBuilder [
+{ #category : #'monticello menus' }
+NautilusMonticello class >> packagesChangesMenu: aBuilder [
 	<nautilusGlobalPackageMenu>
 	| package mcpackage target |
 	target := aBuilder model.
@@ -56,11 +46,8 @@ NautilusMonticello class>>packagesChangesMenu: aBuilder [
 						action: [ self default viewChangesFor: mcpackage in: repo ] ] ]
 ]
 
-{
-	#category : #'monticello menus',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusMonticello class>>packagesCommitsMenu: aBuilder [
+{ #category : #'monticello menus' }
+NautilusMonticello class >> packagesCommitsMenu: aBuilder [
 	<nautilusGlobalPackageMenu>
 	| package mcpackage target |
 	target := aBuilder model.
@@ -89,11 +76,8 @@ NautilusMonticello class>>packagesCommitsMenu: aBuilder [
 				action: [ self default addRepositoryTo: group ] ]
 ]
 
-{
-	#category : #'monticello menus',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusMonticello class>>packagesCreateMenu: aBuilder [
+{ #category : #'monticello menus' }
+NautilusMonticello class >> packagesCreateMenu: aBuilder [
 	<nautilusGlobalPackageMenu>
 	| package mcpackage target |
 	target := aBuilder model.
@@ -108,11 +92,8 @@ NautilusMonticello class>>packagesCreateMenu: aBuilder [
 		enabledBlock: [ target selectedPackages size < 2 ]
 ]
 
-{
-	#category : #'monticello menus',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusMonticello class>>packagesOpenMenu: aBuilder [
+{ #category : #'monticello menus' }
+NautilusMonticello class >> packagesOpenMenu: aBuilder [
 	<nautilusGlobalPackageMenu>
 	| package mcpackage target last group |
 	target := aBuilder model.
@@ -139,21 +120,15 @@ NautilusMonticello class>>packagesOpenMenu: aBuilder [
 		action: [ self default addRepositoryTo: group ]
 ]
 
-{
-	#category : #'monticello menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusMonticello>>addRepositoryTo: aGroup [
+{ #category : #'monticello menus behavior' }
+NautilusMonticello >> addRepositoryTo: aGroup [
 	| repo |
 	(repo := MCTool newRepository) ifNil: [ ^ self ].
 	aGroup addRepository: repo.
 ]
 
-{
-	#category : #'monticello menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusMonticello>>commit: workingCopy in: aRepository [
+{ #category : #'monticello menus behavior' }
+NautilusMonticello >> commit: workingCopy [ in: aRepository
 	| newVersion |
 
 	newVersion := workingCopy newVersionIn: aRepository.
@@ -164,21 +139,15 @@ NautilusMonticello>>commit: workingCopy in: aRepository [
 		ensure: [ (MCVersionInspector new version: newVersion) show ]]
 ]
 
-{
-	#category : #'monticello menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusMonticello>>createMCPackageFor: aPackage [
+{ #category : #'monticello menus behavior' }
+NautilusMonticello >> createMCPackageFor: aPackage [
 	| name |
 	name := aPackage name.
 	name isEmptyOrNil ifFalse: [ MCWorkingCopy forPackage: (MCPackage new name: name) ]
 ]
 
-{
-	#category : #'monticello menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusMonticello>>open: mcpackage in: repo  [
+{ #category : #'monticello menus behavior' }
+NautilusMonticello >> open: mcpackage in: repo [ 
 	| workingCopy |
 
 	repo ifNil: [ ^ self ].
@@ -186,11 +155,8 @@ NautilusMonticello>>open: mcpackage in: repo  [
 	repo morphicOpen: workingCopy
 ]
 
-{
-	#category : #display,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusMonticello>>viewChanges: patch from: fromDescription to: toDescription in: workingCopy [
+{ #category : #display }
+NautilusMonticello >> viewChanges: patch from: fromDescription to: toDescription in: workingCopy [
 	"Open a browser on the given patch."
 
 	PSMCPatchMorph usedByDefault
@@ -205,11 +171,8 @@ NautilusMonticello>>viewChanges: patch from: fromDescription to: toDescription i
 					show]
 ]
 
-{
-	#category : #'monticello menus behavior',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusMonticello>>viewChangesFor: mcpackage in: repo [
+{ #category : #'monticello menus behavior' }
+NautilusMonticello >> viewChangesFor: mcpackage in: repo [
 	| workingCopy patch |
 
 	workingCopy := mcpackage workingCopy.

@@ -17,55 +17,39 @@ Class {
 		'lookahead',
 		'elements'
 	],
-	#category : #Regex-Core,
-	#timestamp : 'Tbn 11/12/2010 23:13'
+	#category : #Regex-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxCharSetParser class>>on: aStream [
+{ #category : #'instance creation' }
+RxCharSetParser class >> on: aStream [
 
 	^self new initialize: aStream
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxCharSetParser>>addChar: aChar [
+{ #category : #parsing }
+RxCharSetParser >> addChar: aChar [
 
 	elements add: (RxsCharacter with: aChar)
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxCharSetParser>>addRangeFrom: firstChar to: lastChar [
+{ #category : #parsing }
+RxCharSetParser >> addRangeFrom: firstChar to: lastChar [
 
 	firstChar asInteger > lastChar asInteger ifTrue:
 		[RxParser signalSyntaxException: ' bad character range' at: source position].
 	elements add: (RxsRange from: firstChar to: lastChar)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxCharSetParser>>initialize: aStream [
+{ #category : #initialize-release }
+RxCharSetParser >> initialize: aStream [
 
 	source := aStream.
 	lookahead := aStream next.
 	elements := OrderedCollection new
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxCharSetParser>>match: aCharacter [
+{ #category : #parsing }
+RxCharSetParser >> match: aCharacter [
 
 	aCharacter = lookahead
 		ifFalse: [
@@ -77,11 +61,8 @@ RxCharSetParser>>match: aCharacter [
 		ifFalse: [lookahead := source next]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxCharSetParser>>parse [
+{ #category : #accessing }
+RxCharSetParser >> parse [
 
 	lookahead = $- ifTrue:
 		[self addChar: $-.
@@ -90,11 +71,8 @@ RxCharSetParser>>parse [
 	^elements
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxCharSetParser>>parseCharOrRange [
+{ #category : #parsing }
+RxCharSetParser >> parseCharOrRange [
 
 	| firstChar |
 	firstChar := lookahead.
@@ -109,11 +87,8 @@ RxCharSetParser>>parseCharOrRange [
 	self addChar: firstChar
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxCharSetParser>>parseEscapeChar [
+{ #category : #parsing }
+RxCharSetParser >> parseEscapeChar [
 
 	self match: $\.
 	$- = lookahead
@@ -122,11 +97,8 @@ RxCharSetParser>>parseEscapeChar [
 	self match: lookahead
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxCharSetParser>>parseNamedSet [
+{ #category : #parsing }
+RxCharSetParser >> parseNamedSet [
 
 	| name |
 	self match: $[; match: $:.
@@ -136,11 +108,8 @@ RxCharSetParser>>parseNamedSet [
 	elements add: (RxsPredicate forNamedClass: name)
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-RxCharSetParser>>parseStep [
+{ #category : #parsing }
+RxCharSetParser >> parseStep [
 
 	lookahead = $[ ifTrue:
 		[source peek = $:

@@ -8,24 +8,17 @@ Class {
 		'info',
 		'browser'
 	],
-	#category : #Versionner-Tests-Core-Model,
-	#timestamp : 'TorstenBergmann 2/20/2014 14:19'
+	#category : #Versionner-Tests-Core-Model
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBBaselineInfoTest>>expectedFailures  [
+{ #category : #running }
+MBBaselineInfoTest >> expectedFailures [ 
 	true ifTrue: [ ^#() ].
 	^ #(#testcalculateInfoList)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBBaselineInfoTest>>setUp [
+{ #category : #running }
+MBBaselineInfoTest >> setUp [
 	| configurationInfo |
 	super setUp.
 	configurationInfo := MBConfigurationInfo configurationClass: configuration.
@@ -33,11 +26,8 @@ MBBaselineInfoTest>>setUp [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBBaselineInfoTest>>testCopyBaseline [
+{ #category : #tests }
+MBBaselineInfoTest >> testCopyBaseline [
 	| configurationInfo baselineInfo |
 	configurationInfo := MBConfigurationInfo configurationClass: configuration.
 	baselineInfo := configurationInfo baselines detect: [:inf | inf version versionString = '1.0-baseline'].
@@ -58,11 +48,8 @@ MBBaselineInfoTest>>testCopyBaseline [
 '
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBBaselineInfoTest>>testInstantiation [
+{ #category : #tests }
+MBBaselineInfoTest >> testInstantiation [
 	|  configurationInfo baseline |
 
 	self should: [ MBBaselineInfo new ] raise: Error.
@@ -76,11 +63,8 @@ MBBaselineInfoTest>>testInstantiation [
 	self assert: (info configurationInfo configurationClass == (Smalltalk at: #ConfigurationOfDummyConfiguration))
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MBBaselineInfoTest>>testcalculateInfoList [
+{ #category : #tests }
+MBBaselineInfoTest >> testcalculateInfoList [
 
 	"Doesn't work!
 	 Need to use a real configuration with all information "

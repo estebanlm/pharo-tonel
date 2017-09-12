@@ -4,30 +4,20 @@ Example for a pakage node
 Class {
 	#name : #PackageNodeExample,
 	#superclass : #PackageAbstractNodeExample,
-	#category : #Morphic-Examples-MorphTreeWidget,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:55'
+	#category : #Morphic-Examples-MorphTreeWidget
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PackageNodeExample>>asString [
+{ #category : #accessing }
+PackageNodeExample >> asString [
 	^ self item packageName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PackageNodeExample>>childNodeClassFromItem: anItem [
+{ #category : #accessing }
+PackageNodeExample >> childNodeClassFromItem: anItem [
 	^  PackageClassNodeExample 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-PackageNodeExample>>childrenItems [
+{ #category : #accessing }
+PackageNodeExample >> childrenItems [
 	^ self item classes 
 ]

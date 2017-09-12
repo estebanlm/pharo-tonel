@@ -7,15 +7,11 @@ self openOn: (self>>#compose) ast ir
 Class {
 	#name : #GTIRBrowser,
 	#superclass : #GLMCompositePresentation,
-	#category : #OpalTools,
-	#timestamp : 'MarcusDenker 10/21/2014 11:04'
+	#category : #OpalTools
 }
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GTIRBrowser>>compose [
+{ #category : #building }
+GTIRBrowser >> compose [
 	self title: 'Tree'.
 	self tabulator with: [ :browser |
 		browser
@@ -36,21 +32,15 @@ GTIRBrowser>>compose [
 			from: #tree port: #selectedNode ]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GTIRBrowser>>sourceIn: a [
+{ #category : #building }
+GTIRBrowser >> sourceIn: a [
 	^ a pharoMethod 
 		smalltalkClass: [ :each | each method compiledMethod methodClass ]; 
 		display: [ :each | each sourceNode source ] 
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-GTIRBrowser>>treeIn: a [
+{ #category : #building }
+GTIRBrowser >> treeIn: a [
 	^ a tree
 		rootsExpanded;
 		display: [ :anObject | {anObject} ];

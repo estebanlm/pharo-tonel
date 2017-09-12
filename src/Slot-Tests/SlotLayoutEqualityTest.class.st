@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #SlotLayoutEqualityTest,
 	#superclass : #SlotSilentTest,
-	#category : #Slot-Tests,
-	#timestamp : ''
+	#category : #Slot-Tests
 }
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotLayoutEqualityTest>>assertClassBuiltWith: blockToBuildAClass isEqualToClassBuiltWith: blockToBuildAnotherClass [
+{ #category : #helpers }
+SlotLayoutEqualityTest >> assertClassBuiltWith: blockToBuildAClass isEqualToClassBuiltWith: blockToBuildAnotherClass [
 	
 	aClass := self make: [ :builder | 
 		builder 
@@ -29,11 +22,8 @@ SlotLayoutEqualityTest>>assertClassBuiltWith: blockToBuildAClass isEqualToClassB
 	self assert: aClass classLayout hash equals: anotherClass classLayout hash.
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotLayoutEqualityTest>>assertClassBuiltWith: blockToBuildAClass isNotEqualToClassBuiltWith: blockToBuildAnotherClass [
+{ #category : #helpers }
+SlotLayoutEqualityTest >> assertClassBuiltWith: blockToBuildAClass isNotEqualToClassBuiltWith: blockToBuildAnotherClass [
 		
 	aClass := self make: [ :builder | 
 		builder 
@@ -49,11 +39,8 @@ SlotLayoutEqualityTest>>assertClassBuiltWith: blockToBuildAClass isNotEqualToCla
 	self assert: aClass classLayout hash ~= anotherClass classLayout hash.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotLayoutEqualityTest>>testLayoutEquals [
+{ #category : #tests }
+SlotLayoutEqualityTest >> testLayoutEquals [
 
 	self layoutClasses do: [:aLayoutClass |
 		self 
@@ -61,11 +48,8 @@ SlotLayoutEqualityTest>>testLayoutEquals [
 			isEqualToClassBuiltWith: [:builder | builder layoutClass: aLayoutClass ] ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotLayoutEqualityTest>>testLayoutNotEquals [
+{ #category : #tests }
+SlotLayoutEqualityTest >> testLayoutNotEquals [
  
 	self layoutClasses do: [:aLayoutClass |
 		(self layoutClasses copyWithout: aLayoutClass) do: [:anotherLayoutClass |
@@ -74,11 +58,8 @@ SlotLayoutEqualityTest>>testLayoutNotEquals [
 				isNotEqualToClassBuiltWith: [:builder | builder layoutClass: anotherLayoutClass ]]]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotLayoutEqualityTest>>testLayoutWithSlotsEquals [
+{ #category : #tests }
+SlotLayoutEqualityTest >> testLayoutWithSlotsEquals [
 
 	self layoutClassesWithSlots do: [:aLayoutClass |
 		self 
@@ -92,11 +73,8 @@ SlotLayoutEqualityTest>>testLayoutWithSlotsEquals [
 					slots: { #field1}  ].]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotLayoutEqualityTest>>testLayoutWithSlotsNotEquals [
+{ #category : #tests }
+SlotLayoutEqualityTest >> testLayoutWithSlotsNotEquals [
 
 	self layoutClassesWithSlots do: [:aLayoutClass |
 		self 

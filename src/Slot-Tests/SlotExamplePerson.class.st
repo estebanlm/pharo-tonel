@@ -9,75 +9,50 @@ Class {
 		'#directedMovies => ToManyRelationSlot inverse: #director inClass: #SlotExampleMovie',
 		'#actedInMovies => ToManyRelationSlot inverse: #actors inClass: #SlotExampleMovie'
 	],
-	#category : #Slot-Tests-Associations,
-	#timestamp : 'JanVanDeSandt 2/27/2015 11:27'
+	#category : #Slot-Tests-Associations
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExamplePerson class>>named: aString [
+{ #category : #'instance creation' }
+SlotExamplePerson class >> named: aString [
 
 	^self new
 		name: aString
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExamplePerson>>actedInMovies [
+{ #category : #accessing }
+SlotExamplePerson >> actedInMovies [
 	^ actedInMovies
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExamplePerson>>actedInMovies: anObject [
+{ #category : #accessing }
+SlotExamplePerson >> actedInMovies: anObject [
 	actedInMovies := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExamplePerson>>directedMovies [
+{ #category : #accessing }
+SlotExamplePerson >> directedMovies [
 	^ directedMovies
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExamplePerson>>directedMovies: anObject [
+{ #category : #accessing }
+SlotExamplePerson >> directedMovies: anObject [
 	directedMovies := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExamplePerson>>initialize [
+{ #category : #initialization }
+SlotExamplePerson >> initialize [
 	super initialize.
 	self class initializeSlots: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExamplePerson>>name [
+{ #category : #accessing }
+SlotExamplePerson >> name [
 	
 	^name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SlotExamplePerson>>name: anObject [
+{ #category : #accessing }
+SlotExamplePerson >> name: anObject [
 	name := anObject
 ]

@@ -4,33 +4,23 @@ Checks for methods that appear to be modifying a collection that is owned by ano
 Class {
 	#name : #RBCollectionMessagesToExternalObjectRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 21:24'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBCollectionMessagesToExternalObjectRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBCollectionMessagesToExternalObjectRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'CollectionMessagesToExternalObjectRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBCollectionMessagesToExternalObjectRule>>group [
+{ #category : #accessing }
+RBCollectionMessagesToExternalObjectRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBCollectionMessagesToExternalObjectRule>>initialize [
+{ #category : #initialization }
+RBCollectionMessagesToExternalObjectRule >> initialize [
 	| queries |
 	super initialize.
 	queries := #( add: remove: addAll: removeAll: )
@@ -52,18 +42,12 @@ RBCollectionMessagesToExternalObjectRule>>initialize [
 				ifFalse: [ answer ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBCollectionMessagesToExternalObjectRule>>name [
+{ #category : #accessing }
+RBCollectionMessagesToExternalObjectRule >> name [
 	^ 'Sends add:/remove: to external collection'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBCollectionMessagesToExternalObjectRule>>rationale [
+{ #category : #accessing }
+RBCollectionMessagesToExternalObjectRule >> rationale [
 	^ 'Checks for methods that appear to be modifying a collection that is owned by another object.'
 ]

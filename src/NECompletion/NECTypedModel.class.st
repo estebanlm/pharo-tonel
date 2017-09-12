@@ -7,32 +7,22 @@ Class {
 	#instVars : [
 		'expanded'
 	],
-	#category : #NECompletion-Model,
-	#timestamp : '<historical>'
+	#category : #NECompletion-Model
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypedModel>>initialize [
+{ #category : #initialization }
+NECTypedModel >> initialize [
 	super initialize.
 	expanded := true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypedModel>>initializeSelectors [
+{ #category : #private }
+NECTypedModel >> initializeSelectors [
 	self initializeSelectorsFor: clazz
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypedModel>>initializeSelectorsFor: aClass  [
+{ #category : #private }
+NECTypedModel >> initializeSelectorsFor: aClass [ 
 	|excludedClasses|
 	selectors reset.
 	excludedClasses := (expanded ifTrue: [#()] ifFalse: [Object withAllSuperclasses]).
@@ -40,11 +30,8 @@ NECTypedModel>>initializeSelectorsFor: aClass  [
 						collect: [:each | NECSelectorEntry contents: each type: #selector])
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypedModel>>narrowWith: aString  [
+{ #category : #action }
+NECTypedModel >> narrowWith: aString [ 
 	self
 		narrowString: aString ;
 		initializeSelectors.
@@ -52,27 +39,18 @@ NECTypedModel>>narrowWith: aString  [
 	self addToEntries: selectors
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypedModel>>theClass [
+{ #category : #action }
+NECTypedModel >> theClass [
 	^clazz
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypedModel>>title [
+{ #category : #action }
+NECTypedModel >> title [
 	^clazz name
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECTypedModel>>toggleExpand [
+{ #category : #action }
+NECTypedModel >> toggleExpand [
 	expanded := expanded not.
 	self initializeSelectors.
 	self narrowWith: narrowString

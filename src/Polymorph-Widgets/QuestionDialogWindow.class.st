@@ -7,45 +7,32 @@ Class {
 	#instVars : [
 		'answer'
 	],
-	#category : #Polymorph-Widgets-Windows,
-	#timestamp : 'gvc 5/18/2007 12:20'
+	#category : #Polymorph-Widgets-Windows
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-QuestionDialogWindow>>answer [
+{ #category : #'as yet unclassified' }
+QuestionDialogWindow >> answer [
 	"Answer the value of answer"
 
 	^ answer
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-QuestionDialogWindow>>answer: anObject [
+{ #category : #'as yet unclassified' }
+QuestionDialogWindow >> answer: anObject [
 	"Set the value of answer"
 
 	answer := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-QuestionDialogWindow>>newButtons [
+{ #category : #'as yet unclassified' }
+QuestionDialogWindow >> newButtons [
 	"Answer new buttons as appropriate."
 
 	^{self newYesButton. self newNoButton. self newCancelButton isDefault: true}
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-QuestionDialogWindow>>no [
+{ #category : #'as yet unclassified' }
+QuestionDialogWindow >> no [
 	"Answer no."
 
 	self
@@ -53,11 +40,8 @@ QuestionDialogWindow>>no [
 		ok
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-QuestionDialogWindow>>yes [
+{ #category : #'as yet unclassified' }
+QuestionDialogWindow >> yes [
 	"Answer yes."
 
 	self

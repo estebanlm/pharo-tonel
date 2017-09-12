@@ -4,15 +4,11 @@ I am an adapter to ease the bridge a CheckBoxModel and a CheckboxMorph
 Class {
 	#name : #MorphicCheckBoxAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicCheckBoxAdapter>>buildWidget [
+{ #category : #factory }
+MorphicCheckBoxAdapter >> buildWidget [
 
 	| checkButton |
 	checkButton := CheckboxMorph
@@ -31,56 +27,38 @@ MorphicCheckBoxAdapter>>buildWidget [
 	^ checkButton
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicCheckBoxAdapter>>label [
+{ #category : #'widget API' }
+MorphicCheckBoxAdapter >> label [
 	
 	^ self model label
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicCheckBoxAdapter>>labelClickable [
+{ #category : #'widget API' }
+MorphicCheckBoxAdapter >> labelClickable [
 	
 	^ self model labelClickable
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicCheckBoxAdapter>>labelOnLeft [
+{ #category : #'spec protocol' }
+MorphicCheckBoxAdapter >> labelOnLeft [
 
 	^ self widgetDo: [ :w | w listDirection: #leftToRight ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicCheckBoxAdapter>>labelOnRight [
+{ #category : #'spec protocol' }
+MorphicCheckBoxAdapter >> labelOnRight [
 
 	^ self widgetDo: [ :w | w listDirection: #rightToLeft ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicCheckBoxAdapter>>state [
+{ #category : #'widget API' }
+MorphicCheckBoxAdapter >> state [
 	
 	^ self model state
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicCheckBoxAdapter>>state: aBoolean [
+{ #category : #'widget API' }
+MorphicCheckBoxAdapter >> state: aBoolean [
 	
 	^ self model state: aBoolean
 ]

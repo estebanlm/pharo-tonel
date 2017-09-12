@@ -6,22 +6,15 @@ Indeed these two nodes have the same behavior to browse the dependency in the Na
 Class {
 	#name : #DAClassNode,
 	#superclass : #DANode,
-	#category : #Tool-DependencyAnalyser-UI-Nodes,
-	#timestamp : 'BaptisteQuide 7/25/2014 14:46'
+	#category : #Tool-DependencyAnalyser-UI-Nodes
 }
 
-{
-	#category : #browse-nautilus,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAClassNode>>browseInNautilus [
+{ #category : #browse-nautilus }
+DAClassNode >> browseInNautilus [
 	self browseClassInNautilus: self classFromContent
 ]
 
-{
-	#category : #browse-nautilus,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAClassNode>>classFromContent [
+{ #category : #browse-nautilus }
+DAClassNode >> classFromContent [
 	^ self content theClass
 ]

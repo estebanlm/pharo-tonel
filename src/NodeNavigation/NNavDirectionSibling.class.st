@@ -4,15 +4,11 @@ I'm the one who knows how to navigate in an horizontal way visiting node in the 
 Class {
 	#name : #NNavDirectionSibling,
 	#superclass : #NNavDirection,
-	#category : #NodeNavigation-Core,
-	#timestamp : '<historical>'
+	#category : #NodeNavigation-Core
 }
 
-{
-	#category : #'step over',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionSibling class>>brotherNodeFor: node [
+{ #category : #'step over' }
+NNavDirectionSibling class >> brotherNodeFor: node [
 "Finds the next brother for the node"
 	| brothers nodePosition nextBrotherPosition |
 
@@ -25,20 +21,14 @@ NNavDirectionSibling class>>brotherNodeFor: node [
 
 ]
 
-{
-	#category : #'step over',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionSibling class>>brotherPositionFor: nodePosition brothers: brothers [
+{ #category : #'step over' }
+NNavDirectionSibling class >> brotherPositionFor: nodePosition brothers: brothers [
 	^ nodePosition = brothers size ifTrue:  [ 1 ] ifFalse: [ nodePosition + 1 ].
 
 ]
 
-{
-	#category : #builder,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionSibling class>>buildShortcut: aBuilder [
+{ #category : #builder }
+NNavDirectionSibling class >> buildShortcut: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #sibling)
@@ -51,32 +41,23 @@ NNavDirectionSibling class>>buildShortcut: aBuilder [
 
 ]
 
-{
-	#category : #builder,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionSibling class>>defaultKeyCombination [
+{ #category : #builder }
+NNavDirectionSibling class >> defaultKeyCombination [
 	^NNavNavigation useArrowsShortcuts 
 		ifTrue: [ Character arrowRight meta shift  ]
 		ifFalse: [ $u meta shift  ]
 ]
 
-{
-	#category : #'stand out',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionSibling class>>findSelectionFor: navigationContext [
+{ #category : #'stand out' }
+NNavDirectionSibling class >> findSelectionFor: navigationContext [
 	^ self
 		calculateBestSeletionFor: (self brotherNodeFor: navigationContext bestNodeForSelection )
 		beforeSelection: navigationContext textSelection 
 		step: [ :selection :target | self selectionBrotherScope: selection for: target ]
 ]
 
-{
-	#category : #'step over',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-NNavDirectionSibling class>>selectionBrotherScope: selected for: node [
+{ #category : #'step over' }
+NNavDirectionSibling class >> selectionBrotherScope: selected for: node [
 	| brother |
 
 	node ifNil: [ ^selected ].

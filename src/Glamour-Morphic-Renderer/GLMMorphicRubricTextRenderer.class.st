@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicRubricTextRenderer,
 	#superclass : #GLMMorphicWidgetRenderer,
@@ -8,15 +5,11 @@ Class {
 		'textMorph',
 		'textModel'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRubricTextRenderer>>actOnContextChanged: ann [
+{ #category : #private }
+GLMMorphicRubricTextRenderer >> actOnContextChanged: ann [
 	ann property = #selectionInterval
 		ifTrue: [
 			ann value notNil 
@@ -24,42 +17,30 @@ GLMMorphicRubricTextRenderer>>actOnContextChanged: ann [
 				ifFalse: [textMorph setSelection: (1 to: 0)] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRubricTextRenderer>>actOnPresentationUpdated: ann  [
+{ #category : #private }
+GLMMorphicRubricTextRenderer >> actOnPresentationUpdated: ann [ 
 	| anInterval |
 	anInterval := ann presentation selectionInterval.
 	textMorph setText: ann presentation formatedDisplayValue.
 	textMorph setSelection: anInterval
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRubricTextRenderer>>actOnTextEditorRequest: ann [
+{ #category : #private }
+GLMMorphicRubricTextRenderer >> actOnTextEditorRequest: ann [
 
 	ann action value: textMorph textArea editor 	
 
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRubricTextRenderer>>modelFor: aPresentation [
+{ #category : #rendering }
+GLMMorphicRubricTextRenderer >> modelFor: aPresentation [
 	^ GLMRubricTextModel new
 		glamourPresentation: aPresentation;
 		yourself
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRubricTextRenderer>>morph [
+{ #category : #rendering }
+GLMMorphicRubricTextRenderer >> morph [
 	^ RubScrolledTextMorph new
 		getSelectionSelector: #primarySelectionInterval;
 		color: Smalltalk ui theme backgroundColor;
@@ -69,21 +50,15 @@ GLMMorphicRubricTextRenderer>>morph [
 		yourself.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRubricTextRenderer>>registerEventsForPresentation: aPresentation [
+{ #category : #private }
+GLMMorphicRubricTextRenderer >> registerEventsForPresentation: aPresentation [
 	aPresentation when: GLMPresentationUpdated send: #actOnPresentationUpdated: to: self.
 	aPresentation when: GLMContextChanged send: #actOnContextChanged: to: self.
 	aPresentation when: GLMTextEditorRequest send: #actOnTextEditorRequest: to: self
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicRubricTextRenderer>>render: aPresentation [
+{ #category : #rendering }
+GLMMorphicRubricTextRenderer >> render: aPresentation [
 	textModel := self modelFor: aPresentation.
 	textModel primarySelectionInterval: (aPresentation primarySelectionInterval 
 		ifNil:[ aPresentation selectionInterval ifNil: [1 to: 0] ]).

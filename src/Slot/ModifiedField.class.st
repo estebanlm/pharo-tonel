@@ -12,73 +12,48 @@ Class {
 		'newSlot',
 		'originalSlot'
 	],
-	#category : #Slot-ClassBuilder,
-	#timestamp : '<historical>'
+	#category : #Slot-ClassBuilder
 }
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ModifiedField>>installOn: aModification [
+{ #category : #installing }
+ModifiedField >> installOn: aModification [
 	aModification installModifiedSlot: self
 ]
 
-{
-	#category : #migrating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ModifiedField>>migrateAt: index to: newInstance from: oldInstance [
+{ #category : #migrating }
+ModifiedField >> migrateAt: index to: newInstance from: oldInstance [
 	newInstance
 		instVarAt: index
 		put: (oldInstance instVarAt: self oldFieldIndex)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ModifiedField>>newFieldIndex [
+{ #category : #accessing }
+ModifiedField >> newFieldIndex [
 	^ newSlot index + fieldIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ModifiedField>>newSlot [
+{ #category : #accessing }
+ModifiedField >> newSlot [
 	^ newSlot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ModifiedField>>newSlot: anObject [
+{ #category : #accessing }
+ModifiedField >> newSlot: anObject [
 	newSlot := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ModifiedField>>oldFieldIndex [
+{ #category : #accessing }
+ModifiedField >> oldFieldIndex [
 	^ originalSlot index + fieldIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ModifiedField>>originalSlot [
+{ #category : #accessing }
+ModifiedField >> originalSlot [
 
 	^ originalSlot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ModifiedField>>originalSlot: anObject [
+{ #category : #accessing }
+ModifiedField >> originalSlot: anObject [
 	originalSlot := anObject
 ]

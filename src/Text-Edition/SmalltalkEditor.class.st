@@ -4,15 +4,11 @@ The editor built specifically for Smalltalk code
 Class {
 	#name : #SmalltalkEditor,
 	#superclass : #TextEditor,
-	#category : #Text-Edition,
-	#timestamp : '<historical>'
+	#category : #Text-Edition
 }
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor class>>buildSmalltalkEditorKeymappingsOn: aBuilder [
+{ #category : #shortcuts }
+SmalltalkEditor class >> buildSmalltalkEditorKeymappingsOn: aBuilder [
 	<keymap>
 	(aBuilder shortcut: #browseIt)
 		category: #SmalltalkEditor
@@ -44,11 +40,8 @@ SmalltalkEditor class>>buildSmalltalkEditorKeymappingsOn: aBuilder [
 		do: [ :morph | morph printIt ]
 ]
 
-{
-	#category : #'keyboard shortcut tables',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor class>>initializeCmdKeyShortcuts [
+{ #category : #'keyboard shortcut tables' }
+SmalltalkEditor class >> initializeCmdKeyShortcuts [
 	"Initialize the (unshifted) command-key (or alt-key) shortcut table."
 
 	"NOTE: if you don't know what your keyboard generates, use Sensor kbdTest"
@@ -76,11 +69,8 @@ SmalltalkEditor class>>initializeCmdKeyShortcuts [
  
 ]
 
-{
-	#category : #'keyboard shortcut tables',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor class>>initializeShiftCmdKeyShortcuts  [
+{ #category : #'keyboard shortcut tables' }
+SmalltalkEditor class >> initializeShiftCmdKeyShortcuts [ 
 	"Initialize the shift-command-key (or control-key) shortcut table."
 	"NOTE: if you don't know what your keyboard generates, use Sensor kbdTest"
 	"wod 11/3/1998: Fix setting of cmdMap for shifted keys to actually use the 
@@ -111,31 +101,22 @@ SmalltalkEditor class>>initializeShiftCmdKeyShortcuts  [
 	].
 ]
 
-{
-	#category : #'menu declaration',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor class>>shiftedYellowButtonMenu [
+{ #category : #'menu declaration' }
+SmalltalkEditor class >> shiftedYellowButtonMenu [
 	^ (PragmaMenuBuilder 
 			pragmaKeyword: self smalltalkEditorShiftedMenuKeyword
 			model: nil) menu.
 
 ]
 
-{
-	#category : #'menu declaration',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor class>>smalltalkEditorMenuKeyword [
+{ #category : #'menu declaration' }
+SmalltalkEditor class >> smalltalkEditorMenuKeyword [
 	^'smalltalkEditorMenu'
 
 ]
 
-{
-	#category : #'menu declaration',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor class>>smalltalkEditorMenuOn: aBuilder [
+{ #category : #'menu declaration' }
+SmalltalkEditor class >> smalltalkEditorMenuOn: aBuilder [
 	"Specify the menu used when writing code. Try it with:
 	(PragmaMenuBuilder 
 		pragmaKeyword: 'smalltalkEditorMenu'
@@ -236,20 +217,14 @@ SmalltalkEditor class>>smalltalkEditorMenuOn: aBuilder [
 		iconName: #smallCancelIcon
 ]
 
-{
-	#category : #'menu declaration',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor class>>smalltalkEditorShiftedMenuKeyword [
+{ #category : #'menu declaration' }
+SmalltalkEditor class >> smalltalkEditorShiftedMenuKeyword [
 	^ 'smalltalkEditorShiftedMenu'
 
 ]
 
-{
-	#category : #'menu declaration',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor class>>smalltalkEditorShiftedMenuOn: aBuilder  [
+{ #category : #'menu declaration' }
+SmalltalkEditor class >> smalltalkEditorShiftedMenuOn: aBuilder [ 
 	"Specify the menu used when writing code. Try it with:
 	(PragmaMenuBuilder 
 		pragmaKeyword: 'smalltalkEditorShiftedMenu'
@@ -287,22 +262,16 @@ SmalltalkEditor class>>smalltalkEditorShiftedMenuOn: aBuilder  [
 
 ]
 
-{
-	#category : #'menu declaration',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor class>>yellowButtonMenu [
+{ #category : #'menu declaration' }
+SmalltalkEditor class >> yellowButtonMenu [
 	^ (PragmaMenuBuilder 
 			pragmaKeyword: self smalltalkEditorMenuKeyword
 			model: nil) menu.
 
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>argAdvance: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+SmalltalkEditor >> argAdvance: aKeyboardEvent [
 	"Invoked by Ctrl-a.  Useful after Ctrl-q.
 	 Search forward from the end of the selection for a colon followed by
 		a space.  Place the caret after the space.  If none are found, place the
@@ -317,11 +286,8 @@ SmalltalkEditor>>argAdvance: aKeyboardEvent [
 	^true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>browseClassFrom: aClassString [
+{ #category : #'menu messages' }
+SmalltalkEditor >> browseClassFrom: aClassString [
 	"Launch a hierarchy browser for the class indicated by the current selection.  If multiple classes matching the selection exist, let the user choose among them."
 	
 	| selectedClass |
@@ -335,52 +301,37 @@ SmalltalkEditor>>browseClassFrom: aClassString [
 	Smalltalk tools browser openOnClass: selectedClass .
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>browseClassFromIt [
+{ #category : #'menu messages' }
+SmalltalkEditor >> browseClassFromIt [
 	"Launch a hierarchy browser for the class indicated by the current selection.  If multiple classes matching the selection exist, let the user choose among them."
 	
 	self lineSelectAndEmptyCheck: [^ self].
 	self browseClassFrom: (self selection string copyWithoutAll: CharacterSet crlf)
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>browseIt [
+{ #category : #'menu messages' }
+SmalltalkEditor >> browseIt [
 	"Launch a browser for the current selection, if appropriate"
 	^ self browseClassFromIt
 
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>browseIt: t1  [
+{ #category : #'editing keys' }
+SmalltalkEditor >> browseIt: t1 [ 
 	self browseIt.
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>classCommentsContainingIt [
+{ #category : #'menu messages' }
+SmalltalkEditor >> classCommentsContainingIt [
 	"Open a browser class comments which contain the current selection somewhere in them."
 
 	self lineSelectAndEmptyCheck: [^ self].
 	model systemNavigation  browseClassCommentsWithString: self selection string matchCase: false. 
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>classNamesContainingIt [
+{ #category : #'menu messages' }
+SmalltalkEditor >> classNamesContainingIt [
 	"Open a browser on classes whose names contain the selected string"
 
 	self lineSelectAndEmptyCheck: [^self].
@@ -389,20 +340,14 @@ SmalltalkEditor>>classNamesContainingIt [
 		caseSensitive: Sensor shiftPressed
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>codeCompletionAround:  aBlock textMorph:  aTextMorph keyStroke: anEvent [
+{ #category : #private }
+SmalltalkEditor >> codeCompletionAround:  aBlock textMorph:  aTextMorph keyStroke: anEvent [
 	"I'm a editor for Smalltalk, so, ok do completion around"
 	Smalltalk tools codeCompletionAround: aBlock textMorph: aTextMorph keyStroke: anEvent
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>compileSelectionFor: anObject in: evalContext [
+{ #category : #do-its }
+SmalltalkEditor >> compileSelectionFor: anObject in: evalContext [
 	| methodNode  |
 
 	methodNode :=  self class compiler
@@ -418,11 +363,8 @@ SmalltalkEditor>>compileSelectionFor: anObject in: evalContext [
 	
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>debug: aCompiledMethod receiver: anObject in: evalContext [
+{ #category : #do-its }
+SmalltalkEditor >> debug: aCompiledMethod receiver: anObject in: evalContext [
 	| guineaPig context debugSession |
 	guineaPig := [ aCompiledMethod
 		valueWithReceiver: anObject
@@ -437,11 +379,8 @@ SmalltalkEditor>>debug: aCompiledMethod receiver: anObject in: evalContext [
 	Smalltalk tools debugger openOn: debugSession withFullView: true.
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>debugIt [
+{ #category : #do-its }
+SmalltalkEditor >> debugIt [
 
 	| method receiver context |
 	(model respondsTo: #doItReceiver) 
@@ -456,21 +395,15 @@ SmalltalkEditor>>debugIt [
 		[self debug: method receiver: receiver in: context].
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>debugIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+SmalltalkEditor >> debugIt: aKeyboardEvent [
 	"Evaluate the current selection in the Debugger."
 	self debugIt.
 	^ true
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>displayIfFalse: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+SmalltalkEditor >> displayIfFalse: aKeyboardEvent [
 	"Replace the current text selection with the text 'ifFalse:'--initiated by 
 	ctrl-f."
 
@@ -478,11 +411,8 @@ SmalltalkEditor>>displayIfFalse: aKeyboardEvent [
 	^false
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>displayIfTrue: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+SmalltalkEditor >> displayIfTrue: aKeyboardEvent [
 	"Replace the current text selection with the text 'ifTrue:'--initiated by 
 	ctrl-t."
 
@@ -490,49 +420,34 @@ SmalltalkEditor>>displayIfTrue: aKeyboardEvent [
 	^false
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>doIt [
+{ #category : #do-its }
+SmalltalkEditor >> doIt [
 	"Set the context to include pool vars of the model.  Then evaluate."
 	^ self evaluateSelection
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>doIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+SmalltalkEditor >> doIt: aKeyboardEvent [
 	"Called when user hits cmd-d.  Select the current line, if relevant, then evaluate and execute.  2/1/96 sw.
 	2/29/96 sw: don't call selectLine; it's done by doIt now"	
 	self doIt.
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>editingStateClass [
+{ #category : #accessing }
+SmalltalkEditor >> editingStateClass [
 	^ SmalltalkEditingState
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>evaluateSelection [
+{ #category : #do-its }
+SmalltalkEditor >> evaluateSelection [
 	"Treat the current selection as an expression; evaluate it and return the result"
 	
 	^self evaluateSelectionAndDo: [:result | result]
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>evaluateSelectionAndDo: aBlock [
+{ #category : #do-its }
+SmalltalkEditor >> evaluateSelectionAndDo: aBlock [
 	"Treat the current selection as an expression; evaluate it and invoke aBlock with the result."
 	| result rcvr ctxt |
 
@@ -552,29 +467,20 @@ SmalltalkEditor>>evaluateSelectionAndDo: aBlock [
 	^ aBlock value: result
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>exploreIt [
+{ #category : #do-its }
+SmalltalkEditor >> exploreIt [
 	self evaluateSelectionAndDo: [:result | result basicInspect]
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>exploreIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+SmalltalkEditor >> exploreIt: aKeyboardEvent [
 	"Explore the selection -- invoked via cmd-shift-I.  If there is no current selection, use the current line."
 	self exploreIt.
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>fileItIn [
+{ #category : #'menu messages' }
+SmalltalkEditor >> fileItIn [
 	"Make a Stream on the text selection and fileIn it.
 	 Moved here from FileController; this function can be useful from any text window that shows stuff in chunk format"
 
@@ -585,21 +491,15 @@ SmalltalkEditor>>fileItIn [
 
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>fileItIn: aKeyboardEvent [
+{ #category : #'editing keys' }
+SmalltalkEditor >> fileItIn: aKeyboardEvent [
 	"File in the selection; invoked via a keyboard shortcut, -- for now, cmd-shift-G."
 	self fileItIn.
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>implementorsOf: aSelector [
+{ #category : #'menu messages' }
+SmalltalkEditor >> implementorsOf: aSelector [
 	"Open an implementors browser on the given selector"
 
 	(model systemNavigation allImplementorsOf: aSelector) isEmpty
@@ -607,11 +507,8 @@ SmalltalkEditor>>implementorsOf: aSelector [
 			ifFalse: [ model systemNavigation browseAllImplementorsOf: aSelector]
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>implementorsOfIt [
+{ #category : #'menu messages' }
+SmalltalkEditor >> implementorsOfIt [
 	"Open an implementors browser on the selected selector"
 
 	| aSelector |
@@ -620,49 +517,34 @@ SmalltalkEditor>>implementorsOfIt [
 	self implementorsOf: aSelector
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>implementorsOfIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+SmalltalkEditor >> implementorsOfIt: aKeyboardEvent [
 	"Triggered by Cmd-m; browse implementors of the selector represented by the current selection, if plausible. 2/1/96 sw"
 	self implementorsOfIt.
 	^ true
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>inspectIt [
+{ #category : #do-its }
+SmalltalkEditor >> inspectIt [
 	self evaluateSelectionAndDo: [:result | result inspect]
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>inspectIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+SmalltalkEditor >> inspectIt: aKeyboardEvent [
 	"Inspect the selection -- invoked via cmd-i.  If there is no current selection, use the current line.  1/17/96 sw
 	 2/29/96 sw: don't call selectLine; it's done by inspectIt now"
 	self inspectIt.
 	^ true
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>installKeymappingsOn: aMorph [
+{ #category : #shortcuts }
+SmalltalkEditor >> installKeymappingsOn: aMorph [
 	super installKeymappingsOn: aMorph.
 	aMorph attachKeymapCategory: #SmalltalkEditor
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>internalCallToBrowse: aSelector [
+{ #category : #'menu messages' }
+SmalltalkEditor >> internalCallToBrowse: aSelector [
 	"Launch a browser for the class indicated by the given selector. 
 	If multiple classes matching the selection exist, let the user choose among them."
 	| aClass |
@@ -673,11 +555,8 @@ SmalltalkEditor>>internalCallToBrowse: aSelector [
 	Smalltalk tools browser openOnClass: aClass.
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>internalCallToBrowseIt [
+{ #category : #'menu messages' }
+SmalltalkEditor >> internalCallToBrowseIt [
 	"Launch a browser for the class indicated by the current selection. 
 	If multiple classes matching the selection exist, let the user choose among them."
 	| aClass |
@@ -685,11 +564,8 @@ SmalltalkEditor>>internalCallToBrowseIt [
 	self internalCallToBrowse: (self selection string copyWithoutAll: CharacterSet crlf)
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>internalCallToImplementorsOf: aSelector [
+{ #category : #'menu messages' }
+SmalltalkEditor >> internalCallToImplementorsOf: aSelector [
 	"Open an implementors browser on the given selector"
 	
 	 (model systemNavigation allImplementorsOf: aSelector) isEmpty
@@ -698,11 +574,8 @@ SmalltalkEditor>>internalCallToImplementorsOf: aSelector [
 	
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>internalCallToImplementorsOfIt [
+{ #category : #'menu messages' }
+SmalltalkEditor >> internalCallToImplementorsOfIt [
 	"Open an implementors browser on the selected selector"
 
 	| aSelector |
@@ -713,19 +586,13 @@ SmalltalkEditor>>internalCallToImplementorsOfIt [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>isSmalltalkEditor [
+{ #category : #testing }
+SmalltalkEditor >> isSmalltalkEditor [
 	^ true 
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>methodNamesContainingIt [
+{ #category : #'menu messages' }
+SmalltalkEditor >> methodNamesContainingIt [
 	"Open a browser on methods names containing the selected string"
 
 	self lineSelectAndEmptyCheck: [ ^ self ].
@@ -734,41 +601,29 @@ SmalltalkEditor>>methodNamesContainingIt [
 	
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>methodNamesContainingIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+SmalltalkEditor >> methodNamesContainingIt: aKeyboardEvent [
 	"Browse methods whose selectors containing the selection in their names"
 	self methodNamesContainingIt.
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>methodSourceContainingIt [
+{ #category : #'menu messages' }
+SmalltalkEditor >> methodSourceContainingIt [
 	"Open a browser on methods which contain the current selection in their source (case-sensitive full-text search of source).   EXTREMELY slow!"
 	self lineSelectAndEmptyCheck: [^ self].
 	model systemNavigation  browseMethodsWithSourceString: self selection string matchCase: false.
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>methodStringsContainingIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+SmalltalkEditor >> methodStringsContainingIt: aKeyboardEvent [
 	"Invoked from cmd-E -- open a browser on all methods holding string constants containing it."
 	self methodStringsContainingit.
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>methodStringsContainingit [
+{ #category : #'menu messages' }
+SmalltalkEditor >> methodStringsContainingit [
 	"Open a browser on methods which contain the current selection as part of a string constant."
 
 	self lineSelectAndEmptyCheck: [^ self].
@@ -776,11 +631,8 @@ SmalltalkEditor>>methodStringsContainingit [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>modelCurrentSelectedClass [
+{ #category : #private }
+SmalltalkEditor >> modelCurrentSelectedClass [
 	" ugly dispatch, but current Browser protocol names aren't really cool "
 	" for Nautilus ( and other tools), selectedClass sounds better, but I think it shouldn't be hardcoded "
 	" IT'S A TEMP SOLUTION -- BenjaminVanRyseghem 14/04/11"
@@ -799,11 +651,8 @@ SmalltalkEditor>>modelCurrentSelectedClass [
 	^ nil
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>nextTokenFrom: start direction: dir [
+{ #category : #'new selection' }
+SmalltalkEditor >> nextTokenFrom: start direction: dir [
 	"simple token-finder for compiler automated corrections"
 	| loc str |
 	loc := start + dir.
@@ -813,11 +662,8 @@ SmalltalkEditor>>nextTokenFrom: start direction: dir [
 	^ loc
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>notify: aString at: anInteger in: aStream  [
+{ #category : #'new selection' }
+SmalltalkEditor >> notify: aString at: anInteger [ in: aStream 
 	"The compilation of text failed. The syntax error is noted as the argument, 
 	aString. Insert it in the text at starting character position anInteger."
 
@@ -828,11 +674,8 @@ SmalltalkEditor>>notify: aString at: anInteger in: aStream  [
 	self insertAndSelect: aString at: (pos max: 1)
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>on: target keyEvent: event do: shortcutActionBlock [
+{ #category : #shortcuts }
+SmalltalkEditor >> on: target keyEvent: event do: shortcutActionBlock [
 	"Setup and break-up to be able to do a shortcut."
 
 	target textMorph
@@ -841,22 +684,16 @@ SmalltalkEditor>>on: target keyEvent: event do: shortcutActionBlock [
 	target scrollSelectionIntoView
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>pasteInitials: aKeyboardEvent  [
+{ #category : #'editing keys' }
+SmalltalkEditor >> pasteInitials: aKeyboardEvent [ 
 	"Replace the current text selection by an authorship name/date stamp; invoked by cmd-shift-v, easy way to put an authorship stamp in the comments of an editor."
 	self closeTypeIn.
 	self replace: self selectionInterval with: (Text fromString: Author changeStamp) and: [self selectAt: self stopIndex].
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>prettyPrint [
+{ #category : #'menu messages' }
+SmalltalkEditor >> prettyPrint [
 	"Reformat the contents of the receiver's view (a Browser)."
 
 	| selectedClass newText |
@@ -873,11 +710,8 @@ SmalltalkEditor>>prettyPrint [
 		self selectAt: 1]
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>printIt [
+{ #category : #do-its }
+SmalltalkEditor >> printIt [
 	"Treat the current text selection as an expression; evaluate it. Insert the 
 	description of the result of evaluation after the selection and then make 
 	this description the new text selection."
@@ -891,22 +725,16 @@ SmalltalkEditor>>printIt [
 			self afterSelectionInsertAndSelect: printString ]
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>printIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+SmalltalkEditor >> printIt: aKeyboardEvent [
 	"Print the results of evaluting the selection -- invoked via cmd-p.  If there is no current selection, use the current line.  1/17/96 sw
 	 2/29/96 sw: don't call selectLine now, since it's called by doIt"
 	self printIt.
 	^ true
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>querySymbol: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+SmalltalkEditor >> querySymbol: aKeyboardEvent [
 	"Invoked by Ctrl-q to query the Symbol table and display alternate symbols.
 	 See comment in completeSymbol:lastOffering: for details."
 
@@ -916,11 +744,8 @@ SmalltalkEditor>>querySymbol: aKeyboardEvent [
 	^true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>referencesTo: aVariableOrClassName [
+{ #category : #'menu messages' }
+SmalltalkEditor >> referencesTo: aVariableOrClassName [
 	"Open a references browser on the given symbol"
 	| env ref |
 
@@ -936,11 +761,8 @@ SmalltalkEditor>>referencesTo: aVariableOrClassName [
 	self systemNavigation browseAllReferencesTo: ref
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>referencesToIt [
+{ #category : #'menu messages' }
+SmalltalkEditor >> referencesToIt [
 	"Open a references browser on the selected symbol"
 
 	self selectLine.
@@ -951,32 +773,23 @@ SmalltalkEditor>>referencesToIt [
 
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>referencesToIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+SmalltalkEditor >> referencesToIt: aKeyboardEvent [
 	"Triggered by Cmd-N; browse references to the current selection"
 	self referencesToIt.
 	^ true
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>save: aKeyboardEvent [
+{ #category : #'editing keys' }
+SmalltalkEditor >> save: aKeyboardEvent [
 	"Submit the current text.  Equivalent to 'accept' 1/18/96 sw"
 	self closeTypeIn.
 	self accept.
 	^ true
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>selectLine [
+{ #category : #'new selection' }
+SmalltalkEditor >> selectLine [
 	"Make the receiver's selection, if it currently consists of an insertion point only, encompass the current line."
 	| i left right s |
 	self hasSelection ifTrue: [^self].
@@ -991,11 +804,8 @@ SmalltalkEditor>>selectLine [
 	self selectInterval: (left to: right)
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>selectPrecedingIdentifier [
+{ #category : #'new selection' }
+SmalltalkEditor >> selectPrecedingIdentifier [
 	"Invisibly select the identifier that ends at the end of the selection, if any."
 
 	| string sep stop tok |
@@ -1008,11 +818,8 @@ SmalltalkEditor>>selectPrecedingIdentifier [
 	tok ifTrue: [self selectInvisiblyFrom: sep + 1 to: stop]
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>selectedSelector [
+{ #category : #'menu messages' }
+SmalltalkEditor >> selectedSelector [
     "Try to make a selector out of the current text selection"
 
     | node |
@@ -1024,11 +831,8 @@ SmalltalkEditor>>selectedSelector [
     ^ node name
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>selectedSymbol [
+{ #category : #'menu messages' }
+SmalltalkEditor >> selectedSymbol [
 	"Return the currently selected symbol, or nil if none.  Spaces, tabs and returns are ignored"
 
 	| aString |
@@ -1041,11 +845,8 @@ SmalltalkEditor>>selectedSymbol [
 	^ nil
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>selectionForDoitAsStream [
+{ #category : #do-its }
+SmalltalkEditor >> selectionForDoitAsStream [
 	"Answer a ReadStream on the text in the paragraph that is currently
 	selected. "
 	^ ReadWriteStream
@@ -1054,11 +855,8 @@ SmalltalkEditor>>selectionForDoitAsStream [
 		to: self stopIndex - 1
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>selectionString [
+{ #category : #do-its }
+SmalltalkEditor >> selectionString [
 	"remove the initial and final quote marks, if present"
 	"'''h''' withoutWrappingDoubleQuotes"
 	| quote selection  |
@@ -1070,20 +868,14 @@ SmalltalkEditor>>selectionString [
 		ifFalse: [ selection ].
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>sendersOf: selectedSelector [
+{ #category : #'menu messages' }
+SmalltalkEditor >> sendersOf: selectedSelector [
 	" opens a Browser on the given selector"
 	self model systemNavigation browseAllSendersOf: selectedSelector
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>sendersOfIt [
+{ #category : #'menu messages' }
+SmalltalkEditor >> sendersOfIt [
 	"Open a senders browser on the selected selector"
 
 	| selectedSelector syst |
@@ -1094,21 +886,15 @@ SmalltalkEditor>>sendersOfIt [
 	syst browseAllSendersOrUsersOf: selectedSelector
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>sendersOfIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+SmalltalkEditor >> sendersOfIt: aKeyboardEvent [
 	"Triggered by Cmd-n; browse implementors of the selector represented by the current selection, if plausible. 2/1/96 sw"
 	self sendersOfIt.
 	^ true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>spawn [
+{ #category : #'menu messages' }
+SmalltalkEditor >> spawn [
 	"Create and schedule a message browser for the code of the model's 
 	selected message. Retain any edits that have not yet been accepted."
 	| code |
@@ -1117,30 +903,21 @@ SmalltalkEditor>>spawn [
 	model spawn: code.
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>spawnIt: aKeyboardEvent [
+{ #category : #'editing keys' }
+SmalltalkEditor >> spawnIt: aKeyboardEvent [
 	"Triggered by Cmd-o; spawn a new code window, if it makes sense."
 	self spawn.
 	^ true
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>tallyIt [
+{ #category : #do-its }
+SmalltalkEditor >> tallyIt [
 
 	^ self tallySelection
 ]
 
-{
-	#category : #do-its,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>tallySelection [
+{ #category : #do-its }
+SmalltalkEditor >> tallySelection [
 	"Treat the current selection as an expression; evaluate and tally it."
 	| receiver context v  compiledMethod profiler |
 	(model respondsTo: #doItReceiver) 
@@ -1158,11 +935,8 @@ SmalltalkEditor>>tallySelection [
 
 ]
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditor>>toggleCommentOnSelectionOrLine [
+{ #category : #shortcuts }
+SmalltalkEditor >> toggleCommentOnSelectionOrLine [
 	| originalHasSelection selection selectionInterval originalSelectionInterval quote    modifiedSelection newSelectionLastPosition numberOfDoubleQuoteBeforeCaret |
 				
 	selectionInterval := originalSelectionInterval := self selectionInterval.

@@ -8,15 +8,11 @@ Class {
 		'newLocale',
 		'oldLocale'
 	],
-	#category : #System-Localization-Locales,
-	#timestamp : 'TorstenBergmann 9/16/2014 14:24'
+	#category : #System-Localization-Locales
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleChanged class>>from: oldLocale to: newLocale [
+{ #category : #'instance creation' }
+LocaleChanged class >> from: oldLocale to: newLocale [
 
 	^(self new)
 		oldLocale: oldLocale;
@@ -24,34 +20,22 @@ LocaleChanged class>>from: oldLocale to: newLocale [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleChanged>>newLocale [
+{ #category : #accessing }
+LocaleChanged >> newLocale [
 	^ newLocale
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleChanged>>newLocale: anObject [
+{ #category : #accessing }
+LocaleChanged >> newLocale: anObject [
 	newLocale := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleChanged>>oldLocale [
+{ #category : #accessing }
+LocaleChanged >> oldLocale [
 	^ oldLocale
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-LocaleChanged>>oldLocale: anObject [
+{ #category : #accessing }
+LocaleChanged >> oldLocale: anObject [
 	oldLocale := anObject
 ]

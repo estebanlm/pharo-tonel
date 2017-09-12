@@ -1,12 +1,7 @@
-Extension {
-	#name : #ToolDockingBarMorph
-}
+Extension { #name : #ToolDockingBarMorph }
 
-{
-	#category : #'*Spec-Core',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolDockingBarMorph>>adoptMenuGroupModel: aGroupModel first: aBoolean [
+{ #category : #'*Spec-Core' }
+ToolDockingBarMorph >> adoptMenuGroupModel: aGroupModel first: aBoolean [
 	| controls |
 	
 	aBoolean ifFalse: [ 
@@ -21,11 +16,8 @@ ToolDockingBarMorph>>adoptMenuGroupModel: aGroupModel first: aBoolean [
 	self emptyAccumulator: controls
 ]
 
-{
-	#category : #'*Spec-Core',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolDockingBarMorph>>adoptMenuItemModel: item accumulator: controls [
+{ #category : #'*Spec-Core' }
+ToolDockingBarMorph >> adoptMenuItemModel: item accumulator: controls [
 	
 	item subMenu
 		ifNil: [ | button |
@@ -43,11 +35,8 @@ ToolDockingBarMorph>>adoptMenuItemModel: item accumulator: controls [
 			self addMorphBack: (Smalltalk ui theme newToolSpacerIn: self) ]
 ]
 
-{
-	#category : #'*Spec-Core',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolDockingBarMorph>>adoptMenuModel: aMenuModel [
+{ #category : #'*Spec-Core' }
+ToolDockingBarMorph >> adoptMenuModel: aMenuModel [
 
 	aMenuModel menuGroups doWithIndex: [ :aGroup :index | 
 		self 
@@ -55,11 +44,8 @@ ToolDockingBarMorph>>adoptMenuModel: aMenuModel [
 			first: (index = 1) ]
 ]
 
-{
-	#category : #'*Spec-Core',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolDockingBarMorph>>buildButtonFor: item [
+{ #category : #'*Spec-Core' }
+ToolDockingBarMorph >> buildButtonFor: item [
 
 	^ Smalltalk ui theme
 		newButtonIn: self for: item
@@ -71,11 +57,8 @@ ToolDockingBarMorph>>buildButtonFor: item [
 		help: item description 
 ]
 
-{
-	#category : #'*Spec-Core',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ToolDockingBarMorph>>emptyAccumulator: controls [
+{ #category : #'*Spec-Core' }
+ToolDockingBarMorph >> emptyAccumulator: controls [
 	
 	controls do: [ :button | self addMorphBack: button ].
 	controls removeAll

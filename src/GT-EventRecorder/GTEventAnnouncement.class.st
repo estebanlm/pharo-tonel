@@ -25,15 +25,11 @@ Class {
 	#instVars : [
 		'dictionary'
 	],
-	#category : #GT-EventRecorder-Announcements,
-	#timestamp : 'JurajKubelka 10/30/2015 16:22'
+	#category : #GT-EventRecorder-Announcements
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement class>>gtExampleAnnouncement [
+{ #category : #examples }
+GTEventAnnouncement class >> gtExampleAnnouncement [
 	<gtExample>
 	^ self new
 			data: #[ 1 2 3 4 ];
@@ -45,140 +41,92 @@ GTEventAnnouncement class>>gtExampleAnnouncement [
 			yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement class>>gtExampleEmptyAnnouncement [
+{ #category : #examples }
+GTEventAnnouncement class >> gtExampleEmptyAnnouncement [
 	<gtExample>
 	^ self new
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>addInfoFor: aGTSpotterRecorderEvent  [
+{ #category : #updating }
+GTEventAnnouncement >> addInfoFor: aGTSpotterRecorderEvent [ 
 	(aGTSpotterRecorderEvent respondsTo: #infoAt:put:) ifTrue: [
 		dictionary keysAndValuesDo: [ :key :value |
 			key = #data ifFalse: [ 
 				aGTSpotterRecorderEvent infoAt: key put: value ] ] ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>associations [
+{ #category : #converting }
+GTEventAnnouncement >> associations [
 	^ dictionary 
 			ifNil: [ #() ]
 			ifNotNil: [ dictionary associations ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>at: key [
+{ #category : #accessing }
+GTEventAnnouncement >> at: key [
 	^ self dictionary at: key ifAbsent: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>at: key put: value [
+{ #category : #accessing }
+GTEventAnnouncement >> at: key put: value [
 	^ self dictionary at: key put: value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>category [
+{ #category : #accessing }
+GTEventAnnouncement >> category [
 	^ self at: #category
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>category: aSymbol [
+{ #category : #accessing }
+GTEventAnnouncement >> category: aSymbol [
 	^ self at: #category put: aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>computerUUID [
+{ #category : #accessing }
+GTEventAnnouncement >> computerUUID [
 	^ self at: #computerUUID
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>computerUUID: anObject [
+{ #category : #accessing }
+GTEventAnnouncement >> computerUUID: anObject [
 	self at: #computerUUID put: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>data [
+{ #category : #accessing }
+GTEventAnnouncement >> data [
 	^ self at: #data
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>data: aByteArray  [
+{ #category : #accessing }
+GTEventAnnouncement >> data: aByteArray [ 
 	self at: #data put: aByteArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>dictionary [
+{ #category : #accessing }
+GTEventAnnouncement >> dictionary [
 	^ dictionary ifNil: [ dictionary := Dictionary new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>eventRecorderVersion [
+{ #category : #accessing }
+GTEventAnnouncement >> eventRecorderVersion [
 	^ self at: #eventRecorderVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>eventRecorderVersion: anObject [
+{ #category : #accessing }
+GTEventAnnouncement >> eventRecorderVersion: anObject [
 	self at: #eventRecorderVersion put: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>events [
+{ #category : #accessing }
+GTEventAnnouncement >> events [
 	| events |
 	events := self unpackedData.
 	events do: [ :each | self addInfoFor: each ].
 	^ events
 ]
 
-{
-	#category : #gt-inspector-extension,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>gtInspectorActionUnpackData [
+{ #category : #gt-inspector-extension }
+GTEventAnnouncement >> gtInspectorActionUnpackData [
 	<gtInspectorAction>
 	^ GLMGenericAction new
 		action: [ :composite |
@@ -188,19 +136,13 @@ GTEventAnnouncement>>gtInspectorActionUnpackData [
 		title: 'Unpack data'
 ]
 
-{
-	#category : #gt-inspector-extension,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>gtInspectorItems [
+{ #category : #gt-inspector-extension }
+GTEventAnnouncement >> gtInspectorItems [
 	^ OrderedCollection withAll: self associations
 ]
 
-{
-	#category : #gt-inspector-extension,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>gtInspectorItemsIn: composite [
+{ #category : #gt-inspector-extension }
+GTEventAnnouncement >> gtInspectorItemsIn: composite [
 	<gtInspectorPresentationOrder: -1>  
 	^ (composite table)
 		title: 'Info';
@@ -218,148 +160,94 @@ GTEventAnnouncement>>gtInspectorItemsIn: composite [
 		showOnly: 50
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>imageHash [
+{ #category : #accessing }
+GTEventAnnouncement >> imageHash [
 	^ self at: #imageHash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>imageHash: anObject [
+{ #category : #accessing }
+GTEventAnnouncement >> imageHash: anObject [
 	self at: #imageHash put: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>imageVersion [
+{ #category : #accessing }
+GTEventAnnouncement >> imageVersion [
 	^ self at: #imageVersion
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>imageVersion: anObject [
+{ #category : #accessing }
+GTEventAnnouncement >> imageVersion: anObject [
 	self at: #imageVersion put: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>latestUpdate [
+{ #category : #accessing }
+GTEventAnnouncement >> latestUpdate [
 	^ self at: #latestUpdate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>latestUpdate: anObject [
+{ #category : #accessing }
+GTEventAnnouncement >> latestUpdate: anObject [
 	self at: #latestUpdate put: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>migrationRules [
+{ #category : #accessing }
+GTEventAnnouncement >> migrationRules [
 	^ self dictionary at: #migrationRules ifAbsent: [ nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>migrationRules: aCollectionOrNil [
+{ #category : #accessing }
+GTEventAnnouncement >> migrationRules: aCollectionOrNil [
 	^ self dictionary at: #migrationRules put: aCollectionOrNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>safeUnpackedData [
+{ #category : #accessing }
+GTEventAnnouncement >> safeUnpackedData [
 	"On any error, returns empty collection"
 	^ [ self unpackedData ] on: Error do: [ #() ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>serializedBy [
+{ #category : #accessing }
+GTEventAnnouncement >> serializedBy [
 	^ self dictionary at: #serializedBy ifAbsent: [ GTFuelPacking name ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>serializedBy: anObject [
+{ #category : #accessing }
+GTEventAnnouncement >> serializedBy: anObject [
 	self at: #serializedBy put: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>sessionCreationTime [
+{ #category : #accessing }
+GTEventAnnouncement >> sessionCreationTime [
 	^ self at: #sessionCreationTime
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>sessionCreationTime: anObject [
+{ #category : #accessing }
+GTEventAnnouncement >> sessionCreationTime: anObject [
 	self at: #sessionCreationTime put: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>sessionUUID [
+{ #category : #accessing }
+GTEventAnnouncement >> sessionUUID [
 	^ self at: #sessionUUID
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>sessionUUID: anObject [
+{ #category : #accessing }
+GTEventAnnouncement >> sessionUUID: anObject [
 	self at: #sessionUUID put: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>timestamp [
+{ #category : #accessing }
+GTEventAnnouncement >> timestamp [
 	^ self at: #timestamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>timestamp: anObject [
+{ #category : #accessing }
+GTEventAnnouncement >> timestamp: anObject [
 	self at: #timestamp put: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventAnnouncement>>unpackedData [
+{ #category : #accessing }
+GTEventAnnouncement >> unpackedData [
 	^ self data ifNotNil: [ :aData | 
 		(self class environment at: self serializedBy) new
 			migrations: self migrationRules;

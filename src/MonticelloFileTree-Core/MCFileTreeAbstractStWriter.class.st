@@ -10,23 +10,16 @@ Class {
 		'orderedClassNames',
 		'orderedTraitNames'
 	],
-	#category : #MonticelloFileTree-Core,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:56'
+	#category : #MonticelloFileTree-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter class>>monticelloMetaDirName [
+{ #category : #accessing }
+MCFileTreeAbstractStWriter class >> monticelloMetaDirName [
     ^ '.'
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter class>>on: aStream [
+{ #category : #writing }
+MCFileTreeAbstractStWriter class >> on: aStream [
     MCFileTreePackageStructureStWriter useCypressWriter
         ifTrue: [ ^ MCFileTreeStCypressWriter new stream: aStream ].
     ^ (MCFileTreePackageStructureStWriter useSnapShotWriter
@@ -34,29 +27,20 @@ MCFileTreeAbstractStWriter class>>on: aStream [
         ifFalse: [ MCFileTreeStWriter ]) new stream: aStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter class>>readerClass [
+{ #category : #accessing }
+MCFileTreeAbstractStWriter class >> readerClass [
 	^ MCStReader
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>directoryForDirectoryNamed: directoryNameOrPath [
+{ #category : #private }
+MCFileTreeAbstractStWriter >> directoryForDirectoryNamed: directoryNameOrPath [
     ^ directoryNameOrPath = '.'
         ifTrue: [ stream packageFileDirectory ]
         ifFalse: [ stream subPackageFileDirectoryFor: directoryNameOrPath ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>fileNameForSelector: selector [
+{ #category : #private }
+MCFileTreeAbstractStWriter >> fileNameForSelector: selector [
     ^ (selector == #'/'
         ifTrue: [ 'encoded slash' ]
         ifFalse: [ 
@@ -65,19 +49,13 @@ MCFileTreeAbstractStWriter>>fileNameForSelector: selector [
                 ifFalse: [ selector ] ]) asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>fileUtils [
+{ #category : #accessing }
+MCFileTreeAbstractStWriter >> fileUtils [
     ^ MCFileTreeFileUtils current
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>initialize [
+{ #category : #initialize-release }
+MCFileTreeAbstractStWriter >> initialize [
     stWriter := MCFileTreePackageStructureStWriter new
         initializers: (initializers := Set new);
         yourself.
@@ -85,69 +63,45 @@ MCFileTreeAbstractStWriter>>initialize [
     orderedTraitNames := OrderedCollection new.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>monticelloMetaDirName [
+{ #category : #private }
+MCFileTreeAbstractStWriter >> monticelloMetaDirName [
     ^ self class monticelloMetaDirName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>repository [
+{ #category : #private }
+MCFileTreeAbstractStWriter >> repository [
   ^ stream repository
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>setFileStream: file [
+{ #category : #private }
+MCFileTreeAbstractStWriter >> setFileStream: file [
     stWriter stream: file
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>visitClassDefinition: definition [
+{ #category : #visiting }
+MCFileTreeAbstractStWriter >> visitClassDefinition: definition [
     self subclassResponsibility
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>visitClassTraitDefinition: definition [
+{ #category : #visiting }
+MCFileTreeAbstractStWriter >> visitClassTraitDefinition: definition [
     self subclassResponsibility
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>visitMetaclassDefinition: definition [
+{ #category : #visiting }
+MCFileTreeAbstractStWriter >> visitMetaclassDefinition: definition [
     "handled by class definition"
 
 
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>visitMethodDefinition: definition [
+{ #category : #visiting }
+MCFileTreeAbstractStWriter >> visitMethodDefinition: definition [
     self subclassResponsibility
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>visitOrganizationDefinition: defintion [
+{ #category : #visiting }
+MCFileTreeAbstractStWriter >> visitOrganizationDefinition: defintion [
     self
         writeInDirectoryName: self monticelloMetaDirName
         fileName: 'categories'
@@ -155,27 +109,18 @@ MCFileTreeAbstractStWriter>>visitOrganizationDefinition: defintion [
         visit: [ defintion categories do: [ :cat | stWriter writeCategory: cat ] ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>visitScriptDefinition: definition [
+{ #category : #visiting }
+MCFileTreeAbstractStWriter >> visitScriptDefinition: definition [
     self flag: #'skippedForNow'
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>visitTraitDefinition: definition [
+{ #category : #visiting }
+MCFileTreeAbstractStWriter >> visitTraitDefinition: definition [
     self subclassResponsibility
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>writeBasicDefinitions: aCollection [
+{ #category : #initialize-release }
+MCFileTreeAbstractStWriter >> writeBasicDefinitions: aCollection [
     "the correct initialization order is unknown if some classes are missing in the image"
 
     self writePropertiesFile.
@@ -183,11 +128,8 @@ MCFileTreeAbstractStWriter>>writeBasicDefinitions: aCollection [
     self writeInitializers
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>writeClassDefinition: definition [
+{ #category : #writing }
+MCFileTreeAbstractStWriter >> writeClassDefinition: definition [
     stWriter writeClassDefinition: definition.
     (definition hasClassInstanceVariables or: [definition hasClassTraitComposition])
         ifTrue: [ stWriter writeMetaclassDefinition: definition ].
@@ -195,30 +137,21 @@ MCFileTreeAbstractStWriter>>writeClassDefinition: definition [
         ifTrue: [ stWriter writeClassComment: definition ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>writeClassTraitDefinition: definition [
+{ #category : #writing }
+MCFileTreeAbstractStWriter >> writeClassTraitDefinition: definition [
     stWriter visitClassTraitDefinition: definition.
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>writeDefinitions: aCollection [
+{ #category : #initialize-release }
+MCFileTreeAbstractStWriter >> writeDefinitions: aCollection [
     "the correct initialization order is unknown if some classes are missing in the image"
 
     self writeBasicDefinitions: aCollection
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>writeInDirectoryName: directoryNameOrPath fileName: fileName extension: ext visit: visitBlock [
+{ #category : #visiting }
+MCFileTreeAbstractStWriter >> writeInDirectoryName: directoryNameOrPath fileName: fileName extension: ext visit: visitBlock [
     | directory |
     directory := self directoryForDirectoryNamed: directoryNameOrPath.
     self fileUtils
@@ -230,11 +163,8 @@ MCFileTreeAbstractStWriter>>writeInDirectoryName: directoryNameOrPath fileName: 
             visitBlock value ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>writeInitializers [
+{ #category : #initialize-release }
+MCFileTreeAbstractStWriter >> writeInitializers [
     self
         writeInDirectoryName: self monticelloMetaDirName
         fileName: 'initializers'
@@ -245,19 +175,13 @@ MCFileTreeAbstractStWriter>>writeInitializers [
                 writeAbsentInitializers ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>writeMethodDefinition: definition [
+{ #category : #writing }
+MCFileTreeAbstractStWriter >> writeMethodDefinition: definition [
     stWriter visitMethodDefinition: definition
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>writePropertiesFile [
+{ #category : #initialize-release }
+MCFileTreeAbstractStWriter >> writePropertiesFile [
     self
         writeInDirectoryName: '.'
         fileName: ''
@@ -265,11 +189,8 @@ MCFileTreeAbstractStWriter>>writePropertiesFile [
         visit: [ stWriter writeProperties ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-MCFileTreeAbstractStWriter>>writeTraitDefinition: definition [
+{ #category : #writing }
+MCFileTreeAbstractStWriter >> writeTraitDefinition: definition [
     stWriter writeClassDefinition: definition.
     definition hasComment 
         ifTrue: [stWriter writeClassComment: definition].

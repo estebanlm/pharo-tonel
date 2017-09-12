@@ -1,28 +1,18 @@
-"
-
-"
 Class {
 	#name : #GLMFormSubmitted,
 	#superclass : #Announcement,
 	#instVars : [
 		'result'
 	],
-	#category : #Glamour-Morphic-Brick-Announcements,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormSubmitted>>result [
+{ #category : #accessing }
+GLMFormSubmitted >> result [
 	^ result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMFormSubmitted>>result: anObject [
+{ #category : #accessing }
+GLMFormSubmitted >> result: anObject [
 	result := anObject
 ]

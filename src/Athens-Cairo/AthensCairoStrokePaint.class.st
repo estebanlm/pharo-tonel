@@ -15,15 +15,11 @@ Class {
 	#pools : [
 		'AthensCairoDefs'
 	],
-	#category : #Athens-Cairo-Paints,
-	#timestamp : '<historical>'
+	#category : #Athens-Cairo-Paints
 }
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoStrokePaint>>athensFillPath: aPath on: aCanvas [
+{ #category : #drawing }
+AthensCairoStrokePaint >> athensFillPath: aPath on: aCanvas [
 	
 	self prepareForDrawingOn: aCanvas.
 	
@@ -33,11 +29,8 @@ AthensCairoStrokePaint>>athensFillPath: aPath on: aCanvas [
 		stroke
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoStrokePaint>>athensFillRectangle: aRect on: aCanvas [
+{ #category : #drawing }
+AthensCairoStrokePaint >> athensFillRectangle: aRect on: aCanvas [
 
 	self prepareForDrawingOn: aCanvas.
 	
@@ -51,78 +44,51 @@ AthensCairoStrokePaint>>athensFillRectangle: aRect on: aCanvas [
 
 ]
 
-{
-	#category : #'setting cap styles',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoStrokePaint>>capButt [
+{ #category : #'setting cap styles' }
+AthensCairoStrokePaint >> capButt [
 	capStyle := CAIRO_LINE_CAP_BUTT.
 ]
 
-{
-	#category : #'setting cap styles',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoStrokePaint>>capRound [
+{ #category : #'setting cap styles' }
+AthensCairoStrokePaint >> capRound [
 	capStyle := CAIRO_LINE_CAP_ROUND
 ]
 
-{
-	#category : #'setting cap styles',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoStrokePaint>>capSquare [
+{ #category : #'setting cap styles' }
+AthensCairoStrokePaint >> capSquare [
 	capStyle := CAIRO_LINE_CAP_SQUARE
 ]
 
-{
-	#category : #'setting dashes',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoStrokePaint>>dashes: anAlternateCollectionOfLenghts offset: anOffset [
+{ #category : #'setting dashes' }
+AthensCairoStrokePaint >> dashes: anAlternateCollectionOfLenghts offset: anOffset [
 	dashLenghts := anAlternateCollectionOfLenghts.
 	dashOffset := anOffset asFloat.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoStrokePaint>>initialize [
+{ #category : #initialize-release }
+AthensCairoStrokePaint >> initialize [
 	super initialize.
 
 	self setDefaults
 ]
 
-{
-	#category : #'setting join styles',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoStrokePaint>>joinBevel [
+{ #category : #'setting join styles' }
+AthensCairoStrokePaint >> joinBevel [
 	joinStyle := CAIRO_LINE_JOIN_BEVEL
 ]
 
-{
-	#category : #'setting join styles',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoStrokePaint>>joinMiter [
+{ #category : #'setting join styles' }
+AthensCairoStrokePaint >> joinMiter [
 	joinStyle := CAIRO_LINE_JOIN_MITER
 ]
 
-{
-	#category : #'setting join styles',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoStrokePaint>>joinRound [
+{ #category : #'setting join styles' }
+AthensCairoStrokePaint >> joinRound [
 	joinStyle := CAIRO_LINE_JOIN_ROUND 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoStrokePaint>>prepareForDrawingOn: aCanvas [
+{ #category : #private }
+AthensCairoStrokePaint >> prepareForDrawingOn: aCanvas [
 	
 	fillPaint 
 		loadOnCairoCanvas: aCanvas.
@@ -137,11 +103,8 @@ AthensCairoStrokePaint>>prepareForDrawingOn: aCanvas [
 		ifNotNil: [ self setDashesOn: aCanvas ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoStrokePaint>>primSetDashesOn: aCanvas lengths: dashesLengths count: dashesCount offset: anOffset [
+{ #category : #private }
+AthensCairoStrokePaint >> primSetDashesOn: aCanvas lengths: dashesLengths count: dashesCount offset: anOffset [
 "	void                cairo_set_dash                      (cairo_t *cr,
                                                          double *dashes,
                                                          int num_dashes,
@@ -156,11 +119,8 @@ AthensCairoStrokePaint>>primSetDashesOn: aCanvas lengths: dashesLengths count: d
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoStrokePaint>>primSetLineCapOn: aCanvas [
+{ #category : #private }
+AthensCairoStrokePaint >> primSetLineCapOn: aCanvas [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	^ self nbCall: #(void cairo_set_line_cap (
@@ -168,11 +128,8 @@ AthensCairoStrokePaint>>primSetLineCapOn: aCanvas [
 			cairo_line_cap_t capStyle) )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoStrokePaint>>primSetLineJoinOn: aCanvas [
+{ #category : #private }
+AthensCairoStrokePaint >> primSetLineJoinOn: aCanvas [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	self nbCall: #(void cairo_set_line_join (
@@ -180,11 +137,8 @@ AthensCairoStrokePaint>>primSetLineJoinOn: aCanvas [
 			cairo_line_join_t joinStyle) )
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoStrokePaint>>primSetLineWidthOn: aCanvas [
+{ #category : #private }
+AthensCairoStrokePaint >> primSetLineWidthOn: aCanvas [
 	<primitive: #primitiveNativeCall module: #NativeBoostPlugin>
 	
 	self nbCall: #(void cairo_set_line_width (
@@ -193,11 +147,8 @@ AthensCairoStrokePaint>>primSetLineWidthOn: aCanvas [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCairoStrokePaint>>setDashesOn: aCanvas  [
+{ #category : #private }
+AthensCairoStrokePaint >> setDashesOn: aCanvas [ 
 	| buf |
 	
 	buf := ByteArray new: 8*dashLenghts size.

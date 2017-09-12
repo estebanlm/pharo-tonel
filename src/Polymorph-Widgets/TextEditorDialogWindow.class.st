@@ -11,47 +11,34 @@ Class {
 	#classVars : [
 		'AutoAccept'
 	],
-	#category : #Polymorph-Widgets-Windows,
-	#timestamp : 'gvc 5/18/2007 11:16'
+	#category : #Polymorph-Widgets-Windows
 }
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextEditorDialogWindow class>>taskbarIconName [
+{ #category : #icons }
+TextEditorDialogWindow class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^#smallQuestionIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextEditorDialogWindow>>cancel [
+{ #category : #accessing }
+TextEditorDialogWindow >> cancel [
 	"Cancel and close."
 
 	self entryText: nil.
 	^super cancel
 ]
 
-{
-	#category : #'focus handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextEditorDialogWindow>>defaultFocusMorph [
+{ #category : #'focus handling' }
+TextEditorDialogWindow >> defaultFocusMorph [
 	"Answer the morph that should have the keyboard
 	focus by default when the dialog is opened."
 	
 	^self textEditorMorph textMorph
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextEditorDialogWindow>>entryHeight: aNumber [
+{ #category : #private }
+TextEditorDialogWindow >> entryHeight: aNumber [
 	"Set the height of the text editor morph.
 	Set the width to be 2 times this also."
 
@@ -60,21 +47,15 @@ TextEditorDialogWindow>>entryHeight: aNumber [
 		minWidth: 500
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextEditorDialogWindow>>entryText [
+{ #category : #accessing }
+TextEditorDialogWindow >> entryText [
 	"Answer the value of entryText"
 
 	^ entryText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextEditorDialogWindow>>entryText: anObject [
+{ #category : #accessing }
+TextEditorDialogWindow >> entryText: anObject [
 	"Set the value of entryText"
 
 	entryText := anObject.
@@ -84,21 +65,15 @@ TextEditorDialogWindow>>entryText: anObject [
 	self textEditorMorph hasUnacceptedEdits: true.
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextEditorDialogWindow>>icon [
+{ #category : #'visual properties' }
+TextEditorDialogWindow >> icon [
 	"Answer an icon for the receiver."
 
 	^ self iconNamed: #questionIcon
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextEditorDialogWindow>>initialize [
+{ #category : #initialization }
+TextEditorDialogWindow >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -108,21 +83,15 @@ TextEditorDialogWindow>>initialize [
 	self textEditorMorph selectAll.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextEditorDialogWindow>>newButtons [
+{ #category : #actions }
+TextEditorDialogWindow >> newButtons [
 	"Answer new buttons as appropriate."
 
 	^{self newOKButton. self newCancelButton}
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextEditorDialogWindow>>newContentMorph [
+{ #category : #actions }
+TextEditorDialogWindow >> newContentMorph [
 	"Answer a new content morph."
 
 	self iconMorph: self newIconMorph.
@@ -134,11 +103,8 @@ TextEditorDialogWindow>>newContentMorph [
 		self textEditorMorph}
 ]
 
-{
-	#category : #creation,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextEditorDialogWindow>>newTextEditorMorph [
+{ #category : #creation }
+TextEditorDialogWindow >> newTextEditorMorph [
 	"Answer a new text entry morph."
 	^(self
 		newTextEditorFor: self
@@ -148,31 +114,22 @@ TextEditorDialogWindow>>newTextEditorMorph [
 		selectAll
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextEditorDialogWindow>>textEditorMorph [
+{ #category : #accessing }
+TextEditorDialogWindow >> textEditorMorph [
 	"Answer the value of textEditorMorph"
 
 	^ textEditorMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextEditorDialogWindow>>textEditorMorph: anObject [
+{ #category : #accessing }
+TextEditorDialogWindow >> textEditorMorph: anObject [
 	"Set the value of textEditorMorph"
 
 	textEditorMorph := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-TextEditorDialogWindow>>textLines [
+{ #category : #private }
+TextEditorDialogWindow >> textLines [
 
 	^ super textLines, entryText asString lines.
 ]

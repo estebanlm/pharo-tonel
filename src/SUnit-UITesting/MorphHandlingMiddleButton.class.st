@@ -9,52 +9,36 @@ Class {
 		'receivedBlueButtonUp',
 		'receivedBlueButtonDown'
 	],
-	#category : #SUnit-UITesting,
-	#timestamp : 'SeanDeNigris 2/20/2014 08:53'
+	#category : #SUnit-UITesting
 }
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-MorphHandlingMiddleButton>>blueButtonDown: anEvent [
+{ #category : #meta-actions }
+MorphHandlingMiddleButton >> blueButtonDown: anEvent [
 
 	receivedBlueButtonDown := true.
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-MorphHandlingMiddleButton>>blueButtonUp: anEvent [
+{ #category : #meta-actions }
+MorphHandlingMiddleButton >> blueButtonUp: anEvent [
 
 	receivedBlueButtonUp := true.
 ]
 
-{
-	#category : #meta-actions,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-MorphHandlingMiddleButton>>handlerForBlueButtonDown: anEvent [
+{ #category : #meta-actions }
+MorphHandlingMiddleButton >> handlerForBlueButtonDown: anEvent [
 
 	^ self.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-MorphHandlingMiddleButton>>initialize [
+{ #category : #initialization }
+MorphHandlingMiddleButton >> initialize [
 
 	super initialize.
 	receivedBlueButtonUp := receivedBlueButtonDown := false.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-MorphHandlingMiddleButton>>wasClickedWithMiddleButton [
+{ #category : #testing }
+MorphHandlingMiddleButton >> wasClickedWithMiddleButton [
 
 	^ receivedBlueButtonDown and: [ receivedBlueButtonUp ].
 ]

@@ -26,52 +26,36 @@ Class {
 	#classVars : [
 		'DefaultForm'
 	],
-	#category : #Morphic-Base-Basic,
-	#timestamp : 'efc 3/7/2003 17:48'
+	#category : #Morphic-Base-Basic
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph class>>defaultForm [
+{ #category : #accessing }
+ImageMorph class >> defaultForm [
 	^DefaultForm
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph class>>fromStream: aStream [
+{ #category : #'instance creation' }
+ImageMorph class >> fromStream: aStream [
 
 	^self withForm: (ImageReadWriter formFromStream: aStream)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph class>>fromString: aString  [
+{ #category : #'instance creation' }
+ImageMorph class >> fromString: aString [ 
 	"Create a new ImageMorph which displays the input string in the standard button font"
 
 	^ self fromString: aString font: StandardFonts buttonFont
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph class>>fromString: aString font: aFont [
+{ #category : #'instance creation' }
+ImageMorph class >> fromString: aString font: aFont [
 	"Create a new ImageMorph showing the given string in the given font"
 
 	^ self new form: (StringMorph contents: aString font: aFont) imageForm
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph class>>initialize [
+{ #category : #initialization }
+ImageMorph class >> initialize [
 	"ImageMorph initialize"
 
 	| h p d |
@@ -86,29 +70,20 @@ ImageMorph class>>initialize [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph class>>withForm: aForm [
+{ #category : #'instance creation' }
+ImageMorph class >> withForm: aForm [
 
 	^ self new form: aForm ; yourself
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>addCustomMenuItems: aMenu hand: aHand [
+{ #category : #menus }
+ImageMorph >> addCustomMenuItems: aMenu hand: aHand [
 	super addCustomMenuItems: aMenu hand: aHand.
 	aMenu addUpdating: #opacityString selector: #changeOpacity
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>adoptPaneColor: paneColor [
+{ #category : #geometry }
+ImageMorph >> adoptPaneColor: paneColor [
 	"Change our border color too."
 	
 	super adoptPaneColor: paneColor.
@@ -116,33 +91,24 @@ ImageMorph>>adoptPaneColor: paneColor [
 	self borderStyle baseColor: paneColor twiceDarker
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>areasRemainingToFill: aRectangle [
+{ #category : #testing }
+ImageMorph >> areasRemainingToFill: aRectangle [
 
 	^self isOpaque
 		ifTrue: [aRectangle areasOutside: self bounds]
 		ifFalse: [Array with: aRectangle]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>basicExtent: aPoint [
+{ #category : #geometry }
+ImageMorph >> basicExtent: aPoint [
 
 	"For sublcasses which need to use Morph>>#extent:"
 	
 	^super extent: aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>borderStyle: newStyle [
+{ #category : #accessing }
+ImageMorph >> borderStyle: newStyle [
 	"Set the extent to include border width."
 	
 	| newExtent |
@@ -152,11 +118,8 @@ ImageMorph>>borderStyle: newStyle [
 	super borderStyle: newStyle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>borderWidth: bw [
+{ #category : #accessing }
+ImageMorph >> borderWidth: bw [
 
 	| newExtent |
 	newExtent := 2 * bw + image extent.
@@ -164,19 +127,13 @@ ImageMorph>>borderWidth: bw [
 	super borderWidth: bw
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>changeOpacity [
+{ #category : #menu }
+ImageMorph >> changeOpacity [
 	self isOpaque: self isOpaque not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>color: aColor [
+{ #category : #accessing }
+ImageMorph >> color: aColor [
 	"Set the color.
 	Change to a ColorForm here if depth 1."
 	
@@ -188,21 +145,15 @@ ImageMorph>>color: aColor [
 			self changed]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>defaultImage [
+{ #category : #initialization }
+ImageMorph >> defaultImage [
 	"Answer the default image for the receiver."
 
 	^ DefaultForm
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+ImageMorph >> drawOn: aCanvas [
 	"Draw the border after the image."
 	
 	| style |
@@ -212,81 +163,57 @@ ImageMorph>>drawOn: aCanvas [
 	(style := self borderStyle) ifNotNil: [style frameRectangle: bounds on: aCanvas]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>extent: aPoint [
+{ #category : #geometry }
+ImageMorph >> extent: aPoint [
 	"Do nothing; 
 		My extent is determined by my image Form. 
 		For subclasses which need to set the extent, use #basicExtent:"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>form [
+{ #category : #accessing }
+ImageMorph >> form [
 	^ image
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>form: aForm [
+{ #category : #accessing }
+ImageMorph >> form: aForm [
 	image := aForm. 
 	super extent: (2 * self borderWidth) asPoint + image extent.
 	self changed
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>grabFromScreen [
+{ #category : #'menu commands' }
+ImageMorph >> grabFromScreen [
 
 	self form: Form fromUser.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>image: anImage  [
+{ #category : #accessing }
+ImageMorph >> image: anImage [ 
 	
 	image := anImage. 
 	super extent: (2 * self borderWidth) asPoint + image extent.
 	self changed
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>imageExport [
+{ #category : #other }
+ImageMorph >> imageExport [
 	
 	^ self form bits asArray
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>initialize [
+{ #category : #initialization }
+ImageMorph >> initialize [
 
 	super initialize.
 	self form: self defaultImage.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>isOpaque [
+{ #category : #accessing }
+ImageMorph >> isOpaque [
 	"Return true if the receiver is marked as being completely opaque"
 	
 	^ self
@@ -294,11 +221,8 @@ ImageMorph>>isOpaque [
 		ifAbsent: [false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>isOpaque: aBool [
+{ #category : #accessing }
+ImageMorph >> isOpaque: aBool [
 	"Mark the receiver as being completely opaque or not"
 	
 	aBool == false
@@ -307,19 +231,13 @@ ImageMorph>>isOpaque: aBool [
 	self changed
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>opacityString [
+{ #category : #menu }
+ImageMorph >> opacityString [
 	^ (self isOpaque) -> 'opaque' translated
 ]
 
-{
-	#category : #'menu commands',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>readFromFile [
+{ #category : #'menu commands' }
+ImageMorph >> readFromFile [
 	| fileName |
 	fileName := UIManager default
 		request: 'Please enter the image file name' translated
@@ -329,38 +247,26 @@ ImageMorph>>readFromFile [
 
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>releaseCachedState [
+{ #category : #caching }
+ImageMorph >> releaseCachedState [
 
 	super releaseCachedState.
 	image hibernate.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>shouldFlex [
+{ #category : #testing }
+ImageMorph >> shouldFlex [
 	^ true.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>wantsRecolorHandle [
+{ #category : #testing }
+ImageMorph >> wantsRecolorHandle [
 	^ image notNil and: [image depth = 1]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-ImageMorph>>withSnapshotBorder [
+{ #category : #accessing }
+ImageMorph >> withSnapshotBorder [
 	self 
 		borderStyle:
 			((ComplexBorder style: #complexFramed)

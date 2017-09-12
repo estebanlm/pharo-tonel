@@ -1,11 +1,6 @@
-Extension {
-	#name : #SubscriptionRegistry
-}
+Extension { #name : #SubscriptionRegistry }
 
-{
-	#category : #'*Glamour-Tests-Core',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-SubscriptionRegistry>>glmSubscriptions [
+{ #category : #'*Glamour-Tests-Core' }
+SubscriptionRegistry >> glmSubscriptions [
 	^ subscriptions
 ]

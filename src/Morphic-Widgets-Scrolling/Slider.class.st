@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #Slider,
 	#superclass : #MorphicModel,
@@ -12,15 +9,11 @@ Class {
 		'sliderColor',
 		'descending'
 	],
-	#category : #Morphic-Widgets-Scrolling,
-	#timestamp : ''
+	#category : #Morphic-Widgets-Scrolling
 }
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>computeSlider [
+{ #category : #geometry }
+Slider >> computeSlider [
 	| r |
 	r := self roomToMove.
 	self descending
@@ -35,65 +28,44 @@ Slider>>computeSlider [
 	slider extent: self sliderExtent
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>defaultBorderColor [
+{ #category : #initialization }
+Slider >> defaultBorderColor [
 	"answer the default border color/fill style for the receiver"
 	^ #inset
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>defaultBorderWidth [
+{ #category : #initialization }
+Slider >> defaultBorderWidth [
 	"answer the default border width for the receiver"
 	^ 1
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>defaultBounds [
+{ #category : #initialization }
+Slider >> defaultBounds [
 "answer the default bounds for the receiver"
 	^ 0 @ 0 corner: 16 @ 100
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>defaultColor [
+{ #category : #initialization }
+Slider >> defaultColor [
 	"answer the default color/fill style for the receiver"
 	^ Color lightGray
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>descending [
+{ #category : #access }
+Slider >> descending [
 	"It may happen that an instance variable is nil, for example, if an instance is in the image when the instance is introduced. This test should probably be removed."
 	^ descending == true
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>descending: aBoolean [
+{ #category : #access }
+Slider >> descending: aBoolean [
 	descending := aBoolean.
 	self value: value
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>extent: newExtent [
+{ #category : #geometry }
+Slider >> extent: newExtent [
 	newExtent = bounds extent ifTrue: [^ self].
 	bounds isWide
 		ifTrue: [super extent: (newExtent x max: self sliderThickness * 2) @ newExtent y]
@@ -101,11 +73,8 @@ Slider>>extent: newExtent [
 	self removeAllMorphs; initializeSlider
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>initialize [
+{ #category : #initialization }
+Slider >> initialize [
 	"initialize the state of the receiver"
 	
 	super initialize.
@@ -114,11 +83,8 @@ Slider>>initialize [
 	self initializeSlider
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>initializeSlider [
+{ #category : #initialization }
+Slider >> initializeSlider [
 	slider := BorderedMorph newBounds: self totalSliderArea color: self thumbColor.
 	sliderShadow := BorderedMorph newBounds: self totalSliderArea
 						color: self pagingArea color.
@@ -140,11 +106,8 @@ Slider>>initializeSlider [
 
 ]
 
-{
-	#category : #'other events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>mouseDownInSlider: event  [
+{ #category : #'other events' }
+Slider >> mouseDownInSlider: event [ 
 
 	slider borderStyle style == #raised
 		ifTrue: [slider borderColor: #inset].
@@ -155,11 +118,8 @@ Slider>>mouseDownInSlider: event  [
 	sliderShadow show
 ]
 
-{
-	#category : #'other events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>mouseUpInSlider: event  [
+{ #category : #'other events' }
+Slider >> mouseUpInSlider: event [ 
 
 	slider borderStyle style == #inset
 		ifTrue: [slider borderColor: #raised].
@@ -167,27 +127,18 @@ Slider>>mouseUpInSlider: event  [
 	sliderShadow hide
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>pagingArea [
+{ #category : #access }
+Slider >> pagingArea [
 	^self
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>roomToMove [
+{ #category : #geometry }
+Slider >> roomToMove [
 	^ self totalSliderArea insetBy: (0@0 extent: self sliderExtent)
 ]
 
-{
-	#category : #scrolling,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>scrollAbsolute: event [
+{ #category : #scrolling }
+Slider >> scrollAbsolute: event [
 	| r p |
 	r := self roomToMove.
 	bounds isWide
@@ -205,11 +156,8 @@ Slider>>scrollAbsolute: event [
 				ifFalse:	[(r bottom - p y) asFloat / r height])]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>setSlider: aMorph withShadow: anotherMorph [
+{ #category : #initialization }
+Slider >> setSlider: aMorph withShadow: anotherMorph [
 	
 
 	slider ifNotNil: [ self removeMorph: slider ].
@@ -228,11 +176,8 @@ Slider>>setSlider: aMorph withShadow: anotherMorph [
 	self computeSlider.
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>setValue: newValue [
+{ #category : #'model access' }
+Slider >> setValue: newValue [
 	"Called internally for propagation to model"
 	self value: newValue.
 	setValueSelector ifNotNil: [
@@ -240,84 +185,57 @@ Slider>>setValue: newValue [
 		].
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>setValueSelector: aSymbol [
+{ #category : #access }
+Slider >> setValueSelector: aSymbol [
 	"Directly set the selector to make more flexible."
 	
 	setValueSelector := aSymbol
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>sliderColor [
+{ #category : #access }
+Slider >> sliderColor [
 	"color scheme for the whole slider widget"
 	sliderColor ifNil: [^ (color alphaMixed: 0.7 with: Color white) slightlyLighter].
 	^ sliderColor
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>sliderColor: newColor [
+{ #category : #access }
+Slider >> sliderColor: newColor [
 
 	sliderColor := newColor.
 	slider ifNotNil: [slider color: sliderColor]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>sliderExtent [
+{ #category : #geometry }
+Slider >> sliderExtent [
 	^ bounds isWide
 		ifTrue: [self sliderThickness @ self innerBounds height]
 		ifFalse: [self innerBounds width @ self sliderThickness]
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>sliderShadowColor [
+{ #category : #access }
+Slider >> sliderShadowColor [
 	^ self sliderColor alphaMixed: 0.2 with: self pagingArea color
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>sliderThickness [
+{ #category : #geometry }
+Slider >> sliderThickness [
 	^ 7
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>thumbColor [
+{ #category : #access }
+Slider >> thumbColor [
 	"Color of the draggable 'thumb'"
 	^ self sliderColor
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>totalSliderArea [
+{ #category : #geometry }
+Slider >> totalSliderArea [
 	^ self innerBounds
 ]
 
-{
-	#category : #update,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>updateSliderBounds [
+{ #category : #update }
+Slider >> updateSliderBounds [
 	slider bounds: self totalSliderArea.
 	sliderShadow bounds: self totalSliderArea.
 	
@@ -325,19 +243,13 @@ Slider>>updateSliderBounds [
 
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>value [
+{ #category : #access }
+Slider >> value [
 	^ value
 ]
 
-{
-	#category : #'model access',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-Slider>>value: newValue [
+{ #category : #'model access' }
+Slider >> value: newValue [
 	"Drive the slider position externally..."
 	value := newValue min: 1.0 max: 0.0.
 	self computeSlider

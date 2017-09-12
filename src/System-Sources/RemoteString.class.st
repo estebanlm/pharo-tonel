@@ -23,15 +23,11 @@ Class {
 		'sourceFileNumber',
 		'filePositionHi'
 	],
-	#category : #System-Sources,
-	#timestamp : '<historical>'
+	#category : #System-Sources
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RemoteString class>>newFileNumber: sourceIndex position: anInteger  [
+{ #category : #'instance creation' }
+RemoteString class >> newFileNumber: sourceIndex position: anInteger [ 
 	"Answer an instance of me fora file indexed by sourceIndex, at the 
 	position anInteger. Assume that the string is already stored on the file 
 	and the instance will be used to access it."
@@ -39,22 +35,16 @@ RemoteString class>>newFileNumber: sourceIndex position: anInteger  [
 	^self new fileNumber: sourceIndex position: anInteger
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RemoteString class>>newString: aString [
+{ #category : #'instance creation' }
+RemoteString class >> newString: aString [
 	"Answer an instance of me for string, aString, on changes file. 
 	Put the string on the file and create the remote reference."
 
 	^self new string: aString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RemoteString class>>newString: aString onFileNumber: sourceIndex toFile: aFileStream [
+{ #category : #'instance creation' }
+RemoteString class >> newString: aString onFileNumber: sourceIndex toFile: aFileStream [
 	"Answer an instance of me for string, aString, on file indexed by 
 	sourceIndex. Put the string on the file, aFileStream, and create the 
 	remote reference. Assume that the index corresponds properly to 
@@ -63,67 +53,46 @@ RemoteString class>>newString: aString onFileNumber: sourceIndex toFile: aFileSt
 	^self new string: aString onFileNumber: sourceIndex toFile: aFileStream
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RemoteString>>fileNumber: fileNumber position: position  [
+{ #category : #private }
+RemoteString >> fileNumber: fileNumber position: position [ 
 
 	sourceFileNumber := fileNumber.
 	filePositionHi := position
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RemoteString>>isRemoteString [
+{ #category : #testing }
+RemoteString >> isRemoteString [
 
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RemoteString>>last [
+{ #category : #accessing }
+RemoteString >> last [
 	^self string ifNotNil: [ :s | s last ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RemoteString>>position  [
+{ #category : #accessing }
+RemoteString >> position [ 
 	"Answer the location of the string on a file."
 
 	^ filePositionHi 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RemoteString>>sourceFileNumber [
+{ #category : #accessing }
+RemoteString >> sourceFileNumber [
 	"Answer the index of the file on which the string is stored."
 
 	^ sourceFileNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RemoteString>>sourcePointer [
+{ #category : #accessing }
+RemoteString >> sourcePointer [
 	sourceFileNumber ifNil: [ ^ 0 ].
 	^ SourceFiles sourcePointerFromFileIndex: sourceFileNumber andPosition: filePositionHi
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RemoteString>>string  [
+{ #category : #accessing }
+RemoteString >> string [ 
 	"Answer the receiver's string if remote files are enabled, or nil."
 
 	^ SourceFiles 
@@ -133,11 +102,8 @@ RemoteString>>string  [
 		ifAbsent: [ nil ]	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RemoteString>>string: aString [
+{ #category : #private }
+RemoteString >> string: aString [
 	"Store this as my string if source files exist."
 
 	SourceFiles changesWriteStreamDo: [ :theFile |
@@ -148,11 +114,8 @@ RemoteString>>string: aString [
 			toFile: theFile ]
 ]
 
-{
-	#category : #chunk,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-RemoteString>>string: aString onFileNumber: fileNumber toFile: aFileStream  [
+{ #category : #chunk }
+RemoteString >> string: aString onFileNumber: fileNumber toFile: aFileStream [ 
 	"Store this as the receiver's string if source files exist."
 
 	| position |

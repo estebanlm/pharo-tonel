@@ -9,15 +9,11 @@ Class {
 	#instVars : [
 		'items'
 	],
-	#category : #Morphic-Widgets-FastTable-DataSource,
-	#timestamp : 'CyrilFerlicot 9/28/2015 17:36'
+	#category : #Morphic-Widgets-FastTable-DataSource
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTOutlineDataSource class>>items: aCollectionOfCollection [
+{ #category : #'instance creation' }
+FTOutlineDataSource class >> items: aCollectionOfCollection [
 	" I take a collection of collection of elements."
 
 	^ self new
@@ -25,11 +21,8 @@ FTOutlineDataSource class>>items: aCollectionOfCollection [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTOutlineDataSource>>cellColumn: column row: rowIndex [
+{ #category : #accessing }
+FTOutlineDataSource >> cellColumn: column row: rowIndex [
 	| cell |
 	cell := FTCellMorph new
 		addMorphBack: (self elementAt: rowIndex) asMorph;
@@ -39,11 +32,8 @@ FTOutlineDataSource>>cellColumn: column row: rowIndex [
 	^ cell
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTOutlineDataSource>>elementAt: index [
+{ #category : #accessing }
+FTOutlineDataSource >> elementAt: index [
 	| tmpIndex |
 	tmpIndex := index.
 	self items
@@ -54,11 +44,8 @@ FTOutlineDataSource>>elementAt: index [
 	self errorSubscriptBounds: index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTOutlineDataSource>>headerColumn: column [
+{ #category : #accessing }
+FTOutlineDataSource >> headerColumn: column [
 	column id ifNil: [ ^ nil ]. 
 	^ FTCellMorph new 
 		listCentering: #center;
@@ -66,27 +53,18 @@ FTOutlineDataSource>>headerColumn: column [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTOutlineDataSource>>items [
+{ #category : #accessing }
+FTOutlineDataSource >> items [
 	^ items
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTOutlineDataSource>>items: anObject [
+{ #category : #accessing }
+FTOutlineDataSource >> items: anObject [
 	items := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTOutlineDataSource>>needSeparatorBefore: index [
+{ #category : #testing }
+FTOutlineDataSource >> needSeparatorBefore: index [
 	| tmpIndex |
 	index <= 1
 		ifTrue: [ ^ false ].
@@ -99,21 +77,15 @@ FTOutlineDataSource>>needSeparatorBefore: index [
 	self errorSubscriptBounds: index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTOutlineDataSource>>newDataSourceMatching: aFTFilter [
+{ #category : #accessing }
+FTOutlineDataSource >> newDataSourceMatching: aFTFilter [
 	| newItems |
 	newItems := items class withAll: (items collect: [ :coll | coll select: [ :each | aFTFilter matches: (self toString: each) ] ]).
 	^ self class new items: newItems
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTOutlineDataSource>>numberOfRows [
+{ #category : #accessing }
+FTOutlineDataSource >> numberOfRows [
 	^ self items
 		ifNotNil: [ | cpt |
 			cpt := 0.
@@ -122,11 +94,8 @@ FTOutlineDataSource>>numberOfRows [
 		ifNil: [ 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTOutlineDataSource>>searchText: aString [
+{ #category : #accessing }
+FTOutlineDataSource >> searchText: aString [
 	| index result |
 	aString isEmptyOrNil
 		ifTrue: [ ^ #() ].

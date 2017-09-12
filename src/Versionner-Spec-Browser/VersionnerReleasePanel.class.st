@@ -13,15 +13,11 @@ Class {
 		'releaseNumberLabel',
 		'developmentVersion'
 	],
-	#category : #Versionner-Spec-Browser,
-	#timestamp : 'ChristopheDemarey 3/11/2014 17:32'
+	#category : #Versionner-Spec-Browser
 }
 
-{
-	#category : #spec,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerReleasePanel class>>defaultSpec [
+{ #category : #spec }
+VersionnerReleasePanel class >> defaultSpec [
 	"Define the layout of the Release Panel"
 
 	<spec>
@@ -39,11 +35,8 @@ VersionnerReleasePanel class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerReleasePanel class>>openForVersion: developmentVersion [
+{ #category : #'instance creation' }
+VersionnerReleasePanel class >> openForVersion: developmentVersion [
 	| releasePanel |
 	
 	releasePanel := self new.
@@ -51,44 +44,29 @@ VersionnerReleasePanel class>>openForVersion: developmentVersion [
 	^ releasePanel openDialogWithSpec
 ]
 
-{
-	#category : #confirmation,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerReleasePanel>>confirmSymbolicVersionResolutionDesactivation [
+{ #category : #confirmation }
+VersionnerReleasePanel >> confirmSymbolicVersionResolutionDesactivation [
 	(UIManager default confirm: 'Are you sure you do not want to resolve symbolic versions? It will lead to unreproductable loads.')
 		ifFalse: [ symbolicVersionResolutionCheckBox state: true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerReleasePanel>>developmentVersion: aVersion [
+{ #category : #accessing }
+VersionnerReleasePanel >> developmentVersion: aVersion [
 	developmentVersion := aVersion
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerReleasePanel>>initialExtent [
+{ #category : #initialization }
+VersionnerReleasePanel >> initialExtent [
 	^ 500 @ 140
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerReleasePanel>>initialVersion: aString [
+{ #category : #api }
+VersionnerReleasePanel >> initialVersion: aString [
 	releaseNumber text: aString.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerReleasePanel>>initializeWidgets [
+{ #category : #initialization }
+VersionnerReleasePanel >> initializeWidgets [
 	(releaseNumberLabel := self newLabel)
 		label: 'Version number:'.
 	(releaseNumber := self newTextInput)
@@ -102,19 +80,13 @@ VersionnerReleasePanel>>initializeWidgets [
 		whenDeactivatedDo: [ self confirmSymbolicVersionResolutionDesactivation ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerReleasePanel>>isSymbolicVersionResolutionChecked [
+{ #category : #api }
+VersionnerReleasePanel >> isSymbolicVersionResolutionChecked [
 	^ symbolicVersionResolutionCheckBox state
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerReleasePanel>>latestVersionString [
+{ #category : #private }
+VersionnerReleasePanel >> latestVersionString [
 	| latestVersion |
 	
 	latestVersion := (developmentVersion project versions 
@@ -125,11 +97,8 @@ VersionnerReleasePanel>>latestVersionString [
 		ifNil: [ nil ] 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerReleasePanel>>nextVersionString [
+{ #category : #private }
+VersionnerReleasePanel >> nextVersionString [
 	^ self latestVersionString 
 		ifNotNil:  [ :versionString | | lastPointIndex |
 					lastPointIndex := versionString 
@@ -143,42 +112,27 @@ VersionnerReleasePanel>>nextVersionString [
 		ifNil: [ '1.0' ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerReleasePanel>>releaseNumber [
+{ #category : #accessing }
+VersionnerReleasePanel >> releaseNumber [
 	^ releaseNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerReleasePanel>>releaseNumberLabel [
+{ #category : #accessing }
+VersionnerReleasePanel >> releaseNumberLabel [
 	^ releaseNumberLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerReleasePanel>>releaseNumberText [
+{ #category : #accessing }
+VersionnerReleasePanel >> releaseNumberText [
 	^ releaseNumber text
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerReleasePanel>>symbolicVersionResolutionCheckBox [
+{ #category : #accessing }
+VersionnerReleasePanel >> symbolicVersionResolutionCheckBox [
 	^ symbolicVersionResolutionCheckBox
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerReleasePanel>>title [
+{ #category : #initialization }
+VersionnerReleasePanel >> title [
 	^ 'Release a new version'
 ]

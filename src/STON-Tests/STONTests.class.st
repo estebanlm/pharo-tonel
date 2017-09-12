@@ -5,15 +5,11 @@ STONTests tests the API offered by STON.
 Class {
 	#name : #STONTests,
 	#superclass : #TestCase,
-	#category : #STON-Tests,
-	#timestamp : '<historical>'
+	#category : #STON-Tests
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTests class>>fastReadFromFileNamed: path [
+{ #category : #utilities }
+STONTests class >> fastReadFromFileNamed: path [
 	^ path asFileReference
 		readStreamDo: [ :stream | 
 			STON reader
@@ -22,11 +18,8 @@ STONTests class>>fastReadFromFileNamed: path [
 				next ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTests class>>fastWrite: object toFileNamed: path [
+{ #category : #utilities }
+STONTests class >> fastWrite: object toFileNamed: path [
 	^ path asFileReference
 		writeStreamDo: [ :fileStream | 
 			ZnBufferedWriteStream
@@ -38,11 +31,8 @@ STONTests class>>fastWrite: object toFileNamed: path [
 						nextPut: object ] ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTests class>>readFromFileNamed: path [
+{ #category : #utilities }
+STONTests class >> readFromFileNamed: path [
 	^ path asFileReference
 		readStreamDo: [ :stream | 
 			STON reader
@@ -50,11 +40,8 @@ STONTests class>>readFromFileNamed: path [
 				next ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTests class>>write: object toFileNamed: path [
+{ #category : #utilities }
+STONTests class >> write: object toFileNamed: path [
 	^ path asFileReference
 		writeStreamDo: [ :stream | 
 			STON writer
@@ -62,21 +49,15 @@ STONTests class>>write: object toFileNamed: path [
 				nextPut: object ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTests>>testFromString [
+{ #category : #tests }
+STONTests >> testFromString [
 	| object |
 	object := STON listClass withAll: { 1. 0. -1. true. false. nil }.
 	self assert: (STON fromString: '[1,0,-1,true,false,nil]') = object
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTests>>testFromStringWithComments [
+{ #category : #tests }
+STONTests >> testFromStringWithComments [
 	| object |
 	object := STON listClass withAll: { 1. 0. -1. true. false. nil }.
 	self 
@@ -84,11 +65,8 @@ STONTests>>testFromStringWithComments [
 		equals: object
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTests>>testPrettyPrinting [
+{ #category : #tests }
+STONTests >> testPrettyPrinting [
 	| object |
 	object := STONTestUser dummy.
 	self assert: (STON fromString: (STON toStringPretty: object)) = object.
@@ -96,11 +74,8 @@ STONTests>>testPrettyPrinting [
 	self assert: (STON fromString: (STON toStringPretty: object)) = object
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTests>>testRoomExitCycles [
+{ #category : #tests }
+STONTests >> testRoomExitCycles [
 	| model room1 room2 exit1 exit2 ston object |
 	(room1 := STONTestMap new) at: #name put: 'Room 1'.
 	(room2 := STONTestMap new) at: #name put: 'Room 2'.
@@ -130,11 +105,8 @@ STONTests>>testRoomExitCycles [
 	self assert: (STON toString: object) equals: ston
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-STONTests>>testToString [
+{ #category : #tests }
+STONTests >> testToString [
 	| object |
 	object := STON listClass withAll: { 1. 0. -1. true. false. nil }.
 	self assert: (STON toString: object) = '[1,0,-1,true,false,nil]'

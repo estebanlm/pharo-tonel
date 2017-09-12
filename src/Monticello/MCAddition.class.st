@@ -7,102 +7,65 @@ Class {
 	#instVars : [
 		'definition'
 	],
-	#category : #Monticello-Patching,
-	#timestamp : '<historical>'
+	#category : #Monticello-Patching
 }
 
-{
-	#category : #instance-creation,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAddition class>>of: aDefinition [
+{ #category : #instance-creation }
+MCAddition class >> of: aDefinition [
 	^ self new intializeWithDefinition: aDefinition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAddition>>baseDefinition [
+{ #category : #accessing }
+MCAddition >> baseDefinition [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAddition>>basicApplyTo: anObject [
+{ #category : #accessing }
+MCAddition >> basicApplyTo: anObject [
 	anObject addDefinition: definition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAddition>>definition [
+{ #category : #accessing }
+MCAddition >> definition [
 	^ definition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAddition>>fromSource [
+{ #category : #accessing }
+MCAddition >> fromSource [
 	^ ''
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAddition>>intializeWithDefinition: aDefinition [
+{ #category : #initializing }
+MCAddition >> intializeWithDefinition: aDefinition [
 	definition := aDefinition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAddition>>inverse [
+{ #category : #accessing }
+MCAddition >> inverse [
 	^ MCRemoval of: definition
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAddition>>isAddition [
+{ #category : #testing }
+MCAddition >> isAddition [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAddition>>isClassPatch [
+{ #category : #testing }
+MCAddition >> isClassPatch [
 	^definition isClassDefinition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAddition>>targetClass [
+{ #category : #accessing }
+MCAddition >> targetClass [
 	^definition actualClass 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAddition>>targetDefinition [
+{ #category : #accessing }
+MCAddition >> targetDefinition [
 	^ definition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCAddition>>toSource [
+{ #category : #accessing }
+MCAddition >> toSource [
 	^ definition diffSource
 ]

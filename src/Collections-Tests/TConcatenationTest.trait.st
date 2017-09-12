@@ -3,43 +3,28 @@ A trait for test purposes
 "
 Trait {
 	#name : #TConcatenationTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:32'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConcatenationTest>>empty [
+{ #category : #requirements }
+TConcatenationTest >> empty [
 	self explicitRequirement.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConcatenationTest>>firstCollection [
+{ #category : #requirements }
+TConcatenationTest >> firstCollection [
 " return a collection that will be the first part of the concatenation"
 	self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConcatenationTest>>secondCollection [
+{ #category : #requirements }
+TConcatenationTest >> secondCollection [
 " return a collection that will be the second part of the concatenation"
 	self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConcatenationTest>>test0FixtureConcatenationTest [
+{ #category : #'tests - fixture' }
+TConcatenationTest >> test0FixtureConcatenationTest [
 	self firstCollection.
 	self deny: self firstCollection isEmpty.
 	self firstCollection.
@@ -48,11 +33,8 @@ TConcatenationTest>>test0FixtureConcatenationTest [
 	self assert: self empty isEmpty
 ]
 
-{
-	#category : #'tests - concatenation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConcatenationTest>>testConcatenation [
+{ #category : #'tests - concatenation' }
+TConcatenationTest >> testConcatenation [
 
 "| collection1 collection2 result |
 collection1 := self firstCollection .
@@ -71,11 +53,8 @@ result do: [ :each | self assert: (result occurrencesOf: each) = (( collection1 
 self assert: result size = (collection1 size + collection2 size)
 ]
 
-{
-	#category : #'tests - concatenation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConcatenationTest>>testConcatenationWithDuplicate [
+{ #category : #'tests - concatenation' }
+TConcatenationTest >> testConcatenationWithDuplicate [
 
 
 | collection1 collection2 result |
@@ -87,11 +66,8 @@ result do: [ :each | self assert: (result occurrencesOf: each) = (( collection1 
 self assert: result size = (collection1 size * 2)
 ]
 
-{
-	#category : #'tests - concatenation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TConcatenationTest>>testConcatenationWithEmpty [
+{ #category : #'tests - concatenation' }
+TConcatenationTest >> testConcatenationWithEmpty [
 	| result |
 	result := self firstCollection , self empty.
 	self assert: result = self firstCollection

@@ -4,15 +4,11 @@ The Unix vm does not do line-ending conversion, thus this subclass which specifi
 Class {
 	#name : #UnixClipboard,
 	#superclass : #Clipboard,
-	#category : #System-Clipboard,
-	#timestamp : 'HenrikSperreJohansen 1/28/2011 15:15'
+	#category : #System-Clipboard
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-UnixClipboard>>clipboardText: text  [
+{ #category : #accessing }
+UnixClipboard >> clipboardText: text [ 
 
         | string |
         string := text asString.

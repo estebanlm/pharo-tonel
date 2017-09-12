@@ -7,22 +7,15 @@ Class {
 	#instVars : [
 		'presentation'
 	],
-	#category : #Glamour-Presentations-Announcements,
-	#timestamp : 'AndreiChis 5/6/2014 17:51'
+	#category : #Glamour-Presentations-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMVariableBindingsChanged>>presentation [
+{ #category : #accessing }
+GLMVariableBindingsChanged >> presentation [
 	^ presentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMVariableBindingsChanged>>presentation: anObject [
+{ #category : #accessing }
+GLMVariableBindingsChanged >> presentation: anObject [
 	presentation := anObject
 ]

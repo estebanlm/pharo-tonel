@@ -8,70 +8,48 @@ Class {
 	#instVars : [
 		'selector'
 	],
-	#category : #Refactoring-Changes,
-	#timestamp : 'NicolaiHess 9/9/2016 20:43'
+	#category : #Refactoring-Changes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRemoveMethodChange class>>remove: aSymbol from: aClass [
+{ #category : #'instance creation' }
+RBRemoveMethodChange class >> remove: aSymbol from: aClass [
 	^ self new
 		changeClass: aClass;
 		selector: aSymbol;
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRemoveMethodChange>>= aRemoveMethodChange [
+{ #category : #comparing }
+RBRemoveMethodChange >> = aRemoveMethodChange [
 	super = aRemoveMethodChange
 		ifFalse: [ ^ false ].
 	^ selector = aRemoveMethodChange selector
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRemoveMethodChange>>asUndoOperation [
+{ #category : #converting }
+RBRemoveMethodChange >> asUndoOperation [
 	^ RBRefactoryChangeManager changeFactory addMethodSource: (self methodSourceFor: selector) in: self changeClass
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRemoveMethodChange>>changeString [
+{ #category : #printing }
+RBRemoveMethodChange >> changeString [
 	^ 'Remove <1s>>>#<2s>'
 		expandMacrosWith: self displayClassName
 		with: selector
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRemoveMethodChange>>hash [
+{ #category : #comparing }
+RBRemoveMethodChange >> hash [
 	^ selector hash
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRemoveMethodChange>>primitiveExecute [
+{ #category : #private }
+RBRemoveMethodChange >> primitiveExecute [
 	^ self changeClass removeSelector: selector
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRemoveMethodChange>>printOn: aStream  [
+{ #category : #printing }
+RBRemoveMethodChange >> printOn: aStream [ 
 	aStream
 		nextPutAll: self displayClassName;
 		nextPutAll: ' removeSelector: ';
@@ -79,18 +57,12 @@ RBRemoveMethodChange>>printOn: aStream  [
 		nextPut: $!
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRemoveMethodChange>>selector [
+{ #category : #private }
+RBRemoveMethodChange >> selector [
 	^ selector
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-RBRemoveMethodChange>>selector: aSymbol [
+{ #category : #initialize-release }
+RBRemoveMethodChange >> selector: aSymbol [
 	selector := aSymbol
 ]

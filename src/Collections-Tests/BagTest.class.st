@@ -22,358 +22,237 @@ Class {
 		'otherCollectionWithoutEqualElements',
 		'collectionWithoutNilMoreThan5'
 	],
-	#category : #Collections-Tests-Unordered,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:20'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>anotherElementNotIn [
+{ #category : #'tests - includes' }
+BagTest >> anotherElementNotIn [
 	^ 42
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>anotherElementOrAssociationIn [
+{ #category : #requirements }
+BagTest >> anotherElementOrAssociationIn [
 	" return an element (or an association for Dictionary ) present  in 'collection' "
 	^ self collection anyOne
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>anotherElementOrAssociationNotIn [
+{ #category : #requirements }
+BagTest >> anotherElementOrAssociationNotIn [
 	" return an element (or an association for Dictionary )not present  in 'collection' "
 	^ elementNotIn 
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>collection [
+{ #category : #setup }
+BagTest >> collection [
 
 	^ nonEmpty.
 	
 ]
 
-{
-	#category : #'test - set arithmetic',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>collectionClass [
+{ #category : #'test - set arithmetic' }
+BagTest >> collectionClass [
 
 	^ Bag
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>collectionInForIncluding [
+{ #category : #requirements }
+BagTest >> collectionInForIncluding [
 	 ^ collectionIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>collectionMoreThan5Elements [
+{ #category : #requirements }
+BagTest >> collectionMoreThan5Elements [
 " return a collection including at least 5 elements"
 	
 	^ collectionWithoutNilMoreThan5 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>collectionNotIncluded [
+{ #category : #requirements }
+BagTest >> collectionNotIncluded [
 	^ collectionNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>collectionOfFloat [
+{ #category : #requirements }
+BagTest >> collectionOfFloat [
 	^ collectionOfString
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>collectionWithCharacters [
+{ #category : #requirements }
+BagTest >> collectionWithCharacters [
 	^ collectionWithCharacters .
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>collectionWithCopyNonIdentical [
+{ #category : #requirements }
+BagTest >> collectionWithCopyNonIdentical [
 	" return a collection that include elements for which 'copy' return a different object (this is not the case of SmallInteger)"
 	^ collectionOfString
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>collectionWithElement [
+{ #category : #requirements }
+BagTest >> collectionWithElement [
 	"Returns a collection that already includes what is returned by #element."
 	^ collectionWithElement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>collectionWithElementsToRemove [
+{ #category : #requirements }
+BagTest >> collectionWithElementsToRemove [
 	^ collectionIn
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>collectionWithEqualElements [
+{ #category : #requirements }
+BagTest >> collectionWithEqualElements [
 	^ nonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>collectionWithSortableElements [
+{ #category : #requirements }
+BagTest >> collectionWithSortableElements [
 " return a collection elements that can be sorte ( understanding message ' < '  or ' > ')"
 	^ nonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>collectionWithoutEqualElements [
+{ #category : #requirements }
+BagTest >> collectionWithoutEqualElements [
 	^ otherCollectionWithoutEqualElements
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>collectionWithoutNilElements [
+{ #category : #requirements }
+BagTest >> collectionWithoutNilElements [
 	" return a collection that doesn't includes a nil element  and that doesn't includes equal elements'"
 	^ collectionWithoutNilMoreThan5
 ]
 
-{
-	#category : #'test - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>doWithoutNumber [
+{ #category : #'test - iterate' }
+BagTest >> doWithoutNumber [
 
 	^ 4
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>element [
+{ #category : #requirements }
+BagTest >> element [
 	^ super element
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>elementInForIncludesTest [
+{ #category : #requirements }
+BagTest >> elementInForIncludesTest [
 
 	^ self element 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>elementInForOccurrences [
+{ #category : #requirements }
+BagTest >> elementInForOccurrences [
 " return an element included in nonEmpty"
 	^self nonEmpty anyOne.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>elementNotIn [
+{ #category : #requirements }
+BagTest >> elementNotIn [
 
 	^elementNotIn 
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>elementNotInForOccurrences [
+{ #category : #'tests - includes' }
+BagTest >> elementNotInForOccurrences [
 	^ 666
 ]
 
-{
-	#category : #'test - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>elementToAdd [
+{ #category : #'test - copy' }
+BagTest >> elementToAdd [
 	^ 42
 ]
 
-{
-	#category : #'test - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>elementTwiceIn [
+{ #category : #'test - remove' }
+BagTest >> elementTwiceIn [
 	^ super elementTwiceIn
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>elementTwiceInForOccurrences [
+{ #category : #requirements }
+BagTest >> elementTwiceInForOccurrences [
 " return an element included exactly two time in # collectionWithEqualElements"
 ^ self elementTwiceIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>elementsCopyNonIdenticalWithoutEqualElements [
+{ #category : #requirements }
+BagTest >> elementsCopyNonIdenticalWithoutEqualElements [
 	" return a collection that does niot incllude equal elements ( classic equality )
 	all elements included are elements for which copy is not identical to the element  "
 	^ collectionOfString 
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>empty [
+{ #category : #setup }
+BagTest >> empty [
 
 	^ empty
 	
 	
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>emptyButAllocatedWith20  [
+{ #category : #setup }
+BagTest >> emptyButAllocatedWith20 [ 
 	
 		^ emptyButAllocatedWith20
 ]
 
-{
-	#category : #'test - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>expectedSizeAfterReject [
+{ #category : #'test - iterate' }
+BagTest >> expectedSizeAfterReject [
 	^ 2
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>firstCollection [
+{ #category : #requirements }
+BagTest >> firstCollection [
 " return a collection that will be the first part of the concatenation"
 	^ nonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>integerCollectionWithoutEqualElements [
+{ #category : #requirements }
+BagTest >> integerCollectionWithoutEqualElements [
 	^ otherCollectionWithoutEqualElements
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>nonEmpty [
+{ #category : #setup }
+BagTest >> nonEmpty [
 
 	^ nonEmpty
 	
 	
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>nonEmpty1Element [
+{ #category : #requirements }
+BagTest >> nonEmpty1Element [
 
 	^ self speciesClass  new add: self element ;yourself.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>nonEmptyWithoutEqualElements [
+{ #category : #requirements }
+BagTest >> nonEmptyWithoutEqualElements [
 " return a collection without equal elements "
 	^ otherCollectionWithoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>otherCollection [
+{ #category : #requirements }
+BagTest >> otherCollection [
 	^ otherCollectionWithoutEqualElements
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>result [
+{ #category : #setup }
+BagTest >> result [
 
 	^ collectResult.
 	
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>secondCollection [
+{ #category : #requirements }
+BagTest >> secondCollection [
 " return a collection that will be the second part of the concatenation"
 	^ collectionWithCharacters 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>selectedNumber [
+{ #category : #requirements }
+BagTest >> selectedNumber [
 	^ 4
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>setUp [
+{ #category : #setup }
+BagTest >> setUp [
 	empty := self speciesClass new.
 	nonEmpty := self speciesClass new
 		add: 13;
@@ -432,28 +311,19 @@ BagTest>>setUp [
 		yourself
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>sizeCollection [
+{ #category : #setup }
+BagTest >> sizeCollection [
 	^ otherCollectionWithoutEqualElements
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>speciesClass [
+{ #category : #requirements }
+BagTest >> speciesClass [
 	
 	^ Bag
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>test0CopyTest [
+{ #category : #'tests - fixture' }
+BagTest >> test0CopyTest [
 	self empty.
 	self assert: self empty size = 0.
 	self nonEmpty.
@@ -463,11 +333,8 @@ BagTest>>test0CopyTest [
 	self elementToAdd
 ]
 
-{
-	#category : #'basic tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testAdd [
+{ #category : #'basic tests' }
+BagTest >> testAdd [
 	"self run: #testAdd"
 	"self debug: #testAdd"
 
@@ -484,11 +351,8 @@ BagTest>>testAdd [
 
 ]
 
-{
-	#category : #'basic tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testAddWithOccurrences [
+{ #category : #'basic tests' }
+BagTest >> testAddWithOccurrences [
 	"self debug:#testAddWithOccurrences"
 	
 	| aBag |
@@ -503,21 +367,15 @@ BagTest>>testAddWithOccurrences [
 
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testAnySastify [
+{ #category : #'tests - iterating' }
+BagTest >> testAnySastify [
 
 	self assert: ( self collection anySatisfy: [:each | each = self element]).
 	self deny: (self collection anySatisfy: [:each | each isString]).
 ]
 
-{
-	#category : #'basic tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testAsBag [
+{ #category : #'basic tests' }
+BagTest >> testAsBag [
 
 	| aBag |
  
@@ -526,11 +384,8 @@ BagTest>>testAsBag [
 	self assert: aBag asBag = aBag.
 ]
 
-{
-	#category : #'basic tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testAsSet [
+{ #category : #'basic tests' }
+BagTest >> testAsSet [
 
 	| aBag aSet |
 	aBag := Bag new.	
@@ -542,11 +397,8 @@ BagTest>>testAsSet [
 	
 ]
 
-{
-	#category : #'basic tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testCopy [
+{ #category : #'basic tests' }
+BagTest >> testCopy [
 	"self run: #testCopy"
 	
 	| aBag newBag |
@@ -558,19 +410,13 @@ BagTest>>testCopy [
 	self assert: newBag asSet size = 2.
 ]
 
-{
-	#category : #'tests - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testCopyNonEmptyWithoutAllNotIncluded [
+{ #category : #'tests - copy' }
+BagTest >> testCopyNonEmptyWithoutAllNotIncluded [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testCreation [
+{ #category : #tests }
+BagTest >> testCreation [
 	"self run: #testCreation" 
 	"self debug: #testCreation"
 		
@@ -582,11 +428,8 @@ BagTest>>testCreation [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testCumulativeCounts [
+{ #category : #tests }
+BagTest >> testCumulativeCounts [
 	"self run: #testCumulativeCounts" 
 	"self debug: #testCumulativeCounts"
 		
@@ -605,11 +448,8 @@ BagTest>>testCumulativeCounts [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testEqual [
+{ #category : #tests }
+BagTest >> testEqual [
 	"(self run: #testEqual)"
 	"(self debug: #testEqual)"
 	| bag1 bag2 |
@@ -631,11 +471,8 @@ BagTest>>testEqual [
 	self assert: bag1 = bag2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testFlatCollect [
+{ #category : #tests }
+BagTest >> testFlatCollect [
 	| bag |
 	bag := Bag new.
 	bag add: { 1. 2. 3 }.
@@ -646,11 +483,8 @@ BagTest>>testFlatCollect [
 	self assert: (#() asBag flatCollect: [:x | 1 to: 4 ]) isEmpty
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testIdentityIncludes [
+{ #category : #'tests - includes' }
+BagTest >> testIdentityIncludes [
 	" test the comportement in presence of elements 'includes' but not 'identityIncludes' "
 
 	" can not be used by collections that can't include elements for wich copy doesn't return another instance "
@@ -662,22 +496,16 @@ BagTest>>testIdentityIncludes [
 	self deny: (collection identityIncludes: anElement)
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testIncludesElementIsNotThere [
+{ #category : #'tests - includes' }
+BagTest >> testIncludesElementIsNotThere [
 	"self debug: #testIncludesElementIsNotThere"
 	self deny: (self nonEmpty includes: self elementNotInForOccurrences).
 	self assert: (self nonEmpty includes: self nonEmpty anyOne).
 	self deny: (self empty includes: self elementNotInForOccurrences)
 ]
 
-{
-	#category : #'basic tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testOccurrencesOf [
+{ #category : #'basic tests' }
+BagTest >> testOccurrencesOf [
 	"self debug: #testOccurrencesOf"
 
 	| aBag |
@@ -696,11 +524,8 @@ BagTest>>testOccurrencesOf [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testRemove [
+{ #category : #tests }
+BagTest >> testRemove [
 	"self run: #testRemove"
 	"self debug: #testRemove" 
 	
@@ -721,11 +546,8 @@ BagTest>>testRemove [
 	self should: [bag remove: item.] raise: Error.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testRemoveAll [
+{ #category : #tests }
+BagTest >> testRemoveAll [
 	"Allows one to remove all elements of a collection" 
 	
 	| c1 c2 s2 |
@@ -739,11 +561,8 @@ BagTest>>testRemoveAll [
 	self assert: c2 size = s2 description: 'the copy has not been modified'.
 ]
 
-{
-	#category : #'test - remove',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testRemoveElementThatExistsTwice [
+{ #category : #'test - remove' }
+BagTest >> testRemoveElementThatExistsTwice [
 	"self debug: #testRemoveElementThatDoesExistsTwice"
 	| size |
 	size := self nonEmpty size.
@@ -752,11 +571,8 @@ BagTest>>testRemoveElementThatExistsTwice [
 	self assert: size - 1 = self nonEmpty size
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testSortedCounts [
+{ #category : #tests }
+BagTest >> testSortedCounts [
 	"self run: #testSortedCounts"
 	"self debug: #testSortedCounts" 
 	
@@ -774,11 +590,8 @@ BagTest>>testSortedCounts [
 	self assert: sortedCounts third =  (1->'2').	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>testSortedElements [
+{ #category : #tests }
+BagTest >> testSortedElements [
 	"self run: #testSortedElements" 
 	"self debug: #testSortedElements"
 	
@@ -798,11 +611,8 @@ BagTest>>testSortedElements [
 	
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-BagTest>>withEqualElements [
+{ #category : #requirements }
+BagTest >> withEqualElements [
 	" return a collection  including equal elements (classic equality)"
 	^ nonEmpty .
 ]

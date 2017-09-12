@@ -1,12 +1,7 @@
-Extension {
-	#name : #Context
-}
+Extension { #name : #Context }
 
-{
-	#category : #'*GT-BytecodeDebugger',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-Context>>gtBytecodeDebuggerRetrieveContextValues [
+{ #category : #'*GT-BytecodeDebugger' }
+Context >> gtBytecodeDebuggerRetrieveContextValues [
 	|fieldList displayedTemp slotsSize tempNames |
 
 	fieldList := OrderedCollection new.

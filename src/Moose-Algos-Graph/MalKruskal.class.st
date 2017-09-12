@@ -11,58 +11,39 @@ Class {
 		'treeEdges',
 		'sortBlock'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : 'ChristopheDemarey 3/23/2015 16:49'
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalKruskal>>edgeClass [
+{ #category : #configuration }
+MalKruskal >> edgeClass [
 	^ MalWeightedEdge 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalKruskal>>initialize [
+{ #category : #initialization }
+MalKruskal >> initialize [
 	super initialize.
 	self minSpanningTree 
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalKruskal>>maxSpanningTree [
+{ #category : #configuration }
+MalKruskal >> maxSpanningTree [
 	sortBlock := [:e1 :e2 | e1 weight > e2 weight]
 
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalKruskal>>minSpanningTree [
+{ #category : #configuration }
+MalKruskal >> minSpanningTree [
 	sortBlock := [:e1 :e2 | e1 weight < e2 weight]
 
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalKruskal>>nodeClass [
+{ #category : #configuration }
+MalKruskal >> nodeClass [
 	^ MalDisjointSetNode 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalKruskal>>run [
+{ #category : #running }
+MalKruskal >> run [
 	treeEdges := OrderedCollection new.
 	self sortedEdges: edges.
 	nodes do: #makeSet.
@@ -73,19 +54,13 @@ MalKruskal>>run [
 	^ treeEdges 
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalKruskal>>sortBlock: aBlock [
+{ #category : #configuration }
+MalKruskal >> sortBlock: aBlock [
 	sortBlock := aBlock
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalKruskal>>sortedEdges: aCollectionOfWeightedEdges [
+{ #category : #running }
+MalKruskal >> sortedEdges: aCollectionOfWeightedEdges [
 	sortedEdges := SortedCollection sortBlock: sortBlock.
 	sortedEdges addAll: aCollectionOfWeightedEdges 
 ]

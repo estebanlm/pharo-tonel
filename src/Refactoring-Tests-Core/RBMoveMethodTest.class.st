@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBMoveMethodTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBMoveMethodTest>>testMoveMethodIntoArgument [
+{ #category : #tests }
+RBMoveMethodTest >> testMoveMethodIntoArgument [
 	| refactoring class |
 	self proceedThroughWarning: 
 		[ refactoring := RBMoveMethodRefactoring 
@@ -49,11 +42,8 @@ RBMoveMethodTest>>testMoveMethodIntoArgument [
 	self assert: (class parseTreeFor: #rewriteRule:) = (RBParser parseMethod: 'rewriteRule: anObject rewriteRule := anObject')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBMoveMethodTest>>testMoveMethodIntoClassVariable [
+{ #category : #tests }
+RBMoveMethodTest >> testMoveMethodIntoClassVariable [
 	| refactoring class |
 	self proceedThroughWarning: 
 		[ refactoring := RBMoveMethodRefactoring 
@@ -89,11 +79,8 @@ RBMoveMethodTest>>testMoveMethodIntoClassVariable [
 	self assert: (class parseTreeFor: #rewriteRule:) = (RBParser parseMethod: 'rewriteRule: anObject rewriteRule := anObject')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBMoveMethodTest>>testMoveMethodIntoInstanceVariable [
+{ #category : #tests }
+RBMoveMethodTest >> testMoveMethodIntoInstanceVariable [
 	| refactoring class |
 	self proceedThroughWarning: 
 		[ refactoring := RBMoveMethodRefactoring 
@@ -129,11 +116,8 @@ RBMoveMethodTest>>testMoveMethodIntoInstanceVariable [
 	self assert: (class parseTreeFor: #builder:) = (RBParser parseMethod: 'builder: anObject builder := anObject')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBMoveMethodTest>>testMoveMethodThatReferencesPoolDictionary [
+{ #category : #tests }
+RBMoveMethodTest >> testMoveMethodThatReferencesPoolDictionary [
 	| refactoring class |
 	self proceedThroughWarning: 
 		[ refactoring := RBMoveMethodRefactoring 
@@ -157,11 +141,8 @@ RBMoveMethodTest>>testMoveMethodThatReferencesPoolDictionary [
 	self assert: (class directlyDefinesPoolDictionary: 'TextConstants' asSymbol)
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBMoveMethodTest>>testMovePrimitiveMethod [
+{ #category : #'failure tests' }
+RBMoveMethodTest >> testMovePrimitiveMethod [
 	| refactoring |
 	(model classNamed: #Object) 
 		compile: 'foo <primitive: 100> ^#() primitiveFailed'

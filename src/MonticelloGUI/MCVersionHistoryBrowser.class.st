@@ -10,39 +10,26 @@ Class {
 		'package',
 		'infos'
 	],
-	#category : #MonticelloGUI,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:53'
+	#category : #MonticelloGUI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>ancestry: anAncestry [
+{ #category : #accessing }
+MCVersionHistoryBrowser >> ancestry: anAncestry [
 	ancestry := anAncestry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>baseSnapshot [
+{ #category : #accessing }
+MCVersionHistoryBrowser >> baseSnapshot [
 	^ self snapshotForInfo: ancestry
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>defaultLabel [
+{ #category : #'morphic ui' }
+MCVersionHistoryBrowser >> defaultLabel [
 	^ ancestry name, ' History'
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>getMenu: aMenu [
+{ #category : #'morphic ui' }
+MCVersionHistoryBrowser >> getMenu: aMenu [
 	index < 2 ifTrue: [^ aMenu].
 	self fillMenu: aMenu fromSpecs: 
 		(Array
@@ -51,124 +38,82 @@ MCVersionHistoryBrowser>>getMenu: aMenu [
 	^ aMenu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>index [
+{ #category : #accessing }
+MCVersionHistoryBrowser >> index [
 	"Answer the value of index"
 
 	^ index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>index: anObject [
+{ #category : #accessing }
+MCVersionHistoryBrowser >> index: anObject [
 	"Set the value of index"
 
 	index := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>infos [
+{ #category : #accessing }
+MCVersionHistoryBrowser >> infos [
 	^ infos ifNil: [infos := ancestry withBreadthFirstAncestors]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>initialExtent [
+{ #category : #'morphic ui' }
+MCVersionHistoryBrowser >> initialExtent [
 	^ 440@169.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>list [
+{ #category : #accessing }
+MCVersionHistoryBrowser >> list [
 	^ self infos collect: [:ea | ea name]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>package: aMCPackage [
+{ #category : #accessing }
+MCVersionHistoryBrowser >> package: aMCPackage [
 	package := aMCPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>repositoryGroup [
+{ #category : #accessing }
+MCVersionHistoryBrowser >> repositoryGroup [
 	^ MCRepositoryGroup default
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>selectedInfo [
+{ #category : #accessing }
+MCVersionHistoryBrowser >> selectedInfo [
 	^ self infos at: self selection ifAbsent: [nil]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>selectedSnapshot [
+{ #category : #accessing }
+MCVersionHistoryBrowser >> selectedSnapshot [
 	^ self snapshotForInfo: self selectedInfo
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>selection [
+{ #category : #accessing }
+MCVersionHistoryBrowser >> selection [
 	^ index ifNil: [0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>selection: aNumber [
+{ #category : #accessing }
+MCVersionHistoryBrowser >> selection: aNumber [
 	index := aNumber.
 	self changed: #selection; changed: #summary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>snapshotForInfo: aVersionInfo [
+{ #category : #accessing }
+MCVersionHistoryBrowser >> snapshotForInfo: aVersionInfo [
 	^ (self repositoryGroup versionWithInfo: aVersionInfo) snapshot
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>spawnHistory [
+{ #category : #'morphic ui' }
+MCVersionHistoryBrowser >> spawnHistory [
 	MCVersionHistoryBrowser new
 		ancestry: self selectedInfo;
 		package: package;
 		show
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>summary [
+{ #category : #accessing }
+MCVersionHistoryBrowser >> summary [
 	| selInfo |
 	selInfo := self selectedInfo.
 	^ selInfo 
@@ -176,11 +121,8 @@ MCVersionHistoryBrowser>>summary [
 		ifNotNil: [selInfo summary]
 ]
 
-{
-	#category : #'morphic ui',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCVersionHistoryBrowser>>widgetSpecs [
+{ #category : #'morphic ui' }
+MCVersionHistoryBrowser >> widgetSpecs [
 	^ #(
 		((listMorph:selection:menu: list selection getMenu:) (0 0 0.3 1))
 		((textMorph: summary) (0.3 0 1 1))

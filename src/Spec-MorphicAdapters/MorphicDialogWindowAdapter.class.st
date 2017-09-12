@@ -4,15 +4,11 @@ I am the adapter used to bridge a DialogWindowModel and a DialogWindow
 Class {
 	#name : #MorphicDialogWindowAdapter,
 	#superclass : #MorphicWindowAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDialogWindowAdapter>>buildWidget [
+{ #category : #factory }
+MorphicDialogWindowAdapter >> buildWidget [
 
 	^ SpecDialogWindow new
 			specWidget: self contentMorph;
@@ -22,85 +18,58 @@ MorphicDialogWindowAdapter>>buildWidget [
 			yourself
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDialogWindowAdapter>>cancelAction: aBlock [
+{ #category : #'spec protocol' }
+MorphicDialogWindowAdapter >> cancelAction: aBlock [
 
 	^ self widget
 		ifNotNil: [:w | w cancelAction: aBlock ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDialogWindowAdapter>>contentMorph [
+{ #category : #'widget API' }
+MorphicDialogWindowAdapter >> contentMorph [
 
 	^ self model contents
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDialogWindowAdapter>>okAction: aBlock [
+{ #category : #'spec protocol' }
+MorphicDialogWindowAdapter >> okAction: aBlock [
 
 	^ self widget
 		ifNotNil: [:w | w okAction: aBlock ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDialogWindowAdapter>>okButtonEnabled: aBoolean [
+{ #category : #'spec protocol' }
+MorphicDialogWindowAdapter >> okButtonEnabled: aBoolean [
 
 	self widget ifNotNil: [ :w | w toolbar okButton enabled: aBoolean ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDialogWindowAdapter>>open [
+{ #category : #protocol }
+MorphicDialogWindowAdapter >> open [
 
 	self widget openInWorld
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDialogWindowAdapter>>toolbar: aToolbar  [
+{ #category : #'spec protocol' }
+MorphicDialogWindowAdapter >> toolbar: aToolbar [ 
 
 	self widgetDo: [ :w | w toolbar: aToolbar ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDialogWindowAdapter>>toolbarBlock [
+{ #category : #'widget API' }
+MorphicDialogWindowAdapter >> toolbarBlock [
 
 	^ [ self model toolbar ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDialogWindowAdapter>>triggerCancelAction [
+{ #category : #'spec protocol' }
+MorphicDialogWindowAdapter >> triggerCancelAction [
 
 	self widget ifNotNil: [:w | w toolbar triggerCancelAction ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicDialogWindowAdapter>>triggerOkAction [
+{ #category : #'spec protocol' }
+MorphicDialogWindowAdapter >> triggerOkAction [
 
 	self widget ifNotNil: [:w | w toolbar triggerOkAction ]
 ]

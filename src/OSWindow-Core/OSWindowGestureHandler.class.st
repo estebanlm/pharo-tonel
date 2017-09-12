@@ -11,103 +11,69 @@ Class {
 		'devicesFingers',
 		'lastUpdateTimestamp'
 	],
-	#category : #OSWindow-Core-Gestures,
-	#timestamp : 'MerwanOuddane 7/22/2015 16:05'
+	#category : #OSWindow-Core-Gestures
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>fingerCount [
+{ #category : #accessing }
+OSWindowGestureHandler >> fingerCount [
 	^ fingerCount
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>fingerCount: anObject [
+{ #category : #accessing }
+OSWindowGestureHandler >> fingerCount: anObject [
 	fingerCount := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>fingers [
+{ #category : #accessing }
+OSWindowGestureHandler >> fingers [
 	^ fingers
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>fingersFromDevice: id [
+{ #category : #accessing }
+OSWindowGestureHandler >> fingersFromDevice: id [
 	^ devicesFingers at: id ifAbsent: [ ^ fingers values ]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>handleGestureEvent: anEvent [
+{ #category : #events }
+OSWindowGestureHandler >> handleGestureEvent: anEvent [
 	self handleEvent: anEvent.
 	
 	"Notifying gestures"
 	self sendEventToGestures: anEvent
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>initialize [
+{ #category : #initialization }
+OSWindowGestureHandler >> initialize [
 	registeredGestures := OrderedCollection new.
 	devicesFingers := Dictionary new.
 	fingers := Dictionary new.
 	fingerCount := 0.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>lastUpdateTimestamp [
+{ #category : #accessing }
+OSWindowGestureHandler >> lastUpdateTimestamp [
 	^ lastUpdateTimestamp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>lastUpdateTimestamp: anObject  [
+{ #category : #accessing }
+OSWindowGestureHandler >> lastUpdateTimestamp: anObject [ 
 	lastUpdateTimestamp := anObject 
 ]
 
-{
-	#category : #'detector registering',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>registerGesture: aGesture [
+{ #category : #'detector registering' }
+OSWindowGestureHandler >> registerGesture: aGesture [
 	registeredGestures add: aGesture.
 	aGesture eventHandler: self
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>sendEventToGestures: anEvent [
+{ #category : #events }
+OSWindowGestureHandler >> sendEventToGestures: anEvent [
 	registeredGestures
 		do: [ :gesture | gesture handleEvent: anEvent ]
 ]
 
-{
-	#category : #'handling fingers',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>trackFinger: anEvent [
+{ #category : #'handling fingers' }
+OSWindowGestureHandler >> trackFinger: anEvent [
 	| newFingerTracker |
 	"Creating a new finger tracker"
 	newFingerTracker := OSTouchFingerTracker for: anEvent.
@@ -117,38 +83,26 @@ OSWindowGestureHandler>>trackFinger: anEvent [
 	(devicesFingers at: anEvent deviceId ifAbsentPut: OrderedCollection new) add: newFingerTracker.
 ]
 
-{
-	#category : #'detector registering',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>unregisterGesture: anOSTouchGesture [
+{ #category : #'detector registering' }
+OSWindowGestureHandler >> unregisterGesture: anOSTouchGesture [
 	registeredGestures remove: anOSTouchGesture 
 ]
 
-{
-	#category : #'handling fingers',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>untrackFinger: anEvent [
+{ #category : #'handling fingers' }
+OSWindowGestureHandler >> untrackFinger: anEvent [
 	| removedTracker |
 	fingerCount := fingerCount - 1.
 	removedTracker := fingers removeKey: anEvent fingerId ifAbsent: [ ^ self ].
 	(devicesFingers at: anEvent deviceId) remove: removedTracker.
 ]
 
-{
-	#category : #'handling fingers',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>updateGesturesActiveFingers [
+{ #category : #'handling fingers' }
+OSWindowGestureHandler >> updateGesturesActiveFingers [
 	registeredGestures do: [ :gesture | gesture activeFingers: (self fingersFromDevice: gesture deviceId) ]
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>visitTouchPointerDownEvent: anEvent [
+{ #category : #visiting }
+OSWindowGestureHandler >> visitTouchPointerDownEvent: anEvent [
 	self trackFinger: anEvent.
 	
 	"Updating informations"
@@ -162,11 +116,8 @@ OSWindowGestureHandler>>visitTouchPointerDownEvent: anEvent [
 	self visitTouchActionPointerDownEvent: anEvent
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>visitTouchPointerMoveEvent: anEvent [
+{ #category : #visiting }
+OSWindowGestureHandler >> visitTouchPointerMoveEvent: anEvent [
 	| fingerTracker |
 	fingerTracker := fingers at: anEvent fingerId ifAbsent: [ self trackFinger: anEvent].
 
@@ -178,11 +129,8 @@ OSWindowGestureHandler>>visitTouchPointerMoveEvent: anEvent [
 	self visitTouchActionPointerMoveEvent: anEvent
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowGestureHandler>>visitTouchPointerUpEvent: anEvent [
+{ #category : #visiting }
+OSWindowGestureHandler >> visitTouchPointerUpEvent: anEvent [
 	self untrackFinger: anEvent.
 	lastUpdateTimestamp := anEvent timestamp.
 	self updateGesturesActiveFingers.

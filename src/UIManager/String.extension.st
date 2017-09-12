@@ -1,12 +1,7 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*UIManager-Support',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-String>>displayProgressAt: aPoint from: minVal to: maxVal during: workBlock  [
+{ #category : #'*UIManager-Support' }
+String >> displayProgressAt: aPoint from: minVal to: maxVal during: workBlock [ 
 	"Deprecated! - Display this string as a caption over a progress bar while workBlock is evaluated.
 
 EXAMPLE (Select next 6 lines and Do It)
@@ -34,11 +29,8 @@ it is sent the message value: x, where x is in the from:to: range.
 		during: workBlock
 ]
 
-{
-	#category : #'*UIManager-Support',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-String>>displayProgressFrom: minVal to: maxVal during: workBlock  [
+{ #category : #'*UIManager-Support' }
+String >> displayProgressFrom: minVal to: maxVal during: workBlock [ 
 	"Display this string as a caption over a progress bar while workBlock is evaluated.
 
 EXAMPLE (Select next 6 lines and Do It)

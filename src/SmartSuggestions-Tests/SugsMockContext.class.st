@@ -19,165 +19,107 @@ Class {
 	#classInstVars : [
 		'anInstanceVar'
 	],
-	#category : #SmartSuggestions-Tests,
-	#timestamp : '<historical>'
+	#category : #SmartSuggestions-Tests
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext class>>assigmentContext [
+{ #category : #'instance creation' }
+SugsMockContext class >> assigmentContext [
 	^ self new selectorToUse: #withAssigment; yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext class>>classContext [
+{ #category : #'instance creation' }
+SugsMockContext class >> classContext [
 	^ self new selectorToUse: #withClass; yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext class>>classVariableContext [
+{ #category : #'instance creation' }
+SugsMockContext class >> classVariableContext [
 		^ self new selectorToUse: #withClassVariable; yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext class>>for: aClass [
+{ #category : #'instance creation' }
+SugsMockContext class >> for: aClass [
 	^self new 
 		selectedClass: aClass
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext class>>for: aClass selectedVariable: aVariableName [
+{ #category : #'instance creation' }
+SugsMockContext class >> for: aClass selectedVariable: aVariableName [
 	^self new 
 		selectedClass: aClass;
 		selectedVariable: aVariableName.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext class>>instVarContext [
+{ #category : #'instance creation' }
+SugsMockContext class >> instVarContext [
 	^ self new selectorToUse: #withInstanceVar; yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext class>>literalContext [
+{ #category : #'instance creation' }
+SugsMockContext class >> literalContext [
 	^ self new selectorToUse: #withLiteral; yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext class>>mesageContext [
+{ #category : #'instance creation' }
+SugsMockContext class >> mesageContext [
 	^ self new selectorToUse: #withMesage; yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext class>>methodClassContext [
+{ #category : #'instance creation' }
+SugsMockContext class >> methodClassContext [
 	^self new 
 		selectedClass: self;
 		selectorToUse: #methodClassContext
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext class>>methodContext [
+{ #category : #'instance creation' }
+SugsMockContext class >> methodContext [
 	^ self new selectorToUse: #withMethod; yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext class>>selfContext [
+{ #category : #'instance creation' }
+SugsMockContext class >> selfContext [
 	^ self new selectorToUse: #withSelf; yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext class>>sourceContext [
+{ #category : #'instance creation' }
+SugsMockContext class >> sourceContext [
 	^ self new selectorToUse: #withSourceContext; yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext class>>superContext [
+{ #category : #'instance creation' }
+SugsMockContext class >> superContext [
 	^ self new selectorToUse: #withSuper; yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext class>>tempVarContext [
+{ #category : #'instance creation' }
+SugsMockContext class >> tempVarContext [
 	^ self new selectorToUse: #withTemporaryVar; yourself.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext class>>withMessageName: theName  [
+{ #category : #'instance creation' }
+SugsMockContext class >> withMessageName: theName [ 
 	^ self new message: theName; yourself.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext class>>withNode: aNode  [
+{ #category : #initialization }
+SugsMockContext class >> withNode: aNode [ 
 	^self new selectedNode: aNode.
 ]
 
-{
-	#category : #refactoring,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>browsedEnvironment [
+{ #category : #refactoring }
+SugsMockContext >> browsedEnvironment [
 	self subclassResponsibility .
 ]
 
-{
-	#category : #api-context,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>code [
+{ #category : #api-context }
+SugsMockContext >> code [
 	^ self selectedMethod sourceCode
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>interval: selector  [
+{ #category : #testing }
+SugsMockContext >> interval: selector [ 
 	selector = #withLiteral ifTrue:[^ 18 to: 17].
 	selector = #withSelf ifTrue:[^ 13 to: 13].
 	selector = #withSuper ifTrue:[^ 13 to: 13].
@@ -195,60 +137,39 @@ SugsMockContext>>interval: selector  [
 	
 ]
 
-{
-	#category : #api-context,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>message: theName [
+{ #category : #api-context }
+SugsMockContext >> message: theName [
 	^ message := theName.
 ]
 
-{
-	#category : #api-context,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>selectedClass [
+{ #category : #api-context }
+SugsMockContext >> selectedClass [
 	^selectedClass ifNil: [self class] ifNotNil:[selectedClass].
 ]
 
-{
-	#category : #api-context,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>selectedClass: aClass [
+{ #category : #api-context }
+SugsMockContext >> selectedClass: aClass [
 	selectedClass := aClass.
 ]
 
-{
-	#category : #api-context,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>selectedInterval [
+{ #category : #api-context }
+SugsMockContext >> selectedInterval [
 	^self interval: self selectorToUse 
 ]
 
-{
-	#category : #api-context,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>selectedInterval: interval [
+{ #category : #api-context }
+SugsMockContext >> selectedInterval: interval [
 	selectedInterval := interval.
 ]
 
-{
-	#category : #api-context,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>selectedMessageName [
+{ #category : #api-context }
+SugsMockContext >> selectedMessageName [
 
 	^message ifNil:[super selectedMessageName] ifNotNil: [ message ]
 ]
 
-{
-	#category : #api-context,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>selectedMethod [
+{ #category : #api-context }
+SugsMockContext >> selectedMethod [
 	^selectorToUse 
 		ifNotNil: [self selectedClass 
 					compiledMethodAt: selectorToUse 
@@ -256,136 +177,88 @@ SugsMockContext>>selectedMethod [
  		ifNil:[nil].
 ]
 
-{
-	#category : #api-context,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>selectedVariable: aVariableName. [
+{ #category : #api-context }
+SugsMockContext >> selectedVariable: aVariableName. [
 	selectedVariable := aVariableName.
 ]
 
-{
-	#category : #api-context,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>selectedVariableName [
+{ #category : #api-context }
+SugsMockContext >> selectedVariableName [
 	^selectedVariable ifNil: [ super selectedVariableName ] ifNotNil:   [selectedVariable]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>selectorToUse [
+{ #category : #accessing }
+SugsMockContext >> selectorToUse [
 	^ selectorToUse
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>selectorToUse: anObject [
+{ #category : #accessing }
+SugsMockContext >> selectorToUse: anObject [
 	selectorToUse := anObject
 ]
 
-{
-	#category : #api-context,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>sourceTextArea [
+{ #category : #api-context }
+SugsMockContext >> sourceTextArea [
 	^ RubScrolledTextMorph new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>withAssigment [
+{ #category : #testing }
+SugsMockContext >> withAssigment [
 	|temp|
 	
 	temp := 10.
 	^temp
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>withClass [
+{ #category : #testing }
+SugsMockContext >> withClass [
 	SugsMockContext .
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>withClassVariable [
+{ #category : #testing }
+SugsMockContext >> withClassVariable [
 	ClassVariable
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>withInstanceVar [
+{ #category : #'instance creation' }
+SugsMockContext >> withInstanceVar [
 	anInstanceVar.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>withLiteral [
+{ #category : #testing }
+SugsMockContext >> withLiteral [
 	'hola' with: 19.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>withMesage [
+{ #category : #testing }
+SugsMockContext >> withMesage [
 	self withClassVariable 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>withMethod [
+{ #category : #testing }
+SugsMockContext >> withMethod [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>withSelf [
+{ #category : #testing }
+SugsMockContext >> withSelf [
 	self with: 19.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>withSourceContext [
+{ #category : #testing }
+SugsMockContext >> withSourceContext [
 	SugsMockContext .
 	20+10.
 	OrderedCollection new.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>withSuper [
+{ #category : #testing }
+SugsMockContext >> withSuper [
 	super
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SugsMockContext>>withTemporaryVar [
+{ #category : #testing }
+SugsMockContext >> withTemporaryVar [
 	|aLocalVar|
 	
 	aLocalVar := 'bonjour'.

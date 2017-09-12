@@ -19,57 +19,38 @@ Class {
 		'categoryLabel',
 		'elementCount'
 	],
-	#category : #GT-Spotter-EventRecorder-Events,
-	#timestamp : 'AndreiChis 2/27/2015 14:41'
+	#category : #GT-Spotter-EventRecorder-Events
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderCategorySelectedEvent>>accept: aVisitor [
+{ #category : #visitor }
+GTSpotterRecorderCategorySelectedEvent >> accept: aVisitor [
 	^ aVisitor visitCategorySelectedEvent: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderCategorySelectedEvent>>categoryLabel [
+{ #category : #accessing }
+GTSpotterRecorderCategorySelectedEvent >> categoryLabel [
 	^ categoryLabel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderCategorySelectedEvent>>elementCount [
+{ #category : #accessing }
+GTSpotterRecorderCategorySelectedEvent >> elementCount [
 	^ elementCount
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderCategorySelectedEvent>>elementCountOrZero [
+{ #category : #accessing }
+GTSpotterRecorderCategorySelectedEvent >> elementCountOrZero [
 	^ self elementCount ifNil: [ 0 ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderCategorySelectedEvent>>fromAnnouncement: anAnnouncement [
+{ #category : #initialization }
+GTSpotterRecorderCategorySelectedEvent >> fromAnnouncement: anAnnouncement [
 
 	categoryLabel := anAnnouncement category title.
 	elementCount := anAnnouncement category allFilteredCandidates size.
 ]
 
-{
-	#category : #gt-inspector-extension,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderCategorySelectedEvent>>gtInspectorItems [
+{ #category : #gt-inspector-extension }
+GTSpotterRecorderCategorySelectedEvent >> gtInspectorItems [
 	^ OrderedCollection new
 			add: (#categoryLabel -> self categoryLabel);
 			add: (#elementCount -> self elementCount);
@@ -77,10 +58,7 @@ GTSpotterRecorderCategorySelectedEvent>>gtInspectorItems [
 			yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTSpotterRecorderCategorySelectedEvent>>isCategorySelection [
+{ #category : #testing }
+GTSpotterRecorderCategorySelectedEvent >> isCategorySelection [
 	^ true
 ]

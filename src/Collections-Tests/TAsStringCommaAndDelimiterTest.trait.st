@@ -3,44 +3,29 @@ A trait for test purposes
 "
 Trait {
 	#name : #TAsStringCommaAndDelimiterTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:32'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAsStringCommaAndDelimiterTest>>empty [
+{ #category : #requirements }
+TAsStringCommaAndDelimiterTest >> empty [
 
 	^ self explicitRequirement 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAsStringCommaAndDelimiterTest>>nonEmpty [
+{ #category : #requirements }
+TAsStringCommaAndDelimiterTest >> nonEmpty [
 
 	^ self explicitRequirement 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAsStringCommaAndDelimiterTest>>nonEmpty1Element [
+{ #category : #requirements }
+TAsStringCommaAndDelimiterTest >> nonEmpty1Element [
 " return a collection of size 1 including one element"
 	^ self explicitRequirement 
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAsStringCommaAndDelimiterTest>>test0FixtureAsStringCommaAndDelimiterTest [
+{ #category : #'tests - fixture' }
+TAsStringCommaAndDelimiterTest >> test0FixtureAsStringCommaAndDelimiterTest [
 	self nonEmpty.
 	self deny: self nonEmpty isEmpty.
 	self empty.
@@ -49,11 +34,8 @@ TAsStringCommaAndDelimiterTest>>test0FixtureAsStringCommaAndDelimiterTest [
 	self assert: self nonEmpty1Element size = 1
 ]
 
-{
-	#category : #'tests - as string comma delimiter sequenceable',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAsStringCommaAndDelimiterTest>>testAsCommaStringEmpty [
+{ #category : #'tests - as string comma delimiter sequenceable' }
+TAsStringCommaAndDelimiterTest >> testAsCommaStringEmpty [
 
 	self assert: self empty asCommaString = ''.
 	self assert: self empty asCommaStringAnd = ''.
@@ -61,11 +43,8 @@ TAsStringCommaAndDelimiterTest>>testAsCommaStringEmpty [
 
 ]
 
-{
-	#category : #'tests - as string comma delimiter sequenceable',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAsStringCommaAndDelimiterTest>>testAsCommaStringMore [
+{ #category : #'tests - as string comma delimiter sequenceable' }
+TAsStringCommaAndDelimiterTest >> testAsCommaStringMore [
 
 	| result resultAnd allElementsAsString tmp |
 	result:= self nonEmpty asCommaString .
@@ -91,11 +70,8 @@ TAsStringCommaAndDelimiterTest>>testAsCommaStringMore [
 			].
 ]
 
-{
-	#category : #'tests - as string comma delimiter sequenceable',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAsStringCommaAndDelimiterTest>>testAsCommaStringOne [
+{ #category : #'tests - as string comma delimiter sequenceable' }
+TAsStringCommaAndDelimiterTest >> testAsCommaStringOne [
 	
 	self nonEmpty1Element do: 
 		[:each | 
@@ -105,28 +81,19 @@ TAsStringCommaAndDelimiterTest>>testAsCommaStringOne [
 	
 ]
 
-{
-	#category : #'tests - as string comma delimiter sequenceable',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAsStringCommaAndDelimiterTest>>testAsStringOnDelimiterEmpty [
+{ #category : #'tests - as string comma delimiter sequenceable' }
+TAsStringCommaAndDelimiterTest >> testAsStringOnDelimiterEmpty [
 	self assert: (String streamContents: [ :emptyStream | self empty asStringOn: emptyStream delimiter: ', ' ]) equals: ''
 
 ]
 
-{
-	#category : #'tests - as string comma delimiter sequenceable',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAsStringCommaAndDelimiterTest>>testAsStringOnDelimiterLastEmpty [
+{ #category : #'tests - as string comma delimiter sequenceable' }
+TAsStringCommaAndDelimiterTest >> testAsStringOnDelimiterLastEmpty [
 	self assert: (String streamContents: [ :emptyStream | self empty asStringOn: emptyStream delimiter: ', ' last: 'and' ]) equals: ''
 ]
 
-{
-	#category : #'tests - as string comma delimiter sequenceable',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAsStringCommaAndDelimiterTest>>testAsStringOnDelimiterLastMore [
+{ #category : #'tests - as string comma delimiter sequenceable' }
+TAsStringCommaAndDelimiterTest >> testAsStringOnDelimiterLastMore [
 
 	| delim multiItemStream result last allElementsAsString tmp |
 	
@@ -143,11 +110,8 @@ TAsStringCommaAndDelimiterTest>>testAsStringOnDelimiterLastMore [
 	self assert: ((allElementsAsString at: (allElementsAsString size - 1))=('and'))
 ]
 
-{
-	#category : #'tests - as string comma delimiter sequenceable',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAsStringCommaAndDelimiterTest>>testAsStringOnDelimiterLastOne [
+{ #category : #'tests - as string comma delimiter sequenceable' }
+TAsStringCommaAndDelimiterTest >> testAsStringOnDelimiterLastOne [
 
 	| delim oneItemStream result |
 	
@@ -164,11 +128,8 @@ TAsStringCommaAndDelimiterTest>>testAsStringOnDelimiterLastOne [
 
 ]
 
-{
-	#category : #'tests - as string comma delimiter sequenceable',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAsStringCommaAndDelimiterTest>>testAsStringOnDelimiterMore [
+{ #category : #'tests - as string comma delimiter sequenceable' }
+TAsStringCommaAndDelimiterTest >> testAsStringOnDelimiterMore [
 
 	| delim multiItemStream result allElementsAsString tmp |
 	
@@ -186,11 +147,8 @@ TAsStringCommaAndDelimiterTest>>testAsStringOnDelimiterMore [
 		].
 ]
 
-{
-	#category : #'tests - as string comma delimiter sequenceable',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAsStringCommaAndDelimiterTest>>testAsStringOnDelimiterOne [
+{ #category : #'tests - as string comma delimiter sequenceable' }
+TAsStringCommaAndDelimiterTest >> testAsStringOnDelimiterOne [
 
 	| delim oneItemStream result |
 

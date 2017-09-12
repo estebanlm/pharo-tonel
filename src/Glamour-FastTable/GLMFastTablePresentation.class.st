@@ -42,59 +42,40 @@ Class {
 	#instVars : [
 		'parameters'
 	],
-	#category : #Glamour-FastTable-Presentations,
-	#timestamp : 'CyrilFerlicot 11/10/2015 10:58'
+	#category : #Glamour-FastTable-Presentations
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTablePresentation>>children: anObject  [
+{ #category : #accessing }
+GLMFastTablePresentation >> children: anObject [ 
 	 
 	self shouldNotImplement 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTablePresentation>>initialize [
+{ #category : #initialization }
+GLMFastTablePresentation >> initialize [
 	super initialize.
 	parameters := Dictionary new
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTablePresentation>>intercellSpacing [
+{ #category : #'public api' }
+GLMFastTablePresentation >> intercellSpacing [
 	^ self parameters 
 		at: 'intercellSpacing' 
 		ifAbsent: [ self class defaultIntercellSpacing ]
 ]
 
-{
-	#category : #'public api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTablePresentation>>intercellSpacing: aNumber [
+{ #category : #'public api' }
+GLMFastTablePresentation >> intercellSpacing: aNumber [
 	self parameters at: 'intercellSpacing' put: aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTablePresentation>>parameters [
+{ #category : #accessing }
+GLMFastTablePresentation >> parameters [
 	^ parameters
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTablePresentation>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMFastTablePresentation >> renderGlamorouslyOn: aRenderer [ 
 	self registerAnnouncements.
 	^ aRenderer renderFastTablePresentation: self
 ]

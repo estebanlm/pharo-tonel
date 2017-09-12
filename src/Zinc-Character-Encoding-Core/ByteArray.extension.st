@@ -1,12 +1,7 @@
-Extension {
-	#name : #ByteArray
-}
+Extension { #name : #ByteArray }
 
-{
-	#category : #'*Zinc-Character-Encoding-Core',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ByteArray>>decodeWith: encoding [
+{ #category : #'*Zinc-Character-Encoding-Core' }
+ByteArray >> decodeWith: encoding [
 	"Produce a String that decodes the receiver, using a specified encoding.
 	Encoding is either a ZnCharacterEncoder instance or an identifier for one."
 	
@@ -15,11 +10,8 @@ ByteArray>>decodeWith: encoding [
 	^ encoding asZnCharacterEncoder decodeBytes: self
 ]
 
-{
-	#category : #'*Zinc-Character-Encoding-Core',
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ByteArray>>utf8Decoded [
+{ #category : #'*Zinc-Character-Encoding-Core' }
+ByteArray >> utf8Decoded [
 	"Produce a String decoding the receiver using UTF-8,
 	the recommended encoding for Strings, unless you know what you are doing."
 

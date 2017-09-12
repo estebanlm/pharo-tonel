@@ -7,25 +7,18 @@ self example2.
 Class {
 	#name : #FTExampleMethodTableDataSource,
 	#superclass : #FTSimpleDataSource,
-	#category : #Morphic-Widgets-FastTable-Examples,
-	#timestamp : 'EstebanLorenzano 5/15/2015 13:13'
+	#category : #Morphic-Widgets-FastTable-Examples
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodTableDataSource class>>for: aClass [
+{ #category : #'instance creation' }
+FTExampleMethodTableDataSource class >> for: aClass [
 	^ self basicNew 
 		initializeClass: aClass;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodTableDataSource>>cellColumn: column row: rowIndex [
+{ #category : #accessing }
+FTExampleMethodTableDataSource >> cellColumn: column row: rowIndex [ 
 	column id = '#' ifTrue: [ ^ FTCellMorph new addMorph: rowIndex asMorph ].
 	column id = 'Name' ifTrue: [ ^ self nameColumn: column row: rowIndex ].
 	column id = 'Protocol' ifTrue: [ ^ self protocolColumn: column row: rowIndex ].
@@ -34,38 +27,26 @@ FTExampleMethodTableDataSource>>cellColumn: column row: rowIndex [
 	self error: 'Invalid column'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodTableDataSource>>colorFor: index [
+{ #category : #private }
+FTExampleMethodTableDataSource >> colorFor: index [
 	"index odd ifTrue: [ ^ Smalltalk ui theme lightBackgroundColor ]."
 	^Color transparent "Smalltalk ui theme backgroundColor"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodTableDataSource>>iconFor: rowIndex [
+{ #category : #private }
+FTExampleMethodTableDataSource >> iconFor: rowIndex [
 	^ (self elementAt: rowIndex) actionOn: self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodTableDataSource>>initializeClass: aClass [
+{ #category : #initialization }
+FTExampleMethodTableDataSource >> initializeClass: aClass [
 	self initialize.
 	self elements: ((aClass selectors sorted: [ :a :b | a < b ])
 		collect: [ :each | FTExampleMethodModel method: aClass>>each ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodTableDataSource>>menuColumn: column row: rowIndex [
+{ #category : #accessing }
+FTExampleMethodTableDataSource >> menuColumn: column row: rowIndex [
 	rowIndex = 0 ifTrue: [ 
 		"I could answer a menu without selection, but in this case I will just answer nil, 
 		 which means 'no menu'"
@@ -78,11 +59,8 @@ FTExampleMethodTableDataSource>>menuColumn: column row: rowIndex [
 	^ nil	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodTableDataSource>>nameColumn: column row: rowIndex [
+{ #category : #accessing }
+FTExampleMethodTableDataSource >> nameColumn: column row: rowIndex [
 	^ FTCellMorph new  
 		color: (self colorFor: rowIndex);
 		cellInset: 5;
@@ -91,11 +69,8 @@ FTExampleMethodTableDataSource>>nameColumn: column row: rowIndex [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodTableDataSource>>nameMenuColumn: column row: rowIndex [
+{ #category : #accessing }
+FTExampleMethodTableDataSource >> nameMenuColumn: column row: rowIndex [
 	| method menu |
 	method := (self elementAt: rowIndex) method.
 	menu := UIManager default newMenuIn: self table for: self.
@@ -109,22 +84,16 @@ FTExampleMethodTableDataSource>>nameMenuColumn: column row: rowIndex [
 	^ menu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodTableDataSource>>originColumn: column row: rowIndex [
+{ #category : #accessing }
+FTExampleMethodTableDataSource >> originColumn: column row: rowIndex [
 	^ FTCellMorph new 
 		color: (self colorFor: rowIndex);
 		addMorph: (self elementAt: rowIndex) origin name asMorph;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodTableDataSource>>originMenuColumn: column row: rowIndex [
+{ #category : #accessing }
+FTExampleMethodTableDataSource >> originMenuColumn: column row: rowIndex [
 	| method menu |
 	method := (self elementAt: rowIndex) method.
 	menu := UIManager default newMenuIn: self table for: self.
@@ -135,22 +104,16 @@ FTExampleMethodTableDataSource>>originMenuColumn: column row: rowIndex [
 	^ menu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodTableDataSource>>protocolColumn: column row: rowIndex [
+{ #category : #accessing }
+FTExampleMethodTableDataSource >> protocolColumn: column row: rowIndex [
 	^ FTCellMorph new
 		color: (self colorFor: rowIndex);
 		addMorph: (self elementAt: rowIndex) protocol asStringMorph;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTExampleMethodTableDataSource>>searchText: aString [
+{ #category : #accessing }
+FTExampleMethodTableDataSource >> searchText: aString [
 	aString isEmptyOrNil ifTrue: [ ^ #() ].
 	
 	self elements withIndexDo: [ :each :index |

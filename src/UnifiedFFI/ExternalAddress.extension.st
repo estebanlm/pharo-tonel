@@ -1,30 +1,19 @@
-Extension {
-	#name : #ExternalAddress
-}
+Extension { #name : #ExternalAddress }
 
-{
-	#category : #'*UnifiedFFI-private',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress>>adoptAddress: anExternalAddress [
+{ #category : #'*UnifiedFFI-private' }
+ExternalAddress >> adoptAddress: anExternalAddress [
 	anExternalAddress = 0 ifTrue: [ ^ self beNull ].
 	1 to: self size do: [ :index | 
 		self basicAt: index put: (anExternalAddress at: index) ]
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress>>autoRelease [
+{ #category : #'*UnifiedFFI' }
+ExternalAddress >> autoRelease [
 	^ self class finalizationRegistry add: self
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress>>copyFrom: startIndex to: endIndex [
+{ #category : #'*UnifiedFFI' }
+ExternalAddress >> copyFrom: startIndex to: endIndex [
 	| result size |
 	size := endIndex - startIndex + 1.
 	result := ByteArray new: size. 
@@ -32,28 +21,19 @@ ExternalAddress>>copyFrom: startIndex to: endIndex [
 	^ result
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress>>fromAddress: aNumber [
+{ #category : #'*UnifiedFFI' }
+ExternalAddress >> fromAddress: aNumber [
 	^ self fromInteger: aNumber
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress class>>fromAddress: aNumber [
+{ #category : #'*UnifiedFFI' }
+ExternalAddress class >> fromAddress: aNumber [
 	"Answers an external address who points to aNumber"
 	^ self new fromAddress: aNumber
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress class>>fromString: aString [
+{ #category : #'*UnifiedFFI' }
+ExternalAddress class >> fromString: aString [
 	| result |
 	
 	result := self allocate: aString size + 1.
@@ -63,11 +43,8 @@ ExternalAddress class>>fromString: aString [
 	^ result
 ]
 
-{
-	#category : #'*UnifiedFFI-Deprecated50',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress>>gcpointer [
+{ #category : #'*UnifiedFFI-Deprecated50' }
+ExternalAddress >> gcpointer [
 	"Same as #pointer (see its comment for detals), but contents are garbage collected automatically"
 	self deprecated: 'Use "pointer autoRelease" instead.' on: '2016-01-22' in: #Pharo5.  
 	^ (ExternalAddress gcallocate: self size)
@@ -75,49 +52,34 @@ ExternalAddress>>gcpointer [
 		yourself
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress class>>loadSymbol: moduleSymbol [
+{ #category : #'*UnifiedFFI' }
+ExternalAddress class >> loadSymbol: moduleSymbol [
 	"Load global symbol (one that you can find in current VM binary)"
 	^ self 
 		loadSymbol: moduleSymbol 
 		module: nil
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress class>>loadSymbol: moduleSymbol from: moduleNameOrClass  [
+{ #category : #'*UnifiedFFI' }
+ExternalAddress class >> loadSymbol: moduleSymbol from: moduleNameOrClass [ 
 	^ self 
 		loadSymbol: moduleSymbol 
 		module: moduleNameOrClass asFFILibrary moduleName.
 	
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress class>>newPointer [
+{ #category : #'*UnifiedFFI' }
+ExternalAddress class >> newPointer [
 	^ self allocate: self wordSize 
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress class>>null [
+{ #category : #'*UnifiedFFI' }
+ExternalAddress class >> null [
 	^ self new
 ]
 
-{
-	#category : #'*UnifiedFFI-private',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress>>packToArity: arity [
+{ #category : #'*UnifiedFFI-private' }
+ExternalAddress >> packToArity: arity [
 	"This will 'pack' a pointer to a certain arity. 
 	What does this means? Let's say I have a method who will be called with a ** arity (that's 'arity 2'): 
 	
@@ -145,11 +107,8 @@ ExternalAddress>>packToArity: arity [
 	^ rolledPointer
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress>>pointer [
+{ #category : #'*UnifiedFFI' }
+ExternalAddress >> pointer [
 	"Answers a pointer to the this address. 
 	 Sometimes, an ExternalAddress represents a pointer, so you do not need this, but some others 
 	 it represents just an address. Yes, I know, difference is subtle. 
@@ -169,29 +128,20 @@ ExternalAddress>>pointer [
 		yourself
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress>>pointerAutoRelease [
+{ #category : #'*UnifiedFFI' }
+ExternalAddress >> pointerAutoRelease [
 	"Same as #pointer (see its comment for detals), but contents are garbage collected automatically"
 	^ self pointer autoRelease
 ]
 
-{
-	#category : #'*UnifiedFFI-Deprecated50',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress>>registerAsExternalResource [
+{ #category : #'*UnifiedFFI-Deprecated50' }
+ExternalAddress >> registerAsExternalResource [
 	self deprecated: 'Use #autoRelease instead.' on: '2016-01-22' in: #Pharo5.  
 	^ self class finalizationRegistry add: self
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress>>replaceFrom: start to: stop with: replacement startingAt: repStart  [
+{ #category : #'*UnifiedFFI' }
+ExternalAddress >> replaceFrom: start to: stop with: replacement startingAt: repStart [ 
 	| dstAddress srcAddress repSize |
 	
 	self flag: #todo. "Maybe replace it with a primitive (like the one at Alien)?"
@@ -205,11 +155,8 @@ ExternalAddress>>replaceFrom: start to: stop with: replacement startingAt: repSt
 	LibC memCopy: srcAddress to: dstAddress size: repSize
 ]
 
-{
-	#category : #'*UnifiedFFI-private',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress>>unpackFromArity: arity [
+{ #category : #'*UnifiedFFI-private' }
+ExternalAddress >> unpackFromArity: arity [
 	"This will 'unpack' a pointer from a certain arity. See #unpackToArity: for a better explanation."
 	| rolledPointer |
 		
@@ -219,19 +166,13 @@ ExternalAddress>>unpackFromArity: arity [
 	^ rolledPointer	
 ]
 
-{
-	#category : #'*UnifiedFFI-private',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress>>unpackHandleFromArity: arity [
+{ #category : #'*UnifiedFFI-private' }
+ExternalAddress >> unpackHandleFromArity: arity [
 	^ (self unpackFromArity: arity) unsignedLongAt: 1
 	
 ]
 
-{
-	#category : #'*UnifiedFFI',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ExternalAddress>>value [
+{ #category : #'*UnifiedFFI' }
+ExternalAddress >> value [
 	^ self asInteger
 ]

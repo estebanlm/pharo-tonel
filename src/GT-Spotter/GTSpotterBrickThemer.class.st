@@ -1,9 +1,5 @@
-"
-
-"
 Class {
 	#name : #GTSpotterBrickThemer,
 	#superclass : #GLMBrickThemer,
-	#category : #GT-Spotter-Theme,
-	#timestamp : ''
+	#category : #GT-Spotter-Theme
 }

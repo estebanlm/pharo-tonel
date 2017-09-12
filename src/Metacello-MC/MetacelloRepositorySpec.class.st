@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloRepositorySpec,
 	#superclass : #MetacelloSpec,
@@ -10,15 +7,11 @@ Class {
 		'password',
 		'type'
 	],
-	#category : #Metacello-MC-Specs,
-	#timestamp : ''
+	#category : #Metacello-MC-Specs
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>addToMetacelloRepositories: aMetacelloRepositoriesSpec [
+{ #category : #adding }
+MetacelloRepositorySpec >> addToMetacelloRepositories: aMetacelloRepositoriesSpec [
 
 	aMetacelloRepositoriesSpec addMember: 
 		(aMetacelloRepositoriesSpec addMember 
@@ -27,11 +20,8 @@ MetacelloRepositorySpec>>addToMetacelloRepositories: aMetacelloRepositoriesSpec 
 			yourself)
 ]
 
-{
-	#category : #'mc support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>canUpgradeTo: aMetacelloRepositorySpec [
+{ #category : #'mc support' }
+MetacelloRepositorySpec >> canUpgradeTo: aMetacelloRepositorySpec [
   self description = aMetacelloRepositorySpec description
     ifTrue: [ ^ true ].
   (#('github' 'gitorious' 'bitbucket') includes: self type)
@@ -39,11 +29,8 @@ MetacelloRepositorySpec>>canUpgradeTo: aMetacelloRepositorySpec [
   ^ false
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>configMethodCascadeOn: aStream lastCascade: lastCascade [
+{ #category : #printing }
+MetacelloRepositorySpec >> configMethodCascadeOn: aStream lastCascade: lastCascade [
 
 	aStream nextPutAll: 'repository: ', self description printString.
 	(self username isEmpty not or: [ self password isEmpty not ])
@@ -51,11 +38,8 @@ MetacelloRepositorySpec>>configMethodCascadeOn: aStream lastCascade: lastCascade
 	lastCascade ifFalse: [ aStream nextPut: $;; cr ].
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>configMethodOn: aStream indent: indent [
+{ #category : #printing }
+MetacelloRepositorySpec >> configMethodOn: aStream indent: indent [
 
 	aStream 
 		tab: indent; 
@@ -63,11 +47,8 @@ MetacelloRepositorySpec>>configMethodOn: aStream indent: indent [
 	self configMethodCascadeOn: aStream lastCascade: true
 ]
 
-{
-	#category : #'mc support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>createRepository [
+{ #category : #'mc support' }
+MetacelloRepositorySpec >> createRepository [
   | repo |
   repo := self project createRepository: self.
   ^ MCRepositoryGroup default repositories
@@ -77,38 +58,26 @@ MetacelloRepositorySpec>>createRepository [
       repo ]
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>description [
+{ #category : #querying }
+MetacelloRepositorySpec >> description [
 
 	^description
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>description: aString [
+{ #category : #accessing }
+MetacelloRepositorySpec >> description: aString [
 
 	description := aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>extractTypeFromDescription [
+{ #category : #private }
+MetacelloRepositorySpec >> extractTypeFromDescription [
 
 	^MetacelloPlatform current extractTypeFromDescription: self description
 ]
 
-{
-	#category : #'mc support',
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>hasNoLoadConflicts: aMetacelloRepositorySpec [
+{ #category : #'mc support' }
+MetacelloRepositorySpec >> hasNoLoadConflicts: aMetacelloRepositorySpec [
   self description = aMetacelloRepositorySpec description
     ifTrue: [ ^ true ].
   (#('github' 'gitorious' 'bitbucket') includes: self type)
@@ -118,11 +87,8 @@ MetacelloRepositorySpec>>hasNoLoadConflicts: aMetacelloRepositorySpec [
   ^ false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>mergeIntoMetacelloRepositories: aMetacelloRepositoriesSpec [
+{ #category : #private }
+MetacelloRepositorySpec >> mergeIntoMetacelloRepositories: aMetacelloRepositoriesSpec [
 
 	aMetacelloRepositoriesSpec addMember: 
 		(aMetacelloRepositoriesSpec mergeMember 
@@ -131,11 +97,8 @@ MetacelloRepositorySpec>>mergeIntoMetacelloRepositories: aMetacelloRepositoriesS
 			yourself)
 ]
 
-{
-	#category : #merging,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>mergeMap [
+{ #category : #merging }
+MetacelloRepositorySpec >> mergeMap [
     | map |
     map := super mergeMap.
     map at: #'description' put: description.
@@ -145,39 +108,27 @@ MetacelloRepositorySpec>>mergeMap [
     ^ map
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>name [
+{ #category : #querying }
+MetacelloRepositorySpec >> name [
 
 	^self description
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>password [
+{ #category : #querying }
+MetacelloRepositorySpec >> password [
 
 	password == nil ifTrue: [ password := '' ].
 	^password
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>password: aString [
+{ #category : #accessing }
+MetacelloRepositorySpec >> password: aString [
 
 	password := aString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>removeFromMetacelloRepositories: aMetacelloRepositoriesSpec [
+{ #category : #private }
+MetacelloRepositorySpec >> removeFromMetacelloRepositories: aMetacelloRepositoriesSpec [
 
 	aMetacelloRepositoriesSpec addMember: 
 		(aMetacelloRepositoriesSpec removeMember 
@@ -186,40 +137,28 @@ MetacelloRepositorySpec>>removeFromMetacelloRepositories: aMetacelloRepositories
 			yourself)
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>type [
+{ #category : #querying }
+MetacelloRepositorySpec >> type [
 
 	type == nil ifTrue: [ type := self extractTypeFromDescription ].
 	^type
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>type: aString [
+{ #category : #accessing }
+MetacelloRepositorySpec >> type: aString [
 
 	type := aString
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>username [
+{ #category : #querying }
+MetacelloRepositorySpec >> username [
 
 	username == nil ifTrue: [ username := '' ].
 	^username
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloRepositorySpec>>username: aString [
+{ #category : #accessing }
+MetacelloRepositorySpec >> username: aString [
 
 	username := aString
 ]

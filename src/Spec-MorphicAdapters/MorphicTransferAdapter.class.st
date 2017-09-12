@@ -4,15 +4,11 @@ I am a morphic specific adapter used to build a transfer object during a drang a
 Class {
 	#name : #MorphicTransferAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : 'BenjaminVanRyseghem 4/24/2014 16:38'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTransferAdapter>>buildWidget [
+{ #category : #factory }
+MorphicTransferAdapter >> buildWidget [
 
 	^ SpecTransferMorph new
 		model: self;
@@ -21,20 +17,14 @@ MorphicTransferAdapter>>buildWidget [
 		yourself
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTransferAdapter>>passenger [
+{ #category : #'widget API' }
+MorphicTransferAdapter >> passenger [
 
 	^ [ self model passenger ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTransferAdapter>>source [
+{ #category : #'widget API' }
+MorphicTransferAdapter >> source [
 
 	^ [ self model source ]
 ]

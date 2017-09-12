@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #SpecWindowTest,
 	#superclass : #TestCase,
-	#category : #Spec-Tests,
-	#timestamp : ''
+	#category : #Spec-Tests
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-SpecWindowTest>>testIsDisplayed [
+{ #category : #'as yet unclassified' }
+SpecWindowTest >> testIsDisplayed [
 
 	"Test for case: 16800 -> ask a SpecWindow for #isDisplayed always returns true"
 	

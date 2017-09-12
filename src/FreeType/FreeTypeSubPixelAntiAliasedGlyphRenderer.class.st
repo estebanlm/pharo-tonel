@@ -7,15 +7,11 @@ Class {
 	#pools : [
 		'FT2Constants'
 	],
-	#category : #FreeType-GlyphRendering,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:11'
+	#category : #FreeType-GlyphRendering
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSubPixelAntiAliasedGlyphRenderer class>>initialize [
+{ #category : #'class initialization' }
+FreeTypeSubPixelAntiAliasedGlyphRenderer class >> initialize [
 	"
 	self initialize
 	"
@@ -23,11 +19,8 @@ FreeTypeSubPixelAntiAliasedGlyphRenderer class>>initialize [
 
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSubPixelAntiAliasedGlyphRenderer>>filter: aGlyphForm [
+{ #category : #rendering }
+FreeTypeSubPixelAntiAliasedGlyphRenderer >> filter: aGlyphForm [
 	"aGlyphForm should be 3x stretched 8 bit GlyphForm"
 	| w h s answer rowstart bytes word littleEndian shift v a colorVal i 
 	  prevG prevB r g b nextR nextG  filters rfilter gfilter bfilter  
@@ -107,11 +100,8 @@ FreeTypeSubPixelAntiAliasedGlyphRenderer>>filter: aGlyphForm [
 	^answer
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSubPixelAntiAliasedGlyphRenderer>>renderStretchedGlyph: aCharacter depth: depth subpixelPosition: sub font: aFreeTypeFont [
+{ #category : #rendering }
+FreeTypeSubPixelAntiAliasedGlyphRenderer >> renderStretchedGlyph: aCharacter depth: depth subpixelPosition: sub font: aFreeTypeFont [
 	"Glyphs are either 1 or 8 bit deep. For 32 bpp we use 8 bits, otherwise 1"
 	| em form glyph scaleX charCode slant extraWidth s offsetX offsetY synthBoldStrength boldExtra extraHeight face |
 
@@ -174,11 +164,8 @@ FreeTypeSubPixelAntiAliasedGlyphRenderer>>renderStretchedGlyph: aCharacter depth
 	^form
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeSubPixelAntiAliasedGlyphRenderer>>subGlyphOf: aCharacter colorValue: aColorValue mono: monoBoolean subpixelPosition: sub font: aFreeTypeFont [
+{ #category : #rendering }
+FreeTypeSubPixelAntiAliasedGlyphRenderer >> subGlyphOf: aCharacter colorValue: aColorValue mono: monoBoolean subpixelPosition: sub font: aFreeTypeFont [
 
 	| f |
 	monoBoolean

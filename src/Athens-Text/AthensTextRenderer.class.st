@@ -19,15 +19,11 @@ Class {
 		'maxAscent',
 		'currentLine'
 	],
-	#category : #Athens-Text,
-	#timestamp : 'IgorStasenko 10/20/2011 10:14'
+	#category : #Athens-Text
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderer class>>textGoryDetails [
+{ #category : #'as yet unclassified' }
+AthensTextRenderer class >> textGoryDetails [
 
 "
 Took from: http://www.freetype.org/freetype2/docs/tutorial/step2.html
@@ -75,19 +71,13 @@ When displaying or rendering underlined text, this value corresponds to the vert
 "
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderer>>initialize [
+{ #category : #'as yet unclassified' }
+AthensTextRenderer >> initialize [
 	color := Color black.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderer>>render: aText lines: lines on: aCanvas [
+{ #category : #'as yet unclassified' }
+AthensTextRenderer >> render: aText lines: lines on: aCanvas [
 
 	text := aText.
 	canvas := aCanvas.
@@ -107,33 +97,24 @@ AthensTextRenderer>>render: aText lines: lines on: aCanvas [
 		] ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderer>>renderBackground: bkObj [
+{ #category : #'as yet unclassified' }
+AthensTextRenderer >> renderBackground: bkObj [
 "self halt."
 	canvas setPaint: bkObj color.
 	canvas drawShape: ( bkObj start@0 corner: bkObj start + bkObj width @ currentLine heightAndDescent)
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderer>>renderBackground: aColor width: w [
+{ #category : #'as yet unclassified' }
+AthensTextRenderer >> renderBackground: aColor width: w [
 "self halt."
 	canvas setPaint: aColor.
 	canvas drawShape: ( advance x@0 corner: advance x + w +1@ currentLine heightAndDescent)
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderer>>renderCharactersFrom: start to: stop [
+{ #category : #'as yet unclassified' }
+AthensTextRenderer >> renderCharactersFrom: start to: stop [
 
 	" accumulate advance while rendering spans"
 	"canvas drawShape: (advance x @ advance y extent: 2 @ 2)."
@@ -143,22 +124,16 @@ AthensTextRenderer>>renderCharactersFrom: start to: stop [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderer>>setCurrentColor: aColor [
+{ #category : #'as yet unclassified' }
+AthensTextRenderer >> setCurrentColor: aColor [
 	color = aColor ifTrue: [ ^ self ].
 	color := aColor.
 "	canvas setPaint: aColor."
 	glyphRenderer ifNotNil:  [ glyphRenderer setColor: aColor ].
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensTextRenderer>>setCurrentFont: aFont [
+{ #category : #'as yet unclassified' }
+AthensTextRenderer >> setCurrentFont: aFont [
 	font := aFont.
 	glyphRenderer := font glyphRendererOn: canvas surface.
 	glyphRenderer 

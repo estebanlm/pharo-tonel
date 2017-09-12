@@ -26,15 +26,11 @@ obj local. “nil” <—— Now we don’t
 Class {
 	#name : #ProcessLocalSlot,
 	#superclass : #IndexedSlot,
-	#category : #Slot-Examples,
-	#timestamp : 'GuillermoPolito 2/27/2015 11:47'
+	#category : #Slot-Examples
 }
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ProcessLocalSlot>>emitStore: aMethodBuilder [
+{ #category : #'code generation' }
+ProcessLocalSlot >> emitStore: aMethodBuilder [
 	| temp |
 	temp := Object new.
 	"We pop the value from the stack into a temp to push it back in the right order"
@@ -47,47 +43,32 @@ ProcessLocalSlot>>emitStore: aMethodBuilder [
 	aMethodBuilder send: #value:
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ProcessLocalSlot>>emitValue: aMethodBuilder [
+{ #category : #'code generation' }
+ProcessLocalSlot >> emitValue: aMethodBuilder [
 	"Push the process local variable into the stack"
 	aMethodBuilder pushInstVar: index.
 	aMethodBuilder send: #value
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ProcessLocalSlot>>initialize: anObject [
+{ #category : #initialization }
+ProcessLocalSlot >> initialize: anObject [
 	super write: ProcessLocalVariable new to: anObject
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ProcessLocalSlot>>read: anObject [
+{ #category : #meta-object-protocol }
+ProcessLocalSlot >> read: anObject [
 
 	^ (super read: anObject) value.
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ProcessLocalSlot>>wantsInitalization [
+{ #category : #meta-object-protocol }
+ProcessLocalSlot >> wantsInitalization [
 
 	^ true
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ProcessLocalSlot>>write: aValue to: anObject [
+{ #category : #meta-object-protocol }
+ProcessLocalSlot >> write: aValue to: anObject [
 
 	(super read: anObject) value: aValue.
 	^ aValue

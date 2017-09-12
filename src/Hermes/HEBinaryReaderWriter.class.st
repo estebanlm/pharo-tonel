@@ -1,98 +1,64 @@
-"
-
-"
 Class {
 	#name : #HEBinaryReaderWriter,
 	#superclass : #Object,
 	#instVars : [
 		'stream'
 	],
-	#category : #Hermes,
-	#timestamp : ''
+	#category : #Hermes
 }
 
-{
-	#category : #sizes,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>byteArraySize: aByteArray [
+{ #category : #sizes }
+HEBinaryReaderWriter >> byteArraySize: aByteArray [
 	^ self intSize + aByteArray size.
 
 ]
 
-{
-	#category : #sizes,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>byteStringSize: aString [
+{ #category : #sizes }
+HEBinaryReaderWriter >> byteStringSize: aString [
 	^ self byteArraySize: aString asArray
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>close [
+{ #category : #initialize-release }
+HEBinaryReaderWriter >> close [
 	self stream close.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>flush [
+{ #category : #accessing }
+HEBinaryReaderWriter >> flush [
 	stream flush
 ]
 
-{
-	#category : #sizes,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>intSize [
+{ #category : #sizes }
+HEBinaryReaderWriter >> intSize [
 	^ 4
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>readByte [
+{ #category : #reading }
+HEBinaryReaderWriter >> readByte [
 	^ stream next
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>readByteArray [
+{ #category : #reading }
+HEBinaryReaderWriter >> readByteArray [
 	| byteArray size |
 	size := self readInt. 
 	byteArray := stream next: size.
 	^ byteArray
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>readByteString [
+{ #category : #reading }
+HEBinaryReaderWriter >> readByteString [
 	^ self readByteArray asString
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>readByteSymbol [
+{ #category : #reading }
+HEBinaryReaderWriter >> readByteSymbol [
 	^ self readByteString asSymbol 
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>readInt [
+{ #category : #reading }
+HEBinaryReaderWriter >> readInt [
 	| byteArray n |
 	byteArray := stream next: self intSize.
 	n := byteArray at: 4.
@@ -104,11 +70,8 @@ HEBinaryReaderWriter>>readInt [
 	^ n
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>readUInt [
+{ #category : #reading }
+HEBinaryReaderWriter >> readUInt [
 	| byteArray n |
 	byteArray := stream next: self intSize.
 	n := byteArray at: 4.
@@ -118,52 +81,34 @@ HEBinaryReaderWriter>>readUInt [
 	^ n
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>stream [
+{ #category : #accessing }
+HEBinaryReaderWriter >> stream [
 	^ stream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>stream: anObject [
+{ #category : #accessing }
+HEBinaryReaderWriter >> stream: anObject [
 	stream := anObject
 ]
 
-{
-	#category : #writting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>writeByte: aNumber [
+{ #category : #writting }
+HEBinaryReaderWriter >> writeByte: aNumber [
 	stream nextPut: aNumber
 ]
 
-{
-	#category : #writting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>writeByteArray: byteArray [
+{ #category : #writting }
+HEBinaryReaderWriter >> writeByteArray: byteArray [
 	self writeInt: byteArray size.
 	stream nextPutAll: byteArray.
 ]
 
-{
-	#category : #writting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>writeByteString: aString [
+{ #category : #writting }
+HEBinaryReaderWriter >> writeByteString: aString [
 	self writeByteArray: aString asByteArray
 ]
 
-{
-	#category : #writting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>writeInt: aNumber [
+{ #category : #writting }
+HEBinaryReaderWriter >> writeInt: aNumber [
 	| numberToSave |
 	numberToSave := aNumber < 0
 		ifTrue: [ (0 - aNumber) bitInvert32 + 1 ]
@@ -171,10 +116,7 @@ HEBinaryReaderWriter>>writeInt: aNumber [
 	1 to: 4 do: [ :i | stream nextPut: (numberToSave digitAt: i) ]
 ]
 
-{
-	#category : #writting,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-HEBinaryReaderWriter>>writeUInt: aNumber [
+{ #category : #writting }
+HEBinaryReaderWriter >> writeUInt: aNumber [
 	1 to: 4 do: [ :i | stream nextPut: (aNumber digitAt: i) ]
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #RPackage
-}
+Extension { #name : #RPackage }
 
-{
-	#category : #'*Monticello-RPackage',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RPackage>>isDirty [
+{ #category : #'*Monticello-RPackage' }
+RPackage >> isDirty [
 	
 	| mcp |
 	
@@ -18,22 +13,16 @@ RPackage>>isDirty [
 		ifAbsent: [ false ])
 ]
 
-{
-	#category : #'*Monticello-RPackage',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RPackage>>mcPackage [
+{ #category : #'*Monticello-RPackage' }
+RPackage >> mcPackage [
 	"Normally the corresponding MCPackage should exist, but in certain cases it could happen that it does not"
 	
 	^ self mcWorkingCopy ifNotNil: [ :workingCopy | workingCopy package ].
 	
 ]
 
-{
-	#category : #'*Monticello-RPackage',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-RPackage>>mcWorkingCopy [
+{ #category : #'*Monticello-RPackage' }
+RPackage >> mcWorkingCopy [
 	
 	^ MCWorkingCopy allManagers 
 		detect: [ :each | each package name = name ]

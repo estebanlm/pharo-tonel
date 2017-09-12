@@ -24,15 +24,11 @@ Class {
 		'RememberPreferredExtent',
 		'StepRefreshRate'
 	],
-	#category : #GT-Inspector,
-	#timestamp : 'TudorGirba 8/21/2011 16:57'
+	#category : #GT-Inspector
 }
 
-{
-	#category : #'utilities api',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>closeAllInspectors [
+{ #category : #'utilities api' }
+GTInspector class >> closeAllInspectors [
 	<script>
 	"self closeAllInspectors"
 	(SystemWindow allSubInstances select: [:w | 
@@ -41,44 +37,29 @@ GTInspector class>>closeAllInspectors [
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>disableStepRefresh [
+{ #category : #settings }
+GTInspector class >> disableStepRefresh [
 	self setEnabledStepRefreshStatus: false
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>enableStepRefresh [
+{ #category : #settings }
+GTInspector class >> enableStepRefresh [
 	self setEnabledStepRefreshStatus: true
 ]
 
-{
-	#category : #openning,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>explore: anObject  [
+{ #category : #openning }
+GTInspector class >> explore: anObject [ 
 	self openOn: anObject.
 	^ anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>extensionsPragma [
+{ #category : #accessing }
+GTInspector class >> extensionsPragma [
 	^ #gtInspectorPresentationOrder:
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>extentSettingsOn: aBuilder  [
+{ #category : #settings }
+GTInspector class >> extentSettingsOn: aBuilder [ 
 	<systemsettings>
 	
 	(aBuilder setting: #GTInspectorPreferredWidth)
@@ -105,11 +86,8 @@ GTInspector class>>extentSettingsOn: aBuilder  [
 
 ]
 
-{
-	#category : #inspecting,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>gtInspectorExtensionsIn: composite [
+{ #category : #inspecting }
+GTInspector class >> gtInspectorExtensionsIn: composite [
 	<gtInspectorPresentationOrder: 40>
 	composite list
 		title: 'Extensions';
@@ -119,44 +97,29 @@ GTInspector class>>gtInspectorExtensionsIn: composite [
 		filterOn: [ :text :each | each gtDisplayString includesSubstring: text caseSensitive: false ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>indexableDisplayLimit [
+{ #category : #settings }
+GTInspector class >> indexableDisplayLimit [
 	^ IndexableDisplayLimit ifNil: [ 5000 ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>indexableDisplayLimit: anInteger [
+{ #category : #settings }
+GTInspector class >> indexableDisplayLimit: anInteger [
 	IndexableDisplayLimit := anInteger
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>initialize  [
+{ #category : #'class initialization' }
+GTInspector class >> initialize [ 
 	self numberOfInspectorPanes: 2
 ]
 
-{
-	#category : #openning,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>inspect: anObject  [
+{ #category : #openning }
+GTInspector class >> inspect: anObject [ 
 	self openOn: anObject.
 	^ anObject
 ]
 
-{
-	#category : #openning,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>inspect: anObject label: aString [
+{ #category : #openning }
+GTInspector class >> inspect: anObject label: aString [
 	self new 
 		title: aString;
 		openOn: anObject.
@@ -164,165 +127,108 @@ GTInspector class>>inspect: anObject label: aString [
 
 ]
 
-{
-	#category : #openning,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>inspector: anObject [
+{ #category : #openning }
+GTInspector class >> inspector: anObject [
 
 	^ self openOn: anObject
 ]
 
-{
-	#category : #inspecting,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>inspectorExtendingMethods [
+{ #category : #inspecting }
+GTInspector class >> inspectorExtendingMethods [
 	^ (SystemNavigation default allBehaviors flatCollect: [ :each | 
 			(Pragma allNamed: self extensionsPragma in: each) 
 				collect: [ :p | p method asRingDefinition ] ])
 		sorted
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>isGTInspectorEnabled [
+{ #category : #settings }
+GTInspector class >> isGTInspectorEnabled [
 
 	^ GTInspectorEnabledStatus ifNil: [ GTInspectorEnabledStatus := Smalltalk tools inspector = self ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>isStepRefreshEnabled [
+{ #category : #settings }
+GTInspector class >> isStepRefreshEnabled [
 
 	^ EnabledStepRefreshStatus ifNil: [ false ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>numberOfInspectorPanes [
+{ #category : #settings }
+GTInspector class >> numberOfInspectorPanes [
 	^ GTNumberOfInspectorPanes 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>numberOfInspectorPanes: anInteger [
+{ #category : #settings }
+GTInspector class >> numberOfInspectorPanes: anInteger [
 	GTNumberOfInspectorPanes := anInteger 
 ]
 
-{
-	#category : #openning,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>openOn: anObject  [
+{ #category : #openning }
+GTInspector class >> openOn: anObject [ 
 	^ self new openOn: anObject
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>preferredExtent [
+{ #category : #settings }
+GTInspector class >> preferredExtent [
 	^ PreferredExtent ifNil: [ PreferredExtent := 600@400 ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>preferredExtent: aPoint [
+{ #category : #settings }
+GTInspector class >> preferredExtent: aPoint [
 	PreferredExtent := aPoint
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>preferredHeight [
+{ #category : #settings }
+GTInspector class >> preferredHeight [
 	^ self preferredExtent y
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>preferredHeight: aHeight [
+{ #category : #settings }
+GTInspector class >> preferredHeight: aHeight [
 	self preferredExtent setX: self preferredExtent x setY: aHeight
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>preferredWidth [
+{ #category : #settings }
+GTInspector class >> preferredWidth [
 	^ self preferredExtent x
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>preferredWidth: aWidth [
+{ #category : #settings }
+GTInspector class >> preferredWidth: aWidth [
 	self preferredExtent setX: aWidth setY: self preferredExtent y
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>register [
+{ #category : #'tools registry' }
+GTInspector class >> register [
 
 	self registerToolsOn: Smalltalk tools
 
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>registerToolsOn: registry [
+{ #category : #'tools registry' }
+GTInspector class >> registerToolsOn: registry [
 	"self registerToolsOn: Smalltalk tools " 
 	registry register: self as: #inspector
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>rememberPreferredExtent [
+{ #category : #settings }
+GTInspector class >> rememberPreferredExtent [
 	^ RememberPreferredExtent ifNil: [ RememberPreferredExtent := true ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>rememberPreferredExtent: aBoolean [
+{ #category : #settings }
+GTInspector class >> rememberPreferredExtent: aBoolean [
 	^ RememberPreferredExtent := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>setEnabledStepRefreshStatus: aBoolean [
+{ #category : #settings }
+GTInspector class >> setEnabledStepRefreshStatus: aBoolean [
 	EnabledStepRefreshStatus := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>setGTInspectorEnabledStatus: aBoolean [
+{ #category : #settings }
+GTInspector class >> setGTInspectorEnabledStatus: aBoolean [
 	| oldStatus |
 	
 	oldStatus := self isGTInspectorEnabled.
@@ -335,20 +241,14 @@ GTInspector class>>setGTInspectorEnabledStatus: aBoolean [
 	
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>setPreferredExtentIfWanted: anExtent [
+{ #category : #settings }
+GTInspector class >> setPreferredExtentIfWanted: anExtent [
 	self rememberPreferredExtent ifTrue: [ 
 		self preferredExtent: anExtent ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>settingsOn: aBuilder  [
+{ #category : #settings }
+GTInspector class >> settingsOn: aBuilder [ 
 	<systemsettings>
 	
 	(aBuilder group: #gt)
@@ -373,56 +273,38 @@ GTInspector class>>settingsOn: aBuilder  [
 		 		description: 'Enable or disable the automatic refresh in GTInspector that uses a busy update loop (based on the stepping mechanism from Morphic).']
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>stepRefreshRate [
+{ #category : #settings }
+GTInspector class >> stepRefreshRate [
 	^ StepRefreshRate ifNil: [ 1500 ]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector class>>stepRefreshRate: anInteger [
+{ #category : #settings }
+GTInspector class >> stepRefreshRate: anInteger [
 	StepRefreshRate := anInteger
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>actOnPaneAdded: anAnnouncement [
+{ #category : #callbacks }
+GTInspector >> actOnPaneAdded: anAnnouncement [
 	
 	"Update toolbar of a pane before the last (added) pane if there is one"
 	(self panes atLast: 2 ifAbsent: [ ^ self ])
 		updateToolbar
 ]
 
-{
-	#category : #callbacks,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>actOnPaneRemoved: anAnnouncement [
+{ #category : #callbacks }
+GTInspector >> actOnPaneRemoved: anAnnouncement [
 
 	"Update toolbar of a pane before the removed pane (now it is last one)"
 	self panes last updateToolbar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>browser [
+{ #category : #accessing }
+GTInspector >> browser [
 	^ self first
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>closeActionFor: aPresentation [
+{ #category : #actions }
+GTInspector >> closeActionFor: aPresentation [
 
 	^ GLMGenericAction new
 			action: [ self removeLastPane ];
@@ -432,11 +314,8 @@ GTInspector>>closeActionFor: aPresentation [
 			title: 'Close this inspector column'
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>compose [
+{ #category : #building }
+GTInspector >> compose [
 	self title: [:anObject | 'Inspector on ', (self printObjectAsAnItem: anObject)].
 	self act: [:b | b update] icon: GLMUIThemeExtraIcons glamorousRefresh entitled: 'Update'.
 	self act: [:b | 
@@ -472,20 +351,14 @@ GTInspector>>compose [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>entities [
+{ #category : #accessing }
+GTInspector >> entities [
 	"returns the list of objects from the #entity port of each pane of the finder"
 	^ self panes collect: [ :each | (each port: #entity) value ]
 ]
 
-{
-	#category : #context,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>filterByMethods: aCollection [
+{ #category : #context }
+GTInspector >> filterByMethods: aCollection [
 	| filter |
 	
 	filter := GTInspectorMethodListFilter new.
@@ -494,20 +367,14 @@ GTInspector>>filterByMethods: aCollection [
 	self presentationFilter: filter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>firstPresentation [
+{ #category : #accessing }
+GTInspector >> firstPresentation [
 
 	^ self panes first presentations first
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>initialize [
+{ #category : #initialization }
+GTInspector >> initialize [
 	super initialize.
 	
 	self presentationFilter: (GTInspectorTagFilter new
@@ -517,20 +384,14 @@ GTInspector>>initialize [
 			addAndSelectTag: #examples)
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>openExplorerFor: anObject [
+{ #category : #actions }
+GTInspector >> openExplorerFor: anObject [
 	"this method is needed for compatibility with ObjectExplorer"
 	self openOn: anObject
 ]
 
-{
-	#category : #'scripting opening',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>openOn: aPage [
+{ #category : #'scripting opening' }
+GTInspector >> openOn: aPage [
 	| window |
 	window := super openOn: aPage.
 	window extent: self class preferredExtent.
@@ -542,19 +403,13 @@ GTInspector>>openOn: aPage [
 	^ window
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>panes [
+{ #category : #accessing }
+GTInspector >> panes [
 	^ self browser panes
 ]
 
-{
-	#category : #context,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>presentationFilter [
+{ #category : #context }
+GTInspector >> presentationFilter [
 	"Return a filter for limiting the number of visible presentations.
 	Filter can not be nil"
 	<return: #GTInspectorPresentationFilter>
@@ -562,11 +417,8 @@ GTInspector>>presentationFilter [
 	^ presentationFilter
 ]
 
-{
-	#category : #context,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>presentationFilter: aPresentationFilter [
+{ #category : #context }
+GTInspector >> presentationFilter: aPresentationFilter [
 	"Set a filter for limiting the number of visible presentations.
 	Presentation filter must not be nil. If you don't need any filter use GTInspectorNoneFilter instead"
 	
@@ -577,11 +429,8 @@ GTInspector>>presentationFilter: aPresentationFilter [
 	presentationFilter := aPresentationFilter
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>printObjectAsAnItem: anObject [
+{ #category : #private }
+GTInspector >> printObjectAsAnItem: anObject [
 	| header printString |
 	header := (anObject class name first isVowel
 		ifTrue: [ 'an ' ]
@@ -594,11 +443,8 @@ GTInspector>>printObjectAsAnItem: anObject [
 				out << header; << ' ('; << printString; << ')' ] ]
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>refreshPanes [
+{ #category : #updating }
+GTInspector >> refreshPanes [
 	self panes do: [ :aPane | 
 		aPane updateToolbar.
 		aPane presentations presentations first withAllPresentations do: [ :aPresentation |
@@ -606,11 +452,8 @@ GTInspector>>refreshPanes [
 				aPresentation requestRefresh ] ]  ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>removeLastPane [
+{ #category : #actions }
+GTInspector >> removeLastPane [
 	| lastPane |
 	
 	lastPane := self panes last.
@@ -618,40 +461,28 @@ GTInspector>>removeLastPane [
 	self browser announce: (GLMPaneRemoved pane: lastPane fromBrowser: self browser)
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>requestRefresh [
+{ #category : #updating }
+GTInspector >> requestRefresh [
 	self updateToolbar.
 	self refreshPanes
 ]
 
-{
-	#category : #context,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>shouldDisplayPresentationCreatedBy: aMethod [
+{ #category : #context }
+GTInspector >> shouldDisplayPresentationCreatedBy: aMethod [
 	"Verify whether or not the presentation created by the given method should be displayed.
 	If no filter is given display all presentations."
 
 	^ self presentationFilter shouldDisplayPresentationCreatedBy: aMethod
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>showFirst: aBlock [
+{ #category : #scripting }
+GTInspector >> showFirst: aBlock [
 
 	self browser showFirst: aBlock
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspector>>step [
+{ #category : #stepping }
+GTInspector >> step [
 	self window ifNil: [ ^ self ].
 	self window isActive ifFalse: [ ^ self ].
 	

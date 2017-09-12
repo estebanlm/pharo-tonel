@@ -9,32 +9,22 @@ Class {
 	#instVars : [
 		'version'
 	],
-	#category : #Zinc-HTTP-Exceptions,
-	#timestamp : 'DamienPollet 8/4/2011 14:07'
+	#category : #Zinc-HTTP-Exceptions
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnknownHttpVersion class>>version: version [
+{ #category : #'instance creation' }
+ZnUnknownHttpVersion class >> version: version [
 	^ self new
 		version: version;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnknownHttpVersion>>version [
+{ #category : #accessing }
+ZnUnknownHttpVersion >> version [
 	^ version
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnknownHttpVersion>>version: anObject [
+{ #category : #accessing }
+ZnUnknownHttpVersion >> version: anObject [
 	version := anObject
 ]

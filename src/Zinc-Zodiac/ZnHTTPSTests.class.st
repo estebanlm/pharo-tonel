@@ -10,15 +10,11 @@ Part of Zinc HTTP Components
 Class {
 	#name : #ZnHTTPSTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Zodiac,
-	#timestamp : 'SvenVanCaekenberghe 5/18/2011 14:18'
+	#category : #Zinc-Zodiac
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests class>>generateTestData: size [
+{ #category : #testing }
+ZnHTTPSTests class >> generateTestData: size [
 	"self generateTestData: 1111"
 	
 	^ String 
@@ -29,11 +25,8 @@ ZnHTTPSTests class>>generateTestData: size [
 		limitedTo: size 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests class>>generateTestFiles [
+{ #category : #testing }
+ZnHTTPSTests class >> generateTestFiles [
 	"self generateTestFiles"
 	
 	(Integer primesUpTo: 100) do: [ :each | | size |
@@ -42,11 +35,8 @@ ZnHTTPSTests class>>generateTestFiles [
 			stream nextPutAll: (self generateTestData: size) ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests>>disabledTestPayPal [
+{ #category : #testing }
+ZnHTTPSTests >> disabledTestPayPal [
 	| client |
 	self ensureSocketStreamFactory.
 	self isNativeSSLPluginPresent ifFalse: [ ^ self ].
@@ -57,11 +47,8 @@ ZnHTTPSTests>>disabledTestPayPal [
 	client close
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests>>doesNativeSSLPluginSupportSNI [
+{ #category : #private }
+ZnHTTPSTests >> doesNativeSSLPluginSupportSNI [
 	"Return whether the SSL VM plugin supports SNI."
 	
 	^ [ ZdcPluginSSLSession new serverName; serverName: nil; destroy. true ]
@@ -69,21 +56,15 @@ ZnHTTPSTests>>doesNativeSSLPluginSupportSNI [
 			do: [ false ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests>>ensureSocketStreamFactory [
+{ #category : #private }
+ZnHTTPSTests >> ensureSocketStreamFactory [
 	self 
 		assert: ZnNetworkingUtils default secureSocketStreamClass notNil
 		description: 'Please set a secure socket stream class in ZnNetworkingUtils default or switch to the ZnZodiacNetworkingUtils socket stream factory'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests>>isNativeSSLPluginPresent [
+{ #category : #private }
+ZnHTTPSTests >> isNativeSSLPluginPresent [
 	"Return whether the SSL VM plugin can be instanciated and intialized."
 	
 	^ [ ZdcPluginSSLSession new destroy. true ]
@@ -91,11 +72,8 @@ ZnHTTPSTests>>isNativeSSLPluginPresent [
 			do: [ false ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests>>runningOnWindows [
+{ #category : #private }
+ZnHTTPSTests >> runningOnWindows [
 	"Pharo 3+"
 	[ ^ OSPlatform current isWindows ] on: MessageNotUnderstood do: [ ].
 	"Pharo 2-"
@@ -104,11 +82,8 @@ ZnHTTPSTests>>runningOnWindows [
 	^ false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests>>runningOnWindowsInriaCI [
+{ #category : #private }
+ZnHTTPSTests >> runningOnWindowsInriaCI [
 	| platform ci |
 	self runningOnWindows
 		ifFalse: [ ^ false ].
@@ -120,11 +95,8 @@ ZnHTTPSTests>>runningOnWindowsInriaCI [
 		do: [ false ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests>>testAmazonAWS [
+{ #category : #testing }
+ZnHTTPSTests >> testAmazonAWS [
 	| client |
 	self ensureSocketStreamFactory.
 	self isNativeSSLPluginPresent ifFalse: [ ^ self ].
@@ -135,11 +107,8 @@ ZnHTTPSTests>>testAmazonAWS [
 	client close
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests>>testGForceInria [
+{ #category : #testing }
+ZnHTTPSTests >> testGForceInria [
 	| client |
 	self ensureSocketStreamFactory.
 	self isNativeSSLPluginPresent ifFalse: [ ^ self ].
@@ -150,11 +119,8 @@ ZnHTTPSTests>>testGForceInria [
 	client close
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests>>testGetPharoVersion [
+{ #category : #testing }
+ZnHTTPSTests >> testGetPharoVersion [
 	| client lastBuildVersion version |
 	self ensureSocketStreamFactory.
 	self isNativeSSLPluginPresent ifFalse: [ ^ self ].
@@ -172,11 +138,8 @@ ZnHTTPSTests>>testGetPharoVersion [
 	self deny: version isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests>>testGmailEncrypted [
+{ #category : #testing }
+ZnHTTPSTests >> testGmailEncrypted [
 	| client |
 	self ensureSocketStreamFactory.
 	self isNativeSSLPluginPresent ifFalse: [ ^ self ].  
@@ -188,11 +151,8 @@ ZnHTTPSTests>>testGmailEncrypted [
 	client close
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests>>testGoogleEncrypted [
+{ #category : #testing }
+ZnHTTPSTests >> testGoogleEncrypted [
 	| client |
 	self ensureSocketStreamFactory.
 	self isNativeSSLPluginPresent ifFalse: [ ^ self ].
@@ -204,11 +164,8 @@ ZnHTTPSTests>>testGoogleEncrypted [
 	client close
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests>>testRequestResponse [
+{ #category : #testing }
+ZnHTTPSTests >> testRequestResponse [
 	| query stream request response |
 	self ensureSocketStreamFactory.
 	self isNativeSSLPluginPresent ifFalse: [ ^ self ].
@@ -227,11 +184,8 @@ ZnHTTPSTests>>testRequestResponse [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests>>testSNIPage [
+{ #category : #testing }
+ZnHTTPSTests >> testSNIPage [
 	| client |
 	self ensureSocketStreamFactory.
 	self isNativeSSLPluginPresent ifFalse: [ ^ self skip ].
@@ -245,11 +199,8 @@ ZnHTTPSTests>>testSNIPage [
 	client close
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests>>testTransfers [
+{ #category : #testing }
+ZnHTTPSTests >> testTransfers [
 	self ensureSocketStreamFactory.
 	self isNativeSSLPluginPresent ifFalse: [ ^ self ].
 	(Integer primesUpTo: 100) do: [ :each | | size client |
@@ -269,11 +220,8 @@ ZnHTTPSTests>>testTransfers [
 			equals: (self class generateTestData: size)	]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests>>testTransfersSingleClient [
+{ #category : #testing }
+ZnHTTPSTests >> testTransfersSingleClient [
 	| client |
 	self ensureSocketStreamFactory.
 	self isNativeSSLPluginPresent ifFalse: [ ^ self ].
@@ -294,11 +242,8 @@ ZnHTTPSTests>>testTransfersSingleClient [
 	client close
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-ZnHTTPSTests>>testWikimedia [
+{ #category : #testing }
+ZnHTTPSTests >> testWikimedia [
 	| client |
 	self ensureSocketStreamFactory.
 	self isNativeSSLPluginPresent ifFalse: [ ^ self ]. 

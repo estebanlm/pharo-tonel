@@ -6,34 +6,24 @@ Boolean redefines #new so no instances of Boolean can be created. It also redefi
 Class {
 	#name : #Boolean,
 	#superclass : #Object,
-	#category : #Kernel-Objects,
-	#timestamp : '<historical>'
+	#category : #Kernel-Objects
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean class>>new [
+{ #category : #'instance creation' }
+Boolean class >> new [
 	self error: 'You may not create any more Booleans - this is two-valued logic'
 ]
 
-{
-	#category : #'logical operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>& aBoolean [
+{ #category : #'logical operations' }
+Boolean >> & aBoolean [ 
 	"Evaluating conjunction. Evaluate the argument. Then answer true if 
 	both the receiver and the argument are true."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #'logical operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>==> aBlock [
+{ #category : #'logical operations' }
+Boolean >> ==> aBlock [
 	"The material conditional, also known as the material implication or truth functional conditional.
 	Correspond to not ... or ... and does not correspond to the English if...then... construction.
 		
@@ -57,11 +47,8 @@ Boolean>>==> aBlock [
 	^self not or: [aBlock value]
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>and: alternativeBlock [
+{ #category : #controlling }
+Boolean >> and: alternativeBlock [ 
 	"Nonevaluating conjunction. If the receiver is true, answer the value of 
 	the argument, alternativeBlock; otherwise answer false without 
 	evaluating the argument."
@@ -69,39 +56,27 @@ Boolean>>and: alternativeBlock [
 	self subclassResponsibility
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>asBit [
+{ #category : #converting }
+Boolean >> asBit [
 	"convert myself to an Integer representing 1 for true and 0 for false"
 	self subclassResponsibility
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>deepCopy [
+{ #category : #copying }
+Boolean >> deepCopy [ 
 	"Receiver has two concrete subclasses, True and False.
 	Only one instance of each should be made, so return self."
 ]
 
-{
-	#category : #'logical operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>eqv: aBoolean [
+{ #category : #'logical operations' }
+Boolean >> eqv: aBoolean [ 
 	"Answer true if the receiver is equivalent to aBoolean."
 
 	^self == aBoolean
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>ifFalse: alternativeBlock [
+{ #category : #controlling }
+Boolean >> ifFalse: alternativeBlock [ 
 	"If the receiver is true (i.e., the condition is true), then the value is the 
 	true alternative, which is nil. Otherwise answer the result of evaluating 
 	the argument, alternativeBlock. Create an error notification if the 
@@ -111,21 +86,15 @@ Boolean>>ifFalse: alternativeBlock [
 	self subclassResponsibility
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>ifFalse: falseAlternativeBlock ifTrue: trueAlternativeBlock [
+{ #category : #controlling }
+Boolean >> ifFalse: falseAlternativeBlock ifTrue: trueAlternativeBlock [ 
 	"Same as ifTrue:ifFalse:."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>ifTrue: alternativeBlock [
+{ #category : #controlling }
+Boolean >> ifTrue: alternativeBlock [ 
 	"If the receiver is false (i.e., the condition is false), then the value is the 
 	false alternative, which is nil. Otherwise answer the result of evaluating 
 	the argument, alternativeBlock. Create an error notification if the 
@@ -135,11 +104,8 @@ Boolean>>ifTrue: alternativeBlock [
 	self subclassResponsibility
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>ifTrue: trueAlternativeBlock ifFalse: falseAlternativeBlock [
+{ #category : #controlling }
+Boolean >> ifTrue: trueAlternativeBlock ifFalse: falseAlternativeBlock [
 	"If the receiver is true (i.e., the condition is true), then answer the value 
 	of the argument trueAlternativeBlock. If the receiver is false, answer the 
 	result of evaluating the argument falseAlternativeBlock. If the receiver 
@@ -149,38 +115,26 @@ Boolean>>ifTrue: trueAlternativeBlock ifFalse: falseAlternativeBlock [
 	self subclassResponsibility
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>isLiteral [
+{ #category : #printing }
+Boolean >> isLiteral [ 
 	^ true
 ]
 
-{
-	#category : #'self evaluating',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>isSelfEvaluating [
+{ #category : #'self evaluating' }
+Boolean >> isSelfEvaluating [
 	^ true
 ]
 
-{
-	#category : #'logical operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>not [
+{ #category : #'logical operations' }
+Boolean >> not [
 	"Negation. Answer true if the receiver is false, answer false if the 
 	receiver is true."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>or: alternativeBlock [
+{ #category : #controlling }
+Boolean >> or: alternativeBlock [ 
 	"Nonevaluating disjunction. If the receiver is false, answer the value of 
 	the argument, alternativeBlock; otherwise answer true without 
 	evaluating the argument."
@@ -188,49 +142,34 @@ Boolean>>or: alternativeBlock [
 	self subclassResponsibility
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>shallowCopy [
+{ #category : #copying }
+Boolean >> shallowCopy [ 
 	"Receiver has two concrete subclasses, True and False.
 	Only one instance of each should be made, so return self."
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>storeOn: aStream [
+{ #category : #printing }
+Boolean >> storeOn: aStream [ 
 	"Refer to the comment in Object|storeOn:."
 
 	self printOn: aStream
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>veryDeepCopyWith: deepCopier [
+{ #category : #copying }
+Boolean >> veryDeepCopyWith: deepCopier [
 	"Return self.  I can't be copied.  Do not record me."
 ]
 
-{
-	#category : #controlling,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>xor: alternativeBlock [
+{ #category : #controlling }
+Boolean >> xor: alternativeBlock [ 
 	"Nonevaluating conjunction. If the receiver is true, answer the opposite of the 
 	the argument, alternativeBlock; otherwise answer the value of the alternativeBlock."
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #'logical operations',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Boolean>>| aBoolean [
+{ #category : #'logical operations' }
+Boolean >> | aBoolean [ 
 	"Evaluating disjunction (OR). Evaluate the argument. Then answer true 
 	if either the receiver or the argument is true."
 

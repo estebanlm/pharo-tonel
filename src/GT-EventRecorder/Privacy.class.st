@@ -22,26 +22,19 @@ Class {
 		'sendEntityNames',
 		'sendSourceCode'
 	],
-	#category : #GT-EventRecorder-Privacy,
-	#timestamp : 'JurajKubelka 9/2/2015 12:56'
+	#category : #GT-EventRecorder-Privacy
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Privacy class>>cleanUp [
+{ #category : #cleanup }
+Privacy class >> cleanUp [
 	"Clean settings."
 	sendDiagnosticsAndUsageData := nil.
 	sendEntityNames := nil.
 	sendSourceCode := nil.
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Privacy class>>privacySettingsOn: aBuilder [
+{ #category : #settings }
+Privacy class >> privacySettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder group: #privacy)
 		label: 'Privacy';
@@ -49,29 +42,20 @@ Privacy class>>privacySettingsOn: aBuilder [
 		description: 'All settings concerned with privacy'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Privacy class>>sendDiagnosticsAndUsageData [
+{ #category : #accessing }
+Privacy class >> sendDiagnosticsAndUsageData [
 	^ sendDiagnosticsAndUsageData ifNil: [ sendDiagnosticsAndUsageData := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Privacy class>>sendDiagnosticsAndUsageData: aBoolean [
+{ #category : #accessing }
+Privacy class >> sendDiagnosticsAndUsageData: aBoolean [
 	sendDiagnosticsAndUsageData = aBoolean ifTrue: [ ^ self ].
 	sendDiagnosticsAndUsageData := aBoolean.
 	SystemAnnouncer uniqueInstance announce: PrivacyChangedAnnoucement.
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Privacy class>>sendDiagnosticsAndUsageUsageDataSettingsOn: aBuilder [
+{ #category : #settings }
+Privacy class >> sendDiagnosticsAndUsageUsageDataSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #sendDiagnosticsAndUsageData)
 		label: 'Send diagnostics and usage data';
@@ -81,27 +65,18 @@ Privacy class>>sendDiagnosticsAndUsageUsageDataSettingsOn: aBuilder [
 		parent: #privacy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Privacy class>>sendEntityNames [
+{ #category : #accessing }
+Privacy class >> sendEntityNames [
 	^ sendEntityNames ifNil: [ sendEntityNames := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Privacy class>>sendEntityNames: aBoolean [
+{ #category : #accessing }
+Privacy class >> sendEntityNames: aBoolean [
 	sendEntityNames := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Privacy class>>sendEntityNamesSettingsOn: aBuilder [
+{ #category : #settings }
+Privacy class >> sendEntityNamesSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #sendEntityNames)
 		label: 'Include package/class/method names';
@@ -111,27 +86,18 @@ Privacy class>>sendEntityNamesSettingsOn: aBuilder [
 		parent: #sendDiagnosticsAndUsageData
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Privacy class>>sendSourceCode [
+{ #category : #accessing }
+Privacy class >> sendSourceCode [
 	^ sendSourceCode ifNil: [ sendSourceCode := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Privacy class>>sendSourceCode: aBoolean [
+{ #category : #accessing }
+Privacy class >> sendSourceCode: aBoolean [
 	sendSourceCode := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-Privacy class>>sendSourceCodeSettingsOn: aBuilder [
+{ #category : #settings }
+Privacy class >> sendSourceCodeSettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder setting: #sendSourceCode)
 		label: 'Include source code';

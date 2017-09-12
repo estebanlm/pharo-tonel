@@ -13,31 +13,21 @@ Class {
 	#instVars : [
 		'next'
 	],
-	#category : #Athens-Core-Paths,
-	#timestamp : '<historical>'
+	#category : #Athens-Core-Paths
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathSegment>>accept: aVisitor [
+{ #category : #visitor }
+AthensPathSegment >> accept: aVisitor [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathSegment>>convertWith: anObject [
+{ #category : #visitor }
+AthensPathSegment >> convertWith: anObject [
 	self subclassResponsibility
 ]
 
-{
-	#category : #iterating,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathSegment>>do: aBlock [
+{ #category : #iterating }
+AthensPathSegment >> do: aBlock [
 	| segment |
 	
 	segment := self.
@@ -45,56 +35,38 @@ AthensPathSegment>>do: aBlock [
 	[  aBlock value: segment. segment := segment next. segment notNil ] whileTrue.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathSegment>>isCubic [
+{ #category : #testing }
+AthensPathSegment >> isCubic [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathSegment>>isMove [
+{ #category : #testing }
+AthensPathSegment >> isMove [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathSegment>>next [
+{ #category : #accessing }
+AthensPathSegment >> next [
 
 	^ next
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathSegment>>next: anObject [
+{ #category : #accessing }
+AthensPathSegment >> next: anObject [
 
 	next := anObject
 ]
 
-{
-	#category : #iterating,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathSegment>>sendCommandsTo: aBuilder [
+{ #category : #iterating }
+AthensPathSegment >> sendCommandsTo: aBuilder [
 
 	self do: [ :segment |
 		segment sendCommandTo: aBuilder
 	]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathSegment>>size [
+{ #category : #accessing }
+AthensPathSegment >> size [
 	"answer 1 + the number of segments next to receiver"
 	
 	| segment count |
@@ -105,11 +77,8 @@ AthensPathSegment>>size [
 	^ count.
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensPathSegment>>visitWith: visitor [
+{ #category : #visitor }
+AthensPathSegment >> visitWith: visitor [
 
 	self subclassResponsibility
 ]

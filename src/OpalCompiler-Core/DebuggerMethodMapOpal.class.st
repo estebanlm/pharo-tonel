@@ -13,34 +13,24 @@ Class {
 	#instVars : [
 		'methodNode'
 	],
-	#category : #OpalCompiler-Core-FrontEnd,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-FrontEnd
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-DebuggerMethodMapOpal class>>forMethod: aMethod "<CompiledMethod>" [
+{ #category : #'instance creation' }
+DebuggerMethodMapOpal class >> forMethod: aMethod [ "<CompiledMethod>"
 	"Answer a DebuggerMethodMap suitable for debugging activations of aMethod"
 	^self new forMethod: aMethod
 	
 				
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-DebuggerMethodMapOpal>>forMethod: aCompiledMethod  [
+{ #category : #initialize-release }
+DebuggerMethodMapOpal >> forMethod: aCompiledMethod [ 
 	methodNode := aCompiledMethod ast
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-DebuggerMethodMapOpal>>namedTempAt: index in: aContext [
+{ #category : #public }
+DebuggerMethodMapOpal >> namedTempAt: index [ in: aContext
 	"Answer the value of the temp at index in aContext where index is relative
 	 to the array of temp names answered by tempNamesForContext:"
 
@@ -49,11 +39,8 @@ DebuggerMethodMapOpal>>namedTempAt: index in: aContext [
 	^self tempNamed: name in: aContext.
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-DebuggerMethodMapOpal>>namedTempAt: index put: aValue in: aContext [
+{ #category : #public }
+DebuggerMethodMapOpal >> namedTempAt: index put: aValue [ in: aContext
 	"Assign the value of the temp at index in aContext where index is relative
 	 to the array of temp names answered by tempNamesForContext:.
 	 If the value is a copied value we also need to set it along the lexical chain."
@@ -63,22 +50,16 @@ DebuggerMethodMapOpal>>namedTempAt: index put: aValue in: aContext [
 	^self tempNamed: name in: aContext put: aValue.
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-DebuggerMethodMapOpal>>rangeForPC: aPC [
+{ #category : #public }
+DebuggerMethodMapOpal >> rangeForPC: aPC [
 	"return the debug highlight for aPC"
 	
 	^self rangeForPC: aPC contextIsActiveContext: false
 	
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-DebuggerMethodMapOpal>>rangeForPC: aPC contextIsActiveContext: contextIsActive [
+{ #category : #public }
+DebuggerMethodMapOpal >> rangeForPC: aPC contextIsActiveContext: contextIsActive [
 	"return the debug highlight for aPC"
 	| pc |
 	
@@ -92,11 +73,8 @@ DebuggerMethodMapOpal>>rangeForPC: aPC contextIsActiveContext: contextIsActive [
 	
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-DebuggerMethodMapOpal>>tempNamed: name in: aContext [
+{ #category : #public }
+DebuggerMethodMapOpal >> tempNamed: name in: aContext [
 	"Answer the value of the temp with name in aContext"
 	
 	| scope var |
@@ -106,11 +84,8 @@ DebuggerMethodMapOpal>>tempNamed: name in: aContext [
 		
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-DebuggerMethodMapOpal>>tempNamed: name in: aContext put: aValue [
+{ #category : #public }
+DebuggerMethodMapOpal >> tempNamed: name in: aContext put: aValue [
 	"Assign the value of the temp with name in aContext
 	 If the value is a copied value we also need to set it along the lexical chain."
 
@@ -123,11 +98,8 @@ DebuggerMethodMapOpal>>tempNamed: name in: aContext put: aValue [
 	
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-DebuggerMethodMapOpal>>tempNamesForContext: aContext [
+{ #category : #public }
+DebuggerMethodMapOpal >> tempNamesForContext: aContext [
 	"Answer an Array of all the temp names in scope in aContext starting with
 	 the home's first local (the first argument or first temporary if no arguments)."
 	

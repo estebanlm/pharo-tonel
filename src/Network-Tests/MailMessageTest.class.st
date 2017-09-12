@@ -4,15 +4,11 @@ SUnit tests for MailMessage
 Class {
 	#name : #MailMessageTest,
 	#superclass : #TestCase,
-	#category : #Network-Tests-Mail,
-	#timestamp : 'TorstenBergmann 2/5/2014 10:12'
+	#category : #Network-Tests-Mail
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MailMessageTest>>testCreateFromString [
+{ #category : #tests }
+MailMessageTest >> testCreateFromString [
 
 	| text message |
 	text := 
@@ -41,11 +37,8 @@ Mike
 	self assert: message cc = 'cc1@scn.org, cc1also@test.org, cc2@scn.org'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MailMessageTest>>testMultiPartAlternative [
+{ #category : #tests }
+MailMessageTest >> testMultiPartAlternative [
 	| m txt html  part1 part2 |
 	
 	txt := 'This is plain text.'.
@@ -69,11 +62,8 @@ MailMessageTest>>testMultiPartAlternative [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MailMessageTest>>testMultiPartMixed [
+{ #category : #tests }
+MailMessageTest >> testMultiPartMixed [
 	| m txt html  part1 part2 |
 	
 	txt := 'This is plain text.'.
@@ -97,11 +87,8 @@ MailMessageTest>>testMultiPartMixed [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MailMessageTest>>testRecipientList [
+{ #category : #tests }
+MailMessageTest >> testRecipientList [
 
 	| message |
 	message := MailMessage fromRfc822: 'To: pharo-project@lists.gforge.inria.fr, pharo-users@lists.gforge.inria.fr'.
@@ -111,11 +98,8 @@ MailMessageTest>>testRecipientList [
 	self assert: (message recipientList second = 'pharo-users@lists.gforge.inria.fr').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-MailMessageTest>>testSimpleCreate [
+{ #category : #tests }
+MailMessageTest >> testSimpleCreate [
 
 	| message |
 	message := MailMessage

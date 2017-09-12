@@ -4,38 +4,25 @@ I am an abstract class used to gather all the announcements related to class mod
 Class {
 	#name : #ClassAnnouncement,
 	#superclass : #SystemAnnouncement,
-	#category : #System-Announcements-System-Classes,
-	#timestamp : 'BenjaminVanRyseghem 1/23/2014 11:53'
+	#category : #System-Announcements-System-Classes
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassAnnouncement>>classAffected [
+{ #category : #accessing }
+ClassAnnouncement >> classAffected [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassAnnouncement>>classTagAffected [
+{ #category : #accessing }
+ClassAnnouncement >> classTagAffected [
 	^self packageAffected toTagName: self classAffected category
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassAnnouncement>>packageAffected [
+{ #category : #accessing }
+ClassAnnouncement >> packageAffected [
 	^self classAffected package
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassAnnouncement>>packagesAffected [
+{ #category : #accessing }
+ClassAnnouncement >> packagesAffected [
 	^{self packageAffected}
 ]

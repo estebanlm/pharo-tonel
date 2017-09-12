@@ -9,157 +9,105 @@ Class {
 		'item',
 		'model'
 	],
-	#category : #Morphic-Widgets-List,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-List
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper class>>with: anObject [
+{ #category : #'as yet unclassified' }
+ListItemWrapper class >> with: anObject [
 
 	^self new setItem: anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper class>>with: anObject model: aModel [
+{ #category : #'as yet unclassified' }
+ListItemWrapper class >> with: anObject model: aModel [
 
 	^self new setItem: anObject model: aModel
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>acceptDroppingObject: anotherItem [
+{ #category : #dropping/grabbing }
+ListItemWrapper >> acceptDroppingObject: anotherItem [
 
 	^item acceptDroppingObject: anotherItem
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>asString [
+{ #category : #converting }
+ListItemWrapper >> asString [
 
 	^item asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>balloonText [
+{ #category : #accessing }
+ListItemWrapper >> balloonText [
 
 	^nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>canBeDragged [
+{ #category : #testing }
+ListItemWrapper >> canBeDragged [
 
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>contents [
+{ #category : #accessing }
+ListItemWrapper >> contents [
 
 	^Array new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>handlesMouseOver: evt [
+{ #category : #testing }
+ListItemWrapper >> handlesMouseOver: evt [
 
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>hasContents [
+{ #category : #accessing }
+ListItemWrapper >> hasContents [
 
 	^self contents isEmpty not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>hasEquivalentIn: aCollection [
+{ #category : #testing }
+ListItemWrapper >> hasEquivalentIn: aCollection [
 	^ aCollection anySatisfy: [ :each | each withoutListWrapper = item withoutListWrapper ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>highlightingColor [
+{ #category : #accessing }
+ListItemWrapper >> highlightingColor [
 	^ self theme selectionColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>icon [
+{ #category : #accessing }
+ListItemWrapper >> icon [
 	"Answer a form to be used as icon"
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>item [
+{ #category : #accessing }
+ListItemWrapper >> item [
 	"Answer the item. It is useful!"
 	
 	^item
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>item: newItem [
+{ #category : #accessing }
+ListItemWrapper >> item: newItem [
 	item := newItem
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>model [
+{ #category : #accessing }
+ListItemWrapper >> model [
 	"Answer the model. It is useful!"
 	
 	^model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>preferredColor [
+{ #category : #accessing }
+ListItemWrapper >> preferredColor [
 	^ nil
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>sendSettingMessageTo: aModel [
+{ #category : #dropping/grabbing }
+ListItemWrapper >> sendSettingMessageTo: aModel [
 
 	aModel 
 		perform: (self settingSelector ifNil: [^self])
@@ -167,57 +115,39 @@ ListItemWrapper>>sendSettingMessageTo: aModel [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>setItem: anObject [
+{ #category : #accessing }
+ListItemWrapper >> setItem: anObject [
 
 	item := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>setItem: anObject model: aModel [
+{ #category : #accessing }
+ListItemWrapper >> setItem: anObject model: aModel [
 
 	item := anObject.
 	model := aModel.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>setItemFromBlock: aBlock [
+{ #category : #accessing }
+ListItemWrapper >> setItemFromBlock: aBlock [
 
 	self setItem: aBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>settingSelector [
+{ #category : #accessing }
+ListItemWrapper >> settingSelector [
 
 	^nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>wantsDroppedObject: anotherItem [
+{ #category : #testing }
+ListItemWrapper >> wantsDroppedObject: anotherItem [
 
 	^false
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ListItemWrapper>>withoutListWrapper [
+{ #category : #converting }
+ListItemWrapper >> withoutListWrapper [
 
 	^item withoutListWrapper
 ]

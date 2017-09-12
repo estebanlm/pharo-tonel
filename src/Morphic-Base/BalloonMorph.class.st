@@ -21,48 +21,32 @@ Class {
 		'BalloonColor',
 		'BalloonFont'
 	],
-	#category : #Morphic-Base-Widgets,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-Widgets
 }
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph class>>balloonColor [
+{ #category : #utility }
+BalloonMorph class >> balloonColor [
 	^ BalloonColor ifNil: [BalloonColor := self defaultBalloonColor]
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph class>>balloonFont [
+{ #category : #utility }
+BalloonMorph class >> balloonFont [
 	^ BalloonFont ifNil: [BalloonFont := StandardFonts defaultFont]
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph class>>balloonFont: aFont [
+{ #category : #utility }
+BalloonMorph class >> balloonFont: aFont [
 	BalloonFont := aFont
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph class>>defaultBalloonColor [
+{ #category : #private }
+BalloonMorph class >> defaultBalloonColor [
 
 	^ (Color fromArray: #(0.85 0.9 1.0 )) twiceLighter alpha: 0.95
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph class>>getBestLocation: vertices for: morph corner: cornerName [
+{ #category : #private }
+BalloonMorph class >> getBestLocation: vertices for: morph corner: cornerName [
 	| rect maxArea verts rectCorner morphPoint mbc a mp dir bestVerts result usableArea |
 	"Choose rect independantly of vertice order or size. Would be nice it this took into account curveBounds but it does not." 
 	rect := Rectangle encompassing: vertices.  
@@ -86,11 +70,8 @@ BalloonMorph class>>getBestLocation: vertices for: morph corner: cornerName [
 	^ result
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph class>>getTextMorph: aStringOrMorph for: balloonOwner [
+{ #category : #private }
+BalloonMorph class >> getTextMorph: aStringOrMorph for: balloonOwner [
 	"Construct text morph."
 	| m text |
 	aStringOrMorph isMorph
@@ -105,11 +86,8 @@ BalloonMorph class>>getTextMorph: aStringOrMorph for: balloonOwner [
 	^ m
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph class>>getVertices: bounds [
+{ #category : #private }
+BalloonMorph class >> getVertices: bounds [
 	"Construct vertices for a balloon up and to left of anchor"
 
 	| corners |
@@ -119,37 +97,25 @@ BalloonMorph class>>getVertices: bounds [
 		with: corners first + (0 - bounds width // 4 @ (bounds height // 2))) , corners
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph class>>initialize  [
+{ #category : #'instance creation' }
+BalloonMorph class >> initialize [ 
 	"BalloonMorph initialize"
 	self setBalloonColorTo: BalloonMorph defaultBalloonColor.
 	self balloonFont: StandardFonts defaultFont
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph class>>setBalloonColorTo: aColor  [
+{ #category : #utility }
+BalloonMorph class >> setBalloonColorTo: aColor [ 
 	aColor ifNotNil: [BalloonColor := aColor]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph class>>string: str for: morph [
+{ #category : #'instance creation' }
+BalloonMorph class >> string: str for: morph [
 	^ self string: str for: morph corner: #bottomLeft
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph class>>string: str for: morph corner: cornerName  [
+{ #category : #'instance creation' }
+BalloonMorph class >> string: str for: morph corner: cornerName [ 
 	"Make up and return a balloon for morph. Find the quadrant that 
 	clips the text the least, using cornerName as a tie-breaker. tk 9/12/97"
 	| tm vertices |
@@ -166,75 +132,51 @@ BalloonMorph class>>string: str for: morph corner: cornerName  [
 		 setTarget: morph
 ]
 
-{
-	#category : #menus,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph>>adjustedCenter [
+{ #category : #menus }
+BalloonMorph >> adjustedCenter [
 	"Return the center of the original textMorph box within the balloon."
 
 	^ (self vertices last: 4) average rounded  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph>>balloonColor [
+{ #category : #accessing }
+BalloonMorph >> balloonColor [
 
 	^ balloonColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph>>balloonColor: aColor [
+{ #category : #accessing }
+BalloonMorph >> balloonColor: aColor [
 
 	balloonColor := aColor.
 	self color: aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph>>balloonOwner [
+{ #category : #accessing }
+BalloonMorph >> balloonOwner [
 	^balloonOwner
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph>>defaultBorderColor [
+{ #category : #initialization }
+BalloonMorph >> defaultBorderColor [
 	"answer the default border color/fill style for the receiver"
 	^ self defaultColor muchDarker"Color black"
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph>>defaultBorderWidth [
+{ #category : #initialization }
+BalloonMorph >> defaultBorderWidth [
 	"answer the default border width for the receiver"
 	^ 1
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph>>defaultColor [
+{ #category : #initialization }
+BalloonMorph >> defaultColor [
 	"answer the default color/fill style for the receiver"
 	^ self balloonColor
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph>>initialize [
+{ #category : #initialization }
+BalloonMorph >> initialize [
 	"initialize the state of the receiver"
 	
 	balloonColor := self class balloonColor.
@@ -243,11 +185,8 @@ BalloonMorph>>initialize [
 	offsetFromTarget := 0@0.
 ]
 
-{
-	#category : #'wiw support',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph>>morphicLayerNumber [
+{ #category : #'wiw support' }
+BalloonMorph >> morphicLayerNumber [
 
 	"helpful for insuring some morphs always appear in front of or behind others.
 	smaller numbers are in front"
@@ -255,21 +194,15 @@ BalloonMorph>>morphicLayerNumber [
 	^5		"Balloons are very front-like things"
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph>>popUpFor: aMorph hand: aHand [
+{ #category : #initialization }
+BalloonMorph >> popUpFor: aMorph hand: aHand [
 	"Pop up the receiver as balloon help for the given hand"
 	balloonOwner := aMorph.
 	self popUpForHand: aHand.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph>>popUpForHand: aHand [
+{ #category : #initialization }
+BalloonMorph >> popUpForHand: aHand [
 	"Pop up the receiver as balloon help for the given hand"
 	| worldBounds |
 
@@ -286,29 +219,20 @@ BalloonMorph>>popUpForHand: aHand [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph>>setTarget: aMorph [
+{ #category : #private }
+BalloonMorph >> setTarget: aMorph [
 	(target := aMorph) ifNotNil: [offsetFromTarget := self position - target position]
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph>>step [
+{ #category : #'stepping and presenter' }
+BalloonMorph >> step [
 	"Move with target."
 
 	target ifNotNil: [self position: target position + offsetFromTarget].
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-BalloonMorph>>stepTime [
+{ #category : #testing }
+BalloonMorph >> stepTime [
 	^ 0  "every cycle"
 ]

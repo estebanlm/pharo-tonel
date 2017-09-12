@@ -4,26 +4,19 @@ I build HelpSystem topics to browse PharoTutorial tutorials
 Class {
 	#name : #PharoTutorialHelpTutorialBuilder,
 	#superclass : #HelpBuilder,
-	#category : #ProfStef-Help,
-	#timestamp : 'CamilloBruni 2/22/2014 18:59'
+	#category : #ProfStef-Help
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-PharoTutorialHelpTutorialBuilder class>>new [
+{ #category : #'instance creation' }
+PharoTutorialHelpTutorialBuilder class >> new [
 	"We prohibid new"
 	^ (self class lookupSelector: #buildHelpTopicFrom:)  == thisContext sender method  
 		ifFalse:[self error: 'Please use buildHelpTopicFrom: instead']
 		ifTrue: [super new]
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-PharoTutorialHelpTutorialBuilder>>build [
+{ #category : #building }
+PharoTutorialHelpTutorialBuilder >> build [
 	topicToBuild := HelpTopic named: rootToBuildFrom bookName.
 	
 	AbstractTutorial tutorials do: [:aTutorial| 
@@ -33,11 +26,8 @@ PharoTutorialHelpTutorialBuilder>>build [
 	^ topicToBuild.
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-PharoTutorialHelpTutorialBuilder>>buildTutorialTopicFor: aTutorial [
+{ #category : #building }
+PharoTutorialHelpTutorialBuilder >> buildTutorialTopicFor: aTutorial [
 	|tutorialTopic|
 	tutorialTopic := HelpTopic named: aTutorial title.	
 	

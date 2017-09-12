@@ -29,41 +29,28 @@ Class {
 		'tagsToFilterBy',
 		'dataCache'
 	],
-	#category : #Glamour-FastTable-Model,
-	#timestamp : 'CyrilFerlicot 11/10/2015 11:59'
+	#category : #Glamour-FastTable-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>announcer [
+{ #category : #accessing }
+GLMFastTreeDataSource >> announcer [
 	^ announcer ifNil: [ announcer := GLMAnnouncer new ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>basicRoots [
+{ #category : #private }
+GLMFastTreeDataSource >> basicRoots [
 	^ self glamourPresentation displayValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>buttonFor: item [
+{ #category : #accessing }
+GLMFastTreeDataSource >> buttonFor: item [
 	^ ( (self canDisplayChildrenOf: item) and: [self hasChildren: item])
 		ifTrue: [ item generateButton ]
 		ifFalse: [ self class emptyMorph ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>cellColumn: aColumnIndex row: aRowIndex [
+{ #category : #accessing }
+GLMFastTreeDataSource >> cellColumn: aColumnIndex row: aRowIndex [
 	| item cell |
 	item := self elementAt: aRowIndex.
 	cell := FTCellMorph new
@@ -73,11 +60,8 @@ GLMFastTreeDataSource>>cellColumn: aColumnIndex row: aRowIndex [
 	^ cell
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>createRootItem [
+{ #category : #private }
+GLMFastTreeDataSource >> createRootItem [
 	| fullRoot |
 	fullRoot := FTRootItem data: self basicRoots from: self.
 	^ self tagsToFilterBy
@@ -94,53 +78,35 @@ GLMFastTreeDataSource>>createRootItem [
 				yourself ]
 ]
 
-{
-	#category : #cache,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>dataCache [
+{ #category : #cache }
+GLMFastTreeDataSource >> dataCache [
 	^ dataCache ifNil: [ dataCache := self class defaultCache ]
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>explicitSelection: anObject [
+{ #category : #selecting }
+GLMFastTreeDataSource >> explicitSelection: anObject [
 	self table selectRowIndexes: (self searchText: anObject asString)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>glamourPresentation [
+{ #category : #accessing }
+GLMFastTreeDataSource >> glamourPresentation [
 	^ glamourPresentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>glamourPresentation: aGLMFastTreePresentation [
+{ #category : #accessing }
+GLMFastTreeDataSource >> glamourPresentation: aGLMFastTreePresentation [
 	glamourPresentation := aGLMFastTreePresentation
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>hasChildren: anItem [
+{ #category : #testing }
+GLMFastTreeDataSource >> hasChildren: anItem [
 	^ self glamourPresentation hasChildrenBlock 
 		ifNil: [ anItem children isNotEmpty ]
 		ifNotNil: [ :aBlock | aBlock cull: anItem data ]
 ]
 
-{
-	#category : #tag,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>matchingTag: anItem [
+{ #category : #tag }
+GLMFastTreeDataSource >> matchingTag: anItem [
 	| elementTags |
 	elementTags := self glamourPresentation tagsFor: anItem data to: #filter.
 	((anItem children collect: [ :it | self matchingTag: it ]) reject: #isNil)
@@ -153,11 +119,8 @@ GLMFastTreeDataSource>>matchingTag: anItem [
 		ifTrue: [ self newStaticItemFrom: anItem ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>newStaticItemFrom: anItem [
+{ #category : #'instance creation' }
+GLMFastTreeDataSource >> newStaticItemFrom: anItem [
 	^ FTStaticBasicItem new
 		data: anItem data;
 		depth: anItem depth;
@@ -166,45 +129,30 @@ GLMFastTreeDataSource>>newStaticItemFrom: anItem [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>resetChildrenContent [
+{ #category : #private }
+GLMFastTreeDataSource >> resetChildrenContent [
 	self rootItem: self createRootItem.
 	self resetDataCache
 ]
 
-{
-	#category : #cache,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>resetDataCache [
+{ #category : #cache }
+GLMFastTreeDataSource >> resetDataCache [
 	dataCache := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>resetElements [
+{ #category : #accessing }
+GLMFastTreeDataSource >> resetElements [
 	self resetDataCache.
 	self updateData
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>rootItem [
+{ #category : #accessing }
+GLMFastTreeDataSource >> rootItem [
 	^ rootItem ifNil: [ rootItem := self createRootItem ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>rowMorphForItem: anItem [
+{ #category : #private }
+GLMFastTreeDataSource >> rowMorphForItem: anItem [
 	| rowElements |
 	rowElements := OrderedCollection new.
 	anItem depth timesRepeat: [ rowElements add: self class emptyMorph ].
@@ -216,11 +164,8 @@ GLMFastTreeDataSource>>rowMorphForItem: anItem [
 	^ Smalltalk ui theme newRowIn: World for: rowElements
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>selection: ann [
+{ #category : #selecting }
+GLMFastTreeDataSource >> selection: ann [
 	| selection |
 	selection := ann newSelectedRowIndexes
 		select: [ :each | each ~= 0 ]
@@ -238,11 +183,8 @@ GLMFastTreeDataSource>>selection: ann [
 						yourself) ]
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>strongSelection: ann [
+{ #category : #selecting }
+GLMFastTreeDataSource >> strongSelection: ann [
 	self announcer
 		announce:
 			(GLMTreeMorphStrongSelectionChanged new
@@ -250,10 +192,7 @@ GLMFastTreeDataSource>>strongSelection: ann [
 				yourself)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeDataSource>>tagsToFilterBy [
+{ #category : #accessing }
+GLMFastTreeDataSource >> tagsToFilterBy [
 	^ tagsToFilterBy ifNil: [ tagsToFilterBy := OrderedCollection new ]
 ]

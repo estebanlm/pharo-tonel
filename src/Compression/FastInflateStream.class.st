@@ -19,15 +19,11 @@ Class {
 		'FixedLitTable',
 		'LiteralLengthMap'
 	],
-	#category : #Compression-Streams,
-	#timestamp : '<historical>'
+	#category : #Compression-Streams
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-FastInflateStream class>>initialize [
+{ #category : #initialization }
+FastInflateStream class >> initialize [
 	"FastInflateStream initialize"
 	| low high |
 
@@ -54,11 +50,8 @@ FastInflateStream class>>initialize [
 				mappedBy: DistanceMap.
 ]
 
-{
-	#category : #inflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-FastInflateStream>>decompressBlock: llTable with: dTable [
+{ #category : #inflating }
+FastInflateStream >> decompressBlock: llTable with: dTable [
 	"Process the compressed data in the block.
 	llTable is the huffman table for literal/length codes
 	and dTable is the huffman table for distance codes."
@@ -100,19 +93,13 @@ FastInflateStream>>decompressBlock: llTable with: dTable [
 	].
 ]
 
-{
-	#category : #'huffman trees',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-FastInflateStream>>distanceMap [
+{ #category : #'huffman trees' }
+FastInflateStream >> distanceMap [
 	^DistanceMap
 ]
 
-{
-	#category : #'huffman trees',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-FastInflateStream>>increment: value bits: nBits [
+{ #category : #'huffman trees' }
+FastInflateStream >> increment: value bits: nBits [
 	"Increment value in reverse bit order, e.g. 
 	for a 3 bit value count as follows:
 		000 / 100 / 010 / 110
@@ -133,28 +120,19 @@ FastInflateStream>>increment: value bits: nBits [
 	^result bitXor: bit
 ]
 
-{
-	#category : #'huffman trees',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-FastInflateStream>>literalLengthMap [
+{ #category : #'huffman trees' }
+FastInflateStream >> literalLengthMap [
 	^LiteralLengthMap
 ]
 
-{
-	#category : #'bit access',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-FastInflateStream>>nextSingleBits: n [
+{ #category : #'bit access' }
+FastInflateStream >> nextSingleBits: n [
 	"Fetch the bits all at once"
 	^self nextBits: n.
 ]
 
-{
-	#category : #inflating,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-FastInflateStream>>processFixedBlock [
+{ #category : #inflating }
+FastInflateStream >> processFixedBlock [
 	litTable := FixedLitTable.
 	distTable := FixedDistTable.
 	state := state bitOr: BlockProceedBit.

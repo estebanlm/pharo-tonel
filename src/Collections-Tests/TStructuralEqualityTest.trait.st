@@ -3,56 +3,38 @@ Tests whether two objects are equals: they contain the same objects in the same 
 "
 Trait {
 	#name : #TStructuralEqualityTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'stephane.ducasse 1/16/2009 19:08'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #'test - equality',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TStructuralEqualityTest>>empty [
+{ #category : #'test - equality' }
+TStructuralEqualityTest >> empty [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'test - equality',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TStructuralEqualityTest>>nonEmpty [
+{ #category : #'test - equality' }
+TStructuralEqualityTest >> nonEmpty [
 	
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TStructuralEqualityTest>>test0TStructuralEqualityTest [
+{ #category : #'tests - fixture' }
+TStructuralEqualityTest >> test0TStructuralEqualityTest [
 	self empty.
 	self nonEmpty.
 	self assert: self empty isEmpty.
 	self deny: self nonEmpty isEmpty
 ]
 
-{
-	#category : #'test - equality',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TStructuralEqualityTest>>testEqualSign [
+{ #category : #'test - equality' }
+TStructuralEqualityTest >> testEqualSign [
 	"self debug: #testEqualSign"
 
 	self deny: (self empty = self nonEmpty).
 ]
 
-{
-	#category : #'test - equality',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TStructuralEqualityTest>>testEqualSignIsTrueForNonIdenticalButEqualCollections [
+{ #category : #'test - equality' }
+TStructuralEqualityTest >> testEqualSignIsTrueForNonIdenticalButEqualCollections [
 	"self debug: #testEqualSignIsTrueForNonIdenticalButEqualCollections"
 		
 	self assert: (self empty = self empty copy). 
@@ -64,11 +46,8 @@ TStructuralEqualityTest>>testEqualSignIsTrueForNonIdenticalButEqualCollections [
 	self assert: (self nonEmpty copy = self nonEmpty copy).
 ]
 
-{
-	#category : #'test - equality',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TStructuralEqualityTest>>testEqualSignOfIdenticalCollectionObjects [
+{ #category : #'test - equality' }
+TStructuralEqualityTest >> testEqualSignOfIdenticalCollectionObjects [
 	"self debug: #testEqualSignOfIdenticalCollectionObjects"
 	
 	self assert: (self empty = self empty). 

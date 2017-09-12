@@ -10,106 +10,69 @@ Class {
 		'protocol',
 		'method'
 	],
-	#category : #NautilusCommon-Announcements,
-	#timestamp : 'YuriyTymchuk 9/13/2015 18:56'
+	#category : #NautilusCommon-Announcements
 }
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusSelectionAnnouncement>>category [
+{ #category : #compatibility }
+NautilusSelectionAnnouncement >> category [
 
 	^ self selectedProtocol
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusSelectionAnnouncement>>itemClass [
+{ #category : #compatibility }
+NautilusSelectionAnnouncement >> itemClass [
 
 	^ self selectedClass 
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusSelectionAnnouncement>>method [
+{ #category : #compatibility }
+NautilusSelectionAnnouncement >> method [
 
 	^ self selectedMethod 
 ]
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusSelectionAnnouncement>>package [
+{ #category : #compatibility }
+NautilusSelectionAnnouncement >> package [
 
 	^ self selectedPackage 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusSelectionAnnouncement>>selectedClass [
+{ #category : #accessing }
+NautilusSelectionAnnouncement >> selectedClass [
 	^ class
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusSelectionAnnouncement>>selectedClass: anObject [
+{ #category : #accessing }
+NautilusSelectionAnnouncement >> selectedClass: anObject [
 	class := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusSelectionAnnouncement>>selectedMethod [
+{ #category : #accessing }
+NautilusSelectionAnnouncement >> selectedMethod [
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusSelectionAnnouncement>>selectedMethod: anObject [
+{ #category : #accessing }
+NautilusSelectionAnnouncement >> selectedMethod: anObject [
 	method := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusSelectionAnnouncement>>selectedPackage [
+{ #category : #accessing }
+NautilusSelectionAnnouncement >> selectedPackage [
 	^ package
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusSelectionAnnouncement>>selectedPackage: anObject [
+{ #category : #accessing }
+NautilusSelectionAnnouncement >> selectedPackage: anObject [
 	package := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusSelectionAnnouncement>>selectedProtocol [
+{ #category : #accessing }
+NautilusSelectionAnnouncement >> selectedProtocol [
 	^ protocol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-NautilusSelectionAnnouncement>>selectedProtocol: anObject [
+{ #category : #accessing }
+NautilusSelectionAnnouncement >> selectedProtocol: anObject [
 	protocol := anObject
 ]

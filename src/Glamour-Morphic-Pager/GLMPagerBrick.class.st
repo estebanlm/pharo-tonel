@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMPagerBrick,
 	#superclass : #GLMBrick,
@@ -11,15 +8,11 @@ Class {
 		'pagerModel',
 		'showScrollBarWhenNeeded'
 	],
-	#category : #Glamour-Morphic-Pager-Brick,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Pager-Brick
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick class>>exampleBasic [
+{ #category : #examples }
+GLMPagerBrick class >> exampleBasic [
 	|pager adapter|
 	adapter := GLMPagerModel new.
 	pager :=	GLMPagerBrick new.
@@ -37,30 +30,21 @@ GLMPagerBrick class>>exampleBasic [
 	pager inspect.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>initialColorInSystemWindow: aSystemWindow [
+{ #category : #initialization }
+GLMPagerBrick >> initialColorInSystemWindow: aSystemWindow [
 	"Answer the colour the receiver should be when added to a SystemWindow."
 	^ Color transparent
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>initialize [
+{ #category : #initialization }
+GLMPagerBrick >> initialize [
 	super initialize.
 	
 	self useVerticalLinearLayout
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>initializeShortcuts [
+{ #category : #initialization }
+GLMPagerBrick >> initializeShortcuts [
 
 	self
 		bindKeyCombination: Character arrowLeft alt command
@@ -79,66 +63,45 @@ GLMPagerBrick>>initializeShortcuts [
 		toAction: [ self pressedScrollerSizeCombination: #right ].
 ]
 
-{
-	#category : #'pager-instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>newPagerBar [
+{ #category : #'pager-instance creation' }
+GLMPagerBrick >> newPagerBar [
 
 	^ GLMPagerBarBrick new
 ]
 
-{
-	#category : #'pager-instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>newScrollBrick [
+{ #category : #'pager-instance creation' }
+GLMPagerBrick >> newScrollBrick [
 
 	^ GLMPagerScrollBrick new
 ]
 
-{
-	#category : #pager-event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>onPagePoped [
+{ #category : #pager-event-handling }
+GLMPagerBrick >> onPagePoped [
 
 	self showOrHideScrollBar
 ]
 
-{
-	#category : #pager-event-handling,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>onPagePushed [
+{ #category : #pager-event-handling }
+GLMPagerBrick >> onPagePushed [
 
 	self showOrHideScrollBar
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>outOfWorld: aWorld [
+{ #category : #initialization }
+GLMPagerBrick >> outOfWorld: aWorld [
 
 	GLMPagerPanePreviewMorph remove.
 	^ super outOfWorld: aWorld.
 ]
 
-{
-	#category : #pager-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>pagerBar [
+{ #category : #pager-accessing }
+GLMPagerBrick >> pagerBar [
 
 	^ pagerBar
 ]
 
-{
-	#category : #pager-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>pagerBar: aBrick [
+{ #category : #pager-accessing }
+GLMPagerBrick >> pagerBar: aBrick [
 
 	pagerBar := aBrick.
 	
@@ -152,19 +115,13 @@ GLMPagerBrick>>pagerBar: aBrick [
 	self addBrickBack: self pagerBar
 ]
 
-{
-	#category : #pager-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>pagerModel [
+{ #category : #pager-accessing }
+GLMPagerBrick >> pagerModel [
 	^ pagerModel
 ]
 
-{
-	#category : #pager-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>pagerModel: aModel [
+{ #category : #pager-accessing }
+GLMPagerBrick >> pagerModel: aModel [
 
 	pagerModel := aModel.
 	
@@ -177,29 +134,20 @@ GLMPagerBrick>>pagerModel: aModel [
 	self pagerBar: self newPagerBar
 ]
 
-{
-	#category : #pager-api,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>popAndReplacePane: aMorph [
+{ #category : #pager-api }
+GLMPagerBrick >> popAndReplacePane: aMorph [
 	"replaces last pane with new pane"
 	self pagerModel popAndReplacePane: aMorph
 ]
 
-{
-	#category : #pager-api,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>popPane [
+{ #category : #pager-api }
+GLMPagerBrick >> popPane [
 	"pops the last pane with smooth animation"
 	self pagerModel popPane: true.
 ]
 
-{
-	#category : #pager-actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>pressedScrollerSizeCombination: aSymbol [
+{ #category : #pager-actions }
+GLMPagerBrick >> pressedScrollerSizeCombination: aSymbol [
 
 	firstCombination ifNil: [ firstCombination := aSymbol. ^ self].
 	
@@ -207,11 +155,8 @@ GLMPagerBrick>>pressedScrollerSizeCombination: aSymbol [
 	firstCombination := nil.
 ]
 
-{
-	#category : #pager-api,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>pushPane: aMorph [
+{ #category : #pager-api }
+GLMPagerBrick >> pushPane: aMorph [
 	"pushes a pane to the end with smooth scroll animation"
 	| isSmooth |
 	
@@ -219,20 +164,14 @@ GLMPagerBrick>>pushPane: aMorph [
 	self pagerModel pushPane: aMorph smooth: isSmooth
 ]
 
-{
-	#category : #pager-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>scrollBrick [
+{ #category : #pager-accessing }
+GLMPagerBrick >> scrollBrick [
 
 	^ scrollBrick
 ]
 
-{
-	#category : #pager-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>scrollBrick: aBrick [
+{ #category : #pager-accessing }
+GLMPagerBrick >> scrollBrick: aBrick [
 
 	scrollBrick := aBrick.
 	self scrollBrick pagerModel: pagerModel.
@@ -244,11 +183,8 @@ GLMPagerBrick>>scrollBrick: aBrick [
 	self addBrickBack: self scrollBrick
 ]
 
-{
-	#category : #pager-actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>scrollerSizeShortcutAction: first second: second [
+{ #category : #pager-actions }
+GLMPagerBrick >> scrollerSizeShortcutAction: first second: second [
 	
 	(first = #left) & (second = #left) ifTrue: [ pagerModel enlargeToLeft ].
 	(first = #left) & (second = #right) ifTrue: [ pagerModel diminishToRight ].
@@ -256,11 +192,8 @@ GLMPagerBrick>>scrollerSizeShortcutAction: first second: second [
 	(first = #right) & (second = #right) ifTrue: [ pagerModel enlargeToRight ]
 ]
 
-{
-	#category : #pager-actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>showOrHideScrollBar [
+{ #category : #pager-actions }
+GLMPagerBrick >> showOrHideScrollBar [
 	
 	((self pagerModel size > self pagerModel minimumPageNumberForScrollbar) & (self showScrollBarWhenNeeded))
 		ifTrue: [ (self hasSubbrick: self pagerBar)
@@ -268,21 +201,15 @@ GLMPagerBrick>>showOrHideScrollBar [
 		ifFalse: [ self removeBrick: self pagerBar ].
 ]
 
-{
-	#category : #pager-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>showScrollBarWhenNeeded [
+{ #category : #pager-accessing }
+GLMPagerBrick >> showScrollBarWhenNeeded [
 	"retuns true if scrollbar should be visible if number of pages > 1,
 	otherwise false"
 	^ showScrollBarWhenNeeded ifNil: [ showScrollBarWhenNeeded := true ]
 ]
 
-{
-	#category : #pager-accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPagerBrick>>showScrollBarWhenNeeded: aBoolean [
+{ #category : #pager-accessing }
+GLMPagerBrick >> showScrollBarWhenNeeded: aBoolean [
 
 	showScrollBarWhenNeeded := aBoolean
 ]

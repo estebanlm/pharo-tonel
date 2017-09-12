@@ -4,33 +4,23 @@ This smell arises when a class defines a method in all subclasses, but not in it
 Class {
 	#name : #RBMissingSubclassResponsibilityRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 20:51'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingSubclassResponsibilityRule class>>checksClass [
+{ #category : #testing }
+RBMissingSubclassResponsibilityRule class >> checksClass [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingSubclassResponsibilityRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBMissingSubclassResponsibilityRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'MissingSubclassResponsibilityRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingSubclassResponsibilityRule>>basicCheck: aClass  [
+{ #category : #running }
+RBMissingSubclassResponsibilityRule >> basicCheck: aClass [ 
 	| subs |
 	subs := aClass subclasses.
 	(subs size > 1 and: [ aClass isMeta not ]) ifTrue: 
@@ -44,11 +34,8 @@ RBMissingSubclassResponsibilityRule>>basicCheck: aClass  [
 		^ false.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingSubclassResponsibilityRule>>checkClass: aClass  [
+{ #category : #running }
+RBMissingSubclassResponsibilityRule >> checkClass: aClass [ 
 	| subs |
 	subs := aClass subclasses.
 	(subs size > 1 and: [ aClass isMeta not ]) ifTrue: 
@@ -68,26 +55,17 @@ RBMissingSubclassResponsibilityRule>>checkClass: aClass  [
 						into: envName ] ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingSubclassResponsibilityRule>>group [
+{ #category : #accessing }
+RBMissingSubclassResponsibilityRule >> group [
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingSubclassResponsibilityRule>>name [
+{ #category : #accessing }
+RBMissingSubclassResponsibilityRule >> name [
 	^ 'Method defined in all subclasses, but not in superclass'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBMissingSubclassResponsibilityRule>>resultClass [
+{ #category : #accessing }
+RBMissingSubclassResponsibilityRule >> resultClass [
 	^ RBMultiEnvironment
 ]

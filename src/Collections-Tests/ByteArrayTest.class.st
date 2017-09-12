@@ -4,15 +4,11 @@ SUnit tests for ByteArray
 Class {
 	#name : #ByteArrayTest,
 	#superclass : #TestCase,
-	#category : #Collections-Tests-Arrayed,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:19'
+	#category : #Collections-Tests-Arrayed
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ByteArrayTest>>testFallbackReplaceFromToWithForString [
+{ #category : #tests }
+ByteArrayTest >> testFallbackReplaceFromToWithForString [
 	| testString byteArray stringByteSize |
 	testString := 'Test string'.
 	stringByteSize := 'Test string' byteSize.
@@ -30,11 +26,8 @@ ByteArrayTest>>testFallbackReplaceFromToWithForString [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ByteArrayTest>>testFallbackReplaceFromToWithForWideString [
+{ #category : #tests }
+ByteArrayTest >> testFallbackReplaceFromToWithForWideString [
 	| testString byteArray stringByteSize |
 	testString := 'Test string' asWideString.
 	stringByteSize := 'Test string' byteSize.
@@ -52,11 +45,8 @@ ByteArrayTest>>testFallbackReplaceFromToWithForWideString [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ByteArrayTest>>testFourthByteArraysReturnTheCorrectValues [
+{ #category : #tests }
+ByteArrayTest >> testFourthByteArraysReturnTheCorrectValues [
 	"self run: #testFourthByteArraysReturnTheCorrectValues"
 	
 	self assert: ((#[16r3F 16r80 0 0]  floatAt:1 bigEndian: true) = 1.0).
@@ -65,11 +55,8 @@ ByteArrayTest>>testFourthByteArraysReturnTheCorrectValues [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ByteArrayTest>>testHex [
+{ #category : #tests }
+ByteArrayTest >> testHex [
 	"self debug: #testHex"
 	
 	self assert: #[122 43 213 7] hex = '7a2bd507'.
@@ -80,20 +67,14 @@ ByteArrayTest>>testHex [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ByteArrayTest>>testIsLiteral [
+{ #category : #tests }
+ByteArrayTest >> testIsLiteral [
 	self assert: #[122 43 213 7] isLiteral description: 'ByteArray instances are literal'.
 	self deny: thisContext method isLiteral description: 'ByteArray sub instances are not literal'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ByteArrayTest>>testindexOfStartingAt [
+{ #category : #tests }
+ByteArrayTest >> testindexOfStartingAt [
 	"self run: #testindexOfStartingAt"
 	
 	self assert: (#[1 2 3 4 5 6 7 8 9 10 11 1 2 3 4 5 6 7 8 0 0]  indexOf: 1 startingAt: 10) = 12.

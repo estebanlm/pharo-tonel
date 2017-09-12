@@ -1,11 +1,6 @@
-Extension {
-	#name : #GlobalVariable
-}
+Extension { #name : #GlobalVariable }
 
-{
-	#category : #'*Hermes',
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-GlobalVariable>>asExportedLiteral [
+{ #category : #'*Hermes' }
+GlobalVariable >> asExportedLiteral [
 	^ HEGlobalVariable for:self.
 ]

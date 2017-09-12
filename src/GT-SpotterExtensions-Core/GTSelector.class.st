@@ -8,24 +8,17 @@ Class {
 		'name',
 		'methods'
 	],
-	#category : #GT-SpotterExtensions-Core,
-	#timestamp : 'TudorGirba 1/11/2016 00:14'
+	#category : #GT-SpotterExtensions-Core
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSelector class>>gtExampleNew [
+{ #category : #examples }
+GTSelector class >> gtExampleNew [
 	<gtExample>
 	^ self new name: #new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSelector class>>substring: aString filter: aFilter [
+{ #category : #private }
+GTSelector class >> substring: aString filter: aFilter [
 	| selectors |
 	aString isEmptyOrNil ifTrue: [ ^ self ].
 	selectors := IdentityDictionary new.
@@ -39,74 +32,50 @@ GTSelector class>>substring: aString filter: aFilter [
 				group addMethod: method ] ] ] 
 ]
 
-{
-	#category : #'private accessing',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSelector>>addMethod: aCompiledMethod [
+{ #category : #'private accessing' }
+GTSelector >> addMethod: aCompiledMethod [
 	"this is a private method that can be used by the constructor on the class side
 	exclusively within the context of Spotter"
 	methods ifNil: [ methods := OrderedCollection new ].
 	methods add: aCompiledMethod
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSelector>>gtDisplayOn: stream [
+{ #category : #printing }
+GTSelector >> gtDisplayOn: stream [
 	stream nextPutAll: self name
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSelector>>implementors [
+{ #category : #querying }
+GTSelector >> implementors [
 	^ methods ifNil: [ 
 		methods := (SystemNavigation default allImplementorsOf: self name) 
 			collect: [ :each | each compiledMethod ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSelector>>initialize [
+{ #category : #initialization }
+GTSelector >> initialize [
 	super initialize.
 	
 	methods := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSelector>>name [
+{ #category : #accessing }
+GTSelector >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSelector>>name: anObject [
+{ #category : #accessing }
+GTSelector >> name: anObject [
 	name := anObject
 ]
 
-{
-	#category : #querying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSelector>>senders [
+{ #category : #querying }
+GTSelector >> senders [
 	^ SystemNavigation default allSendersOf: self name
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSelector>>spotterImplementorsFor: aStep [
+{ #category : #ui }
+GTSelector >> spotterImplementorsFor: aStep [
 	<spotterOrder: 40>
 	^ aStep listProcessor
 		title: 'Implementors';
@@ -114,11 +83,8 @@ GTSelector>>spotterImplementorsFor: aStep [
 		keyBinding: $m meta
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSelector>>spotterPreviewIn: aComposite [
+{ #category : #ui }
+GTSelector >> spotterPreviewIn: aComposite [
 	<spotterPreview: 10>
 	aComposite list
 		title: 'Preview';
@@ -127,11 +93,8 @@ GTSelector>>spotterPreviewIn: aComposite [
 		entity: self implementors
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSelector>>spotterUsersFor: aStep [
+{ #category : #ui }
+GTSelector >> spotterUsersFor: aStep [
 	<spotterOrder: 50>
 	^ aStep listProcessor
 		title: 'Senders';

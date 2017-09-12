@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZnUtilsTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUtilsTests>>testBase64 [
+{ #category : #testing }
+ZnUtilsTests >> testBase64 [
 	| short long encoded legalCharactes |
 	legalCharactes := (String withAll: ($A to: $Z), ($a to: $z), ($0 to: $9)), '='.
 	short := String withAll: ((1 to: 16) collect: [ :each | 'abc' atRandom ]).
@@ -27,11 +20,8 @@ ZnUtilsTests>>testBase64 [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUtilsTests>>testCapitalizeString [
+{ #category : #testing }
+ZnUtilsTests >> testCapitalizeString [
 	self assert: (ZnUtils capitalizeString: 'content-type') = 'Content-Type'.
 	self assert: (ZnUtils capitalizeString: 'CONTENT-type') = 'Content-Type'.
 	self assert: (ZnUtils capitalizeString: 'content-TYPE') = 'Content-Type'.
@@ -39,11 +29,8 @@ ZnUtilsTests>>testCapitalizeString [
 	self assert: (ZnUtils capitalizeString: 'Content-MD5') = 'Content-Md5'.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUtilsTests>>testHttpDate [
+{ #category : #testing }
+ZnUtilsTests >> testHttpDate [
 	| timestamp string |
 	timestamp := (DateAndTime year: 2010 month: 9 day: 1 hour: 10 minute: 10 second: 10 offset: 0 seconds).
 	string := ZnUtils httpDate: timestamp.
@@ -51,11 +38,8 @@ ZnUtilsTests>>testHttpDate [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUtilsTests>>testIsCapitalizedString [
+{ #category : #testing }
+ZnUtilsTests >> testIsCapitalizedString [
 	self assert: (ZnUtils isCapitalizedString: 'Content-Type').
 	self assert: (ZnUtils isCapitalizedString: 'CONTENT-type') not.
 	self assert: (ZnUtils isCapitalizedString: 'content-TYPE') not.
@@ -63,22 +47,16 @@ ZnUtilsTests>>testIsCapitalizedString [
 	self assert: (ZnUtils isCapitalizedString: 'Connection')
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUtilsTests>>testNextPutAll [
+{ #category : #testing }
+ZnUtilsTests >> testNextPutAll [
 	| data result |
 	data := String new: 64 * 1024 withAll: $A.
 	result := String streamContents: [ :out | ZnUtils nextPutAll: data on: out ].
 	self assert: result equals: data
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUtilsTests>>testParseHttpDate [
+{ #category : #testing }
+ZnUtilsTests >> testParseHttpDate [
 	"RFC 822, updated by RFC 1123"
 	
 	| timeStamp |
@@ -92,11 +70,8 @@ ZnUtilsTests>>testParseHttpDate [
 	self assert: timeStamp offset = Duration zero.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUtilsTests>>testParseHttpDateAlternative1 [
+{ #category : #testing }
+ZnUtilsTests >> testParseHttpDateAlternative1 [
 	"ANSI C's asctime() format"
 	
 	| timeStamp |
@@ -110,11 +85,8 @@ ZnUtilsTests>>testParseHttpDateAlternative1 [
 	self assert: timeStamp offset = Duration zero
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUtilsTests>>testParseHttpDateDashes [
+{ #category : #testing }
+ZnUtilsTests >> testParseHttpDateDashes [
 	"RFC 850, obsoleted by RFC 1036"
 	
 	| timeStamp |
@@ -128,11 +100,8 @@ ZnUtilsTests>>testParseHttpDateDashes [
 	self assert: timeStamp offset = Duration zero
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUtilsTests>>testParseHttpDateDashesAlternative1 [
+{ #category : #testing }
+ZnUtilsTests >> testParseHttpDateDashesAlternative1 [
 	"RFC 850, obsoleted by RFC 1036"
 	
 	| timeStamp |
@@ -146,11 +115,8 @@ ZnUtilsTests>>testParseHttpDateDashesAlternative1 [
 	self assert: timeStamp offset = Duration zero
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUtilsTests>>testReadUpToEndBinary [
+{ #category : #testing }
+ZnUtilsTests >> testReadUpToEndBinary [
 	| data |
 	data := ByteArray streamContents: [ :stream | 
 		1 to: 10000 do: [ :each | 
@@ -161,11 +127,8 @@ ZnUtilsTests>>testReadUpToEndBinary [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUtilsTests>>testReadUpToEndNonBinary [
+{ #category : #testing }
+ZnUtilsTests >> testReadUpToEndNonBinary [
 	| data |
 	data := String streamContents: [ :stream | 
 		1 to: 10000 do: [ :each | 
@@ -176,11 +139,8 @@ ZnUtilsTests>>testReadUpToEndNonBinary [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUtilsTests>>testStreamingBinary [
+{ #category : #testing }
+ZnUtilsTests >> testStreamingBinary [
 	| data in out |
 	data := ByteArray streamContents: [ :stream | 
 		1 to: 10000 do: [ :each |
@@ -192,11 +152,8 @@ ZnUtilsTests>>testStreamingBinary [
 	self assert: out contents = data 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUtilsTests>>testStreamingBinaryWithoutSize [
+{ #category : #testing }
+ZnUtilsTests >> testStreamingBinaryWithoutSize [
 	| data in out |
 	data := ByteArray streamContents: [ :stream | 
 		1 to: 10000 do: [ :each |
@@ -208,11 +165,8 @@ ZnUtilsTests>>testStreamingBinaryWithoutSize [
 	self assert: out contents equals: data 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUtilsTests>>testStreamingNonBinary [
+{ #category : #testing }
+ZnUtilsTests >> testStreamingNonBinary [
 	| data in out |
 	data := String streamContents: [ :stream | 
 		1 to: 10000 do: [ :each | 
@@ -224,11 +178,8 @@ ZnUtilsTests>>testStreamingNonBinary [
 	self assert: out contents = data 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnUtilsTests>>testStreamingNonBinaryWithoutSize [
+{ #category : #testing }
+ZnUtilsTests >> testStreamingNonBinaryWithoutSize [
 	| data in out |
 	data := String streamContents: [ :stream | 
 		1 to: 10000 do: [ :each | 

@@ -11,40 +11,27 @@ Class {
 	#instVars : [
 		'method'
 	],
-	#category : #Zinc-HTTP-Exceptions,
-	#timestamp : 'SvenVanCaekenberghe 12/11/2011 18:09'
+	#category : #Zinc-HTTP-Exceptions
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnknownHttpMethod class>>method: method [
+{ #category : #'instance creation' }
+ZnUnknownHttpMethod class >> method: method [
 	^ self new
 		method: method;
 		yourself
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnknownHttpMethod>>isResumable [
+{ #category : #testing }
+ZnUnknownHttpMethod >> isResumable [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnknownHttpMethod>>method [
+{ #category : #accessing }
+ZnUnknownHttpMethod >> method [
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnUnknownHttpMethod>>method: anObject [
+{ #category : #accessing }
+ZnUnknownHttpMethod >> method: anObject [
 	method := anObject
 ]

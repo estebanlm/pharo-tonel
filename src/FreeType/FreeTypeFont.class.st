@@ -20,15 +20,11 @@ Class {
 		'FT2Constants',
 		'FreeTypeCacheConstants'
 	],
-	#category : #FreeType-Fonts,
-	#timestamp : 'TorstenBergmann 2/4/2014 22:10'
+	#category : #FreeType-Fonts
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont class>>forLogicalFont: aLogicalFont fileInfo: aFreeTypeFileInfoAbstract [
+{ #category : #'instance creation' }
+FreeTypeFont class >> forLogicalFont: aLogicalFont fileInfo: aFreeTypeFileInfoAbstract [
 	| pointSize index |
 	pointSize := aLogicalFont pointSize.
 	index := aFreeTypeFileInfoAbstract index.  
@@ -45,31 +41,22 @@ FreeTypeFont class>>forLogicalFont: aLogicalFont fileInfo: aFreeTypeFileInfoAbst
 				index: index]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont class>>fromBytes: aByteArray pointSize: anInteger  index: i [
+{ #category : #'instance creation' }
+FreeTypeFont class >> fromBytes: aByteArray pointSize: anInteger  index: i [
 	^self new
 		setFace: (FreeTypeFace fromBytes: aByteArray index: i) pointSize: anInteger; 
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont class>>fromFile: aFileName pointSize: anInteger index: i [
+{ #category : #'instance creation' }
+FreeTypeFont class >> fromFile: aFileName pointSize: anInteger index: i [
 	^self new
 		setFace: (FreeTypeFace fromFile: aFileName index: i) pointSize: anInteger; 
 		yourself
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>ascent [
+{ #category : #measuring }
+FreeTypeFont >> ascent [
 	| asc desc h |
 	cachedAscent ifNotNil:[^cachedAscent].
 	asc := self basicAscent.
@@ -80,21 +67,15 @@ FreeTypeFont>>ascent [
 	^cachedAscent := h - desc 
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>basicAscent [
+{ #category : #measuring }
+FreeTypeFont >> basicAscent [
 
 	^(self face ascender * self pixelSize // self face unitsPerEm).
 
 ]
 
-{
-	#category : #'glyph lookup',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>characterFormAt: aCharacter [
+{ #category : #'glyph lookup' }
+FreeTypeFont >> characterFormAt: aCharacter [
 	FreeTypeSettings current 
 		forceNonSubPixelDuring:[
 			^self 
@@ -104,54 +85,36 @@ FreeTypeFont>>characterFormAt: aCharacter [
 				subpixelPosition: 0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>clearCachedMetrics [
+{ #category : #accessing }
+FreeTypeFont >> clearCachedMetrics [
 	widthAndKernedWidthCache := cachedHeight := cachedAscent := cachedDescent := subPixelPositioned := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>defaultSimulatedItalicSlant [
+{ #category : #accessing }
+FreeTypeFont >> defaultSimulatedItalicSlant [
 	^0.22
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>depth [
+{ #category : #accessing }
+FreeTypeFont >> depth [
 
 	^ 32.
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>descent [
+{ #category : #measuring }
+FreeTypeFont >> descent [
 	^cachedDescent ifNil:[ 
 		cachedDescent := ((self face descender * self pixelSize // self face unitsPerEm) negated) ]
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>descentKern [
+{ #category : #measuring }
+FreeTypeFont >> descentKern [
 	"should have default in AbstractFont"
 	^0
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>displayLineGlyphOn: aDisplayContext from: startPoint to: endPoint [
+{ #category : #displaying }
+FreeTypeFont >> displayLineGlyphOn: aDisplayContext from: startPoint to: endPoint [
 	|  oldCombinationRule oldHalftoneForm originalColorMap clr depth foreColorVal foreColorAlpha glyph width height
 	startPointX startPointY endPointX endPointY foreColor |
 	oldCombinationRule := aDisplayContext combinationRule .
@@ -202,11 +165,8 @@ FreeTypeFont>>displayLineGlyphOn: aDisplayContext from: startPoint to: endPoint 
 	
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>displayStrikeoutOn: aDisplayContext from: baselineStartPoint to: baselineEndPoint [
+{ #category : #displaying }
+FreeTypeFont >> displayStrikeoutOn: aDisplayContext from: baselineStartPoint to: baselineEndPoint [
 	| top bottom strikeoutThickness s e |
 	
 	"the strikeout size/position for TrueType fonts should really come from the TT_OS2 table.
@@ -222,11 +182,8 @@ FreeTypeFont>>displayStrikeoutOn: aDisplayContext from: baselineStartPoint to: b
 	
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>displayString: aString on: aDisplayContext from: startIndex to: stopIndex at: aPoint kern: kernDelta [
+{ #category : #displaying }
+FreeTypeFont >> displayString: aString on: aDisplayContext from: startIndex to: stopIndex at: aPoint kern: kernDelta [
 	
 	^self displayString: aString
 		on: aDisplayContext
@@ -237,11 +194,8 @@ FreeTypeFont>>displayString: aString on: aDisplayContext from: startIndex to: st
 		baselineY: aPoint y  + self ascent
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY [
+{ #category : #displaying }
+FreeTypeFont >> displayString: aString on: aBitBlt from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY [
 	| glyph  depth foreColorVal foreColorAlpha originalColorMap clr subPixelPosition widthAndKernedWidth char nextChar floatDestX  destX destY offset gammaTable gammaInverseTable useRule41 |
 	
 	useRule41 := FreeTypeSettings current useSubPixelAntiAliasing and: [aBitBlt destForm depth >= 8].
@@ -307,11 +261,8 @@ FreeTypeFont>>displayString: aString on: aBitBlt from: startIndex to: stopIndex 
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>displayUnderlineOn: aDisplayContext from: baselineStartPoint to: baselineEndPoint [
+{ #category : #displaying }
+FreeTypeFont >> displayUnderlineOn: aDisplayContext from: baselineStartPoint to: baselineEndPoint [
 	| underlineTop underlineBottom underlineThickness s e |
 
 	underlineThickness := (self face underlineThickness * self pixelSize / self face unitsPerEm). 
@@ -323,38 +274,26 @@ FreeTypeFont>>displayUnderlineOn: aDisplayContext from: baselineStartPoint to: b
 	self displayLineGlyphOn: aDisplayContext from: s to: e
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>face [
+{ #category : #accessing }
+FreeTypeFont >> face [
 	"Validate, and answer, the receiver's face"
 	
 	^face validate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>face: aFace [
+{ #category : #accessing }
+FreeTypeFont >> face: aFace [
 	face := aFace
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>familyName  [
+{ #category : #accessing }
+FreeTypeFont >> familyName [ 
 
 	^face familyName 
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>getLinearWidthOf: aCharacter  [
+{ #category : #measuring }
+FreeTypeFont >> getLinearWidthOf: aCharacter [ 
 	| em glyph la charCode |
 
 	aCharacter < $  ifTrue: [^self getLinearWidthOf: $ ].
@@ -391,11 +330,8 @@ FreeTypeFont>>getLinearWidthOf: aCharacter  [
 
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>getWidthOf: aCharacter  [
+{ #category : #measuring }
+FreeTypeFont >> getWidthOf: aCharacter [ 
 	"Glyphs are either 1 or 8 bit deep. For 32 bpp we use 8 bits, otherwise 1"
 	| em glyph hintingFlags flags charCode |
 
@@ -428,11 +364,8 @@ FreeTypeFont>>getWidthOf: aCharacter  [
 
 ]
 
-{
-	#category : #'glyph lookup',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>glyphOf: aCharacter colorValue: aColorValue mono: monoBoolean subpixelPosition: sub [
+{ #category : #'glyph lookup' }
+FreeTypeFont >> glyphOf: aCharacter colorValue: aColorValue mono: monoBoolean subpixelPosition: sub [
 
 	| |
 	^FreeTypeCache current
@@ -450,11 +383,8 @@ FreeTypeFont>>glyphOf: aCharacter colorValue: aColorValue mono: monoBoolean subp
 
 ]
 
-{
-	#category : #'glyph lookup',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>glyphOf: aCharacter destDepth: destDepth colorValue: aColorValue subpixelPosition: sub [
+{ #category : #'glyph lookup' }
+FreeTypeFont >> glyphOf: aCharacter destDepth: destDepth colorValue: aColorValue subpixelPosition: sub [
 	"sub can be between 0 and 63 and denotes the sub-pixel position of the glyph"
 	| validSub |
 	validSub := self isSubPixelPositioned
@@ -483,11 +413,8 @@ FreeTypeFont>>glyphOf: aCharacter destDepth: destDepth colorValue: aColorValue s
 						subpixelPosition: validSub]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>hasDistinctGlyphsForAll: asciiString [
+{ #category : #testing }
+FreeTypeFont >> hasDistinctGlyphsForAll: asciiString [
 	"Answer true if the receiver has glyphs for all the characters
 	in asciiString and no single glyph is shared by more than one character, false otherwise.
 	The default behaviour is to answer true, but subclasses may reimplement"
@@ -504,11 +431,8 @@ FreeTypeFont>>hasDistinctGlyphsForAll: asciiString [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>hasGlyphsForAll: asciiString [
+{ #category : #testing }
+FreeTypeFont >> hasGlyphsForAll: asciiString [
 	"Answer true if the receiver has glyphs for all the characters
 	in asciiString, false otherwise.
 	The default behaviour is to answer true, but subclasses may reimplement"
@@ -520,37 +444,25 @@ FreeTypeFont>>hasGlyphsForAll: asciiString [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>hash [
+{ #category : #accessing }
+FreeTypeFont >> hash [
 	^pointSize hash
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>height [
+{ #category : #measuring }
+FreeTypeFont >> height [
 
 	^cachedHeight ifNil:[
 		cachedHeight := (self face height * self pixelSize / self face unitsPerEm) ceiling ]
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>hintedKerningLeft: leftChar right: rightChar [
+{ #category : #measuring }
+FreeTypeFont >> hintedKerningLeft: leftChar right: rightChar [
 	^(self linearKerningLeft: leftChar right: rightChar) rounded
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>hintedWidthOf: aCharacter [
+{ #category : #measuring }
+FreeTypeFont >> hintedWidthOf: aCharacter [
 	"retrieve advance width for character. try to use cached glyph if possible"
 	| charCode answer |
 	
@@ -564,20 +476,14 @@ FreeTypeFont>>hintedWidthOf: aCharacter [
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>initialize: aFont [
+{ #category : #initialize-release }
+FreeTypeFont >> initialize: aFont [
 
 	self face: aFont face.
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>installOn: aBitBlt foregroundColor: foreColor backgroundColor: backColor [
+{ #category : #displaying }
+FreeTypeFont >> installOn: aBitBlt foregroundColor: foreColor backgroundColor: backColor [
 
 	| |
 	"fcolor := foreColor pixelValueForDepth: 32."
@@ -585,78 +491,51 @@ FreeTypeFont>>installOn: aBitBlt foregroundColor: foreColor backgroundColor: bac
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>isBold [
+{ #category : #testing }
+FreeTypeFont >> isBold [
 	^(simulatedEmphasis == nil and:[self face isBold])
 		or:[self isSimulatedBold]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>isFixedWidth [
+{ #category : #testing }
+FreeTypeFont >> isFixedWidth [
 	^self face isFixedWidth 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>isItalic [
+{ #category : #testing }
+FreeTypeFont >> isItalic [
 	^(simulatedEmphasis == nil and:[self face isItalic])
 		or:[self isSimulatedItalic]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>isRegular [
+{ #category : #testing }
+FreeTypeFont >> isRegular [
 	^(simulatedEmphasis == nil and:[self face isRegular])
 		or: [self isSimulatedRegular]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>isSimulated [
+{ #category : #testing }
+FreeTypeFont >> isSimulated [
 	^simulatedEmphasis notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>isSimulatedBold [
+{ #category : #testing }
+FreeTypeFont >> isSimulatedBold [
 	^self simulatedEmphasis anyMask: 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>isSimulatedItalic [
+{ #category : #testing }
+FreeTypeFont >> isSimulatedItalic [
 	^self simulatedEmphasis anyMask: 2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>isSimulatedRegular [
+{ #category : #testing }
+FreeTypeFont >> isSimulatedRegular [
 	^simulatedEmphasis = 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>isSubPixelPositioned [
+{ #category : #testing }
+FreeTypeFont >> isSubPixelPositioned [
 	"Answer true if the receiver is currently using subpixel positioned
 	glyphs, false otherwise. This affects how padded space sizes are calculated
 	when composing text. 
@@ -666,11 +545,8 @@ FreeTypeFont>>isSubPixelPositioned [
 	^self subPixelPositioned
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>isSymbolFont [
+{ #category : #testing }
+FreeTypeFont >> isSymbolFont [
 	| charmaps |
 	symbolFont ifNotNil:[^symbolFont].
 	self face isValid ifFalse:[^false].
@@ -679,39 +555,27 @@ FreeTypeFont>>isSymbolFont [
 	^symbolFont := false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>isTTCFont [
+{ #category : #testing }
+FreeTypeFont >> isTTCFont [
 	"not really - look for senders of this"
 	^true
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>kerningLeft: leftChar right: rightChar [
+{ #category : #measuring }
+FreeTypeFont >> kerningLeft: leftChar right: rightChar [
 	^self isSubPixelPositioned
 		ifTrue: [self linearKerningLeft: leftChar right: rightChar]
 		ifFalse:[self hintedKerningLeft: leftChar right: rightChar]
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>lineGrid [
+{ #category : #measuring }
+FreeTypeFont >> lineGrid [
 
 	^self height
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>linearKerningLeft: leftChar right: rightChar [
+{ #category : #measuring }
+FreeTypeFont >> linearKerningLeft: leftChar right: rightChar [
 	| f  l r |
 
 	f := self face.
@@ -737,11 +601,8 @@ FreeTypeFont>>linearKerningLeft: leftChar right: rightChar [
 	^(f kerningLeft: l right: r) x asFloat *  self pixelSize / f unitsPerEm
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>linearWidthOf: aCharacter [
+{ #category : #measuring }
+FreeTypeFont >> linearWidthOf: aCharacter [
 	"retrieve linear advance width for character. try to use cached glyph if possible.
 	This is the scaled, unrounded advance width."
 	| charCode answer |
@@ -756,29 +617,20 @@ FreeTypeFont>>linearWidthOf: aCharacter [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>maxAscii [
+{ #category : #accessing }
+FreeTypeFont >> maxAscii [
 	"should have default in AbstractFont"
 	^SmallInteger maxVal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>minAscii [
+{ #category : #accessing }
+FreeTypeFont >> minAscii [
 	"should have default in AbstractFont"
 	^0
 ]
 
-{
-	#category : #'glyph lookup',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>mode41GlyphOf: aCharacter colorValue: aColorValue mono: monoBoolean subpixelPosition: sub [
+{ #category : #'glyph lookup' }
+FreeTypeFont >> mode41GlyphOf: aCharacter colorValue: aColorValue mono: monoBoolean subpixelPosition: sub [
 
 	| |
 	^FreeTypeCache current
@@ -796,19 +648,13 @@ FreeTypeFont>>mode41GlyphOf: aCharacter colorValue: aColorValue mono: monoBoolea
 
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>pixelSize [
+{ #category : #measuring }
+FreeTypeFont >> pixelSize [
 	^pixelSize ifNil:[pixelSize := super pixelSize rounded]
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>pixelsPerInchChanged [
+{ #category : #notifications }
+FreeTypeFont >> pixelsPerInchChanged [
 	"the TextStyle pixels per inch setting has changed"
 	
 	pixelSize := nil.
@@ -816,35 +662,23 @@ FreeTypeFont>>pixelsPerInchChanged [
 	FreeTypeCache current removeAllForFont: self.
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>pointSize [
+{ #category : #measuring }
+FreeTypeFont >> pointSize [
 	^pointSize
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>pointSize: aSize [
+{ #category : #measuring }
+FreeTypeFont >> pointSize: aSize [
 	pointSize := aSize
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>postscriptName [
+{ #category : #accessing }
+FreeTypeFont >> postscriptName [
 	^self face postscriptName
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>printOn: aStream [
+{ #category : #printing }
+FreeTypeFont >> printOn: aStream [
 
 	aStream
 		nextPutAll: self class name;
@@ -857,29 +691,20 @@ FreeTypeFont>>printOn: aStream [
 		nextPut: $)
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>releaseCachedState [
+{ #category : #initialize-release }
+FreeTypeFont >> releaseCachedState [
 	face releaseCachedState.
 	FreeTypeCache current removeAllForFont: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>setFace: aFreetypeFace pointSize: anInteger [
+{ #category : #accessing }
+FreeTypeFont >> setFace: aFreetypeFace pointSize: anInteger [
 	face := aFreetypeFace.
 	pointSize := anInteger.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>simulatedBoldStrength [
+{ #category : #accessing }
+FreeTypeFont >> simulatedBoldStrength [
 	"Answer the amount by which glyphs need to be emboldened/lightened
 	according to the receiver's simulated emphasis and the face's real emphasis"
 	| bold faceBold |
@@ -892,11 +717,8 @@ FreeTypeFont>>simulatedBoldStrength [
 	^0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>simulatedEmphasis [
+{ #category : #accessing }
+FreeTypeFont >> simulatedEmphasis [
 	"Answer the simulatedEmphasis.
 	This is 
 		0 - normal (no simulatedEmphasis, or simulated regular).
@@ -906,11 +728,8 @@ FreeTypeFont>>simulatedEmphasis [
 	^simulatedEmphasis ifNil:[0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>simulatedEmphasis: anIntegerOrNil [
+{ #category : #accessing }
+FreeTypeFont >> simulatedEmphasis: anIntegerOrNil [
 	"Set the simulatedEmphasis.
 	This is 
 		nil - no simulated emphasis
@@ -921,11 +740,8 @@ FreeTypeFont>>simulatedEmphasis: anIntegerOrNil [
 	simulatedEmphasis := anIntegerOrNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>simulatedItalicSlant [
+{ #category : #accessing }
+FreeTypeFont >> simulatedItalicSlant [
 	"Answer the slant that needs to be added to italicize/un-italicize
 	glyphs according to the receiver's simulated emphasis and the face's 
 	real emphasis"
@@ -939,11 +755,8 @@ FreeTypeFont>>simulatedItalicSlant [
 	^0
 ]
 
-{
-	#category : #'glyph lookup',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>subGlyphOf: aCharacter colorValue: aColorValue mono: monoBoolean subpixelPosition: sub [
+{ #category : #'glyph lookup' }
+FreeTypeFont >> subGlyphOf: aCharacter colorValue: aColorValue mono: monoBoolean subpixelPosition: sub [
 
 	| |
 	^FreeTypeCache current
@@ -961,11 +774,8 @@ FreeTypeFont>>subGlyphOf: aCharacter colorValue: aColorValue mono: monoBoolean s
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>subPixelPositioned [
+{ #category : #testing }
+FreeTypeFont >> subPixelPositioned [
 	"Answer true if the receiver is currently using subpixel positioned
 	glyphs, false otherwise. This affects how padded space sizes are calculated
 	when composing text."
@@ -976,35 +786,22 @@ FreeTypeFont>>subPixelPositioned [
 			subPixelPositioned := settings hinting not or:[settings lightHinting]]
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>validate  [
+{ #category : #validation }
+FreeTypeFont >> validate [ 
 	self face validate
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>veryDeepCopyWith: deepCopier [
-
+{ #category : #accessing }
+FreeTypeFont >> veryDeepCopyWith: deepCopier [
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>widthAndKernedWidthCache [
+{ #category : #measuring }
+FreeTypeFont >> widthAndKernedWidthCache [
 	^widthAndKernedWidthCache ifNil:[widthAndKernedWidthCache := Dictionary new]
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>widthAndKernedWidthOfLeft: leftCharacter right: rightCharacterOrNil into: aTwoElementArray [
+{ #category : #measuring }
+FreeTypeFont >> widthAndKernedWidthOfLeft: leftCharacter right: rightCharacterOrNil into: aTwoElementArray [
 	"Set the first element of aTwoElementArray to the width of leftCharacter and 
 	the second element to the width of left character when kerned with
 	rightCharacterOrNil. Answer the receiver
@@ -1026,11 +823,8 @@ FreeTypeFont>>widthAndKernedWidthOfLeft: leftCharacter right: rightCharacterOrNi
 	^aTwoElementArray
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>widthOf: aCharacter [
+{ #category : #measuring }
+FreeTypeFont >> widthOf: aCharacter [
 	"retrieve advance width for character. try to use cached glyph if possible"
 	^self isSubPixelPositioned
 		ifTrue:[self linearWidthOf: aCharacter]
@@ -1038,11 +832,8 @@ FreeTypeFont>>widthOf: aCharacter [
 
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FreeTypeFont>>widthOfString: aString from: startIndex to: stopIndex [
+{ #category : #measuring }
+FreeTypeFont >> widthOfString: aString from: startIndex to: stopIndex [
 	"Measure the length of the given string between start and stop index.
 	Currently this allows for the right side bearing of the last char, but does not allow for the left side bearing of the first char. We really need a new method - boundingBoxOfString that allows for both. Senders of this will also need to know the LSB of the first char, and position their text accordingly"
 	| char nextChar resultX glyph a subPixelPosition |

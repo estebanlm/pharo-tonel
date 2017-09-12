@@ -7,32 +7,22 @@ Class {
 	#instVars : [
 		'token'
 	],
-	#category : #Monticello-Mocks,
-	#timestamp : 'TorstenBergmann 2/5/2014 13:46'
+	#category : #Monticello-Mocks
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDefinition class>>token: aString [
+{ #category : #accessing }
+MCMockDefinition class >> token: aString [
 
 	^ self new token: aString
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDefinition class>>wantsChangeSetLogging [
+{ #category : #compiling }
+MCMockDefinition class >> wantsChangeSetLogging [
 	^ false
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDefinition>>= definition [
+{ #category : #comparing }
+MCMockDefinition >> = definition [
 	self == definition
 		ifTrue: [ ^ true ].
 	self species = definition species
@@ -40,65 +30,44 @@ MCMockDefinition>>= definition [
 	^definition token = token
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDefinition>>asString [
+{ #category : #converting }
+MCMockDefinition >> asString [
 
 	^ token
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDefinition>>description [
+{ #category : #comparing }
+MCMockDefinition >> description [
 
 	^ token first
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDefinition>>hash [
+{ #category : #comparing }
+MCMockDefinition >> hash [
 
 	^ token hash
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDefinition>>printString [
+{ #category : #printing }
+MCMockDefinition >> printString [
 
 	^ token
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDefinition>>summary [
+{ #category : #printing }
+MCMockDefinition >> summary [
 
 	^ token
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDefinition>>token [
+{ #category : #accessing }
+MCMockDefinition >> token [
 
 	^ token
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMockDefinition>>token: aString [
+{ #category : #accessing }
+MCMockDefinition >> token: aString [
 
 	token := aString
 ]

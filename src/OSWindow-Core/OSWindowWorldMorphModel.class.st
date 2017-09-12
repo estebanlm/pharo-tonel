@@ -9,24 +9,17 @@ ProtocolBrowser new openExternalWindowWithSpec.
 Class {
 	#name : #OSWindowWorldMorphModel,
 	#superclass : #WindowModel,
-	#category : #OSWindow-Core-Morphic,
-	#timestamp : 'RonieSalgado 9/9/2016 18:06'
+	#category : #OSWindow-Core-Morphic
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorphModel class>>adapterName [
+{ #category : #'as yet unclassified' }
+OSWindowWorldMorphModel class >> adapterName [
 
 	^ #OSWindowWorldMorphAdapter
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorphModel class>>defaultSpec [
+{ #category : #'as yet unclassified' }
+OSWindowWorldMorphModel class >> defaultSpec [
 	<spec>
 	
 	^ #(#OSWindowWorldMorphAdapter

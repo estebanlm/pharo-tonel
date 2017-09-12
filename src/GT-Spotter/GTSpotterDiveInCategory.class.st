@@ -1,28 +1,18 @@
-"
-
-"
 Class {
 	#name : #GTSpotterDiveInCategory,
 	#superclass : #GTSpotterAnnouncement,
 	#instVars : [
 		'eventType'
 	],
-	#category : #GT-Spotter-Announcements,
-	#timestamp : ''
+	#category : #GT-Spotter-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDiveInCategory>>eventType [
+{ #category : #accessing }
+GTSpotterDiveInCategory >> eventType [
 	^ eventType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterDiveInCategory>>eventType: anObject [
+{ #category : #accessing }
+GTSpotterDiveInCategory >> eventType: anObject [
 	eventType := anObject
 ]

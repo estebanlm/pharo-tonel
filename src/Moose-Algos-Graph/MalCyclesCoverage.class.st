@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MalCyclesCoverage,
 	#superclass : #MalTarjan,
@@ -10,54 +7,38 @@ Class {
 		'circuits',
 		'sccExtractorClass'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : ''
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCyclesCoverage>>circuits [
+{ #category : #accessing }
+MalCyclesCoverage >> circuits [
 	^ circuits
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCyclesCoverage>>directCircuit: aCollection [
+{ #category : #running }
+MalCyclesCoverage >> directCircuit: aCollection [
 
 	^ self normalize: (OrderedCollection 
 		with: aCollection first model 
 		with: aCollection second model)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCyclesCoverage>>initialize [
+{ #category : #initialization }
+MalCyclesCoverage >> initialize [
 
 	super initialize.
 	self useNodeDecomposition 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCyclesCoverage>>retrieveCircuitsFromSccExtractor: sccExtractor [
+{ #category : #accessing }
+MalCyclesCoverage >> retrieveCircuitsFromSccExtractor: sccExtractor [
 
 	sccExtractor circuits do: [:c |
 		circuits add: (c collect: [:n| n model]) ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCyclesCoverage>>run [
+{ #category : #running }
+MalCyclesCoverage >> run [
 
 	super run.
 	circuits := OrderedCollection new.
@@ -74,29 +55,20 @@ MalCyclesCoverage>>run [
 		]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCyclesCoverage>>useCircuitSpan [
+{ #category : #running }
+MalCyclesCoverage >> useCircuitSpan [
 
 	sccExtractorClass := MalCircuitSpanningEdges  
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCyclesCoverage>>useEdgeDecomposition [
+{ #category : #running }
+MalCyclesCoverage >> useEdgeDecomposition [
 
 	sccExtractorClass := MalSccEdgeDecomposition 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalCyclesCoverage>>useNodeDecomposition [
+{ #category : #running }
+MalCyclesCoverage >> useNodeDecomposition [
 
 	sccExtractorClass := MalSccNodeDecomposition 
 ]

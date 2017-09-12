@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'writeNode'
 	],
-	#category : #Compiler-ParseNodes,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:19'
+	#category : #Compiler-ParseNodes
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralVariableNode>>accept: aVisitor [
+{ #category : #visiting }
+LiteralVariableNode >> accept: aVisitor [
 	^aVisitor visitLiteralVariableNode: self
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralVariableNode>>emitCodeForLoad: stack encoder: encoder [
+{ #category : #'code generation' }
+LiteralVariableNode >> emitCodeForLoad: stack encoder: encoder [
 	writeNode ifNotNil:
 		[encoder genPushLiteral: index.
 		 stack push: 1]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralVariableNode>>emitCodeForStore: stack encoder: encoder [
+{ #category : #'code generation' }
+LiteralVariableNode >> emitCodeForStore: stack encoder: encoder [
 	writeNode ifNil: [^encoder genStoreLiteralVar: index].
 	"THIS IS WRONG!! THE VALUE IS LOST FROM THE STACK!!
 	 The various value: methods on Association ReadOnlyVariableBinding
@@ -53,11 +43,8 @@ LiteralVariableNode>>emitCodeForStore: stack encoder: encoder [
 		super: false
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralVariableNode>>emitCodeForStorePop: stack encoder: encoder [
+{ #category : #'code generation' }
+LiteralVariableNode >> emitCodeForStorePop: stack encoder: encoder [
 	writeNode ifNil:
 		[stack pop: 1.
 		 ^encoder genStorePopLiteralVar: index].
@@ -66,48 +53,33 @@ LiteralVariableNode>>emitCodeForStorePop: stack encoder: encoder [
 	stack pop: 1.
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralVariableNode>>emitCodeForValue: stack encoder: encoder [
+{ #category : #'code generation' }
+LiteralVariableNode >> emitCodeForValue: stack encoder: encoder [
 	stack push: 1.
 	^encoder genPushLiteralVar: index
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralVariableNode>>sizeCodeForLoad: encoder [
+{ #category : #'code generation' }
+LiteralVariableNode >> sizeCodeForLoad: encoder [
 	self reserve: encoder.
 	^writeNode ifNil: [0] ifNotNil: [encoder sizePushLiteral: index]
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralVariableNode>>sizeCodeForStore: encoder [
+{ #category : #'code generation' }
+LiteralVariableNode >> sizeCodeForStore: encoder [
 	self reserve: encoder.
 	^encoder sizeStoreLiteralVar: index
 	
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralVariableNode>>sizeCodeForStorePop: encoder [
+{ #category : #'code generation' }
+LiteralVariableNode >> sizeCodeForStorePop: encoder [
 	self reserve: encoder.
 	^encoder sizeStorePopLiteralVar: index
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-LiteralVariableNode>>sizeCodeForValue: encoder [
+{ #category : #'code generation' }
+LiteralVariableNode >> sizeCodeForValue: encoder [
 	self reserve: encoder.
 	^encoder sizePushLiteralVar: index
 ]

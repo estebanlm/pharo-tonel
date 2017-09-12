@@ -20,33 +20,23 @@ Class {
 		'Decompositions',
 		'Diacriticals'
 	],
-	#category : #Kernel-BasicObjects,
-	#timestamp : 'StephaneDucasse 3/27/2010 21:50'
+	#category : #Kernel-BasicObjects
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CombinedChar class>>isCompositionCharacter: charCode [
+{ #category : #testing }
+CombinedChar class >> isCompositionCharacter: charCode [
 	^Compositions includesKey: charCode
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CombinedChar class>>isDiacriticals: unicode [
+{ #category : #testing }
+CombinedChar class >> isDiacriticals: unicode [
 
 	^ Diacriticals includes: unicode.
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CombinedChar class>>parseCompositionMappingFrom: stream [
+{ #category : #initialization }
+CombinedChar class >> parseCompositionMappingFrom: stream [
 "
 	self parseCompositionMapping
 "
@@ -89,11 +79,8 @@ CombinedChar class>>parseCompositionMappingFrom: stream [
 
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CombinedChar>>add: char [
+{ #category : #composition }
+CombinedChar >> add: char [
 
 	| dict elem |
 	codes ifNil: 
@@ -108,31 +95,22 @@ CombinedChar>>add: char [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CombinedChar>>base [
+{ #category : #accessing }
+CombinedChar >> base [
 
 	^ codes first
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CombinedChar>>combined [
+{ #category : #accessing }
+CombinedChar >> combined [
 
 	^ combined
 
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CombinedChar>>combinesWith: char [
+{ #category : #composition }
+CombinedChar >> combinesWith: char [
 
 	| dict |
 	codes ifNil: [^false].
@@ -142,11 +120,8 @@ CombinedChar>>combinesWith: char [
 
 ]
 
-{
-	#category : #composition,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-CombinedChar>>simpleAdd: char [
+{ #category : #composition }
+CombinedChar >> simpleAdd: char [
 
 	| dict elem |
 	codes ifNil: 

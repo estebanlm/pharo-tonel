@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #RBPushDownMethodTest,
 	#superclass : #RBRefactoringTest,
-	#category : #Refactoring-Tests-Core,
-	#timestamp : ''
+	#category : #Refactoring-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownMethodTest>>testPushDownMethod [
+{ #category : #tests }
+RBPushDownMethodTest >> testPushDownMethod [
 	| refactoring class |
 	refactoring := RBPushDownMethodRefactoring 
 		pushDown: #(#name: )
@@ -25,21 +18,15 @@ RBPushDownMethodTest>>testPushDownMethod [
 		self assert: (each parseTreeFor: #name:) = (RBParser parseMethod: 'name: aString name := aString') ]
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownMethodTest>>testPushDownMethodOnNonAbstractClass [
+{ #category : #'failure tests' }
+RBPushDownMethodTest >> testPushDownMethodOnNonAbstractClass [
 	| refactoring |
 	refactoring := RBPushDownMethodRefactoring pushDown: #(#isArray) from: Array.
 	self shouldFail: refactoring
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownMethodTest>>testPushDownMethodThatReferencesPoolDictionary [
+{ #category : #tests }
+RBPushDownMethodTest >> testPushDownMethodThatReferencesPoolDictionary [
 	| refactoring class parseTree |
 	parseTree := RBLintRuleTest parseTreeFor: #junk.
 	self proceedThroughWarning: 
@@ -55,11 +42,8 @@ RBPushDownMethodTest>>testPushDownMethodThatReferencesPoolDictionary [
 		self assert: (each directlyDefinesPoolDictionary: 'TextConstants' asSymbol) ]
 ]
 
-{
-	#category : #'failure tests',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-RBPushDownMethodTest>>testPushDownNonExistantMenu [
+{ #category : #'failure tests' }
+RBPushDownMethodTest >> testPushDownNonExistantMenu [
 	| refactoring |
 	refactoring := RBPushDownMethodRefactoring 
 		pushDown: #(#someMethodThatDoesNotExist )

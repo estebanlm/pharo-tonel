@@ -16,23 +16,16 @@ Class {
 		'statements',
 		'periods'
 	],
-	#category : #AST-Core-Nodes,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode class>>statements: statements [
+{ #category : #'instance creation' }
+RBArrayNode class >> statements: statements [
 	^ self new statements: statements
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>= anObject  [
+{ #category : #comparing }
+RBArrayNode >> = anObject [ 
 	self == anObject ifTrue: [ ^ true ].
 	self class = anObject class ifFalse: [ ^ false ].
 	self statements size = anObject statements size ifFalse: [ ^ false ].
@@ -40,19 +33,13 @@ RBArrayNode>>= anObject  [
 	^ true
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>acceptVisitor: aProgramNodeVisitor [
+{ #category : #visiting }
+RBArrayNode >> acceptVisitor: aProgramNodeVisitor [
 	^ aProgramNodeVisitor visitArrayNode: self
 ]
 
-{
-	#category : #'adding nodes',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>addNode: aNode [
+{ #category : #'adding nodes' }
+RBArrayNode >> addNode: aNode [
 	statements := statements asOrderedCollection
 		add: aNode;
 		yourself.
@@ -60,11 +47,8 @@ RBArrayNode>>addNode: aNode [
 	^ aNode
 ]
 
-{
-	#category : #'adding nodes',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>addNode: aNode before: anotherNode  [
+{ #category : #'adding nodes' }
+RBArrayNode >> addNode: aNode before: anotherNode [ 
 	| index |
 	aNode isReturn 
 		ifTrue: [ self error: 'Cannot add return node' ].
@@ -77,11 +61,8 @@ RBArrayNode>>addNode: aNode before: anotherNode  [
 	^ aNode
 ]
 
-{
-	#category : #'adding nodes',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>addNodeFirst: aNode [
+{ #category : #'adding nodes' }
+RBArrayNode >> addNodeFirst: aNode [
 	statements := statements asOrderedCollection
 		addFirst: aNode;
 		yourself.
@@ -89,11 +70,8 @@ RBArrayNode>>addNodeFirst: aNode [
 	^ aNode
 ]
 
-{
-	#category : #'adding nodes',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>addNodes: aCollection [
+{ #category : #'adding nodes' }
+RBArrayNode >> addNodes: aCollection [
 	statements := statements asOrderedCollection
 		addAll: aCollection;
 		yourself.
@@ -101,20 +79,14 @@ RBArrayNode>>addNodes: aCollection [
 	^ aCollection
 ]
 
-{
-	#category : #'adding nodes',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>addNodes: aCollection before: anotherNode  [
+{ #category : #'adding nodes' }
+RBArrayNode >> addNodes: aCollection before: anotherNode [ 
 	aCollection do: [ :each | self addNode: each before: anotherNode ].
 	^ aCollection
 ]
 
-{
-	#category : #'adding nodes',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>addNodesFirst: aCollection [
+{ #category : #'adding nodes' }
+RBArrayNode >> addNodesFirst: aCollection [
 	statements := statements asOrderedCollection
 		addAllFirst: aCollection;
 		yourself.
@@ -122,27 +94,18 @@ RBArrayNode>>addNodesFirst: aCollection [
 	^ aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>children [
+{ #category : #accessing }
+RBArrayNode >> children [
 	^ self statements
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>copyInContext: aDictionary  [
+{ #category : #matching }
+RBArrayNode >> copyInContext: aDictionary [ 
 	^ self class statements: (self copyList: self statements inContext: aDictionary)
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>equalTo: anObject withMapping: aDictionary  [
+{ #category : #comparing }
+RBArrayNode >> equalTo: anObject withMapping: aDictionary [ 
 	self class = anObject class 
 		ifFalse: [ ^ false ].
 	self statements size = anObject statements size 
@@ -155,19 +118,13 @@ RBArrayNode>>equalTo: anObject withMapping: aDictionary  [
 	^ true
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>hash [
+{ #category : #comparing }
+RBArrayNode >> hash [
 	^ self hashForCollection: self statements
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>indexOfNode: aNode  [
+{ #category : #private }
+RBArrayNode >> indexOfNode: aNode [ 
 	"Try to find the node by first looking for ==, and then for ="
 
 	^ (1 to: statements size) 
@@ -175,187 +132,121 @@ RBArrayNode>>indexOfNode: aNode  [
 		ifNone: [ statements indexOf: aNode ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>initialize [
+{ #category : #initialization }
+RBArrayNode >> initialize [
 	super initialize.
 	statements := periods := #().
 	left := right := 0.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>isDynamicArray [
+{ #category : #testing }
+RBArrayNode >> isDynamicArray [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>isFaulty [
+{ #category : #testing }
+RBArrayNode >> isFaulty [
 	^self statements anySatisfy: #isFaulty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>lastIsReturn [
+{ #category : #testing }
+RBArrayNode >> lastIsReturn [
 	statements isEmpty ifTrue:[ ^false ].
 	^statements last lastIsReturn
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>left [
+{ #category : #accessing-token }
+RBArrayNode >> left [
 	^ left
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>left: anInteger [
+{ #category : #accessing-token }
+RBArrayNode >> left: anInteger [
 	left := anInteger
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>match: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBArrayNode >> match: aNode inContext: aDictionary [ 
 	aNode class = self class ifFalse: [ ^ false ].
 	^ self matchList: statements against: aNode statements inContext: aDictionary
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>needsParenthesis [
+{ #category : #testing }
+RBArrayNode >> needsParenthesis [
 	^ false
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>periods [
+{ #category : #accessing-token }
+RBArrayNode >> periods [
 	^ periods
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>periods: anArray [
+{ #category : #accessing-token }
+RBArrayNode >> periods: anArray [
 	periods := anArray
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>postCopy [
+{ #category : #copying }
+RBArrayNode >> postCopy [
 	super postCopy.
 	self statements: (self statements collect: [ :each | each copy ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>precedence [
+{ #category : #accessing }
+RBArrayNode >> precedence [
 	^0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>references: aVariableName  [
+{ #category : #testing }
+RBArrayNode >> references: aVariableName [ 
 	^ statements anySatisfy: [ :each | each references: aVariableName ]
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>replaceNode: oldNode  withNode: newNode [
+{ #category : #replacing }
+RBArrayNode >> replaceNode: oldNode  withNode: newNode [
 	self statements: (statements collect: [ :statement |
 		statement == oldNode 
 			ifTrue: [ newNode ]
 			ifFalse: [ statement ] ])
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>right [
+{ #category : #accessing-token }
+RBArrayNode >> right [
 	^ right
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>right: anInteger [
+{ #category : #accessing-token }
+RBArrayNode >> right: anInteger [
 	right := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>startWithoutParentheses  [
+{ #category : #accessing }
+RBArrayNode >> startWithoutParentheses [ 
 	^ left
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>statementComments [
+{ #category : #accessing }
+RBArrayNode >> statementComments [
 	^self comments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>statements [
+{ #category : #accessing }
+RBArrayNode >> statements [
 	^statements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>statements: statements0  [
+{ #category : #accessing }
+RBArrayNode >> statements: statements0 [ 
 	statements := statements0.
 	statements do: [:statement | statement parent: self]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>stopWithoutParentheses  [
+{ #category : #accessing }
+RBArrayNode >> stopWithoutParentheses [ 
 	^ right
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBArrayNode>>uses: aNode  [
+{ #category : #testing }
+RBArrayNode >> uses: aNode [ 
 	^ (statements anySatisfy: [ :each | each == aNode ]) or: [ self isUsed ]
 ]

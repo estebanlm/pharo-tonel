@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloVersionDoesNotExistError,
 	#superclass : #Error,
@@ -8,15 +5,11 @@ Class {
 		'project',
 		'versionString'
 	],
-	#category : #Metacello-Core-Exceptions-Errors,
-	#timestamp : ''
+	#category : #Metacello-Core-Exceptions-Errors
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDoesNotExistError class>>project: aMetacelloProject versionString: aVersionString [
+{ #category : #'instance creation' }
+MetacelloVersionDoesNotExistError class >> project: aMetacelloProject versionString: aVersionString [
 
 	^(self new)
 		project: aMetacelloProject;
@@ -24,64 +17,43 @@ MetacelloVersionDoesNotExistError class>>project: aMetacelloProject versionStrin
 		yourself
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDoesNotExistError>>description [
+{ #category : #printing }
+MetacelloVersionDoesNotExistError >> description [
     "Return a textual description of the exception."
 
     ^ 'Version ' , self versionString printString , ' is not defined in ' , self project label
         , '. Possible versions include: ' , self possibleVersions printString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDoesNotExistError>>possibleVersions [
+{ #category : #accessing }
+MetacelloVersionDoesNotExistError >> possibleVersions [
     ^ self project symbolicVersionSymbols , (self project versions collect: [ :each | each versionString ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDoesNotExistError>>project [
+{ #category : #accessing }
+MetacelloVersionDoesNotExistError >> project [
 	^ project
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDoesNotExistError>>project: anObject [
+{ #category : #accessing }
+MetacelloVersionDoesNotExistError >> project: anObject [
 	project := anObject
 ]
 
-{
-	#category : #Signaling,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDoesNotExistError>>signal [
+{ #category : #Signaling }
+MetacelloVersionDoesNotExistError >> signal [
   "GemStone needs this to print exception correctly"
 
   self messageText: self description.
   ^ super signal
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDoesNotExistError>>versionString [
+{ #category : #accessing }
+MetacelloVersionDoesNotExistError >> versionString [
 	^ versionString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionDoesNotExistError>>versionString: anObject [
+{ #category : #accessing }
+MetacelloVersionDoesNotExistError >> versionString: anObject [
 	versionString := anObject
 ]

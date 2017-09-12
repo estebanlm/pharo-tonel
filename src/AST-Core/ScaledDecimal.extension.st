@@ -1,12 +1,7 @@
-Extension {
-	#name : #ScaledDecimal
-}
+Extension { #name : #ScaledDecimal }
 
-{
-	#category : #'*AST-Core-Parser',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-ScaledDecimal class>>readFrom: stringOrStream  [
+{ #category : #'*AST-Core-Parser' }
+ScaledDecimal class >> readFrom: stringOrStream [ 
 	"Answer a decimal number as described on stringOrStream.
 	The number may not include a leading radix specification, as in 16rFADE,
 	nor an exponent like 1.0e-3

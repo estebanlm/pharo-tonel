@@ -25,33 +25,23 @@ Class {
 		'dotsBrick',
 		'stringBrick'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-Basic,
-	#timestamp : 'AliakseiSyrel 3/17/2015 21:31'
+	#category : #Glamour-Morphic-Brick-Widgets-Basic
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick class>>exampleOpen [
+{ #category : #examples }
+GLMLabelBrick class >> exampleOpen [
 
 	self gtExample openCenteredInBrickWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick class>>exampleWithPopupOpen [
+{ #category : #examples }
+GLMLabelBrick class >> exampleWithPopupOpen [
 	
 	self gtExampleWithPopup openCenteredInBrickWindowLabeled: 'Label example'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick class>>gtExample [
+{ #category : #examples }
+GLMLabelBrick class >> gtExample [
 	<gtExample>
 	<label: 'Label with text'>
 	
@@ -59,11 +49,8 @@ GLMLabelBrick class>>gtExample [
 		text: 'Label'
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick class>>gtExampleWithPopup [
+{ #category : #examples }
+GLMLabelBrick class >> gtExampleWithPopup [
 	<gtExample>
 	<label: 'Label with text and popup showing when hovered with mouse'>
 	
@@ -78,135 +65,93 @@ GLMLabelBrick class>>gtExampleWithPopup [
 			when: #onMouseHover do: [ GLMPopupBrick new beHelp; openOn: b ] ]
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>approximateHeight [
+{ #category : #brick-geometry }
+GLMLabelBrick >> approximateHeight [
 	
 	^ self label approximateHeight + self vMargin + self vPadding
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>approximateWidth [
+{ #category : #brick-geometry }
+GLMLabelBrick >> approximateWidth [
 	
 	^ self label approximateWidth + self hMargin + self hPadding
 ]
 
-{
-	#category : #label-brick-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>contents: aStringOrText [
+{ #category : #label-brick-accessing }
+GLMLabelBrick >> contents: aStringOrText [
 	"alias for text: added to support polymorphism with default morphic label widgets"
 	self text: aStringOrText asString
 ]
 
-{
-	#category : #label-default,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>defaultDotsText [
+{ #category : #label-default }
+GLMLabelBrick >> defaultDotsText [
 	^ '...'
 ]
 
-{
-	#category : #label-default,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>defaultInsetBeforeDots [
+{ #category : #label-default }
+GLMLabelBrick >> defaultInsetBeforeDots [
 	^ 1
 ]
 
-{
-	#category : #label-brick-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>dotsBrick [
+{ #category : #label-brick-accessing }
+GLMLabelBrick >> dotsBrick [
 
 	^ dotsBrick
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>familyName: aString [
+{ #category : #brick-properties }
+GLMLabelBrick >> familyName: aString [
 
 	self label familyName: aString.
 	self dotsBrick familyName: aString
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>font: aLogicalFont [
+{ #category : #brick-properties }
+GLMLabelBrick >> font: aLogicalFont [
 
 	self label font: aLogicalFont.
 	self dotsBrick font: aLogicalFont.
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>fontSize [
+{ #category : #brick-properties }
+GLMLabelBrick >> fontSize [
 
 	^ self label fontSize
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>fontSize: aNumber [
+{ #category : #brick-properties }
+GLMLabelBrick >> fontSize: aNumber [
 	<brickBuilderProperty: #Text name: 'Font size' as: #asInteger getter: #fontSize model: #GLMUIBuilderTextFieldProperty>
 
 	self label fontSize: aNumber.
 	self dotsBrick fontSize: aNumber
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>hShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMLabelBrick >> hShrinkWrap [
 	super hShrinkWrap.
 	
 	self label hShrinkWrap.
 	self dotsBrick hShrinkWrap
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>hSpaceFill: anInteger [
+{ #category : #brick-layout-properties }
+GLMLabelBrick >> hSpaceFill: anInteger [
 	super hSpaceFill: anInteger.
 	
 	self label hSpaceFill.
 	self dotsBrick hShrinkWrap.
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>height: anObject [
+{ #category : #brick-geometry }
+GLMLabelBrick >> height: anObject [
 
 	self vSpaceFill.
 	super height: anObject.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>initialize [
+{ #category : #initialization }
+GLMLabelBrick >> initialize [
 	super initialize.
 	
 	stringBrick := self newStringBrick.
@@ -229,36 +174,24 @@ GLMLabelBrick>>initialize [
 		marginTop: 1
 ]
 
-{
-	#category : #label-testing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>isDotsAdded [
+{ #category : #label-testing }
+GLMLabelBrick >> isDotsAdded [
 
 	^ self hasSubbrick: self dotsBrick
 ]
 
-{
-	#category : #label-brick-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>label [
+{ #category : #label-brick-accessing }
+GLMLabelBrick >> label [
 	^ stringBrick
 ]
 
-{
-	#category : #label-brick-creation,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>newStringBrick [
+{ #category : #label-brick-creation }
+GLMLabelBrick >> newStringBrick [
 	^ GLMStringBrick new
 ]
 
-{
-	#category : #brick-layout-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>onLayouted [
+{ #category : #brick-layout-events }
+GLMLabelBrick >> onLayouted [
 	super onLayouted.
 	
 	self label isFitsInParent
@@ -278,19 +211,13 @@ GLMLabelBrick>>onLayouted [
 	
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>text [
+{ #category : #brick-properties }
+GLMLabelBrick >> text [
 	^ self label text
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>text: aString [
+{ #category : #brick-properties }
+GLMLabelBrick >> text: aString [
 	<brickBuilderProperty: #Text name: 'Text' as: #asString getter: #text model: #GLMUIBuilderTextFieldProperty>
 	
 	self label text: aString.
@@ -298,83 +225,59 @@ GLMLabelBrick>>text: aString [
 	self doLayout
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>textColor [
+{ #category : #brick-properties }
+GLMLabelBrick >> textColor [
 
 	^ self label textColor
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>textColor: aColor [
+{ #category : #brick-properties }
+GLMLabelBrick >> textColor: aColor [
 	<brickBuilderProperty: #Text name: 'Text color' as: #brickBuilderEvaluate getter: #textColor model: #GLMUIBuilderTextFieldProperty>
 
 	self label textColor: aColor.
 	self dotsBrick textColor: aColor
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>textPosition [
+{ #category : #brick-properties }
+GLMLabelBrick >> textPosition [
 
 	^ self label textPosition
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>textPosition: aSymbol [
+{ #category : #brick-properties }
+GLMLabelBrick >> textPosition: aSymbol [
 	<brickBuilderProperty: #Text name: 'Text position' as: #asSymbol getter: #textPosition model: #GLMUIBuilderTextFieldProperty>
 
 	self label textPosition: aSymbol.
 	self dotsBrick textPosition: aSymbol.
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>vShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMLabelBrick >> vShrinkWrap [
 	super vShrinkWrap.
 	
 	self label vShrinkWrap.
 	self dotsBrick vShrinkWrap
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>vSpaceFill: anInteger [
+{ #category : #brick-layout-properties }
+GLMLabelBrick >> vSpaceFill: anInteger [
 	super vSpaceFill: anInteger.
 	
 	self label vSpaceFill.
 	self dotsBrick vSpaceFill.
 ]
 
-{
-	#category : #brick-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>weightValue: anInteger [
+{ #category : #brick-properties }
+GLMLabelBrick >> weightValue: anInteger [
 
 	self label weightValue: anInteger.
 	self dotsBrick weightValue: anInteger.
 ]
 
-{
-	#category : #brick-geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMLabelBrick>>width: anObject [
+{ #category : #brick-geometry }
+GLMLabelBrick >> width: anObject [
 
 	self hSpaceFill.
 	super width: anObject.

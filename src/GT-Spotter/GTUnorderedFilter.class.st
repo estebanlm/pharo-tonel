@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GTUnorderedFilter,
 	#superclass : #GTStringFilter,
-	#category : #GT-Spotter-Filters,
-	#timestamp : ''
+	#category : #GT-Spotter-Filters
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTUnorderedFilter>>applyFilterWithQuery [
+{ #category : #private }
+GTUnorderedFilter >> applyFilterWithQuery [
 	| unorderedMatchedItems |
 	unorderedMatchedItems := OrderedCollection new.
 	self allItemsDo: [ :each | 
@@ -31,10 +24,7 @@ GTUnorderedFilter>>applyFilterWithQuery [
 	self filteredItems: unorderedMatchedItems
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTUnorderedFilter>>isMatchedItem: anItem [
+{ #category : #private }
+GTUnorderedFilter >> isMatchedItem: anItem [
 	^ false
 ]

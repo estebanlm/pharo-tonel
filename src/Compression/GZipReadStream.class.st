@@ -7,15 +7,11 @@ Class {
 	#pools : [
 		'GZipConstants'
 	],
-	#category : #Compression-Streams,
-	#timestamp : '<historical>'
+	#category : #Compression-Streams
 }
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-GZipReadStream class>>fileIn: fullFileName [
+{ #category : #filein/out }
+GZipReadStream class >> fileIn: fullFileName [
 	"FileIn the contents of a gzipped file"
 	| zipped unzipped |
 	zipped := self on: (FileStream readOnlyFileNamed: fullFileName).
@@ -25,11 +21,8 @@ GZipReadStream class>>fileIn: fullFileName [
 
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-GZipReadStream class>>fileIntoNewChangeSet: fullFileName [
+{ #category : #filein/out }
+GZipReadStream class >> fileIntoNewChangeSet: fullFileName [
 	"FileIn the contents of a gzipped file"
 
 	| zipped unzipped csClass |
@@ -42,11 +35,8 @@ GZipReadStream class>>fileIntoNewChangeSet: fullFileName [
 		named: fullFileName asFileReference basename
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-GZipReadStream class>>saveContents: fullFileName [
+{ #category : #filein/out }
+GZipReadStream class >> saveContents: fullFileName [
 	"Save the contents of a gzipped file"
 	| zipped buffer unzipped newName |
 	newName := fullFileName copyUpToLast: FileSystem disk extensionDelimiter.
@@ -68,11 +58,8 @@ GZipReadStream class>>saveContents: fullFileName [
 	^ newName
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-GZipReadStream class>>uncompressedFileName: fullName [
+{ #category : #filein/out }
+GZipReadStream class >> uncompressedFileName: fullName [
 	^((fullName endsWith: '.gz') and: [self confirm: ('{1}
 appears to be a compressed file.
 Do you want to uncompress it?' format:{fullName})])
@@ -80,22 +67,16 @@ Do you want to uncompress it?' format:{fullName})])
 		ifTrue:[self saveContents: fullName]
 ]
 
-{
-	#category : #unzipping,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-GZipReadStream class>>unzip: fullFileName  [
+{ #category : #unzipping }
+GZipReadStream class >> unzip: fullFileName [ 
 	"Unzip the contents of the file specified by the full path name or file reference fullFileName to the current working directory
 	To unzip a .zip go to the class ZipArchive"
 	
 	^ self unzip: fullFileName to: FileSystem disk workingDirectory 
 ]
 
-{
-	#category : #unzipping,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-GZipReadStream class>>unzip: fullFileName to: pathName [
+{ #category : #unzipping }
+GZipReadStream class >> unzip: fullFileName to: pathName [
 	"Unzip the contents of the file specified by the full path name or file reference fullFileName to the location given by pathName.
 	GZipReadStream unzip:'/aPath/zip.gz' to: '/aPath'
 	GZipReadStream unzip:'zip.gz' to: '/aPath'
@@ -120,22 +101,16 @@ GZipReadStream class>>unzip: fullFileName to: pathName [
 	^ newName
 ]
 
-{
-	#category : #filein/out,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-GZipReadStream class>>viewContents: fullFileName [
+{ #category : #filein/out }
+GZipReadStream class >> viewContents: fullFileName [
 	"Open the decompressed contents of the .gz file with the given name.  This method is only required for the registering-file-list of Squeak 3.3a and beyond, but does no harm in an earlier system"
 
 	(FileStream readOnlyFileNamed: fullFileName) ifNotNil:
 		[:aStream | aStream viewGZipContents]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-GZipReadStream>>on: aCollection from: firstIndex to: lastIndex [
+{ #category : #initialization }
+GZipReadStream >> on: aCollection from: firstIndex to: lastIndex [
 	"Check the header of the GZIP stream."
 	| method magic flags length |
 	super on: aCollection from: firstIndex to: lastIndex.
@@ -167,20 +142,14 @@ GZipReadStream>>on: aCollection from: firstIndex to: lastIndex [
 
 ]
 
-{
-	#category : #crc,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-GZipReadStream>>updateCrc: oldCrc from: start to: stop in: aCollection [
+{ #category : #crc }
+GZipReadStream >> updateCrc: oldCrc from: start to: stop in: aCollection [
 	"Answer an updated CRC for the range of bytes in aCollection"
 	^ZipWriteStream updateCrc: oldCrc from: start to: stop in: aCollection.
 ]
 
-{
-	#category : #crc,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-GZipReadStream>>verifyCrc [
+{ #category : #crc }
+GZipReadStream >> verifyCrc [
 	| stored |
 	stored := 0.
 	0 to: 24 by: 8 do: [ :i |

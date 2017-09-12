@@ -13,15 +13,11 @@ Class {
 	#pools : [
 		'SDL2Constants'
 	],
-	#category : #OSWindow-SDL2,
-	#timestamp : 'IgorStasenko 7/30/2014 18:22'
+	#category : #OSWindow-SDL2
 }
 
-{
-	#category : #'updating screen',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2FormRenderer>>copyAndPresentTextureRectangle: rectangle [
+{ #category : #'updating screen' }
+OSSDL2FormRenderer >> copyAndPresentTextureRectangle: rectangle [
 	| sdlRectangle |
 
 	deferUpdates
@@ -33,70 +29,49 @@ OSSDL2FormRenderer>>copyAndPresentTextureRectangle: rectangle [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2FormRenderer>>createRenderer [
+{ #category : #private }
+OSSDL2FormRenderer >> createRenderer [
 	renderer := window handle createDefaultRenderer.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2FormRenderer>>createTexture [
+{ #category : #private }
+OSSDL2FormRenderer >> createTexture [
 	texture := renderer createTextureFormat: SDL_PIXELFORMAT_XRGB8888
 						access: SDL_TEXTUREACCESS_STREAMING width: form width height: form height.
 	extent := form extent
 ]
 
-{
-	#category : #'updating screen',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2FormRenderer>>deferUpdatesWhile: aBlock [
+{ #category : #'updating screen' }
+OSSDL2FormRenderer >> deferUpdatesWhile: aBlock [
 	deferUpdates := true.
 	aBlock ensure: [ deferUpdates := false. ].
 	self useDeferredUpdates.
 	
 ]
 
-{
-	#category : #deleting,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2FormRenderer>>destroy [
+{ #category : #deleting }
+OSSDL2FormRenderer >> destroy [
 	(texture isNil or: [ renderer isNil ])
 		ifTrue: [ ^ self ].
 	texture destroy.
 	renderer destroy
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2FormRenderer>>initialize [
+{ #category : #initialization }
+OSSDL2FormRenderer >> initialize [
 	super initialize.
 	deferUpdates := false.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2FormRenderer>>primitiveUpdateRectangle: rectangle externalForm: externalForm [
+{ #category : #private }
+OSSDL2FormRenderer >> primitiveUpdateRectangle: rectangle externalForm: externalForm [
 	externalForm copy: rectangle from: form to: rectangle origin rule: Form over
 
 ]
 
-{
-	#category : #'updating screen',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2FormRenderer>>updateAll [
+{ #category : #'updating screen' }
+OSSDL2FormRenderer >> updateAll [
 	self validate
 		ifFalse: [ ^ self ].
 	
@@ -108,11 +83,8 @@ OSSDL2FormRenderer>>updateAll [
 	renderer present
 ]
 
-{
-	#category : #'updating screen',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2FormRenderer>>updateAreas: allDamage immediate: forceToScreen [
+{ #category : #'updating screen' }
+OSSDL2FormRenderer >> updateAreas: allDamage immediate: forceToScreen [
 	| pixels pitchHolder pitch intersection updateUnion externalForm |
 	self validate
 		ifFalse: [ ^ self ].
@@ -153,11 +125,8 @@ OSSDL2FormRenderer>>updateAreas: allDamage immediate: forceToScreen [
 	
 ]
 
-{
-	#category : #'updating screen',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2FormRenderer>>updateRectangle: rectangle [
+{ #category : #'updating screen' }
+OSSDL2FormRenderer >> updateRectangle: rectangle [
 	| intersection pixels pitch pitchHolder externalForm |
 	intersection := rectangle
 		intersect: (0 @ 0 corner: window extent)
@@ -184,21 +153,15 @@ OSSDL2FormRenderer>>updateRectangle: rectangle [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2FormRenderer>>useDeferredUpdates [
+{ #category : #private }
+OSSDL2FormRenderer >> useDeferredUpdates [
 	renderer
 		copy: texture;
 		present
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSSDL2FormRenderer>>validate [
+{ #category : #private }
+OSSDL2FormRenderer >> validate [
 	form ifNil: [ ^ false ].
 	(renderer isNil or: [renderer isNull]) ifTrue: [ self createRenderer ].
 	(texture isNil or: [texture isNull or: [ form extent ~= extent ]])

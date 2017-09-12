@@ -5,15 +5,11 @@ Class {
 	#name : #Bitmap,
 	#superclass : #ArrayedCollection,
 	#type : #words,
-	#category : #Graphics-Primitives,
-	#timestamp : '<historical>'
+	#category : #Graphics-Primitives
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap class>>decodeIntFrom: s  [
+{ #category : #'instance creation' }
+Bitmap class >> decodeIntFrom: s [ 
 	"Decode an integer in stream s as follows...
 		0-223	0-223
 		224-254	(0-30)*256 + next byte (0-7935)
@@ -29,11 +25,8 @@ Bitmap class>>decodeIntFrom: s  [
 	^ int
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap class>>decompressFromByteArray: byteArray  [
+{ #category : #'instance creation' }
+Bitmap class >> decompressFromByteArray: byteArray [ 
 	| s bitmap size |
 	s := byteArray readStream.
 	size := self decodeIntFrom: s.
@@ -45,21 +38,15 @@ Bitmap class>>decompressFromByteArray: byteArray  [
 	^ bitmap
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap class>>initialize [
+{ #category : #'class initialization' }
+Bitmap class >> initialize [
 	Smalltalk specialObjectsArray 
 		at: 5
 		put: self
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap class>>newFromStream: s  [
+{ #category : #'instance creation' }
+Bitmap class >> newFromStream: s [ 
 	| len |
 	s next = 128 ifTrue: 
 		[ "New compressed format"
@@ -76,11 +63,8 @@ Bitmap class>>newFromStream: s  [
 			^ s nextWordsInto: (self new: len) ]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap class>>swapBytesIn: aNonPointerThing from: start to: stop  [
+{ #category : #utilities }
+Bitmap class >> swapBytesIn: aNonPointerThing from: start to: stop [ 
 	"Perform a bigEndian/littleEndian byte reversal of my words.
 	We only intend this for non-pointer arrays.  Do nothing if I contain pointers."
 	"The implementation is a hack, but fast for large ranges"
@@ -119,11 +103,8 @@ Bitmap class>>swapBytesIn: aNonPointerThing from: start to: stop  [
 		copyBits
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>asByteArray [
+{ #category : #conversion }
+Bitmap >> asByteArray [
 	"Faster way to make a byte array from me.
 	copyFromByteArray: makes equal Bitmap."
 	| f bytes hack |
@@ -147,42 +128,30 @@ Bitmap>>asByteArray [
 	^ bytes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>atAllPut: value [
+{ #category : #accessing }
+Bitmap >> atAllPut: value [
 	"Fill the receiver, an indexable bytes or words object, with the given positive integer. The range of possible fill values is [0..255] for byte arrays and [0..(2^32 - 1)] for word arrays."
 	<primitive: 145>
 	super atAllPut: value.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>bitPatternForDepth: depth [
+{ #category : #accessing }
+Bitmap >> bitPatternForDepth: depth [
 	"The raw call on BitBlt needs a Bitmap to represent this color.  I already am Bitmap like. I am already adjusted for a specific depth.  Interpret me as an array of (32/depth) Color pixelValues. BitBlt aligns the first element of this array with the top scanline of the destinationForm, the second with the second, and so on, cycling through the color array as necessary."
 
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>byteAt: byteAddress  [
+{ #category : #accessing }
+Bitmap >> byteAt: byteAddress [ 
 	"Extract a byte from a Bitmap.  Note that this is a byte address and it is one-order.  For repeated use, create an instance of BitBlt and use pixelAt:.  See Form>>#pixelAt:"
 	| lowBits |
 	lowBits := byteAddress - 1 bitAnd: 3.
 	^ ((self at: (byteAddress - 1 - lowBits) // 4 + 1) bitShift: (lowBits - 3) * 8) bitAnd: 255
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>byteAt: byteAddress put: byte  [
+{ #category : #accessing }
+Bitmap >> byteAt: byteAddress put: byte [ 
 	"Insert a byte into a Bitmap.  Note that this is a byte address and it is one-order.  For repeated use, create an instance of BitBlt and use pixelAt:put:.  See Form>>#pixelAt:put:"
 	| longWord shift lowBits longAddr |
 	(byte < 0 or: [ byte > 255 ]) ifTrue: [ ^ self errorImproperStore ].
@@ -196,19 +165,13 @@ Bitmap>>byteAt: byteAddress put: byte  [
 	^ byte
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>byteSize [
+{ #category : #accessing }
+Bitmap >> byteSize [
 	^self size * 4
 ]
 
-{
-	#category : #filing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>compress: bm toByteArray: ba [
+{ #category : #filing }
+Bitmap >> compress: bm toByteArray: ba [
 	"Store a run-coded compression of the receiver into the byteArray ba,
 	and return the last index stored into. ba is assumed to be large enough.
 	The encoding is as follows...
@@ -302,11 +265,8 @@ Bitmap>>compress: bm toByteArray: ba [
 	^ i - 1	"number of bytes actually stored"
 ]
 
-{
-	#category : #filing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>compressToByteArray [
+{ #category : #filing }
+Bitmap >> compressToByteArray [
 	"Return a run-coded compression of this bitmap into a byteArray"
 	"Without skip codes, it is unlikely that the compressed bitmap will be any larger than was the original.  The run-code cases are...
 	N >= 1 words of equal bytes:  4N bytes -> 2 bytes (at worst 4 -> 2)
@@ -325,11 +285,8 @@ The worst that can happen is that the method begins with unequal words, and than
 		to: lastByte
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>copyFromByteArray: byteArray  [
+{ #category : #accessing }
+Bitmap >> copyFromByteArray: byteArray [ 
 	"This method should work with either byte orderings"
 
 	| myHack byteHack |
@@ -339,11 +296,8 @@ Bitmap>>copyFromByteArray: byteArray  [
 	byteHack displayOn: myHack
 ]
 
-{
-	#category : #filing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>decompress: bm fromByteArray: ba at: index  [
+{ #category : #filing }
+Bitmap >> decompress: bm fromByteArray: ba at: index [ 
 	"Decompress the body of a byteArray encoded by compressToByteArray (qv)...
 	The format is simply a sequence of run-coded pairs, {N D}*.
 		N is a run-length * 4 + data code.
@@ -441,20 +395,14 @@ Bitmap>>decompress: bm fromByteArray: ba at: index  [
 					k := k + 1 ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>defaultElement [
+{ #category : #accessing }
+Bitmap >> defaultElement [
 	"Return the default element of the receiver"
 	^0
 ]
 
-{
-	#category : #filing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>encodeBytesOf: anInt in: ba at: i [
+{ #category : #filing }
+Bitmap >> encodeBytesOf: anInt in: ba at: i [
 	"Copy the integer anInt into byteArray ba at index i, and return the next index"
 
 	<inline: true>
@@ -465,11 +413,8 @@ Bitmap>>encodeBytesOf: anInt in: ba at: i [
 	^ i+4
 ]
 
-{
-	#category : #filing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>encodeInt: int  [
+{ #category : #filing }
+Bitmap >> encodeInt: int [ 
 	"Encode the integer int as per encodeInt:in:at:, and return it as a ByteArray"
 	| byteArray next |
 	byteArray := ByteArray new: 5.
@@ -482,11 +427,8 @@ Bitmap>>encodeInt: int  [
 		to: next - 1
 ]
 
-{
-	#category : #filing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>encodeInt: anInt in: ba at: i [
+{ #category : #filing }
+Bitmap >> encodeInt: anInt in: ba at: i [
 	"Encode the integer anInt in byteArray ba at index i, and return the next index.
 	The encoding is as follows...
 		0-223	0-223
@@ -502,21 +444,15 @@ Bitmap>>encodeInt: anInt in: ba at: i [
 	^ self encodeBytesOf: anInt in: ba at: i+1
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>fromByteStream: aStream  [
+{ #category : #initialize }
+Bitmap >> fromByteStream: aStream [ 
 	"Initialize the array of bits by reading integers from the argument, 
 	aStream."
 	aStream nextWordsInto: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>integerAt: index  [
+{ #category : #accessing }
+Bitmap >> integerAt: index [ 
 	"Return the integer at the given index"
 	| word |
 	<primitive: 165>
@@ -530,11 +466,8 @@ Bitmap>>integerAt: index  [
 		ifFalse: [ word ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>integerAt: index put: anInteger  [
+{ #category : #accessing }
+Bitmap >> integerAt: index put: anInteger [ 
 	"Store the integer at the given index"
 	| word |
 	<primitive: 166>
@@ -549,51 +482,36 @@ Bitmap>>integerAt: index put: anInteger  [
 	^ anInteger
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>isColormap [
+{ #category : #testing }
+Bitmap >> isColormap [
 	"Bitmaps were used as color maps for BitBlt.
 	This method allows to recognize real color maps."
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>pixelValueForDepth: depth [
+{ #category : #accessing }
+Bitmap >> pixelValueForDepth: depth [
 	"Self is being used to represent a single color.  Answer bits that appear in ONE pixel of this color in a Bitmap of the given depth. The depth must be one of 1, 2, 4, 8, 16, or 32.  Returns an integer.  First pixel only.  "
 
 	^ (self at: 1) bitAnd: (1 bitShift: depth) - 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>primFill: aPositiveInteger [
+{ #category : #accessing }
+Bitmap >> primFill: aPositiveInteger [
 	"Fill the receiver, an indexable bytes or words object, with the given positive integer. The range of possible fill values is [0..255] for byte arrays and [0..(2^32 - 1)] for word arrays."
 
 	<primitive: 145>
 	self errorImproperStore.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>printOn: aStream [
+{ #category : #printing }
+Bitmap >> printOn: aStream [
 	self printNameOn: aStream.
 	aStream nextPutAll: ' of length '; print: self size
 ]
 
-{
-	#category : #filing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>readCompressedFrom: strm  [
+{ #category : #filing }
+Bitmap >> readCompressedFrom: strm [ 
 	"Decompress an old-style run-coded stream into this bitmap:
 		[0 means end of runs]
 		[n = 1..127] [(n+3) copies of next byte]
@@ -627,29 +545,20 @@ Bitmap>>readCompressedFrom: strm  [
 	self copyFromByteArray: outBuff
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>replaceFrom: start to: stop with: replacement startingAt: repStart  [
+{ #category : #accessing }
+Bitmap >> replaceFrom: start to: stop with: replacement startingAt: repStart [ 
 	"Primitive. This destructively replaces elements from start to stop in the receiver starting at index, repStart, in the collection, replacement. Answer the receiver. Range checks are performed in the primitive only. Optional. See Object documentation whatIsAPrimitive."
 	<primitive: 105>
 	super replaceFrom: start to: stop with: replacement startingAt: repStart
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>restoreEndianness [
+{ #category : #conversion }
+Bitmap >> restoreEndianness [
 	"nothing to do here?"
 ]
 
-{
-	#category : #filing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>storeBits: startBit to: stopBit on: aStream  [
+{ #category : #filing }
+Bitmap >> storeBits: startBit to: stopBit on: aStream [ 
 	"Store my bits as a hex string, breaking the lines every 100 bytes or 
 	so to comply with the maximum line length limits of Postscript (255 
 	bytes). "
@@ -669,11 +578,8 @@ Bitmap>>storeBits: startBit to: stopBit on: aStream  [
 	lineWidth > 0 ifTrue: [ aStream cr ].
 ]
 
-{
-	#category : #filing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>writeOn: aStream  [
+{ #category : #filing }
+Bitmap >> writeOn: aStream [ 
 	"Store the array of bits onto the argument, aStream. A leading byte of 16r80 identifies this as compressed by compressToByteArray (qv)."
 	| b |
 	aStream nextPut: 128.
@@ -683,11 +589,8 @@ Bitmap>>writeOn: aStream  [
 		nextPutAll: b
 ]
 
-{
-	#category : #filing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-Bitmap>>writeUncompressedOn: aStream  [
+{ #category : #filing }
+Bitmap >> writeUncompressedOn: aStream [ 
 	"Store the array of bits onto the argument, aStream.
 	(leading byte ~= 16r80) identifies this as raw bits (uncompressed)."
 

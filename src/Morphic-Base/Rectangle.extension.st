@@ -1,21 +1,13 @@
-Extension {
-	#name : #Rectangle
-}
+Extension { #name : #Rectangle }
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Rectangle class>>activeHand [
+{ #category : #'*Morphic-Base' }
+Rectangle class >> activeHand [
 
 	^ ActiveHand
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Rectangle>>asLayoutFrame [
+{ #category : #'*Morphic-Base' }
+Rectangle >> asLayoutFrame [
 	"Answer an instance of LayoutFrame which uses fractions from receiver "
 	
 	^ LayoutFrame new
@@ -27,11 +19,8 @@ Rectangle>>asLayoutFrame [
 		
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Rectangle>>drawReverseFrame: rect [
+{ #category : #'*Morphic-Base' }
+Rectangle >> drawReverseFrame: rect [
 
 	Display 
 		border: rect
@@ -40,11 +29,8 @@ Rectangle>>drawReverseFrame: rect [
 		fillColor: Color gray
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Rectangle class>>fromUser [
+{ #category : #'*Morphic-Base' }
+Rectangle class >> fromUser [
 	"Answer an instance of me that is determined by having the user 
 	designate the top left and bottom right corners. The gridding for user 
 	selection is 1@1."
@@ -52,11 +38,8 @@ Rectangle class>>fromUser [
 	^self fromUser: 1 @ 1
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Rectangle class>>fromUser: gridPoint  [
+{ #category : #'*Morphic-Base' }
+Rectangle class >> fromUser: gridPoint [ 
 	"Answer a Rectangle that is determined by having the user 
 	designate the top left and bottom right corners. 
 	The cursor reamins linked with the sensor, but
@@ -72,11 +55,8 @@ Rectangle class>>fromUser: gridPoint  [
 	^  originRect newRectFrom: [ :f :pt | f origin corner: (pt grid: gridPoint) ]
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Rectangle>>newRectButtonPressedDo: newRectBlock  [
+{ #category : #'*Morphic-Base' }
+Rectangle >> newRectButtonPressedDo: newRectBlock [ 
 	"Track the outline of a new rectangle until mouse button changes. newFrameBlock produces each new rectangle from the previous. Only tracks while mouse is down."
 	| rect newRect buttonNow hand |
 	
@@ -106,11 +86,8 @@ Rectangle>>newRectButtonPressedDo: newRectBlock  [
 	^ rect
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Rectangle>>newRectFrom: newRectBlock  [
+{ #category : #'*Morphic-Base' }
+Rectangle >> newRectFrom: newRectBlock [ 
 	"Track the outline of a new rectangle until mouse button changes. newFrameBlock produces each new rectangle from the previous"
 	| rect newRect buttonStart buttonNow  hand |
 

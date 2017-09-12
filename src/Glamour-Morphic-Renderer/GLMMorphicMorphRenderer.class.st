@@ -1,21 +1,14 @@
-"
-
-"
 Class {
 	#name : #GLMMorphicMorphRenderer,
 	#superclass : #GLMMorphicWidgetRenderer,
 	#instVars : [
 		'scrollPane'
 	],
-	#category : #Glamour-Morphic-Renderer,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Renderer
 }
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicMorphRenderer>>actOnKeyStroke: aPresentation event: anEvent from: aMorph  [
+{ #category : #rendering }
+GLMMorphicMorphRenderer >> actOnKeyStroke: aPresentation event: anEvent from: aMorph [ 
 	| action |
 
 	anEvent commandKeyPressed ifFalse: [ ^self ].
@@ -27,29 +20,20 @@ GLMMorphicMorphRenderer>>actOnKeyStroke: aPresentation event: anEvent from: aMor
 		ifNotNil: [ action actOn: aPresentation].
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicMorphRenderer>>actOnPresentationUpdated: ann [
+{ #category : #rendering }
+GLMMorphicMorphRenderer >> actOnPresentationUpdated: ann [
 	scrollPane scrollTarget: (self morphFrom: ann presentation)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicMorphRenderer>>allKeyboardActionsFor: aPresentation  [
+{ #category : #private }
+GLMMorphicMorphRenderer >> allKeyboardActionsFor: aPresentation [ 
 	^(aPresentation allActions, 
 		aPresentation allSelectionActions) 
 		select: [ :action | action hasShortcut ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicMorphRenderer>>morphFrom: aMorphPresentation [
+{ #category : #rendering }
+GLMMorphicMorphRenderer >> morphFrom: aMorphPresentation [
 	| morph  |
 	
 	morph := aMorphPresentation morph 
@@ -67,11 +51,8 @@ GLMMorphicMorphRenderer>>morphFrom: aMorphPresentation [
 	^morph
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMMorphicMorphRenderer>>render: aMorphPresentation [
+{ #category : #rendering }
+GLMMorphicMorphRenderer >> render: aMorphPresentation [
 	aMorphPresentation when: GLMPresentationUpdated send: #actOnPresentationUpdated: to: self.
 	^ (scrollPane := self scrollMorphFor: (self morphFrom: aMorphPresentation))
 ]

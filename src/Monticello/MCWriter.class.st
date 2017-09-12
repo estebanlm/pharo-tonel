@@ -7,46 +7,30 @@ Class {
 	#instVars : [
 		'stream'
 	],
-	#category : #Monticello-Storing,
-	#timestamp : 'TorstenBergmann 2/6/2014 08:08'
+	#category : #Monticello-Storing
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWriter class>>extension [
+{ #category : #accessing }
+MCWriter class >> extension [
 	^ self readerClass extension
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWriter class>>on: aStream [
+{ #category : #writing }
+MCWriter class >> on: aStream [
 	^ self new stream: aStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWriter class>>readerClass [
+{ #category : #accessing }
+MCWriter class >> readerClass [
 	^ self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWriter>>stream [
+{ #category : #accessing }
+MCWriter >> stream [
 	^ stream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCWriter>>stream: aStream [
+{ #category : #accessing }
+MCWriter >> stream: aStream [
 	stream := aStream
 ]

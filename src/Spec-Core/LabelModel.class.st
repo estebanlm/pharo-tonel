@@ -19,69 +19,47 @@ Class {
 		'labelHolder',
 		'emphasis'
 	],
-	#category : #Spec-Core-Widgets,
-	#timestamp : 'Spirita 6/27/2016 13:51'
+	#category : #Spec-Core-Widgets
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-LabelModel class>>adapterName [
+{ #category : #specs }
+LabelModel class >> adapterName [
 
 	^ #LabelAdapter
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-LabelModel class>>defaultSpec [
+{ #category : #specs }
+LabelModel class >> defaultSpec [
 	<spec>
 	
 	^ #(LabelAdapter
 		adapt: #(model))
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-LabelModel class>>title [
+{ #category : #specs }
+LabelModel class >> title [
 
 	^ 'Label Morph'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-LabelModel>>defaultColor [
+{ #category : #initialization }
+LabelModel >> defaultColor [
 	^ Smalltalk ui theme textColor
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-LabelModel>>emphasis [
+{ #category : #api }
+LabelModel >> emphasis [
 	^ emphasis
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-LabelModel>>emphasisDepractedFor: aCode [
+{ #category : #private }
+LabelModel >> emphasisDepractedFor: aCode [
 	^ 'Using numbers for emphasis is deprecated, use symbols instead.
 Instead of ' , aCode asString , ' use ' , (self emphasisForCode: aCode) asString , '.'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-LabelModel>>emphasisForCode: aCode [
+{ #category : #private }
+LabelModel >> emphasisForCode: aCode [
 	^ {(#bold -> 1).
 	(#italic -> 2).
 	(#underline -> 4).
@@ -93,43 +71,31 @@ LabelModel>>emphasisForCode: aCode [
 		thenReject: #isNil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-LabelModel>>initialize [
+{ #category : #initialization }
+LabelModel >> initialize [
 	super initialize.
 	labelHolder := '' asValueHolder.
 	emphasis := #().
 	labelHolder whenChangedDo: [ self changed: #getText ].
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-LabelModel>>label [
+{ #category : #api }
+LabelModel >> label [
 	"<api: #inspect>"
 
 	^ labelHolder value
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-LabelModel>>label: aText [
+{ #category : #api }
+LabelModel >> label: aText [
 	"<api: #string getter: #label>"
 	"Set the text of the label"
 	
 	labelHolder value: aText
 ]
 
-{
-	#category : #api-valueHolder,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-LabelModel>>labelHolder [
+{ #category : #api-valueHolder }
+LabelModel >> labelHolder [
 	"To register actions to be done when the label changes."
 	^ labelHolder
 ]

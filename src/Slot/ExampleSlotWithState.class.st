@@ -46,22 +46,15 @@ Class {
 	#instVars : [
 		'value'
 	],
-	#category : #Slot-Examples,
-	#timestamp : 'MarcusDenker 7/2/2014 14:33'
+	#category : #Slot-Examples
 }
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ExampleSlotWithState>>read: anObject [
+{ #category : #meta-object-protocol }
+ExampleSlotWithState >> read: anObject [
 	^ value
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ExampleSlotWithState>>write: aValue to: anObject [
+{ #category : #meta-object-protocol }
+ExampleSlotWithState >> write: aValue to: anObject [
 	value := aValue
 ]

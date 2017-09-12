@@ -4,35 +4,25 @@ Text converter for Simplified Chinese variation of EUC.  (Even though the name d
 Class {
 	#name : #CNGBTextConverter,
 	#superclass : #EUCTextConverter,
-	#category : #Multilingual-OtherLanguages,
-	#timestamp : '<historical>'
+	#category : #Multilingual-OtherLanguages
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CNGBTextConverter class>>encodingNames  [
+{ #category : #utilities }
+CNGBTextConverter class >> encodingNames [ 
 
 	^ #('gb2312' ) copy
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CNGBTextConverter>>languageEnvironment [
+{ #category : #private }
+CNGBTextConverter >> languageEnvironment [
 
 	^ SimplifiedChineseEnvironment.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CNGBTextConverter>>leadingChar [
+{ #category : #private }
+CNGBTextConverter >> leadingChar [
 
 	^ GB2312 leadingChar
 

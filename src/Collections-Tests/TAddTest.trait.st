@@ -3,44 +3,29 @@ A trait for test purposes
 "
 Trait {
 	#name : #TAddTest,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:32'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddTest>>collectionWithElement [
+{ #category : #requirements }
+TAddTest >> collectionWithElement [
 	"Returns a collection that already includes what is returned by #element."
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddTest>>element [
+{ #category : #requirements }
+TAddTest >> element [
 	"Returns an object that can be added to the collection returned by #collection."
 	^ self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddTest>>otherCollection [
+{ #category : #requirements }
+TAddTest >> otherCollection [
 	"Returns a collection that does not include what is returned by #element."
 	^ self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddTest>>test0FixtureRequirementsOfTAddTest [
+{ #category : #'tests - fixture' }
+TAddTest >> test0FixtureRequirementsOfTAddTest [
 	self collectionWithElement.
 	self otherCollection.
 	self element.
@@ -48,11 +33,8 @@ TAddTest>>test0FixtureRequirementsOfTAddTest [
 	self deny: (self otherCollection includes: self element)
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddTest>>testTAdd [
+{ #category : #'tests - adding' }
+TAddTest >> testTAdd [
 	| added collection |
 	collection :=self otherCollection .
 	added := collection add: self element.
@@ -64,11 +46,8 @@ TAddTest>>testTAdd [
 	
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddTest>>testTAddAll [
+{ #category : #'tests - adding' }
+TAddTest >> testTAddAll [
 	| added collection toBeAdded |
 	collection := self collectionWithElement .
 	toBeAdded := self otherCollection .
@@ -77,11 +56,8 @@ TAddTest>>testTAddAll [
 	self assert: (collection includesAll: toBeAdded )
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddTest>>testTAddIfNotPresentWithElementAlreadyIn [
+{ #category : #'tests - adding' }
+TAddTest >> testTAddIfNotPresentWithElementAlreadyIn [
 
 	| added oldSize collection anElement |
 	collection := self collectionWithElement .
@@ -95,11 +71,8 @@ TAddTest>>testTAddIfNotPresentWithElementAlreadyIn [
 	self assert: collection  size = oldSize
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddTest>>testTAddIfNotPresentWithNewElement [
+{ #category : #'tests - adding' }
+TAddTest >> testTAddIfNotPresentWithNewElement [
 
 	| added oldSize collection elem |
 	collection := self otherCollection .
@@ -114,11 +87,8 @@ TAddTest>>testTAddIfNotPresentWithNewElement [
 	
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddTest>>testTAddTwice [
+{ #category : #'tests - adding' }
+TAddTest >> testTAddTwice [
 	| added oldSize collection anElement |
 	collection := self collectionWithElement .
 	anElement := self element .
@@ -131,11 +101,8 @@ TAddTest>>testTAddTwice [
 	self assert: collection  size = (oldSize + 2)
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddTest>>testTAddWithOccurences [
+{ #category : #'tests - adding' }
+TAddTest >> testTAddWithOccurences [
 	| added oldSize collection anElement |
 	collection := self collectionWithElement .
 	anElement := self element .
@@ -147,11 +114,8 @@ TAddTest>>testTAddWithOccurences [
 	self assert: collection  size = (oldSize + 5)
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddTest>>testTWrite [
+{ #category : #'tests - adding' }
+TAddTest >> testTWrite [
 	| added collection elem |
 	collection := self otherCollection  .
 	elem := self element .
@@ -164,11 +128,8 @@ TAddTest>>testTWrite [
 	
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TAddTest>>testTWriteTwice [
+{ #category : #'tests - adding' }
+TAddTest >> testTWriteTwice [
 	| added oldSize collection elem |
 	collection := self collectionWithElement .
 	elem := self element .

@@ -13,34 +13,24 @@ Class {
 	#classVars : [
 		'TranslucentPatterns'
 	],
-	#category : #Graphics-Canvas,
-	#timestamp : '<historical>'
+	#category : #Graphics-Canvas
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas class>>extent: aPoint [
+{ #category : #'instance creation' }
+FormCanvas class >> extent: aPoint [
 
 	^ self extent: aPoint depth: Display depth
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas class>>extent: extent depth: depth [
+{ #category : #'instance creation' }
+FormCanvas class >> extent: extent depth: depth [
 
 	^ self new setForm: (Form extent: extent depth: depth)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas class>>extent: extent depth: depth origin: aPoint clipRect: aRectangle [
+{ #category : #'instance creation' }
+FormCanvas class >> extent: extent depth: depth origin: aPoint clipRect: aRectangle [
 
 	^ self new
 		setForm: (Form extent: extent depth: depth);
@@ -48,11 +38,8 @@ FormCanvas class>>extent: extent depth: depth origin: aPoint clipRect: aRectangl
 		yourself
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas class>>initializeTranslucentPatterns [
+{ #category : #caching }
+FormCanvas class >> initializeTranslucentPatterns [
 	
 	TranslucentPatterns := Array new: 8. 
 	#(1 2 4 8 ) do: 
@@ -103,39 +90,27 @@ FormCanvas class>>initializeTranslucentPatterns [
 			put: patternList ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas class>>on: aForm [
+{ #category : #'instance creation' }
+FormCanvas class >> on: aForm [
 
 	^ self new setForm: aForm
 
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas class>>translucentPatterns [
+{ #category : #caching }
+FormCanvas class >> translucentPatterns [
 	TranslucentPatterns isNil ifTrue:[ self initializeTranslucentPatterns ].
 	^ 	TranslucentPatterns  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>allocateForm: extentPoint [
+{ #category : #accessing }
+FormCanvas >> allocateForm: extentPoint [
 	"Allocate a new form which is similar to the receiver"
 	^form allocateForm: extentPoint
 ]
 
-{
-	#category : #drawing-ovals,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>balloonFillOval: aRectangle fillStyle: aFillStyle borderWidth: bw borderColor: bc [
+{ #category : #drawing-ovals }
+FormCanvas >> balloonFillOval: aRectangle fillStyle: aFillStyle borderWidth: bw borderColor: bc [
 
 	self asBalloonCanvas
 		fillOval: aRectangle
@@ -144,39 +119,27 @@ FormCanvas>>balloonFillOval: aRectangle fillStyle: aFillStyle borderWidth: bw bo
 		borderColor: bc
 ]
 
-{
-	#category : #Morphic-Base-Balloon,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>balloonFillRectangle: aRectangle fillStyle: aFillStyle [
+{ #category : #Morphic-Base-Balloon }
+FormCanvas >> balloonFillRectangle: aRectangle fillStyle: aFillStyle [
 
 	self asBalloonCanvas fillRectangle: aRectangle basicFillStyle: aFillStyle
 ]
 
-{
-	#category : #drawing-support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>clipBy: aRectangle during: aBlock [
+{ #category : #drawing-support }
+FormCanvas >> clipBy: aRectangle during: aBlock [
 	"Set a clipping rectangle active only during the execution of aBlock.
 	Note: In the future we may want to have more general clip shapes - not just rectangles"
 	^aBlock value: (self copyClipRect: aRectangle)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>clipRect [
+{ #category : #accessing }
+FormCanvas >> clipRect [
 	"Return the currently active clipping rectangle"
 	^ clipRect translateBy: origin negated
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>contentsOfArea: aRectangle into: aForm [
+{ #category : #accessing }
+FormCanvas >> contentsOfArea: aRectangle into: aForm [
 	| bb |
 	self flush.
 	bb := BitBlt toForm: aForm.
@@ -187,69 +150,48 @@ FormCanvas>>contentsOfArea: aRectangle into: aForm [
 	^aForm
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>copyClipRect: aRectangle [
+{ #category : #copying }
+FormCanvas >> copyClipRect: aRectangle [
 	^ self copyOrigin: origin clipRect: (aRectangle translateBy: origin)
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>copyOffset: aPoint [
+{ #category : #copying }
+FormCanvas >> copyOffset: aPoint [
 	^ self copyOrigin: origin + aPoint clipRect: clipRect
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>copyOffset: aPoint clipRect: sourceClip [
+{ #category : #copying }
+FormCanvas >> copyOffset: aPoint clipRect: sourceClip [
 	"Make a copy of me offset by aPoint, and further clipped
 	by sourceClip, a rectangle in the un-offset coordinates"
 	^ self copyOrigin: aPoint + origin
 		clipRect: ((sourceClip translateBy: origin) intersect: clipRect ifNone: [ 0@0 corner: 0@0 ])
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>copyOrigin: aPoint clipRect: aRectangle [
+{ #category : #copying }
+FormCanvas >> copyOrigin: aPoint clipRect: aRectangle [
 	"Return a copy of this canvas with the given origin. The clipping rectangle of this canvas is the intersection of the given rectangle and the receiver's current clipping rectangle. This allows the clipping rectangles of nested clipping morphs to be composed."
 	^ self copy
 		setOrigin: aPoint
 		clipRect: (clipRect intersect: aRectangle ifNone: ["well, now we will clip everything" 0@0 corner: 0@0])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>depth [
+{ #category : #accessing }
+FormCanvas >> depth [
 
 	^ form depth
 
 ]
 
-{
-	#category : #drawing-polygons,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>drawPolygon: vertices color: aColor borderWidth: bw borderColor: bc [
+{ #category : #drawing-polygons }
+FormCanvas >> drawPolygon: vertices color: aColor borderWidth: bw borderColor: bc [
 	"Generalize for the BalloonCanvas"
 	^self drawPolygon: vertices fillStyle: aColor borderWidth: bw borderColor: bc
 ]
 
-{
-	#category : #drawing-polygons,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>drawPolygon: vertices fillStyle: aFillStyle borderWidth: bw borderColor: bc [
+{ #category : #drawing-polygons }
+FormCanvas >> drawPolygon: vertices fillStyle: aFillStyle borderWidth: bw borderColor: bc [
 	"Use a BalloonCanvas"
 	self asBalloonCanvas 
 		drawPolygon: vertices asArray
@@ -258,11 +200,8 @@ FormCanvas>>drawPolygon: vertices fillStyle: aFillStyle borderWidth: bw borderCo
 		borderColor: bc
 ]
 
-{
-	#category : #drawing-text,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>drawString: aString from: firstIndex to: lastIndex at: aPoint font: fontOrNil color: c [
+{ #category : #drawing-text }
+FormCanvas >> drawString: aString from: firstIndex to: lastIndex at: aPoint font: fontOrNil color: c [
 	| font |
 	port colorMap: nil.
 	font := fontOrNil ifNil: [TextStyle defaultFont].
@@ -274,11 +213,8 @@ FormCanvas>>drawString: aString from: firstIndex to: lastIndex at: aPoint font: 
 		from: firstIndex to: lastIndex at: (origin + aPoint) kern: 0.
 ]
 
-{
-	#category : #drawing-text,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>drawString: aString from: firstIndex to: lastIndex in: bounds font: fontOrNil color: c [
+{ #category : #drawing-text }
+FormCanvas >> drawString: aString from: firstIndex to: lastIndex in: bounds font: fontOrNil color: c [
 	| font portRect |
 	port colorMap: nil.
 	portRect := port clipRect.
@@ -296,11 +232,8 @@ FormCanvas>>drawString: aString from: firstIndex to: lastIndex in: bounds font: 
 	port clipRect: portRect.
 ]
 
-{
-	#category : #drawing-text,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>drawString: aString from: firstIndex to: lastIndex in: bounds font: fontOrNil color: c underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc [
+{ #category : #drawing-text }
+FormCanvas >> drawString: aString from: firstIndex to: lastIndex in: bounds font: fontOrNil color: c underline: underline underlineColor: uc strikethrough: strikethrough strikethroughColor: sc [
 	| font portRect endPoint |
 	port colorMap: nil.
 	portRect := port clipRect.
@@ -331,30 +264,21 @@ FormCanvas>>drawString: aString from: firstIndex to: lastIndex in: bounds font: 
 	port clipRect: portRect.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>extent [
+{ #category : #accessing }
+FormCanvas >> extent [
 
 	^ form extent
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>fillColor: c [
+{ #category : #drawing }
+FormCanvas >> fillColor: c [
 	"Note: This always fills, even if the color is transparent."
 	self setClearColor: c.
 	port fillRect: form boundingBox offset: origin.
 ]
 
-{
-	#category : #drawing-ovals,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>fillOval: r color: fillColor borderWidth: borderWidth borderColor: borderColor [
+{ #category : #drawing-ovals }
+FormCanvas >> fillOval: r color: fillColor borderWidth: borderWidth borderColor: borderColor [
 	| rect |
 	"draw the border of the oval"
 	rect := (r translateBy: origin) truncated.
@@ -370,11 +294,8 @@ FormCanvas>>fillOval: r color: fillColor borderWidth: borderWidth borderColor: b
 
 ]
 
-{
-	#category : #drawing-ovals,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>fillOval: aRectangle fillStyle: aFillStyle borderWidth: bw borderColor: bc [
+{ #category : #drawing-ovals }
+FormCanvas >> fillOval: aRectangle fillStyle: aFillStyle borderWidth: bw borderColor: bc [
 	"Fill the given oval."
 
 	self flag: #bob.		"this and its siblings could be moved up to Canvas with the
@@ -389,11 +310,8 @@ FormCanvas>>fillOval: aRectangle fillStyle: aFillStyle borderWidth: bw borderCol
 	self balloonFillOval: aRectangle fillStyle: aFillStyle borderWidth: bw borderColor: bc
 ]
 
-{
-	#category : #drawing-rectangles,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>fillRectangle: aRectangle basicFillStyle: aFillStyle [
+{ #category : #drawing-rectangles }
+FormCanvas >> fillRectangle: aRectangle basicFillStyle: aFillStyle [
 	"Fill the given rectangle with the given, non-composite, fill style."
 	
 	| pattern |
@@ -416,46 +334,31 @@ FormCanvas>>fillRectangle: aRectangle basicFillStyle: aFillStyle [
 	self balloonFillRectangle: aRectangle fillStyle: aFillStyle.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>finish [
+{ #category : #initialization }
+FormCanvas >> finish [
 	"If there are any pending operations on the receiver complete them. Do not return before all modifications have taken effect."
 	form finish
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>flushDisplay [
+{ #category : #other }
+FormCanvas >> flushDisplay [
 		Display deferUpdates: false; forceDisplayUpdate.
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>forceToScreen: rect [
+{ #category : #other }
+FormCanvas >> forceToScreen: rect [
 	^Display forceToScreen: rect.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>form [
+{ #category : #accessing }
+FormCanvas >> form [
 
 	^ form
 ]
 
-{
-	#category : #drawing-rectangles,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth borderColor: borderColor [
+{ #category : #drawing-rectangles }
+FormCanvas >> frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth borderColor: borderColor [
 	| rect |
 	rect := r translateBy: origin.
 	"draw the border of the rectangle"
@@ -473,11 +376,8 @@ FormCanvas>>frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWid
 		port fillRect: (rect insetBy: borderWidth) offset: origin].
 ]
 
-{
-	#category : #drawing-rectangles,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth topLeftColor: topLeftColor bottomRightColor: bottomRightColor [
+{ #category : #drawing-rectangles }
+FormCanvas >> frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWidth topLeftColor: topLeftColor bottomRightColor: bottomRightColor [
 
 	| w h rect |
 	"First use quick code for top and left borders and fill"
@@ -499,31 +399,22 @@ FormCanvas>>frameAndFillRectangle: r fillColor: fillColor borderWidth: borderWid
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>image: aForm at: aPoint sourceRect: sourceRect rule: rule  [
+{ #category : #private }
+FormCanvas >> image: aForm at: aPoint sourceRect: sourceRect rule: rule [ 
 	"Draw the portion of the given Form defined by sourceRect at the given point using the given BitBlt combination rule."
 	port colorMap: (aForm colormapIfNeededFor: form); fillColor: nil.
 	port image: aForm at: aPoint + origin sourceRect: sourceRect rule: rule.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>image: aForm at: aPoint sourceRect: sourceRect rule: rule alpha: sourceAlpha [
+{ #category : #private }
+FormCanvas >> image: aForm at: aPoint sourceRect: sourceRect rule: rule alpha: sourceAlpha [
 	"Draw the portion of the given Form defined by sourceRect at the given point using the given BitBlt combination rule."
 	port colorMap: (aForm colormapIfNeededFor: form); fillColor: nil.
 	port image: aForm at: aPoint + origin sourceRect: sourceRect rule: rule alpha: sourceAlpha.
 ]
 
-{
-	#category : #drawing-rectangles,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>infiniteFillRectangle: aRectangle fillStyle: aFillStyle [
+{ #category : #drawing-rectangles }
+FormCanvas >> infiniteFillRectangle: aRectangle fillStyle: aFillStyle [
 
 	| additionalOffset rInPortTerms clippedPort targetTopLeft clipOffset ex |
 
@@ -543,11 +434,8 @@ FormCanvas>>infiniteFillRectangle: aRectangle fillStyle: aFillStyle [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>initializeTranslucentPatterns [
+{ #category : #initialization }
+FormCanvas >> initializeTranslucentPatterns [
 	
 	TranslucentPatterns := Array new: 8. 
 	#(1 2 4 8 ) do: 
@@ -598,11 +486,8 @@ FormCanvas>>initializeTranslucentPatterns [
 			put: patternList ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>isVisible: aRectangle [
+{ #category : #testing }
+FormCanvas >> isVisible: aRectangle [
 	"Optimization"
 	(aRectangle right + origin x) < clipRect left	ifTrue: [^ false].
 	(aRectangle left + origin x) > clipRect right	ifTrue: [^ false].
@@ -612,11 +497,8 @@ FormCanvas>>isVisible: aRectangle [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>line: pt1 to: pt2 width: w color: c [
+{ #category : #drawing }
+FormCanvas >> line: pt1 to: pt2 width: w color: c [
 	| offset |
 	offset := origin - (w // 2) asPoint.
 	self setFillColor: c.
@@ -624,20 +506,14 @@ FormCanvas>>line: pt1 to: pt2 width: w color: c [
 		drawFrom: (pt1 + offset) to: (pt2 + offset)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>origin [
+{ #category : #accessing }
+FormCanvas >> origin [
 	"Return the current origin for drawing operations"
 	^ origin
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>paragraph: para bounds: bounds color: c [
+{ #category : #drawing }
+FormCanvas >> paragraph: para bounds: bounds color: c [
 
 	| scanner |
 	self setPaintColor: c.
@@ -648,49 +524,34 @@ FormCanvas>>paragraph: para bounds: bounds color: c [
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>postCopy [
+{ #category : #copying }
+FormCanvas >> postCopy [
 	"The copy share same underlying Form but with its own grafPort."
 
 	super postCopy.
 	self resetGrafPort
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>printOn: aStream [
+{ #category : #printing }
+FormCanvas >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPutAll:' on: '; print: form.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>privateClipRect [
+{ #category : #private }
+FormCanvas >> privateClipRect [
 
 	^clipRect
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>privatePort [
+{ #category : #private }
+FormCanvas >> privatePort [
 
 	^port
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>privateWarp: aForm transform: aTransform at: extraOffset sourceRect: sourceRect cellSize: cellSize [
+{ #category : #private }
+FormCanvas >> privateWarp: aForm transform: aTransform at: extraOffset sourceRect: sourceRect cellSize: cellSize [
 	"Warp the given using the appropriate transform and offset."
 	| globalRect sourceQuad warp tfm |
 	tfm := aTransform.
@@ -706,31 +567,22 @@ FormCanvas>>privateWarp: aForm transform: aTransform at: extraOffset sourceRect:
 	warp warpBits
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>render: anObject [
+{ #category : #drawing }
+FormCanvas >> render: anObject [
 	"Do some 3D operations with the object if possible"
 	^self asBalloonCanvas render: anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>reset [
+{ #category : #initialization }
+FormCanvas >> reset [
 
 	origin := 0@0.							"origin of the top-left corner of this cavas"
 	clipRect := (0@0 corner: 10000@10000).		"default clipping rectangle"
 	self shadowColor: nil.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>resetGrafPort [
+{ #category : #private }
+FormCanvas >> resetGrafPort [
 	"Private! Create a new grafPort for a new copy."
 
 	port := GrafPort toForm: form.
@@ -738,11 +590,8 @@ FormCanvas>>resetGrafPort [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>setClearColor: aColor [
+{ #category : #private }
+FormCanvas >> setClearColor: aColor [
 	"Install a new clear color - e.g., a color is used for clearing the background"
 	| clearColor |
 	clearColor := aColor ifNil:[Color transparent].
@@ -759,11 +608,8 @@ FormCanvas>>setClearColor: aColor [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>setFillColor: aColor [
+{ #category : #private }
+FormCanvas >> setFillColor: aColor [
 	"Install a new color used for filling."
 	| screen patternWord fillColor |
 	fillColor := aColor.
@@ -797,11 +643,8 @@ FormCanvas>>setFillColor: aColor [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>setForm: aForm [
+{ #category : #private }
+FormCanvas >> setForm: aForm [
 
 	self reset.
 	form := aForm.
@@ -809,11 +652,8 @@ FormCanvas>>setForm: aForm [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>setOrigin: aPoint clipRect: aRectangle [
+{ #category : #private }
+FormCanvas >> setOrigin: aPoint clipRect: aRectangle [
 
 	origin := aPoint.
 	clipRect := aRectangle.
@@ -821,11 +661,8 @@ FormCanvas>>setOrigin: aPoint clipRect: aRectangle [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>setPaintColor: aColor [
+{ #category : #private }
+FormCanvas >> setPaintColor: aColor [
 	"Install a new color used for filling."
 	
 	| paintColor screen patternWord |
@@ -861,20 +698,14 @@ FormCanvas>>setPaintColor: aColor [
 
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>showAt: pt [
+{ #category : #other }
+FormCanvas >> showAt: pt [
 
 	^ form displayAt: pt
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>showAt: pt invalidRects: updateRects [
+{ #category : #other }
+FormCanvas >> showAt: pt invalidRects: updateRects [
 	| blt |
 	blt := (BitBlt toForm: Display)
 			sourceForm: form;
@@ -886,11 +717,8 @@ FormCanvas>>showAt: pt invalidRects: updateRects [
 			copyBits]
 ]
 
-{
-	#category : #drawing-images,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>stencil: stencilForm at: aPoint sourceRect: sourceRect color: aColor [
+{ #category : #drawing-images }
+FormCanvas >> stencil: stencilForm at: aPoint sourceRect: sourceRect color: aColor [
 	"Flood this canvas with aColor wherever stencilForm has non-zero pixels"
 	self setPaintColor: aColor.
 	port colorMap: stencilForm maskingMap.
@@ -899,11 +727,8 @@ FormCanvas>>stencil: stencilForm at: aPoint sourceRect: sourceRect color: aColor
 		sourceRect: sourceRect.
 ]
 
-{
-	#category : #drawing-support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>transformBy: aDisplayTransform clippingTo: aClipRect during: aBlock	 smoothing: cellSize [
+{ #category : #drawing-support }
+FormCanvas >> transformBy: aDisplayTransform clippingTo: aClipRect during: aBlock	 smoothing: cellSize [
 
 	"Note: This method has been originally copied from TransformationMorph."
 	| innerRect patchRect sourceQuad warp start subCanvas rule|
@@ -937,57 +762,39 @@ FormCanvas>>transformBy: aDisplayTransform clippingTo: aClipRect during: aBlock	
 
 ]
 
-{
-	#category : #drawing-support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>translateBy: delta during: aBlock [
+{ #category : #drawing-support }
+FormCanvas >> translateBy: delta during: aBlock [
 	"Set a translation only during the execution of aBlock."
 	^aBlock value: (self copyOffset: delta)
 ]
 
-{
-	#category : #drawing-support,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>translateTo: newOrigin clippingTo: aRectangle during: aBlock [
+{ #category : #drawing-support }
+FormCanvas >> translateTo: newOrigin clippingTo: aRectangle during: aBlock [
 	"Set a new origin and clipping rectangle only during the execution of aBlock."
 	aBlock value: (self copyOrigin: newOrigin clipRect: aRectangle)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>translucentMaskFor: alphaValue depth: d [
+{ #category : #private }
+FormCanvas >> translucentMaskFor: alphaValue depth: d [
 	"Return a pattern representing a mask usable for stipple transparency"
 	^(self translucentPatterns at: d) at: ((alphaValue min: 1.0 max: 0.0) * 4) rounded + 1 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>translucentPatterns [
+{ #category : #private }
+FormCanvas >> translucentPatterns [
 	^ self class translucentPatterns
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>warpFrom: sourceQuad toRect: destRect [
+{ #category : #other }
+FormCanvas >> warpFrom: sourceQuad toRect: destRect [
 	^ (WarpBlt toForm: port destForm)
 		combinationRule: Form paint;
 		sourceQuad: sourceQuad destRect: (destRect translateBy: origin);
 		clipRect: clipRect
 ]
 
-{
-	#category : #drawing-images,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FormCanvas>>warpImage: aForm transform: aTransform at: extraOffset sourceRect: sourceRect cellSize: cellSize [
+{ #category : #drawing-images }
+FormCanvas >> warpImage: aForm transform: aTransform at: extraOffset sourceRect: sourceRect cellSize: cellSize [
 	"Warp the given using the appropriate transform and offset."
 	| tfm |
 	tfm := (MatrixTransform2x3 withOffset: origin) composedWithLocal: aTransform.

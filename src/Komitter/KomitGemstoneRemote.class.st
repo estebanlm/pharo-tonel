@@ -4,23 +4,16 @@ I encapsulate a gemstone repository
 Class {
 	#name : #KomitGemstoneRemote,
 	#superclass : #KomitRemote,
-	#category : #Komitter-Models,
-	#timestamp : '<historical>'
+	#category : #Komitter-Models
 }
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitGemstoneRemote>>icon [
+{ #category : #'*Komitter-UI' }
+KomitGemstoneRemote >> icon [
 	^ self iconNamed: #komitterGemstoneRemote
 ]
 
-{
-	#category : #'*Komitter-UI',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitGemstoneRemote>>label [
+{ #category : #'*Komitter-UI' }
+KomitGemstoneRemote >> label [
 	| url |
 	url := self remote location splitOn: '/'.
 	

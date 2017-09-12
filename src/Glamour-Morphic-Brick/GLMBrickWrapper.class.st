@@ -1,315 +1,209 @@
-"
-
-"
 Class {
 	#name : #GLMBrickWrapper,
 	#superclass : #GLMBrickGeneralWrapper,
-	#category : #Glamour-Morphic-Brick-Layouts-Utils,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Layouts-Utils
 }
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>brickBounds: aRectangle [
+{ #category : #api }
+GLMBrickWrapper >> brickBounds: aRectangle [
 
 	^ self brick brickBounds: aRectangle
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>extent [
+{ #category : #api }
+GLMBrickWrapper >> extent [
 
 	^ self brick extent
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>innerBounds [
+{ #category : #api }
+GLMBrickWrapper >> innerBounds [
 
 	^ self brick innerBounds
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>invalidateLayout [
+{ #category : #api }
+GLMBrickWrapper >> invalidateLayout [
 
 	^ self brick invalidateLayout
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>isHeightClean [
+{ #category : #api }
+GLMBrickWrapper >> isHeightClean [
 
 	^ self brick wrappedBounds isHeightClean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>isHeightDirty [
+{ #category : #api }
+GLMBrickWrapper >> isHeightDirty [
 
 	^ self brick wrappedBounds isHeightDirty
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>isWidthClean [
+{ #category : #api }
+GLMBrickWrapper >> isWidthClean [
 
 	^ self brick wrappedBounds isWidthClean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>isWidthDirty [
+{ #category : #api }
+GLMBrickWrapper >> isWidthDirty [
 
 	^ self brick wrappedBounds isWidthDirty
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>marginBottom [
+{ #category : #api }
+GLMBrickWrapper >> marginBottom [
 
 	^ self brick marginBottom
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>marginLeft [
+{ #category : #api }
+GLMBrickWrapper >> marginLeft [
 
 	^ self brick marginLeft
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>marginRight [
+{ #category : #api }
+GLMBrickWrapper >> marginRight [
 
 	^ self brick marginRight
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>marginTop [
+{ #category : #api }
+GLMBrickWrapper >> marginTop [
 
 	^ self brick marginTop
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>markHeightClean [
+{ #category : #api }
+GLMBrickWrapper >> markHeightClean [
 
 	^ self brick wrappedBounds markHeightClean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>markHeightDirty [
+{ #category : #api }
+GLMBrickWrapper >> markHeightDirty [
 
 	^ self brick wrappedBounds markHeightDirty
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>markLayoutClean [
+{ #category : #api }
+GLMBrickWrapper >> markLayoutClean [
 
 	self layout markClean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>markLayoutDirty [
+{ #category : #api }
+GLMBrickWrapper >> markLayoutDirty [
 
 	self layout markDirty
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>markWidthClean [
+{ #category : #api }
+GLMBrickWrapper >> markWidthClean [
 
 	^ self brick wrappedBounds markWidthClean
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>markWidthDirty [
+{ #category : #api }
+GLMBrickWrapper >> markWidthDirty [
 
 	^ self brick wrappedBounds markWidthDirty
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>onChildrenLayouted [
+{ #category : #api }
+GLMBrickWrapper >> onChildrenLayouted [
 
 	^ self brick onChildrenLayouted
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>onLayoutEvent: aLayoutEvent [
+{ #category : #api }
+GLMBrickWrapper >> onLayoutEvent: aLayoutEvent [
 
 	^ self brick onLayoutEvent: aLayoutEvent
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>onLayouted [
+{ #category : #api }
+GLMBrickWrapper >> onLayouted [
 
 	^ self brick onLayouted
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>outerBounds [
+{ #category : #api }
+GLMBrickWrapper >> outerBounds [
 
 	^ self brick outerBounds
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>outerHeight: anInteger [
+{ #category : #api }
+GLMBrickWrapper >> outerHeight: anInteger [
 
 	^ self brick wrappedBounds outerHeight: anInteger
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>outerOrigin: aPoint [
+{ #category : #api }
+GLMBrickWrapper >> outerOrigin: aPoint [
 
 	^ self brick wrappedBounds outerOrigin: aPoint
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>outerWidth: anInteger [
+{ #category : #api }
+GLMBrickWrapper >> outerWidth: anInteger [
 
 	^ self brick wrappedBounds outerWidth: anInteger
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>paddingBottom [
+{ #category : #api }
+GLMBrickWrapper >> paddingBottom [
 
 	^ self brick paddingBottom
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>paddingLeft [
+{ #category : #api }
+GLMBrickWrapper >> paddingLeft [
 
 	^ self brick paddingLeft
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>paddingRight [
+{ #category : #api }
+GLMBrickWrapper >> paddingRight [
 
 	^ self brick paddingRight
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>paddingTop [
+{ #category : #api }
+GLMBrickWrapper >> paddingTop [
 
 	^ self brick paddingTop
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>translateX: anObject [
+{ #category : #api }
+GLMBrickWrapper >> translateX: anObject [
 
 	^ self brick translateX: anObject
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>translateY: anObject [
+{ #category : #api }
+GLMBrickWrapper >> translateY: anObject [
 
 	^ self brick translateY: anObject
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>width [
+{ #category : #api }
+GLMBrickWrapper >> width [
 
 	^ self brick width
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>withHeight: anInteger [
+{ #category : #api }
+GLMBrickWrapper >> withHeight: anInteger [
 
 	^ self brick withHeight: anInteger
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickWrapper>>withWidth: anInteger [
+{ #category : #api }
+GLMBrickWrapper >> withWidth: anInteger [
 
 	^ self brick withWidth: anInteger
 ]

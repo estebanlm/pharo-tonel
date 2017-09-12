@@ -4,25 +4,18 @@ I have the common behavior for testing trait serialization.
 Class {
 	#name : #FLTraitSerializationTest,
 	#superclass : #FLSerializationTest,
-	#category : #FuelTests,
-	#timestamp : '<historical>'
+	#category : #FuelTests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLTraitSerializationTest>>newClassOrTrait [
+{ #category : #running }
+FLTraitSerializationTest >> newClassOrTrait [
 	"Returns a trait for testing"
 
 	^ self newTraitSuffixed: 'Main'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLTraitSerializationTest>>newInstanceFrom: aTrait [
+{ #category : #running }
+FLTraitSerializationTest >> newInstanceFrom: aTrait [
 
 	| aClass |
 	aClass := self newClass.
@@ -32,11 +25,8 @@ FLTraitSerializationTest>>newInstanceFrom: aTrait [
 	^ aClass new
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLTraitSerializationTest>>newSecondaryTrait [
+{ #category : #running }
+FLTraitSerializationTest >> newSecondaryTrait [
 	"Returns a trait for testing"
 
 	^ self newTraitSuffixed: 'Secondary'

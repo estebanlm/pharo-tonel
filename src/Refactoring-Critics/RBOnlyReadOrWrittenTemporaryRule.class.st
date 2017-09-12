@@ -4,34 +4,24 @@ Checks that all temporary variables are both read and written. If an temporary v
 Class {
 	#name : #RBOnlyReadOrWrittenTemporaryRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 23:08'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBOnlyReadOrWrittenTemporaryRule class>>isVisible [
+{ #category : #testing }
+RBOnlyReadOrWrittenTemporaryRule class >> isVisible [
 
 	self flag: 'The functionality was moved to TemporaryNeitherReadNorWrittenRule, but as this rule is used by Monkey, and Monkey is not using Renraku model yet, the rule is hidden'.
 	^ false
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBOnlyReadOrWrittenTemporaryRule class>>new [
+{ #category : #'as yet unclassified' }
+RBOnlyReadOrWrittenTemporaryRule class >> new [
 	
 	^ GRTemporaryNeitherReadNorWrittenRule asRBRule 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBOnlyReadOrWrittenTemporaryRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBOnlyReadOrWrittenTemporaryRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'OnlyReadOrWrittenTemporaryRule'

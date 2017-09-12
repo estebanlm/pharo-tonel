@@ -7,41 +7,28 @@ Class {
 	#instVars : [
 		'entries'
 	],
-	#category : #Epicea-Log,
-	#timestamp : 'MartinDias 3/13/2017 23:55'
+	#category : #Epicea-Log
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSorterLog>>commentAt: anEntry ifAbsent: aBlock [
+{ #category : #accessing }
+EpSorterLog >> commentAt: anEntry ifAbsent: aBlock [
 	"Stub"
 
 	^ aBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSorterLog>>entries [
+{ #category : #accessing }
+EpSorterLog >> entries [
 	^ entries
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSorterLog>>entries: anObject [
+{ #category : #accessing }
+EpSorterLog >> entries: anObject [
 	entries := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSorterLog>>entryFor: aReference [
+{ #category : #accessing }
+EpSorterLog >> entryFor: aReference [
 	"Answer the entry corresponding to aReference"
 
 	^ self
@@ -51,11 +38,8 @@ EpSorterLog>>entryFor: aReference [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSorterLog>>entryFor: aReference ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
+{ #category : #accessing }
+EpSorterLog >> entryFor: aReference ifPresent: presentBlockClosure ifAbsent: absentBlockClosure [
 	"Answer an entry, evaluating either the first block closure if present or the second if absent."
 
 	self entriesDo: [:each | 
@@ -65,22 +49,16 @@ EpSorterLog>>entryFor: aReference ifPresent: presentBlockClosure ifAbsent: absen
 	^ absentBlockClosure value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSorterLog>>headReference [
+{ #category : #accessing }
+EpSorterLog >> headReference [
 	"Answer a OmReference to the head of this log"
 
 	self flag: #todo. "Maybe this is a concept that only belongs to EpLog... remove from superclass?"
 	self shouldBeImplemented
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpSorterLog>>referenceTo: anEntry [
+{ #category : #accessing }
+EpSorterLog >> referenceTo: anEntry [
 	"Answer a OmReference corresponding to anEntry."
 
 	^ anEntry tags at: OmStore selfReferenceKey

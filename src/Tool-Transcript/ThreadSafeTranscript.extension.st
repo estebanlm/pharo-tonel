@@ -1,20 +1,12 @@
-Extension {
-	#name : #ThreadSafeTranscript
-}
+Extension { #name : #ThreadSafeTranscript }
 
-{
-	#category : #'*Tool-Transcript',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ThreadSafeTranscript>>interactionModel [
+{ #category : #'*Tool-Transcript' }
+ThreadSafeTranscript >> interactionModel [
 	^ self
 ]
 
-{
-	#category : #'*Tool-Transcript',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ThreadSafeTranscript class>>menuCommandOn: aBuilder [
+{ #category : #'*Tool-Transcript' }
+ThreadSafeTranscript class >> menuCommandOn: aBuilder [
 	<worldMenu>
 	(aBuilder item: #'Transcript')
 		action: [ Smalltalk tools transcript open ];
@@ -26,31 +18,22 @@ ThreadSafeTranscript class>>menuCommandOn: aBuilder [
 	aBuilder withSeparatorAfter
 ]
 
-{
-	#category : #'*Tool-Transcript',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ThreadSafeTranscript class>>open  [
+{ #category : #'*Tool-Transcript' }
+ThreadSafeTranscript class >> open [ 
 	"self open"
 	
 	^ self new open 
 ]
 
-{
-	#category : #'*Tool-Transcript',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ThreadSafeTranscript>>open [
+{ #category : #'*Tool-Transcript' }
+ThreadSafeTranscript >> open [
 	"self new open"
 	^ self openLabel: self title
 
 ]
 
-{
-	#category : #'*Tool-Transcript',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-ThreadSafeTranscript>>openLabel: aString [
+{ #category : #'*Tool-Transcript' }
+ThreadSafeTranscript >> openLabel: aString [
 	| window m |
 	window := (SystemWindow labelled: aString) model: self.
 	m := RubPluggableTextMorph new

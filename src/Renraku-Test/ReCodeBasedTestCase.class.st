@@ -9,15 +9,11 @@ Class {
 		'testMethod',
 		'testClass2'
 	],
-	#category : #Renraku-Test,
-	#timestamp : 'YuriyTymchuk 6/14/2016 13:48'
+	#category : #Renraku-Test
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReCodeBasedTestCase>>setUp [
+{ #category : #running }
+ReCodeBasedTestCase >> setUp [
 	super setUp.
 	testClass := Object
 		subclass: 'NuclearSiteTestingClass'
@@ -35,11 +31,8 @@ ReCodeBasedTestCase>>setUp [
 		category: testPackage name.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-ReCodeBasedTestCase>>tearDown [
+{ #category : #running }
+ReCodeBasedTestCase >> tearDown [
 
 	testPackage methods do: #removeFromSystem.
 	testPackage definedClasses do: #removeFromSystem.

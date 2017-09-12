@@ -14,100 +14,66 @@ Class {
 		'return',
 		'value'
 	],
-	#category : #AST-Core-Nodes,
-	#timestamp : '<historical>'
+	#category : #AST-Core-Nodes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode class>>return: returnInteger value: aValueNode  [
+{ #category : #'instance creation' }
+RBReturnNode class >> return: returnInteger value: aValueNode [ 
 	^self new return: returnInteger value: aValueNode
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode class>>value: aNode [
+{ #category : #'instance creation' }
+RBReturnNode class >> value: aNode [
 	^self return: 0 value: aNode
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>= anObject  [
+{ #category : #comparing }
+RBReturnNode >> = anObject [ 
 	self == anObject ifTrue: [^true].
 	self class = anObject class ifFalse: [^false].
 	^self value = anObject value
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>acceptVisitor: aProgramNodeVisitor  [
+{ #category : #visiting }
+RBReturnNode >> acceptVisitor: aProgramNodeVisitor [ 
 	^aProgramNodeVisitor visitReturnNode: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>asSequenceNode [
+{ #category : #converting }
+RBReturnNode >> asSequenceNode [
 	^RBSequenceNode statements: {self} 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>children [
+{ #category : #accessing }
+RBReturnNode >> children [
 	^Array with: value
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>containsReturn [
+{ #category : #testing }
+RBReturnNode >> containsReturn [
 	^true
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>copyInContext: aDictionary  [
+{ #category : #matching }
+RBReturnNode >> copyInContext: aDictionary [ 
 	^ self class new
 		value: (self value copyInContext: aDictionary);
 		yourself
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>equalTo: anObject withMapping: aDictionary  [
+{ #category : #comparing }
+RBReturnNode >> equalTo: anObject withMapping: aDictionary [ 
 	^self class = anObject class 
 		and: [self value equalTo: anObject value withMapping: aDictionary]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>hash [
+{ #category : #comparing }
+RBReturnNode >> hash [
 	^self value hash
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>initialize [
+{ #category : #initialization }
+RBReturnNode >> initialize [
 
 	super initialize.
 
@@ -115,111 +81,72 @@ RBReturnNode>>initialize [
 	value := nil.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>isFaulty [
+{ #category : #testing }
+RBReturnNode >> isFaulty [
 	^self value isFaulty.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>isReturn [
+{ #category : #testing }
+RBReturnNode >> isReturn [
 	^true
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>match: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBReturnNode >> match: aNode inContext: aDictionary [ 
 	aNode class = self class ifFalse: [^false].
 	^value match: aNode value inContext: aDictionary
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>postCopy [
+{ #category : #copying }
+RBReturnNode >> postCopy [
 	super postCopy.
 	self value: self value copy
 ]
 
-{
-	#category : #replacing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>replaceNode: aNode withNode: anotherNode  [
+{ #category : #replacing }
+RBReturnNode >> replaceNode: aNode withNode: anotherNode [ 
 	value == aNode ifTrue: [self value: anotherNode]
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>return [
+{ #category : #accessing-token }
+RBReturnNode >> return [
 	^ return
 ]
 
-{
-	#category : #accessing-token,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>return: anInteger [
+{ #category : #accessing-token }
+RBReturnNode >> return: anInteger [
 	return := anInteger
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>return: returnInteger value: aValueNode  [
+{ #category : #initialize-release }
+RBReturnNode >> return: returnInteger value: aValueNode [ 
 	return := returnInteger.
 	self value: aValueNode
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>start [
+{ #category : #accessing }
+RBReturnNode >> start [
 	^return
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>stop [
+{ #category : #accessing }
+RBReturnNode >> stop [
 	value ifNil:[^ 0].
 	^ value stop
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>stop: anInteger [
+{ #category : #accessing }
+RBReturnNode >> stop: anInteger [
 	self value stop: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>value [
+{ #category : #accessing }
+RBReturnNode >> value [
 	^value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReturnNode>>value: valueNode  [
+{ #category : #accessing }
+RBReturnNode >> value: valueNode [ 
 	value := valueNode.
 	value parent: self
 ]

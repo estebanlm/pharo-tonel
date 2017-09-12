@@ -7,15 +7,11 @@ Class {
 	#instVars : [
 		'schedule'
 	],
-	#category : #Kernel-Chronology,
-	#timestamp : 'brp 5/13/2003 09:48'
+	#category : #Kernel-Chronology
 }
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Schedule>>between: aStart and: anEnd do: aBlock [
+{ #category : #enumerating }
+Schedule >> between: aStart and: anEnd do: aBlock [
 	"from Cuis 99"
 	
 	| element end i startDate |
@@ -42,11 +38,8 @@ Schedule>>between: aStart and: anEnd do: aBlock [
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Schedule>>dateAndTimes [
+{ #category : #enumerating }
+Schedule >> dateAndTimes [
 
 	| dateAndTimes |
 	dateAndTimes := OrderedCollection new.
@@ -54,11 +47,8 @@ Schedule>>dateAndTimes [
 	^ dateAndTimes asArray.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Schedule>>everyDayAtSameTimes [
+{ #category : #private }
+Schedule >> everyDayAtSameTimes [
 	"Answer false if unknown"
 	
 	| count |
@@ -66,11 +56,8 @@ Schedule>>everyDayAtSameTimes [
 	^ count >= 1 and: [ count isInteger ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Schedule>>includes: aDateAndTime [
+{ #category : #testing }
+Schedule >> includes: aDateAndTime [
 
 	| dt |
 	dt := aDateAndTime asDateAndTime.
@@ -79,37 +66,25 @@ Schedule>>includes: aDateAndTime [
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Schedule>>schedule [
+{ #category : #enumerating }
+Schedule >> schedule [
 	^ schedule 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Schedule>>schedule: anArrayOfDurations [
+{ #category : #enumerating }
+Schedule >> schedule: anArrayOfDurations [
 
 	schedule := anArrayOfDurations
 
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Schedule>>scheduleDo: aBlock [
+{ #category : #enumerating }
+Schedule >> scheduleDo: aBlock [
 
 	self between: (self start) and: (self end) do: aBlock. 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Schedule>>scheduleDuration [
+{ #category : #private }
+Schedule >> scheduleDuration [
 	^ schedule sum
 ]

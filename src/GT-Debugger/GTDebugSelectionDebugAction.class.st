@@ -4,72 +4,50 @@ This action encapsulates the logic of debugging a selected piece of code from th
 Class {
 	#name : #GTDebugSelectionDebugAction,
 	#superclass : #GTCodeDebugAction,
-	#category : #GT-Debugger-Actions,
-	#timestamp : 'TudorGirba 1/10/2016 23:42'
+	#category : #GT-Debugger-Actions
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebugSelectionDebugAction class>>gtActionFor: aDebugger [
+{ #category : #registration }
+GTDebugSelectionDebugAction class >> gtActionFor: aDebugger [
 	"<gtContextCodeDebuggingAction>"
 	
 	^ (self forDebugger: aDebugger)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebugSelectionDebugAction>>defaultKeymap [
+{ #category : #accessing }
+GTDebugSelectionDebugAction >> defaultKeymap [
 
 	^ PharoShortcuts current debugItShortcut
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebugSelectionDebugAction>>defaultLabel [
+{ #category : #accessing }
+GTDebugSelectionDebugAction >> defaultLabel [
 
 	^ 'Debug it'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebugSelectionDebugAction>>defaultOrder [
+{ #category : #accessing }
+GTDebugSelectionDebugAction >> defaultOrder [
 
 	^ 20
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebugSelectionDebugAction>>executeAction [
+{ #category : #actions }
+GTDebugSelectionDebugAction >> executeAction [
 	
 	self codePresentation debugSelection
 		
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebugSelectionDebugAction>>id [
+{ #category : #accessing }
+GTDebugSelectionDebugAction >> id [
 
 	^ #gTDebugSelectionDebugAction
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTDebugSelectionDebugAction>>initialize [
+{ #category : #initialization }
+GTDebugSelectionDebugAction >> initialize [
 	super initialize.
 	self needsUpdate: false
 ]

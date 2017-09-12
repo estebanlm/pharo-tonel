@@ -10,38 +10,25 @@ Class {
 		'projectName',
 		'issues'
 	],
-	#category : #Versionner-Commit,
-	#timestamp : '<historical>'
+	#category : #Versionner-Commit
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectValidationError>>issues [
+{ #category : #accessing }
+VSCommitProjectValidationError >> issues [
 	^ issues
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectValidationError>>issues: anObject [
+{ #category : #accessing }
+VSCommitProjectValidationError >> issues: anObject [
 	issues := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectValidationError>>projectName [
+{ #category : #accessing }
+VSCommitProjectValidationError >> projectName [
 	^ projectName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-VSCommitProjectValidationError>>projectName: anObject [
+{ #category : #accessing }
+VSCommitProjectValidationError >> projectName: anObject [
 	projectName := anObject
 ]

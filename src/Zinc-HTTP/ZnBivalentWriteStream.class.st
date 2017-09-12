@@ -14,15 +14,11 @@ Class {
 		'stream',
 		'binary'
 	],
-	#category : #Zinc-HTTP-Streaming,
-	#timestamp : 'SvenVanCaekenberghe 12/6/2010 12:50'
+	#category : #Zinc-HTTP-Streaming
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBivalentWriteStream class>>on: writeStream [
+{ #category : #'instance creation' }
+ZnBivalentWriteStream class >> on: writeStream [
 	"Wrap writeStream as a ZnBivalentWriteStream, unless it is already one"
 	
 	(writeStream isKindOf: self) ifTrue: [ ^ writeStream ].
@@ -32,37 +28,25 @@ ZnBivalentWriteStream class>>on: writeStream [
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBivalentWriteStream>>close [
+{ #category : #initialize-release }
+ZnBivalentWriteStream >> close [
 	stream close
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBivalentWriteStream>>flush [
+{ #category : #accessing }
+ZnBivalentWriteStream >> flush [
 	stream flush
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBivalentWriteStream>>isBinary [
+{ #category : #private }
+ZnBivalentWriteStream >> isBinary [
 	binary isNil
 		ifTrue: [ [ binary := stream isBinary ] on: MessageNotUnderstood do: [ :err | binary := false ] ].
 	^ binary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBivalentWriteStream>>next: count putAll: collection startingAt: offset [
+{ #category : #accessing }
+ZnBivalentWriteStream >> next: count putAll: collection startingAt: offset [
 	| buffer |
 	self isBinary
 		ifTrue: [ 
@@ -81,48 +65,33 @@ ZnBivalentWriteStream>>next: count putAll: collection startingAt: offset [
 				ifFalse: [ stream next: count putAll: collection startingAt: offset ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBivalentWriteStream>>nextPut: object [
+{ #category : #accessing }
+ZnBivalentWriteStream >> nextPut: object [
 	self isBinary
 		ifTrue: [ stream nextPut: object asInteger ]
 		ifFalse: [ stream nextPut: object asCharacter ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBivalentWriteStream>>nextPutAll: collection [
+{ #category : #accessing }
+ZnBivalentWriteStream >> nextPutAll: collection [
 	self isBinary
 		ifTrue: [ stream nextPutAll: collection asByteArray ]
 		ifFalse: [ stream nextPutAll: collection asString ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBivalentWriteStream>>on: writeStream [
+{ #category : #initialize-release }
+ZnBivalentWriteStream >> on: writeStream [
 	stream := writeStream
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBivalentWriteStream>>printOn: aStream [
+{ #category : #printing }
+ZnBivalentWriteStream >> printOn: aStream [
 	aStream 
 		nextPutAll: 'a '; 
 		nextPutAll: self class name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnBivalentWriteStream>>space [
+{ #category : #accessing }
+ZnBivalentWriteStream >> space [
 	self nextPut: Character space
 ]

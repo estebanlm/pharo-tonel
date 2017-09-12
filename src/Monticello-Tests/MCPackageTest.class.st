@@ -1,38 +1,25 @@
-"
-
-"
 Class {
 	#name : #MCPackageTest,
 	#superclass : #MCTestCase,
-	#category : #Monticello-Tests,
-	#timestamp : ''
+	#category : #Monticello-Tests
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCPackageTest>>aMethodRemoved: anEvent [
+{ #category : #private }
+MCPackageTest >> aMethodRemoved: anEvent [
 	"Force cleaning of the protocol."
 
 	(anEvent protocol = self mockExtensionMethodCategory and: [ anEvent methodClass == MCSnapshotTest ])
 		ifTrue: [ anEvent methodClass organization removeProtocolIfEmpty: self mockExtensionMethodCategory ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCPackageTest>>tearDown [
+{ #category : #running }
+MCPackageTest >> tearDown [
 	self mockSnapshot install.
 	MCDataStream initialize "MCMockClassG ends up in the DataStream TypeMap -- we need to reset"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCPackageTest>>testUnload [
+{ #category : #tests }
+MCPackageTest >> testUnload [
 	| mock |
 	self mockPackage unload.
 	self deny: (Smalltalk hasClassNamed: #MCMockClassA).
@@ -42,11 +29,8 @@ MCPackageTest>>testUnload [
 	self assert: (mock subclasses detect: [ :c | c name = #MCMockClassA ] ifNone: [  ]) isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCPackageTest>>testUnloadWithAdditionalTracking [
+{ #category : #tests }
+MCPackageTest >> testUnloadWithAdditionalTracking [
 	"This is to test against another entity removing the extension protocol as well."
 
 	| mock |

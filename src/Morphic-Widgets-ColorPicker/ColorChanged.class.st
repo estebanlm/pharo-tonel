@@ -15,31 +15,21 @@ Class {
 	#instVars : [
 		'newColor'
 	],
-	#category : #Morphic-Widgets-ColorPicker,
-	#timestamp : 'LaurentLaffont 4/15/2011 20:19'
+	#category : #Morphic-Widgets-ColorPicker
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChanged class>>to: aColor [
+{ #category : #'instance creation' }
+ColorChanged class >> to: aColor [
 	^self new 
 		newColor: aColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChanged>>newColor [
+{ #category : #accessing }
+ColorChanged >> newColor [
 	^ newColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ColorChanged>>newColor: anObject [
+{ #category : #accessing }
+ColorChanged >> newColor: anObject [
 	newColor := anObject
 ]

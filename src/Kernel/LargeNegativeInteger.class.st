@@ -5,31 +5,21 @@ Class {
 	#name : #LargeNegativeInteger,
 	#superclass : #LargeInteger,
 	#type : #bytes,
-	#category : #Kernel-Numbers,
-	#timestamp : '<historical>'
+	#category : #Kernel-Numbers
 }
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeNegativeInteger>>abs [
+{ #category : #arithmetic }
+LargeNegativeInteger >> abs [
 	^ self negated
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeNegativeInteger>>asFloat [
+{ #category : #converting }
+LargeNegativeInteger >> asFloat [
 	^super asFloat negated
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeNegativeInteger>>bitAt: anInteger [
+{ #category : #'bit manipulation' }
+LargeNegativeInteger >> bitAt: anInteger [
 	"super would not work because we have to pretend we are in two-complement.
 	this has to be tricky..."
 	
@@ -57,11 +47,8 @@ LargeNegativeInteger>>bitAt: anInteger [
 	^1 - ((self digitAt: digitIndex) bitAt: bitIndex)
 ]
 
-{
-	#category : #'bit manipulation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeNegativeInteger>>highBit [
+{ #category : #'bit manipulation' }
+LargeNegativeInteger >> highBit [
 	"Answer the index of the high order bit of the receiver, or zero if the  
 	receiver is zero. Raise an error if the receiver is negative, since  
 	negative integers are defined to have an infinite number of leading 1's 
@@ -71,53 +58,35 @@ LargeNegativeInteger>>highBit [
 	^ self shouldNotImplement
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeNegativeInteger>>ln [
+{ #category : #'mathematical functions' }
+LargeNegativeInteger >> ln [
 	^DomainError signal: 'ln is only defined for x > 0' from: 0
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeNegativeInteger>>log [
+{ #category : #'mathematical functions' }
+LargeNegativeInteger >> log [
 	^DomainError signal: 'log is only defined for x > 0' from: 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeNegativeInteger>>mightBeASquare [
+{ #category : #testing }
+LargeNegativeInteger >> mightBeASquare [
 	^false
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeNegativeInteger>>negated [
+{ #category : #arithmetic }
+LargeNegativeInteger >> negated [
 	^ self copyto: (LargePositiveInteger new: self digitLength)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeNegativeInteger>>negative [
+{ #category : #testing }
+LargeNegativeInteger >> negative [
 	"Answer whether the receiver is mathematically negative."
 
 	^ true
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeNegativeInteger>>normalize [
+{ #category : #converting }
+LargeNegativeInteger >> normalize [
 	"Check for leading zeroes and return shortened copy if so"
 	| sLen val len oldLen minVal |
 	<primitive: 'primNormalizeNegative' module: 'LargeIntegers'>
@@ -155,53 +124,38 @@ LargeNegativeInteger>>normalize [
 		ifFalse: [^ self]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeNegativeInteger>>positive [
+{ #category : #testing }
+LargeNegativeInteger >> positive [
 	"Answer whether the receiver is positive or equal to 0. (ST-80 protocol).
 	See also strictlyPositive"
 
 	^ false
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeNegativeInteger>>printOn: aStream base: b [
+{ #category : #printing }
+LargeNegativeInteger >> printOn: aStream base: b [
 	"Append a representation of this number in base b on aStream."
 	
 	aStream nextPut: $-.
 	self abs printOn: aStream base: b
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeNegativeInteger>>sign [
+{ #category : #testing }
+LargeNegativeInteger >> sign [
 	"Optimization. Answer -1 since receiver is less than 0."
 
 	^ -1
 
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeNegativeInteger>>sqrt [
+{ #category : #'mathematical functions' }
+LargeNegativeInteger >> sqrt [
 	"Answer the square root of the receiver."
 	^ DomainError signal: 'sqrt undefined for number less than zero.'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-LargeNegativeInteger>>strictlyPositive [
+{ #category : #testing }
+LargeNegativeInteger >> strictlyPositive [
 	"Answer whether the receiver is mathematically positive."
 
 	^ false

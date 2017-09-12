@@ -9,32 +9,22 @@ Class {
 	#instVars : [
 		'scheme'
 	],
-	#category : #Zinc-Resource-Meta-Core,
-	#timestamp : 'DamienPollet 8/4/2011 14:07'
+	#category : #Zinc-Resource-Meta-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUnknownScheme class>>scheme: scheme [
+{ #category : #'instance creation' }
+ZnUnknownScheme class >> scheme: scheme [
 	^ self new
 		scheme: scheme;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUnknownScheme>>scheme [
+{ #category : #accessing }
+ZnUnknownScheme >> scheme [
 	^ scheme
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUnknownScheme>>scheme: anObject [
+{ #category : #accessing }
+ZnUnknownScheme >> scheme: anObject [
 	scheme := anObject
 ]

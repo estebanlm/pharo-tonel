@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMRubricTextMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Rubric,
-	#timestamp : ''
+	#category : #Glamour-Tests-Rubric
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>checkInitializeBlockSetsTextSelectionForPresentation: aSelector [
+{ #category : #private }
+GLMRubricTextMorphicTest >> checkInitializeBlockSetsTextSelectionForPresentation: aSelector [
 	| browser textMorph |
 	
 	browser := GLMTabulator new.
@@ -36,19 +29,13 @@ GLMRubricTextMorphicTest>>checkInitializeBlockSetsTextSelectionForPresentation: 
 	self assert: textMorph selectionInterval equals: (1 to: 5).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>expectedFailures [
+{ #category : #tests }
+GLMRubricTextMorphicTest >> expectedFailures [
 	^ #(testUpdatingTextPortUpdatesTheMorph)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>noTestAcceptKeyCanBeOverriden [
+{ #category : #tests }
+GLMRubricTextMorphicTest >> noTestAcceptKeyCanBeOverriden [
 	| composite textMorph overriden shortcut|
 	overriden := false.
 	composite := GLMCompositePresentation new with: [ :a | a text act: [ :text | overriden := true ] on: $s entitled: 'Override'].
@@ -71,11 +58,8 @@ GLMRubricTextMorphicTest>>noTestAcceptKeyCanBeOverriden [
 	self assert: overriden
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>noTestEnteringTextInPort [
+{ #category : #tests }
+GLMRubricTextMorphicTest >> noTestEnteringTextInPort [
 	| composite textMorph |
 	composite := GLMCompositePresentation new with: [ :a | a text display: '' ].
 	window := composite openOn: 4.
@@ -85,11 +69,8 @@ GLMRubricTextMorphicTest>>noTestEnteringTextInPort [
 	self assert: (composite pane port: #text) value asString equals: 'hello'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>noTestExplicitAcceptDoesNotAffectTextPort [
+{ #category : #tests }
+GLMRubricTextMorphicTest >> noTestExplicitAcceptDoesNotAffectTextPort [
 	| composite textMorph |
 	composite := GLMCompositePresentation new with: [ :a | a text display: '123' ].
 	window := composite openOn: 4.
@@ -102,11 +83,8 @@ GLMRubricTextMorphicTest>>noTestExplicitAcceptDoesNotAffectTextPort [
 	self assert: (composite pane port: #text) value asString equals: '123456'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>noTestOKeyWithCtrlCannotBeOverriden [
+{ #category : #tests }
+GLMRubricTextMorphicTest >> noTestOKeyWithCtrlCannotBeOverriden [
 	| composite textMorph overriden shortcut|
 	overriden := false.
 	composite := GLMCompositePresentation new with: [ :a | a text act: [ :text | overriden := true ] on: $o entitled: 'Override'].
@@ -127,47 +105,32 @@ GLMRubricTextMorphicTest>>noTestOKeyWithCtrlCannotBeOverriden [
 	self assert: overriden not
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>simulateOnlyOneClickOn: aMorph [
+{ #category : #private }
+GLMRubricTextMorphicTest >> simulateOnlyOneClickOn: aMorph [
 	"(Delay forMilliseconds: HandMorph doubleClickTime + 1) wait."
 	aMorph simulateClick
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>testInitializeBlockSetsTextSelectionForMethodPresentation [
+{ #category : #tests }
+GLMRubricTextMorphicTest >> testInitializeBlockSetsTextSelectionForMethodPresentation [
 	
 	self checkInitializeBlockSetsTextSelectionForPresentation: #pharoMethod
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>testInitializeBlockSetsTextSelectionForScriptPresentation [
+{ #category : #tests }
+GLMRubricTextMorphicTest >> testInitializeBlockSetsTextSelectionForScriptPresentation [
 
 	self checkInitializeBlockSetsTextSelectionForPresentation: #pharoScript
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>testInitializeBlockSetsTextSelectionForTextPresentation [
+{ #category : #tests }
+GLMRubricTextMorphicTest >> testInitializeBlockSetsTextSelectionForTextPresentation [
 	
 	self checkInitializeBlockSetsTextSelectionForPresentation: #text
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>testMultipleSelectionWithChange [
+{ #category : #tests }
+GLMRubricTextMorphicTest >> testMultipleSelectionWithChange [
 	| composite textMorph textPresentation |
 	composite := GLMCompositePresentation new with: [ :a | a text display: '123456789' ].
 	window := composite openOn: 4.
@@ -179,11 +142,8 @@ GLMRubricTextMorphicTest>>testMultipleSelectionWithChange [
 	self assert: textPresentation selectedText asString equals: '2345'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>testPastingUpdatesTextPort [
+{ #category : #tests }
+GLMRubricTextMorphicTest >> testPastingUpdatesTextPort [
 	| composite textMorph  |
 	composite := GLMCompositePresentation new with: [ :a | a text display: '' ].
 	window := composite openOn: 42.
@@ -193,11 +153,8 @@ GLMRubricTextMorphicTest>>testPastingUpdatesTextPort [
 	self assert: (composite pane port: #text) value asString equals: '42'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>testResettingTheSelection [
+{ #category : #tests }
+GLMRubricTextMorphicTest >> testResettingTheSelection [
 	| composite textPresentation |
 	composite := GLMCompositePresentation new with: [ :a | a text display: '123456789' ].
 	window := composite openOn: 4.
@@ -206,22 +163,16 @@ GLMRubricTextMorphicTest>>testResettingTheSelection [
 	self shouldnt: [textPresentation selectionInterval: nil] raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>testTextPortPopulatedByDefault [
+{ #category : #tests }
+GLMRubricTextMorphicTest >> testTextPortPopulatedByDefault [
 	| composite |
 	composite := GLMCompositePresentation new with: [:a | a text ].
 	window := composite openOn: '42'.
 	self assert: (composite pane port: #text) value asString equals: '42'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>testUnregisterFromAnnouncementsWhenUpdating [
+{ #category : #tests }
+GLMRubricTextMorphicTest >> testUnregisterFromAnnouncementsWhenUpdating [
 	| composite announcingCollection numberOfExecutions |
 	numberOfExecutions := 0.
 	announcingCollection := GLMAnnouncingCollection new.
@@ -236,11 +187,8 @@ GLMRubricTextMorphicTest>>testUnregisterFromAnnouncementsWhenUpdating [
 	self assert: numberOfExecutions equals: 4	"it should not be 8"
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>testUpdatingScriptPresentationPreservesSelection [
+{ #category : #tests }
+GLMRubricTextMorphicTest >> testUpdatingScriptPresentationPreservesSelection [
 	| composite textPresentation textMorph |
 	
 	composite := GLMCompositePresentation new with: [ :c | 
@@ -268,11 +216,8 @@ GLMRubricTextMorphicTest>>testUpdatingScriptPresentationPreservesSelection [
 	self assert: textMorph getSelectionFromModel equals: (1 to: 0).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-GLMRubricTextMorphicTest>>testUpdatingTextPortUpdatesTheMorph [
+{ #category : #tests }
+GLMRubricTextMorphicTest >> testUpdatingTextPortUpdatesTheMorph [
 	| composite textMorph |
 	composite := GLMCompositePresentation new with: [:a | a text ].
 	window := composite openOn: 'fourtytwo'.

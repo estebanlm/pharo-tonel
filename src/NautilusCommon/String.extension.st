@@ -1,12 +1,7 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*NautilusCommon',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-String>>normalizedSelectorForComparison [
+{ #category : #'*NautilusCommon' }
+String >> normalizedSelectorForComparison [
 	"Returns a normalized version of the receiver without colons and in all lowercase.
 	Optimized for Nautlius"
 

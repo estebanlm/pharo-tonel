@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GLMPrivacyAgreementBrick,
 	#superclass : #GLMBrick,
@@ -8,15 +5,11 @@ Class {
 		'messageBrick',
 		'settingsButtonBrick'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-UI,
-	#timestamp : ''
+	#category : #Glamour-Morphic-Brick-Widgets-UI
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrivacyAgreementBrick class>>exampleOpen [
+{ #category : #examples }
+GLMPrivacyAgreementBrick class >> exampleOpen [
 
 	(GLMBrick new
 		hSpaceFill;
@@ -35,22 +28,16 @@ GLMPrivacyAgreementBrick class>>exampleOpen [
 			extent: 600@400
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrivacyAgreementBrick class>>gtExample [
+{ #category : #examples }
+GLMPrivacyAgreementBrick class >> gtExample [
 	<gtExample>
 	<label: 'Simple agreement'>
 	
 	^ self new
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrivacyAgreementBrick class>>openSettingsBrowser [
+{ #category : #utils }
+GLMPrivacyAgreementBrick class >> openSettingsBrowser [
 	| settingsBrowser window node nodePath |
 	settingsBrowser := SettingBrowser new 
 		changePackageSet: (RPackage organizer packageNamed: 'GT-EventRecorder') asOrderedCollection;
@@ -65,11 +52,8 @@ GLMPrivacyAgreementBrick class>>openSettingsBrowser [
 	settingsBrowser selection: (MorphTreeMorphSingleSelection new selectedNodePath: nodePath).
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrivacyAgreementBrick>>initialize [
+{ #category : #initialization }
+GLMPrivacyAgreementBrick >> initialize [
 	super initialize.
 	
 	self useHorizontalLinearLayout.
@@ -79,19 +63,13 @@ GLMPrivacyAgreementBrick>>initialize [
 	self settingsButtonBrick: self newButtonBrick.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrivacyAgreementBrick>>messageBrick [
+{ #category : #accessing }
+GLMPrivacyAgreementBrick >> messageBrick [
 	^ messageBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrivacyAgreementBrick>>messageBrick: anObject [
+{ #category : #accessing }
+GLMPrivacyAgreementBrick >> messageBrick: anObject [
 
 	messageBrick := anObject.
 	self messageBrick
@@ -103,67 +81,46 @@ GLMPrivacyAgreementBrick>>messageBrick: anObject [
 	self addBrickBack: self messageBrick.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrivacyAgreementBrick>>newButtonBrick [
+{ #category : #'instance creation' }
+GLMPrivacyAgreementBrick >> newButtonBrick [
 
 	^ GLMButtonBrick new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrivacyAgreementBrick>>newTitleBrick [
+{ #category : #'instance creation' }
+GLMPrivacyAgreementBrick >> newTitleBrick [
 
 	^ GLMRubTextAreaBrick new
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrivacyAgreementBrick>>openSettingsBrowser [
+{ #category : #actions }
+GLMPrivacyAgreementBrick >> openSettingsBrowser [
 	self class openSettingsBrowser
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrivacyAgreementBrick>>privacyMessage [
+{ #category : #accessing }
+GLMPrivacyAgreementBrick >> privacyMessage [
 
 	^ self sendUsageData 
 		ifTrue: [ 'You are sending diagnostic and usage data to help us improve Pharo. Thanks!' ]
 		ifFalse: 	['No diagnostic and usage data is being sent. Would you like to send diagnostic and usage data to help us improve Pharo?']
 ]
 
-{
-	#category : #preferences,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrivacyAgreementBrick>>sendUsageData	 [
+{ #category : #preferences }
+GLMPrivacyAgreementBrick >> sendUsageData [	
 	^ self class environment at: #Privacy 
 		ifPresent: [ :privacy | privacy sendDiagnosticsAndUsageData ]
 		ifAbsent: [ false ].
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrivacyAgreementBrick>>settingsButtonBrick [
+{ #category : #accessing }
+GLMPrivacyAgreementBrick >> settingsButtonBrick [
 	^ settingsButtonBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrivacyAgreementBrick>>settingsButtonBrick: anObject [
+{ #category : #accessing }
+GLMPrivacyAgreementBrick >> settingsButtonBrick: anObject [
 	settingsButtonBrick := anObject.
 	
 	self settingsButtonBrick
@@ -176,11 +133,8 @@ GLMPrivacyAgreementBrick>>settingsButtonBrick: anObject [
 	self addBrickBack: self settingsButtonBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMPrivacyAgreementBrick>>settingsButtonLabel [
+{ #category : #accessing }
+GLMPrivacyAgreementBrick >> settingsButtonLabel [
 	
 	^ self sendUsageData 
 		ifTrue: [ 'Change preferences' ]

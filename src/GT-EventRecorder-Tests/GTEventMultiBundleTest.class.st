@@ -11,15 +11,11 @@ Class {
 		'multiBundle',
 		'entity'
 	],
-	#category : #GT-EventRecorder-Tests-Support,
-	#timestamp : '<historical>'
+	#category : #GT-EventRecorder-Tests-Support
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventMultiBundleTest>>setUp [
+{ #category : #running }
+GTEventMultiBundleTest >> setUp [
 	super setUp.
 	bundle1 := GTEventBundle new 
 		url: 'http://localhost/gt/events1' asZnUrl; category: #c1; data: #[1 2 3]; yourself.
@@ -31,19 +27,13 @@ GTEventMultiBundleTest>>setUp [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventMultiBundleTest>>testEntity [
+{ #category : #tests }
+GTEventMultiBundleTest >> testEntity [
 	self assert: multiBundle entity isEmpty
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventMultiBundleTest>>testEntity2 [
+{ #category : #tests }
+GTEventMultiBundleTest >> testEntity2 [
 	multiBundle add: bundle1.
 	entity := multiBundle entity.
 	self deny: entity isEmpty.
@@ -55,11 +45,8 @@ GTEventMultiBundleTest>>testEntity2 [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventMultiBundleTest>>testEntity3 [
+{ #category : #tests }
+GTEventMultiBundleTest >> testEntity3 [
 	multiBundle add: bundle1; add: bundle2.
 	entity := multiBundle entity.
 	self deny: entity isEmpty.
@@ -75,11 +62,8 @@ GTEventMultiBundleTest>>testEntity3 [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventMultiBundleTest>>testEntity4 [
+{ #category : #tests }
+GTEventMultiBundleTest >> testEntity4 [
 	multiBundle add: bundle1; add: bundle2; add: bundle3.
 	entity := multiBundle entity.
 	self deny: entity isEmpty.

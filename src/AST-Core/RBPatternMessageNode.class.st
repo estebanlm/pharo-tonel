@@ -12,15 +12,11 @@ Class {
 		'isList',
 		'isCascadeList'
 	],
-	#category : #AST-Core-Pattern,
-	#timestamp : 'md 8/9/2005 14:58'
+	#category : #AST-Core-Pattern
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMessageNode class>>receiver: aValueNode selector: aSelector keywordsPositions: positionList arguments: valueNodes [
+{ #category : #'instance creation' }
+RBPatternMessageNode class >> receiver: aValueNode selector: aSelector keywordsPositions: positionList arguments: valueNodes [
 
 	^aSelector isPatternVariable
 		ifTrue: 
@@ -37,11 +33,8 @@ RBPatternMessageNode class>>receiver: aValueNode selector: aSelector keywordsPos
 				arguments: valueNodes]
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMessageNode>>copyInContext: aDictionary [
+{ #category : #matching }
+RBPatternMessageNode >> copyInContext: aDictionary [
 	| keywordSelector |
 	self isList 
 		ifTrue: [ ^ aDictionary at: self ].
@@ -54,35 +47,23 @@ RBPatternMessageNode>>copyInContext: aDictionary [
 		arguments: (self copyList: self arguments inContext: aDictionary)
 ]
 
-{
-	#category : #testing-matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMessageNode>>isList [
+{ #category : #testing-matching }
+RBPatternMessageNode >> isList [
 	^isCascadeList and: [parent notNil and: [parent isCascade]]
 ]
 
-{
-	#category : #testing-matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMessageNode>>isPatternNode [
+{ #category : #testing-matching }
+RBPatternMessageNode >> isPatternNode [
 	^true
 ]
 
-{
-	#category : #testing-matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMessageNode>>isSelectorList [
+{ #category : #testing-matching }
+RBPatternMessageNode >> isSelectorList [
 	^isList
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMessageNode>>match: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBPatternMessageNode >> match: aNode inContext: aDictionary [ 
 	aNode class == self matchingClass ifFalse: [^false].
 	(receiver match: aNode receiver inContext: aDictionary) ifFalse: [^false].
 	self isSelectorList 
@@ -94,11 +75,8 @@ RBPatternMessageNode>>match: aNode inContext: aDictionary  [
 	^self matchArgumentsAgainst: aNode inContext: aDictionary
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMessageNode>>matchArgumentsAgainst: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBPatternMessageNode >> matchArgumentsAgainst: aNode inContext: aDictionary [ 
 	self arguments size = aNode arguments size
 		ifFalse: [ ^ false ].
 	(self matchSelectorAgainst: aNode inContext: aDictionary) 
@@ -109,11 +87,8 @@ RBPatternMessageNode>>matchArgumentsAgainst: aNode inContext: aDictionary  [
 	^ true
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMessageNode>>matchSelectorAgainst: aNode inContext: aDictionary  [
+{ #category : #matching }
+RBPatternMessageNode >> matchSelectorAgainst: aNode inContext: aDictionary [ 
 	self selectorParts with: aNode selectorParts do: [ :first :second |
 		| keyword |
 		keyword := aDictionary
@@ -127,19 +102,13 @@ RBPatternMessageNode>>matchSelectorAgainst: aNode inContext: aDictionary  [
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMessageNode>>matchingClass [
+{ #category : #private }
+RBPatternMessageNode >> matchingClass [
 	^RBMessageNode
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMessageNode>>receiver: aValueNode selector: aSymbol keywordsPositions: positionList arguments: valueNodes [
+{ #category : #initialize-release }
+RBPatternMessageNode >> receiver: aValueNode selector: aSymbol keywordsPositions: positionList arguments: valueNodes [
 	| message |
 	self
 		receiver: aValueNode;
@@ -163,11 +132,8 @@ RBPatternMessageNode>>receiver: aValueNode selector: aSymbol keywordsPositions: 
 						ifFalse: [^self]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBPatternMessageNode>>sentMessages [
+{ #category : #accessing }
+RBPatternMessageNode >> sentMessages [
 	^ super sentMessages
 		remove: self selector ifAbsent: [ ];
 		yourself

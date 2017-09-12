@@ -7,33 +7,23 @@ In Pharo you do not increment or decrement counter but should use the message to
 Class {
 	#name : #RBToDoWithIncrementRule,
 	#superclass : #RBParseTreeLintRule,
-	#category : #Refactoring-Critics-ParseTreeRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 22:57'
+	#category : #Refactoring-Critics-ParseTreeRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBToDoWithIncrementRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBToDoWithIncrementRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'ToDoWithIncrementRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBToDoWithIncrementRule>>group [
+{ #category : #accessing }
+RBToDoWithIncrementRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBToDoWithIncrementRule>>initialize [
+{ #category : #initialization }
+RBToDoWithIncrementRule >> initialize [
 	super initialize.
 	self matcher 
 		matchesAnyOf: #(
@@ -44,18 +34,12 @@ RBToDoWithIncrementRule>>initialize [
 		do: [ :node :answer | node ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBToDoWithIncrementRule>>name [
+{ #category : #accessing }
+RBToDoWithIncrementRule >> name [
 	^ 'to:do: loop also increments a counter'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBToDoWithIncrementRule>>rationale [
+{ #category : #accessing }
+RBToDoWithIncrementRule >> rationale [
 	^ 'Checks for users of to:do: that also increment or decrement a counter.'
 ]

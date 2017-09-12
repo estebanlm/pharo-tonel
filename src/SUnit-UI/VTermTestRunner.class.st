@@ -5,31 +5,21 @@ I run a TestSuite and outpout the progress in a terminal friendly way with XTerm
 Class {
 	#name : #VTermTestRunner,
 	#superclass : #CommandLineTestRunner,
-	#category : #SUnit-UI,
-	#timestamp : '<historical>'
+	#category : #SUnit-UI
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-VTermTestRunner>>createStderr [
+{ #category : #private }
+VTermTestRunner >> createStderr [
 	^ VTermOutputDriver stderr
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-VTermTestRunner>>createStdout [
+{ #category : #private }
+VTermTestRunner >> createStdout [
 	^ VTermOutputDriver stdout
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-VTermTestRunner>>print: aLongErrorMesssage short: aShortErrorMesssage of: aTestCase  [
+{ #category : #helper }
+VTermTestRunner >> print: aLongErrorMesssage short: aShortErrorMesssage of: aTestCase [ 
 	| testCaseString longMessage shortMessage offset cr |
 	
 	cr := OSPlatform current lineEnding.
@@ -54,48 +44,32 @@ VTermTestRunner>>print: aLongErrorMesssage short: aShortErrorMesssage of: aTestC
 	self stdout << cr
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-VTermTestRunner>>printError: anError of: aTestCase  [
+{ #category : #helper }
+VTermTestRunner >> printError: anError of: aTestCase [ 
 	self stderr red.
 	super printError: anError of: aTestCase
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-VTermTestRunner>>printFailure: anError of: aTestCase  [
+{ #category : #helper }
+VTermTestRunner >> printFailure: anError of: aTestCase [ 
 	self stderr yellow.
 	^ super printFailure: anError of: aTestCase 
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-VTermTestRunner>>printPassOf: aTestCase [
-
+{ #category : #helper }
+VTermTestRunner >> printPassOf: aTestCase [
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-VTermTestRunner>>printProgress [
+{ #category : #printing }
+VTermTestRunner >> printProgress [
 	| string |
 	string := '[',currentTest asString, '/', maxTest asString,']'.
 	self stderr 
 		startOfLine; right: (80 - string size); nextPutAll: string.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-VTermTestRunner>>printTestCase: aTestCase  [
+{ #category : #printing }
+VTermTestRunner >> printTestCase: aTestCase [ 
 	self stderr 
 		startOfLine; clearToEnd; green; 
 		print: aTestCase; clear.

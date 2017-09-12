@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #AlienSunit,
 	#superclass : #TestCase,
-	#category : #Alien-CoreTest,
-	#timestamp : ''
+	#category : #Alien-CoreTest
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>testAccessing [
+{ #category : #testing }
+AlienSunit >> testAccessing [
 	| alien |
 	alien := Alien newCString: 'foo'.
 	alien freeAfter: [:cstring | 
@@ -22,11 +15,8 @@ AlienSunit>>testAccessing [
 	self should: [alien dataSize = 0].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>testAtAddress [
+{ #category : #testing }
+AlienSunit >> testAtAddress [
 	| alien address alias |
 	alien := Alien newCString: 'foo'.
 	address := alien address.
@@ -37,11 +27,8 @@ AlienSunit>>testAtAddress [
 	alien free.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>testByte [
+{ #category : #testing }
+AlienSunit >> testByte [
 	| byte |
 	byte := Alien newC:1.
 	0 to: 255 do: 
@@ -56,11 +43,8 @@ AlienSunit>>testByte [
 		[:k |  self should: [byte signedByteAt: 1 put: k] raise: Error].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>testByteAccessors [
+{ #category : #testing }
+AlienSunit >> testByteAccessors [
 	| alien |
 	alien := Alien newC: 2. 
 	alien signedByteAt: 1 put: 16r7F.
@@ -89,11 +73,8 @@ AlienSunit>>testByteAccessors [
 	alien free.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>testDoubleAccessors [
+{ #category : #testing }
+AlienSunit >> testDoubleAccessors [
 	| alien |
 	alien := Alien newC: 8. 
 	alien doubleAt: 1 put: 8.8.
@@ -101,11 +82,8 @@ AlienSunit>>testDoubleAccessors [
 		alien free.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>testFloatAccessors [
+{ #category : #testing }
+AlienSunit >> testFloatAccessors [
 	| alien |
 	alien := Alien newC: 4. 
 	alien floatAt: 1 put: 8.8.
@@ -113,11 +91,8 @@ AlienSunit>>testFloatAccessors [
 		alien free.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>testLong [
+{ #category : #testing }
+AlienSunit >> testLong [
 	| long unsignedIntegerIntervalue k signedIntegerIntervalue |
 	
 	long := Alien newC: 4.
@@ -150,11 +125,8 @@ AlienSunit>>testLong [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>testLongAccessors [
+{ #category : #testing }
+AlienSunit >> testLongAccessors [
 	| alien |
 	Smalltalk wordSize = 4 ifFalse: [^self].
 	
@@ -182,11 +154,8 @@ AlienSunit>>testLongAccessors [
 		alien free.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>testLongLong [
+{ #category : #testing }
+AlienSunit >> testLongLong [
 	| unsignedIntegerIntervalue k signedIntegerIntervalue longlong |
 
 	longlong := Alien newC: 8.
@@ -218,11 +187,8 @@ AlienSunit>>testLongLong [
 		self should: [longlong signedLongLongAt: 1 put: k] raise: Error]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>testParser [
+{ #category : #testing }
+AlienSunit >> testParser [
 	"Just confirm it will parse"
 	
 	(Parser new parse: (MethodNode sourceCodeAt: #primitiveErrorVariableName) class: MethodNode) primitiveErrorVariableName.
@@ -233,11 +199,8 @@ AlienSunit>>testParser [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>testPointer [
+{ #category : #testing }
+AlienSunit >> testPointer [
 	| alien address alias |
 	alien := Alien newC: 3.
 	address := alien address.
@@ -247,11 +210,8 @@ AlienSunit>>testPointer [
 	alien free.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>testShort [
+{ #category : #testing }
+AlienSunit >> testShort [
 	| short |
 	short := Alien new: 2.
 	0 to: 65535 do: 
@@ -266,11 +226,8 @@ AlienSunit>>testShort [
 		[:k |  self should: [short signedShortAt: 1 put: k] raise: Error].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>testShortAccessors [
+{ #category : #testing }
+AlienSunit >> testShortAccessors [
 	| alien |
 	alien := Alien newC: 2. 
 	alien signedShortAt: 1 put: 16r7FFF.
@@ -296,11 +253,8 @@ AlienSunit>>testShortAccessors [
 		alien free.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>testasAlien [
+{ #category : #testing }
+AlienSunit >> testasAlien [
 	| alien alienValue |
 	alien := Alien newCString: 'foo'.
 	self should: [alien == alien asAlien].
@@ -313,11 +267,8 @@ AlienSunit>>testasAlien [
 	self should: [alienValue isNumber and: [alienValue == 0]].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>testnewC [
+{ #category : #testing }
+AlienSunit >> testnewC [
 
 	| alien |
 	alien := 'foo' asAlien.
@@ -325,11 +276,8 @@ AlienSunit>>testnewC [
 	alien free. 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>teststrcpy [
+{ #category : #testing }
+AlienSunit >> teststrcpy [
 
 	| alien |
 	alien := 'foo' asAlien.
@@ -343,11 +291,8 @@ AlienSunit>>teststrcpy [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-AlienSunit>>willCrashTheVMtestLibCExamples [
+{ #category : #testing }
+AlienSunit >> willCrashTheVMtestLibCExamples [
 	| sortedData unsorted sorted |
 	
 	sortedData := Alien exampleCqsort.

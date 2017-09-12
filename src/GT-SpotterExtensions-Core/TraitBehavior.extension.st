@@ -1,12 +1,7 @@
-Extension {
-	#name : #TraitBehavior
-}
+Extension { #name : #TraitBehavior }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-TraitBehavior>>spotterClassInstanceVariablesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+TraitBehavior >> spotterClassInstanceVariablesFor: aStep [
 	<spotterOrder: 25>
 	self isTrait
 		ifTrue: [ ^ self ].
@@ -17,11 +12,8 @@ TraitBehavior>>spotterClassInstanceVariablesFor: aStep [
 		filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-TraitBehavior>>spotterCompositionFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+TraitBehavior >> spotterCompositionFor: aStep [
 	<spotterOrder: 25>
 	aStep listProcessor
 			title: 'Composing traits';
@@ -30,11 +22,8 @@ TraitBehavior>>spotterCompositionFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-TraitBehavior>>spotterInstanceVariablesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+TraitBehavior >> spotterInstanceVariablesFor: aStep [
 	<spotterOrder: 20>
 	self isTrait
 		ifTrue: [ ^ self ].
@@ -45,11 +34,8 @@ TraitBehavior>>spotterInstanceVariablesFor: aStep [
 		filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-TraitBehavior>>spotterSubclassesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+TraitBehavior >> spotterSubclassesFor: aStep [
 	<spotterOrder: 50>
 	aStep listProcessor
 			title: 'All subclasses';
@@ -58,11 +44,8 @@ TraitBehavior>>spotterSubclassesFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-TraitBehavior>>spotterSuperclassesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+TraitBehavior >> spotterSuperclassesFor: aStep [
 	<spotterOrder: 40>
 	aStep listProcessor
 			title: 'All superclasses';
@@ -71,11 +54,8 @@ TraitBehavior>>spotterSuperclassesFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-TraitBehavior>>spotterTraitUsersFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+TraitBehavior >> spotterTraitUsersFor: aStep [
 	<spotterOrder: 20>
 	self isTrait ifFalse: [ ^ self ].
 	aStep listProcessor
@@ -85,11 +65,8 @@ TraitBehavior>>spotterTraitUsersFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-TraitBehavior>>spotterUsedSlotsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+TraitBehavior >> spotterUsedSlotsFor: aStep [
 	<spotterOrder: 70>
 	aStep listProcessor
 			title: 'Special Slots';
@@ -98,11 +75,8 @@ TraitBehavior>>spotterUsedSlotsFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-TraitBehavior>>spotterUsedTraitsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+TraitBehavior >> spotterUsedTraitsFor: aStep [
 	<spotterOrder: 60>
 	aStep listProcessor
 			title: 'Uses Traits';
@@ -111,11 +85,8 @@ TraitBehavior>>spotterUsedTraitsFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core-private',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-TraitBehavior>>withMethodsReferTo: aLiteral do: aBlock [
+{ #category : #'*GT-SpotterExtensions-Core-private' }
+TraitBehavior >> withMethodsReferTo: aLiteral do: aBlock [
 	| specialIndex |
 	specialIndex := Smalltalk specialSelectorIndexOrNil: aLiteral.
 	self selectorsAndMethodsDo: [ :selector :method | 
@@ -124,11 +95,8 @@ TraitBehavior>>withMethodsReferTo: aLiteral do: aBlock [
 				ifTrue: [ aBlock value: method ] ]
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core-private',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-TraitBehavior>>withThorougMethodsReferTo: aLiteral do: aBlock [
+{ #category : #'*GT-SpotterExtensions-Core-private' }
+TraitBehavior >> withThorougMethodsReferTo: aLiteral do: aBlock [
 	| specialIndex |
 	specialIndex := Smalltalk specialSelectorIndexOrNil: aLiteral.
 	self selectorsAndMethodsDo: [ :selector :method | 

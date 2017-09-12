@@ -18,15 +18,11 @@ Class {
 	#pools : [
 		'SDL2Types'
 	],
-	#category : #OSWindow-SDL2-Bindings,
-	#timestamp : 'EstebanLorenzano 6/3/2016 17:10'
+	#category : #OSWindow-SDL2-Bindings
 }
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo class>>fieldsDesc [
+{ #category : #'field definition' }
+SDL_RendererInfo class >> fieldsDesc [
 	"
 	self rebuildFieldAccessors
 	"
@@ -40,150 +36,99 @@ SDL_RendererInfo class>>fieldsDesc [
  	)
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo class>>initialize [
+{ #category : #'class initialization' }
+SDL_RendererInfo class >> initialize [
 	Uint32_16 := FFITypeArray ofType: Uint32 size: 16
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo>>flags [
+{ #category : #'accessing structure variables' }
+SDL_RendererInfo >> flags [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_FLAGS
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo>>flags: anObject [
+{ #category : #'accessing structure variables' }
+SDL_RendererInfo >> flags: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_FLAGS put: anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo>>isAccelerated [
+{ #category : #testing }
+SDL_RendererInfo >> isAccelerated [
 	^ self flags & SDL_RENDERER_ACCELERATED == SDL_RENDERER_ACCELERATED
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo>>isSoftware [
+{ #category : #testing }
+SDL_RendererInfo >> isSoftware [
 	^ self flags & SDL_RENDERER_SOFTWARE == SDL_RENDERER_SOFTWARE
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo>>isSupportRenderTexture [
+{ #category : #testing }
+SDL_RendererInfo >> isSupportRenderTexture [
 	^ self flags & SDL_RENDERER_TARGETTEXTURE == SDL_RENDERER_TARGETTEXTURE
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo>>isSynchronizedWithRefreshRate [
+{ #category : #testing }
+SDL_RendererInfo >> isSynchronizedWithRefreshRate [
 	^ self flags & SDL_RENDERER_PRESENTVSYNC == SDL_RENDERER_PRESENTVSYNC
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo>>max_texture_height [
+{ #category : #'accessing structure variables' }
+SDL_RendererInfo >> max_texture_height [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_MAX_TEXTURE_HEIGHT
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo>>max_texture_height: anObject [
+{ #category : #'accessing structure variables' }
+SDL_RendererInfo >> max_texture_height: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_MAX_TEXTURE_HEIGHT put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo>>max_texture_width [
+{ #category : #'accessing structure variables' }
+SDL_RendererInfo >> max_texture_width [
 	"This method was automatically generated"
 	^handle signedLongAt: OFFSET_MAX_TEXTURE_WIDTH
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo>>max_texture_width: anObject [
+{ #category : #'accessing structure variables' }
+SDL_RendererInfo >> max_texture_width: anObject [
 	"This method was automatically generated"
 	handle signedLongAt: OFFSET_MAX_TEXTURE_WIDTH put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo>>name [
+{ #category : #'accessing structure variables' }
+SDL_RendererInfo >> name [
 	"This method was automatically generated"
 	^ExternalData fromHandle: (handle pointerAt: OFFSET_NAME) type: ExternalType char asPointerType
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo>>name: anObject [
+{ #category : #'accessing structure variables' }
+SDL_RendererInfo >> name: anObject [
 	"This method was automatically generated"
 	handle pointerAt: OFFSET_NAME put: anObject getHandle.
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo>>num_texture_formats [
+{ #category : #'accessing structure variables' }
+SDL_RendererInfo >> num_texture_formats [
 	"This method was automatically generated"
 	^handle unsignedLongAt: OFFSET_NUM_TEXTURE_FORMATS
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo>>num_texture_formats: anObject [
+{ #category : #'accessing structure variables' }
+SDL_RendererInfo >> num_texture_formats: anObject [
 	"This method was automatically generated"
 	handle unsignedLongAt: OFFSET_NUM_TEXTURE_FORMATS put: anObject
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo>>texture_formats [
+{ #category : #'accessing structure variables' }
+SDL_RendererInfo >> texture_formats [
 	"This method was automatically generated"
 	^(FFITypeArray ofType: #FFIUInt32 size: 16) fromHandle: (handle copyFrom: OFFSET_TEXTURE_FORMATS to: OFFSET_TEXTURE_FORMATS + 63)
 ]
 
-{
-	#category : #'accessing structure variables',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SDL_RendererInfo>>texture_formats: anObject [
+{ #category : #'accessing structure variables' }
+SDL_RendererInfo >> texture_formats: anObject [
 	"This method was automatically generated"
 	handle replaceFrom: OFFSET_TEXTURE_FORMATS to: OFFSET_TEXTURE_FORMATS + 63 with: anObject getHandle startingAt: 1
 ]

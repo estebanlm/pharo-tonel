@@ -8,54 +8,38 @@ someMethod
 Class {
 	#name : #MethodIsScriptAction,
 	#superclass : #AbstractMethodIconAction,
-	#category : #Nautilus-Widgets,
-	#timestamp : 'FranckWarlouzet 6/3/2015 09:58'
+	#category : #Nautilus-Widgets
 }
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsScriptAction>>actionOrder [
+{ #category : #order }
+MethodIsScriptAction >> actionOrder [
 	"Return the priority of this action"
 	
 	^0
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsScriptAction>>actionStateToCache [
+{ #category : #order }
+MethodIsScriptAction >> actionStateToCache [
     "Return the state of the icon for caching purpose"
    ^ icon
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsScriptAction>>isActionHandled [
+{ #category : #testing }
+MethodIsScriptAction >> isActionHandled [
 
 	^ method methodClass isMeta
 		and: [ method numArgs isZero and: [ method pragmas anySatisfy: [ :each | each keyword = #script ] ] ]
 ]
 
-{
-	#category : #'private - accessing',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsScriptAction>>pragmaName [
+{ #category : #'private - accessing' }
+MethodIsScriptAction >> pragmaName [
 	"The name of the pragma we handle"
 	
 	 ^#script
 ]
 
-{
-	#category : #'private - accessing',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsScriptAction>>privateActionIcon [
+{ #category : #'private - accessing' }
+MethodIsScriptAction >> privateActionIcon [
 
 	 ^IconicButton new 
 			target: self;
@@ -67,11 +51,8 @@ MethodIsScriptAction>>privateActionIcon [
 			borderWidth: 0 
 ]
 
-{
-	#category : #'private - actions',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsScriptAction>>runScript [
+{ #category : #'private - actions' }
+MethodIsScriptAction >> runScript [
 	method pragmas
 		select: [ :pragma | pragma keyword = self pragmaName ]
 		thenDo: [ :pragma | 
@@ -81,11 +62,8 @@ MethodIsScriptAction>>runScript [
 	 
 ]
 
-{
-	#category : #'private - actions',
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodIsScriptAction>>runScriptForPragma: pragma [
+{ #category : #'private - actions' }
+MethodIsScriptAction >> runScriptForPragma: pragma [
 
 	method methodClass theNonMetaClass perform: method selector.
 	 

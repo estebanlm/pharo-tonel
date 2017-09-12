@@ -1,12 +1,7 @@
-Extension {
-	#name : #CompiledMethod
-}
+Extension { #name : #CompiledMethod }
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompiledMethod>>decompile [
+{ #category : #'*opalcompiler-core' }
+CompiledMethod >> decompile [
 	^Smalltalk globals 
 		at: #FBDDecompiler
 		ifPresent: [ :decompiler | decompiler new  decompile: self]  
@@ -14,29 +9,20 @@ CompiledMethod>>decompile [
 	self noSourceAvailable' ]
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompiledMethod>>decompileIR [
+{ #category : #'*opalcompiler-core' }
+CompiledMethod >> decompileIR [
 	
 	^ IRBytecodeDecompiler new decompile: self
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompiledMethod>>ir [
+{ #category : #'*opalcompiler-core' }
+CompiledMethod >> ir [
 	"We as the AST for the IR... for decompiling ir from bytecode, look at IRBytecodeDecompiler"
 	^ self ast ir
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompiledMethod>>irPrimitive [
+{ #category : #'*opalcompiler-core' }
+CompiledMethod >> irPrimitive [
 
 	| primNode n |
 	primNode := IRPrimitive new num: (n := self primitive).
@@ -45,11 +31,8 @@ CompiledMethod>>irPrimitive [
 	^ primNode
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompiledMethod>>methodNode [
+{ #category : #'*opalcompiler-core' }
+CompiledMethod >> methodNode [
 	"Return the parse tree that represents self"
 	| aClass source methodNode |
 	
@@ -61,42 +44,27 @@ CompiledMethod>>methodNode [
 			
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompiledMethod>>recompile [
+{ #category : #'*opalcompiler-core' }
+CompiledMethod >> recompile [
 	^ self methodClass recompile: self selector
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompiledMethod>>reformat [
+{ #category : #'*opalcompiler-core' }
+CompiledMethod >> reformat [
 	self methodClass compile: self ast formattedCode classified:  self category.
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompiledMethod>>sourceNode [
+{ #category : #'*opalcompiler-core' }
+CompiledMethod >> sourceNode [
 	^self ast
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompiledMethod>>sourceNodeExecutedForPC: aPC [
+{ #category : #'*opalcompiler-core' }
+CompiledMethod >> sourceNodeExecutedForPC: aPC [
 	^self sourceNode sourceNodeExecutedForPC: aPC
 ]
 
-{
-	#category : #'*opalcompiler-core',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-CompiledMethod>>sourceNodeForPC: aPC [
+{ #category : #'*opalcompiler-core' }
+CompiledMethod >> sourceNodeForPC: aPC [
 	^self sourceNode sourceNodeForPC: aPC
 ]

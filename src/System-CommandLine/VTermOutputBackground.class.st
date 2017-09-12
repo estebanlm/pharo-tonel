@@ -8,31 +8,21 @@ Class {
 	#pools : [
 		'VTermOutputStyles'
 	],
-	#category : #System-CommandLine,
-	#timestamp : 'ValentinRyckewaert 8/9/2016 11:36'
+	#category : #System-CommandLine
 }
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputBackground>>= aBackground [
+{ #category : #styling }
+VTermOutputBackground >> = aBackground [
 	^ self color isVTermDefaultColor and: [ aBackground color isVTermDefaultColor ]
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputBackground>>hash [
+{ #category : #styling }
+VTermOutputBackground >> hash [
 	^ self color hash
 ]
 
-{
-	#category : #styling,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-VTermOutputBackground>>setInDriver: aVTermOutputDriver  [
+{ #category : #styling }
+VTermOutputBackground >> setInDriver: aVTermOutputDriver [ 
 	
 	aVTermOutputDriver setBackgroundColor: color
 ]

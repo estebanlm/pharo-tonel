@@ -1,11 +1,6 @@
-Extension {
-	#name : #MCTool
-}
+Extension { #name : #MCTool }
 
-{
-	#category : #'*Shout-Styling',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-MCTool>>shoutAboutToStyle: aPluggableShoutMorphOrView [
+{ #category : #'*Shout-Styling' }
+MCTool >> shoutAboutToStyle: aPluggableShoutMorphOrView [
 	^ false
 ]

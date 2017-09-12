@@ -4,26 +4,19 @@ Menu designed to be embedded in another morph rather than popped up directly.
 Class {
 	#name : #EmbeddedMenuMorph,
 	#superclass : #MenuMorph,
-	#category : #Morphic-Base-Menus,
-	#timestamp : 'gvc 5/18/2007 13:18'
+	#category : #Morphic-Base-Menus
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbeddedMenuMorph>>allEnabledSiblingItems [
+{ #category : #accessing }
+EmbeddedMenuMorph >> allEnabledSiblingItems [
 	"Answer the receiver's submorphs followed by the (wrapping) owner's
 	submorph items. Answer only enabled items."
 
 	^self allSiblingItems select: [:item | item isEnabled]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbeddedMenuMorph>>allSiblingItems [
+{ #category : #accessing }
+EmbeddedMenuMorph >> allSiblingItems [
 	"Answer the receiver's submorphs followed by the (wrapping) owner's
 	submorph items. Nasty."
 
@@ -36,32 +29,23 @@ EmbeddedMenuMorph>>allSiblingItems [
 	^str contents
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbeddedMenuMorph>>drawOn: aCanvas [
+{ #category : #drawing }
+EmbeddedMenuMorph >> drawOn: aCanvas [
 	"Draw the receiver on the canvas."
 
 	self perform: #drawOn: withArguments: {aCanvas} inSuperclass: Morph.
 	self hasKeyboardFocus ifTrue: [self drawKeyboardFocusOn: aCanvas]
 ]
 
-{
-	#category : #'keyboard control',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbeddedMenuMorph>>handlesKeyboard: evt [
+{ #category : #'keyboard control' }
+EmbeddedMenuMorph >> handlesKeyboard: evt [
 	"Answer whether the receiver handles the keystroke represented by the event"
 
 	^true
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbeddedMenuMorph>>keyStroke: evt [
+{ #category : #events }
+EmbeddedMenuMorph >> keyStroke: evt [
 	"Handle tabbing and arrows and cr/space."
 	
 	|char selectable|
@@ -91,11 +75,8 @@ EmbeddedMenuMorph>>keyStroke: evt [
 
 ]
 
-{
-	#category : #'keyboard control',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbeddedMenuMorph>>keyboardFocusChange: aBoolean [
+{ #category : #'keyboard control' }
+EmbeddedMenuMorph >> keyboardFocusChange: aBoolean [
 	"Nasty hack for scrolling upon keyboard focus."
 
 	super keyboardFocusChange: aBoolean.
@@ -105,11 +86,8 @@ EmbeddedMenuMorph>>keyboardFocusChange: aBoolean [
 		ifFalse: [self selectItem: nil event: nil]
 ]
 
-{
-	#category : #'keyboard control',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbeddedMenuMorph>>moveSelectionDown: anInteger event: anEvent [
+{ #category : #'keyboard control' }
+EmbeddedMenuMorph >> moveSelectionDown: anInteger event: anEvent [
 	"Move the selection down or up (negative number) by (at least)
 	the specified amount. If the item is not enabled, scan one at a time
 	in that direction. If we move off the top/bottom then switch focus to any
@@ -129,11 +107,8 @@ EmbeddedMenuMorph>>moveSelectionDown: anInteger event: anEvent [
 	^self selectItem: nil event: anEvent
 ]
 
-{
-	#category : #control,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbeddedMenuMorph>>selectItem: aMenuItem event: anEvent [
+{ #category : #control }
+EmbeddedMenuMorph >> selectItem: aMenuItem event: anEvent [
 	"Deselect any sibling menus."
 	
 	self owner ifNotNil: [
@@ -148,11 +123,8 @@ EmbeddedMenuMorph>>selectItem: aMenuItem event: anEvent [
 	^super selectItem: aMenuItem event: anEvent
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbeddedMenuMorph>>selectLastMatch: aString [
+{ #category : #selecting }
+EmbeddedMenuMorph >> selectLastMatch: aString [
 	"Answer the last subitem that has text that includes the given substring.
 	Answer nil if none.
 	Disable non-matching items and enable matching items."
@@ -165,11 +137,8 @@ EmbeddedMenuMorph>>selectLastMatch: aString [
 	^lastMatch
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbeddedMenuMorph>>selectLastPrefix: aString [
+{ #category : #selecting }
+EmbeddedMenuMorph >> selectLastPrefix: aString [
 	"Answer the last subitem that has text that matches the given prefix.
 	Answer nil if none.
 	Disable non-matching items and enable matching items."
@@ -182,11 +151,8 @@ EmbeddedMenuMorph>>selectLastPrefix: aString [
 	^lastMatch
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbeddedMenuMorph>>selectMatch: aString [
+{ #category : #selecting }
+EmbeddedMenuMorph >> selectMatch: aString [
 	"Answer the first subitem that has text that includes the given substring.
 	Answer nil if none.
 	Disable non-matching items and enable matching items."
@@ -199,11 +165,8 @@ EmbeddedMenuMorph>>selectMatch: aString [
 	^firstMatch
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-EmbeddedMenuMorph>>selectPrefix: aString [
+{ #category : #selecting }
+EmbeddedMenuMorph >> selectPrefix: aString [
 	"Answer the first subitem that has text that matches the given prefix.
 	Answer nil if none.
 	Disable non-matching items and enable matching items."

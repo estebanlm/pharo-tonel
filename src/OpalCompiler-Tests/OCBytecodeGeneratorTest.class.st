@@ -1,37 +1,24 @@
-"
-
-"
 Class {
 	#name : #OCBytecodeGeneratorTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'a'
 	],
-	#category : #OpalCompiler-Tests-Bytecode,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-Bytecode
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest class>>packageNamesUnderTest [
+{ #category : #accessing }
+OCBytecodeGeneratorTest class >> packageNamesUnderTest [
 	^ #('OpalCompiler')
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>newBytecodeGen [
+{ #category : #helper }
+OCBytecodeGeneratorTest >> newBytecodeGen [
 	^ IRBytecodeGenerator newWithEncoderClass: OpalEncoderForV3PlusClosures
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testBlockReturnTop [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testBlockReturnTop [
 	| cm |
 	
 	cm := self newBytecodeGen
@@ -44,11 +31,8 @@ OCBytecodeGeneratorTest>>testBlockReturnTop [
 	
 ]
 
-{
-	#category : #'tests - execution',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testClosureExample [
+{ #category : #'tests - execution' }
+OCBytecodeGeneratorTest >> testClosureExample [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -72,11 +56,8 @@ OCBytecodeGeneratorTest>>testClosureExample [
 	
 ]
 
-{
-	#category : #'tests - execution',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testExample [
+{ #category : #'tests - execution' }
+OCBytecodeGeneratorTest >> testExample [
 	| cm |
 	
 	cm := self newBytecodeGen
@@ -102,11 +83,8 @@ OCBytecodeGeneratorTest>>testExample [
 	
 ]
 
-{
-	#category : #'tests - execution',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testExample2 [
+{ #category : #'tests - execution' }
+OCBytecodeGeneratorTest >> testExample2 [
 	| cm |
 	
 	cm := self newBytecodeGen
@@ -130,11 +108,8 @@ OCBytecodeGeneratorTest>>testExample2 [
 	
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testGoTo [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testGoTo [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -154,11 +129,8 @@ OCBytecodeGeneratorTest>>testGoTo [
 
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testGoToIf [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testGoToIf [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -179,11 +151,8 @@ OCBytecodeGeneratorTest>>testGoToIf [
 18 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testIfGoTo [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testIfGoTo [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -204,11 +173,8 @@ OCBytecodeGeneratorTest>>testIfGoTo [
 18 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testIfGoToOtherWise [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testIfGoToOtherWise [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -230,11 +196,8 @@ OCBytecodeGeneratorTest>>testIfGoToOtherWise [
 18 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testLabel [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testLabel [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -253,11 +216,8 @@ OCBytecodeGeneratorTest>>testLabel [
 16 <A3 FC> jumpTo: 14'
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testMethod: cm against: string [
+{ #category : #helper }
+OCBytecodeGeneratorTest >> testMethod: cm against: string [
 
 	| symbolic |
 	self assert: cm isCompiledMethod.
@@ -266,11 +226,8 @@ OCBytecodeGeneratorTest>>testMethod: cm against: string [
 	
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testPopTop [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testPopTop [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -288,11 +245,8 @@ OCBytecodeGeneratorTest>>testPopTop [
 16 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testPushClosureCopyNumCopiedValuesNumArgsTo [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testPushClosureCopyNumCopiedValuesNumArgsTo [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -311,11 +265,8 @@ OCBytecodeGeneratorTest>>testPushClosureCopyNumCopiedValuesNumArgsTo [
 19 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testPushConsArray [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testPushConsArray [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -332,11 +283,8 @@ OCBytecodeGeneratorTest>>testPushConsArray [
 	
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testPushDup [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testPushDup [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -351,11 +299,8 @@ OCBytecodeGeneratorTest>>testPushDup [
 	
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testPushInstVar [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testPushInstVar [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -370,11 +315,8 @@ OCBytecodeGeneratorTest>>testPushInstVar [
 	
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testPushLiteral [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testPushLiteral [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -389,11 +331,8 @@ OCBytecodeGeneratorTest>>testPushLiteral [
 	
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testPushLiteralVariable [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testPushLiteralVariable [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -408,11 +347,8 @@ OCBytecodeGeneratorTest>>testPushLiteralVariable [
 	
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testPushNewArray [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testPushNewArray [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -427,11 +363,8 @@ OCBytecodeGeneratorTest>>testPushNewArray [
 	
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testPushReceiver [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testPushReceiver [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -445,11 +378,8 @@ OCBytecodeGeneratorTest>>testPushReceiver [
 14 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testPushRemoteTempInVectorAt [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testPushRemoteTempInVectorAt [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -463,11 +393,8 @@ OCBytecodeGeneratorTest>>testPushRemoteTempInVectorAt [
 16 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - errors',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testPushRemoteTempInVectorAtOutOfRange [
+{ #category : #'tests - errors' }
+OCBytecodeGeneratorTest >> testPushRemoteTempInVectorAtOutOfRange [
 	
 	self should: [ self newBytecodeGen
 					numArgs: 0;
@@ -476,11 +403,8 @@ OCBytecodeGeneratorTest>>testPushRemoteTempInVectorAtOutOfRange [
 	
 ]
 
-{
-	#category : #'tests - errors',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testPushRemoteTempOutOfRangeInVectorAt [
+{ #category : #'tests - errors' }
+OCBytecodeGeneratorTest >> testPushRemoteTempOutOfRangeInVectorAt [
 	
 	self should: [ self newBytecodeGen
 					numArgs: 0;
@@ -488,11 +412,8 @@ OCBytecodeGeneratorTest>>testPushRemoteTempOutOfRangeInVectorAt [
 		raise: Error 
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testPushTemp [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testPushTemp [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -506,11 +427,8 @@ OCBytecodeGeneratorTest>>testPushTemp [
 14 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testPushThisContext [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testPushThisContext [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -524,11 +442,8 @@ OCBytecodeGeneratorTest>>testPushThisContext [
 14 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testReturnConstant [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testReturnConstant [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -541,11 +456,8 @@ OCBytecodeGeneratorTest>>testReturnConstant [
 	
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testReturnInstVar [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testReturnInstVar [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -558,11 +470,8 @@ OCBytecodeGeneratorTest>>testReturnInstVar [
 	
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testReturnReceiver [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testReturnReceiver [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -575,11 +484,8 @@ OCBytecodeGeneratorTest>>testReturnReceiver [
 	
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testReturnTop [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testReturnTop [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -593,11 +499,8 @@ OCBytecodeGeneratorTest>>testReturnTop [
 14 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testSend [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testSend [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -613,11 +516,8 @@ OCBytecodeGeneratorTest>>testSend [
 19 <7C> returnTop'	
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testSendToSuperOf [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testSendToSuperOf [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -633,11 +533,8 @@ OCBytecodeGeneratorTest>>testSendToSuperOf [
 20 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testStoreInstVar [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testStoreInstVar [
 	| gen cm symbolic |
 	
 	gen := self newBytecodeGen
@@ -656,11 +553,8 @@ OCBytecodeGeneratorTest>>testStoreInstVar [
 16 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testStoreIntoLiteralVariable [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testStoreIntoLiteralVariable [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -676,11 +570,8 @@ OCBytecodeGeneratorTest>>testStoreIntoLiteralVariable [
 20 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testStoreLiteralVariable [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testStoreLiteralVariable [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -695,11 +586,8 @@ OCBytecodeGeneratorTest>>testStoreLiteralVariable [
 20 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testStorePopInstVar [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testStorePopInstVar [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -717,11 +605,8 @@ OCBytecodeGeneratorTest>>testStorePopInstVar [
 16 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testStorePopIntoLiteralVariable [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testStorePopIntoLiteralVariable [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -739,11 +624,8 @@ OCBytecodeGeneratorTest>>testStorePopIntoLiteralVariable [
 21 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testStorePopRemoteTempInVectorAt [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testStorePopRemoteTempInVectorAt [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -761,11 +643,8 @@ OCBytecodeGeneratorTest>>testStorePopRemoteTempInVectorAt [
 18 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testStorePopTemp [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testStorePopTemp [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -783,11 +662,8 @@ OCBytecodeGeneratorTest>>testStorePopTemp [
 16 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testStoreRemoteTempInVectorAt [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testStoreRemoteTempInVectorAt [
 	| cm  |
 	
 	cm := self newBytecodeGen
@@ -803,11 +679,8 @@ OCBytecodeGeneratorTest>>testStoreRemoteTempInVectorAt [
 17 <7C> returnTop'
 ]
 
-{
-	#category : #'tests - errors',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testStoreRemoteTempInVectorAtOutOfRange [
+{ #category : #'tests - errors' }
+OCBytecodeGeneratorTest >> testStoreRemoteTempInVectorAtOutOfRange [
 	
 	self should: [ self newBytecodeGen
 					numArgs: 0;
@@ -815,11 +688,8 @@ OCBytecodeGeneratorTest>>testStoreRemoteTempInVectorAtOutOfRange [
 		raise: Error 
 ]
 
-{
-	#category : #'tests - errors',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testStoreRemoteTempOutOfRangeInVectorAt [
+{ #category : #'tests - errors' }
+OCBytecodeGeneratorTest >> testStoreRemoteTempOutOfRangeInVectorAt [
 	
 	self should: [ self newBytecodeGen
 					numArgs: 0;
@@ -827,11 +697,8 @@ OCBytecodeGeneratorTest>>testStoreRemoteTempOutOfRangeInVectorAt [
 		raise: Error 
 ]
 
-{
-	#category : #'tests - instructions',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCBytecodeGeneratorTest>>testStoreTemp [
+{ #category : #'tests - instructions' }
+OCBytecodeGeneratorTest >> testStoreTemp [
 	| cm  |
 	
 	cm := self newBytecodeGen

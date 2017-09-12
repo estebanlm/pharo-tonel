@@ -11,15 +11,11 @@ Class {
 	#instVars : [
 		'scale'
 	],
-	#category : #Kernel-Numbers,
-	#timestamp : 'nice 5/16/2009 20:45'
+	#category : #Kernel-Numbers
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal class>>newFromNumber: aNumber scale: anInteger [
+{ #category : #'instance creation' }
+ScaledDecimal class >> newFromNumber: aNumber scale: anInteger [
 	| aFraction |
 	aFraction := aNumber asFraction.
 	^aFraction isFraction
@@ -27,112 +23,76 @@ ScaledDecimal class>>newFromNumber: aNumber scale: anInteger [
 		ifFalse: [self new setNumerator: aFraction denominator: 1 scale: anInteger]
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>* aNumber [
+{ #category : #arithmetic }
+ScaledDecimal >> * aNumber [
 	aNumber class = self class ifTrue: [^self asFraction * aNumber asFraction asScaledDecimal: (scale max: aNumber scale)].
 	^self coerce: self asFraction * aNumber
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>+ aNumber [
+{ #category : #arithmetic }
+ScaledDecimal >> + aNumber [
 	aNumber class = self class ifTrue: [^self asFraction + aNumber asFraction asScaledDecimal: (scale max: aNumber scale)].
 	^self coerce: self asFraction + aNumber
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>- aNumber [
+{ #category : #arithmetic }
+ScaledDecimal >> - aNumber [
 	aNumber class = self class ifTrue: [^self asFraction - aNumber asFraction asScaledDecimal: (scale max: aNumber scale)].
 	^self coerce: self asFraction - aNumber
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>/ aNumber [
+{ #category : #arithmetic }
+ScaledDecimal >> / aNumber [
 	aNumber class = self class ifTrue: [^self asFraction / aNumber asFraction asScaledDecimal: (scale max: aNumber scale)].
 	^self coerce: self asFraction / aNumber
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>< aNumber [
+{ #category : #comparing }
+ScaledDecimal >> < aNumber [
 	aNumber class = self class ifTrue: [^self asFraction < aNumber asFraction].
 	^self asFraction < aNumber
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>><= aNumber [
+{ #category : #comparing }
+ScaledDecimal >> <= aNumber [
 	aNumber class = self class ifTrue: [^self asFraction <= aNumber asFraction].
 	^self asFraction <= aNumber
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>= aNumber [
+{ #category : #comparing }
+ScaledDecimal >> = aNumber [
 	aNumber class = self class ifTrue: [^self asFraction = aNumber asFraction].
 	^self asFraction = aNumber
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>> aNumber [
+{ #category : #comparing }
+ScaledDecimal >> > aNumber [
 	aNumber class = self class ifTrue: [^self asFraction > aNumber asFraction].
 	^self asFraction > aNumber
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>>= aNumber [
+{ #category : #comparing }
+ScaledDecimal >> >= aNumber [
 	aNumber class = self class ifTrue: [^self asFraction >= aNumber asFraction].
 	^self asFraction >= aNumber
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>adaptToFraction: rcvr andSend: selector [
+{ #category : #converting }
+ScaledDecimal >> adaptToFraction: rcvr andSend: selector [
 	"If I am involved in arithmetic with a Fraction, convert it to a ScaledDecimal."
 
 	^(rcvr asScaledDecimal: scale) perform: selector with: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>adaptToInteger: rcvr andSend: selector [
+{ #category : #converting }
+ScaledDecimal >> adaptToInteger: rcvr andSend: selector [
 	"If I am involved in arithmetic with an Integer, convert it to a ScaledDecimal."
 
 	^(rcvr asScaledDecimal: scale) perform: selector with: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>asFraction [
+{ #category : #converting }
+ScaledDecimal >> asFraction [	
 	"Convert the receiver to a Fraction.
 	Avoid using numerator / denominator to save a useless and costly gcd: computation"
 
@@ -141,11 +101,8 @@ ScaledDecimal>>asFraction [
 		ifFalse: [Fraction numerator: numerator denominator: denominator]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>coerce: aNumber [
+{ #category : #private }
+ScaledDecimal >> coerce: aNumber [
 	"Note: this quick hack could be replaced by double dispatching"
 	
 	aNumber class = self class ifTrue: [^self class newFromNumber: aNumber scale: (scale max: aNumber scale)].
@@ -153,21 +110,15 @@ ScaledDecimal>>coerce: aNumber [
 	^aNumber
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>isFraction [
+{ #category : #testing }
+ScaledDecimal >> isFraction [
 	"Though kind of Fraction, pretend we are not a Fraction to let coercion works correctly"
 	
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>isLiteral [
+{ #category : #testing }
+ScaledDecimal >> isLiteral [
 	"Answer if this number could be a well behaved literal.
 	Well, it would only if evaluating back to self.
 	This is not the case of all ScaledDecimals.
@@ -181,20 +132,14 @@ ScaledDecimal>>isLiteral [
 			(10 raisedTo: scale) \\ denominator = 0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>isSelfEvaluating [
+{ #category : #accessing }
+ScaledDecimal >> isSelfEvaluating [
     "Not all scaled decimal are self evaluating, because they print rounded digits."
     ^self isLiteral
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>literalEqual: other [
+{ #category : #comparing }
+ScaledDecimal >> literalEqual: other [
 	"Testing equality is not enough.
 	It is also necessary to test number of decimal places (scale).
 	Otherwise we cannot compile both literals 0.5s1 and 0.50s2 in the same method"
@@ -202,19 +147,13 @@ ScaledDecimal>>literalEqual: other [
 	^(super literalEqual: other) and: [self scale = other scale]
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>negated [
+{ #category : #arithmetic }
+ScaledDecimal >> negated [
 	^self class newFromNumber: super negated scale: scale
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>nthRoot: anInteger [
+{ #category : #'mathematical functions' }
+ScaledDecimal >> nthRoot: anInteger [
 	"Answer the nth root of the receiver.
 	Preserve receiver class and scale if answer is exact.
 	Otherwise, answer a Float to denote inexactness."
@@ -225,11 +164,8 @@ ScaledDecimal>>nthRoot: anInteger [
 		ifFalse: [nthRoot asScaledDecimal: scale]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>printOn: aStream [
+{ #category : #printing }
+ScaledDecimal >> printOn: aStream [
 	"Append an approximated representation of the receiver on aStream.
 	Use prescribed number of digits after decimal point (the scale) using a rounding operation if not exact"
 	
@@ -239,62 +175,41 @@ ScaledDecimal>>printOn: aStream [
 	aStream nextPut: $s; print: scale.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>printOn: aStream base: base [
+{ #category : #printing }
+ScaledDecimal >> printOn: aStream base: base [
 	base = 10 ifFalse: [self error: 'ScaledDecimals should be printed only in base 10'].
 	^self printOn: aStream
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>raisedTo: aNumber [
+{ #category : #'mathematical functions' }
+ScaledDecimal >> raisedTo: aNumber [
 	^self coerce: (super raisedTo: aNumber)
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>raisedToInteger: aNumber [
+{ #category : #'mathematical functions' }
+ScaledDecimal >> raisedToInteger: aNumber [
 	^self class newFromNumber: (super raisedToInteger: aNumber) scale: scale
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>reciprocal [
+{ #category : #arithmetic }
+ScaledDecimal >> reciprocal [
 	^self class newFromNumber: super reciprocal scale: scale
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>scale [
+{ #category : #accessing }
+ScaledDecimal >> scale [
 	^scale
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>setNumerator: n denominator: d scale: s [
+{ #category : #private }
+ScaledDecimal >> setNumerator: n denominator: d scale: s [
 
 	self setNumerator: n denominator: d.
 	scale := s
 ]
 
-{
-	#category : #'mathematical functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>sqrt [
+{ #category : #'mathematical functions' }
+ScaledDecimal >> sqrt [
 	"Answer the square root of the receiver.
 	Preserve receiver class and scale if answer is exact.
 	Otherwise, answer a Float to denote inexactness."
@@ -305,19 +220,13 @@ ScaledDecimal>>sqrt [
 		ifFalse: [squareRoot asScaledDecimal: scale]
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>squared [
+{ #category : #arithmetic }
+ScaledDecimal >> squared [
 	^self class newFromNumber: super squared scale: scale
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-ScaledDecimal>>storeOn: aStream [
+{ #category : #printing }
+ScaledDecimal >> storeOn: aStream [ 
 	"ScaledDecimal sometimes have more digits than they print (potentially an infinity).
 	In this case, do not use printOn: because it would loose some extra digits"
 	

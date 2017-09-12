@@ -29,15 +29,11 @@ Class {
 	#classVars : [
 		'SubMenuMarker'
 	],
-	#category : #Morphic-Base-Menus,
-	#timestamp : 'StephaneDucasse 4/22/2012 16:43'
+	#category : #Morphic-Base-Menus
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph class>>initialize [
+{ #category : #initialization }
+MenuItemMorph class >> initialize [
 	"MenuItemMorph initialize"
 
 	| f |
@@ -49,11 +45,8 @@ MenuItemMorph class>>initialize [
 
 ]
 
-{
-	#category : #grabbing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>aboutToBeGrabbedBy: aHand [
+{ #category : #grabbing }
+MenuItemMorph >> aboutToBeGrabbedBy: aHand [
 	"Don't allow the receiver to act outside a Menu"
 	| menu box |
 	(owner notNil and:[owner hasSubmorphs ]) ifTrue:[
@@ -69,11 +62,8 @@ MenuItemMorph>>aboutToBeGrabbedBy: aHand [
 	^menu
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>activateOwnerMenu: evt [
+{ #category : #events }
+MenuItemMorph >> activateOwnerMenu: evt [
 	"Activate our owner menu; e.g., pass control to it.
 	 If it does not contain the pointer position, pass it through the owner chain."
 
@@ -94,11 +84,8 @@ MenuItemMorph>>activateOwnerMenu: evt [
 	^ false
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>activateSubmenu: evt [
+{ #category : #events }
+MenuItemMorph >> activateSubmenu: evt [
 	"Activate our submenu; e.g., pass control to it"
 	subMenu ifNil:[^false]. "not applicable"
 	(subMenu fullContainsPoint: evt position) ifFalse:[^false].
@@ -107,19 +94,13 @@ MenuItemMorph>>activateSubmenu: evt [
 	^true
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>adjacentTo [
+{ #category : #selecting }
+MenuItemMorph >> adjacentTo [
 	^ {self bounds topRight + (10 @ 0). self bounds topLeft}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>allWordingsNotInSubMenus: verbotenSubmenuContentsList [
+{ #category : #accessing }
+MenuItemMorph >> allWordingsNotInSubMenus: verbotenSubmenuContentsList [
 	"Answer a collection of the wordings of all items and subitems, but omit the stay-up item, and also any items in any submenu whose tag is in verbotenSubmenuContentsList"
 
 	self isStayUpItem ifTrue:[^ #()].
@@ -133,73 +114,49 @@ MenuItemMorph>>allWordingsNotInSubMenus: verbotenSubmenuContentsList [
 	^ Array with: self contents asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>arguments [
+{ #category : #accessing }
+MenuItemMorph >> arguments [
 
 	^ arguments
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>arguments: aCollection [
+{ #category : #accessing }
+MenuItemMorph >> arguments: aCollection [
 
 	arguments := aCollection.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>bottomArrow [
+{ #category : #private }
+MenuItemMorph >> bottomArrow [
 	^ ColorForm
 		mappingWhiteToTransparentFrom: ((SubMenuMarker rotateBy: 90) asFormOfDepth:8)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>contentString [
+{ #category : #accessing }
+MenuItemMorph >> contentString [
 	^self valueOfProperty: #contentString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>contentString: aString  [
+{ #category : #accessing }
+MenuItemMorph >> contentString: aString [ 
 	aString ifNil: [self removeProperty: #contentString]
 		ifNotNil: [self setProperty: #contentString toValue: aString]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>contents: aString [
+{ #category : #accessing }
+MenuItemMorph >> contents: aString [
 	^self contents: aString withMarkers: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>contents: aString withMarkers: aBool [
+{ #category : #accessing }
+MenuItemMorph >> contents: aString withMarkers: aBool [
 	^self contents: aString withMarkers: aBool inverse: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>contents: aString withMarkers: aBool inverse: inverse  [
+{ #category : #accessing }
+MenuItemMorph >> contents: aString withMarkers: aBool inverse: inverse [ 
 	"Set the menu item entry. If aBool is true, parse aString for embedded markers."
 
 	| markerIndex marker |
@@ -232,40 +189,28 @@ MenuItemMorph>>contents: aString withMarkers: aBool inverse: inverse  [
 	self addMorphFront: marker
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>defaultBounds [
+{ #category : #initialization }
+MenuItemMorph >> defaultBounds [
 "answer the default bounds for the receiver"
 	^ 0 @ 0 extent: 10 @ 10
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>deleteIfPopUp: evt [
+{ #category : #initialization }
+MenuItemMorph >> deleteIfPopUp: evt [
 	"Recurse up for nested pop ups"
 	owner ifNotNil:[owner deleteIfPopUp: evt].
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>deselect: evt [
+{ #category : #selecting }
+MenuItemMorph >> deselect: evt [
 	self isSelected: false.
 	subMenu ifNotNil: [
 		owner ifNotNil:[owner activeSubmenu: nil].
 		self removeAlarm: #deselectTimeOut:].
 ]
 
-{
-	#category : #'meta actions',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>deselectItem [
+{ #category : #'meta actions' }
+MenuItemMorph >> deselectItem [
 	| item |
 	self isSelected: false.
 	subMenu ifNotNil: [subMenu deleteIfPopUp].
@@ -275,11 +220,8 @@ MenuItemMorph>>deselectItem [
 
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>deselectTimeOut: evt [
+{ #category : #events }
+MenuItemMorph >> deselectTimeOut: evt [
 	"Deselect timout. Now really deselect"
 
 	owner selectedItem == self
@@ -288,21 +230,15 @@ MenuItemMorph>>deselectTimeOut: evt [
 			owner selectItem: nil event: evt ]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>doButtonAction [
+{ #category : #events }
+MenuItemMorph >> doButtonAction [
 	"Called programattically, this should trigger the action for which the receiver is programmed"
 
 	self invokeWithEvent: nil
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>drawOn: aCanvas  [
+{ #category : #drawing }
+MenuItemMorph >> drawOn: aCanvas [ 
 	| stringColor stringBounds |
 	(isSelected and: [ isEnabled ])
 		ifTrue: [aCanvas fillRectangle: self bounds fillStyle: self selectionFillStyle.
@@ -329,11 +265,8 @@ MenuItemMorph>>drawOn: aCanvas  [
 			aCanvas paintImage: subMenuMarker at: subMenuMarkerPosition]
 ]
 
-{
-	#category : #grabbing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>duplicateMorph: evt [
+{ #category : #grabbing }
+MenuItemMorph >> duplicateMorph: evt [
 	"Make and return a duplicate of the receiver's argument"
 	| dup menu |
 	dup := self duplicate isSelected: false.
@@ -345,31 +278,22 @@ MenuItemMorph>>duplicateMorph: evt [
 	^menu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>enabled [
+{ #category : #accessing }
+MenuItemMorph >> enabled [
 	"Delegate to exisitng method."
 
 	^self isEnabled
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>enabled: aBoolean [
+{ #category : #accessing }
+MenuItemMorph >> enabled: aBoolean [
 	"Delegate to exisitng method."
 
 	self isEnabled: aBoolean
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>handleMouseUp: anEvent [
+{ #category : #events }
+MenuItemMorph >> handleMouseUp: anEvent [
 	"The handling of control between menu item requires them to act on mouse up even if not the current focus. This is different from the default behavior which really only wants to handle mouse ups when they got mouse downs before"
 	anEvent wasHandled ifTrue:[^self]. "not interested"
 	anEvent hand releaseMouseFocus: self.
@@ -379,113 +303,77 @@ MenuItemMorph>>handleMouseUp: anEvent [
 		ifFalse:[self mouseUp: anEvent].
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>handlesMouseDown: evt [
+{ #category : #events }
+MenuItemMorph >> handlesMouseDown: evt [
 
 	^ true
 
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>handlesMouseOver: anEvent [
+{ #category : #events }
+MenuItemMorph >> handlesMouseOver: anEvent [
 	^true
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>handlesMouseOverDragging: evt [
+{ #category : #events }
+MenuItemMorph >> handlesMouseOverDragging: evt [
 	^true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>hasIcon [
+{ #category : #accessing }
+MenuItemMorph >> hasIcon [
 	"Answer whether the receiver has an icon."
 	^ icon notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>hasIconOrMarker [
+{ #category : #accessing }
+MenuItemMorph >> hasIconOrMarker [
 	"Answer whether the receiver has an icon or a marker."
 	^ self hasIcon or: [ self hasMarker ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>hasMarker [
+{ #category : #accessing }
+MenuItemMorph >> hasMarker [
 	"Answer whether the receiver has a marker morph."
 	^self hasSubmorphs 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>hasSubMenu [
+{ #category : #accessing }
+MenuItemMorph >> hasSubMenu [
 	"Return true if the receiver has a submenu"
 	^subMenu notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>hasSubMenu: aMenuMorph [
+{ #category : #accessing }
+MenuItemMorph >> hasSubMenu: aMenuMorph [
 	subMenu ifNil:[^false].
 	subMenu == aMenuMorph ifTrue:[^true].
 	^subMenu hasSubMenu: aMenuMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>icon [
+{ #category : #accessing }
+MenuItemMorph >> icon [
 	"answer the receiver's icon"
 	^ icon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>icon: aForm  [
+{ #category : #accessing }
+MenuItemMorph >> icon: aForm [ 
 	"change the the receiver's icon"
 	icon := aForm.
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>iconForm [
+{ #category : #private }
+MenuItemMorph >> iconForm [
 	"private - answer the form to be used as the icon"
 	^ isEnabled
 		ifTrue: [self icon]
 		ifFalse: [self icon asGrayScale]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>initialize [
+{ #category : #initialization }
+MenuItemMorph >> initialize [
 	"initialize the state of the receiver"
 	super initialize.
 	""
@@ -503,11 +391,8 @@ MenuItemMorph>>initialize [
 		 vResizing: #shrinkWrap
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>invokeWithEvent: evt [
+{ #category : #events }
+MenuItemMorph >> invokeWithEvent: evt [
 	"Perform the action associated with the given menu item."
 
 	| w |
@@ -531,21 +416,15 @@ MenuItemMorph>>invokeWithEvent: evt [
 		self changed].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>isEnabled [
+{ #category : #accessing }
+MenuItemMorph >> isEnabled [
 
 	^ isEnabled
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>isEnabled: aBoolean [
+{ #category : #testing }
+MenuItemMorph >> isEnabled: aBoolean [
 
 	isEnabled = aBoolean ifTrue: [^ self].
 	isEnabled := aBoolean.
@@ -553,56 +432,38 @@ MenuItemMorph>>isEnabled: aBoolean [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>isMenuItemMorph [
+{ #category : #testing }
+MenuItemMorph >> isMenuItemMorph [
 	^ true
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>isSelected [
+{ #category : #selecting }
+MenuItemMorph >> isSelected [
 	^ isSelected 
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>isSelected: aBoolean [
+{ #category : #selecting }
+MenuItemMorph >> isSelected: aBoolean [
 
 	isSelected := aBoolean.
 	self changed.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>isStayUpItem [
+{ #category : #accessing }
+MenuItemMorph >> isStayUpItem [
 
 	^selector == #toggleStayUp:
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>leftArrow [
+{ #category : #private }
+MenuItemMorph >> leftArrow [
 	^ ColorForm
 		mappingWhiteToTransparentFrom: ((SubMenuMarker rotateBy: 180)asFormOfDepth: 8)
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>minHeight [
+{ #category : #layout }
+MenuItemMorph >> minHeight [
 	| iconHeight |
 	iconHeight := self hasIcon
 				ifTrue: [self icon height + 2]
@@ -610,11 +471,8 @@ MenuItemMorph>>minHeight [
 	^ self fontToUse height max: iconHeight 
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>minWidth [
+{ #category : #layout }
+MenuItemMorph >> minWidth [
 	| subMenuWidth iconWidth markerWidth |
 	subMenuWidth := self hasSubMenu
 				ifTrue: [10]
@@ -629,11 +487,8 @@ MenuItemMorph>>minWidth [
 		+ subMenuWidth + iconWidth + markerWidth + 10
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>mouseDown: evt [
+{ #category : #events }
+MenuItemMorph >> mouseDown: evt [
 	"Handle a mouse down event. Menu items get activated when the mouse is over them."
 
 	evt shiftPressed ifTrue: [^ super mouseDown: evt].  "enable label editing"
@@ -642,40 +497,28 @@ MenuItemMorph>>mouseDown: evt [
 
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>mouseEnter: evt [
+{ #category : #events }
+MenuItemMorph >> mouseEnter: evt [
 	"The mouse entered the receiver"
 
 	owner ifNotNil: [owner stayUp ifFalse: [self mouseEnterDragging: evt]].
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>mouseEnterDragging: evt [
+{ #category : #events }
+MenuItemMorph >> mouseEnterDragging: evt [
 	"The mouse entered the receiver. Do nothing if we're not in a 'valid menu transition', meaning that the current hand focus must be aimed at the owning menu."
 	evt hand mouseFocus == owner ifTrue:[owner selectItem: self event: evt]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>mouseLeave: evt [
+{ #category : #events }
+MenuItemMorph >> mouseLeave: evt [
 	"The mouse has left the interior of the receiver..."
 
 	owner ifNotNil: [owner stayUp ifFalse: [self mouseLeaveDragging: evt]]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>mouseLeaveDragging: evt  [
+{ #category : #events }
+MenuItemMorph >> mouseLeaveDragging: evt [ 
 	"The mouse left the receiver. Do nothing if we're not in a 'valid menu transition', meaning that the current hand focus must be aimed at the owning menu."
 
 	owner ifNil: [^self].
@@ -690,11 +533,8 @@ MenuItemMorph>>mouseLeaveDragging: evt  [
 				after: 500]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>mouseUp: evt [
+{ #category : #events }
+MenuItemMorph >> mouseUp: evt [
 	"Handle a mouse up event. Menu items get activated when the mouse is over them. Do nothing if we're not in a 'valid menu transition', meaning that the current hand focus must be aimed at the owning menu."
 	evt hand mouseFocus == owner ifFalse: [^self].
 	self contentString ifNotNil:[
@@ -706,11 +546,8 @@ MenuItemMorph>>mouseUp: evt [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>offImage [
+{ #category : #private }
+MenuItemMorph >> offImage [
 	"Return the form to be used for indicating an off marker"
 	| form |
 	form := Form extent: (self fontToUse ascent-2) asPoint depth: 16.
@@ -720,11 +557,8 @@ MenuItemMorph>>offImage [
 	^form
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>onImage [
+{ #category : #private }
+MenuItemMorph >> onImage [
 	"Return the form to be used for indicating an on marker"
 	| form |
 	form := Form extent: (self fontToUse ascent-2) asPoint depth: 16.
@@ -735,20 +569,14 @@ MenuItemMorph>>onImage [
 	^form
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>rightArrow [
+{ #category : #private }
+MenuItemMorph >> rightArrow [
 
 	^ SubMenuMarker
 ]
 
-{
-	#category : #selecting,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>select: evt [
+{ #category : #selecting }
+MenuItemMorph >> select: evt [
 	self isSelected: true.
 	owner activeSubmenu: subMenu.
 	subMenu ifNotNil: [
@@ -760,11 +588,8 @@ MenuItemMorph>>select: evt [
 		subMenu selectItem: nil event: evt].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>selectionFillStyle [
+{ #category : #private }
+MenuItemMorph >> selectionFillStyle [
 	"answer the fill style to use with the receiver is the selected  
 	element"
 	Display depth <= 2 ifTrue: [^ Color gray].
@@ -772,31 +597,22 @@ MenuItemMorph>>selectionFillStyle [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>selector [
+{ #category : #accessing }
+MenuItemMorph >> selector [
 
 	^ selector
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>selector: aSymbol [
+{ #category : #accessing }
+MenuItemMorph >> selector: aSymbol [
 
 	selector := aSymbol.
 
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>showShortcut [
+{ #category : #events }
+MenuItemMorph >> showShortcut [
 
 	ShortcutReminder showShortcut: self
 
@@ -804,80 +620,56 @@ MenuItemMorph>>showShortcut [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>subMenu [
+{ #category : #accessing }
+MenuItemMorph >> subMenu [
 
 	^ subMenu
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>subMenu: aMenuMorph [
+{ #category : #accessing }
+MenuItemMorph >> subMenu: aMenuMorph [
 
 	subMenu := aMenuMorph.
 	self changed.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>subMenuMarker [
+{ #category : #private }
+MenuItemMorph >> subMenuMarker [
 	"private - answer the form to be used as submenu marker"
 	 ^ self rightArrow
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>target [
+{ #category : #accessing }
+MenuItemMorph >> target [
 
 	^ target
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>target: anObject [
+{ #category : #accessing }
+MenuItemMorph >> target: anObject [
 
 	target := anObject.
 
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>themeChanged [
+{ #category : #events }
+MenuItemMorph >> themeChanged [
 	"Also pass on to the submenu if any."
 
 	super themeChanged.
 	self subMenu ifNotNil:[ :m | m themeChanged ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>upArrow [
+{ #category : #private }
+MenuItemMorph >> upArrow [
 	^ ColorForm
 		mappingWhiteToTransparentFrom: ((SubMenuMarker rotateBy: 270)asFormOfDepth: 8)
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>veryDeepFixupWith: deepCopier [
+{ #category : #copying }
+MenuItemMorph >> veryDeepFixupWith: deepCopier [
 	"If target and arguments fields were weakly copied, fix them here.  If they were in the tree being copied, fix them up, otherwise point to the originals!!"
 
 	super veryDeepFixupWith: deepCopier.
@@ -887,11 +679,8 @@ MenuItemMorph>>veryDeepFixupWith: deepCopier [
 		deepCopier references at: each ifAbsent: [each]]]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>veryDeepInner: deepCopier  [
+{ #category : #copying }
+MenuItemMorph >> veryDeepInner: deepCopier [ 
 	"Copy all of my instance variables. Some need to be not copied  
 	at all, but shared. Warning!! Every instance variable defined in  
 	this class must be handled. We must also implement  
@@ -906,11 +695,8 @@ MenuItemMorph>>veryDeepInner: deepCopier  [
 	arguments := arguments
 ]
 
-{
-	#category : #'meta actions',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MenuItemMorph>>wantsHaloFromClick [
+{ #category : #'meta actions' }
+MenuItemMorph >> wantsHaloFromClick [
 	"Only if I'm not a lonely submenu"
 	^owner notNil and:[ owner hasSubmorphs ]
 ]

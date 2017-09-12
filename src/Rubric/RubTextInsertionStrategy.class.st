@@ -4,15 +4,11 @@ I insert the notification directly in the text at the given position. (I alter t
 Class {
 	#name : #RubTextInsertionStrategy,
 	#superclass : #RubNotificationStrategy,
-	#category : #Rubric-Editing-Core,
-	#timestamp : 'AndreiChis 10/1/2014 13:35'
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubTextInsertionStrategy>>notify: aString at: anInteger in: aStream  [
+{ #category : #'as yet unclassified' }
+RubTextInsertionStrategy >> notify: aString at: anInteger [ in: aStream 
 	"The compilation of text failed. The syntax error is noted as the argument, 
 	aString. Insert it in the text at starting character position anInteger."
 

@@ -7,32 +7,22 @@ Class {
 	#instVars : [
 		'metacelloToolBox'
 	],
-	#category : #Versionner-Core-DependenciesModel,
-	#timestamp : 'ChristopheDemarey 2/21/2014 13:50'
+	#category : #Versionner-Core-DependenciesModel
 }
 
-{
-	#category : #'spec creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerToolBox class>>projectSpecFromRequiredProject: aRequiredProject [
+{ #category : #'spec creation' }
+VersionnerToolBox class >> projectSpecFromRequiredProject: aRequiredProject [
 	^ self new projectSpecFromRequiredProject: aRequiredProject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerToolBox>>initialize [
+{ #category : #initialization }
+VersionnerToolBox >> initialize [
 	super initialize.
 	metacelloToolBox := MetacelloToolBox new.
 ]
 
-{
-	#category : #'spec creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerToolBox>>projectSpecFromRequiredProject: aRequiredProject [
+{ #category : #'spec creation' }
+VersionnerToolBox >> projectSpecFromRequiredProject: aRequiredProject [
 	| mcProject versionString projectReferenceSpec spec |
  
 	aRequiredProject configurationClass 

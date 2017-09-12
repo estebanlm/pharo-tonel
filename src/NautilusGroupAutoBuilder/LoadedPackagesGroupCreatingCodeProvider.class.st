@@ -9,15 +9,11 @@ You can use it through the CatalogBrowser, Versionner or by hand with :
 Class {
 	#name : #LoadedPackagesGroupCreatingCodeProvider,
 	#superclass : #Object,
-	#category : #NautilusGroupAutoBuilder,
-	#timestamp : 'FranckWarlouzet 8/13/2015 16:00'
+	#category : #NautilusGroupAutoBuilder
 }
 
-{
-	#category : #'public access',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-LoadedPackagesGroupCreatingCodeProvider class>>configurationName: configurationName versionString: versionString projectName: projectName [
+{ #category : #'public access' }
+LoadedPackagesGroupCreatingCodeProvider class >> configurationName: configurationName versionString: versionString projectName: projectName [
 	| record packagesToAddInGroup packageNames |
 	packagesToAddInGroup := OrderedCollection new.
 	packageNames := OrderedCollection new.

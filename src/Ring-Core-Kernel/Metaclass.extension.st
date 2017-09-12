@@ -1,21 +1,13 @@
-Extension {
-	#name : #Metaclass
-}
+Extension { #name : #Metaclass }
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Metaclass>>asFullRingDefinition [
+{ #category : #'*Ring-Core-Kernel' }
+Metaclass >> asFullRingDefinition [
 
 	^ self theNonMetaClass asFullRingDefinition theMetaClass
 ]
 
-{
-	#category : #'*Ring-Core-Kernel',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Metaclass>>asRingDefinition [
+{ #category : #'*Ring-Core-Kernel' }
+Metaclass >> asRingDefinition [
 
 	^ self theNonMetaClass asRingDefinition theMetaClass
 ]

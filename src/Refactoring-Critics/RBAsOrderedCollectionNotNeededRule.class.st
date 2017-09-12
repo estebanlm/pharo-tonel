@@ -5,33 +5,23 @@ A prior conversion to an Array or OrderedCollection is not necessary when adding
 Class {
 	#name : #RBAsOrderedCollectionNotNeededRule,
 	#superclass : #RBTransformationRule,
-	#category : #Refactoring-Critics-TransformationRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 17:36'
+	#category : #Refactoring-Critics-TransformationRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAsOrderedCollectionNotNeededRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBAsOrderedCollectionNotNeededRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'AsOrderedCollectionNotNeededRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAsOrderedCollectionNotNeededRule>>group [
+{ #category : #accessing }
+RBAsOrderedCollectionNotNeededRule >> group [
 	^ 'Optimization'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAsOrderedCollectionNotNeededRule>>initialize [
+{ #category : #initialization }
+RBAsOrderedCollectionNotNeededRule >> initialize [
 	super initialize.
 	#('addAll:' 'removeAll:' 'includesAll:' 'copyWithoutAll:')
 		do: [ :collectionMessage | 
@@ -42,10 +32,7 @@ RBAsOrderedCollectionNotNeededRule>>initialize [
 					self rewriteRule replace: baseString , conversionMessage with: baseString ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBAsOrderedCollectionNotNeededRule>>name [
+{ #category : #accessing }
+RBAsOrderedCollectionNotNeededRule >> name [
 	^ '#asOrderedCollection/#asArray not needed'
 ]

@@ -9,48 +9,32 @@ Class {
 		'sortedElements',
 		'verticesWithNoIncomingEdge'
 	],
-	#category : #Moose-Algos-Graph,
-	#timestamp : 'ChristopheDemarey 3/24/2015 17:59'
+	#category : #Moose-Algos-Graph
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTopologicalSorting>>computeVerticesWithNoIncomingEdge [
+{ #category : #private }
+MalTopologicalSorting >> computeVerticesWithNoIncomingEdge [
 	verticesWithNoIncomingEdge := nodes select: [ :node | node previousNodes isEmpty ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTopologicalSorting>>graphHasEdges [
+{ #category : #private }
+MalTopologicalSorting >> graphHasEdges [
 	^ (nodes allSatisfy: [ :node | node nextNodes isEmpty ]) not
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTopologicalSorting>>initialize [
+{ #category : #initialize-release }
+MalTopologicalSorting >> initialize [
 	super initialize.
 	sortedElements := OrderedCollection new
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTopologicalSorting>>nodeClass [
+{ #category : #configuration }
+MalTopologicalSorting >> nodeClass [
 	^ MalNodeWithPreviousAndNext
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTopologicalSorting>>removeEdgesOf: aNode [
+{ #category : #private }
+MalTopologicalSorting >> removeEdgesOf: aNode [
 	aNode nextNodes 
 		do: [ :node |
 				node previousNodes remove: aNode.
@@ -59,11 +43,8 @@ MalTopologicalSorting>>removeEdgesOf: aNode [
 	aNode nextNodes: #().
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTopologicalSorting>>removeVerticeWithNoIncomingEdge [
+{ #category : #private }
+MalTopologicalSorting >> removeVerticeWithNoIncomingEdge [
 	| vertice |
 	
 	vertice := verticesWithNoIncomingEdge anyOne.
@@ -71,11 +52,8 @@ MalTopologicalSorting>>removeVerticeWithNoIncomingEdge [
 	^ vertice	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-MalTopologicalSorting>>run [
+{ #category : #running }
+MalTopologicalSorting >> run [
 	self computeVerticesWithNoIncomingEdge.
 	[ verticesWithNoIncomingEdge isEmpty ]
 		whileFalse: [ | node |

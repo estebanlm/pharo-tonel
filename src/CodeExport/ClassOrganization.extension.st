@@ -1,12 +1,7 @@
-Extension {
-	#name : #ClassOrganization
-}
+Extension { #name : #ClassOrganization }
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ClassOrganization>>fileOutCommentOn: aFileStream [
+{ #category : #'*CodeExport' }
+ClassOrganization >> fileOutCommentOn: aFileStream [
 	"Copy the class comment to aFileStream."
 
 	self classComment ifNil: [ ^ self ].
@@ -15,11 +10,8 @@ ClassOrganization>>fileOutCommentOn: aFileStream [
 		nextChunkPut: self classComment string
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ClassOrganization>>putCommentOnFile: aFileStream forClass: aClass [
+{ #category : #'*CodeExport' }
+ClassOrganization >> putCommentOnFile: aFileStream forClass: aClass [
 	"Store the comment about the class onto file, aFileStream."
 
 	| header |
@@ -37,11 +29,8 @@ ClassOrganization>>putCommentOnFile: aFileStream forClass: aClass [
 	aFileStream cr
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-ClassOrganization>>stringForFileOut [
+{ #category : #'*CodeExport' }
+ClassOrganization >> stringForFileOut [
 
 	^ self protocolOrganizer stringForFileOut
 ]

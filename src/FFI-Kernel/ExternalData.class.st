@@ -14,55 +14,39 @@ Class {
 	#instVars : [
 		'type'
 	],
-	#category : #FFI-Kernel,
-	#timestamp : '<historical>'
+	#category : #FFI-Kernel
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalData class>>compileFields [
+{ #category : #'class initialization' }
+ExternalData class >> compileFields [
 	"Ensure proper initialization of ExternalType when first loading"
 	ExternalType initialize.
 	^super compileFields
 ]
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalData class>>fields [
+{ #category : #'field definition' }
+ExternalData class >> fields [
 	"ExternalData defineFields"
 	"Note: The definition is for completeness only.
 	ExternalData is treated specially by the VM."
 	^#(nil 'void*')
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalData class>>fromHandle: aHandle type: aType [
+{ #category : #'instance creation' }
+ExternalData class >> fromHandle: aHandle type: aType [
 	"Create a pointer to the given type"
 	"ExternalData fromHandle: ExternalAddress new type: ExternalType float"
 	^self basicNew setHandle: aHandle type: aType
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalData class>>new [
+{ #category : #'instance creation' }
+ExternalData class >> new [
 	"You better not..."
 	^self shouldNotImplement
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalData>>fromCString [
+{ #category : #conversion }
+ExternalData >> fromCString [
 	"Assume that the receiver represents a C string and convert it to a Smalltalk string. hg 2/25/2000 14:18"
 
 	| stream index char |
@@ -75,11 +59,8 @@ ExternalData>>fromCString [
 	^stream contents
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalData>>fromCStrings [
+{ #category : #conversion }
+ExternalData >> fromCStrings [
 	"Assume that the receiver represents a set of C strings and is teerminated by a empty string and convert it to a Smalltalk ordered collection of strings"
 
 	| stream index char strings str |
@@ -100,11 +81,8 @@ ExternalData>>fromCStrings [
 	^strings
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalData>>setHandle: aHandle type: aType [
+{ #category : #private }
+ExternalData >> setHandle: aHandle type: aType [
 	handle := aHandle.
 	type := aType.
 ]

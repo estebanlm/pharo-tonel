@@ -14,26 +14,19 @@ Class {
 		'extractionInterval',
 		'extractedMethodSelector'
 	],
-	#category : #Refactoring-Core-Refactorings,
-	#timestamp : 'NicolaiHess 8/6/2016 14:28'
+	#category : #Refactoring-Core-Refactorings
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodToComponentRefactoring class>>extract: anInterval from: aSelector in: aClass  [
+{ #category : #'instance creation' }
+RBExtractMethodToComponentRefactoring class >> extract: anInterval from: aSelector in: aClass [ 
 	^self new
 		extract: anInterval
 		from: aSelector
 		in: aClass
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodToComponentRefactoring class>>model: aRBSmalltalk extract: anInterval from: aSelector in: aClass  [
+{ #category : #'instance creation' }
+RBExtractMethodToComponentRefactoring class >> model: aRBSmalltalk extract: anInterval from: aSelector in: aClass [ 
 	^(self new)
 		model: aRBSmalltalk;
 		extract: anInterval
@@ -42,21 +35,15 @@ RBExtractMethodToComponentRefactoring class>>model: aRBSmalltalk extract: anInte
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodToComponentRefactoring>>extract: anInterval from: aSelector in: aClass  [
+{ #category : #initialize-release }
+RBExtractMethodToComponentRefactoring >> extract: anInterval from: aSelector in: aClass [ 
 	class := self classObjectFor: aClass.
 	selector := aSelector.
 	extractionInterval := anInterval
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodToComponentRefactoring>>extractMethod [
+{ #category : #transforming }
+RBExtractMethodToComponentRefactoring >> extractMethod [
 	| refactoring |
 	refactoring := RBExtractMethodRefactoring 
 				model: self model
@@ -74,11 +61,8 @@ RBExtractMethodToComponentRefactoring>>extractMethod [
 	self performComponentRefactoring: refactoring
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodToComponentRefactoring>>inlineForwarder [
+{ #category : #transforming }
+RBExtractMethodToComponentRefactoring >> inlineForwarder [
 	| refactoring |
 	refactoring := RBInlineAllSendersRefactoring 
 				model: self model
@@ -88,11 +72,8 @@ RBExtractMethodToComponentRefactoring>>inlineForwarder [
 	self performComponentRefactoring: refactoring
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodToComponentRefactoring>>moveMethod [
+{ #category : #transforming }
+RBExtractMethodToComponentRefactoring >> moveMethod [
 	| variable refactoring |
 	variable := self selectVariableToMoveMethodTo: extractedMethodSelector
 				class: class.
@@ -105,19 +86,13 @@ RBExtractMethodToComponentRefactoring>>moveMethod [
 	self performComponentRefactoring: refactoring
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodToComponentRefactoring>>preconditions [
+{ #category : #preconditions }
+RBExtractMethodToComponentRefactoring >> preconditions [
 	^RBCondition empty
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodToComponentRefactoring>>storeOn: aStream  [
+{ #category : #printing }
+RBExtractMethodToComponentRefactoring >> storeOn: aStream [ 
 	aStream nextPut: $(.
 	self class storeOn: aStream.
 	aStream nextPutAll: ' extract: '.
@@ -130,11 +105,8 @@ RBExtractMethodToComponentRefactoring>>storeOn: aStream  [
 	aStream nextPut: $)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBExtractMethodToComponentRefactoring>>transform [
+{ #category : #transforming }
+RBExtractMethodToComponentRefactoring >> transform [
 	self
 		extractMethod;
 		moveMethod;

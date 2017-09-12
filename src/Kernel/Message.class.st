@@ -11,47 +11,34 @@ Class {
 		'args',
 		'lookupClass'
 	],
-	#category : #Kernel-Methods,
-	#timestamp : '<historical>'
+	#category : #Kernel-Methods
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message class>>selector: aSymbol [
+{ #category : #'instance creation' }
+Message class >> selector: aSymbol [
 	"Answer an instance of me with unary selector, aSymbol."
 
 	^self new setSelector: aSymbol arguments: (Array new: 0)
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message class>>selector: aSymbol argument: anObject [
+{ #category : #'instance creation' }
+Message class >> selector: aSymbol argument: anObject [ 
 	"Answer an instance of me whose selector is aSymbol and single 
 	argument is anObject."
 
 	^self new setSelector: aSymbol arguments: { anObject }
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message class>>selector: aSymbol arguments: anArray [
+{ #category : #'instance creation' }
+Message class >> selector: aSymbol arguments: anArray [ 
 	"Answer an instance of me with selector, aSymbol, and arguments, 
 	anArray."
 
 	^self new setSelector: aSymbol arguments: anArray
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>analogousCodeTo: anObject [
+{ #category : #comparing }
+Message >> analogousCodeTo: anObject [
 	"For MethodPropertires comparison."
 	^self class == anObject class
 	  and: [selector == anObject selector
@@ -59,85 +46,58 @@ Message>>analogousCodeTo: anObject [
 	  and: [lookupClass == anObject lookupClass]]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>argument [
+{ #category : #accessing }
+Message >> argument [
 	"Answer the first (presumably sole) argument"
 
 	^args at: 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>argument: newValue [
+{ #category : #accessing }
+Message >> argument: newValue [
 	"Change the first argument to newValue and answer self"
 
 	args at: 1 put: newValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>arguments [
+{ #category : #accessing }
+Message >> arguments [
 	"Answer the arguments of the receiver."
 
 	^args
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>asSendTo: anObject [
+{ #category : #converting }
+Message >> asSendTo: anObject [
 	^MessageSend message: self to: anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>hasArguments [
+{ #category : #testing }
+Message >> hasArguments [
 	^args notEmpty
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>lookupClass [
+{ #category : #accessing }
+Message >> lookupClass [
 
 	^ lookupClass
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>lookupClass: aClass [
+{ #category : #private }
+Message >> lookupClass: aClass [
 
 	lookupClass := aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>numArgs [
+{ #category : #accessing }
+Message >> numArgs [
 	"Answer the number of arguments in this message"
 
 	^args size
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>printOn: stream [
+{ #category : #printing }
+Message >> printOn: stream [
 
 	args isEmpty ifTrue: [^ stream nextPutAll: selector].
 	args with: selector keywords do: [:arg :word |
@@ -150,41 +110,29 @@ Message>>printOn: stream [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>selector [
+{ #category : #accessing }
+Message >> selector [
 	"Answer the selector of the receiver."
 
 	^selector
 ]
 
-{
-	#category : #sending,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>sendTo: receiver [
+{ #category : #sending }
+Message >> sendTo: receiver [
 	"answer the result of sending this message to receiver"
 
 	^ receiver perform: selector withArguments: args
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>sends: aSelector [
+{ #category : #accessing }
+Message >> sends: aSelector [
 	"answer whether this message's selector is aSelector"
 
 	^selector == aSelector
 ]
 
-{
-	#category : #sending,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>sentTo: receiver [
+{ #category : #sending }
+Message >> sentTo: receiver [
 	"answer the result of sending this message to receiver"
 
 	^ lookupClass
@@ -192,31 +140,22 @@ Message>>sentTo: receiver [
 		ifNotNil: [ receiver perform: selector withArguments: args inSuperclass: lookupClass]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>setSelector: aSymbol [
+{ #category : #private }
+Message >> setSelector: aSymbol [
 
 	selector := aSymbol.
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>setSelector: aSymbol arguments: anArray [
+{ #category : #private }
+Message >> setSelector: aSymbol arguments: anArray [
 
 	selector := aSymbol.
 	args := anArray
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Message>>storeOn: aStream [
+{ #category : #printing }
+Message >> storeOn: aStream [ 
 	"Refer to the comment in Object|storeOn:."
 
 	aStream nextPut: $(;

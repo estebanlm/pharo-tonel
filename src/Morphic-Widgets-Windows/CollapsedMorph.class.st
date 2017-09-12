@@ -9,15 +9,11 @@ Class {
 	#instVars : [
 		'uncollapsedMorph'
 	],
-	#category : #Morphic-Widgets-Windows-Widgets,
-	#timestamp : 'HenrikNergaard 10/30/2015 20:15'
+	#category : #Morphic-Widgets-Windows-Widgets
 }
 
-{
-	#category : #collapse/expand,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollapsedMorph>>beReplacementFor: aMorph [
+{ #category : #collapse/expand }
+CollapsedMorph >> beReplacementFor: aMorph [
 
 	| itsWorld priorPosition |
 	(itsWorld := aMorph world) ifNil: [^self].
@@ -33,11 +29,8 @@ CollapsedMorph>>beReplacementFor: aMorph [
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollapsedMorph>>buildWindowMenu [
+{ #category : #menu }
+CollapsedMorph >> buildWindowMenu [
 	"Answer the menu to be put up in response to the user's clicking on the window-menu control in the window title.  Specialized for CollapsedMorphs."
 
 	| aMenu |
@@ -59,11 +52,8 @@ CollapsedMorph>>buildWindowMenu [
 	^aMenu
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollapsedMorph>>collapseOrExpand [
+{ #category : #resize/collapse }
+CollapsedMorph >> collapseOrExpand [
 	"Toggle the expand/collapsd state of the receiver.  If expanding, copy the window title back to the name of the expanded morph"
 
 	| aWorld |
@@ -79,11 +69,8 @@ CollapsedMorph>>collapseOrExpand [
 			[super collapseOrExpand]
 ]
 
-{
-	#category : #collapse/expand,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollapsedMorph>>uncollapseToHand [
+{ #category : #collapse/expand }
+CollapsedMorph >> uncollapseToHand [
 	"Hand the uncollapsedMorph to the user, placing it in her hand, after remembering appropriate state for possible future use"
 
 	| nakedMorph |
@@ -95,11 +82,8 @@ CollapsedMorph>>uncollapseToHand [
 	ActiveHand attachMorph: nakedMorph
 ]
 
-{
-	#category : #resize/collapse,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-CollapsedMorph>>wantsExpandBox [
+{ #category : #resize/collapse }
+CollapsedMorph >> wantsExpandBox [
 	"Answer whether I'd like an expand box"
 
 	^ false

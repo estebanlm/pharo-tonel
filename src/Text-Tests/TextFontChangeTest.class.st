@@ -4,15 +4,11 @@ SUnit tests for class TextFontChange
 Class {
 	#name : #TextFontChangeTest,
 	#superclass : #HashAndEqualsTestCase,
-	#category : #Text-Tests,
-	#timestamp : 'TorstenBergmann 1/31/2014 12:23'
+	#category : #Text-Tests
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextFontChangeTest>>setUp [
+{ #category : #initialization }
+TextFontChangeTest >> setUp [
 	"create the prototypes for testing"
 	super setUp.
 	prototypes add: TextFontChange defaultFontChange.
@@ -24,11 +20,8 @@ TextFontChangeTest>>setUp [
 		add: (TextFontChange fontNumber: 6) 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextFontChangeTest>>testEquality [
+{ #category : #tests }
+TextFontChangeTest >> testEquality [
 	"Check that different instances of the same TextFontChange are equal"
 	self assert: TextFontChange defaultFontChange = TextFontChange defaultFontChange.
 	self assert: TextFontChange font1 = TextFontChange font1.
@@ -39,11 +32,8 @@ TextFontChangeTest>>testEquality [
 			= (TextFontChange fontNumber: 6)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-TextFontChangeTest>>testHash [
+{ #category : #tests }
+TextFontChangeTest >> testHash [
 	"test that different instances of the same TextFontChange hash to the 
 	same value"
 	| hashes hash |

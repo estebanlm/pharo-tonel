@@ -8,64 +8,45 @@ Class {
 		'pane',
 		'oldMatchingPresentations'
 	],
-	#category : #Glamour-Announcements,
-	#timestamp : 'tg 2/20/2010 14:56'
+	#category : #Glamour-Announcements
 }
 
-{
-	#category : #accessing-convenience,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMMatchingPresentationsChanged>>matchingPresentations  [
+{ #category : #accessing-convenience }
+GLMMatchingPresentationsChanged >> matchingPresentations [ 
 	"The presentations that match now."
 	^ self pane matchingPresentations
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMMatchingPresentationsChanged>>oldMatchingPresentations  [
+{ #category : #accessing }
+GLMMatchingPresentationsChanged >> oldMatchingPresentations [ 
 	"The presentations that matched before this announcement." 
 	 
 	^oldMatchingPresentations
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMMatchingPresentationsChanged>>oldMatchingPresentations: aCollection  [
+{ #category : #accessing }
+GLMMatchingPresentationsChanged >> oldMatchingPresentations: aCollection [ 
 	"The presentations that matched before this announcement." 
 	 
 	oldMatchingPresentations := aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMMatchingPresentationsChanged>>pane  [
+{ #category : #accessing }
+GLMMatchingPresentationsChanged >> pane [ 
 	"The pane on which the matching presentations changed." 
 	 
 	^pane
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMMatchingPresentationsChanged>>pane: aPane  [
+{ #category : #accessing }
+GLMMatchingPresentationsChanged >> pane: aPane [ 
 	"The pane on which the matching presentations changed." 
 	 
 	pane := aPane
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMMatchingPresentationsChanged>>printOn: aStream [
+{ #category : #printing }
+GLMMatchingPresentationsChanged >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPutAll: ' (pane = ', self pane printString , ')'
 ]

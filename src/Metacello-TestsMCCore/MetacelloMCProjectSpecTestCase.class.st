@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #MetacelloMCProjectSpecTestCase,
 	#superclass : #MetacelloProjectSpecTestCase,
-	#category : #Metacello-TestsMCCore,
-	#timestamp : ''
+	#category : #Metacello-TestsMCCore
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCProjectSpecTestCase>>projectClass [
+{ #category : #accessing }
+MetacelloMCProjectSpecTestCase >> projectClass [
     ^ MetacelloMCProject
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCProjectSpecTestCase>>testMCProjectMergeSpec [
+{ #category : #tests }
+MetacelloMCProjectSpecTestCase >> testMCProjectMergeSpec [
     | projectA projectB project packageA packageB repository |
     projectA := self projectSpec
         name: 'Project';
@@ -51,11 +41,8 @@ MetacelloMCProjectSpecTestCase>>testMCProjectMergeSpec [
     self assert: repository password = 'secret'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCProjectSpecTestCase>>testMCProjectSpec [
+{ #category : #tests }
+MetacelloMCProjectSpecTestCase >> testMCProjectSpec [
     | project repository |
     project := self projectSpec.
     project

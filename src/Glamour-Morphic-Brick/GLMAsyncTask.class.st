@@ -15,42 +15,29 @@ Class {
 		'priority',
 		'arguments'
 	],
-	#category : #Glamour-Morphic-Brick-Async,
-	#timestamp : 'TudorGirba 11/26/2014 15:07'
+	#category : #Glamour-Morphic-Brick-Async
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>arguments [
+{ #category : #accessing }
+GLMAsyncTask >> arguments [
 
 	^ arguments ifNil: [ arguments := {  } ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>arguments: aCollection [
+{ #category : #scripting }
+GLMAsyncTask >> arguments: aCollection [
 
 	arguments := aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>callback [
+{ #category : #accessing }
+GLMAsyncTask >> callback [
 
 	^ callback ifNil: [ callback := [  ] ]
 ]
 
-{
-	#category : #async,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>complete: anObject callback: aBlock [
+{ #category : #async }
+GLMAsyncTask >> complete: anObject callback: aBlock [
 	
 	process ifNil: [ ^ self terminate ].
 	process isTerminated ifFalse: [ "for some cases when we try to return result of wrong process" ^ self ].
@@ -61,47 +48,32 @@ GLMAsyncTask>>complete: anObject callback: aBlock [
 	process := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>delay [
+{ #category : #accessing }
+GLMAsyncTask >> delay [
 
 	^ delay ifNil: [ delay := 0 ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>delay: anInteger [
+{ #category : #scripting }
+GLMAsyncTask >> delay: anInteger [
 
 	delay := anInteger
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>doInBackground: aBlock [
+{ #category : #scripting }
+GLMAsyncTask >> doInBackground: aBlock [
 
 	task := aBlock
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>execute [
+{ #category : #scripting }
+GLMAsyncTask >> execute [
 
 	^ self execute: self arguments
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>execute: anArguments [
+{ #category : #scripting }
+GLMAsyncTask >> execute: anArguments [
 
 	^ self
 		execute: self task
@@ -111,11 +83,8 @@ GLMAsyncTask>>execute: anArguments [
 		delay: self delay
 ]
 
-{
-	#category : #async,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>execute: aBlock withArguments: aCollection callback: callbackBlock [
+{ #category : #async }
+GLMAsyncTask >> execute: aBlock withArguments: aCollection callback: callbackBlock [
 	"execution happens with UI process priority so that communication with UI can be done in real time"
 	
 	^ self
@@ -125,11 +94,8 @@ GLMAsyncTask>>execute: aBlock withArguments: aCollection callback: callbackBlock
 		priority: Processor userSchedulingPriority
 ]
 
-{
-	#category : #async,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>execute: aBlock withArguments: aCollection callback: callbackBlock delay: anIntegerMilliseconds [
+{ #category : #async }
+GLMAsyncTask >> execute: aBlock withArguments: aCollection callback: callbackBlock delay: anIntegerMilliseconds [
 	"execution happens with UI process priority so that communication with UI can be done in real time"
 	
 	^ self
@@ -140,11 +106,8 @@ GLMAsyncTask>>execute: aBlock withArguments: aCollection callback: callbackBlock
 		delay: anIntegerMilliseconds
 ]
 
-{
-	#category : #async,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>execute: aBlock withArguments: aCollection callback: callbackBlock priority: aPriority [
+{ #category : #async }
+GLMAsyncTask >> execute: aBlock withArguments: aCollection callback: callbackBlock priority: aPriority [
 		
 	^ self
 		execute: aBlock
@@ -154,11 +117,8 @@ GLMAsyncTask>>execute: aBlock withArguments: aCollection callback: callbackBlock
 		delay: 0
 ]
 
-{
-	#category : #async,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>execute: aBlock withArguments: aCollection callback: callbackBlock priority: aPriority delay: anIntegerMilliseconds [
+{ #category : #async }
+GLMAsyncTask >> execute: aBlock withArguments: aCollection callback: callbackBlock priority: aPriority delay: anIntegerMilliseconds [
 	
 	self terminate.
 	
@@ -176,39 +136,27 @@ GLMAsyncTask>>execute: aBlock withArguments: aCollection callback: callbackBlock
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>isTerminated [
+{ #category : #accessing }
+GLMAsyncTask >> isTerminated [
 
 	process ifNil: [ ^ true ].
 	^ process isTerminated
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>onCompleted: aBlock [
+{ #category : #scripting }
+GLMAsyncTask >> onCompleted: aBlock [
 
 	callback := aBlock
 ]
 
-{
-	#category : #async,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>pause [
+{ #category : #async }
+GLMAsyncTask >> pause [
 
 	process ifNotNil: [ process suspend ]
 ]
 
-{
-	#category : #async,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>perform: aBlock delay: anInteger [
+{ #category : #async }
+GLMAsyncTask >> perform: aBlock delay: anInteger [
 
 	self
 		execute: []
@@ -217,11 +165,8 @@ GLMAsyncTask>>perform: aBlock delay: anInteger [
 		delay: anInteger
 ]
 
-{
-	#category : #async,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>perform: aBlock delay: anInteger priority: aPriority [
+{ #category : #async }
+GLMAsyncTask >> perform: aBlock delay: anInteger priority: aPriority [
 
 	self
 		execute: []
@@ -231,47 +176,32 @@ GLMAsyncTask>>perform: aBlock delay: anInteger priority: aPriority [
 		delay: anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>priority [
+{ #category : #accessing }
+GLMAsyncTask >> priority [
 
 	^ priority ifNil: [ priority := Processor userSchedulingPriority ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>priority: anInteger [
+{ #category : #scripting }
+GLMAsyncTask >> priority: anInteger [
 
 	priority := anInteger
 ]
 
-{
-	#category : #async,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>resume [
+{ #category : #async }
+GLMAsyncTask >> resume [
 
 	process ifNotNil: [ process resume ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>task [
+{ #category : #accessing }
+GLMAsyncTask >> task [
 
 	^ task ifNil: [ task := [  ] ]
 ]
 
-{
-	#category : #async,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMAsyncTask>>terminate [
+{ #category : #async }
+GLMAsyncTask >> terminate [
 
 	process ifNotNil: [ process terminate. process := nil ]
 ]

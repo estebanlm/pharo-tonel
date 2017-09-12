@@ -10,15 +10,11 @@ Class {
 		'changesTree',
 		'changes'
 	],
-	#category : #NautilusRefactoring-Utilities,
-	#timestamp : '<historical>'
+	#category : #NautilusRefactoring-Utilities
 }
 
-{
-	#category : #shortcuts,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser class>>buildShortcutsOn: aBuilder [
+{ #category : #shortcuts }
+ChangesBrowser class >> buildShortcutsOn: aBuilder [
 	<keymap>
 
 	(aBuilder shortcut: #close)
@@ -34,22 +30,16 @@ ChangesBrowser class>>buildShortcutsOn: aBuilder [
 		description: 'Accept the proposed changes'.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser class>>changes: aCollection [
+{ #category : #'instance creation' }
+ChangesBrowser class >> changes: aCollection [
 
 	^ self new
 		changes: aCollection;
 		yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser class>>defaultSpec [
+{ #category : #specs }
+ChangesBrowser class >> defaultSpec [
 	<spec>
 	^ SpecLayout composed
 		newColumn: [ :column1 | 
@@ -59,20 +49,14 @@ ChangesBrowser class>>defaultSpec [
 				add: #textArea ]
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser class>>title [
+{ #category : #specs }
+ChangesBrowser class >> title [
 
 	^ 'Changes Browser'
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>accept [
+{ #category : #visiting }
+ChangesBrowser >> accept [
 	self okToChange
 		ifFalse: [ ^ self ].
 	[ self pickedChanges do: [ :change | RBRefactoryChangeManager instance performChange: change ] ] asJob
@@ -81,11 +65,8 @@ ChangesBrowser>>accept [
 	window value delete
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>buildDiffFor: aChange [
+{ #category : #private }
+ChangesBrowser >> buildDiffFor: aChange [
 
 	^ aChange
 		ifNil: [ '' ]
@@ -95,44 +76,29 @@ ChangesBrowser>>buildDiffFor: aChange [
 				to: aChange textToDisplay ].
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>cancel [
+{ #category : #api }
+ChangesBrowser >> cancel [
 	window value delete
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>changes [
+{ #category : #accessing }
+ChangesBrowser >> changes [
 	^ changes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>changes: aCollection [
+{ #category : #accessing }
+ChangesBrowser >> changes: aCollection [
 	changes := aCollection.
 	self updateChanges
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>changesTree [
+{ #category : #accessing }
+ChangesBrowser >> changesTree [
 	^ changesTree
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>initializeChangesTree [
+{ #category : #initialization }
+ChangesBrowser >> initializeChangesTree [
 	changesTree
 		beCheckList;
 		removeOnlyLastSelected: true;
@@ -146,19 +112,13 @@ ChangesBrowser>>initializeChangesTree [
 	self whenBuiltDo: [ changesTree selectAll ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>initializePresenter [
+{ #category : #initialization }
+ChangesBrowser >> initializePresenter [
 	changesTree whenHighlightedItemChanged: [ :item | item ifNotNil: [ textArea text: (self buildDiffFor: item content) ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>initializeTextArea [
+{ #category : #initialization }
+ChangesBrowser >> initializeTextArea [
 	textArea 
 		enabled: false;
 		"make sure we can cycle over the text field"
@@ -166,11 +126,8 @@ ChangesBrowser>>initializeTextArea [
 		bindKeyCombination: Character tab shift toAction: [ self giveFocusToPreviousFrom: textArea ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>initializeWidgets [
+{ #category : #initialization }
+ChangesBrowser >> initializeWidgets [
 
 	changesTree := self newTree.
 	textArea := self newCode.
@@ -183,32 +140,23 @@ ChangesBrowser>>initializeWidgets [
 		bindKeyCombination: Character escape toAction: [ self cancel ]
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>open [
+{ #category : #opening }
+ChangesBrowser >> open [
 	^ self openDialogWithSpec
 		okAction: [ self accept ];
 		cancelAction: [ self cancel ];
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>pickedChanges [
+{ #category : #accessing }
+ChangesBrowser >> pickedChanges [
 	| selectedItems |
 	selectedItems := changesTree selectedItems collect: #content.
 	^ changesTree roots select: [ :i | selectedItems includes: i ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>scopeChooser [
+{ #category : #accessing }
+ChangesBrowser >> scopeChooser [
 	^ scopeChooser
 		ifNil: [ 
 			scopeChooser := self instantiate: EnvironmentChooser.
@@ -218,38 +166,26 @@ ChangesBrowser>>scopeChooser [
 			scopeChooser ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>setFocus [
+{ #category : #initialization }
+ChangesBrowser >> setFocus [
 	self focusOrder
 		add: changesTree;
 		add: textArea;
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>setShortcuts [
+{ #category : #initialization }
+ChangesBrowser >> setShortcuts [
 	self changesTree attachKeymapCategory: #ChangesBrowserGlobalShortcuts targetting: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>textArea [
+{ #category : #accessing }
+ChangesBrowser >> textArea [
 	^ textArea
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ChangesBrowser>>updateChanges [
+{ #category : #private }
+ChangesBrowser >> updateChanges [
 	| aCompositeChange |
 	aCompositeChange := RBRefactoryChangeManager changeFactory
 		compositeRefactoryChange.

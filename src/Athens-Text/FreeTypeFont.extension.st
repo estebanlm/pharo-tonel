@@ -1,31 +1,20 @@
-Extension {
-	#name : #FreeTypeFont
-}
+Extension { #name : #FreeTypeFont }
 
-{
-	#category : #'*Athens-Text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FreeTypeFont>>asFreetypeFont [
+{ #category : #'*Athens-Text' }
+FreeTypeFont >> asFreetypeFont [
 	^ self
 ]
 
-{
-	#category : #'*Athens-Text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FreeTypeFont>>getGlyphWidth: aCharacter  [
+{ #category : #'*Athens-Text' }
+FreeTypeFont >> getGlyphWidth: aCharacter [ 
 	aCharacter asciiValue = 9 ifTrue: [ 
 		^  (self linearWidthOf: Character space) * 8
 		]. 
 	^ (self linearWidthOf: aCharacter)
 ]
 
-{
-	#category : #'*Athens-Text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FreeTypeFont>>getPreciseAscent [
+{ #category : #'*Athens-Text' }
+FreeTypeFont >> getPreciseAscent [
 	"we using face bouding box for getting ascent value, otherwise two different
 	font sizes on same line won't align properly"
 	
@@ -33,11 +22,8 @@ FreeTypeFont>>getPreciseAscent [
 
 ]
 
-{
-	#category : #'*Athens-Text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FreeTypeFont>>getPreciseDescent [
+{ #category : #'*Athens-Text' }
+FreeTypeFont >> getPreciseDescent [
 	"we using face bouding box for getting ascent value, otherwise two different
 	font sizes on same line won't align properly"
 	
@@ -46,22 +32,16 @@ FreeTypeFont>>getPreciseDescent [
 
 ]
 
-{
-	#category : #'*Athens-Text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FreeTypeFont>>getPreciseHeight [
+{ #category : #'*Athens-Text' }
+FreeTypeFont >> getPreciseHeight [
 	"get precise font ascent, can be floating value"
 	
 	^(self face height * self pixelSize / self face unitsPerEm) asFloat.
 
 ]
 
-{
-	#category : #'*Athens-Text',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-FreeTypeFont>>glyphRendererOn: anAthensSurface [
+{ #category : #'*Athens-Text' }
+FreeTypeFont >> glyphRendererOn: anAthensSurface [
 
 	^ anAthensSurface getFreetypeFontRendererFor: self
 

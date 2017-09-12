@@ -4,15 +4,11 @@ I am the adapter used to bridge an FastTableModel and a FTPluggableIconListMorph
 Class {
 	#name : #MorphicFastTableAdapter,
 	#superclass : #MorphicListAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : 'StephanEggermont 2/1/2016 10:54'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicFastTableAdapter>>buildWidget [
+{ #category : #factory }
+MorphicFastTableAdapter >> buildWidget [
 
 	^ FTPluggableIconListMorphAdaptor new
 		   model: self model;
@@ -42,29 +38,20 @@ MorphicFastTableAdapter>>buildWidget [
 			yourself
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicFastTableAdapter>>doubleClick: event [
+{ #category : #'as yet unclassified' }
+MorphicFastTableAdapter >> doubleClick: event [
 
 	^ self model doubleClick: event
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicFastTableAdapter>>getIconFor: anItem [
+{ #category : #'widget API' }
+MorphicFastTableAdapter >> getIconFor: anItem [
 
 	^ self model getIconFor: anItem
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicFastTableAdapter>>wrapItem: anObject [
+{ #category : #'as yet unclassified' }
+MorphicFastTableAdapter >> wrapItem: anObject [
 
 	^ self model wrapItem: anObject
 ]

@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #RectangleTest,
 	#superclass : #TestCase,
@@ -8,59 +5,40 @@ Class {
 		'emptyRectangle',
 		'rectangle1'
 	],
-	#category : #Graphics-Tests-Primitives,
-	#timestamp : ''
+	#category : #Graphics-Tests-Primitives
 }
 
-{
-	#category : #setup-teardown,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>setUp [
+{ #category : #setup-teardown }
+RectangleTest >> setUp [
 	emptyRectangle := 0 @ 0 corner: 0 @ 0.
 	rectangle1 := 10@10 corner:20@20
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testARectangleContainsItsOrigin [
+{ #category : #tests }
+RectangleTest >> testARectangleContainsItsOrigin [
 	self
 		assert: (rectangle1 containsPoint: rectangle1 origin)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testARectangleDoesNotContainItsCorner [
+{ #category : #tests }
+RectangleTest >> testARectangleDoesNotContainItsCorner [
 	self
 		deny: (rectangle1 containsPoint: rectangle1 corner)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testARectangleIntersectsWithItself [
+{ #category : #tests }
+RectangleTest >> testARectangleIntersectsWithItself [
 	self
 		assert: (rectangle1 intersects: rectangle1)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testAnEmptyRectangleHasNoArea [
+{ #category : #tests }
+RectangleTest >> testAnEmptyRectangleHasNoArea [
 	self assert: emptyRectangle area = 0
 ]
 
-{
-	#category : #tests-accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testArea [
+{ #category : #tests-accessing }
+RectangleTest >> testArea [
 
 	self assert: (0 @ 0 corner: 5 @ 5) area = 25.
 	self assert: (2 @ 3 corner: 10 @ 8) area = 40.
@@ -68,11 +46,8 @@ RectangleTest>>testArea [
 	self assert: (-1 @ -2 corner: 2 @ 1) area = 9.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testAreasOutside1 [
+{ #category : #tests }
+RectangleTest >> testAreasOutside1 [
 
     | frame rects visibleArea  |
     frame := 0@0 extent: 300@300.
@@ -101,11 +76,8 @@ RectangleTest>>testAreasOutside1 [
   ]  ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testAreasOutside2 [
+{ #category : #tests }
+RectangleTest >> testAreasOutside2 [
     | frame rects visibleArea  |
     frame := 0@0 extent: 300@300.
     rects := OrderedCollection new: 80.
@@ -134,21 +106,15 @@ RectangleTest>>testAreasOutside2 [
 
 ]
 
-{
-	#category : #tests-accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testBottom [
+{ #category : #tests-accessing }
+RectangleTest >> testBottom [
 |rect|
 rect:=(0 @ 0 corner: 20 @ 20) bottom:10.
 self assert: rect bottom = 10.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testCenter  [
+{ #category : #tests }
+RectangleTest >> testCenter [ 
 	| r1 c |
 	r1 := 0@0 extent: 10@20.
 	c := r1 center.
@@ -159,11 +125,8 @@ RectangleTest>>testCenter  [
 	self assert: (r1 translateBy: -20@10) center = (c translateBy: -20@10) description: 'the center is translated with the rectangle'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testCenterEmpty [
+{ #category : #tests }
+RectangleTest >> testCenterEmpty [
 
       | r1 c |
       r1 := 30@10 corner: 10@20.
@@ -176,11 +139,8 @@ RectangleTest>>testCenterEmpty [
       self assert: (r1 translateBy: -20@10) center = (c translateBy: -20@10) description: 'the center is translated with the rectangle'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testCenterEmpty2 [
+{ #category : #tests }
+RectangleTest >> testCenterEmpty2 [
 
       | r1 c |
       r1 := 0@0 corner: 0@0.
@@ -193,11 +153,8 @@ RectangleTest>>testCenterEmpty2 [
       self assert: (r1 translateBy: -20@10) center = (c translateBy: -20@10) description: 'the center is translated with the rectangle'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testCenterEmptyBasedOnPointPoint [
+{ #category : #tests }
+RectangleTest >> testCenterEmptyBasedOnPointPoint [
 
       | r1 c |
 		r1 := Rectangle point: 30@10 point: 10@20.
@@ -210,11 +167,8 @@ RectangleTest>>testCenterEmptyBasedOnPointPoint [
       self assert: (r1 translateBy: -20@10) center = (c translateBy: -20@10) description: 'the center is translated with the rectangle'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testFlip [
+{ #category : #tests }
+RectangleTest >> testFlip [
 
 	| r1 c r1Horiz r1Vert |
    r1 := 30@10 corner: 10@20.
@@ -231,11 +185,8 @@ RectangleTest>>testFlip [
 	self assert:  (r1 flipBy: #vertical centerAt: r1 center) = r1
 ]
 
-{
-	#category : #tests-transforming,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testFlipByCenterAt [
+{ #category : #tests-transforming }
+RectangleTest >> testFlipByCenterAt [
 
 	| rectangle |
 	
@@ -244,11 +195,8 @@ RectangleTest>>testFlipByCenterAt [
 	self assert: (0 @ 10 corner: 10 @ 20) equals: (rectangle flipBy: #horizontal centerAt: 10 @ 10)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testInsettingByNumberShouldWork [
+{ #category : #tests }
+RectangleTest >> testInsettingByNumberShouldWork [
 
 	| rec1 rec2 |
 	rec1 := 0@0 extent: 100@200.
@@ -265,11 +213,8 @@ RectangleTest>>testInsettingByNumberShouldWork [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testInsettingByRectangleShouldNotProduceNegativeRectangle [
+{ #category : #tests }
+RectangleTest >> testInsettingByRectangleShouldNotProduceNegativeRectangle [
 
 	| rec1 rec2 |
 	rec1 := 0@0 extent: 100@200.
@@ -307,11 +252,8 @@ RectangleTest>>testInsettingByRectangleShouldNotProduceNegativeRectangle [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testInsettingLargerThanRectangleExtentShouldNotProduceNegativeExtent [
+{ #category : #tests }
+RectangleTest >> testInsettingLargerThanRectangleExtentShouldNotProduceNegativeExtent [
 
 	| rec1 rec2 |
 	rec1 := 0@0 extent: 100@100.
@@ -327,11 +269,8 @@ RectangleTest>>testInsettingLargerThanRectangleExtentShouldNotProduceNegativeExt
 	self assert: rec2 width = 0. 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testInsettingSmallerThanRectangleExtentShouldProduceCorrectExtent [
+{ #category : #tests }
+RectangleTest >> testInsettingSmallerThanRectangleExtentShouldProduceCorrectExtent [
 
 	| rec1 rec2 |
 	rec1 := 0@0 extent: 100@100.
@@ -341,21 +280,15 @@ RectangleTest>>testInsettingSmallerThanRectangleExtentShouldProduceCorrectExtent
 	self assert: rec2 width = 20. 
 ]
 
-{
-	#category : #tests-accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testLeft [
+{ #category : #tests-accessing }
+RectangleTest >> testLeft [
 |rect|
 rect:=(0 @ 0 corner: 20 @ 20) left:10.
 self assert: rect left = 10.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testMergingDisjointRectangles [
+{ #category : #tests }
+RectangleTest >> testMergingDisjointRectangles [
 
 	| aCollection merge |
 	aCollection := OrderedCollection new.
@@ -365,11 +298,8 @@ RectangleTest>>testMergingDisjointRectangles [
 	self assert: merge = (Rectangle left: -10 right: 10 top: -10 bottom: 10).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testMergingNestedRectanglesReturnTheContainer [
+{ #category : #tests }
+RectangleTest >> testMergingNestedRectanglesReturnTheContainer [
 
 	| aCollection merge |
 	aCollection := OrderedCollection new.
@@ -379,11 +309,8 @@ RectangleTest>>testMergingNestedRectanglesReturnTheContainer [
 	self assert: merge = aCollection first.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testMergingOneRectangleReturnsThisRectangle [
+{ #category : #tests }
+RectangleTest >> testMergingOneRectangleReturnsThisRectangle [
 	| aCollection mergingRectangle |
 	aCollection := OrderedCollection new.
 	aCollection add: rectangle1.
@@ -391,11 +318,8 @@ RectangleTest>>testMergingOneRectangleReturnsThisRectangle [
 	self assert: mergingRectangle = aCollection first
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testMergingOverlappingRectangles [
+{ #category : #tests }
+RectangleTest >> testMergingOverlappingRectangles [
 	| aCollection merge |
 	aCollection := OrderedCollection new.
 	aCollection
@@ -419,11 +343,8 @@ RectangleTest>>testMergingOverlappingRectangles [
 					bottom: 15)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testMergingOverlappingRects [
+{ #category : #tests }
+RectangleTest >> testMergingOverlappingRects [
 
 	| coll merge |
 	coll := OrderedCollection new.
@@ -433,11 +354,8 @@ RectangleTest>>testMergingOverlappingRects [
 	self assert: merge = (Rectangle left: 0 right: 15 top: 0 bottom: 15).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testMergingTwoRectangles [
+{ #category : #tests }
+RectangleTest >> testMergingTwoRectangles [
 
 	| coll merge |
 	coll := OrderedCollection new.
@@ -448,11 +366,8 @@ RectangleTest>>testMergingTwoRectangles [
 	self assert: merge = (Rectangle left: 1 right: 10 top: 1 bottom: 10).
 ]
 
-{
-	#category : #'tests-rectangle functions',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testPointNearestTo [
+{ #category : #'tests-rectangle functions' }
+RectangleTest >> testPointNearestTo [
 
 	| rectangle negativeRectangle |
 	rectangle := 10 @ 10 corner: 20 @ 20.
@@ -468,11 +383,8 @@ RectangleTest>>testPointNearestTo [
 	self assert: -10 @ -10 equals: (negativeRectangle pointNearestTo: 0@0).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testPointPointConstructorIsSymmetrical [
+{ #category : #tests }
+RectangleTest >> testPointPointConstructorIsSymmetrical [
 	| pt1 pt2 rect1 rect2 |
 
 	pt1:= 0@0.
@@ -484,22 +396,16 @@ RectangleTest>>testPointPointConstructorIsSymmetrical [
 	self assert: rect1 equals: rect2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testRectangleWithNegativeExtentShouldHaveZeroExtent [
+{ #category : #tests }
+RectangleTest >> testRectangleWithNegativeExtentShouldHaveZeroExtent [
 	
 	self assert: (Rectangle origin: 10@10 extent: -5@ -5) extent = (0@0).
 	self assert: (Rectangle origin: 10@10 extent: -5@ -5) origin = (10@10).
 		self assert: (Rectangle origin: 10@10 extent: 50@ 60) extent = (50@60).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testRectanglesWithSameOriginIntersect [
+{ #category : #tests }
+RectangleTest >> testRectanglesWithSameOriginIntersect [
 
     | rect1 rect2 |
    rect1 := 10@10 corner: 20@30.
@@ -507,21 +413,15 @@ RectangleTest>>testRectanglesWithSameOriginIntersect [
    self deny: (rect1 intersects: rect2).
 ]
 
-{
-	#category : #tests-accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testRight [
+{ #category : #tests-accessing }
+RectangleTest >> testRight [
 |rect|
 rect:=(0 @ 0 corner: 20 @ 20) right:10.
 self assert: rect right = 10.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testRotateBy [
+{ #category : #tests }
+RectangleTest >> testRotateBy [
 	| rect |
 	
 	rect := Rectangle left:0  right:6  top:4  bottom:2. 
@@ -542,11 +442,8 @@ RectangleTest>>testRotateBy [
 	self assert: (rect rotateBy:#pi centerAt:0@0) bottom = -2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testScaleBy [
+{ #category : #tests }
+RectangleTest >> testScaleBy [
 	| rect |
 	rect:= (2@2 corner: 6@4). 
 	
@@ -566,11 +463,8 @@ RectangleTest>>testScaleBy [
 	self assert: (rect scaleBy: 0) bottom = 0.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testSettingLeftDoesNotProduceInvalidRectangle [
+{ #category : #tests }
+RectangleTest >> testSettingLeftDoesNotProduceInvalidRectangle [
   
 	| rect1 rect2 |
 	
@@ -583,11 +477,8 @@ RectangleTest>>testSettingLeftDoesNotProduceInvalidRectangle [
 	self assert: rect2 right equals: 50.
 ]
 
-{
-	#category : #'tests-rectangle functions',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testSideNearestTo [
+{ #category : #'tests-rectangle functions' }
+RectangleTest >> testSideNearestTo [
 	"rectangular area of screen implies that negalive coordinates not allowed"
 	| rectangle |
 	rectangle := 5 @ 5 corner: 45 @ 45.
@@ -597,11 +488,8 @@ RectangleTest>>testSideNearestTo [
 	self assert: #bottom equals: (rectangle sideNearestTo: 23 @ 65)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testStoreOn [
+{ #category : #tests }
+RectangleTest >> testStoreOn [
 	| assoc assoc2 |
 	assoc := (0 @ 0 extent: 1 @ 1) -> 0.
 	assoc2 := self class compiler evaluate: assoc storeString.
@@ -609,21 +497,15 @@ RectangleTest>>testStoreOn [
 	self assert: assoc value = assoc2 value
 ]
 
-{
-	#category : #tests-accessing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testTop [
+{ #category : #tests-accessing }
+RectangleTest >> testTop [
 |rect|
 rect:=(0 @ 0 corner: 20 @ 20) top:10.
 self assert: rect top = 10.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testTranslateBy [
+{ #category : #tests }
+RectangleTest >> testTranslateBy [
 	| rect |
 	rect:= (2@2 corner: 6@4).
 	
@@ -638,11 +520,8 @@ RectangleTest>>testTranslateBy [
 	self assert: (rect translateBy:(2 negated)) bottom = 2.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testTwoRectanglesWithAnAdjascentBorderDoNotIntersect [
+{ #category : #tests }
+RectangleTest >> testTwoRectanglesWithAnAdjascentBorderDoNotIntersect [
   
    | rect1 rect2 |
    rect1 := 0@0 corner: 40@40.
@@ -651,11 +530,8 @@ RectangleTest>>testTwoRectanglesWithAnAdjascentBorderDoNotIntersect [
         deny: (rect2 intersects: rect1).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testTwoRectanglesWithAnAdjascentCornerDoNotIntersect [
+{ #category : #tests }
+RectangleTest >> testTwoRectanglesWithAnAdjascentCornerDoNotIntersect [
   
    | rect1 rect2 |
    rect1 := 0@0 corner: 40@40.
@@ -664,11 +540,8 @@ RectangleTest>>testTwoRectanglesWithAnAdjascentCornerDoNotIntersect [
         deny: (rect2 intersects: rect1).
 ]
 
-{
-	#category : #'tests-rectangle functions',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testWithBottom [
+{ #category : #'tests-rectangle functions' }
+RectangleTest >> testWithBottom [
 
 	| r |
 	r := Rectangle new.
@@ -682,11 +555,8 @@ RectangleTest>>testWithBottom [
 	self assert: (r withBottom: 5) = ((-5 @ -10) corner: (-2 @ 5)).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testWithBottomDoesNotProduceInvalidRectangle [
+{ #category : #tests }
+RectangleTest >> testWithBottomDoesNotProduceInvalidRectangle [
 	"self debug: #testWithBottomDoesNotProduceInvalidRectangle"
 
 	| rect1 rect2 |
@@ -707,11 +577,8 @@ RectangleTest>>testWithBottomDoesNotProduceInvalidRectangle [
 	
 ]
 
-{
-	#category : #'tests-rectangle functions',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testWithHeight [
+{ #category : #'tests-rectangle functions' }
+RectangleTest >> testWithHeight [
 
 	| r |
 	r := Rectangle new.
@@ -720,11 +587,8 @@ RectangleTest>>testWithHeight [
 	self assert: (r withHeight: 3) = (1 @ 2 corner: 5 @ 5).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testWithLeftDoesNotProduceInvalidRectangle [
+{ #category : #tests }
+RectangleTest >> testWithLeftDoesNotProduceInvalidRectangle [
 	"self debug: #testWithLeftDoesNotProduceInvalidRectangle"
 
 	| rect1 rect2 |
@@ -746,11 +610,8 @@ RectangleTest>>testWithLeftDoesNotProduceInvalidRectangle [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testWithRightDoesNotProduceInvalidRectangle [
+{ #category : #tests }
+RectangleTest >> testWithRightDoesNotProduceInvalidRectangle [
 	"self debug: #testWithRightDoesNotProduceInvalidRectangle"
 
 	| rect1 rect2 |
@@ -772,11 +633,8 @@ RectangleTest>>testWithRightDoesNotProduceInvalidRectangle [
 	
 ]
 
-{
-	#category : #'tests-rectangle functions',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testWithTop [
+{ #category : #'tests-rectangle functions' }
+RectangleTest >> testWithTop [
 
 	| r |
 	r := Rectangle new.
@@ -785,11 +643,8 @@ RectangleTest>>testWithTop [
 	self assert: (r withTop: 3) = (0 @ 3 corner: 5 @ 5).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testWithTopDoesNotProduceInvalidRectangle [
+{ #category : #tests }
+RectangleTest >> testWithTopDoesNotProduceInvalidRectangle [
 	"self debug: #testWithTopDoesNotProduceInvalidRectangle"
 
 	| rect1 rect2 |
@@ -810,11 +665,8 @@ RectangleTest>>testWithTopDoesNotProduceInvalidRectangle [
 	
 ]
 
-{
-	#category : #'tests-rectangle functions',
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-RectangleTest>>testWithWidth [
+{ #category : #'tests-rectangle functions' }
+RectangleTest >> testWithWidth [
 
 	| r |
 	r := Rectangle new.

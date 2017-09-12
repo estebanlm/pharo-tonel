@@ -4,15 +4,11 @@ I'm a Polygon PathShape (see PathShape).
 Class {
 	#name : #Polygon,
 	#superclass : #PathShape,
-	#category : #Graphics-Shapes,
-	#timestamp : 'LaurentLaffont 3/31/2011 21:05'
+	#category : #Graphics-Shapes
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Polygon>>containsPoint: aPoint [
+{ #category : #testing }
+Polygon >> containsPoint: aPoint [
 	"Answer whether the receiver contains the given point."
 
 	|wind|
@@ -33,11 +29,8 @@ Polygon>>containsPoint: aPoint [
 	^wind ~= 0
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Polygon>>segmentsDo: aBlock [
+{ #category : #enumerating }
+Polygon >> segmentsDo: aBlock [
 	"Evaluate the two-argument block with each vertex and its successor."
 
 	self vertices size < 2 ifTrue: [^self].

@@ -7,150 +7,90 @@ Class {
 	#instVars : [
 		'attributes'
 	],
-	#category : #OSWindow-Core,
-	#timestamp : 'IgorStasenko 7/30/2014 16:41'
+	#category : #OSWindow-Core
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle class>>fromAttributes: attributes for: anOSWindow  [
+{ #category : #'as yet unclassified' }
+OSNullWindowHandle class >> fromAttributes: attributes for: anOSWindow [ 
 	^ self new attributes: attributes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>attributes: newAttributes [
+{ #category : #accessing }
+OSNullWindowHandle >> attributes: newAttributes [
 	attributes := newAttributes
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>bounds: aRectangle [
-
+{ #category : #accessing }
+OSNullWindowHandle >> bounds: aRectangle [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>clipboardText [
+{ #category : #accessing }
+OSNullWindowHandle >> clipboardText [
 	^ ''
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>clipboardText: anObject [
+{ #category : #accessing }
+OSNullWindowHandle >> clipboardText: anObject [
 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>destroy [
-
+{ #category : #initialize }
+OSNullWindowHandle >> destroy [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>extent [
+{ #category : #accessing }
+OSNullWindowHandle >> extent [
 	^ attributes extent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>extent: newExtent [
+{ #category : #accessing }
+OSNullWindowHandle >> extent: newExtent [
 	attributes extent: newExtent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>hide [
-
+{ #category : #accessing }
+OSNullWindowHandle >> hide [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>isValid [
+{ #category : #accessing }
+OSNullWindowHandle >> isValid [
 	^ true
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>newFormRenderer: form [
+{ #category : #factory }
+OSNullWindowHandle >> newFormRenderer: form [
 	^ renderer := OSNullFormRenderer new form: form
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>newGenericRenderer [
+{ #category : #factory }
+OSNullWindowHandle >> newGenericRenderer [
 	^ renderer := OSWindowNullGenericRenderer new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>platformSpecificHandle [
+{ #category : #accessing }
+OSNullWindowHandle >> platformSpecificHandle [
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>position [
+{ #category : #accessing }
+OSNullWindowHandle >> position [
 	^ attributes position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>position: position [
+{ #category : #accessing }
+OSNullWindowHandle >> position: position [
 	attributes position: position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>show [
-
+{ #category : #accessing }
+OSNullWindowHandle >> show [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>title [
+{ #category : #accessing }
+OSNullWindowHandle >> title [
 	^attributes title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSNullWindowHandle>>title: anObject [
-
+{ #category : #accessing }
+OSNullWindowHandle >> title: anObject [
 ]

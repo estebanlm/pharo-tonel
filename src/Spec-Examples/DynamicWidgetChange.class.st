@@ -11,15 +11,11 @@ Class {
 		'button',
 		'bottom'
 	],
-	#category : #Spec-Examples,
-	#timestamp : 'Spirita 7/28/2016 14:27'
+	#category : #Spec-Examples
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicWidgetChange class>>defaultSpec [
+{ #category : #specs }
+DynamicWidgetChange class >> defaultSpec [
 	<spec>
 	
 	^ SpecLayout composed
@@ -28,35 +24,23 @@ DynamicWidgetChange class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicWidgetChange class>>example [
+{ #category : #example }
+DynamicWidgetChange class >> example [
 	^ self new openWithSpec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicWidgetChange>>bottom [
+{ #category : #accessing }
+DynamicWidgetChange >> bottom [
 	^ bottom
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicWidgetChange>>button [
+{ #category : #accessing }
+DynamicWidgetChange >> button [
 	^ button
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicWidgetChange>>change [
+{ #category : #private }
+DynamicWidgetChange >> change [
 
 	boolean := boolean not.
 
@@ -70,11 +54,8 @@ DynamicWidgetChange>>change [
 	self buildWithSpec
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicWidgetChange>>changeToButton [
+{ #category : #private }
+DynamicWidgetChange >> changeToButton [
 
 	self instantiateModels: 
 		#( bottom ButtonModel ).
@@ -83,11 +64,8 @@ DynamicWidgetChange>>changeToButton [
 	bottom label: 'I am useless'.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicWidgetChange>>changeToList [
+{ #category : #private }
+DynamicWidgetChange >> changeToList [
 
 	self instantiateModels: 
 		#( bottom #ListModel ).
@@ -97,22 +75,16 @@ DynamicWidgetChange>>changeToList [
 	bottom items: (1 to: 100) asOrderedCollection.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicWidgetChange>>initialize [
+{ #category : #initialization }
+DynamicWidgetChange >> initialize [
 
 	super initialize.
 
 	boolean := true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-DynamicWidgetChange>>initializeWidgets [
+{ #category : #initialization }
+DynamicWidgetChange >> initializeWidgets [
 
 	button := self newButton.
 	bottom := self newList.

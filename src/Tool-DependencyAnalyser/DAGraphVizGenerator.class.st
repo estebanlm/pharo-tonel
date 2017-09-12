@@ -9,23 +9,16 @@ Class {
 		'graphviz',
 		'nameOfGraph'
 	],
-	#category : #Tool-DependencyAnalyser-Core,
-	#timestamp : 'BaptisteQuide 7/28/2014 14:59'
+	#category : #Tool-DependencyAnalyser-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAGraphVizGenerator class>>newWith: aContent named: aString [
+{ #category : #'instance creation' }
+DAGraphVizGenerator class >> newWith: aContent named: aString [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'build items',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAGraphVizGenerator>>buildGraphViz [
+{ #category : #'build items' }
+DAGraphVizGenerator >> buildGraphViz [
 	graphviz := (self class environment at: #GVGraphViz) new.
 	graphviz
 		beDirected;
@@ -38,51 +31,33 @@ DAGraphVizGenerator>>buildGraphViz [
 		buildEdges.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAGraphVizGenerator>>builder [
+{ #category : #accessing }
+DAGraphVizGenerator >> builder [
 	^ builder
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAGraphVizGenerator>>graphviz [
+{ #category : #accessing }
+DAGraphVizGenerator >> graphviz [
 	^ graphviz
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAGraphVizGenerator>>nameOfGraph [
+{ #category : #accessing }
+DAGraphVizGenerator >> nameOfGraph [
 	^ nameOfGraph ifNil: [ 'UnamedGraph' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAGraphVizGenerator>>nameOfGraph: anObject [
+{ #category : #accessing }
+DAGraphVizGenerator >> nameOfGraph: anObject [
 	nameOfGraph := anObject
 ]
 
-{
-	#category : #saving,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAGraphVizGenerator>>openWith: extension [
+{ #category : #saving }
+DAGraphVizGenerator >> openWith: extension [
 	"make sure the .gv is generated and converted into a image format"
 	graphviz openInWindowWith: extension
 ]
 
-{
-	#category : #saving,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAGraphVizGenerator>>saveDotFileAndGenerateForType: extension [
+{ #category : #saving }
+DAGraphVizGenerator >> saveDotFileAndGenerateForType: extension [
 	^ graphviz generator makeNoWait: extension.
 ]

@@ -6,50 +6,34 @@ To specify a help topic a debugger has to override the class side method #helpCl
 Class {
 	#name : #GTHelpDebugAction,
 	#superclass : #DebugAction,
-	#category : #GT-Debugger-Actions,
-	#timestamp : 'AndreiChis 1/25/2016 11:04'
+	#category : #GT-Debugger-Actions
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTHelpDebugAction class>>gtDebuggingAction [
+{ #category : #registration }
+GTHelpDebugAction class >> gtDebuggingAction [
 	"<gtDebuggingAction>"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTHelpDebugAction>>defaultIcon [
+{ #category : #accessing }
+GTHelpDebugAction >> defaultIcon [
 
 	^ GLMUIThemeExtraIcons glamorousHelp
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTHelpDebugAction>>defaultLabel [
+{ #category : #accessing }
+GTHelpDebugAction >> defaultLabel [
 
 	^ ''
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTHelpDebugAction>>defaultOrder [
+{ #category : #accessing }
+GTHelpDebugAction >> defaultOrder [
 
 	^ 200
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTHelpDebugAction>>executeAction [
+{ #category : #actions }
+GTHelpDebugAction >> executeAction [
 
 	HelpBrowser open selectTopicSatisfying: [:each | 
 		each owner notNil and:  [
@@ -57,11 +41,8 @@ GTHelpDebugAction>>executeAction [
 				each title = 'Overview' ] ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTHelpDebugAction>>initialize [
+{ #category : #initialization }
+GTHelpDebugAction >> initialize [
 	super initialize.
 	self needsUpdate: false
 ]

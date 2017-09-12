@@ -19,83 +19,58 @@ Class {
 		'iconBrick',
 		'labelBrick'
 	],
-	#category : #Glamour-Morphic-Brick-Widgets-Basic,
-	#timestamp : 'AliakseiSyrel 3/22/2015 12:11'
+	#category : #Glamour-Morphic-Brick-Widgets-Basic
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick class>>exampleOpen [
+{ #category : #examples }
+GLMButtonBrick class >> exampleOpen [
 
 	self gtExample openCenteredInBrickWindow
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick class>>gtExample [
+{ #category : #examples }
+GLMButtonBrick class >> gtExample [
 	<gtExample>
 	<label: 'Simple button'>
 	
 	^ self new
 ]
 
-{
-	#category : #brick-interactable-actions,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick>>click: evt [
+{ #category : #brick-interactable-actions }
+GLMButtonBrick >> click: evt [
 
 	super click: evt.
 	^ true
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick>>hShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMButtonBrick >> hShrinkWrap [
 	super hShrinkWrap.
 	
 	self label hShrinkWrap
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick>>hSpaceFill: anInteger [
+{ #category : #brick-layout-properties }
+GLMButtonBrick >> hSpaceFill: anInteger [
 	super hSpaceFill: anInteger.
 	
 	self label hSpaceFill.
 ]
 
-{
-	#category : #button-brick-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick>>iconBrick [
+{ #category : #button-brick-accessing }
+GLMButtonBrick >> iconBrick [
 
 	^ iconBrick
 ]
 
-{
-	#category : #button-brick-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick>>iconBrick: anObject [
+{ #category : #button-brick-accessing }
+GLMButtonBrick >> iconBrick: anObject [
 
 	iconBrick := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick>>initialize [
+{ #category : #initialization }
+GLMButtonBrick >> initialize [
 	super initialize.
 	
 	self
@@ -105,20 +80,14 @@ GLMButtonBrick>>initialize [
 		vShrinkWrap
 ]
 
-{
-	#category : #button-brick-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick>>label [
+{ #category : #button-brick-accessing }
+GLMButtonBrick >> label [
 
 	^ labelBrick
 ]
 
-{
-	#category : #button-brick-accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick>>labelBrick: anObject [
+{ #category : #button-brick-accessing }
+GLMButtonBrick >> labelBrick: anObject [
 	labelBrick := anObject.
 	
 	self label
@@ -132,48 +101,33 @@ GLMButtonBrick>>labelBrick: anObject [
 	self addBrickBack: self label
 ]
 
-{
-	#category : #button-brick-creation,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick>>newLabelBrick [
+{ #category : #button-brick-creation }
+GLMButtonBrick >> newLabelBrick [
 
 	^ GLMLabelBrick new
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick>>onThemerChanged [
+{ #category : #brick-properties-events }
+GLMButtonBrick >> onThemerChanged [
 	super onThemerChanged.
 
 	self updateStyle
 ]
 
-{
-	#category : #button-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick>>text [
+{ #category : #button-properties }
+GLMButtonBrick >> text [
 
 	^ self label text
 ]
 
-{
-	#category : #button-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick>>text: aString [
+{ #category : #button-properties }
+GLMButtonBrick >> text: aString [
 	"changes button text, redraws and updates button bounds"
 	self label text: aString
 ]
 
-{
-	#category : #button-updating,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick>>updateStyle [
+{ #category : #button-updating }
+GLMButtonBrick >> updateStyle [
 
 	self borderWidth: self themer buttonBorderWidth.
 	self borderColor: self themer buttonBorderColor.
@@ -187,21 +141,15 @@ GLMButtonBrick>>updateStyle [
 	
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick>>vShrinkWrap [
+{ #category : #brick-layout-properties }
+GLMButtonBrick >> vShrinkWrap [
 	super vShrinkWrap.
 	
 	self label vShrinkWrap
 ]
 
-{
-	#category : #brick-layout-properties,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMButtonBrick>>vSpaceFill: anInteger [
+{ #category : #brick-layout-properties }
+GLMButtonBrick >> vSpaceFill: anInteger [
 	super vSpaceFill: anInteger.
 	
 	self label vSpaceFill.

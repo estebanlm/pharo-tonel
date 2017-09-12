@@ -48,24 +48,17 @@ Class {
 		'UniqueObject',
 		'ValueListCache'
 	],
-	#category : #System-Settings-Core,
-	#timestamp : 'AlainPlantec 1/3/2011 10:52'
+	#category : #System-Settings-Core
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration class>>initialize [
+{ #category : #initialization }
+SettingDeclaration class >> initialize [
 
 	UniqueObject := Object new
 ]
 
-{
-	#category : #'icon accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration class>>nullifyForm [
+{ #category : #'icon accessing' }
+SettingDeclaration class >> nullifyForm [
 	^ (Form
 	extent: 16@16
 	depth: 32
@@ -73,11 +66,8 @@ SettingDeclaration class>>nullifyForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #'icon accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration class>>smallCautionForm [
+{ #category : #'icon accessing' }
+SettingDeclaration class >> smallCautionForm [
 	^ (Form
 	extent: 16@16
 	depth: 32
@@ -85,29 +75,20 @@ SettingDeclaration class>>smallCautionForm [
 	offset: 0@0)
 ]
 
-{
-	#category : #'cache accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration class>>valueListCache [
+{ #category : #'cache accessing' }
+SettingDeclaration class >> valueListCache [
 	^ ValueListCache ifNil: [ValueListCache := WeakKeyDictionary new]
 ]
 
-{
-	#category : #'cache accessing',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration class>>valueListFor: aSettingValue [
+{ #category : #'cache accessing' }
+SettingDeclaration class >> valueListFor: aSettingValue [
 	| targetEntry |
 	targetEntry := self valueListCache at: aSettingValue settingReceiver ifAbsentPut: [IdentityDictionary new].
 	^ targetEntry at: aSettingValue getSelector ifAbsentPut: [OrderedCollection new].
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>= other [
+{ #category : #comparing }
+SettingDeclaration >> = other [
 	self class = other class
 		ifFalse: [^ false].
 	self target == other target ifFalse: [^ false].
@@ -119,19 +100,13 @@ SettingDeclaration>>= other [
 
 ]
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>acceptSettings: aVisitor  [
+{ #category : #visitor }
+SettingDeclaration >> acceptSettings: aVisitor [ 
 	^ aVisitor visitSettingDeclaration: self
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>addToList: anItem [
+{ #category : #'user interface' }
+SettingDeclaration >> addToList: anItem [
 	(self list includes: anItem)
 		ifFalse: [self list size > self maxKept
 				ifTrue: [self list removeFirst].
@@ -139,68 +114,47 @@ SettingDeclaration>>addToList: anItem [
 			self changed: #list]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>default [
+{ #category : #accessing }
+SettingDeclaration >> default [
 	^ default 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>default: anObject  [
+{ #category : #accessing }
+SettingDeclaration >> default: anObject [ 
 	"initialize the default value"
 	default := anObject.
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>defaultIcon [
+{ #category : #'user interface' }
+SettingDeclaration >> defaultIcon [
 	^ (self type = #LogicalFont
 		or: [ self realValue isKindOf: AbstractFont ])
 		ifTrue: [ self iconNamed: #smallFontsIcon ]
 		ifFalse: [ self iconNamed: #smallPaintIcon ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>defaultValue [
+{ #category : #accessing }
+SettingDeclaration >> defaultValue [
 	^ default value
 ]
 
-{
-	#category : #export,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>displayExportAction [
+{ #category : #export }
+SettingDeclaration >> displayExportAction [
 
 	Smalltalk tools workspace
 		openContents: self startupAction storeString 
 		label: self label
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>emptyList [
+{ #category : #'user interface' }
+SettingDeclaration >> emptyList [
 	self list removeAll.
 	self value ifNotNil: [self addToList: self realValue].
 ]
 
-{
-	#category : #export,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>exportSettingAction [
+{ #category : #export }
+SettingDeclaration >> exportSettingAction [
 	| targetSymbol currentValue |
 	
 	targetSymbol := self target isSymbol
@@ -216,86 +170,56 @@ SettingDeclaration>>exportSettingAction [
 		ifFalse: [ "We do nothing" nil ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>getSelector [
+{ #category : #accessing }
+SettingDeclaration >> getSelector [
 	^ getSelector ifNil: [self name]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>getSelector: aSymbol [
+{ #category : #accessing }
+SettingDeclaration >> getSelector: aSymbol [
 	getSelector := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>ghostHelp [
+{ #category : #accessing }
+SettingDeclaration >> ghostHelp [
 	^ ghostHelp 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>ghostHelp: aString [
+{ #category : #accessing }
+SettingDeclaration >> ghostHelp: aString [
 	ghostHelp := aString
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>hasDefault [
+{ #category : #testing }
+SettingDeclaration >> hasDefault [
 	^ default ~~ UniqueObject
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>hasEditableList [
+{ #category : #'user interface' }
+SettingDeclaration >> hasEditableList [
 	^ (self realValue isKindOf: Boolean) not
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>hasPrivateListener [
+{ #category : #'user interface' }
+SettingDeclaration >> hasPrivateListener [
 	^ self hasActionForEvent: self privateChangeEvent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>hasValue [
+{ #category : #accessing }
+SettingDeclaration >> hasValue [
 	^ true
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>hash [
+{ #category : #comparing }
+SettingDeclaration >> hash [
 	"hash is re-implemented because #= is re-implemented"
 	^ self target hash
 		bitXor: (self targetSelector hash
 				bitXor: (self getSelector hash bitXor: self setSelector hash)) 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>index [
+{ #category : #'user interface' }
+SettingDeclaration >> index [
 	^ self list
 		indexOf: self realValue
 		ifAbsent: [self realValue
@@ -304,30 +228,21 @@ SettingDeclaration>>index [
 					self list size]]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>index: anInteger  [
+{ #category : #'user interface' }
+SettingDeclaration >> index: anInteger [ 
 	self realValue: (self list at: anInteger)
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>initialize [
+{ #category : #initialization }
+SettingDeclaration >> initialize [
 
 	super initialize.
 	
 	default := UniqueObject
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>inputMorphFor: aContainer [
+{ #category : #'user interface' }
+SettingDeclaration >> inputMorphFor: aContainer [
 	^ (super inputMorphFor: aContainer)
 		ifNotNil: [:im |			
 				self whenPrivateChangedSend: #settingValueChanged: to: aContainer model.
@@ -335,11 +250,8 @@ SettingDeclaration>>inputMorphFor: aContainer [
 				im]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>inputWidget [
+{ #category : #'user interface' }
+SettingDeclaration >> inputWidget [
 	"return the default widget for the input a the setting"
 	| inputWidget xtraDialogWidget | 
 	xtraDialogWidget := super inputWidget.
@@ -356,11 +268,8 @@ SettingDeclaration>>inputWidget [
 	^ inputWidget 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>inputWidgetForBoolean [
+{ #category : #'user interface' }
+SettingDeclaration >> inputWidgetForBoolean [
 	^  self theme  
 			newCheckboxIn: World
 			for: self
@@ -371,11 +280,8 @@ SettingDeclaration>>inputWidgetForBoolean [
 			help: nil
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>inputWidgetForColor [
+{ #category : #'user interface' }
+SettingDeclaration >> inputWidgetForColor [
 	^ (  
 	 self theme 
 		newColorChooserIn: World
@@ -386,20 +292,14 @@ SettingDeclaration>>inputWidgetForColor [
 		help: 'Choose a color') minWidth: 150; width: 150; yourself
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>inputWidgetForDirectory [
+{ #category : #'user interface' }
+SettingDeclaration >> inputWidgetForDirectory [
 
 	^ self inputWidgetForFileOrDirectoryWithAction: #chooseFileDirectory.
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>inputWidgetForFileOrDirectoryWithAction: aSymbol [
+{ #category : #'user interface' }
+SettingDeclaration >> inputWidgetForFileOrDirectoryWithAction: aSymbol [
 	| list button |
 	list := EditableDropListMorph
 		on: self
@@ -434,11 +334,8 @@ SettingDeclaration>>inputWidgetForFileOrDirectoryWithAction: aSymbol [
 			button}
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>inputWidgetForFont [
+{ #category : #'user interface' }
+SettingDeclaration >> inputWidgetForFont [
 	^ (  self theme 
 		newButtonIn: World
 		for: self
@@ -451,11 +348,8 @@ SettingDeclaration>>inputWidgetForFont [
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>inputWidgetForLabel [
+{ #category : #'user interface' }
+SettingDeclaration >> inputWidgetForLabel [
 	| widget |
 	widget := self theme newLabelIn: World for: self label: '' getEnabled: nil.
 	widget getTextSelector: #preferenceValue.
@@ -463,20 +357,14 @@ SettingDeclaration>>inputWidgetForLabel [
 	^ widget
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>inputWidgetForNumber [
+{ #category : #'user interface' }
+SettingDeclaration >> inputWidgetForNumber [
 	^ self inputWidgetForString width: 200.
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>inputWidgetForPassword [
+{ #category : #'user interface' }
+SettingDeclaration >> inputWidgetForPassword [
 	| widget |
 	widget :=  self theme  
 				newTextEntryIn: World
@@ -494,20 +382,14 @@ SettingDeclaration>>inputWidgetForPassword [
 	^ widget
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>inputWidgetForPoint [
+{ #category : #'user interface' }
+SettingDeclaration >> inputWidgetForPoint [
 	^ self inputWidgetForString width: 200.
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>inputWidgetForString [
+{ #category : #'user interface' }
+SettingDeclaration >> inputWidgetForString [
 	| widget |
 	widget := EditableDropListMorph
 		on: self
@@ -526,38 +408,26 @@ SettingDeclaration>>inputWidgetForString [
 	^ widget
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>inputWidgetSelectorInClass: aClass  [
+{ #category : #'user interface' }
+SettingDeclaration >> inputWidgetSelectorInClass: aClass [ 
 	| selector |
 	^ (aClass respondsTo: (selector := #settingInputWidgetForNode:))
 		ifTrue: [selector] 
 ]
 
-{
-	#category : #export,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>isExportable [
+{ #category : #export }
+SettingDeclaration >> isExportable [
 
 	^ true
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>list [
+{ #category : #'user interface' }
+SettingDeclaration >> list [
 	^ self class valueListFor: self
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>listenersForEvent: anEvent [
+{ #category : #'user interface' }
+SettingDeclaration >> listenersForEvent: anEvent [
 	| listeners actionSequence |	
 	listeners := Set new.	
 	actionSequence := self actionMap at: anEvent ifAbsent: [].	
@@ -569,30 +439,21 @@ SettingDeclaration>>listenersForEvent: anEvent [
 	^ listeners
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>localInputWidgetSelector [
+{ #category : #'user interface' }
+SettingDeclaration >> localInputWidgetSelector [
 	| imSel |
 	^ (self respondsTo: (imSel := ('inputWidgetFor' , self type) asSymbol)) ifTrue: [imSel]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>maxKept [
+{ #category : #'user interface' }
+SettingDeclaration >> maxKept [
 	"maximum number of old values which are kept in
 	list instance variable"
 	^ 5
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>maxNameWidthForFont: aFont  [
+{ #category : #'user interface' }
+SettingDeclaration >> maxNameWidthForFont: aFont [ 
 	| max |
 	max := 0.
 	self domainValuesLabels
@@ -600,36 +461,24 @@ SettingDeclaration>>maxNameWidthForFont: aFont  [
 	^ max 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>preferenceValue [
+{ #category : #'user interface' }
+SettingDeclaration >> preferenceValue [
 	^ self realValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>privateChangeEvent [
+{ #category : #accessing }
+SettingDeclaration >> privateChangeEvent [
 	^ #privateSettingValueChanged
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>privateForget: aReceiver  [
+{ #category : #'user interface' }
+SettingDeclaration >> privateForget: aReceiver [ 
 	"do not notify aReceiver anymore"
 	self removeActionsWithReceiver: aReceiver forEvent: self privateChangeEvent
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>privateForget: aReceiver selector: aSelector  [
+{ #category : #'user interface' }
+SettingDeclaration >> privateForget: aReceiver selector: aSelector [ 
 	"Private"
 	self
 		removeActionsSatisfying: [:action | action receiver == aReceiver
@@ -637,19 +486,13 @@ SettingDeclaration>>privateForget: aReceiver selector: aSelector  [
 		forEvent: self privateChangeEvent
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>privateListeners [
+{ #category : #'user interface' }
+SettingDeclaration >> privateListeners [
 	^ self listenersForEvent: self privateChangeEvent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>realValue [
+{ #category : #accessing }
+SettingDeclaration >> realValue [
 	"Answer the value of realValue"
 
 	^ (self settingReceiver perform: self getSelector) 
@@ -657,56 +500,38 @@ SettingDeclaration>>realValue [
 			self settingReceiver perform: self getSelector]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>realValue: anObject [
+{ #category : #accessing }
+SettingDeclaration >> realValue: anObject [
 	"Set the value of realValue"
 	self settingReceiver perform: self setSelector with: anObject.
 	self triggerEvent: self privateChangeEvent with: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>selector: aSymbol [
+{ #category : #accessing }
+SettingDeclaration >> selector: aSymbol [
 	self getSelector: aSymbol.
 	self setSelector: (aSymbol, ':') asSymbol.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>setSelector [
+{ #category : #accessing }
+SettingDeclaration >> setSelector [
 	^ setSelector ifNil: [self getSelector ifNotNil: [:gs | (gs, ':') asSymbol]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>setSelector: aSymbol [
+{ #category : #accessing }
+SettingDeclaration >> setSelector: aSymbol [
 	setSelector := aSymbol
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>setToDefault [
+{ #category : #'user interface' }
+SettingDeclaration >> setToDefault [
 
 	self realValue: self defaultValue.
 
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>settingStoreOn: aStream [
+{ #category : #'user interface' }
+SettingDeclaration >> settingStoreOn: aStream [
 	aStream tab;
 		nextPutAll: (self target isSymbol
 				ifTrue: [self target]
@@ -720,11 +545,8 @@ SettingDeclaration>>settingStoreOn: aStream [
 		 cr
 ]
 
-{
-	#category : #export,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>startupAction [
+{ #category : #export }
+SettingDeclaration >> startupAction [
 	"I assume here that the receiver is always a class"
 
 	 | targetSymbol currentValue |
@@ -751,39 +573,27 @@ SettingDeclaration>>startupAction [
 		runOnce: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>type [
+{ #category : #accessing }
+SettingDeclaration >> type [
 	"Answer the value of type"
 
 	^ type ifNil: [type := self realValue class name]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>type: anObject [
+{ #category : #accessing }
+SettingDeclaration >> type: anObject [
 	"Set the value of type"
 
 	type := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>typeClass [
+{ #category : #accessing }
+SettingDeclaration >> typeClass [
 	^ Smalltalk globals at: self type ifAbsent: [  ]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SettingDeclaration>>whenPrivateChangedSend: zeroOrOneArgSelector to: aSubscriber  [
+{ #category : #'user interface' }
+SettingDeclaration >> whenPrivateChangedSend: zeroOrOneArgSelector [ to: aSubscriber 
 	"private, use #whenChangedSend:to: instead"
 	self
 		when: self privateChangeEvent

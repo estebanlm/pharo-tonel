@@ -13,15 +13,11 @@ Critique is an object that binds an entity with a rule that is violated by that 
 Class {
 	#name : #RenrakuHelp,
 	#superclass : #CustomHelp,
-	#category : #Renraku-Help,
-	#timestamp : 'YuriyTymchuk 7/10/2016 15:49'
+	#category : #Renraku-Help
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuHelp class>>bookDescription [
+{ #category : #accessing }
+RenrakuHelp class >> bookDescription [
 	^ 'Renraku is a framework for defining and processing quality rules. The framework operates with three main concepts: entities, rules and critiques.
 
 !! Entities
@@ -34,27 +30,18 @@ Rules are the objects that describe constraints about entities. A rule can check
 Critique is an object that binds an entity with a rule that is violated by that entity. The critique describes a specific violation, and may provide a solutions to fix it.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuHelp class>>bookName [
+{ #category : #accessing }
+RenrakuHelp class >> bookName [
 	    ^'Renraku Quality Rules'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuHelp class>>pages [
+{ #category : #accessing }
+RenrakuHelp class >> pages [
 	^#(RenrakuRuleHelp)
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuHelp class>>readInHelpBrowser [
+{ #category : #'as yet unclassified' }
+RenrakuHelp class >> readInHelpBrowser [
 
 	^ HelpBrowser openOn: (
 		HelpTopic new
@@ -62,11 +49,8 @@ RenrakuHelp class>>readInHelpBrowser [
 			yourself)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:45'
-}
-RenrakuHelp class>>topicForClass: aClass [
+{ #category : #private }
+RenrakuHelp class >> topicForClass: aClass [
 
 	^ ClassAPIHelpBuilder new
 		addMethodsWithoutComment: false;

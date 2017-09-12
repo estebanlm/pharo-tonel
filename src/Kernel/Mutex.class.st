@@ -12,15 +12,11 @@ Class {
 		'semaphore',
 		'owner'
 	],
-	#category : #Kernel-Processes,
-	#timestamp : '<historical>'
+	#category : #Kernel-Processes
 }
 
-{
-	#category : #'mutual exclusion',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Mutex>>critical: aBlock [
+{ #category : #'mutual exclusion' }
+Mutex >> critical: aBlock [
 	"Evaluate aBlock protected by the receiver."
 	| activeProcess |
 	activeProcess := Processor activeProcess.
@@ -30,11 +26,8 @@ Mutex>>critical: aBlock [
 		aBlock ensure:[owner := nil]].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Mutex>>initialize [
+{ #category : #initialization }
+Mutex >> initialize [
 	super initialize.
 	semaphore := Semaphore forMutualExclusion.
 ]

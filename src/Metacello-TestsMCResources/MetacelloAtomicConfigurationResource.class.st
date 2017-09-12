@@ -1,30 +1,20 @@
-"
-
-"
 Class {
 	#name : #MetacelloAtomicConfigurationResource,
 	#superclass : #TestResource,
 	#instVars : [
 		'monticelloRepository'
 	],
-	#category : #Metacello-TestsMCResources,
-	#timestamp : ''
+	#category : #Metacello-TestsMCResources
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource class>>project [
+{ #category : #accessing }
+MetacelloAtomicConfigurationResource class >> project [
 
 	^self new project
 ]
 
-{
-	#category : #ConfigurationOfAtomicFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline20Fan: spec  [
+{ #category : #ConfigurationOfAtomicFan }
+MetacelloAtomicConfigurationResource >> baseline20Fan: spec [ 
 	"self reset"
 	<version: '2.0-baseline'>
 	
@@ -37,11 +27,8 @@ MetacelloAtomicConfigurationResource>>baseline20Fan: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline20Foo: spec  [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> baseline20Foo: spec [ 
 	"self reset"
 	<version: '2.0-baseline'>
 	
@@ -57,33 +44,24 @@ MetacelloAtomicConfigurationResource>>baseline20Foo: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline20MethodSourceFan [
+{ #category : #ConfigurationOfAtomicFan }
+MetacelloAtomicConfigurationResource >> baseline20MethodSourceFan [
 
 	^(self class sourceCodeAt: #baseline20Fan:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline20MethodSourceFoo [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> baseline20MethodSourceFoo [
 
 	^(self class sourceCodeAt: #baseline20Foo:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline25Foo: spec  [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> baseline25Foo: spec [ 
 	"self reset"
 	<version: '2.5-baseline'>
 	
@@ -104,22 +82,16 @@ MetacelloAtomicConfigurationResource>>baseline25Foo: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline25MethodSourceFoo [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> baseline25MethodSourceFoo [
 
 	^(self class sourceCodeAt: #baseline25Foo:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline31Fan: spec  [
+{ #category : #ConfigurationOfAtomicFan }
+MetacelloAtomicConfigurationResource >> baseline31Fan: spec [ 
 	"self reset"
 	<version: '3.1-baseline'>
 	
@@ -145,22 +117,16 @@ MetacelloAtomicConfigurationResource>>baseline31Fan: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline31MethodSourceFan [
+{ #category : #ConfigurationOfAtomicFan }
+MetacelloAtomicConfigurationResource >> baseline31MethodSourceFan [
 
 	^(self class sourceCodeAt: #baseline31Fan:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline60Foo: spec  [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> baseline60Foo: spec [ 
 	"self reset"
 	<version: '6.0'>
 	
@@ -179,33 +145,24 @@ MetacelloAtomicConfigurationResource>>baseline60Foo: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline60MethodSourceFoo [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> baseline60MethodSourceFoo [
 
 	^(self class sourceCodeAt: #baseline60Foo:) asString
 
 
 ]
 
-{
-	#category : #'Issue 86',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline60MethodSourceProjectIssue86 [
+{ #category : #'Issue 86' }
+MetacelloAtomicConfigurationResource >> baseline60MethodSourceProjectIssue86 [
 
 	^(self class sourceCodeAt: #baseline60ProjectIssue86:) asString
 
 
 ]
 
-{
-	#category : #'Issue 86',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline60ProjectIssue86: spec  [
+{ #category : #'Issue 86' }
+MetacelloAtomicConfigurationResource >> baseline60ProjectIssue86: spec [ 
 	"projects and packages"
 	"self reset"
 	<version: '6.0'>
@@ -229,11 +186,8 @@ MetacelloAtomicConfigurationResource>>baseline60ProjectIssue86: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline61Foo: spec  [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> baseline61Foo: spec [ 
 	"self reset"
 	<version: '6.1'>
 	
@@ -252,33 +206,24 @@ MetacelloAtomicConfigurationResource>>baseline61Foo: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline61MethodSourceFoo [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> baseline61MethodSourceFoo [
 
 	^(self class sourceCodeAt: #baseline61Foo:) asString
 
 
 ]
 
-{
-	#category : #'Issue 86',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline61MethodSourceProjectIssue86 [
+{ #category : #'Issue 86' }
+MetacelloAtomicConfigurationResource >> baseline61MethodSourceProjectIssue86 [
 
 	^(self class sourceCodeAt: #baseline61ProjectIssue86:) asString
 
 
 ]
 
-{
-	#category : #'Issue 86',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline61ProjectIssue86: spec  [
+{ #category : #'Issue 86' }
+MetacelloAtomicConfigurationResource >> baseline61ProjectIssue86: spec [ 
 	"projects and packages"
 	"self reset"
 	<version: '6.1'>
@@ -302,11 +247,8 @@ MetacelloAtomicConfigurationResource>>baseline61ProjectIssue86: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline62Foo: spec  [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> baseline62Foo: spec [ 
 	"self reset"
 	<version: '6.2'>
 	
@@ -325,33 +267,24 @@ MetacelloAtomicConfigurationResource>>baseline62Foo: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline62MethodSourceFoo [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> baseline62MethodSourceFoo [
 
 	^(self class sourceCodeAt: #baseline62Foo:) asString
 
 
 ]
 
-{
-	#category : #'Issue 86',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline62MethodSourceProjectIssue86 [
+{ #category : #'Issue 86' }
+MetacelloAtomicConfigurationResource >> baseline62MethodSourceProjectIssue86 [
 
 	^(self class sourceCodeAt: #baseline62ProjectIssue86:) asString
 
 
 ]
 
-{
-	#category : #'Issue 86',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>baseline62ProjectIssue86: spec  [
+{ #category : #'Issue 86' }
+MetacelloAtomicConfigurationResource >> baseline62ProjectIssue86: spec [ 
 	"projects and packages"
 	"self reset"
 	<version: '6.2'>
@@ -375,51 +308,36 @@ MetacelloAtomicConfigurationResource>>baseline62ProjectIssue86: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>linearProjectMethodSource [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> linearProjectMethodSource [
 
 	^(self class sourceCodeAt: #project) asString copyReplaceAll: 'atomic' with: 'linear'
 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>monticelloRepository [
+{ #category : #accessing }
+MetacelloAtomicConfigurationResource >> monticelloRepository [
 	^ monticelloRepository
 ]
 
-{
-	#category : #ConfigurationOfAtomicFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>postLoad31baseline [
+{ #category : #ConfigurationOfAtomicFan }
+MetacelloAtomicConfigurationResource >> postLoad31baseline [
 	"Throw an error if GoferFar isn't loaded"
 
 	Smalltalk at: #GoferFar ifAbsent: [ self error: 'GoferFar should be loaded' ]
 ]
 
-{
-	#category : #ConfigurationOfAtomicFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>postLoad31baselineMethodSource [
+{ #category : #ConfigurationOfAtomicFan }
+MetacelloAtomicConfigurationResource >> postLoad31baselineMethodSource [
 
 	^(self class sourceCodeAt: #postLoad31baseline) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>project [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> project [
 	"self reset"
 
 	| constructor project |
@@ -435,33 +353,24 @@ MetacelloAtomicConfigurationResource>>project [
 
 ]
 
-{
-	#category : #ConfigurationOfFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>projectClassMethodSource [
+{ #category : #ConfigurationOfFoo }
+MetacelloAtomicConfigurationResource >> projectClassMethodSource [
 
 	^(self class class sourceCodeAt: #project) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>projectMethodSource [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> projectMethodSource [
 
 	^(self class sourceCodeAt: #project) asString
 
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>setUp [
+{ #category : #running }
+MetacelloAtomicConfigurationResource >> setUp [
 	super setUp.
 	self
 		setUpMonticelloRepository;
@@ -474,11 +383,8 @@ MetacelloAtomicConfigurationResource>>setUp [
 		yourself
 ]
 
-{
-	#category : #ConfigurationOfAtomicFan,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>setUpConfigurationOfAtomicFan [
+{ #category : #ConfigurationOfAtomicFan }
+MetacelloAtomicConfigurationResource >> setUpConfigurationOfAtomicFan [
     "self reset"
 
     | reference className definitionArray |
@@ -539,11 +445,8 @@ MetacelloAtomicConfigurationResource>>setUpConfigurationOfAtomicFan [
                 dependencies: #())
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>setUpConfigurationOfAtomicFoo [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> setUpConfigurationOfAtomicFoo [
     "self reset"
 
     | reference className definitionArray |
@@ -604,11 +507,8 @@ MetacelloAtomicConfigurationResource>>setUpConfigurationOfAtomicFoo [
                 dependencies: #())
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>setUpConfigurationOfLinearFoo [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> setUpConfigurationOfLinearFoo [
     "self reset"
 
     | reference className definitionArray |
@@ -693,11 +593,8 @@ MetacelloAtomicConfigurationResource>>setUpConfigurationOfLinearFoo [
                 dependencies: #())
 ]
 
-{
-	#category : #'Issue 86',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>setUpConfigurationOfProjectIssue86 [
+{ #category : #'Issue 86' }
+MetacelloAtomicConfigurationResource >> setUpConfigurationOfProjectIssue86 [
     "self reset"
 
     | reference className definitionArray |
@@ -758,11 +655,8 @@ MetacelloAtomicConfigurationResource>>setUpConfigurationOfProjectIssue86 [
                 dependencies: #())
 ]
 
-{
-	#category : #ConfigurationOfUmbrella,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>setUpConfigurationOfUmbrellaA [
+{ #category : #ConfigurationOfUmbrella }
+MetacelloAtomicConfigurationResource >> setUpConfigurationOfUmbrellaA [
     "self reset"
 
     | reference className definitionArray |
@@ -811,11 +705,8 @@ MetacelloAtomicConfigurationResource>>setUpConfigurationOfUmbrellaA [
                 dependencies: #())
 ]
 
-{
-	#category : #ConfigurationOfUmbrella,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>setUpConfigurationOfUmbrellaB [
+{ #category : #ConfigurationOfUmbrella }
+MetacelloAtomicConfigurationResource >> setUpConfigurationOfUmbrellaB [
     "self reset"
 
     | reference className definitionArray |
@@ -864,11 +755,8 @@ MetacelloAtomicConfigurationResource>>setUpConfigurationOfUmbrellaB [
                 dependencies: #())
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>setUpMonticelloRepository [
+{ #category : #running }
+MetacelloAtomicConfigurationResource >> setUpMonticelloRepository [
 	"This method builds a fake repository with the version references from #buildReferences."
 	"self reset"
 
@@ -876,11 +764,8 @@ MetacelloAtomicConfigurationResource>>setUpMonticelloRepository [
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>version20Foo: spec  [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> version20Foo: spec [ 
 	"self reset"
 	<version: '2.0' imports: #('2.0-baseline')>
 	
@@ -896,22 +781,16 @@ MetacelloAtomicConfigurationResource>>version20Foo: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>version20MethodSourceFoo [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> version20MethodSourceFoo [
 
 	^(self class sourceCodeAt: #version20Foo:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>version50Foo: spec  [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> version50Foo: spec [ 
 	"self reset"
 	<version: '5.0'>
 	
@@ -924,33 +803,24 @@ MetacelloAtomicConfigurationResource>>version50Foo: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>version50MethodSourceFoo [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> version50MethodSourceFoo [
 
 	^(self class sourceCodeAt: #version50Foo:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfUmbrella,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>version50MethodSourceUmbrella [
+{ #category : #ConfigurationOfUmbrella }
+MetacelloAtomicConfigurationResource >> version50MethodSourceUmbrella [
 
 	^(self class sourceCodeAt: #version50Umbrella:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfUmbrella,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>version50Umbrella: spec  [
+{ #category : #ConfigurationOfUmbrella }
+MetacelloAtomicConfigurationResource >> version50Umbrella: spec [ 
 	"self reset"
 	<version: '5.0'>
 	
@@ -965,11 +835,8 @@ MetacelloAtomicConfigurationResource>>version50Umbrella: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>version51Foo: spec  [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> version51Foo: spec [ 
 	"self reset"
 	<version: '5.1'>
 	
@@ -982,33 +849,24 @@ MetacelloAtomicConfigurationResource>>version51Foo: spec  [
 
 ]
 
-{
-	#category : #ConfigurationOfAtomicFoo,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>version51MethodSourceFoo [
+{ #category : #ConfigurationOfAtomicFoo }
+MetacelloAtomicConfigurationResource >> version51MethodSourceFoo [
 
 	^(self class sourceCodeAt: #version51Foo:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfUmbrella,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>version51MethodSourceUmbrella [
+{ #category : #ConfigurationOfUmbrella }
+MetacelloAtomicConfigurationResource >> version51MethodSourceUmbrella [
 
 	^(self class sourceCodeAt: #version51Umbrella:) asString
 
 
 ]
 
-{
-	#category : #ConfigurationOfUmbrella,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloAtomicConfigurationResource>>version51Umbrella: spec  [
+{ #category : #ConfigurationOfUmbrella }
+MetacelloAtomicConfigurationResource >> version51Umbrella: spec [ 
 	"self reset"
 	<version: '5.1'>
 	

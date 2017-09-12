@@ -11,42 +11,29 @@ Class {
 	#instVars : [
 		'classReorganized'
 	],
-	#category : #System-Announcements-System-Classes,
-	#timestamp : 'cyrilledelaunay 1/18/2011 15:03'
+	#category : #System-Announcements-System-Classes
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassReorganized class>>class: aClass [
+{ #category : #'instance creation' }
+ClassReorganized class >> class: aClass [
 	^self new
 			classReorganized: aClass;
 			yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassReorganized>>classAffected [
+{ #category : #accessing }
+ClassReorganized >> classAffected [
 	^self classReorganized
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassReorganized>>classReorganized [
+{ #category : #accessing }
+ClassReorganized >> classReorganized [
 	
 	^ classReorganized
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-ClassReorganized>>classReorganized: anObject [
+{ #category : #accessing }
+ClassReorganized >> classReorganized: anObject [
 	
 	classReorganized := anObject
 ]

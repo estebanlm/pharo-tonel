@@ -1,11 +1,6 @@
-Extension {
-	#name : #Model
-}
+Extension { #name : #Model }
 
-{
-	#category : #'*Polymorph-Widgets',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Model>>theme [
+{ #category : #'*Polymorph-Widgets' }
+Model >> theme [
 	^ Smalltalk ui theme
 ]

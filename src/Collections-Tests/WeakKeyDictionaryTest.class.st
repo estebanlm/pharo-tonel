@@ -8,24 +8,17 @@ Class {
 		'keys',
 		'dict'
 	],
-	#category : #Collections-Tests-Weak,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:22'
+	#category : #Collections-Tests-Weak
 }
 
-{
-	#category : #'building suites',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakKeyDictionaryTest class>>shouldInheritSelectors [
+{ #category : #'building suites' }
+WeakKeyDictionaryTest class >> shouldInheritSelectors [
 
 ^true
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakKeyDictionaryTest class>>timingLarge [
+{ #category : #'as yet unclassified' }
+WeakKeyDictionaryTest class >> timingLarge [
 	| dict keys size loops |
 	
 	size := 100000.
@@ -45,11 +38,8 @@ WeakKeyDictionaryTest class>>timingLarge [
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakKeyDictionaryTest class>>timingMany [
+{ #category : #'as yet unclassified' }
+WeakKeyDictionaryTest class >> timingMany [
 	| dicts keys size loops count |
 	
 	size := 10.
@@ -72,47 +62,32 @@ WeakKeyDictionaryTest class>>timingMany [
 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakKeyDictionaryTest>>classToBeTested [
+{ #category : #requirements }
+WeakKeyDictionaryTest >> classToBeTested [
 	^ WeakKeyDictionary
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakKeyDictionaryTest>>setUp [
+{ #category : #setup }
+WeakKeyDictionaryTest >> setUp [
 	keys := (1 to: 1000) collect:[:n| 'key', n asString].
 	dict := WeakKeyDictionary new.
 	keys do:[:n| dict at: n put: n,n].
 	super setUp.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakKeyDictionaryTest>>size [
+{ #category : #accessing }
+WeakKeyDictionaryTest >> size [
 	"Answer the number of keys that should be used in testing."
 	^1000
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakKeyDictionaryTest>>supportsNilKey [
+{ #category : #requirements }
+WeakKeyDictionaryTest >> supportsNilKey [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakKeyDictionaryTest>>testClearing [
+{ #category : #testing }
+WeakKeyDictionaryTest >> testClearing [
 	keys := nil.
 	dict at: self put: nil.
 	self assert: dict size = (self size + 1).
@@ -130,11 +105,8 @@ WeakKeyDictionaryTest>>testClearing [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakKeyDictionaryTest>>testGrow [
+{ #category : #testing }
+WeakKeyDictionaryTest >> testGrow [
 	keys := nil.
 	dict at: self put: nil.
 	Smalltalk garbageCollect.

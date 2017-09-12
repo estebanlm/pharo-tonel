@@ -1,23 +1,15 @@
-Extension {
-	#name : #ReProperty
-}
+Extension { #name : #ReProperty }
 
-{
-	#category : #'*qualityAssistantRecording',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReProperty>>dataForQAR [
+{ #category : #'*qualityAssistantRecording' }
+ReProperty >> dataForQAR [
 
 	^ self dataForQAREntityless
 		at: #entity put: sourceAnchor sourceEntity dataForQAR;
 		yourself 
 ]
 
-{
-	#category : #'*qualityAssistantRecording',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReProperty>>dataForQAREntityless [
+{ #category : #'*qualityAssistantRecording' }
+ReProperty >> dataForQAREntityless [
 
 	^ super dataForQAR
 		at: #interval put: sourceAnchor interval dataForQAR;

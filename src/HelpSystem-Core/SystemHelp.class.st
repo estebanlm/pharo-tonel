@@ -10,24 +10,17 @@ So ""HelpBrowser open"" is the same as ""HelpBrowser openOn: SystemHelp"".
 Class {
 	#name : #SystemHelp,
 	#superclass : #Object,
-	#category : #HelpSystem-Core-Utilities,
-	#timestamp : 'tbn 4/30/2010 15:33'
+	#category : #HelpSystem-Core-Utilities
 }
 
-{
-	#category : #'private accessing',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SystemHelp class>>allSystemHelpPragmas [
+{ #category : #'private accessing' }
+SystemHelp class >> allSystemHelpPragmas [
 	^(PragmaCollector filter: [:prag | prag keyword = self pragmaKeyword ]) reset collected
 
 ]
 
-{
-	#category : #conversion,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SystemHelp class>>asHelpTopic  [
+{ #category : #conversion }
+SystemHelp class >> asHelpTopic [ 
 	|topic helpOnHelp sortedTopics |
 	topic := HelpTopic named: 'Help'.
 	self allSystemHelpPragmas do: [:each | 
@@ -43,11 +36,8 @@ SystemHelp class>>asHelpTopic  [
 
 ]
 
-{
-	#category : #'private accessing',
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-SystemHelp class>>pragmaKeyword [
+{ #category : #'private accessing' }
+SystemHelp class >> pragmaKeyword [
 
 	^#systemHelp
 

@@ -10,52 +10,36 @@ Class {
 	#instVars : [
 		'numMethodTempVars'
 	],
-	#category : #OpalCompiler-Core-Bytecode,
-	#timestamp : 'NicolaiHess 11/17/2015 23:57'
+	#category : #OpalCompiler-Core-Bytecode
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRClosureStackCount class>>newOn: stack [
+{ #category : #'instance creation' }
+IRClosureStackCount class >> newOn: stack [
 	^ (self startAt: stack position)
 		numMethodTempVars: stack numMethodTempVars;
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRClosureStackCount>>initialize [
+{ #category : #initialization }
+IRClosureStackCount >> initialize [
 
 	super initialize.
 
 	numMethodTempVars := 0.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRClosureStackCount>>length [
+{ #category : #accessing }
+IRClosureStackCount >> length [
 
 	^ super length - self numMethodTempVars
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRClosureStackCount>>numMethodTempVars [
+{ #category : #accessing }
+IRClosureStackCount >> numMethodTempVars [
 	^ numMethodTempVars
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRClosureStackCount>>numMethodTempVars: nilOrNumber [
+{ #category : #accessing }
+IRClosureStackCount >> numMethodTempVars: nilOrNumber [
 	numMethodTempVars := nilOrNumber ifNil:[0]
 ]

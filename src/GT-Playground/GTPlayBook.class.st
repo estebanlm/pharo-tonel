@@ -15,72 +15,50 @@ Class {
 		'cacheDirectory',
 		'stashDirectory'
 	],
-	#category : #GT-Playground,
-	#timestamp : 'TudorGirba 10/22/2014 07:51'
+	#category : #GT-Playground
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook class>>cacheDirectory [
+{ #category : #accessing }
+GTPlayBook class >> cacheDirectory [
 	" lazy initialize the cache and always ensure its existence - especially while the image is running "
 	cacheDirectory ifNil: [ cacheDirectory := self defaultCacheDirectory ].
 	^ cacheDirectory ensureCreateDirectory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook class>>cacheDirectory: aStringOrFileReference [
+{ #category : #accessing }
+GTPlayBook class >> cacheDirectory: aStringOrFileReference [
 
 	cacheDirectory := self 
 							ensureDirectory: aStringOrFileReference 
 							distinctFrom: self defaultCacheDirectory
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook class>>cleanUp [
+{ #category : #private }
+GTPlayBook class >> cleanUp [
 	
 	self reset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook class>>customDirectory: aFileReference  [
+{ #category : #accessing }
+GTPlayBook class >> customDirectory: aFileReference [ 
 	"this is here for preserving backward compatibility with 
 	older settings that relied on customDirectory instead
 	of cacheDirectory"
 	self cacheDirectory: aFileReference
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook class>>defaultCacheDirectory [
+{ #category : #accessing-defaults }
+GTPlayBook class >> defaultCacheDirectory [
 	^ (FileLocator localDirectory / 'play-cache') asFileReference
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook class>>defaultStashDirectory [
+{ #category : #accessing-defaults }
+GTPlayBook class >> defaultStashDirectory [
 	^ (FileLocator localDirectory / 'play-stash') asFileReference
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook class>>ensureDirectory: aStringOrFileReference distinctFrom: aDefaultDirectory [
+{ #category : #private }
+GTPlayBook class >> ensureDirectory: aStringOrFileReference distinctFrom: aDefaultDirectory [
 		" Ensure aStringOrFileReference is either nil or a valid file-reference object distinct from the default one.
 	  Do not create any directory on disk yet - the first access to any directory will handle that.
 	  #asFileReference and #absolutePath may raise anError! "
@@ -98,160 +76,109 @@ GTPlayBook class>>ensureDirectory: aStringOrFileReference distinctFrom: aDefault
 			do: [ nil ]
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook class>>gtExampleEmpty [
+{ #category : #examples }
+GTPlayBook class >> gtExampleEmpty [
 	<gtExample>
 	<label: 'Empty'>
 	
 	^ self new
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook class>>initialize [
+{ #category : #initializing }
+GTPlayBook class >> initialize [
 	" we have to make sure the cached references are up-to-date after the image starts up "
 	
 	Smalltalk addToStartUpList: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook class>>instance [
+{ #category : #accessing }
+GTPlayBook class >> instance [
 	^ instance ifNil: [ instance := self new ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook class>>reset [
+{ #category : #private }
+GTPlayBook class >> reset [
 	
 	instance := nil.
 	stashDirectory := nil.
 	self resetDirectories
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook class>>resetDirectories [
+{ #category : #private }
+GTPlayBook class >> resetDirectories [
 
 	cacheDirectory := nil
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook class>>startUp [
+{ #category : #initializing }
+GTPlayBook class >> startUp [
 
 	cacheDirectory := nil.
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook class>>startUp: resuming [
+{ #category : #initializing }
+GTPlayBook class >> startUp: resuming [
 
 	cacheDirectory := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook class>>stashDirectory [
+{ #category : #accessing }
+GTPlayBook class >> stashDirectory [
 	" lazy initialize the stash and always ensure its existence - especially while the image is running "
 	(stashDirectory notNil and: [ stashDirectory exists ])
 		ifFalse: [ stashDirectory := self defaultStashDirectory ].
 	^ stashDirectory ensureCreateDirectory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook class>>stashDirectory: aStringOrFileReference [
+{ #category : #accessing }
+GTPlayBook class >> stashDirectory: aStringOrFileReference [
 
 	stashDirectory := self 
 							ensureDirectory: aStringOrFileReference 
 							distinctFrom: self defaultStashDirectory
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook>>addPage: aPage [
+{ #category : #actions }
+GTPlayBook >> addPage: aPage [
 	self pages addFirst: aPage
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook>>addPageIfInteresting: aPage [
+{ #category : #actions }
+GTPlayBook >> addPageIfInteresting: aPage [
 	aPage isInteresting ifFalse: [ ^ self ].
 	self addPage: aPage
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook>>allFiles [
+{ #category : #accessing-dynamic }
+GTPlayBook >> allFiles [
 	^ self class cacheDirectory files select: [ :each | 
 		each extension = GTPlayPage fileExtension ]
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook>>allFilesSorted [
+{ #category : #accessing-dynamic }
+GTPlayBook >> allFilesSorted [
 	^ self allFiles sorted: [ :a :b | 
 		a modificationTime > b modificationTime ]
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook>>defaultPages [
+{ #category : #accessing-defaults }
+GTPlayBook >> defaultPages [
 	^ OrderedCollection new
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook>>defaultPagesLimit [
+{ #category : #accessing-defaults }
+GTPlayBook >> defaultPagesLimit [
 	" page list in ui might get too long / holding too many object might decrease performance "
 	^ 100
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook>>files [
+{ #category : #accessing-dynamic }
+GTPlayBook >> files [
 	^ self allFilesSorted takeFirst: self pagesLimit
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook>>gtPagesIn: composite [
+{ #category : #ui }
+GTPlayBook >> gtPagesIn: composite [
 	<gtInspectorPresentationOrder: 0>
 	composite list 
 		title: 'Pages';
@@ -260,11 +187,8 @@ GTPlayBook>>gtPagesIn: composite [
 		filterOn: [ :text :each | text match: each content ]
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook>>initialize [
+{ #category : #initializing }
+GTPlayBook >> initialize [
 	self flag: 'error handling'.
 	
 	self pages: self defaultPages.
@@ -274,42 +198,27 @@ GTPlayBook>>initialize [
 			do: [ " unhandled exceptions are bad design - we should handle it somehow " ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook>>pages [
+{ #category : #accessing }
+GTPlayBook >> pages [
 	^ pages ifNil: [ pages := self defaultPages ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook>>pages: anObject [
+{ #category : #accessing }
+GTPlayBook >> pages: anObject [
 	pages := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook>>pagesLimit [
+{ #category : #accessing }
+GTPlayBook >> pagesLimit [
 	^ pagesLimit ifNil: [ self defaultPagesLimit ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook>>pagesLimit: anObject [
+{ #category : #accessing }
+GTPlayBook >> pagesLimit: anObject [
 	pagesLimit := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayBook>>removePage: aPage [
+{ #category : #actions }
+GTPlayBook >> removePage: aPage [
 	self pages remove: aPage ifAbsent: [ " ignore if aPage is not registered " ]
 ]

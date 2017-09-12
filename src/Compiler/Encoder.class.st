@@ -20,24 +20,17 @@ Class {
 		'addedSelectorAndMethodClassLiterals',
 		'optimizedSelectors'
 	],
-	#category : #Compiler-Kernel,
-	#timestamp : '<historical>'
+	#category : #Compiler-Kernel
 }
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>accept: aVisitor [
+{ #category : #visiting }
+Encoder >> accept: aVisitor [
 	"I am not really a ParseNode.  Only here to access constants defined in parseNode."
 	self shouldNotImplement
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>allLiterals [
+{ #category : #results }
+Encoder >> allLiterals [
 	addedSelectorAndMethodClassLiterals ifFalse:
 		[addedSelectorAndMethodClassLiterals := true.
 		"Put the optimized selectors in literals so as to browse senders more easily"
@@ -53,11 +46,8 @@ Encoder>>allLiterals [
 	^literalStream contents
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>associationForClass [
+{ #category : #results }
+Encoder >> associationForClass [
 	| assoc |
 	assoc := self environment associationAt: class name ifAbsent: [nil].
 	^assoc value == class
@@ -65,11 +55,8 @@ Encoder>>associationForClass [
 		ifFalse: [Association new value: class]
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>autoBind: name  [
+{ #category : #temps }
+Encoder >> autoBind: name [ 
 	"Declare a block argument as a temp if not already declared."
 	| node |
 	node := scopeTable 
@@ -86,11 +73,8 @@ Encoder>>autoBind: name  [
 	^node
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>bindAndJuggle: name [
+{ #category : #temps }
+Encoder >> bindAndJuggle: name [
 
 	| node nodes first thisCode |
 	node := self reallyBind: name.
@@ -108,11 +92,8 @@ Encoder>>bindAndJuggle: name [
 	^ node
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>bindArg: name  [
+{ #category : #temps }
+Encoder >> bindArg: name [ 
 	"Declare an argument."
 	| node |
 	nTemps >= 15
@@ -121,11 +102,8 @@ Encoder>>bindArg: name  [
 	^ node nowHasDef nowHasRef
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>bindBlockArg: name within: aBlockNode [
+{ #category : #temps }
+Encoder >> bindBlockArg: name within: aBlockNode [
 	"With standard Smalltalk-80 (BlueBook) blocks it used to be legal to use a
 	 method temp as a block argument.  This shouldn't be the case with the
 	 current compiler, which checks for temp names already being used as
@@ -138,11 +116,8 @@ Encoder>>bindBlockArg: name within: aBlockNode [
 	^self autoBind: name
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>bindBlockTemp: name  [
+{ #category : #temps }
+Encoder >> bindBlockTemp: name [ 
 	"Declare a temporary block variable; complain if it's not a field or class variable."
 
 	| node |
@@ -157,11 +132,8 @@ Encoder>>bindBlockTemp: name  [
 
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>bindBlockTemp: name within: aBlockNode [
+{ #category : #temps }
+Encoder >> bindBlockTemp: name within: aBlockNode [
 	"The BlockContext compiler (the Smalltalk-80 BlueBook compiler)
 	 does provide support for ANSI block syntax, but not for ANSI block
 	 semantics.  Here all temps live at the same level, the method level.
@@ -188,11 +160,8 @@ Encoder>>bindBlockTemp: name within: aBlockNode [
 	^self bindBlockTemp: name
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>bindTemp: name  [
+{ #category : #temps }
+Encoder >> bindTemp: name [ 
 	"Declare a temporary; error not if a field or class variable."
 	scopeTable at: name ifPresent:
 	[:node|
@@ -202,11 +171,8 @@ Encoder>>bindTemp: name  [
 	^self reallyBind: name
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>bindTemp: name in: methodSelector [
+{ #category : #temps }
+Encoder >> bindTemp: name [ in: methodSelector
 	"Declare a temporary; error not if a field or class variable."
 	scopeTable at: name ifPresent:[:node|
 		"When non-interactive raise the error only if its a duplicate"
@@ -217,37 +183,25 @@ Encoder>>bindTemp: name in: methodSelector [
 	^self reallyBind: name
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>cantStoreInto: varName [
+{ #category : #encoding }
+Encoder >> cantStoreInto: varName [
 
 	^StdVariables includesKey: varName
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>classEncoding [
+{ #category : #private }
+Encoder >> classEncoding [
 	"This is a hack so that the parser may findout what class it was parsing for when it wants to create a syntax error view."
 	^ class
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>doItInContextName [
+{ #category : #encoding }
+Encoder >> doItInContextName [
 	^'ThisContext'
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>encodeLiteral: object [
+{ #category : #encoding }
+Encoder >> encodeLiteral: object [
 
 	^self
 		name: object
@@ -257,11 +211,8 @@ Encoder>>encodeLiteral: object [
 		set: litSet
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>encodeSelector: aSelector [
+{ #category : #encoding }
+Encoder >> encodeSelector: aSelector [
 
 	^self
 		name: aSelector
@@ -271,19 +222,13 @@ Encoder>>encodeSelector: aSelector [
 		set: selectorSet
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>encodeVariable: name [
+{ #category : #encoding }
+Encoder >> encodeVariable: name [
 	^ self encodeVariable: name sourceRange: nil ifUnknown: [ self undeclared: name ]
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>encodeVariable: name sourceRange: range ifUnknown: action [
+{ #category : #encoding }
+Encoder >> encodeVariable: name sourceRange: range ifUnknown: action [
 	| varNode |
 	varNode := scopeTable at: name
 			ifAbsent: 
@@ -306,11 +251,8 @@ Encoder>>encodeVariable: name sourceRange: range ifUnknown: action [
 	^ varNode
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>environment [
+{ #category : #encoding }
+Encoder >> environment [
 	"Answer the environment of the current compilation context,
 	 be it in a class or global (e.g. a workspace)"
 	^class == nil
@@ -318,11 +260,8 @@ Encoder>>environment [
 		ifFalse: [class environment]
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>evaluateShadowingInteractivelyOf: aNode  [
+{ #category : #temps }
+Encoder >> evaluateShadowingInteractivelyOf: aNode [ 
 	self isAnalyzedMethodDefinedByATrait ifTrue: [^false].
 	aNode isTemp
 				ifTrue: [ (aNode scope >= 0) ifTrue: [ ^self notify:'Name is already defined']  ]
@@ -330,11 +269,8 @@ Encoder>>evaluateShadowingInteractivelyOf: aNode  [
 
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>evaluateShadowingNotInteractivelyOf: aNode  [
+{ #category : #temps }
+Encoder >> evaluateShadowingNotInteractivelyOf: aNode [ 
 	self isAnalyzedMethodDefinedByATrait ifTrue: [^false].
 	aNode isTemp
 				ifTrue: [(aNode scope >= 0) ifTrue: [ ^self notify:'Name is already defined'] ]
@@ -342,11 +278,8 @@ Encoder>>evaluateShadowingNotInteractivelyOf: aNode  [
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>fillDict: dict with: nodeClass mapping: keys to: codeArray [
+{ #category : #initialize-release }
+Encoder >> fillDict: dict with: nodeClass mapping: keys to: codeArray [
 	| codeStream |
 	codeStream := codeArray readStream.
 	keys do: 
@@ -355,11 +288,8 @@ Encoder>>fillDict: dict with: nodeClass mapping: keys to: codeArray [
 				put:  (nodeClass new name: key key: key code: codeStream next)]
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>fixTemp: name [
+{ #category : #temps }
+Encoder >> fixTemp: name [
 	| node |
 	node := scopeTable at: name ifAbsent: [].
 	node class ~~ TempVariableNode ifTrue:
@@ -369,11 +299,8 @@ Encoder>>fixTemp: name [
 	^node
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>floatTemp: node [
+{ #category : #temps }
+Encoder >> floatTemp: node [
 	(node ~~ (scopeTable at: node name ifAbsent: [])
 	or: [node class ~~ TempVariableNode
 	or: [node code ~= (node code: nTemps - 1 type: LdTempType)]]) ifTrue:
@@ -381,11 +308,8 @@ Encoder>>floatTemp: node [
 	nTemps := nTemps - 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>global: ref name: name [
+{ #category : #private }
+Encoder >> global: ref name: name [
 
 	^self
 		name: name
@@ -395,11 +319,8 @@ Encoder>>global: ref name: name [
 		set: litIndSet
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>init: aClass context: aContext notifying: req [
+{ #category : #initialize-release }
+Encoder >> init: aClass context: aContext notifying: req [
 	requestor := req.
 	class := aClass.
 	nTemps := 0.
@@ -432,11 +353,8 @@ Encoder>>init: aClass context: aContext notifying: req [
 	globalSourceRanges := OrderedCollection new: 32
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>initScopeAndLiteralTables [
+{ #category : #initialize-release }
+Encoder >> initScopeAndLiteralTables [
 
 	scopeTable := StdVariables copy.
 	litSet := StdLiterals copy.
@@ -453,27 +371,18 @@ Encoder>>initScopeAndLiteralTables [
 	optimizedSelectors := Set new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>interactive [
+{ #category : #private }
+Encoder >> interactive [
 	^requestor interactive
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>isAnalyzedMethodDefinedByATrait [
+{ #category : #temps }
+Encoder >> isAnalyzedMethodDefinedByATrait [
 	^( class traitOrClassOfSelector: #testReplaceFromToWithStartingAt ) isTrait
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>litIndex: literal [
+{ #category : #encoding }
+Encoder >> litIndex: literal [
 	| p |
 	p := literalStream position.
 	p = 256 ifTrue:
@@ -486,20 +395,14 @@ The 257th literal is: ', literal printString. ^nil].
 	^ p
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>literals [
+{ #category : #results }
+Encoder >> literals [
 	"Should only be used for decompiling primitives"
 	^ literalStream contents
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>lookupInPools: varName ifFound: assocBlock [
+{ #category : #private }
+Encoder >> lookupInPools: varName ifFound: assocBlock [
 
 	^Symbol
 		hasInterned: varName
@@ -510,28 +413,19 @@ Encoder>>lookupInPools: varName ifFound: assocBlock [
 				ifNotNil: [:assoc| assocBlock value: assoc]]
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>maxTemp [
+{ #category : #temps }
+Encoder >> maxTemp [
 
 	^nTemps
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>methodNodeClass [
+{ #category : #accessing }
+Encoder >> methodNodeClass [
 	^MethodNode
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>name: name key: key class: leafNodeClass type: type set: dict  [
+{ #category : #private }
+Encoder >> name: name key: key class: leafNodeClass type: type set: dict [ 
 	^dict at: key
 		ifAbsentPut: 
 			[leafNodeClass new 
@@ -541,11 +435,8 @@ Encoder>>name: name key: key class: leafNodeClass type: type set: dict  [
 				type: type]
 ]
 
-{
-	#category : #temps,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>newTemp: name [
+{ #category : #temps }
+Encoder >> newTemp: name [
 
 	nTemps := nTemps + 1.
 	^ TempVariableNode new
@@ -555,39 +446,27 @@ Encoder>>newTemp: name [
 		scope: 0
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>noteOptimizedSelector: aSymbol [
+{ #category : #encoding }
+Encoder >> noteOptimizedSelector: aSymbol [
 	"Register a selector as being optimized.
 	These optimized selectors will later be registered into the literals so that tools can easily browse senders."
 	optimizedSelectors add: aSymbol
 ]
 
-{
-	#category : #'source mapping',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>noteSourceRange: range forNode: node [
+{ #category : #'source mapping' }
+Encoder >> noteSourceRange: range forNode: node [
 
 	sourceRanges at: node put: range
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>noteSuper [
+{ #category : #initialize-release }
+Encoder >> noteSuper [
 
 	supered := true
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>notify: string [
+{ #category : #'error handling' }
+Encoder >> notify: string [
 	"Put a separate notifier on top of the requestor's window"
 	| req |
 	requestor == nil
@@ -600,11 +479,8 @@ Encoder>>notify: string [
 	^false
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>notify: string at: location [
+{ #category : #'error handling' }
+Encoder >> notify: string at: location [
 
 	| req |
 	requestor == nil
@@ -615,11 +491,8 @@ Encoder>>notify: string at: location [
 	^false
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>possibleVariablesFor: proposedVariable [
+{ #category : #private }
+Encoder >> possibleVariablesFor: proposedVariable [
 
 	| results |
 	results := proposedVariable correctAgainstDictionary: scopeTable
@@ -631,20 +504,14 @@ Encoder>>possibleVariablesFor: proposedVariable [
 
 ]
 
-{
-	#category : #'source mapping',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>rawSourceRanges [
+{ #category : #'source mapping' }
+Encoder >> rawSourceRanges [
 
 	^ sourceRanges 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>reallyBind: name [
+{ #category : #private }
+Encoder >> reallyBind: name [
 
 	| node |
 	node := self newTemp: name.
@@ -652,45 +519,30 @@ Encoder>>reallyBind: name [
 	^node
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>release [
+{ #category : #initialize-release }
+Encoder >> release [
 
 	requestor := nil
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>requestor: req [
+{ #category : #'error handling' }
+Encoder >> requestor: req [
 	"Often the requestor is a BrowserCodeController"
 	requestor := req
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>selector [
+{ #category : #accessing }
+Encoder >> selector [
 	^selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>selector: aSymbol [
+{ #category : #accessing }
+Encoder >> selector: aSymbol [
 	selector := aSymbol
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>sharableLitIndex: literal [
+{ #category : #encoding }
+Encoder >> sharableLitIndex: literal [
 	"Special access prevents multiple entries for post-allocated super send special selectors"
 	1 to: literalStream position do:
 		[:index|
@@ -699,11 +551,8 @@ Encoder>>sharableLitIndex: literal [
 	^self litIndex: literal
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>tempNames  [
+{ #category : #results }
+Encoder >> tempNames [ 
 
 	^ self tempNodes collect:
 		[:node | (node isMemberOf: MessageAsTempNode)
@@ -711,11 +560,8 @@ Encoder>>tempNames  [
 					ifFalse: [node key]]
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>tempNodes  [
+{ #category : #results }
+Encoder >> tempNodes [ 
 	| tempNodes |
 	tempNodes := SortedCollection sortBlock: [:n1 :n2 | n1 code <= n2 code].
 	scopeTable associationsDo:
@@ -726,11 +572,8 @@ Encoder>>tempNodes  [
 	^tempNodes
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>temps: tempVars literals: lits class: cl  [
+{ #category : #initialize-release }
+Encoder >> temps: tempVars literals: lits class: cl [ 
 	"Decompile."
 
 	supered := false.
@@ -743,11 +586,8 @@ Encoder>>temps: tempVars literals: lits class: cl  [
 
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>undeclared: name [
+{ #category : #encoding }
+Encoder >> undeclared: name [
 	| sym |
 	requestor interactive ifTrue:
 		[requestor == #error: ifTrue:
@@ -769,11 +609,8 @@ Encoder>>undeclared: name [
 			[self global: (Association key: sym) name: sym]
 ]
 
-{
-	#category : #results,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>unusedTempNames  [
+{ #category : #results }
+Encoder >> unusedTempNames [ 
 	| unused |
 	unused := OrderedCollection new.
 	scopeTable associationsDo:
@@ -784,11 +621,8 @@ Encoder>>unusedTempNames  [
 	^ unused
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-Encoder>>warnAboutShadowed: name [
+{ #category : #private }
+Encoder >> warnAboutShadowed: name [
 	requestor addWarning: name,' is shadowed'.
 	selector ifNotNil:
 		[Transcript cr; show: class name,'>>', selector, '(', name,' is shadowed)']

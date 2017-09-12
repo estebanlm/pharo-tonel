@@ -1,19 +1,11 @@
-Extension {
-	#name : #RunArray
-}
+Extension { #name : #RunArray }
 
-{
-	#category : #'*STON-Text support',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-RunArray>>fromSton: stonReader [
+{ #category : #'*STON-Text support' }
+RunArray >> fromSton: stonReader [
 	stonReader parseNamedInstVarsFor: self
 ]
 
-{
-	#category : #'*STON-Text support',
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-RunArray>>stonOn: stonWriter [
+{ #category : #'*STON-Text support' }
+RunArray >> stonOn: stonWriter [
 	stonWriter writeObject: self
 ]

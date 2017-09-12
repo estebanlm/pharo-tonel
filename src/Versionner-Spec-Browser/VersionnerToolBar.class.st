@@ -10,15 +10,11 @@ Class {
 		'loadButton',
 		'openButton'
 	],
-	#category : #Versionner-Spec-Browser,
-	#timestamp : '<historical>'
+	#category : #Versionner-Spec-Browser
 }
 
-{
-	#category : #spec,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerToolBar class>>defaultSpec [
+{ #category : #spec }
+VersionnerToolBar class >> defaultSpec [
 	<spec>
 
 	"Define the layout of the Versionner configuration list toolBar"
@@ -31,35 +27,23 @@ VersionnerToolBar class>>defaultSpec [
 	yourself.
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerToolBar class>>loadIcon [
+{ #category : #icons }
+VersionnerToolBar class >> loadIcon [
 	^ self iconNamed: #downIcon
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerToolBar class>>newIcon [
+{ #category : #icons }
+VersionnerToolBar class >> newIcon [
 	^ self iconNamed: #packageAddIcon
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerToolBar class>>openIcon [
+{ #category : #icons }
+VersionnerToolBar class >> openIcon [
 	^ self iconNamed: #openIcon
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerToolBar>>initializePresenter [
+{ #category : #initialization }
+VersionnerToolBar >> initializePresenter [
 	"Initialize widgets behavior"
 
 	newButton action: [ self newConfiguration ].
@@ -68,11 +52,8 @@ VersionnerToolBar>>initializePresenter [
 				owner browseConfiguration: selection ]  ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerToolBar>>initializeWidgets [
+{ #category : #initialization }
+VersionnerToolBar >> initializeWidgets [
 	newButton := (self instantiate: ButtonModel)
 		label: ' New project';
 		icon: self class newIcon;
@@ -93,27 +74,18 @@ VersionnerToolBar>>initializeWidgets [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerToolBar>>loadButton [
+{ #category : #accessing }
+VersionnerToolBar >> loadButton [
 	^ loadButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerToolBar>>newButton [
+{ #category : #accessing }
+VersionnerToolBar >> newButton [
 	^ newButton
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerToolBar>>newConfiguration [
+{ #category : #actions }
+VersionnerToolBar >> newConfiguration [
 	| name selection |
 	name := UIManager default request: 'Name of the new project'.
 	name isEmptyOrNil ifFalse: [ 
@@ -129,10 +101,7 @@ VersionnerToolBar>>newConfiguration [
 			owner browseConfiguration: selection ]  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerToolBar>>openButton [
+{ #category : #accessing }
+VersionnerToolBar >> openButton [
 	^ openButton
 ]

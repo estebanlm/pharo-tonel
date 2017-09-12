@@ -4,14 +4,10 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestCodeImportCommandLineHandlers,
 	#superclass : #PackageManifest,
-	#category : #CodeImportCommandLineHandlers,
-	#timestamp : '<historical>'
+	#category : #CodeImportCommandLineHandlers
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-ManifestCodeImportCommandLineHandlers class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestCodeImportCommandLineHandlers class >> manuallyResolvedDependencies [
 	^ #(#UIManager #'System-CommandLineHandler' #'Collections-Abstract' #'FileSystem-Disk' #'System-Support')
 ]

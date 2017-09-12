@@ -1,30 +1,20 @@
-"
-
-"
 Class {
 	#name : #FFIExternalValueHolderTests,
 	#superclass : #TestCase,
 	#classVars : [
 		'TIME_T_PTR'
 	],
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolderTests>>getTime: t [
+{ #category : #primitives }
+FFIExternalValueHolderTests >> getTime: t [
      ^self ffiCall: #(long time(TIME_T_PTR t) ) module: LibC
              
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolderTests>>testCall [
+{ #category : #tests }
+FFIExternalValueHolderTests >> testCall [
 	| object time |
 	
 	TIME_T_PTR := FFIExternalValueHolder ofType: 'uint32'.
@@ -34,11 +24,8 @@ FFIExternalValueHolderTests>>testCall [
 	self assert: time equals: object value.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalValueHolderTests>>testCreateValueHolder [
+{ #category : #tests }
+FFIExternalValueHolderTests >> testCreateValueHolder [
 	| valueHolderClass object |
 	
 	valueHolderClass := FFIExternalValueHolder ofType: 'int'.

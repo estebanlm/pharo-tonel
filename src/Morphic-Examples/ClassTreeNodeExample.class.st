@@ -7,32 +7,22 @@ Class {
 	#instVars : [
 		'contents'
 	],
-	#category : #Morphic-Examples-MorphTreeWidget,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:56'
+	#category : #Morphic-Examples-MorphTreeWidget
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeNodeExample>>browseItem [
+{ #category : #accessing }
+ClassTreeNodeExample >> browseItem [
 	Smalltalk tools browser openOnClass: self item
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeNodeExample>>childrenItems [
+{ #category : #menu }
+ClassTreeNodeExample >> childrenItems [
 	^ (self item subclasses asArray sort: [:a :b | a name < b name]) asOrderedCollection
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeNodeExample>>classButton [
+{ #category : #menu }
+ClassTreeNodeExample >> classButton [
 	^ ( self theme 
 				newButtonIn: World
 				for: self
@@ -46,51 +36,33 @@ ClassTreeNodeExample>>classButton [
 				yourself
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeNodeExample>>commentText [
+{ #category : #menu }
+ClassTreeNodeExample >> commentText [
 	^ ( self theme  newTextIn: World text: self item comment) unlock; wrapFlag: true; yourself
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeNodeExample>>contents [
+{ #category : #menu }
+ClassTreeNodeExample >> contents [
 	^ contents ifNil: [contents := super contents]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeNodeExample>>exploreItem [
+{ #category : #accessing }
+ClassTreeNodeExample >> exploreItem [
 	self explore
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeNodeExample>>icon [
+{ #category : #menu }
+ClassTreeNodeExample >> icon [
 	^ self iconNamed: #smallExpertIcon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeNodeExample>>inspectItem [
+{ #category : #accessing }
+ClassTreeNodeExample >> inspectItem [
 	self inspect
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeNodeExample>>keyStroke: anEvent from: aTreeMorph  [
+{ #category : #accessing }
+ClassTreeNodeExample >> keyStroke: anEvent from: aTreeMorph [ 
 	| c  |
 	c := anEvent keyCharacter.
 	c = $b
@@ -103,11 +75,8 @@ ClassTreeNodeExample>>keyStroke: anEvent from: aTreeMorph  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-ClassTreeNodeExample>>menu: menu shifted: b  [
+{ #category : #accessing }
+ClassTreeNodeExample >> menu: menu shifted: b [ 
 	menu
 		add: 'Browse (b)'
 		target: self

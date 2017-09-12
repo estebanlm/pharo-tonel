@@ -4,39 +4,26 @@ I'm a package node model.
 Class {
 	#name : #PackageTreePackageNodeModel,
 	#superclass : #PackageTreeNodeModel,
-	#category : #Nautilus-Tree,
-	#timestamp : '<historical>'
+	#category : #Nautilus-Tree
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreePackageNodeModel>>asNautilusSelection [
+{ #category : #converting }
+PackageTreePackageNodeModel >> asNautilusSelection [
 	^ PackageTreePackageSelection node: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreePackageNodeModel>>canBeRenamed [
+{ #category : #testing }
+PackageTreePackageNodeModel >> canBeRenamed [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreePackageNodeModel>>childNodeClassFromItem: anItem  [
+{ #category : #accessing }
+PackageTreePackageNodeModel >> childNodeClassFromItem: anItem [ 
 	^ PackageTreeTagNodeModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreePackageNodeModel>>childrenItems [
+{ #category : #accessing }
+PackageTreePackageNodeModel >> childrenItems [
 	| tags |
 
 	tags := self item classTags.
@@ -46,26 +33,17 @@ PackageTreePackageNodeModel>>childrenItems [
 		ifFalse: [ tags sorted: [ :a :b | a categoryName < b categoryName ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreePackageNodeModel>>helpText [
+{ #category : #accessing }
+PackageTreePackageNodeModel >> helpText [
 	^ self model helpTextFor: self item.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreePackageNodeModel>>icon  [
+{ #category : #accessing }
+PackageTreePackageNodeModel >> icon [ 
 	^ self model packageIconFor: self item.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-PackageTreePackageNodeModel>>rowMorphForColumn: aTreeColumn [
+{ #category : #accessing }
+PackageTreePackageNodeModel >> rowMorphForColumn: aTreeColumn [
 	^ self item name asMorph
 ]

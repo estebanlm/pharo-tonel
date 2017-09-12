@@ -9,41 +9,28 @@ Class {
 		'version',
 		'tags'
 	],
-	#category : #Versionner-Spec-Browser,
-	#timestamp : '<historical>'
+	#category : #Versionner-Spec-Browser
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSVersionMorph class>>withVersion: anMTVersion [
+{ #category : #'instance creation' }
+VSVersionMorph class >> withVersion: anMTVersion [
 	^ self new 
 		version: anMTVersion ;
 		yourself.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSVersionMorph>>addTag: aStringOrSymbol [
+{ #category : #private }
+VSVersionMorph >> addTag: aStringOrSymbol [
 	tags add: (TagMorphFactory newTag: aStringOrSymbol asMorph) morph
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSVersionMorph>>adoptPaneColor: paneColor [
+{ #category : #private }
+VSVersionMorph >> adoptPaneColor: paneColor [
 	"We prevent the adoption of the parent color to be sure to be able to control the final rendered color"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSVersionMorph>>build	 [
+{ #category : #private }
+VSVersionMorph >> build [	
 	version isStable 
 		ifTrue: [ self addTag: #stable ].
 	version isDevelopment 
@@ -53,11 +40,8 @@ VSVersionMorph>>build	 [
 		ifFalse: [  self addMorphFront: version name asMorph ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSVersionMorph>>initialize [
+{ #category : #initialization }
+VSVersionMorph >> initialize [
 	super initialize.	
 	tags := OrderedCollection new.
 	self 
@@ -71,11 +55,8 @@ VSVersionMorph>>initialize [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VSVersionMorph>>version: anObject [
+{ #category : #accessing }
+VSVersionMorph >> version: anObject [
 	version := anObject.
 	version ifNotNil: [ self build ].
 ]

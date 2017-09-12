@@ -1,23 +1,15 @@
-Extension {
-	#name : #Association
-}
+Extension { #name : #Association }
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Association>>head [
+{ #category : #'*Morphic-Base' }
+Association >> head [
 
 	^ (key isKindOf: Association)
 		ifTrue: [ key head ]
 		ifFalse: [ key ]
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Association>>tail [
+{ #category : #'*Morphic-Base' }
+Association >> tail [
 
 	^ (key isKindOf: Association)
 		ifTrue: [ key tail -> value ]

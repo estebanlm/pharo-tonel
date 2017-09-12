@@ -88,119 +88,82 @@ Class {
 		'username',
 		'password'
 	],
-	#category : #Zinc-Resource-Meta-Core,
-	#timestamp : 'SvenVanCaekenberghe 2/5/2015 00:00'
+	#category : #Zinc-Resource-Meta-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl class>>defaultPortForScheme: scheme [
+{ #category : #accessing }
+ZnUrl class >> defaultPortForScheme: scheme [
 	(#(http ws) includes: scheme) ifTrue: [ ^ 80 ].
 	(#(https wss) includes: scheme) ifTrue: [ ^ 443 ].
 	^ nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl class>>fromString: string [
+{ #category : #'instance creation' }
+ZnUrl class >> fromString: string [
 	^ (self new)
 		parseFrom: string; 
 		yourself 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl class>>fromString: string defaultScheme: defaultScheme [
+{ #category : #'instance creation' }
+ZnUrl class >> fromString: string defaultScheme: defaultScheme [
 	^ (self new)
 		parseFrom: string defaultScheme: defaultScheme; 
 		yourself 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl class>>image [
+{ #category : #accessing }
+ZnUrl class >> image [
 	"Return a File URL refering to the file path of the current image file.
 	This is useful as a context to resolve relative URLs, see #withRelativeReference:"
 	
 	^ SmalltalkImage current imagePath asPath asZnUrl
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl class>>schemesNotUsingDoubleSlash [
+{ #category : #accessing }
+ZnUrl class >> schemesNotUsingDoubleSlash [
 	"Most URL schemes use a double slash, as in http://
 	but some don't, return a list of those"
 	
 	^ #( #mailto #telnet )
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl class>>schemesNotUsingPath [
+{ #category : #accessing }
+ZnUrl class >> schemesNotUsingPath [
 	"Most URL schemes use a hierarchical path
 	but some don't, return a list of those"
 	
 	^ #( #mailto )
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>& association [
+{ #category : #convenience }
+ZnUrl >> & association [
 	^ self withQuery: association 
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>+ string [
+{ #category : #convenience }
+ZnUrl >> + string [
 	^ self withRelativeReference: string
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>/ object [
+{ #category : #convenience }
+ZnUrl >> / object [
 	^ object addedToZnUrl: self
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>= anObject [
+{ #category : #comparing }
+ZnUrl >> = anObject [
 	^ self == anObject
 		or: [ self class == anObject class and: [ self equals: anObject ] ]
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>? association [
+{ #category : #convenience }
+ZnUrl >> ? association [
 	^ self withQuery: association 
 ]
 
-{
-	#category : #accessing-path,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>addPathSegment: segment [
+{ #category : #accessing-path }
+ZnUrl >> addPathSegment: segment [
 	"Modify the receiver's path by adding segment at the end"
 	
 	segments isNil ifTrue: [ 
@@ -208,29 +171,20 @@ ZnUrl>>addPathSegment: segment [
 	segments add: segment
 ]
 
-{
-	#category : #accessing-path,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>addPathSegments: pathSegments [
+{ #category : #accessing-path }
+ZnUrl >> addPathSegments: pathSegments [
 	"Modify the receiver's path by adding the elements of pathSegments at the end"
 
 	pathSegments do: [ :each | self addPathSegment: each ]
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>addedToZnUrl: url [
+{ #category : #convenience }
+ZnUrl >> addedToZnUrl: url [
 	^ url withPathSegments: self pathSegments 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>asFileUrl [
+{ #category : #converting }
+ZnUrl >> asFileUrl [
 	"Return a copy of the receiver as a File URL, replacing the scheme with #file.
 	This is useful when you want to do a #asFileReference afterwards."
 	
@@ -239,11 +193,8 @@ ZnUrl>>asFileUrl [
 		yourself
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>asRelativeUrl [
+{ #category : #converting }
+ZnUrl >> asRelativeUrl [
 	"Copy the receiver, with scheme, host and port cleared"
 	
 	^ self copy
@@ -253,37 +204,25 @@ ZnUrl>>asRelativeUrl [
 		yourself
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>asUrl [
+{ #category : #converting }
+ZnUrl >> asUrl [
 	^ self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>asZnUrl [
+{ #category : #converting }
+ZnUrl >> asZnUrl [
 	^ self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>asZnUrlWithDefaults [
+{ #category : #converting }
+ZnUrl >> asZnUrlWithDefaults [
 	^ self copy 
 		setDefaults; 
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>authority [
+{ #category : #accessing }
+ZnUrl >> authority [
 	^ self hasNonDefaultPort 
 		ifTrue: [ 
 			String streamContents: [ :stream | 
@@ -292,46 +231,31 @@ ZnUrl>>authority [
 			self host ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>authorityWithPort [
+{ #category : #accessing }
+ZnUrl >> authorityWithPort [
 	^ String streamContents: [ :stream | 
 			stream nextPutAll: self host; nextPut: $:; print: self portOrDefault ] 
 ]
 
-{
-	#category : #accessing-path,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>clearPath [
+{ #category : #accessing-path }
+ZnUrl >> clearPath [
 	self hasPath
 		ifTrue: [ segments removeAll ]
 ]
 
-{
-	#category : #accessing-path,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>closePath [
+{ #category : #accessing-path }
+ZnUrl >> closePath [
 	self isDirectoryPath
 		ifFalse: [ self addPathSegment: #/ ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>decodePercent: string [
+{ #category : #private }
+ZnUrl >> decodePercent: string [
 	^ ZnResourceMetaUtils decodePercent: string
 ]
 
-{
-	#category : #accessing-path,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>directory [
+{ #category : #accessing-path }
+ZnUrl >> directory [
 	^ self isDirectoryPath
 		ifTrue: [ self path ]
 		ifFalse: [ 
@@ -341,44 +265,29 @@ ZnUrl>>directory [
 					separatedBy: [ stream nextPut: $/ ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>encode: string on: stream [
+{ #category : #private }
+ZnUrl >> encode: string on: stream [
 	stream nextPutAll: (ZnResourceMetaUtils encodePercent: string safeSet: #rfc3986SafeSet encoder: ZnUTF8Encoder new)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>encodePath: string on: stream [
+{ #category : #private }
+ZnUrl >> encodePath: string on: stream [
 	stream nextPutAll: (ZnResourceMetaUtils encodePercent: string safeSet: #urlPathSafeSet encoder: ZnUTF8Encoder new)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>encodeQuery: string on: stream [
+{ #category : #private }
+ZnUrl >> encodeQuery: string on: stream [
 	stream nextPutAll: (ZnResourceMetaUtils encodePercent: string safeSet: #querySafeSet encoder: ZnUTF8Encoder new)
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>enforceKnownScheme [
+{ #category : #convenience }
+ZnUrl >> enforceKnownScheme [
 	(scheme isNil or: [ #(#http #https #ws #wss #file) includes: scheme ])
 		ifFalse: [ (ZnUnknownScheme scheme: scheme) signal ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>equals: url [
+{ #category : #comparing }
+ZnUrl >> equals: url [
 	self scheme = url scheme ifFalse: [ ^ false ].
 	self host = url host ifFalse: [ ^ false ].
 	self portOrDefault = url portOrDefault ifFalse: [ ^ false ].
@@ -389,154 +298,100 @@ ZnUrl>>equals: url [
 	^ true
 ]
 
-{
-	#category : #accessing-path,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>file [
+{ #category : #accessing-path }
+ZnUrl >> file [
 	^ self isDirectoryPath
 		ifTrue: [ String new ]
 		ifFalse: [ segments last ]
 ]
 
-{
-	#category : #accessing-path,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>firstPathSegment [
+{ #category : #accessing-path }
+ZnUrl >> firstPathSegment [
 	^ self isSlash
 		ifTrue: [ nil ]
 		ifFalse: [ segments first ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>fragment [
+{ #category : #accessing }
+ZnUrl >> fragment [
 	^ fragment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>fragment: string [
+{ #category : #accessing }
+ZnUrl >> fragment: string [
 	fragment := string
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>hasFragment [
+{ #category : #testing }
+ZnUrl >> hasFragment [
 	^ fragment notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>hasHost [
+{ #category : #testing }
+ZnUrl >> hasHost [
 	^ host notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>hasNonDefaultPort [
+{ #category : #testing }
+ZnUrl >> hasNonDefaultPort [
 	^ self hasPort 
 		and: [ self port ~= (self class defaultPortForScheme: self schemeOrDefault) ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>hasPassword [
+{ #category : #testing }
+ZnUrl >> hasPassword [
 	^ password notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>hasPath [
+{ #category : #testing }
+ZnUrl >> hasPath [
 	^ segments notNil and: [ segments isEmpty not ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>hasPort [
+{ #category : #testing }
+ZnUrl >> hasPort [
 	^ port notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>hasQuery [
+{ #category : #testing }
+ZnUrl >> hasQuery [
 	^ query notNil and: [ query isEmpty not ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>hasScheme [
+{ #category : #testing }
+ZnUrl >> hasScheme [
 	^ scheme notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>hasSecureScheme [
+{ #category : #testing }
+ZnUrl >> hasSecureScheme [
 	^ #(https wss) includes: self scheme
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>hasUsername [
+{ #category : #testing }
+ZnUrl >> hasUsername [
 	^ username notNil
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>hash [
+{ #category : #comparing }
+ZnUrl >> hash [
 	^ self hasPath
 		ifTrue: [ segments inject: host hash into: [ :sum :each | sum bitXor: each hash ] ]
 		ifFalse: [ host hash ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>host [
+{ #category : #accessing }
+ZnUrl >> host [
 	^ host
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>host: hostName [
+{ #category : #accessing }
+ZnUrl >> host: hostName [
 	host := hostName ifNil: [ nil ] ifNotNil: [ hostName asLowercase ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>inContextOf: absoluteUrl [
+{ #category : #converting }
+ZnUrl >> inContextOf: absoluteUrl [
 	"Return a copy of the receiver where scheme, host and port
 	are taken from absoluteUrl unless they are already in the receiver.
 	Path merging is not supported. See also #withRelativeReference: "
@@ -550,141 +405,93 @@ ZnUrl>>inContextOf: absoluteUrl [
 	^ copy
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>isAbsolute [
+{ #category : #testing }
+ZnUrl >> isAbsolute [
 	"We consider URLs with scheme://host as absolute (port is not relevant here).
 	See also #inContextOf: and #withRelativeReference:"
 	
 	^ self hasScheme and: [ self hasHost ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>isDirectoryPath [
+{ #category : #testing }
+ZnUrl >> isDirectoryPath [
 	^ self hasPath 
 		ifTrue: [ segments last = #/ ]
 		ifFalse: [ true ]
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>isEmpty [
+{ #category : #testing }
+ZnUrl >> isEmpty [
 	^ (self hasScheme | self hasHost | self hasPath | self hasQuery | self hasFragment | self hasUsername | self hasPassword) not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>isFile [
+{ #category : #testing }
+ZnUrl >> isFile [
 	^ scheme = #file
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>isFilePath [
+{ #category : #testing }
+ZnUrl >> isFilePath [
 	^ self isDirectoryPath not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>isHttp [
+{ #category : #testing }
+ZnUrl >> isHttp [
 	^ scheme == #http
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>isHttps [
+{ #category : #testing }
+ZnUrl >> isHttps [
 	^ scheme == #https
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>isLocalHost [
+{ #category : #testing }
+ZnUrl >> isLocalHost [
 	^ self hasHost and: [ #('localhost' '127.0.0.1') includes: self host ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>isRelative [
+{ #category : #testing }
+ZnUrl >> isRelative [
 	^ self isAbsolute not
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>isSchemeNotUsingDoubleSlash: schemeString [
+{ #category : #private }
+ZnUrl >> isSchemeNotUsingDoubleSlash: schemeString [
 	^ self class schemesNotUsingDoubleSlash includes: schemeString asLowercase
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>isSchemeUsingDoubleSlash [
+{ #category : #testing }
+ZnUrl >> isSchemeUsingDoubleSlash [
 	^ (self class schemesNotUsingDoubleSlash includes: self scheme) not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>isSchemeUsingPath [
+{ #category : #testing }
+ZnUrl >> isSchemeUsingPath [
 	^ (self class schemesNotUsingPath includes: self scheme) not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>isSlash [
+{ #category : #testing }
+ZnUrl >> isSlash [
 	^ self hasPath not or: [ segments size = 1 and: [ segments first = #/ ] ]
 ]
 
-{
-	#category : #accessing-path,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>lastPathSegment [
+{ #category : #accessing-path }
+ZnUrl >> lastPathSegment [
 	^ self isSlash
 		ifTrue: [ nil ]
 		ifFalse: [ segments last ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>mailToAddress [
+{ #category : #accessing }
+ZnUrl >> mailToAddress [
 	"Assuming my scheme is #mailto, return the address."
 	
 	^ self username, '@', self host 
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>parseAuthority: string from: start to: stop [
+{ #category : #parsing }
+ZnUrl >> parseAuthority: string from: start to: stop [
 	| index |
 	((index := string indexOf: $@ startingAt: start) > 0 and: [ index < stop ])
 		ifTrue: [
@@ -694,19 +501,13 @@ ZnUrl>>parseAuthority: string from: start to: stop [
 			self parseHostPort: (ReadStream on: string from: start to: stop) ]
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>parseFrom: string [
+{ #category : #parsing }
+ZnUrl >> parseFrom: string [
 	self parseFrom: string defaultScheme: nil
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>parseFrom: string defaultScheme: defaultScheme [
+{ #category : #parsing }
+ZnUrl >> parseFrom: string defaultScheme: defaultScheme [
 	| start end index |
 	start := 1.
 	end := string size.
@@ -742,11 +543,8 @@ ZnUrl>>parseFrom: string defaultScheme: defaultScheme [
 	self parsePath: (ReadStream on: string from: start to: end)
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>parseHostPort: stream [
+{ #category : #parsing }
+ZnUrl >> parseHostPort: stream [
 	| hostString portNumber |
 	self isFile
 		ifTrue: [ 
@@ -762,11 +560,8 @@ ZnUrl>>parseHostPort: stream [
 					self port: portNumber ] ]
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>parsePath: stream [
+{ #category : #parsing }
+ZnUrl >> parsePath: stream [
 	stream peekFor: $/.
 	[ stream atEnd ] whileFalse: [ | segment |
 		segment := String streamContents: [ :stringStream |
@@ -783,11 +578,8 @@ ZnUrl>>parsePath: stream [
 			ifTrue: [ self closePath ] ]
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>parseUserInfo: stream [
+{ #category : #parsing }
+ZnUrl >> parseUserInfo: stream [
 	| userString |
 	(userString := stream upTo: $:) isEmpty 
 		ifFalse: [  
@@ -797,27 +589,18 @@ ZnUrl>>parseUserInfo: stream [
 			self password: (self decodePercent: stream upToEnd) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>password [
+{ #category : #accessing }
+ZnUrl >> password [
 	^ password
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>password: string [
+{ #category : #accessing }
+ZnUrl >> password: string [
 	password := string
 ]
 
-{
-	#category : #accessing-path,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>path [
+{ #category : #accessing-path }
+ZnUrl >> path [
 	self hasPath ifFalse: [ ^ String new ].
 	^ String streamContents: [ :stream | 
 		segments 
@@ -827,47 +610,32 @@ ZnUrl>>path [
 			separatedBy: [ stream nextPut: $/ ] ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>pathPrintString [
+{ #category : #printing }
+ZnUrl >> pathPrintString [
 	^ String streamContents: [ :stream | 
 			self printPathOn: stream ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>pathQueryFragmentPrintString [
+{ #category : #printing }
+ZnUrl >> pathQueryFragmentPrintString [
 	^ String streamContents: [ :stream | 
 			self printPathQueryFragmentOn: stream ]
 ]
 
-{
-	#category : #accessing-path,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>pathSegments [
+{ #category : #accessing-path }
+ZnUrl >> pathSegments [
 	^ segments ifNil: [ #() ]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>performOperation: operation [
+{ #category : #operations }
+ZnUrl >> performOperation: operation [
 	"Look for and execute a handler that can perform operation on the receiver"
 	
 	^ self performOperation: operation with: nil
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>performOperation: operation with: argument [
+{ #category : #operations }
+ZnUrl >> performOperation: operation with: argument [
 	"Look for and execute a handler that can perform operation 
 	on the receiver with the optional argument"
 	
@@ -877,55 +645,37 @@ ZnUrl>>performOperation: operation with: argument [
 		on: self 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>port [
+{ #category : #accessing }
+ZnUrl >> port [
 	^ port
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>port: integer [
+{ #category : #accessing }
+ZnUrl >> port: integer [
 	port := integer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>portIfAbsent: valuable [
+{ #category : #accessing }
+ZnUrl >> portIfAbsent: valuable [
 	^ self hasPort
 		ifTrue: [ self port ]
 		ifFalse: valuable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>portOrDefault [
+{ #category : #accessing }
+ZnUrl >> portOrDefault [
 	^ self portIfAbsent: [ self class defaultPortForScheme: self schemeOrDefault ]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>postCopy [
+{ #category : #copying }
+ZnUrl >> postCopy [
 	super postCopy.
 	segments := segments copy.
 	query := query copy
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>printAuthorityOn: stream [
+{ #category : #printing }
+ZnUrl >> printAuthorityOn: stream [
 	self hasUsername ifTrue: [
 		self encode: self username on: stream.
 		self hasPassword ifTrue: [
@@ -939,11 +689,8 @@ ZnUrl>>printAuthorityOn: stream [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>printOn: stream [
+{ #category : #printing }
+ZnUrl >> printOn: stream [
 	self hasScheme ifTrue: [ 
 		stream nextPutAll: self scheme; nextPut: $:.
 		self isSchemeUsingDoubleSlash ifTrue: [ stream nextPut: $/; nextPut: $/ ] ].
@@ -951,11 +698,8 @@ ZnUrl>>printOn: stream [
 	self printPathQueryFragmentOn: stream
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>printPathOn: stream [
+{ #category : #printing }
+ZnUrl >> printPathOn: stream [
 	self hasPath ifFalse: [ ^ stream nextPut: $/ ].
  	segments do: [ :each | 
 		stream nextPut: $/.
@@ -964,11 +708,8 @@ ZnUrl>>printPathOn: stream [
 				self encodePath: each on: stream ] ] 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>printPathQueryFragmentOn: stream [
+{ #category : #printing }
+ZnUrl >> printPathQueryFragmentOn: stream [
 	self isSchemeUsingPath 
 		ifTrue: [ self printPathOn: stream ].
 	self hasQuery
@@ -979,20 +720,14 @@ ZnUrl>>printPathQueryFragmentOn: stream [
 	self encodeQuery: self fragment on: stream
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>printQueryOn: stream [
+{ #category : #printing }
+ZnUrl >> printQueryOn: stream [
 	stream nextPut: $?. 
 	ZnResourceMetaUtils writeQueryFields: self query on: 	stream
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>processRelativeReference: reference [
+{ #category : #private }
+ZnUrl >> processRelativeReference: reference [
 	"Parse & resolve the relative reference using myself as base URL, destructively"
 	
 	| index end |
@@ -1012,27 +747,18 @@ ZnUrl>>processRelativeReference: reference [
 		ifTrue: [ self closePath ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>query [
+{ #category : #accessing }
+ZnUrl >> query [
 	^ query
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>query: dictionary [
+{ #category : #accessing }
+ZnUrl >> query: dictionary [
 	query := dictionary
 ]
 
-{
-	#category : #accessing-query,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>queryAddAll: keyedCollection [
+{ #category : #accessing-query }
+ZnUrl >> queryAddAll: keyedCollection [
 	"Add all key/value pairs in keyedCollection as query parameters to the receiver.
 	Note that we use #addAllMulti:"
 
@@ -1043,22 +769,16 @@ ZnUrl>>queryAddAll: keyedCollection [
 	^ keyedCollection
 ]
 
-{
-	#category : #accessing-query,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>queryAt: key [
+{ #category : #accessing-query }
+ZnUrl >> queryAt: key [
 	"Return the value of the query parameter key in the receiver.
 	Signal a KeyNotFound exception if there is no such parameter"
 	
 	^ self queryAt: key ifAbsent: [ KeyNotFound signalFor: key printString ]
 ]
 
-{
-	#category : #accessing-query,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>queryAt: key add: value [
+{ #category : #accessing-query }
+ZnUrl >> queryAt: key add: value [
 	"Modify the receiver by adding a query variable key=value.
 	If key already exists, value is added to it."
 
@@ -1067,11 +787,8 @@ ZnUrl>>queryAt: key add: value [
 	query at: key asString add: (value ifNotNil: [value asString])
 ]
 
-{
-	#category : #accessing-query,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>queryAt: key ifAbsent: block [
+{ #category : #accessing-query }
+ZnUrl >> queryAt: key ifAbsent: block [
 	"Return the value of the query parameter key in the receiver.
 	Execute block if there is no such parameter"
 	
@@ -1080,11 +797,8 @@ ZnUrl>>queryAt: key ifAbsent: block [
 		ifFalse: block
 ]
 
-{
-	#category : #accessing-query,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>queryAt: key ifPresent: block [
+{ #category : #accessing-query }
+ZnUrl >> queryAt: key ifPresent: block [
 	"Execute block with the value of the query parameter named key as value.
 	Return nil if there is no such parameter"
 	
@@ -1092,11 +806,8 @@ ZnUrl>>queryAt: key ifPresent: block [
 		ifTrue: [ self query at: key asString ifPresent: block ]
 ]
 
-{
-	#category : #accessing-query,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>queryAt: key put: value [
+{ #category : #accessing-query }
+ZnUrl >> queryAt: key put: value [
 	"Modify the receiver by setting a query variable key=value.
 	If key is already exists, it is overwritten."
 
@@ -1105,22 +816,16 @@ ZnUrl>>queryAt: key put: value [
 	query at: key asString put: (value ifNotNil: [value asString])
 ]
 
-{
-	#category : #accessing-query,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>queryDo: block [
+{ #category : #accessing-query }
+ZnUrl >> queryDo: block [
 	"Execute block for each query key/value pair in the receiver"
 	
 	self hasQuery ifTrue: [ 
 		self query keysAndValuesDo: block ]
 ]
 
-{
-	#category : #accessing-query,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>queryKeys [
+{ #category : #accessing-query }
+ZnUrl >> queryKeys [
 	"Return the collection of all query keys in the receiver"
 	
 	^ self hasQuery
@@ -1128,22 +833,16 @@ ZnUrl>>queryKeys [
 		ifFalse: [ #() ]
 ]
 
-{
-	#category : #accessing-query,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>queryRemoveAll [
+{ #category : #accessing-query }
+ZnUrl >> queryRemoveAll [
 	"Modify the receiver by removing all query parameters"
 	
 	self hasQuery
 		ifTrue: [ self query removeAll ]
 ]
 
-{
-	#category : #accessing-query,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>queryRemoveKey: key [
+{ #category : #accessing-query }
+ZnUrl >> queryRemoveKey: key [
 	"Modify the receiver by remove the query parameter named key.
 	Do nothing if there is no such parameter"
 	
@@ -1151,100 +850,67 @@ ZnUrl>>queryRemoveKey: key [
 		ifTrue: [ self query removeKey: key asString ifAbsent: [ ] ]
 ]
 
-{
-	#category : #accessing-path,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>removeFirstPathSegment [
+{ #category : #accessing-path }
+ZnUrl >> removeFirstPathSegment [
 	self hasPath
 		ifTrue: [ segments removeFirst ]
 ]
 
-{
-	#category : #accessing-path,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>removeLastPathSegment [
+{ #category : #accessing-path }
+ZnUrl >> removeLastPathSegment [
 	self hasPath
 		ifTrue: [ segments removeLast ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>scheme [
+{ #category : #accessing }
+ZnUrl >> scheme [
 	^ scheme
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>scheme: anObject [
+{ #category : #accessing }
+ZnUrl >> scheme: anObject [
 	anObject isNil
 		ifTrue: [ scheme := nil ]
 		ifFalse: [ scheme := anObject asLowercase asSymbol ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>schemeOrDefault [
+{ #category : #accessing }
+ZnUrl >> schemeOrDefault [
 	^ self hasScheme 
 		ifTrue: [ self scheme ]
 		ifFalse: [ #http ]    
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>segments [
+{ #category : #private }
+ZnUrl >> segments [
 	^ segments
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>segments: collection [
+{ #category : #private }
+ZnUrl >> segments: collection [
 	segments := collection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>setDefaults [
+{ #category : #private }
+ZnUrl >> setDefaults [
 	self hasScheme 
 		ifFalse: [ self scheme: self schemeOrDefault ].
 	self hasPort 
 		ifFalse: [ self port: self portOrDefault ]    
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>username [
+{ #category : #accessing }
+ZnUrl >> username [
 	^ username
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>username: string [
+{ #category : #accessing }
+ZnUrl >> username: string [
 	username := string
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>withPathSegment: segment [
+{ #category : #convenience }
+ZnUrl >> withPathSegment: segment [
 	"Return a new URL equal to the receiver with its path extended with segment"
 	
 	^ self copy
@@ -1252,11 +918,8 @@ ZnUrl>>withPathSegment: segment [
 		yourself
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>withPathSegments: pathSegments [
+{ #category : #convenience }
+ZnUrl >> withPathSegments: pathSegments [
 	"Return a new URL equal to the receiver with its path extended with pathSegments"
 	
 	^ self copy
@@ -1264,11 +927,8 @@ ZnUrl>>withPathSegments: pathSegments [
 		yourself
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>withQuery: association [
+{ #category : #convenience }
+ZnUrl >> withQuery: association [
 	"Return a new URL equal to the receiver with the association's 
 	key=value added as a query parameter.
 	Note that #queryAt:add: is used."
@@ -1279,11 +939,8 @@ ZnUrl>>withQuery: association [
 		
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnUrl>>withRelativeReference: reference [
+{ #category : #parsing }
+ZnUrl >> withRelativeReference: reference [
 	"Return a new URL by parsing & resolving the relative reference using myself as base URL.
 	This implements the process described in RFC 3986 Section 5"
 	

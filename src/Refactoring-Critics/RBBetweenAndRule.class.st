@@ -4,33 +4,23 @@ Replaces ""a >= b and: [a <= c]"" by ""a between: b and: c.
 Class {
 	#name : #RBBetweenAndRule,
 	#superclass : #RBTransformationRule,
-	#category : #Refactoring-Critics-TransformationRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 17:38'
+	#category : #Refactoring-Critics-TransformationRules
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBetweenAndRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBBetweenAndRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'BetweenAndRule'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBetweenAndRule>>group [
+{ #category : #accessing }
+RBBetweenAndRule >> group [
 	^ 'Coding Idiom Violation'
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBetweenAndRule>>initialize [
+{ #category : #initialization }
+RBBetweenAndRule >> initialize [
 	super initialize.
 	self rewriteRule
 		replace: '``@a >= ``@b and: [``@a <= ``@c]' with: '``@a between: ``@b and: ``@c';
@@ -51,10 +41,7 @@ RBBetweenAndRule>>initialize [
 		replace: '``@c >= ``@a & (``@b <= ``@a)' with: '``@a between: ``@b and: ``@c'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBBetweenAndRule>>name [
+{ #category : #accessing }
+RBBetweenAndRule >> name [
 	^ '"a >= b and: [a <= c]" -> "a between: b and: c"'
 ]

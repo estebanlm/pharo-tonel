@@ -13,26 +13,19 @@ The help topic description object has to understand the following messages:
 Class {
 	#name : #CustomHelpHelpBuilder,
 	#superclass : #HelpBuilder,
-	#category : #HelpSystem-Core-Builders,
-	#timestamp : 'tbn 3/29/2010 13:30'
+	#category : #HelpSystem-Core-Builders
 }
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelpHelpBuilder>>build [
+{ #category : #building }
+CustomHelpHelpBuilder >> build [
 	"Start building a help topic from a code description"
 	
 	topicToBuild := self createTopicFrom: rootToBuildFrom 
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-CustomHelpHelpBuilder>>createTopicFrom: aDescription [
+{ #category : #private }
+CustomHelpHelpBuilder >> createTopicFrom: aDescription [
 	"Create a topic from a description stored on a class.
 	aDescription can specify (via #pages) the name of a class and not
 	only a selector. This allows for hierarchies with 'subtrees in the middle'"

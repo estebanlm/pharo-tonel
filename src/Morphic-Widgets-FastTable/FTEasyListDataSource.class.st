@@ -11,15 +11,11 @@ Class {
 		'menuBlock',
 		'header'
 	],
-	#category : #Morphic-Widgets-FastTable-Easy,
-	#timestamp : 'EstebanLorenzano 6/3/2015 15:02'
+	#category : #Morphic-Widgets-FastTable-Easy
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTEasyListDataSource>>cellColumn: column row: rowIndex [
+{ #category : #accessing }
+FTEasyListDataSource >> cellColumn: column row: rowIndex [ 
 	^ FTCellMorph new
 		cellInset: 5;
 		in: [ :me | 
@@ -29,19 +25,13 @@ FTEasyListDataSource>>cellColumn: column row: rowIndex [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTEasyListDataSource>>display: aBlock [
+{ #category : #accessing }
+FTEasyListDataSource >> display: aBlock [
 	displayBlock := aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTEasyListDataSource>>displayFor: rowIndex [
+{ #category : #private }
+FTEasyListDataSource >> displayFor: rowIndex [
 	| element |
 	element := self elementAt: rowIndex.
 	^ displayBlock 
@@ -49,36 +39,24 @@ FTEasyListDataSource>>displayFor: rowIndex [
 		ifNil: [ ^ element ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTEasyListDataSource>>icon: aBlock [
+{ #category : #accessing }
+FTEasyListDataSource >> icon: aBlock [
 	iconBlock := aBlock
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTEasyListDataSource>>iconFor: rowIndex [
+{ #category : #private }
+FTEasyListDataSource >> iconFor: rowIndex [
 	iconBlock ifNil: [ ^ nil ].
 	^ iconBlock value: (self elementAt: rowIndex)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTEasyListDataSource>>menu: aBlock [
+{ #category : #accessing }
+FTEasyListDataSource >> menu: aBlock [
 	menuBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTEasyListDataSource>>menuColumn: column row: rowIndex [
+{ #category : #accessing }
+FTEasyListDataSource >> menuColumn: column row: rowIndex [
 	menuBlock ifNil: [ ^ nil ].
 	rowIndex = 0 ifTrue: [ 
 		"I could answer a menu without selection, but in this case I will just answer nil, 

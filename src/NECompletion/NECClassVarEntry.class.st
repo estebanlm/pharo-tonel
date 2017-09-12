@@ -4,30 +4,20 @@ I represent a class Variable
 Class {
 	#name : #NECClassVarEntry,
 	#superclass : #NECEntry,
-	#category : #NECompletion-Model,
-	#timestamp : '<historical>'
+	#category : #NECompletion-Model
 }
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECClassVarEntry>>guessTypeWith: anECContext  [
+{ #category : #operations }
+NECClassVarEntry >> guessTypeWith: anECContext [ 
 	^ anECContext guessClassVarClass: contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECClassVarEntry>>label [
+{ #category : #accessing }
+NECClassVarEntry >> label [
 	^ 'class variable'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECClassVarEntry>>type [
+{ #category : #accessing }
+NECClassVarEntry >> type [
 	^ #classVar
 ]

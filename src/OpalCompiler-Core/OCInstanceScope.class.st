@@ -9,23 +9,16 @@ Class {
 		'selfVar',
 		'superVar'
 	],
-	#category : #OpalCompiler-Core-Semantics,
-	#timestamp : 'MarcusDenker 8/11/2014 10:18'
+	#category : #OpalCompiler-Core-Semantics
 }
 
-{
-	#category : #acessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCInstanceScope>>allTemps [
+{ #category : #acessing }
+OCInstanceScope >> allTemps [
 	^#()
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCInstanceScope>>findVariable: lookupBlock ifNone: notFoundBlock  [
+{ #category : #lookup }
+OCInstanceScope >> findVariable: lookupBlock ifNone: notFoundBlock [ 
 
 	(lookupBlock value: selfVar) ifTrue: [ ^ selfVar ].
 	(lookupBlock value: superVar) ifTrue: [ ^ superVar ].
@@ -35,11 +28,8 @@ OCInstanceScope>>findVariable: lookupBlock ifNone: notFoundBlock  [
 	^ outerScope findVariable: lookupBlock ifNone: notFoundBlock 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCInstanceScope>>initialize [
+{ #category : #initialization }
+OCInstanceScope >> initialize [
   
 	vars := Dictionary new.
 	selfVar := OCSelfVariable new
@@ -50,28 +40,19 @@ OCInstanceScope>>initialize [
 		yourself.
 ]
 
-{
-	#category : #acessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCInstanceScope>>instanceScope [
+{ #category : #acessing }
+OCInstanceScope >> instanceScope [
 	^self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCInstanceScope>>isInstanceScope [
+{ #category : #testing }
+OCInstanceScope >> isInstanceScope [
 
 	^ true
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCInstanceScope>>lookupVar: name [
+{ #category : #lookup }
+OCInstanceScope >> lookupVar: name [
 	"Return a ScopeVar for my inst var with this name.  Return nil if none found"
 
 	name = 'self' ifTrue: [^ selfVar].
@@ -79,11 +60,8 @@ OCInstanceScope>>lookupVar: name [
 	^ vars at: name ifAbsent: [self outerScope lookupVar: name]
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCInstanceScope>>lookupVar: name inContext: aContext [
+{ #category : #lookup }
+OCInstanceScope >> lookupVar: name inContext: aContext [
 	"Return a ScopeVar for my inst var with this name.  Return nil if none found"
 
 	name = 'self' ifTrue: [^ selfVar].
@@ -91,31 +69,22 @@ OCInstanceScope>>lookupVar: name inContext: aContext [
 	^ vars at: name ifAbsent: [self outerScope lookupVar: name inContext: aContext ]
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCInstanceScope>>lookupVarForDeclaration: name [
+{ #category : #lookup }
+OCInstanceScope >> lookupVarForDeclaration: name [
 	"Return a ScopeVar for my inst var with this name.  Return nil if none found"
 	name = 'self' ifTrue: [^ selfVar].
 	name = 'super' ifTrue: [^ superVar].
 	^ vars at: name ifAbsent: [self outerScope lookupVarForDeclaration: name]
 ]
 
-{
-	#category : #scope,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCInstanceScope>>newMethodScope [
+{ #category : #scope }
+OCInstanceScope >> newMethodScope [
 
 	^ OCMethodScope new outerScope: self
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCInstanceScope>>slots: slotCollection [
+{ #category : #initializing }
+OCInstanceScope >> slots: slotCollection [
 
 	slotCollection do: [ :slot |
 		vars at: slot name put:
@@ -126,11 +95,8 @@ OCInstanceScope>>slots: slotCollection [
 
 ]
 
-{
-	#category : #lookup,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCInstanceScope>>variableNamed: name ifAbsent: aBlock [
+{ #category : #lookup }
+OCInstanceScope >> variableNamed: name ifAbsent: aBlock [
 	"Return a ScopeVar for my inst var with this name.  Return nil if none found"
 
 	name = 'self' ifTrue: [^ selfVar].

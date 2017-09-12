@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterContentsBrick,
 	#superclass : #GLMBrick,
@@ -9,23 +6,16 @@ Class {
 		'dropDownBrick',
 		'spotterModel'
 	],
-	#category : #GT-Spotter-UI,
-	#timestamp : ''
+	#category : #GT-Spotter-UI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContentsBrick>>dropDownBrick [
+{ #category : #accessing }
+GTSpotterContentsBrick >> dropDownBrick [
 	^ dropDownBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContentsBrick>>dropDownBrick: aBrick [
+{ #category : #accessing }
+GTSpotterContentsBrick >> dropDownBrick: aBrick [
 	dropDownBrick ifNotNil: [self removeBrick: dropDownBrick].
 	dropDownBrick := aBrick asBrick.
 	
@@ -36,19 +26,13 @@ GTSpotterContentsBrick>>dropDownBrick: aBrick [
 	"aBrick openInWindow"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContentsBrick>>headerBrick [
+{ #category : #accessing }
+GTSpotterContentsBrick >> headerBrick [
 	^ headerBrick
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContentsBrick>>headerBrick: aBrick [
+{ #category : #accessing }
+GTSpotterContentsBrick >> headerBrick: aBrick [
 	
 	headerBrick ifNotNil: [self removeBrick: headerBrick].
 	headerBrick := aBrick.
@@ -58,89 +42,62 @@ GTSpotterContentsBrick>>headerBrick: aBrick [
 	self addBrickBack: headerBrick
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContentsBrick>>initialize [
+{ #category : #initialization }
+GTSpotterContentsBrick >> initialize [
 	super initialize.
 		
 	self headerBrick: self newHeaderBrick.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContentsBrick>>isDropDownPaneVisible [
+{ #category : #testing }
+GTSpotterContentsBrick >> isDropDownPaneVisible [
 
 	^ self dropDownBrick isNotNil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContentsBrick>>newDropDownMorph [
+{ #category : #'instance creation' }
+GTSpotterContentsBrick >> newDropDownMorph [
 
 	^ GTSpotterDropDownMorph new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContentsBrick>>newHeaderBrick [
+{ #category : #'instance creation' }
+GTSpotterContentsBrick >> newHeaderBrick [
 
 	^ GTSpotterHeaderBrick new
 ]
 
-{
-	#category : #events-processing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContentsBrick>>onStepAdded [
+{ #category : #events-processing }
+GTSpotterContentsBrick >> onStepAdded [
 	"as soon as step added I need to show drop down pane"
 	self isDropDownPaneVisible ifTrue: [ ^ self ].
 	
 	self showDropDownPane
 ]
 
-{
-	#category : #brick-properties-events,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContentsBrick>>onThemerChanged [
+{ #category : #brick-properties-events }
+GTSpotterContentsBrick >> onThemerChanged [
 	super onThemerChanged.
 	
 	self themer spotterThemer spotterContentsWidgetStyleFor: self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContentsBrick>>showDropDownPane [
+{ #category : #actions }
+GTSpotterContentsBrick >> showDropDownPane [
 
 	self dropDownBrick: self newDropDownMorph.
 	self dropDownBrick spotterModel: self spotterModel.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContentsBrick>>spotterModel [
+{ #category : #accessing }
+GTSpotterContentsBrick >> spotterModel [
 
 	^ spotterModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterContentsBrick>>spotterModel: aModel [
+{ #category : #accessing }
+GTSpotterContentsBrick >> spotterModel: aModel [
 
 	spotterModel := aModel.
 	self headerBrick spotterModel: spotterModel.

@@ -7,6 +7,5 @@ SystemAnnouncer uniqueInstance
 Class {
 	#name : #JobStart,
 	#superclass : #JobAnnouncement,
-	#category : #Jobs-Announcements,
-	#timestamp : '<historical>'
+	#category : #Jobs-Announcements
 }

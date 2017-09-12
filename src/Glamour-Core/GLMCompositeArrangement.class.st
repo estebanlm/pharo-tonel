@@ -7,38 +7,25 @@ Class {
 	#instVars : [
 		'composite'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'tg 1/6/2010 23:12'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositeArrangement class>>of: aCompositePresentation [
+{ #category : #'instance creation' }
+GLMCompositeArrangement class >> of: aCompositePresentation [
 	^ self new composite: aCompositePresentation; yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositeArrangement>>composite [
+{ #category : #accessing }
+GLMCompositeArrangement >> composite [
 	^ composite
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositeArrangement>>composite: anObject [
+{ #category : #accessing }
+GLMCompositeArrangement >> composite: anObject [
 	composite := anObject
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMCompositeArrangement>>renderGlamorouslyOn: aRenderer [
+{ #category : #rendering }
+GLMCompositeArrangement >> renderGlamorouslyOn: aRenderer [
 	self subclassResponsibility
 ]

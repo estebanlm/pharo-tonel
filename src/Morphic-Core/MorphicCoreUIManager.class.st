@@ -11,15 +11,11 @@ Class {
 	#classVars : [
 		'UIProcess'
 	],
-	#category : #Morphic-Core-Support,
-	#timestamp : 'PavelKrivanek 7/20/2014 15:00'
+	#category : #Morphic-Core-Support
 }
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicCoreUIManager>>checkForNewDisplaySize [
+{ #category : #'ui requests' }
+MorphicCoreUIManager >> checkForNewDisplaySize [
 
   "Check whether the screen size has changed and if so take appropriate actions"
 
@@ -29,20 +25,14 @@ MorphicCoreUIManager>>checkForNewDisplaySize [
 
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicCoreUIManager>>currentWorld [
+{ #category : #'ui requests' }
+MorphicCoreUIManager >> currentWorld [
   ActiveWorld ifNotNil: [^ActiveWorld].
   ^World
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicCoreUIManager>>newDisplayDepthNoRestore: pixelSize [
+{ #category : #'ui requests' }
+MorphicCoreUIManager >> newDisplayDepthNoRestore: pixelSize [
 
   "Change depths.  Check if there is enough space!  , di"
   | area need |
@@ -60,33 +50,24 @@ MorphicCoreUIManager>>newDisplayDepthNoRestore: pixelSize [
   DisplayScreen startUp
 ]
 
-{
-	#category : #'ui requests',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicCoreUIManager>>restoreDisplayAfter: aBlock [
+{ #category : #'ui requests' }
+MorphicCoreUIManager >> restoreDisplayAfter: aBlock [
 
   aBlock value.
   World activeHand waitButton.
   World fullRepaintNeeded.
 ]
 
-{
-	#category : #'ui process',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicCoreUIManager>>resumeUIProcess: aProcess [
+{ #category : #'ui process' }
+MorphicCoreUIManager >> resumeUIProcess: aProcess [
   "Adopt aProcess as the project process -- probably because of proceeding from a debugger"
       
   UIProcess := aProcess.
   UIProcess resume
 ]
 
-{
-	#category : #'ui process',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicCoreUIManager>>spawnNewProcess [
+{ #category : #'ui process' }
+MorphicCoreUIManager >> spawnNewProcess [
 
   UIProcess := [
     [WorldMorph doOneCycle.  Processor yield.  false] whileFalse: [].
@@ -95,20 +76,14 @@ MorphicCoreUIManager>>spawnNewProcess [
   UIProcess resume
 ]
 
-{
-	#category : #'ui process',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicCoreUIManager>>terminateUIProcess [
+{ #category : #'ui process' }
+MorphicCoreUIManager >> terminateUIProcess [
   UIProcess suspend; terminate.
   UIProcess := nil "?"
 ]
 
-{
-	#category : #'ui process',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-MorphicCoreUIManager>>uiProcess [
+{ #category : #'ui process' }
+MorphicCoreUIManager >> uiProcess [
   " Answer the currently active UI process for morphic world.
   Client should check explicitly if #uiProcess answers nil or not (see other implementations)"
 

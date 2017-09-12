@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MetacelloVersionSpecTestCase,
 	#superclass : #MetacelloSpecTestCase,
-	#category : #Metacello-TestsCore-Specs,
-	#timestamp : ''
+	#category : #Metacello-TestsCore-Specs
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionSpecTestCase>>testVersionMergeSpec [
+{ #category : #tests }
+MetacelloVersionSpecTestCase >> testVersionMergeSpec [
     | versionA versionB version |
     versionA := self versionSpec
         blessing: #'baseline';
@@ -42,11 +35,8 @@ MetacelloVersionSpecTestCase>>testVersionMergeSpec [
     self assert: version postLoadDoIt value == #'postLoadDoItB'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionSpecTestCase>>testVersionSpec [
+{ #category : #tests }
+MetacelloVersionSpecTestCase >> testVersionSpec [
     | version |
     version := self versionSpec
         blessing: #'baseline';
@@ -68,11 +58,8 @@ MetacelloVersionSpecTestCase>>testVersionSpec [
     self should: [ version postLoadDoIt: '' ] raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloVersionSpecTestCase>>testVersionSpecCreateVersion [
+{ #category : #tests }
+MetacelloVersionSpecTestCase >> testVersionSpecCreateVersion [
     | spec version |
     spec := self versionSpec
         blessing: #'baseline';

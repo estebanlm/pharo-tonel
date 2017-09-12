@@ -1,12 +1,7 @@
-Extension {
-	#name : #ByteArray
-}
+Extension { #name : #ByteArray }
 
-{
-	#category : #'*System-Hashing-Core',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ByteArray>>asByteArrayOfSize: size [
+{ #category : #'*System-Hashing-Core' }
+ByteArray >> asByteArrayOfSize: size [
 	"
 		'34523' asByteArray asByteArrayOfSize: 100.
 
@@ -25,11 +20,8 @@ ByteArray>>asByteArrayOfSize: size [
 
 ]
 
-{
-	#category : #'*System-Hashing-Core',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ByteArray>>asInteger [
+{ #category : #'*System-Hashing-Core' }
+ByteArray >> asInteger [
 	"Convert me to an Integer, network byte order, most significant byte first, big endian"
 	
 	| integer |
@@ -39,11 +31,8 @@ ByteArray>>asInteger [
 	^ integer
 ]
 
-{
-	#category : #'*System-Hashing-Core',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ByteArray>>bitXor: aByteArray  [
+{ #category : #'*System-Hashing-Core' }
+ByteArray >> bitXor: aByteArray [ 
 	| answer |
 	answer := self copy.
 	1 
@@ -56,11 +45,8 @@ ByteArray>>bitXor: aByteArray  [
 	^ answer
 ]
 
-{
-	#category : #'*System-Hashing-Core',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-ByteArray>>destroy [
+{ #category : #'*System-Hashing-Core' }
+ByteArray >> destroy [
 	1 to: self size do: 
 		[ : x |
 		self at: x put: 0 ]

@@ -14,33 +14,23 @@ Class {
 		'primitiveNum',
 		'spec'
 	],
-	#category : #OpalCompiler-Core-Bytecode,
-	#timestamp : 'ajh 3/24/2003 21:35'
+	#category : #OpalCompiler-Core-Bytecode
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrimitive class>>from: aPragmaNode [
+{ #category : #initialization }
+IRPrimitive class >> from: aPragmaNode [
 
 	^ self new initializeFrom: aPragmaNode
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrimitive class>>null [
+{ #category : #'instance creation' }
+IRPrimitive class >> null [
 
 	^ self new num: 0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrimitive>>initializeFrom: aPragmaNode [
+{ #category : #accessing }
+IRPrimitive >> initializeFrom: aPragmaNode [
 
 	primitiveNum := 0.
 	spec := Array 
@@ -50,38 +40,26 @@ IRPrimitive>>initializeFrom: aPragmaNode [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrimitive>>num [
+{ #category : #accessing }
+IRPrimitive >> num [
 
 	^ primitiveNum
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrimitive>>num: n [
+{ #category : #accessing }
+IRPrimitive >> num: n [
 
 	primitiveNum := n
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrimitive>>printOn: aStream [
+{ #category : #printing }
+IRPrimitive >> printOn: aStream [
 
 	aStream nextPutAll: 'primitive '; print: primitiveNum
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrimitive>>printPrimitiveOn: aStream [
+{ #category : #printing }
+IRPrimitive >> printPrimitiveOn: aStream [
 	"Print the primitive on aStream"
 
 	| primIndex primDecl |
@@ -120,30 +98,21 @@ IRPrimitive>>printPrimitiveOn: aStream [
 						nextPutAll: '" ' ] ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrimitive>>sourceText [
+{ #category : #printing }
+IRPrimitive >> sourceText [
 
 	^ String streamContents: [:stream |
 		self printPrimitiveOn: stream]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrimitive>>spec [
+{ #category : #accessing }
+IRPrimitive >> spec [
 
 	^ spec
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRPrimitive>>spec: literal [
+{ #category : #accessing }
+IRPrimitive >> spec: literal [
 
 	spec := literal
 ]

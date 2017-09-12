@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloScriptingResource,
 	#superclass : #TestResource,
@@ -9,15 +6,11 @@ Class {
 		'externalRepository',
 		'sampleRepository'
 	],
-	#category : #Metacello-TestsMCResources,
-	#timestamp : ''
+	#category : #Metacello-TestsMCResources
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource class>>externalConfigurationSHA [
+{ #category : #accessing }
+MetacelloScriptingResource class >> externalConfigurationSHA [
     "SHA of commit on 'configuration' branch that should be used with this version of tests (https://github.com/dalehenrich/external)"
 
     "it's too dangerous to use the HEAD of a branch in tests, because over time the HEAD will change to match latest testing needs, but old tests will likely break"
@@ -27,11 +20,8 @@ MetacelloScriptingResource class>>externalConfigurationSHA [
     ^ 'd91949731736bf48879781c29c7365feca461cde'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource class>>externalCustomIssue181SHA [
+{ #category : #accessing }
+MetacelloScriptingResource class >> externalCustomIssue181SHA [
   "SHA of commit on 'custom' branch that should be used with this version of tests (https://github.com/dalehenrich/external)"
 
   "it's too dangerous to use the HEAD of a branch in tests, because over time the HEAD will change to match latest testing needs, but old tests will likely break"
@@ -39,11 +29,8 @@ MetacelloScriptingResource class>>externalCustomIssue181SHA [
   ^ '36ac04abfc3a173de9432a134a718bf14b0a6968'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource class>>externalCustomIssue185SHA [
+{ #category : #accessing }
+MetacelloScriptingResource class >> externalCustomIssue185SHA [
   "SHA of commit on 'custom' branch that should be used with this version of tests (https://github.com/dalehenrich/external)"
 
   "it's too dangerous to use the HEAD of a branch in tests, because over time the HEAD will change to match latest testing needs, but old tests will likely break"
@@ -51,11 +38,8 @@ MetacelloScriptingResource class>>externalCustomIssue185SHA [
   ^ '29efb3d9cb86da55402a543cbef5771e39f864e7'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource class>>externalCustomIssue185SHA1 [
+{ #category : #accessing }
+MetacelloScriptingResource class >> externalCustomIssue185SHA1 [
   "SHA of commit on 'custom' branch that should be used with this version of tests (https://github.com/dalehenrich/external)"
 
   "it's too dangerous to use the HEAD of a branch in tests, because over time the HEAD will change to match latest testing needs, but old tests will likely break"
@@ -63,11 +47,8 @@ MetacelloScriptingResource class>>externalCustomIssue185SHA1 [
   ^ '96cf2ed0a252ce55b7fd5ec4bedf3ad999ca6d23'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource class>>externalCustomIssue185SHA2 [
+{ #category : #accessing }
+MetacelloScriptingResource class >> externalCustomIssue185SHA2 [
   "SHA of commit on 'custom' branch that should be used with this version of tests (https://github.com/dalehenrich/external)"
 
   "it's too dangerous to use the HEAD of a branch in tests, because over time the HEAD will change to match latest testing needs, but old tests will likely break"
@@ -75,11 +56,8 @@ MetacelloScriptingResource class>>externalCustomIssue185SHA2 [
   ^ '9e79d0e165bd51f7476d10a07968706f6034a6e6'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource class>>externalCustomIssue185SHA3 [
+{ #category : #accessing }
+MetacelloScriptingResource class >> externalCustomIssue185SHA3 [
   "SHA of commit on 'custom' branch that should be used with this version of tests (https://github.com/dalehenrich/external)"
 
   "it's too dangerous to use the HEAD of a branch in tests, because over time the HEAD will change to match latest testing needs, but old tests will likely break"
@@ -87,11 +65,8 @@ MetacelloScriptingResource class>>externalCustomIssue185SHA3 [
   ^ '11dfa72bc4a956ce0cb5a7603ea39f5abf73ff1c'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource class>>externalCustomIssue185SHA4 [
+{ #category : #accessing }
+MetacelloScriptingResource class >> externalCustomIssue185SHA4 [
   "SHA of commit on 'custom' branch that should be used with this version of tests (https://github.com/dalehenrich/external)"
 
   "it's too dangerous to use the HEAD of a branch in tests, because over time the HEAD will change to match latest testing needs, but old tests will likely break"
@@ -99,11 +74,8 @@ MetacelloScriptingResource class>>externalCustomIssue185SHA4 [
   ^ 'e36dcd023518f4d2a209a482097f5a8ef745ef25'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource class>>externalCustomIssue234ShortMasterSHA [
+{ #category : #accessing }
+MetacelloScriptingResource class >> externalCustomIssue234ShortMasterSHA [
   "commit on branch issue/234 of External project: 
    master branch
    78b9c1d134fbf76001cc0b1a10e3b1a0c13eec9d"
@@ -111,11 +83,8 @@ MetacelloScriptingResource class>>externalCustomIssue234ShortMasterSHA [
   ^ '78b9c1d'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource class>>externalCustomIssue234ShortSHA [
+{ #category : #accessing }
+MetacelloScriptingResource class >> externalCustomIssue234ShortSHA [
   "commit on branch issue/234 of External project: 
    issue/234 branch
 x   issue\234 branch
@@ -128,11 +97,8 @@ x   issue//234 branch
   ^ 'b57801b'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource class>>externalCustomSHA [
+{ #category : #accessing }
+MetacelloScriptingResource class >> externalCustomSHA [
     "SHA of commit on 'custom' branch that should be used with this version of tests (https://github.com/dalehenrich/external)"
 
     "it's too dangerous to use the HEAD of a branch in tests, because over time the HEAD will change to match latest testing needs, but old tests will likely break"
@@ -142,11 +108,8 @@ MetacelloScriptingResource class>>externalCustomSHA [
     ^ '1ac58502ade7814e1590f71d615cca434b1a4fd5'
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>baselineGithubReferenceIV: spec [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> baselineGithubReferenceIV: spec [
   <baseline>
   spec
     for: #'common'
@@ -157,11 +120,8 @@ MetacelloScriptingResource>>baselineGithubReferenceIV: spec [
         with: [ spec repository: 'http://ss3.gemtalksystems.com/ss/external' ] ]
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>baselineGithubReferenceV: spec [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> baselineGithubReferenceV: spec [
     <baseline>
     spec
         for: #'common'
@@ -172,11 +132,8 @@ MetacelloScriptingResource>>baselineGithubReferenceV: spec [
                 with: [ spec repository: 'github://dalehenrich/external:' , MetacelloScriptingResource externalCustomSHA , '/repository' ] ]
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>baselineGithubReferenceVI: spec [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> baselineGithubReferenceVI: spec [
     <baseline>
     spec
         for: #'common'
@@ -199,11 +156,8 @@ MetacelloScriptingResource>>baselineGithubReferenceVI: spec [
                                         'github://dalehenrich/external:' , MetacelloScriptingResource externalCustomSHA , '/repository' ] ]
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>baselineGithubReferenceVII: spec [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> baselineGithubReferenceVII: spec [
     <baseline>
     spec
         for: #'common'
@@ -220,11 +174,8 @@ MetacelloScriptingResource>>baselineGithubReferenceVII: spec [
                 project: 'External Tests' copyFrom: 'External Core' with: [ spec loads: 'Tests' ] ]
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>baselineGithubReferenceXX: spec [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> baselineGithubReferenceXX: spec [
     <baseline>
     spec
         for: #'common'
@@ -235,11 +186,8 @@ MetacelloScriptingResource>>baselineGithubReferenceXX: spec [
                 with: [ spec repository: 'github://dalehenrich/external:' , MetacelloScriptingResource externalCustomSHA , '/repository' ] ]
 ]
 
-{
-	#category : #'issue 215',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>baselineIssue215: spec [
+{ #category : #'issue 215' }
+MetacelloScriptingResource >> baselineIssue215: spec [
   <baseline>
   spec
     for: #'common'
@@ -255,11 +203,8 @@ MetacelloScriptingResource>>baselineIssue215: spec [
         import: 'External' provides: #('External-Core' 'External-Tests') ]
 ]
 
-{
-	#category : #'issue 32',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>baselineIssue32: spec [
+{ #category : #'issue 32' }
+MetacelloScriptingResource >> baselineIssue32: spec [
     <baseline>
     spec
         for: #'common'
@@ -278,11 +223,8 @@ MetacelloScriptingResource>>baselineIssue32: spec [
                 yourself ]
 ]
 
-{
-	#category : #'issue 63',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configuration091Issue181: spec [
+{ #category : #'issue 63' }
+MetacelloScriptingResource >> configuration091Issue181: spec [
   <version: '0.9.1'>
   spec
     for: #'common'
@@ -298,11 +240,8 @@ MetacelloScriptingResource>>configuration091Issue181: spec [
         import: 'External' ]
 ]
 
-{
-	#category : #'issue 63',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configuration091Issue63: spec [
+{ #category : #'issue 63' }
+MetacelloScriptingResource >> configuration091Issue63: spec [
   <version: '0.9.1'>
   spec
     for: #'common'
@@ -318,11 +257,8 @@ MetacelloScriptingResource>>configuration091Issue63: spec [
         import: 'External' ]
 ]
 
-{
-	#category : #'issue 63',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configuration092Issue181: spec [
+{ #category : #'issue 63' }
+MetacelloScriptingResource >> configuration092Issue181: spec [
   <version: '0.9.2'>
   spec
     for: #'common'
@@ -339,11 +275,8 @@ MetacelloScriptingResource>>configuration092Issue181: spec [
         import: 'External' ]
 ]
 
-{
-	#category : #'issue 63',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configuration092Issue63: spec [
+{ #category : #'issue 63' }
+MetacelloScriptingResource >> configuration092Issue63: spec [
   <version: '0.9.2'>
   spec
     for: #'common'
@@ -370,11 +303,8 @@ MetacelloScriptingResource>>configuration092Issue63: spec [
         import: 'External' ]
 ]
 
-{
-	#category : #'issue 63',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configuration093Issue185: spec [
+{ #category : #'issue 63' }
+MetacelloScriptingResource >> configuration093Issue185: spec [
   <version: '0.9.3'>
   spec
     for: #'common'
@@ -391,11 +321,8 @@ MetacelloScriptingResource>>configuration093Issue185: spec [
         import: 'External' ]
 ]
 
-{
-	#category : #'issue 63',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configuration094Issue185: spec [
+{ #category : #'issue 63' }
+MetacelloScriptingResource >> configuration094Issue185: spec [
   <version: '0.9.4'>
   spec
     for: #'common'
@@ -412,11 +339,8 @@ MetacelloScriptingResource>>configuration094Issue185: spec [
         import: 'External' ]
 ]
 
-{
-	#category : #'issue 63',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configuration095Issue185: spec [
+{ #category : #'issue 63' }
+MetacelloScriptingResource >> configuration095Issue185: spec [
   <version: '0.9.5'>
   spec
     for: #'common'
@@ -433,11 +357,8 @@ MetacelloScriptingResource>>configuration095Issue185: spec [
         import: 'External' ]
 ]
 
-{
-	#category : #'issue 63',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configuration096Issue185: spec [
+{ #category : #'issue 63' }
+MetacelloScriptingResource >> configuration096Issue185: spec [
   <version: '0.9.6'>
   spec
     for: #'common'
@@ -454,11 +375,8 @@ MetacelloScriptingResource>>configuration096Issue185: spec [
         import: 'External' ]
 ]
 
-{
-	#category : #'issue 63',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configuration097Issue185: spec [
+{ #category : #'issue 63' }
+MetacelloScriptingResource >> configuration097Issue185: spec [
   <version: '0.9.7'>
   spec
     for: #'common'
@@ -475,11 +393,8 @@ MetacelloScriptingResource>>configuration097Issue185: spec [
         import: 'External' ]
 ]
 
-{
-	#category : #'issue 215',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configuration098Issue215: spec [
+{ #category : #'issue 215' }
+MetacelloScriptingResource >> configuration098Issue215: spec [
   <version: '0.9.8'>
   spec
     for: #'common'
@@ -507,11 +422,8 @@ MetacelloScriptingResource>>configuration098Issue215: spec [
         import: 'External' provides: #('External-Core' 'External-Tests') ]
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configurationExternalRef090: spec [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> configurationExternalRef090: spec [
   <version: '0.9.0'>
   spec
     for: #'common'
@@ -528,11 +440,8 @@ MetacelloScriptingResource>>configurationExternalRef090: spec [
             repository: 'dictionary://Metacello_Configuration_Test_Repository' ] ]
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configurationExternalRef091: spec [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> configurationExternalRef091: spec [
   <version: '0.9.1'>
   spec
     for: #'common'
@@ -549,11 +458,8 @@ MetacelloScriptingResource>>configurationExternalRef091: spec [
             repository: 'dictionary://Metacello_Configuration_Test_Repository' ] ]
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configurationExternalRef092: spec [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> configurationExternalRef092: spec [
   <version: '0.9.2'>
   spec
     for: #'common'
@@ -571,11 +477,8 @@ MetacelloScriptingResource>>configurationExternalRef092: spec [
             repository: 'dictionary://Metacello_Configuration_Test_Repository' ] ]
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configurationGithubReferenceIV: spec [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> configurationGithubReferenceIV: spec [
     <baseline>
     spec
         for: #'common'
@@ -591,11 +494,8 @@ MetacelloScriptingResource>>configurationGithubReferenceIV: spec [
                                 'github://dalehenrich/external:' , MetacelloScriptingResource externalConfigurationSHA , '/repository' ] ]
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configurationGithubReferenceV: spec [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> configurationGithubReferenceV: spec [
     <baseline>
     spec
         for: #'common'
@@ -613,11 +513,8 @@ MetacelloScriptingResource>>configurationGithubReferenceV: spec [
                 project: 'External Tests' copyFrom: 'External' with: [ spec loads: 'Tests' ] ]
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configurationGithubReferenceX: spec [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> configurationGithubReferenceX: spec [
     <baseline>
     spec
         for: #'common'
@@ -633,11 +530,8 @@ MetacelloScriptingResource>>configurationGithubReferenceX: spec [
                                 'github://dalehenrich/external:' , MetacelloScriptingResource externalConfigurationSHA , '/repository' ] ]
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configurationGithubReferenceXX: spec [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> configurationGithubReferenceXX: spec [
     <baseline>
     spec
         for: #'common'
@@ -652,11 +546,8 @@ MetacelloScriptingResource>>configurationGithubReferenceXX: spec [
                                 'github://dalehenrich/external:' , MetacelloScriptingResource externalConfigurationSHA , '/repository' ] ]
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configurationGithubReferenceXXX: spec [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> configurationGithubReferenceXXX: spec [
   <baseline>
   spec
     for: #'common'
@@ -670,19 +561,13 @@ MetacelloScriptingResource>>configurationGithubReferenceXXX: spec [
             repository: 'http://ss3.gemtalksystems.com/ss/external' ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>configurationRepository [
+{ #category : #accessing }
+MetacelloScriptingResource >> configurationRepository [
     ^ configurationRepository
 ]
 
-{
-	#category : #'baseline:with:',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>conflictOf10: spec [
+{ #category : #'baseline:with:' }
+MetacelloScriptingResource >> conflictOf10: spec [
     <version: '1.0.0'>
     spec
         for: #'common'
@@ -702,11 +587,8 @@ MetacelloScriptingResource>>conflictOf10: spec [
                         repository: 'dictionary://Metacello_Conflict_Test_Repository' ] ]
 ]
 
-{
-	#category : #'baseline:with:',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>conflictOf11: spec [
+{ #category : #'baseline:with:' }
+MetacelloScriptingResource >> conflictOf11: spec [
     <version: '1.1.0'>
     spec
         for: #'common'
@@ -726,11 +608,8 @@ MetacelloScriptingResource>>conflictOf11: spec [
                         repository: 'dictionary://Metacello_Conflict_Test_Repository' ] ]
 ]
 
-{
-	#category : #'baseline:with:',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>conflictOf12: spec [
+{ #category : #'baseline:with:' }
+MetacelloScriptingResource >> conflictOf12: spec [
     <version: '1.2.0'>
     spec
         for: #'common'
@@ -751,11 +630,8 @@ MetacelloScriptingResource>>conflictOf12: spec [
                         repository: 'dictionary://Metacello_Conflict_Test_Repository'	"#= forces conflict" ] ]
 ]
 
-{
-	#category : #'baseline:with:',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>conflictOf20: spec [
+{ #category : #'baseline:with:' }
+MetacelloScriptingResource >> conflictOf20: spec [
   <version: '2.0.0'>
   spec
     for: #'common'
@@ -775,11 +651,8 @@ MetacelloScriptingResource>>conflictOf20: spec [
             repository: 'dictionary://Metacello_Conflict_Test_Repository' ] ]
 ]
 
-{
-	#category : #'baseline:with:',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>conflictOf21: spec [
+{ #category : #'baseline:with:' }
+MetacelloScriptingResource >> conflictOf21: spec [
   <version: '2.1.0'>
   spec
     for: #'common'
@@ -800,27 +673,18 @@ MetacelloScriptingResource>>conflictOf21: spec [
             repository: 'dictionary://Metacello_Conflict_Test_Repository' ] ]
 ]
 
-{
-	#category : #'external repository',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>customProjectAttributes [
+{ #category : #'external repository' }
+MetacelloScriptingResource >> customProjectAttributes [
     ^ #(#custom)
 ]
 
-{
-	#category : #'external core',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>externalAuthorName [
+{ #category : #'external core' }
+MetacelloScriptingResource >> externalAuthorName [
     ^ 'dkh'
 ]
 
-{
-	#category : #'baseline pragma - external',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>externalBaselineX: spec [
+{ #category : #'baseline pragma - external' }
+MetacelloScriptingResource >> externalBaselineX: spec [
     <baseline>
     spec description: 'MetacelloScriptingResource>>externalBaselineX:'.
     spec
@@ -834,11 +698,8 @@ MetacelloScriptingResource>>externalBaselineX: spec [
         yourself
 ]
 
-{
-	#category : #'baseline pragma - external',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>externalBaselineXX: spec [
+{ #category : #'baseline pragma - external' }
+MetacelloScriptingResource >> externalBaselineXX: spec [
     <baseline>
     spec
         for: #'common'
@@ -855,11 +716,8 @@ MetacelloScriptingResource>>externalBaselineXX: spec [
                 yourself ]
 ]
 
-{
-	#category : #'baseline pragma - external',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>externalBaselineXXX: spec [
+{ #category : #'baseline pragma - external' }
+MetacelloScriptingResource >> externalBaselineXXX: spec [
     <baseline>
     spec
         for: #'common'
@@ -881,19 +739,13 @@ MetacelloScriptingResource>>externalBaselineXXX: spec [
             spec group: 'UI' with: #('External-UIX') ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>externalRepository [
+{ #category : #accessing }
+MetacelloScriptingResource >> externalRepository [
     ^ externalRepository
 ]
 
-{
-	#category : #'invalid configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>invalidConfiguration10: spec [
+{ #category : #'invalid configurations' }
+MetacelloScriptingResource >> invalidConfiguration10: spec [
     <version: '1.0.0'>
     spec
         for: #'common'
@@ -909,11 +761,8 @@ MetacelloScriptingResource>>invalidConfiguration10: spec [
                                 'github://dalehenrich/external:' , MetacelloScriptingResource externalConfigurationSHA , '/repository' ] ]
 ]
 
-{
-	#category : #'invalid configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>invalidConfiguration20: spec [
+{ #category : #'invalid configurations' }
+MetacelloScriptingResource >> invalidConfiguration20: spec [
     <version: '2.0.0'>
     spec
         for: #'common'
@@ -929,11 +778,8 @@ MetacelloScriptingResource>>invalidConfiguration20: spec [
                                 'github://dalehenrich/external:' , MetacelloScriptingResource externalConfigurationSHA , '/repository' ] ]
 ]
 
-{
-	#category : #'invalid configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>invalidConfiguration30: spec [
+{ #category : #'invalid configurations' }
+MetacelloScriptingResource >> invalidConfiguration30: spec [
     <version: '3.0.0'>
     spec
         for: #'common'
@@ -948,27 +794,18 @@ MetacelloScriptingResource>>invalidConfiguration30: spec [
                         version: '0.9.0' ] ]
 ]
 
-{
-	#category : #'external core',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>isExternal [
+{ #category : #'external core' }
+MetacelloScriptingResource >> isExternal [
     ^ false
 ]
 
-{
-	#category : #'sample repository',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>isSample [
+{ #category : #'sample repository' }
+MetacelloScriptingResource >> isSample [
     ^ false
 ]
 
-{
-	#category : #locking,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>lockConfiguration10: spec [
+{ #category : #locking }
+MetacelloScriptingResource >> lockConfiguration10: spec [
     <version: '1.0.0'>
     spec
         for: #'common'
@@ -983,11 +820,8 @@ MetacelloScriptingResource>>lockConfiguration10: spec [
                         repository: 'dictionary://Metacello_Config_Test_Repository' ] ]
 ]
 
-{
-	#category : #locking,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>lockConfiguration11: spec [
+{ #category : #locking }
+MetacelloScriptingResource >> lockConfiguration11: spec [
   <version: '1.1.0'>
   spec
     for: #'common'
@@ -1002,11 +836,8 @@ MetacelloScriptingResource>>lockConfiguration11: spec [
             repository: 'dictionary://Metacello_Config_Test_Repository' ] ]
 ]
 
-{
-	#category : #locking,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>lockConfiguration12: spec [
+{ #category : #locking }
+MetacelloScriptingResource >> lockConfiguration12: spec [
   <version: '1.2.0'>
   spec
     for: #'common'
@@ -1020,11 +851,8 @@ MetacelloScriptingResource>>lockConfiguration12: spec [
           spec repository: 'dictionary://Metacello_Config_Test_Repository' ] ]
 ]
 
-{
-	#category : #locking,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>lockConfiguration13: spec [
+{ #category : #locking }
+MetacelloScriptingResource >> lockConfiguration13: spec [
   <version: '1.3.0'>
   spec
     for: #'common'
@@ -1039,11 +867,8 @@ MetacelloScriptingResource>>lockConfiguration13: spec [
             repository: 'dictionary://Metacello_Config_Test_Repository' ] ]
 ]
 
-{
-	#category : #locking,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>lockConfiguration14: spec [
+{ #category : #locking }
+MetacelloScriptingResource >> lockConfiguration14: spec [
   <version: '1.4.0'>
   spec
     for: #'common'
@@ -1058,11 +883,8 @@ MetacelloScriptingResource>>lockConfiguration14: spec [
             repository: 'dictionary://Metacello_Config_Test_Repository' ] ]
 ]
 
-{
-	#category : #locking,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>lockConfiguration15: spec [
+{ #category : #locking }
+MetacelloScriptingResource >> lockConfiguration15: spec [
   <version: '1.5.0'>
   spec
     for: #'common'
@@ -1079,47 +901,32 @@ MetacelloScriptingResource>>lockConfiguration15: spec [
                 , '/repository' ] ]
 ]
 
-{
-	#category : #'issue 32',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>postloadDoIt [
+{ #category : #'issue 32' }
+MetacelloScriptingResource >> postloadDoIt [
 	"self reset"
 
 	Smalltalk at: #'Metacello_Configuration_Test_POST_DoIt_Result' put: true
 ]
 
-{
-	#category : #'issue 32',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>preloadDoIt [
+{ #category : #'issue 32' }
+MetacelloScriptingResource >> preloadDoIt [
 	"self reset"
 
 	Smalltalk at: #'Metacello_Configuration_Test_DoIt_Result' put: true
 ]
 
-{
-	#category : #'sample repository',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>sampleAuthorName [
+{ #category : #'sample repository' }
+MetacelloScriptingResource >> sampleAuthorName [
     ^ (Smalltalk at: #'ExternalCore') new externalAuthorName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>sampleRepository [
+{ #category : #accessing }
+MetacelloScriptingResource >> sampleRepository [
     ^ sampleRepository
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUp [
+{ #category : #running }
+MetacelloScriptingResource >> setUp [
   "self reset"
 
   super setUp.
@@ -1164,11 +971,8 @@ MetacelloScriptingResource>>setUp [
     yourself
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpBaselineGithubReferenceIV [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> setUpBaselineGithubReferenceIV [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -1206,11 +1010,8 @@ MetacelloScriptingResource>>setUpBaselineGithubReferenceIV [
     ^ versionInfo
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpBaselineGithubReferenceIX [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> setUpBaselineGithubReferenceIX [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -1248,11 +1049,8 @@ MetacelloScriptingResource>>setUpBaselineGithubReferenceIX [
     ^ versionInfo
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpBaselineGithubReferenceV [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> setUpBaselineGithubReferenceV [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -1290,11 +1088,8 @@ MetacelloScriptingResource>>setUpBaselineGithubReferenceV [
     ^ versionInfo
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpBaselineGithubReferenceVI [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> setUpBaselineGithubReferenceVI [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -1332,11 +1127,8 @@ MetacelloScriptingResource>>setUpBaselineGithubReferenceVI [
     ^ versionInfo
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpBaselineGithubReferenceVII [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> setUpBaselineGithubReferenceVII [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -1374,11 +1166,8 @@ MetacelloScriptingResource>>setUpBaselineGithubReferenceVII [
     ^ versionInfo
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpBaselineGithubReferenceVIII [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> setUpBaselineGithubReferenceVIII [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -1416,11 +1205,8 @@ MetacelloScriptingResource>>setUpBaselineGithubReferenceVIII [
     ^ versionInfo
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpBaselineGithubReferenceXI [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> setUpBaselineGithubReferenceXI [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -1458,11 +1244,8 @@ MetacelloScriptingResource>>setUpBaselineGithubReferenceXI [
     ^ versionInfo
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpBaselineGithubReferenceXII [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> setUpBaselineGithubReferenceXII [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -1500,11 +1283,8 @@ MetacelloScriptingResource>>setUpBaselineGithubReferenceXII [
     ^ versionInfo
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpBaselineGithubReferenceXIII [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> setUpBaselineGithubReferenceXIII [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -1542,11 +1322,8 @@ MetacelloScriptingResource>>setUpBaselineGithubReferenceXIII [
     ^ versionInfo
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpBaselineGithubReferenceXX [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> setUpBaselineGithubReferenceXX [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -1584,11 +1361,8 @@ MetacelloScriptingResource>>setUpBaselineGithubReferenceXX [
     ^ versionInfo
 ]
 
-{
-	#category : #'issue 215',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpBaselineIssue215 [
+{ #category : #'issue 215' }
+MetacelloScriptingResource >> setUpBaselineIssue215 [
   "self reset"
 
   | reference className definitionArray versionInfo |
@@ -1648,11 +1422,8 @@ MetacelloScriptingResource>>setUpBaselineIssue215 [
   ^ versionInfo
 ]
 
-{
-	#category : #'issue 32',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpBaselineIssue32 [
+{ #category : #'issue 32' }
+MetacelloScriptingResource >> setUpBaselineIssue32 [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -1711,11 +1482,8 @@ MetacelloScriptingResource>>setUpBaselineIssue32 [
     ^ versionInfo
 ]
 
-{
-	#category : #'baseline pragma - external',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpBaselineOfExternalX [
+{ #category : #'baseline pragma - external' }
+MetacelloScriptingResource >> setUpBaselineOfExternalX [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -1753,11 +1521,8 @@ MetacelloScriptingResource>>setUpBaselineOfExternalX [
     ^ versionInfo
 ]
 
-{
-	#category : #'baseline pragma - external',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpBaselineOfExternalXX [
+{ #category : #'baseline pragma - external' }
+MetacelloScriptingResource >> setUpBaselineOfExternalXX [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -1795,11 +1560,8 @@ MetacelloScriptingResource>>setUpBaselineOfExternalXX [
     ^ versionInfo
 ]
 
-{
-	#category : #'baseline pragma - external',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpBaselineOfExternalXXX [
+{ #category : #'baseline pragma - external' }
+MetacelloScriptingResource >> setUpBaselineOfExternalXXX [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -1844,11 +1606,8 @@ MetacelloScriptingResource>>setUpBaselineOfExternalXXX [
     ^ versionInfo
 ]
 
-{
-	#category : #'issue 63',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfiguration181 [
+{ #category : #'issue 63' }
+MetacelloScriptingResource >> setUpConfiguration181 [
   "self reset"
 
   | reference className definitionArray versionInfo |
@@ -1936,11 +1695,8 @@ MetacelloScriptingResource>>setUpConfiguration181 [
   ^ versionInfo
 ]
 
-{
-	#category : #'issue 63',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfiguration63 [
+{ #category : #'issue 63' }
+MetacelloScriptingResource >> setUpConfiguration63 [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -1985,11 +1741,8 @@ MetacelloScriptingResource>>setUpConfiguration63 [
     ^ versionInfo
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationExternalRef [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> setUpConfigurationExternalRef [
   "self reset"
 
   | versionInfo |
@@ -1997,11 +1750,8 @@ MetacelloScriptingResource>>setUpConfigurationExternalRef [
   versionInfo := self setUpConfigurationExternalRefdkh2: {versionInfo}
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationExternalRefdkh1 [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> setUpConfigurationExternalRefdkh1 [
   "self reset"
 
   | reference className definitionArray versionInfo |
@@ -2047,11 +1797,8 @@ MetacelloScriptingResource>>setUpConfigurationExternalRefdkh1 [
   ^ versionInfo
 ]
 
-{
-	#category : #'baseline pragma - github reference',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationExternalRefdkh2: ancestors [
+{ #category : #'baseline pragma - github reference' }
+MetacelloScriptingResource >> setUpConfigurationExternalRefdkh2: ancestors [
   "self reset"
 
   | reference className definitionArray versionInfo |
@@ -2104,11 +1851,8 @@ MetacelloScriptingResource>>setUpConfigurationExternalRefdkh2: ancestors [
   ^ versionInfo
 ]
 
-{
-	#category : #'issue 32',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationIssue32 [
+{ #category : #'issue 32' }
+MetacelloScriptingResource >> setUpConfigurationIssue32 [
     "see https://github.com/dalehenrich/metacello-work/issues/32"
 
     "self reset"
@@ -2162,11 +1906,8 @@ MetacelloScriptingResource>>setUpConfigurationIssue32 [
     ^ versionInfo
 ]
 
-{
-	#category : #'issue 339',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationIssue339 [
+{ #category : #'issue 339' }
+MetacelloScriptingResource >> setUpConfigurationIssue339 [
   "see https://github.com/dalehenrich/metacello-work/issues/339"
 
   "self reset"
@@ -2207,11 +1948,8 @@ MetacelloScriptingResource>>setUpConfigurationIssue339 [
   ^ versionInfo
 ]
 
-{
-	#category : #'issue 59',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationIssue59 [
+{ #category : #'issue 59' }
+MetacelloScriptingResource >> setUpConfigurationIssue59 [
     "see https://github.com/dalehenrich/metacello-work/issues/59"
 
     "Use MetacelloVersionNumber instead of MetacelloSematicVersionNumber"
@@ -2267,11 +2005,8 @@ MetacelloScriptingResource>>setUpConfigurationIssue59 [
     ^ versionInfo
 ]
 
-{
-	#category : #'issue 84',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationIssue84 [
+{ #category : #'issue 84' }
+MetacelloScriptingResource >> setUpConfigurationIssue84 [
     "see https://github.com/dalehenrich/metacello-work/issues/84"
 
     "self reset"
@@ -2318,11 +2053,8 @@ MetacelloScriptingResource>>setUpConfigurationIssue84 [
     ^ versionInfo
 ]
 
-{
-	#category : #'issue 84',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationNextedIssue84 [
+{ #category : #'issue 84' }
+MetacelloScriptingResource >> setUpConfigurationNextedIssue84 [
     "see https://github.com/dalehenrich/metacello-work/issues/84"
 
     "self reset"
@@ -2332,11 +2064,8 @@ MetacelloScriptingResource>>setUpConfigurationNextedIssue84 [
     self setUpConfigurationNextedIssue84dkh2: {versionInfo}
 ]
 
-{
-	#category : #'issue 84',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationNextedIssue84dkh1 [
+{ #category : #'issue 84' }
+MetacelloScriptingResource >> setUpConfigurationNextedIssue84dkh1 [
     "see https://github.com/dalehenrich/metacello-work/issues/84"
 
     "self reset"
@@ -2390,11 +2119,8 @@ MetacelloScriptingResource>>setUpConfigurationNextedIssue84dkh1 [
     ^ versionInfo
 ]
 
-{
-	#category : #'issue 84',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationNextedIssue84dkh2: ancestors [
+{ #category : #'issue 84' }
+MetacelloScriptingResource >> setUpConfigurationNextedIssue84dkh2: ancestors [
     "see https://github.com/dalehenrich/metacello-work/issues/84"
 
     "self reset"
@@ -2448,11 +2174,8 @@ MetacelloScriptingResource>>setUpConfigurationNextedIssue84dkh2: ancestors [
     ^ versionInfo
 ]
 
-{
-	#category : #'baseline:with:',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationOfConflict [
+{ #category : #'baseline:with:' }
+MetacelloScriptingResource >> setUpConfigurationOfConflict [
   "self reset"
 
   | reference className definitionArray versionInfo |
@@ -2526,11 +2249,8 @@ MetacelloScriptingResource>>setUpConfigurationOfConflict [
   ^ versionInfo
 ]
 
-{
-	#category : #'external configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationOfExternalIV [
+{ #category : #'external configurations' }
+MetacelloScriptingResource >> setUpConfigurationOfExternalIV [
     "see https://github.com/dalehenrich/metacello-work/issues/6"
 
     "self reset"
@@ -2577,11 +2297,8 @@ MetacelloScriptingResource>>setUpConfigurationOfExternalIV [
     ^ versionInfo
 ]
 
-{
-	#category : #'external configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationOfExternalX [
+{ #category : #'external configurations' }
+MetacelloScriptingResource >> setUpConfigurationOfExternalX [
     "self reset"
 
     | versionInfo |
@@ -2589,11 +2306,8 @@ MetacelloScriptingResource>>setUpConfigurationOfExternalX [
     versionInfo := self setUpConfigurationOfExternalXdkh2: {versionInfo}
 ]
 
-{
-	#category : #'baseline:with:',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationOfExternalXX [
+{ #category : #'baseline:with:' }
+MetacelloScriptingResource >> setUpConfigurationOfExternalXX [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -2638,11 +2352,8 @@ MetacelloScriptingResource>>setUpConfigurationOfExternalXX [
     ^ versionInfo
 ]
 
-{
-	#category : #'external configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationOfExternalXXX [
+{ #category : #'external configurations' }
+MetacelloScriptingResource >> setUpConfigurationOfExternalXXX [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -2680,11 +2391,8 @@ MetacelloScriptingResource>>setUpConfigurationOfExternalXXX [
     ^ versionInfo
 ]
 
-{
-	#category : #'external configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationOfExternalXdkh1 [
+{ #category : #'external configurations' }
+MetacelloScriptingResource >> setUpConfigurationOfExternalXdkh1 [
   "self reset"
 
   | reference className definitionArray versionInfo |
@@ -2737,11 +2445,8 @@ MetacelloScriptingResource>>setUpConfigurationOfExternalXdkh1 [
   ^ versionInfo
 ]
 
-{
-	#category : #'external configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationOfExternalXdkh2: ancestors [
+{ #category : #'external configurations' }
+MetacelloScriptingResource >> setUpConfigurationOfExternalXdkh2: ancestors [
   "self reset"
 
   | reference className definitionArray versionInfo |
@@ -2808,11 +2513,8 @@ MetacelloScriptingResource>>setUpConfigurationOfExternalXdkh2: ancestors [
   ^ versionInfo
 ]
 
-{
-	#category : #'external configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationOfExternaldkh1 [
+{ #category : #'external configurations' }
+MetacelloScriptingResource >> setUpConfigurationOfExternaldkh1 [
   "self reset"
 
   | reference className definitionArray versionInfo |
@@ -2851,11 +2553,8 @@ MetacelloScriptingResource>>setUpConfigurationOfExternaldkh1 [
   ^ versionInfo
 ]
 
-{
-	#category : #'external configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpConfigurationOfExternaldkh2 [
+{ #category : #'external configurations' }
+MetacelloScriptingResource >> setUpConfigurationOfExternaldkh2 [
   "self reset"
 
   | reference className definitionArray versionInfo |
@@ -2901,11 +2600,8 @@ MetacelloScriptingResource>>setUpConfigurationOfExternaldkh2 [
   ^ versionInfo
 ]
 
-{
-	#category : #'external core',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpExternalCore [
+{ #category : #'external core' }
+MetacelloScriptingResource >> setUpExternalCore [
   "self reset"
 
   | reference className definitionArray versionInfo |
@@ -2951,11 +2647,8 @@ MetacelloScriptingResource>>setUpExternalCore [
   ^ versionInfo
 ]
 
-{
-	#category : #'external core',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpExternalCoreX [
+{ #category : #'external core' }
+MetacelloScriptingResource >> setUpExternalCoreX [
   "self reset"
 
   | reference className definitionArray versionInfo |
@@ -3001,11 +2694,8 @@ MetacelloScriptingResource>>setUpExternalCoreX [
   ^ versionInfo
 ]
 
-{
-	#category : #'invalid configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpInvalidConfigurations [
+{ #category : #'invalid configurations' }
+MetacelloScriptingResource >> setUpInvalidConfigurations [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -3064,11 +2754,8 @@ MetacelloScriptingResource>>setUpInvalidConfigurations [
     ^ versionInfo
 ]
 
-{
-	#category : #locking,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpLockConfigurations [
+{ #category : #locking }
+MetacelloScriptingResource >> setUpLockConfigurations [
   "self reset"
 
   | reference className definitionArray versionInfo |
@@ -3150,11 +2837,8 @@ MetacelloScriptingResource>>setUpLockConfigurations [
   ^ versionInfo
 ]
 
-{
-	#category : #'baseline:with:',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpMarianosImage [
+{ #category : #'baseline:with:' }
+MetacelloScriptingResource >> setUpMarianosImage [
     "className: test case
 	seehttps://github.com/dalehenrich/metacello-work/issues/24"
 
@@ -3202,11 +2886,8 @@ MetacelloScriptingResource>>setUpMarianosImage [
     ^ versionInfo
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpRepositories [
+{ #category : #running }
+MetacelloScriptingResource >> setUpRepositories [
     "self reset"
 
     configurationRepository := MCDictionaryRepository new.
@@ -3214,11 +2895,8 @@ MetacelloScriptingResource>>setUpRepositories [
     sampleRepository := MCDictionaryRepository new
 ]
 
-{
-	#category : #'sample repository',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>setUpSampleCore [
+{ #category : #'sample repository' }
+MetacelloScriptingResource >> setUpSampleCore [
     "self reset"
 
     | reference className definitionArray versionInfo |
@@ -3269,33 +2947,24 @@ MetacelloScriptingResource>>setUpSampleCore [
     ^ versionInfo
 ]
 
-{
-	#category : #'external configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>stableVersionOfX: spec [
+{ #category : #'external configurations' }
+MetacelloScriptingResource >> stableVersionOfX: spec [
     "self reset"
 
     <symbolicVersion: #'stable'>
     spec for: #'common' version: '0.9.0'
 ]
 
-{
-	#category : #'external configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>unstableVersionOfX: spec [
+{ #category : #'external configurations' }
+MetacelloScriptingResource >> unstableVersionOfX: spec [
   "self reset"
 
   <symbolicVersion: #'unstable'>
   spec for: #'common' version: '0.9.1'
 ]
 
-{
-	#category : #'issue 32',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>version09Issue32: spec [
+{ #category : #'issue 32' }
+MetacelloScriptingResource >> version09Issue32: spec [
     <version: '0.9.0'>
     spec
         for: #'common'
@@ -3309,11 +2978,8 @@ MetacelloScriptingResource>>version09Issue32: spec [
         do: [ spec baseline: 'Issue32' with: [ spec repository: 'dictionary://Metacello_External_Test_Repository' ] ]
 ]
 
-{
-	#category : #'issue 339',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>version100Issue339: spec [
+{ #category : #'issue 339' }
+MetacelloScriptingResource >> version100Issue339: spec [
   "self reset"
 
   <version: '1.0.0'>
@@ -3326,11 +2992,8 @@ MetacelloScriptingResource>>version100Issue339: spec [
       spec package: 'Issue339' with: 'Issue339-JanKurs.1' ]
 ]
 
-{
-	#category : #'issue 32',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>version10Issue47: spec [
+{ #category : #'issue 32' }
+MetacelloScriptingResource >> version10Issue47: spec [
     <version: '1.0.0'>
     spec
         for: #'common'
@@ -3345,11 +3008,8 @@ MetacelloScriptingResource>>version10Issue47: spec [
         do: [ spec baseline: 'Issue32' with: [ spec repository: 'dictionary://Metacello_External_Test_Repository' ] ]
 ]
 
-{
-	#category : #'issue 32',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>version10Issue59: spec [
+{ #category : #'issue 32' }
+MetacelloScriptingResource >> version10Issue59: spec [
     <version: '1.0'>
     spec
         for: #'common'
@@ -3364,11 +3024,8 @@ MetacelloScriptingResource>>version10Issue59: spec [
         do: [ spec baseline: 'Issue32' with: [ spec repository: 'dictionary://Metacello_External_Test_Repository' ] ]
 ]
 
-{
-	#category : #'issue 84',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>version10Issue84: spec [
+{ #category : #'issue 84' }
+MetacelloScriptingResource >> version10Issue84: spec [
     <version: '1.0.0'>
     spec
         for: #'common'
@@ -3385,11 +3042,8 @@ MetacelloScriptingResource>>version10Issue84: spec [
                         repository: 'dictionary://Metacello_Config_Test_Repository' ] ]
 ]
 
-{
-	#category : #'issue 84',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>version10NestedIssue84: spec [
+{ #category : #'issue 84' }
+MetacelloScriptingResource >> version10NestedIssue84: spec [
     <version: '1.0.0'>
     spec
         for: #'common'
@@ -3402,19 +3056,13 @@ MetacelloScriptingResource>>version10NestedIssue84: spec [
             spec package: 'External-CoreX' ]
 ]
 
-{
-	#category : #'issue 59',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>versionNumberClass [
+{ #category : #'issue 59' }
+MetacelloScriptingResource >> versionNumberClass [
     ^ MetacelloVersionNumber
 ]
 
-{
-	#category : #'external configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>versionOfExternal090: spec [
+{ #category : #'external configurations' }
+MetacelloScriptingResource >> versionOfExternal090: spec [
   <version: '0.9.0'>
   spec
     for: #'common'
@@ -3426,11 +3074,8 @@ MetacelloScriptingResource>>versionOfExternal090: spec [
         yourself ]
 ]
 
-{
-	#category : #'external configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>versionOfExternal091: spec [
+{ #category : #'external configurations' }
+MetacelloScriptingResource >> versionOfExternal091: spec [
   <version: '0.9.1'>
   spec
     for: #'common'
@@ -3448,11 +3093,8 @@ MetacelloScriptingResource>>versionOfExternal091: spec [
                 , '/repository' ] ]
 ]
 
-{
-	#category : #'external configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>versionOfIV: spec [
+{ #category : #'external configurations' }
+MetacelloScriptingResource >> versionOfIV: spec [
     <version: '0.9.0'>
     spec
         for: #'common'
@@ -3466,11 +3108,8 @@ MetacelloScriptingResource>>versionOfIV: spec [
         do: [ spec baseline: 'ExternalX' with: [ spec repository: 'dictionary://Metacello_Configuration_Test_Repository' ] ]
 ]
 
-{
-	#category : #'baseline:with:',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>versionOfMariano: spec [
+{ #category : #'baseline:with:' }
+MetacelloScriptingResource >> versionOfMariano: spec [
     <version: '0.9.0'>
     spec
         for: #'common'
@@ -3484,11 +3123,8 @@ MetacelloScriptingResource>>versionOfMariano: spec [
         do: [ spec baseline: 'ExternalX' with: [ spec repository: 'dictionary://Metacello_Configuration_Test_Repository' ] ]
 ]
 
-{
-	#category : #'external configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>versionOfX090: spec [
+{ #category : #'external configurations' }
+MetacelloScriptingResource >> versionOfX090: spec [
     <version: '0.9.0'>
     spec
         for: #'common'
@@ -3502,11 +3138,8 @@ MetacelloScriptingResource>>versionOfX090: spec [
         do: [ spec baseline: 'ExternalX' with: [ spec repository: 'dictionary://Metacello_Configuration_Test_Repository' ] ]
 ]
 
-{
-	#category : #'external configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>versionOfX091: spec [
+{ #category : #'external configurations' }
+MetacelloScriptingResource >> versionOfX091: spec [
     <version: '0.9.1'>
     spec
         for: #'common'
@@ -3520,11 +3153,8 @@ MetacelloScriptingResource>>versionOfX091: spec [
         do: [ spec baseline: 'ExternalX' with: [ spec repository: 'dictionary://Metacello_Configuration_Test_Repository' ] ]
 ]
 
-{
-	#category : #'external configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>versionOfXX: spec [
+{ #category : #'external configurations' }
+MetacelloScriptingResource >> versionOfXX: spec [
     <version: '0.9.0'>
     spec
         for: #'common'
@@ -3541,11 +3171,8 @@ MetacelloScriptingResource>>versionOfXX: spec [
                 with: [ spec repository: 'github://dalehenrich/external:' , MetacelloScriptingResource externalCustomSHA , '/repository' ] ]
 ]
 
-{
-	#category : #'external configurations',
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloScriptingResource>>versionOfXXX: spec [
+{ #category : #'external configurations' }
+MetacelloScriptingResource >> versionOfXXX: spec [
     <version: '0.9.0'>
     spec
         for: #'common'

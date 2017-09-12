@@ -4,32 +4,22 @@ I am a node in the Komit tree representing a package
 Class {
 	#name : #KomitPackageNode,
 	#superclass : #KomitNode,
-	#category : #Komitter-UI,
-	#timestamp : '<historical>'
+	#category : #Komitter-UI
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackageNode>>getClasses [
+{ #category : #private }
+KomitPackageNode >> getClasses [
 
 	^ self content classes
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackageNode>>icon [
+{ #category : #api }
+KomitPackageNode >> icon [
 	^ self iconNamed: #dirtyPackageIcon
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackageNode>>initialize [
+{ #category : #initialization }
+KomitPackageNode >> initialize [
 	super initialize.
 	self icon: (self iconNamed: #dirtyPackageIcon).
 	self
@@ -50,29 +40,20 @@ KomitPackageNode>>initialize [
 	self hasChildren: [ self isEmpty not ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackageNode>>isEmpty [
+{ #category : #testing }
+KomitPackageNode >> isEmpty [
 
 	^ self content patch operations isEmpty
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackageNode>>label [
+{ #category : #api }
+KomitPackageNode >> label [
 
 	^ self content package name
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitPackageNode>>printOn: aStream [
+{ #category : #printing }
+KomitPackageNode >> printOn: aStream [
 
 	super printOn: aStream.
 	aStream << '[ '.

@@ -6,55 +6,36 @@ You likely want to use #ensureLocalDirectory that downloads and extracts server 
 Class {
 	#name : #GTEventTool,
 	#superclass : #Object,
-	#category : #GT-EventRecorder-Core,
-	#timestamp : 'JurajKubelka 11/15/2015 23:13'
+	#category : #GT-EventRecorder-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventTool class>>default [
+{ #category : #accessing }
+GTEventTool class >> default [
 	^ self new
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventTool>>defaultDownloadDirectory [
+{ #category : #configuration }
+GTEventTool >> defaultDownloadDirectory [
 	^ FileSystem disk workingDirectory
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventTool>>defaultDownloadFilename [
+{ #category : #configuration }
+GTEventTool >> defaultDownloadFilename [
 	^ self defaultDownloadDirectory / 'gt-events.zip'
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventTool>>defaultEventsDirectory [
+{ #category : #configuration }
+GTEventTool >> defaultEventsDirectory [
 	^ self defaultDownloadDirectory / 'gt' / 'events'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventTool>>defaultUrl [
+{ #category : #private }
+GTEventTool >> defaultUrl [
 	^ 'http://gc.dcc.uchile.cl/gt-events.zip'
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventTool>>download [
+{ #category : #api }
+GTEventTool >> download [
 	"self default download"
  	UIManager default informUserDuring: [ :bar |
 		bar label: 'Downloading Spotter Event Data...'.
@@ -73,46 +54,31 @@ GTEventTool>>download [
 	]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventTool>>ensureDownloadedData [
+{ #category : #api }
+GTEventTool >> ensureDownloadedData [
 	self defaultDownloadFilename exists ifFalse: [ self download ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventTool>>ensureExtractedData [
+{ #category : #api }
+GTEventTool >> ensureExtractedData [
 	self defaultEventsDirectory exists ifFalse: [ self extract ]
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventTool>>ensureLocalDirectory [
+{ #category : #api }
+GTEventTool >> ensureLocalDirectory [
 	"self default ensureLocalDirectory"
 	self 
 		ensureDownloadedData;
 		ensureExtractedData
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventTool>>extract [
+{ #category : #api }
+GTEventTool >> extract [
 	(ZipArchive new readFrom: self defaultDownloadFilename) extractAllTo: FileLocator workingDirectory.
 ]
 
-{
-	#category : #gt-inspector-extension,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventTool>>gtInspectorActionHelp [
+{ #category : #gt-inspector-extension }
+GTEventTool >> gtInspectorActionHelp [
 	<gtInspectorAction>
 	^ GLMGenericAction new
 		action: [:b | 
@@ -124,11 +90,8 @@ GTEventTool>>gtInspectorActionHelp [
 		title: 'Help'
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventTool>>printHumanReadableSize: aTotalNumber [
+{ #category : #printing }
+GTEventTool >> printHumanReadableSize: aTotalNumber [
 	| humanReadable length unit |
 	length := ((aTotalNumber decimalDigitLength / 3) truncated) - 1 max: 0.
 	humanReadable := (aTotalNumber / (1024 raisedTo: (length min: 3))) rounded.
@@ -139,21 +102,15 @@ GTEventTool>>printHumanReadableSize: aTotalNumber [
 	^ humanReadable printString, ' ', unit
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventTool>>unpackAll [
+{ #category : #api }
+GTEventTool >> unpackAll [
 	"self default unpackAll inspect"
 	self ensureLocalDirectory.
 	^ GTEventUnpacking default safeUnpackDirectory: self defaultEventsDirectory.
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventTool>>unpackAll: aFileReference [
+{ #category : #api }
+GTEventTool >> unpackAll: aFileReference [
 	"self default unpackAll: './gt/events' asFileReference.
 	self default unpackAll: './gt/events/roassal2Examples' asFileReference.
 	" 

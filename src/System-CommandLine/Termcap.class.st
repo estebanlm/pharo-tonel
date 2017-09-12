@@ -8,23 +8,16 @@ Class {
 	#instVars : [
 		'cache'
 	],
-	#category : #System-CommandLine,
-	#timestamp : '<historical>'
+	#category : #System-CommandLine
 }
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-Termcap>>flush [
+{ #category : #initialize-release }
+Termcap >> flush [
 	cache removeAll
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-Termcap>>getent: aString [
+{ #category : #accessing }
+Termcap >> getent: aString [
 	"The tgetent routine loads the entry for name. 
 	It returns 1 on success, 
 	0 if there is no such entry,
@@ -39,29 +32,20 @@ Termcap>>getent: aString [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-Termcap>>getflag: aString [
+{ #category : #accessing }
+Termcap >> getflag: aString [
 	"^ (PipeableOSProcess command: 'tput ', aString) output"
 	Error signal: 'Cannot interact with tput yet'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-Termcap>>getnum: aString [
+{ #category : #accessing }
+Termcap >> getnum: aString [
 	"^ (PipeableOSProcess command: 'tput ', aString) output asInteger"
 	^ Error signal: 'Cannot interact with the terminal yet'.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-Termcap>>getstr: aString [
+{ #category : #accessing }
+Termcap >> getstr: aString [
 	^ cache
 		at: aString 
 		ifAbsentPut: [ 
@@ -69,20 +53,14 @@ Termcap>>getstr: aString [
 			^ Error signal: 'Terminal capability ', aString, ' not found' ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-Termcap>>initialize [
+{ #category : #initialization }
+Termcap >> initialize [
 	cache := Dictionary new.
 	self initializeDefaultSequences.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-Termcap>>initializeDefaultSequences [
+{ #category : #initialize-release }
+Termcap >> initializeDefaultSequences [
 	"Until we have decent OSProcess support we precache the most common sequences"
 	| esc |
 	esc := (Character escape asString), '['.
@@ -99,11 +77,8 @@ Termcap>>initializeDefaultSequences [
 	cache at: #cr put: (esc, String cr).
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:54'
-}
-Termcap>>reset [
+{ #category : #initialize-release }
+Termcap >> reset [
 	self flag: 'TODO implement once we have OSProcess'.
 	"self getent: (OSProcess thisOSProcess environmentAt: #TERM)"
 ]

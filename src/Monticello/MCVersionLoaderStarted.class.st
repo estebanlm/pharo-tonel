@@ -8,38 +8,25 @@ Class {
 		'versionLoader',
 		'label'
 	],
-	#category : #Monticello-Announcements,
-	#timestamp : 'StefanReichhart 12/4/2015 22:01'
+	#category : #Monticello-Announcements
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoaderStarted>>label [
+{ #category : #accessing }
+MCVersionLoaderStarted >> label [
 	^ label
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoaderStarted>>label: anObject [
+{ #category : #accessing }
+MCVersionLoaderStarted >> label: anObject [
 	label := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoaderStarted>>versionLoader [
+{ #category : #accessing }
+MCVersionLoaderStarted >> versionLoader [
 	^ versionLoader
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCVersionLoaderStarted>>versionLoader: anObject [
+{ #category : #accessing }
+MCVersionLoaderStarted >> versionLoader: anObject [
 	versionLoader := anObject
 ]

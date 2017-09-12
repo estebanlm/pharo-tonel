@@ -16,23 +16,16 @@ Class {
 		'primarySelectionInterval',
 		'withGhostText'
 	],
-	#category : #Glamour-Rubric-Presentations,
-	#timestamp : 'AndreiChis 10/1/2014 13:48'
+	#category : #Glamour-Rubric-Presentations
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>addTextSegment: aTextSegmentMorph [
+{ #category : #accessing }
+GLMRubricTextPresentation >> addTextSegment: aTextSegmentMorph [
 	self textSegments add: aTextSegmentMorph
 ]
 
-{
-	#category : #'actions text',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>clearUserEdits [
+{ #category : #'actions text' }
+GLMRubricTextPresentation >> clearUserEdits [
 	self flag: 'Should remove the need for using #defer:. Currently it used as
 	the rendered suspends all announcements for a presentation when it handles a text changed request.'.
 	UIManager default defer: [ 
@@ -40,11 +33,8 @@ GLMRubricTextPresentation>>clearUserEdits [
 			action: [ :anEditor | anEditor model clearUserEdits]) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>codeEditingSelectionActions [
+{ #category : #accessing }
+GLMRubricTextPresentation >> codeEditingSelectionActions [
 	
 	^ { 
 		(GLMGenericAction new) 
@@ -78,223 +68,148 @@ GLMRubricTextPresentation>>codeEditingSelectionActions [
 				yourself. }
 ]
 
-{
-	#category : #'actions text',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>copySelection [
+{ #category : #'actions text' }
+GLMRubricTextPresentation >> copySelection [
 
 	self announce: (GLMTextEditorRequest for: #copySelection)
 ]
 
-{
-	#category : #'actions text',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>cut [
+{ #category : #'actions text' }
+GLMRubricTextPresentation >> cut [
 
 	self announce: (GLMTextEditorRequest for: #cut)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>defaultSelectionActions [
+{ #category : #accessing }
+GLMRubricTextPresentation >> defaultSelectionActions [
 
 	^ self executionSelectionActions
 	
 ]
 
-{
-	#category : #'actions text',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>flash [
+{ #category : #'actions text' }
+GLMRubricTextPresentation >> flash [
 
 	self announce: (GLMTextEditorRequest new 
 		action: [ :anEditor | anEditor flash])
 ]
 
-{
-	#category : #'actions text',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>hasUnacceptedEdits [
+{ #category : #'actions text' }
+GLMRubricTextPresentation >> hasUnacceptedEdits [
 
 	self announce: (GLMTextEditorRequest new 
 		action: [ :anEditor | ^ anEditor model hasUnacceptedEdits])
 ]
 
-{
-	#category : #'actions text',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>paste [
+{ #category : #'actions text' }
+GLMRubricTextPresentation >> paste [
 
 	self announce: (GLMTextEditorRequest for: #paste)
 ]
 
-{
-	#category : #'actions text',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>pasteRecent [
+{ #category : #'actions text' }
+GLMRubricTextPresentation >> pasteRecent [
 
 	self announce: (GLMTextEditorRequest for: #pasteRecent)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>primarySelectionInterval [
+{ #category : #accessing }
+GLMRubricTextPresentation >> primarySelectionInterval [
 	^ primarySelectionInterval
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>primarySelectionInterval: anInterval [
+{ #category : #accessing }
+GLMRubricTextPresentation >> primarySelectionInterval: anInterval [
 	primarySelectionInterval := anInterval
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>renderGlamorouslyOn: aRenderer [
+{ #category : #rendering }
+GLMRubricTextPresentation >> renderGlamorouslyOn: aRenderer [
 	self registerAnnouncements.
 	^ aRenderer renderRubricTextPresentation: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>scrollAtIndex: anIndex [
+{ #category : #accessing }
+GLMRubricTextPresentation >> scrollAtIndex: anIndex [
 	self primarySelectionInterval: (anIndex to: anIndex - 1)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>tabWidth [
+{ #category : #accessing }
+GLMRubricTextPresentation >> tabWidth [
 	^ tabWidth ifNil: [ TextStyle default rubTabWidth ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>tabWidth: anInteger [
+{ #category : #accessing }
+GLMRubricTextPresentation >> tabWidth: anInteger [
 	tabWidth := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>textSegments [
+{ #category : #accessing }
+GLMRubricTextPresentation >> textSegments [
 	^textSegments ifNil: [ textSegments := OrderedCollection new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>withAnnotation [
+{ #category : #accessing }
+GLMRubricTextPresentation >> withAnnotation [
 	
 	^ withAnnotation ifNil: [ withAnnotation := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>withAnnotation: aBoolean [
+{ #category : #accessing }
+GLMRubricTextPresentation >> withAnnotation: aBoolean [
 	
 	withAnnotation := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>withColumns [
+{ #category : #accessing }
+GLMRubricTextPresentation >> withColumns [
 	
 	^ withColumns ifNil: [ withColumns := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>withColumns: aBoolean [
+{ #category : #accessing }
+GLMRubricTextPresentation >> withColumns: aBoolean [
 	
 	withColumns := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>withGhostText [
+{ #category : #accessing }
+GLMRubricTextPresentation >> withGhostText [
 	
 	^ withGhostText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>withGhostText: aText [
+{ #category : #accessing }
+GLMRubricTextPresentation >> withGhostText: aText [
 	
 	withGhostText := aText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>withLineNumbers [
+{ #category : #accessing }
+GLMRubricTextPresentation >> withLineNumbers [
 	
 	^ withLineNumbers ifNil: [ withLineNumbers := false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>withLineNumbers: aBoolean [
+{ #category : #accessing }
+GLMRubricTextPresentation >> withLineNumbers: aBoolean [
 	
 	withLineNumbers := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>withTextSegments: aCollection [
+{ #category : #accessing }
+GLMRubricTextPresentation >> withTextSegments: aCollection [
 	self textSegments addAll: aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>wrapped [
+{ #category : #accessing }
+GLMRubricTextPresentation >> wrapped [
 	
 	^  wrapped ifNil: [ wrapped := true ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricTextPresentation>>wrapped: aBoolean [
+{ #category : #accessing }
+GLMRubricTextPresentation >> wrapped: aBoolean [
 	
 	wrapped := aBoolean
 ]

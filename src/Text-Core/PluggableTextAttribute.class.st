@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'evalBlock'
 	],
-	#category : #Text-Core,
-	#timestamp : '<historical>'
+	#category : #Text-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-PluggableTextAttribute class>>evalBlock: aBlock [
+{ #category : #'instance creation' }
+PluggableTextAttribute class >> evalBlock: aBlock [
 	^super new evalBlock: aBlock
 ]
 
-{
-	#category : #evaluating,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-PluggableTextAttribute>>actOnClick: anEvent for: anObject in: paragraph editor: editor [
+{ #category : #evaluating }
+PluggableTextAttribute >> actOnClick: anEvent for: anObject in: paragraph editor: editor [
 
 	evalBlock ifNil: [ ^self ].
 	evalBlock numArgs = 0 ifTrue: [ evalBlock value.  ^true ].
@@ -31,10 +24,7 @@ PluggableTextAttribute>>actOnClick: anEvent for: anObject in: paragraph editor: 
 	self error: 'evalBlock should have 0 or 1 arguments'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:16'
-}
-PluggableTextAttribute>>evalBlock: aBlock [
+{ #category : #accessing }
+PluggableTextAttribute >> evalBlock: aBlock [
 	evalBlock := aBlock
 ]

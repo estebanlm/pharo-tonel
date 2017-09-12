@@ -18,15 +18,11 @@ Class {
 		'options',
 		'size'
 	],
-	#category : #Athens-Cairo-Text,
-	#timestamp : 'FernandoOlivero 1/24/2012 18:30'
+	#category : #Athens-Cairo-Text
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription class>>example [
+{ #category : #examples }
+AthensFontDescription class >> example [
 	| fDesc |
 	fDesc := AthensFontDescription new. 
 	fDesc
@@ -35,11 +31,8 @@ AthensFontDescription class>>example [
 	^ fDesc
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>asString [
+{ #category : #accessing }
+AthensFontDescription >> asString [
 	"[FAMILY-LIST] [STYLE-OPTIONS] [SIZE]"
 	| str |
 	str := '' writeStream.
@@ -59,126 +52,81 @@ AthensFontDescription>>asString [
 	^ str contents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>beBold [
+{ #category : #accessing }
+AthensFontDescription >> beBold [
 	self weight: #bold
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>beItalic [
+{ #category : #accessing }
+AthensFontDescription >> beItalic [
 	self slant: #italic
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>beNormal [
+{ #category : #accessing }
+AthensFontDescription >> beNormal [
 	self slant: #normal ; weight: #normal.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>beOblique [
+{ #category : #accessing }
+AthensFontDescription >> beOblique [
 	self slant: #oblique
 ]
 
-{
-	#category : #cairo-options,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>family: aFamilyName [
+{ #category : #cairo-options }
+AthensFontDescription >> family: aFamilyName [
 	"CSS2 generic family names: serif, sans-serif, cursive, fantasy, monospace"
 	family := aFamilyName.
 	
 ]
 
-{
-	#category : #cairo-options,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>fontFamily [
+{ #category : #cairo-options }
+AthensFontDescription >> fontFamily [
 	^ family
 ]
 
-{
-	#category : #pango-options,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>fontGravity [
+{ #category : #pango-options }
+AthensFontDescription >> fontGravity [
 	^ options at: #gravity
 ]
 
-{
-	#category : #cairo-options,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>fontSize [
+{ #category : #cairo-options }
+AthensFontDescription >> fontSize [
 	^ size 
 ]
 
-{
-	#category : #cairo-options,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>fontSize: aPointSize [
+{ #category : #cairo-options }
+AthensFontDescription >> fontSize: aPointSize [
 	size := aPointSize
 ]
 
-{
-	#category : #cairo-options,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>fontSlant [
+{ #category : #cairo-options }
+AthensFontDescription >> fontSlant [
 	^ options at: #slant 
 ]
 
-{
-	#category : #pango-options,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>fontStretch [
+{ #category : #pango-options }
+AthensFontDescription >> fontStretch [
 	^ options at: #stretch
 ]
 
-{
-	#category : #pango-options,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>fontVariant [
+{ #category : #pango-options }
+AthensFontDescription >> fontVariant [
 	^ options at: #variant 
 ]
 
-{
-	#category : #cairo-options,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>fontWeight [
+{ #category : #cairo-options }
+AthensFontDescription >> fontWeight [
 	^ options at: #weight 
 ]
 
-{
-	#category : #pango-options,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>gravity: aNumber [
+{ #category : #pango-options }
+AthensFontDescription >> gravity: aNumber [
 	options at: #gravity put: aNumber.		
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>initialize [
+{ #category : #initialize-release }
+AthensFontDescription >> initialize [
 	super initialize.
 	family := 'monospace'.
 	options := Dictionary new.
@@ -189,38 +137,26 @@ AthensFontDescription>>initialize [
 	
 ]
 
-{
-	#category : #cairo-options,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>slant: aNumber [
+{ #category : #cairo-options }
+AthensFontDescription >> slant: aNumber [
 	options at: #slant put: aNumber.		
 
 ]
 
-{
-	#category : #pango-options,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>stretch: aNumber [
+{ #category : #pango-options }
+AthensFontDescription >> stretch: aNumber [
 	options at: #stretch put: aNumber.		
 
 ]
 
-{
-	#category : #pango-options,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>variant: aNumber [
+{ #category : #pango-options }
+AthensFontDescription >> variant: aNumber [
 	options at: #variant put: aNumber.		
 
 ]
 
-{
-	#category : #cairo-options,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensFontDescription>>weight: aNumber [
+{ #category : #cairo-options }
+AthensFontDescription >> weight: aNumber [
 	options at: #weight put: aNumber.		
 
 ]

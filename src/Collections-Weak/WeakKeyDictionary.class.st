@@ -14,24 +14,17 @@ Class {
 		'expired',
 		'finalizer'
 	],
-	#category : #Collections-Weak,
-	#timestamp : 'mvl 3/18/2007 08:48'
+	#category : #Collections-Weak
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>add: anAssociation [
+{ #category : #adding }
+WeakKeyDictionary >> add: anAssociation [
 	self at: anAssociation key put: anAssociation value.
 	^ anAssociation
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>allAssociationsDo: aBlock  [
+{ #category : #enumerating }
+WeakKeyDictionary >> allAssociationsDo: aBlock [ 
 	"Evaluate aBlock for each of the receiver's elements (key/value 
 	associations). This includes associations with nil keys, except for
 	the expired ones."
@@ -40,11 +33,8 @@ WeakKeyDictionary>>allAssociationsDo: aBlock  [
 		association expired ifFalse:[aBlock value: association]].
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>associationsDo: aBlock  [
+{ #category : #enumerating }
+WeakKeyDictionary >> associationsDo: aBlock [ 
 	"Evaluate aBlock for each of the receiver's elements (key/value 
 	associations)."
 
@@ -56,11 +46,8 @@ WeakKeyDictionary>>associationsDo: aBlock  [
 		key ifNotNil:[aBlock value: association]].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>at: key put: anObject  [
+{ #category : #accessing }
+WeakKeyDictionary >> at: key put: anObject [ 
 	"Set the value at key to be anObject.  If key is not found, create a new
 	entry for key and set is value to anObject. Answer anObject."
 	| index element |
@@ -82,19 +69,13 @@ WeakKeyDictionary>>at: key put: anObject  [
 	^ anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>compare: object1 to: object2 [
+{ #category : #private }
+WeakKeyDictionary >> compare: object1 to: object2 [
 	^object1 = object2
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>expiredValuesDo: aBlock [
+{ #category : #finalization }
+WeakKeyDictionary >> expiredValuesDo: aBlock [
 	"Clear all associations with nil keys"
 	1 to: array size do:[:i | | assoc |
 		assoc := array at: i.
@@ -106,11 +87,8 @@ WeakKeyDictionary>>expiredValuesDo: aBlock [
 			tally := tally - 1.	]]
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>finalizeValues [
+{ #category : #finalization }
+WeakKeyDictionary >> finalizeValues [
 	"Clear all associations with nil keys.
 	Avoid using block closures, so it won't produce many garbage 
 	(since pushing closure as argument requires creating its preinitialized copy)"
@@ -126,11 +104,8 @@ WeakKeyDictionary>>finalizeValues [
 
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>finalizeValues: finiObjects [
+{ #category : #finalization }
+WeakKeyDictionary >> finalizeValues: finiObjects [
 	"Clear all associations with key == nil and value is in finiObjects."
 	array do:[:assoc|
 		(assoc notNil and:[finiObjects includes: assoc value]) ifTrue:[
@@ -142,20 +117,14 @@ WeakKeyDictionary>>finalizeValues: finiObjects [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>fixCollisionsFrom: oldIndex [
+{ #category : #private }
+WeakKeyDictionary >> fixCollisionsFrom: oldIndex [
 	"This is an internal method that should not be needed in WeakKeyDictionary"
 	self shouldNotImplement.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>fullCheck [
+{ #category : #private }
+WeakKeyDictionary >> fullCheck [
 	"Inlined super fullCheck, since the correct + X value for rehash check depends on its implementation"
 	"Keep array at least 1/4 free for decent hash behavior"
 	array size - tally < (array size // 4 max: 1)
@@ -165,29 +134,20 @@ WeakKeyDictionary>>fullCheck [
 		ifTrue: [self rehash].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>grow [
+{ #category : #private }
+WeakKeyDictionary >> grow [
 	super grow.
 	expired := 0.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>initialize: n [
+{ #category : #initialization }
+WeakKeyDictionary >> initialize: n [
 	expired := 0.
 	^super initialize: n
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>isHealthy [
+{ #category : #testing }
+WeakKeyDictionary >> isHealthy [
 	"Test that object hashes match their positions stored in the receiver,
 	answer true if everything ok, false otherwise
 	
@@ -204,11 +164,8 @@ WeakKeyDictionary>>isHealthy [
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>noCheckAdd: anAssociation [
+{ #category : #private }
+WeakKeyDictionary >> noCheckAdd: anAssociation [
 	"Add anAssociation to the receiver. Discard expired associations. Put nil keys at the beginning."
 	
 	| key |
@@ -231,19 +188,13 @@ WeakKeyDictionary>>noCheckAdd: anAssociation [
 	].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>noCheckAddForRehash: anAssociation [
+{ #category : #private }
+WeakKeyDictionary >> noCheckAddForRehash: anAssociation [
 	^self noCheckAdd: anAssociation
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>noCheckNoGrowFillFrom: anArray [
+{ #category : #private }
+WeakKeyDictionary >> noCheckNoGrowFillFrom: anArray [
 	"Add the elements of anArray except nils and flag to me assuming that I don't contain any of them, they are unique and I have more free space than they require."
 
 	tally := 0.
@@ -258,11 +209,8 @@ WeakKeyDictionary>>noCheckNoGrowFillFrom: anArray [
 					tally := tally + 1 ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>overridingAt: key put: anObject [
+{ #category : #accessing }
+WeakKeyDictionary >> overridingAt: key put: anObject [
 	"Set the value at key to be anObject.  If key is not found, create a new
 	entry for key and set is value to anObject. Answer anObject.
 	May override an association with key == nil"
@@ -286,11 +234,8 @@ WeakKeyDictionary>>overridingAt: key put: anObject [
 	^ anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>postCopy [
+{ #category : #private }
+WeakKeyDictionary >> postCopy [
 	"Must copy the associations, or later store will affect both the
 original and the copy"
 
@@ -303,21 +248,15 @@ original and the copy"
 							ifFalse: [WeakKeyAssociation key: assoc key value: assoc value]]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>rehash [
+{ #category : #private }
+WeakKeyDictionary >> rehash [
 	"Rehash the receiver."
 	super rehash.
 	expired := 0.
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>removeKey: key ifAbsent: aBlock [
+{ #category : #removing }
+WeakKeyDictionary >> removeKey: key ifAbsent: aBlock [
 	"Remove key (and its associated value) from the receiver. If key is not in 
 	the receiver, answer the result of evaluating aBlock. Otherwise, answer 
 	the value externally named by key."
@@ -334,11 +273,8 @@ WeakKeyDictionary>>removeKey: key ifAbsent: aBlock [
 	^result
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>scanFor: anObject [
+{ #category : #private }
+WeakKeyDictionary >> scanFor: anObject [
 	"mvl 10/21/2007: The method has been copied to this location to indicate that whenever #scanFor: changes #scanForEmpty: must be changed in the receiver as well."
 	"Scan the key array for the first slot containing either a nil (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or zero if no slot is found. Expired associations are ignored, since callers take non-nil slots as a successful search. Subclasses should override startIndexFor: and compare:to: if they have a different semantics for matching elements."
 	| element start finish |
@@ -358,11 +294,8 @@ WeakKeyDictionary>>scanFor: anObject [
 	^ 0  "No match AND no empty slot"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>scanForEmpty: anObject [
+{ #category : #private }
+WeakKeyDictionary >> scanForEmpty: anObject [
 	"Scan the key array for the first slot containing either a nil or an expired association (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or zero if no slot is found."
 	| element start finish firstNil |
 	finish := array size.
@@ -403,11 +336,8 @@ WeakKeyDictionary>>scanForEmpty: anObject [
 	^ 0  "No match AND no empty slot"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>scanForKeyOrNil: anObject [
+{ #category : #private }
+WeakKeyDictionary >> scanForKeyOrNil: anObject [
 	"Same as scanFor: , but treats association with key == nil as empty slot"
 	
 	| element start finish |
@@ -427,11 +357,8 @@ WeakKeyDictionary>>scanForKeyOrNil: anObject [
 	^ 0  "No match AND no empty slot"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>slowSize [
+{ #category : #accessing }
+WeakKeyDictionary >> slowSize [
 	"Careful! Answer the maximum amount
 	of elements in the receiver, not the
 	exact amount"
@@ -445,29 +372,20 @@ WeakKeyDictionary>>slowSize [
 	^count
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>startIndexFor: anObject [
+{ #category : #private }
+WeakKeyDictionary >> startIndexFor: anObject [
 	"Return the index at which the scan for anObject should start."
 	
 	^(anObject hash \\ array size) + 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>valueAtNewKey: aKey put: anObject atIndex: index declareFrom: aDictionary  [
+{ #category : #private }
+WeakKeyDictionary >> valueAtNewKey: aKey put: anObject atIndex: index declareFrom: aDictionary [ 
 	self shouldNotImplement.
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:18'
-}
-WeakKeyDictionary>>valuesDo: aBlock  [
+{ #category : #enumerating }
+WeakKeyDictionary >> valuesDo: aBlock [ 
 	"See comments in Dictionary>>valuesDo:.  The code keeps the key so it's
 	not collected during the evaluation of aBlock"
 

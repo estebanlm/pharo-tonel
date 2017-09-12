@@ -7,23 +7,16 @@ Class {
 	#instVars : [
 		'compactClassIndex'
 	],
-	#category : #Slot-Layout,
-	#timestamp : '<historical>'
+	#category : #Slot-Layout
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ObjectLayout class>>extending: superLayout scope: aScope host: aClass [
+{ #category : #'instance creation' }
+ObjectLayout class >> extending: superLayout scope: aScope host: aClass [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ObjectLayout class>>layoutForType: typeSymbol [
+{ #category : #accessing }
+ObjectLayout class >> layoutForType: typeSymbol [
 	typeSymbol = #compiledMethod 
 		ifTrue: [ ^ CompiledMethodLayout ].
 	typeSymbol = #bytes 
@@ -45,41 +38,29 @@ ObjectLayout class>>layoutForType: typeSymbol [
 	Error signal: 'Invalid layout type: ', typeSymbol asString.
 ]
 
-{
-	#category : #diff,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ObjectLayout>>computeChangesFrom: other in: modification [
+{ #category : #diff }
+ObjectLayout >> computeChangesFrom: other in: modification [
 	other hasSlots ifTrue: [
 		modification removals: other allSlots asArray ]
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ObjectLayout>>extend [
+{ #category : #extending }
+ObjectLayout >> extend [
 	"Answer a default extension of me."
 
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ObjectLayout>>extend: aScope [
+{ #category : #extending }
+ObjectLayout >> extend: aScope [
 	IncompatibleLayoutConflict new
 		layout: self;
 		subType: #slot;
 		signal
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ObjectLayout>>extendByte [
+{ #category : #extending }
+ObjectLayout >> extendByte [
 	self hasFields ifTrue: [
 		IncompatibleLayoutConflict new
 			layout: self;
@@ -88,11 +69,8 @@ ObjectLayout>>extendByte [
 	^ ByteLayout new
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ObjectLayout>>extendCompiledMethod [
+{ #category : #extending }
+ObjectLayout >> extendCompiledMethod [
 	self hasFields ifTrue: [
 		IncompatibleLayoutConflict new
 			layout: self;
@@ -101,11 +79,8 @@ ObjectLayout>>extendCompiledMethod [
 	^ CompiledMethodLayout new
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ObjectLayout>>extendSmallInteger [
+{ #category : #extending }
+ObjectLayout >> extendSmallInteger [
 	self hasFields ifTrue: [
 		IncompatibleLayoutConflict new
 			layout: self;
@@ -114,22 +89,16 @@ ObjectLayout>>extendSmallInteger [
 	^ ImmediateLayout new
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ObjectLayout>>extendVariable: aScope [
+{ #category : #extending }
+ObjectLayout >> extendVariable: aScope [
 	IncompatibleLayoutConflict new
 		layout: self;
 		subType: #variable;
 		signal
 ]
 
-{
-	#category : #extending,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ObjectLayout>>extendWord [
+{ #category : #extending }
+ObjectLayout >> extendWord [
 	self hasFields ifTrue: [
 		IncompatibleLayoutConflict new
 			layout: self;
@@ -138,11 +107,8 @@ ObjectLayout>>extendWord [
 	^ WordLayout new
 ]
 
-{
-	#category : #format,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ObjectLayout>>format [
+{ #category : #format }
+ObjectLayout >> format [
 	"Answer an Integer that encodes this layout in the way that VM expects it."
 	
 	| fieldSize  format |
@@ -152,35 +118,23 @@ ObjectLayout>>format [
 	^ format
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ObjectLayout>>initialize [
+{ #category : #initialization }
+ObjectLayout >> initialize [
 	compactClassIndex := 0
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ObjectLayout>>initializeInstance: anInstance [
+{ #category : #initialize-release }
+ObjectLayout >> initializeInstance: anInstance [
 	self subclassResponsibility
 ]
 
-{
-	#category : #format,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ObjectLayout>>instanceSpecification [
+{ #category : #format }
+ObjectLayout >> instanceSpecification [
 	self subclassResponsibility
 ]
 
-{
-	#category : #reshaping,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ObjectLayout>>reshapeFrom: oldScope to: newParentLayout [
+{ #category : #reshaping }
+ObjectLayout >> reshapeFrom: oldScope to: newParentLayout [
 	"Answer the reshaped version of me for a new parent layout."
 
 	| newScope |
@@ -190,11 +144,8 @@ ObjectLayout>>reshapeFrom: oldScope to: newParentLayout [
 	^ newParentLayout extendAgain: self with: newScope.
 ]
 
-{
-	#category : #reshaping,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-ObjectLayout>>reshapeTo: aModification [
+{ #category : #reshaping }
+ObjectLayout >> reshapeTo: aModification [
 	^ self class 
 		extending: aModification classLayout
 		scope: LayoutEmptyScope instance

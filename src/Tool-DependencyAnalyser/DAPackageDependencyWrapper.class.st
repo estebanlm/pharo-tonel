@@ -7,71 +7,46 @@ Class {
 	#instVars : [
 		'daPackage'
 	],
-	#category : #Tool-DependencyAnalyser-Core,
-	#timestamp : 'BaptisteQuide 7/11/2014 14:42'
+	#category : #Tool-DependencyAnalyser-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependencyWrapper class>>newWith: aPackage [
+{ #category : #'instance creation' }
+DAPackageDependencyWrapper class >> newWith: aPackage [
 	^ self new initializeFrom: aPackage
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependencyWrapper>><= other [
+{ #category : #comparing }
+DAPackageDependencyWrapper >> <= other [
 	^ self daPackage <= other daPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependencyWrapper>>daPackage [
+{ #category : #accessing }
+DAPackageDependencyWrapper >> daPackage [
 	^ daPackage
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependencyWrapper>>daPackage: anObject [
+{ #category : #accessing }
+DAPackageDependencyWrapper >> daPackage: anObject [
 	daPackage := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependencyWrapper>>initializeFrom: aPackage [
+{ #category : #initialization }
+DAPackageDependencyWrapper >> initializeFrom: aPackage [
 	super initialize.
 	self daPackage: aPackage.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependencyWrapper>>packageName [
+{ #category : #accessing }
+DAPackageDependencyWrapper >> packageName [
 	^ daPackage packageName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependencyWrapper>>printOn: aStream [
+{ #category : #accessing }
+DAPackageDependencyWrapper >> printOn: aStream [
 	aStream nextPutAll: self packageName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-DAPackageDependencyWrapper>>rPackageSet [
+{ #category : #accessing }
+DAPackageDependencyWrapper >> rPackageSet [
 	^ daPackage rPackageSet
 ]

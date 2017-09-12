@@ -13,15 +13,11 @@ Class {
 	#classVars : [
 		'TraitProperties'
 	],
-	#category : #Traits-Kernel,
-	#timestamp : 'apb 3/2/2006 17:49'
+	#category : #Traits-Kernel
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior class>>initialize [
+{ #category : #initialization }
+TraitBehavior class >> initialize [
 
 	TraitProperties
 		ifNil: [ TraitProperties := WeakIdentityKeyDictionary new ]
@@ -31,11 +27,8 @@ TraitBehavior class>>initialize [
 			TraitProperties := newDict ]
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>>> selector  [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> >> selector [ 
 	"Answer the compiled method associated with the argument, selector (a 
 	Symbol), a message selector in the receiver's method dictionary. If the 
 	selector is not in the dictionary, create an error notification."
@@ -44,20 +37,14 @@ TraitBehavior>>>> selector  [
 
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>addExclusionOf: aSymbol to: aTrait [
+{ #category : #traits }
+TraitBehavior >> addExclusionOf: aSymbol to: aTrait [
 	self setTraitComposition: (
 		self traitComposition copyWithExclusionOf: aSymbol to: aTrait)
 ]
 
-{
-	#category : #'obsolete subclasses',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>addObsoleteSubclass: aClass [
+{ #category : #'obsolete subclasses' }
+TraitBehavior >> addObsoleteSubclass: aClass [
 	"Weakly remember that aClass was a subclass of the receiver and is now obsolete"
 	| obs |
 
@@ -68,47 +55,32 @@ TraitBehavior>>addObsoleteSubclass: aClass [
 	self basicObsoleteSubclasses at: self put: obs.
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>addSelector: selector withMethod: compiledMethod  [
+{ #category : #'adding/removing methods' }
+TraitBehavior >> addSelector: selector withMethod: compiledMethod [ 
 	^ self addSelector: selector withMethod: compiledMethod notifying: nil
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>addSelector: selector withMethod: compiledMethod notifying: requestor [
+{ #category : #'adding/removing methods' }
+TraitBehavior >> addSelector: selector withMethod: compiledMethod notifying: requestor [
 	^ self addSelectorSilently: selector withMethod: compiledMethod
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>addSelectorSilently: selector withMethod: compiledMethod [
+{ #category : #'adding/removing methods' }
+TraitBehavior >> addSelectorSilently: selector withMethod: compiledMethod [
 	self basicAddSelector: selector withMethod: compiledMethod.
 	self registerLocalSelector: selector.
 	self isTrait ifTrue: [ self notifyUsersOfChangedSelector: selector].
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>addToComposition: aTrait [
+{ #category : #traits }
+TraitBehavior >> addToComposition: aTrait [
 	self setTraitComposition: (self traitComposition copyTraitExpression
 		add: aTrait;
 		yourself)
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>addTraitSelector: aSymbol withMethod: aCompiledMethod [
+{ #category : #traits }
+TraitBehavior >> addTraitSelector: aSymbol withMethod: aCompiledMethod [
 	"Add aMethod with selector aSymbol to my
 	methodDict. aMethod must not be defined locally."
 
@@ -131,19 +103,13 @@ TraitBehavior>>addTraitSelector: aSymbol withMethod: aCompiledMethod [
 	self basicAddSelector: aSymbol withMethod: method
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>addUser: aClassOrTrait [
+{ #category : #traits }
+TraitBehavior >> addUser: aClassOrTrait [
 	self traitUsers add: aClassOrTrait.
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>adoptInstance: anInstance [
+{ #category : #'adding/removing methods' }
+TraitBehavior >> adoptInstance: anInstance [
 	"Change the class of anInstance to me.
 	Primitive (found in Cog and new VMs)  follows the same rules as primitiveChangeClassTo:, but returns the 	class rather than the modified instance"
 	<primitive: 160 error: ec>
@@ -151,22 +117,16 @@ TraitBehavior>>adoptInstance: anInstance [
 	^self
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allClassVarNames [
+{ #category : #'accessing instances and variables' }
+TraitBehavior >> allClassVarNames [
 	"Answer a Set of the names of the receiver's and the receiver's ancestor's 
 	class variables."
 
 	^self superclass allClassVarNames
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allInstVarNames [
+{ #category : #'accessing instances and variables' }
+TraitBehavior >> allInstVarNames [
 	"Answer an Array of the names of the receiver's instance variables. The 
 	Array ordering is the order in which the variables are stored and 
 	accessed by the interpreter."
@@ -178,82 +138,58 @@ TraitBehavior>>allInstVarNames [
 	^vars
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allInstances [
+{ #category : #'accessing instances and variables' }
+TraitBehavior >> allInstances [
 	"Answer all instances of the receiver."
 	self error: 'Traits does not have instances.'
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allInstancesDo: aBlock [
+{ #category : #enumerating }
+TraitBehavior >> allInstancesDo: aBlock [
 	"Evaluate aBlock with each of the current instances of the receiver."
 	self error: 'Traits does not have instances.'
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allInstancesOrNil [
+{ #category : #'accessing instances and variables' }
+TraitBehavior >> allInstancesOrNil [
 	"Answer all instances of the receiver, or nil if the primitive
 	 fails, which it may be due to being out of memory."
 	self error: 'Traits does not have instances.'
 ]
 
-{
-	#category : #'obsolete subclasses',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allLocalCallsOn: aSymbol [
+{ #category : #'obsolete subclasses' }
+TraitBehavior >> allLocalCallsOn: aSymbol [
 	"Answer a SortedCollection of all the methods that call on aSymbol, anywhere in my class hierarchy."
 
 	^(SystemNavigation new allLocalCallsOn: aSymbol ofClass: (self theNonMetaClass)).
 
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allMethods [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> allMethods [
 	"Return the collection of compiled method I and my superclasses are defining"
 	"asArray is used to not bump into a bug when comparing compiled methods."
 	
 	^ self allSelectors asArray collect: [ :s | self lookupSelector: s ]
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allMethodsAccessingSlot: aSlot [
+{ #category : #queries }
+TraitBehavior >> allMethodsAccessingSlot: aSlot [
 	"return all methods that access aSlot in this class and subclasses"
 	^self withAllSubclasses flatCollect: [ :class |
 		class methodsAccessingSlot: aSlot.
 	]
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allSelectors [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> allSelectors [
 	"Answer all selectors understood by instances of the receiver"
 
 	^ self allSelectorsBelow: nil
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allSelectorsAbove [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> allSelectorsAbove [
 
 	^ self allSelectorsAboveUntil: ProtoObject 
 	
@@ -261,11 +197,8 @@ TraitBehavior>>allSelectorsAbove [
 
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allSelectorsAboveUntil: aRootClass [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> allSelectorsAboveUntil: aRootClass [
 
 	| coll |
 	coll := IdentitySet new.
@@ -278,11 +211,8 @@ TraitBehavior>>allSelectorsAboveUntil: aRootClass [
 
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allSelectorsBelow: topClass  [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> allSelectorsBelow: topClass [ 
 	| coll |
 	coll := IdentitySet new.
 	self withAllSuperclassesDo: 
@@ -296,11 +226,8 @@ TraitBehavior>>allSelectorsBelow: topClass  [
 
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allSelectorsWithout: behaviors [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> allSelectorsWithout: behaviors [
 	"Returns all the selectors of the receiver and its superclasses, except the ones define in behaviors"
 
 	| selectors |
@@ -311,29 +238,20 @@ TraitBehavior>>allSelectorsWithout: behaviors [
 	^ selectors
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allSharedPools [
+{ #category : #'accessing instances and variables' }
+TraitBehavior >> allSharedPools [
 	"Answer an ordered collection of the shared pools that the receiver and the receiver's ancestors share."
 
 	^self superclass allSharedPools
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allSlots [
+{ #category : #accessing }
+TraitBehavior >> allSlots [
 	^#()
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allSubInstances  [
+{ #category : #'accessing instances and variables' }
+TraitBehavior >> allSubInstances [ 
 	"Answer a list of all current instances of the receiver and all of its subclasses."
 	| aCollection |
 	aCollection := OrderedCollection new.
@@ -342,11 +260,8 @@ TraitBehavior>>allSubInstances  [
 	^ aCollection
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allSubInstancesDo: aBlock  [
+{ #category : #enumerating }
+TraitBehavior >> allSubInstancesDo: aBlock [ 
 	"Evaluate the argument, aBlock, for each of the current instances of the 
 	receiver and all its subclasses."
 
@@ -354,11 +269,8 @@ TraitBehavior>>allSubInstancesDo: aBlock  [
 	self allSubclassesDo: [:sub | sub allInstancesDo: aBlock]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allSubclasses [
+{ #category : #'accessing class hierarchy' }
+TraitBehavior >> allSubclasses [
 	"Answer an orderedCollection of the receiver's and the receiver's descendent's subclasses. "
 
 	| scan scanTop |
@@ -370,11 +282,8 @@ TraitBehavior>>allSubclasses [
 	^ scan
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allSubclassesDo: aBlock  [
+{ #category : #enumerating }
+TraitBehavior >> allSubclassesDo: aBlock [ 
 	"Evaluate the argument, aBlock, for each of the receiver's subclasses."
 
 	self subclassesDo: 
@@ -383,11 +292,8 @@ TraitBehavior>>allSubclassesDo: aBlock  [
 		cl allSubclassesDo: aBlock]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allSubclassesWithLevelDo: classAndLevelBlock startingLevel: level  [
+{ #category : #'accessing class hierarchy' }
+TraitBehavior >> allSubclassesWithLevelDo: classAndLevelBlock startingLevel: level [ 
 	"Walk the tree of subclasses, giving the class and its level"
 	| subclassNames |
 	classAndLevelBlock value: self value: level.
@@ -401,11 +307,8 @@ TraitBehavior>>allSubclassesWithLevelDo: classAndLevelBlock startingLevel: level
 			startingLevel: level+1]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allSuperclasses [
+{ #category : #'accessing class hierarchy' }
+TraitBehavior >> allSuperclasses [
 	"Answer an OrderedCollection of the receiver's and the receiver's  
 	ancestor's superclasses. The first element is the receiver's immediate  
 	superclass, followed by its superclass; the last element is Object."
@@ -417,11 +320,8 @@ TraitBehavior>>allSuperclasses [
 			temp]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allSuperclassesDo: aBlock  [
+{ #category : #enumerating }
+TraitBehavior >> allSuperclassesDo: aBlock [ 
 	"Evaluate the argument, aBlock, for each of the receiver's superclasses."
 
 	self superclass == nil
@@ -429,11 +329,8 @@ TraitBehavior>>allSuperclassesDo: aBlock  [
 				self superclass allSuperclassesDo: aBlock]
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allSuperclassesIncluding: aClass [
+{ #category : #'accessing class hierarchy' }
+TraitBehavior >> allSuperclassesIncluding: aClass [
 	"Answer an OrderedCollection of the receiver's and the receiver's  ancestor's superclasses
 	up to aClass included. If aClass is not part of the receiver's superclass, returns up to the root."
 	| temp |
@@ -445,11 +342,8 @@ TraitBehavior>>allSuperclassesIncluding: aClass [
 			temp]
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>allUnreferencedInstanceVariables [
+{ #category : #enumerating }
+TraitBehavior >> allUnreferencedInstanceVariables [
 	"Return a list of the instance variables known to the receiver which are not referenced in the receiver or any of its subclasses OR superclasses"
 
 	^ self allInstVarNames reject: [:ivn |
@@ -459,11 +353,8 @@ TraitBehavior>>allUnreferencedInstanceVariables [
 				(class whichSelectorsAccess: ivn asSymbol) notEmpty]]
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>applyChangesOfNewTraitCompositionReplacing: oldComposition [
+{ #category : #traits }
+TraitBehavior >> applyChangesOfNewTraitCompositionReplacing: oldComposition [
 	| changedSelectors |
 	changedSelectors := self traitComposition
 		changedSelectorsComparedTo: oldComposition.
@@ -474,11 +365,8 @@ TraitBehavior>>applyChangesOfNewTraitCompositionReplacing: oldComposition [
 	^changedSelectors
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>basicAddSelector: selector withMethod: compiledMethod  [
+{ #category : #'adding/removing methods' }
+TraitBehavior >> basicAddSelector: selector withMethod: compiledMethod [ 
 	"Add the message selector with the corresponding compiled method to the 
 	receiver's method dictionary.
 	Do this without sending system change notifications"
@@ -490,11 +378,8 @@ TraitBehavior>>basicAddSelector: selector withMethod: compiledMethod  [
 	compiledMethod selector: selector.
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>basicLocalSelectors [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> basicLocalSelectors [
 	"Direct accessor for the instance variable localSelectors.
 	Since localSelectors is lazily initialized, this may 
 	return nil, which means that all selectors are local."
@@ -502,43 +387,28 @@ TraitBehavior>>basicLocalSelectors [
 	^ localSelectors
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>basicLocalSelectors: aSetOrNil [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> basicLocalSelectors: aSetOrNil [
 	localSelectors := aSetOrNil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>basicNew [
+{ #category : #'instance creation' }
+TraitBehavior >> basicNew [
 	self error: 'Traits cannot create instances'.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>basicNew: sizeRequested  [
+{ #category : #'instance creation' }
+TraitBehavior >> basicNew: sizeRequested [ 
 	self error: 'Traits cannot create instances'.
 ]
 
-{
-	#category : #'obsolete subclasses',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>basicObsoleteSubclasses [
+{ #category : #'obsolete subclasses' }
+TraitBehavior >> basicObsoleteSubclasses [
 	^WeakKeyToCollectionDictionary new.
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>basicRemoveSelector: selector  [
+{ #category : #'adding/removing methods' }
+TraitBehavior >> basicRemoveSelector: selector [ 
 	"Assuming that the argument, selector (a Symbol), is a message selector 
 	in my method dictionary, remove it and its method."
 
@@ -547,68 +417,47 @@ TraitBehavior>>basicRemoveSelector: selector  [
 	self methodDict removeKey: selector.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>becomeCompact [
+{ #category : #private }
+TraitBehavior >> becomeCompact [
 	"Backward compatibility with the Squeak V3 object format.
 	Spur does not have a distinction between compact and non-compact classes."
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>becomeCompactSimplyAt: index [
+{ #category : #private }
+TraitBehavior >> becomeCompactSimplyAt: index [
 	"Backward compatibility with the Squeak V3 object format.
 	Spur does not have a distinction between compact and non-compact classes."
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>becomeUncompact [
+{ #category : #private }
+TraitBehavior >> becomeUncompact [
 	"Backward compatibility with the Squeak V3 object format.
 	 Spur does not have a distinction between compact and non-compact classes."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>binding [
+{ #category : #accessing }
+TraitBehavior >> binding [
 	^ nil -> self
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>bindingOf: varName [
+{ #category : #'accessing instances and variables' }
+TraitBehavior >> bindingOf: varName [
 	
 	"Answer the binding of some variable resolved in the scope of the receiver"
 
 	^ self environment bindingOf: varName asSymbol.
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>canPerform: selector [
+{ #category : #'testing method dictionary' }
+TraitBehavior >> canPerform: selector [
 	"Answer whether the receiver can safely perform to the message whose selector 
 	is the argument: it is not an abstract or cancelled method"
 
 	^ self classAndMethodFor: selector do: [:c :m | m isProvided] ifAbsent: [false].
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>canUnderstand: selector [
+{ #category : #'testing method dictionary' }
+TraitBehavior >> canUnderstand: selector [
 	"Answer whether the receiver can respond to the message whose selector 
 	is the argument."
 
@@ -618,20 +467,14 @@ TraitBehavior>>canUnderstand: selector [
 		ifAbsent: [ false ].
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>canZapMethodDictionary [
+{ #category : #testing }
+TraitBehavior >> canZapMethodDictionary [
 	"Return true if it is safe to zap the method dictionary on #obsolete"
 	^true
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>classAndMethodFor: aSymbol do: binaryBlock ifAbsent: absentBlock [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> classAndMethodFor: aSymbol do: binaryBlock ifAbsent: absentBlock [
 	"Looks up the selector aSymbol in the class chain. If it is found, binaryBlock is evaluated
 	with the class that defines the selector and the associated method. Otherwise
 	absentBlock is evaluated."
@@ -644,69 +487,48 @@ TraitBehavior>>classAndMethodFor: aSymbol do: binaryBlock ifAbsent: absentBlock 
 	^ absentBlock value.
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>classBindingOf: varName [
+{ #category : #'testing method dictionary' }
+TraitBehavior >> classBindingOf: varName [
 	"Answer the binding of some variable resolved in the scope of the receiver's class"
 	^self bindingOf: varName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>classDepth [
+{ #category : #accessing }
+TraitBehavior >> classDepth [
 
 	self superclass ifNil: [^ 1].
 	^ self superclass classDepth + 1
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>classVarNames [
+{ #category : #'accessing instances and variables' }
+TraitBehavior >> classVarNames [
 	"Answer a collection of the receiver's class variable names."
 
 	^#()
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>classesComposedWithMe [
+{ #category : #traits }
+TraitBehavior >> classesComposedWithMe [
 	self isTrait
 		ifTrue: [ ^ self traitUsers flatCollect: [ :u | u classesComposedWithMe ] ]
 		ifFalse: [ ^ {self} ]
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>cleanUp [
+{ #category : #cleanup }
+TraitBehavior >> cleanUp [
 	"Clean out any caches and other state that should be flushed when trying to get an image into a pristine state. Subclasses may override #cleanUp: to provide different levels of cleanliness"
 
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>cleanUp: aggressive [
+{ #category : #cleanup }
+TraitBehavior >> cleanUp: aggressive [
 	"Clean out any caches and other state that should be flushed when trying to get an image into a pristine state. The argument should be used to indicate how aggressive the cleanup should be. Some subclasses may act differently depending on its value - for example, ChangeSet will only delete all unused and reinitialize the current change set if we're asking it to be aggressive."
 
 	^self cleanUp
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>commentsAt:  selector [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> commentsAt:  selector [
 	"Answer a string representing the first comment in the method associated with selector.  Return an empty string if the relevant source file is not available, or if the method's source code does not contain a comment.  Not smart enough to bypass quotes in string constants, but does map doubled quote into a single quote."
 
 
@@ -715,11 +537,8 @@ TraitBehavior>>commentsAt:  selector [
 "Behavior commentsAt: #commentsAt:"
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>commentsIn: sourceString [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> commentsIn: sourceString [
 
 	
 	| commentStart nextQuotePos someComments aPos |
@@ -737,11 +556,8 @@ TraitBehavior>>commentsIn: sourceString [
 	^someComments
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>compiledMethodAt: selector  [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> compiledMethodAt: selector [ 
 	"Answer the compiled method associated with the argument, selector (a 
 	Symbol), a message selector in the receiver's method dictionary. If the 
 	selector is not in the dictionary, create an error notification."
@@ -749,41 +565,29 @@ TraitBehavior>>compiledMethodAt: selector  [
 	^ self methodDict at: selector
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>compiledMethodAt: selector ifAbsent: aBlock [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> compiledMethodAt: selector ifAbsent: aBlock [
 	"Answer the compiled method associated with the argument, selector (a Symbol), a message selector in the receiver's method dictionary. If the selector is not in the dictionary, return the value of aBlock"
 
 	^ self methodDict at: selector ifAbsent: aBlock
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>compiledMethodAt: selector ifPresent: anotherBlock ifAbsent: aBlock [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> compiledMethodAt: selector ifPresent: anotherBlock ifAbsent: aBlock [
 	"Answer the compiled method associated with the argument, selector (a Symbol), a message selector in the receiver's method dictionary. If the selector is not in the dictionary, return the value of aBlock"
 
 	^ self methodDict at: selector ifPresent: anotherBlock ifAbsent: aBlock
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>compress [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> compress [
 	"Compact the method dictionary of the receiver."
 
 	self methodDict rehash
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>copiedFromSuperclass: method [
+{ #category : #queries }
+TraitBehavior >> copiedFromSuperclass: method [
 	"Returns the methods that the receiver copied with its ancestors"
 	
 	self allSuperclassesDo: [ :cls|
@@ -796,11 +600,8 @@ TraitBehavior>>copiedFromSuperclass: method [
 	
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>copiedMethodsFromSuperclass [
+{ #category : #queries }
+TraitBehavior >> copiedMethodsFromSuperclass [
 	"Returns the methods that the receiver copied with its ancestors"
 	
 	| methods |
@@ -810,11 +611,8 @@ TraitBehavior>>copiedMethodsFromSuperclass [
 	^ methods
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>copiesFromSuperclass: method [
+{ #category : #queries }
+TraitBehavior >> copiesFromSuperclass: method [
 	"Checks whether the receiver copied the argument,  method, from its superclasses"
 	
 	self allSuperclassesDo: [ :cls|
@@ -823,11 +621,8 @@ TraitBehavior>>copiesFromSuperclass: method [
 	^ false
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>copiesMethodsFromSuperclass [
+{ #category : #queries }
+TraitBehavior >> copiesMethodsFromSuperclass [
 	"Checks whether the receiver copied some method from its superclass"
 
 	self methodsDo: [ :method|
@@ -836,31 +631,22 @@ TraitBehavior>>copiesMethodsFromSuperclass [
 	^ false
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>copyOfMethodDictionary [
+{ #category : #copying }
+TraitBehavior >> copyOfMethodDictionary [
 	"Return a copy of the receiver's method dictionary"
 
 	^ self methodDict copy
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>deepCopy [
+{ #category : #copying }
+TraitBehavior >> deepCopy [
 	"Classes should only be shallowCopied or made anew."
 
 	^ self shallowCopy
 ]
 
-{
-	#category : #dependencies,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>dependentClasses [
+{ #category : #dependencies }
+TraitBehavior >> dependentClasses [
 	"Return the list of classes used myself"
 	
 	"Morph dependentClasses"
@@ -881,29 +667,20 @@ TraitBehavior>>dependentClasses [
 	^ cll asArray
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>deregisterLocalSelector: aSymbol [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> deregisterLocalSelector: aSymbol [
 	self basicLocalSelectors notNil ifTrue: [
 		self basicLocalSelectors remove: aSymbol ifAbsent: []]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>emptyMethodDictionary [
+{ #category : #initialization }
+TraitBehavior >> emptyMethodDictionary [
 
 	^ MethodDictionary new
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>ensureLocalSelectors [
+{ #category : #traits }
+TraitBehavior >> ensureLocalSelectors [
 	"Ensures that the instance variable localSelectors is effectively used to maintain
 	the set of local selectors.
 	This method must be called before any non-local selectors are added to the
@@ -912,29 +689,20 @@ TraitBehavior>>ensureLocalSelectors [
 	self basicLocalSelectors ifNil: [self basicLocalSelectors: self selectors asSet]
 ]
 
-{
-	#category : #accessing-properties,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>ensureProperties [
+{ #category : #accessing-properties }
+TraitBehavior >> ensureProperties [
 	^ TraitProperties at: self ifAbsentPut: WeakKeyDictionary new
 		
 ]
 
-{
-	#category : #naming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>environment [
+{ #category : #naming }
+TraitBehavior >> environment [
 	"Return the environment in which the receiver is visible"
 	^Smalltalk globals
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>firstCommentAt:  selector [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> firstCommentAt:  selector [
 	"Answer a string representing the first comment in the method associated with selector.  Return an empty string if the relevant source file is not available, or if the method's source code does not contain a comment.  Not smart enough to bypass quotes in string constants, but does map doubled quote into a single quote."
 
 	|someComments|
@@ -945,11 +713,8 @@ TraitBehavior>>firstCommentAt:  selector [
 "Behavior firstCommentAt: #firstCommentAt:"
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>firstPrecodeCommentFor:  selector [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> firstPrecodeCommentFor:  selector [
 	"If there is a comment in the source code at the given selector that preceeds the body of the method, return it here, else return nil"
 
 	| method |
@@ -961,11 +726,8 @@ TraitBehavior>>firstPrecodeCommentFor:  selector [
 	
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>flattenDown: aTrait [
+{ #category : #traits }
+TraitBehavior >> flattenDown: aTrait [
 | selectors |
 	[self hasTraitComposition and: [self traitComposition allTraits includes: aTrait]] assert.
 	(self traitComposition transformationOfTrait: aTrait)
@@ -975,52 +737,37 @@ TraitBehavior>>flattenDown: aTrait [
 	self removeFromComposition: aTrait. ].
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>flattenDownAllTraits [
+{ #category : #traits }
+TraitBehavior >> flattenDownAllTraits [
 	self traitComposition allTraits do: [:each | self flattenDown: each].
 	[ self traitComposition isEmpty ] assert.
 	self traitComposition: nil.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>flushCache [
+{ #category : #private }
+TraitBehavior >> flushCache [
 	"Tell the virtual machine to remove the contents of its method lookup caches, if it has any.  This must be done when the system 	modifies the class hierarchy so that message lookups reflect the revised organization.  c.f. Symbol>>flushCache & 	CompiledMethod>>flushCache.  Essential. See MethodDictionary class comment."
 
 	<primitive: 89>
 	self primitiveFailed
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>hasAbstractMethods [
+{ #category : #testing }
+TraitBehavior >> hasAbstractMethods [
 	"Tells whether the receiver locally defines an abstract method, i.e., a method sending subclassResponsibility"
 	
 	^ (self methods anySatisfy: [:cm | cm sendsSelector: #subclassResponsibility ])
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>hasMethods [
+{ #category : #'testing method dictionary' }
+TraitBehavior >> hasMethods [
 	"Answer whether the receiver has any methods in its method dictionary."
 
 	^ self methodDict notEmpty
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>hasSelectorReferringTo: literal [
+{ #category : #'testing method dictionary' }
+TraitBehavior >> hasSelectorReferringTo: literal [
 	"Answer true if any of my methods access the argument as a 
 	literal. Dives into the compact literal notation, making it slow but 
 	thorough "
@@ -1029,71 +776,50 @@ TraitBehavior>>hasSelectorReferringTo: literal [
 		
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>hasTraitComposition [
+{ #category : #traits }
+TraitBehavior >> hasTraitComposition [
 
 	^ self traitComposition notEmpty.
 ]
 
-{
-	#category : #'testing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>includesBehavior: aClass [
+{ #category : #'testing class hierarchy' }
+TraitBehavior >> includesBehavior: aClass [
 	
 	self isTrait ifTrue: [ ^false ].
 	^self == aClass or:[self inheritsFrom: aClass]
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>includesLocalSelector: aSymbol [
+{ #category : #'testing method dictionary' }
+TraitBehavior >> includesLocalSelector: aSymbol [
 	^self basicLocalSelectors 
 		ifNil: [self includesSelector: aSymbol]
 		ifNotNil: [self localSelectors includes: aSymbol]
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>includesSelector: aSymbol  [
+{ #category : #'testing method dictionary' }
+TraitBehavior >> includesSelector: aSymbol [ 
 	"Answer whether the message whose selector is the argument is in the 
 	method dictionary of the receiver's class."
 
 	^ self methodDict includesKey: aSymbol
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>includesSharedPoolNamed:  aSharedPoolString  [
+{ #category : #'accessing instances and variables' }
+TraitBehavior >> includesSharedPoolNamed:  aSharedPoolString [ 
 	"Answer whether the receiver uses the shared pool named aSharedPoolString"
 	
 	^ (self sharedPools anySatisfy: [:each | each name = aSharedPoolString])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>indexIfCompact [
+{ #category : #private }
+TraitBehavior >> indexIfCompact [
 	"Backward compatibility with the Squeak V3 object format.
 	 Spur does not have a distinction between compact and non-compact classes."
 	^0
 ]
 
-{
-	#category : #'testing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>inheritsFrom: aClass  [
+{ #category : #'testing class hierarchy' }
+TraitBehavior >> inheritsFrom: aClass [ 
 	"Answer whether the argument, aClass, is on the receiver's superclass 
 	chain."
 
@@ -1106,11 +832,8 @@ TraitBehavior>>inheritsFrom: aClass  [
 	^false
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>initialize [
+{ #category : #initialization }
+TraitBehavior >> initialize [
 	"moved here from the class side's #new"
 	super initialize.
 	self superclass: Object.
@@ -1121,27 +844,18 @@ TraitBehavior>>initialize [
 	self users: IdentitySet new.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>initializeSlots: anObject  [
+{ #category : #initialization }
+TraitBehavior >> initializeSlots: anObject [ 
 	self classLayout initializeInstance: anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>instSize [
+{ #category : #testing }
+TraitBehavior >> instSize [
 	^0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>instSpec [
+{ #category : #testing }
+TraitBehavior >> instSpec [
 	"Answer the instance specification part of the format that defines what kind of object
 	 an instance of the receiver is.  The formats are
 			0	= 0 sized objects (UndefinedObject True False et al)
@@ -1161,11 +875,8 @@ TraitBehavior>>instSpec [
 	^(self format bitShift: -16) bitAnd: 16r1F
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>instVarNames [
+{ #category : #'accessing instances and variables' }
+TraitBehavior >> instVarNames [
 	"Answer an Array of the instance variable names. Behaviors must make 
 	up fake local instance variable names because Behaviors have instance 
 	variables for the purpose of compiling methods, but these are not named 
@@ -1181,11 +892,8 @@ TraitBehavior>>instVarNames [
 	^(superSize + 1 to: mySize) collect: [:i | 'inst' , i printString]
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>instVarNamesAndOffsetsDo: aBinaryBlock [
+{ #category : #compiling }
+TraitBehavior >> instVarNamesAndOffsetsDo: aBinaryBlock [
 	"This is part of the interface between the compiler and a class's instance or field names.
 	 The class should enumerate aBinaryBlock with the instance variable name strings and
 	 their integer offsets.  The order is important. Names evaluated later will override the
@@ -1195,11 +903,8 @@ TraitBehavior>>instVarNamesAndOffsetsDo: aBinaryBlock [
 	^self
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>instanceCount [
+{ #category : #'accessing instances and variables' }
+TraitBehavior >> instanceCount [
 	"Answer the number of instances of the receiver that are currently in 
 	use."
 
@@ -1209,11 +914,8 @@ TraitBehavior>>instanceCount [
 	^count
 ]
 
-{
-	#category : #'memory usage',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>instancesSizeInMemory [
+{ #category : #'memory usage' }
+TraitBehavior >> instancesSizeInMemory [
 	"Answers the number of bytes consumed by all its instances including their object header"
 	
 	| bytes |
@@ -1222,11 +924,8 @@ TraitBehavior>>instancesSizeInMemory [
 	^ bytes
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isAliasSelector: aSymbol [
+{ #category : #'testing method dictionary' }
+TraitBehavior >> isAliasSelector: aSymbol [
 	"Return true if the selector aSymbol is an alias defined
 	in my or in another composition somewhere deeper in 
 	the tree of traits compositions."
@@ -1236,19 +935,13 @@ TraitBehavior>>isAliasSelector: aSymbol [
 				and: [self traitComposition isAliasSelector: aSymbol]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isAnonymous [
+{ #category : #testing }
+TraitBehavior >> isAnonymous [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isBits [
+{ #category : #testing }
+TraitBehavior >> isBits [
 	"Answer whether the receiver contains just bits (not pointers).
 	 Above Cog Spur the class format is
 		<5 bits inst spec><16 bits inst size>
@@ -1270,11 +963,8 @@ TraitBehavior>>isBits [
 	^self instSpec >= 7
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isBytes [
+{ #category : #testing }
+TraitBehavior >> isBytes [
 	"Answer whether the receiver has 8-bit instance variables.
 	 Above Cog Spur the class format is
 		<5 bits inst spec><16 bits inst size>
@@ -1296,21 +986,15 @@ TraitBehavior>>isBytes [
 	^self instSpec >= 16
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isCompact [
+{ #category : #testing }
+TraitBehavior >> isCompact [
 	"Backward compatibility with the Squeak V3 object format.
 	Spur does not have a distinction between compact and non-compact classes."
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isComposedBy: aTrait [
+{ #category : #accessing }
+TraitBehavior >> isComposedBy: aTrait [
 	"Answers if this object includes trait aTrait into its composition"
 	aTrait isTrait ifFalse: [ ^false].
 	^self hasTraitComposition 
@@ -1318,19 +1002,13 @@ TraitBehavior>>isComposedBy: aTrait [
 		ifFalse: [ false ]
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isDisabledSelector: selector [
+{ #category : #'testing method dictionary' }
+TraitBehavior >> isDisabledSelector: selector [
 	^ self classAndMethodFor: selector do: [:c :m | m isDisabled] ifAbsent: [false]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isEphemeronClass [
+{ #category : #testing }
+TraitBehavior >> isEphemeronClass [
 	"Answer whether the receiver has ephemeral instance variables.  The garbage collector will
 	 fire (queue for finalization) any ephemeron whose first instance variable is not referenced
 	 other than from the transitive closure of references from ephemerons. Hence referring to
@@ -1344,21 +1022,15 @@ TraitBehavior>>isEphemeronClass [
 	^self instSpec = 5
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isFixed [
+{ #category : #testing }
+TraitBehavior >> isFixed [
 	"Answer whether the receiver does not have a variable (indexable) part."
 
 	^self isVariable not
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isImmediateClass [
+{ #category : #testing }
+TraitBehavior >> isImmediateClass [
 	"Answer whether the receiver has immediate instances.  Immediate instances
 	 store their value in their object pointer, not in an object body.  Hence immediates
 	 take no space and are immutable.  The immediates are distinguished by tag bits
@@ -1368,11 +1040,8 @@ TraitBehavior>>isImmediateClass [
 	^self instSpec = 7
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isLocalAliasSelector: aSymbol [
+{ #category : #'testing method dictionary' }
+TraitBehavior >> isLocalAliasSelector: aSymbol [
 	"Return true if the selector aSymbol is an alias defined
 	in my trait composition."
 
@@ -1381,70 +1050,46 @@ TraitBehavior>>isLocalAliasSelector: aSymbol [
 				and: [self traitComposition isLocalAliasSelector: aSymbol]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isManifest [
+{ #category : #testing }
+TraitBehavior >> isManifest [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isMeta [
+{ #category : #testing }
+TraitBehavior >> isMeta [
 	^ false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isObsolete [
+{ #category : #testing }
+TraitBehavior >> isObsolete [
 	"Return true if the receiver is obsolete."
 	^self instanceCount = 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isPointers [
+{ #category : #testing }
+TraitBehavior >> isPointers [
 	"Answer whether the receiver contains just pointers (not bits)."
 
 	^self isBits not
 ]
 
-{
-	#category : #'testing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isRootInEnvironment [
+{ #category : #'testing class hierarchy' }
+TraitBehavior >> isRootInEnvironment [
 	^self superclass isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isTrait [
+{ #category : #testing }
+TraitBehavior >> isTrait [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isUsed [
+{ #category : #testing }
+TraitBehavior >> isUsed [
 	^self traitUsers isNotEmpty 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isVariable [
+{ #category : #testing }
+TraitBehavior >> isVariable [
 	"Answer whether the receiver has indexable variables.
 	 Above Cog Spur the class format is
 		<5 bits inst spec><16 bits inst size>
@@ -1468,30 +1113,21 @@ TraitBehavior>>isVariable [
 	^instSpec >= 2 and: [instSpec <= 4 or: [instSpec >= 9]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isWeak [
+{ #category : #testing }
+TraitBehavior >> isWeak [
 	"Answer whether the receiver has contains weak references."
 	^ self instSpec = 4
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>isWords [
+{ #category : #testing }
+TraitBehavior >> isWords [
 	"Answer true if the receiver is made of 32-bit instance variables."
 
 	^self isBytes not
 ]
 
-{
-	#category : #'testing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>kindOfSubclass [
+{ #category : #'testing class hierarchy' }
+TraitBehavior >> kindOfSubclass [
 	"Answer a String that is the keyword that describes the receiver's kind of subclass,
 	 either a regular subclass, a variableSubclass, a variableByteSubclass,
 	 a variableWordSubclass, a weakSubclass, an ephemeronSubclass or an immediateSubclass.
@@ -1516,11 +1152,8 @@ TraitBehavior>>kindOfSubclass [
 						ifFalse: [' subclass: ']]]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>literalScannedAs: scannedLiteral notifying: requestor [
+{ #category : #printing }
+TraitBehavior >> literalScannedAs: scannedLiteral notifying: requestor [
 	"Postprocesses a literal scanned by Scanner scanToken (esp. xLitQuote).
 	If scannedLiteral is not an association, answer it.
 	Else, if it is of the form:
@@ -1558,11 +1191,8 @@ TraitBehavior>>literalScannedAs: scannedLiteral notifying: requestor [
 "
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>localMethodNamed: selector ifAbsent: aBlock [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> localMethodNamed: selector ifAbsent: aBlock [
 	"Answer the locally defined method associated with the argument, selector (a Symbol), a message selector in the receiver's method dictionary. If the selector is not in the dictionary or it is not a local one, return the value of aBlock"
 	| method |
 	method := self compiledMethodAt: selector ifAbsent: aBlock.
@@ -1574,21 +1204,15 @@ TraitBehavior>>localMethodNamed: selector ifAbsent: aBlock [
 	^aBlock value
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>localMethods [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> localMethods [
 	"returns the methods of classes excluding the ones of the traits that the class uses" 
 	 
 	^ self methods select: [:each | self includesLocalSelector: each selector].
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>localSelectors [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> localSelectors [
 	"Return a set of selectors defined locally.
 	The instance variable is lazily initialized. If it is nil then there
 	are no non-local selectors"
@@ -1598,29 +1222,20 @@ TraitBehavior>>localSelectors [
 		ifNotNil: [self basicLocalSelectors].
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>localSelectors: aSet  [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> localSelectors: aSet [ 
 	self basicLocalSelectors: aSet
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>longPrintOn: aStream [
+{ #category : #printing }
+TraitBehavior >> longPrintOn: aStream [
 	"Append to the argument, aStream, the names and values of all of the receiver's instance variables.  But, not useful for a class with a method dictionary."
 
 	aStream nextPutAll: '<<too complex to show>>'; cr.
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>lookupSelector: selector [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> lookupSelector: selector [
 	"Look up the given selector in my methodDictionary.
 	Return the corresponding method if found.
 	Otherwise chase the superclass chain and try again.
@@ -1636,133 +1251,88 @@ TraitBehavior>>lookupSelector: selector [
 	^ nil
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>methodDict [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> methodDict [
 	^ methodDict
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>methodDict: aDictionary [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> methodDict: aDictionary [
 	methodDict := aDictionary
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>methodDictionary [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> methodDictionary [
 	^self methodDict
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>methodDictionary: aDictionary [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> methodDictionary: aDictionary [
 	self methodDict: aDictionary
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>methods [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> methods [
 	
 	^ self methodDict values
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>methodsAccessingSlot: aSlot [
+{ #category : #queries }
+TraitBehavior >> methodsAccessingSlot: aSlot [
 	^self methods select: [ :method | method accessesSlot: aSlot ]
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>methodsDo: aBlock [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> methodsDo: aBlock [
 	"Evaluate aBlock for all the compiled methods in my method dictionary."
 
 	^ self methodDict valuesDo: aBlock
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>methodsReadingSlot: aSlot [
+{ #category : #queries }
+TraitBehavior >> methodsReadingSlot: aSlot [
 	^self methods select: [ :method | method readsSlot: aSlot ]
 ]
 
-{
-	#category : #navigation,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>methodsReferencingClass: aClass [
+{ #category : #navigation }
+TraitBehavior >> methodsReferencingClass: aClass [
 
 	^self methodsReferencingClasses: { aClass }
 ]
 
-{
-	#category : #navigation,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>methodsReferencingClasses: aCollectionOfClasses [
+{ #category : #navigation }
+TraitBehavior >> methodsReferencingClasses: aCollectionOfClasses [
 	^ self methods select: [ :meth | meth referencedClasses includesAny: aCollectionOfClasses ]
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>methodsWritingSlot: aSlot [
+{ #category : #queries }
+TraitBehavior >> methodsWritingSlot: aSlot [
 	^self methods select: [ :method | method writesSlot: aSlot ]
 ]
 
-{
-	#category : #naming,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>name [
+{ #category : #naming }
+TraitBehavior >> name [
 	^ self subclassResponsibility.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>new [
+{ #category : #'instance creation' }
+TraitBehavior >> new [
 	"Answer a new initialized instance of the receiver (which is a class) with no indexable variables. Fail if the class is indexable."
 
 	^ self basicNew initialize
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>new: sizeRequested  [
+{ #category : #'instance creation' }
+TraitBehavior >> new: sizeRequested [ 
 	"Answer an initialized instance of this class with the number of indexable
 	variables specified by the argument, sizeRequested."
 
 	^ (self basicNew: sizeRequested) initialize  
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>nextQuotePosIn: sourceString startingFrom: commentStart [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> nextQuotePosIn: sourceString startingFrom: commentStart [
 	| pos nextQuotePos |
 	pos := commentStart + 1.
 	[((nextQuotePos := sourceString findString: '"' startingAt: pos) == (sourceString findString: '""' startingAt: pos)) and: [nextQuotePos ~= 0]]
@@ -1771,11 +1341,8 @@ TraitBehavior>>nextQuotePosIn: sourceString startingFrom: commentStart [
 	^nextQuotePos
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>nonObsoleteClass [
+{ #category : #initialize-release }
+TraitBehavior >> nonObsoleteClass [
 	"Attempt to find and return the current version of this obsolete class"
 
 	| obsName |
@@ -1785,11 +1352,8 @@ TraitBehavior>>nonObsoleteClass [
 	^ self environment at: obsName asSymbol
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>noteChangedSelectors: aCollection [
+{ #category : #traits }
+TraitBehavior >> noteChangedSelectors: aCollection [
 	"Start update of my methodDict (after changes to traits in traitComposition
 	or after a local method was removed from my methodDict). The argument 
 	is a collection of method selectors that may have been changed. Most of the time
@@ -1804,36 +1368,23 @@ TraitBehavior>>noteChangedSelectors: aCollection [
 	^ affectedSelectors
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>notifyUsersOfChangedSelector: aSelector [
+{ #category : #traits }
+TraitBehavior >> notifyUsersOfChangedSelector: aSelector [
 	self notifyUsersOfChangedSelectors: (Array with: aSelector)
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>notifyUsersOfChangedSelectors: aCollection [
-
+{ #category : #traits }
+TraitBehavior >> notifyUsersOfChangedSelectors: aCollection [
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>numberOfInstanceVariables [
+{ #category : #accessing }
+TraitBehavior >> numberOfInstanceVariables [
 	^ self instVarNames size
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>obsolete [
+{ #category : #initialization }
+TraitBehavior >> obsolete [
 	"Invalidate and recycle local methods,
 	e.g., zap the method dictionary if can be done safely."
 	self canZapMethodDictionary
@@ -1843,31 +1394,22 @@ TraitBehavior>>obsolete [
 			each removeUser: self]]
 ]
 
-{
-	#category : #'obsolete subclasses',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>obsoleteSubclasses [
+{ #category : #'obsolete subclasses' }
+TraitBehavior >> obsoleteSubclasses [
 	"Return all the weakly remembered obsolete subclasses of the receiver"
 	| obs |
 	obs := self basicObsoleteSubclasses at: self ifAbsent: [^ #()].
 	^ obs copyWithout: nil
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>postCopy [
+{ #category : #copying }
+TraitBehavior >> postCopy [
 	super postCopy.
 	self methodDict: self copyOfMethodDictionary
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>precodeCommentOrInheritedCommentFor: selector  [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> precodeCommentOrInheritedCommentFor: selector [ 
 	"Answer a string representing the first comment in the method associated 
 	with selector, considering however only comments that occur before the 
 	beginning of the actual code. If the version recorded in the receiver is 
@@ -1882,11 +1424,8 @@ TraitBehavior>>precodeCommentOrInheritedCommentFor: selector  [
 		ifFalse: [aComment]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>printHierarchy [
+{ #category : #printing }
+TraitBehavior >> printHierarchy [
 	"Answer a description containing the names and instance variable names 
 	of all of the subclasses and superclasses of the receiver."
 
@@ -1905,136 +1444,94 @@ TraitBehavior>>printHierarchy [
 	^aStream contents
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>printOn: aStream  [
+{ #category : #printing }
+TraitBehavior >> printOn: aStream [ 
 	"Refer to the comment in Object|printOn:." 
 
 	aStream nextPutAll: 'a descendent of '.
 	self superclass printOn: aStream
 ]
 
-{
-	#category : #accessing-properties,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>properties [
+{ #category : #accessing-properties }
+TraitBehavior >> properties [
 	^ TraitProperties at: self ifAbsent: nil
 		
 ]
 
-{
-	#category : #accessing-properties,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>propertyAt: propName [
+{ #category : #accessing-properties }
+TraitBehavior >> propertyAt: propName [
 	^ self
 		propertyAt: propName
 		ifAbsent: [ nil ]
 ]
 
-{
-	#category : #accessing-properties,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>propertyAt: propName ifAbsent: aBlock [
+{ #category : #accessing-properties }
+TraitBehavior >> propertyAt: propName ifAbsent: aBlock [
 	self properties ifNil: [^aBlock value].
 	^ self properties
 		at: propName
 		ifAbsent: aBlock
 ]
 
-{
-	#category : #accessing-properties,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>propertyAt: propName put: propValue [
+{ #category : #accessing-properties }
+TraitBehavior >> propertyAt: propName put: propValue [
 	^ self ensureProperties
 		at: propName
 		ifAbsentPut: propValue
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>purgeLocalSelectors [
+{ #category : #traits }
+TraitBehavior >> purgeLocalSelectors [
 	self basicLocalSelectors: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>realClass [
+{ #category : #accessing }
+TraitBehavior >> realClass [
 
 	^ self
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>registerLocalSelector: aSymbol [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> registerLocalSelector: aSymbol [
 	self basicLocalSelectors notNil ifTrue: [
 		self basicLocalSelectors add: aSymbol]
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>removeAlias: aSymbol of: aTrait [
+{ #category : #traits }
+TraitBehavior >> removeAlias: aSymbol of: aTrait [
 	self setTraitComposition: (
 		self traitComposition copyWithoutAlias: aSymbol of: aTrait)
 ]
 
-{
-	#category : #'obsolete subclasses',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>removeAllObsoleteSubclasses [
+{ #category : #'obsolete subclasses' }
+TraitBehavior >> removeAllObsoleteSubclasses [
 	"Remove all the obsolete subclasses of the receiver"
 	self basicObsoleteSubclasses removeKey: self ifAbsent: [].
 
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>removeFromComposition: aTrait [
+{ #category : #traits }
+TraitBehavior >> removeFromComposition: aTrait [
 	self setTraitComposition: (self traitComposition copyTraitExpression
 		removeFromComposition: aTrait)
 ]
 
-{
-	#category : #accessing-properties,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>removePropertiesIfEmpty [
+{ #category : #accessing-properties }
+TraitBehavior >> removePropertiesIfEmpty [
 	^ TraitProperties at: self ifPresent: [ :dict |
 		dict ifEmpty: [ TraitProperties removeKey: self ] ]
 		
 ]
 
-{
-	#category : #accessing-properties,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>removeProperty: propName [
+{ #category : #accessing-properties }
+TraitBehavior >> removeProperty: propName [
 	^ self
 		removeProperty: propName
 		ifAbsent: [ nil ]
 ]
 
-{
-	#category : #accessing-properties,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>removeProperty: propName ifAbsent: aBlock [
+{ #category : #accessing-properties }
+TraitBehavior >> removeProperty: propName ifAbsent: aBlock [
 	| property |
 	self properties ifNil: [^aBlock value].
 	property := self properties
@@ -2044,11 +1541,8 @@ TraitBehavior>>removeProperty: propName ifAbsent: aBlock [
 	^ property
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>removeSelector: aSelector [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> removeSelector: aSelector [
 	"Assuming that the argument, selector (a Symbol), is a message selector 
 	in my method dictionary, remove it and its method.
 	
@@ -2077,38 +1571,26 @@ TraitBehavior>>removeSelector: aSelector [
 	self isTrait ifTrue: [ self notifyUsersOfChangedSelector: aSelector].
 ]
 
-{
-	#category : #'adding/removing methods',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>removeSelectorSilently: selector  [
+{ #category : #'adding/removing methods' }
+TraitBehavior >> removeSelectorSilently: selector [ 
 	"Remove selector without sending system change notifications"
 
 	^ SystemAnnouncer uniqueInstance suspendAllWhile: [self removeSelector: selector].
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>removeTraitSelector: aSymbol [
+{ #category : #traits }
+TraitBehavior >> removeTraitSelector: aSymbol [
 	[(self includesLocalSelector: aSymbol) not] assert.
 	self basicRemoveSelector: aSymbol
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>removeUser: aClassOrTrait [
+{ #category : #traits }
+TraitBehavior >> removeUser: aClassOrTrait [
 	self traitUsers remove: aClassOrTrait ifAbsent: []
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>selectSubclasses: aBlock  [
+{ #category : #enumerating }
+TraitBehavior >> selectSubclasses: aBlock [ 
 	"Evaluate the argument, aBlock, with each of the receiver's (next level) 
 	subclasses as its argument. Collect into a Set only those subclasses for 
 	which aBlock evaluates to true. In addition, evaluate aBlock for the 
@@ -2123,11 +1605,8 @@ TraitBehavior>>selectSubclasses: aBlock  [
 	^aSet
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>selectSuperclasses: aBlock  [
+{ #category : #enumerating }
+TraitBehavior >> selectSuperclasses: aBlock [ 
 	"Evaluate the argument, aBlock, with the receiver's superclasses as the 
 	argument. Collect into an OrderedCollection only those superclasses for 
 	which aBlock evaluates to true. In addition, evaluate aBlock for the 
@@ -2143,60 +1622,42 @@ TraitBehavior>>selectSuperclasses: aBlock  [
 	^aSet
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>selectors [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> selectors [
 	"Answer a Set of all the message selectors specified in the receiver's 
 	method dictionary."
 
 	^ self methodDict keys
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>selectorsAndMethodsDo: selectorAndMethodBlock [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> selectorsAndMethodsDo: selectorAndMethodBlock [
 	"Evaluate selectorAndMethodBlock with two arguments for each selector/method pair in my method dictionary."
 
 	^ self methodDict keysAndValuesDo: selectorAndMethodBlock
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>selectorsDo: selectorBlock [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> selectorsDo: selectorBlock [
 	"Evaluate selectorBlock for all the message selectors in my method dictionary."
 
 	^ self methodDict keysDo: selectorBlock
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>selectorsWithArgs: numberOfArgs [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> selectorsWithArgs: numberOfArgs [
 	"Return all selectors defined in this class that take this number of arguments"
 
 	^ self selectors select: [:selector | selector numArgs = numberOfArgs]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>setFormat: aFormatInstanceDescription [
+{ #category : #private }
+TraitBehavior >> setFormat: aFormatInstanceDescription [
 	"Compatibility purposes"
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>setTraitComposition: aTraitComposition [
+{ #category : #traits }
+TraitBehavior >> setTraitComposition: aTraitComposition [
 	| oldComposition |
 	(self hasTraitComposition not and: [aTraitComposition isEmpty]) ifTrue: [^self].
 	aTraitComposition assertValidUser: self.
@@ -2209,30 +1670,21 @@ TraitBehavior>>setTraitComposition: aTraitComposition [
 	aTraitComposition traits do: [:each | each addUser: self]
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>setTraitCompositionFrom: aTraitExpression [
+{ #category : #traits }
+TraitBehavior >> setTraitCompositionFrom: aTraitExpression [
 	^ self setTraitComposition: aTraitExpression asTraitComposition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>sharedPoolNames [
+{ #category : #accessing }
+TraitBehavior >> sharedPoolNames [
 	^ self sharedPools collect: [:ea |
 		ea isObsolete
 			ifTrue: [ ea name ]
 			ifFalse: [ self environment keyAtIdentityValue: ea ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>shouldNotBeRedefined [
+{ #category : #testing }
+TraitBehavior >> shouldNotBeRedefined [
 	"Answer if the receiver should not be redefined.
 	 The assumption is that classes in Smalltalk specialObjects and 
 	 instance-specific Behaviors should not be redefined"
@@ -2242,29 +1694,20 @@ TraitBehavior>>shouldNotBeRedefined [
 		ifAbsent: [(self isKindOf: self) ifTrue: [1] ifFalse: [0]]) ~= 0
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>shutDown [
+{ #category : #'system startup' }
+TraitBehavior >> shutDown [
 	"This message is sent on system shutdown to registered classes"
 
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>shutDown: quitting [
+{ #category : #'system startup' }
+TraitBehavior >> shutDown: quitting [
 	"This message is sent on system shutdown to registered classes"
 	^self shutDown.
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>someInstance [
+{ #category : #'accessing instances and variables' }
+TraitBehavior >> someInstance [
 	"Primitive. Answer the first instance in the enumeration of all instances 
 	of the receiver. Fails if there are none. Essential. See Object 
 	documentation whatIsAPrimitive."
@@ -2273,29 +1716,20 @@ TraitBehavior>>someInstance [
 	^nil
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>sourceCodeAt: selector [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> sourceCodeAt: selector [
 
 	^ (self compiledMethodAt: selector) sourceCode.
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>sourceCodeAt: selector ifAbsent: aBlock [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> sourceCodeAt: selector ifAbsent: aBlock [
 
 	^ (self compiledMethodAt: selector ifAbsent: [^ aBlock value]) sourceCode.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>sourceMatchesBytecodeAt: selector [
+{ #category : #testing }
+TraitBehavior >> sourceMatchesBytecodeAt: selector [
 	"Answers true if the source code at the selector compiles to the bytecode at the selector, and false
 	otherwise. Implemented to detect an error where Monticello did not recompile sources when the class
 	shape changed"
@@ -2317,11 +1751,8 @@ TraitBehavior>>sourceMatchesBytecodeAt: selector [
 	^ newMethod = method
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>spaceUsed [
+{ #category : #private }
+TraitBehavior >> spaceUsed [
 	"Answer a rough estimate of number of bytes used by this class and its metaclass. Does not include space used by class variables."
 
 	| space |
@@ -2338,29 +1769,20 @@ TraitBehavior>>spaceUsed [
 		^ space
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>startUp [
+{ #category : #'system startup' }
+TraitBehavior >> startUp [
 	"This message is sent to registered classes when the system is coming up."
  
 ]
 
-{
-	#category : #'system startup',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>startUp: resuming [
+{ #category : #'system startup' }
+TraitBehavior >> startUp: resuming [
 	"This message is sent to registered classes when the system is coming up."
 	^self startUp
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>storeLiteral: aCodeLiteral on: aStream [
+{ #category : #printing }
+TraitBehavior >> storeLiteral: aCodeLiteral on: aStream [
 	"Store aCodeLiteral on aStream, changing an Association to ##GlobalName
 	 or ###MetaclassSoleInstanceName format if appropriate"
 	| key value |
@@ -2380,22 +1802,16 @@ TraitBehavior>>storeLiteral: aCodeLiteral on: aStream [
 	aCodeLiteral storeOn: aStream
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>subclassDefinerClass [
+{ #category : #accessing }
+TraitBehavior >> subclassDefinerClass [
 	"Answer an evaluator class appropriate for evaluating definitions of new 
 	subclasses of this class."
 
 	^Smalltalk compilerClass
 ]
 
-{
-	#category : #'accessing instances and variables',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>subclassInstVarNames [
+{ #category : #'accessing instances and variables' }
+TraitBehavior >> subclassInstVarNames [
 	"Answer a Set of the names of the receiver's subclasses' instance 
 	variables."
 	| vars |
@@ -2404,38 +1820,26 @@ TraitBehavior>>subclassInstVarNames [
 	^vars
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>subclassesDo: aBlock [
+{ #category : #enumerating }
+TraitBehavior >> subclassesDo: aBlock [
 	"Evaluate the argument, aBlock, for each of the receiver's immediate subclasses."
 	self subclasses do: aBlock
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>superclass [
+{ #category : #'accessing class hierarchy' }
+TraitBehavior >> superclass [
 	"For compatibility with classes"
 
 	^ nil
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>superclass: aClass  [
+{ #category : #'accessing class hierarchy' }
+TraitBehavior >> superclass: aClass [ 
 	"Compatibility purposes"
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>superclass: aClass methodDictionary: mDict format: fmt [
+{ #category : #initialize-release }
+TraitBehavior >> superclass: aClass methodDictionary: mDict format: fmt [
 	"Basic initialization of the receiver.
 	Must only be sent to a new instance; else we would need Object flushCache."
 	self superclass: aClass.
@@ -2444,11 +1848,8 @@ TraitBehavior>>superclass: aClass methodDictionary: mDict format: fmt [
 	self traitComposition: nil
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>supermostPrecodeCommentFor: selector  [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> supermostPrecodeCommentFor: selector [ 
 	"Answer a string representing the precode comment in the most distant 
 	superclass's implementation of the selector. Return nil if none found."
 	| aSuper superComment |
@@ -2462,11 +1863,8 @@ TraitBehavior>>supermostPrecodeCommentFor: selector  [
 			"ActorState supermostPrecodeCommentFor: #printOn:"]
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>thoroughHasSelectorReferringTo: literal [
+{ #category : #'testing method dictionary' }
+TraitBehavior >> thoroughHasSelectorReferringTo: literal [
 	"Answer true if any of my methods access the argument as a 
 	literal. Dives into the compact literal notation, making it slow but 
 	thorough "
@@ -2479,11 +1877,8 @@ TraitBehavior>>thoroughHasSelectorReferringTo: literal [
 		
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>thoroughWhichSelectorsReferTo: literal [
+{ #category : #'testing method dictionary' }
+TraitBehavior >> thoroughWhichSelectorsReferTo: literal [
 	"Answer a set of selectors whose methods access the argument as a 
 	literal. Dives into the compact literal notation, making it slow but 
 	thorough "
@@ -2496,48 +1891,33 @@ TraitBehavior>>thoroughWhichSelectorsReferTo: literal [
 	^ selectors
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>traitComposition [
+{ #category : #traits }
+TraitBehavior >> traitComposition [
 	traitComposition ifNil: [traitComposition := TraitComposition new].
 	^traitComposition
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>traitComposition: aTraitComposition [
+{ #category : #traits }
+TraitBehavior >> traitComposition: aTraitComposition [
 	traitComposition := aTraitComposition
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>traitCompositionIncludes: aTrait [
+{ #category : #traits }
+TraitBehavior >> traitCompositionIncludes: aTrait [
 	^self == aTrait or: 
 		[self hasTraitComposition and: 
 			[self traitComposition allTraits includes: aTrait]]
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>traitCompositionString [
+{ #category : #traits }
+TraitBehavior >> traitCompositionString [
 	^self hasTraitComposition
 		ifTrue: [self traitComposition asString]
 		ifFalse: ['{}']
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>traitOrClassOfSelector: aSymbol [
+{ #category : #traits }
+TraitBehavior >> traitOrClassOfSelector: aSymbol [
 	"Return the trait or the class which originally defines the method aSymbol
 	or return self if locally defined or if it is a conflict marker method.
 	This is primarly used by Debugger to determin the behavior in which a recompiled
@@ -2549,44 +1929,29 @@ TraitBehavior>>traitOrClassOfSelector: aSymbol [
 	^(self traitComposition traitProvidingSelector: aSymbol) ifNil: [self]
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>traitTransformations  [
+{ #category : #traits }
+TraitBehavior >> traitTransformations [ 
 	^ self traitComposition transformations 
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>traitUsers [
+{ #category : #traits }
+TraitBehavior >> traitUsers [
 	^users
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>traitUsers: aCollection [
+{ #category : #traits }
+TraitBehavior >> traitUsers: aCollection [
 	users := aCollection.
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>traits [
+{ #category : #traits }
+TraitBehavior >> traits [
 	"Returns a collection of all traits used by the receiver"
 	^ self traitComposition traits
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>traitsProvidingSelector: aSymbol [
+{ #category : #traits }
+TraitBehavior >> traitsProvidingSelector: aSymbol [
 	| result |
 	result := OrderedCollection new.
 	self hasTraitComposition ifFalse: [^result].
@@ -2597,11 +1962,8 @@ TraitBehavior>>traitsProvidingSelector: aSymbol [
 	^result
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>typeOfClass [
+{ #category : #accessing }
+TraitBehavior >> typeOfClass [
 	"Answer a symbol uniquely describing the type of the receiver. c.f. kindOfSubclass"
 	self classLayout isCustomLayout ifTrue: [ ^self classLayout class name asSymbol].
 	self isBytes ifTrue:
@@ -2618,11 +1980,8 @@ TraitBehavior>>typeOfClass [
 	^#normal
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>ultimateSourceCodeAt: selector ifAbsent: aBlock [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> ultimateSourceCodeAt: selector ifAbsent: aBlock [
 	"Return the source code at selector, deferring to superclass if necessary"
 	^ self sourceCodeAt: selector ifAbsent:
 		[self superclass
@@ -2632,11 +1991,8 @@ TraitBehavior>>ultimateSourceCodeAt: selector ifAbsent: aBlock [
 				[self superclass ultimateSourceCodeAt: selector ifAbsent: aBlock]]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>unreferencedInstanceVariables [
+{ #category : #'user interface' }
+TraitBehavior >> unreferencedInstanceVariables [
 	"Return a list of the instance variables defined in the receiver which are not referenced in the receiver or any of its subclasses."
 
 	^ self instVarNames reject: [:ivn | 
@@ -2644,11 +2000,8 @@ TraitBehavior>>unreferencedInstanceVariables [
 			(class whichSelectorsAccess: ivn) notEmpty]]
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>updateMethodDictionarySelector: aSymbol [
+{ #category : #traits }
+TraitBehavior >> updateMethodDictionarySelector: aSymbol [
 	"A method with selector aSymbol in myself or my traitComposition has been changed.
 	Do the appropriate update to my methodDict (remove or update method) and
 	return all affected selectors of me so that my useres get notified."
@@ -2676,27 +2029,18 @@ TraitBehavior>>updateMethodDictionarySelector: aSymbol [
 	^modifiedSelectors
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>users [
+{ #category : #traits }
+TraitBehavior >> users [
 	^users
 ]
 
-{
-	#category : #traits,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>users: aCollection [
+{ #category : #traits }
+TraitBehavior >> users: aCollection [
 	users := aCollection.
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>variablesAndOffsetsDo: aBinaryBlock [
+{ #category : #compiling }
+TraitBehavior >> variablesAndOffsetsDo: aBinaryBlock [
 	"This is the interface between the compiler and a class's instance or field names.  The
 	 class should enumerate aBinaryBlock with the field definitions (with nil offsets) followed
 	 by the instance variable name strings and their integer offsets (1-relative).  The order is
@@ -2706,11 +2050,8 @@ TraitBehavior>>variablesAndOffsetsDo: aBinaryBlock [
 	self instVarNamesAndOffsetsDo: aBinaryBlock
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>whichClassDefinesClassVar: aString  [
+{ #category : #queries }
+TraitBehavior >> whichClassDefinesClassVar: aString [ 
 	Symbol hasInterned: aString ifTrue: [ :aSymbol |
 		^self whichSuperclassSatisfies: 
 			[:aClass | 
@@ -2718,20 +2059,14 @@ TraitBehavior>>whichClassDefinesClassVar: aString  [
 	^#()
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>whichClassDefinesInstVar: aString  [
+{ #category : #queries }
+TraitBehavior >> whichClassDefinesInstVar: aString [ 
 	^self 
 		whichSuperclassSatisfies: [:aClass | aClass instVarNames includes: aString]
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>whichClassIncludesSelector: aSymbol  [
+{ #category : #'testing method dictionary' }
+TraitBehavior >> whichClassIncludesSelector: aSymbol [ 
 	"Answer the class on the receiver's superclass chain where the 
 	argument, aSymbol (a message selector), will be found. Answer nil if none found."
 	"Rectangle whichClassIncludesSelector: #inspect."
@@ -2742,11 +2077,8 @@ TraitBehavior>>whichClassIncludesSelector: aSymbol  [
 	^ self superclass whichClassIncludesSelector: aSymbol
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>whichSelectorsAccess: instVarName  [
+{ #category : #'testing method dictionary' }
+TraitBehavior >> whichSelectorsAccess: instVarName [ 
 	"Answer a set of selectors whose methods access the argument, 
 	instVarName, as a named instance variable."
 
@@ -2758,21 +2090,15 @@ TraitBehavior>>whichSelectorsAccess: instVarName  [
 			or: [(self compiledMethodAt: sel) writesField: instVarIndex]]
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>whichSelectorsAssign: instVarName  [
+{ #category : #queries }
+TraitBehavior >> whichSelectorsAssign: instVarName [ 
 	"Answer a Set of selectors whose methods store into the argument, 
 	instVarName, as a named instance variable."
 	^self whichSelectorsStoreInto: instVarName
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>whichSelectorsRead: aString [
+{ #category : #queries }
+TraitBehavior >> whichSelectorsRead: aString [
 	
 	| index |
 	index := self
@@ -2783,19 +2109,13 @@ TraitBehavior>>whichSelectorsRead: aString [
 			readsField: index ]
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>whichSelectorsReferTo: literal  [
+{ #category : #'testing method dictionary' }
+TraitBehavior >> whichSelectorsReferTo: literal [ 
 	^ self thoroughWhichSelectorsReferTo: literal
 ]
 
-{
-	#category : #'testing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>whichSelectorsStoreInto: instVarName  [
+{ #category : #'testing method dictionary' }
+TraitBehavior >> whichSelectorsStoreInto: instVarName [ 
 	"Answer a Set of selectors whose methods access the argument, 
 	instVarName, as a named instance variable."
 	| instVarIndex |
@@ -2805,31 +2125,22 @@ TraitBehavior>>whichSelectorsStoreInto: instVarName  [
 	"Point whichSelectorsStoreInto: 'x'."
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>whichSuperclassSatisfies: aBlock  [
+{ #category : #queries }
+TraitBehavior >> whichSuperclassSatisfies: aBlock [ 
 	(aBlock value: self) ifTrue: [^self].
 	^self superclass ifNotNil: [self superclass whichSuperclassSatisfies: aBlock]
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>withAllSubAndSuperclassesDo: aBlock [
+{ #category : #'user interface' }
+TraitBehavior >> withAllSubAndSuperclassesDo: aBlock [
 
 	self withAllSubclassesDo: aBlock.
 	self allSuperclassesDo: aBlock.
 
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>withAllSubclasses [
+{ #category : #'accessing class hierarchy' }
+TraitBehavior >> withAllSubclasses [
 	"Answer a Set of the receiver, the receiver's descendent's, and the  
 	receiver's descendent's subclasses."
 
@@ -2837,31 +2148,22 @@ TraitBehavior>>withAllSubclasses [
 		 yourself
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>withAllSubclassesDo: aBlock [
+{ #category : #'accessing class hierarchy' }
+TraitBehavior >> withAllSubclassesDo: aBlock [
 	"Evaluate the argument, aBlock, for the receiver and each of its 
 	subclasses."
 	self withAllSubclasses do: [ :subclass | aBlock value: subclass ].
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>withAllSuperAndSubclassesDo: aBlock [
+{ #category : #enumerating }
+TraitBehavior >> withAllSuperAndSubclassesDo: aBlock [
 	self allSuperclassesDo: aBlock.
 	aBlock value: self.
 	self allSubclassesDo: aBlock
 ]
 
-{
-	#category : #'accessing class hierarchy',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>withAllSuperclasses [
+{ #category : #'accessing class hierarchy' }
+TraitBehavior >> withAllSuperclasses [
 	"Answer an OrderedCollection of the receiver and the receiver's 
 	superclasses. The first element is the receiver, 
 	followed by its superclass; the last element is Object."
@@ -2872,22 +2174,16 @@ TraitBehavior>>withAllSuperclasses [
 	^ temp
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>withAllSuperclassesDo: aBlock  [
+{ #category : #enumerating }
+TraitBehavior >> withAllSuperclassesDo: aBlock [ 
 	"Evaluate the argument, aBlock, for each of the receiver's superclasses."
 	aBlock value: self.
 	self superclass == nil
 		ifFalse: [self superclass withAllSuperclassesDo: aBlock]
 ]
 
-{
-	#category : #'accessing method dictionary',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitBehavior>>zapAllMethods [
+{ #category : #'accessing method dictionary' }
+TraitBehavior >> zapAllMethods [
 	"Remove all methods in this class which is assumed to be obsolete"
 
 	self methodDict: self emptyMethodDictionary.

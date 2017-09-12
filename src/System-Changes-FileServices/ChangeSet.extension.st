@@ -1,12 +1,7 @@
-Extension {
-	#name : #ChangeSet
-}
+Extension { #name : #ChangeSet }
 
-{
-	#category : #'*System-Changes-FileServices',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-ChangeSet class>>fileIntoNewChangeSet: fullName [
+{ #category : #'*System-Changes-FileServices' }
+ChangeSet class >> fileIntoNewChangeSet: fullName [
 	"File in all of the contents of the currently selected file, if any, into a new change set." 
 
 	| fn ff |
@@ -20,11 +15,8 @@ ChangeSet class>>fileIntoNewChangeSet: fullName [
 		ensure: [ff ifNotNil: [ff close]]
 ]
 
-{
-	#category : #'*System-Changes-FileServices',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-ChangeSet class>>fileReaderServicesForFile: fullName suffix: suffix [
+{ #category : #'*System-Changes-FileServices' }
+ChangeSet class >> fileReaderServicesForFile: fullName suffix: suffix [
 	<fileService>
 	
 	^ (FileStream isSourceFileSuffix: suffix)
@@ -32,11 +24,8 @@ ChangeSet class>>fileReaderServicesForFile: fullName suffix: suffix [
 		ifFalse: [#()]
 ]
 
-{
-	#category : #'*System-Changes-FileServices',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-ChangeSet class>>serviceFileIntoNewChangeSet [
+{ #category : #'*System-Changes-FileServices' }
+ChangeSet class >> serviceFileIntoNewChangeSet [
 	"Answer a service for installing a file into a new change set"
 
 	^ SimpleServiceEntry 
@@ -47,10 +36,7 @@ ChangeSet class>>serviceFileIntoNewChangeSet [
 		buttonLabel: 'Install'
 ]
 
-{
-	#category : #'*System-Changes-FileServices',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-ChangeSet class>>services [
+{ #category : #'*System-Changes-FileServices' }
+ChangeSet class >> services [
 	^ Array with: self serviceFileIntoNewChangeSet
 ]

@@ -8,15 +8,11 @@ Class {
 		'remotesUI',
 		'packageName'
 	],
-	#category : #Versionner-Spec-Browser,
-	#timestamp : 'ChristopheDemarey 1/17/2014 16:28'
+	#category : #Versionner-Spec-Browser
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerRepositoriesManager class>>newWithPackage: aPackageName [
+{ #category : #'instance creation' }
+VersionnerRepositoriesManager class >> newWithPackage: aPackageName [
 	| repoManager |
 	
 	repoManager := self new.
@@ -27,21 +23,15 @@ VersionnerRepositoriesManager class>>newWithPackage: aPackageName [
 	^ repoManager
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerRepositoriesManager>>initialize [
+{ #category : #initialization }
+VersionnerRepositoriesManager >> initialize [
 
 	super initialize.
 	remotesUI := RemotesManager new.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerRepositoriesManager>>initializeSelectedRemotes [
+{ #category : #initialization }
+VersionnerRepositoriesManager >> initializeSelectedRemotes [
 	| workingCopy |
 	
 	workingCopy := MCWorkingCopy allManagers detect: [ :wc | wc package name = packageName ].
@@ -51,28 +41,19 @@ VersionnerRepositoriesManager>>initializeSelectedRemotes [
 
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerRepositoriesManager>>open [
+{ #category : #ui }
+VersionnerRepositoriesManager >> open [
 	| dialog |
 	dialog := remotesUI openDialogWithSpec.
 	dialog okAction: [  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerRepositoriesManager>>packageName: aString [
+{ #category : #accessing }
+VersionnerRepositoriesManager >> packageName: aString [
 	packageName := aString
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-VersionnerRepositoriesManager>>selectedChangedBlock: aBlock [
+{ #category : #protocol }
+VersionnerRepositoriesManager >> selectedChangedBlock: aBlock [
 	remotesUI selectedChangedBlock: aBlock
 ]

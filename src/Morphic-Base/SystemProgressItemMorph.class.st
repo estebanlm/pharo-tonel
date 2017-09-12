@@ -19,33 +19,23 @@ Class {
 		'BarHeight',
 		'BarWidth'
 	],
-	#category : #Morphic-Base-ProgressBar,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-ProgressBar
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph class>>labeled: aString from: startValue to: endValue [
+{ #category : #'instance creation' }
+SystemProgressItemMorph class >> labeled: aString from: startValue to: endValue [
 
 	^ self new initializeLabel: aString start: startValue end: endValue.
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>beComplete [
+{ #category : #API }
+SystemProgressItemMorph >> beComplete [
 
 	self close.
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>changed [
+{ #category : #API }
+SystemProgressItemMorph >> changed [
 
 	| msRefreshRate isTimeForRefresh |
 	msRefreshRate := 25.
@@ -54,76 +44,52 @@ SystemProgressItemMorph>>changed [
 	(self isInWorld and: [ isTimeForRefresh ]) ifTrue: [ self refresh ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>close [
+{ #category : #private }
+SystemProgressItemMorph >> close [
 
 	SystemProgressMorph uniqueInstance close: self.
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>current [
+{ #category : #API }
+SystemProgressItemMorph >> current [
 
 	^ bar value.
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>current: aNumber [
+{ #category : #API }
+SystemProgressItemMorph >> current: aNumber [
 
 	bar value: aNumber.
 	self changed.
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>decrement [
+{ #category : #API }
+SystemProgressItemMorph >> decrement [
 
 	bar decrement.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>do: aBlock [
+{ #category : #private }
+SystemProgressItemMorph >> do: aBlock [
 
 	self changed. "We may be in the UI thread, so this will give us a change to dsiplay ourselves before the block starts"
 	^ [ aBlock value: self ] ensure: [ self close ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>forceRefreshOnNextChange [
+{ #category : #private }
+SystemProgressItemMorph >> forceRefreshOnNextChange [
 
 	lastRefresh := 0.
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>increment [
+{ #category : #API }
+SystemProgressItemMorph >> increment [
 
 	bar increment.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>initializeLabel: aString start: startNumber end: endNumber [
+{ #category : #private }
+SystemProgressItemMorph >> initializeLabel: aString start: startNumber end: endNumber [
 	
 	lock := Semaphore forMutualExclusion.
 	hasResult := false.
@@ -146,89 +112,62 @@ SystemProgressItemMorph>>initializeLabel: aString start: startNumber end: endNum
 	self addMorphBack: bar.
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>label [
+{ #category : #API }
+SystemProgressItemMorph >> label [
 	
 	^ self labelMorph contents.
 ]
 
-{
-	#category : #API,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>label: aString [
+{ #category : #API }
+SystemProgressItemMorph >> label: aString [
 
 	self label isEmpty ifTrue: [ self forceRefreshOnNextChange ].
 	self labelMorph contents: aString.
 	self changed.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>labelMorph [
+{ #category : #private }
+SystemProgressItemMorph >> labelMorph [
 
 	^ labelMorph.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>max: aNumber [
+{ #category : #private }
+SystemProgressItemMorph >> max: aNumber [
  
 	endValue := aNumber.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>refresh [
+{ #category : #private }
+SystemProgressItemMorph >> refresh [
 
 	lastRefresh := Time millisecondClockValue.
 	UIManager default uiProcess == Processor activeProcess
 		ifTrue: [ self currentWorld doOneCycleNow ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>result [
+{ #category : #private }
+SystemProgressItemMorph >> result [
 
 	^ result.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>result: anObject [
+{ #category : #private }
+SystemProgressItemMorph >> result: anObject [
 
 	lock critical: [ 
 		hasResult := true.
 		result := anObject ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>start: aNumber [
+{ #category : #private }
+SystemProgressItemMorph >> start: aNumber [
 
 	startValue := aNumber.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-SystemProgressItemMorph>>startAt: aNumber [
+{ #category : #private }
+SystemProgressItemMorph >> startAt: aNumber [
  
 	startValue := aNumber.
 ]

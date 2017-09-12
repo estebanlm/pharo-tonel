@@ -51,15 +51,11 @@ Class {
 		'FFITypeUnsignedShort',
 		'FFITypeVoid'
 	],
-	#category : #FFI-Pools,
-	#timestamp : 'TorstenBergmann 4/27/2017 11:02'
+	#category : #FFI-Pools
 }
 
-{
-	#category : #'pool initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFIConstants class>>initialize [
+{ #category : #'pool initialization' }
+FFIConstants class >> initialize [
 	"FFIConstants initialize"
 	
 	self 
@@ -68,11 +64,8 @@ FFIConstants class>>initialize [
 		initializeCallingConventions
 ]
 
-{
-	#category : #'private - initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFIConstants class>>initializeCallingConventions [
+{ #category : #'private - initialization' }
+FFIConstants class >> initializeCallingConventions [
 	"These constants map onto the flags inst var of an ExternalFunction.
 	 The first eight bits define the calling convention.  Attribute flags
 	 occupy bits 8 on up."
@@ -83,11 +76,8 @@ FFIConstants class>>initializeCallingConventions [
 	FFICallFlagThreaded := 256
 ]
 
-{
-	#category : #'private - initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFIConstants class>>initializeErrorConstants [
+{ #category : #'private - initialization' }
+FFIConstants class >> initializeErrorConstants [
 	"FFIConstants initializeErrorConstants"
 
 	"No callout mechanism available"
@@ -135,11 +125,8 @@ FFIConstants class>>initializeErrorConstants [
 	FFIErrorCallFrameTooBig := 19
 ]
 
-{
-	#category : #'private - initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-FFIConstants class>>initializeTypeConstants [
+{ #category : #'private - initialization' }
+FFIConstants class >> initializeTypeConstants [
 	"type void"
 	FFITypeVoid := 0.
 

@@ -32,25 +32,18 @@ Class {
 		'nextSibling',
 		'icon'
 	],
-	#category : #Morphic-Widgets-List,
-	#timestamp : 'AlainPlantec 1/7/2010 22:16'
+	#category : #Morphic-Widgets-List
 }
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>acceptDroppingMorph: toDrop event: evt [
+{ #category : #'drag and drop' }
+IndentingListItemMorph >> acceptDroppingMorph: toDrop event: evt [
 	complexContents acceptDroppingObject: toDrop complexContents.
 	toDrop delete.
 	self highlightForDrop: false.
 ]
 
-{
-	#category : #'private-container protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>addChildrenForList: hostList addingTo: morphList withExpandedItems: expandedItems [
+{ #category : #'private-container protocol' }
+IndentingListItemMorph >> addChildrenForList: hostList addingTo: morphList withExpandedItems: expandedItems [
 
 	firstChild ifNotNil: [
 		firstChild withSiblingsDo: [ :aNode | aNode delete].
@@ -66,71 +59,50 @@ IndentingListItemMorph>>addChildrenForList: hostList addingTo: morphList withExp
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>balloonText [
+{ #category : #accessing }
+IndentingListItemMorph >> balloonText [
 
 	^complexContents balloonText ifNil: [super balloonText]
 ]
 
-{
-	#category : #'halos and balloon help',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>boundsForBalloon [
+{ #category : #'halos and balloon help' }
+IndentingListItemMorph >> boundsForBalloon [
 
 	"some morphs have bounds that are way too big"
 	container ifNil: [^super boundsForBalloon].
 	^self boundsInWorld intersect: container boundsInWorld ifNone: [self boundsInWorld ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>canExpand [
+{ #category : #accessing }
+IndentingListItemMorph >> canExpand [
 
 	^complexContents hasContents
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>children [
+{ #category : #accessing }
+IndentingListItemMorph >> children [
 	| children |
 	children := OrderedCollection new.
 	self childrenDo: [:each | children add: each].
 	^children
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>childrenDo: aBlock [
+{ #category : #enumeration }
+IndentingListItemMorph >> childrenDo: aBlock [
 
 	firstChild ifNotNil: [
 		firstChild withSiblingsDo: [ :aNode | aBlock value: aNode].
 	]
 ]
 
-{
-	#category : #'private-container protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>complexContents [
+{ #category : #'private-container protocol' }
+IndentingListItemMorph >> complexContents [
 
 	^complexContents
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>drawLineToggleToTextOn: aCanvas lineColor: lineColor hasToggle: hasToggle [
+{ #category : #drawing }
+IndentingListItemMorph >> drawLineToggleToTextOn: aCanvas lineColor: lineColor hasToggle: hasToggle [
 	"If I am not the only item in my container, draw the line between:
 		- my toggle (if any) or my left edge (if no toggle)
 		- and my text left edge.
@@ -152,11 +124,8 @@ IndentingListItemMorph>>drawLineToggleToTextOn: aCanvas lineColor: lineColor has
 		dashes: myTheme treeLineDashes
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>drawLinesOn: aCanvas lineColor: lineColor  [
+{ #category : #drawing }
+IndentingListItemMorph >> drawLinesOn: aCanvas lineColor: lineColor [ 
 	| hasToggle |
 	hasToggle := self hasToggle.
 	"Draw line from toggle to text"
@@ -170,11 +139,8 @@ IndentingListItemMorph>>drawLinesOn: aCanvas lineColor: lineColor  [
 		ifTrue: [ self drawLinesToFirstChildOn: aCanvas lineColor: lineColor]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>drawLinesToFirstChildOn: aCanvas lineColor: lineColor [
+{ #category : #drawing }
+IndentingListItemMorph >> drawLinesToFirstChildOn: aCanvas lineColor: lineColor [
 	"Draw line from me to first child.
 	Don't bother if the first child has a toggle.."
 
@@ -196,11 +162,8 @@ IndentingListItemMorph>>drawLinesToFirstChildOn: aCanvas lineColor: lineColor [
 		dashes: myTheme treeLineDashes
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>drawLinesToNextSiblingOn: aCanvas lineColor: lineColor hasToggle: hasToggle [
+{ #category : #drawing }
+IndentingListItemMorph >> drawLinesToNextSiblingOn: aCanvas lineColor: lineColor hasToggle: hasToggle [
 	"Draw line from me to next sibling"
 	
 	| myBounds nextSibBounds vLineX myCenter vLineTop vLineBottom myTheme|
@@ -219,11 +182,8 @@ IndentingListItemMorph>>drawLinesToNextSiblingOn: aCanvas lineColor: lineColor h
 		dashes: myTheme treeLineDashes
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>drawOn: aCanvas  [
+{ #category : #drawing }
+IndentingListItemMorph >> drawOn: aCanvas [ 
 	| tRect sRect columnScanner colorToUse columnLeft |
 	tRect := self toggleRectangle.
 	sRect := bounds withLeft: tRect right + 4.
@@ -262,11 +222,8 @@ IndentingListItemMorph>>drawOn: aCanvas  [
 				columnLeft := columnRect right + 5 ] ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>drawToggleOn: aCanvas in: aRectangle [
+{ #category : #drawing }
+IndentingListItemMorph >> drawToggleOn: aCanvas in: aRectangle [
 
 	| aForm centeringOffset |
 	complexContents hasContents ifFalse: [^self].
@@ -280,11 +237,8 @@ IndentingListItemMorph>>drawToggleOn: aCanvas in: aRectangle [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>findExactPathMatchIn: anArray  [
+{ #category : #private }
+IndentingListItemMorph >> findExactPathMatchIn: anArray [ 
 	self
 		withSiblingsDo: [:each | (each complexContents asString = anArray first
 					or: [anArray first isNil])
@@ -292,11 +246,8 @@ IndentingListItemMorph>>findExactPathMatchIn: anArray  [
 	^ nil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>findPathIn: anArray  [
+{ #category : #private }
+IndentingListItemMorph >> findPathIn: anArray [ 
 	| found |
 	found := self findExactPathMatchIn: anArray.
 	found
@@ -305,48 +256,33 @@ IndentingListItemMorph>>findPathIn: anArray  [
 	^ found
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>findSimilarPathMatchIn: anArray  [
+{ #category : #private }
+IndentingListItemMorph >> findSimilarPathMatchIn: anArray [ 
 	self
 		withSiblingsDo: [:each | (each complexContents asString sameAs: anArray first)
 				ifTrue: [^ each]].
 	^ nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>firstChild [
+{ #category : #accessing }
+IndentingListItemMorph >> firstChild [
 
 	^firstChild
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>hasIcon [
+{ #category : #accessing }
+IndentingListItemMorph >> hasIcon [
 	"Answer whether the receiver has an icon."
 	^ icon notNil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>hasToggle [
+{ #category : #private }
+IndentingListItemMorph >> hasToggle [
 	^ complexContents hasContents
 ]
 
-{
-	#category : #'private-container protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>highlight [
+{ #category : #'private-container protocol' }
+IndentingListItemMorph >> highlight [
 
 	complexContents highlightingColor ifNotNil: [self color: complexContents highlightingColor].
 	self changed.
@@ -354,38 +290,26 @@ IndentingListItemMorph>>highlight [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>icon [
+{ #category : #accessing }
+IndentingListItemMorph >> icon [
 	"answer the receiver's icon"
 	^ icon
 ]
 
-{
-	#category : #'mouse events',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>inToggleArea: aPoint [
+{ #category : #'mouse events' }
+IndentingListItemMorph >> inToggleArea: aPoint [
 
 	^self toggleRectangle containsPoint: aPoint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>indentLevel [
+{ #category : #accessing }
+IndentingListItemMorph >> indentLevel [
 
 	^indentLevel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>initWithContents: anObject prior: priorMorph forList: hostList indentLevel: newLevel [
+{ #category : #initialization }
+IndentingListItemMorph >> initWithContents: anObject prior: priorMorph forList: hostList indentLevel: newLevel [
 
 	container := hostList.
 	complexContents := anObject.
@@ -400,11 +324,8 @@ IndentingListItemMorph>>initWithContents: anObject prior: priorMorph forList: ho
 	self extent: self minWidth @ self minHeight
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>initialize [
+{ #category : #initialization }
+IndentingListItemMorph >> initialize [
 "initialize the state of the receiver"
 	super initialize.
 ""
@@ -412,47 +333,32 @@ IndentingListItemMorph>>initialize [
 	isExpanded := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>isExpanded [
+{ #category : #accessing }
+IndentingListItemMorph >> isExpanded [
 
 	^isExpanded
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>isExpanded: aBoolean [
+{ #category : #accessing }
+IndentingListItemMorph >> isExpanded: aBoolean [
 
 	isExpanded := aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>isFirstItem [
+{ #category : #accessing }
+IndentingListItemMorph >> isFirstItem [
 	"I have no idea why the owner of the list can get nil but it happens when the packages are published with the Monticello Browser."
 	
 	^ (owner ~= nil) and: [owner submorphs first == self]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>isSoleItem [
+{ #category : #accessing }
+IndentingListItemMorph >> isSoleItem [
 	^self isFirstItem and: [ owner submorphs size = 1 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>minHeight [
+{ #category : #accessing }
+IndentingListItemMorph >> minHeight [
 	"Answer the minimum height of the receiver."
 	
 	| iconHeight |
@@ -462,11 +368,8 @@ IndentingListItemMorph>>minHeight [
 	^(( self contents heightToDisplayInTree: self) max: iconHeight) max: super minHeight
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>minWidth [
+{ #category : #accessing }
+IndentingListItemMorph >> minWidth [
 	"Fixed to work such that guessed width is unnecessary in
 	#adjustSubmorphPositions."
 
@@ -478,29 +381,20 @@ IndentingListItemMorph>>minWidth [
 		+ iconWidth) max: super minWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>nextSibling [
+{ #category : #accessing }
+IndentingListItemMorph >> nextSibling [
 
 	^nextSibling
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>nextSibling: anotherMorph [
+{ #category : #accessing }
+IndentingListItemMorph >> nextSibling: anotherMorph [
 
 	nextSibling := anotherMorph
 ]
 
-{
-	#category : #'private-container protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>openPath: anArray  [
+{ #category : #'private-container protocol' }
+IndentingListItemMorph >> openPath: anArray [ 
 	| found |
 	anArray isEmpty
 		ifTrue: [^ container setSelectedMorph: nil].
@@ -519,11 +413,8 @@ IndentingListItemMorph>>openPath: anArray  [
 		ifNotNil: [found firstChild openPath: anArray allButFirst]
 ]
 
-{
-	#category : #'private-container protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>recursiveAddTo: aCollection [
+{ #category : #'private-container protocol' }
+IndentingListItemMorph >> recursiveAddTo: aCollection [
 
 	firstChild ifNotNil: [
 		firstChild withSiblingsDo: [ :aNode | aNode recursiveAddTo: aCollection].
@@ -532,11 +423,8 @@ IndentingListItemMorph>>recursiveAddTo: aCollection [
 	
 ]
 
-{
-	#category : #'private-container protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>recursiveDelete [
+{ #category : #'private-container protocol' }
+IndentingListItemMorph >> recursiveDelete [
 
 	firstChild ifNotNil: [
 		firstChild withSiblingsDo: [ :aNode | aNode recursiveDelete].
@@ -545,11 +433,8 @@ IndentingListItemMorph>>recursiveDelete [
 	
 ]
 
-{
-	#category : #'private-container protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>refreshExpandedState [
+{ #category : #'private-container protocol' }
+IndentingListItemMorph >> refreshExpandedState [
 
  	| newChildren toDelete c |
 	toDelete := OrderedCollection new.
@@ -569,50 +454,35 @@ IndentingListItemMorph>>refreshExpandedState [
 
 ]
 
-{
-	#category : #search,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>searchingString [
+{ #category : #search }
+IndentingListItemMorph >> searchingString [
 	" string used to detect research "
 
 	^ self contents asString
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>toggleBounds [
+{ #category : #private }
+IndentingListItemMorph >> toggleBounds [
 	^self toggleRectangle
 ]
 
-{
-	#category : #'private-container protocol',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>toggleExpandedState [
+{ #category : #'private-container protocol' }
+IndentingListItemMorph >> toggleExpandedState [
 
 	isExpanded := isExpanded not.
 	self refreshExpandedState.
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>toggleRectangle [
+{ #category : #action }
+IndentingListItemMorph >> toggleRectangle [
 
 	| h |
 	h := bounds height.
 	^(bounds left + (13 * indentLevel)) @ bounds top extent: 9@h
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>unhighlight [
+{ #category : #drawing }
+IndentingListItemMorph >> unhighlight [
 	complexContents highlightingColor ifNotNil: [ self color: self theme textColor ].
 	self changed.
 	
@@ -620,21 +490,15 @@ IndentingListItemMorph>>unhighlight [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>userString [
+{ #category : #accessing }
+IndentingListItemMorph >> userString [
 	"Add leading tabs to my userString"
 	^ (String new: indentLevel withAll: Character tab), super userString
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>withSiblingsDo: aBlock [
+{ #category : #private }
+IndentingListItemMorph >> withSiblingsDo: aBlock [
 
 	| node |
 	node := self.
@@ -644,11 +508,8 @@ IndentingListItemMorph>>withSiblingsDo: aBlock [
 	].
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-IndentingListItemMorph>>withoutListWrapper [
+{ #category : #converting }
+IndentingListItemMorph >> withoutListWrapper [
 
 	^complexContents withoutListWrapper
 ]

@@ -14,35 +14,25 @@ Class {
 		'publishedUrl',
 		'persistenceStrategies'
 	],
-	#category : #GT-Playground,
-	#timestamp : 'TudorGirba 10/22/2014 07:52'
+	#category : #GT-Playground
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage class>>basicLoadFromPublishUrl: aString [
+{ #category : #private }
+GTPlayPage class >> basicLoadFromPublishUrl: aString [
 	^ GTPlayPage new 
 		saveContent: (GTUrlProvider new get: aString)
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage class>>creationTimeFrom: aFileReference [
+{ #category : #'instance creation' }
+GTPlayPage class >> creationTimeFrom: aFileReference [
 	^ [ self creationTimeFromString: aFileReference basenameWithoutExtension ] 
 		on: Error 
 		do: [ aFileReference creationTime ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage class>>creationTimeFromString: aString [
+{ #category : #'instance creation' }
+GTPlayPage class >> creationTimeFromString: aString [
 	" this is really ugly, but hopefully only a temporary solution untill we come up with somthing more reliable and more beautiful "
 	| subexpressions |
 	subexpressions := OrderedCollection new.
@@ -66,62 +56,44 @@ GTPlayPage class>>creationTimeFromString: aString [
 						seconds: (subexpressions at: 12)) " 11 == full match "
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage class>>fileExtension [
+{ #category : #accessing-dynamic }
+GTPlayPage class >> fileExtension [
 	^ 'ph'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage class>>fromFileReference: aFileReference [
+{ #category : #'instance creation' }
+GTPlayPage class >> fromFileReference: aFileReference [
 	^ self new
 		content: (aFileReference readStreamDo: #contents); 
 		creationTime: (self creationTimeFrom: aFileReference);
 		yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage class>>gtExampleEmpty [
+{ #category : #examples }
+GTPlayPage class >> gtExampleEmpty [
 	<gtExample>
 	<label: 'Empty'>
 	
 	^ self new
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage class>>loadFromPublishUrl: aString [
+{ #category : #'instance creation' }
+GTPlayPage class >> loadFromPublishUrl: aString [
 	^ [ self basicLoadFromPublishUrl: aString ] 
 		on: Error 
 		do: [ nil ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage class>>loadFromPublishUrl: aString thenDo: aBlock [
+{ #category : #'instance creation' }
+GTPlayPage class >> loadFromPublishUrl: aString thenDo: aBlock [
 	| page |
 	page := self loadFromPublishUrl: aString.
 	page ifNotNil: [ aBlock value: page ].
 	^ page
 ]
 
-{
-	#category : #compatibility-tools,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>acceptContents: aStringOrtext [
+{ #category : #compatibility-tools }
+GTPlayPage >> acceptContents: aStringOrtext [
 
 	self flag: #TODO. "Need support for what lies in the comment down here"
 	"self fileName ifNotNil: [ self saveString: aStringOrtext toFile: self fileName ].
@@ -131,77 +103,50 @@ GTPlayPage>>acceptContents: aStringOrtext [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>content [
+{ #category : #accessing }
+GTPlayPage >> content [
 	^ content
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>content: aString [
+{ #category : #accessing }
+GTPlayPage >> content: aString [
 	content := aString asString
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>contentString [
+{ #category : #accessing-dynamic }
+GTPlayPage >> contentString [
 	" strange, sometimes #content is aText not aString ! "
 	^ self content asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>creationTime [
+{ #category : #accessing }
+GTPlayPage >> creationTime [
 	^ creationTime
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>creationTime: anObject [
+{ #category : #accessing }
+GTPlayPage >> creationTime: anObject [
 	creationTime := anObject
 ]
 
-{
-	#category : #accessing-defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>creationTimeForFileName [
+{ #category : #accessing-defaults }
+GTPlayPage >> creationTimeForFileName [
 	^ (self creationTime asString copyReplaceAll: ':' with: '-') copyReplaceAll: '.' with: '-'
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>ensureStashPersistency [
+{ #category : #accessing-dynamic }
+GTPlayPage >> ensureStashPersistency [
 	(self persistenceStrategies noneSatisfy: [ :each | each isStash ])
 		ifTrue: [ self persistenceStrategies add: (GTPlayPageStashPersistence new page: self) ]
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>gtDisplayOn: stream [
+{ #category : #ui }
+GTPlayPage >> gtDisplayOn: stream [
 	stream nextPutAll: (self contentString copyReplaceAll: String cr with: String space)
 ]
 
-{
-	#category : #ui,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>gtInspectorContentIn: composite [
+{ #category : #ui }
+GTPlayPage >> gtInspectorContentIn: composite [
 	<gtInspectorPresentationOrder: 0>
 	composite pharoScript 
 		title: 'Content';
@@ -209,11 +154,8 @@ GTPlayPage>>gtInspectorContentIn: composite [
 		installDefaultSelectionActions
 ]
 
-{
-	#category : #initializing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>initialize [
+{ #category : #initializing }
+GTPlayPage >> initialize [
 	super initialize.
 	self content: ''.
 	self creationTime: DateAndTime now.
@@ -221,35 +163,23 @@ GTPlayPage>>initialize [
 	persistenceStrategies := OrderedCollection with: (GTPlayPageCachePersistence new page: self)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>isInteresting [
+{ #category : #testing }
+GTPlayPage >> isInteresting [
 	^ self contentString trimBoth isEmpty not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>persistenceStrategies [
+{ #category : #accessing }
+GTPlayPage >> persistenceStrategies [
 	^ persistenceStrategies
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>persistenceStrategies: anObject [
+{ #category : #accessing }
+GTPlayPage >> persistenceStrategies: anObject [
 	persistenceStrategies := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>publish [
+{ #category : #actions }
+GTPlayPage >> publish [
 	(self confirm: 'Publish playground content to the cloud?')
         ifFalse: [ ^ self ].
     self content ifEmpty: [ 
@@ -259,45 +189,30 @@ GTPlayPage>>publish [
     self inform: publishedUrl , ' was published and the url was copied to clipboard'
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>save [
+{ #category : #actions }
+GTPlayPage >> save [
 	persistenceStrategies do: [ :each | each save ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>saveContent: aStringOrText [
+{ #category : #actions }
+GTPlayPage >> saveContent: aStringOrText [
 	self content: aStringOrText.
 	self save.
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>setTitleAndEnsureInStash: aString [
+{ #category : #accessing-dynamic }
+GTPlayPage >> setTitleAndEnsureInStash: aString [
 	self title: aString.
 	self ensureStashPersistency.
 	self save
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>title [
+{ #category : #accessing-dynamic }
+GTPlayPage >> title [
 	^ title ifNil: [ 'Page' ]
 ]
 
-{
-	#category : #accessing-dynamic,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTPlayPage>>title: aString [
+{ #category : #accessing-dynamic }
+GTPlayPage >> title: aString [
 	title := aString
 ]

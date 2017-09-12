@@ -6,23 +6,16 @@ Class {
 	#name : #IntegerArray,
 	#superclass : #ArrayedCollection,
 	#type : #words,
-	#category : #Collections-Native,
-	#timestamp : '<historical>'
+	#category : #Collections-Native
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-IntegerArray>>asIntegerArray [
+{ #category : #converting }
+IntegerArray >> asIntegerArray [
 	^self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-IntegerArray>>at: index [
+{ #category : #accessing }
+IntegerArray >> at: index [
 	| word |
 	<primitive: 165>
 	word := self basicAt: index.
@@ -33,11 +26,8 @@ IntegerArray>>at: index [
 		ifFalse:[word]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-IntegerArray>>at: index put: anInteger [
+{ #category : #accessing }
+IntegerArray >> at: index put: anInteger [
 	| word |
 	<primitive: 166>
 	anInteger < 0
@@ -48,11 +38,8 @@ IntegerArray>>at: index put: anInteger [
 	^anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-IntegerArray>>atAllPut: anInteger [
+{ #category : #accessing }
+IntegerArray >> atAllPut: anInteger [
 	| word |
 	anInteger < 0
 		ifTrue:["word := 16r100000000 + anInteger"
@@ -61,20 +48,14 @@ IntegerArray>>atAllPut: anInteger [
 	self primFill: word.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-IntegerArray>>defaultElement [
+{ #category : #accessing }
+IntegerArray >> defaultElement [
 	"Return the default element of the receiver"
 	^0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:28'
-}
-IntegerArray>>primFill: aPositiveInteger [
+{ #category : #private }
+IntegerArray >> primFill: aPositiveInteger [
 	"Fill the receiver, an indexable bytes or words object, with the given positive integer. The range of possible fill values is [0..255] for byte arrays and [0..(2^32 - 1)] for word arrays."
 
 	<primitive: 145>

@@ -1,37 +1,24 @@
-"
-
-"
 Class {
 	#name : #FFIExternalStructureFieldParserTests,
 	#superclass : #TestCase,
 	#instVars : [
 		'architecture'
 	],
-	#category : #UnifiedFFI-Tests,
-	#timestamp : ''
+	#category : #UnifiedFFI-Tests
 }
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFieldParserTests>>newParser    [
+{ #category : #factory }
+FFIExternalStructureFieldParserTests >> newParser [   
 	^ FFIExternalStructureFieldParser new
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFieldParserTests>>setUp [
+{ #category : #initialization }
+FFIExternalStructureFieldParserTests >> setUp [
 	architecture := FFIArchitecture forCurrentArchitecture
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalStructureFieldParserTests>>testParseFieldsStructure [
+{ #category : #tests }
+FFIExternalStructureFieldParserTests >> testParseFieldsStructure [
 	| fieldSpec |
 	
 	fieldSpec := self newParser   

@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'materializer'
 	],
-	#category : #Ombu-Persistence,
-	#timestamp : 'MartinDias 12/12/2014 16:11'
+	#category : #Ombu-Persistence
 }
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFuelEntryReader>>entryPositionsDo: aBlock [
+{ #category : #enumerating }
+OmFuelEntryReader >> entryPositionsDo: aBlock [
 
 	self shouldBeImplemented
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFuelEntryReader>>initialize [
+{ #category : #initialization }
+OmFuelEntryReader >> initialize [
 	super initialize.
 	materializer := FLMaterializer new.
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-OmFuelEntryReader>>nextEntry [
+{ #category : #reading }
+OmFuelEntryReader >> nextEntry [
 
 	^ (materializer materializeFrom: stream) root
 ]

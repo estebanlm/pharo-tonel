@@ -4,34 +4,24 @@ Action when the method comes from a trait
 Class {
 	#name : #MethodFromTraitAction,
 	#superclass : #AbstractMethodIconAction,
-	#category : #Nautilus-Widgets,
-	#timestamp : '<historical>'
+	#category : #Nautilus-Widgets
 }
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodFromTraitAction>>actionOrder [
+{ #category : #order }
+MethodFromTraitAction >> actionOrder [
 	"Return the priority of this action"
 	
 	^ 200
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodFromTraitAction>>isActionHandled [
+{ #category : #order }
+MethodFromTraitAction >> isActionHandled [
 
 	^ method isFromTrait
 ]
 
-{
-	#category : #order,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-MethodFromTraitAction>>privateActionIcon [
+{ #category : #order }
+MethodFromTraitAction >> privateActionIcon [
 	"Return the icon for this action"
 
 	^ IconicButton new 

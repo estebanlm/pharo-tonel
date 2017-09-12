@@ -29,369 +29,245 @@ Class {
 		'unsortedCollection',
 		'sortedCollection'
 	],
-	#category : #Collections-Tests-Sequenceable,
-	#timestamp : 'mk 8/3/2005 11:55'
+	#category : #Collections-Tests-Sequenceable
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>accessCollection [
+{ #category : #requirements }
+LinkedListTest >> accessCollection [
 	^collectionWithoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>anotherElementNotIn [
+{ #category : #requirements }
+LinkedListTest >> anotherElementNotIn [
 " return an element included  in 'collection' "
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>anotherElementOrAssociationIn [
+{ #category : #requirements }
+LinkedListTest >> anotherElementOrAssociationIn [
 	" return an element (or an association for Dictionary ) present  in 'collection' "
 	^ self collection anyOne
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>anotherElementOrAssociationNotIn [
+{ #category : #requirements }
+LinkedListTest >> anotherElementOrAssociationNotIn [
 	" return an element (or an association for Dictionary )not present  in 'collection' "
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>collection [
+{ #category : #requirements }
+LinkedListTest >> collection [
 	^ self nonEmpty
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>collectionClass [
+{ #category : #requirements }
+LinkedListTest >> collectionClass [
 " return the class to be used to create instances of the class tested"
 	^ LinkedList
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>collectionMoreThan1NoDuplicates [
+{ #category : #requirements }
+LinkedListTest >> collectionMoreThan1NoDuplicates [
 	" return a collection of size 5 without equal elements"
 	^ collectionWithoutEqualElements
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>collectionNotIncluded [
+{ #category : #requirements }
+LinkedListTest >> collectionNotIncluded [
 " return a collection for wich each element is not included in 'nonEmpty' "
 	^ collectionWithoutNil 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>collectionWith1TimeSubcollection [
+{ #category : #requirements }
+LinkedListTest >> collectionWith1TimeSubcollection [
 " return a collection including 'oldSubCollection'  only one time "
 	^ self oldSubCollection 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>collectionWithCopyNonIdentical [
+{ #category : #requirements }
+LinkedListTest >> collectionWithCopyNonIdentical [
 	" return a collection that include elements for which 'copy' return a different object (this is not the case of SmallInteger)"
 	^ collectionWithoutEqualElements
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>collectionWithElement [
+{ #category : #requirements }
+LinkedListTest >> collectionWithElement [
 	"Returns a collection that already includes what is returned by #element."
 	^ self collection
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>collectionWithElementsToRemove [
+{ #category : #requirements }
+LinkedListTest >> collectionWithElementsToRemove [
 " return a collection of elements included in 'nonEmpty'  "
 	^ self nonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>collectionWithSortableElements [
+{ #category : #requirements }
+LinkedListTest >> collectionWithSortableElements [
 	" return a collection only including elements that can be sorted (understanding '<' )"
 	^ collection5Elements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>collectionWithoutEqualElements [
+{ #category : #requirements }
+LinkedListTest >> collectionWithoutEqualElements [
 
 " return a collection not including equal elements "
 	^collectionWithoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>collectionWithoutNilElements [
+{ #category : #requirements }
+LinkedListTest >> collectionWithoutNilElements [
 " return a collection that doesn't includes a nil element "
 	^collectionWithoutNil 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>element [
+{ #category : #requirements }
+LinkedListTest >> element [
 	^ link ifNil: [link := ValueLink value: 42. "so that we can recognize this link"]
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>elementInForElementAccessing [
+{ #category : #requirements }
+LinkedListTest >> elementInForElementAccessing [
 " return an element inculded in 'accessCollection '"
 	^ elementIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>elementInForIndexAccessing [
+{ #category : #requirements }
+LinkedListTest >> elementInForIndexAccessing [
 " return an element included in 'accessCollection' "
 	^ elementIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>elementNotIn [
+{ #category : #requirements }
+LinkedListTest >> elementNotIn [
 	^ Link new
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>elementNotInForElementAccessing [
+{ #category : #requirements }
+LinkedListTest >> elementNotInForElementAccessing [
 " return an element not included in 'accessCollection' "
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>elementNotInForIndexAccessing [
+{ #category : #requirements }
+LinkedListTest >> elementNotInForIndexAccessing [
 " return an element not included in 'accessCollection' "
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>elementNotInForOccurrences [
+{ #category : #requirements }
+LinkedListTest >> elementNotInForOccurrences [
 " return an element notIncluded in #collectionWithoutEqualElements"
 	^ elementNotIn 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>elementToAdd [
+{ #category : #requirements }
+LinkedListTest >> elementToAdd [
 " return an element of type 'nonEmpy' elements'type'"
 	^ ValueLink value: 77
 ]
 
-{
-	#category : #'tests - empty',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>empty [
+{ #category : #'tests - empty' }
+LinkedListTest >> empty [
 	^ list
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>indexInForCollectionWithoutDuplicates [
+{ #category : #requirements }
+LinkedListTest >> indexInForCollectionWithoutDuplicates [
 " return an index between 'collectionWithoutEqualsElements'  bounds"
 	^ 2
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>indexInNonEmpty [
+{ #category : #requirements }
+LinkedListTest >> indexInNonEmpty [
 " return an index between bounds of 'nonEmpty' "
 
 	^ self nonEmpty size
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>moreThan3Elements [
+{ #category : #requirements }
+LinkedListTest >> moreThan3Elements [
 	" return a collection including atLeast 3 elements"
 	^ collectionWithoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>moreThan4Elements [
+{ #category : #requirements }
+LinkedListTest >> moreThan4Elements [
 
 " return a collection including at leat 4 elements"
 	^ collectionWithoutEqualElements 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>n [
+{ #category : #accessing }
+LinkedListTest >> n [
 	^n
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>n: number [
+{ #category : #accessing }
+LinkedListTest >> n: number [
 	n := number.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>nextLink [
+{ #category : #accessing }
+LinkedListTest >> nextLink [
 	^nextLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>nextLink: aLink [
+{ #category : #accessing }
+LinkedListTest >> nextLink: aLink [
 	nextLink := aLink
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>nonEmpty [
+{ #category : #requirements }
+LinkedListTest >> nonEmpty [
 	^ nonEmpty ifNil: [nonEmpty := LinkedList with: 5 with: 4 with: 3 with: 2 with: 1 with: self element]
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>nonEmpty1Element [
+{ #category : #requirements }
+LinkedListTest >> nonEmpty1Element [
 " return a collection of size 1 including one element"
 	^ nonEmpty1Element 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>nonEmptyMoreThan1Element [
+{ #category : #requirements }
+LinkedListTest >> nonEmptyMoreThan1Element [
 " return a collection that don't includes equl elements'" 
 	^collectionWithoutNil 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>nonEmptyWithoutEqualElements [
+{ #category : #requirements }
+LinkedListTest >> nonEmptyWithoutEqualElements [
 " return a collection without equal elements "
 	^ collectionWithoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>oldSubCollection [
+{ #category : #requirements }
+LinkedListTest >> oldSubCollection [
 " return a subCollection included in collectionWith1TimeSubcollection .
 ex :   subCollection := #( 2 3 4) and collectionWith1TimeSubcollection := #(1 2 3 4 5)"
 	^ self nonEmpty 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>otherCollection [
+{ #category : #requirements }
+LinkedListTest >> otherCollection [
 	^ otherList ifNil: [otherList := LinkedList with: Link new with: Link new]
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>replacementCollection [
+{ #category : #requirements }
+LinkedListTest >> replacementCollection [
 " return a collection that will be used to replace 'oldSubcollection' in ' collectionWith1TimeSubcollection'  " 
 	^ collectionWithoutNil 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>result [
+{ #category : #requirements }
+LinkedListTest >> result [
 	"Returns a collection of the classes of elements in #collection"
 	 ^ collectResult
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>setUp [
+{ #category : #running }
+LinkedListTest >> setUp [
 	
 	super setUp.
 	list := LinkedList new.
@@ -415,39 +291,27 @@ LinkedListTest>>setUp [
 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>sortedInAscendingOrderCollection [
+{ #category : #requirements }
+LinkedListTest >> sortedInAscendingOrderCollection [
 	"Return a collection sorted in ascending order"
 	^ sortedCollection
 	
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>speciesClass [
+{ #category : #requirements }
+LinkedListTest >> speciesClass [
 	
 	^LinkedList
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>subCollectionNotIn [
+{ #category : #requirements }
+LinkedListTest >> subCollectionNotIn [
 " return a collection for which at least one element is not included in 'accessCollection' "
 	^ collectionWithoutNil 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>tearDown [
+{ #category : #running }
+LinkedListTest >> tearDown [
 	list := nil.
 	link1 := nil.
 	link2 := nil.
@@ -461,11 +325,8 @@ LinkedListTest>>tearDown [
 	^ super tearDown
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>test01add [
+{ #category : #testing }
+LinkedListTest >> test01add [
 	self assert: list isEmpty.
 	list add: link1.
 	self assert: list size = 1.
@@ -490,11 +351,8 @@ LinkedListTest>>test01add [
 	self assert: list fourth = link4
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>test02addLast [
+{ #category : #testing }
+LinkedListTest >> test02addLast [
 	self assert: list isEmpty.
 	
 	list addLast: link1.
@@ -520,11 +378,8 @@ LinkedListTest>>test02addLast [
 	self assert: list fourth = link4
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>test03addFirst [
+{ #category : #testing }
+LinkedListTest >> test03addFirst [
 	self assert: list isEmpty.
 	
 	list addFirst: link1.
@@ -550,11 +405,8 @@ LinkedListTest>>test03addFirst [
 	self assert: list fourth = link1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>test04addBefore [
+{ #category : #testing }
+LinkedListTest >> test04addBefore [
 	self assert: list isEmpty.
 	
 	list add: link1.
@@ -580,11 +432,8 @@ LinkedListTest>>test04addBefore [
 	self assert: list fourth == link1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>test05addBefore [
+{ #category : #testing }
+LinkedListTest >> test05addBefore [
 	self assert: list isEmpty.
 	
 	list add: link1.
@@ -610,11 +459,8 @@ LinkedListTest>>test05addBefore [
 	self assert: list fourth == link1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>test06addAfter [
+{ #category : #testing }
+LinkedListTest >> test06addAfter [
 	self assert: list isEmpty.
 	
 	list add: link1.
@@ -640,11 +486,8 @@ LinkedListTest>>test06addAfter [
 	self assert: list fourth == link4
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>test07addAfter [
+{ #category : #testing }
+LinkedListTest >> test07addAfter [
 	self assert: list isEmpty.
 	
 	list add: link1.
@@ -670,11 +513,8 @@ LinkedListTest>>test07addAfter [
 	self assert: list fourth == link2
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>test08addAfter [
+{ #category : #testing }
+LinkedListTest >> test08addAfter [
 	| l first |
 	l := LinkedList new.
 	first := self class new n: 1.
@@ -689,11 +529,8 @@ LinkedListTest>>test08addAfter [
 	self assert: (l collect:[:e | e n]) asArray  = #(1 2 3).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>test09addAfter [
+{ #category : #testing }
+LinkedListTest >> test09addAfter [
 	| l last |
 	l := LinkedList new.
 	last := self class new n: 2.
@@ -707,11 +544,8 @@ LinkedListTest>>test09addAfter [
 	self assert: (l collect:[:e | e n]) asArray  = #(1 2 3).
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>test0FixtureIndexAccessTest [
+{ #category : #'tests - fixture' }
+LinkedListTest >> test0FixtureIndexAccessTest [
 	| res |
 	self collectionMoreThan1NoDuplicates.
 	self assert: self collectionMoreThan1NoDuplicates size = 5.
@@ -726,11 +560,8 @@ LinkedListTest>>test0FixtureIndexAccessTest [
 	self deny: (self collectionMoreThan1NoDuplicates includes: self elementNotInForIndexAccessing)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>test10removeFirst [
+{ #category : #testing }
+LinkedListTest >> test10removeFirst [
 	list add: link1.
 	list add: link2.
 	list add: link3.
@@ -761,11 +592,8 @@ LinkedListTest>>test10removeFirst [
 	self assert: list isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>test11removeLast [
+{ #category : #testing }
+LinkedListTest >> test11removeLast [
 	list add: link1.
 	list add: link2.
 	list add: link3.
@@ -796,11 +624,8 @@ LinkedListTest>>test11removeLast [
 	self assert: list isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>test12remove [
+{ #category : #testing }
+LinkedListTest >> test12remove [
 	list add: link1.
 	list add: link2.
 	list add: link3.
@@ -831,11 +656,8 @@ LinkedListTest>>test12remove [
 	self assert: list isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>test13remove [
+{ #category : #testing }
+LinkedListTest >> test13remove [
 	list add: link1.
 	list add: link2.
 	list add: link3.
@@ -866,11 +688,8 @@ LinkedListTest>>test13remove [
 	self assert: list isEmpty
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>test14removeIfAbsent [
+{ #category : #testing }
+LinkedListTest >> test14removeIfAbsent [
 	list add: link1.
 	
 	self assert: list size = 1.
@@ -887,11 +706,8 @@ LinkedListTest>>test14removeIfAbsent [
 	self assert: false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>test22addAll [
+{ #category : #testing }
+LinkedListTest >> test22addAll [
 	| link5 link6 link7 link8 listToBeAdded |
 	link5 := Link new.
 	link6 := Link new.
@@ -923,11 +739,8 @@ LinkedListTest>>test22addAll [
 	self should: [(list at: 8) == link8].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>testAddAfter [
+{ #category : #tests }
+LinkedListTest >> testAddAfter [
 
 	| l first |
 	l := LinkedList new.
@@ -940,11 +753,8 @@ LinkedListTest>>testAddAfter [
 	self assert: (l collect:[:e | e n]) asArray  = #(1 2 3).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>testAddAfterLast [
+{ #category : #tests }
+LinkedListTest >> testAddAfterLast [
 
 	| l last |
 	l := LinkedList new.
@@ -956,11 +766,8 @@ LinkedListTest>>testAddAfterLast [
 	self assert: (l collect:[:e | e n]) asArray  = #(1 2 3).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>testAddAfterLast2 [
+{ #category : #tests }
+LinkedListTest >> testAddAfterLast2 [
 	"LinkedListTest new testAddAfterLast2"
 
 	| l first second third fourth |
@@ -978,11 +785,8 @@ LinkedListTest>>testAddAfterLast2 [
 	self assert: (l collect:[:e | e n]) asArray  = #(1 2 3 4).
 ]
 
-{
-	#category : #'tests - sequenceable',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>testAtPut [
+{ #category : #'tests - sequenceable' }
+LinkedListTest >> testAtPut [
 	| ll |
 	ll := LinkedList new.
 	ll add: 1.
@@ -990,21 +794,15 @@ LinkedListTest>>testAtPut [
 	self assert: (ll at: 1) equals: 2
 ]
 
-{
-	#category : #'tests - sequenceable',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>testAtPutOutsideBounds [
+{ #category : #'tests - sequenceable' }
+LinkedListTest >> testAtPutOutsideBounds [
 	| ll |
 	ll := LinkedList new.
 	self should: [ ll at: 1 put: 1 ] raise: SubscriptOutOfBounds
 ]
 
-{
-	#category : #'tests - creating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>testCreateAs [
+{ #category : #'tests - creating' }
+LinkedListTest >> testCreateAs [
 	"Test that a LinkedList can be created by sending message #as: to another collection.
 	Implementation note: this method is generic for sequenceable collection and should be traitified."
 	| anotherCollection aLinkedList |
@@ -1016,11 +814,8 @@ LinkedListTest>>testCreateAs [
 		self assert: nextElementOfLinkedList equals: nextElementOfAnotherCollection]
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>testIdentityIncludes [
+{ #category : #'tests - includes' }
+LinkedListTest >> testIdentityIncludes [
 	" test the comportement in presence of elements 'includes' but not 'identityIncludes' "
 
 	" can not be used by collections that can't include elements for wich copy doesn't return another instance "
@@ -1032,11 +827,8 @@ LinkedListTest>>testIdentityIncludes [
 	self deny: (collection identityIncludes: element)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>testRemoveAll [
+{ #category : #testing }
+LinkedListTest >> testRemoveAll [
 	| list2 |
 	list add: link1.
 	list add: link2.
@@ -1049,22 +841,16 @@ LinkedListTest>>testRemoveAll [
 	self assert: list2 size = 4 description: 'the copy has not been modified'
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>testSort [
+{ #category : #requirements }
+LinkedListTest >> testSort [
 	|aLinkedList|
 	 aLinkedList := (LinkedList with: 1 with: 2).
 	aLinkedList  sort: [ :a :b | a > b].
 	self assert: (aLinkedList = (LinkedList with: 2 with: 1)).
 ]
 
-{
-	#category : #'tests - swap',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>testSwapAdjacent [
+{ #category : #'tests - swap' }
+LinkedListTest >> testSwapAdjacent [
 	|aList|
 	aList := LinkedList with: 5 with: 4 with: 3 with: 2 with: 1.
 	
@@ -1073,11 +859,8 @@ LinkedListTest>>testSwapAdjacent [
 	self assert: (aList at: 4) equals: 3.
 ]
 
-{
-	#category : #'tests - swap',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>testSwapAdjacentEnd [
+{ #category : #'tests - swap' }
+LinkedListTest >> testSwapAdjacentEnd [
 	|aList|
 	aList := LinkedList with: 5 with: 4 with: 3 with: 2 with: 1.
 	
@@ -1087,11 +870,8 @@ LinkedListTest>>testSwapAdjacentEnd [
 	self assert: aList last equals: 2.
 ]
 
-{
-	#category : #'tests - swap',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>testSwapAdjacentStart [
+{ #category : #'tests - swap' }
+LinkedListTest >> testSwapAdjacentStart [
 	|aList|
 	aList := LinkedList with: 5 with: 4 with: 3 with: 2 with: 1.
 	
@@ -1101,11 +881,8 @@ LinkedListTest>>testSwapAdjacentStart [
 	self assert: aList first equals: 4.
 ]
 
-{
-	#category : #'tests - swap',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>testSwapBasic [
+{ #category : #'tests - swap' }
+LinkedListTest >> testSwapBasic [
 	|aList|
 	aList := LinkedList with: 5 with: 4 with: 3 with: 2 with: 1.
 	
@@ -1115,11 +892,8 @@ LinkedListTest>>testSwapBasic [
 
 ]
 
-{
-	#category : #'tests - swap',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>testSwapStartAndEnd [
+{ #category : #'tests - swap' }
+LinkedListTest >> testSwapStartAndEnd [
 	|aList|
 	aList := LinkedList with: 5 with: 4 with: 3 with: 2 with: 1.
 	
@@ -1130,11 +904,8 @@ LinkedListTest>>testSwapStartAndEnd [
 	self assert: aList last equals: 5.
 ]
 
-{
-	#category : #'tests - adding',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>testTAdd [
+{ #category : #'tests - adding' }
+LinkedListTest >> testTAdd [
 
 	| added |
 	added := self otherCollection add: self element.
@@ -1144,11 +915,8 @@ LinkedListTest>>testTAdd [
 	
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-LinkedListTest>>unsortedCollection [
+{ #category : #requirements }
+LinkedListTest >> unsortedCollection [
 "Return a collection that is not yet sorted"
 	^ unsortedCollection
 ]

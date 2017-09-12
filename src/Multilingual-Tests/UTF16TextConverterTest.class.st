@@ -5,15 +5,11 @@ SUnit tests for UTF16TextConverter
 Class {
 	#name : #UTF16TextConverterTest,
 	#superclass : #TestCase,
-	#category : #Multilingual-Tests-TextConversion,
-	#timestamp : 'TorstenBergmann 2/5/2014 10:18'
+	#category : #Multilingual-Tests-TextConversion
 }
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-UTF16TextConverterTest>>assert: originalText isTheSameAfterLittleEndianConversion: aBooleanOrNil [
+{ #category : #helpers }
+UTF16TextConverterTest >> assert: originalText isTheSameAfterLittleEndianConversion: aBooleanOrNil [
 
 	"Test that encoding / decoding a string witll produce the original string for both byte orders"
 
@@ -28,11 +24,8 @@ UTF16TextConverterTest>>assert: originalText isTheSameAfterLittleEndianConversio
 	
 ]
 
-{
-	#category : #helpers,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-UTF16TextConverterTest>>assertBOMIsWrittenWithOrder: anOrder andConversion: aBlock [
+{ #category : #helpers }
+UTF16TextConverterTest >> assertBOMIsWrittenWithOrder: anOrder andConversion: aBlock [
 
 	|converter stream  BOM  |
 	
@@ -53,11 +46,8 @@ UTF16TextConverterTest>>assertBOMIsWrittenWithOrder: anOrder andConversion: aBlo
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-UTF16TextConverterTest>>testBOMWrite [
+{ #category : #testing }
+UTF16TextConverterTest >> testBOMWrite [
 	
 	"Test that BOM is written correctly for both endians, both when using a nextPut:, and nextPutAll:"
 	
@@ -81,11 +71,8 @@ UTF16TextConverterTest>>testBOMWrite [
 		andConversion: batchConversion.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-UTF16TextConverterTest>>testByteOrders [
+{ #category : #testing }
+UTF16TextConverterTest >> testByteOrders [
 
 	"Test that encoding / decoding a string witll produce the original string for both byte orders"
 
@@ -98,11 +85,8 @@ UTF16TextConverterTest>>testByteOrders [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-UTF16TextConverterTest>>testNoBOMWriteInMiddleOfFile [
+{ #category : #testing }
+UTF16TextConverterTest >> testNoBOMWriteInMiddleOfFile [
 	
 	"Test that BOM is not written when our first write does not occur at start of writestream"
 	

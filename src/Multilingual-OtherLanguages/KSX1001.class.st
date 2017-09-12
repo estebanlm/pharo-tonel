@@ -4,23 +4,16 @@ This class represents the domestic character encoding called KS X 1001 used for 
 Class {
 	#name : #KSX1001,
 	#superclass : #EncodedCharSet,
-	#category : #Multilingual-OtherLanguages,
-	#timestamp : 'yo 10/19/2004 19:53'
+	#category : #Multilingual-OtherLanguages
 }
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-KSX1001 class>>compoundTextSequence [
+{ #category : #'class methods' }
+KSX1001 class >> compoundTextSequence [
 	^ compoundTextSequence
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-KSX1001 class>>initialize [
+{ #category : #'class methods' }
+KSX1001 class >> initialize [
 	"KSX1001 initialize"
 	self initializeUcsTable.
 	EncodedCharSet declareEncodedCharSet: self atIndex: 3+1.
@@ -33,11 +26,8 @@ KSX1001 class>>initialize [
 		stream nextPut: $C ]
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-KSX1001 class>>initializeUcsTable [
+{ #category : #'class methods' }
+KSX1001 class >> initializeUcsTable [
 	"UCSTable initializeKSX1001Table"
 
 	| table size ksX1001 unicode ksX1001Table |
@@ -66,11 +56,8 @@ KSX1001 class>>initializeUcsTable [
 
 ]
 
-{
-	#category : #'character classification',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-KSX1001 class>>isLetter: char [
+{ #category : #'character classification' }
+KSX1001 class >> isLetter: char [
 
 	| value leading |
 
@@ -84,21 +71,15 @@ KSX1001 class>>isLetter: char [
 
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-KSX1001 class>>leadingChar [
+{ #category : #'class methods' }
+KSX1001 class >> leadingChar [
 
 	^ 3.
 
 ]
 
-{
-	#category : #'class methods',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-KSX1001 class>>nextPutValue: ascii toStream: aStream withShiftSequenceIfNeededForTextConverterState: state  [
+{ #category : #'class methods' }
+KSX1001 class >> nextPutValue: ascii toStream: aStream withShiftSequenceIfNeededForTextConverterState: state [ 
 	| c1 c2 |
 	state charSize: 2.
 	state g0Leading ~= self leadingChar ifTrue: 

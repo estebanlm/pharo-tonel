@@ -11,23 +11,16 @@ Class {
 		'interactive',
 		'text'
 	],
-	#category : #OpalCompiler-Tests-FromOld,
-	#timestamp : 'nice 12/3/2007 22:15'
+	#category : #OpalCompiler-Tests-FromOld
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>compile [
+{ #category : #running }
+OCCompilerTest >> compile [
 	^ self compileWithFailBlock: [^ nil]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>compileWithFailBlock: aBlock [
+{ #category : #running }
+OCCompilerTest >> compileWithFailBlock: aBlock [
 	^ OpalCompiler new 
 		source: text;
 		class: MockForCompilation;
@@ -37,78 +30,54 @@ OCCompilerTest>>compileWithFailBlock: aBlock [
 
 ]
 
-{
-	#category : #mocking,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>initializeErrorMessage [
+{ #category : #mocking }
+OCCompilerTest >> initializeErrorMessage [
 	errorMessage := nil.
 	errorLocation := nil.
 	errorSource := nil
 ]
 
-{
-	#category : #mocking,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>interactive [
+{ #category : #mocking }
+OCCompilerTest >> interactive [
 	^interactive
 ]
 
-{
-	#category : #mocking,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>notify: aString at: aSmallInteger in: aReadStream  [
+{ #category : #mocking }
+OCCompilerTest >> notify: aString at: aSmallInteger [ in: aReadStream 
 	errorMessage := aString.
 	errorLocation := aSmallInteger.
 	errorSource := aReadStream.
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>runCase [
+{ #category : #running }
+OCCompilerTest >> runCase [
 	SystemAnnouncer uniqueInstance suspendAllWhile: [ super runCase ]
 
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>setUp [
+{ #category : #running }
+OCCompilerTest >> setUp [
 	Smalltalk globals at: #OCCompilerTestTestVar put: MockForCompilation.
 	
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>tearDown [
+{ #category : #running }
+OCCompilerTest >> tearDown [
 	Smalltalk globals removeKey: #OCCompilerTestTestVar
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>tempTraitShadowingString [
+{ #category : #utilities }
+OCCompilerTest >> tempTraitShadowingString [
 
 	^ 'testReplaceFromToWithStartingAt
 	| result  repStart collection replacementCollection firstIndex secondIndex |
 		replacementCollection := 1.'
 ]
 
-{
-	#category : #'test readonly vars',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testAssignmentOfClassNameBinding [
+{ #category : #'test readonly vars' }
+OCCompilerTest >> testAssignmentOfClassNameBinding [
 	interactive := true.
 	self initializeErrorMessage.
 	text := 'temp | | MockForCompilation := nil'.
@@ -121,11 +90,8 @@ OCCompilerTest>>testAssignmentOfClassNameBinding [
 	self fail
 ]
 
-{
-	#category : #'test readonly vars',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testAssignmentOfGlobalVarBinding [
+{ #category : #'test readonly vars' }
+OCCompilerTest >> testAssignmentOfGlobalVarBinding [
 	interactive := true.
 	self initializeErrorMessage.
 	text := 'temp | | OCCompilerTestTestVar := 2'.
@@ -139,19 +105,12 @@ OCCompilerTest>>testAssignmentOfGlobalVarBinding [
 		translate
 ]
 
-{
-	#category : #'test shadowing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testEmptyCharacterFail [
-
+{ #category : #'test shadowing' }
+OCCompilerTest >> testEmptyCharacterFail [
 ]
 
-{
-	#category : #'test shadowing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testInBlockArgumentInstanceVariableShadowing [
+{ #category : #'test shadowing' }
+OCCompilerTest >> testInBlockArgumentInstanceVariableShadowing [
 	interactive := true.
 	self initializeErrorMessage.
 	text := 'temp [:var1 | ]'.
@@ -167,11 +126,8 @@ OCCompilerTest>>testInBlockArgumentInstanceVariableShadowing [
 
 ]
 
-{
-	#category : #'test shadowing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testInBlockTempArgumentShadowing [
+{ #category : #'test shadowing' }
+OCCompilerTest >> testInBlockTempArgumentShadowing [
 	interactive := true.
 	self initializeErrorMessage.
 	text := 'temp [:temp | |temp|]'.
@@ -185,11 +141,8 @@ OCCompilerTest>>testInBlockTempArgumentShadowing [
 
 ]
 
-{
-	#category : #'test shadowing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testInBlockTempInstanceVariableShadowing [
+{ #category : #'test shadowing' }
+OCCompilerTest >> testInBlockTempInstanceVariableShadowing [
 	interactive := true.
 	self initializeErrorMessage.
 	text := 'temp [:temp | |var1|]'.
@@ -202,11 +155,8 @@ OCCompilerTest>>testInBlockTempInstanceVariableShadowing [
 	self fail.
 ]
 
-{
-	#category : #'test shadowing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testInBlockTempShadowing [
+{ #category : #'test shadowing' }
+OCCompilerTest >> testInBlockTempShadowing [
 
 	interactive := true.
 	self initializeErrorMessage.
@@ -223,11 +173,8 @@ OCCompilerTest>>testInBlockTempShadowing [
 
 ]
 
-{
-	#category : #'test shadowing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testInstanceVariableShadowing [
+{ #category : #'test shadowing' }
+OCCompilerTest >> testInstanceVariableShadowing [
 
 	interactive := true.
 	self initializeErrorMessage.
@@ -243,19 +190,13 @@ OCCompilerTest>>testInstanceVariableShadowing [
 
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testNegativeZero [
+{ #category : #literals }
+OCCompilerTest >> testNegativeZero [
 	self assert: (OpalCompiler evaluate: '-0.0') hex = Float negativeZero hex.
 ]
 
-{
-	#category : #'test shadowing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testNoShadowing [
+{ #category : #'test shadowing' }
+OCCompilerTest >> testNoShadowing [
 	interactive := true.
 	self initializeErrorMessage.
 	text := 'temp |var2|  var2:=1'.
@@ -268,11 +209,8 @@ OCCompilerTest>>testNoShadowing [
 
 ]
 
-{
-	#category : #'test shadowing2',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testNotInteractiveInBlockArgumentInstanceVariableShadowing [
+{ #category : #'test shadowing2' }
+OCCompilerTest >> testNotInteractiveInBlockArgumentInstanceVariableShadowing [
 
 	interactive := false.
 	self initializeErrorMessage.
@@ -293,11 +231,8 @@ OCCompilerTest>>testNotInteractiveInBlockArgumentInstanceVariableShadowing [
 
 ]
 
-{
-	#category : #'test shadowing2',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testNotInteractiveInBlockTempArgumentShadowing [
+{ #category : #'test shadowing2' }
+OCCompilerTest >> testNotInteractiveInBlockTempArgumentShadowing [
 	
 	interactive := false.
 	self initializeErrorMessage.
@@ -317,11 +252,8 @@ OCCompilerTest>>testNotInteractiveInBlockTempArgumentShadowing [
 		].
 ]
 
-{
-	#category : #'test shadowing2',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testNotInteractiveInBlockTempInstanceVariableShadowing [
+{ #category : #'test shadowing2' }
+OCCompilerTest >> testNotInteractiveInBlockTempInstanceVariableShadowing [
 	
 	interactive := false.
 	self initializeErrorMessage.
@@ -343,11 +275,8 @@ OCCompilerTest>>testNotInteractiveInBlockTempInstanceVariableShadowing [
 	
 ]
 
-{
-	#category : #'test shadowing2',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testNotInteractiveInBlockTempShadowing [
+{ #category : #'test shadowing2' }
+OCCompilerTest >> testNotInteractiveInBlockTempShadowing [
 	
 	interactive := false.
 	self initializeErrorMessage.
@@ -370,11 +299,8 @@ OCCompilerTest>>testNotInteractiveInBlockTempShadowing [
 
 ]
 
-{
-	#category : #'test shadowing2',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testNotInteractiveNoShadowing [
+{ #category : #'test shadowing2' }
+OCCompilerTest >> testNotInteractiveNoShadowing [
 
 	interactive := false.
 	self initializeErrorMessage.
@@ -393,11 +319,8 @@ OCCompilerTest>>testNotInteractiveNoShadowing [
 
 ]
 
-{
-	#category : #'test shadowing2',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testNotInteractiveShadowingOfTemp [
+{ #category : #'test shadowing2' }
+OCCompilerTest >> testNotInteractiveShadowingOfTemp [
 
 	interactive := false.
 	self initializeErrorMessage.
@@ -418,11 +341,8 @@ OCCompilerTest>>testNotInteractiveShadowingOfTemp [
 	
 ]
 
-{
-	#category : #'test shadowing2',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testNotInteractiveSiblingBlocksInstanceVariableShadowing [
+{ #category : #'test shadowing2' }
+OCCompilerTest >> testNotInteractiveSiblingBlocksInstanceVariableShadowing [
 
 	interactive := false.
 	self initializeErrorMessage.
@@ -446,11 +366,8 @@ OCCompilerTest>>testNotInteractiveSiblingBlocksInstanceVariableShadowing [
 	
 ]
 
-{
-	#category : #'test shadowing2',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testNotInteractiveSiblingBlocksTempShadowing [
+{ #category : #'test shadowing2' }
+OCCompilerTest >> testNotInteractiveSiblingBlocksTempShadowing [
 
 	interactive := false.
 	self initializeErrorMessage.
@@ -473,11 +390,8 @@ OCCompilerTest>>testNotInteractiveSiblingBlocksTempShadowing [
 
 ]
 
-{
-	#category : #'test shadowing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testReservedNameAsBlockArgumentShadowing [
+{ #category : #'test shadowing' }
+OCCompilerTest >> testReservedNameAsBlockArgumentShadowing [
 	
 	interactive := true.
 	#( 'self' 'super' 'thisContext' 'true' 'false' 'nil' ) do: [ :each |
@@ -494,11 +408,8 @@ OCCompilerTest>>testReservedNameAsBlockArgumentShadowing [
 		self assert: errorLocation = 11 ]
 ]
 
-{
-	#category : #'test shadowing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testReservedNameAsMethodArgumentShadowing [
+{ #category : #'test shadowing' }
+OCCompilerTest >> testReservedNameAsMethodArgumentShadowing [
 
 	interactive := true.
 	#( 'self' 'super' 'thisContext' 'true' 'false' 'nil' ) do: [ :each |
@@ -515,11 +426,8 @@ OCCompilerTest>>testReservedNameAsMethodArgumentShadowing [
 		self assert: errorLocation = 7 ]
 ]
 
-{
-	#category : #literals,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testScaledDecimalLiterals [
+{ #category : #literals }
+OCCompilerTest >> testScaledDecimalLiterals [
 	"Equal ScaledDecimal with different scales should use different slots
 	This is related to http://bugs.squeak.org/view.php?id=6797"
 	
@@ -530,11 +438,8 @@ OCCompilerTest>>testScaledDecimalLiterals [
 	self deny: (Smalltalk compiler evaluate: '0.5s1 scale =  0.5s2 scale').
 ]
 
-{
-	#category : #'test shadowing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testSiblingBlocksInstanceVariableShadowing [
+{ #category : #'test shadowing' }
+OCCompilerTest >> testSiblingBlocksInstanceVariableShadowing [
 
 	interactive := true.
 	self initializeErrorMessage.
@@ -554,11 +459,8 @@ OCCompilerTest>>testSiblingBlocksInstanceVariableShadowing [
 	
 ]
 
-{
-	#category : #'test shadowing',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testSiblingBlocksTempShadowing [
+{ #category : #'test shadowing' }
+OCCompilerTest >> testSiblingBlocksTempShadowing [
 
 	interactive := true.
 	self initializeErrorMessage.
@@ -578,11 +480,8 @@ OCCompilerTest>>testSiblingBlocksTempShadowing [
 
 ]
 
-{
-	#category : #'test shadowing2',
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>testTraitTempShadowing [
+{ #category : #'test shadowing2' }
+OCCompilerTest >> testTraitTempShadowing [
 	
 	| warningCount |
 	
@@ -610,19 +509,13 @@ OCCompilerTest>>testTraitTempShadowing [
 	self assert: warningCount equals: 3
 ]
 
-{
-	#category : #mocking,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>text [
+{ #category : #mocking }
+OCCompilerTest >> text [
 	^ text
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCompilerTest>>traitTempShadowingWarnings [
+{ #category : #utilities }
+OCCompilerTest >> traitTempShadowingWarnings [
 
 	^ #(	
 		'ArrayTest>>testReplaceFromToWithStartingAt(replacementCollection is shadowed)'

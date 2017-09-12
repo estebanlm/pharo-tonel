@@ -18,15 +18,11 @@ Class {
 	#classInstVars : [
 		'current'
 	],
-	#category : #Epicea-Monitor,
-	#timestamp : '<historical>'
+	#category : #Epicea-Monitor
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor class>>current [
+{ #category : #accessing }
+EpMonitor class >> current [
 
 	current ifNil: [
 		current := self new ].
@@ -35,50 +31,35 @@ EpMonitor class>>current [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor class>>current: aMonitor [
+{ #category : #accessing }
+EpMonitor class >> current: aMonitor [
 
 	current := aMonitor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor class>>logsDirectory [
+{ #category : #accessing }
+EpMonitor class >> logsDirectory [
 	self flag: #todo.	"The base locator could have a wrong fileSystem"
 
 	^ self current sessionStore baseLocator asFileReference
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor class>>new [
+{ #category : #'instance creation' }
+EpMonitor class >> new [
 
 	^ self newWithLog: EpLog newWithSessionStore
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor class>>newWithLog: aLog [
+{ #category : #'instance creation' }
+EpMonitor class >> newWithLog: aLog [
 
 	^ self basicNew 
 		initializeWithLog: aLog;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor class>>reset [
+{ #category : #accessing }
+EpMonitor class >> reset [
 	"
 	self reset
 	"
@@ -87,11 +68,8 @@ EpMonitor class>>reset [
 	self current: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor class>>restart [
+{ #category : #accessing }
+EpMonitor class >> restart [
 	"
 	self restart
 	"
@@ -100,20 +78,14 @@ EpMonitor class>>restart [
 	self current enable.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>addEvent: anEvent  [
+{ #category : #private }
+EpMonitor >> addEvent: anEvent [ 
 
 	self addEvent: anEvent newEntryDo: [ :newEntry | ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>addEvent: anEvent newEntryDo: aBlock [
+{ #category : #private }
+EpMonitor >> addEvent: anEvent newEntryDo: aBlock [
 
 	self 
 		addEvent: anEvent
@@ -121,11 +93,8 @@ EpMonitor>>addEvent: anEvent newEntryDo: aBlock [
 		triggerReference: self currentTriggerReference
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>addEvent: anEvent newEntryDo: aBlock triggerReference: triggerReference [
+{ #category : #private }
+EpMonitor >> addEvent: anEvent newEntryDo: aBlock triggerReference: triggerReference [
 
 	| newEntry |
 	newEntry := log 
@@ -142,49 +111,34 @@ EpMonitor>>addEvent: anEvent newEntryDo: aBlock triggerReference: triggerReferen
 	aBlock value: newEntry.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>announceMonitorStateUpdated [
+{ #category : #private }
+EpMonitor >> announceMonitorStateUpdated [
 
 	self announcer announce: EpMonitorStateUpdated new.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>announcer [
+{ #category : #accessing }
+EpMonitor >> announcer [
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>author [
+{ #category : #private }
+EpMonitor >> author [
 	^ Author uniqueInstance 
 		ifUnknownAuthorUse: 'Unknown' 
 		during: [ Author uniqueInstance fullName ]
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>basicLog [
+{ #category : #accessing }
+EpMonitor >> basicLog [
 	"Answer a new EpLog with a OmFileStore (not a OmSessionStore as #log)."
 
 	^ EpLog newWithStore: self sessionStore store
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>behaviorAdded: aClassAddedAnnoucement [
+{ #category : #'announcement handling' }
+EpMonitor >> behaviorAdded: aClassAddedAnnoucement [
 
 	self handleAnyErrorDuring: [
 		aClassAddedAnnoucement classAdded isTrait
@@ -192,11 +146,8 @@ EpMonitor>>behaviorAdded: aClassAddedAnnoucement [
 			ifFalse: [ self classAdded: aClassAddedAnnoucement ] ]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>behaviorModified: aClassModifiedClassDefinitionAnnouncement [
+{ #category : #'announcement handling' }
+EpMonitor >> behaviorModified: aClassModifiedClassDefinitionAnnouncement [
 
 	self handleAnyErrorDuring: [
 		aClassModifiedClassDefinitionAnnouncement classAffected isTrait
@@ -204,11 +155,8 @@ EpMonitor>>behaviorModified: aClassModifiedClassDefinitionAnnouncement [
 			ifFalse: [ self classModified: aClassModifiedClassDefinitionAnnouncement ] ]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>behaviorRemoved: aClassRemovedAnnoucement [
+{ #category : #'announcement handling' }
+EpMonitor >> behaviorRemoved: aClassRemovedAnnoucement [
 
 	self handleAnyErrorDuring: [
 		"Workaround: the announcement occurs after class is renamed to AnObsolete 
@@ -244,31 +192,22 @@ EpMonitor>>behaviorRemoved: aClassRemovedAnnoucement [
 			ifFalse: [ self classRemoved: classRemoved ] ]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>categoryAdded: aCategoryAdded [
+{ #category : #'announcement handling' }
+EpMonitor >> categoryAdded: aCategoryAdded [
 
 	self handleAnyErrorDuring: [
 		self addEvent: (EpCategoryAddition named: aCategoryAdded categoryName) ]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>categoryRemoved: aPackageCategoryRemoved [
+{ #category : #'announcement handling' }
+EpMonitor >> categoryRemoved: aPackageCategoryRemoved [
 
 	self handleAnyErrorDuring:[
 		self addEvent: (EpCategoryRemoval named: aPackageCategoryRemoved categoryName) ]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>categoryRenamed: aCategoryRenamed [
+{ #category : #'announcement handling' }
+EpMonitor >> categoryRenamed: aCategoryRenamed [
 
 	self handleAnyErrorDuring: [
 		self addEvent: (EpCategoryRename
@@ -276,29 +215,20 @@ EpMonitor>>categoryRenamed: aCategoryRenamed [
 			newName: aCategoryRenamed newCategoryName) ]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>classAdded: aClassAddedAnnoucement [
+{ #category : #'announcement handling' }
+EpMonitor >> classAdded: aClassAddedAnnoucement [
 
 	self addEvent: (EpClassAddition class: aClassAddedAnnoucement classAdded)
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>classCommented: anAnnouncement [
+{ #category : #'announcement handling' }
+EpMonitor >> classCommented: anAnnouncement [
 
 	self addEvent: (EpBehaviorCommentChange newWith: anAnnouncement)
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>classModified: aClassModifiedAnnouncement [
+{ #category : #'announcement handling' }
+EpMonitor >> classModified: aClassModifiedAnnouncement [
 
 	self addEvent: 
 		(EpClassModification
@@ -306,11 +236,8 @@ EpMonitor>>classModified: aClassModifiedAnnouncement [
 			newClass: aClassModifiedAnnouncement newClassDefinition)
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>classRecategorized: aClassRecategorizedAnnoucement [
+{ #category : #'announcement handling' }
+EpMonitor >> classRecategorized: aClassRecategorizedAnnoucement [
 
 	self handleAnyErrorDuring: [
 		aClassRecategorizedAnnoucement newCategory = aClassRecategorizedAnnoucement oldCategory
@@ -322,20 +249,14 @@ EpMonitor>>classRecategorized: aClassRecategorizedAnnoucement [
 			class: aClassRecategorizedAnnoucement classAffected)]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>classRemoved: classRemoved [
+{ #category : #'announcement handling' }
+EpMonitor >> classRemoved: classRemoved [
 
 	self addEvent: (EpClassRemoval class: classRemoved)
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>classRenamed: aClassRenamed [
+{ #category : #'announcement handling' }
+EpMonitor >> classRenamed: aClassRenamed [
 
 	self handleAnyErrorDuring: [
 		self addEvent: (EpBehaviorNameChange
@@ -344,11 +265,8 @@ EpMonitor>>classRenamed: aClassRenamed [
 			class: aClassRenamed classAffected) ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>currentTriggerReference [
+{ #category : #private }
+EpMonitor >> currentTriggerReference [
 
 	Job current 	
 		ifNil: [ ^ log nullReference ]
@@ -362,27 +280,18 @@ EpMonitor>>currentTriggerReference [
 			].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>debugMode [
+{ #category : #accessing }
+EpMonitor >> debugMode [
 	^ debugMode ifNil: [ false ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>debugMode: aBoolean [
+{ #category : #accessing }
+EpMonitor >> debugMode: aBoolean [
 	debugMode := aBoolean
 ]
 
-{
-	#category : #enabling,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>disable [
+{ #category : #enabling }
+EpMonitor >> disable [
 
 	self sessionStore flush.
 
@@ -393,11 +302,8 @@ EpMonitor>>disable [
 
 ]
 
-{
-	#category : #enabling,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>enable [
+{ #category : #enabling }
+EpMonitor >> enable [
 	"Enable monitoring IDE announcements."
 	
 	self isEnabled ifFalse: [ 			
@@ -409,42 +315,30 @@ EpMonitor>>enable [
 
 ]
 
-{
-	#category : #enabling,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>enabled: aBoolean [
+{ #category : #enabling }
+EpMonitor >> enabled: aBoolean [
 
 	aBoolean 
 		ifTrue: [ self enable ]
 		ifFalse: [ self disable ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>handleAnyErrorDuring: aBlock [
+{ #category : #private }
+EpMonitor >> handleAnyErrorDuring: aBlock [
 
 	aBlock on: Error do: [:error | self handleError: error ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>handleError: error [
+{ #category : #private }
+EpMonitor >> handleError: error [
 
 	self debugMode 
 		ifTrue: [ error signal ]
 		ifFalse: [ 'EpMonitor could not log a change. You can enable debugging with "EpMonitor current debugMode: true".' logCr ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>initializeWithLog: aLog [
+{ #category : #initialize-release }
+EpMonitor >> initializeWithLog: aLog [
 
 	self initialize.
 
@@ -456,19 +350,13 @@ EpMonitor>>initializeWithLog: aLog [
 	entryReferenceByEvent := IdentityDictionary new.
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>isEnabled [
+{ #category : #testing }
+EpMonitor >> isEnabled [
 	^ systemAnnouncer hasSubscriber: self
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>jobEnded: aJobEnd [
+{ #category : #'announcement handling' }
+EpMonitor >> jobEnded: aJobEnd [
 
 	| aJob |
 	aJob := aJobEnd job.
@@ -481,11 +369,8 @@ EpMonitor>>jobEnded: aJobEnd [
 		ifAbsent: [ "Should not happen, but c'est pas grave." ]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>jobStarted: aJobStart [
+{ #category : #'announcement handling' }
+EpMonitor >> jobStarted: aJobStart [
 
 	| aJob |
 	aJob := aJobStart job.
@@ -501,38 +386,26 @@ EpMonitor>>jobStarted: aJobStart [
 				put: (log referenceTo: newEntry) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>log [
+{ #category : #accessing }
+EpMonitor >> log [
 	^ log
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>logEntryCommented: aCommentModification [
+{ #category : #'announcement handling' }
+EpMonitor >> logEntryCommented: aCommentModification [
 
 	self addEvent: aCommentModification
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>methodAdded: aMethodAddedAnnoucement [
+{ #category : #'announcement handling' }
+EpMonitor >> methodAdded: aMethodAddedAnnoucement [
 
 	self handleAnyErrorDuring: [
 		self addEvent: (EpMethodAddition method: aMethodAddedAnnoucement methodAffected) ]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>methodModified: aMethodModified [
+{ #category : #'announcement handling' }
+EpMonitor >> methodModified: aMethodModified [
 
 	self handleAnyErrorDuring: [
 		(aMethodModified oldMethod sourceCode = aMethodModified newMethod sourceCode 
@@ -545,11 +418,8 @@ EpMonitor>>methodModified: aMethodModified [
 				newMethod: aMethodModified newMethod) ]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>methodRecategorized: aMethodRecategorized [
+{ #category : #'announcement handling' }
+EpMonitor >> methodRecategorized: aMethodRecategorized [
 
 	self handleAnyErrorDuring: [
 		| oldMethod newMethod |
@@ -567,11 +437,8 @@ EpMonitor>>methodRecategorized: aMethodRecategorized [
 		self addEvent: (EpMethodModification oldMethod: oldMethod newMethod: newMethod)]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>methodRemoved: aMethodRemovedAnnoucement [
+{ #category : #'announcement handling' }
+EpMonitor >> methodRemoved: aMethodRemovedAnnoucement [
 	"RPackage already unregistered the method so we have to workaround protocol and package."
 
 	self handleAnyErrorDuring: [
@@ -585,11 +452,8 @@ EpMonitor>>methodRemoved: aMethodRemovedAnnoucement [
 					yourself))]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>monticelloVersionSaved: aMCVersionSaved  [
+{ #category : #'announcement handling' }
+EpMonitor >> monticelloVersionSaved: aMCVersionSaved [ 
 
 	self handleAnyErrorDuring: [
 		aMCVersionSaved repository description = 'cache' ifFalse: [
@@ -598,11 +462,8 @@ EpMonitor>>monticelloVersionSaved: aMCVersionSaved  [
 		but caused troubles to iceberg, since it has a repository that's not in such hierarchy." ]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>protocolAdded: aProtocolAdded [
+{ #category : #'announcement handling' }
+EpMonitor >> protocolAdded: aProtocolAdded [
 
 	self handleAnyErrorDuring: [
 		self addEvent: 
@@ -611,11 +472,8 @@ EpMonitor>>protocolAdded: aProtocolAdded [
 				protocol: aProtocolAdded protocol)]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>protocolRemoved: aProtocolRemoved  [
+{ #category : #'announcement handling' }
+EpMonitor >> protocolRemoved: aProtocolRemoved [ 
 
 	"Skip an irrelevant case"
 	aProtocolRemoved protocol = Protocol unclassified ifTrue: [ ^self ].
@@ -627,55 +485,37 @@ EpMonitor>>protocolRemoved: aProtocolRemoved  [
 				protocol: aProtocolRemoved protocol)]
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>sessionEnd [
+{ #category : #'announcement handling' }
+EpMonitor >> sessionEnd [
 	self addEvent: EpSessionEnd new
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>sessionSnapshot [
+{ #category : #'announcement handling' }
+EpMonitor >> sessionSnapshot [
 	self addEvent: EpSessionSnapshot new
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>sessionStart [
+{ #category : #'announcement handling' }
+EpMonitor >> sessionStart [
 	self addEvent: EpSessionStart new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>sessionStore [
+{ #category : #accessing }
+EpMonitor >> sessionStore [
 
 	^ self log store
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>snapshotDone: aSnapshotDone [
+{ #category : #'announcement handling' }
+EpMonitor >> snapshotDone: aSnapshotDone [
 "-> disable this event as a workaround to case 18374"
 
 "	aSnapshotDone isNewImage 
 		ifFalse: [ self sessionSnapshot ]"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>subscribeToJobAnnouncer [
+{ #category : #private }
+EpMonitor >> subscribeToJobAnnouncer [
 
 	{	JobStart -> #jobStarted:.
 		JobEnd -> #jobEnded:.
@@ -687,11 +527,8 @@ EpMonitor>>subscribeToJobAnnouncer [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>subscribeToSystemAnnouncer [
+{ #category : #private }
+EpMonitor >> subscribeToSystemAnnouncer [
 
 	{	CategoryAdded -> #categoryAdded:. 
 		CategoryRemoved -> #categoryRemoved:.
@@ -718,73 +555,49 @@ EpMonitor>>subscribeToSystemAnnouncer [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>subscribeToTestAnnouncer [
+{ #category : #private }
+EpMonitor >> subscribeToTestAnnouncer [
 	"Hook method. Overriden in EpiceaSUnit."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>testAnnouncer [
+{ #category : #accessing }
+EpMonitor >> testAnnouncer [
 	^ testAnnouncer
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>time [
+{ #category : #private }
+EpMonitor >> time [
 	^ DateAndTime now
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>traitAdded: aClassAddedAnnoucement [
+{ #category : #'announcement handling' }
+EpMonitor >> traitAdded: aClassAddedAnnoucement [
 
 	self addEvent: (EpTraitAddition trait: aClassAddedAnnoucement classAdded)
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>traitModified: aClassModifiedClassDefinitionAnnouncement [
+{ #category : #'announcement handling' }
+EpMonitor >> traitModified: aClassModifiedClassDefinitionAnnouncement [
 
 	self addEvent: (EpTraitModification
 		oldTrait: aClassModifiedClassDefinitionAnnouncement oldClassDefinition
 		newTrait: aClassModifiedClassDefinitionAnnouncement newClassDefinition)
 ]
 
-{
-	#category : #'announcement handling',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>traitRemoved: classRemoved [
+{ #category : #'announcement handling' }
+EpMonitor >> traitRemoved: classRemoved [
 
 	self addEvent: (EpTraitRemoval trait: classRemoved)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>writingDeferDuration [
+{ #category : #accessing }
+EpMonitor >> writingDeferDuration [
 
 	^ self sessionStore writingDeferDuration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpMonitor>>writingDeferDuration: aDuration [
+{ #category : #accessing }
+EpMonitor >> writingDeferDuration: aDuration [
 
 	^ self sessionStore writingDeferDuration: aDuration
 ]

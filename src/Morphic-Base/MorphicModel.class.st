@@ -15,74 +15,49 @@ Class {
 		'KeyboardFocusOnMouseDown',
 		'MouseOverForKeyboardFocus'
 	],
-	#category : #Morphic-Base-Kernel,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-Kernel
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicModel class>>keyboardFocusOnMouseDown [
+{ #category : #settings }
+MorphicModel class >> keyboardFocusOnMouseDown [
 	^ KeyboardFocusOnMouseDown ifNil: [KeyboardFocusOnMouseDown := true]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicModel class>>keyboardFocusOnMouseDown: aBoolean [
+{ #category : #settings }
+MorphicModel class >> keyboardFocusOnMouseDown: aBoolean [
 	KeyboardFocusOnMouseDown := aBoolean
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicModel class>>mouseOverForKeyboardFocus [
+{ #category : #settings }
+MorphicModel class >> mouseOverForKeyboardFocus [
 	^ MouseOverForKeyboardFocus ifNil: [MouseOverForKeyboardFocus := false]
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicModel class>>mouseOverForKeyboardFocus: aBoolean [
+{ #category : #settings }
+MorphicModel class >> mouseOverForKeyboardFocus: aBoolean [
 	MouseOverForKeyboardFocus := aBoolean
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicModel>>defaultBorderColor [
+{ #category : #initialization }
+MorphicModel >> defaultBorderColor [
 	"answer the default border color/fill style for the receiver"
 	^ Color yellow
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicModel>>defaultBounds [
+{ #category : #initialization }
+MorphicModel >> defaultBounds [
 "answer the default bounds for the receiver"
 	^ 0 @ 0 corner: 200 @ 100
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicModel>>defaultColor [
+{ #category : #initialization }
+MorphicModel >> defaultColor [
 	"answer the default color/fill style for the receiver"
 	^ Color transparent
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicModel>>hasYellowButtonMenu [
+{ #category : #menu }
+MorphicModel >> hasYellowButtonMenu [
 	"Answer true if I have any items at all for a context (yellow button) menu."
 	^ self wantsYellowButtonMenu
 			or: [model
@@ -90,35 +65,23 @@ MorphicModel>>hasYellowButtonMenu [
 					ifNotNil: [:aModel | aModel hasModelYellowButtonMenuItems]]
 ]
 
-{
-	#category : #classification,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicModel>>isMorphicModel [
+{ #category : #classification }
+MorphicModel >> isMorphicModel [
 	^true
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicModel>>keyboardFocusOnMouseDown [
+{ #category : #settings }
+MorphicModel >> keyboardFocusOnMouseDown [
 	^ self class keyboardFocusOnMouseDown
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicModel>>model  [
+{ #category : #accessing }
+MorphicModel >> model [ 
 	^ model
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicModel>>model: anObject [
+{ #category : #initialization }
+MorphicModel >> model: anObject [
 	"Set my model and make me me a dependent of the given object."
 
 	model ifNotNil: [model removeDependent: self].
@@ -127,19 +90,13 @@ MorphicModel>>model: anObject [
 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicModel>>mouseOverForKeyboardFocus [
+{ #category : #settings }
+MorphicModel >> mouseOverForKeyboardFocus [
 	^ self class mouseOverForKeyboardFocus
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-MorphicModel>>releaseCachedState [
+{ #category : #caching }
+MorphicModel >> releaseCachedState [
 	"Release cached state of the receiver"
 
 	(model ~~ self and: [model respondsTo: #releaseCachedState]) ifTrue:

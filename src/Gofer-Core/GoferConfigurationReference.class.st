@@ -4,54 +4,35 @@ A GoferPackageReference refers to the latest version of a Monticello package rep
 Class {
 	#name : #GoferConfigurationReference,
 	#superclass : #GoferPackageReference,
-	#category : #Gofer-Core,
-	#timestamp : '<historical>'
+	#category : #Gofer-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferConfigurationReference>>configurationClass [
+{ #category : #accessing }
+GoferConfigurationReference >> configurationClass [
 	^ Smalltalk globals at: self configurationName asSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferConfigurationReference>>configurationName [
+{ #category : #accessing }
+GoferConfigurationReference >> configurationName [
 	^ 'ConfigurationOf', name
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferConfigurationReference>>isConfigurationReference [
+{ #category : #testing }
+GoferConfigurationReference >> isConfigurationReference [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferConfigurationReference>>name [
+{ #category : #accessing }
+GoferConfigurationReference >> name [
 	^ self configurationName 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferConfigurationReference>>packageName [
+{ #category : #accessing }
+GoferConfigurationReference >> packageName [
 	^ self configurationName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-GoferConfigurationReference>>project [
+{ #category : #accessing }
+GoferConfigurationReference >> project [
 	^ self configurationClass project
 ]

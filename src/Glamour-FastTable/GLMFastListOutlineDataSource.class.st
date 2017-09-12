@@ -29,39 +29,26 @@ Class {
 		'tagsToFilterBy',
 		'dataCache'
 	],
-	#category : #Glamour-FastTable-Model,
-	#timestamp : 'CyrilFerlicot 11/10/2015 11:59'
+	#category : #Glamour-FastTable-Model
 }
 
-{
-	#category : #announcing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListOutlineDataSource>>announcer [
+{ #category : #announcing }
+GLMFastListOutlineDataSource >> announcer [
 	^ announcer ifNil: [ announcer := GLMAnnouncer new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListOutlineDataSource>>basicItems [
+{ #category : #accessing }
+GLMFastListOutlineDataSource >> basicItems [
 	^ self glamourPresentation displayValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListOutlineDataSource>>calculateItems [
+{ #category : #accessing }
+GLMFastListOutlineDataSource >> calculateItems [
 	^ self basicItems collect: [:coll | coll select: [ :each | self elementShouldBeDisplayed: each ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListOutlineDataSource>>cellColumn: column row: rowIndex  [
+{ #category : #accessing }
+GLMFastListOutlineDataSource >> cellColumn: column row: rowIndex [ 
 	| element cell |
 	
 	element := self elementAt: rowIndex.
@@ -76,60 +63,39 @@ GLMFastListOutlineDataSource>>cellColumn: column row: rowIndex  [
 	^ cell
 ]
 
-{
-	#category : #cache,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListOutlineDataSource>>dataCache [
+{ #category : #cache }
+GLMFastListOutlineDataSource >> dataCache [
 	^ dataCache ifNil: [ dataCache := self class defaultCache ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListOutlineDataSource>>glamourPresentation [
+{ #category : #accessing }
+GLMFastListOutlineDataSource >> glamourPresentation [
 	^ glamourPresentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListOutlineDataSource>>glamourPresentation: aGlamourPresentation [
+{ #category : #accessing }
+GLMFastListOutlineDataSource >> glamourPresentation: aGlamourPresentation [
 	glamourPresentation := aGlamourPresentation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListOutlineDataSource>>items  [
+{ #category : #accessing }
+GLMFastListOutlineDataSource >> items [ 
 	^ items ifNil: [ items := self calculateItems ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListOutlineDataSource>>resetChildrenContent [
+{ #category : #private }
+GLMFastListOutlineDataSource >> resetChildrenContent [
 	items := self calculateItems.
 	self resetDataCache
 ]
 
-{
-	#category : #cache,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListOutlineDataSource>>resetDataCache [
+{ #category : #cache }
+GLMFastListOutlineDataSource >> resetDataCache [
 	dataCache := nil
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListOutlineDataSource>>rowMorphForElement: element [
+{ #category : #factory }
+GLMFastListOutlineDataSource >> rowMorphForElement: element [
 	| rowElements |
 	rowElements := OrderedCollection new.
 	(self iconFor: element) ifNotNil: [ :icon | rowElements add: icon asMorph ].
@@ -139,10 +105,7 @@ GLMFastListOutlineDataSource>>rowMorphForElement: element [
 	^ Smalltalk ui theme newRowIn: World for: rowElements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastListOutlineDataSource>>tagsToFilterBy [
+{ #category : #accessing }
+GLMFastListOutlineDataSource >> tagsToFilterBy [
 	^ tagsToFilterBy ifNil: [ tagsToFilterBy := OrderedCollection new ]
 ]

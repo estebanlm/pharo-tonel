@@ -23,15 +23,11 @@ Class {
 		'weight',
 		'access'
 	],
-	#category : #System-Caching,
-	#timestamp : '<historical>'
+	#category : #System-Caching
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>addAll: keyedCollection [
+{ #category : #accessing }
+AbstractCache >> addAll: keyedCollection [
 	"Populate me with all key/value pairs from keyedCollection.
 	Does not affect statistics."
 	
@@ -39,11 +35,8 @@ AbstractCache>>addAll: keyedCollection [
 		self at: key put: value ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>at: key [
+{ #category : #accessing }
+AbstractCache >> at: key [
 	"If key is present in the cache, return the associated value.
 	This is a hit and makes that key/value pair the most recently used.
 	If key is absent, use the factory to compute a new value and cache it.
@@ -57,11 +50,8 @@ AbstractCache>>at: key [
 		ifAbsentPut: (factory ifNil: [ [ :k | KeyNotFound signalFor: k in: self ] ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>at: key ifAbsentPut: block [
+{ #category : #accessing }
+AbstractCache >> at: key ifAbsentPut: block [
 	"If key is present in the cache, return the associated value.
 	This is a hit and makes that key/value pair the most recently used.
 	If key is absent, use block to compute a new value and cache it.
@@ -73,11 +63,8 @@ AbstractCache>>at: key ifAbsentPut: block [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>at: key put: value [
+{ #category : #accessing }
+AbstractCache >> at: key put: value [
 	"Populate me by storing value for key. Return value. 
 	This is neither a hit nor a miss. Statistics remain unchanged.
 	Overwrite if already present without promotion. 
@@ -87,22 +74,16 @@ AbstractCache>>at: key put: value [
 	self subclassResponsibility
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>beThreadSafe [
+{ #category : #initialize }
+AbstractCache >> beThreadSafe [
 	"Configure me so that I can be safely used from multiple threads/processes
 	during important operations. Note that this slows down these operations."
 	
 	access := Monitor new
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>computeWeight: valuable [
+{ #category : #initialize }
+AbstractCache >> computeWeight: valuable [
 	"Set the way to compute the weight of each cached value.
 	This can be either a Symbol or one argument block.
 	When the total weight is no longer below the maximum weight,
@@ -113,21 +94,15 @@ AbstractCache>>computeWeight: valuable [
 	weight compute: valuable
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>critical: block [
+{ #category : #private }
+AbstractCache >> critical: block [
 	^ access
 		ifNil: block
 		ifNotNil: [ access critical: block ]
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>factory: block [
+{ #category : #initialize }
+AbstractCache >> factory: block [
 	"Set the factory to compute values from keys to block.
 	The factory will be evaluated for each key not present.
 	Only my #at: message will use the factory."
@@ -135,11 +110,8 @@ AbstractCache>>factory: block [
 	factory := block
 ]
 
-{
-	#category : #'accessing - statistics',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>hitRatio [
+{ #category : #'accessing - statistics' }
+AbstractCache >> hitRatio [
 	"Return the ratio of hits against total calls I received.
 	This will be a number between 0 and 1.
 	When I am empty, return 0."
@@ -147,42 +119,30 @@ AbstractCache>>hitRatio [
 	^ statistics hitRatio
 ]
 
-{
-	#category : #'accessing - statistics',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>hits [
+{ #category : #'accessing - statistics' }
+AbstractCache >> hits [
 	"Return how many hits, requests for keys present I received."
 
 	^ statistics hits
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>initialize [
+{ #category : #initialize }
+AbstractCache >> initialize [
 	super initialize.
 	weight := CacheWeight new.
 	statistics := CacheStatistics new
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>keysAndValuesDo: block [
+{ #category : #enumerating }
+AbstractCache >> keysAndValuesDo: block [
 	"Execute block with each key and value present in me.
 	This will be from least to most recently used."
 	
 	self subclassResponsibility 
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>maximumWeight: limit [
+{ #category : #initialize }
+AbstractCache >> maximumWeight: limit [
 	"Set my maximum allowed total weight of all cached values to limit.
 	If the total weight is no longer below limit,
 	the least recently used key/value pair will be removed.
@@ -191,21 +151,15 @@ AbstractCache>>maximumWeight: limit [
 	weight maximum: limit
 ]
 
-{
-	#category : #'accessing - statistics',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>misses [
+{ #category : #'accessing - statistics' }
+AbstractCache >> misses [
 	"Return how many misses, requests for keys not present I received."
 	
 	^ statistics misses
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>printElementsOn: stream [
+{ #category : #printing }
+AbstractCache >> printElementsOn: stream [
 	stream nextPut: $#; print: self size.
 	stream space; print: weight total; nextPut: $/; print: weight maximum.
 	stream space; print: weight compute.
@@ -213,33 +167,24 @@ AbstractCache>>printElementsOn: stream [
 	stream space; print: (self hitRatio * 100.0) rounded ; nextPut: $%
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>printOn: stream [
+{ #category : #printing }
+AbstractCache >> printOn: stream [
 	super printOn: stream.
 	stream nextPut: $(.
 	self printElementsOn: stream.
 	stream nextPut: $)
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>removeAll [
+{ #category : #removing }
+AbstractCache >> removeAll [
 	"Remove all key/value pairs that I currently hold,
 	effectiley resetting me, but not my statistics."
 
 	self subclassResponsibility 
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>removeKey: key [
+{ #category : #removing }
+AbstractCache >> removeKey: key [
 	"If I currently cache key, remove the entry.
 	Signal a KeyNotFound when I currently do not cache key.
 	Return the removed value."
@@ -249,11 +194,8 @@ AbstractCache>>removeKey: key [
 		ifAbsent: [ KeyNotFound signalFor: key in: self ]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>removeKey: key ifAbsent: block [
+{ #category : #removing }
+AbstractCache >> removeKey: key ifAbsent: block [
 	"If I currently cache key, remove the entry.
 	Execute block when key is currently absent.
 	Return the removed value."
@@ -261,21 +203,15 @@ AbstractCache>>removeKey: key ifAbsent: block [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'accessing - statistics',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>size [
+{ #category : #'accessing - statistics' }
+AbstractCache >> size [
 	"Return the count of items currently present."
 	
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'accessing - statistics',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-AbstractCache>>totalWeight [
+{ #category : #'accessing - statistics' }
+AbstractCache >> totalWeight [
 	"Return the total weight of all cached values currently present."
 	
 	^ weight total

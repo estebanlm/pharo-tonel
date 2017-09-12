@@ -3,43 +3,28 @@ A trait for test purposes
 "
 Trait {
 	#name : #TCopySequenceableWithReplacementForSorted,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Collections-Tests-Abstract,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:33'
+	#category : #Collections-Tests-Abstract
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacementForSorted>>collectionOfSize5 [
+{ #category : #requirements }
+TCopySequenceableWithReplacementForSorted >> collectionOfSize5 [
 " return a collection of size 5"
 self explicitRequirement
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacementForSorted>>empty [
+{ #category : #requirements }
+TCopySequenceableWithReplacementForSorted >> empty [
 self explicitRequirement.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacementForSorted>>replacementCollection [
+{ #category : #requirements }
+TCopySequenceableWithReplacementForSorted >> replacementCollection [
 " return a collection including elements of type 'collectionOfSize5' elements'type"
 self explicitRequirement
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacementForSorted>>test0FixtureCopyWithReplacementForSorted [
+{ #category : #'tests - fixture' }
+TCopySequenceableWithReplacementForSorted >> test0FixtureCopyWithReplacementForSorted [
 	self collectionOfSize5.
 	self assert: self collectionOfSize5 size = 5.
 	self replacementCollection.
@@ -48,11 +33,8 @@ TCopySequenceableWithReplacementForSorted>>test0FixtureCopyWithReplacementForSor
 	self assert: self empty isEmpty
 ]
 
-{
-	#category : #'tests - copying with replacement for sorted',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacementForSorted>>testCopyFromToWithForSorted [
+{ #category : #'tests - copying with replacement for sorted' }
+TCopySequenceableWithReplacementForSorted >> testCopyFromToWithForSorted [
 | collection result |
 collection := self collectionOfSize5 .
 
@@ -71,11 +53,8 @@ self assert: result size = self replacementCollection size.
 
 ]
 
-{
-	#category : #'tests - copying with replacement for sorted',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-TCopySequenceableWithReplacementForSorted>>testCopyReplaceAllWithForSorted [
+{ #category : #'tests - copying with replacement for sorted' }
+TCopySequenceableWithReplacementForSorted >> testCopyReplaceAllWithForSorted [
 
 | collection result |
 collection := self collectionOfSize5 .

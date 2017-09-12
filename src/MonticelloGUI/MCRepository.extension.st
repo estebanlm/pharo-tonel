@@ -1,21 +1,13 @@
-Extension {
-	#name : #MCRepository
-}
+Extension { #name : #MCRepository }
 
-{
-	#category : #'*MonticelloGUI',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepository class>>fillInTheBlankConfigure [
+{ #category : #'*MonticelloGUI' }
+MCRepository class >> fillInTheBlankConfigure [
 	^ self fillInTheBlankConfigure: self creationTemplate
 			
 ]
 
-{
-	#category : #'*MonticelloGUI',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepository class>>fillInTheBlankConfigure: aTemplateString  [
+{ #category : #'*MonticelloGUI' }
+MCRepository class >> fillInTheBlankConfigure: aTemplateString [ 
 	| chunk repo |
 	aTemplateString
 		ifNil: [^ false].
@@ -29,26 +21,17 @@ MCRepository class>>fillInTheBlankConfigure: aTemplateString  [
 	^ repo
 ]
 
-{
-	#category : #'*MonticelloGUI',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepository>>morphicOpen [
+{ #category : #'*MonticelloGUI' }
+MCRepository >> morphicOpen [
 	self morphicOpen: nil
 ]
 
-{
-	#category : #'*MonticelloGUI',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepository>>morphicOpen: aWorkingCopy [
+{ #category : #'*MonticelloGUI' }
+MCRepository >> morphicOpen: aWorkingCopy [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #'*MonticelloGUI',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MCRepository>>openAndEditTemplateCopy [
+{ #category : #'*MonticelloGUI' }
+MCRepository >> openAndEditTemplateCopy [
 	^ self class fillInTheBlankConfigure: (self asCreationTemplate ifNil: [^nil])
 ]

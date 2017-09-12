@@ -1,98 +1,67 @@
-"
-
-"
 Class {
 	#name : #MetacelloFetchingMCSpecLoader,
 	#superclass : #MetacelloCommonMCSpecLoader,
-	#category : #Metacello-MC-Loaders,
-	#timestamp : ''
+	#category : #Metacello-MC-Loaders
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>actionLabel [
+{ #category : #accessing }
+MetacelloFetchingMCSpecLoader >> actionLabel [
 
 	^'Fetching '
 ]
 
-{
-	#category : #versionInfo,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>ancestorsFor: packageSpec [
+{ #category : #versionInfo }
+MetacelloFetchingMCSpecLoader >> ancestorsFor: packageSpec [
 
 	^self loadData
 		ancestorsFor: packageSpec 
 		ifAbsent: [ super ancestorsFor: packageSpec ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>atomicLoadPackageSpecs: packageSpecs repositories: repositories [
+{ #category : #private }
+MetacelloFetchingMCSpecLoader >> atomicLoadPackageSpecs: packageSpecs repositories: repositories [
 
 	self loaderPolicy 
 		pushAtomicLoadDirectivesDuring: [ super linearLoadPackageSpecs: packageSpecs repositories: repositories ]
 		for: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>cacheRepository [
+{ #category : #accessing }
+MetacelloFetchingMCSpecLoader >> cacheRepository [
 
 	^self loaderPolicy cacheRepository
 ]
 
-{
-	#category : #versionInfo,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>currentVersionInfoFor: packageSpec [
+{ #category : #versionInfo }
+MetacelloFetchingMCSpecLoader >> currentVersionInfoFor: packageSpec [
 
 	^self loadData
 		currentVersionInfoFor: packageSpec 
 		ifAbsent: [ super currentVersionInfoFor: packageSpec ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>doLoad [
+{ #category : #actions }
+MetacelloFetchingMCSpecLoader >> doLoad [
 
 	self loaderPolicy copy load
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>ensureSpecLoader [
+{ #category : #accessing }
+MetacelloFetchingMCSpecLoader >> ensureSpecLoader [
 	^ (MetacelloEnsureFetchingMCSpecLoader on: self spec)
 		shouldDisablePackageCache: self shouldDisablePackageCache;
 		loaderPolicy: self loaderPolicy; "explicitly share the loaderPolicy"
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>ensuredMap [
+{ #category : #accessing }
+MetacelloFetchingMCSpecLoader >> ensuredMap [
 
 	^self loaderPolicy ensuredMap
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>explicitLoadPackageSpecs: packageSpecs repositories: repositories [
+{ #category : #private }
+MetacelloFetchingMCSpecLoader >> explicitLoadPackageSpecs: packageSpecs repositories: repositories [
 	
 	| directive |
 	directive := self loaderPolicy 
@@ -101,11 +70,8 @@ MetacelloFetchingMCSpecLoader>>explicitLoadPackageSpecs: packageSpecs repositori
 	directive explicitLoadWithPolicy: self loaderPolicy.
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>linearLoadPackageSpec: packageSpec gofer: gofer [
+{ #category : #actions }
+MetacelloFetchingMCSpecLoader >> linearLoadPackageSpec: packageSpec gofer: gofer [
   MetacelloPlatform current
     do: [ 
       | references nearestReference cachedReference externalReference mcVersion loadedVersionInfos |
@@ -175,40 +141,28 @@ MetacelloFetchingMCSpecLoader>>linearLoadPackageSpec: packageSpec gofer: gofer [
     displaying: 'Fetching ' , packageSpec file
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>linearLoadPackageSpecs: packageSpecs repositories: repositories [
+{ #category : #private }
+MetacelloFetchingMCSpecLoader >> linearLoadPackageSpecs: packageSpecs repositories: repositories [
 	
 	self loaderPolicy 
 		pushLinearLoadDirectivesDuring: [ super linearLoadPackageSpecs: packageSpecs repositories: repositories ]
 		 for: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>loadData [
+{ #category : #accessing }
+MetacelloFetchingMCSpecLoader >> loadData [
 
 	^self loaderPolicy loadData
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>loadDirective [
+{ #category : #accessing }
+MetacelloFetchingMCSpecLoader >> loadDirective [
 
 	^self loaderPolicy loadDirective
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>loadingSpecLoader [
+{ #category : #accessing }
+MetacelloFetchingMCSpecLoader >> loadingSpecLoader [
 
 	^(MetacelloLoadingMCSpecLoader on: self spec)
 		shouldDisablePackageCache: self shouldDisablePackageCache;
@@ -216,40 +170,28 @@ MetacelloFetchingMCSpecLoader>>loadingSpecLoader [
 		yourself
 ]
 
-{
-	#category : #doits,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>postLoad: packageOrVersionSpec [
+{ #category : #doits }
+MetacelloFetchingMCSpecLoader >> postLoad: packageOrVersionSpec [
 
 	(MetacelloDirective postLoadSpec: packageOrVersionSpec loader: self)  addTo: self loadDirective
 ]
 
-{
-	#category : #doits,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>preLoad: packageOrVersionSpec [
+{ #category : #doits }
+MetacelloFetchingMCSpecLoader >> preLoad: packageOrVersionSpec [
 
 	(MetacelloDirective preLoadSpec: packageOrVersionSpec loader: self) addTo: self loadDirective
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>printOn: aStream [
+{ #category : #printing }
+MetacelloFetchingMCSpecLoader >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut: $(.
 	self loadDirective printOn: aStream.
 	aStream nextPut: $)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>resolveDependencies: aResolvedReference nearest: nearestReference into: aCollection [
+{ #category : #private }
+MetacelloFetchingMCSpecLoader >> resolveDependencies: aResolvedReference nearest: nearestReference into: aCollection [
   | block retryCount coll notDone |
   self flag: 'Not used, but retained to avoid upgrade issues'.
   block := [ :dependency | 
@@ -289,11 +231,8 @@ MetacelloFetchingMCSpecLoader>>resolveDependencies: aResolvedReference nearest: 
   ^ aCollection
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>resolvePackageSpec: packageSpec cachedGofer: gofer [
+{ #category : #private }
+MetacelloFetchingMCSpecLoader >> resolvePackageSpec: packageSpec cachedGofer: gofer [
 
 	|  versionReference references |
 	versionReference := packageSpec goferLoaderReference.
@@ -302,21 +241,15 @@ MetacelloFetchingMCSpecLoader>>resolvePackageSpec: packageSpec cachedGofer: gofe
 	^references last asMetacelloCachingResolvedReference.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>scheduleFetchFor: packageSpec cachedReference: reference [
+{ #category : #private }
+MetacelloFetchingMCSpecLoader >> scheduleFetchFor: packageSpec cachedReference: reference [
 	"reference already in the cache during fetch ...no need to schedule fetch"
 
 	^ self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>scheduleFetchFor: packageSpec externalReference: reference [
+{ #category : #private }
+MetacelloFetchingMCSpecLoader >> scheduleFetchFor: packageSpec externalReference: reference [
   ^ self
     scheduleFetchFor: packageSpec
     reference: reference
@@ -326,21 +259,15 @@ MetacelloFetchingMCSpecLoader>>scheduleFetchFor: packageSpec externalReference: 
         , reference repository description
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>scheduleFetchFor: packageSpec nearestReference: reference [
+{ #category : #private }
+MetacelloFetchingMCSpecLoader >> scheduleFetchFor: packageSpec nearestReference: reference [
 	"latest version in repository already matches the cached reference...no need to schedule fetch"
 
 	^ self
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloFetchingMCSpecLoader>>scheduleFetchFor: packageSpec reference: reference message: message [
+{ #category : #private }
+MetacelloFetchingMCSpecLoader >> scheduleFetchFor: packageSpec reference: reference message: message [
 	self loaderPolicy resetCacheGofer.
 	self preLoad: packageSpec.
 	(MetacelloDirective loadPackage: packageSpec externalReference: reference loader: self) addTo: self loadDirective.

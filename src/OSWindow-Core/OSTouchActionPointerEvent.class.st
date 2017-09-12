@@ -11,70 +11,45 @@ Class {
 		'pressure',
 		'fingerId'
 	],
-	#category : #OSWindow-Core-Events-Touch,
-	#timestamp : 'jeanbaptistearnaud 2/26/2015 17:05'
+	#category : #OSWindow-Core-Events-Touch
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchActionPointerEvent>>delta [
+{ #category : #accessing }
+OSTouchActionPointerEvent >> delta [
 	^ delta
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchActionPointerEvent>>delta: anObject [
+{ #category : #accessing }
+OSTouchActionPointerEvent >> delta: anObject [
 	delta := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchActionPointerEvent>>fingerId [
+{ #category : #accessing }
+OSTouchActionPointerEvent >> fingerId [
 	^ fingerId
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchActionPointerEvent>>fingerId: anObject [
+{ #category : #accessing }
+OSTouchActionPointerEvent >> fingerId: anObject [
 	fingerId := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchActionPointerEvent>>position [
+{ #category : #accessing }
+OSTouchActionPointerEvent >> position [
 	^ position
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchActionPointerEvent>>position: anObject [
+{ #category : #accessing }
+OSTouchActionPointerEvent >> position: anObject [
 	position := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchActionPointerEvent>>pressure [
+{ #category : #accessing }
+OSTouchActionPointerEvent >> pressure [
 	^ pressure
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchActionPointerEvent>>pressure: anObject [
+{ #category : #accessing }
+OSTouchActionPointerEvent >> pressure: anObject [
 	pressure := anObject
 ]

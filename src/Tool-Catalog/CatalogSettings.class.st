@@ -8,15 +8,11 @@ Class {
 		'CatalogSourceURL',
 		'DisplayCatalogProjectsInSpotter'
 	],
-	#category : #Tool-Catalog-Settings,
-	#timestamp : 'TorstenBergmann 11/12/2015 00:54'
+	#category : #Tool-Catalog-Settings
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogSettings class>>catalogSettingsOn: aBuilder   [
+{ #category : #settings }
+CatalogSettings class >> catalogSettingsOn: aBuilder [  
 	<systemsettings>  
 	(aBuilder group: #catalog)
 		label: 'Catalog';
@@ -35,52 +31,37 @@ CatalogSettings class>>catalogSettingsOn: aBuilder   [
 		]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogSettings class>>catalogSourceURL [
+{ #category : #accessing }
+CatalogSettings class >> catalogSourceURL [
 	"Return the source URL for retrieving catalog infos"
 	
 	CatalogSourceURL ifNil: [ CatalogSourceURL := self defaultCatalogSourceURL ].
 	^CatalogSourceURL
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogSettings class>>catalogSourceURL: aString [
+{ #category : #accessing }
+CatalogSettings class >> catalogSourceURL: aString [
 	"Set the source URL for retrieving catalog infos"
 	
 	CatalogSourceURL := aString
 ]
 
-{
-	#category : #defaults,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogSettings class>>defaultCatalogSourceURL [
+{ #category : #defaults }
+CatalogSettings class >> defaultCatalogSourceURL [
 
 	^'http://catalog.pharo.org/catalog/json'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogSettings class>>displayCatalogProjectsInSpotter [
+{ #category : #accessing }
+CatalogSettings class >> displayCatalogProjectsInSpotter [
 	"Return true if the catalog projects should be displayed in spotter, false otherwise"
 	
 	DisplayCatalogProjectsInSpotter ifNil: [ DisplayCatalogProjectsInSpotter := true ].
 	^DisplayCatalogProjectsInSpotter
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogSettings class>>displayCatalogProjectsInSpotter: aBoolean [
+{ #category : #accessing }
+CatalogSettings class >> displayCatalogProjectsInSpotter: aBoolean [
 	"Define if the catalog projects should be displayed in Spotter"
 	
 	DisplayCatalogProjectsInSpotter := aBoolean 

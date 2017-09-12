@@ -9,40 +9,27 @@ Class {
 		'stream',
 		'fnSpec'
 	],
-	#category : #UnifiedFFI,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #'requestor callbacks',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParser>>argName: aName indirectIndex: anIndex type: aTypeName ptrArity: arity [
+{ #category : #'requestor callbacks' }
+FFIFunctionParser >> argName: aName indirectIndex: anIndex type: aTypeName ptrArity: arity [
 	^ { aName. anIndex. aTypeName. arity }
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParser>>initialize [
+{ #category : #initialization }
+FFIFunctionParser >> initialize [
 	super initialize.
 	requestor := self
 ]
 
-{
-	#category : #'requestor callbacks',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParser>>integerConstantArgument: aValue [
+{ #category : #'requestor callbacks' }
+FFIFunctionParser >> integerConstantArgument: aValue [
 	^ aValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParser>>parseAnonymousFunction: aFunctionDefinition [
+{ #category : #accessing }
+FFIFunctionParser >> parseAnonymousFunction: aFunctionDefinition [
 	"Parse a function definition in a form of: 
 	
 	 #( returnType (arguments) )
@@ -77,11 +64,8 @@ FFIFunctionParser>>parseAnonymousFunction: aFunctionDefinition [
 	^ fnSpec
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParser>>parseArgument [
+{ #category : #parsing }
+FFIFunctionParser >> parseArgument [
 	| argument argName indirectIndex typeAndPtrArity char |
 	" An argument can be:
 
@@ -120,11 +104,8 @@ FFIFunctionParser>>parseArgument [
 	^ argument 
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParser>>parseArguments [
+{ #category : #parsing }
+FFIFunctionParser >> parseArguments [
 "
 Parse a arguments spec in a form of: 
 
@@ -141,11 +122,8 @@ Parse a arguments spec in a form of:
 	].
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParser>>parseInt [
+{ #category : #parsing }
+FFIFunctionParser >> parseInt [
 
 	| negate num |
 
@@ -165,11 +143,8 @@ FFIFunctionParser>>parseInt [
 	^ num
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParser>>parseNamedFunction: aFunctionDefinition [
+{ #category : #accessing }
+FFIFunctionParser >> parseNamedFunction: aFunctionDefinition [
 	"Parse a function definition in a form of: 
 
 	 #( returnType functionName (arguments) )
@@ -207,11 +182,8 @@ FFIFunctionParser>>parseNamedFunction: aFunctionDefinition [
 	^ fnSpec
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParser>>parseReturn [
+{ #category : #parsing }
+FFIFunctionParser >> parseReturn [
 	| returnTypeTuple returnType |
 	returnTypeTuple := self parseType.
 	returnType := self requestor returnType: returnTypeTuple.
@@ -220,11 +192,8 @@ FFIFunctionParser>>parseReturn [
 	^ returnType
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParser>>parseType [
+{ #category : #parsing }
+FFIFunctionParser >> parseType [
 	" parse type name and optional number of asterisks, following it"
 	| typeName ptrArity |
 
@@ -247,11 +216,8 @@ FFIFunctionParser>>parseType [
 	^ { typeName. ptrArity }
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParser>>parseWord [
+{ #category : #parsing }
+FFIFunctionParser >> parseWord [
 	^ String streamContents: [:st | | ch |
 		"first char must be letter or underscore"
 		ch := stream peek.	
@@ -268,35 +234,23 @@ FFIFunctionParser>>parseWord [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParser>>requestor [
+{ #category : #accessing }
+FFIFunctionParser >> requestor [
 	^ requestor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParser>>requestor: aRequestor [
+{ #category : #accessing }
+FFIFunctionParser >> requestor: aRequestor [
 	requestor := aRequestor
 ]
 
-{
-	#category : #'requestor callbacks',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParser>>returnType: aType [
+{ #category : #'requestor callbacks' }
+FFIFunctionParser >> returnType: aType [
 	^ aType
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIFunctionParser>>skipSpace [
+{ #category : #parsing }
+FFIFunctionParser >> skipSpace [
 	| ch |
 
 	[ 

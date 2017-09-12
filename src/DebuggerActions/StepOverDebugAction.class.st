@@ -5,68 +5,46 @@ A StepOverDebugAction the current context.
 Class {
 	#name : #StepOverDebugAction,
 	#superclass : #DebugAction,
-	#category : #DebuggerActions,
-	#timestamp : '<historical>'
+	#category : #DebuggerActions
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StepOverDebugAction class>>actionType [
+{ #category : #registration }
+StepOverDebugAction class >> actionType [
 	<debuggingAction>
 	<contextMenuDebuggingAction>
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StepOverDebugAction>>defaultHelp [
+{ #category : #accessing }
+StepOverDebugAction >> defaultHelp [
 	^ 'Step over the highlighted message, i.e. do not follow the sent message, taking debugger control after the method invoked returns.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StepOverDebugAction>>defaultKeymap [
+{ #category : #accessing }
+StepOverDebugAction >> defaultKeymap [
 
 	^ PharoShortcuts current stepOverShortcut
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StepOverDebugAction>>defaultLabel [
+{ #category : #accessing }
+StepOverDebugAction >> defaultLabel [
 
 	^ 'Over'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StepOverDebugAction>>defaultOrder [
+{ #category : #accessing }
+StepOverDebugAction >> defaultOrder [
 
 	^ 20
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StepOverDebugAction>>executeAction [
+{ #category : #actions }
+StepOverDebugAction >> executeAction [
 
 	self session stepOver: self currentContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StepOverDebugAction>>id [
+{ #category : #accessing }
+StepOverDebugAction >> id [
 
 	^ #stepOver
 ]

@@ -22,50 +22,34 @@ Class {
 		'environment',
 		'isMethod'
 	],
-	#category : #Shout-Parsing,
-	#timestamp : 'StephaneDucasse 11/29/2011 22:27'
+	#category : #Shout-Parsing
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>classOrMetaClass: aClass  [
+{ #category : #accessing }
+SHParserST80 >> classOrMetaClass: aClass [ 
 	classOrMetaClass := aClass
 ]
 
-{
-	#category : #scan,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>currentChar [
+{ #category : #scan }
+SHParserST80 >> currentChar [
 	^ source
 		at: sourcePosition
 		ifAbsent: []
 ]
 
-{
-	#category : #'parse support',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>enterBlock [
+{ #category : #'parse support' }
+SHParserST80 >> enterBlock [
 	blockDepth := blockDepth + 1.
 	bracketDepth := bracketDepth + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>environment: anObject  [
+{ #category : #accessing }
+SHParserST80 >> environment: anObject [ 
 	environment := anObject
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>error [
+{ #category : #'error handling' }
+SHParserST80 >> error [
 	self
 		rangeType: #excessCode
 		start: (ranges isEmpty
@@ -75,75 +59,51 @@ SHParserST80>>error [
 	errorBlock value
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>failUnless: aBoolean  [
+{ #category : #'error handling' }
+SHParserST80 >> failUnless: aBoolean [ 
 	aBoolean
 		ifFalse: [self error]
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>failWhen: aBoolean  [
+{ #category : #'error handling' }
+SHParserST80 >> failWhen: aBoolean [ 
 	aBoolean
 		ifTrue: [self error]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>initialize [
+{ #category : #initialization }
+SHParserST80 >> initialize [
 	environment := Smalltalk
 ]
 
-{
-	#category : #'parse support',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>initializeInstanceVariables [
+{ #category : #'parse support' }
+SHParserST80 >> initializeInstanceVariables [
 	instanceVariables := classOrMetaClass notNil
 				ifTrue: [classOrMetaClass allInstVarNames asArray]
 				ifFalse: [Set new]
 ]
 
-{
-	#category : #'token testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isAnsiAssignment [
+{ #category : #'token testing' }
+SHParserST80 >> isAnsiAssignment [
 	^ currentToken = ':='
 ]
 
-{
-	#category : #'token testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isAssignment [
+{ #category : #'token testing' }
+SHParserST80 >> isAssignment [
 	^ currentToken = ':='
 		or: [currentToken = '_']
 ]
 
-{
-	#category : #'character testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isBigDigit: aCharacter base: anInteger  [
+{ #category : #'character testing' }
+SHParserST80 >> isBigDigit: aCharacter base: anInteger [ 
 	| digitValue |
 	digitValue := aCharacter digitValue.
 	^ digitValue >= 0
 		and: [digitValue < anInteger]
 ]
 
-{
-	#category : #'token testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isBinary [
+{ #category : #'token testing' }
+SHParserST80 >> isBinary [
 	| char |
 	(currentToken isNil
 			or: [self isName
@@ -158,11 +118,8 @@ SHParserST80>>isBinary [
 	^ true
 ]
 
-{
-	#category : #'identifier testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isBlockArgName: aString  [
+{ #category : #'identifier testing' }
+SHParserST80 >> isBlockArgName: aString [ 
 	| temp arg |
 	blockDepth
 		to: 1
@@ -183,11 +140,8 @@ SHParserST80>>isBlockArgName: aString  [
 	^ false
 ]
 
-{
-	#category : #'identifier testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isBlockTempName: aString  [
+{ #category : #'identifier testing' }
+SHParserST80 >> isBlockTempName: aString [ 
 	| temp arg |
 	blockDepth
 		to: 1
@@ -208,11 +162,8 @@ SHParserST80>>isBlockTempName: aString  [
 	^ false
 ]
 
-{
-	#category : #'identifier testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isIncompleteBlockArgName: aString  [
+{ #category : #'identifier testing' }
+SHParserST80 >> isIncompleteBlockArgName: aString [ 
 	| arg |
 	blockDepth
 		to: 1
@@ -227,11 +178,8 @@ SHParserST80>>isIncompleteBlockArgName: aString  [
 	^ false
 ]
 
-{
-	#category : #'identifier testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isIncompleteBlockTempName: aString  [
+{ #category : #'identifier testing' }
+SHParserST80 >> isIncompleteBlockTempName: aString [ 
 	| temp |
 	blockDepth
 		to: 1
@@ -246,72 +194,51 @@ SHParserST80>>isIncompleteBlockTempName: aString  [
 	^ false
 ]
 
-{
-	#category : #'identifier testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isIncompleteMethodArgName: aString  [
+{ #category : #'identifier testing' }
+SHParserST80 >> isIncompleteMethodArgName: aString [ 
 	^ (arguments
 		at: 0
 		ifAbsent: [#()])
 		anySatisfy: [:each | each beginsWith: aString]
 ]
 
-{
-	#category : #'identifier testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isIncompleteMethodTempName: aString  [
+{ #category : #'identifier testing' }
+SHParserST80 >> isIncompleteMethodTempName: aString [ 
 	^ (temporaries
 		at: 0
 		ifAbsent: [#()])
 		anySatisfy: [:each | each beginsWith: aString]
 ]
 
-{
-	#category : #'token testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isKeyword [
+{ #category : #'token testing' }
+SHParserST80 >> isKeyword [
 	^ (currentTokenFirst isLetter
 			or: [currentTokenFirst == $_])
 		and: [currentToken last == $:]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isMethod [
+{ #category : #accessing }
+SHParserST80 >> isMethod [
 
 	^ isMethod ifNil: [ classOrMetaClass notNil ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isMethod: aBoolean [
+{ #category : #accessing }
+SHParserST80 >> isMethod: aBoolean [
 
 	isMethod := aBoolean.
 ]
 
-{
-	#category : #'identifier testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isMethodArgName: aString  [
+{ #category : #'identifier testing' }
+SHParserST80 >> isMethodArgName: aString [ 
 	^ (arguments
 		at: 0
 		ifAbsent: [#()])
 		includes: aString
 ]
 
-{
-	#category : #'identifier testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isMethodTempName: aString  [
+{ #category : #'identifier testing' }
+SHParserST80 >> isMethodTempName: aString [ 
 	((arguments
 			at: 0
 			ifAbsent: [#()])
@@ -323,22 +250,16 @@ SHParserST80>>isMethodTempName: aString  [
 		includes: aString
 ]
 
-{
-	#category : #'token testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isName [
+{ #category : #'token testing' }
+SHParserST80 >> isName [
 	^ (currentTokenFirst isLetter
 			or: [currentTokenFirst == $_])
 		and: [currentToken last isAlphaNumeric
 				or: [currentToken last == $_]]
 ]
 
-{
-	#category : #'character testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isSelectorCharacter: aCharacter  [
+{ #category : #'character testing' }
+SHParserST80 >> isSelectorCharacter: aCharacter [ 
 	aCharacter isAlphaNumeric
 		ifTrue: [^ false].
 	aCharacter isSeparator
@@ -352,11 +273,8 @@ SHParserST80>>isSelectorCharacter: aCharacter  [
 	^ true
 ]
 
-{
-	#category : #'token testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>isTokenExternalFunctionCallingConvention [
+{ #category : #'token testing' }
+SHParserST80 >> isTokenExternalFunctionCallingConvention [
 	| descriptorClass |
 	descriptorClass := Smalltalk
 				at: #ExternalFunction
@@ -366,11 +284,8 @@ SHParserST80>>isTokenExternalFunctionCallingConvention [
 	^ (descriptorClass callingConventionFor: currentToken) notNil
 ]
 
-{
-	#category : #'parse support',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>leaveBlock [
+{ #category : #'parse support' }
+SHParserST80 >> leaveBlock [
 	arguments
 		removeKey: blockDepth
 		ifAbsent: [].
@@ -381,39 +296,27 @@ SHParserST80>>leaveBlock [
 	bracketDepth := bracketDepth - 1
 ]
 
-{
-	#category : #scan,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>nextChar [
+{ #category : #scan }
+SHParserST80 >> nextChar [
 	sourcePosition := sourcePosition + 1.
 	^ source
 		at: sourcePosition
 		ifAbsent: [Character space]
 ]
 
-{
-	#category : #customizing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>on: anObject [
+{ #category : #customizing }
+SHParserST80 >> on: anObject [
 
 	anObject shoutParser: self.
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parse [
+{ #category : #parse }
+SHParserST80 >> parse [
 	^ self parse: self isMethod.
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parse: aBoolean  [
+{ #category : #parse }
+SHParserST80 >> parse: aBoolean [ 
 	self initializeInstanceVariables.
 	sourcePosition := 1.
 	arguments := Dictionary new.
@@ -437,21 +340,15 @@ SHParserST80>>parse: aBoolean  [
 	^ true
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseArray [
+{ #category : #parse }
+SHParserST80 >> parseArray [
 	[currentTokenFirst == $)]
 		whileFalse: [self parseLiteralArrayElement].
 	self scanPast: #arrayEnd
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseBinary [
+{ #category : #parse }
+SHParserST80 >> parseBinary [
 	| binary type |
 	self parseUnary.
 	[self isBinary]
@@ -469,21 +366,15 @@ SHParserST80>>parseBinary [
 			self parseUnary]
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseBinaryMessagePattern [
+{ #category : #parse }
+SHParserST80 >> parseBinaryMessagePattern [
 	self scanPast: #patternBinary.
 	self failUnless: self isName.
 	self scanPast: #patternArg
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseBlock [
+{ #category : #parse }
+SHParserST80 >> parseBlock [
 	self enterBlock.
 	self scanPast: #blockStart level: bracketDepth.
 	currentTokenFirst == $:
@@ -496,11 +387,8 @@ SHParserST80>>parseBlock [
 	self leaveBlock
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseBlockArguments [
+{ #category : #parse }
+SHParserST80 >> parseBlockArguments [
 	[currentTokenFirst == $:]
 		whileTrue: [self scanPast: #blockArgColon.
 			self failUnless: self isName.
@@ -509,11 +397,8 @@ SHParserST80>>parseBlockArguments [
 		ifTrue: [^ self scanPast: #blockArgsBar]
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseBlockTemporaries [
+{ #category : #parse }
+SHParserST80 >> parseBlockTemporaries [
 	currentTokenFirst == $|
 		ifFalse: [ ^ self ].
 	self scanPast: #blockTempBar.
@@ -522,42 +407,30 @@ SHParserST80>>parseBlockTemporaries [
 	self scanPast: #blockTempBar
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseBraceArray [
+{ #category : #parse }
+SHParserST80 >> parseBraceArray [
 	self parseStatementListForBraceArray.
 	self failUnless: currentTokenFirst == $}.
 	self scanPast: #rightBrace
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseByteArray [
+{ #category : #parse }
+SHParserST80 >> parseByteArray [
 	[currentTokenFirst == $]]
 		whileFalse: [self scanPast: #integer].
 	self scanPast: #byteArrayEnd
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseCascade [
+{ #category : #parse }
+SHParserST80 >> parseCascade [
 	self parseKeyword.
 	[currentTokenFirst == $;]
 		whileTrue: [self scanPast: #cascadeSeparator.
 			self parseKeyword]
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseCharSymbol [
+{ #category : #parse }
+SHParserST80 >> parseCharSymbol [
 	| s e |
 	s := sourcePosition - 1.
 	e := sourcePosition.
@@ -568,11 +441,8 @@ SHParserST80>>parseCharSymbol [
 		end: e
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseExpression [
+{ #category : #parse }
+SHParserST80 >> parseExpression [
 	| assignType |
 	self isName
 		ifTrue: [self
@@ -588,11 +458,8 @@ SHParserST80>>parseExpression [
 			self parseCascade]
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseExternalCall [
+{ #category : #parse }
+SHParserST80 >> parseExternalCall [
 	self scanNext.
 	self scanPast: #externalCallType.
 	currentToken = '*'
@@ -616,11 +483,8 @@ SHParserST80>>parseExternalCall [
 	self scanPast: #primitiveOrExternalCallEnd
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseKeyword [
+{ #category : #parse }
+SHParserST80 >> parseKeyword [
 	| keyword rangeIndices |
 	self parseBinary.
 	keyword := ''.
@@ -645,22 +509,16 @@ SHParserST80>>parseKeyword [
 								type: type]]]
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseKeywordMessagePattern [
+{ #category : #parse }
+SHParserST80 >> parseKeywordMessagePattern [
 	[self isKeyword]
 		whileTrue: [self scanPast: #patternKeyword.
 			self failUnless: self isName.
 			self scanPast: #patternArg]
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseLiteral: inArray  [
+{ #category : #parse }
+SHParserST80 >> parseLiteral: inArray [ 
 	| pos c |
 	currentTokenFirst == $$
 		ifTrue: [self failWhen: self currentChar isNil.
@@ -693,11 +551,8 @@ SHParserST80>>parseLiteral: inArray  [
 	self error
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseLiteralArrayElement [
+{ #category : #parse }
+SHParserST80 >> parseLiteralArrayElement [
 	| type |
 	(currentTokenFirst isLetter
 			or: [currentTokenFirst == $_])
@@ -714,11 +569,8 @@ SHParserST80>>parseLiteralArrayElement [
 	^ self parseLiteral: true
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseMessagePattern [
+{ #category : #parse }
+SHParserST80 >> parseMessagePattern [
 	self isName
 		ifTrue: [self parseUnaryMessagePattern]
 		ifFalse: [self isBinary
@@ -727,11 +579,8 @@ SHParserST80>>parseMessagePattern [
 					self parseKeywordMessagePattern]]
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseMethodTemporaries [
+{ #category : #parse }
+SHParserST80 >> parseMethodTemporaries [
 	currentTokenFirst == $|
 		ifFalse: [ ^ self ].
 	self scanPast: #methodTempBar.
@@ -740,11 +589,8 @@ SHParserST80>>parseMethodTemporaries [
 	self scanPast: #methodTempBar
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parsePragmaBinary [
+{ #category : #parse }
+SHParserST80 >> parsePragmaBinary [
 	self scanPast: #pragmaBinary.
 	self isName
 		ifTrue: [self
@@ -754,11 +600,8 @@ SHParserST80>>parsePragmaBinary [
 	self scanPast: #primitiveOrExternalCallEnd
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parsePragmaKeyword [
+{ #category : #parse }
+SHParserST80 >> parsePragmaKeyword [
 	[self isKeyword]
 		whileTrue: [self scanPast: #pragmaKeyword.
 			self isName
@@ -769,11 +612,8 @@ SHParserST80>>parsePragmaKeyword [
 	self scanPast: #primitiveOrExternalCallEnd
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parsePragmaSequence [
+{ #category : #parse }
+SHParserST80 >> parsePragmaSequence [
 	[currentToken = '<']
 		whileTrue: [self scanPast: #primitiveOrExternalCallStart.
 			currentToken = 'primitive:'
@@ -793,11 +633,8 @@ SHParserST80>>parsePragmaSequence [
 												ifFalse: [self error]]]]]]
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parsePrimitive [
+{ #category : #parse }
+SHParserST80 >> parsePrimitive [
 	self scanNext.
 	currentTokenFirst isDigit
 		ifTrue: [self scanPast: #integer]
@@ -822,21 +659,15 @@ SHParserST80>>parsePrimitive [
 	self scanPast: #primitiveOrExternalCallEnd
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseStatement [
+{ #category : #parse }
+SHParserST80 >> parseStatement [
 	currentTokenFirst == $^
 		ifTrue: [self scanPast: #return].
 	self parseExpression
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseStatementList [
+{ #category : #parse }
+SHParserST80 >> parseStatementList [
 	[[currentTokenFirst == $.]
 		whileTrue: [self scanPast: #statementSeparator].
 	(currentToken notNil
@@ -846,22 +677,16 @@ SHParserST80>>parseStatementList [
 		whileTrue: [self scanPast: #statementSeparator]
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseStatementListForBraceArray [
+{ #category : #parse }
+SHParserST80 >> parseStatementListForBraceArray [
 	[currentTokenFirst ~~ $}
 		ifTrue: [self parseStatement].
 	currentTokenFirst == $.]
 		whileTrue: [self scanPast: #statementSeparator]
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseString [
+{ #category : #parse }
+SHParserST80 >> parseString [
 	| first c answer last |
 	first := sourcePosition.
 	answer := ''.
@@ -888,11 +713,8 @@ SHParserST80>>parseString [
 	^ answer
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseStringOrSymbol [
+{ #category : #parse }
+SHParserST80 >> parseStringOrSymbol [
 	currentTokenFirst == $'
 		ifTrue: [^ self parseString].
 	currentTokenFirst == $#
@@ -900,11 +722,8 @@ SHParserST80>>parseStringOrSymbol [
 	self error
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseSymbol [
+{ #category : #parse }
+SHParserST80 >> parseSymbol [
 	| c |
 	currentToken = '#'
 		ifTrue: [self rangeType: #symbol.
@@ -938,11 +757,8 @@ SHParserST80>>parseSymbol [
 	^ self parseCharSymbol
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseSymbolIdentifier [
+{ #category : #parse }
+SHParserST80 >> parseSymbolIdentifier [
 	| c start end |
 	c := self currentChar.
 	self
@@ -963,11 +779,8 @@ SHParserST80>>parseSymbolIdentifier [
 	^ c
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseSymbolSelector [
+{ #category : #parse }
+SHParserST80 >> parseSymbolSelector [
 	| start end |
 	start := sourcePosition - 1.
 	end := sourcePosition.
@@ -979,11 +792,8 @@ SHParserST80>>parseSymbolSelector [
 		end: end
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseSymbolString [
+{ #category : #parse }
+SHParserST80 >> parseSymbolString [
 	| first c last |
 	first := sourcePosition.
 	self nextChar.
@@ -1006,11 +816,8 @@ SHParserST80>>parseSymbolString [
 		end: last
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseTerm [
+{ #category : #parse }
+SHParserST80 >> parseTerm [
 	self failWhen: currentToken isNil.
 	currentTokenFirst == $(
 		ifTrue: [bracketDepth := bracketDepth + 1.
@@ -1030,11 +837,8 @@ SHParserST80>>parseTerm [
 	self parseLiteral: false
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseUnary [
+{ #category : #parse }
+SHParserST80 >> parseUnary [
 	| unary type |
 	[self isName]
 		whileTrue: [unary := currentToken.
@@ -1049,60 +853,42 @@ SHParserST80>>parseUnary [
 			self scanPast: type]
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parseUnaryMessagePattern [
+{ #category : #parse }
+SHParserST80 >> parseUnaryMessagePattern [
 	self scanPast: #patternUnary
 ]
 
-{
-	#category : #'parse support',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>parsingBlockarguments [
+{ #category : #'parse support' }
+SHParserST80 >> parsingBlockarguments [
 	^ ranges isEmpty not and:[|last| last:= ranges last.
 		last type = #blockPatternArg]
 ]
 
-{
-	#category : #scan,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>peekChar [
+{ #category : #scan }
+SHParserST80 >> peekChar [
 	^ source
 		at: sourcePosition + 1
 		ifAbsent: [Character space]
 ]
 
-{
-	#category : #'parse support',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>pushArgument: aString  [
+{ #category : #'parse support' }
+SHParserST80 >> pushArgument: aString [ 
 	(arguments
 		at: blockDepth
 		ifAbsentPut: [OrderedCollection new: 10])
 		add: aString
 ]
 
-{
-	#category : #'parse support',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>pushTemporary: aString  [
+{ #category : #'parse support' }
+SHParserST80 >> pushTemporary: aString [ 
 	(temporaries
 		at: blockDepth
 		ifAbsentPut: [OrderedCollection new: 10])
 		add: aString
 ]
 
-{
-	#category : #'recording ranges',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>rangeType: aSymbol  [
+{ #category : #'recording ranges' }
+SHParserST80 >> rangeType: aSymbol [ 
 
 	self failWhen: currentToken isNil.
 	^ self
@@ -1111,11 +897,8 @@ SHParserST80>>rangeType: aSymbol  [
 		end: currentTokenSourcePosition + currentToken size - 1
 ]
 
-{
-	#category : #'recording ranges',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>rangeType: aSymbol start: s end: e  [
+{ #category : #'recording ranges' }
+SHParserST80 >> rangeType: aSymbol start: s end: e [ 
 	^ ranges
 		add: (SHRange
 				start: s
@@ -1123,11 +906,8 @@ SHParserST80>>rangeType: aSymbol start: s end: e  [
 				type: aSymbol)
 ]
 
-{
-	#category : #parse,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>rangesIn: sourceString classOrMetaClass: aBehaviour workspace: aWorkspace environment: anEnvironmentOrNil  [
+{ #category : #parse }
+SHParserST80 >> rangesIn: sourceString classOrMetaClass: aBehaviour workspace: aWorkspace environment: anEnvironmentOrNil [ 
 	anEnvironmentOrNil
 		ifNotNil: [environment := anEnvironmentOrNil].
 	self workspace: aWorkspace;
@@ -1137,11 +917,8 @@ SHParserST80>>rangesIn: sourceString classOrMetaClass: aBehaviour workspace: aWo
 	^ ranges
 ]
 
-{
-	#category : #'identifier testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>resolve: aString  [
+{ #category : #'identifier testing' }
+SHParserST80 >> resolve: aString [ 
 	(#('self' 'super' 'true' 'false' 'nil' 'thisContext' ) includes: aString)
 		ifTrue: [^ aString asSymbol].
 	(self isBlockTempName: aString)
@@ -1174,11 +951,8 @@ SHParserST80>>resolve: aString  [
 	^ self resolvePartial: aString
 ]
 
-{
-	#category : #'identifier testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>resolvePartial: aString  [
+{ #category : #'identifier testing' }
+SHParserST80 >> resolvePartial: aString [ 
 	(#('self' 'super' 'true' 'false' 'nil' 'thisContext' )
 			anySatisfy: [:each | each beginsWith: aString])
 		ifTrue: [^ #incompleteIdentifier].
@@ -1214,11 +988,8 @@ SHParserST80>>resolvePartial: aString  [
 	^ #undefinedIdentifier
 ]
 
-{
-	#category : #'identifier testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>resolvePartialPragmaArgument: aString  [
+{ #category : #'identifier testing' }
+SHParserST80 >> resolvePartialPragmaArgument: aString [ 
 	(#('true' 'false' 'nil' )
 			anySatisfy: [:each | each beginsWith: aString])
 		ifTrue: [^ #incompleteIdentifier].
@@ -1233,11 +1004,8 @@ SHParserST80>>resolvePartialPragmaArgument: aString  [
 	^ #undefinedIdentifier
 ]
 
-{
-	#category : #'identifier testing',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>resolvePragmaArgument: aString  [
+{ #category : #'identifier testing' }
+SHParserST80 >> resolvePragmaArgument: aString [ 
 	(#('true' 'false' 'nil' ) includes: aString)
 		ifTrue: [^ aString asSymbol].
 	Symbol
@@ -1251,11 +1019,8 @@ SHParserST80>>resolvePragmaArgument: aString  [
 	^ self resolvePartialPragmaArgument: aString
 ]
 
-{
-	#category : #scan,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>scanBinary [
+{ #category : #scan }
+SHParserST80 >> scanBinary [
 	| c d |
 	c := self currentChar.
 	currentTokenSourcePosition := sourcePosition.
@@ -1277,11 +1042,8 @@ SHParserST80>>scanBinary [
 	^ currentToken
 ]
 
-{
-	#category : #scan,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>scanComment [
+{ #category : #scan }
+SHParserST80 >> scanComment [
 	| c s e |
 	s := sourcePosition.
 	[sourcePosition := sourcePosition + 1.
@@ -1302,11 +1064,8 @@ SHParserST80>>scanComment [
 	self scanWhitespace
 ]
 
-{
-	#category : #scan,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>scanIdentifier [
+{ #category : #scan }
+SHParserST80 >> scanIdentifier [
 	| c start |
 	start := sourcePosition.
 	[(c := self nextChar) isAlphaNumeric
@@ -1318,11 +1077,8 @@ SHParserST80>>scanIdentifier [
 	currentTokenSourcePosition := start
 ]
 
-{
-	#category : #scan,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>scanNext [
+{ #category : #scan }
+SHParserST80 >> scanNext [
 	self scanWhitespace.
 	currentTokenFirst := self currentChar.
 	currentTokenFirst isNil
@@ -1338,11 +1094,8 @@ SHParserST80>>scanNext [
 	^ self scanBinary
 ]
 
-{
-	#category : #scan,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>scanNumber [
+{ #category : #scan }
+SHParserST80 >> scanNumber [
 	| start c nc base |
 	start := sourcePosition.
 	self skipDigits.
@@ -1399,11 +1152,8 @@ SHParserST80>>scanNumber [
 	^ currentTokenSourcePosition := start
 ]
 
-{
-	#category : #scan,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>scanPast: rangeType  [
+{ #category : #scan }
+SHParserST80 >> scanPast: rangeType [ 
 	rangeType = #blockPatternArg
 		ifTrue: [self pushArgument: currentToken].
 	rangeType = #blockPatternTempVar
@@ -1416,11 +1166,8 @@ SHParserST80>>scanPast: rangeType  [
 		 scanNext
 ]
 
-{
-	#category : #scan,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>scanPast: rangeType level: level  [
+{ #category : #scan }
+SHParserST80 >> scanPast: rangeType level: level [ 
 	| cycle typePlusCycle |
 	cycle := level <= 1
 				ifTrue: [0]
@@ -1431,11 +1178,8 @@ SHParserST80>>scanPast: rangeType level: level  [
 	^ self scanPast: typePlusCycle
 ]
 
-{
-	#category : #scan,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>scanPast: rangeType start: startInteger end: endInteger  [
+{ #category : #scan }
+SHParserST80 >> scanPast: rangeType start: startInteger end: endInteger [ 
 	^ self
 		rangeType: rangeType
 		start: startInteger
@@ -1443,11 +1187,8 @@ SHParserST80>>scanPast: rangeType start: startInteger end: endInteger  [
 		 scanNext
 ]
 
-{
-	#category : #scan,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>scanWhitespace [
+{ #category : #scan }
+SHParserST80 >> scanWhitespace [
 	| c |
 	[c := self currentChar.
 	c notNil
@@ -1457,42 +1198,27 @@ SHParserST80>>scanWhitespace [
 		ifTrue: [self scanComment]
 ]
 
-{
-	#category : #scan,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>skipBigDigits: baseInteger  [
+{ #category : #scan }
+SHParserST80 >> skipBigDigits: baseInteger [ 
 	[self isBigDigit: self nextChar base: baseInteger] whileTrue
 ]
 
-{
-	#category : #scan,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>skipDigits [
+{ #category : #scan }
+SHParserST80 >> skipDigits [
 	[self nextChar isDigit] whileTrue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>source [
+{ #category : #accessing }
+SHParserST80 >> source [
 	^ source
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>source: aString  [
+{ #category : #accessing }
+SHParserST80 >> source: aString [ 
 	source := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHParserST80>>workspace: aWorkspace  [
+{ #category : #accessing }
+SHParserST80 >> workspace: aWorkspace [ 
 	workspace := aWorkspace
 ]

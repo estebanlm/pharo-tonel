@@ -57,25 +57,18 @@ Class {
 		'methodName',
 		'selectorLookup'
 	],
-	#category : #Refactoring-Core-Support,
-	#timestamp : 'NicolaiHess 5/22/2016 13:57'
+	#category : #Refactoring-Core-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper class>>newFor: aRBNamespace  [
+{ #category : #'instance creation' }
+RBRefactoryTyper class >> newFor: aRBNamespace [ 
 	^(self new)
 		model: aRBNamespace;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper class>>typesFor: variableName in: aParseTree model: aRBSmalltalk  [
+{ #category : #accessing }
+RBRefactoryTyper class >> typesFor: variableName in: aParseTree model: aRBSmalltalk [ 
 	| searcher messages |
 	searcher := RBParseTreeSearcher new.
 	searcher matches: variableName , ' `@message: ``@args'
@@ -90,11 +83,8 @@ RBRefactoryTyper class>>typesFor: variableName in: aParseTree model: aRBSmalltal
 		findTypeFor: messages
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>backpointersDictionary [
+{ #category : #private }
+RBRefactoryTyper >> backpointersDictionary [
 	"Create a special dictionary, because the host systems wrongly treats #abc and 'abc' as equal."
 
 	^ PluggableDictionary new
@@ -103,11 +93,8 @@ RBRefactoryTyper>>backpointersDictionary [
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>backpointersSetWith: anObject [
+{ #category : #private }
+RBRefactoryTyper >> backpointersSetWith: anObject [
 	"Create a special set, because the host systems wrongly treats #abc and 'abc' as equal."
 	
 	^ PluggableSet new
@@ -117,19 +104,13 @@ RBRefactoryTyper>>backpointersSetWith: anObject [
 		yourself
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>collectionNameFor: aString  [
+{ #category : #printing }
+RBRefactoryTyper >> collectionNameFor: aString [ 
 	^'-<1s>-' expandMacrosWith: aString
 ]
 
-{
-	#category : #'equivalence classes',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>computeEquivalenceClassesForMethodsAndVars [
+{ #category : #'equivalence classes' }
+RBRefactoryTyper >> computeEquivalenceClassesForMethodsAndVars [
 	| searcher |
 	backpointers := self backpointersDictionary.
 	class instanceVariableNames 
@@ -142,11 +123,8 @@ RBRefactoryTyper>>computeEquivalenceClassesForMethodsAndVars [
 	self executeSearch: searcher
 ]
 
-{
-	#category : #selectors,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>computeMessagesSentToVariables [
+{ #category : #selectors }
+RBRefactoryTyper >> computeMessagesSentToVariables [
 	| searcher |
 	variableMessages := Dictionary new.
 	class instanceVariableNames 
@@ -171,20 +149,14 @@ RBRefactoryTyper>>computeMessagesSentToVariables [
 	self executeSearch: searcher
 ]
 
-{
-	#category : #'computing types',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>computeTypes [
+{ #category : #'computing types' }
+RBRefactoryTyper >> computeTypes [
 	variableMessages
 		keysAndValuesDo: [:key :value | variableTypes at: key put: (self findTypeFor: value)]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>executeSearch: searcher  [
+{ #category : #private }
+RBRefactoryTyper >> executeSearch: searcher [ 
 	class withAllSubclasses do: 
 			[:each | 
 			each selectors do: 
@@ -195,11 +167,8 @@ RBRefactoryTyper>>executeSearch: searcher  [
 					parseTree notNil ifTrue: [searcher executeTree: parseTree]]]
 ]
 
-{
-	#category : #'computing types',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>findTypeFor: selectorCollection  [
+{ #category : #'computing types' }
+RBRefactoryTyper >> findTypeFor: selectorCollection [ 
 	^selectorCollection inject: self rootClasses
 		into: 
 			[:classes :each | 
@@ -207,11 +176,8 @@ RBRefactoryTyper>>findTypeFor: selectorCollection  [
 				with: (selectorLookup at: each ifAbsentPut: [self implementorsOf: each])]
 ]
 
-{
-	#category : #assignments,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>guessTypeFromAssignment: aNode  [
+{ #category : #assignments }
+RBRefactoryTyper >> guessTypeFromAssignment: aNode [ 
 	| type set newType |
 	type := nil.
 	aNode value isAssignment 
@@ -240,29 +206,20 @@ RBRefactoryTyper>>guessTypeFromAssignment: aNode  [
 	(bestGuesses at: aNode variable name ifAbsentPut: [Set new]) add: newType
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>guessTypesFor: anInstVarName  [
+{ #category : #accessing }
+RBRefactoryTyper >> guessTypesFor: anInstVarName [ 
 	^bestGuesses at: anInstVarName ifAbsent: [self typesFor: anInstVarName]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>guessTypesFor: anInstVarName in: aClass  [
+{ #category : #accessing }
+RBRefactoryTyper >> guessTypesFor: anInstVarName in: aClass [ 
 	class = aClass ifFalse: [self runOn: aClass].
 	^bestGuesses at: anInstVarName
 		ifAbsent: [self typesFor: anInstVarName in: aClass]
 ]
 
-{
-	#category : #'computing types',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>implementorsOf: aSelector  [
+{ #category : #'computing types' }
+RBRefactoryTyper >> implementorsOf: aSelector [ 
 	| classes |
 	classes := OrderedCollection new.
 	self rootClasses do: 
@@ -274,11 +231,8 @@ RBRefactoryTyper>>implementorsOf: aSelector  [
 	^classes
 ]
 
-{
-	#category : #'computing types',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>implementorsOf: aSelector in: aClass storeIn: classes  [
+{ #category : #'computing types' }
+RBRefactoryTyper >> implementorsOf: aSelector in: aClass storeIn: classes [ 
 	(aClass directlyDefinesMethod: aSelector) 
 		ifTrue: 
 			[classes add: aClass.
@@ -291,11 +245,8 @@ RBRefactoryTyper>>implementorsOf: aSelector in: aClass storeIn: classes  [
 				storeIn: classes]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>initialize [
+{ #category : #initialization }
+RBRefactoryTyper >> initialize [
 	model := RBClassModelFactory rbNamespace new.
 	class := model classFor: Object.
 	variableTypes := Dictionary new.
@@ -304,11 +255,8 @@ RBRefactoryTyper>>initialize [
 	bestGuesses := Dictionary new
 ]
 
-{
-	#category : #'equivalence classes',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>merge: aName  [
+{ #category : #'equivalence classes' }
+RBRefactoryTyper >> merge: aName [ 
 	| set1 set2 |
 	set1 := backpointers at: methodName ifAbsent: [nil].
 	set2 := backpointers at: aName ifAbsent: [nil].
@@ -317,27 +265,18 @@ RBRefactoryTyper>>merge: aName  [
 	set2 do: [:each | backpointers at: each put: set1]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>model [
+{ #category : #private }
+RBRefactoryTyper >> model [
 	^model
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>model: aRBSmalltalk [
+{ #category : #private }
+RBRefactoryTyper >> model: aRBSmalltalk [
 	model := aRBSmalltalk
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>printOn: aStream  [
+{ #category : #printing }
+RBRefactoryTyper >> printOn: aStream [ 
 	aStream
 		nextPutAll: class name;
 		cr.
@@ -354,11 +293,8 @@ RBRefactoryTyper>>printOn: aStream  [
 				cr]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>printType: aClass for: aString on: aStream  [
+{ #category : #printing }
+RBRefactoryTyper >> printType: aClass for: aString on: aStream [ 
 	| name colTypes |
 	colTypes := #().
 	name := self collectionNameFor: aString.
@@ -375,11 +311,8 @@ RBRefactoryTyper>>printType: aClass for: aString on: aStream  [
 	colTypes isEmpty ifFalse: [aStream nextPut: $)]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>printTypeFor: aString on: aStream  [
+{ #category : #printing }
+RBRefactoryTyper >> printTypeFor: aString on: aStream [ 
 	| types |
 	types := (self guessTypesFor: aString) 
 				asSortedCollection: [:a :b | a name < b name].
@@ -393,11 +326,8 @@ RBRefactoryTyper>>printTypeFor: aString on: aStream  [
 				on: aStream]
 ]
 
-{
-	#category : #selectors-collections,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>processCollectionFor: key messagesTo: aName in: aBlock  [
+{ #category : #selectors-collections }
+RBRefactoryTyper >> processCollectionFor: key messagesTo: aName in: aBlock [ 
 	| searcher |
 	searcher := RBParseTreeSearcher new.
 	searcher 
@@ -410,11 +340,8 @@ RBRefactoryTyper>>processCollectionFor: key messagesTo: aName in: aBlock  [
 		initialAnswer: (variableMessages at: (self collectionNameFor: key) ifAbsentPut: [ Set new ])
 ]
 
-{
-	#category : #selectors-collections,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>processCollectionMessagesFor: variableName in: aParseTree  [
+{ #category : #selectors-collections }
+RBRefactoryTyper >> processCollectionMessagesFor: variableName in: aParseTree [ 
 	| parent block |
 	aParseTree isMessage
 		ifFalse: [ ^ self ].
@@ -453,11 +380,8 @@ RBRefactoryTyper>>processCollectionMessagesFor: variableName in: aParseTree  [
 			in: block ]
 ]
 
-{
-	#category : #'equivalence classes',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>processNode: aNode  [
+{ #category : #'equivalence classes' }
+RBRefactoryTyper >> processNode: aNode [ 
 	(aNode isVariable and: [class instanceVariableNames includes: aNode name]) 
 		ifTrue: [^self merge: aNode name].
 	(aNode isMessage 
@@ -480,11 +404,8 @@ RBRefactoryTyper>>processNode: aNode  [
 								ifFalse: [self processNode: each body statements last]]]]
 ]
 
-{
-	#category : #'computing types',
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>refineTypes: aClassCollection with: anotherClassCollection  [
+{ #category : #'computing types' }
+RBRefactoryTyper >> refineTypes: aClassCollection with: anotherClassCollection [ 
 	| classSet |
 	classSet := Set new.
 	aClassCollection do: 
@@ -497,11 +418,8 @@ RBRefactoryTyper>>refineTypes: aClassCollection with: anotherClassCollection  [
 	^classSet
 ]
 
-{
-	#category : #assignments,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>refineTypesByLookingAtAssignments [
+{ #category : #assignments }
+RBRefactoryTyper >> refineTypesByLookingAtAssignments [
 	| searcher needsSearch |
 	needsSearch := false.
 	searcher := RBParseTreeSearcher new.
@@ -515,19 +433,13 @@ RBRefactoryTyper>>refineTypesByLookingAtAssignments [
 	needsSearch ifTrue: [self executeSearch: searcher]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>rootClasses [
+{ #category : #private }
+RBRefactoryTyper >> rootClasses [
 	^ model rootClasses
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>runOn: aClass  [
+{ #category : #accessing }
+RBRefactoryTyper >> runOn: aClass [ 
 	variableTypes := Dictionary new.
 	variableMessages := Dictionary new.
 	bestGuesses := Dictionary new.
@@ -541,19 +453,13 @@ RBRefactoryTyper>>runOn: aClass  [
 		refineTypesByLookingAtAssignments
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>selectedClass: aClass  [
+{ #category : #accessing }
+RBRefactoryTyper >> selectedClass: aClass [ 
 	class := model classFor: aClass
 ]
 
-{
-	#category : #assignments,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>typeFor: anObject  [
+{ #category : #assignments }
+RBRefactoryTyper >> typeFor: anObject [ 
 	anObject isString
 		ifTrue: [ ^ String ].
 	anObject isInteger
@@ -563,19 +469,13 @@ RBRefactoryTyper>>typeFor: anObject  [
 		ifFalse: [ anObject class ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>typesFor: anInstVarName  [
+{ #category : #accessing }
+RBRefactoryTyper >> typesFor: anInstVarName [ 
 	^variableTypes at: anInstVarName ifAbsent: [Set new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:24'
-}
-RBRefactoryTyper>>typesFor: anInstVarName in: aClass  [
+{ #category : #accessing }
+RBRefactoryTyper >> typesFor: anInstVarName in: aClass [ 
 	class = aClass ifFalse: [self runOn: aClass].
 	^variableTypes at: anInstVarName ifAbsent: [Set new]
 ]

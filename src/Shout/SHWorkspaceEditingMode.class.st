@@ -27,57 +27,38 @@ Class {
 	#instVars : [
 		'code'
 	],
-	#category : #Shout-Examples,
-	#timestamp : 'AlainPlantec 9/20/2011 17:13'
+	#category : #Shout-Examples
 }
 
-{
-	#category : #'private bindings',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHWorkspaceEditingMode>>bindings [
+{ #category : #'private bindings' }
+SHWorkspaceEditingMode >> bindings [
 	^ #('shout' 'example')
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHWorkspaceEditingMode>>code [
+{ #category : #accessing }
+SHWorkspaceEditingMode >> code [
 	^ code ifNil: [code := '' asText]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHWorkspaceEditingMode>>code: someText [
+{ #category : #accessing }
+SHWorkspaceEditingMode >> code: someText [
 	code := someText.
 	self changed: #code
 ]
 
-{
-	#category : #bindings,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHWorkspaceEditingMode>>hasBindingOf: aString [
+{ #category : #bindings }
+SHWorkspaceEditingMode >> hasBindingOf: aString [
 	^ self bindings includes: aString asSymbol.
 ]
 
-{
-	#category : #bindings,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHWorkspaceEditingMode>>hasBindingThatBeginsWith: aString [
+{ #category : #bindings }
+SHWorkspaceEditingMode >> hasBindingThatBeginsWith: aString [
 	^ self bindings anySatisfy: [:s | s beginsWith: aString]
 
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHWorkspaceEditingMode>>open [
+{ #category : #view }
+SHWorkspaceEditingMode >> open [
 	| window editor |
 	window := (StandardWindow labelled: 'Editor with Workspace like  syntax highlighting') model: self.
 	editor := window newTextEditorFor:  self getText:  #code setText: #code: getEnabled: nil. 
@@ -87,10 +68,7 @@ SHWorkspaceEditingMode>>open [
 	^ window openInWorld
 ]
 
-{
-	#category : #shout,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SHWorkspaceEditingMode>>shoutAboutToStyle: aTextView [
+{ #category : #shout }
+SHWorkspaceEditingMode >> shoutAboutToStyle: aTextView [
 	^ true
 ]

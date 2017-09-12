@@ -4,25 +4,18 @@ I am ZnUTFEncoder. I am a ZnCharacterEncoder. My subclasses deal with the full r
 Class {
 	#name : #ZnUTFEncoder,
 	#superclass : #ZnCharacterEncoder,
-	#category : #Zinc-Character-Encoding-Core,
-	#timestamp : 'SvenVanCaekenberghe 1/7/2016 14:44'
+	#category : #Zinc-Character-Encoding-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTFEncoder class>>handlesEncoding: string [
+{ #category : #accessing }
+ZnUTFEncoder class >> handlesEncoding: string [
 	"Return true when my instances handle the encoding described by string"
 	
 	^ false
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTFEncoder>>decodeBytes: bytes [
+{ #category : #convenience }
+ZnUTFEncoder >> decodeBytes: bytes [
 	"Overridden to prevent the automagic switch from ByteString to WideString 
 	and the slow #becomeForward: in there. See also #decodeBytesIntoWideString:"
 	
@@ -39,11 +32,8 @@ ZnUTFEncoder>>decodeBytes: bytes [
 			stream nextPut: char ] ] 
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTFEncoder>>decodeBytesIntoWideString: bytes [
+{ #category : #convenience }
+ZnUTFEncoder >> decodeBytesIntoWideString: bytes [
 	"Variant of #decodeBytes: that is faster when you know upfront 
 	that a WideString is probably needed"
 
@@ -54,20 +44,14 @@ ZnUTFEncoder>>decodeBytesIntoWideString: bytes [
 			stream nextPut: (self nextFromStream: byteStream) ] ] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTFEncoder>>isSurrogateCodePoint: codePoint [
+{ #category : #testing }
+ZnUTFEncoder >> isSurrogateCodePoint: codePoint [
 	"Surrogate Code Points should not be encoded or decoded because they are not Unicode scalar values"
 	
 	^ codePoint between: 16rD800 and: 16rDFFF
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:51'
-}
-ZnUTFEncoder>>maximumUTFCode [
+{ #category : #accessing }
+ZnUTFEncoder >> maximumUTFCode [
 	^ 16r10FFFF
 ]

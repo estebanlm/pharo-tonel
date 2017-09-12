@@ -7,15 +7,11 @@ Class {
 	#classInstVars : [
 		'uuid'
 	],
-	#category : #Renraku-Utility,
-	#timestamp : 'YuriyTymchuk 7/6/2015 18:51'
+	#category : #Renraku-Utility
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReFeedbacker class>>feedback: aComment positive: aBoolean About: aReCritic  [
+{ #category : #actions }
+ReFeedbacker class >> feedback: aComment positive: aBoolean About: aReCritic [ 
 	[ 
 	ZnClient new
 		beOneShot;
@@ -37,28 +33,19 @@ ReFeedbacker class>>feedback: aComment positive: aBoolean About: aReCritic  [
 	^ true
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReFeedbacker class>>negativeFeedback: aComment About: aReCritic [
+{ #category : #actions }
+ReFeedbacker class >> negativeFeedback: aComment About: aReCritic [
 	
 	^ self feedback: aComment positive: false About: aReCritic
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReFeedbacker class>>positiveFeedback: aComment About: aReCritic [
+{ #category : #actions }
+ReFeedbacker class >> positiveFeedback: aComment About: aReCritic [
 	
 	^ self feedback: aComment positive: true About: aReCritic
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ReFeedbacker class>>uuid [
+{ #category : #properties }
+ReFeedbacker class >> uuid [
 	^ uuid ifNil: [ uuid := UUID new ]
 ]

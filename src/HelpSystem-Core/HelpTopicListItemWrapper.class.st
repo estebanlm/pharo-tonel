@@ -7,35 +7,25 @@ Instance Variables
 Class {
 	#name : #HelpTopicListItemWrapper,
 	#superclass : #PluggableListItemWrapper,
-	#category : #HelpSystem-Core-UI,
-	#timestamp : 'tbn 3/8/2010 09:30'
+	#category : #HelpSystem-Core-UI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopicListItemWrapper>>asString [
+{ #category : #accessing }
+HelpTopicListItemWrapper >> asString [
 	"Returns a string used as a label"
 	
 	^item title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopicListItemWrapper>>balloonText [
+{ #category : #accessing }
+HelpTopicListItemWrapper >> balloonText [
 	"Returns a string used for fly by help"
 	
 	^self item title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopicListItemWrapper>>contents [
+{ #category : #accessing }
+HelpTopicListItemWrapper >> contents [
 	"Returns subnodes (if any)"
 	
  	item hasSubtopics ifFalse: [^#()].	
@@ -45,11 +35,8 @@ HelpTopicListItemWrapper>>contents [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-HelpTopicListItemWrapper>>icon [
+{ #category : #accessing }
+HelpTopicListItemWrapper >> icon [
 	"Either return the icon for the given topic"
 
 	item icon notNil

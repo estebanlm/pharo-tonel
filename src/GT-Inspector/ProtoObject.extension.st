@@ -1,12 +1,7 @@
-Extension {
-	#name : #ProtoObject
-}
+Extension { #name : #ProtoObject }
 
-{
-	#category : #'*GT-Inspector',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-ProtoObject>>gtInspectorActionBrowse [
+{ #category : #'*GT-Inspector' }
+ProtoObject >> gtInspectorActionBrowse [
 	<gtInspectorAction>
 	^ GLMGenericAction new
 		action: [ Smalltalk tools browser openOnClass: self class ];
@@ -14,11 +9,8 @@ ProtoObject>>gtInspectorActionBrowse [
 		title: 'Browse'
 ]
 
-{
-	#category : #'*GT-Inspector',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-ProtoObject>>gtInspectorActions [
+{ #category : #'*GT-Inspector' }
+ProtoObject >> gtInspectorActions [
 	"This is a utility method that allows each object to define a set of actions 
 	specific for itself. These actions are used when the object appears in the inspector.
 
@@ -48,30 +40,21 @@ ProtoObject>>gtInspectorActions [
 			first < second ]
 ]
 
-{
-	#category : #'*GT-Inspector',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-ProtoObject>>gtInspectorIcon [
+{ #category : #'*GT-Inspector' }
+ProtoObject >> gtInspectorIcon [
 	^ nil
 ]
 
-{
-	#category : #'*GT-Inspector',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-ProtoObject>>gtInspectorMetaIn: composite [
+{ #category : #'*GT-Inspector' }
+ProtoObject >> gtInspectorMetaIn: composite [
 	"This presentation offers the methods of the class of the current object"
 	<gtInspectorPresentationOrder: 1000>
 	<gtInspectorTag: #basic>
 	^ composite custom: (GTSimpleMethodsBrowser new startOn: self) 
 ]
 
-{
-	#category : #'*GT-Inspector',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-ProtoObject>>gtInspectorPresentationsFromPragmas: aCollection In: composite inContext: aGTInspector [
+{ #category : #'*GT-Inspector' }
+ProtoObject >> gtInspectorPresentationsFromPragmas: aCollection In: composite inContext: aGTInspector [
 	aCollection
 		do: [ :eachPragma | 
 			eachPragma methodSelector numArgs = 0
@@ -97,11 +80,8 @@ ProtoObject>>gtInspectorPresentationsFromPragmas: aCollection In: composite inCo
 						inClass: self class ] ]
 ]
 
-{
-	#category : #'*GT-Inspector',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-ProtoObject>>gtInspectorPresentationsIn: composite inContext: aGTInspector [
+{ #category : #'*GT-Inspector' }
+ProtoObject >> gtInspectorPresentationsIn: composite inContext: aGTInspector [
 	"This is a utility method that collects all presentations for the current object.
 	By default, it simply looks for the #gtInspectorPresentationOrder: pragma.
 	The inspector can decice whether or not a presentation should be dispayed.
@@ -116,11 +96,8 @@ ProtoObject>>gtInspectorPresentationsIn: composite inContext: aGTInspector [
 	self gtInspectorPresentationsFromPragmas: pragmas In: composite inContext: aGTInspector
 ]
 
-{
-	#category : #'*GT-Inspector',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-ProtoObject>>gtInspectorRawIn: composite [
+{ #category : #'*GT-Inspector' }
+ProtoObject >> gtInspectorRawIn: composite [
 	"This is the most basic presentation showing the state of the object"
 	<gtInspectorPresentationOrder: 10>
 	<gtInspectorTag: #basic>

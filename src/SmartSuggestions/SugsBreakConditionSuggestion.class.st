@@ -4,15 +4,11 @@ This class defines AST node menus for conditional  breakpoints
 Class {
 	#name : #SugsBreakConditionSuggestion,
 	#superclass : #SugsBreakpointSuggestion,
-	#category : #SmartSuggestions-Suggestion,
-	#timestamp : 'MarcusDenker 11/17/2015 15:51'
+	#category : #SmartSuggestions-Suggestion
 }
 
-{
-	#category : #breakpoints,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsBreakConditionSuggestion>>breakpointForCondition [
+{ #category : #breakpoints }
+SugsBreakConditionSuggestion >> breakpointForCondition [
 	(UIManager default request: 'Break on what condition?')	
 		ifNotNil: [ :condition | Breakpoint new 
 			node: context selectedNode;
@@ -20,11 +16,8 @@ SugsBreakConditionSuggestion>>breakpointForCondition [
 			install]
 ]
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsBreakConditionSuggestion>>execute [
+{ #category : #execution }
+SugsBreakConditionSuggestion >> execute [
 	context hasUnacceptedEdits ifTrue: [ ^context sourceTextArea acceptEdits].
 	
 	self selectedNodeHasBreakpoint 
@@ -32,18 +25,12 @@ SugsBreakConditionSuggestion>>execute [
 		ifTrue: [ Breakpoint removeFrom: context selectedNode]
 ]
 
-{
-	#category : #execution,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsBreakConditionSuggestion>>isValidForContext [
+{ #category : #execution }
+SugsBreakConditionSuggestion >> isValidForContext [
 	^self selectedNodeHasBreakpoint not and: [self hasUnacceptedEdits not and:[ super isValidForContext ]]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-SugsBreakConditionSuggestion>>label [
+{ #category : #accessing }
+SugsBreakConditionSuggestion >> label [
 	^'Break on condition' translated
 ]

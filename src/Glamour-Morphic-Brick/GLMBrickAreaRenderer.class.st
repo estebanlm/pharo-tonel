@@ -4,15 +4,11 @@ I am a special renderer of non-rectangular but polygon bricks
 Class {
 	#name : #GLMBrickAreaRenderer,
 	#superclass : #GLMBrickRenderer,
-	#category : #Glamour-Morphic-Brick-Renderer,
-	#timestamp : 'AliakseiSyrel 3/4/2017 15:32'
+	#category : #Glamour-Morphic-Brick-Renderer
 }
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickAreaRenderer>>drawingBounds: aBrick [
+{ #category : #geometry }
+GLMBrickAreaRenderer >> drawingBounds: aBrick [
 	| aRectangle anOffset |
 	
 	anOffset := aBrick shadowOffset.
@@ -24,21 +20,15 @@ GLMBrickAreaRenderer>>drawingBounds: aBrick [
 	^ aRectangle
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickAreaRenderer>>render: aBrick on: aCanvas [
+{ #category : #rendering }
+GLMBrickAreaRenderer >> render: aBrick on: aCanvas [
 	self renderShadowOf: aBrick on: aCanvas.
 	self renderBackground: aBrick on: aCanvas.
 	self renderBorder: aBrick on: aCanvas
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickAreaRenderer>>renderBackground: aBrick on: aCanvas [
+{ #category : #rendering }
+GLMBrickAreaRenderer >> renderBackground: aBrick on: aCanvas [
 
 	aCanvas
 		drawPolygon: aBrick area vertices
@@ -47,11 +37,8 @@ GLMBrickAreaRenderer>>renderBackground: aBrick on: aCanvas [
 		borderColor: Color transparent
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickAreaRenderer>>renderBorder: aBrick on: aCanvas [
+{ #category : #rendering }
+GLMBrickAreaRenderer >> renderBorder: aBrick on: aCanvas [
 
 	aCanvas
 		drawPolygon: aBrick area vertices
@@ -60,11 +47,8 @@ GLMBrickAreaRenderer>>renderBorder: aBrick on: aCanvas [
 		borderColor: aBrick border colorTop
 ]
 
-{
-	#category : #'private - shadow',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickAreaRenderer>>renderCornerShadow: aBrick vector: aVector origin: anOrigin on: aCanvas [
+{ #category : #'private - shadow' }
+GLMBrickAreaRenderer >> renderCornerShadow: aBrick vector: aVector origin: anOrigin on: aCanvas [
 	| anInset anOffset aShadowWidth aShadowOrigin aShadowEnd aGradient aRectangle |
 
 	anOffset := aBrick shadowOffset.
@@ -104,11 +88,8 @@ GLMBrickAreaRenderer>>renderCornerShadow: aBrick vector: aVector origin: anOrigi
 	aCanvas fillRectangle: aRectangle fillStyle: aGradient
 ]
 
-{
-	#category : #'private - shadow',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickAreaRenderer>>renderShadow: aBrick vector: aVector origin: anOrigin on: aCanvas [
+{ #category : #'private - shadow' }
+GLMBrickAreaRenderer >> renderShadow: aBrick vector: aVector origin: anOrigin on: aCanvas [
 	| anInset anOffset aShadowWidth aShadowOrigin aShadowVector aShadowLength aGradient aRectangle |
 
 	anInset := aBrick shadowInset.
@@ -137,11 +118,8 @@ GLMBrickAreaRenderer>>renderShadow: aBrick vector: aVector origin: anOrigin on: 
 	"aCanvas frameRectangle: aRectangle color: Color red"
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickAreaRenderer>>renderShadowOf: aBrick on: aCanvas [
+{ #category : #rendering }
+GLMBrickAreaRenderer >> renderShadowOf: aBrick on: aCanvas [
 	| anArea aCurrentVector aFirstVector anOrigin |
 
 	"no need to even try drawing if shadow width is zero"

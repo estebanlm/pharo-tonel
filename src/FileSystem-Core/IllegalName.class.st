@@ -8,39 +8,26 @@ Class {
 	#instVars : [
 		'name'
 	],
-	#category : #FileSystem-Core-Kernel,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:34'
+	#category : #FileSystem-Core-Kernel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-IllegalName class>>name: aName [
+{ #category : #'instance creation' }
+IllegalName class >> name: aName [
 	^ self basicNew initializeWithName: aName
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-IllegalName class>>signalWith: aName [
+{ #category : #'instance creation' }
+IllegalName class >> signalWith: aName [
 	^ (self name: aName) signal
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-IllegalName>>initializeWithName: aName [
+{ #category : #initialization }
+IllegalName >> initializeWithName: aName [
 	name := aName.
 	self messageText: aName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-IllegalName>>name [
+{ #category : #accessing }
+IllegalName >> name [
 	^ name
 ]

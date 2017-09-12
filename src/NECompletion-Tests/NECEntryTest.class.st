@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #NECEntryTest,
 	#superclass : #TestCase,
-	#category : #NECompletion-Tests,
-	#timestamp : ''
+	#category : #NECompletion-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECEntryTest>>testCompletion [
+{ #category : #tests }
+NECEntryTest >> testCompletion [
 	| entry |
 	entry := NECSelectorEntry 
 		contents: 'makeItHappen'
@@ -20,21 +13,15 @@ NECEntryTest>>testCompletion [
 	self assert: entry completion = #makeItHappen
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECEntryTest>>testInstance [
+{ #category : #tests }
+NECEntryTest >> testInstance [
 	| entry |
 	entry := NECInstVarEntry contents: 'abc'.
 	self assert: entry isInstance
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECEntryTest>>testLocal [
+{ #category : #tests }
+NECEntryTest >> testLocal [
 	| entry |
 	entry := NECLocalEntry 
 		contents: 'abc'
@@ -44,11 +31,8 @@ NECEntryTest>>testLocal [
 	self assert: entry isLocal
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NECEntryTest>>testPrintOn [
+{ #category : #tests }
+NECEntryTest >> testPrintOn [
 	| entry |
 	entry := NECSelectorEntry 
 		contents: 'compute'

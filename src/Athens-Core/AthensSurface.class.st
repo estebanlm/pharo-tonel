@@ -20,35 +20,25 @@ Class {
 	#instVars : [
 		'currentCanvas'
 	],
-	#category : #Athens-Core,
-	#timestamp : '<historical>'
+	#category : #Athens-Core
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface class>>extent: aPoint [
+{ #category : #'instance creation' }
+AthensSurface class >> extent: aPoint [
 	"Create a new surface with given extent. 
 	Note that some surfaces may not support this method, since they may represent an infinite surface."
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>asForm [
+{ #category : #converting }
+AthensSurface >> asForm [
 	"Answer a Form , which contains a bits, converted from surface "
 	self subclassResponsibility
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>cacheAt: anObject ifAbsentPut: aBlock [
+{ #category : #caching }
+AthensSurface >> cacheAt: anObject ifAbsentPut: aBlock [
 	"Answer an object from surface's cache identified by anObject,
 	if there is no cached object under such identifier, evaluate a block
 	and put it into cache. Then answer the result of evaluation.
@@ -58,47 +48,32 @@ AthensSurface>>cacheAt: anObject ifAbsentPut: aBlock [
 	self subclassResponsibility
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>clear [
+{ #category : #public }
+AthensSurface >> clear [
 	"clear the surface"
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>clear: clearColor [
+{ #category : #public }
+AthensSurface >> clear: clearColor [
 	"clear the surface"
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #clipping,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>clipBy: aRectangle during: aBlockClosure  [
+{ #category : #clipping }
+AthensSurface >> clipBy: aRectangle during: aBlockClosure [ 
 	self subclassResponsibility.
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>createFormPaint: aForm  [
+{ #category : #paints }
+AthensSurface >> createFormPaint: aForm [ 
 	self subclassResponsibility.
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>createLinearGradient: colorRamp start: pt1 stop: pt2 [
+{ #category : #paints }
+AthensSurface >> createLinearGradient: colorRamp start: pt1 stop: pt2 [
  
 	"This protocol is deprecated. Use #createLinearGradient: start:stop: instead"
 	
@@ -106,86 +81,59 @@ AthensSurface>>createLinearGradient: colorRamp start: pt1 stop: pt2 [
 	self shouldNotImplement 
 ]
 
-{
-	#category : #paths,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>createPath: aPathBuilder [
+{ #category : #paths }
+AthensSurface >> createPath: aPathBuilder [
 	"Create a path from provided path builder instance"
 	self subclassResponsibility
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>createRadialGradient: colorRamp center: aCenter radius: aRadius [
+{ #category : #paints }
+AthensSurface >> createRadialGradient: colorRamp center: aCenter radius: aRadius [
 	"by default, focal point coincede with center"
 	^ self createRadialGradient: colorRamp center: aCenter radius: aRadius focalPoint: aCenter
 
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>createRadialGradient: colorRamp center: aCenter radius: aRadius focalPoint: fp [
+{ #category : #paints }
+AthensSurface >> createRadialGradient: colorRamp center: aCenter radius: aRadius focalPoint: fp [
  
 	self subclassResponsibility
 ]
 
-{
-	#category : #paths,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>createRectanglePath: aRectangle  [
+{ #category : #paths }
+AthensSurface >> createRectanglePath: aRectangle [ 
 	^ aRectangle
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>createShadowPaint: aColor  [
+{ #category : #paints }
+AthensSurface >> createShadowPaint: aColor [ 
 	 "Answer an instance of AthensPaint, valid for use with given surface"
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>createSolidColorPaint: aColor  [
+{ #category : #paints }
+AthensSurface >> createSolidColorPaint: aColor [ 
 	 "Answer an instance of AthensPaint, valid for use with given surface"
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>createStrokePaintFor: aPaint [
+{ #category : #paints }
+AthensSurface >> createStrokePaintFor: aPaint [
 	 "Answer an instance of AthensPaint, valid for use as stroke paint on receiver,
 	using an argument, paint for fills"
 	
 	self subclassResponsibility
 ]
 
-{
-	#category : #masking,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>disableMask [
+{ #category : #masking }
+AthensSurface >> disableMask [
 	self subclassResponsibility
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>drawDuring: aBlock [
+{ #category : #public }
+AthensSurface >> drawDuring: aBlock [
 
 	"You may draw on receiver only when inside a block and only using provided canvas object.
 	This ensures releasing system resources used after finishing drawing"
@@ -202,37 +150,25 @@ AthensSurface>>drawDuring: aBlock [
 	].
 ]
 
-{
-	#category : #masking,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>enableMask [
+{ #category : #masking }
+AthensSurface >> enableMask [
 	self subclassResponsibility
 ]
 
-{
-	#category : #'rendering dispatch',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>fillPath: aPath withSolidColor: aColor  [
+{ #category : #'rendering dispatch' }
+AthensSurface >> fillPath: aPath withSolidColor: aColor [ 
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #'rendering dispatch',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>fillRectangle: aRectangle withSolidColor: aColor [
+{ #category : #'rendering dispatch' }
+AthensSurface >> fillRectangle: aRectangle withSolidColor: aColor [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>flushCacheAt: anObject [
+{ #category : #caching }
+AthensSurface >> flushCacheAt: anObject [
 
 	"Flush (delete) any cached value(s) identified by given object, anObject.
 	A surface using identity comparison for object identifiers.
@@ -243,29 +179,20 @@ AthensSurface>>flushCacheAt: anObject [
 	self subclassResponsibility
 ]
 
-{
-	#category : #masking,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>maskEnabled [
+{ #category : #masking }
+AthensSurface >> maskEnabled [
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>newCanvas [
+{ #category : #private }
+AthensSurface >> newCanvas [
 	"Answer a preinitialized instance of AthensCanvas.
 	Private to receiver and its subclasses, override seldom"
 	^ AthensCanvas on: self
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensSurface>>releaseCanvas [
+{ #category : #private }
+AthensSurface >> releaseCanvas [
 	currentCanvas := nil
 ]

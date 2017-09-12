@@ -18,40 +18,27 @@ Class {
 	#instVars : [
 		'pattern'
 	],
-	#category : #Morphic-Widgets-FastTable-Functions,
-	#timestamp : 'DenisKudryashov 6/24/2016 16:08'
+	#category : #Morphic-Widgets-FastTable-Functions
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilter class>>pattern: aString [
+{ #category : #'instance creation' }
+FTFilter class >> pattern: aString [
 	^self new 
 		pattern: aString
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilter>>matches: aString [
+{ #category : #matching }
+FTFilter >> matches: aString [
 
 	self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilter>>pattern [
+{ #category : #accessing }
+FTFilter >> pattern [
 	^ pattern
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTFilter>>pattern: anObject [
+{ #category : #accessing }
+FTFilter >> pattern: anObject [
 	pattern := anObject
 ]

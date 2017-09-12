@@ -24,15 +24,11 @@ Installs:
 Class {
 	#name : #BaselineOfIDE,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfIDE,
-	#timestamp : 'PavelKrivanek 11/7/2016 12:40'
+	#category : #BaselineOfIDE
 }
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:05'
-}
-BaselineOfIDE>>additionalInitialization [
+{ #category : #actions }
+BaselineOfIDE >> additionalInitialization [
 
 	self class environment at: #GTGenericStackDebugger ifPresent: [
 	  Smalltalk tools register: GTGenericStackDebugger as: #debugger.
@@ -102,11 +98,8 @@ BaselineOfIDE>>additionalInitialization [
 	self loadIceberg.
 ]
 
-{
-	#category : #baseline,
-	#timestamp : ' 8/31/2017 05:26:05'
-}
-BaselineOfIDE>>baseline: spec  [
+{ #category : #baseline }
+BaselineOfIDE >> baseline: spec [ 
     
 	<baseline>
 
@@ -376,11 +369,8 @@ BaselineOfIDE>>baseline: spec  [
 
 ]
 
-{
-	#category : #baseline,
-	#timestamp : ' 8/31/2017 05:26:05'
-}
-BaselineOfIDE>>groups: spec  [
+{ #category : #baseline }
+BaselineOfIDE >> groups: spec [ 
     
 spec group: 'Mandatory-Group' with: #(
 	'FuelTools-Debugger'	"required by GT-Debugger HudsonBuildTools20"
@@ -885,25 +875,18 @@ spec group: #default with: #(
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:05'
-}
-BaselineOfIDE>>loadIceberg [
-
+{ #category : #actions }
+BaselineOfIDE >> loadIceberg [
 	Metacello new
 		baseline: 'Iceberg';
-		repository: 'github://pharo-vcs/iceberg:v0.5.7';
+		repository: 'github://pharo-vcs/iceberg:v0.5.8';
 		load.
 	(Smalltalk classNamed: #Iceberg) enableMetacelloIntegration: true.
 
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:05'
-}
-BaselineOfIDE>>postload: loader package: packageSpec [
+{ #category : #actions }
+BaselineOfIDE >> postload: loader package: packageSpec [
 
 	| initializersEnabled repo gofer |
 

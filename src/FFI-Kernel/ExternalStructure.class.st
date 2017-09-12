@@ -15,24 +15,17 @@ Class {
 	#classInstVars : [
 		'compiledSpec'
 	],
-	#category : #FFI-Kernel,
-	#timestamp : '<historical>'
+	#category : #FFI-Kernel
 }
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>byteSize [
+{ #category : #'field definition' }
+ExternalStructure class >> byteSize [
 	"Return the size in bytes of this structure."
 	^self compiledSpec first bitAnd: FFIStructSizeMask
 ]
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>compileAlias: spec withAccessors: aBool [
+{ #category : #'field definition' }
+ExternalStructure class >> compileAlias: spec withAccessors: aBool [
 	"Define all the fields in the receiver.
 	Return the newly compiled spec."
 	| fieldName fieldType isPointerField externalType |
@@ -59,42 +52,30 @@ ExternalStructure class>>compileAlias: spec withAccessors: aBool [
 	^compiledSpec
 ]
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>compileAllFields [
+{ #category : #'field definition' }
+ExternalStructure class >> compileAllFields [
 	"ExternalStructure compileAllFields"
 	self withAllSubclassesDo:[:cls|
 		cls compileFields.
 	].
 ]
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>compileFields [
+{ #category : #'field definition' }
+ExternalStructure class >> compileFields [
 	"Compile the field definition of the receiver.
 	Return the newly compiled spec."
 	^self compileFields: self fields
 ]
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>compileFields: fieldSpec [
+{ #category : #'field definition' }
+ExternalStructure class >> compileFields: fieldSpec [
 	"Compile the field definition of the receiver.
 	Return the newly compiled spec."
 	^self compileFields: fieldSpec withAccessors: false.
 ]
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>compileFields: specArray withAccessors: aBool  [
+{ #category : #'field definition' }
+ExternalStructure class >> compileFields: specArray withAccessors: aBool [ 
 	"Define all the fields in the receiver. 
 	Return the newly compiled spec."
 	| byteOffset typeSpec |
@@ -143,20 +124,14 @@ ExternalStructure class>>compileFields: specArray withAccessors: aBool  [
 	^ compiledSpec
 ]
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>compiledSpec [
+{ #category : #'field definition' }
+ExternalStructure class >> compiledSpec [
 	"Return the compiled spec of the receiver"
 	^compiledSpec ifNil:[self compileFields].
 ]
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>defineAliasAccessorsFor: fieldName type: type [
+{ #category : #'field definition' }
+ExternalStructure class >> defineAliasAccessorsFor: fieldName type: type [
 	"Define read/write accessors for the given field"
 	| code refClass argName |
 	(type isVoid and:[type isPointerType not]) ifTrue:[^self].
@@ -192,11 +167,8 @@ ExternalStructure class>>defineAliasAccessorsFor: fieldName type: type [
 	self compile: code classified: 'accessing'.
 ]
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>defineFieldAccessorsFor: fieldName startingAt: byteOffset type: type [
+{ #category : #'field definition' }
+ExternalStructure class >> defineFieldAccessorsFor: fieldName startingAt: byteOffset type: type [
 	"Define read/write accessors for the given field"
 	| comment |
 	(type isVoid and: [type isPointerType not]) ifTrue:[^self].
@@ -207,65 +179,44 @@ ExternalStructure class>>defineFieldAccessorsFor: fieldName startingAt: byteOffs
 		withSelector: (fieldName, ':') asSymbol
 ]
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>defineFields [
+{ #category : #'field definition' }
+ExternalStructure class >> defineFields [
 	"Define all the fields in the receiver"
 	self defineFields: self fields.
 ]
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>defineFields: fields [
+{ #category : #'field definition' }
+ExternalStructure class >> defineFields: fields [
 	"Define all the fields in the receiver"
 	self compileFields: fields withAccessors: true.
 ]
 
-{
-	#category : #'class management',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>doneCompiling [
+{ #category : #'class management' }
+ExternalStructure class >> doneCompiling [
 	"I have been recompiled. Update any types that reference me."
 	ExternalType noticeModificationOf: self.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>externalNew [
+{ #category : #'instance creation' }
+ExternalStructure class >> externalNew [
 	"Create an instance of the receiver on the external heap"
 	^self fromHandle: (ExternalAddress allocate: self byteSize)
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>externalType [
+{ #category : #converting }
+ExternalStructure class >> externalType [
 	"Return an external type describing the receiver as a structure"
 	^ExternalType structTypeNamed: self name
 ]
 
-{
-	#category : #'field definition',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>fields [
+{ #category : #'field definition' }
+ExternalStructure class >> fields [
 	"Return the fields defining the receiver"
 	^#()
 ]
 
-{
-	#category : #'class management',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>fileOutInitializerOn: aFileStream [
+{ #category : #'class management' }
+ExternalStructure class >> fileOutInitializerOn: aFileStream [
 	super fileOutInitializerOn: aFileStream.
 	aFileStream cr.
 	aFileStream cr.
@@ -273,11 +224,8 @@ ExternalStructure class>>fileOutInitializerOn: aFileStream [
 	aFileStream cr.
 ]
 
-{
-	#category : #'class management',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>fileOutOn: aFileStream moveSource: moveSource toFile: fileIndex initializing: aBool [
+{ #category : #'class management' }
+ExternalStructure class >> fileOutOn: aFileStream moveSource: moveSource toFile: fileIndex initializing: aBool [
 	super fileOutOn: aFileStream
 		moveSource: moveSource
 		toFile: fileIndex
@@ -289,19 +237,13 @@ ExternalStructure class>>fileOutOn: aFileStream moveSource: moveSource toFile: f
 		aFileStream cr]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>fromHandle: aHandle [
+{ #category : #'instance creation' }
+ExternalStructure class >> fromHandle: aHandle [
 	^self basicNew setHandle: aHandle
 ]
 
-{
-	#category : #compiling,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>maybeCompileAccessor: aString withSelector: selector [
+{ #category : #compiling }
+ExternalStructure class >> maybeCompileAccessor: aString withSelector: selector [
 	(self compiledMethodAt: selector ifAbsent: []) ifNotNil:
 		[:existingMethod|
 		existingMethod getSourceFromFile asString = aString ifTrue:
@@ -309,19 +251,13 @@ ExternalStructure class>>maybeCompileAccessor: aString withSelector: selector [
 	self compile: aString classified: #accessing
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>new [
+{ #category : #'instance creation' }
+ExternalStructure class >> new [
 	^self fromHandle: (ByteArray new: self byteSize)
 ]
 
-{
-	#category : #'class management',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>obsolete [
+{ #category : #'class management' }
+ExternalStructure class >> obsolete [
 	"The receiver is becoming obsolete. 
 	NOTE: You if you remove the whole class category at once, you cannot
 	assume that the ExternalType class is still present."
@@ -330,51 +266,36 @@ ExternalStructure class>>obsolete [
 	^ super obsolete
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>pointerSize [
+{ #category : #accessing }
+ExternalStructure class >> pointerSize [
 	"Answer the size of pointers for this class.  By default answer nil.
 	 Subclasses that contain pointers must define the size of a pointer if the code is to operate on 64-bit and 32-bit platforms.
 	 Currently we have no way of converting a type between 32- and 64- bit versions beyond recompiling it."
 	^nil
 ]
 
-{
-	#category : #'class management',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>rename: aString [
+{ #category : #'class management' }
+ExternalStructure class >> rename: aString [
 	| oldName |
 	oldName := name.
 	super rename: aString.
 	oldName = name ifFalse:[ExternalType noticeRenamingOf: self from: oldName to: name].
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure class>>typedef [
+{ #category : #converting }
+ExternalStructure class >> typedef [
 	^self externalType typedef
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure>>free [
+{ #category : #initialize-release }
+ExternalStructure >> free [
 	"Free the handle pointed to by the receiver"
 	(handle ~~ nil and:[handle isExternalAddress]) ifTrue:[handle free].
 	handle := nil.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ExternalStructure>>longPrintOn: aStream  [
+{ #category : #printing }
+ExternalStructure >> longPrintOn: aStream [ 
 	"Append to the argument, aStream, the names and values of all the record's variables."
 	| fields |
 	fields := self class fields.

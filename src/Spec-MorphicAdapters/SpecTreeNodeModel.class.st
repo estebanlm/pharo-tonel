@@ -11,23 +11,16 @@ Class {
 		'hasContents',
 		'childrenItemsBlock'
 	],
-	#category : #Spec-MorphicAdapters-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters-Support
 }
 
-{
-	#category : #compatibility,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>bindKeyCombination: aShortcut toAction: aBlock [
+{ #category : #compatibility }
+SpecTreeNodeModel >> bindKeyCombination: aShortcut toAction: aBlock [
 	"Do nothing"
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>childNodeFromItem: anItem [
+{ #category : #building }
+SpecTreeNodeModel >> childNodeFromItem: anItem [
 
 	^ (anItem
 		container: self model;
@@ -36,134 +29,89 @@ SpecTreeNodeModel>>childNodeFromItem: anItem [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>childrenItems [
+{ #category : #accessing }
+SpecTreeNodeModel >> childrenItems [
 	^ self model autoRefreshOnExpand
 		ifTrue: [ childrenItemsBlock value ]
 		ifFalse: [ childrenItems ifNil: [ childrenItems := childrenItemsBlock value ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>childrenItems: aCollection [
+{ #category : #accessing }
+SpecTreeNodeModel >> childrenItems: aCollection [
 	childrenItems := aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>childrenItemsBlock [
+{ #category : #accessing }
+SpecTreeNodeModel >> childrenItemsBlock [
 	^ childrenItemsBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>childrenItemsBlock: aBlock [
+{ #category : #accessing }
+SpecTreeNodeModel >> childrenItemsBlock: aBlock [
 	childrenItemsBlock := aBlock
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>content [
+{ #category : #protocol }
+SpecTreeNodeModel >> content [
 	^ self nodeModel content
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>contents [
+{ #category : #accessing }
+SpecTreeNodeModel >> contents [
 	^ self childrenItems collect: [ :child | self childNodeFromItem: child ]
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>hasContentToShow [
+{ #category : #protocol }
+SpecTreeNodeModel >> hasContentToShow [
 
 	^ self nodeModel hasContentToShow
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>hasContents [
+{ #category : #building }
+SpecTreeNodeModel >> hasContents [
 	hasContents isBlock
 		ifTrue: [ ^ hasContents value ].
 	^ self childrenItems notEmpty
 ]
 
-{
-	#category : #building,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>hasContents: aBlock [
+{ #category : #building }
+SpecTreeNodeModel >> hasContents: aBlock [
 
 	hasContents := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>helpText [
+{ #category : #accessing }
+SpecTreeNodeModel >> helpText [
 
 	^ nodeModel help
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>icon [
+{ #category : #accessing }
+SpecTreeNodeModel >> icon [
 
 	^ icon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>icon: anIcon [
+{ #category : #accessing }
+SpecTreeNodeModel >> icon: anIcon [
 
 	icon := anIcon
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>isExpanded [
+{ #category : #protocol }
+SpecTreeNodeModel >> isExpanded [
 
 	^ self nodeModel isExpanded
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>isExpanded: aBoolean [
+{ #category : #protocol }
+SpecTreeNodeModel >> isExpanded: aBoolean [
 
 	self nodeModel isExpanded: aBoolean
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>lastClicked: aBoolean [
+{ #category : #protocol }
+SpecTreeNodeModel >> lastClicked: aBoolean [
 
 	self nodeModel lastClicked: aBoolean.
 	aBoolean
@@ -171,54 +119,36 @@ SpecTreeNodeModel>>lastClicked: aBoolean [
 		ifFalse: [ self model highlightedItem: nil ].
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>mouseDown: event [
+{ #category : #events }
+SpecTreeNodeModel >> mouseDown: event [
 
 	self nodeModel mouseDownAction cull: event
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>nodeModel [
+{ #category : #accessing }
+SpecTreeNodeModel >> nodeModel [
 	^ nodeModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>nodeModel: anObject [
+{ #category : #accessing }
+SpecTreeNodeModel >> nodeModel: anObject [
 	nodeModel := anObject
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>selected [
+{ #category : #protocol }
+SpecTreeNodeModel >> selected [
 
 	^ self nodeModel selected
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>selected: aBoolean [
+{ #category : #protocol }
+SpecTreeNodeModel >> selected: aBoolean [
 
 	self nodeModel selected: aBoolean
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SpecTreeNodeModel>>setChildren: aBlock [
+{ #category : #accessing }
+SpecTreeNodeModel >> setChildren: aBlock [
 	"Store a aBlock which will return the children when evaluated."
 
 	self childrenItemsBlock: aBlock

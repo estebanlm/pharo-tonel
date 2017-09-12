@@ -27,33 +27,23 @@ Class {
 	#instVars : [
 		'columnToSortBy'
 	],
-	#category : #Glamour-FastTable-Model,
-	#timestamp : 'AndreiChis 2/6/2017 14:44'
+	#category : #Glamour-FastTable-Model
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeTableDataSource>>actionColumn: column [
+{ #category : #accessing }
+GLMFastTreeTableDataSource >> actionColumn: column [
 	"If columns has actions associated, execute them"
 	column execute.
 	self tableRefresh
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeTableDataSource>>dataFromPresentationItem: anItem [
+{ #category : #accessing }
+GLMFastTreeTableDataSource >> dataFromPresentationItem: anItem [
 	^ anItem data
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeTableDataSource>>headerColumn: column [
+{ #category : #accessing }
+GLMFastTreeTableDataSource >> headerColumn: column [
 	column id ifNil: [ ^ nil ].
 	^ SimpleButtonMorph new
 		layoutPolicy: RowLayout new; 
@@ -68,32 +58,23 @@ GLMFastTreeTableDataSource>>headerColumn: column [
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeTableDataSource>>rowMorphElementsForFirstColumn: aColumn item: anItem in: rowElements [
+{ #category : #accessing }
+GLMFastTreeTableDataSource >> rowMorphElementsForFirstColumn: aColumn item: anItem in: rowElements [
 
 	anItem depth timesRepeat: [ rowElements add: self class emptyMorph ].
 	rowElements add: (self buttonFor: anItem).
 	(self iconFor: anItem data) ifNotNil: [ :icon | rowElements add: icon asMorph ].
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeTableDataSource>>sortBlock [
+{ #category : #sorting }
+GLMFastTreeTableDataSource >> sortBlock [
 	^  columnToSortBy sortBlock ifNil: [ |defaultSortBlock|
 			defaultSortBlock := columnToSortBy defaultSortBlockForPresentation: self glamourPresentation.
 		 	[ :x :y | defaultSortBlock value: x data value: y data ] ]
 ]
 
-{
-	#category : #sorting,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFastTreeTableDataSource>>sortByColumn: aGlamourColumn [
+{ #category : #sorting }
+GLMFastTreeTableDataSource >> sortByColumn: aGlamourColumn [
 	columnToSortBy := (columnToSortBy == aGlamourColumn 
 		ifTrue: [ nil ]
 		ifFalse: [ aGlamourColumn ]).

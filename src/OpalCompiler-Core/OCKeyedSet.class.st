@@ -7,25 +7,18 @@ Class {
 	#instVars : [
 		'keyBlock'
 	],
-	#category : #OpalCompiler-Core-Extras,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-Extras
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet class>>keyBlock: oneArgBlock [
+{ #category : #'instance creation' }
+OCKeyedSet class >> keyBlock: oneArgBlock [
  	"Create a new KeySet whose way to access an element's key is by executing oneArgBlock on the element"
  
  	^ self new keyBlock: oneArgBlock
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>add: newObject [
+{ #category : #adding }
+OCKeyedSet >> add: newObject [
 	"Include newObject as one of the receiver's elements, but only if
 	not already present. Answer newObject."
 
@@ -36,11 +29,8 @@ OCKeyedSet>>add: newObject [
 	^ newObject
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>addAll: aCollection  [
+{ #category : #adding }
+OCKeyedSet >> addAll: aCollection [ 
  	"Include all the elements of aCollection as the receiver's elements"
  
  	(aCollection respondsTo: #associationsDo:)
@@ -49,21 +39,15 @@ OCKeyedSet>>addAll: aCollection  [
  	^ aCollection
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>at: key  [
+{ #category : #accessing }
+OCKeyedSet >> at: key [ 
  	"Answer the value associated with the key."
  
  	^ self at: key ifAbsent: [self errorKeyNotFound]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>at: key ifAbsent: aBlock  [
+{ #category : #accessing }
+OCKeyedSet >> at: key ifAbsent: aBlock [ 
  	"Answer the value associated with the key or, if key isn't found,
  	answer the result of evaluating aBlock."
  
@@ -73,22 +57,16 @@ OCKeyedSet>>at: key ifAbsent: aBlock  [
  	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>at: key ifAbsentPut: aBlock  [
+{ #category : #accessing }
+OCKeyedSet >> at: key ifAbsentPut: aBlock [ 
  	"Answer the value associated with the key or, if key isn't found,
  	add the result of evaluating aBlock to self"
  
  	^ self at: key ifAbsent: [self add: aBlock value]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>at: key ifPresent: aBlock [
+{ #category : #accessing }
+OCKeyedSet >> at: key ifPresent: aBlock [
  	"Lookup the given key in the receiver. If it is present, answer the value of evaluating the given block with the value associated with the key. Otherwise, answer nil."
  
  	| v |
@@ -97,11 +75,8 @@ OCKeyedSet>>at: key ifPresent: aBlock [
  
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>collect: aBlock  [
+{ #category : #copying }
+OCKeyedSet >> collect: aBlock [ 
 	"OCKeyedSet>>collect: must return an instance of Set and not an instance of his own class"
 
 	| newSet |
@@ -110,29 +85,20 @@ OCKeyedSet>>collect: aBlock  [
 	^ newSet
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>copyEmpty [
+{ #category : #copying }
+OCKeyedSet >> copyEmpty [
 	^super copyEmpty
 		keyBlock: keyBlock copy
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>errorKeyNotFound [
+{ #category : #private }
+OCKeyedSet >> errorKeyNotFound [
  
  	self error: 'key not found'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>fixCollisionsFrom: start [
+{ #category : #private }
+OCKeyedSet >> fixCollisionsFrom: start [
 	"The element at start has been removed and replaced by nil.
 	This method moves forward from there, relocating any entries
 	that had been placed below due to collisions with this one"
@@ -145,57 +111,39 @@ OCKeyedSet>>fixCollisionsFrom: start [
 			array swap: index with: newIndex ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>includes: anObject [
+{ #category : #testing }
+OCKeyedSet >> includes: anObject [
 	^ (array at: (self findElementOrNil: (keyBlock value: anObject))) notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>includesKey: key [
+{ #category : #testing }
+OCKeyedSet >> includesKey: key [
 	^ (array at: (self findElementOrNil: key)) notNil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>initialize: n [
+{ #category : #initialization }
+OCKeyedSet >> initialize: n [
  	super initialize: n.
  	keyBlock := [:element | element key].
  
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>isHealthy [
+{ #category : #testing }
+OCKeyedSet >> isHealthy [
 	"Opal developers plan to remove this class so for the moment we just return true/"
 
 	^ true
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>keyBlock: oneArgBlock [
+{ #category : #initialize }
+OCKeyedSet >> keyBlock: oneArgBlock [
  	"When evaluated return the key of the argument which will be an element of the set"
  
  	keyBlock := oneArgBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>keys [
+{ #category : #accessing }
+OCKeyedSet >> keys [
  
  	| keys |
  	keys := Set new.
@@ -203,20 +151,14 @@ OCKeyedSet>>keys [
  	^ keys
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>keysDo: block [
+{ #category : #accessing }
+OCKeyedSet >> keysDo: block [
  
  	self do: [:item | block value: (keyBlock value: item)]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>like: anObject [
+{ #category : #adding }
+OCKeyedSet >> like: anObject [
 	"Answer an object in the receiver that is equal to anObject,
 	nil if no such object is found. Relies heavily on hash properties"
 
@@ -227,11 +169,8 @@ OCKeyedSet>>like: anObject [
 		ifTrue: [nil]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>member: newObject [
+{ #category : #adding }
+OCKeyedSet >> member: newObject [
  	"Include newObject as one of the receiver's elements, if already exists just return it"
  
  	| index |
@@ -242,20 +181,14 @@ OCKeyedSet>>member: newObject [
  	^ newObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>noCheckAdd: anObject [
+{ #category : #private }
+OCKeyedSet >> noCheckAdd: anObject [
  	array at: (self findElementOrNil: (keyBlock value: anObject)) put: anObject.
  	tally := tally + 1
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>rehash [
+{ #category : #private }
+OCKeyedSet >> rehash [
  	| newSelf |
  	newSelf := self species new: self size.
  	newSelf keyBlock: keyBlock.
@@ -263,11 +196,8 @@ OCKeyedSet>>rehash [
  	array := newSelf array
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>remove: oldObject ifAbsent: aBlock [
+{ #category : #removing }
+OCKeyedSet >> remove: oldObject ifAbsent: aBlock [
  
  	| index |
  	index := self findElementOrNil: (keyBlock value: oldObject).
@@ -278,11 +208,8 @@ OCKeyedSet>>remove: oldObject ifAbsent: aBlock [
  	^ oldObject
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>removeAll [
+{ #category : #removing }
+OCKeyedSet >> removeAll [
 	"See super."
 	
 	| tmp |
@@ -291,20 +218,14 @@ OCKeyedSet>>removeAll [
 	keyBlock := tmp
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>removeKey: key  [
+{ #category : #removing }
+OCKeyedSet >> removeKey: key [ 
  
  	^ self removeKey: key ifAbsent: [self errorKeyNotFound]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>removeKey: key ifAbsent: aBlock [
+{ #category : #removing }
+OCKeyedSet >> removeKey: key ifAbsent: aBlock [
  
  	| index obj |
  	index := self findElementOrNil: key.
@@ -315,11 +236,8 @@ OCKeyedSet>>removeKey: key ifAbsent: aBlock [
  	^ obj
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-OCKeyedSet>>scanFor: anObject [
+{ #category : #private }
+OCKeyedSet >> scanFor: anObject [
 	"Scan the key array for the first slot containing either a nil (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or zero if no slot is found. This method will be overridden in various subclasses that have different interpretations for matching elements."
 	| element start finish |
 	finish := array size.

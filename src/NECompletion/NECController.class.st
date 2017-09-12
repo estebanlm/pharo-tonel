@@ -15,31 +15,21 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #NECompletion-View,
-	#timestamp : '<historical>'
+	#category : #NECompletion-View
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController class>>allowModel: aModel  [
+{ #category : #testing }
+NECController class >> allowModel: aModel [ 
 	^NECPreferences enabled and: [ aModel isCodeCompletionAllowed ]
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController class>>cleanUp [
+{ #category : #cleanup }
+NECController class >> cleanUp [
 	self reset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController class>>codeCompletionAround: aBlock textMorph: aTextMorph keyStroke: evt [
+{ #category : #accessing }
+NECController class >> codeCompletionAround: aBlock textMorph: aTextMorph keyStroke: evt [
 	"Inserts code completion if allowed in this morph"
 	
 	| editor stringHolder completionAllowed controller |
@@ -60,113 +50,74 @@ NECController class>>codeCompletionAround: aBlock textMorph: aTextMorph keyStrok
 		ifTrue: [ controller handleKeystrokeAfter: evt editor: editor ]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController class>>initialize  [
+{ #category : #'class initialization' }
+NECController class >> initialize [ 
 	self register
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController class>>register [
+{ #category : #'tools registry' }
+NECController class >> register [
 	self registerToolsOn: Smalltalk tools.
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController class>>registerToolsOn: registry [
+{ #category : #'tools registry' }
+NECController class >> registerToolsOn: registry [
 	"self registerToolsOn: Smalltalk tools" 
 	registry register: self as: #codeCompletion
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController class>>reset [
+{ #category : #'instance creation' }
+NECController class >> reset [
 	uniqueInstance := nil
 	
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController class>>uniqueInstance [
+{ #category : #'instance creation' }
+NECController class >> uniqueInstance [
 	^uniqueInstance ifNil: [ uniqueInstance := self basicNew initialize ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>additionals [
+{ #category : #accessing }
+NECController >> additionals [
 	^ nil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>captureNavigationKeys [
+{ #category : #testing }
+NECController >> captureNavigationKeys [
 	^ NECPreferences captureNavigationKeys
 ]
 
-{
-	#category : #'menu morph',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>closeMenu [
+{ #category : #'menu morph' }
+NECController >> closeMenu [
 	self stopCompletionDelay.
 	menuMorph
 		ifNotNil: [ menuMorph delete ].
 	menuMorph := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>context [
+{ #category : #accessing }
+NECController >> context [
 	^context
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>contextClass [
+{ #category : #private }
+NECController >> contextClass [
 	^NECContext
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>editor [
+{ #category : #accessing }
+NECController >> editor [
 	^ editor
 ]
 
-{
-	#category : #'type guessing',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>guessTypeFor: aString [
+{ #category : #'type guessing' }
+NECController >> guessTypeFor: aString [
 	^ model isNil ifFalse: [ model guessTypeForName: aString ]
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>handleKeystrokeAfter: aKeyboardEvent editor: aParagraphEditor  [
+{ #category : #keyboard }
+NECController >> handleKeystrokeAfter: aKeyboardEvent editor: aParagraphEditor [ 
 	(aParagraphEditor isNil or: [ self isMenuOpen not ])
 		ifTrue: [ ^ self ].
 		
@@ -180,11 +131,8 @@ NECController>>handleKeystrokeAfter: aKeyboardEvent editor: aParagraphEditor  [
 		ifTrue: [ ^self closeMenu ]
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>handleKeystrokeBefore: aKeyboardEvent editor: anEditor [
+{ #category : #keyboard }
+NECController >> handleKeystrokeBefore: aKeyboardEvent editor: anEditor [
 	"I return a boolean. 
 	true when I have handled the event and no futher processing is needed by the caller."
 
@@ -264,11 +212,8 @@ NECController>>handleKeystrokeBefore: aKeyboardEvent editor: anEditor [
 	^ false
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>handleKeystrokeWithoutMenu: aKeyboardEvent [
+{ #category : #keyboard }
+NECController >> handleKeystrokeWithoutMenu: aKeyboardEvent [
 	
 	self editor atCompletionPosition ifFalse: [ 
 		^ (self smartInputWithEvent: aKeyboardEvent ) notNil ].	
@@ -291,36 +236,24 @@ NECController>>handleKeystrokeWithoutMenu: aKeyboardEvent [
 	^ false
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>invalidateEditorMorph [
+{ #category : #keyboard }
+NECController >> invalidateEditorMorph [
 		editor morph invalidRect: editor morph bounds.
 
 ]
 
-{
-	#category : #'menu morph',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>isMenuEmpty [
+{ #category : #'menu morph' }
+NECController >> isMenuEmpty [
 	^menuMorph isNil or: [ self context model notNil and: [ self context model isEmpty ] ]
 ]
 
-{
-	#category : #'menu morph',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>isMenuOpen [
+{ #category : #'menu morph' }
+NECController >> isMenuOpen [
 	^menuMorph notNil
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>leftArrow [
+{ #category : #keyboard }
+NECController >> leftArrow [
 	
 	(menuMorph hideDetail)	
 			ifFalse: [ 
@@ -329,37 +262,25 @@ NECController>>leftArrow [
 	^ true
 ]
 
-{
-	#category : #'menu morph',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>menuClosed [
+{ #category : #'menu morph' }
+NECController >> menuClosed [
 	NECSymbols resetCachedSymbols.
 	menuMorph := nil.
 	context := nil.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>menuMorphClass [
+{ #category : #private }
+NECController >> menuMorphClass [
 	^ NECMenuMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>model [
+{ #category : #accessing }
+NECController >> model [
 	^model
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>newSmartCharacterInsertionStringForLeft: left right: right [
+{ #category : #keyboard }
+NECController >> newSmartCharacterInsertionStringForLeft: left right: right [
 	((NECPreferences smartCharactersWithDoubleSpace includes: left) or: [
 	(NECPreferences smartCharactersWithDoubleSpace includes: right)])
 	ifTrue: [ 
@@ -373,19 +294,13 @@ NECController>>newSmartCharacterInsertionStringForLeft: left right: right [
 	^ String with: left with: right
 ]
 
-{
-	#category : #'menu morph',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>openMenu [
+{ #category : #'menu morph' }
+NECController >> openMenu [
 	^ self openMenuFor: editor.
 ]
 
-{
-	#category : #'menu morph',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>openMenuFor: aParagraphEditor  [
+{ #category : #'menu morph' }
+NECController >> openMenuFor: aParagraphEditor [ 
 	| theMenu |
 	self stopCompletionDelay.
 	
@@ -408,11 +323,8 @@ NECController>>openMenuFor: aParagraphEditor  [
 		ifTrue: [ ^self closeMenu ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>resetCompletionDelay [
+{ #category : #private }
+NECController >> resetCompletionDelay [
 	"Open the popup after 100ms and only after certain characters"
 	self stopCompletionDelay.
 	self isMenuOpen ifTrue: [ ^ self ].
@@ -426,11 +338,8 @@ NECController>>resetCompletionDelay [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>setEditor: anObject [
+{ #category : #private }
+NECController >> setEditor: anObject [
 	editor ifNotNil: [  
 		"make sure we unsubscribe from old editor"
 		editor morph ifNotNil: [:m | m announcer unsubscribe: self] ].
@@ -438,19 +347,13 @@ NECController>>setEditor: anObject [
 	editor morph onAnnouncement: MorphLostFocus send: #closeMenu to: self.
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>setModel: aStringHolder  [
+{ #category : #initialize-release }
+NECController >> setModel: aStringHolder [ 
 	model := aStringHolder
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>smartBackspace [
+{ #category : #keyboard }
+NECController >> smartBackspace [
 	| opposite currentText currentEditor smartCharacter |
 	
 	currentEditor := editor.
@@ -484,11 +387,8 @@ NECController>>smartBackspace [
 	^ true
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>smartCharacterWithEvent: anEvent [
+{ #category : #keyboard }
+NECController >> smartCharacterWithEvent: anEvent [
 	"char is extracted from anEvent, anEvent is passed because we may need it.
 	We may remove char if this is not costly."
 
@@ -529,27 +429,18 @@ NECController>>smartCharacterWithEvent: anEvent [
 	^ true
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>smartCharacters [
+{ #category : #settings }
+NECController >> smartCharacters [
 	^ NECPreferences smartCharacters 
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>smartCharactersMapping [
+{ #category : #settings }
+NECController >> smartCharactersMapping [
 	^ NECPreferences smartCharactersMapping 
 ]
 
-{
-	#category : #keyboard,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>smartInputWithEvent: anEvent [
+{ #category : #keyboard }
+NECController >> smartInputWithEvent: anEvent [
 	"aCharacter is extracted from anEvent, anEvent is passed because we may need it.
 	We may remove aCharacter if this is not costly."
 	
@@ -563,11 +454,8 @@ NECController>>smartInputWithEvent: anEvent [
 	^ self smartCharacterWithEvent: anEvent
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>smartInverseMapping [
+{ #category : #settings }
+NECController >> smartInverseMapping [
 	^ inverseMapping ifNil: [ 
 		inverseMapping := Dictionary new.
 		self smartCharactersMapping
@@ -575,11 +463,8 @@ NECController>>smartInverseMapping [
 		inverseMapping ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>smartNeedExtraRemoveIn: currentText for: opposite [
+{ #category : #private }
+NECController >> smartNeedExtraRemoveIn: currentText for: opposite [
 	"Test if smart remove need to remove an extra character when the smart character 
 	 is equal to its opposite"
 	
@@ -588,11 +473,8 @@ NECController>>smartNeedExtraRemoveIn: currentText for: opposite [
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>smartNeedExtraRemoveIn: currentText for: smartCharacter opposite: opposite at: position [
+{ #category : #private }
+NECController >> smartNeedExtraRemoveIn: currentText for: smartCharacter opposite: opposite at: position [
 	"Test if we need to remove an extra character when removing a smart character (any kind of smart character)"
 	
 	smartCharacter = opposite
@@ -609,11 +491,8 @@ NECController>>smartNeedExtraRemoveIn: currentText for: smartCharacter opposite:
 	^ true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>smartNeedExtraRemovePairedIn: currentText for: smartCharacter opposite: opposite at: position [
+{ #category : #private }
+NECController >> smartNeedExtraRemovePairedIn: currentText for: smartCharacter opposite: opposite at: position [
 	"Test if we need to remove an extra character when removed a paired smart character.
 	 A paired smart character is any smart character who has an opposite who is diferent to itself: [], ()"
 	
@@ -640,11 +519,8 @@ NECController>>smartNeedExtraRemovePairedIn: currentText for: smartCharacter opp
 	^true
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>smartStartIndexIn: currentText for: smartCharacter  opposite: opposite  at: position [
+{ #category : #private }
+NECController >> smartStartIndexIn: currentText for: smartCharacter  opposite: opposite  at: position [
 	
 	(position - 1) to: 1 by: -1 do: [ :index | | char | 
 		char := currentText at: index.
@@ -654,19 +530,13 @@ NECController>>smartStartIndexIn: currentText for: smartCharacter  opposite: opp
 	^0
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>stopCompletionDelay [
+{ #category : #private }
+NECController >> stopCompletionDelay [
 	
 	completionDelay ifNotNil: [ completionDelay terminate ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-NECController>>workspace [
+{ #category : #accessing }
+NECController >> workspace [
 	^nil
 ]

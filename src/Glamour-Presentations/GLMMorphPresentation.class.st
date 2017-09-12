@@ -7,42 +7,29 @@ Class {
 	#instVars : [
 		'morphBuilder'
 	],
-	#category : #Glamour-Presentations,
-	#timestamp : 'TudorGirba 2/4/2011 21:13'
+	#category : #Glamour-Presentations
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMMorphPresentation>>initialize [
+{ #category : #initialization }
+GLMMorphPresentation >> initialize [
 	super initialize.
 	morphBuilder := [ :thisPresentation :theDisplayValue | theDisplayValue asMorph ]
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMMorphPresentation>>morph [
+{ #category : #rendering }
+GLMMorphPresentation >> morph [
 	^ morphBuilder glamourValue: 
 			(self asGlamorousMultiValue, 
 			self displayValue asGlamorousMultiValue)
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMMorphPresentation>>morph: aBlock [
+{ #category : #rendering }
+GLMMorphPresentation >> morph: aBlock [
 	morphBuilder := aBlock
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMMorphPresentation>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMMorphPresentation >> renderGlamorouslyOn: aRenderer [ 
 	self registerAnnouncements.
 	^ aRenderer renderMorphPresentation: self
 ]

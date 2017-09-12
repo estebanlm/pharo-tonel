@@ -10,31 +10,21 @@ Class {
 		'weightValue',
 		'slantValue'
 	],
-	#category : #System-Settings-Persistence-Ston-StoredSettings,
-	#timestamp : 'JurajKubelka 10/1/2015 14:39'
+	#category : #System-Settings-Persistence-Ston-StoredSettings
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LogicalFontStoredSetting>>fallbackFamilyNames [
+{ #category : #accessing }
+LogicalFontStoredSetting >> fallbackFamilyNames [
 	^ fallbackFamilyNames
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LogicalFontStoredSetting>>fallbackFamilyNames: aCollectionOrNil  [
+{ #category : #accessing }
+LogicalFontStoredSetting >> fallbackFamilyNames: aCollectionOrNil [ 
 	fallbackFamilyNames := aCollectionOrNil 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LogicalFontStoredSetting>>realValue [
+{ #category : #accessing }
+LogicalFontStoredSetting >> realValue [
 	^ (self class environment at: self fontClassName)
 				familyName: self familyName 
 				fallbackFamilyNames: self fallbackFamilyNames 
@@ -44,50 +34,32 @@ LogicalFontStoredSetting>>realValue [
 				slantValue: self slantValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LogicalFontStoredSetting>>slantValue [
+{ #category : #accessing }
+LogicalFontStoredSetting >> slantValue [
 	^ slantValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LogicalFontStoredSetting>>slantValue: anInteger  [
+{ #category : #accessing }
+LogicalFontStoredSetting >> slantValue: anInteger [ 
 	slantValue := anInteger 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LogicalFontStoredSetting>>stretchValue [
+{ #category : #accessing }
+LogicalFontStoredSetting >> stretchValue [
 	^ stretchValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LogicalFontStoredSetting>>stretchValue: anInteger  [
+{ #category : #accessing }
+LogicalFontStoredSetting >> stretchValue: anInteger [ 
 	stretchValue := anInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LogicalFontStoredSetting>>weightValue [
+{ #category : #accessing }
+LogicalFontStoredSetting >> weightValue [
 	^ weightValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LogicalFontStoredSetting>>weightValue: anInteger  [
+{ #category : #accessing }
+LogicalFontStoredSetting >> weightValue: anInteger [ 
 	weightValue := anInteger 
 ]

@@ -5,24 +5,17 @@ This announcement is emited when we add a method to a class or a trait using:
 Class {
 	#name : #MethodAdded,
 	#superclass : #MethodAnnouncement,
-	#category : #System-Announcements-System-Methods,
-	#timestamp : 'cyrilledelaunay 1/18/2011 13:06'
+	#category : #System-Announcements-System-Methods
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodAdded class>>method: aCompiledMethod [
+{ #category : #'instance creation' }
+MethodAdded class >> method: aCompiledMethod [
 	^self new
 		method: aCompiledMethod;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-MethodAdded>>methodAdded [
+{ #category : #accessing }
+MethodAdded >> methodAdded [
 	^ method
 ]

@@ -1,17 +1,10 @@
-"
-
-"
 Class {
 	#name : #DynamicWidgetChangeTest,
 	#superclass : #SpecTestCase,
-	#category : #Spec-Tests-Examples,
-	#timestamp : ''
+	#category : #Spec-Tests-Examples
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:46'
-}
-DynamicWidgetChangeTest>>classToTest [
+{ #category : #running }
+DynamicWidgetChangeTest >> classToTest [
 	^ DynamicWidgetChange
 ]

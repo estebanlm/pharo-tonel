@@ -19,15 +19,11 @@ Class {
 		'borderWidth',
 		'borderColor'
 	],
-	#category : #Morphic-Core-Kernel,
-	#timestamp : 'kfr 10/27/2003 11:17'
+	#category : #Morphic-Core-Kernel
 }
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>acquireBorderWidth: aBorderWidth [
+{ #category : #geometry }
+BorderedMorph >> acquireBorderWidth: aBorderWidth [
 	"Gracefully acquire the new border width, keeping the interior area intact and not seeming to shift"
 
 	| delta |
@@ -37,11 +33,8 @@ BorderedMorph>>acquireBorderWidth: aBorderWidth [
 	self layoutChanged
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>addBorderStyleMenuItems: aMenu hand: aHandMorph [
+{ #category : #menu }
+BorderedMorph >> addBorderStyleMenuItems: aMenu hand: aHandMorph [
 	"Add border-style menu items"
 
 	| subMenu |
@@ -57,35 +50,23 @@ BorderedMorph>>addBorderStyleMenuItems: aMenu hand: aHandMorph [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>basicBorderColor: aColor  [
+{ #category : #private }
+BorderedMorph >> basicBorderColor: aColor [ 
 	borderColor := aColor
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>basicBorderWidth: aNumber  [
+{ #category : #private }
+BorderedMorph >> basicBorderWidth: aNumber [ 
 	borderWidth := aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>borderColor [
+{ #category : #accessing }
+BorderedMorph >> borderColor [
 	^ borderColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>borderColor: colorOrSymbolOrNil [
+{ #category : #accessing }
+BorderedMorph >> borderColor: colorOrSymbolOrNil [
 	self doesBevels ifFalse:[
 		colorOrSymbolOrNil isColor ifFalse:[^self]].
 	borderColor = colorOrSymbolOrNil ifFalse: [
@@ -94,37 +75,25 @@ BorderedMorph>>borderColor: colorOrSymbolOrNil [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>borderInitialize [
+{ #category : #initialization }
+BorderedMorph >> borderInitialize [
 	"initialize the receiver state related to border"
 	borderColor:= self defaultBorderColor.
 	borderWidth := self defaultBorderWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>borderInset [
+{ #category : #accessing }
+BorderedMorph >> borderInset [
 	self borderColor: #inset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>borderRaised [
+{ #category : #accessing }
+BorderedMorph >> borderRaised [
 	self borderColor: #raised
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>borderStyle [
+{ #category : #accessing }
+BorderedMorph >> borderStyle [
 	"Work around the borderWidth/borderColor pair"
 
 	| style |
@@ -147,11 +116,8 @@ BorderedMorph>>borderStyle [
 	^style trackColorFrom: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>borderStyle: aBorderStyle  [
+{ #category : #accessing }
+BorderedMorph >> borderStyle: aBorderStyle [ 
 	"Work around the borderWidth/borderColor pair"
 
 	aBorderStyle = self borderStyle ifTrue: [^self].
@@ -177,29 +143,20 @@ BorderedMorph>>borderStyle: aBorderStyle  [
 	self changed
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>borderWidth [
+{ #category : #accessing }
+BorderedMorph >> borderWidth [
 	^ borderWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>borderWidth: anInteger [
+{ #category : #accessing }
+BorderedMorph >> borderWidth: anInteger [
 	borderColor ifNil: [borderColor := Color black].
 	borderWidth := anInteger max: 0.
 	self changed
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>closestPointTo: aPoint [
+{ #category : #geometry }
+BorderedMorph >> closestPointTo: aPoint [
 	"account for round corners. Still has a couple of glitches at upper left and right corners"
 	| pt |
 	pt := self bounds pointNearestTo: aPoint.
@@ -211,11 +168,8 @@ BorderedMorph>>closestPointTo: aPoint [
 	^pt.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>colorForInsets [
+{ #category : #accessing }
+BorderedMorph >> colorForInsets [
 	"Return the color to be used for shading inset borders."
 	
 	self owner isSystemWindow
@@ -223,29 +177,20 @@ BorderedMorph>>colorForInsets [
 	^super colorForInsets
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>defaultBorderColor [
+{ #category : #initialization }
+BorderedMorph >> defaultBorderColor [
 	"answer the default border color/fill style for the receiver"
 	^ Color black
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>defaultBorderWidth [
+{ #category : #initialization }
+BorderedMorph >> defaultBorderWidth [
 	"answer the default border width for the receiver"
 	^ self theme borderWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>doesBevels [
+{ #category : #accessing }
+BorderedMorph >> doesBevels [
 	"To return true means that this object can show bevelled borders, and
 	therefore can accept, eg, #raised or #inset as valid borderColors.
 	Must be overridden by subclasses that do not support bevelled borders."
@@ -253,22 +198,16 @@ BorderedMorph>>doesBevels [
 	^ true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>initialize [
+{ #category : #initialization }
+BorderedMorph >> initialize [
 	"initialize the state of the receiver"
 	super initialize.
 	
 	self borderInitialize
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>isTranslucentButNotTransparent [
+{ #category : #testing }
+BorderedMorph >> isTranslucentButNotTransparent [
 	"Answer true if this any of this morph is translucent but not transparent."
 
 	(color isColor and: [color isTranslucentButNotTransparent]) ifTrue: [^ true].
@@ -277,10 +216,7 @@ BorderedMorph>>isTranslucentButNotTransparent [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-BorderedMorph>>useSquareCorners [
+{ #category : #accessing }
+BorderedMorph >> useSquareCorners [
 	self cornerStyle: #square
 ]

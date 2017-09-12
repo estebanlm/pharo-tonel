@@ -1,12 +1,7 @@
-Extension {
-	#name : #BlockClosure
-}
+Extension { #name : #BlockClosure }
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-BlockClosure>>ctxtEnsure: aBlock [
+{ #category : #'*Reflectivity' }
+BlockClosure >> ctxtEnsure: aBlock [
 	"Evaluate a termination block after evaluating the receiver, regardless of whether the receiver's evaluation completes."
 
 	<primitive: 198>
@@ -21,11 +16,8 @@ BlockClosure>>ctxtEnsure: aBlock [
 	^ returnValue
 ]
 
-{
-	#category : #'*Reflectivity',
-	#timestamp : ' 8/31/2017 07:16:26'
-}
-BlockClosure>>valueSelector [
+{ #category : #'*Reflectivity' }
+BlockClosure >> valueSelector [
 	self numArgs = 0 ifTrue: [^#value].
 	^(String streamContents: [:stream | 
 		stream nextPutAll: 'value:'.

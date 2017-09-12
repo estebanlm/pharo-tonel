@@ -13,15 +13,11 @@ MyClass class>>fileReaderServicesForFile: fullName suffix: suffix
 Class {
 	#name : #FileServices,
 	#superclass : #Object,
-	#category : #System-FileRegistry,
-	#timestamp : 'CyrilFerlicot 8/20/2015 15:33'
+	#category : #System-FileRegistry
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-FileServices class>>itemsForDirectory: aFileDirectory [
+{ #category : #accessing }
+FileServices class >> itemsForDirectory: aFileDirectory [
 	"Answer a list of services appropriate when no file is selected."
 
 	| services |
@@ -31,11 +27,8 @@ FileServices class>>itemsForDirectory: aFileDirectory [
 	^ services
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-FileServices class>>itemsForFile: fullName [
+{ #category : #accessing }
+FileServices class >> itemsForFile: fullName [
 	"Answer a list of services appropriate for a file of the given full name"
 
 	| services suffix |
@@ -54,11 +47,8 @@ FileServices class>>itemsForFile: fullName [
 	^ services
 ]
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-FileServices class>>suffixOf: aName [
+{ #category : #helper }
+FileServices class >> suffixOf: aName [
 	"Answer the file extension of the given file"
 	^ aName
 		ifNil: ['']

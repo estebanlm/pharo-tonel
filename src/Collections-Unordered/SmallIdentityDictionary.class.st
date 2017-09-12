@@ -5,22 +5,15 @@ but I check my key based on identity.
 Class {
 	#name : #SmallIdentityDictionary,
 	#superclass : #SmallDictionary,
-	#category : #Collections-Unordered,
-	#timestamp : 'sd 7/21/2009 10:12'
+	#category : #Collections-Unordered
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallIdentityDictionary>>findIndexForKey: aKey  [
+{ #category : #private }
+SmallIdentityDictionary >> findIndexForKey: aKey [ 
 	^ keys identityIndexOf: aKey
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-SmallIdentityDictionary>>setClass [
+{ #category : #private }
+SmallIdentityDictionary >> setClass [
 	^ IdentitySet
 ]

@@ -10,15 +10,11 @@ Class {
 	#superclass : #BorderedMorph,
 	#traits : 'TAbleToRotate',
 	#classTraits : 'TAbleToRotate classTrait',
-	#category : #Morphic-Base-Basic,
-	#timestamp : 'kfr 10/27/2003 10:25'
+	#category : #Morphic-Base-Basic
 }
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph class>>columnPrototype [
+{ #category : #example }
+AlignmentMorph class >> columnPrototype [
 	"Answer a prototypical column"
 	"self columnPrototype openInHand"
 	<exampleWidget>
@@ -35,71 +31,50 @@ AlignmentMorph class>>columnPrototype [
 	^ aColumn
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph class>>inAColumn: aCollectionOfMorphs [
+{ #category : #'instance creation' }
+AlignmentMorph class >> inAColumn: aCollectionOfMorphs [
 	"Answer a columnar AlignmentMorph holding the given collection"
 
 	^ self new inAColumn: aCollectionOfMorphs 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph class>>inARow: aCollectionOfMorphs [
+{ #category : #'instance creation' }
+AlignmentMorph class >> inARow: aCollectionOfMorphs [
 	"Answer a row-oriented AlignmentMorph holding the given collection"
 
 	^ self new inARow: aCollectionOfMorphs
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph class>>newColumn [
+{ #category : #'instance creation' }
+AlignmentMorph class >> newColumn [
 
 	^ self new setAsColumn
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph class>>newRow [
+{ #category : #'instance creation' }
+AlignmentMorph class >> newRow [
 
 	^ self new setAsRow
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph class>>newSpacer: aColor [
+{ #category : #'instance creation' }
+AlignmentMorph class >> newSpacer: aColor [
 	"Answer a space-filling instance of me of the given color."
 
 	^ self new setAsSpacer: aColor
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph class>>newVariableTransparentSpacer [
+{ #category : #'instance creation' }
+AlignmentMorph class >> newVariableTransparentSpacer [
 	"Answer a space-filling instance of me of the given color."
 
 	^ self new setAsSpacer: Color transparent
 
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph class>>rowPrototype [
+{ #category : #example }
+AlignmentMorph class >> rowPrototype [
 	"Answer a prototypical row"
 	"self rowPrototype openInHand"
 	<exampleWidget>
@@ -119,11 +94,8 @@ AlignmentMorph class>>rowPrototype [
 			
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph>>addAColumn: aCollectionOfMorphs [
+{ #category : #adding }
+AlignmentMorph >> addAColumn: aCollectionOfMorphs [
 
 	| col |
 	col := self class inAColumn: aCollectionOfMorphs.
@@ -131,11 +103,8 @@ AlignmentMorph>>addAColumn: aCollectionOfMorphs [
 	^col
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph>>addARow: aCollectionOfMorphs [
+{ #category : #adding }
+AlignmentMorph >> addARow: aCollectionOfMorphs [
 
 	| row |
 	row := self class inARow: aCollectionOfMorphs.
@@ -143,11 +112,8 @@ AlignmentMorph>>addARow: aCollectionOfMorphs [
 	^row
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph>>addARowCentered: aCollectionOfMorphs [
+{ #category : #adding }
+AlignmentMorph >> addARowCentered: aCollectionOfMorphs [
 
 	^(self addARow: aCollectionOfMorphs)
 		hResizing: #shrinkWrap;
@@ -155,11 +121,8 @@ AlignmentMorph>>addARowCentered: aCollectionOfMorphs [
 		cellPositioning: #leftCenter
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph>>addARowCentered: aCollectionOfMorphs cellInset: cellInsetInteger [
+{ #category : #adding }
+AlignmentMorph >> addARowCentered: aCollectionOfMorphs cellInset: cellInsetInteger [
 
 	^(self addARow: aCollectionOfMorphs)
 		hResizing: #shrinkWrap;
@@ -168,21 +131,15 @@ AlignmentMorph>>addARowCentered: aCollectionOfMorphs cellInset: cellInsetInteger
 		cellInset: cellInsetInteger
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph>>defaultBorderWidth [
+{ #category : #initialization }
+AlignmentMorph >> defaultBorderWidth [
 	"answer the default border width for the receiver"
 	
 	^ 0
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph>>defaultColor [
+{ #category : #initialization }
+AlignmentMorph >> defaultColor [
 	"answer the default color/fill style for the receiver"
 	
 	^ Color
@@ -191,11 +148,8 @@ AlignmentMorph>>defaultColor [
 		b: 0.8
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph>>inAColumn: aCollectionOfMorphs [
+{ #category : #'visual properties' }
+AlignmentMorph >> inAColumn: aCollectionOfMorphs [
 
 	self setAsColumn
 			color: Color transparent;
@@ -208,11 +162,8 @@ AlignmentMorph>>inAColumn: aCollectionOfMorphs [
 	^ self 
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph>>inARightColumn: aCollectionOfMorphs  [
+{ #category : #'visual properties' }
+AlignmentMorph >> inARightColumn: aCollectionOfMorphs [ 
 	
 	self setAsColumn 
 				 vResizing: #shrinkWrap;
@@ -223,11 +174,8 @@ AlignmentMorph>>inARightColumn: aCollectionOfMorphs  [
 		do: [ :each | self addMorphBack: each ].
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph>>inARow: aCollectionOfMorphs  [
+{ #category : #'visual properties' }
+AlignmentMorph >> inARow: aCollectionOfMorphs [ 
 
 	 self setAsRow 
 				color: Color transparent;
@@ -241,11 +189,8 @@ AlignmentMorph>>inARow: aCollectionOfMorphs  [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph>>initialize [
+{ #category : #initialization }
+AlignmentMorph >> initialize [
 	
 	super initialize.
 	self
@@ -260,31 +205,22 @@ AlignmentMorph>>initialize [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph>>isAlignmentMorph [
+{ #category : #testing }
+AlignmentMorph >> isAlignmentMorph [
 
 	^ true
 
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph>>openInWindowLabeled: aString inWorld: aWorld [
+{ #category : #opening }
+AlignmentMorph >> openInWindowLabeled: aString inWorld: aWorld [
 
 	self layoutInset: 0.
 	^super openInWindowLabeled: aString inWorld: aWorld.
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph>>setAsColumn [
+{ #category : #'visual properties' }
+AlignmentMorph >> setAsColumn [
 
 	self 
 		listDirection: #topToBottom;
@@ -294,11 +230,8 @@ AlignmentMorph>>setAsColumn [
 
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph>>setAsRow [
+{ #category : #'visual properties' }
+AlignmentMorph >> setAsRow [
 
 	self
 		listDirection: #leftToRight;
@@ -308,11 +241,8 @@ AlignmentMorph>>setAsRow [
 
 ]
 
-{
-	#category : #'visual properties',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph>>setAsSpacer: aColor [
+{ #category : #'visual properties' }
+AlignmentMorph >> setAsSpacer: aColor [
 
 	self hResizing: #spaceFill;
 		vResizing: #spaceFill;
@@ -322,11 +252,8 @@ AlignmentMorph>>setAsSpacer: aColor [
 		color: aColor.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AlignmentMorph>>wantsKeyboardFocusFor: aSubmorph [
+{ #category : #'event handling' }
+AlignmentMorph >> wantsKeyboardFocusFor: aSubmorph [
 	aSubmorph wouldAcceptKeyboardFocus ifTrue: [^ true].
 	^ super wantsKeyboardFocusFor: aSubmorph
 ]

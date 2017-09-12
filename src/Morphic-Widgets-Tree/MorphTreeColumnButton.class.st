@@ -8,15 +8,11 @@ Class {
 		'model',
 		'icon'
 	],
-	#category : #Morphic-Widgets-Tree,
-	#timestamp : 'TorstenBergmann 9/5/2014 15:26'
+	#category : #Morphic-Widgets-Tree
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>acceptDroppingMorph: aMorph event: evt [
+{ #category : #accessing }
+MorphTreeColumnButton >> acceptDroppingMorph: aMorph event: evt [
 	self model container swapColumn: self model withColumn: aMorph passenger.
 	evt hand releaseMouseFocus: self.
 	self noMorePotentialDropTarget.
@@ -25,36 +21,24 @@ MorphTreeColumnButton>>acceptDroppingMorph: aMorph event: evt [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>asPotentialDropTarget  [
+{ #category : #accessing }
+MorphTreeColumnButton >> asPotentialDropTarget [ 
 	self model asPotentialDropTarget
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>handlesMouseOverDragging: evt [
+{ #category : #dropping/grabbing }
+MorphTreeColumnButton >> handlesMouseOverDragging: evt [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>icon [
+{ #category : #accessing }
+MorphTreeColumnButton >> icon [
 
 	^ icon
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>icon: anIcon [
+{ #category : #accessing }
+MorphTreeColumnButton >> icon: anIcon [
 	
 	icon ifNotNil: [ self removeMorph: icon ].
 	
@@ -63,11 +47,8 @@ MorphTreeColumnButton>>icon: anIcon [
 		self addMorphFront: anIcon ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>initialize [
+{ #category : #initialization }
+MorphTreeColumnButton >> initialize [
 	super initialize.
 	self enableDragNDrop: true.
 	self fillStyle: (self theme morphTreeColumnFillStyleFor: self).
@@ -75,35 +56,23 @@ MorphTreeColumnButton>>initialize [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>isDefault [
+{ #category : #testing }
+MorphTreeColumnButton >> isDefault [
 	^true
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>model [
+{ #category : #initialization }
+MorphTreeColumnButton >> model [
 	^ model
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>model: anObject [
+{ #category : #initialization }
+MorphTreeColumnButton >> model: anObject [
 	model := anObject
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>mouseDown: anEvent [
+{ #category : #'event handling' }
+MorphTreeColumnButton >> mouseDown: anEvent [
 	| selectors |
 	selectors := Array 
 		with: #click:
@@ -114,11 +83,8 @@ MorphTreeColumnButton>>mouseDown: anEvent [
 	super mouseDown: anEvent
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>mouseEnterDragging: evt [
+{ #category : #dropping/grabbing }
+MorphTreeColumnButton >> mouseEnterDragging: evt [
 	(evt hand hasSubmorphs and:[self dropEnabled]) ifFalse: ["no d&d"
 		^ super mouseEnterDragging: evt].
 	(self wantsDroppedMorph: evt hand firstSubmorph event: evt )
@@ -127,45 +93,30 @@ MorphTreeColumnButton>>mouseEnterDragging: evt [
 		].
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>mouseLeaveDragging: evt [
+{ #category : #dropping/grabbing }
+MorphTreeColumnButton >> mouseLeaveDragging: evt [
 	self noMorePotentialDropTarget 
 ]
 
-{
-	#category : #dropping/grabbing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>mouseUp: evt [
+{ #category : #dropping/grabbing }
+MorphTreeColumnButton >> mouseUp: evt [
 	self noMorePotentialDropTarget.
 	super mouseUp: evt
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>noMorePotentialDropTarget [
+{ #category : #accessing }
+MorphTreeColumnButton >> noMorePotentialDropTarget [
 	self model noMorePotentialDropTarget
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>removeIcon [
+{ #category : #accessing }
+MorphTreeColumnButton >> removeIcon [
 	
 	icon ifNotNil: [ self removeMorph: icon ].
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>startDrag: anEvent [
+{ #category : #'event handling' }
+MorphTreeColumnButton >> startDrag: anEvent [
 	| aTransferMorph |
 	self dragEnabled ifFalse: [^ self].
 	(anEvent hand hasSubmorphs)
@@ -180,18 +131,12 @@ MorphTreeColumnButton>>startDrag: anEvent [
 	anEvent hand releaseMouseFocus: self
 ]
 
-{
-	#category : #theme,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>themedFillStyle [
+{ #category : #theme }
+MorphTreeColumnButton >> themedFillStyle [
 	^ self theme morphTreeColumnFillStyleFor: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-MorphTreeColumnButton>>wantsDroppedMorph: aMorph event: anEvent  [
+{ #category : #accessing }
+MorphTreeColumnButton >> wantsDroppedMorph: aMorph event: anEvent [ 
 	^ model container columnDropUnabled and: [(aMorph isTransferable) and: [(aMorph passenger isKindOf: MorphTreeColumn) and: [aMorph passenger ~= self model]]]
 ]

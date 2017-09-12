@@ -8,63 +8,41 @@ Class {
 		'format',
 		'icon'
 	],
-	#category : #Glamour-Core,
-	#timestamp : 'TudorGirba 2/4/2011 17:56'
+	#category : #Glamour-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFormatedPresentation>>format [
+{ #category : #accessing }
+GLMFormatedPresentation >> format [
 	^ format ifNil: [ format := #asString ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFormatedPresentation>>format: anObject  [
+{ #category : #accessing }
+GLMFormatedPresentation >> format: anObject [ 
 	 
 	format := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFormatedPresentation>>formatedDisplayValue [
+{ #category : #accessing }
+GLMFormatedPresentation >> formatedDisplayValue [
 	^ self formatedDisplayValueOf: self displayValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFormatedPresentation>>formatedDisplayValueOf: anObject [
+{ #category : #accessing }
+GLMFormatedPresentation >> formatedDisplayValueOf: anObject [
 	^ self format glamourValue: (anObject asGlamorousMultiValue, self entity asGlamorousMultiValue)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFormatedPresentation>>icon [
+{ #category : #accessing }
+GLMFormatedPresentation >> icon [
 	^ icon ifNil: [ icon := [nil] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFormatedPresentation>>icon: anObject [
+{ #category : #accessing }
+GLMFormatedPresentation >> icon: anObject [
 	icon := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMFormatedPresentation>>iconFor: anObject [
+{ #category : #accessing }
+GLMFormatedPresentation >> iconFor: anObject [
 	^ self icon glamourValue: (anObject asGlamorousMultiValue, self entity asGlamorousMultiValue)
 ]

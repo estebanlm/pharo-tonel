@@ -9,15 +9,11 @@ Class {
 	#instVars : [
 		'font'
 	],
-	#category : #Morphic-Widgets-List,
-	#timestamp : 'StephaneDucasse 6/23/2014 16:48'
+	#category : #Morphic-Widgets-List
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TreeListMorph>>addSubmorphsAfter: parentMorph fromCollection: aCollection allowSorting: sortBoolean [
+{ #category : #private }
+TreeListMorph >> addSubmorphsAfter: parentMorph fromCollection: aCollection allowSorting: sortBoolean [
 	"Update the font on each morph."
 	
 	|answer|
@@ -34,31 +30,22 @@ TreeListMorph>>addSubmorphsAfter: parentMorph fromCollection: aCollection allowS
 	^answer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TreeListMorph>>font [
+{ #category : #accessing }
+TreeListMorph >> font [
 	"Answer the value of font"
 
 	^font ifNil: [TextStyle defaultFont]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TreeListMorph>>font: anObject [
+{ #category : #accessing }
+TreeListMorph >> font: anObject [
 	"Set the value of font"
 
 	font := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TreeListMorph>>insertNewMorphs: morphList [
+{ #category : #private }
+TreeListMorph >> insertNewMorphs: morphList [
 	"Update the font on each morph."
 	
 	morphList do: [:m |
@@ -68,32 +55,23 @@ TreeListMorph>>insertNewMorphs: morphList [
 	^super insertNewMorphs: morphList
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TreeListMorph>>keystrokeActionSelector [
+{ #category : #accessing }
+TreeListMorph >> keystrokeActionSelector [
 	"Answer the selector of the message to send to the model when a keystroke occurs."
 
 	^keystrokeActionSelector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TreeListMorph>>keystrokeActionSelector: aSymbol [
+{ #category : #accessing }
+TreeListMorph >> keystrokeActionSelector: aSymbol [
 	"Set the selector of the message to send to the model when a keystroke occurs.
 	One or two arguments... 1 for character, 2 for character and sender (self)."
 
 	keystrokeActionSelector := aSymbol
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TreeListMorph>>layoutBounds: aRectangle [
+{ #category : #private }
+TreeListMorph >> layoutBounds: aRectangle [
 	"Set the bounds for laying out children of the receiver.
 	Update the scroller and scrollbars now since bounds set directly
 	(not via #extent:)."

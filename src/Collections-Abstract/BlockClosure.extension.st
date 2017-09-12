@@ -1,12 +1,7 @@
-Extension {
-	#name : #BlockClosure
-}
+Extension { #name : #BlockClosure }
 
-{
-	#category : #'*Collections-Abstract-splitjoin',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-BlockClosure>>split: aSequenceableCollection indicesDo: aBlock [
+{ #category : #'*Collections-Abstract-splitjoin' }
+BlockClosure >> split: aSequenceableCollection indicesDo: aBlock [
 	"Example:
 		[ :char| char isSeparator ] split: 'aa bb cc dd'"
 	

@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #HowToContributeHelp,
 	#superclass : #CustomHelp,
-	#category : #HowToContributeHelp,
-	#timestamp : ''
+	#category : #HowToContributeHelp
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-HowToContributeHelp class>>bookName [
+{ #category : #accessing }
+HowToContributeHelp class >> bookName [
 	^'Contribute to base code'
 ]
 
-{
-	#category : #pages,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-HowToContributeHelp class>>introduction [
+{ #category : #pages }
+HowToContributeHelp class >> introduction [
 	"This method was automatically generated."
 	<script: 'self edit: #introduction'>
 	^HelpTopic
@@ -32,10 +22,7 @@ The following website contains a clear description of the change:
  !' readStream nextChunkText
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-HowToContributeHelp class>>pages [
+{ #category : #accessing }
+HowToContributeHelp class >> pages [
 	^#(introduction)
 ]

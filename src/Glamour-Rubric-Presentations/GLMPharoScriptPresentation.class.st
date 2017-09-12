@@ -5,15 +5,11 @@ I provide support for displaying snippets of Smalltalk code  (e.g. dealing with 
 Class {
 	#name : #GLMPharoScriptPresentation,
 	#superclass : #GLMRubricSmalltalkCodePresentation,
-	#category : #Glamour-Rubric-Presentations,
-	#timestamp : 'AndreiChis 10/30/2015 14:16'
+	#category : #Glamour-Rubric-Presentations
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPharoScriptPresentation class>>pharoScriptPresentationExample [
+{ #category : #examples }
+GLMPharoScriptPresentation class >> pharoScriptPresentationExample [
 	"
 	self pharoScriptPresentationExample
 	"
@@ -50,29 +46,20 @@ browser transmit to: #r1; andShow: [ :aComposite |
 browser openOn:''self halt'' '
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPharoScriptPresentation>>currentBindings [
+{ #category : #accessing }
+GLMPharoScriptPresentation >> currentBindings [
 
 	self withBindingsDo: [ :bingings | ^ bingings copy ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPharoScriptPresentation>>defaultSelectionActions [
+{ #category : #accessing }
+GLMPharoScriptPresentation >> defaultSelectionActions [
 
 	^ {self goAction}, super defaultSelectionActions
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPharoScriptPresentation>>goAction [
+{ #category : #actions }
+GLMPharoScriptPresentation >> goAction [
 	^ GLMGenericAction new
 				title: 'Do it and go';
 				action: [ :t :entity |
@@ -81,38 +68,26 @@ GLMPharoScriptPresentation>>goAction [
 				yourself.
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPharoScriptPresentation>>renderGlamorouslyOn: aRenderer  [
+{ #category : #rendering }
+GLMPharoScriptPresentation >> renderGlamorouslyOn: aRenderer [ 
 	self registerAnnouncements.
 	^ aRenderer renderPharoScriptPresentation: self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPharoScriptPresentation>>resetBindings [
+{ #category : #actions }
+GLMPharoScriptPresentation >> resetBindings [
 
 	self withBindingsDo: [ :bindings | bindings removeAll ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPharoScriptPresentation>>updateVariableBindings [
+{ #category : #actions }
+GLMPharoScriptPresentation >> updateVariableBindings [
 
 	self announce: (GLMVariableBindingsChanged new presentation: self).
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPharoScriptPresentation>>withBindingsDo: aBlock [
+{ #category : #actions }
+GLMPharoScriptPresentation >> withBindingsDo: aBlock [
 
 	self announce: (GLMVariableBindingsAccessRequest new action: aBlock)
 ]

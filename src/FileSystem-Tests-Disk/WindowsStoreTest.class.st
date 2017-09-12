@@ -4,15 +4,11 @@ SUnit tests for class WindowsStore
 Class {
 	#name : #WindowsStoreTest,
 	#superclass : #TestCase,
-	#category : #FileSystem-Tests-Disk,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:48'
+	#category : #FileSystem-Tests-Disk
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-WindowsStoreTest>>testAbsoluteFullName [
+{ #category : #testing }
+WindowsStoreTest >> testAbsoluteFullName [
 	| filesystem |
 	filesystem := FileSystem store: WindowsStore new.
 
@@ -27,22 +23,16 @@ WindowsStoreTest>>testAbsoluteFullName [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-WindowsStoreTest>>testAbsolutePath [
+{ #category : #testing }
+WindowsStoreTest >> testAbsolutePath [
 
 	#('c:\' 'C:\temp' 'A:\temp\test' '\test\bar' '\') do: [:each |
 		self assert: (WindowsStore current pathFromString: each) isAbsolute ] 
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-WindowsStoreTest>>testPrintString [
+{ #category : #testing }
+WindowsStoreTest >> testPrintString [
 	| filesystem |
 	filesystem := FileSystem store: WindowsStore new.
 	
@@ -62,11 +52,8 @@ WindowsStoreTest>>testPrintString [
 	self assert: (filesystem referenceTo: '.\') printString equals: 'File @ .'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-WindowsStoreTest>>testRelativeFullName [
+{ #category : #testing }
+WindowsStoreTest >> testRelativeFullName [
 
 	"FIleSystem currently does not support MS Windows concept of each drive having its own working directory.
 	That is too great a change during Pharo 3 Beta, so for now just drop drive from relative references. 
@@ -78,11 +65,8 @@ WindowsStoreTest>>testRelativeFullName [
 	self assert: (filesystem referenceTo: 'C:tmp') fullName equals: (filesystem referenceTo: 'tmp') fullName
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-WindowsStoreTest>>testRelativePath [
+{ #category : #testing }
+WindowsStoreTest >> testRelativePath [
 
 	#('a' 'bin\foo' 'temp\test' 'C:temp\test') do: [:each |
 		self assert: (WindowsStore current pathFromString: each) isRelative ] 

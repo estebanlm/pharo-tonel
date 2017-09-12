@@ -4,33 +4,23 @@ MetacelloPharoPlatform contains all Pharo specific code to load Metacello.
 Class {
 	#name : #MetacelloPharoCommonPlatform,
 	#superclass : #MetacelloPlatform,
-	#category : #Metacello-PharoCommonPlatform,
-	#timestamp : '<historical>'
+	#category : #Metacello-PharoCommonPlatform
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-MetacelloPharoCommonPlatform>>authorName [
+{ #category : #utilities }
+MetacelloPharoCommonPlatform >> authorName [
 
 	^ Author fullName
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-MetacelloPharoCommonPlatform>>authorName: aString [
+{ #category : #utilities }
+MetacelloPharoCommonPlatform >> authorName: aString [
 
 	Author fullName: aString
 ]
 
-{
-	#category : #notification,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-MetacelloPharoCommonPlatform>>collection: aCollection do: aBlock displaying: aString [
+{ #category : #notification }
+MetacelloPharoCommonPlatform >> collection: aCollection do: aBlock displaying: aString [
 
 	self bypassProgressBars ifTrue: [ ^super collection: aCollection do: aBlock displaying: aString ].
 	aCollection 
@@ -38,20 +28,14 @@ MetacelloPharoCommonPlatform>>collection: aCollection do: aBlock displaying: aSt
 		displayingProgress: aString
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-MetacelloPharoCommonPlatform>>compiler [
+{ #category : #utilities }
+MetacelloPharoCommonPlatform >> compiler [
 	^ self class environment at: #Compiler
 
 ]
 
-{
-	#category : #reflection,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-MetacelloPharoCommonPlatform>>copyClass: oldClass as: newName inCategory: newCategoryName [
+{ #category : #reflection }
+MetacelloPharoCommonPlatform >> copyClass: oldClass as: newName inCategory: newCategoryName [
 	| copysName class newDefinition |
 	copysName := newName asSymbol.
 	copysName = oldClass name
@@ -70,11 +54,8 @@ MetacelloPharoCommonPlatform>>copyClass: oldClass as: newName inCategory: newCat
 	^ class
 ]
 
-{
-	#category : #'repository creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-MetacelloPharoCommonPlatform>>createRepository: aRepositorySpec [
+{ #category : #'repository creation' }
+MetacelloPharoCommonPlatform >> createRepository: aRepositorySpec [
 
 	| type |
 	type := aRepositorySpec type.
@@ -93,11 +74,8 @@ MetacelloPharoCommonPlatform>>createRepository: aRepositorySpec [
 	^ super createRepository: aRepositorySpec
 ]
 
-{
-	#category : #attributes,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-MetacelloPharoCommonPlatform>>defaultPlatformAttributes [
+{ #category : #attributes }
+MetacelloPharoCommonPlatform >> defaultPlatformAttributes [
 	| attributes versionString |
 	((Smalltalk respondsTo: #image) and: [ Smalltalk image respondsTo: #metacelloPlatformAttributes ])
 		ifTrue: [ ^ Smalltalk image metacelloPlatformAttributes ].
@@ -124,11 +102,8 @@ MetacelloPharoCommonPlatform>>defaultPlatformAttributes [
 	^ attributes
 ]
 
-{
-	#category : #'git-based http repo support',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-MetacelloPharoCommonPlatform>>downloadBasicFile: url to: outputFileName username: username pass: pass [
+{ #category : #'git-based http repo support' }
+MetacelloPharoCommonPlatform >> downloadBasicFile: url to: outputFileName username: username pass: pass [
     "download from <url> into <outputFileName>"
 
     | out err proc errorFileName args |
@@ -158,11 +133,8 @@ MetacelloPharoCommonPlatform>>downloadBasicFile: url to: outputFileName username
      err close.
 ]
 
-{
-	#category : #'github/bitbucket support',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-MetacelloPharoCommonPlatform>>downloadJSON: url username: username pass: pass [
+{ #category : #'github/bitbucket support' }
+MetacelloPharoCommonPlatform >> downloadJSON: url username: username pass: pass [
   "return result of parsing JSON downloaded from url. username:pass may be nil, but calls will be subject to severe rate limits."
 
   | jsonFileName jsonFile |
@@ -179,11 +151,8 @@ MetacelloPharoCommonPlatform>>downloadJSON: url username: username pass: pass [
 
 ]
 
-{
-	#category : #'github support',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-MetacelloPharoCommonPlatform>>downloadZipArchive: url to: outputFileName [
+{ #category : #'github support' }
+MetacelloPharoCommonPlatform >> downloadZipArchive: url to: outputFileName [
   "download zip archive from <url> into <outputFileName>"
 
     | archive zipfile |
@@ -195,11 +164,8 @@ MetacelloPharoCommonPlatform>>downloadZipArchive: url to: outputFileName [
 
 ]
 
-{
-	#category : #'github support',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-MetacelloPharoCommonPlatform>>extractRepositoryFrom: zipFile to: directory [
+{ #category : #'github support' }
+MetacelloPharoCommonPlatform >> extractRepositoryFrom: zipFile [ to: directory
     "unzip <zipFile> into <directory>"
 
     | out err proc errorMessage |
@@ -233,21 +199,15 @@ MetacelloPharoCommonPlatform>>extractRepositoryFrom: zipFile to: directory [
 
 ]
 
-{
-	#category : #'repository creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-MetacelloPharoCommonPlatform>>extractTypeFromDescription: description [
+{ #category : #'repository creation' }
+MetacelloPharoCommonPlatform >> extractTypeFromDescription: description [
 
 	(description beginsWith: 'ftp://') ifTrue: [ ^'ftp' ].
 	^super extractTypeFromDescription: description
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-MetacelloPharoCommonPlatform>>timestamp [
+{ #category : #utilities }
+MetacelloPharoCommonPlatform >> timestamp [
 
 	^Date today mmddyyyy, ' ',
 		((String streamContents: [:s | Time now print24: true on: s]) copyFrom: 1 to: 5)

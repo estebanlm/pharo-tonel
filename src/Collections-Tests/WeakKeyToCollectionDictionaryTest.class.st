@@ -4,23 +4,16 @@ SUnit tests for weak key to collection dictionaries
 Class {
 	#name : #WeakKeyToCollectionDictionaryTest,
 	#superclass : #WeakIdentityKeyDictionaryTest,
-	#category : #Collections-Tests-Weak,
-	#timestamp : 'TorstenBergmann 2/20/2014 15:27'
+	#category : #Collections-Tests-Weak
 }
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakKeyToCollectionDictionaryTest>>classToBeTested  [
+{ #category : #requirements }
+WeakKeyToCollectionDictionaryTest >> classToBeTested [ 
  ^ WeakKeyToCollectionDictionary
 ]
 
-{
-	#category : #'errors - those methods should be tested with collection keys',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakKeyToCollectionDictionaryTest>>testKeysAndValuesRemove [
+{ #category : #'errors - those methods should be tested with collection keys' }
+WeakKeyToCollectionDictionaryTest >> testKeysAndValuesRemove [
 	" should be tested with collection keys"
 	
 	"| oldSize collection keyIn |
@@ -38,11 +31,8 @@ WeakKeyToCollectionDictionaryTest>>testKeysAndValuesRemove [
 	self should: [ collection at: keyIn  ] raise: Error."
 ]
 
-{
-	#category : #'errors - those methods should be tested with collection keys',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakKeyToCollectionDictionaryTest>>testRemoveKey [
+{ #category : #'errors - those methods should be tested with collection keys' }
+WeakKeyToCollectionDictionaryTest >> testRemoveKey [
 	"self debug: #testRemoveKey"
 
 "	| collection oldSize keyIn |
@@ -57,11 +47,8 @@ WeakKeyToCollectionDictionaryTest>>testRemoveKey [
 	self should: [collection removeKey: self keyNotInNonEmptyDict ] raise: Error"
 ]
 
-{
-	#category : #'errors - those methods should be tested with collection keys',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-WeakKeyToCollectionDictionaryTest>>testRemoveKeyIfAbsent [
+{ #category : #'errors - those methods should be tested with collection keys' }
+WeakKeyToCollectionDictionaryTest >> testRemoveKeyIfAbsent [
 	
 	"| collection oldSize keyIn value result |
 	collection := self nonEmptyDict .

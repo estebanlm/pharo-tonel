@@ -4,15 +4,11 @@ I am the bridget between a TreeNodeModel and a SpecTreeNodeModel
 Class {
 	#name : #MorphicTreeNodeAdapter,
 	#superclass : #AbstractMorphicAdapter,
-	#category : #Spec-MorphicAdapters,
-	#timestamp : '<historical>'
+	#category : #Spec-MorphicAdapters
 }
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeNodeAdapter>>buildWidget [
+{ #category : #factory }
+MorphicTreeNodeAdapter >> buildWidget [
 	^ SpecTreeNodeModel new
 		setItemFromBlock: self itemBlock;
 		icon: self icon;
@@ -22,27 +18,18 @@ MorphicTreeNodeAdapter>>buildWidget [
 		nodeModel: self model
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeNodeAdapter>>childrenBlock [
+{ #category : #'widget API' }
+MorphicTreeNodeAdapter >> childrenBlock [
 	^ [ self model buildChildren ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeNodeAdapter>>container [
+{ #category : #'widget API' }
+MorphicTreeNodeAdapter >> container [
 	^ self model container
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeNodeAdapter>>deselect [
+{ #category : #private }
+MorphicTreeNodeAdapter >> deselect [
 
 	self widgetDo: [ :w |
 		w changed: #deselect.
@@ -50,60 +37,39 @@ MorphicTreeNodeAdapter>>deselect [
 		w dependents do: [ :e | e changed ] ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeNodeAdapter>>hasChildrenBlock [
+{ #category : #'widget API' }
+MorphicTreeNodeAdapter >> hasChildrenBlock [
 	^ self model hasChildren
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeNodeAdapter>>hasContentToShow [
+{ #category : #'widget API' }
+MorphicTreeNodeAdapter >> hasContentToShow [
 	^ self model hasContentToShow
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeNodeAdapter>>icon [
+{ #category : #'widget API' }
+MorphicTreeNodeAdapter >> icon [
 	^ self model icon
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeNodeAdapter>>isExpanded: aBoolean [
+{ #category : #'spec protocol' }
+MorphicTreeNodeAdapter >> isExpanded: aBoolean [
 
 	
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeNodeAdapter>>item [
+{ #category : #'widget API' }
+MorphicTreeNodeAdapter >> item [
 	^ self model content
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeNodeAdapter>>itemBlock [
+{ #category : #'widget API' }
+MorphicTreeNodeAdapter >> itemBlock [
 	^ [ self item ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeNodeAdapter>>select [
+{ #category : #private }
+MorphicTreeNodeAdapter >> select [
 
 	self widgetDo: [ :w |
 		w changed: #select.
@@ -111,39 +77,27 @@ MorphicTreeNodeAdapter>>select [
 		w dependents do: [ :e | e changed ] ]
 ]
 
-{
-	#category : #'widget API',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeNodeAdapter>>selected [
+{ #category : #'widget API' }
+MorphicTreeNodeAdapter >> selected [
 	^ self model selected
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeNodeAdapter>>selected: aBoolean [
+{ #category : #'spec protocol' }
+MorphicTreeNodeAdapter >> selected: aBoolean [
 
 	aBoolean 
 		ifTrue: [ self select ]
 		ifFalse: [ self deselect ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeNodeAdapter>>takeHighlight [
+{ #category : #'spec protocol' }
+MorphicTreeNodeAdapter >> takeHighlight [
 
 	self widgetDo: [ :w | w changed: #takeHighlight ]
 ]
 
-{
-	#category : #'spec protocol',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphicTreeNodeAdapter>>updateAccordingTo: aFilter [
+{ #category : #'spec protocol' }
+MorphicTreeNodeAdapter >> updateAccordingTo: aFilter [
 
 	self widgetDo: [ :w |
 		w contents do: [ :n | n nodeModel updateAccordingTo: aFilter ].

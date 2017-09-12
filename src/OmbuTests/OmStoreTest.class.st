@@ -10,61 +10,42 @@ Class {
 		'aReference',
 		'otherStore'
 	],
-	#category : #OmbuTests,
-	#timestamp : '<historical>'
+	#category : #OmbuTests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest class>>isAbstract [
+{ #category : #testing }
+OmStoreTest class >> isAbstract [
 	^ self name = #OmStoreTest
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>beforeAndAfterFlushStore: aBlock  [
+{ #category : #running }
+OmStoreTest >> beforeAndAfterFlushStore: aBlock [ 
 
 	aBlock value.
 	store flush. "Reason: It's worth testing again, after flush."
 	aBlock value.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>setUp [
+{ #category : #running }
+OmStoreTest >> setUp [
 	super setUp.
 	
 	store := self setUpStore.
 	otherStore := self setUpOtherStore.
 ]
 
-{
-	#category : #resources,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>setUpOtherStore [
+{ #category : #resources }
+OmStoreTest >> setUpOtherStore [
 	^ self setUpStore
 ]
 
-{
-	#category : #resources,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>setUpStore [
+{ #category : #resources }
+OmStoreTest >> setUpStore [
 	^ self subclassResponsibility
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>tearDown [
+{ #category : #running }
+OmStoreTest >> tearDown [
 	super tearDown.
 	
 	store flush.
@@ -72,19 +53,13 @@ OmStoreTest>>tearDown [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>testEntries [
+{ #category : #tests }
+OmStoreTest >> testEntries [
 	self assert: store entries isEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>testEntriesCount [
+{ #category : #tests }
+OmStoreTest >> testEntriesCount [
 	self assert: store entriesCount equals: 0.
 	
 	store newEntry: (OmEntry content: 42).
@@ -94,11 +69,8 @@ OmStoreTest>>testEntriesCount [
 		self assert: store entriesCount equals: 2 ].
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>testEntriesDo [
+{ #category : #tests }
+OmStoreTest >> testEntriesDo [
 	1 to: 7 do: [ :each | store newEntry: (OmEntry content: each) ].
 
 	self beforeAndAfterFlushStore: [
@@ -109,11 +81,8 @@ OmStoreTest>>testEntriesDo [
 		self assert: contents equals: (1 to: 7) asArray ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>testEntryForAbsentEntry [
+{ #category : #tests }
+OmStoreTest >> testEntryForAbsentEntry [
 	| isPresent isAbsent |
 	anEntry := OmEntry content: 42.
 	
@@ -132,11 +101,8 @@ OmStoreTest>>testEntryForAbsentEntry [
 		self assert: isAbsent ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>testEntryForNullReference [
+{ #category : #tests }
+OmStoreTest >> testEntryForNullReference [
 	| isPresent isAbsent |
 
 	self beforeAndAfterFlushStore: [
@@ -152,11 +118,8 @@ OmStoreTest>>testEntryForNullReference [
 		self assert: isAbsent ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>testEntryForPresentEntry [
+{ #category : #tests }
+OmStoreTest >> testEntryForPresentEntry [
 	| isPresent isAbsent |
 	anEntry := OmEntry content: 42.
 	
@@ -175,11 +138,8 @@ OmStoreTest>>testEntryForPresentEntry [
 		self deny: isAbsent ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>testEntryReferences [
+{ #category : #tests }
+OmStoreTest >> testEntryReferences [
 	| entryReferences |
 
 	1 to: 7 do: [ :each | store newEntry: (OmEntry content: each) ].
@@ -196,11 +156,8 @@ OmStoreTest>>testEntryReferences [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>testFirstEntryIfAbsent [
+{ #category : #tests }
+OmStoreTest >> testFirstEntryIfAbsent [
 
 	| absent |
 	absent := false.
@@ -216,11 +173,8 @@ OmStoreTest>>testFirstEntryIfAbsent [
 			equals: store entries first ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>testHeadReference [
+{ #category : #tests }
+OmStoreTest >> testHeadReference [
 	1 to: 7 do: [ :each | store newEntry: (OmEntry content: each) ].
 
 	self beforeAndAfterFlushStore: [
@@ -231,20 +185,14 @@ OmStoreTest>>testHeadReference [
 			equals: (store referenceTo: lastEntry) ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>testHeadReferenceForEmptyStore [
+{ #category : #tests }
+OmStoreTest >> testHeadReferenceForEmptyStore [
 
 	self assert: store headReference equals: OmNullReference uniqueInstance.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>testMultipleEntries [
+{ #category : #tests }
+OmStoreTest >> testMultipleEntries [
 	1 to: 7 do: [ :each | store newEntry: (OmEntry content: each) ].
 	
 	self beforeAndAfterFlushStore: [
@@ -253,11 +201,8 @@ OmStoreTest>>testMultipleEntries [
 			equals: (1 to: 7) asSet ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>testNewEntry [
+{ #category : #tests }
+OmStoreTest >> testNewEntry [
 	anEntry := OmEntry content: 42.
 	
 	store newEntry: anEntry.
@@ -268,11 +213,8 @@ OmStoreTest>>testNewEntry [
 			equals: #(42) ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>testReferenceTo [
+{ #category : #tests }
+OmStoreTest >> testReferenceTo [
 	anEntry := OmEntry content: 42.
 	
 	store newEntry: anEntry.
@@ -284,21 +226,15 @@ OmStoreTest>>testReferenceTo [
 		self deny: aReference isNull ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>testRefreshEmpty [
+{ #category : #tests }
+OmStoreTest >> testRefreshEmpty [
 	store refresh.
 	
 	self assert: store entries isEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>testRefreshNotEmpty [
+{ #category : #tests }
+OmStoreTest >> testRefreshNotEmpty [
 	anEntry := OmEntry content: 42.
 	
 	store newEntry: anEntry.
@@ -310,11 +246,8 @@ OmStoreTest>>testRefreshNotEmpty [
 		equals: #(42)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-OmStoreTest>>testWritingFileReference [
+{ #category : #tests }
+OmStoreTest >> testWritingFileReference [
 
 	anEntry := OmEntry content: 42.
 	store newEntry: anEntry.

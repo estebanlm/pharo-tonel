@@ -8,34 +8,24 @@ Class {
 		'Instances',
 		'InstancesWriteLock'
 	],
-	#category : #Monticello-Base,
-	#timestamp : '<historical>'
+	#category : #Monticello-Base
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition class>>cleanUp [
+{ #category : #cleanup }
+MCDefinition class >> cleanUp [
 	"Flush caches"
 
 	self clearInstances.
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition class>>clearInstances [
+{ #category : #cleanup }
+MCDefinition class >> clearInstances [
 	WeakArray removeWeakDependent: Instances.
 	Instances := nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition class>>instanceLike: aDefinition [
+{ #category : #'instance creation' }
+MCDefinition class >> instanceLike: aDefinition [
 	Instances ifNil: [ Instances := WeakSet new ].
 	InstancesWriteLock ifNil: [ InstancesWriteLock := Semaphore forMutualExclusion ].
 	^ (Instances like: aDefinition) 
@@ -43,265 +33,170 @@ MCDefinition class>>instanceLike: aDefinition [
 			InstancesWriteLock critical: [ Instances add: aDefinition ]]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>><= other [
+{ #category : #comparing }
+MCDefinition >> <= other [
 	^ self sortKey <= other sortKey
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>= aDefinition [
+{ #category : #comparing }
+MCDefinition >> = aDefinition [
 	^(aDefinition isKindOf: MCDefinition) and: [self isRevisionOf: aDefinition]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>actualClass [
+{ #category : #accessing }
+MCDefinition >> actualClass [
 	"Since the targetClass call on a patch operation will fail
 	otherwise."
 	
 	^nil
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>addMethodAdditionTo: aCollection [
+{ #category : #installing }
+MCDefinition >> addMethodAdditionTo: aCollection [
 	self load
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>className [
+{ #category : #accessing }
+MCDefinition >> className [
 	"Answer the class name here or nil if not applicable."
 	
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>definition [
+{ #category : #accessing }
+MCDefinition >> definition [
 
 	^ self
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>description [
+{ #category : #comparing }
+MCDefinition >> description [
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>diffSource [
+{ #category : #accessing }
+MCDefinition >> diffSource [
 	^ self source
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>fullClassName [
+{ #category : #accessing }
+MCDefinition >> fullClassName [
 	"Answer the className by default."
 	
 	^self className
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>fullTimeStamp [
+{ #category : #comparing }
+MCDefinition >> fullTimeStamp [
 	^ DateAndTime current
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>hash [
+{ #category : #comparing }
+MCDefinition >> hash [
 	^ self description hash
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>isClassDefinition [
+{ #category : #testing }
+MCDefinition >> isClassDefinition [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>isClassDefinitionExtension [
+{ #category : #testing }
+MCDefinition >> isClassDefinitionExtension [
 	"Answer true if this definition extends the regular class definition"
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>isMethodDefinition [
+{ #category : #testing }
+MCDefinition >> isMethodDefinition [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>isOrganizationDefinition [
+{ #category : #testing }
+MCDefinition >> isOrganizationDefinition [
 	^false
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>isRevisionOf: aDefinition [
+{ #category : #comparing }
+MCDefinition >> isRevisionOf: aDefinition [
 	^ (aDefinition isKindOf: MCDefinition) and: [aDefinition description = self description]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>isSameRevisionAs: aDefinition [
+{ #category : #comparing }
+MCDefinition >> isSameRevisionAs: aDefinition [
 	^ self = aDefinition
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>isScriptDefinition [
+{ #category : #testing }
+MCDefinition >> isScriptDefinition [
 	^false
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>load [
+{ #category : #installing }
+MCDefinition >> load [
 	
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>loadOver: aDefinition [
+{ #category : #installing }
+MCDefinition >> loadOver: aDefinition [
 	self load
 	
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>postload [
-
+{ #category : #installing }
+MCDefinition >> postload [
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>postloadOver: aDefinition [
+{ #category : #installing }
+MCDefinition >> postloadOver: aDefinition [
 	self postload
 ]
 
-{
-	#category : #annotations,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>printAnnotations: requests on: aStream [
+{ #category : #annotations }
+MCDefinition >> printAnnotations: requests [ on: aStream
 	"Add a string for an annotation pane, trying to fulfill the browser annotationRequests."
 
 	aStream nextPutAll: 'not yet implemented'
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>printOn: aStream [
+{ #category : #printing }
+MCDefinition >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPutAll: '(', self summary, ')'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>provisions [
+{ #category : #accessing }
+MCDefinition >> provisions [
 	^ #()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>requirements [
+{ #category : #accessing }
+MCDefinition >> requirements [
 	^ #()
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>sortKey [
+{ #category : #comparing }
+MCDefinition >> sortKey [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>source [
+{ #category : #accessing }
+MCDefinition >> source [
 	^ self subclassResponsibility.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>summary [
+{ #category : #printing }
+MCDefinition >> summary [
 	self subclassResponsibility 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>summarySuffixOver: previousDefinition [
+{ #category : #printing }
+MCDefinition >> summarySuffixOver: previousDefinition [
 	^self source = previousDefinition source
 		ifTrue: [ ' (source same but rev changed)' ]
 		ifFalse: [ ' (changed)' ]
 ]
 
-{
-	#category : #installing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCDefinition>>unload [
-
+{ #category : #installing }
+MCDefinition >> unload [
 ]

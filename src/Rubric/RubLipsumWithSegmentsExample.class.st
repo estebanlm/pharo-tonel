@@ -7,23 +7,16 @@
 Class {
 	#name : #RubLipsumWithSegmentsExample,
 	#superclass : #RubLipsumBasicExample,
-	#category : #Rubric-Editing-Widgets-Examples,
-	#timestamp : '<historical>'
+	#category : #Rubric-Editing-Widgets-Examples
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLipsumWithSegmentsExample>>loremIpsum [
+{ #category : #accessing }
+RubLipsumWithSegmentsExample >> loremIpsum [
 	^ String loremIpsum: 2000
 ]
 
-{
-	#category : #'user interface',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubLipsumWithSegmentsExample>>newScrolledText [
+{ #category : #'user interface' }
+RubLipsumWithSegmentsExample >> newScrolledText [
 	| st r conf |
 	st := super newScrolledText.
 	conf := RubConfigurationChange new.

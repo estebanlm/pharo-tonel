@@ -4,70 +4,48 @@ I am an eye element for self
 Class {
 	#name : #SelfEyeElement,
 	#superclass : #AbstractEyeElement,
-	#category : #Spec-Inspector-Element,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector-Element
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SelfEyeElement>>accessorCode [
+{ #category : #accessing }
+SelfEyeElement >> accessorCode [
 	^ self label
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SelfEyeElement>>browseClassRefs [
+{ #category : #action }
+SelfEyeElement >> browseClassRefs [
 
 	self hostClass isTrait 
 		ifTrue: [self systemNavigation browseAllUsersOfTrait: self hostClass]
 		ifFalse: [self systemNavigation browseAllCallsOnClass: self hostClass]
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SelfEyeElement>>browseInstClassVariables [
+{ #category : #action }
+SelfEyeElement >> browseInstClassVariables [
 
 	^ self systemNavigation browseClassVariables: self hostClass
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SelfEyeElement>>browseInstVarDefs [
+{ #category : #action }
+SelfEyeElement >> browseInstVarDefs [
 
 	^ self systemNavigation browseInstVarDefs: self hostClass
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SelfEyeElement>>browseInstVarRefs [
+{ #category : #action }
+SelfEyeElement >> browseInstVarRefs [
 
 	^ self systemNavigation browseInstVarRefs: self hostClass
 ]
 
-{
-	#category : #action,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SelfEyeElement>>classVarRefs [
+{ #category : #action }
+SelfEyeElement >> classVarRefs [
 
 	^ self systemNavigation browseClassVarRefs: self hostClass
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SelfEyeElement>>customSubMenu: aMenu [
+{ #category : #menu }
+SelfEyeElement >> customSubMenu: aMenu [
 	"Subclasse may add more menu items here"
 
 	aMenu addGroup: [ :aGroup |
@@ -88,26 +66,17 @@ SelfEyeElement>>customSubMenu: aMenu [
 			action: [ self browseClassRefs ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SelfEyeElement>>label [
+{ #category : #accessing }
+SelfEyeElement >> label [
 	^ 'self'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SelfEyeElement>>shouldShowInTree [
+{ #category : #testing }
+SelfEyeElement >> shouldShowInTree [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-SelfEyeElement>>value [
+{ #category : #accessing }
+SelfEyeElement >> value [
 	^ host
 ]

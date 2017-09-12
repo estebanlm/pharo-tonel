@@ -16,42 +16,29 @@ Class {
 		't2',
 		'p6'
 	],
-	#category : #RPackage-Tests,
-	#timestamp : 'TorstenBergmann 2/12/2014 22:59'
+	#category : #RPackage-Tests
 }
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTraitTest>>p4Name [
+{ #category : #setup }
+RPackageTraitTest >> p4Name [
 
 	^ 'RPackageTestP4'
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTraitTest>>p5Name [
+{ #category : #setup }
+RPackageTraitTest >> p5Name [
 
 	^ 'RPackageTestP5'
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTraitTest>>p6Name [
+{ #category : #setup }
+RPackageTraitTest >> p6Name [
 
 	^ 'RPackageTestP6'
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTraitTest>>setUp [
+{ #category : #setup }
+RPackageTraitTest >> setUp [
 
 	super setUp.
 	
@@ -100,11 +87,8 @@ RPackageTraitTest>>setUp [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTraitTest>>testPackageOfClassMethodFromTraitExtensionIsExtendingPackage [
+{ #category : #tests }
+RPackageTraitTest >> testPackageOfClassMethodFromTraitExtensionIsExtendingPackage [
 	"The package of a method defined in atrait but package in another package than the extended trait is the 
 	package containing the extension."
 	
@@ -114,22 +98,16 @@ RPackageTraitTest>>testPackageOfClassMethodFromTraitExtensionIsExtendingPackage 
 	self assert: ((a1>>#traitMethodExtendedFromP6) packageFromOrganizer: self packageClass organizer) = p6.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTraitTest>>testPackageOfClassMethodFromTraitIsTraitPackage [
+{ #category : #tests }
+RPackageTraitTest >> testPackageOfClassMethodFromTraitIsTraitPackage [
 
 	"test that a class method coming from a trait is packaged in the trait package"
 	self assert: ((a1>>#traitMethodDefinedInP4) packageFromOrganizer: self packageClass organizer) = p4.
 	self assert: ((a1>>#traitMethodDefinedInP5) packageFromOrganizer: self packageOrganizerClass default) = p5.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTraitTest>>testPackageOfClassMethodIsClassPackage [
+{ #category : #tests }
+RPackageTraitTest >> testPackageOfClassMethodIsClassPackage [
 	"The package of a local method (not defined in a trait) is the package of its class"
 	
 	self assert: ((a1>>#localMethodDefinedInP1) packageFromOrganizer: self packageClass organizer) = p4.
@@ -137,11 +115,8 @@ RPackageTraitTest>>testPackageOfClassMethodIsClassPackage [
 	self assert: ((a1>>#anotherLocalMethodDefinedInP1) packageFromOrganizer: self packageClass organizer) = p4.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTraitTest>>testPackageOfTraitMethodIsTraitPackage [
+{ #category : #tests }
+RPackageTraitTest >> testPackageOfTraitMethodIsTraitPackage [
 	"The package of a trait method is the package of its trait."
 
 	self assert: ((a1 >> #traitMethodDefinedInP5) packageFromOrganizer: self packageClass organizer) = p5.
@@ -149,11 +124,8 @@ RPackageTraitTest>>testPackageOfTraitMethodIsTraitPackage [
 	self assert: ((a1>>#traitMethodDefinedInP4) packageFromOrganizer: self packageClass organizer) = p4.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-RPackageTraitTest>>testStartingSituation [
+{ #category : #tests }
+RPackageTraitTest >> testStartingSituation [
 	"self debug: #testStartingSituation"
 
 

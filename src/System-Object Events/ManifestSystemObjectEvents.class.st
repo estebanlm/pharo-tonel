@@ -4,14 +4,10 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestSystemObjectEvents,
 	#superclass : #PackageManifest,
-	#category : #'System-Object Events',
-	#timestamp : '<historical>'
+	#category : #'System-Object Events'
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-ManifestSystemObjectEvents class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestSystemObjectEvents class >> manuallyResolvedDependencies [
 	^ #(#'Collections-Abstract')
 ]

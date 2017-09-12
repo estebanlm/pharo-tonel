@@ -8,15 +8,11 @@ I am used to control the maximum size of entities being read from streams.
 Class {
 	#name : #ZnMaximumEntitySize,
 	#superclass : #DynamicVariable,
-	#category : #Zinc-HTTP-Variables,
-	#timestamp : '<historical>'
+	#category : #Zinc-HTTP-Variables
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnMaximumEntitySize>>default [
+{ #category : #accessing }
+ZnMaximumEntitySize >> default [
 	"By default, allow for entities of up to 16 Mb to be read from streams"
 	
 	^ 16 * 1024 * 1024

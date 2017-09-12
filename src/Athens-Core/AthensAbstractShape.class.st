@@ -9,15 +9,11 @@ See my methods comments for more details.
 Class {
 	#name : #AthensAbstractShape,
 	#superclass : #Object,
-	#category : #Athens-Core,
-	#timestamp : '<historical>'
+	#category : #Athens-Core
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensAbstractShape>>asAthensShapeOn: canvas [
+{ #category : #converting }
+AthensAbstractShape >> asAthensShapeOn: canvas [
 	"Note: The answered object of this message should conform with AthensShape protocol.	"
 	self subclassResponsibility.
 ]

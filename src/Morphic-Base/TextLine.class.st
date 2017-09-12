@@ -25,15 +25,11 @@ Class {
 	#pools : [
 		'TextConstants'
 	],
-	#category : #'Morphic-Base-Text Support',
-	#timestamp : '<historical>'
+	#category : #'Morphic-Base-Text Support'
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine class>>start: startInteger stop: stopInteger internalSpaces: spacesInteger paddingWidth: padWidthInteger [
+{ #category : #'instance creation' }
+TextLine class >> start: startInteger stop: stopInteger internalSpaces: spacesInteger paddingWidth: padWidthInteger [
 	"Answer an instance of me with the arguments as the start, stop points, 
 	number of spaces in the line, and width of the padding."
 	| line |
@@ -41,11 +37,8 @@ TextLine class>>start: startInteger stop: stopInteger internalSpaces: spacesInte
 	^ line internalSpaces: spacesInteger paddingWidth: padWidthInteger
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>= line [
+{ #category : #comparing }
+TextLine >> = line [
 
 	self species = line species
 		ifTrue: [^((firstIndex = line first and: [lastIndex = line last])
@@ -54,91 +47,61 @@ TextLine>>= line [
 		ifFalse: [^false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>baseline [
+{ #category : #accessing }
+TextLine >> baseline [
 	^ baseline
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>bottom [
+{ #category : #accessing }
+TextLine >> bottom [
 	^ bottom
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>bottomRight [
+{ #category : #accessing }
+TextLine >> bottomRight [
 	^ right@bottom
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>first [
+{ #category : #accessing }
+TextLine >> first [
 	^ firstIndex
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>firstIndex: firstInteger lastIndex: lastInteger [
+{ #category : #private }
+TextLine >> firstIndex: firstInteger lastIndex: lastInteger [
 	firstIndex := firstInteger.
 	lastIndex := lastInteger
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>hash [
+{ #category : #comparing }
+TextLine >> hash [
 	"#hash is re-implemented because #= is re-implemented"
 	^firstIndex hash bitXor: lastIndex hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>internalSpaces [
+{ #category : #accessing }
+TextLine >> internalSpaces [
 	"Answer the number of spaces in the line."
 
 	^internalSpaces
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>internalSpaces: spacesInteger  [
+{ #category : #accessing }
+TextLine >> internalSpaces: spacesInteger [ 
 	"Set the number of spaces in the line to be spacesInteger."
 
 	internalSpaces := spacesInteger
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>internalSpaces: spacesInteger paddingWidth: padWidthInteger [
+{ #category : #private }
+TextLine >> internalSpaces: spacesInteger paddingWidth: padWidthInteger [
 
 	internalSpaces := spacesInteger.
 	paddingWidth := padWidthInteger
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>justifiedPadFor: spaceIndex  [
+{ #category : #scanning }
+TextLine >> justifiedPadFor: spaceIndex [ 
 	"Compute the width of pad for a given space in a line of justified text."
 
 	| pad |
@@ -149,11 +112,8 @@ TextLine>>justifiedPadFor: spaceIndex  [
 		ifFalse: [^pad]
 ]
 
-{
-	#category : #scanning,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>justifiedTabDeltaFor: spaceIndex  [
+{ #category : #scanning }
+TextLine >> justifiedTabDeltaFor: spaceIndex [ 
 	"Compute the delta for a tab in a line of justified text, so tab falls 
 	somewhere plausible when line is justified."
 
@@ -166,71 +126,47 @@ TextLine>>justifiedTabDeltaFor: spaceIndex  [
 		ifFalse: [^extraPad * (pad + 1) + (spaceIndex - extraPad * pad)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>last [
+{ #category : #accessing }
+TextLine >> last [
 	^ lastIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>left [
+{ #category : #accessing }
+TextLine >> left [
 	^ left
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>leftMargin [
+{ #category : #accessing }
+TextLine >> leftMargin [
 	"This has to get fixed -- store during composition"
 	^ self left
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>leftMargin: lm [
+{ #category : #accessing }
+TextLine >> leftMargin: lm [
 	left := lm
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>leftMarginForAlignment: alignmentCode [
+{ #category : #accessing }
+TextLine >> leftMarginForAlignment: alignmentCode [
 	alignmentCode = RightFlush ifTrue: [^ self left + paddingWidth].
 	alignmentCode = Centered ifTrue: [^ self left + (paddingWidth//2)].
 	^ self left  "leftFlush and justified"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>lineHeight [
+{ #category : #accessing }
+TextLine >> lineHeight [
 	^ bottom - top
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>lineHeight: height baseline: ascent [
+{ #category : #private }
+TextLine >> lineHeight: height baseline: ascent [
 	bottom := top + height.
 	baseline := ascent
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>moveBy: delta  [
+{ #category : #updating }
+TextLine >> moveBy: delta [ 
 	"Move my rectangle by the given delta"
 	left := left + delta x.
 	right := right + delta x.
@@ -239,95 +175,65 @@ TextLine>>moveBy: delta  [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>paddingWidth [
+{ #category : #accessing }
+TextLine >> paddingWidth [
 	"Answer the amount of space to be added to the font."
 
 	^paddingWidth
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>paddingWidth: padWidthInteger  [
+{ #category : #accessing }
+TextLine >> paddingWidth: padWidthInteger [ 
 	"Set the amount of space to be added to the font to be padWidthInteger."
 
 	paddingWidth := padWidthInteger
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>printOn: aStream [
+{ #category : #printing }
+TextLine >> printOn: aStream [
 	super printOn: aStream.
 	aStream space; print: firstIndex; nextPutAll: ' to: '; print: lastIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>rectangle [
+{ #category : #accessing }
+TextLine >> rectangle [
 	^ self topLeft corner: self bottomRight
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>rectangle: lineRectangle [
+{ #category : #accessing }
+TextLine >> rectangle: lineRectangle [
 	left := lineRectangle left.
 	right := lineRectangle right.
 	top := lineRectangle top.
 	bottom := lineRectangle bottom
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>right [
+{ #category : #accessing }
+TextLine >> right [
 	^ right
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>rightMargin [
+{ #category : #accessing }
+TextLine >> rightMargin [
 	"This has to get fixed -- store during composition"
 	^ self right
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>setRight: x [
+{ #category : #accessing }
+TextLine >> setRight: x [
 	right := x
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>slide: delta  [
+{ #category : #updating }
+TextLine >> slide: delta [ 
 	"Change the starting and stopping points of the line by delta."
 
 	firstIndex := firstIndex + delta.
 	lastIndex := lastIndex + delta
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>slideIndexBy: delta andMoveTopTo: newTop [
+{ #category : #updating }
+TextLine >> slideIndexBy: delta andMoveTopTo: newTop [
 	"Relocate my character indices and y-values.
 	Used to slide constant text up or down in the wake of a text replacement."
 
@@ -338,36 +244,24 @@ TextLine>>slideIndexBy: delta andMoveTopTo: newTop [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>stop: stopInteger  [
+{ #category : #accessing }
+TextLine >> stop: stopInteger [ 
 	"Set the stopping point in the string of the line to be stopInteger."
 
 	lastIndex := stopInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>top [
+{ #category : #accessing }
+TextLine >> top [
 	^ top
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>topLeft [
+{ #category : #accessing }
+TextLine >> topLeft [
 	^ left @ top
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TextLine>>width [
+{ #category : #accessing }
+TextLine >> width [
 	^ right - left
 ]

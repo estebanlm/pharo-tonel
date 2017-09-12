@@ -12,15 +12,11 @@ Class {
 	#name : #ENUMLOGFONTEXA,
 	#superclass : #LOGFONTA,
 	#type : #bytes,
-	#category : #Alien-Win32,
-	#timestamp : 'eem 11/28/2007 14:31'
+	#category : #Alien-Win32
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ENUMLOGFONTEXA class>>dataSize [
+{ #category : #'instance creation' }
+ENUMLOGFONTEXA class >> dataSize [
 	^188
 	
 "
@@ -35,10 +31,7 @@ typedef struct tagENUMLOGFONTEX {
 "
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-ENUMLOGFONTEXA>>elfFullName [
+{ #category : #accessing }
+ENUMLOGFONTEXA >> elfFullName [
 	^self strcpyFrom: 61
 ]

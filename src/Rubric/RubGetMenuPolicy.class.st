@@ -7,38 +7,25 @@ Class {
 	#instVars : [
 		'textArea'
 	],
-	#category : #Rubric-Editing-Core,
-	#timestamp : 'FranckWarlouzet 7/29/2015 13:02'
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #'accessing menu',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubGetMenuPolicy>>lookupMenu  [
+{ #category : #'accessing menu' }
+RubGetMenuPolicy >> lookupMenu [ 
 	^ textArea lookupMenu
 ]
 
-{
-	#category : #'accessing menu',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubGetMenuPolicy>>lookupShiftMenu  [
+{ #category : #'accessing menu' }
+RubGetMenuPolicy >> lookupShiftMenu [ 
 	^ textArea lookupShiftMenu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubGetMenuPolicy>>textArea [
+{ #category : #accessing }
+RubGetMenuPolicy >> textArea [
 	^ textArea
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubGetMenuPolicy>>textArea: aTextArea [
+{ #category : #accessing }
+RubGetMenuPolicy >> textArea: aTextArea [
 	textArea := aTextArea
 ]

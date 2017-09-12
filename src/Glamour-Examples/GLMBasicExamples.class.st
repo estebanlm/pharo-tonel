@@ -4,23 +4,16 @@ self open
 Class {
 	#name : #GLMBasicExamples,
 	#superclass : #GLMExamples,
-	#category : #Glamour-Examples,
-	#timestamp : '<historical>'
+	#category : #Glamour-Examples
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples class>>title  [
+{ #category : #accessing }
+GLMBasicExamples class >> title [ 
 	^ 'Basic Examples'
 ]
 
-{
-	#category : #browsers,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>accumulator [
+{ #category : #browsers }
+GLMBasicExamples >> accumulator [
 	"self new accumulator openOn: 42"
 
 	<glmBrowser: 'Accumulator' input: '42'>
@@ -61,11 +54,8 @@ GLMBasicExamples>>accumulator [
 	^ browser
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>actionsFor: aPresentation  [
+{ #category : #private }
+GLMBasicExamples >> actionsFor: aPresentation [ 
 	|actions|
 	aPresentation isMultiple 
 							ifTrue: [actions := (aPresentation selection) ifNil: [OrderedCollection new]]
@@ -77,11 +67,8 @@ GLMBasicExamples>>actionsFor: aPresentation  [
 						yourself ]
 ]
 
-{
-	#category : #'actions examples',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>actionsWithShowTitle [
+{ #category : #'actions examples' }
+GLMBasicExamples >> actionsWithShowTitle [
 	<glmBrowser: 'Actions showing title' input: '''This example shows how actions can be rendered as buttons with text.'''>
 	"self new actionsWithShowTitle openOn: 'This example shows how actions can be rendered as buttons with text.'"
 	| browser |
@@ -101,11 +88,8 @@ GLMBasicExamples>>actionsWithShowTitle [
 	^ browser
 ]
 
-{
-	#category : #others,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>allowAllNil [
+{ #category : #others }
+GLMBasicExamples >> allowAllNil [
 	<glmBrowser: 'Allowing all nil' input: '5'>
 	"self new allowAllNil openOn: 5"
 	| browser |
@@ -137,11 +121,8 @@ GLMBasicExamples>>allowAllNil [
 	^ browser
 ]
 
-{
-	#category : #others,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>allowNil [
+{ #category : #others }
+GLMBasicExamples >> allowNil [
 	<glmBrowser: 'Allowing nil' input: '42'>
 	"self new allowNil openOn: 42"
 	| browser | 
@@ -164,11 +145,8 @@ GLMBasicExamples>>allowNil [
 	^ browser
 ]
 
-{
-	#category : #'actions examples',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>browserWithToolbar [
+{ #category : #'actions examples' }
+GLMBasicExamples >> browserWithToolbar [
 	<glmBrowser: 'Toolbar' input: '''Browser with toolbar'''>
 	"self new browserWithToolbar openOn: 'Browser with toolbar'"
 
@@ -180,11 +158,8 @@ GLMBasicExamples>>browserWithToolbar [
 	^ wrapper
 ]
 
-{
-	#category : #composite,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>changingTabsInComposite [
+{ #category : #composite }
+GLMBasicExamples >> changingTabsInComposite [
 	"self new changingTabsInComposite openOn: '42'"
 	<glmBrowser: 'Changing tabs' input: '42'>	
 	|browser|
@@ -213,11 +188,8 @@ GLMBasicExamples>>changingTabsInComposite [
 	^ browser
 ]
 
-{
-	#category : #others,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>compoundTaggedTree [
+{ #category : #others }
+GLMBasicExamples >> compoundTaggedTree [
 	"self new compoundTaggedTree openOn: #(window help home)"
 
 	<glmBrowser: 'Tags' input: '#(window help home)'>
@@ -261,11 +233,8 @@ GLMBasicExamples>>compoundTaggedTree [
 	^ browser
 ]
 
-{
-	#category : #browsers,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>dashboard [
+{ #category : #browsers }
+GLMBasicExamples >> dashboard [
 
 	<glmBrowser: 'Dashboard' input: '42'>
 	"self new dashboard openOn: 42"
@@ -302,11 +271,8 @@ GLMBasicExamples>>dashboard [
 	^ tmpBrowser
 ]
 
-{
-	#category : #browsers,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>dashboardWithSpecificLayouts [
+{ #category : #browsers }
+GLMBasicExamples >> dashboardWithSpecificLayouts [
 	"self new dashboardWithSpecificLayouts openOn: 42"
 
 	<glmBrowser: 'Dashboard specifying layouts' input: '42'>
@@ -338,11 +304,8 @@ GLMBasicExamples>>dashboardWithSpecificLayouts [
 	^ tmpBrowser
 ]
 
-{
-	#category : #browsers,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>dashboardsInDashboard [
+{ #category : #browsers }
+GLMBasicExamples >> dashboardsInDashboard [
 
 	<glmBrowser: 'Dashboards in dashboard' input: '42'>
 	"self new dashboard openOn: 42"
@@ -365,11 +328,8 @@ GLMBasicExamples>>dashboardsInDashboard [
 	^ tmpBrowser
 ]
 
-{
-	#category : #others,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>diff [
+{ #category : #others }
+GLMBasicExamples >> diff [
 	<glmBrowser: 'Diff' input: '#(#(abc def ghi) #(abc xyz))'>
 	"self new diff openOn: #(#(abc def ghi) #(abc xyz))"
 	| browser | 
@@ -389,11 +349,8 @@ GLMBasicExamples>>diff [
 	^ browser
 ]
 
-{
-	#category : #composite,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>differentComposites [
+{ #category : #composite }
+GLMBasicExamples >> differentComposites [
 	"self new differentComposites openOn: (1 to: 100)"
 	<glmBrowser: 'Composite arrangements' input: '(1 to: 100)'>	
 	| browser |
@@ -420,11 +377,8 @@ GLMBasicExamples>>differentComposites [
 	^ browser 
 ]
 
-{
-	#category : #others,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>doubleClick [
+{ #category : #others }
+GLMBasicExamples >> doubleClick [
 	"self new doubleClick openOn: 100"
 
 	<glmBrowser: 'Double click' input: '100'>
@@ -446,11 +400,8 @@ GLMBasicExamples>>doubleClick [
 	^ browser
 ]
 
-{
-	#category : #'explicit selection',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>dropDownList [
+{ #category : #'explicit selection' }
+GLMBasicExamples >> dropDownList [
 	"self new dropDownList openOn: 5"
 
 	<glmBrowser: 'Drop-down' input: '5'>
@@ -468,11 +419,8 @@ GLMBasicExamples>>dropDownList [
 	^ browser
 ]
 
-{
-	#category : #'explicit selection',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>dropDownListWithInitialValue [
+{ #category : #'explicit selection' }
+GLMBasicExamples >> dropDownListWithInitialValue [
 	"self new dropDownListWithInitialValue openOn: 5"
 
 	<glmBrowser: 'Drop-down with initial value' input: '5'>
@@ -490,11 +438,8 @@ GLMBasicExamples>>dropDownListWithInitialValue [
 	^ browser
 ]
 
-{
-	#category : #browsers,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>finderWithDifferentFirstPresentation [
+{ #category : #browsers }
+GLMBasicExamples >> finderWithDifferentFirstPresentation [
 	<glmBrowser: 'Finder with different first presentation' input: '1 to: 42'>
 	"self new finderWithDifferentFirstPresentation openOn: (1 to: 42)"
 	| finder |	
@@ -507,11 +452,8 @@ GLMBasicExamples>>finderWithDifferentFirstPresentation [
 	^ finder
 ]
 
-{
-	#category : #others,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>fixSizePanes [
+{ #category : #others }
+GLMBasicExamples >> fixSizePanes [
 	<glmBrowser: 'Fix size pane' input: '5'>
 	"self new fixSizePanes openOn: 1"
 	| browser |
@@ -522,11 +464,8 @@ GLMBasicExamples>>fixSizePanes [
 	^ browser 
 ]
 
-{
-	#category : #composite,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>formatAsWords [
+{ #category : #composite }
+GLMBasicExamples >> formatAsWords [
 	"self new formatAsWords openOn: (1 to: 100)"
 	<glmBrowser: 'Format' input: '(1 to: 100)'>	
 	| browser |
@@ -539,11 +478,8 @@ GLMBasicExamples>>formatAsWords [
 	^ browser 
 ]
 
-{
-	#category : #others,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>interdependentPanes [
+{ #category : #others }
+GLMBasicExamples >> interdependentPanes [
 	<glmBrowser: 'Two inter-dependent panes' input: '5'>
 	"self new interdependentPanes openOn: 5"
 	|browser |
@@ -562,11 +498,8 @@ GLMBasicExamples>>interdependentPanes [
 	^ browser
 ]
 
-{
-	#category : #'drag and drop',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>listDragAndDrop [
+{ #category : #'drag and drop' }
+GLMBasicExamples >> listDragAndDrop [
 	"self new listDragAndDrop openOn: (1 to: 5) asOrderedCollection"
 	| browser |
 	browser := GLMTabulator new.
@@ -591,11 +524,8 @@ GLMBasicExamples>>listDragAndDrop [
 	^ browser
 ]
 
-{
-	#category : #'explicit selection',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>listsInDashboardWithUpdatedSelection [
+{ #category : #'explicit selection' }
+GLMBasicExamples >> listsInDashboardWithUpdatedSelection [
 	"self new listsInDashboardWithUpdatedSelection openOn: 10"
 	<glmBrowser: 'Updated selection in dashboard' input: '10'>
 	| browser |
@@ -617,11 +547,8 @@ GLMBasicExamples>>listsInDashboardWithUpdatedSelection [
 	^ browser
 ]
 
-{
-	#category : #'explicit selection',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>listsWithUpdatedSelection [
+{ #category : #'explicit selection' }
+GLMBasicExamples >> listsWithUpdatedSelection [
 	"self new listsWithUpdatedSelection openOn: 10"
 	<glmBrowser: 'Updated selection' input: '10'>
 	| browser |
@@ -643,11 +570,8 @@ GLMBasicExamples>>listsWithUpdatedSelection [
 	^ browser
 ]
 
-{
-	#category : #others,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>morphIcons [
+{ #category : #others }
+GLMBasicExamples >> morphIcons [
 	<glmBrowser: 'Morph icons' input: 'GLMUIThemeExtraIcons class selectors select: [:each | (each beginsWith: ''glamorous'') and: [(GLMUIThemeExtraIcons perform: each) isForm ]]'>
 	"self new morphIcons openOn: (GLMUIThemeExtraIcons class selectors select: [:each | (each beginsWith: 'glamorous') and: [(GLMUIThemeExtraIcons perform: each) isForm ]])"
 	| browser |
@@ -664,11 +588,8 @@ GLMBasicExamples>>morphIcons [
 	^ browser
 ]
 
-{
-	#category : #others,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>morphWithCustomInteraction [
+{ #category : #others }
+GLMBasicExamples >> morphWithCustomInteraction [
 	"self new morphWithCustomInteraction openOn: 42"
 
 	<glmBrowser: 'Morph with custom interaction' input: '42'>
@@ -693,11 +614,8 @@ GLMBasicExamples>>morphWithCustomInteraction [
 				andShow: [ :a | a text ] ]
 ]
 
-{
-	#category : #'explicit selection',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>multiInitialSelection [
+{ #category : #'explicit selection' }
+GLMBasicExamples >> multiInitialSelection [
 	"
 		| browser |
 		browser := self new multiInitialSelection.
@@ -717,11 +635,8 @@ GLMBasicExamples>>multiInitialSelection [
 	^ browser
 ]
 
-{
-	#category : #'actions examples',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>multipleActions [
+{ #category : #'actions examples' }
+GLMBasicExamples >> multipleActions [
 	<glmBrowser: 'Multiple actions' input: '''This example shows how multiple actions are rendered.'''>
 	"self new multipleActions openOn: 'This example shows how multiple actions are rendered.'"
 	|browser |
@@ -737,11 +652,8 @@ GLMBasicExamples>>multipleActions [
 	^ browser
 ]
 
-{
-	#category : #'searching and filtering',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>multipleFinderWithFilter [
+{ #category : #'searching and filtering' }
+GLMBasicExamples >> multipleFinderWithFilter [
 	<glmBrowser: 'Filter' input: '$a to: $z'>
 	"self new multipleFinderWithFilter openOn: ($a to: $z)"
 
@@ -762,11 +674,8 @@ GLMBasicExamples>>multipleFinderWithFilter [
 	^ finder 
 ]
 
-{
-	#category : #'searching and filtering',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>multipleFinderWithFilterAndSearch [
+{ #category : #'searching and filtering' }
+GLMBasicExamples >> multipleFinderWithFilterAndSearch [
 	<glmBrowser: 'Search' input: '$a to: $z'>
 	"self new multipleFinderWithFilterAndSearch openOn: (1 to: 100)"
 
@@ -792,11 +701,8 @@ GLMBasicExamples>>multipleFinderWithFilterAndSearch [
 	^ finder 
 ]
 
-{
-	#category : #'actions examples',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>onChangeOfPortAction [
+{ #category : #'actions examples' }
+GLMBasicExamples >> onChangeOfPortAction [
 	<glmBrowser: 'On change of port' input: '''Type something and check the Transcript'''>
 	"self new onChangeOfPortAction openOn: 'Type something and check the Transcript' "
 
@@ -808,11 +714,8 @@ GLMBasicExamples>>onChangeOfPortAction [
 		act: [ Transcript open ] entitled: 'Open Transcript'
 ]
 
-{
-	#category : #text,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>pharoScript [
+{ #category : #text }
+GLMBasicExamples >> pharoScript [
 	<glmBrowser: 'Pharo script' input: '''"Enter some Smalltalk code and then accept to preview the result."'''>
 	"self new pharoScript openOn: ''"
 	| browser |
@@ -830,11 +733,8 @@ GLMBasicExamples>>pharoScript [
 	^ browser
 ]
 
-{
-	#category : #text,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>populatePortAction [
+{ #category : #text }
+GLMBasicExamples >> populatePortAction [
 	<glmBrowser: 'Populate port action' input: 'String withAll: ''Select a piece of text and open on the next pane via the contextual menu or by pressing Modifier+o. Otherwise just open the complete copy of the current text on the next pane via the menu or by pressing Modifier+l.'''>
 	"self new populatePortAction openOn: 'Select a piece of text and open on the next pane either with the overall button, or via the context menu'"
 	| browser |
@@ -845,11 +745,8 @@ GLMBasicExamples>>populatePortAction [
 	^ browser 
 ]
 
-{
-	#category : #text,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>populatePortActionsWithDifferentTargets [
+{ #category : #text }
+GLMBasicExamples >> populatePortActionsWithDifferentTargets [
 	<glmBrowser: 'Populate port action with different targets' input: '$a to: $z'>
 	"self new populatePortActionsWithDifferentTargets openOn: ($a to: $z)"
 	| composer |
@@ -868,11 +765,8 @@ GLMBasicExamples>>populatePortActionsWithDifferentTargets [
 	^ composer
 ]
 
-{
-	#category : #actionlist,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>simpleActionList [
+{ #category : #actionlist }
+GLMBasicExamples >> simpleActionList [
 	<glmBrowser: 'Action list' input: '#(1 2 3)'>	
 	"self new simpleActionList openOn: #(1 2 3)"
 	| browser |
@@ -885,11 +779,8 @@ GLMBasicExamples>>simpleActionList [
 	^ browser
 ]
 
-{
-	#category : #others,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>simpleExpander [
+{ #category : #others }
+GLMBasicExamples >> simpleExpander [
 	<glmBrowser: 'Simple Expander' input: '#(a b c)'>
 	"self new simpleExpander  openOn: #(a b c)"
 	| browser |
@@ -901,11 +792,8 @@ GLMBasicExamples>>simpleExpander [
 	^ browser
 ]
 
-{
-	#category : #browsers,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>simpleFinder [
+{ #category : #browsers }
+GLMBasicExamples >> simpleFinder [
 	<glmBrowser: 'Finder' input: '42'>
 	"self new simpleFinder openOn: 42"
 	| finder |	
@@ -914,11 +802,8 @@ GLMBasicExamples>>simpleFinder [
 	^ finder
 ]
 
-{
-	#category : #'actions examples',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>simpleFinderWithMenu [
+{ #category : #'actions examples' }
+GLMBasicExamples >> simpleFinderWithMenu [
 	<glmBrowser: 'Browser menu' input: '$z'>
 	"self new simpleFinderWithMenu openOn: $z"
 
@@ -931,11 +816,8 @@ GLMBasicExamples>>simpleFinderWithMenu [
 	^ finder
 ]
 
-{
-	#category : #browsers,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>simplePager [
+{ #category : #browsers }
+GLMBasicExamples >> simplePager [
 	<glmBrowser: 'Pager' input: '42'>
 	"self new simplePager openOn: 42"
 	| pager |	
@@ -944,11 +826,8 @@ GLMBasicExamples>>simplePager [
 	^ pager
 ]
 
-{
-	#category : #table,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>simpleTable [
+{ #category : #table }
+GLMBasicExamples >> simpleTable [
 	<glmBrowser: 'Table simple' input: '100'>
 	"| f | 
 	f := self new simpleTable.
@@ -965,11 +844,8 @@ GLMBasicExamples>>simpleTable [
 	^ wrapper
 ]
 
-{
-	#category : #table,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>simpleTableWithSorting [
+{ #category : #table }
+GLMBasicExamples >> simpleTableWithSorting [
 	<glmBrowser: 'Table with column sorting' input: '1 to: 20'>
 	"
 	self new simpleTableWithSorting openOn: (1 to: 20)
@@ -991,11 +867,8 @@ GLMBasicExamples>>simpleTableWithSorting [
 	^ browser
 ]
 
-{
-	#category : #table,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>simpleTableWithTags [
+{ #category : #table }
+GLMBasicExamples >> simpleTableWithTags [
 	<glmBrowser: 'Table with tags' input: '1 to: 20'>
 	"
 	self new simpleTableWithTags openOn: (1 to: 20)
@@ -1030,11 +903,8 @@ GLMBasicExamples>>simpleTableWithTags [
 	^ browser
 ]
 
-{
-	#category : #'explicit selection',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>singleInitialSelection [
+{ #category : #'explicit selection' }
+GLMBasicExamples >> singleInitialSelection [
 	"
 		| browser |
 		browser := self new singleInitialSelection.
@@ -1055,11 +925,8 @@ GLMBasicExamples>>singleInitialSelection [
 	^ browser
 ]
 
-{
-	#category : #text,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>smalltalkEditorWithBindings [
+{ #category : #text }
+GLMBasicExamples >> smalltalkEditorWithBindings [
 	<glmBrowser: 'Editor with bindings' input: '''"x and y are bound. Execute the code to get the result."
 	
 x+y'''>
@@ -1072,11 +939,8 @@ x+y'''>
 	^ composite
 ]
 
-{
-	#category : #'actions examples',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>spawnBrowserActions [
+{ #category : #'actions examples' }
+GLMBasicExamples >> spawnBrowserActions [
 	<glmBrowser: 'Spawn browser actions' input: '#(1 2 3 4)'>
 	"self new spawnBrowserActions openOn: #(1 2 3 4)"
 	|browser |
@@ -1099,11 +963,8 @@ GLMBasicExamples>>spawnBrowserActions [
 	^ browser
 ]
 
-{
-	#category : #'actions examples',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>spawnBrowserSelectionActions [
+{ #category : #'actions examples' }
+GLMBasicExamples >> spawnBrowserSelectionActions [
 	<glmBrowser: 'Spawn browser selection actions' input: '#(1 2 3 4)'>
 	"self new spawnBrowserSelectionActions openOn: #(1 2 3 4)"
 	|browser |
@@ -1126,11 +987,8 @@ GLMBasicExamples>>spawnBrowserSelectionActions [
 	^ browser
 ]
 
-{
-	#category : #others,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>stacker [
+{ #category : #others }
+GLMBasicExamples >> stacker [
 	<glmBrowser: 'Stacker' input: '5'>
 	"self new stacker openOn: 5"
 	
@@ -1146,11 +1004,8 @@ GLMBasicExamples>>stacker [
 	^ browser 
 ]
 
-{
-	#category : #'actions examples',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>staticAndDynamicMenu [
+{ #category : #'actions examples' }
+GLMBasicExamples >> staticAndDynamicMenu [
 	<glmBrowser: 'Menus' input: '$z'>
 	"self new staticAndDynamicMenu openOn: $z"
 
@@ -1177,11 +1032,8 @@ GLMBasicExamples>>staticAndDynamicMenu [
 	^ finder
 ]
 
-{
-	#category : #table,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>tableWithCustomWidth [
+{ #category : #table }
+GLMBasicExamples >> tableWithCustomWidth [
 	<glmBrowser: 'Table with custom width' input: '100'>
 	"self new tableWithCustomWidth openOn: 100"
 	| wrapper textBlock |	
@@ -1197,11 +1049,8 @@ GLMBasicExamples>>tableWithCustomWidth [
 	^ wrapper
 ]
 
-{
-	#category : #'actions examples',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>tableWithIcons [
+{ #category : #'actions examples' }
+GLMBasicExamples >> tableWithIcons [
 	<glmBrowser: 'Icons' input: '($A to: $z)'>
 	"self new tableWithIcons openOn: ($A to: $z)"
 	|browser |
@@ -1222,11 +1071,8 @@ GLMBasicExamples>>tableWithIcons [
 	^ browser
 ]
 
-{
-	#category : #'tabs examples',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>tabsWithDifferentActions [
+{ #category : #'tabs examples' }
+GLMBasicExamples >> tabsWithDifferentActions [
 	<glmBrowser: 'Tabs with different actions' input: '42'>
 	"self new tabsWithDifferentActions openOn: 42"
 	
@@ -1247,11 +1093,8 @@ GLMBasicExamples>>tabsWithDifferentActions [
 	^ browser
 ]
 
-{
-	#category : #'tabs examples',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>tabsWithDifferentLabels [
+{ #category : #'tabs examples' }
+GLMBasicExamples >> tabsWithDifferentLabels [
 	<glmBrowser: 'Tabs with different labels' input: '1'>
 	"self new tabsWithDifferentLabels openOn: 1"
 	
@@ -1270,11 +1113,8 @@ GLMBasicExamples>>tabsWithDifferentLabels [
 	^ finder
 ]
 
-{
-	#category : #others,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>taggedTree [
+{ #category : #others }
+GLMBasicExamples >> taggedTree [
 	"self new taggedTree openOn: #(1 2 3 4 5)"
 	|browser |
 
@@ -1292,11 +1132,8 @@ GLMBasicExamples>>taggedTree [
 	^ browser
 ]
 
-{
-	#category : #composite,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>textAttributes [
+{ #category : #composite }
+GLMBasicExamples >> textAttributes [
 	"self new textAttributes openOn: 1"
 	<glmBrowser: 'Text attributes' input: '1'>	
 	| browser |
@@ -1312,11 +1149,8 @@ GLMBasicExamples>>textAttributes [
 	^ browser 
 ]
 
-{
-	#category : #text,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>textPortAction [
+{ #category : #text }
+GLMBasicExamples >> textPortAction [
 	<glmBrowser: 'Text port action' input: '''Type some text here'''>
 	"self new textPortAction openOn: 'Type some text here'"
 	
@@ -1341,11 +1175,8 @@ GLMBasicExamples>>textPortAction [
  	^ browser
 ]
 
-{
-	#category : #text,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>textPortsExamples [
+{ #category : #text }
+GLMBasicExamples >> textPortsExamples [
 	<glmBrowser: 'Text ports' input: '''Type and select to see the results previewed.'''>
 	"self new textPortsExamples openOn: 'Type and select to see the results previewed.'"
 
@@ -1372,11 +1203,8 @@ GLMBasicExamples>>textPortsExamples [
 	^ browser
 ]
 
-{
-	#category : #text,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>textSelection [
+{ #category : #text }
+GLMBasicExamples >> textSelection [
 	<glmBrowser: 'Text selection' input: '(1 to: 100)'>
 	"	|browser |
 		browser := self new textSelection.
@@ -1399,11 +1227,8 @@ GLMBasicExamples>>textSelection [
 "	^ browser
 ]
 
-{
-	#category : #others,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>threeInterdependentPanes [
+{ #category : #others }
+GLMBasicExamples >> threeInterdependentPanes [
 	"self new threeInterdependentPanes openOn: 5"
 
 	<glmBrowser: 'Three inter-dependent panes' input: '5'>
@@ -1442,11 +1267,8 @@ GLMBasicExamples>>threeInterdependentPanes [
 	^ browser
 ]
 
-{
-	#category : #others,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>treeWithAmountFiltering [
+{ #category : #others }
+GLMBasicExamples >> treeWithAmountFiltering [
 	<glmBrowser: 'Smart lists' input: '(1 to: 10000)'>
 	"self new treeWithAmountFiltering openOn: (1 to: 10000)"
 	| browser |
@@ -1459,11 +1281,8 @@ GLMBasicExamples>>treeWithAmountFiltering [
 	^ browser 
 ]
 
-{
-	#category : #'explicit selection',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>treeWithChildrenByLevel [
+{ #category : #'explicit selection' }
+GLMBasicExamples >> treeWithChildrenByLevel [
 	"
 		self new treeWithChildrenByLevel openOn: #(1 2 3 4 5)
 	"
@@ -1497,11 +1316,8 @@ GLMBasicExamples>>treeWithChildrenByLevel [
 	^ browser
 ]
 
-{
-	#category : #others,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>treeWithExpansion [
+{ #category : #others }
+GLMBasicExamples >> treeWithExpansion [
 	<glmBrowser: 'Tree with expansion' input: '#(($a $b $c $d) ($e $f) ($g $h $i $j ($l $m $n)))'>
 	"self new treeWithExpansion openOn: #(($a $b $c $d) ($e $f) ($g $h $i $j ($l $m $n)))"
 	|browser |
@@ -1523,11 +1339,8 @@ GLMBasicExamples>>treeWithExpansion [
 	^ browser
 ]
 
-{
-	#category : #'explicit selection',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>treeWithInitialSelection [
+{ #category : #'explicit selection' }
+GLMBasicExamples >> treeWithInitialSelection [
 	"
 		| browser |
 		browser := self new treeWithInitialSelection. 
@@ -1567,11 +1380,8 @@ GLMBasicExamples>>treeWithInitialSelection [
 	^ browser
 ]
 
-{
-	#category : #'actions examples',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>treeWithMenu [
+{ #category : #'actions examples' }
+GLMBasicExamples >> treeWithMenu [
 	<glmBrowser: 'Tree with menu' input: '#(($a $b $c $d) ($e $f) ($g $h $i $j $l))'>
 	"self new treeWithMenu openOn: #(($a $b $c $d) ($e $f) ($g $h $i $j $l))"
 	|browser |
@@ -1586,11 +1396,8 @@ GLMBasicExamples>>treeWithMenu [
 	^ browser
 ]
 
-{
-	#category : #'explicit selection',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>treeWithTags [
+{ #category : #'explicit selection' }
+GLMBasicExamples >> treeWithTags [
 	<glmBrowser: 'Tree withTags' input: '(1 to: 10)'>
 	"
 		self new treeWithTags openOn: #(1 2 3 4 5 6 7 8 9 10)
@@ -1611,11 +1418,8 @@ GLMBasicExamples>>treeWithTags [
 	^ browser
 ]
 
-{
-	#category : #'explicit selection',
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>treeWithTagsMoreLevels [
+{ #category : #'explicit selection' }
+GLMBasicExamples >> treeWithTagsMoreLevels [
 	<glmBrowser: 'Tree withTags more levels' input: '(1 to: 10)'>
 	"
 		self new treeWithTagsMoreLevels openOn: #(1 2 3 4 5 6 7 8 9 10)
@@ -1643,11 +1447,8 @@ GLMBasicExamples>>treeWithTagsMoreLevels [
 	^ browser
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>updateableBrowser [
+{ #category : #updating }
+GLMBasicExamples >> updateableBrowser [
 	<glmBrowser: 'Updateable browser' input: '|collection|
 	collection := GLMAnnouncingCollection new.
 	collection add: 1.
@@ -1684,11 +1485,8 @@ Add more items to show the list'] ].
 	^ browser
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>validatingPresentation [
+{ #category : #updating }
+GLMBasicExamples >> validatingPresentation [
 	<glmBrowser: 'Validating presentation' input: '|collection|
 	collection := GLMAnnouncingCollection new.
 	collection add: 1; add: 2; add: 3.
@@ -1721,11 +1519,8 @@ GLMBasicExamples>>validatingPresentation [
 
 ]
 
-{
-	#category : #browsers,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>validator [
+{ #category : #browsers }
+GLMBasicExamples >> validator [
 	<glmBrowser: 'Validator' input: '42'>
 	"self new validator openOn: 42"
 
@@ -1738,11 +1533,8 @@ GLMBasicExamples>>validator [
 	^ finder
 ]
 
-{
-	#category : #browsers,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>validatorDynamic [
+{ #category : #browsers }
+GLMBasicExamples >> validatorDynamic [
 	<glmBrowser: 'Dynamic validator' input: '42'>
 	"self new validatorDynamic openOn: 42"
 
@@ -1758,11 +1550,8 @@ GLMBasicExamples>>validatorDynamic [
 	^ finder
 ]
 
-{
-	#category : #others,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>watcher [
+{ #category : #others }
+GLMBasicExamples >> watcher [
 	"self new watcher openOn: (Collection methods)"
 
 	"You have to open the Watcher to see the effect."
@@ -1782,11 +1571,8 @@ GLMBasicExamples>>watcher [
 	^ browser
 ]
 
-{
-	#category : #browsers,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>wizard [
+{ #category : #browsers }
+GLMBasicExamples >> wizard [
 	"<glmBrowser: 'Wizard' input: '100'>"
 	"self new wizard inspect openOn: 100"
 
@@ -1802,11 +1588,8 @@ GLMBasicExamples>>wizard [
 	^ wizard
 ]
 
-{
-	#category : #browsers,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBasicExamples>>wrapper  [
+{ #category : #browsers }
+GLMBasicExamples >> wrapper [ 
 	
 	<glmBrowser: 'Wrapper' input: '1 to: 42'>
 	"self new wrapper openOn: (1 to: 42)"

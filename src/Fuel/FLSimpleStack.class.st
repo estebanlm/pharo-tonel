@@ -12,51 +12,35 @@ Class {
 		'array',
 		'slotIndex'
 	],
-	#category : #Fuel-Collections,
-	#timestamp : 'MarianoMartinezPeck 6/5/2011 12:29'
+	#category : #Fuel-Collections
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSimpleStack class>>hintSize [
+{ #category : #'instance creation' }
+FLSimpleStack class >> hintSize [
 
 	^64
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSimpleStack class>>new [
+{ #category : #'instance creation' }
+FLSimpleStack class >> new [
 	
 	^ self new: self hintSize
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSimpleStack class>>new: nElements [
+{ #category : #'instance creation' }
+FLSimpleStack class >> new: nElements [
 	"Create a Set large enough to hold nElements without growing"
 	^ self basicNew initialize: nElements
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSimpleStack>>capacity [
+{ #category : #accessing }
+FLSimpleStack >> capacity [
 
 	^ array size
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSimpleStack>>grow [
+{ #category : #adding }
+FLSimpleStack >> grow [
 	"Become larger in capacity."
 	| newArray |
 	newArray := Array new: array size * 2.
@@ -64,41 +48,29 @@ FLSimpleStack>>grow [
 	array := newArray
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSimpleStack>>initialize: hintSize [
+{ #category : #initialize-release }
+FLSimpleStack >> initialize: hintSize [
 
 	array := Array new: hintSize.
 	slotIndex := 1.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSimpleStack>>isEmpty [
+{ #category : #accessing }
+FLSimpleStack >> isEmpty [
 
 	^ 1 = slotIndex
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSimpleStack>>pop [
+{ #category : #removing }
+FLSimpleStack >> pop [
 	"Returns the first element and remove it from the stack."
 
 	slotIndex := slotIndex - 1.	
 	^ array at: slotIndex 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSimpleStack>>printOn: aStream  [
+{ #category : #printing }
+FLSimpleStack >> printOn: aStream [ 
 	"Append a sequence of characters that identify the receiver to aStream."
 
 	super printOn: aStream.
@@ -106,11 +78,8 @@ FLSimpleStack>>printOn: aStream  [
 
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLSimpleStack>>push: anObject  [
+{ #category : #adding }
+FLSimpleStack >> push: anObject [ 
 	"Adds a new object of any kind on top of the stack."
 
 	array at: slotIndex put: anObject.

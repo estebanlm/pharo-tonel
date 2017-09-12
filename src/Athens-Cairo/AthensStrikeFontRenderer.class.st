@@ -12,31 +12,21 @@ Class {
 		'font',
 		'canvas'
 	],
-	#category : #Athens-Cairo-Text,
-	#timestamp : 'StephaneDucasse 7/6/2014 18:39'
+	#category : #Athens-Cairo-Text
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrikeFontRenderer class>>on: aCanvas forFont: aFont [
+{ #category : #'instance creation' }
+AthensStrikeFontRenderer class >> on: aCanvas forFont: aFont [
 	^ self new canvas: aCanvas; font: aFont; yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrikeFontRenderer>>canvas: aCanvas [
+{ #category : #accessing }
+AthensStrikeFontRenderer >> canvas: aCanvas [
 	canvas := aCanvas
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrikeFontRenderer>>createCairoText: aString [
+{ #category : #private }
+AthensStrikeFontRenderer >> createCairoText: aString [
 	| fdesc at |
 	at := AthensCairoText new.
 	at text: aString.
@@ -45,39 +35,27 @@ AthensStrikeFontRenderer>>createCairoText: aString [
 	^ at
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrikeFontRenderer>>font [
+{ #category : #accessing }
+AthensStrikeFontRenderer >> font [
 	
 	^ font
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrikeFontRenderer>>font: anObject [
+{ #category : #accessing }
+AthensStrikeFontRenderer >> font: anObject [
 	
 	font := anObject
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrikeFontRenderer>>initialize [
+{ #category : #initialize }
+AthensStrikeFontRenderer >> initialize [
 	super initialize.
 	font := nil.
 	canvas := nil
 ]
 
-{
-	#category : #rendering,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensStrikeFontRenderer>>renderCharacters: aString from: start to: end [
+{ #category : #rendering }
+AthensStrikeFontRenderer >> renderCharacters: aString from: start to: end [
 	| cairoText |
 	aString isEmpty
 		ifTrue: [ ^ self ].

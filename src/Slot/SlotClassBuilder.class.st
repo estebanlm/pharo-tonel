@@ -28,15 +28,11 @@ Class {
 		'comment',
 		'commentStamp'
 	],
-	#category : #Slot-ClassBuilder,
-	#timestamp : '<historical>'
+	#category : #Slot-ClassBuilder
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>apply: classModification [
+{ #category : #private }
+SlotClassBuilder >> apply: classModification [
 
 	classModification modifiesSlots
 		ifTrue: [self applySlotChange: classModification]
@@ -59,88 +55,61 @@ SlotClassBuilder>>apply: classModification [
 		cleanUp
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>applyAndUpdateFormat: classModification [
+{ #category : #private }
+SlotClassBuilder >> applyAndUpdateFormat: classModification [
 	^ self track: classModification during: [ :old :new |
 		installer formatChangedFrom: old to: new by: classModification ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>applyAndUpdateSharedVariableOrSharedPool: classModification [
+{ #category : #private }
+SlotClassBuilder >> applyAndUpdateSharedVariableOrSharedPool: classModification [
 	^ self track: classModification during: [ :old :new |
 		installer sharedVariableOrSharedPoolChangedFrom: old to:  new by: classModification ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>applyAndUpdateSlots: classModification [
+{ #category : #private }
+SlotClassBuilder >> applyAndUpdateSlots: classModification [
 	^ self track: classModification during: [ :old :new |
 		installer slotsChangedFrom: old to: new by: classModification ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>applyAndUpdateSuperclass: classModification [
+{ #category : #private }
+SlotClassBuilder >> applyAndUpdateSuperclass: classModification [
 	^ self track: classModification during: [ :old :new |
 		installer superclassChangedFrom: old to: new by: classModification ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>applyFormatChange: classModification [
+{ #category : #private }
+SlotClassBuilder >> applyFormatChange: classModification [
 	result := self applyAndUpdateFormat: classModification.
 	classModification allPropagationsDo: [ :propagation | 
 		self applyAndUpdateFormat: propagation ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>applySharedVariableOrPoolChange: classModification [
+{ #category : #private }
+SlotClassBuilder >> applySharedVariableOrPoolChange: classModification [
 	"This method updates both shared variables and shared pools since they use the same mechanism"
 	result := self applyAndUpdateSharedVariableOrSharedPool: classModification.
 	classModification allPropagationsDo: [ :propagation | 
 		self applyAndUpdateSharedVariableOrSharedPool: propagation ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>applySlotChange: classModification [
+{ #category : #private }
+SlotClassBuilder >> applySlotChange: classModification [
 	result := self applyAndUpdateSlots: classModification.
 	classModification allPropagationsDo: [ :propagation | 
 		self applyAndUpdateSlots: propagation ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>applySuperclassChange: classModification [
+{ #category : #private }
+SlotClassBuilder >> applySuperclassChange: classModification [
 	result := self applyAndUpdateSuperclass: classModification.
 	classModification allPropagationsDo: [ :propagation | 
 		self applyAndUpdateSuperclass: propagation ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>build [
+{ #category : #initialize-release }
+SlotClassBuilder >> build [
 	| oldClass metaChange classChange |
 	result := oldClass := installer classAt: name ifAbsent: [ ^ self buildNewClass ].
 
@@ -195,11 +164,8 @@ SlotClassBuilder>>build [
 	^ result instanceSide
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>buildNewClass [
+{ #category : #initialize-release }
+SlotClassBuilder >> buildNewClass [
 	| metaclass newClass |
 	metaclass := Metaclass new.
 	metaclass
@@ -230,63 +196,42 @@ SlotClassBuilder>>buildNewClass [
 	^ newClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>category: aCategory [
+{ #category : #accessing }
+SlotClassBuilder >> category: aCategory [
 	aCategory isEmpty ifTrue: [ InvalidPackageName signal: 'The Category should not be empty' ].
 	category := aCategory
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>classSlots: someClassSlots [
+{ #category : #accessing }
+SlotClassBuilder >> classSlots: someClassSlots [
 	classSlots := someClassSlots
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>classTraitComposition: aTraitComposition [
+{ #category : #accessing }
+SlotClassBuilder >> classTraitComposition: aTraitComposition [
 	classTraitComposition := aTraitComposition asTraitComposition
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>cleanUp [
+{ #category : #private }
+SlotClassBuilder >> cleanUp [
 	
 	oldClasses removeAll.
 	newClasses removeAll.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>comment: aString [
+{ #category : #accessing }
+SlotClassBuilder >> comment: aString [
 	comment := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>comment: aString stamp: aStamp [
+{ #category : #accessing }
+SlotClassBuilder >> comment: aString stamp: aStamp [
 	comment := aString.
 	commentStamp := aStamp.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>copyClassSlotsFromExistingClass [
+{ #category : #accessing }
+SlotClassBuilder >> copyClassSlotsFromExistingClass [
 	"Ugly helper method: I copy over the class slots of the class in my builder environment."
 
 	| oldClass oldSlots |
@@ -296,27 +241,18 @@ SlotClassBuilder>>copyClassSlotsFromExistingClass [
 	self classSlots:(oldSlots collect: [ :e | e copy index: nil; yourself ])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>environment [
+{ #category : #accessing }
+SlotClassBuilder >> environment [
 	^ installer environment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>environment: globals [
+{ #category : #accessing }
+SlotClassBuilder >> environment: globals [
 	installer environment: globals
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>initialize [
+{ #category : #initialization }
+SlotClassBuilder >> initialize [
 	super initialize.
 	oldClasses := OrderedCollection new.
 	newClasses := OrderedCollection new.
@@ -329,47 +265,32 @@ SlotClassBuilder>>initialize [
 	traitComposition := {} asTraitComposition.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>installTraitComposition: classModification [
+{ #category : #private }
+SlotClassBuilder >> installTraitComposition: classModification [
 	installer
 		installTraitComposition: classModification traitComposition
 		on: classModification target.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>installer: anInstaller [
+{ #category : #accessing }
+SlotClassBuilder >> installer: anInstaller [
 	installer := anInstaller
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>layoutClass [
+{ #category : #accessing }
+SlotClassBuilder >> layoutClass [
 	"If not specified the layout class is the same as the superclass"
 	^ layoutClass ifNil: [ layoutClass := superclass classLayout class ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>layoutClass: aLayoutClass [
+{ #category : #accessing }
+SlotClassBuilder >> layoutClass: aLayoutClass [
 	layoutClass := aLayoutClass
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>migrateClasses: classModification [
+{ #category : #private }
+SlotClassBuilder >> migrateClasses: classModification [
 	| dependantClasses |
 	
 	installer
@@ -383,11 +304,8 @@ SlotClassBuilder>>migrateClasses: classModification [
 		SystemAnnouncer uniqueInstance classModificationAppliedTo: each  ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>name: aName [
+{ #category : #accessing }
+SlotClassBuilder >> name: aName [
 	aName ifNil: [ ^self "for anonymous classes" ].
 	[ name := aName asSymbol ]
 		on: Error 
@@ -398,60 +316,39 @@ SlotClassBuilder>>name: aName [
 	self warnOfDangerousClasses.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>sharedPools: poolString  [
+{ #category : #accessing }
+SlotClassBuilder >> sharedPools: poolString [ 
 	sharedPoolsString := poolString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>sharedVariables: anArray  [
+{ #category : #accessing }
+SlotClassBuilder >> sharedVariables: anArray [ 
 	sharedVariables := anArray collect: [ :each | each asClassVariable ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>sharedVariablesFromString: aString  [
+{ #category : #accessing }
+SlotClassBuilder >> sharedVariablesFromString: aString [ 
 	sharedVariables :=  (aString substrings: ' ') collect: [:x | x asSymbol => ClassVariable]. 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>slots: someSlots [
+{ #category : #accessing }
+SlotClassBuilder >> slots: someSlots [
 	slots := someSlots
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>superMetaclass [
+{ #category : #accessing }
+SlotClassBuilder >> superMetaclass [
 	 ^ superclass ifNil: [ Class ] ifNotNil: [ superclass class ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>superclass: aSuperclass [
+{ #category : #accessing }
+SlotClassBuilder >> superclass: aSuperclass [
 	superclass := aSuperclass.
 	superclass ifNotNil: [ self validateSuperclass: superclass ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>track: classModification during: aBlock [
+{ #category : #private }
+SlotClassBuilder >> track: classModification during: aBlock [
 	| old new |
 	old := classModification target.
 	new := classModification apply.
@@ -464,40 +361,28 @@ SlotClassBuilder>>track: classModification during: aBlock [
 	^ new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>traitComposition: aTraitComposition [
+{ #category : #accessing }
+SlotClassBuilder >> traitComposition: aTraitComposition [
 	traitComposition := aTraitComposition asTraitComposition
 ]
 
-{
-	#category : #'private validating',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>validateClassName [
+{ #category : #'private validating' }
+SlotClassBuilder >> validateClassName [
 	"Validate the new class name. Raise warning if invalid."
 	name isValidGlobalName ifFalse: [ 
 		InvalidGlobalName signal: 'Class name is not a valid global name. It must start with uppercase letter and continue with alphanumeric characters or underscore. Default names used in class or trait templates are not allowed.' for: name  ].
 ]
 
-{
-	#category : #'private validating',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>validateSuperChain: oldClass [
+{ #category : #'private validating' }
+SlotClassBuilder >> validateSuperChain: oldClass [
 	superclass ifNil: [ ^ nil ].
 	superclass withAllSuperclassesDo: [ :class |
 		class == oldClass
 			ifTrue: [ CircularHierarchyError signalFor: oldClass ]].
 ]
 
-{
-	#category : #'private validating',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>validateSuperclass: anObject [
+{ #category : #'private validating' }
+SlotClassBuilder >> validateSuperclass: anObject [
 	anObject isBehavior ifFalse: [ 
 		InvalidSuperclass 
 			signal: 'Trying to build classes from non-class objects'
@@ -509,10 +394,7 @@ SlotClassBuilder>>validateSuperclass: anObject [
 			for: anObject ].
 ]
 
-{
-	#category : #'private validating',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-SlotClassBuilder>>warnOfDangerousClasses [
+{ #category : #'private validating' }
+SlotClassBuilder >> warnOfDangerousClasses [
 	DangerousClassNotifier check: name 
 ]

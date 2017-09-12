@@ -8,23 +8,16 @@ Class {
 		'tmp',
 		'tmp2'
 	],
-	#category : #Kernel-Tests-Methods,
-	#timestamp : '<historical>'
+	#category : #Kernel-Tests-Methods
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContinuationTest>>callcc: aBlock [
+{ #category : #utilities }
+ContinuationTest >> callcc: aBlock [
 	^ Continuation currentDo: aBlock
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContinuationTest>>testBlockEscape [
+{ #category : #tests }
+ContinuationTest >> testBlockEscape [
 	| x |
 	tmp := 0.
 	x := [ tmp := tmp + 1. tmp2 value ].
@@ -34,11 +27,8 @@ ContinuationTest>>testBlockEscape [
 	self assert: tmp = 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContinuationTest>>testBlockTemps [
+{ #category : #tests }
+ContinuationTest >> testBlockTemps [
 	| y |
 	#(1 2 3) do: [ :i |
 		| x |
@@ -50,11 +40,8 @@ ContinuationTest>>testBlockTemps [
 	self assert: y = 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContinuationTest>>testBlockVars [
+{ #category : #tests }
+ContinuationTest >> testBlockVars [
 	| continuation |
 	tmp := 0.
 	tmp := (self callcc: [ :cc | continuation := cc. 0 ]) + tmp.
@@ -66,11 +53,8 @@ ContinuationTest>>testBlockVars [
 	self assert: tmp = 6
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContinuationTest>>testMethodTemps [
+{ #category : #tests }
+ContinuationTest >> testMethodTemps [
 	| i continuation |
 	i := 0.
 	i := i + (self callcc: [:cc | continuation := cc. 1]).
@@ -78,11 +62,8 @@ ContinuationTest>>testMethodTemps [
 	i = 2 ifFalse: [ continuation value: 2 ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContinuationTest>>testReentrant [
+{ #category : #tests }
+ContinuationTest >> testReentrant [
 	| assoc |
 	assoc := self callcc: [ :cc | cc -> 0 ].
 	assoc value: assoc value + 1.
@@ -91,22 +72,16 @@ ContinuationTest>>testReentrant [
 		ifFalse: [ assoc key value: assoc ]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContinuationTest>>testSimpleCallCC [
+{ #category : #tests }
+ContinuationTest >> testSimpleCallCC [
 	| x continuation |
 	x := self callcc: [ :cc | continuation := cc. false ].
 	x ifFalse: [ continuation value: true ].
 	self assert: x
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-ContinuationTest>>testSimplestCallCC [
+{ #category : #tests }
+ContinuationTest >> testSimplestCallCC [
 	| x |
 	x := self callcc: [ :cc | cc value: true ].
 	self assert: x

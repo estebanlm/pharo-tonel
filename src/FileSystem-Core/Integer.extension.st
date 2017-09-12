@@ -1,21 +1,13 @@
-Extension {
-	#name : #Integer
-}
+Extension { #name : #Integer }
 
-{
-	#category : #'*FileSystem-Core',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-Integer>>humanReadableSIByteSize [
+{ #category : #'*FileSystem-Core' }
+Integer >> humanReadableSIByteSize [
 	^ String streamContents: [ :s|
 		self humanReadableSIByteSizeOn: s ]
 ]
 
-{
-	#category : #'*FileSystem-Core',
-	#timestamp : ' 8/31/2017 07:16:22'
-}
-Integer>>humanReadableSIByteSizeOn: s [
+{ #category : #'*FileSystem-Core' }
+Integer >> humanReadableSIByteSizeOn: s [
 	| exponent base |
 	"Print a string with an SI binary unit represation of myself."
 	base := 1000.

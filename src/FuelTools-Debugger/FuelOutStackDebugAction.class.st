@@ -5,23 +5,16 @@ A FuelOutStackDebugAction is	a debugging action that serialize a portion of the 
 Class {
 	#name : #FuelOutStackDebugAction,
 	#superclass : #DebugAction,
-	#category : #FuelTools-Debugger,
-	#timestamp : '<historical>'
+	#category : #FuelTools-Debugger
 }
 
-{
-	#category : #registration,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FuelOutStackDebugAction class>>actionType [
+{ #category : #registration }
+FuelOutStackDebugAction class >> actionType [
 	<contextMenuDebuggingAction>
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FuelOutStackDebugAction class>>encodeDebugInformationOn: aSerializer [
+{ #category : #private }
+FuelOutStackDebugAction class >> encodeDebugInformationOn: aSerializer [
 	| str |
 	
 	str := String new writeStream. 
@@ -48,11 +41,8 @@ FuelOutStackDebugAction class>>encodeDebugInformationOn: aSerializer [
 	aSerializer at: #Image putAdditionalObject: str contents.
 ]
 
-{
-	#category : #serialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FuelOutStackDebugAction class>>serializeTestFailureContext: aContext toFileNamed: aFilename [
+{ #category : #serialization }
+FuelOutStackDebugAction class >> serializeTestFailureContext: aContext toFileNamed: aFilename [
 	| serializer |
 	
 	serializer := FLSerializer newDefault.
@@ -67,47 +57,32 @@ FuelOutStackDebugAction class>>serializeTestFailureContext: aContext toFileNamed
 		toFileNamed: aFilename
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FuelOutStackDebugAction>>defaultLabel [
+{ #category : #accessing }
+FuelOutStackDebugAction >> defaultLabel [
 
 	^ 'Fuel out Stack'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FuelOutStackDebugAction>>defaultOrder [
+{ #category : #accessing }
+FuelOutStackDebugAction >> defaultOrder [
 
 	^ 125
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FuelOutStackDebugAction>>executeAction [
+{ #category : #actions }
+FuelOutStackDebugAction >> executeAction [
 
 	self serializeStack
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FuelOutStackDebugAction>>id [
+{ #category : #accessing }
+FuelOutStackDebugAction >> id [
 
 	^ #fuelOutStack
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-FuelOutStackDebugAction>>serializeStack [
+{ #category : #actions }
+FuelOutStackDebugAction >> serializeStack [
 	| date fileName |
 	"Serialize a portion of the current stack trace using fuel.."
 	date := DateAndTime now.

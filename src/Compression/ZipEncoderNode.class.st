@@ -25,58 +25,39 @@ Class {
 		'left',
 		'right'
 	],
-	#category : #Compression-Streams,
-	#timestamp : '<historical>'
+	#category : #Compression-Streams
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode class>>value: v frequency: f height: h [
+{ #category : #'instance creation' }
+ZipEncoderNode class >> value: v frequency: f height: h [
 	^self new setValue: v frequency: f height: h
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>bitLength [
+{ #category : #accessing }
+ZipEncoderNode >> bitLength [
 	^bitLength ifNil:[0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>code [
+{ #category : #accessing }
+ZipEncoderNode >> code [
 	^code ifNil:[0]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>code: aCode [
+{ #category : #accessing }
+ZipEncoderNode >> code: aCode [
 	[aCode >= 0 and:[(1 bitShift: bitLength) > aCode]] assert.
 	code := aCode.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>computeHeight [
+{ #category : #private }
+ZipEncoderNode >> computeHeight [
 	^self isLeaf
 		ifTrue:[height := 0]
 		ifFalse:[height := (left computeHeight max: right computeHeight) + 1].
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>encodeBitLength: blCounts from: aTree [
+{ #category : #encoding }
+ZipEncoderNode >> encodeBitLength: blCounts from: aTree [
 	| index |
 	"Note: If bitLength is not nil then the tree must be broken"
 	bitLength isNil ifFalse:[self error:'Huffman tree is broken'].
@@ -92,86 +73,56 @@ ZipEncoderNode>>encodeBitLength: blCounts from: aTree [
 	].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>frequency [
+{ #category : #accessing }
+ZipEncoderNode >> frequency [
 	^frequency
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>frequency: aNumber [
+{ #category : #accessing }
+ZipEncoderNode >> frequency: aNumber [
 	frequency := aNumber
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>height [
+{ #category : #accessing }
+ZipEncoderNode >> height [
 	^height
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>isLeaf [
+{ #category : #testing }
+ZipEncoderNode >> isLeaf [
 	^left isNil
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>leafNodes [
+{ #category : #private }
+ZipEncoderNode >> leafNodes [
 	self isLeaf
 		ifTrue:[^Array with: self]
 		ifFalse:[^left leafNodes, right leafNodes]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>left [
+{ #category : #accessing }
+ZipEncoderNode >> left [
 	^left
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>left: aNode [
+{ #category : #accessing }
+ZipEncoderNode >> left: aNode [
 	aNode parent: self.
 	left := aNode.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>parent [
+{ #category : #accessing }
+ZipEncoderNode >> parent [
 	^parent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>parent: aNode [
+{ #category : #accessing }
+ZipEncoderNode >> parent: aNode [
 	parent := aNode
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>printOn: aStream [
+{ #category : #printing }
+ZipEncoderNode >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut:$(;
 		nextPutAll:'value = '; print: value;
@@ -182,28 +133,19 @@ ZipEncoderNode>>printOn: aStream [
 	nextPut:$).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>right [
+{ #category : #accessing }
+ZipEncoderNode >> right [
 	^right
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>right: aNode [
+{ #category : #accessing }
+ZipEncoderNode >> right: aNode [
 	aNode parent: self.
 	right := aNode.
 ]
 
-{
-	#category : #encoding,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>rotateToHeight: maxHeight [
+{ #category : #encoding }
+ZipEncoderNode >> rotateToHeight: maxHeight [
 	"Rotate the tree to achieve maxHeight depth"
 	| newParent |
 	height < 4 ifTrue:[^self].
@@ -241,28 +183,19 @@ ZipEncoderNode>>rotateToHeight: maxHeight [
 	^parent
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>setBitLengthTo: bl [
+{ #category : #private }
+ZipEncoderNode >> setBitLengthTo: bl [
 	bitLength := bl
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>setValue: v frequency: f height: h [
+{ #category : #private }
+ZipEncoderNode >> setValue: v frequency: f height: h [
 	value := v.
 	frequency := f.
 	height := h.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZipEncoderNode>>value [
+{ #category : #accessing }
+ZipEncoderNode >> value [
 	^value
 ]

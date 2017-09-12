@@ -11,58 +11,39 @@ Class {
 		'serverId',
 		'processId'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/12/2014 15:27'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerLogEvent>>initialize [
+{ #category : #initialize }
+ZnServerLogEvent >> initialize [
 	super initialize.
 	processId := ZnUtils currentProcessID
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerLogEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnServerLogEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	serverId ifNotNil: [ stream space; << serverId ].
 	stream space.
 	processId printOn: stream base: 10 length: 6 padded: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerLogEvent>>processId [
+{ #category : #accessing }
+ZnServerLogEvent >> processId [
 	^ processId
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerLogEvent>>processId: anObject [
+{ #category : #initialize }
+ZnServerLogEvent >> processId: anObject [
 	processId := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerLogEvent>>serverId [
+{ #category : #accessing }
+ZnServerLogEvent >> serverId [
 	^ serverId
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnServerLogEvent>>serverId: anObject [
+{ #category : #initialize }
+ZnServerLogEvent >> serverId: anObject [
 	serverId := anObject
 ]

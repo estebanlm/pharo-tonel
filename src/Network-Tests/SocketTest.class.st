@@ -9,15 +9,11 @@ Class {
 		'clientSocket',
 		'serverSocket'
 	],
-	#category : #Network-Tests-Kernel,
-	#timestamp : 'TorstenBergmann 2/5/2014 10:11'
+	#category : #Network-Tests-Kernel
 }
 
-{
-	#category : #mocks,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketTest>>faultyUDPSocket [
+{ #category : #mocks }
+SocketTest >> faultyUDPSocket [
 
 	| cls |
 	
@@ -32,39 +28,27 @@ SocketTest>>faultyUDPSocket [
 	^ cls newUDP
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketTest>>listenerAddress [
+{ #category : #setup }
+SocketTest >> listenerAddress [
 	^NetNameResolver loopBackAddress
 
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketTest>>listenerPort [
+{ #category : #setup }
+SocketTest >> listenerPort [
 	^42324
 
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketTest>>setUp [
+{ #category : #setup }
+SocketTest >> setUp [
 
 	listenerSocket := Socket newTCP listenOn: self listenerPort backlogSize: 4 interface: self listenerAddress.
 
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketTest>>tearDown [
+{ #category : #setup }
+SocketTest >> tearDown [
 
 	listenerSocket ifNotNil:[listenerSocket destroy].
 	clientSocket ifNotNil:[clientSocket destroy].
@@ -72,11 +56,8 @@ SocketTest>>tearDown [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketTest>>testClientConnect [
+{ #category : #tests }
+SocketTest >> testClientConnect [
 	"Tests a client socket connection"
 
 	clientSocket := Socket newTCP.
@@ -86,11 +67,8 @@ SocketTest>>testClientConnect [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketTest>>testDataReceive [
+{ #category : #tests }
+SocketTest >> testDataReceive [
 	"Test data transfer and related methods"
 
 	self testDataSending.
@@ -102,11 +80,8 @@ SocketTest>>testDataReceive [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketTest>>testDataSending [
+{ #category : #tests }
+SocketTest >> testDataSending [
 	"Test data transfer and related methods"
 
 	self testServerAccept.
@@ -117,11 +92,8 @@ SocketTest>>testDataSending [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketTest>>testLocalAddress [
+{ #category : #tests }
+SocketTest >> testLocalAddress [
 	"Tests the various localAddress values for sockets"
 
 	self testServerAccept.
@@ -131,11 +103,8 @@ SocketTest>>testLocalAddress [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketTest>>testLocalPort [
+{ #category : #tests }
+SocketTest >> testLocalPort [
 	"Tests the various localPort values for sockets"
 
 	self testServerAccept.
@@ -145,11 +114,8 @@ SocketTest>>testLocalPort [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketTest>>testRemoteAddress [
+{ #category : #tests }
+SocketTest >> testRemoteAddress [
 	"Tests the various remoteAddress values for sockets"
 
 	self testServerAccept.
@@ -159,11 +125,8 @@ SocketTest>>testRemoteAddress [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketTest>>testRemotePort [
+{ #category : #tests }
+SocketTest >> testRemotePort [
 	"Tests the various remoteAddress values for sockets"
 
 	self testServerAccept.
@@ -173,11 +136,8 @@ SocketTest>>testRemotePort [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketTest>>testServerAccept [
+{ #category : #tests }
+SocketTest >> testServerAccept [
 	"Tests a server-side accept"
 
 	self testClientConnect.
@@ -187,11 +147,8 @@ SocketTest>>testServerAccept [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketTest>>testUDPBroadcastError [
+{ #category : #tests }
+SocketTest >> testUDPBroadcastError [
 	"Test that we get a specific error when failure is due to sending to a broadcast address without SO_BROADCAST set"
 	"Use 255.255.255.255 for testing, which in RFC 919 is defined as 'denoting a broadcast on a local hardware network, which must not be forwarded. 
 	This address may be used, for example, by hosts that do not know their network number and are asking some server for it.'"
@@ -210,11 +167,8 @@ SocketTest>>testUDPBroadcastError [
 		raise: NoBroadcastAllowed
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketTest>>testUDPFaultySend [
+{ #category : #tests }
+SocketTest >> testUDPFaultySend [
 
 	| socket host |
 	

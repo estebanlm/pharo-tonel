@@ -10,15 +10,11 @@ Used by ZnMultiValueDictionary and thus for reading headers,  url query and appl
 Class {
 	#name : #ZnMaximumNumberOfDictionaryEntries,
 	#superclass : #DynamicVariable,
-	#category : #Zinc-Resource-Meta-Core,
-	#timestamp : 'SvenVanCaekenberghe 5/10/2017 16:47'
+	#category : #Zinc-Resource-Meta-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-ZnMaximumNumberOfDictionaryEntries>>default [
+{ #category : #accessing }
+ZnMaximumNumberOfDictionaryEntries >> default [
 	"The default maximum number dictionary entries to accept."
 	
 	^ 256

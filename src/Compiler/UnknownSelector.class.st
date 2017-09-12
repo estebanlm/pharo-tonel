@@ -4,15 +4,11 @@ Notify about an unknown selector
 Class {
 	#name : #UnknownSelector,
 	#superclass : #ParserNotification,
-	#category : #Compiler-Exceptions,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:17'
+	#category : #Compiler-Exceptions
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-UnknownSelector>>openMenuIn: aBlock [
+{ #category : #'as yet unclassified' }
+UnknownSelector >> openMenuIn: aBlock [
 	| alternatives labels lines caption choice |
 	alternatives := Symbol possibleSelectorsFor: name.
 	labels := Array streamContents:

@@ -8,15 +8,11 @@ Class {
 		'layout',
 		'morph'
 	],
-	#category : #Spec-Core-Widgets-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Widgets-Support
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphWrapper class>>morph: morph layout: aLayout  [
+{ #category : #'instance creation' }
+MorphWrapper class >> morph: morph layout: aLayout [ 
 
 	^ self new
 		layout: aLayout;
@@ -24,40 +20,28 @@ MorphWrapper class>>morph: morph layout: aLayout  [
 		yourself
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphWrapper>>addIn: aContainer [
+{ #category : #adding }
+MorphWrapper >> addIn: aContainer [
 		
 	aContainer
 		addMorph: morph
 		fullFrame: layout
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphWrapper>>frame: rectangle [
+{ #category : #accessing }
+MorphWrapper >> frame: rectangle [
 	
 	layout := rectangle asLayoutFrame
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphWrapper>>fullFrame: anObject [
+{ #category : #accessing }
+MorphWrapper >> fullFrame: anObject [
 	
 	layout := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-MorphWrapper>>morph: anObject [
+{ #category : #accessing }
+MorphWrapper >> morph: anObject [
 	
 	morph := anObject
 ]

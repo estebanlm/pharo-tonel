@@ -9,35 +9,25 @@ Class {
 	#instVars : [
 		'prototypes'
 	],
-	#category : #SUnit-Core-Utilities,
-	#timestamp : 'mjr 8/20/2003 17:37'
+	#category : #SUnit-Core-Utilities
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-HashAndEqualsTestCase>>setUp [
+{ #category : #running }
+HashAndEqualsTestCase >> setUp [
 	"subclasses will add their prototypes into this collection"
 	prototypes := OrderedCollection new 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-HashAndEqualsTestCase>>testEquality [
+{ #category : #testing }
+HashAndEqualsTestCase >> testEquality [
 	"Check that TextFontChanges report equality correctly"
 	prototypes
 		do: [:p | self
 				should: [(EqualityTester with: p) result]] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-HashAndEqualsTestCase>>testHash [
+{ #category : #testing }
+HashAndEqualsTestCase >> testHash [
 	"test that TextFontChanges hash correctly"
 	prototypes do: [:p |
 		self should: [(HashTester with: p) result]] 

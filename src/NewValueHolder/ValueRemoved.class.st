@@ -7,32 +7,22 @@ Class {
 	#instVars : [
 		'oldValue'
 	],
-	#category : #NewValueHolder,
-	#timestamp : 'PeterUhnak 3/5/2016 11:41'
+	#category : #NewValueHolder
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ValueRemoved class>>oldValue: oldValue [
+{ #category : #'instance creation' }
+ValueRemoved class >> oldValue: oldValue [
 	^ self new
 		oldValue: oldValue;
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ValueRemoved>>oldValue [
+{ #category : #accessing }
+ValueRemoved >> oldValue [
 	^ oldValue
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-ValueRemoved>>oldValue: anObject [
+{ #category : #accessing }
+ValueRemoved >> oldValue: anObject [
 	oldValue := anObject
 ]

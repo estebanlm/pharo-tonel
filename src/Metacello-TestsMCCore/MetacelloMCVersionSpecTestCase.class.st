@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #MetacelloMCVersionSpecTestCase,
 	#superclass : #MetacelloVersionSpecTestCase,
-	#category : #Metacello-TestsMCCore,
-	#timestamp : ''
+	#category : #Metacello-TestsMCCore
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCVersionSpecTestCase>>projectClass [
+{ #category : #accessing }
+MetacelloMCVersionSpecTestCase >> projectClass [
     ^ MetacelloMCProject
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCVersionSpecTestCase>>testMCVersionMergeSpec [
+{ #category : #tests }
+MetacelloMCVersionSpecTestCase >> testMCVersionMergeSpec [
     | versionA versionB version repository package group projectReferenceSpec |
     versionA := self versionSpec
         blessing: #'baseline';
@@ -114,11 +104,8 @@ MetacelloMCVersionSpecTestCase>>testMCVersionMergeSpec [
     self assert: (group includes includes: 'Tests')
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:32'
-}
-MetacelloMCVersionSpecTestCase>>testMCVersionSpec [
+{ #category : #tests }
+MetacelloMCVersionSpecTestCase >> testMCVersionSpec [
   | version projectReferenceSpec group package repository |
   version := self versionSpec
     blessing: #'baseline';

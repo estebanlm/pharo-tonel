@@ -14,15 +14,11 @@ Class {
 		'CmdActions',
 		'ShiftCmdActions'
 	],
-	#category : #Text-Edition,
-	#timestamp : '<historical>'
+	#category : #Text-Edition
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor class>>initialize  [
+{ #category : #'as yet unclassified' }
+SimpleEditor class >> initialize [ 
 	"Initialize the keyboard shortcut maps and the shared buffers
 	for copying text across views and managing again and undo." 
  
@@ -34,11 +30,8 @@ SimpleEditor class>>initialize  [
 	self initializeShiftCmdKeyShortcuts
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor class>>initializeCmdKeyShortcuts [
+{ #category : #'as yet unclassified' }
+SimpleEditor class >> initializeCmdKeyShortcuts [
 	"Initialize the (unshifted) command-key (or alt-key) shortcut table."
 
 	"NOTE: if you don't know what your keyboard generates, use Sensor kbdTest"
@@ -65,11 +58,8 @@ SimpleEditor class>>initializeCmdKeyShortcuts [
 	CmdActions := cmdMap
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor class>>initializeShiftCmdKeyShortcuts  [
+{ #category : #'as yet unclassified' }
+SimpleEditor class >> initializeShiftCmdKeyShortcuts [ 
 	"Initialize the shift-command-key (or control-key) shortcut table."
 	"NOTE: if you don't know what your keyboard generates, use Sensor kbdTest"
 	"wod 11/3/1998: Fix setting of cmdMap for shifted keys to actually use the 
@@ -102,21 +92,15 @@ SimpleEditor class>>initializeShiftCmdKeyShortcuts  [
 	ShiftCmdActions := cmdMap
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>addString: aString [
+{ #category : #'typing support' }
+SimpleEditor >> addString: aString [
 	"Think of a better name"
 
 	self zapSelectionWith: aString
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>backTo: startIndex [
+{ #category : #'typing support' }
+SimpleEditor >> backTo: startIndex [
 	"During typing, backspace to startIndex.  Deleted characters fall into three
 	 clusters, from left to right in the text: (1) preexisting characters that were
 	 backed over; (2) newly typed characters that were backed over; 
@@ -137,22 +121,16 @@ SimpleEditor>>backTo: startIndex [
 	self unselect
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>changeString: aString [
+{ #category : #initialize-release }
+SimpleEditor >> changeString: aString [
 	"Install aString as the one to be edited by the receiver."
 
 	string := aString.
 	self resetState
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>closeTypeIn [
+{ #category : #'typing support' }
+SimpleEditor >> closeTypeIn [
 	"See comment in openTypeIn.  It is important to call closeTypeIn before executing
 	 any non-typing key, making a new selection, etc.  It is called automatically for
 	 menu commands."
@@ -160,22 +138,16 @@ SimpleEditor>>closeTypeIn [
 	beginTypeInIndex := nil
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>copySelection [
+{ #category : #'menu messages' }
+SimpleEditor >> copySelection [
 	"Copy the current selection and store it in the paste buffer, unless a caret.  Undoer & Redoer: undoCutCopy"
 
 	self lineSelectAndEmptyCheck: [^ self].
 	self clipboardTextPut: self selection
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>cursorEnd: aKeyboardEvent [
+{ #category : #'nonediting/nontyping keys' }
+SimpleEditor >> cursorEnd: aKeyboardEvent [
 
 	"Private - Move cursor end of current line."
 	self closeTypeIn.
@@ -192,11 +164,8 @@ SimpleEditor>>cursorEnd: aKeyboardEvent [
 	^true
 ]
 
-{
-	#category : #'nonediting/nontyping keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>cursorHome: aKeyboardEvent  [
+{ #category : #'nonediting/nontyping keys' }
+SimpleEditor >> cursorHome: aKeyboardEvent [ 
 
 	"Private - Move cursor from position in current line to beginning of
 	current line. If control key is pressed put cursor at beginning of text"
@@ -214,11 +183,8 @@ SimpleEditor>>cursorHome: aKeyboardEvent  [
 	^true
 ]
 
-{
-	#category : #'menu messages',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>cut [
+{ #category : #'menu messages' }
+SimpleEditor >> cut [
 	"Cut out the current selection and redisplay the paragraph if necessary.  Undoer & Redoer: undoCutCopy:"
 
 	self lineSelectAndEmptyCheck: [^ self].
@@ -226,11 +192,8 @@ SimpleEditor>>cut [
 	self clipboardTextPut: self selection
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>dispatchOn: aKeyboardEvent [
+{ #category : #'typing support' }
+SimpleEditor >> dispatchOn: aKeyboardEvent [
 	"Carry out the action associated with this character, if any.
 	Type-ahead is passed so some routines can flush or use it."
 
@@ -275,19 +238,13 @@ SimpleEditor>>dispatchOn: aKeyboardEvent [
 	^ self normalCharacter: aKeyboardEvent
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>doneTyping [
+{ #category : #'typing support' }
+SimpleEditor >> doneTyping [
 	beginTypeInIndex := nil
 ]
 
-{
-	#category : #'typing/selecting keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>forwardDelete: aKeyboardEvent [
+{ #category : #'typing/selecting keys' }
+SimpleEditor >> forwardDelete: aKeyboardEvent [
 	"Delete forward over the next character.
 	  Make Undo work on the whole type-in, not just the one char.
 	wod 11/3/1998: If there was a selection use #zapSelectionWith: rather than #backspace: which was 'one off' in deleting the selection. Handling of things like undo or typeIn area were not fully considered."
@@ -312,19 +269,13 @@ SimpleEditor>>forwardDelete: aKeyboardEvent [
 	^false
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>hasCaret [
+{ #category : #accessing-selection }
+SimpleEditor >> hasCaret [
 	^markIndex = pointIndex
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>initialize [
+{ #category : #initialization }
+SimpleEditor >> initialize [
 	"Initialize the state of the receiver. Subclasses should include 'super 
 	initialize' when redefining this message to insure proper initialization."
 
@@ -332,35 +283,23 @@ SimpleEditor>>initialize [
 	self changeString: ''
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>isAtEnd [
+{ #category : #testing }
+SimpleEditor >> isAtEnd [
 	^pointIndex = (string size + 1)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>isAtStart [
+{ #category : #testing }
+SimpleEditor >> isAtStart [
 	^pointIndex = 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>isSimpleEditor  [
+{ #category : #testing }
+SimpleEditor >> isSimpleEditor [ 
 	^ true 
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>makeCapitalized: aKeyboardEvent [
+{ #category : #'editing keys' }
+SimpleEditor >> makeCapitalized: aKeyboardEvent [
 	"Force the current selection to uppercase.  Triggered by Cmd-X."
 	| prev |
 	prev := $-.  "not a letter"
@@ -370,49 +309,34 @@ SimpleEditor>>makeCapitalized: aKeyboardEvent [
 	^ true
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>makeLowercase: aKeyboardEvent [
+{ #category : #'editing keys' }
+SimpleEditor >> makeLowercase: aKeyboardEvent [
 	"Force the current selection to lowercase.  Triggered by Cmd-X."
 
 	self replaceSelectionWith: (self selection asLowercase).
 	^ true
 ]
 
-{
-	#category : #'editing keys',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>makeUppercase: aKeyboardEvent [
+{ #category : #'editing keys' }
+SimpleEditor >> makeUppercase: aKeyboardEvent [
 	"Force the current selection to uppercase.  Triggered by Cmd-Y."
 
 	self replaceSelectionWith: (self selection asUppercase).
 	^ true
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>markIndex [
+{ #category : #accessing-selection }
+SimpleEditor >> markIndex [
 	^markIndex
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>markIndex: anIndex [
+{ #category : #accessing-selection }
+SimpleEditor >> markIndex: anIndex [
 	markIndex := anIndex min: string size + 1 max: 1
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>mouseDown: evt index: index [
+{ #category : #events }
+SimpleEditor >> mouseDown: evt index: index [
 	
 	self closeTypeIn.
 	evt shiftPressed
@@ -423,48 +347,33 @@ SimpleEditor>>mouseDown: evt index: index [
 			self mouseMove: evt ]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>mouseMove: evt index: index [
+{ #category : #events }
+SimpleEditor >> mouseMove: evt index: index [
 	"Change the selection in response to moue-down drag"
 
 	self pointIndex: index
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>openTypeIn [
+{ #category : #'typing support' }
+SimpleEditor >> openTypeIn [
 	"Set up beginTypeInIndex to keep track of the leftmost backspace."
 
 	beginTypeInIndex ifNil: [
 		beginTypeInIndex := self startIndex ]
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>pointIndex [
+{ #category : #accessing-selection }
+SimpleEditor >> pointIndex [
 	^ pointIndex
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>pointIndex: anIndex [
+{ #category : #accessing-selection }
+SimpleEditor >> pointIndex: anIndex [
 	pointIndex := anIndex min: string size + 1 max: 1
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>processKeyStroke: aKeyboardEvent [
+{ #category : #'typing support' }
+SimpleEditor >> processKeyStroke: aKeyboardEvent [
 
 	"Key struck on the keyboard. Find out which one and, if special, carry 
 	out the associated special action. Otherwise, add the character to the 
@@ -477,11 +386,8 @@ SimpleEditor>>processKeyStroke: aKeyboardEvent [
 	self unselect
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>replace: oldInterval with: newString and: selectingBlock  [
+{ #category : #accessing }
+SimpleEditor >> replace: oldInterval with: newString and: selectingBlock [ 
 	"Replace the text in oldInterval with newString and execute selectingBlock to establish the new selection."
 
 	self selectionInterval = oldInterval ifFalse: [self selectInterval: oldInterval].
@@ -489,21 +395,15 @@ SimpleEditor>>replace: oldInterval with: newString and: selectingBlock  [
 	selectingBlock value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>replaceSelectionWith: aString [
+{ #category : #accessing }
+SimpleEditor >> replaceSelectionWith: aString [
 	"Replace the selection text by aText."
 
 	self zapSelectionWith: aString
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>resetState  [
+{ #category : #initialize-release }
+SimpleEditor >> resetState [ 
 	"Establish the initial conditions for editing the paragraph: place caret 
 	before first character, set the emphasis to that of the first character,
 	and save the paragraph for purposes of canceling."
@@ -514,92 +414,62 @@ SimpleEditor>>resetState  [
 	selectionShowing := false
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>selectFrom: start to: stop [
+{ #category : #'new selection' }
+SimpleEditor >> selectFrom: start to: stop [
 	"Select the specified characters inclusive."
 	self selectInvisiblyFrom: start to: stop.
 	self closeTypeIn
 ]
 
-{
-	#category : #'new selection',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>selectLine [
+{ #category : #'new selection' }
+SimpleEditor >> selectLine [
 	"Make the receiver's selection, if it currently consists of an insertion point only, encompass the current line."
 	self hasSelection ifTrue:[^self].
 	self selectAll
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>selection [
+{ #category : #accessing-selection }
+SimpleEditor >> selection [
 
 	^string copyFrom: self startIndex to: self stopIndex - 1 
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>startIndex [
+{ #category : #accessing-selection }
+SimpleEditor >> startIndex [
 	^ pointIndex min: markIndex
 ]
 
-{
-	#category : #'typing support',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>startOfTyping [
+{ #category : #'typing support' }
+SimpleEditor >> startOfTyping [
 	^ beginTypeInIndex
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>stateArray [
+{ #category : #initialize-release }
+SimpleEditor >> stateArray [
 	^ {	self selectionInterval.
 		self startOfTyping}
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>stateArrayPut: stateArray [
+{ #category : #initialize-release }
+SimpleEditor >> stateArrayPut: stateArray [
 	| sel |
 	sel := stateArray at: 1.
 	self selectFrom: sel first to: sel last.
 	beginTypeInIndex := stateArray at: 2
 ]
 
-{
-	#category : #accessing-selection,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>stopIndex [
+{ #category : #accessing-selection }
+SimpleEditor >> stopIndex [
 	^ pointIndex max: markIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>string [
+{ #category : #accessing }
+SimpleEditor >> string [
 	^string
 ]
 
-{
-	#category : #'mvc compatibility',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SimpleEditor>>zapSelectionWith: aString [
+{ #category : #'mvc compatibility' }
+SimpleEditor >> zapSelectionWith: aString [
 
 	| start stop |
 	start := self startIndex.

@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #QACritiqueTest,
 	#superclass : #TestCase,
-	#category : #QualityAssistant-Test,
-	#timestamp : ''
+	#category : #QualityAssistant-Test
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-QACritiqueTest>>runWithDidalogPopping: anAssertingBlock [
+{ #category : #'as yet unclassified' }
+QACritiqueTest >> runWithDidalogPopping: anAssertingBlock [
 
 	UIManager default class = MorphicUIManager
 		ifTrue: [ self runWithMorphicDidalogPopping: anAssertingBlock ]
 		ifFalse: anAssertingBlock
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-QACritiqueTest>>runWithMorphicDidalogPopping: anAssertingBlock [
+{ #category : #'as yet unclassified' }
+QACritiqueTest >> runWithMorphicDidalogPopping: anAssertingBlock [
 
 	| semaphore worldSubmoprhs newMorphs closingProcess |
 
@@ -48,11 +38,8 @@ QACritiqueTest>>runWithMorphicDidalogPopping: anAssertingBlock [
 	semaphore wait.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-QACritiqueTest>>testFixAction [
+{ #category : #accessing }
+QACritiqueTest >> testFixAction [
 
 	| crit action |
 	
@@ -73,11 +60,8 @@ QACritiqueTest>>testFixAction [
 			raise: Error ]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-QACritiqueTest>>testGuidedBan [
+{ #category : #'as yet unclassified' }
+QACritiqueTest >> testGuidedBan [
 
 	| crit |
 	

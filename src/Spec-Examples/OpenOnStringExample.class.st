@@ -15,15 +15,11 @@ Class {
 		'button',
 		'textToReset'
 	],
-	#category : #Spec-Examples-Wrapper,
-	#timestamp : 'Spirita 7/27/2016 11:02'
+	#category : #Spec-Examples-Wrapper
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-OpenOnStringExample class>>bottomLayout [
+{ #category : #specs }
+OpenOnStringExample class >> bottomLayout [
 	<spec>
 	^ SpecLayout composed
 		newColumn: [ :column | 
@@ -41,11 +37,8 @@ OpenOnStringExample class>>bottomLayout [
 		yourself
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-OpenOnStringExample class>>defaultSpec [
+{ #category : #specs }
+OpenOnStringExample class >> defaultSpec [
 	<spec: #default>
 	^ SpecLayout composed
 		newColumn: [ :column | 
@@ -63,11 +56,8 @@ OpenOnStringExample class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-OpenOnStringExample class>>example [
+{ #category : #examples }
+OpenOnStringExample class >> example [
 	| example |
 	example := self new: 'Hello world'.
 	example
@@ -76,45 +66,30 @@ OpenOnStringExample class>>example [
 	^ example
 ]
 
-{
-	#category : #instantiation,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-OpenOnStringExample class>>new: aString [
+{ #category : #instantiation }
+OpenOnStringExample class >> new: aString [
 	^ self new initialize: aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-OpenOnStringExample>>button [
+{ #category : #accessing }
+OpenOnStringExample >> button [
 	^ button
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-OpenOnStringExample>>check [
+{ #category : #accessing }
+OpenOnStringExample >> check [
 	^ check
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-OpenOnStringExample>>initialize: aString [
+{ #category : #initialization }
+OpenOnStringExample >> initialize: aString [
 	label label: aString.
 	input text: aString.
 	textToReset := aString
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-OpenOnStringExample>>initializePresenter [
+{ #category : #initialization }
+OpenOnStringExample >> initializePresenter [
 	button action: [ input text: textToReset ].
 	input whenTextChanged: [:text | label label: text].
 	check
@@ -124,11 +99,8 @@ OpenOnStringExample>>initializePresenter [
 			self buildWithSpecLayout: self class bottomLayout ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-OpenOnStringExample>>initializeWidgets [
+{ #category : #initialization }
+OpenOnStringExample >> initializeWidgets [
 	label := self instantiate: LabelModel.
 	check := self instantiate: CheckBoxModel.
 	input := self instantiate: TextInputFieldModel.
@@ -141,45 +113,30 @@ OpenOnStringExample>>initializeWidgets [
 		state: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-OpenOnStringExample>>input [
+{ #category : #accessing }
+OpenOnStringExample >> input [
 	^ input
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-OpenOnStringExample>>label [
+{ #category : #accessing }
+OpenOnStringExample >> label [
 	^ label
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-OpenOnStringExample>>openOnString [
+{ #category : #'as yet unclassified' }
+OpenOnStringExample >> openOnString [
 	| ui temp object |
 	object whenChangedDo: [ :o | ui label label: o asString ].
 	temp := object value.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-OpenOnStringExample>>textToReset [
+{ #category : #accessing }
+OpenOnStringExample >> textToReset [
 	^ textToReset
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-OpenOnStringExample>>title [
+{ #category : #accessing }
+OpenOnStringExample >> title [
 	^ 'OpenOnStringExample'
 ]

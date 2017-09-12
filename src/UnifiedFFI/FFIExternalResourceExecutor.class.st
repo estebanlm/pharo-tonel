@@ -66,33 +66,23 @@ Class {
 		'data',
 		'resourceClass'
 	],
-	#category : #UnifiedFFI,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #finalizing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalResourceExecutor>>finalize  [
+{ #category : #finalizing }
+FFIExternalResourceExecutor >> finalize [ 
 	session = Smalltalk session ifFalse: [ ^ self ].		
 	resourceClass finalizeResourceData: data
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalResourceExecutor>>initialize  [
+{ #category : #initialization }
+FFIExternalResourceExecutor >> initialize [ 
 	super initialize.
 	session := Smalltalk session
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalResourceExecutor>>resourceClass: aResourceClass data: aData [
+{ #category : #initialize-release }
+FFIExternalResourceExecutor >> resourceClass: aResourceClass data: aData [
 	resourceClass := aResourceClass.
 	data := aData
 ]

@@ -13,26 +13,19 @@ Class {
 		'aDuration',
 		'aDate'
 	],
-	#category : #Kernel-Tests-Chronology,
-	#timestamp : 'tlk 1/6/2004 17:55'
+	#category : #Kernel-Tests-Chronology
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TimespanDoSpanAYearTest>>setUp [
+{ #category : #running }
+TimespanDoSpanAYearTest >> setUp [
 	aDate := DateAndTime year: 2004 month: 12 day: 25 hour: 0 minute: 0 second: 0.
 	aDuration := Duration days: 91 hours: 0 minutes: 0 seconds: 0 nanoSeconds: 0.
 
 	aTimespan := Timespan starting: aDate duration: aDuration
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TimespanDoSpanAYearTest>>testMonthsDo [
+{ #category : #tests }
+TimespanDoSpanAYearTest >> testMonthsDo [
 
 	| monthArray |
 
@@ -45,11 +38,8 @@ TimespanDoSpanAYearTest>>testMonthsDo [
 	self assert: aTimespan months = monthArray
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TimespanDoSpanAYearTest>>testNext [
+{ #category : #tests }
+TimespanDoSpanAYearTest >> testNext [
 
 	self assert: aTimespan next
 			= (Timespan
@@ -63,11 +53,8 @@ TimespanDoSpanAYearTest>>testNext [
 					duration: aDuration)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TimespanDoSpanAYearTest>>testWeeksDo [
+{ #category : #tests }
+TimespanDoSpanAYearTest >> testWeeksDo [
 	| weeks weekArray |
 	weeks := aTimespan weeks.
 	self assert: weeks size = ((aDuration days / 7.0) ceiling + 1).
@@ -86,11 +73,8 @@ TimespanDoSpanAYearTest>>testWeeksDo [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-TimespanDoSpanAYearTest>>testYearsDo [
+{ #category : #tests }
+TimespanDoSpanAYearTest >> testYearsDo [
 	| yearArray |
 	yearArray := Array
 				with: (Year year: 2004)

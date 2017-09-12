@@ -7,62 +7,43 @@ Class {
 	#instVars : [
 		'environment'
 	],
-	#category : #EpiceaBrowsers-Filters,
-	#timestamp : 'MartinDias 4/17/2017 16:15'
+	#category : #EpiceaBrowsers-Filters
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpImpactCodeChangeFilter class>>title [
+{ #category : #accessing }
+EpImpactCodeChangeFilter class >> title [
 
 	^ 'Hide changes if apply operation is redundant'
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpImpactCodeChangeFilter>>= other [
+{ #category : #comparing }
+EpImpactCodeChangeFilter >> = other [
 
 	^ self class = other class
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpImpactCodeChangeFilter>>accepts: anOmEntry [
+{ #category : #filtering }
+EpImpactCodeChangeFilter >> accepts: anOmEntry [
 
 	anOmEntry content isCodeChange ifFalse: [ ^false ].
 
 	^ anOmEntry content accept: (EpHasImpactVisitor inEnvironment: environment)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpImpactCodeChangeFilter>>environment: anEnvironment [
+{ #category : #accessing }
+EpImpactCodeChangeFilter >> environment: anEnvironment [
 	
 	environment := anEnvironment
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpImpactCodeChangeFilter>>hash [
+{ #category : #comparing }
+EpImpactCodeChangeFilter >> hash [
 
 	^ self class hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpImpactCodeChangeFilter>>title [
+{ #category : #accessing }
+EpImpactCodeChangeFilter >> title [
 	
 	^ self class title
 ]

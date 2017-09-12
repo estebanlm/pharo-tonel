@@ -4,33 +4,23 @@ Checks for instance variables that might better be defined as temporary variable
 Class {
 	#name : #RBVariableReferencedOnceRule,
 	#superclass : #RBBlockLintRule,
-	#category : #Refactoring-Critics-BlockRules,
-	#timestamp : 'StephaneDucasse 11/29/2014 19:33'
+	#category : #Refactoring-Critics-BlockRules
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBVariableReferencedOnceRule class>>checksClass [
+{ #category : #testing }
+RBVariableReferencedOnceRule class >> checksClass [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBVariableReferencedOnceRule class>>uniqueIdentifierName [
+{ #category : #accessing }
+RBVariableReferencedOnceRule class >> uniqueIdentifierName [
 	"This number should be unique and should change only when the rule completely change semantics"
 	
 	^'VariableReferencedOnceRule'
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBVariableReferencedOnceRule>>basicCheck: aClass  [
+{ #category : #running }
+RBVariableReferencedOnceRule >> basicCheck: aClass [ 
 	^ aClass instVarNames anySatisfy:
 		[ :each | 
 		| defClass selector |
@@ -52,11 +42,8 @@ RBVariableReferencedOnceRule>>basicCheck: aClass  [
 					writtenBeforeReadIn: tree) ] ] ]
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBVariableReferencedOnceRule>>checkClass: aClass  [
+{ #category : #running }
+RBVariableReferencedOnceRule >> checkClass: aClass [ 
 	| allSubclasses |
 	allSubclasses := aClass withAllSubclasses.
 	aClass instVarNames do: 
@@ -84,34 +71,22 @@ RBVariableReferencedOnceRule>>checkClass: aClass  [
 					result addSearchString: each ] ] ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBVariableReferencedOnceRule>>group [
+{ #category : #accessing }
+RBVariableReferencedOnceRule >> group [
 	^ 'Design Flaws'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBVariableReferencedOnceRule>>name [
+{ #category : #accessing }
+RBVariableReferencedOnceRule >> name [
 	^ 'Variable referenced in only one method and always assigned first'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBVariableReferencedOnceRule>>rationale [
+{ #category : #accessing }
+RBVariableReferencedOnceRule >> rationale [
 	^ 'Checks for instance variables that might better be defined as temporary variables.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-RBVariableReferencedOnceRule>>severity [
+{ #category : #accessing }
+RBVariableReferencedOnceRule >> severity [
 	^ #information
 ]

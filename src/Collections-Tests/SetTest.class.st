@@ -22,302 +22,199 @@ Class {
 		'collection5Elements',
 		'collectionWith3Elements'
 	],
-	#category : #Collections-Tests-Unordered,
-	#timestamp : '<historical>'
+	#category : #Collections-Tests-Unordered
 }
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>anotherElementNotIn [
+{ #category : #'tests - includes' }
+SetTest >> anotherElementNotIn [
 	^ 42
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>anotherElementOrAssociationIn [
+{ #category : #requirements }
+SetTest >> anotherElementOrAssociationIn [
 	" return an element (or an association for Dictionary ) present  in 'collection' "
 	^ self collection  anyOne
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>anotherElementOrAssociationNotIn [
+{ #category : #requirements }
+SetTest >> anotherElementOrAssociationNotIn [
 	" return an element (or an association for Dictionary )not present  in 'collection' "
 	^ elementNotIn 
 ]
 
-{
-	#category : #coverage,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>classToBeTested [
+{ #category : #coverage }
+SetTest >> classToBeTested [
 	^ Set.
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>collection [
+{ #category : #requirements }
+SetTest >> collection [
 
 	^ collectionWith3Elements
 ]
 
-{
-	#category : #coverage,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>collectionClass [
+{ #category : #coverage }
+SetTest >> collectionClass [
 	" return the class to be used to create instances of the class tested"
 	^ self classToBeTested
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>collectionInForIncluding [
+{ #category : #requirements }
+SetTest >> collectionInForIncluding [
 	^ collectionIncluded 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>collectionMoreThan5Elements [
+{ #category : #requirements }
+SetTest >> collectionMoreThan5Elements [
 " return a collection including at least 5 elements"
 	
 	^ collection5Elements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>collectionNotIncluded [
+{ #category : #requirements }
+SetTest >> collectionNotIncluded [
 	^ self classToBeTested  with: elementNotIn. 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>collectionOfFloat [
+{ #category : #requirements }
+SetTest >> collectionOfFloat [
 	^ collectionOfFloat 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>collectionWithCopyNonIdentical [
+{ #category : #requirements }
+SetTest >> collectionWithCopyNonIdentical [
 	" return a collection that include elements for which 'copy' return a different object (this is not the case of SmallInteger)"
 	^ collectionOfFloat
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>collectionWithElement [
+{ #category : #requirements }
+SetTest >> collectionWithElement [
 	^ full
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>collectionWithElementsToRemove [
+{ #category : #requirements }
+SetTest >> collectionWithElementsToRemove [
 	^ collectionIncluded 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>collectionWithSortableElements [
+{ #category : #requirements }
+SetTest >> collectionWithSortableElements [
 " return a collection elements that can be sorte ( understanding message ' < '  or ' > ')"
 	^collectionOfFloat 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>collectionWithoutElement [
+{ #category : #requirements }
+SetTest >> collectionWithoutElement [
 	" return a collection that does not include 'element' "
 	^ collectionWith3Elements  
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>collectionWithoutEqualElements [
+{ #category : #requirements }
+SetTest >> collectionWithoutEqualElements [
 " return a collection without equal elements"
 	^ withoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>collectionWithoutNilElements [
+{ #category : #requirements }
+SetTest >> collectionWithoutNilElements [
 " return a collection that doesn't includes a nil element  and that doesn't includes equal elements'"
 	^ collectionWith3Elements  
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>element [
+{ #category : #requirements }
+SetTest >> element [
 	^ 4
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>elementInForIncludesTest [
+{ #category : #requirements }
+SetTest >> elementInForIncludesTest [
 " return an element included in nonEmpty "
 	^ self nonEmpty anyOne
 ]
 
-{
-	#category : #ambiguous,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>elementNotIn [
+{ #category : #ambiguous }
+SetTest >> elementNotIn [
 	^elementNotIn 
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>elementNotInForOccurrences [
+{ #category : #'tests - includes' }
+SetTest >> elementNotInForOccurrences [
 	^ 666
 ]
 
-{
-	#category : #'test - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>elementToAdd [
+{ #category : #'test - copy' }
+SetTest >> elementToAdd [
 	^ 42
 ]
 
-{
-	#category : #'tests - empty',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>empty [
+{ #category : #'tests - empty' }
+SetTest >> empty [
 	
 	^ empty
 ]
 
-{
-	#category : #'tests - size capacity',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>emptyButAllocatedWith20 [
+{ #category : #'tests - size capacity' }
+SetTest >> emptyButAllocatedWith20 [
 
 	^ emptyButAllocatedWith20
 ]
 
-{
-	#category : #'test - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>expectedSizeAfterReject [
+{ #category : #'test - iterate' }
+SetTest >> expectedSizeAfterReject [
 	^1
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>firstCollection [
+{ #category : #requirements }
+SetTest >> firstCollection [
 " return a collection that will be the first part of the concatenation"
 	^ nonEmpty1element 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>integerCollectionWithoutEqualElements [
+{ #category : #requirements }
+SetTest >> integerCollectionWithoutEqualElements [
 " return a collection of integer without equal elements"
 	^ withoutEqualElements 
 ]
 
-{
-	#category : #'tests - empty',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>nonEmpty [
+{ #category : #'tests - empty' }
+SetTest >> nonEmpty [
 	
 	^ full
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>nonEmpty1Element [
+{ #category : #requirements }
+SetTest >> nonEmpty1Element [
 " return a collection of size 1 including one element"
 	^ nonEmpty1element 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>nonEmptyWithoutEqualElements [
+{ #category : #requirements }
+SetTest >> nonEmptyWithoutEqualElements [
 " return a collection without equal elements "
 	^ withoutEqualElements 
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>result [
+{ #category : #requirements }
+SetTest >> result [
 
 	 ^ collectResult
 ]
 
-{
-	#category : #requirements,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>secondCollection [
+{ #category : #requirements }
+SetTest >> secondCollection [
 " return a collection that will be the second part of the concatenation"
 	^ collectionWith3Elements  
 ]
 
-{
-	#category : #'test - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>selectedNumber [
+{ #category : #'test - iterate' }
+SetTest >> selectedNumber [
 
 	^ 2
 	
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>setUp [
+{ #category : #initialize }
+SetTest >> setUp [
 	empty := self classToBeTested  new.
 	full := self classToBeTested  with: 1 with: 2 with: 3 with: 4.
 	collectionIncluded := self classToBeTested  with: 2 with: 3 .
@@ -332,29 +229,20 @@ SetTest>>setUp [
 	collection5Elements := self classToBeTested with: 1 with: 2 with: 3 with: 4 with: 5.
 ]
 
-{
-	#category : #'tests - size capacity',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>sizeCollection [
+{ #category : #'tests - size capacity' }
+SetTest >> sizeCollection [
 
 	^ full
 ]
 
-{
-	#category : #'test - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>speciesClass [
+{ #category : #'test - iterate' }
+SetTest >> speciesClass [
 	
 	^ Set
 ]
 
-{
-	#category : #'tests - fixture',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>test0FixtureAddForUniquenessTest [
+{ #category : #'tests - fixture' }
+SetTest >> test0FixtureAddForUniquenessTest [
 	self element.
 	self collectionWithElement.
 	self assert: (self collectionWithElement includes: self element).
@@ -362,20 +250,14 @@ SetTest>>test0FixtureAddForUniquenessTest [
 	self assert: (self collectionWithElement includes: self element)
 ]
 
-{
-	#category : #'sunit original tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testAdd  [
+{ #category : #'sunit original tests' }
+SetTest >> testAdd [ 
 	empty add: 5.
 	self assert: (empty includes: 5).
 ]
 
-{
-	#category : #'tests - growable',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testAddNonEmptyGrowsWhenNewElement [
+{ #category : #'tests - growable' }
+SetTest >> testAddNonEmptyGrowsWhenNewElement [
 	"self debug: #testAddNonEmptyGrowsWhenNewElement"
 	| oldSize |
 	oldSize := self nonEmpty size.
@@ -384,22 +266,16 @@ SetTest>>testAddNonEmptyGrowsWhenNewElement [
 	self assert: self nonEmpty size > oldSize
 ]
 
-{
-	#category : #'some tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testAddWithOccurences [
+{ #category : #'some tests' }
+SetTest >> testAddWithOccurences [
  
 	empty add: 2 withOccurrences: 3.
 	self assert: (empty includes: 2).
 	self assert: ((empty occurrencesOf: 2) = 1).
 ]
 
-{
-	#category : #'tests - with nil',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testAllowInclusionOfNils [
+{ #category : #'tests - with nil' }
+SetTest >> testAllowInclusionOfNils [
 	| set |
 	set := self classToBeTested new.
 	set add: nil.
@@ -408,11 +284,8 @@ SetTest>>testAllowInclusionOfNils [
 	self deny: (set includes: nil)
 ]
 
-{
-	#category : #'some tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testAsSet [
+{ #category : #'some tests' }
+SetTest >> testAsSet [
 	"could be moved in Array or Collection"
 
 	| newFull |
@@ -421,11 +294,8 @@ SetTest>>testAsSet [
 	self assert: (newFull = full).
 ]
 
-{
-	#category : #'tests - iterating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testCollect [
+{ #category : #'tests - iterating' }
+SetTest >> testCollect [
 
 	| res element collection|
 	collection := self collectionWithoutNilElements.
@@ -439,11 +309,8 @@ SetTest>>testCollect [
 		self assert: each = element ]
 ]
 
-{
-	#category : #'some tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testCollect2 [
+{ #category : #'some tests' }
+SetTest >> testCollect2 [
 	| newFull result |
 	newFull := Set withAll: (1 to: 10).
 	result := newFull collect: [:each | each >= 1 ifTrue: [each] ifFalse: ['no']].
@@ -452,11 +319,8 @@ SetTest>>testCollect2 [
 	self assert: (result = ((Set withAll: (5 to: 10)) add: 'no'; yourself)).
 ]
 
-{
-	#category : #'some tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testCopy [
+{ #category : #'some tests' }
+SetTest >> testCopy [
 	| newFull |
 	full add: 3.
 	full add: 2.
@@ -466,19 +330,13 @@ SetTest>>testCopy [
 	self assert: ((newFull select: [:each | (full includes: each) not]) isEmpty).
 ]
 
-{
-	#category : #'tests - copy',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testCopyNonEmptyWithoutAllNotIncluded [
+{ #category : #'tests - copy' }
+SetTest >> testCopyNonEmptyWithoutAllNotIncluded [
 	
 ]
 
-{
-	#category : #'some tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testCopyWithout [
+{ #category : #'some tests' }
+SetTest >> testCopyWithout [
 	| newFull | 
 	full add: 3.
 	full add: 2.
@@ -490,11 +348,8 @@ SetTest>>testCopyWithout [
 	
 ]
 
-{
-	#category : #'some tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testDo2 [
+{ #category : #'some tests' }
+SetTest >> testDo2 [
 	| newFull result |
 	newFull := Set withAll: (1 to: 5).
 	result := 0.
@@ -502,11 +357,8 @@ SetTest>>testDo2 [
 	self assert: (result = 15).
 ]
 
-{
-	#category : #'test - iterate',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testDoWithoutNoDuplicates [
+{ #category : #'test - iterate' }
+SetTest >> testDoWithoutNoDuplicates [
 	"self debug: #testDoWithoutNoDuplicates"
 	| res |
 	res := self speciesClass new.  
@@ -514,38 +366,26 @@ SetTest>>testDoWithoutNoDuplicates [
 	self assert: res size = self doWithoutNumber.
 ]
 
-{
-	#category : #'test - enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testFlatCollect [
+{ #category : #'test - enumerating' }
+SetTest >> testFlatCollect [
 	self assert: (#(1 2) asSet flatCollect: [ :x | 1 to: (2 * x) ]) = #(1 2 3 4) asSet.
 	self assert: (#() asSet flatCollect: [:x | 1 to: 4 ]) isEmpty
 ]
 
-{
-	#category : #'test - enumerating',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testFlatCollectAsSet [
+{ #category : #'test - enumerating' }
+SetTest >> testFlatCollectAsSet [
 	self assert: (#(1 2) asSet flatCollect: [ :x | 1 to: (2 * x) ]) = #(1 2 3 4) asSet
 ]
 
-{
-	#category : #'sunit original tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testGrow  [
+{ #category : #'sunit original tests' }
+SetTest >> testGrow [ 
 	empty addAll: (1 to: 100).
 	self assert: (empty size = 100).
 			
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testIdentityIncludes [
+{ #category : #'tests - includes' }
+SetTest >> testIdentityIncludes [
 	" test the comportement in presence of elements 'includes' but not 'identityIncludes' "
 
 	" can not be used by collections that can't include elements for wich copy doesn't return another instance "
@@ -557,43 +397,31 @@ SetTest>>testIdentityIncludes [
 	self deny: (collection identityIncludes: element)
 ]
 
-{
-	#category : #'sunit original tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testIllegal [
+{ #category : #'sunit original tests' }
+SetTest >> testIllegal [
 	self should: [empty at: 5] raise: self defaultTestError.
 	self should: [empty at: 5 put: #abc] raise: self defaultTestError.
 			
 ]
 
-{
-	#category : #'sunit original tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testIncludes [
+{ #category : #'sunit original tests' }
+SetTest >> testIncludes [
 	self assert: (full includes: 4).
 	self assert: (full includes: 3).
 	self deny: (full includes: 6).
 			
 ]
 
-{
-	#category : #'tests - includes',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testIncludesElementIsNotThere [
+{ #category : #'tests - includes' }
+SetTest >> testIncludesElementIsNotThere [
 	"self debug: #testIncludesElementIsNotThere"
 	self deny: (self nonEmpty includes: self elementNotInForOccurrences).
 	self assert: (self nonEmpty includes: self nonEmpty anyOne).
 	self deny: (self empty includes: self elementNotInForOccurrences)
 ]
 
-{
-	#category : #'some tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testIntersection  [
+{ #category : #'some tests' }
+SetTest >> testIntersection [ 
 	| newFull col |
 	full add: 3; add: 2.
 	col := full intersection: full.
@@ -611,11 +439,8 @@ SetTest>>testIntersection  [
 	
 ]
 
-{
-	#category : #'test - integrity',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testIsHealthy [
+{ #category : #'test - integrity' }
+SetTest >> testIsHealthy [
 	"we use associations as keys on purpose, because they changing
 	hash depending on the key"
 	| a1 a2 set |
@@ -633,41 +458,29 @@ SetTest>>testIsHealthy [
 	] ensure: [set removeAll]
 ]
 
-{
-	#category : #'some tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testLike [
+{ #category : #'some tests' }
+SetTest >> testLike [
 	self assert: ((full like: 3) = 3).
 	self assert: ((full like: 8) isNil).
 ]
 
-{
-	#category : #'sunit original tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testOccurrences [
+{ #category : #'sunit original tests' }
+SetTest >> testOccurrences [
 	self assert: ((empty occurrencesOf: 0) = 0).
 	self assert: ((full occurrencesOf: 4) = 1).
 	full add: 4.
 	self assert: ((full occurrencesOf: 4) = 1).
 ]
 
-{
-	#category : #'sunit original tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testRemove [
+{ #category : #'sunit original tests' }
+SetTest >> testRemove [
 	full remove: 4.
 	self assert: (full includes: 3).
 	self deny: (full includes: 4).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testRemoveAll [
+{ #category : #tests }
+SetTest >> testRemoveAll [
 	"Allows one to remove all elements of a collection" 
 	
 	| c1 c2 s2 |
@@ -681,11 +494,8 @@ SetTest>>testRemoveAll [
 	self assert: c2 size = s2 description: 'the copy has not been modified'.
 ]
 
-{
-	#category : #'some tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testRemoveIfAbsent [
+{ #category : #'some tests' }
+SetTest >> testRemoveIfAbsent [
 	"self debug: #testRemoveIfAbsent"
 	
 	self assert: (full remove: 8 ifAbsent: [true]).
@@ -695,21 +505,15 @@ SetTest>>testRemoveIfAbsent [
 	
 ]
 
-{
-	#category : #'test - integrity',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testSetWithNilItemsIsHealthy [
+{ #category : #'test - integrity' }
+SetTest >> testSetWithNilItemsIsHealthy [
 	self classToBeTested = Set
 		ifFalse: [ ^ self	"only works on Dictionary" ].
 	self assert: {nil} asSet isHealthy
 ]
 
-{
-	#category : #'some tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testSize2 [
+{ #category : #'some tests' }
+SetTest >> testSize2 [
 	self assert: (empty size = 0).
 	self assert: (full size = 4).
 	empty add: 2.
@@ -721,11 +525,8 @@ SetTest>>testSize2 [
 	self assert: (empty size = 1).
 ]
 
-{
-	#category : #'some tests',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-SetTest>>testUnion [
+{ #category : #'some tests' }
+SetTest >> testUnion [
 	| newFull col newCol |
 	full add: 3.
 	full add: 2.

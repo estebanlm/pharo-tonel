@@ -23,25 +23,18 @@ Class {
 		'devWorkflow',
 		'announcer'
 	],
-	#category : #Versionner-Core-DependenciesModel,
-	#timestamp : '<historical>'
+	#category : #Versionner-Core-DependenciesModel
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject class>>newFromVersion: aMetacelloVersion inConfiguration: aConfigurationClass [
+{ #category : #'instance creation' }
+MTProject class >> newFromVersion: aMetacelloVersion inConfiguration: aConfigurationClass [
 	^ MCModel2MTModelVisitor new
 		visitConfiguration: aConfigurationClass
 		withVersion: aMetacelloVersion
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject class>>newNamed: projectName withInitialVersion: version inRepository: repositoryURL [
+{ #category : #'instance creation' }
+MTProject class >> newNamed: projectName withInitialVersion: version inRepository: repositoryURL [
 	"Create the skeleton of a new project (alos known as configuration)"
 	| project |
 
@@ -53,11 +46,8 @@ MTProject class>>newNamed: projectName withInitialVersion: version inRepository:
 	
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>= other [
+{ #category : #comparing }
+MTProject >> = other [
 	(self name = other name) ifFalse: [ ^false ].
 	(self version = other version) ifFalse: [ ^false ].
 	(self configurationClass  = other configurationClass) ifFalse: [ ^false ].
@@ -65,20 +55,14 @@ MTProject>>= other [
 	^true
 ]
 
-{
-	#category : #visiting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>acceptVisitor: anMTProjectVisitor [
+{ #category : #visiting }
+MTProject >> acceptVisitor: anMTProjectVisitor [
 	anMTProjectVisitor visitProject: self.
 	dependencies do: [ :dependency | dependency acceptVisitor: anMTProjectVisitor ]
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>addDependency: aDependency [
+{ #category : #setting }
+MTProject >> addDependency: aDependency [
 	"Add a dependency to the configuration (will create a new baseline)."
 
 	dependencies add: aDependency.
@@ -86,81 +70,54 @@ MTProject>>addDependency: aDependency [
 	self announcer announce: (MTProjectModelChanged project: self).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>announcer [
+{ #category : #accessing }
+MTProject >> announcer [
 	^ announcer ifNil: [announcer := Announcer new]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>configurationClass [
+{ #category : #accessing }
+MTProject >> configurationClass [
 	^ configurationClass
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>configurationClass: aConfigurationClass [
+{ #category : #protocol }
+MTProject >> configurationClass: aConfigurationClass [
 	configurationClass := aConfigurationClass.
 	self name: configurationClass name configurationBaseName.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>currentBaseline [
+{ #category : #accessing }
+MTProject >> currentBaseline [
 	| baselines |
 	
 	baselines := self configurationClass project versions select: [:aVersion | aVersion blessing == #baseline].
 	^baselines last
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>dependencies [
+{ #category : #accessing }
+MTProject >> dependencies [
 	^dependencies .
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>dependencies: aDependencyList [
+{ #category : #accessing }
+MTProject >> dependencies: aDependencyList [
 	dependencies := aDependencyList
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>dependenciesFilteredBy: aClass [
+{ #category : #private }
+MTProject >> dependenciesFilteredBy: aClass [
 	"Filter dependencies to only get Class instances"
 	^ (dependencies select: [ :each | each class =  aClass ]) sorted
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>dependenciesMap [
+{ #category : #accessing }
+MTProject >> dependenciesMap [
 	^ self packages collect: [ :aPackage | aPackage name -> aPackage dependencies ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>dependencyNamed: aDependencyName [
+{ #category : #accessing }
+MTProject >> dependencyNamed: aDependencyName [
 	"Get a depedency from its name"
 	
 	^ dependencies
@@ -169,106 +126,70 @@ MTProject>>dependencyNamed: aDependencyName [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>devWorkflow [
+{ #category : #accessing }
+MTProject >> devWorkflow [
 	^ devWorkflow
 		ifNil: [ devWorkflow := MTDevelopmentWorkfow newWithProject: self ]
 		ifNotNil: [ :myself | myself ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>groups [
+{ #category : #accessing }
+MTProject >> groups [
 	"Filter dependencies to only get groups"
 	^ self dependenciesFilteredBy: MTGroup .
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>initialize  [
+{ #category : #initialize-release }
+MTProject >> initialize [ 
 	dependencies  := OrderedCollection new.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>name [
+{ #category : #accessing }
+MTProject >> name [
 	^ name
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>name: anObject [
+{ #category : #accessing }
+MTProject >> name: anObject [
 	name := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>packages [
+{ #category : #accessing }
+MTProject >> packages [
 	"Filter dependencies to only get packages"
 	^ self dependenciesFilteredBy: MTPackage .
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>removeDependencyNamed: aDependencyName [
+{ #category : #protocol }
+MTProject >> removeDependencyNamed: aDependencyName [
 	"Remove a depedency from the configuration"
 	
 	(self dependencyNamed: aDependencyName) remove
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>repository  [
+{ #category : #accessing }
+MTProject >> repository [ 
 	^ repository 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>repository: aRepositoryURL [
+{ #category : #accessing }
+MTProject >> repository: aRepositoryURL [
 	repository := aRepositoryURL.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>requiredProjects [
+{ #category : #accessing }
+MTProject >> requiredProjects [
 	"Filter dependencies to only get RquiredProject"
 	^ self dependenciesFilteredBy: MTDependantProject .
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>version [
+{ #category : #accessing }
+MTProject >> version [
 	^ version
 ]
 
-{
-	#category : #setting,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTProject>>version: aMTVersion  [
+{ #category : #setting }
+MTProject >> version: aMTVersion [ 
 	version := aMTVersion
 ]

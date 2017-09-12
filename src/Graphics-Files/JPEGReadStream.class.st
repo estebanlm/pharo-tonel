@@ -19,24 +19,17 @@ Class {
 	#classVars : [
 		'MaxBits'
 	],
-	#category : #Graphics-Files,
-	#timestamp : '<historical>'
+	#category : #Graphics-Files
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadStream class>>initialize [
+{ #category : #initialization }
+JPEGReadStream class >> initialize [
 	"JPEGReadStream initialize"
 	MaxBits := 16
 ]
 
-{
-	#category : #'huffman trees',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadStream>>buildLookupTable: values counts: counts  [
+{ #category : #'huffman trees' }
+JPEGReadStream >> buildLookupTable: values counts: counts [ 
 	| min max |
 	min := max := nil.
 	1 
@@ -53,11 +46,8 @@ JPEGReadStream>>buildLookupTable: values counts: counts  [
 		to: max
 ]
 
-{
-	#category : #'huffman trees',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadStream>>createHuffmanTables: values counts: counts from: minBits to: maxBits  [
+{ #category : #'huffman trees' }
+JPEGReadStream >> createHuffmanTables: values counts: counts from: minBits to: maxBits [ 
 	"Create the actual tables"
 	| table tableStart tableSize tableEnd valueIndex tableStack numValues deltaBits maxEntries lastTable lastTableStart tableIndex lastTableIndex |
 	table := WordArray new: ((4 bitShift: minBits) max: 16).
@@ -153,11 +143,8 @@ JPEGReadStream>>createHuffmanTables: values counts: counts from: minBits to: max
 		to: tableEnd - 1
 ]
 
-{
-	#category : #'huffman trees',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadStream>>decodeValueFrom: table  [
+{ #category : #'huffman trees' }
+JPEGReadStream >> decodeValueFrom: table [ 
 	"Decode the next value in the receiver using the given huffman table."
 	| bits bitsNeeded tableIndex value |
 	bitsNeeded := (table at: 1) bitShift: -24.	"Initial bits needed"
@@ -173,11 +160,8 @@ JPEGReadStream>>decodeValueFrom: table  [
 	^ value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadStream>>fillBuffer [
+{ #category : #accessing }
+JPEGReadStream >> fillBuffer [
 	| byte |
 	[ bitsInBuffer <= 16 ] whileTrue: 
 		[ byte := self next.
@@ -189,11 +173,8 @@ JPEGReadStream>>fillBuffer [
 	^ bitsInBuffer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadStream>>getBits: requestedBits  [
+{ #category : #accessing }
+JPEGReadStream >> getBits: requestedBits [ 
 	| value |
 	requestedBits > bitsInBuffer ifTrue: 
 		[ self fillBuffer.
@@ -204,11 +185,8 @@ JPEGReadStream>>getBits: requestedBits  [
 	^ value
 ]
 
-{
-	#category : #'huffman trees',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadStream>>growHuffmanTable: table  [
+{ #category : #'huffman trees' }
+JPEGReadStream >> growHuffmanTable: table [ 
 	| newTable |
 	newTable := table species new: table size * 2.
 	newTable 
@@ -219,36 +197,24 @@ JPEGReadStream>>growHuffmanTable: table  [
 	^ newTable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadStream>>nextByte [
+{ #category : #accessing }
+JPEGReadStream >> nextByte [
 	^self next asInteger
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadStream>>nextBytes: n [
+{ #category : #accessing }
+JPEGReadStream >> nextBytes: n [
 	^(self next: n) asByteArray
 ]
 
-{
-	#category : #positioning,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadStream>>reset [
+{ #category : #positioning }
+JPEGReadStream >> reset [
 	super reset.
 	self resetBitBuffer
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-JPEGReadStream>>resetBitBuffer [
+{ #category : #accessing }
+JPEGReadStream >> resetBitBuffer [
 	bitBuffer := 0.
 	bitsInBuffer := 0
 ]

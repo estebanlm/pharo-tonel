@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #ZipWriteStreamTests,
 	#superclass : #TestCase,
-	#category : #Compression-Tests-Streams,
-	#timestamp : ''
+	#category : #Compression-Tests-Streams
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipWriteStreamTests>>testEmptyStrings [
+{ #category : #tests }
+ZipWriteStreamTests >> testEmptyStrings [
 	| aStream zipStream |
 
 	aStream := ByteArray new writeStream binary.
@@ -29,11 +22,8 @@ ZipWriteStreamTests>>testEmptyStrings [
 	aStream close.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:41'
-}
-ZipWriteStreamTests>>testZipped [
+{ #category : #tests }
+ZipWriteStreamTests >> testZipped [
 	| compressed |
 	
 	compressed := 'hello' zipped.

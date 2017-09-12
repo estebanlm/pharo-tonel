@@ -47,15 +47,11 @@ Class {
 		'properties',
 		'minExtentCache'
 	],
-	#category : #Morphic-Base-Layouts,
-	#timestamp : '<historical>'
+	#category : #Morphic-Base-Layouts
 }
 
-{
-	#category : #nil,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayout>>computeCellArrangement: cellHolder in: newBounds horizontal: aBool target: aMorph [
+{ #category : #nil }
+TableLayout >> computeCellArrangement: cellHolder in: newBounds horizontal: aBool target: aMorph [
 	"Compute number of cells we can put in each row/column. The returned array contains a list of all the cells we can put into the row/column at each level.
 	Note: The arrangement is so that the 'x' value of each cell advances along the list direction and the 'y' value along the wrap direction. The returned arrangement has an extra cell at the start describing the width and height of the row."
 	| cells wrap spacing output maxExtent n sum index max cell first last w cellMax maxCell hFill vFill inset |
@@ -144,11 +140,8 @@ TableLayout>>computeCellArrangement: cellHolder in: newBounds horizontal: aBool 
 	^output
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayout>>computeCellSizes: aMorph in: newBounds horizontal: aBool [
+{ #category : #layout }
+TableLayout >> computeCellSizes: aMorph in: newBounds horizontal: aBool [
 	"Step 1: Compute the minimum extent for all the children of aMorph"
 	| cells block minSize maxSize maxCell |
 	cells := (Array new: aMorph submorphCount) writeStream.
@@ -180,11 +173,8 @@ TableLayout>>computeCellSizes: aMorph in: newBounds horizontal: aBool [
 	^maxCell -> cells contents
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayout>>computeExtraSpacing: arrangement in: newBounds horizontal: aBool target: aMorph  [
+{ #category : #layout }
+TableLayout >> computeExtraSpacing: arrangement in: newBounds horizontal: aBool target: aMorph [ 
 	"Compute the required extra spacing for laying out the cells"
 
 	"match newBounds extent with arrangement's orientation"
@@ -322,11 +312,8 @@ TableLayout>>computeExtraSpacing: arrangement in: newBounds horizontal: aBool ta
 											extra := (last := extra) + extraPerCell]]]]]
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayout>>computeGlobalCellArrangement: cells in: newBounds horizontal: aBool wrap: wrap spacing: spacing [
+{ #category : #layout }
+TableLayout >> computeGlobalCellArrangement: cells in: newBounds horizontal: aBool wrap: wrap spacing: spacing [
 	"Compute number of cells we can put in each row/column. The returned array contains a list of all the cells we can put into the row/column at each level.
 	Note: The arrangement is so that the 'x' value of each cell advances along the list direction and the 'y' value along the wrap direction. The returned arrangement has an extra cell at the start describing the width and height of the row."
 	| output maxExtent n cell first last hFill vFill |
@@ -360,20 +347,14 @@ TableLayout>>computeGlobalCellArrangement: cells in: newBounds horizontal: aBool
 
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayout>>flushLayoutCache [
+{ #category : #layout }
+TableLayout >> flushLayoutCache [
 	"Flush any cached information associated with the receiver"
 	minExtentCache := nil.
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayout>>indexForInserting: aMorph at: aPoint in: owner  [
+{ #category : #utilities }
+TableLayout >> indexForInserting: aMorph at: aPoint [ in: owner 
 	"Return the insertion index based on the layout strategy defined for some morph. Used for drop insertion."
 
 	| horizontal morphList index |
@@ -392,11 +373,8 @@ TableLayout>>indexForInserting: aMorph at: aPoint in: owner  [
 	^index ifNil: [1]
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayout>>indexForInserting: aPoint inList: morphList horizontal: aBool target: aMorph  [
+{ #category : #utilities }
+TableLayout >> indexForInserting: aPoint inList: morphList horizontal: aBool target: aMorph [ 
 	| cmp1 cmp2 cmp3 noWrap |
 	properties := aMorph layoutProperties.
 	noWrap := properties wrapDirection == #none.
@@ -445,19 +423,13 @@ TableLayout>>indexForInserting: aPoint inList: morphList horizontal: aBool targe
 	^morphList size + 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayout>>isTableLayout [
+{ #category : #testing }
+TableLayout >> isTableLayout [
 	^true
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayout>>layout: aMorph in: box  [
+{ #category : #layout }
+TableLayout >> layout: aMorph in: box [ 
 	"Compute the layout for the given morph based on the new bounds"
 
 	| cells arrangement horizontal newBounds |
@@ -503,11 +475,8 @@ TableLayout>>layout: aMorph in: box  [
 		target: aMorph
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayout>>layoutLeftToRight: aMorph in: newBounds [
+{ #category : #layout }
+TableLayout >> layoutLeftToRight: aMorph in: newBounds [
 	"An optimized left-to-right list layout"
 	| inset extent block posX posY centering extraPerCell amount minX minY maxX maxY n width extra last cell size height sum vFill first |
 	size := properties minCellSize asPoint. minX := size x. minY := size y.
@@ -601,11 +570,8 @@ TableLayout>>layoutLeftToRight: aMorph in: newBounds [
 
 ]
 
-{
-	#category : #nil,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayout>>layoutTopToBottom: aMorph in: newBounds [
+{ #category : #nil }
+TableLayout >> layoutTopToBottom: aMorph in: newBounds [
 	"An optimized top-to-bottom list layout"
 	| inset extent block posX posY centering extraPerCell amount minX minY maxX maxY n height extra last cell size width sum vFill first |
 	size := properties minCellSize asPoint. minX := size x. minY := size y.
@@ -698,11 +664,8 @@ TableLayout>>layoutTopToBottom: aMorph in: newBounds [
 	].
 ]
 
-{
-	#category : #nil,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayout>>minExtentHorizontal: aMorph [
+{ #category : #nil }
+TableLayout >> minExtentHorizontal: aMorph [
 	"Return the minimal size aMorph's children would require given the new bounds"
 	| inset minX minY maxX maxY n size width height |
 	size := properties minCellSize asPoint. minX := size x. minY := size y.
@@ -728,11 +691,8 @@ TableLayout>>minExtentHorizontal: aMorph [
 	^minExtentCache := width @ height
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayout>>minExtentOf: aMorph in: box  [
+{ #category : #layout }
+TableLayout >> minExtentOf: aMorph [ in: box 
 	"Return the minimal size aMorph's children would require given the new bounds"
 
 	| cells arrangement horizontal newBounds minX minY dir |
@@ -772,11 +732,8 @@ TableLayout>>minExtentOf: aMorph in: box  [
 	^minExtentCache
 ]
 
-{
-	#category : #nil,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayout>>minExtentVertical: aMorph [
+{ #category : #nil }
+TableLayout >> minExtentVertical: aMorph [
 	"Return the minimal size aMorph's children would require given the new bounds"
 	| inset minX minY maxX maxY n size width height |
 	size := properties minCellSize asPoint. minX := size x. minY := size y.
@@ -802,11 +759,8 @@ TableLayout>>minExtentVertical: aMorph [
 	^minExtentCache := width @ height
 ]
 
-{
-	#category : #layout,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-TableLayout>>placeCells: arrangement in: newBounds horizontal: aBool target: aMorph  [
+{ #category : #layout }
+TableLayout >> placeCells: arrangement in: newBounds horizontal: aBool target: aMorph [ 
 	"Place the morphs within the cells accordingly"
 
 	| xDir yDir anchor yDist place cell xDist cellRect corner inset |

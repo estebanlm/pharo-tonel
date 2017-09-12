@@ -20,15 +20,11 @@ Class {
 		'ShiftTable',
 		'SinTable'
 	],
-	#category : #System-Hashing-MD5,
-	#timestamp : '<historical>'
+	#category : #System-Hashing-MD5
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5NonPrimitive class>>initialize [
+{ #category : #'class initialization' }
+MD5NonPrimitive class >> initialize [
 	"MD5 initialize"
 	"Obscure fact: those magic hex numbers that are hard to type in correctly are
 	actually the result of a simple trigonometric function and are therefore
@@ -131,103 +127,73 @@ MD5NonPrimitive class>>initialize [
 	 }
 ]
 
-{
-	#category : #private-functions,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5NonPrimitive>>fX: x Y: y Z: z [
+{ #category : #private-functions }
+MD5NonPrimitive >> fX: x Y: y Z: z [
 	" compute 'xy or (not x)z'"
 	^ x copy bitAnd: y; bitOr: (x copy bitInvert; bitAnd: z)
 
 	
 ]
 
-{
-	#category : #private-functions,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5NonPrimitive>>ffA: a B: b C: c D: d M: m S: s T: t [
+{ #category : #private-functions }
+MD5NonPrimitive >> ffA: a B: b C: c D: d M: m S: s T: t [
 	"compute a = b + ((a + f(b,c,d) + m + t) <<< s)"
 	^ a += (self fX: b Y: c Z: d); += m; += t; leftRotateBy: s; += b.
 
 ]
 
-{
-	#category : #private-buffers,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5NonPrimitive>>finalValue [
+{ #category : #private-buffers }
+MD5NonPrimitive >> finalValue [
 	"Concatenate the state values to produce the 128-bite result"
 	^ (state at: 1) asByteArray, (state at: 2) asByteArray, (state at: 3) asByteArray, (state at: 4) asByteArray
 ]
 
-{
-	#category : #private-functions,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5NonPrimitive>>gX: x Y: y Z: z [
+{ #category : #private-functions }
+MD5NonPrimitive >> gX: x Y: y Z: z [
 	" compute 'xz or y(not z)'"
 	^ x copy bitAnd: z; bitOr: (z copy bitInvert; bitAnd: y)
 
 	
 ]
 
-{
-	#category : #private-functions,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5NonPrimitive>>ggA: a B: b C: c D: d M: m S: s T: t [
+{ #category : #private-functions }
+MD5NonPrimitive >> ggA: a B: b C: c D: d M: m S: s T: t [
 	"compute a = b + ((a + g(b,c,d) + m + t) <<< s)"
 	^ a += (self gX: b Y: c Z: d); += m; += t; leftRotateBy: s; += b.
 
 ]
 
-{
-	#category : #private-functions,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5NonPrimitive>>hX: x Y: y Z: z [
+{ #category : #private-functions }
+MD5NonPrimitive >> hX: x Y: y Z: z [
 	" compute 'x xor y xor z'"
 	^ x copy bitXor: y; bitXor: z
 
 	
 ]
 
-{
-	#category : #private-functions,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5NonPrimitive>>hhA: a B: b C: c D: d M: m S: s T: t [
+{ #category : #private-functions }
+MD5NonPrimitive >> hhA: a B: b C: c D: d M: m S: s T: t [
 	"compute a = b + ((a + h(b,c,d) + m + t) <<< s)"
 	^ a += (self hX: b Y: c Z: d); += m; += t; leftRotateBy: s; += b.
 
 ]
 
-{
-	#category : #private-functions,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5NonPrimitive>>iX: x Y: y Z: z [
+{ #category : #private-functions }
+MD5NonPrimitive >> iX: x Y: y Z: z [
 	" compute 'y xor (x or (not z))'"
 	^ y copy bitXor: (z copy bitInvert; bitOr: x)
 
 ]
 
-{
-	#category : #private-functions,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5NonPrimitive>>iiA: a B: b C: c D: d M: m S: s T: t [
+{ #category : #private-functions }
+MD5NonPrimitive >> iiA: a B: b C: c D: d M: m S: s T: t [
 	"compute a = b + ((a + i(b,c,d) + m + t) <<< s)"
 	^ a += (self iX: b Y: c Z: d); += m; += t; leftRotateBy: s; += b.
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5NonPrimitive>>initialize [
+{ #category : #initialization }
+MD5NonPrimitive >> initialize [
 	"Some magic numbers to get the process started"
 	state := OrderedCollection newFrom: { 
 			(ThirtyTwoBitRegister new load: 1732584193).
@@ -237,11 +203,8 @@ MD5NonPrimitive>>initialize [
 		 }
 ]
 
-{
-	#category : #private-buffers,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5NonPrimitive>>processBuffer: aByteArray  [
+{ #category : #private-buffers }
+MD5NonPrimitive >> processBuffer: aByteArray [ 
 	"Process a 64-byte buffer"
 	| saveState data |
 	saveState := state collect: [ :item | item copy ].
@@ -261,11 +224,8 @@ MD5NonPrimitive>>processBuffer: aByteArray  [
 		do: [ :index | (state at: index) += (saveState at: index) ]
 ]
 
-{
-	#category : #private-rounds,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5NonPrimitive>>round: data selector: selector round: round  [
+{ #category : #private-rounds }
+MD5NonPrimitive >> round: data selector: selector [ round: round 
 	"Do one round with the given function"
 	| shiftIndex template abcd |
 	1 
@@ -289,11 +249,8 @@ MD5NonPrimitive>>round: data selector: selector round: round  [
 				selector: selector ]
 ]
 
-{
-	#category : #private-rounds,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5NonPrimitive>>rounds: data [
+{ #category : #private-rounds }
+MD5NonPrimitive >> rounds: data [
 	"Perform the four rounds with different functions"
 	#(
 	ffA:B:C:D:M:S:T:
@@ -305,11 +262,8 @@ MD5NonPrimitive>>rounds: data [
 
 ]
 
-{
-	#category : #private-functions,
-	#timestamp : ' 8/31/2017 07:16:11'
-}
-MD5NonPrimitive>>step: data template: item selector: selector  [
+{ #category : #private-functions }
+MD5NonPrimitive >> step: data template: item selector: selector [ 
 	"Perform one step in the round"
 	| args |
 	args := { 

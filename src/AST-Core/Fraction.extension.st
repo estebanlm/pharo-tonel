@@ -1,12 +1,7 @@
-Extension {
-	#name : #Fraction
-}
+Extension { #name : #Fraction }
 
-{
-	#category : #'*AST-Core-Parser',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-Fraction class>>readFrom: stringOrStream  [
+{ #category : #'*AST-Core-Parser' }
+Fraction class >> readFrom: stringOrStream [ 
 	"Answer a Fraction as described on aStream with following rules:
 	- numerator can specify a different radix (like '16rABC').
 	- fraction sign '/' is optional, and must immediately follow numerator without space.

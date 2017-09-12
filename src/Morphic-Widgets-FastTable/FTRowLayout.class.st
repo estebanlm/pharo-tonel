@@ -5,15 +5,11 @@ I simplify my parent (in an attept to achieve speed), but most important, Itake 
 Class {
 	#name : #FTRowLayout,
 	#superclass : #RowLayout,
-	#category : #Morphic-Widgets-FastTable,
-	#timestamp : 'EstebanLorenzano 5/15/2015 12:08'
+	#category : #Morphic-Widgets-FastTable
 }
 
-{
-	#category : #layouting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-FTRowLayout>>layout: aMorph in: bounds [
+{ #category : #layouting }
+FTRowLayout >> layout: aMorph in: bounds [
 	"Compute the layout for the given morph based on the new bounds.
 	Supports submorph hResizing, vResizing, cellInset, cellPositioning
 	(top, *center, bottom*) and listCentering."

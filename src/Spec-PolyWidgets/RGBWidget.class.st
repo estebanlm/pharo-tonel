@@ -19,15 +19,11 @@ Class {
 		'sliders',
 		'extentForPreview'
 	],
-	#category : #Spec-PolyWidgets-RGBAndShape,
-	#timestamp : 'Spirita 7/28/2016 13:25'
+	#category : #Spec-PolyWidgets-RGBAndShape
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBWidget class>>defaultSpec [
+{ #category : #specs }
+RGBWidget class >> defaultSpec [
 	<spec: #default>
 	^ SpecLayout composed
 		newColumn: [ :column | 
@@ -37,11 +33,8 @@ RGBWidget class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBWidget class>>example [
+{ #category : #example }
+RGBWidget class >> example [
 	| example |
 	example := self new.
 	example
@@ -51,27 +44,18 @@ RGBWidget class>>example [
 	^ example
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBWidget>>color [
+{ #category : #api }
+RGBWidget >> color [
  ^ sliders color
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBWidget>>initializePresenter [
+{ #category : #initialization }
+RGBWidget >> initializePresenter [
 	sliders whenChangedDo: [ preview image: self makeNewForm ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBWidget>>initializeWidgets [
+{ #category : #initialization }
+RGBWidget >> initializeWidgets [
 	preview := self instantiate: ImageModel.
 	sliders := self instantiate: RGBSliders.
 	preview image: (Form extent: 30 @ 30 depth: 32).
@@ -79,34 +63,22 @@ RGBWidget>>initializeWidgets [
 	self focusOrder add: sliders
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBWidget>>makeNewForm [
+{ #category : #api }
+RGBWidget >> makeNewForm [
 	^ (Form extent: 30 @ 30 depth: 32) fillColor: self color
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBWidget>>preview [
+{ #category : #accessing }
+RGBWidget >> preview [
 	^ preview
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBWidget>>sliders [
+{ #category : #accessing }
+RGBWidget >> sliders [
 	^ sliders
 ]
 
-{
-	#category : #api-events,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-RGBWidget>>whenExtentForPreviewChanged: aBlock [
+{ #category : #api-events }
+RGBWidget >> whenExtentForPreviewChanged: aBlock [
  extentForPreview whenChangedDo: aBlock 
 ]

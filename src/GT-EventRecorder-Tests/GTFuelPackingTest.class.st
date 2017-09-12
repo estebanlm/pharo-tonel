@@ -1,26 +1,16 @@
-"
-
-"
 Class {
 	#name : #GTFuelPackingTest,
 	#superclass : #GTEventPackingTest,
-	#category : #GT-EventRecorder-Tests-Support,
-	#timestamp : ''
+	#category : #GT-EventRecorder-Tests-Support
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTFuelPackingTest>>packingClass [
+{ #category : #accessing }
+GTFuelPackingTest >> packingClass [
 	^ GTFuelPacking
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTFuelPackingTest>>testMigration [
+{ #category : #tests }
+GTFuelPackingTest >> testMigration [
 	| oldClass oldObject |
 	oldClass := Object newAnonymousSubclass.
 	oldObject := oldClass new.
@@ -31,11 +21,8 @@ GTFuelPackingTest>>testMigration [
 	self should: [ announcement unpackedData ] raise: FLClassNotFound.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTFuelPackingTest>>testMigration2 [
+{ #category : #tests }
+GTFuelPackingTest >> testMigration2 [
 	| oldClass oldObject |
 	oldClass := Object newAnonymousSubclass.
 	oldObject := oldClass new.

@@ -31,262 +31,168 @@ Class {
 		'transformDraggedItemBlock',
 		'allowsRecursiveSearch'
 	],
-	#category : #Glamour-Presentations,
-	#timestamp : 'TudorGirba 2/4/2011 20:41'
+	#category : #Glamour-Presentations
 }
 
-{
-	#category : #'accessing values',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>accept: passengerObject droppedOnItem: anItem [
+{ #category : #'accessing values' }
+GLMListingPresentation >> accept: passengerObject droppedOnItem: anItem [
 	self dropOnItemBlock glamourValue: (GLMMultiValue with: passengerObject with: anItem with: self).
 	^ true
 ]
 
-{
-	#category : #'accessing values',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>allow: passengerObject droppedOnItem: anItem [
+{ #category : #'accessing values' }
+GLMListingPresentation >> allow: passengerObject droppedOnItem: anItem [
 	^ self allowDropOnItemBlock glamourValue: (GLMMultiValue with: passengerObject with: anItem with: self)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>allowDeselection [
+{ #category : #scripting }
+GLMListingPresentation >> allowDeselection [
 	self allowsDeselection: true
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>allowDropOnItem: aBlock [
+{ #category : #scripting }
+GLMListingPresentation >> allowDropOnItem: aBlock [
 	allowDropOnItemBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>allowDropOnItemBlock [
+{ #category : #accessing }
+GLMListingPresentation >> allowDropOnItemBlock [
 	^ allowDropOnItemBlock ifNil: [ allowDropOnItemBlock := [ false ] ]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>allowItemDrag: aBlock [
+{ #category : #scripting }
+GLMListingPresentation >> allowItemDrag: aBlock [
 	allowItemDragBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>allowItemDragBlock [
+{ #category : #accessing }
+GLMListingPresentation >> allowItemDragBlock [
 	^ allowItemDragBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>allowsDeselection [
+{ #category : #accessing }
+GLMListingPresentation >> allowsDeselection [
 	^ allowsDeselection ifNil: [allowsDeselection := false]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>allowsDeselection: anObject [
+{ #category : #accessing }
+GLMListingPresentation >> allowsDeselection: anObject [
 	allowsDeselection := anObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>allowsFilter [
+{ #category : #testing }
+GLMListingPresentation >> allowsFilter [
 	^ filterBlock notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>allowsInput [
+{ #category : #testing }
+GLMListingPresentation >> allowsInput [
 	^ self allowsFilter or: [ self allowsSearch ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>allowsItemDrag [
+{ #category : #testing }
+GLMListingPresentation >> allowsItemDrag [
 	^ self allowItemDragBlock notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>allowsRecursiveSearch [
+{ #category : #accessing }
+GLMListingPresentation >> allowsRecursiveSearch [
 	^ allowsRecursiveSearch ifNil: [allowsRecursiveSearch := true]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>allowsRecursiveSearch: aBoolean [
+{ #category : #accessing }
+GLMListingPresentation >> allowsRecursiveSearch: aBoolean [
 	allowsRecursiveSearch := aBoolean
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>allowsSearch [
+{ #category : #testing }
+GLMListingPresentation >> allowsSearch [
 	^ searchBlock notNil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>amountToShow [
+{ #category : #accessing }
+GLMListingPresentation >> amountToShow [
 	^ (amountToShowBlock ifNil: [ [ self defaultAmountToShow ] ]) glamourValue: self entity
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>beMultiple [
+{ #category : #scripting }
+GLMListingPresentation >> beMultiple [
 	allowsMultipleSelection := true
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>beSingle [
+{ #category : #scripting }
+GLMListingPresentation >> beSingle [
 	allowsMultipleSelection := false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>childrenValueOf: anObject [
+{ #category : #accessing }
+GLMListingPresentation >> childrenValueOf: anObject [
 	self flag: 'this is rather hackish, but needed to treat list and tree in the same way.'.
 	^ OrderedCollection new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>childrenValueOf: anObject atLevel: anInteger [
+{ #category : #accessing }
+GLMListingPresentation >> childrenValueOf: anObject atLevel: anInteger [
 	self flag: 'this is rather hackish, but needed to treat list and tree in the same way.'.
 	^ OrderedCollection new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>columns [
+{ #category : #accessing }
+GLMListingPresentation >> columns [
 	self flag: 'this is rather hackish, but needed to treat list and tree in the same way.'.
 	^ OrderedCollection new
 ]
 
-{
-	#category : #tags,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>computeTagsFilterFor: aGlamourValue  [
+{ #category : #tags }
+GLMListingPresentation >> computeTagsFilterFor: aGlamourValue [ 
 	self subclassResponsibility 
 ]
 
-{
-	#category : #tags,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>computeTagsFor: aGlamourValue  [
+{ #category : #tags }
+GLMListingPresentation >> computeTagsFor: aGlamourValue [ 
 	self subclassResponsibility 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>defaultAmountToShow [
+{ #category : #accessing }
+GLMListingPresentation >> defaultAmountToShow [
 	^ 500
 ]
 
-{
-	#category : #'accessing values',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>displayValue [
+{ #category : #'accessing values' }
+GLMListingPresentation >> displayValue [
 	^ sortBlock 
 		ifNil: [super displayValue]
 		ifNotNil: [super displayValue sorted: sortBlock]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>dropOnItem: aBlock [
+{ #category : #scripting }
+GLMListingPresentation >> dropOnItem: aBlock [
 	dropOnItemBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>dropOnItemBlock [
+{ #category : #accessing }
+GLMListingPresentation >> dropOnItemBlock [
 	^ dropOnItemBlock 
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>filterOn: aBlock  [
+{ #category : #scripting }
+GLMListingPresentation >> filterOn: aBlock [ 
 	filterBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>filterStrategy [
+{ #category : #accessing }
+GLMListingPresentation >> filterStrategy [
 	^filterBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>grayRoundedTags [
+{ #category : #accessing }
+GLMListingPresentation >> grayRoundedTags [
 
 	tagsStyle := #grayRoundedButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>helpMessage [
+{ #category : #accessing }
+GLMListingPresentation >> helpMessage [
 
 	^ helpMessage ifNil: [
 		helpMessage := 'Search Input'
@@ -295,126 +201,81 @@ GLMListingPresentation>>helpMessage [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>helpMessage: aString [
+{ #category : #accessing }
+GLMListingPresentation >> helpMessage: aString [
 
 	helpMessage := aString.
 
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>isDragSource  [
+{ #category : #testing }
+GLMListingPresentation >> isDragSource [ 
 	^ self dropOnItemBlock notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>isDropTarget [
+{ #category : #testing }
+GLMListingPresentation >> isDropTarget [
 	^ self dropOnItemBlock notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>isMultiple [
+{ #category : #testing }
+GLMListingPresentation >> isMultiple [
 	^ allowsMultipleSelection ifNil: [ allowsMultipleSelection := false ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>isSingle  [
+{ #category : #testing }
+GLMListingPresentation >> isSingle [ 
 	^ self isMultiple not
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>searchOn: aBlock [
+{ #category : #scripting }
+GLMListingPresentation >> searchOn: aBlock [
 	searchBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>searchStrategy [
+{ #category : #accessing }
+GLMListingPresentation >> searchStrategy [
 	^ searchBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>selectionPath [
+{ #category : #accessing }
+GLMListingPresentation >> selectionPath [
 	^ (self pane port: #selectionPath) value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>selectionPath: anObject [
+{ #category : #accessing }
+GLMListingPresentation >> selectionPath: anObject [
 	(self pane port: #selectionPath) value: anObject
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>showOnly: aBlock [
+{ #category : #scripting }
+GLMListingPresentation >> showOnly: aBlock [
 	amountToShowBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>sortBlock [
+{ #category : #accessing }
+GLMListingPresentation >> sortBlock [
 	^ sortBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>sortBlock: anObject [
+{ #category : #accessing }
+GLMListingPresentation >> sortBlock: anObject [
 	sortBlock := anObject
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>sorted [
+{ #category : #scripting }
+GLMListingPresentation >> sorted [
 	sortBlock := [:a :b | a < b]
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>sorted: aBlock [
+{ #category : #scripting }
+GLMListingPresentation >> sorted: aBlock [
 	sortBlock := aBlock  
 ]
 
-{
-	#category : #tags,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>tagsFor: anObject fromProvider: aTagProvider to: operation [
+{ #category : #tags }
+GLMListingPresentation >> tagsFor: anObject fromProvider: aTagProvider to: operation [
 	| glamourValue |
 	
 	glamourValue := (anObject asGlamorousMultiValue, self entity asGlamorousMultiValue).
@@ -423,11 +284,8 @@ GLMListingPresentation>>tagsFor: anObject fromProvider: aTagProvider to: operati
 		ifFalse: [ aTagProvider computeTagsFilterFor: glamourValue ]
 ]
 
-{
-	#category : #tags,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>tagsFor: anObject to: operation [
+{ #category : #tags }
+GLMListingPresentation >> tagsFor: anObject to: operation [
 	
 	^ self 
 		tagsFor: anObject 
@@ -435,81 +293,54 @@ GLMListingPresentation>>tagsFor: anObject to: operation [
 		to: operation
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>tagsStyle [
+{ #category : #accessing }
+GLMListingPresentation >> tagsStyle [
 
 	^tagsStyle ifNil:[ self grayRoundedTags. tagsStyle ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>textBackgroundColor [
+{ #category : #accessing }
+GLMListingPresentation >> textBackgroundColor [
 
 	^ textBackgroundColor ifNil: [textBackgroundColor := Color transparent]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>textBackgroundColor:  aBlockOrAColor [
+{ #category : #accessing }
+GLMListingPresentation >> textBackgroundColor:  aBlockOrAColor [
 
 	textBackgroundColor := aBlockOrAColor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>textBackgroundColorFor: anObject [
+{ #category : #accessing }
+GLMListingPresentation >> textBackgroundColorFor: anObject [
 	^ self textBackgroundColor glamourValue: (anObject asGlamorousMultiValue, self entity asGlamorousMultiValue)
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>transformDraggedItem: aBlock [
+{ #category : #scripting }
+GLMListingPresentation >> transformDraggedItem: aBlock [
 	transformDraggedItemBlock := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>transformDraggedItemBlock [
+{ #category : #accessing }
+GLMListingPresentation >> transformDraggedItemBlock [
 	^ transformDraggedItemBlock
 ]
 
-{
-	#category : #'accessing values',
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>transformedDraggedItem: anItem [
+{ #category : #'accessing values' }
+GLMListingPresentation >> transformedDraggedItem: anItem [
 	^ self transformDraggedItemBlock 
 		ifNotNil: [ :transform | transform glamourValue: (GLMMultiValue with: anItem with: self)]
 		ifNil: [ anItem ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>whiteRectangledTags [
+{ #category : #accessing }
+GLMListingPresentation >> whiteRectangledTags [
 
 	tagsStyle := #whiteRectangledButton
 ]
 
-{
-	#category : #scripting,
-	#timestamp : ' 8/31/2017 05:26:33'
-}
-GLMListingPresentation>>withSmalltalkSearch [
+{ #category : #scripting }
+GLMListingPresentation >> withSmalltalkSearch [
 	self
 		searchOn: [:text :each | 
 			Smalltalk compiler evaluate: ' | entity each | each := self. entity := each.', text for: each logged: false];

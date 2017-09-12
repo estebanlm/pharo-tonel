@@ -7,43 +7,30 @@ Class {
 	#instVars : [
 		'registry'
 	],
-	#category : #GT-EventRecorder-Tests-Support,
-	#timestamp : '<historical>'
+	#category : #GT-EventRecorder-Tests-Support
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRegistryTest>>setUp [
+{ #category : #running }
+GTEventRegistryTest >> setUp [
 	super setUp.
 	registry := GTEventRegistry new.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRegistryTest>>testIsLiberated [
+{ #category : #'as yet unclassified' }
+GTEventRegistryTest >> testIsLiberated [
 	"By default it should answer yes."
 	self assert: registry isLiberated
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRegistryTest>>testIsLiberated2 [
+{ #category : #'as yet unclassified' }
+GTEventRegistryTest >> testIsLiberated2 [
 	"By default it should answer yes."
 	registry object: self.
 	self deny: registry isLiberated.
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventRegistryTest>>testIsLiberated3 [
+{ #category : #'as yet unclassified' }
+GTEventRegistryTest >> testIsLiberated3 [
 	"By default it should answer yes."
 	registry object: self.
 	self deny: registry isLiberated.

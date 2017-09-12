@@ -10,15 +10,11 @@ Class {
 		'bottomRightPaint',
 		'width'
 	],
-	#category : #Athens-Morphic,
-	#timestamp : '<historical>'
+	#category : #Athens-Morphic
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBorderStrokePaint class>>topLeftColor: aColor1 bottomRightColor: aColor2 width: aNumber on: anAthensCanvas [
+{ #category : #'instance creation' }
+AthensBorderStrokePaint class >> topLeftColor: aColor1 bottomRightColor: aColor2 width: aNumber on: anAthensCanvas [
 	^ self new
 		topLeftPaint: (aColor1 asAthensPaintOn: anAthensCanvas);
 		bottomRightPaint: (aColor2 asAthensPaintOn: anAthensCanvas);
@@ -26,20 +22,14 @@ AthensBorderStrokePaint class>>topLeftColor: aColor1 bottomRightColor: aColor2 w
 		yourself
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBorderStrokePaint>>asStrokePaintOn: aCanvas [
+{ #category : #drawing }
+AthensBorderStrokePaint >> asStrokePaintOn: aCanvas [
 	"receiver is stroke paint already"
 	^ self
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBorderStrokePaint>>athensFillRectangle: aRect on: anAthensCanvas [
+{ #category : #drawing }
+AthensBorderStrokePaint >> athensFillRectangle: aRect on: anAthensCanvas [
 	"This is a terminal method in rendering dispatch scheme
 	canvas->shape->paint. See AthensCanvas>>fillShape: "
 
@@ -51,19 +41,13 @@ AthensBorderStrokePaint>>athensFillRectangle: aRect on: anAthensCanvas [
 		on: anAthensCanvas
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBorderStrokePaint>>bottomRightPaint: anAthensPaint [
+{ #category : #accessing }
+AthensBorderStrokePaint >> bottomRightPaint: anAthensPaint [
 	bottomRightPaint := anAthensPaint
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBorderStrokePaint>>pathForBottomRightBorderOf: aRectangle on: anAthensCanvas [
+{ #category : #private }
+AthensBorderStrokePaint >> pathForBottomRightBorderOf: aRectangle on: anAthensCanvas [
 	^ anAthensCanvas
 		createPath: [ :builder | 
 			builder
@@ -77,11 +61,8 @@ AthensBorderStrokePaint>>pathForBottomRightBorderOf: aRectangle on: anAthensCanv
 				close ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBorderStrokePaint>>pathForTopLeftBorderOf: aRectangle on: anAthensCanvas [
+{ #category : #private }
+AthensBorderStrokePaint >> pathForTopLeftBorderOf: aRectangle on: anAthensCanvas [
 	^ anAthensCanvas
 		createPath: [ :builder | 
 			builder
@@ -95,26 +76,17 @@ AthensBorderStrokePaint>>pathForTopLeftBorderOf: aRectangle on: anAthensCanvas [
 				close ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBorderStrokePaint>>topLeftPaint: anAthensPaint [
+{ #category : #accessing }
+AthensBorderStrokePaint >> topLeftPaint: anAthensPaint [
 	topLeftPaint := anAthensPaint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBorderStrokePaint>>width [
+{ #category : #accessing }
+AthensBorderStrokePaint >> width [
 	^ width
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBorderStrokePaint>>width: aWidth [
+{ #category : #accessing }
+AthensBorderStrokePaint >> width: aWidth [
 	width:= aWidth
 ]

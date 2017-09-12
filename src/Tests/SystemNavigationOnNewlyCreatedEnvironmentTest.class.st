@@ -1,27 +1,17 @@
-"
-
-"
 Class {
 	#name : #SystemNavigationOnNewlyCreatedEnvironmentTest,
 	#superclass : #SystemNavigationTest,
-	#category : #Tests-System,
-	#timestamp : ''
+	#category : #Tests-System
 }
 
-{
-	#category : #'building suites',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationOnNewlyCreatedEnvironmentTest class>>shouldInheritSelectors [
+{ #category : #'building suites' }
+SystemNavigationOnNewlyCreatedEnvironmentTest class >> shouldInheritSelectors [
 
 ^true
 ]
 
-{
-	#category : #setUp-tearDown,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationOnNewlyCreatedEnvironmentTest>>createSystemNavigationToTest [
+{ #category : #setUp-tearDown }
+SystemNavigationOnNewlyCreatedEnvironmentTest >> createSystemNavigationToTest [
 	
 	| environment nav |
 	environment := SystemDictionary withOrganizer: SystemOrganizer new.
@@ -30,22 +20,16 @@ SystemNavigationOnNewlyCreatedEnvironmentTest>>createSystemNavigationToTest [
 	^nav
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationOnNewlyCreatedEnvironmentTest>>testAllReferencesToPool [
+{ #category : #testing }
+SystemNavigationOnNewlyCreatedEnvironmentTest >> testAllReferencesToPool [
 	| result |
 	
 	result := self systemNavigationToTest allReferencesToPool: FooSharedPool.
 	self assert: result isEmpty. "FooSharedPool is not in this environment"
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SystemNavigationOnNewlyCreatedEnvironmentTest>>testEnsureDefaultEnvironmentNotUsed [
+{ #category : #testing }
+SystemNavigationOnNewlyCreatedEnvironmentTest >> testEnsureDefaultEnvironmentNotUsed [
 	
 	| allClasses originalProtoObjectClass originalObjectClass anotherObjectClass |
 	allClasses := self systemNavigationToTest allClasses.

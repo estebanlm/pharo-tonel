@@ -14,23 +14,16 @@ Class {
 		'strokes',
 		'currentStroke'
 	],
-	#category : #OSWindow-SDL2-Examples-Basic,
-	#timestamp : 'MerwanOuddane 8/21/2015 14:41'
+	#category : #OSWindow-SDL2-Examples-Basic
 }
 
-{
-	#category : #'managing strokes',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensDrawingExample>>clearStrokes [
+{ #category : #'managing strokes' }
+SDL2AthensDrawingExample >> clearStrokes [
 	strokes removeAll
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensDrawingExample>>clearSurface [
+{ #category : #drawing }
+SDL2AthensDrawingExample >> clearSurface [
 	renderer athensSurface
 		drawDuring: [ :canvas | 
 			canvas
@@ -38,46 +31,31 @@ SDL2AthensDrawingExample>>clearSurface [
 				drawShape: (0 @ 0 extent: window extent) ]
 ]
 
-{
-	#category : #factory,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensDrawingExample>>createEventHandler [
+{ #category : #factory }
+SDL2AthensDrawingExample >> createEventHandler [
 	^ OSWindowAthensDrawingExampleEventHandler new 
 			athensExample: self
 ]
 
-{
-	#category : #'managing strokes',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensDrawingExample>>endStroke [
+{ #category : #'managing strokes' }
+SDL2AthensDrawingExample >> endStroke [
 	currentStroke := OrderedCollection new.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensDrawingExample>>initialize [
+{ #category : #initialization }
+SDL2AthensDrawingExample >> initialize [
 	super initialize.
 	currentStroke := OrderedCollection new.
 	strokes := OrderedCollection new
 ]
 
-{
-	#category : #'managing strokes',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensDrawingExample>>moveAt: aPoint [
+{ #category : #'managing strokes' }
+SDL2AthensDrawingExample >> moveAt: aPoint [
 	currentStroke add: aPoint
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensDrawingExample>>redraw [
+{ #category : #updating }
+SDL2AthensDrawingExample >> redraw [
 	self clearSurface.
 	strokes
 		do:
@@ -96,11 +74,8 @@ SDL2AthensDrawingExample>>redraw [
 						draw ] ]
 ]
 
-{
-	#category : #'managing strokes',
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-SDL2AthensDrawingExample>>startStrokeAt: aPoint [
+{ #category : #'managing strokes' }
+SDL2AthensDrawingExample >> startStrokeAt: aPoint [
 	currentStroke := OrderedCollection with: aPoint.
 	strokes add: currentStroke
 ]

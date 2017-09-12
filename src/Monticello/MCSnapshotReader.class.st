@@ -11,31 +11,21 @@ Class {
 	#instVars : [
 		'definitions'
 	],
-	#category : #Monticello-Storing,
-	#timestamp : 'LaurentLaffont 2/23/2011 20:21'
+	#category : #Monticello-Storing
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSnapshotReader class>>snapshotFromStream: aStream [
+{ #category : #accessing }
+MCSnapshotReader class >> snapshotFromStream: aStream [
 	^ (self on: aStream) snapshot
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSnapshotReader>>definitions [
+{ #category : #accessing }
+MCSnapshotReader >> definitions [
 	definitions ifNil: [self loadDefinitions].
 	^ definitions
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCSnapshotReader>>snapshot [
+{ #category : #accessing }
+MCSnapshotReader >> snapshot [
 	^ MCSnapshot fromDefinitions: self definitions
 ]

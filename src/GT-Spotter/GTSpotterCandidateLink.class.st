@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterCandidateLink,
 	#superclass : #DoubleLink,
@@ -9,50 +6,34 @@ Class {
 		'weight',
 		'renderingProcessorLink'
 	],
-	#category : #GT-Spotter-Utils,
-	#timestamp : ''
+	#category : #GT-Spotter-Utils
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>< anotherCandidateLink [
+{ #category : #comparing }
+GTSpotterCandidateLink >> < anotherCandidateLink [
 
 	^ self weight < anotherCandidateLink weight
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>> anotherCandidateLink [
+{ #category : #comparing }
+GTSpotterCandidateLink >> > anotherCandidateLink [
 
 	^ self weight > anotherCandidateLink weight
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>asSpotterCandidateLink [
+{ #category : #converting }
+GTSpotterCandidateLink >> asSpotterCandidateLink [
 
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>candidate [
+{ #category : #accessing }
+GTSpotterCandidateLink >> candidate [
 	^ self value
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>copy [
+{ #category : #copying }
+GTSpotterCandidateLink >> copy [
 	|link|
 	link := self class value: self value.
 	link privateProcessorLink: processorLink.
@@ -61,80 +42,53 @@ GTSpotterCandidateLink>>copy [
 	^ link
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>gtDisplayOn: stream [
+{ #category : #printing }
+GTSpotterCandidateLink >> gtDisplayOn: stream [
 	stream nextPutAll: 'Candidate link: '.
 	self value gtDisplayOn: stream 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>isFirst [
+{ #category : #testing }
+GTSpotterCandidateLink >> isFirst [
 
 	^ (self previousLink processorLink = self processorLink) not
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>next [
+{ #category : #accessing }
+GTSpotterCandidateLink >> next [
 	^ self nextLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>previous [
+{ #category : #accessing }
+GTSpotterCandidateLink >> previous [
 	^ self previousLink
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>privateProcessorLink: aLink [
+{ #category : #private }
+GTSpotterCandidateLink >> privateProcessorLink: aLink [
 
 	processorLink := aLink
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>privateRenderingProcessorLink: aLink [
+{ #category : #private }
+GTSpotterCandidateLink >> privateRenderingProcessorLink: aLink [
 
 	renderingProcessorLink := aLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>processor [
+{ #category : #accessing }
+GTSpotterCandidateLink >> processor [
 
 	^ self processorLink value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>processorLink [
+{ #category : #accessing }
+GTSpotterCandidateLink >> processorLink [
 	^ processorLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>processorLink: anObject [
+{ #category : #accessing }
+GTSpotterCandidateLink >> processorLink: anObject [
 
 	"we set rendering processor only if one is not set. it allows to have a collection of items,
 	that have different rendering processors"
@@ -144,40 +98,28 @@ GTSpotterCandidateLink>>processorLink: anObject [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>renderingProcessor [
+{ #category : #accessing }
+GTSpotterCandidateLink >> renderingProcessor [
 
 	renderingProcessorLink ifNil: [ self renderingProcessor: processorLink ].
 	^ renderingProcessorLink value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>renderingProcessor: aProcessorLink [
+{ #category : #accessing }
+GTSpotterCandidateLink >> renderingProcessor: aProcessorLink [
 
 	renderingProcessorLink ifNil: [ renderingProcessorLink := aProcessorLink processor asSpotterProcessorLink ].
 	processorLink ifNil: [ processorLink := aProcessorLink ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>weight [
+{ #category : #accessing }
+GTSpotterCandidateLink >> weight [
 
 	^ weight
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterCandidateLink>>weight: anObject  [
+{ #category : #accessing }
+GTSpotterCandidateLink >> weight: anObject [ 
 
 	weight := anObject
 ]

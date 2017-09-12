@@ -18,23 +18,16 @@ Class {
 		'requestDuration',
 		'responseDuration'
 	],
-	#category : #Zinc-HTTP-Logging,
-	#timestamp : 'SvenVanCaekenberghe 6/16/2014 14:09'
+	#category : #Zinc-HTTP-Logging
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientTransactionEvent>>duration [
+{ #category : #accessing }
+ZnClientTransactionEvent >> duration [
 	^ requestDuration + responseDuration
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientTransactionEvent>>printContentsOn: stream [
+{ #category : #printing }
+ZnClientTransactionEvent >> printContentsOn: stream [
 	super printContentsOn: stream.
 	stream space.
 	request requestLine printMethodAndUriOn: stream.
@@ -45,66 +38,42 @@ ZnClientTransactionEvent>>printContentsOn: stream [
 	stream space; print: self duration; nextPutAll: 'ms'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientTransactionEvent>>request [
+{ #category : #accessing }
+ZnClientTransactionEvent >> request [
 	^ request
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientTransactionEvent>>request: anObject [
+{ #category : #accessing }
+ZnClientTransactionEvent >> request: anObject [
 	request := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientTransactionEvent>>requestDuration [
+{ #category : #accessing }
+ZnClientTransactionEvent >> requestDuration [
 	^ requestDuration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientTransactionEvent>>requestDuration: anObject [
+{ #category : #accessing }
+ZnClientTransactionEvent >> requestDuration: anObject [
 	requestDuration := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientTransactionEvent>>response [
+{ #category : #accessing }
+ZnClientTransactionEvent >> response [
 	^ response
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientTransactionEvent>>response: anObject [
+{ #category : #accessing }
+ZnClientTransactionEvent >> response: anObject [
 	response := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientTransactionEvent>>responseDuration [
+{ #category : #accessing }
+ZnClientTransactionEvent >> responseDuration [
 	^ responseDuration
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClientTransactionEvent>>responseDuration: anObject [
+{ #category : #accessing }
+ZnClientTransactionEvent >> responseDuration: anObject [
 	responseDuration := anObject
 ]

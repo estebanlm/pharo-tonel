@@ -1,12 +1,7 @@
-Extension {
-	#name : #SequenceableCollection
-}
+Extension { #name : #SequenceableCollection }
 
-{
-	#category : #'*NewValueHolder',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-SequenceableCollection>>asValueHolder [
+{ #category : #'*NewValueHolder' }
+SequenceableCollection >> asValueHolder [
 
 	^ CollectionValueHolder value: self
 ]

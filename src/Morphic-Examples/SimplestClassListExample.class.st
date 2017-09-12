@@ -8,24 +8,17 @@ Class {
 		'rootClass',
 		'selected'
 	],
-	#category : #Morphic-Examples-MorphTreeWidget,
-	#timestamp : 'AlainPlantec 2/18/2010 19:37'
+	#category : #Morphic-Examples-MorphTreeWidget
 }
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimplestClassListExample class>>example [
+{ #category : #examples }
+SimplestClassListExample class >> example [
 
 	SimplestClassListExample new openOn: Object
 ]
 
-{
-	#category : #view,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimplestClassListExample>>defaultTreeMorph [
+{ #category : #view }
+SimplestClassListExample >> defaultTreeMorph [
 	^ super defaultTreeMorph
 		"beCheckList;"
 		"autoDeselection: true;"
@@ -34,32 +27,23 @@ SimplestClassListExample>>defaultTreeMorph [
 		yourself
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimplestClassListExample>>openDialogOn: aClass  [
+{ #category : #'as yet unclassified' }
+SimplestClassListExample >> openDialogOn: aClass [ 
 	rootClass := aClass.
 	^ self openDialogWindowIn: World title: 'All Object subclasses'
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimplestClassListExample>>openOn: aClass  [
+{ #category : #'instance creation' }
+SimplestClassListExample >> openOn: aClass [ 
 	rootClass := aClass.
 	(self defaultTreeMorph buildContents embeddedInMorphicWindowLabeled: 'test') openInWorld
 	"(self dialogWindowIn: World title: 'All Object subclasses') openInWorld"
 
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimplestClassListExample>>plugOne [
+{ #category : #'as yet unclassified' }
+SimplestClassListExample >> plugOne [
 	| l |
 	rootClass := Object.
 	l := PluggableListMorph
@@ -70,43 +54,28 @@ SimplestClassListExample>>plugOne [
 	(l embeddedInMorphicWindowLabeled: 'test') openInWorld
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimplestClassListExample>>rootItems [
+{ #category : #accessing }
+SimplestClassListExample >> rootItems [
 	^ rootClass allSubclasses asArray sort: [:a :b | a name < b name]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimplestClassListExample>>rootItemsOrig [
+{ #category : #'as yet unclassified' }
+SimplestClassListExample >> rootItemsOrig [
 	^ rootClass allSubclasses asArray sort: [:a :b | a name < b name]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimplestClassListExample>>rootItemsTest [
+{ #category : #'as yet unclassified' }
+SimplestClassListExample >> rootItemsTest [
 	^ (rootClass allSubclasses asArray sort: [:a :b | a name < b name])
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimplestClassListExample>>selected [
+{ #category : #accessing }
+SimplestClassListExample >> selected [
 	^ selected ifNil: [selected := 1]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimplestClassListExample>>selected: x [
+{ #category : #accessing }
+SimplestClassListExample >> selected: x [
 	selected := x.
 	self changed: #selected
 ]

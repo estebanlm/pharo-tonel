@@ -1,29 +1,19 @@
-"
-
-"
 Class {
 	#name : #OCCaseOfTest,
 	#superclass : #TestCase,
-	#category : #OpalCompiler-Tests-FromOld,
-	#timestamp : ''
+	#category : #OpalCompiler-Tests-FromOld
 }
 
-{
-	#category : #helper,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCaseOfTest>>compile: source [
+{ #category : #helper }
+OCCaseOfTest >> compile: source [
 	^OpalCompiler new 
 		class: self class; 
 		source: source; 
 		compile
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCaseOfTest>>testCaseOfEffect [
+{ #category : #tests }
+OCCaseOfTest >> testCaseOfEffect [
 	| temp |
 	
 	#case1 caseOf: {
@@ -43,11 +33,8 @@ OCCaseOfTest>>testCaseOfEffect [
 		] raise: Error
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCaseOfTest>>testCaseOfOtherwiseEffect [
+{ #category : #tests }
+OCCaseOfTest >> testCaseOfOtherwiseEffect [
 	| temp |
 	
 	#case1 
@@ -75,11 +62,8 @@ OCCaseOfTest>>testCaseOfOtherwiseEffect [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCaseOfTest>>testCaseOfOtherwiseValue [
+{ #category : #tests }
+OCCaseOfTest >> testCaseOfOtherwiseValue [
 	| temp |
 	
 	temp := #case1 
@@ -107,11 +91,8 @@ OCCaseOfTest>>testCaseOfOtherwiseValue [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCaseOfTest>>testCaseOfValue [
+{ #category : #tests }
+OCCaseOfTest >> testCaseOfValue [
 	| temp |
 	
 	temp := #case1 caseOf: {
@@ -132,11 +113,8 @@ OCCaseOfTest>>testCaseOfValue [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-OCCaseOfTest>>testCompilationError [
+{ #category : #tests }
+OCCaseOfTest >> testCompilationError [
 	self should: [ self compile: 'methodPattern 1 caseOf: { }' ] raise: SyntaxErrorNotification.
 	self should: [ self compile: 'methodPattern 1 caseOf: { } otherwise: [ 42 ]' ] raise: SyntaxErrorNotification.
 ]

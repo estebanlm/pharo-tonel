@@ -17,85 +17,57 @@ Class {
 	#classVars : [
 		'Counters'
 	],
-	#category : #Reflectivity-Tools-Watchpoints,
-	#timestamp : 'md 6/21/2016 11:37'
+	#category : #Reflectivity-Tools-Watchpoints
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ExecutionCounter class>>allCounters [
+{ #category : #accessing }
+ExecutionCounter class >> allCounters [
 	^ Counters ifNil: [ Counters := WeakKeyDictionary new ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ExecutionCounter class>>installOn: aRBProgramNode [
+{ #category : #'instance creation' }
+ExecutionCounter class >> installOn: aRBProgramNode [
 	^self new
 		node: aRBProgramNode;
 		install.
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ExecutionCounter class>>removeAll [
+{ #category : #cleanup }
+ExecutionCounter class >> removeAll [
 	self allCounters values do: [ :aWatchpoint| aWatchpoint uninstall].
 	Counters := nil.
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ExecutionCounter class>>removeFrom: aNode [
+{ #category : #cleanup }
+ExecutionCounter class >> removeFrom: aNode [
 
 	(self allCounters at: aNode ifAbsent: [ ^self ]) uninstall
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ExecutionCounter class>>resetAll [
+{ #category : #cleanup }
+ExecutionCounter class >> resetAll [
 	self allCounters values do: [ :counter | counter reset ].
 	Counters := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ExecutionCounter>>count [
+{ #category : #accessing }
+ExecutionCounter >> count [
 	^ count
 ]
 
-{
-	#category : #counter,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ExecutionCounter>>increase [
+{ #category : #counter }
+ExecutionCounter >> increase [
 	count := count + 1
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ExecutionCounter>>initialize [
+{ #category : #initialization }
+ExecutionCounter >> initialize [
 	super initialize.
 	count := 0.
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ExecutionCounter>>install [
+{ #category : #add/remove }
+ExecutionCounter >> install [
 
 	link := MetaLink new 
 				metaObject: self;
@@ -104,35 +76,23 @@ ExecutionCounter>>install [
 	self class allCounters at: node put: self.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ExecutionCounter>>node [
+{ #category : #accessing }
+ExecutionCounter >> node [
 	^ node
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ExecutionCounter>>node: anObject [
+{ #category : #accessing }
+ExecutionCounter >> node: anObject [
 	node := anObject
 ]
 
-{
-	#category : #counter,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ExecutionCounter>>reset [
+{ #category : #counter }
+ExecutionCounter >> reset [
 	count := 0
 ]
 
-{
-	#category : #add/remove,
-	#timestamp : ' 8/31/2017 05:26:28'
-}
-ExecutionCounter>>uninstall [
+{ #category : #add/remove }
+ExecutionCounter >> uninstall [
 	node hasExecutionCounter ifFalse: [ ^self ].
 	link uninstall.
 	self class allCounters removeKey: node.

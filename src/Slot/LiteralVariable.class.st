@@ -19,24 +19,17 @@ Class {
 	#classVars : [
 		'Properties'
 	],
-	#category : #Slot-Variables,
-	#timestamp : 'MarcusDenker 7/29/2014 16:32'
+	#category : #Slot-Variables
 }
 
-{
-	#category : #validating,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable class>>checkValidName: aString  [
+{ #category : #validating }
+LiteralVariable class >> checkValidName: aString [ 
 	"aString first canBeGlobalVarInitial
 		ifFalse: [InvalidGlobalName signal: 'Class name does not start with a valid Global Var Initial' for: aString]"
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable class>>initialize [
+{ #category : #'class initialization' }
+LiteralVariable class >> initialize [
 	Properties
 		ifNil: [ self initializeProperties ]
 		ifNotNil: [ | newDict | 
@@ -45,55 +38,37 @@ LiteralVariable class>>initialize [
 			Properties := newDict ]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable class>>initializeProperties [
+{ #category : #'class initialization' }
+LiteralVariable class >> initializeProperties [
 	Properties := WeakIdentityKeyDictionary new.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable class>>named: aSymbol  [
+{ #category : #'instance creation' }
+LiteralVariable class >> named: aSymbol [ 
 	self checkValidName: aSymbol.
 	^ self new
 		name: aSymbol;
 		yourself
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>asClassVariable	 [
+{ #category : #converting }
+LiteralVariable >> asClassVariable [	
 	^self
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>definingClass [
+{ #category : #queries }
+LiteralVariable >> definingClass [
 	"The class defining the variable. For Globals, return nil"
 	^Smalltalk globals allClasses detect: [ :class | class hasClassVariable: self ] ifNone: [ nil ]
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>definitionString [
+{ #category : #printing }
+LiteralVariable >> definitionString [
 	^String streamContents: [:aStream | aStream << '#' << self name << ' => '; << self class name].
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>emitStore: aMethodBuilder [
+{ #category : #'code generation' }
+LiteralVariable >> emitStore: aMethodBuilder [
 	| tempName |
 	tempName := Object new.
 	aMethodBuilder
@@ -105,125 +80,83 @@ LiteralVariable>>emitStore: aMethodBuilder [
 		send: #write:
 ]
 
-{
-	#category : #'code generation',
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>emitValue: aMethodBuilder [
+{ #category : #'code generation' }
+LiteralVariable >> emitValue: aMethodBuilder [
 	aMethodBuilder
 		pushLiteralVariable: #global -> self;
 		send: #read
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>ensureProperties [
+{ #category : #properties }
+LiteralVariable >> ensureProperties [
 	^ Properties at: self ifAbsentPut: WeakKeyDictionary new
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>hasProperty: aKey [
+{ #category : #properties }
+LiteralVariable >> hasProperty: aKey [
 	"Test if the property aKey is present."
 	^self properties 
 		ifNil: [false]
 		ifNotNil: [:prop | prop includesKey: aKey]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>isClassVariable [
+{ #category : #testing }
+LiteralVariable >> isClassVariable [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>isGlobal [
+{ #category : #testing }
+LiteralVariable >> isGlobal [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>isGlobalVariable [
+{ #category : #testing }
+LiteralVariable >> isGlobalVariable [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>isReadIn: aCompiledCode [
+{ #category : #testing }
+LiteralVariable >> isReadIn: aCompiledCode [
 	^aCompiledCode readsRef: self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>isSelfEvaluating [
+{ #category : #testing }
+LiteralVariable >> isSelfEvaluating [
 	^ self key isSelfEvaluating and: [self value isSelfEvaluating]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>isSpecial [
+{ #category : #testing }
+LiteralVariable >> isSpecial [
 	"I am more than just a backward compatible Global"
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>isWrittenIn: aCompiledCode [
+{ #category : #testing }
+LiteralVariable >> isWrittenIn: aCompiledCode [
 	^aCompiledCode writesRef: self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>name: aString  [
+{ #category : #accessing }
+LiteralVariable >> name: aString [ 
 	self key: aString asSymbol
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>properties [
+{ #category : #properties }
+LiteralVariable >> properties [
 	^ Properties at: self ifAbsent: nil
 		
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>propertyAt: propName [
+{ #category : #properties }
+LiteralVariable >> propertyAt: propName [
 	^ self
 		propertyAt: propName
 		ifAbsent: [ nil ]
 		
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>propertyAt: propName ifAbsent: aBlock [
+{ #category : #properties }
+LiteralVariable >> propertyAt: propName ifAbsent: aBlock [
 	self properties ifNil: [^aBlock value].
 	^ self properties
 		at: propName
@@ -231,58 +164,40 @@ LiteralVariable>>propertyAt: propName ifAbsent: aBlock [
 		
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>propertyAt: aKey ifAbsentPut: aBlock [
+{ #category : #properties }
+LiteralVariable >> propertyAt: aKey ifAbsentPut: aBlock [
 	"Answer the property associated with aKey or, if aKey isn't found store the result of evaluating aBlock as new value."
 	
 	^ self propertyAt: aKey ifAbsent: [ self propertyAt: aKey put: aBlock value ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>propertyAt: propName put: propValue [
+{ #category : #properties }
+LiteralVariable >> propertyAt: propName put: propValue [
 	^ self ensureProperties
 		at: propName
 		put: propValue
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>read [
+{ #category : #meta-object-protocol }
+LiteralVariable >> read [
 	^self value
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>removePropertiesIfEmpty [
+{ #category : #properties }
+LiteralVariable >> removePropertiesIfEmpty [
 	^ Properties at: self ifPresent: [ :dict |
 		dict ifEmpty: [ Properties removeKey: self ] ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>removeProperty: propName [
+{ #category : #properties }
+LiteralVariable >> removeProperty: propName [
 	^ self
 		removeProperty: propName
 		ifAbsent: [ nil ]
 ]
 
-{
-	#category : #properties,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>removeProperty: propName ifAbsent: aBlock [
+{ #category : #properties }
+LiteralVariable >> removeProperty: propName ifAbsent: aBlock [
 	| property |
 	self properties ifNil: [^aBlock value].
 	property := self properties
@@ -292,18 +207,12 @@ LiteralVariable>>removeProperty: propName ifAbsent: aBlock [
 	^ property
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>usingMethods [
+{ #category : #queries }
+LiteralVariable >> usingMethods [
 	^SystemNavigation new allReferencesTo: self
 ]
 
-{
-	#category : #meta-object-protocol,
-	#timestamp : ' 8/31/2017 07:16:35'
-}
-LiteralVariable>>write: anObject [
+{ #category : #meta-object-protocol }
+LiteralVariable >> write: anObject [
 	^self value: anObject
 ]

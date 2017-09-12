@@ -1,12 +1,7 @@
-Extension {
-	#name : #RBParseTreeLintRule
-}
+Extension { #name : #RBParseTreeLintRule }
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBParseTreeLintRule>>check: aMethod forCritiquesDo: aCriticBlock [
+{ #category : #'*renraku' }
+RBParseTreeLintRule >> check: aMethod forCritiquesDo: aCriticBlock [
 
 	(self matcher canMatchMethod: aMethod) ifTrue: [
 		| node |
@@ -18,11 +13,8 @@ RBParseTreeLintRule>>check: aMethod forCritiquesDo: aCriticBlock [
 				self critiqueFor: node about: aMethod) ] ].
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBParseTreeLintRule>>critiqueFor: aNode about: aMethod [
+{ #category : #'*renraku' }
+RBParseTreeLintRule >> critiqueFor: aNode about: aMethod [
 	| anchor | 
 
 	anchor := (aNode isKindOf: RBProgramNode)

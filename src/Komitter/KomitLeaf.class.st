@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #KomitLeaf,
 	#superclass : #KomitNode,
-	#category : #Komitter-UI,
-	#timestamp : ''
+	#category : #Komitter-UI
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitLeaf>>icon [
+{ #category : #accessing }
+KomitLeaf >> icon [
 	self content added
 		ifTrue: [ ^ self iconNamed: #changeAddIcon ].
 	self content modified
@@ -22,11 +15,8 @@ KomitLeaf>>icon [
 	^ nil
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:22'
-}
-KomitLeaf>>initialize [
+{ #category : #initialization }
+KomitLeaf >> initialize [
 
 	super initialize.
 	

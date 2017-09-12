@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'logBrowserModel'
 	],
-	#category : #EpiceaBrowsers-Filters,
-	#timestamp : 'MartinDias 4/17/2017 16:51'
+	#category : #EpiceaBrowsers-Filters
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLatestCodeChangeFilter class>>title [
+{ #category : #accessing }
+EpLatestCodeChangeFilter class >> title [
 
 	^ 'Show only latest changes'
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLatestCodeChangeFilter>>= other [
+{ #category : #comparing }
+EpLatestCodeChangeFilter >> = other [
 
 	^ self class = other class
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLatestCodeChangeFilter>>accepts: anOmEntry [
+{ #category : #filtering }
+EpLatestCodeChangeFilter >> accepts: anOmEntry [
 
 	| finalReference log |
 	log := logBrowserModel log.
@@ -49,47 +39,32 @@ EpLatestCodeChangeFilter>>accepts: anOmEntry [
 	^ false "shouldn't happen"
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLatestCodeChangeFilter>>entriesFromHead [
+{ #category : #private }
+EpLatestCodeChangeFilter >> entriesFromHead [
 	"Answer a cached collection of entries where first is the most recent one."
 	
 	^ logBrowserModel cachedLogEntries
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLatestCodeChangeFilter>>hash [
+{ #category : #comparing }
+EpLatestCodeChangeFilter >> hash [
 
 	^ self class hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLatestCodeChangeFilter>>logBrowserModel [
+{ #category : #accessing }
+EpLatestCodeChangeFilter >> logBrowserModel [
 	^ logBrowserModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLatestCodeChangeFilter>>logBrowserModel: anEpLogBrowserModel  [
+{ #category : #accessing }
+EpLatestCodeChangeFilter >> logBrowserModel: anEpLogBrowserModel [ 
 	
 	logBrowserModel := anEpLogBrowserModel
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpLatestCodeChangeFilter>>title [
+{ #category : #accessing }
+EpLatestCodeChangeFilter >> title [
 
 	^ self class title
 ]

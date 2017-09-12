@@ -14,24 +14,17 @@ Class {
 	#instVars : [
 		'currentFill'
 	],
-	#category : #Athens-Balloon,
-	#timestamp : 'IgorStasenko 3/29/2011 01:04'
+	#category : #Athens-Balloon
 }
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>copyBits [
+{ #category : #drawing }
+AthensBalloonEngine >> copyBits [
 	(bitBlt notNil and:[bitBlt destForm notNil]) ifTrue:[bitBlt destForm unhibernate].
 	self copyLoopFastest.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>drawImage: aForm transform: m  [
+{ #category : #drawing }
+AthensBalloonEngine >> drawImage: aForm transform: m [ 
 	| orig dir normal tr corner rect |
 
 	rect := aForm boundingBox.
@@ -53,11 +46,8 @@ AthensBalloonEngine>>drawImage: aForm transform: m  [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>fastReset [
+{ #category : #private }
+AthensBalloonEngine >> fastReset [
 
 	workBuffer ifNil: [ ^ self reset ].
 
@@ -109,11 +99,8 @@ AthensBalloonEngine>>fastReset [
 "
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>fillBezierShape: contours [
+{ #category : #drawing }
+AthensBalloonEngine >> fillBezierShape: contours [
 
 	contours do:[ :points |
 		self primAddBezierShape: points
@@ -129,11 +116,8 @@ AthensBalloonEngine>>fillBezierShape: contours [
 	self copyBits.
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>fillRectangle: rect  [
+{ #category : #drawing }
+AthensBalloonEngine >> fillRectangle: rect [ 
 
 	currentFill = 0 ifTrue: [ ^ self ]. "no fill "
 	self primAddRectFrom: rect origin 
@@ -146,29 +130,20 @@ AthensBalloonEngine>>fillRectangle: rect  [
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>prepareForRendering [
+{ #category : #private }
+AthensBalloonEngine >> prepareForRendering [
 	self fastReset
 ]
 
-{
-	#category : #'registering fills',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>registerColorFill: aColor  [
+{ #category : #'registering fills' }
+AthensBalloonEngine >> registerColorFill: aColor [ 
 
 	currentFill := aColor scaledPixelValue32.
 
 ]
 
-{
-	#category : #'registering fills',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>registerFormFill: form origin: orig direction: dir normal: norm [
+{ #category : #'registering fills' }
+AthensBalloonEngine >> registerFormFill: form origin: orig direction: dir normal: norm [
 	self
 		registerFormFill: form
 		origin: orig
@@ -177,11 +152,8 @@ AthensBalloonEngine>>registerFormFill: form origin: orig direction: dir normal: 
 		tileFlag: true
 ]
 
-{
-	#category : #'registering fills',
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>registerFormFill: form origin: orig direction: dir normal: norm tileFlag: tileFlag [
+{ #category : #'registering fills' }
+AthensBalloonEngine >> registerFormFill: form origin: orig direction: dir normal: norm tileFlag: tileFlag [
 
 	forms := forms copyWith: form.
 	form unhibernate.
@@ -196,11 +168,8 @@ AthensBalloonEngine>>registerFormFill: form origin: orig direction: dir normal: 
 
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>registerLinearGradient: colorRamp origin: origin corner: corner  [
+{ #category : #paints }
+AthensBalloonEngine >> registerLinearGradient: colorRamp origin: origin corner: corner [ 
 	| pixelRamp direction normal |
 	
 	pixelRamp := GradientFillStyle pixelRampCache at: colorRamp.
@@ -215,11 +184,8 @@ AthensBalloonEngine>>registerLinearGradient: colorRamp origin: origin corner: co
 			radial:  false.
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>registerRadialGradient: colorRamp center: aCenter direction: dir normal: n  [
+{ #category : #paints }
+AthensBalloonEngine >> registerRadialGradient: colorRamp center: aCenter direction: dir normal: n [ 
 	| pixelRamp |
 	
 	pixelRamp := GradientFillStyle pixelRampCache at: colorRamp.
@@ -232,11 +198,8 @@ AthensBalloonEngine>>registerRadialGradient: colorRamp center: aCenter direction
 			radial:  true.
 ]
 
-{
-	#category : #paints,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>registerRadialGradient: colorRamp center: aCenter radius: r  [
+{ #category : #paints }
+AthensBalloonEngine >> registerRadialGradient: colorRamp center: aCenter radius: r [ 
 	| pixelRamp |
 	
 	pixelRamp := GradientFillStyle pixelRampCache at: colorRamp.
@@ -249,11 +212,8 @@ AthensBalloonEngine>>registerRadialGradient: colorRamp center: aCenter radius: r
 			radial:  true.
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>reset [
+{ #category : #initialize }
+AthensBalloonEngine >> reset [
 	workBuffer ifNil:[workBuffer := self class allocateOrRecycleBuffer: 10000].
 	self primInitializeBuffer: workBuffer.
 	self primSetAALevel: 4.
@@ -264,19 +224,13 @@ AthensBalloonEngine>>reset [
 	forms := #().
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>setFill: aFill [
+{ #category : #accessing }
+AthensBalloonEngine >> setFill: aFill [
 	currentFill := aFill
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>strokeBezierShape: contours width: aWidth [
+{ #category : #private }
+AthensBalloonEngine >> strokeBezierShape: contours width: aWidth [
 
 	contours do:[ :points |
 		self primAddBezierShape: points
@@ -293,11 +247,8 @@ AthensBalloonEngine>>strokeBezierShape: contours width: aWidth [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>strokeRectangle: rect borderWidth: width [
+{ #category : #drawing }
+AthensBalloonEngine >> strokeRectangle: rect borderWidth: width [
 
 	currentFill = 0 ifTrue: [ ^ self ]. "no fill "
 	self primAddRectFrom: rect origin 
@@ -310,11 +261,8 @@ AthensBalloonEngine>>strokeRectangle: rect borderWidth: width [
 	
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:39'
-}
-AthensBalloonEngine>>strokeRectangle: rect width: aWidth [
+{ #category : #drawing }
+AthensBalloonEngine >> strokeRectangle: rect width: aWidth [
 
 	currentFill = 0 ifTrue: [ ^ self ]. "no fill "
 	self primAddRectFrom: rect origin 

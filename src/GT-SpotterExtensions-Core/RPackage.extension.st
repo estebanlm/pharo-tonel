@@ -1,20 +1,12 @@
-Extension {
-	#name : #RPackage
-}
+Extension { #name : #RPackage }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-RPackage>>spotterActDefault [
+{ #category : #'*GT-SpotterExtensions-Core' }
+RPackage >> spotterActDefault [
 	^ Smalltalk tools browser openOnPackage: self
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-RPackage>>spotterClassesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+RPackage >> spotterClassesFor: aStep [
 	<spotterOrder: 20>
 	aStep listProcessor
 			allCandidates: [ self definedClasses sorted: [ :a :b | a name < b name ] ];
@@ -22,11 +14,8 @@ RPackage>>spotterClassesFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-RPackage>>spotterExtensionMethodsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+RPackage >> spotterExtensionMethodsFor: aStep [
 	<spotterOrder: 30>
 	aStep listProcessor
 			allCandidates: [ self extensionMethods ];
@@ -34,11 +23,8 @@ RPackage>>spotterExtensionMethodsFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-RPackage>>spotterMonticelloPackageFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+RPackage >> spotterMonticelloPackageFor: aStep [
 	<spotterOrder: 41>
 	aStep listProcessor
 		title: 'Monticello Package';
@@ -49,11 +35,8 @@ RPackage>>spotterMonticelloPackageFor: aStep [
 		filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-RPackage>>spotterMonticelloWorkingCopyFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+RPackage >> spotterMonticelloWorkingCopyFor: aStep [
 	<spotterOrder: 42>
 	aStep listProcessor
 		title: 'Monticello Working Copy';
@@ -64,11 +47,8 @@ RPackage>>spotterMonticelloWorkingCopyFor: aStep [
 		filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-RPackage>>spotterPreviewCodeIn: aComposite [
+{ #category : #'*GT-SpotterExtensions-Core' }
+RPackage >> spotterPreviewCodeIn: aComposite [
 	<spotterPreview: 10>
 	aComposite list
 		title: 'Preview';
@@ -79,11 +59,8 @@ RPackage>>spotterPreviewCodeIn: aComposite [
 	self flag: 'move "entity: self" somewhere else, maybe'
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-RPackage>>spotterTagsFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+RPackage >> spotterTagsFor: aStep [
 	<spotterOrder: 20>
 	self classTags size <= 1 ifTrue: [ ^ self ].
 	aStep listProcessor

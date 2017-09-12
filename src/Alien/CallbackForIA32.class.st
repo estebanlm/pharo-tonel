@@ -4,33 +4,23 @@ A CallbackForIA32 is a callback for platforms with x86 processors using the Syst
 Class {
 	#name : #CallbackForIA32,
 	#superclass : #Callback,
-	#category : #Alien-Core,
-	#timestamp : ''
+	#category : #Alien-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CallbackForIA32 class>>abi [
+{ #category : #accessing }
+CallbackForIA32 class >> abi [
 	^'IA32'
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CallbackForIA32 class>>isForCurrentPlatform [
+{ #category : #'class initialization' }
+CallbackForIA32 class >> isForCurrentPlatform [
 	| processor |
 	processor := (SmalltalkImage current getSystemAttribute: 1003) asLowercase.
 	^processor first = $i and: [processor = 'intel' or: ['i#86' match: processor]]
 ]
 
-{
-	#category : #signatures,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CallbackForIA32>>intcharstarRetint: callbackContext sp: spAlien [
+{ #category : #signatures }
+CallbackForIA32 >> intcharstarRetint: callbackContext sp: spAlien [
 	<signature: #(int (*)(int, char *))>
 	^callbackContext wordResult:
 		(block
@@ -38,11 +28,8 @@ CallbackForIA32>>intcharstarRetint: callbackContext sp: spAlien [
 			value: (Alien forPointer: (spAlien unsignedLongAt: 5)))
 ]
 
-{
-	#category : #evaluation,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CallbackForIA32>>valueInContext: callbackContext "<VMCallbackContext32|VMCallbackContext64> ^<Integer>" [
+{ #category : #evaluation }
+CallbackForIA32 >> valueInContext: callbackContext [ "<VMCallbackContext32|VMCallbackContext64> ^<Integer>"
 	numEvaluatorArgs = 2 ifTrue:
 		[^self perform: evaluator
 			with: callbackContext
@@ -64,11 +51,8 @@ CallbackForIA32>>valueInContext: callbackContext "<VMCallbackContext32|VMCallbac
 	self error: 'invalid evaluator argument count'
 ]
 
-{
-	#category : #signatures,
-	#timestamp : ' 8/31/2017 05:26:09'
-}
-CallbackForIA32>>voidstarvoidstarRetint: callbackContext sp: spAlien [
+{ #category : #signatures }
+CallbackForIA32 >> voidstarvoidstarRetint: callbackContext sp: spAlien [
 	<signature: #(int (*)(const void *, const void *))>
 	^callbackContext wordResult:
 		(block

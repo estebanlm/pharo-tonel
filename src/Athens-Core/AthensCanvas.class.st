@@ -17,51 +17,35 @@ Class {
 		'fontRenderer',
 		'paintMode'
 	],
-	#category : #Athens-Core,
-	#timestamp : '<historical>'
+	#category : #Athens-Core
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas class>>new [
+{ #category : #private }
+AthensCanvas class >> new [
 	"use #on: instead"
 	self shouldNotImplement
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas class>>on: aSurface [
+{ #category : #private }
+AthensCanvas class >> on: aSurface [
 	^ self basicNew initializeWithSurface: aSurface
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>cacheAt: anObject ifAbsentPut: aBlock [
+{ #category : #caching }
+AthensCanvas >> cacheAt: anObject ifAbsentPut: aBlock [
 
 	^ surface cacheAt: anObject ifAbsentPut: aBlock
 ]
 
-{
-	#category : #masking,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>clearMask: aShape [
+{ #category : #masking }
+AthensCanvas >> clearMask: aShape [
 	"set mask pixels to 0 for all pixels covered by shape, aShape"
 	^ aShape paintFillsUsing: surface clearMaskPaint on: self
 
 ]
 
-{
-	#category : #clipping,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>clipBy: aRectangle during: aBlock [
+{ #category : #clipping }
+AthensCanvas >> clipBy: aRectangle during: aBlock [
 	
 	"Set a clipping rectangle during drawing operations performed in aBlock.
 	Note that the clipping rectangle is intersected with the currently active clipping rectangle"
@@ -69,11 +53,8 @@ AthensCanvas>>clipBy: aRectangle during: aBlock [
 	 ^surface clipBy: aRectangle during: aBlock
 ]
 
-{
-	#category : #paths,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>createPath: aPathCreatingBlock [
+{ #category : #paths }
+AthensCanvas >> createPath: aPathCreatingBlock [
 	"Create new path. A path creating block should be a monadic block,
 	which will get a path builder instance as argument. See AthensPathBuilder
 	for available protocol.
@@ -82,28 +63,19 @@ AthensCanvas>>createPath: aPathCreatingBlock [
 	^ surface createPath: aPathCreatingBlock
 ]
 
-{
-	#category : #paths,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>createRectanglePath: aRectangle  [
+{ #category : #paths }
+AthensCanvas >> createRectanglePath: aRectangle [ 
 	^ surface createRectanglePath: aRectangle 
 
 ]
 
-{
-	#category : #masking,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>disableMask [
+{ #category : #masking }
+AthensCanvas >> disableMask [
 	^ surface disableMask
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>draw [
+{ #category : #drawing }
+AthensCanvas >> draw [
 	"Fill the currently selected shape with currently selected paint"
 	
 	^ shape paintFillsUsing: paint on: self
@@ -111,21 +83,15 @@ AthensCanvas>>draw [
 
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>draw: anObject [
+{ #category : #drawing }
+AthensCanvas >> draw: anObject [
 	"A generic dispatch method to draw anObject on receiver. 
 	the object should understand #drawOnAthensCanvas: message"
 	^ anObject drawOnAthensCanvas: self
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>drawShape: anObject [
+{ #category : #drawing }
+AthensCanvas >> drawShape: anObject [
 	"A convenience method, which sets the current shape to anObject and then fills it
 	with currently selected paint" 
 	self setShape: anObject.
@@ -133,40 +99,28 @@ AthensCanvas>>drawShape: anObject [
 	
 ]
 
-{
-	#category : #'drawing text',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>drawString: aString [
+{ #category : #'drawing text' }
+AthensCanvas >> drawString: aString [
 	"Draw a string using currently selected font.
 	Answer a total advance of rendered string "
 	^ fontRenderer renderCharacters: aString from: 1 to: aString size.
 ]
 
-{
-	#category : #'drawing text',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>drawString: aString from: start to: end [
+{ #category : #'drawing text' }
+AthensCanvas >> drawString: aString from: start to: end [
 
 	"Draw a portion of string using currently selected font.
 	Answer a total advance of rendered portion"
 	^ fontRenderer renderCharacters: aString from: start to: end
 ]
 
-{
-	#category : #masking,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>enableMask [
+{ #category : #masking }
+AthensCanvas >> enableMask [
 	^ surface enableMask
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>flushCacheAt: anObject [
+{ #category : #caching }
+AthensCanvas >> flushCacheAt: anObject [
 	"Flush (delete) any cached value(s) identified by given object, anObject.
 	A surface using identity comparison for object identifiers.
 
@@ -176,48 +130,33 @@ AthensCanvas>>flushCacheAt: anObject [
 	surface flushCacheAt: anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>initializeWithSurface: anAthensSurface	 [
+{ #category : #initialization }
+AthensCanvas >> initializeWithSurface: anAthensSurface [	
 	surface := anAthensSurface
 ]
 
-{
-	#category : #clipping,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>isVisible: aRectangle  [
+{ #category : #clipping }
+AthensCanvas >> isVisible: aRectangle [ 
 	"check if rectangle are not fully clipped by current clipping coordinates"
 	
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>paint [
+{ #category : #accessing }
+AthensCanvas >> paint [
 	^ paint  
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>paintMode [
+{ #category : #accessing }
+AthensCanvas >> paintMode [
 	"Answer the current paint mode controller.
 	The answered object should conform to AthensPaintMode public protocol."
 
 	^ paintMode
 ]
 
-{
-	#category : #'transformation matrices',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>paintTransform [
+{ #category : #'transformation matrices' }
+AthensCanvas >> paintTransform [
 	"Answer the paint transformation matrix controller.
 	The answered object should conform to AthensTransform public protocol."
 
@@ -225,73 +164,52 @@ AthensCanvas>>paintTransform [
 
 ]
 
-{
-	#category : #'transformation matrices',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>pathTransform [
+{ #category : #'transformation matrices' }
+AthensCanvas >> pathTransform [
 	"Answer the path transformation matrix controller.
 	The answered object should conform to AthensTransform public protocol."
 	^ surface pathTransform
 
 ]
 
-{
-	#category : #'drawing text',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>setFont: aFont [
+{ #category : #'drawing text' }
+AthensCanvas >> setFont: aFont [
 	"Set the current font of receiver. Font object should answer a glyph renderer instance,
 	compatible with glyph renderer protocol" 
 	^ fontRenderer := aFont glyphRendererOn: surface.
 ]
 
-{
-	#category : #masking,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>setMask: aShape [
+{ #category : #masking }
+AthensCanvas >> setMask: aShape [
 	"set mask pixels to 1 for all pixels covered by shape, aShape"
 
 	^ aShape paintFillsUsing: surface setMaskPaint on: self
 
 ]
 
-{
-	#category : #paint,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>setPaint: aPaint [
+{ #category : #paint }
+AthensCanvas >> setPaint: aPaint [
 	"set the current paint of receiver"
 	paint = aPaint ifTrue:[ ^ paint ].
 	paint := aPaint asAthensPaintOn: self.
 	^ paint.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>setShape: anObject [
+{ #category : #accessing }
+AthensCanvas >> setShape: anObject [
 	"Set the current shape of receiver"
 	shape := anObject asAthensShapeOn: self.
 ]
 
-{
-	#category : #paint,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>setStrokePaint: aPaint [
+{ #category : #paint }
+AthensCanvas >> setStrokePaint: aPaint [
 	"use paint as stroke paint, note conversion to #asStrokePaintOn:"
 	paint := (aPaint asAthensPaintOn: self) asStrokePaintOn: self.
 	^ paint
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-AthensCanvas>>surface [
+{ #category : #accessing }
+AthensCanvas >> surface [
 	"Answer an Athens surface, to which receiver is bound to"
 	^ surface
 ]

@@ -4,31 +4,21 @@ I am KeyNotFound, an exception indicating that a key was not found in a Dictiona
 Class {
 	#name : #KeyNotFound,
 	#superclass : #NotFound,
-	#category : #Collections-Unordered,
-	#timestamp : 'SvenVanCaekenberghe 4/19/2011 19:41'
+	#category : #Collections-Unordered
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyNotFound>>key [
+{ #category : #accessing }
+KeyNotFound >> key [
 	^ self object
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyNotFound>>key: aKey [
+{ #category : #accessing }
+KeyNotFound >> key: aKey [
 	self object: aKey
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-KeyNotFound>>standardMessageText [
+{ #category : #private }
+KeyNotFound >> standardMessageText [
 	"Generate a standard textual description"
 	
 	^ String streamContents: [ :stream |

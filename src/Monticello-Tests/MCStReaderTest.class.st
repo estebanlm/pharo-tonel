@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #MCStReaderTest,
 	#superclass : #MCTestCase,
-	#category : #Monticello-Tests,
-	#timestamp : ''
+	#category : #Monticello-Tests
 }
 
-{
-	#category : #util,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStReaderTest>>commentWithStyle [
+{ #category : #util }
+MCStReaderTest >> commentWithStyle [
 	^ '!AEDesc commentStamp: ''<historical>'' prior: 0!
 I represent an Apple Event Descriptor.  I am a low-level representation of Apple Event (and hence Applescript) information.  For further Information, see Apple''s Inside Macintosh: Interapplication Communications, at
 
@@ -23,11 +16,8 @@ Essentially, I represent a record comprising a one-word "string" (treating the w
 '
 ]
 
-{
-	#category : #util,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStReaderTest>>commentWithoutStyle [
+{ #category : #util }
+MCStReaderTest >> commentWithoutStyle [
 	^ '
 CharacterScanner subclass: #CanvasCharacterScanner
 	instanceVariableNames: ''canvas fillBlt foregroundColor runX lineY ''
@@ -48,11 +38,8 @@ setStopConditions
 		put: (alignment = Justified ifTrue: [#paddedSpace])! !'
 ]
 
-{
-	#category : #util,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStReaderTest>>methodWithStyle [
+{ #category : #util }
+MCStReaderTest >> methodWithStyle [
 	^ '!EventHandler methodsFor: ''copying'' stamp: ''tk 1/22/2001 17:39''!
 veryDeepInner: deepCopier
 	"ALL fields are weakly copied.  Can''t duplicate an object by duplicating a button that activates it.  See DeepCopier."
@@ -65,31 +52,22 @@ veryDeepInner: deepCopier
 '
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStReaderTest>>testCommentWithStyle [
+{ #category : #tests }
+MCStReaderTest >> testCommentWithStyle [
 	| reader |
 	reader := MCStReader on: self commentWithStyle readStream.
 	reader definitions
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStReaderTest>>testCommentWithoutStyle [
+{ #category : #tests }
+MCStReaderTest >> testCommentWithoutStyle [
 	| reader |
 	reader := MCStReader on: self commentWithoutStyle readStream.
 	self assert: (reader definitions anySatisfy: [:ea | ea isMethodDefinition]).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:31'
-}
-MCStReaderTest>>testMethodWithStyle [
+{ #category : #tests }
+MCStReaderTest >> testMethodWithStyle [
 	| reader |
 	reader := MCStReader on: self methodWithStyle readStream.
 	self assert: reader definitions first isMethodDefinition.

@@ -4,23 +4,16 @@ SUnit tests for AbstractEnumerationVisitor
 Class {
 	#name : #AbstractEnumerationVisitorTest,
 	#superclass : #SingleTreeTest,
-	#category : #FileSystem-Tests-Core,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:41'
+	#category : #FileSystem-Tests-Core
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-AbstractEnumerationVisitorTest class>>isAbstract [
+{ #category : #'as yet unclassified' }
+AbstractEnumerationVisitorTest class >> isAbstract [
 	^ self name = #AbstractEnumerationVisitorTest
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-AbstractEnumerationVisitorTest>>assertEntries: references are: expected [
+{ #category : #'as yet unclassified' }
+AbstractEnumerationVisitorTest >> assertEntries: references are: expected [
 	| strings |
 	self assert: references isArray.
 	references do: [ :ea | self assert: ea class = FileSystemDirectoryEntry ].
@@ -28,19 +21,13 @@ AbstractEnumerationVisitorTest>>assertEntries: references are: expected [
 	self assert: strings equals: expected
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-AbstractEnumerationVisitorTest>>root [
+{ #category : #'as yet unclassified' }
+AbstractEnumerationVisitorTest >> root [
 	^ filesystem / 'alpha'
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-AbstractEnumerationVisitorTest>>setUp [
+{ #category : #'as yet unclassified' }
+AbstractEnumerationVisitorTest >> setUp [
 	super setUp.
 	self setUpGreek.
 ]

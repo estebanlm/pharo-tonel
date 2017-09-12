@@ -1,36 +1,23 @@
-"
-
-"
 Class {
 	#name : #MCPTest,
 	#superclass : #TestCase,
-	#category : #Morphic-Tests-Kernel,
-	#timestamp : ''
+	#category : #Morphic-Tests-Kernel
 }
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MCPTest>>defaultBounds [
+{ #category : #constants }
+MCPTest >> defaultBounds [
 	"the default bounds for morphs"
 	^ 0 @ 0 corner: 50 @ 40 
 ]
 
-{
-	#category : #constants,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MCPTest>>defaultTop [
+{ #category : #constants }
+MCPTest >> defaultTop [
 	"the default top for morphs"
 	^ self defaultBounds top 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:43'
-}
-MCPTest>>testTop [
+{ #category : #tests }
+MCPTest >> testTop [
 	"test the #top: messages and its consequences"
 
 	| morph factor newTop newBounds |

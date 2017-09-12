@@ -4,15 +4,11 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestRenraku,
 	#superclass : #PackageManifest,
-	#category : #Renraku-Manifest,
-	#timestamp : '<historical>'
+	#category : #Renraku-Manifest
 }
 
-{
-	#category : #release,
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-ManifestRenraku class>>preUnload [
+{ #category : #release }
+ManifestRenraku class >> preUnload [
 
 	ReSettings inspectorPluggin: false.
 	ReSettings spotterPlugin: false.

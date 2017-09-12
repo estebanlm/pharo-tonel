@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #MetacelloCommonMCSpecLoader,
 	#superclass : #MetacelloSpecLoader,
@@ -12,15 +9,11 @@ Class {
 	#classVars : [
 		'RetryPackageResolution'
 	],
-	#category : #Metacello-MC-Loaders,
-	#timestamp : ''
+	#category : #Metacello-MC-Loaders
 }
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader class>>nameComponentsFrom: aVersionName [
+{ #category : #utilities }
+MetacelloCommonMCSpecLoader class >> nameComponentsFrom: aVersionName [
 	| ar |
 	ar := (aVersionName last isDigit and: [ (aVersionName indexOf: $.) > 0 ])ifFalse: [Array with: aVersionName with: '' with: 0 with: aVersionName with: self]
 		ifTrue: [ | vrsn str |
@@ -37,11 +30,8 @@ MetacelloCommonMCSpecLoader class>>nameComponentsFrom: aVersionName [
 	^ar
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader class>>retryPackageResolution [
+{ #category : #accessing }
+MetacelloCommonMCSpecLoader class >> retryPackageResolution [
     "if true, 
 		errors during #retryingResolvePackageSpecReferences:gofer: are caught and 
 		the resolution is retried 3 times. After the thrid time, a MetacelloPackageSpecResolutionError
@@ -54,19 +44,13 @@ MetacelloCommonMCSpecLoader class>>retryPackageResolution [
     ^ RetryPackageResolution
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader class>>retryPackageResolution: aBool [
+{ #category : #accessing }
+MetacelloCommonMCSpecLoader class >> retryPackageResolution: aBool [
     RetryPackageResolution := aBool
 ]
 
-{
-	#category : #versionInfo,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>ancestorsFor: packageSpec [
+{ #category : #versionInfo }
+MetacelloCommonMCSpecLoader >> ancestorsFor: packageSpec [
 
 	| cacheKey vi |
 	cacheKey := packageSpec file.
@@ -78,11 +62,8 @@ MetacelloCommonMCSpecLoader>>ancestorsFor: packageSpec [
 			cache at: cacheKey put: vi ].
 ]
 
-{
-	#category : #versionInfo,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>currentVersionInfoFor: packageSpec [
+{ #category : #versionInfo }
+MetacelloCommonMCSpecLoader >> currentVersionInfoFor: packageSpec [
 
 	| cacheKey vi |
 	cacheKey := packageSpec file.
@@ -94,91 +75,61 @@ MetacelloCommonMCSpecLoader>>currentVersionInfoFor: packageSpec [
 			cache at: cacheKey put: vi ].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>doLoad [
+{ #category : #actions }
+MetacelloCommonMCSpecLoader >> doLoad [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>doingLoads: aBlock [
+{ #category : #actions }
+MetacelloCommonMCSpecLoader >> doingLoads: aBlock [
 	"escape mechanism for recording and null loaders to skip doing loaderlike things"
 	
 	aBlock value
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>ensureForDevelopment [
+{ #category : #testing }
+MetacelloCommonMCSpecLoader >> ensureForDevelopment [
   ^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>ensureSpecLoader [
+{ #category : #accessing }
+MetacelloCommonMCSpecLoader >> ensureSpecLoader [
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>fetchingSpecLoader [
+{ #category : #accessing }
+MetacelloCommonMCSpecLoader >> fetchingSpecLoader [
 
 	^self
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>hasRepositoryOverrides [
+{ #category : #testing }
+MetacelloCommonMCSpecLoader >> hasRepositoryOverrides [
 
 	^self loaderPolicy hasRepositoryOverrides
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>ignoreImage [
+{ #category : #accessing }
+MetacelloCommonMCSpecLoader >> ignoreImage [
 
 	^self loaderPolicy ignoreImage
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>initialize [
+{ #category : #initialize-release }
+MetacelloCommonMCSpecLoader >> initialize [
 
 	self loaderPolicy
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>linearLoadPackageSpec: packageSpec gofer: gofer [
+{ #category : #actions }
+MetacelloCommonMCSpecLoader >> linearLoadPackageSpec: packageSpec gofer: gofer [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>linearLoadPackageSpecs: packageSpecs repositories: repositories [
+{ #category : #private }
+MetacelloCommonMCSpecLoader >> linearLoadPackageSpecs: packageSpecs repositories: repositories [
 	
 	| gofer |
 	gofer := MetacelloGofer new.
@@ -186,11 +137,8 @@ MetacelloCommonMCSpecLoader>>linearLoadPackageSpecs: packageSpecs repositories: 
 	packageSpecs do: [:pkg | pkg loadUsing: self gofer: gofer ].
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>load [
+{ #category : #actions }
+MetacelloCommonMCSpecLoader >> load [
 	| repos |
 	repos := self repositoriesFrom: self spec repositorySpecs.
 	^ self loadType == #atomic
@@ -199,11 +147,8 @@ MetacelloCommonMCSpecLoader>>load [
 			self linearLoadPackageSpecs: self spec packageSpecsInLoadOrder repositories: repos ]
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>loadPackageDirective: aPackageLoadDirective gofer: aGofer [
+{ #category : #actions }
+MetacelloCommonMCSpecLoader >> loadPackageDirective: aPackageLoadDirective gofer: aGofer [
   | packageSpec |
   packageSpec := aPackageLoadDirective spec.
   MetacelloPlatform current
@@ -235,11 +180,8 @@ MetacelloCommonMCSpecLoader>>loadPackageDirective: aPackageLoadDirective gofer: 
     displaying: 'Loading ' , packageSpec file
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>loadPackageDirectives: pkgLoads gofer: aGofer [
+{ #category : #actions }
+MetacelloCommonMCSpecLoader >> loadPackageDirectives: pkgLoads gofer: aGofer [
   MetacelloPlatform current
     do: [ 
       | goferLoad loadBlock answers |
@@ -294,83 +236,56 @@ MetacelloCommonMCSpecLoader>>loadPackageDirectives: pkgLoads gofer: aGofer [
     displaying: 'Atomic Load...'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>loaderPolicy [
+{ #category : #accessing }
+MetacelloCommonMCSpecLoader >> loaderPolicy [
 
 	loaderPolicy == nil ifTrue: [ loaderPolicy := MetacelloLoaderPolicy new ].
 	^loaderPolicy
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>loaderPolicy: anObject [
+{ #category : #accessing }
+MetacelloCommonMCSpecLoader >> loaderPolicy: anObject [
 	loaderPolicy := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>loadingSpecLoader [
+{ #category : #accessing }
+MetacelloCommonMCSpecLoader >> loadingSpecLoader [
 
 	^self
 ]
 
-{
-	#category : #packages,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>nameComponentsFrom: aVersionName [
+{ #category : #packages }
+MetacelloCommonMCSpecLoader >> nameComponentsFrom: aVersionName [
 
 	^self class nameComponentsFrom: aVersionName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>operator [
+{ #category : #accessing }
+MetacelloCommonMCSpecLoader >> operator [
 
 	operator == nil ifTrue: [ ^#= ].
 	^operator
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>operator: aSymbol [
+{ #category : #accessing }
+MetacelloCommonMCSpecLoader >> operator: aSymbol [
 
 	operator := aSymbol
 ]
 
-{
-	#category : #doits,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>postLoad: packageOrVersionSpec [
+{ #category : #doits }
+MetacelloCommonMCSpecLoader >> postLoad: packageOrVersionSpec [
 	"subclassResponsibility, but it gets called during an upgrade, so leave it as NOOP"
 ]
 
-{
-	#category : #doits,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>preLoad: packageOrVersionSpec [
+{ #category : #doits }
+MetacelloCommonMCSpecLoader >> preLoad: packageOrVersionSpec [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>recordingSpecLoader [
+{ #category : #accessing }
+MetacelloCommonMCSpecLoader >> recordingSpecLoader [
 
 	^(MetacelloNullRecordingMCSpecLoader on: self spec)
 		shouldDisablePackageCache: self shouldDisablePackageCache;
@@ -378,20 +293,14 @@ MetacelloCommonMCSpecLoader>>recordingSpecLoader [
 		yourself
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>repositoriesFrom: aMetacelloMVRepositorySpecs [
+{ #category : #repositories }
+MetacelloCommonMCSpecLoader >> repositoriesFrom: aMetacelloMVRepositorySpecs [
 
 	^self repositoriesFrom: aMetacelloMVRepositorySpecs ignoreOverrides: false
 ]
 
-{
-	#category : #repositories,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>repositoriesFrom: aMetacelloMVRepositorySpecs ignoreOverrides: ignoreOverrides [
+{ #category : #repositories }
+MetacelloCommonMCSpecLoader >> repositoriesFrom: aMetacelloMVRepositorySpecs ignoreOverrides: ignoreOverrides [
 
 	| repositories repos |
 	(ignoreOverrides not and: [self hasRepositoryOverrides]) ifTrue: [ ^self loaderPolicy overrideRepositories ].
@@ -404,20 +313,14 @@ MetacelloCommonMCSpecLoader>>repositoriesFrom: aMetacelloMVRepositorySpecs ignor
 	^repos
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>repositoryMap [
+{ #category : #accessing }
+MetacelloCommonMCSpecLoader >> repositoryMap [
 
 	^self loaderPolicy repositoryMap
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>resolvePackageSpec: packageSpec gofer: gofer [
+{ #category : #private }
+MetacelloCommonMCSpecLoader >> resolvePackageSpec: packageSpec gofer: gofer [
   | references resolvedReference mcVersion loadedVersionInfos |
   references := self
     retryingResolvePackageSpecReferences: packageSpec
@@ -439,11 +342,8 @@ MetacelloCommonMCSpecLoader>>resolvePackageSpec: packageSpec gofer: gofer [
   ^ resolvedReference
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>resolvePackageSpecReferences: packageSpec gofer: gofer [
+{ #category : #private }
+MetacelloCommonMCSpecLoader >> resolvePackageSpecReferences: packageSpec gofer: gofer [
 
 	|  versionReference references localGofer |
 	localGofer := gofer.
@@ -463,11 +363,8 @@ MetacelloCommonMCSpecLoader>>resolvePackageSpecReferences: packageSpec gofer: go
 	^references
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>retryingResolvePackageSpecReferences: packageSpec gofer: gofer [
+{ #category : #private }
+MetacelloCommonMCSpecLoader >> retryingResolvePackageSpecReferences: packageSpec gofer: gofer [
     | retryCount references repositoryError |
     retryCount := 0.
     references := #().
@@ -509,20 +406,14 @@ MetacelloCommonMCSpecLoader>>retryingResolvePackageSpecReferences: packageSpec g
     ^ references
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>shouldDisablePackageCache [
+{ #category : #accessing }
+MetacelloCommonMCSpecLoader >> shouldDisablePackageCache [
 
 	disablePackageCache == nil ifTrue: [ disablePackageCache := false ].
 	^ disablePackageCache
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:20'
-}
-MetacelloCommonMCSpecLoader>>shouldDisablePackageCache: anObject [
+{ #category : #accessing }
+MetacelloCommonMCSpecLoader >> shouldDisablePackageCache: anObject [
 	disablePackageCache := anObject
 ]

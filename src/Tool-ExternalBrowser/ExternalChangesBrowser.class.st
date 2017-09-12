@@ -20,24 +20,17 @@ Class {
 		'deselectAllButton',
 		'fileInSelectedButton'
 	],
-	#category : #Tool-ExternalBrowser,
-	#timestamp : 'StephaneDucasse 6/6/2015 10:28'
+	#category : #Tool-ExternalBrowser
 }
 
-{
-	#category : #browsing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser class>>browseRecentLog [
+{ #category : #browsing }
+ExternalChangesBrowser class >> browseRecentLog [
 	<example>
 	^ self openOnStream: SourceFiles changesFileStream
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser class>>defaultSpec [
+{ #category : #specs }
+ExternalChangesBrowser class >> defaultSpec [
 	<spec: #default>
 	
 	^ SpecLayout composed 
@@ -53,11 +46,8 @@ ExternalChangesBrowser class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #'file service',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser class>>fileReaderServicesForFile: fullName suffix: suffix [
+{ #category : #'file service' }
+ExternalChangesBrowser class >> fileReaderServicesForFile: fullName suffix: suffix [
 	<fileService>
 	| services |
 	services := OrderedCollection new.
@@ -67,33 +57,24 @@ ExternalChangesBrowser class>>fileReaderServicesForFile: fullName suffix: suffix
 	^services
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser class>>openOn: changeSetName [
+{ #category : #'instance creation' }
+ExternalChangesBrowser class >> openOn: changeSetName [
 
 	self new
 		changeSetName: changeSetName;
 		openWithSpec
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser class>>openOnFileName: aFileName [
+{ #category : #'instance creation' }
+ExternalChangesBrowser class >> openOnFileName: aFileName [
 
 	self new
 		changeSetName: aFileName;
 		openWithSpec
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser class>>openOnStream: aStream [
+{ #category : #'instance creation' }
+ExternalChangesBrowser class >> openOnStream: aStream [
 
 	| widget |
 	widget := self new.
@@ -101,20 +82,14 @@ ExternalChangesBrowser class>>openOnStream: aStream [
 	widget openWithSpec	
 ]
 
-{
-	#category : #'tool registry',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser class>>registerToolsOn: registry [
+{ #category : #'tool registry' }
+ExternalChangesBrowser class >> registerToolsOn: registry [
 
 	registry register: self as: #changeList 
 ]
 
-{
-	#category : #'file service',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser class>>serviceBrowseCSOrSTFile [
+{ #category : #'file service' }
+ExternalChangesBrowser class >> serviceBrowseCSOrSTFile [
 	"Answer a service for opening a changelist browser on a file"
 
 	^ (SimpleServiceEntry 
@@ -126,31 +101,22 @@ ExternalChangesBrowser class>>serviceBrowseCSOrSTFile [
 		argumentGetter: [ :stream | stream readOnlyStream ]
 ]
 
-{
-	#category : #'file service',
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser class>>services [
+{ #category : #'file service' }
+ExternalChangesBrowser class >> services [
 	"Answer potential file services associated with this class"
 
 	^ { self serviceBrowseCSOrSTFile }
 ]
 
-{
-	#category : #icons,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser class>>taskbarIconName [
+{ #category : #icons }
+ExternalChangesBrowser class >> taskbarIconName [
 	"Answer the icon for the receiver in a task bar."
 
 	^#smallSaveIcon
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser>>buildMenu: aMenu [
+{ #category : #menu }
+ExternalChangesBrowser >> buildMenu: aMenu [
 
 	aMenu
 		add: 'File in all selected'
@@ -169,59 +135,41 @@ ExternalChangesBrowser>>buildMenu: aMenu [
 	^ aMenu
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser>>canCompareToCurrent [
+{ #category : #menu }
+ExternalChangesBrowser >> canCompareToCurrent [
 
 	^ changes selectedItems size = 1
 		and: [ changes selectedItem isMethodDeclaration ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser>>changeDescription: change [
+{ #category : #initialization }
+ExternalChangesBrowser >> changeDescription: change [
 
 	^ change description
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser>>changeSetName: aFileName [
+{ #category : #initialization }
+ExternalChangesBrowser >> changeSetName: aFileName [
 
 	changeSet := CodeImporter fileNamed: aFileName.
 	changeSet parseChunks.
 	changes items: changeSet codeDeclarations.
 ]
 
-{
-	#category : #acccessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser>>changes [
+{ #category : #acccessing }
+ExternalChangesBrowser >> changes [
 
 	^ changes
 ]
 
-{
-	#category : #acccessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser>>codePane [
+{ #category : #acccessing }
+ExternalChangesBrowser >> codePane [
 
 	^ codePane
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser>>compareToCurrent: aMethodDeclaration [
+{ #category : #menu }
+ExternalChangesBrowser >> compareToCurrent: aMethodDeclaration [
 
 	| class sourceString |
 	class := aMethodDeclaration targetClass.
@@ -235,47 +183,32 @@ ExternalChangesBrowser>>compareToCurrent: aMethodDeclaration [
 		inWindowLabeled: 'Comparison to Current Version'
 ]
 
-{
-	#category : #acccessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser>>deselectAllButton [
+{ #category : #acccessing }
+ExternalChangesBrowser >> deselectAllButton [
 
 	^ deselectAllButton
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser>>fileIn: aCodeDeclaration [
+{ #category : #menu }
+ExternalChangesBrowser >> fileIn: aCodeDeclaration [
 
 	aCodeDeclaration do: #import.
 ]
 
-{
-	#category : #acccessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser>>fileInSelectedButton [
+{ #category : #acccessing }
+ExternalChangesBrowser >> fileInSelectedButton [
 
 	^ fileInSelectedButton
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser>>initialExtent [
+{ #category : #initialization }
+ExternalChangesBrowser >> initialExtent [
 
 	^ 500@600
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser>>initializePresenter [
+{ #category : #initialization }
+ExternalChangesBrowser >> initializePresenter [
 	changes whenSelectedItemChanged: [ :change | change ifNotNil: [ codePane text: change contents ] ].
 	changes menu: [ :menu :shifted | self buildMenu: menu ].
 	selectAllButton action: [ changes selectAll ].
@@ -283,11 +216,8 @@ ExternalChangesBrowser>>initializePresenter [
 	fileInSelectedButton action: [ self fileIn: changes selectedItemsSorted ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser>>initializeWidgets [
+{ #category : #initialization }
+ExternalChangesBrowser >> initializeWidgets [
 
 	self title: 'Changes Browser'.
 
@@ -310,11 +240,8 @@ ExternalChangesBrowser>>initializeWidgets [
 	codePane := self newCode.
 ]
 
-{
-	#category : #acccessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-ExternalChangesBrowser>>selectAllButton [
+{ #category : #acccessing }
+ExternalChangesBrowser >> selectAllButton [
 
 	^ selectAllButton
 ]

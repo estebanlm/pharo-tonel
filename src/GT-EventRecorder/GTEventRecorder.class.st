@@ -35,44 +35,31 @@ Class {
 	#classInstVars : [
 		'uniqueInstance'
 	],
-	#category : #GT-EventRecorder-Core,
-	#timestamp : 'JurajKubelka 10/13/2015 22:36'
+	#category : #GT-EventRecorder-Core
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder class>>cleanUp [
+{ #category : #cleanup }
+GTEventRecorder class >> cleanUp [
 	self reset.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder class>>initializeUniqueInstance [
+{ #category : #initialization }
+GTEventRecorder class >> initializeUniqueInstance [
 	uniqueInstance ifNotNil: [ ^ uniqueInstance ].
 	uniqueInstance := self new.
 	self registerInterestToSystemAnnouncement.
 	^ uniqueInstance
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder class>>isGlobalRecorder: aGTEventRecorder [
+{ #category : #testing }
+GTEventRecorder class >> isGlobalRecorder: aGTEventRecorder [
 	^ uniqueInstance 
 			ifNil: false
 			ifNotNil: [ :anInstance | anInstance == aGTEventRecorder  ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder class>>registerInterestToSystemAnnouncement [
+{ #category : #initialization }
+GTEventRecorder class >> registerInterestToSystemAnnouncement [
 	<systemEventRegistration>
 	uniqueInstance ifNil: [ ^ self ].
 	SystemAnnouncer uniqueInstance
@@ -82,11 +69,8 @@ GTEventRecorder class>>registerInterestToSystemAnnouncement [
 			to: uniqueInstance.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder class>>reset [
+{ #category : #accessing }
+GTEventRecorder class >> reset [
 	"Stop and remove the process for sending usage data. Delete all recorder that from the queue."
 	uniqueInstance ifNil: [ ^ self ].
 	SystemAnnouncer uniqueInstance unsubscribe: uniqueInstance.
@@ -95,105 +79,69 @@ GTEventRecorder class>>reset [
 	uniqueInstance := nil.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder class>>uniqueInstance [
+{ #category : #accessing }
+GTEventRecorder class >> uniqueInstance [
 	uniqueInstance ifNil: [ self initializeUniqueInstance ].
 	^ uniqueInstance
 ]
 
-{
-	#category : #delivery,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>activateDelivery [
+{ #category : #delivery }
+GTEventRecorder >> activateDelivery [
 	^ delivery activate
 ]
 
-{
-	#category : #delivery,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>activateDeliveryIfAvailable [
+{ #category : #delivery }
+GTEventRecorder >> activateDeliveryIfAvailable [
 	^ self canSendDiagnosticsAndUsageData 
 		ifTrue: [ self activateDelivery ]
 		ifFalse: [ nil ]
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>addCollector: aGTEventCollector [
+{ #category : #adding }
+GTEventRecorder >> addCollector: aGTEventCollector [
 	self activateDeliveryIfAvailable.
 	^ collectors add: aGTEventCollector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>announcer [
+{ #category : #accessing }
+GTEventRecorder >> announcer [
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>canSendDiagnosticsAndUsageData [
+{ #category : #testing }
+GTEventRecorder >> canSendDiagnosticsAndUsageData [
 	^ privacy value
 ]
 
-{
-	#category : #delivery,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>deactivateDelivery [
+{ #category : #delivery }
+GTEventRecorder >> deactivateDelivery [
 	^ delivery deactivate
 ]
 
-{
-	#category : #delivery,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>deliverNow [
+{ #category : #delivery }
+GTEventRecorder >> deliverNow [
 	delivery now
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>delivery [
+{ #category : #accessing }
+GTEventRecorder >> delivery [
 	"Testing purpose."
 	^ delivery
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>deliveryPreSuspendingAction: aBlockClosure  [
+{ #category : #configuration }
+GTEventRecorder >> deliveryPreSuspendingAction: aBlockClosure [ 
 	self delivery preSuspendingAction: aBlockClosure
 ]
 
-{
-	#category : #packing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>flush [
+{ #category : #packing }
+GTEventRecorder >> flush [
 	"Be careful! You will lost all data."
 	collectors do: #flush
 ]
 
-{
-	#category : #gt-inspector-extension,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>gtInspectorActionHelp [
+{ #category : #gt-inspector-extension }
+GTEventRecorder >> gtInspectorActionHelp [
 	<gtInspectorAction>
 	^ GLMGenericAction new
 		action: [:b | 
@@ -205,21 +153,15 @@ GTEventRecorder>>gtInspectorActionHelp [
 		title: 'Help'
 ]
 
-{
-	#category : #gt-inspector-extension,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>gtInspectorItemsIn: composite [
+{ #category : #gt-inspector-extension }
+GTEventRecorder >> gtInspectorItemsIn: composite [
 	<gtInspectorPresentationOrder: 1>
 	^ collectors ifNotNil: [ 
 			(collectors gtInspectorItemsIn: composite) ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>initialize [
+{ #category : #initialization }
+GTEventRecorder >> initialize [
 	super initialize.
 	privacy := [ Privacy sendDiagnosticsAndUsageData ].
 	collectors := GTEventCollectors new.
@@ -231,60 +173,39 @@ GTEventRecorder>>initialize [
 			ifFalse: [ delivery withdrawPermission ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>isDeliveryActive [
+{ #category : #testing }
+GTEventRecorder >> isDeliveryActive [
 	^ delivery isActive
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>isGlobalRecorder [
+{ #category : #testing }
+GTEventRecorder >> isGlobalRecorder [
 	^ self class isGlobalRecorder: self
 ]
 
-{
-	#category : #convenient,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>numberOfCollectors [
+{ #category : #convenient }
+GTEventRecorder >> numberOfCollectors [
 	^ collectors size
 ]
 
-{
-	#category : #convenient,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>numberOfDeliveryData [
+{ #category : #convenient }
+GTEventRecorder >> numberOfDeliveryData [
 	^ delivery size
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>offerDeliveryPermission [
+{ #category : #configuration }
+GTEventRecorder >> offerDeliveryPermission [
 	delivery offerPermission
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>offerPrivacy [
+{ #category : #configuration }
+GTEventRecorder >> offerPrivacy [
 	"testing purpose"
 	privacy := true
 ]
 
-{
-	#category : #packing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>pack [
+{ #category : #packing }
+GTEventRecorder >> pack [
 	| allCollectors consolidatedCollectors |
 	self canSendDiagnosticsAndUsageData ifFalse: [ ^ self flush; yourself ].
 	allCollectors := OrderedCollection new: collectors size.
@@ -297,49 +218,34 @@ GTEventRecorder>>pack [
 	self removeLiberatedCollectors.
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>privacyChanged [
+{ #category : #'event handling' }
+GTEventRecorder >> privacyChanged [
 	self canSendDiagnosticsAndUsageData 
 		ifTrue: [ self numberOfCollectors > 0 
 						ifTrue: [ self activateDelivery ] ]
 		ifFalse: [ self deactivateDelivery ]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>removeCollector: aGTEventCollector  [
+{ #category : #removing }
+GTEventRecorder >> removeCollector: aGTEventCollector [ 
 	| removedCollector |
 	removedCollector := collectors remove: aGTEventCollector.
 	collectors size = 0 ifTrue: [ self deactivateDelivery ].
 	^ removedCollector
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>removeLiberatedCollectors [
+{ #category : #removing }
+GTEventRecorder >> removeLiberatedCollectors [
 	collectors removeLiberatedCollectors
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>withdrawDeliveryPermission [
+{ #category : #configuration }
+GTEventRecorder >> withdrawDeliveryPermission [
 	delivery withdrawPermission
 ]
 
-{
-	#category : #configuration,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventRecorder>>withdrawPrivacy [
+{ #category : #configuration }
+GTEventRecorder >> withdrawPrivacy [
 	"testing purpose"
 	privacy := false
 ]

@@ -4,32 +4,22 @@ Example for a simple grid node
 Class {
 	#name : #SimpleGridNodeExample,
 	#superclass : #MorphTreeNodeModel,
-	#category : #Morphic-Examples-MorphTreeWidget,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:55'
+	#category : #Morphic-Examples-MorphTreeWidget
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridNodeExample>>age [
+{ #category : #accessing }
+SimpleGridNodeExample >> age [
 	^ self item age
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridNodeExample>>age: anInteger [
+{ #category : #accessing }
+SimpleGridNodeExample >> age: anInteger [
 	self item age: anInteger.
 	self changed: #age
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridNodeExample>>ageMorph [
+{ #category : #'as yet unclassified' }
+SimpleGridNodeExample >> ageMorph [
 	^ ( self theme  
 				newTextEntryIn: World
 				for: self 
@@ -40,28 +30,19 @@ SimpleGridNodeExample>>ageMorph [
 				help: nil) color: Color transparent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridNodeExample>>firstName [
+{ #category : #accessing }
+SimpleGridNodeExample >> firstName [
 	^ self item firstName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridNodeExample>>firstName: aString [
+{ #category : #accessing }
+SimpleGridNodeExample >> firstName: aString [
 	self item firstName: aString.
 	self changed: #firstName
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridNodeExample>>firstNameMorph [
+{ #category : #'as yet unclassified' }
+SimpleGridNodeExample >> firstNameMorph [
 	^ ( self theme  
 				newTextEntryIn: World
 				for: self 
@@ -72,28 +53,19 @@ SimpleGridNodeExample>>firstNameMorph [
 				help: nil) color: Color transparent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridNodeExample>>married [
+{ #category : #accessing }
+SimpleGridNodeExample >> married [
 	^ self item married
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridNodeExample>>married: aBoolean [
+{ #category : #accessing }
+SimpleGridNodeExample >> married: aBoolean [
 	self item married: aBoolean.
 	self changed: #married
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridNodeExample>>marriedMorph [
+{ #category : #'as yet unclassified' }
+SimpleGridNodeExample >> marriedMorph [
 	^ ( self theme  
 			newCheckboxIn: World
 			for: self 
@@ -104,28 +76,19 @@ SimpleGridNodeExample>>marriedMorph [
 			help: nil) color: Color transparent
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridNodeExample>>secondName [
+{ #category : #accessing }
+SimpleGridNodeExample >> secondName [
 	^ self item secondName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridNodeExample>>secondName: aString [
+{ #category : #accessing }
+SimpleGridNodeExample >> secondName: aString [
 	self item secondName: aString.
 	self changed: #secondName
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-SimpleGridNodeExample>>secondNameMorph [
+{ #category : #'as yet unclassified' }
+SimpleGridNodeExample >> secondNameMorph [
 	^ ( self theme  
 				newTextEntryIn: World
 				for: self 

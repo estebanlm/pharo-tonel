@@ -12,73 +12,48 @@ Class {
 		'color',
 		'pixelValue32'
 	],
-	#category : #Balloon-Fills,
-	#timestamp : '<historical>'
+	#category : #Balloon-Fills
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SolidFillStyle class>>color: aColor [
+{ #category : #'instance creation' }
+SolidFillStyle class >> color: aColor [
 	^self new color: aColor
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SolidFillStyle>>asColor [
+{ #category : #converting }
+SolidFillStyle >> asColor [
 	^color
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SolidFillStyle>>color: aColor [
+{ #category : #accessing }
+SolidFillStyle >> color: aColor [
 	color := aColor.
 	pixelValue32 := aColor scaledPixelValue32
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SolidFillStyle>>isSolidFill [
+{ #category : #testing }
+SolidFillStyle >> isSolidFill [
 	^true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SolidFillStyle>>isTranslucent [
+{ #category : #testing }
+SolidFillStyle >> isTranslucent [
 	^color isTranslucent
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SolidFillStyle>>isTransparent [
+{ #category : #testing }
+SolidFillStyle >> isTransparent [
 	^color isTransparent
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SolidFillStyle>>printOn: aStream [
+{ #category : #printing }
+SolidFillStyle >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut:$(; print: color; nextPut:$).
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:11'
-}
-SolidFillStyle>>scaledPixelValue32 [
+{ #category : #accessing }
+SolidFillStyle >> scaledPixelValue32 [
 	"Return the alpha scaled pixel value for depth 32"
 	^pixelValue32
 ]

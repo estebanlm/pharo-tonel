@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTPlaygroundBasicTest,
 	#superclass : #TestCase,
@@ -8,35 +5,25 @@ Class {
 		'playground',
 		'window'
 	],
-	#category : #GT-Tests-Playground,
-	#timestamp : ''
+	#category : #GT-Tests-Playground
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTPlaygroundBasicTest>>setUp [
+{ #category : #running }
+GTPlaygroundBasicTest >> setUp [
 
 	playground := GTPlayground new.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTPlaygroundBasicTest>>tearDown [
+{ #category : #running }
+GTPlaygroundBasicTest >> tearDown [
 
 	window ifNotNil: [ window delete ].
 	window := nil.
 	playground := nil
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTPlaygroundBasicTest>>testAccessBindings [
+{ #category : #running }
+GTPlaygroundBasicTest >> testAccessBindings [
 	|obtainedBindings expectedBindings|
 
 	expectedBindings := Dictionary new.  
@@ -53,11 +40,8 @@ GTPlaygroundBasicTest>>testAccessBindings [
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTPlaygroundBasicTest>>testResetBindings [
+{ #category : #running }
+GTPlaygroundBasicTest >> testResetBindings [
 	|obtainedBindings|
 
 	window := playground openOn: (GTPlayPage new saveContent: 'number+1').
@@ -74,11 +58,8 @@ GTPlaygroundBasicTest>>testResetBindings [
 	
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTPlaygroundBasicTest>>testSettingBindings [
+{ #category : #running }
+GTPlaygroundBasicTest >> testSettingBindings [
 	|obtainedResult|
 	obtainedResult:=nil.
 	window := playground openOn: (GTPlayPage new saveContent: 'number+1').

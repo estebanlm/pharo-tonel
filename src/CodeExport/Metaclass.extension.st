@@ -1,22 +1,14 @@
-Extension {
-	#name : #Metaclass
-}
+Extension { #name : #Metaclass }
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Metaclass>>fileOutInitializerOn: aStream [
+{ #category : #'*CodeExport' }
+Metaclass >> fileOutInitializerOn: aStream [
 	(self includesSelector: #initialize) ifTrue: 
 		[aStream cr.
 		aStream nextChunkPut: self soleInstance name , ' initialize'].
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Metaclass>>fileOutOn: aFileStream [
+{ #category : #'*CodeExport' }
+Metaclass >> fileOutOn: aFileStream [
 
 	<localMetaclassMethod> 
     "This method is supposed to be local in Metaclass because of a good reason.
@@ -26,11 +18,8 @@ Metaclass>>fileOutOn: aFileStream [
 	^ self fileOutOn: aFileStream initializing: true
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Metaclass>>fileOutOn: aFileStream initializing: aBool [
+{ #category : #'*CodeExport' }
+Metaclass >> fileOutOn: aFileStream initializing: aBool [
 
 	<localMetaclassMethod> 
     "This method is supposed to be local in Metaclass because of a good reason.
@@ -45,11 +34,8 @@ Metaclass>>fileOutOn: aFileStream initializing: aBool [
 		aFileStream cr ]
 ]
 
-{
-	#category : #'*CodeExport',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-Metaclass>>nonTrivial  [
+{ #category : #'*CodeExport' }
+Metaclass >> nonTrivial [ 
 	"Answer whether the receiver has any methods or instance variables."
 
 	^ self instVarNames notEmpty or: [self hasMethods or: [self hasTraitComposition]]

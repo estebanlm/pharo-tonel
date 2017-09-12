@@ -4,55 +4,39 @@ I represent an accessor for a sequence of objects. My instances can both read an
 Class {
 	#name : #ReadWriteStream,
 	#superclass : #WriteStream,
-	#category : #Collections-Streams,
-	#timestamp : '<historical>'
+	#category : #Collections-Streams
 }
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadWriteStream>>= other [
+{ #category : #comparing }
+ReadWriteStream >> = other [
 
 	(self class == ReadWriteStream and: [other class == ReadWriteStream]) ifFalse: [
 		^ super = other].	"does an identity test.  Don't read contents of FileStream"
 	^ self position = other position and: [self contents = other contents]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadWriteStream>>contents [
+{ #category : #accessing }
+ReadWriteStream >> contents [
 	"Answer with a copy of my collection from 1 to readLimit."
 
 	readLimit := readLimit max: position.
 	^collection copyFrom: 1 to: readLimit
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadWriteStream>>hash [
+{ #category : #comparing }
+ReadWriteStream >> hash [
 
 	self class == ReadWriteStream ifFalse: [^ super hash].
 	^ (self position + readLimit + 53) hash
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadWriteStream>>name [
+{ #category : #accessing }
+ReadWriteStream >> name [
 	^ 'a stream'   "for fileIn compatibility"
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadWriteStream>>next [
+{ #category : #accessing }
+ReadWriteStream >> next [
 	"Primitive. Return the next object in the Stream represented by the
 	receiver. Fail if the collection of this stream is not an Array or a String.
 	Fail if the stream is positioned at its end, or if the position is out of
@@ -66,11 +50,8 @@ ReadWriteStream>>next [
 		ifFalse: [^collection at: (position := position + 1)]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadWriteStream>>next: anInteger  [
+{ #category : #accessing }
+ReadWriteStream >> next: anInteger [ 
 	"Answer the next anInteger elements of my collection.  overriden for efficiency"
 
 	| ans endPosition |
@@ -83,11 +64,8 @@ ReadWriteStream>>next: anInteger  [
 
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:48'
-}
-ReadWriteStream>>readStream [
+{ #category : #converting }
+ReadWriteStream >> readStream [
 	"polymorphic with SequenceableCollection.  Return self"
 
 	^ self

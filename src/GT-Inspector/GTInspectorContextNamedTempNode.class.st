@@ -9,15 +9,11 @@ Class {
 		'tempIndex',
 		'tag'
 	],
-	#category : #GT-Inspector,
-	#timestamp : 'AndreiChis 3/4/2017 14:01'
+	#category : #GT-Inspector
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextNamedTempNode class>>hostObject: aContext tempName: aString tempIndex: anInteger [
+{ #category : #'instance creation' }
+GTInspectorContextNamedTempNode class >> hostObject: aContext tempName: aString tempIndex: anInteger [
 	^ (self hostObject: aContext) 
 		tempName: aString;
 		tempIndex: anInteger;
@@ -27,82 +23,52 @@ GTInspectorContextNamedTempNode class>>hostObject: aContext tempName: aString te
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextNamedTempNode>>errorMessage [
+{ #category : #accessing }
+GTInspectorContextNamedTempNode >> errorMessage [
 	^ 'error obtaining field value'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextNamedTempNode>>key [
+{ #category : #accessing }
+GTInspectorContextNamedTempNode >> key [
 	^ self tempName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextNamedTempNode>>label [
+{ #category : #accessing }
+GTInspectorContextNamedTempNode >> label [
 	^ '[' , self key , ']'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextNamedTempNode>>rawValue [
+{ #category : #accessing }
+GTInspectorContextNamedTempNode >> rawValue [
 	^ self hostObject debuggerMap namedTempAt: tempIndex in: self hostObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextNamedTempNode>>tempIndex [
+{ #category : #accessing }
+GTInspectorContextNamedTempNode >> tempIndex [
 	^ tempIndex
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextNamedTempNode>>tempIndex: anObject [
+{ #category : #accessing }
+GTInspectorContextNamedTempNode >> tempIndex: anObject [
 	tempIndex := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextNamedTempNode>>tempName [
+{ #category : #accessing }
+GTInspectorContextNamedTempNode >> tempName [
 	^ tempName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextNamedTempNode>>tempName: aString [
+{ #category : #accessing }
+GTInspectorContextNamedTempNode >> tempName: aString [
 	tempName := aString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextNamedTempNode>>variableTag [
+{ #category : #accessing }
+GTInspectorContextNamedTempNode >> variableTag [
 	^ tag ifNil: [ 'temp' ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorContextNamedTempNode>>variableTag: aTag [
+{ #category : #accessing }
+GTInspectorContextNamedTempNode >> variableTag: aTag [
 	tag := aTag
 ]

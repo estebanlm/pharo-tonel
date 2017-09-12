@@ -28,15 +28,11 @@ Class {
 		'moreButton',
 		'moreMorph'
 	],
-	#category : #Polymorph-Widgets,
-	#timestamp : 'gvc 1/12/2010 13:32'
+	#category : #Polymorph-Widgets
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>adoptPaneColor: paneColor [
+{ #category : #accessing }
+OverflowRowMorph >> adoptPaneColor: paneColor [
 	"Pass on to the list morph and border too."
 	
 	super adoptPaneColor: paneColor.
@@ -47,11 +43,8 @@ OverflowRowMorph>>adoptPaneColor: paneColor [
 		m adoptPaneColor: paneColor]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>baseMorph: aRowMorph [
+{ #category : #'as yet unclassified' }
+OverflowRowMorph >> baseMorph: aRowMorph [
 	"Configure the receiver to match the specifications for the given morph and
 	store the given morph's submorphs for later reallocation."
 	
@@ -64,41 +57,29 @@ OverflowRowMorph>>baseMorph: aRowMorph [
 	self fitBaseMorphs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>baseMorphs [
+{ #category : #accessing }
+OverflowRowMorph >> baseMorphs [
 	"Answer the value of baseMorphs"
 
 	^ baseMorphs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>baseMorphs: anObject [
+{ #category : #accessing }
+OverflowRowMorph >> baseMorphs: anObject [
 	"Set the value of baseMorphs"
 
 	baseMorphs := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>buttonWidth [
+{ #category : #private }
+OverflowRowMorph >> buttonWidth [
 	"Answer the width for the more button."
 
 	^self theme scrollbarThickness + 3
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>desiredMoreMorphPosition [
+{ #category : #'as yet unclassified' }
+OverflowRowMorph >> desiredMoreMorphPosition [
 	"Answer the position the more morph should be placed."
 
 	^self moreButton boundsInWorld bottom + self moreMorph height > self world height
@@ -106,11 +87,8 @@ OverflowRowMorph>>desiredMoreMorphPosition [
 		ifFalse: [self moreButton boundsInWorld bottomRight - (self moreMorph width@0)]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>extent: aPoint [
+{ #category : #geometry }
+OverflowRowMorph >> extent: aPoint [
 	"Refit the base morphs and potential 'more' button'"
 
 	super extent: aPoint.
@@ -119,11 +97,8 @@ OverflowRowMorph>>extent: aPoint [
 		"since possibly changing actual submorphs during layout processing"
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>fitBaseMorphs [
+{ #category : #'as yet unclassified' }
+OverflowRowMorph >> fitBaseMorphs [
 	"Replace the receiver's submorphs with the base morphs that
 	can fit in the receiver's bounds. Critically, morphs must be replaced in
 	one go to avoid #extent: recursion."
@@ -152,11 +127,8 @@ OverflowRowMorph>>fitBaseMorphs [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>hideMore [
+{ #category : #'as yet unclassified' }
+OverflowRowMorph >> hideMore [
 	"Hide the morphs that don't fit."
 
 	self moreVisible ifTrue: [
@@ -165,11 +137,8 @@ OverflowRowMorph>>hideMore [
 				w invalidRect: self moreMorph bounds]]]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>initialize [
+{ #category : #initialization }
+OverflowRowMorph >> initialize [
 	"Initialize the receiver."
 
 	super initialize.
@@ -181,31 +150,22 @@ OverflowRowMorph>>initialize [
 		vResizing: #shrinkWrap
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>moreButton [
+{ #category : #accessing }
+OverflowRowMorph >> moreButton [
 	"Answer the value of moreButton"
 
 	^ moreButton
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>moreButton: anObject [
+{ #category : #accessing }
+OverflowRowMorph >> moreButton: anObject [
 	"Set the value of moreButton"
 
 	moreButton := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>moreButtonLabel [
+{ #category : #'as yet unclassified' }
+OverflowRowMorph >> moreButtonLabel [
 	"Answer the label for the more button."
 
 	^AlphaImageMorph new image: (
@@ -215,31 +175,22 @@ OverflowRowMorph>>moreButtonLabel [
 			color: self paneColor darker)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>moreMorph [
+{ #category : #accessing }
+OverflowRowMorph >> moreMorph [
 	"Answer the value of moreMorph"
 
 	^ moreMorph
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>moreMorph: anObject [
+{ #category : #accessing }
+OverflowRowMorph >> moreMorph: anObject [
 	"Set the value of moreMorph"
 
 	moreMorph := anObject
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>moreMorphs [
+{ #category : #'as yet unclassified' }
+OverflowRowMorph >> moreMorphs [
 	"Answer those base morphs that are not currently part of the
 	receiver's submorphs."
 
@@ -248,21 +199,15 @@ OverflowRowMorph>>moreMorphs [
 		ifNotEmpty: [self baseMorphs copyFrom: self submorphs size to: self baseMorphs size]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>moreVisible [
+{ #category : #'as yet unclassified' }
+OverflowRowMorph >> moreVisible [
 	"Answer whether the more column is visible."
 
 	^(self moreMorph ifNil: [^false]) owner notNil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>newMoreButton [
+{ #category : #'instance creation' }
+OverflowRowMorph >> newMoreButton [
 	"Answer a new button for popping up the base morphs that are currently
 	unable to fit in the allotted space."
 
@@ -277,11 +222,8 @@ OverflowRowMorph>>newMoreButton [
 		extent: self buttonWidth asPoint
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>newPotentialMorph [
+{ #category : #'instance creation' }
+OverflowRowMorph >> newPotentialMorph [
 	"Answer a morph for trialing potential layout."
 
 	|potential|
@@ -290,22 +232,16 @@ OverflowRowMorph>>newPotentialMorph [
 	^potential
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>outOfWorld: aWorld [
+{ #category : #initialize }
+OverflowRowMorph >> outOfWorld: aWorld [
 	"Get rid of the more column if visible."
 
 	self hideMore.
 	^super outOfWorld: aWorld
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>popMore [
+{ #category : #'as yet unclassified' }
+OverflowRowMorph >> popMore [
 	"Hide / show the unshown base morphs."
 
 	(self moreMorph isNil or: [self moreMorph owner isNil])
@@ -313,11 +249,8 @@ OverflowRowMorph>>popMore [
 		ifFalse: [self hideMore]
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>recreateMoreMorph [
+{ #category : #'as yet unclassified' }
+OverflowRowMorph >> recreateMoreMorph [
 	"Answer a new morph showing the undisplayed base morphs.
 	Assign to moreMorph."
 
@@ -333,11 +266,8 @@ OverflowRowMorph>>recreateMoreMorph [
 	^self moreMorph
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>showMore [
+{ #category : #'as yet unclassified' }
+OverflowRowMorph >> showMore [
 	"Show the morphs that don't fit."
 
 	self hideMore.
@@ -345,11 +275,8 @@ OverflowRowMorph>>showMore [
 	self world addMorphInLayer: self moreMorph
 ]
 
-{
-	#category : #'stepping and presenter',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>step [
+{ #category : #'stepping and presenter' }
+OverflowRowMorph >> step [
 	"Move the more column if it is showing."
 
 	self moreVisible ifTrue: [
@@ -359,11 +286,8 @@ OverflowRowMorph>>step [
 			ifFalse: [self hideMore]]
 ]
 
-{
-	#category : #stepping,
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-OverflowRowMorph>>stepTime [
+{ #category : #stepping }
+OverflowRowMorph >> stepTime [
 	"Answer the desired time between steps in milliseconds."
 
 	^100

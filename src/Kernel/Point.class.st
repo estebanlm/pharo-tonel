@@ -39,181 +39,129 @@ Class {
 		'x',
 		'y'
 	],
-	#category : #Kernel-BasicObjects,
-	#timestamp : 'StephaneDucasse 11/8/2015 21:20'
+	#category : #Kernel-BasicObjects
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point class>>r: rho degrees: degrees [
+{ #category : #'instance creation' }
+Point class >> r: rho degrees: degrees [
 	"Answer an instance of me with polar coordinates rho and theta."
 
 	^ self basicNew setR: rho degrees: degrees
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point class>>x: xInteger y: yInteger [
+{ #category : #'instance creation' }
+Point class >> x: xInteger y: yInteger [ 
 	"Answer an instance of me with coordinates xInteger and yInteger."
 
 	^ self basicNew setX: xInteger setY: yInteger
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>* arg [
+{ #category : #arithmetic }
+Point >> * arg [ 
 	"Answer a Point that is the product of the receiver and arg."
 
 	arg isPoint ifTrue: [^ (x * arg x) @ (y * arg y)].
 	^ arg adaptToPoint: self andSend: #*
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>+ arg [
+{ #category : #arithmetic }
+Point >> + arg [ 
 	"Answer a Point that is the sum of the receiver and arg."
 
 	arg isPoint ifTrue: [^ (x + arg x) @ (y + arg y)].
 	^ arg adaptToPoint: self andSend: #+
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>- arg [
+{ #category : #arithmetic }
+Point >> - arg [ 
 	"Answer a Point that is the difference of the receiver and arg."
 
 	arg isPoint ifTrue: [^ (x - arg x) @ (y - arg y)].
 	^ arg adaptToPoint: self andSend: #-
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>/ arg [
+{ #category : #arithmetic }
+Point >> / arg [ 
 	"Answer a Point that is the quotient of the receiver and arg."
 
 	arg isPoint ifTrue: [^ (x / arg x) @ (y / arg y)].
 	^ arg adaptToPoint: self andSend: #/
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>// arg [
+{ #category : #arithmetic }
+Point >> // arg [ 
 	"Answer a Point that is the quotient of the receiver and arg."
 
 	arg isPoint ifTrue: [^ (x // arg x) @ (y // arg y)].
 	^ arg adaptToPoint: self andSend: #//
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>< aPoint [
+{ #category : #comparing }
+Point >> < aPoint [ 
 	"Answer whether the receiver is above and to the left of aPoint."
 
 	^ x < aPoint x and: [y < aPoint y]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>><= aPoint [
+{ #category : #comparing }
+Point >> <= aPoint [ 
 	"Answer whether the receiver is neither below nor to the right of aPoint."
 
 	^ x <= aPoint x and: [y <= aPoint y]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>= aPoint [
+{ #category : #comparing }
+Point >> = aPoint [
 
 	^ self species = aPoint species
 		ifTrue: [ x = aPoint x and: [ y = aPoint y ]]
 		ifFalse: [ false ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>> aPoint [
+{ #category : #comparing }
+Point >> > aPoint [
 	"Answer whether the receiver is below and to the right of aPoint."
 
 	^ x > aPoint x and: [ y > aPoint y ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>>= aPoint [
+{ #category : #comparing }
+Point >> >= aPoint [
 	"Answer whether the receiver is neither above nor to the left of aPoint."
 
 	^ x >= aPoint x and: [ y >= aPoint y ]
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>\\ arg [
+{ #category : #arithmetic }
+Point >> \\ arg [ 
 	"Answer a Point that is the mod of the receiver and arg."
 
 	arg isPoint ifTrue: [^ (x \\ arg x) @ (y \\ arg y)].
 	^ arg adaptToPoint: self andSend: #\\
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>abs [
+{ #category : #arithmetic }
+Point >> abs [
 	"Answer a Point whose x and y are the absolute values of the receiver's x and y."
 
 	^ x abs @ y abs
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>adaptToCollection: rcvr andSend: selector [
+{ #category : #converting }
+Point >> adaptToCollection: rcvr andSend: selector [
 	"If I am involved in arithmetic with a Collection, return a Collection of the results of each element combined with me in that expression."
 
 	^ rcvr collect: [ :element | element perform: selector with: self ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>adaptToNumber: rcvr andSend: selector [
+{ #category : #converting }
+Point >> adaptToNumber: rcvr andSend: selector [
 	"If I am involved in arithmetic with an Integer, convert it to a Point."
 	^ rcvr@rcvr perform: selector with: self
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>adhereTo: aRectangle [
+{ #category : #transforming }
+Point >> adhereTo: aRectangle [
 	"If the receiver lies outside aRectangle, return the nearest point on the boundary of the rectangle, otherwise return self."
 
 	(aRectangle containsPoint: self) ifTrue: [^ self].
@@ -221,21 +169,15 @@ Point>>adhereTo: aRectangle [
 		@ ((y max: aRectangle top) min: aRectangle bottom)
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>angle [
+{ #category : #geometry }
+Point >> angle [
 	"Answer the angle in radians between the vectors represented by the receiver and (1, 0) from the origin."
 
 	^ self y arcTan: self x
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>angleWith: aPoint [
+{ #category : #'point functions' }
+Point >> angleWith: aPoint [
 	"Answer the angle in radians between the vectors represented by the receiver and aPoint from the origin."
 
 	| ar ap |
@@ -246,11 +188,8 @@ Point>>angleWith: aPoint [
 		ifFalse: [ Float pi * 2 - ar + ap ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>asFloatPoint [
+{ #category : #converting }
+Point >> asFloatPoint [
 	"Convert me to a float point transforming both of my coordinates
 	to floats using #asFloat. If x and y are already represented
 	by floats return myself, otherwise create a new Point instance."
@@ -259,11 +198,8 @@ Point>>asFloatPoint [
 	^ x asFloat @ y asFloat
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>asIntegerPoint [
+{ #category : #converting }
+Point >> asIntegerPoint [
 	"Convert me to an integer point transforming both of my coordinates
 	to integers using #asInteger. If x and y are already represented
 	by integers return myself, otherwise create a new Point instance."
@@ -272,37 +208,25 @@ Point>>asIntegerPoint [
 	^ x asInteger @ y asInteger
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>asMargin [
+{ #category : #converting }
+Point >> asMargin [
 	^ Margin fromPoint: self
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>asNonFractionalPoint [
+{ #category : #converting }
+Point >> asNonFractionalPoint [
 	(x isFraction or: [ y isFraction ])
 		ifTrue: [ ^ x asFloat @ y asFloat ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>asPoint [
+{ #category : #converting }
+Point >> asPoint [
 	"Answer the receiver itself."
 	^self
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>bearingToPoint: anotherPoint [
+{ #category : #'point functions' }
+Point >> bearingToPoint: anotherPoint [
     "Return the bearing, in degrees, from the receiver to anotherPoint."
 
     | deltaX deltaY  |
@@ -315,20 +239,14 @@ Point>>bearingToPoint: anotherPoint [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>bitShiftPoint: bits [
+{ #category : #private }
+Point >> bitShiftPoint: bits [ 
 	x := x bitShift: bits.
 	y := y bitShift: bits
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>ceiling [
+{ #category : #'truncation and round off' }
+Point >> ceiling [
 	"Answer a Point that is the receiver's x and y ceiling. Answer the receiver if its coordinates are already integral."
 
 	self isIntegerPoint ifTrue: [ ^ self ].
@@ -336,49 +254,34 @@ Point>>ceiling [
 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>closeTo: aPoint [
+{ #category : #comparing }
+Point >> closeTo: aPoint [
  	^ (x closeTo: aPoint x) and: [ y closeTo: aPoint y ]
 ]
 
-{
-	#category : #'rectangle creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>corner: aPoint [
+{ #category : #'rectangle creation' }
+Point >> corner: aPoint [ 
 	"Answer a Rectangle whose origin is the receiver and whose corner is aPoint. This is one of the infix ways of expressing the creation of a rectangle."
 
 	^ Rectangle origin: self corner: aPoint
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>crossProduct: aPoint [
+{ #category : #'point functions' }
+Point >> crossProduct: aPoint [ 
 	"Answer a number that is the cross product of the receiver and the argument, aPoint."
 
 	^ (x * aPoint y) - (y * aPoint x)
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>deepCopy [
+{ #category : #copying }
+Point >> deepCopy [
 	"Implemented here for better performance."
 
 	^ x deepCopy @ y deepCopy
 ]
 
-{
-	#category : #'polar coordinates',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>degrees [
+{ #category : #'polar coordinates' }
+Point >> degrees [
 	"Answer the angle the receiver makes with origin in degrees. right is 0; down is 90."
 	| tan theta |
 	^ x = 0 
@@ -397,11 +300,8 @@ Point>>degrees [
 				ifFalse: [ 180.0 + theta radiansToDegrees ] ]
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>directionToLineFrom: p1 to: p2 [
+{ #category : #'point functions' }
+Point >> directionToLineFrom: p1 to: p2 [
 	"Answer the direction of the line from the receiver position.
 	< 0 => left (receiver to right)
 	= => on line
@@ -410,11 +310,8 @@ Point>>directionToLineFrom: p1 to: p2 [
 	^((p2 x - p1 x) * (self y - p1 y)) - ((self x - p1 x) * (p2 y - p1 y))
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>dist: aPoint [
+{ #category : #'point functions' }
+Point >> dist: aPoint [ 
 	"Answer the distance between aPoint and the receiver."
 	| dx dy |
 	dx := aPoint x - x.
@@ -422,11 +319,8 @@ Point>>dist: aPoint [
 	^ (dx * dx + (dy * dy)) sqrt
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>distanceTo: aPoint [
+{ #category : #'point functions' }
+Point >> distanceTo: aPoint [ 
 	"Answer the distance between aPoint and the receiver."
 	| dx dy |
 	dx := aPoint x - x.
@@ -434,52 +328,37 @@ Point>>distanceTo: aPoint [
 	^ (dx * dx + (dy * dy)) sqrt
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>dotProduct: aPoint [
+{ #category : #'point functions' }
+Point >> dotProduct: aPoint [ 
 	"Answer a number that is the dot product of the receiver and the argument, aPoint. That is, the two points are multipled and the coordinates of the result summed."
 
 	^ (x * aPoint x) + (y * aPoint y)
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>eightNeighbors [
+{ #category : #'point functions' }
+Point >> eightNeighbors [
 	^ { self + (1 @ 0) . self + (1 @ 1) .  self + (0 @ 1) . self + (-1 @ 1) . self + (-1 @ 0) .
 		 self + (-1 @ -1) . self + (0 @ -1) . self + (1 @ -1)}
 
 ]
 
-{
-	#category : #'rectangle creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>extent: aPoint [
+{ #category : #'rectangle creation' }
+Point >> extent: aPoint [ 
 	"Answer a Rectangle whose origin is the receiver and whose extent is aPoint. This is one of the infix ways of expressing the creation of a rectangle."
 
 	^ Rectangle origin: self extent: aPoint
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>flipBy: direction centerAt: c [
+{ #category : #'point functions' }
+Point >> flipBy: direction centerAt: c [
 	"Answer a Point which is flipped according to the direction about the point c. Direction must be #vertical or #horizontal."
 	direction == #vertical ifTrue: [ ^ x @ (c y * 2 - y) ].
 	direction == #horizontal ifTrue:  [^ (c x * 2 - x) @ y ].
 	self error: 'unrecognizable direction'
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>floor [
+{ #category : #'truncation and round off' }
+Point >> floor [
 	"Answer a Point that is the receiver's x and y floor. Answer the receiver if its coordinates are already integral."
 
 	self isIntegerPoint ifTrue: [ ^ self ].
@@ -487,11 +366,8 @@ Point>>floor [
 
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>fourDirections [
+{ #category : #'point functions' }
+Point >> fourDirections [
 	"Return vertices for a square centered at 0 asPoint with the receiver as first corner.
 	Returns the four rotation of the reciever in counter clockwise order with the receiver appearing last."
 	
@@ -503,11 +379,8 @@ Point>>fourDirections [
 
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>fourNeighbors [
+{ #category : #'point functions' }
+Point >> fourNeighbors [
 	^ Array with: self + (1 @ 0)
 		with: self + (0 @ 1)
 		with: self + (-1 @ 0)
@@ -515,11 +388,8 @@ Point>>fourNeighbors [
 
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>grid: aPoint [
+{ #category : #'point functions' }
+Point >> grid: aPoint [ 
 	"Answer a Point to the nearest rounded grid modules specified by aPoint."
 	| newX newY |
 	newX := x + (aPoint x // 2) truncateTo: aPoint x.
@@ -527,30 +397,21 @@ Point>>grid: aPoint [
 	^ newX @ newY
 ]
 
-{
-	#category : #'extent functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>guarded [
+{ #category : #'extent functions' }
+Point >> guarded [
 	"Return a positive nonzero extent."
 	self max: 1@1
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>hash [
+{ #category : #comparing }
+Point >> hash [
 	"Hash is reimplemented because = is implemented."
 
 	^ ( x hash hashMultiply + y hash) hashMultiply
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>insideTriangle: p1 with: p2 with: p3 [
+{ #category : #'point functions' }
+Point >> insideTriangle: p1 with: p2 [ with: p3 
 	"Return true if the receiver is within the triangle defined by the three coordinates.
 	Note: This method computes the barycentric coordinates for the receiver and tests those coordinates."
 
@@ -568,31 +429,22 @@ Point>>insideTriangle: p1 with: p2 with: p3 [
 	^ true
 ]
 
-{
-	#category : #interpolating,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>interpolateTo: end at: amountDone [
+{ #category : #interpolating }
+Point >> interpolateTo: end [ at: amountDone
 	"Interpolate between the instance and end after the specified amount has been done (0 - 1)."
 
 	^ self * (1 - amountDone) + (end * amountDone)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>isFloatPoint [
+{ #category : #testing }
+Point >> isFloatPoint [
 	"Return true if both of my x and y coordinates
 	are represented by float values, otherwise false"
 	^ x isFloat and: [ y isFloat ]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>isInsideCircle: a with: b with: c [
+{ #category : #geometry }
+Point >> isInsideCircle: a with: b [ with: c 
 	"Returns true if self is inside the circle defined by the points a, b, c. See Guibas and Stolfi (1985) p.107"
 	^ (a dotProduct: a)
 		* (b triangleArea: c with: self) - ((b dotProduct: b)
@@ -601,103 +453,70 @@ Point>>isInsideCircle: a with: b with: c [
 			* (a triangleArea: b with: c)) > 0.0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>isIntegerPoint [
+{ #category : #testing }
+Point >> isIntegerPoint [
 	"Return true if both of my x and y coordinates
 	are represented by integer values, otherwise false"
 	^ x isInteger and: [ y isInteger ] 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>isPoint [
+{ #category : #testing }
+Point >> isPoint [
 	^ true
 ]
 
-{
-	#category : #'self evaluating',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>isSelfEvaluating [
+{ #category : #'self evaluating' }
+Point >> isSelfEvaluating [
 	^ self class == Point
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>isZero [
+{ #category : #testing }
+Point >> isZero [
 	^ x isZero and: [ y isZero ]
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>leftRotated [
+{ #category : #'point functions' }
+Point >> leftRotated [
 	"Return the receiver rotated 90 degrees. i.e., self rotateBy: #left centerAt: 0 asPoint. Compare to transposed and normal."
 	^ y  @x negated
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>max [
+{ #category : #arithmetic }
+Point >> max [
 	"Answer a number that is the maximum of the x and y of the receiver."
 
 	^self x max: self y
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>max: aPoint [
+{ #category : #comparing }
+Point >> max: aPoint [ 
 	"Answer the lower right corner of the rectangle uniquely defined by the receiver and the argument, aPoint."
 
 	^ (x max: aPoint x) @ (y max: aPoint y)
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>min [
+{ #category : #arithmetic }
+Point >> min [
 	"Answer a number that is the minimum of the x and y of the receiver."
 
 	^ self x min: self y
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>min: aPoint [
+{ #category : #comparing }
+Point >> min: aPoint [ 
 	"Answer the upper left corner of the rectangle uniquely defined by the receiver and the argument, aPoint."
 
 	^ (x min: aPoint x) @ (y min: aPoint y)
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>min: aMin max: aMax [
+{ #category : #comparing }
+Point >> min: aMin max: aMax [ 
 
 	^ (self min: aMin) max: aMax
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>nearestPointAlongLineFrom: p1 to: p2 [
+{ #category : #'point functions' }
+Point >> nearestPointAlongLineFrom: p1 to: p2 [ 
 	"Note this will give points beyond the endpoints."
 	
 	| x21 y21 t x1 y1 |
@@ -712,30 +531,21 @@ Point>>nearestPointAlongLineFrom: p1 to: p2 [
 	
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>nearestPointOnLineFrom: p1 to: p2 [
+{ #category : #'point functions' }
+Point >> nearestPointOnLineFrom: p1 to: p2 [
 	"This will not give points beyond the endpoints"
 	^ (self nearestPointAlongLineFrom: p1 to: p2)
 		adhereTo: (p1 rectangle: p2)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>negated [
+{ #category : #transforming }
+Point >> negated [
 	"Answer a point whose x and y coordinates are the negatives of those of the receiver."
 	^ (0 - x) @ (0 - y)
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>normal [
+{ #category : #'point functions' }
+Point >> normal [
 	"Answer a Point representing the unit vector rotated 90 deg clockwise. For the zero point return -1@0."
 
 	| n d |
@@ -745,22 +555,16 @@ Point>>normal [
 	^ n / d sqrt
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>normalized [
+{ #category : #'point functions' }
+Point >> normalized [
 	"Optimized for speed"
 	| r |
 	r := (x * x + (y * y)) sqrt.
 	^ (x / r) @ (y / r)
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>octantOf: otherPoint [
+{ #category : #'point functions' }
+Point >> octantOf: otherPoint [ 
 	"Return 1..8 indicating relative direction to otherPoint.  
 	1=ESE, 2=SSE, ... etc. clockwise to 8=ENE"
 
@@ -775,19 +579,13 @@ Point>>octantOf: otherPoint [
 		ifFalse: [ quad * 2 - 1 ]
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>onLineFrom: p1 to: p2 [
+{ #category : #'point functions' }
+Point >> onLineFrom: p1 to: p2 [
 	^ self onLineFrom: p1 to: p2 within: 2
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>onLineFrom: p1 to: p2 within: epsilon [
+{ #category : #'point functions' }
+Point >> onLineFrom: p1 to: p2 within: epsilon [
 	"Answer true if the receiver lies on the given line segment between p1 and p2 within a small epsilon."
 
 	"is this point within the box spanning p1 and p2 expanded by epsilon? (optimized)"
@@ -806,11 +604,8 @@ Point>>onLineFrom: p1 to: p2 within: epsilon [
 	^ (self distanceTo: (self nearestPointAlongLineFrom: p1 to: p2)) <= epsilon
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>printOn: aStream [
+{ #category : #printing }
+Point >> printOn: aStream [ 
 	"The receiver prints on aStream in terms of infix notation."
 	
 	aStream nextPut: $(.
@@ -824,11 +619,8 @@ Point>>printOn: aStream [
 	aStream nextPut: $).
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>quadrantOf: otherPoint [
+{ #category : #'point functions' }
+Point >> quadrantOf: otherPoint [
 	"Return 1..4 indicating relative direction to otherPoint.
 	1 is downRight, 2=downLeft, 3=upLeft, 4=upRight"
 	^ x <= otherPoint x
@@ -837,32 +629,23 @@ Point>>quadrantOf: otherPoint [
 
 ]
 
-{
-	#category : #'polar coordinates',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>r [
+{ #category : #'polar coordinates' }
+Point >> r [
 	"Answer the receiver's radius in polar coordinate system."
 
 	^ (self dotProduct: self) sqrt
 ]
 
-{
-	#category : #arithmetic,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>reciprocal [
+{ #category : #arithmetic }
+Point >> reciprocal [
 	"Answer a Point with coordinates that are the reciprocals of mine."
 
 	^ x reciprocal @ y reciprocal.
 
 ]
 
-{
-	#category : #'rectangle creation',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>rectangle: aPoint [
+{ #category : #'rectangle creation' }
+Point >> rectangle: aPoint [ 
 	"Answer a Rectangle that encompasses the receiver and aPoint. This is the most general infix way to create a rectangle."
 
 	^ Rectangle 
@@ -870,30 +653,21 @@ Point>>rectangle: aPoint [
 		point: aPoint
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>reflectedAbout: aPoint [
+{ #category : #'point functions' }
+Point >> reflectedAbout: aPoint [
 	"Answer a new point that is the reflection of the receiver about the given point."
 
 	^ (self - aPoint) negated + aPoint
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>rightRotated [
+{ #category : #'point functions' }
+Point >> rightRotated [
 	"Return the receiver rotated 90 degrees, i.e. self rotateBy: #right centerAt: 0 asPoint. Compare to transposed and normal."
 	^ y negated @ x
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>rotateBy: angle about: center [
+{ #category : #transforming }
+Point >> rotateBy: angle about: center [ 
 	"Even though Point.theta is measured CW, this rotates with the more conventional CCW interpretateion of angle."
 	| p r theta |
 	p := self - center.
@@ -902,11 +676,8 @@ Point>>rotateBy: angle about: center [
 	^ (center x asFloat + (r * theta cos)) @ (center y asFloat - (r * theta sin))
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>rotateBy: direction centerAt: c [
+{ #category : #'point functions' }
+Point >> rotateBy: direction centerAt: c [ 
 	"Answer a Point which is rotated according to direction, about the point c.
 	Direction must be one of #right (CW), #left (CCW) or #pi (180 degrees)."
 	| offset |
@@ -917,11 +688,8 @@ Point>>rotateBy: direction centerAt: c [
 	self error: 'unrecognizable direction'
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>roundDownTo: grid [
+{ #category : #'truncation and round off' }
+Point >> roundDownTo: grid [
 	"Answer a Point that is the receiver's x and y rounded to grid x and 
 	grid y by lower value (toward negative infinity)."
 	
@@ -930,11 +698,8 @@ Point>>roundDownTo: grid [
 	^ (x roundDownTo: gridPoint x) @ (y roundDownTo: gridPoint y)
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>roundTo: grid [
+{ #category : #'truncation and round off' }
+Point >> roundTo: grid [
 	"Answer a Point that is the receiver's x and y rounded to grid x and 
 	grid y."
 	
@@ -943,11 +708,8 @@ Point>>roundTo: grid [
 	^ (x roundTo: gridPoint x) @ (y roundTo: gridPoint y)
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>roundUpTo: grid [
+{ #category : #'truncation and round off' }
+Point >> roundUpTo: grid [
 	"Answer a Point that is the receiver's x and y rounded to grid x and 
 	grid y by upper value (toward infinity)."
 	
@@ -956,11 +718,8 @@ Point>>roundUpTo: grid [
 	^ (x roundUpTo: gridPoint x) @ (y roundUpTo: gridPoint y)
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>rounded [
+{ #category : #'truncation and round off' }
+Point >> rounded [
 	"Answer a Point that is the receiver's x and y rounded. Answer the receiver if its coordinates are already integral."
 
 	self isIntegerPoint ifTrue: [ ^ self] .
@@ -968,92 +727,65 @@ Point>>rounded [
 
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>scaleBy: factor [
+{ #category : #transforming }
+Point >> scaleBy: factor [ 
 	"Answer a Point scaled by factor (an instance of Point)."
 
 	^(factor x * x) @ (factor y * y)
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>scaleFrom: rect1 to: rect2 [
+{ #category : #transforming }
+Point >> scaleFrom: rect1 to: rect2 [
 	"Produce a point stretched according to the stretch from rect1 to rect2"
 	^ rect2 topLeft + (((x-rect1 left) * rect2 width // rect1 width)
 					@ ((y-rect1 top) * rect2 height // rect1 height))
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>setR: rho degrees: degrees [
+{ #category : #private }
+Point >> setR: rho degrees: degrees [ 
 	| radians |
 	radians := degrees asFloat degreesToRadians.
 	x := rho asFloat * radians cos.
 	y := rho asFloat * radians sin
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>setX: xValue setY: yValue [
+{ #category : #private }
+Point >> setX: xValue setY: yValue [ 
 	x := xValue.
 	y := yValue
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>sideOf: otherPoint [
+{ #category : #geometry }
+Point >> sideOf: otherPoint [ 
 	"Returns #left, #right or #center if the otherPoint lies to the left, right or on the line given by the vector from 0@0 to self"
 	| side |
 	side := (self crossProduct: otherPoint) sign.
 	^ { #right . #center . #left } at: side + 2
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>sign [
+{ #category : #'point functions' }
+Point >> sign [
 	^ (x sign @ y sign)
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>sortsBefore: otherPoint [
+{ #category : #'point functions' }
+Point >> sortsBefore: otherPoint [
 	"Return true if the receiver sorts before the other point"
 	^ y = otherPoint y
 		ifTrue: [ x <= otherPoint x ]
 		ifFalse: [ y <= otherPoint y ]
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>squaredDistanceTo: aPoint [
+{ #category : #'point functions' }
+Point >> squaredDistanceTo: aPoint [ 
 	"Answer the distance between aPoint and the receiver."
 	| delta |
 	delta := aPoint - self.
 	^ delta dotProduct: delta
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>storeOn: aStream [
+{ #category : #printing }
+Point >> storeOn: aStream [ 
 	"x@y printed form is good for storing too"
 	aStream nextPut: $(.
 	self printOn: aStream.
@@ -1061,11 +793,8 @@ Point>>storeOn: aStream [
 
 ]
 
-{
-	#category : #'polar coordinates',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>theta [
+{ #category : #'polar coordinates' }
+Point >> theta [
 	"Answer the angle the receiver makes with origin in radians. right is 0; 
 	down is 90."
 
@@ -1084,11 +813,8 @@ Point>>theta [
 				ifFalse: [ "180.0 degreesToRadians" 3.141592653589793 + theta ] ]
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>to: end1 intersects: start2 to: end2 [
+{ #category : #geometry }
+Point >> to: end1 intersects: start2 [ to: end2 
 	"Returns true if the linesegment from start1 (=self) to end1 intersects with the segment from start2 to end2, otherwise false."
 	
 	| start1 sideStart sideEnd |
@@ -1111,58 +837,40 @@ Point>>to: end1 intersects: start2 to: end2 [
 	^ true
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>to: end sideOf: otherPoint [
+{ #category : #geometry }
+Point >> to: end sideOf: otherPoint [ 
 	"Returns #left, #right, #center if the otherPoint lies to the left, right or on the line given by the vector from self to end"
 	^ end - self sideOf: otherPoint - self
 ]
 
-{
-	#category : #transforming,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>translateBy: delta [
+{ #category : #transforming }
+Point >> translateBy: delta [ 
 	"Answer a Point translated by delta (an instance of Point)."
 
 	^ (delta x + x) @ (delta y + y)
 ]
 
-{
-	#category : #'point functions',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>transposed [
+{ #category : #'point functions' }
+Point >> transposed [
 	^ y @ x
 ]
 
-{
-	#category : #geometry,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>triangleArea: b with: c [
+{ #category : #geometry }
+Point >> triangleArea: b with: c [
 	"Returns twice the area of the oriented triangle (a, b, c), i.e., the area is positive if the triangle is oriented counterclockwise"
 	^ b x - self x * (c y - self y) - (b y - self y * (c x - self x))
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>truncateTo: grid [
+{ #category : #'truncation and round off' }
+Point >> truncateTo: grid [ 
 	"Answer a Point that is the receiver's x and y truncated to grid x and grid y."
 	| gridPoint |
 	gridPoint := grid asPoint.
 	^ (x truncateTo: gridPoint x) @ (y truncateTo: gridPoint y)
 ]
 
-{
-	#category : #'truncation and round off',
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>truncated [
+{ #category : #'truncation and round off' }
+Point >> truncated [
 	"Answer a Point whose x and y coordinates are integers. Answer the receiver if its coordinates are already integral."
 
 	self isIntegerPoint ifTrue: [ ^ self ].
@@ -1170,30 +878,21 @@ Point>>truncated [
 
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>veryDeepCopyWith: deepCopier [
+{ #category : #copying }
+Point >> veryDeepCopyWith: deepCopier [
 	"Return self.  I am immutable in the Morphic world.  Do not record me."
 	^ self
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>x [
+{ #category : #accessing }
+Point >> x [
 	"Answer the x coordinate."
 
 	^ x
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:33'
-}
-Point>>y [
+{ #category : #accessing }
+Point >> y [
 	"Answer the y coordinate."
 
 	^ y

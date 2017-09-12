@@ -7,36 +7,26 @@ Class {
 	#instVars : [
 		'environment'
 	],
-	#category : #System-Support,
-	#timestamp : '<historical>'
+	#category : #System-Support
 }
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer class>>cleanUp: agressive [
+{ #category : #cleanup }
+SystemOrganizer class >> cleanUp: agressive [
 	"Remove empty categories when cleaning aggressively"
 
 	agressive ifTrue: [SystemOrganization removeEmptyCategories].
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer class>>default [
+{ #category : #'instance creation' }
+SystemOrganizer class >> default [
 	"look in the environment that the receiver organizes for the associated organization" 
 	
 	^ self environment organization.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>addCategory: newCategory [
+{ #category : #accessing }
+SystemOrganizer >> addCategory: newCategory [
 	(self includesCategory: newCategory) ifTrue: [ ^ self ].
 
 	super addCategory: newCategory.
@@ -44,30 +34,21 @@ SystemOrganizer>>addCategory: newCategory [
 	SystemAnnouncer uniqueInstance classCategoryAdded: newCategory.
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>categoriesMatching: matchString [
+{ #category : #queries }
+SystemOrganizer >> categoriesMatching: matchString [
 	"Return all matching categories"
 	
 	self categories ifNil: [ ^#() ].
 	^ self categories select: [:c | matchString match: c]
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>classesInCategory: category [
+{ #category : #queries }
+SystemOrganizer >> classesInCategory: category [
 	^ (self listAtCategoryNamed: category) collect: [ :className | self environment at: className ] 
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>commentInventory: categoryName [
+{ #category : #queries }
+SystemOrganizer >> commentInventory: categoryName [
 	"SystemOrganization commentInventory: 'Morphic*'"
 
 	| classes commentedClasses |
@@ -82,28 +63,19 @@ SystemOrganizer>>commentInventory: categoryName [
 		, ' have comments and ' , (classes size - commentedClasses size) asString , ' do not yet have comments.'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>environment [
+{ #category : #accessing }
+SystemOrganizer >> environment [
 	 ^ environment ifNil: [ environment := Smalltalk globals]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>environment: aSystemDictionary [
+{ #category : #accessing }
+SystemOrganizer >> environment: aSystemDictionary [
 	 environment := aSystemDictionary.
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>includesCategory: aString [
+{ #category : #testing }
+SystemOrganizer >> includesCategory: aString [
 	"Tests if a category is already included."
 	
 	^ self categories 
@@ -111,22 +83,16 @@ SystemOrganizer>>includesCategory: aString [
 		ifNotNil: [ :categories | categories includes: aString ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>initialize [
+{ #category : #initialization }
+SystemOrganizer >> initialize [
 	super initialize.
 	categoryArray := Array new.
 	categoryStops := Array new.
 	elementArray := Array new
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>orderedTraitsIn: category [
+{ #category : #queries }
+SystemOrganizer >> orderedTraitsIn: category [
 	"Answer an OrderedCollection containing references to the traits in the 
 	category whose name is the argument, category (a string). The traits 
 	are ordered so they can be filed in." 
@@ -139,21 +105,15 @@ SystemOrganizer>>orderedTraitsIn: category [
 	^ traits asArray
 ]
 
-{
-	#category : #remove,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>removeCategoriesMatching: matchString [
+{ #category : #remove }
+SystemOrganizer >> removeCategoriesMatching: matchString [
 	"Remove all matching categories with their classes"
 	(self categoriesMatching: matchString) do:
 		[:c | self removeSystemCategory: c]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>removeCategory: category [
+{ #category : #accessing }
+SystemOrganizer >> removeCategory: category [
 	| r |
 	r := super removeCategory: category.
 	
@@ -165,11 +125,8 @@ SystemOrganizer>>removeCategory: category [
 	^ r
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>removeMissingClasses [
+{ #category : #queries }
+SystemOrganizer >> removeMissingClasses [
 	"Remove any class names that are no longer in the Smalltalk dictionary. Used for cleaning up after garbage collecting user-generated classes."
 
 	"SystemOrganization removeMissingClasses"
@@ -180,11 +137,8 @@ SystemOrganizer>>removeMissingClasses [
 				ifFalse: [ self removeElement: el ] ]
 ]
 
-{
-	#category : #remove,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>removeSystemCategory: category [
+{ #category : #remove }
+SystemOrganizer >> removeSystemCategory: category [
 	"remove all the classes and traits associated with the category"
 
 	 (self orderedTraitsIn: category) , (self superclassOrder: category)
@@ -194,11 +148,8 @@ SystemOrganizer>>removeSystemCategory: category [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>renameCategory: oldCatString toBe: newCatString [
+{ #category : #accessing }
+SystemOrganizer >> renameCategory: oldCatString toBe: newCatString [
 	| r |
 	r := super renameCategory: oldCatString toBe: newCatString.
 	SystemAnnouncer uniqueInstance 
@@ -206,11 +157,8 @@ SystemOrganizer>>renameCategory: oldCatString toBe: newCatString [
 	^ r
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>superclassOrder: category [
+{ #category : #queries }
+SystemOrganizer >> superclassOrder: category [
 	"Answer an OrderedCollection containing references to the classes in the 
 	category whose name is the argument, category (a string). The classes 
 	are ordered with superclasses first so they can be filed in."
@@ -221,11 +169,8 @@ SystemOrganizer>>superclassOrder: category [
 	^ Class superclassOrder: classes 
 ]
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 07:16:13'
-}
-SystemOrganizer>>uncommentedClassesIn: categoryName [
+{ #category : #queries }
+SystemOrganizer >> uncommentedClassesIn: categoryName [
 	"SystemOrganization uncommentedClassesIn: 'Morphic*'"
 
 	| classes |

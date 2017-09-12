@@ -1,12 +1,7 @@
-Extension {
-	#name : #ClassDescription
-}
+Extension { #name : #ClassDescription }
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ClassDescription>>codeRewritingClass: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+ClassDescription >> codeRewritingClass: aBuilder [
 	| target |
 	target := aBuilder model.
 	
@@ -48,11 +43,8 @@ ClassDescription>>codeRewritingClass: aBuilder [
 		withSeparatorAfter.
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ClassDescription>>groupRefactoring: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+ClassDescription >> groupRefactoring: aBuilder [
 	| target |
 	target := aBuilder model.
 	
@@ -71,11 +63,8 @@ ClassDescription>>groupRefactoring: aBuilder [
 		order: 100.
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ClassDescription>>instVarRefactoring: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+ClassDescription >> instVarRefactoring: aBuilder [
 	| target |
 	target := aBuilder model.
 	
@@ -122,11 +111,8 @@ ClassDescription>>instVarRefactoring: aBuilder [
 		order: 600.
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ClassDescription>>methodRefactoring: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+ClassDescription >> methodRefactoring: aBuilder [
 	| target selectedMethod selectedMethods |
 
 	target := aBuilder model.
@@ -209,11 +195,8 @@ ClassDescription>>methodRefactoring: aBuilder [
 		withSeparatorAfter.
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ClassDescription>>packageRefactoringMenu: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+ClassDescription >> packageRefactoringMenu: aBuilder [
 	| target |
 	target := aBuilder model.
 	
@@ -232,11 +215,8 @@ ClassDescription>>packageRefactoringMenu: aBuilder [
 		order: 100.
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ClassDescription>>refactoringMenu: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+ClassDescription >> refactoringMenu: aBuilder [
 	| target |
 	
 	target := aBuilder model.
@@ -286,11 +266,8 @@ ClassDescription>>refactoringMenu: aBuilder [
 			withSeparatorAfter.
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ClassDescription>>refactoringMethod: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+ClassDescription >> refactoringMethod: aBuilder [
 
 	(aBuilder item: #'Refactoring')
 		order: -100.
@@ -300,11 +277,8 @@ ClassDescription>>refactoringMethod: aBuilder [
 		withSeparatorAfter
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ClassDescription>>refactoringSubmenu: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+ClassDescription >> refactoringSubmenu: aBuilder [
 	| target |
 	target := aBuilder model.
 
@@ -359,11 +333,8 @@ ClassDescription>>refactoringSubmenu: aBuilder [
 		order: 600.
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ClassDescription>>renameMethodAllItem: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+ClassDescription >> renameMethodAllItem: aBuilder [
 
 	^ (aBuilder item: #'Rename method (all)')
 			keyText: 'r, m' if: Nautilus useOldStyleKeys not;
@@ -376,11 +347,8 @@ ClassDescription>>renameMethodAllItem: aBuilder [
 				 ].
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ClassDescription>>sourceCodeRefactoring: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+ClassDescription >> sourceCodeRefactoring: aBuilder [
 	| target |
 	target := aBuilder model.
 	(aBuilder item: #'Create cascade')
@@ -484,11 +452,8 @@ ClassDescription>>sourceCodeRefactoring: aBuilder [
 		withSeparatorAfter
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ClassDescription>>sourceCodeRefactoringMenu: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+ClassDescription >> sourceCodeRefactoringMenu: aBuilder [
 	| target |
 	target := aBuilder model.
 	(aBuilder item: #Format)
@@ -501,11 +466,8 @@ ClassDescription>>sourceCodeRefactoringMenu: aBuilder [
 		withSeparatorAfter
 ]
 
-{
-	#category : #'*NautilusRefactoring',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-ClassDescription>>varRefactoringSubMenu: aBuilder [
+{ #category : #'*NautilusRefactoring' }
+ClassDescription >> varRefactoringSubMenu: aBuilder [
 	| target | 
 	target := aBuilder model.
 	

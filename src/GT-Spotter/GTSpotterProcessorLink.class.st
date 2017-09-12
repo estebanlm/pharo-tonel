@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #GTSpotterProcessorLink,
 	#superclass : #DoubleLink,
@@ -9,33 +6,23 @@ Class {
 		'tailLink',
 		'size'
 	],
-	#category : #GT-Spotter-Utils,
-	#timestamp : ''
+	#category : #GT-Spotter-Utils
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessorLink class>>from: aDoubleLink [
+{ #category : #accessing }
+GTSpotterProcessorLink class >> from: aDoubleLink [
 
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessorLink>>asSpotterProcessorLink [
+{ #category : #accessing }
+GTSpotterProcessorLink >> asSpotterProcessorLink [
 
 	^ self
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessorLink>>clear [
+{ #category : #actions }
+GTSpotterProcessorLink >> clear [
 
 	self
 		headLink: nil;
@@ -44,89 +31,59 @@ GTSpotterProcessorLink>>clear [
 	size := 0.
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessorLink>>gtDisplayOn: stream [
+{ #category : #printing }
+GTSpotterProcessorLink >> gtDisplayOn: stream [
 	stream 
 		nextPutAll: 'Processor link: ';
 		nextPutAll: self processor title asString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessorLink>>headLink [
+{ #category : #accessing }
+GTSpotterProcessorLink >> headLink [
 	^ headLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessorLink>>headLink: anObject [
+{ #category : #accessing }
+GTSpotterProcessorLink >> headLink: anObject [
 	headLink := anObject
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessorLink>>incrementSize [
+{ #category : #actions }
+GTSpotterProcessorLink >> incrementSize [
 
 	size := self size + 1
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessorLink>>isEmpty [
+{ #category : #testing }
+GTSpotterProcessorLink >> isEmpty [
 
 	^ self headLink isNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessorLink>>isFull [
+{ #category : #testing }
+GTSpotterProcessorLink >> isFull [
 
 	^ self size = self processor itemsLimit
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessorLink>>processor [
+{ #category : #accessing }
+GTSpotterProcessorLink >> processor [
 
 	^ self value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessorLink>>size [
+{ #category : #accessing }
+GTSpotterProcessorLink >> size [
 
 	^ size ifNil: [ size := 0 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessorLink>>tailLink [
+{ #category : #accessing }
+GTSpotterProcessorLink >> tailLink [
 	^ tailLink
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTSpotterProcessorLink>>tailLink: anObject [
+{ #category : #accessing }
+GTSpotterProcessorLink >> tailLink: anObject [
 	tailLink := anObject
 ]

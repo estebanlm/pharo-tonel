@@ -51,15 +51,11 @@ https://github.com/pharo-project/pharo-changelogs/blob/master/Pharo40ChangeLogs.
 Class {
 	#name : #PharoWelcomePage,
 	#superclass : #Object,
-	#category : #Pharo-Help,
-	#timestamp : 'PavelKrivanek 4/22/2016 17:18'
+	#category : #Pharo-Help
 }
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-PharoWelcomePage class>>open [
+{ #category : #opening }
+PharoWelcomePage class >> open [
 	<script>
 	| group welcome help zen about window |
 
@@ -95,11 +91,8 @@ PharoWelcomePage class>>open [
 	^ window
 ]
 
-{
-	#category : #opening,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-PharoWelcomePage class>>openForRelease [
+{ #category : #opening }
+PharoWelcomePage class >> openForRelease [
 	<script>
 	| window |
 	
@@ -111,10 +104,7 @@ PharoWelcomePage class>>openForRelease [
 	window center: Display extent / 2
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-PharoWelcomePage class>>title [
+{ #category : #accessing }
+PharoWelcomePage class >> title [
 	^ 'Welcome to ', SystemVersion current version  
 ]

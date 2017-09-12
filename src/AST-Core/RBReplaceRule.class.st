@@ -16,93 +16,62 @@ Class {
 	#instVars : [
 		'verificationBlock'
 	],
-	#category : #AST-Core-Matching,
-	#timestamp : 'md 8/9/2005 14:56'
+	#category : #AST-Core-Matching
 }
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReplaceRule>>canMatch: aProgramNode  [
+{ #category : #matching }
+RBReplaceRule >> canMatch: aProgramNode [ 
 	^verificationBlock value: aProgramNode
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReplaceRule>>foundMatchFor: aProgramNode  [
+{ #category : #matching }
+RBReplaceRule >> foundMatchFor: aProgramNode [ 
 	self subclassResponsibility
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReplaceRule>>initialize [
+{ #category : #initialization }
+RBReplaceRule >> initialize [
 	super initialize.
 	verificationBlock := [:aNode | true]
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReplaceRule>>replace: aProgramNode with: newNode  [
+{ #category : #matching }
+RBReplaceRule >> replace: aProgramNode with: newNode [ 
 	aProgramNode replaceMethodSource: newNode
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReplaceRule>>searchFor: searchString replaceWith: replaceString  [
+{ #category : #matching }
+RBReplaceRule >> searchFor: searchString replaceWith: replaceString [ 
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReplaceRule>>searchFor: searchString replaceWith: replaceString when: aBlock  [
+{ #category : #matching }
+RBReplaceRule >> searchFor: searchString replaceWith: replaceString when: aBlock [ 
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReplaceRule>>searchForMethod: searchString replaceWith: replaceString  [
+{ #category : #matching }
+RBReplaceRule >> searchForMethod: searchString replaceWith: replaceString [ 
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReplaceRule>>searchForMethod: searchString replaceWith: replaceString when: aBlock  [
+{ #category : #matching }
+RBReplaceRule >> searchForMethod: searchString replaceWith: replaceString when: aBlock [ 
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReplaceRule>>searchForTree: aBRProgramNode replaceWith: replaceNode  [
+{ #category : #matching }
+RBReplaceRule >> searchForTree: aBRProgramNode replaceWith: replaceNode [ 
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBReplaceRule>>searchForTree: aBRProgramNode replaceWith: replaceString when: aBlock  [
+{ #category : #matching }
+RBReplaceRule >> searchForTree: aBRProgramNode replaceWith: replaceString when: aBlock [ 
 
 	self subclassResponsibility
 ]

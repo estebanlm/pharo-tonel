@@ -11,15 +11,11 @@ Class {
 		'tally',
 		'senders'
 	],
-	#category : #Tool-Profilers,
-	#timestamp : '<historical>'
+	#category : #Tool-Profilers
 }
 
-{
-	#category : #LICENSE,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally class>>LICENSE [
+{ #category : #LICENSE }
+QSystemTally class >> LICENSE [
 	^'Project Squeak
 
 	In Memory of Andreas Raab.  Author, Friend, Colleague. 	http://forum.world.st/In-Memory-of-Andreas-Raab-td4663424.html
@@ -36,11 +32,8 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.'
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>asArray [
+{ #category : #converting }
+QSystemTally >> asArray [
 	| link |
 	^Array streamContents: [ :s |
 		link := self.
@@ -51,20 +44,14 @@ QSystemTally>>asArray [
 	].
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>asSortedCollection: aCollection [
+{ #category : #converting }
+QSystemTally >> asSortedCollection: aCollection [
 	"Create a sorted collection from the given input"
 	^aCollection asSortedCollection: [ :tA :tB | tA tally >= tB tally ]
 ]
 
-{
-	#category : #report,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>bump: hitCount fromSender: senderTally [
+{ #category : #report }
+QSystemTally >> bump: hitCount fromSender: senderTally [
 	"Add this hitCount to the total, and include a reference to the
 	sender responsible for the increment"
 	self bumpBy: hitCount.
@@ -72,38 +59,26 @@ QSystemTally>>bump: hitCount fromSender: senderTally [
 	senderTally ifNotNil: [ senders add: (senderTally copyWithTally: hitCount) ]
 ]
 
-{
-	#category : #tallying,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>bumpBy: count [
+{ #category : #tallying }
+QSystemTally >> bumpBy: count [
 	"Bump this tally by the specified amount"
 	tally := tally + count
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>class: aClass method: aCompiledMethod [
+{ #category : #initialize }
+QSystemTally >> class: aClass method: aCompiledMethod [
 	class := aClass.
 	method := aCompiledMethod.
 	tally := 0.
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>copyWithTally: hitCount [
+{ #category : #copying }
+QSystemTally >> copyWithTally: hitCount [
 	^ (QSystemTally new class: class method: method) bumpBy: hitCount
 ]
 
-{
-	#category : #report,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>fullPrintOn: aStream tallyExact: isExact orThreshold: perCent time: totalTime [
+{ #category : #report }
+QSystemTally >> fullPrintOn: aStream tallyExact: isExact orThreshold: perCent time: totalTime [
 	| threshold |  
 	isExact ifFalse: [threshold := (perCent asFloat / 100 * tally) rounded].
 	aStream nextPutAll: '**Tree**'; cr.
@@ -122,41 +97,29 @@ QSystemTally>>fullPrintOn: aStream tallyExact: isExact orThreshold: perCent time
 		time: totalTime.
 ]
 
-{
-	#category : #report,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>getNewTabsFor: tabs [
+{ #category : #report }
+QSystemTally >> getNewTabsFor: tabs [
 	^ tabs size < self maxTabs
 		ifTrue: [ tabs ]
 		ifFalse: [ (tabs select: [ :x | x = '[' ]) copyWith: '[' ]
 ]
 
-{
-	#category : #report,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>into: leafDict fromSender: senderTally [
+{ #category : #report }
+QSystemTally >> into: leafDict fromSender: senderTally [
 	| leafNode |
 	leafNode := leafDict at: method ifAbsentPut: [ QSystemTally new class: class method: method ].
 	leafNode bump: tally fromSender: senderTally
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>isPrimitives [
+{ #category : #testing }
+QSystemTally >> isPrimitives [
 	"Detect pseudo node used to carry tally of local hits"
 
 	^ method isNil
 ]
 
-{
-	#category : #report,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>leavesInto: leafDict fromSender: senderTally [
+{ #category : #report }
+QSystemTally >> leavesInto: leafDict fromSender: senderTally [
 	| rcvrs |
 	rcvrs := self sonsOver: 0.
 	rcvrs size = 0
@@ -167,11 +130,8 @@ QSystemTally>>leavesInto: leafDict fromSender: senderTally [
 					ifFalse: [node leavesInto: leafDict fromSender: self]]]
 ]
 
-{
-	#category : #report,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>leavesPrintOn: aStream tallyExact: isExact orThreshold: threshold time: totalTime [
+{ #category : #report }
+QSystemTally >> leavesPrintOn: aStream tallyExact: isExact orThreshold: threshold time: totalTime [
 	"@TODO: Apparently, providing true as isExact will always produce an error "
 	| dict |
 	dict := IdentityDictionary new: 100.
@@ -187,66 +147,45 @@ QSystemTally>>leavesPrintOn: aStream tallyExact: isExact orThreshold: threshold 
 					node printOn: aStream total: tally totalTime: totalTime tallyExact: isExact ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>maxClassNameSize [
+{ #category : #accessing }
+QSystemTally >> maxClassNameSize [
 	"Return the default maximum width of the class name alone"
 	^30
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>maxClassPlusSelectorSize [
+{ #category : #accessing }
+QSystemTally >> maxClassPlusSelectorSize [
 	"Return the default maximum width of the class plus selector together (not counting the '>>')"
 	^60
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>maxTabs [
+{ #category : #accessing }
+QSystemTally >> maxTabs [
 	"Return the default number of tabs after which leading white space is compressed"
 	^36
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>method [
+{ #category : #accessing }
+QSystemTally >> method [
 	"Answer the CompiledMethod associated with this tally"
 	^method
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>primitives: anInteger [
+{ #category : #initialize }
+QSystemTally >> primitives: anInteger [
 	"Make the receiver be a node of unassigned primitives"
 	tally := anInteger.
 	method := nil. "indicates primitives"
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>printOn: aStream [
+{ #category : #printing }
+QSystemTally >> printOn: aStream [
 	aStream print: class; nextPutAll: '>>'; print: (method ifNotNil:[method selector]).
 	aStream nextPutAll: ' -- '; print: tally.
 ]
 
-{
-	#category : #report,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>printOn: aStream total: total totalTime: totalTime tallyExact: isExact  [
+{ #category : #report }
+QSystemTally >> printOn: aStream total: total totalTime: totalTime tallyExact: isExact [ 
 	| className myTally aClass percentage |
 	isExact ifTrue:[
 		myTally := tally.
@@ -273,31 +212,22 @@ QSystemTally>>printOn: aStream total: total totalTime: totalTime tallyExact: isE
 	].
 ]
 
-{
-	#category : #report,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>sonsOver: threshold [
+{ #category : #report }
+QSystemTally >> sonsOver: threshold [
 	"Answer the sons with tallys over the given threshold"
 	"threshold is a number "
 	receivers ifNil: [ ^ #() ].
 	^ receivers asArray select: [ :son | son tally > threshold ].
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>tally [
+{ #category : #accessing }
+QSystemTally >> tally [
 	"Answer the tally count for this node"
 	^tally
 ]
 
-{
-	#category : #tallying,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>tally: context by: count [
+{ #category : #tallying }
+QSystemTally >> tally: context by: count [
 	"Explicitly tally the specified context and its stack."
 	| root |
 	(root := context  sender) 
@@ -305,11 +235,8 @@ QSystemTally>>tally: context by: count [
 		ifNotNil:[^(self tally: root by: count) tallyPath: context by: count]
 ]
 
-{
-	#category : #tallying,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>tallyMethod: aMethod by: count [
+{ #category : #tallying }
+QSystemTally >> tallyMethod: aMethod by: count [
 	"Called explicitly and needs to decrement receiver's tally count"
 	| node |
 	node := receivers.
@@ -323,11 +250,8 @@ QSystemTally>>tallyMethod: aMethod by: count [
 	^node bumpBy: count
 ]
 
-{
-	#category : #tallying,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>tallyPath: context by: count [
+{ #category : #tallying }
+QSystemTally >> tallyPath: context by: count [
 	"Tally the context chain"
 
 	| aMethod aTally |
@@ -344,11 +268,8 @@ QSystemTally>>tallyPath: context by: count [
 	^ aTally bumpBy: count
 ]
 
-{
-	#category : #report,
-	#timestamp : ' 8/31/2017 05:26:21'
-}
-QSystemTally>>treePrintOn: aStream tabs: tabs thisTab: myTab total: total totalTime: totalTime tallyExact: isExact orThreshold: threshold [
+{ #category : #report }
+QSystemTally >> treePrintOn: aStream tabs: tabs thisTab: myTab total: total totalTime: totalTime tallyExact: isExact orThreshold: threshold [
 	"aStream contains the output of the print "
 
 	"tabs is a collection of strings "

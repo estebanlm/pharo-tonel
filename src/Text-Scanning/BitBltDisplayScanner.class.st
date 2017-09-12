@@ -20,23 +20,16 @@ Class {
 		'bitBlt',
 		'fillBlt'
 	],
-	#category : #Text-Scanning,
-	#timestamp : 'nice 10/12/2013 01:36'
+	#category : #Text-Scanning
 }
 
-{
-	#category : #queries,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-BitBltDisplayScanner class>>defaultFont [
+{ #category : #queries }
+BitBltDisplayScanner class >> defaultFont [
 	^ TextStyle defaultFont
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-BitBltDisplayScanner>>displayEmbeddedForm: aForm [
+{ #category : #displaying }
+BitBltDisplayScanner >> displayEmbeddedForm: aForm [
 
 	aForm 
 		displayOn: bitBlt destForm 
@@ -46,11 +39,8 @@ BitBltDisplayScanner>>displayEmbeddedForm: aForm [
 		fillColor: Color white
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-BitBltDisplayScanner>>displayString: string from: startIndex to: stopIndex at: aPoint [
+{ #category : #displaying }
+BitBltDisplayScanner >> displayString: string from: startIndex to: stopIndex at: aPoint [
     | endPoint top |
    top := aPoint translateBy: 0@ font ascent.
 	endPoint := font displayString: string on: bitBlt 
@@ -64,22 +54,16 @@ BitBltDisplayScanner>>displayString: string from: startIndex to: stopIndex at: a
         ifTrue: [ font displayStrikeoutOn: bitBlt from: top to: endPoint ]
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-BitBltDisplayScanner>>fillTextBackground [
+{ #category : #displaying }
+BitBltDisplayScanner >> fillTextBackground [
 	fillBlt == nil ifFalse:
 		["Not right"
 		fillBlt destX: line left destY: lineY
 			width: line width left height: line lineHeight; copyBits].
 ]
 
-{
-	#category : #'stop conditions',
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-BitBltDisplayScanner>>plainTab [
+{ #category : #'stop conditions' }
+BitBltDisplayScanner >> plainTab [
 	| nextDestX |
  	nextDestX := super plainTab.
 	fillBlt == nil ifFalse:
@@ -87,28 +71,19 @@ BitBltDisplayScanner>>plainTab [
 	^nextDestX
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-BitBltDisplayScanner>>setDestForm: df [
+{ #category : #private }
+BitBltDisplayScanner >> setDestForm: df [
 	bitBlt setDestForm: df.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-BitBltDisplayScanner>>setFont  [
+{ #category : #private }
+BitBltDisplayScanner >> setFont [ 
 	super setFont.  "Sets font and emphasis bits, and maybe foregroundColor"
 	font installOn: bitBlt foregroundColor: foregroundColor backgroundColor: Color transparent
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-BitBltDisplayScanner>>setPort: aBitBlt [
+{ #category : #private }
+BitBltDisplayScanner >> setPort: aBitBlt [
 	"Install the BitBlt to use"
 	bitBlt := aBitBlt.
 	bitBlt sourceX: 0; width: 0.	"Init BitBlt so that the first call to a primitive will not fail"
@@ -116,11 +91,8 @@ BitBltDisplayScanner>>setPort: aBitBlt [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-BitBltDisplayScanner>>text: t textStyle: ts foreground: foreColor background: backColor fillBlt: blt ignoreColorChanges: shadowMode [
+{ #category : #private }
+BitBltDisplayScanner >> text: t textStyle: ts foreground: foreColor background: backColor fillBlt: blt ignoreColorChanges: shadowMode [
 	text := t.
 	textStyle := ts. 
 	foregroundColor := defaultTextColor := foreColor.

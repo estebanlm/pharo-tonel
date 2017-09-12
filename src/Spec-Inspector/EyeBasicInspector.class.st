@@ -4,14 +4,10 @@ I am a special inspector that only lists the real fields of an object. I have ex
 Class {
 	#name : #EyeBasicInspector,
 	#superclass : #EyeInspector,
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeBasicInspector class>>label [
+{ #category : #accessing }
+EyeBasicInspector class >> label [
 	^ 'Basic Inspector'
 ]

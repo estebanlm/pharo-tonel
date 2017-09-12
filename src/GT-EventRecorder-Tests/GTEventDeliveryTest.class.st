@@ -9,58 +9,39 @@ Class {
 		'announcer',
 		'semaphore'
 	],
-	#category : #GT-EventRecorder-Tests-Support,
-	#timestamp : '<historical>'
+	#category : #GT-EventRecorder-Tests-Support
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventDeliveryTest>>assertSemaphore [
+{ #category : #converting }
+GTEventDeliveryTest >> assertSemaphore [
 	self deny: (semaphore waitTimeoutMSecs: 200)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventDeliveryTest>>isGlobalRecorder [
+{ #category : #testing }
+GTEventDeliveryTest >> isGlobalRecorder [
 	^ false
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventDeliveryTest>>setUp [
+{ #category : #running }
+GTEventDeliveryTest >> setUp [
 	super setUp.
 	semaphore := Semaphore new.
 	delivery := GTEventDelivery new
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventDeliveryTest>>tearDown [
+{ #category : #running }
+GTEventDeliveryTest >> tearDown [
 	super tearDown.
 	delivery deactivate.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventDeliveryTest>>testPrintOn [
+{ #category : #tests }
+GTEventDeliveryTest >> testPrintOn [
 	self assert: (String streamContents: [ :stream | delivery printOn: stream ]) notEmpty.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventDeliveryTest>>testPrintOn2 [
+{ #category : #tests }
+GTEventDeliveryTest >> testPrintOn2 [
 	| string |
 	delivery recorder: self.
 	delivery preSuspendingAction: [ semaphore signal ].
@@ -72,10 +53,7 @@ GTEventDeliveryTest>>testPrintOn2 [
 	self assert: (string includesSubstring: 'next cycle in').
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:42'
-}
-GTEventDeliveryTest>>testPrintProcessName [
+{ #category : #tests }
+GTEventDeliveryTest >> testPrintProcessName [
 	self assert: delivery printProcessName isNotEmpty
 ]

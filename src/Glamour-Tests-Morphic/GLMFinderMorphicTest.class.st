@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMFinderMorphicTest,
 	#superclass : #GLMMorphicTest,
-	#category : #Glamour-Tests-Morphic,
-	#timestamp : ''
+	#category : #Glamour-Tests-Morphic
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFinderMorphicTest>>testClose [
+{ #category : #tests }
+GLMFinderMorphicTest >> testClose [
 	| finder |
 	finder := GLMFinder new.
 	window := finder openOn: 123.
@@ -21,22 +14,16 @@ GLMFinderMorphicTest>>testClose [
 	self assert: window owner isNil
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFinderMorphicTest>>testCreationVariableSize [
+{ #category : #tests }
+GLMFinderMorphicTest >> testCreationVariableSize [
 	window := (GLMFinder new)
 		variableSizePanes;
 		openOn: 123.
 	self assert: window submorphs last class equals: GeneralScrollPane
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFinderMorphicTest>>testDefaultFixedSizePanes [
+{ #category : #tests }
+GLMFinderMorphicTest >> testDefaultFixedSizePanes [
 	| finder container |
 	finder := GLMFinder new.
 	window := finder openOn: 40.
@@ -51,11 +38,8 @@ GLMFinderMorphicTest>>testDefaultFixedSizePanes [
 	self assert: container submorphs first width <= (window submorphs last width / 2)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFinderMorphicTest>>testEmbeddedBrowserRefreshesRendering [
+{ #category : #tests }
+GLMFinderMorphicTest >> testEmbeddedBrowserRefreshesRendering [
 	| tabulator finder tabulator1 textMorph1 textMorph2 content1 details1 |
 	"self debug: #testEmbeddedBrowserRefreshesRendering"
 	tabulator := GLMTabulator new.
@@ -89,11 +73,8 @@ GLMFinderMorphicTest>>testEmbeddedBrowserRefreshesRendering [
 	self assert: textMorph2 model getText asString equals: '42'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFinderMorphicTest>>testFinderWithEmbeddedBrowser [
+{ #category : #tests }
+GLMFinderMorphicTest >> testFinderWithEmbeddedBrowser [
 
 	| navigator finder tree1 tree2 |
 	navigator := GLMTabulator new.
@@ -118,20 +99,14 @@ GLMFinderMorphicTest>>testFinderWithEmbeddedBrowser [
 	self assert: tree1 model glamourPresentation ~= tree2 model glamourPresentation.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFinderMorphicTest>>testFixedSize [
+{ #category : #tests }
+GLMFinderMorphicTest >> testFixedSize [
 	window := GLMFinder new openOn: 123.
 	self assert: window submorphs last class equals: GLMPaneScroller
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFinderMorphicTest>>testMultiplePresentationsValidation [
+{ #category : #tests }
+GLMFinderMorphicTest >> testMultiplePresentationsValidation [
 	| browser |
 	browser := GLMFinder new.
 	browser show: [:a | a list. a text ].
@@ -140,11 +115,8 @@ GLMFinderMorphicTest>>testMultiplePresentationsValidation [
 	self assert: (browser panes first port: #selection) value equals: $z
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFinderMorphicTest>>testNoSelection [
+{ #category : #tests }
+GLMFinderMorphicTest >> testNoSelection [
 	| browser treeMorph treeNodeMorph |
 	browser := GLMFinder new.
 	browser show: [:a | a tree noSelection].
@@ -155,11 +127,8 @@ GLMFinderMorphicTest>>testNoSelection [
 	self assert: browser panes size equals: 1
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFinderMorphicTest>>testOneFixedSizePane [
+{ #category : #tests }
+GLMFinderMorphicTest >> testOneFixedSizePane [
 	| finder |
 	finder := GLMFinder new fixedSizePanes: 1.
 	window := finder openOn: 40.
@@ -172,11 +141,8 @@ GLMFinderMorphicTest>>testOneFixedSizePane [
 	self assert: window submorphs last submorphs last submorphs first width equals: window submorphs last width
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFinderMorphicTest>>testRemovingVariableSizePanes [
+{ #category : #tests }
+GLMFinderMorphicTest >> testRemovingVariableSizePanes [
 	| finder |
 	finder := GLMFinder new variableSizePanes.
 	window := finder openOn: 40.
@@ -191,11 +157,8 @@ GLMFinderMorphicTest>>testRemovingVariableSizePanes [
 	self assert: window submorphs last scrollTarget submorphs size equals: 4
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFinderMorphicTest>>testRemovingVariableSizePanesWhenChangingEntity [
+{ #category : #tests }
+GLMFinderMorphicTest >> testRemovingVariableSizePanesWhenChangingEntity [
 	| finder |
 	finder := GLMFinder new variableSizePanes.
 	window := finder openOn: #a.
@@ -204,11 +167,8 @@ GLMFinderMorphicTest>>testRemovingVariableSizePanesWhenChangingEntity [
 	self assert: window submorphs last scrollTarget submorphs size equals: 2
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMFinderMorphicTest>>testSpawnFinder [
+{ #category : #tests }
+GLMFinderMorphicTest >> testSpawnFinder [
 	| browser |
 	browser := GLMFinder new.
 	window := browser openOn: ($a to: $d).

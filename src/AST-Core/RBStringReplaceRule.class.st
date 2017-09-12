@@ -12,74 +12,52 @@ Class {
 	#instVars : [
 		'replaceTree'
 	],
-	#category : #AST-Core-Matching,
-	#timestamp : 'md 8/9/2005 14:56'
+	#category : #AST-Core-Matching
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplaceRule class>>searchFor: searchString replaceWith: replaceString  [
+{ #category : #'instance creation' }
+RBStringReplaceRule class >> searchFor: searchString replaceWith: replaceString [ 
 	^self new searchFor: searchString replaceWith: replaceString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplaceRule class>>searchFor: searchString replaceWith: replaceString when: aBlock  [
+{ #category : #'instance creation' }
+RBStringReplaceRule class >> searchFor: searchString replaceWith: replaceString when: aBlock [ 
 	^self new 
 		searchFor: searchString
 		replaceWith: replaceString
 		when: aBlock
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplaceRule class>>searchForMethod: searchString replaceWith: replaceString  [
+{ #category : #'instance creation' }
+RBStringReplaceRule class >> searchForMethod: searchString replaceWith: replaceString [ 
 	^(self new)
 		searchForMethod: searchString replaceWith: replaceString;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplaceRule class>>searchForMethod: searchString replaceWith: replaceString when: aBlock  [
+{ #category : #'instance creation' }
+RBStringReplaceRule class >> searchForMethod: searchString replaceWith: replaceString when: aBlock [ 
 	^self new 
 		searchForMethod: searchString
 		replaceWith: replaceString
 		when: aBlock
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplaceRule class>>searchForTree: aRBProgramNode replaceWith: replaceString  [
+{ #category : #'instance creation' }
+RBStringReplaceRule class >> searchForTree: aRBProgramNode replaceWith: replaceString [ 
 	^self new searchForTree: aRBProgramNode replaceWith: replaceString
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplaceRule class>>searchForTree: aRBProgramNode replaceWith: replaceString when: aBlock  [
+{ #category : #'instance creation' }
+RBStringReplaceRule class >> searchForTree: aRBProgramNode replaceWith: replaceString when: aBlock [ 
 	^self new 
 		searchForTree: aRBProgramNode
 		replaceWith: replaceString
 		when: aBlock
 ]
 
-{
-	#category : #matching,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplaceRule>>foundMatchFor: aProgramNode  [
+{ #category : #matching }
+RBStringReplaceRule >> foundMatchFor: aProgramNode [ 
 	| newNode |
 	newNode := replaceTree copyInContext: self context.
 	aProgramNode replaceMethodSource: newNode.
@@ -87,19 +65,13 @@ RBStringReplaceRule>>foundMatchFor: aProgramNode  [
 	^newNode
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplaceRule>>methodReplaceString: replaceString  [
+{ #category : #initialize-release }
+RBStringReplaceRule >> methodReplaceString: replaceString [ 
 	replaceTree := RBParser parseRewriteMethod: replaceString
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplaceRule>>replaceString: replaceString  [
+{ #category : #initialize-release }
+RBStringReplaceRule >> replaceString: replaceString [ 
 	replaceTree := RBParser parseRewriteExpression: replaceString.
 	searchTree isSequence = replaceTree isSequence 
 		ifFalse: 
@@ -108,56 +80,38 @@ RBStringReplaceRule>>replaceString: replaceString  [
 				ifFalse: [searchTree := RBSequenceNode statements: (Array with: searchTree)]]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplaceRule>>searchFor: searchString replaceWith: replaceString  [
+{ #category : #initialize-release }
+RBStringReplaceRule >> searchFor: searchString replaceWith: replaceString [ 
 	self searchString: searchString.
 	self replaceString: replaceString
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplaceRule>>searchFor: searchString replaceWith: replaceString when: aBlock  [
+{ #category : #initialize-release }
+RBStringReplaceRule >> searchFor: searchString replaceWith: replaceString when: aBlock [ 
 	self searchFor: searchString replaceWith: replaceString.
 	verificationBlock := aBlock
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplaceRule>>searchForMethod: searchString replaceWith: replaceString  [
+{ #category : #initialize-release }
+RBStringReplaceRule >> searchForMethod: searchString replaceWith: replaceString [ 
 	self methodSearchString: searchString.
 	self methodReplaceString: replaceString
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplaceRule>>searchForMethod: searchString replaceWith: replaceString when: aBlock  [
+{ #category : #initialize-release }
+RBStringReplaceRule >> searchForMethod: searchString replaceWith: replaceString when: aBlock [ 
 	self searchForMethod: searchString replaceWith: replaceString.
 	verificationBlock := aBlock
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplaceRule>>searchForTree: aBRProgramNode replaceWith: replaceNode  [
+{ #category : #initialize-release }
+RBStringReplaceRule >> searchForTree: aBRProgramNode replaceWith: replaceNode [ 
 	searchTree := aBRProgramNode.
 	replaceTree := replaceNode
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:40'
-}
-RBStringReplaceRule>>searchForTree: aBRProgramNode replaceWith: replaceString when: aBlock  [
+{ #category : #initialize-release }
+RBStringReplaceRule >> searchForTree: aBRProgramNode replaceWith: replaceString when: aBlock [ 
 	self searchForTree: aBRProgramNode replaceWith: replaceString.
 	verificationBlock := aBlock
 ]

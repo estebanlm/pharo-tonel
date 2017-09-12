@@ -7,35 +7,25 @@ Class {
 	#instVars : [
 		'paneMorphs'
 	],
-	#category : #Spec-Core-Widgets-Support,
-	#timestamp : '<historical>'
+	#category : #Spec-Core-Widgets-Support
 }
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PanelMorphWithSplitters>>addMorph: aMorph [
+{ #category : #submorphs-add/remove }
+PanelMorphWithSplitters >> addMorph: aMorph [
 
 	paneMorphs add: aMorph.
 	^ super addMorph: aMorph
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PanelMorphWithSplitters>>addMorph: aMorph fullFrame: aLayout [
+{ #category : #submorphs-add/remove }
+PanelMorphWithSplitters >> addMorph: aMorph fullFrame: aLayout [
 
 	paneMorphs add: aMorph.
 	super addMorph: aMorph fullFrame: aLayout
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PanelMorphWithSplitters>>addPaneHSplitterBetween: topMorphs and: bottomMorphs [
+{ #category : #private }
+PanelMorphWithSplitters >> addPaneHSplitterBetween: topMorphs and: bottomMorphs [
 	"Add a horizontal splitter for the given morphs that share a common bottom fraction.
 	If there is a horizontal discontinuity apply the splitter to the first contiguous group.
 	Answer the morphs to which the splitter was applied."
@@ -82,11 +72,8 @@ PanelMorphWithSplitters>>addPaneHSplitterBetween: topMorphs and: bottomMorphs [
 	^topGroup
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PanelMorphWithSplitters>>addPaneHSplitters [
+{ #category : #private }
+PanelMorphWithSplitters >> addPaneHSplitters [
 	"Add the horizontal pane splitters."
 
 	|remaining targetBottom sameBottom sameTop|
@@ -103,11 +90,8 @@ PanelMorphWithSplitters>>addPaneHSplitters [
 			copyWithoutAll: (self addPaneHSplitterBetween: sameBottom and: sameTop)]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PanelMorphWithSplitters>>addPaneSplitters [
+{ #category : #private }
+PanelMorphWithSplitters >> addPaneSplitters [
 	"Add the vertical and horizontal pane splitters."
 
 	self removePaneSplitters.
@@ -116,11 +100,8 @@ PanelMorphWithSplitters>>addPaneSplitters [
 	self linkSplittersToSplitters
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PanelMorphWithSplitters>>addPaneVSplitterBetween: leftMorphs and: rightMorphs [
+{ #category : #private }
+PanelMorphWithSplitters >> addPaneVSplitterBetween: leftMorphs and: rightMorphs [
 	"Add a vertical splitter for the given morphs that share a common right fraction.
 	If there is a vertical discontinuity apply the splitter to the first contiguous group.
 	Answer the morphs to which the splitter was applied."
@@ -164,11 +145,8 @@ PanelMorphWithSplitters>>addPaneVSplitterBetween: leftMorphs and: rightMorphs [
 	^leftGroup
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PanelMorphWithSplitters>>addPaneVSplitters [
+{ #category : #private }
+PanelMorphWithSplitters >> addPaneVSplitters [
 	"Add the vertical pane splitters."
 
 	|remaining targetRight sameRight sameLeft |
@@ -186,32 +164,23 @@ PanelMorphWithSplitters>>addPaneVSplitters [
 			copyWithoutAll: (self addPaneVSplitterBetween: sameRight and: sameLeft)]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PanelMorphWithSplitters>>initialize [
+{ #category : #initialization }
+PanelMorphWithSplitters >> initialize [
 
 	super initialize.
 
 	paneMorphs := OrderedCollection new.
 ]
 
-{
-	#category : #layout-properties,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PanelMorphWithSplitters>>layoutFrame: aFrame [
+{ #category : #layout-properties }
+PanelMorphWithSplitters >> layoutFrame: aFrame [
 
 	self activate.
 	super layoutFrame: aFrame
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-PanelMorphWithSplitters>>linkSplittersToSplitters [
+{ #category : #private }
+PanelMorphWithSplitters >> linkSplittersToSplitters [
 	"The pane morphs are already linked. Cross link the splitters as appropriate."
 	
 	self splitters do: [:each |

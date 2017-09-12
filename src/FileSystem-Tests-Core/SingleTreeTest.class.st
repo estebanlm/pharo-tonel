@@ -7,39 +7,26 @@ Class {
 	#instVars : [
 		'filesystem'
 	],
-	#category : #FileSystem-Tests-Core,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:40'
+	#category : #FileSystem-Tests-Core
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SingleTreeTest class>>isAbstract [
+{ #category : #testing }
+SingleTreeTest class >> isAbstract [
 	^ self name = #SingleTreeTest
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SingleTreeTest>>createDirectory: aString  [
+{ #category : #running }
+SingleTreeTest >> createDirectory: aString [ 
 	filesystem createDirectory: (filesystem pathFromString: aString)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SingleTreeTest>>createFile: aString  [
+{ #category : #running }
+SingleTreeTest >> createFile: aString [ 
 	filesystem store createFile: (filesystem pathFromString: aString)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SingleTreeTest>>setUp [
+{ #category : #running }
+SingleTreeTest >> setUp [
 	super setUp.
 	filesystem := FileSystem memory.
 	

@@ -20,41 +20,28 @@ Class {
 		'version',
 		'projectName'
 	],
-	#category : #Tool-Catalog-CommandLine,
-	#timestamp : 'EstebanLorenzano 7/15/2015 15:41'
+	#category : #Tool-Catalog-CommandLine
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogCommandLineHandler class>>commandName [
+{ #category : #accessing }
+CatalogCommandLineHandler class >> commandName [
 	^ 'get'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogCommandLineHandler class>>description [
+{ #category : #accessing }
+CatalogCommandLineHandler class >> description [
 	^ 'Install catalog projects from the command line (consult catalog at http://catalog.pharo.org)'
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogCommandLineHandler>>activate [
+{ #category : #activation }
+CatalogCommandLineHandler >> activate [
 	self activateHelpWithoutArguments
 		ifTrue: [ ^ self ].
 	self getProject
 ]
 
-{
-	#category : #activation,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogCommandLineHandler>>getProject [
+{ #category : #activation }
+CatalogCommandLineHandler >> getProject [
 	| project |
 	project := CatalogProvider projectNamed: self projectName.
 
@@ -66,29 +53,20 @@ CatalogCommandLineHandler>>getProject [
 	Smalltalk snapshot: true andQuit: true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogCommandLineHandler>>projectName [
+{ #category : #accessing }
+CatalogCommandLineHandler >> projectName [
 	^ projectName ifNil: [ projectName := self argumentAt: 1 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogCommandLineHandler>>version [
+{ #category : #accessing }
+CatalogCommandLineHandler >> version [
 	^ version ifNil: [ 
 		version := (self hasOption: 'version')
 			ifTrue: [ self optionAt: 'version' ]
 			ifFalse: [ #stable ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-CatalogCommandLineHandler>>warning: aString  [
+{ #category : #private }
+CatalogCommandLineHandler >> warning: aString [ 
 	self inform: aString
 ]

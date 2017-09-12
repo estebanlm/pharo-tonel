@@ -8,15 +8,11 @@ Class {
 		'stream',
 		'digits'
 	],
-	#category : #Fuel-Streams,
-	#timestamp : '<historical>'
+	#category : #Fuel-Streams
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIndexStream class>>on: aStream digits: aNumberOfDigits [
+{ #category : #'instance creation' }
+FLIndexStream class >> on: aStream digits: aNumberOfDigits [
 
 	^ self basicNew 
 		initializeOn: aStream 
@@ -26,22 +22,16 @@ FLIndexStream class>>on: aStream digits: aNumberOfDigits [
 	
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIndexStream>>initializeOn: aStream digits: aNumberOfDigits [
+{ #category : #initialize-release }
+FLIndexStream >> initializeOn: aStream digits: aNumberOfDigits [
 
 	self initialize.
 	stream := aStream.
 	digits := aNumberOfDigits
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIndexStream>>nextIndex [
+{ #category : #accessing }
+FLIndexStream >> nextIndex [
 	
 	| s |
 	s := 0.
@@ -50,11 +40,8 @@ FLIndexStream>>nextIndex [
 	^ s
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:12'
-}
-FLIndexStream>>nextIndexPut: v [
+{ #category : #accessing }
+FLIndexStream >> nextIndexPut: v [
 
 	1 to: digits do: [:i | stream nextPut: (v digitAt: digits + 1 - i)]
 

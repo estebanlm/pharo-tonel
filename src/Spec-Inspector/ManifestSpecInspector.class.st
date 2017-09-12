@@ -4,6 +4,5 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestSpecInspector,
 	#superclass : #PackageManifest,
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }

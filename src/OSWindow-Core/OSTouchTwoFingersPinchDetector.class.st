@@ -8,38 +8,25 @@ I send these event back to my handler:
 Class {
 	#name : #OSTouchTwoFingersPinchDetector,
 	#superclass : #OSTouchPinchDetector,
-	#category : #OSWindow-Core-Gestures,
-	#timestamp : 'MerwanOuddane 7/22/2015 16:21'
+	#category : #OSWindow-Core-Gestures
 }
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchTwoFingersPinchDetector>>eventClassBeginGesture [
+{ #category : #abstract }
+OSTouchTwoFingersPinchDetector >> eventClassBeginGesture [
 	^OSTouchTwoFingersPinchBeginEvent
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchTwoFingersPinchDetector>>eventClassEndGesture [
+{ #category : #abstract }
+OSTouchTwoFingersPinchDetector >> eventClassEndGesture [
 	^ OSTouchTwoFingersPinchEndEvent
 ]
 
-{
-	#category : #abstract,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchTwoFingersPinchDetector>>eventClassMoveGesture [
+{ #category : #abstract }
+OSTouchTwoFingersPinchDetector >> eventClassMoveGesture [
 	^ OSTouchTwoFingersPinchMoveEvent
 ]
 
-{
-	#category : #preconditions,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSTouchTwoFingersPinchDetector>>necessaryFingers [
+{ #category : #preconditions }
+OSTouchTwoFingersPinchDetector >> necessaryFingers [
 	^ 2
 ]

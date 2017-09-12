@@ -8,15 +8,11 @@ Class {
 	#instVars : [
 		'arrayClass'
 	],
-	#category : #Collections-Sequenceable,
-	#timestamp : 'JB 11/26/2010 16:35'
+	#category : #Collections-Sequenceable
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeArray>>analyzeSpaceSaving [
+{ #category : #private }
+SparseLargeArray >> analyzeSpaceSaving [
 
       | elems tablesTotal nonNilTables lastPage lastChunkSize |
       elems := 0.
@@ -42,11 +38,8 @@ SparseLargeArray>>analyzeSpaceSaving [
                strm nextPutAll: ' non-nil: '; print: nonNilTables]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeArray>>atAllPut: anObject [
+{ #category : #accessing }
+SparseLargeArray >> atAllPut: anObject [
        "Put anObject at every one of the receiver's indices."
 
        1 to: self basicSize do:
@@ -55,11 +48,8 @@ SparseLargeArray>>atAllPut: anObject [
        defaultValue := anObject
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeArray>>initChunkSize: aChunkSize size: aSize arrayClass: aClass base: b defaultValue: d [
+{ #category : #initialization }
+SparseLargeArray >> initChunkSize: aChunkSize size: aSize arrayClass: aClass base: b defaultValue: d [
        chunkSize := aChunkSize.
        size := aSize.
        base := b.
@@ -67,21 +57,15 @@ SparseLargeArray>>initChunkSize: aChunkSize size: aSize arrayClass: aClass base:
        arrayClass := aClass
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeArray>>noCheckAt: index [
+{ #category : #accessing }
+SparseLargeArray >> noCheckAt: index [
       ^(self basicAt: index - base // chunkSize + 1)
                ifNil: [defaultValue]
                ifNotNil: [:chunk| chunk at: index - base \\ chunkSize + 1]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:17'
-}
-SparseLargeArray>>noCheckAt: index put: value [
+{ #category : #accessing }
+SparseLargeArray >> noCheckAt: index put: value [
        | chunkIndex chunk lastChunkSize |
        chunkIndex := index - base // chunkSize + 1.
        (chunk := self basicAt: chunkIndex) ifNil:

@@ -12,24 +12,17 @@ Class {
 	#classVars : [
 		'Order'
 	],
-	#category : #Spec-Tools-Monticello,
-	#timestamp : '<historical>'
+	#category : #Spec-Tools-Monticello
 }
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser class>>allManagers  [
+{ #category : #utils }
+MonticelloRepositoryBrowser class >> allManagers [ 
 
 	^ MCWorkingCopy allManagers 
 ]
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser class>>defaultSpec [
+{ #category : #specs }
+MonticelloRepositoryBrowser class >> defaultSpec [
 	<spec: #default>
 	^ SpecLayout composed
 		add: #(model workingCopies) right: 0.5;
@@ -38,11 +31,8 @@ MonticelloRepositoryBrowser class>>defaultSpec [
 
 ]
 
-{
-	#category : #example,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser class>>example [
+{ #category : #example }
+MonticelloRepositoryBrowser class >> example [
 	"self example"
 	
 	self new 
@@ -50,55 +40,37 @@ MonticelloRepositoryBrowser class>>example [
 		workingCopies: (self allManagers)
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser class>>order [
+{ #category : #utils }
+MonticelloRepositoryBrowser class >> order [
 	^ Order ifNil: [ Order := 1 ]
 ]
 
-{
-	#category : #utils,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser class>>order: anInteger [
+{ #category : #utils }
+MonticelloRepositoryBrowser class >> order: anInteger [
 	Order := anInteger
 ]
 
-{
-	#category : #spec,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser class>>title [
+{ #category : #spec }
+MonticelloRepositoryBrowser class >> title [
 
 	^ 'Monticello Browser'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>allManagers [
+{ #category : #accessing }
+MonticelloRepositoryBrowser >> allManagers [
 
 	^ self class allManagers 
 	
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>allRepositories [
+{ #category : #private }
+MonticelloRepositoryBrowser >> allRepositories [
 
 	^ MCRepositoryGroup default repositories
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>browseWorkingCopy [
+{ #category : #actions }
+MonticelloRepositoryBrowser >> browseWorkingCopy [
 	| workingCopy |
 	workingCopy := self workingCopy.
 	workingCopy
@@ -108,49 +80,34 @@ MonticelloRepositoryBrowser>>browseWorkingCopy [
 				show ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>defaultOrderingBlock [
+{ #category : #private }
+MonticelloRepositoryBrowser >> defaultOrderingBlock [
 
 	^ (self orderSpecs at: self class order) value
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>initialExtent [
+{ #category : #initialization }
+MonticelloRepositoryBrowser >> initialExtent [
 
 	^ 600@200
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>initialize [
+{ #category : #initialization }
+MonticelloRepositoryBrowser >> initialize [
 
 	super initialize.
 	order := self class order
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>initializePresenter [
+{ #category : #initialization }
+MonticelloRepositoryBrowser >> initializePresenter [
 
 	workingCopies whenSelectedItemChanged: 
 			[ :item | repositories items: (self repositoriesOfWorkingCopy: item) ].
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>initializeWidgets [
+{ #category : #initialization }
+MonticelloRepositoryBrowser >> initializeWidgets [
 
 	repositories := self newList.
 	workingCopies := self newList.
@@ -168,28 +125,19 @@ MonticelloRepositoryBrowser>>initializeWidgets [
 		add: repositories
 ]
 
-{
-	#category : #actions,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>openRepository [
+{ #category : #actions }
+MonticelloRepositoryBrowser >> openRepository [
 	self repository ifNotNil: [:repos | repos morphicOpen: self workingCopy ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>order [
+{ #category : #menu }
+MonticelloRepositoryBrowser >> order [
 
 	^ order
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>order: anInteger [
+{ #category : #menu }
+MonticelloRepositoryBrowser >> order: anInteger [
 
 	order := anInteger.
 	self workingCopies sortingBlock: (self orderSpecs at: order) value.
@@ -198,11 +146,8 @@ MonticelloRepositoryBrowser>>order: anInteger [
 		ifFalse: [self workingCopies resetFilteringBlock]. 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>orderSpecs [
+{ #category : #menu }
+MonticelloRepositoryBrowser >> orderSpecs [
 	^ {
 		'Sort alphabetically' -> [ :a :b | a package name <= b package name ].
 		'Sort dirty first' -> [ :a :b | 
@@ -216,11 +161,8 @@ MonticelloRepositoryBrowser>>orderSpecs [
 		'Only dirty' -> [ :a :b | a package name <= b package name ]}
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>orderString: anIndex [
+{ #category : #menu }
+MonticelloRepositoryBrowser >> orderString: anIndex [
 	^ String streamContents: [ :stream |
 		order = anIndex
 			ifTrue: [ stream nextPutAll: '<yes>' ]
@@ -228,61 +170,43 @@ MonticelloRepositoryBrowser>>orderString: anIndex [
 		stream nextPutAll: (self orderSpecs at: anIndex) key ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>repositories [
+{ #category : #accessing }
+MonticelloRepositoryBrowser >> repositories [
 
 	^ repositories
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>repositoriesOfWorkingCopy: aWorkingCopy [
+{ #category : #private }
+MonticelloRepositoryBrowser >> repositoriesOfWorkingCopy: aWorkingCopy [
 	
 	^ aWorkingCopy isNil
 		ifFalse: [ aWorkingCopy repositoryGroup repositories]
 		ifTrue: [ self allRepositories]	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>workingCopies [
+{ #category : #accessing }
+MonticelloRepositoryBrowser >> workingCopies [
 
 	^ workingCopies
 ]
 
-{
-	#category : #api,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>workingCopies: aCollection [
+{ #category : #api }
+MonticelloRepositoryBrowser >> workingCopies: aCollection [
 	"Set the value of the list widget"
 	
 	workingCopies items: aCollection 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>workingCopiesFromMC [
+{ #category : #menu }
+MonticelloRepositoryBrowser >> workingCopiesFromMC [
 	^ (self orderSpecs size = order
 		ifTrue: [ self allManagers select: [ :each | each modified ] ]
 		ifFalse: [ self allManagers ])
 			asSortedCollection: (self orderSpecs at: order) value.
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>workingCopiesMenu: aMenu [
+{ #category : #menu }
+MonticelloRepositoryBrowser >> workingCopiesMenu: aMenu [
 
 
 	aMenu target: self;
@@ -297,10 +221,7 @@ MonticelloRepositoryBrowser>>workingCopiesMenu: aMenu [
 	^ aMenu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:19'
-}
-MonticelloRepositoryBrowser>>workingCopy [
+{ #category : #accessing }
+MonticelloRepositoryBrowser >> workingCopy [
 	^ workingCopies selectedItem
 ]

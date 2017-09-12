@@ -10,23 +10,16 @@ Class {
 		'type',
 		'size'
 	],
-	#category : #UnifiedFFI-Types,
-	#timestamp : '<historical>'
+	#category : #UnifiedFFI-Types
 }
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray class>>asExternalTypeOn: generator  [
+{ #category : #converting }
+FFIExternalArray class >> asExternalTypeOn: generator [ 
 	^ FFIExternalArrayType objectClass: self
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray class>>externalNewType: aType size: aNumber [
+{ #category : #'instance creation' }
+FFIExternalArray class >> externalNewType: aType size: aNumber [
 	"Create a new array in the C heap. 
 	 This array needs to be disposed (using #free method)"
 	^ self basicNew 
@@ -34,11 +27,8 @@ FFIExternalArray class>>externalNewType: aType size: aNumber [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray class>>fromHandle: aHandle type: aType [
+{ #category : #'instance creation' }
+FFIExternalArray class >> fromHandle: aHandle type: aType [
 	"Instantiating a handle as an array.
 	 USE THIS WITH EXTREMELY CAUTION: You could have an overflow very easily, because you are 
 	 not expliciting the size. 
@@ -46,11 +36,8 @@ FFIExternalArray class>>fromHandle: aHandle type: aType [
 	^ self fromHandle: aHandle type: aType size: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray class>>fromHandle: aHandle type: aType size: aNumber [
+{ #category : #'instance creation' }
+FFIExternalArray class >> fromHandle: aHandle type: aType size: aNumber [
 	"aHandle is the address to an array already existing. 
 	 For example, C: 
 	 	
@@ -62,22 +49,16 @@ FFIExternalArray class>>fromHandle: aHandle type: aType size: aNumber [
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray class>>fromPointer: aHandle type: aType  [
+{ #category : #'instance creation' }
+FFIExternalArray class >> fromPointer: aHandle type: aType [ 
 	"Instantiating a pointer as an array is usefull, but then you do not have the size. 
 	 USE THIS WITH EXTREMELY CAUTION: You could have an overflow very easily. 
 	 I would prefer if you use #fromPointer:type:size: instead. "
 	^ self fromPointer: aHandle type: aType size: nil
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray class>>fromPointer: aHandle type: aType size: aNumber [
+{ #category : #'instance creation' }
+FFIExternalArray class >> fromPointer: aHandle type: aType size: aNumber [
 	"Creates an array of type aType and size aNumber.
 	 aHandle is A REFERENCE an array already existing. 
 	 For example, C: 
@@ -89,40 +70,28 @@ FFIExternalArray class>>fromPointer: aHandle type: aType size: aNumber [
 	^ self fromHandle: (aHandle pointerAt: 1) type: aType size: aNumber
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray class>>new  [
+{ #category : #'instance creation' }
+FFIExternalArray class >> new [ 
 	self error: 'should not create external arrays like this'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray class>>newType: aType size: aNumber [
+{ #category : #'instance creation' }
+FFIExternalArray class >> newType: aType size: aNumber [
 	"Create a new array using internal memory."
 	^ self basicNew 
 		initializeType: (self resolveType: aType) size: aNumber;
 		yourself
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray class>>resolveType: aType [
+{ #category : #private }
+FFIExternalArray class >> resolveType: aType [
 	 ^ FFICallout new 
 		requestor: self;
 		resolveType: aType.
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>asArray  [
+{ #category : #converting }
+FFIExternalArray >> asArray [ 
 	| array |
 	
 	array := Array new: self size.
@@ -131,52 +100,37 @@ FFIExternalArray>>asArray  [
 	^ array 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>at: index  [
+{ #category : #accessing }
+FFIExternalArray >> at: index [ 
 	^ type 
 		handle: handle
 		at: ((index - 1) * type typeSize) + 1
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>at: index put: anObject  [
+{ #category : #accessing }
+FFIExternalArray >> at: index put: anObject [ 
 	^ type 
 		handle: handle
 		at: ((index - 1) * type typeSize) + 1
 		put: anObject
 ]
 
-{
-	#category : #'external resource management',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>autoRelease [
+{ #category : #'external resource management' }
+FFIExternalArray >> autoRelease [
 	(handle isNil or: [ handle isExternalAddress not ]) ifFalse: [ ^ self ].
 	handle autoRelease
 ]
 
-{
-	#category : #finalization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>free [
+{ #category : #finalization }
+FFIExternalArray >> free [
 	handle ifNil: [ ^ self ]. 
 	handle isExternalAddress 
 		ifTrue: [ handle free ]
 		ifFalse: [ handle := nil ]
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>gcpointer [
+{ #category : #converting }
+FFIExternalArray >> gcpointer [
 	"Answers a pointer to the this array. 
 	 This is useful when translating an array pointer to a function (FFI requires to be passed as a
 	 pointer, otherwise will be interpreted as a direct array and it will not work fine)
@@ -190,43 +144,31 @@ FFIExternalArray>>gcpointer [
 	^ self getHandle gcpointer	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>getHandle [
+{ #category : #accessing }
+FFIExternalArray >> getHandle [
 	self flag: #todo. "I do not like the name 'getHandle' but I'm looking to unify the 
 	API with FFI" 
 	^ handle
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>initializeExternalType: aType size: aNumber [
+{ #category : #initialization }
+FFIExternalArray >> initializeExternalType: aType size: aNumber [
 	self 
 		initializeType: aType 
 		size: aNumber 
 		handleProducer: [ :totalSize | ExternalAddress allocate: (type typeSize * size) ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>initializeHandle: aHandle type: aType size: aNumber [
+{ #category : #initialization }
+FFIExternalArray >> initializeHandle: aHandle type: aType size: aNumber [
 	self 
 		initializeType: aType 
 		size: aNumber 
 		handleProducer: [ :totalSize | aHandle ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>initializeType: aType size: aNumber [
+{ #category : #initialization }
+FFIExternalArray >> initializeType: aType size: aNumber [
 	self 
 		initializeType: aType 
 		size: aNumber 
@@ -234,11 +176,8 @@ FFIExternalArray>>initializeType: aType size: aNumber [
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>initializeType: aType size: aNumber handleProducer: aBlock  [
+{ #category : #initialization }
+FFIExternalArray >> initializeType: aType size: aNumber handleProducer: aBlock [ 
 	type := aType.
 	size := aNumber.
 	handle := aBlock value: (size 
@@ -248,11 +187,8 @@ FFIExternalArray>>initializeType: aType size: aNumber handleProducer: aBlock  [
 	self initialize
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>pointer [
+{ #category : #converting }
+FFIExternalArray >> pointer [
 	"Answers a pointer to this array. 
 	 This is useful when translating an array pointer to a function (FFI requires to be passed as a
 	 pointer, otherwise will be interpreted as a direct array and it will not work fine)
@@ -266,43 +202,28 @@ FFIExternalArray>>pointer [
 	^ self getHandle pointer	
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>pointerAutoRelease [
+{ #category : #converting }
+FFIExternalArray >> pointerAutoRelease [
 	"Same as #pointer (see its comment for detals), but contents are garbage collected automatically"
 	^ self pointer autoRelease
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>size [
+{ #category : #initialization }
+FFIExternalArray >> size [
 	^ size
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>type [
+{ #category : #accessing }
+FFIExternalArray >> type [
 	^ type
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>typeAlignment  [
+{ #category : #accessing }
+FFIExternalArray >> typeAlignment [ 
 	^ self type typeAlignment
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFIExternalArray>>typeSize  [
+{ #category : #accessing }
+FFIExternalArray >> typeSize [ 
 	^ self type typeSize
 ]

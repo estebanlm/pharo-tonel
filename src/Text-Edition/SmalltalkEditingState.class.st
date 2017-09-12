@@ -15,15 +15,11 @@ Class {
 	#instVars : [
 		'selectorChooser'
 	],
-	#category : #Text-Edition,
-	#timestamp : 'StephaneDucasse 2/6/2011 09:56'
+	#category : #Text-Edition
 }
 
-{
-	#category : #selector-chooser,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditingState>>chosenSelector: aSelector for: aTextMorph [
+{ #category : #selector-chooser }
+SmalltalkEditingState >> chosenSelector: aSelector for: aTextMorph [
 	| newStart replacement  caret prevSelection |
 	self closeSelectorChooser.
 	aSelector ifNil: [^ self].
@@ -44,38 +40,26 @@ SmalltalkEditingState>>chosenSelector: aSelector for: aTextMorph [
 
 ]
 
-{
-	#category : #selector-chooser,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditingState>>closeSelectorChooser [
+{ #category : #selector-chooser }
+SmalltalkEditingState >> closeSelectorChooser [
 	selectorChooser 
 		ifNotNil: [ [selectorChooser delete] ensure: [selectorChooser := nil] ]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditingState>>focused: aBoolean from: aTextMorph [
+{ #category : #events }
+SmalltalkEditingState >> focused: aBoolean from: aTextMorph [
 	super focused: aBoolean from: aTextMorph.
 	selectorChooser ifNotNil: [selectorChooser comeToFront]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditingState>>handlesKeyboard: evt from: aTextMorph [
+{ #category : #events }
+SmalltalkEditingState >> handlesKeyboard: evt from: aTextMorph [
 	^ (super handlesKeyboard: evt from: aTextMorph)
 		or: [selectorChooser notNil and: [selectorChooser handlesKeyboard: evt]]
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditingState>>keystroke: aKeyboardEvent from: aTextMorph [
+{ #category : #events }
+SmalltalkEditingState >> keystroke: aKeyboardEvent from: aTextMorph [
 	| asciiValue |
 	selectorChooser 
 		ifNotNil: [(selectorChooser handlesKeyStroke: aKeyboardEvent) 
@@ -95,20 +79,14 @@ SmalltalkEditingState>>keystroke: aKeyboardEvent from: aTextMorph [
 	^ false
 ]
 
-{
-	#category : #events,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditingState>>mouseDown: anEvent from: aTextMorph [
+{ #category : #events }
+SmalltalkEditingState >> mouseDown: anEvent from: aTextMorph [
 	super mouseDown: anEvent from: aTextMorph.
 	self closeSelectorChooser
 ]
 
-{
-	#category : #selector-chooser,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditingState>>querySymbolFrom: aTextMorph [
+{ #category : #selector-chooser }
+SmalltalkEditingState >> querySymbolFrom: aTextMorph [
 	| pref |
 
 	aTextMorph editor hasSelection
@@ -119,19 +97,13 @@ SmalltalkEditingState>>querySymbolFrom: aTextMorph [
 
 ]
 
-{
-	#category : #selector-chooser,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditingState>>selectorChooser [
+{ #category : #selector-chooser }
+SmalltalkEditingState >> selectorChooser [
 	^ selectorChooser
 ]
 
-{
-	#category : #selector-chooser,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditingState>>smartQuerySymbolFrom: aTextMorph [
+{ #category : #selector-chooser }
+SmalltalkEditingState >> smartQuerySymbolFrom: aTextMorph [
 	| sel pref caret nextPref |
 	sel := aTextMorph editor selectionInterval.
 	aTextMorph editor selectPrecedingIdentifier.
@@ -148,11 +120,8 @@ SmalltalkEditingState>>smartQuerySymbolFrom: aTextMorph [
 			aTextMorph editor selectInterval: (caret to: caret - 1)]
 ]
 
-{
-	#category : #selector-chooser,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-SmalltalkEditingState>>updateSelectorChooserFrom: aTextMorph [
+{ #category : #selector-chooser }
+SmalltalkEditingState >> updateSelectorChooserFrom: aTextMorph [
 	selectorChooser ifNil: [^ self].
 	self closeSelectorChooser.
 	self querySymbolFrom: aTextMorph

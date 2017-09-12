@@ -12,121 +12,81 @@ Class {
 	#classInstVars : [
 		'preventAvailability'
 	],
-	#category : #SUnit-Tests-Core,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:13'
+	#category : #SUnit-Tests-Core
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResource class>>allowAvailability [
+{ #category : #accessing }
+SimpleTestResource class >> allowAvailability [
 	^preventAvailability isNil
 ]
 
-{
-	#category : #utility,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResource class>>preventAvailabilityDuring: aBlock [
+{ #category : #utility }
+SimpleTestResource class >> preventAvailabilityDuring: aBlock [
 	"Only setter of preventAvailability."
 	
 	preventAvailability := false.
 	^aBlock ensure: [preventAvailability := nil]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResource class>>rawCurrentForTest [
+{ #category : #accessing }
+SimpleTestResource class >> rawCurrentForTest [
 	^current
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResource>>hasRun [
+{ #category : #testing }
+SimpleTestResource >> hasRun [
 	^hasRun
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResource>>hasSetup [
+{ #category : #testing }
+SimpleTestResource >> hasSetup [
 	^hasSetup
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResource>>isAvailable [
+{ #category : #testing }
+SimpleTestResource >> isAvailable [
 	^self class allowAvailability
 		and: [self runningState == self startedStateSymbol]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResource>>runningState [
+{ #category : #accessing }
+SimpleTestResource >> runningState [
 
 	^runningState
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResource>>runningState: aSymbol [
+{ #category : #accessing }
+SimpleTestResource >> runningState: aSymbol [
 
 	runningState := aSymbol
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResource>>setRun [
+{ #category : #running }
+SimpleTestResource >> setRun [
 	hasRun := true
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResource>>setUp [
+{ #category : #running }
+SimpleTestResource >> setUp [
 	
 	self runningState: self startedStateSymbol.
 	hasSetup := true
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResource>>startedStateSymbol [
+{ #category : #running }
+SimpleTestResource >> startedStateSymbol [
 
 	^#started
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResource>>stoppedStateSymbol [
+{ #category : #running }
+SimpleTestResource >> stoppedStateSymbol [
 
 	^#stopped
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-SimpleTestResource>>tearDown [
+{ #category : #running }
+SimpleTestResource >> tearDown [
 
 	self runningState: self stoppedStateSymbol
 ]

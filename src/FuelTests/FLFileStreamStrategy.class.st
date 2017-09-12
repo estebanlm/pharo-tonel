@@ -7,34 +7,24 @@ Class {
 	#instVars : [
 		'fileStreamClass'
 	],
-	#category : #FuelTests-StreamStrategies,
-	#timestamp : 'MartinDias 10/12/2011 11:37'
+	#category : #FuelTests-StreamStrategies
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLFileStreamStrategy class>>new [
+{ #category : #'instance creation' }
+FLFileStreamStrategy class >> new [
 	self error: 'Invalid creation method.'
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLFileStreamStrategy class>>newWith: aFileStream [
+{ #category : #'instance creation' }
+FLFileStreamStrategy class >> newWith: aFileStream [
 
 	^self basicNew
 		initializeWith: aFileStream;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLFileStreamStrategy class>>newWithBinaryFileStream [
+{ #category : #'instance creation' }
+FLFileStreamStrategy class >> newWithBinaryFileStream [
 	^ (FLPlatform current isPharo and: [
 		FLPlatform current versionNumber >= 5 ])
 			ifTrue: [
@@ -44,59 +34,41 @@ FLFileStreamStrategy class>>newWithBinaryFileStream [
 			ifFalse: [ self newWithStandardFileStream ]
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLFileStreamStrategy class>>newWithMultiByteFileStream [
+{ #category : #'instance creation' }
+FLFileStreamStrategy class >> newWithMultiByteFileStream [
 
 	^self newWith: MultiByteFileStream
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLFileStreamStrategy class>>newWithStandardFileStream [
+{ #category : #'instance creation' }
+FLFileStreamStrategy class >> newWithStandardFileStream [
 
 	^self newWith: StandardFileStream
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLFileStreamStrategy>>fileName [
+{ #category : #writing }
+FLFileStreamStrategy >> fileName [
 	"Answer a filename to serialize and materialize using it."
 
 	^ FLPlatform current absolutePathOf: (FLPlatform current imageName, '-tests.fuel')
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLFileStreamStrategy>>fileStreamClass [
+{ #category : #writing }
+FLFileStreamStrategy >> fileStreamClass [
 	"Returns the FileStream specific class"
 	
 	^fileStreamClass
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLFileStreamStrategy>>initializeWith: aFileStreamClass [
+{ #category : #writing }
+FLFileStreamStrategy >> initializeWith: aFileStreamClass [
 
 	self initialize.	
 	fileStreamClass := aFileStreamClass.
 ]
 
-{
-	#category : #reading,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLFileStreamStrategy>>readStreamDo: aValuable [
+{ #category : #reading }
+FLFileStreamStrategy >> readStreamDo: aValuable [
 	"Evaluates the argument with a read stream. Answers the result."
 	
 	^self fileStreamClass
@@ -104,19 +76,13 @@ FLFileStreamStrategy>>readStreamDo: aValuable [
 		do: [ :aStream | aValuable value: aStream binary ]
 ]
 
-{
-	#category : #'test support',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLFileStreamStrategy>>tearDown [
+{ #category : #'test support' }
+FLFileStreamStrategy >> tearDown [
 	(File named: self fileName) delete
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLFileStreamStrategy>>writeStreamDo: aValuable [
+{ #category : #writing }
+FLFileStreamStrategy >> writeStreamDo: aValuable [
 	"Evaluates the argument with a write stream. Answers the result."
 
 	^self fileStreamClass

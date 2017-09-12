@@ -1,12 +1,7 @@
-Extension {
-	#name : #RBProgramNode
-}
+Extension { #name : #RBProgramNode }
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBProgramNode>>banChecksForValidation [
+{ #category : #'*renraku' }
+RBProgramNode >> banChecksForValidation [
 "returns ban levels that have to be chacked before validation"
 
 	self methodNode ifNotNil: [ :mNode |
@@ -16,11 +11,8 @@ RBProgramNode>>banChecksForValidation [
 	^ #()
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBProgramNode>>banLevelCandidates [
+{ #category : #'*renraku' }
+RBProgramNode >> banLevelCandidates [
 "returns code entities which can ban a rule for this entity"
 
 	self methodNode ifNotNil: [ :mNode |
@@ -30,30 +22,21 @@ RBProgramNode>>banLevelCandidates [
 	^ #()
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBProgramNode>>critiques [
+{ #category : #'*renraku' }
+RBProgramNode >> critiques [
 	<eProperty>
 
 	^ ReCriticEngine critiquesOf: self
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBProgramNode>>glmCritiqueSourceIn: aGLMCompositePresentation  [
+{ #category : #'*renraku' }
+RBProgramNode >> glmCritiqueSourceIn: aGLMCompositePresentation [ 
 	
 	^ self gtInspectorSourceCodeIn: aGLMCompositePresentation
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBProgramNode>>match: aNode onSuccess: aBlock onFailure: anAlternativeBlock  [
+{ #category : #'*renraku' }
+RBProgramNode >> match: aNode onSuccess: aBlock onFailure: anAlternativeBlock [ 
 	| context |
 	
 	context := SmallDictionary new.
@@ -63,11 +46,8 @@ RBProgramNode>>match: aNode onSuccess: aBlock onFailure: anAlternativeBlock  [
 		ifFalse: anAlternativeBlock
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBProgramNode>>nodeAtTraversalIndex: anIndex [
+{ #category : #'*renraku' }
+RBProgramNode >> nodeAtTraversalIndex: anIndex [
 	| index |
 	index := 0.
 
@@ -78,39 +58,27 @@ RBProgramNode>>nodeAtTraversalIndex: anIndex [
 	NotFound signal.
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBProgramNode>>package [
+{ #category : #'*renraku' }
+RBProgramNode >> package [
 	"a hack to make the critique check working"
 	"the package information is used to determin bans"
 
 	^ nil
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBProgramNode>>reverseNodesDo: aBlock  [
+{ #category : #'*renraku' }
+RBProgramNode >> reverseNodesDo: aBlock [ 
 	self children reverseDo: [ :each | each reverseNodesDo: aBlock ].
 	aBlock value: self
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBProgramNode>>suitableRulesFrom: aReRuleManager  [
+{ #category : #'*renraku' }
+RBProgramNode >> suitableRulesFrom: aReRuleManager [ 
 	^ aReRuleManager nodeRules
 ]
 
-{
-	#category : #'*renraku',
-	#timestamp : ' 8/31/2017 05:26:37'
-}
-RBProgramNode>>traversalIndexOf: aNode [
+{ #category : #'*renraku' }
+RBProgramNode >> traversalIndexOf: aNode [
 	| index |
 	index := 0.
 

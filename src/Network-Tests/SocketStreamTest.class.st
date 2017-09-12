@@ -8,15 +8,11 @@ Class {
 		'clientStream',
 		'serverStream'
 	],
-	#category : #Network-Tests-Kernel,
-	#timestamp : 'TorstenBergmann 2/5/2014 10:11'
+	#category : #Network-Tests-Kernel
 }
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>setUp [
+{ #category : #setup }
+SocketStreamTest >> setUp [
 	| listener clientSocket serverSocket |
 	listener := Socket newTCP.
 	[listener listenOn: 0 backlogSize: 4.
@@ -35,20 +31,14 @@ SocketStreamTest>>setUp [
 
 ]
 
-{
-	#category : #setup,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>tearDown [
+{ #category : #setup }
+SocketStreamTest >> tearDown [
 	clientStream ifNotNil:[clientStream destroy].
 	serverStream ifNotNil:[serverStream destroy].
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>testNextIntoClose [
+{ #category : #'stream protocol' }
+SocketStreamTest >> testNextIntoClose [
 	"Ensure that #next:into: will function properly when the connection is closed"
 
 	clientStream nextPutAll:'A line of text'; flush.
@@ -59,11 +49,8 @@ SocketStreamTest>>testNextIntoClose [
 
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>testNextIntoCloseNonSignaling [
+{ #category : #'stream protocol' }
+SocketStreamTest >> testNextIntoCloseNonSignaling [
 	"Ensure that #next:into: will function properly when the connection is closed"
 
 	serverStream shouldSignal: false.
@@ -75,11 +62,8 @@ SocketStreamTest>>testNextIntoCloseNonSignaling [
 
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>testUpTo [
+{ #category : #'stream protocol' }
+SocketStreamTest >> testUpTo [
 	"Tests correct behavior of #upTo:"
 
 	clientStream nextPutAll:'A line of text', String cr, 'with more text'; flush.
@@ -90,11 +74,8 @@ SocketStreamTest>>testUpTo [
 
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>testUpToAfterCloseNonSignaling [
+{ #category : #'stream protocol' }
+SocketStreamTest >> testUpToAfterCloseNonSignaling [
 	"Tests correct behavior of #upToAll"
 
 	| resp |
@@ -105,11 +86,8 @@ SocketStreamTest>>testUpToAfterCloseNonSignaling [
 	self assert: resp = 'A line of text'.
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>testUpToAfterCloseSignaling [
+{ #category : #'stream protocol' }
+SocketStreamTest >> testUpToAfterCloseSignaling [
 	"Tests correct behavior of #upToAll"
 
 	clientStream nextPutAll:'A line of text'.
@@ -118,11 +96,8 @@ SocketStreamTest>>testUpToAfterCloseSignaling [
 
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>testUpToAll [
+{ #category : #'stream protocol' }
+SocketStreamTest >> testUpToAll [
 	"Tests correct behavior of #upToAll"
 
 	clientStream nextPutAll:'A line of text', String crlf, 'with more text'; flush.
@@ -133,11 +108,8 @@ SocketStreamTest>>testUpToAll [
 
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>testUpToAllAfterCloseNonSignaling [
+{ #category : #'stream protocol' }
+SocketStreamTest >> testUpToAllAfterCloseNonSignaling [
 	"Tests correct behavior of #upToAll"
 
 	| resp |
@@ -148,11 +120,8 @@ SocketStreamTest>>testUpToAllAfterCloseNonSignaling [
 	self assert: resp = 'A line of text'.
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>testUpToAllAfterCloseSignaling [
+{ #category : #'stream protocol' }
+SocketStreamTest >> testUpToAllAfterCloseSignaling [
 	"Tests correct behavior of #upToAll"
 
 	clientStream nextPutAll:'A line of text'.
@@ -161,22 +130,16 @@ SocketStreamTest>>testUpToAllAfterCloseSignaling [
 
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>testUpToAllLimit [
+{ #category : #'stream protocol' }
+SocketStreamTest >> testUpToAllLimit [
 	"Tests correct behavior of #upToAll:limit:"
 
 	clientStream nextPutAll:'A line of text'; flush.
 	self assert: (serverStream upToAll: String crlf limit: 5) = 'A line of text'.
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>testUpToAllTimeout [
+{ #category : #'stream protocol' }
+SocketStreamTest >> testUpToAllTimeout [
 	"Tests correct behavior of #upToAll"
 
 	clientStream nextPutAll: 'A line of text'.
@@ -185,11 +148,8 @@ SocketStreamTest>>testUpToAllTimeout [
 
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>testUpToEndClose [
+{ #category : #'stream protocol' }
+SocketStreamTest >> testUpToEndClose [
 	"Ensure that #upToEnd will function properly when the connection is closed"
 
 	clientStream nextPutAll:'A line of text'; flush.
@@ -200,11 +160,8 @@ SocketStreamTest>>testUpToEndClose [
 
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>testUpToEndCloseNonSignaling [
+{ #category : #'stream protocol' }
+SocketStreamTest >> testUpToEndCloseNonSignaling [
 	"Ensure that #upToEnd will function properly when the connection is closed"
 
 	serverStream shouldSignal: false.
@@ -216,22 +173,16 @@ SocketStreamTest>>testUpToEndCloseNonSignaling [
 
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>testUpToMax [
+{ #category : #'stream protocol' }
+SocketStreamTest >> testUpToMax [
 	"Tests correct behavior of #upToAll:max:"
 
 	clientStream nextPutAll:'A line of text'; flush.
 	self assert: (serverStream upTo: Character cr limit: 5) = 'A line of text'.
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>testUpToSmallInteger [
+{ #category : #'stream protocol' }
+SocketStreamTest >> testUpToSmallInteger [
 	"Tests correct behavior of #upTo:"
 
 	clientStream nextPutAll:'A line of text', String cr, 'with more text'; flush.
@@ -242,11 +193,8 @@ SocketStreamTest>>testUpToSmallInteger [
 
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>testUpToTimeout [
+{ #category : #'stream protocol' }
+SocketStreamTest >> testUpToTimeout [
 	"Tests correct behavior of #upToAll"
 
 	clientStream nextPutAll: 'A line of text'.
@@ -255,11 +203,8 @@ SocketStreamTest>>testUpToTimeout [
 
 ]
 
-{
-	#category : #'stream protocol',
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-SocketStreamTest>>testUpToWithByteArray [
+{ #category : #'stream protocol' }
+SocketStreamTest >> testUpToWithByteArray [
 	"Tests correct behavior of #upTo:"
 
 	|byteArray|

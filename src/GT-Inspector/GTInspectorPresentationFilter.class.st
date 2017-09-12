@@ -7,24 +7,17 @@ Subclasses need to implement  #shouldDisplayPresentationCreateBy: to indicate wh
 Class {
 	#name : #GTInspectorPresentationFilter,
 	#superclass : #Object,
-	#category : #GT-Inspector,
-	#timestamp : 'AndreiChis 1/27/2015 23:31'
+	#category : #GT-Inspector
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorPresentationFilter>>changeFilterRequestFor: aGTInspector [
+{ #category : #accessing }
+GTInspectorPresentationFilter >> changeFilterRequestFor: aGTInspector [
 
 	self subclassResponsibility
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorPresentationFilter>>openListChooseLabeled: sString forInspector: aGTInspector with: allElements select: selectedElements format: aBlockOrSelector actionSelector: aSymbol [
+{ #category : #private }
+GTInspectorPresentationFilter >> openListChooseLabeled: sString forInspector: aGTInspector with: allElements select: selectedElements format: aBlockOrSelector actionSelector: aSymbol [
 	|treeModel|
 	
 	treeModel := MorphTreeModel new.
@@ -37,11 +30,8 @@ GTInspectorPresentationFilter>>openListChooseLabeled: sString forInspector: aGTI
 		self perform: aSymbol with: selection with: aGTInspector ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GTInspectorPresentationFilter>>shouldDisplayPresentationCreatedBy: aMethod [
+{ #category : #testing }
+GTInspectorPresentationFilter >> shouldDisplayPresentationCreatedBy: aMethod [
 
 	self subclassResponsibility
 ]

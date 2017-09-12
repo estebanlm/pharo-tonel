@@ -4,15 +4,11 @@ SUnit tests for Behavior
 Class {
 	#name : #BehaviorTest,
 	#superclass : #ClassTestCase,
-	#category : #Kernel-Tests-Classes,
-	#timestamp : 'TorstenBergmann 2/5/2014 08:31'
+	#category : #Kernel-Tests-Classes
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>sampleMessageWithFirstArgument: firstArgument "This is a comment intended to explain arg1"
+{ #category : #tests }
+BehaviorTest >> sampleMessageWithFirstArgument: firstArgument "This is a comment intended to explain arg1"
    andInterleavedCommentBeforeSecondArgument: secondArgument [
 
 	"This method is here to test a few utilities like formalParametersAt:"
@@ -22,11 +18,8 @@ BehaviorTest>>sampleMessageWithFirstArgument: firstArgument "This is a comment i
 	^thisIsAnUnusedTemp
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testAllLocalCallsOn [
+{ #category : #tests }
+BehaviorTest >> testAllLocalCallsOn [
 	" self debug: #testAllLocalCallsOn"
 	
 	self assert: (( Point allLocalCallsOn: #asPoint )  notEmpty).
@@ -38,11 +31,8 @@ BehaviorTest>>testAllLocalCallsOn [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testAllMethods [
+{ #category : #tests }
+BehaviorTest >> testAllMethods [
 	| allMethods nonOverridenMethods |
 	allMethods := IdentitySet new
 		addAll: Object allMethods;
@@ -56,11 +46,8 @@ BehaviorTest>>testAllMethods [
 	self assert: (allMethods includesAll: nonOverridenMethods)
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testAllReferencesTo [
+{ #category : #tests }
+BehaviorTest >> testAllReferencesTo [
 	| result |
 	result := SystemNavigation new allReferencesTo: Point binding.
 	result do: [ :each | self assert: (each compiledMethod hasLiteral: Point binding) ].
@@ -75,21 +62,15 @@ BehaviorTest>>testAllReferencesTo [
 	self assert: (result anySatisfy: [ :each | each actualClass = self class and: [ each selector = #testAllReferencesTo ] ])
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testAllSelectors [
+{ #category : #tests }
+BehaviorTest >> testAllSelectors [
 	self assert: ProtoObject allSelectors asSet = ProtoObject selectors asSet.
 	self assert: Object allSelectors asSet = (Object selectors asSet union: ProtoObject selectors).
 	self assert: (Object allSelectorsBelow: ProtoObject) asSet = (Object selectors) asSet.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testAllSelectorsAbove [
+{ #category : #tests }
+BehaviorTest >> testAllSelectorsAbove [
 	"self debug: #testAllSelectorsAbove"
 	
 	|sels |
@@ -101,11 +82,8 @@ BehaviorTest>>testAllSelectorsAbove [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testAllSelectorsAboveUntil [
+{ #category : #tests }
+BehaviorTest >> testAllSelectorsAboveUntil [
 	"self debug: #testAllSelectorsAboveUntil"
 	
 	|sels |
@@ -117,22 +95,16 @@ BehaviorTest>>testAllSelectorsAboveUntil [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testBehaviornewnewShouldNotCrash [
+{ #category : #tests }
+BehaviorTest >> testBehaviornewnewShouldNotCrash [
 
 	Behavior new new.
 	"still not working correctly but at least does not crash the image"
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testBinding [
+{ #category : #tests }
+BehaviorTest >> testBinding [
 	self assert: Object binding value = Object.
 	self assert: Object binding key = #Object.
 	
@@ -143,11 +115,8 @@ BehaviorTest>>testBinding [
 	self assert: Object class binding key isNil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testCanPerform [
+{ #category : #tests }
+BehaviorTest >> testCanPerform [
 	
 	| c1 c2 |
 
@@ -170,11 +139,8 @@ BehaviorTest>>testCanPerform [
 	c1 removeFromSystem.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testCanUnderstand [
+{ #category : #tests }
+BehaviorTest >> testCanUnderstand [
 	
 	| c1 c2 |
 
@@ -197,22 +163,16 @@ BehaviorTest>>testCanUnderstand [
 	c1 removeFromSystem.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testCompile [
+{ #category : #tests }
+BehaviorTest >> testCompile [
 	| behavior |
 	behavior := Behavior new.
 	behavior compile: 'thisIsATest ^2'.
 	behavior new thisIsATest
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testComposedBy [
+{ #category : #tests }
+BehaviorTest >> testComposedBy [
 	"tests the #isComposedBy: aTrait method"
 	
 	self assert: (Trait3 isComposedBy: Trait2).
@@ -221,11 +181,8 @@ BehaviorTest>>testComposedBy [
 	
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testHasAbstractMethods [
+{ #category : #tests }
+BehaviorTest >> testHasAbstractMethods [
 	self deny: Object hasAbstractMethods.
 	self deny: Object class hasAbstractMethods.
 		
@@ -241,20 +198,14 @@ BehaviorTest>>testHasAbstractMethods [
 	
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testIsRootInEnvironment [
+{ #category : #'as yet unclassified' }
+BehaviorTest >> testIsRootInEnvironment [
 	self assert: ProtoObject isRootInEnvironment.
 	self deny: Object isRootInEnvironment
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testIsUsed [
+{ #category : #tests }
+BehaviorTest >> testIsUsed [
 	self assert: Object isUsed.
 	self assert: Object class isUsed.
 	self assert: Trait1 isUsed.
@@ -262,11 +213,8 @@ BehaviorTest>>testIsUsed [
 
 ]
 
-{
-	#category : #'tests - queries',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testMethodsAccessingSlot [
+{ #category : #'tests - queries' }
+BehaviorTest >> testMethodsAccessingSlot [
 	| numberViaSlot numberViaIVar |
 	
 	"Check the source code availability to do not fail on images without sources"
@@ -277,11 +225,8 @@ BehaviorTest>>testMethodsAccessingSlot [
 	self assert: numberViaSlot = numberViaIVar.
 ]
 
-{
-	#category : #'tests - queries',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testMethodsReadingSlot [
+{ #category : #'tests - queries' }
+BehaviorTest >> testMethodsReadingSlot [
 	| numberViaSlot numberViaIVar |
 	
 	"Check the source code availability to do not fail on images without sources"
@@ -292,11 +237,8 @@ BehaviorTest>>testMethodsReadingSlot [
 	self assert: numberViaSlot = numberViaIVar.
 ]
 
-{
-	#category : #'tests - queries',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testMethodsWritingSlot [
+{ #category : #'tests - queries' }
+BehaviorTest >> testMethodsWritingSlot [
 	| numberViaSlot numberViaIVar |
 	
 	"Check the source code availability to do not fail on images without sources"
@@ -307,21 +249,15 @@ BehaviorTest>>testMethodsWritingSlot [
 	self assert: numberViaSlot = numberViaIVar.
 ]
 
-{
-	#category : #metrics,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testNumberOfInstanceVariables [
+{ #category : #metrics }
+BehaviorTest >> testNumberOfInstanceVariables [
 	self assert: Object numberOfInstanceVariables = 0.
 	self assert: Point numberOfInstanceVariables = 2.
 	self assert: Metaclass numberOfInstanceVariables = 3
 ]
 
-{
-	#category : #'test - properties',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testPropertyValueAtPut [
+{ #category : #'test - properties' }
+BehaviorTest >> testPropertyValueAtPut [
 	| testValue |
 	testValue := Date today.
 	self class propertyAt: #testKeySelector put: testValue.
@@ -331,30 +267,21 @@ BehaviorTest>>testPropertyValueAtPut [
 	self class removeProperty: #testKeySelector
 ]
 
-{
-	#category : #'test - properties',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testRemoveProperty [
+{ #category : #'test - properties' }
+BehaviorTest >> testRemoveProperty [
 	self class propertyAt: #testKeySelector put: 1.
 	self class removeProperty: #testKeySelector.
 	self assert: (self class propertyAt: #testKeySelector) equals: nil
 ]
 
-{
-	#category : #'tests - testing method dictionary',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testWhichSelectorsAccess [
+{ #category : #'tests - testing method dictionary' }
+BehaviorTest >> testWhichSelectorsAccess [
 	self assert: ((Point whichSelectorsAccess: 'x') includes: #x).
 	self deny:  ((Point whichSelectorsAccess: 'y') includes: #x).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-BehaviorTest>>testallSuperclassesIncluding [
+{ #category : #tests }
+BehaviorTest >> testallSuperclassesIncluding [
 	"self debug: #testallSuperclassesIncluding"
 	
 	|cls |

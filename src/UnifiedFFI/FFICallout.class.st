@@ -29,23 +29,16 @@ Class {
 	#classVars : [
 		'TypeAliases'
 	],
-	#category : #UnifiedFFI,
-	#timestamp : 'EstebanLorenzano 3/23/2016 16:22'
+	#category : #UnifiedFFI
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout class>>initialize [
+{ #category : #'class initialization' }
+FFICallout class >> initialize [
 	self initializeTypeAliases
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout class>>initializeTypeAliases [
+{ #category : #'class initialization' }
+FFICallout class >> initializeTypeAliases [
 	"self initializeTypeAliases"
 	TypeAliases := Dictionary newFromPairs:
 	#(
@@ -106,19 +99,13 @@ FFICallout class>>initializeTypeAliases [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout class>>typeAliases [
+{ #category : #accessing }
+FFICallout class >> typeAliases [
 	^ TypeAliases
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>aliasForType: aTypeName [
+{ #category : #private }
+FFICallout >> aliasForType: aTypeName [
 	| alias |
 
 	alias := aTypeName.
@@ -130,11 +117,8 @@ FFICallout>>aliasForType: aTypeName [
 	^ TypeAliases at: alias ifAbsent: [ alias ]
 ]
 
-{
-	#category : #'spec parsing',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>argName: argName indirectIndex: anIndex type: typeName ptrArity: ptrArity [
+{ #category : #'spec parsing' }
+FFICallout >> argName: argName indirectIndex: anIndex type: typeName ptrArity: ptrArity [
 	| type |
 
 	argName ifNil: [ 
@@ -147,22 +131,16 @@ FFICallout>>argName: argName indirectIndex: anIndex type: typeName ptrArity: ptr
 	^ type
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>callType: aCallType [
+{ #category : #accessing }
+FFICallout >> callType: aCallType [
 	aCallType == #cdecl ifTrue: [ ^ self cdecl ].
 	aCallType == #stdcall ifTrue: [ ^ self stdcall ].
 	
 	self error: 'unknown call type'
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>directArgName: typeName ptrArity: ptrArity [
+{ #category : #private }
+FFICallout >> directArgName: typeName ptrArity: ptrArity [
 	"Answer 'direct' type arguments (without argument names): 
 		self, nil,true, false or a constant (like a number)"
 
@@ -182,46 +160,31 @@ FFICallout>>directArgName: typeName ptrArity: ptrArity [
 	^ self resolveType: typeName
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>fnSpec [
+{ #category : #accessing }
+FFICallout >> fnSpec [
 	^ fnSpec
 ]
 
-{
-	#category : #'argument loaders',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>indirectLoader: aLoader byIndex: anIndex [
+{ #category : #'argument loaders' }
+FFICallout >> indirectLoader: aLoader byIndex: anIndex [
 	"I do not have a case where it is used, so I don't know how to implement it. 
 	 I will wait until an use case emerge..."
 	^ self notYetImplemented
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>initialize [
+{ #category : #initialization }
+FFICallout >> initialize [
 	super initialize.
 	options := Dictionary new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>integerConstantArgument: anInteger [
+{ #category : #private }
+FFICallout >> integerConstantArgument: anInteger [
 	^ FFIConst value: anInteger type: (self resolveExternalType:  #uint32)
 ]
 
-{
-	#category : #'argument loaders',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>loaderForArgNamed: argName [
+{ #category : #'argument loaders' }
+FFICallout >> loaderForArgNamed: argName [
 	| loader |
 	"try getting the argument from the method arguments"
 	loader := self loaderFromMethodArgsNamed: argName.
@@ -236,22 +199,16 @@ FFICallout>>loaderForArgNamed: argName [
 	^ loader
 ]
 
-{
-	#category : #'argument loaders',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>loaderForArgNamed: argName indirectIndex: anIndex [
+{ #category : #'argument loaders' }
+FFICallout >> loaderForArgNamed: argName indirectIndex: anIndex [
 	| loader |
 	loader := self loaderForArgNamed: argName.
 	anIndex ifNotNil: [ loader := self indirectLoader: loader byIndex: anIndex ].
 	^ loader
 ]
 
-{
-	#category : #'argument loaders',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>loaderFromMethodArgsNamed: argName [
+{ #category : #'argument loaders' }
+FFICallout >> loaderFromMethodArgsNamed: argName [
 	| index |
 
 	methodArgs ifNil: [ ^ nil ].
@@ -265,87 +222,57 @@ FFICallout>>loaderFromMethodArgsNamed: argName [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>method [
+{ #category : #accessing }
+FFICallout >> method [
 	^ method
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>method: aMethod [
+{ #category : #accessing }
+FFICallout >> method: aMethod [
 	method := aMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>methodArgs [
+{ #category : #accessing }
+FFICallout >> methodArgs [
 	^ methodArgs
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>methodArgs: anArray [
+{ #category : #accessing }
+FFICallout >> methodArgs: anArray [
 	methodArgs := anArray
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>namedFnSpec: namedFn [
+{ #category : #accessing }
+FFICallout >> namedFnSpec: namedFn [
 	fnSpec := self newSpecParser parseNamedFunction: namedFn.
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>newSpecParser [
+{ #category : #accessing }
+FFICallout >> newSpecParser [
 	^ FFIFunctionParser new requestor: self
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>optionAt: optionName [
+{ #category : #accessing }
+FFICallout >> optionAt: optionName [
 	^ self options 
 		at: optionName 
 		ifAbsent: false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>options [
+{ #category : #accessing }
+FFICallout >> options [
 	^ options
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>options: anObject [
+{ #category : #accessing }
+FFICallout >> options: anObject [
 	self parseOptions: anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>parseOptions: optionsArray [
+{ #category : #accessing }
+FFICallout >> parseOptions: optionsArray [
 	"parse an array, which is a sequence of options in a form of: 
 	
 	#( + option1 option2 option3: param3  - option5 -option6: ... )
@@ -375,59 +302,38 @@ FFICallout>>parseOptions: optionsArray [
 					options at: (option allButLast: option numArgs) asSymbol put: (include and: [ option isUnary or: [ rs next ] ]) ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>receiver [
+{ #category : #accessing }
+FFICallout >> receiver [
 	^ receiver
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>receiver: anObject [
+{ #category : #accessing }
+FFICallout >> receiver: anObject [
 	receiver := anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>receiverArgumentLoader [
+{ #category : #private }
+FFICallout >> receiverArgumentLoader [
 	^ FFISelfArgument new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>requestor [
+{ #category : #accessing }
+FFICallout >> requestor [
 	^ requestor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>requestor: aRequestor [
+{ #category : #accessing }
+FFICallout >> requestor: aRequestor [
 	requestor := aRequestor
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>resolveExternalType: anObject  [
+{ #category : #accessing }
+FFICallout >> resolveExternalType: anObject [ 
 	^ (self resolveType: anObject) externalType 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>resolveType: aTypeName [
+{ #category : #accessing }
+FFICallout >> resolveType: aTypeName [
 	" a type name could be
 	 - a class variable name
 	- a class name
@@ -455,11 +361,8 @@ FFICallout>>resolveType: aTypeName [
 	^ self error: 'Unable to resolve external type: ', aTypeName
 ]
 
-{
-	#category : #'spec parsing',
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>returnType: aType [
+{ #category : #'spec parsing' }
+FFICallout >> returnType: aType [
 	aType first = 'receiver'
 		ifTrue: [ 
 			| rcvr rqstr |
@@ -476,11 +379,8 @@ FFICallout>>returnType: aType [
 	^ self typeName: aType first pointerArity: aType second
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>sender: aSenderContext [
+{ #category : #accessing }
+FFICallout >> sender: aSenderContext [
 	| nArgs |
 	self requestor: aSenderContext method methodClass.
 	nArgs := aSenderContext method numArgs.
@@ -490,10 +390,7 @@ FFICallout>>sender: aSenderContext [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:10'
-}
-FFICallout>>typeName: aName pointerArity: ptrArity [
+{ #category : #private }
+FFICallout >> typeName: aName pointerArity: ptrArity [
 	^ (self resolveType: aName) pointerArity: ptrArity
 ]

@@ -1,12 +1,7 @@
-Extension {
-	#name : #Announcement
-}
+Extension { #name : #Announcement }
 
-{
-	#category : #'*Polymorph-Widgets-Themes',
-	#timestamp : ' 8/31/2017 05:26:15'
-}
-Announcement class>>systemIconName [
+{ #category : #'*Polymorph-Widgets-Themes' }
+Announcement class >> systemIconName [
 
 	^ #announcementIcon
 ]

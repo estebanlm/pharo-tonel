@@ -1,29 +1,17 @@
-Extension {
-	#name : #SearchFacade
-}
+Extension { #name : #SearchFacade }
 
-{
-	#category : #'*Versionner-Spec-Browser',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-SearchFacade class>>mcPackageSearch [
+{ #category : #'*Versionner-Spec-Browser' }
+SearchFacade class >> mcPackageSearch [
 	^ self mcPackageSearchRejectAll: [ :aPackage | false ] withInitialFilter: nil
 ]
 
-{
-	#category : #'*Versionner-Spec-Browser',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-SearchFacade class>>mcPackageSearchRejectAll: aRejectBlock [
+{ #category : #'*Versionner-Spec-Browser' }
+SearchFacade class >> mcPackageSearchRejectAll: aRejectBlock [
 	^ self mcPackageSearchRejectAll: aRejectBlock withInitialFilter: nil
 ]
 
-{
-	#category : #'*Versionner-Spec-Browser',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-SearchFacade class>>"protocol: *Versionner-Spec-Browser"
-mcPackageSearchRejectAll: aRejectBlock withInitialFilter: filter [
+{ #category : #'*Versionner-Spec-Browser' }
+SearchFacade class >> mcPackageSearchRejectAll: aRejectBlock withInitialFilter: filter [
 	| workingCopies |
 	
 	workingCopies := MCWorkingCopy allManagers asSortedCollection: [ :a :b | a packageName <= b packageName].
@@ -38,21 +26,15 @@ mcPackageSearchRejectAll: aRejectBlock withInitialFilter: filter [
 
 ]
 
-{
-	#category : #'*Versionner-Spec-Browser',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-SearchFacade class>>projectWithConfigurationSearch [
+{ #category : #'*Versionner-Spec-Browser' }
+SearchFacade class >> projectWithConfigurationSearch [
 	"Get a  search widget with filled with projects having a ConfigurationOf in the image."
 
 	^ self projectWithConfigurationSearchRejectAll: [ :item | false ]
 ]
 
-{
-	#category : #'*Versionner-Spec-Browser',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-SearchFacade class>>projectWithConfigurationSearchRejectAll: aRejectBlock [
+{ #category : #'*Versionner-Spec-Browser' }
+SearchFacade class >> projectWithConfigurationSearchRejectAll: aRejectBlock [
 	"Get a  search widget with filled with projects having a ConfigurationOf in the image."
 	| projects |
 

@@ -16,15 +16,11 @@ Class {
 		'ShowDesktopLogo',
 		'UseDesktopGradientFill'
 	],
-	#category : #Settings-Polymorph,
-	#timestamp : 'LaurentLaffont 3/15/2011 20:46'
+	#category : #Settings-Polymorph
 }
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>appearanceSettingsOn: aBuilder  [
+{ #category : #settings }
+PolymorphSystemSettings class >> appearanceSettingsOn: aBuilder [ 
 	<systemsettings>
 	(aBuilder group: #appearance)
 		label: 'Appearance' ;  
@@ -41,11 +37,8 @@ PolymorphSystemSettings class>>appearanceSettingsOn: aBuilder  [
 			self soundSettingsOn: aBuilder]
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopBackgroundChanged [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopBackgroundChanged [
 	| fill |
 	
 	self desktopImageFileName
@@ -83,28 +76,19 @@ PolymorphSystemSettings class>>desktopBackgroundChanged [
 		World changed
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopColor [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopColor [
 	^ DesktopColor ifNil: [DesktopColor := World defaultWorldColor] 
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopColor: aColor [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopColor: aColor [
 	DesktopColor := aColor.
 	self desktopBackgroundChanged
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopColorSettingsOn: aBuilder  [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopColorSettingsOn: aBuilder [ 
 	(aBuilder setting: #desktopColor) label: 'Color';
 		 description: 'This is the only color of your desktop if no gradient is used. If you make use of a gradient, then this color is the first one of the gradient';
 		with: [(aBuilder setting: #useDesktopGradientFill) label: 'Gradient';
@@ -127,118 +111,79 @@ PolymorphSystemSettings class>>desktopColorSettingsOn: aBuilder  [
 							'Center' translated -> #center}]]
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopGradientDirection [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopGradientDirection [
 	"#Radial #Vertical or #Horizontal"
 	^ DesktopGradientDirection ifNil: [DesktopGradientDirection := #Vertical]
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopGradientDirection: aSymbol [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopGradientDirection: aSymbol [
 	"#Radial #Vertical or #Horizontal"
 	DesktopGradientDirection := aSymbol.
 	self desktopBackgroundChanged
 
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopGradientFillColor [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopGradientFillColor [
 	^ DesktopGradientFillColor ifNil: [DesktopGradientFillColor := self desktopColor]
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopGradientFillColor: aColor  [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopGradientFillColor: aColor [ 
 	DesktopGradientFillColor := aColor.
 	self desktopBackgroundChanged
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopGradientOrigin [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopGradientOrigin [
 	"#topLeft #topCenter #topRight #rightCenter #bottomRight #bottomCenter #bottomLeft #leftCenter #center"
 	^ DesktopGradientOrigin ifNil: [DesktopGradientOrigin := #topLeft]
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopGradientOrigin: aSymbol [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopGradientOrigin: aSymbol [
 	"#Radial #Vertical or #Horizontal"
 	DesktopGradientOrigin := aSymbol.
 	self desktopBackgroundChanged
 
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopImageFileName [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopImageFileName [
 	^ DesktopImageFileName ifNil: [DesktopImageFileName := '']
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopImageFileName: aFileName [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopImageFileName: aFileName [
 	DesktopImageFileName := aFileName.
 	self desktopBackgroundChanged
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopImageLayout [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopImageLayout [
 	^ DesktopImageLayout ifNil: [DesktopImageLayout := #scaled]
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopImageLayout: aSymbol [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopImageLayout: aSymbol [
 	DesktopImageLayout := aSymbol.
 	self desktopBackgroundChanged
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopLogo [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopLogo [
 	^ DesktopLogo ifNil: [self showDesktopLogo ifTrue: [DesktopLogo := self pharoLogo]]	
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopLogo: anImageMorph [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopLogo: anImageMorph [
 	DesktopLogo := anImageMorph
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopLogoChanged [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopLogoChanged [
 	self showDesktopLogo
 		ifFalse: [self setDesktopLogoWith: nil.
 			^ self].
@@ -251,29 +196,20 @@ PolymorphSystemSettings class>>desktopLogoChanged [
 
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopLogoFileName [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopLogoFileName [
 	^ DesktopLogoFileName ifNil: [DesktopLogoFileName := '']
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopLogoFileName: aFileName [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopLogoFileName: aFileName [
 	DesktopLogoFileName = aFileName ifTrue: [^ self].
 	DesktopLogoFileName := aFileName.
 	self desktopLogoChanged 
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>desktopSettingsOn: aBuilder  [
+{ #category : #desktop }
+PolymorphSystemSettings class >> desktopSettingsOn: aBuilder [ 
 	(aBuilder group: #desktopSettings)
 		label: 'Desktop';
 		target: self;
@@ -306,11 +242,8 @@ PolymorphSystemSettings class>>desktopSettingsOn: aBuilder  [
 						
 ]
 
-{
-	#category : #settings,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>morphicHaloSettingsOn: aBuilder  [
+{ #category : #settings }
+PolymorphSystemSettings class >> morphicHaloSettingsOn: aBuilder [ 
 	(aBuilder group: #halo)
 		label: 'Halo';
 		parent: #morphic;
@@ -332,11 +265,8 @@ PolymorphSystemSettings class>>morphicHaloSettingsOn: aBuilder  [
 		]
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>morphicMenuSettingsOn: aBuilder  [
+{ #category : #morphic }
+PolymorphSystemSettings class >> morphicMenuSettingsOn: aBuilder [ 
 	(aBuilder group: #menu)
 		label: 'Menus';
 		parent: #morphic;
@@ -366,11 +296,8 @@ PolymorphSystemSettings class>>morphicMenuSettingsOn: aBuilder  [
 		]
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>morphicSettingsOn: aBuilder  [
+{ #category : #morphic }
+PolymorphSystemSettings class >> morphicSettingsOn: aBuilder [ 
 	(aBuilder group: #morphic)
 		label: 'Morphic';
 		description: 'All morphic settings';
@@ -406,11 +333,8 @@ PolymorphSystemSettings class>>morphicSettingsOn: aBuilder  [
 				description: 'If true, select multiple Morphs in the world by dragging a selection box around them.']
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>morphicWindowsSettingsOn: aBuilder  [
+{ #category : #morphic }
+PolymorphSystemSettings class >> morphicWindowsSettingsOn: aBuilder [ 
 	(aBuilder group: #windows)
 		label: 'Windows';
 		description: 'All windows settings';
@@ -448,19 +372,13 @@ PolymorphSystemSettings class>>morphicWindowsSettingsOn: aBuilder  [
 
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>pharoLogo [
+{ #category : #desktop }
+PolymorphSystemSettings class >> pharoLogo [
 	^ ImageMorph withForm: self pharoLogoForm
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>pharoLogoContents [
+{ #category : #desktop }
+PolymorphSystemSettings class >> pharoLogoContents [
 	^ 'iVBORw0KGgoAAAANSUhEUgAAAWkAAAB5CAYAAAD72tBhAAAKQWlDQ1BJQ0MgUHJvZmlsZQAA
 SA2dlndUU9kWh8+9N73QEiIgJfQaegkg0jtIFQRRiUmAUAKGhCZ2RAVGFBEpVmRUwAFHhyJj
 RRQLg4Ji1wnyEFDGwVFEReXdjGsJ7601896a/cdZ39nnt9fZZ+9917oAUPyCBMJ0WAGANKFY
@@ -972,19 +890,13 @@ X6ArESACRIAIEAEiQASIABEgAkSACBABIkAEiAARIAJEgAgQASKwbQJ/AQb4me4AfccBAAAA
 AElFTkSuQmCC'
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>pharoLogoForm [
+{ #category : #desktop }
+PolymorphSystemSettings class >> pharoLogoForm [
 	^ Form fromBinaryStream: self pharoLogoContents base64Decoded asByteArray readStream
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>setDesktopLogoWith: aMorph [
+{ #category : #desktop }
+PolymorphSystemSettings class >> setDesktopLogoWith: aMorph [
 	self desktopLogo ifNotNil: [self desktopLogo delete].
 	self desktopLogo: aMorph.
 	self desktopLogo ifNotNil: [ :logo |
@@ -995,29 +907,20 @@ PolymorphSystemSettings class>>setDesktopLogoWith: aMorph [
 	]
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>showDesktopLogo [
+{ #category : #desktop }
+PolymorphSystemSettings class >> showDesktopLogo [
 	^ ShowDesktopLogo ifNil: [ShowDesktopLogo := true]
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>showDesktopLogo: aBoolean [
+{ #category : #desktop }
+PolymorphSystemSettings class >> showDesktopLogo: aBoolean [
 	ShowDesktopLogo = aBoolean ifTrue: [^ self].
 	ShowDesktopLogo := aBoolean.
 	self desktopLogoChanged
 ]
 
-{
-	#category : #sound,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>soundSettingsOn: aBuilder [
+{ #category : #sound }
+PolymorphSystemSettings class >> soundSettingsOn: aBuilder [
 	(aBuilder setting: #soundEnabled)
 		label: 'Sound'; 
 		target: SoundSystem;
@@ -1033,83 +936,56 @@ PolymorphSystemSettings class>>soundSettingsOn: aBuilder [
 						domainValues: self soundThemeClassChoices]]
 ]
 
-{
-	#category : #sound,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>soundThemeClass [
+{ #category : #sound }
+PolymorphSystemSettings class >> soundThemeClass [
 	^ SoundTheme current class
 
 ]
 
-{
-	#category : #sound,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>soundThemeClass: aSoundThemeClass [
+{ #category : #sound }
+PolymorphSystemSettings class >> soundThemeClass: aSoundThemeClass [
 	aSoundThemeClass ifNil: [^ self].
 	self soundThemeClass ~= aSoundThemeClass
 		ifTrue: [aSoundThemeClass beCurrent]
 ]
 
-{
-	#category : #sound,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>soundThemeClassChoices [
+{ #category : #sound }
+PolymorphSystemSettings class >> soundThemeClassChoices [
 	^ SoundTheme allThemeClasses collect: [:c | c themeName -> c]
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>uiThemeClass [
+{ #category : #morphic }
+PolymorphSystemSettings class >> uiThemeClass [
 	^ UITheme current class
 
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>uiThemeClass: aUIThemeClass [
+{ #category : #morphic }
+PolymorphSystemSettings class >> uiThemeClass: aUIThemeClass [
 	| themeClass |
 	themeClass := aUIThemeClass 
 		ifNil: [ UITheme standardThemeClass ]. 
 	 themeClass beCurrent.
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>uiThemeClassChoices [
+{ #category : #morphic }
+PolymorphSystemSettings class >> uiThemeClassChoices [
 	^ UITheme allThemeClasses collect: [:c | c themeName -> c]
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>useDesktopGradientFill [
+{ #category : #desktop }
+PolymorphSystemSettings class >> useDesktopGradientFill [
 	^ UseDesktopGradientFill ifNil: [UseDesktopGradientFill := false]
 ]
 
-{
-	#category : #desktop,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>useDesktopGradientFill: aBoolean  [
+{ #category : #desktop }
+PolymorphSystemSettings class >> useDesktopGradientFill: aBoolean [ 
 	UseDesktopGradientFill := aBoolean.
 	self desktopBackgroundChanged
 ]
 
-{
-	#category : #morphic,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-PolymorphSystemSettings class>>windowPositionStrategySettingsOn: aBuilder [
+{ #category : #morphic }
+PolymorphSystemSettings class >> windowPositionStrategySettingsOn: aBuilder [
 	<systemsettings>
 	(aBuilder pickOne: #usedStrategy) 
 		label: 'Window position strategy';

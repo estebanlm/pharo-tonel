@@ -42,69 +42,47 @@ Class {
 		'hashBlock',
 		'equalBlock'
 	],
-	#category : #Collections-Unordered,
-	#timestamp : 'MarcusDenker 3/23/2010 18:47'
+	#category : #Collections-Unordered
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableSet class>>integerSet [
+{ #category : #'as yet unclassified' }
+PluggableSet class >> integerSet [
 	^self new hashBlock: [:integer | integer hash \\ 1064164 * 1009]
 ]
 
-{
-	#category : #copying,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableSet>>copyEmpty [
+{ #category : #copying }
+PluggableSet >> copyEmpty [
 	^super copyEmpty
 		hashBlock: hashBlock;
 		equalBlock: equalBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableSet>>equalBlock [
+{ #category : #accessing }
+PluggableSet >> equalBlock [
 	"Return the block used for comparing the elements in the receiver."
 	^equalBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableSet>>equalBlock: aBlock [
+{ #category : #accessing }
+PluggableSet >> equalBlock: aBlock [
 	"Set a new equality block. The block must accept two arguments and return true if the argumets are considered equal, false otherwise"
 	equalBlock := aBlock.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableSet>>hashBlock [
+{ #category : #accessing }
+PluggableSet >> hashBlock [
 	"Return the block used for hashing the elements in the receiver."
 	^hashBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableSet>>hashBlock: aBlock [
+{ #category : #accessing }
+PluggableSet >> hashBlock: aBlock [
 	"Set a new hash block. The block must accept one argument and return the hash value of the given argument."
 	hashBlock := aBlock.
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableSet>>scanFor: anObject [
+{ #category : #private }
+PluggableSet >> scanFor: anObject [
 	"Scan the key array for the first slot containing either a nil (indicating an empty slot) or an element that matches anObject. Answer the index of that slot or raise an error if no slot is found. This method will be overridden in various subclasses that have different interpretations for matching elements."
 
 	| index start |
@@ -119,11 +97,8 @@ PluggableSet>>scanFor: anObject [
 	self errorNoFreeSpace
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:00'
-}
-PluggableSet>>scanForEmptySlotFor: aKey [
+{ #category : #private }
+PluggableSet >> scanForEmptySlotFor: aKey [
 	"Scan the key array for the first slot containing an empty slot (indicated by a nil). Answer the index of that slot. This method will be overridden in various subclasses that have different interpretations for matching elements."
 	
 	| index start |

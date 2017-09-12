@@ -7,64 +7,42 @@ Class {
 	#instVars : [
 		'gofer'
 	],
-	#category : #Gofer-Tests,
-	#timestamp : 'TorstenBergmann 2/5/2014 09:30'
+	#category : #Gofer-Tests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferTest class>>isAbstract [
+{ #category : #testing }
+GoferTest class >> isAbstract [
 	^ self name = #GoferTest
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferTest class>>isUnitTest [
+{ #category : #testing }
+GoferTest class >> isUnitTest [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferTest class>>packageNamesUnderTest [
+{ #category : #accessing }
+GoferTest class >> packageNamesUnderTest [
 	^ #('Gofer-Core')
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferTest class>>resources [
+{ #category : #accessing }
+GoferTest class >> resources [
 	^ Array with: GoferResource
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferTest>>monticelloRepository [
+{ #category : #accessing }
+GoferTest >> monticelloRepository [
 	^ GoferResource current monticelloRepository
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferTest>>setUp [
+{ #category : #running }
+GoferTest >> setUp [
 	super setUp.
 	gofer := Gofer new.
 	gofer disablePackageCache
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-GoferTest>>versionReferences [
+{ #category : #accessing }
+GoferTest >> versionReferences [
 	^ GoferResource current versionReferences
 ]

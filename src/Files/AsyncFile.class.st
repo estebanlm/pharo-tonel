@@ -17,15 +17,11 @@ Class {
 		'Busy',
 		'ErrorCode'
 	],
-	#category : #Files-Core,
-	#timestamp : 'HenrikSperreJohansen 2/16/2012 11:40'
+	#category : #Files-Core
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-AsyncFile class>>initialize [
+{ #category : #initialization }
+AsyncFile class >> initialize [
 	"AsyncFile initialize"
 
 	"Possible abnormal I/O completion results."
@@ -34,11 +30,8 @@ AsyncFile class>>initialize [
 
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-AsyncFile>>close [
+{ #category : #open/close }
+AsyncFile >> close [
 
 	fileHandle ifNil: [^ self].  "already closed"
 	self primClose: fileHandle.
@@ -48,19 +41,13 @@ AsyncFile>>close [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-AsyncFile>>fileHandle [
+{ #category : #accessing }
+AsyncFile >> fileHandle [
 	^ fileHandle
 ]
 
-{
-	#category : #open/close,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-AsyncFile>>open: fullFileName forWrite: aBoolean [
+{ #category : #open/close }
+AsyncFile >> open: fullFileName forWrite: aBoolean [
 	"Open a file of the given name, and return a handle for that file. Answer the receiver if the primitive succeeds, nil otherwise.
 	If openForWrite is true, then:
 		if there is no existing file with this name, then create one
@@ -84,22 +71,16 @@ AsyncFile>>open: fullFileName forWrite: aBoolean [
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-AsyncFile>>primClose: fHandle [
+{ #category : #primitives }
+AsyncFile >> primClose: fHandle [
 	"Close this file. Do nothing if primitive fails."
 
 	<primitive: 'primitiveAsyncFileClose' module: 'AsynchFilePlugin'>
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-AsyncFile>>primOpen: fileName forWrite: openForWrite semaIndex: semaIndex [
+{ #category : #primitives }
+AsyncFile >> primOpen: fileName forWrite: openForWrite semaIndex: semaIndex [
 	"Open a file of the given name, and return a handle for that file. Answer the receiver if the primitive succeeds, nil otherwise."
 
 	<primitive: 'primitiveAsyncFileOpen' module: 'AsynchFilePlugin'>
@@ -107,11 +88,8 @@ AsyncFile>>primOpen: fileName forWrite: openForWrite semaIndex: semaIndex [
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-AsyncFile>>primReadResult: fHandle intoBuffer: buffer at: startIndex count: count [
+{ #category : #primitives }
+AsyncFile >> primReadResult: fHandle intoBuffer: buffer at: startIndex count: count [
 	"Copy the result of the last read operation into the given buffer starting at the given index. The buffer may be any sort of bytes or words object, excluding CompiledMethods. Answer the number of bytes read. A negative result means:
 		-1 the last operation is still in progress
 		-2 the last operation encountered an error"
@@ -121,11 +99,8 @@ AsyncFile>>primReadResult: fHandle intoBuffer: buffer at: startIndex count: coun
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-AsyncFile>>primReadStart: fHandle fPosition: fPosition count: count [
+{ #category : #primitives }
+AsyncFile >> primReadStart: fHandle fPosition: fPosition count: count [
 	"Start a read operation of count bytes starting at the given offset in the given file."
 
 	<primitive: 'primitiveAsyncFileReadStart' module: 'AsynchFilePlugin'>
@@ -145,11 +120,8 @@ then save-and-quit, restart, and try again.
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-AsyncFile>>primWriteResult: fHandle [
+{ #category : #primitives }
+AsyncFile >> primWriteResult: fHandle [
 	"Answer the number of bytes written. A negative result means:
 		-1 the last operation is still in progress
 		-2 the last operation encountered an error"
@@ -159,11 +131,8 @@ AsyncFile>>primWriteResult: fHandle [
 
 ]
 
-{
-	#category : #primitives,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-AsyncFile>>primWriteStart: fHandle fPosition: fPosition fromBuffer: buffer at: startIndex count: count [
+{ #category : #primitives }
+AsyncFile >> primWriteStart: fHandle fPosition: fPosition fromBuffer: buffer at: startIndex count: count [
 	"Start a write operation of count bytes starting at the given index in the given buffer. The buffer may be any sort of bytes or words object, excluding CompiledMethods. The contents of the buffer are copied into an internal buffer immediately, so the buffer can be reused after the write operation has been started. Fail if there is insufficient C heap to allocate an internal buffer of the requested size."
 
 	<primitive: 'primitiveAsyncFileWriteStart' module: 'AsynchFilePlugin'>
@@ -172,11 +141,8 @@ AsyncFile>>primWriteStart: fHandle fPosition: fPosition fromBuffer: buffer at: s
 
 ]
 
-{
-	#category : #'write and read',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-AsyncFile>>readByteCount: byteCount fromFilePosition: fPosition onCompletionDo: aBlock [
+{ #category : #'write and read' }
+AsyncFile >> readByteCount: byteCount fromFilePosition: fPosition onCompletionDo: aBlock [
 	"Start a read operation to read byteCount's from the given position in this file. and fork a process to await its completion. When the operation completes, evaluate the given block. Note that, since the completion block may run asynchronous, the client may need to use a SharedQueue or a semaphore for synchronization."
 
 	| buffer |
@@ -194,11 +160,8 @@ AsyncFile>>readByteCount: byteCount fromFilePosition: fPosition onCompletionDo: 
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-AsyncFile>>test: byteCount fileName: fileName [
+{ #category : #tests }
+AsyncFile >> test: byteCount fileName: fileName [
 	"AsyncFile new test: 10000 fileName: 'testData'"
 
 	| buf1 buf2 bytesWritten bytesRead |
@@ -230,19 +193,13 @@ AsyncFile>>test: byteCount fileName: fileName [
 
 ]
 
-{
-	#category : #'write and read',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-AsyncFile>>waitForCompletion [
+{ #category : #'write and read' }
+AsyncFile >> waitForCompletion [
 	semaphore wait
 ]
 
-{
-	#category : #'write and read',
-	#timestamp : ' 8/31/2017 07:16:12'
-}
-AsyncFile>>writeBuffer: buffer atFilePosition: fPosition onCompletionDo: aBlock [
+{ #category : #'write and read' }
+AsyncFile >> writeBuffer: buffer atFilePosition: fPosition onCompletionDo: aBlock [
 	"Start an operation to write the contents of the buffer at given position in this file, and fork a process to await its completion. When the write completes, evaluate the given block. Note that, since the completion block runs asynchronously, the client may need to use a SharedQueue or a semaphore for synchronization."
 
 	self primWriteStart: fileHandle

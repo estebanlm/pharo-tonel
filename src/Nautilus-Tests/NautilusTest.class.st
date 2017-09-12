@@ -7,33 +7,23 @@ Class {
 	#instVars : [
 		'nautilus'
 	],
-	#category : #Nautilus-Tests,
-	#timestamp : '<historical>'
+	#category : #Nautilus-Tests
 }
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusTest>>setUp [
+{ #category : #running }
+NautilusTest >> setUp [
 
 	nautilus := Nautilus new.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusTest>>tearDown [
+{ #category : #running }
+NautilusTest >> tearDown [
 
 	nautilus := nil.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusTest>>testSelectedCategory [
+{ #category : #tests }
+NautilusTest >> testSelectedCategory [
 
 	self assert: nautilus selectedMethod isNil.
 	nautilus selectedMethod: (Object>>#at:).
@@ -42,11 +32,8 @@ NautilusTest>>testSelectedCategory [
 	self assert: (nautilus selectedMethod isNil).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusTest>>testSelectedClass [
+{ #category : #tests }
+NautilusTest >> testSelectedClass [
 
 	self assert: nautilus selectedMethod isNil.
 	nautilus selectedMethod: (Object>>#at:).
@@ -60,11 +47,8 @@ NautilusTest>>testSelectedClass [
 	self assert: (nautilus selectedMethod isNil).
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-NautilusTest>>testSelectedMethod [
+{ #category : #tests }
+NautilusTest >> testSelectedMethod [
 
 	self assert: nautilus selectedMethod isNil.
 	nautilus selectedMethod: (Object>>#at:).

@@ -1,20 +1,12 @@
-Extension {
-	#name : #FileReference
-}
+Extension { #name : #FileReference }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-FileReference>>isZipFile [
+{ #category : #'*GT-SpotterExtensions-Core' }
+FileReference >> isZipFile [
 	^ self isFile and: [ #('zip' 'jar' 'ear' 'war') includes: self extension ]
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-FileReference>>spotterForDirectoriesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+FileReference >> spotterForDirectoriesFor: aStep [
 	<spotterOrder: 10>
 	^ self isDirectory ifTrue: [
 		aStep listProcessor
@@ -26,11 +18,8 @@ FileReference>>spotterForDirectoriesFor: aStep [
 			filter: GTFilterSubstring ]
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-FileReference>>spotterForFilesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+FileReference >> spotterForFilesFor: aStep [
 	<spotterOrder: 20>
 	^ self isDirectory ifTrue: [
 		aStep listProcessor
@@ -42,11 +31,8 @@ FileReference>>spotterForFilesFor: aStep [
 			filter: GTFilterSubstring ]
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-FileReference>>spotterForZipDirectoriesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+FileReference >> spotterForZipDirectoriesFor: aStep [
 	<spotterOrder: 10>
 	| zipFileSystem |
 	self isZipFile ifFalse: [ ^ self ].
@@ -61,11 +47,8 @@ FileReference>>spotterForZipDirectoriesFor: aStep [
 			filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-FileReference>>spotterForZipFilesFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+FileReference >> spotterForZipFilesFor: aStep [
 	<spotterOrder: 10>
 	| zipFileSystem |
 	self isZipFile ifFalse: [ ^ self ].
@@ -81,11 +64,8 @@ FileReference>>spotterForZipFilesFor: aStep [
 	
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-FileReference>>spotterPreviewContentsIn: aComposite [
+{ #category : #'*GT-SpotterExtensions-Core' }
+FileReference >> spotterPreviewContentsIn: aComposite [
 	<spotterPreview: 20>
 	
 	self isFile ifFalse: [ ^ self ].
@@ -102,11 +82,8 @@ FileReference>>spotterPreviewContentsIn: aComposite [
 						ifFalse: [ result ] ])
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-FileReference>>spotterPreviewItemsIn: aComposite [
+{ #category : #'*GT-SpotterExtensions-Core' }
+FileReference >> spotterPreviewItemsIn: aComposite [
 	<spotterPreview: 10>
 	
 	self isDirectory ifFalse: [ ^ self ].
@@ -130,11 +107,8 @@ FileReference>>spotterPreviewItemsIn: aComposite [
 	self flag: 'move "entity: self" somewhere else, maybe'
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-FileReference>>spotterPreviewPngIn: aComposite [
+{ #category : #'*GT-SpotterExtensions-Core' }
+FileReference >> spotterPreviewPngIn: aComposite [
 	<spotterPreview: 10>
 	
 	(self mimeTypes notNil and: [ 
@@ -145,11 +119,8 @@ FileReference>>spotterPreviewPngIn: aComposite [
 			asAlphaImageMorph asBrick margin: 20)
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-FileReference>>spotterPreviewStScriptIn: aComposite [
+{ #category : #'*GT-SpotterExtensions-Core' }
+FileReference >> spotterPreviewStScriptIn: aComposite [
 	<spotterPreview: 10>
 	
 	(self extension = 'st' or: [self extension = 'ph']) 
@@ -161,11 +132,8 @@ FileReference>>spotterPreviewStScriptIn: aComposite [
 		entity: (self readStreamDo: #contents)
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-FileReference>>spotterPreviewZipItemsIn: aComposite [
+{ #category : #'*GT-SpotterExtensions-Core' }
+FileReference >> spotterPreviewZipItemsIn: aComposite [
 	<spotterPreview: 10>
 
 	| zip |

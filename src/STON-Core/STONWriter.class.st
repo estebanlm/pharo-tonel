@@ -47,26 +47,19 @@ Class {
 		'STONCharacters',
 		'STONSimpleSymbolCharacters'
 	],
-	#category : #STON-Core,
-	#timestamp : 'SvenVanCaekenberghe 1/31/2017 23:27'
+	#category : #STON-Core
 }
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter class>>initialize [
+{ #category : #'class initialization' }
+STONWriter class >> initialize [
 	"Modification timestamp 20170131"
 	
 	self initializeSTONCharacters.
 	self initializeSTONSimpleSymbolCharacters
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter class>>initializeSTONCharacters [
+{ #category : #'class initialization' }
+STONWriter class >> initializeSTONCharacters [
 	| escapes |
 	STONCharacters := Array new: 127.
 	32 to: 126 do: [ :each | 
@@ -77,11 +70,8 @@ STONWriter class>>initializeSTONCharacters [
 		STONCharacters at: code + 1 put: escape ]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter class>>initializeSTONSimpleSymbolCharacters [
+{ #category : #'class initialization' }
+STONWriter class >> initializeSTONSimpleSymbolCharacters [
 	"STONSimpleSymbolCharacters asArray collectWithIndex: [ :each :index |
 		each isZero ifTrue: [ (index - 1) asCharacter ] ]."
 		
@@ -93,47 +83,32 @@ STONWriter class>>initializeSTONSimpleSymbolCharacters [
 				STONSimpleSymbolCharacters at: each put: 0 ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter class>>isSimpleSymbolChar: char [
+{ #category : #private }
+STONWriter class >> isSimpleSymbolChar: char [
 	^ 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_./' includes: char
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter class>>on: writeStream [
+{ #category : #'instance creation' }
+STONWriter class >> on: writeStream [
 	^ self new
 		on: writeStream;
 		yourself
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>asciiOnly: boolean [
+{ #category : #initialize-release }
+STONWriter >> asciiOnly: boolean [
 	asciiOnly := boolean
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>close [
+{ #category : #initialize-release }
+STONWriter >> close [
 	writeStream ifNotNil: [
 		writeStream close.
 		writeStream := nil ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>encodeCharacter: char [
+{ #category : #private }
+STONWriter >> encodeCharacter: char [
 	| code encoding |
 	"STONCharacters contains for the lower 127 characters (codes 0 to 126) either nil (unknown), 
 	#pass (output as is, clean ASCII characters) or a full escape string"
@@ -150,11 +125,8 @@ STONWriter>>encodeCharacter: char [
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>encodeKey: key value: value [
+{ #category : #private }
+STONWriter >> encodeKey: key value: value [
 	self nextPut: key.
 	self prettyPrintSpace.
 	writeStream nextPut: $:.
@@ -162,11 +134,8 @@ STONWriter>>encodeKey: key value: value [
 	self nextPut: value
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>encodeList: elements [
+{ #category : #writing }
+STONWriter >> encodeList: elements [
 	writeStream nextPut: $[.
 	elements isEmpty
 		ifTrue: [
@@ -182,11 +151,8 @@ STONWriter>>encodeList: elements [
 
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>encodeMap: pairs [
+{ #category : #writing }
+STONWriter >> encodeMap: pairs [
 	| first |
 	first := true.
 	writeStream nextPut: ${.
@@ -205,11 +171,8 @@ STONWriter>>encodeMap: pairs [
 	writeStream nextPut: $}
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>encodeString: string [
+{ #category : #private }
+STONWriter >> encodeString: string [
 	writeStream nextPut: (jsonMode ifTrue: [ $" ] ifFalse: [ $' ]).
 	keepNewLines
 		ifTrue: [ 
@@ -219,11 +182,8 @@ STONWriter>>encodeString: string [
 	writeStream nextPut: (jsonMode ifTrue: [ $" ] ifFalse: [ $' ])
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>encodeStringKeepingNewLines: string [
+{ #category : #private }
+STONWriter >> encodeStringKeepingNewLines: string [
 	| input char |
 	input := string readStream.
 	[ input atEnd ]
@@ -239,19 +199,13 @@ STONWriter>>encodeStringKeepingNewLines: string [
 						ifFalse: [ self encodeCharacter: char ] ] ]
 ]
 
-{
-	#category : #'error handling',
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>error: aString [
+{ #category : #'error handling' }
+STONWriter >> error: aString [
 	^ STONWriterError signal: aString
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>escape: char with: anObject [
+{ #category : #initialize-release }
+STONWriter >> escape: char with: anObject [
 	"Instruct me to escape char with object, either a replacement string or #pass"
 	
 	"self escape: $/ with: '\/'."
@@ -261,20 +215,14 @@ STONWriter>>escape: char with: anObject [
 	self writeableStonCharacters at: char codePoint + 1 put: anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>escapeUnicode4: codePoint [
+{ #category : #private }
+STONWriter >> escapeUnicode4: codePoint [
 	writeStream nextPutAll: '\u'.
 	codePoint printOn: writeStream base: 16 nDigits: 4
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>escapeUnicode: codePoint [
+{ #category : #private }
+STONWriter >> escapeUnicode: codePoint [
 	codePoint <= 16rFFFF
 		ifTrue: [ self escapeUnicode4: codePoint ]
 		ifFalse: [ 
@@ -290,21 +238,15 @@ STONWriter>>escapeUnicode: codePoint [
 				ifFalse: [ self error: 'Character Unicode code point outside encoder range' ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>indentedDo: block [
+{ #category : #private }
+STONWriter >> indentedDo: block [
 	level := level + 1.
 	block value.
 	level := level - 1
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>initialize [
+{ #category : #initialize-release }
+STONWriter >> initialize [
 	super initialize.
 	stonCharacters := STONCharacters.
 	prettyPrint := false.
@@ -315,11 +257,8 @@ STONWriter>>initialize [
 	objects := IdentityDictionary new
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>isSimpleSymbol: symbol [
+{ #category : #private }
+STONWriter >> isSimpleSymbol: symbol [
 	symbol isEmpty ifTrue: [ ^ false ].
 	^ (symbol class 
 		findFirstInString: symbol 
@@ -328,11 +267,8 @@ STONWriter>>isSimpleSymbol: symbol [
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>jsonMode: boolean [
+{ #category : #initialize-release }
+STONWriter >> jsonMode: boolean [
 	(jsonMode := boolean)
 		ifTrue: [ 
 			self
@@ -344,11 +280,8 @@ STONWriter>>jsonMode: boolean [
 				escape: $' with: '\''' ]
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>keepNewLines: boolean [
+{ #category : #initialize-release }
+STONWriter >> keepNewLines: boolean [
 	"If true, any newline CR, LF or CRLF inside strings or symbols will not be escaped
 	but will instead be converted to the newline convention chosen, see #newLine:
 	The default is false, where CR, LF or CRLF will be enscaped unchanged."
@@ -356,131 +289,89 @@ STONWriter>>keepNewLines: boolean [
 	keepNewLines := boolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>listElementSeparator [
+{ #category : #private }
+STONWriter >> listElementSeparator [
 	writeStream nextPut: $,.
 	self newlineIndent
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>mapElementSeparator [
+{ #category : #private }
+STONWriter >> mapElementSeparator [
 	writeStream nextPut: $,.
 	self newlineIndent
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>newLine: string [
+{ #category : #initialize-release }
+STONWriter >> newLine: string [
 	"The sequence to use when ending a line, either CR, LF or CRLF"
 	
 	newLine := string
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>newlineIndent [
+{ #category : #private }
+STONWriter >> newlineIndent [
 	prettyPrint ifTrue: [ 
 		writeStream nextPutAll: newLine.
 		level timesRepeat: [ writeStream tab ] ]
 ]
 
-{
-	#category : #public,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>nextPut: anObject [
+{ #category : #public }
+STONWriter >> nextPut: anObject [
 	anObject stonOn: self
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>on: aWriteStream [
+{ #category : #initialize-release }
+STONWriter >> on: aWriteStream [
 	writeStream := aWriteStream
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>optimizeForLargeStructures [
+{ #category : #initialize-release }
+STONWriter >> optimizeForLargeStructures [
 	self class environment
 		at: #FLLargeIdentityDictionary
 		ifPresent: [ :identityDictionaryClass | objects := identityDictionaryClass new ].
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>prettyPrint: boolean [
+{ #category : #initialize-release }
+STONWriter >> prettyPrint: boolean [
 	prettyPrint := boolean
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>prettyPrintSpace [
+{ #category : #private }
+STONWriter >> prettyPrintSpace [
 	prettyPrint ifTrue: [ writeStream space ]
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>referencePolicy: policy [
+{ #category : #initialize-release }
+STONWriter >> referencePolicy: policy [
 	self assert: ( #(#normal #ignore #error) includes: policy ).
 	referencePolicy := policy
 
 ]
 
-{
-	#category : #initialize-release,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>reset [
+{ #category : #initialize-release }
+STONWriter >> reset [
 	objects removeAll
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>shortListElementSeparator [
+{ #category : #private }
+STONWriter >> shortListElementSeparator [
 	writeStream nextPut: $,.
 	self prettyPrintSpace
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>stonCharacters [
+{ #category : #private }
+STONWriter >> stonCharacters [
 	^ stonCharacters ifNil: [ stonCharacters := STONCharacters ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>with: object do: block [
+{ #category : #private }
+STONWriter >> with: object do: block [
 	| index |
 	referencePolicy = #ignore 
 		ifTrue: [ ^ block value ].
@@ -495,11 +386,8 @@ STONWriter>>with: object do: block [
 			block value ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeAssociation: association [
+{ #category : #writing }
+STONWriter >> writeAssociation: association [
 	jsonMode
 		ifTrue: [ self error: 'wrong object class for JSON mode' ].
 	self 
@@ -507,63 +395,42 @@ STONWriter>>writeAssociation: association [
 		value: association value
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeBoolean: boolean [
+{ #category : #writing }
+STONWriter >> writeBoolean: boolean [
 	writeStream print: boolean
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeFloat: float [
+{ #category : #writing }
+STONWriter >> writeFloat: float [
 	writeStream print: float
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeInteger: integer [
+{ #category : #writing }
+STONWriter >> writeInteger: integer [
 	writeStream print: integer
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeList: collection [
+{ #category : #writing }
+STONWriter >> writeList: collection [
 	self with: collection do: [ 
 		self encodeList: collection ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeMap: hashedCollection [
+{ #category : #writing }
+STONWriter >> writeMap: hashedCollection [
 	self with: hashedCollection do: [ 
 		self encodeMap: hashedCollection ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeNull [
+{ #category : #writing }
+STONWriter >> writeNull [
 	jsonMode
 		ifTrue: [ writeStream nextPutAll: 'null' ]
 		ifFalse: [ writeStream print: nil ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeObject: anObject [
+{ #category : #writing }
+STONWriter >> writeObject: anObject [
 	| instanceVariableNames |
 	(instanceVariableNames := anObject class stonAllInstVarNames) isEmpty
 		ifTrue: [ 
@@ -579,11 +446,8 @@ STONWriter>>writeObject: anObject [
 								ifTrue: [ dictionary at: each asSymbol put: nil ] ] ] ] ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeObject: anObject do: block [
+{ #category : #writing }
+STONWriter >> writeObject: anObject do: block [
 	(jsonMode and: [ anObject class ~= STON listClass and: [ anObject class ~= STON mapClass ] ])
 		ifTrue: [ self error: 'wrong object class for JSON mode' ].
 	self with: anObject do: [
@@ -592,11 +456,8 @@ STONWriter>>writeObject: anObject do: block [
 		block value ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeObject: object listSingleton: element [
+{ #category : #writing }
+STONWriter >> writeObject: object listSingleton: element [
 	self writeObject: object do: [
 		writeStream nextPut: $[.
 		self 
@@ -606,11 +467,8 @@ STONWriter>>writeObject: object listSingleton: element [
 		writeStream nextPut: $] ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeObject: object streamList: block [
+{ #category : #writing }
+STONWriter >> writeObject: object streamList: block [
 	self writeObject: object do: [ | listWriter |
 		listWriter := STONListWriter on: self.
 		writeStream nextPut: $[.
@@ -621,11 +479,8 @@ STONWriter>>writeObject: object streamList: block [
 		writeStream nextPut: $] ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeObject: object streamMap: block [
+{ #category : #writing }
+STONWriter >> writeObject: object streamMap: block [
 	self writeObject: object do: [ | mapWriter |
 		mapWriter := STONMapWriter on: self.
 		writeStream nextPut: ${.
@@ -636,11 +491,8 @@ STONWriter>>writeObject: object streamMap: block [
 		writeStream nextPut: $} ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeObject: object streamShortList: block [
+{ #category : #writing }
+STONWriter >> writeObject: object streamShortList: block [
 	self writeObject: object do: [ | listWriter |
 		listWriter := STONShortListWriter on: self.
 		writeStream nextPut: $[.
@@ -651,29 +503,20 @@ STONWriter>>writeObject: object streamShortList: block [
 		writeStream nextPut: $] ]
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeReference: index [
+{ #category : #writing }
+STONWriter >> writeReference: index [
 	writeStream
 		nextPut: $@;
 		print: index
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeString: string [
+{ #category : #writing }
+STONWriter >> writeString: string [
 	self encodeString: string
 ]
 
-{
-	#category : #writing,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeSymbol: symbol [
+{ #category : #writing }
+STONWriter >> writeSymbol: symbol [
 	jsonMode
 		ifTrue: [
 			self writeString: symbol ]
@@ -686,11 +529,8 @@ STONWriter>>writeSymbol: symbol [
 					self encodeString: symbol ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:27'
-}
-STONWriter>>writeableStonCharacters [
+{ #category : #private }
+STONWriter >> writeableStonCharacters [
 	^ self stonCharacters == STONCharacters
 		ifTrue: [ stonCharacters := stonCharacters copy ]
 		ifFalse: [ stonCharacters ]

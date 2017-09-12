@@ -1,12 +1,7 @@
-Extension {
-	#name : #String
-}
+Extension { #name : #String }
 
-{
-	#category : #'*Versionner-Core-Model',
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-String>>configurationBaseName [
+{ #category : #'*Versionner-Core-Model' }
+String >> configurationBaseName [
 	"Return the baseName for this configuration class name."
 	
 	^ (self indexOfSubCollection: 'ConfigurationOf') = 0

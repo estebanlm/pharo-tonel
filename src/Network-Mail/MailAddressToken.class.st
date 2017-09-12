@@ -8,23 +8,16 @@ Class {
 		'type',
 		'text'
 	],
-	#category : #Network-Mail,
-	#timestamp : '<historical>'
+	#category : #Network-Mail
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressToken class>>type: type  text: text [
+{ #category : #'instance creation' }
+MailAddressToken class >> type: type  text: text [
 	^self new type: type text: text
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressToken>>printOn: aStream [
+{ #category : #printing }
+MailAddressToken >> printOn: aStream [
 	aStream nextPut: $[.
 	aStream nextPutAll: self type asString.
 	aStream nextPut: $|.
@@ -32,27 +25,18 @@ MailAddressToken>>printOn: aStream [
 	aStream nextPut: $].
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressToken>>text [
+{ #category : #access }
+MailAddressToken >> text [
 	^text
 ]
 
-{
-	#category : #access,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressToken>>type [
+{ #category : #access }
+MailAddressToken >> type [
 	^type
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:23'
-}
-MailAddressToken>>type: type0  text: text0 [
+{ #category : #private }
+MailAddressToken >> type: type0  text: text0 [
 	type := type0.
 	text := text0.
 ]

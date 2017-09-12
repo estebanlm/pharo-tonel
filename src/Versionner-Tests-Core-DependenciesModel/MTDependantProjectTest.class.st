@@ -4,15 +4,11 @@ Test clas for a dependant project
 Class {
 	#name : #MTDependantProjectTest,
 	#superclass : #TestCase,
-	#category : #Versionner-Tests-Core-DependenciesModel,
-	#timestamp : '<historical>'
+	#category : #Versionner-Tests-Core-DependenciesModel
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProjectTest>>referenceDependency [
+{ #category : #private }
+MTDependantProjectTest >> referenceDependency [
 	| version |
 	
 	version := MTVersion new
@@ -28,11 +24,8 @@ MTDependantProjectTest>>referenceDependency [
 			yourself.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:38'
-}
-MTDependantProjectTest>>testEquals [
+{ #category : #tests }
+MTDependantProjectTest >> testEquals [
 	| dependency otherDependency |
 	
 	dependency := self referenceDependency.

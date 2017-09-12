@@ -7,30 +7,20 @@ Class {
 	#instVars : [
 		'index'
 	],
-	#category : #OpalCompiler-Core-IR-Nodes,
-	#timestamp : '<historical>'
+	#category : #OpalCompiler-Core-IR-Nodes
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstVarAccess>>index [
+{ #category : #accessing }
+IRInstVarAccess >> index [
 	^ index
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstVarAccess>>index: anInteger [
+{ #category : #accessing }
+IRInstVarAccess >> index: anInteger [
 	index := anInteger
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:23'
-}
-IRInstVarAccess>>isInstVarAccess [
+{ #category : #testing }
+IRInstVarAccess >> isInstVarAccess [
 	^ true
 ]

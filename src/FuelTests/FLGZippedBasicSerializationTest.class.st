@@ -4,50 +4,34 @@ SUnit tests for basic serialization that is zipped
 Class {
 	#name : #FLGZippedBasicSerializationTest,
 	#superclass : #FLBasicSerializationTest,
-	#category : #FuelTests,
-	#timestamp : 'TorstenBergmann 2/3/2014 23:25'
+	#category : #FuelTests
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGZippedBasicSerializationTest class>>shouldInheritSelectors  [
+{ #category : #testing }
+FLGZippedBasicSerializationTest class >> shouldInheritSelectors [ 
 	^true
 ]
 
-{
-	#category : #'expected failures',
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGZippedBasicSerializationTest>>expectedFailures [
+{ #category : #'expected failures' }
+FLGZippedBasicSerializationTest >> expectedFailures [
 
 	^ super expectedFailures, #(testWideString)
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGZippedBasicSerializationTest>>setUp [
+{ #category : #running }
+FLGZippedBasicSerializationTest >> setUp [
 	super setUp.
 	self useGzipInMemoryStream.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGZippedBasicSerializationTest>>testByteArray [
+{ #category : #tests }
+FLGZippedBasicSerializationTest >> testByteArray [
 
 	self assertSerializationEqualityOf: #[1 2 3 4 5 6 7]
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGZippedBasicSerializationTest>>testCompleteBinaryTree [
+{ #category : #tests }
+FLGZippedBasicSerializationTest >> testCompleteBinaryTree [
 
 	| aCollection numberOfLeafs |
 	numberOfLeafs := 2 raisedTo: 13.
@@ -70,11 +54,8 @@ FLGZippedBasicSerializationTest>>testCompleteBinaryTree [
 	self assertSerializationEqualityOf: aCollection
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGZippedBasicSerializationTest>>testPairs [
+{ #category : #tests }
+FLGZippedBasicSerializationTest >> testPairs [
 
 	| pairs |
 	pairs := (1 to: 1 << 14) 
@@ -87,11 +68,8 @@ FLGZippedBasicSerializationTest>>testPairs [
 	self assertSerializationEqualityOf: pairs
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:30'
-}
-FLGZippedBasicSerializationTest>>testWideString [
+{ #category : #tests }
+FLGZippedBasicSerializationTest >> testWideString [
 
 	| anObject |
 	anObject := OrderedCollection new.

@@ -1,9 +1,5 @@
-"
-
-"
 Class {
 	#name : #GTSpotterStepPopped,
 	#superclass : #Announcement,
-	#category : #GT-Spotter-Announcements,
-	#timestamp : ''
+	#category : #GT-Spotter-Announcements
 }

@@ -8,63 +8,44 @@ Class {
 		'condition',
 		'title'
 	],
-	#category : #EpiceaBrowsers-Filters,
-	#timestamp : 'MartinDias 8/20/2014 11:58'
+	#category : #EpiceaBrowsers-Filters
 }
 
-{
-	#category : #'special filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter class>>after: aDateAndTime [
+{ #category : #'special filters' }
+EpPluggableFilter class >> after: aDateAndTime [
 
 	^ self
 		title: 'after ', aDateAndTime printString
 		condition: [ :e | (e tags at: EpLog timeKey) > aDateAndTime ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter class>>allFilterSelectors [
+{ #category : #accessing }
+EpPluggableFilter class >> allFilterSelectors [
 	^ self class allSelectorsInProtocol: #'well-known filters'
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter class>>allFilters [
+{ #category : #accessing }
+EpPluggableFilter class >> allFilters [
 	^ self allFilterSelectors collect: [ :selector | self perform: selector ]
 ]
 
-{
-	#category : #'special filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter class>>before: aDateAndTime [
+{ #category : #'special filters' }
+EpPluggableFilter class >> before: aDateAndTime [
 
 	^ self
 		title: 'before ', aDateAndTime printString
 		condition: [ :e | (e tags at: EpLog timeKey) < aDateAndTime ]
 ]
 
-{
-	#category : #'well-known filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter class>>codeChangeFilter [
+{ #category : #'well-known filters' }
+EpPluggableFilter class >> codeChangeFilter [
 	^ self
 		title: 'Show only code changes'
 		condition: [ :e | e content isCodeChange ]
 ]
 
-{
-	#category : #'special filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter class>>isBehaviorNamed: aString [
+{ #category : #'special filters' }
+EpPluggableFilter class >> isBehaviorNamed: aString [
 
 	| instanceSideBehaviorName |
 	instanceSideBehaviorName := aString asInstanceSideBehaviorName.
@@ -78,11 +59,8 @@ EpPluggableFilter class>>isBehaviorNamed: aString [
 			event behaviorAffectedName asInstanceSideBehaviorName = instanceSideBehaviorName ] ]
 ]
 
-{
-	#category : #'special filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter class>>isMethod: aMethod [
+{ #category : #'special filters' }
+EpPluggableFilter class >> isMethod: aMethod [
 
 	^ self
 		title: 'is ', aMethod printString
@@ -92,11 +70,8 @@ EpPluggableFilter class>>isMethod: aMethod [
 			e content methodAffectedSelector = aMethod selector ] ] ]
 ]
 
-{
-	#category : #'special filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter class>>isPackageNamed: packageName  [
+{ #category : #'special filters' }
+EpPluggableFilter class >> isPackageNamed: packageName [ 
 
 	^ self
 		title: 'belongs to package named ', packageName
@@ -105,31 +80,22 @@ EpPluggableFilter class>>isPackageNamed: packageName  [
 			e content affectedPackageName = packageName ] ]
 ]
 
-{
-	#category : #'well-known filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter class>>logBrowserOperationFilter [
+{ #category : #'well-known filters' }
+EpPluggableFilter class >> logBrowserOperationFilter [
 	^ self
 		title: 'Show only apply, revert or comment events'
 		condition: [ :e | e content isKindOf: EpLogBrowserOperation ]
 ]
 
-{
-	#category : #'well-known filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter class>>methodFilter [
+{ #category : #'well-known filters' }
+EpPluggableFilter class >> methodFilter [
 	^ self
 		title: 'Show only changes to methods'
 		condition: [ :e | e content isEpMethodChange ]
 ]
 
-{
-	#category : #'well-known filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter class>>noTriggerFilter [
+{ #category : #'well-known filters' }
+EpPluggableFilter class >> noTriggerFilter [
 	^ self
 		title: 'Hide non-manual changes (e.g. changes produced by Monticello)'
 		condition: [ :e | 
@@ -138,73 +104,49 @@ EpPluggableFilter class>>noTriggerFilter [
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter class>>title: aString condition: aBlockClosure  [
+{ #category : #'instance creation' }
+EpPluggableFilter class >> title: aString condition: aBlockClosure [ 
 	^ self new
 		title: aString;
 		condition: aBlockClosure;
 		yourself
 ]
 
-{
-	#category : #'special filters',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter class>>todayFilter [
+{ #category : #'special filters' }
+EpPluggableFilter class >> todayFilter [
 	^ self
 		title: 'today'
 		condition: [ :e | DateAndTime today < (e tags at: EpLog timeKey ifAbsent: [ DateAndTime epoch ])  ]
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter>>= other [
+{ #category : #comparing }
+EpPluggableFilter >> = other [
 
 	^ self class = other class and: [ self title = other title ]
 ]
 
-{
-	#category : #filtering,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter>>accepts: anEntry [
+{ #category : #filtering }
+EpPluggableFilter >> accepts: anEntry [
 	^ self condition value: anEntry
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter>>condition [
+{ #category : #accessing }
+EpPluggableFilter >> condition [
 	^ condition
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter>>condition: aBlockClosure  [
+{ #category : #accessing }
+EpPluggableFilter >> condition: aBlockClosure [ 
 	condition := aBlockClosure 
 ]
 
-{
-	#category : #comparing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter>>hash [
+{ #category : #comparing }
+EpPluggableFilter >> hash [
 	^ self class hash bitXor: self title hash 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter>>printOn: aStream [
+{ #category : #printing }
+EpPluggableFilter >> printOn: aStream [
 	super printOn: aStream.
 	aStream 
 		nextPut: $(;
@@ -214,18 +156,12 @@ EpPluggableFilter>>printOn: aStream [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter>>title [
+{ #category : #accessing }
+EpPluggableFilter >> title [
 	^ title
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-EpPluggableFilter>>title: aString  [
+{ #category : #accessing }
+EpPluggableFilter >> title: aString [ 
 	title := aString
 ]

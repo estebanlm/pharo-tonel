@@ -22,50 +22,34 @@ Class {
 		'url',
 		'bundles'
 	],
-	#category : #GT-EventRecorder-Support,
-	#timestamp : 'JurajKubelka 11/15/2015 18:03'
+	#category : #GT-EventRecorder-Support
 }
 
-{
-	#category : #visitor,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventMultiBundle>>accept: aVisitor  [
+{ #category : #visitor }
+GTEventMultiBundle >> accept: aVisitor [ 
 	^ aVisitor visitMultiBundle: self
 ]
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventMultiBundle>>add: aGTEventBundle  [
+{ #category : #adding }
+GTEventMultiBundle >> add: aGTEventBundle [ 
 	^ self bundles addLast: aGTEventBundle
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventMultiBundle>>bundles [
+{ #category : #accessing }
+GTEventMultiBundle >> bundles [
 	^ bundles ifNil: [ bundles := OrderedCollection new ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventMultiBundle>>entity [
+{ #category : #accessing }
+GTEventMultiBundle >> entity [
 	| entity |
 	entity := ZnMultiPartFormDataEntity new.
 	self updateEntity: entity.
 	^ entity
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventMultiBundle>>updateEntity: aZnMultiPartFormDataEntity  [
+{ #category : #private }
+GTEventMultiBundle >> updateEntity: aZnMultiPartFormDataEntity [ 
 	bundles ifNil: [ ^ self ].
 	self bundles do: [ :eachEventBundle |
 		aZnMultiPartFormDataEntity 
@@ -73,18 +57,12 @@ GTEventMultiBundle>>updateEntity: aZnMultiPartFormDataEntity  [
 			addPart: (ZnMimePart fieldName: 'data' entity: eachEventBundle entity) ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventMultiBundle>>url [
+{ #category : #accessing }
+GTEventMultiBundle >> url [
 	^ url
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-GTEventMultiBundle>>url: anObject [
+{ #category : #accessing }
+GTEventMultiBundle >> url: anObject [
 	url := anObject
 ]

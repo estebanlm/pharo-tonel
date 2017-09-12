@@ -28,24 +28,17 @@ Class {
 		'tail',
 		'dummy'
 	],
-	#category : #Collections-Atomic,
-	#timestamp : 'IgorStasenko 2/28/2011 15:32'
+	#category : #Collections-Atomic
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-WaitfreeQueue class>>new: anInteger  [
+{ #category : #'instance creation' }
+WaitfreeQueue class >> new: anInteger [ 
 	"Just to match SharedQueue protocol"
 	^self new
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-WaitfreeQueue>>findFirst: aBlock [
+{ #category : #accessing }
+WaitfreeQueue >> findFirst: aBlock [
 	"Note, this method only for backward compatibility. It duplicating the semantics of #nextOrNilSuchThat: completely.
 	Use #nextOrNilSuchThat: instead "
 
@@ -54,19 +47,13 @@ WaitfreeQueue>>findFirst: aBlock [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-WaitfreeQueue>>flush [
+{ #category : #accessing }
+WaitfreeQueue >> flush [
 	self flush: [:ea | ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-WaitfreeQueue>>flush: aFlushBlock [
+{ #category : #accessing }
+WaitfreeQueue >> flush: aFlushBlock [
 	"Process all currently available items, passing each item to a flush block.
 	If there is another process, which currently fetching items from queue, or queue is empty,
 	return immediately"
@@ -97,11 +84,8 @@ WaitfreeQueue>>flush: aFlushBlock [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-WaitfreeQueue>>flushAllSuchThat: aBlock [
+{ #category : #accessing }
+WaitfreeQueue >> flushAllSuchThat: aBlock [
 	"Remove from the queue all objects that satisfy aBlock.
 	Note, the operation is no-op, if queue is currently in the middle of extraction by other process"
 	
@@ -126,22 +110,16 @@ WaitfreeQueue>>flushAllSuchThat: aBlock [
 	] repeat.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-WaitfreeQueue>>initialize [
+{ #category : #initialization }
+WaitfreeQueue >> initialize [
 	dummy := AtomicQueueItem new.
 	dummy object: dummy.
 	tail := dummy.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-WaitfreeQueue>>isEmpty [
+{ #category : #accessing }
+WaitfreeQueue >> isEmpty [
 	"Answer true if queue contains at least one element.
 	Note, that answer is non-deterministic, because sender could be interrupted at any moment,
 	means that even if message answers true, there is no any guarantees that consequent #nextXX messages could 
@@ -163,11 +141,8 @@ WaitfreeQueue>>isEmpty [
 	^ false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-WaitfreeQueue>>nextIfNone: aBlock [
+{ #category : #accessing }
+WaitfreeQueue >> nextIfNone: aBlock [
 	"Attempt to fetch the next item from queue. Evaluate a block if attempt is failed i.e. there is no items available or queue is locked by another process"
 	
 	| item result |
@@ -191,21 +166,15 @@ WaitfreeQueue>>nextIfNone: aBlock [
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-WaitfreeQueue>>nextOrNil [
+{ #category : #accessing }
+WaitfreeQueue >> nextOrNil [
 	"Fetch next item from queue, or nil if queue is either empty or in the middle of extraction by other process.
 	If queue can contain a nil as element, use #nextIfNone: instead "
 	^ self nextIfNone: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-WaitfreeQueue>>nextOrNilSuchThat: aBlock [
+{ #category : #accessing }
+WaitfreeQueue >> nextOrNilSuchThat: aBlock [
 	"Fetch an object from queue that satisfies aBlock, skipping (but not removing) any intermediate objects.
 	If no object has been found, answer <nil> and leave me intact.
 	
@@ -238,11 +207,8 @@ WaitfreeQueue>>nextOrNilSuchThat: aBlock [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-WaitfreeQueue>>nextPut: value [
+{ #category : #accessing }
+WaitfreeQueue >> nextPut: value [
 	" Add new item to queue "
 	| item oldTail |
 	
@@ -262,11 +228,8 @@ WaitfreeQueue>>nextPut: value [
 	^ value
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-WaitfreeQueue>>peek [
+{ #category : #accessing }
+WaitfreeQueue >> peek [
 	"Answer the object that was sent through the receiver first and has not 
 	yet been received by anyone but do not remove it from the receiver. 
 	If queue is empty or there are other process currently fetching object from queue, answer nil.
@@ -291,11 +254,8 @@ WaitfreeQueue>>peek [
 
 ]
 
-{
-	#category : #printing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-WaitfreeQueue>>printOn: aStream [
+{ #category : #printing }
+WaitfreeQueue >> printOn: aStream [
 
 	aStream 
 		nextPutAll: self class name;
@@ -304,11 +264,8 @@ WaitfreeQueue>>printOn: aStream [
 	 	nextPutAll: ' items' .
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-WaitfreeQueue>>removeAll [
+{ #category : #accessing }
+WaitfreeQueue >> removeAll [
 	"
 	This message makes no sense in concurrent environment. There is no way to guarantee that when this method returns to sender, the queue will remain empty,
 	because at any moment other process may interrupt current process and put new item(s) to queue.
@@ -318,11 +275,8 @@ WaitfreeQueue>>removeAll [
 	self flush
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:43'
-}
-WaitfreeQueue>>size [
+{ #category : #accessing }
+WaitfreeQueue >> size [
 	"Answer the size of queue. 
 	If queue is currently in the middle of extraction by other process, give a (very) approximate answer.
 	

@@ -8,39 +8,26 @@ Class {
 		'zip',
 		'infoCache'
 	],
-	#category : #Monticello-Storing,
-	#timestamp : 'TorstenBergmann 2/6/2014 08:08'
+	#category : #Monticello-Storing
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader class>>extension [
+{ #category : #accessing }
+MCMczReader class >> extension [
 	^ 'mcz'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader class>>supportsDependencies [
+{ #category : #testing }
+MCMczReader class >> supportsDependencies [
 	^ true
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader class>>supportsVersions [
+{ #category : #testing }
+MCMczReader class >> supportsVersions [
 	^ true
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader>>associate: tokens [
+{ #category : #converting }
+MCMczReader >> associate: tokens [
 	| result |
 	result := Dictionary new.
 	tokens pairsDo: [:key :value | 
@@ -52,11 +39,8 @@ MCMczReader>>associate: tokens [
 	^ result
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader>>contentStreamForMember: member [
+{ #category : #private }
+MCMczReader >> contentStreamForMember: member [
 	^[(member contentStreamFromEncoding: 'utf8') text] on: ZnInvalidUTF8
 		do: [:exc | 
 			"Case of legacy encoding, presumably it is latin-1 and we do not need to do anything
@@ -68,11 +52,8 @@ MCMczReader>>contentStreamForMember: member [
 			exc return: str]
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader>>contentsForMember: member [
+{ #category : #parsing }
+MCMczReader >> contentsForMember: member [
 	^[(member contentStreamFromEncoding: 'utf8') text contents] on: ZnInvalidUTF8, UTF8InvalidText
 		do: [:exc | 
 			"Case of legacy encoding, presumably it is latin-1.
@@ -84,11 +65,8 @@ MCMczReader>>contentsForMember: member [
 				ifFalse: [str contents])]
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader>>extractDefinitionsFrom: member [
+{ #category : #parsing }
+MCMczReader >> extractDefinitionsFrom: member [
 	| reader |
 	(MCSnapshotReader readerClassForFileNamed: member fileName)
 		ifNotNil: [:rc |
@@ -97,37 +75,25 @@ MCMczReader>>extractDefinitionsFrom: member [
 
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader>>extractDependencyFrom: zipMember [
+{ #category : #parsing }
+MCMczReader >> extractDependencyFrom: zipMember [
 	^ MCVersionDependency
 		package: (MCPackage named: (zipMember fileName copyAfterLast: $/))
 		info: (self extractInfoFrom: (self parseMember: zipMember))
 ]
 
-{
-	#category : #utilities,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader>>extractInfoFrom: dict [
+{ #category : #utilities }
+MCMczReader >> extractInfoFrom: dict [
 	^MCWorkingCopy infoFromDictionary: dict cache: self infoCache
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader>>infoCache [
+{ #category : #accessing }
+MCMczReader >> infoCache [
 	^ infoCache ifNil: [infoCache := Dictionary new]
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader>>loadDefinitions [
+{ #category : #loading }
+MCMczReader >> loadDefinitions [
 	definitions := OrderedCollection new.
 	(self zip memberNamed: 'snapshot.bin') ifNotNil:
 		[:m | [^ definitions := (MCDataStream on: m contentStream) next definitions]
@@ -138,59 +104,41 @@ MCMczReader>>loadDefinitions [
 
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader>>loadDependencies [
+{ #category : #loading }
+MCMczReader >> loadDependencies [
 	dependencies := (self zip membersMatching: 'dependencies/*') collect: [:m | self extractDependencyFrom: m].
 	dependencies := dependencies asArray.
 
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader>>loadPackage [
+{ #category : #loading }
+MCMczReader >> loadPackage [
 	| dict |
 	dict := self parseMember: 'package'.
 	package := MCPackage named: (dict at: #name)
 ]
 
-{
-	#category : #loading,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader>>loadVersionInfo [
+{ #category : #loading }
+MCMczReader >> loadVersionInfo [
 
 	info := self extractInfoFrom: (self parseMember: 'version')
 ]
 
-{
-	#category : #parsing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader>>parseMember: memberOrName [
+{ #category : #parsing }
+MCMczReader >> parseMember: memberOrName [
 	| member tokens |
 	member := self zip member: memberOrName.
 	tokens := (self contentsForMember: member) parseLiterals first.
 	^ self associate: tokens
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader>>scanner [
+{ #category : #accessing }
+MCMczReader >> scanner [
 	^ MCScanner
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-MCMczReader>>zip [
+{ #category : #accessing }
+MCMczReader >> zip [
 	stream closed ifTrue: [ zip := nil].
 	zip ifNil:
 		[zip := ZipArchive new.

@@ -4,15 +4,11 @@ I hold default rules used to check quality of code that is proposed for integrat
 Class {
 	#name : #PharoCriticRules,
 	#superclass : #Object,
-	#category : #Refactoring-Critics-DefaultRules,
-	#timestamp : 'ChristopheDemarey 9/24/2015 14:58'
+	#category : #Refactoring-Critics-DefaultRules
 }
 
-{
-	#category : #'default rules',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PharoCriticRules class>>pharoHardLintRules [
+{ #category : #'default rules' }
+PharoCriticRules class >> pharoHardLintRules [
 	"These rules are used by the CI monkey to check code before its integration into Pharo"
 	^ { 
 		RBUndeclaredReferenceRule.
@@ -35,22 +31,16 @@ PharoCriticRules class>>pharoHardLintRules [
 	}
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PharoCriticRules class>>pharoIntegrationLintRule [
+{ #category : #accessing }
+PharoCriticRules class >> pharoIntegrationLintRule [
 	"A set of rules used by the CI monkey to check code before its integration into Pharo"
 	^ (RBCompositeLintRule rules: (self pharoHardLintRules collect: #new))
 		name: 'Pharo integration rules';
 		yourself
 ]
 
-{
-	#category : #'default rules',
-	#timestamp : ' 8/31/2017 05:26:27'
-}
-PharoCriticRules class>>pharoSoftLintRules	 [
+{ #category : #'default rules' }
+PharoCriticRules class >> pharoSoftLintRules [	
 	"skiped for now"
 	^ {			
 		"RBInstanceVariableCapitalizationRule.

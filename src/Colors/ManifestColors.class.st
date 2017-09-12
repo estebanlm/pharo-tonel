@@ -4,14 +4,10 @@ I store metadata for this package. These meta data are used by other tools such 
 Class {
 	#name : #ManifestColors,
 	#superclass : #PackageManifest,
-	#category : #Colors,
-	#timestamp : '<historical>'
+	#category : #Colors
 }
 
-{
-	#category : #'meta-data - dependency analyser',
-	#timestamp : ' 8/31/2017 07:16:56'
-}
-ManifestColors class>>manuallyResolvedDependencies [
+{ #category : #'meta-data - dependency analyser' }
+ManifestColors class >> manuallyResolvedDependencies [
 	^ #(#'Collections-Streams' #'AST-Core')
 ]

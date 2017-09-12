@@ -1,12 +1,7 @@
-Extension {
-	#name : #GLMPane
-}
+Extension { #name : #GLMPane }
 
-{
-	#category : #'*GT-InspectorExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMPane>>gtInspectorPortsIn: composite [
+{ #category : #'*GT-InspectorExtensions-Core' }
+GLMPane >> gtInspectorPortsIn: composite [
 	<gtInspectorPresentationOrder: 30>
 	^ composite table
 		title: 'Ports';

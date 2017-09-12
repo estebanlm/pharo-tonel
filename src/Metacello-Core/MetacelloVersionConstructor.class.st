@@ -1,43 +1,30 @@
-"
-
-"
 Class {
 	#name : #MetacelloVersionConstructor,
 	#superclass : #MetacelloAbstractVersionConstructor,
 	#instVars : [
 		'errorMap'
 	],
-	#category : #Metacello-Core-Constructors,
-	#timestamp : ''
+	#category : #Metacello-Core-Constructors
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor class>>on: aConfig [
+{ #category : #'instance creation' }
+MetacelloVersionConstructor class >> on: aConfig [
 
 	^(self new)
 		on: aConfig;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor class>>on: aConfig project: aProject [
+{ #category : #'instance creation' }
+MetacelloVersionConstructor class >> on: aConfig project: aProject [
 
 	^(self new)
 		on: aConfig project: aProject;
 		yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor>>calculate: aConfig project: aProject [
+{ #category : #initialization }
+MetacelloVersionConstructor >> calculate: aConfig project: aProject [
     | versionMap symbolicVersionMap executionBlock pragmaDict |
     self setProject: aProject.
     self configuration: aConfig.
@@ -78,11 +65,8 @@ MetacelloVersionConstructor>>calculate: aConfig project: aProject [
             symbolicVersionMap at: symbolic put: versionString ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor>>collectAllSymbolicVersionsFromVersionPragmasInto: symbolicVersionMap using: executionBlock [
+{ #category : #private }
+MetacelloVersionConstructor >> collectAllSymbolicVersionsFromVersionPragmasInto: symbolicVersionMap using: executionBlock [
 	| defined versionPragmaDict versionString |
 	versionPragmaDict := self extractSymbolicVersionPragmas.
 	versionPragmaDict
@@ -99,11 +83,8 @@ MetacelloVersionConstructor>>collectAllSymbolicVersionsFromVersionPragmasInto: s
 			self reset ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor>>collectAllVersionsFromVersionImportPragmasInto: versionMap using: executionBlock satisfiedPragmas: pragmaDict [
+{ #category : #private }
+MetacelloVersionConstructor >> collectAllVersionsFromVersionImportPragmasInto: versionMap using: executionBlock satisfiedPragmas: pragmaDict [
     | defined done completed count |
     done := false.
     completed := IdentitySet new.
@@ -163,11 +144,8 @@ MetacelloVersionConstructor>>collectAllVersionsFromVersionImportPragmasInto: ver
                     self reset ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor>>collectAllVersionsFromVersionPragmasInto: versionMap using: executionBlock [
+{ #category : #private }
+MetacelloVersionConstructor >> collectAllVersionsFromVersionPragmasInto: versionMap using: executionBlock [
     | defined versionPragmaDict |
     versionPragmaDict := self extractVersionPragmas.
     versionPragmaDict
@@ -195,11 +173,8 @@ MetacelloVersionConstructor>>collectAllVersionsFromVersionPragmasInto: versionMa
             self reset ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor>>collectDefaultSymbolicVersionsFromVersionPragmasFrom: versionPragmaDict into: symbolicVersionMap using: executionBlock [
+{ #category : #private }
+MetacelloVersionConstructor >> collectDefaultSymbolicVersionsFromVersionPragmasFrom: versionPragmaDict into: symbolicVersionMap using: executionBlock [
 	| defined versionString |
 	versionPragmaDict
 		keysAndValuesDo: [ :versionSymbol :pragmaColl | 
@@ -219,27 +194,18 @@ MetacelloVersionConstructor>>collectDefaultSymbolicVersionsFromVersionPragmasFro
 					self reset ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor>>commonDefaultSymbolicVersionResolverBlock [
+{ #category : #private }
+MetacelloVersionConstructor >> commonDefaultSymbolicVersionResolverBlock [
 	^ self defaultSymbolicVersionResolverBlock: (ConfigurationOf new project: self project)
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor>>defaultSymbolicVersionResolverBlock [
+{ #category : #private }
+MetacelloVersionConstructor >> defaultSymbolicVersionResolverBlock [
 	^ self defaultSymbolicVersionResolverBlock: self configuration
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor>>defaultSymbolicVersionResolverBlock: receiver [
+{ #category : #private }
+MetacelloVersionConstructor >> defaultSymbolicVersionResolverBlock: receiver [
 	^ [ :symbolicVrsn :pragma | 
 	| result |
 	result := nil.
@@ -251,20 +217,14 @@ MetacelloVersionConstructor>>defaultSymbolicVersionResolverBlock: receiver [
 	result ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor>>errorMap [
+{ #category : #accessing }
+MetacelloVersionConstructor >> errorMap [
     errorMap ifNil: [ errorMap := Dictionary new ].
     ^ errorMap
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor>>on: aConfig [
+{ #category : #initialization }
+MetacelloVersionConstructor >> on: aConfig [
 
 	| cacheKey |
 	cacheKey := aConfig class.
@@ -277,11 +237,8 @@ MetacelloVersionConstructor>>on: aConfig [
 	self setProject: project.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor>>on: aConfig project: aProject [
+{ #category : #initialization }
+MetacelloVersionConstructor >> on: aConfig project: aProject [
     | cacheKey cachedProject |
     cacheKey := aConfig class.
     cachedProject := MetacelloPlatform current
@@ -298,11 +255,8 @@ MetacelloVersionConstructor>>on: aConfig project: aProject [
     self setProject: aProject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor>>specResolverBlock [
+{ #category : #private }
+MetacelloVersionConstructor >> specResolverBlock [
 	^ [ :versionSpec :pragma | 
 	(pragma argumentAt: 1) = versionSpec versionString
 		ifTrue: [ 
@@ -314,11 +268,8 @@ MetacelloVersionConstructor>>specResolverBlock [
 						ifTrue: [ blockList do: [ :block | self with: versionSpec during: block ] ] ] ] ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor>>symbolicVersionResolverBlock [
+{ #category : #private }
+MetacelloVersionConstructor >> symbolicVersionResolverBlock [
 	^ [ :symbolicVrsn :pragma | 
 	| result |
 	result := nil.
@@ -335,11 +286,8 @@ MetacelloVersionConstructor>>symbolicVersionResolverBlock [
 	result ]
 ]
 
-{
-	#category : #validation,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor>>validateVersionString: versionString againstSpec: versionSpec [
+{ #category : #validation }
+MetacelloVersionConstructor >> validateVersionString: versionString againstSpec: versionSpec [
 
 	versionString = versionSpec versionString
 		ifFalse: [ 
@@ -354,11 +302,8 @@ MetacelloVersionConstructor>>validateVersionString: versionString againstSpec: v
 								, versionSpec versionString printString) ].
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:49'
-}
-MetacelloVersionConstructor>>verifyVersionImportPragmas: pragmaDict definedIn: versionMap [
+{ #category : #private }
+MetacelloVersionConstructor >> verifyVersionImportPragmas: pragmaDict definedIn: versionMap [
     pragmaDict copy
         keysAndValuesDo: [ :versionString :pragmaColl | 
             [ 

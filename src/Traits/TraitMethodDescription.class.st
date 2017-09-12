@@ -9,51 +9,35 @@ Class {
 		'selector',
 		'locatedMethods'
 	],
-	#category : #Traits-Composition,
-	#timestamp : '<historical>'
+	#category : #Traits-Composition
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription class>>maxArguments [
+{ #category : #private }
+TraitMethodDescription class >> maxArguments [
 	^30
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription class>>new [
+{ #category : #'instance creation' }
+TraitMethodDescription class >> new [
 	^super new
 		initialize;
 		yourself
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription class>>selector: aSymbol [
+{ #category : #'instance creation' }
+TraitMethodDescription class >> selector: aSymbol [
 	^self new
 		selector: aSymbol
 		yourself
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>addLocatedMethod: aLocatedMethod [
+{ #category : #accessing }
+TraitMethodDescription >> addLocatedMethod: aLocatedMethod [
 	locatedMethods add: aLocatedMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>conflictMethod [
+{ #category : #accessing }
+TraitMethodDescription >> conflictMethod [
 	| binary numberOfArguments |
 	self isConflict ifFalse: [^nil].
 	binary := self isBinarySelector.
@@ -66,11 +50,8 @@ TraitMethodDescription>>conflictMethod [
 		binary: binary
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>effectiveMethod [
+{ #category : #accessing }
+TraitMethodDescription >> effectiveMethod [
 	"Return the effective compiled method of this method description." 
 
 	| method |
@@ -81,19 +62,13 @@ TraitMethodDescription>>effectiveMethod [
 	^ self requiredMethod.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>effectiveMethodCategory [
+{ #category : #accessing }
+TraitMethodDescription >> effectiveMethodCategory [
 	^ self effectiveMethodCategoryCurrent: nil new: nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>effectiveMethodCategoryCurrent: currentCategoryOrNil new: newCategoryOrNil [
+{ #category : #accessing }
+TraitMethodDescription >> effectiveMethodCategoryCurrent: currentCategoryOrNil new: newCategoryOrNil [
 	| result size isCurrent isConflict |
 	size := self size.
 	size = 0 ifTrue: [^ nil].
@@ -112,11 +87,8 @@ TraitMethodDescription>>effectiveMethodCategoryCurrent: currentCategoryOrNil new
 	^ Protocol ambiguous 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>generateMethod: aSelector withMarker: aSymbol forArgs: aNumber binary: aBoolean [
+{ #category : #private }
+TraitMethodDescription >> generateMethod: aSelector withMarker: aSymbol forArgs: aNumber binary: aBoolean [
 	| source node keywords |
 	source := String streamContents: [:stream |
 		aNumber < 1
@@ -140,20 +112,14 @@ TraitMethodDescription>>generateMethod: aSelector withMarker: aSymbol forArgs: a
 	^(node generateWithSource) selector: aSelector; yourself
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>initialize [
+{ #category : #initialization }
+TraitMethodDescription >> initialize [
 	super initialize.
 	locatedMethods := IdentitySet new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>isAliasSelector [
+{ #category : #testing }
+TraitMethodDescription >> isAliasSelector [
 	"Return true if the selector is an alias (if it is different
 	from the original selector) or already an aliased method
 	in the original location (recursively search the compositions).
@@ -166,20 +132,14 @@ TraitMethodDescription>>isAliasSelector [
 			locatedMethod methodClass isAliasSelector: self selector]]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>isBinarySelector [
+{ #category : #testing }
+TraitMethodDescription >> isBinarySelector [
 	^self locatedMethods anyOne
 		isBinarySelector
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>isConflict [
+{ #category : #testing }
+TraitMethodDescription >> isConflict [
 	| count originMethodReferenciel |
 	count := 0.
 
@@ -197,19 +157,13 @@ TraitMethodDescription>>isConflict [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>isEmpty [
+{ #category : #testing }
+TraitMethodDescription >> isEmpty [
 	^self size = 0
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>isLocalAliasSelector [
+{ #category : #testing }
+TraitMethodDescription >> isLocalAliasSelector [
 	"Return true if the selector is an alias (if it is different
 	from the original selector). Return false, if not or if we
 	have a conflict."
@@ -218,54 +172,36 @@ TraitMethodDescription>>isLocalAliasSelector [
 		(self locatedMethods anyOne selector ~= self selector)]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>isProvided [
+{ #category : #testing }
+TraitMethodDescription >> isProvided [
 	^ self providedMethod notNil
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>isRequired [
+{ #category : #testing }
+TraitMethodDescription >> isRequired [
 	self isEmpty ifTrue: [^ false].
 	^ self locatedMethods allSatisfy: [:each | each isRequired]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>locatedMethods [
+{ #category : #accessing }
+TraitMethodDescription >> locatedMethods [
 	^locatedMethods
 ]
 
-{
-	#category : #enumeration,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>methodsDo: aBlock [
+{ #category : #enumeration }
+TraitMethodDescription >> methodsDo: aBlock [
 	self locatedMethods do: [:each |
 		aBlock value: each ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>numberOfArguments [
+{ #category : #private }
+TraitMethodDescription >> numberOfArguments [
 	^ self locatedMethods anyOne selector numArgs
 		
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>providedLocatedMethod [
+{ #category : #accessing }
+TraitMethodDescription >> providedLocatedMethod [
 	| locatedMethod aLocatedMethod refOrigin |
 	locatedMethod := nil.
 	self locatedMethods ifEmpty: [ ^ nil].
@@ -284,19 +220,13 @@ TraitMethodDescription>>providedLocatedMethod [
 	^locatedMethod
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>providedMethod [
+{ #category : #accessing }
+TraitMethodDescription >> providedMethod [
 	^self providedLocatedMethod ifNotNil: [:locatedMethod | locatedMethod method]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>requiredMethod [
+{ #category : #accessing }
+TraitMethodDescription >> requiredMethod [
 	| numberOfArguments binary |
 	self isRequired ifFalse: [^nil].
 	self size = 1 ifTrue: [^self locatedMethods anyOne].
@@ -311,26 +241,17 @@ TraitMethodDescription>>requiredMethod [
 		binary: binary.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>selector [
+{ #category : #accessing }
+TraitMethodDescription >> selector [
 	^selector
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>selector: aSymbol  [
+{ #category : #accessing }
+TraitMethodDescription >> selector: aSymbol [ 
 	selector := aSymbol
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:25'
-}
-TraitMethodDescription>>size [
+{ #category : #accessing }
+TraitMethodDescription >> size [
 	^self locatedMethods size
 ]

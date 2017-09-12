@@ -1,12 +1,7 @@
-Extension {
-	#name : #SymbolicBytecode
-}
+Extension { #name : #SymbolicBytecode }
 
-{
-	#category : #'*OpalTools',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SymbolicBytecode>>gtInspectorSourceCodeIn: composite [
+{ #category : #'*OpalTools' }
+SymbolicBytecode >> gtInspectorSourceCodeIn: composite [
 	<gtInspectorPresentationOrder: 30> 
 
 	^ composite pharoMethod 
@@ -18,11 +13,8 @@ SymbolicBytecode>>gtInspectorSourceCodeIn: composite [
 		act: [ self method compiledMethod browse ] icon: GLMUIThemeExtraIcons glamorousBrowse entitled: 'Browse'
 ]
 
-{
-	#category : #'*OpalTools',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SymbolicBytecode>>gtInspectorTreeIn: composite [
+{ #category : #'*OpalTools' }
+SymbolicBytecode >> gtInspectorTreeIn: composite [
 	<gtInspectorPresentationOrder: 30> 
 	^composite tree
 		rootsExpanded;
@@ -36,11 +28,8 @@ SymbolicBytecode>>gtInspectorTreeIn: composite [
 		format: [ :each | each printString ]
 ]
 
-{
-	#category : #'*OpalTools',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SymbolicBytecode>>gtSpotterCodePreviewIn: aComposite [
+{ #category : #'*OpalTools' }
+SymbolicBytecode >> gtSpotterCodePreviewIn: aComposite [
 	<spotterPreview: 1>
 	^ (aComposite pharoMethod
 			title: [ self gtDisplayString ]; 
@@ -50,10 +39,7 @@ SymbolicBytecode>>gtSpotterCodePreviewIn: aComposite [
 			entity: self) 
 ]
 
-{
-	#category : #'*OpalTools',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-SymbolicBytecode>>spotterActDefault [
+{ #category : #'*OpalTools' }
+SymbolicBytecode >> spotterActDefault [
 	self method compiledMethod browse
 ]

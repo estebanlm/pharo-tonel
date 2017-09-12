@@ -4,15 +4,11 @@ AbstractFont defines the generic interface that all fonts need to implement.
 Class {
 	#name : #AbstractFont,
 	#superclass : #Object,
-	#category : #Graphics-Fonts,
-	#timestamp : '<historical>'
+	#category : #Graphics-Fonts
 }
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont class>>emphasisStringFor: emphasisCode [
+{ #category : #'as yet unclassified' }
+AbstractFont class >> emphasisStringFor: emphasisCode [
 	"Answer a translated string that represents the attributes given in emphasisCode."
 
 	| emphases |
@@ -36,30 +32,21 @@ AbstractFont class>>emphasisStringFor: emphasisCode [
 	]
 ]
 
-{
-	#category : #'class initialization',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont class>>initialize [
+{ #category : #'class initialization' }
+AbstractFont class >> initialize [
 
   TextStyle addDependent: self.
 ]
 
-{
-	#category : #updating,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont class>>update: anAspect [
+{ #category : #updating }
+AbstractFont class >> update: anAspect [
 
 	anAspect == #textDPIChanged ifTrue: [
 		AbstractFont allSubInstancesDo: [ :font | font pixelsPerInchChanged ]].
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>approxWidthOfText: aText  [
+{ #category : #measuring }
+AbstractFont >> approxWidthOfText: aText [ 
 	"Return the width of aText -- quickly, and a little bit dirty. Used by lists morphs containing Text objects to get a quick, fairly accurate measure of the width of a list item."
 	| w |
 	(aText isNil or: [ aText size = 0 ]) ifTrue: [ ^ 0 ].
@@ -72,249 +59,168 @@ AbstractFont>>approxWidthOfText: aText  [
 		ifFalse: [ ^ w * 6 // 5 ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>ascent [
+{ #category : #accessing }
+AbstractFont >> ascent [
 
 	self subclassResponsibility.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>ascentOf: aCharacter [
+{ #category : #accessing }
+AbstractFont >> ascentOf: aCharacter [
 
 	^ self ascent.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>baseKern [
+{ #category : #accessing }
+AbstractFont >> baseKern [
 	^0
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>basicAscentOf: aCharacter [
+{ #category : #accessing }
+AbstractFont >> basicAscentOf: aCharacter [
 
 	^ self ascent.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>basicDescentOf: aCharacter [
+{ #category : #accessing }
+AbstractFont >> basicDescentOf: aCharacter [
 
 	^ self descent.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>characterToGlyphMap [
+{ #category : #accessing }
+AbstractFont >> characterToGlyphMap [
 	"Return the character to glyph mapping table. If the table is not provided the character scanner will query the font directly for the width of each individual character."
 	^nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>derivativeFonts [
+{ #category : #accessing }
+AbstractFont >> derivativeFonts [
 	^#()
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>descent [
+{ #category : #accessing }
+AbstractFont >> descent [
 
 	self subclassResponsibility.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>descentOf: aCharacter [
+{ #category : #accessing }
+AbstractFont >> descentOf: aCharacter [
 
 	^ self descent.
 
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>displayString: aString on: aDisplayContext from: startIndex to: stopIndex at: aPoint kern: kernDelta [
+{ #category : #displaying }
+AbstractFont >> displayString: aString on: aDisplayContext from: startIndex to: stopIndex at: aPoint kern: kernDelta [
 	"Draw the given string from startIndex to stopIndex 
 	at aPoint on the (already prepared) display context."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>displayString: aString on: aDisplayContext from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY [
+{ #category : #displaying }
+AbstractFont >> displayString: aString on: aDisplayContext from: startIndex to: stopIndex at: aPoint kern: kernDelta baselineY: baselineY [
 	"Draw the given string from startIndex to stopIndex 
 	at aPoint on the (already prepared) display context."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>familyName [
+{ #category : #accessing }
+AbstractFont >> familyName [
 	"Answer the name to be used as a key in the TextConstants dictionary."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>height [
+{ #category : #accessing }
+AbstractFont >> height [
 	"Answer the height of the receiver, total of maximum extents of 
 	characters above and below the baseline."
 
 	^self subclassResponsibility
 ]
 
-{
-	#category : #displaying,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>installOn: aDisplayContext foregroundColor: foregroundColor backgroundColor: backgroundColor [
+{ #category : #displaying }
+AbstractFont >> installOn: aDisplayContext foregroundColor: foregroundColor backgroundColor: backgroundColor [
 	"Install the receiver on the given DisplayContext (either BitBlt or Canvas) for further drawing operations."
 	^self subclassResponsibility
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>isFontSet [
+{ #category : #testing }
+AbstractFont >> isFontSet [
 
 	^ false.
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>isRegular [
+{ #category : #accessing }
+AbstractFont >> isRegular [
 	^false
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>isTTCFont [
+{ #category : #testing }
+AbstractFont >> isTTCFont [
 	^false
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>lineGrid [
+{ #category : #accessing }
+AbstractFont >> lineGrid [
 	"Answer the relative space between lines"
 
 	^self subclassResponsibility
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>pixelSize [
+{ #category : #accessing }
+AbstractFont >> pixelSize [
 	"Make sure that we don't return a Fraction"
 	^ TextStyle pointsToPixels: self pointSize
 ]
 
-{
-	#category : #notifications,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>pixelsPerInchChanged [
+{ #category : #notifications }
+AbstractFont >> pixelsPerInchChanged [
 	"The definition of TextStyle class>>pixelsPerInch has changed. Do whatever is necessary."
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>pointSize [
+{ #category : #accessing }
+AbstractFont >> pointSize [
 	self subclassResponsibility.
 ]
 
-{
-	#category : #caching,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>releaseCachedState [
+{ #category : #caching }
+AbstractFont >> releaseCachedState [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>textStyle [
+{ #category : #accessing }
+AbstractFont >> textStyle [
 	^ TextStyle actualTextStyles detect:
 		[:aStyle | aStyle fontArray includes: self] ifNone: [ TextStyle fontArray: { self } ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>textStyleName [
+{ #category : #accessing }
+AbstractFont >> textStyleName [
 	"Answer the name to be used as a key in the TextConstants dictionary."
 	^self familyName
 ]
 
-{
-	#category : #'development support',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>validate [
+{ #category : #'development support' }
+AbstractFont >> validate [
 	"Concrete classes should override this to provide validation"
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>widthOf: aCharacter [
+{ #category : #measuring }
+AbstractFont >> widthOf: aCharacter [
 	"Return the width of the given character"
 	^self subclassResponsibility
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>widthOfString: aString [
+{ #category : #measuring }
+AbstractFont >> widthOfString: aString [
 	aString ifNil: [^0].
 	^self widthOfString: aString from: 1 to: aString size.
 "
@@ -322,11 +228,8 @@ AbstractFont>>widthOfString: aString [
 "
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>widthOfString: aString from: firstIndex to: lastIndex  [
+{ #category : #measuring }
+AbstractFont >> widthOfString: aString from: firstIndex to: lastIndex [ 
 	"Measure the length of the given string between start and stop index"
 	| resultX |
 	resultX := 0.
@@ -336,22 +239,16 @@ AbstractFont>>widthOfString: aString from: firstIndex to: lastIndex  [
 	^ resultX
 ]
 
-{
-	#category : #measuring,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>widthOfStringOrText: aStringOrText [
+{ #category : #measuring }
+AbstractFont >> widthOfStringOrText: aStringOrText [
     aStringOrText ifNil: [^0].
     ^aStringOrText isText
         ifTrue:[self approxWidthOfText: aStringOrText ]
         ifFalse:[self widthOfString: aStringOrText ] 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-AbstractFont>>xTable [
+{ #category : #accessing }
+AbstractFont >> xTable [
 	"Return the xTable for the font. The xTable defines the left x-value for each individual glyph in the receiver. If such a table is not provided, the character scanner will ask the font directly for the appropriate width of each individual character."
 	^nil
 ]

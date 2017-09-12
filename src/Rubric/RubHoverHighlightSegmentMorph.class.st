@@ -6,42 +6,29 @@ And my default behavior is to delete myself when the mouse focus leaves me.
 Class {
 	#name : #RubHoverHighlightSegmentMorph,
 	#superclass : #RubTextSegmentMorph,
-	#category : #Rubric-Editing-Core,
-	#timestamp : 'NicolaiHess 8/10/2016 12:33'
+	#category : #Rubric-Editing-Core
 }
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubHoverHighlightSegmentMorph>>defaultBorderColor [
+{ #category : #initialization }
+RubHoverHighlightSegmentMorph >> defaultBorderColor [
 	^ self defaultColor muchDarker
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubHoverHighlightSegmentMorph>>defaultColor [
+{ #category : #initialization }
+RubHoverHighlightSegmentMorph >> defaultColor [
 	^ Smalltalk ui theme secondarySelectionColor
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubHoverHighlightSegmentMorph>>initialize [
+{ #category : #initialization }
+RubHoverHighlightSegmentMorph >> initialize [
 	super initialize.
 	self borderWidth: 1.
 	self borderColor: self defaultBorderColor
 ]
 
-{
-	#category : #'event handling',
-	#timestamp : ' 8/31/2017 05:26:20'
-}
-RubHoverHighlightSegmentMorph>>mouseLeave: anEvent [
+{ #category : #'event handling' }
+RubHoverHighlightSegmentMorph >> mouseLeave: anEvent [
 	super mouseLeave: anEvent.
 	self delete.
 ]

@@ -4,15 +4,11 @@ SUnit tests for class definitions
 Class {
 	#name : #RGClassDefinitionTest,
 	#superclass : #TestCase,
-	#category : #Ring-Tests-Kernel,
-	#timestamp : 'TorstenBergmann 2/12/2014 23:09'
+	#category : #Ring-Tests-Kernel
 }
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testAddingMethods [
+{ #category : #testing }
+RGClassDefinitionTest >> testAddingMethods [
 	| newMethod newClass |
 	
 	newClass:= RGClassDefinition named:  #OrderedCollection.
@@ -46,11 +42,8 @@ RGClassDefinitionTest>>testAddingMethods [
 	self assert: ((newClass compiledMethodNamed: #fakeMethod) isNil)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testAsClassDefinition [
+{ #category : #testing }
+RGClassDefinitionTest >> testAsClassDefinition [
 	| newClass |
 
 	newClass:= OrderedCollection asRingDefinition.
@@ -65,11 +58,8 @@ RGClassDefinitionTest>>testAsClassDefinition [
 	self assert: (newClass theMetaClass isClass).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testAsClassDefinition2 [
+{ #category : #testing }
+RGClassDefinitionTest >> testAsClassDefinition2 [
 
 	| newClass |
 	newClass:= MOPTestClassC asRingDefinition.
@@ -87,11 +77,8 @@ RGClassDefinitionTest>>testAsClassDefinition2 [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testAsClassDefinitionSourceDefinition [
+{ #category : #testing }
+RGClassDefinitionTest >> testAsClassDefinitionSourceDefinition [
 
 	| newClass |
 	newClass:= MOPTestClassC asRingDefinition.
@@ -108,19 +95,13 @@ RGClassDefinitionTest>>testAsClassDefinitionSourceDefinition [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testAsRingDefinition [
+{ #category : #testing }
+RGClassDefinitionTest >> testAsRingDefinition [
 	self assert: OrderedCollection asRingDefinition asRingDefinition isRingObject
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testClassEquality [
+{ #category : #testing }
+RGClassDefinitionTest >> testClassEquality [
 	| newClass |
 	
 	self assert: OrderedCollection asRingDefinition = OrderedCollection asRingDefinition.
@@ -130,11 +111,8 @@ RGClassDefinitionTest>>testClassEquality [
 	self assert: (OrderedCollection asRingDefinition = newClass) 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testExistingClass [
+{ #category : #testing }
+RGClassDefinitionTest >> testExistingClass [
 	| newClass metaClass |
 	
 	newClass:= RGClassDefinition named:  #OrderedCollection.
@@ -152,11 +130,8 @@ RGClassDefinitionTest>>testExistingClass [
 	self assert: (metaClass realClass = OrderedCollection class).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testNonExistingClass [
+{ #category : #testing }
+RGClassDefinitionTest >> testNonExistingClass [
 	| newClass |
 	
 	newClass:= RGClassDefinition named:  #Connection.
@@ -179,11 +154,8 @@ RGClassDefinitionTest>>testNonExistingClass [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testReadFrom [
+{ #category : #testing }
+RGClassDefinitionTest >> testReadFrom [
 	"self debug: #testReadFrom"
 	
 	
@@ -201,11 +173,8 @@ RGClassDefinitionTest>>testReadFrom [
 	self assert: (Object readFrom: st) = rg 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testRemovingMethods [
+{ #category : #testing }
+RGClassDefinitionTest >> testRemovingMethods [
 	| newMethod newClass |
 	
 	newClass:= RGClassDefinition named: #OrderedCollection.
@@ -231,11 +200,8 @@ RGClassDefinitionTest>>testRemovingMethods [
 	self assert: (newClass hasMethods not).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testStoreOn [
+{ #category : #testing }
+RGClassDefinitionTest >> testStoreOn [
 	"self debug: #testStoreOn"
 	
 	
@@ -253,11 +219,8 @@ RGClassDefinitionTest>>testStoreOn [
 	self assert: st = '((RGMetaclassDefinition named: #''Point class'') baseClass:(RGClassDefinition named: #Point))'
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testWithCategory [
+{ #category : #testing }
+RGClassDefinitionTest >> testWithCategory [
 	| newClass |
 	
 	newClass:= (RGClassDefinition named:  #Object)
@@ -268,11 +231,8 @@ RGClassDefinitionTest>>testWithCategory [
 	self assert: (newClass category = 'Kernel-Objects').
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testWithClassInstanceVariables [
+{ #category : #testing }
+RGClassDefinitionTest >> testWithClassInstanceVariables [
 	| newClass metaClass classInstVar |
 	
 	newClass:= RGClassDefinition named:  #HashTableSizes.
@@ -298,11 +258,8 @@ RGClassDefinitionTest>>testWithClassInstanceVariables [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testWithClassVariables [
+{ #category : #testing }
+RGClassDefinitionTest >> testWithClassVariables [
 	| newClass classVar |
 	
 	newClass:= (RGClassDefinition named: #Object)
@@ -329,11 +286,8 @@ RGClassDefinitionTest>>testWithClassVariables [
 	self assert: (newClass classVariables size = 1).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testWithComment [
+{ #category : #testing }
+RGClassDefinitionTest >> testWithComment [
 	| newClass newComment |
 	
 	newClass:= RGClassDefinition named: #Object.
@@ -361,11 +315,8 @@ RGClassDefinitionTest>>testWithComment [
 
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testWithDefaultNamespace [
+{ #category : #testing }
+RGClassDefinitionTest >> testWithDefaultNamespace [
 	| newClass |
 	
 	newClass:= RGClassDefinition named:  #Object.
@@ -374,11 +325,8 @@ RGClassDefinitionTest>>testWithDefaultNamespace [
 	self assert: (newClass realClass = Object).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testWithInstanceVariables [
+{ #category : #testing }
+RGClassDefinitionTest >> testWithInstanceVariables [
 	| newClass instVar |
 	
 	newClass:= RGClassDefinition named: #OrderedCollection.
@@ -403,11 +351,8 @@ RGClassDefinitionTest>>testWithInstanceVariables [
 	
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testWithPoolDictionaries [
+{ #category : #testing }
+RGClassDefinitionTest >> testWithPoolDictionaries [
 	| newClass poolVar |
 	
 	newClass:= (RGClassDefinition named:  #Text)
@@ -434,11 +379,8 @@ RGClassDefinitionTest>>testWithPoolDictionaries [
 	self assert: (newClass sharedPools isEmpty).
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testWithProtocols [
+{ #category : #testing }
+RGClassDefinitionTest >> testWithProtocols [
 	| newMethod newClass |
 	
 	newClass:= RGClassDefinition named: #OrderedCollection.
@@ -458,11 +400,8 @@ RGClassDefinitionTest>>testWithProtocols [
 	self assert: ((newClass methodsInProtocol: 'accessing') isEmpty)
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:29'
-}
-RGClassDefinitionTest>>testWithSuperclass [
+{ #category : #testing }
+RGClassDefinitionTest >> testWithSuperclass [
 	| newClass supClass  |
 	
 	supClass:= (RGClassDefinition named:  #Object)

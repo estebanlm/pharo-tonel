@@ -7,30 +7,20 @@ Class {
 	#instVars : [
 		'stack'
 	],
-	#category : #DebuggerFilters,
-	#timestamp : 'TorstenBergmann 1/31/2014 11:30'
+	#category : #DebuggerFilters
 }
 
-{
-	#category : #operators,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StackFilter>>and: aFilter [
+{ #category : #operators }
+StackFilter >> and: aFilter [
 	  ^ BooleanFilter withFilters: (OrderedCollection with: self with: aFilter) operator: #and:
 ]
 
-{
-	#category : #operators,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StackFilter>>or: aFilter [
+{ #category : #operators }
+StackFilter >> or: aFilter [
 	  ^ BooleanFilter withFilters: (OrderedCollection with: self with: aFilter) operator: #or:
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:17'
-}
-StackFilter>>shouldDisplay: aContext [
+{ #category : #testing }
+StackFilter >> shouldDisplay: aContext [
 	^self subclassResponsibility 
 ]

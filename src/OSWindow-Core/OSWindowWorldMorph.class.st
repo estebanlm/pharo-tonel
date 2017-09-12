@@ -15,63 +15,44 @@ Class {
 		'closeCallback',
 		'isResizeable'
 	],
-	#category : #OSWindow-Core-Morphic,
-	#timestamp : 'RonieSalgado 9/4/2016 22:31'
+	#category : #OSWindow-Core-Morphic
 }
 
-{
-	#category : #adding,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorph>>addMorph: aMorph frame: rectangle [
+{ #category : #adding }
+OSWindowWorldMorph >> addMorph: aMorph frame: rectangle [
 	"For compatibility with SystemWindow."
 	^ self addMorph: aMorph fullFrame: rectangle 
 
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorph>>closeCallback [
+{ #category : #accessing }
+OSWindowWorldMorph >> closeCallback [
 	^ closeCallback
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorph>>closeCallback: anObject [
+{ #category : #accessing }
+OSWindowWorldMorph >> closeCallback: anObject [
 	self flag: 'Do something better than just storing a closure.'.
 	closeCallback := anObject
 ]
 
-{
-	#category : #submorphs-add/remove,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorph>>delete [
+{ #category : #submorphs-add/remove }
+OSWindowWorldMorph >> delete [
 	closeCallback value.
 	self class removeExtraWorld: self.
 	osWindow destroy.
 	super delete
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorph>>display [
+{ #category : #accessing }
+OSWindowWorldMorph >> display [
 	self updateDisplay.
 	^ display
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorph>>initialize [
+{ #category : #initialization }
+OSWindowWorldMorph >> initialize [
 	super initialize.
 	self color: Color veryLightGray.
 	isResizeable := true.
@@ -81,53 +62,35 @@ OSWindowWorldMorph>>initialize [
 	
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorph>>isResizeable [
+{ #category : #accessing }
+OSWindowWorldMorph >> isResizeable [
 	^ isResizeable
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorph>>isResizeable: anObject [
+{ #category : #accessing }
+OSWindowWorldMorph >> isResizeable: anObject [
 	isResizeable := anObject
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorph>>open [
+{ #category : #'instance creation' }
+OSWindowWorldMorph >> open [
 	self osWindow.
 	self changed.
 	self class addExtraWorld: self.
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorph>>openInWorld [
+{ #category : #'instance creation' }
+OSWindowWorldMorph >> openInWorld [
 	^ self open
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorph>>osWindowCloseButtonPressed [
+{ #category : #'as yet unclassified' }
+OSWindowWorldMorph >> osWindowCloseButtonPressed [
 	self delete
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorph>>osWindowRenderer [
+{ #category : #accessing }
+OSWindowWorldMorph >> osWindowRenderer [
 	^ self osWindow renderer ifNil: [
 		self osWindow newFormRenderer: self display.
 		self osWindow renderer
@@ -135,11 +98,8 @@ OSWindowWorldMorph>>osWindowRenderer [
 	
 ]
 
-{
-	#category : #'session management',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorph>>recreateOSWindow [
+{ #category : #'session management' }
+OSWindowWorldMorph >> recreateOSWindow [
 	| attributes driver |
 	session := Smalltalk session.
 	attributes := OSWindowAttributes new.
@@ -156,19 +116,13 @@ OSWindowWorldMorph>>recreateOSWindow [
 	osWindow eventHandler: (OSWindowMorphicEventHandler for: self)
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorph>>title: aTitle [
+{ #category : #accessing }
+OSWindowWorldMorph >> title: aTitle [
 	self flag: 'ToDo'
 ]
 
-{
-	#category : #'as yet unclassified',
-	#timestamp : ' 8/31/2017 05:26:40'
-}
-OSWindowWorldMorph>>updateDisplay [
+{ #category : #'as yet unclassified' }
+OSWindowWorldMorph >> updateDisplay [
 	display isNil ifTrue: [
 		display := Form extent: self extent depth: 32.
 		worldState display: display

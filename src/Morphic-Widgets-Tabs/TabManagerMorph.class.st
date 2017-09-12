@@ -15,15 +15,11 @@ Class {
 		'processes',
 		'model'
 	],
-	#category : #Morphic-Widgets-Tabs,
-	#timestamp : '<historical>'
+	#category : #Morphic-Widgets-Tabs
 }
 
-{
-	#category : #private-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>addLastTabContents: aTab among: size delta: delta [
+{ #category : #private-contents }
+TabManagerMorph >> addLastTabContents: aTab among: size delta: delta [
 	| process |
 	
 	process := aTab retrieveMorph: [ :contents | 
@@ -40,11 +36,8 @@ TabManagerMorph>>addLastTabContents: aTab among: size delta: delta [
 	process ifNotNil: [ processes add: process ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>addMorphs [
+{ #category : #private }
+TabManagerMorph >> addMorphs [
 
 	self 
 		addMorph: toolbar
@@ -70,11 +63,8 @@ TabManagerMorph>>addMorphs [
 				yourself).
 ]
 
-{
-	#category : #private-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>addSplitterOn: tabs delta: delta [
+{ #category : #private-contents }
+TabManagerMorph >> addSplitterOn: tabs delta: delta [
 	| leftProcess rightProcess |
 	tabs overlappingPairsWithIndexDo: [ :left :right :index | 
 		leftProcess := left retrieveMorph: [ :leftContents | 
@@ -100,20 +90,14 @@ TabManagerMorph>>addSplitterOn: tabs delta: delta [
 	rightProcess ifNotNil: [ processes add: rightProcess ].
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>addTab: aTab [
+{ #category : #protocol }
+TabManagerMorph >> addTab: aTab [
 	toolbar addTab: aTab
 	
 ]
 
-{
-	#category : #private-contents,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>addTabContents: tab at: index delta: delta [
+{ #category : #private-contents }
+TabManagerMorph >> addTabContents: tab at: index delta: delta [
 	| process |
 	process := tab
 		retrieveMorph:
@@ -134,102 +118,69 @@ TabManagerMorph>>addTabContents: tab at: index delta: delta [
 	process ifNotNil: [ processes add: process ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>adoptPaneColor: aColor [
+{ #category : #accessing }
+TabManagerMorph >> adoptPaneColor: aColor [
 	"Prevent submorphs to be polluted by window color"
 	
 	self color: aColor
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>barDeleted: aBar [
+{ #category : #private-actions }
+TabManagerMorph >> barDeleted: aBar [
 
 	self close
 ]
 
-{
-	#category : #private-drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>borderColor [
+{ #category : #private-drawing }
+TabManagerMorph >> borderColor [
 	^ Smalltalk ui theme borderColor
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>canBeClosed [
+{ #category : #protocol }
+TabManagerMorph >> canBeClosed [
 	^ toolbar canBeClosed
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>cleanProcesses [
+{ #category : #private }
+TabManagerMorph >> cleanProcesses [
 	
 	processes do: [ :each | each terminate ].
 	processes removeAll.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>close [
+{ #category : #protocol }
+TabManagerMorph >> close [
 
 	self canBeClosed ifFalse: [ ^ self ].
 	self delete.
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>closeAllTabs [
+{ #category : #protocol }
+TabManagerMorph >> closeAllTabs [
 	toolbar closeAllTabs
 ]
 
-{
-	#category : #private-drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>containerColor [
+{ #category : #private-drawing }
+TabManagerMorph >> containerColor [
 	^ Smalltalk ui theme lightBaseColor
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>delete [
+{ #category : #protocol }
+TabManagerMorph >> delete [
 	
 	super delete.
 	self triggerEvent: #tabManagerDeleted with: self
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>deleteSelectedTabs [
+{ #category : #private-actions }
+TabManagerMorph >> deleteSelectedTabs [
 	toolbar selectedTab 
 		ifNotNil: [ toolbar deleteSelectedTabs ] 
 		ifNil: [ self owner takeKeyboardFocus ]
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>drawLinesOn: aCanvas [
+{ #category : #drawing }
+TabManagerMorph >> drawLinesOn: aCanvas [
 	self flag: #TODO. "this method, I don't know what's is for."
 	"aCanvas
 		line: self topLeft
@@ -248,29 +199,20 @@ TabManagerMorph>>drawLinesOn: aCanvas [
 		color: self borderColor"
 ]
 
-{
-	#category : #drawing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>drawSubmorphsOn: aCanvas [
+{ #category : #drawing }
+TabManagerMorph >> drawSubmorphsOn: aCanvas [
 	super drawSubmorphsOn: aCanvas.
 	self drawLinesOn: aCanvas
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>emptyTabColor: aColor [
+{ #category : #accessing }
+TabManagerMorph >> emptyTabColor: aColor [
 
 	contentsWrapper color: aColor
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>initialize [
+{ #category : #initialization }
+TabManagerMorph >> initialize [
 
 	super initialize.
 
@@ -293,38 +235,26 @@ TabManagerMorph>>initialize [
 	self addMorphs
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>minExtent [
+{ #category : #initialization }
+TabManagerMorph >> minExtent [
 
 	^ 100@50
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>model [
+{ #category : #accessing }
+TabManagerMorph >> model [
 
 	^ model
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>model: aModel [
+{ #category : #accessing }
+TabManagerMorph >> model: aModel [
 
 	model := aModel
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>registerBarActions [
+{ #category : #initialization }
+TabManagerMorph >> registerBarActions [
 	
 	toolbar 
 		when: #tabSelected send: #tabSelected: to: self;
@@ -337,11 +267,8 @@ TabManagerMorph>>registerBarActions [
 		when: #tabEmptyContents send: #tabEmptyContents: to: self
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>registerShortcuts [
+{ #category : #initialization }
+TabManagerMorph >> registerShortcuts [
 
 	self 
 		bindKeyCombination: $] meta shift toAction: [ self selectNext ];
@@ -355,56 +282,38 @@ TabManagerMorph>>registerShortcuts [
 	self bindKeyCombination: $0 meta toAction: [ self selectLastTab ]
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>selectLastTab [
+{ #category : #private-actions }
+TabManagerMorph >> selectLastTab [
 
 	toolbar selectLastTab
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>selectNext [
+{ #category : #private-actions }
+TabManagerMorph >> selectNext [
 
 	toolbar selectNext
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>selectPrevious [
+{ #category : #private-actions }
+TabManagerMorph >> selectPrevious [
 
 	toolbar selectPrevious
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>selectTabAt: index [
+{ #category : #private-actions }
+TabManagerMorph >> selectTabAt: index [
 
 	toolbar selectTabAt: index ifAbsent: [].
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>selectedTab [
+{ #category : #protocol }
+TabManagerMorph >> selectedTab [
 
 	^ toolbar selectedTab
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>setMultipleContents [
+{ #category : #private }
+TabManagerMorph >> setMultipleContents [
 	| tabs size delta |
 
 	contentsWrapper removeAllMorphs.
@@ -419,11 +328,8 @@ TabManagerMorph>>setMultipleContents [
 	self addSplitterOn: tabs delta: delta
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>setTabContentFrom: aTab [
+{ #category : #private }
+TabManagerMorph >> setTabContentFrom: aTab [
 	| process |
 	
 	contentsWrapper removeAllMorphs.
@@ -437,94 +343,64 @@ TabManagerMorph>>setTabContentFrom: aTab [
 	process ifNotNil: [ processes add: process ].
 ]
 
-{
-	#category : #compatbility,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>setTabs: aBlock [
+{ #category : #compatbility }
+TabManagerMorph >> setTabs: aBlock [
 	self tabs: aBlock value
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>tabAddedToSelection: aTab [
+{ #category : #private-actions }
+TabManagerMorph >> tabAddedToSelection: aTab [
 
 	self setMultipleContents
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>tabEmptyContents: aTab [
+{ #category : #private-actions }
+TabManagerMorph >> tabEmptyContents: aTab [
 	"My bar already filtered the tab, so here I am sure the tab is the selected tab"
 	
 	contentsWrapper removeAllMorphs
 	
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>tabRefreshed: aTab [
+{ #category : #private-actions }
+TabManagerMorph >> tabRefreshed: aTab [
 	"Here we know that aTab is the selected tab"
 
 	self setMultipleContents
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>tabRemovedFromSelection: aTab [
+{ #category : #private-actions }
+TabManagerMorph >> tabRemovedFromSelection: aTab [
 
 	self setMultipleContents
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>tabResetSelection: aTab [
+{ #category : #private-actions }
+TabManagerMorph >> tabResetSelection: aTab [
 
 	self setTabContentFrom: aTab
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>tabSelected: aTab [
+{ #category : #private-actions }
+TabManagerMorph >> tabSelected: aTab [
 
 	self setTabContentFrom: aTab.
 	self triggerEvent: #tabSelected with: aTab
 ]
 
-{
-	#category : #protocol,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>tabs: aCollection [
+{ #category : #protocol }
+TabManagerMorph >> tabs: aCollection [
 
 	toolbar tabs: aCollection
 ]
 
-{
-	#category : #private-actions,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>tabsChanged [
+{ #category : #private-actions }
+TabManagerMorph >> tabsChanged [
 	"Nothing to do"
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>themeChanged [
+{ #category : #initialization }
+TabManagerMorph >> themeChanged [
 	super themeChanged.
 	toolbar themeChanged.
 	
@@ -536,10 +412,7 @@ TabManagerMorph>>themeChanged [
 		changed
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:14'
-}
-TabManagerMorph>>useSortedTabsBy: sortBlock [
+{ #category : #initialization }
+TabManagerMorph >> useSortedTabsBy: sortBlock [
 	toolbar useSortedTabsBy: sortBlock
 ]

@@ -5,15 +5,11 @@ Specialized version of inspector showing the hex and string representation of th
 Class {
 	#name : #EyeByteArrayInspector,
 	#superclass : #EyeCollectionInspector,
-	#category : #Spec-Inspector,
-	#timestamp : '<historical>'
+	#category : #Spec-Inspector
 }
 
-{
-	#category : #list,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeByteArrayInspector>>addSpecialFields: elements [
+{ #category : #list }
+EyeByteArrayInspector >> addSpecialFields: elements [
 	elements add: (DynamicEyeElement 
 		host: self object 
 		label: 'hex bytes' 
@@ -36,11 +32,8 @@ EyeByteArrayInspector>>addSpecialFields: elements [
 				do: [ :exception | exception asString ] ]).
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeByteArrayInspector>>objectAsHexBytes [
+{ #category : #converting }
+EyeByteArrayInspector >> objectAsHexBytes [
 	^ String
 		streamContents: [ :s | 
 			s nextPutAll: '['.
@@ -51,22 +44,16 @@ EyeByteArrayInspector>>objectAsHexBytes [
 		limitedTo: 5000
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeByteArrayInspector>>objectAsHexString [
+{ #category : #converting }
+EyeByteArrayInspector >> objectAsHexString [
 	^ String
 		streamContents: [ :s | 
 			self object do: [ :each | s << (each printPaddedWith: $0 to: 2 base: 16) ] ]
 		limitedTo: 5000
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeByteArrayInspector>>objectAsLatin1String [
+{ #category : #converting }
+EyeByteArrayInspector >> objectAsLatin1String [
 	| width str |
 	str := String new:
 		(width := self object size min: 5000).
@@ -77,11 +64,8 @@ EyeByteArrayInspector>>objectAsLatin1String [
 	^ str
 ]
 
-{
-	#category : #converting,
-	#timestamp : ' 8/31/2017 05:26:18'
-}
-EyeByteArrayInspector>>objectAsUTF8String [
+{ #category : #converting }
+EyeByteArrayInspector >> objectAsUTF8String [
 	^ String
 		streamContents: [ :out | 
 			| in encoder |

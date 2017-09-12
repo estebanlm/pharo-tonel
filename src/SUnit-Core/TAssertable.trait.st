@@ -6,37 +6,25 @@ http://forum.world.st/template/NamlServlet.jtp?macro=search_page&node=1294837&qu
 "
 Trait {
 	#name : #TAssertable,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #SUnit-Core-Kernel,
-	#timestamp : 'LaurentLaffont 4/15/2011 20:20'
+	#category : #SUnit-Core-Kernel
 }
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>assert: aBoolean [
+{ #category : #asserting }
+TAssertable >> assert: aBoolean [
 	"We check for true explicitly to make the assertion fail for non booleans"
 	aBoolean == true ifFalse: [self signalFailure: 'Assertion failed']
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>assert: actualNumber closeTo: expectedNumber [
+{ #category : #asserting }
+TAssertable >> assert: actualNumber closeTo: expectedNumber [
 	^ self
 		assert: (actualNumber closeTo: expectedNumber)
 		description: [self comparingStringBetween: actualNumber and: expectedNumber]
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>assert: aBooleanOrBlock description: aStringOrBlock [
+{ #category : #asserting }
+TAssertable >> assert: aBooleanOrBlock description: aStringOrBlock [
 	aBooleanOrBlock value ifFalse: [
 		| message |
 		message := aStringOrBlock value.
@@ -44,11 +32,8 @@ TAssertable>>assert: aBooleanOrBlock description: aStringOrBlock [
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>assert: aBooleanOrBlock description: aStringOrBlock resumable: resumableBoolean  [
+{ #category : #asserting }
+TAssertable >> assert: aBooleanOrBlock description: aStringOrBlock resumable: resumableBoolean [ 
 	| exception |
 	aBooleanOrBlock value
 		ifFalse: 
@@ -61,32 +46,23 @@ TAssertable>>assert: aBooleanOrBlock description: aStringOrBlock resumable: resu
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>assert: actual equals: expected [
+{ #category : #asserting }
+TAssertable >> assert: actual equals: expected [
 	^ self
 		assert: expected = actual
 		description: [self comparingStringBetween: actual and: expected]
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>assertCollection: actual equals: expected [
+{ #category : #asserting }
+TAssertable >> assertCollection: actual equals: expected [
 	"Specialized test method that generates a proper error message for collection"
 	^ self
 		assert: expected = actual
 		description: [ self comparingCollectionBetween: actual and: expected ]
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>assertCollection: actual hasSameElements: expected [
+{ #category : #asserting }
+TAssertable >> assertCollection: actual hasSameElements: expected [
 	"Assert that a collection contains the same elements as the given collection. Order is not checked, only the presence/absence of elements."
 	| missingElements additionalElements |
 	
@@ -102,20 +78,14 @@ TAssertable>>assertCollection: actual hasSameElements: expected [
 				tab; nextPutAll: 'missing: '; print: missingElements asArray; lf ])
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>classForTestResult [
+{ #category : #asserting }
+TAssertable >> classForTestResult [
 	"Returns the class of the test result"
 	^ TestResult
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>comparingCollectionBetween: left and: right [
+{ #category : #private }
+TAssertable >> comparingCollectionBetween: left and: right [
 	| additionalLeft additionalRight sortBlock|
 	
 	"use a very slow sort block"
@@ -152,11 +122,8 @@ TAssertable>>comparingCollectionBetween: left and: right [
 					tab; print: additionalRight  ]]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>comparingStringBetween: actual and: expected [
+{ #category : #private }
+TAssertable >> comparingStringBetween: actual and: expected [
 
 	^ String streamContents: [:stream |
 			stream
@@ -167,30 +134,21 @@ TAssertable>>comparingStringBetween: actual and: expected [
 				nextPutAll: '.']
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>deny: aBooleanOrBlock [
+{ #category : #asserting }
+TAssertable >> deny: aBooleanOrBlock [
 
 	self assert: aBooleanOrBlock value not
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>deny: aBooleanOrBlock description: aString [
+{ #category : #asserting }
+TAssertable >> deny: aBooleanOrBlock description: aString [
 	self assert: aBooleanOrBlock value not description: aString
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>deny: aBooleanOrBlock description: aString resumable: resumableBoolean  [
+{ #category : #asserting }
+TAssertable >> deny: aBooleanOrBlock description: aString resumable: resumableBoolean [ 
 	self
 		assert: aBooleanOrBlock value not
 		description: aString
@@ -198,44 +156,32 @@ TAssertable>>deny: aBooleanOrBlock description: aString resumable: resumableBool
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>executeShould: aBlock inScopeOf: anExceptionalEvent  [
+{ #category : #asserting }
+TAssertable >> executeShould: aBlock inScopeOf: anExceptionalEvent [ 
 	^[aBlock value.
  	false] on: anExceptionalEvent
 		do: [:ex | ex return: true]
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>executeShould: aBlock inScopeOf: anExceptionalEvent withDescriptionContaining: aString [
+{ #category : #asserting }
+TAssertable >> executeShould: aBlock inScopeOf: anExceptionalEvent withDescriptionContaining: aString [
 	^[aBlock value.
  	false] on: anExceptionalEvent
 		do: [:ex | ex return: (ex description includesSubstring: aString) ]
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>executeShould: aBlock inScopeOf: anExceptionalEvent withDescriptionNotContaining: aString [
+{ #category : #asserting }
+TAssertable >> executeShould: aBlock inScopeOf: anExceptionalEvent withDescriptionNotContaining: aString [
 	^[aBlock value.
  	false] on: anExceptionalEvent
 		do: [:ex | ex return: (ex description includesSubstring: aString) not ]
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>executeShould: aBlock inScopeOf: anException withExceptionDo: anotherBlock [
+{ #category : #asserting }
+TAssertable >> executeShould: aBlock inScopeOf: anException withExceptionDo: anotherBlock [
 
 	^[aBlock value.
  	false] 
@@ -245,47 +191,32 @@ TAssertable>>executeShould: aBlock inScopeOf: anException withExceptionDo: anoth
 			exception return: true]
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>fail [
+{ #category : #asserting }
+TAssertable >> fail [
 
 	^self assert: false
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>fail: aDescriptionString [
+{ #category : #asserting }
+TAssertable >> fail: aDescriptionString [
 
 	^self assert: false description: aDescriptionString
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>should: aBlock [
+{ #category : #asserting }
+TAssertable >> should: aBlock [
 	self assert: aBlock value
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>should: aBlock description: aString [
+{ #category : #asserting }
+TAssertable >> should: aBlock description: aString [
 	self assert: aBlock value description: aString
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>should: aBlock notTakeMoreThan: aDuration [
+{ #category : #asserting }
+TAssertable >> should: aBlock notTakeMoreThan: aDuration [
     "Evaluate aBlock and if it takes more than given duration
     to run we report a test failure. "
 
@@ -298,106 +229,73 @@ TAssertable>>should: aBlock notTakeMoreThan: aDuration [
 
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>should: aBlock notTakeMoreThanMilliseconds: anInteger [
+{ #category : #asserting }
+TAssertable >> should: aBlock notTakeMoreThanMilliseconds: anInteger [
     "For compatibility with other Smalltalks"
 
    self should: aBlock notTakeMoreThan: (Duration milliSeconds: anInteger).
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>should: aBlock raise: anExceptionalEvent  [
+{ #category : #asserting }
+TAssertable >> should: aBlock raise: anExceptionalEvent [ 
 	^self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent)
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>should: aBlock raise: anExceptionalEvent description: aString  [
+{ #category : #asserting }
+TAssertable >> should: aBlock raise: anExceptionalEvent description: aString [ 
 	^self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent)
 		description: aString
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>should: aBlock raise: anExceptionalEvent whoseDescriptionDoesNotInclude: substring description: aString  [
+{ #category : #asserting }
+TAssertable >> should: aBlock raise: anExceptionalEvent whoseDescriptionDoesNotInclude: substring description: aString [ 
 	^self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent withDescriptionNotContaining: substring)
 		description: aString
 
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>should: aBlock raise: anExceptionalEvent whoseDescriptionIncludes: substring description: aString  [
+{ #category : #asserting }
+TAssertable >> should: aBlock raise: anExceptionalEvent whoseDescriptionIncludes: substring description: aString [ 
 	^self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent withDescriptionContaining: substring)
 		description: aString
 
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>should: aBlock raise: anException withExceptionDo: anotherBlock  [
+{ #category : #asserting }
+TAssertable >> should: aBlock raise: anException withExceptionDo: anotherBlock [ 
 
 	^self assert: (self executeShould: aBlock inScopeOf: anException withExceptionDo: anotherBlock)
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>shouldFix: aBlock  [
+{ #category : #asserting }
+TAssertable >> shouldFix: aBlock [ 
 	"Run the block expecting an Exception. Throw an assertion failure if the block does NOT throw an exception."
 	^self should: aBlock raise: Exception
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>shouldnt: aBlock [
+{ #category : #asserting }
+TAssertable >> shouldnt: aBlock [
 	self deny: aBlock value
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>shouldnt: aBlock description: aString [
+{ #category : #asserting }
+TAssertable >> shouldnt: aBlock description: aString [
 	self deny: aBlock value description: aString
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>shouldnt: aBlock raise: anExceptionalEvent   [
+{ #category : #asserting }
+TAssertable >> shouldnt: aBlock raise: anExceptionalEvent [  
 	 
 	^self assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent) not
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>shouldnt: aBlock raise: anExceptionalEvent description: aString   [
+{ #category : #asserting }
+TAssertable >> shouldnt: aBlock raise: anExceptionalEvent description: aString [  
  
 	^self
 		assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent) not
@@ -405,11 +303,8 @@ TAssertable>>shouldnt: aBlock raise: anExceptionalEvent description: aString   [
 			
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>shouldnt: aBlock raise: anExceptionalEvent whoseDescriptionDoesNotInclude: substring description: aString  [
+{ #category : #asserting }
+TAssertable >> shouldnt: aBlock raise: anExceptionalEvent whoseDescriptionDoesNotInclude: substring description: aString [ 
 	 
 	^self
 		assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent withDescriptionNotContaining: substring) not
@@ -417,11 +312,8 @@ TAssertable>>shouldnt: aBlock raise: anExceptionalEvent whoseDescriptionDoesNotI
 
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>shouldnt: aBlock raise: anExceptionalEvent whoseDescriptionIncludes: substring description: aString   [
+{ #category : #asserting }
+TAssertable >> shouldnt: aBlock raise: anExceptionalEvent whoseDescriptionIncludes: substring description: aString [  
 	 
 	^self 
 		assert: (self executeShould: aBlock inScopeOf: anExceptionalEvent withDescriptionContaining: substring) not
@@ -429,37 +321,25 @@ TAssertable>>shouldnt: aBlock raise: anExceptionalEvent whoseDescriptionIncludes
 
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>signalFailure: aString [
+{ #category : #asserting }
+TAssertable >> signalFailure: aString [
 	self classForTestResult failure signal: aString
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>skip [
+{ #category : #asserting }
+TAssertable >> skip [
 	"Don't run this test, and don't mark it as failure"
 	TestSkip signal
 ]
 
-{
-	#category : #extensions,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>skip: aComment [
+{ #category : #extensions }
+TAssertable >> skip: aComment [
 	"Don't run this test, and don't mark it as failure"
 	TestSkip signal: aComment
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-TAssertable>>skipUnless: aBooleanOrBlock [
+{ #category : #asserting }
+TAssertable >> skipUnless: aBooleanOrBlock [
 	" If the assumption in aBooleanOrBlock is not true, abandon the running test
 	and mark it as passed. "
 	aBooleanOrBlock value ifFalse:

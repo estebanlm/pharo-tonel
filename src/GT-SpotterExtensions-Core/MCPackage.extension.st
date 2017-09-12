@@ -1,20 +1,12 @@
-Extension {
-	#name : #MCPackage
-}
+Extension { #name : #MCPackage }
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MCPackage>>gtDisplayOn: aStream [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MCPackage >> gtDisplayOn: aStream [
 	aStream nextPutAll: self name
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MCPackage>>spotterForPackageFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MCPackage >> spotterForPackageFor: aStep [
 	<spotterOrder: 2>
 	aStep listProcessor
 		title: 'Packages';
@@ -24,11 +16,8 @@ MCPackage>>spotterForPackageFor: aStep [
 		filter: GTFilterSubstring
 ]
 
-{
-	#category : #'*GT-SpotterExtensions-Core',
-	#timestamp : ' 8/31/2017 05:26:36'
-}
-MCPackage>>spotterMonticelloWorkingCopyFor: aStep [
+{ #category : #'*GT-SpotterExtensions-Core' }
+MCPackage >> spotterMonticelloWorkingCopyFor: aStep [
 	<spotterOrder: 1>
 	aStep listProcessor
 		title: 'Monticello Working Copy';

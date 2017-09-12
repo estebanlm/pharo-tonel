@@ -1,6 +1,3 @@
-"
-
-"
 Class {
 	#name : #PackageTreeNautilusTest,
 	#superclass : #TestCase,
@@ -11,26 +8,19 @@ Class {
 		'expectedMethodCategory',
 		'expectedCompiledMethod'
 	],
-	#category : #Nautilus-Tests,
-	#timestamp : ''
+	#category : #Nautilus-Tests
 }
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>assertMethodWidget [
+{ #category : #asserting }
+PackageTreeNautilusTest >> assertMethodWidget [
 	"Assert changes for new fast table"
 	AbstractWidget listClass = FTPluggableIconListMorphAdaptor 
 		ifTrue: [ ^ self assertMethodWidgetAdaptor ].
 	^ self assertMethodWidgetPluggableListMorph
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>assertMethodWidgetAdaptor [
+{ #category : #asserting }
+PackageTreeNautilusTest >> assertMethodWidgetAdaptor [
 	| index item |
 	"test result changed because nautilus behavior has changed.
 	issue 14890 (nhe)"
@@ -42,11 +32,8 @@ PackageTreeNautilusTest>>assertMethodWidgetAdaptor [
 		self assert: item equals: compiledMethod ]
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>assertMethodWidgetPluggableListMorph [
+{ #category : #asserting }
+PackageTreeNautilusTest >> assertMethodWidgetPluggableListMorph [
 	| index item |
 	"test result changed because nautilus behavior has changed.
 	issue 14890 (nhe)"
@@ -58,11 +45,8 @@ PackageTreeNautilusTest>>assertMethodWidgetPluggableListMorph [
 		self assert: item originalObject equals: compiledMethod ]
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>assertPackageMorph: eachMorph [
+{ #category : #asserting }
+PackageTreeNautilusTest >> assertPackageMorph: eachMorph [
 	| tagMorph tag |
 	self assert: eachMorph isExpanded.
 	eachMorph children ifEmpty: [ ^ self ]. 
@@ -72,11 +56,8 @@ PackageTreeNautilusTest>>assertPackageMorph: eachMorph [
 	^ self assert: tagMorph first isSelected
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>assertPackageWidget [
+{ #category : #asserting }
+PackageTreeNautilusTest >> assertPackageWidget [
 	| packageNodeList packageMorphList |
 	packageNodeList := nautilus ui packageWidget packagesList nodeList
 		select: [ :eachNode | eachNode item = compiledMethod package ].
@@ -87,11 +68,8 @@ PackageTreeNautilusTest>>assertPackageWidget [
 	packageMorphList do: [ :eachMorph | self assertPackageMorph: eachMorph ]
 ]
 
-{
-	#category : #asserting,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>assertSelectedCompiledMethod [
+{ #category : #asserting }
+PackageTreeNautilusTest >> assertSelectedCompiledMethod [
 	| aText |
 	self 
 		assert: nautilus selectedPackage package 
@@ -121,41 +99,29 @@ PackageTreeNautilusTest>>assertSelectedCompiledMethod [
 	self assertMethodWidget.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>compiledMethod: aCompiledMethod [
+{ #category : #accessing }
+PackageTreeNautilusTest >> compiledMethod: aCompiledMethod [
 	compiledMethod := aCompiledMethod.
 	expectedMethodCategory := compiledMethod category.
 	expectedCompiledMethod := compiledMethod.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>setUp [
+{ #category : #tests }
+PackageTreeNautilusTest >> setUp [
 	super setUp.
 	self compiledMethod: (NautilusUI>>#addClassIn:).
 	lastValue := SharedPackageFilterPatternsHolder instance lastValue.
 ]
 
-{
-	#category : #running,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>tearDown [
+{ #category : #running }
+PackageTreeNautilusTest >> tearDown [
 	nautilus ifNotNil: [ :aNautilus | aNautilus ui ifNotNil: [ :aUI | aUI close ] ].
 	lastValue ifNotNil: [ :aValue | SharedPackageFilterPatternsHolder instance lastValue: aValue ].
 	super tearDown
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>testFullBrowseLastValueIsNil [
+{ #category : #tests }
+PackageTreeNautilusTest >> testFullBrowseLastValueIsNil [
 	| newNautilus |
 	self testOpenOnMethodLastValueIsNil.
 	newNautilus := nautilus ui fullBrowse.
@@ -164,11 +130,8 @@ PackageTreeNautilusTest>>testFullBrowseLastValueIsNil [
 	self assertSelectedCompiledMethod.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>testFullBrowseLastValueNotNil [
+{ #category : #tests }
+PackageTreeNautilusTest >> testFullBrowseLastValueNotNil [
 	| newNautilus |
 	self testOpenOnMethodLastValueNotNil.
 	newNautilus := nautilus ui fullBrowse.
@@ -177,11 +140,8 @@ PackageTreeNautilusTest>>testFullBrowseLastValueNotNil [
 	self assertSelectedCompiledMethod.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>testFullBrowseLastValueNotNil2 [
+{ #category : #tests }
+PackageTreeNautilusTest >> testFullBrowseLastValueNotNil2 [
 	| newNautilus |
 	self compiledMethod: self class >> #testFullBrowseLastValueNotNil.
 	self testOpenOnMethodLastValueNotNil.
@@ -191,11 +151,8 @@ PackageTreeNautilusTest>>testFullBrowseLastValueNotNil2 [
 	self assertSelectedCompiledMethod.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>testFullBrowseLastValueNotNilSelectedCategoryIsNil [
+{ #category : #tests }
+PackageTreeNautilusTest >> testFullBrowseLastValueNotNilSelectedCategoryIsNil [
 	| newNautilus |
 	self compiledMethod: self class >> #testFullBrowseLastValueNotNil.
 	self testOpenOnMethodLastValueNotNil.
@@ -210,11 +167,8 @@ PackageTreeNautilusTest>>testFullBrowseLastValueNotNilSelectedCategoryIsNil [
 	self assertSelectedCompiledMethod.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>testFullBrowseOnClass [
+{ #category : #tests }
+PackageTreeNautilusTest >> testFullBrowseOnClass [
 	| newNautilus |
 	self testOpenOnMethodLastValueIsNil.
 	nautilus ui browseClass: compiledMethod methodClass.
@@ -226,11 +180,8 @@ PackageTreeNautilusTest>>testFullBrowseOnClass [
 	self assertSelectedCompiledMethod.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>testOpen [
+{ #category : #tests }
+PackageTreeNautilusTest >> testOpen [
 	| allPackages filteredPackages |
 	SharedPackageFilterPatternsHolder instance lastValue: nil.
 	nautilus := Nautilus open.
@@ -242,11 +193,8 @@ PackageTreeNautilusTest>>testOpen [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>testOpenLastValueIsNil [
+{ #category : #tests }
+PackageTreeNautilusTest >> testOpenLastValueIsNil [
 	lastValue := SharedPackageFilterPatternsHolder instance lastValue.
 	SharedPackageFilterPatternsHolder instance lastValue: nil.
 	nautilus := Nautilus open.
@@ -256,11 +204,8 @@ PackageTreeNautilusTest>>testOpenLastValueIsNil [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>testOpenLastValueNotNil [
+{ #category : #tests }
+PackageTreeNautilusTest >> testOpenLastValueNotNil [
 	lastValue := SharedPackageFilterPatternsHolder instance lastValue.
 	SharedPackageFilterPatternsHolder instance lastValue: 'K'.
 	nautilus := Nautilus open.
@@ -270,40 +215,28 @@ PackageTreeNautilusTest>>testOpenLastValueNotNil [
 
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>testOpenOnMethod [
+{ #category : #tests }
+PackageTreeNautilusTest >> testOpenOnMethod [
 	nautilus := Nautilus openOnMethod: compiledMethod.
 	self assertSelectedCompiledMethod.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>testOpenOnMethodLastValueIsNil [
+{ #category : #tests }
+PackageTreeNautilusTest >> testOpenOnMethodLastValueIsNil [
 	lastValue := SharedPackageFilterPatternsHolder instance lastValue.
 	SharedPackageFilterPatternsHolder instance lastValue: nil.
 	self testOpenOnMethod.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>testOpenOnMethodLastValueNotNil [
+{ #category : #tests }
+PackageTreeNautilusTest >> testOpenOnMethodLastValueNotNil [
 	lastValue := SharedPackageFilterPatternsHolder instance lastValue.
 	SharedPackageFilterPatternsHolder instance lastValue: 'AAATest'.
 	self testOpenOnMethod.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>testPackagePatternString [
+{ #category : #tests }
+PackageTreeNautilusTest >> testPackagePatternString [
 	lastValue := SharedPackageFilterPatternsHolder instance lastValue.
 	SharedPackageFilterPatternsHolder instance lastValue: ''.
 	nautilus := Nautilus openOnMethod: compiledMethod.
@@ -316,11 +249,8 @@ PackageTreeNautilusTest>>testPackagePatternString [
 	self assertSelectedCompiledMethod.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:44'
-}
-PackageTreeNautilusTest>>testPackagePatternStringRootPackageTag [
+{ #category : #tests }
+PackageTreeNautilusTest >> testPackagePatternStringRootPackageTag [
 	lastValue := SharedPackageFilterPatternsHolder instance lastValue.
 	SharedPackageFilterPatternsHolder instance lastValue: ''.
 	self compiledMethod: (Object>>#=).

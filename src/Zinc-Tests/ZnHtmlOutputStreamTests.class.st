@@ -1,51 +1,35 @@
-"
-
-"
 Class {
 	#name : #ZnHtmlOutputStreamTests,
 	#superclass : #TestCase,
-	#category : #Zinc-Tests,
-	#timestamp : ''
+	#category : #Zinc-Tests
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnHtmlOutputStreamTests>>testAttributeEscaping [
+{ #category : #tests }
+ZnHtmlOutputStreamTests >> testAttributeEscaping [
 	| result |
 	result := ZnHtmlOutputStream streamContents: [ :html |
 		html tag: #div attributes: #(query '"literal"') with: 'Foo' ].
 	self assert: result equals: '<div query="&quot;literal&quot;">Foo</div>'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnHtmlOutputStreamTests>>testComment [
+{ #category : #tests }
+ZnHtmlOutputStreamTests >> testComment [
 	| result |
 	result := ZnHtmlOutputStream streamContents: [ :html |
 		html comment: 'a comment' ].
 	self assert: result equals: '<!-- a comment -->'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnHtmlOutputStreamTests>>testEncoding [
+{ #category : #tests }
+ZnHtmlOutputStreamTests >> testEncoding [
 	| result |
 	result := ZnHtmlOutputStream streamContents: [ :html |
 		html tag: #div with: 'élève en Français' ].
 	self assert: result equals: '<div>élève en Français</div>'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnHtmlOutputStreamTests>>testEscaping [
+{ #category : #tests }
+ZnHtmlOutputStreamTests >> testEscaping [
 	| result |
 	result := ZnHtmlOutputStream streamContents: [ :html |
 		html tag: #div with: 'Foo & Bar < 100' ].
@@ -58,33 +42,24 @@ ZnHtmlOutputStreamTests>>testEscaping [
 	self assert: result equals: 'Foo &amp; Bar &lt; 100'.
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnHtmlOutputStreamTests>>testFormat [
+{ #category : #tests }
+ZnHtmlOutputStreamTests >> testFormat [
 	| result |
 	result := ZnHtmlOutputStream streamContents: [ :html |
 		html format: '{1} & {2}' with: { '<'. '>' } ].
 	self assert: result equals: '&lt; &amp; >'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnHtmlOutputStreamTests>>testHtml5Tag [
+{ #category : #tests }
+ZnHtmlOutputStreamTests >> testHtml5Tag [
 	| result |
 	result := ZnHtmlOutputStream streamContents: [ :html |
 		html html5 ].
 	self assert: result equals: '<!DOCTYPE html>'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnHtmlOutputStreamTests>>testNesting [
+{ #category : #tests }
+ZnHtmlOutputStreamTests >> testNesting [
 	| result |
 	result := ZnHtmlOutputStream streamContents: [ :html |
 		html tag: #ol do: [ 
@@ -92,22 +67,16 @@ ZnHtmlOutputStreamTests>>testNesting [
 	self assert: result equals: '<ol><li>one</li><li>two</li><li>three</li></ol>'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnHtmlOutputStreamTests>>testSelfClosingTag [
+{ #category : #tests }
+ZnHtmlOutputStreamTests >> testSelfClosingTag [
 	| result |
 	result := ZnHtmlOutputStream streamContents: [ :html |
 		html tag: #br ].
 	self assert: result equals: '<br/>'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnHtmlOutputStreamTests>>testSmall [
+{ #category : #tests }
+ZnHtmlOutputStreamTests >> testSmall [
 	| result |
 	result := ZnHtmlOutputStream streamContents: [ :html |
 		html 
@@ -116,11 +85,8 @@ ZnHtmlOutputStreamTests>>testSmall [
 	self assert: result equals: '<h1>Small</h1><p>This is a small HTML document</p>'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnHtmlOutputStreamTests>>testSmallPage [
+{ #category : #tests }
+ZnHtmlOutputStreamTests >> testSmallPage [
 	| result |
 	result := ZnHtmlOutputStream streamContents: [ :html |
 		html page: 'Small' do: [ 
@@ -128,44 +94,32 @@ ZnHtmlOutputStreamTests>>testSmallPage [
 	self assert: result equals: '<!DOCTYPE html><html><head><title>Small</title></head><body><h1>Small</h1><p>This is a small HTML document</p></body></html>'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnHtmlOutputStreamTests>>testTagWithClass [
+{ #category : #tests }
+ZnHtmlOutputStreamTests >> testTagWithClass [
 	| result |
 	result := ZnHtmlOutputStream streamContents: [ :html |
 		html tag: #div class: #menu with: 'Foo' ].
 	self assert: result equals: '<div class="menu">Foo</div>'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnHtmlOutputStreamTests>>testTagWithEmptyAttributes [
+{ #category : #tests }
+ZnHtmlOutputStreamTests >> testTagWithEmptyAttributes [
 	| result |
 	result := ZnHtmlOutputStream streamContents: [ :html |
 		html tag: #div attributes: #(class menu id one readonly nil) with: 'Foo' ].
 	self assert: result equals: '<div class="menu" id="one" readonly>Foo</div>'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnHtmlOutputStreamTests>>testTagWithId [
+{ #category : #tests }
+ZnHtmlOutputStreamTests >> testTagWithId [
 	| result |
 	result := ZnHtmlOutputStream streamContents: [ :html |
 		html tag: #div id: #menu with: 'Foo' ].
 	self assert: result equals: '<div id="menu">Foo</div>'
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:47'
-}
-ZnHtmlOutputStreamTests>>testTagWithMultipleAttributes [
+{ #category : #tests }
+ZnHtmlOutputStreamTests >> testTagWithMultipleAttributes [
 	| result |
 	result := ZnHtmlOutputStream streamContents: [ :html |
 		html tag: #div attributes: #(class menu id one) with: 'Foo' ].

@@ -25,15 +25,11 @@ Class {
 		'lruList',
 		'keyIndex'
 	],
-	#category : #System-Caching,
-	#timestamp : '<historical>'
+	#category : #System-Caching
 }
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LRUCache>>addWeight: value  [
+{ #category : #private }
+LRUCache >> addWeight: value [ 
 	weight add: value.
 	[ weight isBelowMaximum ]
 		whileFalse: [ 
@@ -42,11 +38,8 @@ LRUCache>>addWeight: value  [
 				ifFalse: [ self evict ] ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LRUCache>>at: key ifAbsentPut: block [
+{ #category : #accessing }
+LRUCache >> at: key ifAbsentPut: block [
 	"If key is present in the cache, return the associated value.
 	This is a hit and makes that key/value pair the most recently used.
 	If key is absent, use block to compute a new value and cache it.
@@ -70,11 +63,8 @@ LRUCache>>at: key ifAbsentPut: block [
 		^ self handleHit: association ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LRUCache>>at: key put: value [
+{ #category : #accessing }
+LRUCache >> at: key put: value [
 	"Populate me by storing value for key. Return value. 
 	This is neither a hit nor a miss. Statistics remain unchanged.
 	Overwrite if already present without promotion. 
@@ -97,11 +87,8 @@ LRUCache>>at: key put: value [
 		^ value ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LRUCache>>evict [
+{ #category : #private }
+LRUCache >> evict [
 	| link value |
 	link := lruList removeFirst.
 	value := link value.
@@ -109,11 +96,8 @@ LRUCache>>evict [
 	keyIndex removeKey: value key
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LRUCache>>handleHit: association [
+{ #category : #private }
+LRUCache >> handleHit: association [
 	| link |
 	statistics addHit.
 	link := association value.
@@ -121,11 +105,8 @@ LRUCache>>handleHit: association [
 	^ link value value
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LRUCache>>handleMiss: association [
+{ #category : #private }
+LRUCache >> handleMiss: association [
 	| link |
 	statistics addMiss.
 	self addWeight: association value.
@@ -134,41 +115,29 @@ LRUCache>>handleMiss: association [
 	^ association value
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LRUCache>>includesKey: key [
+{ #category : #testing }
+LRUCache >> includesKey: key [
 	"Return true when the receiver has a value cached for key."
 	
 	^ keyIndex includesKey: key
 ]
 
-{
-	#category : #initialize,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LRUCache>>initialize [
+{ #category : #initialize }
+LRUCache >> initialize [
 	super initialize.
 	keyIndex := Dictionary new.
 	lruList := DoubleLinkedList new
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LRUCache>>isEmpty [
+{ #category : #testing }
+LRUCache >> isEmpty [
 	"Return true when the receiver contains no entries."
 	
 	^ keyIndex isEmpty
 ]
 
-{
-	#category : #enumerating,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LRUCache>>keysAndValuesDo: block [
+{ #category : #enumerating }
+LRUCache >> keysAndValuesDo: block [
 	"Execute block with each key and value present in me.
 	This will be from least to most recently used."
 	
@@ -178,28 +147,19 @@ LRUCache>>keysAndValuesDo: block [
 			value: link value ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LRUCache>>newAssociationKey: key value: value [
+{ #category : #private }
+LRUCache >> newAssociationKey: key value: value [
 	^ Association key: key value: value
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LRUCache>>promote: link [
+{ #category : #private }
+LRUCache >> promote: link [
 	lruList removeLink: link.
 	lruList addLast: link
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LRUCache>>removeAll [
+{ #category : #removing }
+LRUCache >> removeAll [
 	"Remove all key/value pairs that I currently hold,
 	effectiley resetting me, but not my statistics."
 	
@@ -209,11 +169,8 @@ LRUCache>>removeAll [
 		weight reset ]
 ]
 
-{
-	#category : #removing,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LRUCache>>removeKey: key ifAbsent: block [
+{ #category : #removing }
+LRUCache >> removeKey: key ifAbsent: block [
 	"If I currently cache key, remove the entry.
 	Execute block when key is currently absent.
 	Return the removed value."
@@ -229,21 +186,15 @@ LRUCache>>removeKey: key ifAbsent: block [
 			ifFalse: block ]
 ]
 
-{
-	#category : #'accessing - statistics',
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LRUCache>>size [
+{ #category : #'accessing - statistics' }
+LRUCache >> size [
 	"Return the count of items currently present."
 	
 	^ keyIndex size
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:16'
-}
-LRUCache>>validateInvariantWith: assertable [
+{ #category : #private }
+LRUCache >> validateInvariantWith: assertable [
 	"The keyIndex maps keys to double linked list nodes that hold 
 	a key value association, whose key must match the index key"
 	keyIndex keysAndValuesDo: [ :key :link |

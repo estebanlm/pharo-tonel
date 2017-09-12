@@ -1,11 +1,6 @@
-Extension {
-	#name : #ByteArray
-}
+Extension { #name : #ByteArray }
 
-{
-	#category : #'*Network-Kernel',
-	#timestamp : ' 8/31/2017 07:16:32'
-}
-ByteArray>>asSocketAddress [
+{ #category : #'*Network-Kernel' }
+ByteArray >> asSocketAddress [
 	^SocketAddress fromOldByteAddress: self
 ]

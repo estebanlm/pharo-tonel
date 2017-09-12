@@ -3,80 +3,53 @@ I'm a style module related to the button and its componenets
 "
 Trait {
 	#name : #GLMBrickButtonStyle,
-	#traits : '{}',
-	#classTraits : '{}',
-	#category : #Glamour-Morphic-Brick-Theme,
-	#timestamp : 'AliakseiSyrel 2/25/2015 20:59'
+	#category : #Glamour-Morphic-Brick-Theme
 }
 
-{
-	#category : #brick-button,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickButtonStyle>>buttonBackgroundColor [
+{ #category : #brick-button }
+GLMBrickButtonStyle >> buttonBackgroundColor [
 
 	^ Color veryVeryLightGray lighter
 ]
 
-{
-	#category : #brick-button,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickButtonStyle>>buttonBorderColor [
+{ #category : #brick-button }
+GLMBrickButtonStyle >> buttonBorderColor [
 	
 	^ Color lightGray
 ]
 
-{
-	#category : #brick-button,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickButtonStyle>>buttonBorderWidth [
+{ #category : #brick-button }
+GLMBrickButtonStyle >> buttonBorderWidth [
 	
 	^ 1
 ]
 
-{
-	#category : #brick-button,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickButtonStyle>>buttonMinHeight [
+{ #category : #brick-button }
+GLMBrickButtonStyle >> buttonMinHeight [
 
 	^ 26
 ]
 
-{
-	#category : #brick-button,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickButtonStyle>>buttonMinWidth [
+{ #category : #brick-button }
+GLMBrickButtonStyle >> buttonMinWidth [
 
 	^ 70
 ]
 
-{
-	#category : #brick-button,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickButtonStyle>>buttonPadding [
+{ #category : #brick-button }
+GLMBrickButtonStyle >> buttonPadding [
 
 	^ #(3 7)
 ]
 
-{
-	#category : #brick-button,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickButtonStyle>>buttonPressedColor [
+{ #category : #brick-button }
+GLMBrickButtonStyle >> buttonPressedColor [
 
 	^ Color veryVeryLightGray lighter slightlyDarker slightlyDarker
 ]
 
-{
-	#category : #brick-button,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMBrickButtonStyle>>buttonSelectedColor [
+{ #category : #brick-button }
+GLMBrickButtonStyle >> buttonSelectedColor [
 
 	^ Color veryVeryLightGray lighter slightlyDarker
 ]

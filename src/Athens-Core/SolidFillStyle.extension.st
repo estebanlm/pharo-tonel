@@ -1,12 +1,7 @@
-Extension {
-	#name : #SolidFillStyle
-}
+Extension { #name : #SolidFillStyle }
 
-{
-	#category : #'*Athens-Core',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SolidFillStyle>>asAthensPaintOn: anAthensCanvas  [
+{ #category : #'*Athens-Core' }
+SolidFillStyle >> asAthensPaintOn: anAthensCanvas [ 
 
 	^ anAthensCanvas surface createSolidColorPaint: color
 ]

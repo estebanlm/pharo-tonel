@@ -1,12 +1,7 @@
-Extension {
-	#name : #Morph
-}
+Extension { #name : #Morph }
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>addHalo: evt [
+{ #category : #'*Morphic-Base' }
+Morph >> addHalo: evt [
 	| halo |
 	
 	self halosEnabled
@@ -18,11 +13,8 @@ Morph>>addHalo: evt [
 	^ halo
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>addHandlesTo: aHaloMorph box: box [
+{ #category : #'*Morphic-Base' }
+Morph >> addHandlesTo: aHaloMorph box: box [
 	"Add halo handles to the halo.  Apply the halo filter if appropriate"
 
 	
@@ -38,22 +30,16 @@ Morph>>addHandlesTo: aHaloMorph box: box [
 	aHaloMorph innerTarget addOptionalHandlesTo: aHaloMorph box: box
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>addWorldHandlesTo: aHaloMorph box: box [
+{ #category : #'*Morphic-Base' }
+Morph >> addWorldHandlesTo: aHaloMorph box: box [
 	aHaloMorph haloBox: box.
 	HaloMorph haloSpecificationsForWorld 
 		do: [:aSpec | aHaloMorph perform: aSpec addHandleSelector with: aSpec].
 	aHaloMorph innerTarget addOptionalHandlesTo: aHaloMorph box: box
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>assureLayoutProperties [
+{ #category : #'*Morphic-Base' }
+Morph >> assureLayoutProperties [
 	| props |
 	props := self layoutProperties.
 	props == self ifTrue:[props := nil].
@@ -63,11 +49,8 @@ Morph>>assureLayoutProperties [
 	^props
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>assureTableProperties [
+{ #category : #'*Morphic-Base' }
+Morph >> assureTableProperties [
 	| props |
 	props := self layoutProperties.
 	props == self ifTrue:[props := nil].
@@ -79,11 +62,8 @@ Morph>>assureTableProperties [
 	^props
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>borderColor: aColorOrSymbolOrNil  [
+{ #category : #'*Morphic-Base' }
+Morph >> borderColor: aColorOrSymbolOrNil [ 
 	"Unfortunately, the argument to borderColor could be more than 	just a color. 
 	It could also be a symbol, in which case it is to be interpreted as a style identifier.
 	But I might not be able to draw that kind of border, so it may have to be ignored.
@@ -115,11 +95,8 @@ Morph>>borderColor: aColorOrSymbolOrNil  [
 						ifFalse: [style]])
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>borderWidth: aNumber [
+{ #category : #'*Morphic-Base' }
+Morph >> borderWidth: aNumber [
 	| style |
 	style := self borderStyle.
 	style width = aNumber ifTrue: [ ^self ].
@@ -130,11 +107,8 @@ Morph>>borderWidth: aNumber [
 
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>changeCellInset: evt [
+{ #category : #'*Morphic-Base' }
+Morph >> changeCellInset: evt [
 	| handle |
 	handle := HandleMorph new forEachPointDo:[:newPoint |
 		self cellInset: (newPoint - evt cursorPoint) asIntegerPoint // 5].
@@ -143,11 +117,8 @@ Morph>>changeCellInset: evt [
 
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>changeLayoutInset: evt [
+{ #category : #'*Morphic-Base' }
+Morph >> changeLayoutInset: evt [
 	| handle |
 	handle := HandleMorph new forEachPointDo:[:newPoint |
 		self layoutInset: (newPoint - evt cursorPoint) asIntegerPoint // 5].
@@ -156,11 +127,8 @@ Morph>>changeLayoutInset: evt [
 
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>changeMaxCellSize: evt [
+{ #category : #'*Morphic-Base' }
+Morph >> changeMaxCellSize: evt [
 	| handle |
 	handle := HandleMorph new forEachPointDo:[:newPoint |
 		self maxCellSize: (newPoint - evt cursorPoint) asIntegerPoint].
@@ -169,11 +137,8 @@ Morph>>changeMaxCellSize: evt [
 
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>changeMinCellSize: evt [
+{ #category : #'*Morphic-Base' }
+Morph >> changeMinCellSize: evt [
 	| handle |
 	handle := HandleMorph new forEachPointDo:[:newPoint |
 		self minCellSize: (newPoint - evt cursorPoint) asIntegerPoint].
@@ -182,11 +147,8 @@ Morph>>changeMinCellSize: evt [
 
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>changeProportionalLayout [
+{ #category : #'*Morphic-Base' }
+Morph >> changeProportionalLayout [
 	| layout |
 	((layout := self layoutPolicy) notNil and:[layout isProportionalLayout])
 		ifTrue:[^self]. "already proportional layout"
@@ -194,11 +156,8 @@ Morph>>changeProportionalLayout [
 	self layoutChanged.
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>changeTableLayout [
+{ #category : #'*Morphic-Base' }
+Morph >> changeTableLayout [
 	| layout |
 	((layout := self layoutPolicy) notNil and:[layout isTableLayout])
 		ifTrue:[^self]. "already table layout"
@@ -206,47 +165,32 @@ Morph>>changeTableLayout [
 	self layoutChanged.
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>defaultBalloonColor [
+{ #category : #'*Morphic-Base' }
+Morph >> defaultBalloonColor [
 	^ Display depth <= 2
 		ifTrue: [Color white]
 		ifFalse: [BalloonMorph balloonColor]
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>defaultBalloonFont [
+{ #category : #'*Morphic-Base' }
+Morph >> defaultBalloonFont [
 	^ BalloonMorph balloonFont
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>defaultBitmapFillForm [
+{ #category : #'*Morphic-Base' }
+Morph >> defaultBitmapFillForm [
 	^ImageMorph defaultForm.
 
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>defaultLabel [
+{ #category : #'*Morphic-Base' }
+Morph >> defaultLabel [
 	"Answer the default label to be used"
 	^ self printString truncateTo: 40
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>exportAs: anExtension using: aWriter [
+{ #category : #'*Morphic-Base' }
+Morph >> exportAs: anExtension using: aWriter [
 	
 	| reference |
 	
@@ -260,50 +204,35 @@ Morph>>exportAs: anExtension using: aWriter [
 	
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>exportAsBMP [
+{ #category : #'*Morphic-Base' }
+Morph >> exportAsBMP [
 	
 	self exportAs: 'bmp' using: BMPReadWriter 
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>exportAsGIF [
+{ #category : #'*Morphic-Base' }
+Morph >> exportAsGIF [
 	
 	self exportAs: 'gif' using: GIFReadWriter. 
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>exportAsJPEG [
+{ #category : #'*Morphic-Base' }
+Morph >> exportAsJPEG [
 	"Export the receiver's image as a JPEG"
 	
 	self exportAs: 'jpeg' using: PluginBasedJPEGReadWriter
 
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>exportAsPNG [
+{ #category : #'*Morphic-Base' }
+Morph >> exportAsPNG [
 
 	self exportAs: 'png' using: PNGReadWriter
 	
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>fillWithRamp: rampSpecsOrColor oriented: aRatio  [
+{ #category : #'*Morphic-Base' }
+Morph >> fillWithRamp: rampSpecsOrColor oriented: aRatio [ 
 	rampSpecsOrColor isColor
 		ifTrue: [self color: rampSpecsOrColor".
 			self borderColor: rampSpecsOrColor muchDarker"]
@@ -316,35 +245,23 @@ Morph>>fillWithRamp: rampSpecsOrColor oriented: aRatio  [
 			self borderColor: (rampSpecsOrColor first value mixed: 0.5 with: rampSpecsOrColor last value) muchDarker]
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>isMenuItemMorph [
+{ #category : #'*Morphic-Base' }
+Morph >> isMenuItemMorph [
 	^false
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>isMenuLineMorph [
+{ #category : #'*Morphic-Base' }
+Morph >> isMenuLineMorph [
 	^false
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>isMenuMorph [
+{ #category : #'*Morphic-Base' }
+Morph >> isMenuMorph [
 	^false
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>justDroppedInto: aMorph event: anEvent [
+{ #category : #'*Morphic-Base' }
+Morph >> justDroppedInto: aMorph event: anEvent [
 	"This message is sent to a dropped morph after it has been dropped on -- and been accepted by -- a drop-sensitive morph"
 
 	| aWindow |
@@ -365,28 +282,19 @@ Morph>>justDroppedInto: aMorph event: anEvent [
 
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>newTransformationMorph [
+{ #category : #'*Morphic-Base' }
+Morph >> newTransformationMorph [
 	^TransformationMorph new
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>on: eventName send: selector to: recipient [
+{ #category : #'*Morphic-Base' }
+Morph >> on: eventName send: selector [ to: recipient
 	self eventHandler ifNil: [self eventHandler: MorphicEventHandler new].
 	self eventHandler on: eventName send: selector to: recipient
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>on: eventName send: selector to: recipient withValue: value [
+{ #category : #'*Morphic-Base' }
+Morph >> on: eventName send: selector to: recipient withValue: value [
 	"NOTE: selector must take 3 arguments, of which value will be the *** FIRST ***"
 
 	self eventHandler ifNil: [self eventHandler: MorphicEventHandler new].
@@ -394,22 +302,16 @@ Morph>>on: eventName send: selector to: recipient withValue: value [
 
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>resizeMorph: evt [
+{ #category : #'*Morphic-Base' }
+Morph >> resizeMorph: evt [
 	| handle |
 	handle := HandleMorph new forEachPointDo: [ :newPoint | self extent: newPoint - self bounds topLeft ].
 	evt hand attachMorph: handle.
 	handle startStepping
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>rowMorphForNode: aNode inColumn: aColumn [
+{ #category : #'*Morphic-Base' }
+Morph >> rowMorphForNode: aNode inColumn: aColumn [
 	| rm |
 	rm := Morph new color: Color transparent;
 			layoutPolicy: RowLayout new;
@@ -435,11 +337,8 @@ Morph>>rowMorphForNode: aNode inColumn: aColumn [
 
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>setArrowheads [
+{ #category : #'*Morphic-Base' }
+Morph >> setArrowheads [
 	"Let the user edit the size of arrowheads for this object"
 
 	| aParameter result  |
@@ -451,11 +350,8 @@ Morph>>setArrowheads [
 			[ self inform: 'Invalid input']
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>setShadowOffset: evt [
+{ #category : #'*Morphic-Base' }
+Morph >> setShadowOffset: evt [
 	| handle |
 	handle := HandleMorph new forEachPointDo:
 		[:newPoint | self shadowPoint: newPoint].
@@ -464,11 +360,8 @@ Morph>>setShadowOffset: evt [
 
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>useBitmapFill [
+{ #category : #'*Morphic-Base' }
+Morph >> useBitmapFill [
 	"Make receiver use a solid fill style (e.g., a simple color)"
 	| fill |
 	self fillStyle isBitmapFill ifTrue:[^self]. "Already done"
@@ -478,11 +371,8 @@ Morph>>useBitmapFill [
 	self fillStyle: fill.
 ]
 
-{
-	#category : #'*Morphic-Base',
-	#timestamp : ' 8/31/2017 05:26:13'
-}
-Morph>>useGradientFill [
+{ #category : #'*Morphic-Base' }
+Morph >> useGradientFill [
 	"Make receiver use a solid fill style (e.g., a simple color)"
 	| fill color1 color2 |
 	self fillStyle isGradientFill ifTrue:[^self]. "Already done"

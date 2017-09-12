@@ -1,45 +1,31 @@
-Extension {
-	#name : #CompiledMethod
-}
+Extension { #name : #CompiledMethod }
 
-{
-	#category : #'*SUnit-Core',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-CompiledMethod>>isErrorTest [
+{ #category : #'*SUnit-Core' }
+CompiledMethod >> isErrorTest [
 	"Is the receiver a test method that raised an error?"
 
 	^ self methodClass isTestCase
 		and: [ self methodClass methodRaisedError: self selector ]
 ]
 
-{
-	#category : #'*SUnit-Core',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-CompiledMethod>>isFailedTest [
+{ #category : #'*SUnit-Core' }
+CompiledMethod >> isFailedTest [
 	"Is the receiver a test method that failed?"
 
 	^ self methodClass isTestCase
 		and: [ self methodClass methodFailed: self selector ]
 ]
 
-{
-	#category : #'*SUnit-Core',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-CompiledMethod>>isPassedTest [
+{ #category : #'*SUnit-Core' }
+CompiledMethod >> isPassedTest [
 	"Is the receiver a test method that passed?"
 
 	^ self methodClass isTestCase
 		and: [ self methodClass methodPassed: self selector ]
 ]
 
-{
-	#category : #'*SUnit-Core',
-	#timestamp : ' 8/31/2017 05:26:08'
-}
-CompiledMethod>>isTestMethod [
+{ #category : #'*SUnit-Core' }
+CompiledMethod >> isTestMethod [
 	"Is the receiver a TestCase test method?"
 
 	self methodClass isTestCase

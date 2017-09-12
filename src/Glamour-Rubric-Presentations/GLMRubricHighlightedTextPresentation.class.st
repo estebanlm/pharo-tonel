@@ -25,60 +25,41 @@ Class {
 		'editingMode',
 		'font'
 	],
-	#category : #Glamour-Rubric-Presentations,
-	#timestamp : 'AndreiChis 9/2/2014 16:39'
+	#category : #Glamour-Rubric-Presentations
 }
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricHighlightedTextPresentation>>editingMode [
+{ #category : #accessing }
+GLMRubricHighlightedTextPresentation >> editingMode [
 	^ editingMode isNil 
 		ifTrue: [nil] 
 		ifFalse: [editingMode glamourValue: self]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricHighlightedTextPresentation>>editingMode: aBlock [
+{ #category : #accessing }
+GLMRubricHighlightedTextPresentation >> editingMode: aBlock [
 	
 	editingMode := aBlock
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricHighlightedTextPresentation>>font [
+{ #category : #accessing }
+GLMRubricHighlightedTextPresentation >> font [
 	^ font
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricHighlightedTextPresentation>>font: anObject [
+{ #category : #accessing }
+GLMRubricHighlightedTextPresentation >> font: anObject [
 	font := anObject
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricHighlightedTextPresentation>>morphicFont [
+{ #category : #accessing }
+GLMRubricHighlightedTextPresentation >> morphicFont [
 	^ self font 
 		ifNil: [ StandardFonts defaultFont  ]
 		ifNotNil: [ :f | f glamourValue: self entity ]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:35'
-}
-GLMRubricHighlightedTextPresentation>>renderGlamorouslyOn: aRenderer [
+{ #category : #accessing }
+GLMRubricHighlightedTextPresentation >> renderGlamorouslyOn: aRenderer [
 	self registerAnnouncements.
 	^ aRenderer renderRubricHighlightedTextPresentation: self
 ]

@@ -1,18 +1,11 @@
-"
-
-"
 Class {
 	#name : #GLMExtensionsTest,
 	#superclass : #TestCase,
-	#category : #Glamour-Tests-Core,
-	#timestamp : ''
+	#category : #Glamour-Tests-Core
 }
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExtensionsTest>>testGlamourValue [
+{ #category : #tests }
+GLMExtensionsTest >> testGlamourValue [
 	"Block closure"
 
 	self assert: ([ #foo ] glamourValue: #(1 2)) equals: #foo.
@@ -25,11 +18,8 @@ GLMExtensionsTest>>testGlamourValue [
 	self assert: (#yourself glamourValueWithArgs: #()) equals: nil	"self assert: (#yourself glamourValue: (MultiValue with: 1 with: 2)) = 1."
 ]
 
-{
-	#category : #tests,
-	#timestamp : ' 8/31/2017 05:26:34'
-}
-GLMExtensionsTest>>testGlamourValueWithArgs [
+{ #category : #tests }
+GLMExtensionsTest >> testGlamourValueWithArgs [
 	"Block closure"
 
 	self assert: ([ #foo ] glamourValueWithArgs: #(1 2)) equals: #foo.

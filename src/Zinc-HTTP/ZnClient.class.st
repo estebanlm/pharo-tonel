@@ -38,15 +38,11 @@ Class {
 		'session',
 		'logLevel'
 	],
-	#category : #Zinc-HTTP-Client-Server,
-	#timestamp : 'SvenVanCaekenberghe 11/8/2011 22:31'
+	#category : #Zinc-HTTP-Client-Server
 }
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>accept: mimeTypeObject [
+{ #category : #'accessing request' }
+ZnClient >> accept: mimeTypeObject [
 	"Set the Accept HTTP header to mimeTypeObject for the current request."
 
 	| mimeType |
@@ -54,22 +50,16 @@ ZnClient>>accept: mimeTypeObject [
 	self request setAccept: mimeType
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>addPart: mimePart [
+{ #category : #'accessing request' }
+ZnClient >> addPart: mimePart [
 	"Add mimePart to the multipart/form-data entity of the current request"
 
 	self multiPartFormDataEntity 
 		addPart: mimePart 
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>addPath: object [
+{ #category : #'accessing request' }
+ZnClient >> addPath: object [
 	"Extend the path of the current request with object.
 	Either a string or a collection of strings is allowed as argument."
 	
@@ -78,11 +68,8 @@ ZnClient>>addPath: object [
 		ifFalse: [ object do: [ :each | self addPathSegment: each ] ]
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>addPathSegment: pathSegment [
+{ #category : #'accessing request' }
+ZnClient >> addPathSegment: pathSegment [
 	"Extend the path of the current request with a single pathSegment."
 	
 	request url 
@@ -90,11 +77,8 @@ ZnClient>>addPathSegment: pathSegment [
 		ifNotNil: [ request url addPathSegment: pathSegment ]  
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>applicationFormUrlEncodedEntity [
+{ #category : #'accessing request' }
+ZnClient >> applicationFormUrlEncodedEntity [
 	"Initialize the current request to have an application/x-www-form-urlencoded entity.
 	Return the existing entity if there is one. 
 	Fail if another type was already set."
@@ -108,11 +92,8 @@ ZnClient>>applicationFormUrlEncodedEntity [
 	^ request entity
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>autoResetEntityMethods [
+{ #category : #options }
+ZnClient >> autoResetEntityMethods [
 	"Return a collection of HTTP methods for which to auto #resetEntity.
 	The default is to do this only for HEAD and DELETE, although most people 
 	would want it for GET too, but this can be used for forms"
@@ -120,11 +101,8 @@ ZnClient>>autoResetEntityMethods [
 	^ self optionAt: #autoResetEntityMethods ifAbsent: [ #(HEAD DELETE) ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>autoResetEntityMethods: methods [
+{ #category : #options }
+ZnClient >> autoResetEntityMethods: methods [
 	"Set the collection of HTTP methods for which to auto #resetEntity.
 	The default is to do this only for HEAD and DELETE, although most people 
 	would want it for GET too, but this can be used for forms"
@@ -132,11 +110,8 @@ ZnClient>>autoResetEntityMethods: methods [
 	^ self optionAt: #autoResetEntityMethods put: methods
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>beOneShot [
+{ #category : #options }
+ZnClient >> beOneShot [
 	"Switch me to use connections only for a single request/response cycle.
 	By default, I will keep HTTP connections open according to the HTTP 1.1 spec.
 	When oneShot is true, I will add a Connection: close header to requests and close after one cycle.
@@ -147,74 +122,53 @@ ZnClient>>beOneShot [
 	self optionAt: #oneShot put: true   
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>canReuseConnection [
+{ #category : #private }
+ZnClient >> canReuseConnection [
 	self isConnected ifFalse: [ ^ false ].
 	lastUsed ifNil: [ ^ false ].
 	^ Time totalSeconds - lastUsed < self connectionReuseTimeout
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>certificate [
+{ #category : #options }
+ZnClient >> certificate [
 	"Return the TLS/SSL certificate to be used, or nil for none."
 	
 	^ self optionAt: #certificate ifAbsent: [ nil ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>certificate: anObject [
+{ #category : #options }
+ZnClient >> certificate: anObject [
 	"Set the TLS/SSL certificate to be used to anObject, or nil for none.
 	See ZdcAbstractSSLSession>>#certificateName: for more information."
 	
 	^ self optionAt: #certificate put: anObject
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>cleanupConnection [
+{ #category : #private }
+ZnClient >> cleanupConnection [
 	(self isOneShot or: [ request notNil and: [ request wantsConnectionClose ] ])
 		ifTrue: [
 			self close ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>clientId [
+{ #category : #options }
+ZnClient >> clientId [
 	"Return the id for this HTTP client. Defaults to nil.
 	Can be used identify different clients' log events."
 	
 	^ self optionAt: #clientId ifAbsent: [ nil ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>clientId: anObject [
+{ #category : #options }
+ZnClient >> clientId: anObject [
 	"Set the id for this HTTP client to anObject. Defaults to nil.
 	Can be used identify different clients' log events."
 	
 	^ self optionAt: #clientId put: anObject
 ]
 
-{
-	#category : #cleanup,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>close [
+{ #category : #cleanup }
+ZnClient >> close [
 	"Close any HTTP network connection that I might have kept open."
 
 	connection
@@ -228,43 +182,31 @@ ZnClient>>close [
 	lastUsed := nil
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>connection [
+{ #category : #accessing }
+ZnClient >> connection [
 	"Return the socket stream connection that I am currently using"
 	
 	^ connection
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>connectionReuseTimeout [
+{ #category : #options }
+ZnClient >> connectionReuseTimeout [
 	"Return the timeout in seconds currently used to determine
 	if I should try to reuse an open connection. Defaults to 10 seconds."
 
 	^ self optionAt: #connectionReuseTimeout ifAbsent: [ 10 ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>connectionReuseTimeout: seconds [
+{ #category : #options }
+ZnClient >> connectionReuseTimeout: seconds [
 	"Set the timeout used to determine if I should try 
 	to reuse an open connection to seconds."
 
 	self optionAt: #connectionReuseTimeout put: seconds
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>contentReader [
+{ #category : #options }
+ZnClient >> contentReader [
 	"Return the current content reader, an object conforming 
 	to the #value: protocol to convert a response entity
 	as used by #contents. Defaults to nil.
@@ -273,11 +215,8 @@ ZnClient>>contentReader [
 	^ self optionAt: #contentReader ifAbsent: [ nil ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>contentReader: object [
+{ #category : #options }
+ZnClient >> contentReader: object [
 	"Set the content reader, an object conforming 
 	to the #value: protocol to convert a response entity
 	as used by #contents to object.
@@ -286,11 +225,8 @@ ZnClient>>contentReader: object [
 	self optionAt: #contentReader put: object
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>contentType: mimeType [
+{ #category : #'accessing request' }
+ZnClient >> contentType: mimeType [
 	"Set the content-type of the request entity, provided we have one"
 	
 	request hasEntity
@@ -300,11 +236,8 @@ ZnClient>>contentType: mimeType [
 			self error: 'There is no request entity yet, cannot set its content-type' ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>contentWriter [
+{ #category : #options }
+ZnClient >> contentWriter [
 	"Return the current content writer, an object conforming 
 	to the #value: protocol to convert an object to a request content entity
 	as used by #contents:. Defaults to nil.
@@ -313,11 +246,8 @@ ZnClient>>contentWriter [
 	^ self optionAt: #contentWriter ifAbsent: [ nil ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>contentWriter: object [
+{ #category : #options }
+ZnClient >> contentWriter: object [
 	"Set current content writer, an object conforming 
 	to the #value: protocol to convert an object to a request content entity
 	as used by #contents:. Defaults to nil.
@@ -326,11 +256,8 @@ ZnClient>>contentWriter: object [
 	self optionAt: #contentWriter put: object
 ]
 
-{
-	#category : #'accessing response',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>contents [
+{ #category : #'accessing response' }
+ZnClient >> contents [ 
 	"Answer the contents or HTTP payload of the last response, 
 	assuming the current request was executed.
 	If I have a contentReader, it will be used to compute the contents.
@@ -346,11 +273,8 @@ ZnClient>>contents [
 			ifNotNil: [ :reader | reader value: response entity ] ]  
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>contents: object [
+{ #category : #'accessing request' }
+ZnClient >> contents: object [
 	"Set the entity contents of the current request to object.
 	I will pass this through my contentWriter if I have one.
 	Otherwise I delegate to ZnEntity to convert object to a generic entity."
@@ -360,11 +284,8 @@ ZnClient>>contents: object [
 		ifNotNil: [ :writer | self entity: (writer value: object) ]
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>curl [
+{ #category : #convenience }
+ZnClient >> curl [
 	"Create and return a curl command line invocation equivalent to the current request."
 	"ZnClient new url: 'http://zn.stfx.eu/zn/small.html'; method: #GET; curl."
 	"ZnClient new url: 'http://zn.stfx.eu/echo'; contents: #[2 4 6 8]; method: #POST; curl."
@@ -381,40 +302,28 @@ ZnClient>>curl [
 		request hasEntity ifTrue: [ stream << ' --data-binary @-' ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>debugPolicy [
+{ #category : #initialization }
+ZnClient >> debugPolicy [
 	self 
 		beOneShot
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>defaultEncoder [
+{ #category : #options }
+ZnClient >> defaultEncoder [
 	"The default character encoder to use when none is set in a mime-type"
 	
 	^ self optionAt: #defaultEncoder ifAbsent: [ ZnDefaultCharacterEncoder value ] 
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>defaultEncoder: encoder [
+{ #category : #options }
+ZnClient >> defaultEncoder: encoder [
 	"Set the default character encoder to use when none is set in a mime-type"
 	
 	^ self optionAt: #defaultEncoder put: encoder asZnCharacterEncoder
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>delete [
+{ #category : #operations }
+ZnClient >> delete [
 	"Execute a HTTP DELETE ont the request set up and return the response #contents."
 	
 	^ self 
@@ -422,11 +331,8 @@ ZnClient>>delete [
 		execute
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>delete: url [
+{ #category : #convenience }
+ZnClient >> delete: url [
 	"Execute an HTTP DELETE request on url and return the response #contents."
 	
 	^ self 
@@ -434,22 +340,16 @@ ZnClient>>delete: url [
 		delete
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>dontFollowRedirects [
+{ #category : #options }
+ZnClient >> dontFollowRedirects [
 	"Disable the default automatic following of HTTP redirects.
 	Redirects will be returned as normal responses."
 
 	^ self followRedirects: false
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>downloadEntityTo: path [
+{ #category : #convenience }
+ZnClient >> downloadEntityTo: path [
 	"If I hold an entity, download it directly to a file.
 	If path describes a file, use that. 
 	If path describes a directory, use the last path segment of the URI to construct a file in that directory.
@@ -465,11 +365,8 @@ ZnClient>>downloadEntityTo: path [
 			self withProgressDo: [ self entity writeOn: fileStream ] ]
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>downloadTo: path [
+{ #category : #convenience }
+ZnClient >> downloadTo: path [
 	"Setup streaming, do a GET request and download the entity directly to a file.
 	If path describes a file, use that. 
 	If path describes a directory, use the last path segment of the URI to construct a file in that directory.
@@ -488,22 +385,16 @@ ZnClient>>downloadTo: path [
 		ifFalse: [ false ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>enforceAcceptContentType [
+{ #category : #options }
+ZnClient >> enforceAcceptContentType [
 	"Return whether or not I enforce that the content type of the
 	response matches the content type specified in the accept request header."
 	
 	^ self optionAt: #enforceAcceptContentType ifAbsent: [ false ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>enforceAcceptContentType: boolean [
+{ #category : #options }
+ZnClient >> enforceAcceptContentType: boolean [
 	"Set whether or not I enforce that the content type of the
 	response matches the content type specified in the accept request
 	header to boolean."
@@ -511,55 +402,40 @@ ZnClient>>enforceAcceptContentType: boolean [
 	self optionAt: #enforceAcceptContentType put: boolean
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>enforceHttpSuccess [
+{ #category : #options }
+ZnClient >> enforceHttpSuccess [
 	"Return whether or not I enforce that the response 
 	to the request is an HTTP success code."
 	
 	^ self optionAt: #enforceHttpSuccess ifAbsent: [ false ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>enforceHttpSuccess: boolean [
+{ #category : #options }
+ZnClient >> enforceHttpSuccess: boolean [
 	"Set whether or not I enforce that the response 
 	to the request is an HTTP success code to boolean."
 
 	self optionAt: #enforceHttpSuccess put: boolean
 ]
 
-{
-	#category : #'accessing response',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>entity [
+{ #category : #'accessing response' }
+ZnClient >> entity [
 	"Answer the entity or HTTP payload of the last response, 
 	assuming the current request was executed."
 	
 	^ response ifNotNil: [ response entity ]  
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>entity: entity [
+{ #category : #'accessing request' }
+ZnClient >> entity: entity [
 	"Set the entity of the current request to enity.
 	A ZnEntity subclass or compatible object is expected."
 	
 	request entity: entity
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>execute [
+{ #category : #operations }
+ZnClient >> execute [
 	"Execute the currently set up request to generate a response.
 	Return the #contents of the response, if any."
 
@@ -570,11 +446,8 @@ ZnClient>>execute [
 	^ result
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>executeRequestResponse [
+{ #category : #'private protocol' }
+ZnClient >> executeRequestResponse [
 	| initialMilliseconds requestDuration responseDuration |
 	initialMilliseconds := Time millisecondClockValue.
 	self writeRequest.
@@ -585,11 +458,8 @@ ZnClient>>executeRequestResponse [
 	self logClientTransactionRequestDuration: requestDuration responseDuration: responseDuration
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>executeWithRedirectsRemaining: redirectCount [
+{ #category : #'private protocol' }
+ZnClient >> executeWithRedirectsRemaining: redirectCount [
 	self getConnectionAndExecute.
 	response isRedirect 
 		ifTrue: [
@@ -605,11 +475,8 @@ ZnClient>>executeWithRedirectsRemaining: redirectCount [
 	
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>executeWithRetriesRemaining: retryCount [
+{ #category : #'private protocol' }
+ZnClient >> executeWithRetriesRemaining: retryCount [
 	^ [ self executeWithRedirectsRemaining: self maxNumberOfRedirects ]
 		on: self retryExceptionSet
 		do: [ :exception |
@@ -622,22 +489,16 @@ ZnClient>>executeWithRetriesRemaining: retryCount [
 					exception pass ] ]
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>executeWithTimeout [
+{ #category : #'private protocol' }
+ZnClient >> executeWithTimeout [
 	^ self withTimeoutDo: [ 
 		[ self executeWithRetriesRemaining: self numberOfRetries ]
 			on: Error
 			do: self ifFailBlock ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>followRedirects [
+{ #category : #options }
+ZnClient >> followRedirects [
 	"Return whether I will automatically following of HTTP redirects.
 	This is still subject to #maxNumberOfRedirects. Defaults to true.
 	When set to false, redirects will be returned as normal responses."
@@ -645,11 +506,8 @@ ZnClient>>followRedirects [
 	^ self optionAt: #followRedirects ifAbsent: [ true ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>followRedirects: boolean [
+{ #category : #options }
+ZnClient >> followRedirects: boolean [
 	"Set whether or not I will automatically following of HTTP redirects.
 	This is still subject to #maxNumberOfRedirects. Defaults to true.
 	When set to false, redirects will be returned as normal responses."
@@ -657,11 +515,8 @@ ZnClient>>followRedirects: boolean [
 	self optionAt: #followRedirects put: boolean 
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>formAdd: association [
+{ #category : #'accessing request' }
+ZnClient >> formAdd: association [
 	"Add the key->value association to the application/x-www-form-urlencoded 
 	entity of the current request."
 	
@@ -669,11 +524,8 @@ ZnClient>>formAdd: association [
 		add: association 
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>formAddAll: keyedCollection [
+{ #category : #'accessing request' }
+ZnClient >> formAddAll: keyedCollection [
 	"Add all key->value associations of keyedCollection to 
 	the application/x-www-form-urlencoded entity of the current request."
 
@@ -681,11 +533,8 @@ ZnClient>>formAddAll: keyedCollection [
 		addAll: keyedCollection 
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>formAt: key add: value [
+{ #category : #'accessing request' }
+ZnClient >> formAt: key add: value [
 	"Add key equals value to the application/x-www-form-urlencoded 
 	entity of the current request. This is for multi-values form fields."
 
@@ -693,11 +542,8 @@ ZnClient>>formAt: key add: value [
 		at: key add: value
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>formAt: key put: value [
+{ #category : #'accessing request' }
+ZnClient >> formAt: key put: value [
 	"Set key equal to value in the application/x-www-form-urlencoded 
 	entity of the current request."
 
@@ -705,11 +551,8 @@ ZnClient>>formAt: key put: value [
 		at: key put: value
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>get [
+{ #category : #operations }
+ZnClient >> get [
 	"Execute an HTTP GET the request set up and return the response #contents."
 	
 	^ self 
@@ -717,11 +560,8 @@ ZnClient>>get [
 		execute
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>get: url [
+{ #category : #convenience }
+ZnClient >> get: url [
 	"Execute an HTTP GET request on url and return the response #contents."
 
 	^ self 
@@ -729,11 +569,8 @@ ZnClient>>get: url [
 		get
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>getConnectionAndExecute [
+{ #category : #'private protocol' }
+ZnClient >> getConnectionAndExecute [
 	self canReuseConnection 
 		ifTrue: [ 
 			[ ^ self executeRequestResponse; cleanupConnection ] 
@@ -744,11 +581,8 @@ ZnClient>>getConnectionAndExecute [
 		ensure: [ self cleanupConnection ]
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>handleResponse [
+{ #category : #'private protocol' }
+ZnClient >> handleResponse [
 	self receiveCookies.
 	(self enforceHttpSuccess and: [ response isSuccess not ])
 		ifTrue: [ 
@@ -762,22 +596,16 @@ ZnClient>>handleResponse [
 	^ self contents
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>handleRetry: exception [
+{ #category : #'private protocol' }
+ZnClient >> handleRetry: exception [
 	self logRetrying: exception.
 	self close.
 	(Delay forSeconds: self retryDelay) wait.
 
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>head [
+{ #category : #operations }
+ZnClient >> head [
 	"Execute a HTTP HEAD on the request set up and return nil."
 
 	^ self 
@@ -785,11 +613,8 @@ ZnClient>>head [
 		execute
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>head: url [
+{ #category : #convenience }
+ZnClient >> head: url [
 	"Execute an HTTP HEAD request on url and return nil."
 
 	^ self 
@@ -797,11 +622,8 @@ ZnClient>>head: url [
 		head
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>headerAddAll: keyedCollection [
+{ #category : #'accessing request' }
+ZnClient >> headerAddAll: keyedCollection [
 	"Add all key/value pairs of keyedCollection as headers.
 	Note that #addAllMulti: is used"
 	
@@ -809,11 +631,8 @@ ZnClient>>headerAddAll: keyedCollection [
 		addAll: keyedCollection 
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>headerAt: key add: value [
+{ #category : #'accessing request' }
+ZnClient >> headerAt: key add: value [
 	"Add value to key in the HTTP header of the current request.
 	This is for multi-values headers."
 	
@@ -821,63 +640,45 @@ ZnClient>>headerAt: key add: value [
 		at: key add: value
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>headerAt: key put: value [
+{ #category : #'accessing request' }
+ZnClient >> headerAt: key put: value [
 	"Set key equals value in the HTTP header of the current request"
 	
 	request headers 
 		at: key put: value   
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>host: hostName [
+{ #category : #'accessing request' }
+ZnClient >> host: hostName [
 	"Set the host of the current request to hostName."
 	
 	self url: (ZnUrl new host: hostName; yourself)
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>http [
+{ #category : #'accessing request' }
+ZnClient >> http [
 	"Set the scheme of the current request to HTTP."
 	
 	self url: (ZnUrl new scheme: #http; yourself)
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>https [
+{ #category : #'accessing request' }
+ZnClient >> https [
 	"Set the scheme of the current request to HTTPS."
 	
 	self url: (ZnUrl new scheme: #https; yourself)
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>ifFail: block [
+{ #category : #options }
+ZnClient >> ifFail: block [
 	"Set the block that I will be execute when the request fails.
 	The exception of the failure will be passed as argument."
 	
 	self optionAt: #ifFailBlock put: block
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>ifFailBlock [
+{ #category : #options }
+ZnClient >> ifFailBlock [
 	"Return the block that I should execute if the request fails.
 	Defaults to #pass-ing the exception up. 
 	Accepts an exception as argument."
@@ -885,20 +686,14 @@ ZnClient>>ifFailBlock [
 	^ self optionAt: #ifFailBlock ifAbsent: [ [ :exception | exception pass ] ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>initialize [
+{ #category : #initialization }
+ZnClient >> initialize [
 	request := ZnRequest empty.
 	self loggingOn 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>interactivePolicy [
+{ #category : #initialization }
+ZnClient >> interactivePolicy [
 	self 
 		beOneShot;
 		ifFail: [ :exception | 
@@ -906,11 +701,8 @@ ZnClient>>interactivePolicy [
 			nil ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>isBadRequest [
+{ #category : #testing }
+ZnClient >> isBadRequest [
 	"Return true if the last executed HTTP request returned an HTTP bad request response code."
 	
 	^ response 
@@ -918,21 +710,15 @@ ZnClient>>isBadRequest [
 		ifNotNil: [ response isBadRequest ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>isConnected [
+{ #category : #testing }
+ZnClient >> isConnected [
 	"Return true if I hold an open HTTP connection."
 
 	^ connection notNil and: [ connection isConnected ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>isContentTypeAcceptable [
+{ #category : #testing }
+ZnClient >> isContentTypeAcceptable [
 	"Return true if the contentType of the response of the last executed 
 	HTTP request matches the accept header of the request."
 	
@@ -943,11 +729,8 @@ ZnClient>>isContentTypeAcceptable [
 				or: [ response contentType matches: request accept asZnMimeType ] ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>isCreated [
+{ #category : #testing }
+ZnClient >> isCreated [
 	"Return true it the last executed HTTP request returned an HTTP created response code."
 	
 	^ response 
@@ -955,11 +738,8 @@ ZnClient>>isCreated [
 		ifNotNil: [ response isCreated ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>isNotFound [
+{ #category : #testing }
+ZnClient >> isNotFound [
 	"Return true it the last executed HTTP request returned an HTTP not found response code."
 	
 	^ response 
@@ -967,11 +747,8 @@ ZnClient>>isNotFound [
 		ifNotNil: [ response isNotFound ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>isNotModified [
+{ #category : #testing }
+ZnClient >> isNotModified [
 	"Return true it the last executed HTTP request returned an HTTP not modified response code."
 	
 	^ response 
@@ -979,11 +756,8 @@ ZnClient>>isNotModified [
 		ifNotNil: [ response isNotModified ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>isOneShot [
+{ #category : #options }
+ZnClient >> isOneShot [
 	"Return if I use connections only for a single request/response cycle.
 	By default, I will keep HTTP connections open according to the HTTP 1.1 spec.
 	When oneShot is true, I will add a Connection: close header to requests."
@@ -991,11 +765,8 @@ ZnClient>>isOneShot [
 	^ self optionAt: #oneShot ifAbsent: [ false ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>isRedirect [
+{ #category : #testing }
+ZnClient >> isRedirect [
 	"Return true it the last executed HTTP request returned an HTTP redirect response code."
 	
 	^ response 
@@ -1003,11 +774,8 @@ ZnClient>>isRedirect [
 		ifNotNil: [ response isRedirect ]
 ]
 
-{
-	#category : #testing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>isSuccess [
+{ #category : #testing }
+ZnClient >> isSuccess [ 
 	"Return true it the last executed HTTP request returned an HTTP success response code."
 	
 	^ response 
@@ -1015,11 +783,8 @@ ZnClient>>isSuccess [
 		ifNotNil: [ response isSuccess ]
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>logClientTransactionRequestDuration: requestDuration responseDuration: responseDuration [
+{ #category : #'private logging' }
+ZnClient >> logClientTransactionRequestDuration: requestDuration responseDuration: responseDuration [
 	| logEventClass |
 	logLevel < 1 ifTrue: [ ^ nil ].
 	logEventClass := logLevel = 1
@@ -1034,11 +799,8 @@ ZnClient>>logClientTransactionRequestDuration: requestDuration responseDuration:
 		yourself
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>logConnectionClosedAddress: address port: port [
+{ #category : #'private logging' }
+ZnClient >> logConnectionClosedAddress: address port: port [
 	logLevel < 3 ifTrue: [ ^ nil ].
 	^ (self newLogEvent: ZnClientConnectionClosedEvent)
 		address: address;
@@ -1046,11 +808,8 @@ ZnClient>>logConnectionClosedAddress: address port: port [
 		emit
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>logConnectionEstablishedTo: url started: initialMilliseconds [
+{ #category : #'private logging' }
+ZnClient >> logConnectionEstablishedTo: url started: initialMilliseconds [
 	| event |
 	logLevel < 3 ifTrue: [ ^ nil ].
 	(event := self newLogEvent: ZnConnectionEstablishedEvent)
@@ -1063,22 +822,16 @@ ZnClient>>logConnectionEstablishedTo: url started: initialMilliseconds [
 	event emit
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>logIgnoringExceptionOnReusedConnection: exception [
+{ #category : #'private logging' }
+ZnClient >> logIgnoringExceptionOnReusedConnection: exception [
 	logLevel < 3 ifTrue: [ ^ nil ].
 	^ (self newLogEvent: ZnClientIgnoringExceptionOnConnectionReuseEvent)
 		exception: exception;
 		emit
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>logLevel: integer [
+{ #category : #logging }
+ZnClient >> logLevel: integer [
 	"Set the log level to integer.
 	0 - no logging
 	1 - simplified transaction logging
@@ -1088,21 +841,15 @@ ZnClient>>logLevel: integer [
 	logLevel := integer
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>logRedirect: url [
+{ #category : #'private logging' }
+ZnClient >> logRedirect: url [
 	^ (self newLogEvent: ZnClientFollowingRedirectEvent)
 		target: url;
 		emit
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>logRequestWrittenStarted: initialMilliseconds [
+{ #category : #'private logging' }
+ZnClient >> logRequestWrittenStarted: initialMilliseconds [
 	^ logLevel < 3
 		ifTrue: [ Time millisecondsSince: initialMilliseconds ]
 		ifFalse: [ 
@@ -1113,11 +860,8 @@ ZnClient>>logRequestWrittenStarted: initialMilliseconds [
 				duration ]
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>logResponseReadStarted: initialMilliseconds [
+{ #category : #'private logging' }
+ZnClient >> logResponseReadStarted: initialMilliseconds [
 	^ logLevel < 3
 		ifTrue: [ Time millisecondsSince: initialMilliseconds ]
 		ifFalse: [ 
@@ -1128,22 +872,16 @@ ZnClient>>logResponseReadStarted: initialMilliseconds [
 				duration ]
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>logRetrying: exception [
+{ #category : #'private logging' }
+ZnClient >> logRetrying: exception [
 	logLevel < 3 ifTrue: [ ^ nil ].
 	^ (self newLogEvent: ZnClientRetryingEvent)
 		exception: exception;
 		emit
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>logToTranscript [
+{ #category : #logging }
+ZnClient >> logToTranscript [
 	"Setup logging to the Transcript.
 	If logging was completely off, turn it on"
 
@@ -1151,31 +889,22 @@ ZnClient>>logToTranscript [
 	ZnLogEvent logToTranscript 
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>loggingOff [
+{ #category : #logging }
+ZnClient >> loggingOff [
 	"Turn logging completely off - do not generate log events."
 	
 	self logLevel: 0
 ]
 
-{
-	#category : #logging,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>loggingOn [
+{ #category : #logging }
+ZnClient >> loggingOn [
 	"Turn full logging on - generate all log events"
 	
 	self logLevel: 3
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>maxNumberOfRedirects [
+{ #category : #options }
+ZnClient >> maxNumberOfRedirects [
 	"Return the maximum number of HTTP redirect that will be followed.
 	Note that when the #followsRedirect option is false, 
 	no redirects will ever be followed regardless of the value of this option.
@@ -1184,11 +913,8 @@ ZnClient>>maxNumberOfRedirects [
 	^ self optionAt: #maxNumberOfRedirects ifAbsent: [ 3 ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>maxNumberOfRedirects: count [
+{ #category : #options }
+ZnClient >> maxNumberOfRedirects: count [
 	"Set the maximum number of HTTP redirect that will be followed to count.
 	Note that when the #followsRedirect option is false, 
 	no redirects will ever be followed regardless of the value of this option.
@@ -1197,31 +923,22 @@ ZnClient>>maxNumberOfRedirects: count [
 	self optionAt: #maxNumberOfRedirects put: count
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>maximumEntitySize [
+{ #category : #options }
+ZnClient >> maximumEntitySize [
 	"Return the maximum entity size in bytes that I will read from a stream before signalling ZnEntityTooLarge"
 	
 	^ self optionAt: #maximumEntitySize ifAbsent: [ ZnMaximumEntitySize value ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>maximumEntitySize: integer [
+{ #category : #options }
+ZnClient >> maximumEntitySize: integer [
 	"Set the maximum entity size in bytes that I will read from a stream before signalling ZnEntityTooLarge"
 	
 	^ self optionAt: #maximumEntitySize put: integer
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>maximumNumberOfDictionaryEntries [
+{ #category : #options }
+ZnClient >> maximumNumberOfDictionaryEntries [
 	"Return the maximum number of entries allowed in ZnMutliValueDictionaries before signalling ZnTooManyDictionaryEntries. This protects us from overflow attacks."
 		
 	^ self
@@ -1229,11 +946,8 @@ ZnClient>>maximumNumberOfDictionaryEntries [
 		ifAbsent: [ ZnMaximumNumberOfDictionaryEntries value ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>maximumNumberOfDictionaryEntries: anInteger [
+{ #category : #options }
+ZnClient >> maximumNumberOfDictionaryEntries: anInteger [
 	"Set the maximum number of entries allowed in ZnMutliValueDictionaries before signalling ZnTooManyDictionaryEntries. This protects us from overflow attacks."
 	
 	^ self
@@ -1241,11 +955,8 @@ ZnClient>>maximumNumberOfDictionaryEntries: anInteger [
 		put: anInteger
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>method: httpMethod [
+{ #category : #'accessing request' }
+ZnClient >> method: httpMethod [
 	"Set the HTTP method of the current request to httpMethod.
 	An uppercase symbol such as #GET is expected.
 	Note that for all methods in #autoResetEntityMethods #resetEntity is called automatically,
@@ -1256,11 +967,8 @@ ZnClient>>method: httpMethod [
 	request method: httpMethod
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>multiPartFormDataEntity [
+{ #category : #'accessing request' }
+ZnClient >> multiPartFormDataEntity [
 	"Initialize the current request to have an multipart/form-data entity.
 	Return the existing entity if there is one. 
 	Fail if another type was already set."
@@ -1274,11 +982,8 @@ ZnClient>>multiPartFormDataEntity [
 	^ request entity
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>newConnectionTo: url [
+{ #category : #private }
+ZnClient >> newConnectionTo: url [
 	| initialMilliseconds |
 	self signalHTTPProgress: 'Connecting to ',  url authority.
 	initialMilliseconds := Time millisecondClockValue.
@@ -1290,42 +995,30 @@ ZnClient>>newConnectionTo: url [
 	self logConnectionEstablishedTo: url started: initialMilliseconds
 ]
 
-{
-	#category : #'private logging',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>newLogEvent: logEventClass [
+{ #category : #'private logging' }
+ZnClient >> newLogEvent: logEventClass [
 	^ logEventClass new
 		clientId: self clientId;
 		yourself
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>numberOfRetries [
+{ #category : #options }
+ZnClient >> numberOfRetries [
 	"Return how many times I will retry a failed request.
 	Defaults to 0."
 	
 	^ self optionAt: #numberOfRetries ifAbsent: [ 0 ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>numberOfRetries: count [
+{ #category : #options }
+ZnClient >> numberOfRetries: count [
 	"Set the number of times I will retry a failed request to count."
 	
 	self optionAt: #numberOfRetries put: count
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>optionAt: key ifAbsent: block [
+{ #category : #accessing }
+ZnClient >> optionAt: key ifAbsent: block [
 	"Return my option/settings stored under key.
 	Execute block if I have no such option/setting.
 	This is a generic interface, see my options protocol for specific usages."
@@ -1334,11 +1027,8 @@ ZnClient>>optionAt: key ifAbsent: block [
 	^ options at: key ifAbsent: block
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>optionAt: key put: value [
+{ #category : #accessing }
+ZnClient >> optionAt: key put: value [
 	"Set my option/setting identified by key to be value.
 	This is a generic interface, see my options protocol for specific usages."
 	
@@ -1346,11 +1036,8 @@ ZnClient>>optionAt: key put: value [
 	options at: key put: value
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>options [
+{ #category : #operations }
+ZnClient >> options [
 	"Execute an HTTP OPTIONS on the request set up and return the response #contents."
 	
 	^ self 
@@ -1358,11 +1045,8 @@ ZnClient>>options [
 		execute
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>options: url [
+{ #category : #convenience }
+ZnClient >> options: url [
 	"Execute an HTTP OPTIONS request on url and return the response #contents."
 
 	^ self 
@@ -1370,11 +1054,8 @@ ZnClient>>options: url [
 		options
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>patch [
+{ #category : #operations }
+ZnClient >> patch [
 	"Execute a HTTP PATCH on the request set up and return the response #contents."
 
 	^ self 
@@ -1382,11 +1063,8 @@ ZnClient>>patch [
 		execute
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>patch: url contents: object [
+{ #category : #convenience }
+ZnClient >> patch: url contents: object [
 	"Execute an HTTP PATCH request on url with object as request #contents:
 	and return the response #contents."
 
@@ -1396,32 +1074,23 @@ ZnClient>>patch: url contents: object [
 		patch
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>path: pathString [
+{ #category : #'accessing request' }
+ZnClient >> path: pathString [
 	"Set the path of the current request to pathString.
 	The argument will be merged with of the current/previous request."
 	
 	self url: pathString
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>port: portNumber [
+{ #category : #'accessing request' }
+ZnClient >> port: portNumber [
 	"Set the port of the current request to portNumber."
 	
 	self url: (ZnUrl new port: portNumber; yourself)
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>post [
+{ #category : #operations }
+ZnClient >> post [
 	"Execute a HTTP POST on the request set up and return the response #contents."
 
 	^ self 
@@ -1429,11 +1098,8 @@ ZnClient>>post [
 		execute
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>post: url contents: object [
+{ #category : #convenience }
+ZnClient >> post: url contents: object [
 	"Execute an HTTP POST request on url with object as request #contents:
 	and return the response #contents."
 
@@ -1443,22 +1109,16 @@ ZnClient>>post: url contents: object [
 		post
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>prepareNextRequest [
+{ #category : #'private protocol' }
+ZnClient >> prepareNextRequest [
 	"The request could be modified destructively in the next run,
 	but the request can also be part of a log event, hence copy it"
 	request := request copy	
 
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>prepareRedirect [
+{ #category : #'private protocol' }
+ZnClient >> prepareRedirect [
 	"We implement the common behavior that POST/PUT redirects turn into GET request
 	and that the body data is dropped, except for a 307 or 308 where this is explicitly forbidden.
 	Note the cookie handling too."
@@ -1478,11 +1138,8 @@ ZnClient>>prepareRedirect [
 	self sendCookies
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>prepareRequest [
+{ #category : #'private protocol' }
+ZnClient >> prepareRequest [
 	self isOneShot 
 		ifTrue: [ request setConnectionClose ].
 	request hasEntity
@@ -1495,11 +1152,8 @@ ZnClient>>prepareRequest [
 		ifNotNil: [ :hook | hook value: request ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>prepareRequest: hook [
+{ #category : #options }
+ZnClient >> prepareRequest: hook [
 	"Set the current request preparation hook, an object conforming 
 	to the #value: protocol that gets the final chance to change a request 
 	right before it gets executed. Defaults to nil.
@@ -1508,11 +1162,8 @@ ZnClient>>prepareRequest: hook [
 	^ self optionAt: #prepareRequestHook put: hook
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>prepareRequestHook [
+{ #category : #options }
+ZnClient >> prepareRequestHook [
 	"Return the current request preparation hook, an object conforming 
 	to the #value: protocol that gets the final chance to change a request 
 	right before it gets executed. Defaults to nil.
@@ -1521,11 +1172,8 @@ ZnClient>>prepareRequestHook [
 	^ self optionAt: #prepareRequestHook ifAbsent: [ nil ]
 ]
 
-{
-	#category : #operations,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>put [
+{ #category : #operations }
+ZnClient >> put [
 	"Execute a HTTP PUT on the request set up and return the response #contents."
 
 	^ self 
@@ -1533,11 +1181,8 @@ ZnClient>>put [
 		execute
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>put: url contents: object [
+{ #category : #convenience }
+ZnClient >> put: url contents: object [
 	"Execute an HTTP PUT request on url with object as request #contents:
 	and return the response #contents."
 
@@ -1547,11 +1192,8 @@ ZnClient>>put: url contents: object [
 		put
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>queryAddAll: keyedCollection [
+{ #category : #'accessing request' }
+ZnClient >> queryAddAll: keyedCollection [
 	"Add all key -> value elements of keyedCollection 
 	as an HTTP query parameters to the current request."
 
@@ -1559,11 +1201,8 @@ ZnClient>>queryAddAll: keyedCollection [
 		self queryAt: key put: value ]
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>queryAt: key add: value [
+{ #category : #'accessing request' }
+ZnClient >> queryAt: key add: value [ 
 	"Modify the receiver by adding a query variable key=value.
 	If key already exists, value is added to it."
 
@@ -1572,11 +1211,8 @@ ZnClient>>queryAt: key add: value [
 		ifNotNil: [ request url queryAt: key add: value ]  
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>queryAt: key put: value [
+{ #category : #'accessing request' }
+ZnClient >> queryAt: key put: value [
 	"Add key equals value as an HTTP query parameter to the current request."
 	
 	request url 
@@ -1584,11 +1220,8 @@ ZnClient>>queryAt: key put: value [
 		ifNotNil: [ request url queryAt: key put: value ]  
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>readResponse [
+{ #category : #'private protocol' }
+ZnClient >> readResponse [
 	self signalHTTPProgress: 'Reading response'.
 	self withMaximumNumberOfDictionaryEntriesDo: [
 		self withDefaultCharacterEncoderDo: [
@@ -1602,21 +1235,15 @@ ZnClient>>readResponse [
 	lastUsed := Time totalSeconds
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>receiveCookies [
+{ #category : #private }
+ZnClient >> receiveCookies [
 	response cookies do: [ :each |
 		each defaultDomain: request url host.
 		self session cookieJar add: each ]
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>redirectUrl [
+{ #category : #'private protocol' }
+ZnClient >> redirectUrl [
 	"We support relative locations although they are not the standard (http://en.wikipedia.org/wiki/HTTP_location)"
 
 	| redirectUrl |
@@ -1626,22 +1253,16 @@ ZnClient>>redirectUrl [
 		ifFalse: [ redirectUrl inContextOf: request url ]
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>request [
+{ #category : #'accessing request' }
+ZnClient >> request [
 	"Return the current request that I am building,
 	or the previous request that I executed."
 	
 	^ request 
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>request: aRequest [
+{ #category : #'accessing request' }
+ZnClient >> request: aRequest [
 	"Replace my current request with aRequest.
 	This is a low level operation only needed in special cases."
 	
@@ -1649,19 +1270,13 @@ ZnClient>>request: aRequest [
 	request := aRequest
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>resetCookies [
+{ #category : #accessing }
+ZnClient >> resetCookies [
 	session ifNotNil: [ session resetCookies ]
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>resetEntity [
+{ #category : #'accessing request' }
+ZnClient >> resetEntity [
 	"Make sure that the current request does not hold an entity from a previous request.
 	This is sometimes necessary after a POST or PUT. This method will be called automatically
 	by #method: for certain requests."
@@ -1670,51 +1285,36 @@ ZnClient>>resetEntity [
 		ifTrue: [ request resetEntity: nil ]
 ]
 
-{
-	#category : #'accessing response',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>response [
+{ #category : #'accessing response' }
+ZnClient >> response [ 
 	"Answer the last response, assuming the current request was executed."
 
 	^ response 
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>retryDelay [
+{ #category : #options }
+ZnClient >> retryDelay [
 	"Return the number of seconds I will delay retrying a failed request,
 	provided I do retry requests. Defaults to 1 seconds."
 	
 	^ self optionAt: #retryDelay ifAbsent: [ 1 ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>retryDelay: seconds [
+{ #category : #options }
+ZnClient >> retryDelay: seconds [
 	"Set the delay before I will delay retrying a failed request to seconds,
 	provided I do retry requests."
 
 	self optionAt: #retryDelay put: seconds
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>retryExceptionSet [
+{ #category : #private }
+ZnClient >> retryExceptionSet [
 	^ NetworkError, ZnParseError, ZnCharacterEncodingError, ZnUnknownScheme, ZnPortNotANumber
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>sendCookies [
+{ #category : #private }
+ZnClient >> sendCookies [
 	| cookies cookiesString |
 	session ifNil: [ ^ self ].
 	cookies := (session cookieJar cookiesForUrl: request url).
@@ -1726,44 +1326,32 @@ ZnClient>>sendCookies [
 	request setCookie: cookiesString
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>session [
+{ #category : #accessing }
+ZnClient >> session [
 	"Return the current HTTP session object that I am using.
 	This session object holds cookies among other things."
 
 	^ session ifNil: [ session := ZnUserAgentSession new ]
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>setAcceptEncodingGzip [
+{ #category : #'accessing request' }
+ZnClient >> setAcceptEncodingGzip [
 	"Give the server the hint that we accept gzip content encoding.
 	When the server complies, important bandwidth reductions are possible."
 
 	self request setAcceptEncodingGzip
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>setBasicAuthenticationUsername: username password: password [
+{ #category : #'accessing request' }
+ZnClient >> setBasicAuthenticationUsername: username password: password [
 	"Set the username/password for basic authenticationfor the current request."
 	
 	self request setBasicAuthenticationUsername: username password: password
 
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>setIfModifiedSince: reference [
+{ #category : #'accessing request' }
+ZnClient >> setIfModifiedSince: reference [
 	"Tell the server that we are only interested in the currently requested URI
 	if it was modified since reference, a DateAndTime.
 	If the URI was not modified since reference, the response will be #isNotModified."
@@ -1771,11 +1359,8 @@ ZnClient>>setIfModifiedSince: reference [
 	self request setIfModifiedSince: reference
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>setupTLSTo: url [
+{ #category : #private }
+ZnClient >> setupTLSTo: url [
 	(ZnNetworkingUtils shouldProxyUrl: url)
 		ifTrue: [ | originalRequest |
 			"http://www.ietf.org/rfc/rfc2817.txt (section 5)"
@@ -1795,51 +1380,36 @@ ZnClient>>setupTLSTo: url [
 	connection connect
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>signalHTTPProgress: message [
+{ #category : #private }
+ZnClient >> signalHTTPProgress: message [
 	self signalProgress
 		ifTrue: [ HTTPProgress signal: message ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>signalProgress [
+{ #category : #options }
+ZnClient >> signalProgress [
 	"Return true if I signal HTTPProgress notifications during execution."
 	
 	^ self optionAt: #signalProgress ifAbsent: [ false ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>signalProgress: boolean [
+{ #category : #options }
+ZnClient >> signalProgress: boolean [
 	"Set whether I will signal HTTPProgress notifications during execution to boolean."
 	
 	self optionAt: #signalProgress put: boolean
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>streaming [
+{ #category : #options }
+ZnClient >> streaming [
 	"Return whether I will return streaming response objects (see ZnStreamingEntity).
 	If true, my users are responsible for actually reading the incoming response entity data stream."
 	
 	^ self optionAt: #streaming ifAbsent: [ false ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>streaming: boolean [
+{ #category : #options }
+ZnClient >> streaming: boolean [
 	"Set whether I will return streaming response objects (see ZnStreamingEntity) to boolean.
 	If true, my users are responsible for actually reading the incoming response entity data stream.
 	I cannot do streaming when #isOneShot is true because the stream would be closed too soon."
@@ -1849,44 +1419,32 @@ ZnClient>>streaming: boolean [
 	self optionAt: #streaming put: boolean
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>systemPolicy [
+{ #category : #initialization }
+ZnClient >> systemPolicy [
 	self 
 		enforceHttpSuccess: true;
 		enforceAcceptContentType: true;
 		numberOfRetries: 2
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>timeout [
+{ #category : #options }
+ZnClient >> timeout [
 	"Return the timeout in seconds for network socket stream operations
 	like connecting, reading and writing. Defaults to a global setting."
 	
 	^ self optionAt: #timeout ifAbsent: [ ZnNetworkingUtils defaultSocketStreamTimeout ]
 ]
 
-{
-	#category : #options,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>timeout: seconds [
+{ #category : #options }
+ZnClient >> timeout: seconds [
 	"Set the timeout for network socket stream operations
 	like connecting, reading and writing to seconds."
 
 	self optionAt: #timeout put: seconds
 ]
 
-{
-	#category : #convenience,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>uploadEntityFrom: path [
+{ #category : #convenience }
+ZnClient >> uploadEntityFrom: path [
 	"Set up a ZnStreamingEntity from the binary contents of the file at path.
 	The path extension is used to guess the content-type,
 	can be overridden using #contentType: if necessary.
@@ -1901,11 +1459,8 @@ ZnClient>>uploadEntityFrom: path [
 	self entity: (ZnStreamingEntity readFrom: stream usingType: type andLength: length)
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>url: urlObject [
+{ #category : #'accessing request' }
+ZnClient >> url: urlObject [
 	"Modify the URL of the current request object to urlObject.
 	This is done using ZnUrl>>#inContextOf: so that either scheme, 
 	host, port or path are set and merged.
@@ -1923,33 +1478,24 @@ ZnClient>>url: urlObject [
 		ifTrue: [ self setBasicAuthenticationUsername: url username password: url password ]
 ]
 
-{
-	#category : #'accessing request',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>username: username password: password [
+{ #category : #'accessing request' }
+ZnClient >> username: username password: password [
 	"Set the username/password for basic authenticationfor the current request."
 	
 	self setBasicAuthenticationUsername: username password: password
 
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>validateConnectionForHost: host port: port [
+{ #category : #private }
+ZnClient >> validateConnectionForHost: host port: port [
 	(connection isNil or: [ request url isNil ]) 
 		ifTrue: [ ^ self ].
 	(request url host = host and: [ request url port = port ])
 		ifFalse: [ self close ]  
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>withDefaultCharacterEncoderDo: block [
+{ #category : #private }
+ZnClient >> withDefaultCharacterEncoderDo: block [
 	^ self defaultEncoder = ZnDefaultCharacterEncoder value
 			ifTrue: block
 			ifFalse: [ 
@@ -1958,11 +1504,8 @@ ZnClient>>withDefaultCharacterEncoderDo: block [
 					during: block ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>withMaximumEntitySizeDo: block [
+{ #category : #private }
+ZnClient >> withMaximumEntitySizeDo: block [
 	^ self maximumEntitySize = ZnMaximumEntitySize value
 			ifTrue: block
 			ifFalse: [ 
@@ -1971,11 +1514,8 @@ ZnClient>>withMaximumEntitySizeDo: block [
 					during: block ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>withMaximumNumberOfDictionaryEntriesDo: block [
+{ #category : #private }
+ZnClient >> withMaximumNumberOfDictionaryEntriesDo: block [
 	^ self maximumNumberOfDictionaryEntries = ZnMaximumNumberOfDictionaryEntries value
 			ifTrue: block
 			ifFalse: [ 
@@ -1984,11 +1524,8 @@ ZnClient>>withMaximumNumberOfDictionaryEntriesDo: block [
 					during: block ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>withProgressDo: block [
+{ #category : #private }
+ZnClient >> withProgressDo: block [
 	^ ZnSignalProgress value
 		ifNil: [
 			ZnSignalProgress 
@@ -1998,11 +1535,8 @@ ZnClient>>withProgressDo: block [
 			block value ]
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>withTimeoutDo: block [
+{ #category : #private }
+ZnClient >> withTimeoutDo: block [
 	^ ZnConnectionTimeout value
 		ifNil: [
 			ZnConnectionTimeout 
@@ -2012,11 +1546,8 @@ ZnClient>>withTimeoutDo: block [
 			block value ]
 ]
 
-{
-	#category : #'private protocol',
-	#timestamp : ' 8/31/2017 07:16:19'
-}
-ZnClient>>writeRequest [
+{ #category : #'private protocol' }
+ZnClient >> writeRequest [
 	self signalHTTPProgress: 'Writing request'.
 	self withDefaultCharacterEncoderDo: [ request writeOn: connection ].
 	connection flush

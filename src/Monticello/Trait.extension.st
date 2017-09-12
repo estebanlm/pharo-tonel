@@ -1,12 +1,7 @@
-Extension {
-	#name : #Trait
-}
+Extension { #name : #Trait }
 
-{
-	#category : #'*Monticello',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Trait>>asClassDefinition [
+{ #category : #'*Monticello' }
+Trait >> asClassDefinition [
 	^ MCTraitDefinition
 		name: self name
 		traitComposition: self traitCompositionString
@@ -15,11 +10,8 @@ Trait>>asClassDefinition [
 		commentStamp: self organization commentStamp.
 ]
 
-{
-	#category : #'*Monticello',
-	#timestamp : ' 8/31/2017 07:17:01'
-}
-Trait>>classDefinitions [
+{ #category : #'*Monticello' }
+Trait >> classDefinitions [
 	| definitions |
 	definitions := OrderedCollection with: self asClassDefinition.
 	(self hasClassSide

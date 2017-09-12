@@ -20,15 +20,11 @@ Class {
 		'announcer',
 		'syntaxError'
 	],
-	#category : #Tools-Debugger,
-	#timestamp : '<historical>'
+	#category : #Tools-Debugger
 }
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger class>>buildMorphicViewOn: aSyntaxError [
+{ #category : #'instance creation' }
+SyntaxErrorDebugger class >> buildMorphicViewOn: aSyntaxError [
 	"Answer an Morphic view on the given SyntaxError."
 
 	| window |
@@ -58,11 +54,8 @@ SyntaxErrorDebugger class>>buildMorphicViewOn: aSyntaxError [
 	^ window openInWorldExtent: 380 @ 220
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger class>>open: aSyntaxError  [
+{ #category : #'instance creation' }
+SyntaxErrorDebugger class >> open: aSyntaxError [ 
 	"Answer a standard system view whose model is an instance of me."
 	<primitive: 19>
 	"Simulation guard"
@@ -75,21 +68,15 @@ SyntaxErrorDebugger class>>open: aSyntaxError  [
 	^ process suspend
 ]
 
-{
-	#category : #'tools registry',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger class>>registerToolsOn: registry [
+{ #category : #'tools registry' }
+SyntaxErrorDebugger class >> registerToolsOn: registry [
 	"Add ourselves to registry. See [Smalltalk tools]" 
 	registry register: self as: #syntaxErrorDebugger
 
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger class>>syntaxError: aSyntaxError [
+{ #category : #'instance creation' }
+SyntaxErrorDebugger class >> syntaxError: aSyntaxError [
 	
 	^ self new
 		syntaxError: aSyntaxError;
@@ -97,27 +84,18 @@ SyntaxErrorDebugger class>>syntaxError: aSyntaxError [
 		
 ]
 
-{
-	#category : #'dependents access',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>addDependant: aDependant [
+{ #category : #'dependents access' }
+SyntaxErrorDebugger >> addDependant: aDependant [
 	dependents add: aDependant
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>announcer [
+{ #category : #accessing }
+SyntaxErrorDebugger >> announcer [
 	^ announcer ifNil: [ announcer := Announcer new ]
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>browseMethodFull [
+{ #category : #menu }
+SyntaxErrorDebugger >> browseMethodFull [
 	"Create and schedule a full Browser and then select the current class and message."
 
 	| myClass |
@@ -126,22 +104,16 @@ SyntaxErrorDebugger>>browseMethodFull [
 			openOnClass: myClass selector: self selectedMessageName]
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>category: aSymbol [
+{ #category : #accessing }
+SyntaxErrorDebugger >> category: aSymbol [
 	"Record the message category of method being compiled. This is used when the user corrects the error and accepts."
 
 	category := aSymbol.
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>checkForUnprintableCharacters: aString [
+{ #category : #initialization }
+SyntaxErrorDebugger >> checkForUnprintableCharacters: aString [
 	| types printables |
 	types := String typeTable.
 	printables := '!@#$%&*-_=+<>{}?/\,¬∑¬£¬¢¬ß¬∂¬™¬∫¬ñ¬ó¬ì¬ë¬î¬í¬Ö√ö√¶√ö¬Ø√ó¬ø¬´¬ª`~`' asSet.
@@ -153,21 +125,15 @@ SyntaxErrorDebugger>>checkForUnprintableCharacters: aString [
 		ifNone: [ aString ]
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>closeWindow [
+{ #category : #other }
+SyntaxErrorDebugger >> closeWindow [
 
 	self topView close
 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>codePaneMenu: aMenu shifted: shifted [
+{ #category : #accessing }
+SyntaxErrorDebugger >> codePaneMenu: aMenu shifted: shifted [
 	"Note that unless we override perform:orSendTo:, 
 	PluggableTextController will respond to all menu items in a 
 	text pane"
@@ -178,27 +144,18 @@ SyntaxErrorDebugger>>codePaneMenu: aMenu shifted: shifted [
 	^ aMenu addAllFrom: donorMenu
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>contents [
+{ #category : #accessing }
+SyntaxErrorDebugger >> contents [
 	^contents 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>contents: stringOrText [
+{ #category : #accessing }
+SyntaxErrorDebugger >> contents: stringOrText [
 	contents := stringOrText
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>contents: aString notifying: aController [
+{ #category : #other }
+SyntaxErrorDebugger >> contents: aString notifying: aController [
 	"Compile the code in aString and proceed. Do not notify anybody of errors, because nobody would have been notified of errors if this syntax error had not arisen"
 
 	aController hasUnacceptedEdits: false.
@@ -209,11 +166,8 @@ SyntaxErrorDebugger>>contents: aString notifying: aController [
 	self closeWindow
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>contentsSelection [
+{ #category : #other }
+SyntaxErrorDebugger >> contentsSelection [
 	"Return the interval of text in the code pane to select when I set the pane's contents"
 
 	^ location 
@@ -221,29 +175,20 @@ SyntaxErrorDebugger>>contentsSelection [
 		ifNotNil: [ location to: location + self sourceErrorString size - 1 ] 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>debug [
+{ #category : #menu }
+SyntaxErrorDebugger >> debug [
 	"Show the stack of the process leading to this syntax editor, typically showing the stack of the compiler as called from fileIn."
 
 	^ Smalltalk tools debugger openOn: debugSession withFullView: true 
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>error [
+{ #category : #accessing }
+SyntaxErrorDebugger >> error [
 	^ error
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>handleWindowClosed [
+{ #category : #menu }
+SyntaxErrorDebugger >> handleWindowClosed [
 	debugSession interruptedProcess == nil 
 		ifFalse: [ 
 			debugSession 
@@ -251,11 +196,8 @@ SyntaxErrorDebugger>>handleWindowClosed [
 			clear ]
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>highlightError. [
+{ #category : #initialization }
+SyntaxErrorDebugger >> highlightError. [
 	"copy in the error message"
 	contents := contents
 					copyReplaceFrom: location
@@ -269,19 +211,13 @@ SyntaxErrorDebugger>>highlightError. [
 	contents addAttribute: TextEmphasis bold from: location to: location + self sourceErrorString size - 1.
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>initialize [
+{ #category : #initialization }
+SyntaxErrorDebugger >> initialize [
 	dependents := Set new.
 ]
 
-{
-	#category : #'message list',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>list [
+{ #category : #'message list' }
+SyntaxErrorDebugger >> list [
 	"Answer an array of one element made up of the class name, message category, and message selector in which the syntax error was found. This is the single item in the message list of a view/browser on the receiver."
 
 	selector ifNil: [^ Array with: (class name, '  ', (category ifNil: ['']), '  ', '<none>')].
@@ -290,49 +226,34 @@ SyntaxErrorDebugger>>list [
 
 ]
 
-{
-	#category : #'message list',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>listDoubleClick [
+{ #category : #'message list' }
+SyntaxErrorDebugger >> listDoubleClick [
 	self debug
 ]
 
-{
-	#category : #'message list',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>listIndex [
+{ #category : #'message list' }
+SyntaxErrorDebugger >> listIndex [
 	"There is always exactly one element in my list and it is always selected."
 
 	^ 1
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>listMenu: aMenu [
+{ #category : #menu }
+SyntaxErrorDebugger >> listMenu: aMenu [
 	^aMenu addList: {
 		{'Proceed' . #proceed}.
 		{'Debug calling process' . #debug}.
 		{'Browse full translated' . #browseMethodFull}}.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>model [
+{ #category : #accessing }
+SyntaxErrorDebugger >> model [
 	^ self
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>notify: anError at: aLocation in: source [
+{ #category : #other }
+SyntaxErrorDebugger >> notify: anError at: aLocation in: source [
 	"Open a syntax error view, inserting the given error message into the given source at the given location. This message is sent to the 'requestor' when the parser or compiler finds a syntax error."
 
 	| aClass  |
@@ -347,11 +268,8 @@ SyntaxErrorDebugger>>notify: anError at: aLocation in: source [
 
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>proceed [
+{ #category : #menu }
+SyntaxErrorDebugger >> proceed [
 	"The user has has edited and presumably fixed the syntax error and the filein can now proceed."
 
 	debugSession 
@@ -359,11 +277,8 @@ SyntaxErrorDebugger>>proceed [
 			clear
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>release [
+{ #category : #initialization }
+SyntaxErrorDebugger >> release [
 	"Prevent that syntaxError window lets a suspended compiler process running, when the window is closed."
 
 	debugSession ifNotNil: [ debugSession terminate ].
@@ -371,55 +286,40 @@ SyntaxErrorDebugger>>release [
 	super release.
 ]
 
-{
-	#category : #menu,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>resume: aValue [
+{ #category : #menu }
+SyntaxErrorDebugger >> resume: aValue [
 
 	debugSession 
 			resume: aValue;
 			clear
 ]
 
-{
-	#category : #'text menu support',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>selectedClass [
+{ #category : #'text menu support' }
+SyntaxErrorDebugger >> selectedClass [
 	"Answer the class in which the syntax error occurred."
 
 	^ class
 
 ]
 
-{
-	#category : #'text menu support',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>selectedClassOrMetaClass [
+{ #category : #'text menu support' }
+SyntaxErrorDebugger >> selectedClassOrMetaClass [
 	"Answer the class of the method being compiled."
 
 	^ class
 
 ]
 
-{
-	#category : #'text menu support',
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>selectedMessageName [
+{ #category : #'text menu support' }
+SyntaxErrorDebugger >> selectedMessageName [
 	"Answer the selector of the method being compiled."
 
 	^ selector
 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>setClass: aClass code: aString error: errorMessage location: anErrorPosition debugSession: aDebugSession doitFlag: flag [
+{ #category : #initialization }
+SyntaxErrorDebugger >> setClass: aClass code: aString error: errorMessage location: anErrorPosition debugSession: aDebugSession doitFlag: flag [
 
 	class := aClass.
 	error := errorMessage.
@@ -434,27 +334,18 @@ SyntaxErrorDebugger>>setClass: aClass code: aString error: errorMessage location
 	doitFlag := flag
 ]
 
-{
-	#category : #other,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>shoutAboutToStyle: aPluggableShoutMorphOrView [
+{ #category : #other }
+SyntaxErrorDebugger >> shoutAboutToStyle: aPluggableShoutMorphOrView [
 	^ true
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>sourceErrorString [
+{ #category : #accessing }
+SyntaxErrorDebugger >> sourceErrorString [
 	^ error , ' -> '
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>syntaxError: aSyntaxError [
+{ #category : #initialization }
+SyntaxErrorDebugger >> syntaxError: aSyntaxError [
 	"extract the instance properties from a SyntaxErrorNotification"
 	
 	syntaxError := aSyntaxError.
@@ -467,11 +358,8 @@ SyntaxErrorDebugger>>syntaxError: aSyntaxError [
 		doitFlag: aSyntaxError doitFlag.
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:26'
-}
-SyntaxErrorDebugger>>topView [
+{ #category : #accessing }
+SyntaxErrorDebugger >> topView [
 	"Find the first top view on me. Is there any danger of their being two
 	with the same model? Any danger from ungarbage collected old views?
 	Ask if schedulled?"

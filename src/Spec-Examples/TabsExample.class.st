@@ -9,15 +9,11 @@ Class {
 	#instVars : [
 		'manager'
 	],
-	#category : #Spec-Examples,
-	#timestamp : 'Spirita 7/28/2016 14:49'
+	#category : #Spec-Examples
 }
 
-{
-	#category : #specs,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TabsExample class>>defaultSpec [
+{ #category : #specs }
+TabsExample class >> defaultSpec [
 	<spec>
 	
 	^ SpecLayout composed
@@ -25,27 +21,18 @@ TabsExample class>>defaultSpec [
 		yourself
 ]
 
-{
-	#category : #examples,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TabsExample class>>example [
+{ #category : #examples }
+TabsExample class >> example [
 	^ self open
 ]
 
-{
-	#category : #'instance creation',
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TabsExample class>>open [
+{ #category : #'instance creation' }
+TabsExample class >> open [
 	^self new openWithSpec
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TabsExample>>browserTab [
+{ #category : #private }
+TabsExample >> browserTab [
 	| tab |
 	tab := self newTab.
 	tab
@@ -58,11 +45,8 @@ TabsExample>>browserTab [
 	^ tab
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TabsExample>>dynamicTab [
+{ #category : #private }
+TabsExample >> dynamicTab [
       | tab |
       tab := self newTab.
       tab
@@ -72,31 +56,22 @@ TabsExample>>dynamicTab [
       ^ tab 
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TabsExample>>initializeWidgets [
+{ #category : #initialization }
+TabsExample >> initializeWidgets [
 
 	manager := self newTabManager.
 	manager whenTabSelected: [ self updateTitle ].
 	self populateManager
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TabsExample>>manager [
+{ #category : #accessing }
+TabsExample >> manager [
 
 	^ manager
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TabsExample>>objectClassTab [
+{ #category : #private }
+TabsExample >> objectClassTab [
 	| tab |
 	tab := self newTab.
 	tab
@@ -106,11 +81,8 @@ TabsExample>>objectClassTab [
 	^ tab
 ]
 
-{
-	#category : #private,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TabsExample>>objectInspectorTab [
+{ #category : #private }
+TabsExample >> objectInspectorTab [
 	|tab|
 	tab := self newTab.
 	tab
@@ -122,11 +94,8 @@ TabsExample>>objectInspectorTab [
 			^tab
 ]
 
-{
-	#category : #initialization,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TabsExample>>populateManager [
+{ #category : #initialization }
+TabsExample >> populateManager [
 
 	manager
 		addTab: self objectClassTab;
@@ -135,11 +104,8 @@ TabsExample>>populateManager [
 		addTab: self dynamicTab
 ]
 
-{
-	#category : #accessing,
-	#timestamp : ' 8/31/2017 05:26:25'
-}
-TabsExample>>title [
+{ #category : #accessing }
+TabsExample >> title [
 
 	^ self manager selectedTab
 		ifNil: [ 'Tabs Example' ]
